@@ -7,7 +7,7 @@
 
 // Object func_0207adf8 works on.
 typedef struct Unk0207adf8 {
-    /* 00 */ Unk02084b2c mUnk_00;
+    /* 00 */ Nsbmd mUnk_00;
     /* 6c */ u16 mUnk_6c;
     /* 6e */ u16 mUnk_6e;
     /* 70 */ u16 mUnk_70;

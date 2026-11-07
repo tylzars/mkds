@@ -191,12 +191,12 @@ void func_020e2a74(Unk020e20a8 *a, Unk020e1e98 *b, u32 c, u32 d) {
     buf[11] = b->mUnk_100[2];
     func_01ff9048(0x11, NULL, 0);
     func_01ff9048(0x19, buf, 0xc);
-    func_020849d0(gCarTire);
+    DrawNsbmd(gCarTire);
     one = 1;
     func_01ff9048(0x12, &one, 1);
     buf[11] = -buf[11];
     func_01ff9048(0x19, buf, 0xc);
-    func_020849d0(gCarTire);
+    DrawNsbmd(gCarTire);
 }
 
 static inline s64 func_020e2630_inline(const Vec3 *v) {
@@ -477,7 +477,7 @@ void func_020e20a8(Unk020e20a8 *a) {
     for (k4 = 0, y4 = ((Unk0217b7a0 *) gCarTire)->mUnk_04; k4 < y4->mInfo.mNumMat; k4++) {
         NNS_G3dMdlSetMdlPolygonID(y4, k4, 7);
     }
-    func_020849b0(gCarTire, 0);
+    SetNsbmdLightEnableFlagAll(gCarTire, 0);
     n = data_0217b79c->mUnk_04;
     for (i = 0; i < n; i++) {
         e = data_0217b79c->mUnk_00[i];

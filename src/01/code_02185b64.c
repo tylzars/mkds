@@ -70,7 +70,7 @@ void LoadMissionGate(void *a) {
     LoadMapObjectModelNsbmaAnimation(gMissionGate, "MissionGate.nsbma");
     SetMapObjectModelPolygonId(gMissionGate, 0x3f);
     func_0209ba08(gMissionGate, 2);
-    func_020849a0(gMissionGate->mAnimatedModel, 0x294a);
+    SetNsbmdEmiAll(gMissionGate->mAnimatedModel, 0x294a);
 }
 
 void func_ov001_02185d18(void) {}

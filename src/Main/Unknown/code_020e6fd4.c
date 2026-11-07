@@ -231,9 +231,9 @@ void func_020e7460(void) {
         if (s->mUnk_00 != NULL) {
             q->mModel = HeapAlloc(h, 0x6c);
             p = FindSceneFile(s->mUnk_00);
-            func_02084e28(q->mModel, p);
+            InitNsbmd(q->mModel, p);
             func_02084968(q->mModel, 0x3f, n, 0x294a);
-            func_02084958(q->mModel, 3);
+            SetNsbmdCullModeAll(q->mModel, 3);
         } else {
             q->mModel = NULL;
         }

@@ -101,8 +101,8 @@ void func_020e52bc(void) {
     Unk020e52bc_c *c;
 
     func_020ea588((void **) &gObjShadow, FindMainRaceOrMainEffectMapObjFile(gObjShadowNsbmdName), NULL);
-    func_020849c0(gObjShadow, 0x3f);
-    func_020849b0(gObjShadow, 0);
+    SetNsbmdPolygonIdAll(gObjShadow, 0x3f);
+    SetNsbmdLightEnableFlagAll(gObjShadow, 0);
     a = gObjShadow->mUnk_004;
     b = (Unk020e52bc_8 *) &a->mUnk_000[a->mUnk_008];
     data_0217b814 = (Unk020e53ac *) &b->mUnk_000[((u32 *) &b->mUnk_000[b->mUnk_00a])[2]];

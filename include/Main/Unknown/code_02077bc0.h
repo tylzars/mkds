@@ -34,7 +34,7 @@ void InitKartModels(void *a, u32 b);
 
 // Declared here until the code that defines them is decompiled.
 
-#include "Main/Unknown/code_020846c0.h" // Unk02084b2c
+#include "Main/Unknown/code_020846c0.h" // Nsbmd
 
 extern u8 data_usa_02154fe8[];
 extern u32 data_usa_02155008[];
@@ -87,12 +87,12 @@ void func_02078f18(void *a, Unk0217ad08_058 *b);
 void func_02078f78(NNSG3dResFileHeader *a);
 void func_02078f9c(void *c);
 void *func_02079008(void *a, NNSG3dResFileHeader *b);
-void func_02079014(Unk02084b2c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c);
-void func_02079038(Unk02084b2c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c);
-void func_02079078(void *a, Unk02084b2c *b, void *c, NNSG3dResFileHeader *d, NNSG3dResFileHeader *e, void *f);
+void func_02079014(Nsbmd *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c);
+void func_02079038(Nsbmd *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c);
+void func_02079078(void *a, Nsbmd *b, void *c, NNSG3dResFileHeader *d, NNSG3dResFileHeader *e, void *f);
 void func_020790e0(void *a, s32 b);
 void func_020792c8(Unk0206bcb0_590 *a, s32 b);
-void UploadKartAPaletteSlice(Unk02084b2c *a, s32 b, void *c);
+void UploadKartAPaletteSlice(Nsbmd *a, s32 b, void *c);
 void func_02079678(void *a, s32 b);
 void func_02079988(Unk0206bcb0_590 *a, int b);
 void DrawKarts(void);

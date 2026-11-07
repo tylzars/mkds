@@ -26,7 +26,7 @@ void func_020cb9b8(void) {
     func_02125da0();
     func_0212abd0();
     func_02117170();
-    func_020848fc();
+    ReleaseAllResFiles();
     func_020cbabc(0);
     func_020cbaa8(0);
     func_020cba6c(0, 0x3f, 6, 10);

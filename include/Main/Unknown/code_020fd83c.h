@@ -6,14 +6,14 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_021052fc.h"
 
-struct Unk0208e490;
+struct ModelEffect;
 
 // Object of item kind 9, element of gItemPools[9].
 typedef struct ItemBomb {
     /* 000 */ Unk020f2df0 mUnk_000;
     /* 130 */ s32 mUnk_130;
     /* 134 */ s32 mUnk_134;
-    /* 138 */ struct Unk0208e490 *mUnk_138;
+    /* 138 */ struct ModelEffect *mUnk_138;
     /* 13c */ u8 mUnk_13c[0x30];
     /* 16c */ BOOL mUnk_16c;
     /* 170 */ s32 mUnk_170;

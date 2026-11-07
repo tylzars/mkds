@@ -477,8 +477,8 @@ void func_0208f0f8(void *a) {
     for (i = 0; i < m; i++) {
         NNS_FndAppendListObject(&data_0217b08c->mUnk_00[2], &f[i]);
     }
-    func_0208526c(&data_0217b08c->mUnk_24, s, s);
-    q = data_0217b08c->mUnk_24.mUnk_0c;
+    AddResFileEntry(&data_0217b08c->mUnk_24, s, s);
+    q = data_0217b08c->mUnk_24.mTexture;
     t = (q->mTexInfo.mVramKey & 0xffff) << 3;
     data_021663f4.mUnk_00 = data_021663f4.mUnk_00 & 0xffff0000;
     data_021663f4.mUnk_00 = data_021663f4.mUnk_00 | (((u32) t >> 3) & 0xffff);

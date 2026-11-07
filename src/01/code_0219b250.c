@@ -47,7 +47,7 @@ Unk0219b250 *LoadMapObjectModelAnimated(Unk0219b478 *p0, const char *p1) {
     }
     o->mNsbmdFile = LoadMissionRunFile((p1));
     o->mAnimatedModel = HeapAlloc(GetHeap(func_020364e8()), 0x6c);
-    func_02084e28(o->mAnimatedModel, o->mNsbmdFile);
+    InitNsbmd(o->mAnimatedModel, o->mNsbmdFile);
     SetMapObjectModelFogEnabled(o, 0);
     o->mScale = data_ov001_021a6b2c;
     return o;

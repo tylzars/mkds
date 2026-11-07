@@ -151,17 +151,17 @@ void UpdateItemBombState1(ItemBomb *e) {
 
 void EnterItemBombState2(ItemBomb *e) {
     NNSSndSeqPlayer **p;
-    Unk0208e490 *q;
+    ModelEffect *q;
 
     e->mUnk_000.mUnk_000.mFlags |= 0x800000;
     e->mUnk_000.mUnk_000.mUnk_100 = 0;
     e->mUnk_000.mUnk_000.mUnk_68 = data_02159f30;
-    e->mUnk_138 = func_0208e490(0, &e->mUnk_000.mUnk_000.mPos, func_020f9160(&e->mUnk_000.mUnk_000) == 0 ? 1 : 0);
+    e->mUnk_138 = StartModelEffect(0, &e->mUnk_000.mUnk_000.mPos, func_020f9160(&e->mUnk_000.mUnk_000) == 0 ? 1 : 0);
     q = e->mUnk_138;
     if (q != NULL) {
         s32 *t;
 
-        t = q->mUnk_9c;
+        t = q->mScale;
         t[0] = 0xccd;
         t[1] = 0xccd;
         t[2] = 0xccd;
@@ -397,7 +397,7 @@ void DrawItemBomb(ItemBomb *e, Vec3 *a, Unk020e6488 *b) {
     if (e->mUnk_138 == NULL) {
         return;
     }
-    e->mUnk_138->mUnk_b4 = (e->mUnk_000.mUnk_000.mFlags & 0x10000) == 0;
+    e->mUnk_138->mVisible = (e->mUnk_000.mUnk_000.mFlags & 0x10000) == 0;
 }
 
 int RequestItemBombState2(ItemBomb *e) {

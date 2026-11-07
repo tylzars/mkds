@@ -24,7 +24,7 @@ void func_020ea5b0(Unk020e6488 *a, u32 b, Vec3 *c) {
 
 void func_020ea588(void **a, void *b, void *c) {
     *a = HeapAlloc(GetHeap(func_020364e8()), 0x6c);
-    func_02084e28(*a, b);
+    InitNsbmd(*a, b);
 }
 
 #pragma thumb off

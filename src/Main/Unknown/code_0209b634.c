@@ -107,7 +107,7 @@ void func_0209ba08(void *a, u32 b) {
     if (o->mAnimatedModel == NULL) {
         return;
     }
-    func_020849b0(o->mAnimatedModel, b);
+    SetNsbmdLightEnableFlagAll(o->mAnimatedModel, b);
 }
 
 void SetMapObjectModelAlpha(void *a, u16 b) {
@@ -189,9 +189,9 @@ void SetMapObjectModelMirror(void *a, s32 b, s32 c) {
     if (o->mAnimatedModel != NULL) {
         k = b != 0 || c != 0 ? 1 : 0;
         if (k ^ data_021759c0->mUnk_57) {
-            func_02084958(o->mAnimatedModel, 1);
+            SetNsbmdCullModeAll(o->mAnimatedModel, 1);
         } else {
-            func_02084958(o->mAnimatedModel, 2);
+            SetNsbmdCullModeAll(o->mAnimatedModel, 2);
         }
     }
     o->mScale.mUnk_00 = b != 0 ? -0x1000 : 0x1000;

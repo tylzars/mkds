@@ -2,29 +2,28 @@
 
 #include "types.h"
 #include "Main/Unknown/unk_02165000.h" // Unk02165ff0
-#include "Main/Unknown/code_020846c0.h" // Unk0208526c
+#include "Main/Unknown/code_020846c0.h" // ResFileEntry
 #include "Main/Unknown/code_0210b000.h" // Unk0210b7a8
 
-struct Unk0208e490;
+struct ModelEffect;
 
-// 0x2c-byte entries from data_0216618c; the objects func_0208e098 makes from an entry have its functions at 0x80 and
-// 0x84 and its size at 0x18, mUnk_04, mUnk_08 and mUnk_0c select the objects at 0x90, 0x94 and 0x98.
-typedef struct Unk0216618c {
-    /* 00 */ u16 mUnk_00;
-    /* 04 */ BOOL mUnk_04;
-    /* 08 */ BOOL mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ void (*mUnk_10)(struct Unk0208e490 *, s32);
-    /* 14 */ void (*mUnk_14)(struct Unk0208e490 *);
-    /* 18 */ u32 mUnk_18;
-    /* 1c */ Unk0208526c mUnk_1c;
-} Unk0216618c;
+// One row of gModelEffectKinds: object count, which animation objects to make, start and update functions, size.
+typedef struct ModelEffectKind {
+    /* 00 */ u16 mObjectCount;
+    /* 04 */ BOOL mUseNsbca;
+    /* 08 */ BOOL mUseNsbma;
+    /* 0c */ s32 mUseNsbta;
+    /* 10 */ void (*mStart)(struct ModelEffect *, s32);
+    /* 14 */ void (*mUpdate)(struct ModelEffect *);
+    /* 18 */ u32 mObjectSize;
+    /* 1c */ ResFileEntry mResFileEntry;
+} ModelEffectKind;
 
-extern Unk0216618c data_0216618c[5];
-extern Unk0216618c data_021661b8;
-extern Unk0216618c data_021661e4;
-extern Unk0216618c data_02166210;
-extern Unk0216618c data_0216623c;
+extern ModelEffectKind gModelEffectKinds[5];
+extern ModelEffectKind data_021661b8;
+extern ModelEffectKind data_021661e4;
+extern ModelEffectKind data_02166210;
+extern ModelEffectKind data_0216623c;
 extern const char data_02166268[];
 extern const char data_02166280[];
 extern const char data_02166298[];

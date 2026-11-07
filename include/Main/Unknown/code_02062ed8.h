@@ -2,16 +2,16 @@
 
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Kart, UnkVec16
-#include "Main/Unknown/code_020846c0.h" // Unk02084b2c
+#include "Main/Unknown/code_020846c0.h" // Nsbmd
 
-// Object at gCourseModels: two Unk02084b2c pointers, then the words and halfwords the code tests. The flag halfwords
+// Object at gCourseModels: two Nsbmd pointers, then the words and halfwords the code tests. The flag halfwords
 // live inside the embedded animation objects. 0xf4 is the distance to the next symbol, so the object overlaps four
 // other symbols: data_usa_0217abac at +0xb0 and the embedded objects data_usa_0217ab04 at +8, data_0217ab5c at +0x40
 // and data_usa_0217ab74 at +0x78 (USA).
 typedef struct CourseModels {
-    /* 00 */ Unk02084b2c *mNsbmd;
+    /* 00 */ Nsbmd *mNsbmd;
     // NULL when '/course_model_V.nsbmd' is absent; drawn before the main model under the other projection argument.
-    /* 04 */ Unk02084b2c *mVNsbmd;
+    /* 04 */ Nsbmd *mVNsbmd;
     /* 08 */ u8 mUnk_08[0xc];
     /* 14 */ s32 mUnk_14;
     /* 18 */ u8 mUnk_18[8];

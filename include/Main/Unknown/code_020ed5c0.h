@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h"
-#include "Main/Unknown/code_020846c0.h" // Unk02084b2c
+#include "Main/Unknown/code_020846c0.h" // Nsbmd
 #include "Main/Unknown/code_0207adf8.h" // Unk0207adf8
 #include "Main/Unknown/code_020e5d0c.h"
 #include "Main/Unknown/code_020f36d8.h"
@@ -95,14 +95,14 @@ typedef struct Unk0206bcb0_590_24 {
     /* 18 */ s16 mUnk_18;
 } Unk0206bcb0_590_24;
 
-struct Unk02084b2c;
+struct Nsbmd;
 
 typedef struct Unk0206bcb0_590 {
     /* 000 */ s32 mUnk_000;
     /* 004 */ s32 mUnk_004;
     /* 008 */ Unk0206bcb0_590_08 *mUnk_008;
     /* 00c */ Unk0206bcb0_590_08 *mUnk_00c;
-    /* 10 */ Unk02084b2c *mUnk_010[3];
+    /* 10 */ Nsbmd *mUnk_010[3];
     /* 01c */ Unk0207adf8 *mUnk_01c;
     /* 020 */ Unk0206bcb0_590_20 *mUnk_020;
     /* 024 */ s32 mUnk_024;

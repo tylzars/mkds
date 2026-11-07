@@ -96,120 +96,122 @@ void func_0208e808(s32 a) {
     }
 }
 
-void func_0208e570(void *a) {
+void InitModelEffects(void *heap) {
     u16 i;
     void *c;
     void *d;
     void *e;
     void *f;
-    Unk0216618c *x;
-    Unk0216618c *y;
+    ModelEffectKind *x;
+    ModelEffectKind *y;
 
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        a = data_0217aa10->mUnk_a4;
+        heap = data_0217aa10->mUnk_a4;
     }
-    data_0217b080 = HeapAlloc(a, 0x60);
-    NNS_FndInitList(&data_0217b080->mUnk_00, 0);
+    gModelEffects = HeapAlloc(heap, 0x60);
+    NNS_FndInitList(&gModelEffects->mActiveList, 0);
     for (i = 0; i < 5; i++) {
-        NNS_FndInitList(&data_0217b080->mUnk_0c[i], 0);
+        NNS_FndInitList(&gModelEffects->mFreeLists[i], 0);
     }
-    x = data_0216618c;
+    x = gModelEffectKinds;
     y = &data_021661b8;
     if (data_021759c0->mMode == 5) {
-        x->mUnk_00 = 6;
-        y->mUnk_00 = 4;
+        x->mObjectCount = 6;
+        y->mObjectCount = 4;
     } else {
-        x->mUnk_00 = 3;
-        y->mUnk_00 = 1;
+        x->mObjectCount = 3;
+        y->mObjectCount = 1;
     }
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        x->mUnk_00 = 0x14;
+        x->mObjectCount = 0x14;
     }
-    func_0208e2c8(&data_021661e4, 1);
-    func_0208e2c8(&data_0216623c, 2);
-    func_0208e23c();
-    func_0208e098(a);
+    SetupWaterEfctKindRow(&data_021661e4, 1);
+    SetupWaterEfctKindRow(&data_0216623c, 2);
+    SetupBkWaveKind();
+    InitModelEffectObjects(heap);
     c = FindMainRaceOrMainEffectFile(data_02166298);
     d = FindMainRaceOrMainEffectFile(data_021662b8);
     e = FindMainRaceOrMainEffectFile(data_021662d8);
     f = FindMainRaceOrMainEffectFile(data_021662f8);
-    func_0208ddf4(a, 0, c, d, e, f);
+    SetupModelEffectKind(heap, 0, c, d, e, f);
     c = FindMainRaceOrMainEffectFile(data_02166318);
     d = FindMainRaceOrMainEffectFile(data_0216633c);
     e = FindMainRaceOrMainEffectFile(data_02166360);
     f = FindMainRaceOrMainEffectFile(data_02166384);
-    func_0208ddf4(a, 1, c, d, e, f);
-    func_0208ddf4(a, 2, GetWaterEfctNsbmdFile(), GetWaterEfctNsbcaFile(), GetWaterEfctNsbmaFile(), NULL);
-    func_0208ddf4(a, 4, GetWaterEfctNsbmdFile(), GetWaterEfctNsbcaFile(), GetWaterEfctNsbmaFile(), NULL);
+    SetupModelEffectKind(heap, 1, c, d, e, f);
+    SetupModelEffectKind(heap, 2, GetWaterEfctNsbmdFile(), GetWaterEfctNsbcaFile(), GetWaterEfctNsbmaFile(), NULL);
+    SetupModelEffectKind(heap, 4, GetWaterEfctNsbmdFile(), GetWaterEfctNsbcaFile(), GetWaterEfctNsbmaFile(), NULL);
     if (data_021759c0->mCourseId == COURSE_ID_OLD_HYUDORO_64) {
-        func_0208ddf4(a, 3, GetWaterEfctNsbmdFile(), FindCourseFile(data_021663a8), FindCourseFile(data_021663c0),
-                      NULL);
+        SetupModelEffectKind(heap, 3, GetWaterEfctNsbmdFile(), FindCourseFile(data_021663a8),
+                             FindCourseFile(data_021663c0), NULL);
     }
-    data_0217b080->mUnk_5c = 10;
+    gModelEffects->mNextPolygonId = 10;
 }
 
-Unk0208e490 *func_0208e490(u32 a, const Vec3 *b, s32 c) {
-    Unk0208e490 *p;
+// Starts a pooled object of the given kind at position; startEffects goes to its start function. NULL if none is free.
+ModelEffect *StartModelEffect(u32 kind, const Vec3 *position, s32 startEffects) {
+    ModelEffect *p;
 
-    p = NNS_FndGetNthListObject(&data_0217b080->mUnk_0c[a], 0);
+    p = NNS_FndGetNthListObject(&gModelEffects->mFreeLists[kind], 0);
     if (p != NULL) {
-        NNS_FndRemoveListObject(&data_0217b080->mUnk_0c[a], p);
-        p->mUnk_88 = 0;
-        p->mUnk_74 = *b;
-        p->mUnk_a8 = 0;
-        p->mUnk_ac = 0;
-        p->mUnk_b0 = data_0217b080->mUnk_5c;
-        p->mUnk_b4 = 1;
-        p->mUnk_80(p, c);
-        NNS_FndAppendListObject(&data_0217b080->mUnk_00, p);
-        data_0217b080->mUnk_5c++;
-        if (data_0217b080->mUnk_5c > 0xd) {
-            data_0217b080->mUnk_5c = 10;
+        NNS_FndRemoveListObject(&gModelEffects->mFreeLists[kind], p);
+        p->mFinished = 0;
+        p->mPos = *position;
+        p->mSinceStartFrames = 0;
+        p->mFinishFrameCount = 0;
+        p->mPolygonId = gModelEffects->mNextPolygonId;
+        p->mVisible = 1;
+        p->mStart(p, startEffects);
+        NNS_FndAppendListObject(&gModelEffects->mActiveList, p);
+        gModelEffects->mNextPolygonId++;
+        if (gModelEffects->mNextPolygonId > 0xd) {
+            gModelEffects->mNextPolygonId = 10;
         }
     }
     return p;
 }
 
-void func_0208e400(void) {
-    Unk0208e490 *p;
+void UpdateModelEffects(void) {
+    ModelEffect *p;
 
-    p = NNS_FndGetNextListObject(&data_0217b080->mUnk_00, NULL);
+    p = NNS_FndGetNextListObject(&gModelEffects->mActiveList, NULL);
     if (p == NULL) {
         return;
     }
     do {
-        p->mUnk_84(p);
-        p->mUnk_a8 = p->mUnk_a8 + 1;
-        if (p->mUnk_88 == 1) {
-            NNS_FndRemoveListObject(&data_0217b080->mUnk_00, p);
-            NNS_FndAppendListObject(&data_0217b080->mUnk_0c[p->mUnk_8c], p);
+        p->mUpdate(p);
+        p->mSinceStartFrames = p->mSinceStartFrames + 1;
+        if (p->mFinished == 1) {
+            NNS_FndRemoveListObject(&gModelEffects->mActiveList, p);
+            NNS_FndAppendListObject(&gModelEffects->mFreeLists[p->mKind], p);
         }
-        p = NNS_FndGetNextListObject(&data_0217b080->mUnk_00, p);
+        p = NNS_FndGetNextListObject(&gModelEffects->mActiveList, p);
     } while (p != NULL);
 }
 
-void func_0208e358(void) {
+void DrawModelEffects(void) {
     MtxFx43 m;
-    Unk0208e490 *p;
+    ModelEffect *p;
 
     MTX_Identity43_(&m);
-    p = NNS_FndGetNextListObject(&data_0217b080->mUnk_00, NULL);
+    p = NNS_FndGetNextListObject(&gModelEffects->mActiveList, NULL);
     if (p == NULL) {
         return;
     }
     do {
-        if (p->mUnk_b4 != 0) {
-            m.mUnk_00[3].x = p->mUnk_74.x >> 4;
-            m.mUnk_00[3].y = p->mUnk_74.y >> 4;
-            m.mUnk_00[3].z = p->mUnk_74.z >> 4;
-            func_020849c0(&p->mUnk_08, p->mUnk_b0);
-            func_020849f8(&p->mUnk_08, &m, (u32 *) p->mUnk_9c);
+        if (p->mVisible != 0) {
+            m.mUnk_00[3].x = p->mPos.x >> 4;
+            m.mUnk_00[3].y = p->mPos.y >> 4;
+            m.mUnk_00[3].z = p->mPos.z >> 4;
+            SetNsbmdPolygonIdAll(&p->mNsbmd, p->mPolygonId);
+            DrawNsbmdWithMatrix(&p->mNsbmd, &m, (u32 *) p->mScale);
         }
-        p = NNS_FndGetNextListObject(&data_0217b080->mUnk_00, p);
+        p = NNS_FndGetNextListObject(&gModelEffects->mActiveList, p);
     } while (p != NULL);
 }
 
-void func_0208e2c8(Unk0216618c *a, s32 b) {
+// Row kindRow gets objectCount objects only when the water_efct model exists; its flags say which animations exist.
+void SetupWaterEfctKindRow(ModelEffectKind *kindRow, s32 objectCount) {
     void *x;
     void *y;
     void *z;
@@ -219,28 +221,29 @@ void func_0208e2c8(Unk0216618c *a, s32 b) {
     if (x != 0) {
         y = GetWaterEfctNsbcaFile();
         z = GetWaterEfctNsbmaFile();
-        a->mUnk_00 = b;
+        kindRow->mObjectCount = objectCount;
         if (y != 0) {
-            a->mUnk_04 = TRUE;
+            kindRow->mUseNsbca = TRUE;
         } else {
-            a->mUnk_04 = FALSE;
+            kindRow->mUseNsbca = FALSE;
         }
         if (z != 0) {
-            a->mUnk_08 = TRUE;
+            kindRow->mUseNsbma = TRUE;
         } else {
-            a->mUnk_08 = FALSE;
+            kindRow->mUseNsbma = FALSE;
         }
     } else {
-        a->mUnk_00 = 0;
-        a->mUnk_04 = FALSE;
-        a->mUnk_08 = FALSE;
-        data_0217b084[0] = -1;
-        data_0217b084[1] = -1;
+        kindRow->mObjectCount = 0;
+        kindRow->mUseNsbca = FALSE;
+        kindRow->mUseNsbma = FALSE;
+        gKind2EffectIds[0] = -1;
+        gKind2EffectIds[1] = -1;
     }
 }
 
-void func_0208e23c(void) {
-    Unk0216618c *e;
+// Row 3 gets one object only when the water_efct model exists; its animation flags say which bk_wave files exist.
+void SetupBkWaveKind(void) {
+    ModelEffectKind *e;
     void *x;
     void *y;
 
@@ -248,278 +251,282 @@ void func_0208e23c(void) {
     if (GetWaterEfctNsbmdFile() != 0) {
         x = FindCourseFile(data_02166268);
         y = FindCourseFile(data_02166280);
-        e->mUnk_00 = 1;
+        e->mObjectCount = 1;
         if (x != NULL) {
-            e->mUnk_04 = TRUE;
+            e->mUseNsbca = TRUE;
         } else {
-            e->mUnk_04 = FALSE;
+            e->mUseNsbca = FALSE;
         }
         if (y != NULL) {
-            e->mUnk_08 = TRUE;
+            e->mUseNsbma = TRUE;
         } else {
-            e->mUnk_08 = FALSE;
+            e->mUseNsbma = FALSE;
         }
     } else {
-        e->mUnk_00 = 0;
-        e->mUnk_04 = FALSE;
-        e->mUnk_08 = FALSE;
+        e->mObjectCount = 0;
+        e->mUseNsbca = FALSE;
+        e->mUseNsbma = FALSE;
     }
 }
 
-void func_0208e098(void *a) {
+void InitModelEffectObjects(void *heap) {
     u16 i;
     u16 j;
-    Unk0216618c *g;
-    Unk0208e490 *p;
+    ModelEffectKind *g;
+    ModelEffect *p;
     s32 v;
 
     for (i = 0; i < 5; i++) {
-        g = &data_0216618c[i];
-        if (g->mUnk_00 == 0) {
+        g = &gModelEffectKinds[i];
+        if (g->mObjectCount == 0) {
             continue;
         }
-        data_0217b080->mUnk_48[i] = HeapAlloc(a, g->mUnk_00 << 2);
-        for (j = 0; j < g->mUnk_00; j++) {
-            p = HeapAlloc(a, g->mUnk_18);
-            data_0217b080->mUnk_48[i][j] = p;
-            if (g->mUnk_04 == FALSE) {
-                p->mUnk_90[0] = NULL;
+        gModelEffects->mObjects[i] = HeapAlloc(heap, g->mObjectCount << 2);
+        for (j = 0; j < g->mObjectCount; j++) {
+            p = HeapAlloc(heap, g->mObjectSize);
+            gModelEffects->mObjects[i][j] = p;
+            if (g->mUseNsbca == FALSE) {
+                p->mAnimations[0] = NULL;
             } else {
-                p->mUnk_90[0] = HeapAlloc(a, 0x38);
+                p->mAnimations[0] = HeapAlloc(heap, 0x38);
             }
-            if (g->mUnk_08 == FALSE) {
-                p->mUnk_90[1] = NULL;
+            if (g->mUseNsbma == FALSE) {
+                p->mAnimations[1] = NULL;
             } else {
-                p->mUnk_90[1] = HeapAlloc(a, 0x38);
+                p->mAnimations[1] = HeapAlloc(heap, 0x38);
             }
-            if (g->mUnk_0c == 0) {
-                p->mUnk_90[2] = NULL;
+            if (g->mUseNsbta == 0) {
+                p->mAnimations[2] = NULL;
             } else {
-                p->mUnk_90[2] = HeapAlloc(a, 0x38);
+                p->mAnimations[2] = HeapAlloc(heap, 0x38);
             }
-            p->mUnk_8c = i;
-            p->mUnk_80 = g->mUnk_10;
-            p->mUnk_84 = g->mUnk_14;
-            NNS_FndAppendListObject(&data_0217b080->mUnk_0c[i], p);
+            p->mKind = i;
+            p->mStart = g->mStart;
+            p->mUpdate = g->mUpdate;
+            NNS_FndAppendListObject(&gModelEffects->mFreeLists[i], p);
             if (i == 2) {
                 v = data_021759c0->mCourseId == COURSE_ID_OLD_KOOPA_AGB ? 0xb33 : 0x1000;
-                p->mUnk_9c[0] = v;
-                p->mUnk_9c[1] = v;
-                p->mUnk_9c[2] = v;
+                p->mScale[0] = v;
+                p->mScale[1] = v;
+                p->mScale[2] = v;
             }
         }
     }
 }
 
-void func_0208ddf4(void *a, s32 b, NNSG3dResFileHeader *c, void *d, void *e, void *f) {
+// Builds the model and animation objects of every pooled object of the kind from modelFile and the animation files.
+void SetupModelEffectKind(void *heap, s32 kind, NNSG3dResFileHeader *modelFile, void *nsbcaFile, void *nsbmaFile,
+                          void *nsbtaFile) {
     u16 i;
     u8 *t;
     Unk02087d0c *o;
     NNSG3dResMdl *h;
-    Unk0208e490 *p;
-    Unk0216618c *g;
+    ModelEffect *p;
+    ModelEffectKind *g;
     u32 k;
 
-    g = &data_0216618c[b];
+    g = &gModelEffectKinds[kind];
     k = 1;
     if (data_021759c0->mCourseId == COURSE_ID_MANSION || data_021759c0->mCourseId == COURSE_ID_RAINBOW) {
         k = 0;
     }
-    if (g->mUnk_00 == 0) {
+    if (g->mObjectCount == 0) {
         return;
     }
-    if (b != 3) {
-        func_0208526c(&g->mUnk_1c, c, c);
+    if (kind != 3) {
+        AddResFileEntry(&g->mResFileEntry, modelFile, modelFile);
     }
-    if (b == 2) {
+    if (kind == 2) {
         data_0217b07c = 1;
     }
-    t = (u8 *) NNS_G3dGetMdlSet(c);
+    t = (u8 *) NNS_G3dGetMdlSet(modelFile);
     h = (NNSG3dResMdl *) (t + *(u32 *) (t + *(u16 *) (t + 0xe) + 0xc));
-    for (i = 0; i < g->mUnk_00; i++) {
-        p = data_0217b080->mUnk_48[b][i];
-        func_02084f10(&p->mUnk_08, h);
-        NNS_G3dMdlSetMdlFogEnableFlagAll(p->mUnk_08.mUnk_04, k);
-        o = p->mUnk_90[0];
+    for (i = 0; i < g->mObjectCount; i++) {
+        p = gModelEffects->mObjects[kind][i];
+        func_02084f10(&p->mNsbmd, h);
+        NNS_G3dMdlSetMdlFogEnableFlagAll(p->mNsbmd.mResMdl, k);
+        o = p->mAnimations[0];
         if (o != NULL) {
-            if (d != NULL) {
-                func_0208823c(0, o, &p->mUnk_08, 1, a, c);
-                func_0208805c(o, d, a);
+            if (nsbcaFile != NULL) {
+                func_0208823c(0, o, &p->mNsbmd, 1, heap, modelFile);
+                func_0208805c(o, nsbcaFile, heap);
             } else {
                 o->mUnk_18 = 0;
             }
-            if (b == 2) {
-                if (func_02087d0c(p->mUnk_90[0]) >> 12 == 0x20) {
-                    data_0217b084[0] = 0x37;
-                    data_0217b084[1] = 0x38;
+            if (kind == 2) {
+                if (func_02087d0c(p->mAnimations[0]) >> 12 == 0x20) {
+                    gKind2EffectIds[0] = 0x37;
+                    gKind2EffectIds[1] = 0x38;
                 } else {
-                    data_0217b084[0] = 0x39;
-                    data_0217b084[1] = -1;
+                    gKind2EffectIds[0] = 0x39;
+                    gKind2EffectIds[1] = -1;
                 }
             }
         }
-        o = p->mUnk_90[1];
+        o = p->mAnimations[1];
         if (o != NULL) {
-            if (e != NULL) {
-                func_0208823c(4, o, &p->mUnk_08, 1, a, c);
-                func_0208805c(o, e, a);
+            if (nsbmaFile != NULL) {
+                func_0208823c(4, o, &p->mNsbmd, 1, heap, modelFile);
+                func_0208805c(o, nsbmaFile, heap);
             } else {
                 o->mUnk_18 = 0;
             }
         }
-        o = p->mUnk_90[2];
+        o = p->mAnimations[2];
         if (o != NULL) {
-            if (f == NULL) {
+            if (nsbtaFile == NULL) {
                 o->mUnk_18 = 0;
             } else {
-                func_0208823c(1, o, &p->mUnk_08, 1, a, c);
-                func_0208805c(o, f, a);
+                func_0208823c(1, o, &p->mNsbmd, 1, heap, modelFile);
+                func_0208805c(o, nsbtaFile, heap);
             }
         }
     }
 }
 
-void func_0208dd6c(Unk0208e490 *a, s32 b) {
-    func_02087f84(a->mUnk_90[0], 0);
-    func_02087f84(a->mUnk_90[1], 0);
-    func_02087f84(a->mUnk_90[2], 0);
-    a->mUnk_9c[0] = 0xab8;
-    a->mUnk_9c[1] = 0xab8;
-    a->mUnk_9c[2] = 0xab8;
+void StartModelEffectBombcore(ModelEffect *a, s32 b) {
+    func_02087f84(a->mAnimations[0], 0);
+    func_02087f84(a->mAnimations[1], 0);
+    func_02087f84(a->mAnimations[2], 0);
+    a->mScale[0] = 0xab8;
+    a->mScale[1] = 0xab8;
+    a->mScale[2] = 0xab8;
     if (b == 0) {
         return;
     }
-    StartEffect(0x22, &a->mUnk_74);
-    StartEffect(1, &a->mUnk_74);
-    StartEffect(2, &a->mUnk_74);
+    StartEffect(0x22, &a->mPos);
+    StartEffect(1, &a->mPos);
+    StartEffect(2, &a->mPos);
 }
 
-void func_0208dd10(Unk0208e490 *a) {
-    if (a->mUnk_a8 == 0x26) {
-        StartEffect(3, &a->mUnk_74);
+void UpdateModelEffectBombcore(ModelEffect *a) {
+    if (a->mSinceStartFrames == 0x26) {
+        StartEffect(3, &a->mPos);
         return;
     }
-    if (a->mUnk_a8 >= 0x37) {
-        a->mUnk_88 = 1;
+    if (a->mSinceStartFrames >= 0x37) {
+        a->mFinished = 1;
         return;
     }
-    func_02087de0(a->mUnk_90[0]);
-    func_02087de0(a->mUnk_90[1]);
-    func_02087de0(a->mUnk_90[2]);
+    func_02087de0(a->mAnimations[0]);
+    func_02087de0(a->mAnimations[1]);
+    func_02087de0(a->mAnimations[2]);
 }
 
-void func_0208dcbc(Unk0208e490 *a) {
+void StartWaterEfctKind2(ModelEffect *a) {
     u32 x;
 
-    x = (u32) (func_02087d0c(a->mUnk_90[0]) << 4) >> 16;
-    func_02087f84(a->mUnk_90[0], 0);
-    a->mUnk_ac = x;
-    if (a->mUnk_90[1] != NULL) {
-        func_02087f84(a->mUnk_90[1], 0);
+    x = (u32) (func_02087d0c(a->mAnimations[0]) << 4) >> 16;
+    func_02087f84(a->mAnimations[0], 0);
+    a->mFinishFrameCount = x;
+    if (a->mAnimations[1] != NULL) {
+        func_02087f84(a->mAnimations[1], 0);
     }
 }
 
-void func_0208dc50(Unk0208e490 *a) {
-    a->mUnk_9c[0] = 0x3d9a;
-    a->mUnk_9c[1] = 0x3d9a;
-    a->mUnk_9c[2] = 0x3d9a;
-    func_02087f84(a->mUnk_90[0], 0);
-    a->mUnk_ac = 0x20;
-    if (a->mUnk_90[1] != NULL) {
-        func_02087f84(a->mUnk_90[1], 0);
+void StartWaterEfctKind4(ModelEffect *a) {
+    a->mScale[0] = 0x3d9a;
+    a->mScale[1] = 0x3d9a;
+    a->mScale[2] = 0x3d9a;
+    func_02087f84(a->mAnimations[0], 0);
+    a->mFinishFrameCount = 0x20;
+    if (a->mAnimations[1] != NULL) {
+        func_02087f84(a->mAnimations[1], 0);
     }
-    StartEffect(0x424, &a->mUnk_74);
-    StartEffect(0x422, &a->mUnk_74);
+    StartEffect(0x424, &a->mPos);
+    StartEffect(0x422, &a->mPos);
 }
 
-void func_0208dc08(Unk0208e490 *a) {
-    if (a->mUnk_a8 >= a->mUnk_ac) {
-        a->mUnk_88 = 1;
+// Update of kinds 2 and 4: sets mFinished at mFinishFrameCount, else advances animations 0 and 1.
+void UpdateWaterEfctKinds(ModelEffect *a) {
+    if (a->mSinceStartFrames >= a->mFinishFrameCount) {
+        a->mFinished = 1;
         return;
     }
-    func_02087de0(a->mUnk_90[0]);
-    if (a->mUnk_90[1] != NULL) {
-        func_02087de0(a->mUnk_90[1]);
+    func_02087de0(a->mAnimations[0]);
+    if (a->mAnimations[1] != NULL) {
+        func_02087de0(a->mAnimations[1]);
     }
 }
 
-void func_0208db94(Unk0208e490 *a, s32 b) {
-    func_02087f84(a->mUnk_90[0], 0);
-    a->mUnk_9c[0] = 0x5800;
-    a->mUnk_9c[1] = 0x5800;
-    a->mUnk_9c[2] = 0x5800;
-    a->mUnk_ac = 0x27;
-    func_02087f84(a->mUnk_90[1], 0);
+void StartModelEffectBkWave(ModelEffect *a, s32 b) {
+    func_02087f84(a->mAnimations[0], 0);
+    a->mScale[0] = 0x5800;
+    a->mScale[1] = 0x5800;
+    a->mScale[2] = 0x5800;
+    a->mFinishFrameCount = 0x27;
+    func_02087f84(a->mAnimations[1], 0);
     if (b == 0) {
         return;
     }
-    StartEffect(0x40, &a->mUnk_74);
-    StartEffect(0x41, &a->mUnk_74);
+    StartEffect(0x40, &a->mPos);
+    StartEffect(0x41, &a->mPos);
 }
 
-void func_0208db58(Unk0208e490 *a) {
-    if (a->mUnk_a8 >= a->mUnk_ac) {
-        a->mUnk_88 = 1;
+void UpdateModelEffectBkWave(ModelEffect *a) {
+    if (a->mSinceStartFrames >= a->mFinishFrameCount) {
+        a->mFinished = 1;
         return;
     }
-    func_02087de0(a->mUnk_90[0]);
-    func_02087de0(a->mUnk_90[1]);
+    func_02087de0(a->mAnimations[0]);
+    func_02087de0(a->mAnimations[1]);
 }
 
-void func_0208dad4(Unk0208e490 *a, s32 b) {
-    func_02087f84(a->mUnk_90[0], 0);
-    func_02087f84(a->mUnk_90[1], 0);
-    func_02087f84(a->mUnk_90[2], 0);
-    a->mUnk_9c[0] = 0x1000;
-    a->mUnk_9c[1] = 0x1000;
-    a->mUnk_9c[2] = 0x1000;
+void StartModelEffectBombcore2(ModelEffect *a, s32 b) {
+    func_02087f84(a->mAnimations[0], 0);
+    func_02087f84(a->mAnimations[1], 0);
+    func_02087f84(a->mAnimations[2], 0);
+    a->mScale[0] = 0x1000;
+    a->mScale[1] = 0x1000;
+    a->mScale[2] = 0x1000;
     if (b == 0) {
         return;
     }
-    StartEffect(8, &a->mUnk_74);
-    StartEffect(9, &a->mUnk_74);
-    StartEffect(0xa, &a->mUnk_74);
+    StartEffect(8, &a->mPos);
+    StartEffect(9, &a->mPos);
+    StartEffect(0xa, &a->mPos);
 }
 
-void func_0208da94(Unk0208e490 *a) {
-    if (a->mUnk_a8 >= 0x37) {
-        a->mUnk_88 = 1;
+void UpdateModelEffectBombcore2(ModelEffect *a) {
+    if (a->mSinceStartFrames >= 0x37) {
+        a->mFinished = 1;
         return;
     }
-    func_02087de0(a->mUnk_90[0]);
-    func_02087de0(a->mUnk_90[1]);
-    func_02087de0(a->mUnk_90[2]);
+    func_02087de0(a->mAnimations[0]);
+    func_02087de0(a->mAnimations[1]);
+    func_02087de0(a->mAnimations[2]);
 }
 
-void func_0208d978(const Vec3 *a, s32 b) {
-    Unk0208e490 *p;
+// Starts a kind 2 object at position when startModel is set, then the particle effects of gKind2EffectIds.
+void func_0208d978(const Vec3 *position, s32 startModel) {
+    ModelEffect *p;
     u16 i;
 
-    if (data_0216618c[2].mUnk_00 == 0) {
+    if (gModelEffectKinds[2].mObjectCount == 0) {
         return;
     }
     i = 0;
-    if (b != 0) {
-        p = NNS_FndGetNthListObject(OFFSET_PTR(NNSFndList, data_0217b080->mUnk_0c, 0x18), 0);
+    if (startModel != 0) {
+        p = NNS_FndGetNthListObject(OFFSET_PTR(NNSFndList, gModelEffects->mFreeLists, 0x18), 0);
         if (p != NULL) {
-            NNS_FndRemoveListObject(OFFSET_PTR(NNSFndList, data_0217b080->mUnk_0c, 0x18), p);
-            p->mUnk_88 = 0;
-            p->mUnk_74 = *a;
-            p->mUnk_a8 = 0;
-            p->mUnk_ac = 0;
-            p->mUnk_b0 = data_0217b080->mUnk_5c;
-            p->mUnk_b4 = 1;
-            p->mUnk_80(p, 0);
-            NNS_FndAppendListObject(&data_0217b080->mUnk_00, p);
-            data_0217b080->mUnk_5c++;
-            if (data_0217b080->mUnk_5c > 0xd) {
-                data_0217b080->mUnk_5c = 10;
+            NNS_FndRemoveListObject(OFFSET_PTR(NNSFndList, gModelEffects->mFreeLists, 0x18), p);
+            p->mFinished = 0;
+            p->mPos = *position;
+            p->mSinceStartFrames = 0;
+            p->mFinishFrameCount = 0;
+            p->mPolygonId = gModelEffects->mNextPolygonId;
+            p->mVisible = 1;
+            p->mStart(p, 0);
+            NNS_FndAppendListObject(&gModelEffects->mActiveList, p);
+            gModelEffects->mNextPolygonId++;
+            if (gModelEffects->mNextPolygonId > 0xd) {
+                gModelEffects->mNextPolygonId = 10;
             }
         }
     }
     do {
-        if (data_0217b084[i] >= 0) {
-            StartEffect(data_0217b084[i], a);
+        if (gKind2EffectIds[i] >= 0) {
+            StartEffect(gKind2EffectIds[i], position);
         }
         i++;
     } while (i < 2);

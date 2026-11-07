@@ -50,11 +50,11 @@ void InitNsbmdNsbcaNsbmaNsbtp(void *a, Unk0208a69c *b, const Unk02155ee8 *c, u16
     char s[0x80];
     void *n;
     u16 i;
-    Unk02084b2c *h;
-    Unk02084b2c *e;
+    Nsbmd *h;
+    Nsbmd *e;
     Unk02087d0c *g;
     u16 j;
-    Unk02084b2c *p;
+    Nsbmd *p;
     Unk02087d0c *q;
     u16 l;
     u16 k;
@@ -84,7 +84,7 @@ void InitNsbmdNsbcaNsbmaNsbtp(void *a, Unk0208a69c *b, const Unk02155ee8 *c, u16
         h = &b->mNsbmds[i];
         snprintf(s, 0x80, "%s.nsbmd", c->mStems[i]);
         n = FindSceneFile(s);
-        func_02084c54(h, n);
+        InitNsbmdWithoutCullSwap(h, n);
     }
     for (j = 0; j < c->mNsbcaCount; j++) {
         e = &b->mNsbmds[j];
@@ -237,7 +237,7 @@ void func_02089fa0(void) {
     Vec3 d;
     Vec3 *c;
     u16 i;
-    Unk02084b2c *e;
+    Nsbmd *e;
 
     MTX_Identity43_(&a);
     data_0217029c.mCameraMtx = a;

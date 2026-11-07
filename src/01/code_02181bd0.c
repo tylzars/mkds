@@ -340,7 +340,7 @@ void LoadCoin(Unk0219b478 *a) {
     LoadMapObjectModelNsbtpAnimation(data_ov001_021a9b98, data_ov001_021a78cc);
     SetMapObjectModelPolygonId(data_ov001_021a9b98, 0x3f);
     func_0209ba08(data_ov001_021a9b98, 2);
-    func_020849a0(data_ov001_021a9b98->mAnimatedModel, 0x294a);
+    SetNsbmdEmiAll(data_ov001_021a9b98->mAnimatedModel, 0x294a);
     a->mUnk_1c = 1;
 }
 

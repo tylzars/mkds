@@ -763,11 +763,11 @@ void func_020ea8a8(Unk020ea670 *param_1, void *param_2, void *param_3, s32 param
         v = NNS_G3dMdlGetMdlPolygonID(p, 0);
         NNS_G3dMdlSetMdlPolygonIDAll(p, AllocPolygonIdWrapping());
         NNS_G3dMdlSetMdlAlphaAll(p, param_4);
-        func_020849f8(param_1, param_2, param_3);
+        DrawNsbmdWithMatrix(param_1, param_2, param_3);
         NNS_G3dMdlSetMdlPolygonIDAll(p, v);
         NNS_G3dMdlSetMdlAlphaAll(p, n);
     } else {
-        func_020849f8(param_1, param_2, param_3);
+        DrawNsbmdWithMatrix(param_1, param_2, param_3);
     }
 }
 
@@ -800,7 +800,7 @@ void func_020ea7cc(Unk020ea670 *param_1, s32 param_2) {
         NNS_G3dMdlSetMdlPolygonIDAll(p, AllocPolygonIdWrapping());
         NNS_G3dMdlSetMdlAlphaAll(p, param_2);
     }
-    func_020849d0(param_1);
+    DrawNsbmd(param_1);
     m = data_0216c3d4;
     if (param_2 < m) {
         NNS_G3dMdlSetMdlAlphaAll(p, m);
@@ -845,7 +845,7 @@ void func_020ea670(Unk020ea670 *param_1, s32 param_2) {
     data_0217bbe8 =
         ((Unk020ea670_0c *) (q + ((Unk020ea670_08 *) (q + ((Unk020ea670_0a *) q)->mUnk_00a))->mUnk_008))->mUnk_00c;
     NNS_G3dRenderObjSetCallBack((NNSG3dRenderObj *) param_1, (NNSG3dSbcCallBackFunc) func_020ea84c, 0, 4, 3);
-    func_020849d0(param_1);
+    DrawNsbmd(param_1);
     m = data_0216c3d4;
     if (param_2 < m) {
         NNS_G3dMdlSetMdlAlphaAll(p, m);

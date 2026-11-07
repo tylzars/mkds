@@ -351,7 +351,7 @@ s32 func_02055808(s32 a) {
         case 21:
             data_0217aa00->mUnk_0454 &= ~0x40;
             data_0217aa00->mUnk_0004 = 1;
-            func_020536e0();
+            Initialize();
             break;
         case 1:
             func_02052ecc();
@@ -359,7 +359,7 @@ s32 func_02055808(s32 a) {
         case 2:
         case 36:
             if (a != 0) {
-                func_020532dc(0x14);
+                SetLifeTime(0x14);
             } else {
                 r = TRUE;
                 data_0217aa00->mUnk_0004 = 3;
@@ -367,15 +367,15 @@ s32 func_02055808(s32 a) {
             }
             break;
         case 3:
-            func_02053094(0);
+            MeasureChannel(0);
             break;
         case 4:
             func_0204f814();
             func_0204fb40(1);
-            func_02052bf8();
+            SetParentParameter();
             break;
         case 5:
-            func_02052b60(NULL);
+            StartParent(NULL);
             break;
         case 6:
             StartMP();

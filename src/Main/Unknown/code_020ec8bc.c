@@ -65,7 +65,7 @@ void *func_020ed490(u8 *a, u8 *b) {
 
     p = HeapAlloc(GetHeap(func_020364e8()), 0x6c);
     q = func_020ed548(a);
-    func_02084e28(p, q);
+    InitNsbmd(p, q);
     func_02084968(p, 4, 2, 0x294a);
     return p;
 }

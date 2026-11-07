@@ -258,7 +258,7 @@ void UpdateBakubaku(void *a, Bakubaku *p) {
             if (p->mUnk_00.mPos.y < p->mUnk_00.mCourseMapRow->mUnk_00.y) {
                 return;
             }
-            func_0208e490(3, &p->mUnk_00.mPos, 1);
+            StartModelEffect(3, &p->mUnk_00.mPos, 1);
             s1.mUnk_00 = 0x186;
             s1.mUnk_04 = &p->mUnk_00.mPos;
             s1.mUnk_08 = 4;
@@ -272,7 +272,7 @@ void UpdateBakubaku(void *a, Bakubaku *p) {
             if (p->mUnk_00.mPos.y > p->mUnk_00.mCourseMapRow->mUnk_00.y) {
                 return;
             }
-            func_0208e490(3, &p->mUnk_00.mPos, 1);
+            StartModelEffect(3, &p->mUnk_00.mPos, 1);
             s2.mUnk_00 = 0x187;
             s2.mUnk_04 = &p->mUnk_00.mPos;
             s2.mUnk_08 = 2;

@@ -182,7 +182,7 @@ void InitRace(void) {
     SetHeapGroupId(6);
     func_0208b934(a);
     func_020846c0(a);
-    func_0208e570(a);
+    InitModelEffects(a);
     func_0208f0f8(a);
     SetHeapGroupId(9);
     *(u16 *) 0x05000000 = 0xff00;
@@ -318,7 +318,7 @@ void UpdateRace(void) {
     UpdateItems();
     UpdateJg();
     UpdateMapObjects();
-    func_0208e400();
+    UpdateModelEffects();
     func_0208f0a0();
     func_0208b8c8();
     if (data_0217aa64 != 0) {
@@ -452,7 +452,7 @@ void func_02062078(void) {
     DrawJg();
     DrawMapObjects((Unk020d4418 *) data_0217aa6c);
     DrawItems(data_0217aa7c);
-    func_0208e358();
+    DrawModelEffects();
     func_01ff9234();
 }
 
@@ -462,7 +462,7 @@ void func_02062004(void) {
 
     func_020d2d94();
     func_0207a990();
-    func_020848fc();
+    ReleaseAllResFiles();
     func_0203d568();
     f = FALSE;
     p = gWiFiSession;

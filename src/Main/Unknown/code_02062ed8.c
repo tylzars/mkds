@@ -26,7 +26,7 @@
 #include "Main/Unknown/code_02147000.h"
 #include "code_021471bc.h"
 
-static inline void func_0206331c_inline(u32 a, u8 *b, Unk02084b2c *c, void *d, const char *e, const char *f, u16 *g) {
+static inline void func_0206331c_inline(u32 a, u8 *b, Nsbmd *c, void *d, const char *e, const char *f, u16 *g) {
     if (f == NULL) {
         *g = 0;
     } else {
@@ -106,12 +106,12 @@ void InitCourseModels(void *a) {
     b = FindCourseFile(data_usa_02165404);
     c = FindCourseFile(data_usa_02165418);
     gCourseModels.mNsbmd = HeapAlloc(a, 0x6c);
-    e = func_02084b2c(a, gCourseModels.mNsbmd, (NNSG3dResFileHeader *) b, (NNSG3dResFileHeader *) c);
+    e = InitNsbmdWithTextureInfoCopy(a, gCourseModels.mNsbmd, (NNSG3dResFileHeader *) b, (NNSG3dResFileHeader *) c);
     d = FindCourseFile(data_usa_0216542c);
     func_0206331c_inline(2, data_usa_0217ab04, gCourseModels.mNsbmd, a, b, d, &gCourseModels.mUnk_20);
     d = FindCourseFile(data_usa_02165440);
     func_0206331c_inline(1, data_0217ab5c, gCourseModels.mNsbmd, a, b, d, &gCourseModels.mUnk_58);
-    func_020849c0(gCourseModels.mNsbmd, 8);
+    SetNsbmdPolygonIdAll(gCourseModels.mNsbmd, 8);
     NNS_G3dMdlSetMdlXLDepthUpdateAll(e, 1);
     switch (data_021759c0->mCourseId) {
         case COURSE_ID_OLD_KOOPA_AGB:
@@ -137,8 +137,8 @@ void InitCourseModels(void *a) {
     c = FindCourseFile(data_usa_0216546c);
     if (b != NULL) {
         gCourseModels.mVNsbmd = HeapAlloc(a, 0x6c);
-        func_02084b2c(a, gCourseModels.mVNsbmd, (NNSG3dResFileHeader *) b, (NNSG3dResFileHeader *) c);
-        func_020849c0(gCourseModels.mVNsbmd, 8);
+        InitNsbmdWithTextureInfoCopy(a, gCourseModels.mVNsbmd, (NNSG3dResFileHeader *) b, (NNSG3dResFileHeader *) c);
+        SetNsbmdPolygonIdAll(gCourseModels.mVNsbmd, 8);
         d = FindCourseFile(data_usa_02165484);
         func_0206331c_inline(1, data_usa_0217ab74, gCourseModels.mVNsbmd, a, b, d, &gCourseModels.mUnk_90);
     }
@@ -170,14 +170,14 @@ void UpdateCourseModels(void) {
 }
 
 void DrawCourseModel(void) {
-    func_020849f8(gCourseModels.mNsbmd, &data_usa_0217abac, data_usa_02154a20);
+    DrawNsbmdWithMatrix(gCourseModels.mNsbmd, &data_usa_0217abac, data_usa_02154a20);
 }
 
 void DrawCourseModelV(void) {
     if (gCourseModels.mVNsbmd == NULL) {
         return;
     }
-    func_020849f8(gCourseModels.mVNsbmd, &data_usa_0217abac, data_usa_02154a20);
+    DrawNsbmdWithMatrix(gCourseModels.mVNsbmd, &data_usa_0217abac, data_usa_02154a20);
 }
 
 void SetKoopaCourseLight2(void) {
@@ -212,14 +212,14 @@ void InitCourseModelsFogEnableFlags(void) {
             break;
     }
     if (gCourseModels.mUnk_e0 != FALSE) {
-        b = gCourseModels.mNsbmd->mUnk_04;
+        b = gCourseModels.mNsbmd->mResMdl;
         for (i = 0; i < b->mInfo.mNumMat; i++) {
             if (NNS_G3dMdlGetMdlFogEnableFlag(b, i) != 0) {
                 gCourseModels.mUnk_e4 |= (s64) (1 << i);
             }
         }
     } else {
-        NNS_G3dMdlSetMdlFogEnableFlagAll(gCourseModels.mNsbmd->mUnk_04, 1);
+        NNS_G3dMdlSetMdlFogEnableFlagAll(gCourseModels.mNsbmd->mResMdl, 1);
     }
     if (gCourseModels.mVNsbmd == NULL) {
         return;
@@ -227,7 +227,7 @@ void InitCourseModelsFogEnableFlags(void) {
     if (gCourseModels.mUnk_ec == FALSE) {
         return;
     }
-    c = gCourseModels.mVNsbmd->mUnk_04;
+    c = gCourseModels.mVNsbmd->mResMdl;
     for (j = 0; j < c->mInfo.mNumMat; j++) {
         if (NNS_G3dMdlGetMdlFogEnableFlag(c, j) != 0) {
             gCourseModels.mUnk_f0 |= 1 << j;
@@ -242,22 +242,22 @@ void SetCourseModelsFogEnableFlags(u32 a) {
 
     if (gCourseModels.mVNsbmd != NULL) {
         if (gCourseModels.mUnk_ec != FALSE && a == 0) {
-            b = gCourseModels.mVNsbmd->mUnk_04;
+            b = gCourseModels.mVNsbmd->mResMdl;
             for (i = 0; i < b->mInfo.mNumMat; i++) {
                 NNS_G3dMdlSetMdlFogEnableFlag(b, i, (gCourseModels.mUnk_f0 & (1 << i)) != 0 ? 1 : 0);
             }
         } else {
-            NNS_G3dMdlSetMdlFogEnableFlagAll(gCourseModels.mVNsbmd->mUnk_04, a);
+            NNS_G3dMdlSetMdlFogEnableFlagAll(gCourseModels.mVNsbmd->mResMdl, a);
         }
     }
     if (gCourseModels.mUnk_e0 == FALSE) {
         return;
     }
     if (a != 0) {
-        NNS_G3dMdlSetMdlFogEnableFlagAll(gCourseModels.mNsbmd->mUnk_04, 1);
+        NNS_G3dMdlSetMdlFogEnableFlagAll(gCourseModels.mNsbmd->mResMdl, 1);
         return;
     }
-    b = gCourseModels.mNsbmd->mUnk_04;
+    b = gCourseModels.mNsbmd->mResMdl;
     for (j = 0; j < b->mInfo.mNumMat; j++) {
         if ((gCourseModels.mUnk_e4 & (s64) (1 << j)) == 0) {
             NNS_G3dMdlSetMdlFogEnableFlag(b, j, 0);

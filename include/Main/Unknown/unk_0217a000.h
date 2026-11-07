@@ -13,7 +13,7 @@
 #include "Main/Unknown/code_02006954.h"
 #include "Main/Unknown/code_0207b960.h" // PosCurve
 #include "Main/Unknown/code_0207adf8.h" // Unk0207adf8
-#include "Main/Unknown/code_020846c0.h" // Unk02084b2c
+#include "Main/Unknown/code_020846c0.h" // Nsbmd
 #include "Main/Unknown/code_02087d0c.h" // Unk02087d0c
 #include "code_02003024.h"
 
@@ -1259,7 +1259,7 @@ typedef struct Unk0217ad00 {
     /* 014 */ Unk0217ad00_014 *mUnk_014;
     /* 018 */ s16 mUnk_018[8];
     /* 028 */ void *mUnk_028;
-    /* 02c */ Unk02084b2c mUnk_02c;
+    /* 02c */ Nsbmd mUnk_02c;
     /* 098 */ Unk0207adf8 mUnk_098;
     /* 10c */ Unk02087d0c mUnk_10c;
 } Unk0217ad00;
@@ -1290,9 +1290,9 @@ typedef struct Unk0217ad08_058 {
     /* 04 */ s32 mUnk_04;
     /* 08 */ Unk0217ad08_058_08 *mUnk_08;
     /* 0c */ u8 mUnk_0c[4];
-    /* 10 */ struct Unk02084b2c *mUnk_10;
-    /* 14 */ struct Unk02084b2c *mUnk_14;
-    /* 18 */ struct Unk02084b2c *mUnk_18;
+    /* 10 */ struct Nsbmd *mUnk_10;
+    /* 14 */ struct Nsbmd *mUnk_14;
+    /* 18 */ struct Nsbmd *mUnk_18;
     /* 1c */ struct Unk0207adf8 *mUnk_1c;
     /* 20 */ Unk0217ad08_058_20 *mUnk_20;
     /* 24 */ u8 mUnk_24[0x8c];
@@ -1353,7 +1353,7 @@ typedef struct Unk0217ad08 {
     /* 024 */ Unk0217ad08_024 mUnk_024;
     /* 058 */ Unk0217ad08_058 mUnk_058[2];
     /* 1c8 */ Unk0217ad08_058_20 *mUnk_1c8;
-    /* 1cc */ struct Unk02084b2c *mUnk_1cc;
+    /* 1cc */ struct Nsbmd *mUnk_1cc;
     /* 1d0 */ void *mUnk_1d0;
     /* 1d4 */ void *mUnk_1d4;
     /* 1d8 */ s32 mUnk_1d8;
@@ -1645,7 +1645,7 @@ typedef struct Unk0217aa1c {
 
 extern Unk0217aa1c *data_0217aa1c;
 extern struct Kart *gKarts;
-extern NNSFndList data_0217aeb0;
+extern NNSFndList gResFileEntries;
 // The event counters of the selected entry's Kart, allocated by InitKarts.
 struct EntryKartCounters;
 extern struct EntryKartCounters *gEntryKartCounters;

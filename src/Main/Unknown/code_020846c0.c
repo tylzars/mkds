@@ -20,16 +20,17 @@
 #include "code_02010c84.h"
 #include "code_020172d0.h"
 
-void func_0208526c(Unk0208526c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c) {
+// Appends the entry for file b, uploads the texture of file c, and binds the model set of b to it when there is one.
+void AddResFileEntry(ResFileEntry *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c) {
     NNSG3dResMdlSet *v1;
     NNSG3dResTex *v2;
 
     v1 = NNS_G3dGetMdlSet(b);
     v2 = NNS_G3dGetTex(c);
-    a->mUnk_0c = NULL;
-    a->mUnk_08 = NULL;
-    NNS_FndAppendListObject(&data_0217aeb0, a);
-    a->mUnk_08 = b;
+    a->mTexture = NULL;
+    a->mFile = NULL;
+    NNS_FndAppendListObject(&gResFileEntries, a);
+    a->mFile = b;
     if (v2 == NULL) {
         return;
     }
@@ -39,14 +40,15 @@ void func_0208526c(Unk0208526c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *
     v2->mTex4x4Info.mVramKey = 0;
     v2->mPlttInfo.mFlag &= ~1;
     v2->mPlttInfo.mVramKey = 0;
-    func_020850c4(v2);
-    a->mUnk_0c = v2;
+    UploadResTexture(v2);
+    a->mTexture = v2;
     if (v1->mHeader.mSignature == 0x304c444d) {
         NNS_G3dBindMdlSet(v1, v2);
     }
 }
 
-u32 func_020850c4(NNSG3dResTex *a) {
+// Gets VRAM for the texture, 4x4 texture and palette blocks and loads them; 0 if loaded already or a block fails.
+u32 UploadResTexture(NNSG3dResTex *a) {
     u32 v1;
     u32 v0;
     u32 v2;
@@ -99,23 +101,24 @@ u32 func_020850c4(NNSG3dResTex *a) {
     return v3;
 }
 
-void func_02084fb0(Unk02084b2c *a, NNSG3dResMdl *b, u32 c) {
+// With c non-zero and scene number 2 it swaps cull modes 1 and 2 when byte 0x57 of the game record is set.
+void InitNsbmdRenderObj(Nsbmd *a, NNSG3dResMdl *b, u32 c) {
     u32 i;
     NNSG3dResMdl *p;
 
     if (c != 0 && GetCurrentSceneNumber() == 2) {
-        a->mUnk_54 = data_021759c0->mUnk_57;
+        a->mCullModesSwapped = data_021759c0->mUnk_57;
     } else {
-        a->mUnk_54 = 0;
+        a->mCullModesSwapped = 0;
     }
     if (b->mInfo.mNumMat == 1 && b->mInfo.mNumShp == 1) {
-        a->mUnk_58 = 1;
+        a->mDrawKind = 1;
     } else {
-        a->mUnk_58 = 0;
+        a->mDrawKind = 0;
     }
     NNS_G3dRenderObjInit((NNSG3dRenderObj *) a, b);
-    if (a->mUnk_54 != 0) {
-        p = a->mUnk_04;
+    if (a->mCullModesSwapped != 0) {
+        p = a->mResMdl;
         for (i = 0; i < p->mInfo.mNumMat; i++) {
             if (NNS_G3dMdlGetMdlCullMode(p, i) == 1) {
                 NNS_G3dMdlSetMdlCullMode(p, i, 2);
@@ -126,32 +129,32 @@ void func_02084fb0(Unk02084b2c *a, NNSG3dResMdl *b, u32 c) {
     }
 }
 
-void func_02084f68(Unk02084b2c *a) {
+void func_02084f68(Nsbmd *a) {
     u32 i;
     NNSG3dResMdl *p;
 
-    p = a->mUnk_04;
+    p = a->mResMdl;
     for (i = 0; i < p->mInfo.mNumMat; i++) {
         NNS_G3dMdlSetMdlCullMode(p, i, 1);
     }
 }
 
-void func_02084f20(Unk02084b2c *a) {
+void func_02084f20(Nsbmd *a) {
     u32 i;
     NNSG3dResMdl *p;
 
-    p = a->mUnk_04;
+    p = a->mResMdl;
     for (i = 0; i < p->mInfo.mNumMat; i++) {
         NNS_G3dMdlSetMdlCullMode(p, i, 2);
     }
 }
 
-void func_02084f10(Unk02084b2c *a, NNSG3dResMdl *b) {
-    func_02084fb0(a, b, 1);
+void func_02084f10(Nsbmd *a, NNSG3dResMdl *b) {
+    InitNsbmdRenderObj(a, b, 1);
 }
 
-NNSG3dResMdl *func_02084e28(void *a, NNSG3dResFileHeader *b) {
-    Unk02084b2c *o = a;
+NNSG3dResMdl *InitNsbmd(void *a, NNSG3dResFileHeader *b) {
+    Nsbmd *o = a;
 
     NNSG3dResMdlSet *v1;
     NNSG3dResTex *v2;
@@ -159,10 +162,10 @@ NNSG3dResMdl *func_02084e28(void *a, NNSG3dResFileHeader *b) {
 
     v1 = NNS_G3dGetMdlSet(b);
     v2 = NNS_G3dGetTex(b);
-    o->mUnk_5c.mUnk_0c = NULL;
-    o->mUnk_5c.mUnk_08 = NULL;
-    NNS_FndAppendListObject(&data_0217aeb0, &o->mUnk_5c);
-    o->mUnk_5c.mUnk_08 = b;
+    o->mResFileEntry.mTexture = NULL;
+    o->mResFileEntry.mFile = NULL;
+    NNS_FndAppendListObject(&gResFileEntries, &o->mResFileEntry);
+    o->mResFileEntry.mFile = b;
     if (v2 != NULL) {
         v2->mTexInfo.mFlag &= ~1;
         v2->mTex4x4Info.mFlag &= ~1;
@@ -170,19 +173,19 @@ NNSG3dResMdl *func_02084e28(void *a, NNSG3dResFileHeader *b) {
         v2->mTex4x4Info.mVramKey = 0;
         v2->mPlttInfo.mFlag &= ~1;
         v2->mPlttInfo.mVramKey = 0;
-        func_020850c4(v2);
-        o->mUnk_5c.mUnk_0c = v2;
+        UploadResTexture(v2);
+        o->mResFileEntry.mTexture = v2;
         if (v1->mHeader.mSignature == 0x304c444d) {
             NNS_G3dBindMdlSet(v1, v2);
         }
     }
     v3 = (u8 *) NNS_G3dGetMdlSet(b);
-    func_02084fb0(o, (NNSG3dResMdl *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 1);
-    return o->mUnk_04;
+    InitNsbmdRenderObj(o, (NNSG3dResMdl *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 1);
+    return o->mResMdl;
 }
 
-NNSG3dResMdl *func_02084d3c(Unk02084b2c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c) {
-    Unk02084b2c *o = a;
+NNSG3dResMdl *InitNsbmdWithTextureFile(Nsbmd *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c) {
+    Nsbmd *o = a;
 
     NNSG3dResMdlSet *v1;
     NNSG3dResTex *v2;
@@ -190,10 +193,10 @@ NNSG3dResMdl *func_02084d3c(Unk02084b2c *a, NNSG3dResFileHeader *b, NNSG3dResFil
 
     v1 = NNS_G3dGetMdlSet(b);
     v2 = NNS_G3dGetTex(c);
-    o->mUnk_5c.mUnk_0c = NULL;
-    o->mUnk_5c.mUnk_08 = NULL;
-    NNS_FndAppendListObject(&data_0217aeb0, &o->mUnk_5c);
-    o->mUnk_5c.mUnk_08 = b;
+    o->mResFileEntry.mTexture = NULL;
+    o->mResFileEntry.mFile = NULL;
+    NNS_FndAppendListObject(&gResFileEntries, &o->mResFileEntry);
+    o->mResFileEntry.mFile = b;
     if (v2 != NULL) {
         v2->mTexInfo.mFlag &= ~1;
         v2->mTex4x4Info.mFlag &= ~1;
@@ -201,28 +204,28 @@ NNSG3dResMdl *func_02084d3c(Unk02084b2c *a, NNSG3dResFileHeader *b, NNSG3dResFil
         v2->mTex4x4Info.mVramKey = 0;
         v2->mPlttInfo.mFlag &= ~1;
         v2->mPlttInfo.mVramKey = 0;
-        func_020850c4(v2);
-        o->mUnk_5c.mUnk_0c = v2;
+        UploadResTexture(v2);
+        o->mResFileEntry.mTexture = v2;
         if (v1->mHeader.mSignature == 0x304c444d) {
             NNS_G3dBindMdlSet(v1, v2);
         }
     }
     v3 = (u8 *) NNS_G3dGetMdlSet(b);
-    func_02084fb0(o, (NNSG3dResMdl *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 1);
-    return o->mUnk_04;
+    InitNsbmdRenderObj(o, (NNSG3dResMdl *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 1);
+    return o->mResMdl;
 }
 
-NNSG3dResMdl *func_02084c54(Unk02084b2c *a, NNSG3dResFileHeader *b) {
+NNSG3dResMdl *InitNsbmdWithoutCullSwap(Nsbmd *a, NNSG3dResFileHeader *b) {
     NNSG3dResMdlSet *v1;
     NNSG3dResTex *v2;
     u8 *v3;
 
     v1 = NNS_G3dGetMdlSet(b);
     v2 = NNS_G3dGetTex(b);
-    a->mUnk_5c.mUnk_0c = NULL;
-    a->mUnk_5c.mUnk_08 = NULL;
-    NNS_FndAppendListObject(&data_0217aeb0, &a->mUnk_5c);
-    a->mUnk_5c.mUnk_08 = b;
+    a->mResFileEntry.mTexture = NULL;
+    a->mResFileEntry.mFile = NULL;
+    NNS_FndAppendListObject(&gResFileEntries, &a->mResFileEntry);
+    a->mResFileEntry.mFile = b;
     if (v2 != NULL) {
         v2->mTexInfo.mFlag &= ~1;
         v2->mTex4x4Info.mFlag &= ~1;
@@ -230,32 +233,33 @@ NNSG3dResMdl *func_02084c54(Unk02084b2c *a, NNSG3dResFileHeader *b) {
         v2->mTex4x4Info.mVramKey = 0;
         v2->mPlttInfo.mFlag &= ~1;
         v2->mPlttInfo.mVramKey = 0;
-        func_020850c4(v2);
-        a->mUnk_5c.mUnk_0c = v2;
+        UploadResTexture(v2);
+        a->mResFileEntry.mTexture = v2;
         if (v1->mHeader.mSignature == 0x304c444d) {
             NNS_G3dBindMdlSet(v1, v2);
         }
     }
     v3 = (u8 *) NNS_G3dGetMdlSet(b);
-    func_02084fb0(a, (NNSG3dResMdl *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 0);
-    return a->mUnk_04;
+    InitNsbmdRenderObj(a, (NNSG3dResMdl *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 0);
+    return a->mResMdl;
 }
 
-NNSG3dResMdl *func_02084b2c(void *a, Unk02084b2c *b, NNSG3dResFileHeader *c, NNSG3dResFileHeader *d) {
+// Fills the object from model file c and texture file d, then keeps a heap copy of the texture block's header part.
+NNSG3dResMdl *InitNsbmdWithTextureInfoCopy(void *a, Nsbmd *b, NNSG3dResFileHeader *c, NNSG3dResFileHeader *d) {
     NNSG3dResMdlSet *v1;
     NNSG3dResTex *v2;
     u8 *v3;
     NNSG3dResTex *m;
     u32 v4;
-    Unk0208526c *e;
+    ResFileEntry *e;
     NNSG3dResMdl *q;
 
     v1 = NNS_G3dGetMdlSet(c);
     v2 = NNS_G3dGetTex(d);
-    b->mUnk_5c.mUnk_0c = NULL;
-    b->mUnk_5c.mUnk_08 = NULL;
-    NNS_FndAppendListObject(&data_0217aeb0, &b->mUnk_5c);
-    b->mUnk_5c.mUnk_08 = c;
+    b->mResFileEntry.mTexture = NULL;
+    b->mResFileEntry.mFile = NULL;
+    NNS_FndAppendListObject(&gResFileEntries, &b->mResFileEntry);
+    b->mResFileEntry.mFile = c;
     if (v2 != NULL) {
         v2->mTexInfo.mFlag &= ~1;
         v2->mTex4x4Info.mFlag &= ~1;
@@ -263,32 +267,32 @@ NNSG3dResMdl *func_02084b2c(void *a, Unk02084b2c *b, NNSG3dResFileHeader *c, NNS
         v2->mTex4x4Info.mVramKey = 0;
         v2->mPlttInfo.mFlag &= ~1;
         v2->mPlttInfo.mVramKey = 0;
-        func_020850c4(v2);
-        b->mUnk_5c.mUnk_0c = v2;
+        UploadResTexture(v2);
+        b->mResFileEntry.mTexture = v2;
         if (v1->mHeader.mSignature == 0x304c444d) {
             NNS_G3dBindMdlSet(v1, v2);
         }
     }
     v3 = (u8 *) NNS_G3dGetMdlSet(c);
-    func_02084fb0(b, (NNSG3dResMdl *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 1);
-    e = &b->mUnk_5c;
-    m = e->mUnk_0c;
-    q = b->mUnk_04;
+    InitNsbmdRenderObj(b, (NNSG3dResMdl *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 1);
+    e = &b->mResFileEntry;
+    m = e->mTexture;
+    q = b->mResMdl;
     if (m != NULL) {
         v4 = m->mTexInfo.mOfsTex;
-        e->mUnk_0c = HeapAlloc(a, v4);
-        MI_CpuCopy8(m, e->mUnk_0c, v4);
+        e->mTexture = HeapAlloc(a, v4);
+        MI_CpuCopy8(m, e->mTexture, v4);
     }
     return q;
 }
 
 void func_02084ad8(void *a, u8 b) {
-    Unk02084b2c *o = a;
+    Nsbmd *o = a;
 
-    NNSG3dResMdl *p = o->mUnk_04;
+    NNSG3dResMdl *p = o->mResMdl;
     u32 n;
 
-    if (o->mUnk_54 != 0) {
+    if (o->mCullModesSwapped != 0) {
         n = 2;
     } else {
         n = 1;
@@ -299,12 +303,12 @@ void func_02084ad8(void *a, u8 b) {
 }
 
 void func_02084a88(void *a, u8 b, u8 c) {
-    Unk02084b2c *o = a;
+    Nsbmd *o = a;
 
-    NNSG3dResMdl *p = o->mUnk_04;
+    NNSG3dResMdl *p = o->mResMdl;
     u32 n;
 
-    if (o->mUnk_54 != 0) {
+    if (o->mCullModesSwapped != 0) {
         n = 1;
     } else {
         n = 2;
@@ -314,7 +318,8 @@ void func_02084a88(void *a, u8 b, u8 c) {
     NNS_G3dMdlSetMdlAlpha(p, 0, b);
 }
 
-void func_020849f8(void *a, MtxFx43 *b, u32 *c) {
+// Draws with matrix b; when c is not NULL its three words (a scale, 0x1000 = 1.0) are sent first.
+void DrawNsbmdWithMatrix(void *a, MtxFx43 *b, u32 *c) {
     s32 v0 = 30;
     u32 v[3];
 
@@ -329,54 +334,55 @@ void func_020849f8(void *a, MtxFx43 *b, u32 *c) {
         v[2] = z;
         func_01ff9048(27, &v, 3);
     }
-    data_02155a20[((Unk02084b2c *) a)->mUnk_58](a);
+    data_02155a20[((Nsbmd *) a)->mDrawKind](a);
 }
 
-void func_020849d0(void *a) {
-    Unk02084b2c *o = a;
+void DrawNsbmd(void *a) {
+    Nsbmd *o = a;
 
-    data_02155a20[o->mUnk_58](o);
+    data_02155a20[o->mDrawKind](o);
 }
 
-void func_020849c0(void *a, u32 b) {
-    Unk02084b2c *o = a;
+void SetNsbmdPolygonIdAll(void *a, u32 b) {
+    Nsbmd *o = a;
 
-    NNS_G3dMdlSetMdlPolygonIDAll(o->mUnk_04, b);
+    NNS_G3dMdlSetMdlPolygonIDAll(o->mResMdl, b);
 }
 
-void func_020849b0(void *a, u32 b) {
-    Unk02084b2c *o = a;
+void SetNsbmdLightEnableFlagAll(void *a, u32 b) {
+    Nsbmd *o = a;
 
-    NNS_G3dMdlSetMdlLightEnableFlagAll(o->mUnk_04, b);
+    NNS_G3dMdlSetMdlLightEnableFlagAll(o->mResMdl, b);
 }
 
-void func_020849a0(void *a, u32 b) {
-    Unk02084b2c *o = a;
+void SetNsbmdEmiAll(void *a, u32 b) {
+    Nsbmd *o = a;
 
-    NNS_G3dMdlSetMdlEmiAll(o->mUnk_04, b);
+    NNS_G3dMdlSetMdlEmiAll(o->mResMdl, b);
 }
 
 void func_02084968(void *a, u32 b, u32 c, u32 d) {
-    Unk02084b2c *o = a;
+    Nsbmd *o = a;
 
-    NNS_G3dMdlSetMdlPolygonIDAll(o->mUnk_04, b);
-    NNS_G3dMdlSetMdlLightEnableFlagAll(o->mUnk_04, c);
-    NNS_G3dMdlSetMdlEmiAll(o->mUnk_04, d);
+    NNS_G3dMdlSetMdlPolygonIDAll(o->mResMdl, b);
+    NNS_G3dMdlSetMdlLightEnableFlagAll(o->mResMdl, c);
+    NNS_G3dMdlSetMdlEmiAll(o->mResMdl, d);
 }
 
-void func_02084958(void *a, u32 b) {
-    Unk02084b2c *o = a;
+void SetNsbmdCullModeAll(void *a, u32 b) {
+    Nsbmd *o = a;
 
-    NNS_G3dMdlSetMdlCullModeAll(o->mUnk_04, b);
+    NNS_G3dMdlSetMdlCullModeAll(o->mResMdl, b);
 }
 
-void func_020848fc(void) {
-    Unk0208526c *p;
+// Frees the texture and palette memory of the file of every entry of gResFileEntries; the entries stay in the list.
+void ReleaseAllResFiles(void) {
+    ResFileEntry *p;
 
-    for (p = NNS_FndGetNextListObject(&data_0217aeb0, NULL); p != NULL;
-         p = NNS_FndGetNextListObject(&data_0217aeb0, p)) {
-        if (p->mUnk_08 != NULL) {
-            NNS_G3dResDefaultRelease(p->mUnk_08);
+    for (p = NNS_FndGetNextListObject(&gResFileEntries, NULL); p != NULL;
+         p = NNS_FndGetNextListObject(&gResFileEntries, p)) {
+        if (p->mFile != NULL) {
+            NNS_G3dResDefaultRelease(p->mFile);
         }
     }
 }

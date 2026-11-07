@@ -84,7 +84,8 @@ void func_02053d00(void) {
     func_0204fb40(1);
 }
 
-void func_02053ab0(void) {
+// Fills the record handed to WM_StepDataSharing, steps the data sharing with it and keeps the result.
+void StepDataSharing(void) {
     Unk0217aa00_15c4 *p;
     u32 v1;
     s32 r;
@@ -152,14 +153,14 @@ BOOL func_0205373c(void) {
     switch (data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000) {
         case 1:
             if (data_0217aa00->mUnk_0044.mUnk_40 != 0) {
-                func_02053ab0();
+                StepDataSharing();
             } else {
                 return FALSE;
             }
             break;
         case 2:
             if (data_0217aa00->mUnk_0432 != 0xffff) {
-                func_02053ab0();
+                StepDataSharing();
             } else {
                 return FALSE;
             }
@@ -235,15 +236,15 @@ BOOL func_0205373c(void) {
     return v1 != FALSE;
 }
 
-void func_020536e0(void) {
+void Initialize(void) {
     data_0217aa00->mUnk_000c = 1;
     data_0217aa00->mUnk_0010 = 1;
-    if (WM_Initialize(data_0217aa00->mUnk_0014, func_02053664, 2) != 2) {
+    if (WM_Initialize(data_0217aa00->mUnk_0014, InitializeCallback, 2) != 2) {
         data_0217aa00->mUnk_0010 = 0;
     }
 }
 
-void func_02053664(Unk021425e8 *a) {
+void InitializeCallback(Unk021425e8 *a) {
     s32 r;
 
     r = WM_SetPortCallback(0xf, MPDataPortCallback, NULL);
@@ -292,7 +293,7 @@ void func_020533a0(void) {
     }
     data_0217aa00->mUnk_000c = 2;
     data_0217aa00->mUnk_0010 = 1;
-    if (WM_Reset(func_02053348) == 2) {
+    if (WM_Reset(ResetCallback) == 2) {
         return;
     }
     data_0217aa00->mUnk_000c = 0x15;
@@ -321,7 +322,7 @@ void func_020533a0(void) {
     }
     data_0217aa00->mUnk_000c = 2;
     data_0217aa00->mUnk_0010 = 1;
-    if (WM_Reset(func_02053348) == 2) {
+    if (WM_Reset(ResetCallback) == 2) {
         return;
     }
     data_0217aa00->mUnk_000c = 0x15;
@@ -338,13 +339,13 @@ void func_020533a0(void) {
         return;
     }
     func_0205108c(2);
-    if (WM_Reset(func_02053348) == 2) {
+    if (WM_Reset(ResetCallback) == 2) {
         return;
     }
     End();
 }
 
-void func_02053348(Unk021425e8 *a) {
+void ResetCallback(Unk021425e8 *a) {
     data_0217aa00->mUnk_0010 = 0;
     if (a->mResultCode != 0) {
         data_0217aa00->mUnk_0008 = 1;
@@ -354,7 +355,7 @@ void func_02053348(Unk021425e8 *a) {
     }
 }
 
-void func_020532dc(s32 a) {
+void SetLifeTime(s32 a) {
     data_0217aa00->mUnk_000c = 3;
     data_0217aa00->mUnk_0010 = 1;
     if (WM_SetLifeTime(func_0205329c, 0xffff, a, 0xffff, 0xf) != 2) {
@@ -369,7 +370,8 @@ void func_0205329c(Unk021425e8 *a) {
     }
 }
 
-void func_02053094(u16 a) {
+// Measures each allowed channel 7 times in a row, in two passes over channels 1 to 14; a is the one just measured.
+void MeasureChannel(u16 a) {
     u16 r;
     u16 n;
     s32 i;
@@ -414,12 +416,12 @@ void func_02053094(u16 a) {
     } else {
         data_0217aa00->mUnk_0089_0 += 1;
     }
-    if (WM_MeasureChannel(func_02053020, 3, 0x11, n, 0x14) != 2) {
+    if (WM_MeasureChannel(MeasureChannelCallback, 3, 0x11, n, 0x14) != 2) {
         func_020533a0();
     }
 }
 
-void func_02053020(Unk021425e8 *a) {
+void MeasureChannelCallback(Unk021425e8 *a) {
     s16 *p;
 
     if (a->mResultCode != 0) {
@@ -431,7 +433,7 @@ void func_02053020(Unk021425e8 *a) {
         *p = 0;
     }
     *p = *p + a->mUnk_08_2;
-    func_02053094(a->mUnk_08_0);
+    MeasureChannel(a->mUnk_08_0);
 }
 
 void *func_02052fa4(s32 a, u32 b, void *c) {
@@ -556,7 +558,8 @@ u16 func_02052c5c(u32 a) {
     return (u16) (y * 0x10000 >> 32) | 0x8000;
 }
 
-void func_02052bf8(void) {
+// Calls WM_SetParentParameter; also stores 1 in the first session word.
+void SetParentParameter(void) {
     data_0217aa00->mUnk_0000 = 1;
     data_0217aa00->mUnk_000c = 5;
     data_0217aa00->mUnk_0010 = 1;
@@ -572,9 +575,9 @@ void func_02052bb8(Unk021425e8 *a) {
     }
 }
 
-void func_02052b60(Unk021425e8Func a) {
+void StartParent(Unk021425e8Func a) {
     if (a == NULL) {
-        a = func_020529b8;
+        a = StartParentCallback;
     }
     data_0217aa00->mUnk_000c = 6;
     data_0217aa00->mUnk_0010 = 1;
@@ -583,7 +586,8 @@ void func_02052b60(Unk021425e8Func a) {
     }
 }
 
-void func_020529b8(Unk021425e8 *a) {
+// Callback of WM_StartParent: code 7 adds a child, 9 removes one, 0 copies the own data into the first member record.
+void StartParentCallback(Unk021425e8 *a) {
     Unk020f41c4_B *p;
     u32 v1;
     u16 v;

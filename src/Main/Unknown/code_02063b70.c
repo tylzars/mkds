@@ -97,7 +97,7 @@ void DrawKart(Kart *a) {
         func_02079b9c(e, e->mUnk_060 == FALSE);
         func_02063cc4_inline(0x13, 0x1c);
         func_02063cc4_inline2(0x1b, a->mUnk_4f0.x, a->mUnk_4f0.y, 0x1000);
-        func_020849d0(e->mUnk_010[1]);
+        DrawNsbmd(e->mUnk_010[1]);
         if (e->mUnk_010[2] != NULL) {
             f = a->mKartModelsEntry->mUnk_054;
             h = a->mKartModelsEntry->mUnk_020->mUnk_10;
@@ -106,10 +106,10 @@ void DrawKart(Kart *a) {
             w = (a->mTireSpinAngle >> 4) * 2;
             MTX_RotX33_(j, gPairsByAngle[w], gPairsByAngle[w + 1]);
             func_01ff9048(0x1a, j, 9);
-            func_020849d0(e->mUnk_010[2]);
+            DrawNsbmd(e->mUnk_010[2]);
             if (f->mUnk_18 != 0) {
                 func_02063cc4_inline2(0x1c, f->mUnk_24, 0, 0);
-                func_020849d0(e->mUnk_010[2]);
+                DrawNsbmd(e->mUnk_010[2]);
             }
             func_02063cc4_inline(0x14, 0x1c);
             func_01ff9048(0x1c, f, 3);
@@ -119,13 +119,13 @@ void DrawKart(Kart *a) {
             MTX_RotY33_(k, gPairsByAngle[w], gPairsByAngle[w + 1]);
             func_01ff9048(0x1a, k, 9);
             func_01ff9048(0x1a, j, 9);
-            func_020849d0(e->mUnk_010[2]);
+            DrawNsbmd(e->mUnk_010[2]);
             if (f->mUnk_00 != 0) {
                 func_02063cc4_inline(0x12, 1);
                 func_02063cc4_inline2(0x1c, f->mUnk_0c, 0, 0);
                 func_01ff9048(0x1a, k, 9);
                 func_01ff9048(0x1a, j, 9);
-                func_020849d0(e->mUnk_010[2]);
+                DrawNsbmd(e->mUnk_010[2]);
             }
         }
     }
@@ -136,7 +136,7 @@ void DrawKart(Kart *a) {
     r.y = r.y + (a->mUnk_408 + a->mUnk_4f0.z);
     func_02063cc4_inline(0x14, 0x1d);
     func_01ff9048(0x1c, &r, 3);
-    func_020849d0(e->mUnk_010[0]);
+    DrawNsbmd(e->mUnk_010[0]);
 }
 
 s32 func_02063b70(Kart *a) {
@@ -174,7 +174,7 @@ s32 func_02063b70(Kart *a) {
         c = func_02079b60();
         c->mUnk_0c = e;
         *c->mUnk_1c[c->mUnk_1a] = c->mUnk_0c;
-        func_020849d0(func_02079b88());
+        DrawNsbmd(func_02079b88());
         func_0207ae58(func_02079b74());
     }
     return d;

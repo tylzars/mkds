@@ -158,22 +158,22 @@ void DrawWater(Water *a, struct MtxFx43 *b) {
             a->mUnk_140.mUnk_00[3].x = a->mModelAX >> 4;
             a->mUnk_140.mUnk_00[3].y = a->mHeight >> 4;
             a->mUnk_140.mUnk_00[3].z = a->mModelAZ >> 4;
-            func_020849f8(&a->mUnk_68, &a->mUnk_140, NULL);
+            DrawNsbmdWithMatrix(&a->mUnk_68, &a->mUnk_140, NULL);
         }
         a->mUnk_140.mUnk_00[3].x = a->mModelCX >> 4;
         a->mUnk_140.mUnk_00[3].y = a->mModelCY >> 4;
         a->mUnk_140.mUnk_00[3].z = a->mModelCZ >> 4;
-        func_020849f8(&a->mUnk_d4, &a->mUnk_140, NULL);
+        DrawNsbmdWithMatrix(&a->mUnk_d4, &a->mUnk_140, NULL);
     } else {
         a->mUnk_140.mUnk_00[3].x = a->mModelCX >> 4;
         a->mUnk_140.mUnk_00[3].y = a->mModelCY >> 4;
         a->mUnk_140.mUnk_00[3].z = a->mModelCZ >> 4;
-        func_020849f8(&a->mUnk_d4, &a->mUnk_140, NULL);
+        DrawNsbmdWithMatrix(&a->mUnk_d4, &a->mUnk_140, NULL);
         if (a->mModelAFile != NULL) {
             a->mUnk_140.mUnk_00[3].x = a->mModelAX >> 4;
             a->mUnk_140.mUnk_00[3].y = a->mHeight >> 4;
             a->mUnk_140.mUnk_00[3].z = a->mModelAZ >> 4;
-            func_020849f8(&a->mUnk_68, &a->mUnk_140, NULL);
+            DrawNsbmdWithMatrix(&a->mUnk_68, &a->mUnk_140, NULL);
         }
     }
 }
@@ -275,7 +275,7 @@ void InitWaterModels(Water *a) {
     s32 r;
     u32 n;
     if (a->mModelAFile != NULL) {
-        func_02084e28(&a->mUnk_68, a->mModelAFile);
+        InitNsbmd(&a->mUnk_68, a->mModelAFile);
         i = 0;
         p = a->mUnk_68.mUnk_04;
         for (; i < p->mInfo.mNumMat; i++) {
@@ -287,7 +287,7 @@ void InitWaterModels(Water *a) {
             NNS_G3dMdlSetMdlPolygonID(p, i, 1);
         }
     }
-    func_02084e28(&a->mUnk_d4, a->mModelCFile);
+    InitNsbmd(&a->mUnk_d4, a->mModelCFile);
     i = 0;
     p = a->mUnk_d4.mUnk_04;
     for (; i < p->mInfo.mNumMat; i++) {

@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/unk_02165000.h" // Unk02165ff0
-#include "Main/Unknown/code_020846c0.h" // Unk0208526c
+#include "Main/Unknown/code_020846c0.h" // ResFileEntry
 #include "code_0212d214.h"
 #include "Main/Unknown/code_020ae770.h"
 #include "Main/Unknown/code_020e5d0c.h"
@@ -225,27 +225,27 @@ extern UnkFunc *data_0217b070;
 extern s32 (*data_0217b074)();
 // Table of KartTurnEffects, one per Kart, allocated by InitKartTurnEffects and indexed by Kart.mIndex.
 extern struct KartTurnEffects *gKartTurnEffects;
-struct Unk0208e490;
+struct ModelEffect;
 
-// Object behind data_0217b080, 0x60 bytes: a list at 0x00 and five lists at 0x0c (12 bytes each), and five pointers
-// at 0x48 to arrays of object pointers.
-typedef struct Unk0217b080 {
-    /* 00 */ NNSFndList mUnk_00;
-    /* 0c */ NNSFndList mUnk_0c[5];
-    /* 48 */ struct Unk0208e490 **mUnk_48[5];
-    /* 5c */ u16 mUnk_5c;
+// The ModelEffect pools: an active list, one free list per kind, and the next polygon id (10 to 13).
+typedef struct ModelEffects {
+    /* 00 */ NNSFndList mActiveList;
+    /* 0c */ NNSFndList mFreeLists[5];
+    /* 48 */ struct ModelEffect **mObjects[5];
+    /* 5c */ u16 mNextPolygonId;
     /* 5e */ u8 mUnk_5e[2];
-} Unk0217b080;
+} ModelEffects;
 
-extern Unk0217b080 *data_0217b080;
+extern ModelEffects *gModelEffects;
 extern s32 data_0217b07c;
-extern s32 data_0217b084[2];
+// Particle effect ids func_0208d978 starts with a kind 2 object; -1 marks an unused entry.
+extern s32 gKind2EffectIds[2];
 extern Unk0208fd8c_08 *gBattleItemInUseEntries;
 
 // Object behind data_0217b08c, 0x38 bytes: 12-byte blocks at 0x00, 0x0c and 0x18.
 typedef struct Unk0217b08c {
     /* 00 */ NNSFndList mUnk_00[3];
-    /* 24 */ Unk0208526c mUnk_24;
+    /* 24 */ ResFileEntry mUnk_24;
     /* 34 */ s32 mUnk_34;
 } Unk0217b08c;
 

@@ -6,7 +6,7 @@ void func_0208533c(void) {
     NNSFndList *value0;
     u32 value1;
     u32 value12;
-    value0 = &data_0217aeb0;
+    value0 = &gResFileEntries;
     value1 = 0u;
     NNS_FndInitList(value0, value1);
 }

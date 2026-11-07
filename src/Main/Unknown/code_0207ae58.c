@@ -233,9 +233,9 @@ void func_0207b354(Kart *p) {
 
 void func_0207b284(Kart *p) {
     Unk0206bcb0_590 *q = p->mKartModelsEntry;
-    Unk02084b2c *r = q->mUnk_010[0];
+    Nsbmd *r = q->mUnk_010[0];
     Unk0206bcb0_590_08 *s = q->mUnk_00c;
-    NNSG3dResMdl *t = r->mUnk_04;
+    NNSG3dResMdl *t = r->mResMdl;
 
     NNS_G3dMdlSetMdlPolygonModeAll(t, 2);
     NNS_G3dReleaseMdlTex(t);
@@ -244,12 +244,12 @@ void func_0207b284(Kart *p) {
         q->mUnk_0ac = TRUE;
     }
     SetKartModelMaterialColors(t, 2);
-    t = q->mUnk_010[1]->mUnk_04;
+    t = q->mUnk_010[1]->mResMdl;
     NNS_G3dMdlSetMdlPolygonModeAll(t, 2);
     NNS_G3dReleaseMdlTex(t);
     SetKartModelMaterialColors(t, 2);
     if (q->mUnk_010[2] != NULL) {
-        t = q->mUnk_010[2]->mUnk_04;
+        t = q->mUnk_010[2]->mResMdl;
         NNS_G3dMdlSetMdlPolygonModeAll(t, 2);
         NNS_G3dReleaseMdlTex(t);
         SetKartModelMaterialColors(t, 2);
@@ -259,30 +259,30 @@ void func_0207b284(Kart *p) {
 
 void func_0207b1a8(Kart *p) {
     Unk0206bcb0_590 *q = p->mKartModelsEntry;
-    Unk02084b2c *r = q->mUnk_010[0];
+    Nsbmd *r = q->mUnk_010[0];
     Unk0206bcb0_590_08 *s = q->mUnk_00c;
-    NNSG3dResMdl *t = r->mUnk_04;
-    Unk02084b2c *u;
+    NNSG3dResMdl *t = r->mResMdl;
+    Nsbmd *u;
     NNSG3dResMdl *w;
-    Unk02084b2c *v;
+    Nsbmd *v;
 
     NNS_G3dMdlSetMdlPolygonModeAll(t, 0);
-    NNS_G3dBindMdlTex(t, r->mUnk_5c.mUnk_0c);
+    NNS_G3dBindMdlTex(t, r->mResFileEntry.mTexture);
     if (s != NULL && q->mUnk_0ac != FALSE) {
         NNS_G3dRenderObjAddAnmObj((NNSG3dRenderObj *) r, (NNSG3dAnmObj *) s->mUnk_1c[0]);
         q->mUnk_0ac = FALSE;
     }
     SetKartModelMaterialColors(t, 0);
     u = q->mUnk_010[1];
-    t = u->mUnk_04;
+    t = u->mResMdl;
     NNS_G3dMdlSetMdlPolygonModeAll(t, 0);
-    NNS_G3dBindMdlTex(t, u->mUnk_5c.mUnk_0c);
+    NNS_G3dBindMdlTex(t, u->mResFileEntry.mTexture);
     SetKartModelMaterialColors(t, 0);
     v = q->mUnk_010[2];
     if (v != NULL) {
-        w = v->mUnk_04;
+        w = v->mResMdl;
         NNS_G3dMdlSetMdlPolygonModeAll(w, 0);
-        NNS_G3dBindMdlTex(w, v->mUnk_5c.mUnk_0c);
+        NNS_G3dBindMdlTex(w, v->mResFileEntry.mTexture);
         SetKartModelMaterialColors(w, 0);
     }
     q->mUnk_064 = FALSE;
@@ -295,10 +295,10 @@ void func_0207b13c(Kart *p) {
     if (q->mUnk_064 != FALSE) {
         return;
     }
-    r = q->mUnk_010[0]->mUnk_04;
+    r = q->mUnk_010[0]->mResMdl;
     NNS_G3dMdlSetMdlPolygonModeAll(r, 2);
     SetKartModelMaterialColors(r, 3);
-    r = q->mUnk_010[1]->mUnk_04;
+    r = q->mUnk_010[1]->mResMdl;
     NNS_G3dMdlSetMdlPolygonModeAll(r, 2);
     SetKartModelMaterialColors(r, 3);
 }
@@ -310,10 +310,10 @@ void func_0207b0d0(Kart *p) {
     if (q->mUnk_064 != FALSE) {
         return;
     }
-    r = q->mUnk_010[0]->mUnk_04;
+    r = q->mUnk_010[0]->mResMdl;
     NNS_G3dMdlSetMdlPolygonModeAll(r, 0);
     SetKartModelMaterialColors(r, 0);
-    r = q->mUnk_010[1]->mUnk_04;
+    r = q->mUnk_010[1]->mResMdl;
     NNS_G3dMdlSetMdlPolygonModeAll(r, 0);
     SetKartModelMaterialColors(r, 0);
 }
@@ -333,12 +333,12 @@ void func_0207b054(Kart *p, s32 a, s32 b) {
     func_02087cfc(s, (u16) a, 0);
 }
 
-void func_0207b000(Unk02084b2c *a, void *b, u32 c) {
+void func_0207b000(Nsbmd *a, void *b, u32 c) {
     Unk0207adf8 *p = (Unk0207adf8 *) a;
     NNSG3dResMdl *q;
 
     func_02084f10(a, b);
-    q = a->mUnk_04;
+    q = a->mResMdl;
     p->mUnk_6c = c;
     p->mUnk_6e = 0xd;
     p->mUnk_70 |= 1;
@@ -350,14 +350,14 @@ NNSG3dResMdl *func_0207afa8(void *param_1, NNSG3dResFileHeader *b, u32 c) {
     Unk0207adf8 *a = param_1;
     NNSG3dResMdl *p;
 
-    func_02084e28(a, b);
-    p = a->mUnk_00.mUnk_04;
+    InitNsbmd(a, b);
+    p = a->mUnk_00.mResMdl;
     a->mUnk_6c = c;
     a->mUnk_6e = 0xd;
     a->mUnk_70 |= 1;
     NNS_G3dMdlSetMdlPolygonMode(p, 0, 3);
     NNS_G3dMdlSetMdlLightEnableFlag(p, 0, 0);
-    return a->mUnk_00.mUnk_04;
+    return a->mUnk_00.mResMdl;
 }
 
 void func_0207aec8(void *param_1, const void *b, Vec3 *c) {
@@ -381,9 +381,9 @@ void func_0207aec8(void *param_1, const void *b, Vec3 *c) {
         func_01ff9048(0x1b, &w, 3);
     }
     func_02084ad8(a, a->mUnk_6e);
-    data_02155a20[a->mUnk_00.mUnk_58](a);
+    data_02155a20[a->mUnk_00.mDrawKind](a);
     func_02084a88(a, a->mUnk_6e, a->mUnk_6c);
-    data_02155a20[a->mUnk_00.mUnk_58](a);
+    data_02155a20[a->mUnk_00.mDrawKind](a);
 }
 
 void func_0207ae58(Unk0207adf8 *a) {
@@ -391,7 +391,7 @@ void func_0207ae58(Unk0207adf8 *a) {
         return;
     }
     func_02084ad8(a, a->mUnk_6e);
-    data_02155a20[a->mUnk_00.mUnk_58](a);
+    data_02155a20[a->mUnk_00.mDrawKind](a);
     func_02084a88(a, a->mUnk_6e, a->mUnk_6c);
-    data_02155a20[a->mUnk_00.mUnk_58](a);
+    data_02155a20[a->mUnk_00.mDrawKind](a);
 }

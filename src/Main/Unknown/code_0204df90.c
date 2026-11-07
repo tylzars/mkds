@@ -277,10 +277,10 @@ s32 func_0204e29c(void) {
         case 0:
             data_0217aa00->mUnk_0454 |= 0x40;
             data_0217aa00->mUnk_0004 = 1;
-            func_020536e0();
+            Initialize();
             break;
         case 1:
-            func_02053094(r);
+            MeasureChannel(r);
             break;
         case 4:
             func_0204f814();
@@ -302,7 +302,7 @@ s32 func_0204e204(void) {
             case 0:
                 data_0217aa00->mUnk_0454 |= 0x40;
                 data_0217aa00->mUnk_0004 = 1;
-                func_020536e0();
+                Initialize();
                 break;
             case 1:
                 s = TRUE;
@@ -313,7 +313,7 @@ s32 func_0204e204(void) {
             case 0:
                 data_0217aa00->mUnk_0454 |= 0x40;
                 data_0217aa00->mUnk_0004 = 1;
-                func_020536e0();
+                Initialize();
                 break;
             case 1:
                 SetupScanConnect();

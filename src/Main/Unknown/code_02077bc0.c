@@ -128,9 +128,9 @@
 void func_0207ad88(Unk0207adf8 *a, u32 b, u32 c) {
     if ((a->mUnk_70 & 1) != 0) {
         func_02084ad8(a, a->mUnk_6e);
-        data_02155a20[a->mUnk_00.mUnk_58](a);
+        data_02155a20[a->mUnk_00.mDrawKind](a);
         func_02084a88(a, a->mUnk_6e, a->mUnk_6c);
-        data_02155a20[a->mUnk_00.mUnk_58](a);
+        data_02155a20[a->mUnk_00.mDrawKind](a);
     }
 }
 
@@ -322,10 +322,10 @@ void SetKartModelsFogEnable(s32 a) {
     Unk0206bcb0_590 *s;
     for (i = 0; i < gKartCount; i++) {
         s = p->mKartModelsEntry;
-        NNS_G3dMdlSetMdlFogEnableFlagAll(s->mUnk_010[1]->mUnk_04, a);
-        NNS_G3dMdlSetMdlFogEnableFlagAll(s->mUnk_010[0]->mUnk_04, a);
+        NNS_G3dMdlSetMdlFogEnableFlagAll(s->mUnk_010[1]->mResMdl, a);
+        NNS_G3dMdlSetMdlFogEnableFlagAll(s->mUnk_010[0]->mResMdl, a);
         if (s->mUnk_010[2] != NULL) {
-            NNS_G3dMdlSetMdlFogEnableFlagAll(s->mUnk_010[2]->mUnk_04, a);
+            NNS_G3dMdlSetMdlFogEnableFlagAll(s->mUnk_010[2]->mResMdl, a);
         }
         p++;
     }
@@ -524,27 +524,27 @@ s32 AdvanceKartModelsEntryColorInterpolation(struct Unk0206bcb0_590 *a, s32 b) {
         q->mUnk_00 = (s16) (q->mUnk_06 + (s32) (((s64) q->mUnk_0c * q->mUnk_2a + 0x800) >> 12)) +
                      ((s16) (q->mUnk_08 + (s32) (((s64) q->mUnk_0e * q->mUnk_2a + 0x800) >> 12)) << 5) +
                      ((s16) (q->mUnk_0a + (s32) (((s64) q->mUnk_10 * q->mUnk_2a + 0x800) >> 12)) << 10);
-        NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[0]->mUnk_04, q->mUnk_00);
-        NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[1]->mUnk_04, q->mUnk_00);
+        NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[0]->mResMdl, q->mUnk_00);
+        NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[1]->mResMdl, q->mUnk_00);
         if (a->mUnk_010[2] != NULL) {
-            NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[2]->mUnk_04, q->mUnk_00);
+            NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[2]->mResMdl, q->mUnk_00);
         }
         q->mUnk_02 = (s16) (q->mUnk_12 + (s32) (((s64) q->mUnk_18 * q->mUnk_2a + 0x800) >> 12)) +
                      ((s16) (q->mUnk_14 + (s32) (((s64) q->mUnk_1a * q->mUnk_2a + 0x800) >> 12)) << 5) +
                      ((s16) (q->mUnk_16 + (s32) (((s64) q->mUnk_1c * q->mUnk_2a + 0x800) >> 12)) << 10);
-        NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[0]->mUnk_04, q->mUnk_02);
-        NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[1]->mUnk_04, q->mUnk_02);
+        NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[0]->mResMdl, q->mUnk_02);
+        NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[1]->mResMdl, q->mUnk_02);
         if (a->mUnk_010[2] != NULL) {
-            NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[2]->mUnk_04, q->mUnk_02);
+            NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[2]->mResMdl, q->mUnk_02);
         }
         {
             s16 x = q->mUnk_1e + (s32) (((s64) q->mUnk_24 * q->mUnk_2a + 0x800) >> 12);
             s16 y = q->mUnk_20 + (s32) (((s64) q->mUnk_26 * q->mUnk_2a + 0x800) >> 12);
             s16 z = q->mUnk_22 + (s32) (((s64) q->mUnk_28 * q->mUnk_2a + 0x800) >> 12);
-            NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[0]->mUnk_04, q->mUnk_04);
-            NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[1]->mUnk_04, q->mUnk_04);
+            NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[0]->mResMdl, q->mUnk_04);
+            NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[1]->mResMdl, q->mUnk_04);
             if (a->mUnk_010[2] != NULL) {
-                NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[2]->mUnk_04, q->mUnk_04);
+                NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[2]->mResMdl, q->mUnk_04);
             }
             q->mUnk_04 = x + (y << 5) + (z << 10);
         }
@@ -563,16 +563,16 @@ void SetKartModelsEntryCourseColors(struct Unk0206bcb0_590 *a) {
     b = p[0];
     c = p[3];
     d = p[1];
-    NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[0]->mUnk_04, b);
-    NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[1]->mUnk_04, b);
-    NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[0]->mUnk_04, c);
-    NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[1]->mUnk_04, c);
-    NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[0]->mUnk_04, d);
-    NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[1]->mUnk_04, d);
+    NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[0]->mResMdl, b);
+    NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[1]->mResMdl, b);
+    NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[0]->mResMdl, c);
+    NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[1]->mResMdl, c);
+    NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[0]->mResMdl, d);
+    NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[1]->mResMdl, d);
     if (a->mUnk_010[2] != NULL) {
-        NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[2]->mUnk_04, b);
-        NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[2]->mUnk_04, c);
-        NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[2]->mUnk_04, d);
+        NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[2]->mResMdl, b);
+        NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[2]->mResMdl, c);
+        NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[2]->mResMdl, d);
     }
 }
 
@@ -581,11 +581,11 @@ Unk0206bcb0_590 *GetKartModelsEntry(u32 a) {
 }
 
 void *func_02079bcc(u32 a) {
-    return gKartModels->mKartModelsEntries[a].mUnk_010[1]->mUnk_04;
+    return gKartModels->mKartModelsEntries[a].mUnk_010[1]->mResMdl;
 }
 
 void func_02079b9c(struct Unk0206bcb0_590 *a, s32 b) {
-    NNS_G3dMdlSetMdlAlpha(a->mUnk_010[1]->mUnk_04, gKartModels->mUnk_00c, b != 0 ? 0x1f : 0);
+    NNS_G3dMdlSetMdlAlpha(a->mUnk_010[1]->mResMdl, gKartModels->mUnk_00c, b != 0 ? 0x1f : 0);
 }
 
 void *func_02079b88(void) {
@@ -925,8 +925,8 @@ void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
     v7 = func_02047950(BuildCharacterNsbmdPath(e8, c));
     v10 = FindKartModelFile(BuildCharacterNsbtxPath(e8, c));
     a->mUnk_010[0] = HeapAlloc(b, 0x6c);
-    p = func_02084b2c(b, a->mUnk_010[0], v7, v10);
-    func_020849c0(a->mUnk_010[0], 3);
+    p = InitNsbmdWithTextureInfoCopy(b, a->mUnk_010[0], v7, v10);
+    SetNsbmdPolygonIdAll(a->mUnk_010[0], 3);
     SetKartModelMaterialColors(p, 0);
     if (c != 0) {
         i = 0;
@@ -967,8 +967,8 @@ void CreateKart(Unk0206bcb0_590 *a, void *b, s32 c) {
     s = func_02047950(BuildKartNsbmdPath(v7));
     t = FindKartModelFile(BuildKartNsbtxPath(v7));
     a->mUnk_010[1] = HeapAlloc(b, 0x6c);
-    r4 = func_02084b2c(b, a->mUnk_010[1], s, t);
-    func_020849c0(a->mUnk_010[1], 3);
+    r4 = InitNsbmdWithTextureInfoCopy(b, a->mUnk_010[1], s, t);
+    SetNsbmdPolygonIdAll(a->mUnk_010[1], 3);
     SetKartModelMaterialColors(r4, 0);
     if (c != 0) {
         i = NNS_G3dGetResDictIdxByName((u8 *) r4 + r4->mOfsMat + 4, data_usa_021550b8);
@@ -992,7 +992,7 @@ u16 *LoadKartAPaletteFromKartModelMenu(void *a) {
     return p->mData;
 }
 
-void UploadKartAPaletteSlice(Unk02084b2c *a, s32 b, void *c) {
+void UploadKartAPaletteSlice(Nsbmd *a, s32 b, void *c) {
     u8 *p;
     u8 *q;
     u8 *t;
@@ -1000,7 +1000,7 @@ void UploadKartAPaletteSlice(Unk02084b2c *a, s32 b, void *c) {
     s32 i;
     u32 k;
     if (b % 3 == 0) {
-        p = (u8 *) a->mUnk_04;
+        p = (u8 *) a->mResMdl;
         d = (u8 *) c + b / 3 * 0x20;
         DC_FlushRange(d, 0x10);
         i = NNS_G3dGetResDictIdxByName(p + *(s32 *) (p + 8) + 4, data_usa_02155088);
@@ -1029,7 +1029,7 @@ void func_020792c8(Unk0206bcb0_590 *a, s32 b) {
     if (a->mUnk_0b0 != 0) {
         if ((u32) (a->mUnk_004 - 0x22) <= 1) {
             c = NULL;
-            p = (u8 *) a->mUnk_010[1]->mUnk_04;
+            p = (u8 *) a->mUnk_010[1]->mResMdl;
             switch (a->mUnk_004) {
                 case 0x22:
                     c = data_usa_021550e8;
@@ -1049,7 +1049,7 @@ void func_020792c8(Unk0206bcb0_590 *a, s32 b) {
             GX_EndLoadTexPltt();
         }
         if (a->mUnk_000 == 0xb) {
-            p = (u8 *) a->mUnk_010[0]->mUnk_04;
+            p = (u8 *) a->mUnk_010[0]->mResMdl;
             if (b != 0) {
                 i = NNS_G3dGetResDictIdxByName(p + *(s32 *) (p + 8) + 4, data_usa_02155028);
                 j = NNS_G3dGetResDictIdxByName(p + *(s32 *) (p + 8) + 4, data_usa_02155038);
@@ -1087,8 +1087,8 @@ void CreateTire(Unk0206bcb0_590 *a, void *b) {
     v7 = func_02047950(BuildTireNsbmdPath(v6, a->mUnk_020->mUnk_00));
     v8 = FindKartModelFile(BuildTireNsbtxPath(v6, a->mUnk_020->mUnk_00));
     a->mUnk_010[2] = HeapAlloc(b, 0x6c);
-    v4 = func_02084b2c(b, a->mUnk_010[2], v7, v8);
-    func_020849c0(a->mUnk_010[2], 3);
+    v4 = InitNsbmdWithTextureInfoCopy(b, a->mUnk_010[2], v7, v8);
+    SetNsbmdPolygonIdAll(a->mUnk_010[2], 3);
     SetKartModelMaterialColors(v4, 0);
 }
 
@@ -1097,7 +1097,7 @@ void CreateKartShadow(Unk0206bcb0_590 *a, void *b) {
     u8 *p;
     v6 = func_02047950(BuildKartShadowNsbmdPath(a->mUnk_004));
     a->mUnk_01c = HeapAlloc(b, 0x74);
-    func_0208526c(&a->mUnk_01c->mUnk_00.mUnk_5c, v6, v6);
+    AddResFileEntry(&a->mUnk_01c->mUnk_00.mResFileEntry, v6, v6);
     p = (u8 *) NNS_G3dGetMdlSet(v6);
     func_0207b000(&a->mUnk_01c->mUnk_00, p + *(s32 *) (p + *(u16 *) (p + 0xe) + 0xc), 3);
 }
@@ -1107,8 +1107,8 @@ void CreateKillerItem(void *a) {
     NNSG3dResFileHeader *v6 = FindKartModelFile("character/common/KillerItem.nsbtx");
     void *v7 = func_02047950("character/common/KillerItem_s.nsbmd");
     void *v8;
-    SetKartModelMaterialColors(func_02084b2c(a, &gKartModels->mUnk_02c, v4, v6), 0);
-    func_020849c0(&gKartModels->mUnk_02c, 3);
+    SetKartModelMaterialColors(InitNsbmdWithTextureInfoCopy(a, &gKartModels->mUnk_02c, v4, v6), 0);
+    SetNsbmdPolygonIdAll(&gKartModels->mUnk_02c, 3);
     v8 = func_02047950("character/common/KillerItem.nsbca");
     func_0208823c(0, &gKartModels->mUnk_10c, &gKartModels->mUnk_02c, 1, a, v4);
     func_0208805c(&gKartModels->mUnk_10c, v8, a);
@@ -1138,12 +1138,12 @@ void func_020790e0(void *a, s32 b) {
 
 #pragma thumb on
 
-void func_02079078(void *a, Unk02084b2c *b, void *c, NNSG3dResFileHeader *d, NNSG3dResFileHeader *e, void *f) {
+void func_02079078(void *a, Nsbmd *b, void *c, NNSG3dResFileHeader *d, NNSG3dResFileHeader *e, void *f) {
     NNSG3dResMdl *v2;
     u32 v3;
     void *v1;
-    v2 = func_02084d3c(b, d, e);
-    func_020849c0(b, 3);
+    v2 = InitNsbmdWithTextureFile(b, d, e);
+    SetNsbmdPolygonIdAll(b, 3);
     SetKartModelMaterialColors(v2, 1);
     func_0208823c(0, c, b, 1, a, NULL);
     v1 = NNS_G3dGetJntAnmByIdx(NNS_G3dGetJntAnmSet(f), 0);
@@ -1152,20 +1152,20 @@ void func_02079078(void *a, Unk02084b2c *b, void *c, NNSG3dResFileHeader *d, NNS
     func_02087f84(c, 0);
 }
 
-void func_02079038(Unk02084b2c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c) {
+void func_02079038(Nsbmd *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c) {
     NNSG3dResMdl *v1;
     u32 v2;
-    v1 = func_02084d3c(a, b, c);
-    func_020849c0(a, 3);
+    v1 = InitNsbmdWithTextureFile(a, b, c);
+    SetNsbmdPolygonIdAll(a, 3);
     SetKartModelMaterialColors(v1, 1);
     v2 = NNS_G3dGetResDictIdxByName((u8 *) v1 + v1->mOfsMat + 4, data_02155098);
     NNS_G3dMdlSetMdlAlpha(v1, v2, 0);
 }
 
-void func_02079014(Unk02084b2c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c) {
+void func_02079014(Nsbmd *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c) {
     NNSG3dResMdl *v1;
-    v1 = func_02084d3c(a, b, c);
-    func_020849c0(a, 3);
+    v1 = InitNsbmdWithTextureFile(a, b, c);
+    SetNsbmdPolygonIdAll(a, 3);
     SetKartModelMaterialColors(v1, 1);
 }
 
@@ -1183,9 +1183,9 @@ void func_02078f9c(void *c) {
     LoadKartModelMenuFile(c, data_usa_02165760, &a);
     LoadKartModelMenuFile(c, data_usa_0216577c, &b);
     data_0217ad08->mUnk_1cc = HeapAlloc(c, 0x6c);
-    func_02084d3c(data_0217ad08->mUnk_1cc, a, b);
-    func_020849c0(data_0217ad08->mUnk_1cc, 2);
-    NNS_G3dMdlSetMdlXLDepthUpdateAll(data_0217ad08->mUnk_1cc->mUnk_04, 1);
+    InitNsbmdWithTextureFile(data_0217ad08->mUnk_1cc, a, b);
+    SetNsbmdPolygonIdAll(data_0217ad08->mUnk_1cc, 2);
+    NNS_G3dMdlSetMdlXLDepthUpdateAll(data_0217ad08->mUnk_1cc->mResMdl, 1);
 }
 
 #pragma thumb off
@@ -1242,7 +1242,7 @@ void func_02078e4c(void *param_1, void *param_2) {
     Unk0217ad08_1f4 *p = &d->mUnk_1f4[d->mUnk_266];
     s16 i = d->mUnk_264;
     if (i >= 0 && p->mUnk_2c == FALSE) {
-        e = d->mUnk_058[i].mUnk_14->mUnk_04;
+        e = d->mUnk_058[i].mUnk_14->mResMdl;
         k = NNS_G3dGetResDictIdxByName((u8 *) e + e->mOfsMat + 4, data_usa_02155018);
         t = (u8 *) e + e->mOfsMat;
         u = t + 4;
@@ -1522,9 +1522,9 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
         SetFrustumProjection(param_3);
         if (param_1->mUnk_1c != NULL) {
             if (param_3 != 0) {
-                param_1->mUnk_1c->mUnk_00.mUnk_54 = 1;
+                param_1->mUnk_1c->mUnk_00.mCullModesSwapped = 1;
             } else {
-                param_1->mUnk_1c->mUnk_00.mUnk_54 = 0;
+                param_1->mUnk_1c->mUnk_00.mCullModesSwapped = 0;
             }
             ((void (*)(Unk0207adf8 *)) func_0207adf8)(param_1->mUnk_1c);
         }
@@ -1584,10 +1584,10 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
 
 void func_0207851c(Unk0217ad08_058 *a) {
     if ((data_0217ad08->mUnk_1e0 != FALSE) && (a->mUnk_b4 != NULL)) {
-        NNS_G3dReleaseMdlTexEx(a->mUnk_14->mUnk_04, data_02155048);
-        NNS_G3dReleaseMdlPlttEx(a->mUnk_14->mUnk_04, data_021550a8);
-        NNS_G3dBindMdlTexEx(a->mUnk_14->mUnk_04, a->mUnk_b4, data_02155048);
-        NNS_G3dBindMdlPlttEx(a->mUnk_14->mUnk_04, a->mUnk_b4, data_021550a8);
+        NNS_G3dReleaseMdlTexEx(a->mUnk_14->mResMdl, data_02155048);
+        NNS_G3dReleaseMdlPlttEx(a->mUnk_14->mResMdl, data_021550a8);
+        NNS_G3dBindMdlTexEx(a->mUnk_14->mResMdl, a->mUnk_b4, data_02155048);
+        NNS_G3dBindMdlPlttEx(a->mUnk_14->mResMdl, a->mUnk_b4, data_021550a8);
     }
 }
 
@@ -1799,7 +1799,7 @@ void func_02077f9c(int param_1, struct Unk0206bcb0_590 *param_2, Unk0217ad00_014
     u8 *w;
     s32 k;
     s32 h;
-    e = param_2->mUnk_010[0]->mUnk_04;
+    e = param_2->mUnk_010[0]->mResMdl;
     DC_FlushRange(param_3, 0x20);
     if (func_020799a0(param_1) != 0) {
         k = NNS_G3dGetResDictIdxByName((u8 *) e + e->mOfsMat + 4, data_usa_02154ff8);

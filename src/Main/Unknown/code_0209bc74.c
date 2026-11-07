@@ -19,9 +19,9 @@ void *CreateMapObjectModelAnimated(void *a, const char *b) {
     }
     o->mNsbmdFile = FindCourseMapObjFile(b);
     o->mAnimatedModel = HeapAlloc(GetHeap(func_020364e8()), 0x6c);
-    func_02084e28(o->mAnimatedModel, o->mNsbmdFile);
-    func_020849a0(o->mAnimatedModel, 0x294a);
-    func_020849b0(o->mAnimatedModel, 2);
+    InitNsbmd(o->mAnimatedModel, o->mNsbmdFile);
+    SetNsbmdEmiAll(o->mAnimatedModel, 0x294a);
+    SetNsbmdLightEnableFlagAll(o->mAnimatedModel, 2);
     o->mScale = data_021565c4;
     return o;
 }

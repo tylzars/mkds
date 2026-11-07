@@ -622,16 +622,16 @@ void UpdateItemKouraWState6(ItemKouraW *param_1) {
 
 void EnterItemKouraWState7(ItemKouraW *param_1) {
     NNSSndSeqPlayer **p;
-    struct Unk0208e490 *q;
+    struct ModelEffect *q;
     s32 *v;
 
     param_1->mUnk_000.mFlags |= 0x800000;
     param_1->mUnk_000.mUnk_100 = 0;
     param_1->mUnk_000.mUnk_68 = data_02159d84;
-    param_1->mUnk_2b0 = func_0208e490(1, &param_1->mUnk_000.mPos, func_020f9160(&param_1->mUnk_000) == 0 ? 1 : 0);
+    param_1->mUnk_2b0 = StartModelEffect(1, &param_1->mUnk_000.mPos, func_020f9160(&param_1->mUnk_000) == 0 ? 1 : 0);
     q = param_1->mUnk_2b0;
     if (q != NULL) {
-        v = q->mUnk_9c;
+        v = q->mScale;
         v[0] = 0x1000;
         v[1] = 0x1000;
         v[2] = 0x1000;
@@ -782,7 +782,7 @@ void func_020faed0(ItemKouraW *param_1, s32 param_2, s32 param_3) {
 }
 
 void DrawItemKouraW(ItemKouraW *param_1, s32 param_2, s32 param_3) {
-    Unk0208e490 *q;
+    ModelEffect *q;
 
     if (param_1->mState != 7) {
         func_020faed0(param_1, param_2, param_3);
@@ -792,7 +792,7 @@ void DrawItemKouraW(ItemKouraW *param_1, s32 param_2, s32 param_3) {
     if (q == NULL) {
         return;
     }
-    q->mUnk_b4 = (param_1->mUnk_000.mFlags & 0x10000) == 0;
+    q->mVisible = (param_1->mUnk_000.mFlags & 0x10000) == 0;
 }
 
 // Asks for state 7 unless the object is already in it; returns 1.

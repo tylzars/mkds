@@ -267,7 +267,7 @@ void func_ov001_02187444(Unk02188950 *a, u32 b, int c) {
             if (a->mUnk_0bc[i].mUnk_14 != NULL) {
                 func_0208b6b0(&a->mUnk_0bc[i].mUnk_14);
             }
-            func_0208e490(b, &a->mUnk_0bc[i].mOffset, 1);
+            StartModelEffect(b, &a->mUnk_0bc[i].mOffset, 1);
             a->mUnk_0bc[i].mKind = 0;
             a->mUnk_0bc[i].mTimer = c;
             return;

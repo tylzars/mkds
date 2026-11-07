@@ -132,12 +132,12 @@ void func_020a269c(s32 a, u32 b) {
         data_0217b200->mUnk_108.y = data_021566dc[a];
         data_0217b200->mUnk_108.z = -0x2000;
         data_0217b200->mUnk_114 = data_021566b8[a];
-        func_02084e28(&data_0217b200->mUnk_028, v1);
-        func_020849b0(&data_0217b200->mUnk_028, 3);
+        InitNsbmd(&data_0217b200->mUnk_028, v1);
+        SetNsbmdLightEnableFlagAll(&data_0217b200->mUnk_028, 3);
         if (data_021759c0->mUnk_57 != 0) {
-            func_02084958(&data_0217b200->mUnk_028, 1);
+            SetNsbmdCullModeAll(&data_0217b200->mUnk_028, 1);
         } else {
-            func_02084958(&data_0217b200->mUnk_028, 2);
+            SetNsbmdCullModeAll(&data_0217b200->mUnk_028, 2);
         }
         v3 = GetHeap(func_020364e8());
         func_0208823c(2, &data_0217b200->mUnk_094, &data_0217b200->mUnk_028, 1, v3, v1);
@@ -262,7 +262,7 @@ void func_020a23cc(void) {
     v3[1] = 0;
     v3[2] = 0;
     func_01ff9048(0x1c, v3, 3);
-    func_020849d0(&data_0217b200->mUnk_028);
+    DrawNsbmd(&data_0217b200->mUnk_028);
     func_01ff9234();
 }
 

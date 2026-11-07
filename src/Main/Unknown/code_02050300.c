@@ -248,7 +248,7 @@ void End(void) {
     }
     p->mUnk_000c = 2;
     data_0217aa00->mUnk_0010 = 1;
-    if (WM_Reset(func_02053348) == 2) {
+    if (WM_Reset(ResetCallback) == 2) {
         return;
     }
     data_0217aa00->mUnk_000c = 0x15;
@@ -265,7 +265,7 @@ void End(void) {
         return;
     }
     func_0205108c(2);
-    if (WM_Reset(func_02053348) == 2) {
+    if (WM_Reset(ResetCallback) == 2) {
         return;
     }
     End();

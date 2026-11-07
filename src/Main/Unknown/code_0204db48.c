@@ -194,19 +194,19 @@ s32 func_0204db6c(void) {
             func_02052ecc();
             break;
         case 36:
-            func_020532dc(0x14);
+            SetLifeTime(0x14);
             break;
         case 3:
             func_0204fb40(1);
-            func_02052bf8();
+            SetParentParameter();
             break;
         case 4:
             func_0204f814();
             func_0204fb40(1);
-            func_02052bf8();
+            SetParentParameter();
             break;
         case 5:
-            func_02052b60(NULL);
+            StartParent(NULL);
             break;
         case 6:
             data_0217aa00->mUnk_1695 = func_0204dcf0(data_0217aa00->mUnk_1695);

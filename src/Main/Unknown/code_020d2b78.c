@@ -117,7 +117,7 @@ u32 func_020d2c20(void) {
 }
 
 // The water_efct.nsbmd file: WaterEfct's if gCourseWaterEfct exists, else the Water's own when mUnk_170 is non-zero,
-// else NULL; passed as an effect model file to func_0208ddf4.
+// else NULL; passed as an effect model file to SetupModelEffectKind.
 void *GetWaterEfctNsbmdFile(void) {
     Water *v1;
     if (gCourseWaterEfct != NULL) {
