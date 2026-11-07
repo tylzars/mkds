@@ -24,14 +24,14 @@
 #include "code_0200f5ac.h"
 #include "code_0214e1e0.h"
 
-Unk021ab5e4 *func_ov000_021ab684(const u8 *a) {
+HttpsEntry *FindEntryByBytesAndSetLastUseTime(const u8 *a) {
     s32 i;
-    Unk021ab5e4 *e;
+    HttpsEntry *e;
     i = 0;
     e = data_ov000_021b61f4;
     for (; i < 4; i++) {
-        if (e->mUnk_5a != 0 && memcmp(e->mUnk_00, a, 0x20) == 0) {
-            e->mUnk_50 = OS_GetTick() >> 16;
+        if (e->mInUse != 0 && memcmp(e->mUnk_00, a, 0x20) == 0) {
+            e->mLastUseTime = OS_GetTick() >> 16;
             return e;
         }
         e++;
@@ -39,14 +39,14 @@ Unk021ab5e4 *func_ov000_021ab684(const u8 *a) {
     return NULL;
 }
 
-Unk021ab5e4 *func_ov000_021ab63c(u32 a, u32 b) {
-    Unk021ab5e4 *e;
+HttpsEntry *FindEntryByValuePairAndSetLastUseTime(u32 a, u32 b) {
+    HttpsEntry *e;
     s32 i;
     i = 0;
     e = data_ov000_021b61f4;
     for (; i < 4; i++) {
-        if (e->mUnk_5a != 0 && e->mUnk_54 == a && e->mUnk_58 == b) {
-            e->mUnk_50 = OS_GetTick() >> 16;
+        if (e->mInUse != 0 && e->mUnk_54 == a && e->mUnk_58 == b) {
+            e->mLastUseTime = OS_GetTick() >> 16;
             return e;
         }
         e++;
@@ -54,24 +54,26 @@ Unk021ab5e4 *func_ov000_021ab63c(u32 a, u32 b) {
     return NULL;
 }
 
-Unk021ab5e4 *func_ov000_021ab5e4(const u8 *a) {
-    Unk021ab5e4 *v1;
+// Takes the first free entry, else the one stamped longest ago; copies the 0x20 bytes in, stamps it and marks it in
+// use.
+HttpsEntry *AddEntryOrReplaceLongestUnused(const u8 *a) {
+    HttpsEntry *v1;
     u32 t;
     s32 i;
     u32 v2;
     u32 v3;
-    Unk021ab5e4 *e;
+    HttpsEntry *e;
     t = OS_GetTick() >> 16;
     v3 = 0;
     v1 = data_ov000_021b61f4;
     i = 0;
     e = v1;
     for (; i < 4; i++) {
-        if (e->mUnk_5a == 0) {
+        if (e->mInUse == 0) {
             v1 = e;
             break;
         }
-        v2 = t - e->mUnk_50;
+        v2 = t - e->mLastUseTime;
         if (v2 > v3) {
             v3 = v2;
             v1 = e;
@@ -79,12 +81,13 @@ Unk021ab5e4 *func_ov000_021ab5e4(const u8 *a) {
         e++;
     }
     MI_CpuCopy8(a, v1, 0x20);
-    v1->mUnk_50 = t;
-    v1->mUnk_5a = 1;
+    v1->mLastUseTime = t;
+    v1->mInUse = 1;
     return v1;
 }
 
-u32 func_ov000_021ab5bc(void) {
+// The clock's date and time as seconds, plus 0x386d4380.
+u32 GetRtcSecondsPlusFixedOffset(void) {
     RTCDate a;
     RTCTime b;
     RTC_GetDate(&a);
@@ -92,26 +95,26 @@ u32 func_ov000_021ab5bc(void) {
     return (u32) RTC_ConvertDateTimeToSecond(&a, &b) + 0x386d4380;
 }
 
-void func_ov000_021ab594(u32 a, u32 b) {
+void SetAuthorityTable(u32 table, u32 count) {
     Unk021a998c *v1;
-    Unk021a998c_0c *v2;
+    HttpsState *v2;
     v1 = data_0216ff5c.mCurrentThread->mUnk_a4[0];
-    if ((v1 != NULL) && (v2 = v1->mUnk_0c, v2 != NULL)) {
-        v2->mUnk_7e8 = a;
-        v2->mUnk_7ec = b;
+    if ((v1 != NULL) && (v2 = v1->mHttpsState, v2 != NULL)) {
+        v2->mAuthorities = table;
+        v2->mAuthorityCount = count;
     }
 }
 
-u32 func_ov000_021ab548(Unk021a998c_0c *a, const s8 *b) {
+u32 FindAuthorityByName(HttpsState *a, const s8 *b) {
     int v1;
     int v2;
     u32 *v3;
     u32 *v4;
     int v5;
     v2 = 0;
-    v1 = a->mUnk_7ec;
+    v1 = a->mAuthorityCount;
     if (0 < v1) {
-        v4 = (u32 *) a->mUnk_7e8;
+        v4 = (u32 *) a->mAuthorities;
         v3 = v4;
         do {
             v5 = strcmp((const char *) (*(u32 *) *v3), (const char *) b);
@@ -125,7 +128,9 @@ u32 func_ov000_021ab548(Unk021a998c_0c *a, const s8 *b) {
     return 0;
 }
 
-s32 func_ov000_021ab4f8(u8 **a) {
+// Reads a length (one byte below 0x80, else 0x80 + n followed by n big-endian bytes) and moves *a past it; -1 when the
+// value would not fit in 32 bits.
+s32 ReadLengthAndAdvance(u8 **a) {
     u8 *p;
     s32 x;
     u32 k;
@@ -145,44 +150,47 @@ s32 func_ov000_021ab4f8(u8 **a) {
     return x;
 }
 
-void func_ov000_021ab4b0(s8 *a, const s8 *b, s32 c) {
+void AppendCommaSeparatedText(s8 *dest, const s8 *source, s32 count) {
     s8 *d;
-    d = a;
-    if (*a != 0) {
+    d = dest;
+    if (*dest != 0) {
         do {
-            a++;
-        } while (*a != 0);
-        if (a - d >= 0xff) {
+            dest++;
+        } while (*dest != 0);
+        if (dest - d >= 0xff) {
             return;
         }
-        *a++ = ',';
-        *a++ = ' ';
+        *dest++ = ',';
+        *dest++ = ' ';
     }
-    while (c-- != 0 && a - d < 0xff) {
-        *a++ = *b++;
+    while (count-- != 0 && dest - d < 0xff) {
+        *dest++ = *source++;
     }
-    *a = 0;
+    *dest = 0;
 }
 
-u32 func_ov000_021ab448(const u8 *a, u32 b) {
+// Returns year << 16 | month << 8 | day from digit text; a tag of 0x17 means a two-digit year, else four digits.
+u32 ParseDateText(const u8 *digits, u32 tag) {
     u32 x;
     u32 y;
-    x = a[1] + a[0] * 10 - 0x210;
-    a += 2;
-    if (b == 0x17) {
+    x = digits[1] + digits[0] * 10 - 0x210;
+    digits += 2;
+    if (tag == 0x17) {
         if (x < 0x32) {
             y = x + 0x7d0;
         } else {
             y = x + 0x76c;
         }
     } else {
-        y = x * 100 + (a[1] + a[0] * 10 - 0x210);
-        a += 2;
+        y = x * 100 + (digits[1] + digits[0] * 10 - 0x210);
+        digits += 2;
     }
-    return (y << 16) + ((a[1] + a[0] * 10 - 0x210) << 8) + (a[3] + a[2] * 10 - 0x210);
+    return (y << 16) + ((digits[1] + digits[0] * 10 - 0x210) << 8) + (digits[3] + digits[2] * 10 - 0x210);
 }
 
-BOOL func_ov000_021ab09c(Unk021a998c_0c *a, u8 **b, s32 c, s32 d, s32 e) {
+// Parses one tag-length-value item and the items inside the container tags; returns TRUE on a bad length or a failed
+// inner item.
+BOOL ParseTaggedItem(HttpsState *a, u8 **b, s32 depth, s32 index, s32 mode) {
     u8 *p;
     u32 t;
     u32 k;
@@ -195,46 +203,46 @@ BOOL func_ov000_021ab09c(Unk021a998c_0c *a, u8 **b, s32 c, s32 d, s32 e) {
     u32 v;
     p = *b;
     t = *p++;
-    n = func_ov000_021ab4f8(&p);
+    n = ReadLengthAndAdvance(&p);
     if (n < 0 || n > 0x7d0) {
         return TRUE;
     }
     k = t & 0x1f;
     switch (k) {
         case 2:
-            if (a->mUnk_581 != 0) {
-                if (d == 0) {
+            if (a->mCaptureValues != 0) {
+                if (index == 0) {
                     while (*p == 0) {
                         p++;
                         n--;
                     }
-                    switch (e) {
+                    switch (mode) {
                         case 0:
                             if (n <= 0x100) {
-                                MI_CpuCopy8(p, a->mUnk_468, n);
-                                a->mUnk_568 = n;
+                                MI_CpuCopy8(p, a->mFirstValue, n);
+                                a->mFirstValueLength = n;
                             }
                             break;
                         case 2:
-                            a->mUnk_454.mUnk_04 = n;
-                            a->mUnk_454.mUnk_08 = p;
+                            a->mItemRecord.mFirstLength = n;
+                            a->mItemRecord.mFirstBytes = p;
                             break;
                     }
-                } else if (d == 1) {
+                } else if (index == 1) {
                     while (*p == 0) {
                         p++;
                         n--;
                     }
-                    switch (e) {
+                    switch (mode) {
                         case 0:
                             if (n <= 8) {
-                                MI_CpuCopy8(p, a->mUnk_56c, n);
-                                a->mUnk_574 = n;
+                                MI_CpuCopy8(p, a->mSecondValue, n);
+                                a->mSecondValueLength = n;
                             }
                             break;
                         case 2:
-                            a->mUnk_454.mUnk_0c = n;
-                            a->mUnk_454.mUnk_10 = p;
+                            a->mItemRecord.mSecondLength = n;
+                            a->mItemRecord.mSecondBytes = p;
                             break;
                     }
                 }
@@ -242,16 +250,16 @@ BOOL func_ov000_021ab09c(Unk021a998c_0c *a, u8 **b, s32 c, s32 d, s32 e) {
             p += n;
             break;
         case 3:
-            if (c == 1 && e != 2) {
-                a->mUnk_578 = p + 1;
-                a->mUnk_57c = n - 1;
+            if (depth == 1 && mode != 2) {
+                a->mCheckedBytes = p + 1;
+                a->mCheckedBytesLength = n - 1;
             }
-            if (a->mUnk_581 != 0) {
+            if (a->mCaptureValues != 0) {
                 p++;
-                if (func_ov000_021ab09c(a, &p, c, 0, e) != FALSE) {
+                if (ParseTaggedItem(a, &p, depth, 0, mode) != FALSE) {
                     return TRUE;
                 }
-                a->mUnk_581 = 0;
+                a->mCaptureValues = 0;
             } else {
                 p += n;
             }
@@ -266,20 +274,20 @@ BOOL func_ov000_021ab09c(Unk021a998c_0c *a, u8 **b, s32 c, s32 d, s32 e) {
                     switch (i) {
                         case 1:
                         case 2:
-                            if (e == 0) {
+                            if (mode == 0) {
                                 a->mUnk_430 = i;
                             }
-                            a->mUnk_581 = i;
+                            a->mCaptureValues = i;
                             break;
                         case 3:
                         case 4:
-                            if (e != 2) {
-                                a->mUnk_42c = i;
+                            if (mode != 2) {
+                                a->mDigestKind = i;
                             }
                             break;
                         case 5:
-                            if (e != 2) {
-                                a->mUnk_582 = i;
+                            if (mode != 2) {
+                                a->mCopyNextText = i;
                             }
                             break;
                     }
@@ -294,61 +302,61 @@ BOOL func_ov000_021ab09c(Unk021a998c_0c *a, u8 **b, s32 c, s32 d, s32 e) {
         case 0x13:
         case 0x14:
         case 0x16:
-            if (e != 2) {
-                if (a->mUnk_580 != 0) {
-                    func_ov000_021ab4b0(a->mUnk_684, (const s8 *) p, n);
-                    if (a->mUnk_582 == 5 && n <= 0x4f) {
-                        MI_CpuCopy8(p, a->mUnk_784, n);
-                        a->mUnk_784[n] = 0;
+            if (mode != 2) {
+                if (a->mDatesSeen != 0) {
+                    AppendCommaSeparatedText(a->mUnk_684, (const s8 *) p, n);
+                    if (a->mCopyNextText == 5 && n <= 0x4f) {
+                        MI_CpuCopy8(p, a->mHostPattern, n);
+                        a->mHostPattern[n] = 0;
                     }
                 } else {
-                    func_ov000_021ab4b0(a->mUnk_584, (const s8 *) p, n);
+                    AppendCommaSeparatedText(a->mAuthorityName, (const s8 *) p, n);
                 }
             }
-            a->mUnk_582 = 0;
+            a->mCopyNextText = 0;
             p += n;
             break;
         case 0x17:
         case 0x18:
-            if (e != 2) {
-                v = func_ov000_021ab448(p, k);
-                if (d == 0) {
-                    if (a->mUnk_7e0 >= v) {
-                        a->mUnk_583 = 1;
+            if (mode != 2) {
+                v = ParseDateText(p, k);
+                if (index == 0) {
+                    if (a->mCurrentDate >= v) {
+                        a->mDateInRange = 1;
                     }
                 } else {
-                    if (a->mUnk_7e0 > v) {
-                        a->mUnk_583 = 0;
+                    if (a->mCurrentDate > v) {
+                        a->mDateInRange = 0;
                     }
                 }
             }
             p += n;
-            a->mUnk_580 = 1;
+            a->mDatesSeen = 1;
             break;
         case 0x10:
-            if (c == 0 && d == 0 && e != 2) {
-                a->mUnk_434 = p;
+            if (depth == 0 && index == 0 && mode != 2) {
+                a->mDigestStart = p;
             }
             v1 = p + n;
             n = 0;
             if (p < v1) {
                 do {
-                    i = func_ov000_021ab09c(a, &p, c + 1, n, e);
+                    i = ParseTaggedItem(a, &p, depth + 1, n, mode);
                     n++;
                     if (i != 0) {
                         return TRUE;
                     }
                 } while (p < v1);
             }
-            if (c == 1 && d == 0 && e != 2) {
-                a->mUnk_438 = p;
+            if (depth == 1 && index == 0 && mode != 2) {
+                a->mDigestEnd = p;
             }
             break;
         case 0x11:
             v1 = p + n;
             if (p < v1) {
                 do {
-                    if (func_ov000_021ab09c(a, &p, c + 1, 0, e) != FALSE) {
+                    if (ParseTaggedItem(a, &p, depth + 1, 0, mode) != FALSE) {
                         return TRUE;
                     }
                 } while (p < v1);
@@ -359,7 +367,7 @@ BOOL func_ov000_021ab09c(Unk021a998c_0c *a, u8 **b, s32 c, s32 d, s32 e) {
                 v1 = p + n;
                 if (p < v1) {
                     do {
-                        if (func_ov000_021ab09c(a, &p, c + 1, 0, e) != FALSE) {
+                        if (ParseTaggedItem(a, &p, depth + 1, 0, mode) != FALSE) {
                             return TRUE;
                         }
                     } while (p < v1);
@@ -373,7 +381,9 @@ BOOL func_ov000_021ab09c(Unk021a998c_0c *a, u8 **b, s32 c, s32 d, s32 e) {
     return FALSE;
 }
 
-u32 func_ov000_021aaf38(Unk021a998c_0c *a, Unk021aaf38 *b) {
+// Returns 0 when the bytes, run through the two values of the authority record, start 00 01, a run of 0xff, 00, 30 and
+// end with mRangeDigest, else 2.
+u32 CheckTransformedBytesHoldPaddedDigest(HttpsState *a, Unk021aaf38 *b) {
     s32 n;
     u16 *c;
     u16 *d;
@@ -383,11 +393,11 @@ u32 func_ov000_021aaf38(Unk021a998c_0c *a, Unk021aaf38 *b) {
     OSThread *t;
     u32 r;
     enum { K0 } i;
-    if (a->mUnk_578 == NULL || a->mUnk_57c == 0 || b->mUnk_10 == NULL || b->mUnk_0c == 0 || b->mUnk_08 == NULL ||
-        b->mUnk_04 == 0) {
+    if (a->mCheckedBytes == NULL || a->mCheckedBytesLength == 0 || b->mSecondBytes == NULL || b->mSecondLength == 0 ||
+        b->mFirstBytes == NULL || b->mFirstLength == 0) {
         return 2;
     }
-    n = b->mUnk_04 * 2;
+    n = b->mFirstLength * 2;
     n = n / 2;
     c = (u16 *) data_ov000_021b63a4(n * 8);
     if (c == NULL) {
@@ -396,9 +406,9 @@ u32 func_ov000_021aaf38(Unk021a998c_0c *a, Unk021aaf38 *b) {
     d = c + n;
     e = d + n;
     f = e + n;
-    func_ov000_021ac4b8(d, a->mUnk_578, a->mUnk_57c, n);
-    func_ov000_021ac4b8(e, b->mUnk_10, b->mUnk_0c, n);
-    func_ov000_021ac4b8(f, b->mUnk_08, b->mUnk_04, n);
+    func_ov000_021ac4b8(d, a->mCheckedBytes, a->mCheckedBytesLength, n);
+    func_ov000_021ac4b8(e, b->mSecondBytes, b->mSecondLength, n);
+    func_ov000_021ac4b8(f, b->mFirstBytes, b->mFirstLength, n);
     if (data_ov000_021b49f4 < 0x20) {
         t = data_0216ff5c.mCurrentThread;
         g = OS_GetThreadPriority(t);
@@ -408,22 +418,22 @@ u32 func_ov000_021aaf38(Unk021a998c_0c *a, Unk021aaf38 *b) {
     } else {
         func_ov000_021ac7e8(c, d, e, n, f);
     }
-    func_ov000_021ac488((u8 *) d, c, b->mUnk_04, n);
+    func_ov000_021ac488((u8 *) d, c, b->mFirstLength, n);
     r = 0;
     if (((u8 *) d)[0] != 0 || ((u8 *) d)[1] != 1) {
         r = 2;
     } else {
         i = 2;
-        if (b->mUnk_04 > 2) {
+        if (b->mFirstLength > 2) {
             do {
                 if (((u8 *) d)[i] != 0xff) {
                     break;
                 }
                 i++;
-            } while (i < b->mUnk_04);
+            } while (i < b->mFirstLength);
         }
-        if (i + 1 >= b->mUnk_04 || ((u8 *) d)[i] != 0 || ((u8 *) d)[i + 1] != 0x30 ||
-            memcmp(a->mUnk_43c, (u8 *) d + b->mUnk_04 - a->mUnk_450, a->mUnk_450) != 0) {
+        if (i + 1 >= b->mFirstLength || ((u8 *) d)[i] != 0 || ((u8 *) d)[i + 1] != 0x30 ||
+            memcmp(a->mRangeDigest, (u8 *) d + b->mFirstLength - a->mRangeDigestLength, a->mRangeDigestLength) != 0) {
             r = 2;
         }
     }
@@ -431,12 +441,14 @@ u32 func_ov000_021aaf38(Unk021a998c_0c *a, Unk021aaf38 *b) {
     return r;
 }
 
-u32 func_ov000_021aae44(Unk021a998c_0c *a) {
+// Flags: 0x8000 when mDateInRange is clear; low byte 1 no authority found, 2 check failed, 3 unknown digest kind, 4
+// mUnk_430 is -1.
+u32 ComputeParsedItemCheckFlags(HttpsState *a) {
     u32 f;
     Unk021ab728 *h;
     Unk021abca0 *g;
     u32 r;
-    if (a->mUnk_583 != 0) {
+    if (a->mDateInRange != 0) {
         f = 0;
     } else {
         f = 0x8000;
@@ -445,35 +457,35 @@ u32 func_ov000_021aae44(Unk021a998c_0c *a) {
         f |= 4;
         return f;
     }
-    switch (a->mUnk_42c) {
+    switch (a->mDigestKind) {
         case 3:
-            h = &a->mUnk_3d0;
+            h = &a->mScratchHash16;
             func_ov000_021ab7b4(h);
-            func_ov000_021ab728(h, a->mUnk_434, a->mUnk_438 - a->mUnk_434);
-            func_ov000_021ab6d4(h, a->mUnk_43c);
-            a->mUnk_450 = 0x10;
+            func_ov000_021ab728(h, a->mDigestStart, a->mDigestEnd - a->mDigestStart);
+            func_ov000_021ab6d4(h, a->mRangeDigest);
+            a->mRangeDigestLength = 0x10;
             break;
         case 4:
-            g = &a->mUnk_31c;
+            g = &a->mScratchHash20;
             func_ov000_021abd2c(g);
-            func_ov000_021abca0(g, a->mUnk_434, a->mUnk_438 - a->mUnk_434);
-            func_ov000_021abc4c(g, a->mUnk_43c);
-            a->mUnk_450 = 0x14;
+            func_ov000_021abca0(g, a->mDigestStart, a->mDigestEnd - a->mDigestStart);
+            func_ov000_021abc4c(g, a->mRangeDigest);
+            a->mRangeDigestLength = 0x14;
             break;
         default:
             f |= 3;
             return f;
     }
-    r = func_ov000_021ab548(a, a->mUnk_584);
+    r = FindAuthorityByName(a, a->mAuthorityName);
     if (r == 0) {
         f |= 1;
         return f;
     }
-    f |= func_ov000_021aaf38(a, (Unk021aaf38 *) r);
+    f |= CheckTransformedBytesHoldPaddedDigest(a, (Unk021aaf38 *) r);
     return f;
 }
 
-s32 func_ov000_021aae2c(const s8 *text) {
+s32 GetTextLengthUpToDot(const s8 *text) {
     const s8 *start = text;
     while (*text != '.' && *text != 0) {
         text++;
@@ -481,13 +493,15 @@ s32 func_ov000_021aae2c(const s8 *text) {
     return text - start;
 }
 
-BOOL func_ov000_021aadcc(const s8 *a, const s8 *b) {
+// Returns FALSE when the texts match; a '*' in the second matches the first characters of one dot-separated part of the
+// first.
+BOOL CompareTextWithWildcard(const s8 *text, const s8 *pattern) {
     s32 x;
     s32 y;
     s8 c;
     s8 d;
     for (;;) {
-        while ((d = *a++) == (c = *b++)) {
+        while ((d = *text++) == (c = *pattern++)) {
             if (d == 0) {
                 return FALSE;
             }
@@ -495,17 +509,19 @@ BOOL func_ov000_021aadcc(const s8 *a, const s8 *b) {
         if (c != '*') {
             return TRUE;
         }
-        a--;
-        x = func_ov000_021aae2c(a);
-        y = func_ov000_021aae2c(b);
+        text--;
+        x = GetTextLengthUpToDot(text);
+        y = GetTextLengthUpToDot(pattern);
         if (y > x) {
             return TRUE;
         }
-        a += x - y;
+        text += x - y;
     }
 }
 
-void func_ov000_021aabf0(Unk021a998c_0c *a, u8 *b) {
+// Parses and checks each item of the list message in turn, passing the flags to mCheckFlagsCallback; mSetupState
+// becomes 3 when the last result is 0, else 9.
+void ParseAndCheckItemListMessage(HttpsState *a, u8 *b) {
     s32 i;
     s32 n;
     u32 f;
@@ -518,44 +534,44 @@ void func_ov000_021aabf0(Unk021a998c_0c *a, u8 *b) {
     b += 3;
     a->mUnk_430 = -1;
     RTC_GetDate(&d);
-    a->mUnk_7e0 = d.mDay + (((d.mYear + 0x7d0) << 16) + (d.mMonth << 8));
+    a->mCurrentDate = d.mDay + (((d.mYear + 0x7d0) << 16) + (d.mMonth << 8));
     a->mUnk_684[0] = 0;
-    a->mUnk_568 = a->mUnk_574 = 0;
+    a->mFirstValueLength = a->mSecondValueLength = 0;
     m = FALSE;
     i = m;
     for (;;) {
         k = (((b[0] << 8) + b[1]) << 8) + b[2];
         b += 3;
         n -= k + 3;
-        a->mUnk_42c = -1;
-        a->mUnk_581 = 0;
-        a->mUnk_580 = 0;
-        a->mUnk_583 = 0;
+        a->mDigestKind = -1;
+        a->mCaptureValues = 0;
+        a->mDatesSeen = 0;
+        a->mDateInRange = 0;
         a->mUnk_684[0] = 0;
-        a->mUnk_584[0] = 0;
-        a->mUnk_784[0] = 0;
-        a->mUnk_7d8 = b;
-        a->mUnk_7dc = k;
-        if (func_ov000_021ab09c(a, &b, 0, 0, m) != 0 || a->mUnk_568 < 0x33 || a->mUnk_574 == 0) {
-            a->mUnk_429 = 9;
+        a->mAuthorityName[0] = 0;
+        a->mHostPattern[0] = 0;
+        a->mItemBytes = b;
+        a->mItemLength = k;
+        if (ParseTaggedItem(a, &b, 0, 0, m) != 0 || a->mFirstValueLength < 0x33 || a->mSecondValueLength == 0) {
+            a->mSetupState = 9;
             return;
         }
-        f = func_ov000_021aae44(a);
-        if (i == 0 && a->mUnk_7d4 != NULL && func_ov000_021aadcc(a->mUnk_7d4, a->mUnk_784) != 0) {
+        f = ComputeParsedItemCheckFlags(a);
+        if (i == 0 && a->mHost != NULL && CompareTextWithWildcard(a->mHost, a->mHostPattern) != 0) {
             f |= 0x4000;
         }
         t = f & 0xff;
         if (t == 1 && n != 0) {
             q = b + 3;
-            a->mUnk_581 = 0;
-            if (func_ov000_021ab09c(a, &q, 0, 0, 2) != 0) {
-                a->mUnk_429 = 9;
+            a->mCaptureValues = 0;
+            if (ParseTaggedItem(a, &q, 0, 0, 2) != 0) {
+                a->mSetupState = 9;
                 return;
             }
-            f = (f & ~0xff) | func_ov000_021aaf38(a, &a->mUnk_454);
+            f = (f & ~0xff) | CheckTransformedBytesHoldPaddedDigest(a, &a->mItemRecord);
         }
-        if (a->mUnk_7e4 != NULL) {
-            f = a->mUnk_7e4(f, a, i);
+        if (a->mCheckFlagsCallback != NULL) {
+            f = a->mCheckFlagsCallback(f, a, i);
         }
         i++;
         if (t != 0 && f == 0 && n != 0) {
@@ -565,121 +581,122 @@ void func_ov000_021aabf0(Unk021a998c_0c *a, u8 *b) {
         break;
     }
     if (f == 0) {
-        a->mUnk_429 = 3;
+        a->mSetupState = 3;
     } else {
-        a->mUnk_429 = 9;
+        a->mSetupState = 9;
     }
 }
 
-void func_ov000_021aab74(Unk021a998c_0c *a, u8 *b) {
+void ParseKind2Message(HttpsState *a, u8 *b) {
     u8 n;
     u8 *p;
     u8 *q;
-    Unk021ab5e4 *s;
-    MI_CpuCopy8(b + 2, a->mUnk_028, 0x20);
+    HttpsEntry *s;
+    MI_CpuCopy8(b + 2, a->mKind2Block, 0x20);
     q = b + 0x22;
     b = (u8 *) b + 0x23;
     n = *q;
-    s = a->mUnk_000;
+    s = a->mEntry;
     if (s != NULL && n == 0x20 && memcmp(s->mUnk_00, b, 0x20) == 0) {
-        a->mUnk_004 = 1;
+        a->mReusedEntry = 1;
     } else {
         if (s != NULL) {
-            s->mUnk_5a = 0;
+            s->mInUse = 0;
         }
         if (n == 0) {
-            a->mUnk_000 = &data_ov000_021b6198;
+            a->mEntry = &data_ov000_021b6198;
         } else {
-            a->mUnk_000 = func_ov000_021ab5e4(b);
+            a->mEntry = AddEntryOrReplaceLongestUnused(b);
         }
-        a->mUnk_004 = 0;
+        a->mReusedEntry = 0;
     }
     p = b + n;
-    a->mUnk_006 = (p[0] << 8) + p[1];
-    a->mUnk_429 = 2;
+    a->mCommonValue = (p[0] << 8) + p[1];
+    a->mSetupState = 2;
 }
 
-BOOL func_ov000_021aab3c(const u8 *a, s32 b, s32 c, u32 d) {
+BOOL IsBigEndianValueInList(const u8 *list, s32 count, s32 width, u32 value) {
     s32 i;
     u32 e;
-    for (i = 0; i < b; i++) {
-        e = (a[0] << 8) + a[1];
-        if (c == 3) {
-            e = (e << 8) + a[2];
+    for (i = 0; i < count; i++) {
+        e = (list[0] << 8) + list[1];
+        if (width == 3) {
+            e = (e << 8) + list[2];
         }
-        if (e == d) {
+        if (e == value) {
             return TRUE;
         }
-        a += c;
+        list += width;
     }
     return FALSE;
 }
 
-u32 func_ov000_021aaaf8(const u8 *a, s32 b, s32 c) {
+u32 FindOfferedValueInList(const u8 *list, s32 count, s32 width) {
     u32 i;
     const u16 *p;
-    for (i = 0, p = data_ov000_021b4a00; i < 2; p++, i++) {
-        if (func_ov000_021aab3c(a, b, c, *p) != 0) {
-            return data_ov000_021b4a00[i];
+    for (i = 0, p = gOfferedValues; i < 2; p++, i++) {
+        if (IsBigEndianValueInList(list, count, width, *p) != 0) {
+            return gOfferedValues[i];
         }
     }
     return 0;
 }
 
-u32 func_ov000_021aaaec(int a, int b) {
+u32 IsFirstArgumentThree(int a, int b) {
     if (a == 3) {
         return 1;
     }
     return 0;
 }
 
-void func_ov000_021aaa58(Unk021a998c_0c *a, u8 *b) {
+void ParseKind1MessageWithThreeByteValues(HttpsState *a, u8 *b) {
     s32 n;
     u16 m;
     s32 x;
     s32 y;
-    if (func_ov000_021aaaec(b[0], b[1]) != 0) {
+    if (IsFirstArgumentThree(b[0], b[1]) != 0) {
         n = (b[2] << 8) + b[3];
-        m = func_ov000_021aaaf8(b + 8, n / 3, 3);
+        m = FindOfferedValueInList(b + 8, n / 3, 3);
         if (m != 0) {
-            a->mUnk_006 = m;
+            a->mCommonValue = m;
             x = (b[4] << 8) + b[5];
             y = (b[6] << 8) + b[7];
-            a->mUnk_000 = NULL;
+            a->mEntry = NULL;
             b += n + 8 + x;
             if (y >= 0x20) {
-                MI_CpuCopy8(b, a->mUnk_008, 0x20);
+                MI_CpuCopy8(b, a->mKind1Block, 0x20);
             } else {
-                MI_CpuFill8(a->mUnk_008, 0, 0x20 - y);
-                MI_CpuCopy8(b, a->mUnk_028 - y, y);
+                MI_CpuFill8(a->mKind1Block, 0, 0x20 - y);
+                MI_CpuCopy8(b, a->mKind2Block - y, y);
             }
-            a->mUnk_429 = 1;
+            a->mSetupState = 1;
         }
     }
 }
 
-void func_ov000_021aa9ec(Unk021a998c_0c *a, const u8 *b) {
+void ParseKind1Message(HttpsState *a, const u8 *b) {
     u8 n;
     u16 m;
     const u8 *c;
-    if (func_ov000_021aaaec(b[0], b[1]) != 0) {
-        MI_CpuCopy8(b + 2, a->mUnk_008, 0x20);
+    if (IsFirstArgumentThree(b[0], b[1]) != 0) {
+        MI_CpuCopy8(b + 2, a->mKind1Block, 0x20);
         n = b[0x22];
         c = b + 0x23;
         if (n != 0x20) {
-            a->mUnk_000 = NULL;
+            a->mEntry = NULL;
         } else {
-            a->mUnk_000 = func_ov000_021ab684(c);
+            a->mEntry = FindEntryByBytesAndSetLastUseTime(c);
         }
         c += n;
-        m = func_ov000_021aaaf8(c + 2, ((c[0] << 8) + c[1]) / 2, 2);
-        a->mUnk_006 = m;
+        m = FindOfferedValueInList(c + 2, ((c[0] << 8) + c[1]) / 2, 2);
+        a->mCommonValue = m;
         if (m != 0) {
-            a->mUnk_429 = 1;
+            a->mSetupState = 1;
         }
     }
 }
 
+// Transforms the bytes in b with the six length and pointer pairs of c and writes 0x30 bytes to a.
 void func_ov000_021aa880(u8 *a, const u8 *b, Unk021aa880 *c) {
     u16 *d;
     u16 *e;
@@ -731,35 +748,36 @@ void func_ov000_021aa880(u8 *a, const u8 *b, Unk021aa880 *c) {
     data_ov000_021b63ac(d);
 }
 
-void func_ov000_021aa7f8(u8 *a, const u8 *b, Unk021a998c_0c *c) {
+void ComputeLabeledDigest16(u8 *a, const u8 *b, HttpsState *c) {
     u8 d[0x14];
     Unk021abca0 *e;
     Unk021ab728 *g;
-    e = &c->mUnk_31c;
+    e = &c->mScratchHash20;
     func_ov000_021abd2c(e);
     func_ov000_021abca0(e, b, strlen((const char *) b));
-    func_ov000_021abca0(e, c->mUnk_000->mUnk_20, 0x30);
-    func_ov000_021abca0(e, c->mUnk_008, 0x20);
-    func_ov000_021abca0(e, c->mUnk_028, 0x20);
+    func_ov000_021abca0(e, c->mEntry->mUnk_20, 0x30);
+    func_ov000_021abca0(e, c->mKind1Block, 0x20);
+    func_ov000_021abca0(e, c->mKind2Block, 0x20);
     func_ov000_021abc4c(e, d);
-    g = &c->mUnk_3d0;
+    g = &c->mScratchHash16;
     func_ov000_021ab7b4(g);
-    func_ov000_021ab728(g, c->mUnk_000->mUnk_20, 0x30);
+    func_ov000_021ab728(g, c->mEntry->mUnk_20, 0x30);
     func_ov000_021ab728(g, d, 0x14);
     func_ov000_021ab6d4(g, a);
 }
 
-void func_ov000_021aa7b4(Unk021a998c_0c *a) {
+void ReplaceEntryBytesWithLabeledDigests(HttpsState *a) {
     u8 v1[16];
     u8 v2[16];
     u8 v3[16];
-    func_ov000_021aa7f8(v1, data_ov000_021b4a58, a);
-    func_ov000_021aa7f8(v2, data_ov000_021b4a5c, a);
-    func_ov000_021aa7f8(v3, data_ov000_021b4a60, a);
-    MI_CpuCopy8(v1, a->mUnk_000->mUnk_20, 0x30);
+    ComputeLabeledDigest16(v1, gLabelAText, a);
+    ComputeLabeledDigest16(v2, gLabelBBText, a);
+    ComputeLabeledDigest16(v3, gLabelCCCText, a);
+    MI_CpuCopy8(v1, a->mEntry->mUnk_20, 0x30);
 }
 
-void func_ov000_021aa5e0(Unk021a998c_0c *a) {
+// Fills mDerivedBytes from digests, splits it between the send and receive members and seeds the two key stream states.
+void DeriveBytesAndInitKeyStreamStates(HttpsState *a) {
     s32 x;
     s32 y;
     s32 z;
@@ -769,7 +787,7 @@ void func_ov000_021aa5e0(Unk021a998c_0c *a) {
     s32 j;
     u8 c[0x15];
     void *h;
-    switch (a->mUnk_006) {
+    switch (a->mCommonValue) {
         case 4:
             x = 0x10;
             y = 0x10;
@@ -786,116 +804,117 @@ void func_ov000_021aa5e0(Unk021a998c_0c *a) {
     if (n > 0) {
         o = 0;
         do {
-            h = &a->mUnk_31c;
+            h = &a->mScratchHash20;
             func_ov000_021abd2c(h);
             c[0] = i + 0x41;
             for (j = 0; j < i + 1; j++) {
                 func_ov000_021abca0(h, c, 1);
             }
-            func_ov000_021abca0(h, a->mUnk_000->mUnk_20, 0x30);
-            func_ov000_021abca0(h, a->mUnk_028, 0x20);
-            func_ov000_021abca0(h, a->mUnk_008, 0x20);
+            func_ov000_021abca0(h, a->mEntry->mUnk_20, 0x30);
+            func_ov000_021abca0(h, a->mKind2Block, 0x20);
+            func_ov000_021abca0(h, a->mKind1Block, 0x20);
             func_ov000_021abc4c(h, c + 1);
-            h = &a->mUnk_3d0;
+            h = &a->mScratchHash16;
             func_ov000_021ab7b4(h);
-            func_ov000_021ab728(h, a->mUnk_000->mUnk_20, 0x30);
+            func_ov000_021ab728(h, a->mEntry->mUnk_20, 0x30);
             func_ov000_021ab728(h, c + 1, 0x14);
-            func_ov000_021ab6d4(h, a->mUnk_048 + o);
+            func_ov000_021ab6d4(h, a->mDerivedBytes + o);
             o += 0x10;
             i++;
         } while (o < n);
     }
-    if (a->mUnk_428 != 0) {
-        a->mUnk_1a8 = a->mUnk_048;
-        a->mUnk_1ac = a->mUnk_1a8 + x * 2;
-        a->mUnk_1b0 = a->mUnk_1ac + y * 2;
-        a->mUnk_090 = a->mUnk_048 + x;
-        a->mUnk_094 = a->mUnk_090 + x + y;
-        a->mUnk_098 = a->mUnk_094 + y + z;
+    if (a->mReceivesKind1Record != 0) {
+        a->mReceiveDigestBytes = a->mDerivedBytes;
+        a->mReceiveKeyStreamBytes = a->mReceiveDigestBytes + x * 2;
+        a->mUnk_1b0 = a->mReceiveKeyStreamBytes + y * 2;
+        a->mSendDigestBytes = a->mDerivedBytes + x;
+        a->mSendKeyStreamBytes = a->mSendDigestBytes + x + y;
+        a->mUnk_098 = a->mSendKeyStreamBytes + y + z;
     } else {
-        a->mUnk_090 = a->mUnk_048;
-        a->mUnk_094 = a->mUnk_090 + x * 2;
-        a->mUnk_098 = a->mUnk_094 + y * 2;
-        a->mUnk_1a8 = a->mUnk_048 + x;
-        a->mUnk_1ac = a->mUnk_1a8 + x + y;
-        a->mUnk_1b0 = a->mUnk_1ac + y + z;
+        a->mSendDigestBytes = a->mDerivedBytes;
+        a->mSendKeyStreamBytes = a->mSendDigestBytes + x * 2;
+        a->mUnk_098 = a->mSendKeyStreamBytes + y * 2;
+        a->mReceiveDigestBytes = a->mDerivedBytes + x;
+        a->mReceiveKeyStreamBytes = a->mReceiveDigestBytes + x + y;
+        a->mUnk_1b0 = a->mReceiveKeyStreamBytes + y + z;
     }
-    func_ov000_021ac434(a->mUnk_1b4, a->mUnk_1ac, 0x10);
-    func_ov000_021ac434(a->mUnk_09c, a->mUnk_094, 0x10);
+    func_ov000_021ac434(a->mReceiveKeyStreamState, a->mReceiveKeyStreamBytes, 0x10);
+    func_ov000_021ac434(a->mSendKeyStreamState, a->mSendKeyStreamBytes, 0x10);
 }
 
-void func_ov000_021aa5b0(Unk021a998c_0c *a, const u8 *b) {
-    func_ov000_021aa880(a->mUnk_000->mUnk_20, b, a->mUnk_7f0);
-    func_ov000_021aa7b4(a);
-    func_ov000_021aa5e0(a);
-    a->mUnk_429 = 5;
+// Recovers the entry's 0x30 bytes from b, derives the key bytes and sets mSetupState to 5.
+void func_ov000_021aa5b0(HttpsState *a, const u8 *b) {
+    func_ov000_021aa880(a->mEntry->mUnk_20, b, a->mUnk_7f0);
+    ReplaceEntryBytesWithLabeledDigests(a);
+    DeriveBytesAndInitKeyStreamStates(a);
+    a->mSetupState = 5;
 }
 
-void func_ov000_021aa50c(Unk021a998c_0c *a, u8 *b, u32 c) {
+void ComputeLabeledMessageDigest16(HttpsState *a, u8 *b, u32 c) {
     u8 d[0x30];
     Unk021ab728 *e;
-    e = &a->mUnk_378;
-    if ((a->mUnk_428 ^ c) != 0) {
-        func_ov000_021ab728(e, data_ov000_021b4a48, 4);
+    e = &a->mMessageHash16;
+    if ((a->mReceivesKind1Record ^ c) != 0) {
+        func_ov000_021ab728(e, gSrvrText, 4);
     } else {
-        func_ov000_021ab728(e, data_ov000_021b4a50, 4);
+        func_ov000_021ab728(e, gClntText, 4);
     }
-    func_ov000_021ab728(e, a->mUnk_000->mUnk_20, 0x30);
+    func_ov000_021ab728(e, a->mEntry->mUnk_20, 0x30);
     MI_CpuFill8(d, 0x36, 0x30);
     func_ov000_021ab728(e, d, 0x30);
     func_ov000_021ab6d4(e, b);
     func_ov000_021ab7b4(e);
-    func_ov000_021ab728(e, a->mUnk_000->mUnk_20, 0x30);
+    func_ov000_021ab728(e, a->mEntry->mUnk_20, 0x30);
     MI_CpuFill8(d, 0x5c, 0x30);
     func_ov000_021ab728(e, d, 0x30);
     func_ov000_021ab728(e, b, 0x10);
     func_ov000_021ab6d4(e, b);
 }
 
-void func_ov000_021aa468(Unk021a998c_0c *a, u8 *b, u32 c) {
+void ComputeLabeledMessageDigest20(HttpsState *a, u8 *b, u32 c) {
     u8 d[0x28];
     Unk021abca0 *e;
-    e = &a->mUnk_2c0;
-    if ((a->mUnk_428 ^ c) != 0) {
-        func_ov000_021abca0(e, data_ov000_021b4a48, 4);
+    e = &a->mMessageHash20;
+    if ((a->mReceivesKind1Record ^ c) != 0) {
+        func_ov000_021abca0(e, gSrvrText, 4);
     } else {
-        func_ov000_021abca0(e, data_ov000_021b4a50, 4);
+        func_ov000_021abca0(e, gClntText, 4);
     }
-    func_ov000_021abca0(e, a->mUnk_000->mUnk_20, 0x30);
+    func_ov000_021abca0(e, a->mEntry->mUnk_20, 0x30);
     MI_CpuFill8(d, 0x36, 0x28);
     func_ov000_021abca0(e, d, 0x28);
     func_ov000_021abc4c(e, b);
     func_ov000_021abd2c(e);
-    func_ov000_021abca0(e, a->mUnk_000->mUnk_20, 0x30);
+    func_ov000_021abca0(e, a->mEntry->mUnk_20, 0x30);
     MI_CpuFill8(d, 0x5c, 0x28);
     func_ov000_021abca0(e, d, 0x28);
     func_ov000_021abca0(e, b, 0x14);
     func_ov000_021abc4c(e, b);
 }
 
-void func_ov000_021aa3b8(Unk021a998c_0c *a, u8 *b) {
+void CheckMessageDigestsAndSetState(HttpsState *a, u8 *b) {
     int v1;
     u8 v2[20];
-    MI_CpuCopy8(&a->mUnk_378, &a->mUnk_3d0, 0x58);
-    func_ov000_021aa50c(a, v2, 1);
-    MI_CpuCopy8(&a->mUnk_3d0, &a->mUnk_378, 0x58);
+    MI_CpuCopy8(&a->mMessageHash16, &a->mScratchHash16, 0x58);
+    ComputeLabeledMessageDigest16(a, v2, 1);
+    MI_CpuCopy8(&a->mScratchHash16, &a->mMessageHash16, 0x58);
     v1 = memcmp(b, v2, 0x10);
     if (v1 != 0) {
-        a->mUnk_429 = 9;
+        a->mSetupState = 9;
         return;
     }
-    MI_CpuCopy8(&a->mUnk_2c0, &a->mUnk_31c, 0x5c);
-    func_ov000_021aa468(a, v2, 1);
-    MI_CpuCopy8(&a->mUnk_31c, &a->mUnk_2c0, 0x5c);
+    MI_CpuCopy8(&a->mMessageHash20, &a->mScratchHash20, 0x5c);
+    ComputeLabeledMessageDigest20(a, v2, 1);
+    MI_CpuCopy8(&a->mScratchHash20, &a->mMessageHash20, 0x5c);
     v1 = memcmp(b + 0x10, v2, 0x14);
     if (v1 != 0) {
-        a->mUnk_429 = 9;
+        a->mSetupState = 9;
         return;
     }
-    a->mUnk_429 = 6;
+    a->mSetupState = 6;
 }
 
-void func_ov000_021aa398(u8 *bytes, s32 count) {
+void IncrementBigEndianBytes(u8 *bytes, s32 count) {
     s32 i;
     bytes += count;
     for (i = 0; i < count; i++) {
@@ -907,41 +926,41 @@ void func_ov000_021aa398(u8 *bytes, s32 count) {
     }
 }
 
-u32 func_ov000_021aa380(u32 p0, u8 *p1, u32 p2) {
-    u32 v1 = ((p2) + (0x0u));
+u32 XorReceivedBytesWithKeyStream(u32 p0, u8 *bytes, u32 count) {
+    u32 v1 = ((count) + (0x0u));
     u32 v2 = 0x1b4u;
     u32 v3 = ((p0) + (v2));
     u32 v5;
-    func_ov000_021ac3e4((u8 *) v3, p1, p2);
+    func_ov000_021ac3e4((u8 *) v3, bytes, count);
     v5 = ((v1) + (0x0u));
     return v5;
 }
 
-s32 func_ov000_021aa1e0(Unk021a998c_0c *a, u8 *b) {
+s32 XorReceivedRecordWithKeyStreamAndCheckDigest(HttpsState *a, u8 *b) {
     u8 c[0x14];
     u8 d[0x30];
     s32 e;
     u32 f;
     Unk021ab728 *g;
     Unk021abca0 *h;
-    e = func_ov000_021aa380((u32) a, (b + 5), (b[3] << 8) + b[4]);
-    switch (a->mUnk_006) {
+    e = XorReceivedBytesWithKeyStream((u32) a, (b + 5), (b[3] << 8) + b[4]);
+    switch (a->mCommonValue) {
         case 4:
             e -= 0x10;
             b[3] = e >> 8;
             b[4] = e;
-            g = &a->mUnk_3d0;
+            g = &a->mScratchHash16;
             func_ov000_021ab7b4(g);
-            func_ov000_021ab728(g, a->mUnk_1a8, 0x10);
+            func_ov000_021ab728(g, a->mReceiveDigestBytes, 0x10);
             MI_CpuFill8(d, 0x36, 0x30);
             func_ov000_021ab728(g, d, 0x30);
-            func_ov000_021ab728(g, a->mUnk_2b8, 8);
+            func_ov000_021ab728(g, a->mReceiveRecordCount, 8);
             func_ov000_021ab728(g, b, 1);
             func_ov000_021ab728(g, b + 3, 2);
             func_ov000_021ab728(g, b + 5, e);
             func_ov000_021ab6d4(g, c);
             func_ov000_021ab7b4(g);
-            func_ov000_021ab728(g, a->mUnk_1a8, 0x10);
+            func_ov000_021ab728(g, a->mReceiveDigestBytes, 0x10);
             MI_CpuFill8(d, 0x5c, 0x30);
             func_ov000_021ab728(g, d, 0x30);
             func_ov000_021ab728(g, c, 0x10);
@@ -952,18 +971,18 @@ s32 func_ov000_021aa1e0(Unk021a998c_0c *a, u8 *b) {
             e -= 0x14;
             b[3] = e >> 8;
             b[4] = e;
-            h = &a->mUnk_31c;
+            h = &a->mScratchHash20;
             func_ov000_021abd2c(h);
-            func_ov000_021abca0(h, a->mUnk_1a8, 0x14);
+            func_ov000_021abca0(h, a->mReceiveDigestBytes, 0x14);
             MI_CpuFill8(d, 0x36, 0x28);
             func_ov000_021abca0(h, d, 0x28);
-            func_ov000_021abca0(h, a->mUnk_2b8, 8);
+            func_ov000_021abca0(h, a->mReceiveRecordCount, 8);
             func_ov000_021abca0(h, b, 1);
             func_ov000_021abca0(h, b + 3, 2);
             func_ov000_021abca0(h, b + 5, e);
             func_ov000_021abc4c(h, c);
             func_ov000_021abd2c(h);
-            func_ov000_021abca0(h, a->mUnk_1a8, 0x14);
+            func_ov000_021abca0(h, a->mReceiveDigestBytes, 0x14);
             MI_CpuFill8(d, 0x5c, 0x28);
             func_ov000_021abca0(h, d, 0x28);
             func_ov000_021abca0(h, c, 0x14);
@@ -972,34 +991,34 @@ s32 func_ov000_021aa1e0(Unk021a998c_0c *a, u8 *b) {
             break;
     }
     if (memcmp(b + 5 + e, c, f) != 0) {
-        a->mUnk_429 = 9;
+        a->mSetupState = 9;
     }
-    func_ov000_021aa398(a->mUnk_2b8, 8);
+    IncrementBigEndianBytes(a->mReceiveRecordCount, 8);
     return e + 5;
 }
 
-s32 func_ov000_021aa054(void *g, u8 *h) {
-    Unk021a998c_0c *a = g;
+s32 AppendDigestAndXorSentRecordWithKeyStream(void *g, u8 *h) {
+    HttpsState *a = g;
     u8 *b = h;
     s32 c = (b[3] << 8) + b[4];
     u8 *d = b + 5 + c;
     u8 e[0x30];
     Unk021ab728 *f;
     Unk021abca0 *g2;
-    switch (a->mUnk_006) {
+    switch (a->mCommonValue) {
         case 4:
-            f = &a->mUnk_3d0;
+            f = &a->mScratchHash16;
             func_ov000_021ab7b4(f);
-            func_ov000_021ab728(f, a->mUnk_090, 0x10);
+            func_ov000_021ab728(f, a->mSendDigestBytes, 0x10);
             MI_CpuFill8(e, 0x36, 0x30);
             func_ov000_021ab728(f, e, 0x30);
-            func_ov000_021ab728(f, a->mUnk_1a0, 8);
+            func_ov000_021ab728(f, a->mSendRecordCount, 8);
             func_ov000_021ab728(f, b, 1);
             func_ov000_021ab728(f, b + 3, 2);
             func_ov000_021ab728(f, b + 5, c);
             func_ov000_021ab6d4(f, d);
             func_ov000_021ab7b4(f);
-            func_ov000_021ab728(f, a->mUnk_090, 0x10);
+            func_ov000_021ab728(f, a->mSendDigestBytes, 0x10);
             MI_CpuFill8(e, 0x5c, 0x30);
             func_ov000_021ab728(f, e, 0x30);
             func_ov000_021ab728(f, d, 0x10);
@@ -1007,18 +1026,18 @@ s32 func_ov000_021aa054(void *g, u8 *h) {
             c += 0x10;
             break;
         case 5:
-            g2 = &a->mUnk_31c;
+            g2 = &a->mScratchHash20;
             func_ov000_021abd2c(g2);
-            func_ov000_021abca0(g2, a->mUnk_090, 0x14);
+            func_ov000_021abca0(g2, a->mSendDigestBytes, 0x14);
             MI_CpuFill8(e, 0x36, 0x28);
             func_ov000_021abca0(g2, e, 0x28);
-            func_ov000_021abca0(g2, a->mUnk_1a0, 8);
+            func_ov000_021abca0(g2, a->mSendRecordCount, 8);
             func_ov000_021abca0(g2, b, 1);
             func_ov000_021abca0(g2, b + 3, 2);
             func_ov000_021abca0(g2, b + 5, c);
             func_ov000_021abc4c(g2, d);
             func_ov000_021abd2c(g2);
-            func_ov000_021abca0(g2, a->mUnk_090, 0x14);
+            func_ov000_021abca0(g2, a->mSendDigestBytes, 0x14);
             MI_CpuFill8(e, 0x5c, 0x28);
             func_ov000_021abca0(g2, e, 0x28);
             func_ov000_021abca0(g2, d, 0x14);
@@ -1028,12 +1047,12 @@ s32 func_ov000_021aa054(void *g, u8 *h) {
     }
     b[3] = c >> 8;
     b[4] = c;
-    func_ov000_021ac3e4(a->mUnk_09c, (b + 5), c);
-    func_ov000_021aa398(a->mUnk_1a0, 8);
+    func_ov000_021ac3e4(a->mSendKeyStreamState, (b + 5), c);
+    IncrementBigEndianBytes(a->mSendRecordCount, 8);
     return c + 5;
 }
 
-u32 func_ov000_021aa004(u8 *a, s32 b, Unk021a998c *c) {
+u32 ReadExactReceivedBytes(u8 *dest, s32 count, Unk021a998c *c) {
     u8 *v1;
     u32 v2;
     do {
@@ -1041,19 +1060,21 @@ u32 func_ov000_021aa004(u8 *a, s32 b, Unk021a998c *c) {
         if (v2 == 0) {
             return 0xffffffff;
         }
-        if (v2 > b) {
-            v2 = b;
+        if (v2 > count) {
+            v2 = count;
         }
-        MI_CpuCopy8(v1, a, v2);
+        MI_CpuCopy8(v1, dest, v2);
         func_ov000_021adf30(v2, c);
-        a = a + v2;
-        b = b - v2;
-    } while (0 < b);
+        dest = dest + v2;
+        count = count - v2;
+    } while (0 < count);
     return 0;
 }
 
-u8 func_ov000_021a9d68(Unk021a998c *a) {
-    Unk021a998c_0c *c = a->mUnk_0c;
+// Reads one record, checks and xors it when mSetupState is 7 or 8, runs the handler of its kind and returns
+// mSetupState.
+u8 ReadHttpsRecordAndSetState(Unk021a998c *a) {
+    HttpsState *c = a->mHttpsState;
     u32 n;
     u8 *p;
     u8 *q;
@@ -1064,56 +1085,56 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
     do {
         p = func_ov000_021adfc8(&n, a);
         if (n == 0) {
-            c->mUnk_429 = 9;
-            return c->mUnk_429;
+            c->mSetupState = 9;
+            return c->mSetupState;
         }
     } while (n < 5);
     v1 = p[0];
     if (v1 == 0x80) {
-        if (c->mUnk_428 != 0 && c->mUnk_429 == 0) {
+        if (c->mReceivesKind1Record != 0 && c->mSetupState == 0) {
             n = p[1];
             func_ov000_021adf30(2, a);
             q = data_ov000_021b63a4(n);
             if (q == NULL) {
-                c->mUnk_429 = 9;
-                return c->mUnk_429;
+                c->mSetupState = 9;
+                return c->mSetupState;
             }
-            if (func_ov000_021aa004(q, n, a) == 0 && q[0] == 1) {
-                func_ov000_021aaa58(c, q + 1);
+            if (ReadExactReceivedBytes(q, n, a) == 0 && q[0] == 1) {
+                ParseKind1MessageWithThreeByteValues(c, q + 1);
             } else {
-                c->mUnk_429 = 9;
+                c->mSetupState = 9;
             }
-            func_ov000_021abca0(&c->mUnk_2c0, q, n);
-            func_ov000_021ab728(&c->mUnk_378, q, n);
+            func_ov000_021abca0(&c->mMessageHash20, q, n);
+            func_ov000_021ab728(&c->mMessageHash16, q, n);
             data_ov000_021b63ac(q);
         } else {
-            c->mUnk_429 = 9;
+            c->mSetupState = 9;
         }
     } else {
         n = ((p[3] << 8) + p[4]) + 5;
         q = data_ov000_021b63a4(n);
         if (q == NULL) {
-            c->mUnk_429 = 9;
-            return c->mUnk_429;
+            c->mSetupState = 9;
+            return c->mSetupState;
         }
-        if (func_ov000_021aa004(q, n, a) != 0) {
+        if (ReadExactReceivedBytes(q, n, a) != 0) {
             data_ov000_021b63ac(q);
-            c->mUnk_429 = 9;
-            return c->mUnk_429;
+            c->mSetupState = 9;
+            return c->mSetupState;
         }
-        if (((u8) (c->mUnk_429 + 0xf9) <= 1 && v1 != 0x15) || (v1 == 0x15 && n > 7)) {
-            n = func_ov000_021aa1e0(c, q);
+        if (((u8) (c->mSetupState + 0xf9) <= 1 && v1 != 0x15) || (v1 == 0x15 && n > 7)) {
+            n = XorReceivedRecordWithKeyStreamAndCheckDigest(c, q);
         }
         r = q + 5;
         n -= 5;
         switch (v1) {
             case 0x14:
-                MI_CpuFill8(c->mUnk_2b8, 0, 8);
-                c->mUnk_429 = 7;
+                MI_CpuFill8(c->mReceiveRecordCount, 0, 8);
+                c->mSetupState = 7;
                 break;
             case 0x15:
                 if (r[0] == 2) {
-                    c->mUnk_429 = 9;
+                    c->mSetupState = 9;
                 }
                 break;
             case 0x16:
@@ -1123,50 +1144,51 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
                     r += 4;
                     switch (v2) {
                         case 1:
-                            if (c->mUnk_428 != 0 && c->mUnk_429 == 0) {
-                                func_ov000_021aa9ec(c, r);
+                            if (c->mReceivesKind1Record != 0 && c->mSetupState == 0) {
+                                ParseKind1Message(c, r);
                             }
                             break;
                         case 0x10:
                             func_ov000_021aa5b0(c, r);
                             break;
                         case 2:
-                            func_ov000_021aab74(c, r);
+                            ParseKind2Message(c, r);
                             break;
                         case 0xb:
-                            func_ov000_021aabf0(c, r);
+                            ParseAndCheckItemListMessage(c, r);
                             break;
                         case 0xe:
-                            c->mUnk_429 = 4;
+                            c->mSetupState = 4;
                             break;
                         case 0x14:
-                            func_ov000_021aa3b8(c, r);
+                            CheckMessageDigestsAndSetState(c, r);
                             break;
                         default:
-                            c->mUnk_429 = 9;
+                            c->mSetupState = 9;
                             break;
                     }
-                    func_ov000_021abca0(&c->mUnk_2c0, r - 4, v3 + 4);
-                    func_ov000_021ab728(&c->mUnk_378, r - 4, v3 + 4);
+                    func_ov000_021abca0(&c->mMessageHash20, r - 4, v3 + 4);
+                    func_ov000_021ab728(&c->mMessageHash16, r - 4, v3 + 4);
                     r += v3;
                     n -= (v3 + 4);
                     if (n == 0) {
                         break;
                     }
-                } while (c->mUnk_429 != 9);
+                } while (c->mSetupState != 9);
                 break;
             case 0x17:
-                c->mUnk_7f8 = q;
-                c->mUnk_800 = 5;
-                c->mUnk_7fc = n + 5;
-                return c->mUnk_429;
+                c->mReceivedBlock = q;
+                c->mReceivedBlockOffset = 5;
+                c->mReceivedBlockEnd = n + 5;
+                return c->mSetupState;
         }
         data_ov000_021b63ac(q);
     }
-    return c->mUnk_429;
+    return c->mSetupState;
 }
 
-void func_ov000_021a9ca8(u8 *a, s32 n) {
+// Writes n bytes taken from digests of gRandomByteState, skipping zero bytes.
+void FillNonzeroRandomBytes(u8 *out, s32 count) {
     u8 b[0x14];
     u8 d[0x5c];
     u32 c;
@@ -1180,25 +1202,25 @@ void func_ov000_021a9ca8(u8 *a, s32 n) {
     u32 q;
     u64 *l;
     u64 m;
-    if (data_ov000_021b617c == 0) {
+    if (gRandomByteStateMixed == 0) {
         l = data_ov000_021b63e0;
         m = l[1] * l[0] + l[2];
         l[0] = m;
         c = m >> 32;
-        func_ov000_021a9c5c(&c, 4);
+        MixBytesIntoRandomState(&c, 4);
     }
     i = 0x14;
     j = 0;
-    while (j < n) {
+    while (j < count) {
         if (i == 0x14) {
             func_ov000_021abd2c((Unk021abca0 *) d);
             g = OS_DisableInterrupts();
-            func_ov000_021abca0(d, data_ov000_021b6184, 0x14);
+            func_ov000_021abca0(d, gRandomByteState, 0x14);
             func_ov000_021abc24((Unk021abca0 *) d, b);
             h = 1;
             k = 0x13;
             e = b + 0x13;
-            f = &data_ov000_021b6197;
+            f = &gRandomByteStateLast;
             for (; k >= 0; k--) {
                 q = *f + *e + h;
                 *f = q;
@@ -1211,47 +1233,47 @@ void func_ov000_021a9ca8(u8 *a, s32 n) {
             i = 0;
         }
         if (b[i] != 0) {
-            a[j] = b[i];
+            out[j] = b[i];
             j++;
         }
         i++;
     }
 }
 
-void func_ov000_021a9c5c(void *a, u32 n) {
+void MixBytesIntoRandomState(void *bytes, u32 n) {
     u8 b[0x60];
     u32 c;
     func_ov000_021abd2c((Unk021abca0 *) b);
     c = OS_DisableInterrupts();
-    func_ov000_021abca0(b, data_ov000_021b6184, 0x14);
-    func_ov000_021abca0(b, a, n);
-    func_ov000_021abc4c((Unk021abca0 *) b, data_ov000_021b6184);
+    func_ov000_021abca0(b, gRandomByteState, 0x14);
+    func_ov000_021abca0(b, bytes, n);
+    func_ov000_021abc4c((Unk021abca0 *) b, gRandomByteState);
     OS_RestoreInterrupts(c);
-    data_ov000_021b617c = 1;
+    gRandomByteStateMixed = 1;
 }
 
-u8 func_ov000_021a9aa0(Unk021a998c *a) {
-    Unk021a998c_0c *c = a->mUnk_0c;
-    Unk021a998c_0c_7f4 *d = c->mUnk_7f4;
+u8 SendKind2Record(Unk021a998c *a) {
+    HttpsState *c = a->mHttpsState;
+    Unk021a998c_0c_7f4 *d = c->mItemList;
     s32 e;
     u32 f;
     u8 *g;
     u8 *h;
     s32 i;
     if (d != NULL) {
-        e = d->mUnk_00;
+        e = d->mLength;
     } else {
         e = 0;
     }
-    f = func_ov000_021ab5bc();
-    c->mUnk_028[0] = f >> 24;
-    c->mUnk_028[1] = f >> 16;
-    c->mUnk_028[2] = f >> 8;
-    c->mUnk_028[3] = f;
-    func_ov000_021a9ca8(&c->mUnk_028[4], 0x1c);
+    f = GetRtcSecondsPlusFixedOffset();
+    c->mKind2Block[0] = f >> 24;
+    c->mKind2Block[1] = f >> 16;
+    c->mKind2Block[2] = f >> 8;
+    c->mKind2Block[3] = f;
+    FillNonzeroRandomBytes(&c->mKind2Block[4], 0x1c);
     g = data_ov000_021b63a4(e + 0x9d);
     if (g == NULL) {
-        c->mUnk_429 = 9;
+        c->mSetupState = 9;
         return 1;
     }
     h = g + 5;
@@ -1261,29 +1283,29 @@ u8 func_ov000_021a9aa0(Unk021a998c *a) {
     h[3] = 0x46;
     h[4] = 3;
     h[5] = 0;
-    MI_CpuCopy8(c->mUnk_028, h + 6, 0x20);
+    MI_CpuCopy8(c->mKind2Block, h + 6, 0x20);
     h[0x26] = 0x20;
-    if (c->mUnk_000 != NULL) {
-        MI_CpuCopy8(c->mUnk_000, h + 0x27, 0x20);
+    if (c->mEntry != NULL) {
+        MI_CpuCopy8(c->mEntry, h + 0x27, 0x20);
         h += 0x47;
-        c->mUnk_004 = 1;
+        c->mReusedEntry = 1;
     } else {
-        func_ov000_021a9ca8(h + 0x27, 0x1c);
-        f = data_ov000_021b6180;
+        FillNonzeroRandomBytes(h + 0x27, 0x1c);
+        f = gKind2NewEntryCount;
         h[0x43] = f >> 24;
         h[0x44] = f >> 16;
         h[0x45] = f >> 8;
         h += 0x46;
         *h++ = f;
-        c->mUnk_000 = func_ov000_021ab5e4(h - 0x20);
-        data_ov000_021b6180 = data_ov000_021b6180 + 1;
-        c->mUnk_004 = 0;
+        c->mEntry = AddEntryOrReplaceLongestUnused(h - 0x20);
+        gKind2NewEntryCount = gKind2NewEntryCount + 1;
+        c->mReusedEntry = 0;
     }
-    h[0] = c->mUnk_006 >> 8;
-    h[1] = c->mUnk_006;
+    h[0] = c->mCommonValue >> 8;
+    h[1] = c->mCommonValue;
     h += 2;
     *h++ = 0;
-    if (c->mUnk_004 == 0) {
+    if (c->mReusedEntry == 0) {
         if (e != 0) {
             h[0] = 0xb;
             i = e + 6;
@@ -1298,7 +1320,7 @@ u8 func_ov000_021a9aa0(Unk021a998c *a) {
             h[8] = e >> 8;
             h += 9;
             *h++ = e;
-            MI_CpuCopy8(d->mUnk_04, h, e);
+            MI_CpuCopy8(d->mBytes, h, e);
             h += e;
         }
         h[0] = 0xe;
@@ -1313,20 +1335,20 @@ u8 func_ov000_021a9aa0(Unk021a998c *a) {
     g[2] = 0;
     g[3] = i >> 8;
     g[4] = i;
-    func_ov000_021abca0(&c->mUnk_2c0, g + 5, i);
-    func_ov000_021ab728(&c->mUnk_378, g + 5, i);
+    func_ov000_021abca0(&c->mMessageHash20, g + 5, i);
+    func_ov000_021ab728(&c->mMessageHash16, g + 5, i);
     func_ov000_021adcec(g, i + 5, NULL, 0, a);
     data_ov000_021b63ac(g);
-    return c->mUnk_004;
+    return c->mReusedEntry;
 }
 
-void func_ov000_021a998c(Unk021a998c *a) {
+void SendOneByteRecordAndMessageDigests(Unk021a998c *a) {
     u8 *msg;
-    Unk021a998c_0c *obj;
-    obj = a->mUnk_0c;
+    HttpsState *obj;
+    obj = a->mHttpsState;
     msg = data_ov000_021b63a4(0x83);
     if (msg == NULL) {
-        obj->mUnk_429 = 9;
+        obj->mSetupState = 9;
         return;
     }
     msg[0] = 0x14;
@@ -1335,7 +1357,7 @@ void func_ov000_021a998c(Unk021a998c *a) {
     msg[3] = 0;
     msg[4] = 1;
     msg[5] = 1;
-    MI_CpuFill8(obj->mUnk_1a0, 0, 8);
+    MI_CpuFill8(obj->mSendRecordCount, 0, 8);
     msg[6] = 0x16;
     msg[7] = 3;
     msg[8] = 0;
@@ -1345,20 +1367,20 @@ void func_ov000_021a998c(Unk021a998c *a) {
     msg[12] = 0;
     msg[13] = 0;
     msg[14] = 0x24;
-    MI_CpuCopy8(&obj->mUnk_378, &obj->mUnk_3d0, 0x58);
-    func_ov000_021aa50c(obj, msg + 0xf, 0);
-    MI_CpuCopy8(&obj->mUnk_3d0, &obj->mUnk_378, 0x58);
-    MI_CpuCopy8(&obj->mUnk_2c0, &obj->mUnk_31c, 0x5c);
-    func_ov000_021aa468(obj, msg + 0x1f, 0);
-    MI_CpuCopy8(&obj->mUnk_31c, &obj->mUnk_2c0, 0x5c);
-    func_ov000_021abca0(&obj->mUnk_2c0, msg + 0xb, 0x28);
-    func_ov000_021ab728(&obj->mUnk_378, msg + 0xb, 0x28);
-    func_ov000_021adcec(msg, func_ov000_021aa054(obj, msg + 6) + 6, NULL, 0, a);
+    MI_CpuCopy8(&obj->mMessageHash16, &obj->mScratchHash16, 0x58);
+    ComputeLabeledMessageDigest16(obj, msg + 0xf, 0);
+    MI_CpuCopy8(&obj->mScratchHash16, &obj->mMessageHash16, 0x58);
+    MI_CpuCopy8(&obj->mMessageHash20, &obj->mScratchHash20, 0x5c);
+    ComputeLabeledMessageDigest20(obj, msg + 0x1f, 0);
+    MI_CpuCopy8(&obj->mScratchHash20, &obj->mMessageHash20, 0x5c);
+    func_ov000_021abca0(&obj->mMessageHash20, msg + 0xb, 0x28);
+    func_ov000_021ab728(&obj->mMessageHash16, msg + 0xb, 0x28);
+    func_ov000_021adcec(msg, AppendDigestAndXorSentRecordWithKeyStream(obj, msg + 6) + 6, NULL, 0, a);
     data_ov000_021b63ac(msg);
 }
 
-void func_ov000_021a9868(Unk021a998c *a) {
-    Unk021a998c_0c *c = a->mUnk_0c;
+void SendKind1Record(Unk021a998c *a) {
+    HttpsState *c = a->mHttpsState;
     u8 *b;
     u8 *d;
     u8 *e;
@@ -1368,23 +1390,23 @@ void func_ov000_021a9868(Unk021a998c *a) {
     u16 *h;
     b = data_ov000_021b63a4(0x98);
     if (b == NULL) {
-        c->mUnk_429 = 9;
+        c->mSetupState = 9;
         return;
     }
     d = b + 9;
     b[9] = 3;
     d[1] = 0;
-    f = func_ov000_021ab5bc();
-    c->mUnk_008[0] = f >> 24;
-    c->mUnk_008[1] = f >> 16;
-    c->mUnk_008[2] = f >> 8;
-    c->mUnk_008[3] = f;
-    func_ov000_021a9ca8(&c->mUnk_008[4], 0x1c);
-    MI_CpuCopy8(c->mUnk_008, d + 2, 0x20);
-    c->mUnk_000 = func_ov000_021ab63c(a->mUnk_1c, a->mUnk_18);
-    if (c->mUnk_000 != NULL) {
+    f = GetRtcSecondsPlusFixedOffset();
+    c->mKind1Block[0] = f >> 24;
+    c->mKind1Block[1] = f >> 16;
+    c->mKind1Block[2] = f >> 8;
+    c->mKind1Block[3] = f;
+    FillNonzeroRandomBytes(&c->mKind1Block[4], 0x1c);
+    MI_CpuCopy8(c->mKind1Block, d + 2, 0x20);
+    c->mEntry = FindEntryByValuePairAndSetLastUseTime(a->mUnk_1c, a->mUnk_18);
+    if (c->mEntry != NULL) {
         d[0x22] = 0x20;
-        MI_CpuCopy8(c->mUnk_000, d + 0x23, 0x20);
+        MI_CpuCopy8(c->mEntry, d + 0x23, 0x20);
         d += 0x43;
     } else {
         e = d + 0x22;
@@ -1396,7 +1418,7 @@ void func_ov000_021a9868(Unk021a998c *a) {
     e = d + 1;
     d += 2;
     *e = 4;
-    h = data_ov000_021b4a00;
+    h = gOfferedValues;
     for (; i < 2; i++) {
         *d = *h >> 8;
         e = d + 1;
@@ -1418,13 +1440,15 @@ void func_ov000_021a9868(Unk021a998c *a) {
     b[7] = (g - 4) >> 8;
     b[8] = g - 4;
     func_ov000_021adcec(b, g + 5, NULL, 0, a);
-    func_ov000_021ab728(&c->mUnk_378, b + 5, g);
-    func_ov000_021abca0(&c->mUnk_2c0, b + 5, g);
+    func_ov000_021ab728(&c->mMessageHash16, b + 5, g);
+    func_ov000_021abca0(&c->mMessageHash20, b + 5, g);
     data_ov000_021b63ac(b);
 }
 
+// Fills mEntry's 0x30 bytes (3, 0, then random bytes), pads them with random bytes, transforms them with mFirstValue
+// and mSecondValue and sends the result.
 void func_ov000_021a9640(Unk021a998c *a) {
-    Unk021a998c_0c *c = a->mUnk_0c;
+    HttpsState *c = a->mHttpsState;
     s32 b;
     s32 d;
     u16 *f;
@@ -1436,33 +1460,33 @@ void func_ov000_021a9640(Unk021a998c *a) {
     s32 m;
     u8 *p;
     u8 *k;
-    c->mUnk_000->mUnk_20[0] = 3;
-    c->mUnk_000->mUnk_20[1] = 0;
-    func_ov000_021a9ca8(&c->mUnk_000->mUnk_20[2], 0x2e);
-    b = c->mUnk_568;
+    c->mEntry->mUnk_20[0] = 3;
+    c->mEntry->mUnk_20[1] = 0;
+    FillNonzeroRandomBytes(&c->mEntry->mUnk_20[2], 0x2e);
+    b = c->mFirstValueLength;
     d = (b * 2) / 2;
     e = data_ov000_021b63a4(b);
     if (e == NULL) {
-        c->mUnk_429 = 9;
+        c->mSetupState = 9;
         return;
     }
     e[0] = 0;
     e[1] = 2;
-    func_ov000_021a9ca8(e + 2, b - 0x33);
+    FillNonzeroRandomBytes(e + 2, b - 0x33);
     e[b - 0x31] = 0;
-    MI_CpuCopy8(c->mUnk_000->mUnk_20, e + b - 0x30, 0x30);
+    MI_CpuCopy8(c->mEntry->mUnk_20, e + b - 0x30, 0x30);
     f = (u16 *) data_ov000_021b63a4(d * 8);
     if (f == NULL) {
         data_ov000_021b63ac(e);
-        c->mUnk_429 = 9;
+        c->mSetupState = 9;
         return;
     }
     g = f + d;
     h = g + d;
     i = h + d;
     func_ov000_021ac4b8(g, e, b, d);
-    func_ov000_021ac4b8(h, c->mUnk_56c, c->mUnk_574, d);
-    func_ov000_021ac4b8(i, c->mUnk_468, b, d);
+    func_ov000_021ac4b8(h, c->mSecondValue, c->mSecondValueLength, d);
+    func_ov000_021ac4b8(i, c->mFirstValue, b, d);
     if (data_ov000_021b49f4 < 0x20) {
         OSThread *n = data_0216ff5c.mCurrentThread;
         u32 o = OS_GetThreadPriority(n);
@@ -1476,7 +1500,7 @@ void func_ov000_021a9640(Unk021a998c *a) {
     if (j == NULL) {
         data_ov000_021b63ac(e);
         data_ov000_021b63ac(f);
-        c->mUnk_429 = 9;
+        c->mSetupState = 9;
         return;
     }
     j[0] = 0x16;
@@ -1500,58 +1524,58 @@ void func_ov000_021a9640(Unk021a998c *a) {
         *k = f[m];
     }
     func_ov000_021adcec(j, b + 9, NULL, 0, a);
-    func_ov000_021ab728(&c->mUnk_378, j + 5, (u32) b + 4);
-    func_ov000_021abca0(&c->mUnk_2c0, j + 5, b + 4);
+    func_ov000_021ab728(&c->mMessageHash16, j + 5, (u32) b + 4);
+    func_ov000_021abca0(&c->mMessageHash20, j + 5, b + 4);
     data_ov000_021b63ac(j);
     data_ov000_021b63ac(f);
     data_ov000_021b63ac(e);
 }
 
-u32 func_ov000_021a9610(Unk021a998c *a) {
+u32 ReadRecordsExpectingStates7And6(Unk021a998c *a) {
     int v1;
-    v1 = func_ov000_021a9d68(a);
+    v1 = ReadHttpsRecordAndSetState(a);
     if (v1 != 7) {
         return 1;
     }
-    v1 = func_ov000_021a9d68(a);
+    v1 = ReadHttpsRecordAndSetState(a);
     if (v1 != 6) {
         return 1;
     }
     return 0;
 }
 
-BOOL func_ov000_021a95a0(Unk021a998c *a) {
-    if (func_ov000_021a9d68(a) != 1) {
+BOOL RunSetupAfterReadingKind1Record(Unk021a998c *a) {
+    if (ReadHttpsRecordAndSetState(a) != 1) {
         return TRUE;
     }
-    if (func_ov000_021a9aa0(a) != 0) {
-        func_ov000_021aa5e0(a->mUnk_0c);
-        func_ov000_021a998c(a);
-        if (func_ov000_021a9610(a) != 0) {
+    if (SendKind2Record(a) != 0) {
+        DeriveBytesAndInitKeyStreamStates(a->mHttpsState);
+        SendOneByteRecordAndMessageDigests(a);
+        if (ReadRecordsExpectingStates7And6(a) != 0) {
             return TRUE;
         }
     } else {
-        if (func_ov000_021a9d68(a) != 5) {
+        if (ReadHttpsRecordAndSetState(a) != 5) {
             return TRUE;
         }
-        if (func_ov000_021a9610(a) != 0) {
+        if (ReadRecordsExpectingStates7And6(a) != 0) {
             return TRUE;
         }
-        func_ov000_021a998c(a);
+        SendOneByteRecordAndMessageDigests(a);
     }
     return FALSE;
 }
 
-void func_ov000_021a9534(Unk021a998c *a) {
-    Unk021a998c_0c *c = a->mUnk_0c;
+void RunSetupAfterReadingKind1RecordUntilDone(Unk021a998c *a) {
+    HttpsState *c = a->mHttpsState;
     while (1) {
         func_ov000_021ae228(a);
-        c->mUnk_429 = 0;
-        c->mUnk_428 = 1;
-        func_ov000_021abd2c(&c->mUnk_2c0);
-        func_ov000_021ab7b4(&c->mUnk_378);
-        if (func_ov000_021a95a0(a) == 0) {
-            c->mUnk_429 = 8;
+        c->mSetupState = 0;
+        c->mReceivesKind1Record = 1;
+        func_ov000_021abd2c(&c->mMessageHash20);
+        func_ov000_021ab7b4(&c->mMessageHash16);
+        if (RunSetupAfterReadingKind1Record(a) == 0) {
+            c->mSetupState = 8;
             return;
         }
         func_ov000_021ae0c4(a);
@@ -1560,88 +1584,88 @@ void func_ov000_021a9534(Unk021a998c *a) {
     }
 }
 
-BOOL func_ov000_021a9494(Unk021a998c *a) {
-    Unk021a998c_0c *c = a->mUnk_0c;
+BOOL RunSetupAfterSendingKind1Record(Unk021a998c *a) {
+    HttpsState *c = a->mHttpsState;
     u8 b;
-    func_ov000_021a9868(a);
+    SendKind1Record(a);
     while (1) {
-        b = func_ov000_021a9d68(a);
+        b = ReadHttpsRecordAndSetState(a);
         if (b == 9) {
             return TRUE;
         }
-        if (b == 4 || c->mUnk_004 != 0) {
+        if (b == 4 || c->mReusedEntry != 0) {
             break;
         }
     }
-    if (c->mUnk_004 != 0) {
-        func_ov000_021aa5e0(c);
-        if (func_ov000_021a9610(a) != 0) {
+    if (c->mReusedEntry != 0) {
+        DeriveBytesAndInitKeyStreamStates(c);
+        if (ReadRecordsExpectingStates7And6(a) != 0) {
             return TRUE;
         }
-        func_ov000_021a998c(a);
+        SendOneByteRecordAndMessageDigests(a);
     } else {
-        c->mUnk_000->mUnk_54 = a->mUnk_1c;
-        c->mUnk_000->mUnk_58 = a->mUnk_18;
+        c->mEntry->mUnk_54 = a->mUnk_1c;
+        c->mEntry->mUnk_58 = a->mUnk_18;
         func_ov000_021a9640(a);
-        func_ov000_021aa7b4(c);
-        func_ov000_021aa5e0(c);
-        func_ov000_021a998c(a);
-        if (func_ov000_021a9610(a) != 0) {
+        ReplaceEntryBytesWithLabeledDigests(c);
+        DeriveBytesAndInitKeyStreamStates(c);
+        SendOneByteRecordAndMessageDigests(a);
+        if (ReadRecordsExpectingStates7And6(a) != 0) {
             return TRUE;
         }
     }
-    c->mUnk_429 = 8;
+    c->mSetupState = 8;
     return FALSE;
 }
 
 BOOL func_ov000_021a943c(Unk021a998c *a) {
-    Unk021a998c_0c *c = a->mUnk_0c;
+    HttpsState *c = a->mHttpsState;
     if (a->mState != 4 && func_ov000_021ae16c(a) != 0) {
         return TRUE;
     }
-    c->mUnk_429 = 0;
-    c->mUnk_428 = 0;
-    func_ov000_021abd2c(&c->mUnk_2c0);
-    func_ov000_021ab7b4(&c->mUnk_378);
-    return func_ov000_021a9494(a);
+    c->mSetupState = 0;
+    c->mReceivesKind1Record = 0;
+    func_ov000_021abd2c(&c->mMessageHash20);
+    func_ov000_021ab7b4(&c->mMessageHash16);
+    return RunSetupAfterSendingKind1Record(a);
 }
 
-u8 *func_ov000_021a93e0(s32 *a, Unk021a998c *b) {
-    Unk021a998c_0c *c = b->mUnk_0c;
-    while (c->mUnk_7f8 == NULL) {
-        if (func_ov000_021a9d68(b) == 9) {
-            *a = 0;
+u8 *ReadHttpsRecordsUntilBytesReceived(s32 *unreadCount, Unk021a998c *b) {
+    HttpsState *c = b->mHttpsState;
+    while (c->mReceivedBlock == NULL) {
+        if (ReadHttpsRecordAndSetState(b) == 9) {
+            *unreadCount = 0;
             return NULL;
         }
     }
-    *a = c->mUnk_7fc - c->mUnk_800;
-    return c->mUnk_7f8 + c->mUnk_800;
+    *unreadCount = c->mReceivedBlockEnd - c->mReceivedBlockOffset;
+    return c->mReceivedBlock + c->mReceivedBlockOffset;
 }
 
-void func_ov000_021a9394(u32 a, Unk021a998c *b) {
-    Unk021a998c_0c *c = b->mUnk_0c;
-    if (a >= c->mUnk_7fc - c->mUnk_800) {
-        data_ov000_021b63ac(c->mUnk_7f8);
-        c->mUnk_7f8 = NULL;
-        c->mUnk_800 = c->mUnk_7fc;
+void SkipHttpsReceivedBytes(u32 count, Unk021a998c *b) {
+    HttpsState *c = b->mHttpsState;
+    if (count >= c->mReceivedBlockEnd - c->mReceivedBlockOffset) {
+        data_ov000_021b63ac(c->mReceivedBlock);
+        c->mReceivedBlock = NULL;
+        c->mReceivedBlockOffset = c->mReceivedBlockEnd;
     } else {
-        c->mUnk_800 += a;
+        c->mReceivedBlockOffset += count;
     }
 }
 
-s32 func_ov000_021a9358(Unk021a998c *a) {
-    Unk021a998c_0c *c = a->mUnk_0c;
-    if (c->mUnk_7f8 == NULL) {
+s32 ReadHttpsRecordIfBufferedAndGetUnreadByteCount(Unk021a998c *a) {
+    HttpsState *c = a->mHttpsState;
+    if (c->mReceivedBlock == NULL) {
         if (a->mReceiveBufferLength == 0) {
             return 0;
         }
-        func_ov000_021a9d68(a);
+        ReadHttpsRecordAndSetState(a);
     }
-    return c->mUnk_7fc - c->mUnk_800;
+    return c->mReceivedBlockEnd - c->mReceivedBlockOffset;
 }
 
-s32 func_ov000_021a9280(u8 *a, u32 b, u8 *c, u32 d, Unk021a998c *e) {
-    Unk021a998c_0c *f = e->mUnk_0c;
+s32 SendHttpsBytesInChunks(u8 *a, u32 b, u8 *c, u32 d, Unk021a998c *e) {
+    HttpsState *f = e->mHttpsState;
     s32 g = b + d;
     u8 *l;
     s32 i;
@@ -1677,7 +1701,7 @@ s32 func_ov000_021a9280(u8 *a, u32 b, u8 *c, u32 d, Unk021a998c *e) {
         l[2] = m;
         l[3] = i >> 8;
         l[4] = i;
-        j = func_ov000_021aa054(f, l);
+        j = AppendDigestAndXorSentRecordWithKeyStream(f, l);
         if (func_ov000_021adcec(l, j, (const u8 *) n, n, e) < j) {
             i = p;
         }
@@ -1694,10 +1718,12 @@ s32 func_ov000_021a9280(u8 *a, u32 b, u8 *c, u32 d, Unk021a998c *e) {
     return h;
 }
 
+// When mSetupState is 8 sends the 7-byte record that ends with 1, 0, then runs func_ov000_021ae0c4 and clears
+// mSetupState.
 void func_ov000_021a9228(Unk021a998c *a) {
-    Unk021a998c_0c *c = a->mUnk_0c;
+    HttpsState *c = a->mHttpsState;
     u8 b[0x20];
-    if (c->mUnk_429 == 8) {
+    if (c->mSetupState == 8) {
         b[0] = 0x15;
         b[1] = 3;
         b[2] = 0;
@@ -1705,8 +1731,8 @@ void func_ov000_021a9228(Unk021a998c *a) {
         b[4] = 2;
         b[5] = 1;
         b[6] = 0;
-        func_ov000_021adcec(b, func_ov000_021aa054(c, b), NULL, 0, a);
+        func_ov000_021adcec(b, AppendDigestAndXorSentRecordWithKeyStream(c, b), NULL, 0, a);
     }
     func_ov000_021ae0c4(a);
-    c->mUnk_429 = 0;
+    c->mSetupState = 0;
 }

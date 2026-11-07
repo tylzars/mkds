@@ -1607,8 +1607,8 @@ void func_ov000_021ae1e4(void) {
 
     a = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (a != NULL) {
-        if (a->mUnk_09 != 0) {
-            func_ov000_021a9534(a);
+        if (a->mUseHttps != 0) {
+            RunSetupAfterReadingKind1RecordUntilDone(a);
         } else {
             func_ov000_021ae228(a);
         }
@@ -1647,7 +1647,7 @@ u32 func_ov000_021ae134(void) {
 
     a = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (a != NULL) {
-        if (a->mUnk_09 != 0) {
+        if (a->mUseHttps != 0) {
             return func_ov000_021a943c(a);
         }
         return func_ov000_021ae16c(a);
@@ -1687,7 +1687,7 @@ void func_ov000_021ae094(void) {
 
     s = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (s != NULL) {
-        if (s->mUnk_09 != 0) {
+        if (s->mUseHttps != 0) {
             func_ov000_021a9228(s);
         } else {
             func_ov000_021ae0c4(s);
@@ -1744,8 +1744,8 @@ u8 *func_ov000_021adf78(u32 *a) {
         if ((u8) (s->mState + 0xf6) <= 1) {
             return func_ov000_021ae01c(a, s);
         }
-        if (s->mUnk_09 != 0) {
-            return func_ov000_021a93e0((s32 *) a, s);
+        if (s->mUseHttps != 0) {
+            return ReadHttpsRecordsUntilBytesReceived((s32 *) a, s);
         }
         return func_ov000_021adfc8(a, s);
     }
@@ -1781,8 +1781,8 @@ void func_ov000_021adf00(u32 a) {
 
     s = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (s != NULL) {
-        if (s->mUnk_09 != 0) {
-            func_ov000_021a9394(a, s);
+        if (s->mUseHttps != 0) {
+            SkipHttpsReceivedBytes(a, s);
         } else {
             func_ov000_021adf30(a, s);
         }
@@ -1923,8 +1923,8 @@ s32 func_ov000_021adc64(const u8 *a, s32 b, const u8 *c, s32 d) {
                 func_ov000_021af7e4((u8 *) c, d, s);
             }
             r = b + d;
-        } else if (s->mUnk_09 != 0) {
-            r = func_ov000_021a9280((u8 *) a, b, (u8 *) c, d, s);
+        } else if (s->mUseHttps != 0) {
+            r = SendHttpsBytesInChunks((u8 *) a, b, (u8 *) c, d, s);
         } else {
             r = func_ov000_021adcec(a, b, c, d, s);
         }
@@ -1963,8 +1963,8 @@ s32 func_ov000_021adbac(void) {
 
     s = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (s != NULL) {
-        if (s->mUnk_09 != 0) {
-            r = func_ov000_021a9358(s);
+        if (s->mUseHttps != 0) {
+            r = ReadHttpsRecordIfBufferedAndGetUnreadByteCount(s);
         } else {
             r = s->mReceiveBufferLength;
         }

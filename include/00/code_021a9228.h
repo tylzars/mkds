@@ -2,19 +2,19 @@
 
 #include "types.h"
 
-typedef struct Unk021a998c_0c Unk021a998c_0c;
+typedef struct HttpsState HttpsState;
 
-// Argument of func_ov000_021a998c.
 struct Unk021a998c;
 typedef s32 (*Unk021a998cFunc)(void *param_1, u32 param_2, struct Unk021a998c *param_3);
 
+// Record the https functions take; its mHttpsState is the https layer's own state.
 typedef struct Unk021a998c {
     /* 00 */ struct OSThread *mThread;
     /* 04 */ u32 mUnk_04;
     /* 08 */ u8 mState;
-    /* 09 */ u8 mUnk_09;
+    /* 09 */ u8 mUseHttps;
     /* 0a */ u16 mUnk_0a;
-    /* 0c */ Unk021a998c_0c *mUnk_0c;
+    /* 0c */ HttpsState *mHttpsState;
     /* 10 */ u32 mStateStartTime;
     /* 14 */ u32 mUnk_14;
     /* 18 */ u16 mUnk_18;
@@ -43,19 +43,19 @@ typedef struct Unk021a998c {
 
 typedef struct Unk021a998c Unk021a998c;
 
-typedef struct Unk021a998c_0c Unk021a998c_0c;
+typedef struct HttpsState HttpsState;
 
-typedef struct Unk021a998c_0c Unk021a998c_0c;
+typedef struct HttpsState HttpsState;
 
-typedef struct Unk021a998c_0c Unk021a998c_0c;
+typedef struct HttpsState HttpsState;
 
-typedef struct Unk021a998c_0c Unk021a998c_0c;
+typedef struct HttpsState HttpsState;
 
-typedef struct Unk021a998c_0c Unk021a998c_0c;
+typedef struct HttpsState HttpsState;
 
-typedef struct Unk021a998c_0c Unk021a998c_0c;
+typedef struct HttpsState HttpsState;
 
-typedef struct Unk021a998c_0c Unk021a998c_0c;
+typedef struct HttpsState HttpsState;
 
 // Six length and pointer pairs.
 typedef struct Unk021aa880 {
@@ -73,73 +73,76 @@ typedef struct Unk021aa880 {
     /* 2c */ const u8 *mUnk_2c;
 } Unk021aa880;
 
-typedef struct Unk021a998c_0c Unk021a998c_0c;
+typedef struct HttpsState HttpsState;
 
 typedef struct Unk021aaf38 Unk021aaf38;
-typedef struct Unk021a998c_0c Unk021a998c_0c;
+typedef struct HttpsState HttpsState;
 
-typedef struct Unk021a998c_0c Unk021a998c_0c;
+typedef struct HttpsState HttpsState;
 
-typedef struct Unk021ab5e4 Unk021ab5e4;
+typedef struct HttpsEntry HttpsEntry;
 
 #include "00/code_021ad734.h"
 #include "00/unk_021b6380.h"
 #include "00/code_021ac3e4.h"
 
-extern u8 data_ov000_021b617c;
-extern u32 data_ov000_021b6180;
-extern u8 data_ov000_021b6184[0x14];
-extern u8 data_ov000_021b6197;
+// Set to 1 once bytes have been mixed into gRandomByteState.
+extern u8 gRandomByteStateMixed;
+// Counts the entries made while sending the kind 2 record; its value is written as the last four bytes of each new
+// entry's first 0x20 bytes.
+extern u32 gKind2NewEntryCount;
+extern u8 gRandomByteState[0x14];
+extern u8 gRandomByteStateLast;
 
 void func_ov000_021a9228(Unk021a998c *a);
-s32 func_ov000_021a9280(u8 *a, u32 b, u8 *c, u32 d, Unk021a998c *e);
-s32 func_ov000_021a9358(Unk021a998c *a);
-void func_ov000_021a9394(u32 a, Unk021a998c *b);
-u8 *func_ov000_021a93e0(s32 *a, Unk021a998c *b);
+s32 SendHttpsBytesInChunks(u8 *a, u32 b, u8 *c, u32 d, Unk021a998c *e);
+s32 ReadHttpsRecordIfBufferedAndGetUnreadByteCount(Unk021a998c *a);
+void SkipHttpsReceivedBytes(u32 count, Unk021a998c *b);
+u8 *ReadHttpsRecordsUntilBytesReceived(s32 *unreadCount, Unk021a998c *b);
 BOOL func_ov000_021a943c(Unk021a998c *a);
-BOOL func_ov000_021a9494(Unk021a998c *a);
-void func_ov000_021a9534(Unk021a998c *a);
-BOOL func_ov000_021a95a0(Unk021a998c *a);
-u32 func_ov000_021a9610(Unk021a998c *a);
+BOOL RunSetupAfterSendingKind1Record(Unk021a998c *a);
+void RunSetupAfterReadingKind1RecordUntilDone(Unk021a998c *a);
+BOOL RunSetupAfterReadingKind1Record(Unk021a998c *a);
+u32 ReadRecordsExpectingStates7And6(Unk021a998c *a);
 void func_ov000_021a9640(Unk021a998c *a);
-void func_ov000_021a9868(Unk021a998c *a);
-void func_ov000_021a998c(Unk021a998c *a);
-u8 func_ov000_021a9aa0(Unk021a998c *a);
-void func_ov000_021a9c5c(void *a, u32 n);
-void func_ov000_021a9ca8(u8 *a, s32 n);
-u8 func_ov000_021a9d68(Unk021a998c *a);
-u32 func_ov000_021aa004(u8 *a, s32 b, Unk021a998c *c);
-s32 func_ov000_021aa054(void *g, u8 *h);
-s32 func_ov000_021aa1e0(Unk021a998c_0c *a, u8 *b);
-unsigned int func_ov000_021aa380(unsigned int p0, u8 *p1, unsigned int p2);
-void func_ov000_021aa398(u8 *bytes, s32 count);
-void func_ov000_021aa3b8(Unk021a998c_0c *a, u8 *b);
-void func_ov000_021aa468(Unk021a998c_0c *a, u8 *b, u32 c);
-void func_ov000_021aa50c(Unk021a998c_0c *a, u8 *b, u32 c);
-void func_ov000_021aa5b0(Unk021a998c_0c *a, const u8 *b);
-void func_ov000_021aa5e0(Unk021a998c_0c *a);
-void func_ov000_021aa7b4(Unk021a998c_0c *a);
-void func_ov000_021aa7f8(u8 *a, const u8 *b, Unk021a998c_0c *c);
+void SendKind1Record(Unk021a998c *a);
+void SendOneByteRecordAndMessageDigests(Unk021a998c *a);
+u8 SendKind2Record(Unk021a998c *a);
+void MixBytesIntoRandomState(void *bytes, u32 n);
+void FillNonzeroRandomBytes(u8 *out, s32 count);
+u8 ReadHttpsRecordAndSetState(Unk021a998c *a);
+u32 ReadExactReceivedBytes(u8 *dest, s32 count, Unk021a998c *c);
+s32 AppendDigestAndXorSentRecordWithKeyStream(void *g, u8 *h);
+s32 XorReceivedRecordWithKeyStreamAndCheckDigest(HttpsState *a, u8 *b);
+unsigned int XorReceivedBytesWithKeyStream(unsigned int p0, u8 *bytes, unsigned int count);
+void IncrementBigEndianBytes(u8 *bytes, s32 count);
+void CheckMessageDigestsAndSetState(HttpsState *a, u8 *b);
+void ComputeLabeledMessageDigest20(HttpsState *a, u8 *b, u32 c);
+void ComputeLabeledMessageDigest16(HttpsState *a, u8 *b, u32 c);
+void func_ov000_021aa5b0(HttpsState *a, const u8 *b);
+void DeriveBytesAndInitKeyStreamStates(HttpsState *a);
+void ReplaceEntryBytesWithLabeledDigests(HttpsState *a);
+void ComputeLabeledDigest16(u8 *a, const u8 *b, HttpsState *c);
 void func_ov000_021aa880(u8 *a, const u8 *b, Unk021aa880 *c);
-void func_ov000_021aa9ec(Unk021a998c_0c *a, const u8 *b);
-void func_ov000_021aaa58(Unk021a998c_0c *a, u8 *b);
-u32 func_ov000_021aaaec(int a, int b);
-u32 func_ov000_021aaaf8(const u8 *a, s32 b, s32 c);
-BOOL func_ov000_021aab3c(const u8 *a, s32 b, s32 c, u32 d);
-void func_ov000_021aab74(Unk021a998c_0c *a, u8 *b);
-void func_ov000_021aabf0(Unk021a998c_0c *a, u8 *b);
-BOOL func_ov000_021aadcc(const s8 *a, const s8 *b);
-s32 func_ov000_021aae2c(const s8 *text);
-u32 func_ov000_021aae44(Unk021a998c_0c *a);
-u32 func_ov000_021aaf38(Unk021a998c_0c *a, Unk021aaf38 *b);
-BOOL func_ov000_021ab09c(Unk021a998c_0c *a, u8 **b, s32 c, s32 d, s32 e);
-u32 func_ov000_021ab448(const u8 *a, u32 b);
-void func_ov000_021ab4b0(s8 *a, const s8 *b, s32 c);
-s32 func_ov000_021ab4f8(u8 **a);
-u32 func_ov000_021ab548(Unk021a998c_0c *a, const s8 *b);
-void func_ov000_021ab594(u32 a, u32 b);
-u32 func_ov000_021ab5bc(void);
-Unk021ab5e4 *func_ov000_021ab5e4(const u8 *a);
-Unk021ab5e4 *func_ov000_021ab63c(u32 a, u32 b);
-Unk021ab5e4 *func_ov000_021ab684(const u8 *a);
+void ParseKind1Message(HttpsState *a, const u8 *b);
+void ParseKind1MessageWithThreeByteValues(HttpsState *a, u8 *b);
+u32 IsFirstArgumentThree(int a, int b);
+u32 FindOfferedValueInList(const u8 *list, s32 count, s32 width);
+BOOL IsBigEndianValueInList(const u8 *list, s32 count, s32 width, u32 value);
+void ParseKind2Message(HttpsState *a, u8 *b);
+void ParseAndCheckItemListMessage(HttpsState *a, u8 *b);
+BOOL CompareTextWithWildcard(const s8 *text, const s8 *pattern);
+s32 GetTextLengthUpToDot(const s8 *text);
+u32 ComputeParsedItemCheckFlags(HttpsState *a);
+u32 CheckTransformedBytesHoldPaddedDigest(HttpsState *a, Unk021aaf38 *b);
+BOOL ParseTaggedItem(HttpsState *a, u8 **b, s32 depth, s32 index, s32 mode);
+u32 ParseDateText(const u8 *digits, u32 tag);
+void AppendCommaSeparatedText(s8 *dest, const s8 *source, s32 count);
+s32 ReadLengthAndAdvance(u8 **a);
+u32 FindAuthorityByName(HttpsState *a, const s8 *b);
+void SetAuthorityTable(u32 table, u32 count);
+u32 GetRtcSecondsPlusFixedOffset(void);
+HttpsEntry *AddEntryOrReplaceLongestUnused(const u8 *a);
+HttpsEntry *FindEntryByValuePairAndSetLastUseTime(u32 a, u32 b);
+HttpsEntry *FindEntryByBytesAndSetLastUseTime(const u8 *a);
 // Declared here until the code that defines them is decompiled.

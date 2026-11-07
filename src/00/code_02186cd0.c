@@ -608,7 +608,7 @@ void DWCi_Http_Thread(void *l) {
         b->mUnk_7e4 = func_ov000_02186a84;
         b->mUnk_7d4 = p->mHost;
         a->mUnk_0c = b;
-        func_ov000_021ab594((u32) data_ov000_021b1204, 0xb);
+        SetAuthorityTable((u32) data_ov000_021b1204, 0xb);
         func_ov000_021a9200(1);
         h = 0x1bb;
     } else {
@@ -618,7 +618,7 @@ void DWCi_Http_Thread(void *l) {
     t0 = OS_GetTick();
     if (p->mUseHttps == 1) {
         OS_GetLowEntropyData(&v1);
-        func_ov000_021a9c5c(&v1, 0x20);
+        MixBytesIntoRandomState(&v1, 0x20);
         t1 = t0;
     }
     if (func_ov000_021ae134() != 0) {
@@ -653,7 +653,7 @@ void DWCi_Http_Thread(void *l) {
         if (p->mUseHttps == 1) {
             if (1000 < (t - t1) * 64 / 0x82ea) {
                 OS_GetLowEntropyData(&v1);
-                func_ov000_021a9c5c(&v1, 0x20);
+                MixBytesIntoRandomState(&v1, 0x20);
                 t1 = t;
             }
         }
@@ -745,7 +745,7 @@ void DWCi_Http_Thread(void *l) {
         if (p->mUseHttps == 1) {
             if (1000 < (t - t1) * 64 / 0x82ea) {
                 OS_GetLowEntropyData(&v1);
-                func_ov000_021a9c5c(&v1, 0x20);
+                MixBytesIntoRandomState(&v1, 0x20);
                 t1 = t;
             }
         }

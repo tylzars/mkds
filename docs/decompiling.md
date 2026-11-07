@@ -1122,8 +1122,7 @@ Link order and linking:
   (`(u32) j < q`) is computed after `j = 0`: drop it (`q = n - b - a; for (; j < q; j++)`, func_02085ad8). A call
   result or a value used in two blocks stays where written.
 - A Thumb jump table ending in `add pc, r0` where ours ends `add r0, pc; bx r0` (2 bytes longer) is a compiler
-  difference, not source: the 1.2 base always emits the `bx` form. Four functions in ov000 use the other form
-  (func_ov000_021a9d68, 021ab09c, 021ad898, 021aea34).
+  difference, not source: the 1.2 base always emits the `bx` form. A few functions in overlay 0 use the other form.
 - Thumb `ldrsb` and `ldrsh` have only the register-offset form, so `*(p + 11 - i)` differs from `p[11 - i]`
   (DWC_StringToFriendKey).
 - A byte loaded, moved to a second register for `muls` and used again after, with the two registers swapped: read the
