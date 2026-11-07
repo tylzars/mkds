@@ -544,7 +544,7 @@ u16 func_02052c5c(u32 a) {
     u64 x;
     u64 y;
 
-    func_0203bfc4(&t);
+    GetClockTimeOrZero(&t);
     h = t.mHour;
     if (h >= 0x12) {
         h -= 0x12;

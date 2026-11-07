@@ -503,7 +503,7 @@ void StartKartBoost(Kart *p, KartBoostKind a, int b) {
     if (a != KART_BOOST_MINI_TURBO && a != KART_BOOST_RESPAWN) {
         p->mUnk_48 |= 0x20000000;
     }
-    func_0210a53c(p);
+    StopKartSoundWhileRequested(p);
     c = ~0x8000;
     p->mUnk_48 &= c;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {

@@ -135,21 +135,21 @@ s32 DWC_BM_Init(u8 *work) {
     }
     if (valid[0] == 0 && valid[1] == 0 && valid[2] == 0 && valid[3] == 0) {
         init(work);
-        if (func_02151718((int) work) != 0) {
+        if (WriteNvramEntriesWithCrc16((int) work) != 0) {
             return 0;
         }
         return -10000;
     }
     if ((valid[0] == 0 || valid[1] == 0) && (valid[2] == 0 || valid[3] == 0)) {
         init(work);
-        if (func_02151718((int) work) != 0) {
+        if (WriteNvramEntriesWithCrc16((int) work) != 0) {
             return 0;
         }
         return -10000;
     }
     if (valid[0] == 0 && valid[1] == 0) {
         init(work);
-        if (func_02151718((int) work) != 0) {
+        if (WriteNvramEntriesWithCrc16((int) work) != 0) {
             return -10003;
         }
         return -10000;
@@ -183,7 +183,7 @@ s32 DWC_BM_Init(u8 *work) {
             }
         }
     }
-    if (func_02151718((int) work) == 0) {
+    if (WriteNvramEntriesWithCrc16((int) work) == 0) {
         return -10000;
     }
     if (dropped != 0) {

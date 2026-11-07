@@ -364,7 +364,7 @@ void func_020aeb7c(void) {
             }
             break;
         case MODE_MISSION_RUN:
-            if (func_0203c174() != FALSE) {
+            if (IsFramesSinceFinishPastWait() != FALSE) {
                 if (gRaceHud->mUnk_83c == FALSE) {
                     gRaceHud->mUnk_83c = TRUE;
                     gRaceHud->mUnk_840 = TRUE;

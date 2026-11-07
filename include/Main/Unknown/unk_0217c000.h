@@ -10,7 +10,8 @@ typedef struct NNSSndHeap NNSSndHeap;
 
 // Volume curve of one kind of sound source. The volume is the maximum up to the inner distance, falls to a mid volume
 // at the mid distance and to 0 at the outer distance. SoundSource.mFalloffIndex picks the element of gSoundFalloffs.
-// 0x24-byte entries of the array at gSoundFalloffs; func_02109468 fills the first one.
+// 0x24-byte entries of the array at gSoundFalloffs; InitSoundFalloffs fills elements 0 to 15 of it.
+// 0x24-byte entries of the array at gSoundFalloffs; InitSoundFalloffs fills the first one.
 typedef struct SoundFalloff {
     // Distance beyond which the sound is silent.
     /* 00 */ s32 mOuterDistance;
@@ -26,7 +27,7 @@ typedef struct SoundFalloff {
     /* 20 */ s32 mUnk_20;
 } SoundFalloff;
 
-// Volume curves by sound source number (SoundSource.mFalloffIndex); filled by func_02109468.
+// Volume curves by sound source number (SoundSource.mFalloffIndex); filled by InitSoundFalloffs.
 extern SoundFalloff gSoundFalloffs[];
 // Volume curve of the Karts other than the selected entry whose sound source number is 0.
 extern SoundFalloff gOtherKartSoundFalloff;

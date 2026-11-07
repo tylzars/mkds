@@ -159,7 +159,7 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
 
     m = -1;
     n = FALSE;
-    func_0203bfec(g);
+    GetClockDateOrDefault(g);
     r = g[0];
     s = g[1];
     t = g[2];

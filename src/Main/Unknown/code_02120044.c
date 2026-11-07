@@ -164,7 +164,7 @@ void func_021200f0(void) {
 void func_021200a8(void) {
     Unk0217d384_08 *p;
 
-    if (func_02120d14() == FALSE) {
+    if (IsKartKeysStartStatus3() == FALSE) {
         return;
     }
     p = &gWiFiSession->mUnk_0008;

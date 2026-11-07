@@ -178,7 +178,7 @@ void func_0204fb40(s32 a) {
     if ((data_0217aa00->mUnk_0454 & 0x40) != 0) {
         q->mUnk_0c = (data_0217aa00->mUnk_1690 + 7) & 0x7fff;
     } else {
-        func_0203bfc4(&t);
+        GetClockTimeOrZero(&t);
         h = t.mHour;
         if (h >= 0x12) {
             h -= 0x12;
@@ -217,7 +217,7 @@ void func_0204f938(Unk0217aa08_14 *a) {
     e->mUnk_18_9 = a->mUnk_08_8;
     e->mUnk_18_16 = a->mUnk_08_15;
     e->mUnk_18_22 = a->mUnk_08_22;
-    func_0203bfc4(&t);
+    GetClockTimeOrZero(&t);
     h = t.mHour;
     if (h >= 0x12) {
         h -= 0x12;

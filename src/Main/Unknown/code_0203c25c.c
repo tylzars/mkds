@@ -105,7 +105,7 @@ BOOL IsKartOnLastLap(u16 a) {
     }
     r = f == FALSE;
     if (r != FALSE) {
-        r = func_02044618() == gRaceProgress->mUnk_000[a].mLap;
+        r = GetLapCount() == gRaceProgress->mUnk_000[a].mLap;
     }
     return r != FALSE;
 }

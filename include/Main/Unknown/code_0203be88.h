@@ -33,8 +33,8 @@ void func_0203bea4(u8 *a, u32 b, u32 c);
 void func_0203bec0(u8 *a);
 u8 *func_0203bedc(void *a);
 void func_0203bf04(Unk0203bf04_a *a, Unk0203bf04_b *b);
-void func_0203bfc4(RTCTime *a);
-void func_0203bfec(s32 *a);
+void GetClockTimeOrZero(RTCTime *a);
+void GetClockDateOrDefault(s32 *a);
 // Scene function of gSceneFuncs[0] (scene 'Title' in gSceneNames): copies the callbacks and calls
 // RunScene. Returns 0.
 u32 RunTitleScene(SceneNumbers *a);
@@ -43,5 +43,5 @@ void func_0203c07c(void);
 void ReleaseTitleScene(void);
 void InitTitleScene(void);
 u32 func_0203c0bc(void);
-BOOL func_0203c174(void);
+BOOL IsFramesSinceFinishPastWait(void);
 void func_0203c1a8(Vec3 *a, u32 b);

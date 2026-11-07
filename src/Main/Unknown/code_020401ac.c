@@ -340,7 +340,7 @@ void InitRaceProgress(void) {
     }
     gRaceProgress->mUnk_4d0 = 0;
     gRaceProgress->mLapProgressScale = FX_Inv((gCourseMap->mLapProgressBaseMax + 1) << 12);
-    gRaceProgress->mRaceProgressScale = FX_Inv(func_02044618() << 12);
+    gRaceProgress->mRaceProgressScale = FX_Inv(GetLapCount() << 12);
     for (i = 0; i < gCourseMap->mNumberedCheckpointCount + 1; i++) {
         v1 = i % (gCourseMap->mNumberedCheckpointCount + 1);
         if (v1 == gCourseMap->mNumberedCheckpointCount) {

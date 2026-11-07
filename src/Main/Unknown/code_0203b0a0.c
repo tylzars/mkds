@@ -194,7 +194,7 @@ void func_0203b0f8(void *a) {
         func_0204e928(a, t == 1, r);
         func_0205982c(a);
     }
-    func_02045590();
+    ResetRaceSetup();
 }
 
 BOOL func_0203b0a0(const Unk0203b0a0 *a, const Unk0203b0a0 *b) {

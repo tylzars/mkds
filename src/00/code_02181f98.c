@@ -37,7 +37,7 @@
 #include "Main/Unknown/code_02036820.h"
 
 BOOL func_ov000_021832f0(void) {
-    if (func_0205e548() != 0) {
+    if (CountEmblemEntries() != 0) {
         return TRUE;
     }
     return FALSE;

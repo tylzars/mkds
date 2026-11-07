@@ -7,13 +7,13 @@ typedef struct Unk02044940_block {
     /* 000 */ u32 mUnk_000[0x7a];
 } Unk02044940_block;
 
-u16 func_02044618(void);
-void func_0204465c(void);
+u16 GetLapCount(void);
+void ResetTimeAttackNextEntries(void);
 void func_020446e0(void);
-void func_02044940(void);
+void SetCurrentRaceFromNext(void);
 BOOL func_02044bf8(s32 a, s32 b);
 s32 func_02044d4c(s32 a, s32 b);
 BOOL func_02044e9c(s32 a, s32 b);
 void func_02044fc0(void);
-void func_02045084(s32 a);
-void func_02045590(void);
+void SetCurrentEntryPlayer(s32 a);
+void ResetRaceSetup(void);

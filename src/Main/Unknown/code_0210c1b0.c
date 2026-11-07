@@ -27,7 +27,7 @@ void func_0210cc3c(SoundSource *p) {
     }
     if ((p->mUnk_34 & 1) == 0) {
         if (p->mUnk_34 & 2) {
-            func_0210c238(p, 0);
+            StopSoundsStartedWhileRequested(p, 0);
         }
         p->mUnk_34 &= ~2;
         if ((p->mUnk_34 & 4) == 0) {
@@ -122,7 +122,7 @@ static inline s32 func_0210ca4c_inline(u32 k, u8 a, u16 b) {
     return 0;
 }
 
-u32 func_0210ca4c(SoundSource *p) {
+u32 SetPlayingSoundsVolumePanAndPriority(SoundSource *p) {
     Unk0210bcf4 st;
     s32 n;
     PlayingSound *a;
@@ -362,7 +362,7 @@ void StopPlayingSound(SoundSource *p, PlayingSound *b, u32 c) {
     }
 }
 
-void func_0210c3a8(SoundSource *p) {
+void StopAllSoundsAndReleaseSoundSource(SoundSource *p) {
     PlayingSound *a;
 
     for (a = p->mPlayingSounds.mHead; a != NULL; a = p->mPlayingSounds.mHead) {
@@ -379,7 +379,7 @@ void func_0210c3a8(SoundSource *p) {
     ReleaseSoundSource(p);
 }
 
-void func_0210c238(SoundSource *p, u32 b) {
+void StopSoundsStartedWhileRequested(SoundSource *p, u32 b) {
     PlayingSound *a;
     PlayingSound *c;
     u32 v;
@@ -430,7 +430,7 @@ void func_0210c238(SoundSource *p, u32 b) {
 void ReleaseSoundSource(SoundSource *p) {
     void *a;
 
-    func_0210c238(p, 0);
+    StopSoundsStartedWhileRequested(p, 0);
     for (a = p->mPlayingSounds.mHead; a != NULL; a = p->mPlayingSounds.mHead) {
         func_0210bc54(&p->mPlayingSounds, a);
     }

@@ -180,7 +180,7 @@ void func_0203a050(void) {
 
 u32 RunRaceScene(SceneNumbers *a) {
     SceneCallbacks b = gRaceSceneCallbacks;
-    func_02044940();
+    SetCurrentRaceFromNext();
     if (data_021759c0->mMode == 5) {
         b.mUnk_1c = 1;
     }
@@ -207,7 +207,7 @@ void InitMenuScene(void) {
 void ReleaseMenuScene(void) {
     func_020cb9b8();
     data_021759d0->mUnk_50 &= ~1;
-    func_0204465c();
+    ResetTimeAttackNextEntries();
 }
 
 void func_02039f50(void) {

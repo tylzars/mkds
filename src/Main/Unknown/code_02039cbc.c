@@ -65,7 +65,7 @@ void func_02039cbc(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         func_02047544(b, c, d);
     }
-    func_02045590();
+    ResetRaceSetup();
     func_0204b9ac();
     func_0205a0e4();
     func_020cef1c();

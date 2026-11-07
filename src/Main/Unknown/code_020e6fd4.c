@@ -135,7 +135,7 @@ void func_020e7760(void) {
     data_0217b8f8 = a;
     gJgKind = 4;
     gJgHighestLap = 1;
-    gJgFinalLap = func_02044618();
+    gJgFinalLap = GetLapCount();
     InitJgOffsets();
     gJgPoints[0].x = 0;
     gJgPoints[0].y = 0;

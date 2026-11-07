@@ -52,7 +52,7 @@ void func_0203c1a8(Vec3 *a, u32 b) {
     }
 }
 
-BOOL func_0203c174(void) {
+BOOL IsFramesSinceFinishPastWait(void) {
     return gRaceProgress->mFramesSinceFinish > data_021759c0->mUnk_038;
 }
 
@@ -104,7 +104,7 @@ u32 RunTitleScene(SceneNumbers *a) {
     return 0;
 }
 
-void func_0203bfec(s32 *a) {
+void GetClockDateOrDefault(s32 *a) {
     if (RTC_GetDate((RTCDate *) a) != 0) {
         a[0] = 5;
         a[1] = 1;
@@ -112,7 +112,7 @@ void func_0203bfec(s32 *a) {
     }
 }
 
-void func_0203bfc4(RTCTime *a) {
+void GetClockTimeOrZero(RTCTime *a) {
     if (RTC_GetTime(a) != 0) {
         a->mHour = 0;
         a->mMinute = 0;

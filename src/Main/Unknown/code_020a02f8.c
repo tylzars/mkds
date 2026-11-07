@@ -457,7 +457,7 @@ found:
         if (gStandings->mWinnerTeamId == v1) {
             func_0203e74c(v1);
         } else {
-            func_0203cd04(v1);
+            FinishRaceProgressKartWithEndKind4(v1);
         }
         gStandings->mEndTimer = 0;
     }

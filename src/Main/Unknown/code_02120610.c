@@ -23,7 +23,7 @@ void func_02121dec(u32 a) {
     gWiFiSession->mUnk_1e10[func_ov000_0219bb50()].mUnk_40 = a != 0 ? 1 : 2;
 }
 
-s32 func_02121d94(void) {
+s32 GetWiFiSessionCourseId(void) {
     if (func_02029930()->mCourseId == 0) {
         return gWiFiSession->mUnk_1e10[func_ov000_0219bb50()].mPickedCourseId;
     }
@@ -166,7 +166,7 @@ void func_021219cc(void) {
     }
 }
 
-BOOL func_02121990(Unk02121990 *a, u32 b, u32 c, u32 d) {
+BOOL IsMessageKindBelow10AndSizeFromToEqual(Unk02121990 *a, u32 b, u32 c, u32 d) {
     if (a->mKind < 10) {
         if (a->mSize == b) {
             if (a->mFromIndex == c) {
@@ -458,7 +458,7 @@ void RegisterKartKeysAndStart(void) {
     gWiFiSession->mStartStatus = 1;
 }
 
-BOOL func_02120d14(void) {
+BOOL IsKartKeysStartStatus3(void) {
     s32 v;
 
     v = gWiFiSession->mStartStatus;

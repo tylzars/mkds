@@ -643,7 +643,7 @@ void func_020bcb74(void) {
     data_0217b3d4 = HeapAlloc(GetHeap(func_020364e8()), 0x14);
     data_0217b3d4->mUnk_00 = 0;
     data_0217b3d4->mUnk_04 = 0;
-    data_0217b3d4->mUnk_08 = (u16) (func_02044618() - 1);
+    data_0217b3d4->mUnk_08 = (u16) (GetLapCount() - 1);
     data_0217b3d4->mUnk_0c = 0;
     data_0217b3d4->mUnk_10 = 1;
 }

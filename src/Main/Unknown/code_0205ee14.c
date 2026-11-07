@@ -248,7 +248,7 @@ void func_0205f700(void) {
     if (gRaceProgress->mRaceDone == 0) {
         return;
     }
-    func_0203bfec(v2);
+    GetClockDateOrDefault(v2);
     a = GetKartRank((u16) data_021759c0->mEntryIndex);
     if (data_021759c0->mUseTeams != 0) {
         c = data_021759c0->mCurrentEntries[(u16) data_021759c0->mEntryIndex].mPlayer.mTeamIndex;
@@ -332,7 +332,7 @@ void func_0205f498(void) {
     if (IsWinnerDecidedAndEndReached() == 0) {
         return;
     }
-    func_0203bfec(v2);
+    GetClockDateOrDefault(v2);
     a = data_0217aa08->mUnk_00->mUnk_34[2];
     b = data_0217aa08->mUnk_00->mUnk_34[3];
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
@@ -399,7 +399,7 @@ void func_0205f218(void) {
     if (IsWinnerDecidedAndEndReached() == 0) {
         return;
     }
-    func_0203bfec(v2);
+    GetClockDateOrDefault(v2);
     GetKartRank((u16) data_021759c0->mEntryIndex);
     a = data_0217aa08->mUnk_00->mUnk_34[2];
     b = data_0217aa08->mUnk_00->mUnk_34[3];
@@ -482,7 +482,7 @@ void func_0205ef70(void) {
     if (gRaceProgress->mUnk_000[(u16) data_021759c0->mEntryIndex].mStatus == 4) {
         return;
     }
-    func_0203bfec(v1);
+    GetClockDateOrDefault(v1);
     c = func_0205d4e8((u16) data_021759c0->mEntryIndex);
     h = func_0205ef70_inline(data_021759c0->mEntryIndex);
     m = gWiFiSession->mKartCountCopy - 1;

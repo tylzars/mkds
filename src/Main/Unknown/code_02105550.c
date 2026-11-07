@@ -848,7 +848,7 @@ void func_02107010(void) {
         }
         if (data_021759c0->mMode != MODE_BATTLE) {
             func_02110534(gCourseMap->mUnk_104);
-            data_0217c814.mUnk_14 = func_02044618();
+            data_0217c814.mUnk_14 = GetLapCount();
         }
     } else {
         if (GetCurrentSceneNumber() == 2) {

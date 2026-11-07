@@ -28,21 +28,21 @@
 
 #pragma opt_rebuildconditionals off
 
-Unk0205ec14 *func_0205eda0(void *a) {
-    Unk0205ec14 *p = HeapAlloc(a, 0xb04);
+EmblemBlock *CreateEmblemBlock(void *a) {
+    EmblemBlock *p = HeapAlloc(a, 0xb04);
     if (p != NULL) {
-        p->mUnk_00 = -1;
+        p->mBlockIndex = -1;
     }
     return p;
 }
 
-BOOL func_0205eca4(Unk0205ec14 *a, u8 b, Unk021141c8 *c) {
+BOOL CopyEmblemFromBlock(EmblemBlock *a, u8 b, Unk021141c8 *c) {
     Unk0217aa08_20_04 e;
     u8 d;
     u8 m;
     d = b / 5;
     m = b % 5;
-    if (d != a->mUnk_00) {
+    if (d != a->mBlockIndex) {
         return FALSE;
     }
     MI_CpuCopy8(&data_0217aa08->mUnk_20->mUnk_04[b], &e, 0x24);
@@ -56,20 +56,20 @@ BOOL func_0205eca4(Unk0205ec14 *a, u8 b, Unk021141c8 *c) {
     return TRUE;
 }
 
-void func_0205ec14(Unk0205ec14 *a, u8 b) {
+void SetupEmblemBlock(EmblemBlock *a, u8 b) {
     u8 c = b / 5;
     if (func_0205743c(c, &data_0217aa08->mUnk_00->mUnk_2c[2], 2) == 0) {
-        a->mUnk_00 = -1;
+        a->mBlockIndex = -1;
         return;
     }
-    if (c == a->mUnk_00) {
+    if (c == a->mBlockIndex) {
         return;
     }
     func_020576b8(&a->mUnk_04, c);
-    a->mUnk_00 = c;
+    a->mBlockIndex = c;
 }
 
-void func_0205e900(void) {
+void CopyOtherPlayerEmblemsToBlocks(void) {
     u8 i;
     u16 j;
     Unk0217aa00_45c *e;
@@ -150,7 +150,7 @@ void func_0205e900(void) {
     func_02057504();
 }
 
-void func_0205e67c(void) {
+void CopyWiFiSessionOtherPlayerEmblemsToBlocks(void) {
     u8 i;
     u16 j;
     Unk0217aa00_45c *e;
@@ -239,7 +239,7 @@ void func_0205e5c4(s32 a) {
         if (c == FALSE) {
             return;
         }
-        f = func_0205e900;
+        f = CopyOtherPlayerEmblemsToBlocks;
     } else {
         d = 0;
         if (gWiFiSession != NULL) {
@@ -250,7 +250,7 @@ void func_0205e5c4(s32 a) {
         if (d == 0) {
             return;
         }
-        f = func_0205e67c;
+        f = CopyWiFiSessionOtherPlayerEmblemsToBlocks;
     }
     func_02057514();
     func_02057df0(f);
@@ -272,7 +272,7 @@ static inline u8 func_0205e548_inline(void *a) {
     return n;
 }
 
-u8 func_0205e548(void) {
+u8 CountEmblemEntries(void) {
     return func_0205e548_inline(0);
 }
 

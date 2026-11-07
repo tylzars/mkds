@@ -5,9 +5,9 @@
 #include "Main/Unknown/unk_0217c000.h"
 
 void func_0210912c(void) {
-    func_02109468();
+    InitSoundFalloffs();
     func_0210d4a4((PlayingSound *) data_0217c91c, 0xc);
-    func_0210d040(func_0210920c);
-    func_0210d030(func_02109184);
+    func_0210d040(ComputeSoundPan);
+    func_0210d030(ComputeSoundDistanceAndCameraForwardAndSide);
     func_0210d020(ComputeSoundVolume);
 }

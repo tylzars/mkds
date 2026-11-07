@@ -606,7 +606,7 @@ void func_02069068(Kart *p) {
         func_02080f44(p);
     }
     func_02081000(p);
-    func_0210a53c(p);
+    StopKartSoundWhileRequested(p);
     if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
         StartSound(&p->mSoundSource, 0xa4, 0x7f, 0);
     }

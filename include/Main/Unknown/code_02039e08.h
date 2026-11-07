@@ -19,13 +19,13 @@ void UpdateMenuScene(void);
 void func_02039f50(void);
 // Slot mRelease: releases the current screen (func_020cb9b8, clears data_0217b43c), clears bit 0 of
 // data_021759d0->mUnk_50 and, in mode 1, resets the CPU entries 1..7 of mNextEntries
-// (func_0204465c).
+// (ResetTimeAttackNextEntries).
 void ReleaseMenuScene(void);
 // Wrapper of func_020cbb10, which allocates data_0217b43c and loads the single_play_select_mode
 // files.
 void InitMenuScene(void);
 // Scene function of gSceneFuncs[2] (scene 'Race' in gSceneNames): copies the callbacks and calls
-// RunScene. Returns 0. First calls func_02044940 and func_02043f28(1), then patches the copy: mode
+// RunScene. Returns 0. First calls SetCurrentRaceFromNext and func_02043f28(1), then patches the copy: mode
 // 5 sets flag 0x1c, kinds 5 / 6 set the fade lengths.
 u32 RunRaceScene(SceneNumbers *a);
 void func_0203a050(void);

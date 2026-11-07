@@ -771,7 +771,7 @@ void func_020af66c(void) {
     }
     v = data_021759c0->mMode;
     if ((v == MODE_BATTLE        ? gRaceProgress->mRaceDone
-         : v == MODE_MISSION_RUN ? func_0203c174()
+         : v == MODE_MISSION_RUN ? IsFramesSinceFinishPastWait()
                                  : (IsKartEnded(func_020b4d9c()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
         func_020bab54();
         func_020bc958();

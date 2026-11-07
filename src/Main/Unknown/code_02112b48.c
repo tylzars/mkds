@@ -95,7 +95,7 @@ void func_021144c0(void *a) {
     *(s32 *) &data_0217d34c = v1;
     v2 = HeapAlloc(a, 0x78);
     data_0217d34c->mUnk_04 = v2;
-    v2 = func_0205eda0(a);
+    v2 = CreateEmblemBlock(a);
     data_0217d34c->mUnk_08 = v2;
     v2 = FindSceneFile(gEmblem2BinName);
     data_0217d34c->mUnk_0c = v2;
@@ -217,11 +217,11 @@ s32 func_02114260(u16 a) {
 void func_021141c8(u16 a, Unk021141c8 *b, void *c) {
     u8 d;
 
-    func_0205ec14(data_0217d34c->mUnk_08, data_0217d34c->mUnk_04[a].mUnk_00);
+    SetupEmblemBlock(data_0217d34c->mUnk_08, data_0217d34c->mUnk_04[a].mUnk_00);
     d = data_0217aa08->mUnk_28;
     do {
     } while (d == 0 ? (data_021759d4->mUnk_0c != 0 ? data_021759d4->mUnk_10 : 0) : 1);
-    if (!func_0205eca4(data_0217d34c->mUnk_08, data_0217d34c->mUnk_04[a].mUnk_00, b) || b->mUnk_200 == 0) {
+    if (!CopyEmblemFromBlock(data_0217d34c->mUnk_08, data_0217d34c->mUnk_04[a].mUnk_00, b) || b->mUnk_200 == 0) {
         b->mUnk_200 = 1;
         MIi_CpuCopyFast(data_0217d34c->mUnk_0c, b, 0x200);
     }

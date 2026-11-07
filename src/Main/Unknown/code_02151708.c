@@ -56,7 +56,7 @@ u32 WriteFlaggedNvramEntries(int a, int *b, void *c) {
     return 0;
 }
 
-u32 func_02151718(int a) {
+u32 WriteNvramEntriesWithCrc16(int a) {
     int v1;
     int v2;
     int v3;

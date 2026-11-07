@@ -111,7 +111,7 @@ void func_0202b2bc(void) {
 
     p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
     n = p->mUnk_0c->mUnk_06;
-    a = func_02121d94();
+    a = GetWiFiSessionCourseId();
     h = GetBmgEntry(gWiFiVSCourseSelect->mCommonMessages, func_02025d8c(a));
     for (i = 0; i < 4; i++) {
         p->mUnk_18[data_usa_021539f4[i].mUnk_06].mUnk_00 = 0;

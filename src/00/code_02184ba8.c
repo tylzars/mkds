@@ -90,7 +90,7 @@ void LocateAndUploadWiFiAikotoba(void) {
 
 u32 func_ov000_02185184(void) {
     u32 v1;
-    v1 = func_0205e548();
+    v1 = CountEmblemEntries();
     if (60 <= v1) {
         return 1;
     }

@@ -13,7 +13,7 @@ typedef struct Unk020565e4 {
     /* 03 */ u8 mUnk_03;
 } Unk020565e4;
 
-// Values of Unk021759c0_70.mKind that func_02045590 stores (entry 0 gets KIND_0, the others KIND_1).
+// Values of Unk021759c0_70.mKind that ResetRaceSetup stores (entry 0 gets KIND_0, the others KIND_1).
 typedef enum { UNK_021759C0_70_KIND_0, UNK_021759C0_70_KIND_1 } Unk021759c0_70_Kind;
 
 // The 0x28 bytes from 0x08 of each KartEntry entry (code keeps pointers to them).

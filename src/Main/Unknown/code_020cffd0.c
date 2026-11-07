@@ -123,7 +123,7 @@ void func_020d0a18(void) {
     }
     GetKartFinishTime(func_020b4d9c(), &a, &b, &c);
     SplitTimeDigits(a, b, c, &data_0217b49c->mUnk_00);
-    for (i = 0; i < func_02044618(); i++) {
+    for (i = 0; i < GetLapCount(); i++) {
         GetKartLapTime(func_020b4d9c(), i + 1, &a, &b, &c);
         SplitTimeDigits(a, b, c, &data_0217b49c->mUnk_1c[i]);
     }
@@ -190,7 +190,7 @@ void func_020d06b8(Unk020d029c *a) {
     q[2][0] = (t[1] + 0x99) << 12;
     q[2][1] = 0x28000;
     a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, NULL, q[2], 0, 1);
-    for (i = 0; i < func_02044618(); i++) {
+    for (i = 0; i < GetLapCount(); i++) {
         j = 0;
         if (func_020c70ec() != 0 && i + 1 == func_020c70d8()) {
             j = data_0217b49c->mUnk_ac;

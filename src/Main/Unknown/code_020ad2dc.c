@@ -208,7 +208,7 @@ void CreateTitleScene(void) {
     func_020ad848(0);
     func_020ad834(0);
     func_020ad820(0);
-    func_02045590();
+    ResetRaceSetup();
 }
 
 #pragma thumb off

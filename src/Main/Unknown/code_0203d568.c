@@ -151,7 +151,7 @@ void func_0203e550(RaceProgressKart *a) {
     if ((a->mFlags & 1) != 0) {
         func_02106ab8();
     }
-    func_0203f334(a, a->mLap > func_02044618());
+    func_0203f334(a, a->mLap > GetLapCount());
     a->mHighestLap = a->mLap;
     if ((a->mFlags & 1) != 0) {
         func_020b1a34();
@@ -171,10 +171,10 @@ void func_0203e550(RaceProgressKart *a) {
     if (f == FALSE) {
         return;
     }
-    if (a->mHighestLap <= func_02044618()) {
+    if (a->mHighestLap <= GetLapCount()) {
         return;
     }
-    a->mHighestLap = func_02044618();
+    a->mHighestLap = GetLapCount();
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
         s = &data_021759c0->mUnk_28_view;
         g = TRUE;
@@ -213,7 +213,7 @@ void func_0203e4c4(u32 a, u32 b) {
     e->mUnk_3c = (e->mUnk_3c & ~0x300) | ((c & 3) << 8);
     if (gRaceProgress->mUnk_000[0].mFinishedCount + gRaceProgress->mUnk_000[0].mRemovedCount >=
         data_021759c0->mKartCount) {
-        func_0203d21c();
+        FinishRaceProgress();
     }
 }
 

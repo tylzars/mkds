@@ -44,7 +44,7 @@ static inline BOOL func_02045084_inline2(void) {
     return FALSE;
 }
 
-void func_02045590(void) {
+void ResetRaceSetup(void) {
     u16 i;
     Unk020565e4 *e;
 
@@ -112,10 +112,10 @@ void func_02045590(void) {
     }
     func_0205db50();
     func_0205d07c();
-    func_02044940();
+    SetCurrentRaceFromNext();
 }
 
-void func_02045084(s32 a) {
+void SetCurrentEntryPlayer(s32 a) {
     Unk0217aa08 *p;
     Unk0217aa00 *q;
     void **b0;
@@ -309,7 +309,7 @@ BOOL func_02044bf8(s32 a, s32 b) {
     return FALSE;
 }
 
-void func_02044940(void) {
+void SetCurrentRaceFromNext(void) {
     s16 h;
     Unk0217aa08_14 *e;
     Unk0217aa00 *q;
@@ -403,7 +403,7 @@ void func_02044940(void) {
     func_02046968(r);
     func_02044fc0();
     for (n = 0; n < 8; n++) {
-        func_02045084(n);
+        SetCurrentEntryPlayer(n);
     }
 }
 
@@ -476,7 +476,7 @@ void func_020446e0(void) {
     }
 }
 
-void func_0204465c(void) {
+void ResetTimeAttackNextEntries(void) {
     u16 i;
 
     if (data_021759c0->mNextHeader.mMode != MODE_TIME_ATTACK) {
@@ -491,7 +491,8 @@ void func_0204465c(void) {
     }
 }
 
-u16 func_02044618(void) {
+// In battle there is one lap.
+u16 GetLapCount(void) {
     Unk021759c0 *p;
     u16 r;
 

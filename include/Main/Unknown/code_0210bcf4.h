@@ -63,7 +63,7 @@ typedef struct Unk0210bcf4_20 {
     /* 0c */ s32 mUnk_0c;
 } Unk0210bcf4_20;
 
-// Held on the stack by func_0210bcf4 and func_0210ca4c and passed to the three functions
+// Held on the stack by func_0210bcf4 and SetPlayingSoundsVolumePanAndPriority and passed to the three functions
 // data_0217d018, data_0217d014 and data_0217d01c point at.
 typedef struct Unk0210bcf4 {
     /* 00 */ SoundSource *mUnk_00;

@@ -24,7 +24,7 @@ static inline s32 func_0203ca38_inline(u32 i) {
     return GetKartStandingRankIndex(i) + 1;
 }
 
-void func_0203d21c(void) {
+void FinishRaceProgress(void) {
     RaceProgress *p;
     s32 v = -1;
     Unk021759c0 *d = data_021759c0;
@@ -176,7 +176,8 @@ static inline u16 func_0203cd14_inline(s32 v) {
     return (u16) v;
 }
 
-BOOL func_0203cfb4(void) {
+// TRUE once no kart is still racing in battle, until the race is marked done.
+BOOL IsBattleEveryKartEndedAndRaceNotDone(void) {
     u32 i;
     s32 c;
     BOOL r = TRUE;
@@ -288,7 +289,7 @@ void AdvanceMissionRunEnd(void) {
     FinishRaceProgressKartWithEndKind((u16) data_021759c0->mEntryIndex, k);
 }
 
-void func_0203cd04(u16 a) {
+void FinishRaceProgressKartWithEndKind4(u16 a) {
     FinishRaceProgressKartWithEndKind(a, 4);
 }
 
@@ -351,8 +352,8 @@ void UpdateRaceProgress(void) {
             gRaceProgress->mKartAtRank[i] = -1;
         }
         func_0203d078();
-        if (func_0203cfb4() != 0) {
-            func_0203d21c();
+        if (IsBattleEveryKartEndedAndRaceNotDone() != 0) {
+            FinishRaceProgress();
         }
     }
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
@@ -381,5 +382,5 @@ void UpdateRaceProgress(void) {
     if (gRaceProgress->mRaceDone != 0) {
         return;
     }
-    func_0203d21c();
+    FinishRaceProgress();
 }

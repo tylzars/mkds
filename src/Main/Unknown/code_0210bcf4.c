@@ -35,7 +35,7 @@ void func_0210c134(SoundSource *a, u32 b) {
 void func_0210c0bc(SoundSource *p) {
     void *a;
 
-    func_0210c238(p, 0);
+    StopSoundsStartedWhileRequested(p, 0);
     for (a = p->mPlayingSounds.mHead; a != NULL; a = p->mPlayingSounds.mHead) {
         func_0210bc54(&p->mPlayingSounds, (u8 *) a);
     }

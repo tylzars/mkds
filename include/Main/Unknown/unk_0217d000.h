@@ -450,7 +450,7 @@ typedef struct Unk0217d34c {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u8 mUnk_02[2];
     /* 04 */ Unk0217d34c_04 *mUnk_04;
-    /* 08 */ struct Unk0205ec14 *mUnk_08;
+    /* 08 */ struct EmblemBlock *mUnk_08;
     /* 0c */ void *mUnk_0c;
 } Unk0217d34c;
 
