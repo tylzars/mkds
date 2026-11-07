@@ -230,7 +230,7 @@ void func_02043d10(void *a) {
     s32 i;
 
     InitTouchPanelAndSetCalibration();
-    func_02047104(a);
+    InitTouchMicInput(a);
     for (i = 0; i <= 1; i++) {
         func_0204aa04((u32) &data_02175628[i].mUnk_28, (u32) a);
     }
@@ -343,7 +343,7 @@ void func_02043648(void) {
     y = func_02046c10();
     a = x;
     b = y;
-    k = data_021759c4->mUnk_30_3;
+    k = gTouchMicInput->mUnk_30_3;
     if (func_02043648_inline(data_0217aa00) != 0) {
         a = func_0204ffe8(func_02050064(data_02175624->mUnk_08));
         b = *(u16 *) &data_0217aa00->mUnk_15bc_view.mUnk_0c[func_02050064(data_02175624->mUnk_08)].mUnk_00[2];

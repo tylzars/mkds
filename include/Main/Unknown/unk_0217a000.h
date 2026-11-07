@@ -1549,7 +1549,7 @@ extern Unk0217aed0 *data_0217aed0;
 extern const char *gKartModelPathPrefix;
 extern char gKartModelPathBuffer[];
 
-// Entries of the 0x400-byte buffer behind member 0x04 of Unk0217aa04.
+// Entries of the 0x400-byte buffer behind member 0x04 of DispCap.
 typedef struct Unk0217aa04_04 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ union {
@@ -1558,17 +1558,17 @@ typedef struct Unk0217aa04_04 {
     };
 } Unk0217aa04_04;
 
-// Object behind data_0217aa04.
-typedef struct Unk0217aa04 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ Unk0217aa04_04 *mUnk_04;
-    /* 08 */ u16 mUnk_08;
-    /* 0a */ u8 mUnk_0a;
+// Object behind gDispCap.
+typedef struct DispCap {
+    /* 00 */ s32 mMode;
+    /* 04 */ Unk0217aa04_04 *mOamBuffer;
+    /* 08 */ u16 mFlags;
+    /* 0a */ u8 mBlendMin;
     /* 0b */ u8 mUnk_0b[0x1];
-    /* 0c */ s32 mUnk_0c;
-} Unk0217aa04;
+    /* 0c */ s32 mBlendFactor;
+} DispCap;
 
-extern Unk0217aa04 *data_0217aa04;
+extern DispCap *gDispCap;
 // Object behind data_0217aa20, 0x10 bytes.
 typedef struct Unk0217aa20 {
     /* 00 */ s32 mUnk_00;

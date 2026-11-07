@@ -1074,7 +1074,7 @@ void ResetKartMotionState(Kart *p, s32 b) {
         if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
             ResetCameraHalfFovAngleGoal();
         }
-        func_02055c5c();
+        StopDispCapBlend();
     }
     if (p->mUnk_4c & 0x2000) {
         p->mUnk_4c &= ~0x2000;
@@ -1295,7 +1295,7 @@ void AdvanceKartToKeyedPlacement(Kart *p) {
     d = func_020708a4_inline(&c, &c);
 
     if (Vec3DotUnrounded(&c, &e) <= 0) {
-        func_02055c5c();
+        StopDispCapBlend();
         p->mUnk_48 &= ~0x10000;
         AdvanceKartQuaternionBlendFactor(p, &p->mUnk_244);
         p->mUnk_48 &= ~0x40000;

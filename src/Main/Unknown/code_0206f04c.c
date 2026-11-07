@@ -121,7 +121,7 @@ void func_0206ff50(Kart *p, u32 a) {
         if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
             ResetCameraHalfFovAngleGoal();
         }
-        func_02055c5c();
+        StopDispCapBlend();
     }
     if (p->mUnk_4c & 0x10000000) {
         p->mUnk_4c &= ~0x10000000;
@@ -517,7 +517,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
                     if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
                         ResetCameraHalfFovAngleGoal();
                     }
-                    func_02055c5c();
+                    StopDispCapBlend();
                 }
             }
             if (p->mVelocityLength > 0x2000 && c != 0x1000) {

@@ -124,7 +124,7 @@ void StepDataSharing(void) {
             p->mUnk_06_0 &= ~1;
         }
     }
-    p->mUnk_06_7 = data_021759c4->mUnk_30_3;
+    p->mUnk_06_7 = gTouchMicInput->mUnk_30_3;
     p->mUnk_02 = func_02046c10();
     r = WM_StepDataSharing(data_0217aa00->mUnk_15bc, p, data_0217aa00->mUnk_15c0);
     if (r == 0) {

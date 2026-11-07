@@ -38,7 +38,7 @@ void func_020486d4(void *a) {
     }
     data_021759c8->mUnk_a70 = NULL;
     data_021759c8->mUnk_a78 = NULL;
-    data_021759c8->mUnk_a7c = NULL;
+    data_021759c8->mCourseBufferHeap = NULL;
     FS_InitFile(&data_021759c8->mUnk_968);
 }
 

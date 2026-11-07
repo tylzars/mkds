@@ -182,9 +182,9 @@ typedef struct Unk0217566a {
 
 extern Unk0217566a data_0217566a[];
 // Entries of 0x0c bytes from 0x9b0 of Unk021759c8.
-typedef struct Unk021759c8_9b0 {
-    /* 00 */ void *mUnk_00;
-    /* 04 */ void *mUnk_04;
+typedef struct ArchiveBuffer {
+    /* 00 */ void *mHeap;
+    /* 04 */ void *mData;
     /* 08 */ union {
         s32 mUnk_08;
         struct {
@@ -194,7 +194,7 @@ typedef struct Unk021759c8_9b0 {
             u32 mUnk_08_31 : 1;
         };
     };
-} Unk021759c8_9b0;
+} ArchiveBuffer;
 
 // 0x70-byte entries from the start of Unk021759c8; mLoaded is nonzero while its archive is loaded.
 typedef struct ArchiveSlot {
@@ -255,11 +255,11 @@ typedef struct Unk021759c8 {
     /* 8c4 */ void *mUnk_8c4;
     /* 8c8 */ Unk021759c8_8c8 mUnk_8c8;
     /* 968 */ FSFile mUnk_968;
-    /* 9b0 */ Unk021759c8_9b0 mUnk_9b0[16];
+    /* 9b0 */ ArchiveBuffer mBuffers[16];
     /* a70 */ void *mUnk_a70;
     /* a74 */ void *mUnk_a74;
     /* a78 */ NNSiFndHeapHead *mUnk_a78;
-    /* a7c */ NNSiFndHeapHead *mUnk_a7c;
+    /* a7c */ NNSiFndHeapHead *mCourseBufferHeap;
     /* a80 */ NNSiFndHeapHead *mUnk_a80;
 } Unk021759c8;
 

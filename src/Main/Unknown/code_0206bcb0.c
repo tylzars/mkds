@@ -29,7 +29,7 @@ void func_0206ceb4(s32 *out, Kart *p) {
         if (!(p->mUnk_4c & 0x10000000)) {
             ResetCameraHalfFovAngleGoal();
         }
-        func_02055c5c();
+        StopDispCapBlend();
         return;
     }
     *out = 0x1000;
@@ -461,7 +461,7 @@ void StartKartState(Kart *p, KartState mode) {
         if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
             ResetCameraHalfFovAngleGoal();
         }
-        func_02055c5c();
+        StopDispCapBlend();
     }
     func_02068a64(p, 1, 0);
     p->mState = mode;

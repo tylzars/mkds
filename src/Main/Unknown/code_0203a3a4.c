@@ -102,29 +102,29 @@ void func_0203ad58(void *a) {
             SetBg0Record(&b->mSubBg0, 0, 0, 0, 0, 0xd, 0, 0);
             SetBg1Record(&b->mSubBg0, 1, 0, 0, 0, 0xe, 0, 0);
             SetBg2RecordParams(&b->mSubBg0, 2, 0, 0, 0, 0xf, 0);
-            func_02056114(0);
+            SetDispCapMode(0);
             break;
         case RACE_KIND_DEMO:
             SetBg2RecordParams(&b->mMainBg0, 1, 0, 0, 0, 7, 0);
             SetBg0Record(&b->mSubBg0, 0, 0, 0, 0, 0xd, 0, 0);
             SetBg1Record(&b->mSubBg0, 1, 0, 0, 0, 0xe, 0, 0);
             SetBg2RecordParams(&b->mSubBg0, 2, 0, 0, 0, 0xf, 0);
-            func_02056114(0);
+            SetDispCapMode(0);
             break;
         case RACE_KIND_START_GP:
         case RACE_KIND_AWARD:
             SetBg2RecordParams(&b->mMainBg0, 1, 0, 0, 0, 7, 0);
             SetBg2RecordMode5(&b->mSubBg0, 0, 0, 1, 0, 0);
             func_02038c94(b, 0x20);
-            func_02056114(1);
+            SetDispCapMode(1);
             break;
         case 4:
             SetBg2RecordParams(&b->mMainBg0, 1, 0, 0, 0, 7, 0);
-            func_02056114(0);
+            SetDispCapMode(0);
             break;
     }
     InitDisplayFromSettings(b);
-    func_02055f68();
+    SetupDispCap();
     reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 2;
 }
 
@@ -143,7 +143,7 @@ void InitRaceScene(void) {
     }
     Init3dEngine();
     SetHeapGroupId(7);
-    func_02056158(p);
+    InitDispCap(p);
     func_0203ad58(p);
     func_020431e4();
     SetHeapGroupId(9);
@@ -233,13 +233,13 @@ void func_0203aacc(void) {
     ClearChoisesSPointer();
     func_02062004();
     func_020af86c();
-    func_02056144();
+    ClearDispCapPointer();
     func_02053e54();
     FreeOverlayExpHeap();
 }
 
 void func_0203aaa8(void) {
-    func_02055cbc(func_020b2e58());
+    AdvanceDispCap(func_020b2e58());
     func_02062000();
     func_020b0b8c();
 }

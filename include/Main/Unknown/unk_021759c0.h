@@ -244,10 +244,10 @@ typedef struct RaceSetup {
 
 extern RaceSetup *gRaceSetup;
 
-// Object behind data_021759c4; the members are the ones the code reads.
-typedef struct Unk021759c4 {
-    /* 00 */ TPData mUnk_00[5];
-    /* 28 */ TPData mUnk_28;
+// Object behind gTouchMicInput; the members are the ones the code reads.
+typedef struct TouchMicInput {
+    /* 00 */ TPData mAutoSamples[5];
+    /* 28 */ TPData mCalibratedPoint;
     /* 30 */ union {
         u32 mUnk_30;
         struct {
@@ -258,7 +258,7 @@ typedef struct Unk021759c4 {
         };
     };
     /* 34 */ u8 mUnk_34[0x8];
-    /* 3c */ Unk0210f090 *mUnk_3c;
-} Unk021759c4;
+    /* 3c */ Unk0210f090 *mMicBuffer;
+} TouchMicInput;
 
-extern Unk021759c4 *data_021759c4;
+extern TouchMicInput *gTouchMicInput;

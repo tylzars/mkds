@@ -99,7 +99,7 @@ void StartKartState6(Kart *p) {
         if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
             ResetCameraHalfFovAngleGoal();
         }
-        func_02055c5c();
+        StopDispCapBlend();
     }
     if (p->mUnk_4c & 0x2000) {
         p->mUnk_4c &= ~0x2000;

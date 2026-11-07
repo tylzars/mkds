@@ -205,7 +205,7 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
     OS_RestoreInterrupts(t);
     data_021759cc->mUnk_10c = 0;
     SetHeapGroupId(0);
-    func_02047ba0(a->mScene);
+    LoadArchiveSlotsForScene(a->mScene);
     SetHeapGroupId(9);
     GetHeap(func_020364e8());
     CallQueueInit(HeapAlloc(GetHeap(func_020364e8()), 0x800), 0x80);

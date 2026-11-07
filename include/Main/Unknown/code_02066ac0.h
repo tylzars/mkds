@@ -103,13 +103,13 @@ s32 CollideKartWithMapObjectResponse11(Kart *a, s32 *b, s32 c);
 // Collision response 14 of data_0217ac18 (indexed by the value func_020d6be0 returns for the kart and the map object):
 // stores 0xc through the second parameter, clears bits of mUnk_48 with the mask 0xdfe77fdf, zeroes mUnk_238, the
 // mUnk_00 member of mUnk_538 and mUnk_23c, for the selected kart calls ResetCameraHalfFovAngleGoal unless bit
-// 0x10000000 of mUnk_4c or bit 0x4000000 of mUnk_48 is set and then runs func_02055c5c, then runs func_0206bcb0 with 1
-// and, when that succeeds, func_02081224 with the kart index. Returns 5.
+// 0x10000000 of mUnk_4c or bit 0x4000000 of mUnk_48 is set and then runs StopDispCapBlend, then runs func_0206bcb0 with
+// 1 and, when that succeeds, func_02081224 with the kart index. Returns 5.
 s32 CollideKartWithMapObjectResponse14(Kart *a, s32 *b);
 // Collision response 13 of data_0217ac18 (indexed by the value func_020d6be0 returns for the kart and the map object):
 // stores 0xc through the second parameter, clears bits of mUnk_48 with the mask 0xdfe77fdf, zeroes mUnk_238, the
 // mUnk_00 member of mUnk_538 and mUnk_23c, for the selected kart calls ResetCameraHalfFovAngleGoal unless bit
-// 0x10000000 of mUnk_4c or bit 0x4000000 of mUnk_48 is set and then runs func_02055c5c, and sets mForwardSpeed to 0.
+// 0x10000000 of mUnk_4c or bit 0x4000000 of mUnk_48 is set and then runs StopDispCapBlend, and sets mForwardSpeed to 0.
 // Returns 5.
 s32 CollideKartWithMapObjectResponse13(Kart *a, s32 *b);
 // Declared here until the code that defines them is decompiled.

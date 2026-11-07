@@ -155,7 +155,7 @@ s32 func_020595e8(s32 a, void *b, void *c) {
                         func_020473e4();
                         break;
                     case 1:
-                        func_020472e4(b, c);
+                        RequestRaceArchives(b, c);
                         break;
                     case 2:
                         RequestResultDLArchives();

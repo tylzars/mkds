@@ -68,7 +68,7 @@ void func_0208b934(void *a) {
     SPLManager_LoadResources(data_0217b044, g);
     SPLManager_UploadTextures(data_0217b044);
     SPLManager_UploadPalettes(data_0217b044);
-    func_02047220(g, *OFFSET_PTR(u32, g, 0x18));
+    ResizeMainEffectArchiveBlock(g, *OFFSET_PTR(u32, g, 0x18));
     data_0217b04c = SPLManager_New((void *(*) (u32)) func_0208bd04, 0x1e, 0x64, 3, 0xe, 0x1e);
     h = FindMainRaceOrMainEffectFile(data_usa_02166148);
     SPLManager_LoadResources(data_0217b04c, h);

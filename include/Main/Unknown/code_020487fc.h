@@ -19,7 +19,7 @@ typedef struct SceneNumbers {
     /* 04 */ s16 mNextScene;
 } SceneNumbers;
 
-// Runs one scene to its end: loads the scene's archives from a->mScene (func_02047ba0), generic
+// Runs one scene to its end: loads the scene's archives from a->mScene (LoadArchiveSlotsForScene), generic
 // set-up, mInit once, a wait loop without slots, the update loop (mUpdate, then slot 0x0c, every
 // frame) until a slot sets a->mNextScene or func_020435c4 is non-zero, the fade-out loop, a wait
 // loop, mRelease once, generic tear-down.

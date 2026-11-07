@@ -59,7 +59,7 @@ s32 CollideKartWithMapObjectResponse13(Kart *a, s32 *b) {
         if ((a->mUnk_4c & 0x10000000) == 0 && (a->mUnk_48 & 0x4000000) == 0) {
             ResetCameraHalfFovAngleGoal();
         }
-        func_02055c5c();
+        StopDispCapBlend();
     }
     a->mForwardSpeed = 0;
     return 5;
@@ -75,7 +75,7 @@ s32 CollideKartWithMapObjectResponse14(Kart *a, s32 *b) {
         if ((a->mUnk_4c & 0x10000000) == 0 && (a->mUnk_48 & 0x4000000) == 0) {
             ResetCameraHalfFovAngleGoal();
         }
-        func_02055c5c();
+        StopDispCapBlend();
     }
     if (func_0206bcb0(a, 1, 0) != FALSE) {
         func_02081224(a->mIndex);

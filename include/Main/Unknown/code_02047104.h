@@ -10,29 +10,29 @@ void *FindMainRaceOrMainEffectFile(const char *path);
 void *FindArchiveFile(u32 archiveName, const char *path);
 
 // 0x18-byte entries.
-typedef struct Unk021543e0 {
-    /* 00 */ const char *mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s8 mUnk_08;
+typedef struct ArchiveSlotInfo {
+    /* 00 */ const char *mPath;
+    /* 04 */ s32 mNextSlot;
+    /* 08 */ s8 mBufferIndex;
     /* 09 */ u8 mUnk_09[0x3];
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
-} Unk021543e0;
+} ArchiveSlotInfo;
 
 // 8-byte entries of a string and a number.
-typedef struct Unk021541a8 {
-    /* 00 */ const char *mUnk_00;
+typedef struct SceneName {
+    /* 00 */ const char *mName;
     /* 04 */ s32 mUnk_04;
-} Unk021541a8;
+} SceneName;
 
 #include "Main/Unknown/unk_02175000.h"
 
 // The scene-name table, 16 rows indexed by scene number like gSceneFuncs: 0 'Title', 1 'Menu', 2 'Race', 3 'Emblem',
 // 4 'Menu', 5 'Test', 6 'WLMenu', 7 'Option', 8 'Record', 9 'Logo', 10 'Result', 11 'Nickname', 12 'WiFiMenu',
 // 13 'Ghost', 14 'Keyboard', 15 'Ending'.
-extern Unk021541a8 gSceneNames[];
-extern Unk021543e0 data_usa_021543e0[];
+extern SceneName gSceneNames[];
+extern ArchiveSlotInfo gArchiveSlotInfos[];
 extern const char data_usa_02165008[];
 extern const char data_usa_02165010[];
 extern const char data_usa_02165018[];
@@ -41,31 +41,31 @@ extern const char data_usa_02165028[];
 extern const char data_usa_02165030[];
 extern const char data_usa_02165038[];
 extern const char data_usa_02165040[];
-extern const char data_usa_02165058[];
+extern const char gStaffRollArchivePath[];
 extern const char data_usa_021650e0[];
 extern const char data_usa_021650e4[];
-extern const char data_usa_021650e8[];
+extern const char gResultLanguageArchivePathFormat[];
 extern const char data_usa_02165100[];
 extern const char data_usa_02165108[];
 extern const char data_usa_0216510c[];
-extern const char data_usa_02165110[];
+extern const char gResultArchivePathFormat[];
 extern const char data_usa_02165124[];
 
-void func_02047104(void *a);
+void InitTouchMicInput(void *a);
 void InitTouchPanelAndSetCalibration(void);
 void func_020471b0(void *a);
-void func_02047220(u8 *a, u32 b);
+void ResizeMainEffectArchiveBlock(u8 *a, u32 b);
 s32 func_02047250(void);
 void func_02047274(void);
 void RequestResultDLArchives(void);
-void func_020472e4(void *a, void *b);
+void RequestRaceArchives(void *a, void *b);
 void RequestMenuDLArchives(void);
 void func_020473e4(void);
-void func_02047468(const void *a, u32 b);
+void RequestArchiveLoadWithLanguage(const void *a, u32 b);
 void RequestArchiveLoad(const void *a, s32 b);
 void func_020474e4(void);
-void func_02047544(NNSiFndHeapHead *a, NNSiFndHeapHead *b, NNSiFndHeapHead *c);
-void func_02047634(NNSiFndHeapHead *a, s32 b, s32 c, u32 d, u32 e);
+void InitArchiveBuffers(NNSiFndHeapHead *a, NNSiFndHeapHead *b, NNSiFndHeapHead *c);
+void InitArchiveBuffer(NNSiFndHeapHead *a, s32 b, s32 c, u32 d, u32 e);
 void func_020476ac(void);
 void func_020476ec(void);
 void func_02047728(void);
@@ -74,16 +74,16 @@ void *func_02047950(const char *path);
 void *FindFileInLoadedArchives(const char *name);
 void SetHeapGroupId(u32 a);
 void ReleaseArchiveSlots(void);
-void func_02047ba0(s32 a);
+void LoadArchiveSlotsForScene(s32 a);
 void ReleaseArchiveSlot(int a);
 void LoadArchiveSlotData(void);
 void UncompressArchiveMemory(void);
 void UncompressArchiveFile(void);
 void LoadArchiveSlot(s32 a, const char *b, u32 *c, void *d, s32 e, s32 f, s32 g);
 void LoadArchiveSlotForScene(int a, int b);
-void func_02048284(const char *a, char *b);
-void func_020482ac(char *a, const char *b, int c);
-void func_020482f0(char *a, const char *b, int c);
+void BuildArchivePathWithLanguage(const char *a, char *b);
+void BuildSceneModeLanguageArchivePath(char *a, const char *b, int c);
+void BuildSceneModeArchivePath(char *a, const char *b, int c);
 void BuildStaffRollArchivePath(char *a);
-void func_02048350(char *a);
+void BuildResultArchivePathWithLanguage(char *a);
 void BuildResultArchivePath(char *a);
