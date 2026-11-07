@@ -130,7 +130,7 @@ void AdvanceRecordVSState2(void) {
         gRecordVS->mRecordVSSTable[x + data_0215c3bc[i]].mUnk_04 = v;
     }
     if (gRecordVS->mStateFrames >= 10) {
-        func_02113480();
+        RequestRecordVSState3();
     }
     if (gRecordVS->mStateFrames == 4) {
         gRecordVS->mRecordVSSTable[24].mUnk_00 = 1;
@@ -237,7 +237,7 @@ l1:
         if (gRecordVS->mRecordVSSTable[20].mUnk_00 == 0) {
             return;
         }
-        gRecordVS->mUnk_6c = 1;
+        gRecordVS->mPageDecrement = 1;
         gRecordVS->mOffsetTimers[0] = 6;
         gRecordVS->mUnk_88 = TRUE;
         RequestRecordVSState5();
@@ -252,7 +252,7 @@ l1:
         if (gRecordVS->mRecordVSSTable[21].mUnk_00 == 0) {
             return;
         }
-        gRecordVS->mUnk_6c = 0;
+        gRecordVS->mPageDecrement = 0;
         gRecordVS->mOffsetTimers[1] = 6;
         gRecordVS->mUnk_8c = TRUE;
         RequestRecordVSState5();
@@ -265,13 +265,13 @@ l1:
             return;
         }
         gRecordVS->mIndex = t;
-        func_021137a8(t);
+        ToggleRecordVSRowFlag(t);
         return;
     }
     if ((u32) b <= 4) {
         t = data_0215c44c[b];
         if (t == gRecordVS->mIndex) {
-            func_021137a8(t);
+            ToggleRecordVSRowFlag(t);
             return;
         }
         if (IsRecordVSRowFilled(t) == 0) {
@@ -287,7 +287,7 @@ l1:
         return;
     }
     if ((u16) (q->mUnk_00 & 1) != 0) {
-        func_021137a8(gRecordVS->mIndex);
+        ToggleRecordVSRowFlag(gRecordVS->mIndex);
         return;
     }
     if (GetNewOrRepeatBits(8, 0x40) != 0) {
@@ -310,7 +310,7 @@ void AdvanceRecordVSState5(void) {
     s16 v;
     c = 0;
     AdvanceRecordVSOffsetTimers();
-    switch (gRecordVS->mUnk_6c) {
+    switch (gRecordVS->mPageDecrement) {
         case 0:
             c = -256;
             break;
@@ -367,7 +367,7 @@ void AdvanceRecordVSState6(void) {
     s16 v;
     c = 0;
     AdvanceRecordVSOffsetTimers();
-    switch (gRecordVS->mUnk_6c) {
+    switch (gRecordVS->mPageDecrement) {
         case 0:
             c = 0x100;
             break;
@@ -494,7 +494,7 @@ void AdvanceRecordVSState9(void) {
     gRecordVS->mRecordVSSTable[26].mUnk_04 = v;
     gRecordVS->mRecordVSSTable[i + 5].mUnk_04 = v;
     if (gRecordVS->mStateFrames >= 10) {
-        func_02113298();
+        RequestRecordVSState10();
     }
 }
 
@@ -598,9 +598,9 @@ void AdvanceRecordVS(void) {
             AdvanceRecordVSState11();
             break;
     }
-    func_02113d84();
+    AdvanceRecordVSRowObjects();
     p = gRecordVS;
-    switch (p->mUnk_40) {
+    switch (p->mShowsFriendKey) {
         case 0:
             func_02124c30(p->mRecordVSMBncl, p->mRecordVSMNcer, p->mRecordVSMBnll, func_02111318(), p->mRecordVSMTable);
             break;
@@ -639,7 +639,7 @@ void func_02111adc(void) {
 }
 
 void func_02111ab4(void) {
-    Unk0217d344_18 v = {InitRecordVS, func_02112b48, AdvanceRecordVS, func_02111b40, func_02111adc};
+    Unk0217d344_18 v = {InitRecordVS, ReleaseRecordVS, AdvanceRecordVS, func_02111b40, func_02111adc};
     func_02111494(&v);
 }
 
@@ -787,8 +787,8 @@ void func_021115b0(void *a, s16 b) {
     v.mUnk_24 = 0;
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(a, &v);
-    func_021144c0(data_0217d344->mHeap);
-    func_021143f4();
+    CreateRecordList(data_0217d344->mHeap);
+    BuildRecordList();
     data_0217d344->mStateHeap = CreateExpHeapFromMaxFree(data_0217d344->mHeap);
     func_02111684();
     func_02111a98();
@@ -813,7 +813,7 @@ void func_021115b0(void *a, s16 b) {
 #pragma thumb on
 
 void func_02111584(void) {
-    func_021144b4();
+    ClearRecordListPointer();
     data_0217d344->mUnk_18.mUnk_04();
     func_02111a98();
     func_0212abd0();
@@ -834,7 +834,7 @@ void func_021114cc(void) {
         switch (data_0217d344->mUnk_0c) {
             case 0:
                 if (data_0217d344->mUnk_08 == 3) {
-                    func_021143f4();
+                    BuildRecordList();
                 }
                 RegisterRecordTopMenuCallbacks();
                 break;

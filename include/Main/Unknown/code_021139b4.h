@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-void func_02113d84(void);
+void AdvanceRecordVSRowObjects(void);
 void PrintRecordVSShownRecord(void);
 void RefreshRecordVSPage(void);

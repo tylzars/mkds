@@ -45,23 +45,25 @@
 
 #pragma thumb on
 
-u16 func_02114584(u16 a) {
+// Combines the entry's three bytes into one number to order entries by.
+u16 GetRecordSortKey(u16 a) {
     Unk02116a4c w;
 
     func_021142d4((u8) a, &w);
     return w.mUnk_00 * 0x1a0 + w.mUnk_01 * 32 + w.mUnk_02;
 }
 
-void func_02114504(s32 a, u16 b) {
+// Orders b entries from index a by descending key.
+void SortRecordRange(s32 a, u16 b) {
     s32 i;
     s32 j;
     s32 n;
     u16 p;
     s32 e;
-    Unk0217d34c_04 t;
+    RecordListEntry t;
     u32 m;
     u16 v;
-    Unk0217d34c_04 *q;
+    RecordListEntry *q;
 
     p = 0;
     n = a + b;
@@ -69,17 +71,17 @@ void func_02114504(s32 a, u16 b) {
     for (i = a; i < e; i++) {
         m = 0;
         for (j = i; j < n; j++) {
-            v = func_02114584(j);
+            v = GetRecordSortKey(j);
             if (m < v) {
                 m = v;
                 p = j;
             }
         }
         for (j = p; j > i; j--) {
-            q = data_0217d34c->mUnk_04 + j - 1;
+            q = gRecordList->mUnk_04 + j - 1;
             t = *q;
-            *q = data_0217d34c->mUnk_04[j];
-            data_0217d34c->mUnk_04[j] = t;
+            *q = gRecordList->mUnk_04[j];
+            gRecordList->mUnk_04[j] = t;
         }
     }
 }
@@ -88,74 +90,75 @@ void func_02114504(s32 a, u16 b) {
 
 #pragma thumb on
 
-void func_021144c0(void *a) {
+void CreateRecordList(void *a) {
     int v1;
     void *v2;
     v1 = ((u32) HeapAlloc(a, 0x10));
-    *(s32 *) &data_0217d34c = v1;
+    *(s32 *) &gRecordList = v1;
     v2 = HeapAlloc(a, 0x78);
-    data_0217d34c->mUnk_04 = v2;
+    gRecordList->mUnk_04 = v2;
     v2 = CreateEmblemBlock(a);
-    data_0217d34c->mUnk_08 = v2;
+    gRecordList->mEmblemBlock = v2;
     v2 = FindSceneFile(gEmblem2BinName);
-    data_0217d34c->mUnk_0c = v2;
+    gRecordList->mUnk_0c = v2;
 }
 
 #pragma thumb off
 
 #pragma thumb on
-void func_021144b4(void) {
+void ClearRecordListPointer(void) {
     u32 value0;
     u32 value1;
     value1 = 0u;
-    value0 = (u32) &data_0217d34c;
+    value0 = (u32) &gRecordList;
     *(u32 *) ((value0) + 0u) = value1;
 }
 #pragma thumb off
 
 #pragma thumb on
 
-void func_021143f4(void) {
+// Fills the table with the used slots, flagged ones first, each group ordered by key.
+void BuildRecordList(void) {
     s32 i;
     u16 a;
     s32 b;
     s32 c;
 
     a = 0;
-    data_0217d34c->mUnk_00 = 0;
+    gRecordList->mUnk_00 = 0;
     for (i = 0; i < 0x3c; i++) {
         if (func_02060b34(i)) {
-            data_0217d34c->mUnk_00++;
+            gRecordList->mUnk_00++;
             if (func_02060afc(i)) {
                 a++;
             }
         }
     }
-    if (data_0217d34c->mUnk_00 != 0) {
+    if (gRecordList->mUnk_00 != 0) {
         b = 0;
         c = a;
         for (i = 0; i < 0x3c; i++) {
             if (func_02060b34(i)) {
                 if (func_02060afc(i)) {
-                    data_0217d34c->mUnk_04[b].mUnk_00 = (u8) i;
+                    gRecordList->mUnk_04[b].mUnk_00 = (u8) i;
                     b++;
                 } else {
-                    data_0217d34c->mUnk_04[c].mUnk_00 = (u8) i;
+                    gRecordList->mUnk_04[c].mUnk_00 = (u8) i;
                     c++;
                 }
             }
         }
-        func_02114504(0, a);
-        func_02114504(a, data_0217d34c->mUnk_00 - a);
+        SortRecordRange(0, a);
+        SortRecordRange(a, gRecordList->mUnk_00 - a);
     }
 }
 
-u16 func_021143b4(void) {
+u16 GetRecordCount(void) {
     s32 i;
     u16 n;
 
     n = 0;
-    if (data_0217d34c == NULL) {
+    if (gRecordList == NULL) {
         for (i = 0; i < 0x3c; i++) {
             if (func_02060b34(i)) {
                 n++;
@@ -163,83 +166,86 @@ u16 func_021143b4(void) {
         }
         return n;
     }
-    return data_0217d34c->mUnk_00;
+    return gRecordList->mUnk_00;
 }
 
-s32 func_02114398(u16 a) {
-    return func_02060afc(data_0217d34c->mUnk_04[a].mUnk_00);
+s32 IsRecordFlagged(u16 a) {
+    return func_02060afc(gRecordList->mUnk_04[a].mUnk_00);
 }
 
 s32 func_0211437c(u16 a) {
-    return func_02060ac8(data_0217d34c->mUnk_04[a].mUnk_00);
+    return func_02060ac8(gRecordList->mUnk_04[a].mUnk_00);
 }
 
 s32 func_02114360(u16 a) {
-    return func_02060a60(data_0217d34c->mUnk_04[a].mUnk_00);
+    return func_02060a60(gRecordList->mUnk_04[a].mUnk_00);
 }
 
 s32 func_02114344(u16 a) {
-    return func_020609f8(data_0217d34c->mUnk_04[a].mUnk_00);
+    return func_020609f8(gRecordList->mUnk_04[a].mUnk_00);
 }
 
 s32 func_02114328(u16 a) {
-    return func_02060a94(data_0217d34c->mUnk_04[a].mUnk_00);
+    return func_02060a94(gRecordList->mUnk_04[a].mUnk_00);
 }
 
 s32 func_0211430c(u16 a) {
-    return func_02060a2c(data_0217d34c->mUnk_04[a].mUnk_00);
+    return func_02060a2c(gRecordList->mUnk_04[a].mUnk_00);
 }
 
 s32 func_021142f0(u16 a) {
-    return func_020609c4(data_0217d34c->mUnk_04[a].mUnk_00);
+    return func_020609c4(gRecordList->mUnk_04[a].mUnk_00);
 }
 
 s32 func_021142d4(u16 a, void *b) {
-    return func_02060950(data_0217d34c->mUnk_04[a].mUnk_00, b);
+    return func_02060950(gRecordList->mUnk_04[a].mUnk_00, b);
 }
 
-void func_02114298(u16 a, void *b, u32 c) {
+void CopyRecordText(u16 a, void *b, u32 c) {
     u8 t[0x14];
 
-    func_020608fc(data_0217d34c->mUnk_04[a].mUnk_00, t);
+    func_020608fc(gRecordList->mUnk_04[a].mUnk_00, t);
     MI_CpuFill8(b, 0, c);
     MIi_CpuCopy16(t, b, 0x14);
 }
 
-s32 func_0211427c(u16 a) {
-    return func_02060880(data_0217d34c->mUnk_04[a].mUnk_00, 1);
+s32 SetRecordFlag(u16 a) {
+    return func_02060880(gRecordList->mUnk_04[a].mUnk_00, 1);
 }
 
-s32 func_02114260(u16 a) {
-    return func_02060880(data_0217d34c->mUnk_04[a].mUnk_00, 0);
+s32 ClearRecordFlag(u16 a) {
+    return func_02060880(gRecordList->mUnk_04[a].mUnk_00, 0);
 }
 
-void func_021141c8(u16 a, Unk021141c8 *b, void *c) {
+// Reads the slot's emblem into b, uses the emblem2.bin picture when it has none, and converts the pixels into c.
+void ReadRecordEmblem(u16 a, EmblemData *b, void *c) {
     u8 d;
 
-    SetupEmblemBlock(data_0217d34c->mUnk_08, data_0217d34c->mUnk_04[a].mUnk_00);
+    SetupEmblemBlock(gRecordList->mEmblemBlock, gRecordList->mUnk_04[a].mUnk_00);
     d = data_0217aa08->mUnk_28;
     do {
     } while (d == 0 ? (data_021759d4->mUnk_0c != 0 ? data_021759d4->mUnk_10 : 0) : 1);
-    if (!CopyEmblemFromBlock(data_0217d34c->mUnk_08, data_0217d34c->mUnk_04[a].mUnk_00, b) || b->mUnk_200 == 0) {
+    if (!CopyEmblemFromBlock(gRecordList->mEmblemBlock, gRecordList->mUnk_04[a].mUnk_00, b) || b->mUnk_200 == 0) {
         b->mUnk_200 = 1;
-        MIi_CpuCopyFast(data_0217d34c->mUnk_0c, b, 0x200);
+        MIi_CpuCopyFast(gRecordList->mUnk_0c, b, 0x200);
     }
     func_020ac2fc(b, c, 0x20);
 }
 
-void func_02114174(u16 a) {
+// Empties the slot and rebuilds the list.
+void EraseRecord(u16 a) {
     u8 d;
 
-    func_020607b0(data_0217d34c->mUnk_04[a].mUnk_00);
+    func_020607b0(gRecordList->mUnk_04[a].mUnk_00);
     d = data_0217aa08->mUnk_28;
     do {
     } while (d == 0 ? (data_021759d4->mUnk_0c != 0 ? data_021759d4->mUnk_10 : 0) : 1);
-    func_021143f4();
+    BuildRecordList();
 }
 
-s32 func_02114158(u16 a, void *b) {
-    return func_02060468(data_0217d34c->mUnk_04[a].mUnk_00, b);
+// Writes the entry's friend key as digits into b; returns TRUE only for a used entry with valid friend data.
+s32 GetRecordFriendKeyText(u16 a, void *b) {
+    return func_02060468(gRecordList->mUnk_04[a].mUnk_00, b);
 }
 
 #pragma thumb off
@@ -325,7 +331,7 @@ u32 IsRecordVSRowFilled(int a) {
     int v1;
     int v2;
     v1 = GetRecordVSFirstRecordIndex();
-    v2 = func_021143b4();
+    v2 = GetRecordCount();
     if (v2 > v1 + a) {
         return 1;
     }
@@ -336,7 +342,8 @@ u32 IsRecordVSRowFilled(int a) {
 
 #pragma thumb on
 
-void func_02113d84(void) {
+// Shows or hides the objects of the five rows and of each row's flag.
+void AdvanceRecordVSRowObjects(void) {
     s32 i;
     u16 a;
     u16 b;
@@ -361,8 +368,8 @@ void func_02113d84(void) {
                 func_02124100(data_0215c3bc[i], 0xf, gRecordVS->mRecordVSSBnll, gRecordVS->mRecordVSSTable,
                               gRecordVS->mRecordVSSBncl);
             }
-            gRecordVS->mRecordVSSTable[data_0215c3f8[i]].mUnk_00 = !func_02114398(a + i);
-            gRecordVS->mRecordVSSTable[data_0215c404[i]].mUnk_00 = func_02114398(a + i);
+            gRecordVS->mRecordVSSTable[data_0215c3f8[i]].mUnk_00 = !IsRecordFlagged(a + i);
+            gRecordVS->mRecordVSSTable[data_0215c404[i]].mUnk_00 = IsRecordFlagged(a + i);
             gRecordVS->mRecordVSSTable[b + data_0215c3bc[i]].mUnk_00 = 1;
         }
     }
@@ -379,16 +386,16 @@ void PrintRecordVSShownRecord(void) {
     s32 a;
 
     a = GetRecordVSFirstRecordIndex();
-    if (func_02114158(a + gRecordVS->mShownIndex, s)) {
-        gRecordVS->mUnk_40 = 1;
+    if (GetRecordFriendKeyText(a + gRecordVS->mShownIndex, s)) {
+        gRecordVS->mShowsFriendKey = 1;
         CallQueueAppend(9, 0, &gRecordVS->mRecordVSM03Nscr->mData, gRecordVS->mRecordVSM03Nscr->mDataSize);
     } else {
-        gRecordVS->mUnk_40 = 0;
+        gRecordVS->mShowsFriendKey = 0;
         CallQueueAppend(9, 0, &gRecordVS->mRecordVSM02Nscr->mData, gRecordVS->mRecordVSM02Nscr->mDataSize);
     }
-    switch (gRecordVS->mUnk_40) {
+    switch (gRecordVS->mShowsFriendKey) {
         case 0:
-            func_02114298(a + gRecordVS->mShownIndex, buf, 0x20);
+            CopyRecordText(a + gRecordVS->mShownIndex, buf, 0x20);
             func_0212426c(0, 0, gRecordVS->mRecordVSMBnll, buf, gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMTable);
             v[1][0] = func_0211437c(a + gRecordVS->mShownIndex);
             v[1][1] = func_02114360(a + gRecordVS->mShownIndex);
@@ -425,12 +432,13 @@ void PrintRecordVSShownRecord(void) {
             func_02116a4c(&w, buf);
             func_02124224(0, 0xc, gRecordVS->mRecordVSMBnll, buf, gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMTable,
                           6);
-            func_021141c8(a + gRecordVS->mShownIndex, gRecordVS->mUnk_78, gRecordVS->mUnk_7c);
+            ReadRecordEmblem(a + gRecordVS->mShownIndex, gRecordVS->mEmblem, gRecordVS->mEmblemConverted);
             d = gRecordVS;
-            CallQueueAppend(0x13, func_0212497c(3, d->mRecordVSMNcer, d->mRecordVSMBncl) << 5, d->mUnk_7c, 0x200);
+            CallQueueAppend(0x13, func_0212497c(3, d->mRecordVSMNcer, d->mRecordVSMBncl) << 5, d->mEmblemConverted,
+                            0x200);
             break;
         case 1:
-            func_02114298(a + gRecordVS->mShownIndex, buf, 0x20);
+            CopyRecordText(a + gRecordVS->mShownIndex, buf, 0x20);
             func_0212426c(0, 0, gRecordVS->mRecordVSMTransientBnll, buf, gRecordVS->mRecordVSMTransientBncl,
                           gRecordVS->mRecordVSMTransientTable);
             for (i = 0; i < 12; i++) {
@@ -438,10 +446,10 @@ void PrintRecordVSShownRecord(void) {
                 func_0212426c(0, data_0215c478[i], gRecordVS->mRecordVSMTransientBnll, buf,
                               gRecordVS->mRecordVSMTransientBncl, gRecordVS->mRecordVSMTransientTable);
             }
-            func_021141c8(a + gRecordVS->mShownIndex, gRecordVS->mUnk_78, gRecordVS->mUnk_7c);
+            ReadRecordEmblem(a + gRecordVS->mShownIndex, gRecordVS->mEmblem, gRecordVS->mEmblemConverted);
             d = gRecordVS;
-            CallQueueAppend(0x13, func_0212497c(1, d->mRecordVSMNcer, d->mRecordVSMTransientBncl) << 5, d->mUnk_7c,
-                            0x200);
+            CallQueueAppend(0x13, func_0212497c(1, d->mRecordVSMNcer, d->mRecordVSMTransientBncl) << 5,
+                            d->mEmblemConverted, 0x200);
             break;
     }
 }
@@ -455,14 +463,14 @@ void RefreshRecordVSPage(void) {
     a = GetRecordVSFirstRecordIndex();
     for (i = 0; i < 5; i++) {
         b = a + i;
-        if (func_021143b4() > b) {
-            func_02114298(b, buf, 0x20);
+        if (GetRecordCount() > b) {
+            CopyRecordText(b, buf, 0x20);
             func_0212426c(1, data_0215c3bc[i], gRecordVS->mRecordVSSBnll, buf, gRecordVS->mRecordVSSBncl,
                           gRecordVS->mRecordVSSTable);
         }
     }
-    if (func_021143b4() <= a + gRecordVS->mIndex) {
-        gRecordVS->mIndex = func_021143b4() % 5 - 1;
+    if (GetRecordCount() <= a + gRecordVS->mIndex) {
+        gRecordVS->mIndex = GetRecordCount() % 5 - 1;
         gRecordVS->mShownIndex = gRecordVS->mIndex;
     }
     PrintRecordVSShownRecord();
@@ -526,7 +534,7 @@ void DecrementRecordVSIndex(void) {
         v4 = 4;
         v1 = IsRecordVSRowFilled(4);
         if (v1 == 0) {
-            v2 = func_021143b4();
+            v2 = GetRecordCount();
             v3 = (v2) % 5;
             v4 = (v3 + -1) * 0x10000 >> 0x10;
         }
@@ -561,21 +569,22 @@ void AdvanceRecordVSOffsetTimers(void) {
     if (a == 0) {
         gRecordVS->mRecordVSSTable[data_0215c3b0[0]].mUnk_00 = 0;
     }
-    if (a + 5 >= func_021143b4()) {
+    if (a + 5 >= GetRecordCount()) {
         gRecordVS->mRecordVSSTable[data_0215c3b0[1]].mUnk_00 = 0;
     }
 }
 
-void func_021137a8(s32 a) {
+// Flips the flag of the entry in row a of the page and plays the matching sound.
+void ToggleRecordVSRowFlag(s32 a) {
     s32 b;
 
     b = GetRecordVSFirstRecordIndex();
     b += a;
-    if (func_02114398(b)) {
-        func_02114260(b);
+    if (IsRecordFlagged(b)) {
+        ClearRecordFlag(b);
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x25);
     } else {
-        func_0211427c(b);
+        SetRecordFlag(b);
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x24);
     }
 }
@@ -690,7 +699,7 @@ void RequestRecordVSState2AndRefreshPage(void) {
     RefreshRecordVSPage();
 }
 
-void func_02113480(void) {
+void RequestRecordVSState3(void) {
     gRecordVS->mNextState = 3;
     gRecordVS->mStateFrames = 0;
     RequestSelectReturnState1();
@@ -713,7 +722,7 @@ void RequestRecordVSState5(void) {
 void RequestRecordVSState6AndChangePage(void) {
     gRecordVS->mNextState = 6;
     gRecordVS->mStateFrames = 0;
-    switch (gRecordVS->mUnk_6c) {
+    switch (gRecordVS->mPageDecrement) {
         case 0:
             IncrementRecordVSPageIndex();
             break;
@@ -765,7 +774,7 @@ void func_021132b4(void) {
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 4);
 }
 
-void func_02113298(void) {
+void RequestRecordVSState10(void) {
     gRecordVS->mNextState = 10;
     gRecordVS->mStateFrames = 0;
     RequestSelectReturnState4();
@@ -809,13 +818,13 @@ void InitRecordVS(void *a) {
     reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0xcc00;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 0x1018;
     gRecordVS = HeapAlloc(a, 0x94);
-    gRecordVS->mUnk_48 = a;
+    gRecordVS->mHeap = a;
     gRecordVS->mPageIndex = func_02111418();
     gRecordVS->mIndex = func_02111408();
-    gRecordVS->mUnk_6c = 0;
+    gRecordVS->mPageDecrement = 0;
     gRecordVS->mIndexChangeTimer = 0;
     gRecordVS->mShownIndex = gRecordVS->mIndex;
-    gRecordVS->mUnk_40 = 0;
+    gRecordVS->mShowsFriendKey = 0;
     gRecordVS->mUnk_88 = FALSE;
     gRecordVS->mUnk_8c = FALSE;
     for (i = 0; i < 2; i++) {
@@ -890,10 +899,10 @@ void InitRecordVS(void *a) {
     func_02124a98(0x18, 0, gRecordVS->mRecordVSSNcer, gRecordVS->mRecordVSSBncl);
     func_02124a98(0x19, 0, gRecordVS->mRecordVSSNcer, gRecordVS->mRecordVSSBncl);
     func_02124140(5, 0, gRecordVS->mRecordVSSBnll, gRecordVS->mRecordVSSTable, gRecordVS->mRecordVSSBncl);
-    gRecordVS->mUnk_78 = HeapAlloc(a, 0x201);
-    gRecordVS->mUnk_7c = HeapAlloc(a, 0x200);
+    gRecordVS->mEmblem = HeapAlloc(a, 0x201);
+    gRecordVS->mEmblemConverted = HeapAlloc(a, 0x200);
     if (func_0211147c() == 4) {
-        if (func_021143b4() != 0) {
+        if (GetRecordCount() != 0) {
             gRecordVS->mState = 11;
             func_02113174();
         } else {
@@ -914,7 +923,7 @@ void InitRecordVS(void *a) {
     gRecordVS->mRecordVSSTable[25].mUnk_00 = 0;
 }
 
-void func_02112b48(void) {
+void ReleaseRecordVS(void) {
     u32 v;
     if (gRecordVS->mUnk_90 == 4) {
         func_021113fc(gRecordVS->mPageIndex);

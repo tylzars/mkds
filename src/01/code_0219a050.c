@@ -253,7 +253,7 @@ void InitRecordTopMenu(void *heap) {
             gRecordTopMenu->mIndex = 1;
             break;
         case 3:
-            if (func_021143b4()) {
+            if (GetRecordCount()) {
                 gRecordTopMenu->mIndex = 2;
             } else {
                 gRecordTopMenu->mIndex = 0;
@@ -485,7 +485,7 @@ void AdvanceRecordTopMenuState5(void) {
         SetRecordTopMenuRowOn(gRecordTopMenu->mIndex);
     }
     if (gRecordTopMenu->mStateFrames >= 10) {
-        if (gRecordTopMenu->mIndex == 2 && func_021143b4() == 0) {
+        if (gRecordTopMenu->mIndex == 2 && GetRecordCount() == 0) {
             RequestRecordTopMenuState7();
             return;
         }

@@ -86,7 +86,7 @@ u32 IsRecordVSEraseRowFilled(int a) {
     int v1;
     int v2;
     v1 = GetRecordVSEraseFirstRecordIndex();
-    v2 = func_021143b4();
+    v2 = GetRecordCount();
     if (v2 > v1 + a) {
         return 1;
     }
@@ -116,7 +116,7 @@ void func_02116624(void) {
     for (i = 0; i < 5; i++) {
         if (IsRecordVSEraseRowFilled((s16) i)) {
             if (gRecordVSErase->mIndex == i) {
-                if (func_02114398(v)) {
+                if (IsRecordFlagged(v)) {
                     gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mUnk_00 = 1;
                     func_02124100(data_0215c4b8[i], 0xe, gRecordVSErase->mRecordVSSEraseBnll,
                                   gRecordVSErase->mRecordVSSEraseTable, gRecordVSErase->mRecordVSSEraseBncl);
@@ -126,7 +126,7 @@ void func_02116624(void) {
                                   gRecordVSErase->mRecordVSSEraseTable, gRecordVSErase->mRecordVSSEraseBncl);
                 }
             } else {
-                if (func_02114398(v)) {
+                if (IsRecordFlagged(v)) {
                     gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mUnk_00 = 1;
                     func_02124100(data_0215c4b8[i], 0xe, gRecordVSErase->mRecordVSSEraseBnll,
                                   gRecordVSErase->mRecordVSSEraseTable, gRecordVSErase->mRecordVSSEraseBncl);
@@ -136,8 +136,8 @@ void func_02116624(void) {
                                   gRecordVSErase->mRecordVSSEraseTable, gRecordVSErase->mRecordVSSEraseBncl);
                 }
             }
-            gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mUnk_00 = func_02114398(v) ? 0 : 1;
-            gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mUnk_00 = func_02114398(v);
+            gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mUnk_00 = IsRecordFlagged(v) ? 0 : 1;
+            gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mUnk_00 = IsRecordFlagged(v);
             gRecordVSErase->mRecordVSSEraseTable[n + data_0215c4b8[i]].mUnk_00 = 1;
         }
         v++;
@@ -155,7 +155,7 @@ void func_021162cc(void) {
     Unk02116a4c a;
 
     v = GetRecordVSEraseFirstRecordIndex();
-    if (func_02114158(v + gRecordVSErase->mShownIndex, buf3)) {
+    if (GetRecordFriendKeyText(v + gRecordVSErase->mShownIndex, buf3)) {
         gRecordVSErase->mTransientDrawn = 1;
         CallQueueAppend(9, 0, gRecordVSErase->mRecordVSM03Nscr->mData, gRecordVSErase->mRecordVSM03Nscr->mDataSize);
     } else {
@@ -164,7 +164,7 @@ void func_021162cc(void) {
     }
     switch (gRecordVSErase->mTransientDrawn) {
         case 0:
-            func_02114298(v + gRecordVSErase->mShownIndex, buf, 0x20);
+            CopyRecordText(v + gRecordVSErase->mShownIndex, buf, 0x20);
             func_0212426c(0, 0, gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable);
             t[1][0] = func_0211437c(v + gRecordVSErase->mShownIndex);
@@ -202,12 +202,12 @@ void func_021162cc(void) {
             func_02116a4c(&a, buf);
             func_02124224(0, 0xc, gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
-            func_021141c8(v + gRecordVSErase->mShownIndex, gRecordVSErase->mUnk_88, gRecordVSErase->mUnk_8c);
+            ReadRecordEmblem(v + gRecordVSErase->mShownIndex, gRecordVSErase->mUnk_88, gRecordVSErase->mUnk_8c);
             CallQueueAppend(0x13, func_0212497c(3, gRecordVSErase->mRecordVSMNcer, gRecordVSErase->mRecordVSMBncl) << 5,
                             gRecordVSErase->mUnk_8c, 0x200);
             break;
         case 1:
-            func_02114298(v + gRecordVSErase->mShownIndex, buf, 0x20);
+            CopyRecordText(v + gRecordVSErase->mShownIndex, buf, 0x20);
             func_0212426c(0, 0, gRecordVSErase->mRecordVSMTransientBnll, buf, gRecordVSErase->mRecordVSMTransientBncl,
                           gRecordVSErase->mRecordVSMTransientTable);
             z = FALSE;
@@ -216,7 +216,7 @@ void func_021162cc(void) {
                 func_0212426c(z, data_0215c584[i], gRecordVSErase->mRecordVSMTransientBnll, buf,
                               gRecordVSErase->mRecordVSMTransientBncl, gRecordVSErase->mRecordVSMTransientTable);
             }
-            func_021141c8(v + gRecordVSErase->mShownIndex, gRecordVSErase->mUnk_88, gRecordVSErase->mUnk_8c);
+            ReadRecordEmblem(v + gRecordVSErase->mShownIndex, gRecordVSErase->mUnk_88, gRecordVSErase->mUnk_8c);
             CallQueueAppend(
                 0x13, func_0212497c(1, gRecordVSErase->mRecordVSMNcer, gRecordVSErase->mRecordVSMTransientBncl) << 5,
                 gRecordVSErase->mUnk_8c, 0x200);
@@ -231,14 +231,14 @@ void func_02116244(void) {
 
     v = GetRecordVSEraseFirstRecordIndex();
     for (i = 0; i < 5; i++) {
-        if (func_021143b4() > v + i) {
-            func_02114298(v + i, buf, 0x20);
+        if (GetRecordCount() > v + i) {
+            CopyRecordText(v + i, buf, 0x20);
             func_0212426c(1, data_0215c4b8[i], gRecordVSErase->mRecordVSSEraseBnll, buf,
                           gRecordVSErase->mRecordVSSEraseBncl, gRecordVSErase->mRecordVSSEraseTable);
         }
     }
-    if (func_021143b4() <= v + gRecordVSErase->mIndex) {
-        gRecordVSErase->mIndex = func_021143b4() % 5 - 1;
+    if (GetRecordCount() <= v + gRecordVSErase->mIndex) {
+        gRecordVSErase->mIndex = GetRecordCount() % 5 - 1;
         gRecordVSErase->mShownIndex = gRecordVSErase->mIndex;
     }
     func_021162cc();
@@ -302,7 +302,7 @@ void DecrementRecordVSEraseIndex(void) {
         v4 = 4;
         v1 = IsRecordVSEraseRowFilled(4);
         if (v1 == 0) {
-            v2 = func_021143b4();
+            v2 = GetRecordCount();
             v3 = (v2) % 5;
             v4 = (v3 + -1) * 0x10000 >> 0x10;
         }

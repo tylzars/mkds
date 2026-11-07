@@ -26,5 +26,5 @@ void func_0205e5c4(s32 a);
 void CopyWiFiOtherEmblemsToBlocks(void);
 void CopyOtherPlayerEmblemsToBlocks(void);
 void SetupEmblemBlock(EmblemBlock *a, u8 b);
-BOOL CopyEmblemFromBlock(EmblemBlock *a, u8 b, Unk021141c8 *c);
+BOOL CopyEmblemFromBlock(EmblemBlock *a, u8 b, EmblemData *c);
 EmblemBlock *CreateEmblemBlock(void *a);

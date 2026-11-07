@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_021144c0(void *a);
+void CreateRecordList(void *a);

@@ -37,7 +37,7 @@ void AdvanceRecordVSEraseOffsetTimers(void) {
     if (v == 0) {
         gRecordVSErase->mRecordVSSEraseTable[data_0215c4ac[0]].mUnk_00 = 0;
     }
-    if (v + 5 >= func_021143b4()) {
+    if (v + 5 >= GetRecordCount()) {
         gRecordVSErase->mRecordVSSEraseTable[data_0215c4ac[1]].mUnk_00 = 0;
     }
 }

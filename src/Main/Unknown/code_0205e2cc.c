@@ -36,7 +36,7 @@ EmblemBlock *CreateEmblemBlock(void *a) {
     return p;
 }
 
-BOOL CopyEmblemFromBlock(EmblemBlock *a, u8 b, Unk021141c8 *c) {
+BOOL CopyEmblemFromBlock(EmblemBlock *a, u8 b, EmblemData *c) {
     Unk0217aa08_20_04 e;
     u8 d;
     u8 m;

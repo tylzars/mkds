@@ -177,7 +177,7 @@ void func_02115d08(void) {
     gRecordVSErase->mNextState = 8;
     gRecordVSErase->mStateFrames = 0;
     v = GetRecordVSEraseFirstRecordIndex();
-    func_02114298(v + gRecordVSErase->mIndex, buf, 0x20);
+    CopyRecordText(v + gRecordVSErase->mIndex, buf, 0x20);
     func_0212513c(buf, GetBmgEntry(gRecordVSErase->mRecordMessages, 5), buf2, 0x200);
     func_02125fd4(buf2, GetBmgEntry(gRecordVSErase->mCommonMessages, 0),
                   GetBmgEntry(gRecordVSErase->mCommonMessages, 1), 1, 0, 1, 1, 1);
@@ -473,7 +473,7 @@ void AdvanceRecordVSEraseState4(void) {
     if (w <= 4) {
         i = data_0215c4d0[w];
         if (i == gRecordVSErase->mIndex) {
-            if (func_02114398(s + i) == 0) {
+            if (IsRecordFlagged(s + i) == 0) {
                 if (IsRecordVSEraseIndexChangeRunning() == 0) {
                     func_02115d90();
                 }
@@ -490,7 +490,7 @@ void AdvanceRecordVSEraseState4(void) {
         }
     } else {
         if ((u16) (data_02175628[i].mUnk_00 & 1) != 0) {
-            if (func_02114398(s + gRecordVSErase->mIndex) == 0) {
+            if (IsRecordFlagged(s + gRecordVSErase->mIndex) == 0) {
                 if (IsRecordVSEraseIndexChangeRunning() == 0) {
                     func_02115d90();
                 }
@@ -681,7 +681,7 @@ void AdvanceRecordVSEraseState9(void) {
     a = GetRecordVSEraseFirstRecordIndex();
     if (func_02125f54()) {
         if (GetTxtSystemSelectedIndex() == 0) {
-            func_02114174(a + gRecordVSErase->mIndex);
+            EraseRecord(a + gRecordVSErase->mIndex);
             gRecordVSErase->mErased = 1;
         } else {
             gRecordVSErase->mErased = 0;
@@ -702,7 +702,7 @@ void AdvanceRecordVSEraseState10(void) {
     a = InterpolateS16(1, 0, -0x100, gRecordVSErase->mStateFrames, 10);
     x = gRecordVSErase->mRecordVSMBncl->mUnk_06;
     y = gRecordVSErase->mRecordVSMTransientBncl->mUnk_06;
-    if (func_021143b4() != 0 && gRecordVSErase->mErased != 0) {
+    if (GetRecordCount() != 0 && gRecordVSErase->mErased != 0) {
         gRecordVSErase->mBg1OffsetX = a;
         gRecordVSErase->mRecordVSMTable[1].mUnk_04 = a;
         gRecordVSErase->mRecordVSMTable[2].mUnk_04 = a;
@@ -726,7 +726,7 @@ void AdvanceRecordVSEraseState10(void) {
     }
     if (func_02125f88()) {
         v = GetRecordVSEraseFirstRecordIndex();
-        if (func_021143b4() <= v) {
+        if (GetRecordCount() <= v) {
             gRecordVSErase->mPageIndex--;
         }
         if (gRecordVSErase->mPageIndex < 0) {

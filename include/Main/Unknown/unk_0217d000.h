@@ -115,7 +115,7 @@ typedef struct RecordVSErase {
     /* 80 */ s16 mShownIndex;
     /* 82 */ u8 mUnk_82[2];
     /* 84 */ u32 mErased;
-    /* 88 */ struct Unk021141c8 *mUnk_88;
+    /* 88 */ struct EmblemData *mUnk_88;
     /* 8c */ void *mUnk_8c;
     /* 90 */ s32 mOffsetTimers[2];
     /* 98 */ BOOL mUnk_98;
@@ -189,9 +189,9 @@ typedef struct RecordVS {
     /* 38 */ struct Unk0201ea30 *mRecordVSSBnll;
     // Object table of the sub screen (files mRecordVSSBncl / mRecordVSSBnll).
     /* 3c */ Unk02124b1c *mRecordVSSTable;
-    /* 40 */ s32 mUnk_40;
+    /* 40 */ s32 mShowsFriendKey;
     /* 44 */ struct Bmg *mRecordMessages;
-    /* 48 */ void *mUnk_48;
+    /* 48 */ void *mHeap;
     /* 4c */ s32 mState;
     /* 50 */ s32 mNextState;
     /* 54 */ s32 mStateFrames; /* counts only in states 1, 2, 5 to 11 */
@@ -207,7 +207,7 @@ typedef struct RecordVS {
     // stored (count % 5 - 1 in RefreshRecordVSPage).
     /* 68 */ s16 mIndex;
     /* 6a */ s16 mPageIndex;
-    /* 6c */ s32 mUnk_6c;
+    /* 6c */ s32 mPageDecrement;
     // Counts 7 down to 0 after mIndex changed: AdvanceRecordVSIndexChange sets 7 when mIndex differs from mShownIndex,
     // rebuilds the page text through PrintRecordVSShownRecord at 7 and moves the objects while it runs;
     // IsRecordVSIndexChangeRunning tells whether it is non-zero.
@@ -216,8 +216,8 @@ typedef struct RecordVS {
     // AdvanceRecordVSIndexChange starts mIndexChangeTimer when mIndex differs from it.
     /* 74 */ s16 mShownIndex;
     /* 76 */ u8 mUnk_76[2];
-    /* 78 */ struct Unk021141c8 *mUnk_78;
-    /* 7c */ void *mUnk_7c;
+    /* 78 */ struct EmblemData *mEmblem;
+    /* 7c */ void *mEmblemConverted;
     /* 80 */ s32 mOffsetTimers[2];
     /* 88 */ BOOL mUnk_88;
     /* 8c */ BOOL mUnk_8c;
@@ -454,19 +454,19 @@ typedef struct SelectCupM {
     /* 50 */ s32 mUnk_50;
 } SelectCupM;
 
-// Halfword objects behind data_0217d34c member 0x4.
-typedef struct Unk0217d34c_04 {
+// One slot number of the table.
+typedef struct RecordListEntry {
     /* 00 */ u16 mUnk_00;
-} Unk0217d34c_04;
+} RecordListEntry;
 
-// Object behind data_0217d34c.
-typedef struct Unk0217d34c {
+// The used slots in display order, with the emblem block and the emblem2.bin picture.
+typedef struct RecordList {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u8 mUnk_02[2];
-    /* 04 */ Unk0217d34c_04 *mUnk_04;
-    /* 08 */ struct EmblemBlock *mUnk_08;
+    /* 04 */ RecordListEntry *mUnk_04;
+    /* 08 */ struct EmblemBlock *mEmblemBlock;
     /* 0c */ void *mUnk_0c;
-} Unk0217d34c;
+} RecordList;
 
 // Object behind data_0217d3ec: 0x814 bytes allocated by func_02125de0.
 typedef struct Unk0217d3ec {
@@ -804,7 +804,7 @@ extern Unk0217d084 data_0217d084;
 extern struct NNSSndArc data_0217d0a0;
 extern Unk0217d32c data_0217d32c;
 extern RecordVS *gRecordVS;
-extern Unk0217d34c *data_0217d34c;
+extern RecordList *gRecordList;
 // Pointer to the cup chooser object: set by InitSelectCupGrid, cleared by ReleaseSelectCupGrid.
 extern SelectCupGrid *gSelectCupGrid;
 extern SelectCupCourse *gSelectCupCourse;
