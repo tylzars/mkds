@@ -597,7 +597,7 @@ void AdvanceKartState5(Kart *p) {
     }
 }
 
-void func_0206a624(Kart *p) {
+void StartKartThunderShrink(Kart *p) {
     Unk0206ceb4 *q = &p->mUnk_538;
 
     if (p->mUnk_4c & 0x10000040) {
@@ -612,7 +612,7 @@ void func_0206a624(Kart *p) {
     q->mUnk_02 = data_usa_02154a54[GetKartRank(p->mIndex) - 1];
     q->mUnk_04 = 0;
     p->mUnk_394 = 0xb33;
-    p->mUnk_4c |= 0x80;
+    p->mUnk_4c |= KART_4C_THUNDER_SHRINK;
     func_0206bcb0(p, 2, 1);
     func_0210f9ac(p);
     func_020eff40(&(gKartItems)[p->mIndex]);
@@ -631,7 +631,7 @@ void func_0206a624(Kart *p) {
     }
 }
 
-void func_0206a354(Kart *p) {
+void AdvanceKartThunderShrink(Kart *p) {
     Unk0206ceb4 *q = &p->mUnk_538;
 
     if (q->mUnk_02 <= 0) {
@@ -651,7 +651,7 @@ void func_0206a354(Kart *p) {
             p->mScale.z = ((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12;
             p->mScale.y = ((s64) p->mScaleYFactor * p->mScale.y) >> 12;
             if (q->mUnk_04 > 0x19) {
-                p->mUnk_4c &= ~0x80;
+                p->mUnk_4c &= ~KART_4C_THUNDER_SHRINK;
                 if (!(p->mUnk_4c & 0x10080)) {
                     p->mUnk_394 = 0x1000;
                 }

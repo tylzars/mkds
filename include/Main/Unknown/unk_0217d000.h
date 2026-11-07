@@ -319,6 +319,12 @@ typedef struct SelectCupCourse {
     /* 6c */ s32 mResult;
 } SelectCupCourse;
 
+// Option of the rules row with a race counter (mRaceCount).
+#define SELECT_RACE_RULE_RACE 1
+// Option of the rules row with a win counter (mWinCount).
+#define SELECT_RACE_RULE_WIN 0
+// Option of the rules row with no counter.
+#define SELECT_RACE_RULE_FREE 2
 // Object behind gSelectRaceRule.
 typedef struct SelectRaceRule {
     /* 00 */ struct Unk02021dc8 *mNcer;
@@ -364,10 +370,10 @@ typedef struct SelectRaceRule {
     // Set to 0 when the button is pressed while it is already highlighted, back to 1 five calls into state 4; decides
     // which of the button's two objects shows.
     /* 84 */ u32 mUnk_84;
-    // Course count for row 3 value 0, kept from 1 to 10.
-    /* 88 */ s16 mUnk_88;
-    // Course count for row 3 value 1, kept from 1 to 0x20.
-    /* 8a */ s16 mUnk_8a;
+    // Count of the win option of row 3, kept from 1 to 10.
+    /* 88 */ s16 mWinCount;
+    // Count of the race option of row 3, kept from 1 to 0x20.
+    /* 8a */ s16 mRaceCount;
     // Team index of each of the 8 entries.
     /* 8c */ u32 mPlayerTeamIndices[8];
     // Per team: how many of the first entries (given player kind 0 in the setup copy) are in it.
@@ -407,6 +413,7 @@ typedef struct Unk0217d244 {
     // 0: normal; 1: volume target 0; 2: volume target full.
     /* 00 */ s32 mVolumeOverride;
     /* 04 */ s32 mPitchAngle;
+    // Bit 2 is set while the selected Kart is small from the Thunder item.
     /* 08 */ s32 mFlags;
     /* 0c */ u32 mKartNear;
 } Unk0217d244;

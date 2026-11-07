@@ -11,7 +11,7 @@ void func_020ccab0(void) {
     s32 a;
 
     for (i = 0; i < 8; i++) {
-        if (GetRaceSetupCopy()->mUnk_c0 == 0 && GetRaceSetupCopy()->mEntries[i].mPlayerKind == 1) {
+        if (GetRaceSetupCopy()->mCpuDifficulty == 0 && GetRaceSetupCopy()->mEntries[i].mPlayerKind == 1) {
             func_020ccb48(i);
         } else {
             a = GetRaceSetupCopy()->mUseTeams != 0 ? GetRaceSetupCopy()->mEntries[i].mTeamIndex : -1;

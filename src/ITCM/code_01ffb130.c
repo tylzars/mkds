@@ -60,8 +60,8 @@ void func_01ffb130(Kart *p) {
     if (w & 0x10000000) {
         AdvanceKartKiller(p);
     } else {
-        if (w & 0x80) {
-            func_0206a354(p);
+        if (w & KART_4C_THUNDER_SHRINK) {
+            AdvanceKartThunderShrink(p);
         }
         if (p->mUnk_4c & 0x10000) {
             func_02069f6c(p);

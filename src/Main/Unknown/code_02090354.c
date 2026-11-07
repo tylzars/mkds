@@ -623,7 +623,7 @@ s32 func_020905a8(Unk020905a8 *a) {
 // Stores one of three sets of battle item entry tables and callbacks; any value other than 1 or 2 takes the third set.
 void SetupBattleItemEntries(void) {
     switch (gRaceSetup->mUnk_014) {
-        case 1:
+        case CPU_DIFFICULTY_EASY:
             gBattleHeldItemEntries = data_021561d0;
             gBattleItemInUseEntries = data_02155fd8;
             data_0217b0a0 = func_0208fafc;
@@ -633,7 +633,7 @@ void SetupBattleItemEntries(void) {
             data_0217b0ac = func_0208f4e8;
             data_0217b0a8 = UseItemBehindAfterInUseOrNearTarget;
             return;
-        case 2:
+        case CPU_DIFFICULTY_NORMAL:
             gBattleHeldItemEntries = data_021562a8;
             gBattleItemInUseEntries = data_02156128;
             data_0217b0a0 = func_0208fba0;
@@ -643,7 +643,7 @@ void SetupBattleItemEntries(void) {
             data_0217b0ac = func_0208f4e8;
             data_0217b0a8 = UseItemBehindAfterInUseOrNearTarget;
             return;
-        case 3:
+        case CPU_DIFFICULTY_HARD:
             gBattleHeldItemEntries = data_02156380;
             gBattleItemInUseEntries = data_02156080;
             data_0217b0a0 = ThrowItemAtNearTarget;

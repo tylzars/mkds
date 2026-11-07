@@ -209,6 +209,10 @@ typedef struct Unk0206bcb0_A {
 // 0x57ffffdf).
 #define KART_44_NEAR_KART 0x20
 
+// Bits of Kart.mUnk_4c.
+// Set while the Kart is small from the Thunder item (StartKartThunderShrink sets it, AdvanceKartThunderShrink clears
+// it).
+#define KART_4C_THUNDER_SHRINK 0x80
 // Bits of Kart.mUnk_48.
 // Set while a boost runs (StartKartBoost sets it; mBoostTimer counts it down).
 #define KART_48_BOOST 0x20
@@ -500,8 +504,8 @@ typedef struct Kart {
     // Part of mScale looked up in three tables (x, y, z) of 25 entries (0x800 up to 0x1000) by a step counter, forwards
     // or backwards; 0x1000 when no step runs.
     /* 41c */ Vec3 mScaleFactor;
-    // Part of mScale held at 0x1000, eased down to 0x800 while the countdown of func_0206a354 runs and set back to
-    // 0x1000 at its end; mScaleFactor is the table-driven part.
+    // Part of mScale held at 0x1000, eased down to 0x800 while the countdown of AdvanceKartThunderShrink runs and set
+    // back to 0x1000 at its end; mScaleFactor is the table-driven part.
     /* 428 */ Vec3 mScaleBase;
     // Factor of mScale.y only: 0x1000 normally, lowered by 0x4cd per call to a floor of 0x4cd in func_02069f6c.
     /* 434 */ s32 mScaleYFactor;

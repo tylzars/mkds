@@ -165,6 +165,10 @@ typedef struct Unk021759c0_28 {
     /* 0f */ u8 mUnk_0f;
 } Unk021759c0_28;
 
+#define CPU_DIFFICULTY_HARD 3
+#define CPU_DIFFICULTY_NORMAL 2
+// Difficulty of the CPU karts, the value of the CPU KART row (RaceSetup.mUnk_014 and the setup copy); 0 is not named.
+#define CPU_DIFFICULTY_EASY 1
 // Object behind gRaceSetup.
 typedef struct RaceSetup {
     /* 00 */ s32 mCourseId;

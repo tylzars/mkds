@@ -31,8 +31,8 @@ u32 func_0202967c(void) {
     return (gRaceSetupCopy->mMirrorMode);
 }
 
-u32 func_0202966c(void) {
-    return (gRaceSetupCopy->mUnk_c0);
+u32 GetCpuDifficulty(void) {
+    return (gRaceSetupCopy->mCpuDifficulty);
 }
 
 u32 GetCourseListMode(void) {
@@ -43,8 +43,8 @@ u32 func_0202964c(void) {
     return (gRaceSetupCopy->mCourseCount);
 }
 
-u32 func_0202963c(void) {
-    return (gRaceSetupCopy->mUnk_ec);
+u32 GetRuleKind(void) {
+    return (gRaceSetupCopy->mRuleKind);
 }
 
 u32 GetUseTeams(void) {
@@ -91,8 +91,8 @@ void SetCourseId(u32 p0) {
     gRaceSetupCopy->mCourseId = p0;
 }
 
-void func_02029570(u32 p0) {
-    gRaceSetupCopy->mUnk_c0 = p0;
+void SetCpuDifficulty(u32 p0) {
+    gRaceSetupCopy->mCpuDifficulty = p0;
 }
 
 void SetCourseListMode(u32 p0) {
@@ -103,8 +103,8 @@ void func_02029550(u16 p0) {
     gRaceSetupCopy->mCourseCount = p0;
 }
 
-void func_02029540(u32 p0) {
-    gRaceSetupCopy->mUnk_ec = p0;
+void SetRuleKind(u32 p0) {
+    gRaceSetupCopy->mRuleKind = p0;
 }
 
 void SetUseTeams(void) {

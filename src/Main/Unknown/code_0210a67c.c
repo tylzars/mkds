@@ -465,7 +465,7 @@ void StartKartPlayingSoundSeq(Kart *a, PlayingSound *b, s32 c) {
         } else if (g == 3) {
             f = 5;
         } else if (g == 6) {
-            if (func_0210fad4() != 0 || IsKartNear() != 0) {
+            if (IsThunderShrinkFlagSet() != 0 || IsKartNear() != 0) {
                 f = 7;
             }
         }

@@ -26,8 +26,8 @@ extern const s32 data_usa_02165508;
 extern const s32 data_usa_0216550c;
 extern const Vec4 data_usa_0216556c;
 
-void func_0206a354(Kart *p);
-void func_0206a624(Kart *p);
+void AdvanceKartThunderShrink(Kart *p);
+void StartKartThunderShrink(Kart *p);
 void AdvanceKartState5(Kart *p);
 s32 StartKartState5(Kart *p, const Vec3 *a, s32 b);
 void AdvanceKartState4(Kart *p);

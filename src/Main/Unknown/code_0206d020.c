@@ -194,7 +194,7 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
             v2 = 0x333;
         }
     }
-    t = p->mUnk_4c & 0x80;
+    t = p->mUnk_4c & KART_4C_THUNDER_SHRINK;
     if (t) {
         a >>= 3;
     }
@@ -414,7 +414,7 @@ void func_0206d18c(Kart *p) {
             } else {
                 while (i < gRaceSetup->mKartCount) {
                     if (i != p->mIndex) {
-                        func_0206a624(GetKart(i));
+                        StartKartThunderShrink(GetKart(i));
                     }
                     i = (u16) (i + 1);
                 }

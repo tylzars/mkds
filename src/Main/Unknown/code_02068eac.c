@@ -162,8 +162,8 @@ void func_02069ea8(Kart *p) {
     p->mScaleYFactor = 0x1000;
     p->mScale.y = 0x1000;
     p->mUnk_4c &= ~0x10000;
-    if (p->mUnk_4c & 0x80) {
-        p->mUnk_4c &= ~0x80;
+    if (p->mUnk_4c & KART_4C_THUNDER_SHRINK) {
+        p->mUnk_4c &= ~KART_4C_THUNDER_SHRINK;
         p->mScaleBase.x = 0x1000;
         p->mScaleBase.y = 0x1000;
         p->mScaleBase.z = 0x1000;
@@ -202,7 +202,7 @@ void func_02069e10(Kart *p) {
     }
     for (; i < (u32) gRaceSetup->mKartCount; i++) {
         if (i != p->mIndex) {
-            func_0206a624(GetKart(i));
+            StartKartThunderShrink(GetKart(i));
         }
     }
 }

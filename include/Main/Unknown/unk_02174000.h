@@ -29,7 +29,7 @@ typedef struct Unk02029930_00 {
 // GetRaceSetupCopy.
 typedef struct RaceSetupCopy {
     /* 00 */ Unk02029930_00 mEntries[8];
-    /* c0 */ s32 mUnk_c0;
+    /* c0 */ s32 mCpuDifficulty;
     /* c4 */ s32 mKartCount;
     // A MODE_* value of unk_021759c0.h: copied from the current mode (3 for most modes in a Wi-Fi race), set by the
     // select screens, stored as the next mode by func_020cc744.
@@ -43,7 +43,7 @@ typedef struct RaceSetupCopy {
     /* e4 */ s32 mBattleKind;
     /* e8 */ u16 mCourseCount;
     /* ea */ u8 mUnk_ea[2];
-    /* ec */ s32 mUnk_ec;
+    /* ec */ s32 mRuleKind;
     /* f0 */ s32 mCourseListMode;
     /* f4 */ u8 *mMissionFile;
     /* f8 */ Unk02029930_f8 *mMissionFileRows;

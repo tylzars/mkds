@@ -73,7 +73,7 @@ u32 GetCurrentCupIndex(void) {
     return (gRaceSetup->mCupIndex);
 }
 
-u32 func_020cc67c(void) {
+u32 GetCurrentCpuDifficulty(void) {
     return (gRaceSetup->mUnk_014);
 }
 
@@ -105,6 +105,6 @@ u32 GetCurrentCourseCount(void) {
     return (gRaceSetup->mCourseCount);
 }
 
-u32 func_020cc5d8(void) {
+u32 GetCurrentRuleKind(void) {
     return (gRaceSetup->mUnk_1c);
 }

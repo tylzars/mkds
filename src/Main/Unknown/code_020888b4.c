@@ -134,10 +134,10 @@ void func_02089a24(KartAi *a, Unk02089a24 *b) {
     v = (s16) (u16) (r->mUnk_00 >> 52);
     t = 0x333;
     switch (gRaceSetup->mUnk_014) {
-        case 2:
+        case CPU_DIFFICULTY_NORMAL:
             t = 0x666;
             break;
-        case 3:
+        case CPU_DIFFICULTY_HARD:
             t = 0x99a;
             break;
     }
@@ -156,10 +156,10 @@ void func_02089974(void) {
     t = gRaceSetup;
     if (t->mBattleKind == BATTLE_KIND_BALLOON) {
         switch (t->mUnk_014) {
-            case 2:
+            case CPU_DIFFICULTY_NORMAL:
                 data_0217b030 = &data_02166028;
                 break;
-            case 3:
+            case CPU_DIFFICULTY_HARD:
                 data_0217b030 = &data_02165ff0;
                 break;
         }
@@ -385,7 +385,7 @@ void func_02088e44(KartAi *p) {
     if (m != GetRaceUpdateFramesMod8()) {
         return;
     }
-    if (gRaceSetup->mUnk_014 == 1) {
+    if (gRaceSetup->mUnk_014 == CPU_DIFFICULTY_EASY) {
         return;
     }
     if (p->mTargetKart == NULL) {

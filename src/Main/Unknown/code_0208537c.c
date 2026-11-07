@@ -42,10 +42,10 @@ void SetKartAiParamRow(void) {
         } else {
             r = &r[(p->mCourseId - 1) * 12 + (p->mEngineIndex + 1) * 3];
             switch (p->mUnk_014) {
-                case 2:
+                case CPU_DIFFICULTY_NORMAL:
                     r++;
                     break;
-                case 3:
+                case CPU_DIFFICULTY_HARD:
                     r += 2;
                     break;
             }
@@ -104,13 +104,13 @@ void InitKartAiShared(void) {
             }
         } else {
             switch (gRaceSetup->mUnk_014) {
-                case 1:
+                case CPU_DIFFICULTY_EASY:
                     gKartAiShared->mUnk_138 = 0;
                     break;
-                case 2:
+                case CPU_DIFFICULTY_NORMAL:
                     gKartAiShared->mUnk_138 = 1;
                     break;
-                case 3:
+                case CPU_DIFFICULTY_HARD:
                     gKartAiShared->mUnk_138 = 2;
                     break;
                 default:
@@ -217,7 +217,7 @@ void func_02085bec(void) {
                     gKartAiShared->mUnk_11c = 1;
                 }
             }
-        } else if (gRaceSetup->mUnk_014 != 1 && v1 >= 4) {
+        } else if (gRaceSetup->mUnk_014 != CPU_DIFFICULTY_EASY && v1 >= 4) {
             gKartAiShared->mUnk_110 = 2;
         }
     }

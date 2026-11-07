@@ -26,17 +26,17 @@ void func_020cc744(void) {
         if (GetRaceSetupCopy()->mMode == 0) {
             switch (GetRaceSetupCopy()->mEngineIndex) {
                 case 0:
-                    GetRaceSetupCopy()->mUnk_c0 = 1;
+                    GetRaceSetupCopy()->mCpuDifficulty = 1;
                     break;
                 case 1:
-                    GetRaceSetupCopy()->mUnk_c0 = 2;
+                    GetRaceSetupCopy()->mCpuDifficulty = 2;
                     break;
                 case 2:
-                    GetRaceSetupCopy()->mUnk_c0 = 3;
+                    GetRaceSetupCopy()->mCpuDifficulty = 3;
                     break;
             }
         }
-        func_020cca9c(GetRaceSetupCopy()->mUnk_c0);
+        SetNextCpuDifficulty(GetRaceSetupCopy()->mCpuDifficulty);
         if (GetRaceSetupCopy()->mMode != 2 && GetRaceSetupCopy()->mMode != 3) {
             GetRaceSetupCopy()->mUseTeams = 0;
         }
@@ -74,7 +74,7 @@ void func_020cc744(void) {
         SetNextBattleKind(GetRaceSetupCopy()->mBattleKind);
         SetNextUseTeams(GetRaceSetupCopy()->mUseTeams);
         SetCourseCount(GetRaceSetupCopy()->mCourseCount);
-        func_020cc9d0(GetRaceSetupCopy()->mUnk_ec);
+        SetNextRuleKind(GetRaceSetupCopy()->mRuleKind);
         SetNextCourseListMode(GetRaceSetupCopy()->mCourseListMode);
         if (GetRaceSetupCopy()->mMode == 4 && func_020cbad0() == 0) {
             i = GetRaceSetupCopy()->mMissionFileRowIndex;

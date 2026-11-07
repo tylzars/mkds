@@ -351,7 +351,7 @@ void func_0207f2e4(KartAi *p) {
     if (a != GetRaceUpdateFramesMod8()) {
         return;
     }
-    if (gRaceSetup->mUnk_014 != 3) {
+    if (gRaceSetup->mUnk_014 != CPU_DIFFICULTY_HARD) {
         return;
     }
     a = GetKartRank(a);

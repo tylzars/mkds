@@ -51,7 +51,7 @@ void func_020cc3e8(void) {
         GetRaceSetupCopy()->mEntries[i].mUnk_14 = 0;
     }
     GetRaceSetupCopy()->mCupIndex = GetCurrentCupIndex();
-    GetRaceSetupCopy()->mUnk_c0 = func_020cc67c();
+    GetRaceSetupCopy()->mCpuDifficulty = GetCurrentCpuDifficulty();
     GetRaceSetupCopy()->mKartCount = GetCurrentKartCount();
     if (func_020cae54() != 0) {
         u32 v;
@@ -83,7 +83,7 @@ void func_020cc3e8(void) {
     GetRaceSetupCopy()->mBattleKind = GetCurrentBattleKind();
     GetRaceSetupCopy()->mBattleKind = GetCurrentBattleKind();
     GetRaceSetupCopy()->mCourseCount = GetCurrentCourseCount();
-    GetRaceSetupCopy()->mUnk_ec = func_020cc5d8();
+    GetRaceSetupCopy()->mRuleKind = GetCurrentRuleKind();
     if (GetCurrentMode() == MODE_MISSION_RUN) {
         GetRaceSetupCopy()->mMissionTableRow = func_020cc5b8();
         GetRaceSetupCopy()->mMissionTableColumn = func_020cc598();

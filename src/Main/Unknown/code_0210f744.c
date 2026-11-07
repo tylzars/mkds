@@ -602,7 +602,7 @@ void func_0210faf4(void) {
     func_0210fb88(&data_0217d244, &data_0217d07c);
 }
 
-u32 func_0210fad4(void) {
+u32 IsThunderShrinkFlagSet(void) {
     if ((data_0217d244.mFlags >> 2) & 1) {
         return 1;
     }

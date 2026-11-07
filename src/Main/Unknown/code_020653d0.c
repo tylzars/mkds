@@ -261,13 +261,13 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         } else {
             for (; i < (u32) gRaceSetup->mKartCount; i++) {
                 if (i != p->mIndex) {
-                    func_0206a624(GetKart(i));
+                    StartKartThunderShrink(GetKart(i));
                 }
             }
         }
     }
     if (((p->mUnk_514->mUnk_30 & 0x8000) != 0) != ((f & 0x8000) != 0)) {
-        func_0206a624(p);
+        StartKartThunderShrink(p);
     }
     if (((p->mUnk_514->mUnk_30 & 0x100000) != 0) != ((f & 0x100000) != 0)) {
         StartKartKiller(p);

@@ -1,7 +1,7 @@
 #include "Main/Unknown/code_020cc994.h"
 #include "00/code_02181f98.h"
 
-void func_020cca9c(u32 p0) {
+void SetNextCpuDifficulty(u32 p0) {
     gRaceSetup->mNextHeader.mUnk_14 = p0;
 }
 
@@ -41,7 +41,7 @@ void SetCourseCount(u32 p0) {
     gRaceSetup->mCourseCount = p0;
 }
 
-void func_020cc9d0(u32 p0) {
+void SetNextRuleKind(u32 p0) {
     gRaceSetup->mNextHeader.mUnk_1c = p0;
 }
 

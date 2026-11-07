@@ -533,7 +533,7 @@ void func_0207c8d8(KartAiItemUse *a, struct KartAi *b) {
 
 void func_0207c78c(void) {
     switch (gRaceSetup->mUnk_014) {
-        case 1:
+        case CPU_DIFFICULTY_EASY:
             data_0217ae38 = data_usa_021554a4;
             data_0217ae34 = data_usa_0215524c;
             data_0217ae48 = UseItemByRankAfterInUse;
@@ -541,7 +541,7 @@ void func_0207c78c(void) {
             data_0217ae3c = UseItemByRankAfterInUse;
             data_0217ae40 = func_0207c8d8;
             break;
-        case 2:
+        case CPU_DIFFICULTY_NORMAL:
             data_0217ae38 = data_usa_021552f4;
             data_0217ae34 = data_usa_0215524c;
             data_0217ae48 = UseItemByRankAfterInUse;
@@ -549,7 +549,7 @@ void func_0207c78c(void) {
             data_0217ae3c = UseItemByRankAfterInUse;
             data_0217ae40 = func_0207c8d8;
             break;
-        case 3:
+        case CPU_DIFFICULTY_HARD:
         default:
             data_0217ae38 = data_usa_021553cc;
             data_0217ae34 = data_usa_0215524c;

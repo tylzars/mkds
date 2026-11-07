@@ -455,10 +455,10 @@ u16 func_0207d8e4(s32 a) {
         i = (u16) (((r->mUnk_00 >> 32) * 3) >> 32);
     }
     switch (gRaceSetup->mUnk_014) {
-        case 1:
+        case CPU_DIFFICULTY_EASY:
             p = &v[0];
             break;
-        case 2:
+        case CPU_DIFFICULTY_NORMAL:
             p = &v[3];
             break;
     }
