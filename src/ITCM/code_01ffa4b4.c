@@ -149,7 +149,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
                     p->mUnk_1fc.y = 0;
                 }
                 p->mUnk_44 |= KART_44_ON_GROUND;
-                if (p->mForwardSpeed != 0 || func_02070398(p, f, &w) == FALSE) {
+                if (p->mForwardSpeed != 0 || TryHoldKartStill(p, f, &w) == FALSE) {
                     func_01ff9cb0(p);
                     if (((s32(*)(Kart *, u32, Vec3 *)) data_0217ac14)(p, f, &v3) != 0) {
                         n = 0;

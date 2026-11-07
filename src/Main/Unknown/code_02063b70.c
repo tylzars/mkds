@@ -81,14 +81,14 @@ void DrawKart(Kart *a) {
         func_02063cc4_inline3(&a->mUnk_144, a->mPosSource);
         func_01ff9048(0x19, &a->mUnk_120, 0xc);
         func_01ff9048(0x1b, &a->mScale, 3);
-        func_02063cc4_inline2(0x1b, a->mUnk_414, a->mUnk_404, a->mUnk_418);
+        func_02063cc4_inline2(0x1b, a->mModelScaleX, a->mModelScaleY, a->mModelScaleZ);
         func_0207ae58(e->mUnk_01c);
         func_02063cc4_inline(0x14, 0x1e);
     }
     func_01ff9048(0x19, a->mDrawMatrix, 0xc);
     func_01ff9048(0x1b, &a->mScale, 3);
     func_02063cc4_inline(0x13, 0x1d);
-    func_02063cc4_inline2(0x1b, a->mUnk_414, a->mUnk_404, a->mUnk_418);
+    func_02063cc4_inline2(0x1b, a->mModelScaleX, a->mModelScaleY, a->mModelScaleZ);
     if (b == 0) {
         func_0207ae58(e->mUnk_01c);
     }
@@ -133,7 +133,7 @@ void DrawKart(Kart *a) {
         return;
     }
     r = ((Vec3 *) &e->mUnk_020->mUnk_44)[e->mUnk_000];
-    r.y = r.y + (a->mUnk_408 + a->mUnk_4f0.z);
+    r.y = r.y + (a->mModelOffsetY + a->mUnk_4f0.z);
     func_02063cc4_inline(0x14, 0x1d);
     func_01ff9048(0x1c, &r, 3);
     DrawNsbmd(e->mModels[0]);

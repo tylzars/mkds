@@ -59,8 +59,8 @@ s32 ApplyKartSurfaceKind19(Kart *a);
 // ApplyKartSurfaceEffect and returns surface group 0xa.
 s32 ApplyKartSurfaceKind17(Kart *a);
 // Surface kind 15 (entry 15 of gKartSurfaceFunctions): runs ApplyKartSurfaceEffect with 0; while bit 0x10000 of mUnk_48
-// is clear it then runs func_020705fc with mSurfaceVariant when RaceSetup.mMode is MODE_BATTLE or MODE_MISSION_RUN,
-// and in the other modes sets that bit and runs func_020710b0 with 0. Returns surface group 9.
+// is clear it then runs PlaceKartAtKeyedPlacement with mSurfaceVariant when RaceSetup.mMode is MODE_BATTLE or
+// MODE_MISSION_RUN, and in the other modes sets that bit and runs ResetKartMotionState with 0. Returns surface group 9.
 s32 ApplyKartSurfaceKind15(Kart *a);
 // Surface kind 18 (entry 18 of gKartSurfaceFunctions): the body of kind 7, followed by setting bit 0x400000 of mUnk_48;
 // returns surface group 8.

@@ -129,9 +129,9 @@ void func_02068b98(Kart *a) {
         a->mScale = data_02154f94;
     } else {
         g = 0x18 - c;
-        a->mScaleFactor.x = data_usa_02154de4[g];
-        a->mScaleFactor.y = data_usa_02154e48[g];
-        a->mScaleFactor.z = data_usa_02154eac[g];
+        a->mScaleFactor.x = gKartScaleFactorXTable[g];
+        a->mScaleFactor.y = gKartScaleFactorYTable[g];
+        a->mScaleFactor.z = gKartScaleFactorZTable[g];
         a->mScale.x = (s64) a->mScaleBase.x * a->mScaleFactor.x >> 12;
         a->mScale.y = (s64) a->mScaleBase.y * a->mScaleFactor.y >> 12;
         a->mScale.z = (s64) a->mScaleBase.z * a->mScaleFactor.z >> 12;

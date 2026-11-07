@@ -62,9 +62,9 @@ void func_020651fc(Kart *a) {
             a->mUnk_7c = a->mUnk_7c & ~0x80;
             return;
         }
-        a->mScaleFactor.x = data_usa_02154de4[c];
-        a->mScaleFactor.y = data_usa_02154e48[c];
-        a->mScaleFactor.z = data_usa_02154eac[c];
+        a->mScaleFactor.x = gKartScaleFactorXTable[c];
+        a->mScaleFactor.y = gKartScaleFactorYTable[c];
+        a->mScaleFactor.z = gKartScaleFactorZTable[c];
         a->mScale.x = (s64) a->mScaleBase.x * a->mScaleFactor.x >> 12;
         a->mScale.y = (s64) a->mScaleBase.y * a->mScaleFactor.y >> 12;
         a->mScale.z = (s64) a->mScaleBase.z * a->mScaleFactor.z >> 12;
@@ -131,7 +131,7 @@ void func_02064f50(Kart *a) {
         ComputeKartSidePoints(a);
     }
     if ((a->mUnk_4c & 8) != 0) {
-        func_02071788(a);
+        AdvanceKartModelScaleAnimation(a);
     }
     a->mUnk_230(a);
     e = a->mPos;

@@ -203,8 +203,8 @@ void CollideKartWithKarts(Kart *p) {
                     } else {
                         p->mKartCollisionTimer = 0x14;
                     }
-                    func_02071318(p, 2);
-                    func_02071318(q, 2);
+                    StartKartModelScaleAnimation(p, 2);
+                    StartKartModelScaleAnimation(q, 2);
                     p->mUnk_3d4 = 0xf;
                     if (s == 0) {
                         s = func_0206c354(p, &n, k);

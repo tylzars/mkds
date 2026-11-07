@@ -665,9 +665,9 @@ void func_0206a354(Kart *p) {
             return;
         }
         p->mUnk_4c |= 0x100;
-        p->mScaleFactor.x = data_usa_02154de4[q->mUnk_04];
-        p->mScaleFactor.y = data_usa_02154e48[q->mUnk_04];
-        p->mScaleFactor.z = data_usa_02154eac[q->mUnk_04];
+        p->mScaleFactor.x = gKartScaleFactorXTable[q->mUnk_04];
+        p->mScaleFactor.y = gKartScaleFactorYTable[q->mUnk_04];
+        p->mScaleFactor.z = gKartScaleFactorZTable[q->mUnk_04];
         p->mScaleBase.x = 0x1000;
         p->mScaleBase.y = 0x1000;
         p->mScaleBase.z = 0x1000;

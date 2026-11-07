@@ -106,7 +106,7 @@ void func_01ffb130(Kart *p) {
             }
         }
     }
-    if ((p->mUnk_48 & 0x800) && func_02072d84(p, &b) != 0) {
+    if ((p->mUnk_48 & 0x800) && AdvanceKartRespawnWait(p, &b) != 0) {
         return;
     }
     if (p->mUnk_7c & 0x20) {

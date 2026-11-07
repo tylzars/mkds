@@ -458,7 +458,7 @@ typedef struct Kart {
     /* 3b0 */ Vec3 mEffectVelocity;
     /* 3bc */ u16 mUnk_3bc;
     /* 3be */ u16 mRaceStartFrameCount;
-    /* 3c0 */ s16 mUnk_3c0;
+    /* 3c0 */ s16 mRespawnFrames;
     /* 3c2 */ u8 mUnk_3c2[2];
     // Number of the course respawn slot this Kart goes back to, set when it falls or when it respawns with none chosen;
     // -1 means none chosen (ResetKart writes -1).
@@ -487,16 +487,16 @@ typedef struct Kart {
     /* 3f0 */ s32 mUnk_3f0;
     /* 3f4 */ s32 mUnk_3f4;
     /* 3f8 */ s32 mUnk_3f8;
-    /* 3fc */ u16 mUnk_3fc;
-    /* 3fe */ u16 mUnk_3fe;
-    /* 400 */ u16 mUnk_400;
+    /* 3fc */ u16 mModelScaleKind;
+    /* 3fe */ u16 mModelScaleFrameIndex;
+    /* 400 */ u16 mModelScaleFrameCount;
     /* 402 */ u8 mUnk_402[2];
-    /* 404 */ s32 mUnk_404;
-    /* 408 */ s32 mUnk_408;
+    /* 404 */ s32 mModelScaleY;
+    /* 408 */ s32 mModelOffsetY;
     /* 40c */ s32 mUnk_40c;
     /* 410 */ s32 mUnk_410;
-    /* 414 */ s32 mUnk_414;
-    /* 418 */ s32 mUnk_418;
+    /* 414 */ s32 mModelScaleX;
+    /* 418 */ s32 mModelScaleZ;
     // Part of mScale looked up in three tables (x, y, z) of 25 entries (0x800 up to 0x1000) by a step counter, forwards
     // or backwards; 0x1000 when no step runs.
     /* 41c */ Vec3 mScaleFactor;

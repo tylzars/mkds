@@ -191,10 +191,10 @@ s32 ApplyKartSurfaceKind15(Kart *a) {
     if ((a->mUnk_48 & 0x10000) == 0) {
         b = a->mSurfaceVariant;
         if (gRaceSetup->mMode == MODE_BATTLE || gRaceSetup->mMode == MODE_MISSION_RUN) {
-            func_020705fc(a, b);
+            PlaceKartAtKeyedPlacement(a, b);
         } else {
             a->mUnk_48 = a->mUnk_48 | 0x10000;
-            func_020710b0(a, 0);
+            ResetKartMotionState(a, 0);
         }
     }
     return 9;

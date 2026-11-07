@@ -139,7 +139,7 @@ void Matrix3x3FromQuaternion(void *a, void *b) {
 
 void AdvanceKartMotion(Kart *p) {
     if (p->mUnk_7c & 0xa0) {
-        func_020732d8(p);
+        AdvanceKartScaleFactor(p);
         return;
     }
     func_01ffca50(p);
@@ -150,7 +150,7 @@ void AdvanceKartMotion(Kart *p) {
     func_01ffc6c0(p);
     func_01ff9d18(p);
     if (p->mUnk_48 & 0x10000) {
-        func_020708a4(p);
+        AdvanceKartToKeyedPlacement(p);
     } else {
         func_01ffb130(p);
     }
@@ -181,7 +181,7 @@ void AdvanceKartCollision(Kart *p) {
     func_01ffc920(p);
     func_01ffc8cc(p);
     if (p->mUnk_4c & 8) {
-        func_02071788(p);
+        AdvanceKartModelScaleAnimation(p);
     }
     p->mUnk_230(p);
 }

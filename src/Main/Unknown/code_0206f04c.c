@@ -75,11 +75,11 @@ void func_0206ff50(Kart *p, u32 a) {
         b = (u16) ((func_020d59f8(0x8000) & 0xe0) >> 5);
         h = gRaceSetup->mMode;
         if (h == MODE_BATTLE || h == MODE_MISSION_RUN) {
-            func_020705fc(p, b);
+            PlaceKartAtKeyedPlacement(p, b);
             return;
         }
         p->mUnk_48 |= 0x10000;
-        func_020710b0(p, 0);
+        ResetKartMotionState(p, 0);
         return;
     }
     if (!(p->mUnk_48 & 0x800)) {
@@ -263,8 +263,8 @@ void func_0206f914(Kart *p) {
                     if (!(p->mUnk_48 & 0x840)) {
                         func_0210af40(p, p->mUnk_3cc, 3);
                     }
-                    func_02071318(p, 1);
-                    p->mUnk_3fc = 1;
+                    StartKartModelScaleAnimation(p, 1);
+                    p->mModelScaleKind = 1;
                 }
             } else if (func_0208c178(p->mAi) != 0) {
                 d = func_0208c16c(p->mAi);
@@ -300,8 +300,8 @@ void func_0206f914(Kart *p) {
                     if (!(p->mUnk_48 & 0x840)) {
                         func_0210af40(p, p->mUnk_3cc, 3);
                     }
-                    func_02071318(p, 1);
-                    p->mUnk_3fc = 1;
+                    StartKartModelScaleAnimation(p, 1);
+                    p->mModelScaleKind = 1;
                 }
             } else if (c > 0xd9a) {
                 d = 5;
@@ -503,7 +503,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
                         func_0208b748(0x3b, &n, p, func_0206c488);
                     }
                 }
-                func_02071318(p, 2);
+                StartKartModelScaleAnimation(p, 2);
             }
         }
         if (h > 0) {

@@ -101,8 +101,8 @@ struct CourseMapRow;
 
 // 0x1c-byte records: position at 0x00, rotation angles in degrees at 0x0c, node index at 0x18, key halfword at 0x1a.
 // Used by CourseMap.mStartPlacements (record chosen by key, GetCourseMapStartPlacementWithOffsets) and by
-// CourseMap.mKeyedPlacements (looked up by key through mKeyedPlacementIndexByKey; func_020705fc puts a kart at one in
-// modes 2 and 4). The name only says where a kart is put.
+// CourseMap.mKeyedPlacements (looked up by key through mKeyedPlacementIndexByKey; PlaceKartAtKeyedPlacement puts a kart
+// at one in modes 2 and 4). The name only says where a kart is put.
 typedef struct CourseMapPlacement {
     /* 00 */ Vec3 mPos;
     /* 0c */ Vec3 mUnk_0c;

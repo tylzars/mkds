@@ -136,7 +136,7 @@ void func_020733ec(Kart *p) {
     if (p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) {
         SetKartSpeedLimitReciprocal(FX_Div(0x1000, p->mPhysicalParam->mBaseSpeedLimit));
     }
-    func_02071c18(p);
+    InitKartSound(p);
     func_020e0650((u32 *) &p->mUnk_208);
     p->mAi = HeapAlloc(h, 0x158);
     if (gCourseMap->mRaceRouteCount != 0 || gCourseMap->mBattleRouteCount != 0) {

@@ -99,7 +99,7 @@
 #include "Main/Unknown/code_02077bc0.h"
 #include "code_021471bc.h"
 
-void func_020732d8(Kart *p) {
+void AdvanceKartScaleFactor(Kart *p) {
     s32 i;
     enum { K0 } k;
 
@@ -115,9 +115,9 @@ void func_020732d8(Kart *p) {
         p->mUnk_7c &= ~0x80;
         return;
     }
-    p->mScaleFactor.x = data_usa_02154de4[i];
-    p->mScaleFactor.y = data_usa_02154e48[i];
-    p->mScaleFactor.z = data_usa_02154eac[i];
+    p->mScaleFactor.x = gKartScaleFactorXTable[i];
+    p->mScaleFactor.y = gKartScaleFactorYTable[i];
+    p->mScaleFactor.z = gKartScaleFactorZTable[i];
     p->mScale.x = ((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12;
     p->mScale.y = ((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12;
     p->mScale.z = ((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12;
@@ -199,7 +199,7 @@ void ResetKartToRespawnPoint(Kart *p) {
     }
 }
 
-s32 func_02072d84(Kart *p, s32 *a) {
+s32 AdvanceKartRespawnWait(Kart *p, s32 *a) {
     BOOL r;
     u32 f;
 
@@ -216,17 +216,17 @@ s32 func_02072d84(Kart *p, s32 *a) {
         }
         *a = p->mUnk_4bc;
     }
-    p->mUnk_3c0 = p->mUnk_3c0 + 1;
+    p->mRespawnFrames = p->mRespawnFrames + 1;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-        if (p->mUnk_3c0 == 0x16) {
+        if (p->mRespawnFrames == 0x16) {
             func_02055a94();
-        } else if (p->mUnk_3c0 == 0x19) {
+        } else if (p->mRespawnFrames == 0x19) {
             func_02055c18(0x3c);
         }
     }
-    if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && p->mUnk_3c0 == 0x55) {
+    if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && p->mRespawnFrames == 0x55) {
         func_020e7a40();
-    } else if (p->mUnk_3c0 > 0x78) {
+    } else if (p->mRespawnFrames > 0x78) {
         func_02063ad0(p);
         r = TRUE;
     }
@@ -551,7 +551,7 @@ void ResetKart(Kart *p) {
     p->mVelocity = v;
     p->mUnk_3bc = 0;
     p->mRaceStartFrameCount = 0;
-    p->mUnk_3c0 = 0;
+    p->mRespawnFrames = 0;
     p->mRespawnSlot = -1;
     p->mUnk_3c8 = 0;
     p->mKartCollisionTimer = 0;
@@ -563,19 +563,19 @@ void ResetKart(Kart *p) {
     p->mUnk_3ec = 0;
     p->mUnk_3f0 = 0;
     p->mUnk_3f8 = 0x1000;
-    p->mUnk_3fc = 0;
-    p->mUnk_3fe = 0;
-    p->mUnk_400 = 0;
-    p->mUnk_404 = 0x1000;
-    p->mUnk_414 = 0x1000;
-    p->mUnk_418 = 0x1000;
+    p->mModelScaleKind = 0;
+    p->mModelScaleFrameIndex = 0;
+    p->mModelScaleFrameCount = 0;
+    p->mModelScaleY = 0x1000;
+    p->mModelScaleX = 0x1000;
+    p->mModelScaleZ = 0x1000;
     for (i = 0; i < 2; i++) {
         p->mUnk_438[i] = NULL;
         p->mUnk_440[i] = 0;
         p->mUnk_444[i] = 0;
     }
     p->mUnk_44c = NULL;
-    p->mUnk_408 = 0;
+    p->mModelOffsetY = 0;
     p->mUnk_40c = 0;
     p->mUnk_410 = 0;
     p->mUnk_4bc = 0;
@@ -706,7 +706,7 @@ void func_02071ddc(Unk0206ceb4 *p0) {
     p0->mKillerEndRank = 0;
 }
 
-void func_02071c18(Kart *p) {
+void InitKartSound(Kart *p) {
     InitSoundSource(&p->mSoundSource, 0, p->mPosSource);
     func_0210a5a8(p, (Unk0210a5a8 *) &p->mUnk_450);
     func_020719d0(p);
@@ -929,28 +929,28 @@ void func_02071894(Kart *p) {
     func_0210af40(p, p->mUnk_3cc, 7);
 }
 
-void func_02071788(Kart *p) {
-    p->mUnk_3fe++;
-    if (p->mUnk_3fe >= p->mUnk_400) {
-        p->mUnk_3fe = 0;
+void AdvanceKartModelScaleAnimation(Kart *p) {
+    p->mModelScaleFrameIndex++;
+    if (p->mModelScaleFrameIndex >= p->mModelScaleFrameCount) {
+        p->mModelScaleFrameIndex = 0;
         p->mUnk_4c &= ~8;
         return;
     }
-    if (p->mUnk_3fc == 0) {
-        p->mUnk_404 = data_02154be4[p->mUnk_3fe];
-        p->mUnk_408 = data_02154c20[p->mUnk_3fe];
-        p->mUnk_418 = 0x1000;
-        p->mUnk_414 = p->mUnk_418;
-    } else if (p->mUnk_3fc == 1) {
-        p->mUnk_404 = data_02154c5c[p->mUnk_3fe];
-        p->mUnk_408 = data_02154c98[p->mUnk_3fe];
-        p->mUnk_418 = 0x1000;
-        p->mUnk_414 = p->mUnk_418;
-    } else if (p->mUnk_3fc == 2) {
-        p->mUnk_404 = 0x1000;
-        p->mUnk_408 = data_02154c20[p->mUnk_3fe];
-        p->mUnk_414 = data_02154cd4[p->mUnk_3fe];
-        p->mUnk_418 = data_02154d10[p->mUnk_3fe];
+    if (p->mModelScaleKind == 0) {
+        p->mModelScaleY = data_02154be4[p->mModelScaleFrameIndex];
+        p->mModelOffsetY = data_02154c20[p->mModelScaleFrameIndex];
+        p->mModelScaleZ = 0x1000;
+        p->mModelScaleX = p->mModelScaleZ;
+    } else if (p->mModelScaleKind == 1) {
+        p->mModelScaleY = data_02154c5c[p->mModelScaleFrameIndex];
+        p->mModelOffsetY = data_02154c98[p->mModelScaleFrameIndex];
+        p->mModelScaleZ = 0x1000;
+        p->mModelScaleX = p->mModelScaleZ;
+    } else if (p->mModelScaleKind == 2) {
+        p->mModelScaleY = 0x1000;
+        p->mModelOffsetY = data_02154c20[p->mModelScaleFrameIndex];
+        p->mModelScaleX = data_02154cd4[p->mModelScaleFrameIndex];
+        p->mModelScaleZ = data_02154d10[p->mModelScaleFrameIndex];
     }
 }
 
@@ -1036,7 +1036,7 @@ void func_020713a0(Kart *p) {
     }
 }
 
-void func_02071318(Kart *p, s32 a) {
+void StartKartModelScaleAnimation(Kart *p, s32 a) {
     s32 k;
 
     k = p->mState;
@@ -1044,20 +1044,20 @@ void func_02071318(Kart *p, s32 a) {
         return;
     }
     if (a == 2) {
-        p->mUnk_3fc = 2;
+        p->mModelScaleKind = 2;
     } else if (p->mUnk_44 & 2) {
-        p->mUnk_3fc = 1;
+        p->mModelScaleKind = 1;
     } else if (p->mAirborneFrames > 0xa) {
-        p->mUnk_3fc = 1;
+        p->mModelScaleKind = 1;
     } else {
-        p->mUnk_3fc = 0;
+        p->mModelScaleKind = 0;
     }
-    p->mUnk_3fe = 0;
-    p->mUnk_400 = 0xf;
+    p->mModelScaleFrameIndex = 0;
+    p->mModelScaleFrameCount = 0xf;
     p->mUnk_4c |= 8;
 }
 
-void func_020710b0(Kart *p, s32 b) {
+void ResetKartMotionState(Kart *p, s32 b) {
     NNSSndSeqPlayer **h;
     PlayingSound *d;
 
@@ -1185,7 +1185,7 @@ static inline s32 func_020708a4_inline(Vec3 *v, Vec3 *n) {
     return Vec3NormalizeAndGetLengthUnchecked(v, n);
 }
 
-void func_020708a4(Kart *p) {
+void AdvanceKartToKeyedPlacement(Kart *p) {
     Unk0206ceb4 *s;
     u16 i;
     s32 d;
@@ -1344,7 +1344,7 @@ void func_020708a4(Kart *p) {
     VEC_Add(&p->mPos, &p->mVelocity, &p->mPos);
 }
 
-void func_020705fc(Kart *p, u32 b) {
+void PlaceKartAtKeyedPlacement(Kart *p, u32 b) {
     Vec3 a;
     Vec3 e;
     s32 m[9];
@@ -1354,7 +1354,7 @@ void func_020705fc(Kart *p, u32 b) {
     u16 i;
     s32 k;
 
-    func_020710b0(p, 1);
+    ResetKartMotionState(p, 1);
     p->mVerticalSpeed = 0x3000;
     i = gCourseMap->mKeyedPlacementIndexByKey[b];
     a.x = gCourseMap->mKeyedPlacements[i].mPos.x;
@@ -1446,7 +1446,7 @@ void func_02070484(Kart *p, Vec4 *q) {
     }
 }
 
-BOOL func_02070398(Kart *p, u32 b, void *c) {
+BOOL TryHoldKartStill(Kart *p, u32 b, void *c) {
     u32 w;
 
     w = p->mUnk_44;
