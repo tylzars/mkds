@@ -36,7 +36,7 @@ extern s8 data_0215d0c0[];
 extern s8 data_0215d0cc[];
 extern u8 data_0215d0d8[];
 extern u8 data_0215d0dc[][1];
-extern u8 data_0215d0e0[];
+extern u8 gKeyboardTextLimits[];
 extern u8 data_0215d0e4[][2];
 extern s8 data_0215d0b4[];
 extern u8 data_0215d0e8[];

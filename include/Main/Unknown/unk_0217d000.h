@@ -614,7 +614,7 @@ typedef struct Unk0217d3fc {
 // fields at 0x10, 0x14 and 0x16.
 typedef struct Unk0217d400_2c {
     /* 00 */ union {
-        u16 mUnk_00[12];
+        u16 mChars[12];
         struct {
             /* 00 */ u16 mUnk_00_0[8];
             /* 10 */ s32 mUnk_10;
@@ -635,13 +635,13 @@ typedef struct Keyboard {
     // Which of the two sets (background files, text records, cell counts, object tables) the screen works on, 0 or 1;
     // set from the mode argument at start, to 1 in state 3 and back to 0 in state 8.
     /* 04 */ s32 mKind;
-    /* 08 */ s32 mUnk_08;
+    /* 08 */ s32 mLayout;
     /* 0c */ s32 mState;
     /* 10 */ s32 mNextState;
-    /* 14 */ s32 mUnk_14[2];
+    /* 14 */ s32 mCursorOnButton[2];
     // Per button: non-zero while the button accepts its input; button 0 needs text entered.
     /* 1c */ s32 mButtonEnabled[2];
-    /* 24 */ BOOL mUnk_24;
+    /* 24 */ BOOL mTextEntryEnabled;
     // Calls spent in the current state: counted up by the handlers of states 1, 3, 4, 6, 8, 9 and 11, and by state 10
     // only while GetTxtSystemDone or IsTxtSystemState0NoOpenRequest returns non-zero; zeroed by the handler that
     // leaves; the slide states hold it at 0xf.
@@ -652,7 +652,7 @@ typedef struct Keyboard {
     // Vertical shift in lines of the whole screen (0xc0 = slid out of view, 0 = in place); also stored negated into the
     // vertical half of the sub engine's BG3 offset.
     /* 84 */ s16 mOffsetY;
-    /* 86 */ s16 mUnk_86[2][2];
+    /* 86 */ s16 mTextOffsetY[2][2];
     /* 8e */ u8 mUnk_8e[2];
     /* 90 */ struct Unk02021dc8 *mNcer;
     /* 94 */ struct Ncgr *mNcgr;

@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void func_02129cbc(void);
-void func_02129e78(void);
+void LoadKeyboardFiles(void);
+void QueueKeyboardScreenMap(void);

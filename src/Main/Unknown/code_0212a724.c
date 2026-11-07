@@ -34,7 +34,7 @@ void func_0212a724(void) {
     }
     for (j = 0; j < 2; j++) {
         for (l = 0; l < 2; l++) {
-            for (i = 0; i < data_0215d0e0[j]; i++) {
+            for (i = 0; i < gKeyboardTextLimits[j]; i++) {
                 a[l] -= func_021243ac(gKeyboard->mHeap, data_0215d134[j][i], gKeyboard->mBnlls[j], c[j][i][0],
                                       c[j][i][1], data_0215d14c[j][i], gKeyboard->mNcer, gKeyboard->mBncls[j],
                                       gKeyboard->mTables[j][l], a[l]);
