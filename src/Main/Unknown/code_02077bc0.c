@@ -154,7 +154,7 @@ void InitKarts(u32 a) {
     q->mUnk_18 = 0;
     data_usa_021658bc = gRaceSetup->mMode == MODE_BATTLE ? 1 : 2;
     func_02073630();
-    func_0208c284();
+    RegisterKartAiCallbacks();
     InitKartEffects(a);
     gMissionRunKind2ShapesPresent = 0;
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
@@ -744,7 +744,8 @@ void InitKartModelsEntry(void *arg0) {
 #pragma thumb on
 
 void func_02079a14(KartModelsEntry *a) {
-    func_02087cd0((ModelAnimation *) a->mUnk_098, GetModelAnimationFrameCountFixed(&gKartModels->mUnk_10c));
+    ResetModelAnimationLooping((ModelAnimation *) a->mUnk_098,
+                               GetModelAnimationFrameCountFixed(&gKartModels->mUnk_10c));
 }
 
 #pragma thumb off
@@ -1266,7 +1267,7 @@ void func_02078d64(void *param_1) {
     NNS_G3dGeUseFastDma(0);
     data_021759d0->mUnk_1c &= ~8;
     InitLnkVramManagers(param_1);
-    func_0208533c();
+    ResetResFileEntries();
     SetKartModelPathPrefix(1);
     InitKartModelMenu(param_1);
     func_020790e0(param_1, 0);
@@ -1292,7 +1293,7 @@ void func_02078c58(void *param_1) {
     NNS_G3dGeUseFastDma(0);
     data_021759d0->mUnk_1c &= ~8;
     InitLnkVramManagers(param_1);
-    func_0208533c();
+    ResetResFileEntries();
     SetKartModelPathPrefix(1);
     InitKartModelMenu(param_1);
     func_020790e0(param_1, 1);
@@ -1532,7 +1533,7 @@ void DrawKartModelMenuSlot(KartModelMenuSlot *param_1, KartModelMenuView *param_
             } else {
                 param_1->mUnk_1c->mNsbmd.mCullModesSwapped = 0;
             }
-            ((void (*)(ShadowModel *)) func_0207adf8)(param_1->mUnk_1c);
+            ((void (*)(ShadowModel *)) DrawShadowModel)(param_1->mUnk_1c);
         }
         if (param_1->mUnk_14 != NULL) {
             if (param_3 != 0) {

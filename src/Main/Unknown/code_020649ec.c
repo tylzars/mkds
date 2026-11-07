@@ -216,7 +216,7 @@ void InitKart(Kart *a, void (**b)(Kart *)) {
     GetHeap(GetCurrentHeapCall());
     c = gRaceSetup->mCurrentEntries[a->mIndex].mPlayer.mKind == PLAYER_KIND_PEER;
     a->mKartModelsEntry = GetKartModelsEntry(a->mIndex);
-    func_0208adc8(&a->mKartModelsEntry->mUnk_040, 1);
+    InitCourseColorBlend(&a->mKartModelsEntry->mUnk_040, 1);
     if (gRaceSetup->mMode == 5) {
         for (i = 0; i < 9; i++) {
             if (i == 3) {
@@ -291,6 +291,6 @@ void InitKart(Kart *a, void (**b)(Kart *)) {
     }
     func_02071f44(a);
     if ((a->mUnk_7c & 2) != 0) {
-        func_0208c260(a->mAi, a->mIndex);
+        CallKartAiSetup(a->mAi, a->mIndex);
     }
 }

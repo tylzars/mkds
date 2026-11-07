@@ -139,7 +139,7 @@ void func_0206ff50(Kart *p, u32 a) {
                 SetupKartFollowEffect(StartEffect(e.mUnk_00[f], &p->mPos), p->mIndex, 0x14);
             }
         }
-        func_020815dc(p->mIndex);
+        StopKartKillerEffect(p->mIndex);
         StartSound(&p->mSoundSource, 0xfd, 0x7f, 0);
     }
     func_020f00f0(&(gKartItems)[p->mIndex]);
@@ -266,8 +266,8 @@ void func_0206f914(Kart *p) {
                     StartKartModelScaleAnimation(p, 1);
                     p->mModelScaleKind = 1;
                 }
-            } else if (func_0208c178(p->mAi) != 0) {
-                d = func_0208c16c(p->mAi);
+            } else if (GetKartAiBoostsAtRaceStart(p->mAi) != 0) {
+                d = GetKartAiRaceStartBoostChoice(p->mAi);
                 p->mRaceStartFrameCount = data_usa_02154a48[d - 1];
                 p->mUnk_44 |= 0x1800000;
                 StartKartBoost(p, KART_BOOST_RACE_START, (s16) p->mRaceStartFrameCount);

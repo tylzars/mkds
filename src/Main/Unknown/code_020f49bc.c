@@ -963,7 +963,7 @@ ItemKinoko *StartItemKinokoOrZero(void) {
 // Stores the two Vec3s in the object and sets the word at 0x80.
 void func_020f4e78(ItemKinoko *a, Vec3 *b, Vec3 *c) {
     a->mVisible = TRUE;
-    func_0208ad74(&a->mUnk_000.mItemObject.mUnk_7c, 1);
+    SetCourseColorBlendColor(&a->mUnk_000.mItemObject.mUnk_7c, 1);
     if (b != NULL) {
         a->mUnk_000.mItemObject.mUnk_f0 = *b;
         a->mUnk_000.mItemObject.mFlags |= 0x80;

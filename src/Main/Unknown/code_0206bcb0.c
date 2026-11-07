@@ -424,13 +424,13 @@ void func_0206c17c(Kart *p) {
 
 void SetupKartAiHeldItemEntry(Kart *p) {
     if (p->mUnk_7c & 0x2) {
-        func_0208c1ac(p->mAi);
+        CallKartAiSetupHeldItemEntry(p->mAi);
     }
 }
 
 void SetupKartAiItemInUseEntry(Kart *p) {
     if (p->mUnk_7c & 0x2) {
-        func_0208c188(p->mAi);
+        CallKartAiSetupItemInUseEntry(p->mAi);
     }
 }
 

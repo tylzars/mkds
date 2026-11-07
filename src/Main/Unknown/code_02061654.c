@@ -122,7 +122,7 @@ void InitRace(void) {
     b = GX_GetBankForTex();
     NNS_GfdInitFrmTexVramManager(((b >> 3) & 1) + ((b >> 2) & 1) + ((b >> 1) & 1) + (b & 1), 1);
     NNS_GfdInitFrmPlttVramManager(0x10000, 1);
-    func_0208533c();
+    ResetResFileEntries();
     func_02077998();
     SetHeapGroupId(1);
     func_020875b4();
@@ -236,7 +236,7 @@ void func_020629a4(void) {
     b = GX_GetBankForTex();
     NNS_GfdInitFrmTexVramManager(((b >> 3) & 1) + ((b >> 2) & 1) + ((b >> 1) & 1) + (b & 1), 1);
     NNS_GfdInitFrmPlttVramManager(0x10000, 1);
-    func_0208533c();
+    ResetResFileEntries();
 }
 
 void Init3dEngine(void) {

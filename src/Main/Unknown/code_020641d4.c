@@ -100,7 +100,7 @@ void func_020641f0(Kart *a) {
             a->mTireSpinAngle = a->mTireSpinAngle + (u16) ((s64) a->mUnk_4d4 * 0x7d0 >> 12);
         } else {
             k = (s64) k * 0xfa0 >> 12;
-            if (func_020738f8(GetKartForwardSpeedRatio()) < 0x29) {
+            if (GetAbsoluteValue(GetKartForwardSpeedRatio()) < 0x29) {
                 k = 0;
                 if ((u16) (data_0217562a[o = a->mEntryIndex].mBits & (PAD_KEY_A | PAD_KEY_B)) != 0 &&
                     IsRaceStarted() == 1) {

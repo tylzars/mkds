@@ -116,7 +116,7 @@ void func_02073630(void) {
                 *b = func_020681e0;
                 break;
             default:
-                *a = func_020681e4;
+                *a = CollideKartWithMapObjectNoResponse;
                 *b = func_020681e0;
                 break;
         }

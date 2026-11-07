@@ -11,73 +11,76 @@
 #include "Main/Unknown/code_0207a880.h"
 #include "Main/Unknown/code_020b502c.h"
 
-void *func_0208adc8(void *a, u32 b) {
-    Unk0208ab98 *p = a;
-    u16 i;
-    u16 v;
+void *InitCourseColorBlend(void *object, u32 colorMask) {
+    CourseColorBlend *blend = object;
+    u16 colorIndex;
+    u16 color;
 
-    for (i = 0; i < 4; i++) {
-        if (b & (1 << i)) {
+    for (colorIndex = 0; colorIndex < 4; colorIndex++) {
+        if (colorMask & (1 << colorIndex)) {
             break;
         }
     }
-    v = gCourseMap->mSettings->mColors[i];
-    p->mUnk_00 = v;
-    p->mUnk_0e = 1 << i;
-    p->mUnk_02 = p->mUnk_00 & 0x1f;
-    p->mUnk_04 = (p->mUnk_00 >> 5) & 0x1f;
-    p->mUnk_06 = (p->mUnk_00 >> 10) & 0x1f;
-    p->mUnk_08 = 0;
-    p->mUnk_0a = 0;
-    p->mUnk_0c = 0;
-    p->mUnk_10 = 0x1000;
-    return a;
+    color = gCourseMap->mSettings->mColors[colorIndex];
+    blend->mColor = color;
+    blend->mColorBit = 1 << colorIndex;
+    blend->mStartComponent0 = blend->mColor & 0x1f;
+    blend->mStartComponent1 = (blend->mColor >> 5) & 0x1f;
+    blend->mStartComponent2 = (blend->mColor >> 10) & 0x1f;
+    blend->mComponentDelta0 = 0;
+    blend->mComponentDelta1 = 0;
+    blend->mComponentDelta2 = 0;
+    blend->mBlendFactor = 0x1000;
+    return object;
 }
 
-void func_0208ad74(void *a, u32 b) {
-    Unk0208ab98 *p = a;
-    u16 i;
+void SetCourseColorBlendColor(void *object, u32 colorMask) {
+    CourseColorBlend *blend = object;
+    u16 colorIndex;
 
-    for (i = 0; i < 4; i++) {
-        if (b & (1 << i)) {
+    for (colorIndex = 0; colorIndex < 4; colorIndex++) {
+        if (colorMask & (1 << colorIndex)) {
             break;
         }
     }
-    p->mUnk_00 = gCourseMap->mSettings->mColors[i];
-    p->mUnk_0e = 1 << i;
+    blend->mColor = gCourseMap->mSettings->mColors[colorIndex];
+    blend->mColorBit = 1 << colorIndex;
 }
 
-void func_0208ab98(void *a, u16 b, s32 c) {
-    Unk0208ab98 *p = a;
-    u16 m = ~p->mUnk_0e & b;
-    u16 i;
-    u16 v;
+void AdvanceCourseColorBlend(void *object, u16 colorMask, s32 c) {
+    CourseColorBlend *blend = object;
+    u16 newColorBits = ~blend->mColorBit & colorMask;
+    u16 colorIndex;
+    u16 color;
     s32 n;
 
-    if (m != 0) {
-        for (i = 0; i < 4; i++) {
-            if (m & (1 << i)) {
+    if (newColorBits != 0) {
+        for (colorIndex = 0; colorIndex < 4; colorIndex++) {
+            if (newColorBits & (1 << colorIndex)) {
                 break;
             }
         }
-        v = gCourseMap->mSettings->mColors[i];
-        p->mUnk_02 = p->mUnk_00 & 0x1f;
-        p->mUnk_08 = (s16) (v & 0x1f) - p->mUnk_02;
-        p->mUnk_04 = (p->mUnk_00 >> 5) & 0x1f;
-        p->mUnk_0a = (s16) ((v >> 5) & 0x1f) - p->mUnk_04;
-        p->mUnk_06 = (p->mUnk_00 >> 10) & 0x1f;
-        p->mUnk_0c = (s16) ((v >> 10) & 0x1f) - p->mUnk_06;
-        p->mUnk_10 = 0;
-        p->mUnk_0e = 1 << i;
+        color = gCourseMap->mSettings->mColors[colorIndex];
+        blend->mStartComponent0 = blend->mColor & 0x1f;
+        blend->mComponentDelta0 = (s16) (color & 0x1f) - blend->mStartComponent0;
+        blend->mStartComponent1 = (blend->mColor >> 5) & 0x1f;
+        blend->mComponentDelta1 = (s16) ((color >> 5) & 0x1f) - blend->mStartComponent1;
+        blend->mStartComponent2 = (blend->mColor >> 10) & 0x1f;
+        blend->mComponentDelta2 = (s16) ((color >> 10) & 0x1f) - blend->mStartComponent2;
+        blend->mBlendFactor = 0;
+        blend->mColorBit = 1 << colorIndex;
     }
-    if (p->mUnk_10 == 0x1000) {
+    if (blend->mBlendFactor == 0x1000) {
         return;
     }
-    p->mUnk_10 = p->mUnk_10 + ((s32) (((s64) c * 0xa4 + 0x800) >> 12) + 0x29);
-    if (p->mUnk_10 >= 0x1000) {
-        p->mUnk_10 = 0x1000;
+    blend->mBlendFactor = blend->mBlendFactor + ((s32) (((s64) c * 0xa4 + 0x800) >> 12) + 0x29);
+    if (blend->mBlendFactor >= 0x1000) {
+        blend->mBlendFactor = 0x1000;
     }
-    p->mUnk_00 = (s16) (p->mUnk_02 + (s32) (((s64) p->mUnk_08 * p->mUnk_10 + 0x800) >> 12)) +
-                 ((s16) (p->mUnk_04 + (s32) (((s64) p->mUnk_0a * p->mUnk_10 + 0x800) >> 12)) << 5) +
-                 ((s16) (p->mUnk_06 + (s32) (((s64) p->mUnk_0c * p->mUnk_10 + 0x800) >> 12)) << 10);
+    blend->mColor =
+        (s16) (blend->mStartComponent0 + (s32) (((s64) blend->mComponentDelta0 * blend->mBlendFactor + 0x800) >> 12)) +
+        ((s16) (blend->mStartComponent1 + (s32) (((s64) blend->mComponentDelta1 * blend->mBlendFactor + 0x800) >> 12))
+         << 5) +
+        ((s16) (blend->mStartComponent2 + (s32) (((s64) blend->mComponentDelta2 * blend->mBlendFactor + 0x800) >> 12))
+         << 10);
 }

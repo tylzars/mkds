@@ -142,7 +142,7 @@ void func_020fc94c(ItemKouraW *p) {
     p->mUnk_298.z = 0;
     VEC_Subtract(&p->mUnk_000.mVelocity, &p->mUnk_298, &p->mUnk_28c);
     p->mUnk_000.mUnk_d0 = &p->mUnk_000.mDrawPos;
-    func_0208adc8(&p->mUnk_000.mUnk_7c, 1);
+    InitCourseColorBlend(&p->mUnk_000.mUnk_7c, 1);
 }
 
 void func_020fc8ec(ItemKouraW *e, s32 a) {

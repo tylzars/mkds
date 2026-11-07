@@ -245,7 +245,7 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
         if (func_01ffdee4(&u, NULL, 0, 0xf000, 8, -2, out, &u, NULL, &n, NULL, NULL, NULL, NULL) != 0) {
             if (n & 0x1e34ef) {
                 QuaternionFromYAxisToVec3(&u, &b->mUnk_0b4);
-                func_0208ab98(&b->mUnk_132, (n & 0x3c000000) >> 26, 0x5000);
+                AdvanceCourseColorBlend(&b->mUnk_132, (n & 0x3c000000) >> 26, 0x5000);
                 if (b->mUnk_0fe != 0 && b->mUnk_000.mUnk_10.y < 0) {
                     if (b->mUnk_000.mFlags & 1) {
                         b->mUnk_000.mFlags &= ~1;
@@ -527,7 +527,7 @@ void func_020e1e98(Unk020e1e98 *a) {
     a->mUnk_0fe = 0;
     a->mUnk_152 = a->mUnk_150;
     a->mUnk_10c = 0;
-    func_0208adc8(&a->mUnk_132, 1);
+    InitCourseColorBlend(&a->mUnk_132, 1);
 }
 
 #pragma thumb off

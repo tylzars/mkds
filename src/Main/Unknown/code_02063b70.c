@@ -64,7 +64,7 @@ void DrawKart(Kart *a) {
         if ((d & 0x1008040) == 0 && (c & 0x1800000) == 0) {
             g = func_02063b70(a);
         }
-        func_0208155c(a->mIndex, g);
+        SetKartKillerEffectShown(a->mIndex, g);
         a->mVisible = 0;
         return;
     }

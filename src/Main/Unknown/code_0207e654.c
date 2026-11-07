@@ -273,7 +273,7 @@ void func_0207f6f0(KartAi *p, LinkCursor *q, Kart *r, Unk02175620_bc *s, Vec3 *a
         if (Vec3DotUnrounded(&w, c) < 0) {
             g *= -1;
         }
-        p->mTurnAngleDegrees = func_020738f8(g);
+        p->mTurnAngleDegrees = GetAbsoluteValue(g);
     }
     h = IsPastPointLink((Unk02080b1c *) q, a);
     if (h == 0 && (r->mUnk_48 & 0x40000000) == 0) {
@@ -412,7 +412,7 @@ void func_0207f05c(KartAi *p) {
             VEC_Subtract(&p->mKart->mPos, &a, &c);
             m = Vec3DotUnrounded(&c, &b);
             k = p->mUnk_08.mUnk_00.mLink->mUnk_1c;
-            if (func_020738f8(m) < k) {
+            if (GetAbsoluteValue(m) < k) {
                 j = TRUE;
             }
         }
@@ -457,7 +457,7 @@ void func_0207f05c(KartAi *p) {
     Vec3CrossUnrounded(&p->mUnk_08.mUnk_00.mDirection, &h, &f);
     VEC_Subtract(&p->mKart->mPos, &e, &g);
     p->mSideOffsetRatio = FX_Div(Vec3DotUnrounded(&g, &f), p->mUnk_08.mUnk_00.mLink->mUnk_1c + 0x1000);
-    if (func_020738f8(p->mSideOffsetRatio) > 0x1000) {
+    if (GetAbsoluteValue(p->mSideOffsetRatio) > 0x1000) {
         if (p->mSideOffsetRatio > 0) {
             p->mSideOffsetRatio = 0x1000;
         }
@@ -518,13 +518,13 @@ void func_0207ebfc(KartAi *p) {
             n = -1;
             m = m * n;
         }
-        p->mTurnAngleDegrees = func_020738f8(m);
+        p->mTurnAngleDegrees = GetAbsoluteValue(m);
         p->mUnk_90 = 0;
         p->mUnk_94 = 0;
         p->mUnk_98 = 0;
         p->mUnk_a0 = FALSE;
         EndKartDrift(q);
-        if (func_020738f8(p->mTurnAngleDegrees) <= 0x32000) {
+        if (GetAbsoluteValue(p->mTurnAngleDegrees) <= 0x32000) {
             return;
         }
         VEC_Subtract(&p->mLinkPosWithSideOffset, &q->mPos, &v0);
@@ -632,7 +632,7 @@ void AdvanceKartAiSideOffset(KartAi *p) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         t = (s16) (u16) (r->mUnk_00 >> 52);
         u = p->mSideOffsetRatio + (s32) (((s64) ((s32) (((s64) t * 0x2000) >> 12) - 0x1000) * 0x267) >> 12);
-        if (func_020738f8(u) > 0xb36) {
+        if (GetAbsoluteValue(u) > 0xb36) {
             if (u > 0) {
                 u = 0xb36;
             } else {
@@ -665,7 +665,7 @@ void SetKartAiSideOffsetFromKart(KartAi *p) {
     VEC_Subtract(&p->mKart->mPos, &b, &f);
     s = Vec3DotUnrounded(&f, &e);
     p->mSideOffsetRatio = FX_Div(s, p->mUnk_08.mUnk_00.mLink->mUnk_1c + 0x1000);
-    if (func_020738f8(p->mSideOffsetRatio) > 0x1000) {
+    if (GetAbsoluteValue(p->mSideOffsetRatio) > 0x1000) {
         if (p->mSideOffsetRatio > 0) {
             p->mSideOffsetRatio = 0x1000;
         }
@@ -726,7 +726,7 @@ void func_0207e668(KartAi *p) {
         case 1:
             if (gRaceSetup->mMode == MODE_BATTLE) {
                 p->mUnk_a8 = 3;
-                func_0208c1f4(p->mKart->mAi);
+                CallKartAiRequestLink(p->mKart->mAi);
                 p->mUnk_7a = 0xb4;
             } else {
                 p->mUnk_a8 = 2;
@@ -736,7 +736,7 @@ void func_0207e668(KartAi *p) {
             break;
         case 2:
             p->mUnk_a8 = 3;
-            func_0208c1f4(p->mKart->mAi);
+            CallKartAiRequestLink(p->mKart->mAi);
             p->mUnk_7a = 0xb4;
             break;
         case 3:

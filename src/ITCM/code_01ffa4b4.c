@@ -60,7 +60,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
                       p->mCollisionSlot, &v1, &v5, &v2, &f, (u32 *) &v3, (s32 *) &v4, &h, &w) != 0) {
         m = f & 0x1e34ef;
         VEC_Add(&p->mPos, &v1, &p->mPos);
-        func_0208ab98(&p->mKartModelsEntry->mUnk_040, (f & 0x3c000000) >> 26, p->mVelocityLength);
+        AdvanceCourseColorBlend(&p->mKartModelsEntry->mUnk_040, (f & 0x3c000000) >> 26, p->mVelocityLength);
         func_01ff9c9c(p, f);
         func_0206f694(p, f, &v4, h);
         if (f & 0x200300) {
@@ -126,7 +126,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
                                         (Unk02080b1c_00 *) (gKartItems)[p->mIndex].mUnk_1f0.mLink);
             }
             if ((p->mUnk_7c & 2) && (f & 0x400000) && p->mState != KART_STATE_LAUNCH_DOUBLE_FLIP) {
-                func_0208c1f4(p->mAi);
+                CallKartAiRequestLink(p->mAi);
             }
         }
         if (m != 0) {

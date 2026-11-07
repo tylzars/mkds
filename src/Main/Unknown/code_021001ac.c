@@ -274,7 +274,7 @@ void InitItemTeresa(Unk02101d18 *x, ItemTeresa *p) {
     StartKartTeresa(q);
     func_020f8e3c((u32) q, 0xf6);
     SetActiveItem(x->mUnk_0c, 0x10);
-    func_0208adc8(&p->mUnk_000.mUnk_7c, 1);
+    InitCourseColorBlend(&p->mUnk_000.mUnk_7c, 1);
     if (x->mUnk_0c->mFlags & 0x20) {
         p->mUnk_148 = FALSE;
     } else {
@@ -1032,7 +1032,7 @@ void InitItemTeresaFromData(ItemTeresa *p) {
     int i;
 
     func_020f8e78(p);
-    func_0208adc8(&p->mUnk_000.mUnk_7c, 1);
+    InitCourseColorBlend(&p->mUnk_000.mUnk_7c, 1);
     SetStateMachineState(p->mUnk_12c, 0);
     if ((p->mUnk_000.mUnk_78 & 0x8000) == 0) {
         i = (u16) (p->mUnk_000.mUnk_78 & ~0xff00);

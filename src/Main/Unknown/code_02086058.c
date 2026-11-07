@@ -170,7 +170,8 @@ void func_0208677c(void) {
             }
         }
         if (data_0217aed0->mUnk_0e4[p->mUnk_0c] != 0 || (GetKart(p->mUnk_0c)->mUnk_7c & 0x402020) != 0 ||
-            (func_020738f8(w->y - GetKart(gRaceSetup->mEntryIndex)->mPos.y) > 0x96000 && GetCurrentCameraKind() != 3)) {
+            (GetAbsoluteValue(w->y - GetKart(gRaceSetup->mEntryIndex)->mPos.y) > 0x96000 &&
+             GetCurrentCameraKind() != 3)) {
             p->mUnk_20 = -1;
         }
         if (p->mUnk_18 != FALSE) {

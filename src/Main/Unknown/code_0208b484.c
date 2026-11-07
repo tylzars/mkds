@@ -53,7 +53,7 @@ void func_0208b934(void *a) {
     if (GetCurrentSceneNumber() == 2) {
         d = gRaceSetup;
         if (d->mMode == MODE_MISSION_RUN) {
-            *(u32 *) &data_0217b050 = (u32) func_0208b458;
+            *(u32 *) &data_0217b050 = (u32) GetSPLManagerForEffectId;
             c = data_0217aa10->mUnk_a4;
             e = 0x96;
         }
@@ -106,18 +106,18 @@ void func_0208b934(void *a) {
             w = data_usa_021660fc;
             data_0217b048 = HeapAlloc(c, 0x64);
             for (j = 0; j < 6; j++) {
-                data_0217b048->mUnk_48[j] = NULL;
+                data_0217b048->mEmitters[j] = NULL;
                 VEC_Subtract(&data_usa_02155f78[j], &w, &v);
-                q = &data_0217b048->mUnk_00[j];
+                q = &data_0217b048->mDirections[j];
                 if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
                     Vec3NormalizeAndGetLengthUnchecked(&v, q);
                 }
             }
-            data_0217b048->mUnk_60 = 1;
-            data_0217b054 = (UnkFunc *) func_0208b190;
+            data_0217b048->mEmitterTimer = 1;
+            data_0217b054 = (UnkFunc *) AdvanceStadiumEmitters;
             break;
         case COURSE_ID_AWARD:
-            func_0208afe4();
+            CreateAwardEmitters();
             break;
     }
 }

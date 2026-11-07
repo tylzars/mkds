@@ -496,7 +496,7 @@ void func_020fd684(void *c, Vec3 *d, Vec3 *f) {
     b = f;
     if (e->mUnk_198 == NULL) {
         e->mUnk_1a0 = TRUE;
-        func_0208ad74(e->mUnk_000.mItemObject.mUnk_7c.mUnk_00, 1);
+        SetCourseColorBlendColor(e->mUnk_000.mItemObject.mUnk_7c.mUnk_00, 1);
     }
     if (a != NULL) {
         e->mUnk_000.mItemObject.mUnk_f0 = *a;

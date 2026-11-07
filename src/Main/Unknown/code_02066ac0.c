@@ -260,7 +260,7 @@ void func_02067488(Kart *a) {
     if (gCourseMap->mRaceRouteCount == 0 && gCourseMap->mBattleRouteCount == 0) {
         return;
     }
-    func_0208c218(a->mAi);
+    CallKartAiAdvance(a->mAi);
     if (a->mIndex != GetRaceUpdateFramesMod8()) {
         return;
     }
@@ -309,7 +309,7 @@ void func_02066fe0(Kart *a) {
                 if ((c & 6) == 0 && (c & 8) == 0) {
                     data_02175664[a->mEntryIndex].mSourceKind = 3;
                     if (gRaceProgress->mUnk_000[a->mIndex].mStatus == 1) {
-                        func_0208c260(a->mAi, a->mIndex);
+                        CallKartAiSetup(a->mAi, a->mIndex);
                         a->mUnk_7c = a->mUnk_7c | 2;
                         if ((a->mUnk_7c & 2) != 0) {
                             for (i = 0; i < 12; i++) {

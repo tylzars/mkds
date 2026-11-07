@@ -81,7 +81,7 @@ void ResetItemObject(ItemObject *param_1, s32 param_2) {
         param_1->mFlags |= 0x8000000;
     }
     param_1->mUnk_78 |= data_02159cac;
-    func_0208adc8(param_1->mUnk_7c.mUnk_00, 1);
+    InitCourseColorBlend(param_1->mUnk_7c.mUnk_00, 1);
     param_1->mUnk_90 = NULL;
     if (f != NULL) {
         f(param_1);
@@ -123,7 +123,7 @@ void func_020f98a0(ItemObject *param_1, Vec3 *param_2, Vec3 *param_3, u16 *param
     if (param_4 != NULL) {
         a->mUnk_7c = *(Unk020f41c4_C *) param_4;
     } else {
-        func_0208adc8(a->mUnk_7c.mUnk_00, 1);
+        InitCourseColorBlend(a->mUnk_7c.mUnk_00, 1);
     }
     a->mUnk_f0 = *param_3;
     a->mUnk_116 = param_5 != 0 ? 0 : 5;

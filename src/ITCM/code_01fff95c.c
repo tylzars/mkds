@@ -137,9 +137,9 @@ BOOL UpdateItemObject(ItemPool *a, ItemObject *p, s32 f) {
     }
     v = p->mUnk_fc;
     if (p->mFlags & 0x8000) {
-        func_0208ab98(&p->mUnk_7c, (v & 0x3c000000) >> 26, 0x800);
+        AdvanceCourseColorBlend(&p->mUnk_7c, (v & 0x3c000000) >> 26, 0x800);
     } else {
-        func_0208ab98(&p->mUnk_7c, (v & 0x3c000000) >> 26, 0x5000);
+        AdvanceCourseColorBlend(&p->mUnk_7c, (v & 0x3c000000) >> 26, 0x5000);
     }
     if (v & 0x1e34ef) {
         p->mUnk_114 = 0;

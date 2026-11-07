@@ -551,7 +551,7 @@ void AdvanceKartKillerAlongPointLinks(KartKillerCursor *a) {
     p->mSpeedLimitGoal = p->mForwardSpeed;
     p->mSpeedLimit = p->mSpeedLimitGoal;
     if (r != 0) {
-        func_0207ff5c((u32) a);
+        AdvancePointLinkCursorToFirstNext((u32) a);
     } else {
         TurnKartKillerTowardPointLink(a);
     }

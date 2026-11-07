@@ -490,7 +490,7 @@ void AdvanceKartKiller(Kart *p) {
                 SetupKartFollowEffect(StartEffect(v.mUnk_00[i], &p->mPos), p->mIndex, 0x14);
             }
         }
-        func_020815dc(p->mIndex);
+        StopKartKillerEffect(p->mIndex);
         StartSound(&p->mSoundSource, 0xfd, 0x7f, 0);
         return;
     }

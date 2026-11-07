@@ -342,7 +342,7 @@ void RefreshCameraProjection(Camera *p) {
         if (p->mHalfFovAngle == p->mHalfFovAngleGoal && gEntryCameraUpdateRan == 0) {
             return;
         }
-        if (func_020738f8(p->mHalfFovAngle - p->mHalfFovAngleGoal) < 10) {
+        if (GetAbsoluteValue(p->mHalfFovAngle - p->mHalfFovAngleGoal) < 10) {
             p->mHalfFovAngle = p->mHalfFovAngleGoal;
         }
     }

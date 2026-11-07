@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_0208533c(void);
+void ResetResFileEntries(void);

@@ -268,9 +268,9 @@ void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c
     p->mLastGroundY = p->mPos.y;
     if (p->mUnk_7c & 2) {
         if (c != NULL) {
-            func_0208c23c(p->mAi, c);
+            CallKartAiReset(p->mAi, c);
         } else {
-            func_0208c260(p->mAi, p->mIndex);
+            CallKartAiSetup(p->mAi, p->mIndex);
         }
     }
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
@@ -287,7 +287,7 @@ void func_02072930(Kart *p) {
     func_020f0044(&gKartItems[p->mIndex]);
     ReleaseKartSurfaceEffects(p);
     ReleaseKartStarEffects(p->mIndex);
-    func_020815a0(p->mIndex);
+    ReleaseKartKillerEffect(p->mIndex);
     func_02081338(p->mIndex);
     func_020810e4(p->mIndex);
     func_02080fb8(p);
@@ -330,7 +330,7 @@ void func_02072930(Kart *p) {
                 SetupKartFollowEffect(StartEffect(v.mUnk_00[i], &p->mPos), p->mIndex, 0x14);
             }
         }
-        func_020815dc(p->mIndex);
+        StopKartKillerEffect(p->mIndex);
         StartSound(&p->mSoundSource, 0xfd, 0x7f, 0);
     }
     if (p->mUnk_7c & 0x2000) {

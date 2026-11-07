@@ -215,15 +215,15 @@ extern struct SPLManager *data_0217b044;
 extern struct SPLManager *data_0217b04c;
 extern UnkFunc *data_0217b054;
 
-// Function pointers set by func_0208c284 (the targets take different parameters).
-extern UnkFunc *data_0217b058;
-extern UnkFunc *data_0217b05c;
-extern UnkFunc *data_0217b060;
-extern UnkFunc *data_0217b064;
-extern UnkFunc *data_0217b068;
-extern UnkFunc *data_0217b06c;
-extern UnkFunc *data_0217b070;
-extern s32 (*data_0217b074)();
+// Function pointers set by RegisterKartAiCallbacks (the targets take different parameters).
+extern UnkFunc *gKartAiAdvanceCallback;
+extern UnkFunc *gKartAiSetupCallback;
+extern UnkFunc *gKartAiResetCallback;
+extern UnkFunc *gKartAiLinkPosAndDirectionCallback;
+extern UnkFunc *gKartAiSetupHeldItemEntryCallback;
+extern UnkFunc *gKartAiSetupItemInUseEntryCallback;
+extern UnkFunc *gKartAiRequestLinkCallback;
+extern s32 (*gKartAiIsLinkRequestedCallback)();
 // Table of KartTurnEffects, one per Kart, allocated by InitKartTurnEffects and indexed by Kart.mIndex.
 extern struct KartTurnEffects *gKartTurnEffects;
 struct ModelEffect;

@@ -46,7 +46,7 @@ void InitModelAnimation(u32 a, void *b, void *c, u32 d, void *e, void *f) {
             }
         }
     }
-    func_02087cd0(p, 0);
+    ResetModelAnimationLooping(p, 0);
     q->mUnk_58 = 0;
     p->mRenderObj = q;
     p->mAnmObjCount = d;

@@ -294,7 +294,7 @@ void AdvanceKartAiHeading(struct KartAi *p, Vec3 *a, Vec3 *b) {
         return;
     }
     r = FALSE;
-    func_0208c1d0(&v0, &v1, p);
+    CallKartAiLinkPosAndDirection(&v0, &v1, p);
     if (p->mUnk_a8 == 1) {
         u = &q->mUnk_12c;
         d = VEC_DotProduct(u, &v1);
@@ -302,7 +302,7 @@ void AdvanceKartAiHeading(struct KartAi *p, Vec3 *a, Vec3 *b) {
         v5.y = v1.y - (s32) (((s64) u->y * d) >> 12);
         v5.z = v1.z - (s32) (((s64) u->z * d) >> 12);
         if (Vec3DotUnrounded(&q->mUnk_138, &v5) > -0x333) {
-            func_0208c1d0(&v2, &v3, p);
+            CallKartAiLinkPosAndDirection(&v2, &v3, p);
             o = p->mKart;
             r = TRUE;
             VEC_Subtract(&o->mPos, &v2, &v9);

@@ -6,70 +6,71 @@
 #include "Main/Unknown/code_0208bfd8.h"
 #include "Main/Unknown/unk_0217b000.h"
 
-void func_0208c284(void) {
+// Stores the CPU kart callbacks for Award and Mission Run, Staff Roll, Battle, or else the race ones.
+void RegisterKartAiCallbacks(void) {
     if (gRaceSetup->mRaceKind == RACE_KIND_AWARD || gRaceSetup->mMode == MODE_MISSION_RUN) {
-        data_0217b05c = func_0208be00;
-        data_0217b060 = func_0208bde0;
-        data_0217b058 = func_0208bdc0;
-        data_0217b070 = func_0208c050;
-        data_0217b074 = func_0208c03c;
-        data_0217b064 = func_0208c000;
-        data_0217b068 = func_0208bfec;
-        data_0217b06c = func_0208bfd8;
+        gKartAiSetupCallback = func_0208be00;
+        gKartAiResetCallback = func_0208bde0;
+        gKartAiAdvanceCallback = func_0208bdc0;
+        gKartAiRequestLinkCallback = RequestKartAiPointLink;
+        gKartAiIsLinkRequestedCallback = IsKartAiLinkRequested;
+        gKartAiLinkPosAndDirectionCallback = CopyKartAiLinkPosAndDirection;
+        gKartAiSetupHeldItemEntryCallback = func_0208bfec;
+        gKartAiSetupItemInUseEntryCallback = func_0208bfd8;
     } else if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
-        data_0217b05c = func_0208bd44;
-        data_0217b060 = func_0208bd40;
-        data_0217b058 = func_0208bd20;
-        data_0217b070 = func_0208c050;
-        data_0217b074 = func_0208c03c;
-        data_0217b064 = func_0208c000;
-        data_0217b068 = func_0208bfec;
-        data_0217b06c = func_0208bfd8;
+        gKartAiSetupCallback = func_0208bd44;
+        gKartAiResetCallback = func_0208bd40;
+        gKartAiAdvanceCallback = func_0208bd20;
+        gKartAiRequestLinkCallback = RequestKartAiPointLink;
+        gKartAiIsLinkRequestedCallback = IsKartAiLinkRequested;
+        gKartAiLinkPosAndDirectionCallback = CopyKartAiLinkPosAndDirection;
+        gKartAiSetupHeldItemEntryCallback = func_0208bfec;
+        gKartAiSetupItemInUseEntryCallback = func_0208bfd8;
     } else if (gRaceSetup->mMode == MODE_BATTLE) {
-        data_0217b05c = func_0208bf94;
-        data_0217b060 = func_0208bf6c;
-        data_0217b058 = func_0208bf40;
-        data_0217b070 = func_0208bef4;
-        data_0217b074 = func_0208bee0;
-        data_0217b064 = func_0208bea4;
-        data_0217b068 = func_0208be90;
-        data_0217b06c = func_0208be7c;
+        gKartAiSetupCallback = SetupKartAiForBattle;
+        gKartAiResetCallback = ResetKartAiForBattle;
+        gKartAiAdvanceCallback = func_0208bf40;
+        gKartAiRequestLinkCallback = func_0208bef4;
+        gKartAiIsLinkRequestedCallback = func_0208bee0;
+        gKartAiLinkPosAndDirectionCallback = func_0208bea4;
+        gKartAiSetupHeldItemEntryCallback = func_0208be90;
+        gKartAiSetupItemInUseEntryCallback = func_0208be7c;
     } else {
-        data_0217b05c = func_0208c0f0;
-        data_0217b060 = func_0208c0c8;
-        data_0217b058 = func_0208c09c;
-        data_0217b070 = func_0208c050;
-        data_0217b074 = func_0208c03c;
-        data_0217b064 = func_0208c000;
-        data_0217b068 = func_0208bfec;
-        data_0217b06c = func_0208bfd8;
+        gKartAiSetupCallback = SetupKartAiForRace;
+        gKartAiResetCallback = ResetKartAiForRace;
+        gKartAiAdvanceCallback = AdvanceKartAiForRace;
+        gKartAiRequestLinkCallback = RequestKartAiPointLink;
+        gKartAiIsLinkRequestedCallback = IsKartAiLinkRequested;
+        gKartAiLinkPosAndDirectionCallback = CopyKartAiLinkPosAndDirection;
+        gKartAiSetupHeldItemEntryCallback = func_0208bfec;
+        gKartAiSetupItemInUseEntryCallback = func_0208bfd8;
     }
 }
 
-void func_0208c260(KartAi *p, s32 a) {
-    data_0217b05c(p, a);
+void CallKartAiSetup(KartAi *kartAi, s32 kartIndex) {
+    gKartAiSetupCallback(kartAi, kartIndex);
 }
 
-void func_0208c23c(KartAi *p, Unk02175620_bc *a) {
-    data_0217b060(p, a);
+void CallKartAiReset(KartAi *kartAi, Unk02175620_bc *link) {
+    gKartAiResetCallback(kartAi, link);
 }
 
-void func_0208c218(KartAi *p) {
-    data_0217b058(p);
+void CallKartAiAdvance(KartAi *kartAi) {
+    gKartAiAdvanceCallback(kartAi);
 }
 
-void func_0208c1f4(KartAi *p) {
-    data_0217b070(p);
+void CallKartAiRequestLink(KartAi *kartAi) {
+    gKartAiRequestLinkCallback(kartAi);
 }
 
-void func_0208c1d0(Vec3 *a, Vec3 *b, KartAi *c) {
-    data_0217b064(a, b, c);
+void CallKartAiLinkPosAndDirection(Vec3 *position, Vec3 *direction, KartAi *kartAi) {
+    gKartAiLinkPosAndDirectionCallback(position, direction, kartAi);
 }
 
-void func_0208c1ac(KartAi *p) {
-    data_0217b068(p);
+void CallKartAiSetupHeldItemEntry(KartAi *kartAi) {
+    gKartAiSetupHeldItemEntryCallback(kartAi);
 }
 
-void func_0208c188(KartAi *p) {
-    data_0217b06c(p);
+void CallKartAiSetupItemInUseEntry(KartAi *kartAi) {
+    gKartAiSetupItemInUseEntryCallback(kartAi);
 }

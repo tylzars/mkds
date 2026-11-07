@@ -124,5 +124,5 @@ u32 func_02102eb8(ItemGesso *p, s32 b) {
     }
     p->mUnk_198 = a == (u16) b2;
     FreeItemObjectCollisionSlot((s32) p);
-    return (u32) func_0208adc8(&p->mUnk_000.mUnk_7c, 1);
+    return (u32) InitCourseColorBlend(&p->mUnk_000.mUnk_7c, 1);
 }

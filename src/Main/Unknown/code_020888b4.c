@@ -347,7 +347,7 @@ void AdvanceBattleKartAiSideOffset(KartAi *p) {
         t = (s32) (((s64) a * 0x2000 + 0x800) >> 12) - 0x1000;
         u = ((s64) t * 0x4ce + 0x800) >> 12;
         n = p->mSideOffsetRatio + u;
-        if (func_020738f8(n) > 0xb36) {
+        if (GetAbsoluteValue(n) > 0xb36) {
             if (n > 0) {
                 n = 0xb36;
             } else {
@@ -399,7 +399,7 @@ void AdvanceBattleKartAiTargetKart(KartAi *p) {
                 d = func_020888b4_inline(v3, &o->mPos);
                 c = 0;
                 if (d < 0x895440) {
-                    if (func_020738f8(p->mKart->mPos.y - o->mPos.y) < 0x3c000) {
+                    if (GetAbsoluteValue(p->mKart->mPos.y - o->mPos.y) < 0x3c000) {
                         c = 1;
                         p->mTargetDistanceSquared = d;
                     }
@@ -436,7 +436,7 @@ void AdvanceBattleKartAiTargetKart(KartAi *p) {
     d = func_020888b4_inline(v3, &o->mPos);
     c = 0;
     if (d < 0xf42400) {
-        if (func_020738f8(p->mKart->mPos.y - p->mTargetKart->mPos.y) < 0x3c000) {
+        if (GetAbsoluteValue(p->mKart->mPos.y - p->mTargetKart->mPos.y) < 0x3c000) {
             p->mTargetDistanceSquared = d;
             c = 1;
         }
@@ -444,7 +444,7 @@ void AdvanceBattleKartAiTargetKart(KartAi *p) {
     if (c == 0) {
         goto clear;
     }
-    if (func_020738f8(p->mKart->mPos.y - p->mTargetKart->mPos.y) >= 0x3c000) {
+    if (GetAbsoluteValue(p->mKart->mPos.y - p->mTargetKart->mPos.y) >= 0x3c000) {
         goto clear;
     }
     c = 0;
@@ -476,7 +476,7 @@ void AdvanceBattleKartAiTargetKart(KartAi *p) {
             VEC_Subtract(&u, &t, &w);
             d = Vec3DotUnrounded(&w, &e);
             c = p->mBattleLinkCursor.mLink->mUnk_24;
-            if (func_020738f8(d) >= c) {
+            if (GetAbsoluteValue(d) >= c) {
                 p->mHeadingPos = &p->mLinkPosWithSideOffset;
             } else {
                 p->mTargetKartPos = u;
@@ -569,7 +569,7 @@ void AdvanceBattleKartAiTargetShine(KartAi *p) {
             v2 = &p->mKart->mPos;
             d = func_020888b4_inline(v2, v1);
             m = gEntryYDifferenceLimit;
-            if (d < 0x15f900 && func_020738f8(p->mKart->mPos.y - r->mPos.y) < m) {
+            if (d < 0x15f900 && GetAbsoluteValue(p->mKart->mPos.y - r->mPos.y) < m) {
                 c = TRUE;
             } else {
                 c = FALSE;
@@ -593,7 +593,7 @@ void AdvanceBattleKartAiTargetShine(KartAi *p) {
                     VEC_Subtract(&u, &t, &w);
                     m = Vec3DotUnrounded(&w, &e);
                     x = p->mBattleLinkCursor.mLink->mUnk_24;
-                    if (func_020738f8(m) >= x) {
+                    if (GetAbsoluteValue(m) >= x) {
                         p->mHeadingPos = &p->mLinkPosWithSideOffset;
                     } else {
                         p->mTargetShinePos = u;
@@ -650,7 +650,7 @@ BOOL FindKartAiTargetShine(KartAi *p, s32 a, s32 b) {
             v1 = &e->mPos;
             v2 = &p->mKart->mPos;
             d = func_020888b4_inline(v2, v1);
-            if (d < a && func_020738f8(p->mKart->mPos.y - e->mPos.y) < b) {
+            if (d < a && GetAbsoluteValue(p->mKart->mPos.y - e->mPos.y) < b) {
                 x = TRUE;
             } else {
                 x = FALSE;
