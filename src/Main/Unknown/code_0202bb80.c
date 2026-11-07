@@ -274,13 +274,13 @@ void func_0202c0d4(s32 a, s32 b) {
                     t = FALSE;
                 }
                 if (t != FALSE) {
-                    i = CountSetBits(data_0217aa00->mUnk_15f6);
+                    i = CountSetBits(data_0217aa00->mParticipantMask);
                 } else {
                     i = 0;
                 }
                 data_02174e3c->mPlayerCount = (u8) i;
                 if (data_0217aa00->mUnk_0000 == 2) {
-                    i = data_0217aa00->mUnk_0432;
+                    i = data_0217aa00->mOwnIndex;
                 } else {
                     i = 0;
                 }
@@ -446,7 +446,7 @@ void func_0202bb80(void) {
 
                 for (i = 0; i < data_02174e3c->mPlayerCount; i++) {
                     if (data_0217aa00->mUnk_0004 == 8 &&
-                        (data_0217aa00->mUnk_15f6 & (1 << data_0217aa00->mUnk_1e8c[(u16) i])) != 0) {
+                        (data_0217aa00->mParticipantMask & (1 << data_0217aa00->mUnk_1e8c[(u16) i])) != 0) {
                         c = data_0217aa00->mUnk_15c8[data_0217aa00->mUnk_1e8c[(u16) i]].mUnk_00[5];
                     } else {
                         c = 0;

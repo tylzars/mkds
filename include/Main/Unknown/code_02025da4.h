@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk0205fd2c Unk0205fd2c;
+typedef struct KartAppear KartAppear;
 
-s32 func_02025da4(Unk0205fd2c *a, u32 b, s32 c);
+s32 func_02025da4(KartAppear *a, u32 b, s32 c);

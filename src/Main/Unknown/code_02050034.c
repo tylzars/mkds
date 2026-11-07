@@ -5,13 +5,14 @@
 #include "Main/Unknown/code_02057fe4.h"
 #include "Main/Unknown/unk_0217a000.h"
 
-u32 func_02050064(u32 p0) {
-    return (data_0217aa00->mUnk_1e9c[p0]);
+u32 GetParticipantIndex(u32 position) {
+    return (data_0217aa00->mParticipantIndices[position]);
 }
 
-void func_02050034(u8 arg0) {
-    u32 value0 = arg0;
-    data_0217aa00->mUnk_15f6 = value0;
+// Also rebuilds the participant index tables, combines the participants' bits and requests the next state.
+void SetParticipantMask(u8 mask) {
+    u32 value0 = mask;
+    data_0217aa00->mParticipantMask = value0;
     func_02050080();
     func_02058b10();
 }

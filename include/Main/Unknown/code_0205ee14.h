@@ -12,9 +12,9 @@ typedef struct Unk0205fd2c_00 {
     /* 06 */ u8 mUnk_06[1][13];
 } Unk0205fd2c_00;
 
-typedef struct Unk0205fd2c {
-    /* 00 */ Unk0205fd2c_00 *mUnk_00;
-} Unk0205fd2c;
+typedef struct KartAppear {
+    /* 00 */ Unk0205fd2c_00 *mFileData;
+} KartAppear;
 
 extern u32 data_usa_021653e0;
 extern u8 data_usa_0215494c[];
@@ -29,8 +29,8 @@ void func_0205f700(void);
 void func_0205fa00(u32 a, s32 *b, u32 c, u32 d);
 s32 func_0205fbb8(s32 a);
 s32 func_0205fc28(s32 a);
-BOOL func_0205fc98(Unk0205fd2c *a, u32 b, u32 c);
-u32 func_0205fd2c(Unk0205fd2c *a, u32 b, u32 c);
+BOOL func_0205fc98(KartAppear *a, u32 b, u32 c);
+u32 func_0205fd2c(KartAppear *a, u32 b, u32 c);
 s32 func_0205fd78(s32 a, s32 b, s32 *out);
 s32 func_0205fdb4(s32 a, void *b);
 u32 func_0205fe1c(u8 *a, TimeRecord *b, s32 c);

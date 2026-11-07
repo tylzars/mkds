@@ -140,7 +140,7 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
         case 2:
             SetSelectChoisesSoundId(1, 0xf);
             gResultsBattle->mUnk_0d0 =
-                data_0217aa00->mUnk_1e52[(u16) (data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0)].mUnk_00;
+                data_0217aa00->mUnk_1e52[(u16) (data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0)].mUnk_00;
             gResultsBattle->mUnk_0d8 = gRaceSetup->mKartCount;
             gResultsBattle->mUnk_150 = 0;
             break;

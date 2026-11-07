@@ -20,7 +20,7 @@ unsigned int func_0204a5f4(unsigned int p0);
 // Calls StopWvrAndWait, func_02043c14 and InitEmblem through func_ov001_021a23f4 (InitEmblem also
 // calls InitEmblemChoises).
 void InitEmblemScene(void);
-BOOL func_0204a620(Unk02175650 *a);
-BOOL func_0204a650(Unk02175650 *a);
-u16 func_0204a664(Unk02175650 *a);
-void func_0204a798(Unk02175650 *a, u16 b);
+BOOL func_0204a620(KeyRecording *a);
+BOOL func_0204a650(KeyRecording *a);
+u16 func_0204a664(KeyRecording *a);
+void func_0204a798(KeyRecording *a, u16 b);

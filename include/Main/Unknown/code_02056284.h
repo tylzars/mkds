@@ -4,4 +4,4 @@
 
 typedef struct GhostRecord GhostRecord;
 
-GhostRecord *func_02056284(const char *a);
+GhostRecord *LoadGhostRecordFile(const char *path);

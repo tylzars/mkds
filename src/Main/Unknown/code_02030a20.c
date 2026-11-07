@@ -329,7 +329,7 @@ void func_02031960(void) {
             switch (func_02058cac()) {
                 case 1:
                     if (gMultiSelectMember->mTimer == 0) {
-                        if ((u8) ((data_0217aa00->mUnk_15f6 & ~data_0217aa00->mUnk_0457) & 0xfe) != 0) {
+                        if ((u8) ((data_0217aa00->mParticipantMask & ~data_0217aa00->mUnk_0457) & 0xfe) != 0) {
                             SetupTxtSystemSubText(GetBmgEntry(gMultiSelectMember->mCommonMessages, 0x81));
                             gMultiSelectMember->mTimer = 0x78;
                         } else {

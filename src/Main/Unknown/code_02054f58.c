@@ -67,7 +67,7 @@ s32 func_02055564(s32 a) {
             break;
         case 2:
         case 10:
-            if (data_0217aa00->mUnk_0432 == 0xffff) {
+            if (data_0217aa00->mOwnIndex == 0xffff) {
                 if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
                     func_02050e60(5);
                     return 3;
@@ -197,7 +197,7 @@ s32 func_02055030(void) {
             data_0217aa00->mUnk_000c = 0;
             break;
         case 0:
-            func_020562b4();
+            ClearParticipantBits();
             data_0217aa00->mUnk_0004 = 0;
             r = TRUE;
             data_0217aa00->mUnk_0454 &= ~0x80;

@@ -114,28 +114,28 @@ s32 func_0205fd78(s32 a, s32 b, s32 *v1) {
     return d;
 }
 
-u32 func_0205fd2c(Unk0205fd2c *a, u32 b, u32 c) {
+u32 func_0205fd2c(KartAppear *a, u32 b, u32 c) {
     u8 d;
     u8 e;
 
     d = func_02056d98();
-    e = a->mUnk_00->mUnk_06[c][b];
+    e = a->mFileData->mUnk_06[c][b];
     if (e != 0 && e <= d) {
         return 1;
     }
     return 0;
 }
 
-BOOL func_0205fc98(Unk0205fd2c *a, u32 b, u32 c) {
+BOOL func_0205fc98(KartAppear *a, u32 b, u32 c) {
     u8 d;
     u8 e;
 
     if (func_0205f218_inline() != FALSE) {
-        d = data_0217aa08->mUnk_39;
+        d = data_0217aa08->mParticipantMinValue;
     } else {
         d = func_02056d98();
     }
-    e = a->mUnk_00->mUnk_06[c][b];
+    e = a->mFileData->mUnk_06[c][b];
     if (e != 0 && e <= d) {
         return TRUE;
     }
@@ -146,14 +146,14 @@ s32 func_0205fc28(s32 a) {
     if (func_0205f218_inline() == FALSE) {
         return func_02056dec(a);
     }
-    return func_02056e00(a, data_0217aa08->mUnk_30);
+    return func_02056e00(a, data_0217aa08->mParticipantAndBits);
 }
 
 s32 func_0205fbb8(s32 a) {
     if (func_0205f218_inline() == FALSE) {
         return func_02056dec(a);
     }
-    return func_02056e00(a, data_0217aa08->mUnk_34);
+    return func_02056e00(a, data_0217aa08->mParticipantOrBits);
 }
 
 void func_0205fa00(u32 a, s32 *b, u32 c, u32 d) {

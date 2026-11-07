@@ -58,13 +58,13 @@ void func_02043410(void) {
         p->mRequestedBits = 0;
         p->mUnk_44 = 0;
         p->mBitMask = 0x2fff;
-        func_0204a9e4((Unk02175650 *) &p->mUnk_28);
+        ResetKeyRecording((KeyRecording *) &p->mUnk_28);
         ResetInputSlotPair((Unk02175628_48 *) &p->mPairX);
     }
     z = data_0217aa00;
     if (func_020431e4_inline(z) != 0) {
         for (j = 0; j < 8; j++) {
-            if (z->mUnk_15f6 & (1 << z->mUnk_1e8c[j])) {
+            if (z->mParticipantMask & (1 << z->mUnk_1e8c[j])) {
                 data_02175628[j].mSourceKind = 4;
             }
         }
@@ -92,7 +92,7 @@ void func_020431e4(void) {
         p->mRequestedBits = 0;
         p->mUnk_44 = 0;
         p->mBitMask = 0x2fff;
-        func_0204a9e4((Unk02175650 *) &p->mUnk_28);
+        ResetKeyRecording((KeyRecording *) &p->mUnk_28);
         ResetInputSlotPair((Unk02175628_48 *) &p->mPairX);
     }
     data_02175628[8].mSourceKind = 5;

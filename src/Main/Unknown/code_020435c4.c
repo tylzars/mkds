@@ -58,7 +58,7 @@ static inline void func_02043c14_inline(void) {
         p->mRequestedBits = 0;
         p->mUnk_44 = 0;
         p->mBitMask = 0x2fff;
-        func_0204a9e4((Unk02175650 *) &p->mUnk_28);
+        ResetKeyRecording((KeyRecording *) &p->mUnk_28);
         ResetInputSlotPair((Unk02175628_48 *) &p->mPairX);
     }
     data_02175628[8].mSourceKind = 5;
@@ -186,7 +186,7 @@ void func_02044060(u32 a) {
         data_0217aa08->mUnk_14[0]->mFilled = 0;
     }
     if (TryFormatGhostPath(a, v1, 0x80) != FALSE) {
-        p = func_02056284(v1);
+        p = LoadGhostRecordFile(v1);
     }
     if (p != NULL) {
         return;
@@ -232,10 +232,10 @@ void func_02043d10(void *a) {
     InitTouchPanelAndSetCalibration();
     InitTouchMicInput(a);
     for (i = 0; i <= 1; i++) {
-        func_0204aa04((u32) &data_02175628[i].mUnk_28, (u32) a);
+        InitKeyRecordingBuffer((u32) &data_02175628[i].mUnk_28, (u32) a);
     }
     for (; i < 10; i++) {
-        func_0204a9f8((Unk02175650 *) &data_02175628[i].mUnk_28);
+        func_0204a9f8((KeyRecording *) &data_02175628[i].mUnk_28);
     }
     data_02175624 = HeapAlloc(a, 0x10);
     func_02043c14_inline();
@@ -345,9 +345,9 @@ void func_02043648(void) {
     b = y;
     k = gTouchMicInput->mUnk_30_3;
     if (func_02043648_inline(data_0217aa00) != 0) {
-        a = func_0204ffe8(func_02050064(data_02175624->mUnk_08));
-        b = *(u16 *) &data_0217aa00->mUnk_15bc_view.mUnk_0c[func_02050064(data_02175624->mUnk_08)].mUnk_00[2];
-        func_02050064(data_02175624->mUnk_08);
+        a = func_0204ffe8(GetParticipantIndex(data_02175624->mUnk_08));
+        b = *(u16 *) &data_0217aa00->mUnk_15bc_view.mUnk_0c[GetParticipantIndex(data_02175624->mUnk_08)].mUnk_00[2];
+        GetParticipantIndex(data_02175624->mUnk_08);
     }
     for (i = 0; i < 10; i++) {
         m = 0;
@@ -367,7 +367,7 @@ void func_02043648(void) {
                 case 1:
                     if (f == 0) {
                         if (c != 0) {
-                            m = func_0204a664((Unk02175650 *) &p->mUnk_28);
+                            m = func_0204a664((KeyRecording *) &p->mUnk_28);
                         }
                     } else {
                         q = TRUE;
@@ -388,7 +388,7 @@ void func_02043648(void) {
                                     m |= PAD_KEY_LEFT;
                                 }
                             }
-                            func_0204a798((Unk02175650 *) &p->mUnk_28, m);
+                            func_0204a798((KeyRecording *) &p->mUnk_28, m);
                         }
                     } else {
                         q = TRUE;
@@ -415,7 +415,7 @@ void func_02043648(void) {
                 case 4:
                     if (f == 0) {
                         if (c != 0) {
-                            m = func_0204ffe8(func_02050064(i));
+                            m = func_0204ffe8(GetParticipantIndex(i));
                             if (data_02175624->mUnk_04 & 4) {
                                 t = m & 0xffcf;
                                 if (m & PAD_KEY_LEFT) {
@@ -430,8 +430,8 @@ void func_02043648(void) {
                     } else {
                         q = TRUE;
                     }
-                    n = *(u16 *) &data_0217aa00->mUnk_15bc_view.mUnk_0c[func_02050064(i)].mUnk_00[2];
-                    o = data_0217aa00->mUnk_15bc_view.mUnk_0c[func_02050064(i)].mUnk_06_7;
+                    n = *(u16 *) &data_0217aa00->mUnk_15bc_view.mUnk_0c[GetParticipantIndex(i)].mUnk_00[2];
+                    o = data_0217aa00->mUnk_15bc_view.mUnk_0c[GetParticipantIndex(i)].mUnk_06_7;
                     break;
                 case 6:
                     m = x;

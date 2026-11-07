@@ -4,4 +4,4 @@
 
 typedef struct BlockTransferRecord BlockTransferRecord;
 
-void func_0204f19c(BlockTransferRecord *a);
+void ParentBlockTransferCallback(BlockTransferRecord *record);

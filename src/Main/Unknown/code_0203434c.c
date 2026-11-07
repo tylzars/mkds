@@ -250,7 +250,7 @@ s32 func_02034370(Unk02034370 *a) {
         case 5:
             switch (AdvanceBlockCountRequest()) {
                 case 1:
-                    func_0204f5e4();
+                    ResetPendingFiles();
                     func_0204ee4c(0, func_0202ddd8());
                     data_02174e64->mState = 6;
                     break;

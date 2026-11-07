@@ -386,7 +386,7 @@ void StartConnectCallback(Unk021425e8 *a) {
         case 0:
             switch (a->mUnk_08_0) {
                 case 7:
-                    data_0217aa00->mUnk_0432 = a->mUnk_08_2;
+                    data_0217aa00->mOwnIndex = a->mUnk_08_2;
                     data_0217aa00->mUnk_043a = r;
                     v = r;
                     switch (func_02051658_inline()) {
@@ -578,7 +578,7 @@ void SetGameInfo(void) {
     if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
         r = FALSE;
     }
-    if (WM_SetGameInfo((Unk021425e8Func) func_02051640, p->mUnk_38, 0x1c, 0x25,
+    if (WM_SetGameInfo((Unk021425e8Func) ClearRequestPending, p->mUnk_38, 0x1c, 0x25,
                        data_0217aa00->mParentParameter->mUnk_0c, r == FALSE) != 2) {
         data_0217aa00->mRequestPending = 0;
     }

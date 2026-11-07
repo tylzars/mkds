@@ -104,7 +104,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     }
     if (func_020280dc() == 0) {
         gSelectKart->mKartSelectMessages = FindFileInLoadedArchives(gKartSelectBmgName);
-        gSelectKart->mUnk_098 = func_02056444(gSelectKart->mHeap);
+        gSelectKart->mUnk_098 = CreateKartAppear(gSelectKart->mHeap);
     }
     g = gSelectKart;
     g->mCharacterIndex = GetRaceSetupCopy()->mEntries[g->mEntryIndex].mCharacterIndex;

@@ -7,16 +7,16 @@
 
 #pragma thumb on
 
-void func_020566a8(u32 a, int b) {
+void func_020566a8(u32 index, int source) {
     int v1;
-    GhostRecord *v2;
-    v2 = data_0217aa08->mUnk_14[1];
-    *(u32 *) (b + 8) = *(u32 *) (b + 8) & 0xfffffffe | 1;
-    MI_CpuCopy8(((u16 *) (u32) b), ((u32 *) v2), (0x00001000u));
-    func_02057944(a, v2);
-    v1 = func_020573c8(a);
+    GhostRecord *destination;
+    destination = data_0217aa08->mUnk_14[1];
+    *(u32 *) (source + 8) = *(u32 *) (source + 8) & 0xfffffffe | 1;
+    MI_CpuCopy8(((u16 *) (u32) source), ((u32 *) destination), (0x00001000u));
+    func_02057944(index, destination);
+    v1 = func_020573c8(index);
     if (v1 == 0) {
-        func_0205746c(a, data_0217aa08->mUnk_00->mUnk_2a, 2);
+        func_0205746c(index, data_0217aa08->mUnk_00->mUnk_2a, 2);
         func_020574a0();
     }
 }

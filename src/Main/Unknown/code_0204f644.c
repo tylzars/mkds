@@ -9,54 +9,55 @@
 
 #pragma thumb on
 
-void func_0204f770(void) {
-    s16 m = data_0217aa00->mUnk_1d08 - 1;
-    u32 v1 = *data_0217aa00->mUnk_16a0[m].mUnk_74 >> 8;
-    void *v2 = data_0217aa00->mUnk_16a0[m].mUnk_78;
-    if (v2 == NULL) {
-        v2 = HeapAllocAligned(data_0217aa00->mUnk_16a0[m].mUnk_80, v1, 0x20);
-        *data_0217aa00->mUnk_16a0[m].mUnk_7c = v2;
+void UncompressPendingFile(void) {
+    s16 index = data_0217aa00->mNextLoadIndex - 1;
+    u32 uncompressedSize = *data_0217aa00->mBlockEntries[index].mBuffer >> 8;
+    void *destination = data_0217aa00->mBlockEntries[index].mUncompressedBuffer;
+    if (destination == NULL) {
+        destination = HeapAllocAligned(data_0217aa00->mBlockEntries[index].mHeap, uncompressedSize, 0x20);
+        *data_0217aa00->mBlockEntries[index].mDataOutput = destination;
     }
-    MI_UncompressLZ8(data_0217aa00->mUnk_16a0[m].mUnk_74, v2);
-    data_0217aa00->mUnk_16a0[m].mUnk_84_29 = 0;
+    MI_UncompressLZ8(data_0217aa00->mBlockEntries[index].mBuffer, destination);
+    data_0217aa00->mBlockEntries[index].mUncompressPending = 0;
 }
 
-BOOL func_0204f644(void) {
-    u16 n = data_0217aa00->mUnk_1d08;
-    s16 m = n - 1;
-    FSFile *p = &data_0217aa00->mUnk_1d0c;
+// Staged: one step per call; returns TRUE when no queued file is left.
+BOOL LoadPendingFiles(void) {
+    u16 nextIndex = data_0217aa00->mNextLoadIndex;
+    s16 previousIndex = nextIndex - 1;
+    FSFile *file = &data_0217aa00->mFile;
     void *q;
-    s32 v1;
-    u32 *v2;
-    if (((p->mStat & 1) ? 1 : 0) != 0) {
+    s32 size;
+    u32 *buffer;
+    if (((file->mStat & 1) ? 1 : 0) != 0) {
         return FALSE;
     }
-    if (m >= 0 && data_0217aa00->mUnk_16a0[m].mUnk_84_29 != 0) {
+    if (previousIndex >= 0 && data_0217aa00->mBlockEntries[previousIndex].mUncompressPending != 0) {
         if (data_0217aa0c->mUnk_f8 != 0) {
             return FALSE;
         }
-        func_02057df0(func_0204f770);
+        func_02057df0(UncompressPendingFile);
         data_0217aa0c->mUnk_f8 = 1;
         return FALSE;
     }
-    if (n >= 12 || data_0217aa00->mUnk_16a0[n].mUnk_34 == 0) {
+    if (nextIndex >= 12 || data_0217aa00->mBlockEntries[nextIndex].mPath == 0) {
         return TRUE;
     }
-    q = &data_0217aa00->mUnk_16a0[n].mUnk_34;
-    if (((p->mStat & 0x10) ? 1 : 0) != 0) {
-        FS_CloseFile(p);
+    q = &data_0217aa00->mBlockEntries[nextIndex].mPath;
+    if (((file->mStat & 0x10) ? 1 : 0) != 0) {
+        FS_CloseFile(file);
     }
-    FS_InitFile(p);
-    if (FS_OpenFile(p, q) != 0) {
+    FS_InitFile(file);
+    if (FS_OpenFile(file, q) != 0) {
         q = data_0217aa00;
-        v1 = p->mProp.p.mUnk_08 - p->mProp.p.mUnk_04;
-        v2 = ((Unk0217aa00 *) q)->mUnk_16a0[n].mUnk_74;
-        if (v2 == NULL) {
-            v2 = HeapAllocAligned(data_0217aa00->mUnk_16a0[n].mUnk_80, v1, 0x20);
-            *data_0217aa00->mUnk_16a0[n].mUnk_7c = v2;
+        size = file->mProp.p.mUnk_08 - file->mProp.p.mUnk_04;
+        buffer = ((Unk0217aa00 *) q)->mBlockEntries[nextIndex].mBuffer;
+        if (buffer == NULL) {
+            buffer = HeapAllocAligned(data_0217aa00->mBlockEntries[nextIndex].mHeap, size, 0x20);
+            *data_0217aa00->mBlockEntries[nextIndex].mDataOutput = buffer;
         }
-        FS_ReadFileAsync(p, v2, v1);
-        data_0217aa00->mUnk_1d08++;
+        FS_ReadFileAsync(file, buffer, size);
+        data_0217aa00->mNextLoadIndex++;
     }
     return FALSE;
 }

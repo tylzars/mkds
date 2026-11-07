@@ -120,7 +120,7 @@ s32 func_02058cac(void) {
     if (!func_02058cac_inline2()) {
         return 1;
     }
-    v = ((const Unk0217aa00 *) data_0217aa00)->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
+    v = ((const Unk0217aa00 *) data_0217aa00)->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
     if (v == 0xffff && func_02058b38_inline() == 2) {
         if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
             func_02050e60(0);
@@ -143,7 +143,7 @@ s32 func_02058cac(void) {
 void func_02058c74(void) {
     u16 v;
 
-    v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
+    v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
     func_02056464(&data_0217aa00->mUnk_045c[v]);
 }
 
@@ -188,7 +188,7 @@ void func_02058b74(void) {
 
 void func_02058b38(void) {
     if (func_02058b38_inline() == 1) {
-        data_0217aa00->mUnk_15f6 = data_0217aa00->mUnk_0044.mChildMask | 1;
+        data_0217aa00->mParticipantMask = data_0217aa00->mUnk_0044.mChildMask | 1;
     }
     data_0217aa00->mUnk_1608.mUnk_14 = 0;
 }

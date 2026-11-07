@@ -406,7 +406,7 @@ void ProcessMPData(u32 a, Unk0205081c *b) {
             data_0217aa00->mRequestPending = 0;
             break;
         case 1:
-            data_0217aa00->mUnk_15f6 = b->mUnk_04;
+            data_0217aa00->mParticipantMask = b->mUnk_04;
             func_02050080();
             func_02058b10();
             break;
@@ -430,7 +430,7 @@ void ProcessMPData(u32 a, Unk0205081c *b) {
             if ((data_0217aa00->mUnk_164d & (1 << b->mUnk_0a)) != 0) {
                 return;
             }
-            MI_CpuCopy8(b->mUnk_02, data_0217aa00->mUnk_045c[b->mUnk_0a].mUnk_224, 4);
+            MI_CpuCopy8(b->mUnk_02, data_0217aa00->mUnk_045c[b->mUnk_0a].mBits, 4);
             data_0217aa00->mUnk_164d |= 1 << b->mUnk_0a;
             break;
         case 7:
@@ -482,7 +482,7 @@ BOOL QueueMPDataToPort(void *a, s32 b, u16 c, void *d, QueueMPDataToPortParams *
             }
             break;
         case 2:
-            if (data_0217aa00->mUnk_0432 == 0xffff) {
+            if (data_0217aa00->mOwnIndex == 0xffff) {
                 return FALSE;
             }
             break;
@@ -546,7 +546,7 @@ BOOL func_020503cc(s32 a, u16 b) {
     Unk020503cc v1;
 
     v1.mUnk_00 = 9;
-    MI_CpuCopy8(data_0217aa00->mUnk_045c[a].mUnk_224, v1.mUnk_02, 4);
+    MI_CpuCopy8(data_0217aa00->mUnk_045c[a].mBits, v1.mUnk_02, 4);
     v1.mUnk_0a = a;
     if ((data_0217aa00->mUnk_0454 & 1) == 0) {
         return FALSE;

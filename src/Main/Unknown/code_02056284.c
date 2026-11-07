@@ -4,10 +4,10 @@
 
 #pragma thumb on
 
-GhostRecord *func_02056284(const char *a) {
-    int v1;
-    v1 = ReadWholeFile(a, data_0217aa08->mUnk_14[2], (0x00001000u));
-    if (v1 != 0) {
+GhostRecord *LoadGhostRecordFile(const char *path) {
+    int result;
+    result = ReadWholeFile(path, data_0217aa08->mUnk_14[2], (0x00001000u));
+    if (result != 0) {
         return data_0217aa08->mUnk_14[2];
     }
     return NULL;

@@ -2,19 +2,19 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "code_0214d018.h"
 
-void func_0204a978(Unk02175650 *a) {
-    if (a->mUnk_00 == NULL) {
+void func_0204a978(KeyRecording *a) {
+    if (a->mBuffer == NULL) {
         return;
     }
     if (a->mUnk_0c == FALSE) {
-        if (a->mUnk_00 != NULL) {
-            MI_CpuFill8(a->mUnk_00, 0, 0xdcc);
+        if (a->mBuffer != NULL) {
+            MI_CpuFill8(a->mBuffer, 0, 0xdcc);
         }
         a->mUnk_0c = TRUE;
     }
-    a->mUnk_00->mUnk_00 = 0;
+    a->mBuffer->mUnk_00 = 0;
     a->mUnk_0c = FALSE;
-    a->mUnk_04 = 0;
-    a->mUnk_06 = 0;
-    a->mUnk_08 = 1;
+    a->mPairIndex = 0;
+    a->mRepeatCount = 0;
+    a->mStatus = 1;
 }

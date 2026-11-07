@@ -680,7 +680,7 @@ void func_020474e4(void) {
 
 void RequestArchiveLoad(const void *a, s32 b) {
     ArchiveBuffer *p = &data_021759c8->mBuffers[b];
-    func_0204f4d0(a, p->mHeap, &p->mData, p->mUnk_08_0, p->mUnk_08_29);
+    AddPendingFile(a, p->mHeap, &p->mData, p->mUnk_08_0, p->mUnk_08_29);
     p->mUnk_08_31 = 1;
 }
 
@@ -697,7 +697,7 @@ void RequestArchiveLoadWithLanguage(const void *a, u32 b) {
 }
 
 void func_020473e4(void) {
-    func_0204f5e4();
+    ResetPendingFiles();
     NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a80, 3);
     RequestArchiveLoad(gKartModelMainAArchivePath, 0xb);
     RequestArchiveLoad(gKartModelMainBArchivePath, 0xc);
@@ -710,7 +710,7 @@ void func_020473e4(void) {
 }
 
 void RequestMenuDLArchives(void) {
-    func_0204f5e4();
+    ResetPendingFiles();
     NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a80, 3);
     RequestArchiveLoad(gMenuDLArchivePath, 0);
     RequestArchiveLoadWithLanguage(gMenuDLArchivePrefix, 1);
@@ -722,7 +722,7 @@ void RequestMenuDLArchives(void) {
 
 void RequestRaceArchives(void *a, void *b) {
     char c[128];
-    func_0204f5e4();
+    ResetPendingFiles();
     NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a80, 3);
     RequestArchiveLoad(gRaceArchivePath, 2);
     RequestArchiveLoadWithLanguage(gRaceArchivePrefix, 3);
@@ -747,7 +747,7 @@ void RequestRaceArchives(void *a, void *b) {
 #pragma thumb on
 
 void RequestResultDLArchives(void) {
-    func_0204f5e4();
+    ResetPendingFiles();
     NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a80, 3);
     RequestArchiveLoad(gResultDLArchivePath, 0xe);
     RequestArchiveLoadWithLanguage(gResultDLArchivePrefix, 0xf);

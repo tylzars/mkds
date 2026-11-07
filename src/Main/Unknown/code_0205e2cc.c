@@ -89,13 +89,13 @@ void CopyOtherPlayerEmblemsToBlocks(void) {
     for (j = 0; j < 8; j++) {
         d[j] = -1;
         if (data_0217aa00->mUnk_0000 == 2) {
-            m = data_0217aa00->mUnk_0432;
+            m = data_0217aa00->mOwnIndex;
         } else {
             m = 0;
         }
         if (j != (u16) m) {
             if ((data_0217aa00->mUnk_0457 & (1 << data_0217aa00->mUnk_1e8c[j])) == 0) {
-                if ((data_0217aa00->mUnk_15f6 & (1 << j)) != 0) {
+                if ((data_0217aa00->mParticipantMask & (1 << j)) != 0) {
                     e = &data_0217aa00->mUnk_045c[j];
                     t = SetBuddyRecordFromPlayer(e, 1);
                     if (t != -1) {

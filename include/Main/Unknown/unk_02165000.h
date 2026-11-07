@@ -62,7 +62,7 @@ extern const char data_0216512c[];
 extern const char data_02165140[];
 extern const char data_02165148[];
 extern const char data_0216515c[];
-extern const char data_0216526c[];
+extern const char gKartAppearFileName[];
 extern const char *gCharacterDirName;
 extern const char *gKartDirName;
 extern const char *gCharacterSubDirNames[13];

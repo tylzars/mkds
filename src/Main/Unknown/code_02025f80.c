@@ -207,7 +207,7 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
             break;
         case 1:
             p->mUnk_078 =
-                data_0217aa00->mUnk_1e52[(u16) (data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0)].mUnk_00;
+                data_0217aa00->mUnk_1e52[(u16) (data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0)].mUnk_00;
             break;
         case 2:
             gSelectCharacter->mUnk_078 = func_020295e4();

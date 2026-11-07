@@ -191,7 +191,7 @@ void func_02034bf4(void *a, void *b, void *c) {
     data_02174e64->mUnk_024[1] = c;
     data_02174e64->mCommonMessages = FindFileInLoadedArchives(data_02164294);
     data_02174e64->mGhostMessages = FindSceneFile(data_021642a0);
-    func_0204f240(data_02174e64->mHeap, 2);
+    InitBlockEntries(data_02174e64->mHeap, 2);
     data_02174e64->mUnk_080 = -1;
     for (i = 0; i < 4; i++) {
         func_02025f80(&data_02174e64->mUnk_09c[i].mUnk_2c, 3, 10, 0x100, 0);

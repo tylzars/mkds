@@ -44,7 +44,7 @@ u32 func_0202a360(void) {
         case 1:
         case 2:
             if (data_0217aa00->mUnk_0000 == 2) {
-                w = data_0217aa00->mUnk_0432;
+                w = data_0217aa00->mOwnIndex;
             } else {
                 w = 0;
             }

@@ -9,7 +9,7 @@
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c, Unk0201ea30
 #include "Main/Unknown/code_020b3f7c.h" // Bmg
 #include "Main/Unknown/code_0202f688.h"
-#include "Main/Unknown/code_0205ee14.h" // Unk0205fd2c
+#include "Main/Unknown/code_0205ee14.h" // KartAppear
 #include "code_02022a90.h" // NNSG2dCellTransferState
 
 // One entry of mEntries: character, kart, team and player kind; mUnk_10 is passed on as SetNextRaceEntry's sixth
@@ -74,7 +74,7 @@ typedef struct SelectKart {
     /* 08c */ void *mHeap;
     /* 090 */ s32 mStateFrames; /* counts only in states 3, 4 and 6 */
     /* 094 */ s32 mState;
-    /* 098 */ Unk0205fd2c *mUnk_098;
+    /* 098 */ KartAppear *mUnk_098;
     // Position of the kart in the table gKartIndexTable that the player steps through; mKartIndex is the kart at that
     // position, -1 when the kart is not in the table.
     /* 09c */ s32 mKartTableIndex;

@@ -24,14 +24,16 @@ typedef struct Unk02175650_buf {
     /* 004 */ u8 mUnk_04[0xdc8];
 } Unk02175650_buf;
 
-typedef struct Unk02175650 {
-    /* 00 */ Unk02175650_buf *mUnk_00;
-    /* 04 */ u16 mUnk_04;
-    /* 06 */ u16 mUnk_06;
-    /* 08 */ s32 mUnk_08;
+// Pad key bits recorded as (bits, repeat count) byte pairs, and played back from them.
+typedef struct KeyRecording {
+    /* 00 */ Unk02175650_buf *mBuffer;
+    /* 04 */ u16 mPairIndex;
+    /* 06 */ u16 mRepeatCount;
+// 0 idle, 1 recording, 2 playing, 3 buffer full.
+    /* 08 */ s32 mStatus;
     /* 0c */ BOOL mUnk_0c;
     /* 10 */ u8 mUnk_10[0x4c];
-} Unk02175650;
+} KeyRecording;
 
 // One 0x5c-byte element of the array at data_02175628.
 typedef struct InputSlot {

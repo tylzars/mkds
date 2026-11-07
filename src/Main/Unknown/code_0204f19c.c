@@ -4,25 +4,25 @@
 
 #pragma thumb on
 
-void func_0204f19c(BlockTransferRecord *a) {
-    s32 s = a->mCallbackCode;
-    if (s == 10) {
-        func_0204f220(&a->mUnk_14, *((u8 *) &a->mUnk_1c[0] + 1));
+void ParentBlockTransferCallback(BlockTransferRecord *record) {
+    s32 callbackCode = record->mCallbackCode;
+    if (callbackCode == 10) {
+        func_0204f220(&record->mUnk_14, *((u8 *) &record->mUnk_1c[0] + 1));
         return;
     }
     switch (data_0217aa00->mUnk_1e46) {
         case 0:
-            if (s == 2) {
+            if (callbackCode == 2) {
                 data_0217aa00->mUnk_1e46 = 1;
             }
             break;
         case 1:
-            if (s == 8) {
+            if (callbackCode == 8) {
                 data_0217aa00->mUnk_1e46 = 2;
             }
             break;
         case 2:
-            if (s == 8) {
+            if (callbackCode == 8) {
                 data_0217aa00->mUnk_1e44 |= 4;
                 data_0217aa00->mUnk_1e46 = 0;
             }

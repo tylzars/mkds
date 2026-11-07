@@ -253,7 +253,7 @@ BOOL func_02044e9c(s32 a, s32 b) {
     if (p->mFilled == 1) {
         SetNextRaceEntry(b, p->mCharacterIndex, p->mKartIndex, PLAYER_KIND_GHOST, -1, 3);
         gRaceSetup->mNextEntries[b].mPlayer.mUnk_10 = r;
-        MI_CpuCopy8(p->mUnk_30, data_02175650[b].mUnk_00, 0xdcc);
+        MI_CpuCopy8(p->mUnk_30, data_02175650[b].mBuffer, 0xdcc);
         r = TRUE;
         func_02056574(0, &gRaceSetup->mUnk_3e8);
         for (i = 1; i <= 5; i++) {
@@ -276,7 +276,7 @@ s32 func_02044d4c(s32 a, s32 b) {
     if (r != 0) {
         SetNextRaceEntry(b, p->mCharacterIndex, p->mKartIndex, PLAYER_KIND_GHOST, -1, 3);
         gRaceSetup->mNextEntries[b].mPlayer.mUnk_10 = 1;
-        MI_CpuCopy8(&p->mUnk_30[0x200], data_02175650[b].mUnk_00, 0xdcc);
+        MI_CpuCopy8(&p->mUnk_30[0x200], data_02175650[b].mBuffer, 0xdcc);
         func_02056574(1, &gRaceSetup->mUnk_3e8);
         for (i = 1; i <= 5; i++) {
             func_020565ac(1, i, &gRaceSetup->mUnk_3ec[i - 1]);
@@ -298,7 +298,7 @@ BOOL func_02044bf8(s32 a, s32 b) {
     if (p != NULL && p->mFilled == 1) {
         SetNextRaceEntry(b, p->mCharacterIndex, p->mKartIndex, PLAYER_KIND_GHOST, -1, 3);
         gRaceSetup->mNextEntries[b].mPlayer.mUnk_10 = 2;
-        MI_CpuCopy8(&p->mUnk_30[0x200], data_02175650[b].mUnk_00, 0xdcc);
+        MI_CpuCopy8(&p->mUnk_30[0x200], data_02175650[b].mBuffer, 0xdcc);
         func_020565e4(p, &gRaceSetup->mUnk_3e8);
         for (i = 1; i <= 5; i++) {
             func_0205660c(p, i, &gRaceSetup->mUnk_3ec[i - 1]);
@@ -393,7 +393,7 @@ void SetCurrentRaceFromNext(void) {
                 f = TRUE;
             }
             if (f != FALSE) {
-                h = q->mUnk_1e52[(u16) (q->mUnk_0000 == 2 ? q->mUnk_0432 : 0)].mUnk_00;
+                h = q->mUnk_1e52[(u16) (q->mUnk_0000 == 2 ? q->mOwnIndex : 0)].mUnk_00;
             }
             gRaceSetup->mNextHeader.mEntryIndex = h;
             gRaceSetup->mNextHeader.mFollowedKartIndex = h;

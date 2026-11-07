@@ -2,8 +2,8 @@
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/unk_02175000.h"
 
-u32 func_0204aa28(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_0204aa28(u32 flag) {
+    u32 value0 = flag;
     u32 value1;
     u32 value2;
     u32 compareLeft0;
@@ -25,9 +25,9 @@ u32 func_0204aa28(u32 arg0) {
     return value0;
 }
 
-u32 func_0204aa04(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
+u32 InitKeyRecordingBuffer(u32 recordAddress, u32 heap) {
+    u32 value0 = recordAddress;
+    u32 value1 = heap;
     u32 value4;
     value4 = value0;
     value0 = value1;

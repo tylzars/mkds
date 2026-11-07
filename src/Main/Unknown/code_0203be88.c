@@ -65,7 +65,7 @@ u32 func_0203c0bc(void) {
     if (gRaceProgress->mUnk_000[0].mUnk_0a >= 7) {
         return 1;
     }
-    if (func_0204a620((Unk02175650 *) &data_02175628[i].mUnk_28) != FALSE) {
+    if (func_0204a620((KeyRecording *) &data_02175628[i].mUnk_28) != FALSE) {
         return 1;
     }
     if (TryGetRaceUpdateFramesSinceEntryEnd(&v) != 0) {
@@ -139,7 +139,7 @@ u8 *func_0203bedc(void *a) {
     CharacterKartPicks *p;
     void *t;
     p = HeapAlloc(a, 0x48);
-    t = func_02056444(a);
+    t = CreateKartAppear(a);
     p->mUnk_44 = t;
     func_0203bec0((u8 *) p);
     return (u8 *) p;

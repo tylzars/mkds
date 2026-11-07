@@ -109,7 +109,7 @@ s32 AdvanceConnectionSetup(s32 a, void *b) {
     if (data_0217aa00->mUnk_1e3c != 0) {
         u16 v;
 
-        v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
+        v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
         if (v == 0xffff) {
             return 2;
         }
@@ -164,7 +164,7 @@ s32 AdvanceConnectionSetup(s32 a, void *b) {
             }
             break;
         case 9:
-            StartConnect(NULL, NULL, NULL, NULL, func_02054f38);
+            StartConnect(NULL, NULL, NULL, NULL, ResetOwnIndex);
             break;
         case 10:
             data_0217aa00->mUnk_1e3c = 1;
@@ -172,10 +172,10 @@ s32 AdvanceConnectionSetup(s32 a, void *b) {
             break;
         case 11:
             if (a != 0) {
-                func_0204f468();
+                StartParentSideBlockTransfer();
             } else {
-                func_0204f408();
-                func_0204ef88();
+                StartChildSideBlockTransfer();
+                SetOwnIndexFromConnection();
             }
             r = TRUE;
             break;
@@ -198,7 +198,7 @@ s32 AdvanceBlockCountRequest(void) {
     if (data_0217aa00->mUnk_1e3c != 0) {
         u16 v;
 
-        v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
+        v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
         if (v == 0xffff) {
             return 2;
         }
@@ -212,7 +212,7 @@ s32 AdvanceBlockCountRequest(void) {
     switch (data_0217aa00->mUnk_000c) {
         case 0x28:
         case 0x29:
-            func_0204f148();
+            StartBlockCountRequest();
             break;
         case 0x2a:
             switch (func_02053e74_inline()) {
@@ -237,7 +237,7 @@ void func_02054aa0(void) {
         return;
     }
     if (data_0217aa00->mUnk_000c == 0x2c) {
-        TryGetBlockReceiveProgress(data_0217aa00->mUnk_1da0[0]->mUnk_00, 0, &c0, &c1);
+        TryGetBlockReceiveProgress(data_0217aa00->mBlockInfos[0]->mBlockId, 0, &c0, &c1);
     }
     if (data_0217aa00->mUnk_1e42 != 0) {
         data_0217aa00->mUnk_1e42 = data_0217aa00->mUnk_1e42 - 1;
@@ -261,7 +261,7 @@ s32 AdvanceBlockReceive(void) {
     if (data_0217aa00->mUnk_1e3c != 0) {
         u16 v;
 
-        v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
+        v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
         if (v == 0xffff) {
             return 2;
         }
@@ -276,11 +276,11 @@ s32 AdvanceBlockReceive(void) {
         case 0x28:
         case 0x29:
         case 0x2a:
-            data_0217aa00->mUnk_1d5c = 0;
-            func_0204f0b8();
+            data_0217aa00->mBlockIndex = 0;
+            StartBlockNodeRequest();
             break;
         case 0x2b:
-            func_0204f008();
+            StartBlockDataRequest();
             break;
         case 0x2c:
             func_0204ead0(1, 0);
@@ -426,7 +426,7 @@ void ResetDataSharing(Unk0217aa00_15bc *a) {
     s32 i;
     s32 j;
 
-    a->mUnk_3a = 0;
+    a->mParticipantMask = 0;
     MI_CpuFill8(data_0217aa00->mUnk_15c4, 0, 8);
     for (i = 0; i < 8; i++) {
         a->mSharedDataCopied[i] = 0;
@@ -487,7 +487,7 @@ void ResetConnectionData(void) {
             q[k] = 0;
         }
     }
-    data_0217aa00->mUnk_0432 = 0xffff;
+    data_0217aa00->mOwnIndex = 0xffff;
     data_0217aa00->mUnk_0438 = 0;
     data_0217aa00->mUnk_0434 = 0;
     data_0217aa00->mUnk_0439 = 1;
@@ -504,7 +504,7 @@ void ResetConnectionData(void) {
     data_0217aa00->mUnk_0458 = 0;
     data_0217aa00->mUnk_1699 = 0;
     data_0217aa00->mUnk_0454 &= ~1;
-    func_020562b4();
+    ClearParticipantBits();
     ResetDataSharing(&data_0217aa00->mUnk_15bc_view);
 }
 

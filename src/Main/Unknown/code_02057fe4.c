@@ -36,7 +36,7 @@
 
 void func_02058b10(void) {
     Unk0217aa00_1608 *v1;
-    func_020562e8();
+    CombineParticipantBits();
     v1 = &data_0217aa00->mUnk_1608;
     v1->mNextState = 0xf;
     v1->mNextStateRequested = 1;
@@ -58,10 +58,10 @@ void UpdateMPState5(void) {
     u16 w;
 
     if (func_02058a40_inline() == 1) {
-        v = data_0217aa00->mUnk_15f6;
+        v = data_0217aa00->mParticipantMask;
         if (IsAllMPChildSharedDataCopied() != 0) {
             if (QueueMPDataHalfwordAndWord(1, v, v) != FALSE) {
-                func_02050034(v);
+                SetParticipantMask(v);
             }
         } else {
             w = data_0217aa00->mUnk_1608.mUnk_14;
@@ -248,7 +248,7 @@ void UpdateMPState7(void) {
 void EnterMPState8(void) {
     u16 v;
 
-    v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
+    v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
     func_02056464(&data_0217aa00->mUnk_045c[v]);
     data_0217aa00->mUnk_1608.mUnk_1a |= 1;
     data_0217aa00->mEntryChunkIndex = 0;
@@ -361,9 +361,9 @@ void UpdateMPState8(void) {
     } else {
         if ((data_0217aa00->mUnk_1608.mUnk_1a & 1) != 0) {
             c = data_0217aa00->mEntryChunkIndex;
-            v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
+            v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
             if (GetEntryChunk((u8 *) &data_0217aa00->mUnk_045c[v], c, 0x20, &d, &v1) != FALSE) {
-                v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
+                v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
                 QueueMPChunk(c, d, v1, v, 1);
                 data_0217aa00->mEntryChunkIndex = c + 1;
             } else {
@@ -543,9 +543,9 @@ void EnterMPState13(void) {
     data_0217aa00->mUnk_164d = 0;
     i = 0;
     if (data_0217aa00->mUnk_0000 == 2) {
-        i = data_0217aa00->mUnk_0432;
+        i = data_0217aa00->mOwnIndex;
     }
-    MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_20, data_0217aa00->mUnk_045c[(u16) i].mUnk_224, 4);
+    MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_20, data_0217aa00->mUnk_045c[(u16) i].mBits, 4);
     data_0217aa00->mUnk_162a |= 1;
 }
 
@@ -560,7 +560,7 @@ void UpdateMPState13(void) {
         func_020580a4_inline2(0xe);
     } else {
         if (data_0217aa00->mUnk_0000 == 2) {
-            v = data_0217aa00->mUnk_0432;
+            v = data_0217aa00->mOwnIndex;
         } else {
             v = 0;
         }

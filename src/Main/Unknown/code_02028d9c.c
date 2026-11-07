@@ -58,7 +58,7 @@ void func_02028e00(void *a, u32 b) {
 u16 func_02028dd4(void) {
     int v1;
     if (data_0217aa00->mUnk_0000 == 2) {
-        v1 = data_0217aa00->mUnk_0432;
+        v1 = data_0217aa00->mOwnIndex;
     } else {
         v1 = 0;
     }

@@ -115,7 +115,7 @@ void func_02059954(u8 *a) {
         } else {
             data_0217aa00->mUnk_162a |= 1 << a[0];
             if (data_0217aa00->mUnk_043a == (data_0217aa00->mUnk_043a & data_0217aa00->mUnk_162a)) {
-                v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
+                v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
                 if (QueueMPChunk(0xfd, NULL, 0, v, 1) != FALSE) {
                     func_02059878_inline2(10);
                 }

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-s32 func_02054f38(void);
+s32 ResetOwnIndex(void);

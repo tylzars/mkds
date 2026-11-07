@@ -3,7 +3,7 @@
 
 #pragma thumb on
 
-int func_02025df4(Unk0205fd2c *a, u32 b) {
+int func_02025df4(KartAppear *a, u32 b) {
     int v1;
     int v2;
     int v3;

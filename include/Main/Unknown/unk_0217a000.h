@@ -226,10 +226,10 @@ typedef struct Unk0217aa08 {
     /* 29 */ u8 mUnk_29;
     /* 2a */ u16 mUnk_2a;
     /* 2c */ s32 mUnk_2c;
-    /* 30 */ u8 mUnk_30[4];
-    /* 34 */ u8 mUnk_34[4];
-    /* 38 */ u8 mUnk_38;
-    /* 39 */ u8 mUnk_39;
+    /* 30 */ u8 mParticipantAndBits[4];
+    /* 34 */ u8 mParticipantOrBits[4];
+    /* 38 */ u8 mParticipantMaxValue;
+    /* 39 */ u8 mParticipantMinValue;
     /* 3a */ u8 mUnk_3a[2];
     /* 3c */ u8 mUnk_3c;
     /* 3d */ u8 mUnk_3d[3];
@@ -382,41 +382,43 @@ typedef struct Unk0217aa00_1608 {
 } Unk0217aa00_1608;
 
 // Object behind data_0217aa00.
-// 0x88-byte entries from 0x16a0 of Unk0217aa00.
-typedef struct Unk0217aa00_16a0 {
-    /* 00 */ BlockListNode mUnk_00;
-    /* 34 */ u8 mUnk_34;
+// One of the 12 entries at 0x16a0: a block to offer to the other consoles, or a file path to read in.
+typedef struct BlockEntry {
+    /* 00 */ BlockListNode mNode;
+// First byte of the 0x40-byte path; 0 means the entry is free.
+    /* 34 */ u8 mPath;
     /* 35 */ u8 mUnk_35[0x3f];
-    /* 74 */ u32 *mUnk_74;
-    /* 78 */ void *mUnk_78;
-    /* 7c */ void **mUnk_7c;
-    /* 80 */ void *mUnk_80;
+    /* 74 */ u32 *mBuffer;
+// Where the uncompressed bytes go; nothing sets it, so a block is allocated for them.
+    /* 78 */ void *mUncompressedBuffer;
+    /* 7c */ void **mDataOutput;
+    /* 80 */ void *mHeap;
     /* 84 */ union {
         s32 mUnk_84;
         struct {
             u32 mUnk_84_0 : 29;
-            s32 mUnk_84_29 : 1;
+            s32 mUncompressPending : 1;
             u32 mUnk_84_30 : 1;
             u32 mUnk_84_31 : 1;
         };
     };
-} Unk0217aa00_16a0;
+} BlockEntry;
 
 // Members from 0x16a0 of Unk0217aa00 as one object.
 typedef struct Unk0217aa00_16a0_view {
-    /* 000 */ Unk0217aa00_16a0 mUnk_000[12];
+    /* 000 */ BlockEntry mBlockEntries[12];
     /* 660 */ s32 mUnk_660;
     /* 664 */ u8 mUnk_664[4];
-    /* 668 */ u16 mUnk_668;
+    /* 668 */ u16 mNextLoadIndex;
     /* 66a */ s16 mUnk_66a;
     /* 66c */ u8 mUnk_66c[0x48];
     /* 6b4 */ u8 mUnk_6b4;
     /* 6b5 */ u8 mUnk_6b5[3];
-    /* 6b8 */ void *mUnk_6b8;
+    /* 6b8 */ void *mCompressedBuffer;
     /* 6bc */ u8 mUnk_6bc[0xdc];
     /* 798 */ BOOL mUnk_798;
     /* 79c */ BOOL mUnk_79c;
-    /* 7a0 */ u16 mUnk_7a0;
+    /* 7a0 */ u16 mGhostBlockCount;
     /* 7a2 */ u16 mUnk_7a2;
     /* 7a4 */ u8 mUnk_7a4;
     /* 7a5 */ s8 mUnk_7a5;
@@ -435,7 +437,7 @@ typedef struct Unk0217aa00_45c {
     /* 218 */ s32 mUnk_218;
     /* 21c */ s32 mUnk_21c;
     /* 220 */ s32 mUnk_220;
-    /* 224 */ u8 mUnk_224[4];
+    /* 224 */ u8 mBits[4];
     /* 228 */ union {
         u8 mUnk_228;
         struct {
@@ -515,7 +517,7 @@ typedef struct Unk0217aa00_15bc {
     /* 31 */ u8 mUnk_31[3];
     /* 34 */ s32 mUnk_34;
     /* 38 */ u16 mUnk_38;
-    /* 3a */ u8 mUnk_3a;
+    /* 3a */ u8 mParticipantMask;
     /* 3b */ u8 mUnk_3b;
     /* 3c */ u16 mUnk_3c[7];
     /* 4a */ u8 mUnk_4a;
@@ -549,10 +551,10 @@ typedef struct RandomState {
 } RandomState;
 
 // What member 0x1da0 of Unk0217aa00 points to.
-typedef struct Unk0217aa00_1da0 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-} Unk0217aa00_1da0;
+typedef struct BlockInfo {
+    /* 00 */ s32 mBlockId;
+    /* 04 */ s32 mSize;
+} BlockInfo;
 
 // Members 0x1658 to 0x169f of Unk0217aa00 as one object.
 typedef struct Unk0217aa00_1658 {
@@ -616,7 +618,7 @@ typedef struct Unk0217aa00 {
             /* 042f */ u8 mUnk_042f;
             /* 0430 */ u8 mUnk_0430;
             /* 0431 */ u8 mUnk_0431;
-            /* 0432 */ u16 mUnk_0432;
+            /* 0432 */ u16 mOwnIndex;
             /* 0434 */ u16 mUnk_0434;
             /* 0436 */ u16 mUnk_0436;
             /* 0438 */ u8 mUnk_0438;
@@ -657,7 +659,7 @@ typedef struct Unk0217aa00 {
             /* 15ed */ u8 mUnk_15ed[0x3];
             /* 15f0 */ s32 mUnk_15f0;
             /* 15f4 */ u16 mUnk_15f4;
-            /* 15f6 */ u8 mUnk_15f6;
+            /* 15f6 */ u8 mParticipantMask;
             /* 15f7 */ u8 mUnk_15f7;
             /* 15f8 */ u16 mUnk_15f8[7];
             /* 1606 */ u8 mUnk_1606;
@@ -704,30 +706,30 @@ typedef struct Unk0217aa00 {
     };
     /* 16a0 */ union {
         struct {
-            /* 16a0 */ Unk0217aa00_16a0 mUnk_16a0[12];
+            /* 16a0 */ BlockEntry mBlockEntries[12];
             /* 1d00 */ s32 mUnk_1d00;
             /* 1d04 */ void *mHeap;
-            /* 1d08 */ u16 mUnk_1d08;
+            /* 1d08 */ u16 mNextLoadIndex;
             /* 1d0a */ u16 mUnk_1d0a;
-            /* 1d0c */ FSFile mUnk_1d0c;
+            /* 1d0c */ FSFile mFile;
             /* 1d54 */ u8 mUnk_1d54;
             /* 1d55 */ u8 mUnk_1d55[0x3];
-            /* 1d58 */ void *mUnk_1d58;
-            /* 1d5c */ s16 mUnk_1d5c;
-            /* 1d5e */ u16 mUnk_1d5e;
+            /* 1d58 */ void *mCompressedBuffer;
+            /* 1d5c */ s16 mBlockIndex;
+            /* 1d5e */ u16 mBlockCount;
             /* 1d60 */ u32 *mUnk_1d60;
             /* 1d64 */ u8 mUnk_1d64[0x3c];
-            /* 1da0 */ Unk0217aa00_1da0 *mUnk_1da0[16];
-            /* 1de0 */ void *mUnk_1de0[16];
+            /* 1da0 */ BlockInfo *mBlockInfos[16];
+            /* 1de0 */ void *mChunkBitmaps[16];
             /* 1e20 */ void *mUnk_1e20;
             /* 1e24 */ void *mUnk_1e24;
             /* 1e28 */ s32 mUnk_1e28;
             /* 1e2c */ s32 mUnk_1e2c;
-            /* 1e30 */ u8 *mUnk_1e30;
+            /* 1e30 */ u8 *mPacketBuffer;
             /* 1e34 */ s32 mUnk_1e34;
             /* 1e38 */ s32 mUnk_1e38;
             /* 1e3c */ s32 mUnk_1e3c;
-            /* 1e40 */ u16 mUnk_1e40;
+            /* 1e40 */ u16 mGhostBlockCount;
             /* 1e42 */ u16 mUnk_1e42;
             /* 1e44 */ u8 mUnk_1e44;
             /* 1e45 */ s8 mUnk_1e45;
@@ -741,7 +743,7 @@ typedef struct Unk0217aa00 {
                     /* 1e52 */ Unk0217aa00_1e52 mUnk_1e52[7];
                     /* 1e8a */ u16 mUnk_1e8a;
                     /* 1e8c */ u16 mUnk_1e8c[8];
-                    /* 1e9c */ u16 mUnk_1e9c[8];
+                    /* 1e9c */ u16 mParticipantIndices[8];
                     /* 1eac */ u8 mUnk_1eac[4];
                     /* 1eb0 */ s32 mUnk_1eb0;
                     /* 1eb4 */ u8 mUnk_1eb4[4];
@@ -1379,7 +1381,7 @@ typedef struct KartModelMenuData {
     /* 260 */ s32 mKartRequested;
     /* 264 */ s16 mShownSlotIndex;
     /* 266 */ s16 mLoadSlotIndex;
-    /* 268 */ struct Unk0205fd2c *mUnk_268;
+    /* 268 */ struct KartAppear *mUnk_268;
 } KartModelMenuData;
 
 extern KartModelMenuData *gKartModelMenu;

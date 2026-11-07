@@ -38,7 +38,7 @@ void func_02053d00(void) {
     Unk02143a78 *p;
     Unk021438f0 *q;
     Unk0217aa00_16a0_view *v;
-    Unk0217aa00_16a0 *e;
+    BlockEntry *e;
     s32 i;
 
     if (data_0217aa00 == NULL) {
@@ -69,10 +69,10 @@ void func_02053d00(void) {
     }
     ResetConnectionData();
     v = &data_0217aa00->mUnk_16a0_view;
-    e = &v->mUnk_000[0];
+    e = &v->mBlockEntries[0];
     for (i = 0; i < 0xc; i++) {
-        e->mUnk_34 = 0;
-        e->mUnk_74 = NULL;
+        e->mPath = 0;
+        e->mBuffer = NULL;
         e++;
     }
     v->mUnk_6b4 = 0;
@@ -159,7 +159,7 @@ BOOL func_0205373c(void) {
             }
             break;
         case 2:
-            if (data_0217aa00->mUnk_0432 != 0xffff) {
+            if (data_0217aa00->mOwnIndex != 0xffff) {
                 StepDataSharing();
             } else {
                 return FALSE;
@@ -180,7 +180,7 @@ BOOL func_0205373c(void) {
             } else {
                 if ((data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000) == 1) {
                     for (j = 1; j < 8; j++) {
-                        if ((data_0217aa00->mUnk_15f6 & (1 << j)) != 0) {
+                        if ((data_0217aa00->mParticipantMask & (1 << j)) != 0) {
                             data_0217aa00->mUnk_15f8[j - 1] = 0;
                         }
                     }
@@ -195,10 +195,10 @@ BOOL func_0205373c(void) {
         if (m != 0) {
             for (i = 0; i < 8; i++) {
                 v3 = 1 << i;
-                f = data_0217aa00->mUnk_15f6;
+                f = data_0217aa00->mParticipantMask;
                 v = data_0217aa00->mUnk_1e52[i].mUnk_00;
                 if ((f & v3) != 0 && (m & v3) != 0) {
-                    data_0217aa00->mUnk_15f6 = f & ~v3;
+                    data_0217aa00->mParticipantMask = f & ~v3;
                     if (data_0217aa00->mUnk_0004 == 9) {
                         RemoveRaceProgressKart(v);
                     }
@@ -214,7 +214,7 @@ BOOL func_0205373c(void) {
     }
     if (v1 != FALSE) {
         for (i = 1; i < 8; i++) {
-            if ((data_0217aa00->mUnk_15f6 & (1 << i)) != 0) {
+            if ((data_0217aa00->mParticipantMask & (1 << i)) != 0) {
                 v2 = WM_GetSharedDataAddress(data_0217aa00->mUnk_15bc, data_0217aa00->mUnk_15c0, i);
                 if (v2 != NULL) {
                     MI_CpuCopy8(v2, &buf[i], 8);
@@ -226,7 +226,7 @@ BOOL func_0205373c(void) {
         }
     }
     for (i = 0; i < 8; i++) {
-        if (v1 != FALSE && (data_0217aa00->mUnk_15f6 & (1 << i)) != 0) {
+        if (v1 != FALSE && (data_0217aa00->mParticipantMask & (1 << i)) != 0) {
             MI_CpuCopy8(&buf[i], &q->mUnk_0c[i], 8);
             q->mSharedDataCopied[i] = 1;
         } else {
@@ -474,14 +474,14 @@ void func_02052ecc(void) {
         func_0204bf48(v1 == 1 ? 1 : 0, 4, 0x154, func_02052e64, func_02052fa4, 0);
     }
     data_0217aa00->mRequestPending = 0;
-    func_0204f5e4();
+    ResetPendingFiles();
 }
 
 void func_02052e64(s32 a) {
     if (data_0217aa00->mUnk_000c == 0x24) {
         if (func_0204bcdc() == 2) {
             data_0217aa00->mRequestPending = 0;
-            func_0204f5e4();
+            ResetPendingFiles();
         }
     } else {
         data_0217aa00->mRequestPending = 0;
@@ -600,7 +600,7 @@ void StartParentCallback(Unk021425e8 *a) {
                 break;
             case 0:
                 MI_CpuCopy8(&data_0217aa08->mUnk_00->mUnk_0c, &data_0217aa00->mUnk_045c[0], 0x14);
-                MI_CpuCopy8(&data_0217aa08->mUnk_00->mUnk_20, &data_0217aa00->mUnk_045c[0].mUnk_224, 4);
+                MI_CpuCopy8(&data_0217aa08->mUnk_00->mUnk_20, &data_0217aa00->mUnk_045c[0].mBits, 4);
                 v = 0;
                 v1 = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
                 switch (v1) {

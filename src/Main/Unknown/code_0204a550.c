@@ -10,7 +10,7 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "code_0200eddc.h"
 
-void func_0204a798(Unk02175650 *a, u16 b) {
+void func_0204a798(KeyRecording *a, u16 b) {
     BOOL f;
     u8 n;
     u8 *e;
@@ -19,12 +19,12 @@ void func_0204a798(Unk02175650 *a, u16 b) {
     s32 s;
     Unk02175650_buf *c;
 
-    s = a->mUnk_08;
+    s = a->mStatus;
     if (s != 1) {
         return;
     }
-    c = a->mUnk_00;
-    i = a->mUnk_04;
+    c = a->mBuffer;
+    i = a->mPairIndex;
     e = &c->mUnk_04[i * 2];
     v = 0;
     v |= (b & 1) ? 1 : 0;
@@ -48,11 +48,11 @@ void func_0204a798(Unk02175650 *a, u16 b) {
                 return;
             }
             c->mUnk_00 = (u32) i * 2;
-            a->mUnk_08 = 3;
-            DC_StoreRange(a->mUnk_00, 0xdcc);
+            a->mStatus = 3;
+            DC_StoreRange(a->mBuffer, 0xdcc);
             return;
         }
-        a->mUnk_04++;
+        a->mPairIndex++;
         e += 2;
         e[1] = 0;
     }
@@ -60,20 +60,20 @@ void func_0204a798(Unk02175650 *a, u16 b) {
     e[1]++;
 }
 
-u16 func_0204a664(Unk02175650 *a) {
+u16 func_0204a664(KeyRecording *a) {
     Unk02175650_buf *b;
     u8 *e;
     u16 i;
     u16 r;
     u8 v;
 
-    if (a->mUnk_08 != 2) {
+    if (a->mStatus != 2) {
         return 0;
     }
-    b = a->mUnk_00;
-    i = a->mUnk_04;
+    b = a->mBuffer;
+    i = a->mPairIndex;
     if (i >= b->mUnk_00) {
-        a->mUnk_08 = 0;
+        a->mStatus = 0;
         return 0;
     }
     e = &b->mUnk_04[i * 2];
@@ -87,23 +87,23 @@ u16 func_0204a664(Unk02175650 *a) {
     r |= (v & 0x20) ? 0x20 : 0;
     r |= (v & 0x80) ? 0x40 : 0;
     r |= (v & 0x40) ? 0x80 : 0;
-    a->mUnk_06++;
-    if (a->mUnk_06 >= e[1]) {
-        a->mUnk_04++;
-        a->mUnk_06 = 0;
+    a->mRepeatCount++;
+    if (a->mRepeatCount >= e[1]) {
+        a->mPairIndex++;
+        a->mRepeatCount = 0;
     }
     return r;
 }
 
-BOOL func_0204a650(Unk02175650 *a) {
-    return a->mUnk_08 == 3;
+BOOL func_0204a650(KeyRecording *a) {
+    return a->mStatus == 3;
 }
 
-BOOL func_0204a620(Unk02175650 *a) {
-    if (a->mUnk_08 != 2) {
+BOOL func_0204a620(KeyRecording *a) {
+    if (a->mStatus != 2) {
         return FALSE;
     }
-    return ((u32) a->mUnk_04 << 1) > 0xd1b;
+    return ((u32) a->mPairIndex << 1) > 0xd1b;
 }
 
 void InitEmblemScene(void) {

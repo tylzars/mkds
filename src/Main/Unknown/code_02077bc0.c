@@ -1131,7 +1131,7 @@ void LoadKartModelMenuFile(void *a, const void *b, void **c) {
 void func_020790e0(void *a, s32 b) {
     if (b != 0) {
         gKartModelMenu->mUseEmblemTex = FALSE;
-        gKartModelMenu->mUnk_268 = func_02056444(a);
+        gKartModelMenu->mUnk_268 = CreateKartAppear(a);
     } else {
         gKartModelMenu->mUseEmblemTex = TRUE;
     }

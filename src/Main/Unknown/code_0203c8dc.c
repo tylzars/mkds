@@ -12,10 +12,10 @@ void func_0203c98c(void) {
         InputSlot *e = &data_02175628[gRaceSetup->mCurrentEntries[i].mPlayer.mIndex];
         if (e->mSourceKind != 1) {
             if (e->mSourceKind == 2) {
-                func_0204a978((Unk02175650 *) &e->mUnk_28);
+                func_0204a978((KeyRecording *) &e->mUnk_28);
             }
         } else {
-            func_0204a910((Unk02175650 *) &e->mUnk_28);
+            func_0204a910((KeyRecording *) &e->mUnk_28);
         }
     }
 }

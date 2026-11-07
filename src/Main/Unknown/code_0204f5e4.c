@@ -3,27 +3,27 @@
 
 #pragma thumb on
 
-void func_0204f5e4(void) {
-    int v1;
-    Unk0217aa00_16a0_view *v2;
-    Unk0217aa00_16a0 *v3;
-    u32 v4;
-    u32 v5;
-    v4 = (0xe0000000u);
-    v5 = (0xdfffffffu);
-    v2 = &data_0217aa00->mUnk_16a0_view;
-    v1 = 0;
-    v3 = v2->mUnk_000;
+void ResetPendingFiles(void) {
+    int i;
+    Unk0217aa00_16a0_view *view;
+    BlockEntry *entry;
+    u32 flagBitsMask;
+    u32 clearPendingMask;
+    flagBitsMask = (0xe0000000u);
+    clearPendingMask = (0xdfffffffu);
+    view = &data_0217aa00->mUnk_16a0_view;
+    i = 0;
+    entry = view->mBlockEntries;
     do {
-        v3->mUnk_34 = 0;
-        v3->mUnk_74 = NULL;
-        v3->mUnk_78 = NULL;
-        v3->mUnk_84 = v3->mUnk_84 & v5;
-        v3->mUnk_84 = v3->mUnk_84 & v4;
-        v3 = v3 + 1;
-        v1 = v1 + 1;
-    } while (v1 < 0xc);
-    v2->mUnk_668 = 0xc;
+        entry->mPath = 0;
+        entry->mBuffer = NULL;
+        entry->mUncompressedBuffer = NULL;
+        entry->mUnk_84 = entry->mUnk_84 & clearPendingMask;
+        entry->mUnk_84 = entry->mUnk_84 & flagBitsMask;
+        entry = entry + 1;
+        i = i + 1;
+    } while (i < 0xc);
+    view->mNextLoadIndex = 0xc;
 }
 
 #pragma thumb off

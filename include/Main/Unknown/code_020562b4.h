@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void func_020562b4(void);
-void func_020562e8(void);
+void ClearParticipantBits(void);
+void CombineParticipantBits(void);

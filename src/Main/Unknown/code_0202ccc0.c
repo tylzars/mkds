@@ -248,7 +248,7 @@ void InitTimeAttackGhostSend(void *a, void *b, void *c) {
     gTimeAttackGhostSend->mUnk_048[1] = c;
     gTimeAttackGhostSend->mCommonMessages = FindFileInLoadedArchives(data_usa_02162d04);
     gTimeAttackGhostSend->mGhostMessages = FindSceneFile(gGhostBmgName);
-    func_0204f240(gTimeAttackGhostSend->mHeap, 2);
+    InitBlockEntries(gTimeAttackGhostSend->mHeap, 2);
     func_020258d4(0, gTimeAttackGhostSend, gTimeAttackGhostSendMBNcgrName, gTimeAttackGhostSendMBNclrName,
                   gTimeAttackGhostSendMNscrName, 0, FindSceneFile);
     p = &gTimeAttackGhostSend->mUnk_050[0];
@@ -420,7 +420,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
             i = AdvanceConnectionSetup(1, (void *) func_0202ddd8());
             switch (i) {
                 case 1:
-                    func_0204f5e4();
+                    ResetPendingFiles();
                     func_0204eeac((void *) func_0202ddd8(), 0x1000);
                     RequestSelectReturnState1();
                     gTimeAttackGhostSend->mState = 6;

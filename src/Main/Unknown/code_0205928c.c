@@ -166,8 +166,8 @@ s32 func_020595e8(s32 a, void *b, void *c) {
                 }
                 data_0217aa00->mUnk_000c = 0x27;
                 data_0217aa00->mRequestPending = 1;
-                data_0217aa00->mUnk_1d08 = 0;
-                FS_InitFile(&data_0217aa00->mUnk_1d0c);
+                data_0217aa00->mNextLoadIndex = 0;
+                FS_InitFile(&data_0217aa00->mFile);
                 data_0217aa00->mUnk_1e34 = 3;
             } else {
                 data_0217aa00->mUnk_1e34 = 5;
@@ -175,7 +175,7 @@ s32 func_020595e8(s32 a, void *b, void *c) {
             QueueMPDataHalfword(3, 1);
             break;
         case 3:
-            if (func_0204f644() != FALSE) {
+            if (LoadPendingFiles() != FALSE) {
                 data_0217aa00->mUnk_1e34 = 5;
             }
             break;

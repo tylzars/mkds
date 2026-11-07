@@ -5,52 +5,52 @@
 
 #pragma thumb on
 
-void func_020562e8(void) {
+void CombineParticipantBits(void) {
     u8 i;
     u8 j;
-    u8 v;
-    u8 *p;
-    Unk0217aa00_45c *e;
+    u8 value;
+    u8 *bitsByte;
+    Unk0217aa00_45c *entry;
 
-    func_020562b4();
+    ClearParticipantBits();
     for (i = 0; i < 8; i++) {
-        if ((data_0217aa00->mUnk_15f6 & (1 << i)) != 0) {
+        if ((data_0217aa00->mParticipantMask & (1 << i)) != 0) {
             for (j = 0; j < 4; j++) {
-                e = &data_0217aa00->mUnk_045c[i];
-                p = &e->mUnk_224[j];
+                entry = &data_0217aa00->mUnk_045c[i];
+                bitsByte = &entry->mBits[j];
                 if (i == 0) {
-                    data_0217aa08->mUnk_30[j] = *p;
-                    data_0217aa08->mUnk_34[j] = *p;
+                    data_0217aa08->mParticipantAndBits[j] = *bitsByte;
+                    data_0217aa08->mParticipantOrBits[j] = *bitsByte;
                 } else {
-                    data_0217aa08->mUnk_30[j] &= *p;
-                    data_0217aa08->mUnk_34[j] |= *p;
+                    data_0217aa08->mParticipantAndBits[j] &= *bitsByte;
+                    data_0217aa08->mParticipantOrBits[j] |= *bitsByte;
                 }
             }
-            e = &data_0217aa00->mUnk_045c[i];
-            v = func_02056dac(e->mUnk_224);
+            entry = &data_0217aa00->mUnk_045c[i];
+            value = func_02056dac(entry->mBits);
             if (i == 0) {
-                data_0217aa08->mUnk_38 = v;
-                data_0217aa08->mUnk_39 = v;
+                data_0217aa08->mParticipantMaxValue = value;
+                data_0217aa08->mParticipantMinValue = value;
             } else {
-                if (v > data_0217aa08->mUnk_38) {
-                    data_0217aa08->mUnk_38 = v;
+                if (value > data_0217aa08->mParticipantMaxValue) {
+                    data_0217aa08->mParticipantMaxValue = value;
                 }
-                if (v < data_0217aa08->mUnk_39) {
-                    data_0217aa08->mUnk_39 = v;
+                if (value < data_0217aa08->mParticipantMinValue) {
+                    data_0217aa08->mParticipantMinValue = value;
                 }
             }
         }
     }
 }
 
-void func_020562b4(void) {
+void ClearParticipantBits(void) {
     u8 i;
 
     for (i = 0; i < 4; i++) {
-        data_0217aa08->mUnk_30[i] = 0;
-        data_0217aa08->mUnk_34[i] = 0;
+        data_0217aa08->mParticipantAndBits[i] = 0;
+        data_0217aa08->mParticipantOrBits[i] = 0;
     }
-    data_0217aa08->mUnk_38 = 0;
-    data_0217aa08->mUnk_39 = 0;
+    data_0217aa08->mParticipantMaxValue = 0;
+    data_0217aa08->mParticipantMinValue = 0;
 }
 #pragma thumb off

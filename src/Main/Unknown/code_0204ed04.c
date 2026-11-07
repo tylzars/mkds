@@ -58,16 +58,16 @@ void func_0204ed84(void) {
         switch (v) {
             case 1:
                 data_usa_0216522c.mMaxDataSize = 0x192;
-                b = func_02006954(data_0217aa00->mUnk_1e30, 0x192);
+                b = func_02006954(data_0217aa00->mPacketBuffer, 0x192);
                 c = data_0217aa00->mUnk_0044.mChildMask;
                 break;
             case 2:
                 data_usa_0216522c.mMaxDataSize = 0xe;
-                b = BuildChildPacket(data_0217aa00->mUnk_1e30, 0xe);
+                b = BuildChildPacket(data_0217aa00->mPacketBuffer, 0xe);
                 c = 1;
                 break;
         }
-        if (QueueMPDataToPort(data_0217aa00->mUnk_1e30, b, c, NULL, &data_usa_0216522c) == FALSE) {
+        if (QueueMPDataToPort(data_0217aa00->mPacketBuffer, b, c, NULL, &data_usa_0216522c) == FALSE) {
             data_0217aa00->mUnk_1e42 = data_usa_02165228;
             data_0217aa00->mUnk_1e44 &= ~1;
         }

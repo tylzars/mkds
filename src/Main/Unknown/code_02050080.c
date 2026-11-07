@@ -72,10 +72,10 @@ void func_02050080(void) {
     i = 0;
     n = 0;
     for (; i < 8; i++) {
-        if ((data_0217aa00->mUnk_15f6 & (1 << i)) != 0) {
+        if ((data_0217aa00->mParticipantMask & (1 << i)) != 0) {
             data_0217aa00->mUnk_1e52[i].mUnk_00 = n;
             data_0217aa00->mUnk_1e8c[n] = i;
-            data_0217aa00->mUnk_1e9c[n] = i;
+            data_0217aa00->mParticipantIndices[n] = i;
             n++;
         } else {
             data_0217aa00->mUnk_1e52[i].mUnk_00 = 0xffff;
@@ -83,7 +83,7 @@ void func_02050080(void) {
     }
     for (; n < 8; n++) {
         data_0217aa00->mUnk_1e8c[n] = 0xffff;
-        data_0217aa00->mUnk_1e9c[n] = 0xffff;
+        data_0217aa00->mParticipantIndices[n] = 0xffff;
     }
     if (GetCurrentSceneNumber() == 2) {
         func_020431e4();

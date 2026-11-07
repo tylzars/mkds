@@ -450,7 +450,7 @@ void ChangeSelectRaceRulePlayerTeam(u16 a, u32 b) {
         return;
     }
     if (IsPlayerTeamPlayerCountNotOne(a) == 0) {
-        v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
+        v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
         if (a == data_0217aa00->mUnk_1e52[v].mUnk_00) {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
         }
@@ -472,7 +472,7 @@ void ChangeSelectRaceRulePlayerTeam(u16 a, u32 b) {
         }
         ChangeSelectRaceRulePlayerTeam(c, GetOtherTeamIndex(b));
     }
-    v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
+    v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
     if (a == data_0217aa00->mUnk_1e52[v].mUnk_00) {
         switch (gSelectRaceRule->mPlayerTeamIndices[a]) {
             case 0:
@@ -625,7 +625,7 @@ BOOL func_0211ce24(void) {
             if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
                 a = FALSE;
             }
-            b = a != FALSE ? CountSetBits(data_0217aa00->mUnk_15f6) : 0;
+            b = a != FALSE ? CountSetBits(data_0217aa00->mParticipantMask) : 0;
             if (b == GetSelectRaceRuleHumanCount()) {
                 return TRUE;
             }
@@ -998,7 +998,7 @@ void func_0211c14c(void) {
         if (gSelectRaceRule->mRowValues[4] == 2) {
             for (j = 0; j < 2; j++) {
                 if (gSelectRaceRule->mRow == 4 && gSelectRaceRule->mOnButton == 0) {
-                    v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
+                    v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
                     if (IsPlayerTeamPlayerCountNotOne(data_0217aa00->mUnk_1e52[v].mUnk_00) != 0) {
                         gSelectRaceRule->mTable[data_0215cc6c[j]].mUnk_00 = 1;
                         gSelectRaceRule->mTable[data_0215cc70[j]].mUnk_00 = 0;
@@ -1032,7 +1032,7 @@ void func_0211c14c(void) {
         }
         if (gSelectRaceRule->mRowValues[4] == 2) {
             for (j = 0; j < 2; j++) {
-                v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
+                v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
                 if (IsPlayerTeamPlayerCountNotOne(data_0217aa00->mUnk_1e52[v].mUnk_00) != 0) {
                     gSelectRaceRule->mTable[data_0215cc6c[j]].mUnk_00 = 1;
                     gSelectRaceRule->mTable[data_0215cc70[j]].mUnk_00 = 0;
@@ -1232,7 +1232,7 @@ void SetSelectRaceRuleHumanCount(void) {
             if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
                 a = FALSE;
             }
-            b = a != FALSE ? CountSetBits(data_0217aa00->mUnk_15f6) : 0;
+            b = a != FALSE ? CountSetBits(data_0217aa00->mParticipantMask) : 0;
             gSelectRaceRule->mTeamHumanCounts[0] = b;
             break;
     }

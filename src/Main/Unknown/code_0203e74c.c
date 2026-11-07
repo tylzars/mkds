@@ -304,10 +304,10 @@ void FinishRaceProgressKart(RaceProgressKart *a, s32 b) {
     }
     switch (data_02175628[c].mSourceKind) {
         case 2:
-            func_0204a928(&data_02175628[c].mUnk_28);
+            FinishKeyRecording(&data_02175628[c].mUnk_28);
             break;
         case 1:
-            func_0204a904((Unk02175650 *) &data_02175628[c].mUnk_28);
+            func_0204a904((KeyRecording *) &data_02175628[c].mUnk_28);
             break;
     }
     a->mFlags |= 8;

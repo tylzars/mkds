@@ -157,21 +157,21 @@ u32 func_0203b230(void) {
 
 void func_0203b1fc(void *a) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        func_0204f240(a, 1);
+        InitBlockEntries(a, 1);
     }
     RequestMPState16ForNextRace();
 }
 
 void func_0203b1c8(void *a) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        func_0204f240(a, 1);
+        InitBlockEntries(a, 1);
     }
     RequestMPState18();
 }
 
 void func_0203b194(void *a) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        func_0204f240(a, 1);
+        InitBlockEntries(a, 1);
     }
     RequestMPState21();
 }
@@ -181,7 +181,7 @@ void func_0203b0f8(void *a) {
     s32 t;
     u32 f;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        func_0204f240(a, 1);
+        InitBlockEntries(a, 1);
     } else {
         r = FindSceneFile(data_usa_0216478c);
     }

@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void func_02050034(u8 arg0);
-unsigned int func_02050064(unsigned int p0);
+void SetParticipantMask(u8 mask);
+unsigned int GetParticipantIndex(unsigned int position);
