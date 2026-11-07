@@ -135,25 +135,21 @@ typedef struct Unk0216c324 {
     /* 08 */ const char *mUnk_08;
 } Unk0216c324;
 
-// 0x10-byte rows of the table at data_0217bae8: the second loop of func_020e7460
-// writes three objects allocated through HeapAlloc into the rows from
-// data_0217bb08 on, and the word at 0x0c of the first two rows receives the
-// object func_020e6488 creates. func_020e9810 reads the words at 0x0c through
-// data_0217baf4.
-typedef struct Unk0217bb08 {
-    /* 00 */ void *mUnk_00;
-    /* 04 */ void *mUnk_04;
-    /* 08 */ void *mUnk_08;
-    /* 0c */ Unk020e6488 *mUnk_0c;
-} Unk0217bb08;
+// A row of gJgKindRows, by gJgKind: rows 2 and 3 hold a model and one animation, rows 0 and 1 only mLapModel.
+typedef struct JgKindRow {
+    /* 00 */ void *mModel;
+    /* 04 */ void *mNsbcaAnimation;
+    /* 08 */ void *mNsbmaAnimation;
+    /* 0c */ Unk020e6488 *mLapModel;
+} JgKindRow;
 
 extern Unk0216c324 data_0216c324[];
-// Filled in by func_020e7760; func_020e84b0 stores func_020d4ef4's return value
+// Filled in by func_020e7760; UpdateJgState1 stores func_020d4ef4's return value
 // at 0x0c and hands it to func_0210b760.
 extern Unk0210b7a8 data_0217b9dc;
-extern Unk0217bb08 data_0217bae8[];
-extern Unk0217bb08 data_0217baf4[];
-extern Unk0217bb08 data_0217bb08[];
+extern JgKindRow gJgKindRows[];
+extern JgKindRow gJgKindRowLapModels[];
+extern JgKindRow data_0217bb08[];
 
 void func_020e6fd4(MapObjectList *p);
 void UpdateMapObjectList(MapObjectList *p);

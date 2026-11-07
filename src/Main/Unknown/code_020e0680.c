@@ -459,8 +459,8 @@ void func_020e20a8(Unk020e20a8 *a) {
     func_020ea55c(&gCarAShadow, FindCourseMapObjFile(gCarAShadowNsbmdName), 7);
     func_020ea55c(&gTruckAShadow, FindCourseMapObjFile(gTruckAShadowNsbmdName), 7);
     func_020ea55c(&gBusAShadow, FindCourseMapObjFile(gBusAShadowNsbmdName), 7);
-    func_020ea4bc(2, gCarA, &gCarANsbtp, b, FindCourseMapObjFile(gCarANsbtpName));
-    func_020ea4bc(2, gTruckA, &gTruckANsbtp, c, FindCourseMapObjFile(gTruckANsbtpName));
+    CreateModelAnimation(2, gCarA, &gCarANsbtp, b, FindCourseMapObjFile(gCarANsbtpName));
+    CreateModelAnimation(2, gTruckA, &gTruckANsbtp, c, FindCourseMapObjFile(gTruckANsbtpName));
     func_02084968(gCarA, 0x3f, 2, 0x294a);
     for (k1 = 0, y1 = ((Unk0217b7a0 *) gCarA)->mUnk_04; k1 < y1->mInfo.mNumMat; k1++) {
         NNS_G3dMdlSetMdlPolygonID(y1, k1, 7);

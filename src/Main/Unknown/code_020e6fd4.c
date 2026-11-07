@@ -62,7 +62,7 @@ void func_020e7a40(void) {
     if (compareLeft0 == compareRight0) {
         return;
     }
-    value0 = (u32) &data_0217b9ec;
+    value0 = (u32) &gJgStateMachine;
     value1 = 4u;
     func_02046bcc((void *) value0, value1);
 }
@@ -79,7 +79,7 @@ void func_020e79c4(void) {
         return;
     }
     NNS_SndPlayerStopSeq(func_02108e6c(4), 1);
-    data_0217b8c8 = NULL;
+    gJgKart = NULL;
 }
 
 #pragma thumb on
@@ -94,37 +94,37 @@ void func_020e7760(void) {
         return;
     }
     if (data_021759c0->mUnk_00c == 3) {
-        data_0217b8c8 = NULL;
+        gJgKart = NULL;
         return;
     }
     if (data_021759c0->mEntryIndex < 0) {
-        data_0217b8c8 = NULL;
+        gJgKart = NULL;
         return;
     }
-    data_0217b888 = data_021759c0->mEntryIndex;
-    q = GetKart(data_0217b888);
-    data_0217b8c8 = q;
+    gJgKartIndex = data_021759c0->mEntryIndex;
+    q = GetKart(gJgKartIndex);
+    gJgKart = q;
     data_0217b8c0 = &q->mKartModelsEntry->mUnk_040;
-    data_0217b9c0.x = 0;
-    data_0217b9c0.y = 0;
-    data_0217b9c0.z = 0;
-    data_0217b90c = data_0217b9c0;
+    gJgTargetPos.x = 0;
+    gJgTargetPos.y = 0;
+    gJgTargetPos.z = 0;
+    data_0217b90c = gJgTargetPos;
     data_0217b918 = data_0217b90c;
     data_0217b93c = data_0217b918;
     data_0217b99c = data_0217b93c;
-    data_0217b930 = data_0217b99c;
+    gJgPos = data_0217b99c;
     data_0217b9b4.x = 0;
     data_0217b9b4.y = 0;
     data_0217b9b4.z = 0;
-    data_0217b924.x = 0;
-    data_0217b924.y = 0;
-    data_0217b924.z = 0;
+    gJgVelocity.x = 0;
+    gJgVelocity.y = 0;
+    gJgVelocity.z = 0;
     data_0217b870 = 0;
     data_0217b8b8 = 0;
     data_0217b88c = 0;
     data_0217b8cc = 0;
     data_0217b8ec = 0;
-    data_0217b948 = data_0217b930;
+    gJgEasedPos = gJgPos;
     a = TRUE;
     data_0217b8f0 = a;
     data_0217b8bc = a;
@@ -133,16 +133,16 @@ void func_020e7760(void) {
         a = FALSE;
     }
     data_0217b8f8 = a;
-    data_0217b890 = 4;
-    data_0217b87c = 1;
-    data_0217b884 = func_02044618();
-    func_020ea37c();
-    data_0217bb28[0].x = 0;
-    data_0217bb28[0].y = 0;
-    data_0217bb28[0].z = 0;
+    gJgKind = 4;
+    gJgHighestLap = 1;
+    gJgFinalLap = func_02044618();
+    InitJgOffsets();
+    gJgPoints[0].x = 0;
+    gJgPoints[0].y = 0;
+    gJgPoints[0].z = 0;
     s = data_02159440;
     for (i = 0; i < 7; i++) {
-        v = &data_0217bb28[i + 1];
+        v = &gJgPoints[i + 1];
         *v = *s;
         if (data_0217b8f8 != 0) {
             v->x = -v->x;
@@ -153,7 +153,7 @@ void func_020e7760(void) {
     }
     switch (data_021759c0->mMode) {
         case MODE_BATTLE:
-            data_0217b8b0 = 0;
+            gJgLapAndReverseEnabled = 0;
             break;
         case MODE_MISSION_RUN: {
             BOOL b;
@@ -163,30 +163,30 @@ void func_020e7760(void) {
                 (0x115 & (1 << (u8) (data_021759c0->mUnk_2f + 0xfe))) != 0) {
                 b = TRUE;
             }
-            data_0217b8b0 = b;
+            gJgLapAndReverseEnabled = b;
             break;
         }
         default:
-            data_0217b8b0 = 1;
+            gJgLapAndReverseEnabled = 1;
             break;
     }
     switch (data_021759c0->mUnk_010) {
         case 0:
-            data_0217b880 = 0x50;
+            gJgState2FrameCount = 0x50;
             break;
         case 1:
-            data_0217b880 = 0x3c;
+            gJgState2FrameCount = 0x3c;
             break;
         case 2:
         default:
-            data_0217b880 = 0x2d;
+            gJgState2FrameCount = 0x2d;
             break;
     }
     data_0217b9dc.mUnk_00 = 0x101;
-    data_0217b9dc.mUnk_04 = &data_0217b930;
+    data_0217b9dc.mUnk_04 = &gJgPos;
     data_0217b9dc.mUnk_08 = 1;
-    func_02046be8(&data_0217b9ec, (UnkFunc *const *) data_0216c33c, 7, NULL);
-    func_02046bcc(&data_0217b9ec, 0);
+    func_02046be8(&gJgStateMachine, (UnkFunc *const *) gJgStateTable, 7, NULL);
+    func_02046bcc(&gJgStateMachine, 0);
 }
 
 void func_020e7460(void) {
@@ -195,7 +195,7 @@ void func_020e7460(void) {
     s32 i;
     void *h;
     Unk0216c324 *s;
-    Unk0217bb08 *q;
+    JgKindRow *q;
     void *p;
     s32 n;
     s32 k;
@@ -204,12 +204,12 @@ void func_020e7460(void) {
     if (data_021759c0->mUnk_00c == 6) {
         return;
     }
-    func_020e64b8(&data_0217ba2c, FindSceneFile(data_0216c374), FindSceneFile(data_0216c384), 0);
-    func_020e6ab8(&data_0217ba2c);
-    data_0217ba2c.mUnk_14 |= 0xc0;
-    func_020e64b8(&data_0217ba00, FindSceneFile(data_0216c394), NULL, 0);
-    func_020e6ab8(&data_0217ba00);
-    data_0217ba00.mUnk_14 |= 0xc0;
+    func_020e64b8(&gJgMain, FindSceneFile(data_0216c374), FindSceneFile(data_0216c384), 0);
+    func_020e6ab8(&gJgMain);
+    gJgMain.mUnk_14 |= 0xc0;
+    func_020e64b8(&gJgCloud, FindSceneFile(data_0216c394), NULL, 0);
+    func_020e6ab8(&gJgCloud);
+    gJgCloud.mUnk_14 |= 0xc0;
     data_0217b8a4 = HeapAlloc(h, 0x78);
     data_0217b8a8 = HeapAlloc(h, 0x78);
     data_0217b8a0 = HeapAlloc(h, 0x78);
@@ -225,41 +225,41 @@ void func_020e7460(void) {
         data_0217b904[i] = (u32) (((s64) gPairsByAngle[((u16) (x + 0xbbb0) >> 4) * 2] * 0x19a) >> 12) + 0x119a;
         x += 0x444;
     }
-    data_0217b8e8 = 0;
+    gJgTableIndex = 0;
     n = 2;
     for (j = n, s = data_0216c324, q = data_0217bb08; j < 4; j++) {
         if (s->mUnk_00 != NULL) {
-            q->mUnk_00 = HeapAlloc(h, 0x6c);
+            q->mModel = HeapAlloc(h, 0x6c);
             p = FindSceneFile(s->mUnk_00);
-            func_02084e28(q->mUnk_00, p);
-            func_02084968(q->mUnk_00, 0x3f, n, 0x294a);
-            func_02084958(q->mUnk_00, 3);
+            func_02084e28(q->mModel, p);
+            func_02084968(q->mModel, 0x3f, n, 0x294a);
+            func_02084958(q->mModel, 3);
         } else {
-            q->mUnk_00 = NULL;
+            q->mModel = NULL;
         }
         if (s->mUnk_04 != NULL) {
-            q->mUnk_04 = HeapAlloc(h, 0x38);
-            func_020ea514(0, q->mUnk_00, q->mUnk_04, p, FindSceneFile(s->mUnk_04));
-            func_02087cfc(q->mUnk_04, 0, 1);
+            q->mNsbcaAnimation = HeapAlloc(h, 0x38);
+            func_020ea514(0, q->mModel, q->mNsbcaAnimation, p, FindSceneFile(s->mUnk_04));
+            func_02087cfc(q->mNsbcaAnimation, 0, 1);
         } else {
-            q->mUnk_04 = NULL;
+            q->mNsbcaAnimation = NULL;
         }
         if (s->mUnk_08 != NULL) {
-            q->mUnk_08 = HeapAlloc(h, 0x38);
-            func_020ea514(4, q->mUnk_00, q->mUnk_08, p, FindSceneFile(s->mUnk_08));
-            func_02087cfc(q->mUnk_08, 0, 1);
+            q->mNsbmaAnimation = HeapAlloc(h, 0x38);
+            func_020ea514(4, q->mModel, q->mNsbmaAnimation, p, FindSceneFile(s->mUnk_08));
+            func_02087cfc(q->mNsbmaAnimation, 0, 1);
         } else {
-            q->mUnk_08 = NULL;
+            q->mNsbmaAnimation = NULL;
         }
         s++;
         q++;
     }
-    func_020e6488((Unk020e6488 **) data_0217baf4, FindSceneFile(data_0216c3a4), FindSceneFile(data_0216c3b4), 0);
-    func_020e6ab8(data_0217bae8[0].mUnk_0c);
-    data_0217bae8[0].mUnk_0c->mUnk_14 |= 0xc0;
+    func_020e6488((Unk020e6488 **) gJgKindRowLapModels, FindSceneFile(data_0216c3a4), FindSceneFile(data_0216c3b4), 0);
+    func_020e6ab8(gJgKindRows[0].mLapModel);
+    gJgKindRows[0].mLapModel->mUnk_14 |= 0xc0;
     func_020e6488((Unk020e6488 **) data_0217bb04, FindSceneFile(data_0216c3c4), 0, 0);
-    func_020e6ab8(data_0217bae8[1].mUnk_0c);
-    data_0217bae8[1].mUnk_0c->mUnk_14 |= 0xc0;
+    func_020e6ab8(gJgKindRows[1].mLapModel);
+    gJgKindRows[1].mLapModel->mUnk_14 |= 0xc0;
 }
 #pragma thumb off
 

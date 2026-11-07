@@ -543,7 +543,8 @@ typedef struct Kart {
     /* 5a4 */ s32 mUnk_5a4;
 } Kart;
 
-extern Kart *data_0217b8c8;
+// Jg: the object built from the jg_* files plus lap_count and lap_final; this is the kart it follows.
+extern Kart *gJgKart;
 
 extern int data_02154f10[];
 

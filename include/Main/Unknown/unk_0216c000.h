@@ -133,7 +133,7 @@ extern u8 data_0216c240[];
 extern const char gSecondHandNsbmdName[];
 extern const char gPendulumNsbmdName[];
 extern const char gPendulumShadowNsbmdName[];
-extern u8 data_0216c33c[];
+extern u8 gJgStateTable[];
 extern const char data_0216c374[];
 extern const char data_0216c384[];
 extern const char data_0216c394[];

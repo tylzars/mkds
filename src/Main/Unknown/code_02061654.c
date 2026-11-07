@@ -316,7 +316,7 @@ void UpdateRace(void) {
         func_020d50c4();
     }
     UpdateItems();
-    func_020e9d10();
+    UpdateJg();
     UpdateMapObjects();
     func_0208e400();
     func_0208f0a0();
@@ -449,7 +449,7 @@ void func_02062078(void) {
     func_01ff92b4();
     DrawKarts();
     NNS_G3dGlbLightVector(0, gRace->mLightVectorX, gRace->mLightVectorY, gRace->mLightVectorZ);
-    func_020e9810();
+    DrawJg();
     DrawMapObjects((Unk020d4418 *) data_0217aa6c);
     DrawItems(data_0217aa7c);
     func_0208e358();

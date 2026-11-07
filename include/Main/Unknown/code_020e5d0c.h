@@ -72,9 +72,9 @@ typedef struct Unk020e6488 {
     /* 28 */ void *mUnk_28;
 } Unk020e6488;
 
-extern Unk020e6488 data_0217ba00;
+extern Unk020e6488 gJgCloud;
 
-extern Unk020e6488 data_0217ba2c;
+extern Unk020e6488 gJgMain;
 
 // Second argument of func_020e6514, allocated as 0x38 bytes by func_020e64b8.
 typedef struct Unk020e6514 {

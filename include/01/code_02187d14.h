@@ -7,11 +7,11 @@
 
 extern MtxFx43 data_0217c600;
 
-extern MtxFx43 data_0217ba88;
+extern MtxFx43 gJgPreviousInverseMatrix;
 
-extern MtxFx43 data_0217ba58;
+extern MtxFx43 gJgInverseMatrix;
 
-extern MtxFx43 data_0217bab8;
+extern MtxFx43 gJgMatrix;
 
 // Element at Unk02187d14.mUnk_00.
 typedef struct Unk02187d14_00 {

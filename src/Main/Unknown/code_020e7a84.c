@@ -57,7 +57,7 @@
 
 #pragma thumb on
 
-void func_020ea4bc(u32 param_1, void *param_2, void **param_3, void *param_4, void *param_5) {
+void CreateModelAnimation(u32 param_1, void *param_2, void **param_3, void *param_4, void *param_5) {
     *param_3 = HeapAlloc(GetHeap(func_020364e8()), 0x38);
     func_0208823c(param_1, *param_3, param_2, 1, GetHeap(func_020364e8()), param_4);
     func_0208805c(*param_3, param_5, GetHeap(func_020364e8()));
@@ -66,33 +66,35 @@ void func_020ea4bc(u32 param_1, void *param_2, void **param_3, void *param_4, vo
 
 #pragma thumb off
 
-void func_020ea37c(void) {
-    data_0217b8dc = 0xf662;
-    data_0217b8d4 = 0x1232e;
-    data_0217b9a8 = data_02159434;
-    data_0217b9a8.x += 0xf662;
-    data_0217b990 = data_021593d4;
-    data_0217b990.x += 0xf662;
-    data_0217b960 = data_02159428;
-    data_0217b960.x += 0xf662;
+// Stores the two offset constants and the four offset vectors; every x is negated when data_0217b8f8 is 0.
+void InitJgOffsets(void) {
+    gJgOffsetX = 0xf662;
+    gJgOffsetY = 0x1232e;
+    gJgKind2Offset = data_02159434;
+    gJgKind2Offset.x += 0xf662;
+    gJgKind3Offset = data_021593d4;
+    gJgKind3Offset.x += 0xf662;
+    gJgKind4Offset = data_02159428;
+    gJgKind4Offset.x += 0xf662;
 
-    data_0217b978 = func_0203c5e4() ? data_021593f8 : data_0215941c;
-    data_0217b978.x += data_0217b8dc;
+    gJgLapOffset = func_0203c5e4() ? data_021593f8 : data_0215941c;
+    gJgLapOffset.x += gJgOffsetX;
     if (data_0217b8f8 == 0) {
-        data_0217b9a8.x = -data_0217b9a8.x;
-        data_0217b990.x = -data_0217b990.x;
-        data_0217b978.x = -data_0217b978.x;
-        data_0217b960.x = -data_0217b960.x;
+        gJgKind2Offset.x = -gJgKind2Offset.x;
+        gJgKind3Offset.x = -gJgKind3Offset.x;
+        gJgLapOffset.x = -gJgLapOffset.x;
+        gJgKind4Offset.x = -gJgKind4Offset.x;
     }
-    data_0217b960.y += data_0217b8d4;
+    gJgKind4Offset.y += gJgOffsetY;
 }
 
-static inline s32 func_020ea1d4_inline(s32 a, s32 b, s32 t) {
+static inline s32 AdvanceJgPointsAndSetTarget_inline(s32 a, s32 b, s32 t) {
     s32 d = b - a;
     return a + (s32) (((s64) d * t) >> 12);
 }
 
-void func_020ea1d4(Vec3 *param_1, const Vec3 *param_2, const Vec3 *param_3) {
+// Moves gJgPointPointers along gJgPoints, advances gJgAngle and stores gJgTargetPos.
+void AdvanceJgPointsAndSetTarget(Vec3 *param_1, const Vec3 *param_2, const Vec3 *param_3) {
     Vec3 v;
     Vec3 w;
     s32 i;
@@ -104,147 +106,149 @@ void func_020ea1d4(Vec3 *param_1, const Vec3 *param_2, const Vec3 *param_3) {
     if (func_020d849c(&data_0217bb88.mUnk_00) != FALSE) {
         do {
             for (i = 0; i < 4; i++) {
-                data_0217b9cc[i] += 1;
-                if (data_0217b9cc[i] > &data_0217bb7c) {
-                    data_0217b9cc[i] = data_0217bb28;
+                gJgPointPointers[i] += 1;
+                if (gJgPointPointers[i] > &gJgPoint7) {
+                    gJgPointPointers[i] = gJgPoints;
                 }
             }
-        } while (func_020d7c84(&data_0217bb88.mUnk_00, 0, data_0217b9cc) != FALSE);
+        } while (func_020d7c84(&data_0217bb88.mUnk_00, 0, gJgPointPointers) != FALSE);
     }
     func_020d8488(&data_0217bb88, &v);
-    data_0217b878 += 0x64;
-    i = data_0217b878 >> 4;
+    gJgAngle += 0x64;
+    i = gJgAngle >> 4;
     c = gPairsByAngle[i * 2];
     s = gPairsByAngle[i * 2 + 1];
-    b = func_020ea1d4_inline(param_3->x, param_2->x, (s + 0x1000) >> 2);
-    a = func_020ea1d4_inline(param_3->y, param_2->y, (c + 0x1000) >> 2);
+    b = AdvanceJgPointsAndSetTarget_inline(param_3->x, param_2->x, (s + 0x1000) >> 2);
+    a = AdvanceJgPointsAndSetTarget_inline(param_3->y, param_2->y, (c + 0x1000) >> 2);
     v.x = ((s64) v.x * b) >> 12;
     v.y = ((s64) v.y * a) >> 12;
     v.z = 0;
     VEC_Add(&v, param_1, &v);
     w = v;
     w.x += data_0217b88c;
-    MTX_MultVec43(&w, &data_0217bab8, &data_0217b9c0);
+    MTX_MultVec43(&w, &gJgMatrix, &gJgTargetPos);
 }
 
-void func_020e9d10(void) {
-    s32 n;
-    u32 f;
+// Runs the position, matrix and state machine; in state 0 it starts the next state from mStatus, lap and mFlags.
+void UpdateJg(void) {
+    s32 lap;
+    u32 kartFlags;
 
     if (data_021759c0->mUnk_00c == 6) {
         return;
     }
-    if (data_0217b8c8 == NULL) {
+    if (gJgKart == NULL) {
         return;
     }
-    if (data_0217b9ec.mUnk_00e != 0) {
-        data_0217b8e8++;
-        if (data_0217b8e8 >= 0x3c) {
-            data_0217b8e8 = 0;
+    if (gJgStateMachine.mState != 0) {
+        gJgTableIndex++;
+        if (gJgTableIndex >= 0x3c) {
+            gJgTableIndex = 0;
         }
-        if (data_0217b890 != 4) {
-            Unk0217bb08 *p = &data_0217bae8[data_0217b890];
-            if (data_0217b890 != 0 && data_0217b890 != 1) {
-                if (p->mUnk_04 != NULL) {
-                    func_02087de0(p->mUnk_04);
+        if (gJgKind != 4) {
+            JgKindRow *p = &gJgKindRows[gJgKind];
+            if (gJgKind != 0 && gJgKind != 1) {
+                if (p->mNsbcaAnimation != NULL) {
+                    func_02087de0(p->mNsbcaAnimation);
                 }
-                if (p->mUnk_08 != NULL) {
-                    func_02087de0(p->mUnk_08);
+                if (p->mNsbmaAnimation != NULL) {
+                    func_02087de0(p->mNsbmaAnimation);
                 }
             }
         }
-        if (data_0217b9ec.mUnk_00e != 4 && (data_0217b9ec.mUnk_00e != 5 || data_0217b890 != 4)) {
-            data_0217b954 = data_0217b8c8->mPos;
-            data_0217b954.y -= data_0217b8c8->mHopHeight;
+        if (gJgStateMachine.mState != 4 && (gJgStateMachine.mState != 5 || gJgKind != 4)) {
+            gJgKartPos = gJgKart->mPos;
+            gJgKartPos.y -= gJgKart->mHopHeight;
         }
-        func_020e9658();
-        func_020e8ac8();
+        ComputeJgMatrixAndInverse();
+        UpdateJgPosition();
     }
-    func_02046b40(&data_0217b9ec);
-    if (data_0217b9ec.mUnk_00e != 0) {
+    func_02046b40(&gJgStateMachine);
+    if (gJgStateMachine.mState != 0) {
         return;
     }
     if (data_021759c0->mMode == MODE_BATTLE) {
         return;
     }
-    if (data_021759c0->mMode != MODE_MISSION_RUN && gRaceProgress->mUnk_000[data_0217b888].mStatus == 1 &&
-        (data_0217b8c8->mUnk_48 & 0x800) == 0) {
+    if (data_021759c0->mMode != MODE_MISSION_RUN && gRaceProgress->mUnk_000[gJgKartIndex].mStatus == 1 &&
+        (gJgKart->mUnk_48 & 0x800) == 0) {
         Vec3 v;
-        data_0217ba2c.mUnk_18 = 2;
-        data_0217b954 = data_0217b8c8->mPos;
-        data_0217b954.y -= data_0217b8c8->mHopHeight;
-        func_020e9658();
-        v = data_0217b990;
+        gJgMain.mUnk_18 = 2;
+        gJgKartPos = gJgKart->mPos;
+        gJgKartPos.y -= gJgKart->mHopHeight;
+        ComputeJgMatrixAndInverse();
+        v = gJgKind3Offset;
         v.x += data_0217b88c;
-        MTX_MultVec43(&v, &data_0217bab8, &data_0217b9c0);
-        data_0217b890 = 3;
+        MTX_MultVec43(&v, &gJgMatrix, &gJgTargetPos);
+        gJgKind = 3;
         if (func_0203c5e4() == 0) {
-            if ((u32) data_0217b890 <= 1) {
+            if ((u32) gJgKind <= 1) {
                 data_0217b900 = 1;
                 data_0217b8ac = 1;
             }
         }
-        func_02046bcc(&data_0217b9ec, 6);
+        func_02046bcc(&gJgStateMachine, 6);
         return;
     }
-    if (IsKartEnded(data_0217b888) != 0) {
+    if (IsKartEnded(gJgKartIndex) != 0) {
         return;
     }
-    if (data_0217b8b0 != 0) {
-        n = func_0203c8c0(data_0217b888);
-        if (data_0217b87c < (u32) n) {
+    if (gJgLapAndReverseEnabled != 0) {
+        lap = func_0203c8c0(gJgKartIndex);
+        if (gJgHighestLap < (u32) lap) {
             Vec3 v;
-            data_0217b87c = n;
-            data_0217b954 = data_0217b8c8->mPos;
-            data_0217b954.y -= data_0217b8c8->mHopHeight;
-            func_020e9658();
-            v = data_0217b978;
+            gJgHighestLap = lap;
+            gJgKartPos = gJgKart->mPos;
+            gJgKartPos.y -= gJgKart->mHopHeight;
+            ComputeJgMatrixAndInverse();
+            v = gJgLapOffset;
             v.x += data_0217b88c;
-            MTX_MultVec43(&v, &data_0217bab8, &data_0217b9c0);
-            if (data_0217b87c == data_0217b884) {
-                data_0217b890 = 1;
+            MTX_MultVec43(&v, &gJgMatrix, &gJgTargetPos);
+            if (gJgHighestLap == gJgFinalLap) {
+                gJgKind = 1;
                 if (func_0203c5e4() == 0) {
-                    if ((u32) data_0217b890 <= 1) {
+                    if ((u32) gJgKind <= 1) {
                         data_0217b900 = 1;
                         data_0217b8ac = 1;
                     }
                 }
-                func_02046bcc(&data_0217b9ec, 6);
+                func_02046bcc(&gJgStateMachine, 6);
                 return;
             }
-            data_0217b890 = 0;
+            gJgKind = 0;
             if (func_0203c5e4() == 0) {
-                if ((u32) data_0217b890 <= 1) {
+                if ((u32) gJgKind <= 1) {
                     data_0217b900 = 1;
                     data_0217b8ac = 1;
                 }
             }
-            func_02046bcc(&data_0217b9ec, 6);
+            func_02046bcc(&gJgStateMachine, 6);
             return;
         }
     }
-    f = data_0217b8c8->mUnk_48;
-    if (f & 1) {
+    kartFlags = gJgKart->mUnk_48;
+    if (kartFlags & 1) {
         return;
     }
-    if (data_0217b8b0 == 0) {
+    if (gJgLapAndReverseEnabled == 0) {
         return;
     }
-    if ((gRaceProgress->mUnk_000[data_0217b888].mFlags & 4) != 0 && (f & 0x800) == 0) {
+    if ((gRaceProgress->mUnk_000[gJgKartIndex].mFlags & 4) != 0 && (kartFlags & 0x800) == 0) {
         data_0217b8c4++;
         if (data_0217b8c4 <= 0x3c) {
             return;
         }
-        data_0217b954 = data_0217b8c8->mPos;
-        data_0217b954.y -= data_0217b8c8->mHopHeight;
-        func_020e9658();
-        func_02046bcc(&data_0217b9ec, 1);
+        gJgKartPos = gJgKart->mPos;
+        gJgKartPos.y -= gJgKart->mHopHeight;
+        ComputeJgMatrixAndInverse();
+        func_02046bcc(&gJgStateMachine, 1);
         return;
     }
     data_0217b8c4 = 0;
 }
 
-void func_020e9810(void) {
+// Draws the cloud, gJgMain and the model gJgKind selects; counts gJgAlpha up to 0x1f while visible.
+void DrawJg(void) {
     s32 a, b, c, d, e, f, g, h;
     s32 m[9];
     Vec3 v0, v1, v2, v3, v4, v5, v6;
@@ -257,40 +261,40 @@ void func_020e9810(void) {
     if (data_021759c0->mUnk_00c == 6) {
         return;
     }
-    if (data_0217b8c8 == NULL) {
+    if (gJgKart == NULL) {
         return;
     }
-    if (data_0217b8e4 == 0) {
+    if (gJgVisible == 0) {
         goto reset;
     }
     n = FALSE;
     p5 = NULL;
     p4 = NULL;
-    switch (data_0217b890) {
+    switch (gJgKind) {
         case 2:
         case 3:
-            p5 = data_0217bae8[data_0217b890].mUnk_00;
+            p5 = gJgKindRows[gJgKind].mModel;
             break;
         case 0:
         case 1:
-            p4 = data_0217baf4[data_0217b890].mUnk_00;
+            p4 = gJgKindRowLapModels[gJgKind].mModel;
             break;
     }
     func_0208ab4c(data_0217b8c0);
-    data_0217b874++;
-    if (data_0217b874 > 0x1f) {
-        data_0217b874 = 0x1f;
+    gJgAlpha++;
+    if (gJgAlpha > 0x1f) {
+        gJgAlpha = 0x1f;
     }
-    data_0217ba2c.mUnk_14 &= ~0x1f0000;
-    data_0217ba2c.mUnk_14 |= data_0217b874 << 16;
-    data_0217ba00.mUnk_14 &= ~0x1f0000;
-    data_0217ba00.mUnk_14 |= data_0217b874 << 16;
+    gJgMain.mUnk_14 &= ~0x1f0000;
+    gJgMain.mUnk_14 |= gJgAlpha << 16;
+    gJgCloud.mUnk_14 &= ~0x1f0000;
+    gJgCloud.mUnk_14 |= gJgAlpha << 16;
     if (p5 != NULL) {
-        NNS_G3dMdlSetMdlAlphaAll(p5->mUnk_04, data_0217b874);
+        NNS_G3dMdlSetMdlAlphaAll(p5->mUnk_04, gJgAlpha);
     }
     if (p4 != NULL) {
         p4->mUnk_14 &= ~0x1f0000;
-        p4->mUnk_14 |= data_0217b874 << 16;
+        p4->mUnk_14 |= gJgAlpha << 16;
     }
     if (data_0217b900 != 0) {
         a = 0;
@@ -306,8 +310,8 @@ void func_020e9810(void) {
     }
     c = 0x1e;
     func_01ff9048(0x14, &c, 1);
-    func_01ff9048(0x19, func_020e6cf8(&data_0217b948), 0xc);
-    v1.y = data_0217b8a4[data_0217b8e8];
+    func_01ff9048(0x19, func_020e6cf8(&gJgEasedPos), 0xc);
+    v1.y = data_0217b8a4[gJgTableIndex];
     v1.x = 0;
     v1.z = 0;
     func_01ff9048(0x1c, &v1, 3);
@@ -316,26 +320,26 @@ void func_020e9810(void) {
     v2.z = 0x1666;
     func_01ff9048(0x1b, &v2, 3);
     func_01ff9048(0x11, NULL, 0);
-    x = data_0217b904[data_0217b8e8];
-    y = data_0217b8e0[data_0217b8e8];
+    x = data_0217b904[gJgTableIndex];
+    y = data_0217b8e0[gJgTableIndex];
     v3.x = x;
     v3.y = y;
     v3.z = 0;
     func_01ff9048(0x1b, &v3, 3);
-    func_020e6a18(&data_0217ba00);
-    func_020e6854(&data_0217ba00, NULL, 0, 0x1f);
+    func_020e6a18(&gJgCloud);
+    func_020e6854(&gJgCloud, NULL, 0, 0x1f);
     d = 1;
     func_01ff9048(0x12, &d, 1);
     v4.x = 0;
     v4.y = 0;
     v4.z = 0xa4;
     func_01ff9048(0x1c, &v4, 3);
-    MTX_RotZ33_(m, data_0217b8a8[data_0217b8e8], data_0217b8a0[data_0217b8e8]);
+    MTX_RotZ33_(m, data_0217b8a8[gJgTableIndex], data_0217b8a0[gJgTableIndex]);
     func_01ff9048(0x1a, m, 9);
-    func_020e6a18(&data_0217ba2c);
-    func_020e6854(&data_0217ba2c, NULL, 0, 0x1f);
+    func_020e6a18(&gJgMain);
+    func_020e6854(&gJgMain, NULL, 0, 0x1f);
     if (p5 != NULL) {
-        if (data_0217b890 == 3) {
+        if (gJgKind == 3) {
             e = 0;
             func_01ff9048(0x12, &e, 1);
             func_01ff8cf0(p5);
@@ -371,83 +375,84 @@ void func_020e9810(void) {
     }
     goto done;
 reset:
-    data_0217b874 = 0;
+    gJgAlpha = 0;
 done:;
 }
 
-void func_020e9658(void) {
+// Rebuilds gJgMatrix at gJgKartPos and its inverse; first keeps the previous inverse and the position change.
+void ComputeJgMatrixAndInverse(void) {
     s32 r;
     s64 sq;
     Vec3 *v;
 
-    data_0217ba88 = data_0217ba58;
-    VEC_Subtract(&data_0217b954, &data_0217bab8.mUnk_00[3], &data_0217b9b4);
-    data_0217bab8.mUnk_00[3] = data_0217b954;
-    data_0217bab8.mUnk_00[3].y = data_0217bab8.mUnk_00[3].y + (data_0217b8c8->mVelocity.y - data_0217b8c8->mHopSpeed);
-    data_0217bab8.mUnk_00[1] = data_02159494;
+    gJgPreviousInverseMatrix = gJgInverseMatrix;
+    VEC_Subtract(&gJgKartPos, &gJgMatrix.mUnk_00[3], &data_0217b9b4);
+    gJgMatrix.mUnk_00[3] = gJgKartPos;
+    gJgMatrix.mUnk_00[3].y = gJgMatrix.mUnk_00[3].y + (gJgKart->mVelocity.y - gJgKart->mHopSpeed);
+    gJgMatrix.mUnk_00[1] = data_02159494;
 
     if (func_0203c5e4() != 0) {
-        v = &data_0217b8c8->mUnk_50;
-        data_0217bab8.mUnk_00[2].x = -v->x;
-        data_0217bab8.mUnk_00[2].y = -v->y;
-        data_0217bab8.mUnk_00[2].z = -v->z;
+        v = &gJgKart->mUnk_50;
+        gJgMatrix.mUnk_00[2].x = -v->x;
+        gJgMatrix.mUnk_00[2].y = -v->y;
+        gJgMatrix.mUnk_00[2].z = -v->z;
     } else {
-        data_0217bab8.mUnk_00[2] = ((MtxFx43 *) func_020e6b38())->mUnk_00[2];
+        gJgMatrix.mUnk_00[2] = ((MtxFx43 *) func_020e6b38())->mUnk_00[2];
     }
-    Vec3CrossUnrounded(&data_0217bab8.mUnk_00[1], &data_0217bab8.mUnk_00[2], &data_0217bab8.mUnk_00[2]);
-    sq = (s64) data_0217bab8.mUnk_00[2].x * data_0217bab8.mUnk_00[2].x +
-         (s64) data_0217bab8.mUnk_00[2].y * data_0217bab8.mUnk_00[2].y +
-         (s64) data_0217bab8.mUnk_00[2].z * data_0217bab8.mUnk_00[2].z;
+    Vec3CrossUnrounded(&gJgMatrix.mUnk_00[1], &gJgMatrix.mUnk_00[2], &gJgMatrix.mUnk_00[2]);
+    sq = (s64) gJgMatrix.mUnk_00[2].x * gJgMatrix.mUnk_00[2].x + (s64) gJgMatrix.mUnk_00[2].y * gJgMatrix.mUnk_00[2].y +
+         (s64) gJgMatrix.mUnk_00[2].z * gJgMatrix.mUnk_00[2].z;
     r = 0;
     if (sq >= 0x10) {
-        r = Vec3NormalizeAndGetLengthUnchecked(&data_0217bab8.mUnk_00[2], &data_0217bab8.mUnk_00[2]);
+        r = Vec3NormalizeAndGetLengthUnchecked(&gJgMatrix.mUnk_00[2], &gJgMatrix.mUnk_00[2]);
     }
     if (r != 0) {
-        data_0217bab8.mUnk_00[0] = data_0217bab8.mUnk_00[2];
+        gJgMatrix.mUnk_00[0] = gJgMatrix.mUnk_00[2];
     }
-    Vec3CrossUnrounded(&data_0217bab8.mUnk_00[0], &data_0217bab8.mUnk_00[1], &data_0217bab8.mUnk_00[2]);
-    MTX_Transpose33_(&data_0217bab8, &data_0217ba58);
-    MTX_MultVec33(&data_0217bab8.mUnk_00[3], (const s32 *) &data_0217ba58, &data_0217ba7c);
-    data_0217ba58.mUnk_00[3].x = -data_0217ba58.mUnk_00[3].x;
-    data_0217ba58.mUnk_00[3].y = -data_0217ba58.mUnk_00[3].y;
-    data_0217ba58.mUnk_00[3].z = -data_0217ba58.mUnk_00[3].z;
+    Vec3CrossUnrounded(&gJgMatrix.mUnk_00[0], &gJgMatrix.mUnk_00[1], &gJgMatrix.mUnk_00[2]);
+    MTX_Transpose33_(&gJgMatrix, &gJgInverseMatrix);
+    MTX_MultVec33(&gJgMatrix.mUnk_00[3], (const s32 *) &gJgInverseMatrix, &gJgInverseMatrixPos);
+    gJgInverseMatrix.mUnk_00[3].x = -gJgInverseMatrix.mUnk_00[3].x;
+    gJgInverseMatrix.mUnk_00[3].y = -gJgInverseMatrix.mUnk_00[3].y;
+    gJgInverseMatrix.mUnk_00[3].z = -gJgInverseMatrix.mUnk_00[3].z;
 }
 
-static inline void func_020e8ac8_inline(Vec3 *o, const Vec3 *a, const Vec3 *b) {
+static inline void UpdateJgPosition_inline(Vec3 *o, const Vec3 *a, const Vec3 *b) {
     o->x = a->x < b->x ? a->x : b->x;
     o->y = a->y < b->y ? a->y : b->y;
     o->z = a->z < b->z ? a->z : b->z;
 }
 
-static inline void func_020e8ac8_inline_2(Vec3 *o, const Vec3 *a, const Vec3 *b) {
+static inline void UpdateJgPosition_inline_2(Vec3 *o, const Vec3 *a, const Vec3 *b) {
     o->x = a->x > b->x ? a->x : b->x;
     o->y = a->y > b->y ? a->y : b->y;
     o->z = a->z > b->z ? a->z : b->z;
 }
 
-void func_020e8ac8(void) {
+// Steers gJgPos toward gJgTargetPos (damped, pushed out of map objects and the course); snaps in state 4 or hidden.
+void UpdateJgPosition(void) {
     s64 sq;
     s32 dz;
     s32 dx;
 
-    if (data_0217b9ec.mUnk_00e == 4 || data_0217b8e4 == 0) {
-        data_0217b90c = data_0217b9c0;
+    if (gJgStateMachine.mState == 4 || gJgVisible == 0) {
+        data_0217b90c = gJgTargetPos;
         data_0217b918 = data_0217b90c;
         data_0217b93c = data_0217b918;
         data_0217b99c = data_0217b93c;
-        data_0217b930 = data_0217b99c;
+        gJgPos = data_0217b99c;
         data_0217b9b4.x = 0;
         data_0217b9b4.y = 0;
         data_0217b9b4.z = 0;
-        data_0217b924.x = 0;
-        data_0217b924.y = 0;
-        data_0217b924.z = 0;
+        gJgVelocity.x = 0;
+        gJgVelocity.y = 0;
+        gJgVelocity.z = 0;
         data_0217b870 = 0;
         data_0217b8b8 = 0;
         data_0217b88c = 0;
         data_0217b8cc = 0;
         data_0217b8ec = 0;
-        data_0217b948 = data_0217b930;
+        gJgEasedPos = gJgPos;
         data_0217b8f0 = 1;
         data_0217b8bc = 1;
         data_0217b894 = 0;
@@ -457,7 +462,7 @@ void func_020e8ac8(void) {
         Vec3 u;
         Vec3 v;
         s32 i;
-        BOOL f = FALSE;
+        BOOL pushed = FALSE;
         Vec3 lo, hi;
         s32 d;
         s32 w;
@@ -466,28 +471,28 @@ void func_020e8ac8(void) {
 
         lo = (Vec3){0, 0, 0};
         hi = (Vec3){0, 0, 0};
-        if (data_0217b9ec.mUnk_00e == 6 || data_0217b9ec.mUnk_00e == 2) {
+        if (gJgStateMachine.mState == 6 || gJgStateMachine.mState == 2) {
             p = NULL;
         } else {
             p = &data_0217b918;
         }
         data_0217b918 = data_0217b93c;
         if (data_0217b8f8 != 0) {
-            d = -data_0217b8dc >> 1;
-            t.x = ((s64) data_0217bab8.mUnk_00[0].x * d) >> 12;
-            t.y = ((s64) data_0217bab8.mUnk_00[0].y * d) >> 12;
-            t.z = ((s64) data_0217bab8.mUnk_00[0].z * d) >> 12;
+            d = -gJgOffsetX >> 1;
+            t.x = ((s64) gJgMatrix.mUnk_00[0].x * d) >> 12;
+            t.y = ((s64) gJgMatrix.mUnk_00[0].y * d) >> 12;
+            t.z = ((s64) gJgMatrix.mUnk_00[0].z * d) >> 12;
         } else {
-            d = data_0217b8dc >> 1;
-            t.x = ((s64) data_0217bab8.mUnk_00[0].x * d) >> 12;
-            t.y = ((s64) data_0217bab8.mUnk_00[0].y * d) >> 12;
-            t.z = ((s64) data_0217bab8.mUnk_00[0].z * d) >> 12;
+            d = gJgOffsetX >> 1;
+            t.x = ((s64) gJgMatrix.mUnk_00[0].x * d) >> 12;
+            t.y = ((s64) gJgMatrix.mUnk_00[0].y * d) >> 12;
+            t.z = ((s64) gJgMatrix.mUnk_00[0].z * d) >> 12;
         }
-        VEC_Add(&data_0217b930, &t, &data_0217b93c);
-        d = -data_0217b8d4 >> 1;
-        t.x = ((s64) data_0217bab8.mUnk_00[1].x * d) >> 12;
-        t.y = ((s64) data_0217bab8.mUnk_00[1].y * d) >> 12;
-        t.z = ((s64) data_0217bab8.mUnk_00[1].z * d) >> 12;
+        VEC_Add(&gJgPos, &t, &data_0217b93c);
+        d = -gJgOffsetY >> 1;
+        t.x = ((s64) gJgMatrix.mUnk_00[1].x * d) >> 12;
+        t.y = ((s64) gJgMatrix.mUnk_00[1].y * d) >> 12;
+        t.z = ((s64) gJgMatrix.mUnk_00[1].z * d) >> 12;
         VEC_Add(&data_0217b93c, &t, &data_0217b93c);
         data_0217b8fc = 0;
         if (data_0217b900 == 0) {
@@ -497,29 +502,29 @@ void func_020e8ac8(void) {
                     MapObject *q = data_0217b5c4[i];
 
                     if ((q->mFlags & 0x40) == 0 && func_020d3e34(&data_0217b93c, 0x12000, q, &t) != FALSE) {
-                        func_020e8ac8_inline(&lo, &t, &lo);
-                        func_020e8ac8_inline_2(&hi, &t, &hi);
-                        f = TRUE;
+                        UpdateJgPosition_inline(&lo, &t, &lo);
+                        UpdateJgPosition_inline_2(&hi, &t, &hi);
+                        pushed = TRUE;
                     }
                 }
                 if (func_01ffdee4(&data_0217b93c, p, 0, 0x12000, 4, -1, &t, NULL, NULL, &data_0217b8fc, NULL, NULL,
                                   NULL, NULL) != 0) {
-                    func_020e8ac8_inline(&lo, &t, &lo);
-                    func_020e8ac8_inline_2(&hi, &t, &hi);
-                    f = TRUE;
+                    UpdateJgPosition_inline(&lo, &t, &lo);
+                    UpdateJgPosition_inline_2(&hi, &t, &hi);
+                    pushed = TRUE;
                 }
             }
         }
-        if (f != FALSE) {
+        if (pushed != FALSE) {
             if ((data_0217b8fc & 0x80000) == 0) {
                 data_0217b894 = 0;
             }
             t = lo;
             VEC_Add(&t, &hi, &t);
-            if (t.y < 0 && data_0217b9ec.mUnk_00e == 5) {
+            if (t.y < 0 && gJgStateMachine.mState == 5) {
                 t.y = 0;
             }
-            VEC_Add(&data_0217b930, &t, &data_0217b930);
+            VEC_Add(&gJgPos, &t, &gJgPos);
             VEC_Add(&data_0217b93c, &t, &data_0217b93c);
         }
         if (data_0217b900 == 0) {
@@ -527,18 +532,16 @@ void func_020e8ac8(void) {
             if (data_0217b870 > 0xc) {
                 data_0217b870 = 0;
             }
-            data_0217b90c.x =
-                data_0217b930.x + data_0217b870 * (s32) (((s64) data_0217b8c8->mVelocity.x * 0x5000) >> 12);
-            data_0217b90c.z =
-                data_0217b930.z + data_0217b870 * (s32) (((s64) data_0217b8c8->mVelocity.z * 0x5000) >> 12);
-            data_0217b90c.y = data_0217b930.y;
+            data_0217b90c.x = gJgPos.x + data_0217b870 * (s32) (((s64) gJgKart->mVelocity.x * 0x5000) >> 12);
+            data_0217b90c.z = gJgPos.z + data_0217b870 * (s32) (((s64) gJgKart->mVelocity.z * 0x5000) >> 12);
+            data_0217b90c.y = gJgPos.y;
             if (func_01ffdee4(&data_0217b90c, NULL, 0, 0x18e66, 0x10, -1, NULL, NULL, (s32 *) &v, NULL, NULL, NULL,
                               NULL, NULL) != 0) {
-                w = data_0217b8c8->mForwardSpeed;
+                w = gJgKart->mForwardSpeed;
                 if (w <= 0) {
                     w = -w;
                 }
-                if (Vec3DotUnrounded(&v, &data_0217bab8.mUnk_00[0]) > 0) {
+                if (Vec3DotUnrounded(&v, &gJgMatrix.mUnk_00[0]) > 0) {
                     data_0217b8b8 = ((s64) w << 11) >> 12;
                 } else {
                     data_0217b8b8 = -(s32) (((s64) w << 11) >> 12);
@@ -565,15 +568,15 @@ void func_020e8ac8(void) {
                 }
             }
         }
-        data_0217b99c = data_0217b930;
-        if (data_0217b8c8->mState >= KART_STATE_PUSH_FLIP) {
+        data_0217b99c = gJgPos;
+        if (gJgKart->mState >= KART_STATE_PUSH_FLIP) {
             data_0217b8ac = 0;
         }
         if (data_0217b900 != 0 && data_0217b8ac != 0) {
-            data_0217b930.x = data_0217b9c0.x;
-            data_0217b930.z = data_0217b9c0.z;
+            gJgPos.x = gJgTargetPos.x;
+            gJgPos.z = gJgTargetPos.z;
             u.x = u.z = 0;
-            t.y = data_0217b9c0.y - data_0217b930.y;
+            t.y = gJgTargetPos.y - gJgPos.y;
             t.y = t.y + data_0217b8ec;
         } else {
             data_0217b908 -= 0x29;
@@ -583,48 +586,48 @@ void func_020e8ac8(void) {
             if (data_0217b908 < 0x7b) {
                 data_0217b908 = 0x7b;
             }
-            VEC_Subtract(&data_0217b9c0, &data_0217b930, &t);
+            VEC_Subtract(&gJgTargetPos, &gJgPos, &t);
             t.y += data_0217b8ec;
-            u.x = Vec3DotUnrounded(&t, &data_0217bab8.mUnk_00[0]);
-            u.z = Vec3DotUnrounded(&t, &data_0217bad0);
-            data_0217b924.x = ((s64) data_0217b908 * u.x) >> 12;
-            data_0217b924.z +=
-                (s32) (((s64) data_021593bc.z * u.z) >> 12) - (s32) (((s64) data_021593b0.z * data_0217b924.z) >> 12);
-            v.x = Vec3DotUnrounded(&data_0217b9b4, &data_0217bab8.mUnk_00[0]);
-            v.z = Vec3DotUnrounded(&data_0217b9b4, &data_0217bad0);
-            data_0217b924.x -= v.x;
-            data_0217b924.z -= v.z;
+            u.x = Vec3DotUnrounded(&t, &gJgMatrix.mUnk_00[0]);
+            u.z = Vec3DotUnrounded(&t, &gJgMatrixAxis2);
+            gJgVelocity.x = ((s64) data_0217b908 * u.x) >> 12;
+            gJgVelocity.z +=
+                (s32) (((s64) data_021593bc.z * u.z) >> 12) - (s32) (((s64) data_021593b0.z * gJgVelocity.z) >> 12);
+            v.x = Vec3DotUnrounded(&data_0217b9b4, &gJgMatrix.mUnk_00[0]);
+            v.z = Vec3DotUnrounded(&data_0217b9b4, &gJgMatrixAxis2);
+            gJgVelocity.x -= v.x;
+            gJgVelocity.z -= v.z;
             if (data_0217b8f0 != 0 || data_0217b8bc != 0) {
                 lim = data_0217b894 != 0 ? 0x1000 : 0x800;
-                if (data_0217b924.x > lim) {
-                    data_0217b924.x = lim;
-                } else if (data_0217b924.x < -lim) {
-                    data_0217b924.x = -lim;
+                if (gJgVelocity.x > lim) {
+                    gJgVelocity.x = lim;
+                } else if (gJgVelocity.x < -lim) {
+                    gJgVelocity.x = -lim;
                 }
                 n = data_0217b894 != 0 ? 0x2000 : 0x1000;
-                if (data_0217b924.z > n) {
-                    data_0217b924.z = n;
-                } else if (data_0217b924.z < -n) {
-                    data_0217b924.z = -n;
+                if (gJgVelocity.z > n) {
+                    gJgVelocity.z = n;
+                } else if (gJgVelocity.z < -n) {
+                    gJgVelocity.z = -n;
                 }
             }
-            data_0217b924.x += v.x;
-            data_0217b924.z += v.z;
-            MTX_MultVec33(&data_0217b924, (const s32 *) &data_0217bab8.mUnk_00[0], &u);
+            gJgVelocity.x += v.x;
+            gJgVelocity.z += v.z;
+            MTX_MultVec33(&gJgVelocity, (const s32 *) &gJgMatrix.mUnk_00[0], &u);
         }
-        data_0217b924.y = data_0217b924.y + ((s32) (((s64) data_021593bc.y * t.y) >> 12) -
-                                             (s32) (((s64) data_021593b0.y * data_0217b924.y) >> 12));
-        u.y = data_0217b924.y;
-        VEC_Add(&data_0217b930, &u, &data_0217b930);
-        VEC_Subtract(&data_0217b930, &data_0217b948, &v);
-        VEC_MultAdd(0xd9a, &v, &data_0217b948, &data_0217b948);
+        gJgVelocity.y = gJgVelocity.y + ((s32) (((s64) data_021593bc.y * t.y) >> 12) -
+                                         (s32) (((s64) data_021593b0.y * gJgVelocity.y) >> 12));
+        u.y = gJgVelocity.y;
+        VEC_Add(&gJgPos, &u, &gJgPos);
+        VEC_Subtract(&gJgPos, &gJgEasedPos, &v);
+        VEC_MultAdd(0xd9a, &v, &gJgEasedPos, &gJgEasedPos);
     }
-    if (data_0217b8e4 == 0) {
+    if (gJgVisible == 0) {
         return;
     }
-    data_0217b8f0 = (func_01ffd648(&data_0217b930, 0x12000, 0x708000, 0x5f592e1, 0x1f) & 3) == 0 ? 1 : 0;
-    dx = data_0217b930.x - data_0217bab8.mUnk_00[3].x;
-    dz = data_0217b930.z - data_0217bab8.mUnk_00[3].z;
+    data_0217b8f0 = (func_01ffd648(&gJgPos, 0x12000, 0x708000, 0x5f592e1, 0x1f) & 3) == 0 ? 1 : 0;
+    dx = gJgPos.x - gJgMatrix.mUnk_00[3].x;
+    dz = gJgPos.z - gJgMatrix.mUnk_00[3].z;
     sq = (s64) dx * dx + (s64) dz * dz;
     data_0217b8bc = sq < 0x57e4000000LL ? 1 : 0;
     if (data_0217b8bc != 0) {
@@ -634,7 +637,7 @@ void func_020e8ac8(void) {
     data_0217b8f4 = sq >= 0x3d090000000LL ? 1 : 0;
 }
 
-u32 func_020e8a78(void) {
+u32 EnterJgState0(void) {
     u32 value0;
     u32 value1;
     u32 value2;
@@ -642,9 +645,9 @@ u32 func_020e8a78(void) {
     u32 value4;
     u32 value12;
     u32 value14;
-    value12 = (u32) &data_0217b890;
+    value12 = (u32) &gJgKind;
     value4 = 4u;
-    value3 = (u32) &data_0217b8e4;
+    value3 = (u32) &gJgVisible;
     value14 = 0u;
     value2 = (u32) &data_0217b8c4;
     value1 = (u32) &data_0217b900;
@@ -661,97 +664,97 @@ u32 func_020e8a74(u32 p0) {
     return p0;
 }
 
-void func_020e8790(void) {
+void EnterJgState1(void) {
     Unk020e6514 *p;
     s32 t;
 
     // Written through a cast: a plain store changes the test below.
-    *(s32 *) &data_0217b890 = 2;
-    data_0217b8e4 = 1;
+    *(s32 *) &gJgKind = 2;
+    gJgVisible = 1;
     data_0217b8c4 = 0;
     data_0217b900 = 0;
     data_0217b8ac = 0;
-    data_0217b8e8 = 0;
-    if (data_0217b890 != 4) {
-        p = data_0217baec[data_0217b890].mUnk_00;
+    gJgTableIndex = 0;
+    if (gJgKind != 4) {
+        p = gJgKindRowNsbcaAnimations[gJgKind].mUnk_00;
         if (p != NULL) {
             p->mUnk_00c = 0;
             p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
         }
-        p = data_0217baf0[data_0217b890].mUnk_00;
+        p = gJgKindRowNsbmaAnimations[gJgKind].mUnk_00;
         if (p != NULL) {
             p->mUnk_00c = 0;
             p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
         }
     }
-    data_0217b9cc[0] = &data_0217bb7c;
-    data_0217b9cc[1] = data_0217bb28;
-    data_0217b9cc[2] = &data_0217bb34;
-    data_0217b9cc[3] = &data_0217bb40;
-    func_020d7d18(&data_0217bb88.mUnk_00, 0, data_0217b9cc, 0x1ec);
-    data_0217b878 = 0;
-    t = (s32) (((s64) data_0217b9a8.z * data_0215f4b4[1]) >> 12) -
-        (s32) (((s64) data_0217b9a8.x * data_0215f4b4[0]) >> 12);
+    gJgPointPointers[0] = &gJgPoint7;
+    gJgPointPointers[1] = gJgPoints;
+    gJgPointPointers[2] = &gJgPoint1;
+    gJgPointPointers[3] = &gJgPoint2;
+    func_020d7d18(&data_0217bb88.mUnk_00, 0, gJgPointPointers, 0x1ec);
+    gJgAngle = 0;
+    t = (s32) (((s64) gJgKind2Offset.z * data_0215f4b4[1]) >> 12) -
+        (s32) (((s64) gJgKind2Offset.x * data_0215f4b4[0]) >> 12);
     data_0217b8b4 = 0x8000;
-    data_0217b9c0.z = t;
+    gJgTargetPos.z = t;
     if (t > 0) {
-        data_0217b9c0.z = t * 3;
+        gJgTargetPos.z = t * 3;
     }
-    data_0217b9c0.x = (s32) (((s64) data_0217b9a8.z * data_0215f4b4[0]) >> 12) +
-                      (s32) (((s64) data_0217b9a8.x * data_0215f4b4[1]) >> 12);
-    data_0217b9c0.y = data_0217b9a8.y;
-    MTX_MultVec43(&data_0217b9c0, &data_0217bab8, &data_0217b9c0);
-    data_0217b90c = data_0217b9c0;
+    gJgTargetPos.x = (s32) (((s64) gJgKind2Offset.z * data_0215f4b4[0]) >> 12) +
+                     (s32) (((s64) gJgKind2Offset.x * data_0215f4b4[1]) >> 12);
+    gJgTargetPos.y = gJgKind2Offset.y;
+    MTX_MultVec43(&gJgTargetPos, &gJgMatrix, &gJgTargetPos);
+    data_0217b90c = gJgTargetPos;
     data_0217b918 = data_0217b90c;
     data_0217b93c = data_0217b918;
     data_0217b99c = data_0217b93c;
-    data_0217b930 = data_0217b99c;
+    gJgPos = data_0217b99c;
     data_0217b9b4.x = 0;
     data_0217b9b4.y = 0;
     data_0217b9b4.z = 0;
-    data_0217b924.x = 0;
+    gJgVelocity.x = 0;
     data_0217b870 = 0;
-    data_0217b924.y = 0;
-    data_0217b924.z = 0;
+    gJgVelocity.y = 0;
+    gJgVelocity.z = 0;
     data_0217b8b8 = 0;
     data_0217b88c = 0;
     data_0217b8cc = 0;
-    data_0217b948 = data_0217b930;
+    gJgEasedPos = gJgPos;
     data_0217b8ec = 0;
     data_0217b8f0 = 1;
     data_0217b8bc = 1;
     data_0217b894 = 0;
 }
 
-void func_020e84b0(void) {
-    Unk020e6514 *p;
+void UpdateJgState1(void) {
+    Unk020e6514 *animation;
     s32 n;
-    u32 a;
+    u32 frame;
     s32 i;
     s32 s;
     s32 c;
     s32 t;
-    NNSSndSeqPlayer **q;
+    NNSSndSeqPlayer **player;
     s32 b;
     enum { K0 } d;
 
-    p = data_0217baf0[data_0217b890].mUnk_00;
-    d = p->mUnk_00c;
+    animation = gJgKindRowNsbmaAnimations[gJgKind].mUnk_00;
+    d = animation->mUnk_00c;
     n = data_0217b8b4;
-    a = ((u32) d << 4) >> 16;
+    frame = ((u32) d << 4) >> 16;
     if (n > 0 && n < 0x10000) {
         i = (n >> 4) << 1;
         s = gPairsByAngle[i];
         c = gPairsByAngle[i + 1];
-        b = ((s64) data_0217b9a8.z * c) >> 12;
-        t = b - (s32) (((s64) data_0217b9a8.x * s) >> 12);
-        data_0217b9c0.z = t;
+        b = ((s64) gJgKind2Offset.z * c) >> 12;
+        t = b - (s32) (((s64) gJgKind2Offset.x * s) >> 12);
+        gJgTargetPos.z = t;
         if (t > 0) {
-            data_0217b9c0.z = t * 3;
+            gJgTargetPos.z = t * 3;
         }
-        data_0217b9c0.x = (s32) (((s64) data_0217b9a8.z * s) >> 12) + (s32) (((s64) data_0217b9a8.x * c) >> 12);
-        data_0217b9c0.y = data_0217b9a8.y;
-        MTX_MultVec43(&data_0217b9c0, &data_0217bab8, &data_0217b9c0);
+        gJgTargetPos.x = (s32) (((s64) gJgKind2Offset.z * s) >> 12) + (s32) (((s64) gJgKind2Offset.x * c) >> 12);
+        gJgTargetPos.y = gJgKind2Offset.y;
+        MTX_MultVec43(&gJgTargetPos, &gJgMatrix, &gJgTargetPos);
         if (data_0217b8f8 != 0) {
             data_0217b8b4 -= 0xf0;
         } else {
@@ -761,190 +764,190 @@ void func_020e84b0(void) {
         data_0217b894 = 1;
     } else {
         data_0217b894 = 0;
-        func_020ea1d4(&data_0217b9a8, &data_02159404, &data_02159410);
+        AdvanceJgPointsAndSetTarget(&gJgKind2Offset, &data_02159404, &data_02159410);
         if (data_0217b8f0 == 0 && data_0217b8bc == 0) {
-            func_02046bcc(&data_0217b9ec, 1);
+            func_02046bcc(&gJgStateMachine, 1);
         }
     }
-    if (a == 0xa || a == 0x28) {
-        q = func_02108e6c(4);
-        data_0217b9dc.mUnk_0c = func_020d4ef4(&data_0217b930);
-        NNS_SndPlayerStopSeq(q, 0);
-        func_0210b760(&data_0217b9dc, q);
+    if (frame == 0xa || frame == 0x28) {
+        player = func_02108e6c(4);
+        data_0217b9dc.mUnk_0c = func_020d4ef4(&gJgPos);
+        NNS_SndPlayerStopSeq(player, 0);
+        func_0210b760(&data_0217b9dc, player);
     }
-    if (IsKartEnded(data_0217b888) != 0 || (data_0217b8c8->mUnk_48 & 0x800) != 0) {
-        func_02046bcc(&data_0217b9ec, 5);
+    if (IsKartEnded(gJgKartIndex) != 0 || (gJgKart->mUnk_48 & 0x800) != 0) {
+        func_02046bcc(&gJgStateMachine, 5);
         return;
     }
-    if ((gRaceProgress->mUnk_000[data_0217b888].mFlags & 4) == 0) {
+    if ((gRaceProgress->mUnk_000[gJgKartIndex].mFlags & 4) == 0) {
         if (++data_0217b8c4 > 0x3c) {
-            func_02046bcc(&data_0217b9ec, 5);
+            func_02046bcc(&gJgStateMachine, 5);
             return;
         }
     } else {
         data_0217b8c4 = 0;
     }
-    if ((data_0217b8c8->mUnk_48 & 1) == 0) {
+    if ((gJgKart->mUnk_48 & 1) == 0) {
         return;
     }
-    func_02046bcc(&data_0217b9ec, 5);
+    func_02046bcc(&gJgStateMachine, 5);
 }
 
-void func_020e8418(void) {
+void EnterJgState2(void) {
     Vec3 v;
 
-    if (data_0217b87c != data_0217b884) {
-        data_0217bae8[0].mUnk_0c->mUnk_18 = data_0217b87c - 2;
+    if (gJgHighestLap != gJgFinalLap) {
+        gJgKindRows[0].mLapModel->mUnk_18 = gJgHighestLap - 2;
     }
     data_0217b8b4 = 0;
-    v = data_0217b978;
+    v = gJgLapOffset;
     v.x += data_0217b88c;
-    MTX_MultVec43(&v, &data_0217bab8, &data_0217b9c0);
+    MTX_MultVec43(&v, &gJgMatrix, &gJgTargetPos);
 }
 
-void func_020e8368(void) {
+void UpdateJgState2(void) {
     Vec3 v;
 
-    v = data_0217b978;
+    v = gJgLapOffset;
     v.x += data_0217b88c;
-    MTX_MultVec43(&v, &data_0217bab8, &data_0217b9c0);
-    if (++data_0217b8b4 > data_0217b880 || (data_0217b8c8->mUnk_48 & 0x800) != 0) {
-        func_02046bcc(&data_0217b9ec, 5);
+    MTX_MultVec43(&v, &gJgMatrix, &gJgTargetPos);
+    if (++data_0217b8b4 > gJgState2FrameCount || (gJgKart->mUnk_48 & 0x800) != 0) {
+        func_02046bcc(&gJgStateMachine, 5);
     }
 }
 
-void func_020e82dc(void) {
-    data_0217b9cc[0] = &data_0217bb7c;
-    data_0217b9cc[1] = data_0217bb28;
-    data_0217b9cc[2] = &data_0217bb34;
-    data_0217b9cc[3] = &data_0217bb40;
-    func_020d7d18(&data_0217bb88.mUnk_00, 0, data_0217b9cc, 0x1ec);
-    data_0217b878 = 0;
-    func_020ea1d4(&data_0217b990, &data_021593e0, &data_021593ec);
+void EnterJgState3(void) {
+    gJgPointPointers[0] = &gJgPoint7;
+    gJgPointPointers[1] = gJgPoints;
+    gJgPointPointers[2] = &gJgPoint1;
+    gJgPointPointers[3] = &gJgPoint2;
+    func_020d7d18(&data_0217bb88.mUnk_00, 0, gJgPointPointers, 0x1ec);
+    gJgAngle = 0;
+    AdvanceJgPointsAndSetTarget(&gJgKind3Offset, &data_021593e0, &data_021593ec);
 }
 
-void func_020e827c(void) {
-    func_020ea1d4(&data_0217b990, &data_021593e0, &data_021593ec);
-    if ((data_0217b8c8->mUnk_48 & 0x800) == 0) {
+void UpdateJgState3(void) {
+    AdvanceJgPointsAndSetTarget(&gJgKind3Offset, &data_021593e0, &data_021593ec);
+    if ((gJgKart->mUnk_48 & 0x800) == 0) {
         return;
     }
-    func_02046bcc(&data_0217b9ec, 5);
+    func_02046bcc(&gJgStateMachine, 5);
 }
 
-void func_020e7fa8(void) {
+void EnterJgState4(void) {
     Unk020e6514 *p;
-    NNSSndSeqPlayer **q;
-    MtxFx43 *m;
+    NNSSndSeqPlayer **player;
+    MtxFx43 *matrix;
 
     data_0217b8c4 = 0;
     // Written through a cast: a plain store changes the test below.
-    *(s32 *) &data_0217b890 = 4;
-    data_0217b8e4 = 1;
-    data_0217b874 = 0x1f;
+    *(s32 *) &gJgKind = 4;
+    gJgVisible = 1;
+    gJgAlpha = 0x1f;
     data_0217b900 = 0;
     data_0217b8ac = 0;
-    data_0217b8e8 = 0;
-    if (data_0217b890 != 4) {
-        p = data_0217baec[data_0217b890].mUnk_00;
+    gJgTableIndex = 0;
+    if (gJgKind != 4) {
+        p = gJgKindRowNsbcaAnimations[gJgKind].mUnk_00;
         if (p != NULL) {
             p->mUnk_00c = 0;
             p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
         }
-        p = data_0217baf0[data_0217b890].mUnk_00;
+        p = gJgKindRowNsbmaAnimations[gJgKind].mUnk_00;
         if (p != NULL) {
             p->mUnk_00c = 0;
             p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
         }
     }
-    data_0217ba2c.mUnk_18 = 1;
+    gJgMain.mUnk_18 = 1;
     data_0217b8b4 = 0;
     if (func_0203c5e4() != 0) {
-        m = func_020e6b48();
-        m->mUnk_00[3] = data_0217b954;
-        MTX_MultVec43(&data_0217b960, m, &data_0217b9c0);
+        matrix = func_020e6b48();
+        matrix->mUnk_00[3] = gJgKartPos;
+        MTX_MultVec43(&gJgKind4Offset, matrix, &gJgTargetPos);
     } else {
-        MTX_MultVec43(&data_0217b960, &data_0217bab8, &data_0217b9c0);
+        MTX_MultVec43(&gJgKind4Offset, &gJgMatrix, &gJgTargetPos);
     }
-    data_0217b90c = data_0217b9c0;
+    data_0217b90c = gJgTargetPos;
     data_0217b918 = data_0217b90c;
     data_0217b93c = data_0217b918;
     data_0217b99c = data_0217b93c;
-    data_0217b930 = data_0217b99c;
+    gJgPos = data_0217b99c;
     data_0217b9b4.x = 0;
     data_0217b9b4.y = 0;
     data_0217b9b4.z = 0;
-    data_0217b924.x = 0;
+    gJgVelocity.x = 0;
     data_0217b870 = 0;
     data_0217b8b8 = 0;
-    data_0217b924.y = 0;
-    data_0217b924.z = 0;
+    gJgVelocity.y = 0;
+    gJgVelocity.z = 0;
     data_0217b88c = 0;
     data_0217b8cc = 0;
     data_0217b8ec = 0;
-    data_0217b948 = data_0217b930;
+    gJgEasedPos = gJgPos;
     data_0217b8f0 = 1;
     data_0217b8bc = 1;
     data_0217b894 = 0;
     NNS_SndPlayerStopSeq(func_02108e6c(4), 1);
-    q = func_02108e6c(4);
+    player = func_02108e6c(4);
     if ((data_0217c780 & 1) == 0) {
         return;
     }
     if (data_0217d084.mUnk_0c == 0) {
         return;
     }
-    if (*q != NULL) {
-        NNS_SndPlayerStopSeq(q, 0);
+    if (*player != NULL) {
+        NNS_SndPlayerStopSeq(player, 0);
     }
-    if (*q != NULL) {
-        NNS_SndPlayerStopSeq(q, 0);
+    if (*player != NULL) {
+        NNS_SndPlayerStopSeq(player, 0);
     }
-    NNS_SndArcPlayerStartSeqArc(q, 0, 0x102);
+    NNS_SndArcPlayerStartSeqArc(player, 0, 0x102);
 }
 
-void func_020e7ed0(void) {
-    MtxFx43 *p;
+void UpdateJgState4(void) {
+    MtxFx43 *matrix;
 
     if (data_0217b8b4 == 0) {
-        data_0217b954 = data_0217b8c8->mPos;
+        gJgKartPos = gJgKart->mPos;
     } else if (--data_0217b8b4 <= 0) {
-        data_0217ba2c.mUnk_18 = 0;
-        func_02046bcc(&data_0217b9ec, 5);
+        gJgMain.mUnk_18 = 0;
+        func_02046bcc(&gJgStateMachine, 5);
     }
     if (func_0203c5e4() != 0) {
-        p = func_020e6b48();
-        p->mUnk_00[3] = data_0217b954;
-        MTX_MultVec43(&data_0217b960, p, &data_0217b9c0);
+        matrix = func_020e6b48();
+        matrix->mUnk_00[3] = gJgKartPos;
+        MTX_MultVec43(&gJgKind4Offset, matrix, &gJgTargetPos);
     } else {
-        MTX_MultVec43(&data_0217b960, &data_0217bab8, &data_0217b9c0);
+        MTX_MultVec43(&gJgKind4Offset, &gJgMatrix, &gJgTargetPos);
     }
 }
 
-void func_020e7e58(void) {
+void EnterJgState5(void) {
     s32 a;
 
-    data_0217b8e4 = 1;
-    MTX_MultVec43(&data_0217b9c0, &data_0217ba88, &data_0217b984);
+    gJgVisible = 1;
+    MTX_MultVec43(&gJgTargetPos, &gJgPreviousInverseMatrix, &data_0217b984);
     data_0217b89c = 0;
     a = 0;
-    if ((data_0217b8c8->mUnk_48 & 1) == 0) {
+    if ((gJgKart->mUnk_48 & 1) == 0) {
         a = 0xffffbccd;
     }
     data_0217b8d8 = a;
 }
 
-void func_020e7d90(void) {
+void UpdateJgState5(void) {
     s32 a;
 
-    MTX_MultVec43(&data_0217b984, &data_0217bab8, &data_0217b9c0);
-    if ((data_0217b8c8->mUnk_48 & 1) != 0) {
+    MTX_MultVec43(&data_0217b984, &gJgMatrix, &gJgTargetPos);
+    if ((gJgKart->mUnk_48 & 1) != 0) {
         a = 0x2000;
     } else {
         a = 0x800;
     }
     data_0217b8d8 += a;
     data_0217b89c += data_0217b8d8;
-    data_0217b9c0.y += data_0217b89c;
+    gJgTargetPos.y += data_0217b89c;
     if (data_0217b89c <= 0x5dc000) {
         return;
     }
@@ -952,66 +955,67 @@ void func_020e7d90(void) {
         return;
     }
     NNS_SndPlayerStopSeq(func_02108e6c(4), 1);
-    func_02046bcc(&data_0217b9ec, 0);
+    func_02046bcc(&gJgStateMachine, 0);
 }
 
-void func_020e7b7c(void) {
+void EnterJgState6(void) {
     Unk020e6514 *p;
     s32 b;
     s32 a;
     s32 i;
     s32 t;
 
-    data_0217b8e4 = 1;
-    data_0217b8e8 = 0;
-    if (data_0217b890 != 4) {
-        p = data_0217baec[data_0217b890].mUnk_00;
+    gJgVisible = 1;
+    gJgTableIndex = 0;
+    if (gJgKind != 4) {
+        p = gJgKindRowNsbcaAnimations[gJgKind].mUnk_00;
         if (p != NULL) {
             p->mUnk_00c = 0;
             p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
         }
-        p = data_0217baf0[data_0217b890].mUnk_00;
+        p = gJgKindRowNsbmaAnimations[gJgKind].mUnk_00;
         if (p != NULL) {
             p->mUnk_00c = 0;
             p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
         }
     }
-    MTX_MultVec43(&data_0217b9c0, &data_0217ba88, &data_0217b96c);
+    MTX_MultVec43(&gJgTargetPos, &gJgPreviousInverseMatrix, &data_0217b96c);
     for (i = 0, b = 0, a = 0; i < 0x1e; i++) {
         t = (b > -0x3000) ? -0x3000 : b;
         a -= t;
         b += 0x19a;
     }
-    data_0217b9c0.y += a;
-    data_0217b90c = data_0217b9c0;
+    gJgTargetPos.y += a;
+    data_0217b90c = gJgTargetPos;
     data_0217b918 = data_0217b90c;
     data_0217b93c = data_0217b918;
     data_0217b898 = a;
     data_0217b99c = data_0217b93c;
     data_0217b8d0 = b;
-    data_0217b930 = data_0217b99c;
+    gJgPos = data_0217b99c;
     data_0217b9b4.x = 0;
     data_0217b9b4.y = 0;
     data_0217b9b4.z = 0;
-    data_0217b924.x = 0;
-    data_0217b924.y = 0;
-    data_0217b924.z = 0;
+    gJgVelocity.x = 0;
+    gJgVelocity.y = 0;
+    gJgVelocity.z = 0;
     data_0217b870 = 0;
     data_0217b8b8 = 0;
     data_0217b88c = 0;
     data_0217b8cc = 0;
     data_0217b8ec = 0;
-    data_0217b948 = data_0217b930;
+    gJgEasedPos = gJgPos;
     data_0217b8f0 = 1;
     data_0217b8bc = 1;
     data_0217b894 = 0;
 }
 
-void func_020e7a84(void) {
+// Lowers the target from above; when the height reaches 0 it picks state 2 (kinds 0, 1), 3 (kind 3) or 5.
+void UpdateJgState6(void) {
     s32 a;
     s32 b;
 
-    MTX_MultVec43(&data_0217b96c, &data_0217bab8, &data_0217b9c0);
+    MTX_MultVec43(&data_0217b96c, &gJgMatrix, &gJgTargetPos);
     data_0217b8d0 -= 0x19a;
     a = data_0217b8d0;
     if (a > -0x3000) {
@@ -1019,18 +1023,18 @@ void func_020e7a84(void) {
     }
     b = data_0217b898 + a;
     data_0217b898 = b;
-    data_0217b9c0.y += b;
+    gJgTargetPos.y += b;
     if (b <= 0) {
-        switch (data_0217b890) {
+        switch (gJgKind) {
             case 0:
             case 1:
-                func_02046bcc(&data_0217b9ec, 2);
+                func_02046bcc(&gJgStateMachine, 2);
                 break;
             case 3:
-                func_02046bcc(&data_0217b9ec, 3);
+                func_02046bcc(&gJgStateMachine, 3);
                 break;
             default:
-                func_02046bcc(&data_0217b9ec, 5);
+                func_02046bcc(&gJgStateMachine, 5);
                 break;
         }
     }
