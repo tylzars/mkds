@@ -68,7 +68,7 @@ void AdvanceSelectRaceRuleState7(void) {
                 RequestSelectRaceRuleState8();
                 gSelectRaceRule->mResult = 1;
                 func_0202b7c0(3);
-                func_021282c8();
+                RequestSelectReturnState4();
                 break;
             case -1:
             case 1:
@@ -89,7 +89,7 @@ void AdvanceSelectRaceRuleState8(void) {
     p = gSelectRaceRule;
     c = InterpolateS16(1, 0, -192, p->mStateFrames, 10);
     b = p->mOffsetY + c;
-    a = -func_02128244(p->mStateFrames);
+    a = -LookupSelectReturnState4Bg2Offset(p->mStateFrames);
     gSelectRaceRule->mBg3Offset = b;
     c = gSelectRaceRule->mBncl->mUnk_06;
     for (i = 0; i < 5; i++) {

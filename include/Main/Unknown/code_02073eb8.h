@@ -50,8 +50,8 @@ extern MtxFx43 data_usa_021702c8;
 extern s32 data_usa_0217ac80;
 
 void UpdateCameraWobble(Camera *p);
-void func_02073f90(void);
-void func_02073fb0(u32 a, s32 b);
+void StartCameraWobbleByCourse(void);
+void StartCameraWobbleAtDistance(u32 a, s32 b);
 void StartCameraWobble(s32 a, u32 b, s32 c);
 void ResetCameraBehind(const Vec3 *a, void *b);
 // Moves the chase camera position a toward the position goal behind the Kart: adds the Kart's movement of the last
@@ -119,7 +119,7 @@ void UpdateCameraByEntryKind(Camera *p);
 // are written before either. Otherwise it starts the entry that shape names when it differs from the last one, runs it
 // and returns TRUE. UpdateRace calls it only while gRace->mUseChainCameras is 0 and func_0203c5e4() is non-zero.
 BOOL TryUpdateEntryCamera(Camera *p);
-u32 func_02075cf0(void);
+u32 DisableEntryCameraUpdate(void);
 void func_02075d08(s32 a);
 // Does nothing when CourseMap.mFirstKind6Entry is NULL. Otherwise sets mKind6EntryRunning and makes that entry the
 // current entry of gEntryCamera (fresh mFovBlend, field of view pair and mShakeKind), sets up its mPosCurve (and
@@ -139,6 +139,6 @@ void UpdateChaseCameraCollision(Camera *a, Kart *b, Vec3 *c);
 // gRace->mUseChainCameras is non-zero.
 void UpdateChaseCamera(Camera *a, Kart *b);
 void SetupCameraBehindKart(void);
-void func_02076bcc(Camera *a);
-void func_02076c50(Camera *a, s32 b);
-MtxFx43 *func_02076cc4(void);
+void ApplyCameraLookAt(Camera *a);
+void ApplyCameraFrustum(Camera *a, s32 b);
+MtxFx43 *GetProjectionMatrix(void);

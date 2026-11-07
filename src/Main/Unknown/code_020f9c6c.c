@@ -649,7 +649,7 @@ void EnterItemKouraWState7(ItemKouraW *param_1) {
             NNS_SndArcPlayerStartSeqArc(p, 0, 0xe0);
         }
     }
-    func_02073fb0(param_1->mUnk_000.mUnk_d4 & ~0xc000001f, 0x1000);
+    StartCameraWobbleAtDistance(param_1->mUnk_000.mUnk_d4 & ~0xc000001f, 0x1000);
 }
 
 void UpdateItemKouraWState7(ItemKouraW *param_1) {

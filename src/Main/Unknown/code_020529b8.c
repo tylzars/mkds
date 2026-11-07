@@ -246,7 +246,7 @@ void func_020536e0(void) {
 void func_02053664(Unk021425e8 *a) {
     s32 r;
 
-    r = WM_SetPortCallback(0xf, func_02050764, NULL);
+    r = WM_SetPortCallback(0xf, MPDataPortCallback, NULL);
     data_0217aa00->mUnk_0010 = 0;
     if (r != 0) {
         return;
@@ -341,7 +341,7 @@ void func_020533a0(void) {
     if (WM_Reset(func_02053348) == 2) {
         return;
     }
-    func_02050ec0();
+    End();
 }
 
 void func_02053348(Unk021425e8 *a) {
@@ -592,7 +592,7 @@ void func_020529b8(Unk021425e8 *a) {
     if (a->mResultCode == 0) {
         switch (a->mUnk_08_0) {
             case 7:
-                func_02050d80(a->mUnk_10, &a->mUnk_0a[0], (Unk0217aa00_45c *) a->mUnk_14);
+                AddChild(a->mUnk_10, &a->mUnk_0a[0], (Unk0217aa00_45c *) a->mUnk_14);
                 break;
             case 0:
                 MI_CpuCopy8(&data_0217aa08->mUnk_00->mUnk_0c, &data_0217aa00->mUnk_045c[0], 0x14);
@@ -614,7 +614,7 @@ void func_020529b8(Unk021425e8 *a) {
                 data_0217aa00->mUnk_0010 = 0;
                 break;
             case 9:
-                func_02050b88(a->mUnk_10);
+                RemoveChild(a->mUnk_10);
                 n = a->mUnk_10;
                 v1 = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
                 if (v1 == 1 && data_0217aa00->mUnk_0004 == 9) {

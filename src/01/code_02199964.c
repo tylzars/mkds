@@ -55,7 +55,7 @@ void InitOptionHensyuMenu(void *heap) {
             }
         }
     }
-    func_021281c8(0xe);
+    SetSelectReturnSoundId(0xe);
 }
 
 void ReleaseOptionHensyuMenu(void) {
@@ -110,7 +110,7 @@ void AdvanceOptionHensyuMenuState1(void) {
     if (gOptionHensyuMenu->mStateFrames >= 10) {
         gOptionHensyuMenu->mNextState = 2;
         gOptionHensyuMenu->mStateFrames = 0;
-        func_02128374();
+        RequestSelectReturnState1();
     }
 }
 
@@ -164,7 +164,7 @@ void AdvanceOptionHensyuMenuState3(void) {
     leave:
         gOptionHensyuMenu->mNextState = 5;
         gOptionHensyuMenu->mNextOptionState = 0;
-        func_02128310(0);
+        RequestSelectReturnState3WithSound(0);
         return;
     }
     if ((u16) (data_02175628[i].mUnk_00 & 1) != 0 || r <= 1) {
@@ -222,7 +222,7 @@ void AdvanceOptionHensyuMenuState4(void) {
         gOptionHensyuMenu->mNextState = 5;
         gOptionHensyuMenu->mStateFrames = 0;
         if (gOptionHensyuMenu->mNextOptionState == 5) {
-            func_021282c8();
+            RequestSelectReturnState4();
         }
     } else if (gOptionHensyuMenu->mStateFrames >= 5) {
         gOptionHensyuMenu->mUnk_14 = TRUE;

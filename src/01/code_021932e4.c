@@ -65,7 +65,7 @@ void InitOptionTopMenu(void *heap) {
             }
         }
     }
-    func_021281c8(0xf);
+    SetSelectReturnSoundId(0xf);
 }
 
 void ReleaseOptionTopMenu(void) {
@@ -124,7 +124,7 @@ void AdvanceOptionTopMenuState1(void) {
     if (gOptionTopMenu->mStateFrames >= 10) {
         gOptionTopMenu->mNextState = 2;
         gOptionTopMenu->mStateFrames = 0;
-        func_02128374();
+        RequestSelectReturnState1();
     }
 }
 
@@ -173,7 +173,7 @@ void AdvanceOptionTopMenuState3(void) {
     leave:
         gOptionTopMenu->mNextState = 5;
         gOptionTopMenu->mNextOptionState = 4;
-        func_02128310(1);
+        RequestSelectReturnState3WithSound(1);
         return;
     }
     flagB = data_02175628[idx].mUnk_00 & 1;
@@ -228,7 +228,7 @@ void AdvanceOptionTopMenuState4(void) {
         gOptionTopMenu->mNextState = 5;
         gOptionTopMenu->mStateFrames = 0;
         if (gOptionTopMenu->mIndex == 2) {
-            func_021282c8();
+            RequestSelectReturnState4();
         }
     } else if (gOptionTopMenu->mStateFrames >= 5) {
         gOptionTopMenu->mUnk_14 = TRUE;

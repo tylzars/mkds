@@ -247,7 +247,7 @@ void RequestSelectEngineState2(void) {
 void func_ov001_021a19c0(void) {
     gSelectEngine->mNextState = 3;
     gSelectEngine->mStateFrames = 0;
-    func_02128374();
+    RequestSelectReturnState1();
 }
 
 // Requests state 4: stores mNextState = 4 and zeroes mStateFrames; the next AdvanceSelectEngine call copies it to
@@ -433,10 +433,10 @@ void AdvanceSelectEngineState4(void) {
     if (func_ov001_021a1ba0() != 0) {
         return;
     }
-    func_021281c8(0xe);
+    SetSelectReturnSoundId(0xe);
     RequestSelectEngineState6();
     gSelectEngine->mResult = 2;
-    func_02128310(0);
+    RequestSelectReturnState3WithSound(0);
     return;
 next:
     if (r5 <= 3) {

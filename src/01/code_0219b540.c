@@ -447,7 +447,7 @@ void AdvanceSelectGhostState1(void) {
     AdvanceSelectGhostOffsetTimers();
     n = gSelectGhost->mSelectGhostSBncl->mUnk_06;
     gSelectGhost->mStateFrames++;
-    w = -func_0212825c(gSelectGhost->mStateFrames);
+    w = -LookupSelectReturnState1Bg2Offset(gSelectGhost->mStateFrames);
     gSelectGhost->mSelectGhostSTable[10].mUnk_06 = w;
     gSelectGhost->mSelectGhostSTable[11].mUnk_06 = w;
     gSelectGhost->mSelectGhostSTable[n + 5].mUnk_06 = w;
@@ -493,10 +493,10 @@ void AdvanceSelectGhostState2(void) {
             goto next;
         }
     }
-    func_021281c8(14);
+    SetSelectReturnSoundId(14);
     RequestSelectGhostState7();
     gSelectGhost->mResult = 2;
-    func_02128310(0);
+    RequestSelectReturnState3WithSound(0);
     return;
 next:
     if (r == 0) {
@@ -562,7 +562,7 @@ void AdvanceSelectGhostState6(void) {
             func_ov001_0219bfc0();
             gSelectGhost->mResult = 1;
             RequestSelectGhostState7();
-            func_021282c8();
+            RequestSelectReturnState4();
             break;
         case -1:
         case 1:
@@ -599,7 +599,7 @@ void AdvanceSelectGhostState7(void) {
         gSelectGhost->mSelectCupCourseTaMTable[n + 5].mUnk_06 = v;
     }
     n = gSelectGhost->mSelectGhostSBncl->mUnk_06;
-    w = -func_02128244(gSelectGhost->mStateFrames);
+    w = -LookupSelectReturnState4Bg2Offset(gSelectGhost->mStateFrames);
     gSelectGhost->mBg3Offset = v;
     for (i = 0; i < 6; i++) {
         gSelectGhost->mSelectGhostSTable[gSelectGhostSTableIndices[i]].mUnk_06 = v;

@@ -281,9 +281,9 @@ void AdvanceWiFiVSMatchingState1(void) {
     }
     gWiFiVSMatching->mUnk_08 = gWiFiVSMatching->mUnk_08 + 1;
     if (func_021213a0() != FALSE) {
-        func_02128374();
+        RequestSelectReturnState1();
     } else {
-        func_021282c8();
+        RequestSelectReturnState4();
     }
     if (gWiFiVSMatching->mUnk_3c != FALSE) {
         if (func_02121434() == FALSE) {
@@ -310,7 +310,7 @@ void AdvanceWiFiVSMatchingState1(void) {
         func_021213a0() != FALSE) {
     hit:
         func_021213e8();
-        func_02128310(0);
+        RequestSelectReturnState3WithSound(0);
         gWiFiVSMatching->mNextState = 10;
         gWiFiVSMatching->mPendingWiFiState = 2;
         gWiFiVSMatching->mUnk_08 = 0;
@@ -327,7 +327,7 @@ void AdvanceWiFiVSMatchingState1(void) {
             gWiFiVSMatching->mWiFiVSMatchingTable[data_ov000_021b065c[i]].mUnk_00 = 0;
         }
         RequestTxtSystemClose();
-        func_02128374();
+        RequestSelectReturnState1();
         func_02108990();
         return;
     }
@@ -342,7 +342,7 @@ void AdvanceWiFiVSMatchingState1(void) {
                 gWiFiVSMatching->mWiFiVSMatchingTable[data_ov000_021b065c[i]].mUnk_00 = 0;
             }
             RequestTxtSystemClose();
-            func_02128374();
+            RequestSelectReturnState1();
             func_02108990();
             return;
         }
@@ -381,7 +381,7 @@ void AdvanceWiFiVSMatchingState1(void) {
             gWiFiVSMatching->mWiFiVSMatchingTable[data_ov000_021b065c[i]].mUnk_00 = 1;
         }
         gWiFiVSMatching->mNextState = 2;
-        func_021282c8();
+        RequestSelectReturnState4();
         RequestTxtSystemClose();
         func_0202b604();
         func_02108a40();
@@ -589,7 +589,7 @@ void AdvanceWiFiVSMatchingState9(void) {
         }
         gWiFiVSMatching->mNextState = 10;
         gWiFiVSMatching->mPendingWiFiState = 2;
-        func_02128310(0);
+        RequestSelectReturnState3WithSound(0);
         RequestTxtSystemClose();
     }
 }

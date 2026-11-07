@@ -801,8 +801,8 @@ void func_ov001_02186368(void *a, Unk02188950 *b) {
             func_01ff9048(0x1a, m, 9);
         }
         func_01ff9048(0x1b, &b->mUnk_000.mScale.x, 3);
-        func_0209b9a4(b->mNsbmd, level);
-        func_0209b7a0(b->mNsbmd, b->mUnk_000.mFlags & 0x400, 0);
+        SetMapObjectModelAlpha(b->mNsbmd, level);
+        SetMapObjectModelMirror(b->mNsbmd, b->mUnk_000.mFlags & 0x400, 0);
         DrawMapObjectModel(a, b->mNsbmd, b);
     }
 }
@@ -870,7 +870,7 @@ void func_ov001_021861f4(void *d, Unk02188950 *e, s32 f) {
             func_01ff9048(0x1b, &u, 3);
         }
         SetMapObjectModelPolygonId(e->mShadowNsbmd, 3);
-        func_0209b9a4(e->mShadowNsbmd, depth);
+        SetMapObjectModelAlpha(e->mShadowNsbmd, depth);
         DrawMapObjectModel(d, e->mShadowNsbmd, e);
     }
 }

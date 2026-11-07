@@ -14,7 +14,7 @@ void func_02001000(void) {
     if (v1 == 0) {
         return;
     }
-    if (func_02050320(7, data_0217aa00->mUnk_0044.mUnk_43, v1) == FALSE) {
+    if (QueueMPDataHalfwordAndWord(7, data_0217aa00->mUnk_0044.mUnk_43, v1) == FALSE) {
         return;
     }
     DisconnectChildren(v1);

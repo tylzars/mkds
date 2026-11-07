@@ -144,7 +144,7 @@ s32 AdvanceMultiSelectNS(void) {
             } else if (func_02030688(i, 2) != 0 || a != 0) {
                 gMultiSelectNS->mUnk_2c = 0;
                 gMultiSelectNS->mState = 3;
-                func_02128310(0);
+                RequestSelectReturnState3WithSound(0);
             } else if (func_02030688(i, 0x40) != 0 && gMultiSelectNS->mIndex > 0) {
                 gMultiSelectNS->mIndex--;
                 func_02030954(1);

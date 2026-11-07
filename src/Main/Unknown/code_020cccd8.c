@@ -620,9 +620,9 @@ void DrawRaceHudSubScreenFlipperCells(Unk020c06c4 *a) {
                 }
             } else {
                 if (data_021759c0->mUnk_57 != 0) {
-                    func_020b4cb0(v1, (u16) (gRaceHudSubScreenFlipperCells->mCells[i].mUnk_10 + 0x4000 - d));
+                    Matrix2x2Rotation(v1, (u16) (gRaceHudSubScreenFlipperCells->mCells[i].mUnk_10 + 0x4000 - d));
                 } else {
-                    func_020b4cb0(v1, (u16) (d + (0x4000 - gRaceHudSubScreenFlipperCells->mCells[i].mUnk_10)));
+                    Matrix2x2Rotation(v1, (u16) (d + (0x4000 - gRaceHudSubScreenFlipperCells->mCells[i].mUnk_10)));
                 }
             }
             k = func_020ae5c4(a);

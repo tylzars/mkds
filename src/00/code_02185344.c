@@ -148,7 +148,7 @@ void AdvanceWiFiAikotobaCheckState1(void) {
     }
     gWiFiAikotobaCheck->mNextState = 2;
     gWiFiAikotobaCheck->mPendingWiFiState = 8;
-    func_02128310(0);
+    RequestSelectReturnState3WithSound(0);
     RequestTxtSystemClose();
 }
 

@@ -56,7 +56,7 @@ void DrawMoveTree(void *a, MoveTree *p, u32 c, u32 d) {
         SetMapObjectModelNsbcaFrameIndex(gMoveTree, p->mUnk_ac);
         DrawMapObjectModel(a, gMoveTree, p);
     } else {
-        func_0209ba58(a, gMoveTree, p);
+        DrawMapObjectModel1Mat1Shp(a, gMoveTree, p);
     }
     if ((s32) (p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f) >= 0x27100) {
         return;

@@ -33,7 +33,7 @@ void func_020caf98(s32 a) {
             data_0217b43c->mUnk_934 = TRUE;
         } else if (func_020cb1f4(v, 2)) {
             func_020ccc74(2, 0x1b);
-            func_02128310(1);
+            RequestSelectReturnState3WithSound(1);
         } else if (func_020ae408(v, 0x40)) {
             p = data_0217b43c;
             p->mUnk_930 = (p->mUnk_930 + 4) % 5;
@@ -57,7 +57,7 @@ void func_020caf98(s32 a) {
                 func_020cb1cc(5);
             } else if (IsSelectReturnState2NoState3Or4RequestAndInRect(b, v)) {
                 func_020ccc74(2, 0x1b);
-                func_02128310(1);
+                RequestSelectReturnState3WithSound(1);
             }
         }
     }

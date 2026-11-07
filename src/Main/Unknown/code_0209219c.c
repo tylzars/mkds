@@ -92,7 +92,7 @@ void DrawBasabasa(void *a, Basabasa *b) {
     }
     func_01ff9048(0x1a, m, 9);
     func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
-    func_0209b688(gBasabasa, b->mUnk_ac);
+    SetMapObjectModelNsbtpFrameIndex(gBasabasa, b->mUnk_ac);
     DrawMapObjectModel(a, gBasabasa, b);
 }
 
@@ -155,7 +155,7 @@ void UpdateBasabasa(void *a, Basabasa *b) {
         return;
     }
     v = b->mUnk_ac + 1;
-    if (v >= func_0209b634(gBasabasa)) {
+    if (v >= GetMapObjectModelNsbtpFrameCount(gBasabasa)) {
         v = 0;
     }
     b->mUnk_ac = v;

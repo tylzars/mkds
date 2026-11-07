@@ -65,7 +65,7 @@ void InitWiFiAikotoba(void *a) {
             gWiFiAikotoba->mWiFiAikotobaTable[data_ov000_021b06d0[i][j]].mUnk_04 = 0xfa;
         }
     }
-    func_021281c8(0xe);
+    SetSelectReturnSoundId(0xe);
 }
 
 void func_ov000_02185230(void) {
@@ -124,7 +124,7 @@ void AdvanceWiFiAikotobaState1(void) {
     if (gWiFiAikotoba->mStateFrames >= 10) {
         gWiFiAikotoba->mNextState = 2;
         gWiFiAikotoba->mStateFrames = 0;
-        func_02128374();
+        RequestSelectReturnState1();
     }
 }
 
@@ -176,7 +176,7 @@ void AdvanceWiFiAikotobaState3(void) {
     }
     gWiFiAikotoba->mNextState = 5;
     gWiFiAikotoba->mPendingWiFiState = 1;
-    func_02128310(0);
+    RequestSelectReturnState3WithSound(0);
     return;
 next:
     e = data_02175628[i].mUnk_00 & 1;
@@ -224,7 +224,7 @@ void AdvanceWiFiAikotobaState4(void) {
     if (gWiFiAikotoba->mStateFrames >= 10) {
         gWiFiAikotoba->mNextState = 5;
         if (gWiFiAikotoba->mPendingWiFiState == 11) {
-            func_021282c8();
+            RequestSelectReturnState4();
         }
         gWiFiAikotoba->mStateFrames = 0;
     } else if (gWiFiAikotoba->mStateFrames >= 5) {

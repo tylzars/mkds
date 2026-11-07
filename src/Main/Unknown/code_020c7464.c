@@ -422,8 +422,8 @@ void DrawRaceHudSubScreenKarts(Unk020c06c4 *p) {
                         if (gRaceHudSubScreenKarts->mUnk_0a0[i].y != 0x1000 ||
                             gRaceHudSubScreenKarts->mUnk_110[i] != 0) {
                             v1 = func_020ae5c4(p);
-                            func_020b4bf8(r0, gRaceHudSubScreenKarts->mUnk_0a0[i].y,
-                                          gRaceHudSubScreenKarts->mUnk_100[i]);
+                            Matrix2x2RotationReciprocalScale(r0, gRaceHudSubScreenKarts->mUnk_0a0[i].y,
+                                                             gRaceHudSubScreenKarts->mUnk_100[i]);
                             if (func_0207a8a4((u16) i) == 3) {
                                 c = GetRaceSNcerEntry(0x10);
                             } else {
@@ -471,7 +471,7 @@ void DrawRaceHudSubScreenKarts(Unk020c06c4 *p) {
                             } else {
                                 v5 = 0;
                             }
-                            func_020b4bf8(r1, gRaceHudSubScreenKarts->mUnk_0a0[i].y, v5);
+                            Matrix2x2RotationReciprocalScale(r1, gRaceHudSubScreenKarts->mUnk_0a0[i].y, v5);
                             if (func_0207a8a4((u16) i) == 3) {
                                 c = GetRaceSNcerEntry(0x10);
                             } else {
@@ -610,7 +610,7 @@ void func_020c82dc(Unk020c06c4 *p) {
             t = data_0217b424->mUnk_0c[0] + func_020b6368();
         }
         v1 = func_020ae5c4(p);
-        func_020b4cb0(r, t);
+        Matrix2x2Rotation(r, t);
         x = data_0217b424->mUnk_2c[0].mUnk_00;
         y = data_0217b424->mUnk_2c[0].mUnk_04;
         if (x > -32 && x < 288 && y > -32 && y < 224) {
@@ -656,7 +656,7 @@ void func_020c82dc(Unk020c06c4 *p) {
             v8 = data_0217b424->mUnk_0c[2] + func_020b6368();
         }
         v3 = func_020ae5c4(p);
-        func_020b4cb0(r, v8);
+        Matrix2x2Rotation(r, v8);
         v9 = data_0217b424->mUnk_2c[2].mUnk_00;
         v10 = data_0217b424->mUnk_2c[2].mUnk_04;
         if (v9 > -32 && v9 < 288 && v10 > -32 && v10 < 224) {
@@ -701,7 +701,7 @@ void func_020c82dc(Unk020c06c4 *p) {
         v16 = data_0217b424->mUnk_0c[1] + func_020b6368();
     }
     v2 = func_020ae5c4(p);
-    func_020b4cb0(r, v16);
+    Matrix2x2Rotation(r, v16);
     v17 = data_0217b424->mUnk_2c[1].mUnk_00;
     v18 = data_0217b424->mUnk_2c[1].mUnk_04;
     if (v17 > -16 && v17 < 272 && v18 > -16 && v18 < 208) {

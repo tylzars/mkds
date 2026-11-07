@@ -48,7 +48,7 @@ Unk0219b250 *LoadMapObjectModelAnimated(Unk0219b478 *p0, const char *p1) {
     o->mNsbmdFile = LoadMissionRunFile((p1));
     o->mAnimatedModel = HeapAlloc(GetHeap(func_020364e8()), 0x6c);
     func_02084e28(o->mAnimatedModel, o->mNsbmdFile);
-    func_0209b8ac(o, 0);
+    SetMapObjectModelFogEnabled(o, 0);
     o->mScale = data_ov001_021a6b2c;
     return o;
 }
@@ -62,7 +62,7 @@ Unk0219b250 *LoadMapObjectModelShadow(Unk0219b478 *p0, const char *p1) {
     }
     o->mShadowModel = HeapAlloc(GetHeap(func_020364e8()), 0x74);
     func_0207afa8(o->mShadowModel, r, 0x3f);
-    func_0209b8ac(o, 0);
+    SetMapObjectModelFogEnabled(o, 0);
     o->mScale = data_ov001_021a6b20;
     return o;
 }

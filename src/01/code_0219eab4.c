@@ -241,7 +241,7 @@ void func_ov001_0219f260(void) {
 void func_ov001_0219f244(void) {
     gMissionRunLVsel->mNextState = 2;
     gMissionRunLVsel->mStateFrames = 0;
-    func_02128374();
+    RequestSelectReturnState1();
 }
 
 // Requests state 3: stores mNextState = 3 and zeroes mStateFrames; the next AdvanceMissionRunLVsel call copies it to
@@ -416,11 +416,11 @@ void AdvanceMissionRunLVselState3(void) {
             goto next;
         }
     }
-    func_021281c8(0xe);
+    SetSelectReturnSoundId(0xe);
     func_ov001_0219f198();
     gMissionRunLVsel->mUnk_48 = 0x100;
     gMissionRunLVsel->mResult = 2;
-    func_02128310(0);
+    RequestSelectReturnState3WithSound(0);
     return;
 next:
     if (sel <= 6) {

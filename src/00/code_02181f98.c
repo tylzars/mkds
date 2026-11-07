@@ -124,7 +124,7 @@ void InitWiFiVSSetting(void *heap) {
     gWiFiVSSetting->mIndexDecrementTimer = 0;
     gWiFiVSSetting->mIndexIncrementTimer = 0;
     func_0212a910(1, 1);
-    func_021281c8(0xe);
+    SetSelectReturnSoundId(0xe);
 }
 
 void func_ov000_02182f88(void) {
@@ -221,7 +221,7 @@ void AdvanceWiFiVSSettingState2(void) {
     if (gWiFiVSSetting->mStateFrames >= 10) {
         gWiFiVSSetting->mNextState = 3;
         gWiFiVSSetting->mStateFrames = 0;
-        func_02128374();
+        RequestSelectReturnState1();
     }
 }
 
@@ -230,9 +230,9 @@ void AdvanceWiFiVSSettingState3(void) {
 
     gWiFiVSSetting->mStateFrames = gWiFiVSSetting->mStateFrames + 1;
     if (gWiFiVSSetting->mStateFrames < 3) {
-        v = -func_0212825c(0);
+        v = -LookupSelectReturnState1Bg2Offset(0);
     } else {
-        v = -func_0212825c(gWiFiVSSetting->mStateFrames - 3);
+        v = -LookupSelectReturnState1Bg2Offset(gWiFiVSSetting->mStateFrames - 3);
     }
     gWiFiVSSetting->mRowOffsets[2][1] = v;
     if (gWiFiVSSetting->mStateFrames >= 10 && gWiFiVSSetting->mStateFrames >= 13) {
@@ -281,7 +281,7 @@ void AdvanceWiFiVSSettingState4(void) {
     }
     gWiFiVSSetting->mNextState = 6;
     gWiFiVSSetting->mPendingWiFiState = 1;
-    func_02128310(1);
+    RequestSelectReturnState3WithSound(1);
     gWiFiVSSetting->mUnk_28 = TRUE;
     RequestTxtSystemClose();
     goto end;
@@ -375,7 +375,7 @@ void AdvanceWiFiVSSettingState5(void) {
         RequestTxtSystemClose();
         if (func_ov000_021832f0() != FALSE ||
             (gWiFiVSSetting->mPendingWiFiState == 3 && gWiFiVSSetting->mSettingIndex != 0)) {
-            func_021282c8();
+            RequestSelectReturnState4();
             gWiFiVSSetting->mUnk_28 = TRUE;
             return;
         }
@@ -409,7 +409,7 @@ void AdvanceWiFiVSSettingState6(void) {
     if (gWiFiVSSetting->mStateFrames < 3) {
         u = -func_020ae584(0);
     } else {
-        u = -func_02128244(gWiFiVSSetting->mStateFrames - 3);
+        u = -LookupSelectReturnState4Bg2Offset(gWiFiVSSetting->mStateFrames - 3);
     }
     for (i = 0; i < data_ov000_021b0600[2]; i++) {
         gWiFiVSSetting->mRowOffsets[2][1] = u;
@@ -486,7 +486,7 @@ void AdvanceWiFiVSSettingState7(void) {
             }
         }
         RequestTxtSystemClose();
-        func_02128310(0);
+        RequestSelectReturnState3WithSound(0);
     }
 }
 
@@ -525,7 +525,7 @@ void AdvanceWiFiVSSettingState8(void) {
             }
         }
         RequestTxtSystemClose();
-        func_02128310(0);
+        RequestSelectReturnState3WithSound(0);
     }
 }
 

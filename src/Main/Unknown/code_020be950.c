@@ -159,9 +159,9 @@ void DrawRaceHudSubScreenCells(Unk020c06c4 *a, RaceHudSubScreenCells *b, s32 c) 
             n = 0;
             if (c != 0) {
                 if (data_021759c0->mUnk_57 != 0) {
-                    func_020b4cb0(d, (u16) (b->mCells[i].mUnk_10 + 0x8000 - v));
+                    Matrix2x2Rotation(d, (u16) (b->mCells[i].mUnk_10 + 0x8000 - v));
                 } else {
-                    func_020b4cb0(d, (u16) (v + (0x8000 - b->mCells[i].mUnk_10)));
+                    Matrix2x2Rotation(d, (u16) (v + (0x8000 - b->mCells[i].mUnk_10)));
                 }
                 n = func_020ae5c4(a);
                 a->mUnk_000.mUnk_20[n].mUnk_06 = d[0] >> 4;
@@ -217,12 +217,12 @@ void DrawRaceHudSubScreenCellsScaled(Unk020c06c4 *a, RaceHudSubScreenCells *b, s
             q = b->mCells[i].mUnk_0e;
             if (c != 0) {
                 if (data_021759c0->mUnk_57 != 0) {
-                    func_020b4bf8(d, b->mUnk_0c[i].mUnk_00, (u16) (b->mCells[i].mUnk_10 - v));
+                    Matrix2x2RotationReciprocalScale(d, b->mUnk_0c[i].mUnk_00, (u16) (b->mCells[i].mUnk_10 - v));
                 } else {
-                    func_020b4bf8(d, b->mUnk_0c[i].mUnk_00, (u16) (v - b->mCells[i].mUnk_10));
+                    Matrix2x2RotationReciprocalScale(d, b->mUnk_0c[i].mUnk_00, (u16) (v - b->mCells[i].mUnk_10));
                 }
             } else {
-                func_020b4cec(d, b->mUnk_0c[i].mUnk_00);
+                Matrix2x2ReciprocalScale(d, b->mUnk_0c[i].mUnk_00);
             }
             n = func_020ae5c4(a);
             a->mUnk_000.mUnk_20[n].mUnk_06 = d[0] >> 4;

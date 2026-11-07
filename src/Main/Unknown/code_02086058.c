@@ -297,7 +297,7 @@ void func_02086250(MtxFx43 *a) {
         if (v.z >= 0) {
             f = FALSE;
         } else {
-            m = func_02076cc4();
+            m = GetProjectionMatrix();
             t = ((s64) v.x * m->mUnk_00[0].x + (s64) v.z * m->mUnk_00[2].z) >> 12;
             u = ((s64) v.y * m->mUnk_00[1].z + (s64) v.z * m->mUnk_00[3].x) >> 12;
             z = -((const Vec3 *) &v)->z;

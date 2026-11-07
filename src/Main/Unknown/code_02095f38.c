@@ -290,12 +290,12 @@ void DrawCoverPooHole(void *a, CoverPooHole *p) {
         case 1:
         case 2:
         case 6:
-            func_0209b688(gPoo, 0);
+            SetMapObjectModelNsbtpFrameIndex(gPoo, 0);
             break;
         case 4:
         case 5:
         case 7:
-            func_0209b688(gPoo, 1);
+            SetMapObjectModelNsbtpFrameIndex(gPoo, 1);
             break;
     }
     if (p->mState != 0) {

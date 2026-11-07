@@ -70,13 +70,13 @@ void func_ov001_0218d2c4(Unk02188950 *a) {
 
     func_ov001_02187218(a, 8, NULL);
     func_ov001_02188d64(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
-    func_0209b688(a->mNsbmd, 0);
+    SetMapObjectModelNsbtpFrameIndex(a->mNsbmd, 0);
     list = func_02100138(0x1fe);
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && (p = list->mUnk_00[i]) != NULL; i++) {
             func_ov001_02187218(p, 1, NULL);
             func_ov001_02188d64(p, p->mPrm->mUnk_070, p->mPrm->mUnk_074);
-            func_0209b688((p->mNsbmd), 0);
+            SetMapObjectModelNsbtpFrameIndex((p->mNsbmd), 0);
         }
     }
     local = data_ov001_021a7c08;
@@ -323,13 +323,13 @@ void func_ov001_0218cbdc(Unk02188950 *a, Unk02188950_a0 *b) {
                     ((s64) a->mPrm->mUnk_0fc * gPairsByAngle[(((u16) a->mMoveAngle - 0x4000) >> 4) * 2 + 1]) >> 12;
             }
             a->mUnk_2d8 = 0xc;
-            func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
+            StartCameraWobbleAtDistance(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
             a->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a65ac;
             func_020d26ec(b, 0x252);
         }
     } else {
         a->mUnk_2d8 = 0xa;
-        func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
+        StartCameraWobbleAtDistance(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
         a->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a65ac;
         func_020d26ec(b, 0x251);
     }

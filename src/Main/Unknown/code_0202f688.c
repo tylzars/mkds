@@ -320,7 +320,7 @@ void InitMultiSelectMemberGroup(void *a, void *b, void *c) {
         func_0212426c(1, data_02153c1c[i].mUnk_00, q->mUnk_14, v4, q->mUnk_0c, q->mUnk_18);
     }
     func_0203003c(1);
-    func_021281c8(0xf);
+    SetSelectReturnSoundId(0xf);
     data_021759d0->mUnk_20 = 2;
     FrmHeapShrinkInParent(gMultiSelectMemberGroup->mHeap);
 }
@@ -360,7 +360,7 @@ s32 AdvanceMultiSelectMemberGroup(Unk0202f764 *a) {
                 break;
             }
             if (gMultiSelectMemberGroup->mUnk_8c == 0) {
-                func_02128374();
+                RequestSelectReturnState1();
                 func_02126638(GetBmgEntry(gMultiSelectMemberGroup->mBannerMessages, 7), 0, 0, 1, 0, 0, 0);
             }
             gMultiSelectMemberGroup->mUnk_8c++;
@@ -416,7 +416,7 @@ s32 AdvanceMultiSelectMemberGroup(Unk0202f764 *a) {
                     a->mUnk_04 = 0;
                 }
                 gMultiSelectMemberGroup->mState = 3;
-                func_02128310(1);
+                RequestSelectReturnState3WithSound(1);
             } else if (func_020ae408(v2, 0x40) != 0) {
                 gMultiSelectMemberGroup->mUnk_48--;
                 if (gMultiSelectMemberGroup->mUnk_48 < 0) {

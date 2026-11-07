@@ -133,7 +133,7 @@ void RequestSelectCupCourseState1(void) {
 void func_02119bf0(void) {
     gSelectCupCourse->mNextState = 2;
     gSelectCupCourse->mStateFrames = 0;
-    func_02128374();
+    RequestSelectReturnState1();
 }
 
 // Requests state 3: stores mNextState = 3 and zeroes mStateFrames; the next AdvanceSelectCupCourse call copies it to
@@ -215,11 +215,11 @@ void func_021199f8(void) {
     if (gSelectCupCourse->mMode == 0) {
         if (gSelectCupCourse->mResult == 1) {
             if (func_0211e130() != FALSE) {
-                func_021282c8();
+                RequestSelectReturnState4();
             }
         }
     } else {
-        func_021282c8();
+        RequestSelectReturnState4();
     }
 }
 

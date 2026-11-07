@@ -76,7 +76,7 @@ void func_02032028(void) {
     gMultiSelectMember->mUnk_70 = 8;
     gMultiSelectMember->mState = 5;
     func_02126230(a, b);
-    func_021282c8();
+    RequestSelectReturnState4();
 }
 
 s32 func_02032000(void) {
@@ -523,7 +523,7 @@ void func_0203147c(void *a, void *b, void *c) {
     func_02126638(GetBmgEntry(gMultiSelectMember->mBannerMessages, 9), 0, 0, 1, 0, 0, 0);
     q->mUnk_18[0x11].mUnk_00 = 0;
     q->mUnk_18[0x10].mUnk_00 = q->mUnk_18[0x11].mUnk_00;
-    func_021281c8(-1);
+    SetSelectReturnSoundId(-1);
     FrmHeapShrinkInParent(gMultiSelectMember->mHeap);
 }
 
@@ -587,7 +587,7 @@ void func_02031280(void *a, void *b, void *c) {
             q->mUnk_18[i].mUnk_00 = 0;
         }
     }
-    func_021281c8(-1);
+    SetSelectReturnSoundId(-1);
     FrmHeapShrinkInParent(gMultiSelectMember->mHeap);
 }
 
@@ -716,7 +716,7 @@ s32 func_02030ea4(Unk02030b18 *a) {
             if ((u16) (data_02175628[k].mUnk_00 & 1) != 0 || m == 0) {
                 if (gMultiSelectMember->mUnk_74 > 0 && gMultiSelectMember->mUnk_a0[3].mUnk_00 == 1) {
                     func_02031b30(0);
-                    func_021282c8();
+                    RequestSelectReturnState4();
                     StopPaletteBlend();
                     NNS_SndArcSetCurrent(&data_0217c868);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 6);
@@ -732,7 +732,7 @@ s32 func_02030ea4(Unk02030b18 *a) {
                 gMultiSelectMember->mState = 3;
                 gMultiSelectMember->mUnk_7c = TRUE;
                 RequestTxtSystemClose();
-                func_02128310(0);
+                RequestSelectReturnState3WithSound(0);
                 NNS_SndArcSetCurrent(&data_0217c868);
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
                 NNS_SndArcSetCurrent(&data_0217d0a0);
@@ -876,7 +876,7 @@ s32 func_02030b18(Unk02030b18 *a) {
                         break;
                 }
                 if (x != FALSE) {
-                    func_021282c8();
+                    RequestSelectReturnState4();
                     func_02025f14(&gMultiSelectMember->mUnk_a0[0], 2);
                     NNS_SndArcSetCurrent(&data_0217c868);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 6);
@@ -899,7 +899,7 @@ s32 func_02030b18(Unk02030b18 *a) {
                     gMultiSelectMember->mState = 3;
                     gMultiSelectMember->mUnk_7c = TRUE;
                     RequestTxtSystemClose();
-                    func_02128310(0);
+                    RequestSelectReturnState3WithSound(0);
                     NNS_SndArcSetCurrent(&data_0217c868);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 3);
                     NNS_SndArcSetCurrent(&data_0217d0a0);

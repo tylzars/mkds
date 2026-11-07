@@ -419,8 +419,8 @@ void func_02062078(void) {
     u32 v;
     Camera *p;
 
-    func_02076c50(data_0217aa6c, 1);
-    func_02076bcc(data_0217aa6c);
+    ApplyCameraFrustum(data_0217aa6c, 1);
+    ApplyCameraLookAt(data_0217aa6c);
     p = data_0217aa6c;
     NNS_G3dGlbLightVector(0, gRace->mLightVectorX, gRace->mLightVectorY, gRace->mLightVectorZ);
     NNS_G3dGlbLightColor(0, 0x7fff);
@@ -441,7 +441,7 @@ void func_02062078(void) {
     v = 30;
     func_01ff9048(19, &v, 1);
     DrawCourseModelV();
-    func_02076c50(data_0217aa6c, 0);
+    ApplyCameraFrustum(data_0217aa6c, 0);
     NNS_G3dGlbFlushP();
     func_01ff92e0(data_0217aa74);
     DrawCourseModel();

@@ -1277,7 +1277,7 @@ void func_0211baac(void) {
     switch (gSelectRaceRule->mMode) {
         case 0:
         case 1:
-            func_02128374();
+            RequestSelectReturnState1();
             break;
     }
 }
@@ -1634,7 +1634,7 @@ void AdvanceSelectRaceRuleState2(void) {
     func_0211c818();
     func_0211c14c();
     gSelectRaceRule->mStateFrames++;
-    a = -func_0212825c(gSelectRaceRule->mStateFrames);
+    a = -LookupSelectReturnState1Bg2Offset(gSelectRaceRule->mStateFrames);
     b = gSelectRaceRule->mBncl->mUnk_06;
     if (data_021759d0->mUnk_20 != 2) {
         gSelectRaceRule->mTable[0x28].mUnk_06 = a;
@@ -1714,10 +1714,10 @@ void AdvanceSelectRaceRuleState3(void) {
     switch (gSelectRaceRule->mMode) {
         case 0:
         case 1:
-            func_021281c8(0xe);
+            SetSelectReturnSoundId(0xe);
             RequestSelectRaceRuleState8();
             gSelectRaceRule->mResult = 2;
-            func_02128310(0);
+            RequestSelectReturnState3WithSound(0);
             func_0202b7c0(1);
             break;
     }

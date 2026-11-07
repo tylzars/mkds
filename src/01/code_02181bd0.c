@@ -57,8 +57,8 @@ void func_ov001_02182eb8(Unk02181c3c *a, s32 b) {
     if (a->mUnk_0a8 >= 5) {
         a->mUnk_0a8 -= 5;
         a->mUnk_0a4 += 1;
-        if (a->mUnk_0a4 >= func_0209b634(data_ov001_021a9b98)) {
-            a->mUnk_0a4 -= func_0209b634(data_ov001_021a9b98);
+        if (a->mUnk_0a4 >= GetMapObjectModelNsbtpFrameCount(data_ov001_021a9b98)) {
+            a->mUnk_0a4 -= GetMapObjectModelNsbtpFrameCount(data_ov001_021a9b98);
         }
     }
 }
@@ -367,8 +367,8 @@ void func_ov001_0218263c(void *b, Unk02181c3c *c) {
         if (t >= 0x1f) {
             t = 0x1f;
         }
-        func_0209b9a4(data_ov001_021a9b98, t);
-        func_0209b688(data_ov001_021a9b98, c->mUnk_0a4);
+        SetMapObjectModelAlpha(data_ov001_021a9b98, t);
+        SetMapObjectModelNsbtpFrameIndex(data_ov001_021a9b98, c->mUnk_0a4);
         func_0209bbd0(b, data_ov001_021a9b98);
         DrawMapObjectModel(b, data_ov001_021a9b98, c);
     }

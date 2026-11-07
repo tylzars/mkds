@@ -27,14 +27,14 @@ void func_020cb234(void) {
         for (i = 0; i <= 14; i++) {
             b[i].mUnk_04 = v;
         }
-        func_02128374();
+        RequestSelectReturnState1();
     } else {
         a->mUnk_06 = 0;
         for (i = 0; i <= 14; i++) {
             b[i].mUnk_04 = 0;
         }
         func_020ccc74(1, 0x1f);
-        func_021281c8(0xf);
+        SetSelectReturnSoundId(0xf);
         data_0217b43c->mUnk_934 = FALSE;
     }
     func_020cb2d4();

@@ -254,7 +254,7 @@ void UpdateDossun(void *a, Dossun *p) {
                 s.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
                 func_0210b7a8(&s);
             }
-            func_02073fb0(p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f, 0x1000);
+            StartCameraWobbleAtDistance(p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f, 0x1000);
             if ((p->mUnk_00.mDistanceSquaredAndFlags & 3) == 0) {
                 StartEffect(0x59, &e->mUnk_00);
                 StartEffect(0x5a, &e->mUnk_00);

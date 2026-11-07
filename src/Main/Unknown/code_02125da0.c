@@ -57,10 +57,10 @@ void func_02125da0(void) {
         ClearTxtSystemPointer();
     }
     if (data_0217d3ec->mUnk_04 != FALSE) {
-        func_0212804c();
+        ClearSelectChoisesPointer();
     }
     if (data_0217d3ec->mUnk_08 != FALSE) {
-        func_021287c0();
+        ClearSelectReturnPointer();
     }
     *&data_0217d3ec = NULL;
 }

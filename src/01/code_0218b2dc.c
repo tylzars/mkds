@@ -155,7 +155,7 @@ void func_ov001_0218b640(Unk02188950 *a, void *b) {
     a->mUnk_000.mUnk_10.y = 0;
     a->mUnk_000.mUnk_10.z = (s64) a->mPrm->mUnk_130 * gPairsByAngle[((u16) a->mMoveAngle >> 4) * 2 + 1] >> 12;
     a->mUnk_2d8 = 0xd;
-    func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
+    StartCameraWobbleAtDistance(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
     func_ov001_02188200(a, func_ov001_0218b6f8);
     if (a->mTimer == 0) {
         func_020d26ec(b, 0x224);

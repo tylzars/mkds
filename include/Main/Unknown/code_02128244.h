@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-int func_02128244(int a);
-int func_0212825c(int a);
+int LookupSelectReturnState4Bg2Offset(int a);
+int LookupSelectReturnState1Bg2Offset(int a);

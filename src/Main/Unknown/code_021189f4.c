@@ -80,13 +80,13 @@ void AdvanceSelectCupCourseState3(void) {
                                              data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) != FALSE)) {
         if (func_02119dfc() == 0) {
             if (*(vu16 *) 0x027ffc40 == 2) {
-                func_021281c8(-1);
+                SetSelectReturnSoundId(-1);
             } else {
-                func_021281c8(0xe);
+                SetSelectReturnSoundId(0xe);
             }
             func_021199f8();
             gSelectCupCourse->mResult = 2;
-            func_02128310(0);
+            RequestSelectReturnState3WithSound(0);
         }
         return;
     }

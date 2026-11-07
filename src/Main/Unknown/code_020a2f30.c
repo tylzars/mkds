@@ -46,8 +46,8 @@ void InitBalloon(u32 arg0) {
 void CreateBalloon(Unk020a3eb8 *a) {
     gBalloon = CreateMapObjectModelNsbmdNsbtp(a, gBalloonNsbmdName, gBalloonNsbtpName);
     SetMapObjectModelPolygonId(gBalloon, 0x3f);
-    func_0209b9a4(gBalloon, 0x1a);
-    func_0209b8ac(gBalloon, 0);
+    SetMapObjectModelAlpha(gBalloon, 0x1a);
+    SetMapObjectModelFogEnabled(gBalloon, 0);
     a->mUnk_1c = 1;
 }
 
@@ -127,7 +127,7 @@ void DrawBalloon(void *p, Balloon *a) {
             func_01ff9048(0x1b, g0, 3);
         }
         SetMapObjectModelPolygonId(gBalloon, AllocPolygonIdWrapping());
-        func_0209b688(gBalloon, a->mNsbtpFrameIndex);
+        SetMapObjectModelNsbtpFrameIndex(gBalloon, a->mNsbtpFrameIndex);
         DrawMapObjectModel(p, gBalloon, a);
     } else if (n > 0) {
         m = a->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f;
@@ -172,7 +172,7 @@ void DrawBalloon(void *p, Balloon *a) {
             h[2] = 0;
             func_01ff9048(0x1c, h, 3);
             SetMapObjectModelPolygonId(gBalloon, AllocPolygonIdWrapping());
-            func_0209b688(gBalloon, e->mNsbtpFrameIndex);
+            SetMapObjectModelNsbtpFrameIndex(gBalloon, e->mNsbtpFrameIndex);
             DrawMapObjectModel(p, gBalloon, a);
             w2 = 1;
             func_01ff9048(0x12, &w2, 1);

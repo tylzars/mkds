@@ -70,7 +70,7 @@ s32 func_02058dc0(void (*a)(void)) {
             }
             break;
         case 7:
-            func_020505a8(5, 0xff);
+            QueueMPDataHalfword(5, 0xff);
             data_0217aa00->mUnk_1e44 |= 2;
             data_0217aa00->mUnk_1d54 = r;
             data_0217aa00->mUnk_1e34 = 1;
@@ -86,7 +86,7 @@ s32 func_02058dc0(void (*a)(void)) {
                 data_0217aa0c->mUnk_f8 = 1;
             }
             data_0217aa00->mUnk_1e34 = 3;
-            func_020505a8(3, 1);
+            QueueMPDataHalfword(3, 1);
             break;
         case 3:
             if (data_0217aa0c->mUnk_f8 == 0) {
@@ -98,7 +98,7 @@ s32 func_02058dc0(void (*a)(void)) {
             }
             break;
         case 5:
-            if (func_020505a8(4, 1) != FALSE) {
+            if (QueueMPDataHalfword(4, 1) != FALSE) {
                 data_0217aa00->mUnk_1e34 = 1;
             }
             break;

@@ -129,11 +129,11 @@ void UpdateAirship(void *a, Airship *p) {
     p->mUnk_00.mAngle = FX_Atan2Idx(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z);
 }
 
-void *func_0209fd94(void) {
+void *CreateAirshipDrawList(void) {
     return func_0209bf1c(CreateAirship, DrawAirship, NULL);
 }
 
-void *func_0209fd74(void) {
+void *CreateAirshipUpdateList(void) {
     return func_0209bf48(func_020a0064, UpdateAirship, NULL);
 }
 
@@ -197,12 +197,12 @@ void DrawTownMonte(void *a, TownMonte *p) {
         func_01ff9048(0x19, h, 0xc);
     }
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
-    func_0209b688(gTownMonte, p->mUnk_a0);
+    SetMapObjectModelNsbtpFrameIndex(gTownMonte, p->mNsbtpFrameIndex);
     func_0209bbd0(a, gTownMonte);
     DrawMapObjectModel(a, gTownMonte, p);
 }
 
-void func_0209f800(Unk0209f800 *a) {
+void InitTownMonteObjects(Unk0209f800 *a) {
     TownMonte *p;
     Unk020f41c4_B *r;
     s32 i;
@@ -216,8 +216,8 @@ void func_0209f800(Unk0209f800 *a) {
     for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
         p->mUnk_a4 = 0;
         p->mUnk_a8 = 0;
-        n = func_0209b634(gTownMonte);
-        p->mUnk_a0 = func_0209f800_inline(n);
+        n = GetMapObjectModelNsbtpFrameCount(gTownMonte);
+        p->mNsbtpFrameIndex = func_0209f800_inline(n);
         r = func_020d22d0();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         m = ((r->mUnk_00 >> 32) * 0x1a) >> 32;
@@ -225,11 +225,11 @@ void func_0209f800(Unk0209f800 *a) {
             func_0209f6d8_inline(p);
         }
         if (p->mUnk_00.mCourseMapRow->mUnk_28 != 0) {
-            if (p->mUnk_a0 == 0) {
+            if (p->mNsbtpFrameIndex == 0) {
                 p->mUnk_a2 = 0x1a7;
-            } else if (p->mUnk_a0 == 1) {
+            } else if (p->mNsbtpFrameIndex == 1) {
                 p->mUnk_a2 = 0x1a8;
-            } else if (p->mUnk_a0 == 2) {
+            } else if (p->mNsbtpFrameIndex == 2) {
                 r = func_020d22d0();
                 r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                 p->mUnk_a2 = (u16) (((r->mUnk_00 >> 32) * 2) >> 32) != 0 ? 0x1a7 : 0x1a8;
@@ -268,12 +268,12 @@ void UpdateTownMonte(void *a, TownMonte *p) {
     func_0210b7a8(&s);
 }
 
-void *func_0209f6b8(void) {
+void *CreateTownMonteDrawList(void) {
     return func_0209bef0(CreateTownMonte, DrawTownMonte, NULL);
 }
 
-void *func_0209f698(void) {
-    return func_0209bf48(func_0209f800, UpdateTownMonte, NULL);
+void *CreateTownMonteUpdateList(void) {
+    return func_0209bf48(InitTownMonteObjects, UpdateTownMonte, NULL);
 }
 
 void CreateChandelier(void *a) {

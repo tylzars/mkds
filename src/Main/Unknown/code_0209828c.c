@@ -115,7 +115,7 @@ void InitPakkun(Pakkun *p) {
 void CreatePakkunMouth(void *a) {
     gPakkunMouth = CreateMapObjectModelAnimated(a, "PakkunMouth.nsbmd");
     CreateMapObjectModelNsbcaAnimation(gPakkunMouth, "PakkunMouth.nsbca");
-    func_0209b9a4(gPakkunMouth, 0x1f);
+    SetMapObjectModelAlpha(gPakkunMouth, 0x1f);
 }
 
 static inline u32 func_020983c4_inline(u32 n) {
@@ -180,7 +180,7 @@ void DrawPakkunMouth(void *a, Pakkun *p) {
 
 void CreatePakkunZHead(void *a) {
     gPakkunZHead = CreateMapObjectModelNsbmd(a, "PakkunZHead.nsbmd");
-    func_0209b9a4(gPakkunZHead, 0x1e);
+    SetMapObjectModelAlpha(gPakkunZHead, 0x1e);
 }
 
 void func_02098b1c(void *a) {
@@ -211,7 +211,7 @@ void DrawPakkunZHead(void *a, Pakkun *p) {
 void CreatePakkunBody(void *a) {
     gPakkunBody = CreateMapObjectModelNsbmd(a, "PakkunBody.nsbmd");
     SetMapObjectModelPolygonId(gPakkunBody, 0x3f);
-    func_0209b9a4(gPakkunBody, 0x1f);
+    SetMapObjectModelAlpha(gPakkunBody, 0x1f);
 }
 
 void func_020989fc(void *a) {

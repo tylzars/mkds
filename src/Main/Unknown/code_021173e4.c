@@ -381,7 +381,7 @@ void RequestSelectCupGridState1(void) {
 void func_021181cc(void) {
     gSelectCupGrid->mNextState = 2;
     gSelectCupGrid->mStateFrames = 0;
-    func_02128374();
+    RequestSelectReturnState1();
 }
 
 void RequestSelectCupGridState3(void) {
@@ -680,13 +680,13 @@ L1:
     if (IsSelectCupGridIndexChangeRunning() != 0) {
         return;
     }
-    func_021281c8(0xe);
+    SetSelectReturnSoundId(0xe);
     switch (gSelectCupGrid->mMode) {
         case 0:
         case 1:
             RequestSelectCupGridState11();
             gSelectCupGrid->mResult = 2;
-            func_02128310(0);
+            RequestSelectReturnState3WithSound(0);
             return;
         case 2:
         case 3:
@@ -694,20 +694,20 @@ L1:
             if (data_0217b488->mUnk_08 == 2 || data_0217b488->mUnk_08 == 3) {
                 func_02118088();
                 if (*(vu16 *) 0x027ffc40 == 2) {
-                    func_021281c8(-1);
+                    SetSelectReturnSoundId(-1);
                 }
-                func_02128310(0);
+                RequestSelectReturnState3WithSound(0);
                 return;
             }
             RequestSelectCupGridState11();
             gSelectCupGrid->mResult = 2;
             if (gSelectCupGrid->mMode != 2) {
-                func_02128310(1);
+                RequestSelectReturnState3WithSound(1);
                 if (*(vu16 *) 0x027ffc40 == 2) {
                     func_0211f378();
                 }
             } else {
-                func_02128310(0);
+                RequestSelectReturnState3WithSound(0);
             }
             return;
     }
@@ -843,7 +843,7 @@ void AdvanceSelectCupGridState7(void) {
                 func_021185ec();
                 gSelectCupGrid->mResult = 1;
                 RequestSelectCupGridState11();
-                func_021282c8();
+                RequestSelectReturnState4();
                 break;
             case -1:
             case 1:

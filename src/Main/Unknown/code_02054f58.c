@@ -191,7 +191,7 @@ s32 func_02055030(void) {
     }
     switch (data_0217aa00->mUnk_000c) {
         case 38:
-            func_02050ec0();
+            End();
             break;
         case 21:
             data_0217aa00->mUnk_000c = 0;

@@ -546,8 +546,9 @@ typedef struct SelectChoises {
     /* 874 */ Unk0217d3f0_2178 mUnk_874[2];
     /* 894 */ u8 *mCharBuffers[2];
     /* 89c */ s32 mFirstTileIndex;
-    /* 8a0 */ u32 mUnk_8a0;
-    /* 8a4 */ u32 mUnk_8a4;
+    /* 8a0 */ u32 mUseCharBuffers;
+    // Non-zero when the display bit was set at init; also gates the choice sounds.
+    /* 8a4 */ u32 mDisplayBitOn;
     /* 8a8 */ s32 mSoundIds[2];
     /* 8b0 */ s32 mIndexNoneSoundId;
 } SelectChoises;
@@ -558,13 +559,13 @@ typedef struct SelectReturn {
     /* 004 */ s32 mState;
     /* 008 */ s32 mNextState;
     /* 00c */ s32 mStateFrames; /* counts only in states 1, 3, 4 */
-    /* 010 */ u16 mUnk_10[0x400];
+    /* 010 */ u16 mScreenMapCopy[0x400];
     /* 810 */ BOOL mState1Requested;
     /* 814 */ BOOL mState3Requested;
     /* 818 */ BOOL mState4Requested;
     /* 81c */ s32 mBg2Offset;
     /* 820 */ BOOL mDisplayBitOn;
-    /* 824 */ s32 mUnk_824;
+    /* 824 */ s32 mSoundId;
 } SelectReturn;
 
 // Records of 8 bytes: 0x80 of them start an Unk0217d3fc_00, and two are at member 0x10c of Unk0217d404

@@ -413,7 +413,7 @@ void func_020273c0(void) {
     gSelectCharacter->mUnk_068 = 0;
     gSelectCharacter->mUnk_08c = 2;
     gSelectCharacter->mUnk_06c = 8;
-    func_02128310(0);
+    RequestSelectReturnState3WithSound(0);
     func_02027424(3);
     func_02025f14(&gSelectCharacter->mUnk_0f8[0], 2);
     func_02025f14(&gSelectCharacter->mUnk_0f8[1], 2);

@@ -1163,8 +1163,8 @@ typedef struct Camera {
     // func_02075d08(0) and SetupCamera. While non-zero TryUpdateEntryCamera returns FALSE at once, so the chase camera
     // is shown.
     /* 230 */ s32 mEntryUpdateHold;
-    // Set to 1 once by func_02075cf0 and never cleared (SetupCamera zeroes it). While set TryUpdateEntryCamera returns
-    // FALSE at once, so the chase camera is shown.
+    // Set to 1 once by DisableEntryCameraUpdate and never cleared (SetupCamera zeroes it). While set
+    // TryUpdateEntryCamera returns FALSE at once, so the chase camera is shown.
     /* 234 */ BOOL mEntryUpdateDisabled;
     // Set to TRUE by StartEntryCameraKind8Entry and never cleared (SetupCamera zeroes it). While set, and after the
     // mEntryUpdateHold and mEntryUpdateDisabled tests, TryUpdateEntryCamera runs UpdateCameraAngleEntry on the current

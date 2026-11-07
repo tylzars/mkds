@@ -171,7 +171,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     func_02029330();
     func_02028f20();
     if (func_020280dc() == 0) {
-        func_02128374();
+        RequestSelectReturnState1();
     }
     if (func_0202811c() == 2) {
         SetSelectReturnDisplayBitOn();

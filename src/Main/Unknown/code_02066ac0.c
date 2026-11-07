@@ -365,7 +365,7 @@ void func_02066fe0(Kart *a) {
         if (p->mMode != MODE_GRAND_PRIX && p->mMode != MODE_TIME_ATTACK &&
             ((p->mUnk_1c == 1 && gRaceProgress->mUnk_000[a->mIndex].mStatus != 1) ||
              ((i = p->mKartCount) > 1 && (c = GetKartRank(a->mIndex), c == i)))) {
-            func_02075cf0();
+            DisableEntryCameraUpdate();
         } else {
             StartEntryCameraKind6Entry();
             func_02081f30();

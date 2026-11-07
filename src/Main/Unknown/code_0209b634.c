@@ -87,7 +87,7 @@ void DrawMapObjectModelWithPos(u32 a, MapObjectModel *b, MapObject *c) {
     func_020ea618(o->mShadowModel, c->mAlpha);
 }
 
-void func_0209ba58(void *a, void *b, void *c) {
+void DrawMapObjectModel1Mat1Shp(void *a, void *b, void *c) {
     MapObjectModel *o = b;
 
     if (o->mAnimatedModel == NULL) {
@@ -110,7 +110,7 @@ void func_0209ba08(void *a, u32 b) {
     func_020849b0(o->mAnimatedModel, b);
 }
 
-void func_0209b9a4(void *a, u16 b) {
+void SetMapObjectModelAlpha(void *a, u16 b) {
     MapObjectModel *o = a;
     Unk020e6488 *m = o->mNsbmdModel;
 
@@ -153,7 +153,7 @@ void func_0209b904(void *a, u32 b, u16 c) {
     NNS_G3dMdlSetMdlPolygonID(o->mAnimatedModel->mUnk_004, c, b);
 }
 
-void func_0209b8ac(void *a, u32 b) {
+void SetMapObjectModelFogEnabled(void *a, u32 b) {
     MapObjectModel *o = a;
     Unk020e6488 *m = o->mNsbmdModel;
 
@@ -170,7 +170,7 @@ void func_0209b8ac(void *a, u32 b) {
     NNS_G3dMdlSetMdlFogEnableFlagAll(o->mAnimatedModel->mUnk_004, b);
 }
 
-void func_0209b7a0(void *a, s32 b, s32 c) {
+void SetMapObjectModelMirror(void *a, s32 b, s32 c) {
     MapObjectModel *o = a;
     Unk020e6488 *m;
     s32 k;
@@ -246,7 +246,7 @@ void SetMapObjectModelNsbtaFrameIndex(void *a, s32 b) {
     p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_0c;
 }
 
-void func_0209b688(void *a, u16 b) {
+void SetMapObjectModelNsbtpFrameIndex(void *a, u16 b) {
     MapObjectModel *o = a;
     Unk02087d0c *p;
 
@@ -262,7 +262,7 @@ void func_0209b688(void *a, u16 b) {
     p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_0c;
 }
 
-u16 func_0209b634(void *a) {
+u16 GetMapObjectModelNsbtpFrameCount(void *a) {
     MapObjectModel *o = a;
 
     if (o->mNsbmdModel != NULL) {

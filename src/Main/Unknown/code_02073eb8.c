@@ -35,7 +35,7 @@
 #include "code_02010c84.h"
 #include "Main/Unknown/code_0203c5f8.h"
 
-MtxFx43 *func_02076cc4(void) {
+MtxFx43 *GetProjectionMatrix(void) {
     return (MtxFx43 *) data_0217acc0;
 }
 
@@ -52,7 +52,8 @@ static inline void func_02076528_inline(Vec3 *v, s32 k) {
     v->z = ((s64) v->z * k) >> 12;
 }
 
-void func_02076c50(Camera *a, s32 b) {
+// b selects the far plane: non-zero uses the second far value (mUnk_08c).
+void ApplyCameraFrustum(Camera *a, s32 b) {
     s32 c;
 
     if (b != 0) {
@@ -65,7 +66,7 @@ void func_02076c50(Camera *a, s32 b) {
     data_0217029c.mFlag &= ~0x50;
 }
 
-void func_02076bcc(Camera *a) {
+void ApplyCameraLookAt(Camera *a) {
     Vec3 *b = &a->mViewPos;
     Vec3 *c = &a->mViewLookAt;
 
@@ -358,6 +359,8 @@ void StartEntryCameraKind6Entry(void) {
     gCameraEntryChanged = 1;
 }
 
+// Sets mEntryUpdateHold; with a != 0 and the kind 6 entry still running, also picks the entry at the followed Kart's
+// position.
 void func_02075d08(s32 a) {
     CourseMapCamera *q;
     Camera *p = gEntryCamera;
@@ -403,7 +406,7 @@ void func_02075d08(s32 a) {
     gCameraEntryChanged = 1;
 }
 
-u32 func_02075cf0(void) {
+u32 DisableEntryCameraUpdate(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &gEntryCamera;
@@ -1121,11 +1124,11 @@ void StartCameraWobble(s32 a, u32 b, s32 c) {
     p->mWobbleOffset = 0;
 }
 
-void func_02073fb0(u32 a, s32 b) {
+void StartCameraWobbleAtDistance(u32 a, s32 b) {
     StartCameraWobble(0x2800, a, b);
 }
 
-void func_02073f90(void) {
+void StartCameraWobbleByCourse(void) {
     StartCameraWobble(data_usa_021656b4, 0, 0x1000);
 }
 

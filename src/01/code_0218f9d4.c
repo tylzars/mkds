@@ -88,7 +88,7 @@ void func_ov001_021927c0(Unk02188950 *a) {
     a->mUnk_000.mUnk_10.z = ((s64) a->mPrm->mUnk_144 * gPairsByAngle[((u16) a->mMoveAngle >> 4 << 1) + 1]) >> 12;
     a->mUnk_2d8 = 0xd;
     func_ov001_02188200(a, func_ov001_021927c0);
-    func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
+    StartCameraWobbleAtDistance(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
 }
 
 void func_ov001_02192794(Unk02188950 *a) {
@@ -448,7 +448,7 @@ void func_ov001_02191618(Unk02188950 *a) {
     func_ov001_02188cec(a, 0);
     SetVelocity(a, &local);
     func_ov001_02188200(a, func_ov001_02192878);
-    func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
+    StartCameraWobbleAtDistance(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
     func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x414, 0);
     func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x415, 0);
     StartMapObjectSound(&a->mUnk_000, 0x218);
@@ -464,7 +464,7 @@ void func_ov001_02191550(Unk02188950 *a) {
     func_ov001_02188cec(a, 0);
     SetVelocity(a, &local);
     func_ov001_02188200(a, func_ov001_02192878);
-    func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
+    StartCameraWobbleAtDistance(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
     func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x414, 0);
     func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x415, 0);
     StartMapObjectSound(&a->mUnk_000, 0x218);
@@ -535,7 +535,7 @@ void func_ov001_02191258(Unk02188950 *a) {
     func_ov001_02188cec(a, 0);
     SetVelocity(a, &local);
     func_ov001_02188200(a, func_ov001_02192878);
-    func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
+    StartCameraWobbleAtDistance(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
     func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x414, 0);
     func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x415, 0);
     StartMapObjectSound(&a->mUnk_000, 0x218);
@@ -1301,8 +1301,8 @@ void UpdateIwante(u32 a, Unk02188950 *b) {
     }
     if (b->mUnk_0a8 == 1) {
         value = b->mUnk_134 + 1;
-        if (value >= func_0209b634(b->mNsbmd) - 1) {
-            value = func_0209b634(b->mNsbmd) - 1;
+        if (value >= GetMapObjectModelNsbtpFrameCount(b->mNsbmd) - 1) {
+            value = GetMapObjectModelNsbtpFrameCount(b->mNsbmd) - 1;
         }
         b->mUnk_134 = value;
     } else {
@@ -1312,7 +1312,7 @@ void UpdateIwante(u32 a, Unk02188950 *b) {
         }
         b->mUnk_134 = value;
     }
-    func_0209b688(b->mNsbmd, b->mUnk_134);
+    SetMapObjectModelNsbtpFrameIndex(b->mNsbmd, b->mUnk_134);
     func_ov001_021864ac(a, b);
 }
 

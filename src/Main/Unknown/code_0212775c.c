@@ -41,7 +41,7 @@ s32 InitSelectReturn(void *heap, s32 b) {
     gSelectReturn = HeapAlloc(heap, 0x828);
     if (*(vu16 *) 0x27ffc40 != 2) {
         InitSelectReturnDisplay();
-        b = func_021286a0(b);
+        b = LoadSelectReturn(b);
         gSelectReturn->mDisplayBitOn = TRUE;
     } else {
         gSelectReturn->mDisplayBitOn = FALSE;
@@ -56,13 +56,13 @@ s32 InitSelectReturn(void *heap, s32 b) {
     gSelectReturn->mState1Requested = FALSE;
     gSelectReturn->mState4Requested = FALSE;
     gSelectReturn->mBg2Offset = -0x28;
-    gSelectReturn->mUnk_824 = 0xe;
+    gSelectReturn->mSoundId = 0xe;
     return b;
 }
 #pragma thumb off
 
 #pragma thumb on
-void func_021287c0(void) {
+void ClearSelectReturnPointer(void) {
     u32 value0;
     u32 value1;
     value1 = 0u;
@@ -80,7 +80,7 @@ void InitSelectReturnDisplay(void) {
     reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & 0x43) | 0xe00;
 }
 
-s32 func_021286a0(s32 a) {
+s32 LoadSelectReturn(s32 a) {
     Ncgr *ncgr;
     Nscr *nscr;
     Nclr *nclr;
@@ -95,17 +95,17 @@ s32 func_021286a0(s32 a) {
     GXS_LoadBG2Char(ncgr->mData, a, ncgr->mDataSize);
     for (i = 0; i < 0x20; i++) {
         for (j = 0; j < 0x20; j++) {
-            *(gSelectReturn->mUnk_10 + i * 0x20 + j) = (a >> 5) + *((u16 *) nscr->mData + i * 0x20 + j);
+            *(gSelectReturn->mScreenMapCopy + i * 0x20 + j) = (a >> 5) + *((u16 *) nscr->mData + i * 0x20 + j);
         }
     }
-    DC_FlushRange(gSelectReturn->mUnk_10, nscr->mDataSize);
-    GXS_LoadBG2Scr(gSelectReturn->mUnk_10, 0, nscr->mDataSize);
+    DC_FlushRange(gSelectReturn->mScreenMapCopy, nscr->mDataSize);
+    GXS_LoadBG2Scr(gSelectReturn->mScreenMapCopy, 0, nscr->mDataSize);
     DC_FlushRange(nclr->mData, 0x180);
     GXS_LoadBGPltt(nclr->mData + 0xc0, 0x180, 0x40);
     return a;
 }
 
-void func_02128624(s32 a) {
+void RefreshAndQueueSelectReturnPaletteBits(s32 a) {
     s32 i;
     u16 v;
     v = 0xc000;
@@ -113,11 +113,11 @@ void func_02128624(s32 a) {
         v = 0xd000;
     }
     for (i = 0x260; i < 0x360; i++) {
-        gSelectReturn->mUnk_10[i] &= ~0xf000;
-        gSelectReturn->mUnk_10[i] |= v;
+        gSelectReturn->mScreenMapCopy[i] &= ~0xf000;
+        gSelectReturn->mScreenMapCopy[i] |= v;
     }
     if (*(vu16 *) 0x27ffc40 != 2) {
-        CallQueueAppend(0x1a, 0x4c0, &gSelectReturn->mUnk_10[0x260], 0x200);
+        CallQueueAppend(0x1a, 0x4c0, &gSelectReturn->mScreenMapCopy[0x260], 0x200);
     }
 }
 
@@ -125,13 +125,13 @@ void AdvanceSelectReturnState0(void) {
     if (gSelectReturn->mState1Requested != FALSE) {
         gSelectReturn->mNextState = 1;
         gSelectReturn->mStateFrames = 0;
-        func_02128624(1);
+        RefreshAndQueueSelectReturnPaletteBits(1);
     }
 }
 
 void AdvanceSelectReturnState1(void) {
     SelectReturn *p;
-    gSelectReturn->mBg2Offset = func_0212825c(gSelectReturn->mStateFrames);
+    gSelectReturn->mBg2Offset = LookupSelectReturnState1Bg2Offset(gSelectReturn->mStateFrames);
     gSelectReturn->mStateFrames++;
     p = gSelectReturn;
     if (p->mStateFrames >= 10) {
@@ -149,7 +149,7 @@ void AdvanceSelectReturnState2(void) {
     v1 = gSelectReturn;
     if (v1->mState3Requested != FALSE) {
         v1->mNextState = 3;
-        func_02128624(0);
+        RefreshAndQueueSelectReturnPaletteBits(0);
         return;
     }
     if (v1->mState4Requested != FALSE) {
@@ -169,10 +169,10 @@ void AdvanceSelectReturnState3(void) {
     if (p->mStateFrames >= 9) {
         if (p->mState4Requested != FALSE) {
             p->mNextState = 4;
-            func_02128624(0);
+            RefreshAndQueueSelectReturnPaletteBits(0);
         } else {
             p->mNextState = 2;
-            func_02128624(1);
+            RefreshAndQueueSelectReturnPaletteBits(1);
         }
         gSelectReturn->mStateFrames = 0;
         gSelectReturn->mState3Requested = FALSE;
@@ -181,7 +181,7 @@ void AdvanceSelectReturnState3(void) {
 
 void AdvanceSelectReturnState4(void) {
     SelectReturn *p;
-    gSelectReturn->mBg2Offset = func_02128244(gSelectReturn->mStateFrames);
+    gSelectReturn->mBg2Offset = LookupSelectReturnState4Bg2Offset(gSelectReturn->mStateFrames);
     gSelectReturn->mStateFrames++;
     p = gSelectReturn;
     if (p->mStateFrames >= 10) {
@@ -236,7 +236,7 @@ void WriteSelectReturnRegisters(void) {
     }
 }
 
-void func_02128374(void) {
+void RequestSelectReturnState1(void) {
     if (IsSelectReturnState2NoState3Or4Request() != 0) {
         gSelectReturn->mState1Requested = FALSE;
     } else {
@@ -246,7 +246,8 @@ void func_02128374(void) {
     gSelectReturn->mState4Requested = FALSE;
 }
 
-void func_02128310(s32 a) {
+// a != 0 also asks for state 4 once state 3 ends.
+void RequestSelectReturnState3WithSound(s32 a) {
     s32 v;
     gSelectReturn->mState1Requested = FALSE;
     gSelectReturn->mState3Requested = TRUE;
@@ -255,13 +256,13 @@ void func_02128310(s32 a) {
     } else {
         gSelectReturn->mState4Requested = FALSE;
     }
-    v = gSelectReturn->mUnk_824;
+    v = gSelectReturn->mSoundId;
     if (v != -1) {
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, (u16) v);
     }
 }
 
-void func_021282c8(void) {
+void RequestSelectReturnState4(void) {
     if (IsSelectReturnState0NoState1Request() != 0) {
         gSelectReturn->mState4Requested = FALSE;
     } else {
@@ -303,7 +304,7 @@ s32 IsSelectReturnState0NoState1Request(void) {
 
 #pragma thumb on
 
-int func_0212825c(int a) {
+int LookupSelectReturnState1Bg2Offset(int a) {
     if (a < 0) {
         a = 0;
     }
@@ -313,7 +314,7 @@ int func_0212825c(int a) {
     return data_0215d0c0[a];
 }
 
-int func_02128244(int a) {
+int LookupSelectReturnState4Bg2Offset(int a) {
     if (a < 0) {
         a = 0;
     }
@@ -356,7 +357,7 @@ void SetSelectReturnDisplayBitOn(void) {
 #pragma thumb off
 
 #pragma thumb on
-void func_021281c8(u32 arg0) {
+void SetSelectReturnSoundId(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
@@ -368,7 +369,8 @@ void func_021281c8(u32 arg0) {
 #pragma thumb off
 
 #pragma thumb on
-u32 func_021281b4(void) {
+// Zeroes the char buffer gate; StartSelectChoises sets it after taking the strings.
+u32 ClearSelectChoisesUseCharBuffers(void) {
     u32 value0;
     u32 value1;
     u32 value2;
@@ -392,9 +394,9 @@ s32 InitSelectChoises(void *a, void *b, s32 c) {
     if (*(vu16 *) 0x27ffc40 != 2) {
         InitSelectChoisesDisplay();
         c = LoadSelectChoises(c);
-        gSelectChoises->mUnk_8a4 = 1;
+        gSelectChoises->mDisplayBitOn = 1;
     } else {
-        gSelectChoises->mUnk_8a4 = 0;
+        gSelectChoises->mDisplayBitOn = 0;
         t = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
         t &= ~1;
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | (t << 8);
@@ -411,7 +413,7 @@ s32 InitSelectChoises(void *a, void *b, s32 c) {
         e->mUnk_08 = r;
         e->mUnk_0c = 0;
     }
-    func_021281b4();
+    ClearSelectChoisesUseCharBuffers();
     gSelectChoises->mEnabled = 1;
     gSelectChoises->mState = 0;
     gSelectChoises->mNextState = 0;
@@ -430,7 +432,7 @@ s32 InitSelectChoises(void *a, void *b, s32 c) {
 #pragma thumb off
 
 #pragma thumb on
-void func_0212804c(void) {
+void ClearSelectChoisesPointer(void) {
     u32 value0;
     u32 value1;
     value1 = 0u;
@@ -596,7 +598,7 @@ void AdvanceSelectChoisesState0(void) {
         gSelectChoises->mState1Requested = i;
         gSelectChoises->mState2Frames = i;
         gSelectChoises->mIndexNone = i;
-        if (gSelectChoises->mUnk_8a0 != 0) {
+        if (gSelectChoises->mUseCharBuffers != 0) {
             for (i = 0; i < 2; i++) {
                 for (j = 0; j < 2; j++) {
                     t = (j + i * 2) * 32 + 5;
@@ -666,7 +668,7 @@ void AdvanceSelectChoisesState1(void) {
             RefreshAndQueueSelectChoises();
         }
         gSelectChoises->mNextState = 2;
-        if (gSelectChoises->mUnk_8a4 != 0) {
+        if (gSelectChoises->mDisplayBitOn != 0) {
             if (gSelectChoises->mSoundIds[gSelectChoises->mIndex] != -1) {
                 func_02105ac0((u16) gSelectChoises->mSoundIds[gSelectChoises->mIndex]);
             }
@@ -676,7 +678,7 @@ void AdvanceSelectChoisesState1(void) {
             gSelectChoises->mIndexNone = 1;
             gSelectChoises->mState2Frames = 0xb;
             gSelectChoises->mNextState = 2;
-            if (gSelectChoises->mUnk_8a4 != 0) {
+            if (gSelectChoises->mDisplayBitOn != 0) {
                 if (gSelectChoises->mIndexNoneSoundId != -1) {
                     func_02105ac0((u16) gSelectChoises->mIndexNoneSoundId);
                 }
@@ -686,7 +688,7 @@ void AdvanceSelectChoisesState1(void) {
         if ((u16) (w & 0x40) != 0 && gSelectChoises->mIndex == 1) {
             gSelectChoises->mIndex = 0;
             RefreshAndQueueSelectChoises();
-            if (gSelectChoises->mUnk_8a4 != 0) {
+            if (gSelectChoises->mDisplayBitOn != 0) {
                 func_02105ac0(0);
             }
             return;
@@ -694,7 +696,7 @@ void AdvanceSelectChoisesState1(void) {
         if ((u16) (w & 0x80) != 0 && gSelectChoises->mIndex == 0) {
             gSelectChoises->mIndex = 1;
             RefreshAndQueueSelectChoises();
-            if (gSelectChoises->mUnk_8a4 != 0) {
+            if (gSelectChoises->mDisplayBitOn != 0) {
                 func_02105ac0(0);
             }
         }
@@ -761,7 +763,7 @@ void WriteSelectChoisesRegisters(void) {
 
     if (gSelectChoises->mEnabled != 0) {
         reg_G2S_DB_BG0OFS = 0;
-        if (gSelectChoises->mState == 0 || gSelectChoises->mUnk_8a4 == 0) {
+        if (gSelectChoises->mState == 0 || gSelectChoises->mDisplayBitOn == 0) {
             G2x_SetBlendBrightnessExt_(&reg_G2S_DB_BLDCNT, 0x1e, 0x1f, 6, 10, 0);
             a = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
             reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | ((a & ~1) << 8);
@@ -791,8 +793,8 @@ void StartSelectChoises(void *a, void *b, s32 c) {
     p->mUnk_18(p, 5);
     func_0212583c(&gSelectChoises->mUnk_874[0], 0x28, 0, 0xd8, 0x10, 0xc, 0x480, 1, a);
     func_0212583c(&gSelectChoises->mUnk_874[1], 0x28, 0, 0xd8, 0x10, 0xc, 0x480, 1, b);
-    func_021281b4();
-    gSelectChoises->mUnk_8a0 = 1;
+    ClearSelectChoisesUseCharBuffers();
+    gSelectChoises->mUseCharBuffers = 1;
     RequestSelectChoisesState1();
     if (c == 0) {
         gSelectChoises->mIndex = 0;

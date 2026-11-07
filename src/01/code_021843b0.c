@@ -181,5 +181,5 @@ void func_ov001_021843b0(Unk02188950 *a, Kart *b) {
     }
     func_ov001_02188200(a, func_ov001_02184874);
     a->mUnk_2d8 = 0xd;
-    func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
+    StartCameraWobbleAtDistance(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
 }

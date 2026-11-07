@@ -133,7 +133,7 @@ int AdvanceSelectKart(void) {
                 } else {
                     v = 0;
                 }
-                func_02128310(v);
+                RequestSelectReturnState3WithSound(v);
             } else if (func_020ae408(t, 0x10) != 0 || func_020290ac(1) != 0) {
                 func_020292bc();
                 gSelectKart->mUnk_114 = 3;
@@ -183,12 +183,12 @@ int AdvanceSelectKart(void) {
                         gSelectKart->mState = 6;
                         break;
                     case 1:
-                        func_021282c8();
+                        RequestSelectReturnState4();
                         func_02028824(gSelectKart->mKartIndex | 0x80);
                         gSelectKart->mState = 5;
                         break;
                     case 2:
-                        func_021282c8();
+                        RequestSelectReturnState4();
                         func_02121eb4(gSelectKart->mKartIndex);
                         gSelectKart->mState = 5;
                         break;

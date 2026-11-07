@@ -178,7 +178,7 @@ void EnterItemBombState2(ItemBomb *e) {
             NNS_SndArcPlayerStartSeqArc(p, 0, 0xe0);
         }
     }
-    func_02073fb0(e->mUnk_000.mUnk_000.mUnk_d4 & ~0xc000001f, 0x1000);
+    StartCameraWobbleAtDistance(e->mUnk_000.mUnk_000.mUnk_d4 & ~0xc000001f, 0x1000);
 }
 
 void UpdateItemBombState2(ItemBomb *e) {

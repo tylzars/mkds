@@ -204,8 +204,8 @@ void func_0202d5f8(s32 a, s32 b) {
 void func_0202d5c0(void) {
     func_0202daa4(gTimeAttackGhostSend->mUnk_0a4);
     SetupTxtSystemSubText(GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, 9));
-    func_021281c8(0xe);
-    func_021282c8();
+    SetSelectReturnSoundId(0xe);
+    RequestSelectReturnState4();
 }
 
 void func_0202d554(void) {
@@ -308,7 +308,7 @@ void InitTimeAttackGhostSend(void *a, void *b, void *c) {
     }
     func_02025b84(0, &gTimeAttackGhostSend->mUnk_050[2]);
     func_02025f80(&gTimeAttackGhostSend->mUnk_0cc, 3, 10, -0xc0, 0);
-    func_021281c8(0xf);
+    SetSelectReturnSoundId(0xf);
     func_0204f804();
     gTimeAttackGhostSend->mState = 1;
     FrmHeapShrinkInParent(gTimeAttackGhostSend->mHeap);
@@ -358,7 +358,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
                 } else {
                     func_0202d6a0();
                     func_0202d674();
-                    func_02128374();
+                    RequestSelectReturnState1();
                     func_02025f14(&gTimeAttackGhostSend->mUnk_0cc, 0);
                     gTimeAttackGhostSend->mState = 2;
                 }
@@ -397,7 +397,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
                             p->mUnk_04 = 1;
                         }
                         gTimeAttackGhostSend->mState = 0xe;
-                        func_02128310(0);
+                        RequestSelectReturnState3WithSound(0);
                     }
                 }
             }
@@ -422,7 +422,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
                 case 1:
                     func_0204f5e4();
                     func_0204eeac((void *) func_0202ddd8(), 0x1000);
-                    func_02128374();
+                    RequestSelectReturnState1();
                     gTimeAttackGhostSend->mState = 6;
                     break;
                 case 2:
@@ -432,12 +432,12 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
         case 6:
             t = data_02175628[e].mUnk_00 & 2;
             if (t != 0 || c != 0) {
-                func_02128310(0);
-                func_021281c8(0xf);
+                RequestSelectReturnState3WithSound(0);
+                SetSelectReturnSoundId(0xf);
                 func_02108c04();
                 gTimeAttackGhostSend->mState = 0xb;
             } else if (func_0204eb08(gTimeAttackGhostSend->mUnk_0b8) != 0) {
-                func_021282c8();
+                RequestSelectReturnState4();
                 func_02108c04();
                 NNS_SndArcSetCurrent(&data_0217c868);
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 9);

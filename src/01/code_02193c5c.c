@@ -568,7 +568,7 @@ void AdvanceRecordGpxState2(void) {
     }
     RequestRecordGpxState5();
     gRecordGpx->mUnk_90 = 0;
-    func_02128310(0);
+    RequestSelectReturnState3WithSound(0);
     return;
 next:
     if ((a == 0 && gRecordGpx->mUnk_88 != FALSE) || (b == 0 && gRecordGpx->mUnk_88 == FALSE) ||

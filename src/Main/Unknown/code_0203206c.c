@@ -221,11 +221,11 @@ void InitSelectGame(void *a, s32 b, void *c, void *d) {
     func_02025a50(1, gSelectGame->mHeap, q);
     func_020328c8(0);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        func_021281c8(-1);
+        SetSelectReturnSoundId(-1);
     } else {
-        func_021281c8(0xe);
+        SetSelectReturnSoundId(0xe);
     }
-    func_02128374();
+    RequestSelectReturnState1();
     if (gSelectGame->mMode == 1) {
         SetSelectChoisesSoundId(0, 5);
         SetSelectChoisesSoundId(1, 0xf);
@@ -317,7 +317,7 @@ s32 AdvanceSelectGame(void) {
                     gSelectGame->mState = 7;
                     func_020329dc(0);
                 }
-                func_02128310(0);
+                RequestSelectReturnState3WithSound(0);
             } else if (func_020ae408(8, 0x40) != 0) {
                 if (gSelectGame->mSelectedIndex == 0) {
                     if (gSelectGame->mMode == 1) {
@@ -375,7 +375,7 @@ s32 AdvanceSelectGame(void) {
                 gSelectGame->mStateFrames = a;
                 gSelectGame->mState = 9;
                 if (gSelectGame->mMode != 0) {
-                    func_021282c8();
+                    RequestSelectReturnState4();
                 }
             }
             func_020329a0();

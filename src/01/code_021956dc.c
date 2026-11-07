@@ -379,7 +379,7 @@ void func_ov001_02196f80(void) {
 void func_ov001_02196f64(void) {
     gRecordTAtt->mNextState = 8;
     gRecordTAtt->mStateFrames = 0;
-    func_021282c8();
+    RequestSelectReturnState4();
 }
 
 void func_ov001_02196ecc(void) {
@@ -416,7 +416,7 @@ void func_ov001_02196e88(void) {
 void func_ov001_02196e54(void) {
     gRecordTAtt->mNextState = 12;
     gRecordTAtt->mStateFrames = 0;
-    func_02128374();
+    RequestSelectReturnState1();
     func_ov001_021972f4();
     gRecordTAtt->mRecordTAttSTable[13].mUnk_00 = 0;
 }
@@ -701,7 +701,7 @@ void AdvanceRecordTAttState2(void) {
     }
     RequestRecordTAttState5();
     gRecordTAtt->mUnk_90 = 0;
-    func_02128310(0);
+    RequestSelectReturnState3WithSound(0);
     goto done;
 other:
     if (b == 2 || (u16) (data_02175628[idx].mUnk_00 & 0x400) != 0) {
@@ -1101,7 +1101,7 @@ void AdvanceRecordTAttState15(void) {
         }
     }
     func_ov001_02196d8c();
-    func_02128310(0);
+    RequestSelectReturnState3WithSound(0);
 }
 
 void AdvanceRecordTAttState16(void) {

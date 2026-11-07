@@ -82,7 +82,7 @@ void RequestTimeAttackTopMenuState1(void) {
 void func_ov001_02198338(void) {
     gTimeAttackTopMenu->mNextState = 2;
     gTimeAttackTopMenu->mStateFrames = 0;
-    func_02128374();
+    RequestSelectReturnState1();
 }
 
 // Requests state 3: stores mNextState = 3 and zeroes mStateFrames; the next AdvanceTimeAttackTopMenu call copies it to
@@ -98,7 +98,7 @@ void func_ov001_021982e8(void) {
     switch (gTimeAttackTopMenu->mIndex) {
         case 1:
         case 2:
-            func_021282c8();
+            RequestSelectReturnState4();
             break;
     }
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
@@ -252,10 +252,10 @@ void AdvanceTimeAttackTopMenuState3(void) {
             goto next;
         }
     }
-    func_021281c8(0xe);
+    SetSelectReturnSoundId(0xe);
     RequestTimeAttackTopMenuState5();
     gTimeAttackTopMenu->mResult = 4;
-    func_02128310(0);
+    RequestSelectReturnState3WithSound(0);
     return;
 next:
     bits = e->mUnk_00 & 1;

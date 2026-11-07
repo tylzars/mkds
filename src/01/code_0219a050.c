@@ -136,7 +136,7 @@ void RequestRecordTopMenuState2(void) {
 void func_ov001_0219ae44(void) {
     gRecordTopMenu->mNextState = 3;
     gRecordTopMenu->mStateFrames = 0;
-    func_02128374();
+    RequestSelectReturnState1();
 }
 
 // Requests state 4 for the next update.
@@ -436,10 +436,10 @@ void AdvanceRecordTopMenuState4(void) {
             goto skip;
         }
     }
-    func_021281c8(15);
+    SetSelectReturnSoundId(15);
     RequestRecordTopMenuState6();
     gRecordTopMenu->mUnk_44 = 5;
-    func_02128310(1);
+    RequestSelectReturnState3WithSound(1);
     return;
 skip:
     if ((u32) sel <= 2) {
@@ -583,7 +583,7 @@ void AdvanceRecordTopMenuState9(void) {
         }
     }
     RequestRecordTopMenuState10AndRequestTxtSystemClose();
-    func_02128310(0);
+    RequestSelectReturnState3WithSound(0);
 }
 
 void AdvanceRecordTopMenuState10(void) {

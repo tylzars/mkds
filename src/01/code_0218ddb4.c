@@ -620,7 +620,7 @@ void func_ov001_0218e298(Unk02188950 *a, Kart *b) {
     a->mUnk_2d8 = 0xc;
     a->mUnk_158 = func_ov001_0218f3ec;
     func_ov001_02188200(a, func_ov001_0218f9a8);
-    func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
+    StartCameraWobbleAtDistance(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
     func_02068a10(b);
     func_ov001_021888a4(a, 0, 0x32000);
     a->mUnk_0a8 = 1;

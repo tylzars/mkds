@@ -693,7 +693,7 @@ void RequestRecordVSState2AndRefreshPage(void) {
 void func_02113480(void) {
     gRecordVS->mNextState = 3;
     gRecordVS->mStateFrames = 0;
-    func_02128374();
+    RequestSelectReturnState1();
 }
 
 // Requests state 4: stores mNextState = 4 and zeroes mStateFrames; the next AdvanceRecordVS call copies it to mState
@@ -768,7 +768,7 @@ void func_021132b4(void) {
 void func_02113298(void) {
     gRecordVS->mNextState = 10;
     gRecordVS->mStateFrames = 0;
-    func_021282c8();
+    RequestSelectReturnState4();
 }
 
 void func_02113174(void) {

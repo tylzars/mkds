@@ -241,7 +241,7 @@ void func_02034bf4(void *a, void *b, void *c) {
     s->mUnk_18[4].mUnk_00 = 0;
     func_02025b84(0, &data_02174e64->mUnk_064);
     func_02025f80(&data_02174e64->mUnk_194, 3, 10, -0xc0, 0);
-    func_021281c8(0xf);
+    SetSelectReturnSoundId(0xf);
     FrmHeapShrinkInParent(data_02174e64->mHeap);
 }
 

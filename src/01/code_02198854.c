@@ -127,7 +127,7 @@ void InitOptionSelectMenu(void *a) {
     }
     gOptionSelectMenu->mUnk_1c = FALSE;
     gOptionSelectMenu->mUnk_3c = TRUE;
-    func_021281c8(0xe);
+    SetSelectReturnSoundId(0xe);
 }
 
 void ReleaseOptionSelectMenu(void) {
@@ -240,7 +240,7 @@ void AdvanceOptionSelectMenuState0(void) {
 
 void AdvanceOptionSelectMenuState1(void) {
     gOptionSelectMenu->mStateFrames++;
-    gOptionSelectMenu->mUnk_26[2].mUnk_02 = -func_0212825c(gOptionSelectMenu->mStateFrames);
+    gOptionSelectMenu->mUnk_26[2].mUnk_02 = -LookupSelectReturnState1Bg2Offset(gOptionSelectMenu->mStateFrames);
     if (gOptionSelectMenu->mStateFrames >= 10) {
         gOptionSelectMenu->mNextState = 2;
         gOptionSelectMenu->mStateFrames = 0;
@@ -293,7 +293,7 @@ void AdvanceOptionSelectMenuState2(void) {
             for (i = 0; i < 2; i++) {
                 gOptionSelectMenu->mUnk_0c[i] = gOptionSelectMenu->mUnk_14[i];
             }
-            func_02128310(0);
+            RequestSelectReturnState3WithSound(0);
             goto end;
         }
     }
@@ -422,7 +422,7 @@ void AdvanceOptionSelectMenuState4(void) {
             }
         }
     }
-    gOptionSelectMenu->mUnk_26[2].mUnk_02 = -func_02128244(gOptionSelectMenu->mStateFrames);
+    gOptionSelectMenu->mUnk_26[2].mUnk_02 = -LookupSelectReturnState4Bg2Offset(gOptionSelectMenu->mStateFrames);
     if (gOptionSelectMenu->mStateFrames >= 10) {
         if (gOptionSelectMenu->mStateFrames >= 10 && IsSelectReturnState2NoState3Or4Request() != 0) {
             gOptionSelectMenu->mUnk_3c = FALSE;
@@ -433,7 +433,7 @@ void AdvanceOptionSelectMenuState4(void) {
                 func_02126230(a, b);
                 gOptionSelectMenu->mNextState = 5;
                 gOptionSelectMenu->mStateFrames = 0;
-                func_021282c8();
+                RequestSelectReturnState4();
             } else {
                 RequestOptionState(gOptionSelectMenu->mNextOptionState);
             }
@@ -457,7 +457,7 @@ void AdvanceOptionSelectMenuState5(void) {
         if (r == 0) {
             SetTxtSystemOpenSoundId(0x23);
             RequestTxtSystemClose();
-            func_02128374();
+            RequestSelectReturnState1();
         }
     }
     if (func_02125f88() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {

@@ -54,7 +54,7 @@ void func_020d1de8(Unk020d029c *param_1, s32 param_2) {
         s32 *p;
 
         a = t[param_2];
-        func_020b4cec(gRaceMNumberPair->mUnk_08, a);
+        Matrix2x2ReciprocalScale(gRaceMNumberPair->mUnk_08, a);
         gRaceMNumberPair->mOffsetX = 0;
         gRaceMNumberPair->mUnk_18 = gRaceMNumberPair->mUnk_08;
         gRaceMNumberPair->mUnk_1c = a;

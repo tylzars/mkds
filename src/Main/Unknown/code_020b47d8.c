@@ -27,7 +27,7 @@ u16 func_020b4d2c(void) {
     return a;
 }
 
-void func_020b4cec(s32 *a, s32 b) {
+void Matrix2x2ReciprocalScale(s32 *a, s32 b) {
     s32 v;
 
     if (b != 0) {
@@ -41,7 +41,7 @@ void func_020b4cec(s32 *a, s32 b) {
     a[1] = a[2];
 }
 
-void func_020b4cb0(s32 *a, s32 b) {
+void Matrix2x2Rotation(s32 *a, s32 b) {
     s32 s = gPairsByAngle[(b >> 4) * 2];
     s32 c = gPairsByAngle[(b >> 4) * 2 + 1];
 
@@ -62,7 +62,7 @@ void func_020b4c74(s32 *a, s32 b) {
     a[3] = c;
 }
 
-void func_020b4bf8(s32 *a, s32 b, s32 c) {
+void Matrix2x2RotationReciprocalScale(s32 *a, s32 b, s32 c) {
     s32 i = c >> 4;
     s32 s = gPairsByAngle[i * 2];
     s32 v1 = gPairsByAngle[i * 2 + 1];

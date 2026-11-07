@@ -118,7 +118,7 @@ void func_ov001_0218da1c(Unk02188950 *a) {
     } else if (func_ov001_02188220(a) >= 3) {
         a->mUnk_0ac = 0;
     }
-    func_0209b688(a->mNsbmd, func_ov001_02188220(a));
+    SetMapObjectModelNsbtpFrameIndex(a->mNsbmd, func_ov001_02188220(a));
 }
 
 void func_ov001_0218d9cc(Unk02188950 *a) {

@@ -85,7 +85,7 @@ void InitRaceMNumberPair(void) {
     } else {
         gRaceMNumberPair->mCourseCount = 0;
     }
-    func_020b4cec(gRaceMNumberPair->mUnk_08, 0x1000);
+    Matrix2x2ReciprocalScale(gRaceMNumberPair->mUnk_08, 0x1000);
     gRaceMNumberPair->mUnk_18 = NULL;
     gRaceMNumberPair->mUnk_1c = 0;
     gRaceMNumberPair->mUnk_20 = 0;

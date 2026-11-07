@@ -347,8 +347,8 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
     }
     if (gSelectCharacter->mUnk_080 == 0) {
         func_021170f8();
-        func_021281c8(0xe);
-        func_02128374();
+        SetSelectReturnSoundId(0xe);
+        RequestSelectReturnState1();
     }
     if (AreBrightnessFadesClear() != 0) {
         gSelectCharacter->mUnk_06c = 1;

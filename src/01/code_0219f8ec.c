@@ -445,7 +445,7 @@ void RequestMissionRunMSselState1(void) {
 void func_ov001_021a04c0(void) {
     gMissionRunMSsel->mNextState = 2;
     gMissionRunMSsel->mStateFrames = 0;
-    func_02128374();
+    RequestSelectReturnState1();
 }
 
 // Requests state 3: stores mNextState = 3 and zeroes mStateFrames; the next AdvanceMissionRunMSsel call copies it to
@@ -490,7 +490,7 @@ void func_ov001_021a03f8(void) {
 void func_ov001_021a03a0(void) {
     gMissionRunMSsel->mNextState = 8;
     gMissionRunMSsel->mStateFrames = 0;
-    func_021282c8();
+    RequestSelectReturnState4();
     switch (gMissionRunMSsel->mResult) {
         case 1:
             func_02105584(4, 10, GetMissionTableRow());
@@ -674,11 +674,11 @@ void AdvanceMissionRunMSselState3(void) {
     if (func_ov001_021a071c() != FALSE) {
         return;
     }
-    func_021281c8(0xe);
+    SetSelectReturnSoundId(0xe);
     gMissionRunMSsel->mUnk_9c = 0x100;
     gMissionRunMSsel->mResult = 2;
     func_ov001_021a03a0();
-    func_02128310(0);
+    RequestSelectReturnState3WithSound(0);
     return;
 skip:
     if (result <= 8) {

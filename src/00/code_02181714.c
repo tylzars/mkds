@@ -74,7 +74,7 @@ void InitWiFiTopMenu(void *heap) {
         }
     }
     func_0212a910(1, 0);
-    func_021281c8(0xf);
+    SetSelectReturnSoundId(0xf);
     func_0204f7f4();
 }
 
@@ -119,7 +119,7 @@ void AdvanceWiFiTopMenuState1(void) {
     if (gWiFiTopMenu->mStateFrames >= 20) {
         gWiFiTopMenu->mNextState = 2;
         gWiFiTopMenu->mStateFrames = v;
-        func_02128374();
+        RequestSelectReturnState1();
     } else if (gWiFiTopMenu->mStateFrames >= 10) {
         v = func_020ae488(gWiFiTopMenu->mStateFrames - 10);
     } else {
@@ -137,7 +137,7 @@ void AdvanceWiFiTopMenuState2(void) {
     v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
         gWiFiTopMenu->mNextState = 3;
-        func_021281c8(0xf);
+        SetSelectReturnSoundId(0xf);
     }
 }
 
@@ -178,7 +178,7 @@ void AdvanceWiFiTopMenuState3(void) {
     gWiFiTopMenu->mNextState = 5;
     gWiFiTopMenu->mPendingWiFiState = 10;
     if (gWiFiTopMenu->mPendingWiFiState == 10) {
-        func_02128310(1);
+        RequestSelectReturnState3WithSound(1);
     }
     return;
 next:
@@ -247,7 +247,7 @@ void AdvanceWiFiTopMenuState4(void) {
     if (gWiFiTopMenu->mStateFrames >= 10) {
         gWiFiTopMenu->mNextState = 5;
         if (gWiFiTopMenu->mIndex == 0 || gWiFiTopMenu->mIndex == 2) {
-            func_021282c8();
+            RequestSelectReturnState4();
         }
         gWiFiTopMenu->mStateFrames = 0;
     } else if (gWiFiTopMenu->mStateFrames >= 5) {
@@ -290,7 +290,7 @@ void AdvanceWiFiTopMenuState5(void) {
                 gWiFiTopMenu->mPendingWiFiState = -1;
                 func_021266e4(GetBmgEntry(gWiFiTopMenu->mWiFiMessages, 0x12));
                 gWiFiTopMenu->mStateFrames = 0;
-                func_021281c8(0xe);
+                SetSelectReturnSoundId(0xe);
                 return;
             }
             RequestWiFiState(gWiFiTopMenu->mPendingWiFiState);
@@ -353,7 +353,7 @@ void AdvanceWiFiTopMenuState8(void) {
             }
         }
         gWiFiTopMenu->mNextState = 1;
-        func_02128310(0);
+        RequestSelectReturnState3WithSound(0);
         RequestTxtSystemClose();
     }
 }

@@ -258,8 +258,8 @@ void func_020357dc(void *a, void *b, void *c) {
     func_02025b84(0, &data_02174e68->mUnk_64);
     func_02035a9c();
     func_02025f80(&data_02174e68->mUnk_90, 0, 10, -0xc0, 0);
-    func_02128374();
-    func_021281c8(0xf);
+    RequestSelectReturnState1();
+    SetSelectReturnSoundId(0xf);
     func_02035c14();
     FrmHeapShrinkInParent(data_02174e68->mHeap);
 }
@@ -317,14 +317,14 @@ s32 func_0203551c(u16 *a) {
             }
             if (func_0202e47c() != 0) {
                 func_02035b78();
-                func_021282c8();
+                RequestSelectReturnState4();
                 data_02174e68->mUnk_8c = 2;
             } else if ((u16) (data_02175628[k].mUnk_00 & 2) != 0 || z != 0) {
                 e = GetBmgEntry(data_02174e68->mUnk_88, 0x54);
                 h = GetBmgEntry(data_02174e68->mUnk_84, 4);
                 SetTxtSystemSoundId(0, 5);
                 func_02126230(e, h);
-                func_02128310(1);
+                RequestSelectReturnState3WithSound(1);
                 data_02174e68->mUnk_a0 = FALSE;
                 data_02174e68->mUnk_8c = 4;
             }
@@ -341,7 +341,7 @@ s32 func_0203551c(u16 *a) {
                     func_020566a8((u8) data_02174e68->mUnk_80, func_0202ddd8());
                     data_02174e68->mUnk_8c = 3;
                 } else {
-                    func_02128374();
+                    RequestSelectReturnState1();
                     data_02174e68->mUnk_8c = 1;
                 }
                 RequestTxtSystemClose();

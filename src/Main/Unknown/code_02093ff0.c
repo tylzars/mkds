@@ -52,10 +52,10 @@ void DrawTeresa(void *a, Teresa *b) {
     }
     GetKart((u16) data_021759c0->mEntryIndex);
     SetMapObjectModelPolygonId(gTeresa, AllocPolygonIdWrapping());
-    func_0209b688(gTeresa, b->mUnk_ae);
-    func_0209b9a4(gTeresa, b->mUnk_ac);
-    func_0209b8ac(gTeresa, func_0206183c());
-    func_0209b7a0(gTeresa, b->mUnk_b0, 0);
+    SetMapObjectModelNsbtpFrameIndex(gTeresa, b->mUnk_ae);
+    SetMapObjectModelAlpha(gTeresa, b->mUnk_ac);
+    SetMapObjectModelFogEnabled(gTeresa, func_0206183c());
+    SetMapObjectModelMirror(gTeresa, b->mUnk_b0, 0);
     w = 0x1e;
     func_01ff9048(0x14, &w, 1);
     func_01ff9048(0x19, func_020e6cf8(&b->mUnk_00.mPos), 0xc);

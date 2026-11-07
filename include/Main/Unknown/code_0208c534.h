@@ -121,27 +121,27 @@ void AdvanceKartLevel4Effects(KartTurnEffects *p, Kart *q);
 // Releases the level 4 group through mReleaseLevel4Effects when present and clears mLevel4Present, mLevel4StopFrames,
 // mLevel4StopRequested and both restart members.
 void ResetKartLevel4Effects(KartTurnEffects *p);
-void func_0208cd2c(KartTurnEffects *p);
-void func_0208cd7c(KartTurnEffects *p);
-void func_0208cddc(KartTurnEffects *p);
-void func_0208ceac(KartTurnEffects *p);
-void func_0208cefc(KartTurnEffects *p);
-void func_0208cf5c(KartTurnEffects *p);
+void ShowKartEffectsFirstOnly(KartTurnEffects *p);
+void ShowKartEffectsWithSecond(KartTurnEffects *p);
+void ShowKartTurnStartLevel3Level2Effects(KartTurnEffects *p);
+void HideKartEffectsFirstOnly(KartTurnEffects *p);
+void HideKartEffectsWithSecond(KartTurnEffects *p);
+void HideKartTurnStartLevel3Level2Effects(KartTurnEffects *p);
 // Sets the direction and the position of the first level 4 object of each side from the side arrays.
 void PlaceKartLevel4EffectsFirstOnly(KartTurnEffects *p, Vec3s16 *a, Vec3 *b);
 // Sets the direction and the position of both level 4 objects of each side from the side arrays (the position is the
 // side position plus the object origin).
 void PlaceKartLevel4EffectsWithSecond(KartTurnEffects *p, Vec3s16 *a, Vec3 *b);
-void func_0208d1ec(KartTurnEffects *p);
-void func_0208d234(KartTurnEffects *p);
+void StopKartLevel4EffectsFirstOnly(KartTurnEffects *p);
+void StopKartLevel4EffectsWithSecond(KartTurnEffects *p);
 // Releases the first level 4 object of each side and clears the pointers.
 void ReleaseKartLevel4EffectsFirstOnly(KartTurnEffects *p);
 // Releases the first and second level 4 objects of each side and clears the pointers.
 void ReleaseKartLevel4EffectsWithSecond(KartTurnEffects *p);
-void func_0208d328(KartTurnEffects *p);
-void func_0208d358(KartTurnEffects *p);
-void func_0208d3a8(KartTurnEffects *p);
-void func_0208d3d8(KartTurnEffects *p);
+void StartKartLevel4EmissionFirstOnly(KartTurnEffects *p);
+void StartKartLevel4EmissionWithSecond(KartTurnEffects *p);
+void StopKartLevel4EmissionFirstOnly(KartTurnEffects *p);
+void StopKartLevel4EmissionWithSecond(KartTurnEffects *p);
 // Starts only the first level 4 object on each side.
 void StartKartLevel4EffectsFirstOnly(KartTurnEffects *p);
 // Starts the first and the second level 4 object on each side.

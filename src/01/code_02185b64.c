@@ -85,7 +85,7 @@ void DrawMissionGate(void *a, MissionGateObject *b) {
     b->mUnk_000.mMatrix.mUnk_00[3].z = b->mUnk_000.mPos.z >> 4;
     func_01ff9048(0x19, &b->mUnk_000.mMatrix, 0xc);
     func_01ff9048(0x1b, &b->mUnk_000.mScale, 3);
-    func_0209b688(gMissionGate, b->mUnk_000.mCourseMapRow->mUnk_28);
+    SetMapObjectModelNsbtpFrameIndex(gMissionGate, b->mUnk_000.mCourseMapRow->mUnk_28);
     SetMapObjectModelNsbmaFrameIndex(gMissionGate, b->mUnk_0a8);
     DrawMapObjectModel(a, gMissionGate, b);
 }

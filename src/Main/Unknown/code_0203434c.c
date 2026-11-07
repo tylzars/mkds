@@ -110,7 +110,7 @@ s32 func_02034370(Unk02034370 *a) {
     switch (data_02174e64->mState) {
         case 0:
             if (AreBrightnessFadesClear() == 0) {
-                func_02128374();
+                RequestSelectReturnState1();
                 func_02035378();
                 func_02025f14(&data_02174e64->mUnk_194, 0);
                 data_02174e64->mState = 1;
@@ -190,7 +190,7 @@ s32 func_02034370(Unk02034370 *a) {
                         func_02035228(data_02174e64->mUnk_080 != m ? 1 : 0);
                         data_02174e64->mUnk_080 = m;
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
-                        func_021282c8();
+                        RequestSelectReturnState4();
                         data_02174e64->mUnk_18c = TRUE;
                         data_02174e64->mUnk_090 = 0;
                         data_02174e64->mState = 3;
@@ -198,13 +198,13 @@ s32 func_02034370(Unk02034370 *a) {
                         func_020351c8();
                         func_02035228(0);
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
-                        func_021282c8();
+                        RequestSelectReturnState4();
                         data_02174e64->mUnk_18c = TRUE;
                         data_02174e64->mUnk_090 = 0;
                         data_02174e64->mState = 3;
                     } else if ((u16) (data_02175628[k].mUnk_00 & 2) != 0 || z != 0) {
                         data_02174e64->mState = 12;
-                        func_02128310(0);
+                        RequestSelectReturnState3WithSound(0);
                     } else if (func_020ae408(k, 0x40)) {
                         if (data_02174e64->mUnk_190 == 2) {
                             func_020352fc(0);
@@ -240,7 +240,7 @@ s32 func_02034370(Unk02034370 *a) {
                 if (GetTxtSystemSelectedIndex() == 0) {
                     func_0204ece0(data_02174e64->mUnk_080);
                 } else {
-                    func_02128374();
+                    RequestSelectReturnState1();
                     data_02174e64->mUnk_18c = FALSE;
                 }
                 RequestTxtSystemClose();

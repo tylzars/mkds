@@ -108,7 +108,7 @@ void DrawSun(void *a, Unk0209d3fc *b) {
         DrawMapObjectModel(a, gSun, b);
     } else {
         func_0209bbd0(a, gSunLOD);
-        func_0209ba58(a, gSunLOD, b);
+        DrawMapObjectModel1Mat1Shp(a, gSunLOD, b);
     }
 }
 
@@ -441,7 +441,7 @@ void func_0209c7a8(Unk02100094 *a, Unk0209c220 *p) {
         func_01ff9048(0x1b, &v[1], 3);
     }
     func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
-    func_0209b688(gBound, p->mUnk_0a0);
+    SetMapObjectModelNsbtpFrameIndex(gBound, p->mUnk_0a0);
     DrawMapObjectModel(a, gBound, p);
 }
 
@@ -536,7 +536,7 @@ void func_0209c220(Unk02100094 *a, Unk0209c220 *p) {
     if (p->mUnk_0f8.mUnk_08 != 0xffff) {
         func_020d8cc8(&p->mUnk_0f8);
         func_020d8bf8(&p->mUnk_0f8, &p->mUnk_000.mPos, &p->mUnk_000.mUnk_10);
-        v = func_0209b634(gBound);
+        v = GetMapObjectModelNsbtpFrameCount(gBound);
         p->mUnk_0a0 += 1;
         if (p->mUnk_0a0 >= v) {
             p->mUnk_0a0 = 1;

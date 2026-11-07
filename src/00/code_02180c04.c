@@ -41,7 +41,7 @@ void func_ov000_021816b0(void *heap) {
     data_ov000_021b4c68->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     func_ov000_021816a0();
     func_0212a910(1, 1);
-    func_021281c8(0xe);
+    SetSelectReturnSoundId(0xe);
     func_0204f804();
 }
 
@@ -363,7 +363,7 @@ void func_ov000_02180d94(void) {
         func_0212513c(v3, GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x30), v4, 0x258);
         data_ov000_021b4c68->mNextState = 9;
         func_021266e4(v4);
-        func_02128374();
+        RequestSelectReturnState1();
     }
 }
 
@@ -387,7 +387,7 @@ void func_ov000_02180cdc(void) {
                 goto next;
             }
         }
-        func_02128310(0);
+        RequestSelectReturnState3WithSound(0);
         RequestTxtSystemClose();
         return;
     }

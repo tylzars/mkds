@@ -134,7 +134,7 @@ void func_02115e44(void) {
 void func_02115e20(void) {
     gRecordVSErase->mNextState = 3;
     gRecordVSErase->mStateFrames = 0;
-    func_02128374();
+    RequestSelectReturnState1();
     func_02116244();
 }
 
@@ -165,7 +165,7 @@ void func_02115dc0(void) {
 void func_02115d90(void) {
     gRecordVSErase->mNextState = 7;
     gRecordVSErase->mStateFrames = 0;
-    func_021282c8();
+    RequestSelectReturnState4();
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
 }
 
@@ -199,7 +199,7 @@ void func_02115cc4(void) {
 void func_02115ca0(void) {
     gRecordVSErase->mNextState = 0xb;
     gRecordVSErase->mStateFrames = 0;
-    func_02128374();
+    RequestSelectReturnState1();
     func_02116244();
 }
 
@@ -437,7 +437,7 @@ void AdvanceRecordVSEraseState4(void) {
         }
         RequestRecordVSEraseState12();
         gRecordVSErase->mUnk_a0 = 3;
-        func_02128310(0);
+        RequestSelectReturnState3WithSound(0);
         return;
     }
     if ((v == 5 && gRecordVSErase->mUnk_98 != FALSE) || (w == 5 && gRecordVSErase->mUnk_98 == FALSE) ||

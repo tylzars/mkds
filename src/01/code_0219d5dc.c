@@ -53,7 +53,7 @@ void InitOptionEmbremSelect(void *a) {
     func_ov001_0219d810();
     gOptionEmbremSelect->mOffsetTimers[0] = 0;
     gOptionEmbremSelect->mOffsetTimers[1] = 0;
-    func_021281c8(0xe);
+    SetSelectReturnSoundId(0xe);
 }
 
 void ReleaseOptionEmbremSelect(void) {
@@ -120,7 +120,7 @@ void AdvanceOptionEmbremSelectState1(void) {
     if (gOptionEmbremSelect->mStateFrames >= 10) {
         gOptionEmbremSelect->mNextState = 2;
         gOptionEmbremSelect->mStateFrames = 0;
-        func_02128374();
+        RequestSelectReturnState1();
     }
 }
 
@@ -170,9 +170,9 @@ void AdvanceOptionEmbremSelectState3(void) {
         gOptionEmbremSelect->mNextState = 5;
         gOptionEmbremSelect->mNextOptionState = 2;
         if (gOptionEmbremSelect->mUnk_0c != gOptionEmbremSelect->mUnk_10) {
-            func_02128310(1);
+            RequestSelectReturnState3WithSound(1);
         } else {
-            func_02128310(0);
+            RequestSelectReturnState3WithSound(0);
         }
         if (gOptionEmbremSelect->mUnk_0c == 0) {
             data_0217aa08->mUnk_00->mUnk_31_3 = 0;
@@ -238,7 +238,7 @@ void AdvanceOptionEmbremSelectState4(void) {
     if (10 <= v1->mStateFrames) {
         v1->mNextState = 5;
         gOptionEmbremSelect->mStateFrames = 0;
-        func_021282c8();
+        RequestSelectReturnState4();
         return;
     }
     if (5 <= v1->mStateFrames) {

@@ -98,7 +98,7 @@ void InitSelectBattleStage(void *c, s32 d, void *e, void *f) {
         }
     }
     reg_G2_BG2CNT = (reg_G2_BG2CNT & 0x43) | 0x9e10;
-    func_021281c8(14);
+    SetSelectReturnSoundId(14);
 }
 
 void ReleaseSelectBattleStage(void) {
@@ -195,7 +195,7 @@ void AdvanceSelectBattleStageState0(void) {
         gSelectBattleStage->mNextState = 1;
         gSelectBattleStage->mStateFrames = 0;
         gSelectBattleStage->mNextState = 1;
-        func_02128374();
+        RequestSelectReturnState1();
     } else if (gSelectBattleStage->mStateFrames > 10) {
         for (i = 0; i < 6; i++) {
             for (j = 0; j < 3; j++) {
@@ -267,18 +267,18 @@ void AdvanceSelectBattleStageState2(void) {
     }
     if (data_0217b488->mUnk_08 == 2) {
         gSelectBattleStage->mNextState = 4;
-        func_02128310(0);
+        RequestSelectReturnState3WithSound(0);
         gSelectBattleStage->mUnk_2c = FALSE;
         return;
     }
     gSelectBattleStage->mNextState = 6;
     gSelectBattleStage->mPendingResult = -3;
     if (data_021759d0->mUnk_20 == 0) {
-        func_02128310(0);
+        RequestSelectReturnState3WithSound(0);
         gSelectBattleStage->mUnk_2c = FALSE;
         return;
     }
-    func_02128310(1);
+    RequestSelectReturnState3WithSound(1);
     gSelectBattleStage->mUnk_2c = TRUE;
     return;
 next:
@@ -359,7 +359,7 @@ void AdvanceSelectBattleStageState5(void) {
         } else {
             if (GetSelectChoisesIndex() == 0) {
                 gSelectBattleStage->mNextState = 6;
-                func_021282c8();
+                RequestSelectReturnState4();
                 gSelectBattleStage->mUnk_2c = TRUE;
             } else {
                 gSelectBattleStage->mNextState = 2;

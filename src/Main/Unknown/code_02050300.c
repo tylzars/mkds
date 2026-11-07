@@ -167,7 +167,7 @@ void DisconnectCallback(Unk021425e8 *a) {
             switch (data_0217aa00->mUnk_0000) {
                 case 1:
                     v = data_0217aa00->mUnk_0044.mUnk_00[data_0217aa00->mUnk_0044.mUnk_41].mUnk_06;
-                    func_02050b88(v);
+                    RemoveChild(v);
                     if (func_02050650_inline() == 1) {
                         if (data_0217aa00->mUnk_0004 == 9) {
                             data_0217aa00->mUnk_1eac[0] |= 1 << v;
@@ -220,7 +220,8 @@ void func_0205108c(s32 a) {
     data_0217aa00->mUnk_0010 = 1;
 }
 
-void func_02050ec0(void) {
+// WM_End first; when it does not return 2, the 0x100 and 0x200 flag paths or WM_Reset run instead.
+void End(void) {
     Unk0217aa00 *p;
     u32 f;
 
@@ -267,7 +268,7 @@ void func_02050ec0(void) {
     if (WM_Reset(func_02053348) == 2) {
         return;
     }
-    func_02050ec0();
+    End();
 }
 
 void EndCallback(Unk021425e8 *a) {
@@ -285,7 +286,7 @@ void func_02050e60(s32 a) {
     data_0217aa00->mUnk_0010 = 0;
 }
 
-void func_02050d80(u32 a, u8 *b, Unk0217aa00_45c *c) {
+void AddChild(u32 a, u8 *b, Unk0217aa00_45c *c) {
     Unk0217aa00_44 *p;
 
     p = &data_0217aa00->mUnk_0044;
@@ -363,7 +364,7 @@ static inline void func_02050b88_inline(u16 v1) {
     func_0205081c_inline(data_0217aa00->mUnk_0457);
 }
 
-void func_02050b88(u32 a) {
+void RemoveChild(u32 a) {
     Unk0217aa00_44 *p;
 
     p = &data_0217aa00->mUnk_0044;
@@ -389,7 +390,7 @@ void func_02050b88(u32 a) {
     }
 }
 
-void func_0205081c(u32 a, Unk0205081c *b) {
+void ProcessMPData(u32 a, Unk0205081c *b) {
     switch (b->mUnk_00) {
         case 3:
             data_0217aa00->mUnk_1d54 &= ~(1 << a);
@@ -441,7 +442,7 @@ void func_0205081c(u32 a, Unk0205081c *b) {
     }
 }
 
-void func_02050764(Unk021425e8 *a) {
+void MPDataPortCallback(Unk021425e8 *a) {
     Unk0205081c v1;
 
     if (a->mResultCode != 0) {
@@ -467,7 +468,7 @@ void func_02050764(Unk021425e8 *a) {
     if (a->mUnk_04 != 0x15) {
         return;
     }
-    func_0205081c(a->mUnk_12, &v1);
+    ProcessMPData(a->mUnk_12, &v1);
 }
 
 BOOL QueueMPDataToPort(void *a, s32 b, u16 c, void *d, QueueMPDataToPortParams *e) {
@@ -502,7 +503,7 @@ BOOL QueueMPDataToPort(void *a, s32 b, u16 c, void *d, QueueMPDataToPortParams *
     return TRUE;
 }
 
-BOOL func_020505a8(s32 a, u16 b) {
+BOOL QueueMPDataHalfword(s32 a, u16 b) {
     u16 v1;
 
     v1 = a;
@@ -559,7 +560,7 @@ BOOL func_020503cc(s32 a, u16 b) {
     return FALSE;
 }
 
-BOOL func_02050320(s32 a, u16 b, s32 c) {
+BOOL QueueMPDataHalfwordAndWord(s32 a, u16 b, s32 c) {
     Unk02050320 v1;
 
     v1.mUnk_00 = a;

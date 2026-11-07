@@ -126,7 +126,7 @@ void DrawFlipper(void *a, Flipper *p) {
     e->mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
     func_01ff9048(0x19, e, 0xc);
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
-    func_0209b7a0(gFlipper, p->mUnk_a4, 0);
+    SetMapObjectModelMirror(gFlipper, p->mUnk_a4, 0);
     s = gFlipper->mAnimations[1];
     s->mUnk_0c = p->mUnk_ec4 << 12;
     s->mUnk_1c[s->mUnk_1a]->mFrame = s->mUnk_0c;
@@ -292,7 +292,7 @@ void UpdateFlipper(void *a, Flipper *p) {
     }
     if (p->mUnk_ec8 != 0 && (p->mUnk_00.mFlags & 0x12) == 0) {
         w = p->mUnk_ec4 + 1;
-        if (w >= func_0209b634(gFlipper)) {
+        if (w >= GetMapObjectModelNsbtpFrameCount(gFlipper)) {
             w = 1;
         }
         p->mUnk_ec4 = w;

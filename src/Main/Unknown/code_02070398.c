@@ -1101,7 +1101,7 @@ void func_020710b0(Kart *p, s32 b) {
     if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
         return;
     }
-    func_02073f90();
+    StartCameraWobbleByCourse();
     switch (data_021759c0->mCourseId) {
         case COURSE_ID_AIRSHIP:
             func_02089d14(0);

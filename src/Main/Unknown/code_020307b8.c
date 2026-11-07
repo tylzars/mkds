@@ -122,7 +122,7 @@ void InitMultiSelectNS(void *a, void *b, void *c) {
     CallQueueAppend(0x23, 0, o->mNcgr->mData, o->mNcgr->mDataSize);
     CallQueueAppend(0x1e, 0, o->mNclr->mData, o->mNclr->mDataSize);
     func_02030954(1);
-    func_021281c8(0xe);
+    SetSelectReturnSoundId(0xe);
     func_0204f804();
     FrmHeapShrinkInParent(gMultiSelectNS->mHeap);
 }

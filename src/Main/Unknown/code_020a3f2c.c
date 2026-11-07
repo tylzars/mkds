@@ -155,8 +155,8 @@ void DrawShine16(void *a, Shine16 *p) {
         func_01ff9048(0x1b, &s, 3);
     }
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
-    func_0209b7a0(gShine16, p->mUnk_b8, 0);
-    func_0209b688(gShine16, p->mNsbtpFrameIndex);
+    SetMapObjectModelMirror(gShine16, p->mUnk_b8, 0);
+    SetMapObjectModelNsbtpFrameIndex(gShine16, p->mNsbtpFrameIndex);
     DrawMapObjectModel(a, gShine16, p);
 }
 
@@ -236,8 +236,8 @@ void UpdateShine16(void *a, Shine16 *p) {
             if (p->mUnk_b4 >= 3) {
                 p->mUnk_b4 -= 3;
                 p->mNsbtpFrameIndex++;
-                if (p->mNsbtpFrameIndex >= func_0209b634(gShine16)) {
-                    p->mNsbtpFrameIndex -= func_0209b634(gShine16);
+                if (p->mNsbtpFrameIndex >= GetMapObjectModelNsbtpFrameCount(gShine16)) {
+                    p->mNsbtpFrameIndex -= GetMapObjectModelNsbtpFrameCount(gShine16);
                 }
                 p->mUnk_bc++;
                 if (p->mUnk_bc >= 8) {
@@ -267,8 +267,8 @@ void UpdateShine16(void *a, Shine16 *p) {
             if (p->mUnk_b4 >= 3) {
                 p->mUnk_b4 -= 3;
                 p->mNsbtpFrameIndex++;
-                if (p->mNsbtpFrameIndex >= func_0209b634(gShine16)) {
-                    p->mNsbtpFrameIndex -= func_0209b634(gShine16);
+                if (p->mNsbtpFrameIndex >= GetMapObjectModelNsbtpFrameCount(gShine16)) {
+                    p->mNsbtpFrameIndex -= GetMapObjectModelNsbtpFrameCount(gShine16);
                 }
                 p->mUnk_bc++;
                 if (p->mUnk_bc >= 8) {
@@ -287,8 +287,8 @@ void UpdateShine16(void *a, Shine16 *p) {
             if (p->mUnk_b4 >= 3) {
                 p->mUnk_b4 -= 3;
                 p->mNsbtpFrameIndex++;
-                if (p->mNsbtpFrameIndex >= func_0209b634(gShine16)) {
-                    p->mNsbtpFrameIndex -= func_0209b634(gShine16);
+                if (p->mNsbtpFrameIndex >= GetMapObjectModelNsbtpFrameCount(gShine16)) {
+                    p->mNsbtpFrameIndex -= GetMapObjectModelNsbtpFrameCount(gShine16);
                 }
                 p->mUnk_bc++;
                 if (p->mUnk_bc >= 8) {
@@ -313,8 +313,8 @@ void UpdateShine16(void *a, Shine16 *p) {
             if (p->mUnk_b4 >= 3) {
                 p->mUnk_b4 -= 3;
                 p->mNsbtpFrameIndex++;
-                if (p->mNsbtpFrameIndex >= func_0209b634(gShine16)) {
-                    p->mNsbtpFrameIndex -= func_0209b634(gShine16);
+                if (p->mNsbtpFrameIndex >= GetMapObjectModelNsbtpFrameCount(gShine16)) {
+                    p->mNsbtpFrameIndex -= GetMapObjectModelNsbtpFrameCount(gShine16);
                 }
                 p->mUnk_bc++;
                 if (p->mUnk_bc >= 8) {
@@ -362,8 +362,8 @@ void UpdateShine16(void *a, Shine16 *p) {
             if (p->mUnk_b4 >= 3) {
                 p->mUnk_b4 -= 3;
                 p->mNsbtpFrameIndex++;
-                if (p->mNsbtpFrameIndex >= func_0209b634(gShine16)) {
-                    p->mNsbtpFrameIndex -= func_0209b634(gShine16);
+                if (p->mNsbtpFrameIndex >= GetMapObjectModelNsbtpFrameCount(gShine16)) {
+                    p->mNsbtpFrameIndex -= GetMapObjectModelNsbtpFrameCount(gShine16);
                 }
                 p->mUnk_bc++;
                 if (p->mUnk_bc >= 8) {
@@ -440,8 +440,8 @@ void UpdateShine16(void *a, Shine16 *p) {
             if (p->mUnk_b4 >= 3) {
                 p->mUnk_b4 -= 3;
                 p->mNsbtpFrameIndex++;
-                if (p->mNsbtpFrameIndex >= func_0209b634(gShine16)) {
-                    p->mNsbtpFrameIndex -= func_0209b634(gShine16);
+                if (p->mNsbtpFrameIndex >= GetMapObjectModelNsbtpFrameCount(gShine16)) {
+                    p->mNsbtpFrameIndex -= GetMapObjectModelNsbtpFrameCount(gShine16);
                 }
                 p->mUnk_bc++;
                 if (p->mUnk_bc >= 8) {
@@ -466,8 +466,8 @@ void UpdateShine16(void *a, Shine16 *p) {
             if (p->mUnk_b4 >= 3) {
                 p->mUnk_b4 -= 3;
                 p->mNsbtpFrameIndex++;
-                if (p->mNsbtpFrameIndex >= func_0209b634(gShine16)) {
-                    p->mNsbtpFrameIndex -= func_0209b634(gShine16);
+                if (p->mNsbtpFrameIndex >= GetMapObjectModelNsbtpFrameCount(gShine16)) {
+                    p->mNsbtpFrameIndex -= GetMapObjectModelNsbtpFrameCount(gShine16);
                 }
                 p->mUnk_bc++;
                 if (p->mUnk_bc >= 8) {

@@ -222,11 +222,11 @@ void AdvanceRecordVSState4(void) {
     RequestRecordVSState7();
     if (func_0211146c() == 12) {
         gRecordVS->mUnk_90 = 6;
-        func_02128310(1);
+        RequestSelectReturnState3WithSound(1);
         return;
     }
     gRecordVS->mUnk_90 = 0;
-    func_02128310(0);
+    RequestSelectReturnState3WithSound(0);
     return;
 l1:
     if ((a == 10 && gRecordVS->mUnk_88 != FALSE) || (b == 10 && gRecordVS->mUnk_88 == FALSE) ||

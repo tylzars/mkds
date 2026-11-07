@@ -23,25 +23,25 @@ void InitKartTurnEffects(void *a) {
             e->mLevel4FirstEffectId = 0x11;
             e->mLevel4SecondEffectId = 0x12;
             e->mStartLevel4Effects = StartKartLevel4EffectsWithSecond;
-            e->mStopLevel4Emission = func_0208d3d8;
-            e->mStartLevel4Emission = func_0208d358;
+            e->mStopLevel4Emission = StopKartLevel4EmissionWithSecond;
+            e->mStartLevel4Emission = StartKartLevel4EmissionWithSecond;
             e->mReleaseLevel4Effects = ReleaseKartLevel4EffectsWithSecond;
-            e->mStopLevel4Effects = func_0208d234;
+            e->mStopLevel4Effects = StopKartLevel4EffectsWithSecond;
             e->mPlaceLevel4Effects = PlaceKartLevel4EffectsWithSecond;
-            e->mHideEffects = func_0208cefc;
-            e->mShowEffects = func_0208cd7c;
+            e->mHideEffects = HideKartEffectsWithSecond;
+            e->mShowEffects = ShowKartEffectsWithSecond;
         } else {
             e->mTurnStartEffectId = 0x15;
             e->mLevel4FirstEffectId = 0x13;
             e->mLevel4SecondEffectId = -1;
             e->mStartLevel4Effects = StartKartLevel4EffectsFirstOnly;
-            e->mStopLevel4Emission = func_0208d3a8;
-            e->mStartLevel4Emission = func_0208d328;
+            e->mStopLevel4Emission = StopKartLevel4EmissionFirstOnly;
+            e->mStartLevel4Emission = StartKartLevel4EmissionFirstOnly;
             e->mReleaseLevel4Effects = ReleaseKartLevel4EffectsFirstOnly;
-            e->mStopLevel4Effects = func_0208d1ec;
+            e->mStopLevel4Effects = StopKartLevel4EffectsFirstOnly;
             e->mPlaceLevel4Effects = PlaceKartLevel4EffectsFirstOnly;
-            e->mHideEffects = func_0208ceac;
-            e->mShowEffects = func_0208cd2c;
+            e->mHideEffects = HideKartEffectsFirstOnly;
+            e->mShowEffects = ShowKartEffectsFirstOnly;
         }
         e->mLevel3FirstEffectId = 0x16;
         e->mLevel3SecondEffectId = 0x17;
@@ -146,7 +146,7 @@ void StartKartLevel4EffectsFirstOnly(KartTurnEffects *p) {
     }
 }
 
-void func_0208d3d8(KartTurnEffects *p) {
+void StopKartLevel4EmissionWithSecond(KartTurnEffects *p) {
     u16 i;
 
     for (i = 0; i < 2; i++) {
@@ -155,7 +155,7 @@ void func_0208d3d8(KartTurnEffects *p) {
     }
 }
 
-void func_0208d3a8(KartTurnEffects *p) {
+void StopKartLevel4EmissionFirstOnly(KartTurnEffects *p) {
     u16 i;
 
     for (i = 0; i < 2; i++) {
@@ -163,7 +163,7 @@ void func_0208d3a8(KartTurnEffects *p) {
     }
 }
 
-void func_0208d358(KartTurnEffects *p) {
+void StartKartLevel4EmissionWithSecond(KartTurnEffects *p) {
     u16 i;
 
     for (i = 0; i < 2; i++) {
@@ -172,7 +172,7 @@ void func_0208d358(KartTurnEffects *p) {
     }
 }
 
-void func_0208d328(KartTurnEffects *p) {
+void StartKartLevel4EmissionFirstOnly(KartTurnEffects *p) {
     u16 i;
 
     for (i = 0; i < 2; i++) {
@@ -200,7 +200,7 @@ void ReleaseKartLevel4EffectsFirstOnly(KartTurnEffects *p) {
     }
 }
 
-void func_0208d234(KartTurnEffects *p) {
+void StopKartLevel4EffectsWithSecond(KartTurnEffects *p) {
     u16 i;
 
     if (p->mLevel4Present == 0) {
@@ -212,7 +212,7 @@ void func_0208d234(KartTurnEffects *p) {
     }
 }
 
-void func_0208d1ec(KartTurnEffects *p) {
+void StopKartLevel4EffectsFirstOnly(KartTurnEffects *p) {
     if (p->mLevel4Present == 0) {
         return;
     }
@@ -269,7 +269,7 @@ void PlaceKartLevel4EffectsFirstOnly(KartTurnEffects *p, Vec3s16 *a, Vec3 *b) {
     }
 }
 
-void func_0208cf5c(KartTurnEffects *p) {
+void HideKartTurnStartLevel3Level2Effects(KartTurnEffects *p) {
     u16 i;
 
     if (p->mTurnStartPresent != 0) {
@@ -291,7 +291,7 @@ void func_0208cf5c(KartTurnEffects *p) {
     }
 }
 
-void func_0208cefc(KartTurnEffects *p) {
+void HideKartEffectsWithSecond(KartTurnEffects *p) {
     u16 i;
 
     if (p->mLevel4Present != 0) {
@@ -300,10 +300,10 @@ void func_0208cefc(KartTurnEffects *p) {
             p->mLevel4SecondEffects[i]->mUnk_24.mUnk_00_3 = 1;
         }
     }
-    func_0208cf5c(p);
+    HideKartTurnStartLevel3Level2Effects(p);
 }
 
-void func_0208ceac(KartTurnEffects *p) {
+void HideKartEffectsFirstOnly(KartTurnEffects *p) {
     u16 i;
 
     if (p->mLevel4Present != 0) {
@@ -311,10 +311,10 @@ void func_0208ceac(KartTurnEffects *p) {
             p->mLevel4FirstEffects[i]->mUnk_24.mUnk_00_3 = 1;
         }
     }
-    func_0208cf5c(p);
+    HideKartTurnStartLevel3Level2Effects(p);
 }
 
-void func_0208cddc(KartTurnEffects *p) {
+void ShowKartTurnStartLevel3Level2Effects(KartTurnEffects *p) {
     u16 i;
 
     if (p->mTurnStartPresent != 0) {
@@ -336,7 +336,7 @@ void func_0208cddc(KartTurnEffects *p) {
     }
 }
 
-void func_0208cd7c(KartTurnEffects *p) {
+void ShowKartEffectsWithSecond(KartTurnEffects *p) {
     u16 i;
 
     if (p->mLevel4Present != 0) {
@@ -345,10 +345,10 @@ void func_0208cd7c(KartTurnEffects *p) {
             p->mLevel4SecondEffects[i]->mUnk_24.mUnk_00_3 = 0;
         }
     }
-    func_0208cddc(p);
+    ShowKartTurnStartLevel3Level2Effects(p);
 }
 
-void func_0208cd2c(KartTurnEffects *p) {
+void ShowKartEffectsFirstOnly(KartTurnEffects *p) {
     u16 i;
 
     if (p->mLevel4Present != 0) {
@@ -356,7 +356,7 @@ void func_0208cd2c(KartTurnEffects *p) {
             p->mLevel4FirstEffects[i]->mUnk_24.mUnk_00_3 = 0;
         }
     }
-    func_0208cddc(p);
+    ShowKartTurnStartLevel3Level2Effects(p);
 }
 
 void ResetKartLevel4Effects(KartTurnEffects *p) {
