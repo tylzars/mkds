@@ -1058,7 +1058,7 @@ void func_020a0318(void *a, Unk020a0318 *p) {
                 s1.mUnk_00 = p->mUnk_bc;
                 s1.mUnk_04 = NULL;
                 s1.mUnk_08 = 4;
-                s1.mUnk_0c = func_020d4ef4(NULL);
+                s1.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
                 func_0210b760(&s1, h);
                 r = &gRaceProgress->mLocalRandom;
                 r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
@@ -1082,7 +1082,7 @@ void func_020a0318(void *a, Unk020a0318 *p) {
             s2.mUnk_00 = p->mUnk_be;
             s2.mUnk_04 = NULL;
             s2.mUnk_08 = 4;
-            s2.mUnk_0c = func_020d4ef4(NULL);
+            s2.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
             func_0210b760(&s2, h);
         }
     }

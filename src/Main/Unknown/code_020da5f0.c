@@ -149,7 +149,7 @@ void EnterKuriboState5(Kuribo *p) {
         s.mUnk_00 = 0x183;
         s.mUnk_04 = &p->mUnk_00.mPos;
         s.mUnk_08 = a;
-        s.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
+        s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
         func_0210b7a8(&s);
     }
     p->mUnk_00.mFlags &= ~1;

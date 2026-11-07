@@ -63,7 +63,7 @@ u8 func_020a7fc4(Sanbo *p, Kart *a, u8 *b, u8 *c) {
             s.mUnk_00 = 0x193;
             s.mUnk_04 = &p->mUnk_000.mPos;
             s.mUnk_08 = 2;
-            s.mUnk_0c = func_020d4ef4(&p->mUnk_000.mPos);
+            s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_000.mPos);
             func_0210b7a8(&s);
             p->mUnk_0ac = 0x14;
         }
@@ -86,7 +86,7 @@ u8 func_020a7f18(Sanbo *p, Kart *a, u8 *b, u8 *c) {
             s.mUnk_00 = 0x193;
             s.mUnk_04 = &p->mUnk_000.mPos;
             s.mUnk_08 = 2;
-            s.mUnk_0c = func_020d4ef4(&p->mUnk_000.mPos);
+            s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_000.mPos);
             func_0210b7a8(&s);
             p->mUnk_0ac = 0x14;
         }
@@ -343,7 +343,7 @@ void UpdateSanbo(void *a, Sanbo *p) {
             s.mUnk_00 = 0x194;
             s.mUnk_04 = &p->mUnk_000.mPos;
             s.mUnk_08 = 2;
-            s.mUnk_0c = func_020d4ef4(&p->mUnk_000.mPos);
+            s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_000.mPos);
             func_0210b7a8(&s);
             p->mUnk_0ac = 0x14;
             break;

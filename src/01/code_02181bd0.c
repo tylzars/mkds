@@ -104,7 +104,7 @@ void func_ov001_02182d30(void) {
         arg.mUnk_00 = 0x1d9;
         arg.mUnk_04 = NULL;
         arg.mUnk_08 = 2;
-        arg.mUnk_0c = func_020d4ef4(NULL);
+        arg.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
         func_0210b7a8(&arg);
     }
 }
@@ -150,7 +150,7 @@ void func_ov001_02182bdc(void) {
         arg.mUnk_00 = 0x1d9;
         arg.mUnk_04 = NULL;
         arg.mUnk_08 = 2;
-        arg.mUnk_0c = func_020d4ef4(NULL);
+        arg.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
         func_0210b7a8(&arg);
     }
 }

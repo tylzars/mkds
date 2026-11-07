@@ -79,7 +79,7 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                         s1.mUnk_00 = 0x116;
                         s1.mUnk_04 = &b->mUnk_00.mPos;
                         s1.mUnk_08 = t;
-                        s1.mUnk_0c = func_020d4ef4(&b->mUnk_00.mPos);
+                        s1.mUnk_0c = GetHorizontalCameraDistanceSquared(&b->mUnk_00.mPos);
                         func_0210b7a8(&s1);
                     }
                 } else if (b->mUnk_a0 == 8 || b->mUnk_a0 == 0x14 || b->mUnk_a0 == 0x2c || b->mUnk_a0 == 0x44) {
@@ -94,7 +94,7 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                         s2.mUnk_00 = 0x117;
                         s2.mUnk_04 = &b->mUnk_00.mPos;
                         s2.mUnk_08 = t;
-                        s2.mUnk_0c = func_020d4ef4(&b->mUnk_00.mPos);
+                        s2.mUnk_0c = GetHorizontalCameraDistanceSquared(&b->mUnk_00.mPos);
                         func_0210b7a8(&s2);
                     }
                 } else if (b->mUnk_a0 == 0x78) {
@@ -109,7 +109,7 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                         s3.mUnk_00 = 0x115;
                         s3.mUnk_04 = &b->mUnk_00.mPos;
                         s3.mUnk_08 = t;
-                        s3.mUnk_0c = func_020d4ef4(&b->mUnk_00.mPos);
+                        s3.mUnk_0c = GetHorizontalCameraDistanceSquared(&b->mUnk_00.mPos);
                         func_0210b7a8(&s3);
                     }
                 }
@@ -131,7 +131,7 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                         s4.mUnk_00 = 0x118;
                         s4.mUnk_04 = &b->mUnk_00.mPos;
                         s4.mUnk_08 = t;
-                        s4.mUnk_0c = func_020d4ef4(&b->mUnk_00.mPos);
+                        s4.mUnk_0c = GetHorizontalCameraDistanceSquared(&b->mUnk_00.mPos);
                         func_0210b7a8(&s4);
                     }
                 }

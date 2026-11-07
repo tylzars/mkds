@@ -1231,7 +1231,7 @@ extern void *data_0217ac18[15];
 extern void *data_0217ac54[15];
 extern struct Camera *gChaseCamera;
 // Set to 1 at race set-up and when a camera entry is started or advanced; cleared once per UpdateRace call by
-// ClearCameraEntryFlags. UpdateRace calls func_020d50c4 when it is set.
+// ClearCameraEntryFlags. UpdateRace calls RequestViewTestRefresh when it is set.
 extern s32 gCameraEntryChanged;
 // The chain camera whose view matrix the last chain step returned; UpdateRace stores it as the camera in use. Not
 // written in races without chain cameras.

@@ -125,7 +125,7 @@ void UpdateMoveTree(void *a, MoveTree *p) {
             s1.mUnk_00 = 0x11f;
             s1.mUnk_04 = &p->mUnk_00.mPos;
             s1.mUnk_08 = k;
-            s1.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
+            s1.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
             func_0210b7a8(&s1);
             break;
         case 1:
@@ -165,7 +165,7 @@ void UpdateMoveTree(void *a, MoveTree *p) {
             s2.mUnk_00 = 0x11f;
             s2.mUnk_04 = &p->mUnk_00.mPos;
             s2.mUnk_08 = k;
-            s2.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
+            s2.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
             func_0210b7a8(&s2);
     }
 }
@@ -262,7 +262,7 @@ void UpdateBakubaku(void *a, Bakubaku *p) {
             s1.mUnk_00 = 0x186;
             s1.mUnk_04 = &p->mUnk_00.mPos;
             s1.mUnk_08 = 4;
-            s1.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
+            s1.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
             func_0210b7a8(&s1);
             p->mState = 2;
             break;
@@ -276,7 +276,7 @@ void UpdateBakubaku(void *a, Bakubaku *p) {
             s2.mUnk_00 = 0x187;
             s2.mUnk_04 = &p->mUnk_00.mPos;
             s2.mUnk_08 = 2;
-            s2.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
+            s2.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
             func_0210b7a8(&s2);
             p->mState = 3;
             break;

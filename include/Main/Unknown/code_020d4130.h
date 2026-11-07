@@ -12,10 +12,10 @@ typedef struct Unk020d4418 {
     /* 30 */ MtxFx43 mUnk_30;
 } Unk020d4418;
 
-void func_020d47e0(void);
-void func_020d4698(void);
+void UpdateMapObjectViewTests(void);
+void RefreshMapObjectViewTests(void);
 void UpdateMapObjects(void);
 void DrawMapObjects(Unk020d4418 *p);
 void func_020d4418(Unk020d4418 *p);
-s32 func_020d41e0(Kart *a, Vec3 *b, Vec3 *c);
-s32 func_020d4130(Vec3 *a, s32 b, s32 c);
+s32 FindMapObjectsTouchingKart(Kart *a, Vec3 *b, Vec3 *c);
+s32 FindMapObjectsOfKindInRadius(Vec3 *a, s32 b, s32 c);

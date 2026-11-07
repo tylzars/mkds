@@ -139,19 +139,19 @@ typedef struct Unk0217b4d8 {
     /* 0c */ void *mNsbmaFile;
 } Unk0217b4d8;
 
-// Object at data_0217b4f8: six vectors between words at 0x00/0x04 and 0x50/0x54.
-typedef struct Unk0217b4f8 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ Vec3 mUnk_08;
-    /* 14 */ Vec3 mUnk_14;
+// Object at gViewFrustum: six vectors between words at 0x00/0x04 and 0x50/0x54.
+typedef struct ViewFrustum {
+    /* 00 */ s32 mNear;
+    /* 04 */ s32 mFar;
+    /* 08 */ Vec3 mCameraPos;
+    /* 14 */ Vec3 mViewDirection;
     /* 20 */ Vec3 mUnk_20;
     /* 2c */ Vec3 mUnk_2c;
     /* 38 */ Vec3 mUnk_38;
     /* 44 */ Vec3 mUnk_44;
-    /* 50 */ BOOL mUnk_50;
-    /* 54 */ BOOL mUnk_54;
-} Unk0217b4f8;
+    /* 50 */ BOOL mViewTestRefreshRequested;
+    /* 54 */ BOOL mViewTestRefreshPending;
+} ViewFrustum;
 
 // Object behind gEmblemChoises, 0x6c bytes (InitEmblemChoises allocates it); func_020ca9e4 calls the function at 0x0c.
 typedef struct EmblemChoises {
@@ -715,7 +715,7 @@ extern struct Unk020f41c4_B *data_0217b4bc;
 // The same pointer as gWaterEfct, stored by SetCourseWaterEfct (the last call of CreateWaterEfct) and set to NULL in
 // InitMapObjects; the water_efct getters and the level getter read this one.
 extern Unk0217b4d8 *gCourseWaterEfct;
-extern Vec3 *data_0217b4dc;
+extern Vec3 *gFoundMapObjectVectors;
 extern s32 data_0217b4e0;
 // The same pointer as gWater, stored by SetCourseWater (the last call of each Create...Water) and set to NULL in
 // InitMapObjects before the objects are created, so NULL means the course has no water; the update, draw, getters and
@@ -724,8 +724,8 @@ extern struct Water *gCourseWater;
 extern s32 data_0217b4ec;
 extern struct MapObjects *gMapObjects;
 extern s32 data_0217b4f4;
-extern Unk0217b4f8 data_0217b4f8;
-extern Unk0217b4f8 data_0217b550;
+extern ViewFrustum gViewFrustum;
+extern ViewFrustum gViewFrustumBeforeRotation;
 extern struct Unk0217b650 *data_0217b650;
 extern struct Unk0217b654 *data_0217b654;
 extern struct Unk020ea868 *gRockShadow;
@@ -912,12 +912,12 @@ extern u8 data_0217b4a8[];
 extern struct Unk0217b4ac *gEndingStaffRoll;
 extern RaceMNumberPair *gRaceMNumberPair;
 extern u16 data_0217b4c0;
-extern u16 data_0217b4c4;
-extern u16 data_0217b4c8;
+extern u16 gWrappingPolygonId;
+extern u16 gWrappingPolygonIdBase;
 extern u16 data_0217b4cc;
-extern u16 data_0217b4d0;
+extern u16 gNextPolygonId;
 extern GrpconfTblRow *gGrpconfTbl;
-extern MapObject **data_0217b4e8;
+extern MapObject **gFoundMapObjects;
 extern u8 data_0217b7c4[];
 extern u8 data_0217b86c[];
 // Indexed by object kind; 14 slots, 13 files (kind 8 aliases kind 7)

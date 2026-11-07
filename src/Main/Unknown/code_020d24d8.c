@@ -39,7 +39,7 @@ void func_020d2668(MapObject *b, SoundSource *c, s32 d, s32 e) {
 void func_020d2600(s32 c, Vec3 *d, s32 e) {
     s32 a;
     Unk0210b7a8 b;
-    a = func_020d4ef4(d);
+    a = GetHorizontalCameraDistanceSquared(d);
     if (a >= (e == 2 ? gSoundFalloffs[2].mUnk_20 : gSoundFalloffs[4].mUnk_20)) {
         return;
     }
@@ -56,7 +56,7 @@ void func_020d2584(MapObject *b, s32 c) {
     if (b->mCollisionSlotIndex < 0) {
         return;
     }
-    switch (b->mKindData->mUnk_08) {
+    switch (b->mKindData->mShapeKind) {
         case 3:
         case 4:
         case 5:
@@ -73,7 +73,7 @@ void func_020d2584(MapObject *b, s32 c) {
 }
 
 s32 func_020d252c(MapObject *a) {
-    switch (a->mKindData->mUnk_08) {
+    switch (a->mKindData->mShapeKind) {
         case 3:
         case 4:
         case 5:

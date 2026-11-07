@@ -374,7 +374,7 @@ void RefreshCameraProjection(Camera *p) {
         p->mFrustumBottom += c;
         p->mFrustumTop += c;
     }
-    func_020d4a20(a, b, p->mFrustumLeft, p->mFrustumRight, p->mNear, p->mFar);
+    RefreshViewFrustumFromProjection(a, b, p->mFrustumLeft, p->mFrustumRight, p->mNear, p->mFar);
     reg_G3_MTX_MODE = 0;
     G3i_FrustumW_(p->mFrustumTop, p->mFrustumBottom, p->mFrustumLeft, p->mFrustumRight, p->mNear, p->mFar, 0x1000, 1,
                   (Unk0214ad4c *) data_0217acc0);

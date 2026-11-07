@@ -802,7 +802,7 @@ s32 func_020a4f54(u16 a, u16 b) {
         s.mUnk_00 = 0x14f;
         s.mUnk_04 = NULL;
         s.mUnk_08 = 2;
-        s.mUnk_0c = func_020d4ef4(NULL);
+        s.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
         func_0210b7a8(&s);
     }
     return 1;

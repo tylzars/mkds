@@ -312,9 +312,9 @@ void UpdateRace(void) {
         data_0217aa7c = &data_0217aa88->mViewMatrix;
     }
     RefreshCameraProjection(data_0217aa6c);
-    func_020d4f94((Unk020d4f94 *) data_0217aa7c);
+    UpdateViewFrustum((Unk020d4f94 *) data_0217aa7c);
     if (GetCameraEntryChanged() != 0) {
-        func_020d50c4();
+        RequestViewTestRefresh();
     }
     UpdateItems();
     UpdateJg();

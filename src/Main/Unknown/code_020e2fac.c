@@ -115,7 +115,7 @@ void UpdateChoropuState3(Unk020e1e98 *a) {
         buf.mUnk_00 = 0x128;
         buf.mUnk_04 = &a->mUnk_000.mPos;
         buf.mUnk_08 = v;
-        buf.mUnk_0c = func_020d4ef4(&a->mUnk_000.mPos);
+        buf.mUnk_0c = GetHorizontalCameraDistanceSquared(&a->mUnk_000.mPos);
         func_0210b7a8(&buf);
     }
     a->mUnk_000.mStateMachine.mNextState = 4;

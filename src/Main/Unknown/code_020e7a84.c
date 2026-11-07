@@ -501,7 +501,7 @@ void UpdateJgPosition(void) {
                 for (i = 0; i < data_0217b5a8; i++) {
                     MapObject *q = data_0217b5c4[i];
 
-                    if ((q->mFlags & 0x40) == 0 && func_020d3e34(&data_0217b93c, 0x12000, q, &t) != FALSE) {
+                    if ((q->mFlags & 0x40) == 0 && IsSphereHittingMapObject(&data_0217b93c, 0x12000, q, &t) != FALSE) {
                         UpdateJgPosition_inline(&lo, &t, &lo);
                         UpdateJgPosition_inline_2(&hi, &t, &hi);
                         pushed = TRUE;
@@ -771,7 +771,7 @@ void UpdateJgState1(void) {
     }
     if (frame == 0xa || frame == 0x28) {
         player = func_02108e6c(4);
-        data_0217b9dc.mUnk_0c = func_020d4ef4(&gJgPos);
+        data_0217b9dc.mUnk_0c = GetHorizontalCameraDistanceSquared(&gJgPos);
         NNS_SndPlayerStopSeq(player, 0);
         func_0210b760(&data_0217b9dc, player);
     }

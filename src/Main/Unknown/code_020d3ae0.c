@@ -54,44 +54,44 @@
 #include "Main/Unknown/code_020d50c4.h"
 #include "Main/Unknown/code_020d50e0.h"
 
-Unk0217b4f8 *func_020d50e0(void) {
-    return &data_0217b4f8;
+ViewFrustum *GetViewFrustum(void) {
+    return &gViewFrustum;
 }
 
-void func_020d50c4(void) {
-    data_0217b4f8.mUnk_50 = TRUE;
-    data_0217b4f8.mUnk_54 = FALSE;
+void RequestViewTestRefresh(void) {
+    gViewFrustum.mViewTestRefreshRequested = TRUE;
+    gViewFrustum.mViewTestRefreshPending = FALSE;
 }
 
-u32 func_020d50b4(void) {
+u32 GetViewTestRefreshPending(void) {
     u32 value0;
-    value0 = data_0217b4f8.mUnk_54;
+    value0 = gViewFrustum.mViewTestRefreshPending;
     return value0;
 }
 
-void func_020d4f94(Unk020d4f94 *p) {
+void UpdateViewFrustum(Unk020d4f94 *p) {
     s32 buf[10];
 
     MTX_Transpose33_(p, buf);
-    MTX_MultVec33(&p->mUnk_24, buf, &data_0217b4f8.mUnk_08);
-    data_0217b4f8.mUnk_08.x = -data_0217b4f8.mUnk_08.x;
-    data_0217b4f8.mUnk_08.y = -data_0217b4f8.mUnk_08.y;
-    data_0217b4f8.mUnk_08.z = -data_0217b4f8.mUnk_08.z;
-    data_0217b4f8.mUnk_08.x = data_0217b4f8.mUnk_08.x << 4;
-    data_0217b4f8.mUnk_08.y = data_0217b4f8.mUnk_08.y << 4;
-    data_0217b4f8.mUnk_08.z = data_0217b4f8.mUnk_08.z << 4;
-    data_0217b4f8.mUnk_14.x = -buf[6];
-    data_0217b4f8.mUnk_14.y = -buf[7];
-    data_0217b4f8.mUnk_14.z = -buf[8];
-    MTX_MultVec33(&data_0217b550.mUnk_20, buf, &data_0217b4f8.mUnk_20);
-    MTX_MultVec33(&data_0217b550.mUnk_2c, buf, &data_0217b4f8.mUnk_2c);
-    MTX_MultVec33(&data_0217b550.mUnk_38, buf, &data_0217b4f8.mUnk_38);
-    MTX_MultVec33(&data_0217b550.mUnk_44, buf, &data_0217b4f8.mUnk_44);
-    if (data_0217b4f8.mUnk_50 != FALSE) {
-        data_0217b4f8.mUnk_50 = FALSE;
-        data_0217b4f8.mUnk_54 = TRUE;
+    MTX_MultVec33(&p->mUnk_24, buf, &gViewFrustum.mCameraPos);
+    gViewFrustum.mCameraPos.x = -gViewFrustum.mCameraPos.x;
+    gViewFrustum.mCameraPos.y = -gViewFrustum.mCameraPos.y;
+    gViewFrustum.mCameraPos.z = -gViewFrustum.mCameraPos.z;
+    gViewFrustum.mCameraPos.x = gViewFrustum.mCameraPos.x << 4;
+    gViewFrustum.mCameraPos.y = gViewFrustum.mCameraPos.y << 4;
+    gViewFrustum.mCameraPos.z = gViewFrustum.mCameraPos.z << 4;
+    gViewFrustum.mViewDirection.x = -buf[6];
+    gViewFrustum.mViewDirection.y = -buf[7];
+    gViewFrustum.mViewDirection.z = -buf[8];
+    MTX_MultVec33(&gViewFrustumBeforeRotation.mUnk_20, buf, &gViewFrustum.mUnk_20);
+    MTX_MultVec33(&gViewFrustumBeforeRotation.mUnk_2c, buf, &gViewFrustum.mUnk_2c);
+    MTX_MultVec33(&gViewFrustumBeforeRotation.mUnk_38, buf, &gViewFrustum.mUnk_38);
+    MTX_MultVec33(&gViewFrustumBeforeRotation.mUnk_44, buf, &gViewFrustum.mUnk_44);
+    if (gViewFrustum.mViewTestRefreshRequested != FALSE) {
+        gViewFrustum.mViewTestRefreshRequested = FALSE;
+        gViewFrustum.mViewTestRefreshPending = TRUE;
     } else {
-        data_0217b4f8.mUnk_54 = FALSE;
+        gViewFrustum.mViewTestRefreshPending = FALSE;
     }
 }
 
@@ -101,8 +101,8 @@ u32 func_020d4f34(Vec3 *a, s32 b, s32 c, s32 d) {
     s32 v;
     u32 r;
 
-    x = (a->x - data_0217b4f8.mUnk_08.x) >> 12;
-    z = (a->z - data_0217b4f8.mUnk_08.z) >> 12;
+    x = (a->x - gViewFrustum.mCameraPos.x) >> 12;
+    z = (a->z - gViewFrustum.mCameraPos.z) >> 12;
     v = x * x + z * z;
     r = v & ~0xc000001f;
     if (v > d) {
@@ -111,15 +111,15 @@ u32 func_020d4f34(Vec3 *a, s32 b, s32 c, s32 d) {
     return r | 3;
 }
 
-s32 func_020d4ef4(Vec3 *p) {
+s32 GetHorizontalCameraDistanceSquared(Vec3 *p) {
     s32 x;
     s32 z;
 
     if (p == NULL) {
         return 0;
     }
-    x = (p->x - data_0217b4f8.mUnk_08.x) >> 12;
-    z = (p->z - data_0217b4f8.mUnk_08.z) >> 12;
+    x = (p->x - gViewFrustum.mCameraPos.x) >> 12;
+    z = (p->z - gViewFrustum.mCameraPos.z) >> 12;
     return x * x + z * z;
 }
 
@@ -132,7 +132,7 @@ void func_020d4e28(ItemObject *p, Vec3 *v, u32 a) {
         }
         return;
     }
-    d = data_0217b4f8.mUnk_08.y - v->y;
+    d = gViewFrustum.mCameraPos.y - v->y;
     if (d > -0x12c000 && d < data_0217b4f4) {
         if (!(p->mSoundSource.mUnk_34 & 1)) {
             SetSoundSourceFlagBit(&p->mSoundSource, 2, 1);
@@ -150,7 +150,7 @@ BOOL func_020d4ddc(MapObject *p) {
     if (p->mDistanceSquaredAndFlags & 4) {
         return TRUE;
     }
-    d = data_0217b4f8.mUnk_08.y - p->mPos.y;
+    d = gViewFrustum.mCameraPos.y - p->mPos.y;
     if (p->mKindData->mUnk_3c < d && d < p->mKindData->mUnk_38) {
         return FALSE;
     }
@@ -167,7 +167,7 @@ BOOL func_020d4d60(MapObject *p, s32 a) {
         return TRUE;
     }
     q = p->mKindData;
-    h = (v->y - data_0217b4f8.mUnk_08.y) >> 12;
+    h = (v->y - gViewFrustum.mCameraPos.y) >> 12;
     if (h < q->mUnk_3c || q->mUnk_38 < h) {
         return TRUE;
     }
@@ -223,8 +223,8 @@ void DrawMapObjectList(MapObjectList *p, MtxFx43 *a) {
 #pragma thumb on
 
 void func_020d4bf0(void) {
-    data_0217b4f8.mUnk_50 = TRUE;
-    data_0217b4f8.mUnk_54 = FALSE;
+    gViewFrustum.mViewTestRefreshRequested = TRUE;
+    gViewFrustum.mViewTestRefreshPending = FALSE;
     if (gRaceSetup->mRaceKind == 2) {
         data_0217b4f4 = 0x258000;
         return;
@@ -235,60 +235,60 @@ void func_020d4bf0(void) {
 #pragma thumb off
 
 #pragma thumb on
-void func_020d4a20(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
-    data_0217b550.mUnk_00 = e << 4;
-    data_0217b4f8.mUnk_00 = e << 4;
-    data_0217b550.mUnk_04 = f << 4;
-    data_0217b4f8.mUnk_04 = f << 4;
+void RefreshViewFrustumFromProjection(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
+    gViewFrustumBeforeRotation.mNear = e << 4;
+    gViewFrustum.mNear = e << 4;
+    gViewFrustumBeforeRotation.mFar = f << 4;
+    gViewFrustum.mFar = f << 4;
 
-    data_0217b550.mUnk_20.x = e;
-    data_0217b550.mUnk_20.y = 0;
-    data_0217b550.mUnk_20.z = -c;
-    if ((s64) data_0217b550.mUnk_20.z * data_0217b550.mUnk_20.z +
-            ((s64) data_0217b550.mUnk_20.x * data_0217b550.mUnk_20.x +
-             (s64) data_0217b550.mUnk_20.y * data_0217b550.mUnk_20.y) >=
+    gViewFrustumBeforeRotation.mUnk_20.x = e;
+    gViewFrustumBeforeRotation.mUnk_20.y = 0;
+    gViewFrustumBeforeRotation.mUnk_20.z = -c;
+    if ((s64) gViewFrustumBeforeRotation.mUnk_20.z * gViewFrustumBeforeRotation.mUnk_20.z +
+            ((s64) gViewFrustumBeforeRotation.mUnk_20.x * gViewFrustumBeforeRotation.mUnk_20.x +
+             (s64) gViewFrustumBeforeRotation.mUnk_20.y * gViewFrustumBeforeRotation.mUnk_20.y) >=
         0x10) {
-        Vec3NormalizeAndGetLengthUnchecked(&data_0217b550.mUnk_20, &data_0217b550.mUnk_20);
+        Vec3NormalizeAndGetLengthUnchecked(&gViewFrustumBeforeRotation.mUnk_20, &gViewFrustumBeforeRotation.mUnk_20);
     }
     if (gRaceSetup->mMirrorMode != 0) {
-        data_0217b550.mUnk_20.x = -data_0217b550.mUnk_20.x;
-        data_0217b550.mUnk_20.y = -data_0217b550.mUnk_20.y;
-        data_0217b550.mUnk_20.z = -data_0217b550.mUnk_20.z;
+        gViewFrustumBeforeRotation.mUnk_20.x = -gViewFrustumBeforeRotation.mUnk_20.x;
+        gViewFrustumBeforeRotation.mUnk_20.y = -gViewFrustumBeforeRotation.mUnk_20.y;
+        gViewFrustumBeforeRotation.mUnk_20.z = -gViewFrustumBeforeRotation.mUnk_20.z;
     }
 
-    data_0217b550.mUnk_2c.x = -e;
-    data_0217b550.mUnk_2c.y = 0;
-    data_0217b550.mUnk_2c.z = d;
-    if ((s64) data_0217b550.mUnk_2c.z * data_0217b550.mUnk_2c.z +
-            ((s64) data_0217b550.mUnk_2c.x * data_0217b550.mUnk_2c.x +
-             (s64) data_0217b550.mUnk_2c.y * data_0217b550.mUnk_2c.y) >=
+    gViewFrustumBeforeRotation.mUnk_2c.x = -e;
+    gViewFrustumBeforeRotation.mUnk_2c.y = 0;
+    gViewFrustumBeforeRotation.mUnk_2c.z = d;
+    if ((s64) gViewFrustumBeforeRotation.mUnk_2c.z * gViewFrustumBeforeRotation.mUnk_2c.z +
+            ((s64) gViewFrustumBeforeRotation.mUnk_2c.x * gViewFrustumBeforeRotation.mUnk_2c.x +
+             (s64) gViewFrustumBeforeRotation.mUnk_2c.y * gViewFrustumBeforeRotation.mUnk_2c.y) >=
         0x10) {
-        Vec3NormalizeAndGetLengthUnchecked(&data_0217b550.mUnk_2c, &data_0217b550.mUnk_2c);
+        Vec3NormalizeAndGetLengthUnchecked(&gViewFrustumBeforeRotation.mUnk_2c, &gViewFrustumBeforeRotation.mUnk_2c);
     }
     if (gRaceSetup->mMirrorMode != 0) {
-        data_0217b550.mUnk_2c.x = -data_0217b550.mUnk_2c.x;
-        data_0217b550.mUnk_2c.y = -data_0217b550.mUnk_2c.y;
-        data_0217b550.mUnk_2c.z = -data_0217b550.mUnk_2c.z;
+        gViewFrustumBeforeRotation.mUnk_2c.x = -gViewFrustumBeforeRotation.mUnk_2c.x;
+        gViewFrustumBeforeRotation.mUnk_2c.y = -gViewFrustumBeforeRotation.mUnk_2c.y;
+        gViewFrustumBeforeRotation.mUnk_2c.z = -gViewFrustumBeforeRotation.mUnk_2c.z;
     }
 
-    data_0217b550.mUnk_38.x = 0;
-    data_0217b550.mUnk_38.y = -e;
-    data_0217b550.mUnk_38.z = a;
-    if ((s64) data_0217b550.mUnk_38.z * data_0217b550.mUnk_38.z +
-            ((s64) data_0217b550.mUnk_38.x * data_0217b550.mUnk_38.x +
-             (s64) data_0217b550.mUnk_38.y * data_0217b550.mUnk_38.y) >=
+    gViewFrustumBeforeRotation.mUnk_38.x = 0;
+    gViewFrustumBeforeRotation.mUnk_38.y = -e;
+    gViewFrustumBeforeRotation.mUnk_38.z = a;
+    if ((s64) gViewFrustumBeforeRotation.mUnk_38.z * gViewFrustumBeforeRotation.mUnk_38.z +
+            ((s64) gViewFrustumBeforeRotation.mUnk_38.x * gViewFrustumBeforeRotation.mUnk_38.x +
+             (s64) gViewFrustumBeforeRotation.mUnk_38.y * gViewFrustumBeforeRotation.mUnk_38.y) >=
         0x10) {
-        Vec3NormalizeAndGetLengthUnchecked(&data_0217b550.mUnk_38, &data_0217b550.mUnk_38);
+        Vec3NormalizeAndGetLengthUnchecked(&gViewFrustumBeforeRotation.mUnk_38, &gViewFrustumBeforeRotation.mUnk_38);
     }
 
-    data_0217b550.mUnk_44.x = 0;
-    data_0217b550.mUnk_44.y = e;
-    data_0217b550.mUnk_44.z = -b;
-    if ((s64) data_0217b550.mUnk_44.z * data_0217b550.mUnk_44.z +
-            ((s64) data_0217b550.mUnk_44.x * data_0217b550.mUnk_44.x +
-             (s64) data_0217b550.mUnk_44.y * data_0217b550.mUnk_44.y) >=
+    gViewFrustumBeforeRotation.mUnk_44.x = 0;
+    gViewFrustumBeforeRotation.mUnk_44.y = e;
+    gViewFrustumBeforeRotation.mUnk_44.z = -b;
+    if ((s64) gViewFrustumBeforeRotation.mUnk_44.z * gViewFrustumBeforeRotation.mUnk_44.z +
+            ((s64) gViewFrustumBeforeRotation.mUnk_44.x * gViewFrustumBeforeRotation.mUnk_44.x +
+             (s64) gViewFrustumBeforeRotation.mUnk_44.y * gViewFrustumBeforeRotation.mUnk_44.y) >=
         0x10) {
-        Vec3NormalizeAndGetLengthUnchecked(&data_0217b550.mUnk_44, &data_0217b550.mUnk_44);
+        Vec3NormalizeAndGetLengthUnchecked(&gViewFrustumBeforeRotation.mUnk_44, &gViewFrustumBeforeRotation.mUnk_44);
     }
 }
 #pragma thumb off
@@ -354,7 +354,7 @@ void SetCourseWaterEfct(void *p0) {
     gCourseWaterEfct = p0;
 }
 
-void func_020d47e0(void) {
+void UpdateMapObjectViewTests(void) {
     u32 f;
     s32 i;
     s32 n;
@@ -413,7 +413,7 @@ void func_020d47e0(void) {
     } while (++i < n);
 }
 
-void func_020d4698(void) {
+void RefreshMapObjectViewTests(void) {
     u32 f;
     s32 i;
     s32 n;
@@ -494,10 +494,10 @@ void UpdateMapObjects(void) {
             }
         }
     }
-    if (func_020d50b4() != 0) {
-        func_020d4698();
+    if (GetViewTestRefreshPending() != 0) {
+        RefreshMapObjectViewTests();
     } else {
-        func_020d47e0();
+        UpdateMapObjectViewTests();
     }
     if (gCourseWater != NULL) {
         UpdateWater(gCourseWater);
@@ -552,7 +552,7 @@ void func_020d4418(Unk020d4418 *p) {
     MtxFx43 *v;
 
     v = &p->mUnk_30;
-    if (gMapObjects->mUnk_17c != 0) {
+    if (gMapObjects->mHasKoopaBlock != 0) {
         func_020dff88(v);
     }
     if (gMapObjects->mUnk_180 != 0) {
@@ -563,7 +563,7 @@ void func_020d4418(Unk020d4418 *p) {
     }
 }
 
-s32 func_020d41e0(Kart *a, Vec3 *b, Vec3 *c) {
+s32 FindMapObjectsTouchingKart(Kart *a, Vec3 *b, Vec3 *c) {
     Vec3 v;
     Vec3 lo;
     Vec3 hi;
@@ -579,7 +579,7 @@ s32 func_020d41e0(Kart *a, Vec3 *b, Vec3 *c) {
     k = (a->mUnk_48 & 0x8000000) != 0;
     q = a->mRadius;
     r = a->mItemEffect;
-    p = data_0217b4dc;
+    p = gFoundMapObjectVectors;
     {
         Vec3 z1 = {0, 0, 0};
         lo = z1;
@@ -596,7 +596,7 @@ s32 func_020d41e0(Kart *a, Vec3 *b, Vec3 *c) {
             if (k != FALSE && !(e->mDistanceSquaredAndFlags & 0x10)) {
                 continue;
             }
-            if (func_020d3e34(&v, q, e, p) != FALSE) {
+            if (IsSphereHittingMapObject(&v, q, e, p) != FALSE) {
                 if (!(e->mFlags & 0x40) && func_020d69e4(r, e) != 0) {
                     lo.x = (p->x < lo.x) ? p->x : lo.x;
                     lo.y = (p->y < lo.y) ? p->y : lo.y;
@@ -605,9 +605,9 @@ s32 func_020d41e0(Kart *a, Vec3 *b, Vec3 *c) {
                     hi.y = (p->y > hi.y) ? p->y : hi.y;
                     hi.z = (p->z > hi.z) ? p->z : hi.z;
                 }
-                data_0217b4e8[n] = e;
+                gFoundMapObjects[n] = e;
                 n++;
-                p = &data_0217b4dc[n];
+                p = &gFoundMapObjectVectors[n];
                 if (n >= 0x20) {
                     n = 0x1f;
                 }
@@ -625,7 +625,7 @@ s32 func_020d41e0(Kart *a, Vec3 *b, Vec3 *c) {
     return n;
 }
 
-s32 func_020d4130(Vec3 *a, s32 b, s32 c) {
+s32 FindMapObjectsOfKindInRadius(Vec3 *a, s32 b, s32 c) {
     s32 n;
     MapObject *e;
     s32 d;
@@ -640,7 +640,7 @@ s32 func_020d4130(Vec3 *a, s32 b, s32 c) {
             f = a->x - e->mPos.x;
             d = a->z - e->mPos.z;
             if ((s64) f * f + (s64) d * d < (s64) b * b) {
-                data_0217b4e8[n] = e;
+                gFoundMapObjects[n] = e;
                 n++;
             }
         }
@@ -648,17 +648,17 @@ s32 func_020d4130(Vec3 *a, s32 b, s32 c) {
     return n;
 }
 
-// Returns the i-th map object stored by the last func_020d41e0 or func_020d4130 call; i must be below the count that
-// call returned.
+// Returns the i-th map object stored by the last FindMapObjectsTouchingKart or FindMapObjectsOfKindInRadius call; i
+// must be below the count that call returned.
 MapObject *GetFoundMapObject(u32 arg0) {
-    return data_0217b4e8[arg0];
+    return gFoundMapObjects[arg0];
 }
 
-Vec3 *func_020d4104(int arg0) {
-    return data_0217b4dc + arg0;
+Vec3 *GetFoundMapObjectVector(int arg0) {
+    return gFoundMapObjectVectors + arg0;
 }
 
-BOOL func_020d3e34(Vec3 *a, s32 b, MapObject *c, Vec3 *d) {
+BOOL IsSphereHittingMapObject(Vec3 *a, s32 b, MapObject *c, Vec3 *d) {
     s32 t;
     s32 u;
     s32 dx;
@@ -669,7 +669,7 @@ BOOL func_020d3e34(Vec3 *a, s32 b, MapObject *c, Vec3 *d) {
     if (c->mFlags & 1) {
         return FALSE;
     }
-    switch (c->mKindData->mUnk_08) {
+    switch (c->mKindData->mShapeKind) {
         case 1:
             t = b + c->mExtent.x;
             n = -t;
@@ -727,8 +727,8 @@ BOOL func_020d3e34(Vec3 *a, s32 b, MapObject *c, Vec3 *d) {
         case 0:
             return FALSE;
         case 5:
-            if (c->mKindData->mUnk_18 != NULL) {
-                return c->mKindData->mUnk_18(c, a, b, d) != 0;
+            if (c->mKindData->mSphereHitTest != NULL) {
+                return c->mKindData->mSphereHitTest(c, a, b, d) != 0;
             }
             return FALSE;
         default:
@@ -813,15 +813,15 @@ void SetMapObjectsRunUpdateLists(void) {
 }
 
 u16 AllocPolygonIdWrapping(void) {
-    data_0217b4c4++;
-    if (data_0217b4c4 > 0x3e) {
-        data_0217b4c4 = data_0217b4c8;
+    gWrappingPolygonId++;
+    if (gWrappingPolygonId > 0x3e) {
+        gWrappingPolygonId = gWrappingPolygonIdBase;
     }
-    return data_0217b4c4;
+    return gWrappingPolygonId;
 }
 
 u16 AllocPolygonId(void) {
-    return data_0217b4d0++;
+    return gNextPolygonId++;
 }
 
 #pragma thumb on

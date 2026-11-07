@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk0217b4f8 Unk0217b4f8;
+typedef struct ViewFrustum ViewFrustum;
 
-Unk0217b4f8 *func_020d50e0(void);
+ViewFrustum *GetViewFrustum(void);

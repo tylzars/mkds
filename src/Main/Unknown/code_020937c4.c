@@ -90,7 +90,7 @@ void UpdateNsKiller1(void *a, NsKiller1 *p) {
                     NNS_SndPlayerStopSeq(func_02108e6c(8), 0);
                     s = data_0216676c;
                     s.mUnk_04 = &p->mUnk_00.mPos;
-                    s.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
+                    s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
                     func_0210b708(&s, func_02108e6c(8));
                 }
             } else if (p->mUnk_a0 <= 0) {
@@ -187,7 +187,7 @@ void UpdateNsKiller2(void *a, NsKiller2 *p) {
                 if ((p->mUnk_00.mFlags & 2) == 0 && (p->mUnk_00.mDistanceSquaredAndFlags & 8) != 0) {
                     func_0210b7ec(p->mUnk_a8, p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f);
                 } else {
-                    func_0210b7ec(p->mUnk_a8, func_020d4ef4(&p->mUnk_00.mPos));
+                    func_0210b7ec(p->mUnk_a8, GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos));
                 }
                 VEC_Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
                 if (p->mUnk_a0 < 0x24e) {

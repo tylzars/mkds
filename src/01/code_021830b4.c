@@ -92,7 +92,7 @@ void func_ov001_02183f0c(Unk02188950 *a) {
         Unk021a78d8 sp14 = {0x212, 0, 0xc, 0};
 
         sp14.mUnk_04 = &a->mUnk_000.mPos;
-        sp14.mUnk_0c = func_020d4ef4(&a->mUnk_000.mPos);
+        sp14.mUnk_0c = GetHorizontalCameraDistanceSquared(&a->mUnk_000.mPos);
         func_0210b734(&sp14, func_02108e7c());
     }
     a->mUnk_000.mFlags |= data_ov001_021a6578;

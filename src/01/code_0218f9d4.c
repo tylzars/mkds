@@ -619,7 +619,7 @@ void func_ov001_02190ee0(Unk02188950 *a) {
         Unk02190ee0 local = data_ov001_021a7de8;
 
         local.mUnk_04 = &a->mUnk_000.mPos;
-        local.mUnk_0c = func_020d4ef4(&a->mUnk_000.mPos);
+        local.mUnk_0c = GetHorizontalCameraDistanceSquared(&a->mUnk_000.mPos);
         func_0210b734(&local, func_02108e7c());
     }
     a->mUnk_000.mFlags |= data_ov001_021a65c8;

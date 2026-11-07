@@ -193,8 +193,8 @@ s32 func_01ffd778(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
     s32 f;
     s32 g;
     c = (c + b) >> 12;
-    z = (a->z - data_0217b4f8.mUnk_08.z) >> 12;
-    x = (a->x - data_0217b4f8.mUnk_08.x) >> 12;
+    z = (a->z - gViewFrustum.mCameraPos.z) >> 12;
+    x = (a->x - gViewFrustum.mCameraPos.x) >> 12;
     f = x * x;
     q = z * z + f;
     r = q & ~0xc000001f;
@@ -207,28 +207,28 @@ s32 func_01ffd778(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
         }
         r |= data_usa_021568f8;
     }
-    y = (a->y - data_0217b4f8.mUnk_08.y) >> 12;
-    if (x * data_0217b4f8.mUnk_14.x + y * data_0217b4f8.mUnk_14.y + z * data_0217b4f8.mUnk_14.z <
-        data_0217b4f8.mUnk_00 - b) {
+    y = (a->y - gViewFrustum.mCameraPos.y) >> 12;
+    if (x * gViewFrustum.mViewDirection.x + y * gViewFrustum.mViewDirection.y + z * gViewFrustum.mViewDirection.z <
+        gViewFrustum.mNear - b) {
         return r | 2;
     }
-    if (x * data_0217b4f8.mUnk_20.x + y * data_0217b4f8.mUnk_20.y + z * data_0217b4f8.mUnk_20.z > b) {
+    if (x * gViewFrustum.mUnk_20.x + y * gViewFrustum.mUnk_20.y + z * gViewFrustum.mUnk_20.z > b) {
         return r | 2;
     }
-    if (x * data_0217b4f8.mUnk_2c.x + y * data_0217b4f8.mUnk_2c.y + z * data_0217b4f8.mUnk_2c.z > b) {
+    if (x * gViewFrustum.mUnk_2c.x + y * gViewFrustum.mUnk_2c.y + z * gViewFrustum.mUnk_2c.z > b) {
         return r | 2;
     }
-    if (x * data_0217b4f8.mUnk_38.x + y * data_0217b4f8.mUnk_38.y + z * data_0217b4f8.mUnk_38.z > b) {
+    if (x * gViewFrustum.mUnk_38.x + y * gViewFrustum.mUnk_38.y + z * gViewFrustum.mUnk_38.z > b) {
         return r | 2;
     }
-    g = x * data_0217b4f8.mUnk_44.x;
-    if (z * data_0217b4f8.mUnk_44.z + (y * data_0217b4f8.mUnk_44.y + g) > b) {
+    g = x * gViewFrustum.mUnk_44.x;
+    if (z * gViewFrustum.mUnk_44.z + (y * gViewFrustum.mUnk_44.y + g) > b) {
         r |= 2;
     }
     return r;
 }
 
-static inline s32 func_01ffd648_inline(Unk0217b4f8 *g) {
+static inline s32 func_01ffd648_inline(ViewFrustum *g) {
     return g->mUnk_20.y;
 }
 
@@ -238,9 +238,9 @@ s32 func_01ffd648(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
     s32 q;
     s32 h;
     c = (c + b) >> 12;
-    VEC_Subtract(a, &data_0217b4f8.mUnk_08, &v);
-    v.x = (a->x - data_0217b4f8.mUnk_08.x) >> 12;
-    v.z = (a->z - data_0217b4f8.mUnk_08.z) >> 12;
+    VEC_Subtract(a, &gViewFrustum.mCameraPos, &v);
+    v.x = (a->x - gViewFrustum.mCameraPos.x) >> 12;
+    v.z = (a->z - gViewFrustum.mCameraPos.z) >> 12;
     q = v.x * v.x + v.z * v.z;
     r = q & ~0xc000001f;
     if (q > d) {
@@ -252,13 +252,12 @@ s32 func_01ffd648(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
         }
         r |= data_usa_021568f8;
     }
-    v.y = (a->y - data_0217b4f8.mUnk_08.y) >> 12;
+    v.y = (a->y - gViewFrustum.mCameraPos.y) >> 12;
     h = ((const Vec3 *) &v)->x;
-    if (v.y * func_01ffd648_inline(&data_0217b4f8) + v.x * data_0217b4f8.mUnk_20.x + v.z * data_0217b4f8.mUnk_20.z >
-        b) {
+    if (v.y * func_01ffd648_inline(&gViewFrustum) + v.x * gViewFrustum.mUnk_20.x + v.z * gViewFrustum.mUnk_20.z > b) {
         return r | 2;
     }
-    if (h * data_0217b4f8.mUnk_2c.x + v.y * data_0217b4f8.mUnk_2c.y + v.z * data_0217b4f8.mUnk_2c.z > b) {
+    if (h * gViewFrustum.mUnk_2c.x + v.y * gViewFrustum.mUnk_2c.y + v.z * gViewFrustum.mUnk_2c.z > b) {
         r |= 2;
     }
     return r;

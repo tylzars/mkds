@@ -104,8 +104,8 @@ void SetupCameraBehindKart(void) {
     p->mPrevPos = p->mPos;
     p->mKartMoveScale = 0x1000;
     gChaseCamera->mHeightHold = 0;
-    func_020d4f94((Unk020d4f94 *) &p->mViewMatrix);
-    func_020d50c4();
+    UpdateViewFrustum((Unk020d4f94 *) &p->mViewMatrix);
+    RequestViewTestRefresh();
     gChaseCamera->mLookAt.y = q->mPos.y + gChaseCamera->mLookAtHeight;
 }
 
@@ -1091,8 +1091,8 @@ void ResetCameraBehind(const Vec3 *a, void *b) {
     p->mPrevPos = p->mPos;
     p->mKartMoveScale = 0x1000;
     gChaseCamera->mHeightHold = 0;
-    func_020d4f94((Unk020d4f94 *) &p->mViewMatrix);
-    func_020d50c4();
+    UpdateViewFrustum((Unk020d4f94 *) &p->mViewMatrix);
+    RequestViewTestRefresh();
 }
 
 // Chase camera (gChaseCamera) only.

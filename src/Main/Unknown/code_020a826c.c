@@ -35,7 +35,7 @@ static inline void func_020a826c_inline(Unk020a826c_a0 *q) {
     } else {
         v = 0;
     }
-    q->mUnk_00.mUnk_0c = func_020d4ef4(&q->mUnk_10);
+    q->mUnk_00.mUnk_0c = GetHorizontalCameraDistanceSquared(&q->mUnk_10);
     if (q->mUnk_00.mUnk_0c < v) {
         q->mUnk_24 = q->mUnk_24 == 0 ? 1 : 2;
         if (GetRaceUseChainCameras() != 0) {

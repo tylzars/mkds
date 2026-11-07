@@ -377,7 +377,7 @@ void UpdateBalloon(void *p, Balloon *a) {
             func_0208b748(0x5b, &a->mUnk_00.mPos, a, func_020a392c);
             func_0208b748(0x5c, &a->mUnk_00.mPos, a, func_020a392c);
             func_0208b748(0x5d, &a->mUnk_00.mPos, a, func_020a392c);
-            func_0210b8f4(&a->mUnk_00.mPos, func_020d4ef4(&a->mUnk_00.mPos));
+            func_0210b8f4(&a->mUnk_00.mPos, GetHorizontalCameraDistanceSquared(&a->mUnk_00.mPos));
             ParkMapObject(&a->mUnk_00);
         } else {
             a->mUnk_c8 = a->mUnk_c8 + a->mUnk_cc;

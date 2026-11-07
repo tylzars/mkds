@@ -137,7 +137,7 @@ void UpdateWanwan(void *a, Wanwan *p) {
                     c.mUnk_00 = 0x1a1;
                     c.mUnk_04 = &p->mUnk_00.mPos;
                     c.mUnk_08 = y;
-                    c.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
+                    c.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
                     func_0210b7a8(&c);
                 }
             }
@@ -157,7 +157,7 @@ void UpdateWanwan(void *a, Wanwan *p) {
                     d.mUnk_00 = 0x1df;
                     d.mUnk_04 = &p->mUnk_00.mPos;
                     d.mUnk_08 = y;
-                    d.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
+                    d.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
                     func_0210b7a8(&d);
                 }
             }
@@ -399,7 +399,7 @@ void EnterWanwanState1(Wanwan *p) {
     a.mUnk_00 = 0x12c;
     a.mUnk_04 = &p->mUnk_00.mPos;
     a.mUnk_08 = k;
-    a.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
+    a.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
     func_0210b7a8(&a);
 }
 

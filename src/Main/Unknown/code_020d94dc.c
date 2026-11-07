@@ -92,7 +92,7 @@ void UpdateWater(Water *a) {
                     s1.mUnk_00 = 0x114;
                     s1.mUnk_04 = NULL;
                     s1.mUnk_08 = 4;
-                    s1.mUnk_0c = func_020d4ef4(NULL);
+                    s1.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
                     func_0210b760(&s1, h);
                 }
             } else if (a->mHoldFrames > (a->mHighHoldFrameCount >> 1)) {
@@ -123,7 +123,7 @@ void UpdateWater(Water *a) {
                     s2.mUnk_00 = 0x113;
                     s2.mUnk_04 = NULL;
                     s2.mUnk_08 = 4;
-                    s2.mUnk_0c = func_020d4ef4(NULL);
+                    s2.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
                     func_0210b760(&s2, h);
                 }
             } else if (a->mHoldFrames > (a->mLowHoldFrameCount >> 1)) {

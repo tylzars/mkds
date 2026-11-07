@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020d50c4(void);
+void RequestViewTestRefresh(void);

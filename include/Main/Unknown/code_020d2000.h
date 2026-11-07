@@ -25,7 +25,7 @@ typedef struct MapObjects {
     /* 174 */ u16 mUpdateListCount;
     /* 176 */ u8 mUnk_176[2];
     /* 178 */ BOOL mUnk_178;
-    /* 17c */ s32 mUnk_17c;
+    /* 17c */ s32 mHasKoopaBlock;
     /* 180 */ s32 mUnk_180;
     /* 184 */ s32 mUnk_184;
     /* 188 */ s32 mUnk_188;

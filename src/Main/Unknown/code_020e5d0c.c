@@ -163,7 +163,7 @@ void UpdatePendulum(u32 param_1, Unk020e5e24 *a) {
             s.mUnk_00 = 0x173;
             s.mUnk_04 = &a->mUnk_04;
             s.mUnk_08 = n;
-            s.mUnk_0c = func_020d4ef4(&a->mUnk_04);
+            s.mUnk_0c = GetHorizontalCameraDistanceSquared(&a->mUnk_04);
             func_0210b7a8(&s);
         }
     }

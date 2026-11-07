@@ -60,7 +60,7 @@ void UpdateChandelier(void *a, Unk0209f1c8 *b) {
             s1.mUnk_00 = 0x11a;
             s1.mUnk_04 = &b->mUnk_00.mPos;
             s1.mUnk_08 = t;
-            s1.mUnk_0c = func_020d4ef4(&b->mUnk_00.mPos);
+            s1.mUnk_0c = GetHorizontalCameraDistanceSquared(&b->mUnk_00.mPos);
             func_0210b7a8(&s1);
         }
     } else if (b->mUnk_a0 == 0x46 || b->mUnk_a0 == 0xaf) {
@@ -75,7 +75,7 @@ void UpdateChandelier(void *a, Unk0209f1c8 *b) {
             s2.mUnk_00 = 0x11b;
             s2.mUnk_04 = &b->mUnk_00.mPos;
             s2.mUnk_08 = t;
-            s2.mUnk_0c = func_020d4ef4(&b->mUnk_00.mPos);
+            s2.mUnk_0c = GetHorizontalCameraDistanceSquared(&b->mUnk_00.mPos);
             func_0210b7a8(&s2);
         }
     } else if (b->mUnk_a0 == 0xfa) {
@@ -90,7 +90,7 @@ void UpdateChandelier(void *a, Unk0209f1c8 *b) {
             s3.mUnk_00 = 0x119;
             s3.mUnk_04 = &b->mUnk_00.mPos;
             s3.mUnk_08 = t;
-            s3.mUnk_0c = func_020d4ef4(&b->mUnk_00.mPos);
+            s3.mUnk_0c = GetHorizontalCameraDistanceSquared(&b->mUnk_00.mPos);
             func_0210b7a8(&s3);
         }
     }

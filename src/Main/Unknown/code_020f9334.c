@@ -210,7 +210,7 @@ void func_020f944c(ItemObject *param_1, MapObject *param_2) {
     ItemObject *p = param_1;
     MapObject *r = param_2;
 
-    if (func_020d3e34(&p->mPos, p->mUnk_e0, r, &a) == FALSE) {
+    if (IsSphereHittingMapObject(&p->mPos, p->mUnk_e0, r, &a) == FALSE) {
         return;
     }
     if ((r->mFlags & 0x40) == 0 && (p->mFlags & 0x80000) == 0 && func_020d6968(p->mKind, r) != 0) {

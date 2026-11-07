@@ -232,7 +232,7 @@ void EnterMkdEfBubbleState0(MkdEfBubbleObject *a) {
         s.mUnk_00 = 0x18c;
         s.mUnk_04 = &a->mUnk_00.mPos;
         s.mUnk_08 = n;
-        s.mUnk_0c = func_020d4ef4(&a->mUnk_00.mPos);
+        s.mUnk_0c = GetHorizontalCameraDistanceSquared(&a->mUnk_00.mPos);
         func_0210b7a8(&s);
     }
     a->mUnk_e4 = 0;

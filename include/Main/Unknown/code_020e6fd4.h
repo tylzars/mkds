@@ -21,11 +21,11 @@ typedef struct Unk020e71a0_94 {
 typedef struct MapObjectKindData {
     /* 00 */ s32 (*mUnk_00)(struct MapObject *e, void *a, s32 *b, s32 *c);
     /* 04 */ s32 (*mUnk_04)(struct MapObject *e, void *a, void *b, void *c);
-    /* 08 */ s32 mUnk_08;
+    /* 08 */ s32 mShapeKind;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
-    /* 18 */ s32 (*mUnk_18)(struct MapObject *a, Vec3 *b, s32 c, Vec3 *d);
+    /* 18 */ s32 (*mSphereHitTest)(struct MapObject *a, Vec3 *b, s32 c, Vec3 *d);
     /* 1c */ s32 mUnk_1c;
     /* 20 */ s32 mUnk_20;
     /* 24 */ s32 mUnk_24;
@@ -57,9 +57,9 @@ typedef struct MapObject {
     // bit as a mirror flag for the model.
     /* 64 */ s16 mCollisionSlotIndex;
     // Alpha of the object, 0 to 0x1f. The visibility pass lowers it by 1 per call while mDistanceSquaredAndFlags bit 0
-    // is set and raises it by 1 up to 0x1f otherwise (func_020d4698 sets 0 or 0x1f at once); the draw group skips the
-    // object at 0, the view test counts 1 or less as not drawn, and the model draw lowers the model's polygon alpha to
-    // it.
+    // is set and raises it by 1 up to 0x1f otherwise (RefreshMapObjectViewTests sets 0 or 0x1f at once); the draw group
+    // skips the object at 0, the view test counts 1 or less as not drawn, and the model draw lowers the model's polygon
+    // alpha to it.
     /* 66 */ u16 mAlpha;
     // Radius of the sphere that the view test checks against the view planes and adds to mDrawDistance: the kind's
     // value times the largest of mScale x, y, z (two kinds use their own factor).
@@ -146,7 +146,7 @@ typedef struct JgKindRow {
 } JgKindRow;
 
 extern Unk0216c324 data_0216c324[];
-// Filled in by func_020e7760; UpdateJgState1 stores func_020d4ef4's return value
+// Filled in by func_020e7760; UpdateJgState1 stores GetHorizontalCameraDistanceSquared's return value
 // at 0x0c and hands it to func_0210b760.
 extern Unk0210b7a8 data_0217b9dc;
 extern JgKindRow gJgKindRows[];

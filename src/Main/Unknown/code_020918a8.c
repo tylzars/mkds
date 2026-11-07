@@ -59,7 +59,7 @@ static inline void func_020919e8_inline_3(Unk020919e8 *p, s32 n) {
     s.mUnk_00 = n;
     s.mUnk_04 = &p->mUnk_00.mPos;
     s.mUnk_08 = v;
-    s.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
+    s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
     func_0210b7a8(&s);
 }
 

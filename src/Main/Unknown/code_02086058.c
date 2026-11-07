@@ -27,7 +27,7 @@ void func_02086a04(void) {
     Vec3 v24;
     Vec3 v30;
     s32 i;
-    Unk0217b4f8 *q;
+    ViewFrustum *q;
     KartModelsEntry *s;
     s32 k;
     u32 e;
@@ -39,19 +39,19 @@ void func_02086a04(void) {
     BOOL b;
     u16 n;
     s32 j;
-    q = func_020d50e0();
+    q = GetViewFrustum();
     for (i = 0; i < gRaceSetup->mKartCount; i++) {
         GetKart(i);
         data_0217aed0->mUnk_0e4[i] = 0;
         p = GetKart(i);
         k = p->mRadius * 3;
         s = p->mKartModelsEntry;
-        VEC_Subtract(p->mPosSource, &q->mUnk_08, &v30);
-        d = VEC_DotProduct(&v30, &q->mUnk_14);
+        VEC_Subtract(p->mPosSource, &q->mCameraPos, &v30);
+        d = VEC_DotProduct(&v30, &q->mViewDirection);
         data_0217aed0->mUnk_104[i] = d + k;
         data_0217aed0->mUnk_074[p->mIndex] = data_0217aed0->mUnk_024[p->mIndex] + data_0217aed0->mUnk_034[p->mIndex];
         data_0217aed0->mUnk_054[data_0217aed0->mUnk_074[p->mIndex]] = d;
-        VEC_Subtract(p->mPosSource, &q->mUnk_08, &v24);
+        VEC_Subtract(p->mPosSource, &q->mCameraPos, &v24);
         v24.x = v24.x >> 12;
         v24.y = v24.y >> 12;
         v24.z = v24.z >> 12;

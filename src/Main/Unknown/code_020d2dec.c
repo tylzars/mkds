@@ -140,7 +140,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                     a->mKindData->mUnk_30 = v != 0 ? (v << 12) + 0.5f : (v << 12) - 0.5f;
                 }
                 if (t->mUnk_08 != 0) {
-                    a->mKindData->mUnk_08 = t->mUnk_08;
+                    a->mKindData->mShapeKind = t->mUnk_08;
                     v = t->mUnk_0a;
                     a->mKindData->mUnk_0c = v != 0 ? (v << 12) + 0.5f : (v << 12) - 0.5f;
                     v = t->mUnk_0c;
@@ -211,7 +211,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
             }
             func_020d24d8(object, kindData->mUnk_30);
             object->mUseTwoPlaneViewTest = kindData->mUnk_34;
-            if (kindData->mUnk_08 != 0) {
+            if (kindData->mShapeKind != 0) {
                 object->mFlags &= ~1;
             } else {
                 object->mFlags |= data_021568cc;
@@ -254,7 +254,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                     a->mInitObject(object, NULL, source);
                 }
             }
-            if (kindData->mUnk_08 != 0) {
+            if (kindData->mShapeKind != 0) {
                 m = 0x2000;
                 if (kindData->mUnk_20 == 0) {
                     m |= data_021568e0;
@@ -311,12 +311,12 @@ void InitMapObjects(void) {
     func_020d22e0();
     data_0217b4cc = func_02061788();
     data_0217b4c0 = data_0217b4cc + 9;
-    data_0217b4c8 = data_0217b4c0 + 1;
+    gWrappingPolygonIdBase = data_0217b4c0 + 1;
     n = gCourseMap->mRowCount;
     gMapObjects = HeapAlloc(h, 0x2bc);
     gMapObjects->mMapObjects = HeapAlloc(h, 0x400);
-    data_0217b4e8 = HeapAlloc(h, 0x80);
-    data_0217b4dc = HeapAlloc(h, 0x180);
+    gFoundMapObjects = HeapAlloc(h, 0x80);
+    gFoundMapObjectVectors = HeapAlloc(h, 0x180);
     gMapObjects->mMapObjectCount = 0;
     gMapObjects->mUnk_130 = FALSE;
     gMapObjects->mUnk_178 = FALSE;
@@ -350,7 +350,7 @@ void InitMapObjects(void) {
         v = 0;
     }
     data_0217b4e0 = v;
-    gMapObjects->mUnk_17c = 0;
+    gMapObjects->mHasKoopaBlock = 0;
     gMapObjects->mUnk_180 = 0;
     gMapObjects->mUnk_184 = 0;
     gMapObjects->mUnk_188 = 0;
@@ -360,8 +360,8 @@ void InitMapObjects(void) {
     func_020d7df8();
     InitMatrices();
     func_020d4bf0();
-    data_0217b4c4 = data_0217b4c8;
-    data_0217b4d0 = data_0217b4cc;
+    gWrappingPolygonId = gWrappingPolygonIdBase;
+    gNextPolygonId = data_0217b4cc;
     for (i = 0; i < data_0217b4ec; i++) {
         if (data_0216b288[i].mUnk_04 != NULL) {
             data_0216b288[i].mUnk_04->mObjectCount = 0;
@@ -373,12 +373,12 @@ void InitMapObjects(void) {
             continue;
         }
         CreateMapObject(e->mUnk_24, e, NULL);
-        gMapObjects->mUnk_17c |= IsKoopaBlockKind(e->mUnk_24);
+        gMapObjects->mHasKoopaBlock |= IsKoopaBlockKind(e->mUnk_24);
         gMapObjects->mUnk_180 |= func_020e4320(e->mUnk_24);
         gMapObjects->mUnk_184 |= func_020e3af0(e->mUnk_24);
         gMapObjects->mUnk_188 |= func_020ffabc(e->mUnk_24);
     }
-    if (gMapObjects->mUnk_17c != 0 || gMapObjects->mUnk_180 != 0 || gMapObjects->mUnk_184 != 0 ||
+    if (gMapObjects->mHasKoopaBlock != 0 || gMapObjects->mUnk_180 != 0 || gMapObjects->mUnk_184 != 0 ||
         gMapObjects->mUnk_188 != 0) {
         data_0217b610 = 1;
     }

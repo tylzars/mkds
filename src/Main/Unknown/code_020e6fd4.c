@@ -358,7 +358,7 @@ void func_020e71a0(MapObject *p) {
     } else {
         s32 v;
 
-        v = func_020d4ef4(&p->mPos);
+        v = GetHorizontalCameraDistanceSquared(&p->mPos);
         q->mSoundSource.mDistanceSquared = v;
         if (func_020d4d60(p, v) != FALSE) {
             p->mDistanceSquaredAndFlags |= data_02159310;

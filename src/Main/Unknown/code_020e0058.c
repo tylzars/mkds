@@ -138,7 +138,7 @@ void func_020e01f0(void *a0, Unk020e005c *a1) {
         buf.mUnk_00 = 0x17e;
         buf.mUnk_04 = &a1->mPos;
         buf.mUnk_08 = k;
-        buf.mUnk_0c = func_020d4ef4(&a1->mPos);
+        buf.mUnk_0c = GetHorizontalCameraDistanceSquared(&a1->mPos);
         func_0210b7a8(&buf);
         return;
     }

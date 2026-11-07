@@ -7,8 +7,8 @@
 #include "code_0212bcac.h"
 
 // 0x28-byte part at 0xa0 and 0xc8 of Unk020a826c: the four words at 0x00 go to func_0210b734 or func_0210b760 with
-// the value at 0x1c, 0x0c holds func_020d4ef4's result for the vector at 0x10, 0x24 is set to 0, 1 or 2
-// (func_020a826c); func_020a8ed8 writes the vector at 0x10 and the word at 0x20.
+// the value at 0x1c, 0x0c holds GetHorizontalCameraDistanceSquared's result for the vector at 0x10, 0x24 is set to 0, 1
+// or 2 (func_020a826c); func_020a8ed8 writes the vector at 0x10 and the word at 0x20.
 typedef struct Unk020a826c_a0 {
     /* 00 */ Unk0210b7a8 mUnk_00;
     /* 10 */ Vec3 mUnk_10;

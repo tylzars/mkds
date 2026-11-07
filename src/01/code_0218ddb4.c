@@ -521,7 +521,7 @@ s32 func_ov001_0218e650(Unk02188950 *a) {
     if (a->mUnk_0b0 == 50) {
         Unk021a7c08 local = {0x22f, 0, 0xe, 0};
         local.mUnk_04 = &a->mUnk_000.mPos;
-        local.mUnk_0c = func_020d4ef4(&a->mUnk_000.mPos);
+        local.mUnk_0c = GetHorizontalCameraDistanceSquared(&a->mUnk_000.mPos);
         func_0210b734(&local, func_02108e7c());
     }
     return 0;

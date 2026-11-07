@@ -133,7 +133,7 @@ void func_0206e874(Kart *p) {
     e = NULL;
     n = 0;
     p->mUnk_3a0 = p->mUnk_39c = 0;
-    k = func_020d41e0(p, &p->mCollisionCenter, &t);
+    k = FindMapObjectsTouchingKart(p, &p->mCollisionCenter, &t);
     if (k != 0) {
         if (!(p->mUnk_48 & 0x40)) {
             i = k - 1;
@@ -149,7 +149,7 @@ void func_0206e874(Kart *p) {
                     if (r != 0) {
                         v = z;
                         u = &e->mUnk_10;
-                        q = func_020d4104(i);
+                        q = GetFoundMapObjectVector(i);
                         d = func_0206e874_inline(q, &v);
                         if (d != 0) {
                             if (v2 != 2) {

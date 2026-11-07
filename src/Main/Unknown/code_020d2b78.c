@@ -77,7 +77,7 @@ s32 func_020d2c2c(Vec3 *b, Vec3 *c, s32 d, s16 e, s32 f, Vec3 *g) {
         q = &gMapObjects->mUnk_18c;
         for (; i < data_0217b5a8; i++) {
             p = data_0217b5c4[i];
-            if (func_020d3e34(b, d, p, &v) != FALSE) {
+            if (IsSphereHittingMapObject(b, d, p, &v) != FALSE) {
                 if (!(p->mFlags & 0x40) && func_020d6968(f, p) != 0) {
                     t = v.x;
                     mn.x = ((const Vec3 *) &v)->x < mn.x ? t : mn.x;

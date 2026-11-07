@@ -18,7 +18,7 @@ void SetMapObjectScale(MapObject *d, Vec3 *e) {
     d->mScale.z = e->z;
     d->mExtent.x = (s64) d->mKindData->mUnk_0c * d->mScale.x >> 12;
     if (d->mCollisionSlotIndex >= 0) {
-        switch (d->mKindData->mUnk_08) {
+        switch (d->mKindData->mShapeKind) {
             case 3:
             case 4:
             case 5:
@@ -35,7 +35,7 @@ void SetMapObjectScale(MapObject *d, Vec3 *e) {
     }
     d->mExtent.y = (s64) d->mKindData->mUnk_10 * d->mScale.y >> 12;
     if (d->mCollisionSlotIndex >= 0) {
-        switch (d->mKindData->mUnk_08) {
+        switch (d->mKindData->mShapeKind) {
             case 3:
             case 4:
             case 5:
@@ -52,7 +52,7 @@ void SetMapObjectScale(MapObject *d, Vec3 *e) {
     }
     d->mExtent.z = (s64) d->mKindData->mUnk_14 * d->mScale.z >> 12;
     if (d->mCollisionSlotIndex >= 0) {
-        switch (d->mKindData->mUnk_08) {
+        switch (d->mKindData->mShapeKind) {
             case 3:
             case 4:
             case 5:
@@ -85,7 +85,7 @@ void func_020d2950(MapObject *b, s32 c) {
     if (b->mCollisionSlotIndex < 0) {
         return;
     }
-    switch (b->mKindData->mUnk_08) {
+    switch (b->mKindData->mShapeKind) {
         case 3:
         case 4:
         case 5:

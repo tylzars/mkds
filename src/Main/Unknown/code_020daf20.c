@@ -251,7 +251,7 @@ void UpdateDossun(void *a, Dossun *p) {
                 s.mUnk_00 = 0x166;
                 s.mUnk_04 = &p->mUnk_00.mPos;
                 s.mUnk_08 = n;
-                s.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
+                s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
                 func_0210b7a8(&s);
             }
             StartCameraWobbleAtDistance(p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f, 0x1000);
@@ -490,7 +490,7 @@ void UpdateKuribo(void *a, Kuribo *p) {
             s.mUnk_00 = 0x182;
             s.mUnk_04 = &p->mUnk_00.mPos;
             s.mUnk_08 = n;
-            s.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
+            s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
             func_0210b7a8(&s);
         }
     }
