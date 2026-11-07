@@ -1402,7 +1402,7 @@ typedef struct KartEffects {
     // Id of the effect running in entry i of mEffectPairs, -1 when there is none; compared with the wanted id to decide
     // whether to start again.
     /* 04 */ s32 mEffectIds[2];
-    // The effect object of this Kart started by func_02083d4c, whose id is mCurrentEffectId (NULL when none).
+    // The effect object of this Kart started by StartKartCurrentEffect, whose id is mCurrentEffectId (NULL when none).
     /* 0c */ struct Unk0201ca6c *mCurrentEffect;
     // The effect objects started for mEffectIds: entry i holds the object of side 0 and the object of side 1 (the byte
     // set in each object is the side number); ids in mEffectIds.

@@ -64,7 +64,7 @@ int CollideKartWithMapObjectResponse6(Kart *p, s32 *a, MapObject *c) {
 int CollideKartWithMapObjectResponse5(Kart *p, s32 *a) {
     if (func_0206bcb0(p, 2, 0)) {
         if (p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) {
-            func_02081e3c(StartEffect(0x4f, &p->mPos), p->mIndex, 0x46);
+            SetupKartFollowEffectWithVelocity(StartEffect(0x4f, &p->mPos), p->mIndex, 0x46);
         }
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             GetEntryKartCounters()->mUnk_14++;

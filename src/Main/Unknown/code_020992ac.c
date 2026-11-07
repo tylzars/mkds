@@ -34,35 +34,35 @@ void *gBankEgg1;
 void *gKinoMount1;
 void *gOf6yoshi1;
 
-Unk02166a74 data_usa_02166b44 = {0, 0xa0, 0, func_0209a728, func_02099474};
-Unk02166a74 data_usa_02166fbc = {0, 0xa0, 0, func_0209a728, func_02099ab0};
-Unk02166a74 data_usa_02166f88 = {0, 0xa0, 0, func_0209a728, func_02099b94};
-Unk02166a74 data_usa_02166c14 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) func_0209a47c};
-Unk02166a74 data_usa_02166c48 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) func_0209a398};
-Unk02166a74 data_usa_02166eec = {0, 0xa0, 0, func_0209a728, (void (*)(void)) func_0209a644};
-Unk02166a74 data_usa_02166cb0 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) func_0209a1d0};
-Unk02166a74 data_usa_02166ce4 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) func_0209a0ec};
-Unk02166a74 data_usa_02166d18 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) func_0209a008};
-Unk02166a74 data_usa_02166e1c = {0, 0xa0, 0, func_0209a728, (void (*)(void)) func_0209a2b4};
-Unk02166a74 data_usa_02166d4c = {0, 0xa0, 0, func_0209a728, (void (*)(void)) func_02099f24};
-Unk02166a74 data_usa_02166d80 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) func_02099f24};
-Unk02166a74 data_usa_02166db4 = {0, 0xa0, 0, func_0209a728, func_02099e40};
-Unk02166a74 data_usa_02166de8 = {0, 0xa0, 0, func_0209a728, func_02099e40};
-Unk02166a74 data_usa_02166e50 = {0, 0xa0, 0, func_0209a728, func_02099d5c};
-Unk02166a74 data_usa_02166e84 = {0, 0xa0, 0, func_0209a728, func_02099c78};
-Unk02166a74 data_usa_02166eb8 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) func_0209a560};
-Unk02166a74 data_usa_02166f20 = {0, 0xa0, 0, func_0209a728, func_02099c78};
-Unk02166a74 data_usa_02166f54 = {0, 0xa0, 0, func_0209a728, func_02099b94};
-Unk02166a74 data_usa_02166ff0 = {0, 0xa0, 0, func_0209a728, func_020999cc};
-Unk02166a74 data_usa_02167024 = {0, 0xa0, 0, func_0209a728, func_020998e8};
-Unk02166a74 data_usa_02166bac = {0, 0xa0, 0, func_0209a728, func_02099474};
-Unk02166a74 data_usa_02166a74 = {0, 0xa0, 0, func_0209a728, func_02099804};
-Unk02166a74 data_usa_02166aa8 = {0, 0xa0, 0, func_0209a728, func_02099720};
-Unk02166a74 data_usa_02166adc = {0, 0xa0, 0, func_0209a728, func_0209963c};
-Unk02166a74 data_usa_02166b10 = {0, 0xa0, 0, func_0209a728, func_02099558};
-Unk02166a74 data_usa_02166b78 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) func_0209a644};
-Unk02166a74 data_usa_02166be0 = {0, 0xa0, 0, func_0209a728, func_02099390};
-Unk02166a74 data_usa_02166c7c = {0, 0xa0, 0, func_0209a728, func_020992ac};
+Unk02166a74 data_usa_02166b44 = {0, 0xa0, 0, func_0209a728, CreateOf6Tree1DrawList};
+Unk02166a74 data_usa_02166fbc = {0, 0xa0, 0, func_0209a728, CreateOlaTree1cDrawList};
+Unk02166a74 data_usa_02166f88 = {0, 0xa0, 0, func_0209a728, CreateDeTree1DrawList};
+Unk02166a74 data_usa_02166c14 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateOlgMush1DrawList};
+Unk02166a74 data_usa_02166c48 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateOlgPipe1DrawList};
+Unk02166a74 data_usa_02166eec = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateBeachTree1DrawList};
+Unk02166a74 data_usa_02166cb0 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateNsCannon1DrawList};
+Unk02166a74 data_usa_02166ce4 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateCrossTree1DrawList};
+Unk02166a74 data_usa_02166d18 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateBankTree1DrawList};
+Unk02166a74 data_usa_02166e1c = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateOf6yoshi1DrawList};
+Unk02166a74 data_usa_02166d4c = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateGardenTree1DrawList};
+Unk02166a74 data_usa_02166d80 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateGardenTree1DrawList};
+Unk02166a74 data_usa_02166db4 = {0, 0xa0, 0, func_0209a728, CreateTownTree1DrawList};
+Unk02166a74 data_usa_02166de8 = {0, 0xa0, 0, func_0209a728, CreateTownTree1DrawList};
+Unk02166a74 data_usa_02166e50 = {0, 0xa0, 0, func_0209a728, CreateMarioTree3DrawList};
+Unk02166a74 data_usa_02166e84 = {0, 0xa0, 0, func_0209a728, CreateSnowTree1DrawList};
+Unk02166a74 data_usa_02166eb8 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateOpaTree1DrawList};
+Unk02166a74 data_usa_02166f20 = {0, 0xa0, 0, func_0209a728, CreateSnowTree1DrawList};
+Unk02166a74 data_usa_02166f54 = {0, 0xa0, 0, func_0209a728, CreateDeTree1DrawList};
+Unk02166a74 data_usa_02166ff0 = {0, 0xa0, 0, func_0209a728, CreateOsaTree1cDrawList};
+Unk02166a74 data_usa_02167024 = {0, 0xa0, 0, func_0209a728, CreateKinoHouse1DrawList};
+Unk02166a74 data_usa_02166bac = {0, 0xa0, 0, func_0209a728, CreateOf6Tree1DrawList};
+Unk02166a74 data_usa_02166a74 = {0, 0xa0, 0, func_0209a728, CreateKinoHouse2DrawList};
+Unk02166a74 data_usa_02166aa8 = {0, 0xa0, 0, func_0209a728, CreateKinoMount1DrawList};
+Unk02166a74 data_usa_02166adc = {0, 0xa0, 0, func_0209a728, CreateKinoMount2DrawList};
+Unk02166a74 data_usa_02166b10 = {0, 0xa0, 0, func_0209a728, CreateOm6Tree1DrawList};
+Unk02166a74 data_usa_02166b78 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateBeachTree1DrawList};
+Unk02166a74 data_usa_02166be0 = {0, 0xa0, 0, func_0209a728, CreateBankEgg1DrawList};
+Unk02166a74 data_usa_02166c7c = {0, 0xa0, 0, func_0209a728, CreateMiniDokanDrawList};
 
 void func_0209a728(void) {
     Unk0209bf70 *o;
@@ -91,7 +91,7 @@ void DrawBeachTree1(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gBeachTree1, b);
 }
 
-void *func_0209a644(void) {
+void *CreateBeachTree1DrawList(void) {
     return func_0209bef0(CreateBeachTree1, DrawBeachTree1, func_0209a6dc);
 }
 
@@ -115,7 +115,7 @@ void DrawOpaTree1(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gOpaTree1, b);
 }
 
-void *func_0209a560(void) {
+void *CreateOpaTree1DrawList(void) {
     return func_0209bef0(CreateOpaTree1, DrawOpaTree1, func_0209a5f8);
 }
 
@@ -139,7 +139,7 @@ void DrawOlgMush1(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gOlgMush1, b);
 }
 
-void *func_0209a47c(void) {
+void *CreateOlgMush1DrawList(void) {
     return func_0209bef0(CreateOlgMush1, DrawOlgMush1, func_0209a514);
 }
 
@@ -163,7 +163,7 @@ void DrawOlgPipe1(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gOlgPipe1, b);
 }
 
-void *func_0209a398(void) {
+void *CreateOlgPipe1DrawList(void) {
     return func_0209bef0(CreateOlgPipe1, DrawOlgPipe1, func_0209a430);
 }
 
@@ -187,7 +187,7 @@ void DrawOf6yoshi1(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gOf6yoshi1, b);
 }
 
-void *func_0209a2b4(void) {
+void *CreateOf6yoshi1DrawList(void) {
     return func_0209bef0(CreateOf6yoshi1, DrawOf6yoshi1, func_0209a34c);
 }
 
@@ -211,7 +211,7 @@ void DrawNsCannon1(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gNsCannon1, b);
 }
 
-void *func_0209a1d0(void) {
+void *CreateNsCannon1DrawList(void) {
     return func_0209bef0(CreateNsCannon1, DrawNsCannon1, func_0209a268);
 }
 
@@ -235,7 +235,7 @@ void DrawCrossTree1(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gCrossTree1, b);
 }
 
-void *func_0209a0ec(void) {
+void *CreateCrossTree1DrawList(void) {
     return func_0209bef0(CreateCrossTree1, DrawCrossTree1, func_0209a184);
 }
 
@@ -259,7 +259,7 @@ void DrawBankTree1(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gBankTree1, b);
 }
 
-void *func_0209a008(void) {
+void *CreateBankTree1DrawList(void) {
     return func_0209bef0(CreateBankTree1, DrawBankTree1, func_0209a0a0);
 }
 
@@ -283,7 +283,7 @@ void DrawGardenTree1(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gGardenTree1, b);
 }
 
-void *func_02099f24(void) {
+void *CreateGardenTree1DrawList(void) {
     return func_0209bef0(CreateGardenTree1, DrawGardenTree1, func_02099fbc);
 }
 
@@ -307,7 +307,7 @@ void DrawTownTree1(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gTownTree1, b);
 }
 
-void func_02099e40(void) {
+void CreateTownTree1DrawList(void) {
     func_0209bef0(CreateTownTree1, DrawTownTree1, func_02099ed8);
 }
 
@@ -331,7 +331,7 @@ void DrawMarioTree3(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gMarioTree3, b);
 }
 
-void func_02099d5c(void) {
+void CreateMarioTree3DrawList(void) {
     func_0209bef0(CreateMarioTree3, DrawMarioTree3, func_02099df4);
 }
 
@@ -355,7 +355,7 @@ void DrawSnowTree1(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gSnowTree1, b);
 }
 
-void func_02099c78(void) {
+void CreateSnowTree1DrawList(void) {
     func_0209bef0(CreateSnowTree1, DrawSnowTree1, func_02099d10);
 }
 
@@ -379,7 +379,7 @@ void DrawDeTree1(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gDeTree1, b);
 }
 
-void func_02099b94(void) {
+void CreateDeTree1DrawList(void) {
     func_0209bef0(CreateDeTree1, DrawDeTree1, func_02099c2c);
 }
 
@@ -403,7 +403,7 @@ void DrawOlaTree1c(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gOlaTree1c, b);
 }
 
-void func_02099ab0(void) {
+void CreateOlaTree1cDrawList(void) {
     func_0209bef0(CreateOlaTree1c, DrawOlaTree1c, func_02099b48);
 }
 
@@ -427,7 +427,7 @@ void DrawOsaTree1c(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gOsaTree1c, b);
 }
 
-void func_020999cc(void) {
+void CreateOsaTree1cDrawList(void) {
     func_0209bef0(CreateOsaTree1c, DrawOsaTree1c, func_02099a64);
 }
 
@@ -451,7 +451,7 @@ void DrawKinoHouse1(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gKinoHouse1, b);
 }
 
-void func_020998e8(void) {
+void CreateKinoHouse1DrawList(void) {
     func_0209bef0(CreateKinoHouse1, DrawKinoHouse1, func_02099980);
 }
 
@@ -475,7 +475,7 @@ void DrawKinoHouse2(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gKinoHouse2, b);
 }
 
-void func_02099804(void) {
+void CreateKinoHouse2DrawList(void) {
     func_0209bef0(CreateKinoHouse2, DrawKinoHouse2, func_0209989c);
 }
 
@@ -499,7 +499,7 @@ void DrawKinoMount1(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gKinoMount1, b);
 }
 
-void func_02099720(void) {
+void CreateKinoMount1DrawList(void) {
     func_0209bef0(CreateKinoMount1, DrawKinoMount1, func_020997b8);
 }
 
@@ -523,7 +523,7 @@ void DrawKinoMount2(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gKinoMount2, b);
 }
 
-void func_0209963c(void) {
+void CreateKinoMount2DrawList(void) {
     func_0209bef0(CreateKinoMount2, DrawKinoMount2, func_020996d4);
 }
 
@@ -547,7 +547,7 @@ void DrawOm6Tree1(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gOm6Tree1, b);
 }
 
-void func_02099558(void) {
+void CreateOm6Tree1DrawList(void) {
     func_0209bef0(CreateOm6Tree1, DrawOm6Tree1, func_020995f0);
 }
 
@@ -571,7 +571,7 @@ void DrawOf6Tree1(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gOf6Tree1, b);
 }
 
-void func_02099474(void) {
+void CreateOf6Tree1DrawList(void) {
     func_0209bef0(CreateOf6Tree1, DrawOf6Tree1, func_0209950c);
 }
 
@@ -595,7 +595,7 @@ void DrawBankEgg1(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gBankEgg1, b);
 }
 
-void func_02099390(void) {
+void CreateBankEgg1DrawList(void) {
     func_0209bef0(CreateBankEgg1, DrawBankEgg1, func_02099428);
 }
 
@@ -619,6 +619,6 @@ void DrawMiniDokan(u32 a, MapObject *b) {
     DrawMapObjectModelWithPos(a, gMiniDokan, b);
 }
 
-void func_020992ac(void) {
+void CreateMiniDokanDrawList(void) {
     func_0209bef0(CreateMiniDokan, DrawMiniDokan, func_02099344);
 }

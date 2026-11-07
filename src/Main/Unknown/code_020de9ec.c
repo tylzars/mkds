@@ -315,16 +315,16 @@ void func_020deb2c(Vec3 *a, void *b, u32 c, int d, u32 e) {
         if (v2 == data_021759c0->mEntryIndex) {
             v1 = StartEffect(0x2d, a);
             if (v1 != NULL) {
-                func_02081f10(v1, v2, 0x1e);
+                SetupKartFollowEffect(v1, v2, 0x1e);
             }
             v1 = StartEffect(0x2e, a);
             if (v1 != NULL) {
-                func_02081f10(v1, v2, 0x1e);
+                SetupKartFollowEffect(v1, v2, 0x1e);
             }
         }
         v1 = StartEffect(0x2f, a);
         if (v1 != NULL) {
-            func_02081f10(v1, v2, 0x1e);
+            SetupKartFollowEffect(v1, v2, 0x1e);
         }
     }
     func_020d26ec(b, 0xd4);

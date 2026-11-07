@@ -92,7 +92,7 @@ void func_01ffa350(Kart *p, u32 a) {
     p->mUnk_44 = p->mUnk_44 & ~a;
     p->mUnk_208->mUnk_00 = FALSE;
     p->mSurfaceGroup = -1;
-    func_020839d8(p);
+    StopKartCurrentEffects(p);
 }
 
 BOOL func_01ffa1f8(Kart *p) {

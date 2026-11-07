@@ -504,7 +504,7 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
             if (b->mUnk_0ac-- <= 0) {
                 ParkMapObject(&b->mUnk_000);
             } else if (b->mUnk_0ac == 3) {
-                func_02081f10(StartEffect(0x3f4, &e->mPos), e->mIndex, 0x18);
+                SetupKartFollowEffect(StartEffect(0x3f4, &e->mPos), e->mIndex, 0x18);
             }
             if (b->mUnk_0fc != NULL) {
                 func_0208b5b0(b->mUnk_0fc, &b->mUnk_000.mPos);

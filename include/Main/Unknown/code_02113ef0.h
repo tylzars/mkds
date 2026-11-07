@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_02113ef0(int a);
+u32 IsRecordVSRowFilled(int a);

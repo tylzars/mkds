@@ -339,7 +339,7 @@ void UpdateShine16(void *a, Shine16 *p) {
                     }
                 }
                 if (p->mUnk_a8 <= 0) {
-                    func_02081f10(StartEffect(0x7c, &v->mPos), v->mIndex, 0x16);
+                    SetupKartFollowEffect(StartEffect(0x7c, &v->mPos), v->mIndex, 0x16);
                 }
             } else {
                 p->mUnk_a8 += 0x19a;
@@ -724,8 +724,8 @@ BOOL func_020a5268(u16 a, u16 b) {
             if (GetBalloonOrShineCount(b) >= 2 && func_020a2204(b) != 0) {
                 e->mState = 4;
             }
-            func_02081f10(StartEffect(0x7a, &o->mPos), o->mIndex, 0x20);
-            func_02081f10(StartEffect(0x7b, &o->mPos), o->mIndex, 0x20);
+            SetupKartFollowEffect(StartEffect(0x7a, &o->mPos), o->mIndex, 0x20);
+            SetupKartFollowEffect(StartEffect(0x7b, &o->mPos), o->mIndex, 0x20);
             func_020d26ec(GetKart(b), 0x14f);
             if (GetBalloonOrShineCount(a) == 0) {
                 func_020a16d0(a);

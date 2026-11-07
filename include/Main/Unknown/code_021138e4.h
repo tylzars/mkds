@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void func_021138e4(void);
-void func_02113940(void);
+void DecrementRecordVSIndex(void);
+void IncrementRecordVSIndex(void);

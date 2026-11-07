@@ -512,7 +512,7 @@ void StartKartBoost(Kart *p, KartBoostKind a, int b) {
         } else {
             f = 1;
         }
-        func_02084034(f, p);
+        StartKartBoostCameraEffect(f, p);
         SetCameraHalfFovAngleGoal(0x1770);
         func_02055c80(5);
         if (a != KART_BOOST_RESPAWN) {

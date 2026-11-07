@@ -246,7 +246,7 @@ s32 func_02114158(u16 a, void *b) {
 
 #pragma thumb on
 
-void func_02113f34(void) {
+void LocateAndQueueRecordVS(void) {
     void *v1;
     Nclr *v2;
     u16 *v3;
@@ -313,18 +313,18 @@ void func_02113f34(void) {
 
 #pragma thumb on
 
-u16 func_02113f1c(void) {
-    return gRecordVS->mUnk_6a * 5;
+u16 GetRecordVSFirstRecordIndex(void) {
+    return gRecordVS->mPageIndex * 5;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-u32 func_02113ef0(int a) {
+u32 IsRecordVSRowFilled(int a) {
     int v1;
     int v2;
-    v1 = func_02113f1c();
+    v1 = GetRecordVSFirstRecordIndex();
     v2 = func_021143b4();
     if (v2 > v1 + a) {
         return 1;
@@ -342,7 +342,7 @@ void func_02113d84(void) {
     u16 b;
 
     b = gRecordVS->mRecordVSSBncl->mUnk_06;
-    a = func_02113f1c();
+    a = GetRecordVSFirstRecordIndex();
     for (i = 0; i < 5; i++) {
         gRecordVS->mRecordVSSTable[data_0215c3e0[i]].mUnk_00 = 0;
         gRecordVS->mRecordVSSTable[data_0215c3ec[i]].mUnk_00 = 0;
@@ -351,7 +351,7 @@ void func_02113d84(void) {
         gRecordVS->mRecordVSSTable[b + data_0215c3bc[i]].mUnk_00 = 0;
     }
     for (i = 0; i < 5; i++) {
-        if (func_02113ef0((s16) i)) {
+        if (IsRecordVSRowFilled((s16) i)) {
             if (gRecordVS->mIndex == i) {
                 gRecordVS->mRecordVSSTable[data_0215c3ec[i]].mUnk_00 = 1;
                 func_02124100(data_0215c3bc[i], 0xe, gRecordVS->mRecordVSSBnll, gRecordVS->mRecordVSSTable,
@@ -368,7 +368,7 @@ void func_02113d84(void) {
     }
 }
 
-void func_02113a3c(void) {
+void PrintRecordVSShownRecord(void) {
     u16 buf[16];
     u32 v[3][3] = {0};
     u8 s[0x14];
@@ -378,7 +378,7 @@ void func_02113a3c(void) {
     s32 j;
     s32 a;
 
-    a = func_02113f1c();
+    a = GetRecordVSFirstRecordIndex();
     if (func_02114158(a + gRecordVS->mShownIndex, s)) {
         gRecordVS->mUnk_40 = 1;
         CallQueueAppend(9, 0, &gRecordVS->mRecordVSM03Nscr->mData, gRecordVS->mRecordVSM03Nscr->mDataSize);
@@ -446,13 +446,13 @@ void func_02113a3c(void) {
     }
 }
 
-void func_021139b4(void) {
+void RefreshRecordVSPage(void) {
     s32 i;
     s32 a;
     s32 b;
     u8 buf[0x20];
 
-    a = func_02113f1c();
+    a = GetRecordVSFirstRecordIndex();
     for (i = 0; i < 5; i++) {
         b = a + i;
         if (func_021143b4() > b) {
@@ -465,13 +465,13 @@ void func_021139b4(void) {
         gRecordVS->mIndex = func_021143b4() % 5 - 1;
         gRecordVS->mShownIndex = gRecordVS->mIndex;
     }
-    func_02113a3c();
+    PrintRecordVSShownRecord();
 }
 
 #pragma thumb off
 
 #pragma thumb on
-u32 func_021139a0(void) {
+u32 IncrementRecordVSPageIndex(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &gRecordVS;
@@ -486,7 +486,7 @@ u32 func_021139a0(void) {
 #pragma thumb off
 
 #pragma thumb on
-u32 func_0211398c(void) {
+u32 DecrementRecordVSPageIndex(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &gRecordVS;
@@ -502,11 +502,11 @@ u32 func_0211398c(void) {
 
 #pragma thumb on
 
-void func_02113940(void) {
+void IncrementRecordVSIndex(void) {
     int v1;
     int v2;
     v2 = (gRecordVS->mIndex + 1) * 0x10000 >> 0x10;
-    v1 = func_02113ef0(v2);
+    v1 = IsRecordVSRowFilled(v2);
     if ((v1 == 0) || (5 <= v2)) {
         v2 = 0;
     }
@@ -516,7 +516,7 @@ void func_02113940(void) {
     gRecordVS->mIndex = v2;
 }
 
-void func_021138e4(void) {
+void DecrementRecordVSIndex(void) {
     int v1;
     int v2;
     int v3;
@@ -524,7 +524,7 @@ void func_021138e4(void) {
     v4 = (gRecordVS->mIndex + -1) * 0x10000 >> 0x10;
     if (v4 < 0) {
         v4 = 4;
-        v1 = func_02113ef0(4);
+        v1 = IsRecordVSRowFilled(4);
         if (v1 == 0) {
             v2 = func_021143b4();
             v3 = (v2) % 5;
@@ -541,16 +541,16 @@ void func_021138e4(void) {
 
 #pragma thumb on
 
-void func_021137f4(void) {
+void AdvanceRecordVSOffsetTimers(void) {
     s32 i;
     u16 a;
 
-    a = func_02113f1c();
-    gRecordVS->mRecordVSSTable[data_0215c3ac[0]].mUnk_04 = -func_020adc64(6 - gRecordVS->mUnk_80[0]);
-    gRecordVS->mRecordVSSTable[data_0215c3ac[1]].mUnk_04 = func_020adc64(6 - gRecordVS->mUnk_80[1]);
+    a = GetRecordVSFirstRecordIndex();
+    gRecordVS->mRecordVSSTable[data_0215c3ac[0]].mUnk_04 = -func_020adc64(6 - gRecordVS->mOffsetTimers[0]);
+    gRecordVS->mRecordVSSTable[data_0215c3ac[1]].mUnk_04 = func_020adc64(6 - gRecordVS->mOffsetTimers[1]);
     for (i = 0; i < 2; i++) {
-        if (gRecordVS->mUnk_80[i] > 0) {
-            gRecordVS->mUnk_80[i]--;
+        if (gRecordVS->mOffsetTimers[i] > 0) {
+            gRecordVS->mOffsetTimers[i]--;
             gRecordVS->mRecordVSSTable[data_0215c3b0[i]].mUnk_00 = 0;
             gRecordVS->mRecordVSSTable[data_0215c3ac[i]].mUnk_00 = 1;
         } else {
@@ -569,7 +569,7 @@ void func_021137f4(void) {
 void func_021137a8(s32 a) {
     s32 b;
 
-    b = func_02113f1c();
+    b = GetRecordVSFirstRecordIndex();
     b += a;
     if (func_02114398(b)) {
         func_02114260(b);
@@ -584,7 +584,7 @@ void func_021137a8(s32 a) {
 
 #pragma thumb on
 
-u32 func_02113790(void) {
+u32 IsRecordVSIndexChangeRunning(void) {
     if (gRecordVS->mIndexChangeTimer != 0) {
         return 1;
     }
@@ -595,14 +595,14 @@ u32 func_02113790(void) {
 
 #pragma thumb on
 
-void func_021136f8(void) {
+void AdvanceRecordVSIndexChange(void) {
     u16 a;
     u16 b;
     s16 v;
-    if (func_02113790() != 0) {
+    if (IsRecordVSIndexChangeRunning() != 0) {
         if (gRecordVS->mIndexChangeTimer == 7) {
             gRecordVS->mShownIndex = gRecordVS->mIndex;
-            func_02113a3c();
+            PrintRecordVSShownRecord();
         } else {
             a = gRecordVS->mRecordVSMBncl->mUnk_06;
             b = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
@@ -678,16 +678,16 @@ void func_021134d4(void) {
     }
 }
 
-void func_021134b8(void) {
+void RequestRecordVSState1AndPrintShownRecord(void) {
     gRecordVS->mNextState = 1;
     gRecordVS->mStateFrames = 0;
-    func_02113a3c();
+    PrintRecordVSShownRecord();
 }
 
-void func_0211349c(void) {
+void RequestRecordVSState2AndRefreshPage(void) {
     gRecordVS->mNextState = 2;
     gRecordVS->mStateFrames = 0;
-    func_021139b4();
+    RefreshRecordVSPage();
 }
 
 void func_02113480(void) {
@@ -710,18 +710,18 @@ void RequestRecordVSState5(void) {
     gRecordVS->mStateFrames = 0;
 }
 
-void func_02113420(void) {
+void RequestRecordVSState6AndChangePage(void) {
     gRecordVS->mNextState = 6;
     gRecordVS->mStateFrames = 0;
     switch (gRecordVS->mUnk_6c) {
         case 0:
-            func_021139a0();
+            IncrementRecordVSPageIndex();
             break;
         case 1:
-            func_0211398c();
+            DecrementRecordVSPageIndex();
             break;
     }
-    func_021139b4();
+    RefreshRecordVSPage();
 }
 
 // Requests state 7: stores mNextState = 7 and zeroes mStateFrames; the next AdvanceRecordVS call copies it to mState
@@ -794,7 +794,7 @@ void func_02113174(void) {
     for (i = 0; i < 2; i++) {
         gRecordVS->mRecordVSSTable[data_0215c3ac[i]].mUnk_00 = 0;
     }
-    func_021139b4();
+    RefreshRecordVSPage();
 }
 
 void InitRecordVS(void *a) {
@@ -810,7 +810,7 @@ void InitRecordVS(void *a) {
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 0x1018;
     gRecordVS = HeapAlloc(a, 0x94);
     gRecordVS->mUnk_48 = a;
-    gRecordVS->mUnk_6a = func_02111418();
+    gRecordVS->mPageIndex = func_02111418();
     gRecordVS->mIndex = func_02111408();
     gRecordVS->mUnk_6c = 0;
     gRecordVS->mIndexChangeTimer = 0;
@@ -819,10 +819,10 @@ void InitRecordVS(void *a) {
     gRecordVS->mUnk_88 = FALSE;
     gRecordVS->mUnk_8c = FALSE;
     for (i = 0; i < 2; i++) {
-        gRecordVS->mUnk_80[i] = 0;
+        gRecordVS->mOffsetTimers[i] = 0;
     }
     LoadEmblemSBNclr(a);
-    func_02113f34();
+    LocateAndQueueRecordVS();
     func_02124ed0(a, gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMBnll, &gRecordVS->mRecordVSMTable);
     func_02124ed0(a, gRecordVS->mRecordVSMTransientBncl, gRecordVS->mRecordVSMTransientBnll,
                   &gRecordVS->mRecordVSMTransientTable);
@@ -917,7 +917,7 @@ void InitRecordVS(void *a) {
 void func_02112b48(void) {
     u32 v;
     if (gRecordVS->mUnk_90 == 4) {
-        func_021113fc(gRecordVS->mUnk_6a);
+        func_021113fc(gRecordVS->mPageIndex);
         func_021113f0(gRecordVS->mIndex);
     } else {
         func_021113fc(0);

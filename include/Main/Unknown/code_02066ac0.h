@@ -48,51 +48,51 @@ void func_02067488(Kart *a);
 // else 0; the level 2 group is not counted.
 u32 IsKartTurnEffectsActive(Kart *a);
 // Surface kind 10 (entry 10 of gKartSurfaceFunctions): passes the entry that data_02154b04 gives for mSurfaceVariant to
-// func_02083f6c and returns surface group 0, for which RefreshKartSurface uses the factor 0x1000 instead of an entry of
-// mSurfaceSpeedLimitFactors.
+// ApplyKartSurfaceEffect and returns surface group 0, for which RefreshKartSurface uses the factor 0x1000 instead of an
+// entry of mSurfaceSpeedLimitFactors.
 s32 ApplyKartSurfaceKind10(Kart *a);
 // Surface kind 19 (entry 19 of gKartSurfaceFunctions): unless mSurfaceGroup is already 0xb and bit 0x80000000 of
 // mUnk_44 is clear it runs StartKartBoost and, for the selected kart, calls StartSound with 0x1b9; otherwise it sets
-// mUnk_238 to 0x3c. Then it sets bits 0x40000001 of mUnk_48, runs func_020839d8 and returns surface group 0xb.
+// mUnk_238 to 0x3c. Then it sets bits 0x40000001 of mUnk_48, runs StopKartCurrentEffects and returns surface group 0xb.
 s32 ApplyKartSurfaceKind19(Kart *a);
 // Surface kind 17 (entry 17 of gKartSurfaceFunctions): passes the entry that data_02154aa4 gives for mSurfaceVariant to
-// func_02083f6c and returns surface group 0xa.
+// ApplyKartSurfaceEffect and returns surface group 0xa.
 s32 ApplyKartSurfaceKind17(Kart *a);
-// Surface kind 15 (entry 15 of gKartSurfaceFunctions): runs func_02083f6c with 0; while bit 0x10000 of mUnk_48 is clear
-// it then runs func_020705fc with mSurfaceVariant when Unk021759c0.mMode is MODE_BATTLE or MODE_MISSION_RUN, and in the
-// other modes sets that bit and runs func_020710b0 with 0. Returns surface group 9.
+// Surface kind 15 (entry 15 of gKartSurfaceFunctions): runs ApplyKartSurfaceEffect with 0; while bit 0x10000 of mUnk_48
+// is clear it then runs func_020705fc with mSurfaceVariant when Unk021759c0.mMode is MODE_BATTLE or MODE_MISSION_RUN,
+// and in the other modes sets that bit and runs func_020710b0 with 0. Returns surface group 9.
 s32 ApplyKartSurfaceKind15(Kart *a);
 // Surface kind 18 (entry 18 of gKartSurfaceFunctions): the body of kind 7, followed by setting bit 0x400000 of mUnk_48;
 // returns surface group 8.
 s32 ApplyKartSurfaceKind18(Kart *a);
 // Surface kind 12 (entry 12 of gKartSurfaceFunctions): sets bit 0x10000000 of mUnk_48, sets mVerticalSpeed from
-// data_021655b0 and mUnk_4c4 from data_0216559c by mSurfaceVariant, runs func_020839d8 and returns surface group 8; on
-// course 0xc or 0x28, when mSurfaceGroup was not already 8 or bit 0x80000000 of mUnk_44 is set, it first calls
-// StartSound with 0x15e.
+// data_021655b0 and mUnk_4c4 from data_0216559c by mSurfaceVariant, runs StopKartCurrentEffects and returns surface
+// group 8; on course 0xc or 0x28, when mSurfaceGroup was not already 8 or bit 0x80000000 of mUnk_44 is set, it first
+// calls StartSound with 0x15e.
 s32 ApplyKartSurfaceKind12(Kart *a);
 // Surface kind 7 (entry 7 of gKartSurfaceFunctions): unless mSurfaceGroup is already 8 and bit 0x80000000 of mUnk_44 is
 // clear it runs StartKartBoost and, for the selected kart with mSurfaceVariant above 0, calls StartSound with the id
-// that data_02165518 gives for mSurfaceVariant minus 1; otherwise it sets mUnk_238 to 0x3c. Then it runs func_020839d8
-// and returns surface group 8.
+// that data_02165518 gives for mSurfaceVariant minus 1; otherwise it sets mUnk_238 to 0x3c. Then it runs
+// StopKartCurrentEffects and returns surface group 8.
 s32 ApplyKartSurfaceKind7(Kart *a);
 // Surface kind 6 (entry 6 of gKartSurfaceFunctions): passes the entry that data_02154a64 gives for mSurfaceVariant to
-// func_02083f6c and returns surface group 6.
+// ApplyKartSurfaceEffect and returns surface group 6.
 s32 ApplyKartSurfaceKind6(Kart *a);
 // Surface kind 5 (entry 5 of gKartSurfaceFunctions): runs func_0207a6c0, passes the entry that data_02154bc4 gives for
-// mSurfaceVariant to func_02083f6c and returns surface group 4.
+// mSurfaceVariant to ApplyKartSurfaceEffect and returns surface group 4.
 s32 ApplyKartSurfaceKind5(Kart *a);
 // Surface kind 3 (entry 3 of gKartSurfaceFunctions): runs func_0207a6c0, passes the entry that data_02154b44 gives for
-// mSurfaceVariant to func_02083f6c and returns surface group 3.
+// mSurfaceVariant to ApplyKartSurfaceEffect and returns surface group 3.
 s32 ApplyKartSurfaceKind3(Kart *a);
 // Surface kind 2 (entry 2 of gKartSurfaceFunctions): runs func_0207a6c0, passes the entry that data_usa_02154b24 gives
-// for mSurfaceVariant to func_02083f6c and returns surface group 2.
+// for mSurfaceVariant to ApplyKartSurfaceEffect and returns surface group 2.
 s32 ApplyKartSurfaceKind2(Kart *p);
 // Surface kind 1 (entry 1 of gKartSurfaceFunctions): passes the entry that data_usa_02154ae4 gives for mSurfaceVariant
-// to func_02083f6c and returns surface group 5.
+// to ApplyKartSurfaceEffect and returns surface group 5.
 s32 ApplyKartSurfaceKind1(Kart *p);
 // Surface kind 20 (entry 20 of gKartSurfaceFunctions): passes the entry that data_usa_02154ac4 gives for
-// mSurfaceVariant to func_02083f6c and returns surface group 0, for which RefreshKartSurface uses the factor 0x1000
-// instead of an entry of mSurfaceSpeedLimitFactors.
+// mSurfaceVariant to ApplyKartSurfaceEffect and returns surface group 0, for which RefreshKartSurface uses the factor
+// 0x1000 instead of an entry of mSurfaceSpeedLimitFactors.
 s32 ApplyKartSurfaceKind20(Kart *p);
 s32 func_02067ad4(Kart *p);
 // Collision response 11 of data_0217ac18 (indexed by the value func_020d6be0 returns for the kart and the map object):

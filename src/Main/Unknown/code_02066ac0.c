@@ -93,40 +93,40 @@ s32 CollideKartWithMapObjectResponse11(Kart *a, s32 *b, s32 c) {
 }
 
 s32 func_02067ad4(Kart *p) {
-    func_02083f6c((u16) data_usa_02154a84[p->mSurfaceVariant], p);
+    ApplyKartSurfaceEffect((u16) data_usa_02154a84[p->mSurfaceVariant], p);
     return 0;
 }
 
 s32 ApplyKartSurfaceKind20(Kart *p) {
-    func_02083f6c((u16) data_usa_02154ac4[p->mSurfaceVariant], p);
+    ApplyKartSurfaceEffect((u16) data_usa_02154ac4[p->mSurfaceVariant], p);
     return 0;
 }
 
 s32 ApplyKartSurfaceKind1(Kart *p) {
-    func_02083f6c((u16) data_usa_02154ae4[p->mSurfaceVariant], p);
+    ApplyKartSurfaceEffect((u16) data_usa_02154ae4[p->mSurfaceVariant], p);
     return 5;
 }
 
 s32 ApplyKartSurfaceKind2(Kart *p) {
     func_0207a6c0(p);
-    func_02083f6c((u16) data_usa_02154b24[p->mSurfaceVariant], p);
+    ApplyKartSurfaceEffect((u16) data_usa_02154b24[p->mSurfaceVariant], p);
     return 2;
 }
 
 s32 ApplyKartSurfaceKind3(Kart *a) {
     func_0207a6c0(a);
-    func_02083f6c((u16) data_02154b44[a->mSurfaceVariant], a);
+    ApplyKartSurfaceEffect((u16) data_02154b44[a->mSurfaceVariant], a);
     return 3;
 }
 
 s32 ApplyKartSurfaceKind5(Kart *a) {
     func_0207a6c0(a);
-    func_02083f6c((u16) data_02154bc4[a->mSurfaceVariant], a);
+    ApplyKartSurfaceEffect((u16) data_02154bc4[a->mSurfaceVariant], a);
     return 4;
 }
 
 s32 ApplyKartSurfaceKind6(Kart *a) {
-    func_02083f6c((u16) data_02154a64[a->mSurfaceVariant], a);
+    ApplyKartSurfaceEffect((u16) data_02154a64[a->mSurfaceVariant], a);
     return 6;
 }
 
@@ -146,7 +146,7 @@ s32 ApplyKartSurfaceKind7(Kart *a) {
     } else {
         a->mBoostTimer = 0x3c;
     }
-    func_020839d8(a);
+    StopKartCurrentEffects(a);
     return 8;
 }
 
@@ -159,7 +159,7 @@ s32 ApplyKartSurfaceKind12(Kart *a) {
     a->mUnk_48 = a->mUnk_48 | 0x10000000;
     a->mVerticalSpeed = data_021655b0[a->mSurfaceVariant];
     a->mUnk_4c4 = data_0216559c[a->mSurfaceVariant];
-    func_020839d8(a);
+    StopKartCurrentEffects(a);
     return 8;
 }
 
@@ -179,7 +179,7 @@ s32 ApplyKartSurfaceKind18(Kart *a) {
     } else {
         a->mBoostTimer = 0x3c;
     }
-    func_020839d8(a);
+    StopKartCurrentEffects(a);
     a->mUnk_48 = a->mUnk_48 | 0x400000;
     return 8;
 }
@@ -187,7 +187,7 @@ s32 ApplyKartSurfaceKind18(Kart *a) {
 s32 ApplyKartSurfaceKind15(Kart *a) {
     u16 b;
 
-    func_02083f6c(0, a);
+    ApplyKartSurfaceEffect(0, a);
     if ((a->mUnk_48 & 0x10000) == 0) {
         b = a->mSurfaceVariant;
         if (data_021759c0->mMode == MODE_BATTLE || data_021759c0->mMode == MODE_MISSION_RUN) {
@@ -201,7 +201,7 @@ s32 ApplyKartSurfaceKind15(Kart *a) {
 }
 
 s32 ApplyKartSurfaceKind17(Kart *a) {
-    func_02083f6c((u16) data_02154aa4[a->mSurfaceVariant], a);
+    ApplyKartSurfaceEffect((u16) data_02154aa4[a->mSurfaceVariant], a);
     return 0xa;
 }
 
@@ -220,12 +220,12 @@ s32 ApplyKartSurfaceKind19(Kart *a) {
         a->mBoostTimer = 0x3c;
     }
     a->mUnk_48 = a->mUnk_48 | 0x40000001;
-    func_020839d8(a);
+    StopKartCurrentEffects(a);
     return 0xb;
 }
 
 s32 ApplyKartSurfaceKind10(Kart *a) {
-    func_02083f6c((u16) data_02154b04[a->mSurfaceVariant], a);
+    ApplyKartSurfaceEffect((u16) data_02154b04[a->mSurfaceVariant], a);
     return 0;
 }
 

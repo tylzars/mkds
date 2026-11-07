@@ -136,7 +136,7 @@ void func_0206ff50(Kart *p, u32 a) {
         if (p->mKartModelsEntry->mUnk_058 == 0) {
             e = data_usa_02165560;
             for (f = 0; f < 3; f++) {
-                func_02081f10(StartEffect(e.mUnk_00[f], &p->mPos), p->mIndex, 0x14);
+                SetupKartFollowEffect(StartEffect(e.mUnk_00[f], &p->mPos), p->mIndex, 0x14);
             }
         }
         func_020815dc(p->mIndex);

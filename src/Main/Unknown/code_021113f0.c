@@ -62,7 +62,7 @@ void AdvanceRecordVSState0(void) {
     int v1;
     v1 = AreBrightnessFadesClear();
     if (v1 != 0) {
-        func_021134b8();
+        RequestRecordVSState1AndPrintShownRecord();
     }
 }
 
@@ -104,7 +104,7 @@ void AdvanceRecordVSState1(void) {
         gRecordVS->mRecordVSMTransientTable[b + data_0215c478[j]].mUnk_06 = v;
     }
     if (gRecordVS->mStateFrames >= 10) {
-        func_0211349c();
+        RequestRecordVSState2AndRefreshPage();
     }
 }
 
@@ -112,7 +112,7 @@ void AdvanceRecordVSState2(void) {
     s16 v;
     s32 i;
     u16 x;
-    func_021137f4();
+    AdvanceRecordVSOffsetTimers();
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
     v = func_020ae4c0(1, 0x100, 0, gRecordVS->mStateFrames, 10);
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
@@ -167,8 +167,8 @@ void AdvanceRecordVSState4(void) {
     a = -1;
     b = -1;
     i = UNK_02175628_INDEX_8;
-    func_021137f4();
-    func_021136f8();
+    AdvanceRecordVSOffsetTimers();
+    AdvanceRecordVSIndexChange();
     g = TRUE;
     f = FALSE;
     p = &data_02175674[i];
@@ -216,7 +216,7 @@ void AdvanceRecordVSState4(void) {
             goto l1;
         }
     }
-    if (func_02113790() != 0) {
+    if (IsRecordVSIndexChangeRunning() != 0) {
         return;
     }
     RequestRecordVSState7();
@@ -231,14 +231,14 @@ void AdvanceRecordVSState4(void) {
 l1:
     if ((a == 10 && gRecordVS->mUnk_88 != FALSE) || (b == 10 && gRecordVS->mUnk_88 == FALSE) ||
         (u16) (data_0217562a[i].mBits & 0x20) != 0) {
-        if (func_02113790() != 0) {
+        if (IsRecordVSIndexChangeRunning() != 0) {
             return;
         }
         if (gRecordVS->mRecordVSSTable[20].mUnk_00 == 0) {
             return;
         }
         gRecordVS->mUnk_6c = 1;
-        gRecordVS->mUnk_80[0] = 6;
+        gRecordVS->mOffsetTimers[0] = 6;
         gRecordVS->mUnk_88 = TRUE;
         RequestRecordVSState5();
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 2);
@@ -246,14 +246,14 @@ l1:
     }
     if ((a == 11 && gRecordVS->mUnk_8c != FALSE) || (b == 11 && gRecordVS->mUnk_8c == FALSE) ||
         (u16) (data_0217562a[i].mBits & 0x10) != 0) {
-        if (func_02113790() != 0) {
+        if (IsRecordVSIndexChangeRunning() != 0) {
             return;
         }
         if (gRecordVS->mRecordVSSTable[21].mUnk_00 == 0) {
             return;
         }
         gRecordVS->mUnk_6c = 0;
-        gRecordVS->mUnk_80[1] = 6;
+        gRecordVS->mOffsetTimers[1] = 6;
         gRecordVS->mUnk_8c = TRUE;
         RequestRecordVSState5();
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 2);
@@ -261,7 +261,7 @@ l1:
     }
     if ((u32) (b - 5) <= 4) {
         t = data_0215c44c[b];
-        if (func_02113ef0(t) == 0) {
+        if (IsRecordVSRowFilled(t) == 0) {
             return;
         }
         gRecordVS->mIndex = t;
@@ -274,7 +274,7 @@ l1:
             func_021137a8(t);
             return;
         }
-        if (func_02113ef0(t) == 0) {
+        if (IsRecordVSRowFilled(t) == 0) {
             return;
         }
         gRecordVS->mIndex = t;
@@ -291,11 +291,11 @@ l1:
         return;
     }
     if (func_020ae408(8, 0x40) != 0) {
-        func_021138e4();
+        DecrementRecordVSIndex();
         return;
     }
     if (func_020ae408(8, 0x80) != 0) {
-        func_02113940();
+        IncrementRecordVSIndex();
     }
 }
 
@@ -309,7 +309,7 @@ void AdvanceRecordVSState5(void) {
     s16 c;
     s16 v;
     c = 0;
-    func_021137f4();
+    AdvanceRecordVSOffsetTimers();
     switch (gRecordVS->mUnk_6c) {
         case 0:
             c = -256;
@@ -352,7 +352,7 @@ void AdvanceRecordVSState5(void) {
         gRecordVS->mRecordVSSTable[x + data_0215c3bc[l]].mUnk_04 = v;
     }
     if (gRecordVS->mStateFrames >= 10) {
-        func_02113420();
+        RequestRecordVSState6AndChangePage();
     }
 }
 
@@ -366,7 +366,7 @@ void AdvanceRecordVSState6(void) {
     s16 c;
     s16 v;
     c = 0;
-    func_021137f4();
+    AdvanceRecordVSOffsetTimers();
     switch (gRecordVS->mUnk_6c) {
         case 0:
             c = 0x100;
@@ -531,7 +531,7 @@ void AdvanceRecordVSState11(void) {
     s16 v;
     s32 i;
     u16 x;
-    func_021137f4();
+    AdvanceRecordVSOffsetTimers();
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
     v = func_020ae4c0(1, 0x100, 0, gRecordVS->mStateFrames, 10);
     x = gRecordVS->mRecordVSSBncl->mUnk_06;

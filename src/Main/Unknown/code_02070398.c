@@ -181,9 +181,9 @@ void ResetKartToRespawnPoint(Kart *p) {
     a.y += 0x28000;
     x = p->mUnk_48;
     if (x & 0x800000) {
-        func_02081f10(StartEffect(0x71, &a), p->mIndex, 0x32);
+        SetupKartFollowEffect(StartEffect(0x71, &a), p->mIndex, 0x32);
     } else if (x & 0x1000000) {
-        func_02081f10(StartEffect(0x70, &a), p->mIndex, 0x32);
+        SetupKartFollowEffect(StartEffect(0x70, &a), p->mIndex, 0x32);
     }
     ResetKartAndSetPos(p, &a, &b, r);
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
@@ -327,7 +327,7 @@ void func_02072930(Kart *p) {
         if (p->mKartModelsEntry->mUnk_058 == 0) {
             v = data_usa_02165560;
             for (i = 0; i < 3; i++) {
-                func_02081f10(StartEffect(v.mUnk_00[i], &p->mPos), p->mIndex, 0x14);
+                SetupKartFollowEffect(StartEffect(v.mUnk_00[i], &p->mPos), p->mIndex, 0x14);
             }
         }
         func_020815dc(p->mIndex);

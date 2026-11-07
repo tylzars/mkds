@@ -100,7 +100,7 @@ void func_0208b934(void *a) {
     } else {
         data_0217b044->mUnk_3c = 0;
     }
-    func_02082aec();
+    InitCourseCameraEffects();
     switch (data_021759c0->mCourseId) {
         case COURSE_ID_STADIUM:
             w = data_usa_021660fc;

@@ -204,21 +204,21 @@ typedef struct RecordVS {
     // Y half of reg_G2_BG1OFS (0x04000014, main engine BG1), stored negated
     /* 64 */ s32 mBg1OffsetY;
     // Position of the highlight among the six items: 0 to 4 are the records of the page, 5 the extra item; -1 can be
-    // stored (count % 5 - 1 in func_021139b4).
+    // stored (count % 5 - 1 in RefreshRecordVSPage).
     /* 68 */ s16 mIndex;
-    /* 6a */ s16 mUnk_6a;
+    /* 6a */ s16 mPageIndex;
     /* 6c */ s32 mUnk_6c;
-    // Counts 7 down to 0 after mIndex changed: func_021136f8 sets 7 when mIndex differs from mShownIndex,
-    // rebuilds the page text through func_02113a3c at 7 and moves the objects while it runs; func_02113790 tells
-    // whether it is non-zero.
+    // Counts 7 down to 0 after mIndex changed: AdvanceRecordVSIndexChange sets 7 when mIndex differs from mShownIndex,
+    // rebuilds the page text through PrintRecordVSShownRecord at 7 and moves the objects while it runs;
+    // IsRecordVSIndexChangeRunning tells whether it is non-zero.
     /* 70 */ s32 mIndexChangeTimer;
-    // mIndex the page text was last built for: func_02113a3c builds the text of the record mShownIndex, and
-    // func_021136f8 starts mIndexChangeTimer when mIndex differs from it.
+    // mIndex the page text was last built for: PrintRecordVSShownRecord builds the text of the record mShownIndex, and
+    // AdvanceRecordVSIndexChange starts mIndexChangeTimer when mIndex differs from it.
     /* 74 */ s16 mShownIndex;
     /* 76 */ u8 mUnk_76[2];
     /* 78 */ struct Unk021141c8 *mUnk_78;
     /* 7c */ void *mUnk_7c;
-    /* 80 */ s32 mUnk_80[2];
+    /* 80 */ s32 mOffsetTimers[2];
     /* 88 */ BOOL mUnk_88;
     /* 8c */ BOOL mUnk_8c;
     /* 90 */ s32 mUnk_90;

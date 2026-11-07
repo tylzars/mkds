@@ -60,7 +60,7 @@ void InitKartEffects(u32 a) {
             e->mEffectIds[j] = -1;
         }
     }
-    data_0217ae80 = NULL;
+    gKartBoostCameraEffect = NULL;
 }
 
 void ComputeKartSidePoints(Kart *p) {
@@ -99,17 +99,17 @@ void func_0208442c(Kart *p) {
         e->mCurrentEffect = NULL;
         e->mCurrentEffectId = -1;
     }
-    func_02083928(p, 0);
+    StopKartEffectPairs(p, 0);
 }
 
 void func_020843d8(Kart *p) {
     data_02155908[0].mUnk_18(&data_02155908[0].mUnk_00[data_0217ae8c[p->mIndex]], data_02155908[0].mUnk_1c, p);
-    func_02083928(p, 0);
+    StopKartEffectPairs(p, 0);
 }
 
 void func_02084384(Kart *p) {
     data_02155928.mUnk_18(&data_02155928.mUnk_00[data_0217ae8c[p->mIndex]], data_02155928.mUnk_1c, p);
-    func_02083928(p, 0);
+    StopKartEffectPairs(p, 0);
 }
 
 void func_02084334(Kart *p) {
@@ -174,27 +174,29 @@ void func_02084114(Kart *p) {
 
 void func_020840c0(Kart *p) {
     data_021559e8.mUnk_18(&data_021559e8.mUnk_00[data_0217ae8c[p->mIndex]], data_021559e8.mUnk_1c, p);
-    func_02083928(p, 0);
+    StopKartEffectPairs(p, 0);
 }
 
-void func_02084034(u32 a, Kart *p) {
+// Starts the boost effect in front of the chase camera; the previous one is told to end.
+void StartKartBoostCameraEffect(u32 a, Kart *p) {
     Unk0201ca6c *o;
 
     if (func_02061818() != 0) {
         return;
     }
     GetChaseCamera();
-    if (data_0217ae80 != NULL) {
-        data_0217ae80->mUnk_24.mUnk_00_0 = 1;
+    if (gKartBoostCameraEffect != NULL) {
+        gKartBoostCameraEffect->mUnk_24.mUnk_00_0 = 1;
     }
     o = StartEffect(data_021557f8[a], &data_02155a14);
     o->mUnk_98 = 0;
     o->mUnk_94 = p;
-    o->mUnk_90 = func_02083680;
-    data_0217ae80 = o;
+    o->mUnk_90 = AdvanceKartBoostCameraEffect;
+    gKartBoostCameraEffect = o;
 }
 
-void func_02083f6c(s32 a, Kart *p) {
+// Runs entry a of the effect table while the kart flag is set, otherwise ends the kart effects.
+void ApplyKartSurfaceEffect(s32 a, Kart *p) {
     KartEffects *e;
 
     if (p->mUnk_4c & 0x8000) {
@@ -207,7 +209,7 @@ void func_02083f6c(s32 a, Kart *p) {
         e->mCurrentEffect = NULL;
         e->mCurrentEffectId = -1;
     }
-    func_02083928(p, 0);
+    StopKartEffectPairs(p, 0);
     e = &gKartEffects[p->mIndex];
     if (e->mUnk_20 != 0) {
         e->mUnk_20->mUnk_98_8 = 1;
@@ -259,7 +261,7 @@ void func_02083de8(s32 a, Kart *p) {
     }
 }
 
-BOOL func_02083d4c(Unk02155908_00 *a, s32 b, Kart *p) {
+BOOL StartKartCurrentEffect(Unk02155908_00 *a, s32 b, Kart *p) {
     KartEffects *e;
     Unk0201ca6c *o;
 
@@ -275,7 +277,7 @@ BOOL func_02083d4c(Unk02155908_00 *a, s32 b, Kart *p) {
     e->mCurrentEffectId = a->mUnk_04[0];
     o->mUnk_94 = p;
     o->mUnk_98_0 = b;
-    o->mUnk_90 = func_02083484;
+    o->mUnk_90 = AdvanceKartCurrentEffect;
     return TRUE;
 }
 
@@ -366,7 +368,7 @@ BOOL func_02083a24(Unk02155908_00 *a, s32 b, Kart *p) {
     return TRUE;
 }
 
-void func_020839d8(Kart *p) {
+void StopKartCurrentEffects(Kart *p) {
     KartEffects *e;
 
     e = &gKartEffects[p->mIndex];
@@ -375,10 +377,10 @@ void func_020839d8(Kart *p) {
         e->mCurrentEffect = NULL;
         e->mCurrentEffectId = -1;
     }
-    func_02083928(p, 0);
+    StopKartEffectPairs(p, 0);
 }
 
-void func_02083928(Kart *p, s32 a) {
+void StopKartEffectPairs(Kart *p, s32 a) {
     u16 i;
     KartEffects *e;
 
@@ -421,7 +423,7 @@ void func_02083834(Kart *p) {
         e->mCurrentEffect = NULL;
         e->mCurrentEffectId = -1;
     }
-    func_02083928(p, 1);
+    StopKartEffectPairs(p, 1);
     e = &gKartEffects[p->mIndex];
     if (e->mUnk_20 != 0) {
         func_0208b710(e->mUnk_20);
@@ -434,7 +436,7 @@ void func_02083834(Kart *p) {
     e->mUnk_24 = 0;
 }
 
-void func_02083680(Unk0201ca6c *p, s32 a) {
+void AdvanceKartBoostCameraEffect(Unk0201ca6c *p, s32 a) {
     Vec3s16 h;
     Vec3 v;
     Vec3 w;
@@ -449,7 +451,7 @@ void func_02083680(Unk0201ca6c *p, s32 a) {
     q = p->mUnk_94;
     if (func_02061818() != 0 || (p->mUnk_24.mUnk_00_1 != 0 && (p->mUnk_98 = p->mUnk_98 + 1, p->mUnk_98 > 5))) {
         p->mUnk_24.mUnk_00_0 = 1;
-        data_0217ae80 = NULL;
+        gKartBoostCameraEffect = NULL;
         return;
     }
     if (!(q->mUnk_48 & KART_48_BOOST)) {
@@ -469,7 +471,7 @@ void func_02083680(Unk0201ca6c *p, s32 a) {
     p->mUnk_50 = h;
 }
 
-void func_02083484(Unk0201ca6c *p, s32 a) {
+void AdvanceKartCurrentEffect(Unk0201ca6c *p, s32 a) {
     Vec3 x;
     Vec3 v;
     Vec3 w;
@@ -762,7 +764,8 @@ void func_02082d64(Unk0201ca6c *p, s32 a) {
     p->mUnk_94_u = n + 1;
 }
 
-void func_02082aec(void) {
+// Sets the effect speed scale, then starts the effects of two courses and ties them to the camera.
+void InitCourseCameraEffects(void) {
     s32 x;
     s32 m;
 
@@ -1086,14 +1089,14 @@ void func_02081f30(void) {
     }
 }
 
-void func_02081f10(Unk02081e3c *p0, u32 p1, u32 p2) {
+void SetupKartFollowEffect(Unk02081e3c *p0, u32 p1, u32 p2) {
     p0->mUnk_9a = 0x0u;
     p0->mUnk_99 = p2;
     p0->mUnk_9b = p1;
-    p0->mUnk_90 = func_02081e5c;
+    p0->mUnk_90 = AdvanceKartFollowEffect;
 }
 
-void func_02081e5c(Unk0201ca6c *p, s32 a) {
+void AdvanceKartFollowEffect(Unk0201ca6c *p, s32 a) {
     u8 i;
     u8 j;
     Vec3 *v;
@@ -1124,14 +1127,14 @@ void func_02081e5c(Unk0201ca6c *p, s32 a) {
     }
 }
 
-void func_02081e3c(Unk02081e3c *p0, u32 p1, u32 p2) {
+void SetupKartFollowEffectWithVelocity(Unk02081e3c *p0, u32 p1, u32 p2) {
     p0->mUnk_9a = 0x0u;
     p0->mUnk_99 = p2;
     p0->mUnk_9b = p1;
-    p0->mUnk_90 = func_02081d78;
+    p0->mUnk_90 = AdvanceKartFollowEffectWithVelocity;
 }
 
-void func_02081d78(Unk0201ca6c *p, s32 a) {
+void AdvanceKartFollowEffectWithVelocity(Unk0201ca6c *p, s32 a) {
     u8 i;
     u8 j;
     Vec3 *v;

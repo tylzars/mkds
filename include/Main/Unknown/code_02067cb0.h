@@ -11,8 +11,9 @@ typedef struct MapObject MapObject;
 int CollideKartWithMapObjectResponse7(Kart *p, s32 *a);
 // Collision response 5 of data_0217ac18 (indexed by the value func_020d6be0 returns for the kart and the map object):
 // runs func_0206bcb0 with 2 and, when that succeeds, passes the result of StartEffect with 0x4f at mPos to
-// func_02081e3c with the kart index and 0x46 if bit 0x10 of mUnk_7c is set and, for the selected kart, increments the
-// counter of the record GetEntryKartCounters returns. Stores 5 through the second parameter and returns 0.
+// SetupKartFollowEffectWithVelocity with the kart index and 0x46 if bit 0x10 of mUnk_7c is set and, for the selected
+// kart, increments the counter of the record GetEntryKartCounters returns. Stores 5 through the second parameter and
+// returns 0.
 int CollideKartWithMapObjectResponse5(Kart *p, s32 *a);
 // Collision response 6 of data_0217ac18 (indexed by the value func_020d6be0 returns for the kart and the map object):
 // when mVelocityLength of the kart is above 0x3000 or flag 0x200 of mFlags of the object is set it runs func_0206bcb0

@@ -432,7 +432,7 @@ void func_020695c4(Kart *p) {
     if (p->mKartModelsEntry->mUnk_058 == 0) {
         v = data_usa_02165560;
         for (i = 0; i < 3; i++) {
-            func_02081f10(StartEffect(v.mUnk_00[i], &p->mPos), p->mIndex, 0x14);
+            SetupKartFollowEffect(StartEffect(v.mUnk_00[i], &p->mPos), p->mIndex, 0x14);
         }
     }
     func_02081724(p->mIndex);
@@ -484,7 +484,7 @@ void func_0206938c(Kart *p) {
         if (p->mKartModelsEntry->mUnk_058 == 0) {
             v = data_usa_02165560;
             for (i = 0; i < 3; i++) {
-                func_02081f10(StartEffect(v.mUnk_00[i], &p->mPos), p->mIndex, 0x14);
+                SetupKartFollowEffect(StartEffect(v.mUnk_00[i], &p->mPos), p->mIndex, 0x14);
             }
         }
         func_020815dc(p->mIndex);
