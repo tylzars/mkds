@@ -5,36 +5,36 @@
 
 typedef struct WiFiMatching WiFiMatching;
 
-// Five bytes at data_ov000_021b40bc; the first member of Unk021a0a40 starts with them.
-typedef struct Unk021b40bc {
-    /* 0 */ char mUnk_00[5];
-} Unk021b40bc;
+// The five characters at gMatchingSignature, copied into the first member of MatchingSendHeader.
+typedef struct MatchingSignatureText {
+    /* 0 */ char mText[5];
+} MatchingSignatureText;
 
-// Local of func_ov000_021a0a40, passed on to func_ov000_0218b530.
-typedef struct Unk021a0a40 {
-    /* 00 */ char mUnk_00[4];
+// The 0x14-byte header SendMatchingCommandToAddress sends in front of the values.
+typedef struct MatchingSendHeader {
+    /* 00 */ char mSignature[4];
     /* 04 */ u32 mUnk_04;
-    /* 08 */ u8 mUnk_08;
-    /* 09 */ u8 mUnk_09;
-    /* 0a */ u16 mUnk_0a;
-    /* 0c */ void *mUnk_0c;
-    /* 10 */ u32 mUnk_10;
-} Unk021a0a40;
+    /* 08 */ u8 mCommand;
+    /* 09 */ u8 mValuesSize;
+    /* 0a */ u16 mPort;
+    /* 0c */ void *mAddress;
+    /* 10 */ u32 mProfileId;
+} MatchingSendHeader;
 
 // The twelve bytes at WiFiMatching.mUnk_18c.
 typedef struct Unk021a0c30 {
     /* 00 */ u8 mUnk_00;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ u32 mUnk_04;
+    /* 02 */ u16 mPort;
+    /* 04 */ u32 mAddress;
     /* 08 */ u32 mUnk_08;
 } Unk021a0c30;
 
-s32 func_ov000_021a0958(char *a, const char *b, s32 c);
-s32 func_ov000_021a09d0(struct GpConnection *a, u32 b, u32 c, const char *d);
-u32 func_ov000_021a0a40(u32 a, u32 b, u32 c, u32 *d, u32 e);
-u32 func_ov000_021a0ae8(u32 a, u32 b, u32 c, u32 d, void *e, s32 f);
+s32 CopyNthSlashField(char *out, const char *text, s32 index);
+s32 SendMatchingCommandToProfile(struct GpConnection *gpConnection, u32 command, u32 profileId, const char *text);
+u32 SendMatchingCommandToAddress(u32 command, u32 address, u32 port, u32 *values, u32 valueCount);
+u32 SendMatchingCommand(u32 command, u32 profileId, u32 address, u32 port, void *values, s32 valueCount);
 u32 func_ov000_021a0c30(Unk021a0c30 *a);
 u32 func_ov000_021a0cac(s32 a, s32 b, u32 c);
-s32 func_ov000_021a0ed8(char *a, s32 b, s32 c, s32 d);
-u32 func_ov000_021a0f20(u32 a);
-void func_ov000_021a104c(void);
+s32 BuildMatchingFilter(char *buffer, s32 profileId, s32 c, s32 mode);
+u32 StartMatchingServerList(u32 a);
+void StopMatching(void);

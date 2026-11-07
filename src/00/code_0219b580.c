@@ -124,9 +124,9 @@ void ReleaseWiFiConnection(void) {
             gWiFiConnection->mMatching.mUnk_10 = NULL;
         }
         gWiFiConnection->mMatching.mUnk_18 = 0;
-        if (gWiFiConnection->mMatching.mUnk_e4 != NULL) {
-            func_ov000_0218b64c(gWiFiConnection->mMatching.mUnk_e4);
-            gWiFiConnection->mMatching.mUnk_e4 = NULL;
+        if (gWiFiConnection->mMatching.mServerList != NULL) {
+            func_ov000_0218b64c(gWiFiConnection->mMatching.mServerList);
+            gWiFiConnection->mMatching.mServerList = NULL;
         }
         func_ov000_0219b110();
         GstatsClose();
@@ -141,7 +141,7 @@ void ReleaseWiFiConnection(void) {
         }
         ReleaseWiFiLogin();
         func_ov000_0219d4f8();
-        func_ov000_021a1430();
+        ReleaseMatching();
         func_ov000_021a2fec();
         if (gWiFiConnection->mSocket != NULL) {
             func_ov000_02198ab0(gWiFiConnection->mSocket);
@@ -385,9 +385,9 @@ s32 func_ov000_0219bb68(void) {
         return 0;
     }
     if (gWiFiConnection->mMatching.mMode == 2 || gWiFiConnection->mMatching.mMode == 3) {
-        return func_ov000_021a15f8() + 1;
+        return GetMatchingLastMaskedParticipantPos() + 1;
     }
-    return func_ov000_021a160c() + 1;
+    return GetMatchingLastParticipantPos() + 1;
 }
 
 u8 func_ov000_0219bb50(void) {
@@ -403,9 +403,9 @@ s32 func_ov000_0219bb04(u8 **a) {
     }
     *a = gWiFiConnection->mMatching.mParticipantIndices;
     if (gWiFiConnection->mMatching.mMode == 2 || gWiFiConnection->mMatching.mMode == 3) {
-        return func_ov000_021a1514((void **) a);
+        return GetMatchingMaskedParticipantIndices((void **) a);
     }
-    return func_ov000_021a158c((void **) a);
+    return GetMatchingParticipantIndices((void **) a);
 }
 
 BOOL func_ov000_0219bac8(u32 a) {
@@ -440,8 +440,8 @@ s32 func_ov000_0219ba20(void) {
     if (ReportWiFiSocketResult(r) != 0) {
         return r;
     }
-    func_ov000_02198a84(gWiFiConnection->mSocket, func_ov000_021a1ca8);
-    SetUnmatchedDataCallback(gWiFiConnection->mSocket, (UnkWordFunc *) func_ov000_021a1e40);
+    func_ov000_02198a84(gWiFiConnection->mSocket, WiFiIncomingConnectionCallback);
+    SetUnmatchedDataCallback(gWiFiConnection->mSocket, (UnkWordFunc *) WiFiUnmatchedDataCallback);
     return r;
 }
 
@@ -530,7 +530,7 @@ u32 func_ov000_0219b868(u32 a) {
     s32 d;
     s32 e;
 
-    d = func_ov000_021a158c(&b);
+    d = GetMatchingParticipantIndices(&b);
     for (e = 0; e < d; e++) {
         if (a == ((u8 *) b)[e]) {
             break;
@@ -539,7 +539,7 @@ u32 func_ov000_0219b868(u32 a) {
     if (e == d) {
         return 0;
     }
-    return func_ov000_021a1620(e, d);
+    return RemoveMatchingParticipant(e, d);
 }
 
 u32 func_ov000_0219b844(const u8 *values, s32 count) {
@@ -551,9 +551,7 @@ u32 func_ov000_0219b844(const u8 *values, s32 count) {
     return mask;
 }
 
-// Maps a GP result 1 to 4 to (kind 0xb or 6, code), subtracts an offset chosen by the connection state, reports it to
-// the login (states 1 and 2: ReportWiFiLoginError) or the matching object (state 5: func_ov000_021a1a38) and always to
-// the buddy object (ReportBuddySyncError); returns the code, 0 passes through.
+// Maps a GP result 1 to 4 to (kind, code) and reports it by connection state; 0 passes through.
 int ReportWiFiGpResult(int c) {
     s32 a;
     s32 b;
@@ -590,7 +588,7 @@ int ReportWiFiGpResult(int c) {
             break;
         case 5:
             b -= 0x13c68;
-            func_ov000_021a1a38(a, b);
+            ReportMatchingError(a, b);
             break;
         case 4:
             b -= 0x11558;
@@ -692,7 +690,7 @@ void WiFiMatchingCallback(u32 a, u32 b, u32 c, u32 d, u32 e) {
     }
     gWiFiConnection->mMatching.mParticipantMask = func_ov000_0219b844(
         gWiFiConnection->mMatching.mParticipantIndices, gWiFiConnection->mMatching.mLastParticipantPos + 1);
-    func_ov000_021a15b0();
+    RefreshMatchingLastMaskedParticipantPos();
     h = gWiFiConnection;
     if (h->mMatching.mMode == 2 || h->mMatching.mMode == 3) {
         h = gWiFiConnection;

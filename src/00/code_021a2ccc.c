@@ -282,7 +282,7 @@ void func_ov000_021a2d38(u32 a, void *b, s32 c) {
         case 2:
         case 3:
         case 4:
-            func_ov000_021a18e0(a, e->mMessageKind, b);
+            ReceiveMatchingPeerMessage(a, e->mMessageKind, b);
             break;
     }
 }
@@ -296,10 +296,10 @@ s32 func_ov000_021a2d18(u32 a) {
 }
 
 BOOL func_ov000_021a2ccc(void) {
-    if (gWiFiMatching == NULL || gWiFiMatching->mUnk_1e8 == 0 || func_ov000_0219c39c() != 0) {
+    if (gWiFiMatching == NULL || gWiFiMatching->mOwnProfileId == 0 || func_ov000_0219c39c() != 0) {
         return FALSE;
     }
-    if (func_ov000_021a2768(gWiFiMatching->mUnk_1e8) == 0) {
+    if (func_ov000_021a2768(gWiFiMatching->mOwnProfileId) == 0) {
         return TRUE;
     }
     return FALSE;

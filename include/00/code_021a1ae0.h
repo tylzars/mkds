@@ -31,18 +31,19 @@
 #include "00/code_021a3a18.h"
 #include "00/code_0218e2dc.h"
 
-// Block built by func_ov000_021a1e40.
-typedef struct Unk021a1e40 {
+// Address and byte-swapped port built by WiFiUnmatchedDataCallback and handed on with the data.
+typedef struct UnmatchedDataAddress {
     /* 00 */ u8 mUnk_00;
     /* 01 */ u8 mUnk_01;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ u32 mUnk_04;
-} Unk021a1e40;
+    /* 02 */ u16 mPort;
+    /* 04 */ u32 mAddress;
+} UnmatchedDataAddress;
 
-void func_ov000_021a1ae0(GpConnection *param_1, u32 param_2, const char *param_3);
+void ParseMatchingGpMessage(GpConnection *param_1, u32 param_2, const char *param_3);
 void WiFiGt2ResultCallback(Unk0219887c *param_1, s32 param_2);
-void func_ov000_021a1ca8(u32 param_1, Unk0219887c *param_2, u32 param_3, u32 param_4, s32 param_5, char *param_6);
-u32 func_ov000_021a1e40(u32 param_1, u32 param_2, u16 param_3, u8 *param_4, u32 param_5);
+void WiFiIncomingConnectionCallback(u32 param_1, Unk0219887c *connection, u32 address, u32 port, s32 param_5,
+                                    char *text);
+u32 WiFiUnmatchedDataCallback(u32 param_1, u32 address, u16 port, u8 *data, u32 size);
 void UpdateMatching(s32 param_1);
 void StartMatchingWithBuddies(const void *param_1, s32 param_2, s32 param_3, s32 param_4, void *param_5, u32 param_6,
                               u32 param_7, u32 param_8);

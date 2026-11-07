@@ -666,7 +666,7 @@ Expression shapes:
   read it inside the first loop and spell the second read as a different expression, `*(u16 *) d`, so the two are not
   merged (hand-picked; func_02009098).
 - A pointer re-read placed after `i++` in the latch: no `p = global` in the body; read the global directly
-  (func_ov000_021a18e0).
+  (ReceiveMatchingPeerMessage).
 - A global pointer kept across the loop header into the body where the original reloads it each pass: no pointer or byte
   local inside the loop; write `global->member` at every use (condition and indices) and assign the local after the loop
   (Thumb; func_ov003_021cec50, like func_ov003_021cedbc).
@@ -829,7 +829,7 @@ Expression shapes:
 - A `u16` argument converted right after its value's `if`, before the next test: assign it to a `u16` local at that
   point and pass the local (Thumb; func_ov000_021a4bc4).
 - `lsl/lsr #16` before a call whose callee passes that register on untouched: widen the parameter to `u32` and write
-  `(u16)` at the callers that need the narrowing (func_ov000_0219dfe4).
+  `(u16)` at the callers that need the narrowing (FilterAndEvalMatchingServerList).
 - `(u8) i` converted again at a second identical call, where ours reuses it in a callee-saved register: `(s32) (u8) i`
   on exactly one of the two calls (hand-picked; the only spelling that matched; func_0202b100).
 - Stack `u16` arguments reloaded after a call while ours keeps one temporary across it: type the register parameters

@@ -30,8 +30,8 @@ typedef struct WiFiPeerMessage {
     /* 1d */ u8 mReceiveState;
     /* 1e */ u8 mUnk_1e;
     /* 1f */ u8 pad_1f[3];
-    // Kind from the header of the current message: 1 data, 2 to 4 control (func_ov000_021a2dfc stores it,
-    // func_ov000_021a2d38 switches on it and hands 2 to 4 to func_ov000_021a18e0).
+    // Kind from the header of the current message: 1 for a data message, 2 to 4 for the messages
+    // ReceiveMatchingPeerMessage takes.
     /* 22 */ u16 mMessageKind;
     /* 24 */ u64 mUnk_24;
     /* 2c */ u32 mUnk_2c;

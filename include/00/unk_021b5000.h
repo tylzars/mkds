@@ -67,7 +67,7 @@ extern u8 data_ov000_021b5df0[];
 extern Unk021b5f50 *data_ov000_021b5f50;
 extern u8 data_ov000_021b5f98[];
 
-extern u8 data_ov000_021b5678[0x20];
+extern u8 gMatchingMaskedParticipantIndices[0x20];
 
 // Four bytes at data_ov000_021b5668.
 typedef struct Unk021b5668 {
@@ -91,7 +91,7 @@ typedef struct Unk021b5670 {
 } Unk021b5670;
 
 extern Unk021b5670 *data_ov000_021b5670;
-extern void *data_ov000_021b5674;
+extern void *gMatchingFilterText;
 extern Unk021b5f54 data_ov000_021b5f54;
 extern u8 data_ov000_021b5f80;
 extern u8 data_ov000_021b5f84[16];

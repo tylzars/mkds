@@ -23,7 +23,7 @@ u32 func_ov000_021a2c64(void) {
     if (func_ov000_0219c39c() != 0) {
         return 0;
     }
-    if (gWiFiMatching == NULL || GetWiFiConnectionState() != 5 || gWiFiMatching->mUnk_1a1 != 0) {
+    if (gWiFiMatching == NULL || GetWiFiConnectionState() != 5 || gWiFiMatching->mStopPending != 0) {
         return 0;
     }
     return 1;
@@ -36,16 +36,16 @@ u32 func_ov000_021a2b9c(u32 a, char *b, void *c) {
     }
     if (a >= 100) {
         i = a - 100;
-        if (data_ov000_021b5698[i][0] != 0) {
+        if (gMatchingKeys[i][0] != 0) {
             return a;
         }
     }
-    a = func_ov000_0219eac8();
+    a = FindFreeMatchingKeyId();
     if (a == 0) {
         return 0;
     }
     i = a - 100;
-    data_ov000_021b5698[i][0] = a;
+    gMatchingKeys[i][0] = a;
     data_ov000_021b5699[i * 12] = 0;
     *(u16 *) &data_ov000_021b569a[i * 12] = 0;
     if (*(void **) &data_ov000_021b569c[i * 12] != NULL) {
@@ -53,7 +53,7 @@ u32 func_ov000_021a2b9c(u32 a, char *b, void *c) {
     }
     *(void **) &data_ov000_021b569c[i * 12] = func_ov000_021a372c(4, strlen(b) + 1);
     if (*(void **) &data_ov000_021b569c[i * 12] == NULL) {
-        func_ov000_021a1a38(0xb, 0xfffec77f);
+        ReportMatchingError(0xb, 0xfffec77f);
         return 0;
     }
     strcpy(*(char **) &data_ov000_021b569c[i * 12], b);
@@ -69,16 +69,16 @@ u32 func_ov000_021a2ad0(u32 a, char *b, void *c) {
     }
     if (a >= 100) {
         i = a - 100;
-        if (data_ov000_021b5698[i][0] != 0) {
+        if (gMatchingKeys[i][0] != 0) {
             return a;
         }
     }
-    a = func_ov000_0219eac8();
+    a = FindFreeMatchingKeyId();
     if (a == 0) {
         return 0;
     }
     i = a - 100;
-    data_ov000_021b5698[i][0] = a;
+    gMatchingKeys[i][0] = a;
     data_ov000_021b5699[i * 12] = 1;
     *(u16 *) &data_ov000_021b569a[i * 12] = 0;
     if (*(void **) &data_ov000_021b569c[i * 12] != NULL) {
@@ -86,7 +86,7 @@ u32 func_ov000_021a2ad0(u32 a, char *b, void *c) {
     }
     *(void **) &data_ov000_021b569c[i * 12] = func_ov000_021a372c(4, strlen(b) + 1);
     if (*(void **) &data_ov000_021b569c[i * 12] == NULL) {
-        func_ov000_021a1a38(0xb, 0xfffec77f);
+        ReportMatchingError(0xb, 0xfffec77f);
         return 0;
     }
     strcpy(*(char **) &data_ov000_021b569c[i * 12], b);
@@ -100,7 +100,7 @@ s32 func_ov000_021a2a88(u32 a, void *b, s32 c) {
     if (gWiFiMatching == NULL || func_ov000_0219c39c() != 0) {
         return c;
     }
-    r = func_ov000_0218b480(gWiFiMatching->mUnk_e4, a);
+    r = func_ov000_0218b480(gWiFiMatching->mServerList, a);
     if (r != 0) {
         c = SbServerGetInt((SbServer *) r, b, c);
     }

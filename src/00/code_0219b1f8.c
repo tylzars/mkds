@@ -46,7 +46,7 @@ void WiFiGpMessageCallback(GpConnection *a, Unk0219b4b4 *b, u32 g) {
                         f = gWiFiConnection;
                         if (f->mState == 5 || f->mMatching.mMode == 2 || f->mMatching.mMode == 3) {
                             d += strlen(data_ov000_021b4060);
-                            func_ov000_021a1ae0(a, b->mUnk_00, d);
+                            ParseMatchingGpMessage(a, b->mUnk_00, d);
                         }
                     }
                 }
@@ -75,7 +75,7 @@ void func_ov000_0219b27c(Unk0219887c *a, u32 b) {
 
     e = 0;
     f = FALSE;
-    if (func_ov000_021a141c() != 0) {
+    if (IsMatchingPointerNull() != 0) {
         return;
     }
     switch (b) {
