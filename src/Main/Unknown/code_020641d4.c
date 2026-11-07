@@ -139,7 +139,7 @@ void func_020641f0(Kart *a) {
             a->mUnk_4c = a->mUnk_4c & ~0x1400000;
         }
     }
-    func_01ff9b70(a);
+    AdvanceKartEffects(a);
 }
 
 void func_020641d4(Kart *a) {

@@ -1297,7 +1297,7 @@ void AdvanceKartToKeyedPlacement(Kart *p) {
     if (Vec3DotUnrounded(&c, &e) <= 0) {
         func_02055c5c();
         p->mUnk_48 &= ~0x10000;
-        func_01ffa11c(p, &p->mUnk_244);
+        AdvanceKartQuaternionBlendFactor(p, &p->mUnk_244);
         p->mUnk_48 &= ~0x40000;
         p->mUnk_3e8 = (s16) ((s32) (((s64) b.x * 0x4000) >> 12) >> 12) + 0x32;
         if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mCourseId == COURSE_ID_AIRSHIP) {
@@ -1326,7 +1326,7 @@ void AdvanceKartToKeyedPlacement(Kart *p) {
                       gPairsByAngle[((u16) p->mUnk_234 >> 4) * 2 + 1]);
         MTX_MultVec33(&n, &m2.mUnk_00[0].x, &n);
         p->mUnk_244 = n;
-        func_01ff9f60(p, &n);
+        AdvanceKartOrientation(p, &n);
     }
 
     p->mForwardSpeed = 0x1e000;

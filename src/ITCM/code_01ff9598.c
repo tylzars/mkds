@@ -132,7 +132,7 @@ BOOL func_01ffa1f8(Kart *p) {
     return FALSE;
 }
 
-void func_01ffa11c(Kart *p, const Vec3 *a) {
+void AdvanceKartQuaternionBlendFactor(Kart *p, const Vec3 *a) {
     s32 d = Vec3DotUnrounded(&p->mUnk_244, a);
     s32 m;
 
@@ -180,7 +180,7 @@ void UpdateKartAirborne(Kart *p) {
     }
 }
 
-void func_01ff9f60(Kart *p, Vec3 *a) {
+void AdvanceKartOrientation(Kart *p, Vec3 *a) {
     Vec4 v;
     u32 t;
 
@@ -318,7 +318,7 @@ void func_01ff9c9c(Kart *p, u32 a) {
     }
 }
 
-void func_01ff9c40(Kart *p) {
+void AdvanceKartHop(Kart *p) {
     if (!(p->mUnk_44 & 4)) {
         return;
     }
@@ -331,7 +331,7 @@ void func_01ff9c40(Kart *p) {
     }
 }
 
-void func_01ff9b70(Kart *p) {
+void AdvanceKartEffects(Kart *p) {
     KartTurnEffects *a;
     KartEffects *b;
     u32 f;

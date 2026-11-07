@@ -270,7 +270,7 @@ typedef struct Kart {
     // mScaleYFactor. Zero at the start placement (ResetKartToStartPlacement) and where the kart is moved to a far
     // corner (func_02068b98, func_02068640).
     /* bc */ Vec3 mScale;
-    // Negative step added by ApplyKartGravity to mVerticalSpeed, by func_01ff9c40 to mHopSpeed while hopping and to a
+    // Negative step added by ApplyKartGravity to mVerticalSpeed, by AdvanceKartHop to mHopSpeed while hopping and to a
     // speed of the mode-5 record; -0x2b9 at reset, 0 after the water-height branch of func_0206ff50.
     /* c8 */ s32 mGravity;
     // The value mSpeedLimit follows: it falls by x0xf37/0x1000 per step but never below it and rises to it at once.
@@ -376,7 +376,7 @@ typedef struct Kart {
     /* 2b2 */ u16 mNearKartMask;
     /* 2b4 */ u16 mPrevNearKartMask;
     /* 2b6 */ u8 mUnk_2b6[2];
-    // Vertical speed of the hop arc: 0x1405 at the start (func_0206c5e4), mGravity added each step by func_01ff9c40,
+    // Vertical speed of the hop arc: 0x1405 at the start (func_0206c5e4), mGravity added each step by AdvanceKartHop,
     // integrated into mHopHeight, 0 once the height is below 0.
     /* 2b8 */ s32 mHopSpeed;
     // Height of the hop arc, integrated from mHopSpeed; 0 at the start and when it would go below 0. The camera, its
@@ -457,8 +457,8 @@ typedef struct Kart {
     /* 3a8 */ s32 mQuaternionBlendFactor;
     /* 3ac */ u16 mUnk_3ac;
     /* 3ae */ u8 mUnk_3ae[2];
-    // mVelocity, minus mVerticalSpeed on a floor hit, shifted right by 4 each step (func_01ff9b70); copied or scaled
-    // into the velocity (mUnk_40) of effect objects.
+    // mVelocity, minus mVerticalSpeed on a floor hit, shifted right by 4 each step (AdvanceKartEffects); copied or
+    // scaled into the velocity (mUnk_40) of effect objects.
     /* 3b0 */ Vec3 mEffectVelocity;
     /* 3bc */ u16 mUnk_3bc;
     /* 3be */ u16 mRaceStartFrameCount;

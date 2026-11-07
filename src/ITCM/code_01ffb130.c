@@ -190,7 +190,7 @@ void func_01ffb130(Kart *p) {
     }
     VEC_Add(&p->mVelocity, &p->mUnk_2f0, &p->mVelocity);
     VEC_Add(&p->mVelocity, &p->mUnk_1fc, &p->mVelocity);
-    func_01ff9c40(p);
+    AdvanceKartHop(p);
     ScaleKartVelocityAndSetCappedLengthAndDirection(p, b);
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         SetKartForwardSpeedRatio(Vec3DotUnrounded(&p->mVelocity, &p->mTurnedForward));

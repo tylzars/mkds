@@ -169,7 +169,7 @@ void AdvanceKartCollision(Kart *p) {
     }
     func_01ffc008(&p->mCollisionCenter, &p->mUnk_98, 0x400, p);
     func_01ffa4b4(p, &v);
-    func_01ff9f60(p, &v);
+    AdvanceKartOrientation(p, &v);
     p->mUnk_244 = v;
     p->mUnk_4d0 = p->mUnk_4d0 + 1;
     if (p->mUnk_4c & 0x8000) {
