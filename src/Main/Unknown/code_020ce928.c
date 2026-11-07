@@ -9,8 +9,8 @@
 void func_020ce928(void) {
     switch (AdvanceSelectRaceRule()) {
         case 1:
-            if (func_02029930()->mCourseListMode == 2) {
-                func_02029930()->mCourseId = COURSE_ID_CROSS;
+            if (GetRaceSetupCopy()->mCourseListMode == 2) {
+                GetRaceSetupCopy()->mCourseId = COURSE_ID_CROSS;
                 func_020ccc74(0x1d, 0x1f);
             } else {
                 func_020ccc74(0xb, 0x1f);

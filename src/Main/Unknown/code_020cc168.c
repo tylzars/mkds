@@ -39,20 +39,20 @@ void func_020cc3e8(void) {
     u16 i;
 
     for (i = 0; i < 8; i++) {
-        func_02029930()->mUnk_00[i].mCharacterIndex = GetCurrentCharacterIndex(i);
-        func_02029930()->mUnk_00[i].mKartIndex = GetCurrentKartIndex(i);
-        func_02029930()->mUnk_00[i].mUnk_08 = GetCurrentPlayerKind(i);
+        GetRaceSetupCopy()->mEntries[i].mCharacterIndex = GetCurrentCharacterIndex(i);
+        GetRaceSetupCopy()->mEntries[i].mKartIndex = GetCurrentKartIndex(i);
+        GetRaceSetupCopy()->mEntries[i].mPlayerKind = GetCurrentPlayerKind(i);
         if (GetCurrentUseTeams() != 0) {
-            func_02029930()->mUnk_00[i].mTeamIndex = GetCurrentTeamIndex(i);
+            GetRaceSetupCopy()->mEntries[i].mTeamIndex = GetCurrentTeamIndex(i);
         } else {
-            func_02029930()->mUnk_00[i].mTeamIndex = -1;
+            GetRaceSetupCopy()->mEntries[i].mTeamIndex = -1;
         }
-        func_02029930()->mUnk_00[i].mUnk_10 = func_020cc6a4(i);
-        func_02029930()->mUnk_00[i].mUnk_14 = 0;
+        GetRaceSetupCopy()->mEntries[i].mUnk_10 = func_020cc6a4(i);
+        GetRaceSetupCopy()->mEntries[i].mUnk_14 = 0;
     }
-    func_02029930()->mUnk_cc = GetCurrentCupIndex();
-    func_02029930()->mUnk_c0 = func_020cc67c();
-    func_02029930()->mKartCount = GetCurrentKartCount();
+    GetRaceSetupCopy()->mCupIndex = GetCurrentCupIndex();
+    GetRaceSetupCopy()->mUnk_c0 = func_020cc67c();
+    GetRaceSetupCopy()->mKartCount = GetCurrentKartCount();
     if (func_020cae54() != 0) {
         u32 v;
 
@@ -61,32 +61,32 @@ void func_020cc3e8(void) {
             case 0:
             case 1:
             case 4:
-                func_02029930()->mUnk_c8 = 3;
+                GetRaceSetupCopy()->mMode = 3;
                 break;
             case 2:
             case 3:
             case 5:
-                func_02029930()->mUnk_c8 = v;
+                GetRaceSetupCopy()->mMode = v;
                 break;
         }
     } else {
-        func_02029930()->mUnk_c8 = GetCurrentMode();
+        GetRaceSetupCopy()->mMode = GetCurrentMode();
     }
     if (func_020cae38() != 0) {
-        func_02029930()->mCourseId = COURSE_ID_OLD_MARIO_SFC;
+        GetRaceSetupCopy()->mCourseId = COURSE_ID_OLD_MARIO_SFC;
     } else {
-        func_02029930()->mCourseId = GetCurrentCourseId();
+        GetRaceSetupCopy()->mCourseId = GetCurrentCourseId();
     }
-    func_02029930()->mUnk_d4 = func_020cc62c();
-    func_02029930()->mUnk_d8 = func_020cc618();
-    func_02029930()->mUseTeams = GetCurrentUseTeams();
-    func_02029930()->mUnk_e4 = func_020cc604();
-    func_02029930()->mUnk_e4 = func_020cc604();
-    func_02029930()->mUnk_e8 = func_020cc5ec();
-    func_02029930()->mUnk_ec = func_020cc5d8();
+    GetRaceSetupCopy()->mEngineIndex = func_020cc62c();
+    GetRaceSetupCopy()->mUnk_d8 = func_020cc618();
+    GetRaceSetupCopy()->mUseTeams = GetCurrentUseTeams();
+    GetRaceSetupCopy()->mUnk_e4 = func_020cc604();
+    GetRaceSetupCopy()->mUnk_e4 = func_020cc604();
+    GetRaceSetupCopy()->mUnk_e8 = func_020cc5ec();
+    GetRaceSetupCopy()->mUnk_ec = func_020cc5d8();
     if (GetCurrentMode() == MODE_MISSION_RUN) {
-        func_02029930()->mMissionTableRow = func_020cc5b8();
-        func_02029930()->mMissionTableColumn = func_020cc598();
+        GetRaceSetupCopy()->mMissionTableRow = func_020cc5b8();
+        GetRaceSetupCopy()->mMissionTableColumn = func_020cc598();
     }
 }
 

@@ -12,25 +12,31 @@
 #include "Main/Unknown/code_0205ee14.h" // Unk0205fd2c
 #include "code_02022a90.h" // NNSG2dCellTransferState
 
-// 0x18-byte elements of the table at member 0 of Unk02029930.
+// One entry of mEntries: character, kart, team and player kind; mUnk_10 is passed on as func_020468b0's sixth argument.
+// 0x18-byte elements of the table at member 0 of RaceSetupCopy.
 typedef struct Unk02029930_00 {
     /* 00 */ s32 mCharacterIndex;
     /* 04 */ s32 mKartIndex;
-    /* 08 */ s32 mUnk_08;
+    /* 08 */ s32 mPlayerKind;
     /* 0c */ s32 mTeamIndex;
     /* 10 */ s32 mUnk_10;
+    // 1 where the entry's kart index is stored, 0 where the entry is cleared and on copy-in.
     /* 14 */ s32 mUnk_14;
 } Unk02029930_00;
 
-// Object behind data_02174e1c, returned by func_02029930.
-typedef struct Unk02029930 {
-    /* 00 */ Unk02029930_00 mUnk_00[8];
+// Copy of the race setup that the screens edit: filled from the current half of data_021759c0 (or from the Wi-Fi
+// session), written to the next half by func_020cc744 or func_020297bc. Object behind gRaceSetupCopy, returned by
+// GetRaceSetupCopy.
+typedef struct RaceSetupCopy {
+    /* 00 */ Unk02029930_00 mEntries[8];
     /* c0 */ s32 mUnk_c0;
     /* c4 */ s32 mKartCount;
-    /* c8 */ s32 mUnk_c8;
-    /* cc */ s32 mUnk_cc;
+    // A MODE_* value of unk_021759c0.h: copied from the current mode (3 for most modes in a Wi-Fi race), set by the
+    // select screens, stored as the next mode by func_020cc744.
+    /* c8 */ s32 mMode;
+    /* cc */ s32 mCupIndex;
     /* d0 */ s32 mCourseId;
-    /* d4 */ s32 mUnk_d4;
+    /* d4 */ s32 mEngineIndex;
     /* d8 */ s32 mUnk_d8;
     /* dc */ s32 mUseTeams;
     /* e0 */ s32 mUnk_e0;
@@ -48,11 +54,11 @@ typedef struct Unk02029930 {
     /* 104 */ u16 mMissionFileRowIndex;
     /* 106 */ u8 mUnk_106[2];
     /* 108 */ s32 mUnk_108;
-    /* 10c */ u8 mUnk_10c;
+    /* 10c */ u8 mEntryIndex;
     /* 10d */ u8 mUnk_10d;
-} Unk02029930;
+} RaceSetupCopy;
 
-extern Unk02029930 *data_02174e1c;
+extern RaceSetupCopy *gRaceSetupCopy;
 
 // 0x118-byte object that gSelectKart points to.
 typedef struct SelectKart {
@@ -72,7 +78,7 @@ typedef struct SelectKart {
     // Position of the kart in the table data_0215336c that the player steps through; mKartIndex is the kart at that
     // position, -1 when the kart is not in the table.
     /* 09c */ s32 mKartTableIndex;
-    // Index of the entry (element of the array behind data_02174e1c) whose character and kart this screen edits.
+    // Index of the entry (element of the array behind gRaceSetupCopy) whose character and kart this screen edits.
     /* 0a0 */ s32 mEntryIndex;
     /* 0a4 */ s32 mCharacterIndex;
     /* 0a8 */ s32 mKartIndex;

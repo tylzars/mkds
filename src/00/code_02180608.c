@@ -91,7 +91,7 @@ void InitWiFiStates(void *heap, s32 b) {
     gWiFiStates = HeapAlloc(heap, 0x3c);
     gWiFiStates->mHeap = heap;
     gWiFiStates->mUnk_14 = 0;
-    func_02029a70(heap);
+    CreateRaceSetupCopy(heap);
     gWiFiStates->mUnk_2c = func_02125028(heap);
     func_0212abdc(heap, func_ov000_021804f4());
     c.mUnk_00 = TRUE;

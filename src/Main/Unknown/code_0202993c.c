@@ -24,26 +24,26 @@ u32 func_020299e4(void) {
 
 void func_0202993c(void) {
     s32 i;
-    func_02029a38(data_02174e1c, 0x110);
+    func_02029a38(gRaceSetupCopy, 0x110);
     for (i = 0; i < 8; i++) {
-        data_02174e1c->mUnk_00[i].mCharacterIndex = -1;
-        data_02174e1c->mUnk_00[i].mKartIndex = -1;
-        data_02174e1c->mUnk_00[i].mUnk_08 = 4;
-        data_02174e1c->mUnk_00[i].mTeamIndex = -1;
-        data_02174e1c->mUnk_00[i].mUnk_10 = 3;
+        gRaceSetupCopy->mEntries[i].mCharacterIndex = -1;
+        gRaceSetupCopy->mEntries[i].mKartIndex = -1;
+        gRaceSetupCopy->mEntries[i].mPlayerKind = 4;
+        gRaceSetupCopy->mEntries[i].mTeamIndex = -1;
+        gRaceSetupCopy->mEntries[i].mUnk_10 = 3;
     }
-    data_02174e1c->mMissionTableRow = 1;
-    data_02174e1c->mMissionTableColumn = 1;
+    gRaceSetupCopy->mMissionTableRow = 1;
+    gRaceSetupCopy->mMissionTableColumn = 1;
     if (func_02029a24() == 0) {
         if (func_020299e4() == 0) {
-            data_02174e1c->mMissionFile = FindSceneFile(data_usa_0216212c);
+            gRaceSetupCopy->mMissionFile = FindSceneFile(data_usa_0216212c);
         } else {
-            data_02174e1c->mMissionFile = NULL;
+            gRaceSetupCopy->mMissionFile = NULL;
         }
-        if (data_02174e1c->mMissionFile != NULL) {
-            data_02174e1c->mMissionFileRows = (Unk02029930_f8 *) (data_02174e1c->mMissionFile + 8);
+        if (gRaceSetupCopy->mMissionFile != NULL) {
+            gRaceSetupCopy->mMissionFileRows = (Unk02029930_f8 *) (gRaceSetupCopy->mMissionFile + 8);
         } else {
-            data_02174e1c->mMissionFileRows = NULL;
+            gRaceSetupCopy->mMissionFileRows = NULL;
         }
     }
 }

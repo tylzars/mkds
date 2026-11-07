@@ -49,7 +49,7 @@ void func_021170f8(void) {
     a = 0;
     b = ~0;
     for (; n < 8; n++) {
-        func_020294fc(n, b);
+        SetCharacterIndex(n, b);
         func_020294ac(n, a);
     }
 }
@@ -71,12 +71,12 @@ void func_02117060(void) {
         n = (u8) (c != FALSE ? CountSetBits(data_0217aa00->mUnk_15f6) : 0);
     }
     for (i = 0; i < 8; i++) {
-        func_0203bea4(data_0217d358->mUnk_00, (u8) i, func_020296d4(i));
+        func_0203bea4(data_0217d358->mUnk_00, (u8) i, GetCharacterIndex(i));
     }
     a = 0;
     b = ~0;
     for (; n < 8; n++) {
-        func_020294e8(n, b);
+        SetKartIndex(n, b);
         func_020294ac(n, a);
     }
 }
@@ -98,12 +98,12 @@ void func_02116fb0(void) {
         n = (u8) (c != FALSE ? CountSetBits(data_0217aa00->mUnk_15f6) : 0);
     }
     for (i = 0; i < n; i++) {
-        func_0203bea4(data_0217d358->mUnk_00, (u8) i, func_020296d4(i));
+        func_0203bea4(data_0217d358->mUnk_00, (u8) i, GetCharacterIndex(i));
     }
     func_0203ba84(data_0217d358->mUnk_00);
     for (; n < 8; n++) {
         func_0203be48(data_0217d358->mUnk_00, n, &v, NULL);
-        func_020294fc(n, v);
+        SetCharacterIndex(n, v);
     }
 }
 
@@ -124,12 +124,12 @@ void func_02116ef8(void) {
         n = (u8) (c != FALSE ? CountSetBits(data_0217aa00->mUnk_15f6) : 0);
     }
     for (i = 0; i < n; i++) {
-        func_0203be88(data_0217d358->mUnk_00, (u8) i, func_020296c0(i));
+        func_0203be88(data_0217d358->mUnk_00, (u8) i, GetKartIndex(i));
     }
     func_0203bc64(data_0217d358->mUnk_00);
     for (; n < 8; n++) {
         func_0203be48(data_0217d358->mUnk_00, n, NULL, &v);
-        func_020294e8(n, v);
+        SetKartIndex(n, v);
         func_020294ac(n, 1);
     }
 }
@@ -138,7 +138,7 @@ void func_02116ec0(void) {
     int i;
 
     for (i = 0; i < 8; i++) {
-        func_020294e8(i, data_0215c5d8[func_020296d4(i)]);
+        SetKartIndex(i, data_0215c5d8[GetCharacterIndex(i)]);
         func_020294ac(i, 1);
     }
 }

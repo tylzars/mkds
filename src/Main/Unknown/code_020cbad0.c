@@ -68,7 +68,7 @@ void func_020cbb10(void) {
     Unk02180774 *r;
 
     data_0217b43c = HeapAlloc(func_020cb99c(), 0x960);
-    func_02029a70(func_020cb99c());
+    CreateRaceSetupCopy(func_020cb99c());
     r = CreateDisplaySettings(func_020cb99c(), data_0215688c);
     func_020cc330(r, 1, 0, 0, 0, 0xd, 2, 0);
     func_020cc2f4(r, 0, 0, 0, 0, 0xc, 0, 0);
@@ -181,7 +181,7 @@ void func_020cbb10(void) {
             break;
         case 1:
             func_020cc3e8();
-            switch (func_02029930()->mUnk_c8) {
+            switch (GetRaceSetupCopy()->mMode) {
                 case 0:
                     func_020ccc74(5, 0x1f);
                     func_020cbabc(0);
@@ -202,7 +202,7 @@ void func_020cbb10(void) {
             break;
         case 2:
             func_020cc3e8();
-            switch (func_02029930()->mUnk_c8) {
+            switch (GetRaceSetupCopy()->mMode) {
                 case 3:
                     func_020ccc74(0xb, 0x1f);
                     break;
@@ -231,14 +231,14 @@ void func_020cbb10(void) {
             break;
         case 5:
             func_020cc3e8();
-            func_02029930()->mUnk_c8 = 1;
+            GetRaceSetupCopy()->mMode = 1;
             func_020ccc74(SCREEN_TIME_ATTACK_TOP_MENU, 0x1f);
             func_020cbabc(0);
             func_020cc10c(1);
             break;
     }
     func_0211717c(func_020cb99c());
-    switch (func_02029930()->mUnk_c8) {
+    switch (GetRaceSetupCopy()->mMode) {
         case 0:
         default:
             data_0217b43c->mUnk_930 = 0;

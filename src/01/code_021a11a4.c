@@ -155,13 +155,13 @@ void func_ov001_021a1bf8(void) {
 
 void func_ov001_021a1bb8(void) {
     if (gSelectEngine->mIndex == 3) {
-        func_020295c0(data_ov001_021a6f90[2]);
+        SetEngineIndex(data_ov001_021a6f90[2]);
         func_020295b0();
     } else {
-        func_020295c0(data_ov001_021a6f90[gSelectEngine->mIndex]);
+        SetEngineIndex(data_ov001_021a6f90[gSelectEngine->mIndex]);
         func_020295a0();
     }
-    func_02029590(0);
+    SetCupIndex(0);
 }
 
 u32 func_ov001_021a1ba0(void) {
@@ -297,7 +297,7 @@ void InitSelectEngine(void *a, void *b, void *c) {
     if (func_0202967c() != 0) {
         gSelectEngine->mIndex = 3;
     } else {
-        gSelectEngine->mIndex = data_ov001_021a6f74[func_0202969c()];
+        gSelectEngine->mIndex = data_ov001_021a6f74[GetEngineIndex()];
     }
     gSelectEngine->mUnk_40 = gSelectEngine->mIndex;
     LocateAndQueueSelectEngine();

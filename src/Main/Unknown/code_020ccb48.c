@@ -24,10 +24,11 @@ void func_020ccbb8(void) {
     if (a <= b) {
         b++;
     }
-    func_0203be6c(data_0217b43c->mUnk_954, 0, func_02029930()->mUnk_00[0].mCharacterIndex,
-                  func_02029930()->mUnk_00[0].mKartIndex);
+    func_0203be6c(data_0217b43c->mUnk_954, 0, GetRaceSetupCopy()->mEntries[0].mCharacterIndex,
+                  GetRaceSetupCopy()->mEntries[0].mKartIndex);
     func_0203ba70(data_0217b43c->mUnk_954);
-    func_020468b0(0, func_02029930()->mUnk_00[0].mCharacterIndex, func_02029930()->mUnk_00[0].mKartIndex, 0, -1, 3);
+    func_020468b0(0, GetRaceSetupCopy()->mEntries[0].mCharacterIndex, GetRaceSetupCopy()->mEntries[0].mKartIndex, 0, -1,
+                  3);
     for (i = 1; i < 8; i++) {
         func_0203be48(data_0217b43c->mUnk_954, i, &x, &y);
         func_020468b0(i, x, y, 1, -1, i == a ? 0 : i == b ? 1 : 3);
@@ -39,11 +40,11 @@ void func_020ccbb8(void) {
 
 void func_020ccb78(void) {
     u8 v1;
-    Unk02029930 *v2;
-    Unk02029930 *v3;
-    v2 = func_02029930();
-    v3 = func_02029930();
-    func_020468b0(0, v2->mUnk_00[0].mCharacterIndex, v3->mUnk_00[0].mKartIndex, 0, 0xffffffff, 3);
+    RaceSetupCopy *v2;
+    RaceSetupCopy *v3;
+    v2 = GetRaceSetupCopy();
+    v3 = GetRaceSetupCopy();
+    func_020468b0(0, v2->mEntries[0].mCharacterIndex, v3->mEntries[0].mKartIndex, 0, 0xffffffff, 3);
     v1 = 1;
     do {
         func_020ccb48(v1);

@@ -115,7 +115,7 @@ void InitWiFiVSMatching(void *a) {
     u8 *p4;
     u8 c;
 
-    func_02029930();
+    GetRaceSetupCopy();
     gWiFiVSMatching = HeapAlloc(a, 0x170c);
     gWiFiVSMatching->mHeap = a;
     gWiFiVSMatching->mState = 0;

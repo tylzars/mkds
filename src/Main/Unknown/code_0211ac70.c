@@ -914,21 +914,21 @@ void func_0211c474(void) {
     s32 i;
     for (i = 0; i < 8; i++) {
         if (func_0211d40c(i) != 0) {
-            func_020294d4(i, 0);
-            func_0202950c(i, data_0215cca4[gSelectRaceRule->mUnk_8c[i]]);
+            SetPlayerKind(i, 0);
+            SetTeamIndex(i, data_0215cca4[gSelectRaceRule->mUnk_8c[i]]);
         } else if (gSelectRaceRule->mRowValues[1] != 0) {
-            func_020294d4(i, 1);
-            func_0202950c(i, data_0215cca4[gSelectRaceRule->mUnk_8c[i]]);
+            SetPlayerKind(i, 1);
+            SetTeamIndex(i, data_0215cca4[gSelectRaceRule->mUnk_8c[i]]);
         } else {
-            func_020294d4(i, 4);
-            func_0202950c(i, data_0215cca4[gSelectRaceRule->mUnk_8c[i]]);
+            SetPlayerKind(i, 4);
+            SetTeamIndex(i, data_0215cca4[gSelectRaceRule->mUnk_8c[i]]);
         }
     }
     if (gSelectRaceRule->mRowValues[0] == 3) {
-        func_020295c0(data_0215cd18[2]);
+        SetEngineIndex(data_0215cd18[2]);
         func_020295b0();
     } else {
-        func_020295c0(data_0215cd18[gSelectRaceRule->mRowValues[0]]);
+        SetEngineIndex(data_0215cd18[gSelectRaceRule->mRowValues[0]]);
         func_020295a0();
     }
     func_02029570(data_0215cd28[gSelectRaceRule->mRowValues[1]]);
@@ -1114,7 +1114,7 @@ void func_0211bd84(void) {
     if (func_020cccb4() == 8 || func_020cccb4() == 9 || func_020cccb4() == 0xf) {
         ClearUseTeams();
         func_020295a0();
-        func_020295c0(0);
+        SetEngineIndex(0);
         func_02029570(0);
         SetCourseListMode(0);
         func_02029540(0);
@@ -1134,9 +1134,9 @@ void func_0211bd84(void) {
                 break;
         }
         for (i = 0; i < 8; i++) {
-            b = data_0215cc9c[func_02029618(i)];
+            b = data_0215cc9c[GetTeamIndex(i)];
             func_0211d428(i, b);
-            if (func_020296ac(i) == 0) {
+            if (GetPlayerKind(i) == 0) {
                 gSelectRaceRule->mUnk_ac[b]++;
             } else {
                 gSelectRaceRule->mUnk_b0[b]++;
@@ -1152,7 +1152,7 @@ void func_0211bd84(void) {
     if (func_0202967c() != 0) {
         b = 3;
     } else {
-        b = data_0215ccfc[func_0202969c()];
+        b = data_0215ccfc[GetEngineIndex()];
     }
     a = 0;
     gSelectRaceRule->mRow = 0;

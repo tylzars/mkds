@@ -4,143 +4,143 @@
 #pragma thumb on
 
 u32 GetCourseId(void) {
-    return (data_02174e1c->mCourseId);
+    return (gRaceSetupCopy->mCourseId);
 }
 
-u32 func_020296d4(u16 p0) {
-    return (data_02174e1c->mUnk_00[p0].mCharacterIndex);
+u32 GetCharacterIndex(u16 p0) {
+    return (gRaceSetupCopy->mEntries[p0].mCharacterIndex);
 }
 
-u32 func_020296c0(u16 p0) {
-    return (data_02174e1c->mUnk_00[p0].mKartIndex);
+u32 GetKartIndex(u16 p0) {
+    return (gRaceSetupCopy->mEntries[p0].mKartIndex);
 }
 
-u32 func_020296ac(u16 p0) {
-    return (data_02174e1c->mUnk_00[p0].mUnk_08);
+u32 GetPlayerKind(u16 p0) {
+    return (gRaceSetupCopy->mEntries[p0].mPlayerKind);
 }
 
-u32 func_0202969c(void) {
-    return (data_02174e1c->mUnk_d4);
+u32 GetEngineIndex(void) {
+    return (gRaceSetupCopy->mEngineIndex);
 }
 
-u32 func_0202968c(void) {
-    return (data_02174e1c->mUnk_cc);
+u32 GetCupIndex(void) {
+    return (gRaceSetupCopy->mCupIndex);
 }
 
 u32 func_0202967c(void) {
-    return (data_02174e1c->mUnk_d8);
+    return (gRaceSetupCopy->mUnk_d8);
 }
 
 u32 func_0202966c(void) {
-    return (data_02174e1c->mUnk_c0);
+    return (gRaceSetupCopy->mUnk_c0);
 }
 
 u32 GetCourseListMode(void) {
-    return (data_02174e1c->mCourseListMode);
+    return (gRaceSetupCopy->mCourseListMode);
 }
 
 u32 func_0202964c(void) {
-    return (data_02174e1c->mUnk_e8);
+    return (gRaceSetupCopy->mUnk_e8);
 }
 
 u32 func_0202963c(void) {
-    return (data_02174e1c->mUnk_ec);
+    return (gRaceSetupCopy->mUnk_ec);
 }
 
 u32 GetUseTeams(void) {
-    return (data_02174e1c->mUseTeams);
+    return (gRaceSetupCopy->mUseTeams);
 }
 
-u32 func_02029618(u16 p0) {
-    return (data_02174e1c->mUnk_00[p0].mTeamIndex);
+u32 GetTeamIndex(u16 p0) {
+    return (gRaceSetupCopy->mEntries[p0].mTeamIndex);
 }
 
 u32 GetMissionTableRow(void) {
-    return (data_02174e1c->mMissionTableRow);
+    return (gRaceSetupCopy->mMissionTableRow);
 }
 
 u32 GetMissionTableColumn(void) {
-    return (data_02174e1c->mMissionTableColumn);
+    return (gRaceSetupCopy->mMissionTableColumn);
 }
 
 u32 func_020295e4(void) {
-    return (data_02174e1c->mUnk_10c);
+    return (gRaceSetupCopy->mEntryIndex);
 }
 
 u32 func_020295d0(void) {
-    return (data_02174e1c->mUnk_10d);
+    return (gRaceSetupCopy->mUnk_10d);
 }
 
-void func_020295c0(u32 p0) {
-    data_02174e1c->mUnk_d4 = p0;
+void SetEngineIndex(u32 p0) {
+    gRaceSetupCopy->mEngineIndex = p0;
 }
 
 void func_020295b0(void) {
-    data_02174e1c->mUnk_d8 = 1;
+    gRaceSetupCopy->mUnk_d8 = 1;
 }
 
 void func_020295a0(void) {
-    data_02174e1c->mUnk_d8 = 0;
+    gRaceSetupCopy->mUnk_d8 = 0;
 }
 
-void func_02029590(u32 p0) {
-    data_02174e1c->mUnk_cc = p0;
+void SetCupIndex(u32 p0) {
+    gRaceSetupCopy->mCupIndex = p0;
 }
 
 void SetCourseId(u32 p0) {
-    data_02174e1c->mCourseId = p0;
+    gRaceSetupCopy->mCourseId = p0;
 }
 
 void func_02029570(u32 p0) {
-    data_02174e1c->mUnk_c0 = p0;
+    gRaceSetupCopy->mUnk_c0 = p0;
 }
 
 void SetCourseListMode(u32 p0) {
-    data_02174e1c->mCourseListMode = p0;
+    gRaceSetupCopy->mCourseListMode = p0;
 }
 
 void func_02029550(u16 p0) {
-    data_02174e1c->mUnk_e8 = p0;
+    gRaceSetupCopy->mUnk_e8 = p0;
 }
 
 void func_02029540(u32 p0) {
-    data_02174e1c->mUnk_ec = p0;
+    gRaceSetupCopy->mUnk_ec = p0;
 }
 
 void SetUseTeams(void) {
-    data_02174e1c->mUseTeams = 1;
+    gRaceSetupCopy->mUseTeams = 1;
 }
 
 void ClearUseTeams(void) {
-    data_02174e1c->mUseTeams = 0;
+    gRaceSetupCopy->mUseTeams = 0;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_0202950c(u16 a, u32 b) {
-    data_02174e1c->mUnk_00[a].mTeamIndex = b;
+void SetTeamIndex(u16 a, u32 b) {
+    gRaceSetupCopy->mEntries[a].mTeamIndex = b;
 }
 
-void func_020294fc(u16 a, u32 b) {
-    data_02174e1c->mUnk_00[a].mCharacterIndex = b;
+void SetCharacterIndex(u16 a, u32 b) {
+    gRaceSetupCopy->mEntries[a].mCharacterIndex = b;
 }
 
-void func_020294e8(u16 a, u32 b) {
-    data_02174e1c->mUnk_00[a].mKartIndex = b;
+void SetKartIndex(u16 a, u32 b) {
+    gRaceSetupCopy->mEntries[a].mKartIndex = b;
 }
 
-void func_020294d4(u16 a, u32 b) {
-    data_02174e1c->mUnk_00[a].mUnk_08 = b;
+void SetPlayerKind(u16 a, u32 b) {
+    gRaceSetupCopy->mEntries[a].mPlayerKind = b;
 }
 
 void func_020294c0(u16 a, u32 b) {
-    data_02174e1c->mUnk_00[a].mUnk_10 = b;
+    gRaceSetupCopy->mEntries[a].mUnk_10 = b;
 }
 
 void func_020294ac(u16 a, u32 b) {
-    data_02174e1c->mUnk_00[a].mUnk_14 = b;
+    gRaceSetupCopy->mEntries[a].mUnk_14 = b;
 }
 
 #pragma thumb off
@@ -148,27 +148,27 @@ void func_020294ac(u16 a, u32 b) {
 #pragma thumb on
 
 void func_0202949c(u32 p0) {
-    data_02174e1c->mUnk_e0 = p0;
+    gRaceSetupCopy->mUnk_e0 = p0;
 }
 
 void SetMissionTableRow(u32 p0) {
-    data_02174e1c->mMissionTableRow = (u8) p0;
+    gRaceSetupCopy->mMissionTableRow = (u8) p0;
 }
 
 void SetMissionTableColumn(u32 p0) {
-    data_02174e1c->mMissionTableColumn = (u8) p0;
+    gRaceSetupCopy->mMissionTableColumn = (u8) p0;
 }
 
 void SetMissionFileRowIndex(u32 p0) {
-    data_02174e1c->mMissionFileRowIndex = p0;
+    gRaceSetupCopy->mMissionFileRowIndex = p0;
 }
 
 void func_02029454(u32 p0) {
-    data_02174e1c->mUnk_10c = p0;
+    gRaceSetupCopy->mEntryIndex = p0;
 }
 
 void func_02029440(u32 p0) {
-    data_02174e1c->mUnk_10d = p0;
+    gRaceSetupCopy->mUnk_10d = p0;
 }
 
 #pragma thumb off

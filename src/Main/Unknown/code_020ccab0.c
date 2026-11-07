@@ -11,12 +11,13 @@ void func_020ccab0(void) {
     s32 a;
 
     for (i = 0; i < 8; i++) {
-        if (func_02029930()->mUnk_c0 == 0 && func_02029930()->mUnk_00[i].mUnk_08 == 1) {
+        if (GetRaceSetupCopy()->mUnk_c0 == 0 && GetRaceSetupCopy()->mEntries[i].mPlayerKind == 1) {
             func_020ccb48(i);
         } else {
-            a = func_02029930()->mUseTeams != 0 ? func_02029930()->mUnk_00[i].mTeamIndex : -1;
-            func_020468b0(i, func_02029930()->mUnk_00[i].mCharacterIndex, func_02029930()->mUnk_00[i].mKartIndex,
-                          func_02029930()->mUnk_00[i].mUnk_08, a, func_02029930()->mUnk_00[i].mUnk_10);
+            a = GetRaceSetupCopy()->mUseTeams != 0 ? GetRaceSetupCopy()->mEntries[i].mTeamIndex : -1;
+            func_020468b0(i, GetRaceSetupCopy()->mEntries[i].mCharacterIndex,
+                          GetRaceSetupCopy()->mEntries[i].mKartIndex, GetRaceSetupCopy()->mEntries[i].mPlayerKind, a,
+                          GetRaceSetupCopy()->mEntries[i].mUnk_10);
         }
     }
 }

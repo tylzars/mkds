@@ -19,7 +19,7 @@ void func_020cae8c(void) {
     if (n >= 10) {
         func_020ccc74(2, t[data_0217b43c->mUnk_930][0]);
         func_0202993c();
-        func_02029930()->mUnk_c8 = t[data_0217b43c->mUnk_930][1];
+        GetRaceSetupCopy()->mMode = t[data_0217b43c->mUnk_930][1];
     }
     func_020cb2d4();
 }

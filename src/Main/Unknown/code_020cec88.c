@@ -9,7 +9,7 @@
 void func_020cec88(void) {
     switch (AdvanceSelectGame()) {
         case 1:
-            switch (func_02029930()->mUnk_c8) {
+            switch (GetRaceSetupCopy()->mMode) {
                 case 3:
                     func_020ccc74(8, 0x1f);
                     break;

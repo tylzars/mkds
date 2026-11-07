@@ -52,7 +52,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     gSelectKart->mHeap = h;
     gSelectKart->mMode = b;
     gSelectKart->mUnk_110 = -1;
-    switch (func_02029930()->mUnk_108) {
+    switch (GetRaceSetupCopy()->mUnk_108) {
         case 1:
             func_02025f80(&gSelectKart->mUnk_0ac[0], 1, 10, -0x80, 0);
             func_02025f80(&gSelectKart->mUnk_0ac[2], 1, 10, 0x60, 0);
@@ -71,7 +71,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     func_02025f80(&gSelectKart->mUnk_0ac[4], 0, 10, -0xc0, 0);
     gSelectKart->mUnk_080 = c;
     gSelectKart->mUnk_084 = d;
-    if (gSelectKart->mMode != 0 || func_02029930()->mUnk_c8 == 3 || func_02029930()->mUnk_c8 == 2) {
+    if (gSelectKart->mMode != 0 || GetRaceSetupCopy()->mMode == 3 || GetRaceSetupCopy()->mMode == 2) {
         v = 1;
     } else {
         v = 0;
@@ -107,17 +107,17 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
         gSelectKart->mUnk_098 = func_02056444(gSelectKart->mHeap);
     }
     g = gSelectKart;
-    g->mCharacterIndex = func_02029930()->mUnk_00[g->mEntryIndex].mCharacterIndex;
+    g->mCharacterIndex = GetRaceSetupCopy()->mEntries[g->mEntryIndex].mCharacterIndex;
     g = gSelectKart;
-    g->mKartIndex = func_02029930()->mUnk_00[g->mEntryIndex].mKartIndex;
+    g->mKartIndex = GetRaceSetupCopy()->mEntries[g->mEntryIndex].mKartIndex;
     if (gSelectKart->mCharacterIndex == -1) {
         gSelectKart->mCharacterIndex = 0;
     }
     if (gSelectKart->mKartIndex == -1) {
         gSelectKart->mKartIndex = 0;
     }
-    func_02029930()->mUnk_00[gSelectKart->mEntryIndex].mKartIndex = -1;
-    func_02029930()->mUnk_00[gSelectKart->mEntryIndex].mUnk_14 = 0;
+    GetRaceSetupCopy()->mEntries[gSelectKart->mEntryIndex].mKartIndex = -1;
+    GetRaceSetupCopy()->mEntries[gSelectKart->mEntryIndex].mUnk_14 = 0;
     gSelectKart->mKartTableIndex = func_02025e34(gSelectKart->mKartIndex);
     if (func_020280dc() == 0) {
         g = gSelectKart;

@@ -6,7 +6,7 @@
 #pragma thumb on
 s32 func_02025e60(s32 a) {
     s32 r = -1;
-    switch (func_02029930()->mUnk_c8) {
+    switch (GetRaceSetupCopy()->mMode) {
         case 0:
         case 1:
         case 3:

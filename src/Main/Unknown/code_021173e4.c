@@ -184,7 +184,7 @@ void SetupSelectCupGridIndex(void) {
         if (func_0202967c() != 0) {
             v = 3;
         } else {
-            v = data_0215c7f0[func_0202969c()];
+            v = data_0215c7f0[GetEngineIndex()];
         }
         b = data_0215c81c[v];
         if (func_02060440(data_0215c85c[gSelectCupGrid->mIndex], b) != 0) {
@@ -218,7 +218,7 @@ void SetupSelectCupGridIndex(void) {
 }
 
 void func_021185ec(void) {
-    func_02029590(data_0215c85c[gSelectCupGrid->mIndex]);
+    SetCupIndex(data_0215c85c[gSelectCupGrid->mIndex]);
     SetCourseId(data_0215c89c[gSelectCupGrid->mIndex]);
 }
 #pragma thumb off
@@ -482,7 +482,7 @@ void InitSelectCupGrid(void *a, void *b, void *c, s32 d) {
     gSelectCupGrid = HeapAlloc(a, 0x8c);
     gSelectCupGrid->mHeap = a;
     gSelectCupGrid->mState = 0;
-    gSelectCupGrid->mIndex = data_0215c8fc[func_0202968c()];
+    gSelectCupGrid->mIndex = data_0215c8fc[GetCupIndex()];
     gSelectCupGrid->mUnk_68 = TRUE;
     gSelectCupGrid->mIndexChangeTimer = 0;
     gSelectCupGrid->mMode = d;

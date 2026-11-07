@@ -48,7 +48,7 @@ void AdvanceWiFiVSCourseSelectState(void) {
             return;
         }
         b = gWiFiSession->mKartCount;
-        func_02029930()->mKartCount = b;
+        GetRaceSetupCopy()->mKartCount = b;
         func_020297bc();
         if ((u32) data_0217b488->mUnk_1c <= 2) {
             func_02045ed0();

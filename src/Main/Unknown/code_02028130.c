@@ -177,8 +177,8 @@ int AdvanceSelectKart(void) {
             if (d->mStateFrames >= 5) {
                 switch (d->mMode) {
                     case 0:
-                        func_02029930()->mUnk_00[gSelectKart->mEntryIndex].mKartIndex = d->mKartIndex;
-                        func_02029930()->mUnk_00[gSelectKart->mEntryIndex].mUnk_14 = 1;
+                        GetRaceSetupCopy()->mEntries[gSelectKart->mEntryIndex].mKartIndex = d->mKartIndex;
+                        GetRaceSetupCopy()->mEntries[gSelectKart->mEntryIndex].mUnk_14 = 1;
                         func_02116ef8();
                         gSelectKart->mState = 6;
                         break;
@@ -229,7 +229,7 @@ int AdvanceSelectKart(void) {
             break;
         case 7:
             if (d->mUnk_0ac[4].mUnk_00 == 3) {
-                func_02029930()->mUnk_00[gSelectKart->mEntryIndex].mUnk_14 = d->mResult == 1;
+                GetRaceSetupCopy()->mEntries[gSelectKart->mEntryIndex].mUnk_14 = d->mResult == 1;
                 gSelectKart->mState = 8;
             }
             func_02028fac();
@@ -241,7 +241,7 @@ int AdvanceSelectKart(void) {
     if (func_020280dc() == 0) {
         func_02078a9c(gSelectKart->mCharacterIndex);
         func_02078a34(gSelectKart->mKartIndex);
-        func_02078420(func_02029930()->mUnk_d8);
+        func_02078420(GetRaceSetupCopy()->mUnk_d8);
         func_020780f4();
     }
     d = gSelectKart;
@@ -260,10 +260,10 @@ int AdvanceSelectKart(void) {
     }
     switch (r) {
         case 1:
-            func_02029930()->mUnk_108 = 0;
+            GetRaceSetupCopy()->mUnk_108 = 0;
             break;
         case 2:
-            func_02029930()->mUnk_108 = 2;
+            GetRaceSetupCopy()->mUnk_108 = 2;
             break;
     }
     return r;

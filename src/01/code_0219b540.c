@@ -305,9 +305,9 @@ void func_ov001_0219be5c(void) {
     gSelectGhost->mSelectCupCourseTaMTable[n + 3].mUnk_00 = 1;
     gSelectGhost->mSelectCupCourseTaMTable[n + 4].mUnk_00 = 1;
     gSelectGhost->mSelectCupCourseTaMTable[n + 5].mUnk_00 = 1;
-    QueueSelectCupNameM(data_ov001_021a6ba4[func_0202968c()], gSelectGhost->mSelectCupCourseMNcer,
+    QueueSelectCupNameM(data_ov001_021a6ba4[GetCupIndex()], gSelectGhost->mSelectCupCourseMNcer,
                         gSelectGhost->mSelectCupCourseTaMBncl, 0, 0);
-    QueueCupMark(data_ov001_021a6ba4[func_0202968c()], gSelectGhost->mSelectCupCourseMNcer,
+    QueueCupMark(data_ov001_021a6ba4[GetCupIndex()], gSelectGhost->mSelectCupCourseMNcer,
                  gSelectGhost->mSelectCupCourseTaMBncl, 5,
                  func_02124a68(5, gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl), 0);
     func_0212426c(0, 2, gSelectGhost->mSelectCupCourseTaMBnll, GetBmgEntry(gSelectGhost->mCommonMessages, 0x73),

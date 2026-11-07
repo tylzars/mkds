@@ -154,7 +154,7 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
     MemFillWordsByBlock_inline(gSelectCharacter, 0x12c);
     gSelectCharacter->mHeap = h;
     gSelectCharacter->mUnk_080 = b;
-    switch (func_02029930()->mUnk_108) {
+    switch (GetRaceSetupCopy()->mUnk_108) {
         case 0:
             func_02025f80(&gSelectCharacter->mUnk_0f8[0], 0, 10, -0x80, 0);
             func_02025f80(&gSelectCharacter->mUnk_0f8[2], 0, 10, 0x60, 0);
@@ -180,7 +180,7 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
     func_02025f80(&gSelectCharacter->mUnk_0f8[1], 0, 10, -0x40, 0);
     gSelectCharacter->mUnk_054 = c;
     gSelectCharacter->mUnk_058 = d;
-    if (gSelectCharacter->mUnk_080 != 0 || func_02029930()->mUnk_c8 == 3 || func_02029930()->mUnk_c8 == 2) {
+    if (gSelectCharacter->mUnk_080 != 0 || GetRaceSetupCopy()->mMode == 3 || GetRaceSetupCopy()->mMode == 2) {
         f = TRUE;
     } else {
         f = FALSE;
@@ -248,7 +248,7 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
         s->mUnk_18[24].mUnk_10 = s->mUnk_18[25].mUnk_10;
         s->mUnk_18[25].mUnk_34 = 0;
         s->mUnk_18[24].mUnk_34 = s->mUnk_18[25].mUnk_34;
-    } else if (func_02029930()->mUnk_c8 == 2) {
+    } else if (GetRaceSetupCopy()->mMode == 2) {
         func_0211f4b0(gSelectCharacter->mHeap, gSelectCharacter->mUnk_058);
         func_0211f394();
     }
@@ -281,20 +281,20 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
     }
     for (j = 0; j < gSelectCharacter->mUnk_07c; j++) {
         if (gSelectCharacter->mUnk_090[j].mUnk_00 ==
-            func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mCharacterIndex) {
+            GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mCharacterIndex) {
             gSelectCharacter->mUnk_060 = j;
         }
     }
     gSelectCharacter->mUnk_064 = gSelectCharacter->mUnk_060;
     p = gSelectCharacter;
-    p->mUnk_0f0 = func_02029930()->mUnk_00[p->mUnk_078].mCharacterIndex;
+    p->mUnk_0f0 = GetRaceSetupCopy()->mEntries[p->mUnk_078].mCharacterIndex;
     if (gSelectCharacter->mUnk_0f0 == -1) {
         gSelectCharacter->mUnk_0f0 = 0;
     }
     gSelectCharacter->mUnk_0f4 = func_02025e60(gSelectCharacter->mUnk_0f0);
-    func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mCharacterIndex = -1;
-    func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mKartIndex = -1;
-    func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mUnk_14 = 0;
+    GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mCharacterIndex = -1;
+    GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mKartIndex = -1;
+    GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mUnk_14 = 0;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         s = &gSelectCharacter->mUnk_01c;
         func_02025b84(0, &w);
@@ -434,14 +434,14 @@ int AdvanceSelectCharacter(void) {
             gSelectCharacter->mUnk_0f4 = 0x24;
             gSelectCharacter->mUnk_068 = 0;
             gSelectCharacter->mUnk_08c = 1;
-            if (func_02029930()->mUnk_c8 == 3) {
+            if (GetRaceSetupCopy()->mMode == 3) {
                 c = gSelectCharacter->mUnk_0f0 | 0x40;
                 if (data_0217aa00->mUnk_0004 == 8) {
                     data_0217aa00->mUnk_15f7 = c;
                 }
                 func_02027424(1);
                 gSelectCharacter->mUnk_06c = 8;
-            } else if (func_02029930()->mUnk_c8 == 2) {
+            } else if (GetRaceSetupCopy()->mMode == 2) {
                 c = gSelectCharacter->mUnk_0f0 | 0xc0;
                 if (data_0217aa00->mUnk_0004 == 8) {
                     data_0217aa00->mUnk_15f7 = c;
@@ -550,11 +550,12 @@ int AdvanceSelectCharacter(void) {
                 p = gSelectCharacter;
                 switch (p->mUnk_080) {
                     case 0:
-                        func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mCharacterIndex = p->mUnk_0f0;
-                        func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mKartIndex = gSelectCharacter->mUnk_0f4;
+                        GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mCharacterIndex = p->mUnk_0f0;
+                        GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mKartIndex =
+                            gSelectCharacter->mUnk_0f4;
                         func_02116fb0();
-                        if (func_02029930()->mUnk_c8 == 2) {
-                            func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mUnk_14 = 1;
+                        if (GetRaceSetupCopy()->mMode == 2) {
+                            GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mUnk_14 = 1;
                             func_02077f48(1);
                             gSelectCharacter->mUnk_06c = 7;
                             func_02117060();
@@ -567,7 +568,7 @@ int AdvanceSelectCharacter(void) {
                         }
                         break;
                     case 1:
-                        if (func_02029930()->mUnk_c8 == 3) {
+                        if (GetRaceSetupCopy()->mMode == 3) {
                             c = gSelectCharacter->mUnk_0f0 | 0x40;
                             if (data_0217aa00->mUnk_0004 == 8) {
                                 data_0217aa00->mUnk_15f7 = c;
@@ -576,7 +577,7 @@ int AdvanceSelectCharacter(void) {
                             func_02027424(1);
                             gSelectCharacter->mUnk_06c = 8;
                             func_02077f5c();
-                        } else if (func_02029930()->mUnk_c8 == 2) {
+                        } else if (GetRaceSetupCopy()->mMode == 2) {
                             c = gSelectCharacter->mUnk_0f0 | 0xc0;
                             if (data_0217aa00->mUnk_0004 == 8) {
                                 data_0217aa00->mUnk_15f7 = c;
@@ -601,7 +602,7 @@ int AdvanceSelectCharacter(void) {
                 if (gSelectCharacter->mUnk_080 == 2) {
                     func_021219cc();
                 }
-                if (func_02029930()->mUnk_c8 == 2 || func_020270d0() != 0) {
+                if (GetRaceSetupCopy()->mMode == 2 || func_020270d0() != 0) {
                     gSelectCharacter->mUnk_06c = 7;
                 } else {
                     func_02027424(1);
@@ -622,7 +623,7 @@ int AdvanceSelectCharacter(void) {
                 func_02025f14(&gSelectCharacter->mUnk_0f8[1], 2);
                 if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
                     func_020789d4();
-                } else if (func_02029930()->mUnk_c8 == 2) {
+                } else if (GetRaceSetupCopy()->mMode == 2) {
                     func_0211f378();
                 }
                 gSelectCharacter->mUnk_068 = 0;
@@ -635,8 +636,8 @@ int AdvanceSelectCharacter(void) {
             if (p->mUnk_068 < 10) {
                 p->mUnk_070 = ((10 - p->mUnk_068) << 12) / 10;
             } else {
-                func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mCharacterIndex = p->mUnk_0f0;
-                func_02029930()->mUnk_00[gSelectCharacter->mUnk_078].mKartIndex = gSelectCharacter->mUnk_0f4;
+                GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mCharacterIndex = p->mUnk_0f0;
+                GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mKartIndex = gSelectCharacter->mUnk_0f4;
                 gSelectCharacter->mUnk_06c = 9;
             }
             gSelectCharacter->mUnk_074 += 0x1000;
@@ -659,7 +660,7 @@ int AdvanceSelectCharacter(void) {
             func_02078a9c(p->mUnk_0f0);
             func_02078a34(gSelectCharacter->mUnk_0f4);
         }
-        func_02078420(func_02029930()->mUnk_d8);
+        func_02078420(GetRaceSetupCopy()->mUnk_d8);
     }
     if (gSelectCharacter->mUnk_128 != FALSE) {
         func_0202bb80();
@@ -669,7 +670,7 @@ int AdvanceSelectCharacter(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_02124bf0(s->mUnk_0c, s->mUnk_08, NULL, gSelectCharacter->mUnk_058, s->mUnk_18);
         func_020ae5d4(gSelectCharacter->mUnk_058);
-    } else if (func_02029930()->mUnk_c8 == 2) {
+    } else if (GetRaceSetupCopy()->mMode == 2) {
         func_0211f39c();
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
@@ -677,10 +678,10 @@ int AdvanceSelectCharacter(void) {
     }
     switch (r) {
         case 1:
-            if (func_02029930()->mUnk_c8 == 2) {
-                func_02029930()->mUnk_108 = 0;
+            if (GetRaceSetupCopy()->mMode == 2) {
+                GetRaceSetupCopy()->mUnk_108 = 0;
             } else {
-                func_02029930()->mUnk_108 = 1;
+                GetRaceSetupCopy()->mUnk_108 = 1;
             }
             break;
         case 2:
@@ -688,7 +689,7 @@ int AdvanceSelectCharacter(void) {
                 func_02078a9c(-1);
                 func_02078a34(-1);
             }
-            func_02029930()->mUnk_108 = 0;
+            GetRaceSetupCopy()->mUnk_108 = 0;
             break;
     }
     return r;
@@ -700,7 +701,7 @@ int AdvanceSelectCharacter(void) {
 
 void func_020260e4(void) {
     if (*(vu16 *) 0x27ffc40 == 2) {
-        if (func_02029930()->mUnk_c8 == 2) {
+        if (GetRaceSetupCopy()->mMode == 2) {
             func_0211f498();
         }
     }

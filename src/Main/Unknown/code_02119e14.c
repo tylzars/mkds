@@ -346,19 +346,19 @@ void func_0211a100(void) {
         gSelectCupCourse->mSelectCupMTable[0x14].mUnk_00 = 0;
         gSelectCupCourse->mSelectCupMTable[0x13].mUnk_00 = 1;
         p = gSelectCupCourse;
-        QueueSelectCupNameM(data_0215cadc[func_0202968c()], p->mSelectCupCourseMNcer, p->mSelectCupCourseTaOrVsMBncl, 0,
+        QueueSelectCupNameM(data_0215cadc[GetCupIndex()], p->mSelectCupCourseMNcer, p->mSelectCupCourseTaOrVsMBncl, 0,
                             0);
         p = gSelectCupCourse;
-        QueueSelectCupNameM(data_0215cadc[func_0202968c()], p->mSelectCupMNcer, p->mSelectCupMBncl, 0x13, 1);
+        QueueSelectCupNameM(data_0215cadc[GetCupIndex()], p->mSelectCupMNcer, p->mSelectCupMBncl, 0x13, 1);
         p = gSelectCupCourse;
-        i = func_0202968c();
+        i = GetCupIndex();
         QueueCupMark(data_0215cadc[i], p->mSelectCupCourseMNcer, p->mSelectCupCourseTaOrVsMBncl, 5,
                      func_02124a68(5, p->mSelectCupCourseMNcer, p->mSelectCupCourseTaOrVsMBncl), 0);
         for (i = 0; i < 4; i++) {
             p = gSelectCupCourse;
             func_0212426c(
                 1, data_0215cab4[i], gSelectCupCourse->mSelectCupMBnll,
-                GetBmgEntry(gSelectCupCourse->mCommonMessages, data_0215cafc[data_0215cadc[func_0202968c()]][i]),
+                GetBmgEntry(gSelectCupCourse->mCommonMessages, data_0215cafc[data_0215cadc[GetCupIndex()]][i]),
                 p->mSelectCupMBncl, p->mSelectCupMTable);
         }
         p = gSelectCupCourse;
@@ -414,15 +414,15 @@ void func_02119e88(void) {
         p = gSelectCupCourse;
         func_0212426c(
             0, 0, gSelectCupCourse->mSelectCupCourseTaOrVsMBnll,
-            GetBmgEntry(gSelectCupCourse->mCommonMessages, data_0215cafc[data_0215cadc[func_0202968c()]][p->mIndex]),
+            GetBmgEntry(gSelectCupCourse->mCommonMessages, data_0215cafc[data_0215cadc[GetCupIndex()]][p->mIndex]),
             p->mSelectCupCourseTaOrVsMBncl, p->mSelectCupCourseTaOrVsMTable);
         p = gSelectCupCourse;
         func_0212426c(
             0, 1, gSelectCupCourse->mSelectCupCourseTaOrVsMBnll,
-            GetBmgEntry(gSelectCupCourse->mCommonMessages, data_0215cafc[data_0215cadc[func_0202968c()]][p->mIndex]),
+            GetBmgEntry(gSelectCupCourse->mCommonMessages, data_0215cafc[data_0215cadc[GetCupIndex()]][p->mIndex]),
             p->mSelectCupCourseTaOrVsMBncl, p->mSelectCupCourseTaOrVsMTable);
-        if (func_02060228(data_0215cbec[data_0215cadc[func_0202968c()]][gSelectCupCourse->mIndex], 0)) {
-            func_02060134(data_0215cbec[data_0215cadc[func_0202968c()]][gSelectCupCourse->mIndex], 0, &a);
+        if (func_02060228(data_0215cbec[data_0215cadc[GetCupIndex()]][gSelectCupCourse->mIndex], 0)) {
+            func_02060134(data_0215cbec[data_0215cadc[GetCupIndex()]][gSelectCupCourse->mIndex], 0, &a);
             func_02116b80(&a, b);
             p = gSelectCupCourse;
             func_02124224(0, 3, p->mSelectCupCourseTaOrVsMBnll, b, p->mSelectCupCourseTaOrVsMBncl,
@@ -432,8 +432,8 @@ void func_02119e88(void) {
             func_02124224(0, 3, p->mSelectCupCourseTaOrVsMBnll, data_0216dbac, p->mSelectCupCourseTaOrVsMBncl,
                           p->mSelectCupCourseTaOrVsMTable, 9);
         }
-        if (func_02060228(data_0215cbec[data_0215cadc[func_0202968c()]][gSelectCupCourse->mIndex], 5)) {
-            func_02060134(data_0215cbec[data_0215cadc[func_0202968c()]][gSelectCupCourse->mIndex], 5, &a);
+        if (func_02060228(data_0215cbec[data_0215cadc[GetCupIndex()]][gSelectCupCourse->mIndex], 5)) {
+            func_02060134(data_0215cbec[data_0215cadc[GetCupIndex()]][gSelectCupCourse->mIndex], 5, &a);
             func_02116b80(&a, b);
             p = gSelectCupCourse;
             func_02124224(0, 5, p->mSelectCupCourseTaOrVsMBnll, b, p->mSelectCupCourseTaOrVsMBncl,
@@ -443,17 +443,17 @@ void func_02119e88(void) {
             func_02124224(0, 5, p->mSelectCupCourseTaOrVsMBnll, data_0216dbc0, p->mSelectCupCourseTaOrVsMBncl,
                           p->mSelectCupCourseTaOrVsMTable, 9);
         }
-        TrySetCupPictureIndexAndQueueLoads(data_0215cbec[data_0215cadc[func_0202968c()]][gSelectCupCourse->mIndex]);
+        TrySetCupPictureIndexAndQueueLoads(data_0215cbec[data_0215cadc[GetCupIndex()]][gSelectCupCourse->mIndex]);
         gSelectCupCourse->mCupPicturePending = TRUE;
     }
 }
 
 void func_02119e50(void) {
-    SetCourseId(data_0215cbec[data_0215cadc[func_0202968c()]][gSelectCupCourse->mIndex]);
+    SetCourseId(data_0215cbec[data_0215cadc[GetCupIndex()]][gSelectCupCourse->mIndex]);
 }
 
 void func_02119e14(void) {
-    func_0211e418(data_0215cbec[data_0215cadc[func_0202968c()]][gSelectCupCourse->mIndex]);
+    func_0211e418(data_0215cbec[data_0215cadc[GetCupIndex()]][gSelectCupCourse->mIndex]);
     func_0202949c(0);
 }
 

@@ -39,7 +39,7 @@ void func_02032a20(void) {
     BOOL v;
 
     if (gSelectGame->mMode == 0) {
-        func_02029930()->mUnk_c8 = 2;
+        GetRaceSetupCopy()->mMode = 2;
         switch (gSelectGame->mSelectedIndex) {
             case 0:
                 v = FALSE;
@@ -48,11 +48,11 @@ void func_02032a20(void) {
                 v = TRUE;
                 break;
         }
-        func_02029930()->mUnk_e4 = v;
+        GetRaceSetupCopy()->mUnk_e4 = v;
     } else if (gSelectGame->mSelectedIndex == 0) {
-        func_02029930()->mUnk_c8 = 3;
+        GetRaceSetupCopy()->mMode = 3;
     } else {
-        func_02029930()->mUnk_c8 = 2;
+        GetRaceSetupCopy()->mMode = 2;
         switch (gSelectGame->mSelectedIndex) {
             case 1:
                 v = FALSE;
@@ -61,7 +61,7 @@ void func_02032a20(void) {
                 v = TRUE;
                 break;
         }
-        func_02029930()->mUnk_e4 = v;
+        GetRaceSetupCopy()->mUnk_e4 = v;
     }
     gSelectGame->mResult = 1;
     gSelectGame->mState = 5;

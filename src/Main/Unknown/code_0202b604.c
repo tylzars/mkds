@@ -107,7 +107,7 @@ u32 func_0202b888(void) {
     if (0 < data_02174e3c->mUnk_048) {
         v3 = 0;
         do {
-            v4 = ((u32) func_02029930());
+            v4 = ((u32) GetRaceSetupCopy());
             v1 = v1 & *(u32 *) (v4 + v3 + 0x14);
             v3 = v3 + 0x18;
             v2 = v2 + 1;

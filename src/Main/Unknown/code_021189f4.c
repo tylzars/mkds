@@ -453,7 +453,7 @@ u32 GetSelectCupGridCupEnabled(u32 a) {
                     if (func_0202967c() != 0) {
                         r = func_02056dec(data_0215c8bc[a]);
                     } else {
-                        r = func_02056dec(data_0215c95c[a][data_0215c7f0[func_0202969c()]]);
+                        r = func_02056dec(data_0215c95c[a][data_0215c7f0[GetEngineIndex()]]);
                     }
                     break;
             }
@@ -495,7 +495,7 @@ u32 GetSelectCupGridCupEnabled(u32 a) {
                     if (func_0202967c() != 0) {
                         r = func_0205fbb8(data_0215c8bc[a]);
                     } else {
-                        r = func_0205fbb8(data_0215c95c[a][data_0215c7f0[func_0202969c()]]);
+                        r = func_0205fbb8(data_0215c95c[a][data_0215c7f0[GetEngineIndex()]]);
                     }
                     break;
             }

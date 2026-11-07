@@ -3,8 +3,8 @@
 
 #pragma thumb on
 
-Unk02029930 *func_02029930(void) {
-    return data_02174e1c;
+RaceSetupCopy *GetRaceSetupCopy(void) {
+    return gRaceSetupCopy;
 }
 
 #pragma thumb off

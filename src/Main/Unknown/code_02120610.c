@@ -24,10 +24,10 @@ void func_02121dec(u32 a) {
 }
 
 s32 GetWiFiSessionCourseId(void) {
-    if (func_02029930()->mCourseId == 0) {
+    if (GetRaceSetupCopy()->mCourseId == 0) {
         return gWiFiSession->mUnk_1e10[func_ov000_0219bb50()].mPickedCourseId;
     }
-    return func_02029930()->mCourseId;
+    return GetRaceSetupCopy()->mCourseId;
 }
 
 BOOL func_02121d48(void) {
@@ -126,7 +126,7 @@ void TallyPickedCourse(void) {
         }
     }
     w = c[(u16) v];
-    func_02029930()->mCourseId = w;
+    GetRaceSetupCopy()->mCourseId = w;
 }
 
 void func_021219cc(void) {
@@ -139,12 +139,12 @@ void func_021219cc(void) {
                 s8 x;
 
                 x = gWiFiSession->mPackedIndices[i];
-                func_02029930()->mUnk_00[x].mUnk_08 = z;
+                GetRaceSetupCopy()->mEntries[x].mPlayerKind = z;
             } else {
                 s8 x;
 
                 x = gWiFiSession->mPackedIndices[i];
-                func_02029930()->mUnk_00[x].mUnk_08 = 3;
+                GetRaceSetupCopy()->mEntries[x].mPlayerKind = 3;
             }
             {
                 WiFiSession *d;
@@ -152,7 +152,7 @@ void func_021219cc(void) {
 
                 d = gWiFiSession;
                 x = d->mPackedIndices[i];
-                func_02029930()->mUnk_00[x].mCharacterIndex = d->mUnk_1e10[i].mCharacterIndex;
+                GetRaceSetupCopy()->mEntries[x].mCharacterIndex = d->mUnk_1e10[i].mCharacterIndex;
             }
             {
                 WiFiSession *d;
@@ -160,7 +160,7 @@ void func_021219cc(void) {
 
                 d = gWiFiSession;
                 x = d->mPackedIndices[i];
-                func_02029930()->mUnk_00[x].mKartIndex = d->mUnk_1e10[i].mKartIndex;
+                GetRaceSetupCopy()->mEntries[x].mKartIndex = d->mUnk_1e10[i].mKartIndex;
             }
         }
     }

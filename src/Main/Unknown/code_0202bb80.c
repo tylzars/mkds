@@ -286,7 +286,7 @@ void func_0202c0d4(s32 a, s32 b) {
                 }
                 data_02174e3c->mUnk_044 = data_0217aa00->mUnk_1e52[(u16) i].mUnk_00;
                 for (j = 0; j < (n = data_02174e3c->mUnk_048); j++) {
-                    func_02029930()->mUnk_00[j].mUnk_08 = 0;
+                    GetRaceSetupCopy()->mEntries[j].mPlayerKind = 0;
                     v = 0;
                     MIi_CpuClear16(v, data_02174e3c->mUnk_04c[j].mUnk_14, 0x16);
                     func_0202c0d4_inline(data_0217aa00->mUnk_1e8c[(u16) j] == 0xffff
@@ -333,7 +333,7 @@ void func_0202c0d4(s32 a, s32 b) {
         }
         if (data_02174e3c->mUnk_250 == 1) {
             for (i = data_02174e3c->mUnk_048; i < 8; i++) {
-                j = func_02029930()->mUnk_00[i].mCharacterIndex;
+                j = GetRaceSetupCopy()->mEntries[i].mCharacterIndex;
                 func_02025c48(data_usa_02174e0c[i].mUnk_02, data_usa_02174e10[j], q->mUnk_0c);
                 q->mUnk_18[data_usa_02174e0c[i].mUnk_02].mUnk_00 = 1;
             }
@@ -427,13 +427,13 @@ void func_0202bb80(void) {
                 s32 b;
 
                 for (i = 0; i < 8; i++) {
-                    a = func_02029930()->mUnk_00[i].mCharacterIndex;
+                    a = GetRaceSetupCopy()->mEntries[i].mCharacterIndex;
                     if (a == -1) {
                         d = 0;
                     } else {
                         d = 1;
                     }
-                    b = func_02029930()->mUnk_00[i].mUnk_14;
+                    b = GetRaceSetupCopy()->mEntries[i].mUnk_14;
                     if (d != 0) {
                         func_02025c48(data_usa_02174e0c[i].mUnk_02, data_usa_02174e10[a], q->mUnk_0c);
                     }
@@ -455,9 +455,9 @@ void func_0202bb80(void) {
                         q->mUnk_18[data_usa_02174e0c[i].mUnk_04].mUnk_00 = 0;
                         q->mUnk_18[data_usa_02174e0c[i].mUnk_02].mUnk_00 =
                             q->mUnk_18[data_usa_02174e0c[i].mUnk_04].mUnk_00;
-                        func_02029930()->mUnk_00[i].mCharacterIndex = -1;
-                        func_02029930()->mUnk_00[i].mKartIndex = -1;
-                        func_02029930()->mUnk_00[i].mUnk_14 = 0;
+                        GetRaceSetupCopy()->mEntries[i].mCharacterIndex = -1;
+                        GetRaceSetupCopy()->mEntries[i].mKartIndex = -1;
+                        GetRaceSetupCopy()->mEntries[i].mUnk_14 = 0;
                         data_02174e3c->mUnk_1dc[i] = 0;
                         data_02174e3c->mUnk_1bc[i] = data_02174e3c->mUnk_1dc[i];
                     } else if ((c & 0x40) != 0) {
@@ -469,7 +469,7 @@ void func_0202bb80(void) {
                             func_02025c48(data_usa_02174e0c[i].mUnk_02, data_usa_02174e10[d], q->mUnk_0c);
                         }
                         q->mUnk_18[data_usa_02174e0c[i].mUnk_02].mUnk_00 = 1;
-                        func_02029930()->mUnk_00[i].mCharacterIndex = d;
+                        GetRaceSetupCopy()->mEntries[i].mCharacterIndex = d;
                         if (data_02174e3c->mUnk_044 != i && data_02174e3c->mUnk_1bc[i] == 0) {
                             func_0202cca4(d, 0);
                             data_02174e3c->mUnk_1bc[i] = 1;
@@ -477,15 +477,15 @@ void func_0202bb80(void) {
                         if ((c & 0x80) != 0) {
                             e = func_02025e60(d);
                             q->mUnk_18[data_usa_02174e0c[i].mUnk_04].mUnk_00 = 1;
-                            func_02029930()->mUnk_00[i].mKartIndex = e;
-                            func_02029930()->mUnk_00[i].mUnk_14 = 1;
+                            GetRaceSetupCopy()->mEntries[i].mKartIndex = e;
+                            GetRaceSetupCopy()->mEntries[i].mUnk_14 = 1;
                         }
                     } else if ((c & 0x80) != 0) {
                         q->mUnk_18[data_usa_02174e0c[i].mUnk_04].mUnk_00 = 1;
-                        func_02029930()->mUnk_00[i].mKartIndex = c & 0x3f;
-                        func_02029930()->mUnk_00[i].mUnk_14 = 1;
+                        GetRaceSetupCopy()->mEntries[i].mKartIndex = c & 0x3f;
+                        GetRaceSetupCopy()->mEntries[i].mUnk_14 = 1;
                         if (data_02174e3c->mUnk_044 != i && data_02174e3c->mUnk_1dc[i] == 0) {
-                            func_0202cca4(func_02029930()->mUnk_00[i].mCharacterIndex, 1);
+                            func_0202cca4(GetRaceSetupCopy()->mEntries[i].mCharacterIndex, 1);
                             data_02174e3c->mUnk_1dc[i] = 1;
                         }
                     }

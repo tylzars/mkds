@@ -131,15 +131,15 @@ void InitSelectCupMCellsAndRequestCupPicture(void) {
     gSelectCupM->mMainTable[19].mUnk_00 = 1;
     gSelectCupM->mSubTable[20].mUnk_00 = 0;
     gSelectCupM->mSubTable[19].mUnk_00 = 1;
-    QueueSelectCupNameM(data_0215cf2c[func_0202968c()], gSelectCupM->mMainNcer, gSelectCupM->mMainBncl, 0x13, 0);
-    QueueSelectCupNameM(data_0215cf2c[func_0202968c()], gSelectCupM->mSubNcer, gSelectCupM->mSubBncl, 0x13, 1);
+    QueueSelectCupNameM(data_0215cf2c[GetCupIndex()], gSelectCupM->mMainNcer, gSelectCupM->mMainBncl, 0x13, 0);
+    QueueSelectCupNameM(data_0215cf2c[GetCupIndex()], gSelectCupM->mSubNcer, gSelectCupM->mSubBncl, 0x13, 1);
     n = FALSE;
     for (j = 0; j < 4; j++) {
         func_0212426c(n, data_0215cf0c[j], gSelectCupM->mMainBnll,
-                      GetBmgEntry(gSelectCupM->mCommonMessages, data_0215cf4c[data_0215cf2c[func_0202968c()]][j]),
+                      GetBmgEntry(gSelectCupM->mCommonMessages, data_0215cf4c[data_0215cf2c[GetCupIndex()]][j]),
                       gSelectCupM->mMainBncl, gSelectCupM->mMainTable);
         func_0212426c(1, data_0215cf0c[j], gSelectCupM->mSubBnll,
-                      GetBmgEntry(gSelectCupM->mCommonMessages, data_0215cf4c[data_0215cf2c[func_0202968c()]][j]),
+                      GetBmgEntry(gSelectCupM->mCommonMessages, data_0215cf4c[data_0215cf2c[GetCupIndex()]][j]),
                       gSelectCupM->mSubBncl, gSelectCupM->mSubTable);
     }
     a = data_0215cf04[0];
@@ -154,7 +154,7 @@ void InitSelectCupMCellsAndRequestCupPicture(void) {
         gSelectCupM->mSubTable[data_0215cf04[m]].mUnk_00 = 0;
         func_02124100(data_0215cf0c[m], 0xf, gSelectCupM->mSubBnll, gSelectCupM->mSubTable, gSelectCupM->mSubBncl);
     }
-    TrySetCupPictureIndexAndQueueLoads(data_0215cf8c[data_0215cf2c[func_0202968c()]][0]);
+    TrySetCupPictureIndexAndQueueLoads(data_0215cf8c[data_0215cf2c[GetCupIndex()]][0]);
     gSelectCupM->mCupPicturePending = TRUE;
 }
 

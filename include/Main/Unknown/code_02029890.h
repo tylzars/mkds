@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/unk_02174000.h"
 
-typedef struct Unk02029930 Unk02029930;
+typedef struct RaceSetupCopy RaceSetupCopy;
 
 void func_02029890(unsigned int p0);
 void func_020298a4(unsigned int p0);
@@ -13,4 +13,4 @@ void func_020298e0(unsigned int p0);
 void func_020298f4(unsigned int p0);
 void func_02029908(unsigned int p0);
 void func_0202991c(unsigned int p0);
-Unk02029930 *func_02029930(void);
+RaceSetupCopy *GetRaceSetupCopy(void);

@@ -23,24 +23,24 @@ void func_020cc744(void) {
     u8 b[2];
 
     if (func_020cc120() != 2) {
-        if (func_02029930()->mUnk_c8 == 0) {
-            switch (func_02029930()->mUnk_d4) {
+        if (GetRaceSetupCopy()->mMode == 0) {
+            switch (GetRaceSetupCopy()->mEngineIndex) {
                 case 0:
-                    func_02029930()->mUnk_c0 = 1;
+                    GetRaceSetupCopy()->mUnk_c0 = 1;
                     break;
                 case 1:
-                    func_02029930()->mUnk_c0 = 2;
+                    GetRaceSetupCopy()->mUnk_c0 = 2;
                     break;
                 case 2:
-                    func_02029930()->mUnk_c0 = 3;
+                    GetRaceSetupCopy()->mUnk_c0 = 3;
                     break;
             }
         }
-        func_020cca9c(func_02029930()->mUnk_c0);
-        if (func_02029930()->mUnk_c8 != 2 && func_02029930()->mUnk_c8 != 3) {
-            func_02029930()->mUseTeams = 0;
+        func_020cca9c(GetRaceSetupCopy()->mUnk_c0);
+        if (GetRaceSetupCopy()->mMode != 2 && GetRaceSetupCopy()->mMode != 3) {
+            GetRaceSetupCopy()->mUseTeams = 0;
         }
-        switch (func_02029930()->mUnk_c8) {
+        switch (GetRaceSetupCopy()->mMode) {
             case 0:
                 func_020ccbb8();
                 break;
@@ -53,39 +53,39 @@ void func_020cc744(void) {
                 func_020ccab0();
                 break;
         }
-        SetNextMode(func_02029930()->mUnk_c8);
-        SetNextCupIndex(func_02029930()->mUnk_cc);
-        if (func_02029930()->mUnk_c8 == 0) {
-            func_02029930()->mCourseId = func_020ae3a4(func_02029930()->mUnk_cc, 0);
+        SetNextMode(GetRaceSetupCopy()->mMode);
+        SetNextCupIndex(GetRaceSetupCopy()->mCupIndex);
+        if (GetRaceSetupCopy()->mMode == 0) {
+            GetRaceSetupCopy()->mCourseId = func_020ae3a4(GetRaceSetupCopy()->mCupIndex, 0);
         }
-        SetNextCourseId(func_02029930()->mCourseId);
-        if (func_02029930()->mUnk_c8 == 1) {
-            func_02029930()->mUnk_d4 = 2;
-        } else if (func_02029930()->mUnk_c8 == 2) {
-            func_02029930()->mUnk_d4 = 0;
-        } else if (func_02029930()->mUnk_c8 == 3) {
+        SetNextCourseId(GetRaceSetupCopy()->mCourseId);
+        if (GetRaceSetupCopy()->mMode == 1) {
+            GetRaceSetupCopy()->mEngineIndex = 2;
+        } else if (GetRaceSetupCopy()->mMode == 2) {
+            GetRaceSetupCopy()->mEngineIndex = 0;
+        } else if (GetRaceSetupCopy()->mMode == 3) {
             if (func_020cae54() != 0 && func_020cae38() != 0) {
-                func_02029930()->mUnk_d4 = 1;
+                GetRaceSetupCopy()->mEngineIndex = 1;
             }
         }
-        func_020cca4c(func_02029930()->mUnk_d4);
-        func_020cca38(func_02029930()->mUnk_d8);
-        func_020cca24(func_02029930()->mUnk_e0);
-        func_020cca10(func_02029930()->mUnk_e4);
-        SetNextUseTeams(func_02029930()->mUseTeams);
-        func_020cc9e4(func_02029930()->mUnk_e8);
-        func_020cc9d0(func_02029930()->mUnk_ec);
-        SetNextCourseListMode(func_02029930()->mCourseListMode);
-        if (func_02029930()->mUnk_c8 == 4 && func_020cbad0() == 0) {
-            i = func_02029930()->mMissionFileRowIndex;
-            FindMissionTableCell(func_02029930()->mMissionFileRows[i].mMissionTableValue, &b[0], &b[1]);
-            func_02044380(&func_02029930()->mMissionFileRows[i], b[0], b[1]);
+        func_020cca4c(GetRaceSetupCopy()->mEngineIndex);
+        func_020cca38(GetRaceSetupCopy()->mUnk_d8);
+        func_020cca24(GetRaceSetupCopy()->mUnk_e0);
+        func_020cca10(GetRaceSetupCopy()->mUnk_e4);
+        SetNextUseTeams(GetRaceSetupCopy()->mUseTeams);
+        func_020cc9e4(GetRaceSetupCopy()->mUnk_e8);
+        func_020cc9d0(GetRaceSetupCopy()->mUnk_ec);
+        SetNextCourseListMode(GetRaceSetupCopy()->mCourseListMode);
+        if (GetRaceSetupCopy()->mMode == 4 && func_020cbad0() == 0) {
+            i = GetRaceSetupCopy()->mMissionFileRowIndex;
+            FindMissionTableCell(GetRaceSetupCopy()->mMissionFileRows[i].mMissionTableValue, &b[0], &b[1]);
+            func_02044380(&GetRaceSetupCopy()->mMissionFileRows[i], b[0], b[1]);
         }
     } else {
-        SetNextCupIndex(func_02029930()->mUnk_cc);
-        SetNextCourseId(func_02029930()->mCourseId);
+        SetNextCupIndex(GetRaceSetupCopy()->mCupIndex);
+        SetNextCourseId(GetRaceSetupCopy()->mCourseId);
     }
-    if (func_02029930()->mUnk_c8 == 0) {
+    if (GetRaceSetupCopy()->mMode == 0) {
         func_020cc9a8(0);
     } else {
         func_020cc9a8(1);

@@ -11,10 +11,10 @@ void func_020ceb88(void) {
     switch (AdvanceSelectRaceRule()) {
         case 1:
             if (func_020cebe4() != 0) {
-                func_02029930()->mCourseListMode = 2;
+                GetRaceSetupCopy()->mCourseListMode = 2;
             }
-            if (func_02029930()->mCourseListMode == 2) {
-                func_02029930()->mCourseId = COURSE_ID_MINI_STAGE1;
+            if (GetRaceSetupCopy()->mCourseListMode == 2) {
+                GetRaceSetupCopy()->mCourseId = COURSE_ID_MINI_STAGE1;
                 func_020ccc74(0x1d, 0x1f);
             } else {
                 func_020ccc74(SCREEN_SELECT_BATTLE_STAGE, 0x1f);
