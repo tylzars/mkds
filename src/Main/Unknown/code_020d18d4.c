@@ -78,7 +78,7 @@ void func_020d1de8(Unk020d029c *param_1, s32 param_2) {
         gRaceMNumberPair->mUnk_20 = 0;
         return;
     }
-    gRaceMNumberPair->mOffsetX = func_020ae4c0(1, 0, 0x80, param_2 - 0x78, 0x14);
+    gRaceMNumberPair->mOffsetX = InterpolateS16(1, 0, 0x80, param_2 - 0x78, 0x14);
     gRaceMNumberPair->mUnk_18 = NULL;
     gRaceMNumberPair->mUnk_1c = 0x1000;
     gRaceMNumberPair->mUnk_20 = 0;

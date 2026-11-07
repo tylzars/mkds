@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-u16 func_0207a104(void);
-u16 func_0207a11c(void);
-u16 func_0207a134(void);
+u16 GetKartCourseAmbColor(void);
+u16 GetKartCourseEmiColor(void);
+u16 GetKartCourseDiffColor(void);

@@ -239,7 +239,7 @@ void func_ov000_021840c8(void) {
 void AdvanceWiFiVSMatchingState0(void) {
     gWiFiVSMatching->mUnk_08 = gWiFiVSMatching->mUnk_08 + 1;
     gWiFiVSMatching->mUnk_08 = gWiFiVSMatching->mUnk_08 + 1;
-    gWiFiVSMatching->mOffset = func_020ae4c0(1, 0x100, 0, gWiFiVSMatching->mUnk_08, 10);
+    gWiFiVSMatching->mOffset = InterpolateS16(1, 0x100, 0, gWiFiVSMatching->mUnk_08, 10);
     if (gWiFiVSMatching->mUnk_08 >= 10) {
         gWiFiVSMatching->mUnk_08 = 10;
     }
@@ -596,7 +596,7 @@ void AdvanceWiFiVSMatchingState9(void) {
 
 void AdvanceWiFiVSMatchingState10(void) {
     gWiFiVSMatching->mUnk_08 = gWiFiVSMatching->mUnk_08 + 1;
-    gWiFiVSMatching->mOffset = func_020ae4c0(1, 0, 0x100, gWiFiVSMatching->mUnk_08, 10);
+    gWiFiVSMatching->mOffset = InterpolateS16(1, 0, 0x100, gWiFiVSMatching->mUnk_08, 10);
     if (gWiFiVSMatching->mUnk_08 >= 10) {
         gWiFiVSMatching->mUnk_08 = 10;
     }

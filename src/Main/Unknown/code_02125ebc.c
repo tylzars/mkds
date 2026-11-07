@@ -384,8 +384,8 @@ void func_02126c90(void) {
 
     gTxtSystem->mStateFrames++;
     for (i = 0; i < 2; i++) {
-        gTxtSystem->mBgOffset[i] = func_020ae4c0(1, data_0215d040[gTxtSystem->mOpenFromIndex],
-                                                 -gTxtSystem->mBgOffsetAtOpen[i], gTxtSystem->mStateFrames, 0xf);
+        gTxtSystem->mBgOffset[i] = InterpolateS16(1, data_0215d040[gTxtSystem->mOpenFromIndex],
+                                                  -gTxtSystem->mBgOffsetAtOpen[i], gTxtSystem->mStateFrames, 0xf);
     }
     p = gTxtSystem;
     p->mBrightness = (p->mStateFrames * -10) / 15;
@@ -534,8 +534,8 @@ void func_021268f8(void) {
     gTxtSystem->mStateFrames++;
     for (i = 0; i < 2; i++) {
         gTxtSystem->mBgOffset[i] =
-            func_020ae4c0(1, -gTxtSystem->mBgOffsetAtOpen[i], data_0215d040[gTxtSystem->mCloseToIndex],
-                          gTxtSystem->mStateFrames, 0xf);
+            InterpolateS16(1, -gTxtSystem->mBgOffsetAtOpen[i], data_0215d040[gTxtSystem->mCloseToIndex],
+                           gTxtSystem->mStateFrames, 0xf);
     }
     p = gTxtSystem;
     p->mBrightness = -10 - (p->mStateFrames * -10) / 15;

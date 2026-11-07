@@ -68,7 +68,7 @@ void UpdateWater(Water *a) {
             v = func_020a02c8();
         }
         if (v >= 0) {
-            func_02105b28(h, v);
+            SetSndHandleTrackVolume(h, v);
         }
     }
     switch (a->mState) {

@@ -365,7 +365,7 @@ s32 AdvanceMultiSelectMemberGroup(Unk0202f764 *a) {
             }
             gMultiSelectMemberGroup->mUnk_8c++;
             if (gMultiSelectMemberGroup->mUnk_8c < 10) {
-                gMultiSelectMemberGroup->mBg3Offset = func_020ae4c0(1, -0xc0, 0, gMultiSelectMemberGroup->mUnk_8c, 10);
+                gMultiSelectMemberGroup->mBg3Offset = InterpolateS16(1, -0xc0, 0, gMultiSelectMemberGroup->mUnk_8c, 10);
             } else {
                 gMultiSelectMemberGroup->mUnk_8c = 0;
                 gMultiSelectMemberGroup->mBg3Offset = 0;
@@ -476,7 +476,7 @@ s32 AdvanceMultiSelectMemberGroup(Unk0202f764 *a) {
         case 3:
             gMultiSelectMemberGroup->mUnk_8c++;
             if (gMultiSelectMemberGroup->mUnk_8c < 10) {
-                gMultiSelectMemberGroup->mBg3Offset = func_020ae4c0(1, 0, -0xc0, gMultiSelectMemberGroup->mUnk_8c, 10);
+                gMultiSelectMemberGroup->mBg3Offset = InterpolateS16(1, 0, -0xc0, gMultiSelectMemberGroup->mUnk_8c, 10);
             } else {
                 gMultiSelectMemberGroup->mUnk_8c = 0;
                 gMultiSelectMemberGroup->mBg3Offset = 0;

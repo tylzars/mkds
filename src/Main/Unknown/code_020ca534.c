@@ -45,5 +45,5 @@ void func_020ca54c(Unk020c06c4 *a) {
 }
 
 s32 func_020ca534(void) {
-    return CreateRaceHudSubScreenCells(&data_0217b430, MAP_OBJECT_KIND_CRAB);
+    return CreateRaceHudSubScreenCells(&gRaceHudSubScreenCrabCells, MAP_OBJECT_KIND_CRAB);
 }

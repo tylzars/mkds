@@ -151,7 +151,7 @@ void func_0202e84c(void) {
             if (j == t) {
                 p->mUnk_06 = a;
             } else {
-                p->mUnk_06 = func_020ae4c0(1, a, z, data_02174e48->mUnk_038, data_02174e48->mUnk_048);
+                p->mUnk_06 = InterpolateS16(1, a, z, data_02174e48->mUnk_038, data_02174e48->mUnk_048);
             }
         }
     }
@@ -192,7 +192,7 @@ void func_0202e72c(void) {
             if (j == data_02174e48->mUnk_03c) {
                 p->mUnk_06 = a;
             } else {
-                p->mUnk_06 = func_020ae4c0(1, a, z, data_02174e48->mUnk_038, data_02174e48->mUnk_048);
+                p->mUnk_06 = InterpolateS16(1, a, z, data_02174e48->mUnk_038, data_02174e48->mUnk_048);
             }
         }
     }

@@ -123,7 +123,7 @@ void AdvanceWiFiTopMenuState1(void) {
     } else if (gWiFiTopMenu->mStateFrames >= 10) {
         v = func_020ae488(gWiFiTopMenu->mStateFrames - 10);
     } else {
-        v = func_020ae4c0(1, 0xdc, v, gWiFiTopMenu->mStateFrames, 10);
+        v = InterpolateS16(1, 0xdc, v, gWiFiTopMenu->mStateFrames, 10);
     }
     for (i = 0; i < 3; i++) {
         for (j = 0; j < data_ov000_021b05cc[i]; j++) {
@@ -270,7 +270,7 @@ void AdvanceWiFiTopMenuState5(void) {
     gWiFiTopMenu->mStateFrames++;
     v = gWiFiTopMenu->mStateFrames;
     if (v <= 10) {
-        v = func_020ae4c0(1, 0xdc, 0, 10 - v, 10);
+        v = InterpolateS16(1, 0xdc, 0, 10 - v, 10);
     } else {
         v = 0xdc;
     }

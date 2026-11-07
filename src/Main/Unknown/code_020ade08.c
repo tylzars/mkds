@@ -83,7 +83,8 @@ s32 func_020ae54c(s32 a) {
 
 #pragma thumb on
 
-s16 func_020ae4c0(s32 a, s16 b, s16 c, s32 d, s32 e) {
+// Mode 0 is linear, mode 1 eases the difference; returns b for d <= 0 and c for d >= e.
+s16 InterpolateS16(s32 a, s16 b, s16 c, s32 d, s32 e) {
     s32 t;
     s32 v1;
     float f;
@@ -135,11 +136,13 @@ u16 func_020ae458(u32 a, u32 b) {
     return func_020ae474(&data_02175628[a], b);
 }
 
+// Returns the masked bits in place, not 0 or 1.
 u16 func_020ae444(Unk02175628 *a, u32 b) {
     return a->mRepeatBits & b;
 }
 
-u16 func_020ae428(u32 a, u32 b) {
+// Returns the masked bits in place, not 0 or 1.
+u16 GetRepeatBits(u32 a, u32 b) {
     return func_020ae444(&data_02175628[a], b);
 }
 
@@ -149,7 +152,7 @@ u16 func_020ae408(u32 a, u32 b) {
     int v1;
     int v2;
     v1 = func_020ae458(a, b);
-    v2 = func_020ae428(a, b);
+    v2 = GetRepeatBits(a, b);
     return v1 | v2;
 }
 
@@ -331,7 +334,7 @@ u32 func_020ae114(u32 a) {
     return 0;
 }
 
-u32 func_020ae0f8(u32 arg0) {
+u32 GetKartEntryName(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
@@ -373,7 +376,7 @@ int func_020ae0ac(int arg0) {
 
 #pragma thumb on
 
-void func_020adff0(u32 a, u16 *b, u32 c) {
+void CopyKartEntryName(u32 a, u16 *b, u32 c) {
     u16 v[2];
     u16 w[10];
     u16 x[12];
@@ -385,7 +388,7 @@ void func_020adff0(u32 a, u16 *b, u32 c) {
         b[i] = 0;
     }
     if (func_020ae114(a) != 0) {
-        p = (u16 *) func_020ae0f8(a);
+        p = (u16 *) GetKartEntryName(a);
         if (p == NULL) {
             return;
         }
@@ -443,7 +446,7 @@ void func_020adf00(u32 a) {
     }
     NNS_G2dCharCanvasInitForBG(&o, s, 8, 2, 4);
     func_020adfd8(&q, &o, t, 2, 0);
-    func_020adff0(a, r, 0);
+    CopyKartEntryName(a, r, 0);
     for (j = -1; j < 2; j++) {
         for (i = -1; i < 2; i++) {
             func_020adfb0(&q, j + 0x20, i + 8, 2, 0x412, r);
@@ -453,7 +456,7 @@ void func_020adf00(u32 a) {
     DC_FlushRange(func_0212b090(), 0x200);
 }
 
-void func_020adec0(u16 *a, s32 b, s32 c, s32 d) {
+void SetPixel2Bit(u16 *a, s32 b, s32 c, s32 d) {
     u16 t;
     s32 o;
     s32 s;

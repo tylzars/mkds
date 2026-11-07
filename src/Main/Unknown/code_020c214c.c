@@ -96,7 +96,7 @@ void UpdateRaceGoalSOffset(void) {
             break;
         case 1:
             if (n < 0x14) {
-                gRaceGoalS->mOffset = func_020ae4c0(1, -0x20, 0, n, 0x14);
+                gRaceGoalS->mOffset = InterpolateS16(1, -0x20, 0, n, 0x14);
             } else {
                 gRaceGoalS->mOffset = 0;
                 gRaceGoalS->mOffsetState = 2;
@@ -120,7 +120,7 @@ void UpdateRaceGoalSOffset(void) {
             break;
         case 3:
             if (n < 0x14) {
-                gRaceGoalS->mOffset = func_020ae4c0(1, 0, -0x20, n, 0x14);
+                gRaceGoalS->mOffset = InterpolateS16(1, 0, -0x20, n, 0x14);
             } else {
                 gRaceGoalS->mOffset = -0x20;
                 if (data_021759c0->mMode == 5 && func_020b32ec() != 0) {
@@ -134,7 +134,7 @@ void UpdateRaceGoalSOffset(void) {
             break;
         case 4:
             if (n < 0x14) {
-                gRaceGoalS->mOffset = func_020ae4c0(1, -0x20, 0, n, 0x14);
+                gRaceGoalS->mOffset = InterpolateS16(1, -0x20, 0, n, 0x14);
             } else {
                 gRaceGoalS->mOffset = 0;
                 gRaceGoalS->mOffsetState = 5;
@@ -154,7 +154,7 @@ void UpdateRaceGoalSOffset(void) {
             break;
         case 6:
             if (n < 0x14) {
-                gRaceGoalS->mOffset = func_020ae4c0(1, 0, -0x20, n, 0x14);
+                gRaceGoalS->mOffset = InterpolateS16(1, 0, -0x20, n, 0x14);
             } else {
                 gRaceGoalS->mOffset = -0x20;
                 gRaceGoalS->mOffsetState = 7;
@@ -163,7 +163,7 @@ void UpdateRaceGoalSOffset(void) {
             break;
         case 7:
             if (n < 0x14) {
-                gRaceGoalS->mOffset = func_020ae4c0(1, -0x20, 0, n, 0x14);
+                gRaceGoalS->mOffset = InterpolateS16(1, -0x20, 0, n, 0x14);
             } else {
                 gRaceGoalS->mOffset = 0;
                 gRaceGoalS->mOffsetState = 8;
@@ -176,7 +176,7 @@ void UpdateRaceGoalSOffset(void) {
             break;
         case 9:
             if (n < 0x14) {
-                gRaceGoalS->mOffset = func_020ae4c0(1, 0, -0x20, n, 0x14);
+                gRaceGoalS->mOffset = InterpolateS16(1, 0, -0x20, n, 0x14);
             } else {
                 gRaceGoalS->mOffset = 0;
                 gRaceGoalS->mOffsetState = 10;

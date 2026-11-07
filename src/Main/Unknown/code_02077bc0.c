@@ -243,7 +243,7 @@ u32 func_0207a8a4(u32 a) {
     return gKarts[a].mUnk_29c;
 }
 
-u16 func_0207a880(s32 a) {
+u16 GetKartHeadingAngle(s32 a) {
     return gKarts[a].mHeadingAngle;
 }
 
@@ -316,7 +316,7 @@ u32 func_0207a68c(int a) {
     return func_0206c0a8(&gKarts[a]);
 }
 
-void func_0207a5f0(s32 a) {
+void SetKartModelsFogEnable(s32 a) {
     s32 i;
     Kart *p = gKarts;
     Unk0206bcb0_590 *s;
@@ -406,14 +406,15 @@ void func_0207a30c(u32 p0) {
     data_0217ad10 = p0;
 }
 
-void func_0207a2d4(s32 a) {
+// Keeps the smallest value of the frame; UpdateKarts clears it.
+void SetMinKartDistanceSquared(s32 a) {
     if (data_usa_021658c0 < 0 || a < data_usa_021658c0) {
         data_usa_021658c0 = a;
         data_0217ad20 = 1;
     }
 }
 
-BOOL func_0207a2a8(s32 *a) {
+BOOL TryGetMinKartDistanceSquared(s32 *a) {
     if (data_0217ad20 == 0) {
         return FALSE;
     }
@@ -434,7 +435,7 @@ s32 func_0207a218(void) {
     return r;
 }
 
-void func_0207a14c(NNSG3dResMdl *a, u32 b) {
+void SetKartModelMaterialColors(NNSG3dResMdl *a, u32 b) {
     u32 c;
     u32 d;
     u32 e;
@@ -473,19 +474,19 @@ void func_0207a14c(NNSG3dResMdl *a, u32 b) {
     NNS_G3dMdlSetMdlEmiAll(a, f);
 }
 
-u16 func_0207a134(void) {
+u16 GetKartCourseDiffColor(void) {
     return gKartModels->mUnk_004[0];
 }
 
-u16 func_0207a11c(void) {
+u16 GetKartCourseEmiColor(void) {
     return gKartModels->mUnk_004[3];
 }
 
-u16 func_0207a104(void) {
+u16 GetKartCourseAmbColor(void) {
     return gKartModels->mUnk_004[1];
 }
 
-void func_02079f70(struct Unk0206bcb0_590 *a, u16 b, u16 c, u16 d) {
+void StartKartModelsEntryColorInterpolation(struct Unk0206bcb0_590 *a, u16 b, u16 c, u16 d) {
     Unk0206bcb0_590_6a *q;
 
     q = &a->mUnk_06a;
@@ -510,7 +511,7 @@ void func_02079f70(struct Unk0206bcb0_590 *a, u16 b, u16 c, u16 d) {
     q->mUnk_2a = 0;
 }
 
-s32 func_02079ce0(struct Unk0206bcb0_590 *a, s32 b) {
+s32 AdvanceKartModelsEntryColorInterpolation(struct Unk0206bcb0_590 *a, s32 b) {
     Unk0206bcb0_590_6a *q = &a->mUnk_06a;
     BOOL r = FALSE;
 
@@ -553,7 +554,7 @@ s32 func_02079ce0(struct Unk0206bcb0_590 *a, s32 b) {
     return r;
 }
 
-void func_02079c0c(struct Unk0206bcb0_590 *a) {
+void SetKartModelsEntryCourseColors(struct Unk0206bcb0_590 *a) {
     u16 *p = gKartModels->mUnk_004;
     u32 b;
     u32 c;
@@ -575,7 +576,7 @@ void func_02079c0c(struct Unk0206bcb0_590 *a) {
     }
 }
 
-Unk0206bcb0_590 *func_02079bf0(u32 a) {
+Unk0206bcb0_590 *GetKartModelsEntry(u32 a) {
     return &gKartModels->mKartModelsEntries[a];
 }
 
@@ -604,7 +605,7 @@ u32 func_02079b40(u32 a) {
 }
 
 #pragma thumb on
-void func_02079a3c(void *arg0) {
+void InitKartModelsEntry(void *arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;
@@ -820,7 +821,7 @@ void InitKartModels(void *a, u32 b) {
     for (i = 0; i < gKartModels->mKartCount; i++) {
         d = gKartModels->mKartModelsEntries;
         e = &d[i];
-        func_02079a3c(e);
+        InitKartModelsEntry(e);
         e->mUnk_0b0 = data_021759c0->mCurrentEntries[i].mPlayer.mUnk_25;
         func_02079a14(e);
         d[i].mUnk_000 = data_021759c0->mCurrentEntries[i].mCharacterIndex;
@@ -926,7 +927,7 @@ void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
     a->mUnk_010[0] = HeapAlloc(b, 0x6c);
     p = func_02084b2c(b, a->mUnk_010[0], v7, v10);
     func_020849c0(a->mUnk_010[0], 3);
-    func_0207a14c(p, 0);
+    SetKartModelMaterialColors(p, 0);
     if (c != 0) {
         i = 0;
         d = FALSE;
@@ -968,13 +969,13 @@ void CreateKart(Unk0206bcb0_590 *a, void *b, s32 c) {
     a->mUnk_010[1] = HeapAlloc(b, 0x6c);
     r4 = func_02084b2c(b, a->mUnk_010[1], s, t);
     func_020849c0(a->mUnk_010[1], 3);
-    func_0207a14c(r4, 0);
+    SetKartModelMaterialColors(r4, 0);
     if (c != 0) {
         i = NNS_G3dGetResDictIdxByName((u8 *) r4 + r4->mOfsMat + 4, data_usa_021550b8);
         NNS_G3dMdlSetMdlAlpha(r4, i, 0);
         gKartModels->mUnk_00c = i;
     }
-    func_0207940c(a->mUnk_010[1], a->mUnk_004, gKartModels->mUnk_010);
+    UploadKartAPaletteSlice(a->mUnk_010[1], a->mUnk_004, gKartModels->mUnk_010);
 }
 
 u16 *LoadKartAPaletteFromKartModelFile(void) {
@@ -991,7 +992,7 @@ u16 *LoadKartAPaletteFromKartModelMenu(void *a) {
     return p->mData;
 }
 
-void func_0207940c(Unk02084b2c *a, s32 b, void *c) {
+void UploadKartAPaletteSlice(Unk02084b2c *a, s32 b, void *c) {
     u8 *p;
     u8 *q;
     u8 *t;
@@ -1088,7 +1089,7 @@ void CreateTire(Unk0206bcb0_590 *a, void *b) {
     a->mUnk_010[2] = HeapAlloc(b, 0x6c);
     v4 = func_02084b2c(b, a->mUnk_010[2], v7, v8);
     func_020849c0(a->mUnk_010[2], 3);
-    func_0207a14c(v4, 0);
+    SetKartModelMaterialColors(v4, 0);
 }
 
 void CreateKartShadow(Unk0206bcb0_590 *a, void *b) {
@@ -1106,7 +1107,7 @@ void CreateKillerItem(void *a) {
     NNSG3dResFileHeader *v6 = FindKartModelFile("character/common/KillerItem.nsbtx");
     void *v7 = func_02047950("character/common/KillerItem_s.nsbmd");
     void *v8;
-    func_0207a14c(func_02084b2c(a, &gKartModels->mUnk_02c, v4, v6), 0);
+    SetKartModelMaterialColors(func_02084b2c(a, &gKartModels->mUnk_02c, v4, v6), 0);
     func_020849c0(&gKartModels->mUnk_02c, 3);
     v8 = func_02047950("character/common/KillerItem.nsbca");
     func_0208823c(0, &gKartModels->mUnk_10c, &gKartModels->mUnk_02c, 1, a, v4);
@@ -1143,7 +1144,7 @@ void func_02079078(void *a, Unk02084b2c *b, void *c, NNSG3dResFileHeader *d, NNS
     void *v1;
     v2 = func_02084d3c(b, d, e);
     func_020849c0(b, 3);
-    func_0207a14c(v2, 1);
+    SetKartModelMaterialColors(v2, 1);
     func_0208823c(0, c, b, 1, a, NULL);
     v1 = NNS_G3dGetJntAnmByIdx(NNS_G3dGetJntAnmSet(f), 0);
     v3 = func_0207b8dc(2);
@@ -1156,7 +1157,7 @@ void func_02079038(Unk02084b2c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *
     u32 v2;
     v1 = func_02084d3c(a, b, c);
     func_020849c0(a, 3);
-    func_0207a14c(v1, 1);
+    SetKartModelMaterialColors(v1, 1);
     v2 = NNS_G3dGetResDictIdxByName((u8 *) v1 + v1->mOfsMat + 4, data_02155098);
     NNS_G3dMdlSetMdlAlpha(v1, v2, 0);
 }
@@ -1165,7 +1166,7 @@ void func_02079014(Unk02084b2c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *
     NNSG3dResMdl *v1;
     v1 = func_02084d3c(a, b, c);
     func_020849c0(a, 3);
-    func_0207a14c(v1, 1);
+    SetKartModelMaterialColors(v1, 1);
 }
 
 #pragma thumb off
@@ -1197,7 +1198,7 @@ void func_02078f78(NNSG3dResFileHeader *a) {
 }
 
 void func_02078f18(void *a, Unk0217ad08_058 *b) {
-    func_02079a3c(b);
+    InitKartModelsEntry(b);
     b->mUnk_b0 = data_021759d0->mUnk_00;
     b->mUnk_b4 = 0;
     b->mUnk_10 = HeapAlloc(a, 0x6c);
@@ -1259,10 +1260,10 @@ void func_02078d64(void *param_1) {
     func_02062860();
     NNS_G3dGeUseFastDma(0);
     data_021759d0->mUnk_1c &= ~8;
-    func_02077bc0(param_1);
+    InitLnkVramManagers(param_1);
     func_0208533c();
     SetKartModelPathPrefix(1);
-    func_02078b48(param_1);
+    InitKartModelMenu(param_1);
     func_020790e0(param_1, 0);
     LoadKartModelMenuFile(param_1, data_usa_02165738, (void **) &data_0217ad08->mUnk_018);
     LoadKartModelMenuFile(param_1, data_usa_0216574c, (void **) &data_0217ad08->mUnk_01c);
@@ -1285,10 +1286,10 @@ void func_02078c58(void *param_1) {
     func_02062860();
     NNS_G3dGeUseFastDma(0);
     data_021759d0->mUnk_1c &= ~8;
-    func_02077bc0(param_1);
+    InitLnkVramManagers(param_1);
     func_0208533c();
     SetKartModelPathPrefix(1);
-    func_02078b48(param_1);
+    InitKartModelMenu(param_1);
     func_020790e0(param_1, 1);
     j = 0;
     data_0217ad08->mUnk_000 = j;
@@ -1316,7 +1317,7 @@ void func_02078c58(void *param_1) {
     func_02047b6c(9);
 }
 
-void func_02078b48(void *param_1) {
+void InitKartModelMenu(void *param_1) {
     u32 i;
     gKartModels = NULL;
     data_0217ad08 = HeapAlloc(param_1, 0x26c);
@@ -1426,7 +1427,7 @@ void func_020789d4(void) {
     data_0217ad08->mUnk_024.mUnk_30 = 1;
 }
 
-void func_02078934(s32 param_1) {
+void SetFrustumProjection(s32 param_1) {
     s32 e;
     s32 d;
     s32 c;
@@ -1447,7 +1448,7 @@ void func_02078934(s32 param_1) {
     NNS_G3dGlbFlushP();
 }
 
-void func_020787f4(s32 param_1, s32 param_2) {
+void SetupLightFrustumAndLookAt(s32 param_1, s32 param_2) {
     Vec3 a;
     Vec3 e;
     Vec3 d;
@@ -1460,7 +1461,7 @@ void func_020787f4(s32 param_1, s32 param_2) {
     }
     NNS_G3dGlbLightVector(0, (s16) a.x, (s16) a.y, (s16) a.z);
     NNS_G3dGlbLightColor(0, (u16) (data_usa_021656d8 | (data_usa_021656d8 << 5) | (data_usa_021656d8 << 10)));
-    func_02078934(0);
+    SetFrustumProjection(0);
     b = data_usa_02155188;
     c = data_usa_021656f0;
     c.y += param_2;
@@ -1518,7 +1519,7 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
     NNS_G3dGlbSetBaseTrans(&t);
     NNS_G3dGlbFlushP();
     if (param_1->mUnk_00 != -1 && param_1->mUnk_04 != -1) {
-        func_02078934(param_3);
+        SetFrustumProjection(param_3);
         if (param_1->mUnk_1c != NULL) {
             if (param_3 != 0) {
                 param_1->mUnk_1c->mUnk_00.mUnk_54 = 1;
@@ -1755,7 +1756,7 @@ void func_020780f4(void) {
         p = &data_0217ad08->mUnk_058[data_0217ad08->mUnk_264];
         q = &data_0217ad08->mUnk_024;
         if (q->mUnk_00 != -1 && q->mUnk_04 != -1) {
-            func_020787f4(q->mUnk_2c, data_usa_021656ec);
+            SetupLightFrustumAndLookAt(q->mUnk_2c, data_usa_021656ec);
             func_02078580(p, &data_0217ad08->mUnk_024, data_0217ad08->mUnk_1e4);
             func_01ff9234();
         }
@@ -1766,7 +1767,7 @@ void func_020780b0(void) {
     Unk0217ad08_058 *p;
     if (data_0217ad08->mUnk_264 >= 0) {
         p = &data_0217ad08->mUnk_058[data_0217ad08->mUnk_264];
-        func_020787f4(0, data_usa_021656ec);
+        SetupLightFrustumAndLookAt(0, data_usa_021656ec);
         func_02078580(p, &data_0217ad08->mUnk_024, 0);
         func_01ff9234();
     }
@@ -1953,7 +1954,7 @@ void func_02077c1c(void) {
             }
             func_02079038(q->mUnk_14, p->mUnk_18, p->mUnk_1c);
             func_0207851c(data_0217ad08->mUnk_020);
-            func_0207940c(q->mUnk_14, q->mUnk_04, data_0217ad08->mUnk_1d0);
+            UploadKartAPaletteSlice(q->mUnk_14, q->mUnk_04, data_0217ad08->mUnk_1d0);
             func_020792c8((struct Unk0206bcb0_590 *) q, 1);
             p->mUnk_2c = FALSE;
             p->mUnk_30 = 0;
@@ -1976,7 +1977,7 @@ void func_02077c1c(void) {
 
 #pragma thumb on
 
-void func_02077bc0(void *a) {
+void InitLnkVramManagers(void *a) {
     u32 v1;
     u32 v2;
     RangeEntry *v3;

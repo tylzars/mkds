@@ -218,7 +218,7 @@ void func_020c5804(Unk020c06c4 *a) {
             break;
         case MODE_VS:
         case 5:
-            y = func_020ae4c0(1, 0x40, 0, data_0217b3f0->mUnk_04, 0x14);
+            y = InterpolateS16(1, 0x40, 0, data_0217b3f0->mUnk_04, 0x14);
             c = GetRaceGoalMNcerEntry(data_0217b3f0->mUnk_08);
             e[0] = 0x18000;
             e[1] = (y + 0xa8) << 12;
@@ -242,7 +242,7 @@ void func_020c55b0(Unk020c06c4 *a) {
     s32 z;
     void *c;
 
-    y = func_020ae4c0(1, 0x40, 0, data_0217b3f0->mUnk_04, 0x14);
+    y = InterpolateS16(1, 0x40, 0, data_0217b3f0->mUnk_04, 0x14);
     c = GetRaceGoalMNcerEntry(data_0217b3f0->mUnk_08);
     e0[0] = 0x18000;
     e0[1] = (y + 0xa8) << 12;
@@ -284,7 +284,7 @@ void func_020c541c(Unk020c06c4 *a) {
     void *c;
 
     n = data_0217b3f0->mUnk_04;
-    y = func_020ae4c0(1, -0x80, 0, n, 0x14);
+    y = InterpolateS16(1, -0x80, 0, n, 0x14);
     if (data_0217b3f0->mUnk_14 != 9 && data_0217b3f0->mUnk_18 > data_0217b3f0->mUnk_14 && n >= 0x1e) {
         t = n - 10;
         if (t < 0x54) {

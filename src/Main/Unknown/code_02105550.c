@@ -209,7 +209,7 @@ Unk0217c7b4 *func_02108950(void) {
     return &data_0217c7b4;
 }
 
-BOOL func_0210887c(s32 a) {
+BOOL LoadSndBanksAndWaveArcs(s32 a) {
     s32 i;
     NNSSndHeap *p;
 
@@ -234,7 +234,7 @@ BOOL func_0210887c(s32 a) {
     return TRUE;
 }
 
-BOOL func_021087f4(s32 a) {
+BOOL LoadSndBanksAndWaveArcsIfChanged(s32 a) {
     if (a == 0) {
         return TRUE;
     }
@@ -246,7 +246,7 @@ BOOL func_021087f4(s32 a) {
     data_0216c7d8.mUnk_00 = 0;
     data_0216c7d8.mUnk_00 = a;
     data_0216c7d8.mUnk_04 = 0xfe00;
-    if (func_0210887c(a) == FALSE) {
+    if (LoadSndBanksAndWaveArcs(a) == FALSE) {
         return FALSE;
     }
     return TRUE;
@@ -1540,15 +1540,15 @@ void func_02105b64(s32 a) {
     func_0210d9a0(&data_0217d084, 4);
 }
 
-void func_02105b48(void) {
+void StopAllSeqPlayers(void) {
     NNS_SndPlayerStopSeqAll(func_0210d960());
 }
 
-void func_02105b28(NNSSndSeqPlayer **a, u32 b) {
+void SetSndHandleTrackVolume(NNSSndSeqPlayer **a, u32 b) {
     NNS_SndPlayerSetTrackVolume(a, data_0216cb20, (u8) b);
 }
 
-void func_02105b0c(NNSSndSeqPlayer **a, u32 b) {
+void SetSndHandleTrackPitch(NNSSndSeqPlayer **a, u32 b) {
     NNS_SndPlayerSetTrackPitch(a, data_0216cb20, b);
 }
 

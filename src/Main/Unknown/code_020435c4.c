@@ -223,7 +223,7 @@ void func_02043f28(u32 a) {
             r |= data_021540ec[q->mNextEntries[i].mCharacterIndex];
         }
     }
-    func_021087f4(r);
+    LoadSndBanksAndWaveArcsIfChanged(r);
 }
 
 void func_02043d10(void *a) {

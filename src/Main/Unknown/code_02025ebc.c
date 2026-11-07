@@ -4,7 +4,7 @@
 #pragma thumb on
 
 s16 func_02025ebc(Unk02025ebc *a) {
-    return func_020ae4c0(1, a->mUnk_0c, a->mUnk_0e, a->mUnk_04, a->mUnk_08);
+    return InterpolateS16(1, a->mUnk_0c, a->mUnk_0e, a->mUnk_04, a->mUnk_08);
 }
 
 #pragma thumb off

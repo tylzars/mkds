@@ -47,50 +47,51 @@
 #include "Main/Unknown/code_0203c8dc.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-s32 data_021696c0[10] = {0, 1, 2, 3, 4, 5, 9, 7, 8, 11};
+// Indices into gItemKinds and gItemPools.
+s32 gRaceHudSubScreenItemPoolIndices[10] = {0, 1, 2, 3, 4, 5, 9, 7, 8, 11};
 
-void func_020ca454(void) {
+void UpdateRaceHudSubScreenCrabCells(void) {
     s32 i;
     s32 n;
     u32 v;
 
     n = 0;
     v = func_020c0db0();
-    for (i = 0; i < data_0217b430->mObjectCount; i++) {
+    for (i = 0; i < gRaceHudSubScreenCrabCells->mObjectCount; i++) {
         Unk0217b498_00 *p;
 
-        p = data_0217b430->mObjects[i];
+        p = gRaceHudSubScreenCrabCells->mObjects[i];
         if (!(p->mFlags & 1)) {
-            if (ComputeRaceHudSubScreenPosition(&p->mPos, &data_0217b430->mCells[n].mUnk_00, v, 1, 1)) {
-                data_0217b430->mCells[n].mUnk_08 = GetRaceSNcerEntry(0x8a);
-                data_0217b430->mCells[n].mUnk_0c = 2;
+            if (ComputeRaceHudSubScreenPosition(&p->mPos, &gRaceHudSubScreenCrabCells->mCells[n].mUnk_00, v, 1, 1)) {
+                gRaceHudSubScreenCrabCells->mCells[n].mUnk_08 = GetRaceSNcerEntry(0x8a);
+                gRaceHudSubScreenCrabCells->mCells[n].mUnk_0c = 2;
                 n++;
             }
         }
     }
-    data_0217b430->mCellCount = n;
+    gRaceHudSubScreenCrabCells->mCellCount = n;
 }
 
-void func_020ca438(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, data_0217b430, 0);
+void DrawRaceHudSubScreenCrabCells(Unk020c06c4 *a) {
+    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenCrabCells, 0);
 }
 
-s32 func_020ca3e4(void) {
+s32 CreateRaceHudSubScreenItemCells(void) {
     s32 a;
     s32 i;
 
     a = 0;
     for (i = 0; i < 10; i++) {
-        a += gItemKinds[data_021696c0[i]].mObjectCount;
+        a += gItemKinds[gRaceHudSubScreenItemPoolIndices[i]].mObjectCount;
     }
-    return CreateRaceHudSubScreenCellsWithCount(&data_0217b42c, a);
+    return CreateRaceHudSubScreenCellsWithCount(&gRaceHudSubScreenItemCells, a);
 }
 
-void func_020ca3d0(void) {
-    ClearRaceHudSubScreenCells(&data_0217b42c);
+void ClearRaceHudSubScreenItemCells(void) {
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenItemCells);
 }
 
-void func_020ca074(void) {
+void UpdateRaceHudSubScreenItemCells(void) {
     enum { K0 } t;
     s32 n;
     s32 a;
@@ -107,7 +108,7 @@ void func_020ca074(void) {
     n = 0;
     a = func_020c0db0();
     for (k = 0; k < 10; k++) {
-        t = data_021696c0[k];
+        t = gRaceHudSubScreenItemPoolIndices[k];
         e = &gItemPools[t];
         v1 = e->mObjects;
         v2 = e->mActiveCount;
@@ -125,14 +126,15 @@ void func_020ca074(void) {
             }
             if (k == 9) {
                 if (q != NULL) {
-                    if (ComputeRaceHudSubScreenPosition(q, &data_0217b42c->mCells[n].mUnk_00, a, 1, 1) != FALSE) {
+                    if (ComputeRaceHudSubScreenPosition(q, &gRaceHudSubScreenItemCells->mCells[n].mUnk_00, a, 1, 1) !=
+                        FALSE) {
                         if (p->mUnk_d8 > 0) {
                             v = ((ItemTeresa *) p)->mUnk_170;
-                            data_0217b42c->mCells[n].mUnk_00.mUnk_04 -= 0x88 * v / func_021001a0();
-                            if (data_0217b42c->mCells[n].mUnk_00.mUnk_04 > 0) {
-                                data_0217b42c->mCells[n].mUnk_08 = c;
-                                data_0217b42c->mCells[n].mUnk_0c = func_020b4e70(q) != 0 ? 2 : 3;
-                                data_0217b42c->mCells[n].mUnk_0e = 0;
+                            gRaceHudSubScreenItemCells->mCells[n].mUnk_00.mUnk_04 -= 0x88 * v / func_021001a0();
+                            if (gRaceHudSubScreenItemCells->mCells[n].mUnk_00.mUnk_04 > 0) {
+                                gRaceHudSubScreenItemCells->mCells[n].mUnk_08 = c;
+                                gRaceHudSubScreenItemCells->mCells[n].mUnk_0c = func_020b4e70(q) != 0 ? 2 : 3;
+                                gRaceHudSubScreenItemCells->mCells[n].mUnk_0e = 0;
                                 n++;
                             }
                         }
@@ -140,22 +142,24 @@ void func_020ca074(void) {
                 }
             } else if (k == 6) {
                 if (((ItemBomb *) p)->mUnk_1a0 != FALSE && q != NULL) {
-                    if (ComputeRaceHudSubScreenPosition(q, &data_0217b42c->mCells[n].mUnk_00, a, 1, 1) != FALSE) {
+                    if (ComputeRaceHudSubScreenPosition(q, &gRaceHudSubScreenItemCells->mCells[n].mUnk_00, a, 1, 1) !=
+                        FALSE) {
                         if (func_020d3d10(q->y) == 0) {
-                            data_0217b42c->mCells[n].mUnk_08 = c;
-                            data_0217b42c->mCells[n].mUnk_0c = func_020b4e70(q) != 0 ? 2 : 3;
-                            data_0217b42c->mCells[n].mUnk_0e = (p->mFlags & 0x40000) != 0 ? 1 : 0;
+                            gRaceHudSubScreenItemCells->mCells[n].mUnk_08 = c;
+                            gRaceHudSubScreenItemCells->mCells[n].mUnk_0c = func_020b4e70(q) != 0 ? 2 : 3;
+                            gRaceHudSubScreenItemCells->mCells[n].mUnk_0e = (p->mFlags & 0x40000) != 0 ? 1 : 0;
                             n++;
                         }
                     }
                 }
             } else {
                 if (q != NULL) {
-                    if (ComputeRaceHudSubScreenPosition(q, &data_0217b42c->mCells[n].mUnk_00, a, 1, 1) != FALSE) {
+                    if (ComputeRaceHudSubScreenPosition(q, &gRaceHudSubScreenItemCells->mCells[n].mUnk_00, a, 1, 1) !=
+                        FALSE) {
                         if (func_020d3d10(q->y) == 0) {
-                            data_0217b42c->mCells[n].mUnk_08 = c;
-                            data_0217b42c->mCells[n].mUnk_0c = func_020b4e70(q) != 0 ? 2 : 3;
-                            data_0217b42c->mCells[n].mUnk_0e = (p->mFlags & 0x40000) != 0 ? 1 : 0;
+                            gRaceHudSubScreenItemCells->mCells[n].mUnk_08 = c;
+                            gRaceHudSubScreenItemCells->mCells[n].mUnk_0c = func_020b4e70(q) != 0 ? 2 : 3;
+                            gRaceHudSubScreenItemCells->mCells[n].mUnk_0e = (p->mFlags & 0x40000) != 0 ? 1 : 0;
                             n++;
                         }
                     }
@@ -163,35 +167,35 @@ void func_020ca074(void) {
             }
         }
     }
-    data_0217b42c->mCellCount = n;
+    gRaceHudSubScreenItemCells->mCellCount = n;
 }
 
-void func_020ca058(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, data_0217b42c, 0);
+void DrawRaceHudSubScreenItemCells(Unk020c06c4 *a) {
+    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenItemCells, 0);
 }
 
-s32 func_020c9fb8(void) {
+s32 CreateRaceHudSubScreenKarts(void) {
     s32 i;
 
-    data_0217b428 = HeapAlloc(GetHeap(func_020364e8()), 0x194);
-    CreateRaceHudSubScreenCellsWithCount(&data_0217b428->mUnk_190, 0x18);
+    gRaceHudSubScreenKarts = HeapAlloc(GetHeap(func_020364e8()), 0x194);
+    CreateRaceHudSubScreenCellsWithCount(&gRaceHudSubScreenKarts->mUnk_190, 0x18);
     for (i = 0; i < 8; i++) {
-        data_0217b428->mUnk_000[i] = 0;
-        data_0217b428->mUnk_020[i] = 0;
-        data_0217b428->mUnk_060[i].mUnk_00 = 0;
-        data_0217b428->mUnk_060[i].mUnk_04 = 0;
-        data_0217b428->mUnk_100[i] = 0;
-        data_0217b428->mUnk_130[i] = 0;
+        gRaceHudSubScreenKarts->mUnk_000[i] = 0;
+        gRaceHudSubScreenKarts->mUnk_020[i] = 0;
+        gRaceHudSubScreenKarts->mUnk_060[i].mUnk_00 = 0;
+        gRaceHudSubScreenKarts->mUnk_060[i].mUnk_04 = 0;
+        gRaceHudSubScreenKarts->mUnk_100[i] = 0;
+        gRaceHudSubScreenKarts->mUnk_130[i] = 0;
     }
     return 1;
 }
 
-void func_020c9f84(void) {
-    ClearRaceHudSubScreenCells(&data_0217b428->mUnk_190);
-    data_0217b428 = NULL;
+void ClearRaceHudSubScreenKarts(void) {
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenKarts->mUnk_190);
+    gRaceHudSubScreenKarts = NULL;
 }
 
-void func_020c97c0(void) {
+void UpdateRaceHudSubScreenKarts(void) {
     s32 v1[8];
     u32 a;
     u16 i;
@@ -212,31 +216,31 @@ void func_020c97c0(void) {
 
     a = func_020c0db0();
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-        data_0217b428->mUnk_000[i] = 0;
-        data_0217b428->mUnk_130[i] = i;
+        gRaceHudSubScreenKarts->mUnk_000[i] = 0;
+        gRaceHudSubScreenKarts->mUnk_130[i] = i;
         v1[i] = GetKartRank(i & 0xff);
     }
     switch (GetRaceHudSubScreenState()) {
         case 0:
             for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-                func_020b6078(i, &data_0217b428->mUnk_060[i]);
-                x = data_0217b428->mUnk_060[i].mUnk_00;
-                y = data_0217b428->mUnk_060[i].mUnk_04;
+                func_020b6078(i, &gRaceHudSubScreenKarts->mUnk_060[i]);
+                x = gRaceHudSubScreenKarts->mUnk_060[i].mUnk_00;
+                y = gRaceHudSubScreenKarts->mUnk_060[i].mUnk_04;
                 if (x > -0x10 && x < 0x110 && y > -0x10 && y < 0xd0 && func_0207a84c(i) == 0) {
-                    data_0217b428->mUnk_000[i] = 1;
+                    gRaceHudSubScreenKarts->mUnk_000[i] = 1;
                     if (data_021759c0->mMode == MODE_TIME_ATTACK &&
                         data_021759c0->mCurrentEntries[i].mPlayer.mKind == 2) {
-                        data_0217b428->mUnk_040[i] = 1;
+                        gRaceHudSubScreenKarts->mUnk_040[i] = 1;
                     } else {
-                        data_0217b428->mUnk_040[i] = 0;
+                        gRaceHudSubScreenKarts->mUnk_040[i] = 0;
                     }
-                    GetKartScale(&data_0217b428->mUnk_0a0[i], i);
+                    GetKartScale(&gRaceHudSubScreenKarts->mUnk_0a0[i], i);
                     if (GetKart(i)->mState != KART_STATE_NORMAL) {
-                        data_0217b428->mUnk_110[i]++;
-                        data_0217b428->mUnk_100[i] = (data_0217b428->mUnk_110[i] << 12) % 0x10000;
+                        gRaceHudSubScreenKarts->mUnk_110[i]++;
+                        gRaceHudSubScreenKarts->mUnk_100[i] = (gRaceHudSubScreenKarts->mUnk_110[i] << 12) % 0x10000;
                     } else {
-                        data_0217b428->mUnk_100[i] = 0;
-                        data_0217b428->mUnk_110[i] = 0;
+                        gRaceHudSubScreenKarts->mUnk_100[i] = 0;
+                        gRaceHudSubScreenKarts->mUnk_110[i] = 0;
                     }
                 }
             }
@@ -244,28 +248,28 @@ void func_020c97c0(void) {
         case 1:
         case 2:
         case 3:
-            data_0217b428->mUnk_190->mCellCount = 0;
+            gRaceHudSubScreenKarts->mUnk_190->mCellCount = 0;
             for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
                 GetKartPos(&v, i & 0xff);
-                ComputeRaceHudSubScreenKartPosition(i, &data_0217b428->mUnk_060[i], a);
-                x = data_0217b428->mUnk_060[i].mUnk_00;
-                y = data_0217b428->mUnk_060[i].mUnk_04;
+                ComputeRaceHudSubScreenKartPosition(i, &gRaceHudSubScreenKarts->mUnk_060[i], a);
+                x = gRaceHudSubScreenKarts->mUnk_060[i].mUnk_00;
+                y = gRaceHudSubScreenKarts->mUnk_060[i].mUnk_04;
                 if (x > -0x10 && x < 0x110 && y > -0x10 && y < 0xd0 && func_0207a84c(i) == 0) {
-                    data_0217b428->mUnk_000[i] = 1;
-                    data_0217b428->mUnk_040[i] = func_020b4dc4(i);
-                    GetKartScale(&data_0217b428->mUnk_0a0[i], i);
+                    gRaceHudSubScreenKarts->mUnk_000[i] = 1;
+                    gRaceHudSubScreenKarts->mUnk_040[i] = func_020b4dc4(i);
+                    GetKartScale(&gRaceHudSubScreenKarts->mUnk_0a0[i], i);
                     if (GetKart(i)->mState != KART_STATE_NORMAL) {
-                        data_0217b428->mUnk_110[i]++;
-                        data_0217b428->mUnk_100[i] = (data_0217b428->mUnk_110[i] << 12) % 0x10000;
+                        gRaceHudSubScreenKarts->mUnk_110[i]++;
+                        gRaceHudSubScreenKarts->mUnk_100[i] = (gRaceHudSubScreenKarts->mUnk_110[i] << 12) % 0x10000;
                     } else {
-                        data_0217b428->mUnk_100[i] = 0;
-                        data_0217b428->mUnk_110[i] = 0;
+                        gRaceHudSubScreenKarts->mUnk_100[i] = 0;
+                        gRaceHudSubScreenKarts->mUnk_110[i] = 0;
                     }
-                    data_0217b428->mUnk_150[i] = func_020b4e70(&v) != 0 ? 2 : 3;
+                    gRaceHudSubScreenKarts->mUnk_150[i] = func_020b4e70(&v) != 0 ? 2 : 3;
                     s = &gKartItems[i].mItemInUse;
                     v2 = s->mUnk_014;
                     v3 = s->mUnk_020;
-                    m = data_0217b428->mUnk_190->mCellCount;
+                    m = gRaceHudSubScreenKarts->mUnk_190->mCellCount;
                     b = func_020c0db0();
                     for (j = 0; j < v3; j++) {
                         o = v2[j];
@@ -278,59 +282,60 @@ void func_020c97c0(void) {
                         if (q != NULL && f != 0) {
                             func_020b4f64(&t, &v, q);
                             w = t;
-                            if (ComputeRaceHudSubScreenPosition(&w, &data_0217b428->mUnk_190->mCells[m].mUnk_00, b, 0,
-                                                                1) != FALSE) {
+                            if (ComputeRaceHudSubScreenPosition(
+                                    &w, &gRaceHudSubScreenKarts->mUnk_190->mCells[m].mUnk_00, b, 0, 1) != FALSE) {
                                 switch (o->mKind) {
                                     case 0:
-                                        data_0217b428->mUnk_190->mCells[m].mUnk_08 = GetRaceSNcerEntry(0x4c);
+                                        gRaceHudSubScreenKarts->mUnk_190->mCells[m].mUnk_08 = GetRaceSNcerEntry(0x4c);
                                         break;
                                     case 1:
-                                        data_0217b428->mUnk_190->mCells[m].mUnk_08 = GetRaceSNcerEntry(0x4d);
+                                        gRaceHudSubScreenKarts->mUnk_190->mCells[m].mUnk_08 = GetRaceSNcerEntry(0x4d);
                                         break;
                                     case 2:
-                                        data_0217b428->mUnk_190->mCells[m].mUnk_08 = GetRaceSNcerEntry(0x4b);
+                                        gRaceHudSubScreenKarts->mUnk_190->mCells[m].mUnk_08 = GetRaceSNcerEntry(0x4b);
                                         break;
                                     case 5:
-                                        data_0217b428->mUnk_190->mCells[m].mUnk_08 = GetRaceSNcerEntry(0x56);
+                                        gRaceHudSubScreenKarts->mUnk_190->mCells[m].mUnk_08 = GetRaceSNcerEntry(0x56);
                                         break;
                                     case 9:
-                                        data_0217b428->mUnk_190->mCells[m].mUnk_08 = GetRaceSNcerEntry(0x55);
+                                        gRaceHudSubScreenKarts->mUnk_190->mCells[m].mUnk_08 = GetRaceSNcerEntry(0x55);
                                         break;
                                     case 7:
-                                        data_0217b428->mUnk_190->mCells[m].mUnk_08 = GetRaceSNcerEntry(0x54);
+                                        gRaceHudSubScreenKarts->mUnk_190->mCells[m].mUnk_08 = GetRaceSNcerEntry(0x54);
                                         break;
                                     case 8:
-                                        data_0217b428->mUnk_190->mCells[m].mUnk_08 = GetRaceSNcerEntry(0x4e);
+                                        gRaceHudSubScreenKarts->mUnk_190->mCells[m].mUnk_08 = GetRaceSNcerEntry(0x4e);
                                         break;
                                     default:
-                                        data_0217b428->mUnk_190->mCells[m].mUnk_08 = GetRaceSNcerEntry(0x4c);
+                                        gRaceHudSubScreenKarts->mUnk_190->mCells[m].mUnk_08 = GetRaceSNcerEntry(0x4c);
                                         break;
                                 }
-                                data_0217b428->mUnk_190->mCells[m].mUnk_0c = func_020b4e70(&w) != 0 ? 2 : 3;
-                                data_0217b428->mUnk_190->mCells[m].mUnk_0e = (o->mFlags & 0x40000) != 0 ? 1 : 0;
+                                gRaceHudSubScreenKarts->mUnk_190->mCells[m].mUnk_0c = func_020b4e70(&w) != 0 ? 2 : 3;
+                                gRaceHudSubScreenKarts->mUnk_190->mCells[m].mUnk_0e =
+                                    (o->mFlags & 0x40000) != 0 ? 1 : 0;
                                 m++;
                             }
                         }
                     }
-                    data_0217b428->mUnk_190->mCellCount = m;
+                    gRaceHudSubScreenKarts->mUnk_190->mCellCount = m;
                 }
             }
             break;
     }
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         if (func_0207a8a4(i) == 1) {
-            data_0217b428->mUnk_170[i]++;
+            gRaceHudSubScreenKarts->mUnk_170[i]++;
         } else {
-            data_0217b428->mUnk_170[i] = 0;
+            gRaceHudSubScreenKarts->mUnk_170[i] = 0;
         }
         if (i != func_020b4d9c() && (GetKart(i)->mUnk_7c & 0x402000) != 0) {
-            data_0217b428->mUnk_020[i] = 1;
+            gRaceHudSubScreenKarts->mUnk_020[i] = 1;
         } else {
-            data_0217b428->mUnk_020[i] = 0;
+            gRaceHudSubScreenKarts->mUnk_020[i] = 0;
         }
     }
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-        if (data_0217b428->mUnk_040[i] == 0) {
+        if (gRaceHudSubScreenKarts->mUnk_040[i] == 0) {
             v1[i] -= 0x20;
         }
         if (i == func_020b4d9c()) {
@@ -340,7 +345,7 @@ void func_020c97c0(void) {
     if (data_021759c0->mMode == MODE_TIME_ATTACK) {
         return;
     }
-    SortIndicesByKey(data_0217b428->mUnk_130, v1, data_021759c0->mKartCount);
+    SortIndicesByKey(gRaceHudSubScreenKarts->mUnk_130, v1, data_021759c0->mKartCount);
 }
 
 static inline void func_020c8dbc_inline(Unk020c06c4 *p, Unk020224e0_c *c, s32 *r, s32 x, s32 y, u16 v, s32 s, s32 g) {
@@ -386,11 +391,12 @@ static inline void func_020c8dbc_inline3(Unk020c06c4 *p, s32 i, s32 h) {
         v3 = (s16) gPairsByAngle[x * 2 + 1] * 11 >> 12;
         v4 = (s16) gPairsByAngle[x * 2] * 11 >> 12;
         c = GetRaceSNcerEntry(h % 12 < 6 ? 93 + j * 2 : 94 + j * 2);
-        func_020c8dbc_inline2(p, c, data_0217b428->mUnk_060[i].mUnk_00 + v3, data_0217b428->mUnk_060[i].mUnk_04 + v4);
+        func_020c8dbc_inline2(p, c, gRaceHudSubScreenKarts->mUnk_060[i].mUnk_00 + v3,
+                              gRaceHudSubScreenKarts->mUnk_060[i].mUnk_04 + v4);
     }
 }
 
-void func_020c8dbc(Unk020c06c4 *p) {
+void DrawRaceHudSubScreenKarts(Unk020c06c4 *p) {
     s32 i;
     s32 f;
     Unk020224e0_c *c;
@@ -409,20 +415,22 @@ void func_020c8dbc(Unk020c06c4 *p) {
     switch (GetRaceHudSubScreenState()) {
         case 0:
             for (k = 0; k < data_021759c0->mKartCount; k++) {
-                i = data_0217b428->mUnk_130[k];
-                if (data_0217b428->mUnk_000[i] != 0) {
-                    f = data_0217b428->mUnk_040[i];
-                    if (data_0217b428->mUnk_020[i] == 0) {
-                        if (data_0217b428->mUnk_0a0[i].y != 0x1000 || data_0217b428->mUnk_110[i] != 0) {
+                i = gRaceHudSubScreenKarts->mUnk_130[k];
+                if (gRaceHudSubScreenKarts->mUnk_000[i] != 0) {
+                    f = gRaceHudSubScreenKarts->mUnk_040[i];
+                    if (gRaceHudSubScreenKarts->mUnk_020[i] == 0) {
+                        if (gRaceHudSubScreenKarts->mUnk_0a0[i].y != 0x1000 ||
+                            gRaceHudSubScreenKarts->mUnk_110[i] != 0) {
                             v1 = func_020ae5c4(p);
-                            func_020b4bf8(r0, data_0217b428->mUnk_0a0[i].y, data_0217b428->mUnk_100[i]);
+                            func_020b4bf8(r0, gRaceHudSubScreenKarts->mUnk_0a0[i].y,
+                                          gRaceHudSubScreenKarts->mUnk_100[i]);
                             if (func_0207a8a4((u16) i) == 3) {
                                 c = GetRaceSNcerEntry(0x10);
                             } else {
                                 c = GetRaceSNcerEntry(i);
                             }
-                            func_020c8dbc_inline(p, c, r0, data_0217b428->mUnk_060[i].mUnk_00,
-                                                 data_0217b428->mUnk_060[i].mUnk_04, v1, f != 0 ? 1 : -1, -1);
+                            func_020c8dbc_inline(p, c, r0, gRaceHudSubScreenKarts->mUnk_060[i].mUnk_00,
+                                                 gRaceHudSubScreenKarts->mUnk_060[i].mUnk_04, v1, f != 0 ? 1 : -1, -1);
                             p->mUnk_000.mUnk_20[v1].mUnk_06 = r0[0] >> 4;
                             p->mUnk_000.mUnk_20[v1].mUnk_0e = r0[1] >> 4;
                             p->mUnk_000.mUnk_20[v1].mUnk_16 = r0[2] >> 4;
@@ -433,12 +441,12 @@ void func_020c8dbc(Unk020c06c4 *p) {
                             } else {
                                 c = GetRaceSNcerEntry(i);
                             }
-                            func_020c8dbc_inline(p, c, NULL, data_0217b428->mUnk_060[i].mUnk_00,
-                                                 data_0217b428->mUnk_060[i].mUnk_04, 0, f != 0 ? 1 : -1, -1);
+                            func_020c8dbc_inline(p, c, NULL, gRaceHudSubScreenKarts->mUnk_060[i].mUnk_00,
+                                                 gRaceHudSubScreenKarts->mUnk_060[i].mUnk_04, 0, f != 0 ? 1 : -1, -1);
                         }
                     }
-                    if (data_0217b428->mUnk_170[i] != 0) {
-                        func_020c8dbc_inline3(p, i, data_0217b428->mUnk_170[i]);
+                    if (gRaceHudSubScreenKarts->mUnk_170[i] != 0) {
+                        func_020c8dbc_inline3(p, i, gRaceHudSubScreenKarts->mUnk_170[i]);
                     }
                 }
             }
@@ -448,21 +456,22 @@ void func_020c8dbc(Unk020c06c4 *p) {
         case 3:
             a = func_020c0dc4();
             for (k = 0; k < data_021759c0->mKartCount; k++) {
-                i = data_0217b428->mUnk_130[k];
-                g = data_0217b428->mUnk_150[i];
-                if (data_0217b428->mUnk_000[i] != 0 && a <= g) {
-                    if (data_0217b428->mUnk_020[i] == 0) {
-                        v6 = data_0217b428->mUnk_060[i].mUnk_00;
-                        v7 = data_0217b428->mUnk_060[i].mUnk_04;
-                        b = data_0217b428->mUnk_040[i];
-                        if (data_0217b428->mUnk_0a0[i].y != 0x1000 || data_0217b428->mUnk_110[i] != 0) {
+                i = gRaceHudSubScreenKarts->mUnk_130[k];
+                g = gRaceHudSubScreenKarts->mUnk_150[i];
+                if (gRaceHudSubScreenKarts->mUnk_000[i] != 0 && a <= g) {
+                    if (gRaceHudSubScreenKarts->mUnk_020[i] == 0) {
+                        v6 = gRaceHudSubScreenKarts->mUnk_060[i].mUnk_00;
+                        v7 = gRaceHudSubScreenKarts->mUnk_060[i].mUnk_04;
+                        b = gRaceHudSubScreenKarts->mUnk_040[i];
+                        if (gRaceHudSubScreenKarts->mUnk_0a0[i].y != 0x1000 ||
+                            gRaceHudSubScreenKarts->mUnk_110[i] != 0) {
                             n = func_020ae5c4(p);
-                            if (data_0217b428->mUnk_110[i] != 0) {
-                                v5 = data_0217b428->mUnk_100[i] + func_020b6368();
+                            if (gRaceHudSubScreenKarts->mUnk_110[i] != 0) {
+                                v5 = gRaceHudSubScreenKarts->mUnk_100[i] + func_020b6368();
                             } else {
                                 v5 = 0;
                             }
-                            func_020b4bf8(r1, data_0217b428->mUnk_0a0[i].y, v5);
+                            func_020b4bf8(r1, gRaceHudSubScreenKarts->mUnk_0a0[i].y, v5);
                             if (func_0207a8a4((u16) i) == 3) {
                                 c = GetRaceSNcerEntry(0x10);
                             } else {
@@ -482,12 +491,12 @@ void func_020c8dbc(Unk020c06c4 *p) {
                             func_020c8dbc_inline(p, c, NULL, v6, v7, 0, b != 0 ? 1 : -1, g);
                         }
                     }
-                    if (data_0217b428->mUnk_170[i] != 0) {
-                        func_020c8dbc_inline3(p, i, data_0217b428->mUnk_170[i]);
+                    if (gRaceHudSubScreenKarts->mUnk_170[i] != 0) {
+                        func_020c8dbc_inline3(p, i, gRaceHudSubScreenKarts->mUnk_170[i]);
                     }
                 }
             }
-            DrawRaceHudSubScreenCells(p, data_0217b428->mUnk_190, 0);
+            DrawRaceHudSubScreenCells(p, gRaceHudSubScreenKarts->mUnk_190, 0);
             break;
     }
 }
@@ -902,45 +911,45 @@ void func_020c7c38(Unk020c06c4 *a) {
     DrawRaceHudSubScreenCells(a, data_0217b414, 0);
 }
 
-s32 func_020c7c1c(void) {
-    return CreateRaceHudSubScreenCells(&data_0217b410, MAP_OBJECT_KIND_MOVE_TREE);
+s32 CreateRaceHudSubScreenMoveTreeCells(void) {
+    return CreateRaceHudSubScreenCells(&gRaceHudSubScreenMoveTreeCells, MAP_OBJECT_KIND_MOVE_TREE);
 }
 
-void func_020c7c08(void) {
-    ClearRaceHudSubScreenCells(&data_0217b410);
+void ClearRaceHudSubScreenMoveTreeCells(void) {
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenMoveTreeCells);
 }
 
-void func_020c7b44(void) {
+void UpdateRaceHudSubScreenMoveTreeCells(void) {
     s32 i;
     s32 n;
     u32 a;
 
     n = 0;
     a = func_020c0db0();
-    for (i = 0; i < data_0217b410->mObjectCount; i++) {
-        if (ComputeRaceHudSubScreenPosition(&data_0217b410->mObjects[i]->mPos, &data_0217b410->mCells[n].mUnk_00, a, 1,
-                                            1) != FALSE) {
-            data_0217b410->mCells[n].mUnk_08 = GetRaceSNcerEntry(0x8b);
-            data_0217b410->mCells[n].mUnk_0c = 2;
+    for (i = 0; i < gRaceHudSubScreenMoveTreeCells->mObjectCount; i++) {
+        if (ComputeRaceHudSubScreenPosition(&gRaceHudSubScreenMoveTreeCells->mObjects[i]->mPos,
+                                            &gRaceHudSubScreenMoveTreeCells->mCells[n].mUnk_00, a, 1, 1) != FALSE) {
+            gRaceHudSubScreenMoveTreeCells->mCells[n].mUnk_08 = GetRaceSNcerEntry(0x8b);
+            gRaceHudSubScreenMoveTreeCells->mCells[n].mUnk_0c = 2;
             n++;
         }
     }
-    data_0217b410->mCellCount = n;
+    gRaceHudSubScreenMoveTreeCells->mCellCount = n;
 }
 
-void func_020c7b28(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, data_0217b410, 0);
+void DrawRaceHudSubScreenMoveTreeCells(Unk020c06c4 *a) {
+    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenMoveTreeCells, 0);
 }
 
-s32 func_020c7b0c(void) {
-    return CreateRaceHudSubScreenCells(&data_0217b40c, MAP_OBJECT_KIND_SMAN);
+s32 CreateRaceHudSubScreenSmanCells(void) {
+    return CreateRaceHudSubScreenCells(&gRaceHudSubScreenSmanCells, MAP_OBJECT_KIND_SMAN);
 }
 
-void func_020c7af8(void) {
-    ClearRaceHudSubScreenCells(&data_0217b40c);
+void ClearRaceHudSubScreenSmanCells(void) {
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenSmanCells);
 }
 
-void func_020c7a0c(void) {
+void UpdateRaceHudSubScreenSmanCells(void) {
     s32 i;
     s32 n;
     Unk0217b498_00 *p;
@@ -948,34 +957,35 @@ void func_020c7a0c(void) {
 
     n = 0;
     a = func_020c0db0();
-    for (i = 0; i < data_0217b40c->mObjectCount; i++) {
-        if (IsRaceHudSubScreenPairNearCenter(&data_0217b40c->mUnk_0c[i]) != FALSE) {
-            p = data_0217b40c->mObjects[i];
+    for (i = 0; i < gRaceHudSubScreenSmanCells->mObjectCount; i++) {
+        if (IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenSmanCells->mUnk_0c[i]) != FALSE) {
+            p = gRaceHudSubScreenSmanCells->mObjects[i];
             if ((p->mFlags & 1) == 0) {
-                if (ComputeRaceHudSubScreenPosition(&p->mPos, &data_0217b40c->mCells[n].mUnk_00, a, 0, 0) != FALSE) {
-                    data_0217b40c->mCells[n].mUnk_08 = GetRaceSNcerEntry(0x98);
-                    data_0217b40c->mCells[n].mUnk_0c = 2;
+                if (ComputeRaceHudSubScreenPosition(&p->mPos, &gRaceHudSubScreenSmanCells->mCells[n].mUnk_00, a, 0,
+                                                    0) != FALSE) {
+                    gRaceHudSubScreenSmanCells->mCells[n].mUnk_08 = GetRaceSNcerEntry(0x98);
+                    gRaceHudSubScreenSmanCells->mCells[n].mUnk_0c = 2;
                     n++;
                 }
             }
         }
     }
-    data_0217b40c->mCellCount = n;
+    gRaceHudSubScreenSmanCells->mCellCount = n;
 }
 
-void func_020c79f0(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, data_0217b40c, 0);
+void DrawRaceHudSubScreenSmanCells(Unk020c06c4 *a) {
+    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenSmanCells, 0);
 }
 
-s32 func_020c79d4(void) {
-    return CreateRaceHudSubScreenCells(&data_0217b408, MAP_OBJECT_KIND_DOSSUN);
+s32 CreateRaceHudSubScreenDossunCells(void) {
+    return CreateRaceHudSubScreenCells(&gRaceHudSubScreenDossunCells, MAP_OBJECT_KIND_DOSSUN);
 }
 
-void func_020c79c0(void) {
-    ClearRaceHudSubScreenCells(&data_0217b408);
+void ClearRaceHudSubScreenDossunCells(void) {
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenDossunCells);
 }
 
-void func_020c783c(void) {
+void UpdateRaceHudSubScreenDossunCells(void) {
     s32 i;
     s32 n;
     Unk0217b498_00 *p;
@@ -984,29 +994,31 @@ void func_020c783c(void) {
 
     n = 0;
     a = func_020c0db0();
-    for (i = 0; i < data_0217b408->mObjectCount; i++) {
-        if (IsRaceHudSubScreenPairNearCenter(&data_0217b408->mUnk_0c[i]) != FALSE) {
-            p = data_0217b408->mObjects[i];
-            if (ComputeRaceHudSubScreenPosition(&p->mPos, &data_0217b408->mCells[n].mUnk_00, a, 0, 0) != FALSE) {
-                data_0217b408->mCells[n].mUnk_08 = GetRaceSNcerEntry(0xaf);
-                data_0217b408->mCells[n].mUnk_0c = 1;
-                data_0217b408->mCells[n + 1].mUnk_00 = data_0217b408->mCells[(u32) n].mUnk_00;
-                data_0217b408->mCells[n + 1].mUnk_08 = GetRaceSNcerEntry(0xb0);
-                data_0217b408->mCells[n + 1].mUnk_0c = 2;
+    for (i = 0; i < gRaceHudSubScreenDossunCells->mObjectCount; i++) {
+        if (IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenDossunCells->mUnk_0c[i]) != FALSE) {
+            p = gRaceHudSubScreenDossunCells->mObjects[i];
+            if (ComputeRaceHudSubScreenPosition(&p->mPos, &gRaceHudSubScreenDossunCells->mCells[n].mUnk_00, a, 0, 0) !=
+                FALSE) {
+                gRaceHudSubScreenDossunCells->mCells[n].mUnk_08 = GetRaceSNcerEntry(0xaf);
+                gRaceHudSubScreenDossunCells->mCells[n].mUnk_0c = 1;
+                gRaceHudSubScreenDossunCells->mCells[n + 1].mUnk_00 =
+                    gRaceHudSubScreenDossunCells->mCells[(u32) n].mUnk_00;
+                gRaceHudSubScreenDossunCells->mCells[n + 1].mUnk_08 = GetRaceSNcerEntry(0xb0);
+                gRaceHudSubScreenDossunCells->mCells[n + 1].mUnk_0c = 2;
                 n += 2;
                 t = func_020db4c4((Dossun *) p) * 16 >> 12;
-                data_0217b408->mCells[n - 2].mUnk_00.mUnk_04 -= t;
+                gRaceHudSubScreenDossunCells->mCells[n - 2].mUnk_00.mUnk_04 -= t;
             }
         }
     }
-    data_0217b408->mCellCount = n;
+    gRaceHudSubScreenDossunCells->mCellCount = n;
 }
 
-void func_020c7820(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, data_0217b408, 0);
+void DrawRaceHudSubScreenDossunCells(Unk020c06c4 *a) {
+    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenDossunCells, 0);
 }
 
-BOOL func_020c77a0(void) {
+BOOL CreateRaceHudSubScreenWanwanCells(void) {
     u16 a[2] = {0x196, 0x1a5};
     u16 i;
     u16 b;
@@ -1014,36 +1026,36 @@ BOOL func_020c77a0(void) {
     for (i = 0; i < 2; i++) {
         b = a[i];
         if (func_021000d0(b) != NULL) {
-            return CreateRaceHudSubScreenCells(&data_0217b404, b);
+            return CreateRaceHudSubScreenCells(&gRaceHudSubScreenWanwanCells, b);
         }
     }
     return FALSE;
 }
 
-void func_020c778c(void) {
-    ClearRaceHudSubScreenCells(&data_0217b404);
+void ClearRaceHudSubScreenWanwanCells(void) {
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenWanwanCells);
 }
 
-void func_020c76c8(void) {
+void UpdateRaceHudSubScreenWanwanCells(void) {
     s32 i;
     s32 n;
     u32 a;
 
     n = 0;
     a = func_020c0db0();
-    for (i = 0; i < data_0217b404->mObjectCount; i++) {
-        if (ComputeRaceHudSubScreenPosition(&data_0217b404->mObjects[i]->mPos, &data_0217b404->mCells[n].mUnk_00, a, 1,
-                                            0) != FALSE) {
-            data_0217b404->mCells[n].mUnk_08 = GetRaceSNcerEntry(0xac);
-            data_0217b404->mCells[n].mUnk_0c = 1;
+    for (i = 0; i < gRaceHudSubScreenWanwanCells->mObjectCount; i++) {
+        if (ComputeRaceHudSubScreenPosition(&gRaceHudSubScreenWanwanCells->mObjects[i]->mPos,
+                                            &gRaceHudSubScreenWanwanCells->mCells[n].mUnk_00, a, 1, 0) != FALSE) {
+            gRaceHudSubScreenWanwanCells->mCells[n].mUnk_08 = GetRaceSNcerEntry(0xac);
+            gRaceHudSubScreenWanwanCells->mCells[n].mUnk_0c = 1;
             n++;
         }
     }
-    data_0217b404->mCellCount = n;
+    gRaceHudSubScreenWanwanCells->mCellCount = n;
 }
 
-void func_020c76ac(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, data_0217b404, 0);
+void DrawRaceHudSubScreenWanwanCells(Unk020c06c4 *a) {
+    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenWanwanCells, 0);
 }
 
 s32 func_020c7690(void) {

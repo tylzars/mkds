@@ -345,8 +345,8 @@ void AdvanceRecordTopMenuState1(void) {
     s32 idx;
 
     gRecordTopMenu->mStateFrames++;
-    a = func_020ae4c0(1, 0xe0, 0, gRecordTopMenu->mStateFrames, 10);
-    b = func_020ae4c0(1, -0xc0, 0, gRecordTopMenu->mStateFrames, 10);
+    a = InterpolateS16(1, 0xe0, 0, gRecordTopMenu->mStateFrames, 10);
+    b = InterpolateS16(1, -0xc0, 0, gRecordTopMenu->mStateFrames, 10);
     gRecordTopMenu->mBg0Offset = b;
     idx = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
     gRecordTopMenu->mRecordTopMenuMTable[0].mUnk_06 = b;
@@ -506,8 +506,8 @@ void AdvanceRecordTopMenuState6(void) {
         func_02111450(0);
     }
     gRecordTopMenu->mStateFrames++;
-    a = func_020ae4c0(1, 0, 0xe0, gRecordTopMenu->mStateFrames, 10);
-    b = func_020ae4c0(1, 0, -0xc0, gRecordTopMenu->mStateFrames, 10);
+    a = InterpolateS16(1, 0, 0xe0, gRecordTopMenu->mStateFrames, 10);
+    b = InterpolateS16(1, 0, -0xc0, gRecordTopMenu->mStateFrames, 10);
     gRecordTopMenu->mBg0Offset = b;
     idx = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
     gRecordTopMenu->mRecordTopMenuMTable[0].mUnk_06 = b;
@@ -538,7 +538,7 @@ void AdvanceRecordTopMenuState7(void) {
     s32 i;
 
     gRecordTopMenu->mStateFrames++;
-    v = func_020ae4c0(1, 0, 0xe0, gRecordTopMenu->mStateFrames, 10);
+    v = InterpolateS16(1, 0, 0xe0, gRecordTopMenu->mStateFrames, 10);
     for (i = 0; i < 3; i++) {
         gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mUnk_04 = v;
         gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mUnk_04 = v;
@@ -598,7 +598,7 @@ void AdvanceRecordTopMenuState11(void) {
     s32 i;
     s16 v;
     gRecordTopMenu->mStateFrames++;
-    v = func_020ae4c0(1, 0xe0, 0, gRecordTopMenu->mStateFrames, 10);
+    v = InterpolateS16(1, 0xe0, 0, gRecordTopMenu->mStateFrames, 10);
     for (i = 0; i < 3; i++) {
         gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mUnk_04 = v;
         gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mUnk_04 = v;

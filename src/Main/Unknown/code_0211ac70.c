@@ -77,7 +77,7 @@ void func_0211db30(Unk0215ce70 *a, s32 b) {
     *a = v;
 }
 
-void func_0211d9dc(void) {
+void AdvanceSelectRaceRuleHighlight(void) {
     Unk0215ce70 buf;
     s32 i;
 
@@ -248,7 +248,9 @@ u16 func_0211d62c(void) {
 
 #pragma thumb on
 
-void func_0211d56c(void) {
+// Moves the highlight to the next row, then onto the button, then back to row 0; a row with a zero table entry is
+// skipped.
+void MoveSelectRaceRuleRowNext(void) {
     u32 a = 1;
     u16 h = gSelectRaceRule->mBncl->mUnk_06;
     Unk027ffc40 *v;
@@ -259,7 +261,7 @@ void func_0211d56c(void) {
         if (gSelectRaceRule->mTable[h + data_0215cd4c[gSelectRaceRule->mRow].mUnk_00[0]].mUnk_00 == 0 ||
             (func_0211d650() == 8 && gSelectRaceRule->mRow == 1)) {
             a = 0;
-            func_0211d56c();
+            MoveSelectRaceRuleRowNext();
         }
     } else {
         gSelectRaceRule->mRow++;
@@ -273,7 +275,7 @@ void func_0211d56c(void) {
         } else if (gSelectRaceRule->mTable[h + data_0215cd4c[gSelectRaceRule->mRow].mUnk_00[0]].mUnk_00 == 0 ||
                    (func_0211d650() == 8 && gSelectRaceRule->mRow == 1)) {
             a = 0;
-            func_0211d56c();
+            MoveSelectRaceRuleRowNext();
         }
     }
     if (a != 0) {
@@ -281,7 +283,9 @@ void func_0211d56c(void) {
     }
 }
 
-void func_0211d4a8(void) {
+// Moves the highlight to the previous row, then onto the button, then to row 4; a row with a zero table entry is
+// skipped.
+void MoveSelectRaceRuleRowPrevious(void) {
     u32 a = 1;
     u16 h = gSelectRaceRule->mBncl->mUnk_06;
     Unk027ffc40 *v;
@@ -292,7 +296,7 @@ void func_0211d4a8(void) {
         if (gSelectRaceRule->mTable[h + data_0215cd4c[gSelectRaceRule->mRow].mUnk_00[0]].mUnk_00 == 0 ||
             (func_0211d650() == 8 && gSelectRaceRule->mRow == 1)) {
             a = 0;
-            func_0211d4a8();
+            MoveSelectRaceRuleRowPrevious();
         }
     } else {
         gSelectRaceRule->mRow--;
@@ -306,7 +310,7 @@ void func_0211d4a8(void) {
         } else if (gSelectRaceRule->mTable[h + data_0215cd4c[gSelectRaceRule->mRow].mUnk_00[0]].mUnk_00 == 0 ||
                    (func_0211d650() == 8 && gSelectRaceRule->mRow == 1)) {
             a = 0;
-            func_0211d4a8();
+            MoveSelectRaceRuleRowPrevious();
         }
     }
     if (a != 0) {
@@ -637,7 +641,7 @@ s32 func_0211cdec(void) {
     return a;
 }
 
-void func_0211ccac(s32 a) {
+void MoveSelectRaceRuleValueNext(s32 a) {
     SelectRaceRule *p;
     s32 i;
     gSelectRaceRule->mRowValues[gSelectRaceRule->mRow]++;
@@ -645,7 +649,7 @@ void func_0211ccac(s32 a) {
         gSelectRaceRule->mRowValues[gSelectRaceRule->mRow] = 0;
     }
     if (func_0211cea8() == FALSE) {
-        func_0211ccac(0);
+        MoveSelectRaceRuleValueNext(0);
     }
     p = gSelectRaceRule;
     if (p->mRow != 3) {
@@ -689,7 +693,7 @@ void func_0211ccac(s32 a) {
     }
 }
 
-void func_0211cb6c(s32 a) {
+void MoveSelectRaceRuleValuePrevious(s32 a) {
     SelectRaceRule *p;
     s32 i;
     gSelectRaceRule->mRowValues[gSelectRaceRule->mRow]--;
@@ -697,7 +701,7 @@ void func_0211cb6c(s32 a) {
         gSelectRaceRule->mRowValues[gSelectRaceRule->mRow] = data_0215ccc0[gSelectRaceRule->mRow] - 1;
     }
     if (func_0211cea8() == FALSE) {
-        func_0211cb6c(0);
+        MoveSelectRaceRuleValuePrevious(0);
     }
     p = gSelectRaceRule;
     if (p->mRow != 3) {
@@ -1143,7 +1147,7 @@ void func_0211bd84(void) {
     }
     gSelectRaceRule->mRow = 4;
     while (a != gSelectRaceRule->mRowValues[4]) {
-        func_0211ccac(0);
+        MoveSelectRaceRuleValueNext(0);
     }
     if (func_0202967c() != 0) {
         b = 3;
@@ -1153,19 +1157,19 @@ void func_0211bd84(void) {
     a = 0;
     gSelectRaceRule->mRow = 0;
     while (b != gSelectRaceRule->mRowValues[0]) {
-        func_0211ccac(0);
+        MoveSelectRaceRuleValueNext(0);
     }
     b = data_0215cd08[func_0202966c()];
     gSelectRaceRule->mRow = 1;
     while (b != gSelectRaceRule->mRowValues[1]) {
-        func_0211ccac(0);
+        MoveSelectRaceRuleValueNext(0);
     }
     switch (gSelectRaceRule->mMode) {
         case 0:
         case 1:
             if (b == 0 && gSelectRaceRule->mRowValues[1] != 2) {
                 do {
-                    func_0211ccac(0);
+                    MoveSelectRaceRuleValueNext(0);
                 } while (gSelectRaceRule->mRowValues[1] != 2);
             }
             break;
@@ -1173,12 +1177,12 @@ void func_0211bd84(void) {
     b = data_0215cccc[func_0202965c()];
     gSelectRaceRule->mRow = 2;
     while (b != gSelectRaceRule->mRowValues[2]) {
-        func_0211ccac(0);
+        MoveSelectRaceRuleValueNext(0);
     }
     b = data_0215ccd8[func_0202963c()];
     gSelectRaceRule->mRow = 3;
     while (b != gSelectRaceRule->mRowValues[3]) {
-        func_0211ccac(0);
+        MoveSelectRaceRuleValueNext(0);
     }
     switch (gSelectRaceRule->mRowValues[3]) {
         case 0:
@@ -1295,7 +1299,7 @@ void func_0211ba58(void) {
     func_0211c474();
 }
 
-void func_0211ba1c(void) {
+void RequestSelectRaceRuleState5AndStartSelectChoises(void) {
     void *a;
     gSelectRaceRule->mNextState = 5;
     gSelectRaceRule->mStateFrames = 0;
@@ -1310,7 +1314,7 @@ void RequestSelectRaceRuleState6(void) {
     gSelectRaceRule->mStateFrames = 0;
 }
 
-void func_0211b9ec(void) {
+void RequestSelectRaceRuleState7AndRequestSelectChoisesState0(void) {
     gSelectRaceRule->mNextState = 7;
     gSelectRaceRule->mStateFrames = 0;
     RequestSelectChoisesState0();
@@ -1455,7 +1459,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
         case 0:
             p->mRow = 1;
             if (gSelectRaceRule->mRowValues[1] == 0) {
-                func_0211ccac(0);
+                MoveSelectRaceRuleValueNext(0);
             }
             gSelectRaceRule->mRow = 0;
             break;
@@ -1463,11 +1467,11 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
             p->mOffsetY = -0x1c;
             gSelectRaceRule->mRow = 1;
             if (gSelectRaceRule->mRowValues[1] == 0) {
-                func_0211ccac(0);
+                MoveSelectRaceRuleValueNext(0);
             }
             gSelectRaceRule->mRow = 3;
             if (gSelectRaceRule->mRowValues[3] == 1) {
-                func_0211cb6c(0);
+                MoveSelectRaceRuleValuePrevious(0);
             }
             gSelectRaceRule->mRow = 1;
             break;
@@ -1481,7 +1485,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
         case 3:
             p->mRow = 3;
             if (gSelectRaceRule->mRowValues[3] == 1) {
-                func_0211cb6c(0);
+                MoveSelectRaceRuleValuePrevious(0);
             }
             gSelectRaceRule->mRow = 1;
             if (func_0211d650() == 8) {
@@ -1492,7 +1496,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
             p->mOffsetY = -0x1c;
             gSelectRaceRule->mRow = 3;
             if (gSelectRaceRule->mRowValues[3] == 1) {
-                func_0211cb6c(0);
+                MoveSelectRaceRuleValuePrevious(0);
             }
             gSelectRaceRule->mRow = 1;
             if (func_0211d650() == 8) {
@@ -1527,7 +1531,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
     }
     if (func_0211d650() == 8 && gSelectRaceRule->mRowValues[1] != 0) {
         do {
-            func_0211cb6c(0);
+            MoveSelectRaceRuleValuePrevious(0);
         } while (gSelectRaceRule->mRowValues[1] != 0);
     }
     func_0211baec();
@@ -1537,7 +1541,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
         InitPaletteBlend(gSelectRaceRule->mHeap, gSelectRaceRule->mNclr, 9);
     }
     FrmHeapShrinkInParent(gSelectRaceRule->mHeap);
-    func_0211d9dc();
+    AdvanceSelectRaceRuleHighlight();
 }
 
 void ReleaseSelectRaceRule(void) {
@@ -1588,7 +1592,7 @@ void AdvanceSelectRaceRuleState1(void) {
     func_0211c14c();
     gSelectRaceRule->mStateFrames++;
     p = gSelectRaceRule;
-    c = func_020ae4c0(1, -192, 0, p->mStateFrames, 10);
+    c = InterpolateS16(1, -192, 0, p->mStateFrames, 10);
     b = p->mOffsetY + c;
     p->mBg3Offset = b;
     c = gSelectRaceRule->mBncl->mUnk_06;
@@ -1724,14 +1728,14 @@ chain:
         if (func_0211d650() != 8 || d != 1) {
             gSelectRaceRule->mRow = d;
             gSelectRaceRule->mOnButton = 0;
-            func_0211cb6c(1);
+            MoveSelectRaceRuleValuePrevious(1);
         }
     } else if (a - 5 <= 4) {
         d = data_0215cd24[a];
         if (func_0211d650() != 8 || d != 1) {
             gSelectRaceRule->mRow = d;
             gSelectRaceRule->mOnButton = 0;
-            func_0211ccac(1);
+            MoveSelectRaceRuleValueNext(1);
         }
     } else if (a == 0x13) {
         if (gSelectRaceRule->mOnButton != 0) {
@@ -1751,7 +1755,7 @@ chain:
             func_0211ba58();
             gSelectRaceRule->mUnk_84 = 0;
         } else {
-            func_0211d56c();
+            MoveSelectRaceRuleRowNext();
         }
     } else if (a == 0xf) {
         if (gSelectRaceRule->mRowValues[3] != 2) {
@@ -1766,16 +1770,16 @@ chain:
             func_0211cafc();
         }
     } else if (func_020ae408(8, 0x40) != 0) {
-        func_0211d4a8();
+        MoveSelectRaceRuleRowPrevious();
     } else if (func_020ae408(8, 0x80) != 0) {
-        func_0211d56c();
+        MoveSelectRaceRuleRowNext();
     } else if (func_020ae408(8, 0x20) != 0) {
         if (gSelectRaceRule->mOnButton == 0) {
-            func_0211cb6c(1);
+            MoveSelectRaceRuleValuePrevious(1);
         }
     } else if (func_020ae408(8, 0x10) != 0) {
         if (gSelectRaceRule->mOnButton == 0) {
-            func_0211ccac(1);
+            MoveSelectRaceRuleValueNext(1);
         }
     } else if (func_020ae408(8, 0x200) != 0) {
         func_0211ca8c();
@@ -1797,7 +1801,7 @@ void AdvanceSelectRaceRuleState4(void) {
     }
     if (gSelectRaceRule->mStateFrames >= 10) {
         if (gSelectRaceRule->mMode == 3 || gSelectRaceRule->mRowValues[2] == 1) {
-            func_0211ba1c();
+            RequestSelectRaceRuleState5AndStartSelectChoises();
             return;
         }
         RequestSelectRaceRuleState8();

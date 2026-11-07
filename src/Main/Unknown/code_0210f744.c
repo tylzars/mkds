@@ -95,7 +95,7 @@ void func_02110754(void) {
             }
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, t, x);
             if (data_0217d068 != NULL) {
-                func_02105b28(&data_0217d068, 0x3c);
+                SetSndHandleTrackVolume(&data_0217d068, 0x3c);
             }
             data_0217d2a4.mUnk_00[p->mUnk_74] = 13;
             data_0217d2dc[p->mUnk_74] = 2;
@@ -142,7 +142,7 @@ void func_021106a8(s32 a, s32 b) {
     }
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, mode, id);
     if (data_0217d068 != NULL) {
-        func_02105b28(&data_0217d068, 100);
+        SetSndHandleTrackVolume(&data_0217d068, 100);
     }
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 4);
 }
@@ -373,14 +373,14 @@ void func_02110114(NNSSndSeqPlayer **a) {
     func_02110114_inline(a, 0x7f, 0, b);
 }
 
-u32 func_02110100(NNSSndSeqPlayer **a) {
+u32 IsSndHandleSet(NNSSndSeqPlayer **a) {
     if (*a != NULL) {
         return 1;
     }
     return 0;
 }
 
-u32 func_021100dc(NNSSndSeqPlayer **arg0, u32 arg1, u32 arg2) {
+u32 IsSndHandleSeq(NNSSndSeqPlayer **arg0, u32 arg1, u32 arg2) {
     u32 value0 = (u32) arg0;
     u32 value1 = arg1;
     u32 value2 = arg2;
@@ -407,7 +407,7 @@ u32 func_021100dc(NNSSndSeqPlayer **arg0, u32 arg1, u32 arg2) {
     return value0;
 }
 
-void func_021100d0(NNSSndSeqPlayer **a, u32 b) {
+void StopSndHandleSeq(NNSSndSeqPlayer **a, u32 b) {
     NNS_SndPlayerStopSeq(a, b);
 }
 
@@ -498,7 +498,7 @@ void func_0210fb88(Unk0217d244 *a, NNSSndSeqPlayer **b) {
         func_02110114(b);
         return;
     }
-    a->mUnk_0c = (func_0207a2a8(&x) != FALSE && x < 0x8d04) ? 1 : 0;
+    a->mUnk_0c = (TryGetMinKartDistanceSquared(&x) != FALSE && x < 0x8d04) ? 1 : 0;
     if ((a->mUnk_08 >> 2) & 1) {
         j = 0;
         l = 0x1e;
@@ -546,25 +546,25 @@ void func_0210fb88(Unk0217d244 *a, NNSSndSeqPlayer **b) {
     func_0210fb88_inline(b, l, k, j);
     p = func_02108e6c(5);
     if (n != -1 && i != 0) {
-        l = func_02110100(p);
-        if (l != 0 && func_021100dc(p, 0, n) == 0) {
-            func_021100d0(p, 0);
+        l = IsSndHandleSet(p);
+        if (l != 0 && IsSndHandleSeq(p, 0, n) == 0) {
+            StopSndHandleSeq(p, 0);
             func_0211003c(n & 0xff, p);
         } else if (l == 0) {
             func_0211003c(n & 0xff, p);
         }
-        if (func_02110100(p) == 0) {
+        if (IsSndHandleSet(p) == 0) {
             return;
         }
         if (i > 0x7f) {
             i = 0x7f;
         }
-        func_02105b28(p, i);
+        SetSndHandleTrackVolume(p, i);
     } else {
-        if (func_02110100(p) == 0) {
+        if (IsSndHandleSet(p) == 0) {
             return;
         }
-        func_021100d0(p, 0x1e);
+        StopSndHandleSeq(p, 0x1e);
     }
 }
 

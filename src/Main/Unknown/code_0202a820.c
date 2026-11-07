@@ -93,10 +93,10 @@ void func_0202b3f4(void) {
     p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
     n = p->mUnk_0c->mUnk_06;
     for (i = 0; i < gWiFiVSCourseSelect->mUnk_0b8; i++) {
-        p->mUnk_18[data_usa_021539f4[i].mUnk_06].mUnk_06 = func_020ae4c0(
+        p->mUnk_18[data_usa_021539f4[i].mUnk_06].mUnk_06 = InterpolateS16(
             1, 0, 0x60 - (((s16 *) func_0201ea30(p->mUnk_0c, data_usa_021539f4[i].mUnk_06))[1] << 20 >> 20),
             (*(struct WiFiVSCourseSelect **) &gWiFiVSCourseSelect)->mStateFrames, 0x3c);
-        p->mUnk_18[n + data_usa_021539f4[i].mUnk_00].mUnk_06 = func_020ae4c0(
+        p->mUnk_18[n + data_usa_021539f4[i].mUnk_00].mUnk_06 = InterpolateS16(
             1, 0, 0x60 - (((s16 *) func_0201ea58(p->mUnk_14, data_usa_021539f4[i].mUnk_00))[1] << 20 >> 20),
             (*(struct WiFiVSCourseSelect **) &gWiFiVSCourseSelect)->mStateFrames, 0x3c);
     }

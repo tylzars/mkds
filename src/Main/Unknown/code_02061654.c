@@ -325,7 +325,7 @@ void UpdateRace(void) {
         if (data_0217aa4c != 0) {
             if (data_021653e8 == 0) {
                 gRace->mFadeFog = 0;
-                func_0207a5f0(1);
+                SetKartModelsFogEnable(1);
                 func_02062ef8(0);
                 data_0217aa64 = 0;
                 data_0217aa4c = 0;
@@ -607,7 +607,7 @@ void func_02061874(void) {
         gRace->mDrawnFadeFog = 0;
     }
     gRace->mFadeFog = 1;
-    func_0207a5f0(0);
+    SetKartModelsFogEnable(0);
     func_02062ef8(1);
     data_021653e8 = 72;
     func_02061944(72, 1);

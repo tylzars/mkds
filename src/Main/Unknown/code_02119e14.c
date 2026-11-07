@@ -48,7 +48,7 @@
 
 void AdvanceSelectRaceRuleState6(void) {
     if (GetSelectChoisesDone() != 0) {
-        func_0211b9ec();
+        RequestSelectRaceRuleState7AndRequestSelectChoisesState0();
         switch (GetSelectChoisesIndex()) {
             case 0:
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 7);
@@ -87,7 +87,7 @@ void AdvanceSelectRaceRuleState8(void) {
     s32 c;
     gSelectRaceRule->mStateFrames++;
     p = gSelectRaceRule;
-    c = func_020ae4c0(1, 0, -192, p->mStateFrames, 10);
+    c = InterpolateS16(1, 0, -192, p->mStateFrames, 10);
     b = p->mOffsetY + c;
     a = -func_02128244(p->mStateFrames);
     gSelectRaceRule->mBg3Offset = b;
@@ -204,7 +204,7 @@ s32 AdvanceSelectRaceRule(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         AdvancePaletteBlend();
     }
-    func_0211d9dc();
+    AdvanceSelectRaceRuleHighlight();
     func_0211d66c();
     func_0211c0cc();
     p = gSelectRaceRule;

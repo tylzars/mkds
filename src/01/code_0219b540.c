@@ -423,7 +423,7 @@ void AdvanceSelectGhostState0(void) {
     AdvanceSelectGhostOffsetTimers();
     n = gSelectGhost->mSelectGhostSBncl->mUnk_06;
     gSelectGhost->mStateFrames++;
-    v = func_020ae4c0(1, ~0xbf, 0, gSelectGhost->mStateFrames, 10);
+    v = InterpolateS16(1, ~0xbf, 0, gSelectGhost->mStateFrames, 10);
     gSelectGhost->mBg3Offset = v;
     for (i = 0; i < 6; i++) {
         gSelectGhost->mSelectGhostSTable[gSelectGhostSTableIndices[i]].mUnk_06 = v;
@@ -581,7 +581,7 @@ void AdvanceSelectGhostState7(void) {
 
     flag = gSelectGhost->mResult == 1;
     gSelectGhost->mStateFrames++;
-    v = func_020ae4c0(1, 0, ~0xbf, gSelectGhost->mStateFrames, 10);
+    v = InterpolateS16(1, 0, ~0xbf, gSelectGhost->mStateFrames, 10);
     if (flag) {
         n = gSelectGhost->mSelectCupCourseTaMBncl->mUnk_06;
         gSelectGhost->mBg0Offset = v;

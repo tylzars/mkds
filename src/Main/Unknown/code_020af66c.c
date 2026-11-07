@@ -182,7 +182,7 @@ void func_020b0b8c(void) {
     }
     v = data_021759c0->mMode;
     if (v == MODE_GRAND_PRIX && gRaceHud->mUnk_84c != 0) {
-        reg_G2_BG3OFS = 0x01ff0000 & (func_020ae4c0(1, -64, 0, func_020c5db0(), 20) << 16);
+        reg_G2_BG3OFS = 0x01ff0000 & (InterpolateS16(1, -64, 0, func_020c5db0(), 20) << 16);
     } else if (v == MODE_MISSION_RUN && gRaceHud->mUnk_84c != 0) {
         GXS_LoadBG0Char(func_020b3374()->mData, 0, 0x3000);
         GXS_LoadBG0Scr(func_020b32f8(), 0, 0x600);

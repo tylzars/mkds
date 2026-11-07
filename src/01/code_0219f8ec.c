@@ -593,8 +593,8 @@ void AdvanceMissionRunMSselState1(void) {
     a = gMissionRunMSsel->mMissionRunMSselMBncl->mUnk_06;
     b = gMissionRunMSsel->mMissionRunMSselSBncl->mUnk_06;
     gMissionRunMSsel->mStateFrames = gMissionRunMSsel->mStateFrames + 1;
-    v0 = func_020ae4c0(1, 0x100, 0, gMissionRunMSsel->mStateFrames, 10);
-    v1 = func_020ae4c0(1, -192, 0, gMissionRunMSsel->mStateFrames, 10);
+    v0 = InterpolateS16(1, 0x100, 0, gMissionRunMSsel->mStateFrames, 10);
+    v1 = InterpolateS16(1, -192, 0, gMissionRunMSsel->mStateFrames, 10);
     gMissionRunMSsel->mBg0OffsetX = v0;
     gMissionRunMSsel->mBg1Offset = v1;
     gMissionRunMSsel->mMissionRunMSselMTable[0].mUnk_04 = v0;
@@ -821,8 +821,8 @@ void AdvanceMissionRunMSselState8(void) {
     a = gMissionRunMSsel->mMissionRunMSselMBncl->mUnk_06;
     b = gMissionRunMSsel->mMissionRunMSselSBncl->mUnk_06;
     gMissionRunMSsel->mStateFrames = gMissionRunMSsel->mStateFrames + 1;
-    first = func_020ae4c0(1, 0, gMissionRunMSsel->mUnk_9c, gMissionRunMSsel->mStateFrames, 10);
-    second = func_020ae4c0(1, 0, -0xc0, gMissionRunMSsel->mStateFrames, 10);
+    first = InterpolateS16(1, 0, gMissionRunMSsel->mUnk_9c, gMissionRunMSsel->mStateFrames, 10);
+    second = InterpolateS16(1, 0, -0xc0, gMissionRunMSsel->mStateFrames, 10);
     gMissionRunMSsel->mBg0OffsetX = first;
     gMissionRunMSsel->mBg1Offset = second;
     gMissionRunMSsel->mMissionRunMSselMTable[0].mUnk_04 = first;

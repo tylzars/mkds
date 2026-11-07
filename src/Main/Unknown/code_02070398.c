@@ -238,7 +238,7 @@ void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c
     Vec3 v;
 
     func_02072930(p);
-    func_02079c0c(p->mKartModelsEntry);
+    SetKartModelsEntryCourseColors(p->mKartModelsEntry);
     p->mSlotFunctions[1](p);
     p->mUnk_7c &= ~0xe000;
     func_02103890(p->mIndex);
@@ -1224,7 +1224,8 @@ void func_020708a4(Kart *p) {
         if (s->mUnk_1c <= 0x190) {
             s->mUnk_1c = 0x190;
             p->mUnk_4c |= 0x20000;
-            func_02079f70(p->mKartModelsEntry, func_0207a134(), func_0207a11c(), func_0207a104());
+            StartKartModelsEntryColorInterpolation(p->mKartModelsEntry, GetKartCourseDiffColor(),
+                                                   GetKartCourseEmiColor(), GetKartCourseAmbColor());
         }
     }
     if (p->mUnk_4c & 0x8000000) {

@@ -179,7 +179,7 @@ void func_020d06b8(Unk020d029c *a) {
         return;
     }
     for (i = 0; i < 6; i++) {
-        t[i] = func_020ae4c0(1, 0x80, 0, n - i * 4, 0x14);
+        t[i] = InterpolateS16(1, 0x80, 0, n - i * 4, 0x14);
     }
     c = GetRaceGoalMNcerEntry((func_020c7148() != 0 ? data_0217b49c->mUnk_ac : 0) + 0x15);
     q[1][0] = (t[0] + 0xa2) << 12;

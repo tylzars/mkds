@@ -360,8 +360,8 @@ void AdvanceMissionRunLVselState1(void) {
     func_021059e0();
     count = gMissionRunLVsel->mMissionRunLVselS7Or6Bncl->mUnk_06;
     gMissionRunLVsel->mStateFrames = gMissionRunLVsel->mStateFrames + 1;
-    value = func_020ae4c0(1, gMissionRunLVsel->mUnk_48, 0, gMissionRunLVsel->mStateFrames, 10);
-    gMissionRunLVsel->mBg0Offset = func_020ae4c0(1, -192, 0, gMissionRunLVsel->mStateFrames, 10);
+    value = InterpolateS16(1, gMissionRunLVsel->mUnk_48, 0, gMissionRunLVsel->mStateFrames, 10);
+    gMissionRunLVsel->mBg0Offset = InterpolateS16(1, -192, 0, gMissionRunLVsel->mStateFrames, 10);
     for (i = 0; i < 7; i++) {
         for (j = 0; j < 11; j++) {
             gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][j]].mUnk_04 = value;
@@ -496,8 +496,8 @@ void AdvanceMissionRunLVselState5(void) {
 
     count = gMissionRunLVsel->mMissionRunLVselS7Or6Bncl->mUnk_06;
     gMissionRunLVsel->mStateFrames = gMissionRunLVsel->mStateFrames + 1;
-    value = func_020ae4c0(1, 0, gMissionRunLVsel->mUnk_48, gMissionRunLVsel->mStateFrames, 10);
-    gMissionRunLVsel->mBg0Offset = func_020ae4c0(1, 0, -192, gMissionRunLVsel->mStateFrames, 10);
+    value = InterpolateS16(1, 0, gMissionRunLVsel->mUnk_48, gMissionRunLVsel->mStateFrames, 10);
+    gMissionRunLVsel->mBg0Offset = InterpolateS16(1, 0, -192, gMissionRunLVsel->mStateFrames, 10);
     for (i = 0; i < 7; i++) {
         for (j = 0; j < 11; j++) {
             gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][j]].mUnk_04 = value;

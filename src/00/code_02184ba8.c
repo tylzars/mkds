@@ -111,7 +111,7 @@ void AdvanceWiFiAikotobaState1(void) {
     s32 j;
 
     gWiFiAikotoba->mStateFrames = gWiFiAikotoba->mStateFrames + 1;
-    a = func_020ae4c0(1, 0xfa, 0, gWiFiAikotoba->mStateFrames, 10);
+    a = InterpolateS16(1, 0xfa, 0, gWiFiAikotoba->mStateFrames, 10);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov000_021b06c8[i]; j++) {
             if (i == 1) {
@@ -244,7 +244,7 @@ void AdvanceWiFiAikotobaState5(void) {
     }
     gWiFiAikotoba->mStateFrames = gWiFiAikotoba->mStateFrames + 1;
     if (gWiFiAikotoba->mStateFrames <= 10) {
-        a = func_020ae4c0(1, 0, 0xfa, gWiFiAikotoba->mStateFrames, 10);
+        a = InterpolateS16(1, 0, 0xfa, gWiFiAikotoba->mStateFrames, 10);
     } else {
         a = 0xfa;
     }

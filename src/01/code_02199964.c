@@ -97,7 +97,7 @@ void AdvanceOptionHensyuMenuState1(void) {
     s32 j;
     s32 v;
     gOptionHensyuMenu->mStateFrames++;
-    v = func_020ae4c0(1, 0xfa, 0, gOptionHensyuMenu->mStateFrames, 10);
+    v = InterpolateS16(1, 0xfa, 0, gOptionHensyuMenu->mStateFrames, 10);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6a8c[i]; j++) {
             if (i == 1) {
@@ -242,7 +242,7 @@ void AdvanceOptionHensyuMenuState5(void) {
     }
     gOptionHensyuMenu->mStateFrames++;
     if (gOptionHensyuMenu->mStateFrames <= 10) {
-        v = func_020ae4c0(1, 0, 0xfa, gOptionHensyuMenu->mStateFrames, 10);
+        v = InterpolateS16(1, 0, 0xfa, gOptionHensyuMenu->mStateFrames, 10);
     } else {
         v = 0xfa;
     }

@@ -489,7 +489,7 @@ void func_020c5e30(void) {
     n = gRaceNewRecordTa->mUnk_04;
     gRaceNewRecordTa->mUnk_04 = n + 1;
     if (n < 0x14) {
-        gRaceNewRecordTa->mOffsetX = func_020ae4c0(1, -0x100, 0, n, 0x14);
+        gRaceNewRecordTa->mOffsetX = InterpolateS16(1, -0x100, 0, n, 0x14);
     } else {
         gRaceNewRecordTa->mOffsetX = 0;
         gRaceNewRecordTa->mUnk_00 = (void (*)(void)) func_020c5df0;

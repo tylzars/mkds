@@ -210,7 +210,7 @@ void AdvanceWiFiVSSettingState2(void) {
     s32 i;
 
     gWiFiVSSetting->mStateFrames = gWiFiVSSetting->mStateFrames + 1;
-    v = func_020ae4c0(1, 0x100, 0, gWiFiVSSetting->mStateFrames, 10);
+    v = InterpolateS16(1, 0x100, 0, gWiFiVSSetting->mStateFrames, 10);
     for (i = 0; i < 2; i++) {
         if (i == 0) {
             gWiFiVSSetting->mRowOffsets[i][0] = v;
@@ -395,7 +395,7 @@ void AdvanceWiFiVSSettingState6(void) {
     }
     gWiFiVSSetting->mStateFrames = gWiFiVSSetting->mStateFrames + 1;
     if (gWiFiVSSetting->mStateFrames <= 10) {
-        v = func_020ae4c0(1, 0, 0x100, gWiFiVSSetting->mStateFrames, 10);
+        v = InterpolateS16(1, 0, 0x100, gWiFiVSSetting->mStateFrames, 10);
     } else {
         v = 0x100;
     }

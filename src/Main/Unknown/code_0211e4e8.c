@@ -311,8 +311,8 @@ void AdvanceSelectCupMState0(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         return;
     }
-    a = func_020ae4c0(1, 0, 0xc0, gSelectCupM->mStateFrames, 0xa);
-    b = func_020ae4c0(1, ~0xbf, ~0x1f, gSelectCupM->mStateFrames, 0xa);
+    a = InterpolateS16(1, 0, 0xc0, gSelectCupM->mStateFrames, 0xa);
+    b = InterpolateS16(1, ~0xbf, ~0x1f, gSelectCupM->mStateFrames, 0xa);
     c = gSelectCupM->mMainBncl->mUnk_06;
     gSelectCupM->mBg0Offset = a;
     gSelectCupM->mMainTable[20].mUnk_06 = a;
@@ -354,8 +354,8 @@ void AdvanceSelectCupMState1(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         return;
     }
-    a = func_020ae4c0(1, 0xc0, 0, gSelectCupM->mStateFrames, 0xa);
-    b = func_020ae4c0(1, ~0x1f, ~0xbf, gSelectCupM->mStateFrames, 0xa);
+    a = InterpolateS16(1, 0xc0, 0, gSelectCupM->mStateFrames, 0xa);
+    b = InterpolateS16(1, ~0x1f, ~0xbf, gSelectCupM->mStateFrames, 0xa);
     c = gSelectCupM->mMainBncl->mUnk_06;
     gSelectCupM->mBg0Offset = a;
     gSelectCupM->mMainTable[20].mUnk_06 = a;

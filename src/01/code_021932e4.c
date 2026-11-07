@@ -108,7 +108,7 @@ void AdvanceOptionTopMenuState1(void) {
     s32 j;
 
     gOptionTopMenu->mStateFrames++;
-    amount = func_020ae4c0(1, 250, 0, gOptionTopMenu->mStateFrames, 10);
+    amount = InterpolateS16(1, 250, 0, gOptionTopMenu->mStateFrames, 10);
     for (i = 0; i < 3; i++) {
         for (j = 0; j < data_ov001_021a65e4[i]; j++) {
             if (i == 1) {
@@ -119,7 +119,7 @@ void AdvanceOptionTopMenuState1(void) {
         }
     }
     if (GetOptionPrevState() == 1 && gOptionTopMenu->mIndex != 2) {
-        gOptionTopMenu->mBg0Offset = func_020ae4c0(1, 50, 0, gOptionTopMenu->mStateFrames, 10);
+        gOptionTopMenu->mBg0Offset = InterpolateS16(1, 50, 0, gOptionTopMenu->mStateFrames, 10);
     }
     if (gOptionTopMenu->mStateFrames >= 10) {
         gOptionTopMenu->mNextState = 2;
@@ -245,7 +245,7 @@ void AdvanceOptionTopMenuState5(void) {
     }
     gOptionTopMenu->mStateFrames++;
     if (gOptionTopMenu->mStateFrames <= 10) {
-        amount = func_020ae4c0(1, 0, 250, gOptionTopMenu->mStateFrames, 10);
+        amount = InterpolateS16(1, 0, 250, gOptionTopMenu->mStateFrames, 10);
     } else {
         amount = 250;
     }
@@ -259,7 +259,7 @@ void AdvanceOptionTopMenuState5(void) {
         }
     }
     if (gOptionTopMenu->mNextOptionState == 1) {
-        gOptionTopMenu->mBg0Offset = func_020ae4c0(1, 0, 50, gOptionTopMenu->mStateFrames, 10);
+        gOptionTopMenu->mBg0Offset = InterpolateS16(1, 0, 50, gOptionTopMenu->mStateFrames, 10);
     }
     if (gOptionTopMenu->mStateFrames >= 10 &&
         (gOptionTopMenu->mIndex != 2 || IsSelectReturnState0NoState1Request() != 0) && func_ov001_02192e84() == -1) {

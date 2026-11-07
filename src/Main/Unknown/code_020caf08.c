@@ -21,8 +21,8 @@ void func_020caf08(void) {
     a = data_0217b43c->mUnk_93c;
     b = data_0217b43c->mUnk_948;
     if (n < 10) {
-        a->mUnk_06 = func_020ae4c0(1, 0, -0x28, n, 10);
-        v = func_020ae4c0(1, 0, 0xf0, n, 10);
+        a->mUnk_06 = InterpolateS16(1, 0, -0x28, n, 10);
+        v = InterpolateS16(1, 0, 0xf0, n, 10);
         for (i = 0; i <= 14; i++) {
             b[i].mUnk_04 = v;
         }

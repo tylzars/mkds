@@ -332,8 +332,8 @@ void AdvanceSelectCupCourseState1(void) {
 
     gSelectCupCourse->mStateFrames++;
     if (*(vu16 *) 0x027ffc40 != 2) {
-        func_020ae4c0(1, 0x100, 0, gSelectCupCourse->mStateFrames, 10);
-        v = func_020ae4c0(1, -0xc0, 0, gSelectCupCourse->mStateFrames, 10);
+        InterpolateS16(1, 0x100, 0, gSelectCupCourse->mStateFrames, 10);
+        v = InterpolateS16(1, -0xc0, 0, gSelectCupCourse->mStateFrames, 10);
         if (func_020cccb4() != SCREEN_SELECT_GHOST) {
             w = gSelectCupCourse->mSelectCupCourseTaOrVsMBncl->mUnk_06;
             gSelectCupCourse->mBg0Offset = v;

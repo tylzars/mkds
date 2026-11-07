@@ -204,12 +204,12 @@ void AdvanceSelectBattleStageState0(void) {
             }
         }
     } else {
-        gSelectBattleStage->mUnk_14 = func_020ae4c0(1, 0xa0, 0, gSelectBattleStage->mStateFrames, 10);
-        gSelectBattleStage->mUnk_18 = func_020ae4c0(1, -0x100, 0, gSelectBattleStage->mStateFrames, 10);
+        gSelectBattleStage->mUnk_14 = InterpolateS16(1, 0xa0, 0, gSelectBattleStage->mStateFrames, 10);
+        gSelectBattleStage->mUnk_18 = InterpolateS16(1, -0x100, 0, gSelectBattleStage->mStateFrames, 10);
         for (i = 0; i < 6; i++) {
             for (j = 0; j < 3; j++) {
                 gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][j]].mUnk_04 =
-                    func_020ae4c0(1, 0xdc, 0, gSelectBattleStage->mStateFrames, 10);
+                    InterpolateS16(1, 0xdc, 0, gSelectBattleStage->mStateFrames, 10);
             }
         }
     }
@@ -384,12 +384,12 @@ void AdvanceSelectBattleStageState6(void) {
     if (gSelectBattleStage->mStateFrames > 10) {
         gSelectBattleStage->mStateFrames = 10;
     }
-    gSelectBattleStage->mUnk_14 = func_020ae4c0(1, 0, 0xa0, gSelectBattleStage->mStateFrames, 10);
-    gSelectBattleStage->mUnk_18 = func_020ae4c0(1, 0, -0x100, gSelectBattleStage->mStateFrames, 10);
+    gSelectBattleStage->mUnk_14 = InterpolateS16(1, 0, 0xa0, gSelectBattleStage->mStateFrames, 10);
+    gSelectBattleStage->mUnk_18 = InterpolateS16(1, 0, -0x100, gSelectBattleStage->mStateFrames, 10);
     for (i = 0; i < 6; i++) {
         for (j = 0; j < 3; j++) {
             gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][j]].mUnk_04 =
-                func_020ae4c0(1, 0, 0xdc, gSelectBattleStage->mStateFrames, 10);
+                InterpolateS16(1, 0, 0xdc, gSelectBattleStage->mStateFrames, 10);
         }
     }
 }

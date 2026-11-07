@@ -149,9 +149,9 @@ void func_0202c960(void) {
     func_02025edc(&data_02174e3c->mUnk_210[2]);
     func_0202cba4();
     for (i = 0; i < 8; i++) {
-        w = func_020ae4c0(1, data_usa_02153aa4[data_02174e3c->mUnk_04c[i].mUnk_04.mUnk_08],
-                          data_usa_02153aa4[data_02174e3c->mUnk_04c[i].mUnk_04.mUnk_0c],
-                          data_02174e3c->mUnk_04c[i].mUnk_04.mUnk_00, 10);
+        w = InterpolateS16(1, data_usa_02153aa4[data_02174e3c->mUnk_04c[i].mUnk_04.mUnk_08],
+                           data_usa_02153aa4[data_02174e3c->mUnk_04c[i].mUnk_04.mUnk_0c],
+                           data_02174e3c->mUnk_04c[i].mUnk_04.mUnk_00, 10);
         q->mUnk_18[n + data_usa_02174e14[i].mUnk_00].mUnk_04 = w;
         q->mUnk_18[data_usa_02174e0c[i].mUnk_04].mUnk_04 = q->mUnk_18[n + data_usa_02174e14[i].mUnk_00].mUnk_04;
         q->mUnk_18[data_usa_02174e0c[i].mUnk_02].mUnk_04 = q->mUnk_18[data_usa_02174e0c[i].mUnk_04].mUnk_04;

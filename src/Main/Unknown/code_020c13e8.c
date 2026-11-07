@@ -79,7 +79,7 @@ void func_020c1e70(void) {
 
     n = gRaceGoalS->mUnk_00b0++;
     if (n < 0x14) {
-        gRaceGoalS->mUnk_00a0 = func_020ae4c0(1, -0x100, 0, n, 0x14);
+        gRaceGoalS->mUnk_00a0 = InterpolateS16(1, -0x100, 0, n, 0x14);
     } else {
         gRaceGoalS->mUnk_00a0 = 0;
         gRaceGoalS->mUnk_00ac = func_020c1de4;

@@ -439,8 +439,9 @@ void func_02129b60(void) {
 
 void AdvanceKeyboardState1(void) {
     gKeyboard->mStateFrames++;
-    gKeyboard->mOffsetY = func_020ae4c0(1, 0xc0, 0, gKeyboard->mStateFrames, 0xf);
-    gKeyboard->mUnk_86[0][1] = func_020ae4c0(1, data_0215d108[0][1], data_0215d100[0][1], gKeyboard->mStateFrames, 0xf);
+    gKeyboard->mOffsetY = InterpolateS16(1, 0xc0, 0, gKeyboard->mStateFrames, 0xf);
+    gKeyboard->mUnk_86[0][1] =
+        InterpolateS16(1, data_0215d108[0][1], data_0215d100[0][1], gKeyboard->mStateFrames, 0xf);
     if (gKeyboard->mStateFrames >= 0xf) {
         gKeyboard->mStateFrames = 0xf;
     }
@@ -504,8 +505,9 @@ void AdvanceKeyboardState2(void) {
 void AdvanceKeyboardState3(void) {
     Keyboard *p;
     gKeyboard->mStateFrames++;
-    gKeyboard->mOffsetY = func_020ae4c0(1, 0, 0xc0, gKeyboard->mStateFrames, 0xf);
-    gKeyboard->mUnk_86[0][1] = func_020ae4c0(1, data_0215d100[0][1], data_0215d108[0][1], gKeyboard->mStateFrames, 0xf);
+    gKeyboard->mOffsetY = InterpolateS16(1, 0, 0xc0, gKeyboard->mStateFrames, 0xf);
+    gKeyboard->mUnk_86[0][1] =
+        InterpolateS16(1, data_0215d100[0][1], data_0215d108[0][1], gKeyboard->mStateFrames, 0xf);
     if (gKeyboard->mStateFrames >= 0xf) {
         gKeyboard->mStateFrames = 0xf;
     }
@@ -607,11 +609,12 @@ void func_021296b4(void) {
 void AdvanceKeyboardState6(void) {
     Keyboard *p;
     gKeyboard->mStateFrames++;
-    gKeyboard->mOffsetY = func_020ae4c0(1, 0xc0, 0, gKeyboard->mStateFrames, 0xf);
-    gKeyboard->mUnk_86[1][1] = func_020ae4c0(1, data_0215d108[1][1], data_0215d100[1][1], gKeyboard->mStateFrames, 0xf);
+    gKeyboard->mOffsetY = InterpolateS16(1, 0xc0, 0, gKeyboard->mStateFrames, 0xf);
+    gKeyboard->mUnk_86[1][1] =
+        InterpolateS16(1, data_0215d108[1][1], data_0215d100[1][1], gKeyboard->mStateFrames, 0xf);
     p = gKeyboard;
     if (p->mUnk_2c[2].mUnk_10 != 0) {
-        gKeyboard->mUnk_86[0][0] = func_020ae4c0(1, data_0215d108[0][0], data_0215d100[0][0], p->mStateFrames, 0xf);
+        gKeyboard->mUnk_86[0][0] = InterpolateS16(1, data_0215d108[0][0], data_0215d100[0][0], p->mStateFrames, 0xf);
     }
     if (gKeyboard->mStateFrames >= 0xf) {
         gKeyboard->mStateFrames = 0xf;
@@ -736,11 +739,12 @@ void AdvanceKeyboardState8(void) {
     void *b;
     void *c;
     gKeyboard->mStateFrames++;
-    gKeyboard->mOffsetY = func_020ae4c0(1, 0, 0xc0, gKeyboard->mStateFrames, 0xf);
-    gKeyboard->mUnk_86[1][1] = func_020ae4c0(1, data_0215d100[1][1], data_0215d108[1][1], gKeyboard->mStateFrames, 0xf);
+    gKeyboard->mOffsetY = InterpolateS16(1, 0, 0xc0, gKeyboard->mStateFrames, 0xf);
+    gKeyboard->mUnk_86[1][1] =
+        InterpolateS16(1, data_0215d100[1][1], data_0215d108[1][1], gKeyboard->mStateFrames, 0xf);
     p = gKeyboard;
     if (p->mUnk_2c[2].mUnk_10 == 0) {
-        gKeyboard->mUnk_86[0][0] = func_020ae4c0(1, data_0215d100[0][0], data_0215d108[0][0], p->mStateFrames, 0xf);
+        gKeyboard->mUnk_86[0][0] = InterpolateS16(1, data_0215d100[0][0], data_0215d108[0][0], p->mStateFrames, 0xf);
     }
     if (gKeyboard->mStateFrames >= 0xf) {
         gKeyboard->mStateFrames = 0xf;
@@ -785,8 +789,8 @@ void AdvanceKeyboardState9(void) {
     gKeyboard->mStateFrames++;
     v = data_0215d100[1][0];
     gKeyboard->mUnk_86[0][0] =
-        func_020ae4c0(1, data_0215d100[0][0], data_0215d100[0][0] - (0xc0 - v), gKeyboard->mStateFrames, 0xf);
-    gKeyboard->mUnk_86[1][0] = func_020ae4c0(1, data_0215d108[1][0], v, gKeyboard->mStateFrames, 0xf);
+        InterpolateS16(1, data_0215d100[0][0], data_0215d100[0][0] - (0xc0 - v), gKeyboard->mStateFrames, 0xf);
+    gKeyboard->mUnk_86[1][0] = InterpolateS16(1, data_0215d108[1][0], v, gKeyboard->mStateFrames, 0xf);
     if (gKeyboard->mStateFrames >= 0xf) {
         gKeyboard->mStateFrames = 0xf;
     }
@@ -808,9 +812,9 @@ void AdvanceKeyboardState10(void) {
     }
     if (func_02125f54() != 0 && GetTxtSystemSelectedIndex() == 1) {
         v = data_0215d100[1][0];
-        gKeyboard->mUnk_86[1][0] = func_020ae4c0(1, v, data_0215d108[1][0], gKeyboard->mStateFrames, 0xf);
+        gKeyboard->mUnk_86[1][0] = InterpolateS16(1, v, data_0215d108[1][0], gKeyboard->mStateFrames, 0xf);
         gKeyboard->mUnk_86[0][0] =
-            func_020ae4c0(1, data_0215d100[0][0] - (0xc0 - v), data_0215d100[0][0], gKeyboard->mStateFrames, 0xf);
+            InterpolateS16(1, data_0215d100[0][0] - (0xc0 - v), data_0215d100[0][0], gKeyboard->mStateFrames, 0xf);
     }
     if (func_02125f88() != 0 && gKeyboard->mStateFrames >= 0xf) {
         if (GetTxtSystemSelectedIndex() == 0) {

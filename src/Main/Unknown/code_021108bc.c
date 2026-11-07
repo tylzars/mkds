@@ -345,7 +345,7 @@ void func_021108bc(s32 a) {
         } else if (a == 2 || a == 5) {
             c -= 0x200;
         }
-        func_02105b0c(p, c);
+        SetSndHandleTrackPitch(p, c);
     }
     data_0217d204 = 0;
 }

@@ -1070,7 +1070,7 @@ void func_020a0318(void *a, Unk020a0318 *p) {
         }
         if (*func_02108e6c(8) != NULL) {
             v = p->mUnk_a4 < p->mUnk_a0 ? p->mUnk_a4 : p->mUnk_a0;
-            func_02105b28(func_02108e6c(8), v >> 12);
+            SetSndHandleTrackVolume(func_02108e6c(8), v >> 12);
         }
     }
     if (p->mUnk_be == 0) {
@@ -1089,7 +1089,7 @@ void func_020a0318(void *a, Unk020a0318 *p) {
     if (*func_02108e6c(9) == NULL) {
         return;
     }
-    func_02105b28(func_02108e6c(9), p->mUnk_a4 >> 12);
+    SetSndHandleTrackVolume(func_02108e6c(9), p->mUnk_a4 >> 12);
 }
 
 void *func_020a02f8(void) {

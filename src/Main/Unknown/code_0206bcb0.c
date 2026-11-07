@@ -54,10 +54,10 @@ void func_0206ceb4(s32 *out, Kart *p) {
     }
     q->mUnk_1c = 400;
     p->mUnk_4c |= 0x20000;
-    a = func_0207a134();
-    b = func_0207a11c();
-    c = func_0207a104();
-    func_02079f70(p->mKartModelsEntry, a, b, c);
+    a = GetKartCourseDiffColor();
+    b = GetKartCourseEmiColor();
+    c = GetKartCourseAmbColor();
+    StartKartModelsEntryColorInterpolation(p->mKartModelsEntry, a, b, c);
 }
 
 void func_0206cdd4(Kart *p) {

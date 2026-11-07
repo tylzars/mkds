@@ -176,8 +176,8 @@ void AdvanceTimeAttackTopMenuState0(void) {
     s32 i;
 
     gTimeAttackTopMenu->mStateFrames++;
-    v = func_020ae4c0(1, 0xe0, 0, gTimeAttackTopMenu->mStateFrames, 10);
-    gTimeAttackTopMenu->mBg0Offset = func_020ae4c0(1, -192, 0, gTimeAttackTopMenu->mStateFrames, 10);
+    v = InterpolateS16(1, 0xe0, 0, gTimeAttackTopMenu->mStateFrames, 10);
+    gTimeAttackTopMenu->mBg0Offset = InterpolateS16(1, -192, 0, gTimeAttackTopMenu->mStateFrames, 10);
     for (i = 0; i < 3; i++) {
         gTimeAttackTopMenu->mTimeAttackTopMenuSTable[data_ov001_021a6a08[i]].mUnk_04 = v;
         gTimeAttackTopMenu->mTimeAttackTopMenuSTable[data_ov001_021a6a10[i]].mUnk_04 = v;
@@ -343,8 +343,8 @@ void AdvanceTimeAttackTopMenuState5(void) {
     s32 i;
 
     gTimeAttackTopMenu->mStateFrames++;
-    v = func_020ae4c0(1, 0, 0xe0, gTimeAttackTopMenu->mStateFrames, 10);
-    gTimeAttackTopMenu->mBg0Offset = func_020ae4c0(1, 0, -192, gTimeAttackTopMenu->mStateFrames, 10);
+    v = InterpolateS16(1, 0, 0xe0, gTimeAttackTopMenu->mStateFrames, 10);
+    gTimeAttackTopMenu->mBg0Offset = InterpolateS16(1, 0, -192, gTimeAttackTopMenu->mStateFrames, 10);
     for (i = 0; i < 3; i++) {
         gTimeAttackTopMenu->mTimeAttackTopMenuSTable[data_ov001_021a6a08[i]].mUnk_04 = v;
         gTimeAttackTopMenu->mTimeAttackTopMenuSTable[data_ov001_021a6a10[i]].mUnk_04 = v;

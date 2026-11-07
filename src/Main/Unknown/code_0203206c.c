@@ -261,8 +261,8 @@ s32 AdvanceSelectGame(void) {
             func_020328f8(1);
             gSelectGame->mStateFrames = gSelectGame->mStateFrames + 1;
             if (gSelectGame->mStateFrames < 10) {
-                gSelectGame->mUnk_5c = func_020ae4c0(1, 0xee, a, gSelectGame->mStateFrames, 10);
-                gSelectGame->mUnk_60 = func_020ae4c0(1, -0xc0, a, gSelectGame->mStateFrames, 10);
+                gSelectGame->mUnk_5c = InterpolateS16(1, 0xee, a, gSelectGame->mStateFrames, 10);
+                gSelectGame->mUnk_60 = InterpolateS16(1, -0xc0, a, gSelectGame->mStateFrames, 10);
             } else {
                 gSelectGame->mStateFrames = a;
                 gSelectGame->mUnk_5c = a;
@@ -383,8 +383,8 @@ s32 AdvanceSelectGame(void) {
         case 9:
             o->mStateFrames = o->mStateFrames + 1;
             if (gSelectGame->mStateFrames < 10) {
-                gSelectGame->mUnk_5c = func_020ae4c0(1, a, 0xee, gSelectGame->mStateFrames, 10);
-                gSelectGame->mUnk_60 = func_020ae4c0(1, a, -0xc0, gSelectGame->mStateFrames, 10);
+                gSelectGame->mUnk_5c = InterpolateS16(1, a, 0xee, gSelectGame->mStateFrames, 10);
+                gSelectGame->mUnk_60 = InterpolateS16(1, a, -0xc0, gSelectGame->mStateFrames, 10);
             } else {
                 gSelectGame->mUnk_5c = a;
                 gSelectGame->mUnk_60 = a;

@@ -156,7 +156,7 @@ u16 func_020b6368(void) {
 }
 
 u16 func_020b6338(s32 idx) {
-    return (0x18000 - func_0207a880(idx)) % 0x10000;
+    return (0x18000 - GetKartHeadingAngle(idx)) % 0x10000;
 }
 
 void func_020b6078(s32 idx, UnkPair020b502c *out) {

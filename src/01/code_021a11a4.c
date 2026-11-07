@@ -330,8 +330,8 @@ void AdvanceSelectEngineState1(void) {
     s32 j;
     s32 i;
     gSelectEngine->mStateFrames = gSelectEngine->mStateFrames + 1;
-    a = func_020ae4c0(1, 0xe0, 0, gSelectEngine->mStateFrames, 10);
-    b = func_020ae4c0(1, -0xc0, 0, gSelectEngine->mStateFrames, 10);
+    a = InterpolateS16(1, 0xe0, 0, gSelectEngine->mStateFrames, 10);
+    b = InterpolateS16(1, -0xc0, 0, gSelectEngine->mStateFrames, 10);
     gSelectEngine->mBg0Offset = -b;
     for (i = 0; i < 6; i++) {
         gSelectEngine->mSelectEngineMTable[data_ov001_021a6f68[i]].mUnk_06 = -b;
@@ -532,8 +532,8 @@ void AdvanceSelectEngineState6(void) {
     s32 k;
 
     gSelectEngine->mStateFrames++;
-    a = func_020ae4c0(1, 0, 0xc0, gSelectEngine->mStateFrames, 10);
-    b = func_020ae4c0(1, 0, -0xc0, gSelectEngine->mStateFrames, 10);
+    a = InterpolateS16(1, 0, 0xc0, gSelectEngine->mStateFrames, 10);
+    b = InterpolateS16(1, 0, -0xc0, gSelectEngine->mStateFrames, 10);
     gSelectEngine->mBg0Offset = -b;
     for (i = 0; i < 6; i++) {
         gSelectEngine->mSelectEngineMTable[data_ov001_021a6f68[i]].mUnk_06 = -b;

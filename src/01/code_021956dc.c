@@ -590,7 +590,7 @@ void AdvanceRecordTAttState0(void) {
     s16 v;
 
     gRecordTAtt->mStateFrames++;
-    v = func_020ae4c0(1, -0xc0, 0, gRecordTAtt->mStateFrames, 10);
+    v = InterpolateS16(1, -0xc0, 0, gRecordTAtt->mStateFrames, 10);
     gRecordTAtt->mBg0Offset = v;
     gRecordTAtt->mBg1OffsetY = v;
     gRecordTAtt->mRecordTAttMTable[0].mUnk_06 = v;
@@ -607,7 +607,7 @@ void AdvanceRecordTAttState1(void) {
     s16 v;
 
     gRecordTAtt->mStateFrames++;
-    v = func_020ae4c0(1, 0x100, 0, gRecordTAtt->mStateFrames, 10);
+    v = InterpolateS16(1, 0x100, 0, gRecordTAtt->mStateFrames, 10);
     gRecordTAtt->mBg1OffsetX = v;
     gRecordTAtt->mBg3OffsetX = v;
     x = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
@@ -748,7 +748,7 @@ void AdvanceRecordTAttState3(void) {
             break;
     }
     gRecordTAtt->mStateFrames++;
-    v = func_020ae4c0(1, 0, k, gRecordTAtt->mStateFrames, 10);
+    v = InterpolateS16(1, 0, k, gRecordTAtt->mStateFrames, 10);
     gRecordTAtt->mBg1OffsetX = v;
     gRecordTAtt->mBg3OffsetX = v;
     x = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
@@ -797,7 +797,7 @@ void AdvanceRecordTAttState4(void) {
             break;
     }
     gRecordTAtt->mStateFrames++;
-    v = func_020ae4c0(1, k, 0, gRecordTAtt->mStateFrames, 10);
+    v = InterpolateS16(1, k, 0, gRecordTAtt->mStateFrames, 10);
     gRecordTAtt->mBg1OffsetX = v;
     gRecordTAtt->mBg3OffsetX = v;
     x = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
@@ -835,7 +835,7 @@ void AdvanceRecordTAttState5(void) {
     s16 v;
 
     gRecordTAtt->mStateFrames++;
-    v = func_020ae4c0(1, 0, 0x100, gRecordTAtt->mStateFrames, 10);
+    v = InterpolateS16(1, 0, 0x100, gRecordTAtt->mStateFrames, 10);
     gRecordTAtt->mBg1OffsetX = v;
     gRecordTAtt->mBg3OffsetX = v;
     x = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
@@ -875,7 +875,7 @@ void AdvanceRecordTAttState6(void) {
     s16 v;
 
     gRecordTAtt->mStateFrames++;
-    v = func_020ae4c0(1, 0, -0xc0, gRecordTAtt->mStateFrames, 10);
+    v = InterpolateS16(1, 0, -0xc0, gRecordTAtt->mStateFrames, 10);
     gRecordTAtt->mBg0Offset = v;
     gRecordTAtt->mBg1OffsetY = v;
     gRecordTAtt->mRecordTAttMTable[0].mUnk_06 = v;
@@ -907,7 +907,7 @@ void AdvanceRecordTAttState8(void) {
     s16 v;
 
     gRecordTAtt->mStateFrames++;
-    v = func_020ae4c0(1, 0, 0x100, gRecordTAtt->mStateFrames, 10);
+    v = InterpolateS16(1, 0, 0x100, gRecordTAtt->mStateFrames, 10);
     gRecordTAtt->mBg3OffsetX = v;
     x = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
     gRecordTAtt->mRecordTAttSTable[15].mUnk_04 = v;
@@ -963,7 +963,7 @@ void AdvanceRecordTAttState11(void) {
 
     gRecordTAtt->mStateFrames++;
     if (gRecordTAtt->mUnk_74 != FALSE) {
-        v = func_020ae4c0(1, 0, 0x100, gRecordTAtt->mStateFrames, 10);
+        v = InterpolateS16(1, 0, 0x100, gRecordTAtt->mStateFrames, 10);
         gRecordTAtt->mBg1OffsetX = v;
         w = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
         gRecordTAtt->mRecordTAttMTable[0].mUnk_04 = v;
@@ -993,7 +993,7 @@ void AdvanceRecordTAttState12(void) {
     s16 v;
 
     gRecordTAtt->mStateFrames++;
-    v = func_020ae4c0(1, 0x100, 0, gRecordTAtt->mStateFrames, 10);
+    v = InterpolateS16(1, 0x100, 0, gRecordTAtt->mStateFrames, 10);
     if (gRecordTAtt->mUnk_74 != FALSE) {
         u16 w;
 
@@ -1045,7 +1045,7 @@ void AdvanceRecordTAttState13(void) {
     s16 v;
 
     gRecordTAtt->mStateFrames++;
-    v = func_020ae4c0(1, 0, 0x100, gRecordTAtt->mStateFrames, 10);
+    v = InterpolateS16(1, 0, 0x100, gRecordTAtt->mStateFrames, 10);
     gRecordTAtt->mBg3OffsetX = v;
     x = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
     gRecordTAtt->mRecordTAttSTable[15].mUnk_04 = v;
@@ -1119,7 +1119,7 @@ void AdvanceRecordTAttState17(void) {
     s16 v;
 
     gRecordTAtt->mStateFrames++;
-    v = func_020ae4c0(1, 0x100, 0, gRecordTAtt->mStateFrames, 10);
+    v = InterpolateS16(1, 0x100, 0, gRecordTAtt->mStateFrames, 10);
     gRecordTAtt->mBg3OffsetX = v;
     m = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
     gRecordTAtt->mRecordTAttSTable[15].mUnk_04 = v;

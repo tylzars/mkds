@@ -248,7 +248,7 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
         if ((k == 0 || k == 1 || k == 3) && (gResultsBattle->mMode != 3 || gResultsBattle->mUnk_0e4[m].mUnk_04 != 0)) {
             func_02033ab8(1, m, e + 0x30, 1);
             func_02032f94_inline(w, 0x16);
-            func_020adff0(m, w, 0);
+            CopyKartEntryName(m, w, 0);
             func_0212426c(1, e, q->mUnk_14, w, q->mUnk_0c, q->mUnk_18);
             func_02033b80(m);
             func_02033c80(m);

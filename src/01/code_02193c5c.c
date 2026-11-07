@@ -469,7 +469,7 @@ void func_ov001_021946d0(void) {
 
 void AdvanceRecordGpxState0(void) {
     gRecordGpx->mStateFrames++;
-    gRecordGpx->mBg0Offset = func_020ae4c0(1, -192, 0, gRecordGpx->mStateFrames, 10);
+    gRecordGpx->mBg0Offset = InterpolateS16(1, -192, 0, gRecordGpx->mStateFrames, 10);
     if (gRecordGpx->mStateFrames >= 10) {
         RequestRecordGpxState1AndSetup();
     }
@@ -484,7 +484,7 @@ void AdvanceRecordGpxState1(void) {
 
     AdvanceRecordGpxOffsetTimers();
     gRecordGpx->mStateFrames++;
-    v = func_020ae4c0(1, 0x100, 0, gRecordGpx->mStateFrames, 10);
+    v = InterpolateS16(1, 0x100, 0, gRecordGpx->mStateFrames, 10);
     gRecordGpx->mBg3OffsetX = v;
     a = gRecordGpx->mRecordGpxMBncl->mUnk_06;
     b = gRecordGpx->mRecordGpxSBncl->mUnk_06;
@@ -608,7 +608,7 @@ void AdvanceRecordGpxState3(void) {
             break;
     }
     gRecordGpx->mStateFrames++;
-    v = func_020ae4c0(1, 0, x, gRecordGpx->mStateFrames, 10);
+    v = InterpolateS16(1, 0, x, gRecordGpx->mStateFrames, 10);
     gRecordGpx->mBg3OffsetX = v;
     a = gRecordGpx->mRecordGpxMBncl->mUnk_06;
     b = gRecordGpx->mRecordGpxSBncl->mUnk_06;
@@ -655,7 +655,7 @@ void AdvanceRecordGpxState4(void) {
             break;
     }
     gRecordGpx->mStateFrames++;
-    v = func_020ae4c0(1, x, 0, gRecordGpx->mStateFrames, 10);
+    v = InterpolateS16(1, x, 0, gRecordGpx->mStateFrames, 10);
     gRecordGpx->mBg3OffsetX = v;
     a = gRecordGpx->mRecordGpxMBncl->mUnk_06;
     b = gRecordGpx->mRecordGpxSBncl->mUnk_06;
@@ -692,7 +692,7 @@ void AdvanceRecordGpxState5(void) {
     s32 b;
 
     gRecordGpx->mStateFrames++;
-    v = func_020ae4c0(1, 0, 0x100, gRecordGpx->mStateFrames, 10);
+    v = InterpolateS16(1, 0, 0x100, gRecordGpx->mStateFrames, 10);
     gRecordGpx->mBg3OffsetX = v;
     a = gRecordGpx->mRecordGpxMBncl->mUnk_06;
     b = gRecordGpx->mRecordGpxSBncl->mUnk_06;
@@ -725,7 +725,7 @@ void AdvanceRecordGpxState5(void) {
 
 void AdvanceRecordGpxState6(void) {
     gRecordGpx->mStateFrames++;
-    gRecordGpx->mBg0Offset = func_020ae4c0(1, 0, -192, gRecordGpx->mStateFrames, 10);
+    gRecordGpx->mBg0Offset = InterpolateS16(1, 0, -192, gRecordGpx->mStateFrames, 10);
     if (gRecordGpx->mStateFrames >= 10) {
         func_02111488(gRecordGpx->mUnk_90);
     }

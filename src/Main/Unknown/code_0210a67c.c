@@ -218,7 +218,7 @@ void func_0210b198(s32 a, s32 b, u32 c, s32 d, s32 e) {
         NNS_SndPlayerStopSeq(&h, 0);
     }
     NNS_SndArcPlayerStartSeqArcEx(&h, d, -1, e, 2, f);
-    func_02105b28(&h, c);
+    SetSndHandleTrackVolume(&h, c);
     NNS_SndHandleReleaseSeq(&h);
 }
 
@@ -280,7 +280,7 @@ void func_0210af40(Kart *a, s32 b, s32 c) {
                 NNS_SndPlayerStopSeq(&h, 0);
             }
             NNS_SndArcPlayerStartSeqArcEx(&h, 1, -1, 0x7f, 2, g);
-            func_02105b28(&h, e);
+            SetSndHandleTrackVolume(&h, e);
             NNS_SndHandleReleaseSeq(&h);
         } else {
             if (c != 3 && c != 5) {
@@ -415,7 +415,7 @@ void func_0210abf4(Kart *a, s32 b, s32 c, s32 d) {
         NNS_SndPlayerStopSeq(&h, 0);
     }
     NNS_SndArcPlayerStartSeqArcEx(&h, -1, -1, 0x6e, 2, f);
-    func_02105b28(&h, d);
+    SetSndHandleTrackVolume(&h, d);
     NNS_SndHandleReleaseSeq(&h);
 }
 
@@ -435,7 +435,7 @@ void func_0210ab48(s32 a, s32 b) {
         NNS_SndPlayerStopSeq(&h, 0);
     }
     NNS_SndArcPlayerStartSeqArcEx(&h, 7, -1, -1, 2, d);
-    func_02105b28(&h, 0x6e);
+    SetSndHandleTrackVolume(&h, 0x6e);
     NNS_SndHandleReleaseSeq(&h);
 }
 
@@ -521,8 +521,8 @@ void func_0210a880(Kart *a, PlayingSound *b, s32 c) {
         }
         d -= w;
     }
-    func_02105b28(&b->mUnk_00, e);
-    func_02105b0c(&b->mUnk_00, b->mUnk_14 + d);
+    SetSndHandleTrackVolume(&b->mUnk_00, e);
+    SetSndHandleTrackPitch(&b->mUnk_00, b->mUnk_14 + d);
 }
 
 void func_0210a77c(Kart *a, PlayingSound *b) {
@@ -554,8 +554,8 @@ void func_0210a77c(Kart *a, PlayingSound *b) {
         }
         v -= w;
     }
-    func_02105b28(&b->mUnk_00, c);
-    func_02105b0c(&b->mUnk_00, b->mUnk_14 + v);
+    SetSndHandleTrackVolume(&b->mUnk_00, c);
+    SetSndHandleTrackPitch(&b->mUnk_00, b->mUnk_14 + v);
 }
 
 void func_0210a76c(Kart *a, PlayingSound *b) {
@@ -581,22 +581,22 @@ void func_0210a6ec(Kart *a, PlayingSound *b) {
     u32 c;
 
     c = a->mUnk_4c;
-    func_02105b28(&b->mUnk_00, b->mVolume);
-    func_02105b0c(&b->mUnk_00, b->mUnk_14 + c);
+    SetSndHandleTrackVolume(&b->mUnk_00, b->mVolume);
+    SetSndHandleTrackPitch(&b->mUnk_00, b->mUnk_14 + c);
 }
 
 void func_0210a6b4(Kart *a, PlayingSound *b) {
     u32 c;
 
     c = a->mUnk_4c;
-    func_02105b28(&b->mUnk_00, b->mVolume);
-    func_02105b0c(&b->mUnk_00, b->mUnk_14 + c);
+    SetSndHandleTrackVolume(&b->mUnk_00, b->mVolume);
+    SetSndHandleTrackPitch(&b->mUnk_00, b->mUnk_14 + c);
 }
 
 void func_0210a67c(Kart *a, PlayingSound *b) {
     s32 c;
 
     c = (s32) a->mTowardTurnCounter;
-    func_02105b28(&b->mUnk_00, b->mVolume);
-    func_02105b0c(&b->mUnk_00, b->mUnk_14 + c);
+    SetSndHandleTrackVolume(&b->mUnk_00, b->mVolume);
+    SetSndHandleTrackPitch(&b->mUnk_00, b->mUnk_14 + c);
 }

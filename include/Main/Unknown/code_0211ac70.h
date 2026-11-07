@@ -20,5 +20,5 @@ u16 func_0211d650(void);
 void func_0211d66c(void);
 void func_0211d844(s16 a);
 void func_0211d910(s16 a);
-void func_0211d9dc(void);
+void AdvanceSelectRaceRuleHighlight(void);
 void func_0211db30(Unk0215ce70 *a, s32 b);

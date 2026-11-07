@@ -173,7 +173,7 @@ void func_02033a0c(void *a) {
         } while (j < t->mUnk_14->mUnk_06);
     }
     func_020338f8_inline(w, 0x16);
-    func_020adff0((u16) gResultsBattle->mUnk_0d0, w, 1);
+    CopyKartEntryName((u16) gResultsBattle->mUnk_0d0, w, 1);
     func_0212426c(0, 0, t->mUnk_14, w, t->mUnk_0c, t->mUnk_18);
     func_02033ab8(0, gResultsBattle->mUnk_0d0, 0, 1);
 }
@@ -210,7 +210,7 @@ void func_020338f8(void *a) {
     for (m = 0; m < gResultsBattle->mUnk_0d8; m++) {
         if (gResultsBattle->mUnk_0e4[m].mUnk_00 == 0) {
             func_020338f8_inline(w, 0x16);
-            func_020adff0((u16) m, w, 1);
+            CopyKartEntryName((u16) m, w, 1);
             n++;
             func_0212426c(0, n, t->mUnk_14, w, t->mUnk_0c, t->mUnk_18);
         }

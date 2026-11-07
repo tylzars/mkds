@@ -23,10 +23,10 @@ void UpdateTitleState3(void) {
     w = func_020acbe8(gTitleScene->mTitleSBncl);
     if (GetTitleStateFrames() < 10) {
         for (i = 0; i <= 14; i++) {
-            p[i].mUnk_04 = func_020ae4c0(1, 0, 0xf8, GetTitleStateFrames(), 10);
+            p[i].mUnk_04 = InterpolateS16(1, 0, 0xf8, GetTitleStateFrames(), 10);
         }
         for (i = 0; i <= 1; i++) {
-            p[i + w].mUnk_04 = func_020ae4c0(1, 0, 0xf8, GetTitleStateFrames(), 10);
+            p[i + w].mUnk_04 = InterpolateS16(1, 0, 0xf8, GetTitleStateFrames(), 10);
         }
     } else {
         for (i = 0; i <= 14; i++) {

@@ -117,7 +117,7 @@ void func_0211f440(void) {
 
     a = data_0217d380->mBncl->mUnk_06;
     data_0217d380->mStateFrames++;
-    v = func_020ae4c0(1, 0xc0, 0, data_0217d380->mStateFrames, 10);
+    v = InterpolateS16(1, 0xc0, 0, data_0217d380->mStateFrames, 10);
     data_0217d380->mTable[0x2a].mUnk_06 = v;
     data_0217d380->mTable[a + 0xe].mUnk_06 = v;
     if (data_0217d380->mStateFrames >= 10) {
@@ -131,7 +131,7 @@ void func_0211f3e8(void) {
 
     a = data_0217d380->mBncl->mUnk_06;
     data_0217d380->mStateFrames++;
-    v = func_020ae4c0(1, 0, 0xc0, data_0217d380->mStateFrames, 10);
+    v = InterpolateS16(1, 0, 0xc0, data_0217d380->mStateFrames, 10);
     data_0217d380->mTable[0x2a].mUnk_06 = v;
     data_0217d380->mTable[a + 0xe].mUnk_06 = v;
     if (data_0217d380->mStateFrames >= 10) {

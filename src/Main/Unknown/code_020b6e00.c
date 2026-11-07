@@ -302,7 +302,7 @@ void func_020b8624(void) {
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         x = (i % 2) * 0x68;
         y = (i / 2) * 0x10 + 0x48;
-        func_020adff0(i, w3, 1);
+        CopyKartEntryName(i, w3, 1);
         NNSi_G2dTextCanvasDrawText(&s3, x, y + 1, i == func_020b4d9c() ? 0xd : 0xf, 0x40a, w3);
         NNSi_G2dTextCanvasDrawText(&s3, x, y, i == func_020b4d9c() ? 0xc : 0xe, 0x40a, w3);
     }
@@ -324,7 +324,7 @@ void func_020b8624(void) {
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         x2 = (i % 4) * 0x38;
         y2 = (i / 4) * 0x10 + 0x38;
-        func_020adff0(i, w5, 0);
+        CopyKartEntryName(i, w5, 0);
         if (i == func_020b4d9c()) {
             if (data_021759c0->mUseTeams != 0) {
                 if (data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex == 0) {
@@ -609,7 +609,7 @@ void func_020b80a8(void) {
     for (; i < 8; i++) {
         y = (i % 4) << 6;
         x = (((u32) i >> 2) << 4) + 8;
-        func_020adff0(i, t, k);
+        CopyKartEntryName(i, t, k);
         if (i == func_020b4d9c()) {
             if (data_021759c0->mUseTeams != 0) {
                 if (data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex == 0) {

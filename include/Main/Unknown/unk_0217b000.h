@@ -127,7 +127,7 @@ typedef struct RaceMNumberPair {
     /* 1c */ s32 mUnk_1c;
     /* 20 */ u16 mUnk_20;
     /* 22 */ u8 mUnk_22[2];
-    // X added to every sprite of the pair: 0, or eased by func_020ae4c0 (func_020d1de8) for the slide-in.
+    // X added to every sprite of the pair: 0, or eased by InterpolateS16 (func_020d1de8) for the slide-in.
     /* 24 */ s32 mOffsetX;
 } RaceMNumberPair;
 
@@ -889,9 +889,9 @@ typedef struct Unk0217b424 {
     /* 2c */ Unk0217b498_0c mUnk_2c[3];
 } Unk0217b424;
 
-// Object behind data_0217b428, 0x194 bytes allocated by func_020c9fb8: arrays of eight entries and an
-// RaceHudSubScreenCells pointer at 0x190.
-typedef struct Unk0217b428 {
+// Object behind gRaceHudSubScreenKarts, 0x194 bytes allocated by CreateRaceHudSubScreenKarts: arrays of eight entries
+// and an RaceHudSubScreenCells pointer at 0x190.
+typedef struct RaceHudSubScreenKarts {
     /* 000 */ s32 mUnk_000[8];
     /* 020 */ s32 mUnk_020[8];
     /* 040 */ s32 mUnk_040[8];
@@ -903,10 +903,10 @@ typedef struct Unk0217b428 {
     /* 150 */ s32 mUnk_150[8];
     /* 170 */ s32 mUnk_170[8];
     /* 190 */ RaceHudSubScreenCells *mUnk_190;
-} Unk0217b428;
+} RaceHudSubScreenKarts;
 
 extern Unk0217b424 *data_0217b424;
-extern Unk0217b428 *data_0217b428;
+extern RaceHudSubScreenKarts *gRaceHudSubScreenKarts;
 extern struct Unk0217b49c *data_0217b49c;
 extern u8 data_0217b4a8[];
 extern struct Unk0217b4ac *gEndingStaffRoll;
@@ -967,16 +967,16 @@ extern struct Unk02022aa8 gLCFontM;
 extern struct Unk02022aa8 gMarioFont;
 extern RaceHudSubScreenCells *data_0217b3fc;
 extern RaceHudSubScreenCells *data_0217b400;
-extern RaceHudSubScreenCells *data_0217b404;
-extern RaceHudSubScreenCells *data_0217b408;
-extern RaceHudSubScreenCells *data_0217b40c;
-extern RaceHudSubScreenCells *data_0217b410;
+extern RaceHudSubScreenCells *gRaceHudSubScreenWanwanCells;
+extern RaceHudSubScreenCells *gRaceHudSubScreenDossunCells;
+extern RaceHudSubScreenCells *gRaceHudSubScreenSmanCells;
+extern RaceHudSubScreenCells *gRaceHudSubScreenMoveTreeCells;
 extern RaceHudSubScreenCells *data_0217b414;
 extern RaceHudSubScreenCells *data_0217b418;
 extern RaceHudSubScreenCells *data_0217b41c;
 extern RaceHudSubScreenCells *data_0217b420;
-extern RaceHudSubScreenCells *data_0217b42c;
-extern RaceHudSubScreenCells *data_0217b430;
+extern RaceHudSubScreenCells *gRaceHudSubScreenItemCells;
+extern RaceHudSubScreenCells *gRaceHudSubScreenCrabCells;
 extern RaceHudSubScreenCells *data_0217b434;
 extern RaceHudSubScreenCells *data_0217b440;
 extern RaceHudSubScreenCells *gRaceHudSubScreenNsKiller2Cells;

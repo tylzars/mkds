@@ -214,7 +214,7 @@ void InitKart(Kart *a, void (**b)(Kart *)) {
 
     GetHeap(func_020364e8());
     c = data_021759c0->mCurrentEntries[a->mIndex].mPlayer.mKind == 3;
-    a->mKartModelsEntry = func_02079bf0(a->mIndex);
+    a->mKartModelsEntry = GetKartModelsEntry(a->mIndex);
     func_0208adc8(&a->mKartModelsEntry->mUnk_040, 1);
     if (data_021759c0->mMode == 5) {
         for (i = 0; i < 9; i++) {

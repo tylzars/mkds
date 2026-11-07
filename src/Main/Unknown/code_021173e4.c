@@ -571,8 +571,8 @@ void AdvanceSelectCupGridState1(void) {
     gSelectCupGrid->mStateFrames = gSelectCupGrid->mStateFrames + 1;
     if (*(vu16 *) 0x027ffc40 != 2) {
         v = gSelectCupGrid->mSelectCupMBncl->mUnk_06;
-        a = func_020ae4c0(1, 0xe0, 0, gSelectCupGrid->mStateFrames, 0xa);
-        b = func_020ae4c0(1, -192, 0, gSelectCupGrid->mStateFrames, 0xa);
+        a = InterpolateS16(1, 0xe0, 0, gSelectCupGrid->mStateFrames, 0xa);
+        b = InterpolateS16(1, -192, 0, gSelectCupGrid->mStateFrames, 0xa);
         if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
             gSelectCupGrid->mBg0Offset = b;
             gSelectCupGrid->mSelectCupMTable[19].mUnk_06 = b;
@@ -924,8 +924,8 @@ void AdvanceSelectCupGridState11(void) {
     gSelectCupGrid->mStateFrames = gSelectCupGrid->mStateFrames + 1;
     if (*(vu16 *) 0x027ffc40 != 2) {
         v = gSelectCupGrid->mSelectCupMBncl->mUnk_06;
-        a = func_020ae4c0(1, 0, 0xe0, gSelectCupGrid->mStateFrames, 0xa);
-        b = func_020ae4c0(1, 0, -192, gSelectCupGrid->mStateFrames, 0xa);
+        a = InterpolateS16(1, 0, 0xe0, gSelectCupGrid->mStateFrames, 0xa);
+        b = InterpolateS16(1, 0, -192, gSelectCupGrid->mStateFrames, 0xa);
         if (gSelectCupGrid->mResult == 2 || gSelectCupGrid->mResult == 3 || gSelectCupGrid->mMode == 0) {
             gSelectCupGrid->mBg0Offset = b;
             gSelectCupGrid->mSelectCupMTable[19].mUnk_06 = b;

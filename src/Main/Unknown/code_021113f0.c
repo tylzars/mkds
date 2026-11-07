@@ -77,7 +77,7 @@ void AdvanceRecordVSState1(void) {
     s32 j;
     s16 v;
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
-    v = func_020ae4c0(1, -192, 0, gRecordVS->mStateFrames, 10);
+    v = InterpolateS16(1, -192, 0, gRecordVS->mStateFrames, 10);
     gRecordVS->mBg0OffsetY = v;
     gRecordVS->mBg1OffsetY = v;
     a = gRecordVS->mRecordVSMBncl->mUnk_06;
@@ -114,7 +114,7 @@ void AdvanceRecordVSState2(void) {
     u16 x;
     AdvanceRecordVSOffsetTimers();
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
-    v = func_020ae4c0(1, 0x100, 0, gRecordVS->mStateFrames, 10);
+    v = InterpolateS16(1, 0x100, 0, gRecordVS->mStateFrames, 10);
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
     gRecordVS->mRecordVSSTable[20].mUnk_04 = v;
     gRecordVS->mRecordVSSTable[21].mUnk_04 = v;
@@ -322,7 +322,7 @@ void AdvanceRecordVSState5(void) {
     a = gRecordVS->mRecordVSMBncl->mUnk_06;
     b = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
-    v = func_020ae4c0(1, 0, c, gRecordVS->mStateFrames, 10);
+    v = InterpolateS16(1, 0, c, gRecordVS->mStateFrames, 10);
     gRecordVS->mBg0OffsetX = v;
     gRecordVS->mBg1OffsetX = v;
     gRecordVS->mRecordVSMTable[1].mUnk_04 = v;
@@ -379,7 +379,7 @@ void AdvanceRecordVSState6(void) {
     a = gRecordVS->mRecordVSMBncl->mUnk_06;
     b = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
-    v = func_020ae4c0(1, c, 0, gRecordVS->mStateFrames, 10);
+    v = InterpolateS16(1, c, 0, gRecordVS->mStateFrames, 10);
     gRecordVS->mBg0OffsetX = v;
     gRecordVS->mBg1OffsetX = v;
     gRecordVS->mRecordVSMTable[1].mUnk_04 = v;
@@ -418,7 +418,7 @@ void AdvanceRecordVSState7(void) {
     s32 i;
     u16 x;
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
-    v = func_020ae4c0(1, 0, 0x100, gRecordVS->mStateFrames, 10);
+    v = InterpolateS16(1, 0, 0x100, gRecordVS->mStateFrames, 10);
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
     gRecordVS->mRecordVSSTable[20].mUnk_04 = v;
     gRecordVS->mRecordVSSTable[21].mUnk_04 = v;
@@ -452,7 +452,7 @@ void AdvanceRecordVSState8(void) {
         func_02111450(12);
     }
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
-    v = func_020ae4c0(1, 0, -192, gRecordVS->mStateFrames, 10);
+    v = InterpolateS16(1, 0, -192, gRecordVS->mStateFrames, 10);
     gRecordVS->mBg0OffsetY = v;
     gRecordVS->mBg1OffsetY = v;
     a = gRecordVS->mRecordVSMBncl->mUnk_06;
@@ -503,7 +503,7 @@ void AdvanceRecordVSState10(void) {
     s32 i;
     u16 x;
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
-    v = func_020ae4c0(1, 0, 0x100, gRecordVS->mStateFrames, 10);
+    v = InterpolateS16(1, 0, 0x100, gRecordVS->mStateFrames, 10);
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
     gRecordVS->mRecordVSSTable[20].mUnk_04 = v;
     gRecordVS->mRecordVSSTable[21].mUnk_04 = v;
@@ -533,7 +533,7 @@ void AdvanceRecordVSState11(void) {
     u16 x;
     AdvanceRecordVSOffsetTimers();
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
-    v = func_020ae4c0(1, 0x100, 0, gRecordVS->mStateFrames, 10);
+    v = InterpolateS16(1, 0x100, 0, gRecordVS->mStateFrames, 10);
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
     gRecordVS->mRecordVSSTable[20].mUnk_04 = v;
     gRecordVS->mRecordVSSTable[21].mUnk_04 = v;

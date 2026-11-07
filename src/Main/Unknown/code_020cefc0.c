@@ -63,7 +63,7 @@ void func_020cefdc(void) {
                 data_0217b48c->mCells[n].mUnk_10 = x;
                 data_0217b48c->mCells[n].mUnk_0e = x >= 0x16 ? 1 : 0;
                 if (x >= 0x16) {
-                    y = func_020ae4c0(1, 0x1000, 10, x - 0x16, 0x22);
+                    y = InterpolateS16(1, 0x1000, 10, x - 0x16, 0x22);
                 }
                 data_0217b48c->mUnk_0c[n].mUnk_00 = y;
                 n++;
@@ -83,7 +83,7 @@ void func_020cefdc(void) {
                 data_0217b48c->mCells[n].mUnk_10 = x2;
                 data_0217b48c->mCells[n].mUnk_0e = x2 >= 0x16 ? 1 : 0;
                 if (x2 >= 0x16) {
-                    y2 = func_020ae4c0(1, 0x1000, 10, x2 - 0x16, 0x22);
+                    y2 = InterpolateS16(1, 0x1000, 10, x2 - 0x16, 0x22);
                 }
                 data_0217b48c->mUnk_0c[n].mUnk_00 = y2;
                 n++;

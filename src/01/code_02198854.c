@@ -221,8 +221,8 @@ void AdvanceOptionSelectMenuState0(void) {
     s16 v;
 
     gOptionSelectMenu->mStateFrames++;
-    gOptionSelectMenu->mBg0Bg1Offset = func_020ae4c0(1, -140, 0, gOptionSelectMenu->mStateFrames, 10);
-    v = func_020ae4c0(1, 250, 0, gOptionSelectMenu->mStateFrames, 10);
+    gOptionSelectMenu->mBg0Bg1Offset = InterpolateS16(1, -140, 0, gOptionSelectMenu->mStateFrames, 10);
+    v = InterpolateS16(1, 250, 0, gOptionSelectMenu->mStateFrames, 10);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < gOptionSelectMenuGroupSTableCounts[i]; j++) {
             if (i == 1) {
@@ -410,9 +410,9 @@ void AdvanceOptionSelectMenuState4(void) {
     void *a;
     void *b;
 
-    gOptionSelectMenu->mBg0Bg1Offset = func_020ae4c0(1, 0, -0x8c, gOptionSelectMenu->mStateFrames, 10);
+    gOptionSelectMenu->mBg0Bg1Offset = InterpolateS16(1, 0, -0x8c, gOptionSelectMenu->mStateFrames, 10);
     gOptionSelectMenu->mStateFrames++;
-    t = func_020ae4c0(1, 0, 250, gOptionSelectMenu->mStateFrames, 10);
+    t = InterpolateS16(1, 0, 250, gOptionSelectMenu->mStateFrames, 10);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < gOptionSelectMenuGroupSTableCounts[i]; j++) {
             if (i == 1) {

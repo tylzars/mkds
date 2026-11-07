@@ -243,16 +243,16 @@ void func_0207b284(Kart *p) {
         NNS_G3dRenderObjRemoveAnmObj((NNSG3dRenderObj *) r, (NNSG3dAnmObj *) s->mUnk_1c[0]);
         q->mUnk_0ac = TRUE;
     }
-    func_0207a14c(t, 2);
+    SetKartModelMaterialColors(t, 2);
     t = q->mUnk_010[1]->mUnk_04;
     NNS_G3dMdlSetMdlPolygonModeAll(t, 2);
     NNS_G3dReleaseMdlTex(t);
-    func_0207a14c(t, 2);
+    SetKartModelMaterialColors(t, 2);
     if (q->mUnk_010[2] != NULL) {
         t = q->mUnk_010[2]->mUnk_04;
         NNS_G3dMdlSetMdlPolygonModeAll(t, 2);
         NNS_G3dReleaseMdlTex(t);
-        func_0207a14c(t, 2);
+        SetKartModelMaterialColors(t, 2);
     }
     q->mUnk_064 = TRUE;
 }
@@ -272,18 +272,18 @@ void func_0207b1a8(Kart *p) {
         NNS_G3dRenderObjAddAnmObj((NNSG3dRenderObj *) r, (NNSG3dAnmObj *) s->mUnk_1c[0]);
         q->mUnk_0ac = FALSE;
     }
-    func_0207a14c(t, 0);
+    SetKartModelMaterialColors(t, 0);
     u = q->mUnk_010[1];
     t = u->mUnk_04;
     NNS_G3dMdlSetMdlPolygonModeAll(t, 0);
     NNS_G3dBindMdlTex(t, u->mUnk_5c.mUnk_0c);
-    func_0207a14c(t, 0);
+    SetKartModelMaterialColors(t, 0);
     v = q->mUnk_010[2];
     if (v != NULL) {
         w = v->mUnk_04;
         NNS_G3dMdlSetMdlPolygonModeAll(w, 0);
         NNS_G3dBindMdlTex(w, v->mUnk_5c.mUnk_0c);
-        func_0207a14c(w, 0);
+        SetKartModelMaterialColors(w, 0);
     }
     q->mUnk_064 = FALSE;
 }
@@ -297,10 +297,10 @@ void func_0207b13c(Kart *p) {
     }
     r = q->mUnk_010[0]->mUnk_04;
     NNS_G3dMdlSetMdlPolygonModeAll(r, 2);
-    func_0207a14c(r, 3);
+    SetKartModelMaterialColors(r, 3);
     r = q->mUnk_010[1]->mUnk_04;
     NNS_G3dMdlSetMdlPolygonModeAll(r, 2);
-    func_0207a14c(r, 3);
+    SetKartModelMaterialColors(r, 3);
 }
 
 void func_0207b0d0(Kart *p) {
@@ -312,10 +312,10 @@ void func_0207b0d0(Kart *p) {
     }
     r = q->mUnk_010[0]->mUnk_04;
     NNS_G3dMdlSetMdlPolygonModeAll(r, 0);
-    func_0207a14c(r, 0);
+    SetKartModelMaterialColors(r, 0);
     r = q->mUnk_010[1]->mUnk_04;
     NNS_G3dMdlSetMdlPolygonModeAll(r, 0);
-    func_0207a14c(r, 0);
+    SetKartModelMaterialColors(r, 0);
 }
 
 void func_0207b054(Kart *p, s32 a, s32 b) {

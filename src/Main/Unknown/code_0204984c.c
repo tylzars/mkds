@@ -235,7 +235,7 @@ void func_0204a1a8(void *a) {
             b = TRUE;
         }
         func_0212ad28(data_021759cc->mUnk_118, data_021759cc->mUnk_11c);
-        func_02105b48();
+        StopAllSeqPlayers();
         if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
             func_02108d00();
         } else {
@@ -313,7 +313,7 @@ void func_02049f60(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_0212ad28(data_021759cc->mUnk_118, data_021759cc->mUnk_11c);
     }
-    func_02105b48();
+    StopAllSeqPlayers();
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         func_02108d00();
     } else {

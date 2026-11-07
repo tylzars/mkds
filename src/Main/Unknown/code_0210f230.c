@@ -152,7 +152,7 @@ u32 func_0210f35c(s32 a, u32 b) {
             }
         }
         if (*p != NULL) {
-            func_02105b28(p, c);
+            SetSndHandleTrackVolume(p, c);
         }
     }
     return ok;
@@ -190,9 +190,9 @@ u32 func_0210f230(u32 a, u32 b) {
                     NNS_SndArcPlayerStartSeqArc(p, 0, b);
                 }
             }
-            func_02105b28(p, c);
+            SetSndHandleTrackVolume(p, c);
         } else if (*p != NULL && data_0217d1c4[a].mUnk_00 != v) {
-            func_02105b28(p, c);
+            SetSndHandleTrackVolume(p, c);
         }
     } else {
         NNS_SndPlayerStopSeq(p, 0xa);

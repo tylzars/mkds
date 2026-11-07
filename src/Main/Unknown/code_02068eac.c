@@ -240,7 +240,7 @@ void func_02069c38(Kart *p) {
         if (p->mUnk_4c & 0x2000) {
             func_0207b13c(p);
         }
-        func_02079c0c(p->mKartModelsEntry);
+        SetKartModelsEntryCourseColors(p->mKartModelsEntry);
     }
     func_02103840(p->mIndex);
     s->mUnk_06 = 0;
@@ -289,7 +289,8 @@ void func_02069aa0(Kart *p) {
         if (t->mUnk_1c <= 0x190) {
             t->mUnk_1c = 0x190;
             p->mUnk_4c |= 0x20000;
-            func_02079f70(p->mKartModelsEntry, func_0207a134(), func_0207a11c(), func_0207a104());
+            StartKartModelsEntryColorInterpolation(p->mKartModelsEntry, GetKartCourseDiffColor(),
+                                                   GetKartCourseEmiColor(), GetKartCourseAmbColor());
         }
     }
     func_0210fa40(1, (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) ? 1 : 0);
@@ -365,7 +366,7 @@ void func_0206988c(Kart *p) {
     d = (a.x - b.x) >> 12;
     e = (a.y - b.y) >> 12;
     f = (a.z - b.z) >> 12;
-    func_0207a2d4(d * d + e * e + f * f);
+    SetMinKartDistanceSquared(d * d + e * e + f * f);
 }
 
 void func_020695c4(Kart *p) {
@@ -404,7 +405,7 @@ void func_020695c4(Kart *p) {
         if (p->mUnk_4c & 0x2000) {
             func_0207b13c(p);
         }
-        func_02079c0c(p->mKartModelsEntry);
+        SetKartModelsEntryCourseColors(p->mKartModelsEntry);
     }
     func_021035ac(p->mIndex);
     if (p->mUnk_4c & 0x40) {
@@ -544,7 +545,7 @@ void func_0206924c(Kart *p, u32 a) {
     if (p->mUnk_4c & 0x2000) {
         func_0207b0d0(p);
     }
-    func_02079f70(p->mKartModelsEntry, 0, 0x1084, 0);
+    StartKartModelsEntryColorInterpolation(p->mKartModelsEntry, 0, 0x1084, 0);
     if (p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) {
         func_0207b054(p, 1, 0);
         func_0207b708(p->mKartModelsEntry, 1);
@@ -568,9 +569,10 @@ void func_02069134(Kart *p) {
         if (s->mUnk_1c == 0x190 && !(w & 0x20000) && (w & 0x8000000) && s->mUnk_1c <= 0x190) {
             s->mUnk_1c = 0x190;
             p->mUnk_4c |= 0x20000;
-            func_02079f70(p->mKartModelsEntry, func_0207a134(), func_0207a11c(), func_0207a104());
+            StartKartModelsEntryColorInterpolation(p->mKartModelsEntry, GetKartCourseDiffColor(),
+                                                   GetKartCourseEmiColor(), GetKartCourseAmbColor());
         }
-        func_02079ce0(p->mKartModelsEntry, (p->mUnk_4c & 0x20000) ? 0x52 : 0x19a);
+        AdvanceKartModelsEntryColorInterpolation(p->mKartModelsEntry, (p->mUnk_4c & 0x20000) ? 0x52 : 0x19a);
     }
     s->mUnk_1c++;
     if (s->mUnk_1c <= 0x1c2) {
@@ -583,7 +585,7 @@ void func_02069134(Kart *p) {
     if (p->mUnk_4c & 0x2000) {
         func_0207b13c(p);
     }
-    func_02079c0c(p->mKartModelsEntry);
+    SetKartModelsEntryCourseColors(p->mKartModelsEntry);
 }
 
 void func_02069068(Kart *p) {

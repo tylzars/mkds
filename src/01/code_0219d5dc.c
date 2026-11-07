@@ -107,7 +107,7 @@ void AdvanceOptionEmbremSelectState1(void) {
     s16 v;
 
     gOptionEmbremSelect->mStateFrames++;
-    v = func_020ae4c0(1, 250, 0, gOptionEmbremSelect->mStateFrames, 10);
+    v = InterpolateS16(1, 250, 0, gOptionEmbremSelect->mStateFrames, 10);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6c28[i]; j++) {
             if (i == 1) {
@@ -255,7 +255,7 @@ void AdvanceOptionEmbremSelectState5(void) {
         func_ov001_02192e78(3);
     }
     gOptionEmbremSelect->mStateFrames++;
-    value = func_020ae4c0(1, 0, 250, gOptionEmbremSelect->mStateFrames, 10);
+    value = InterpolateS16(1, 0, 250, gOptionEmbremSelect->mStateFrames, 10);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6c28[i]; j++) {
             if (i == 0) {

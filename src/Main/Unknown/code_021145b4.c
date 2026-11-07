@@ -374,8 +374,8 @@ void AdvanceRecordVSEraseState3(void) {
 
     AdvanceRecordVSEraseOffsetTimers();
     gRecordVSErase->mStateFrames++;
-    v = func_020ae4c0(1, 0x100, 0, gRecordVSErase->mStateFrames, 0xa);
-    w = func_020ae4c0(1, ~0xbf, 0, gRecordVSErase->mStateFrames, 0xa);
+    v = InterpolateS16(1, 0x100, 0, gRecordVSErase->mStateFrames, 0xa);
+    w = InterpolateS16(1, ~0xbf, 0, gRecordVSErase->mStateFrames, 0xa);
     n = gRecordVSErase->mRecordVSSEraseBncl->mUnk_06;
     gRecordVSErase->mBg3Offset = w;
     gRecordVSErase->mRecordVSSEraseTable[30].mUnk_04 = v;
@@ -534,7 +534,7 @@ void AdvanceRecordVSEraseState5(void) {
     a = gRecordVSErase->mRecordVSMBncl->mUnk_06;
     b = gRecordVSErase->mRecordVSMTransientBncl->mUnk_06;
     c = gRecordVSErase->mRecordVSSEraseBncl->mUnk_06;
-    v = func_020ae4c0(1, 0, k, gRecordVSErase->mStateFrames, 0xa);
+    v = InterpolateS16(1, 0, k, gRecordVSErase->mStateFrames, 0xa);
     gRecordVSErase->mBg0OffsetX = v;
     gRecordVSErase->mBg1OffsetX = v;
     gRecordVSErase->mRecordVSMTable[1].mUnk_04 = v;
@@ -593,7 +593,7 @@ void AdvanceRecordVSEraseState6(void) {
     a = gRecordVSErase->mRecordVSMBncl->mUnk_06;
     b = gRecordVSErase->mRecordVSMTransientBncl->mUnk_06;
     c = gRecordVSErase->mRecordVSSEraseBncl->mUnk_06;
-    v = func_020ae4c0(1, k, 0, gRecordVSErase->mStateFrames, 0xa);
+    v = InterpolateS16(1, k, 0, gRecordVSErase->mStateFrames, 0xa);
     gRecordVSErase->mBg0OffsetX = v;
     gRecordVSErase->mBg1OffsetX = v;
     gRecordVSErase->mRecordVSMTable[1].mUnk_04 = v;
@@ -636,8 +636,8 @@ void AdvanceRecordVSEraseState7(void) {
     s32 i;
 
     gRecordVSErase->mStateFrames++;
-    v = func_020ae4c0(1, 0, 0x100, gRecordVSErase->mStateFrames, 0xa);
-    w = func_020ae4c0(1, 0, ~0xbf, gRecordVSErase->mStateFrames, 0xa);
+    v = InterpolateS16(1, 0, 0x100, gRecordVSErase->mStateFrames, 0xa);
+    w = InterpolateS16(1, 0, ~0xbf, gRecordVSErase->mStateFrames, 0xa);
     n = gRecordVSErase->mRecordVSSEraseBncl->mUnk_06;
     gRecordVSErase->mBg3Offset = w;
     gRecordVSErase->mRecordVSSEraseTable[30].mUnk_04 = v;
@@ -699,7 +699,7 @@ void AdvanceRecordVSEraseState10(void) {
     u16 v;
 
     gRecordVSErase->mStateFrames++;
-    a = func_020ae4c0(1, 0, -0x100, gRecordVSErase->mStateFrames, 10);
+    a = InterpolateS16(1, 0, -0x100, gRecordVSErase->mStateFrames, 10);
     x = gRecordVSErase->mRecordVSMBncl->mUnk_06;
     y = gRecordVSErase->mRecordVSMTransientBncl->mUnk_06;
     if (func_021143b4() != 0 && gRecordVSErase->mErased != 0) {
@@ -748,8 +748,8 @@ void AdvanceRecordVSEraseState11(void) {
     u16 z;
 
     gRecordVSErase->mStateFrames++;
-    a = func_020ae4c0(1, 0x100, 0, gRecordVSErase->mStateFrames, 10);
-    b = func_020ae4c0(1, -0xc0, 0, gRecordVSErase->mStateFrames, 10);
+    a = InterpolateS16(1, 0x100, 0, gRecordVSErase->mStateFrames, 10);
+    b = InterpolateS16(1, -0xc0, 0, gRecordVSErase->mStateFrames, 10);
     x = gRecordVSErase->mRecordVSMBncl->mUnk_06;
     y = gRecordVSErase->mRecordVSMTransientBncl->mUnk_06;
     z = gRecordVSErase->mRecordVSSEraseBncl->mUnk_06;
@@ -802,8 +802,8 @@ void AdvanceRecordVSEraseState12(void) {
     u16 z;
 
     gRecordVSErase->mStateFrames++;
-    a = func_020ae4c0(1, 0, 0x100, gRecordVSErase->mStateFrames, 10);
-    b = func_020ae4c0(1, 0, -0xc0, gRecordVSErase->mStateFrames, 10);
+    a = InterpolateS16(1, 0, 0x100, gRecordVSErase->mStateFrames, 10);
+    b = InterpolateS16(1, 0, -0xc0, gRecordVSErase->mStateFrames, 10);
     z = gRecordVSErase->mRecordVSSEraseBncl->mUnk_06;
     gRecordVSErase->mBg3Offset = b;
     gRecordVSErase->mRecordVSSEraseTable[30].mUnk_04 = a;

@@ -242,7 +242,7 @@ u16 func_020873e4(int a) {
     if (data_021759c0->mUseTeams != 0) {
         return data_02155a28[data_021759c0->mCurrentEntries[a].mPlayer.mTeamIndex];
     }
-    if (func_02079bf0(a)->mUnk_000 == 0xc) {
+    if (GetKartModelsEntry(a)->mUnk_000 == 0xc) {
         return func_02077f7c(a)->mUnk_04;
     }
     return data_02155a64[a];

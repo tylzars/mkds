@@ -6,4 +6,4 @@
 
 void *func_02079bcc(u32 a);
 
-Unk0206bcb0_590 *func_02079bf0(u32 a);
+Unk0206bcb0_590 *GetKartModelsEntry(u32 a);

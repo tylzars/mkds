@@ -264,8 +264,8 @@ void AdvanceSelectCupCourseState8(void) {
     } else {
         a = TRUE;
     }
-    func_020ae4c0(1, 0, 0x100, gSelectCupCourse->mStateFrames, 10);
-    v = func_020ae4c0(1, 0, -0xc0, gSelectCupCourse->mStateFrames, 10);
+    InterpolateS16(1, 0, 0x100, gSelectCupCourse->mStateFrames, 10);
+    v = InterpolateS16(1, 0, -0xc0, gSelectCupCourse->mStateFrames, 10);
     if (a != FALSE) {
         w = gSelectCupCourse->mSelectCupCourseTaOrVsMBncl->mUnk_06;
         gSelectCupCourse->mBg0Offset = v;
