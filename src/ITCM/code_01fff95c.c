@@ -109,8 +109,8 @@ BOOL UpdateItemObject(ItemPool *a, ItemObject *p, s32 f) {
             }
         }
     }
-    if (p->mUnk_120 != NULL) {
-        p->mUnk_120(p);
+    if (p->mAdvance != NULL) {
+        p->mAdvance(p);
     }
     if (p->mFlags & 4) {
         return TRUE;

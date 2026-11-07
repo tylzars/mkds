@@ -33,7 +33,7 @@ s32 func_020f7184(ItemObject *a, s32 b, s32 c) {
             a->mUnk_78 |= data_02159b68;
             func_020f9c40((s32) a);
         }
-        a->mUnk_120 = NULL;
+        a->mAdvance = NULL;
         return 1;
     }
     if (b == 0) {
@@ -63,7 +63,7 @@ s32 func_020f7184(ItemObject *a, s32 b, s32 c) {
     k = a->mKind;
     e = &gItemKinds[k];
     if (e->mUnk_40 == 0) {
-        a->mUnk_120 = func_020f6e58;
+        a->mAdvance = func_020f6e58;
     }
     a->mUnk_124 = (void (*)(ItemObject *, Vec3 *, Vec3 *)) func_020f6be4;
     if (a->mUnk_f0.y != 0) {

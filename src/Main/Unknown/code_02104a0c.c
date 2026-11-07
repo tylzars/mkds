@@ -151,7 +151,7 @@ void func_02104f58(Unk02104c68 *p) {
         (p->mUnk_134)->mUnk_b0 = 1;
     }
     if ((p->mUnk_000.mItemObject.mFlags & 0x180000) == 0) {
-        p->mUnk_000.mItemObject.mUnk_120 = (void (*)(ItemObject *)) func_02104a0c;
+        p->mUnk_000.mItemObject.mAdvance = (void (*)(ItemObject *)) func_02104a0c;
     }
 }
 
@@ -250,9 +250,9 @@ void func_02104a0c(Unk02104c68 *p) {
             }
             data_0217c6e4[i]--;
         }
-        func_020f68b0(&p->mUnk_000.mItemObject);
+        AdvanceRestingItemObject(&p->mUnk_000.mItemObject);
     } else if ((p->mUnk_000.mItemObject.mFlags & 0x4000) != 0) {
-        func_020f63cc(&p->mUnk_000.mItemObject);
+        AdvanceFallingItemObject(&p->mUnk_000.mItemObject);
     } else {
         if (p->mUnk_130 != 0) {
             AdvanceBouncingItem(&p->mUnk_000, 0x1ec, 0xfec, 0, &buf);
@@ -264,7 +264,7 @@ void func_02104a0c(Unk02104c68 *p) {
                 p->mUnk_000.mItemObject.mVelocity.y <<= 1;
             }
             StopSound(&p->mUnk_000.mItemObject.mSoundSource, 0xda);
-            func_020f6a6c(&p->mUnk_000.mItemObject, &buf);
+            StartRestingItemObject(&p->mUnk_000.mItemObject, &buf);
         }
     }
     a = p->mUnk_138;

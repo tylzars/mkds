@@ -159,7 +159,7 @@ void func_020f8e78(void *b) {
     k = p->mKind;
     f = gItemKinds[k].mAdvance;
     if ((p->mFlags & 0x180000) == 0) {
-        p->mUnk_120 = f;
+        p->mAdvance = f;
     }
     if ((p->mUnk_78 & 0xf00) != 0) {
         return;

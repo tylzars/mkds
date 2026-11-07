@@ -128,7 +128,7 @@ void func_020f7658(ItemObject *b, s32 c) {
                 return;
             }
             b->mUnk_78 |= data_02159b74;
-            b->mUnk_120 = NULL;
+            b->mAdvance = NULL;
             return;
         }
         if (b->mFlags & 0x180000) {
@@ -136,7 +136,7 @@ void func_020f7658(ItemObject *b, s32 c) {
         }
         k = b->mKind;
         if (gItemKinds[k].mUnk_40 == 0 && !(b->mFlags & 0x180000)) {
-            b->mUnk_120 = func_020f758c;
+            b->mAdvance = func_020f758c;
         }
         b->mFlags |= 0x100002;
         return;
@@ -146,7 +146,7 @@ void func_020f7658(ItemObject *b, s32 c) {
             a = FALSE;
         } else {
             b->mUnk_78 |= data_02159b74;
-            b->mUnk_120 = NULL;
+            b->mAdvance = NULL;
             a = TRUE;
         }
     } else {
@@ -155,7 +155,7 @@ void func_020f7658(ItemObject *b, s32 c) {
         } else {
             k = b->mKind;
             if (gItemKinds[k].mUnk_40 == 0 && !(b->mFlags & 0x180000)) {
-                b->mUnk_120 = func_020f758c;
+                b->mAdvance = func_020f758c;
             }
             b->mFlags |= 0x100002;
             a = TRUE;
@@ -178,14 +178,14 @@ void func_020f7600(ItemObject *a) {
     }
     k = a->mKind;
     if (gItemKinds[k].mUnk_40 == 0 && !(a->mFlags & 0x180000)) {
-        a->mUnk_120 = func_020f758c;
+        a->mAdvance = func_020f758c;
     }
     a->mFlags |= 0x100002;
 }
 
 void func_020f758c(ItemObject *a) {
     if (a->mFlags & 0x8000) {
-        func_020f68b0(a);
+        AdvanceRestingItemObject(a);
     }
     a->mUnk_d8--;
     if (a->mUnk_d8 <= 0) {
@@ -206,14 +206,14 @@ void func_020f7430(ItemObject *b, s32 c) {
                 return;
             }
             b->mUnk_78 |= data_02159b70;
-            b->mUnk_120 = NULL;
+            b->mAdvance = NULL;
             return;
         }
         if (b->mFlags & 0x180000) {
             return;
         }
         if (!(b->mFlags & 0x180000)) {
-            b->mUnk_120 = (void (*)(ItemObject *)) func_020f73d4;
+            b->mAdvance = (void (*)(ItemObject *)) func_020f73d4;
         }
         b->mFlags |= 0x100002;
         return;
@@ -223,7 +223,7 @@ void func_020f7430(ItemObject *b, s32 c) {
             a = FALSE;
         } else {
             b->mUnk_78 |= data_02159b70;
-            b->mUnk_120 = NULL;
+            b->mAdvance = NULL;
             a = TRUE;
         }
     } else {
@@ -231,7 +231,7 @@ void func_020f7430(ItemObject *b, s32 c) {
             a = FALSE;
         } else {
             if (!(b->mFlags & 0x180000)) {
-                b->mUnk_120 = (void (*)(ItemObject *)) func_020f73d4;
+                b->mAdvance = (void (*)(ItemObject *)) func_020f73d4;
             }
             b->mFlags |= 0x100002;
             a = TRUE;
@@ -251,7 +251,7 @@ void func_020f73fc(ItemObject *a) {
         return;
     }
     if (!(a->mFlags & 0x180000)) {
-        a->mUnk_120 = (void (*)(ItemObject *)) func_020f73d4;
+        a->mAdvance = (void (*)(ItemObject *)) func_020f73d4;
     }
     a->mFlags |= 0x100002;
 }

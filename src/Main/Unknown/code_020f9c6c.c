@@ -802,7 +802,7 @@ s32 RequestItemKouraWState7(ItemKouraW *param_1) {
         param_1->mNextState = 7;
         param_1->mNextStateRequested = 1;
         if ((param_1->mUnk_000.mFlags & 0x180000) == 0) {
-            param_1->mUnk_000.mUnk_120 = (void (*)(struct ItemObject *)) AdvanceItemKouraW;
+            param_1->mUnk_000.mAdvance = (void (*)(struct ItemObject *)) AdvanceItemKouraW;
         }
         param_1->mUnk_000.mFlags &= ~0x8000;
         param_1->mUnk_000.mFlags |= 0x80000;
@@ -1144,9 +1144,9 @@ void func_020fa294(void) {
                 k = p->mKind;
                 t = gItemKinds[k].mAdvance;
                 if ((p->mFlags & 0x180000) == 0) {
-                    p->mUnk_120 = t;
+                    p->mAdvance = t;
                 }
-                func_020f6a6c(p, &v);
+                StartRestingItemObject(p, &v);
             }
         }
     }

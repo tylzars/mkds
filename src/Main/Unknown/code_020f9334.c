@@ -26,7 +26,7 @@
 
 BOOL func_020f9c08(ItemObject *param_1) {
     if (param_1->mAgeFrames > 0x12c && (param_1->mFlags & 0x8000) != 0 &&
-        param_1->mUnk_120 == (void (*)(ItemObject *)) func_020f68b0) {
+        param_1->mAdvance == (void (*)(ItemObject *)) AdvanceRestingItemObject) {
         return TRUE;
     }
     return FALSE;
@@ -39,7 +39,7 @@ void func_020f9ba8(ItemObject *param_1) {
     if ((param_1->mFlags & 0x8000) == 0) {
         return;
     }
-    if (param_1->mUnk_120 != (void (*)(ItemObject *)) func_020f68b0) {
+    if (param_1->mAdvance != (void (*)(ItemObject *)) AdvanceRestingItemObject) {
         return;
     }
     func_020f7658(param_1, 1);

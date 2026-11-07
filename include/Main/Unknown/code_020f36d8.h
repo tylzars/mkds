@@ -104,7 +104,7 @@ typedef struct ItemObject {
     // Frames since the object was taken by a kart or started, counted per UpdateItemObject call (several per frame in
     // mode 5); held objects count too.
     /* 11c */ s32 mAgeFrames;
-    /* 120 */ void (*mUnk_120)(struct ItemObject *);
+    /* 120 */ void (*mAdvance)(struct ItemObject *);
     /* 124 */ void (*mUnk_124)(struct ItemObject *, Vec3 *, Vec3 *);
     /* 128 */ u8 mUnk_128;
     /* 129 */ u8 mUnk_129[3];

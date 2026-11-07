@@ -856,7 +856,7 @@ void StartLastItemInUseObjectAndInit(ItemInUse *a, s32 f) {
     }
     v = gItemKinds[b->mKind].mAdvance;
     if ((b->mFlags & 0x180000) == 0) {
-        b->mUnk_120 = v;
+        b->mAdvance = v;
     }
     if (f != 0) {
         func_02071894(a->mKart);

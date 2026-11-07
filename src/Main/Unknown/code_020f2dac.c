@@ -34,7 +34,7 @@ void UpdateHeldItem(HeldItem *rec) {
     Unk020f40dc_Kind kind;
     s32 t;
 
-    func_020f49bc(rec);
+    StartNextHeldItemObject(rec);
     if (rec->mUnk_0c == 0) {
         return;
     }

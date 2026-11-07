@@ -213,9 +213,9 @@ void AdvanceItemFBox(ItemFBox *e) {
             func_020f758c(&e->mUnk_000.mItemObject);
         }
     } else if (e->mUnk_000.mItemObject.mFlags & 0x8000) {
-        func_020f68b0(&e->mUnk_000.mItemObject);
+        AdvanceRestingItemObject(&e->mUnk_000.mItemObject);
     } else if (e->mUnk_000.mItemObject.mFlags & 0x4000) {
-        func_020f63cc(&e->mUnk_000.mItemObject);
+        AdvanceFallingItemObject(&e->mUnk_000.mItemObject);
     } else {
         if (e->mUnk_13c != 0) {
             AdvanceBouncingItem(&e->mUnk_000, 0x1ec, 0xfec, 0, (u32 *) &t);
@@ -227,7 +227,7 @@ void AdvanceItemFBox(ItemFBox *e) {
                 e->mUnk_000.mItemObject.mVelocity.y *= 2;
             }
             StopSound(&e->mUnk_000.mItemObject.mSoundSource, 0xda);
-            func_020f6a6c(&e->mUnk_000.mItemObject, &t);
+            StartRestingItemObject(&e->mUnk_000.mItemObject, &t);
         }
     }
     func_02105338(e->mUnk_140, e->mUnk_000.mItemObject.mUnk_d8, &e->mUnk_000.mItemObject.mUnk_68);
@@ -242,7 +242,7 @@ s32 func_020ff3c4(ItemFBox *e) {
     }
     e->mUnk_140->mUnk_b0 = 2;
     if ((e->mUnk_000.mItemObject.mFlags & 0x180000) == 0) {
-        e->mUnk_000.mItemObject.mUnk_120 = (void (*)(ItemObject *)) AdvanceItemFBox;
+        e->mUnk_000.mItemObject.mAdvance = (void (*)(ItemObject *)) AdvanceItemFBox;
     }
     return 2;
 }
@@ -260,6 +260,6 @@ void func_020ff344(ItemFBox *e) {
     MTX_Concat33((const s32 *) &data_0217c600, (const s32 *) &e->mUnk_000.mItemObject.mUnk_94,
                  (s32 *) &e->mUnk_000.mItemObject.mUnk_94);
     if ((e->mUnk_000.mItemObject.mFlags & 0x180000) == 0) {
-        e->mUnk_000.mItemObject.mUnk_120 = (void (*)(ItemObject *)) AdvanceItemFBox;
+        e->mUnk_000.mItemObject.mAdvance = (void (*)(ItemObject *)) AdvanceItemFBox;
     }
 }

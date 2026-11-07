@@ -3,18 +3,18 @@
 #include "types.h"
 #include "Main/Unknown/code_020f2dac.h"
 
-// Object of item kind 3, element of gItemPools[3].
+// Kinoko: the mushroom. Object of item kind 3, element of gItemPools[3].
 typedef struct ItemKinoko {
     /* 000 */ BouncingItemObject mUnk_000;
-    /* 130 */ s32 mUnk_130;
-    /* 134 */ BOOL mUnk_134;
+    /* 130 */ s32 mTimer;
+    /* 134 */ BOOL mVisible;
 } ItemKinoko;
 
 typedef struct ItemKinoko ItemKinoko;
 
 #include "Main/Unknown/code_020ec8bc.h"
 
-// Object of item kind 1, element of gItemPools[1].
+// Koura: a shell. Object of the red shell (item kind 1), element of gItemPools[1].
 typedef struct ItemKouraR {
     /* 000 */ Unk020ec8bc mUnk_000;
     /* 228 */ struct KartItems *mKartItems;
@@ -22,7 +22,7 @@ typedef struct ItemKouraR {
     /* 238 */ s32 mUnk_238;
     /* 23c */ Unk020e005c_080 mStateMachine;
     /* 250 */ s32 mUnk_250;
-    /* 254 */ s32 mUnk_254;
+    /* 254 */ s32 mThrowForward;
     /* 258 */ Unk0210b7ec mUnk_258;
     /* 268 */ u8 mUnk_268[0xc];
 } ItemKouraR;
@@ -30,10 +30,10 @@ typedef struct ItemKouraR {
 // Object of item kind 2, element of gItemPools[2].
 typedef struct ItemBanana {
     /* 000 */ BouncingItemObject mUnk_000;
-    /* 130 */ s32 mUnk_130;
+    /* 130 */ s32 mThrowForward;
 } ItemBanana;
 
-// Object of item kind 0, element of gItemPools[0].
+// Object of the green shell (item kind 0), element of gItemPools[0].
 typedef struct ItemKouraG {
     /* 000 */ Unk020f1d70 mUnk_000;
     /* 168 */ s32 mUnk_168;
@@ -47,17 +47,17 @@ typedef struct ItemKouraG {
 #include "Main/Unknown/code_020e005c.h"
 #include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
 
-void func_020f49bc(HeldItem *a);
+void StartNextHeldItemObject(HeldItem *a);
 void InitHeldItem(HeldItem *a, KartItems *b);
 void CreateItemInfos(void);
-void func_020f4dfc(void **a, Vec3 *b, s32 c);
+void StartBouncingItemKinoko(void **a, Vec3 *b, s32 c);
 void func_020f4e78(ItemKinoko *a, Vec3 *b, Vec3 *c);
 ItemKinoko *StartItemKinokoOrZero(void);
-void func_020f4f44(ItemKinoko *a);
-void func_020f4fd0(ItemKinoko *a);
+void AdvanceBouncingItemKinoko(ItemKinoko *a);
+void AdvanceRestingItemKinoko(ItemKinoko *a);
 void DrawItemKinoko(ItemKinoko *a, void *b, void *c);
 void ResetItemKinoko(ItemKinoko *p0);
-void func_020f504c(ItemInUse *a, HeldItem *b);
+void StartItemKinokoBoost(ItemInUse *a, HeldItem *b);
 void InitItemBananaFromData(ItemBanana *a);
 void *func_020f5108(void *a, ItemBanana *b, void *c);
 void AdvanceItemBanana(ItemBanana *a);
@@ -72,18 +72,18 @@ void UpdateItemKouraRState4(ItemKouraR *a);
 void EnterItemKouraRState4(ItemKouraR *p0);
 s32 InitItemKouraR(ItemInUse *a, ItemKouraR *b);
 void func_020f5f7c(ItemKouraR *a, Vec3 *b, Vec3 *c);
-void func_020f5fb8(void *a0, s32 b);
+void StartItemKouraRSound(void *a0, s32 b);
 void InitItemKouraGFromData(ItemKouraG *a);
 void *func_020f6038(void *a, ItemKouraG *b, void *c);
 void AdvanceItemKouraG(ItemKouraG *a);
 BOOL InitItemKouraG(ItemInUse *a, ItemKouraG *b);
-void func_020f6220(void *a0, s32 b);
-void func_020f6264(ItemInUse *a, HeldItem *b);
-void func_020f62b0(ItemInUse *a, HeldItem *b);
+void StartItemKouraGSound(void *a0, s32 b);
+void StartItemStar(ItemInUse *a, HeldItem *b);
+void StartItemThunder(ItemInUse *a, HeldItem *b);
 void func_020f6388(ItemObject *a, Vec3 *b, Vec3 *c);
-void func_020f63cc(ItemObject *a);
-void func_020f65c4(ItemObject *a);
+void AdvanceFallingItemObject(ItemObject *a);
+void StartFallingItemObject(ItemObject *a);
 void func_020f6630(ItemObject *a0, s32 b, Vec3 *c, Vec3 *d, Vec3 *e);
 void func_020f6830(ItemObject *a, Vec3 *b, Vec3 *c);
-void func_020f68b0(ItemObject *a);
-void func_020f6a6c(ItemObject *a, void *b);
+void AdvanceRestingItemObject(ItemObject *a);
+void StartRestingItemObject(ItemObject *a, void *b);

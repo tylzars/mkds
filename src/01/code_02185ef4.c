@@ -100,13 +100,13 @@ void func_ov001_02187b2c(void *a, Vec3 *b, Vec3 *c, s32 d) {
         p = &local;
         func_020f4e78(a, p, b);
         if (c != NULL) {
-            func_020f4dfc(&a, c, d);
+            StartBouncingItemKinoko(&a, c, d);
         } else {
             z = (s32 *) &zero;
             z[0] = 0;
             z[1] = 0;
             z[2] = 0;
-            func_020f4dfc(&a, &zero, d);
+            StartBouncingItemKinoko(&a, &zero, d);
         }
     }
 }
