@@ -510,7 +510,7 @@ void func_0209086c(Unk020905a8 *a, u32 b) {
     Kart *p;
     p = GetKart(b);
     a->mUnk_24 = b;
-    func_0207ffa4(&a->mUnk_00, b, (Unk02080b1c_00 *) gKartItems[b].mUnk_1f0.mUnk_00);
+    SetupPointLinkCursor(&a->mUnk_00, b, (Unk02080b1c_00 *) gKartItems[b].mUnk_1f0.mUnk_00);
     a->mUnk_26 = 0;
     a->mUnk_28 = 0;
     p->mTurnAngle = 0;
@@ -518,10 +518,10 @@ void func_0209086c(Unk020905a8 *a, u32 b) {
 }
 
 void func_02090838(Unk020905a8 *a, Unk02080b1c_00 *b) {
-    if (b == a->mUnk_00.mUnk_04) {
+    if (b == a->mUnk_00.mPreviousLink) {
         return;
     }
-    func_0207ffa4(&a->mUnk_00, a->mUnk_24, b);
+    SetupPointLinkCursor(&a->mUnk_00, a->mUnk_24, b);
 }
 
 s32 func_0209081c(Unk020905a8 *a) {
@@ -535,13 +535,13 @@ void func_02090748(Unk020905a8 *a) {
     s32 r;
     p = GetKart(a->mUnk_24);
     v = p->mPos;
-    a->mUnk_20 = func_0207eafc(a->mUnk_00.mUnk_00->mUnk_18, &v, &p->mUnk_12c, &p->mUnk_138);
+    a->mUnk_20 = func_0207eafc(a->mUnk_00.mLink->mUnk_18, &v, &p->mUnk_12c, &p->mUnk_138);
     if ((p->mUnk_48 & 0x40000000) != 0 && p->mSurfaceVariant == 1) {
-        r = func_02080bf4(&a->mUnk_00, &v);
+        r = IsPastPointLink(&a->mUnk_00, &v);
     } else {
-        r = func_02080bf4(&a->mUnk_00, &v);
+        r = IsPastPointLink(&a->mUnk_00, &v);
         if (r == 0) {
-            r = func_02080c64(&a->mUnk_00, &v);
+            r = IsWithinPointLinkDistance(&a->mUnk_00, &v);
         }
     }
     p->mForwardSpeed = 0xa800;

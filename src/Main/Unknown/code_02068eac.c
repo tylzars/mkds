@@ -242,7 +242,7 @@ void func_02069c38(Kart *p) {
         }
         SetKartModelsEntryCourseColors(p->mKartModelsEntry);
     }
-    func_02103840(p->mIndex);
+    SkipOrthoQuadsHold(p->mIndex);
     s->mUnk_06 = 0;
     p->mUnk_4c |= 0x40;
     p->mUnk_29c = 1;
@@ -282,7 +282,7 @@ void func_02069aa0(Kart *p) {
     }
     p->mUnk_7c |= 0x2000;
     p->mUnk_29c = 2;
-    func_02103840(p->mIndex);
+    SkipOrthoQuadsHold(p->mIndex);
     w = p->mUnk_4c;
     if (!(w & 0x20000) && (w & 0x8000000)) {
         t = &p->mUnk_538;
@@ -407,7 +407,7 @@ void func_020695c4(Kart *p) {
         }
         SetKartModelsEntryCourseColors(p->mKartModelsEntry);
     }
-    func_021035ac(p->mIndex);
+    SkipOrthoQuadsHoldAndSetVelocities(p->mIndex);
     if (p->mUnk_4c & 0x40) {
         p->mUnk_4c &= ~0x40;
         func_0207b1a8(p);
@@ -553,7 +553,7 @@ void func_0206924c(Kart *p, u32 a) {
     if (!(p->mUnk_48 & 0x840)) {
         func_0210af40(p, p->mUnk_3cc, 0);
     }
-    func_021038f0(p->mIndex, a);
+    StartOrthoQuadsGesoSumi(p->mIndex, a);
     if (p->mUnk_7c & 0x200) {
         p->mUnk_514->mUnk_2c ^= 0x80000;
     }

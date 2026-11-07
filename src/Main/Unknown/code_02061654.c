@@ -144,7 +144,7 @@ void InitRace(void) {
     func_020d58c0();
     SetHeapGroupId(1);
     func_0208aa30(a);
-    func_02085e04();
+    InitKartAiShared();
     InitKarts(data_021759c0->mKartCount);
     CreateChaseCamera();
     func_020777ac(data_021759c0->mUnk_063);
@@ -270,7 +270,7 @@ void UpdateRace(void) {
     UpdateCourseModels();
     UpdateKarts();
     if (gRace->mUpdateFramesMod8 == 0) {
-        func_02085778();
+        UpdateKartAiShared();
     }
     switch (data_021759c0->mMode) {
         case MODE_BATTLE:
@@ -402,7 +402,7 @@ void DrawRace(void) {
     if (gRace->mUseChainCameras == 0) {
         func_02086250(data_0217aa7c);
     }
-    func_02104118();
+    DrawOrthoQuads();
     gRace->mDrawFrames++;
 }
 

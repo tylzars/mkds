@@ -43,14 +43,14 @@ typedef struct Unk02089b4c {
 } Unk02089b4c;
 
 // Object of 0x158 bytes (func_020888b4 to func_02089a24 take it first): the Kart it follows at 0x00, a
-// Unk0208001c at 0x28, vectors at 0x44, 0x50, 0x60 and 0xdc, a Unk02089a24 at 0xe8, a Unk0208fd8c at 0x11c, a
+// LinkCursor at 0x28, vectors at 0x44, 0x50, 0x60 and 0xdc, a Unk02089a24 at 0xe8, a Unk0208fd8c at 0x11c, a
 // Unk02089b4c at 0x140 and a word at 0x154.
 typedef struct Unk020888b4 {
     /* 00 */ Kart *mKart;
     /* 04 */ u16 mIndex;
     /* 06 */ u16 mUnk_06;
     /* 08 */ Unk02080d34 mUnk_08;
-    /* 28 */ Unk0208001c mUnk_28;
+    /* 28 */ LinkCursor mUnk_28;
     /* 44 */ Vec3 mUnk_44;
     /* 50 */ Vec3 mUnk_50;
     /* 5c */ Vec3 *mUnk_5c;

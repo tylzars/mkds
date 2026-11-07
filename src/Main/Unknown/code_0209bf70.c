@@ -361,8 +361,8 @@ s32 CollideKartWithBound(Bound *p, Kart *k, u8 *b, u8 *c) {
                     break;
             }
             if ((u16) (p->mUnk_000.mKind + 0xfe4c) <= 1) {
-                func_02103544(k->mIndex,
-                              (u16) (((u64) CollideKartWithBound_inline(&gRaceProgress->mLocalRandom) * 3) >> 32) + 1);
+                StartOrthoQuadsCreamEffect(
+                    k->mIndex, (u16) (((u64) CollideKartWithBound_inline(&gRaceProgress->mLocalRandom) * 3) >> 32) + 1);
                 VEC_Subtract(&p->mUnk_000.mPos, &k->mCollisionCenter, &v3);
                 if (!((s64) v3.x * v3.x + (s64) v3.y * v3.y + (s64) v3.z * v3.z < 0x10)) {
                     Vec3NormalizeAndGetLengthUnchecked(&v3, &v3);
@@ -450,12 +450,12 @@ void DrawBound(Unk02100094 *a, Bound *p) {
 
 void CreateCream(void *a) {
     gCream = CreateMapObjectModelAnimated(a, gCreamNsbmdName);
-    func_02103554(data_usa_02167328);
+    CreateOrthoQuadCreamEffect(data_usa_02167328);
 }
 
 void CreateBerry(void *a) {
     gBerry = CreateMapObjectModelAnimated(a, gBerryNsbmdName);
-    func_02103554(gCreamEffectNsbmdName);
+    CreateOrthoQuadCreamEffect(gCreamEffectNsbmdName);
 }
 
 void DrawCream(Unk02100094 *a, Bound *p) {

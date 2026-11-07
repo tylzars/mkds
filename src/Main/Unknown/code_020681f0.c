@@ -364,7 +364,7 @@ void func_02068494(Kart *a, s32 b, s32 c) {
     SetKartModelsEntryCourseColors(a->mKartModelsEntry);
     a->mSlotFunctions[1](a);
     a->mUnk_7c = a->mUnk_7c & ~0xe000;
-    func_02103890(a->mIndex);
+    StopOrthoQuads(a->mIndex);
     func_020646f0(a, b);
     a->mPos.y = a->mPos.y - 0x1000;
     if (b != 0) {

@@ -324,7 +324,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         if (!(p->mUnk_48 & 0x840)) {
             func_0210af40(p, p->mUnk_3cc, 0);
         }
-        func_021038f0(p->mIndex, 0);
+        StartOrthoQuadsGesoSumi(p->mIndex, 0);
     }
     if (c) {
         o = GetKart((u16) ((f & 0x60000000) >> 29));

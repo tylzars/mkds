@@ -48,25 +48,28 @@ extern u32 data_0217cc6c[];
 extern u32 data_0217c7fc[];
 extern u8 data_0217ccac[];
 extern u32 data_0217cd30[];
-extern s32 data_0217c644;
-extern s32 data_0217c650;
-extern s32 data_0217c658;
+extern s32 gOrthoQuadHoldFrameCount;
+extern s32 gOrthoQuadFrames;
+extern s32 gOrthoQuadCount;
 extern s32 data_0217ccb0;
 extern s32 data_0217ccb4;
 extern u8 data_0217ccb8[];
 extern s32 data_0217ccbc;
 extern u16 *data_0217c630;
 extern s32 data_0217c634;
-extern Unk021035ac *data_0217c654;
+extern OrthoQuad *gOrthoQuads;
 extern u16 data_0217c638;
-extern BOOL data_0217c64c;
-extern u16 data_0217c63c;
-extern u8 data_0217c6a4[];
-extern u16 data_0217c640;
-extern u8 data_0217c65c[];
+// TRUE for the cream effect, FALSE for geso_sumi; chosen by the call that started the quads.
+extern BOOL gOrthoQuadUseCreamEffect;
+extern u16 gOrthoQuadFirstPolygonId;
+extern u8 gOrthoQuadMatrix[];
+// Polygon alpha: 0x1f when the quads start, falls by 1 every second frame after the hold and ends them at 0.
+extern u16 gOrthoQuadAlpha;
+// One byte per row, one bit per column; marked when a quad is placed so later quads avoid the same cells.
+extern u8 gOrthoQuadCells[];
 extern u32 data_0217c6e4[];
 extern u32 data_0217c704[];
-extern s32 data_0217c648;
+extern s32 gOrthoQuadMoveStartFrameCount;
 extern u16 data_0217c76c[];
 extern u16 data_0217c770[];
 extern NNSSndHeap *data_0217c77c;

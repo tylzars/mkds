@@ -82,7 +82,7 @@ typedef struct {
     /* 10 */ s16 mUnk_10[4];
 } Unk02175620_84;
 
-// 0x30-byte entries of the table at CourseMap.mUnk_bc (func_02080908 searches it).
+// 0x30-byte entries of the table at CourseMap.mUnk_bc (ResetBattlePointLinkCursorByPositionAndDirection searches it).
 typedef struct Unk02175620_bc {
     /* 00 */ struct Unk02175620_bc *mUnk_00[3];
     /* 0c */ struct Unk02175620_bc *mUnk_0c;
@@ -332,7 +332,7 @@ typedef struct CourseMap {
     /* 9e */ u8 mUnk_9e[2];
     // One 0x28-byte link per race point (up to three next and three previous links, a pointer to the point, two
     // values), built from mRacePoints and mRaceRoutes; read by FindCourseMapKind4ShapeRacePointLink,
-    // GetCourseMapRespawnRacePointLink and the kart follower set-up (func_02080d34).
+    // GetCourseMapRespawnRacePointLink and the kart follower set-up (InitRacePointLinkCursor).
     /* a0 */ Unk02175620_a0 *mRacePointLinks;
     /* a4 */ Unk02175620_bc *mUnk_a4;
     /* a8 */ s32 mUnk_a8;

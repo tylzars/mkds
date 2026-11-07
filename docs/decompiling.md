@@ -310,7 +310,7 @@ Reused variables and own locals:
   gives a value its register ahead of such a temporary, write it with an earlier variable that is dead there:
   second loop `for (j...)` -> `for (i...)` (func_ov000_021854f8), `b = data[0]` -> `j = data[0]` (InitSelectCupMCellsAndRequestCupPicture).
 - The reverse: a 0/1 or index local that gets the first register in a crowded loop, or a spill slot that sits low,
-  was its own named local: `u16 l;` with `l = 0; ... l = 1; v2[0] = v4[l];` (func_020800f4), a string pointer in its
+  was its own named local: `u16 l;` with `l = 0; ... l = 1; v2[0] = v4[l];` (AdvanceBattlePointLinkCursor), a string pointer in its
   own `const u8 *y` instead of reusing `x` (DWCi_Http_Thread). Try moving its declaration relative to the loop's
   other locals.
 - When two later values swap, the variable that first appears earlier in the function wins. Reuse the variable that
@@ -505,7 +505,7 @@ Expression shapes:
   expression give different registers.
 - When one of several identical expansions (six square sums) schedules differently in the ROM, its expression was
   spelled differently: `(s64) s.x * (s64) s.x + (s64) s.y * (s64) s.y + (s64) s.z * (s64) s.z` at one site of
-  func_020800f4. The same casts at all six sites made the function longer.
+  AdvanceBattlePointLinkCursor. The same casts at every site made the function longer.
 - `x*3+y` vs `x + x + x + y`: only the spelled-out sum matched a set of animation blends (`(s64) x + x + x + y`).
 - `a = b = c = k` stores right to left and changes which register holds the constant. `a = b = 0;` can
   reproduce reload-and-truncate (`ldrb`/`and #0xff`) sequences.
@@ -577,7 +577,7 @@ Expression shapes:
   ours holds them in registers (GpiUpdateSearch): look for a cast of a loop-invariant parameter in that loop
   (`(u32) a` as a call argument). Declare the callee's parameter with the pointer type and pass `a` without the cast
   (a header change; probe every user).
-- `((const T *) p->f)->g` in a loop condition shares the base pointer and reloads only the field (func_020800f4). A
+- `((const T *) p->f)->g` in a loop condition shares the base pointer and reloads only the field (AdvanceBattlePointLinkCursor). A
   const view on one read of a field a store just changed gives a second load and 4 more bytes (func_0210298c).
 - When the ROM reuses one address register in two loads from one table, write the address in both and make the
   expressions differ by a cast on one index: `data[(u32) o->mUnk_78].mUnk_02` and `data[o->mUnk_78].mUnk_5a`

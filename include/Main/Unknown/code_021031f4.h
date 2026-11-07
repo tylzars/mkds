@@ -3,39 +3,41 @@
 #include "types.h"
 #include "Main/Unknown/code_02102674.h"
 
-// Object written by func_0210340c.
+// The register words and texture sizes DrawOrthoQuadsWithModel uses, filled from one model.
 typedef struct {
-    /* 00 */ void *mUnk_00;
-    /* 04 */ u32 mUnk_04;
-    /* 08 */ u32 mUnk_08;
-    /* 0c */ u32 mUnk_0c;
-    /* 10 */ u32 mUnk_10;
-    /* 14 */ u32 mUnk_14;
+    /* 00 */ void *mModel;
+    /* 04 */ u32 mPolygonAttr;
+    /* 08 */ u32 mTeximageParam;
+    /* 0c */ u32 mPlttBase;
+    /* 10 */ u32 mDifAmb;
+    /* 14 */ u32 mSpeEmi;
+    // Texture size values computed from mTeximageParam; they go into the texture coordinates of the quads.
     /* 18 */ u32 mUnk_18;
     /* 1c */ u32 mUnk_1c;
-} Unk0210340c;
+} OrthoQuadModel;
 
 #include "Main/Unknown/code_021035ac.h"
 
-// The two objects func_0210340c fills (func_02103554 and func_02103468); data_0217c64c picks one.
-extern Unk0210340c data_0217c664;
-extern Unk0210340c data_0217c684;
+// The cream record; gOrthoQuadUseCreamEffect picks which of the two records is drawn.
+extern OrthoQuadModel gOrthoQuadCreamEffect;
+// GesoSumi: the screen overlay the Gesso item starts for a hit kart.
+extern OrthoQuadModel gOrthoQuadGesoSumi;
 
 void func_021031f4(ItemGesso *p);
-void func_0210340c(Unk0210340c *p, Unk020e6488 *q);
-void func_02103468(void);
-void func_02103544(u32 a, u32 b);
-void func_02103554(const char *a);
-void func_02103890(int idx);
-void func_021038f0(u32 param_1, u32 param_2);
-void func_02103900(s32 idx, s32 n, s32 flag);
-void func_02103db0(s32 idx, Unk021035ac_Pair param_2, s32 param_3);
-u8 func_02104000(s32 a, s32 b);
-void func_02104118(void);
-void func_02104144(Unk0210340c *p);
-void func_02104368(void);
-void func_0210449c(Unk021035ac *p);
-void func_021045a4(Unk021035ac *p);
-void func_0210465c(Unk021035ac *p);
+void SetupOrthoQuadModel(OrthoQuadModel *p, Unk020e6488 *q);
+void InitOrthoQuads(void);
+void StartOrthoQuadsCreamEffect(u32 a, u32 b);
+void CreateOrthoQuadCreamEffect(const char *a);
+void StopOrthoQuads(int idx);
+void StartOrthoQuadsGesoSumi(u32 param_1, u32 param_2);
+void StartOrthoQuads(s32 idx, s32 count, s32 flag);
+void SetupOrthoQuad(s32 idx, Unk021035ac_Pair startPair, s32 overlap);
+u8 MarkOrthoQuadCellsAndGetOverlap(s32 column, s32 row);
+void DrawOrthoQuads(void);
+void DrawOrthoQuadsWithModel(OrthoQuadModel *p);
+void UpdateOrthoQuads(void);
+void AdvanceOrthoQuadDelayAndStartSound(OrthoQuad *p);
+void AdvanceOrthoQuadCornersByTable(OrthoQuad *p);
+void func_0210465c(OrthoQuad *p);
 void func_02104970(void);
 void func_021049a4(void);

@@ -337,7 +337,7 @@ void func_02066fe0(Kart *a) {
         }
     }
     func_0207b44c(a);
-    func_02103890(a->mIndex);
+    StopOrthoQuads(a->mIndex);
     func_02081768(a->mIndex);
     if ((a->mUnk_4c & 0x40) != 0) {
         a->mUnk_4c = a->mUnk_4c & ~0x40;

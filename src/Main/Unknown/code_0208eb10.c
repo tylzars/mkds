@@ -40,7 +40,7 @@ void func_02090088(Unk0208fd8c *a, Unk020888b4 *b) {
     s32 v;
 
     if (DecrementHeldItemTimer(a) != 0) {
-        r = func_0208537c();
+        r = GetKartAiRandom();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (s16) (u16) (r->mUnk_00 >> 52);
         if (v < 0xb33) {
@@ -70,7 +70,7 @@ void func_0208ffe4(Unk0208fd8c *a, Unk020888b4 *b) {
     if (DecrementHeldItemTimer(a) == 0) {
         return;
     }
-    r = func_0208537c();
+    r = GetKartAiRandom();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     v = (s16) (u16) (r->mUnk_00 >> 52);
     if (v < 0xb33) {
@@ -89,7 +89,7 @@ void func_0208fefc(Unk0208fd8c *a, struct Unk020888b4 *b) {
     s32 v;
 
     if (DecrementHeldItemTimer(a) != 0) {
-        r = func_0208537c();
+        r = GetKartAiRandom();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (s16) (u16) (r->mUnk_00 >> 52);
         if (v > 0xccd) {
@@ -115,7 +115,7 @@ void func_0208fe58(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (DecrementHeldItemTimer(a) == 0) {
         return;
     }
-    r = func_0208537c();
+    r = GetKartAiRandom();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     v = (s16) (u16) (r->mUnk_00 >> 52);
     if (v > 0xccd) {
@@ -181,7 +181,7 @@ void func_0208fba0(Unk0208fd8c *a, struct Unk020888b4 *b) {
     s32 v;
 
     if (DecrementItemInUseTimer(a) != 0) {
-        r = func_0208537c();
+        r = GetKartAiRandom();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (s16) (u16) (r->mUnk_00 >> 52);
         if (v < 0xb33) {
@@ -211,7 +211,7 @@ void func_0208fafc(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (DecrementItemInUseTimer(a) == 0) {
         return;
     }
-    r = func_0208537c();
+    r = GetKartAiRandom();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     v = (s16) (u16) (r->mUnk_00 >> 52);
     if (v < 0xb33) {
@@ -246,7 +246,7 @@ void func_0208f9ac(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (DecrementItemInUseTimer(a) == 0) {
         return;
     }
-    r = func_0208537c();
+    r = GetKartAiRandom();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     v = (s16) (u16) (r->mUnk_00 >> 52);
     if (v < 0xb33) {
@@ -374,7 +374,7 @@ void func_0208f4e8(Unk0208fd8c *a, struct Unk020888b4 *b) {
     s32 v;
 
     if (DecrementItemInUseTimer(a) != 0) {
-        r = func_0208537c();
+        r = GetKartAiRandom();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (s16) (u16) (r->mUnk_00 >> 52);
         if (v > 0xb33) {

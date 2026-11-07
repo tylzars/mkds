@@ -43,13 +43,13 @@ void func_0207e594(struct Unk020888b4 *p, struct Kart *q, s32 a) {
         p->mUnk_8c = 0x1000;
     }
     p->mUnk_9c = ((s64) p->mKart->mPhysicalParam->mBaseSpeedLimit * 0x99a + 0x800) >> 12;
-    func_02080d34(&p->mUnk_08, p->mIndex);
+    InitRacePointLinkCursor(&p->mUnk_08, p->mIndex);
     func_0207f9cc(p, 0);
     p->mUnk_cc = 1;
 }
 
 void func_0207e564(struct Unk020888b4 *p, struct Unk02175620_bc *a) {
-    func_02080cd0(&p->mUnk_08.mUnk_00, a);
+    ResetPointLinkCursor(&p->mUnk_08.mUnk_00, a);
     func_0207f9cc(p, 1);
     func_0207f9cc(p, 1);
 }
@@ -57,7 +57,7 @@ void func_0207e564(struct Unk020888b4 *p, struct Unk02175620_bc *a) {
 void func_0207e4a4(struct Unk020888b4 *p) {
     Vec3 a;
     Vec3 b;
-    Unk0208001c *s;
+    LinkCursor *s;
     Kart *q;
     Vec3 *t;
     Unk02175620_bc *r;
@@ -90,7 +90,7 @@ void func_0207e400(struct Unk020888b4 *p, struct Kart *q, s32 a) {
     p->mUnk_88 = 0x1000;
     p->mUnk_8c = 0;
     p->mUnk_9c = ((s64) p->mKart->mPhysicalParam->mBaseSpeedLimit * 0x99a + 0x800) >> 12;
-    func_02080d34(&p->mUnk_08, p->mIndex);
+    InitRacePointLinkCursor(&p->mUnk_08, p->mIndex);
     func_0207f9cc(p, 0);
     p->mUnk_cc = 1;
 }
@@ -98,7 +98,7 @@ void func_0207e400(struct Unk020888b4 *p, struct Kart *q, s32 a) {
 void func_0207e35c(struct Unk020888b4 *p) {
     Vec3 a;
     Vec3 b;
-    Unk0208001c *s = &p->mUnk_08.mUnk_00;
+    LinkCursor *s = &p->mUnk_08.mUnk_00;
     Kart *q = p->mKart;
     Vec3 *t;
     Unk02175620_bc *r;
@@ -205,7 +205,7 @@ void func_0207e088(struct Unk02089a24 *a, struct Unk020888b4 *b) {
         return;
     }
     r6 = FALSE;
-    r = func_0208537c();
+    r = GetKartAiRandom();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     r4 = (s16) (u16) (r->mUnk_00 >> 52);
     r5 = func_020853f0(b->mIndex);
@@ -253,7 +253,7 @@ void func_0207de84(struct Unk02089a24 *a, struct Unk020888b4 *b) {
         } else {
             a->mUnk_14 = func_020854c0(b->mIndex);
         }
-        a->mUnk_08 = func_02085424()->mUnk_00;
+        a->mUnk_08 = GetKartAiParamRow()->mUnk_00;
         if (func_02085390() != 0) {
             a->mUnk_08 = a->mUnk_08 >> 1;
         }
@@ -308,7 +308,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
     s32 v;
     s32 d;
     s32 *k = &a->mUnk_1c;
-    Unk0217aec0 *r = func_02085424();
+    KartAiParamRow *r = GetKartAiParamRow();
     s32 e;
     s32 g;
     const s32 *t;
@@ -331,10 +331,10 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
     }
     if (k[0] == 1) {
         if (data_021759c0->mMode == MODE_GRAND_PRIX) {
-            if (func_020853a4(m) >= 0x28f) {
+            if (GetKartRaceProgressScaled(m) >= 0x28f) {
                 if (GetKartRank(m) >= 4) {
                     for (i = 1; i < 4; i++) {
-                        d = func_02085408(i);
+                        d = GetKartIndexAtRank(i);
                         if (d >= 0) {
                             Unk020888b4 *u = GetKart(d)->mUnk_310;
                             Unk02089a24 *s = &u->mUnk_e8;
@@ -366,8 +366,8 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
         n = r->mUnk_04;
         d = func_02085434();
         if (d >= 0) {
-            e = func_020853a4(b->mIndex);
-            e -= func_020853a4((u16) d);
+            e = GetKartRaceProgressScaled(b->mIndex);
+            e -= GetKartRaceProgressScaled((u16) d);
             if (IsKartEnded(b->mIndex) != 0) {
                 t = data_usa_021658f4;
             } else {
@@ -386,18 +386,18 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
         if (n == 1) {
             d = func_020854a0((u16) n, data_usa_021658f0);
             if (d >= 0) {
-                g = func_020853a4(m);
-                g -= func_020853a4((u16) d);
+                g = GetKartRaceProgressScaled(m);
+                g -= GetKartRaceProgressScaled((u16) d);
                 if (g > GetKart(d)->mUnk_310->mUnk_e8.mUnk_24) {
                     a->mUnk_10 = ((s64) a->mUnk_10 * 0xf85) >> 12;
                     a->mUnk_18 = 1;
                 }
             }
         } else {
-            g = func_020853a4(m);
+            g = GetKartRaceProgressScaled(m);
             d = func_02085478();
             if (d >= 0) {
-                e = func_020853a4((u16) d) - g;
+                e = GetKartRaceProgressScaled((u16) d) - g;
                 e -= (s32) (((s64) k[2] * func_0208548c()) >> 12);
                 if (e > 0) {
                     a->mUnk_10 = a->mUnk_10 + (s32) (((s64) e * 0x3000) >> 12);
@@ -408,7 +408,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
                         s32 w = r->mUnk_08;
 
                         if (q->mUnk_310->mUnk_e8.mUnk_04 > (s32) (((s64) w * 0xcd0) >> 12)) {
-                            e = func_020853a4((u16) d) - g;
+                            e = GetKartRaceProgressScaled((u16) d) - g;
                             if (e < (s32) (((s64) k[2] * func_0208548c()) >> 12)) {
                                 a->mUnk_10 = ((s64) a->mUnk_10 * 0xfae) >> 12;
                                 a->mUnk_18 = 1;
@@ -450,7 +450,7 @@ u16 func_0207d8e4(s32 a) {
     if (a != 0) {
         i = 2;
     } else {
-        r = func_0208537c();
+        r = GetKartAiRandom();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         i = (u16) (((r->mUnk_00 >> 32) * 3) >> 32);
     }

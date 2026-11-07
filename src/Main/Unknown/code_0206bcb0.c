@@ -40,7 +40,7 @@ void func_0206ceb4(s32 *out, Kart *p) {
     if (!(p->mUnk_48 & 0x20000000)) {
         return;
     }
-    func_021035ac(p->mIndex);
+    SkipOrthoQuadsHoldAndSetVelocities(p->mIndex);
     flags = p->mUnk_4c;
     if (flags & 0x20000) {
         return;

@@ -942,7 +942,7 @@ void UpdateItems(void) {
         UpdateKartItems(&gKartItems[j]);
     }
     func_020f8258();
-    func_02104368();
+    UpdateOrthoQuads();
     func_02104ff8();
 }
 
@@ -1202,7 +1202,7 @@ void InitItems(void) {
     data_0217bd30 = HeapAlloc(GetHeap(func_020364e8()), 0x40);
     func_020fa294();
     func_02102674();
-    func_02103468();
+    InitOrthoQuads();
     func_02104970();
 }
 

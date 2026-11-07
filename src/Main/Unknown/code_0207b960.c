@@ -91,7 +91,7 @@ void func_0207d5b8(Unk0208fd8c *a, struct Unk020888b4 *b) {
         return;
     }
     n = a->mItemInUseEntry->mTimerRandomLimit;
-    r = func_0208537c();
+    r = GetKartAiRandom();
     if (n == 0) {
         v = 0;
     } else {
@@ -122,7 +122,7 @@ void RequestItemBitsOnceAndResetItemInUseTimerWhenHeldItemTimerRunsOut(Unk0208fd
         return;
     }
     n = a->mItemInUseEntry->mTimerRandomLimit;
-    r = func_0208537c();
+    r = GetKartAiRandom();
     if (n == 0) {
         v = 0;
     } else {
@@ -217,7 +217,7 @@ void func_0207d194(Unk0208fd8c *a, struct Unk020888b4 *b) {
                 return;
             }
             n = a->mItemInUseEntry->mTimerRandomLimit;
-            r = func_0208537c();
+            r = GetKartAiRandom();
             if (n == 0) {
                 v = 0;
             } else {
@@ -235,7 +235,7 @@ void func_0207d194(Unk0208fd8c *a, struct Unk020888b4 *b) {
                 return;
             }
             n = a->mItemInUseEntry->mTimerRandomLimit;
-            r = func_0208537c();
+            r = GetKartAiRandom();
             if (n == 0) {
                 v = 0;
             } else {
@@ -265,7 +265,7 @@ void RequestItemBitsByKartRank(Unk0208fd8c *a, struct Unk020888b4 *b) {
             return;
         }
         n = a->mItemInUseEntry->mTimerRandomLimit;
-        r = func_0208537c();
+        r = GetKartAiRandom();
         if (n == 0) {
             v = 0;
         } else {
@@ -283,7 +283,7 @@ void RequestItemBitsByKartRank(Unk0208fd8c *a, struct Unk020888b4 *b) {
                     return;
                 }
                 n = a->mItemInUseEntry->mTimerRandomLimit;
-                r = func_0208537c();
+                r = GetKartAiRandom();
                 if (n == 0) {
                     v = 0;
                 } else {
@@ -301,7 +301,7 @@ void RequestItemBitsByKartRank(Unk0208fd8c *a, struct Unk020888b4 *b) {
                     return;
                 }
                 n = a->mItemInUseEntry->mTimerRandomLimit;
-                r = func_0208537c();
+                r = GetKartAiRandom();
                 if (n == 0) {
                     v = 0;
                 } else {
@@ -319,7 +319,7 @@ void RequestItemBitsByKartRank(Unk0208fd8c *a, struct Unk020888b4 *b) {
                     return;
                 }
                 n = a->mItemInUseEntry->mTimerRandomLimit;
-                r = func_0208537c();
+                r = GetKartAiRandom();
                 if (n == 0) {
                     v = 0;
                 } else {
@@ -340,7 +340,7 @@ void RequestItemBitsByKartRank(Unk0208fd8c *a, struct Unk020888b4 *b) {
             return;
         }
         n = a->mItemInUseEntry->mTimerRandomLimit;
-        r = func_0208537c();
+        r = GetKartAiRandom();
         if (n == 0) {
             v = 0;
         } else {
@@ -376,7 +376,7 @@ void func_0207cc74(Unk0208fd8c *a, struct Unk020888b4 *b) {
         return;
     }
     n = a->mItemInUseEntry->mTimerRandomLimit;
-    r = func_0208537c();
+    r = GetKartAiRandom();
     if (n == 0) {
         v = 0;
     } else {
@@ -410,7 +410,7 @@ void func_0207cb74(Unk0208fd8c *a, struct Unk020888b4 *b) {
         return;
     }
     n = a->mHeldItemEntry->mTimerRandomLimit;
-    r = func_0208537c();
+    r = GetKartAiRandom();
     if (n == 0) {
         v = 0;
     } else {
@@ -570,7 +570,7 @@ void RequestItemBitsOnceAndResetHeldItemTimer(Unk0208fd8c *a, struct Unk020888b4
         return;
     }
     n = a->mHeldItemEntry->mTimerRandomLimit;
-    r = func_0208537c();
+    r = GetKartAiRandom();
     if (n == 0) {
         v = 0;
     } else {
@@ -592,7 +592,7 @@ void RequestItemBitsOnceAndResetItemInUseTimer(Unk0208fd8c *a, struct Unk020888b
         return;
     }
     n = a->mItemInUseEntry->mTimerRandomLimit;
-    r = func_0208537c();
+    r = GetKartAiRandom();
     if (n == 0) {
         v = 0;
     } else {
@@ -616,7 +616,7 @@ void RequestItemBitsOnceThenBit6AndResetItemInUseTimer(Unk0208fd8c *a, struct Un
         return;
     }
     n = a->mItemInUseEntry->mTimerRandomLimit;
-    r = func_0208537c();
+    r = GetKartAiRandom();
     if (n == 0) {
         v = 0;
     } else {
@@ -640,7 +640,7 @@ void RequestItemBitsOnceThenBit7AndResetItemInUseTimer(Unk0208fd8c *a, struct Un
         return;
     }
     n = a->mItemInUseEntry->mTimerRandomLimit;
-    r = func_0208537c();
+    r = GetKartAiRandom();
     if (n == 0) {
         v = 0;
     } else {
@@ -706,7 +706,7 @@ void func_0207c270(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
         return;
     }
     if (gKartItems[b->mIndex].mHeldItem.mUnk_00 == 0xe) {
-        if (*(u16 *) &b->mUnk_08.mUnk_00.mUnk_00->mUnk_24 > 1) {
+        if (*(u16 *) &b->mUnk_08.mUnk_00.mLink->mUnk_24 > 1) {
             return;
         }
     }
@@ -721,14 +721,14 @@ void SetupHeldItemEntry(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
 
     k = gKartItems[b->mIndex].mHeldItem.mUnk_00;
     a->mHeldItemEntry = &data_0217ae38[k];
-    r = func_0208537c();
+    r = GetKartAiRandom();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     a->mRandomValue = (s16) (u16) (r->mUnk_00 >> 52);
     if (a->mHeldItemEntry == NULL) {
         return;
     }
     n = a->mHeldItemEntry->mTimerRandomLimit;
-    r = func_0208537c();
+    r = GetKartAiRandom();
     if (n == 0) {
         v = 0;
     } else {
@@ -747,7 +747,7 @@ void ResetHeldItemTimer(struct Unk0208fd8c *a) {
         return;
     }
     n = a->mHeldItemEntry->mTimerRandomLimit;
-    r = func_0208537c();
+    r = GetKartAiRandom();
     if (n == 0) {
         v = 0;
     } else {
@@ -778,7 +778,7 @@ void ResetItemInUseTimer(struct Unk0208fd8c *a, struct Unk0208fd8c_08 *b) {
         return;
     }
     n = a->mItemInUseEntry->mTimerRandomLimit;
-    r = func_0208537c();
+    r = GetKartAiRandom();
     if (n == 0) {
         v = 0;
     } else {
@@ -813,7 +813,7 @@ void SetupItemInUseEntry(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
         return;
     }
     n = a->mItemInUseEntry->mTimerRandomLimit;
-    r = func_0208537c();
+    r = GetKartAiRandom();
     if (n == 0) {
         v = 0;
     } else {

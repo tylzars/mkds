@@ -69,58 +69,58 @@ static inline s32 func_0207f554_inline(u32 a, u32 b) {
 
 void func_0207fec0(Unk02080b1c *p) {
     u32 i = 0;
-    Kart *a = GetKart(p->mUnk_1c);
+    Kart *a = GetKart(p->mKartIndex);
     s32 t;
 
-    if (p->mUnk_00->mUnk_24 > 1) {
-        i = p->mUnk_1c;
+    if (p->mLink->mUnk_24 > 1) {
+        i = p->mKartIndex;
     }
-    p->mUnk_04 = p->mUnk_00;
-    p->mUnk_00 = p->mUnk_00->mUnk_00[i];
-    t = data_usa_021557dc[p->mUnk_00->mUnk_20->mUnk_04];
+    p->mPreviousLink = p->mLink;
+    p->mLink = p->mLink->mUnk_00[i];
+    t = data_usa_021557dc[p->mLink->mUnk_20->mUnk_04];
     if (t != a->mKartModelsEntry->mUnk_008->mUnk_1a) {
         func_02068a64(a, t, 1);
     }
-    VEC_Subtract(p->mUnk_00->mUnk_18, p->mUnk_04->mUnk_18, &p->mUnk_08);
-    Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_08, &p->mUnk_08);
+    VEC_Subtract(p->mLink->mUnk_18, p->mPreviousLink->mUnk_18, &p->mDirection);
+    Vec3NormalizeAndGetLengthUnchecked(&p->mDirection, &p->mDirection);
 }
 
 s32 func_0207fe70(Unk02080b1c *p) {
-    s32 a = p->mUnk_00->mUnk_20->mUnk_02 << 12;
+    s32 a = p->mLink->mUnk_20->mUnk_02 << 12;
 
     return ((s64) a * 0x29 + 0x800) >> 12;
 }
 
 void func_0207fd28(Unk02080b1c *p) {
-    Kart *a = GetKart(p->mUnk_1c);
+    Kart *a = GetKart(p->mKartIndex);
     u16 i;
     s32 t;
 
-    if (p->mUnk_00->mUnk_24 > 1 && p->mUnk_1e < 2) {
+    if (p->mLink->mUnk_24 > 1 && p->mUnk_1e < 2) {
         if (p->mUnk_1e == 0) {
-            i = p->mUnk_1c / 3;
+            i = p->mKartIndex / 3;
         } else {
-            i = p->mUnk_1c % 3;
+            i = p->mKartIndex % 3;
         }
         p->mUnk_1e++;
     } else {
         i = 0;
     }
-    p->mUnk_04 = p->mUnk_00;
-    p->mUnk_00 = p->mUnk_00->mUnk_00[i];
-    t = data_usa_021557dc[p->mUnk_00->mUnk_20->mUnk_04];
+    p->mPreviousLink = p->mLink;
+    p->mLink = p->mLink->mUnk_00[i];
+    t = data_usa_021557dc[p->mLink->mUnk_20->mUnk_04];
     if (t != a->mKartModelsEntry->mUnk_008->mUnk_1a) {
         func_02068a64(a, t, 1);
     }
-    if (p->mUnk_1c != 0) {
-        if (p->mUnk_00->mUnk_20->mUnk_06 == 0) {
+    if (p->mKartIndex != 0) {
+        if (p->mLink->mUnk_20->mUnk_06 == 0) {
             a->mUnk_7c &= ~0x40;
         } else {
             a->mUnk_7c |= 0x40;
         }
     }
-    VEC_Subtract(p->mUnk_00->mUnk_18, p->mUnk_04->mUnk_18, &p->mUnk_08);
-    Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_08, &p->mUnk_08);
+    VEC_Subtract(p->mLink->mUnk_18, p->mPreviousLink->mUnk_18, &p->mDirection);
+    Vec3NormalizeAndGetLengthUnchecked(&p->mDirection, &p->mDirection);
 }
 
 void func_0207fba0(void) {
@@ -150,7 +150,7 @@ void func_0207fba0(void) {
         data_usa_0217ae3c = func_0207fd28;
         data_usa_0217ae44 = func_0207f630;
     } else {
-        data_usa_0217ae3c = func_02080b1c;
+        data_usa_0217ae3c = AdvancePointLinkCursor;
         data_usa_0217ae44 = func_0207f668;
     }
 }
@@ -170,16 +170,16 @@ void func_0207fa74(Unk020888b4 *p, Kart *q, s32 a) {
     p->mUnk_88 = data_usa_0217ae38[v];
     p->mUnk_8c = data_usa_0217ae48[v];
     p->mUnk_9c = ((s64) p->mKart->mPhysicalParam->mBaseSpeedLimit * 0x99a + 0x800) >> 12;
-    func_02080d34(&p->mUnk_08, p->mIndex);
+    InitRacePointLinkCursor(&p->mUnk_08, p->mIndex);
     func_0207f9cc(p, 0);
-    r = func_0208537c();
+    r = GetKartAiRandom();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     v = (s16) (u16) (r->mUnk_00 >> 52);
     p->mUnk_cc = v > 0x800 ? 1 : -1;
 }
 
 void func_0207f9cc(Unk020888b4 *p, s32 a) {
-    p->mUnk_44 = *p->mUnk_08.mUnk_00.mUnk_00->mUnk_18;
+    p->mUnk_44 = *p->mUnk_08.mUnk_00.mLink->mUnk_18;
     p->mUnk_60 = data_usa_021557d0;
     p->mUnk_6c = 0;
     p->mUnk_6e = 0;
@@ -209,7 +209,7 @@ void func_0207f9cc(Unk020888b4 *p, s32 a) {
 void func_0207f9a8(Unk020888b4 *p) {
     Unk02175620_bc *a;
 
-    func_02080cd0(&p->mUnk_08.mUnk_00, a);
+    ResetPointLinkCursor(&p->mUnk_08.mUnk_00, a);
     func_0207f9cc(p, 1);
 }
 
@@ -217,7 +217,7 @@ void func_0207f8f8(Unk020888b4 *p) {
     Vec3 v;
     Vec3 w;
     Vec3 *t;
-    Unk0208001c *q;
+    LinkCursor *q;
     Kart *a;
     Unk02175620_bc *s;
 
@@ -241,7 +241,7 @@ void func_0207f8f8(Unk020888b4 *p) {
     func_0207f2e4(p);
 }
 
-void func_0207f6f0(Unk020888b4 *p, Unk0208001c *q, Kart *r, Unk02175620_bc *s, Vec3 *a, Vec3 *b) {
+void func_0207f6f0(Unk020888b4 *p, LinkCursor *q, Kart *r, Unk02175620_bc *s, Vec3 *a, Vec3 *b) {
     Vec3 v;
     Vec3 w;
     Vec3 *c;
@@ -251,9 +251,9 @@ void func_0207f6f0(Unk020888b4 *p, Unk0208001c *q, Kart *r, Unk02175620_bc *s, V
     s32 g;
     s32 h;
 
-    if (s != NULL && q->mUnk_00 != s) {
+    if (s != NULL && q->mLink != s) {
         func_0207f05c(p);
-        func_02080adc(q, s);
+        AdvancePointLinkCursorTo(q, s);
         data_usa_0217ae44(p, q, r);
         return;
     }
@@ -276,9 +276,9 @@ void func_0207f6f0(Unk020888b4 *p, Unk0208001c *q, Kart *r, Unk02175620_bc *s, V
         }
         p->mUnk_70 = func_020738f8(g);
     }
-    h = func_02080bf4((Unk02080b1c *) q, a);
+    h = IsPastPointLink((Unk02080b1c *) q, a);
     if (h == 0 && (r->mUnk_48 & 0x40000000) == 0) {
-        h = func_02080c64((Unk02080b1c *) q, a);
+        h = IsWithinPointLinkDistance((Unk02080b1c *) q, a);
     }
     if (h == 0) {
         return;
@@ -290,8 +290,8 @@ void func_0207f6f0(Unk020888b4 *p, Unk0208001c *q, Kart *r, Unk02175620_bc *s, V
     q->mUnk_18 = FALSE;
 }
 
-void func_0207f668(Unk020888b4 *p, Unk0208001c *q, Kart *r) {
-    p->mUnk_44 = *q->mUnk_00->mUnk_18;
+void func_0207f668(Unk020888b4 *p, LinkCursor *q, Kart *r) {
+    p->mUnk_44 = *q->mLink->mUnk_18;
     if (r->mUnk_48 & 0x40000000) {
         return;
     }
@@ -306,8 +306,8 @@ void func_0207f668(Unk020888b4 *p, Unk0208001c *q, Kart *r) {
     VEC_Add(&p->mUnk_44, &p->mUnk_60, &p->mUnk_44);
 }
 
-void func_0207f630(Unk020888b4 *p, Unk0208001c *q, Kart *r) {
-    p->mUnk_44 = *q->mUnk_00->mUnk_18;
+void func_0207f630(Unk020888b4 *p, LinkCursor *q, Kart *r) {
+    p->mUnk_44 = *q->mLink->mUnk_18;
     p->mUnk_60 = data_usa_021557d0;
     p->mUnk_74 = 0;
 }
@@ -404,16 +404,16 @@ void func_0207f05c(Unk020888b4 *p) {
 
     if (p->mUnk_90 == 0 && i >= 1 && i <= 4) {
         j = FALSE;
-        r = func_0208537c();
+        r = GetKartAiRandom();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (s16) (u16) (r->mUnk_00 >> 52);
         if (v <= p->mUnk_88 && p->mKart->mVelocityLength >= p->mUnk_9c) {
-            a = *p->mUnk_08.mUnk_00.mUnk_00->mUnk_18;
+            a = *p->mUnk_08.mUnk_00.mLink->mUnk_18;
             d = data_usa_021557c4;
-            Vec3CrossUnrounded(&p->mUnk_08.mUnk_00.mUnk_08, &d, &b);
+            Vec3CrossUnrounded(&p->mUnk_08.mUnk_00.mDirection, &d, &b);
             VEC_Subtract(&p->mKart->mPos, &a, &c);
             m = Vec3DotUnrounded(&c, &b);
-            k = p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c;
+            k = p->mUnk_08.mUnk_00.mLink->mUnk_1c;
             if (func_020738f8(m) < k) {
                 j = TRUE;
             }
@@ -454,11 +454,11 @@ void func_0207f05c(Unk020888b4 *p) {
         return;
     }
     p->mUnk_90 = 3;
-    e = *p->mUnk_08.mUnk_00.mUnk_00->mUnk_18;
+    e = *p->mUnk_08.mUnk_00.mLink->mUnk_18;
     h = data_usa_021557c4;
-    Vec3CrossUnrounded(&p->mUnk_08.mUnk_00.mUnk_08, &h, &f);
+    Vec3CrossUnrounded(&p->mUnk_08.mUnk_00.mDirection, &h, &f);
     VEC_Subtract(&p->mKart->mPos, &e, &g);
-    p->mUnk_74 = FX_Div(Vec3DotUnrounded(&g, &f), p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c + 0x1000);
+    p->mUnk_74 = FX_Div(Vec3DotUnrounded(&g, &f), p->mUnk_08.mUnk_00.mLink->mUnk_1c + 0x1000);
     if (func_020738f8(p->mUnk_74) > 0x1000) {
         if (p->mUnk_74 > 0) {
             p->mUnk_74 = 0x1000;
@@ -568,7 +568,7 @@ void func_0207ebfc(Unk020888b4 *p) {
     p->mUnk_98++;
     b = FALSE;
     if (p->mUnk_98 == 0x28 && p->mUnk_a0 != FALSE) {
-        Unk0217aebc_128 *r = func_0208537c();
+        Unk0217aebc_128 *r = GetKartAiRandom();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         if ((s16) (u16) (r->mUnk_00 >> 52) <= p->mUnk_8c) {
             b = TRUE;
@@ -619,7 +619,7 @@ void func_0207e944(Unk020888b4 *p) {
     Vec3 v = data_usa_021557c4;
     s32 s;
 
-    Vec3CrossUnrounded(&p->mUnk_08.mUnk_00.mUnk_08, &v, &p->mUnk_60);
+    Vec3CrossUnrounded(&p->mUnk_08.mUnk_00.mDirection, &v, &p->mUnk_60);
     p->mUnk_6c++;
     if (p->mUnk_6c > p->mUnk_6e) {
         Unk0217aebc_128 *r;
@@ -627,10 +627,10 @@ void func_0207e944(Unk020888b4 *p) {
         s32 u;
 
         p->mUnk_6c = 0;
-        r = func_0208537c();
+        r = GetKartAiRandom();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         p->mUnk_6e = 0;
-        r = func_0208537c();
+        r = GetKartAiRandom();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         t = (s16) (u16) (r->mUnk_00 >> 52);
         u = p->mUnk_74 + (s32) (((s64) ((s32) (((s64) t * 0x2000) >> 12) - 0x1000) * 0x267) >> 12);
@@ -643,7 +643,7 @@ void func_0207e944(Unk020888b4 *p) {
         }
         p->mUnk_74 = u;
     }
-    s = ((s64) p->mUnk_74 * p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c) >> 12;
+    s = ((s64) p->mUnk_74 * p->mUnk_08.mUnk_00.mLink->mUnk_1c) >> 12;
     p->mUnk_60.x = ((s64) p->mUnk_60.x * s) >> 12;
     p->mUnk_60.y = ((s64) p->mUnk_60.y * s) >> 12;
     p->mUnk_60.z = ((s64) p->mUnk_60.z * s) >> 12;
@@ -659,14 +659,14 @@ void func_0207e7f0(Unk020888b4 *p) {
     Vec3 c;
     s32 s;
 
-    a = *p->mUnk_08.mUnk_00.mUnk_00->mUnk_18;
-    b = *p->mUnk_08.mUnk_00.mUnk_00->mUnk_18;
+    a = *p->mUnk_08.mUnk_00.mLink->mUnk_18;
+    b = *p->mUnk_08.mUnk_00.mLink->mUnk_18;
     c = data_usa_021557c4;
     d = *(Vec3 *) &data_usa_021557c4;
-    Vec3CrossUnrounded(&p->mUnk_08.mUnk_00.mUnk_08, &d, &e);
+    Vec3CrossUnrounded(&p->mUnk_08.mUnk_00.mDirection, &d, &e);
     VEC_Subtract(&p->mKart->mPos, &b, &f);
     s = Vec3DotUnrounded(&f, &e);
-    p->mUnk_74 = FX_Div(s, p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c + 0x1000);
+    p->mUnk_74 = FX_Div(s, p->mUnk_08.mUnk_00.mLink->mUnk_1c + 0x1000);
     if (func_020738f8(p->mUnk_74) > 0x1000) {
         if (p->mUnk_74 > 0) {
             p->mUnk_74 = 0x1000;
@@ -674,8 +674,8 @@ void func_0207e7f0(Unk020888b4 *p) {
         p->mUnk_74 = -0x1000;
     }
     g = c;
-    Vec3CrossUnrounded(&p->mUnk_08.mUnk_00.mUnk_08, &g, &p->mUnk_60);
-    s = ((s64) p->mUnk_74 * p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c) >> 12;
+    Vec3CrossUnrounded(&p->mUnk_08.mUnk_00.mDirection, &g, &p->mUnk_60);
+    s = ((s64) p->mUnk_74 * p->mUnk_08.mUnk_00.mLink->mUnk_1c) >> 12;
     p->mUnk_60.x = ((s64) p->mUnk_60.x * s) >> 12;
     p->mUnk_60.y = ((s64) p->mUnk_60.y * s) >> 12;
     p->mUnk_60.z = ((s64) p->mUnk_60.z * s) >> 12;

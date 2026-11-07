@@ -241,7 +241,7 @@ void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c
     SetKartModelsEntryCourseColors(p->mKartModelsEntry);
     p->mSlotFunctions[1](p);
     p->mUnk_7c &= ~0xe000;
-    func_02103890(p->mIndex);
+    StopOrthoQuads(p->mIndex);
     p->mUnk_48 |= 0x240;
     p->mPos = *a;
     if (p->mUnk_7c & 0x400) {
@@ -1216,7 +1216,7 @@ void func_020708a4(Kart *p) {
     k = (u16) (((s64) b.y * 0xb60b60b60bLL + 0x80000000LL) >> 44) >> 4;
     MTX_RotY33_(m1, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
     MTX_MultVec33(&data_02154f70, m1, &e);
-    func_021035ac(p->mIndex);
+    SkipOrthoQuadsHoldAndSetVelocities(p->mIndex);
 
     w = p->mUnk_4c;
     if (!(w & 0x20000) && (w & 0x8000000)) {

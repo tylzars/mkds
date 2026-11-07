@@ -50,10 +50,10 @@ BOOL func_0208c03c(Unk020888b4 *p) {
 }
 
 void func_0208c000(Vec3 *a, Vec3 *b, Unk020888b4 *p) {
-    Unk0208001c *s = &p->mUnk_08.mUnk_00;
+    LinkCursor *s = &p->mUnk_08.mUnk_00;
 
-    *a = *s->mUnk_00->mUnk_18;
-    *b = s->mUnk_08;
+    *a = *s->mLink->mUnk_18;
+    *b = s->mDirection;
 }
 
 void func_0208bfec(Unk020888b4 *p) {

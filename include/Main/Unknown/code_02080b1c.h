@@ -21,15 +21,13 @@ typedef struct Unk02080b1c_00 {
     /* 26 */ u8 mUnk_26[2];
 } Unk02080b1c_00;
 
-// Current entry at 0x00, previous entry at 0x04, a vector at 0x08, the halfword at 0x1c given to GetKart and a
-// byte at 0x1e.
 typedef struct Unk02080b1c {
-    /* 00 */ Unk02080b1c_00 *mUnk_00;
-    /* 04 */ Unk02080b1c_00 *mUnk_04;
-    /* 08 */ Vec3 mUnk_08;
+    /* 00 */ Unk02080b1c_00 *mLink;
+    /* 04 */ Unk02080b1c_00 *mPreviousLink;
+    /* 08 */ Vec3 mDirection;
     /* 14 */ s32 mUnk_14;
     /* 18 */ s32 mUnk_18;
-    /* 1c */ u16 mUnk_1c;
+    /* 1c */ u16 mKartIndex;
     /* 1e */ u8 mUnk_1e;
 } Unk02080b1c;
 
@@ -43,6 +41,6 @@ typedef struct Unk020905a8 {
     /* 28 */ s16 mUnk_28;
 } Unk020905a8;
 
-void func_02080b1c(Unk02080b1c *p);
-s32 func_02080bf4(Unk02080b1c *p, Vec3 *a);
-s32 func_02080c64(Unk02080b1c *p, Vec3 *a);
+void AdvancePointLinkCursor(Unk02080b1c *p);
+s32 IsPastPointLink(Unk02080b1c *p, Vec3 *a);
+s32 IsWithinPointLinkDistance(Unk02080b1c *p, Vec3 *a);

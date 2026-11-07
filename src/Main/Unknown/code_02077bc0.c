@@ -366,21 +366,21 @@ void func_0207a32c(void) {
     }
     d[0] = data_021759c0->mEntryIndex;
     if (n == 1) {
-        d[1] = func_02085408(2);
+        d[1] = GetKartIndexAtRank(2);
         if (d[1] >= 0) {
             if ((gKarts[d[1]].mKartModelsEntry)->mUnk_060 != FALSE) {
                 d[1] = -1;
             }
         }
     } else {
-        d[1] = func_02085408((u16) (n - 1));
+        d[1] = GetKartIndexAtRank((u16) (n - 1));
         if (d[1] >= 0) {
             if ((gKarts[d[1]].mKartModelsEntry)->mUnk_060 != FALSE) {
                 d[1] = -1;
             }
         }
         if (n < data_021759c0->mKartCount) {
-            j = func_02085408((u16) (n + 1));
+            j = GetKartIndexAtRank((u16) (n + 1));
             if (j >= 0) {
                 p = &gKarts[j];
                 p->mUnk_4c |= 0x40000;
@@ -816,7 +816,7 @@ void InitKartModels(void *a, u32 b) {
     gKartModels->mKartCount = b;
     gKartModels->mUnk_00c = 0;
     CreateKartPhysicalParamTable(a, b);
-    func_02085fd8();
+    SetKartAiParamRow();
     CreateKillerItem(a);
     for (i = 0; i < gKartModels->mKartCount; i++) {
         d = gKartModels->mKartModelsEntries;

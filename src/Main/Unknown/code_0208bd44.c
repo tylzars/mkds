@@ -34,10 +34,10 @@ BOOL func_0208bee0(Unk020888b4 *p) {
 }
 
 void func_0208bea4(Vec3 *a, Vec3 *b, Unk020888b4 *p) {
-    Unk0208001c *s = &p->mUnk_28;
+    LinkCursor *s = &p->mUnk_28;
 
-    *a = *s->mUnk_00->mUnk_20;
-    *b = s->mUnk_08;
+    *a = *s->mLink->mUnk_20;
+    *b = s->mDirection;
 }
 
 void func_0208be90(Unk020888b4 *p) {
