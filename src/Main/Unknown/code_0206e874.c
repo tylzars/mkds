@@ -73,7 +73,7 @@ void func_0206edac(Kart *p, Vec3 *a) {
         v.y = ((s64) a->y * s) >> 12;
         v.z = ((s64) a->z * s) >> 12;
         if (VEC_Mag(&v) > 0x2000) {
-            m = ((s64) p->mUnk_dc * 0x1800) >> 12;
+            m = ((s64) p->mSpeedLimitFactor * 0x1800) >> 12;
             n = v.y;
             if (n <= 0) {
                 n = -n;
@@ -158,7 +158,7 @@ void func_0206e874(Kart *p) {
                             if (r & 8) {
                                 func_0206f04c(p, &v, (p->mUnk_44 & 0x40) ? 1 : 0, 0x1000, -1, -1, v2);
                             } else if (r & 2) {
-                                s = Vec3DotUnrounded(&p->mUnk_50, &v) + 0x1000;
+                                s = Vec3DotUnrounded(&p->mTurnedForward, &v) + 0x1000;
                                 if (s > 0x1000) {
                                     s = 0x1000;
                                 } else if (s < 0x29) {
@@ -186,11 +186,11 @@ void func_0206e874(Kart *p) {
                                 }
                                 p->mUnk_39c = VEC_Mag(&w);
                                 if (p->mUnk_39c > 0x1000 && m != 0) {
-                                    p->mUnk_3a0 = Vec3DotUnrounded(&p->mUnk_50, &w);
-                                    s = VEC_DotProduct(&p->mUnk_50, &w);
-                                    v6 = w.y - (s32) (((s64) p->mUnk_50.y * s) >> 12);
-                                    v7 = w.z - (s32) (((s64) p->mUnk_50.z * s) >> 12);
-                                    v5 = w.x - (s32) (((s64) p->mUnk_50.x * s) >> 12);
+                                    p->mUnk_3a0 = Vec3DotUnrounded(&p->mTurnedForward, &w);
+                                    s = VEC_DotProduct(&p->mTurnedForward, &w);
+                                    v6 = w.y - (s32) (((s64) p->mTurnedForward.y * s) >> 12);
+                                    v7 = w.z - (s32) (((s64) p->mTurnedForward.z * s) >> 12);
+                                    v5 = w.x - (s32) (((s64) p->mTurnedForward.x * s) >> 12);
                                     p->mUnk_2d8.x += v5;
                                     p->mUnk_2d8.z += v7;
                                     p->mVerticalSpeed += v6;

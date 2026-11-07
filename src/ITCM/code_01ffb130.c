@@ -140,15 +140,15 @@ void func_01ffb130(Kart *p) {
             MTX_RotAxis33((MtxFx43 *) &m2, &p->mUnk_120, gPairsByAngle[0xba], gPairsByAngle[0xbb]);
             MTX_Concat33(m2.mUnk_00, m1.mUnk_00, m1.mUnk_00);
         }
-        MTX_MultVec33(&p->mUnk_278, m1.mUnk_00, &p->mUnk_50);
-        d = VEC_DotProduct(&p->mUnk_244, &p->mUnk_50);
-        v3.x = p->mUnk_50.x - (s32) (((s64) p->mUnk_244.x * d) >> 12);
-        v3.y = p->mUnk_50.y - (s32) (((s64) p->mUnk_244.y * d) >> 12);
-        v3.z = p->mUnk_50.z - (s32) (((s64) p->mUnk_244.z * d) >> 12);
+        MTX_MultVec33(&p->mForward, m1.mUnk_00, &p->mTurnedForward);
+        d = VEC_DotProduct(&p->mUnk_244, &p->mTurnedForward);
+        v3.x = p->mTurnedForward.x - (s32) (((s64) p->mUnk_244.x * d) >> 12);
+        v3.y = p->mTurnedForward.y - (s32) (((s64) p->mUnk_244.y * d) >> 12);
+        v3.z = p->mTurnedForward.z - (s32) (((s64) p->mUnk_244.z * d) >> 12);
         p->mUnk_d4 = VEC_Mag(&v3);
     } else {
-        d = Vec3DotUnrounded(&p->mUnk_278, &p->mUnk_244);
-        p->mUnk_50 = p->mUnk_278;
+        d = Vec3DotUnrounded(&p->mForward, &p->mUnk_244);
+        p->mTurnedForward = p->mForward;
         if (p->mUnk_3e8 > 0) {
             p->mUnk_d4 = 0x1000;
         } else if (d < 0) {
@@ -161,22 +161,22 @@ void func_01ffb130(Kart *p) {
     func_01ffb930(&a, p);
     if ((p->mUnk_44 & 0x90) || (p->mUnk_4c & 0x10000000)) {
         k = p->mUnk_240;
-        VEC_Subtract(&p->mUnk_50, &p->mUnk_68, &v4);
+        VEC_Subtract(&p->mTurnedForward, &p->mUnk_68, &v4);
         v4.x = ((s64) v4.x * k) >> 12;
         v4.y = ((s64) v4.y * k) >> 12;
         v4.z = ((s64) v4.z * k) >> 12;
         VEC_Add(&p->mUnk_68, &v4, &p->mUnk_68);
-        p->mUnk_68.y = p->mUnk_50.y;
+        p->mUnk_68.y = p->mTurnedForward.y;
     }
     v1.x = ((s64) p->mUnk_68.x * a) >> 12;
     v1.y = ((s64) p->mUnk_68.y * a) >> 12;
     v1.z = ((s64) p->mUnk_68.z * a) >> 12;
     if (a >= 0) {
-        p->mUnk_05c = p->mUnk_50;
+        p->mUnk_05c = p->mTurnedForward;
     } else {
-        p->mUnk_05c.x = -p->mUnk_50.x;
-        p->mUnk_05c.y = -p->mUnk_50.y;
-        p->mUnk_05c.z = -p->mUnk_50.z;
+        p->mUnk_05c.x = -p->mTurnedForward.x;
+        p->mUnk_05c.y = -p->mTurnedForward.y;
+        p->mUnk_05c.z = -p->mTurnedForward.z;
     }
     if (p->mState == KART_STATE_LAUNCH_DOUBLE_FLIP) {
         v1.y = 0;
@@ -193,7 +193,7 @@ void func_01ffb130(Kart *p) {
     func_01ff9c40(p);
     ScaleKartVelocityAndSetCappedLengthAndDirection(p, b);
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-        func_0207a74c(Vec3DotUnrounded(&p->mVelocity, &p->mUnk_50));
+        func_0207a74c(Vec3DotUnrounded(&p->mVelocity, &p->mTurnedForward));
         if ((p->mUnk_44 & 0x1000000) && p->mUnk_4d4 != 0) {
             p->mUnk_4d4 = ((s64) p->mUnk_4d4 * 0xfae) >> 12;
             if (p->mUnk_4d4 < 0xcd) {

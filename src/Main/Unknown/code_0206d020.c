@@ -213,7 +213,7 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
     }
     b = ((s64) a * t) >> 12;
     v2 = ((s64) b * v2) >> 12;
-    d = q->mUnk_50;
+    d = q->mTurnedForward;
     if (q->mUnk_44 & 0x100) {
         d.x = -d.x;
         d.y = -d.y;
@@ -257,7 +257,7 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
     if (v2 > 0x1000) {
         v2 = 0x1000;
     }
-    VEC_CrossProduct(&n, &q->mUnk_278, &v10);
+    VEC_CrossProduct(&n, &q->mForward, &v10);
     if (v10.y < 0) {
         v2 = v2 * v5;
     }
@@ -299,7 +299,7 @@ void func_0206d578(Kart *p) {
     d = 0;
     v1 = FALSE;
     ComputeKartPointAlongUp(&p->mUnk_1f0, p->mUnk_510, 0x400, p);
-    VEC_MultAdd(((s64) p->mRadius * -0x4000) >> 12, &p->mUnk_50, &p->mUnk_1f0, &p->mUnk_1f0);
+    VEC_MultAdd(((s64) p->mRadius * -0x4000) >> 12, &p->mTurnedForward, &p->mUnk_1f0, &p->mUnk_1f0);
     if (p->mIndex == GetRaceUpdateFramesMod8() && !(p->mUnk_4c & 0x10002000)) {
         if (p->mVelocityLength > 0x4000 && p->mState == KART_STATE_NORMAL) {
             for (i = 0; i < data_0217b5a8; i++) {
@@ -307,7 +307,7 @@ void func_0206d578(Kart *p) {
                 if (q->mVelocityLength >= 0x2000 && (data_0217b5bc[i] & 0x800) && q != p && !(q->mUnk_7c & 0x402000)) {
                     VEC_Subtract(&q->mPos, &p->mPos, &v);
                     d = VEC_Mag(&v);
-                    if (Vec3DotUnrounded(&q->mUnk_50, &v) > (s32) (((s64) d * 0xe7f) >> 12)) {
+                    if (Vec3DotUnrounded(&q->mTurnedForward, &v) > (s32) (((s64) d * 0xe7f) >> 12)) {
                         v1 = TRUE;
                         p->mUnk_538.mUnk_08++;
                         break;

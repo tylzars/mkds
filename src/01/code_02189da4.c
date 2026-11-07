@@ -184,7 +184,7 @@ void func_ov001_0218a028(Unk0206c1ac *a) {
 void func_ov001_02189fe0(Unk02188950 *a, Kart *b) {
     if (b->mUnk_44 == 9) {
         if (IsItemBombState2(b) == FALSE) {
-            func_0208b748(0x3a, &b->mUnk_50, NULL, func_ov001_0218a028);
+            func_0208b748(0x3a, &b->mTurnedForward, NULL, func_ov001_0218a028);
         }
     }
     a->mUnk_2e0 = 1;
@@ -201,9 +201,9 @@ void func_ov001_02189ed8(Unk02188950 *a, Kart *b) {
     a->mUnk_2e0 = 2;
     func_ov001_021881f4(a, (UnkFunc *) func_ov001_02189ed8);
     if (func_ov001_021871f8(a, 7) != 0) {
-        v.x = a->mUnk_000.mPos.x - b->mUnk_50.x;
+        v.x = a->mUnk_000.mPos.x - b->mTurnedForward.x;
         v.y = 0;
-        v.z = a->mUnk_000.mPos.z - b->mUnk_50.z;
+        v.z = a->mUnk_000.mPos.z - b->mTurnedForward.z;
         if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&v, &v);
         }

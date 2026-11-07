@@ -54,7 +54,7 @@ s32 CollideKartWithMapObjectResponse13(Kart *a, s32 *b) {
     a->mUnk_48 &= 0xdfe77fdf;
     a->mBoostTimer = 0;
     a->mUnk_538.mUnk_00 = 0;
-    a->mUnk_23c = 0;
+    a->mMiniTurboTimer = 0;
     if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
         if ((a->mUnk_4c & 0x10000000) == 0 && (a->mUnk_48 & 0x4000000) == 0) {
             ResetCameraHalfFovAngleGoal();
@@ -70,7 +70,7 @@ s32 CollideKartWithMapObjectResponse14(Kart *a, s32 *b) {
     a->mUnk_48 &= 0xdfe77fdf;
     a->mBoostTimer = 0;
     a->mUnk_538.mUnk_00 = 0;
-    a->mUnk_23c = 0;
+    a->mMiniTurboTimer = 0;
     if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
         if ((a->mUnk_4c & 0x10000000) == 0 && (a->mUnk_48 & 0x4000000) == 0) {
             ResetCameraHalfFovAngleGoal();

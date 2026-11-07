@@ -225,7 +225,7 @@ void func_0207f8f8(Unk020888b4 *p) {
     q = &p->mUnk_08.mUnk_00;
     a = p->mKart;
     if (p->mUnk_90 == 2) {
-        t = &a->mUnk_50;
+        t = &a->mTurnedForward;
     } else {
         t = &a->mUnk_138;
     }

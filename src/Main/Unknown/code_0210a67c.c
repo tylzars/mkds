@@ -541,7 +541,7 @@ void func_0210a77c(Kart *a, PlayingSound *b) {
         o = (Vec3 *) &a->mUnk_250.z;
     }
     v += o->z;
-    t = GetHeightAboveWaterOrEfct(a->mUnk_50.y);
+    t = GetHeightAboveWaterOrEfct(a->mTurnedForward.y);
     if (t < 0) {
         m = -t;
         w = 0;

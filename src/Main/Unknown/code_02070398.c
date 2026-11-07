@@ -258,9 +258,9 @@ void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c
         QuaternionFromAxisAngle(&v, p->mHeadingAngle, &p->mUnk_e0_m);
     }
     func_01ffcd84(&p->mUnk_120, &p->mUnk_e0_m);
-    GetKartForward(p, &p->mUnk_278);
-    p->mUnk_50 = p->mUnk_278;
-    p->mUnk_68 = p->mUnk_50;
+    GetKartForward(p, &p->mForward);
+    p->mTurnedForward = p->mForward;
+    p->mUnk_68 = p->mTurnedForward;
     p->mPrevPos = p->mPos;
     p->mUnk_98 = p->mPrevPos;
     p->mPrevCollisionCenter = p->mPos;
@@ -419,13 +419,13 @@ void func_02072600(Kart *p) {
 
     p->mUnk_d4 = 0x1000;
     p->mUnk_d8 = 0x1000;
-    p->mUnk_dc = 0x1000;
+    p->mSpeedLimitFactor = 0x1000;
     p->mUnk_38c = 0x1000;
     v = data_02154f94;
     *(Vec3 *) &p->mUnk_25c = v;
     p->mUnk_268 = v;
     p->mUnk_274 = 0;
-    p->mUnk_278 = v;
+    p->mForward = v;
     p->mUnk_290 = v;
     p->mUnk_2d8 = v;
     p->mUnk_2e4 = v;
@@ -478,7 +478,7 @@ void ResetKart(Kart *p) {
     p->mCollisionCenter = p->mPrevCollisionCenter;
     p->mUnk_1f0 = v;
     p->mUnk_1fc = v;
-    p->mUnk_dc = 0x1000;
+    p->mSpeedLimitFactor = 0x1000;
     p->mUnk_e0_m = data_usa_02154f14;
     *(Vec4 *) &p->mUnk_f0 = data_usa_02154f24;
     *(Vec4 *) &p->mUnk_100 = data_usa_02154f34;
@@ -487,17 +487,17 @@ void ResetKart(Kart *p) {
     p->mHeadingAngle = 0;
     p->mBoostTimer = 0;
     p->mUnk_23a = 0;
-    p->mUnk_23c = 0;
+    p->mMiniTurboTimer = 0;
     p->mUnk_240 = 0x1000;
     p->mUnk_244 = data_02154f7c;
     p->mUnk_250 = v;
     *(Vec3 *) &p->mUnk_25c = v;
     p->mUnk_268 = v;
     p->mUnk_274 = 0;
-    p->mUnk_278 = v;
+    p->mForward = v;
     p->mUnk_290 = v;
-    p->mUnk_50 = v;
-    p->mUnk_68 = p->mUnk_50;
+    p->mTurnedForward = v;
+    p->mUnk_68 = p->mTurnedForward;
     p->mVelocityLengthRatio = 0;
     p->mVelocityLength = 0;
     p->mForwardSpeed = 0;
@@ -546,11 +546,11 @@ void ResetKart(Kart *p) {
     p->mUnk_39c = 0;
     p->mUnk_3a0 = 0;
     p->mTireSpinAngle = 0;
-    p->mUnk_3a8 = 0x1ec;
+    p->mQuaternionBlendFactor = 0x1ec;
     p->mUnk_3ac = 0;
     p->mVelocity = v;
     p->mUnk_3bc = 0;
-    p->mUnk_3be = 0;
+    p->mRaceStartFrameCount = 0;
     p->mUnk_3c0 = 0;
     p->mRespawnSlot = -1;
     p->mUnk_3c8 = 0;
@@ -1068,7 +1068,7 @@ void func_020710b0(Kart *p, s32 b) {
     p->mUnk_48 &= 0xdfe77fdf;
     p->mBoostTimer = 0;
     p->mUnk_538.mUnk_00 = 0;
-    p->mUnk_23c = 0;
+    p->mMiniTurboTimer = 0;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
             ResetCameraHalfFovAngleGoal();
@@ -1304,17 +1304,17 @@ void func_020708a4(Kart *p) {
         }
     } else {
         if (d > 0x64000) {
-            p->mUnk_50 = c;
+            p->mTurnedForward = c;
         }
-        h = p->mUnk_50;
+        h = p->mTurnedForward;
         h.y = 0;
-        p->mUnk_3a8 = 0x1000;
+        p->mQuaternionBlendFactor = 0x1000;
         func_020708a4_inline(&h, &h);
         p->mHeadingAngle = (s32) (((s64) FX_Atan2(h.x, h.z) * 0x28be60d) >> 12) >> 12;
         q = data_02165524;
         QuaternionFromAxisAngle(&q, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);
-        Vec3CrossUnrounded(&data_02154f7c, &p->mUnk_50, &l);
-        Vec3CrossUnrounded(&p->mUnk_50, &l, &n);
+        Vec3CrossUnrounded(&data_02154f7c, &p->mTurnedForward, &l);
+        Vec3CrossUnrounded(&p->mTurnedForward, &l, &n);
         if (p->mUnk_234 > -5000) {
             p->mUnk_234 -= 300;
             if (p->mUnk_234 < -5000) {
@@ -1330,10 +1330,10 @@ void func_020708a4(Kart *p) {
 
     p->mForwardSpeed = 0x1e000;
     t = p->mForwardSpeed;
-    m2.mUnk_00[3].x = ((s64) p->mUnk_50.x * t) >> 12;
-    m2.mUnk_00[3].y = ((s64) p->mUnk_50.y * t) >> 12;
-    m2.mUnk_00[3].z = ((s64) p->mUnk_50.z * t) >> 12;
-    p->mUnk_68 = p->mUnk_50;
+    m2.mUnk_00[3].x = ((s64) p->mTurnedForward.x * t) >> 12;
+    m2.mUnk_00[3].y = ((s64) p->mTurnedForward.y * t) >> 12;
+    m2.mUnk_00[3].z = ((s64) p->mTurnedForward.z * t) >> 12;
+    p->mUnk_68 = p->mTurnedForward;
     if (d < 0x3e8000) {
         t = (s32) (((s64) d * 0x29) >> 12) + 0x14000;
         if (p->mForwardSpeed > t) {
@@ -1375,8 +1375,8 @@ void func_020705fc(Kart *p, u32 b) {
     p->mPrevPos = p->mPos;
     p->mUnk_98 = p->mPrevPos;
     p->mForwardSpeed = 0x5000;
-    p->mUnk_50 = e;
-    p->mUnk_68 = p->mUnk_50;
+    p->mTurnedForward = e;
+    p->mUnk_68 = p->mTurnedForward;
     p->mHeadingAngle = (s32) (((s64) FX_Atan2(e.x, e.z) * 0x28be60dLL) >> 12) >> 12;
     w = data_02165524;
     QuaternionFromAxisAngle(&w, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);

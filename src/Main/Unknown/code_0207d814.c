@@ -68,7 +68,7 @@ void func_0207e4a4(struct Unk020888b4 *p) {
     s = &p->mUnk_08.mUnk_00;
     q = p->mKart;
     if (p->mUnk_90 == 2) {
-        t = &q->mUnk_50;
+        t = &q->mTurnedForward;
     } else {
         t = &q->mUnk_138;
     }
@@ -104,7 +104,7 @@ void func_0207e35c(struct Unk020888b4 *p) {
     Unk02175620_bc *r;
 
     if (p->mUnk_90 == 2) {
-        t = &q->mUnk_50;
+        t = &q->mTurnedForward;
     } else {
         t = &q->mUnk_138;
     }

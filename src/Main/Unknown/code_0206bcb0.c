@@ -67,7 +67,7 @@ void func_0206cdd4(Kart *p) {
     if (p->mDriftCharge == 4) {
         StartKartBoost(p, KART_BOOST_MINI_TURBO, p->mPhysicalParam->mUnk_0e);
         p->mUnk_48 |= KART_48_MINI_TURBO;
-        p->mUnk_23c = p->mPhysicalParam->mUnk_0e;
+        p->mMiniTurboTimer = p->mPhysicalParam->mUnk_0e;
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             GetEntryKartCounters()->mUnk_04++;
             // placeholder: the same test twice gives the original's two loads and compares
@@ -212,7 +212,7 @@ recheck:
             if (p->mDriftCharge == 4) {
                 StartKartBoost(p, KART_BOOST_MINI_TURBO, p->mPhysicalParam->mUnk_0e);
                 p->mUnk_48 |= KART_48_MINI_TURBO;
-                p->mUnk_23c = p->mPhysicalParam->mUnk_0e;
+                p->mMiniTurboTimer = p->mPhysicalParam->mUnk_0e;
                 if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
                     GetEntryKartCounters()->mUnk_04++;
                     // placeholder: the same test twice gives the original's two loads and compares
@@ -456,7 +456,7 @@ void StartKartState(Kart *p, KartState mode) {
     p->mUnk_48 &= 0xdfe77fdf;
     p->mBoostTimer = 0;
     p->mUnk_538.mUnk_00 = 0;
-    p->mUnk_23c = 0;
+    p->mMiniTurboTimer = 0;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
             ResetCameraHalfFovAngleGoal();

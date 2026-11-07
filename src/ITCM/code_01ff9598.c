@@ -148,19 +148,19 @@ void func_01ffa11c(Kart *p, const Vec3 *a) {
         if (p->mUnk_44 & 0x1000) {
             if (p->mUnk_208->mUnk_00 == FALSE && p->mUnk_1fc.x == 0 && p->mUnk_1fc.y == 0 && p->mUnk_1fc.z == 0 &&
                 p->mUnk_4d0 > 100) {
-                p->mUnk_3a8 = 0;
+                p->mQuaternionBlendFactor = 0;
                 return;
             }
         }
-        if (p->mUnk_3a8 >= m) {
+        if (p->mQuaternionBlendFactor >= m) {
             return;
         }
-        p->mUnk_3a8 = p->mUnk_3a8 + 0x14;
-        if (p->mUnk_3a8 > m) {
-            p->mUnk_3a8 = m;
+        p->mQuaternionBlendFactor = p->mQuaternionBlendFactor + 0x14;
+        if (p->mQuaternionBlendFactor > m) {
+            p->mQuaternionBlendFactor = m;
         }
     } else {
-        p->mUnk_3a8 = (s64) m * p->mVelocityLengthRatio >> 12;
+        p->mQuaternionBlendFactor = (s64) m * p->mVelocityLengthRatio >> 12;
     }
 }
 
@@ -186,12 +186,12 @@ void func_01ff9f60(Kart *p, Vec3 *a) {
 
     p->mUnk_3f8 = 0x1000;
     if (p->mAirborneFrames > 5) {
-        p->mUnk_3a8 = 0xf6;
+        p->mQuaternionBlendFactor = 0xf6;
         func_02070484(p, &p->mUnk_100_q);
     } else {
         func_01ffad14(p, a);
     }
-    QuaternionBlend(&p->mUnk_f0_q, &p->mUnk_100_q, &p->mUnk_f0_q, p->mUnk_3a8);
+    QuaternionBlend(&p->mUnk_f0_q, &p->mUnk_100_q, &p->mUnk_f0_q, p->mQuaternionBlendFactor);
     QuaternionFromAxisAngle(&data_02154f7c, (u16) (p->mHeadingAngle + p->mHeadingAngleOffset), &p->mUnk_e0_m);
     QuaternionMultiply(&p->mUnk_f0_q, &p->mUnk_e0_m, &p->mUnk_110_q);
     if (p->mUnk_44 & 2) {
@@ -226,11 +226,11 @@ void RefreshKartSurface(Kart *p) {
     if (k != 0) {
         a = p->mPhysicalParam->mSurfaceSpeedLimitFactors[k];
     }
-    b = p->mUnk_dc;
+    b = p->mSpeedLimitFactor;
     if (a >= b) {
-        p->mUnk_dc = a;
+        p->mSpeedLimitFactor = a;
     } else {
-        p->mUnk_dc = b + (s32) (((s64) (a - b) * 0x4cd + 0x800) >> 12);
+        p->mSpeedLimitFactor = b + (s32) (((s64) (a - b) * 0x4cd + 0x800) >> 12);
     }
     if (p->mUnk_4c & 0x10000040) {
         c = 0;
@@ -254,10 +254,10 @@ void func_01ff9d18(Kart *p) {
     enum { K0 } j;
 
     if (p->mUnk_48 & KART_48_MINI_TURBO) {
-        p->mUnk_23c = p->mUnk_23c - 1;
-        if (p->mUnk_23c <= 0) {
+        p->mMiniTurboTimer = p->mMiniTurboTimer - 1;
+        if (p->mMiniTurboTimer <= 0) {
             p->mUnk_48 = p->mUnk_48 & ~KART_48_MINI_TURBO;
-            p->mUnk_23c = 0;
+            p->mMiniTurboTimer = 0;
         }
     }
     if (p->mUnk_48 & 0x100000) {

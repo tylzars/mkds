@@ -116,7 +116,7 @@ void func_0206ff50(Kart *p, u32 a) {
     p->mUnk_48 &= 0xdfe77fdf;
     p->mBoostTimer = 0;
     p->mUnk_538.mUnk_00 = 0;
-    p->mUnk_23c = 0;
+    p->mMiniTurboTimer = 0;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
             ResetCameraHalfFovAngleGoal();
@@ -185,9 +185,9 @@ void func_0206fe08(Kart *p) {
     if (a < 0 && !(p->mUnk_4c & 0x4000000)) {
         b = FALSE;
         c = ((s64) p->mUnk_3f4 * p->mScale.z) >> 12;
-        p->mUnk_dc = (s32) (((s64) c * a) >> 12) + 0x1000;
-        if (p->mUnk_dc < p->mPhysicalParam->mSurfaceSpeedLimitFactors[4]) {
-            p->mUnk_dc = p->mPhysicalParam->mSurfaceSpeedLimitFactors[4];
+        p->mSpeedLimitFactor = (s32) (((s64) c * a) >> 12) + 0x1000;
+        if (p->mSpeedLimitFactor < p->mPhysicalParam->mSurfaceSpeedLimitFactors[4]) {
+            p->mSpeedLimitFactor = p->mPhysicalParam->mSurfaceSpeedLimitFactors[4];
         }
         func_0207a6c0(p);
         p->mUnk_500 = -a;
@@ -249,7 +249,7 @@ void func_0206f914(Kart *p) {
             if (func_0208c180(p->mUnk_310) != 0) {
                 if (!(p->mUnk_4c & 0x20000000)) {
                     p->mUnk_4c |= 0x20000000;
-                    p->mUnk_3be = 0x78;
+                    p->mRaceStartFrameCount = 0x78;
                     func_02068a64(p, 1, 1);
                     g = data_usa_02165608;
                     w = p->mUnk_7c;
@@ -268,9 +268,9 @@ void func_0206f914(Kart *p) {
                 }
             } else if (func_0208c178(p->mUnk_310) != 0) {
                 d = func_0208c16c(p->mUnk_310);
-                p->mUnk_3be = data_usa_02154a48[d - 1];
+                p->mRaceStartFrameCount = data_usa_02154a48[d - 1];
                 p->mUnk_44 |= 0x1800000;
-                StartKartBoost(p, KART_BOOST_RACE_START, (s16) p->mUnk_3be);
+                StartKartBoost(p, KART_BOOST_RACE_START, (s16) p->mRaceStartFrameCount);
                 if (!(p->mUnk_48 & 0x840)) {
                     func_0210af40(p, p->mUnk_3cc, 5);
                 }
@@ -286,7 +286,7 @@ void func_0206f914(Kart *p) {
             if (c > 0xf34) {
                 if (!(p->mUnk_4c & 0x20000000)) {
                     p->mUnk_4c |= 0x20000000;
-                    p->mUnk_3be = 0x78;
+                    p->mRaceStartFrameCount = 0x78;
                     func_02068a64(p, 1, 1);
                     h = data_usa_02165608;
                     w = p->mUnk_7c;
@@ -314,9 +314,9 @@ void func_0206f914(Kart *p) {
                 } else if (c < 0xf0a) {
                     d = 4;
                 }
-                p->mUnk_3be = data_usa_02154a48[d - 1];
+                p->mRaceStartFrameCount = data_usa_02154a48[d - 1];
                 p->mUnk_44 |= 0x1800000;
-                StartKartBoost(p, KART_BOOST_RACE_START, (s16) p->mUnk_3be);
+                StartKartBoost(p, KART_BOOST_RACE_START, (s16) p->mRaceStartFrameCount);
                 if (!(p->mUnk_48 & 0x840)) {
                     func_0210af40(p, p->mUnk_3cc, 5);
                 }
@@ -512,7 +512,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
                 p->mUnk_48 &= 0xdfe77fdf;
                 p->mBoostTimer = 0;
                 p->mUnk_538.mUnk_00 = 0;
-                p->mUnk_23c = 0;
+                p->mMiniTurboTimer = 0;
                 if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
                     if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
                         ResetCameraHalfFovAngleGoal();

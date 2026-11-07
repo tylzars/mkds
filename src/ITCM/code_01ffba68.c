@@ -535,34 +535,34 @@ void UpdateKartSpeedLimitGoal(Kart *p) {
     s32 *q;
     u32 f;
 
-    p->mSpeedLimitGoal = ((s64) (s32) (((s64) p->mPhysicalParam->mBaseSpeedLimit * p->mUnk_dc) >> 12) *
+    p->mSpeedLimitGoal = ((s64) (s32) (((s64) p->mPhysicalParam->mBaseSpeedLimit * p->mSpeedLimitFactor) >> 12) *
                           (s32) (((s64) (s32) p->mUnk_d4 * p->mUnk_d8) >> 12)) >>
                          12;
     q = &p->mSpeedLimitGoal;
     if (p->mUnk_7c & 0x402000) {
         *q = p->mPhysicalParam->mBaseSpeedLimit;
-        p->mUnk_dc = 0x1000;
+        p->mSpeedLimitFactor = 0x1000;
     }
     if (p->mUnk_48 & 0x10000000) {
         *q = p->mUnk_4c4;
-        p->mUnk_dc = 0x1000;
+        p->mSpeedLimitFactor = 0x1000;
     }
     f = p->mUnk_48;
     if (f & KART_48_BOOST) {
         if ((p->mUnk_4c & 0x10000040) || (f & 0x20000000)) {
             *q = p->mPhysicalParam->mBaseSpeedLimit;
-            p->mUnk_dc = 0x1000;
+            p->mSpeedLimitFactor = 0x1000;
         }
         *q = ((s64) *q * 0x14cd) >> 12;
         if (p->mUnk_48 & 0x400001) {
             if (*q < 0x8800) {
                 *q = 0x8800;
-                p->mUnk_dc = 0x1000;
+                p->mSpeedLimitFactor = 0x1000;
             }
         }
     } else if (p->mUnk_4c & 0x10000040) {
         *q = ((s64) p->mPhysicalParam->mBaseSpeedLimit * 0x1333) >> 12;
-        p->mUnk_dc = 0x1000;
+        p->mSpeedLimitFactor = 0x1000;
     }
 }
 
@@ -582,9 +582,9 @@ void UpdateKartSpeedLimit(Kart *p) {
 void func_01ffbd9c(Kart *p) {
     FX_DivAsync(p->mVelocityLength, p->mSpeedLimit);
     if (p->mUnk_44 & KART_44_ON_GROUND) {
-        Vec3CrossUnrounded(&p->mUnk_120, &p->mUnk_244, &p->mUnk_278);
+        Vec3CrossUnrounded(&p->mUnk_120, &p->mUnk_244, &p->mForward);
     } else {
-        GetKartForward(p, &p->mUnk_278);
+        GetKartForward(p, &p->mForward);
     }
     p->mVelocityLengthRatio = FX_GetDivResult();
     if (p->mVelocityLengthRatio > 0x1000) {

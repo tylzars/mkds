@@ -392,7 +392,7 @@ void ComputeJgMatrixAndInverse(void) {
     gJgMatrix.mUnk_00[1] = data_02159494;
 
     if (func_0203c5e4() != 0) {
-        v = &gJgKart->mUnk_50;
+        v = &gJgKart->mTurnedForward;
         gJgMatrix.mUnk_00[2].x = -v->x;
         gJgMatrix.mUnk_00[2].y = -v->y;
         gJgMatrix.mUnk_00[2].z = -v->z;

@@ -168,12 +168,12 @@ void func_02064d60(Kart *a, Vec3 *b) {
     c = a->mUnk_514;
     a->mUnk_3f8 = 0x1000;
     if (a->mAirborneFrames > 5 && (a->mUnk_514->mUnk_44 & 1) == 0) {
-        a->mUnk_3a8 = 0xf6;
+        a->mQuaternionBlendFactor = 0xf6;
         func_02070484(a, &a->mUnk_100_q);
     } else {
         func_01ffad14(a, b);
     }
-    QuaternionBlend(&a->mUnk_f0_q, &a->mUnk_100_q, &a->mUnk_f0_q, a->mUnk_3a8);
+    QuaternionBlend(&a->mUnk_f0_q, &a->mUnk_100_q, &a->mUnk_f0_q, a->mQuaternionBlendFactor);
     e = a->mHeadingAngle - c->mUnk_0e;
     if ((e > 0 ? e : -e) > 0x7fff) {
         if (e > 0) {

@@ -94,7 +94,7 @@ void StartKartState6(Kart *p) {
     p->mUnk_48 &= 0xdfe77fdf;
     p->mBoostTimer = 0;
     p->mUnk_538.mUnk_00 = 0;
-    p->mUnk_23c = 0;
+    p->mMiniTurboTimer = 0;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
             ResetCameraHalfFovAngleGoal();
@@ -410,7 +410,7 @@ void StartKartState4(Kart *p, const Vec3 *a, s32 b) {
         p->mUnk_2d8.x += x;
         p->mUnk_2d8.z += z;
         p->mVerticalSpeed += y;
-        r = Vec3DotUnrounded(&p->mUnk_50, a);
+        r = Vec3DotUnrounded(&p->mTurnedForward, a);
         if (r <= 0) {
             p->mForwardSpeed = 0;
         } else {
@@ -516,7 +516,7 @@ s32 StartKartState5(Kart *p, const Vec3 *a, s32 b) {
         p->mUnk_2d8.x += x;
         p->mUnk_2d8.z += z;
         p->mVerticalSpeed += y;
-        r = Vec3DotUnrounded(&p->mUnk_50, &v);
+        r = Vec3DotUnrounded(&p->mTurnedForward, &v);
         if (r <= 0) {
             p->mForwardSpeed = 0;
         } else {

@@ -236,7 +236,7 @@ void UpdateChaseCameraCollision(Camera *a, Kart *b, Vec3 *c) {
                       NULL, NULL) != 0 &&
         (j & 0xc00) == 0) {
         if (j & 0x214300) {
-            y = b->mUnk_50;
+            y = b->mTurnedForward;
             if (b->mForwardSpeed <= 0) {
                 y.x = -y.x;
                 y.y = -y.y;

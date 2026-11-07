@@ -119,7 +119,7 @@ u8 CollideItemObjectWithCrab(Crab *a, Kart *b, u8 *c, u8 *d) {
                     (s64) b->mUnk_05c.z * b->mUnk_05c.z >=
                 0x10) {
                 Vec3NormalizeAndGetLengthUnchecked(&b->mUnk_05c, &v);
-                func_0209b388(a, &b->mUnk_50, &v, NULL);
+                func_0209b388(a, &b->mTurnedForward, &v, NULL);
             } else {
                 func_0209b388(a, NULL, NULL, NULL);
             }

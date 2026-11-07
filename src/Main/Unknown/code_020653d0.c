@@ -188,11 +188,11 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                     MTX_RotAxis33((MtxFx43 *) &m2, &p->mUnk_120, gPairsByAngle[0xba], gPairsByAngle[0xbb]);
                     MTX_Concat33(m2.mUnk_00, m1.mUnk_00, m1.mUnk_00);
                 }
-                MTX_MultVec33(&p->mUnk_278, m1.mUnk_00, &p->mUnk_50);
+                MTX_MultVec33(&p->mForward, m1.mUnk_00, &p->mTurnedForward);
                 k = p->mForwardSpeed;
-                v2.x = ((s64) p->mUnk_50.x * k) >> 12;
-                v2.y = ((s64) p->mUnk_50.y * k) >> 12;
-                v2.z = ((s64) p->mUnk_50.z * k) >> 12;
+                v2.x = ((s64) p->mTurnedForward.x * k) >> 12;
+                v2.y = ((s64) p->mTurnedForward.y * k) >> 12;
+                v2.z = ((s64) p->mTurnedForward.z * k) >> 12;
                 VEC_Add(&v, &v2, &v);
                 VEC_Add(&v, &p->mUnk_2d8, &v);
                 VEC_Add(&p->mVelocity, &p->mUnk_2d8, &p->mVelocity);

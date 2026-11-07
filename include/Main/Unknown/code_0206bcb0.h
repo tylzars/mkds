@@ -232,7 +232,7 @@ typedef struct Kart {
     /* 44 */ vu32 mUnk_44;
     /* 48 */ vu32 mUnk_48;
     /* 4c */ vu32 mUnk_4c;
-    /* 50 */ Vec3 mUnk_50;
+    /* 50 */ Vec3 mTurnedForward;
     /* 05c */ Vec3 mUnk_05c;
     /* 68 */ Vec3 mUnk_68;
     /* 74 */ u16 mIndex;
@@ -258,7 +258,7 @@ typedef struct Kart {
     /* d0 */ s32 mSpeedLimit;
     /* d4 */ u32 mUnk_d4;
     /* d8 */ s32 mUnk_d8;
-    /* dc */ s32 mUnk_dc;
+    /* dc */ s32 mSpeedLimitFactor;
     /* e0 */ union {
         struct {
             s32 mUnk_e0;
@@ -328,7 +328,7 @@ typedef struct Kart {
     /* 236 */ u16 mHeadingAngle;
     /* 238 */ s16 mBoostTimer;
     /* 23a */ s16 mUnk_23a;
-    /* 23c */ s16 mUnk_23c;
+    /* 23c */ s16 mMiniTurboTimer;
     /* 23e */ u8 mUnk_23e[2];
     /* 240 */ u32 mUnk_240;
     /* 244 */ Vec3 mUnk_244;
@@ -340,7 +340,7 @@ typedef struct Kart {
     /* 264 */ u8 mUnk_264[4];
     /* 268 */ Vec3 mUnk_268;
     /* 274 */ s32 mUnk_274;
-    /* 278 */ Vec3 mUnk_278;
+    /* 278 */ Vec3 mForward;
     /* 284 */ Vec3 mUnk_284;
     /* 290 */ Vec3 mUnk_290;
     /* 29c */ s32 mUnk_29c;
@@ -431,14 +431,14 @@ typedef struct Kart {
     // ratio and used by DrawKart; 0 at reset.
     /* 3a4 */ u16 mTireSpinAngle;
     /* 3a6 */ u8 mUnk_3a6[2];
-    /* 3a8 */ s32 mUnk_3a8;
+    /* 3a8 */ s32 mQuaternionBlendFactor;
     /* 3ac */ u16 mUnk_3ac;
     /* 3ae */ u8 mUnk_3ae[2];
     // mVelocity, minus mVerticalSpeed on a floor hit, shifted right by 4 each step (func_01ff9b70); copied or scaled
     // into the velocity (mUnk_40) of effect objects.
     /* 3b0 */ Vec3 mEffectVelocity;
     /* 3bc */ u16 mUnk_3bc;
-    /* 3be */ u16 mUnk_3be;
+    /* 3be */ u16 mRaceStartFrameCount;
     /* 3c0 */ s16 mUnk_3c0;
     /* 3c2 */ u8 mUnk_3c2[2];
     // Number of the course respawn slot this Kart goes back to, set when it falls or when it respawns with none chosen;
