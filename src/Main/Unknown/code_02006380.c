@@ -217,19 +217,19 @@ s32 func_02006508(u8 *a, u16 b, u8 c) {
 }
 
 s32 func_02006458(u32 a, s32 b) {
-    Unk02007014 *v1;
+    BlockListNode *v1;
     s32 i;
-    v1 = func_02007040();
+    v1 = GetBlockListHead();
     if (a < 1000) {
         return b;
     }
-    for (; v1 != NULL; v1 = v1->mUnk_28) {
-        if (v1->mUnk_00 == a) {
+    for (; v1 != NULL; v1 = v1->mNext) {
+        if (v1->mId == a) {
             if (a == data_02161774) {
                 i = 0;
                 while (b == data_02161770 || b == data_02161778) {
                     b++;
-                    if (b > (v1->mUnk_04 + (s32) func_020070d8() - 1) / (s32) func_020070d8() - 1) {
+                    if (b > (v1->mSize + (s32) GetSendChunkSize() - 1) / (s32) GetSendChunkSize() - 1) {
                         b = 0;
                     }
                     i++;
@@ -248,43 +248,43 @@ s32 func_02006458(u32 a, s32 b) {
 }
 
 u32 func_020063f4(u32 a, u32 b) {
-    Unk02007014 *v1;
+    BlockListNode *v1;
     u32 i;
-    v1 = func_02007040();
+    v1 = GetBlockListHead();
     if (a < 1000) {
-        for (i = 0;; i++, v1 = v1->mUnk_28) {
+        for (i = 0;; i++, v1 = v1->mNext) {
             if (v1 == NULL) {
                 break;
             }
             if (i == a) {
-                return (u32) v1 + b * func_020070d8();
+                return (u32) v1 + b * GetSendChunkSize();
             }
         }
         return 0;
     }
-    for (; v1 != NULL; v1 = v1->mUnk_28) {
-        if (v1->mUnk_00 == a) {
-            v1 = (Unk02007014 *) v1->mUnk_2c;
-            return (u32) v1 + b * func_020070d8();
+    for (; v1 != NULL; v1 = v1->mNext) {
+        if (v1->mId == a) {
+            v1 = (BlockListNode *) v1->mData;
+            return (u32) v1 + b * GetSendChunkSize();
         }
     }
     return 0;
 }
 
-void func_0200639c(Unk0200628c *a, s32 b, void *c, u32 d) {
+void func_0200639c(ChunkReceiveState *a, s32 b, void *c, u32 d) {
     s32 v1;
-    v1 = func_020070e4();
+    v1 = GetReceiveChunkSize();
     a->mUnk_00 = b;
     a->mUnk_08 = 0;
     a->mUnk_0c = 0;
-    a->mUnk_10 = 0;
-    a->mUnk_04 = b / v1 + ((b % v1) != 0 ? 1 : 0);
+    a->mReceivedChunkCount = 0;
+    a->mChunkCount = b / v1 + ((b % v1) != 0 ? 1 : 0);
     a->mUnk_14 = c;
     a->mUnk_18 = (u8 *) d;
-    MI_CpuFill8(c, 0, func_02006f98(b));
+    MI_CpuFill8(c, 0, GetChunkBitmapSize(b));
 }
 
-BOOL func_02006380(Unk0200628c *a, s32 b) {
+BOOL func_02006380(ChunkReceiveState *a, s32 b) {
     u32 v1;
     v1 = a->mUnk_14[b >> 5];
     if ((v1 & (1 << (b & 0x1f))) != 0) {

@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk0200628c Unk0200628c;
+typedef struct ChunkReceiveState ChunkReceiveState;
 
-void func_0200635c(Unk0200628c *a, u32 b);
+void func_0200635c(ChunkReceiveState *a, u32 b);

@@ -4,7 +4,7 @@
 
 #pragma thumb on
 
-void func_0204f19c(Unk0216f3dc_9c *a) {
+void func_0204f19c(BlockTransferRecord *a) {
     s32 s = a->mUnk_04;
     if (s == 10) {
         func_0204f220(&a->mUnk_14, *((u8 *) &a->mUnk_1c[0] + 1));

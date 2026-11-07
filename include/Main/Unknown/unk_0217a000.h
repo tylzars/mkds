@@ -383,7 +383,7 @@ typedef struct Unk0217aa00_1608 {
 // Object behind data_0217aa00.
 // 0x88-byte entries from 0x16a0 of Unk0217aa00.
 typedef struct Unk0217aa00_16a0 {
-    /* 00 */ Unk02007014 mUnk_00;
+    /* 00 */ BlockListNode mUnk_00;
     /* 34 */ u8 mUnk_34;
     /* 35 */ u8 mUnk_35[0x3f];
     /* 74 */ u32 *mUnk_74;

@@ -12,48 +12,48 @@
 
 #pragma thumb on
 
-u32 func_020070e4(void) {
-    return (data_0216f3d0);
+u32 GetReceiveChunkSize(void) {
+    return (gReceiveChunkSize);
 }
 
-u32 func_020070d8(void) {
-    return (data_0216f3d4);
+u32 GetSendChunkSize(void) {
+    return (gSendChunkSize);
 }
 
-void func_020070cc(u32 p0) {
-    data_0216f3d0 = (u16) p0;
+void SetReceiveChunkSize(u32 p0) {
+    gReceiveChunkSize = (u16) p0;
 }
 
-void func_020070c0(u32 p0) {
-    data_0216f3d4 = (u16) p0;
+void SetSendChunkSize(u32 p0) {
+    gSendChunkSize = (u16) p0;
 }
 
-Unk0216f3dc *func_020070b8(void) {
-    return (Unk0216f3dc *) data_0216f3dc;
+BlockTransfer *GetBlockTransfer(void) {
+    return (BlockTransfer *) gBlockTransfer;
 }
 
-u32 func_020070b0(void) {
-    return ((u32) (&data_0216f478));
+u32 GetNextRequestAddress(void) {
+    return ((u32) (&gNextRequest));
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-u32 func_0200704c(const Unk0216f3dc_9c *a) {
+u32 TrySetNextRequest(const BlockTransferRecord *a) {
     u32 v1;
     s32 *v2;
     v1 = OS_DisableInterrupts();
-    if (data_0216f3c8 != 1) {
+    if (gBlockTransferStarted != 1) {
         OS_RestoreInterrupts(v1);
         return 0;
     }
-    v2 = (s32 *) func_020070b0();
+    v2 = (s32 *) GetNextRequestAddress();
     if (v2 == NULL || *v2 != 0) {
         OS_RestoreInterrupts(v1);
         return 0;
     }
-    MIi_CpuCopy32(a, data_0216f478, 0x9c);
+    MIi_CpuCopy32(a, gNextRequest, 0x9c);
     OS_RestoreInterrupts(v1);
     return 1;
 }
@@ -62,11 +62,11 @@ u32 func_0200704c(const Unk0216f3dc_9c *a) {
 
 #pragma thumb on
 
-Unk02007014 *func_02007040(void) {
+BlockListNode *GetBlockListHead(void) {
     return data_0216f3d8;
 }
 
-void func_02007034(Unk02007014 *p0) {
+void SetBlockListHead(BlockListNode *p0) {
     data_0216f3d8 = p0;
 }
 
@@ -74,10 +74,10 @@ void func_02007034(Unk02007014 *p0) {
 
 #pragma thumb on
 
-Unk02007014 *func_02007014(u32 a) {
-    Unk02007014 *v1;
-    for (v1 = func_02007040(); v1 != NULL; v1 = v1->mUnk_28) {
-        if (v1->mUnk_00 == a) {
+BlockListNode *FindBlockById(u32 a) {
+    BlockListNode *v1;
+    for (v1 = GetBlockListHead(); v1 != NULL; v1 = v1->mNext) {
+        if (v1->mId == a) {
             return v1;
         }
     }
@@ -88,19 +88,19 @@ Unk02007014 *func_02007014(u32 a) {
 
 #pragma thumb on
 
-void func_02007008(u32 p0) {
-    data_02161780 = p0;
+void SetOwnIndex(u32 p0) {
+    gOwnIndex = p0;
 }
 
-u32 func_02006ffc(void) {
-    return data_02161780;
+u32 GetOwnIndex(void) {
+    return gOwnIndex;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-s32 func_02006fdc(s32 a) {
+s32 GetLowestSetBitIndex(s32 a) {
     s32 i;
     for (i = 0; i < 16; i++) {
         if (((a >> i) & 1) != 0) {
@@ -110,35 +110,35 @@ s32 func_02006fdc(s32 a) {
     return -1;
 }
 
-u32 func_02006f98(s32 a) {
+u32 GetChunkBitmapSize(s32 a) {
     s32 v1;
     s32 v2;
-    v1 = func_020070e4();
+    v1 = GetReceiveChunkSize();
     v2 = a / v1 + ((a % v1) != 0 ? 1 : 0);
     return ((v2 >> 5) + ((v2 & 0x1f) != 0 ? 1 : 0)) << 2;
 }
 
-BOOL func_02006f50(u32 a, s32 b, s32 *c, s32 *d) {
-    Unk0216f3dc *v1;
-    Unk0200628c *v2;
-    v1 = func_020070b8();
-    v2 = &v1->mUnk_1d4[b].mUnk_24;
-    if (v1->mUnk_000.mUnk_00 == 4 && v1->mUnk_000.mUnk_14 == a) {
-        *d = v2->mUnk_04;
-        *c = v2->mUnk_10;
+BOOL TryGetBlockReceiveProgress(u32 a, s32 b, s32 *c, s32 *d) {
+    BlockTransfer *v1;
+    ChunkReceiveState *v2;
+    v1 = GetBlockTransfer();
+    v2 = &v1->mEntries[b].mReceive;
+    if (v1->mCurrentRequest.mKind == 4 && v1->mCurrentRequest.mUnk_14 == a) {
+        *d = v2->mChunkCount;
+        *c = v2->mReceivedChunkCount;
         return TRUE;
     }
     return FALSE;
 }
 
-u32 func_02006f14(s32 a, s32 b) {
-    switch (func_020070b8()->mUnk_000.mUnk_00) {
+u32 TrySetChunkSizes(s32 a, s32 b) {
+    switch (GetBlockTransfer()->mCurrentRequest.mKind) {
         case 4:
         case 6:
             return 0;
     }
-    func_020070c0(a - 0xe);
-    func_020070cc(b - 0xe);
+    SetSendChunkSize(a - 0xe);
+    SetReceiveChunkSize(b - 0xe);
     return 1;
 }
 
@@ -146,11 +146,11 @@ u32 func_02006f14(s32 a, s32 b) {
 
 #pragma thumb on
 
-int func_02006ef8(void) {
+int CountBlocks(void) {
     int v1;
-    Unk02007014 *v2;
+    BlockListNode *v2;
     v1 = 0;
-    for (v2 = func_02007040(); v2 != NULL; v2 = v2->mUnk_28) {
+    for (v2 = GetBlockListHead(); v2 != NULL; v2 = v2->mNext) {
         v1 = v1 + 1;
     }
     return v1;
@@ -160,26 +160,26 @@ int func_02006ef8(void) {
 
 #pragma thumb on
 
-s32 func_02006e74(Unk02007014 *a, u32 b, const void *c, u8 *d, u32 e, u16 f) {
-    Unk02007014 *v1;
+s32 AddBlock(BlockListNode *a, u32 b, const void *c, u8 *d, u32 e, u16 f) {
+    BlockListNode *v1;
     u32 v2;
     v2 = OS_DisableInterrupts();
-    if (func_02007040() == NULL) {
-        func_02007034(a);
+    if (GetBlockListHead() == NULL) {
+        SetBlockListHead(a);
     } else {
-        for (v1 = func_02007040(); v1->mUnk_28 != NULL; v1 = v1->mUnk_28) {
+        for (v1 = GetBlockListHead(); v1->mNext != NULL; v1 = v1->mNext) {
         }
-        v1->mUnk_28 = a;
+        v1->mNext = a;
     }
     if (d == NULL) {
-        a->mUnk_32 = 1;
+        a->mHasNoData = 1;
     } else {
-        a->mUnk_2c = d;
-        a->mUnk_32 = 0;
+        a->mData = d;
+        a->mHasNoData = 0;
     }
-    a->mUnk_28 = NULL;
-    a->mUnk_00 = b;
-    a->mUnk_04 = e;
+    a->mNext = NULL;
+    a->mId = b;
+    a->mSize = e;
     a->mUnk_30 = f;
     if (c != NULL) {
         MI_CpuCopy8(c, a->mUnk_08, 0x20);
@@ -190,24 +190,24 @@ s32 func_02006e74(Unk02007014 *a, u32 b, const void *c, u8 *d, u32 e, u16 f) {
     return 1;
 }
 
-Unk02007014 *func_02006df8(u32 a) {
-    Unk02007014 *v1;
-    Unk02007014 *v2;
+BlockListNode *RemoveBlock(u32 a) {
+    BlockListNode *v1;
+    BlockListNode *v2;
     u32 v3;
     v3 = OS_DisableInterrupts();
-    v1 = func_02007040();
+    v1 = GetBlockListHead();
     if (v1 == NULL) {
         OS_RestoreInterrupts(v3);
         return NULL;
     }
-    if (v1->mUnk_00 == a) {
-        func_02007034(v1->mUnk_28);
+    if (v1->mId == a) {
+        SetBlockListHead(v1->mNext);
         OS_RestoreInterrupts(v3);
         return v1;
     }
-    for (v2 = v1->mUnk_28; v2 != NULL; v1 = v2, v2 = v2->mUnk_28) {
-        if (v2->mUnk_00 == a) {
-            v1->mUnk_28 = v2->mUnk_28;
+    for (v2 = v1->mNext; v2 != NULL; v1 = v2, v2 = v2->mNext) {
+        if (v2->mId == a) {
+            v1->mNext = v2->mNext;
             OS_RestoreInterrupts(v3);
             return v2;
         }
@@ -216,57 +216,57 @@ Unk02007014 *func_02006df8(u32 a) {
     return NULL;
 }
 
-u32 func_02006ddc(u16 a, void (*b)(Unk0216f3dc_9c *)) {
-    Unk0216f3dc_9c v1;
-    v1.mUnk_00 = 2;
-    v1.mUnk_08 = a;
-    v1.mUnk_10 = b;
-    return func_0200704c(&v1);
+u32 RequestBlockCount(u16 a, void (*b)(BlockTransferRecord *)) {
+    BlockTransferRecord v1;
+    v1.mKind = 2;
+    v1.mIndexMask = a;
+    v1.mCallback = b;
+    return TrySetNextRequest(&v1);
 }
 
-u32 func_02006db0(u16 a, u32 b, const void *c, void (*d)(Unk0216f3dc_9c *)) {
-    Unk0216f3dc_9c v1;
-    v1.mUnk_00 = 6;
-    v1.mUnk_08 = a;
-    v1.mUnk_10 = d;
+u32 RequestBlockNode(u16 a, u32 b, const void *c, void (*d)(BlockTransferRecord *)) {
+    BlockTransferRecord v1;
+    v1.mKind = 6;
+    v1.mIndexMask = a;
+    v1.mCallback = d;
     v1.mUnk_14 = b;
     v1.mUnk_18 = 0x28;
     MIi_CpuCopy32(c, &v1.mUnk_1c, 0x40);
-    return func_0200704c(&v1);
+    return TrySetNextRequest(&v1);
 }
 
-u32 func_02006d78(u16 a, u32 b, const void *c, u32 d, const void *e, void (*f)(Unk0216f3dc_9c *)) {
-    Unk0216f3dc_9c v1;
-    v1.mUnk_00 = 4;
-    v1.mUnk_08 = a;
-    v1.mUnk_10 = f;
+u32 RequestBlockData(u16 a, u32 b, const void *c, u32 d, const void *e, void (*f)(BlockTransferRecord *)) {
+    BlockTransferRecord v1;
+    v1.mKind = 4;
+    v1.mIndexMask = a;
+    v1.mCallback = f;
     v1.mUnk_14 = b;
     v1.mUnk_18 = d;
     MIi_CpuCopy32(c, &v1.mUnk_1c, 0x40);
-    MIi_CpuCopy32(e, &v1.mUnk_5c, 0x40);
-    return func_0200704c(&v1);
+    MIi_CpuCopy32(e, &v1.mChunkBitmaps, 0x40);
+    return TrySetNextRequest(&v1);
 }
 
-u32 func_02006d3c(u16 a, const void *b, s32 c, void (*d)(void)) {
-    Unk0216f3dc_9c v1;
-    Unk0216f3dc_9c *v2;
+u32 RequestSendBytes(u16 a, const void *b, s32 c, void (*d)(void)) {
+    BlockTransferRecord v1;
+    BlockTransferRecord *v2;
     if (c < 0 || c > 9) {
         return 0;
     }
-    v1.mUnk_00 = 10;
+    v1.mKind = 10;
     v2 = &v1;
-    v2->mUnk_08 = a;
-    v2->mUnk_10 = (void (*)(Unk0216f3dc_9c *)) d;
+    v2->mIndexMask = a;
+    v2->mCallback = (void (*)(BlockTransferRecord *)) d;
     MI_CpuCopy8(b, &v2->mUnk_14, c);
     *((u8 *) v2 + 0x1d) = c;
-    return func_0200704c(&v1);
+    return TrySetNextRequest(&v1);
 }
 
 s32 func_02006c2c(u8 *a, s32 b) {
-    Unk0216f3dc *v1;
+    BlockTransfer *v1;
     s32 i;
     s32 v2;
-    v1 = func_020070b8();
+    v1 = GetBlockTransfer();
     i = data_0216177c;
     do {
         i++;
@@ -327,14 +327,14 @@ s32 func_02006c2c(u8 *a, s32 b) {
 
 #pragma thumb on
 
-void func_02006c0c(u32 a, const u8 *b, int c) {
+void ReceivePacketFromIndex(u32 a, const u8 *b, int c) {
     if (0 < c) {
-        func_02005dac(func_020070b8(), a, b, c);
+        func_02005dac(GetBlockTransfer(), a, b, c);
     }
 }
 
 void func_02006bec(const u8 *a, u32 b) {
-    func_02005dac(func_020070b8(), 0, a, b);
+    func_02005dac(GetBlockTransfer(), 0, a, b);
 }
 
 #pragma thumb off
@@ -342,8 +342,8 @@ void func_02006bec(const u8 *a, u32 b) {
 #pragma thumb on
 
 void func_02006b50(u8 *a, s32 b) {
-    Unk0216f3dc *v1;
-    v1 = func_020070b8();
+    BlockTransfer *v1;
+    v1 = GetBlockTransfer();
     if (func_02005cc8(v1, 0, a, b) != 0) {
         return;
     }
@@ -371,102 +371,102 @@ void func_02006b50(u8 *a, s32 b) {
     func_020068b4(a, 0xffff, 0);
 }
 
-void func_02006aac(s32 a, s32 b, void (*c)(Unk0216f3dc_9c *)) {
-    Unk0216f3dc_9c v1;
-    Unk0216f3dc *v2;
+void func_02006aac(s32 a, s32 b, void (*c)(BlockTransferRecord *)) {
+    BlockTransferRecord v1;
+    BlockTransfer *v2;
     s32 i;
     u32 v3;
     v3 = OS_DisableInterrupts();
-    if (data_0216f3c8 == 1) {
+    if (gBlockTransferStarted == 1) {
         OS_RestoreInterrupts(v3);
         return;
     }
-    data_0216f3c8 = 1;
-    func_02007008(0);
-    func_02007034(NULL);
-    v2 = func_020070b8();
-    v2->mUnk_000.mUnk_00 = 0;
-    v2->mUnk_000.mUnk_08 = 0;
-    v2->mUnk_000.mUnk_0a = 0;
-    v2->mUnk_000.mUnk_10 = NULL;
-    v2->mUnk_138.mUnk_00 = 0;
-    v2->mUnk_138.mUnk_08 = 0;
-    v2->mUnk_138.mUnk_0a = 0;
-    v2->mUnk_138.mUnk_10 = c;
+    gBlockTransferStarted = 1;
+    SetOwnIndex(0);
+    SetBlockListHead(NULL);
+    v2 = GetBlockTransfer();
+    v2->mCurrentRequest.mKind = 0;
+    v2->mCurrentRequest.mIndexMask = 0;
+    v2->mCurrentRequest.mFromIndexMask = 0;
+    v2->mCurrentRequest.mCallback = NULL;
+    v2->mCallbackRecord.mKind = 0;
+    v2->mCallbackRecord.mIndexMask = 0;
+    v2->mCallbackRecord.mFromIndexMask = 0;
+    v2->mCallbackRecord.mCallback = c;
     for (i = 0; i < 16; i++) {
-        v2->mUnk_1d4[i].mUnk_03 = 0;
+        v2->mEntries[i].mLastCallbackId = 0;
     }
-    v1.mUnk_00 = 0;
-    func_0200704c(&v1);
+    v1.mKind = 0;
+    TrySetNextRequest(&v1);
     func_020070f0();
-    func_020070c0(a - 0xe);
-    func_020070cc(b - 0xe);
+    SetSendChunkSize(a - 0xe);
+    SetReceiveChunkSize(b - 0xe);
     OS_RestoreInterrupts(v3);
 }
 
-void func_02006a10(void (*a)(Unk0216f3dc_9c *)) {
-    Unk0216f3dc_9c v1;
-    Unk0216f3dc *v2;
+void func_02006a10(void (*a)(BlockTransferRecord *)) {
+    BlockTransferRecord v1;
+    BlockTransfer *v2;
     s32 i;
     u32 v3;
     v3 = OS_DisableInterrupts();
-    if (data_0216f3c8 == 1) {
+    if (gBlockTransferStarted == 1) {
         OS_RestoreInterrupts(v3);
         return;
     }
-    data_0216f3c8 = 1;
-    func_02007008(-1);
-    func_02007034(NULL);
-    v2 = func_020070b8();
-    v2->mUnk_000.mUnk_00 = 0;
-    v2->mUnk_000.mUnk_08 = 0;
-    v2->mUnk_000.mUnk_0a = 0;
-    v2->mUnk_000.mUnk_10 = NULL;
-    v2->mUnk_138.mUnk_00 = 0;
-    v2->mUnk_138.mUnk_08 = 0;
-    v2->mUnk_138.mUnk_0a = 0;
-    v2->mUnk_138.mUnk_10 = a;
+    gBlockTransferStarted = 1;
+    SetOwnIndex(-1);
+    SetBlockListHead(NULL);
+    v2 = GetBlockTransfer();
+    v2->mCurrentRequest.mKind = 0;
+    v2->mCurrentRequest.mIndexMask = 0;
+    v2->mCurrentRequest.mFromIndexMask = 0;
+    v2->mCurrentRequest.mCallback = NULL;
+    v2->mCallbackRecord.mKind = 0;
+    v2->mCallbackRecord.mIndexMask = 0;
+    v2->mCallbackRecord.mFromIndexMask = 0;
+    v2->mCallbackRecord.mCallback = a;
     for (i = 0; i < 16; i++) {
-        v2->mUnk_1d4[i].mUnk_03 = 0;
+        v2->mEntries[i].mLastCallbackId = 0;
     }
-    v1.mUnk_00 = 0;
-    func_0200704c(&v1);
+    v1.mKind = 0;
+    TrySetNextRequest(&v1);
     func_020070f0();
-    func_020070c0(0);
-    func_020070cc(0);
+    SetSendChunkSize(0);
+    SetReceiveChunkSize(0);
     OS_RestoreInterrupts(v3);
 }
 
-void func_02006974(void) {
-    Unk0216f3dc_9c v1;
-    Unk0216f3dc *v2;
+void StopBlockTransfer(void) {
+    BlockTransferRecord v1;
+    BlockTransfer *v2;
     s32 i;
     u32 v3;
     v3 = OS_DisableInterrupts();
-    if (data_0216f3c8 == 0) {
+    if (gBlockTransferStarted == 0) {
         OS_RestoreInterrupts(v3);
         return;
     }
-    data_0216f3c8 = 0;
-    func_02007008(-1);
-    func_02007034(NULL);
-    v2 = func_020070b8();
-    v2->mUnk_000.mUnk_00 = 0;
-    v2->mUnk_000.mUnk_08 = 0;
-    v2->mUnk_000.mUnk_0a = 0;
-    v2->mUnk_000.mUnk_10 = NULL;
-    v2->mUnk_138.mUnk_00 = 0;
-    v2->mUnk_138.mUnk_08 = 0;
-    v2->mUnk_138.mUnk_0a = 0;
-    v2->mUnk_138.mUnk_10 = NULL;
+    gBlockTransferStarted = 0;
+    SetOwnIndex(-1);
+    SetBlockListHead(NULL);
+    v2 = GetBlockTransfer();
+    v2->mCurrentRequest.mKind = 0;
+    v2->mCurrentRequest.mIndexMask = 0;
+    v2->mCurrentRequest.mFromIndexMask = 0;
+    v2->mCurrentRequest.mCallback = NULL;
+    v2->mCallbackRecord.mKind = 0;
+    v2->mCallbackRecord.mIndexMask = 0;
+    v2->mCallbackRecord.mFromIndexMask = 0;
+    v2->mCallbackRecord.mCallback = NULL;
     for (i = 0; i < 16; i++) {
-        v2->mUnk_1d4[i].mUnk_03 = 0;
+        v2->mEntries[i].mLastCallbackId = 0;
     }
-    v1.mUnk_00 = 0;
-    func_0200704c(&v1);
+    v1.mKind = 0;
+    TrySetNextRequest(&v1);
     func_020070f0();
-    func_020070c0(-1);
-    func_020070cc(-1);
+    SetSendChunkSize(-1);
+    SetReceiveChunkSize(-1);
     OS_RestoreInterrupts(v3);
 }
 

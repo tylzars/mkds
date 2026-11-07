@@ -2,6 +2,6 @@
 
 #pragma thumb on
 
-void func_0204f198(Unk0216f3dc_9c *a) {}
+void func_0204f198(BlockTransferRecord *a) {}
 
 #pragma thumb off

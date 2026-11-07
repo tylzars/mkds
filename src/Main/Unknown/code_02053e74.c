@@ -234,7 +234,7 @@ void func_02054aa0(void) {
         return;
     }
     if (data_0217aa00->mUnk_000c == 0x2c) {
-        func_02006f50(data_0217aa00->mUnk_1da0[0]->mUnk_00, 0, &c0, &c1);
+        TryGetBlockReceiveProgress(data_0217aa00->mUnk_1da0[0]->mUnk_00, 0, &c0, &c1);
     }
     if (data_0217aa00->mUnk_1e42 != 0) {
         data_0217aa00->mUnk_1e42 = data_0217aa00->mUnk_1e42 - 1;

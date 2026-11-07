@@ -246,7 +246,7 @@ void func_0204d28c(void) {
         n = data_02175ec0.mUnk_002c;
         p->mUnk_46e0 = FALSE;
         data_02175ec0.mUnk_0028 = g;
-        func_02006f14(g, n);
+        TrySetChunkSizes(g, n);
         g = p->mUnk_46e8;
         if (g == 0) {
             return;
@@ -256,7 +256,7 @@ void func_0204d28c(void) {
         v1.mUnk_04 = 0;
         v1.mUnk_00_4 = (data_02175ec0.mUnk_0028 >> 8) & 0xff;
         v1.mUnk_08 = data_02175ec0.mUnk_0028;
-        if (func_02006d3c(g, &v1, 9, func_0204d5bc) == 0) {
+        if (RequestSendBytes(g, &v1, 9, func_0204d5bc) == 0) {
             return;
         }
         p->mUnk_46d4 = TRUE;
@@ -316,7 +316,7 @@ void func_0204d28c(void) {
     v2.mUnk_00_8 = 1;
     v2.mUnk_00_4 = (data_02175ec0.mUnk_0028 >> 8) & 0xff;
     v2.mUnk_08 = data_02175ec0.mUnk_0028;
-    if (func_02006d3c(v4, &v2, 9, func_0204d5bc) == 0) {
+    if (RequestSendBytes(v4, &v2, 9, func_0204d5bc) == 0) {
         return;
     }
     p->mUnk_46d4 = TRUE;
@@ -339,7 +339,7 @@ void func_0204d18c(Unk02175ec0_440s *a, Unk0204c090 *b, s32 c) {
         if (b->mUnk_084 <= 0) {
             v4 = b->mUnk_038.mProp.w.mUnk_08 - b->mUnk_038.mProp.w.mUnk_04;
             v6 = b->mUnk_08c;
-            func_02006e74(&b->mUnk_004, v6, data_usa_0215470c, v4 <= 0x400u ? b->mUnk_0c0[0] : 0, v4, 0);
+            AddBlock(&b->mUnk_004, v6, data_usa_0215470c, v4 <= 0x400u ? b->mUnk_0c0[0] : 0, v4, 0);
             func_0204d110(&a->mUnk_46c8, &a->mUnk_46c4, b);
             b->mUnk_080 = 2;
         }
@@ -431,7 +431,7 @@ void func_0204cf5c(FSFile *a) {
     v1.mUnk_00_8 = b;
     v1.mUnk_00_4 = (data_02175ec0.mUnk_0028 >> 8) & 0xff;
     v1.mUnk_08 = data_02175ec0.mUnk_0028;
-    if (func_02006d3c(1, &v1, 9, func_0204d5bc) != 0) {
+    if (RequestSendBytes(1, &v1, 9, func_0204d5bc) != 0) {
         return;
     }
     OS_Terminate();
@@ -557,7 +557,7 @@ void func_0204c7e4(Unk0204c320 *a) {
     s32 v15;
     s32 v17;
 
-    i = func_02006fdc(a->mUnk_0a);
+    i = GetLowestSetBitIndex(a->mUnk_0a);
     if (a->mUnk_00 != 0xc) {
         return;
     }
@@ -618,7 +618,7 @@ void func_0204c7e4(Unk0204c320 *a) {
                     z->mUnk_46cc = z->mUnk_46cc | (1 << i);
                     v15 = p->mUnk_m.mUnk_04;
                     for (v3 = z->mUnk_46c4; v3 != NULL; v3 = v3->mUnk_000) {
-                        if (v3->mUnk_080 == 2 && v3->mUnk_004.mUnk_00 == v15) {
+                        if (v3->mUnk_080 == 2 && v3->mUnk_004.mId == v15) {
                             break;
                         }
                     }
@@ -626,7 +626,7 @@ void func_0204c7e4(Unk0204c320 *a) {
                         v3->mUnk_084 = v3->mUnk_084 - 1;
                         if (v3->mUnk_084 <= 0) {
                             v3->mUnk_088 = 0;
-                            func_02006df8(p->mUnk_m.mUnk_04);
+                            RemoveBlock(p->mUnk_m.mUnk_04);
                             func_0204d110(&z->mUnk_46c4, &z->mUnk_46c8, v3);
                             v3->mUnk_080 = 3;
                             func_0204bca0();
@@ -641,7 +641,7 @@ void func_0204c7e4(Unk0204c320 *a) {
             v5 = q->mUnk_w;
             q->mUnk_0e.mUnk_08 = 0;
             for (v4 = data_02179ec0.mUnk_b04; v4 != NULL; v4 = v4->mUnk_000) {
-                if (v4->mUnk_080 == 2 && v4->mUnk_004.mUnk_00 == v5) {
+                if (v4->mUnk_080 == 2 && v4->mUnk_004.mId == v5) {
                     break;
                 }
             }
@@ -722,7 +722,7 @@ void func_0204c320(Unk0204c320 *a) {
     u32 v10;
     void *v11;
 
-    i = func_02006fdc(a->mUnk_0a);
+    i = GetLowestSetBitIndex(a->mUnk_0a);
     s = (Unk0204bfac *) &data_usa_021762e0;
     switch (a->mUnk_00) {
         case 2:
@@ -732,7 +732,7 @@ void func_0204c320(Unk0204c320 *a) {
             data_02175ec0.mUnk_0028 = a->mUnk_14.h.mUnk_16 + 0xe;
             data_02175ec0.mUnk_002c = a->mUnk_14.h.mUnk_18 + 0xe;
             if (data_02175ec0.mUnk_0020 == NULL) {
-                func_02006db0(1, 0, s, (void (*)(Unk0216f3dc_9c *)) func_0204c320);
+                RequestBlockNode(1, 0, s, (void (*)(BlockTransferRecord *)) func_0204c320);
                 return;
             }
             if (data_02175ec0.mUnk_001c == NULL) {
@@ -787,8 +787,8 @@ void func_0204c320(Unk0204c320 *a) {
                 s->mUnk_080[0] = s->mUnk_afc;
             }
             s->mUnk_040[i] = (u32) data_02175ec0.mUnk_0020;
-            func_02006d78(1, 0x20000, s->mUnk_040, data_02175ec0.mUnk_0024, s->mUnk_080,
-                          (void (*)(Unk0216f3dc_9c *)) func_0204c320);
+            RequestBlockData(1, 0x20000, s->mUnk_040, data_02175ec0.mUnk_0024, s->mUnk_080,
+                             (void (*)(BlockTransferRecord *)) func_0204c320);
             return;
         case 4:
             if (a->mUnk_08 != 0) {
@@ -809,7 +809,7 @@ void func_0204c320(Unk0204c320 *a) {
             v6.mUnk_00_8 = 1;
             v6.mUnk_00_4 = (data_02175ec0.mUnk_0028 >> 8) & 0xff;
             v6.mUnk_08 = data_02175ec0.mUnk_0028;
-            if (func_02006d3c(1, &v6, 9, func_0204d5bc) != 0) {
+            if (RequestSendBytes(1, &v6, 9, func_0204d5bc) != 0) {
                 return;
             }
             OS_Terminate();
@@ -822,13 +822,13 @@ void func_0204c320(Unk0204c320 *a) {
             switch (v8->mUnk_00_0) {
                 case 1:
                     if (v8->mUnk_00_8 == 0) {
-                        func_02006ddc(1, (void (*)(Unk0216f3dc_9c *)) func_0204c320);
+                        RequestBlockCount(1, (void (*)(BlockTransferRecord *)) func_0204c320);
                         return;
                     }
                     s->mUnk_b08 = v8->mUnk_04;
                     s->mUnk_040[i] = data_02175ec0.mUnk_001c->mArg.w.mUnk_00;
-                    func_02006d78(1, s->mUnk_b08, s->mUnk_040, data_02175ec0.mUnk_001c->mArg.w.mUnk_08, s->mUnk_080,
-                                  (void (*)(Unk0216f3dc_9c *)) func_0204c320);
+                    RequestBlockData(1, s->mUnk_b08, s->mUnk_040, data_02175ec0.mUnk_001c->mArg.w.mUnk_08, s->mUnk_080,
+                                     (void (*)(BlockTransferRecord *)) func_0204c320);
                     return;
                 case 3:
                     v7 = data_02175ec0.mUnk_001c;
@@ -912,7 +912,7 @@ void func_0204c090(u32 a, void (*b)(s32 a), void *(*c)(s32 a, u32 b, void *c), u
     v3->mUnk_46ec = v2->mUnk_0028;
     DC_FlushRange(v3, 0x46f0);
     DC_WaitWriteBufferEmpty();
-    func_02006aac(v2->mUnk_0028, v2->mUnk_002c, (void (*)(Unk0216f3dc_9c *)) func_0204c7e4);
+    func_02006aac(v2->mUnk_0028, v2->mUnk_002c, (void (*)(BlockTransferRecord *)) func_0204c7e4);
     func_0204d6f4(f, g);
     v7 = v3->mUnk_46c0;
     v3->mUnk_46c0 = v7->mUnk_000;
@@ -920,7 +920,7 @@ void func_0204c090(u32 a, void (*b)(s32 a), void *(*c)(s32 a, u32 b, void *c), u
     v3->mUnk_46c4 = v7;
     v7->mUnk_084 = 1;
     MI_CpuFill8(v7, 0, 0x8c0);
-    func_02006e74(&v7->mUnk_004, 0x20000, data_usa_0215470c, v2->mUnk_0020, data_02175ec0.mUnk_0024, 0);
+    AddBlock(&v7->mUnk_004, 0x20000, data_usa_0215470c, v2->mUnk_0020, data_02175ec0.mUnk_0024, 0);
     v2->mUnk_000c = 1;
     func_0204bad8();
 }
@@ -953,7 +953,7 @@ void func_0204bfac(u32 a, void (*b)(s32 a), void *(*c)(s32 a, u32 b, void *c), u
     v3->mUnk_b08 = 0;
     DC_FlushRange(v3, 0xb0c);
     DC_WaitWriteBufferEmpty();
-    func_02006a10((void (*)(Unk0216f3dc_9c *)) func_0204c320);
+    func_02006a10((void (*)(BlockTransferRecord *)) func_0204c320);
     v2->mUnk_000c = 1;
 }
 
@@ -985,8 +985,8 @@ void func_0204be0c(void) {
     if (data_02175ec0.mUnk_0000 == 0) {
         w = (Unk021762e0 *) &data_usa_021762e0;
         WM_ReadStatus(w->mUnk_0340);
-        func_02007008(w->mUnk_04c4);
-        func_02006ddc(1, (void (*)(Unk0216f3dc_9c *)) func_0204c320);
+        SetOwnIndex(w->mUnk_04c4);
+        RequestBlockCount(1, (void (*)(BlockTransferRecord *)) func_0204c320);
     } else {
         data_02175ec0.mUnk_000c = 2;
         if (data_02175ec0.mUnk_0010 != NULL) {
@@ -1040,7 +1040,7 @@ void func_0204bcec(void) {
         } else {
             func_0204ba8c();
         }
-        func_02006974();
+        StopBlockTransfer();
         WM_SetPortCallback(data_02175ec0.mUnk_0030, NULL, NULL);
         data_usa_02175e84 = 0;
     }

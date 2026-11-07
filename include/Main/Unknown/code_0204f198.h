@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk0216f3dc_9c Unk0216f3dc_9c;
+typedef struct BlockTransferRecord BlockTransferRecord;
 
-void func_0204f198(Unk0216f3dc_9c *a);
+void func_0204f198(BlockTransferRecord *a);

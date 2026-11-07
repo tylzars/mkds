@@ -30,7 +30,7 @@ typedef struct Unk0204bfac {
 // Node of 0x8c0 bytes; func_0204c090 chains eight of them from 0xc0 of the object at 0x440 of data_02175ec0.
 typedef struct Unk0204c090 {
     /* 000 */ struct Unk0204c090 *mUnk_000;
-    /* 004 */ Unk02007014 mUnk_004;
+    /* 004 */ BlockListNode mUnk_004;
     /* 038 */ FSFile mUnk_038;
     /* 080 */ s32 mUnk_080;
     /* 084 */ s32 mUnk_084;

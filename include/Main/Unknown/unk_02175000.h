@@ -314,7 +314,7 @@ typedef struct Unk02175ec0_440 {
     /* 08 */ u8 *mUnk_08;
 } Unk02175ec0_440;
 
-// Nine bytes that func_0204d28c builds on the stack and passes to func_02006d3c: two four-bit parts, a 24-bit part,
+// Nine bytes that func_0204d28c builds on the stack and passes to RequestSendBytes: two four-bit parts, a 24-bit part,
 // a word and a byte.
 typedef struct Unk02175ec0_msg {
     /* 00 */ u32 mUnk_00_0 : 4;
