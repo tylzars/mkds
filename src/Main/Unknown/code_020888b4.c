@@ -321,7 +321,7 @@ void func_02089494(KartAi *p) {
     }
     RequestBits(p->mKart->mEntryIndex, 1);
     VEC_Subtract(p->mUnk_5c, &v, &w);
-    func_01ffd224(p, &w, g);
+    AdvanceKartAiHeading(p, &w, g);
 }
 
 void func_020892bc(KartAi *p) {

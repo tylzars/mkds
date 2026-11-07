@@ -104,14 +104,14 @@ void ScaleKartVelocityAndSetCappedLengthAndDirection(Kart *p, s32 a) {
     }
 }
 
-void func_01ffad14(Kart *p, Vec3 *a) {
+void AdvanceKartQuaternionFromVector(Kart *p, Vec3 *a) {
     Vec4 v;
     Vec4 w;
     Vec4 *q = &p->mUnk_100_q;
     s32 r;
 
-    r = func_01ffd0e8(&v, &data_02154f7c, a);
-    func_01ffd0e8(&w, &p->mUnk_244, a);
+    r = TryQuaternionFromVectors(&v, &data_02154f7c, a);
+    TryQuaternionFromVectors(&w, &p->mUnk_244, a);
     QuaternionMultiply(&w, q, q);
     if (r != 0) {
         if ((v.w < 0 && q->w > 0) || (v.w > 0 && q->w < 0)) {

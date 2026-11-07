@@ -393,13 +393,14 @@ void UpdateMapObjectViewTests(void) {
                     e->mFlags |= a;
                 } else {
                     if (e->mUseTwoPlaneViewTest != 0) {
-                        e->mDistanceSquaredAndFlags = (e->mDistanceSquaredAndFlags & 0x10) |
-                                                      func_01ffd648(&e->mPos, e->mViewRadius, e->mDrawDistance,
-                                                                    e->mFarDistanceSquared, e->mAlpha);
+                        e->mDistanceSquaredAndFlags =
+                            (e->mDistanceSquaredAndFlags & 0x10) |
+                            ComputeTwoPlaneViewTest(&e->mPos, e->mViewRadius, e->mDrawDistance, e->mFarDistanceSquared,
+                                                    e->mAlpha);
                     } else {
                         e->mDistanceSquaredAndFlags = (e->mDistanceSquaredAndFlags & 0x10) |
-                                                      func_01ffd778(&e->mPos, e->mViewRadius, e->mDrawDistance,
-                                                                    e->mFarDistanceSquared, e->mAlpha);
+                                                      ComputeViewTest(&e->mPos, e->mViewRadius, e->mDrawDistance,
+                                                                      e->mFarDistanceSquared, e->mAlpha);
                     }
                     e->mDistanceSquaredAndFlags |= b;
                     if (e->mDistanceSquaredAndFlags & 2) {
@@ -439,13 +440,13 @@ void RefreshMapObjectViewTests(void) {
                 e->mFlags |= a;
             } else {
                 if (e->mUseTwoPlaneViewTest != 0) {
-                    e->mDistanceSquaredAndFlags =
-                        (e->mDistanceSquaredAndFlags & 0x10) |
-                        func_01ffd648(&e->mPos, e->mViewRadius, e->mDrawDistance, e->mFarDistanceSquared, e->mAlpha);
+                    e->mDistanceSquaredAndFlags = (e->mDistanceSquaredAndFlags & 0x10) |
+                                                  ComputeTwoPlaneViewTest(&e->mPos, e->mViewRadius, e->mDrawDistance,
+                                                                          e->mFarDistanceSquared, e->mAlpha);
                 } else {
                     e->mDistanceSquaredAndFlags =
                         (e->mDistanceSquaredAndFlags & 0x10) |
-                        func_01ffd778(&e->mPos, e->mViewRadius, e->mDrawDistance, e->mFarDistanceSquared, e->mAlpha);
+                        ComputeViewTest(&e->mPos, e->mViewRadius, e->mDrawDistance, e->mFarDistanceSquared, e->mAlpha);
                 }
                 e->mDistanceSquaredAndFlags |= b;
                 if (e->mDistanceSquaredAndFlags & 1) {

@@ -28,7 +28,7 @@ extern struct CourseMapRow data_0217c730;
 
 extern const u16 data_0215a584;
 extern const ItemInfo data_0215a588;
-// Default record: its only function pointer is the shared func_01ffd778 hook.
+// Default record: its only function pointer is the shared ComputeViewTest hook.
 extern const ItemKind gItemKindKiller;
 
 void func_02105214(void);

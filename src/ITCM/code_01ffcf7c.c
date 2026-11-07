@@ -11,12 +11,12 @@
 #include "code_02147cd8.h"
 #include "registers.h"
 
-void func_01ffdb70(void) {
+void UpdateCollisionSlotBounds(void) {
     s32 i = 0;
     s32 k = 0;
     s32 n;
     s32 t;
-    Unk0217b5b8 *e;
+    CollisionSlot *e;
     Vec3 *v;
     s32 r;
     u16 f;
@@ -29,23 +29,23 @@ void func_01ffdb70(void) {
     if (data_0217b5b0 > 0) {
         do {
             e = &data_0217b5b8[i];
-            v = e->mUnk_0c;
-            r = e->mUnk_10;
+            v = e->mCenterPos;
+            r = e->mRadius;
             if (v != NULL) {
-                f = e->mUnk_14;
+                f = e->mFlags;
                 if (f & 0x600) {
                     if (f & 0x100) {
-                        e->mUnk_14 = f & ~0x100;
+                        e->mFlags = f & ~0x100;
                     } else {
                         k++;
                         goto next;
                     }
                 }
                 k++;
-                e->mUnk_04 = v->z + r;
-                e->mUnk_08 = v->z - r;
-                data_0217b5b4[e->mUnk_00].mUnk_02 = (v->x + r) >> 11;
-                data_0217b5c0[e->mUnk_02].mUnk_02 = (v->x - r) >> 11;
+                e->mHighZ = v->z + r;
+                e->mLowZ = v->z - r;
+                data_0217b5b4[e->mHighEndIndex].mUnk_02 = (v->x + r) >> 11;
+                data_0217b5c0[e->mLowEndIndex].mUnk_02 = (v->x - r) >> 11;
             }
         next:
             i++;
@@ -62,8 +62,8 @@ void func_01ffdb70(void) {
             pb = &v1[y->mUnk_00];
             pa->mUnk_00++;
             pb->mUnk_00--;
-            data_0217b5b8[pa->mUnk_01].mUnk_00++;
-            data_0217b5b8[pb->mUnk_01].mUnk_00--;
+            data_0217b5b8[pa->mUnk_01].mHighEndIndex++;
+            data_0217b5b8[pb->mUnk_01].mHighEndIndex--;
             if (x->mUnk_01 == y->mUnk_00) {
                 t = x->mUnk_01;
                 do {
@@ -85,8 +85,8 @@ void func_01ffdb70(void) {
             *(u32 *) y = w;
             data_0217b5b4[x->mUnk_00].mUnk_00++;
             data_0217b5b4[y->mUnk_00].mUnk_00--;
-            data_0217b5b8[x->mUnk_01].mUnk_02++;
-            data_0217b5b8[y->mUnk_01].mUnk_02--;
+            data_0217b5b8[x->mUnk_01].mLowEndIndex++;
+            data_0217b5b8[y->mUnk_01].mLowEndIndex--;
             if (x->mUnk_00 > y->mUnk_00) {
                 for (n = x->mUnk_00; n > y->mUnk_00 && data_0217b5b4[n].mUnk_01 == k - 1; n--) {
                     data_0217b5b4[n].mUnk_01++;
@@ -102,8 +102,8 @@ void func_01ffdb70(void) {
     }
 }
 
-void func_01ffd900(s32 a, s32 b) {
-    Unk0217b5b8 *e;
+void FindCollisionSlotsOverlappingSlot(s32 a, s32 b) {
+    CollisionSlot *e;
     s32 c;
     s32 t;
     s32 q;
@@ -118,23 +118,23 @@ void func_01ffd900(s32 a, s32 b) {
     s32 h;
     s16 l;
     u32 i;
-    Unk0217b5b8 *o;
+    CollisionSlot *o;
     u16 g;
     if (a < 0 || a >= 0x100) {
         return;
     }
     e = &data_0217b5b8[(s16) a];
-    p = e->mUnk_00;
-    u = e->mUnk_02;
+    p = e->mHighEndIndex;
+    u = e->mLowEndIndex;
     q = u;
     x = data_0217b5b4;
     y = data_0217b5c0;
     s = data_0217b5b0 - 1;
     c = x[p].mUnk_02;
     t = y[u].mUnk_02;
-    d = e->mUnk_04;
-    f = e->mUnk_08;
-    if (e->mUnk_0c == NULL) {
+    d = e->mHighZ;
+    f = e->mLowZ;
+    if (e->mCenterPos == NULL) {
         data_0217b5a8 = 0;
         return;
     }
@@ -161,13 +161,13 @@ void func_01ffd900(s32 a, s32 b) {
     for (;;) {
         if (data_0217b5c0[h].mUnk_00 >= p && h != u) {
             o = &data_0217b5b8[data_0217b5c0[h].mUnk_01];
-            g = o->mUnk_14;
-            if (o->mUnk_04 < f || o->mUnk_08 > d || !(g & b) || (g & 0x200)) {
+            g = o->mFlags;
+            if (o->mHighZ < f || o->mLowZ > d || !(g & b) || (g & 0x200)) {
                 goto next;
             }
             data_0217b5cc[data_0217b5a8] = data_0217b5c0[h].mUnk_01;
             data_0217b5bc[data_0217b5a8] = g;
-            data_0217b5c4[data_0217b5a8] = o->mUnk_18;
+            data_0217b5c4[data_0217b5a8] = o->mObject;
             data_0217b5a8++;
             if (data_0217b5a8 == 0x80) {
                 return;
@@ -184,7 +184,7 @@ void func_01ffd900(s32 a, s32 b) {
     }
 }
 
-s32 func_01ffd778(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
+s32 ComputeViewTest(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
     s32 r;
     s32 x;
     s32 y;
@@ -232,7 +232,7 @@ static inline s32 func_01ffd648_inline(ViewFrustum *g) {
     return g->mUnk_20.y;
 }
 
-s32 func_01ffd648(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
+s32 ComputeTwoPlaneViewTest(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
     Vec3 v;
     s32 r;
     s32 q;
@@ -263,7 +263,7 @@ s32 func_01ffd648(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
     return r;
 }
 
-void func_01ffd224(struct KartAi *p, Vec3 *a, Vec3 *b) {
+void AdvanceKartAiHeading(struct KartAi *p, Vec3 *a, Vec3 *b) {
     Kart *q = p->mKart;
     Vec3 v0;
     Vec3 v1;
@@ -367,7 +367,7 @@ void QuaternionFromAxisAngle(const Vec3 *a, s32 b, Vec4 *c) {
     c->w = gPairsByAngle[i * 2 + 1];
 }
 
-s32 func_01ffd0e8(Vec4 *a, const Vec3 *b, const Vec3 *c) {
+s32 TryQuaternionFromVectors(Vec4 *a, const Vec3 *b, const Vec3 *c) {
     Vec3 v;
     s32 r;
     BOOL k = TRUE;

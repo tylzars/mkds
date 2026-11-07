@@ -9,17 +9,17 @@
 #include "Main/Unknown/code_020d849c.h"
 
 // 0x1c-byte element of the table behind data_0217b5b8.
-typedef struct Unk0217b5b8 {
-    /* 00 */ s16 mUnk_00;
-    /* 02 */ s16 mUnk_02;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ Vec3 *mUnk_0c;
-    /* 10 */ s32 mUnk_10;
-    /* 14 */ u16 mUnk_14;
+typedef struct CollisionSlot {
+    /* 00 */ s16 mHighEndIndex;
+    /* 02 */ s16 mLowEndIndex;
+    /* 04 */ s32 mHighZ;
+    /* 08 */ s32 mLowZ;
+    /* 0c */ Vec3 *mCenterPos;
+    /* 10 */ s32 mRadius;
+    /* 14 */ u16 mFlags;
     /* 16 */ u8 mUnk_16[2];
-    /* 18 */ void *mUnk_18;
-} Unk0217b5b8;
+    /* 18 */ void *mObject;
+} CollisionSlot;
 
 // Four-byte element of the tables behind data_0217b5b4 and data_0217b5c0.
 typedef struct Unk0217b5b4 {

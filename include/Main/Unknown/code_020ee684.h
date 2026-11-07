@@ -48,7 +48,7 @@ typedef struct KartItems {
     /* 1f8 */ u16 mKartIndex;
     /* 1fa */ u8 mUnk_1fa[2];
     /* 1fc */ Kart *mKart;
-    /* 200 */ s32 mUnk_200;
+    /* 200 */ s32 mEntryIndex;
     /* 204 */ BOOL mUnk_204;
     /* 208 */ BOOL mUnk_208;
     /* 20c */ BOOL mUnk_20c;

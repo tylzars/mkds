@@ -72,7 +72,7 @@ void func_020651fc(Kart *a) {
         return;
     }
     b = a->mUnk_514;
-    func_01ffcd84(&a->mUnk_120, &a->mUnk_110_q);
+    Matrix4x3FromQuaternion(&a->mUnk_120, &a->mUnk_110_q);
     func_02066ac0(a);
     if (a->mForwardSpeed > 0x3000) {
         b->mUnk_a8 = data_02154f94;
@@ -126,7 +126,7 @@ void func_02064f50(Kart *a) {
     a->mUnk_244 = d;
     a->mUnk_4d0 = a->mUnk_4d0 + 1;
     func_01ffc920(a);
-    func_01ffc8cc(a);
+    AdvanceKartCollisionTimer(a);
     if ((a->mUnk_4c & 0x8000) != 0) {
         ComputeKartSidePoints(a);
     }
@@ -171,7 +171,7 @@ void func_02064d60(Kart *a, Vec3 *b) {
         a->mQuaternionBlendFactor = 0xf6;
         func_02070484(a, &a->mUnk_100_q);
     } else {
-        func_01ffad14(a, b);
+        AdvanceKartQuaternionFromVector(a, b);
     }
     QuaternionBlend(&a->mUnk_f0_q, &a->mUnk_100_q, &a->mUnk_f0_q, a->mQuaternionBlendFactor);
     e = a->mHeadingAngle - c->mUnk_0e;

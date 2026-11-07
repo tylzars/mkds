@@ -402,7 +402,7 @@ typedef struct ItemKind {
     /* a4 */ s32 mUnk_a4;
 } ItemKind;
 
-// Default record: its only function pointer is the shared func_01ffd778 hook.
+// Default record: its only function pointer is the shared ComputeViewTest hook.
 extern ItemKind gItemKindKinokoP;
 
 extern ItemKind gItemKindTeresa;
@@ -415,12 +415,12 @@ extern ItemKind data_0215a4dc;
 
 extern ItemKind gItemKindFBox;
 
-// Default record: its only function pointer is the shared func_01ffd778 hook.
+// Default record: its only function pointer is the shared ComputeViewTest hook.
 extern ItemKind gItemKindThunder;
 
 extern ItemKind gItemKindKouraW;
 
-// Default record: its only function pointer is the shared func_01ffd778 hook.
+// Default record: its only function pointer is the shared ComputeViewTest hook.
 extern ItemKind gItemKindStar;
 
 extern ItemKind gItemKindKinoko;

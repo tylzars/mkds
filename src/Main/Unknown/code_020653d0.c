@@ -178,7 +178,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                 }
                 QuaternionFromAxisAngle(&data_02154f7c, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);
                 QuaternionMultiply((Vec4 *) &p->mUnk_f0, (Vec4 *) &p->mUnk_e0, (Vec4 *) &p->mUnk_108.z);
-                func_01ffcd84(&p->mUnk_120, (Vec4 *) &p->mUnk_108.z);
+                Matrix4x3FromQuaternion(&p->mUnk_120, (Vec4 *) &p->mUnk_108.z);
                 r = p->mUnk_514;
                 r->mUnk_5c = r->mUnk_5c + (s32) (((s64) (r->mUnk_40 - r->mUnk_5c) * 0x333 + 0x800) >> 12);
                 p->mTurnAngle = r->mUnk_5c;

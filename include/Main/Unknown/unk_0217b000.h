@@ -1047,7 +1047,7 @@ extern u16 *data_0217b5bc;
 extern s16 data_0217b5ac;
 extern s16 data_0217b5b0;
 extern struct Unk0217b5b4 *data_0217b5b4;
-extern struct Unk0217b5b8 *data_0217b5b8;
+extern struct CollisionSlot *data_0217b5b8;
 extern struct Unk0217b5b4 *data_0217b5c0;
 extern s16 *data_0217b5c8;
 extern s16 *data_0217b5cc;

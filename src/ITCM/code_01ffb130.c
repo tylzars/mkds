@@ -158,7 +158,7 @@ void func_01ffb130(Kart *p) {
         }
     }
     a = LimitKartForwardSpeedAndGetScaled(p);
-    func_01ffb930(&a, p);
+    ReduceKartSpeedByTurnRatio(&a, p);
     if ((p->mUnk_44 & 0x90) || (p->mUnk_4c & 0x10000000)) {
         k = p->mUnk_240;
         VEC_Subtract(&p->mTurnedForward, &p->mUnk_68, &v4);
@@ -217,7 +217,7 @@ void func_01ffb130(Kart *p) {
         p->mUnk_2d8 = data_02154f94;
         p->mUnk_44 &= ~0x2000;
     }
-    func_01ffd900(p->mUnk_2c8, 0xe800);
+    FindCollisionSlotsOverlappingSlot(p->mUnk_2c8, 0xe800);
     func_0206e874(p);
     if (p->mUnk_7c & 0x8000000) {
         return;

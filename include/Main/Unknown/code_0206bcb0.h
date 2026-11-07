@@ -343,7 +343,7 @@ typedef struct Kart {
     // function when gRace.mUseChainCameras is set and RaceSetup.mUnk_00c is not 5.
     /* 20c */ void (*mSlotFunctions[9])(struct Kart *);
     /* 230 */ void (*mUnk_230)(struct Kart *);
-    /* 234 */ s16 mUnk_234;
+    /* 234 */ s16 mAirTiltAngle;
     // Angle about world up that orients the kart (0x10000 per turn): set from a direction vector or a start rotation,
     // turned by the step functions and by mHeadingAnglePerFrame; mHeadingAngleOffset is added on top when the
     // orientation is built.
@@ -397,7 +397,7 @@ typedef struct Kart {
     // Two words of charphysicalparam.bin for the entry's character: [0] scales the surface factors below 0x1000, [1] is
     // added to mWeight.
     /* 2d0 */ s32 *mCharPhysicalParam;
-    /* 2d4 */ s32 mUnk_2d4;
+    /* 2d4 */ s32 mTurnRatio;
     /* 2d8 */ Vec3 mUnk_2d8;
     /* 2e4 */ Vec3 mUnk_2e4;
     /* 2f0 */ Vec3 mUnk_2f0;
@@ -472,11 +472,11 @@ typedef struct Kart {
     /* 3cc */ s32 mUnk_3cc;
     /* 3d0 */ s16 mUnk_3d0;
     // Countdown of 0x14 set on the slower kart of a kart-kart contact in CollideKartWithKarts and counted down by
-    // func_01ffc8cc, which calls StartKartCollisionSound at 0 (what that call does is unknown).
+    // AdvanceKartCollisionTimer, which calls StartKartCollisionSound at 0 (what that call does is unknown).
     /* 3d2 */ s16 mKartCollisionTimer;
     /* 3d4 */ s16 mUnk_3d4;
     /* 3d6 */ u8 mUnk_3d6[2];
-    /* 3d8 */ s32 mUnk_3d8;
+    /* 3d8 */ s32 mRank;
     // Result of the handler: index into the two 12-entry tables of the record; -1 when the floor is left; compared with
     // 8 and 0xb. Group meanings unknown.
     /* 3dc */ s32 mSurfaceGroup;
@@ -487,8 +487,8 @@ typedef struct Kart {
     /* 3e4 */ s32 mSurfaceVariant;
     /* 3e8 */ s16 mUnk_3e8;
     /* 3ea */ u8 mUnk_3ea[2];
-    /* 3ec */ s32 mUnk_3ec;
-    /* 3f0 */ s32 mUnk_3f0;
+    /* 3ec */ s32 mTurnHeadingAnglePerFrameGoal;
+    /* 3f0 */ s32 mTurnHeadingAnglePerFrame;
     /* 3f4 */ s32 mUnk_3f4;
     /* 3f8 */ s32 mUnk_3f8;
     /* 3fc */ u16 mModelScaleKind;

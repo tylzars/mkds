@@ -40,8 +40,8 @@ const u16 data_0215a584 = 0x2000;
 const ItemInfo data_0215a588 = {1, 1, 0xd, 1, 0, 0, func_021051d4};
 
 const ItemKind gItemKindKiller = {
-    0x12c, 1, 1,    -1,  -1,   {0}, NULL, NULL,     NULL, NULL,   NULL, NULL, func_01ffd778, NULL,   NULL,  NULL,
-    0,     0, NULL, 0,   NULL, 1,   0,    0x4b0000, 2,    0x319a, 0,    0,    0x1000,        0x1b33, 0x19a, 0x11f,
+    0x12c, 1, 1,    -1,  -1,   {0}, NULL, NULL,     NULL, NULL,   NULL, NULL, ComputeViewTest, NULL,   NULL,  NULL,
+    0,     0, NULL, 0,   NULL, 1,   0,    0x4b0000, 2,    0x319a, 0,    0,    0x1000,          0x1b33, 0x19a, 0x11f,
     0,     1, 0,    {0}, 0,    1,   1,    1,        1,    0};
 
 #pragma thumb on

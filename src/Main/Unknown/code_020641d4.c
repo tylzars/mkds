@@ -38,13 +38,13 @@ void func_020641f0(Kart *a) {
     Vec4 *r;
     enum { K0 } o;
 
-    func_01ffcd84(&a->mUnk_120, a->mUnk_50c);
+    Matrix4x3FromQuaternion(&a->mUnk_120, a->mUnk_50c);
     n = a->mUnk_4c;
     if ((n & 0x10) != 0) {
         p = &a->mUnk_150_m;
         MTX_Identity43_(&d);
         e = d;
-        func_01ffcd84(&f, &a->mRotationQuaternion);
+        Matrix4x3FromQuaternion(&f, &a->mRotationQuaternion);
         q = &a->mUnk_12c;
         m.x = (s64) q->x * -0x5000 >> 12;
         m.y = (s64) q->y * -0x5000 >> 12;

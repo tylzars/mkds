@@ -117,7 +117,7 @@ BOOL UpdateItemObject(ItemPool *a, ItemObject *p, s32 f) {
     }
     if (!(p->mFlags & 0x8000) && p->mUnk_da != -1) {
         if (f == 0) {
-            func_01ffd900(p->mUnk_da, 0x6000);
+            FindCollisionSlotsOverlappingSlot(p->mUnk_da, 0x6000);
         }
         for (i = 0; i < data_0217b5a8; i++) {
             w = data_0217b5bc[i];

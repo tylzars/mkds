@@ -219,7 +219,7 @@ void func_020edf10(ItemInUse *p) {
             }
             continue;
         }
-        func_01ffd900(q->mUnk_da, 0x6000);
+        FindCollisionSlotsOverlappingSlot(q->mUnk_da, 0x6000);
         for (i = 0; i < data_0217b5a8; i++) {
             if ((data_0217b5bc[i] & 0x4000) != 0) {
                 ItemObject *e = data_0217b5c4[i];

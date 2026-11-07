@@ -498,7 +498,7 @@ BOOL func_01ffdee4(void *a, void *b, Vec3 *c, int r, u16 fl, short e, void *f, v
         if (e == -1) {
             func_020d5180(a, r, 0x1000);
         } else {
-            func_01ffd900(e, 0x1000);
+            FindCollisionSlotsOverlappingSlot(e, 0x1000);
         }
         for (i = 0; i < data_0217b5a8; i++) {
             ob = data_0217b5c4[i];

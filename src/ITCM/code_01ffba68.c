@@ -53,7 +53,7 @@ void QuaternionBlend(Vec4 *a, const Vec4 *b, Vec4 *c, s32 d) {
     c->w = a->w + ((d * (b->w - a->w)) >> 12);
 }
 
-void func_01ffcd84(void *a, const Vec4 *b) {
+void Matrix4x3FromQuaternion(void *a, const Vec4 *b) {
     s32 *o = a;
     s32 w;
     s32 x;
@@ -167,7 +167,7 @@ void AdvanceKartCollision(Kart *p) {
     } else {
         p->mUnk_44 &= ~0x80000;
     }
-    func_01ffc008(&p->mCollisionCenter, &p->mUnk_98, 0x400, p);
+    ComputeKartCollisionCenter(&p->mCollisionCenter, &p->mUnk_98, 0x400, p);
     func_01ffa4b4(p, &v);
     AdvanceKartOrientation(p, &v);
     p->mUnk_244 = v;
@@ -179,7 +179,7 @@ void AdvanceKartCollision(Kart *p) {
         SetKartKind3ShapeMask(p->mIndex);
     }
     func_01ffc920(p);
-    func_01ffc8cc(p);
+    AdvanceKartCollisionTimer(p);
     if (p->mUnk_4c & 8) {
         AdvanceKartModelScaleAnimation(p);
     }
@@ -207,7 +207,7 @@ void func_01ffca50(Kart *p) {
     p->mUnk_48 &= ~0x18;
     p->mRadius = ((s64) p->mUnk_4c8 * (s32) (((s64) p->mPhysicalParam->mRadius * p->mUnk_394) >> 12)) >> 12;
     p->mUnk_1d4 = ((s64) p->mPhysicalParam->mUnk_04 * p->mScale.z) >> 12;
-    p->mUnk_3ec = 0;
+    p->mTurnHeadingAnglePerFrameGoal = 0;
 }
 
 void func_01ffc9e8(Kart *p, s32 a) {
@@ -221,7 +221,7 @@ void func_01ffc9e8(Kart *p, s32 a) {
     func_0210ddf4(&(data_0217d26c)[c], d + b, func_02071980, p, a);
 }
 
-s32 func_01ffc92c(Kart *p) {
+s32 AdvanceKartRank(Kart *p) {
     BOOL b;
     s32 a;
     s32 c;
@@ -229,11 +229,11 @@ s32 func_01ffc92c(Kart *p) {
 
     b = FALSE;
     a = GetKartRank(p->mIndex);
-    if (a != p->mUnk_3d8) {
+    if (a != p->mRank) {
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             SetSceneSoundRank((u8) (a - 1));
         }
-        if (a < p->mUnk_3d8 && a < gRaceSetup->mKartCount) {
+        if (a < p->mRank && a < gRaceSetup->mKartCount) {
             c = gRaceProgress->mKartAtRank[(u8) (a + 1) - 1];
             if (c >= 0) {
                 o = GetKart((u16) c);
@@ -243,7 +243,7 @@ s32 func_01ffc92c(Kart *p) {
             }
         }
     }
-    p->mUnk_3d8 = a;
+    p->mRank = a;
     return b;
 }
 
@@ -251,7 +251,7 @@ void func_01ffc920(Kart *p) {
     func_02024a88(p);
 }
 
-void func_01ffc8cc(Kart *p) {
+void AdvanceKartCollisionTimer(Kart *p) {
     if (p->mKartCollisionTimer <= 0) {
         return;
     }
@@ -304,7 +304,7 @@ void func_01ffc6c0(Kart *p) {
             func_01ffba68(p);
         }
         func_01ffc090(p, a);
-        if (func_01ffc92c(p) == 0) {
+        if (AdvanceKartRank(p) == 0) {
             return;
         }
         if (p->mUnk_48 & 0x840) {
@@ -313,7 +313,7 @@ void func_01ffc6c0(Kart *p) {
         func_0210af40(p, p->mUnk_3cc, 8);
         return;
     }
-    func_01ffc92c(p);
+    AdvanceKartRank(p);
     func_01ffc558(p);
     func_01ffc5a0(p);
     k = p->mEntryIndex;
@@ -376,7 +376,7 @@ void func_01ffc558(Kart *p) {
     data_02175628[k].mBitMask = 0xff6;
 }
 
-void func_01ffc500(s32 *p) {
+void DecayValueToZero(s32 *p) {
     *p = ((s64) *p * 0xe6a) >> 12;
     if ((*p <= 0 ? -*p : *p) < 0x7b) {
         *p = 0;
@@ -427,14 +427,14 @@ s32 func_01ffc27c(Kart *p, s32 a) {
         k = p->mEntryIndex;
         w = data_02175628[k].mBits;
         if ((u16) (w & 0x40)) {
-            p->mUnk_234 += 0x96;
-            if (p->mUnk_234 > 0x157c) {
-                p->mUnk_234 = 0x157c;
+            p->mAirTiltAngle += 0x96;
+            if (p->mAirTiltAngle > 0x157c) {
+                p->mAirTiltAngle = 0x157c;
             }
         } else if ((u16) (w & 0x80)) {
-            p->mUnk_234 -= 0x12c;
-            if (p->mUnk_234 < -0x157c) {
-                p->mUnk_234 = -0x157c;
+            p->mAirTiltAngle -= 0x12c;
+            if (p->mAirTiltAngle < -0x157c) {
+                p->mAirTiltAngle = -0x157c;
             }
         }
         d = TRUE;
@@ -448,14 +448,14 @@ s32 func_01ffc27c(Kart *p, s32 a) {
     k = p->mEntryIndex;
     w = data_02175628[k].mBits;
     if ((u16) (w & 0x20)) {
-        r = ((s32(*)(Kart *, s32, s32, s32, s32, u32)) func_01ffc158)(p, x, b, 1, d, 8);
+        r = ((s32(*)(Kart *, s32, s32, s32, s32, u32)) ApplyKartTurn)(p, x, b, 1, d, 8);
     } else if ((u16) (w & 0x10)) {
-        r = ((s32(*)(Kart *, s32, s32, s32, s32, u32)) func_01ffc158)(p, x, b, -1, d, 0x10);
+        r = ((s32(*)(Kart *, s32, s32, s32, s32, u32)) ApplyKartTurn)(p, x, b, -1, d, 0x10);
     }
     return r;
 }
 
-s32 func_01ffc158(Kart *p, s16 a, s16 b, s32 c, s32 d, u32 e) {
+s32 ApplyKartTurn(Kart *p, s16 a, s16 b, s32 c, s32 d, u32 e) {
     s16 k;
     s16 x;
     u32 f;
@@ -465,7 +465,7 @@ s32 func_01ffc158(Kart *p, s16 a, s16 b, s32 c, s32 d, u32 e) {
     p->mUnk_48 |= e;
     if (d != 0) {
         if (!(p->mUnk_44 & KART_44_DRIFTING)) {
-            p->mUnk_3ec = 0x32 * c;
+            p->mTurnHeadingAnglePerFrameGoal = 0x32 * c;
         }
         return 1;
     }
@@ -483,15 +483,15 @@ s32 func_01ffc158(Kart *p, s16 a, s16 b, s32 c, s32 d, u32 e) {
         x = a - (s32) (((s64) m * p->mVelocityLengthRatio) >> 12);
     }
     if (f & KART_44_ON_GROUND) {
-        p->mUnk_2d4 += c * 0x666;
-        if (p->mUnk_2d4 > 0x1000) {
-            p->mUnk_2d4 = 0x1000;
-        } else if (p->mUnk_2d4 < -0x1000) {
-            p->mUnk_2d4 = -0x1000;
+        p->mTurnRatio += c * 0x666;
+        if (p->mTurnRatio > 0x1000) {
+            p->mTurnRatio = 0x1000;
+        } else if (p->mTurnRatio < -0x1000) {
+            p->mTurnRatio = -0x1000;
         }
     }
     if (p->mVelocityLength != 0 && !(p->mUnk_44 & 0x8000000)) {
-        p->mUnk_3ec = x * c;
+        p->mTurnHeadingAnglePerFrameGoal = x * c;
     }
     return 1;
 }
@@ -499,16 +499,21 @@ s32 func_01ffc158(Kart *p, s16 a, s16 b, s32 c, s32 d, u32 e) {
 void func_01ffc090(Kart *p, s32 a) {
     if (a == 0) {
         if (p->mUnk_44 & KART_44_DRIFTING) {
-            p->mUnk_3ec = -p->mTurnDirection * ((p->mPhysicalParam->mUnk_32 + p->mUnk_38a) >> 1);
+            p->mTurnHeadingAnglePerFrameGoal = -p->mTurnDirection * ((p->mPhysicalParam->mUnk_32 + p->mUnk_38a) >> 1);
         }
-        func_01ffc500(&p->mUnk_2d4);
+        DecayValueToZero(&p->mTurnRatio);
     }
-    if (p->mUnk_3ec == 0 && (p->mUnk_3f0 <= 0 ? -p->mUnk_3f0 : p->mUnk_3f0) < 5) {
-        p->mUnk_3f0 = 0;
+    if (p->mTurnHeadingAnglePerFrameGoal == 0 &&
+        (p->mTurnHeadingAnglePerFrame <= 0 ? -p->mTurnHeadingAnglePerFrame : p->mTurnHeadingAnglePerFrame) < 5) {
+        p->mTurnHeadingAnglePerFrame = 0;
     } else {
-        p->mUnk_3f0 = p->mUnk_3f0 + (s32) (((s64) (p->mUnk_3ec - p->mUnk_3f0) * func_01ffc090_inline() + 0x800) >> 12);
+        p->mTurnHeadingAnglePerFrame =
+            p->mTurnHeadingAnglePerFrame +
+            (s32) (((s64) (p->mTurnHeadingAnglePerFrameGoal - p->mTurnHeadingAnglePerFrame) * func_01ffc090_inline() +
+                    0x800) >>
+                   12);
     }
-    p->mHeadingAngle += (u16) p->mUnk_3f0;
+    p->mHeadingAngle += (u16) p->mTurnHeadingAnglePerFrame;
 }
 
 // Writes base + (mRadius + extra) * up to the out vector, where up is row 1 of the matrix at 0x120 (the vector
@@ -517,7 +522,7 @@ void ComputeKartPointAlongUp(Vec3 *a, const Vec3 *b, s32 c, Kart *p) {
     VEC_MultAdd(p->mRadius + c, &p->mUnk_12c, b, a);
 }
 
-void func_01ffc008(Vec3 *a, const Vec3 *b, s32 c, Kart *p) {
+void ComputeKartCollisionCenter(Vec3 *a, const Vec3 *b, s32 c, Kart *p) {
     Vec3 d;
     Vec3 e;
 

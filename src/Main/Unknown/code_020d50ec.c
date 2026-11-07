@@ -402,13 +402,13 @@ void func_020d58c0(void) {
     } while (i < 0x100);
     j = 0;
     do {
-        data_0217b5b8[j].mUnk_0c = NULL;
+        data_0217b5b8[j].mCenterPos = NULL;
         j++;
     } while (j < 0x100);
 }
 
 s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
-    Unk0217b5b8 *e;
+    CollisionSlot *e;
     s16 hi;
     s16 lo;
     s32 i;
@@ -427,12 +427,12 @@ s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
     i = data_0217b5ac;
     data_0217b5ac = data_0217b5c8[i];
     e = &data_0217b5b8[i];
-    e->mUnk_04 = a->z + b;
-    e->mUnk_08 = a->z - b;
-    e->mUnk_0c = a;
-    e->mUnk_10 = b;
-    e->mUnk_14 = c;
-    e->mUnk_18 = d;
+    e->mHighZ = a->z + b;
+    e->mLowZ = a->z - b;
+    e->mCenterPos = a;
+    e->mRadius = b;
+    e->mFlags = c;
+    e->mObject = d;
     hi = (a->x + b) >> 11;
     lo = (a->x - b) >> 11;
     if (data_0217b5b0 == 0) {
@@ -442,8 +442,8 @@ s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
         data_0217b5c0[0].mUnk_00 = 0;
         data_0217b5c0[0].mUnk_01 = i;
         data_0217b5c0[0].mUnk_02 = lo;
-        data_0217b5b8[0].mUnk_00 = 0;
-        data_0217b5b8[0].mUnk_02 = 0;
+        data_0217b5b8[0].mHighEndIndex = 0;
+        data_0217b5b8[0].mLowEndIndex = 0;
         data_0217b5b0 = 1;
         return i;
     }
@@ -469,8 +469,8 @@ s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
         }
         s = (s + 1) >> 1;
     }
-    e->mUnk_00 = p;
-    e->mUnk_02 = q;
+    e->mHighEndIndex = p;
+    e->mLowEndIndex = q;
     m = data_0217b5b0;
     if (m > p) {
         do {
@@ -478,7 +478,7 @@ s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
             *f = data_0217b5b4[m - 1];
             u = &data_0217b5c0[f->mUnk_00];
             u->mUnk_00 += 1;
-            data_0217b5b8[u->mUnk_01].mUnk_00 += 1;
+            data_0217b5b8[u->mUnk_01].mHighEndIndex += 1;
             m--;
             if (f->mUnk_01 >= q) {
                 f->mUnk_01 += 1;
@@ -501,7 +501,7 @@ s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
             f = &data_0217b5c0[m];
             *f = data_0217b5c0[m - 1];
             data_0217b5b4[f->mUnk_00].mUnk_00 += 1;
-            data_0217b5b8[f->mUnk_01].mUnk_02 += 1;
+            data_0217b5b8[f->mUnk_01].mLowEndIndex += 1;
             m--;
         } while (m > q);
     }
@@ -513,7 +513,7 @@ s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
 }
 
 u32 func_020d5344(s32 a) {
-    Unk0217b5b8 *e;
+    CollisionSlot *e;
     s32 s;
     s32 t;
     s32 k;
@@ -526,9 +526,9 @@ u32 func_020d5344(s32 a) {
         return -1;
     }
     e = &data_0217b5b8[a];
-    s = e->mUnk_00;
-    t = e->mUnk_02;
-    if (e->mUnk_0c == NULL) {
+    s = e->mHighEndIndex;
+    t = e->mLowEndIndex;
+    if (e->mCenterPos == NULL) {
         return -1;
     }
     k = s;
@@ -538,7 +538,7 @@ u32 func_020d5344(s32 a) {
             *q = data_0217b5b4[k + 1];
             c = &data_0217b5c0[q->mUnk_00];
             c->mUnk_00 -= 1;
-            data_0217b5b8[c->mUnk_01].mUnk_00 -= 1;
+            data_0217b5b8[c->mUnk_01].mHighEndIndex -= 1;
             if (q->mUnk_01 > t) {
                 q->mUnk_01 -= 1;
             }
@@ -551,7 +551,7 @@ u32 func_020d5344(s32 a) {
             q = &data_0217b5c0[k];
             *q = data_0217b5c0[k + 1];
             data_0217b5b4[q->mUnk_00].mUnk_00 -= 1;
-            data_0217b5b8[q->mUnk_01].mUnk_02 -= 1;
+            data_0217b5b8[q->mUnk_01].mLowEndIndex -= 1;
             v = q->mUnk_00;
             if (v < s) {
                 c = &data_0217b5b4[v];
@@ -566,7 +566,7 @@ u32 func_020d5344(s32 a) {
             k++;
         } while (k < data_0217b5b0 - 1);
     }
-    e->mUnk_0c = NULL;
+    e->mCenterPos = NULL;
     data_0217b5c8[a] = data_0217b5ac;
     data_0217b5ac = a;
     data_0217b5b0 -= 1;
@@ -586,7 +586,7 @@ void func_020d5180(Vec3 *a, s32 b, s32 c) {
     s32 p;
     s32 zlo;
     s32 t;
-    Unk0217b5b8 *e;
+    CollisionSlot *e;
     s32 f;
 
     m = data_0217b5b0;
@@ -625,11 +625,11 @@ void func_020d5180(Vec3 *a, s32 b, s32 c) {
     do {
         if (data_0217b5c0[k].mUnk_00 >= p) {
             e = &data_0217b5b8[data_0217b5c0[k].mUnk_01];
-            f = e->mUnk_14;
-            if (e->mUnk_04 >= zlo && e->mUnk_08 <= zhi && (f & c) && !(f & 0x200)) {
+            f = e->mFlags;
+            if (e->mHighZ >= zlo && e->mLowZ <= zhi && (f & c) && !(f & 0x200)) {
                 data_0217b5cc[data_0217b5a8] = data_0217b5c0[k].mUnk_01;
                 data_0217b5bc[data_0217b5a8] = f;
-                data_0217b5c4[data_0217b5a8] = e->mUnk_18;
+                data_0217b5c4[data_0217b5a8] = e->mObject;
                 data_0217b5a8++;
                 if (data_0217b5a8 == 0x80) {
                     return;
@@ -645,19 +645,19 @@ void func_020d5180(Vec3 *a, s32 b, s32 c) {
 }
 
 void func_020d5148(s16 a, s32 b) {
-    Unk0217b5b8 *e;
+    CollisionSlot *e;
 
     e = &data_0217b5b8[a];
-    e->mUnk_10 = b;
-    if (e->mUnk_14 & 0x400) {
-        e->mUnk_14 |= data_02156900;
+    e->mRadius = b;
+    if (e->mFlags & 0x400) {
+        e->mFlags |= data_02156900;
     }
 }
 
 void func_020d5114(s16 a) {
-    data_0217b5b8[a].mUnk_14 |= data_021568fc;
+    data_0217b5b8[a].mFlags |= data_021568fc;
 }
 
 void func_020d50ec(s16 a) {
-    data_0217b5b8[a].mUnk_14 &= ~0x200;
+    data_0217b5b8[a].mFlags &= ~0x200;
 }

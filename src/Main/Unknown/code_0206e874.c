@@ -97,7 +97,7 @@ void func_0206edac(Kart *p, Vec3 *a) {
     if (s >= 0) {
         return;
     }
-    if (p->mUnk_234 <= 0x3e8) {
+    if (p->mAirTiltAngle <= 0x3e8) {
         return;
     }
     p->mForwardSpeed = ((s64) p->mForwardSpeed * (s + 0x1000)) >> 12;

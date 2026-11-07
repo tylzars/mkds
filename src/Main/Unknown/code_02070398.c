@@ -257,7 +257,7 @@ void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c
         v = data_02165524;
         QuaternionFromAxisAngle(&v, p->mHeadingAngle, &p->mUnk_e0_m);
     }
-    func_01ffcd84(&p->mUnk_120, &p->mUnk_e0_m);
+    Matrix4x3FromQuaternion(&p->mUnk_120, &p->mUnk_e0_m);
     GetKartForward(p, &p->mForward);
     p->mTurnedForward = p->mForward;
     p->mUnk_68 = p->mTurnedForward;
@@ -358,7 +358,7 @@ void ResetKartToStartPlacement(Kart *p) {
     GetCourseMapKartStartPlacement(&a, &c, p->mIndex);
     p->mHeadingAngle = (u32) (c.y * 0xb6) >> 12;
     QuaternionFromAxisAngle(&data_02154f7c, p->mHeadingAngle, &p->mUnk_e0_m);
-    func_01ffcd84(&p->mUnk_120, &p->mUnk_e0_m);
+    Matrix4x3FromQuaternion(&p->mUnk_120, &p->mUnk_e0_m);
     GetKartForward(p, &b);
     ResetKartAndSetPos(p, &a, &b, NULL);
     if (gRaceSetup->mMode == 5) {
@@ -483,7 +483,7 @@ void ResetKart(Kart *p) {
     *(Vec4 *) &p->mUnk_f0 = data_usa_02154f24;
     *(Vec4 *) &p->mUnk_100 = data_usa_02154f34;
     *(Vec4 *) &p->mUnk_108.z = data_usa_02154f44;
-    p->mUnk_234 = 0;
+    p->mAirTiltAngle = 0;
     p->mHeadingAngle = 0;
     p->mBoostTimer = 0;
     p->mUnk_23a = 0;
@@ -510,7 +510,7 @@ void ResetKart(Kart *p) {
     p->mHopHeight = 0;
     p->mHopTiltAngle = 0;
     p->mTurnDirection = 0;
-    p->mUnk_2d4 = 0;
+    p->mTurnRatio = 0;
     p->mUnk_2d8 = v;
     p->mUnk_334 = 0;
     p->mUnk_338 = 0;
@@ -560,8 +560,8 @@ void ResetKart(Kart *p) {
     p->mSurfaceKind = 0;
     p->mSurfaceVariant = 0;
     p->mUnk_3e8 = 0;
-    p->mUnk_3ec = 0;
-    p->mUnk_3f0 = 0;
+    p->mTurnHeadingAnglePerFrameGoal = 0;
+    p->mTurnHeadingAnglePerFrame = 0;
     p->mUnk_3f8 = 0x1000;
     p->mModelScaleKind = 0;
     p->mModelScaleFrameIndex = 0;
@@ -602,7 +602,7 @@ void ResetKart(Kart *p) {
     p->mUnk_59c = 0;
     p->mWobbleAmplitude = p->mUnk_59c;
     p->mWobbleAngle = 0;
-    p->mUnk_3d8 = 0;
+    p->mRank = 0;
     func_02068a64(p, 0, 0);
     p->mUnk_4cc = 0;
 }
@@ -1316,14 +1316,14 @@ void AdvanceKartToKeyedPlacement(Kart *p) {
         QuaternionFromAxisAngle(&q, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);
         Vec3CrossUnrounded(&data_02154f7c, &p->mTurnedForward, &l);
         Vec3CrossUnrounded(&p->mTurnedForward, &l, &n);
-        if (p->mUnk_234 > -5000) {
-            p->mUnk_234 -= 300;
-            if (p->mUnk_234 < -5000) {
-                p->mUnk_234 = -5000;
+        if (p->mAirTiltAngle > -5000) {
+            p->mAirTiltAngle -= 300;
+            if (p->mAirTiltAngle < -5000) {
+                p->mAirTiltAngle = -5000;
             }
         }
-        MTX_RotAxis33(&m2, &p->mUnk_120, gPairsByAngle[((u16) p->mUnk_234 >> 4) * 2],
-                      gPairsByAngle[((u16) p->mUnk_234 >> 4) * 2 + 1]);
+        MTX_RotAxis33(&m2, &p->mUnk_120, gPairsByAngle[((u16) p->mAirTiltAngle >> 4) * 2],
+                      gPairsByAngle[((u16) p->mAirTiltAngle >> 4) * 2 + 1]);
         MTX_MultVec33(&n, &m2.mUnk_00[0].x, &n);
         p->mUnk_244 = n;
         AdvanceKartOrientation(p, &n);
@@ -1420,14 +1420,14 @@ void func_02070484(Kart *p, Vec4 *q) {
     if (Vec3DotUnrounded(&p->mUnk_12c, &data_02154f7c) <= 0) {
         return;
     }
-    p->mUnk_234 = p->mUnk_234 + p->mUnk_3e8;
+    p->mAirTiltAngle = p->mAirTiltAngle + p->mUnk_3e8;
     k = p->mHeadingAngle;
-    t = p->mUnk_234;
+    t = p->mAirTiltAngle;
     MTX_RotY43_(&m1, gPairsByAngle[(k >> 4) * 2], gPairsByAngle[(k >> 4) * 2 + 1]);
     MTX_MultVec43(&data_02154f88, &m1, &v1);
     MTX_RotAxis43(&m2, &v1, gPairsByAngle[(t >> 4) * 2], gPairsByAngle[(t >> 4) * 2 + 1]);
     MTX_MultVec43(&data_02154f7c, &m2, &v2);
-    func_01ffd0e8(q, &data_02154f7c, &v2);
+    TryQuaternionFromVectors(q, &data_02154f7c, &v2);
     if (p->mUnk_48 & 0x80000000) {
         q->x = -q->x;
         q->y = -q->y;

@@ -631,12 +631,12 @@ BOOL func_020f0154(KartItems *p) {
     } else if (p->mSlotState != 0) {
         p->mFlags |= data_021595c0;
     }
-    i = p->mUnk_200;
+    i = p->mEntryIndex;
     v = data_0217562a[i].mBits & ITEM_THROW_FORWARD_BIT;
     if (v != 0) {
         p->mFlags |= data_021595c4;
     }
-    i = p->mUnk_200;
+    i = p->mEntryIndex;
     v = data_0217562a[i].mBits & 0x80;
     if (v != 0) {
         p->mFlags |= data_021595c8;
@@ -813,7 +813,7 @@ void InitKartItems(KartItems *a, s32 n) {
 
     a->mKartIndex = n;
     a->mKart = GetKart(n);
-    a->mUnk_200 = ((Unk021759c0_000 *) gRaceSetup)->mUnk_07c[n].mUnk_00;
+    a->mEntryIndex = ((Unk021759c0_000 *) gRaceSetup)->mUnk_07c[n].mUnk_00;
     InitItemSlot(a, a);
     InitHeldItem(&a->mHeldItem, a);
     InitItemInUse(&a->mItemInUse, a);
@@ -975,11 +975,11 @@ void AdvanceItemInUseOne(ItemInUse *a) {
     }
     if (a->mUnk_170 != NULL) {
         c->mActiveItem = 0x13;
-        i = c->mUnk_200;
+        i = c->mEntryIndex;
         if ((u16) (data_0217562a[i].mBits & ITEM_THROW_FORWARD_BIT) != 0) {
             c->mFlags |= data_021595a0;
         }
-        i = c->mUnk_200;
+        i = c->mEntryIndex;
         if ((u16) (data_0217562a[i].mBits & 0x80) != 0) {
             c->mFlags |= data_021595a4;
         }

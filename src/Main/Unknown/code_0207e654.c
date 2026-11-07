@@ -234,7 +234,7 @@ void func_0207f8f8(KartAi *p) {
     if (a->mState == KART_STATE_NORMAL) {
         RequestBits(p->mKart->mEntryIndex, 1);
         VEC_Subtract(&p->mUnk_44, &v, &w);
-        func_01ffd224(p, &w, t);
+        AdvanceKartAiHeading(p, &w, t);
     }
     func_0207ebfc(p);
     func_0207f2e4(p);

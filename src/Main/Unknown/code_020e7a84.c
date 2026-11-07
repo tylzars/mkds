@@ -625,7 +625,7 @@ void UpdateJgPosition(void) {
     if (gJgVisible == 0) {
         return;
     }
-    data_0217b8f0 = (func_01ffd648(&gJgPos, 0x12000, 0x708000, 0x5f592e1, 0x1f) & 3) == 0 ? 1 : 0;
+    data_0217b8f0 = (ComputeTwoPlaneViewTest(&gJgPos, 0x12000, 0x708000, 0x5f592e1, 0x1f) & 3) == 0 ? 1 : 0;
     dx = gJgPos.x - gJgMatrix.mUnk_00[3].x;
     dz = gJgPos.z - gJgMatrix.mUnk_00[3].z;
     sq = (s64) dx * dx + (s64) dz * dz;

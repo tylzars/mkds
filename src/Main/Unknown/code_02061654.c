@@ -267,7 +267,7 @@ void UpdateRace(void) {
     void *v;
 
     data_0217d020 = 1;
-    func_01ffdb70();
+    UpdateCollisionSlotBounds();
     UpdateCourseModels();
     UpdateKarts();
     if (gRace->mUpdateFramesMod8 == 0) {

@@ -297,7 +297,7 @@ void func_02068640(Kart *a, s32 b) {
         GetCourseMapKartStartPlacement(&c, &d, a->mIndex);
         a->mHeadingAngle = (u32) (d.y * 0xb6) >> 12;
         QuaternionFromAxisAngle(&data_02154f7c, a->mHeadingAngle, &a->mUnk_e0_m);
-        func_01ffcd84(&a->mUnk_120, &a->mUnk_e0_m);
+        Matrix4x3FromQuaternion(&a->mUnk_120, &a->mUnk_e0_m);
         GetKartForward(a, &e);
         ResetKartAndSetPos(a, &c, &e, NULL);
         f = gRaceSetup->mMode == 5 ? &a->mUnk_1d8 : &a->mCollisionCenter;

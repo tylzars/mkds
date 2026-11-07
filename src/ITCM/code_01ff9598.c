@@ -169,7 +169,7 @@ void AdvanceKartQuaternionBlendFactor(Kart *p, const Vec3 *a) {
 void UpdateKartAirborne(Kart *p) {
     if (p->mUnk_44 & KART_44_ON_GROUND) {
         p->mAirborneFrames = 0;
-        p->mUnk_234 = 0;
+        p->mAirTiltAngle = 0;
         p->mUnk_44 = p->mUnk_44 & ~0x4000;
         p->mLastGroundY = p->mPos.y;
         return;
@@ -189,7 +189,7 @@ void AdvanceKartOrientation(Kart *p, Vec3 *a) {
         p->mQuaternionBlendFactor = 0xf6;
         func_02070484(p, &p->mUnk_100_q);
     } else {
-        func_01ffad14(p, a);
+        AdvanceKartQuaternionFromVector(p, a);
     }
     QuaternionBlend(&p->mUnk_f0_q, &p->mUnk_100_q, &p->mUnk_f0_q, p->mQuaternionBlendFactor);
     QuaternionFromAxisAngle(&data_02154f7c, (u16) (p->mHeadingAngle + p->mHeadingAngleOffset), &p->mUnk_e0_m);

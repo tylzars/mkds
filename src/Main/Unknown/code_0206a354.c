@@ -39,7 +39,7 @@ void StartKartState2(Kart *p, int a, int b) {
         if (p->mTurnDirection == 1) {
             d = -1;
         }
-    } else if (p->mUnk_2d4 < 0) {
+    } else if (p->mTurnRatio < 0) {
         d = -1;
     }
     p->mYRotationAnglePerFrame = 0x750;

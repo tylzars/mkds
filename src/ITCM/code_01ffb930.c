@@ -16,7 +16,7 @@ void ApplyKartGravity(Kart *p) {
     p->mVerticalSpeed = p->mVerticalSpeed + p->mGravity;
 }
 
-void func_01ffb930(s32 *a, Kart *p) {
+void ReduceKartSpeedByTurnRatio(s32 *a, Kart *p) {
     s32 b;
     u32 f;
     s32 c;
@@ -34,7 +34,7 @@ void func_01ffb930(s32 *a, Kart *p) {
     if (*a <= 0x3000) {
         return;
     }
-    b = p->mUnk_2d4;
+    b = p->mTurnRatio;
     if (b <= 0) {
         b = -b;
     }

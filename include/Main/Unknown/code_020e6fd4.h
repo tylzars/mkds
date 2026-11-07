@@ -83,8 +83,8 @@ typedef struct MapObject {
     // while mDigitMask is shared). Bit 30 is set by kinds and makes func_020d2668 skip the kind's sound; bit 31 is set
     // by kinds and cleared by ItemObject code, which passes the object on as the one hit.
     /* 78 */ u32 mDistanceSquaredAndFlags;
-    // Non-zero when the view test of the object uses only two view planes (func_01ffd648) instead of five
-    // (func_01ffd778). Copied from the kind's data at creation.
+    // Non-zero when the view test of the object uses only two view planes (ComputeTwoPlaneViewTest) instead of five
+    // (ComputeViewTest). Copied from the kind's data at creation.
     /* 7c */ u16 mUseTwoPlaneViewTest;
     /* 7e */ u16 mAngle;
     // State machine of the kind: the table of state handlers, its size and the owner, with the current state, the next

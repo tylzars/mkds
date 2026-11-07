@@ -56,7 +56,7 @@ s32 func_020d2c2c(Vec3 *b, Vec3 *c, s32 d, s16 e, s32 f, Vec3 *g) {
     s32 a;
     s32 i;
     a = 0;
-    func_01ffd900(e, 0x2000);
+    FindCollisionSlotsOverlappingSlot(e, 0x2000);
     i = 0;
     if (data_0217b5a8 != 0) {
         Vec3 v;

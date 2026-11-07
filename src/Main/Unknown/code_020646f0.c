@@ -71,7 +71,7 @@ void func_020646f0(Kart *a, s32 b) {
     a->mHeadingAngle = (u32) (d.y * 0xb6) >> 12;
     QuaternionFromAxisAngle(&data_02154a3c, a->mHeadingAngle, &a->mUnk_e0_m);
     a->mUnk_110_q = a->mUnk_e0_m;
-    func_01ffcd84(&a->mUnk_120, &a->mUnk_110_q);
+    Matrix4x3FromQuaternion(&a->mUnk_120, &a->mUnk_110_q);
     a->mUnk_150_m = a->mUnk_120_m;
     a->mPrevPos = a->mPos;
     a->mUnk_98 = a->mPrevPos;
