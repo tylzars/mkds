@@ -261,7 +261,7 @@ void AdvanceWiFiAikotobaState5(void) {
             gWiFiAikotoba->mNextState = 6;
             gWiFiAikotoba->mPendingWiFiState = -1;
             c = GetBmgEntry(gWiFiAikotoba->mWiFiMessages, 0xf);
-            func_02126570(c, GetBmgEntry(gWiFiAikotoba->mCommonMessages, 6));
+            SetupTxtSystemMainTextButton(c, GetBmgEntry(gWiFiAikotoba->mCommonMessages, 6));
             gWiFiAikotoba->mStateFrames = 0;
             return;
         }
@@ -275,20 +275,20 @@ void AdvanceWiFiAikotobaState6(void) {
     void *a;
     void *b;
 
-    if (func_02125f88() != 0 && IsSelectReturnState0NoState1Request() != 0) {
+    if (IsTxtSystemState0NoOpenRequest() != 0 && IsSelectReturnState0NoState1Request() != 0) {
         gWiFiAikotoba->mNextState = 7;
         a = GetBmgEntry(gWiFiAikotoba->mWiFiMessages, 0x10);
         b = GetBmgEntry(gWiFiAikotoba->mCommonMessages, 0);
-        func_02126454(a, b, GetBmgEntry(gWiFiAikotoba->mCommonMessages, 1), 0);
+        SetupTxtSystemMainTextTwoButtons(a, b, GetBmgEntry(gWiFiAikotoba->mCommonMessages, 1), 0);
         return;
     }
-    if (func_02125f54() != 0) {
+    if (GetTxtSystemDone() != 0) {
         RequestTxtSystemClose();
     }
 }
 
 void AdvanceWiFiAikotobaState7(void) {
-    if (func_02125f88() != 0) {
+    if (IsTxtSystemState0NoOpenRequest() != 0) {
         if (GetTxtSystemSelectedIndex() == 0) {
             gWiFiAikotoba->mPendingWiFiState = 0xe;
             if (GetWiFiNextScene() == -1) {
@@ -301,7 +301,7 @@ void AdvanceWiFiAikotobaState7(void) {
         gWiFiAikotoba->mPendingWiFiState = -1;
         return;
     }
-    if (func_02125f54() != 0) {
+    if (GetTxtSystemDone() != 0) {
         RequestTxtSystemClose();
     }
 }

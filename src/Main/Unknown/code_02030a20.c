@@ -75,7 +75,7 @@ void func_02032028(void) {
     b = GetBmgEntry(gMultiSelectMember->mCommonMessages, 4);
     gMultiSelectMember->mUnk_70 = 8;
     gMultiSelectMember->mState = 5;
-    func_02126230(a, b);
+    SetupTxtSystemSubTextButton(a, b);
     RequestSelectReturnState4();
 }
 
@@ -754,10 +754,10 @@ s32 func_02030ea4(Unk02030b18 *a) {
             }
             break;
         case 5:
-            if (func_02125f6c() != 0) {
+            if (IsTxtSystemState2AfterState1() != 0) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
             }
-            if (func_02125f54() != 0) {
+            if (GetTxtSystemDone() != 0) {
                 RequestTxtSystemClose();
                 gMultiSelectMember->mUnk_6c = 0;
                 gMultiSelectMember->mState = 3;
@@ -907,10 +907,10 @@ s32 func_02030b18(Unk02030b18 *a) {
             }
             break;
         case 5:
-            if (func_02125f6c() != 0) {
+            if (IsTxtSystemState2AfterState1() != 0) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
             }
-            if (func_02125f54() != 0) {
+            if (GetTxtSystemDone() != 0) {
                 gMultiSelectMember->mUnk_6c = 0;
                 gMultiSelectMember->mState = 3;
                 RequestTxtSystemClose();

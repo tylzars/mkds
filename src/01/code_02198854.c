@@ -430,7 +430,7 @@ void AdvanceOptionSelectMenuState4(void) {
                 SetTxtSystemOpenSoundId(0x21);
                 a = GetBmgEntry(gOptionSelectMenu->mOptionMessages, 0x10);
                 b = GetBmgEntry(gOptionSelectMenu->mCommonMessages, 4);
-                func_02126230(a, b);
+                SetupTxtSystemSubTextButton(a, b);
                 gOptionSelectMenu->mNextState = 5;
                 gOptionSelectMenu->mStateFrames = 0;
                 RequestSelectReturnState4();
@@ -444,7 +444,7 @@ void AdvanceOptionSelectMenuState4(void) {
 void AdvanceOptionSelectMenuState5(void) {
     s32 r;
 
-    if (func_02125f54() != 0) {
+    if (GetTxtSystemDone() != 0) {
         if (data_0217aa08->mUnk_28 == 0) {
             if (data_021759d4->mUnk_0c != 0) {
                 r = data_021759d4->mUnk_10;
@@ -460,7 +460,7 @@ void AdvanceOptionSelectMenuState5(void) {
             RequestSelectReturnState1();
         }
     }
-    if (func_02125f88() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
+    if (IsTxtSystemState0NoOpenRequest() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
         RequestOptionState(gOptionSelectMenu->mNextOptionState);
     }
 }

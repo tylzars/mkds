@@ -119,7 +119,7 @@ void func_ov000_021854f8(void) {
 void AdvanceWiFiAikotobaCheckState0(void) {
     gWiFiAikotobaCheck->mStateFrames = gWiFiAikotobaCheck->mStateFrames + 1;
     gWiFiAikotobaCheck->mOffset = InterpolateS16(1, 0x50, 0, gWiFiAikotobaCheck->mStateFrames, 15);
-    if (gWiFiAikotobaCheck->mStateFrames >= 15 && func_02125fa4() != 0) {
+    if (gWiFiAikotobaCheck->mStateFrames >= 15 && IsTxtSystemState2NoCloseRequest() != 0) {
         gWiFiAikotobaCheck->mNextState = 1;
         gWiFiAikotobaCheck->mStateFrames = 0;
     }
@@ -155,7 +155,7 @@ void AdvanceWiFiAikotobaCheckState1(void) {
 void AdvanceWiFiAikotobaCheckState2(void) {
     gWiFiAikotobaCheck->mStateFrames = gWiFiAikotobaCheck->mStateFrames + 1;
     gWiFiAikotobaCheck->mOffset = InterpolateS16(1, 0, 0x50, gWiFiAikotobaCheck->mStateFrames, 15);
-    if (gWiFiAikotobaCheck->mStateFrames >= 15 && func_02125f88() != 0 &&
+    if (gWiFiAikotobaCheck->mStateFrames >= 15 && IsTxtSystemState0NoOpenRequest() != 0 &&
         IsSelectReturnState2NoState3Or4Request() != 0) {
         RequestWiFiState(gWiFiAikotobaCheck->mPendingWiFiState);
     }

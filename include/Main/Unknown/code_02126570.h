@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02126570(void *p0, void *p1);
+void SetupTxtSystemMainTextButton(void *p0, void *p1);

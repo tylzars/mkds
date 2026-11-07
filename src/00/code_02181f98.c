@@ -193,11 +193,11 @@ void AdvanceWiFiVSSettingState0(void) {
 void AdvanceWiFiVSSettingState1(void) {
     int v1;
     gWiFiVSSetting->mStateFrames = gWiFiVSSetting->mStateFrames + 1;
-    v1 = func_02125fa4();
+    v1 = IsTxtSystemState2NoCloseRequest();
     if ((v1 != 0) && (0x78 < gWiFiVSSetting->mStateFrames)) {
         RequestTxtSystemClose();
     }
-    v1 = func_02125f88();
+    v1 = IsTxtSystemState0NoOpenRequest();
     if (v1 != 0) {
         gWiFiVSSetting->mNextState = 2;
         func_ov000_02182de8();
@@ -414,7 +414,8 @@ void AdvanceWiFiVSSettingState6(void) {
     for (i = 0; i < data_ov000_021b0600[2]; i++) {
         gWiFiVSSetting->mRowOffsets[2][1] = u;
     }
-    if (gWiFiVSSetting->mStateFrames >= 10 && gWiFiVSSetting->mStateFrames >= 13 && func_02125f88() != 0 &&
+    if (gWiFiVSSetting->mStateFrames >= 10 && gWiFiVSSetting->mStateFrames >= 13 &&
+        IsTxtSystemState0NoOpenRequest() != 0 &&
         ((gWiFiVSSetting->mUnk_28 != FALSE && IsSelectReturnState0NoState1Request() != 0) ||
          IsSelectReturnState2NoState3Or4Request() != 0) &&
         GetWiFiNextScene() == -1) {
@@ -444,7 +445,7 @@ void AdvanceWiFiVSSettingState6(void) {
             a = GetBmgEntry(gWiFiVSSetting->mWiFiMessages, 0x17);
             b = GetBmgEntry(gWiFiVSSetting->mCommonMessages, 0);
             c = GetBmgEntry(gWiFiVSSetting->mCommonMessages, 1);
-            func_02126454(a, b, c, 0);
+            SetupTxtSystemMainTextTwoButtons(a, b, c, 0);
             return;
         }
         RequestWiFiState(gWiFiVSSetting->mPendingWiFiState);
@@ -457,16 +458,16 @@ void AdvanceWiFiVSSettingState7(void) {
     BOOL b;
     u16 v;
 
-    if (func_02125f6c() != 0) {
+    if (IsTxtSystemState2AfterState1() != 0) {
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
     }
-    if (func_02125f88() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
+    if (IsTxtSystemState0NoOpenRequest() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
         gWiFiVSSetting->mNextState = 2;
         func_ov000_02182de8();
         gWiFiVSSetting->mRow = 1;
         return;
     }
-    if (func_02125fa4() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
+    if (IsTxtSystemState2NoCloseRequest() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
         if ((u16) (data_02175628[v1].mUnk_00 & 2) == 0) {
             a = FALSE;
             b = FALSE;
@@ -496,16 +497,16 @@ void AdvanceWiFiVSSettingState8(void) {
     BOOL b;
     u16 v;
 
-    if (func_02125f6c() != 0) {
+    if (IsTxtSystemState2AfterState1() != 0) {
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
     }
-    if (func_02125f88() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
+    if (IsTxtSystemState0NoOpenRequest() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
         gWiFiVSSetting->mNextState = 2;
         func_ov000_02182de8();
         gWiFiVSSetting->mRow = 1;
         return;
     }
-    if (func_02125fa4() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
+    if (IsTxtSystemState2NoCloseRequest() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
         if ((u16) (data_02175628[v1].mUnk_00 & 2) == 0) {
             a = FALSE;
             b = FALSE;
@@ -530,11 +531,11 @@ void AdvanceWiFiVSSettingState8(void) {
 }
 
 void AdvanceWiFiVSSettingState9(void) {
-    if (func_02125f54() != 0) {
+    if (GetTxtSystemDone() != 0) {
         RequestTxtSystemClose();
         return;
     }
-    if (func_02125f88() != 0) {
+    if (IsTxtSystemState0NoOpenRequest() != 0) {
         if (GetTxtSystemSelectedIndex() == 0) {
             gWiFiVSSetting->mNextState = 10;
             func_02126638(GetBmgEntry(gWiFiVSSetting->mWiFiMessages, 0x18), 1, 1, 1, 0, 1, 0);
@@ -548,29 +549,29 @@ void AdvanceWiFiVSSettingState9(void) {
 
 void AdvanceWiFiVSSettingState10(void) {
     gWiFiVSSetting->mStateFrames = gWiFiVSSetting->mStateFrames + 1;
-    if (func_02125fa4() != 0 && gWiFiVSSetting->mConnectionReleased == FALSE) {
+    if (IsTxtSystemState2NoCloseRequest() != 0 && gWiFiVSSetting->mConnectionReleased == FALSE) {
         gWiFiVSSetting->mConnectionReleased = TRUE;
         func_0211fe18();
     }
     if (gWiFiVSSetting->mConnectionReleased != FALSE && func_0211fda8() != 0 && gWiFiVSSetting->mStateFrames > 90 &&
-        func_02125fa4() != 0) {
+        IsTxtSystemState2NoCloseRequest() != 0) {
         void *t;
 
         gWiFiVSSetting->mNextState = 11;
         t = GetBmgEntry(gWiFiVSSetting->mWiFiMessages, 0x19);
-        func_02126570(t, GetBmgEntry(gWiFiVSSetting->mCommonMessages, 4));
+        SetupTxtSystemMainTextButton(t, GetBmgEntry(gWiFiVSSetting->mCommonMessages, 4));
         gWiFiVSSetting->mStateFrames = 0;
     }
 }
 
 void AdvanceWiFiVSSettingState11(void) {
     int v1;
-    v1 = func_02125f54();
+    v1 = GetTxtSystemDone();
     if (v1 != 0) {
         RequestTxtSystemClose();
         return;
     }
-    v1 = func_02125f88();
+    v1 = IsTxtSystemState0NoOpenRequest();
     if (v1 != 0) {
         RequestWiFiState(gWiFiVSSetting->mPendingWiFiState);
     }

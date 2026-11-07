@@ -116,7 +116,7 @@ void func_0202d82c(void) {
     v1 = GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, 0xd);
     v2 = GetBmgEntry(gTimeAttackGhostSend->mCommonMessages, 4);
     gTimeAttackGhostSend->mState = 8;
-    func_02126230(v1, v2);
+    SetupTxtSystemSubTextButton(v1, v2);
 }
 
 #pragma thumb off
@@ -195,7 +195,7 @@ void func_0202d5f8(s32 a, s32 b) {
     x[10] = 0;
     func_0212513c(x, r, y, 0x100);
     if (b != 0) {
-        func_02126230(y, GetBmgEntry(gTimeAttackGhostSend->mCommonMessages, 4));
+        SetupTxtSystemSubTextButton(y, GetBmgEntry(gTimeAttackGhostSend->mCommonMessages, 4));
     } else {
         SetupTxtSystemSubText(y);
     }
@@ -341,7 +341,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
     }
     switch (gTimeAttackGhostSend->mState) {
         case 0:
-            if (func_02125f54() != 0) {
+            if (GetTxtSystemDone() != 0) {
                 data_0217b488->mUnk_08 = 5;
                 if (p != NULL) {
                     p->mUnk_04 = 1;
@@ -352,8 +352,8 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
         case 1:
             if (AreBrightnessFadesClear() == 0) {
                 if (func_0202ddc4() == 0) {
-                    func_02126230(GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, 0x53),
-                                  GetBmgEntry(gTimeAttackGhostSend->mCommonMessages, 4));
+                    SetupTxtSystemSubTextButton(GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, 0x53),
+                                                GetBmgEntry(gTimeAttackGhostSend->mCommonMessages, 4));
                     gTimeAttackGhostSend->mState = 0;
                 } else {
                     func_0202d6a0();
@@ -373,7 +373,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
             }
             break;
         case 3:
-            if (func_02125fa4() != 0) {
+            if (IsTxtSystemState2NoCloseRequest() != 0) {
                 func_0202e4b0();
                 i = func_0202e4a4();
                 if (gTimeAttackGhostSend->mUnk_0a4 != i) {
@@ -461,10 +461,10 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
             }
             break;
         case 8:
-            if (func_02125f6c() != 0) {
+            if (IsTxtSystemState2AfterState1() != 0) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
             }
-            if (func_02125f54() != 0) {
+            if (GetTxtSystemDone() != 0) {
                 gTimeAttackGhostSend->mState = 9;
             }
             break;
@@ -493,7 +493,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
             }
             break;
         case 13:
-            if (func_02125f54() != 0) {
+            if (GetTxtSystemDone() != 0) {
                 data_0217b488->mUnk_08 = 5;
                 if (p != NULL) {
                     p->mUnk_04 = 1;

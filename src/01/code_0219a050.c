@@ -552,7 +552,7 @@ void AdvanceRecordTopMenuState7(void) {
 
 void AdvanceRecordTopMenuState8(void) {
     int v1;
-    v1 = func_02125fa4();
+    v1 = IsTxtSystemState2NoCloseRequest();
     if (v1 != 0) {
         RequestRecordTopMenuState9();
     }
@@ -588,7 +588,7 @@ void AdvanceRecordTopMenuState9(void) {
 
 void AdvanceRecordTopMenuState10(void) {
     int v1;
-    v1 = func_02125f88();
+    v1 = IsTxtSystemState0NoOpenRequest();
     if (v1 != 0) {
         RequestRecordTopMenuState11();
     }

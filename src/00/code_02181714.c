@@ -300,12 +300,12 @@ void AdvanceWiFiTopMenuState5(void) {
 
 void AdvanceWiFiTopMenuState6(void) {
     int v1;
-    v1 = func_02125f54();
+    v1 = GetTxtSystemDone();
     if (v1 != 0) {
         RequestTxtSystemClose();
         return;
     }
-    v1 = func_02125f88();
+    v1 = IsTxtSystemState0NoOpenRequest();
     if (v1 != 0) {
         v1 = GetTxtSystemSelectedIndex();
         if (v1 == 0) {
@@ -334,10 +334,10 @@ void AdvanceWiFiTopMenuState8(void) {
     s32 a;
     BOOL b;
     u32 v;
-    if (func_02125f6c() != 0) {
+    if (IsTxtSystemState2AfterState1() != 0) {
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
     }
-    if (func_02125fa4() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
+    if (IsTxtSystemState2NoCloseRequest() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
         if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
             a = b = FALSE;
             v = data_02175628[i].mHasPair;

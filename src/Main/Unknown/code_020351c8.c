@@ -142,7 +142,7 @@ void func_02035b78(void) {
     w[10] = 0;
     func_0212513c(w, e, h, 0x100);
     SetTxtSystemSoundId(0, -1);
-    func_02125fd4(h, f, g, 1, 0, 1, 1, 0);
+    SetupTxtSystemSubTextTwoButtonsEx(h, f, g, 1, 0, 1, 1, 0);
 }
 
 void func_02035b0c(void) {
@@ -303,7 +303,7 @@ s32 func_0203551c(u16 *a) {
             }
             break;
         case 1:
-            if (func_02125f88() != 0) {
+            if (IsTxtSystemState0NoOpenRequest() != 0) {
                 func_02035c14();
             }
             func_0202e4b0();
@@ -323,19 +323,19 @@ s32 func_0203551c(u16 *a) {
                 e = GetBmgEntry(data_02174e68->mUnk_88, 0x54);
                 h = GetBmgEntry(data_02174e68->mUnk_84, 4);
                 SetTxtSystemSoundId(0, 5);
-                func_02126230(e, h);
+                SetupTxtSystemSubTextButton(e, h);
                 RequestSelectReturnState3WithSound(1);
                 data_02174e68->mUnk_a0 = FALSE;
                 data_02174e68->mUnk_8c = 4;
             }
             break;
         case 2:
-            if (func_02125f40() != 0 && GetTxtSystemSelectedIndex() == 0) {
+            if (GetTxtSystemInputAccepted() != 0 && GetTxtSystemSelectedIndex() == 0) {
                 NNS_SndArcSetCurrent(&data_0217c868);
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 10);
                 NNS_SndArcSetCurrent(&data_0217d0a0);
             }
-            if (func_02125f54() != 0) {
+            if (GetTxtSystemDone() != 0) {
                 if (GetTxtSystemSelectedIndex() == 0) {
                     ((Unk0202ddd8 *) func_0202ddd8())->mUnk_08_0 = 1;
                     func_020566a8((u8) data_02174e68->mUnk_80, func_0202ddd8());
@@ -352,13 +352,13 @@ s32 func_0203551c(u16 *a) {
                 e = GetBmgEntry(p->mUnk_88, 0x10);
                 h = GetBmgEntry(data_02174e68->mUnk_84, 4);
                 SetTxtSystemSoundId(0, 5);
-                func_02126230(e, h);
+                SetupTxtSystemSubTextButton(e, h);
                 data_02174e68->mUnk_a0 = FALSE;
                 data_02174e68->mUnk_8c = 4;
             }
             break;
         case 4:
-            if (func_02125f54() != 0) {
+            if (GetTxtSystemDone() != 0) {
                 data_0217b488->mUnk_08 = 5;
                 if (a != NULL) {
                     a[2] = 1;
@@ -419,7 +419,7 @@ void func_020353a4(void) {
     e = GetBmgEntry(data_02174e64->mGhostMessages, 0x11);
     f = GetBmgEntry(data_02174e64->mCommonMessages, 4);
     SetTxtSystemSoundId(0, 5);
-    func_02126230(e, f);
+    SetupTxtSystemSubTextButton(e, f);
     data_02174e64->mUnk_090 = 0;
     data_02174e64->mState = 15;
 }
@@ -543,7 +543,7 @@ void func_020351c8(void) {
     v2 = GetBmgEntry(data_02174e64->mCommonMessages, 0);
     v3 = GetBmgEntry(data_02174e64->mCommonMessages, 1);
     SetTxtSystemSoundId(0, 5);
-    func_02125fd4(v1, v2, v3, 0, 0, 1, 1, 0);
+    SetupTxtSystemSubTextTwoButtonsEx(v1, v2, v3, 0, 0, 1, 1, 0);
 }
 
 #pragma thumb off

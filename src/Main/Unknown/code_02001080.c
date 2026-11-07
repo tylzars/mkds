@@ -39,16 +39,16 @@ void func_02001238(void) {
 void func_020011f0(void) {
     void *v1;
     v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 137);
-    func_02126230(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 6));
+    SetupTxtSystemSubTextButton(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 6));
 }
 
 void func_0200118c(void) {
     Unk021a99c0_18 *v1;
-    if (func_02125f54() != 0) {
+    if (GetTxtSystemDone() != 0) {
         RequestTxtSystemClose();
         return;
     }
-    if (func_02125f88() == 0) {
+    if (IsTxtSystemState0NoOpenRequest() == 0) {
         return;
     }
     v1 = &data_usa_ov001_021a99c0->mUnk_18;
@@ -59,16 +59,16 @@ void func_0200118c(void) {
 void func_02001144(void) {
     void *v1;
     v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 138);
-    func_02126230(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 4));
+    SetupTxtSystemSubTextButton(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 4));
 }
 
 void func_020010e0(void) {
     Unk021a99c0_18 *v1;
-    if (func_02125f54() != 0) {
+    if (GetTxtSystemDone() != 0) {
         RequestTxtSystemClose();
         return;
     }
-    if (func_02125f88() == 0) {
+    if (IsTxtSystemState0NoOpenRequest() == 0) {
         return;
     }
     v1 = &data_usa_ov001_021a99c0->mUnk_18;

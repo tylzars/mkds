@@ -60,16 +60,16 @@ void func_02001878(void) {
 void func_02001830(void) {
     void *v1;
     v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 125);
-    func_02126230(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 4));
+    SetupTxtSystemSubTextButton(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 4));
 }
 
 void func_020017cc(void) {
     Unk021a99c0_18 *v1;
-    if (func_02125f54() != 0) {
+    if (GetTxtSystemDone() != 0) {
         RequestTxtSystemClose();
         return;
     }
-    if (func_02125f88() == 0) {
+    if (IsTxtSystemState0NoOpenRequest() == 0) {
         return;
     }
     v1 = &data_usa_ov001_021a99c0->mUnk_18;
@@ -89,7 +89,7 @@ void func_020016ac(void) {
     s32 v1;
     Unk021a99c0_18 *v2;
     data_usa_ov001_021a99c0->mUnk_34 = data_usa_ov001_021a99c0->mUnk_34 + 1;
-    if (func_02125f6c() != 0) {
+    if (IsTxtSystemState2AfterState1() != 0) {
         StartSoundOncePerFrame(34);
     }
     if (data_0217aa08->mUnk_28 == 0) {
@@ -104,7 +104,7 @@ void func_020016ac(void) {
     if (v1 != 0) {
         return;
     }
-    if (func_02125fa4() == 0) {
+    if (IsTxtSystemState2NoCloseRequest() == 0) {
         return;
     }
     if (data_usa_ov001_021a99c0->mUnk_34 > 90) {
@@ -118,17 +118,17 @@ void func_0200165c(void) {
     void *v1;
     SetTxtSystemOpenSoundId(33);
     v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 128);
-    func_02126230(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 4));
+    SetupTxtSystemSubTextButton(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 4));
 }
 
 void func_020015f0(void) {
     Unk021a99c0_18 *v1;
-    if (func_02125f54() != 0) {
+    if (GetTxtSystemDone() != 0) {
         SetTxtSystemOpenSoundId(35);
         RequestTxtSystemClose();
         return;
     }
-    if (func_02125f88() == 0) {
+    if (IsTxtSystemState0NoOpenRequest() == 0) {
         return;
     }
     v1 = &data_usa_ov001_021a99c0->mUnk_18;
@@ -145,16 +145,16 @@ void func_02001598(void) {
     v2 = GetBmgEntry(v1, 124);
     v3 = GetBmgEntry(v1, 0);
     v4 = GetBmgEntry(v1, 1);
-    func_0212611c(v2, v3, v4, 1);
+    SetupTxtSystemSubTextTwoButtons(v2, v3, v4, 1);
 }
 
 void func_02001500(void) {
     Unk021a99c0_18 *v1;
-    if (func_02125f54() != 0) {
+    if (GetTxtSystemDone() != 0) {
         RequestTxtSystemClose();
         return;
     }
-    if (func_02125f88() == 0) {
+    if (IsTxtSystemState0NoOpenRequest() == 0) {
         return;
     }
     if (GetTxtSystemSelectedIndex() == 0) {
@@ -186,7 +186,7 @@ void func_02001350(void) {
     data_usa_ov001_021a99c0->mUnk_34 = data_usa_ov001_021a99c0->mUnk_34 + 1;
     v1 = data_usa_ov001_021a99c0;
     if (v1->mUnk_2c_0 != 0) {
-        if (func_02125f6c() != 0) {
+        if (IsTxtSystemState2AfterState1() != 0) {
             StartSoundOncePerFrame(34);
         }
         if (data_0217aa08->mUnk_28 == 0) {
@@ -201,7 +201,7 @@ void func_02001350(void) {
         if (v2 != 0) {
             return;
         }
-        if (func_02125fa4() == 0) {
+        if (IsTxtSystemState2NoCloseRequest() == 0) {
             return;
         }
         if (data_usa_ov001_021a99c0->mUnk_34 > 90) {
@@ -231,17 +231,17 @@ void func_02001300(void) {
     void *v1;
     SetTxtSystemOpenSoundId(33);
     v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 127);
-    func_02126230(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 4));
+    SetupTxtSystemSubTextButton(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 4));
 }
 
 void func_02001294(void) {
     Unk021a99c0_18 *v1;
-    if (func_02125f54() != 0) {
+    if (GetTxtSystemDone() != 0) {
         SetTxtSystemOpenSoundId(35);
         RequestTxtSystemClose();
         return;
     }
-    if (func_02125f88() == 0) {
+    if (IsTxtSystemState0NoOpenRequest() == 0) {
         return;
     }
     v1 = &data_usa_ov001_021a99c0->mUnk_18;

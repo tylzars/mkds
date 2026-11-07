@@ -284,7 +284,7 @@ void AdvanceOptionEmbremSelectState5(void) {
                 obj->mNextState = 6;
                 SetTxtSystemOpenSoundId(0x21);
                 first = GetBmgEntry(gOptionEmbremSelect->mOptionMessages, arg);
-                func_02126230(first, GetBmgEntry(gOptionEmbremSelect->mCommonMessages, 4));
+                SetupTxtSystemSubTextButton(first, GetBmgEntry(gOptionEmbremSelect->mCommonMessages, 4));
                 gOptionEmbremSelect->mStateFrames = 0;
             }
         }
@@ -294,7 +294,7 @@ void AdvanceOptionEmbremSelectState5(void) {
 void AdvanceOptionEmbremSelectState6(void) {
     s32 value;
 
-    if (func_02125f54() != 0) {
+    if (GetTxtSystemDone() != 0) {
         if (data_0217aa08->mUnk_28 == 0) {
             if (data_021759d4->mUnk_0c != 0) {
                 value = data_021759d4->mUnk_10;
@@ -310,7 +310,7 @@ void AdvanceOptionEmbremSelectState6(void) {
             return;
         }
     }
-    if (func_02125f88() != 0) {
+    if (IsTxtSystemState0NoOpenRequest() != 0) {
         RequestOptionState(gOptionEmbremSelect->mNextOptionState);
     }
 }

@@ -113,8 +113,8 @@ void func_02115e74(void) {
         gRecordVSErase->mRecordVSSEraseTable[n + data_0215c4b8[i]].mUnk_04 = 0x100;
     }
     func_021162cc();
-    func_02126138(GetBmgEntry(gRecordVSErase->mRecordMessages, 4), GetBmgEntry(gRecordVSErase->mCommonMessages, 6), 0,
-                  1, 1, 1);
+    SetupTxtSystemSubTextButtonEx(GetBmgEntry(gRecordVSErase->mRecordMessages, 4),
+                                  GetBmgEntry(gRecordVSErase->mCommonMessages, 6), 0, 1, 1, 1);
     for (i = 0; i < 2; i++) {
         gRecordVSErase->mRecordVSSEraseTable[data_0215c4a8[i]].mUnk_00 = 0;
     }
@@ -179,8 +179,8 @@ void func_02115d08(void) {
     v = GetRecordVSEraseFirstRecordIndex();
     CopyRecordText(v + gRecordVSErase->mIndex, buf, 0x20);
     func_0212513c(buf, GetBmgEntry(gRecordVSErase->mRecordMessages, 5), buf2, 0x200);
-    func_02125fd4(buf2, GetBmgEntry(gRecordVSErase->mCommonMessages, 0),
-                  GetBmgEntry(gRecordVSErase->mCommonMessages, 1), 1, 0, 1, 1, 1);
+    SetupTxtSystemSubTextTwoButtonsEx(buf2, GetBmgEntry(gRecordVSErase->mCommonMessages, 0),
+                                      GetBmgEntry(gRecordVSErase->mCommonMessages, 1), 1, 0, 1, 1, 1);
 }
 
 void func_02115cec(void) {
@@ -340,7 +340,7 @@ void func_021156d4(void) {
 
 void AdvanceRecordVSEraseState0(void) {
     int v1;
-    v1 = func_02125fa4();
+    v1 = IsTxtSystemState2NoCloseRequest();
     if (v1 != 0) {
         RequestRecordVSEraseState1();
     }
@@ -348,7 +348,7 @@ void AdvanceRecordVSEraseState0(void) {
 
 void AdvanceRecordVSEraseState1(void) {
     int v1;
-    v1 = func_02125f54();
+    v1 = GetTxtSystemDone();
     if (v1 != 0) {
         func_02115e44();
     }
@@ -356,7 +356,7 @@ void AdvanceRecordVSEraseState1(void) {
 
 void AdvanceRecordVSEraseState2(void) {
     int v1;
-    v1 = func_02125f88();
+    v1 = IsTxtSystemState0NoOpenRequest();
     if (v1 != 0) {
         func_02115e20();
     }
@@ -665,7 +665,7 @@ void AdvanceRecordVSEraseState7(void) {
 
 void AdvanceRecordVSEraseState8(void) {
     int v1;
-    v1 = func_02125fa4();
+    v1 = IsTxtSystemState2NoCloseRequest();
     if (v1 != 0) {
         func_02115cec();
     }
@@ -679,7 +679,7 @@ void AdvanceRecordVSEraseState9(void) {
     u16 a;
 
     a = GetRecordVSEraseFirstRecordIndex();
-    if (func_02125f54()) {
+    if (GetTxtSystemDone()) {
         if (GetTxtSystemSelectedIndex() == 0) {
             EraseRecord(a + gRecordVSErase->mIndex);
             gRecordVSErase->mErased = 1;
@@ -724,7 +724,7 @@ void AdvanceRecordVSEraseState10(void) {
             gRecordVSErase->mRecordVSMTransientTable[y + data_0215c584[i]].mUnk_04 = a;
         }
     }
-    if (func_02125f88()) {
+    if (IsTxtSystemState0NoOpenRequest()) {
         v = GetRecordVSEraseFirstRecordIndex();
         if (GetRecordCount() <= v) {
             gRecordVSErase->mPageIndex--;

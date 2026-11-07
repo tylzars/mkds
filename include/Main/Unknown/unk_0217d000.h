@@ -512,7 +512,7 @@ typedef struct TxtSystem {
     /* 0020 */ u32 mAnimRequested[2];
     /* 0028 */ s32 mExtraCanvasCount;
     /* 002c */ u32 mSelectedIndex;
-    /* 0030 */ u32 mUnk_30;
+    /* 0030 */ u32 mDone;
     /* 0034 */ u32 mOpenRequested;
     /* 0038 */ u32 mCloseRequested;
     /* 003c */ u32 mOpenFromIndex;
@@ -541,7 +541,7 @@ typedef struct TxtSystem {
     /* 2244 */ u16 mUnk_2244;
     /* 2246 */ u16 mUnk_2246;
     /* 2248 */ u32 mMode;
-    /* 224c */ u32 mUnk_224c;
+    /* 224c */ u32 mInputAccepted;
     /* 2250 */ s32 mInputSoundId;
     /* 2254 */ s32 mSecondInputSoundId;
     /* 2258 */ s32 mOpenSoundId;
@@ -643,8 +643,8 @@ typedef struct Keyboard {
     /* 1c */ s32 mButtonEnabled[2];
     /* 24 */ BOOL mUnk_24;
     // Calls spent in the current state: counted up by the handlers of states 1, 3, 4, 6, 8, 9 and 11, and by state 10
-    // only while func_02125f54 or func_02125f88 returns non-zero; zeroed by the handler that leaves; the slide states
-    // hold it at 0xf.
+    // only while GetTxtSystemDone or IsTxtSystemState0NoOpenRequest returns non-zero; zeroed by the handler that
+    // leaves; the slide states hold it at 0xf.
     /* 28 */ s32 mStateFrames;
     /* 2c */ Unk0217d400_2c mUnk_2c[3];
     // Object tables of the keyboard, indexed by kind and by the buffer they are drawn to.

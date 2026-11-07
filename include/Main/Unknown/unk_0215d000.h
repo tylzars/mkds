@@ -10,11 +10,11 @@ typedef struct Unk0215d064 {
     /* 03 */ u8 mUnk_03;
 } Unk0215d064;
 
-extern s16 data_0215d040[];
-extern u8 data_0215d044[][2];
-extern u16 data_0215d054[];
-extern Unk0215d064 data_0215d064[];
-extern Unk0215d064 data_0215d080[];
+extern s16 gTxtSystemBgOffsets[];
+extern u8 gTxtSystemCanvasSizes[][2];
+extern u16 gTxtSystemCanvasCharOffsets[];
+extern Unk0215d064 gTxtSystemHitRects[];
+extern Unk0215d064 gTxtSystemNscrRects[];
 extern u8 gSelectChoisesNscrOrigins[][2];
 extern Unk0215d064 gSelectChoisesTileRect;
 extern Unk0215d064 gSelectChoisesHitRects[];

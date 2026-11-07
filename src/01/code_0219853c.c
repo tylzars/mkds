@@ -65,7 +65,7 @@ void func_ov001_02198768(void) {
         a = GetBmgEntry(data_ov001_021a9be4->mUnk_14, 0xc);
         b = GetBmgEntry(data_ov001_021a9be4->mUnk_14, 0);
         c = GetBmgEntry(data_ov001_021a9be4->mUnk_14, 1);
-        func_0212611c(a, b, c, 0);
+        SetupTxtSystemSubTextTwoButtons(a, b, c, 0);
     }
 }
 
@@ -73,17 +73,17 @@ void func_ov001_021986e8(void) {
     void *a;
     void *b;
     void *c;
-    if (func_02125f54() != 0) {
+    if (GetTxtSystemDone() != 0) {
         RequestTxtSystemClose();
         return;
     }
-    if (func_02125f88() != 0) {
+    if (IsTxtSystemState0NoOpenRequest() != 0) {
         if (GetTxtSystemSelectedIndex() == 0) {
             data_ov001_021a9be4->mUnk_04 = 2;
             a = GetBmgEntry(data_ov001_021a9be4->mUnk_14, 0xd);
             b = GetBmgEntry(data_ov001_021a9be4->mUnk_14, 0);
             c = GetBmgEntry(data_ov001_021a9be4->mUnk_14, 1);
-            func_0212611c(a, b, c, 0);
+            SetupTxtSystemSubTextTwoButtons(a, b, c, 0);
         } else {
             data_ov001_021a9be4->mUnk_0e = 0xe;
         }
@@ -95,11 +95,11 @@ void func_ov001_02198624(void) {
     void *b;
     void *c;
     u8 *d;
-    if (func_02125f54() != 0) {
+    if (GetTxtSystemDone() != 0) {
         RequestTxtSystemClose();
         return;
     }
-    if (func_02125f88() != 0) {
+    if (IsTxtSystemState0NoOpenRequest() != 0) {
         if (GetTxtSystemSelectedIndex() == 0) {
             d = data_021759d0->mUnk_2a;
             data_0217aa08->mUnk_00->mUnk_31_0 = 1;
@@ -110,7 +110,7 @@ void func_ov001_02198624(void) {
             a = GetBmgEntry(data_ov001_021a9be4->mUnk_14, 0x13);
             b = GetBmgEntry(data_ov001_021a9be4->mUnk_14, 0);
             c = GetBmgEntry(data_ov001_021a9be4->mUnk_14, 1);
-            func_0212611c(a, b, c, 1);
+            SetupTxtSystemSubTextTwoButtons(a, b, c, 1);
         } else {
             data_ov001_021a9be4->mUnk_0e = 0xe;
         }
@@ -119,11 +119,11 @@ void func_ov001_02198624(void) {
 
 void func_ov001_021985b0(void) {
     s32 v;
-    if (func_02125f54() != 0) {
+    if (GetTxtSystemDone() != 0) {
         RequestTxtSystemClose();
         return;
     }
-    if (func_02125f88() != 0) {
+    if (IsTxtSystemState0NoOpenRequest() != 0) {
         if (data_0217aa08->mUnk_28 == 0) {
             if (data_021759d4->mUnk_0c != 0) {
                 v = data_021759d4->mUnk_10;

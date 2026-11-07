@@ -397,7 +397,7 @@ void func_ov001_02196ecc(void) {
     func_0212513c(a, GetBmgEntry(p->mRecordMessages, 10), &buf[1], 0x200);
     a = GetBmgEntry(gRecordTAtt->mCommonMessages, 0);
     b = GetBmgEntry(gRecordTAtt->mCommonMessages, 1);
-    func_02125fd4(&buf[1], a, b, 1, 0, 1, 1, 1);
+    SetupTxtSystemSubTextTwoButtonsEx(&buf[1], a, b, 1, 0, 1, 1, 1);
 }
 
 void func_ov001_02196eb0(void) {
@@ -936,13 +936,13 @@ void AdvanceRecordTAttState8(void) {
 }
 
 void AdvanceRecordTAttState9(void) {
-    if (func_02125fa4() != 0) {
+    if (IsTxtSystemState2NoCloseRequest() != 0) {
         func_ov001_02196eb0();
     }
 }
 
 void AdvanceRecordTAttState10(void) {
-    if (func_02125f54() != 0) {
+    if (GetTxtSystemDone() != 0) {
         if (GetTxtSystemSelectedIndex() == 0) {
             if (func_02060268(data_ov001_021a6900[gRecordTAtt->mIndex]) == 0) {
                 ClearCourseTimeRecords(data_ov001_021a6900[gRecordTAtt->mIndex]);
@@ -980,7 +980,7 @@ void AdvanceRecordTAttState11(void) {
         gRecordTAtt->mRecordTAttMTable[w + 4].mUnk_04 = v;
     }
     if (gRecordTAtt->mStateFrames >= 10) {
-        if (func_02125f88() != 0) {
+        if (IsTxtSystemState0NoOpenRequest() != 0) {
             func_ov001_02196e54();
         }
     }
@@ -1073,7 +1073,7 @@ void AdvanceRecordTAttState13(void) {
 
 void AdvanceRecordTAttState14(void) {
     int v1;
-    v1 = func_02125fa4();
+    v1 = IsTxtSystemState2NoCloseRequest();
     if (v1 != 0) {
         RequestRecordTAttState15();
     }
@@ -1106,7 +1106,7 @@ void AdvanceRecordTAttState15(void) {
 
 void AdvanceRecordTAttState16(void) {
     int v1;
-    v1 = func_02125f88();
+    v1 = IsTxtSystemState0NoOpenRequest();
     if (v1 != 0) {
         RequestRecordTAttState17();
     }
