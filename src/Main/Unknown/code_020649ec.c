@@ -290,6 +290,6 @@ void InitKart(Kart *a, void (**b)(Kart *)) {
     }
     func_02071f44(a);
     if ((a->mUnk_7c & 2) != 0) {
-        func_0208c260(a->mUnk_310, a->mIndex);
+        func_0208c260(a->mAi, a->mIndex);
     }
 }

@@ -25,7 +25,7 @@ typedef struct UnkVec16 {
     s16 z;
 } UnkVec16;
 
-struct Unk020888b4;
+struct KartAi;
 
 typedef struct Unk0206c1ac_B {
     /* 0 */ u32 mUnk_00;
@@ -384,7 +384,7 @@ typedef struct Kart {
     /* 304 */ u16 *mAwayTurnCounter;
     /* 308 */ u16 *mTowardTurnCounter;
     /* 30c */ s32 mTurnCountTimer;
-    /* 310 */ struct Unk020888b4 *mUnk_310;
+    /* 310 */ struct KartAi *mAi;
     /* 314 */ u16 mRotationAngle;
     /* 316 */ u8 mUnk_316[2];
     /* 318 */ s32 mRotationAngleSum;

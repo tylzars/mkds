@@ -3,4 +3,4 @@
 #include "types.h"
 
 struct Unk02089a24;
-struct Unk020888b4;
+struct KartAi;

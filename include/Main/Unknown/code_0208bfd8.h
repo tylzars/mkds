@@ -2,13 +2,13 @@
 
 #include "types.h"
 
-typedef struct Unk020888b4 Unk020888b4;
+typedef struct KartAi KartAi;
 
-void func_0208bfd8(Unk020888b4 *p);
-void func_0208bfec(Unk020888b4 *p);
-void func_0208c000(Vec3 *a, Vec3 *b, Unk020888b4 *p);
-BOOL func_0208c03c(Unk020888b4 *p);
-void func_0208c050(Unk020888b4 *p);
-void func_0208c09c(Unk020888b4 *p);
-void func_0208c0c8(Unk020888b4 *p);
-void func_0208c0f0(Unk020888b4 *p, s32 a);
+void func_0208bfd8(KartAi *p);
+void func_0208bfec(KartAi *p);
+void func_0208c000(Vec3 *a, Vec3 *b, KartAi *p);
+BOOL func_0208c03c(KartAi *p);
+void func_0208c050(KartAi *p);
+void func_0208c09c(KartAi *p);
+void func_0208c0c8(KartAi *p);
+void func_0208c0f0(KartAi *p, s32 a);

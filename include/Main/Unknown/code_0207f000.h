@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-struct Unk020888b4;
+struct KartAi;
 struct Kart;

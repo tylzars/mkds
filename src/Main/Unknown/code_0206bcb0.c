@@ -420,13 +420,13 @@ void func_0206c17c(Kart *p) {
 
 void func_0206c14c(Kart *p) {
     if (p->mUnk_7c & 0x2) {
-        func_0208c1ac(p->mUnk_310);
+        func_0208c1ac(p->mAi);
     }
 }
 
 void func_0206c11c(Kart *p) {
     if (p->mUnk_7c & 0x2) {
-        func_0208c188(p->mUnk_310);
+        func_0208c188(p->mAi);
     }
 }
 

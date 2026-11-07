@@ -3,4 +3,4 @@
 #include "types.h"
 #include "Main/Unknown/code_020888b4.h"
 
-void func_02090088(Unk0208fd8c *a, Unk020888b4 *b);
+void func_02090088(Unk0208fd8c *a, KartAi *b);

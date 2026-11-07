@@ -32,7 +32,7 @@
 #include "Main/Unknown/code_0203c8dc.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_0207e594(struct Unk020888b4 *p, struct Kart *q, s32 a) {
+void func_0207e594(struct KartAi *p, struct Kart *q, s32 a) {
     p->mKart = q;
     p->mIndex = q->mIndex;
     p->mUnk_06 = p->mIndex % 4;
@@ -48,13 +48,13 @@ void func_0207e594(struct Unk020888b4 *p, struct Kart *q, s32 a) {
     p->mUnk_cc = 1;
 }
 
-void func_0207e564(struct Unk020888b4 *p, struct Unk02175620_bc *a) {
+void func_0207e564(struct KartAi *p, struct Unk02175620_bc *a) {
     ResetPointLinkCursor(&p->mUnk_08.mUnk_00, a);
     func_0207f9cc(p, 1);
     func_0207f9cc(p, 1);
 }
 
-void func_0207e4a4(struct Unk020888b4 *p) {
+void func_0207e4a4(struct KartAi *p) {
     Vec3 a;
     Vec3 b;
     LinkCursor *s;
@@ -83,7 +83,7 @@ void func_0207e4a4(struct Unk020888b4 *p) {
     func_0207ebfc(p);
 }
 
-void func_0207e400(struct Unk020888b4 *p, struct Kart *q, s32 a) {
+void func_0207e400(struct KartAi *p, struct Kart *q, s32 a) {
     p->mKart = q;
     p->mIndex = q->mIndex;
     p->mUnk_06 = p->mIndex % 4;
@@ -95,7 +95,7 @@ void func_0207e400(struct Unk020888b4 *p, struct Kart *q, s32 a) {
     p->mUnk_cc = 1;
 }
 
-void func_0207e35c(struct Unk020888b4 *p) {
+void func_0207e35c(struct KartAi *p) {
     Vec3 a;
     Vec3 b;
     LinkCursor *s = &p->mUnk_08.mUnk_00;
@@ -147,7 +147,7 @@ void func_0207e268(void) {
     data_usa_0217ae34 = data_usa_02165910[d];
 }
 
-u32 func_0207e200(struct Unk02089a24 *arg0, struct Unk020888b4 *arg1) {
+u32 func_0207e200(struct Unk02089a24 *arg0, struct KartAi *arg1) {
     u32 value0 = (u32) arg0;
     u32 value1 = (u32) arg1;
     u32 value2;
@@ -176,7 +176,7 @@ u32 func_0207e200(struct Unk02089a24 *arg0, struct Unk020888b4 *arg1) {
     return value0;
 }
 
-void func_0207e1d4(struct Unk02089a24 *p0, struct Unk020888b4 *p1) {
+void func_0207e1d4(struct Unk02089a24 *p0, struct KartAi *p1) {
     p0->mUnk_04 = (u32) (((u32) p0->mUnk_00));
     p0->mUnk_08 = 0x0u;
     p0->mUnk_0c = 0x0u;
@@ -185,7 +185,7 @@ void func_0207e1d4(struct Unk02089a24 *p0, struct Unk020888b4 *p1) {
     p0->mUnk_18 = 0x0u;
 }
 
-void func_0207e088(struct Unk02089a24 *a, struct Unk020888b4 *b) {
+void func_0207e088(struct Unk02089a24 *a, struct KartAi *b) {
     BOOL f = FALSE;
     s32 v;
     BOOL r6;
@@ -193,7 +193,7 @@ void func_0207e088(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     s32 r4;
     s32 t;
     Unk0217aebc_128 *r;
-    Unk020888b4 *u;
+    KartAi *u;
 
     v = data_021759c0->mCurrentEntries[b->mIndex].mPlayer.mKind;
     if ((u32) v <= 3) {
@@ -209,7 +209,7 @@ void func_0207e088(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     r4 = (s16) (u16) (r->mUnk_00 >> 52);
     r5 = func_020853f0(b->mIndex);
-    u = GetKart(b->mIndex)->mUnk_310;
+    u = GetKart(b->mIndex)->mAi;
     if (u->mUnk_154 != 0) {
         r5 = r6;
     }
@@ -231,7 +231,7 @@ void func_0207e088(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     a->mUnk_28 = 1;
 }
 
-void func_0207de84(struct Unk02089a24 *a, struct Unk020888b4 *b) {
+void func_0207de84(struct Unk02089a24 *a, struct KartAi *b) {
     BOOL f;
     s32 v;
     s32 t;
@@ -270,8 +270,8 @@ void func_0207de84(struct Unk02089a24 *a, struct Unk020888b4 *b) {
         }
         if (b->mUnk_90 == 0) {
             a->mUnk_0c = t;
-            if (b->mUnk_70 > 0x5000) {
-                s = ((s64) (b->mUnk_70 - 0x5000) * 0x5b) >> 12;
+            if (b->mTurnAngleDegrees > 0x5000) {
+                s = ((s64) (b->mTurnAngleDegrees - 0x5000) * 0x5b) >> 12;
                 if (s > 0x1000) {
                     s = 0x1000;
                 }
@@ -300,7 +300,7 @@ void func_0207de84(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     }
 }
 
-void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
+void func_0207d9f0(struct Unk02089a24 *a, struct KartAi *b, s32 c) {
     s32 n = a->mUnk_14;
     u16 m = b->mIndex;
     u16 i;
@@ -336,7 +336,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
                     for (i = 1; i < 4; i++) {
                         d = GetKartIndexAtRank(i);
                         if (d >= 0) {
-                            Unk020888b4 *u = GetKart(d)->mUnk_310;
+                            KartAi *u = GetKart(d)->mAi;
                             Unk02089a24 *s = &u->mUnk_e8;
 
                             if (u->mUnk_154 != 0) {
@@ -388,7 +388,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
             if (d >= 0) {
                 g = GetKartRaceProgressScaled(m);
                 g -= GetKartRaceProgressScaled((u16) d);
-                if (g > GetKart(d)->mUnk_310->mUnk_e8.mUnk_24) {
+                if (g > GetKart(d)->mAi->mUnk_e8.mUnk_24) {
                     a->mUnk_10 = ((s64) a->mUnk_10 * 0xf85) >> 12;
                     a->mUnk_18 = 1;
                 }
@@ -407,7 +407,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
                         Kart *q = GetKart(d);
                         s32 w = r->mUnk_08;
 
-                        if (q->mUnk_310->mUnk_e8.mUnk_04 > (s32) (((s64) w * 0xcd0) >> 12)) {
+                        if (q->mAi->mUnk_e8.mUnk_04 > (s32) (((s64) w * 0xcd0) >> 12)) {
                             e = GetKartRaceProgressScaled((u16) d) - g;
                             if (e < (s32) (((s64) k[2] * func_0208548c()) >> 12)) {
                                 a->mUnk_10 = ((s64) a->mUnk_10 * 0xfae) >> 12;
@@ -465,7 +465,7 @@ u16 func_0207d8e4(s32 a) {
     return p[i];
 }
 
-void func_0207d814(struct Unk02089a24 *a, struct Unk020888b4 *b) {
+void func_0207d814(struct Unk02089a24 *a, struct KartAi *b) {
     s32 t;
 
     a->mUnk_00 = b->mKart->mPhysicalParam->mBaseSpeedLimit;

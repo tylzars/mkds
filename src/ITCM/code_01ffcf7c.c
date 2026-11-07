@@ -264,7 +264,7 @@ s32 func_01ffd648(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
     return r;
 }
 
-void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
+void func_01ffd224(struct KartAi *p, Vec3 *a, Vec3 *b) {
     Kart *q = p->mKart;
     Vec3 v0;
     Vec3 v1;
@@ -319,7 +319,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
             goto end;
         }
     }
-    if (p->mUnk_70 > 0x2000) {
+    if (p->mTurnAngleDegrees > 0x2000) {
         e = ((s64) q->mVelocityLength * *data_usa_0217ae40) >> 12;
         if (e > 0x1000) {
             e = 0x1000;
@@ -330,14 +330,15 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
         v7.y = a->y - (s32) (((s64) v6.y * d) >> 12);
         v7.z = a->z - (s32) (((s64) v6.z * d) >> 12);
         Vec3CrossUnrounded(b, &v7, &v4);
-        q->mHeadingAngle += (g = Vec3DotUnrounded(&v6, &v4) > 0 ? 1 : -1) *
-                            ((s32) (((s64) ((s32) (((s64) p->mUnk_70 * 0xB60B60B60BLL + 0x80000000LL) >> 32)) *
-                                     (s32) (((s64) e * 0xa4) >> 12)) >>
-                                    12) >>
-                             12);
+        q->mHeadingAngle +=
+            (g = Vec3DotUnrounded(&v6, &v4) > 0 ? 1 : -1) *
+            ((s32) (((s64) ((s32) (((s64) p->mTurnAngleDegrees * 0xB60B60B60BLL + 0x80000000LL) >> 32)) *
+                     (s32) (((s64) e * 0xa4) >> 12)) >>
+                    12) >>
+             12);
         r = TRUE;
     }
-    if ((q->mUnk_4c & 0x8000000) && p->mUnk_70 < 0x46000 && (q->mUnk_44 & KART_44_ON_GROUND) &&
+    if ((q->mUnk_4c & 0x8000000) && p->mTurnAngleDegrees < 0x46000 && (q->mUnk_44 & KART_44_ON_GROUND) &&
         !(q->mUnk_48 & 0x8020) && q->mVelocityLength > 0x3000 && p->mUnk_90 != 2 && p->mUnk_a8 == 0) {
         p->mUnk_c8 += 0x44c;
         p->mUnk_ca = ((s64) gPairsByAngle[(p->mUnk_c8 >> 4) * 2] * 0xfa + 0x800) >> 12;

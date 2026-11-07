@@ -246,7 +246,7 @@ void func_0206f914(Kart *p) {
     }
     if (GetRaceStartSequenceFrames() - 0xaf == 0) {
         if (p->mUnk_7c & 2) {
-            if (func_0208c180(p->mUnk_310) != 0) {
+            if (func_0208c180(p->mAi) != 0) {
                 if (!(p->mUnk_4c & 0x20000000)) {
                     p->mUnk_4c |= 0x20000000;
                     p->mRaceStartFrameCount = 0x78;
@@ -266,8 +266,8 @@ void func_0206f914(Kart *p) {
                     func_02071318(p, 1);
                     p->mUnk_3fc = 1;
                 }
-            } else if (func_0208c178(p->mUnk_310) != 0) {
-                d = func_0208c16c(p->mUnk_310);
+            } else if (func_0208c178(p->mAi) != 0) {
+                d = func_0208c16c(p->mAi);
                 p->mRaceStartFrameCount = data_usa_02154a48[d - 1];
                 p->mUnk_44 |= 0x1800000;
                 StartKartBoost(p, KART_BOOST_RACE_START, (s16) p->mRaceStartFrameCount);

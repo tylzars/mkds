@@ -155,7 +155,7 @@ void func_0207fba0(void) {
     }
 }
 
-void func_0207fa74(Unk020888b4 *p, Kart *q, s32 a) {
+void func_0207fa74(KartAi *p, Kart *q, s32 a) {
     s32 v;
     Unk0217aebc_128 *r;
 
@@ -178,12 +178,12 @@ void func_0207fa74(Unk020888b4 *p, Kart *q, s32 a) {
     p->mUnk_cc = v > 0x800 ? 1 : -1;
 }
 
-void func_0207f9cc(Unk020888b4 *p, s32 a) {
+void func_0207f9cc(KartAi *p, s32 a) {
     p->mUnk_44 = *p->mUnk_08.mUnk_00.mLink->mUnk_18;
     p->mUnk_60 = data_usa_021557d0;
     p->mUnk_6c = 0;
     p->mUnk_6e = 0;
-    p->mUnk_70 = 0;
+    p->mTurnAngleDegrees = 0;
     p->mUnk_74 = 0;
     p->mUnk_78 = 0;
     p->mUnk_7a = 0;
@@ -192,10 +192,10 @@ void func_0207f9cc(Unk020888b4 *p, s32 a) {
     p->mUnk_84 = a;
     p->mUnk_a8 = 0;
     p->mUnk_ac = 0;
-    p->mUnk_b0 = NULL;
-    p->mUnk_b4 = 0;
-    p->mUnk_b8 = 0;
-    p->mUnk_bc = -0x1000;
+    p->mTargetKart = NULL;
+    p->mTargetAhead = 0;
+    p->mTargetDistanceSquared = 0;
+    p->mTargetForwardDot = -0x1000;
     p->mUnk_c0 = 0;
     p->mUnk_c2 = 0;
     p->mUnk_c4 = FALSE;
@@ -206,14 +206,14 @@ void func_0207f9cc(Unk020888b4 *p, s32 a) {
     func_0207e7f0(p);
 }
 
-void func_0207f9a8(Unk020888b4 *p) {
+void func_0207f9a8(KartAi *p) {
     Unk02175620_bc *a;
 
     ResetPointLinkCursor(&p->mUnk_08.mUnk_00, a);
     func_0207f9cc(p, 1);
 }
 
-void func_0207f8f8(Unk020888b4 *p) {
+void func_0207f8f8(KartAi *p) {
     Vec3 v;
     Vec3 w;
     Vec3 *t;
@@ -241,7 +241,7 @@ void func_0207f8f8(Unk020888b4 *p) {
     func_0207f2e4(p);
 }
 
-void func_0207f6f0(Unk020888b4 *p, LinkCursor *q, Kart *r, Unk02175620_bc *s, Vec3 *a, Vec3 *b) {
+void func_0207f6f0(KartAi *p, LinkCursor *q, Kart *r, Unk02175620_bc *s, Vec3 *a, Vec3 *b) {
     Vec3 v;
     Vec3 w;
     Vec3 *c;
@@ -274,7 +274,7 @@ void func_0207f6f0(Unk020888b4 *p, LinkCursor *q, Kart *r, Unk02175620_bc *s, Ve
         if (Vec3DotUnrounded(&w, c) < 0) {
             g *= -1;
         }
-        p->mUnk_70 = func_020738f8(g);
+        p->mTurnAngleDegrees = func_020738f8(g);
     }
     h = IsPastPointLink((Unk02080b1c *) q, a);
     if (h == 0 && (r->mUnk_48 & 0x40000000) == 0) {
@@ -290,7 +290,7 @@ void func_0207f6f0(Unk020888b4 *p, LinkCursor *q, Kart *r, Unk02175620_bc *s, Ve
     q->mUnk_18 = FALSE;
 }
 
-void func_0207f668(Unk020888b4 *p, LinkCursor *q, Kart *r) {
+void func_0207f668(KartAi *p, LinkCursor *q, Kart *r) {
     p->mUnk_44 = *q->mLink->mUnk_18;
     if (r->mUnk_48 & 0x40000000) {
         return;
@@ -306,7 +306,7 @@ void func_0207f668(Unk020888b4 *p, LinkCursor *q, Kart *r) {
     VEC_Add(&p->mUnk_44, &p->mUnk_60, &p->mUnk_44);
 }
 
-void func_0207f630(Unk020888b4 *p, LinkCursor *q, Kart *r) {
+void func_0207f630(KartAi *p, LinkCursor *q, Kart *r) {
     p->mUnk_44 = *q->mLink->mUnk_18;
     p->mUnk_60 = data_usa_021557d0;
     p->mUnk_74 = 0;
@@ -339,15 +339,15 @@ s32 func_0207f554(u32 a, u32 b) {
     return r;
 }
 
-void func_0207f2e4(Unk020888b4 *p) {
+void func_0207f2e4(KartAi *p) {
     u32 a;
     BOOL d;
     s32 c;
     s32 b;
     u32 e;
 
-    p->mUnk_b0 = NULL;
-    p->mUnk_b4 = 0;
+    p->mTargetKart = NULL;
+    p->mTargetAhead = 0;
     e = p->mIndex;
     a = e;
     if (a != GetRaceUpdateFramesMod8()) {
@@ -365,9 +365,9 @@ void func_0207f2e4(Unk020888b4 *p) {
     if (b >= 0) {
         b = gRaceProgress->mKartAtRank[(u8) (a - 1) - 1];
         if (func_0207f554_inline(p->mIndex, (u16) b) != 0) {
-            p->mUnk_b0 = GetKart(b);
+            p->mTargetKart = GetKart(b);
             d = TRUE;
-            p->mUnk_b4 = 1;
+            p->mTargetAhead = 1;
         }
     }
     if (d != FALSE) {
@@ -382,11 +382,11 @@ void func_0207f2e4(Unk020888b4 *p) {
     }
     c = gRaceProgress->mKartAtRank[(u8) (a + 1) - 1];
     if (func_0207f554_inline(p->mIndex, (u16) c) != 0) {
-        p->mUnk_b0 = GetKart(c);
+        p->mTargetKart = GetKart(c);
     }
 }
 
-void func_0207f05c(Unk020888b4 *p) {
+void func_0207f05c(KartAi *p) {
     Vec3 a;
     Vec3 b;
     Vec3 c;
@@ -468,7 +468,7 @@ void func_0207f05c(Unk020888b4 *p) {
     p->mUnk_74 = p->mUnk_74 >> 1;
 }
 
-void func_0207ebfc(Unk020888b4 *p) {
+void func_0207ebfc(KartAi *p) {
     Vec3 v0;
     Vec3 v1;
     Vec3 v3;
@@ -520,13 +520,13 @@ void func_0207ebfc(Unk020888b4 *p) {
             n = -1;
             m = m * n;
         }
-        p->mUnk_70 = func_020738f8(m);
+        p->mTurnAngleDegrees = func_020738f8(m);
         p->mUnk_90 = 0;
         p->mUnk_94 = 0;
         p->mUnk_98 = 0;
         p->mUnk_a0 = FALSE;
         func_0206cdd4(q);
-        if (func_020738f8(p->mUnk_70) <= 0x32000) {
+        if (func_020738f8(p->mTurnAngleDegrees) <= 0x32000) {
             return;
         }
         VEC_Subtract(&p->mUnk_44, &q->mPos, &v0);
@@ -615,7 +615,7 @@ s32 func_0207eafc(Vec3 *a, Vec3 *b, Vec3 *c, Vec3 *d) {
     return r;
 }
 
-void func_0207e944(Unk020888b4 *p) {
+void func_0207e944(KartAi *p) {
     Vec3 v = data_usa_021557c4;
     s32 s;
 
@@ -649,7 +649,7 @@ void func_0207e944(Unk020888b4 *p) {
     p->mUnk_60.z = ((s64) p->mUnk_60.z * s) >> 12;
 }
 
-void func_0207e7f0(Unk020888b4 *p) {
+void func_0207e7f0(KartAi *p) {
     Vec3 a;
     Vec3 g;
     Vec3 b;
@@ -682,7 +682,7 @@ void func_0207e7f0(Unk020888b4 *p) {
     VEC_Add(&a, &p->mUnk_60, &p->mUnk_44);
 }
 
-void func_0207e668(Unk020888b4 *p) {
+void func_0207e668(KartAi *p) {
     BOOL a = FALSE;
     BOOL b = FALSE;
     Kart *q;
@@ -728,7 +728,7 @@ void func_0207e668(Unk020888b4 *p) {
         case 1:
             if (data_021759c0->mMode == MODE_BATTLE) {
                 p->mUnk_a8 = 3;
-                func_0208c1f4(p->mKart->mUnk_310);
+                func_0208c1f4(p->mKart->mAi);
                 p->mUnk_7a = 0xb4;
             } else {
                 p->mUnk_a8 = 2;
@@ -738,7 +738,7 @@ void func_0207e668(Unk020888b4 *p) {
             break;
         case 2:
             p->mUnk_a8 = 3;
-            func_0208c1f4(p->mKart->mUnk_310);
+            func_0208c1f4(p->mKart->mAi);
             p->mUnk_7a = 0xb4;
             break;
         case 3:
@@ -748,6 +748,6 @@ void func_0207e668(Unk020888b4 *p) {
     }
 }
 
-BOOL func_0207e654(Unk020888b4 *p) {
-    return p->mUnk_b0 != NULL;
+BOOL IsTargetKartSet(KartAi *p) {
+    return p->mTargetKart != NULL;
 }

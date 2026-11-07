@@ -268,9 +268,9 @@ void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c
     p->mLastGroundY = p->mPos.y;
     if (p->mUnk_7c & 2) {
         if (c != NULL) {
-            func_0208c23c(p->mUnk_310, c);
+            func_0208c23c(p->mAi, c);
         } else {
-            func_0208c260(p->mUnk_310, p->mIndex);
+            func_0208c260(p->mAi, p->mIndex);
         }
     }
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
@@ -1401,7 +1401,7 @@ void func_020705fc(Kart *p, u32 b) {
     if (data_021759c0->mMode != MODE_BATTLE) {
         return;
     }
-    func_02089754(p->mUnk_310, GetKeyedPlacementBattlePointLink(b));
+    func_02089754(p->mAi, GetKeyedPlacementBattlePointLink(b));
 }
 
 void func_02070484(Kart *p, Vec4 *q) {

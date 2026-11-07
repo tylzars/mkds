@@ -4,11 +4,11 @@
 #include "Main/Unknown/unk_027e0000.h"
 #include "Main/Unknown/unk_0217b000.h"
 
-void func_0209033c(Unk0208fd8c *a, Unk020888b4 *b) {
+void func_0209033c(Unk0208fd8c *a, KartAi *b) {
     AdvanceItemBitRequests(a, b);
 }
 
-void SetupBattleHeldItemEntry(Unk0208fd8c *a, Unk020888b4 *b) {
+void SetupBattleHeldItemEntry(Unk0208fd8c *a, KartAi *b) {
     enum { K0 } i;
 
     i = *(s32 *) &gKartItems[b->mIndex].mHeldItem;
@@ -16,42 +16,43 @@ void SetupBattleHeldItemEntry(Unk0208fd8c *a, Unk020888b4 *b) {
     ResetHeldItemTimer(a);
 }
 
-void func_020902d0(Unk0208fd8c *a, Unk020888b4 *b) {
-    if (b->mUnk_b0 == NULL) {
+void RequestItemBitsOnceAndResetItemInUseTimerWhenTargetKartSet(Unk0208fd8c *a, KartAi *b) {
+    if (b->mTargetKart == NULL) {
         return;
     }
     RequestItemBitsOnceAndResetItemInUseTimer(a, b);
 }
 
-void func_02090288(Unk0208fd8c *a, Unk020888b4 *b) {
-    if (DecrementHeldItemTimer(a) == 0 && b->mUnk_b0 == NULL) {
+void RequestItemBitsOnceAndResetItemInUseTimerWhenHeldItemTimerRunsOutOrTargetKartSet(Unk0208fd8c *a, KartAi *b) {
+    if (DecrementHeldItemTimer(a) == 0 && b->mTargetKart == NULL) {
         return;
     }
     RequestItemBitsOnceAndResetItemInUseTimer(a, b);
 }
 
-void func_0209024c(Unk0208fd8c *a, Unk020888b4 *b) {
+void func_0209024c(Unk0208fd8c *a, KartAi *b) {
     if (DecrementHeldItemTimer(a) == 0) {
         return;
     }
     RequestItemBitsOnceAndResetItemInUseTimer(a, b);
 }
 
-void func_020901f0(Unk0208fd8c *a, Unk020888b4 *b) {
-    if (DecrementHeldItemTimer(a) == 0 && b->mUnk_b0 == NULL) {
+void func_020901f0(Unk0208fd8c *a, KartAi *b) {
+    if (DecrementHeldItemTimer(a) == 0 && b->mTargetKart == NULL) {
         return;
     }
-    if (b->mUnk_70 >= 0xa000) {
+    if (b->mTurnAngleDegrees >= 0xa000) {
         return;
     }
     RequestItemBitsOnceAndResetItemInUseTimer(a, b);
 }
 
-void func_020901a0(Unk0208fd8c *a, Unk020888b4 *b) {
+void RequestItemBitsOnceAndResetItemInUseTimerWhenHeldItemTimerRunsOutAndTurnAngleBelow10Degrees(Unk0208fd8c *a,
+                                                                                                 KartAi *b) {
     if (DecrementHeldItemTimer(a) == 0) {
         return;
     }
-    if (b->mUnk_70 >= 0xa000) {
+    if (b->mTurnAngleDegrees >= 0xa000) {
         return;
     }
     RequestItemBitsOnceAndResetItemInUseTimer(a, b);

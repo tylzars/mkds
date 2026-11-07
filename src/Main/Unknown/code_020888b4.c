@@ -55,7 +55,7 @@ static inline s32 func_020888b4_inline(const Vec3 *a, const Vec3 *b) {
     return x * x + z * z;
 }
 
-void func_02089c3c(Unk02089b4c *a, Unk020888b4 *b) {
+void func_02089c3c(Unk02089b4c *a, KartAi *b) {
     s32 m;
     Kart *q;
 
@@ -88,14 +88,14 @@ void func_02089c3c(Unk02089b4c *a, Unk020888b4 *b) {
     }
 }
 
-void func_02089b4c(Unk02089b4c *a, Unk020888b4 *b, s32 c) {
+void func_02089b4c(Unk02089b4c *a, KartAi *b, s32 c) {
     s32 t;
 
     a->mUnk_10 = c;
-    if (b->mUnk_70 <= 0x5000) {
+    if (b->mTurnAngleDegrees <= 0x5000) {
         return;
     }
-    t = ((s64) (b->mUnk_70 - 0x5000) * 0x5b + 0x800) >> 12;
+    t = ((s64) (b->mTurnAngleDegrees - 0x5000) * 0x5b + 0x800) >> 12;
     if (t > 0x1000) {
         t = 0x1000;
     }
@@ -103,12 +103,12 @@ void func_02089b4c(Unk02089b4c *a, Unk020888b4 *b, s32 c) {
     if (b->mUnk_d0 == NULL) {
         return;
     }
-    if (b->mUnk_d8 > 0xb33) {
+    if (b->mEntryForwardDot > 0xb33) {
         a->mUnk_10 = a->mUnk_10 >> 1;
     }
 }
 
-void func_02089a24(Unk020888b4 *a, Unk02089a24 *b) {
+void func_02089a24(KartAi *a, Unk02089a24 *b) {
     BOOL c = FALSE;
     s32 v;
     s32 t;
@@ -171,23 +171,23 @@ void func_02089974(void) {
     }
 }
 
-void func_020898bc(Unk020888b4 *p) {
+void func_020898bc(KartAi *p) {
     Vec3 z = data_02155ebc;
 
     p->mUnk_60 = z;
     p->mUnk_6c = 0;
     p->mUnk_6e = 0;
-    p->mUnk_70 = 0;
+    p->mTurnAngleDegrees = 0;
     p->mUnk_74 = 0;
     p->mUnk_78 = 0;
     p->mUnk_7a = 0;
     p->mUnk_a4 = 0;
     p->mUnk_a8 = 0;
     p->mUnk_ac = 0;
-    p->mUnk_b0 = NULL;
-    p->mUnk_b4 = 0;
-    p->mUnk_b8 = 0;
-    p->mUnk_b8 = -0x1000;
+    p->mTargetKart = NULL;
+    p->mTargetAhead = 0;
+    p->mTargetDistanceSquared = 0;
+    p->mTargetDistanceSquared = -0x1000;
     p->mUnk_50 = z;
     p->mUnk_5c = &p->mUnk_44;
     p->mUnk_c2 = 0;
@@ -197,11 +197,11 @@ void func_020898bc(Unk020888b4 *p) {
     p->mUnk_cc = 0;
     p->mUnk_d0 = NULL;
     p->mEntrySearchStartIndex = 0;
-    p->mUnk_d8 = 0;
+    p->mEntryForwardDot = 0;
     p->mUnk_dc = z;
 }
 
-void func_02089788(Unk020888b4 *p, Kart *q) {
+void func_02089788(KartAi *p, Kart *q) {
     Unk02165ff0 *t;
     Unk0217aebc_128 *r;
     s16 j;
@@ -232,13 +232,13 @@ void func_02089788(Unk020888b4 *p, Kart *q) {
     }
 }
 
-void func_02089754(Unk020888b4 *p, Unk02175620_bc *a) {
+void func_02089754(KartAi *p, Unk02175620_bc *a) {
     ResetBattlePointLinkCursorTo(&p->mUnk_28, a);
     p->mUnk_44 = *p->mUnk_28.mLink->mUnk_20;
     func_020898bc(p);
 }
 
-void func_020896e0(Unk020888b4 *p) {
+void func_020896e0(KartAi *p) {
     func_02088d34(p);
     if (p->mUnk_c4 == FALSE) {
         func_0207e668(p);
@@ -254,7 +254,7 @@ void func_020896e0(Unk020888b4 *p) {
     func_02088a0c(p);
 }
 
-void func_02089494(Unk020888b4 *p) {
+void func_02089494(KartAi *p) {
     LinkCursor *s;
     Kart *q;
     Unk02175620_bc *e;
@@ -292,15 +292,15 @@ void func_02089494(Unk020888b4 *p) {
             t.y = 0;
             VEC_CrossProduct(&z, &t, &u);
             d = VEC_Mag(&u);
-            p->mUnk_70 = ((s64) FX_Atan2(d, VEC_DotProduct(&z, &t)) * 0x394bb834c8LL + 0x80000000LL) >> 32;
+            p->mTurnAngleDegrees = ((s64) FX_Atan2(d, VEC_DotProduct(&z, &t)) * 0x394bb834c8LL + 0x80000000LL) >> 32;
         }
         if (IsWithinBattlePointLinkDistance(s, &v) != 0 || IsPastBattlePointLink(s, &v) != 0) {
             x = FALSE;
-            if (p->mUnk_b0 != NULL && p->mUnk_b4 != 0) {
+            if (p->mTargetKart != NULL && p->mTargetAhead != 0) {
                 x = TRUE;
             }
             if (x != FALSE) {
-                y = p->mUnk_b0->mIndex;
+                y = p->mTargetKart->mIndex;
             } else {
                 y = -1;
             }
@@ -324,7 +324,7 @@ void func_02089494(Unk020888b4 *p) {
     func_01ffd224(p, &w, g);
 }
 
-void func_020892bc(Unk020888b4 *p) {
+void func_020892bc(KartAi *p) {
     Vec3 z = data_02155eb0;
     Unk0217aebc_128 *r;
     s32 a;
@@ -361,7 +361,7 @@ void func_020892bc(Unk020888b4 *p) {
     p->mUnk_60.z = ((s64) p->mUnk_60.z * f) >> 12;
 }
 
-void func_02088e44(Unk020888b4 *p) {
+void func_02088e44(KartAi *p) {
     Kart *q;
     Kart *o;
     KartItems *v1;
@@ -388,7 +388,7 @@ void func_02088e44(Unk020888b4 *p) {
     if (data_021759c0->mUnk_014 == 1) {
         return;
     }
-    if (p->mUnk_b0 == NULL) {
+    if (p->mTargetKart == NULL) {
         p->mUnk_5c = &p->mUnk_44;
         k = gSearchStartIndex;
         for (n = 0; n < (u32) data_021759c0->mKartCount; n++) {
@@ -400,7 +400,7 @@ void func_02088e44(Unk020888b4 *p) {
                 if (d < 0x895440) {
                     if (func_020738f8(p->mKart->mPos.y - o->mPos.y) < 0x3c000) {
                         c = 1;
-                        p->mUnk_b8 = d;
+                        p->mTargetDistanceSquared = d;
                     }
                 }
                 if (c != 0) {
@@ -419,44 +419,44 @@ void func_02088e44(Unk020888b4 *p) {
         }
         o = NULL;
     store:
-        p->mUnk_b0 = o;
+        p->mTargetKart = o;
         return;
     }
     v1 = &gKartItems[m];
     if (v1->mItemInUse.mUnk_000 == 0xf && v1->mHeldItem.mUnk_00 == 0x13 && (p->mKart->mUnk_4c & 0x40) == 0) {
         goto clear;
     }
-    if (func_0207f600(p->mUnk_b0->mIndex) == FALSE) {
+    if (func_0207f600(p->mTargetKart->mIndex) == FALSE) {
         goto clear;
     }
     q = p->mKart;
-    o = p->mUnk_b0;
+    o = p->mTargetKart;
     v3 = &q->mPos;
     d = func_020888b4_inline(v3, &o->mPos);
     c = 0;
     if (d < 0xf42400) {
-        if (func_020738f8(p->mKart->mPos.y - p->mUnk_b0->mPos.y) < 0x3c000) {
-            p->mUnk_b8 = d;
+        if (func_020738f8(p->mKart->mPos.y - p->mTargetKart->mPos.y) < 0x3c000) {
+            p->mTargetDistanceSquared = d;
             c = 1;
         }
     }
     if (c == 0) {
         goto clear;
     }
-    if (func_020738f8(p->mKart->mPos.y - p->mUnk_b0->mPos.y) >= 0x3c000) {
+    if (func_020738f8(p->mKart->mPos.y - p->mTargetKart->mPos.y) >= 0x3c000) {
         goto clear;
     }
     c = 0;
-    VEC_Subtract(&p->mUnk_b0->mPos, &p->mKart->mPos, &v);
+    VEC_Subtract(&p->mTargetKart->mPos, &p->mKart->mPos, &v);
     if (VEC_DotProduct(&v, &p->mKart->mUnk_138) > 0) {
         if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&v, &v);
         }
-        p->mUnk_bc = VEC_DotProduct(&v, &p->mKart->mUnk_138);
+        p->mTargetForwardDot = VEC_DotProduct(&v, &p->mKart->mUnk_138);
         c = 1;
     }
-    p->mUnk_b4 = c != 0;
-    if (p->mUnk_b4 != 0) {
+    p->mTargetAhead = c != 0;
+    if (p->mTargetAhead != 0) {
         v1 = &gKartItems[p->mIndex];
         c = 1;
         if (v1->mItemInUse.mUnk_000 == 0xf && v1->mHeldItem.mUnk_00 == 0x13) {
@@ -465,9 +465,9 @@ void func_02088e44(Unk020888b4 *p) {
             }
         }
         x = c != 0 ? 1 : 0;
-        y = (p->mUnk_b0->mUnk_4c & 0x40) != 0 ? 1 : 0;
-        if (x != 0 && y == 0 && p->mUnk_bc > 0xb33) {
-            u = p->mUnk_b0->mPos;
+        y = (p->mTargetKart->mUnk_4c & 0x40) != 0 ? 1 : 0;
+        if (x != 0 && y == 0 && p->mTargetForwardDot > 0xb33) {
+            u = p->mTargetKart->mPos;
             u.y = p->mUnk_44.y;
             t = *p->mUnk_28.mLink->mUnk_20;
             z = data_02155eb0;
@@ -489,11 +489,11 @@ void func_02088e44(Unk020888b4 *p) {
     }
     return;
 clear:
-    p->mUnk_b0 = NULL;
+    p->mTargetKart = NULL;
     p->mUnk_5c = &p->mUnk_44;
 }
 
-void func_02088d34(Unk020888b4 *p) {
+void func_02088d34(KartAi *p) {
     s32 a;
     u16 b;
     BOOL c;
@@ -526,7 +526,7 @@ void func_02088d34(Unk020888b4 *p) {
     p->mUnk_c4 = TRUE;
 }
 
-void func_02088c7c(Unk020888b4 *p) {
+void func_02088c7c(KartAi *p) {
     s32 *t = data_0217b030->mUnk_0c;
     Unk0217aebc_128 *r;
     s16 j;
@@ -545,7 +545,7 @@ void func_02088c7c(Unk020888b4 *p) {
     p->mUnk_c0 = k;
 }
 
-void func_02088a0c(Unk020888b4 *p) {
+void func_02088a0c(KartAi *p) {
     Unk020888b4_d0 *r;
     Vec3 u;
     Vec3 v;
@@ -580,10 +580,10 @@ void func_02088a0c(Unk020888b4 *p) {
                     if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
                         Vec3NormalizeAndGetLengthUnchecked(&v, &v);
                     }
-                    p->mUnk_d8 = VEC_DotProduct(&v, &p->mKart->mUnk_138);
+                    p->mEntryForwardDot = VEC_DotProduct(&v, &p->mKart->mUnk_138);
                     n = TRUE;
                 }
-                if (n != FALSE && p->mUnk_d8 > 0xb33) {
+                if (n != FALSE && p->mEntryForwardDot > 0xb33) {
                     u = r->mPos;
                     u.y = p->mUnk_44.y;
                     t = *p->mUnk_28.mLink->mUnk_20;
@@ -616,7 +616,7 @@ void func_02088a0c(Unk020888b4 *p) {
     }
 }
 
-BOOL func_020888b4(Unk020888b4 *p, s32 a, s32 b) {
+BOOL func_020888b4(KartAi *p, s32 a, s32 b) {
     Unk02100094 *l;
     s16 i;
     s32 n;

@@ -3,18 +3,18 @@
 #include "types.h"
 
 struct Unk0208fd8c;
-struct Unk020888b4;
+struct KartAi;
 
 // Entry of the tables at gBattleItemInUseEntries, data_0217ae34 and data_0217ae38, 0xc bytes: a function called with
-// the Unk0208fd8c and the Unk020888b4 at 0x00 and halfwords at 0x08 and 0x0a.
+// the Unk0208fd8c and the KartAi at 0x00 and halfwords at 0x08 and 0x0a.
 typedef struct Unk0208fd8c_08 {
-    /* 00 */ void (*mUnk_00)(struct Unk0208fd8c *a, struct Unk020888b4 *b);
+    /* 00 */ void (*mUnk_00)(struct Unk0208fd8c *a, struct KartAi *b);
     /* 04 */ s32 mThenBitKind;
     /* 08 */ u16 mTimerBase;
     /* 0a */ u16 mTimerRandomLimit;
 } Unk0208fd8c_08;
 
-// Object of 0x24 bytes at 0x11c of the object Unk020888b4 starts: pointers to entries of the tables at data_0217ae38
+// Object of 0x24 bytes at 0x11c of the object KartAi starts: pointers to entries of the tables at data_0217ae38
 // (0x04) and gBattleItemInUseEntries or data_0217ae34 (0x08).
 typedef struct Unk0208fd8c {
     /* 00 */ s16 mHeldItemTimer;
@@ -31,8 +31,9 @@ typedef struct Unk0208fd8c {
     /* 20 */ s32 mRandomValue;
 } Unk0208fd8c;
 
-void SetupBattleItemInUseEntry(Unk0208fd8c *a, struct Unk020888b4 *b);
-void func_0208fdcc(Unk0208fd8c *a, struct Unk020888b4 *b);
-void func_0208fe1c(Unk0208fd8c *a, struct Unk020888b4 *b);
-void func_0208fe58(Unk0208fd8c *a, struct Unk020888b4 *b);
-void func_0208fefc(Unk0208fd8c *a, struct Unk020888b4 *b);
+void SetupBattleItemInUseEntry(Unk0208fd8c *a, struct KartAi *b);
+void RequestItemBitsOnceAndResetHeldItemTimerWhenHeldItemTimerRunsOutAndTurnAngleBelow10Degrees(Unk0208fd8c *a,
+                                                                                                struct KartAi *b);
+void func_0208fe1c(Unk0208fd8c *a, struct KartAi *b);
+void func_0208fe58(Unk0208fd8c *a, struct KartAi *b);
+void func_0208fefc(Unk0208fd8c *a, struct KartAi *b);

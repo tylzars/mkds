@@ -46,30 +46,30 @@ void func_0208c284(void) {
     }
 }
 
-void func_0208c260(Unk020888b4 *p, s32 a) {
+void func_0208c260(KartAi *p, s32 a) {
     data_0217b05c(p, a);
 }
 
-void func_0208c23c(Unk020888b4 *p, Unk02175620_bc *a) {
+void func_0208c23c(KartAi *p, Unk02175620_bc *a) {
     data_0217b060(p, a);
 }
 
-void func_0208c218(Unk020888b4 *p) {
+void func_0208c218(KartAi *p) {
     data_0217b058(p);
 }
 
-void func_0208c1f4(Unk020888b4 *p) {
+void func_0208c1f4(KartAi *p) {
     data_0217b070(p);
 }
 
-void func_0208c1d0(Vec3 *a, Vec3 *b, Unk020888b4 *c) {
+void func_0208c1d0(Vec3 *a, Vec3 *b, KartAi *c) {
     data_0217b064(a, b, c);
 }
 
-void func_0208c1ac(Unk020888b4 *p) {
+void func_0208c1ac(KartAi *p) {
     data_0217b068(p);
 }
 
-void func_0208c188(Unk020888b4 *p) {
+void func_0208c188(KartAi *p) {
     data_0217b06c(p);
 }

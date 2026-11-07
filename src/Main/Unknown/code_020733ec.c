@@ -138,7 +138,7 @@ void func_020733ec(Kart *p) {
     }
     func_02071c18(p);
     func_020e0650((u32 *) &p->mUnk_208);
-    p->mUnk_310 = HeapAlloc(h, 0x158);
+    p->mAi = HeapAlloc(h, 0x158);
     if (gCourseMap->mRaceRouteCount != 0 || gCourseMap->mBattleRouteCount != 0) {
         if (data_021759c0->mCurrentEntries[p->mIndex].mPlayer.mKind == 1) {
             p->mUnk_7c |= 2;

@@ -627,11 +627,12 @@ void SetupBattleItemEntryTablesAndCallbacks(void) {
             gBattleHeldItemEntries = data_021561d0;
             gBattleItemInUseEntries = data_02155fd8;
             data_0217b0a0 = func_0208fafc;
-            data_0217b090 = func_0208f7d4;
+            data_0217b090 = RequestItemBitsOnceAndResetItemInUseTimerWhenItemInUseTimerRunsOut;
             data_0217b098 = func_0208f9ac;
             data_0217b094 = func_0208f6d4;
             data_0217b0ac = func_0208f4e8;
-            data_0217b0a8 = func_0208f3d0;
+            data_0217b0a8 =
+                RequestItemBitsOnceThenBit7AndResetItemInUseTimerWhenItemInUseTimerRunsOutOrTargetKartWithinDistance;
             return;
         case 2:
             gBattleHeldItemEntries = data_021562a8;
@@ -641,12 +642,13 @@ void SetupBattleItemEntryTablesAndCallbacks(void) {
             data_0217b098 = func_0208f9ac;
             data_0217b094 = func_0208f6d4;
             data_0217b0ac = func_0208f4e8;
-            data_0217b0a8 = func_0208f3d0;
+            data_0217b0a8 =
+                RequestItemBitsOnceThenBit7AndResetItemInUseTimerWhenItemInUseTimerRunsOutOrTargetKartWithinDistance;
             return;
         case 3:
             gBattleHeldItemEntries = data_02156380;
             gBattleItemInUseEntries = data_02156080;
-            data_0217b0a0 = func_0208fcac;
+            data_0217b0a0 = RequestItemBitsOnceThenBit6OrBit7ByTargetAheadAndForwardDotWhenTargetKartWithinDistance;
             data_0217b090 = func_0208f8ac;
             data_0217b098 = func_0208fa50;
             data_0217b094 = func_0208f754;
@@ -656,7 +658,7 @@ void SetupBattleItemEntryTablesAndCallbacks(void) {
         default:
             gBattleHeldItemEntries = data_02156380;
             gBattleItemInUseEntries = data_02156080;
-            data_0217b0a0 = func_0208fcac;
+            data_0217b0a0 = RequestItemBitsOnceThenBit6OrBit7ByTargetAheadAndForwardDotWhenTargetKartWithinDistance;
             data_0217b090 = func_0208f8ac;
             data_0217b098 = func_0208fa50;
             data_0217b094 = func_0208f754;
