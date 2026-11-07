@@ -55,7 +55,7 @@ void AddMissionRunMapObject(Unk02188950 *a) {
     n = gRaceSetup->mKartCount;
     k = gMissionRunData->mMapObjectCount + n;
     gMissionRunData->mMapObjects[k - n] = a;
-    func_020a1728(k);
+    ClearStandingEliminationStatus(k);
     gMissionRunData->mMapObjectCount++;
 }
 
@@ -148,7 +148,7 @@ void UpdateMissionRunData(void) {
                 gMissionRunData->mUnk_00 += 1;
                 if (gMissionRunData->mUnk_00 > 0xf) {
                     gMissionRunData->mUnk_00 = 0;
-                    func_020a1748(gRaceSetup->mEntryIndex);
+                    CallKartHitCallbackForSelf(gRaceSetup->mEntryIndex);
                     return;
                 }
             }

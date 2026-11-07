@@ -385,7 +385,7 @@ void func_02068494(Kart *a, s32 b, s32 c) {
     }
     if (gRaceSetup->mMode == MODE_BATTLE) {
         VEC_Subtract(&a->mPos, &d.mUnk_04, &d.mUnk_28);
-        func_020a21bc(a->mIndex, (s32) &d.mUnk_28);
+        CallStandingsKartOffsetCallback(a->mIndex, (s32) &d.mUnk_28);
     }
     if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) == 0) {
         return;

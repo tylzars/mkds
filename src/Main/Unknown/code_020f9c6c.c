@@ -976,7 +976,7 @@ void StartItemSlotForKart(s32 param_1, s32 param_2, s32 param_3) {
         } else if ((1 << v) & 0xd) {
             c = TRUE;
         }
-        StartItemSlot(&gKartItems[param_1], param_2, func_020a1cd8(param_1), c ? 1 : 0, param_3);
+        StartItemSlot(&gKartItems[param_1], param_2, GetBattleItemRank(param_1), c ? 1 : 0, param_3);
     } else {
         c = FALSE;
         if ((u32) v > 3) {

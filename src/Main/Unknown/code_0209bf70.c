@@ -328,7 +328,7 @@ s32 CollideKartWithBound(Bound *p, Kart *k, u8 *b, u8 *c) {
             VEC_MultAdd(0x19a, &v0, &p->mUnk_000.mUnk_10, &p->mUnk_000.mUnk_10);
             p->mKartTimers[k->mIndex] = 0x1f;
             if (gRaceSetup->mMode == MODE_BATTLE) {
-                func_020a21bc(k->mIndex, (s32) &p->mUnk_000.mUnk_10);
+                CallStandingsKartOffsetCallback(k->mIndex, (s32) &p->mUnk_000.mUnk_10);
             }
         } else {
             p->mUnk_000.mUnk_10.x = 0;

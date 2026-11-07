@@ -115,7 +115,7 @@ u32 func_020a6ae4(Shine16 *p, Kart *o, u8 *a, u8 *b) {
         p->mState = 2;
         p->mKartIndex = o->mIndex;
         p->mUnk_ca = o->mIndex;
-        func_020a10ac(o->mIndex, 1);
+        AddBalloonsLeftToMake(o->mIndex, 1);
         AddBalloonOrShineCountAndMoveRank(o->mIndex, 1);
         r = o->mIndex == gRaceSetup->mEntryIndex ? 1 : 0;
         c = GetHighestBalloonOrShineCount();
@@ -670,10 +670,10 @@ BOOL func_020a5268(u16 a, u16 b) {
     GetStandingsKartBalloons();
     if (GetBalloonOrShineCount(b) >= 3 || GetBalloonOrShineCount(a) == 0) {
         e = GetStandingsKartBalloons() + a;
-        f = func_020a2204(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a)] : 0;
+        f = IsKartInflatingBalloon(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a)] : 0;
         l = GetBalloonOrShineCount(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a) - 1] : 0;
         if (GetBalloonOrShineCount(a) != 0 && l != NULL) {
-            if (func_020a2204(a) != 0 && f != NULL) {
+            if (IsKartInflatingBalloon(a) != 0 && f != NULL) {
                 e->mBalloons[GetBalloonOrShineCount(a)] = l;
                 AddBalloonOrShineCountAndMoveRank(a, -1);
                 e->mBalloons[GetBalloonOrShineCount(a)] = f;
@@ -702,10 +702,10 @@ BOOL func_020a5268(u16 a, u16 b) {
         }
     } else {
         e = GetStandingsKartBalloons() + a;
-        f = func_020a2204(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a)] : 0;
+        f = IsKartInflatingBalloon(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a)] : 0;
         l = GetBalloonOrShineCount(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a) - 1] : 0;
         if (GetBalloonOrShineCount(a) != 0 && l != NULL) {
-            if (func_020a2204(a) != 0 && f != NULL) {
+            if (IsKartInflatingBalloon(a) != 0 && f != NULL) {
                 e->mBalloons[GetBalloonOrShineCount(a)] = l;
                 AddBalloonOrShineCountAndMoveRank(a, -1);
                 e->mBalloons[GetBalloonOrShineCount(a)] = f;
@@ -721,7 +721,7 @@ BOOL func_020a5268(u16 a, u16 b) {
             AddBalloonOrShineCountAndMoveRank(b, 1);
             func_020a2e68(l);
             SetBalloonKartIndex(l, b);
-            if (GetBalloonOrShineCount(b) >= 2 && func_020a2204(b) != 0) {
+            if (GetBalloonOrShineCount(b) >= 2 && IsKartInflatingBalloon(b) != 0) {
                 e->mState = 4;
             }
             SetupKartFollowEffect(StartEffect(0x7a, &o->mPos), o->mIndex, 0x20);
@@ -748,10 +748,10 @@ s32 func_020a4f54(u16 a, u16 b) {
 
     v1 = GetStandingsKartBalloons();
     v1 += a;
-    f = func_020a2204(a) != 0 ? v1->mBalloons[GetBalloonOrShineCount(a)] : 0;
+    f = IsKartInflatingBalloon(a) != 0 ? v1->mBalloons[GetBalloonOrShineCount(a)] : 0;
     l = GetBalloonOrShineCount(a) != 0 ? v1->mBalloons[GetBalloonOrShineCount(a) - 1] : 0;
     if (GetBalloonOrShineCount(a) != 0 && l != NULL) {
-        if (func_020a2204(a) != 0 && f != NULL) {
+        if (IsKartInflatingBalloon(a) != 0 && f != NULL) {
             v1->mBalloons[GetBalloonOrShineCount(a)] = l;
             AddBalloonOrShineCountAndMoveRank(a, -1);
             v1->mBalloons[GetBalloonOrShineCount(a)] = f;
@@ -761,10 +761,10 @@ s32 func_020a4f54(u16 a, u16 b) {
     }
     v2 = GetStandingsKartBalloons();
     v2 += b;
-    g = func_020a2204(b) != 0 ? v2->mBalloons[GetBalloonOrShineCount(b)] : 0;
+    g = IsKartInflatingBalloon(b) != 0 ? v2->mBalloons[GetBalloonOrShineCount(b)] : 0;
     m = GetBalloonOrShineCount(b) != 0 ? v2->mBalloons[GetBalloonOrShineCount(b) - 1] : 0;
     if (GetBalloonOrShineCount(b) != 0 && m != NULL) {
-        if (func_020a2204(b) != 0 && g != NULL) {
+        if (IsKartInflatingBalloon(b) != 0 && g != NULL) {
             v2->mBalloons[GetBalloonOrShineCount(b)] = m;
             AddBalloonOrShineCountAndMoveRank(b, -1);
             v2->mBalloons[GetBalloonOrShineCount(b)] = g;
@@ -781,7 +781,7 @@ s32 func_020a4f54(u16 a, u16 b) {
         AddBalloonOrShineCountAndMoveRank(b, 1);
         func_020a2e68(l);
         SetBalloonKartIndex(l, b);
-        if (GetBalloonOrShineCount(b) >= 2 && func_020a2204(b) != 0) {
+        if (GetBalloonOrShineCount(b) >= 2 && IsKartInflatingBalloon(b) != 0) {
             v2->mState = 4;
         }
     }
@@ -794,7 +794,7 @@ s32 func_020a4f54(u16 a, u16 b) {
         AddBalloonOrShineCountAndMoveRank(a, 1);
         func_020a2e68(m);
         SetBalloonKartIndex(m, a);
-        if (GetBalloonOrShineCount(a) >= 2 && func_020a2204(a) != 0) {
+        if (GetBalloonOrShineCount(a) >= 2 && IsKartInflatingBalloon(a) != 0) {
             v1->mState = 4;
         }
     }
@@ -816,10 +816,10 @@ BOOL func_020a4d94(u16 a, u16 b) {
     Vec3 v;
 
     e = GetStandingsKartBalloons() + a;
-    f = func_020a2204(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a)] : 0;
+    f = IsKartInflatingBalloon(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a)] : 0;
     l = GetBalloonOrShineCount(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a) - 1] : 0;
     if (GetBalloonOrShineCount(a) != 0 && l != NULL) {
-        if (func_020a2204(a) != 0 && f != NULL) {
+        if (IsKartInflatingBalloon(a) != 0 && f != NULL) {
             e->mBalloons[GetBalloonOrShineCount(a)] = l;
             AddBalloonOrShineCountAndMoveRank(a, -1);
             e->mBalloons[GetBalloonOrShineCount(a)] = f;
@@ -865,10 +865,10 @@ void func_020a4c58(u16 a) {
     }
     do {
         e = GetStandingsKartBalloons() + a;
-        f = func_020a2204(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a)] : 0;
+        f = IsKartInflatingBalloon(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a)] : 0;
         l = GetBalloonOrShineCount(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a) - 1] : 0;
         if (GetBalloonOrShineCount(a) != 0 && l != NULL) {
-            if (func_020a2204(a) != 0 && f != NULL) {
+            if (IsKartInflatingBalloon(a) != 0 && f != NULL) {
                 e->mBalloons[GetBalloonOrShineCount(a)] = l;
                 AddBalloonOrShineCountAndMoveRank(a, -1);
                 e->mBalloons[GetBalloonOrShineCount(a)] = f;
@@ -899,7 +899,7 @@ void func_020a4b70(u16 a, Vec3 *b) {
     if (b == NULL) {
         return;
     }
-    n = (func_020a2204(a) != 0 ? 1 : 0) + GetBalloonOrShineCount(a);
+    n = (IsKartInflatingBalloon(a) != 0 ? 1 : 0) + GetBalloonOrShineCount(a);
     i = 0;
     if (n <= 0) {
         return;
@@ -1002,10 +1002,10 @@ void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
             e->mState = 1;
             if (c->mUnk_000.mCourseMapRow->mUnk_28 != 0 || c->mUnk_000.mCourseMapRow->mUnk_2a != 0) {
                 e->mRemainingSpawnCount = c->mUnk_000.mCourseMapRow->mUnk_28;
-                func_020a10ac(i, c->mUnk_000.mCourseMapRow->mUnk_28 + c->mUnk_000.mCourseMapRow->mUnk_2a);
+                AddBalloonsLeftToMake(i, c->mUnk_000.mCourseMapRow->mUnk_28 + c->mUnk_000.mCourseMapRow->mUnk_2a);
             } else {
                 e->mRemainingSpawnCount = 1;
-                func_020a10ac(i, 5);
+                AddBalloonsLeftToMake(i, 5);
             }
         }
         return;
@@ -1024,7 +1024,7 @@ void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
                     e->mSpawnTimer--;
                     break;
                 }
-                if (func_020a10d4(i) == 0) {
+                if (GetBalloonsLeftToMake(i) == 0) {
                     break;
                 }
                 if (GetBalloonOrShineCount(i) >= 3) {
@@ -1040,22 +1040,22 @@ void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
                 e->mBalloons[GetBalloonOrShineCount(i)] = o;
                 func_020a2f9c(o, i, 0xcd);
                 e->mState = 2;
-                func_020a2220(i, 1);
-                func_020a10ac(i, -1);
+                SetKartInflatingBalloon(i, 1);
+                AddBalloonsLeftToMake(i, -1);
                 break;
             case 1:
-                if (func_020a2204(i) != 0) {
+                if (IsKartInflatingBalloon(i) != 0) {
                     func_020a2f9c(e->mBalloons[GetBalloonOrShineCount(i)], i, 0x266);
                     break;
                 }
-                if (func_020a10d4(i) != 0 && GetBalloonOrShineCount(i) < 3) {
+                if (GetBalloonsLeftToMake(i) != 0 && GetBalloonOrShineCount(i) < 3) {
                     if (e->mRemainingSpawnCount > 0) {
                         o = func_020a2fe4(e->mBalloonNsbtpFrameIndex, &v);
                         if (o != NULL) {
                             e->mBalloons[GetBalloonOrShineCount(i)] = o;
                             func_020a2f9c(o, i, 0x266);
-                            func_020a2220(i, 1);
-                            func_020a10ac(i, -1);
+                            SetKartInflatingBalloon(i, 1);
+                            AddBalloonsLeftToMake(i, -1);
                             e->mRemainingSpawnCount--;
                         }
                     }
@@ -1095,16 +1095,16 @@ void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
                 func_020a2f30(e->mBalloons[GetBalloonOrShineCount(i)], i, 0x19a);
                 break;
         }
-        if (func_020a2204(i) != 0) {
+        if (IsKartInflatingBalloon(i) != 0) {
             o = e->mBalloons[GetBalloonOrShineCount(i)];
             if (GetBalloonScaleFactor(o) <= 0) {
                 e->mBalloons[GetBalloonOrShineCount(i)] = NULL;
-                func_020a2220(i, 0);
-                func_020a10ac(i, 1);
+                SetKartInflatingBalloon(i, 0);
+                AddBalloonsLeftToMake(i, 1);
                 e->mSpawnTimer = 0;
                 e->mState = 0;
             } else if (GetBalloonScaleFactor(o) >= 0x1000) {
-                func_020a2220(i, 0);
+                SetKartInflatingBalloon(i, 0);
                 AddBalloonOrShineCountAndMoveRank(i, 1);
                 if (e->mRemainingSpawnCount <= 0) {
                     e->mSpawnTimer = 30;
@@ -1141,7 +1141,7 @@ void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
                     e->mUnk_08 = e->mUnk_08 > -s ? 0 : e->mUnk_08 + s;
                 }
             }
-            m = GetBalloonOrShineCount(i) + (func_020a2204(i) != 0 ? 1 : 0);
+            m = GetBalloonOrShineCount(i) + (IsKartInflatingBalloon(i) != 0 ? 1 : 0);
             for (j = 0; j < m; j++) {
                 Balloon *o = e->mBalloons[j];
                 a = e->mUnk_08 + c->mBalloonOffsets[m - 1][j];
@@ -1168,7 +1168,7 @@ void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
                 o->mUnk_00.mAlpha = 0x1f;
             }
         } else {
-            m = GetBalloonOrShineCount(i) + (func_020a2204(i) != 0 ? 1 : 0);
+            m = GetBalloonOrShineCount(i) + (IsKartInflatingBalloon(i) != 0 ? 1 : 0);
             for (j = 0; j < m; j++) {
                 o = e->mBalloons[j];
                 SetBalloonTargetPosAndVelocity(o, &v, &p->mVelocity);

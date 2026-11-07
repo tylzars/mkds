@@ -167,7 +167,7 @@ void CollideKartWithKarts(Kart *p) {
                 q->mForwardSpeed += VEC_DotProduct(&q->mTurnedForward, &g);
             }
             if (gRaceSetup->mMode == MODE_BATTLE) {
-                k = func_020a1ee4(p->mIndex, q->mIndex);
+                k = CallKartCollisionCallbacks(p->mIndex, q->mIndex);
             }
             w = p->mUnk_4c;
             if (w & 0x10000000) {

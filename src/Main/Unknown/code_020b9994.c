@@ -440,7 +440,7 @@ void func_020ba520(void) {
             switch (gRaceSetup->mBattleKind) {
                 case BATTLE_KIND_BALLOON:
                     q->mUnk_00_h[0] = 0;
-                    data_0217b3c8->mUnk_00_h[1] = func_020a10d4(GetFollowedKartOrEntryIndex());
+                    data_0217b3c8->mUnk_00_h[1] = GetBalloonsLeftToMake(GetFollowedKartOrEntryIndex());
                     break;
                 case BATTLE_KIND_SHINE:
                 default:
@@ -476,7 +476,7 @@ void func_020ba3ec(void) {
             break;
         case MODE_BATTLE:
             if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
-                if (func_020a2204(GetFollowedKartOrEntryIndex()) != 0) {
+                if (IsKartInflatingBalloon(GetFollowedKartOrEntryIndex()) != 0) {
                     data_0217b3c8->mUnk_00_h[0] += 1;
                     if (data_0217b3c8->mUnk_00_h[0] >= 9) {
                         data_0217b3c8->mUnk_00_h[0] = 0;
@@ -484,7 +484,7 @@ void func_020ba3ec(void) {
                 } else {
                     data_0217b3c8->mUnk_00_h[0] = 0;
                 }
-                data_0217b3c8->mUnk_00_h[1] = func_020a10d4(GetFollowedKartOrEntryIndex());
+                data_0217b3c8->mUnk_00_h[1] = GetBalloonsLeftToMake(GetFollowedKartOrEntryIndex());
             } else {
                 data_0217b3c8->mUnk_00_h[0] = GetBalloonOrShineCount(GetFollowedKartOrEntryIndex());
             }

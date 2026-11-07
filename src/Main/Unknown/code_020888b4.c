@@ -507,12 +507,12 @@ void func_02088d34(KartAi *p) {
         return;
     }
     a = GetBalloonOrShineCount(p->mIndex);
-    b = func_020a10d4(p->mIndex);
+    b = GetBalloonsLeftToMake(p->mIndex);
     if (a >= p->mUnk_c0) {
         return;
     }
     c = FALSE;
-    if (b > data_0217b030->mUnk_1a || (b == data_0217b030->mUnk_1a && func_020a2204(p->mIndex) != 0)) {
+    if (b > data_0217b030->mUnk_1a || (b == data_0217b030->mUnk_1a && IsKartInflatingBalloon(p->mIndex) != 0)) {
         c = TRUE;
     }
     if (c == FALSE) {

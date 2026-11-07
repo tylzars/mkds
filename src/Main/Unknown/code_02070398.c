@@ -1370,7 +1370,7 @@ void PlaceKartAtKeyedPlacement(Kart *p, u32 b) {
     MTX_MultVec33(&data_02154f70, m, &e);
     if (gRaceSetup->mMode == MODE_BATTLE) {
         VEC_Subtract(&a, &p->mPos, &v);
-        func_020a21bc(p->mIndex, (s32) &v);
+        CallStandingsKartOffsetCallback(p->mIndex, (s32) &v);
     }
     p->mPos = a;
     p->mPrevPos = p->mPos;

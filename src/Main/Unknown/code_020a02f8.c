@@ -112,7 +112,7 @@ s32 func_020a223c(u16 a) {
     return gStandings->mKarts[a].mUnk_68;
 }
 
-void func_020a2220(u16 arg0, u32 arg1) {
+void SetKartInflatingBalloon(u16 arg0, u32 arg1) {
     u32 value0 = arg0;
     u32 value1 = arg1;
     u32 value2;
@@ -124,7 +124,7 @@ void func_020a2220(u16 arg0, u32 arg1) {
     *(u32 *) ((value2) + (108)) = value1;
 }
 
-u32 func_020a2204(u16 arg0) {
+u32 IsKartInflatingBalloon(u16 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
@@ -136,7 +136,7 @@ u32 func_020a2204(u16 arg0) {
     return value0;
 }
 
-void func_020a21bc(s32 a, s32 b) {
+void CallStandingsKartOffsetCallback(s32 a, s32 b) {
     if (b == 0) {
         return;
     }
@@ -145,7 +145,7 @@ void func_020a21bc(s32 a, s32 b) {
     }
 }
 
-s32 func_020a1ee4(s32 a, s32 b) {
+s32 CallKartCollisionCallbacks(s32 a, s32 b) {
     Kart *v1;
     Kart *v2;
     KartStanding *v3;
@@ -235,7 +235,7 @@ s32 func_020a1ee4(s32 a, s32 b) {
     return 0;
 }
 
-void func_020a1e40(s32 a, ItemObject *p) {
+void SetKartHitByKartIndexFromItem(s32 a, ItemObject *p) {
     u16 v;
 
     if (gStandings->mWinnerTeamId >= 0) {
@@ -251,7 +251,7 @@ void func_020a1e40(s32 a, ItemObject *p) {
     if ((v & 0x8000) != 0) {
         return;
     }
-    gStandings->mKarts[a].mUnk_44 = v & ~0xff00;
+    gStandings->mKarts[a].mHitByKartIndex = v & ~0xff00;
 }
 
 u32 func_020a1e3c(u32 p0) {
@@ -279,7 +279,7 @@ static inline u16 func_020a1790_inline(Standings *d, s32 i) {
     return 0;
 }
 
-u16 func_020a1cd8(s32 a) {
+u16 GetBattleItemRank(s32 a) {
     s32 v;
     s32 i;
     s32 v1;
@@ -395,7 +395,7 @@ void EliminateKart(u16 a) {
     gStandings->mKarts[a].mEliminationStatus = 1;
     if (gRaceSetup->mMode == MODE_BATTLE) {
         gStandings->mKarts[a].mBalloonOrShineCount = -1;
-        gStandings->mKarts[a].mUnk_50 = 0;
+        gStandings->mKarts[a].mBalloonsLeftToMake = 0;
     }
     if ((u32) a >= gRaceSetup->mKartCount) {
         return;
@@ -463,17 +463,17 @@ found:
     }
 }
 
-void func_020a1748(u16 a) {
+void CallKartHitCallbackForSelf(u16 a) {
     KartStanding *e;
 
     e = &gStandings->mKarts[a];
     e->mUnk_1c = -2;
     e->mUnk_18 = -2;
-    e->mUnk_44 = a;
+    e->mHitByKartIndex = a;
     gStandings->mKartHitCallback(a, a);
 }
 
-void func_020a1728(int a) {
+void ClearStandingEliminationStatus(int a) {
     *(u32 *) (a * 0x70 + (u32) gStandings + 8) = 0;
 }
 
@@ -698,7 +698,7 @@ void AddBalloonOrShineCountAndMoveRank(u16 a, s32 b) {
     }
 }
 
-u16 func_020a10d4(u16 arg0) {
+u16 GetBalloonsLeftToMake(u16 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
@@ -710,8 +710,8 @@ u16 func_020a10d4(u16 arg0) {
     return value0;
 }
 
-void func_020a10ac(u16 a, s32 b) {
-    gStandings->mKarts[a].mUnk_50 += b;
+void AddBalloonsLeftToMake(u16 a, s32 b) {
+    gStandings->mKarts[a].mBalloonsLeftToMake += b;
 }
 
 // TRUE when the kart's elimination status is not 0.
@@ -792,7 +792,7 @@ void InitStandings(void) {
         e = &gStandings->mKarts[i];
         e->mUnk_1c = -2;
         e->mUnk_18 = -2;
-        e->mUnk_44 = i;
+        e->mHitByKartIndex = i;
         e->mRankIndex = i;
         if (i < gRaceSetup->mKartCount) {
             switch (gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mTeamIndex) {
@@ -808,11 +808,11 @@ void InitStandings(void) {
             }
             e->mEliminationStatus = 0;
             e->mBalloonOrShineCount = 0;
-            e->mUnk_50 = 0;
+            e->mBalloonsLeftToMake = 0;
         } else {
             e->mEliminationStatus = 2;
             e->mBalloonOrShineCount = -1;
-            e->mUnk_50 = 0;
+            e->mBalloonsLeftToMake = 0;
             e->mTeamId = gRaceSetup->mKartCount;
         }
     }
@@ -892,7 +892,7 @@ void UpdateStandings(void) {
                     e->mUnk_04 = TRUE;
                     e->mUnk_00 = FALSE;
                     e->mUnk_18 = -2;
-                    e->mUnk_44 = i;
+                    e->mHitByKartIndex = i;
                     e->mUnk_20 = FALSE;
                     if (e->mBalloonOrShineCount <= 1) {
                         if ((gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) ||
@@ -911,7 +911,7 @@ void UpdateStandings(void) {
                 if (e->mUnk_1c == 0) {
                     e->mUnk_1c = -2;
                     gStandings->mKartHitCallback(i, 8);
-                    e->mUnk_44 = i;
+                    e->mHitByKartIndex = i;
                 } else if (e->mUnk_1c >= 0) {
                     e->mUnk_1c = e->mUnk_1c + 1;
                 }
@@ -936,8 +936,8 @@ void UpdateStandings(void) {
                 }
                 if (e->mUnk_18 == 0) {
                     e->mUnk_18 = -2;
-                    gStandings->mKartHitCallback(i, e->mUnk_44);
-                    e->mUnk_44 = i;
+                    gStandings->mKartHitCallback(i, e->mHitByKartIndex);
+                    e->mHitByKartIndex = i;
                 } else if (e->mUnk_18 >= 0) {
                     e->mUnk_18 = e->mUnk_18 + 1;
                 }

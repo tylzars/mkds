@@ -428,7 +428,7 @@ void func_0206d18c(Kart *p) {
         func_0207a70c(p->mIndex);
     }
     if (gRaceSetup->mMode == MODE_BATTLE) {
-        func_020a1e40(p->mIndex, e);
+        SetKartHitByKartIndexFromItem(p->mIndex, e);
     }
     if (func_020f9880(e) == 0) {
         return;

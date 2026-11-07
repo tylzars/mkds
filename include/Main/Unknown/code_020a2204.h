@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_020a2204(u16 arg0);
+u32 IsKartInflatingBalloon(u16 arg0);
