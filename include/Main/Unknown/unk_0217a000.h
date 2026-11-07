@@ -1384,15 +1384,15 @@ extern s32 gKartForwardSpeedRatio;
 struct Unk0201ca6c;
 
 // Two objects returned by StartEffect.
-typedef struct Unk0217ae84_10 {
+typedef struct KartEffectPair {
     union {
         struct {
-            /* 00 */ struct Unk0201ca6c *mUnk_00;
-            /* 04 */ struct Unk0201ca6c *mUnk_04;
+            /* 00 */ struct Unk0201ca6c *mEffect0;
+            /* 04 */ struct Unk0201ca6c *mEffect1;
         };
         struct Unk0201ca6c *mUnk_00_a[2];
     };
-} Unk0217ae84_10;
+} KartEffectPair;
 
 // Effect objects of one Kart: the current effect with its id, and further effect objects with the points they are
 // placed at. One record per Kart in gKartEffects, indexed by Kart.mIndex. 0x58-byte entries of the table behind
@@ -1407,23 +1407,24 @@ typedef struct KartEffects {
     /* 0c */ struct Unk0201ca6c *mCurrentEffect;
     // The effect objects started for mEffectIds: entry i holds the object of side 0 and the object of side 1 (the byte
     // set in each object is the side number); ids in mEffectIds.
-    /* 10 */ Unk0217ae84_10 mEffectPairs[2];
+    /* 10 */ KartEffectPair mEffectPairs[2];
     union {
         struct {
-            /* 20 */ struct Unk0201ca6c *mUnk_20;
-            /* 24 */ struct Unk0201ca6c *mUnk_24;
+            /* 20 */ struct Unk0201ca6c *mWaterEffect0;
+            /* 24 */ struct Unk0201ca6c *mWaterEffect1;
         };
         struct Unk0201ca6c *mUnk_20_a[2];
     };
     /* 28 */ struct Unk0201ca6c *mUnk_28;
-    /* 2c */ struct Unk0201ca6c *mUnk_2c;
+    /* 2c */ struct Unk0201ca6c *mKillerEffect;
     /* 30 */ struct Unk0201ca6c *mUnk_30;
     // Position in effect units (position / 16) of each side of the Kart: model point 2 or 3 moved by the x offset
-    // 0x1800 or -0x1800 of data_02155800, scaled by the Kart scale and transformed by the Kart matrix; written only by
-    // ComputeKartSidePoints.
+    // 0x1800 or -0x1800 of gKartSideOffsetsX, scaled by the Kart scale and transformed by the Kart matrix; written only
+    // by ComputeKartSidePoints.
     /* 34 */ Vec3 mSidePositions[2];
-    // Direction vector (halfwords) of the effect on each side of the Kart: the vector of data_02155818 for that side
-    // rotated by the Kart matrix; written only by ComputeKartSidePoints and read as the direction of the effect object.
+    // Direction vector (halfwords) of the effect on each side of the Kart: the vector of gKartSideDirectionVectors for
+    // that side rotated by the Kart matrix; written only by ComputeKartSidePoints and read as the direction of the
+    // effect object.
     /* 4c */ Vec3s16 mSideDirections[2];
 } KartEffects;
 
@@ -1447,15 +1448,15 @@ extern u16 data_0217ae6c;
 extern u16 data_0217ae70;
 extern struct Unk0201ca6c **data_0217ae74;
 // Three objects per entry, 0xc bytes each.
-typedef struct Unk0217ae7c {
-    /* 00 */ struct Unk0201ca6c *mUnk_00[3];
-} Unk0217ae7c;
+typedef struct KartStarEffects {
+    /* 00 */ struct Unk0201ca6c *mEffects[3];
+} KartStarEffects;
 
-extern Unk0217ae7c *data_0217ae7c;
-extern u16 *data_0217ae8c;
-extern s32 data_0217ae90;
+extern KartStarEffects *gKartStarEffects;
+extern u16 *gKartEffectIdSetIndex;
+extern s32 gOtherKartOddCount;
 extern struct Unk0201ca6c **data_0217ae94;
-extern s32 data_0217ae98;
+extern s32 gOtherKartFullPairCount;
 
 // Three doublewords (a random generator): the first is replaced by the first times the second plus the third.
 typedef Unk020f41c4_B Unk0217aebc_128;

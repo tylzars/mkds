@@ -252,7 +252,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
     if (((p->mUnk_514->mUnk_30 & 0x4000) != 0) != ((f & 0x4000) != 0)) {
         i = 0;
         func_02061874();
-        func_02082e4c(p->mIndex);
+        StartEffectsAtOtherKarts(p->mIndex);
         e = p->mUnk_7c & 0x200;
         if (e) {
             if (e) {

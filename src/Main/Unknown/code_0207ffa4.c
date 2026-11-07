@@ -44,7 +44,7 @@ void func_02081060(Kart *p) {
     e = data_0217ae94[p->mIndex];
     e->mUnk_98_24 = p->mIndex;
     e->mUnk_94 = 0;
-    e->mUnk_90 = func_02081b30;
+    e->mUnk_90 = AdvanceKartAheadEffect;
 }
 
 void func_02081000(Kart *p) {
@@ -55,7 +55,7 @@ void func_02081000(Kart *p) {
     }
     e->mUnk_98_16 = 0;
     e->mUnk_98_8 = 3;
-    e->mUnk_90 = func_02081ab8;
+    e->mUnk_90 = AdvanceKartAheadEffectWithLimit;
     data_0217ae94[p->mIndex] = NULL;
 }
 
@@ -77,7 +77,7 @@ void func_02080f44(Kart *p) {
     e = data_0217ae74[p->mIndex];
     e->mUnk_98_24 = p->mIndex;
     e->mUnk_94 = (void *) 1;
-    e->mUnk_90 = func_02081b30;
+    e->mUnk_90 = AdvanceKartAheadEffect;
 }
 
 void func_02080ee4(Kart *p) {
@@ -88,7 +88,7 @@ void func_02080ee4(Kart *p) {
     }
     e->mUnk_98_16 = 0;
     e->mUnk_98_8 = 5;
-    e->mUnk_90 = func_02081ab8;
+    e->mUnk_90 = AdvanceKartAheadEffectWithLimit;
     data_0217ae74[p->mIndex] = NULL;
 }
 

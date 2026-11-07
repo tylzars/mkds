@@ -338,12 +338,12 @@ void func_02066fe0(Kart *a) {
     }
     func_0207b44c(a);
     StopOrthoQuads(a->mIndex);
-    func_02081768(a->mIndex);
+    ReleaseKartStarEffects(a->mIndex);
     if ((a->mUnk_4c & 0x40) != 0) {
         a->mUnk_4c = a->mUnk_4c & ~0x40;
         func_0207b1a8(a);
         a->mItemEffect = 0;
-        func_020817b8(a->mIndex);
+        StopKartStarEffects(a->mIndex);
         func_02068a64(a, 0, 1);
         if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0 && gRaceSetup->mUnk_00c == 0) {
             func_02106dc8();

@@ -29,7 +29,7 @@ void func_02081298(Unk0201ca6c *p, s32 a) {
     if (a != 0) {
         return;
     }
-    func_0208335c(p, a);
+    AdvanceKartSideEffect(p, a);
     if (p->mUnk_98_0 >= 7) {
         p->mUnk_98_8 = 1;
     } else {

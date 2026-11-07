@@ -87,7 +87,7 @@ void func_01ffb130(Kart *p) {
     }
     if (p->mUnk_4c & 0x40) {
         q = &p->mUnk_538;
-        func_0208181c(p->mIndex);
+        AdvanceKartStarEffects(p->mIndex);
         if ((p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) && p->mKartModelsEntry->mCharacterAnimation->mUnk_1a == 0) {
             func_02068a64(p, 2, 1);
         }
@@ -96,7 +96,7 @@ void func_01ffb130(Kart *p) {
             p->mUnk_4c &= ~0x40;
             func_0207b1a8(p);
             p->mItemEffect = 0;
-            func_020817b8(p->mIndex);
+            StopKartStarEffects(p->mIndex);
             func_02068a64(p, 0, 1);
             if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mUnk_00c == 0) {
                 func_02106dc8();

@@ -87,7 +87,7 @@ extern s32 data_0216593c;
 extern s32 data_02165944;
 extern s32 data_0216594c;
 extern s32 data_02165950;
-extern u32 data_02165978[];
+extern u32 gKartStarEffectIds[];
 
 // Three words, three more words and two halfwords; data_02165ff0, data_0216600c and data_02166028 are one each.
 typedef struct Unk02165ff0 {

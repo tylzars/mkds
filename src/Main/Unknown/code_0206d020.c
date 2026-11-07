@@ -405,7 +405,7 @@ void func_0206d18c(Kart *p) {
         case 6:
             i = r;
             func_02061874();
-            func_02082e4c(p->mIndex);
+            StartEffectsAtOtherKarts(p->mIndex);
             t = p->mUnk_7c & 0x200;
             if (t) {
                 if (t) {

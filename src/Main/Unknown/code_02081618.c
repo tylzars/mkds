@@ -51,12 +51,12 @@ void InitKartEffects(u32 a) {
         e = &gKartEffects[i];
         e->mCurrentEffect = NULL;
         e->mUnk_28 = NULL;
-        e->mUnk_2c = NULL;
+        e->mKillerEffect = NULL;
         e->mUnk_30 = NULL;
         e->mCurrentEffectId = -1;
-        e->mUnk_20 = e->mUnk_24 = 0;
+        e->mWaterEffect0 = e->mWaterEffect1 = 0;
         for (j = 0; j < 2; j++) {
-            e->mEffectPairs[j].mUnk_00 = e->mEffectPairs[j].mUnk_04 = 0;
+            e->mEffectPairs[j].mEffect0 = e->mEffectPairs[j].mEffect1 = 0;
             e->mEffectIds[j] = -1;
         }
     }
@@ -75,7 +75,7 @@ void ComputeKartSidePoints(Kart *p) {
     for (i = 0; i < 2; i++) {
         v = p->mKartModelsEntry->mUnk_020->mUnk_14[i + 2];
         v.y = 0;
-        v.x = v.x + data_02155800[i];
+        v.x = v.x + gKartSideOffsetsX[i];
         q.x = ((s64) v.x * p->mScale.x) >> 12;
         q.y = ((s64) v.y * p->mScale.y) >> 12;
         q.z = ((s64) v.z * p->mScale.z) >> 12;
@@ -83,7 +83,7 @@ void ComputeKartSidePoints(Kart *p) {
         e->mSidePositions[i].x = e->mSidePositions[i].x >> 4;
         e->mSidePositions[i].y = e->mSidePositions[i].y >> 4;
         e->mSidePositions[i].z = e->mSidePositions[i].z >> 4;
-        MTX_MultVec33(&data_02155818[i], &p->mUnk_150.x, &w);
+        MTX_MultVec33(&gKartSideDirectionVectors[i], &p->mUnk_150.x, &w);
         e->mSideDirections[i].x = w.x;
         e->mSideDirections[i].y = w.y;
         e->mSideDirections[i].z = w.z;
@@ -103,12 +103,14 @@ void func_0208442c(Kart *p) {
 }
 
 void func_020843d8(Kart *p) {
-    data_02155908[0].mUnk_18(&data_02155908[0].mUnk_00[data_0217ae8c[p->mIndex]], data_02155908[0].mUnk_1c, p);
+    gKartSurfaceEffectRows[0].mStartEffects(&gKartSurfaceEffectRows[0].mEffectIdSets[gKartEffectIdSetIndex[p->mIndex]],
+                                            gKartSurfaceEffectRows[0].mVelocityFactorIndex, p);
     StopKartEffectPairs(p, 0);
 }
 
 void func_02084384(Kart *p) {
-    data_02155928.mUnk_18(&data_02155928.mUnk_00[data_0217ae8c[p->mIndex]], data_02155928.mUnk_1c, p);
+    gKartSurfaceEffectRow1.mStartEffects(&gKartSurfaceEffectRow1.mEffectIdSets[gKartEffectIdSetIndex[p->mIndex]],
+                                         gKartSurfaceEffectRow1.mVelocityFactorIndex, p);
     StopKartEffectPairs(p, 0);
 }
 
@@ -133,7 +135,8 @@ void func_020842ac(Kart *p) {
         e->mCurrentEffect = NULL;
         e->mCurrentEffectId = -1;
     }
-    data_02155968.mUnk_18(&data_02155968.mUnk_00[data_0217ae8c[p->mIndex]], data_02155968.mUnk_1c, p);
+    gKartSurfaceEffectRow3.mStartEffects(&gKartSurfaceEffectRow3.mEffectIdSets[gKartEffectIdSetIndex[p->mIndex]],
+                                         gKartSurfaceEffectRow3.mVelocityFactorIndex, p);
 }
 
 void func_02084224(Kart *p) {
@@ -145,7 +148,8 @@ void func_02084224(Kart *p) {
         e->mCurrentEffect = NULL;
         e->mCurrentEffectId = -1;
     }
-    data_02155988.mUnk_18(&data_02155988.mUnk_00[data_0217ae8c[p->mIndex]], data_02155988.mUnk_1c, p);
+    gKartSurfaceEffectRow4.mStartEffects(&gKartSurfaceEffectRow4.mEffectIdSets[gKartEffectIdSetIndex[p->mIndex]],
+                                         gKartSurfaceEffectRow4.mVelocityFactorIndex, p);
 }
 
 void func_0208419c(Kart *p) {
@@ -157,7 +161,8 @@ void func_0208419c(Kart *p) {
         e->mCurrentEffect = NULL;
         e->mCurrentEffectId = -1;
     }
-    data_021559a8.mUnk_18(&data_021559a8.mUnk_00[data_0217ae8c[p->mIndex]], data_021559a8.mUnk_1c, p);
+    gKartSurfaceEffectRow5.mStartEffects(&gKartSurfaceEffectRow5.mEffectIdSets[gKartEffectIdSetIndex[p->mIndex]],
+                                         gKartSurfaceEffectRow5.mVelocityFactorIndex, p);
 }
 
 void func_02084114(Kart *p) {
@@ -169,11 +174,13 @@ void func_02084114(Kart *p) {
         e->mCurrentEffect = NULL;
         e->mCurrentEffectId = -1;
     }
-    data_021559c8.mUnk_18(&data_021559c8.mUnk_00[data_0217ae8c[p->mIndex]], data_021559c8.mUnk_1c, p);
+    gKartSurfaceEffectRow6.mStartEffects(&gKartSurfaceEffectRow6.mEffectIdSets[gKartEffectIdSetIndex[p->mIndex]],
+                                         gKartSurfaceEffectRow6.mVelocityFactorIndex, p);
 }
 
 void func_020840c0(Kart *p) {
-    data_021559e8.mUnk_18(&data_021559e8.mUnk_00[data_0217ae8c[p->mIndex]], data_021559e8.mUnk_1c, p);
+    gKartSurfaceEffectRow7.mStartEffects(&gKartSurfaceEffectRow7.mEffectIdSets[gKartEffectIdSetIndex[p->mIndex]],
+                                         gKartSurfaceEffectRow7.mVelocityFactorIndex, p);
     StopKartEffectPairs(p, 0);
 }
 
@@ -188,7 +195,7 @@ void StartKartBoostCameraEffect(u32 a, Kart *p) {
     if (gKartBoostCameraEffect != NULL) {
         gKartBoostCameraEffect->mUnk_24.mUnk_00_0 = 1;
     }
-    o = StartEffect(data_021557f8[a], &data_02155a14);
+    o = StartEffect(gKartBoostCameraEffectIds[a], &data_02155a14);
     o->mUnk_98 = 0;
     o->mUnk_94 = p;
     o->mUnk_90 = AdvanceKartBoostCameraEffect;
@@ -200,7 +207,7 @@ void ApplyKartSurfaceEffect(s32 a, Kart *p) {
     KartEffects *e;
 
     if (p->mUnk_4c & 0x8000) {
-        data_02155830[a](p);
+        gKartSurfaceEffectFunctions[a](p);
         return;
     }
     e = &gKartEffects[p->mIndex];
@@ -211,48 +218,49 @@ void ApplyKartSurfaceEffect(s32 a, Kart *p) {
     }
     StopKartEffectPairs(p, 0);
     e = &gKartEffects[p->mIndex];
-    if (e->mUnk_20 != 0) {
-        e->mUnk_20->mUnk_98_8 = 1;
-        e->mUnk_20 = 0;
+    if (e->mWaterEffect0 != 0) {
+        e->mWaterEffect0->mUnk_98_8 = 1;
+        e->mWaterEffect0 = 0;
     }
-    if (e->mUnk_24 != 0) {
-        e->mUnk_24->mUnk_98_8 = 1;
-        e->mUnk_24 = 0;
+    if (e->mWaterEffect1 != 0) {
+        e->mWaterEffect1->mUnk_98_8 = 1;
+        e->mWaterEffect1 = 0;
     }
 }
 
-void func_02083ec4(Kart *p) {
+// Starts the water effects while the kart flag is set, otherwise ends them.
+void ApplyKartWaterEffects(Kart *p) {
     KartEffects *e;
 
     if (p->mUnk_4c & 0x8000) {
-        func_02083a24(&data_02155968.mUnk_00[data_0217ae8c[p->mIndex]], 1, p);
+        StartKartWaterEffects(&gKartSurfaceEffectRow3.mEffectIdSets[gKartEffectIdSetIndex[p->mIndex]], 1, p);
         return;
     }
     e = &gKartEffects[p->mIndex];
-    if (e->mUnk_20 != 0) {
-        e->mUnk_20->mUnk_98_8 = 1;
-        e->mUnk_20 = 0;
+    if (e->mWaterEffect0 != 0) {
+        e->mWaterEffect0->mUnk_98_8 = 1;
+        e->mWaterEffect0 = 0;
     }
-    if (e->mUnk_24 != 0) {
-        e->mUnk_24->mUnk_98_8 = 1;
-        e->mUnk_24 = 0;
+    if (e->mWaterEffect1 != 0) {
+        e->mWaterEffect1->mUnk_98_8 = 1;
+        e->mWaterEffect1 = 0;
     }
 }
 
 void func_02083de8(s32 a, Kart *p) {
-    Unk02155908 *t;
-    Unk02155908_00 *n;
+    KartSurfaceEffectRow *t;
+    KartEffectIdSet *n;
     KartEffects *e;
     u16 i;
     u16 j;
 
-    t = &data_02155908[a];
-    n = &t->mUnk_00[data_0217ae8c[p->mIndex]];
-    if (t->mUnk_18(n, t->mUnk_1c, p) == 0) {
+    t = &gKartSurfaceEffectRows[a];
+    n = &t->mEffectIdSets[gKartEffectIdSetIndex[p->mIndex]];
+    if (t->mStartEffects(n, t->mVelocityFactorIndex, p) == 0) {
         return;
     }
     e = &gKartEffects[p->mIndex];
-    for (i = 0; i < n->mUnk_00; i++) {
+    for (i = 0; i < n->mCount; i++) {
         for (j = 0; j < 2; j++) {
             if (e->mEffectPairs[i].mUnk_00_a[j] != 0) {
                 e->mEffectPairs[i].mUnk_00_a[j]->mUnk_72 = data_0217ae6c;
@@ -261,27 +269,28 @@ void func_02083de8(s32 a, Kart *p) {
     }
 }
 
-BOOL StartKartCurrentEffect(Unk02155908_00 *a, s32 b, Kart *p) {
+BOOL StartKartCurrentEffect(KartEffectIdSet *a, s32 b, Kart *p) {
     KartEffects *e;
     Unk0201ca6c *o;
 
     e = &gKartEffects[p->mIndex];
-    if (a->mUnk_04[0] == e->mCurrentEffectId) {
+    if (a->mEffectIds[0] == e->mCurrentEffectId) {
         return FALSE;
     }
     if (e->mCurrentEffect != NULL) {
         e->mCurrentEffect->mUnk_98_8 = 1;
     }
-    o = StartEffect(a->mUnk_04[0], &data_02155a14);
+    o = StartEffect(a->mEffectIds[0], &data_02155a14);
     e->mCurrentEffect = o;
-    e->mCurrentEffectId = a->mUnk_04[0];
+    e->mCurrentEffectId = a->mEffectIds[0];
     o->mUnk_94 = p;
     o->mUnk_98_0 = b;
     o->mUnk_90 = AdvanceKartCurrentEffect;
     return TRUE;
 }
 
-s32 func_02083c18(Unk02155908_00 *a, s32 b, Kart *p) {
+// Starts one effect per side of the kart for each id that is not running yet.
+s32 StartKartSideEffects(KartEffectIdSet *a, s32 b, Kart *p) {
     KartEffects *e;
     Unk0201ca6c *o;
     s32 r;
@@ -289,24 +298,24 @@ s32 func_02083c18(Unk02155908_00 *a, s32 b, Kart *p) {
     u16 j;
 
     r = i = 0;
-    for (; i < a->mUnk_00; i++) {
+    for (; i < a->mCount; i++) {
         e = &gKartEffects[p->mIndex];
         j = 0;
-        if (a->mUnk_04[i] != e->mEffectIds[i]) {
-            if (e->mEffectPairs[i].mUnk_00 != 0) {
-                e->mEffectPairs[i].mUnk_00->mUnk_98_8 = 1;
+        if (a->mEffectIds[i] != e->mEffectIds[i]) {
+            if (e->mEffectPairs[i].mEffect0 != 0) {
+                e->mEffectPairs[i].mEffect0->mUnk_98_8 = 1;
             }
-            if (e->mEffectPairs[i].mUnk_04 != 0) {
-                e->mEffectPairs[i].mUnk_04->mUnk_98_8 = 1;
+            if (e->mEffectPairs[i].mEffect1 != 0) {
+                e->mEffectPairs[i].mEffect1->mUnk_98_8 = 1;
             }
-            e->mEffectIds[i] = a->mUnk_04[i];
+            e->mEffectIds[i] = a->mEffectIds[i];
             do {
                 o = StartEffect(e->mEffectIds[i], &data_02155a14);
                 gKartEffects[p->mIndex].mEffectPairs[i].mUnk_00_a[j] = o;
                 o->mUnk_94 = p;
                 o->mUnk_98_24 = j;
                 j++;
-                o->mUnk_90 = func_0208335c;
+                o->mUnk_90 = AdvanceKartSideEffect;
             } while (j < 2);
             r = 1;
         }
@@ -314,7 +323,7 @@ s32 func_02083c18(Unk02155908_00 *a, s32 b, Kart *p) {
     return r;
 }
 
-s32 func_02083ae0(Unk02155908_00 *a, s32 b, Kart *p) {
+s32 StartKartSideEffectsWithVelocity(KartEffectIdSet *a, s32 b, Kart *p) {
     KartEffects *e;
     Unk0201ca6c *o;
     s32 r;
@@ -322,17 +331,17 @@ s32 func_02083ae0(Unk02155908_00 *a, s32 b, Kart *p) {
     u16 j;
 
     r = i = 0;
-    for (; i < a->mUnk_00; i++) {
+    for (; i < a->mCount; i++) {
         e = &gKartEffects[p->mIndex];
         j = 0;
-        if (a->mUnk_04[i] != e->mEffectIds[i]) {
-            if (e->mEffectPairs[i].mUnk_00 != 0) {
-                e->mEffectPairs[i].mUnk_00->mUnk_98_8 = 1;
+        if (a->mEffectIds[i] != e->mEffectIds[i]) {
+            if (e->mEffectPairs[i].mEffect0 != 0) {
+                e->mEffectPairs[i].mEffect0->mUnk_98_8 = 1;
             }
-            if (e->mEffectPairs[i].mUnk_04 != 0) {
-                e->mEffectPairs[i].mUnk_04->mUnk_98_8 = 1;
+            if (e->mEffectPairs[i].mEffect1 != 0) {
+                e->mEffectPairs[i].mEffect1->mUnk_98_8 = 1;
             }
-            e->mEffectIds[i] = a->mUnk_04[i];
+            e->mEffectIds[i] = a->mEffectIds[i];
             do {
                 o = StartEffect(e->mEffectIds[i], &data_02155a14);
                 gKartEffects[p->mIndex].mEffectPairs[i].mUnk_00_a[j] = o;
@@ -340,7 +349,7 @@ s32 func_02083ae0(Unk02155908_00 *a, s32 b, Kart *p) {
                 o->mUnk_98_24 = j;
                 j++;
                 o->mUnk_98_0 = b;
-                o->mUnk_90 = func_020831bc;
+                o->mUnk_90 = AdvanceKartSideEffectWithVelocity;
             } while (j < 2);
             r = 1;
         }
@@ -348,22 +357,22 @@ s32 func_02083ae0(Unk02155908_00 *a, s32 b, Kart *p) {
     return r;
 }
 
-BOOL func_02083a24(Unk02155908_00 *a, s32 b, Kart *p) {
+BOOL StartKartWaterEffects(KartEffectIdSet *a, s32 b, Kart *p) {
     KartEffects *e;
     Unk0201ca6c *o;
     u16 i;
 
     e = &gKartEffects[p->mIndex];
-    if (e->mUnk_20 != 0 || e->mUnk_24 != 0) {
+    if (e->mWaterEffect0 != 0 || e->mWaterEffect1 != 0) {
         return FALSE;
     }
     for (i = 0; i < 2; i++) {
-        o = StartEffect(a->mUnk_04[0], &data_02155a14);
+        o = StartEffect(a->mEffectIds[0], &data_02155a14);
         gKartEffects[p->mIndex].mUnk_20_a[i] = o;
         o->mUnk_94 = p;
         o->mUnk_98_24 = i;
         o->mUnk_98_0 = b;
-        o->mUnk_90 = func_02082fec;
+        o->mUnk_90 = AdvanceKartWaterEffect;
     }
     return TRUE;
 }
@@ -386,35 +395,36 @@ void StopKartEffectPairs(Kart *p, s32 a) {
 
     e = &gKartEffects[p->mIndex];
     for (i = 0; i < 2; i++) {
-        if (e->mEffectPairs[i].mUnk_00 != 0 || e->mEffectPairs[i].mUnk_04 != 0) {
+        if (e->mEffectPairs[i].mEffect0 != 0 || e->mEffectPairs[i].mEffect1 != 0) {
             if (a == 0) {
-                e->mEffectPairs[i].mUnk_00->mUnk_98_8 = 1;
-                e->mEffectPairs[i].mUnk_04->mUnk_98_8 = 1;
+                e->mEffectPairs[i].mEffect0->mUnk_98_8 = 1;
+                e->mEffectPairs[i].mEffect1->mUnk_98_8 = 1;
             } else {
-                func_0208b710(e->mEffectPairs[i].mUnk_00);
-                func_0208b710(e->mEffectPairs[i].mUnk_04);
+                func_0208b710(e->mEffectPairs[i].mEffect0);
+                func_0208b710(e->mEffectPairs[i].mEffect1);
             }
-            e->mEffectPairs[i].mUnk_00 = e->mEffectPairs[i].mUnk_04 = 0;
+            e->mEffectPairs[i].mEffect0 = e->mEffectPairs[i].mEffect1 = 0;
             e->mEffectIds[i] = -1;
         }
     }
 }
 
-void func_020838dc(Kart *p) {
+void StopKartWaterEffects(Kart *p) {
     KartEffects *e;
 
     e = &gKartEffects[p->mIndex];
-    if (e->mUnk_20 != 0) {
-        e->mUnk_20->mUnk_98_8 = 1;
-        e->mUnk_20 = 0;
+    if (e->mWaterEffect0 != 0) {
+        e->mWaterEffect0->mUnk_98_8 = 1;
+        e->mWaterEffect0 = 0;
     }
-    if (e->mUnk_24 != 0) {
-        e->mUnk_24->mUnk_98_8 = 1;
-        e->mUnk_24 = 0;
+    if (e->mWaterEffect1 != 0) {
+        e->mWaterEffect1->mUnk_98_8 = 1;
+        e->mWaterEffect1 = 0;
     }
 }
 
-void func_02083834(Kart *p) {
+// Deletes the current, side and water effects of the kart at once.
+void ReleaseKartSurfaceEffects(Kart *p) {
     KartEffects *e;
 
     e = &gKartEffects[p->mIndex];
@@ -425,15 +435,15 @@ void func_02083834(Kart *p) {
     }
     StopKartEffectPairs(p, 1);
     e = &gKartEffects[p->mIndex];
-    if (e->mUnk_20 != 0) {
-        func_0208b710(e->mUnk_20);
-        e->mUnk_20 = 0;
+    if (e->mWaterEffect0 != 0) {
+        func_0208b710(e->mWaterEffect0);
+        e->mWaterEffect0 = 0;
     }
-    if (e->mUnk_24 == 0) {
+    if (e->mWaterEffect1 == 0) {
         return;
     }
-    func_0208b710(e->mUnk_24);
-    e->mUnk_24 = 0;
+    func_0208b710(e->mWaterEffect1);
+    e->mWaterEffect1 = 0;
 }
 
 void AdvanceKartBoostCameraEffect(Unk0201ca6c *p, s32 a) {
@@ -487,7 +497,7 @@ void AdvanceKartCurrentEffect(Unk0201ca6c *p, s32 a) {
     }
     q = p->mUnk_94;
     v = q->mEffectVelocity;
-    k = data_0216596c[p->mUnk_98_b.mUnk_00];
+    k = gKartEffectVelocityFactors[p->mUnk_98_b.mUnk_00];
     n = p->mUnk_98_b.mUnk_02;
     m = p->mUnk_98_b.mUnk_01;
     f = 1;
@@ -521,7 +531,7 @@ void AdvanceKartCurrentEffect(Unk0201ca6c *p, s32 a) {
     p->mUnk_40 = v;
 }
 
-void func_0208335c(Unk0201ca6c *p, s32 a) {
+void AdvanceKartSideEffect(Unk0201ca6c *p, s32 a) {
     s32 x;
     Kart *q;
     u32 n;
@@ -561,7 +571,7 @@ void func_0208335c(Unk0201ca6c *p, s32 a) {
     p->mUnk_28.z = x + p->mUnk_20->mUnk_00->mUnk_04.z;
 }
 
-void func_020831bc(Unk0201ca6c *p, s32 a) {
+void AdvanceKartSideEffectWithVelocity(Unk0201ca6c *p, s32 a) {
     s32 x;
     Vec3 v;
     Kart *q;
@@ -581,7 +591,7 @@ void func_020831bc(Unk0201ca6c *p, s32 a) {
     n = p->mUnk_98_b.mUnk_02;
     m = p->mUnk_98_b.mUnk_01;
     r = p->mUnk_98_b.mUnk_03;
-    k = data_0216596c[p->mUnk_98_b.mUnk_00];
+    k = gKartEffectVelocityFactors[p->mUnk_98_b.mUnk_00];
     f = 1;
     if (IsKartTurnEffectsActive(q) == 0) {
         if (q->mVelocityLength >= 0x119a) {
@@ -609,7 +619,8 @@ void func_020831bc(Unk0201ca6c *p, s32 a) {
     p->mUnk_40 = v;
 }
 
-void func_02082fec(Unk0201ca6c *p, s32 a) {
+// Keeps the water effect at the kart's side, raised by the depth below the water surface.
+void AdvanceKartWaterEffect(Unk0201ca6c *p, s32 a) {
     s32 x;
     Vec3 v;
     u32 m;
@@ -632,7 +643,7 @@ void func_02082fec(Unk0201ca6c *p, s32 a) {
     n = p->mUnk_98_b.mUnk_02;
     m = p->mUnk_98_b.mUnk_01;
     r = p->mUnk_98_b.mUnk_03;
-    k = data_0216596c[p->mUnk_98_b.mUnk_00];
+    k = gKartEffectVelocityFactors[p->mUnk_98_b.mUnk_00];
     if (IsKartTurnEffectsActive(q) == 0) {
         if (q->mVelocityLength >= 0x119a) {
             f = 0;
@@ -665,11 +676,11 @@ void func_02082fec(Unk0201ca6c *p, s32 a) {
     p->mUnk_40 = v;
 }
 
-void func_02082f94(Unk0201ca6c *p, s32 a) {
+void AdvanceOtherKartEffect(Unk0201ca6c *p, s32 a) {
     if (a != 0) {
         return;
     }
-    func_02082d64(p, a);
+    PlaceOtherKartEffect(p, a);
     p->mUnk_98_24 = p->mUnk_98_24 + 1;
     if (p->mUnk_98_24 >= 2) {
         p->mUnk_98_16 = (p->mUnk_98_16 == 0);
@@ -677,10 +688,11 @@ void func_02082f94(Unk0201ca6c *p, s32 a) {
     }
 }
 
-void func_02082e4c(s32 a) {
-    Unk02155808 *e;
+// Starts two effects for each pair of the other karts; each effect switches between the pair's two karts.
+void StartEffectsAtOtherKarts(s32 a) {
+    OtherKartEffectKind *e;
     s32 j;
-    Unk02155888_00 *d;
+    KartIndexPair *d;
     s32 k;
     u32 f;
     s32 n;
@@ -688,33 +700,33 @@ void func_02082e4c(s32 a) {
     s32 m;
     Unk0201ca6c *o;
 
-    data_0217aea0 = data_02155888[a];
-    n = data_0217ae98;
+    gOtherKartPairsCopy = gOtherKartPairs[a];
+    n = gOtherKartFullPairCount;
     i = n;
     if (i < 4) {
-        m = data_0217ae90;
+        m = gOtherKartOddCount;
         do {
             if (i != n || m == 0) {
-                data_0217aea0.mUnk_00[i].mUnk_00 = -1;
+                gOtherKartPairsCopy.mPairs[i].mFirst = -1;
             }
-            data_0217aea0.mUnk_00[i].mUnk_02 = -1;
+            gOtherKartPairsCopy.mPairs[i].mSecond = -1;
             i++;
         } while (i < 4);
     }
-    e = data_02155808;
+    e = gOtherKartEffectKinds;
     for (j = 0; j < 2; j++) {
         f = (j != 0) ? 1 : 0;
         k = 0;
-        d = data_0217aea0.mUnk_00;
+        d = gOtherKartPairsCopy.mPairs;
         do {
-            if (d->mUnk_00 < 0) {
+            if (d->mFirst < 0) {
                 break;
             }
-            o = func_0208b60c(e->mUnk_00, &data_02155a14);
+            o = func_0208b60c(e->mEffectId, &data_02155a14);
             k++;
-            o->mUnk_90 = e->mUnk_04;
-            o->mUnk_98_0 = d->mUnk_00;
-            o->mUnk_98_8 = (d->mUnk_02 < 0) ? 0xff : (u8) d->mUnk_02;
+            o->mUnk_90 = e->mAdvance;
+            o->mUnk_98_0 = d->mFirst;
+            o->mUnk_98_8 = (d->mSecond < 0) ? 0xff : (u8) d->mSecond;
             d++;
             o->mUnk_98_16 = f;
             o->mUnk_98_24 = 0;
@@ -724,7 +736,7 @@ void func_02082e4c(s32 a) {
     }
 }
 
-void func_02082d64(Unk0201ca6c *p, s32 a) {
+void PlaceOtherKartEffect(Unk0201ca6c *p, s32 a) {
     Unk0201ca6c_98 *s;
     Kart *q;
     u32 n;
@@ -780,32 +792,32 @@ void InitCourseCameraEffects(void) {
             break;
     }
     data_0217ae9c = FX_Div(0x1000, ((s64) x * 0x779a + 0x800) >> 12);
-    data_0217ae88 = NULL;
-    data_0217ae78 = NULL;
+    gSecondCourseCameraEffect = NULL;
+    gFirstCourseCameraEffect = NULL;
     switch (gRaceSetup->mCourseId) {
         case 0x25: {
             Unk0201ca6c *p;
 
             if (gRaceSetup->mUnk_00c == 0) {
                 p = StartEffect(0x24, &data_02155a14);
-                data_0217ae78 = p;
+                gFirstCourseCameraEffect = p;
                 p->mUnk_90 = func_02082750;
                 p = StartEffect(0x27, &data_02155a14);
-                data_0217ae88 = p;
+                gSecondCourseCameraEffect = p;
                 p->mUnk_90 = func_02082a10;
             } else if (GetRaceUseChainCameras() != 0) {
                 p = StartEffect(0x3d, &data_02155a14);
-                data_0217ae78 = p;
+                gFirstCourseCameraEffect = p;
                 p->mUnk_90 = func_020824d0;
                 p = StartEffect(0x3f, &data_02155a14);
-                data_0217ae88 = p;
+                gSecondCourseCameraEffect = p;
                 p->mUnk_90 = func_0208266c;
             } else {
                 p = StartEffect(0x3c, &data_02155a14);
-                data_0217ae78 = p;
+                gFirstCourseCameraEffect = p;
                 p->mUnk_90 = func_020824d0;
                 p = StartEffect(0x3f, &data_02155a14);
-                data_0217ae88 = p;
+                gSecondCourseCameraEffect = p;
                 p->mUnk_90 = func_0208266c;
             }
             break;
@@ -815,18 +827,18 @@ void InitCourseCameraEffects(void) {
 
             if (GetRaceUseChainCameras() != 0) {
                 p = StartEffect(0x3e, &data_02155a14);
-                data_0217ae78 = p;
+                gFirstCourseCameraEffect = p;
                 p->mUnk_90 = func_02082034;
             } else if (gRaceSetup->mUnk_00c == 0) {
                 p = StartEffect(0x29, &data_02155a14);
-                data_0217ae78 = p;
+                gFirstCourseCameraEffect = p;
                 p->mUnk_90 = func_020821cc;
                 p = StartEffect(0x25, &data_02155a14);
-                data_0217ae88 = p;
+                gSecondCourseCameraEffect = p;
                 p->mUnk_90 = func_02082368;
             } else {
                 p = StartEffect(0x29, &data_02155a14);
-                data_0217ae78 = p;
+                gFirstCourseCameraEffect = p;
                 p->mUnk_90 = func_02082034;
             }
             break;
@@ -1062,38 +1074,38 @@ void func_02081f30(void) {
 
     switch (gRaceSetup->mCourseId) {
         case COURSE_ID_OLD_LUIGI_AGB:
-            if (data_0217ae78 != NULL) {
-                func_0208b710(data_0217ae78);
+            if (gFirstCourseCameraEffect != NULL) {
+                func_0208b710(gFirstCourseCameraEffect);
                 p = StartEffect(0x3c, &data_02155a14);
-                data_0217ae78 = p;
+                gFirstCourseCameraEffect = p;
                 p->mUnk_90 = func_020824d0;
             }
-            if (data_0217ae88 == NULL) {
+            if (gSecondCourseCameraEffect == NULL) {
                 return;
             }
-            func_0208b710(data_0217ae88);
+            func_0208b710(gSecondCourseCameraEffect);
             p = StartEffect(0x3f, &data_02155a14);
-            data_0217ae88 = p;
+            gSecondCourseCameraEffect = p;
             p->mUnk_90 = func_0208266c;
             break;
         case COURSE_ID_OLD_FRAPPE_64:
-            if (data_0217ae78 != NULL) {
-                data_0217ae78->mUnk_90 = func_02082034;
+            if (gFirstCourseCameraEffect != NULL) {
+                gFirstCourseCameraEffect->mUnk_90 = func_02082034;
             }
-            if (data_0217ae88 == NULL) {
+            if (gSecondCourseCameraEffect == NULL) {
                 return;
             }
-            func_0208b710(data_0217ae88);
-            data_0217ae88 = NULL;
+            func_0208b710(gSecondCourseCameraEffect);
+            gSecondCourseCameraEffect = NULL;
             break;
     }
 }
 
-void SetupKartFollowEffect(Unk02081e3c *p0, u32 p1, u32 p2) {
-    p0->mUnk_9a = 0x0u;
-    p0->mUnk_99 = p2;
-    p0->mUnk_9b = p1;
-    p0->mUnk_90 = AdvanceKartFollowEffect;
+void SetupKartFollowEffect(KartFollowEffect *effect, u32 kartIndex, u32 countLimit) {
+    effect->mCount = 0x0u;
+    effect->mCountLimit = countLimit;
+    effect->mKartIndex = kartIndex;
+    effect->mUnk_90 = AdvanceKartFollowEffect;
 }
 
 void AdvanceKartFollowEffect(Unk0201ca6c *p, s32 a) {
@@ -1127,11 +1139,11 @@ void AdvanceKartFollowEffect(Unk0201ca6c *p, s32 a) {
     }
 }
 
-void SetupKartFollowEffectWithVelocity(Unk02081e3c *p0, u32 p1, u32 p2) {
-    p0->mUnk_9a = 0x0u;
-    p0->mUnk_99 = p2;
-    p0->mUnk_9b = p1;
-    p0->mUnk_90 = AdvanceKartFollowEffectWithVelocity;
+void SetupKartFollowEffectWithVelocity(KartFollowEffect *effect, u32 kartIndex, u32 countLimit) {
+    effect->mCount = 0x0u;
+    effect->mCountLimit = countLimit;
+    effect->mKartIndex = kartIndex;
+    effect->mUnk_90 = AdvanceKartFollowEffectWithVelocity;
 }
 
 void AdvanceKartFollowEffectWithVelocity(Unk0201ca6c *p, s32 a) {
@@ -1166,16 +1178,16 @@ void AdvanceKartFollowEffectWithVelocity(Unk0201ca6c *p, s32 a) {
     }
 }
 
-void func_02081ca0(Unk0201ca6c *p, Kart *q, void *a) {
+void PlaceKartAheadEffect(Unk0201ca6c *p, Kart *q, void *a) {
     u32 r;
     u32 f;
 
     if (a == NULL) {
-        func_02081b64(p, q, 0x733, 0xb33);
+        PlaceEffectAheadAndUpOfKart(p, q, 0x733, 0xb33);
         p->mUnk_5c = (s16) (((s64) q->mScale.z * 0xb33 + 0x800) >> 12);
     } else {
         r = 1;
-        func_02081b64(p, q, 0x99a, 0xe66);
+        PlaceEffectAheadAndUpOfKart(p, q, 0x99a, 0xe66);
         p->mUnk_6c = (s16) q->mScale.z;
         f = q->mUnk_7c;
         if (!(f & 1)) {
@@ -1187,7 +1199,8 @@ void func_02081ca0(Unk0201ca6c *p, Kart *q, void *a) {
     }
 }
 
-void func_02081b64(Unk0201ca6c *p, Kart *q, s32 a, s32 b) {
+// Puts the effect ahead of the kart by b and above it by a, pointing backward.
+void PlaceEffectAheadAndUpOfKart(Unk0201ca6c *p, Kart *q, s32 a, s32 b) {
     Vec3 v;
     Vec3 w;
     Vec3s16 h;
@@ -1211,14 +1224,14 @@ void func_02081b64(Unk0201ca6c *p, Kart *q, s32 a, s32 b) {
     p->mUnk_50 = h;
 }
 
-void func_02081b30(Unk0201ca6c *p, s32 a) {
+void AdvanceKartAheadEffect(Unk0201ca6c *p, s32 a) {
     if (a != 0) {
         return;
     }
-    func_02081ca0(p, GetKart(p->mUnk_98_24), p->mUnk_94);
+    PlaceKartAheadEffect(p, GetKart(p->mUnk_98_24), p->mUnk_94);
 }
 
-void func_02081ab8(Unk0201ca6c *p, s32 a) {
+void AdvanceKartAheadEffectWithLimit(Unk0201ca6c *p, s32 a) {
     u8 i;
     u8 j;
 
@@ -1227,7 +1240,7 @@ void func_02081ab8(Unk0201ca6c *p, s32 a) {
     }
     i = p->mUnk_98_24;
     j = p->mUnk_98_16;
-    func_02081ca0(p, GetKart(i), p->mUnk_94);
+    PlaceKartAheadEffect(p, GetKart(i), p->mUnk_94);
     if (j >= p->mUnk_98_8) {
         if (j == p->mUnk_98_8) {
             p->mUnk_24.mUnk_00_0 = 1;
@@ -1237,16 +1250,16 @@ void func_02081ab8(Unk0201ca6c *p, s32 a) {
     }
 }
 
-void func_02081a40(s32 a) {
-    Unk0217ae7c *e = &data_0217ae7c[a];
+void StartKartStarEffects(s32 a) {
+    KartStarEffects *e = &gKartStarEffects[a];
     u16 i;
 
     i = 0;
     do {
-        if (e->mUnk_00[i] != NULL) {
-            func_0208b710(e->mUnk_00[i]);
+        if (e->mEffects[i] != NULL) {
+            func_0208b710(e->mEffects[i]);
         }
-        e->mUnk_00[i] = StartEffect(data_02165978[i], &GetKart(a)->mUnk_1d8);
+        e->mEffects[i] = StartEffect(gKartStarEffectIds[i], &GetKart(a)->mUnk_1d8);
         i = i + 1;
     } while (i < 3);
 }
@@ -1255,8 +1268,8 @@ static inline s32 func_0208181c_inline(s32 a, s32 b) {
     return ((s64) a * b + 0x800) >> 12;
 }
 
-void func_0208181c(s32 a) {
-    Unk0217ae7c *e = &data_0217ae7c[a];
+void AdvanceKartStarEffects(s32 a) {
+    KartStarEffects *e = &gKartStarEffects[a];
     u16 i;
     s16 y;
     s16 x;
@@ -1271,62 +1284,63 @@ void func_0208181c(s32 a) {
         data_02165944 + func_0208181c_inline(q->mVelocityLengthRatio, data_0216594c - data_02165944), data_02165948);
     i = 0;
     do {
-        if (e->mUnk_00[i] != NULL) {
+        if (e->mEffects[i] != NULL) {
             VEC_MultAdd(((s64) q->mScale.y * data_02155854[q->mKartModelsEntry->mUnk_000] + 0x800) >> 12, &q->mUnk_12c,
                         &q->mPos, &v);
-            func_0208b5b0(e->mUnk_00[i], &v);
+            func_0208b5b0(e->mEffects[i], &v);
             w.x = ((s64) q->mEffectVelocity.x * 0xc00) >> 12;
             w.y = ((s64) q->mEffectVelocity.y * 0xc00) >> 12;
             w.z = ((s64) q->mEffectVelocity.z * 0xc00) >> 12;
-            e->mUnk_00[i]->mUnk_40 = w;
-            e->mUnk_00[i]->mUnk_68 = y;
-            e->mUnk_00[i]->mUnk_64 = x;
-            e->mUnk_00[i]->mUnk_5c = (s16) (((s64) q->mScale.z * 0x614 + 0x800) >> 12);
+            e->mEffects[i]->mUnk_40 = w;
+            e->mEffects[i]->mUnk_68 = y;
+            e->mEffects[i]->mUnk_64 = x;
+            e->mEffects[i]->mUnk_5c = (s16) (((s64) q->mScale.z * 0x614 + 0x800) >> 12);
         }
         i = i + 1;
     } while (i < 3);
 }
 
-void func_020817b8(s32 a) {
-    Unk0217ae7c *e = &data_0217ae7c[a];
+void StopKartStarEffects(s32 a) {
+    KartStarEffects *e = &gKartStarEffects[a];
     u16 i;
 
     i = 0;
     do {
-        if (e->mUnk_00[i] != NULL) {
-            e->mUnk_00[i]->mUnk_24.mUnk_00_0 = 1;
-            e->mUnk_00[i] = NULL;
+        if (e->mEffects[i] != NULL) {
+            e->mEffects[i]->mUnk_24.mUnk_00_0 = 1;
+            e->mEffects[i] = NULL;
         }
         i = i + 1;
     } while (i < 3);
 }
 
-void func_02081768(s32 a) {
-    Unk0217ae7c *e = &data_0217ae7c[a];
+void ReleaseKartStarEffects(s32 a) {
+    KartStarEffects *e = &gKartStarEffects[a];
     u16 i;
 
     i = 0;
     do {
-        if (e->mUnk_00[i] != NULL) {
-            func_0208b710(e->mUnk_00[i]);
-            e->mUnk_00[i] = NULL;
+        if (e->mEffects[i] != NULL) {
+            func_0208b710(e->mEffects[i]);
+            e->mEffects[i] = NULL;
         }
         i = i + 1;
     } while (i < 3);
 }
 
-void func_02081724(s32 a) {
+void StartKartKillerEffect(s32 a) {
     KartEffects *e = &gKartEffects[a];
 
-    if (e->mUnk_2c != NULL) {
-        func_0208b710(e->mUnk_2c);
+    if (e->mKillerEffect != NULL) {
+        func_0208b710(e->mKillerEffect);
     }
-    e->mUnk_2c = StartEffect(0x63, &data_02155a14);
+    e->mKillerEffect = StartEffect(0x63, &data_02155a14);
 }
 
-void func_02081618(s32 a, Vec3 *b) {
+// Moves the Killer effect to point b and gives it the kart's velocity.
+void PlaceKartKillerEffect(s32 a, Vec3 *b) {
     KartEffects *e = &gKartEffects[a];
-    Unk0201ca6c *p = e->mUnk_2c;
+    Unk0201ca6c *p = e->mKillerEffect;
     Kart *q;
     Vec3 *s;
     Vec3 v;
@@ -1342,5 +1356,5 @@ void func_02081618(s32 a, Vec3 *b) {
     v.x = ((s64) s->x * 0xe66) >> 12;
     v.y = ((s64) s->y * 0xe66) >> 12;
     v.z = ((s64) s->z * 0xe66) >> 12;
-    e->mUnk_2c->mUnk_40 = v;
+    e->mKillerEffect->mUnk_40 = v;
 }

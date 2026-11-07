@@ -393,20 +393,20 @@ void func_020846c0(void *a) {
     u16 j;
 
     n = gRaceSetup->mKartCount;
-    data_0217ae8c = HeapAlloc(a, n * 2);
-    data_0217ae7c = HeapAlloc(a, n * 12);
+    gKartEffectIdSetIndex = HeapAlloc(a, n * 2);
+    gKartStarEffects = HeapAlloc(a, n * 12);
     data_0217ae94 = HeapAlloc(a, n * 4);
     data_0217ae74 = HeapAlloc(a, n * 4);
     for (i = 0; i < n; i++) {
         for (j = 0; j < 3; j++) {
-            data_0217ae7c[i].mUnk_00[j] = NULL;
+            gKartStarEffects[i].mEffects[j] = NULL;
         }
         data_0217ae94[i] = NULL;
         data_0217ae74[i] = NULL;
         if (i == gRaceSetup->mEntryIndex) {
-            data_0217ae8c[i] = 0;
+            gKartEffectIdSetIndex[i] = 0;
         } else {
-            data_0217ae8c[i] = 1;
+            gKartEffectIdSetIndex[i] = 1;
         }
     }
     data_0217ae6c = 0x7fff;
@@ -422,8 +422,8 @@ void func_020846c0(void *a) {
             data_0217ae6c = 0x3e67;
             break;
     }
-    data_0217ae98 = (gRaceSetup->mKartCount - 1) / 2;
-    data_0217ae90 = (gRaceSetup->mKartCount - 1) % 2;
+    gOtherKartFullPairCount = (gRaceSetup->mKartCount - 1) / 2;
+    gOtherKartOddCount = (gRaceSetup->mKartCount - 1) % 2;
     data_02165948 = 0x1000;
     switch (gRaceSetup->mEngineIndex) {
         case 0:

@@ -192,7 +192,7 @@ void func_02069e10(Kart *p) {
 
     i = 0;
     func_02061874();
-    func_02082e4c(p->mIndex);
+    StartEffectsAtOtherKarts(p->mIndex);
     w = p->mUnk_7c & 0x200;
     if (w != 0) {
         if (w != 0) {
@@ -247,7 +247,7 @@ void StartKartStar(Kart *p) {
     p->mUnk_4c |= 0x40;
     p->mItemEffect = 1;
     func_0207b284(p);
-    func_02081a40(p->mIndex);
+    StartKartStarEffects(p->mIndex);
     if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mUnk_00c == 0) {
         StartKartStarSeq();
     }
@@ -272,7 +272,7 @@ void StartKartTeresa(Kart *p) {
         p->mUnk_4c &= ~0x40;
         func_0207b1a8(p);
         p->mItemEffect = 0;
-        func_020817b8(p->mIndex);
+        StopKartStarEffects(p->mIndex);
         func_02068a64(p, 0, 1);
         if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mUnk_00c == 0) {
             func_02106dc8();
@@ -414,7 +414,7 @@ void StartKartKiller(Kart *p) {
         p->mUnk_4c &= ~0x40;
         func_0207b1a8(p);
         p->mItemEffect = 0;
-        func_020817b8(p->mIndex);
+        StopKartStarEffects(p->mIndex);
         func_02068a64(p, 0, 1);
         if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mUnk_00c == 0) {
             func_02106dc8();
@@ -438,7 +438,7 @@ void StartKartKiller(Kart *p) {
             SetupKartFollowEffect(StartEffect(v.mUnk_00[i], &p->mPos), p->mIndex, 0x14);
         }
     }
-    func_02081724(p->mIndex);
+    StartKartKillerEffect(p->mIndex);
     func_02069ea8(p);
     if (p->mUnk_7c & 0x200) {
         p->mUnk_514->mUnk_2c ^= 0x100000;

@@ -22,18 +22,18 @@ extern s32 data_02155854[];
 struct Unk0201ca6c;
 struct Kart;
 
-// Three pairs of words (func_02082e4c).
-typedef struct Unk02155808 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ void (*mUnk_04)(struct Unk0201ca6c *p, s32 a);
-} Unk02155808;
+// An effect id and its step function.
+typedef struct OtherKartEffectKind {
+    /* 00 */ s32 mEffectId;
+    /* 04 */ void (*mAdvance)(struct Unk0201ca6c *p, s32 a);
+} OtherKartEffectKind;
 
-extern Unk02155808 data_02155808[3];
+extern OtherKartEffectKind gOtherKartEffectKinds[3];
 extern Vec3 data_02155a08;
-extern u32 data_021557f8[];
-extern s32 data_02155800[];
-extern Vec3 data_02155818[];
-extern void (*data_02155830[])(struct Kart *p);
+extern u32 gKartBoostCameraEffectIds[];
+extern s32 gKartSideOffsetsX[];
+extern Vec3 gKartSideDirectionVectors[];
+extern void (*gKartSurfaceEffectFunctions[])(struct Kart *p);
 extern Vec3 data_02155a14;
 extern Vec3 data_02155a48;
 extern Vec3 data_02155eb0;

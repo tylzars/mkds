@@ -285,8 +285,8 @@ void func_02072930(Kart *p) {
     Unk02165560 v;
 
     func_020f0044(&gKartItems[p->mIndex]);
-    func_02083834(p);
-    func_02081768(p->mIndex);
+    ReleaseKartSurfaceEffects(p);
+    ReleaseKartStarEffects(p->mIndex);
     func_020815a0(p->mIndex);
     func_02081338(p->mIndex);
     func_020810e4(p->mIndex);
@@ -305,7 +305,7 @@ void func_02072930(Kart *p) {
         p->mUnk_4c &= ~0x40;
         func_0207b1a8(p);
         p->mItemEffect = 0;
-        func_020817b8(p->mIndex);
+        StopKartStarEffects(p->mIndex);
         func_02068a64(p, 0, 1);
         if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mUnk_00c == 0) {
             func_02106dc8();
@@ -1264,7 +1264,7 @@ void func_020708a4(Kart *p) {
 
     if (p->mUnk_4c & 0x40) {
         s = &p->mUnk_538;
-        func_0208181c(p->mIndex);
+        AdvanceKartStarEffects(p->mIndex);
         if ((p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) && p->mKartModelsEntry->mCharacterAnimation->mUnk_1a == 0) {
             func_02068a64(p, 2, 1);
         }
@@ -1273,7 +1273,7 @@ void func_020708a4(Kart *p) {
             p->mUnk_4c &= ~0x40;
             func_0207b1a8(p);
             p->mItemEffect = 0;
-            func_020817b8(p->mIndex);
+            StopKartStarEffects(p->mIndex);
             func_02068a64(p, 0, 1);
             if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mUnk_00c == 0) {
                 func_02106dc8();

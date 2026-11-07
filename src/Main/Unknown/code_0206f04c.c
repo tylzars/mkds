@@ -204,10 +204,10 @@ void func_0206fe08(Kart *p) {
         if (p->mUnk_4c & 0x4000000) {
             return;
         }
-        func_02083ec4(p);
+        ApplyKartWaterEffects(p);
     } else {
         p->mUnk_500 = 0;
-        func_020838dc(p);
+        StopKartWaterEffects(p);
     }
 }
 

@@ -9,7 +9,7 @@
 #include "Main/Unknown/code_02077bc0.h"
 
 void func_0208155c(s32 a, s32 b) {
-    Unk0201ca6c *p = gKartEffects[a].mUnk_2c;
+    Unk0201ca6c *p = gKartEffects[a].mKillerEffect;
 
     if (p == NULL) {
         return;
