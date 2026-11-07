@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_021115b0(void *a, s16 b);
+void InitRecordSceneObject(void *a, s16 b);

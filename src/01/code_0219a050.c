@@ -244,7 +244,7 @@ void InitRecordTopMenu(void *heap) {
     gRecordTopMenu = HeapAlloc(heap, 0x48);
     gRecordTopMenu->mHeap = heap;
     gRecordTopMenu->mState = 0;
-    switch (func_0211147c()) {
+    switch (GetRecordPrevScreen()) {
         case 1:
         case 5:
             gRecordTopMenu->mIndex = 0;
@@ -502,8 +502,8 @@ void AdvanceRecordTopMenuState6(void) {
     u16 *p;
     s32 idx;
 
-    if (func_0211145c() == -1 && gRecordTopMenu->mUnk_44 == 5) {
-        func_02111450(0);
+    if (GetRecordNextScene() == -1 && gRecordTopMenu->mUnk_44 == 5) {
+        SetRecordNextScene(0);
     }
     gRecordTopMenu->mStateFrames++;
     a = InterpolateS16(1, 0, 0xe0, gRecordTopMenu->mStateFrames, 10);
@@ -528,8 +528,8 @@ void AdvanceRecordTopMenuState6(void) {
         gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mUnk_04 = a;
         gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mUnk_04 = a;
     }
-    if (gRecordTopMenu->mStateFrames >= 10 && func_0211145c() == -1) {
-        func_02111488(gRecordTopMenu->mUnk_44);
+    if (gRecordTopMenu->mStateFrames >= 10 && GetRecordNextScene() == -1) {
+        RequestRecordScreen(gRecordTopMenu->mUnk_44);
     }
 }
 
@@ -660,7 +660,7 @@ void AdvanceRecordTopMenu(void) {
 
 void func_ov001_0219a0c0(void) {
     reg_G2_BG0OFS = (-gRecordTopMenu->mBg0Offset << 16) & 0x1ff0000;
-    func_02111428();
+    AdvanceRecordSceneRegistersTimer();
 }
 
 void WriteRecordTopMenuRegisters(void) {
@@ -675,5 +675,5 @@ void WriteRecordTopMenuRegisters(void) {
 void RegisterRecordTopMenuCallbacks(void) {
     UnkFunc *tbl[5] = {InitRecordTopMenu, ReleaseRecordTopMenu, AdvanceRecordTopMenu, func_ov001_0219a0c0,
                        WriteRecordTopMenuRegisters};
-    func_02111494(tbl);
+    SetRecordScreenCallbacks(tbl);
 }

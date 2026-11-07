@@ -221,6 +221,7 @@ typedef struct RecordVS {
     /* 80 */ s32 mOffsetTimers[2];
     /* 88 */ BOOL mUnk_88;
     /* 8c */ BOOL mUnk_8c;
+    // Screen to request when the exit ends; 6 sets the next scene instead.
     /* 90 */ s32 mUnk_90;
 } RecordVS;
 
@@ -746,7 +747,7 @@ extern s32 data_0217d20c;
 extern s32 data_0217d21c;
 extern u32 gAnySeqVariableEnabled;
 extern Unk0217d244 data_0217d244;
-extern struct Unk0217d344 *data_0217d344;
+extern struct RecordScene *gRecordScene;
 extern RecordVSErase *gRecordVSErase;
 extern Wait *gWait;
 extern Unk0217d358 *data_0217d358;

@@ -819,8 +819,8 @@ void InitRecordVS(void *a) {
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 0x1018;
     gRecordVS = HeapAlloc(a, 0x94);
     gRecordVS->mHeap = a;
-    gRecordVS->mPageIndex = func_02111418();
-    gRecordVS->mIndex = func_02111408();
+    gRecordVS->mPageIndex = GetRecordScenePageIndex();
+    gRecordVS->mIndex = GetRecordSceneIndex();
     gRecordVS->mPageDecrement = 0;
     gRecordVS->mIndexChangeTimer = 0;
     gRecordVS->mShownIndex = gRecordVS->mIndex;
@@ -901,14 +901,14 @@ void InitRecordVS(void *a) {
     func_02124140(5, 0, gRecordVS->mRecordVSSBnll, gRecordVS->mRecordVSSTable, gRecordVS->mRecordVSSBncl);
     gRecordVS->mEmblem = HeapAlloc(a, 0x201);
     gRecordVS->mEmblemConverted = HeapAlloc(a, 0x200);
-    if (func_0211147c() == 4) {
+    if (GetRecordPrevScreen() == 4) {
         if (GetRecordCount() != 0) {
             gRecordVS->mState = 11;
             func_02113174();
         } else {
             gRecordVS->mState = 8;
             func_021132e4();
-            if (func_0211146c() == 12) {
+            if (GetRecordPrevScene() == 12) {
                 gRecordVS->mUnk_90 = 6;
             } else {
                 gRecordVS->mUnk_90 = 0;
@@ -926,11 +926,11 @@ void InitRecordVS(void *a) {
 void ReleaseRecordVS(void) {
     u32 v;
     if (gRecordVS->mUnk_90 == 4) {
-        func_021113fc(gRecordVS->mPageIndex);
-        func_021113f0(gRecordVS->mIndex);
+        SetRecordScenePageIndex(gRecordVS->mPageIndex);
+        SetRecordSceneIndex(gRecordVS->mIndex);
     } else {
-        func_021113fc(0);
-        func_021113f0(0);
+        SetRecordScenePageIndex(0);
+        SetRecordSceneIndex(0);
         v = (reg_GX_DISPCNT & 0x1f00) >> 8;
         reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | ((v & ~0x13) << 8);
     }

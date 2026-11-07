@@ -22,7 +22,7 @@ void InitRecordScene(s16 *a) {
     p = GetHeap(func_020364e8());
     data_0217d33c = HeapAlloc(p, 0x404);
     data_0217d340 = HeapAlloc(p, 0x404);
-    func_021115b0(p, *a);
+    InitRecordSceneObject(p, *a);
 }
 
 #pragma thumb off
@@ -31,7 +31,7 @@ void InitRecordScene(s16 *a) {
 void ReleaseRecordScene(void) {
     u32 value0;
     u32 value1;
-    func_02111584();
+    ReleaseRecordSceneObject();
     value1 = 0u;
     value0 = (u32) &data_0217d33c;
     *(u32 *) ((value0) + 0u) = value1;
@@ -44,7 +44,7 @@ void ReleaseRecordScene(void) {
 void func_02111368(void) {
     u32 value0;
     u32 value1;
-    func_021114b0();
+    WriteRecordSceneRegisters();
     value0 = (u32) &data_0217d33c;
     value0 = *(const u32 *) ((value0) + 0u);
     value1 = (u32) &data_0217d340;
@@ -57,10 +57,10 @@ void func_02111368(void) {
 
 void UpdateRecordScene(Unk02111324 *a) {
     func_020ae6ac(data_0217d33c, data_0217d340);
-    func_021114cc();
+    AdvanceRecordScene();
     func_020ae630(data_0217d33c, data_0217d340);
-    if (a != NULL && func_0211145c() != -1) {
-        a->mUnk_04 = func_0211145c();
+    if (a != NULL && GetRecordNextScene() != -1) {
+        a->mUnk_04 = GetRecordNextScene();
     }
 }
 

@@ -228,8 +228,8 @@ void InitRecordVSErase(void *a) {
     gRecordVSErase = HeapAlloc(a, 0xa4);
     gRecordVSErase->mHeap = a;
     gRecordVSErase->mState = 3;
-    gRecordVSErase->mPageIndex = func_02111418();
-    gRecordVSErase->mIndex = func_02111408();
+    gRecordVSErase->mPageIndex = GetRecordScenePageIndex();
+    gRecordVSErase->mIndex = GetRecordSceneIndex();
     gRecordVSErase->mPageDecrement = 0;
     gRecordVSErase->mIndexChangeTimer = 0;
     gRecordVSErase->mShownIndex = gRecordVSErase->mIndex;
@@ -326,8 +326,8 @@ void InitRecordVSErase(void *a) {
 void func_021156d4(void) {
     u32 v;
 
-    func_021113fc(gRecordVSErase->mPageIndex);
-    func_021113f0(gRecordVSErase->mIndex);
+    SetRecordScenePageIndex(gRecordVSErase->mPageIndex);
+    SetRecordSceneIndex(gRecordVSErase->mIndex);
     gRecordVSErase = NULL;
     v = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
     v &= ~9;
@@ -731,7 +731,7 @@ void AdvanceRecordVSEraseState10(void) {
         }
         if (gRecordVSErase->mPageIndex < 0) {
             gRecordVSErase->mUnk_a0 = 3;
-            func_02111488(gRecordVSErase->mUnk_a0);
+            RequestRecordScreen(gRecordVSErase->mUnk_a0);
         } else {
             func_02115ca0();
         }
@@ -819,7 +819,7 @@ void AdvanceRecordVSEraseState12(void) {
         gRecordVSErase->mRecordVSSEraseTable[z + data_0215c4b8[i]].mUnk_04 = a;
     }
     if (gRecordVSErase->mStateFrames >= 10) {
-        func_02111488(gRecordVSErase->mUnk_a0);
+        RequestRecordScreen(gRecordVSErase->mUnk_a0);
     }
 }
 
@@ -886,7 +886,7 @@ void func_02114604(void) {
     reg_G2_BG0OFS = (-gRecordVSErase->mBg0OffsetX & 0x1ff) | ((-gRecordVSErase->mBg0OffsetY << 16) & 0x1ff0000);
     reg_G2_BG1OFS = (-gRecordVSErase->mBg1OffsetX & 0x1ff) | ((-gRecordVSErase->mBg1OffsetY << 16) & 0x1ff0000);
     reg_G2S_DB_BG3OFS = (-gRecordVSErase->mBg3Offset << 16) & 0x1ff0000;
-    func_02111428();
+    AdvanceRecordSceneRegistersTimer();
 }
 
 void func_021145dc(void) {
@@ -899,7 +899,7 @@ void func_021145dc(void) {
 void RegisterRecordVSEraseCallbacks(void) {
     void (*a[5])() = {InitRecordVSErase, func_021156d4, AdvanceRecordVSErase, func_02114604, func_021145dc};
 
-    func_02111494(a);
+    SetRecordScreenCallbacks(a);
 }
 
 #pragma thumb off

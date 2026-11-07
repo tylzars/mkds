@@ -725,7 +725,7 @@ void AdvanceRecordGpxState6(void) {
     gRecordGpx->mStateFrames++;
     gRecordGpx->mBg0Offset = InterpolateS16(1, 0, -192, gRecordGpx->mStateFrames, 10);
     if (gRecordGpx->mStateFrames >= 10) {
-        func_02111488(gRecordGpx->mUnk_90);
+        RequestRecordScreen(gRecordGpx->mUnk_90);
     }
 }
 
@@ -765,7 +765,7 @@ void AdvanceRecordGpx(void) {
 void func_ov001_02193ccc(void) {
     reg_G2_BG0OFS = (-gRecordGpx->mBg0Offset << 16) & 0x1ff0000;
     reg_G2S_DB_BG3OFS = ((-gRecordGpx->mBg3OffsetX) & 0x1ff) | ((-gRecordGpx->mBg3OffsetY << 16) & 0x1ff0000);
-    func_02111428();
+    AdvanceRecordSceneRegistersTimer();
 }
 
 void func_ov001_02193c84(void) {
@@ -782,5 +782,5 @@ void func_ov001_02193c84(void) {
 void RegisterRecordGpxCallbacks(void) {
     Unk021a8294 local = gRecordGpxCallbacks;
 
-    func_02111494(&local);
+    SetRecordScreenCallbacks(&local);
 }

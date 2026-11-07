@@ -220,7 +220,7 @@ void AdvanceRecordVSState4(void) {
         return;
     }
     RequestRecordVSState7();
-    if (func_0211146c() == 12) {
+    if (GetRecordPrevScene() == 12) {
         gRecordVS->mUnk_90 = 6;
         RequestSelectReturnState3WithSound(1);
         return;
@@ -448,8 +448,8 @@ void AdvanceRecordVSState8(void) {
     s32 i;
     s32 j;
     s16 v;
-    if (func_0211145c() == -1 && gRecordVS->mUnk_90 == 6) {
-        func_02111450(12);
+    if (GetRecordNextScene() == -1 && gRecordVS->mUnk_90 == 6) {
+        SetRecordNextScene(12);
     }
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
     v = InterpolateS16(1, 0, -192, gRecordVS->mStateFrames, 10);
@@ -479,7 +479,7 @@ void AdvanceRecordVSState8(void) {
         gRecordVS->mRecordVSMTransientTable[b + data_0215c478[j]].mUnk_06 = v;
     }
     if (gRecordVS->mStateFrames >= 10 && gRecordVS->mUnk_90 != 6) {
-        func_02111488(gRecordVS->mUnk_90);
+        RequestRecordScreen(gRecordVS->mUnk_90);
     }
 }
 
@@ -519,7 +519,7 @@ void AdvanceRecordVSState10(void) {
         gRecordVS->mRecordVSSTable[x + data_0215c3bc[i]].mUnk_04 = v;
     }
     if (gRecordVS->mStateFrames >= 10) {
-        func_02111488(gRecordVS->mUnk_90);
+        RequestRecordScreen(gRecordVS->mUnk_90);
     }
     if (gRecordVS->mStateFrames == 6) {
         gRecordVS->mRecordVSSTable[24].mUnk_00 = 0;
@@ -617,19 +617,19 @@ void AdvanceRecordVS(void) {
 
 #pragma thumb on
 
-void func_02111b40(void) {
+void WriteRecordVSBgOffsets(void) {
     reg_G2_BG0OFS = (-gRecordVS->mBg0OffsetX & 0x1ff) | ((-gRecordVS->mBg0OffsetY << 16) & 0x1ff0000);
     reg_G2_BG1OFS = (-gRecordVS->mBg1OffsetX & 0x1ff) | ((-gRecordVS->mBg1OffsetY << 16) & 0x1ff0000);
-    func_02111428();
+    AdvanceRecordSceneRegistersTimer();
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_02111adc(void) {
+void WriteRecordVSRegisters(void) {
     u32 v;
-    if (func_0211146c() == 12) {
+    if (GetRecordPrevScene() == 12) {
         reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x1b00;
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | 0x1600;
     } else {
@@ -638,23 +638,24 @@ void func_02111adc(void) {
     }
 }
 
-void func_02111ab4(void) {
-    Unk0217d344_18 v = {InitRecordVS, ReleaseRecordVS, AdvanceRecordVS, func_02111b40, func_02111adc};
-    func_02111494(&v);
+void RegisterRecordVSCallbacks(void) {
+    RecordScreenCallbacks v = {InitRecordVS, ReleaseRecordVS, AdvanceRecordVS, WriteRecordVSBgOffsets,
+                               WriteRecordVSRegisters};
+    SetRecordScreenCallbacks(&v);
 }
 
 void func_02111a98(void) {
-    data_0217d344->mUnk_18.mUnk_00 = NULL;
-    data_0217d344->mUnk_18.mUnk_04 = NULL;
-    data_0217d344->mUnk_18.mUnk_08 = NULL;
-    data_0217d344->mUnk_18.mUnk_0c = NULL;
+    gRecordScene->mScreenCallbacks.mInit = NULL;
+    gRecordScene->mScreenCallbacks.mRelease = NULL;
+    gRecordScene->mScreenCallbacks.mAdvance = NULL;
+    gRecordScene->mScreenCallbacks.mWriteOffsets = NULL;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_02111684(void) {
+void LoadRecordSceneData(void) {
     void *v1;
     Unk02111684_v v2;
     v2.mNcgr = NULL;
@@ -768,12 +769,12 @@ void func_02111684(void) {
 
 #pragma thumb on
 
-void func_021115b0(void *a, s16 b) {
+void InitRecordSceneObject(void *a, s16 b) {
     Unk02125de0Arg v;
-    data_0217d344 = HeapAlloc(a, 0x34);
-    data_0217d344->mHeap = a;
-    data_0217d344->mUnk_30 = 0;
-    data_0217d344->mUnk_32 = 0;
+    gRecordScene = HeapAlloc(a, 0x34);
+    gRecordScene->mHeap = a;
+    gRecordScene->mPageIndex = 0;
+    gRecordScene->mIndex = 0;
     func_021250b0(a);
     func_0212abdc(a, func_02111318());
     v.mUnk_00 = TRUE;
@@ -787,53 +788,54 @@ void func_021115b0(void *a, s16 b) {
     v.mUnk_24 = 0;
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(a, &v);
-    CreateRecordList(data_0217d344->mHeap);
+    CreateRecordList(gRecordScene->mHeap);
     BuildRecordList();
-    data_0217d344->mStateHeap = CreateExpHeapFromMaxFree(data_0217d344->mHeap);
-    func_02111684();
+    gRecordScene->mStateHeap = CreateExpHeapFromMaxFree(gRecordScene->mHeap);
+    LoadRecordSceneData();
     func_02111a98();
-    data_0217d344->mUnk_14 = b;
-    data_0217d344->mUnk_16 = -1;
-    data_0217d344->mUnk_0c = -1;
-    data_0217d344->mUnk_2c = 2;
-    if (data_0217d344->mUnk_14 == 12) {
-        data_0217d344->mUnk_10 = 6;
-        data_0217d344->mUnk_08 = 3;
-        func_02111ab4();
+    gRecordScene->mPrevScene = b;
+    gRecordScene->mNextScene = -1;
+    gRecordScene->mNextScreen = -1;
+    gRecordScene->mRegistersTimer = 2;
+    if (gRecordScene->mPrevScene == 12) {
+        gRecordScene->mPrevScreen = 6;
+        gRecordScene->mScreen = 3;
+        RegisterRecordVSCallbacks();
     } else {
-        data_0217d344->mUnk_10 = 5;
-        data_0217d344->mUnk_08 = 0;
+        gRecordScene->mPrevScreen = 5;
+        gRecordScene->mScreen = 0;
         RegisterRecordTopMenuCallbacks();
     }
-    data_0217d344->mUnk_18.mUnk_00(data_0217d344->mStateHeap);
+    gRecordScene->mScreenCallbacks.mInit(gRecordScene->mStateHeap);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_02111584(void) {
+void ReleaseRecordSceneObject(void) {
     ClearRecordListPointer();
-    data_0217d344->mUnk_18.mUnk_04();
+    gRecordScene->mScreenCallbacks.mRelease();
     func_02111a98();
     func_0212abd0();
     func_02125da0();
-    *&data_0217d344 = NULL;
+    *&gRecordScene = NULL;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_021114cc(void) {
-    if (data_0217d344->mUnk_0c != -1) {
-        data_0217d344->mUnk_18.mUnk_04();
+// Switches to the requested screen when there is one, then runs the running screen's step.
+void AdvanceRecordScene(void) {
+    if (gRecordScene->mNextScreen != -1) {
+        gRecordScene->mScreenCallbacks.mRelease();
         func_02111a98();
-        HeapDestroy(data_0217d344->mStateHeap);
-        data_0217d344->mStateHeap = CreateExpHeapFromMaxFree(data_0217d344->mHeap);
-        switch (data_0217d344->mUnk_0c) {
+        HeapDestroy(gRecordScene->mStateHeap);
+        gRecordScene->mStateHeap = CreateExpHeapFromMaxFree(gRecordScene->mHeap);
+        switch (gRecordScene->mNextScreen) {
             case 0:
-                if (data_0217d344->mUnk_08 == 3) {
+                if (gRecordScene->mScreen == 3) {
                     BuildRecordList();
                 }
                 RegisterRecordTopMenuCallbacks();
@@ -845,19 +847,19 @@ void func_021114cc(void) {
                 RegisterRecordTAttCallbacks();
                 break;
             case 3:
-                func_02111ab4();
+                RegisterRecordVSCallbacks();
                 break;
             case 4:
                 RegisterRecordVSEraseCallbacks();
                 break;
         }
-        data_0217d344->mUnk_10 = data_0217d344->mUnk_08;
-        data_0217d344->mUnk_08 = data_0217d344->mUnk_0c;
-        data_0217d344->mUnk_0c = -1;
-        data_0217d344->mUnk_2c = 2;
-        data_0217d344->mUnk_18.mUnk_00(data_0217d344->mStateHeap);
+        gRecordScene->mPrevScreen = gRecordScene->mScreen;
+        gRecordScene->mScreen = gRecordScene->mNextScreen;
+        gRecordScene->mNextScreen = -1;
+        gRecordScene->mRegistersTimer = 2;
+        gRecordScene->mScreenCallbacks.mInit(gRecordScene->mStateHeap);
     }
-    data_0217d344->mUnk_18.mUnk_08();
+    gRecordScene->mScreenCallbacks.mAdvance();
     func_02125928();
     func_0212a920();
 }
@@ -866,8 +868,8 @@ void func_021114cc(void) {
 
 #pragma thumb on
 
-void func_021114b0(void) {
-    data_0217d344->mUnk_18.mUnk_0c();
+void WriteRecordSceneRegisters(void) {
+    gRecordScene->mScreenCallbacks.mWriteOffsets();
     func_021258f0();
 }
 
@@ -875,47 +877,48 @@ void func_021114b0(void) {
 
 #pragma thumb on
 
-void func_02111494(const void *a) {
-    data_0217d344->mUnk_18 = *(const Unk0217d344_18 *) a;
+void SetRecordScreenCallbacks(const void *a) {
+    gRecordScene->mScreenCallbacks = *(const RecordScreenCallbacks *) a;
 }
 
 #pragma thumb off
 
 #pragma thumb on
-void func_02111488(s32 arg0) {
+void RequestRecordScreen(s32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    data_0217d344->mUnk_0c = value0;
+    gRecordScene->mNextScreen = value0;
 }
 #pragma thumb off
 
 #pragma thumb on
 
-u32 func_0211147c(void) {
-    return (data_0217d344->mUnk_10);
+u32 GetRecordPrevScreen(void) {
+    return (gRecordScene->mPrevScreen);
 }
 
-u32 func_0211146c(void) {
-    return (data_0217d344->mUnk_14);
+u32 GetRecordPrevScene(void) {
+    return (gRecordScene->mPrevScene);
 }
 
-u32 func_0211145c(void) {
-    return (data_0217d344->mUnk_16);
+u32 GetRecordNextScene(void) {
+    return (gRecordScene->mNextScene);
 }
 
-void func_02111450(u32 p0) {
-    data_0217d344->mUnk_16 = (u16) p0;
+void SetRecordNextScene(u32 p0) {
+    gRecordScene->mNextScene = (u16) p0;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_02111428(void) {
-    if (data_0217d344->mUnk_2c > 0) {
-        data_0217d344->mUnk_2c = data_0217d344->mUnk_2c - 1;
-        if (data_0217d344->mUnk_2c == 0) {
-            data_0217d344->mUnk_18.mUnk_10();
+// Counts the registers timer down and calls the screen's register writer when it reaches 0.
+void AdvanceRecordSceneRegistersTimer(void) {
+    if (gRecordScene->mRegistersTimer > 0) {
+        gRecordScene->mRegistersTimer = gRecordScene->mRegistersTimer - 1;
+        if (gRecordScene->mRegistersTimer == 0) {
+            gRecordScene->mScreenCallbacks.mWriteRegisters();
         }
     }
 }
@@ -923,10 +926,10 @@ void func_02111428(void) {
 #pragma thumb off
 
 #pragma thumb on
-u32 func_02111418(void) {
+u32 GetRecordScenePageIndex(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217d344;
+    value0 = (u32) &gRecordScene;
     value1 = *(const u32 *) ((value0) + 0u);
     value0 = 48u;
     value0 = *(const s16 *) ((value1) + (value0));
@@ -935,10 +938,10 @@ u32 func_02111418(void) {
 #pragma thumb off
 
 #pragma thumb on
-u32 func_02111408(void) {
+u32 GetRecordSceneIndex(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217d344;
+    value0 = (u32) &gRecordScene;
     value1 = *(const u32 *) ((value0) + 0u);
     value0 = 50u;
     value0 = *(const s16 *) ((value1) + (value0));
@@ -947,17 +950,17 @@ u32 func_02111408(void) {
 #pragma thumb off
 
 #pragma thumb on
-void func_021113fc(u32 arg0) {
+void SetRecordScenePageIndex(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    data_0217d344->mUnk_30 = (u16) value0;
+    gRecordScene->mPageIndex = (u16) value0;
 }
 #pragma thumb off
 
 #pragma thumb on
-void func_021113f0(u32 arg0) {
+void SetRecordSceneIndex(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    data_0217d344->mUnk_32 = (u16) value0;
+    gRecordScene->mIndex = (u16) value0;
 }
 #pragma thumb off

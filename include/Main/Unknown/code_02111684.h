@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02111684(void);
+void LoadRecordSceneData(void);

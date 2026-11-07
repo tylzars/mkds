@@ -880,7 +880,7 @@ void AdvanceRecordTAttState6(void) {
     gRecordTAtt->mBg1OffsetY = v;
     gRecordTAtt->mRecordTAttMTable[0].mUnk_06 = v;
     if (gRecordTAtt->mStateFrames >= 10) {
-        func_02111488(gRecordTAtt->mUnk_90);
+        RequestRecordScreen(gRecordTAtt->mUnk_90);
     }
 }
 
@@ -1217,7 +1217,7 @@ void func_ov001_0219574c(void) {
     p = gRecordTAtt;
     reg_G2_BG1OFS = (-p->mBg1OffsetX & 0x1ff) | ((-p->mBg1OffsetY << 16) & 0x1ff0000);
     reg_G2S_DB_BG3OFS = -gRecordTAtt->mBg3OffsetX & 0x1ff;
-    func_02111428();
+    AdvanceRecordSceneRegistersTimer();
 }
 
 void func_ov001_02195704(void) {
@@ -1235,5 +1235,5 @@ void func_ov001_02195704(void) {
 void RegisterRecordTAttCallbacks(void) {
     Unk021a8294 a = gRecordTAttCallbacks;
 
-    func_02111494(&a);
+    SetRecordScreenCallbacks(&a);
 }

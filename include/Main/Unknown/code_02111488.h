@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02111488(s32 arg0);
+void RequestRecordScreen(s32 arg0);
