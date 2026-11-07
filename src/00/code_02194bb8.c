@@ -57,18 +57,18 @@ s32 GpiOpenSearchSocket(GpConnection *a, GpiOperation *b) {
 
     c = b->mUnk_04;
     c->mUnk_00c = 0x1000;
-    c->mUnk_008 = func_ov000_021a3690(c->mUnk_00c + 1);
-    if (c->mUnk_008 == NULL) {
+    c->mInputBuffer = func_ov000_021a3690(c->mUnk_00c + 1);
+    if (c->mInputBuffer == NULL) {
         GpiSetErrorMessage(a, data_ov000_021b35f8);
         return 1;
     }
-    c->mUnk_004 = func_ov000_0218e554(2, 1, 0);
-    if (c->mUnk_004 == -1) {
+    c->mSocket = func_ov000_0218e554(2, 1, 0);
+    if (c->mSocket == -1) {
         GpiSetError(a, 5, data_ov000_021b38c0);
         GpiQueueErrorCallback(a, 3, 1);
         return 3;
     }
-    if (func_ov000_0218e80c(c->mUnk_004, 0) == FALSE) {
+    if (func_ov000_0218e80c(c->mSocket, 0) == FALSE) {
         GpiSetError(a, 5, data_ov000_021b38e8);
         GpiQueueErrorCallback(a, 3, 1);
         return 3;
@@ -88,8 +88,8 @@ s32 GpiOpenSearchSocket(GpConnection *a, GpiOperation *b) {
             AssertionFailed(data_ov000_021b394c, data_ov000_021b3628, NULL, 0x59);
         }
         s.mUnk_02 = 0xcd74;
-        if (func_ov000_0218e4b4(c->mUnk_004, &s, 8) == -1) {
-            t = func_ov000_0218e368(c->mUnk_004);
+        if (func_ov000_0218e4b4(c->mSocket, &s, 8) == -1) {
+            t = func_ov000_0218e368(c->mSocket);
             if (t != -6 && t != -0x1a && t != -0x4c) {
                 GpiSetError(a, 5, data_ov000_021b396c);
                 GpiQueueErrorCallback(a, 3, 1);
@@ -110,17 +110,17 @@ BOOL GpiCreateSearch(GpConnection *a, Unk02196240 **b, u32 c) {
         return TRUE;
     }
     memset(d, 0, 0x144);
-    d->mUnk_000 = c;
-    d->mUnk_004 = -1;
-    d->mUnk_008 = NULL;
+    d->mKind = c;
+    d->mSocket = -1;
+    d->mInputBuffer = NULL;
     d->mUnk_010 = 0;
     d->mUnk_014 = 0;
     d->mUnk_00c = 0;
     d->mUnk_020 = 0;
     d->mUnk_024 = 0;
     d->mUnk_01c = 0x1000;
-    d->mUnk_018 = func_ov000_021a3690(d->mUnk_01c + 1);
-    if (d->mUnk_018 == NULL) {
+    d->mOutputBuffer = func_ov000_021a3690(d->mUnk_01c + 1);
+    if (d->mOutputBuffer == NULL) {
         GpiSetErrorMessage(a, data_ov000_021b35f8);
         return TRUE;
     }
@@ -130,7 +130,7 @@ BOOL GpiCreateSearch(GpConnection *a, Unk02196240 **b, u32 c) {
     return FALSE;
 }
 
-int func_ov000_021961e8(GpConnection *a, u32 b, u32 c, u32 d, u32 e) {
+int GpiStartSearchOperation(GpConnection *a, u32 b, u32 c, u32 d, u32 e) {
     int v1;
     int v2;
     a->mGpiConnection->mSearchCount = a->mGpiConnection->mSearchCount + 1;
@@ -184,7 +184,7 @@ int func_ov000_021960a4(GpConnection *a, s8 *b, s8 *c, s8 *d, s8 *e, s8 *f, int 
             h = 0;
         }
         v2->mUnk_134 = h;
-        v1 = func_ov000_021961e8(a, (u32) v2, l, m, n);
+        v1 = GpiStartSearchOperation(a, (u32) v2, l, m, n);
         if (v1 == 0) {
             v1 = 0;
         }
@@ -239,12 +239,12 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
         k = FALSE;
     }
     do {
-        r = GpiSendBuffer(a, p->mUnk_004, (GpiBuffer *) &p->mUnk_018, &m, 1, data_ov000_021b3634);
+        r = GpiSendBuffer(a, p->mSocket, (GpiBuffer *) &p->mOutputBuffer, &m, 1, data_ov000_021b3634);
         if (r != 0) {
             return r;
         }
         if (b->mUnk_14 == 1) {
-            r = GpiCheckConnectComplete(a, p->mUnk_004, &h);
+            r = GpiCheckConnectComplete(a, p->mSocket, &h);
             if (r != 0) {
                 return r;
             }
@@ -254,112 +254,112 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                 return 4;
             }
             if (h == 3) {
-                if (p->mUnk_000 == 1) {
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3664);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3670);
-                    GpiAppendBufferNumber(a, &p->mUnk_018, o->mSesskey);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b367c);
-                    GpiAppendBufferNumber(a, &p->mUnk_018, o->mProfileId);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3688);
-                    GpiAppendBufferNumber(a, &p->mUnk_018, o->mNamespaceId);
+                if (p->mKind == 1) {
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3664);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3670);
+                    GpiAppendBufferNumber(a, &p->mOutputBuffer, o->mSesskey);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b367c);
+                    GpiAppendBufferNumber(a, &p->mOutputBuffer, o->mProfileId);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3688);
+                    GpiAppendBufferNumber(a, &p->mOutputBuffer, o->mNamespaceId);
                     if (p->mUnk_028[0] != 0) {
-                        GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3698);
-                        GpiAppendBufferString(a, &p->mUnk_018, p->mUnk_028);
+                        GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3698);
+                        GpiAppendBufferString(a, &p->mOutputBuffer, p->mUnk_028);
                     }
                     if (p->mUnk_047[0] != 0) {
-                        GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b36a0);
-                        GpiAppendBufferString(a, &p->mUnk_018, p->mUnk_047);
+                        GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b36a0);
+                        GpiAppendBufferString(a, &p->mOutputBuffer, p->mUnk_047);
                     }
                     if (p->mUnk_05c[0] != 0) {
-                        GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b36b0);
-                        GpiAppendBufferString(a, &p->mUnk_018, p->mUnk_05c);
+                        GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b36b0);
+                        GpiAppendBufferString(a, &p->mOutputBuffer, p->mUnk_05c);
                     }
                     if (p->mUnk_08f[0] != 0) {
-                        GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b36b8);
-                        GpiAppendBufferString(a, &p->mUnk_018, p->mUnk_08f);
+                        GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b36b8);
+                        GpiAppendBufferString(a, &p->mOutputBuffer, p->mUnk_08f);
                     }
                     if (p->mUnk_0ae[0] != 0) {
-                        GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b36c4);
-                        GpiAppendBufferString(a, &p->mUnk_018, p->mUnk_0ae);
+                        GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b36c4);
+                        GpiAppendBufferString(a, &p->mOutputBuffer, p->mUnk_0ae);
                     }
                     if (p->mUnk_130 != 0) {
-                        GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b36d0);
-                        GpiAppendBufferNumber(a, &p->mUnk_018, p->mUnk_130);
+                        GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b36d0);
+                        GpiAppendBufferNumber(a, &p->mOutputBuffer, p->mUnk_130);
                     }
                     if (p->mUnk_134 > 0) {
-                        GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b36dc);
-                        GpiAppendBufferNumber(a, &p->mUnk_018, p->mUnk_134);
+                        GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b36dc);
+                        GpiAppendBufferNumber(a, &p->mOutputBuffer, p->mUnk_134);
                     }
-                } else if (p->mUnk_000 == 2) {
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b36e4);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b36b0);
-                    GpiAppendBufferString(a, &p->mUnk_018, p->mUnk_05c);
-                } else if (p->mUnk_000 == 3) {
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b36ec);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b36b0);
-                    GpiAppendBufferString(a, &p->mUnk_018, p->mUnk_05c);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b36f4);
-                    GpiAppendBufferString(a, &p->mUnk_018, p->mUnk_0cd);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3688);
-                    GpiAppendBufferNumber(a, &p->mUnk_018, o->mNamespaceId);
-                } else if (p->mUnk_000 == 4) {
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b36fc);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3670);
-                    GpiAppendBufferNumber(a, &p->mUnk_018, o->mSesskey);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b367c);
-                    GpiAppendBufferNumber(a, &p->mUnk_018, o->mProfileId);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3708);
-                    GpiAppendBufferNumber(a, &p->mUnk_018, p->mUnk_138);
-                } else if (p->mUnk_000 == 5) {
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3714);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3698);
-                    GpiAppendBufferString(a, &p->mUnk_018, p->mUnk_028);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b36b0);
-                    GpiAppendBufferString(a, &p->mUnk_018, p->mUnk_05c);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b36f4);
-                    GpiAppendBufferString(a, &p->mUnk_018, p->mUnk_0cd);
-                } else if (p->mUnk_000 == 6) {
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b371c);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3698);
-                    GpiAppendBufferString(a, &p->mUnk_018, p->mUnk_028);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b36b0);
-                    GpiAppendBufferString(a, &p->mUnk_018, p->mUnk_05c);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b36f4);
-                    GpiAppendBufferString(a, &p->mUnk_018, p->mUnk_0cd);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3728);
-                    GpiAppendBufferNumber(a, &p->mUnk_018, o->mProductId);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3688);
-                    GpiAppendBufferNumber(a, &p->mUnk_018, o->mNamespaceId);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b36a0);
-                    GpiAppendBufferString(a, &p->mUnk_018, p->mUnk_047);
+                } else if (p->mKind == 2) {
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b36e4);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b36b0);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, p->mUnk_05c);
+                } else if (p->mKind == 3) {
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b36ec);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b36b0);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, p->mUnk_05c);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b36f4);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, p->mUnk_0cd);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3688);
+                    GpiAppendBufferNumber(a, &p->mOutputBuffer, o->mNamespaceId);
+                } else if (p->mKind == 4) {
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b36fc);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3670);
+                    GpiAppendBufferNumber(a, &p->mOutputBuffer, o->mSesskey);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b367c);
+                    GpiAppendBufferNumber(a, &p->mOutputBuffer, o->mProfileId);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3708);
+                    GpiAppendBufferNumber(a, &p->mOutputBuffer, p->mUnk_138);
+                } else if (p->mKind == 5) {
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3714);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3698);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, p->mUnk_028);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b36b0);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, p->mUnk_05c);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b36f4);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, p->mUnk_0cd);
+                } else if (p->mKind == 6) {
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b371c);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3698);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, p->mUnk_028);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b36b0);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, p->mUnk_05c);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b36f4);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, p->mUnk_0cd);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3728);
+                    GpiAppendBufferNumber(a, &p->mOutputBuffer, o->mProductId);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3688);
+                    GpiAppendBufferNumber(a, &p->mOutputBuffer, o->mNamespaceId);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b36a0);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, p->mUnk_047);
                     if (p->mUnk_0ec[0] != 0) {
-                        GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3734);
-                        GpiAppendBufferString(a, &p->mUnk_018, p->mUnk_0ec);
+                        GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3734);
+                        GpiAppendBufferString(a, &p->mOutputBuffer, p->mUnk_0ec);
                     }
-                } else if (p->mUnk_000 == 7) {
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b373c);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3670);
-                    GpiAppendBufferNumber(a, &p->mUnk_018, o->mSesskey);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b367c);
-                    GpiAppendBufferNumber(a, &p->mUnk_018, o->mProfileId);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3688);
-                    GpiAppendBufferNumber(a, &p->mUnk_018, o->mNamespaceId);
-                } else if (p->mUnk_000 == 8) {
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3748);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3758);
-                    GpiAppendBufferString(a, &p->mUnk_018, p->mUnk_047);
-                    GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3688);
-                    GpiAppendBufferNumber(a, &p->mUnk_018, o->mNamespaceId);
+                } else if (p->mKind == 7) {
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b373c);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3670);
+                    GpiAppendBufferNumber(a, &p->mOutputBuffer, o->mSesskey);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b367c);
+                    GpiAppendBufferNumber(a, &p->mOutputBuffer, o->mProfileId);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3688);
+                    GpiAppendBufferNumber(a, &p->mOutputBuffer, o->mNamespaceId);
+                } else if (p->mKind == 8) {
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3748);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3758);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, p->mUnk_047);
+                    GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3688);
+                    GpiAppendBufferNumber(a, &p->mOutputBuffer, o->mNamespaceId);
                 } else {
                     AssertionFailed(data_ov000_021b3768, data_ov000_021b3628, NULL, 0x275);
                 }
-                GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b376c);
-                GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b4d6c);
-                GpiAppendBufferString(a, &p->mUnk_018, data_ov000_021b3778);
+                GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b376c);
+                GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b4d6c);
+                GpiAppendBufferString(a, &p->mOutputBuffer, data_ov000_021b3778);
                 b->mUnk_14 = 4;
             }
         } else if (b->mUnk_14 == 4) {
-            r = GpiReceiveBuffer(a, p->mUnk_004, (GpiBuffer *) &p->mUnk_008, (s32 *) &j, &m, data_ov000_021b3634);
+            r = GpiReceiveBuffer(a, p->mSocket, (GpiBuffer *) &p->mInputBuffer, (s32 *) &j, &m, data_ov000_021b3634);
             if (r != 0) {
                 if (r != 3) {
                     return r;
@@ -368,26 +368,26 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                 GpiQueueErrorCallback(a, 3, 0);
                 return 3;
             }
-            if (strstr(p->mUnk_008, data_ov000_021b3778) != NULL) {
+            if (strstr(p->mInputBuffer, data_ov000_021b3778) != NULL) {
                 n = 0;
                 b->mUnk_14 = 5;
-                if (GpiReadError(a, p->mUnk_008, 1) != FALSE) {
+                if (GpiReadError(a, p->mInputBuffer, 1) != FALSE) {
                     p->mUnk_140 = TRUE;
                     return 4;
                 }
-                if (p->mUnk_000 == 1) {
+                if (p->mKind == 1) {
                     d = FALSE;
                     e.mUnk_00 = 0;
                     e.mUnk_04 = 0;
                     e.mUnk_0c = NULL;
                     e.mUnk_08 = 0x601;
                     do {
-                        r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                        r = GpiReadKeyValue(a, p->mInputBuffer, &n, (s8 *) w0, (s8 *) w1);
                         if (r != 0) {
                             return r;
                         }
                         if (strcmp(w0, data_ov000_021b37ac) == 0) {
-                            r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                            r = GpiReadKeyValue(a, p->mInputBuffer, &n, (s8 *) w0, (s8 *) w1);
                             if (r != 0) {
                                 return r;
                             }
@@ -409,7 +409,7 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                             f = FALSE;
                             do {
                                 g = n;
-                                r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                                r = GpiReadKeyValue(a, p->mInputBuffer, &n, (s8 *) w0, (s8 *) w1);
                                 if (r != 0) {
                                     return r;
                                 }
@@ -450,10 +450,10 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                     }
                     func_ov000_021a3668(e.mUnk_0c);
                     e.mUnk_0c = NULL;
-                } else if (p->mUnk_000 == 2) {
+                } else if (p->mKind == 2) {
                     c2 = b->mUnk_0c;
                     if (c2.mCallback != NULL) {
-                        r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                        r = GpiReadKeyValue(a, p->mInputBuffer, &n, (s8 *) w0, (s8 *) w1);
                         if (r != 0) {
                             return r;
                         }
@@ -479,7 +479,7 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                             return r;
                         }
                     }
-                } else if (p->mUnk_000 == 3) {
+                } else if (p->mKind == 3) {
                     c3 = b->mUnk_0c;
                     if (c3.mCallback != NULL) {
                         u3 = func_ov000_021a3690(0x44);
@@ -492,7 +492,7 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                         u3->mUnk_38 = 0;
                         u3->mUnk_3c = NULL;
                         u3->mUnk_40 = NULL;
-                        r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                        r = GpiReadKeyValue(a, p->mInputBuffer, &n, (s8 *) w0, (s8 *) w1);
                         if (r != 0) {
                             return r;
                         }
@@ -503,7 +503,7 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                         }
                         d = FALSE;
                         do {
-                            r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                            r = GpiReadKeyValue(a, p->mInputBuffer, &n, (s8 *) w0, (s8 *) w1);
                             if (r != 0) {
                                 return r;
                             }
@@ -551,7 +551,7 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                             return r;
                         }
                     }
-                } else if (p->mUnk_000 == 4) {
+                } else if (p->mKind == 4) {
                     c4 = b->mUnk_0c;
                     if (c4.mCallback != NULL) {
                         u4 = func_ov000_021a3690(0x10);
@@ -565,7 +565,7 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                         u4->mUnk_08 = 0;
                         u4->mUnk_0c = NULL;
                         do {
-                            r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                            r = GpiReadKeyValue(a, p->mInputBuffer, &n, (s8 *) w0, (s8 *) w1);
                             if (r != 0) {
                                 return r;
                             }
@@ -587,7 +587,7 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                                 f = FALSE;
                                 do {
                                     g = n;
-                                    r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                                    r = GpiReadKeyValue(a, p->mInputBuffer, &n, (s8 *) w0, (s8 *) w1);
                                     if (r != 0) {
                                         return r;
                                     }
@@ -615,10 +615,10 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                             return r;
                         }
                     }
-                } else if (p->mUnk_000 == 5) {
+                } else if (p->mKind == 5) {
                     c5 = b->mUnk_0c;
                     if (c5.mCallback != NULL) {
-                        r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                        r = GpiReadKeyValue(a, p->mInputBuffer, &n, (s8 *) w0, (s8 *) w1);
                         if (r != 0) {
                             return r;
                         }
@@ -632,7 +632,7 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                             o->mErrorNumber = x;
                             y = 0;
                         } else {
-                            if (GpiGetValue(p->mUnk_008, data_ov000_021b3850, w1, 0x200) == FALSE) {
+                            if (GpiGetValue(p->mInputBuffer, data_ov000_021b3850, w1, 0x200) == FALSE) {
                                 GpiSetError(a, 1, data_ov000_021b37f4);
                                 GpiQueueErrorCallback(a, 3, 1);
                                 return 3;
@@ -651,10 +651,10 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                             return r;
                         }
                     }
-                } else if (p->mUnk_000 == 6) {
+                } else if (p->mKind == 6) {
                     c6 = b->mUnk_0c;
                     if (c6.mCallback != NULL) {
-                        r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                        r = GpiReadKeyValue(a, p->mInputBuffer, &n, (s8 *) w0, (s8 *) w1);
                         if (r != 0) {
                             return r;
                         }
@@ -667,7 +667,7 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                         if (x != 0) {
                             o->mErrorNumber = x;
                         }
-                        if (GpiGetValue(p->mUnk_008, data_ov000_021b3850, w1, 0x200) == FALSE) {
+                        if (GpiGetValue(p->mInputBuffer, data_ov000_021b3850, w1, 0x200) == FALSE) {
                             if (x == 0) {
                                 GpiSetError(a, 1, data_ov000_021b37f4);
                                 GpiQueueErrorCallback(a, 3, 1);
@@ -689,7 +689,7 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                             return r;
                         }
                     }
-                } else if (p->mUnk_000 == 7) {
+                } else if (p->mKind == 7) {
                     c7 = b->mUnk_0c;
                     if (c7.mCallback != NULL) {
                         u7 = func_ov000_021a3690(0xc);
@@ -700,7 +700,7 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                         u7->mUnk_00 = 0;
                         u7->mUnk_04 = 0;
                         u7->mUnk_08 = NULL;
-                        r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                        r = GpiReadKeyValue(a, p->mInputBuffer, &n, (s8 *) w0, (s8 *) w1);
                         if (r != 0) {
                             return r;
                         }
@@ -711,7 +711,7 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                         }
                         d = FALSE;
                         do {
-                            r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                            r = GpiReadKeyValue(a, p->mInputBuffer, &n, (s8 *) w0, (s8 *) w1);
                             if (r != 0) {
                                 return r;
                             }
@@ -733,7 +733,7 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                                 f = FALSE;
                                 do {
                                     g = n;
-                                    r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                                    r = GpiReadKeyValue(a, p->mInputBuffer, &n, (s8 *) w0, (s8 *) w1);
                                     if (r != 0) {
                                         return r;
                                     }
@@ -764,7 +764,7 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                             return r;
                         }
                     }
-                } else if (p->mUnk_000 == 8) {
+                } else if (p->mKind == 8) {
                     c8 = b->mUnk_0c;
                     if (c8.mCallback != NULL) {
                         i = 0;
@@ -776,7 +776,7 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                         u9->mUnk_00 = 0;
                         u9->mUnk_04 = 0;
                         u9->mUnk_08 = NULL;
-                        r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                        r = GpiReadKeyValue(a, p->mInputBuffer, &n, (s8 *) w0, (s8 *) w1);
                         if (r != 0) {
                             return r;
                         }
@@ -793,7 +793,7 @@ s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b) {
                         }
                         d = FALSE;
                         do {
-                            r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                            r = GpiReadKeyValue(a, p->mInputBuffer, &n, (s8 *) w0, (s8 *) w1);
                             if (r != 0) {
                                 return r;
                             }

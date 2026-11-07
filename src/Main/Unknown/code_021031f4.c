@@ -52,7 +52,7 @@ void func_021049a4(void) {
         if (0 < v1) {
             do {
                 v3 = *v4;
-                v5 = func_0210543c();
+                v5 = AllocPooledMapObject();
                 *(MapObject **) ((s32) v3 + 0x134) = v5;
                 *(s32 *) (*(s32 *) ((s32) v3 + 0x134) + 0xfc) = (s32) v3 + 0x13c;
                 v4 = v4 + 1;

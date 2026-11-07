@@ -74,7 +74,7 @@ void func_020ff1d8(void) {
     n = p->mObjectCount;
     for (i = 0; i < n; i++) {
         o = (ItemFBox *) e[0];
-        o->mUnk_140 = (Unk021052fc *) func_0210543c();
+        o->mUnk_140 = (Unk021052fc *) AllocPooledMapObject();
         o->mUnk_140->mUnk_fc = &o->mUnk_000.mUnk_000.mPos;
         e++;
     }

@@ -611,7 +611,7 @@ GpiUpdateSearch kind:function(thumb,size=0x13f8) addr:0x02194c78
 .L_0219600c kind:label(thumb) addr:0x0219600c
 .L_02196020 kind:label(thumb) addr:0x02196020 local
 func_ov000_021960a4 kind:function(thumb,size=0x144) addr:0x02196070
-func_ov000_021961e8 kind:function(thumb,size=0x58) addr:0x021961b4
+GpiStartSearchOperation kind:function(thumb,size=0x58) addr:0x021961b4
 GpiCreateSearch kind:function(thumb,size=0x94) addr:0x0219620c
 GpiOpenSearchSocket kind:function(thumb,size=0x160) addr:0x021962a0
 func_ov000_02196434 kind:function(thumb,size=0x4c) addr:0x02196400

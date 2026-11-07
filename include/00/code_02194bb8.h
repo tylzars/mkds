@@ -139,7 +139,7 @@ extern char data_ov000_021b399c[];
 BOOL GpiUpdateSearches(GpConnection *a);
 s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b);
 int func_ov000_021960a4(GpConnection *a, s8 *b, s8 *c, s8 *d, s8 *e, s8 *f, int g, int h, u32 l, u32 m, u32 n);
-int func_ov000_021961e8(GpConnection *a, u32 b, u32 c, u32 d, u32 e);
+int GpiStartSearchOperation(GpConnection *a, u32 b, u32 c, u32 d, u32 e);
 BOOL GpiCreateSearch(GpConnection *a, Unk02196240 **b, u32 c);
 s32 GpiOpenSearchSocket(GpConnection *a, GpiOperation *b);
 void func_ov000_02196434(GpConnection *a, GpiPeer *b, s32 c, const char *d, s32 e, s32 f);

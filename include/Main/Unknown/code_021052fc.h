@@ -4,7 +4,7 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
-// Object of func_021052fc (func_0210543c allocates them): the shared MapObject part, then counters that run and
+// Object of func_021052fc (AllocPooledMapObject allocates them): the shared MapObject part, then counters that run and
 // wrap and whose three fixed-point words follow the vector at mUnk_fc.
 typedef struct Unk021052fc {
     /* 00 */ MapObject mUnk_00;

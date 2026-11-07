@@ -27,7 +27,7 @@ u32 func_02151804(void *a) {
     return 0;
 }
 
-u32 func_02151794(int a, int *b, void *c) {
+u32 WriteFlaggedNvramEntries(int a, int *b, void *c) {
     int v1;
     int v2;
     int v3;

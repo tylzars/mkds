@@ -57,10 +57,10 @@ void func_02105464(void *p, void *q) {
     ParkMapObject(p);
 }
 
-MapObject *func_0210543c(void) {
-    u32 i = data_0217c728;
-    MapObject **t = data_0217c72c;
-    data_0217c728 = i + 1;
+MapObject *AllocPooledMapObject(void) {
+    u32 i = gPooledMapObjectNextIndex;
+    MapObject **t = gPooledMapObjects;
+    gPooledMapObjectNextIndex = i + 1;
     return t[i];
 }
 

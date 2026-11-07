@@ -50,29 +50,29 @@ void func_02105214(void) {
     s32 i;
     switch (data_021759c0->mMode) {
         case MODE_BATTLE:
-            data_0217c724 = 0xb;
+            gPooledMapObjectCount = 0xb;
             break;
         case MODE_MISSION_RUN:
-            data_0217c724 = 0x20;
+            gPooledMapObjectCount = 0x20;
             break;
         case 5:
-            data_0217c724 = 6;
+            gPooledMapObjectCount = 6;
             break;
         default:
-            data_0217c724 = 3;
+            gPooledMapObjectCount = 3;
             break;
     }
-    data_0217c72c = HeapAlloc(GetHeap(func_020364e8()), data_0217c724 * 4);
+    gPooledMapObjects = HeapAlloc(GetHeap(func_020364e8()), gPooledMapObjectCount * 4);
     buf = data_0215a6cc;
     data_0217c730.mUnk_00 = buf;
     data_0217c73c = buf;
     data_0217c748 = data_0215a6c0;
     data_0217c730.mUnk_24 = 0x6f;
     data_0217c730.mUnk_2e = 1;
-    for (i = 0; i < data_0217c724; i++) {
-        data_0217c72c[i] = CreateMapObjectFromCourseMapRow(&data_0217c730, 0x6f);
+    for (i = 0; i < gPooledMapObjectCount; i++) {
+        gPooledMapObjects[i] = CreateMapObjectFromCourseMapRow(&data_0217c730, 0x6f);
     }
-    data_0217c728 = 0;
+    gPooledMapObjectNextIndex = 0;
 }
 #pragma thumb off
 

@@ -6,13 +6,13 @@
 // Object behind GpiOperation.mUnk_04: GpiCreateSearch clears and fills it, GpiOpenSearchSocket sets the
 // word at 0x04 and gives it the buffer at 0x08 of 0x0c bytes.
 typedef struct Unk02196240 {
-    /* 000 */ s32 mUnk_000;
-    /* 004 */ s32 mUnk_004;
-    /* 008 */ void *mUnk_008;
+    /* 000 */ s32 mKind;
+    /* 004 */ s32 mSocket;
+    /* 008 */ void *mInputBuffer;
     /* 00c */ s32 mUnk_00c;
     /* 010 */ u32 mUnk_010;
     /* 014 */ u32 mUnk_014;
-    /* 018 */ void *mUnk_018;
+    /* 018 */ void *mOutputBuffer;
     /* 01c */ s32 mUnk_01c;
     /* 020 */ u32 mUnk_020;
     /* 024 */ u32 mUnk_024;
@@ -48,7 +48,7 @@ typedef struct GpiPeer {
     /* 0c */ u32 mProfileId;
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
-    /* 18 */ void *mUnk_18;
+    /* 18 */ void *mInputBuffer;
     /* 1c */ u32 mUnk_1c;
     /* 20 */ BOOL mUnk_20;
     /* 24 */ u8 mUnk_24[4];

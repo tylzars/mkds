@@ -5908,7 +5908,7 @@ func_021052fc kind:function(arm,size=0x3c) addr:0x021052fc
 func_02105338 kind:function(arm,size=0xa0) addr:0x02105338
 func_021053d8 kind:function(arm,size=0xc) addr:0x021053d8
 func_021053e4 kind:function(arm,size=0x58) addr:0x021053e4
-func_0210543c kind:function(arm,size=0x28) addr:0x0210543c
+AllocPooledMapObject kind:function(arm,size=0x28) addr:0x0210543c
 func_02105464 kind:function(arm,size=0x1c) addr:0x02105464
 func_02105480 kind:function(arm,size=0x50) addr:0x02105480
 func_021054d0 kind:function(arm,size=0x34) addr:0x021054d0
@@ -7650,7 +7650,7 @@ DWCi_BACKUPlConvMaskAddr kind:function(thumb,size=0x28) addr:0x021516b0
 DWCi_BACKUPlConvMaskCidr kind:function(thumb,size=0x2e) addr:0x021516d8
 func_02151708 kind:function(thumb,size=0x10) addr:0x02151708
 func_02151718 kind:function(thumb,size=0x7c) addr:0x02151718
-func_02151794 kind:function(thumb,size=0x70) addr:0x02151794
+WriteFlaggedNvramEntries kind:function(thumb,size=0x70) addr:0x02151794
 func_02151804 kind:function(thumb,size=0x2c) addr:0x02151804
 func_02151830 kind:function(thumb,size=0x38) addr:0x02151830
 DWCi_BM_SetWiFiInfo kind:function(thumb,size=0xa8) addr:0x02151868
@@ -11911,9 +11911,9 @@ data_0217c684 kind:bss addr:0x0217c664
 data_0217c6a4 kind:bss addr:0x0217c684
 data_0217c6e4 kind:bss addr:0x0217c6c4
 data_0217c704 kind:bss addr:0x0217c6e4
-data_0217c724 kind:bss addr:0x0217c704
-data_0217c728 kind:bss addr:0x0217c708
-data_0217c72c kind:bss addr:0x0217c70c
+gPooledMapObjectCount kind:bss addr:0x0217c704
+gPooledMapObjectNextIndex kind:bss addr:0x0217c708
+gPooledMapObjects kind:bss addr:0x0217c70c
 data_0217c730 kind:bss addr:0x0217c710
 data_0217c73c kind:bss addr:0x0217c71c
 data_0217c748 kind:bss addr:0x0217c728

@@ -99,16 +99,16 @@ s32 func_ov000_02194590(GpConnection *a, GpiPeer *b) {
             }
             break;
         case 0x68:
-            t = GpiReceiveBuffer(a, b->mSocket, (GpiBuffer *) &b->mUnk_18, &y, &z, data_ov000_021b3490);
+            t = GpiReceiveBuffer(a, b->mSocket, (GpiBuffer *) &b->mInputBuffer, &y, &z, data_ov000_021b3490);
             if (t != 0) {
                 return t;
             }
-            w = strstr(b->mUnk_18, data_ov000_021b34c8);
+            w = strstr(b->mInputBuffer, data_ov000_021b34c8);
             if (w == NULL) {
                 break;
             }
             *w = 0;
-            q = b->mUnk_18;
+            q = b->mInputBuffer;
             if (strncmp(q, data_ov000_021b34f8, 7) == 0) {
                 b->mUnk_14 = b->mUnk_14 + 1;
                 if (b->mUnk_14 > 1) {
@@ -157,7 +157,7 @@ s32 GpiPeerUpdateWaiting(GpConnection *a, GpiPeer *b) {
     if (b->mState != 0x68) {
         AssertionFailed(data_ov000_021b34a8, data_ov000_021b333c, NULL, 0xc1);
     }
-    t = GpiReceiveBuffer(a, b->mSocket, (GpiBuffer *) &b->mUnk_18, &x, &y, data_ov000_021b3490);
+    t = GpiReceiveBuffer(a, b->mSocket, (GpiBuffer *) &b->mInputBuffer, &x, &y, data_ov000_021b3490);
     if (t != 0) {
         return t;
     }
@@ -165,21 +165,21 @@ s32 GpiPeerUpdateWaiting(GpConnection *a, GpiPeer *b) {
         b->mState = 0x6a;
         return 0;
     }
-    p = strstr(b->mUnk_18, data_ov000_021b34c8);
+    p = strstr(b->mInputBuffer, data_ov000_021b34c8);
     if (p != NULL) {
         *p = 0;
-        q = b->mUnk_18;
+        q = b->mInputBuffer;
         if (strncmp(q, data_ov000_021b34d0, 6) == 0) {
             if (GpiGetValue(q, data_ov000_021b34d8, c0, 0x10) == FALSE) {
                 b->mState = 0x6a;
                 return 0;
             }
             v = StrtolBase10(c0);
-            if (GpiGetValue(b->mUnk_18, data_ov000_021b34e0, c1, 0x1f) == FALSE) {
+            if (GpiGetValue(b->mInputBuffer, data_ov000_021b34e0, c1, 0x1f) == FALSE) {
                 b->mState = 0x6a;
                 return 0;
             }
-            if (GpiGetValue(b->mUnk_18, data_ov000_021b34e8, c2, 0x21) == FALSE) {
+            if (GpiGetValue(b->mInputBuffer, data_ov000_021b34e8, c2, 0x21) == FALSE) {
                 b->mState = 0x6a;
                 return 0;
             }
@@ -257,7 +257,7 @@ s32 func_ov000_021941c4(GpConnection *a, GpiPeer *b) {
             return 0;
         }
     }
-    t = GpiReceiveBuffer(a, b->mSocket, (GpiBuffer *) &b->mUnk_18, &x, &y, data_ov000_021b3490);
+    t = GpiReceiveBuffer(a, b->mSocket, (GpiBuffer *) &b->mInputBuffer, &x, &y, data_ov000_021b3490);
     if (t != 0) {
         b->mState = 0x6a;
         return 0;
@@ -266,7 +266,7 @@ s32 func_ov000_021941c4(GpConnection *a, GpiPeer *b) {
         b->mUnk_10 = func_ov000_0218e320(NULL) + 0x12c;
     }
     do {
-        t = func_ov000_02190618(a, (GpiBuffer *) &b->mUnk_18, &m, &n, &o);
+        t = func_ov000_02190618(a, (GpiBuffer *) &b->mInputBuffer, &m, &n, &o);
         if (t != 0) {
             return t;
         }
@@ -301,10 +301,10 @@ s32 func_ov000_021941c4(GpConnection *a, GpiPeer *b) {
                 case 206:
                 case 207:
                 case 208:
-                    func_ov000_02196434(a, b, n, b->mUnk_18, m, o);
+                    func_ov000_02196434(a, b, n, b->mInputBuffer, m, o);
                     break;
             }
-            func_ov000_021905d4(a, (GpiBuffer *) &b->mUnk_18);
+            func_ov000_021905d4(a, (GpiBuffer *) &b->mInputBuffer);
         }
     } while (m != 0);
     if (y != 0) {
@@ -335,8 +335,8 @@ s32 GpiPeerUpdate(GpConnection *b, GpiPeer *c) {
 void GpiPeerDelete(GpConnection *a, GpiPeer *b) {
     func_ov000_0218e524(b->mSocket, 2);
     func_ov000_0218e53c(b->mSocket);
-    func_ov000_021a3668(b->mUnk_18);
-    b->mUnk_18 = NULL;
+    func_ov000_021a3668(b->mInputBuffer);
+    b->mInputBuffer = NULL;
     func_ov000_021a3668(*(void **) b->mOutputBuffer);
     *(void **) b->mOutputBuffer = NULL;
     if (b->mQueuedMessages != NULL) {
