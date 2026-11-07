@@ -547,7 +547,7 @@ void UpdateShine16(void *a, Shine16 *p) {
 void func_020a5918(void) {
     Unk0209bfa8 *p;
 
-    p = func_0209bfa8(func_020a6ae4, NULL, NULL, 1, 0);
+    p = CreateMapObjectKindData(func_020a6ae4, NULL, NULL, 1, 0);
     p->mUnk_38 = 0x190000;
     p->mUnk_3c = -0x190000;
 }
@@ -1197,12 +1197,12 @@ u32 func_020a3f48(void) {
     d = data_021759c0;
     k = d->mMode;
     if (k == MODE_BATTLE && d->mUnk_18 == 0) {
-        return func_0209bf8c();
+        return CreateMapObjectKindDataWithoutCallbacks();
     }
     if (k != MODE_MISSION_RUN) {
         return 0;
     }
-    return func_0209bf8c();
+    return CreateMapObjectKindDataWithoutCallbacks();
 }
 
 void *func_020a3f2c(void) {

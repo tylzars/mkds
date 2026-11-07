@@ -130,7 +130,7 @@ void UpdateMissionGate(void *a, MissionGateObject *b) {
 }
 
 void func_ov001_02185b98(void) {
-    func_0209bfa8(&func_ov001_02185d74, NULL, NULL, 0, 1);
+    CreateMapObjectKindData(&func_ov001_02185d74, NULL, NULL, 0, 1);
 }
 
 void func_ov001_02185b7c(void) {

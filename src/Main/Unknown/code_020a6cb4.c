@@ -158,7 +158,7 @@ void func_020a6d8c(Unk02100094 *a, Unk020a6cb4 *b) {
 
 s32 func_020a6d40(void) {
     if (data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 1) {
-        return func_0209bf8c();
+        return CreateMapObjectKindDataWithoutCallbacks();
     }
     return 0;
 }

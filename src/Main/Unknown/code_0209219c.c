@@ -166,7 +166,7 @@ void UpdateBasabasa(void *a, Basabasa *b) {
 }
 
 void CreateBasabasaKindData(void) {
-    func_0209bfa8(&func_0209297c, NULL, NULL, 1, 0);
+    CreateMapObjectKindData(&func_0209297c, NULL, NULL, 1, 0);
 }
 
 static inline u16 func_0209219c_inline(u32 n) {

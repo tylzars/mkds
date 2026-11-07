@@ -228,7 +228,7 @@ u32 func_02094e3c(void) {
             return 0;
         }
     }
-    return func_0209bf8c();
+    return CreateMapObjectKindDataWithoutCallbacks();
 }
 
 void func_02094e1c(void) {

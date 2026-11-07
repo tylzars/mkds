@@ -706,7 +706,7 @@ void UpdateCoin(void *a, Unk02181c3c *b) {
 }
 
 void func_ov001_02181c20(void) {
-    func_0209bfa8(&func_ov001_0218274c, NULL, NULL, 1, 1);
+    CreateMapObjectKindData(&func_ov001_0218274c, NULL, NULL, 1, 1);
 }
 
 void *func_ov001_02181c08(void) {

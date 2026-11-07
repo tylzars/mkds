@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Kart
 
-// Object returned by func_0209bfa8: the words at 0x38 and 0x3c are set by func_020a5918.
+// Object returned by CreateMapObjectKindData: the words at 0x38 and 0x3c are set by func_020a5918.
 typedef struct Unk0209bfa8 {
     /* 00 */ u8 mUnk_00[0x38];
     /* 38 */ s32 mUnk_38;

@@ -67,7 +67,7 @@ Unk02166a74 data_usa_02166c7c = {0, 0xa0, 0, func_0209a728, CreateMiniDokanDrawL
 void func_0209a728(void) {
     Unk0209bf70 *o;
 
-    o = (Unk0209bf70 *) func_0209bf8c();
+    o = (Unk0209bf70 *) CreateMapObjectKindDataWithoutCallbacks();
     o->mUnk_24 = 0x84;
 }
 

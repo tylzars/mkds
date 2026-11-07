@@ -33,7 +33,7 @@ typedef struct Unk020a9a5c {
     /* 04 */ u16 mUnk_04;
 } Unk020a9a5c;
 
-// Object returned by func_0209bfa8, with words at 0x38, 0x3c and 0xc0 (func_020a9224, func_020a9de4).
+// Object returned by CreateMapObjectKindData, with words at 0x38, 0x3c and 0xc0 (func_020a9224, func_020a9de4).
 typedef struct Unk020a9224 {
     /* 00 */ u8 mUnk_00[0x38];
     /* 38 */ s32 mUnk_38;

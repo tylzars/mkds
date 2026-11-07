@@ -89,7 +89,7 @@ void DrawSun(void *a, Unk0209d3fc *b) {
     s = 0x1e;
     func_01ff9048(0x14, &s, 1);
     func_01ff9048(0x19, func_020e6cf8(&b->mUnk_00.mPos), 0xc);
-    if (b->mUnk_dc == 3 || b->mUnk_dc == 4) {
+    if (b->mState == 3 || b->mState == 4) {
         t = (s32) (((s64) gPairsByAngle[((u16) b->mUnk_ac >> 4) * 2 + 1] * -0x14000) >> 12) + 0x14000;
         k = (b->mUnk_b0 >> 4) * 2;
         v.x = (s32) (((s64) t * gPairsByAngle[k + 1]) >> 12) >> 4;
@@ -100,11 +100,11 @@ void DrawSun(void *a, Unk0209d3fc *b) {
     func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
     if (func_02061818() == 2) {
         func_0209bbd0(a, gSun);
-        SetMapObjectModelNsbcaFrameIndex(gSun, b->mUnk_b2);
+        SetMapObjectModelNsbcaFrameIndex(gSun, b->mNsbcaFrameIndex);
         DrawMapObjectModel(a, gSun, b);
     } else if ((s32) (b->mUnk_00.mDistanceSquaredAndFlags & 0x3fffffe0) < 0x3d0900) {
         func_0209bbd0(a, gSun);
-        SetMapObjectModelNsbcaFrameIndex(gSun, b->mUnk_b2);
+        SetMapObjectModelNsbcaFrameIndex(gSun, b->mNsbcaFrameIndex);
         DrawMapObjectModel(a, gSun, b);
     } else {
         func_0209bbd0(a, gSunLOD);
@@ -112,28 +112,28 @@ void DrawSun(void *a, Unk0209d3fc *b) {
     }
 }
 
-static inline u32 func_0209c9fc_inline(Unk020f41c4_B *b) {
+static inline u32 CollideKartWithBound_inline(Unk020f41c4_B *b) {
     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
     return b->mUnk_00 >> 32;
 }
 
 void InitSunObjects(Unk02100094 *a) {
     s32 i;
-    Unk0209cf34 *p;
+    Sun *p;
 
     if (a == NULL) {
         return;
     }
     for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
         if (data_021759c0->mMode == MODE_TIME_ATTACK) {
-            p->mUnk_0a8 = (u16) p->mUnk_000.mCourseMapRow->mUnk_28;
+            p->mTimer = (u16) p->mUnk_000.mCourseMapRow->mUnk_28;
         } else if (data_021759c0->mMode == 5) {
-            p->mUnk_0a8 = (u16) p->mUnk_000.mCourseMapRow->mUnk_2a;
+            p->mTimer = (u16) p->mUnk_000.mCourseMapRow->mUnk_2a;
         }
     }
 }
 
-static inline BOOL func_0209cf34_inline(void) {
+static inline BOOL UpdateSun_inline(void) {
     s32 i;
 
     for (i = 0; i < data_021759c0->mKartCount; i++) {
@@ -144,7 +144,7 @@ static inline BOOL func_0209cf34_inline(void) {
     return FALSE;
 }
 
-static inline BOOL func_0209cf34_inline_b(Unk0209cf34 *p) {
+static inline BOOL UpdateSun_inline_b(Sun *p) {
     s32 i;
     Kart *k;
     Vec3 *q;
@@ -163,20 +163,20 @@ static inline BOOL func_0209cf34_inline_b(Unk0209cf34 *p) {
     return FALSE;
 }
 
-void UpdateSun(Unk02100094 *a, Unk0209cf34 *p) {
+void UpdateSun(Unk02100094 *a, Sun *p) {
     Vec3 v;
     Vec3 w;
     s32 t;
     s32 k;
 
-    switch (p->mUnk_0dc) {
+    switch (p->mState) {
         case 0:
             if (p->mUnk_000.mFlags & 0x800) {
-                if (p->mUnk_0a8-- <= 0) {
-                    p->mUnk_0dc = 1;
+                if (p->mTimer-- <= 0) {
+                    p->mState = 1;
                 }
-            } else if (func_0209cf34_inline()) {
-                p->mUnk_0dc = 1;
+            } else if (UpdateSun_inline()) {
+                p->mState = 1;
             }
             break;
         case 1:
@@ -186,28 +186,28 @@ void UpdateSun(Unk02100094 *a, Unk0209cf34 *p) {
                 if (p->mUnk_000.mFlags & 0x800) {
                     k = data_021759c0->mMode;
                     if (k == MODE_TIME_ATTACK) {
-                        p->mUnk_0a8 = t;
+                        p->mTimer = t;
                     } else if (k == 5) {
-                        p->mUnk_0a8 = p->mUnk_0b8.mUnk_1c->mUnk_10;
+                        p->mTimer = p->mUnk_0b8.mUnk_1c->mUnk_10;
                     }
                 }
-                p->mUnk_0dc = 2;
+                p->mState = 2;
             }
             func_020d8a5c(&p->mUnk_0b8, &p->mUnk_000.mPos);
             break;
         case 2:
             if (p->mUnk_000.mFlags & 0x800) {
-                if (p->mUnk_0a8-- <= 0) {
+                if (p->mTimer-- <= 0) {
                     p->mUnk_0b0 = 0;
                     p->mUnk_0ac = p->mUnk_0b0;
-                    p->mUnk_0a8 = 5;
-                    p->mUnk_0dc = 3;
+                    p->mTimer = 5;
+                    p->mState = 3;
                 }
-            } else if (func_0209cf34_inline_b(p)) {
+            } else if (UpdateSun_inline_b(p)) {
                 p->mUnk_0b0 = 0;
                 p->mUnk_0ac = p->mUnk_0b0;
-                p->mUnk_0a8 = 5;
-                p->mUnk_0dc = 3;
+                p->mTimer = 5;
+                p->mState = 3;
             }
             break;
         case 3:
@@ -215,11 +215,11 @@ void UpdateSun(Unk02100094 *a, Unk0209cf34 *p) {
             if (p->mUnk_0ac < 0x8000) {
                 p->mUnk_0ac += 0x222;
             }
-            if (p->mUnk_0a8-- > 0) {
+            if (p->mTimer-- > 0) {
                 break;
             }
             if (p->mUnk_0a0 == 0) {
-                p->mUnk_0a4 = ((u64) func_0209c9fc_inline(func_020d22d0()) * 0x10000) >> 32;
+                p->mUnk_0a4 = ((u64) CollideKartWithBound_inline(func_020d22d0()) * 0x10000) >> 32;
             } else {
                 p->mUnk_0a4 += 0x8000;
             }
@@ -233,57 +233,58 @@ void UpdateSun(Unk02100094 *a, Unk0209cf34 *p) {
             p->mUnk_0a0 += 1;
             if (p->mUnk_0a0 >= 2) {
                 p->mUnk_0a0 = 0;
-                p->mUnk_0dc = 4;
+                p->mState = 4;
             } else {
-                p->mUnk_0a8 = 0x1e;
+                p->mTimer = 0x1e;
             }
             break;
         case 4:
             p->mUnk_0b0 += 0xe39;
             p->mUnk_0ac += 0x222;
             if (p->mUnk_0ac > 0x10000) {
-                p->mUnk_0a8 = 0x1e;
-                p->mUnk_0dc = 0;
+                p->mTimer = 0x1e;
+                p->mState = 0;
             }
             break;
     }
     if ((s32) (p->mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f) >= 0x3d0900) {
         return;
     }
-    if (p->mUnk_0dc == 3) {
-        t = p->mUnk_0b4 + 0x19a;
+    if (p->mState == 3) {
+        t = p->mNsbcaFrameIndexPerFrame + 0x19a;
         if (t >= 0x8000) {
             t = 0x8000;
         }
-        p->mUnk_0b4 = t;
+        p->mNsbcaFrameIndexPerFrame = t;
     } else {
-        t = p->mUnk_0b4 - 0x19a;
+        t = p->mNsbcaFrameIndexPerFrame - 0x19a;
         if (t <= 0x1000) {
             t = 0x1000;
         }
-        p->mUnk_0b4 = t;
+        p->mNsbcaFrameIndexPerFrame = t;
     }
-    p->mUnk_0b2 += p->mUnk_0b4 >> 12;
-    if (p->mUnk_0b2 >= GetMapObjectModelNsbcaFrameCount(gSun)) {
-        p->mUnk_0b2 = 0;
+    p->mNsbcaFrameIndex += p->mNsbcaFrameIndexPerFrame >> 12;
+    if (p->mNsbcaFrameIndex >= GetMapObjectModelNsbcaFrameCount(gSun)) {
+        p->mNsbcaFrameIndex = 0;
     }
 }
 
-void func_0209cf10(void) {
+void CreateSunDrawList(void) {
     CreateMapObjectDrawList1(CreateSunAndSunLOD, DrawSun, func_0209d5e8);
 }
 
-void func_0209cef0(void) {
+void CreateSunUpdateList(void) {
     CreateMapObjectUpdateList(InitSunObjects, UpdateSun, NULL);
 }
 
-void func_0209cebc(Unk0209c220 *p) {
+void InitBound(Bound *p) {
     p->mUnk_000.mFlags |= data_usa_021565d4;
     func_020d2450(p);
-    p->mUnk_0b4 = p->mUnk_000.mScale.x;
+    p->mInitialScaleX = p->mUnk_000.mScale.x;
 }
 
-s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
+// Shared by Bound, Cream and Berry: sets the object's motion from the Kart, starts the wobble and plays a sound.
+s32 CollideKartWithBound(Bound *p, Kart *k, u8 *b, u8 *c) {
     Vec3 v0;
     Vec3 v1;
     Vec3 v2;
@@ -296,7 +297,7 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
     e = *b;
     d = *c;
     if (e == 3 || e == 4) {
-        if (p->mUnk_120[k->mIndex] == 0) {
+        if (p->mKartTimers[k->mIndex] == 0) {
             VEC_Subtract(&k->mPos, &p->mUnk_000.mPos, &v2);
             t = VEC_DotProduct(&k->mVelocityDirection, &v2);
             v0.x = ((s64) k->mVelocityDirection.x * t) >> 12;
@@ -325,7 +326,7 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
             }
             VEC_Subtract(&v0, &p->mUnk_000.mMatrix.mUnk_00[1], &v0);
             VEC_MultAdd(0x19a, &v0, &p->mUnk_000.mUnk_10, &p->mUnk_000.mUnk_10);
-            p->mUnk_120[k->mIndex] = 0x1f;
+            p->mKartTimers[k->mIndex] = 0x1f;
             if (data_021759c0->mMode == MODE_BATTLE) {
                 func_020a21bc(k->mIndex, (s32) &p->mUnk_000.mUnk_10);
             }
@@ -334,20 +335,20 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
             p->mUnk_000.mUnk_10.y = 0;
             p->mUnk_000.mUnk_10.z = 0;
         }
-        if (data_021759c0->mCurrentEntries[k->mIndex].mPlayer.mKind != 2 && p->mUnk_11c == FALSE) {
-            p->mUnk_0b8 = 0x8000;
-            p->mUnk_0c4 = 0x1000;
-            p->mUnk_0c8 = 0x400;
-            p->mUnk_0cc = -0x29;
-            p->mUnk_0d0 = 0x1000;
+        if (data_021759c0->mCurrentEntries[k->mIndex].mPlayer.mKind != 2 && p->mWobbling == FALSE) {
+            p->mWobbleXAngle = 0x8000;
+            p->mWobbleXMid = 0x1000;
+            p->mWobbleXAmplitude = 0x400;
+            p->mWobbleXAmplitudePerFrame = -0x29;
+            p->mWobbleXAnglePerFrame = 0x1000;
             p->mUnk_0d4 = 0;
-            p->mUnk_0d8 = 0;
-            p->mUnk_0e4 = 0x1000;
-            p->mUnk_0e8 = 0x400;
-            p->mUnk_0ec = -0x29;
-            p->mUnk_0f0 = 0x1000;
+            p->mWobbleYAngle = 0;
+            p->mWobbleYMid = 0x1000;
+            p->mWobbleYAmplitude = 0x400;
+            p->mWobbleYAmplitudePerFrame = -0x29;
+            p->mWobbleYAnglePerFrame = 0x1000;
             p->mUnk_0f4 = 0;
-            p->mUnk_11c = TRUE;
+            p->mWobbling = TRUE;
             switch (p->mUnk_000.mKind) {
                 case MAP_OBJECT_KIND_CREAM:
                     func_020d26ec(k, 0x156);
@@ -361,7 +362,7 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
             }
             if ((u16) (p->mUnk_000.mKind + 0xfe4c) <= 1) {
                 func_02103544(k->mIndex,
-                              (u16) (((u64) func_0209c9fc_inline(&gRaceProgress->mLocalRandom) * 3) >> 32) + 1);
+                              (u16) (((u64) CollideKartWithBound_inline(&gRaceProgress->mLocalRandom) * 3) >> 32) + 1);
                 VEC_Subtract(&p->mUnk_000.mPos, &k->mCollisionCenter, &v3);
                 if (!((s64) v3.x * v3.x + (s64) v3.y * v3.y + (s64) v3.z * v3.z < 0x10)) {
                     Vec3NormalizeAndGetLengthUnchecked(&v3, &v3);
@@ -382,33 +383,35 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
     return 2;
 }
 
-u8 func_0209c964(Unk0209c220 *p, void *a, u8 *b, u8 *c) {
+// Shared by Bound, Cream and Berry: when *b is 2, starts a smaller wobble; returns *c.
+u8 CollideItemObjectWithBound(Bound *p, void *a, u8 *b, u8 *c) {
     u32 d;
 
     d = *c;
-    if (*b == 2 && p->mUnk_11c == FALSE) {
-        p->mUnk_0b8 = 0x8000;
-        p->mUnk_0c4 = 0x1000;
-        p->mUnk_0c8 = 0x200;
-        p->mUnk_0cc = -0x14;
-        p->mUnk_0d0 = 0x1000;
+    if (*b == 2 && p->mWobbling == FALSE) {
+        p->mWobbleXAngle = 0x8000;
+        p->mWobbleXMid = 0x1000;
+        p->mWobbleXAmplitude = 0x200;
+        p->mWobbleXAmplitudePerFrame = -0x14;
+        p->mWobbleXAnglePerFrame = 0x1000;
         p->mUnk_0d4 = 0;
-        p->mUnk_0d8 = 0;
-        p->mUnk_0e4 = 0x1000;
-        p->mUnk_0e8 = 0x200;
-        p->mUnk_0ec = -0x14;
-        p->mUnk_0f0 = 0x1000;
+        p->mWobbleYAngle = 0;
+        p->mWobbleYMid = 0x1000;
+        p->mWobbleYAmplitude = 0x200;
+        p->mWobbleYAmplitudePerFrame = -0x14;
+        p->mWobbleYAnglePerFrame = 0x1000;
         p->mUnk_0f4 = 0;
-        p->mUnk_11c = TRUE;
+        p->mWobbling = TRUE;
         p->mUnk_000.mDistanceSquaredAndFlags |= data_usa_021565d0;
     }
     return d;
 }
 
-BOOL func_0209c8b0(Unk0209c220 *p, Vec3 *a, s32 b, Vec3 *c) {
-    if ((p->mUnk_000.mFlags & 0x800) == 0 && p->mUnk_11c == TRUE) {
-        p->mUnk_0a4 = func_020ead80(a, &p->mUnk_000.mPos, &p->mUnk_000.mMatrix.mUnk_00[0],
-                                    ((s64) p->mUnk_000.mExtent.x * p->mUnk_0bc) >> 12, p->mUnk_000.mExtent.y, 0, b, c);
+BOOL func_0209c8b0(Bound *p, Vec3 *a, s32 b, Vec3 *c) {
+    if ((p->mUnk_000.mFlags & 0x800) == 0 && p->mWobbling == TRUE) {
+        p->mUnk_0a4 =
+            func_020ead80(a, &p->mUnk_000.mPos, &p->mUnk_000.mMatrix.mUnk_00[0],
+                          ((s64) p->mUnk_000.mExtent.x * p->mWobbleScaleX) >> 12, p->mUnk_000.mExtent.y, 0, b, c);
     } else {
         p->mUnk_0a4 = func_020ead80(a, &p->mUnk_000.mPos, &p->mUnk_000.mMatrix.mUnk_00[0], p->mUnk_000.mExtent.x,
                                     p->mUnk_000.mExtent.y, 0, b, c);
@@ -421,7 +424,7 @@ void CreateBound(void *a) {
     CreateMapObjectModelNsbtpAnimation(gBound, gBoundNsbtpName);
 }
 
-void DrawBound(Unk02100094 *a, Unk0209c220 *p) {
+void DrawBound(Unk02100094 *a, Bound *p) {
     s32 v[4];
     s32 x;
     s32 y;
@@ -432,16 +435,16 @@ void DrawBound(Unk02100094 *a, Unk0209c220 *p) {
     p->mUnk_000.mMatrix.mUnk_00[3].y = p->mUnk_000.mPos.y >> 4;
     p->mUnk_000.mMatrix.mUnk_00[3].z = p->mUnk_000.mPos.z >> 4;
     func_01ff9048(0x19, &p->mUnk_000.mMatrix, 0xc);
-    if (p->mUnk_11c == TRUE) {
-        x = p->mUnk_0bc;
-        y = p->mUnk_0dc;
+    if (p->mWobbling == TRUE) {
+        x = p->mWobbleScaleX;
+        y = p->mWobbleScaleY;
         v[1] = x;
         v[2] = y;
         v[3] = x;
         func_01ff9048(0x1b, &v[1], 3);
     }
     func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
-    SetMapObjectModelNsbtpFrameIndex(gBound, p->mUnk_0a0);
+    SetMapObjectModelNsbtpFrameIndex(gBound, p->mNsbtpFrameIndex);
     DrawMapObjectModel(a, gBound, p);
 }
 
@@ -455,7 +458,7 @@ void CreateBerry(void *a) {
     func_02103554(gCreamEffectNsbmdName);
 }
 
-void DrawCream(Unk02100094 *a, Unk0209c220 *p) {
+void DrawCream(Unk02100094 *a, Bound *p) {
     s32 v[4];
     s32 x;
     s32 y;
@@ -466,9 +469,9 @@ void DrawCream(Unk02100094 *a, Unk0209c220 *p) {
     p->mUnk_000.mMatrix.mUnk_00[3].y = p->mUnk_000.mPos.y >> 4;
     p->mUnk_000.mMatrix.mUnk_00[3].z = p->mUnk_000.mPos.z >> 4;
     func_01ff9048(0x19, &p->mUnk_000.mMatrix, 0xc);
-    if (p->mUnk_11c == TRUE) {
-        x = p->mUnk_0bc;
-        y = p->mUnk_0dc;
+    if (p->mWobbling == TRUE) {
+        x = p->mWobbleScaleX;
+        y = p->mWobbleScaleY;
         v[1] = x;
         v[2] = y;
         v[3] = x;
@@ -478,7 +481,7 @@ void DrawCream(Unk02100094 *a, Unk0209c220 *p) {
     DrawMapObjectModel(a, gCream, p);
 }
 
-void DrawBerry(Unk02100094 *a, Unk0209c220 *p) {
+void DrawBerry(Unk02100094 *a, Bound *p) {
     s32 v[4];
     s32 x;
     s32 y;
@@ -489,9 +492,9 @@ void DrawBerry(Unk02100094 *a, Unk0209c220 *p) {
     p->mUnk_000.mMatrix.mUnk_00[3].y = p->mUnk_000.mPos.y >> 4;
     p->mUnk_000.mMatrix.mUnk_00[3].z = p->mUnk_000.mPos.z >> 4;
     func_01ff9048(0x19, &p->mUnk_000.mMatrix, 0xc);
-    if (p->mUnk_11c == TRUE) {
-        x = p->mUnk_0bc;
-        y = p->mUnk_0dc;
+    if (p->mWobbling == TRUE) {
+        x = p->mWobbleScaleX;
+        y = p->mWobbleScaleY;
         v[1] = x;
         v[2] = y;
         v[3] = x;
@@ -503,7 +506,7 @@ void DrawBerry(Unk02100094 *a, Unk0209c220 *p) {
 
 void InitBoundAndCreamAndBerryObjects(Unk02100094 *a) {
     s32 i;
-    Unk0209c220 *p;
+    Bound *p;
 
     if (a == NULL) {
         return;
@@ -527,7 +530,7 @@ s32 func_0209c4bc(s32 a, s32 b) {
     return ((s64) a * b + 0x800) >> 12;
 }
 
-void UpdateBoundAndCreamAndBerry(Unk02100094 *a, Unk0209c220 *p) {
+void UpdateBoundAndCreamAndBerry(Unk02100094 *a, Bound *p) {
     u16 v;
     s32 t;
     s32 i;
@@ -537,151 +540,152 @@ void UpdateBoundAndCreamAndBerry(Unk02100094 *a, Unk0209c220 *p) {
         func_020d8cc8(&p->mUnk_0f8);
         func_020d8bf8(&p->mUnk_0f8, &p->mUnk_000.mPos, &p->mUnk_000.mUnk_10);
         v = GetMapObjectModelNsbtpFrameCount(gBound);
-        p->mUnk_0a0 += 1;
-        if (p->mUnk_0a0 >= v) {
-            p->mUnk_0a0 = 1;
+        p->mNsbtpFrameIndex += 1;
+        if (p->mNsbtpFrameIndex >= v) {
+            p->mNsbtpFrameIndex = 1;
         }
     } else {
         p->mUnk_000.mUnk_10.x = 0;
         p->mUnk_000.mUnk_10.y = 0;
         p->mUnk_000.mUnk_10.z = 0;
-        p->mUnk_0a0 = 0;
+        p->mNsbtpFrameIndex = 0;
     }
-    if (p->mUnk_11c == TRUE) {
-        p->mUnk_0b8 += p->mUnk_0d0;
-        t = func_0209c4bc(p->mUnk_0c8, func_0209c4d8(p->mUnk_0b8));
-        p->mUnk_0c0 = p->mUnk_0c4 + t - p->mUnk_0bc;
-        p->mUnk_0bc += p->mUnk_0c0;
-        if (p->mUnk_0c8 > 0) {
-            t = p->mUnk_0c8 + p->mUnk_0cc;
+    if (p->mWobbling == TRUE) {
+        p->mWobbleXAngle += p->mWobbleXAnglePerFrame;
+        t = func_0209c4bc(p->mWobbleXAmplitude, func_0209c4d8(p->mWobbleXAngle));
+        p->mUnk_0c0 = p->mWobbleXMid + t - p->mWobbleScaleX;
+        p->mWobbleScaleX += p->mUnk_0c0;
+        if (p->mWobbleXAmplitude > 0) {
+            t = p->mWobbleXAmplitude + p->mWobbleXAmplitudePerFrame;
             if (t <= 0) {
                 t = 0;
             }
-            p->mUnk_0c8 = t;
-        } else if (p->mUnk_0c8 < 0) {
-            t = p->mUnk_0c8 + p->mUnk_0cc;
+            p->mWobbleXAmplitude = t;
+        } else if (p->mWobbleXAmplitude < 0) {
+            t = p->mWobbleXAmplitude + p->mWobbleXAmplitudePerFrame;
             if (t >= 0) {
                 t = 0;
             }
-            p->mUnk_0c8 = t;
+            p->mWobbleXAmplitude = t;
         }
-        if (p->mUnk_0d0 > 0) {
-            t = p->mUnk_0d0 + p->mUnk_0d4;
+        if (p->mWobbleXAnglePerFrame > 0) {
+            t = p->mWobbleXAnglePerFrame + p->mUnk_0d4;
             if (t <= 0) {
                 t = 0;
             }
-            p->mUnk_0d0 = t;
-        } else if (p->mUnk_0d0 < 0) {
-            t = p->mUnk_0d0 + p->mUnk_0d4;
+            p->mWobbleXAnglePerFrame = t;
+        } else if (p->mWobbleXAnglePerFrame < 0) {
+            t = p->mWobbleXAnglePerFrame + p->mUnk_0d4;
             if (t >= 0) {
                 t = 0;
             }
-            p->mUnk_0d0 = t;
+            p->mWobbleXAnglePerFrame = t;
         }
-        p->mUnk_0d8 += p->mUnk_0f0;
-        t = func_0209c4bc(p->mUnk_0e8, func_0209c4d8(p->mUnk_0d8));
-        p->mUnk_0e0 = p->mUnk_0e4 + t - p->mUnk_0dc;
-        p->mUnk_0dc += p->mUnk_0e0;
-        if (p->mUnk_0e8 > 0) {
-            t = p->mUnk_0e8 + p->mUnk_0ec;
+        p->mWobbleYAngle += p->mWobbleYAnglePerFrame;
+        t = func_0209c4bc(p->mWobbleYAmplitude, func_0209c4d8(p->mWobbleYAngle));
+        p->mUnk_0e0 = p->mWobbleYMid + t - p->mWobbleScaleY;
+        p->mWobbleScaleY += p->mUnk_0e0;
+        if (p->mWobbleYAmplitude > 0) {
+            t = p->mWobbleYAmplitude + p->mWobbleYAmplitudePerFrame;
             if (t <= 0) {
                 t = 0;
             }
-            p->mUnk_0e8 = t;
-        } else if (p->mUnk_0e8 < 0) {
-            t = p->mUnk_0e8 + p->mUnk_0ec;
+            p->mWobbleYAmplitude = t;
+        } else if (p->mWobbleYAmplitude < 0) {
+            t = p->mWobbleYAmplitude + p->mWobbleYAmplitudePerFrame;
             if (t >= 0) {
                 t = 0;
             }
-            p->mUnk_0e8 = t;
+            p->mWobbleYAmplitude = t;
         }
-        if (p->mUnk_0f0 > 0) {
-            t = p->mUnk_0f0 + p->mUnk_0f4;
+        if (p->mWobbleYAnglePerFrame > 0) {
+            t = p->mWobbleYAnglePerFrame + p->mUnk_0f4;
             if (t <= 0) {
                 t = 0;
             }
-            p->mUnk_0f0 = t;
-        } else if (p->mUnk_0f0 < 0) {
-            t = p->mUnk_0f0 + p->mUnk_0f4;
+            p->mWobbleYAnglePerFrame = t;
+        } else if (p->mWobbleYAnglePerFrame < 0) {
+            t = p->mWobbleYAnglePerFrame + p->mUnk_0f4;
             if (t >= 0) {
                 t = 0;
             }
-            p->mUnk_0f0 = t;
+            p->mWobbleYAnglePerFrame = t;
         }
-        if (p->mUnk_0c8 == 0 && p->mUnk_0e8 == 0) {
-            p->mUnk_11c = FALSE;
-            p->mUnk_000.mScale.x = p->mUnk_0b4;
+        if (p->mWobbleXAmplitude == 0 && p->mWobbleYAmplitude == 0) {
+            p->mWobbling = FALSE;
+            p->mUnk_000.mScale.x = p->mInitialScaleX;
         } else {
-            p->mUnk_000.mScale.x = ((s64) p->mUnk_0b4 * p->mUnk_0bc) >> 12;
+            p->mUnk_000.mScale.x = ((s64) p->mInitialScaleX * p->mWobbleScaleX) >> 12;
         }
     } else {
-        p->mUnk_000.mScale.x = p->mUnk_0b4;
+        p->mUnk_000.mScale.x = p->mInitialScaleX;
     }
     n = data_021759c0->mKartCount;
     for (i = 0; i < n; i++) {
-        if (p->mUnk_120[i] > 0) {
-            p->mUnk_120[i] -= 1;
+        if (p->mKartTimers[i] > 0) {
+            p->mKartTimers[i] -= 1;
         }
     }
 }
 
-void func_0209c1dc(void) {
+void CreateBoundKindData(void) {
     Unk0209bf70 *o;
 
-    o = func_0209bfa8(func_0209c9fc, func_0209c964, func_0209c8b0, 1, 1);
+    o = CreateMapObjectKindData(CollideKartWithBound, CollideItemObjectWithBound, func_0209c8b0, 1, 1);
     o->mUnk_28 = 0x1cf;
 }
 
-void func_0209c198(void) {
+void CreateCreamKindData(void) {
     Unk0209bf70 *o;
 
-    o = func_0209bfa8(func_0209c9fc, func_0209c964, func_0209c8b0, 1, 1);
+    o = CreateMapObjectKindData(CollideKartWithBound, CollideItemObjectWithBound, func_0209c8b0, 1, 1);
     o->mUnk_28 = 0x156;
 }
 
-void func_0209c154(void) {
+void CreateBerryKindData(void) {
     Unk0209bf70 *o;
 
-    o = func_0209bfa8(func_0209c9fc, func_0209c964, func_0209c8b0, 1, 1);
+    o = CreateMapObjectKindData(CollideKartWithBound, CollideItemObjectWithBound, func_0209c8b0, 1, 1);
     o->mUnk_28 = 0x155;
 }
 
-void func_0209c134(void) {
+void CreateBoundDrawList(void) {
     CreateMapObjectDrawList1(CreateBound, DrawBound, NULL);
 }
 
-void func_0209c114(void) {
+void CreateCreamDrawList(void) {
     CreateMapObjectDrawList1(CreateCream, DrawCream, NULL);
 }
 
-void func_0209c0f4(void) {
+void CreateBerryDrawList(void) {
     CreateMapObjectDrawList1(CreateBerry, DrawBerry, NULL);
 }
 
-void func_0209c0d4(void) {
+void CreateBoundUpdateList(void) {
     CreateMapObjectUpdateList(InitBoundAndCreamAndBerryObjects, UpdateBoundAndCreamAndBerry, NULL);
 }
 
-BOOL func_0209bfe0(s32 a) {
-    Unk0209c220 *p;
+// Starts the wobble of object a of the 0x1a8 list, with a sound unless the object is far; FALSE if already wobbling.
+BOOL StartBoundWobble(s32 a) {
+    Bound *p;
     Unk0210b7a8 s;
     s32 k;
 
     p = func_0209bc5c(func_02100138(0x1a8), a);
-    if (p->mUnk_11c == FALSE) {
-        p->mUnk_0b8 = 0x8000;
-        p->mUnk_0c4 = 0x1000;
-        p->mUnk_0c8 = 0x400;
-        p->mUnk_0cc = -0x29;
-        p->mUnk_0d0 = 0x1000;
+    if (p->mWobbling == FALSE) {
+        p->mWobbleXAngle = 0x8000;
+        p->mWobbleXMid = 0x1000;
+        p->mWobbleXAmplitude = 0x400;
+        p->mWobbleXAmplitudePerFrame = -0x29;
+        p->mWobbleXAnglePerFrame = 0x1000;
         p->mUnk_0d4 = 0;
-        p->mUnk_0d8 = 0;
-        p->mUnk_0e4 = 0x1000;
-        p->mUnk_0e8 = 0x400;
-        p->mUnk_0ec = -0x29;
-        p->mUnk_0f0 = 0x1000;
+        p->mWobbleYAngle = 0;
+        p->mWobbleYMid = 0x1000;
+        p->mWobbleYAmplitude = 0x400;
+        p->mWobbleYAmplitudePerFrame = -0x29;
+        p->mWobbleYAnglePerFrame = 0x1000;
         p->mUnk_0f4 = 0;
-        p->mUnk_11c = TRUE;
+        p->mWobbling = TRUE;
         if ((p->mUnk_000.mDistanceSquaredAndFlags & 4) == 0) {
             if (p->mUnk_000.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                 k = 2;
@@ -703,7 +707,7 @@ BOOL func_0209bfe0(s32 a) {
 
 #pragma thumb on
 
-void *func_0209bfa8(void *param_1, void *param_2, void *param_3, u32 param_4, u16 param_5) {
+void *CreateMapObjectKindData(void *param_1, void *param_2, void *param_3, u32 param_4, u16 param_5) {
     Unk0209bf70 *o;
 
     GetHeap(func_020364e8());
@@ -716,14 +720,14 @@ void *func_0209bfa8(void *param_1, void *param_2, void *param_3, u32 param_4, u1
     return o;
 }
 
-u32 func_0209bf8c(void) {
-    return (u32) func_0209bfa8(NULL, NULL, NULL, 0, 1);
+u32 CreateMapObjectKindDataWithoutCallbacks(void) {
+    return (u32) CreateMapObjectKindData(NULL, NULL, NULL, 0, 1);
 }
 
 Unk0209bf70 *func_0209bf70(void *a, void *b, void *c, u32 d, u16 e, u16 f) {
     Unk0209bf70 *o;
 
-    o = func_0209bfa8(a, b, c, d, e);
+    o = CreateMapObjectKindData(a, b, c, d, e);
     o->mUnk_24 = f;
     return o;
 }

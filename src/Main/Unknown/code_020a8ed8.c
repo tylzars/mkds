@@ -227,7 +227,7 @@ void UpdateIronBall(void *a, IronBall *p) {
             p->mUnk_000.mUnk_10.z = 0;
             n = ((const Unk02042044 *) e)->mUnk_0e;
             if (n < 200) {
-                func_0209bfe0(n - 100);
+                StartBoundWobble(n - 100);
                 p->mUnk_0b0 = 0xf000;
                 p->mUnk_12c = 1;
             } else if (n < 300) {
@@ -321,7 +321,7 @@ void UpdateIronBall(void *a, IronBall *p) {
 void func_020a9224(void) {
     Unk020a9224 *p;
 
-    p = func_0209bfa8(func_020a9de4, NULL, NULL, 1, 1);
+    p = CreateMapObjectKindData(func_020a9de4, NULL, NULL, 1, 1);
     p->mUnk_38 = 0x190000;
     p->mUnk_3c = -0x1f4000;
 }

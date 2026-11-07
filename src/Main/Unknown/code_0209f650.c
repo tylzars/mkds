@@ -168,7 +168,7 @@ void func_0209fc38(void) {
     for (i = 0; i < 19; i++) {
         data_usa_0217b18c[i] = NULL;
     }
-    data_usa_0217b18c[0] = (MapObjectKindData *) func_0209bf8c();
+    data_usa_0217b18c[0] = (MapObjectKindData *) CreateMapObjectKindDataWithoutCallbacks();
 }
 
 void func_0209fc2c(void) {

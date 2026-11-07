@@ -45,7 +45,7 @@ void DrawStopSign(void *a, StopSignObject *b) {
 }
 
 void func_ov001_02192d60(void) {
-    func_0209bfa8(NULL, NULL, NULL, 0, 1);
+    CreateMapObjectKindData(NULL, NULL, NULL, 0, 1);
 }
 
 void *func_ov001_02192d48(void) {

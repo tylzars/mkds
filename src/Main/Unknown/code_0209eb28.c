@@ -5,5 +5,5 @@
 #include "Main/Unknown/code_0209bf70.h"
 
 void func_0209eb28(void) {
-    func_0209bfa8(NULL, NULL, NULL, 0, 0);
+    CreateMapObjectKindData(NULL, NULL, NULL, 0, 0);
 }

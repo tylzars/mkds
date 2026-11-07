@@ -394,7 +394,7 @@ void UpdateSanbo(void *a, Sanbo *p) {
 }
 
 void func_020a737c(void) {
-    func_0209bfa8(&func_020a7fc4, &func_020a7f18, NULL, 1, 1);
+    CreateMapObjectKindData(&func_020a7fc4, &func_020a7f18, NULL, 1, 1);
 }
 
 void *func_020a7358(void) {

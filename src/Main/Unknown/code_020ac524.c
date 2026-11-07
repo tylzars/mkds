@@ -137,7 +137,7 @@ void UpdateShineBalloon(void *a, ShineBalloonObject *b) {
 }
 
 void CreateShineBalloonKindData(void) {
-    func_0209bfa8(NULL, NULL, NULL, 1, 0);
+    CreateMapObjectKindData(NULL, NULL, NULL, 1, 0);
 }
 
 void *CreateShineBalloonDrawList(void) {
