@@ -339,7 +339,11 @@ typedef struct SelectRaceRule {
     /* 30 */ s32 mState;
     /* 34 */ s32 mNextState;
     /* 38 */ s32 mStateFrames;
-    /* 3c */ s16 mUnk_3c[5][2];
+    // Set to 6 when the row's value is stepped ([row][0] down, [row][1] up), counted down each step; moves the row's
+    // pair of objects.
+    /* 3c */ s16 mRowChangeTimers[5][2];
+    // Same shape for row 3 ([0][0] count down, [0][1] count up) and row 4 ([1][0] and [1][1] by the team a player lands
+    // in).
     /* 50 */ s16 mUnk_50[2][2];
     // Vertical shift in lines of the whole layout, 0 or -0x1c by mode; added to the positions of the objects and taken
     // off the touch y.
@@ -357,11 +361,19 @@ typedef struct SelectRaceRule {
     /* 7c */ s32 mOnButton;
     // mOnButton at the start of the step.
     /* 80 */ s32 mPrevOnButton;
+    // Set to 0 when the button is pressed while it is already highlighted, back to 1 five calls into state 4; decides
+    // which of the button's two objects shows.
     /* 84 */ u32 mUnk_84;
+    // Course count for row 3 value 0, kept from 1 to 10.
     /* 88 */ s16 mUnk_88;
+    // Course count for row 3 value 1, kept from 1 to 0x20.
     /* 8a */ s16 mUnk_8a;
-    /* 8c */ u32 mUnk_8c[8];
+    // Team index of each of the 8 entries.
+    /* 8c */ u32 mPlayerTeamIndices[8];
+    // Per team: how many of the first entries (given player kind 0 in the setup copy) are in it.
     /* ac */ u16 mUnk_ac[2];
+    // Per team: how many of the entries after the first ones are in it; counted into a team's size only while row 1 is
+    // not 0.
     /* b0 */ u16 mUnk_b0[2];
     /* b4 */ void *mUnk_b4;
     // Result AdvanceSelectRaceRule returns in state 8 once the state has run 10 calls: 1 or 2; 0 until set.

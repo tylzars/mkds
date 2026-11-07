@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_0211d3f4(u32 a);
+u32 GetOtherTeamIndex(u32 a);
