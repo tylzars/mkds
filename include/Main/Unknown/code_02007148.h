@@ -51,7 +51,7 @@ typedef struct Unk0216fdac {
     /* 1d21 */ u8 mUnk_1d21;
     /* 1d22 */ u8 mUnk_1d22[0x1d2c - 0x1d22];
     /* 1d2c */ u8 mUnk_1d2c[0x14];
-    /* 1d40 */ Unk0200adfc *mUnk_1d40;
+    /* 1d40 */ DataRangeTable *mUnk_1d40;
     /* 1d44 */ struct Unk02008188 *mUnk_1d44;
     /* 1d48 */ u16 mUnk_1d48;
     /* 1d4a */ u16 mUnk_1d4a;
@@ -60,7 +60,7 @@ typedef struct Unk0216fdac {
     /* 1d50 */ u16 mUnk_1d50;
     /* 1d52 */ u8 mUnk_1d52;
     /* 1d53 */ u8 mUnk_1d53;
-    /* 1d54 */ Unk0200adfc *mUnk_1d54;
+    /* 1d54 */ DataRangeTable *mUnk_1d54;
     /* 1d58 */ u32 *mUnk_1d58;
     /* 1d5c */ u8 mUnk_1d5c[0x74c8 - 0x1d5c];
     /* 74c8 */ s32 mUnk_74c8;

@@ -156,10 +156,10 @@ void func_0204e568(void) {
     b.mUnk_00_4 = 8;
     MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, b.mUnk_02, 0x14);
     data_0217aa00->mUnk_1690 = func_02052c5c(1);
-    if (func_02009ff4(data_0217aa00->mUnk_165c, (Unk02009ff4 *) &b, 0x25, data_0217aa00->mUnk_1690, 2) != 0) {
+    if (InitWirelessWork(data_0217aa00->mUnk_165c, (Unk02009ff4 *) &b, 0x25, data_0217aa00->mUnk_1690, 2) != 0) {
         func_02050e60(5);
     }
-    func_02009f38(0x1fe, 7);
+    SetMPLimits(0x1fe, 7);
     func_02007ea0(func_0204e6e8);
     if (((s32(*)(u32)) func_02009cc8)(data_0217aa00->mUnk_0088) != 0) {
         func_02050e60(5);

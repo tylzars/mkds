@@ -54,16 +54,16 @@ u32 func_020074d8(void) {
 }
 
 void func_02007478(Unk02007478 *a) {
-    Unk0200adfc_30 *v1;
-    Unk0200adfc *v2;
+    DataRange *v1;
+    DataRangeTable *v2;
     FSFile v3;
     u32 v4;
     v1 = a->mUnk_10;
     v2 = a->mUnk_14;
     FS_InitFile(&v3);
-    v4 = v1->mUnk_00;
-    if (FS_OpenFileDirect(&v3, FS_FindArchive(v2->mUnk_10, v2->mUnk_14), v4, v4 + v1->mUnk_04, -1) != 0) {
-        if (v1->mUnk_04 == FS_ReadFile(&v3, v1->mUnk_08, v1->mUnk_04)) {
+    v4 = v1->mOffset;
+    if (FS_OpenFileDirect(&v3, FS_FindArchive(v2->mUnk_10, v2->mUnk_14), v4, v4 + v1->mSize, -1) != 0) {
+        if (v1->mSize == FS_ReadFile(&v3, v1->mData, v1->mSize)) {
             v1->mUnk_0c = 2;
         }
         FS_CloseFile(&v3);

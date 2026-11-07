@@ -62,7 +62,7 @@ typedef struct Unk020082b4 {
     /* c4 */ u8 mUnk_c4[0x20];
 } Unk020082b4;
 
-// Object func_02008310 and func_020082b4 read; the Unk0200adfc at 0x1e8 and the words at 0x258 go to the entry.
+// Object func_02008310 and func_020082b4 read; the DataRangeTable at 0x1e8 and the words at 0x258 go to the entry.
 typedef struct Unk02008188 {
     /* 000 */ u8 mUnk_000[0x24];
     /* 024 */ u32 mUnk_024;
@@ -72,7 +72,7 @@ typedef struct Unk02008188 {
     /* 038 */ u32 mUnk_038[2];
     /* 040 */ u8 mUnk_040[0x120];
     /* 160 */ u8 mUnk_160[0x88];
-    /* 1e8 */ Unk0200adfc mUnk_1e8;
+    /* 1e8 */ DataRangeTable mUnk_1e8;
     /* 258 */ u32 mUnk_258[1];
 } Unk02008188;
 

@@ -20,18 +20,18 @@
 #include "code_0200fc8c.h"
 #include "code_02142eac.h"
 
-extern u16 data_usa_0216fd80;
-extern void *data_usa_0216fd84;
+extern u16 gWirelessDmaNo;
+extern void *gWMSysBuf;
 extern u16 *data_usa_021617a0;
 extern u32 data_usa_021617a4;
 
 s32 func_02009cc8(u16 a);
-s32 func_02009ce4(u16 a);
-s32 func_02009e70(void);
-u32 func_02009f38(u32 a, u32 b);
-u32 func_02009fac(u32 a, u32 b, u32 c);
-s32 func_02009ff4(void *a, Unk02009ff4 *b, u32 c, u32 d, u32 e);
-u32 func_0200a184(void);
-void func_0200a1bc(Unk021425e8 *a);
-void func_0200a77c(Unk021425e8 *a);
-void func_0200a7b0(Unk021425e8 *a);
+s32 StartParentOnChannel(u16 a);
+s32 StartWirelessInitialize(void);
+u32 SetMPLimits(u32 a, u32 b);
+u32 IsMPSizeValid(u32 a, u32 b, u32 c);
+s32 InitWirelessWork(void *a, Unk02009ff4 *b, u32 c, u32 d, u32 e);
+u32 GetBeaconDispersion(void);
+void ChildCallback(Unk021425e8 *a);
+void ChildPortCallback(Unk021425e8 *a);
+void ParentCallback(Unk021425e8 *a);

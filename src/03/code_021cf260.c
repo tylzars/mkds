@@ -53,10 +53,10 @@ void func_ov003_021cf978(u32 a, u32 b) {
     }
     *(Unk021cf5ac *) data_ov003_021da288 = z;
     data_ov003_021da288->mUnk_1b140 = data_ov003_021da288->mUnk_10040;
-    if (func_02009ff4(data_ov003_021da288->mUnk_1b140, &x, a, b, 2) != 0) {
+    if (InitWirelessWork(data_ov003_021da288->mUnk_1b140, &x, a, b, 2) != 0) {
         OS_Terminate();
     }
-    func_02009f38(0x100, 1);
+    SetMPLimits(0x100, 1);
     func_02007ea0(func_ov003_021cf378);
     func_ov003_021cf36c(1);
 }
@@ -117,7 +117,7 @@ void func_ov003_021cf844(u32 a) {
         data_ov003_021da288->mUnk_0a &= m;
         data_ov003_021da288->mUnk_0c &= m;
         OS_RestoreInterrupts(t);
-        func_02009ae8(a);
+        DisconnectChild(a);
     }
 }
 
@@ -136,7 +136,7 @@ void func_ov003_021cf7b8(u32 a) {
         data_ov003_021da288->mUnk_0a &= m;
         data_ov003_021da288->mUnk_0c &= m;
         OS_RestoreInterrupts(t);
-        func_02009ae8(a);
+        DisconnectChild(a);
     } else {
         t = OS_DisableInterrupts();
         v1 = 1 << a;
@@ -161,7 +161,7 @@ void func_ov003_021cf72c(u32 a) {
         data_ov003_021da288->mUnk_0a &= m;
         data_ov003_021da288->mUnk_0c &= m;
         OS_RestoreInterrupts(t);
-        func_02009ae8(a);
+        DisconnectChild(a);
     } else {
         t = OS_DisableInterrupts();
         v1 = 1 << a;
@@ -192,7 +192,7 @@ void func_ov003_021cf69c(void) {
                     data_ov003_021da288->mUnk_0a &= m;
                     data_ov003_021da288->mUnk_0c &= m;
                     OS_RestoreInterrupts(t);
-                    func_02009ae8(i);
+                    DisconnectChild(i);
                 } else {
                     func_ov003_021cf72c(i);
                 }
@@ -239,7 +239,7 @@ void func_ov003_021cf5ac(void) {
                 data_ov003_021da288->mUnk_0a &= m;
                 data_ov003_021da288->mUnk_0c &= m;
                 OS_RestoreInterrupts(t);
-                func_02009ae8(i);
+                DisconnectChild(i);
             } else {
                 r |= v1;
             }

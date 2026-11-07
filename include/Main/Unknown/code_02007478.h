@@ -12,11 +12,11 @@
 #include "Main/Unknown/code_02008908.h"
 #include "Main/Unknown/code_0214d000.h"
 
-// Object func_0200aeec runs func_02007478 on: the member at 0x10 is the entry of Unk0200adfc that is read.
+// Object func_0200aeec runs func_02007478 on: the member at 0x10 is the entry of DataRangeTable that is read.
 typedef struct Unk02007478 {
     /* 00 */ Unk0200aeec mUnk_00;
-    /* 10 */ Unk0200adfc_30 *mUnk_10;
-    /* 14 */ Unk0200adfc *mUnk_14;
+    /* 10 */ DataRange *mUnk_10;
+    /* 14 */ DataRangeTable *mUnk_14;
 } Unk02007478;
 
 // Six bytes handed to func_0200c3a4.

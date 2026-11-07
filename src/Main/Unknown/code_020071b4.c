@@ -15,10 +15,10 @@ u32 func_020072c0(void) {
     u8 v14;
     Unk0216fdac *v3;
     Unk0216fdac *v4;
-    Unk0200adfc *v5;
-    Unk0200adfc_30 *v6;
+    DataRangeTable *v5;
+    DataRange *v6;
     s32 i;
-    Unk0200adfc_30 *v7;
+    DataRange *v7;
     u8 *v9;
     u32 v10;
     Unk02007478 *v8;
@@ -60,7 +60,7 @@ u32 func_020072c0(void) {
           (OFFSET_PTR(Unk0216fdac, v3, v3->mUnk_1525 * 0x5d4))->mUnk_1d58[v14];
     v4 = OFFSET_PTR(Unk0216fdac, v3, v3->mUnk_1525 * 0x5d4);
     v5 = v4->mUnk_1d54;
-    if (func_0200adfc(v5, v10, v9, v2.mUnk_04) == 0) {
+    if (CopyFromDataRanges(v5, v10, v9, v2.mUnk_04) == 0) {
         v8 = (Unk02007478 *) data_0216fdac->mUnk_7ce0;
         if (func_0200aff8(&v8->mUnk_00) == 0) {
             if (v5->mUnk_00 != 0) {
@@ -68,7 +68,7 @@ u32 func_020072c0(void) {
                 v6 = NULL;
                 for (i = 0; i < 4; v7++, i++) {
                     if (v7->mUnk_0c == 2) {
-                        if (v6 == NULL || v6->mUnk_00 > v7->mUnk_00) {
+                        if (v6 == NULL || v6->mOffset > v7->mOffset) {
                             v6 = v7;
                         }
                     }
@@ -78,7 +78,7 @@ u32 func_020072c0(void) {
                 }
                 v5->mUnk_00 = 0;
                 v6->mUnk_0c = 1;
-                v6->mUnk_00 = v10 & ~0x1f;
+                v6->mOffset = v10 & ~0x1f;
                 v8->mUnk_10 = v6;
                 v8->mUnk_14 = v5;
                 func_0200aeec(&v8->mUnk_00, (void *) func_02007478, NULL, 4);

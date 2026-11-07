@@ -29,7 +29,7 @@ int func_02008570(FSFile *param_1, void *param_2, u32 param_3) {
     BOOL v12;
     u32 v13;
     u32 v7;
-    Unk0200adfc *v5;
+    DataRangeTable *v5;
     u32 *v6;
     s32 v8;
     u32 v9;
@@ -72,11 +72,11 @@ int func_02008570(FSFile *param_1, void *param_2, u32 param_3) {
             v13 = 0;
         }
         if (v13 >= 0x70) {
-            v5 = (Unk0200adfc *) v3;
+            v5 = (DataRangeTable *) v3;
             func_0200aea8((u32) v3);
             v3 += 0x70;
             v13 -= 0x70;
-            func_0200ae60(v5, 0, 0x160, (u8 *) v2, 3);
+            AddDataRange(v5, 0, 0x160, (u8 *) v2, 3);
             p = (s8 *) v1->mArc;
             v10 = 0;
             while (v10 < 3 && p[v10] != 0) {
@@ -102,24 +102,24 @@ int func_02008570(FSFile *param_1, void *param_2, u32 param_3) {
             v10 = v1->mProp.w.mUnk_04;
             FS_SeekFile(v1, v6[1] - v10, 0);
             FS_ReadFile(v1, v3, v2->mUnk_2c);
-            func_0200ae60(v5, v6[1], v2->mUnk_2c, v3, 3);
+            AddDataRange(v5, v6[1], v2->mUnk_2c, v3, 3);
             v3 += v2->mUnk_2c;
             FS_SeekFile(v1, v6[2] - v10, 0);
             FS_ReadFile(v1, v3, v2->mUnk_3c);
-            func_0200ae60(v5, v6[2], v2->mUnk_3c, v3, 3);
+            AddDataRange(v5, v6[2], v2->mUnk_3c, v3, 3);
             v11 = TRUE;
         } else if (v13 >= 0xcc00) {
             v10 = v1->mProp.w.mUnk_04;
             v8 = v6[1];
             FS_SeekFile(v1, v8 - v10, 0);
             FS_ReadFile(v1, v3, 0x4400);
-            func_0200ae60(v5, v8, 0x4400, v3, 3);
+            AddDataRange(v5, v8, 0x4400, v3, 3);
             FS_SeekFile(v1, v8 + 0x4400 - v10, 0);
             FS_ReadFile(v1, v3 + 0x4400, 0x4400);
-            func_0200ae60(v5, v8 + 0x4400, 0x4400, (v3 + 0x4400), 2);
+            AddDataRange(v5, v8 + 0x4400, 0x4400, (v3 + 0x4400), 2);
             FS_SeekFile(v1, v8 + 0x8800 - v10, 0);
             FS_ReadFile(v1, v3 + 0x8800, 0x4400);
-            func_0200ae60(v5, v8 + 0x8800, 0x4400, (v3 + 0x8800), 2);
+            AddDataRange(v5, v8 + 0x8800, 0x4400, (v3 + 0x8800), 2);
             v11 = TRUE;
         }
         FS_SeekFile(v1, v7, 0);
@@ -129,14 +129,14 @@ int func_02008570(FSFile *param_1, void *param_2, u32 param_3) {
                 v6 = data_usa_02161788;
                 v14[0] = v2->mUnk_20;
                 v14[1] = v2->mUnk_28 - v2->mUnk_20;
-                v14[2] = (u32) v5->mUnk_30[1].mUnk_08 - v2->mUnk_20;
+                v14[2] = (u32) v5->mUnk_30[1].mData - v2->mUnk_20;
                 v14[3] = param_3;
                 func_0200850c(v14, 0x4000, 0x8000, 1);
                 while (((s32 *) v6)[1] != 0) {
                     func_0200850c(v14, v6[0], v6[0] + v6[1], 0);
                     v6 += 2;
                 }
-                v3 = v5->mUnk_30[1].mUnk_08;
+                v3 = v5->mUnk_30[1].mData;
                 v3 += (u32) AutoloadCallback - v2->mUnk_28;
                 *(u32 *) v3 = 0xe12fff1e;
             }
