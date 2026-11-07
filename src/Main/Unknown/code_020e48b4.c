@@ -77,11 +77,11 @@ Unk020e4fc8 *func_020e4fc8(void) {
     return data_0217b7f4;
 }
 
-void func_020e4fb0(void) {
+void SetupDrawPukupuku(void) {
     func_020e6a18(gPukupuku);
 }
 
-void func_020e4ea8(u32 a, Unk020e43a8 *p, u32 b, u16 c) {
+void DrawPukupuku(u32 a, Unk020e43a8 *p, u32 b, u16 c) {
     Unk020e6488 *q;
     s32 neg;
     u32 v;

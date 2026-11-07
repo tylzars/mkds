@@ -8,7 +8,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 
 void DrawIronBall(void *a, IronBall *p);
-void func_020a9d98(void *a);
+void SetupDrawIronBall(void *a);
 void CreateIronBall(void *a);
 u32 func_020a9de4(Unk020a9224 *p, void *a, u8 *b, u8 *c);
 void InitIronBall(IronBall *p);

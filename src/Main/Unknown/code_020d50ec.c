@@ -81,7 +81,7 @@ void func_020d634c(Unk020d5bf0 *p, s32 b) {
     func_020d5dd0(p);
 }
 
-void func_020d5fb4(void *a, Unk020d5bf0 *p) {
+void UpdateRock(void *a, Unk020d5bf0 *p) {
     s32 x;
     s32 z;
     s32 d;

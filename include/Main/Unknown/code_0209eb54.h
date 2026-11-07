@@ -18,7 +18,7 @@ typedef struct Unk0209ec80 {
 /* kind 0xd objects are MapObject-sized (0xa0); the Unk0209ec80 parameter is the Picture type, only the MapObject
    part is read */
 void DrawPuddle(void *a, Unk0209ec80 *b);
-void func_0209ec00(void *a);
+void SetupDrawPuddle(void *a);
 void CreatePuddle(void *a);
 void *func_0209ec44(void);
 void *func_0209ec60(void);

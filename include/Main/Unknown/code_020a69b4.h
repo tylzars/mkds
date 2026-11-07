@@ -6,5 +6,5 @@
 
 u32 func_020a6ae4(Shine16 *p, Kart *o, u8 *a, u8 *b);
 void CreateShine16(void *a);
-void func_020a6a90(void *a);
+void SetupDrawShine16(void *a);
 void DrawShine16(void *a, Shine16 *p);

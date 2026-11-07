@@ -51,7 +51,7 @@ void CreateCrabKindData(void);
 void UpdateCrab(void *a, Crab *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
 s32 func_0209af64(s32 a, s32 b);
 s16 func_0209af80(s32 a);
-void func_0209af98(Unk0209af98 *p);
+void InitCrabObjects(Unk0209af98 *p);
 void DrawCrab(void *a, Crab *b);
 unsigned int func_0209b1f8(unsigned int p0);
 u8 CollideItemObjectWithCrab(Crab *a, Kart *b, u8 *c, u8 *d);

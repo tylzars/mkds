@@ -355,7 +355,7 @@ void DrawCoverPooHole(void *a, CoverPooHole *p) {
     DrawMapObjectModel(a, gCover, p);
 }
 
-void func_020968f4(Unk020968f4 *p) {
+void InitCoverPooHoleObjects(Unk020968f4 *p) {
     s32 i;
     CoverPooHole *o;
     Unk020f41c4_B *v1;
@@ -611,11 +611,11 @@ void CreateCoverPooHoleKindData(void) {
 }
 
 void *CreateCoverPooHoleDrawList(void) {
-    return func_0209bef0(CreateCoverPooHole, DrawCoverPooHole, NULL);
+    return CreateMapObjectDrawList2(CreateCoverPooHole, DrawCoverPooHole, NULL);
 }
 
 void *CreateCoverPooHoleUpdateList(void) {
-    return func_0209bf48(func_020968f4, UpdateCoverPooHole, NULL);
+    return CreateMapObjectUpdateList(InitCoverPooHoleObjects, UpdateCoverPooHole, NULL);
 }
 
 BOOL func_02095f38(Unk0217b498_00 *a) {

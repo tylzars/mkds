@@ -50,6 +50,6 @@ void InitNsKiller2(NsKiller2 *p);
 void func_02093cb4(void);
 void func_02093cd4(void);
 void UpdateNsKiller1(void *a, NsKiller1 *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_02093eac(MapObjectList *p);
+void InitNsKiller1Objects(MapObjectList *p);
 void DrawNsKiller1(void *a, NsKiller1 *p);
 void CreateNsKiller1(void *a);

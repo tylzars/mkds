@@ -164,7 +164,7 @@ s32 func_020a6d40(void) {
 }
 
 void *func_020a6d20(void) {
-    return func_0209bf48(func_020a6e70, func_020a6d8c, NULL);
+    return CreateMapObjectUpdateList(func_020a6e70, func_020a6d8c, NULL);
 }
 
 void func_020a6cb4(s32 a) {

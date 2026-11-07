@@ -34,7 +34,7 @@
 #include "Main/Unknown/code_02077bc0.h"
 
 void *CreatePuddleDrawList(void) {
-    return func_0209bef0(CreatePuddle, DrawPuddle, func_0209ec00);
+    return CreateMapObjectDrawList2(CreatePuddle, DrawPuddle, SetupDrawPuddle);
 }
 
 void InitFireball2(Fireball2 *a) {
@@ -107,7 +107,7 @@ void CreateFireball2(Unk0209e950 *a) {
     a->mUnk_1c = 1;
 }
 
-void func_0209e938(void *a) {
+void SetupDrawFireball2(void *a) {
     func_0209bbd0(a, gFireball2);
 }
 
@@ -195,7 +195,7 @@ void DrawFireball2(void *a, Fireball2 *b) {
     }
 }
 
-void func_0209e310(MapObjectList *p) {
+void InitFireball2Objects(MapObjectList *p) {
     s32 i;
     s32 j;
     s32 k;
@@ -301,9 +301,9 @@ void CreateFireball2KindData(void) {
 }
 
 void *CreateFireball2DrawList(void) {
-    return func_0209bef0(CreateFireball2, DrawFireball2, func_0209e938);
+    return CreateMapObjectDrawList2(CreateFireball2, DrawFireball2, SetupDrawFireball2);
 }
 
 void *CreateFireball2UpdateList(void) {
-    return func_0209bf48(func_0209e310, UpdateFireball2, NULL);
+    return CreateMapObjectUpdateList(InitFireball2Objects, UpdateFireball2, NULL);
 }

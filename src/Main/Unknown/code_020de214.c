@@ -42,7 +42,7 @@ Unk020de2d8 *func_020de2d8(void) {
     return data_0217b6e0;
 }
 
-void func_020de270(void *a, Unk020de000 *b, s32 c, u16 d) {
+void DrawWanwanChain(void *a, Unk020de000 *b, s32 c, u16 d) {
     func_020ddaa0(&b->mUnk_a4, gWanwanChain, c, d);
     if (b->mUnk_f4 == FALSE) {
         return;
@@ -50,7 +50,7 @@ void func_020de270(void *a, Unk020de000 *b, s32 c, u16 d) {
     func_020dda38(&b->mUnk_a4, gWanwanKui, &b->mUnk_04, c, d);
 }
 
-void func_020de214(void *a, Unk020de000 *b) {
+void UpdateWanwanChain(void *a, Unk020de000 *b) {
     Vec3 v;
     Wanwan *p;
 

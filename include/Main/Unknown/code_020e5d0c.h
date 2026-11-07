@@ -23,8 +23,8 @@ typedef struct Unk020e5e24_98 {
     /* 10 */ s32 mUnk_10;
 } Unk020e5e24_98;
 
-// Object handled by func_020e5e24, func_020e5fb4, func_020e61a8 and
-// func_020e630c; at least 0x110 bytes.
+// Object handled by func_020e5e24, func_020e5fb4, UpdatePendulum and
+// DrawPendulum; at least 0x110 bytes.
 typedef struct Unk020e5e24 {
     /* 00 */ u8 mUnk_00[0x04];
     /* 04 */ Vec3 mUnk_04;
@@ -94,15 +94,15 @@ typedef struct Unk020e6514_8 {
     /* 08 */ NNSG3dMatAnmResult mUnk_08;
 } Unk020e6514_8;
 
-void func_020e5d0c(void);
+void SetupDrawObPakkunSf(void);
 Unk020e59e4 *func_020e5d24(void);
 Unk020e5a40 *func_020e5d78(void);
 Unk020e5a9c *func_020e5dd4(void);
 void func_020e5e24(Unk020e5e24 *p, Unk020e5e24_2 *q);
 void CreatePendulumAndPendulumShadow(void);
 BOOL func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out);
-void func_020e61a8(u32 param_1, Unk020e5e24 *a);
-void func_020e630c(u32 param_1, Unk020e5e24 *a, u32 param_3, u32 param_4);
+void UpdatePendulum(u32 param_1, Unk020e5e24 *a);
+void DrawPendulum(u32 param_1, Unk020e5e24 *a, u32 param_3, u32 param_4);
 Unk020e59e4 *func_020e6380(void);
 Unk020e5a40 *func_020e63dc(void);
 Unk020e5a9c *func_020e6438(void);

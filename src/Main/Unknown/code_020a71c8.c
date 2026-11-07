@@ -211,7 +211,7 @@ void DrawSanbo(void *a, Sanbo *p) {
     }
 }
 
-void func_020a78c8(MapObjectList *l) {
+void InitSanboObjects(MapObjectList *l) {
     s32 j;
     s32 i;
     Sanbo *o;
@@ -398,11 +398,11 @@ void func_020a737c(void) {
 }
 
 void *func_020a7358(void) {
-    return func_0209bef0(CreateSanboHAndSanboB, DrawSanbo, func_020a7eb0);
+    return CreateMapObjectDrawList2(CreateSanboHAndSanboB, DrawSanbo, func_020a7eb0);
 }
 
 void *func_020a7338(void) {
-    return func_0209bf48(func_020a78c8, UpdateSanbo, NULL);
+    return CreateMapObjectUpdateList(InitSanboObjects, UpdateSanbo, NULL);
 }
 
 BOOL func_020a72c8(u16 a, u16 b) {

@@ -54,12 +54,12 @@ typedef struct Unk021000d0 {
     /* 04 */ s32 mObjectSize;
     /* 08 */ void (*mInitObject)(MapObject *a, struct CourseMapRow *b, void *c);
     /* 0c */ MapObjectKindData *(*mCreateKindData)(void);
-    /* 10 */ MapObjectList *(*mUnk_10)(void);
-    /* 14 */ MapObjectList *(*mUnk_14)(void);
-    /* 18 */ MapObjectList *(*mUnk_18)(void);
-    /* 1c */ MapObjectList *(*mUnk_1c)(void);
+    /* 10 */ MapObjectList *(*mCreateDrawList0)(void);
+    /* 14 */ MapObjectList *(*mCreateDrawList1)(void);
+    /* 18 */ MapObjectList *(*mCreateDrawList2)(void);
+    /* 1c */ MapObjectList *(*mCreateUpdateList)(void);
     /* 20 */ MapObjectKindData *mKindData;
-    /* 24 */ MapObjectList *mUnk_24[4];
+    /* 24 */ MapObjectList *mLists[4];
 } Unk021000d0;
 
 void *func_02100138(u32 a);

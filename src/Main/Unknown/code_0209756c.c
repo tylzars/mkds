@@ -321,9 +321,9 @@ void CreateFlipperKindData(void) {
 }
 
 void *CreateFlipperDrawList(void) {
-    return func_0209bf1c(CreateFlipper, DrawFlipper, NULL);
+    return CreateMapObjectDrawList1(CreateFlipper, DrawFlipper, NULL);
 }
 
 void *CreateFlipperUpdateList(void) {
-    return func_0209bf48(InitFlipperObjects, UpdateFlipper, NULL);
+    return CreateMapObjectUpdateList(InitFlipperObjects, UpdateFlipper, NULL);
 }

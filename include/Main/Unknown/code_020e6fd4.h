@@ -53,7 +53,7 @@ typedef struct MapObject {
     // component directly). x is the radius given to the collision slot, and the Vec3 length is the bounding radius.
     /* 58 */ Vec3 mExtent;
     // Index of the object's entry in the table of collision shapes (0x100 entries of position, radius, mask and
-    // object), or -1 when its kind record word at 0x08 is 0 or the table was full. func_020e4ea8 also reads its lowest
+    // object), or -1 when its kind record word at 0x08 is 0 or the table was full. DrawPukupuku also reads its lowest
     // bit as a mirror flag for the model.
     /* 64 */ s16 mCollisionSlotIndex;
     // Alpha of the object, 0 to 0x1f. The visibility pass lowers it by 1 per call while mDistanceSquaredAndFlags bit 0
@@ -104,14 +104,16 @@ typedef struct Unk020e730c {
     /* a2 */ u16 mUnk_a2;
 } Unk020e730c;
 
+// Objects drawn or updated together: mInit runs once when the lists are set up, mBeforeObjects and mAfterObjects run
+// around the loop over the objects, mForEachObject runs for each object.
 typedef struct MapObjectList {
     /* 00 */ void **mMapObjects;
     /* 04 */ u16 mMapObjectCount;
     /* 06 */ u8 mUnk_06[2];
-    /* 08 */ void (*mUnk_08)(struct MapObjectList *p);
-    /* 0c */ void (*mUnk_0c)(struct MapObjectList *p);
-    /* 10 */ UnkFunc *mUnk_10;
-    /* 14 */ void (*mUnk_14)(struct MapObjectList *p);
+    /* 08 */ void (*mInit)(struct MapObjectList *p);
+    /* 0c */ void (*mBeforeObjects)(struct MapObjectList *p);
+    /* 10 */ UnkFunc *mForEachObject;
+    /* 14 */ void (*mAfterObjects)(struct MapObjectList *p);
     /* 18 */ s32 mUnk_18;
     /* 1c */ s32 (*mUnk_1c)(MapObject *e, void *a, void *b, void *c);
     /* 20 */ s32 mUnk_20;

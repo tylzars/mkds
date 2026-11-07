@@ -49,5 +49,5 @@ void *func_020e3850(void);
 void *func_020e37f4(void);
 void *func_020e3798(void);
 void *func_020e373c(void);
-void func_020e3724(void);
-void func_020e3618(s32 a, Unk020e1e98 *b, s32 c, u16 d);
+void SetupDrawChoropu(void);
+void DrawChoropu(s32 a, Unk020e1e98 *b, s32 c, u16 d);

@@ -90,7 +90,7 @@ void DrawMissionGate(void *a, MissionGateObject *b) {
     DrawMapObjectModel(a, gMissionGate, b);
 }
 
-void func_ov001_02185c4c(Unk02185c4c *a) {
+void InitMissionGateObjects(Unk02185c4c *a) {
     s32 i;
     MissionGateObject *e;
 
@@ -134,9 +134,9 @@ void func_ov001_02185b98(void) {
 }
 
 void func_ov001_02185b7c(void) {
-    func_0209bf1c(LoadMissionGate, DrawMissionGate, func_ov001_02185d18);
+    CreateMapObjectDrawList1(LoadMissionGate, DrawMissionGate, func_ov001_02185d18);
 }
 
 void func_ov001_02185b64(void) {
-    func_0209bf48(func_ov001_02185c4c, UpdateMissionGate, NULL);
+    CreateMapObjectUpdateList(InitMissionGateObjects, UpdateMissionGate, NULL);
 }

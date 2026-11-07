@@ -46,7 +46,7 @@ void CreateMkdEfBurner(Unk02093708 *p) {
     p->mUnk_1c = 1;
 }
 
-void func_020936f0(void *a) {
+void SetupDrawMkdEfBurner(void *a) {
     func_0209bbd0(a, gMkdEfBurner);
 }
 
@@ -75,7 +75,7 @@ void DrawMkdEfBurner(void *a, MkdEfBurner *p) {
     DrawMapObjectModel(a, gMkdEfBurner, p);
 }
 
-void func_02093484(MapObjectList *p) {
+void InitMkdEfBurnerObjects(MapObjectList *p) {
     BOOL z;
     s32 i;
     MkdEfBurner *e;
@@ -182,11 +182,11 @@ void CreateMkdEfBurnerKindData(void) {
 }
 
 void CreateMkdEfBurnerDrawList(void) {
-    func_0209bf1c(&CreateMkdEfBurner, &DrawMkdEfBurner, &func_020936f0);
+    CreateMapObjectDrawList1(&CreateMkdEfBurner, &DrawMkdEfBurner, &SetupDrawMkdEfBurner);
 }
 
 void CreateMkdEfBurnerUpdateList(void) {
-    func_0209bf48(&func_02093484, &UpdateMkdEfBurner, NULL);
+    CreateMapObjectUpdateList(&InitMkdEfBurnerObjects, &UpdateMkdEfBurner, NULL);
 }
 
 u16 func_020931ac(Unk0217b498_00 *a) {

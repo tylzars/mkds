@@ -52,4 +52,4 @@ void func_020de6a8(Unk020de6a8 *a, Unk020de6a8_1 *b);
 Unk020de390 *func_020de658(void);
 Unk020de334 *func_020de5fc(void);
 Unk020de2d8 *func_020de5a0(void);
-void func_020de588(void);
+void SetupDrawEarthenPipe(void);

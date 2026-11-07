@@ -194,7 +194,7 @@ void func_ov001_0218cfe8(Unk02188950 *a) {
     func_ov001_02188e24(a, a->mPrm->mUnk_054, &func_ov001_0218d0a8);
 }
 
-void func_ov001_0218cf94(Unk0218d87c *a) {
+void InitHanachanObjects(Unk0218d87c *a) {
     int i;
     Unk02188950 *p;
 
@@ -211,7 +211,7 @@ void func_ov001_0218cf94(Unk0218d87c *a) {
     SetStandingsEndCallback((void (*)(void)) func_ov001_0218d280);
 }
 
-void func_ov001_0218cedc(u32 a, Unk02188950 *b) {
+void UpdateHanachan(u32 a, Unk02188950 *b) {
     int r;
 
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
@@ -336,7 +336,7 @@ void func_ov001_0218cbdc(Unk02188950 *a, Unk02188950_a0 *b) {
     func_ov001_02188200(a, func_ov001_0218cbdc);
 }
 
-void func_ov001_0218cb14(Unk0218d87c *a) {
+void InitHanachan(Unk0218d87c *a) {
     Unk02188950 *obj;
     s32 i;
 
@@ -447,11 +447,11 @@ void func_ov001_0218c830(void) {
 }
 
 void *func_ov001_0218c818(void) {
-    return func_0209bf1c(func_ov001_0218cb14, func_ov001_0218c85c, NULL);
+    return CreateMapObjectDrawList1(InitHanachan, func_ov001_0218c85c, NULL);
 }
 
 void *func_ov001_0218c800(void) {
-    return func_0209bf48(func_ov001_0218cf94, func_ov001_0218cedc, NULL);
+    return CreateMapObjectUpdateList(InitHanachanObjects, UpdateHanachan, NULL);
 }
 
 void func_ov001_0218c7d4(void) {
@@ -462,9 +462,9 @@ void func_ov001_0218c7d4(void) {
 }
 
 void *func_ov001_0218c7b8(void) {
-    return func_0209bf1c(func_ov001_0218c87c, func_ov001_0218c85c, func_ov001_02187098);
+    return CreateMapObjectDrawList1(func_ov001_0218c87c, func_ov001_0218c85c, func_ov001_02187098);
 }
 
 void *func_ov001_0218c7a0(void) {
-    return func_0209bf48(func_ov001_0218ce90, func_ov001_0218ce30, NULL);
+    return CreateMapObjectUpdateList(func_ov001_0218ce90, func_ov001_0218ce30, NULL);
 }

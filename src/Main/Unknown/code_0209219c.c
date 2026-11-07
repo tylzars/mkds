@@ -72,7 +72,7 @@ void CreateBasabasa(void *a) {
     SetMapObjectModelPolygonId(gBasabasa, 0x3f);
 }
 
-void func_02092928(void *a) {
+void SetupDrawBasabasa(void *a) {
     func_0209bbd0(a, gBasabasa);
 }
 
@@ -196,11 +196,11 @@ static inline u16 func_0209219c_inline(u32 n) {
 }
 
 void CreateBasabasaDrawList(void) {
-    func_0209bef0(CreateBasabasa, DrawBasabasa, func_02092928);
+    CreateMapObjectDrawList2(CreateBasabasa, DrawBasabasa, SetupDrawBasabasa);
 }
 
 void CreateBasabasaUpdateList(void) {
-    func_0209bf48(NULL, UpdateBasabasa, NULL);
+    CreateMapObjectUpdateList(NULL, UpdateBasabasa, NULL);
 }
 
 void StartBasabasa(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {

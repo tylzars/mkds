@@ -55,7 +55,7 @@ typedef struct Unk02156adc {
 
 void func_020d6538(Unk020d6538_a *p0, Unk020d634c *p1);
 void func_020d655c(void *a, Unk020d655c *b, void *c, s32 d);
-void func_020d673c(void);
+void SetupDrawRock(void);
 Unk0217b654 *func_020d6794(void);
 Unk0217b650 *func_020d67f0(void);
 Unk0217b650 *func_020d6850(void);

@@ -378,7 +378,7 @@ void UpdateMapObjectList(MapObjectList *p) {
     s32 n;
     void **arr;
 
-    cb = p->mUnk_10;
+    cb = p->mForEachObject;
     n = p->mMapObjectCount;
     arr = p->mMapObjects;
     if (cb == NULL) {

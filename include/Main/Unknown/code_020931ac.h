@@ -34,9 +34,9 @@ void CreateMkdEfBurnerUpdateList(void);
 void CreateMkdEfBurnerDrawList(void);
 void CreateMkdEfBurnerKindData(void);
 void UpdateMkdEfBurner(void *a, MkdEfBurner *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_02093484(MapObjectList *p);
+void InitMkdEfBurnerObjects(MapObjectList *p);
 void DrawMkdEfBurner(void *a, MkdEfBurner *p);
-void func_020936f0(void *a);
+void SetupDrawMkdEfBurner(void *a);
 void CreateMkdEfBurner(Unk02093708 *p); /* also sets word +0x1c of the group record to 1 */
 u8 CollideKartWithMkdEfBurner(MkdEfBurner *a, Kart *b, u8 *c, u8 *d);
 void InitMkdEfBurner(MapObject *arg0); /* allocates the object's sound source (CreateMapObjectSoundSourceFalloff2) */

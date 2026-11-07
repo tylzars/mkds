@@ -11,7 +11,7 @@ void func_ov001_02185b64(void);
 void func_ov001_02185b7c(void);
 void func_ov001_02185b98(void);
 void UpdateMissionGate(void *a, MissionGateObject *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_ov001_02185c4c(Unk02185c4c *a);
+void InitMissionGateObjects(Unk02185c4c *a);
 void DrawMissionGate(void *a, MissionGateObject *b);
 void func_ov001_02185d18(void);
 void LoadMissionGate(void *a);

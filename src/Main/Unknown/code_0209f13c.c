@@ -105,11 +105,11 @@ void UpdateChandelier(void *a, Unk0209f1c8 *b) {
 }
 
 void *CreateChandelierDrawList(void) {
-    return func_0209bf1c(CreateChandelier, DrawChandelier, NULL);
+    return CreateMapObjectDrawList1(CreateChandelier, DrawChandelier, NULL);
 }
 
 void *CreateChandelierUpdateList(void) {
-    return func_0209bf48(InitChandelierObjects, UpdateChandelier, NULL);
+    return CreateMapObjectUpdateList(InitChandelierObjects, UpdateChandelier, NULL);
 }
 
 void CreateRainStar(void *a) {
@@ -151,9 +151,9 @@ void UpdateRainStar(void *a, Unk0209f1c8 *b) {
 }
 
 void *CreateRainStarDrawList(void) {
-    return func_0209bf1c(CreateRainStar, DrawRainStar, NULL);
+    return CreateMapObjectDrawList1(CreateRainStar, DrawRainStar, NULL);
 }
 
 void *CreateRainStarUpdateList(void) {
-    return func_0209bf48(NULL, UpdateRainStar, NULL);
+    return CreateMapObjectUpdateList(NULL, UpdateRainStar, NULL);
 }

@@ -57,7 +57,7 @@ void func_020a9c54(void *a, IronBall *p, u32 c, u32 d) {
     func_020e53ac(&p->mUnk_0e8, NULL, c, d);
 }
 
-void func_020a9a5c(Unk020a9a5c *p) {
+void InitIronBallObjects(Unk020a9a5c *p) {
     s32 i;
     IronBall *o;
     u32 z0;
@@ -327,15 +327,15 @@ void func_020a9224(void) {
 }
 
 void *func_020a9204(void) {
-    return func_0209bf1c(func_020a9cd0, func_020a9c54, NULL);
+    return CreateMapObjectDrawList1(func_020a9cd0, func_020a9c54, NULL);
 }
 
 void *func_020a91e0(void) {
-    return func_0209bef0(CreateIronBall, DrawIronBall, func_020a9d98);
+    return CreateMapObjectDrawList2(CreateIronBall, DrawIronBall, SetupDrawIronBall);
 }
 
 void *func_020a91c0(void) {
-    return func_0209bf48(func_020a9a5c, UpdateIronBall, NULL);
+    return CreateMapObjectUpdateList(InitIronBallObjects, UpdateIronBall, NULL);
 }
 
 void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {

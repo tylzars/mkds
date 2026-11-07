@@ -217,7 +217,7 @@ void func_0209d800(void) {
 }
 
 void func_0209d7e0(void) {
-    func_0209bf48(&func_0209dd40, &func_0209d84c, NULL);
+    CreateMapObjectUpdateList(&func_0209dd40, &func_0209d84c, NULL);
 }
 
 void func_0209d694(Vec3 *a, Vec3 *b) {

@@ -75,7 +75,7 @@ void CreateIronBall(void *a) {
     SetMapObjectModelPolygonId(gIronBall, 0x3f);
 }
 
-void func_020a9d98(void *a) {
+void SetupDrawIronBall(void *a) {
     func_0209bbd0(a, gIronBall);
 }
 

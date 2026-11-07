@@ -122,11 +122,11 @@ void *func_020e373c(void) {
     return data_0217b7b4;
 }
 
-void func_020e3724(void) {
+void SetupDrawChoropu(void) {
     func_020e6a18(gChoropu);
 }
 
-void func_020e3618(s32 a, Unk020e1e98 *b, s32 c, u16 d) {
+void DrawChoropu(s32 a, Unk020e1e98 *b, s32 c, u16 d) {
     MtxFx43 *p;
 
     switch (b->mUnk_000.mStateMachine.mState) {

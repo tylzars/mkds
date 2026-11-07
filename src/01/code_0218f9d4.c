@@ -1270,7 +1270,7 @@ void func_ov001_0218fc4c(u32 a, Unk02188950 *b) {
     func_ov001_021864ac(a, b);
 }
 
-void func_ov001_0218fbe0(Unk0218fa78 *a) {
+void InitIwanteObjects(Unk0218fa78 *a) {
     int i;
     Unk02188950 *obj;
 
@@ -1354,13 +1354,13 @@ void func_ov001_0218fa20(void) {
 }
 
 void *func_ov001_0218fa04(void) {
-    return func_0209bf1c(InitIwante, func_ov001_0218fa58, func_ov001_02187098);
+    return CreateMapObjectDrawList1(InitIwante, func_ov001_0218fa58, func_ov001_02187098);
 }
 
 void *func_ov001_0218f9ec(void) {
-    return func_0209bf48(func_ov001_0218fbe0, UpdateIwante, NULL);
+    return CreateMapObjectUpdateList(InitIwanteObjects, UpdateIwante, NULL);
 }
 
 void *func_ov001_0218f9d4(void) {
-    return func_0209bf48(func_ov001_0218fcc4, func_ov001_0218fc4c, NULL);
+    return CreateMapObjectUpdateList(func_ov001_0218fcc4, func_ov001_0218fc4c, NULL);
 }

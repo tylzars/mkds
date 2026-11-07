@@ -187,5 +187,5 @@ void func_02092b5c(void *a, Unk020919e8 *p) {
 }
 
 void func_02092b3c(void) {
-    func_0209bf48(func_020930c8, func_02092b5c, NULL);
+    CreateMapObjectUpdateList(func_020930c8, func_02092b5c, NULL);
 }

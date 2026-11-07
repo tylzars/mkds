@@ -50,7 +50,7 @@ void CreateSmanTop(void *a) {
     SetMapObjectModelPolygonId(p, 0x3f);
 }
 
-void func_02091784(void *a) {
+void SetupDrawSmanTop(void *a) {
     func_0209bbd0(a, gSmanTop);
 }
 
@@ -79,7 +79,7 @@ void CreateSmanBottom(void *a) {
     SetMapObjectModelPolygonId(p, 0x3f);
 }
 
-void func_02091654(void *a) {
+void SetupDrawSmanBottom(void *a) {
     func_0209bbd0(a, gSmanBottom);
 }
 
@@ -99,7 +99,7 @@ void DrawSmanBottom(void *a, Sman *sman) {
     DrawMapObjectModel(a, gSmanBottom, sman);
 }
 
-void func_0209151c(Unk0209151c *a) {
+void InitSmanObjects(Unk0209151c *a) {
     s32 i;
     Sman *p;
     if (a == NULL) {
@@ -229,15 +229,15 @@ static inline BOOL func_02090940_inline(void) {
 }
 
 void *CreateSmanTopDrawList(void) {
-    return func_0209bef0(CreateSmanTop, DrawSmanTop, func_02091784);
+    return CreateMapObjectDrawList2(CreateSmanTop, DrawSmanTop, SetupDrawSmanTop);
 }
 
 void *CreateSmanBottomDrawList(void) {
-    return func_0209bef0(CreateSmanBottom, DrawSmanBottom, func_02091654);
+    return CreateMapObjectDrawList2(CreateSmanBottom, DrawSmanBottom, SetupDrawSmanBottom);
 }
 
 void *CreateSmanUpdateList(void) {
-    return func_0209bf48(func_0209151c, UpdateSman, NULL);
+    return CreateMapObjectUpdateList(InitSmanObjects, UpdateSman, NULL);
 }
 
 static inline BOOL func_02090cf8_inline(s32 a, s32 b) {

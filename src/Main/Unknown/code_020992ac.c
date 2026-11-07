@@ -76,7 +76,7 @@ void CreateBeachTree1(void *a) {
     SetMapObjectModelPolygonId(gBeachTree1, 0x3f);
 }
 
-void func_0209a6dc(void *a) {
+void SetupDrawBeachTree1(void *a) {
     func_0209bbd0(a, gBeachTree1);
 }
 
@@ -92,7 +92,7 @@ void DrawBeachTree1(u32 a, MapObject *b) {
 }
 
 void *CreateBeachTree1DrawList(void) {
-    return func_0209bef0(CreateBeachTree1, DrawBeachTree1, func_0209a6dc);
+    return CreateMapObjectDrawList2(CreateBeachTree1, DrawBeachTree1, SetupDrawBeachTree1);
 }
 
 void CreateOpaTree1(void *a) {
@@ -100,7 +100,7 @@ void CreateOpaTree1(void *a) {
     SetMapObjectModelPolygonId(gOpaTree1, 0x3f);
 }
 
-void func_0209a5f8(void *a) {
+void SetupDrawOpaTree1(void *a) {
     func_0209bbd0(a, gOpaTree1);
 }
 
@@ -116,7 +116,7 @@ void DrawOpaTree1(u32 a, MapObject *b) {
 }
 
 void *CreateOpaTree1DrawList(void) {
-    return func_0209bef0(CreateOpaTree1, DrawOpaTree1, func_0209a5f8);
+    return CreateMapObjectDrawList2(CreateOpaTree1, DrawOpaTree1, SetupDrawOpaTree1);
 }
 
 void CreateOlgMush1(void *a) {
@@ -124,7 +124,7 @@ void CreateOlgMush1(void *a) {
     SetMapObjectModelPolygonId(gOlgMush1, 0x3f);
 }
 
-void func_0209a514(void *a) {
+void SetupDrawOlgMush1(void *a) {
     func_0209bbd0(a, gOlgMush1);
 }
 
@@ -140,7 +140,7 @@ void DrawOlgMush1(u32 a, MapObject *b) {
 }
 
 void *CreateOlgMush1DrawList(void) {
-    return func_0209bef0(CreateOlgMush1, DrawOlgMush1, func_0209a514);
+    return CreateMapObjectDrawList2(CreateOlgMush1, DrawOlgMush1, SetupDrawOlgMush1);
 }
 
 void CreateOlgPipe1(void *a) {
@@ -148,7 +148,7 @@ void CreateOlgPipe1(void *a) {
     SetMapObjectModelPolygonId(gOlgPipe1, 0x3f);
 }
 
-void func_0209a430(void *a) {
+void SetupDrawOlgPipe1(void *a) {
     func_0209bbd0(a, gOlgPipe1);
 }
 
@@ -164,7 +164,7 @@ void DrawOlgPipe1(u32 a, MapObject *b) {
 }
 
 void *CreateOlgPipe1DrawList(void) {
-    return func_0209bef0(CreateOlgPipe1, DrawOlgPipe1, func_0209a430);
+    return CreateMapObjectDrawList2(CreateOlgPipe1, DrawOlgPipe1, SetupDrawOlgPipe1);
 }
 
 void CreateOf6yoshi1(void *a) {
@@ -172,7 +172,7 @@ void CreateOf6yoshi1(void *a) {
     SetMapObjectModelPolygonId(gOf6yoshi1, 0x3f);
 }
 
-void func_0209a34c(void *a) {
+void SetupDrawOf6yoshi1(void *a) {
     func_0209bbd0(a, gOf6yoshi1);
 }
 
@@ -188,7 +188,7 @@ void DrawOf6yoshi1(u32 a, MapObject *b) {
 }
 
 void *CreateOf6yoshi1DrawList(void) {
-    return func_0209bef0(CreateOf6yoshi1, DrawOf6yoshi1, func_0209a34c);
+    return CreateMapObjectDrawList2(CreateOf6yoshi1, DrawOf6yoshi1, SetupDrawOf6yoshi1);
 }
 
 void CreateNsCannon1(void *a) {
@@ -196,7 +196,7 @@ void CreateNsCannon1(void *a) {
     SetMapObjectModelPolygonId(gNsCannon1, 0x3f);
 }
 
-void func_0209a268(void *a) {
+void SetupDrawNsCannon1(void *a) {
     func_0209bbd0(a, gNsCannon1);
 }
 
@@ -212,7 +212,7 @@ void DrawNsCannon1(u32 a, MapObject *b) {
 }
 
 void *CreateNsCannon1DrawList(void) {
-    return func_0209bef0(CreateNsCannon1, DrawNsCannon1, func_0209a268);
+    return CreateMapObjectDrawList2(CreateNsCannon1, DrawNsCannon1, SetupDrawNsCannon1);
 }
 
 void CreateCrossTree1(void *a) {
@@ -220,7 +220,7 @@ void CreateCrossTree1(void *a) {
     SetMapObjectModelPolygonId(gCrossTree1, 0x3f);
 }
 
-void func_0209a184(void *a) {
+void SetupDrawCrossTree1(void *a) {
     func_0209bbd0(a, gCrossTree1);
 }
 
@@ -236,7 +236,7 @@ void DrawCrossTree1(u32 a, MapObject *b) {
 }
 
 void *CreateCrossTree1DrawList(void) {
-    return func_0209bef0(CreateCrossTree1, DrawCrossTree1, func_0209a184);
+    return CreateMapObjectDrawList2(CreateCrossTree1, DrawCrossTree1, SetupDrawCrossTree1);
 }
 
 void CreateBankTree1(void *a) {
@@ -244,7 +244,7 @@ void CreateBankTree1(void *a) {
     SetMapObjectModelPolygonId(gBankTree1, 0x3f);
 }
 
-void func_0209a0a0(void *a) {
+void SetupDrawBankTree1(void *a) {
     func_0209bbd0(a, gBankTree1);
 }
 
@@ -260,7 +260,7 @@ void DrawBankTree1(u32 a, MapObject *b) {
 }
 
 void *CreateBankTree1DrawList(void) {
-    return func_0209bef0(CreateBankTree1, DrawBankTree1, func_0209a0a0);
+    return CreateMapObjectDrawList2(CreateBankTree1, DrawBankTree1, SetupDrawBankTree1);
 }
 
 void CreateGardenTree1(void *a) {
@@ -268,7 +268,7 @@ void CreateGardenTree1(void *a) {
     SetMapObjectModelPolygonId(gGardenTree1, 0x3f);
 }
 
-void func_02099fbc(void *a) {
+void SetupDrawGardenTree1(void *a) {
     func_0209bbd0(a, gGardenTree1);
 }
 
@@ -284,7 +284,7 @@ void DrawGardenTree1(u32 a, MapObject *b) {
 }
 
 void *CreateGardenTree1DrawList(void) {
-    return func_0209bef0(CreateGardenTree1, DrawGardenTree1, func_02099fbc);
+    return CreateMapObjectDrawList2(CreateGardenTree1, DrawGardenTree1, SetupDrawGardenTree1);
 }
 
 void CreateTownTree1(void *a) {
@@ -292,7 +292,7 @@ void CreateTownTree1(void *a) {
     SetMapObjectModelPolygonId(gTownTree1, 0x3f);
 }
 
-void func_02099ed8(void *a) {
+void SetupDrawTownTree1(void *a) {
     func_0209bbd0(a, gTownTree1);
 }
 
@@ -308,7 +308,7 @@ void DrawTownTree1(u32 a, MapObject *b) {
 }
 
 void CreateTownTree1DrawList(void) {
-    func_0209bef0(CreateTownTree1, DrawTownTree1, func_02099ed8);
+    CreateMapObjectDrawList2(CreateTownTree1, DrawTownTree1, SetupDrawTownTree1);
 }
 
 void CreateMarioTree3(void *a) {
@@ -316,7 +316,7 @@ void CreateMarioTree3(void *a) {
     SetMapObjectModelPolygonId(gMarioTree3, 0x3f);
 }
 
-void func_02099df4(void *a) {
+void SetupDrawMarioTree3(void *a) {
     func_0209bbd0(a, gMarioTree3);
 }
 
@@ -332,7 +332,7 @@ void DrawMarioTree3(u32 a, MapObject *b) {
 }
 
 void CreateMarioTree3DrawList(void) {
-    func_0209bef0(CreateMarioTree3, DrawMarioTree3, func_02099df4);
+    CreateMapObjectDrawList2(CreateMarioTree3, DrawMarioTree3, SetupDrawMarioTree3);
 }
 
 void CreateSnowTree1(void *a) {
@@ -340,7 +340,7 @@ void CreateSnowTree1(void *a) {
     SetMapObjectModelPolygonId(gSnowTree1, 0x3f);
 }
 
-void func_02099d10(void *a) {
+void SetupDrawSnowTree1(void *a) {
     func_0209bbd0(a, gSnowTree1);
 }
 
@@ -356,7 +356,7 @@ void DrawSnowTree1(u32 a, MapObject *b) {
 }
 
 void CreateSnowTree1DrawList(void) {
-    func_0209bef0(CreateSnowTree1, DrawSnowTree1, func_02099d10);
+    CreateMapObjectDrawList2(CreateSnowTree1, DrawSnowTree1, SetupDrawSnowTree1);
 }
 
 void CreateDeTree1(void *a) {
@@ -364,7 +364,7 @@ void CreateDeTree1(void *a) {
     SetMapObjectModelPolygonId(gDeTree1, 0x3f);
 }
 
-void func_02099c2c(void *a) {
+void SetupDrawDeTree1(void *a) {
     func_0209bbd0(a, gDeTree1);
 }
 
@@ -380,7 +380,7 @@ void DrawDeTree1(u32 a, MapObject *b) {
 }
 
 void CreateDeTree1DrawList(void) {
-    func_0209bef0(CreateDeTree1, DrawDeTree1, func_02099c2c);
+    CreateMapObjectDrawList2(CreateDeTree1, DrawDeTree1, SetupDrawDeTree1);
 }
 
 void CreateOlaTree1c(void *a) {
@@ -388,7 +388,7 @@ void CreateOlaTree1c(void *a) {
     SetMapObjectModelPolygonId(gOlaTree1c, 0x3f);
 }
 
-void func_02099b48(void *a) {
+void SetupDrawOlaTree1c(void *a) {
     func_0209bbd0(a, gOlaTree1c);
 }
 
@@ -404,7 +404,7 @@ void DrawOlaTree1c(u32 a, MapObject *b) {
 }
 
 void CreateOlaTree1cDrawList(void) {
-    func_0209bef0(CreateOlaTree1c, DrawOlaTree1c, func_02099b48);
+    CreateMapObjectDrawList2(CreateOlaTree1c, DrawOlaTree1c, SetupDrawOlaTree1c);
 }
 
 void CreateOsaTree1c(void *a) {
@@ -412,7 +412,7 @@ void CreateOsaTree1c(void *a) {
     SetMapObjectModelPolygonId(gOsaTree1c, 0x3f);
 }
 
-void func_02099a64(void *a) {
+void SetupDrawOsaTree1c(void *a) {
     func_0209bbd0(a, gOsaTree1c);
 }
 
@@ -428,7 +428,7 @@ void DrawOsaTree1c(u32 a, MapObject *b) {
 }
 
 void CreateOsaTree1cDrawList(void) {
-    func_0209bef0(CreateOsaTree1c, DrawOsaTree1c, func_02099a64);
+    CreateMapObjectDrawList2(CreateOsaTree1c, DrawOsaTree1c, SetupDrawOsaTree1c);
 }
 
 void CreateKinoHouse1(void *a) {
@@ -436,7 +436,7 @@ void CreateKinoHouse1(void *a) {
     SetMapObjectModelPolygonId(gKinoHouse1, 0x3f);
 }
 
-void func_02099980(void *a) {
+void SetupDrawKinoHouse1(void *a) {
     func_0209bbd0(a, gKinoHouse1);
 }
 
@@ -452,7 +452,7 @@ void DrawKinoHouse1(u32 a, MapObject *b) {
 }
 
 void CreateKinoHouse1DrawList(void) {
-    func_0209bef0(CreateKinoHouse1, DrawKinoHouse1, func_02099980);
+    CreateMapObjectDrawList2(CreateKinoHouse1, DrawKinoHouse1, SetupDrawKinoHouse1);
 }
 
 void CreateKinoHouse2(void *a) {
@@ -460,7 +460,7 @@ void CreateKinoHouse2(void *a) {
     SetMapObjectModelPolygonId(gKinoHouse2, 0x3f);
 }
 
-void func_0209989c(void *a) {
+void SetupDrawKinoHouse2(void *a) {
     func_0209bbd0(a, gKinoHouse2);
 }
 
@@ -476,7 +476,7 @@ void DrawKinoHouse2(u32 a, MapObject *b) {
 }
 
 void CreateKinoHouse2DrawList(void) {
-    func_0209bef0(CreateKinoHouse2, DrawKinoHouse2, func_0209989c);
+    CreateMapObjectDrawList2(CreateKinoHouse2, DrawKinoHouse2, SetupDrawKinoHouse2);
 }
 
 void CreateKinoMount1(void *a) {
@@ -484,7 +484,7 @@ void CreateKinoMount1(void *a) {
     SetMapObjectModelPolygonId(gKinoMount1, 0x3f);
 }
 
-void func_020997b8(void *a) {
+void SetupDrawKinoMount1(void *a) {
     func_0209bbd0(a, gKinoMount1);
 }
 
@@ -500,7 +500,7 @@ void DrawKinoMount1(u32 a, MapObject *b) {
 }
 
 void CreateKinoMount1DrawList(void) {
-    func_0209bef0(CreateKinoMount1, DrawKinoMount1, func_020997b8);
+    CreateMapObjectDrawList2(CreateKinoMount1, DrawKinoMount1, SetupDrawKinoMount1);
 }
 
 void CreateKinoMount2(void *a) {
@@ -508,7 +508,7 @@ void CreateKinoMount2(void *a) {
     SetMapObjectModelPolygonId(gKinoMount2, 0x3f);
 }
 
-void func_020996d4(void *a) {
+void SetupDrawKinoMount2(void *a) {
     func_0209bbd0(a, gKinoMount2);
 }
 
@@ -524,7 +524,7 @@ void DrawKinoMount2(u32 a, MapObject *b) {
 }
 
 void CreateKinoMount2DrawList(void) {
-    func_0209bef0(CreateKinoMount2, DrawKinoMount2, func_020996d4);
+    CreateMapObjectDrawList2(CreateKinoMount2, DrawKinoMount2, SetupDrawKinoMount2);
 }
 
 void CreateOm6Tree1(void *a) {
@@ -532,7 +532,7 @@ void CreateOm6Tree1(void *a) {
     SetMapObjectModelPolygonId(gOm6Tree1, 0x3f);
 }
 
-void func_020995f0(void *a) {
+void SetupDrawOm6Tree1(void *a) {
     func_0209bbd0(a, gOm6Tree1);
 }
 
@@ -548,7 +548,7 @@ void DrawOm6Tree1(u32 a, MapObject *b) {
 }
 
 void CreateOm6Tree1DrawList(void) {
-    func_0209bef0(CreateOm6Tree1, DrawOm6Tree1, func_020995f0);
+    CreateMapObjectDrawList2(CreateOm6Tree1, DrawOm6Tree1, SetupDrawOm6Tree1);
 }
 
 void CreateOf6Tree1(void *a) {
@@ -556,7 +556,7 @@ void CreateOf6Tree1(void *a) {
     SetMapObjectModelPolygonId(gOf6Tree1, 0x3f);
 }
 
-void func_0209950c(void *a) {
+void SetupDrawOf6Tree1(void *a) {
     func_0209bbd0(a, gOf6Tree1);
 }
 
@@ -572,7 +572,7 @@ void DrawOf6Tree1(u32 a, MapObject *b) {
 }
 
 void CreateOf6Tree1DrawList(void) {
-    func_0209bef0(CreateOf6Tree1, DrawOf6Tree1, func_0209950c);
+    CreateMapObjectDrawList2(CreateOf6Tree1, DrawOf6Tree1, SetupDrawOf6Tree1);
 }
 
 void CreateBankEgg1(void *a) {
@@ -580,7 +580,7 @@ void CreateBankEgg1(void *a) {
     SetMapObjectModelPolygonId(gBankEgg1, 0x3f);
 }
 
-void func_02099428(void *a) {
+void SetupDrawBankEgg1(void *a) {
     func_0209bbd0(a, gBankEgg1);
 }
 
@@ -596,7 +596,7 @@ void DrawBankEgg1(u32 a, MapObject *b) {
 }
 
 void CreateBankEgg1DrawList(void) {
-    func_0209bef0(CreateBankEgg1, DrawBankEgg1, func_02099428);
+    CreateMapObjectDrawList2(CreateBankEgg1, DrawBankEgg1, SetupDrawBankEgg1);
 }
 
 void CreateMiniDokan(void *a) {
@@ -604,7 +604,7 @@ void CreateMiniDokan(void *a) {
     SetMapObjectModelPolygonId(gMiniDokan, 0x3f);
 }
 
-void func_02099344(void *a) {
+void SetupDrawMiniDokan(void *a) {
     func_0209bbd0(a, gMiniDokan);
 }
 
@@ -620,5 +620,5 @@ void DrawMiniDokan(u32 a, MapObject *b) {
 }
 
 void CreateMiniDokanDrawList(void) {
-    func_0209bef0(CreateMiniDokan, DrawMiniDokan, func_02099344);
+    CreateMapObjectDrawList2(CreateMiniDokan, DrawMiniDokan, SetupDrawMiniDokan);
 }

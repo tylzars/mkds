@@ -10,7 +10,7 @@
 #include "Main/Unknown/code_020de4e4.h"
 #include "Main/Unknown/unk_0216b000.h"
 
-void func_020de4e4(u32 a, Unk020e43a8 *b, u32 c, u16 d) {
+void DrawEarthenPipe(u32 a, Unk020e43a8 *b, u32 c, u16 d) {
     MtxFx43 *v1;
     if (b->mUnk_00.mStateMachine.mState == 0) {
         v1 = func_020e6cbc(&b->mUnk_00.mPos);

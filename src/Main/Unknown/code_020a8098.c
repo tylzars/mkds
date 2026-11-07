@@ -6,7 +6,7 @@
 #include "Main/Unknown/unk_0215d000.h"
 
 void *func_020a824c(void) {
-    return func_0209bf48(func_020a8a6c, func_020a826c, NULL);
+    return CreateMapObjectUpdateList(func_020a8a6c, func_020a826c, NULL);
 }
 
 void func_020a8098(Sanbo *p) {

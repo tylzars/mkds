@@ -77,35 +77,35 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                     if (o == NULL) {
                         continue;
                     }
-                    if (o->mUnk_10 == a->mUnk_10 && o->mUnk_24[0] != NULL) {
-                        a->mUnk_24[0] = o->mUnk_24[0];
+                    if (o->mCreateDrawList0 == a->mCreateDrawList0 && o->mLists[0] != NULL) {
+                        a->mLists[0] = o->mLists[0];
                     }
-                    if (o->mUnk_10 == a->mUnk_14 && o->mUnk_24[0] != NULL) {
-                        a->mUnk_24[1] = o->mUnk_24[0];
+                    if (o->mCreateDrawList0 == a->mCreateDrawList1 && o->mLists[0] != NULL) {
+                        a->mLists[1] = o->mLists[0];
                     }
-                    if (o->mUnk_10 == a->mUnk_18 && o->mUnk_24[0] != NULL) {
-                        a->mUnk_24[2] = o->mUnk_24[0];
+                    if (o->mCreateDrawList0 == a->mCreateDrawList2 && o->mLists[0] != NULL) {
+                        a->mLists[2] = o->mLists[0];
                     }
-                    if (o->mUnk_14 == a->mUnk_10 && o->mUnk_24[1] != NULL) {
-                        a->mUnk_24[0] = o->mUnk_24[1];
+                    if (o->mCreateDrawList1 == a->mCreateDrawList0 && o->mLists[1] != NULL) {
+                        a->mLists[0] = o->mLists[1];
                     }
-                    if (o->mUnk_14 == a->mUnk_14 && o->mUnk_24[1] != NULL) {
-                        a->mUnk_24[1] = o->mUnk_24[1];
+                    if (o->mCreateDrawList1 == a->mCreateDrawList1 && o->mLists[1] != NULL) {
+                        a->mLists[1] = o->mLists[1];
                     }
-                    if (o->mUnk_14 == a->mUnk_18 && o->mUnk_24[1] != NULL) {
-                        a->mUnk_24[2] = o->mUnk_24[1];
+                    if (o->mCreateDrawList1 == a->mCreateDrawList2 && o->mLists[1] != NULL) {
+                        a->mLists[2] = o->mLists[1];
                     }
-                    if (o->mUnk_18 == a->mUnk_10 && o->mUnk_24[2] != NULL) {
-                        a->mUnk_24[0] = o->mUnk_24[2];
+                    if (o->mCreateDrawList2 == a->mCreateDrawList0 && o->mLists[2] != NULL) {
+                        a->mLists[0] = o->mLists[2];
                     }
-                    if (o->mUnk_18 == a->mUnk_14 && o->mUnk_24[2] != NULL) {
-                        a->mUnk_24[1] = o->mUnk_24[2];
+                    if (o->mCreateDrawList2 == a->mCreateDrawList1 && o->mLists[2] != NULL) {
+                        a->mLists[1] = o->mLists[2];
                     }
-                    if (o->mUnk_18 == a->mUnk_18 && o->mUnk_24[2] != NULL) {
-                        a->mUnk_24[2] = o->mUnk_24[2];
+                    if (o->mCreateDrawList2 == a->mCreateDrawList2 && o->mLists[2] != NULL) {
+                        a->mLists[2] = o->mLists[2];
                     }
-                    if (o->mUnk_1c == a->mUnk_1c && o->mUnk_24[3] != NULL) {
-                        a->mUnk_24[3] = o->mUnk_24[3];
+                    if (o->mCreateUpdateList == a->mCreateUpdateList && o->mLists[3] != NULL) {
+                        a->mLists[3] = o->mLists[3];
                     }
                 }
                 if (a->mKindData == NULL && a->mCreateKindData != NULL) {
@@ -148,17 +148,17 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                     v = t->mUnk_0e;
                     a->mKindData->mUnk_14 = v != 0 ? (v << 12) + 0.5f : (v << 12) - 0.5f;
                 }
-                if (a->mUnk_24[0] == NULL && a->mUnk_10 != NULL) {
-                    a->mUnk_24[0] = a->mUnk_10();
+                if (a->mLists[0] == NULL && a->mCreateDrawList0 != NULL) {
+                    a->mLists[0] = a->mCreateDrawList0();
                 }
-                if (a->mUnk_24[1] == NULL && a->mUnk_14 != NULL) {
-                    a->mUnk_24[1] = a->mUnk_14();
+                if (a->mLists[1] == NULL && a->mCreateDrawList1 != NULL) {
+                    a->mLists[1] = a->mCreateDrawList1();
                 }
-                if (a->mUnk_24[2] == NULL && a->mUnk_18 != NULL) {
-                    a->mUnk_24[2] = a->mUnk_18();
+                if (a->mLists[2] == NULL && a->mCreateDrawList2 != NULL) {
+                    a->mLists[2] = a->mCreateDrawList2();
                 }
-                if (a->mUnk_24[3] == NULL && a->mUnk_1c != NULL) {
-                    a->mUnk_24[3] = a->mUnk_1c();
+                if (a->mLists[3] == NULL && a->mCreateUpdateList != NULL) {
+                    a->mLists[3] = a->mCreateUpdateList();
                 }
             }
             if (a == NULL) {
@@ -221,9 +221,9 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
             } else {
                 object->mFlags |= data_021568d0;
             }
-            if ((a->mUnk_24[0] != NULL && a->mUnk_24[0]->mUnk_10 != NULL) ||
-                (a->mUnk_24[1] != NULL && a->mUnk_24[1]->mUnk_10 != NULL) ||
-                (a->mUnk_24[2] != NULL && a->mUnk_24[2]->mUnk_10 != NULL)) {
+            if ((a->mLists[0] != NULL && a->mLists[0]->mForEachObject != NULL) ||
+                (a->mLists[1] != NULL && a->mLists[1]->mForEachObject != NULL) ||
+                (a->mLists[2] != NULL && a->mLists[2]->mForEachObject != NULL)) {
                 object->mFlags &= ~2;
                 object->mFlags &= ~8;
                 object->mAlpha = 0x1f;
@@ -239,7 +239,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                     SetMapObjectMaskAndFlagFromNumber(courseRow->mUnk_36, object);
                 }
             }
-            if (a->mUnk_24[3] != NULL && a->mUnk_24[3]->mUnk_10 != NULL) {
+            if (a->mLists[3] != NULL && a->mLists[3]->mForEachObject != NULL) {
                 object->mFlags &= ~4;
             } else {
                 object->mFlags |= data_021568dc;
@@ -337,10 +337,10 @@ void InitMapObjects(void) {
         }
         if (d != NULL) {
             d->mKindData = NULL;
-            d->mUnk_24[0] = NULL;
-            d->mUnk_24[1] = NULL;
-            d->mUnk_24[2] = NULL;
-            d->mUnk_24[3] = NULL;
+            d->mLists[0] = NULL;
+            d->mLists[1] = NULL;
+            d->mLists[2] = NULL;
+            d->mLists[3] = NULL;
         }
         data_0217b4ec++;
     } while (data_0217b4ec < 0x85);
@@ -392,9 +392,9 @@ void InitMapObjects(void) {
             continue;
         }
         v = data_0216b288[i].mUnk_04->mObjectCount;
-        w[0] = data_0216b288[i].mUnk_04->mUnk_24[0];
-        w[1] = data_0216b288[i].mUnk_04->mUnk_24[1];
-        w[2] = data_0216b288[i].mUnk_04->mUnk_24[2];
+        w[0] = data_0216b288[i].mUnk_04->mLists[0];
+        w[1] = data_0216b288[i].mUnk_04->mLists[1];
+        w[2] = data_0216b288[i].mUnk_04->mLists[2];
         for (j = 0; j < 3; j++) {
             s32 g;
             if (w[j] == NULL) {
@@ -423,9 +423,9 @@ void InitMapObjects(void) {
         o = gMapObjects->mMapObjects[i];
         for (j = 0; j < data_0217b4ec; j++) {
             if (o->mKind == data_0216b288[j].mKind) {
-                w[0] = data_0216b288[j].mUnk_04->mUnk_24[0];
-                w[1] = data_0216b288[j].mUnk_04->mUnk_24[1];
-                w[2] = data_0216b288[j].mUnk_04->mUnk_24[2];
+                w[0] = data_0216b288[j].mUnk_04->mLists[0];
+                w[1] = data_0216b288[j].mUnk_04->mLists[1];
+                w[2] = data_0216b288[j].mUnk_04->mLists[2];
                 if (w[0] != NULL) {
                     AddMapObjectToDrawList(w[0], o);
                 }
@@ -489,7 +489,7 @@ void InitMapObjects(void) {
             continue;
         }
         v = data_0216b288[i].mUnk_04->mObjectCount;
-        x = data_0216b288[i].mUnk_04->mUnk_24[3];
+        x = data_0216b288[i].mUnk_04->mLists[3];
         if (x == NULL) {
             continue;
         }
@@ -514,8 +514,8 @@ void InitMapObjects(void) {
     for (i = 0; i < gMapObjects->mMapObjectCount; i++) {
         o = gMapObjects->mMapObjects[i];
         for (j = 0; j < data_0217b4ec; j++) {
-            if (o->mKind == data_0216b288[j].mKind && data_0216b288[j].mUnk_04->mUnk_24[3] != NULL) {
-                AddMapObjectToUpdateList(data_0216b288[j].mUnk_04->mUnk_24[3], o);
+            if (o->mKind == data_0216b288[j].mKind && data_0216b288[j].mUnk_04->mLists[3] != NULL) {
+                AddMapObjectToUpdateList(data_0216b288[j].mUnk_04->mLists[3], o);
             }
         }
     }
@@ -534,8 +534,8 @@ void func_020d2e24(void) {
     }
     func_020e52bc();
     for (i = 0; i < n; p++, i++) {
-        if ((*p)->mUnk_08 != NULL) {
-            (*p)->mUnk_08(*p);
+        if ((*p)->mInit != NULL) {
+            (*p)->mInit(*p);
         }
     }
 }
@@ -547,8 +547,8 @@ void func_020d2dec(void) {
     n = gMapObjects->mUpdateListCount;
     p = gMapObjects->mUpdateLists;
     for (i = 0; i < n; p++, i++) {
-        if ((*p)->mUnk_08 != NULL) {
-            (*p)->mUnk_08(*p);
+        if ((*p)->mInit != NULL) {
+            (*p)->mInit(*p);
         }
     }
 }

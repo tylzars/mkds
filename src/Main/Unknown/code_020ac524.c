@@ -41,7 +41,7 @@ void CreateShineBalloon(void *a) {
     SetMapObjectModelPolygonId(p, 0x3f);
 }
 
-void func_020ac9b0(void *a) {
+void SetupDrawShineBalloon(void *a) {
     func_0209bbd0(a, gShineBalloon);
 }
 
@@ -141,11 +141,11 @@ void CreateShineBalloonKindData(void) {
 }
 
 void *CreateShineBalloonDrawList(void) {
-    return func_0209bef0(CreateShineBalloon, DrawShineBalloon, func_020ac9b0);
+    return CreateMapObjectDrawList2(CreateShineBalloon, DrawShineBalloon, SetupDrawShineBalloon);
 }
 
 void *CreateShineBalloonUpdateList(void) {
-    return func_0209bf48(NULL, UpdateShineBalloon, NULL);
+    return CreateMapObjectUpdateList(NULL, UpdateShineBalloon, NULL);
 }
 
 void StartShineBalloon(Kart *a) {

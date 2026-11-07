@@ -22,7 +22,7 @@ typedef struct Unk02185d74 {
     /* 74 */ u16 mUnk_74;
 } Unk02185d74;
 
-// Table of objects walked by func_ov001_02185c4c.
+// Table of objects walked by InitMissionGateObjects.
 typedef struct Unk02185c4c {
     /* 00 */ MissionGateObject **mUnk_00;
     /* 04 */ u16 mUnk_04;

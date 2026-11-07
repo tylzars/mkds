@@ -38,7 +38,7 @@
 #include "code_02148538.h"
 
 void *func_02099004(void) {
-    return func_0209bf48(NULL, func_0209905c, NULL);
+    return CreateMapObjectUpdateList(NULL, func_0209905c, NULL);
 }
 
 void func_02098f18(Unk020e0144 *a, s32 b) {
@@ -183,7 +183,7 @@ void CreatePakkunZHead(void *a) {
     SetMapObjectModelAlpha(gPakkunZHead, 0x1e);
 }
 
-void func_02098b1c(void *a) {
+void SetupDrawPakkunZHead(void *a) {
     func_0209bbd0(a, gPakkunZHead);
 }
 
@@ -214,7 +214,7 @@ void CreatePakkunBody(void *a) {
     SetMapObjectModelAlpha(gPakkunBody, 0x1f);
 }
 
-void func_020989fc(void *a) {
+void SetupDrawPakkunBody(void *a) {
     func_0209bbd0(a, gPakkunBody);
 }
 
@@ -238,7 +238,7 @@ void DrawPakkunBody(void *a, Pakkun *p) {
     DrawMapObjectModel(a, gPakkunBody, p);
 }
 
-void func_0209886c(void) {
+void InitPakkunObjects(void) {
     s32 i;
     Pakkun *o;
     float f;
@@ -375,27 +375,27 @@ void UpdatePakkun(void *a, Pakkun *p) {
 }
 
 void *func_02098374(void) {
-    data_usa_0217b0f4 = func_0209bf1c(CreatePakkunMouth, DrawPakkunMouth, NULL);
+    data_usa_0217b0f4 = CreateMapObjectDrawList1(CreatePakkunMouth, DrawPakkunMouth, NULL);
     data_usa_0217b0f4->mUnk_1c = TRUE;
     func_020d49d8(&data_usa_0217b0f4);
     return data_usa_0217b0f4;
 }
 
 void *func_02098328(void) {
-    data_usa_0217b0e8 = func_0209bef0(CreatePakkunBody, DrawPakkunBody, func_020989fc);
+    data_usa_0217b0e8 = CreateMapObjectDrawList2(CreatePakkunBody, DrawPakkunBody, SetupDrawPakkunBody);
     func_020d49d8(&data_usa_0217b0e8);
     return data_usa_0217b0e8;
 }
 
 void *func_020982d4(void) {
-    data_usa_0217b0f0 = func_0209bef0(CreatePakkunZHead, DrawPakkunZHead, func_02098b1c);
+    data_usa_0217b0f0 = CreateMapObjectDrawList2(CreatePakkunZHead, DrawPakkunZHead, SetupDrawPakkunZHead);
     data_usa_0217b0f0->mUnk_1c = TRUE;
     func_020d49d8(&data_usa_0217b0f0);
     return data_usa_0217b0f0;
 }
 
 void *func_0209828c(void) {
-    data_usa_0217b0dc = func_0209bf48(func_0209886c, UpdatePakkun, NULL);
+    data_usa_0217b0dc = CreateMapObjectUpdateList(InitPakkunObjects, UpdatePakkun, NULL);
     func_020e6f50(&data_usa_0217b0dc);
     return data_usa_0217b0dc;
 }

@@ -51,7 +51,7 @@ void CreateBalloon(Unk020a3eb8 *a) {
     a->mUnk_1c = 1;
 }
 
-void func_020a3e38(void *p) {
+void SetupDrawBalloon(void *p) {
     Camera *g;
 
     g = GetCurrentCamera();
@@ -407,11 +407,11 @@ void UpdateBalloon(void *p, Balloon *a) {
 }
 
 void *func_020a3130(void) {
-    return func_0209bef0(CreateBalloon, DrawBalloon, func_020a3e38);
+    return CreateMapObjectDrawList2(CreateBalloon, DrawBalloon, SetupDrawBalloon);
 }
 
 void *func_020a3114(void) {
-    return func_0209bf48(NULL, UpdateBalloon, NULL);
+    return CreateMapObjectUpdateList(NULL, UpdateBalloon, NULL);
 }
 
 void func_020a305c(void) {

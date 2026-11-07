@@ -188,7 +188,7 @@ void DrawMapObjectList(MapObjectList *p, MtxFx43 *a) {
     MapObject *b;
     s32 m;
 
-    f = p->mUnk_10;
+    f = p->mForEachObject;
     n = p->mMapObjectCount;
     t = p->mUnk_24;
     if (f == NULL) {
@@ -485,12 +485,12 @@ void UpdateMapObjects(void) {
     if (gMapObjects->mRunUpdateLists != 0) {
         for (i = 0; i < n; i++) {
             e = t[i];
-            if (e->mUnk_0c != NULL) {
-                e->mUnk_0c(e);
+            if (e->mBeforeObjects != NULL) {
+                e->mBeforeObjects(e);
             }
             UpdateMapObjectList(e);
-            if (e->mUnk_14 != NULL) {
-                e->mUnk_14(e);
+            if (e->mAfterObjects != NULL) {
+                e->mAfterObjects(e);
             }
         }
     }
@@ -524,12 +524,12 @@ void DrawMapObjects(Unk020d4418 *p) {
     for (; i < n; i++) {
         e = t[i];
         func_0208ab00();
-        if (e->mUnk_0c != NULL) {
-            e->mUnk_0c(e);
+        if (e->mBeforeObjects != NULL) {
+            e->mBeforeObjects(e);
         }
         DrawMapObjectList(e, v);
-        if (e->mUnk_14 != NULL) {
-            e->mUnk_14(e);
+        if (e->mAfterObjects != NULL) {
+            e->mAfterObjects(e);
         }
     }
     func_020e6a74();
@@ -538,12 +538,12 @@ void DrawMapObjects(Unk020d4418 *p) {
     t = gMapObjects->mUnk_0c8;
     for (; j < k; j++) {
         e = t[j];
-        if (e->mUnk_0c != NULL) {
-            e->mUnk_0c(e);
+        if (e->mBeforeObjects != NULL) {
+            e->mBeforeObjects(e);
         }
         DrawMapObjectList(e, v);
-        if (e->mUnk_14 != NULL) {
-            e->mUnk_14(e);
+        if (e->mAfterObjects != NULL) {
+            e->mAfterObjects(e);
         }
     }
 }

@@ -35,7 +35,7 @@ typedef struct Pakkun {
     /* 1fc */ s32 mUnk_1fc;
 } Pakkun;
 
-// Object returned by func_0209bef0 and func_0209bf1c here: a word at 0x1c is set to 1.
+// Object returned by CreateMapObjectDrawList2 and CreateMapObjectDrawList1 here: a word at 0x1c is set to 1.
 typedef struct Unk020982d4 {
     /* 00 */ u8 mUnk_00[0x1c];
     /* 1c */ BOOL mUnk_1c;
@@ -54,12 +54,12 @@ void *func_020982d4(void);
 void *func_02098328(void);
 void *func_02098374(void);
 void UpdatePakkun(void *a, Pakkun *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_0209886c(void);
+void InitPakkunObjects(void);
 void DrawPakkunBody(void *a, Pakkun *p);
-void func_020989fc(void *a);
+void SetupDrawPakkunBody(void *a);
 void CreatePakkunBody(void *a);
 void DrawPakkunZHead(void *a, Pakkun *p);
-void func_02098b1c(void *a);
+void SetupDrawPakkunZHead(void *a);
 void CreatePakkunZHead(void *a);
 void DrawPakkunMouth(void *a, Pakkun *p);
 void CreatePakkunMouth(void *a);

@@ -21,7 +21,7 @@ typedef struct Unk0209bf70 {
     /* 3c */ s32 mUnk_3c;
 } Unk0209bf70;
 
-// Object of the list func_02100138(0x1a8), created by func_0209bfe0 and moved by func_0209c220.
+// Object of the list func_02100138(0x1a8), created by func_0209bfe0 and moved by UpdateBoundAndCreamAndBerry.
 typedef struct Unk0209c220 {
     /* 000 */ MapObject mUnk_000;
     /* 0a0 */ u16 mUnk_0a0;
@@ -52,7 +52,7 @@ typedef struct Unk0209c220 {
     /* 120 */ s32 mUnk_120[8];
 } Unk0209c220;
 
-// Object of UpdateSun and func_0209d394.
+// Object of UpdateSun and InitSunObjects.
 typedef struct Unk0209cf34 {
     /* 000 */ MapObject mUnk_000;
     /* 0a0 */ u32 mUnk_0a0;
@@ -109,15 +109,15 @@ void func_0209c134(void);
 void func_0209c154(void);
 void func_0209c198(void);
 void func_0209c1dc(void);
-void func_0209c220(Unk02100094 *a, Unk0209c220 *p);
+void UpdateBoundAndCreamAndBerry(Unk02100094 *a, Unk0209c220 *p);
 s32 func_0209c4bc(s32 a, s32 b);
 s16 func_0209c4d8(s32 a);
-void func_0209c4f0(Unk02100094 *a);
-void func_0209c5b8(Unk02100094 *a, Unk0209c220 *p);
-void func_0209c678(Unk02100094 *a, Unk0209c220 *p);
+void InitBoundAndCreamAndBerryObjects(Unk02100094 *a);
+void DrawBerry(Unk02100094 *a, Unk0209c220 *p);
+void DrawCream(Unk02100094 *a, Unk0209c220 *p);
 void CreateBerry(void *a); /* also loads cream_effect.nsbmd */
 void CreateCream(void *a); /* also loads cream_effect.nsbmd */
-void func_0209c7a8(Unk02100094 *a, Unk0209c220 *p);
+void DrawBound(Unk02100094 *a, Unk0209c220 *p);
 BOOL func_0209c8b0(Unk0209c220 *p, Vec3 *a, s32 b, Vec3 *c);
 u8 func_0209c964(Unk0209c220 *p, void *a, u8 *b, u8 *c);
 s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c);
@@ -125,5 +125,5 @@ void func_0209cebc(Unk0209c220 *p);
 void func_0209cef0(void);
 void func_0209cf10(void);
 void UpdateSun(Unk02100094 *a, Unk0209cf34 *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_0209d394(Unk02100094 *a);
+void InitSunObjects(Unk02100094 *a);
 void DrawSun(void *a, Unk0209d3fc *b);

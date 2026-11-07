@@ -53,7 +53,7 @@ void DrawNsKiller1(void *a, NsKiller1 *p) {
     DrawMapObjectModel(a, gNsKiller1, p);
 }
 
-void func_02093eac(MapObjectList *p) {
+void InitNsKiller1Objects(MapObjectList *p) {
     s32 i;
     NsKiller1 *e;
 
@@ -113,11 +113,11 @@ void UpdateNsKiller1(void *a, NsKiller1 *p) {
 }
 
 void func_02093cd4(void) {
-    func_0209bf1c(CreateNsKiller1, DrawNsKiller1, NULL);
+    CreateMapObjectDrawList1(CreateNsKiller1, DrawNsKiller1, NULL);
 }
 
 void func_02093cb4(void) {
-    func_0209bf48(func_02093eac, UpdateNsKiller1, NULL);
+    CreateMapObjectUpdateList(InitNsKiller1Objects, UpdateNsKiller1, NULL);
 }
 
 void InitNsKiller2(NsKiller2 *p) {
@@ -217,11 +217,11 @@ void func_020938c0(void) {
 }
 
 void func_020938a0(void) {
-    func_0209bf1c(CreateNsKiller2AndNsKiller2S, DrawNsKiller2, NULL);
+    CreateMapObjectDrawList1(CreateNsKiller2AndNsKiller2S, DrawNsKiller2, NULL);
 }
 
 void func_02093884(void) {
-    func_0209bf48(NULL, UpdateNsKiller2, NULL);
+    CreateMapObjectUpdateList(NULL, UpdateNsKiller2, NULL);
 }
 
 // Starts a parked NsKiller2 at a (raised), flying along b with angle c.

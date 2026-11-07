@@ -629,7 +629,7 @@ void func_ov001_0218e298(Unk02188950 *a, Kart *b) {
     }
 }
 
-void func_ov001_0218e208(Unk0218d87c *a) {
+void InitKingTeresaObjects(Unk0218d87c *a) {
     s32 i;
     Unk02188950 *obj;
     Unk02188950_a0 *a0;
@@ -650,7 +650,7 @@ void func_ov001_0218e208(Unk0218d87c *a) {
     SetStandingsEndCallback((void (*)(void)) func_ov001_0218e58c);
 }
 
-void func_ov001_0218df20(u32 a, Unk02188950 *b) {
+void UpdateKingTeresa(u32 a, Unk02188950 *b) {
     Kart *p;
 
     if (data_021759c0->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) {
@@ -732,7 +732,7 @@ void func_ov001_0218df20(u32 a, Unk02188950 *b) {
     func_ov001_021864ac(a, b);
 }
 
-void func_ov001_0218de50(Unk0218d87c *a) {
+void InitKingTeresa(Unk0218d87c *a) {
     int i;
     Unk02188950 *p;
     Unk02188950_a0 *a0;
@@ -755,7 +755,7 @@ void func_ov001_0218de50(Unk0218d87c *a) {
     }
 }
 
-void func_ov001_0218de14(void *a, Unk02188950 *b) {
+void DrawKingTeresa(void *a, Unk02188950 *b) {
     func_ov001_02186368(a, b);
     if (b->mUnk_0a8 == 0) {
         func_ov001_021861f4(a, b, 0);
@@ -772,9 +772,9 @@ void func_ov001_0218dde8(void) {
 }
 
 void *func_ov001_0218ddcc(void) {
-    return func_0209bf1c(func_ov001_0218de50, func_ov001_0218de14, func_ov001_02187098);
+    return CreateMapObjectDrawList1(InitKingTeresa, DrawKingTeresa, func_ov001_02187098);
 }
 
 void *func_ov001_0218ddb4(void) {
-    return func_0209bf48(func_ov001_0218e208, func_ov001_0218df20, NULL);
+    return CreateMapObjectUpdateList(InitKingTeresaObjects, UpdateKingTeresa, NULL);
 }

@@ -60,10 +60,10 @@ void *CreateSmanBottomDrawList(void);
 void *CreateSmanTopDrawList(void);
 void CreateSmanKindData(void);
 void UpdateSman(void *a, Sman *sman); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_0209151c(Unk0209151c *a);
+void InitSmanObjects(Unk0209151c *a);
 void DrawSmanBottom(void *a, Sman *sman);
-void func_02091654(void *a);
+void SetupDrawSmanBottom(void *a);
 void CreateSmanBottom(void *a);
 void DrawSmanTop(void *a, Sman *sman);
-void func_02091784(void *a);
+void SetupDrawSmanTop(void *a);
 void CreateSmanTop(void *a);

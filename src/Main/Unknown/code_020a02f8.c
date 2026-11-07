@@ -1093,5 +1093,5 @@ void func_020a0318(void *a, Unk020a0318 *p) {
 }
 
 void *func_020a02f8(void) {
-    return func_0209bf48(func_020a066c, func_020a0318, NULL);
+    return CreateMapObjectUpdateList(func_020a066c, func_020a0318, NULL);
 }

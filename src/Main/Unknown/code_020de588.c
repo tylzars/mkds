@@ -137,6 +137,6 @@ Unk020de2d8 *func_020de5a0(void) {
     return data_0217b6ec;
 }
 
-void func_020de588(void) {
+void SetupDrawEarthenPipe(void) {
     func_020e6a18(gEarthenPipe1);
 }

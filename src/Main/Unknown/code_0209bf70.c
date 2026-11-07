@@ -117,7 +117,7 @@ static inline u32 func_0209c9fc_inline(Unk020f41c4_B *b) {
     return b->mUnk_00 >> 32;
 }
 
-void func_0209d394(Unk02100094 *a) {
+void InitSunObjects(Unk02100094 *a) {
     s32 i;
     Unk0209cf34 *p;
 
@@ -270,11 +270,11 @@ void UpdateSun(Unk02100094 *a, Unk0209cf34 *p) {
 }
 
 void func_0209cf10(void) {
-    func_0209bf1c(CreateSunAndSunLOD, DrawSun, func_0209d5e8);
+    CreateMapObjectDrawList1(CreateSunAndSunLOD, DrawSun, func_0209d5e8);
 }
 
 void func_0209cef0(void) {
-    func_0209bf48(func_0209d394, UpdateSun, NULL);
+    CreateMapObjectUpdateList(InitSunObjects, UpdateSun, NULL);
 }
 
 void func_0209cebc(Unk0209c220 *p) {
@@ -421,7 +421,7 @@ void CreateBound(void *a) {
     CreateMapObjectModelNsbtpAnimation(gBound, gBoundNsbtpName);
 }
 
-void func_0209c7a8(Unk02100094 *a, Unk0209c220 *p) {
+void DrawBound(Unk02100094 *a, Unk0209c220 *p) {
     s32 v[4];
     s32 x;
     s32 y;
@@ -455,7 +455,7 @@ void CreateBerry(void *a) {
     func_02103554(gCreamEffectNsbmdName);
 }
 
-void func_0209c678(Unk02100094 *a, Unk0209c220 *p) {
+void DrawCream(Unk02100094 *a, Unk0209c220 *p) {
     s32 v[4];
     s32 x;
     s32 y;
@@ -478,7 +478,7 @@ void func_0209c678(Unk02100094 *a, Unk0209c220 *p) {
     DrawMapObjectModel(a, gCream, p);
 }
 
-void func_0209c5b8(Unk02100094 *a, Unk0209c220 *p) {
+void DrawBerry(Unk02100094 *a, Unk0209c220 *p) {
     s32 v[4];
     s32 x;
     s32 y;
@@ -501,7 +501,7 @@ void func_0209c5b8(Unk02100094 *a, Unk0209c220 *p) {
     DrawMapObjectModel(a, gBerry, p);
 }
 
-void func_0209c4f0(Unk02100094 *a) {
+void InitBoundAndCreamAndBerryObjects(Unk02100094 *a) {
     s32 i;
     Unk0209c220 *p;
 
@@ -527,7 +527,7 @@ s32 func_0209c4bc(s32 a, s32 b) {
     return ((s64) a * b + 0x800) >> 12;
 }
 
-void func_0209c220(Unk02100094 *a, Unk0209c220 *p) {
+void UpdateBoundAndCreamAndBerry(Unk02100094 *a, Unk0209c220 *p) {
     u16 v;
     s32 t;
     s32 i;
@@ -647,19 +647,19 @@ void func_0209c154(void) {
 }
 
 void func_0209c134(void) {
-    func_0209bf1c(CreateBound, func_0209c7a8, NULL);
+    CreateMapObjectDrawList1(CreateBound, DrawBound, NULL);
 }
 
 void func_0209c114(void) {
-    func_0209bf1c(CreateCream, func_0209c678, NULL);
+    CreateMapObjectDrawList1(CreateCream, DrawCream, NULL);
 }
 
 void func_0209c0f4(void) {
-    func_0209bf1c(CreateBerry, func_0209c5b8, NULL);
+    CreateMapObjectDrawList1(CreateBerry, DrawBerry, NULL);
 }
 
 void func_0209c0d4(void) {
-    func_0209bf48(func_0209c4f0, func_0209c220, NULL);
+    CreateMapObjectUpdateList(InitBoundAndCreamAndBerryObjects, UpdateBoundAndCreamAndBerry, NULL);
 }
 
 BOOL func_0209bfe0(s32 a) {

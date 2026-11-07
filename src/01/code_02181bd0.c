@@ -335,7 +335,7 @@ u8 func_ov001_0218274c(Unk02181c3c *c, Unk0218274c *d, u8 *e, u8 *f) {
     return b;
 }
 
-void func_ov001_021826fc(Unk0219b478 *a) {
+void LoadCoin(Unk0219b478 *a) {
     data_ov001_021a9b98 = LoadMapObjectModelAnimated(a, data_ov001_021a78c0);
     LoadMapObjectModelNsbtpAnimation(data_ov001_021a9b98, data_ov001_021a78cc);
     SetMapObjectModelPolygonId(data_ov001_021a9b98, 0x3f);
@@ -344,7 +344,7 @@ void func_ov001_021826fc(Unk0219b478 *a) {
     a->mUnk_1c = 1;
 }
 
-void func_ov001_0218263c(void *b, Unk02181c3c *c) {
+void DrawCoin(void *b, Unk02181c3c *c) {
     s32 a;
     Vec3 v;
     u32 t;
@@ -374,7 +374,7 @@ void func_ov001_0218263c(void *b, Unk02181c3c *c) {
     }
 }
 
-void func_ov001_02182550(Unk02181c3c_list *a) {
+void InitCoinObjects(Unk02181c3c_list *a) {
     int i;
     Unk02181c3c *p;
     s32 n;
@@ -404,7 +404,7 @@ void func_ov001_02182550(Unk02181c3c_list *a) {
 
 void func_ov001_0218254c(void) {}
 
-void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
+void UpdateCoin(void *a, Unk02181c3c *b) {
     s32 n;
     switch (b->mUnk_0f8) {
         case 2:
@@ -710,13 +710,13 @@ void func_ov001_02181c20(void) {
 }
 
 void *func_ov001_02181c08(void) {
-    return func_0209bf1c(func_ov001_021826fc, func_ov001_0218263c, NULL);
+    return CreateMapObjectDrawList1(LoadCoin, DrawCoin, NULL);
 }
 
 void *func_ov001_02181bec(void) {
-    return func_0209bf1c(func_ov001_021830a8, func_ov001_02182f98, func_ov001_02183090);
+    return CreateMapObjectDrawList1(func_ov001_021830a8, func_ov001_02182f98, func_ov001_02183090);
 }
 
 void *func_ov001_02181bd0(void) {
-    return func_0209bf48(func_ov001_02182550, func_ov001_02181c3c, func_ov001_0218254c);
+    return CreateMapObjectUpdateList(InitCoinObjects, UpdateCoin, func_ov001_0218254c);
 }

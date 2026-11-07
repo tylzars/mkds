@@ -65,7 +65,7 @@ void CreateCoverPooHoleKindData(void);
 void UpdateCoverPooHole(void *a, CoverPooHole *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
 s32 func_020968c0(s32 a, s32 b);
 s32 func_020968dc(s32 a);
-void func_020968f4(Unk020968f4 *p);
+void InitCoverPooHoleObjects(Unk020968f4 *p);
 void DrawCoverPooHole(void *a, CoverPooHole *p);
 void CreateCoverPooHole(void *a);
 BOOL TryGetCoverPooHolePushOut(CoverPooHole *p, const Vec3 *a, s32 b, Vec3 *c);

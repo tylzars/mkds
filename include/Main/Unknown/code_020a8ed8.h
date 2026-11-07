@@ -27,7 +27,7 @@ typedef struct IronBall {
     /* 130 */ s32 mUnk_130;
 } IronBall;
 
-// Array of object pointers: pointer to the array and the number of entries (func_020a9a5c).
+// Array of object pointers: pointer to the array and the number of entries (InitIronBallObjects).
 typedef struct Unk020a9a5c {
     /* 00 */ IronBall **mUnk_00;
     /* 04 */ u16 mUnk_04;
@@ -50,6 +50,6 @@ void *func_020a91e0(void);
 void *func_020a9204(void);
 void func_020a9224(void);
 void UpdateIronBall(void *a, IronBall *p); /* kind 0x1b0 only */
-void func_020a9a5c(Unk020a9a5c *p);
+void InitIronBallObjects(Unk020a9a5c *p);
 void func_020a9c54(void *a, IronBall *p, u32 c, u32 d);
 unsigned int func_020a9cd0(unsigned int p0);

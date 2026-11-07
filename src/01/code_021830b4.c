@@ -417,7 +417,7 @@ void func_ov001_02183294(Unk02188950 *a) {
     a->mUnk_000.mFarDistanceSquared = data_0217cbec[20];
 }
 
-void func_ov001_021831f0(Unk0218fa78 *a) {
+void InitBossDonketu(Unk0218fa78 *a) {
     Unk02188950 *o;
     s32 i;
 
@@ -436,7 +436,7 @@ void func_ov001_021831f0(Unk0218fa78 *a) {
     }
 }
 
-void func_ov001_02183158(Unk0218fa78 *a) {
+void InitKingIceDonketu(Unk0218fa78 *a) {
     Unk02188950 *o;
     s32 i;
 
@@ -468,13 +468,13 @@ void func_ov001_02183104(void) {
 }
 
 void *func_ov001_021830e8(void) {
-    return func_0209bf1c(func_ov001_021831f0, func_ov001_02183138, func_ov001_02187098);
+    return CreateMapObjectDrawList1(InitBossDonketu, func_ov001_02183138, func_ov001_02187098);
 }
 
 void *func_ov001_021830cc(void) {
-    return func_0209bf1c(func_ov001_02183158, func_ov001_02183138, func_ov001_02187098);
+    return CreateMapObjectDrawList1(InitKingIceDonketu, func_ov001_02183138, func_ov001_02187098);
 }
 
 void *func_ov001_021830b4(void) {
-    return func_0209bf48(func_ov001_02183450, func_ov001_021832cc, NULL);
+    return CreateMapObjectUpdateList(func_ov001_02183450, func_ov001_021832cc, NULL);
 }

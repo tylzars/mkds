@@ -16,7 +16,7 @@ void DrawKuriking(void *a,
                   Unk02188950 *b); /* only calls the two draw helpers shared with five other ov001 draw callbacks */
 void InitKuriking(Unk0218d87c *a);
 void UpdateKuriking(u32 a, Unk02188950 *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_ov001_0218b5d8(Unk0218d87c *a);
+void InitKurikingObjects(Unk0218d87c *a);
 void func_ov001_0218b640(Unk02188950 *a, void *b);
 void func_ov001_0218b6f8(Unk02188950 *a, void *b);
 void func_ov001_0218b72c(Unk02188950 *a);

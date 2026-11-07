@@ -175,11 +175,11 @@ void CreateMoveTreeKindData(void) {
 }
 
 void CreateMoveTreeDrawList(void) {
-    func_0209bf1c(CreateMoveTree, DrawMoveTree, NULL);
+    CreateMapObjectDrawList1(CreateMoveTree, DrawMoveTree, NULL);
 }
 
 void CreateMoveTreeUpdateList(void) {
-    func_0209bf48(InitMoveTreeObjects, UpdateMoveTree, NULL);
+    CreateMapObjectUpdateList(InitMoveTreeObjects, UpdateMoveTree, NULL);
 }
 
 void CreateBakubakuAndBakuShadow(void *a) {
@@ -297,9 +297,9 @@ void UpdateBakubaku(void *a, Bakubaku *p) {
 }
 
 void CreateBakubakuDrawList(void) {
-    func_0209bf1c(CreateBakubakuAndBakuShadow, DrawBakubaku, NULL);
+    CreateMapObjectDrawList1(CreateBakubakuAndBakuShadow, DrawBakubaku, NULL);
 }
 
 void CreateBakubakuUpdateList(void) {
-    func_0209bf48(InitBakubakuObjects, UpdateBakubaku, NULL);
+    CreateMapObjectUpdateList(InitBakubakuObjects, UpdateBakubaku, NULL);
 }

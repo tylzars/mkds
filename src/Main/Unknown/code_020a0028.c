@@ -40,7 +40,7 @@ void DrawAirship(void *a, Airship *p) {
     DrawMapObjectModel(a, gAirship, p);
 }
 
-void func_020a0064(Unk020a0064 *p) {
+void InitAirshipObjects(Unk020a0064 *p) {
     s32 i;
     Airship *o;
     BOOL z;

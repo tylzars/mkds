@@ -232,5 +232,5 @@ u32 func_02094e3c(void) {
 }
 
 void func_02094e1c(void) {
-    func_0209bf48(func_02095228, func_02094e8c, NULL);
+    CreateMapObjectUpdateList(func_02095228, func_02094e8c, NULL);
 }

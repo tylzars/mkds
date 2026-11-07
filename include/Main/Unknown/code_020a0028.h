@@ -6,7 +6,7 @@
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
 #include "Main/Unknown/code_020f9c6c.h" // CourseMapRow
 
-// Object of kind 0x158 (Airship) with the Unk020e0144 base at 0xc8 (DrawAirship, func_020a0064).
+// Object of kind 0x158 (Airship) with the Unk020e0144 base at 0xc8 (DrawAirship, InitAirshipObjects).
 typedef struct Airship {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
@@ -26,7 +26,7 @@ typedef struct Airship {
     /* ec */ s32 mState;
 } Airship;
 
-// Array of object pointers: pointer to the array and the number of entries (func_020a0064).
+// Array of object pointers: pointer to the array and the number of entries (InitAirshipObjects).
 typedef struct Unk020a0064 {
     /* 00 */ Airship **mUnk_00;
     /* 04 */ u16 mUnk_04;
@@ -34,6 +34,6 @@ typedef struct Unk020a0064 {
 
 void CreateAirship(void *a);
 void DrawAirship(void *a, Airship *p);
-void func_020a0064(Unk020a0064 *p);
+void InitAirshipObjects(Unk020a0064 *p);
 s32 func_020a0044(s32 a);
 s32 func_020a0028(s32 a, s32 b);

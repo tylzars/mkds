@@ -17,7 +17,7 @@ typedef struct Unk020919e8 {
 
 void func_020918a8(void);
 void DrawCow(void *a, Unk020919e8 *b);
-void func_02091954(void *a);
+void SetupDrawCow(void *a);
 void CreateCow(void *a);
 void func_020919a8(void);
 void func_020919c8(void);
@@ -26,6 +26,6 @@ s16 func_02091f24(s32 a);
 s32 func_02091f44(s32 a, s32 b);
 s16 func_02091f54(s32 a);
 u32 NextRandomBelow(Unk020f41c4_B *a, u32 b);
-void func_02091fd8(MapObjectList *a);
+void InitKanoke64Objects(MapObjectList *a);
 void DrawKanoke64(void *a, Unk020919e8 *p);
 void CreateKanoke64(void *a);

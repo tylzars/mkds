@@ -42,7 +42,7 @@
 #include "Main/Unknown/code_020e337c.h"
 #include "Main/Unknown/code_020e5c6c.h"
 
-void func_020e5c6c(u32 a, Unk020e43a8 *b, u32 c, u16 d) {
+void DrawObPakkunSf(u32 a, Unk020e43a8 *b, u32 c, u16 d) {
     MtxFx43 *v1;
     gObPakkunSf->mUnk_18 = ((*(u16 *) &b->mUnk_a0.mUnk_18.x & 0x10) >> 4);
     if (b->mUnk_00.mStateMachine.mState == 0) {
@@ -54,7 +54,7 @@ void func_020e5c6c(u32 a, Unk020e43a8 *b, u32 c, u16 d) {
     func_020e66e4(gObPakkunSf, v1, *(u16 *) &b->mUnk_a0.mUnk_0c.x, &b->mUnk_00.mScale, 0, d);
 }
 
-void func_020e5bd4(u32 a, Unk020e43a8 *p) {
+void UpdateObPakkunSf(u32 a, Unk020e43a8 *p) {
     Unk0210b7a8 s;
     s32 n;
 
@@ -137,14 +137,14 @@ Unk020e59e4 *func_020e59e4(void) {
     return data_0217b81c;
 }
 
-void func_020e5990(u32 a, Unk020e43a8 *p, u32 b, u32 c) {
+void DrawSecondHand(u32 a, Unk020e43a8 *p, u32 b, u32 c) {
     p->mUnk_00.mMatrix.mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
     func_020ea8a8(gSecondHand, &p->mUnk_00.mMatrix, &p->mUnk_00.mScale, c);
 }
 
-void func_020e595c(u32 a, Unk020e43a8 *p) {
+void UpdateSecondHand(u32 a, Unk020e43a8 *p) {
     func_02046b40(&p->mUnk_00.mStateMachine);
     QuaternionMultiplyAngleAroundY(&p->mUnk_a0.mUnk_0c.y, p->mUnk_00.mAngle, &p->mUnk_a0);
     Matrix3x3FromQuaternion(&p->mUnk_00.mMatrix, &p->mUnk_a0);

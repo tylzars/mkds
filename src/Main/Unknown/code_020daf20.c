@@ -439,7 +439,7 @@ Unk020db1b0 *CreateKuriboUpdateList(void) {
     return data_0217b684;
 }
 
-void func_020db198(void) {
+void SetupDrawKuribo(void) {
     func_020e6a18(gKuribo);
 }
 

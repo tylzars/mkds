@@ -113,7 +113,7 @@ void func_ov001_0218a19c(Unk02188950 *a) {
     func_ov001_02188e24(a, a->mPrm->mUnk_03c, &func_ov001_0218a1d0);
 }
 
-void func_ov001_0218a120(Unk0218d87c *a) {
+void InitBombKingObjects(Unk0218d87c *a) {
     int i;
     Unk02188950 *obj;
 
@@ -133,7 +133,7 @@ void func_ov001_0218a120(Unk0218d87c *a) {
     SetStandingsEndCallback((void (*)(void)) func_ov001_0218a2d4);
 }
 
-void func_ov001_0218a074(u32 a, Unk02188950 *b) {
+void UpdateBombKing(u32 a, Unk02188950 *b) {
     int active;
 
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
@@ -216,7 +216,7 @@ void func_ov001_02189ed8(Unk02188950 *a, Kart *b) {
         func_ov001_0218a41c(a);
     }
 }
-void func_ov001_02189e2c(Unk0218d87c *a) {
+void InitBombKing(Unk0218d87c *a) {
     Unk02188950 *obj;
     Unk02188950_a0 *a0;
     int i;
@@ -250,9 +250,9 @@ void func_ov001_02189dd8(void) {
 }
 
 void *func_ov001_02189dbc(void) {
-    return func_0209bf1c(func_ov001_02189e2c, func_ov001_02189e0c, func_ov001_02187098);
+    return CreateMapObjectDrawList1(InitBombKing, func_ov001_02189e0c, func_ov001_02187098);
 }
 
 void *func_ov001_02189da4(void) {
-    return func_0209bf48(func_ov001_0218a120, func_ov001_0218a074, NULL);
+    return CreateMapObjectUpdateList(InitBombKingObjects, UpdateBombKing, NULL);
 }

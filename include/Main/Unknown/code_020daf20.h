@@ -95,7 +95,7 @@ s32 func_020db4c4(Dossun *p);
 void func_020db430(Dossun *p);
 void CreateDossunAndDossunShadow(void);
 void InitDossun(Dossun *p, CourseMapRow *a);
-void func_020db198(void);
+void SetupDrawKuribo(void);
 void DrawKuribo(void *a, Kuribo *p, void *c, u16 d);
 void UpdateKuribo(void *a, Kuribo *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void DrawDossun(void *a, Dossun *p, void *c, s32 d);

@@ -133,7 +133,7 @@ Unk020e59e4 *func_020e6380(void) {
     return data_0217b834;
 }
 
-void func_020e630c(u32 param_1, Unk020e5e24 *a, u32 param_3, u32 param_4) {
+void DrawPendulum(u32 param_1, Unk020e5e24 *a, u32 param_3, u32 param_4) {
     a->mUnk_4c.x = a->mUnk_bc.x >> 4;
     a->mUnk_4c.y = a->mUnk_bc.y >> 4;
     a->mUnk_4c.z = a->mUnk_bc.z >> 4;
@@ -141,7 +141,7 @@ void func_020e630c(u32 param_1, Unk020e5e24 *a, u32 param_3, u32 param_4) {
     func_020ea868(gPendulumShadow, &a->mUnk_c8, &a->mUnk_1c, param_4);
 }
 
-void func_020e61a8(u32 param_1, Unk020e5e24 *a) {
+void UpdatePendulum(u32 param_1, Unk020e5e24 *a) {
     u32 buf[4];
     Unk0210b7a8 s;
     u32 t;
@@ -287,6 +287,6 @@ Unk020e59e4 *func_020e5d24(void) {
     return p;
 }
 
-void func_020e5d0c(void) {
+void SetupDrawObPakkunSf(void) {
     func_020e6a18(gObPakkunSf);
 }

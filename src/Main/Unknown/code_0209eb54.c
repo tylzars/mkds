@@ -148,18 +148,18 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
 }
 
 void *func_0209ec60(void) {
-    return func_0209bf1c(CreatePicture1AndPicture2, DrawPicture, NULL);
+    return CreateMapObjectDrawList1(CreatePicture1AndPicture2, DrawPicture, NULL);
 }
 
 void *func_0209ec44(void) {
-    return func_0209bf48(NULL, UpdatePicture, NULL);
+    return CreateMapObjectUpdateList(NULL, UpdatePicture, NULL);
 }
 
 void CreatePuddle(void *a) {
     gPuddle = CreateMapObjectModelNsbmd(a, gPuddleNsbmdName);
 }
 
-void func_0209ec00(void *a) {
+void SetupDrawPuddle(void *a) {
     func_0209bbd0(a, gPuddle);
 }
 

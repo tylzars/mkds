@@ -39,7 +39,7 @@ void CreateTeresa(Unk02094db4 *a) {
     a->mUnk_1c = 1;
 }
 
-void func_02094d9c(void *a) {
+void SetupDrawTeresa(void *a) {
     func_0209bbd0(a, gTeresa);
 }
 
@@ -195,11 +195,11 @@ void UpdateTeresa(void *a, Teresa *o) {
 }
 
 void CreateTeresaDrawList(void) {
-    func_0209bef0(CreateTeresa, DrawTeresa, func_02094d9c);
+    CreateMapObjectDrawList2(CreateTeresa, DrawTeresa, SetupDrawTeresa);
 }
 
 void CreateTeresaUpdateList(void) {
-    func_0209bf48(InitTeresaObjects, UpdateTeresa, NULL);
+    CreateMapObjectUpdateList(InitTeresaObjects, UpdateTeresa, NULL);
 }
 
 void ClearTeresaTimers(void) {

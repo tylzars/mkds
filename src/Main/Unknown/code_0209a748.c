@@ -168,7 +168,7 @@ void DrawCrab(void *a, Crab *b) {
     DrawMapObjectModel(a, gCrabHand, b);
 }
 
-void func_0209af98(Unk0209af98 *p) {
+void InitCrabObjects(Unk0209af98 *p) {
     s32 i;
     Crab *o;
     Unk020f41c4_B *r;
@@ -348,9 +348,9 @@ void CreateCrabKindData(void) {
 }
 
 void *CreateCrabDrawList(void) {
-    return func_0209bef0(CreateCrabAndCrabHand, DrawCrab, func_0209b1f8);
+    return CreateMapObjectDrawList2(CreateCrabAndCrabHand, DrawCrab, func_0209b1f8);
 }
 
 void *CreateCrabUpdateList(void) {
-    return func_0209bf48(func_0209af98, UpdateCrab, NULL);
+    return CreateMapObjectUpdateList(InitCrabObjects, UpdateCrab, NULL);
 }

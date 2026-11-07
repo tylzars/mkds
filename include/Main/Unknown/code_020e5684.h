@@ -80,8 +80,8 @@ extern Unk020e5a40 *data_0217b840;
 
 void func_020e5684(Unk020e43a8 *p, Unk020e5684 *q);
 void func_020e57a0(Unk020e43a8 *p, Vec3 *a, s32 b, Vec3 *c);
-void func_020e595c(u32 a, Unk020e43a8 *p);
-void func_020e5990(u32 a, Unk020e43a8 *p, u32 b, u32 c);
+void UpdateSecondHand(u32 a, Unk020e43a8 *p);
+void DrawSecondHand(u32 a, Unk020e43a8 *p, u32 b, u32 c);
 Unk020e59e4 *func_020e59e4(void);
 Unk020e5a40 *func_020e5a40(void);
 Unk020e5a9c *func_020e5a9c(void);

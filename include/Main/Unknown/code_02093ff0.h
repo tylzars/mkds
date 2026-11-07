@@ -64,7 +64,7 @@ s32 func_02094bf0(s32 a, s32 b);
 s16 func_02094c0c(s32 a);
 void InitTeresaObjects(Unk020946b8 *a);
 void DrawTeresa(void *a, Teresa *b);
-void func_02094d9c(void *a);
+void SetupDrawTeresa(void *a);
 void CreateTeresa(Unk02094db4 *a); /* also sets word +0x1c of the group record to 1 */
 u32 InitTeresa(
     u32 arg0); /* parks the pooled object (ParkMapObject) and zeroes the live-Teresa count gUnparkedTeresaCount */

@@ -53,7 +53,7 @@ void func_ov001_0218fa20(void);
 void func_ov001_0218fa58(void *a, Unk02188950 *b);
 void InitIwante(Unk0218fa78 *a);
 void UpdateIwante(u32 a, Unk02188950 *b);
-void func_ov001_0218fbe0(Unk0218fa78 *a);
+void InitIwanteObjects(Unk0218fa78 *a);
 void func_ov001_0218fc4c(u32 a, Unk02188950 *b);
 void func_ov001_0218fcc4(Unk0218fa78 *a);
 void func_ov001_0218fd20(Unk02188950 *a, Unk0218fd20 *b);

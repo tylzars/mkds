@@ -10,5 +10,5 @@ typedef struct Unk020a3eb8 {
 } Unk020a3eb8;
 
 void DrawBalloon(void *p, Balloon *a);
-void func_020a3e38(void *p);
+void SetupDrawBalloon(void *p);
 void CreateBalloon(Unk020a3eb8 *a); /* also sets word +0x1c of the group record to 1 */

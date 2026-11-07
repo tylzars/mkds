@@ -82,7 +82,7 @@ void DrawKanoke64(void *a, Unk020919e8 *p) {
     DrawMapObjectModel(a, gKanoke64, p);
 }
 
-void func_02091fd8(MapObjectList *a) {
+void InitKanoke64Objects(MapObjectList *a) {
     s32 i;
     Unk020919e8 *p;
 
@@ -238,11 +238,11 @@ void UpdateKanoke64(void *a, Unk020919e8 *p) {
 }
 
 void func_020919c8(void) {
-    func_0209bf1c(CreateKanoke64, DrawKanoke64, NULL);
+    CreateMapObjectDrawList1(CreateKanoke64, DrawKanoke64, NULL);
 }
 
 void func_020919a8(void) {
-    func_0209bf48(func_02091fd8, UpdateKanoke64, NULL);
+    CreateMapObjectUpdateList(InitKanoke64Objects, UpdateKanoke64, NULL);
 }
 
 void CreateCow(void *a) {
@@ -250,7 +250,7 @@ void CreateCow(void *a) {
     SetMapObjectModelPolygonId(gCow, 0x3f);
 }
 
-void func_02091954(void *a) {
+void SetupDrawCow(void *a) {
     func_0209bbd0(a, gCow);
 }
 
@@ -266,5 +266,5 @@ void DrawCow(void *a, Unk020919e8 *b) {
 }
 
 void func_020918a8(void) {
-    func_0209bef0(CreateCow, DrawCow, func_02091954);
+    CreateMapObjectDrawList2(CreateCow, DrawCow, SetupDrawCow);
 }

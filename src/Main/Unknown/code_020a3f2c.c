@@ -132,7 +132,7 @@ void CreateShine16(void *a) {
     SetMapObjectModelPolygonId(gShine16, 0x3f);
 }
 
-void func_020a6a90(void *a) {
+void SetupDrawShine16(void *a) {
     func_0209bbd0(a, gShine16);
 }
 
@@ -553,15 +553,15 @@ void func_020a5918(void) {
 }
 
 void *func_020a58f4(void) {
-    return func_0209bef0(CreateShine16, DrawShine16, func_020a6a90);
+    return CreateMapObjectDrawList2(CreateShine16, DrawShine16, SetupDrawShine16);
 }
 
 void *func_020a58d0(void) {
-    return func_0209bf1c(func_020a69a0, func_020a683c, func_020a697c);
+    return CreateMapObjectDrawList1(func_020a69a0, func_020a683c, func_020a697c);
 }
 
 void *func_020a58b4(void) {
-    return func_0209bf48(NULL, UpdateShine16, NULL);
+    return CreateMapObjectUpdateList(NULL, UpdateShine16, NULL);
 }
 
 // Parks each map object of kind 0x6a (Shine16) that is not already parked.
@@ -1206,5 +1206,5 @@ u32 func_020a3f48(void) {
 }
 
 void *func_020a3f2c(void) {
-    return func_0209bf48(NULL, UpdateKartBalloons, NULL);
+    return CreateMapObjectUpdateList(NULL, UpdateKartBalloons, NULL);
 }

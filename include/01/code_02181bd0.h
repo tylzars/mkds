@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_020e005c.h"
 
-// Object updated by func_ov001_02181c3c, one state per value of mUnk_0f8.
+// Object updated by UpdateCoin, one state per value of mUnk_0f8.
 typedef struct Unk02181c3c {
     /* 000 */ MapObject mUnk_000;
     /* 0a0 */ u16 mUnk_0a0;
@@ -76,11 +76,11 @@ void *func_ov001_02181bd0(void);
 void *func_ov001_02181bec(void);
 void *func_ov001_02181c08(void);
 void func_ov001_02181c20(void);
-void func_ov001_02181c3c(void *a, Unk02181c3c *b);
+void UpdateCoin(void *a, Unk02181c3c *b);
 void func_ov001_0218254c(void);
-void func_ov001_02182550(Unk02181c3c_list *a);
-void func_ov001_0218263c(void *b, Unk02181c3c *c);
-void func_ov001_021826fc(Unk0219b478 *a);
+void InitCoinObjects(Unk02181c3c_list *a);
+void DrawCoin(void *b, Unk02181c3c *c);
+void LoadCoin(Unk0219b478 *a);
 u8 func_ov001_0218274c(Unk02181c3c *c, Unk0218274c *d, u8 *e, u8 *f);
 void func_ov001_021827a4(void);
 void func_ov001_021827f0(void);

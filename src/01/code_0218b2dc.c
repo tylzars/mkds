@@ -162,7 +162,7 @@ void func_ov001_0218b640(Unk02188950 *a, void *b) {
     }
 }
 
-void func_ov001_0218b5d8(Unk0218d87c *a) {
+void InitKurikingObjects(Unk0218d87c *a) {
     s32 i;
     Unk02188950 *obj;
 
@@ -274,9 +274,9 @@ void func_ov001_0218b310(void) {
 }
 
 void *func_ov001_0218b2f4(void) {
-    return func_0209bf1c(InitKuriking, DrawKuriking, func_ov001_02187098);
+    return CreateMapObjectDrawList1(InitKuriking, DrawKuriking, func_ov001_02187098);
 }
 
 void *func_ov001_0218b2dc(void) {
-    return func_0209bf48(func_ov001_0218b5d8, UpdateKuriking, NULL);
+    return CreateMapObjectUpdateList(InitKurikingObjects, UpdateKuriking, NULL);
 }

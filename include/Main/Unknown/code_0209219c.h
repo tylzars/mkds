@@ -45,7 +45,7 @@ void CreateBasabasaDrawList(void);
 void CreateBasabasaKindData(void);
 void UpdateBasabasa(void *a, Basabasa *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void DrawBasabasa(void *a, Basabasa *b);
-void func_02092928(void *a);
+void SetupDrawBasabasa(void *a);
 u8 func_0209297c(Basabasa *a, Unk0209297c *b, void *c, u8 *d);
 /* creates the pooled object hidden (parks it with ParkMapObject); the spawner later takes it with
  * UnparkFirstParkedMapObject */
