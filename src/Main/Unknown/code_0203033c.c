@@ -139,7 +139,7 @@ s32 AdvanceMultiSelectNS(void) {
                 func_0204aa28(gMultiSelectNS->mIndex == 1 ? 1 : 0);
                 gMultiSelectNS->mUnk_2c = 2;
                 gMultiSelectNS->mState = 2;
-                func_02030954(0);
+                RefreshMultiSelectNS(0);
                 func_02030654(4);
             } else if (func_02030688(i, 2) != 0 || a != 0) {
                 gMultiSelectNS->mUnk_2c = 0;
@@ -147,22 +147,22 @@ s32 AdvanceMultiSelectNS(void) {
                 RequestSelectReturnState3WithSound(0);
             } else if (func_02030688(i, 0x40) != 0 && gMultiSelectNS->mIndex > 0) {
                 gMultiSelectNS->mIndex--;
-                func_02030954(1);
+                RefreshMultiSelectNS(1);
                 func_0203062c(0);
             } else if (func_02030688(i, 0x80) != 0 && gMultiSelectNS->mIndex < 1) {
                 gMultiSelectNS->mIndex++;
-                func_02030954(1);
+                RefreshMultiSelectNS(1);
                 func_0203062c(0);
             } else if (b == 0) {
                 gMultiSelectNS->mState = 2;
-                func_02030954(gMultiSelectNS->mIndex != 0 ? 1 : 0);
+                RefreshMultiSelectNS(gMultiSelectNS->mIndex != 0 ? 1 : 0);
                 func_02030654(4);
                 gMultiSelectNS->mIndex = 0;
                 func_0204aa28(0);
                 gMultiSelectNS->mUnk_2c = 2;
             } else if (b == 1) {
                 gMultiSelectNS->mState = 2;
-                func_02030954(gMultiSelectNS->mIndex != 1 ? 1 : 0);
+                RefreshMultiSelectNS(gMultiSelectNS->mIndex != 1 ? 1 : 0);
                 func_02030654(4);
                 gMultiSelectNS->mIndex = 1;
                 func_0204aa28(1);
@@ -174,7 +174,7 @@ s32 AdvanceMultiSelectNS(void) {
             if (gMultiSelectNS->mStateFrames >= 5) {
                 gMultiSelectNS->mStateFrames = 0;
                 gMultiSelectNS->mState = 3;
-                func_02030954(1);
+                RefreshMultiSelectNS(1);
             }
             break;
         case 3:

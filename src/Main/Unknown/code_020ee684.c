@@ -64,7 +64,7 @@ void TakeItemPoolObjects(ItemPool *v1, s32 v2, ItemObject **out, u16 v3, Vec3 *v
     i = 0;
     while (i < v2) {
         out[i] = v1->mObjects[v1->mTakenCount++];
-        func_020f99b8(out[i], v1->mKind, v3, v);
+        ResetItemObjectAtPos(out[i], v1->mKind, v3, v);
         i++;
     }
 }

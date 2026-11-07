@@ -53,7 +53,7 @@ void func_ov001_0218aa34(Unk02188950 *a) {
     void *b;
 
     if (func_ov001_02187c4c(a) == 0) {
-        b = func_020fd428();
+        b = StartItemBomb();
         if (b != NULL) {
             func_ov001_02187c60(a, (b));
         }

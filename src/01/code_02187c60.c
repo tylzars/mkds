@@ -22,7 +22,7 @@ void func_ov001_02187c88(Unk02188950 *a, s32 b, const Vec3 *c) {
 
 void func_ov001_02187c60(Unk02188950 *a, void *b) {
     if (a->mUnk_300 != NULL) {
-        func_020fd494(&a->mUnk_300);
+        ReleaseItemBomb(&a->mUnk_300);
     }
     a->mUnk_300 = b;
 }

@@ -89,14 +89,14 @@ void ResetItemObject(ItemObject *param_1, s32 param_2) {
     param_1->mUnk_128 = 0;
 }
 
-void func_020f99b8(ItemObject *param_1, s32 param_2, u16 param_3, Vec3 *param_4) {
+void ResetItemObjectAtPos(ItemObject *param_1, s32 param_2, u16 param_3, Vec3 *param_4) {
     param_1->mPos = *param_4;
     param_1->mUnk_78 = param_3;
     ResetItemObject(param_1, param_2);
     if ((param_1->mFlags & 0x8000000) == 0) {
         return;
     }
-    param_1->mId = func_020ff178(param_1);
+    param_1->mId = ComputeItemObjectId(param_1);
 }
 
 void ReleaseItemObject(ItemObject *param_1) {
@@ -148,7 +148,7 @@ BOOL func_020f97e0(ItemObject *param_1, Kart *param_2) {
     return (s64) d.x * d.x + (s64) d.y * d.y + (s64) d.z * d.z < (s64) n * n;
 }
 
-BOOL func_020f9780(ItemObject *param_1, Vec3 *param_2, s32 param_3) {
+BOOL IsItemObjectOverlappingSphere(ItemObject *param_1, Vec3 *param_2, s32 param_3) {
     Vec3 d;
     s32 n;
 
@@ -180,11 +180,11 @@ void func_020f95d4(ItemObject *param_1, ItemObject *param_2) {
             return;
         }
     }
-    if (func_020f9780(param_1, &param_2->mPos, param_2->mUnk_e0) == FALSE) {
-        if (func_020f9780(param_1, &param_2->mPrevPos, param_2->mUnk_e0) == FALSE) {
+    if (IsItemObjectOverlappingSphere(param_1, &param_2->mPos, param_2->mUnk_e0) == FALSE) {
+        if (IsItemObjectOverlappingSphere(param_1, &param_2->mPrevPos, param_2->mUnk_e0) == FALSE) {
             return;
         }
-        if (func_020f9780(param_2, &param_1->mPrevPos, param_1->mUnk_e0) == FALSE) {
+        if (IsItemObjectOverlappingSphere(param_2, &param_1->mPrevPos, param_1->mUnk_e0) == FALSE) {
             return;
         }
     }

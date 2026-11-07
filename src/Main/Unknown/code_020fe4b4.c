@@ -99,7 +99,7 @@ void func_020ff1a0(s32 a, s32 *p) {
     }
 }
 
-s32 func_020ff178(ItemObject *p) {
+s32 ComputeItemObjectId(ItemObject *p) {
     return (s16) (((s16) (u16) (p->mUnk_78 & ~0xff00) << 4) | p->mPoolIndex);
 }
 

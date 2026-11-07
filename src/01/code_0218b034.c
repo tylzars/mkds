@@ -46,7 +46,7 @@ void func_ov001_0218b034(Unk02188950 *a) {
             pos.z = a->mUnk_000.mPos.z + (s32) (((s64) a->mPrm->mUnk_154 * gPairsByAngle[idx + 1]) >> 12);
         }
         if (i == 0) {
-            func_ov001_02187b94(func_020fd428(), &pos, &vel, a->mPrm->mUnk_15c);
+            func_ov001_02187b94(StartItemBomb(), &pos, &vel, a->mPrm->mUnk_15c);
         } else {
             func_ov001_02187b94(func_ov001_02187e00(9), &pos, &vel, a->mPrm->mUnk_160);
         }

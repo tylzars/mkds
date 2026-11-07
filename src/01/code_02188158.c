@@ -25,7 +25,7 @@ ItemBomb *func_ov001_02188158(Unk02188950 *a, u32 b, u32 c) {
     ItemBomb *v2;
     int v3;
     int v4;
-    v1 = func_020fd7f0();
+    v1 = GetItemBombActiveCount();
     v4 = 0;
     if (0 < v1) {
         do {

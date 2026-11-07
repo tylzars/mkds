@@ -29,7 +29,7 @@ void func_ov001_0218aef4(Unk02188950 *a) {
         pos.x = a->mUnk_000.mPos.x + (s32) (((s64) a->mPrm->mUnk_1e4 * gPairsByAngle[idx]) >> 12);
         pos.y = a->mUnk_000.mPos.y;
         pos.z = a->mUnk_000.mPos.z + (s32) (((s64) a->mPrm->mUnk_1e4 * gPairsByAngle[idx + 1]) >> 12);
-        func_ov001_02187b94(func_020fd428(), &pos, &vel, a->mPrm->mUnk_1e8);
+        func_ov001_02187b94(StartItemBomb(), &pos, &vel, a->mPrm->mUnk_1e8);
     }
     {
         Vec3 pos2;

@@ -51,100 +51,100 @@ void InitChoisesS(void) {
     }
     gChoisesS->mUnk_02c = 0;
     gChoisesS->mUnk_030 = 0;
-    func_020b3008();
+    ResetChoisesSSelection();
     ClearChoisesSListValueCounts();
     switch (func_020b252c()) {
         case MODE_GRAND_PRIX:
-            func_020b31b8(0, 0);
-            func_020b31b8(0, 9);
+            AppendChoisesSListValue(0, 0);
+            AppendChoisesSListValue(0, 9);
             if (func_020b250c() != FALSE) {
-                func_020b31b8(1, 7);
-                func_020b31b8(1, 8);
+                AppendChoisesSListValue(1, 7);
+                AppendChoisesSListValue(1, 8);
             } else {
-                func_020b31b8(1, 2);
-                func_020b31b8(1, 8);
-                func_020b31b8(1, 9);
+                AppendChoisesSListValue(1, 2);
+                AppendChoisesSListValue(1, 8);
+                AppendChoisesSListValue(1, 9);
             }
             if (func_020b250c() != FALSE) {
-                func_020b31b8(3, 0);
-                func_020b31b8(3, 7);
-                func_020b31b8(3, 8);
+                AppendChoisesSListValue(3, 0);
+                AppendChoisesSListValue(3, 7);
+                AppendChoisesSListValue(3, 8);
             } else {
-                func_020b31b8(3, 0);
-                func_020b31b8(3, 2);
-                func_020b31b8(3, 8);
-                func_020b31b8(3, 9);
+                AppendChoisesSListValue(3, 0);
+                AppendChoisesSListValue(3, 2);
+                AppendChoisesSListValue(3, 8);
+                AppendChoisesSListValue(3, 9);
             }
             break;
         case MODE_TIME_ATTACK:
-            func_020b31b8(0, 0);
-            func_020b31b8(0, 3);
-            func_020b31b8(0, 4);
-            func_020b31b8(0, 5);
-            func_020b31b8(0, 9);
-            func_020b31b8(1, 1);
-            func_020b31b8(1, 4);
-            func_020b31b8(1, 5);
-            func_020b31b8(1, 8);
-            func_020b31b8(1, 9);
-            func_020b31b8(3, 0);
-            func_020b31b8(3, 1);
-            func_020b31b8(3, 4);
-            func_020b31b8(3, 5);
-            func_020b31b8(3, 8);
-            func_020b31b8(3, 9);
+            AppendChoisesSListValue(0, 0);
+            AppendChoisesSListValue(0, 3);
+            AppendChoisesSListValue(0, 4);
+            AppendChoisesSListValue(0, 5);
+            AppendChoisesSListValue(0, 9);
+            AppendChoisesSListValue(1, 1);
+            AppendChoisesSListValue(1, 4);
+            AppendChoisesSListValue(1, 5);
+            AppendChoisesSListValue(1, 8);
+            AppendChoisesSListValue(1, 9);
+            AppendChoisesSListValue(3, 0);
+            AppendChoisesSListValue(3, 1);
+            AppendChoisesSListValue(3, 4);
+            AppendChoisesSListValue(3, 5);
+            AppendChoisesSListValue(3, 8);
+            AppendChoisesSListValue(3, 9);
             break;
         case MODE_BATTLE:
-            func_020b31b8(0, 0);
-            func_020b31b8(0, 9);
-            func_020b31b8(1, 2);
-            func_020b31b8(1, 9);
-            func_020b31b8(2, 7);
+            AppendChoisesSListValue(0, 0);
+            AppendChoisesSListValue(0, 9);
+            AppendChoisesSListValue(1, 2);
+            AppendChoisesSListValue(1, 9);
+            AppendChoisesSListValue(2, 7);
             break;
         case MODE_VS:
-            func_020b31b8(0, 0);
-            func_020b31b8(0, 9);
-            func_020b31b8(1, 2);
-            func_020b31b8(1, 9);
-            func_020b31b8(2, 7);
+            AppendChoisesSListValue(0, 0);
+            AppendChoisesSListValue(0, 9);
+            AppendChoisesSListValue(1, 2);
+            AppendChoisesSListValue(1, 9);
+            AppendChoisesSListValue(2, 7);
             break;
         case MODE_MISSION_RUN:
-            func_020b31b8(0, 0);
-            func_020b31b8(0, 3);
-            func_020b31b8(0, 6);
-            func_020b31b8(0, 9);
+            AppendChoisesSListValue(0, 0);
+            AppendChoisesSListValue(0, 3);
+            AppendChoisesSListValue(0, 6);
+            AppendChoisesSListValue(0, 9);
             if (func_020b2f58() != 0) {
                 if (func_020adc04() != 0) {
-                    func_020b31b8(1, 1);
-                    func_020b31b8(1, 6);
-                    func_020b31b8(1, 9);
-                    func_020b31b8(2, 6);
-                    func_020b31b8(2, 1);
-                    func_020b31b8(2, 10);
-                    func_020b31b8(2, 9);
+                    AppendChoisesSListValue(1, 1);
+                    AppendChoisesSListValue(1, 6);
+                    AppendChoisesSListValue(1, 9);
+                    AppendChoisesSListValue(2, 6);
+                    AppendChoisesSListValue(2, 1);
+                    AppendChoisesSListValue(2, 10);
+                    AppendChoisesSListValue(2, 9);
                 } else {
-                    func_020b31b8(1, 1);
-                    func_020b31b8(1, 6);
-                    func_020b31b8(1, 9);
-                    func_020b31b8(2, 6);
-                    func_020b31b8(2, 1);
-                    func_020b31b8(2, 9);
+                    AppendChoisesSListValue(1, 1);
+                    AppendChoisesSListValue(1, 6);
+                    AppendChoisesSListValue(1, 9);
+                    AppendChoisesSListValue(2, 6);
+                    AppendChoisesSListValue(2, 1);
+                    AppendChoisesSListValue(2, 9);
                 }
             } else {
-                func_020b31b8(1, 1);
-                func_020b31b8(1, 6);
-                func_020b31b8(1, 9);
-                func_020b31b8(2, 6);
-                func_020b31b8(2, 1);
-                func_020b31b8(2, 9);
+                AppendChoisesSListValue(1, 1);
+                AppendChoisesSListValue(1, 6);
+                AppendChoisesSListValue(1, 9);
+                AppendChoisesSListValue(2, 6);
+                AppendChoisesSListValue(2, 1);
+                AppendChoisesSListValue(2, 9);
             }
             break;
         case 5:
-            func_020b31b8(0, 0);
+            AppendChoisesSListValue(0, 0);
             if (GetCourseNumber() != 4) {
-                func_020b31b8(1, 2);
+                AppendChoisesSListValue(1, 2);
             } else {
-                func_020b31b8(1, 7);
+                AppendChoisesSListValue(1, 7);
             }
             break;
     }

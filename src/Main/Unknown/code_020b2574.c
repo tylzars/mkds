@@ -91,9 +91,9 @@ void func_020b2574(void) {
                         gChoisesS->mCloseFrames = 1;
                     }
                 } else if (func_020ae408(func_020b2b54(), 0x40) != 0) {
-                    func_020b3120(-1);
+                    MoveChoisesSSelectedValue(-1);
                 } else if (func_020ae408(func_020b2b54(), 0x80) != 0) {
-                    func_020b3120(1);
+                    MoveChoisesSSelectedValue(1);
                 }
             }
         } else if (func_020b29c4() != 0) {
@@ -123,9 +123,9 @@ void func_020b2574(void) {
                     gChoisesS->mCloseFrames = 1;
                 }
             } else if (func_020ae408(func_020b2b54(), 0x40) != 0) {
-                func_020b3120(-1);
+                MoveChoisesSSelectedValue(-1);
             } else if (func_020ae408(func_020b2b54(), 0x80) != 0) {
-                func_020b3120(1);
+                MoveChoisesSSelectedValue(1);
             }
         }
     }

@@ -41,7 +41,7 @@ void *func_ov001_02187e00(u16 a) {
         p->mUnk_0f2 = a;
         p->mUnk_0f4 = a;
         p->mUnk_0ac = 1;
-        return func_020fd338(p, 0xa000);
+        return StartItemBombWithMapObject(p, 0xa000);
     }
     return NULL;
 }
@@ -52,7 +52,7 @@ void *func_ov001_02187dd4(void) {
     p = FindParkedMapObject(MAP_OBJECT_KIND_KURIBO);
     if (p != NULL) {
         func_020da628(p);
-        return func_020fd338(p, 0);
+        return StartItemBombWithMapObject(p, 0);
     }
     return NULL;
 }

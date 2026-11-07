@@ -39,7 +39,7 @@ void ClearChoisesSListValueCounts(void) {
     }
 }
 
-void func_020b31b8(s32 a, s32 b) {
+void AppendChoisesSListValue(s32 a, s32 b) {
     s32 n;
 
     n = gChoisesS->mLists[a].mValueCount;
@@ -47,7 +47,7 @@ void func_020b31b8(s32 a, s32 b) {
     gChoisesS->mLists[a].mValues[n] = b;
 }
 
-s32 func_020b3120(s32 a) {
+s32 MoveChoisesSSelectedValue(s32 a) {
     s32 i = 0;
     s32 n;
     s32 k;
@@ -94,7 +94,7 @@ u32 func_020b302c(void) {
     s32 t;
 
     if (func_020b2e98() != 0) {
-        func_020b3120(0);
+        MoveChoisesSSelectedValue(0);
         k = func_020b2d04();
         n = gChoisesS->mLists[k].mValueCount;
         for (i = 0, d = 0xc - n * 2; i < n; i++) {
@@ -108,7 +108,7 @@ u32 func_020b302c(void) {
             if (func_020ae244(func_020b2b54(), e[i]) != 0) {
                 if (gChoisesS->mSelectedValue != func_020b302c_inline()->mLists[k].mValues[i]) {
                     gChoisesS->mSelectedValue = gChoisesS->mLists[k].mValues[i];
-                    func_020b3120(0);
+                    MoveChoisesSSelectedValue(0);
                 } else {
                     gChoisesS->mUnk_010 = TRUE;
                 }
@@ -126,7 +126,7 @@ u32 func_020b302c(void) {
     return r;
 }
 
-void func_020b3008(void) {
+void ResetChoisesSSelection(void) {
     ChoisesS *p;
 
     gChoisesS->mPickedValue = 0;
@@ -146,7 +146,7 @@ void func_020b2f88(s32 a) {
         } else {
             return;
         }
-        func_020b3008();
+        ResetChoisesSSelection();
     } else if (a == 0 && func_020b2e98() != 0) {
         if (func_020b29c4() != 0) {
             gChoisesS->mOpenDuringRace = a;
@@ -162,14 +162,15 @@ void func_020b2f88(s32 a) {
 }
 
 u32 func_020b2f58(void) {
-    if ((func_020b2f38() == 6 && func_020b2f18() == 9) || (func_020b2f38() == 7 && func_020b2f18() == 9)) {
+    if ((GetMissionRunTableRow() == 6 && GetMissionRunTableColumn() == 9) ||
+        (GetMissionRunTableRow() == 7 && GetMissionRunTableColumn() == 9)) {
         return 1;
     }
     return 0;
 }
 #pragma thumb off
 
-s8 func_020b2f38(void) {
+s8 GetMissionRunTableRow(void) {
     Unk021759c0 *d = data_021759c0;
 
     if (d->mMode == MODE_MISSION_RUN) {
@@ -178,7 +179,7 @@ s8 func_020b2f38(void) {
     return -1;
 }
 
-s8 func_020b2f18(void) {
+s8 GetMissionRunTableColumn(void) {
     Unk021759c0 *d = data_021759c0;
 
     if (d->mMode == MODE_MISSION_RUN) {
@@ -192,7 +193,7 @@ u32 func_020b2ecc(void) {
     s32 v1;
     s32 r;
 
-    r = func_0205fd78(func_020b2f38(), func_020b2f18(), &v1);
+    r = func_0205fd78(GetMissionRunTableRow(), GetMissionRunTableColumn(), &v1);
     if (func_020b2d54() == 0 && gChoisesS->mUnk_020 != FALSE && r != 0 && (u32) (v1 - 5) <= 2) {
         return 1;
     }

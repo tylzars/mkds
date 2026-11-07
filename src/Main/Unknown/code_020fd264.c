@@ -57,7 +57,8 @@
 #include "code_021471bc.h"
 #include "Main/Unknown/code_021000d0.h"
 
-void func_020fe3d8(ItemBomb *a) {
+// Reset hook of the bomb kind.
+void ResetItemBomb(ItemBomb *a) {
     u32 v1;
     MTX_Identity43_((MtxFx43 *) a->mUnk_13c);
     func_02046be8(a->mUnk_184, (UnkFunc *const *) &gItemBombStateTable, 4, a);
@@ -429,7 +430,8 @@ void func_020fd83c(ItemBomb *e) {
     e->mUnk_000.mUnk_12c = 0;
 }
 
-void func_020fd804(u32 arg0) {
+// Release hook of the bomb kind: parks its map object, if it has one.
+void ParkItemBombMapObject(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 compareLeft0;
@@ -450,7 +452,7 @@ void func_020fd804(u32 arg0) {
     ParkMapObject((void *) value0);
 }
 
-u32 func_020fd7f0(void) {
+u32 GetItemBombActiveCount(void) {
     return gItemPools[9].mActiveCount;
 }
 
@@ -561,7 +563,7 @@ BOOL IsItemBombState2(Kart *a) {
     return e->mState == 2;
 }
 
-void func_020fd494(void **a) {
+void ReleaseItemBomb(void **a) {
     ItemBomb *e;
     Unk021052fc *v1;
 
@@ -579,7 +581,7 @@ void func_020fd494(void **a) {
     *a = NULL;
 }
 
-void *func_020fd428(void) {
+void *StartItemBomb(void) {
     ItemBomb *e;
 
     e = StartItemObjectOrZero(9, 8, data_02159f40, data_02159f40);
@@ -596,7 +598,7 @@ void *func_020fd428(void) {
     return e;
 }
 
-void *func_020fd338(void *b, s32 a) {
+void *StartItemBombWithMapObject(void *b, s32 a) {
     ItemBomb *e;
     Unk021052fc *v1;
 

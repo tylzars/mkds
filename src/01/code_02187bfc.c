@@ -17,7 +17,7 @@ void func_ov001_02187bfc(Unk02188950 *a, Vec3 *b, s32 c) {
 
     if (a->mUnk_300 != NULL) {
         if (((Unk02188950_300 *) a->mUnk_300)->mUnk_54 < 0x64000) {
-            func_020fd494(&a->mUnk_300);
+            ReleaseItemBomb(&a->mUnk_300);
         } else if (b != NULL) {
             func_020fd540(&a->mUnk_300, b, c);
         } else {

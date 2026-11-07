@@ -37,7 +37,7 @@ void func_020309d8(void) {
     }
 }
 
-void func_02030954(s32 a) {
+void RefreshMultiSelectNS(s32 a) {
     u32 t[2];
     s32 i;
     MultiSelectNS *o;
@@ -121,7 +121,7 @@ void InitMultiSelectNS(void *a, void *b, void *c) {
     }
     CallQueueAppend(0x23, 0, o->mNcgr->mData, o->mNcgr->mDataSize);
     CallQueueAppend(0x1e, 0, o->mNclr->mData, o->mNclr->mDataSize);
-    func_02030954(1);
+    RefreshMultiSelectNS(1);
     SetSelectReturnSoundId(0xe);
     func_0204f804();
     FrmHeapShrinkInParent(gMultiSelectNS->mHeap);
