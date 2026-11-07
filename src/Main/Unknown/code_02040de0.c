@@ -430,7 +430,7 @@ Unk02175620_bc *GetCourseMapRespawnBattlePointLink(u32 a, Vec3 *b, Vec3 *c) {
     return &gCourseMap->mBattlePointLinks[i];
 }
 
-struct Unk020f371c *GetCourseMapRespawnItemPointLink(u32 a) {
+struct ItemPointLink *GetCourseMapRespawnItemPointLink(u32 a) {
     CourseMapRespawn *e;
 
     if (gCourseMap->mCheckpoints == NULL && gCourseMap->mRespawns == NULL) {

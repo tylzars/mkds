@@ -154,9 +154,9 @@ Unk02175620_94 *GetCourseMapEntryGroupTableRow(u32 p0) {
 #pragma thumb off
 
 #pragma thumb on
-void BuildCourseMapItemRouteLinks(Unk020f371c *a, CourseMapRoute *b, u16 c) {
+void BuildCourseMapItemRouteLinks(ItemPointLink *a, CourseMapRoute *b, u16 c) {
     Unk02175620_54 *p;
-    Unk020f371c *n;
+    ItemPointLink *n;
     s32 i;
     s32 k;
 
@@ -167,11 +167,11 @@ void BuildCourseMapItemRouteLinks(Unk020f371c *a, CourseMapRoute *b, u16 c) {
     }
     n = gCourseMap->mItemPointLinks + c;
     for (k = 0; k < 3; k++) {
-        if (a != NULL && n->mUnk_0c[k] == a) {
+        if (a != NULL && n->mPreviousLinks[k] == a) {
             return;
         }
     }
-    n->mUnk_18 = &p->mPos;
+    n->mPointPos = &p->mPos;
     n->mUnk_1c = p->mUnk_0c;
     if (gCourseMap->mVersion < 0x21) {
         n->mUnk_20 = 0;
@@ -179,16 +179,16 @@ void BuildCourseMapItemRouteLinks(Unk020f371c *a, CourseMapRoute *b, u16 c) {
         n->mUnk_20 = p->mUnk_10;
     }
     for (k = 0; k < 3; k++) {
-        if (a->mUnk_00[k] == NULL) {
-            a->mUnk_00[k] = n;
-            a->mUnk_24++;
+        if (a->mNextLinks[k] == NULL) {
+            a->mNextLinks[k] = n;
+            a->mNextCount++;
             break;
         }
     }
     for (k = 0; k < 3; k++) {
-        if (n->mUnk_0c[k] == NULL) {
-            n->mUnk_0c[k] = a;
-            n->mUnk_26++;
+        if (n->mPreviousLinks[k] == NULL) {
+            n->mPreviousLinks[k] = a;
+            n->mPreviousCount++;
             break;
         }
     }
@@ -207,9 +207,9 @@ void BuildCourseMapItemRouteLinks(Unk020f371c *a, CourseMapRoute *b, u16 c) {
 void BuildCourseMapItemPointLinks(void *a) {
     CourseMap *g;
     CourseMapRoute *d;
-    Unk020f371c **q;
+    ItemPointLink **q;
     s32 i;
-    Unk020f371c *e;
+    ItemPointLink *e;
     s32 k;
     s32 n;
     s32 m;
@@ -224,12 +224,12 @@ void BuildCourseMapItemPointLinks(void *a) {
     for (i = 0; i < gCourseMap->mItemPointCount; i++) {
         e = q[0] + i;
         for (k = 0; k < 3; k++) {
-            e->mUnk_0c[k] = NULL;
-            e->mUnk_00[k] = NULL;
+            e->mPreviousLinks[k] = NULL;
+            e->mNextLinks[k] = NULL;
         }
-        e->mUnk_24 = 0;
-        e->mUnk_26 = 0;
-        e->mUnk_18 = NULL;
+        e->mNextCount = 0;
+        e->mPreviousCount = 0;
+        e->mPointPos = NULL;
         e->mUnk_20 = 0;
         e->mUnk_1c = 0;
     }

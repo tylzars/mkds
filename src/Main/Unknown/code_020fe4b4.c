@@ -30,14 +30,14 @@ u8 *func_020ff2b0(u8 *a, ItemFBox *b, void *c) {
     u8 *p;
 
     if (b != NULL && c != NULL) {
-        func_020ff1b8(b->mUnk_13c, &b->mUnk_000.mUnk_000.mVelocity.y);
+        func_020ff1b8(b->mUnk_13c, &b->mUnk_000.mItemObject.mVelocity.y);
     }
     p = func_020fecdc(a, b, c);
     if (b != NULL && c == NULL) {
-        func_020ff1a0(b->mUnk_000.mUnk_000.mVelocity.y, &b->mUnk_13c);
+        func_020ff1a0(b->mUnk_000.mItemObject.mVelocity.y, &b->mUnk_13c);
     }
     if (b != NULL && c != NULL) {
-        return func_020fe8ac(b->mUnk_000.mUnk_000.mKind);
+        return func_020fe8ac(b->mUnk_000.mItemObject.mKind);
     }
     return p;
 }
@@ -45,13 +45,13 @@ u8 *func_020ff2b0(u8 *a, ItemFBox *b, void *c) {
 void InitItemFBoxFromData(ItemFBox *a) {
     func_020f8e78(a);
     func_020f2d98(&a->mUnk_000, 0);
-    if ((a->mUnk_000.mUnk_000.mFlags & 0x10000000) == 0) {
+    if ((a->mUnk_000.mItemObject.mFlags & 0x10000000) == 0) {
         return;
     }
     if (a->mUnk_13c == 0) {
         return;
     }
-    StartSound(&a->mUnk_000.mUnk_000.mSoundSource, 0xda, 0x7f, 0);
+    StartSound(&a->mUnk_000.mItemObject.mSoundSource, 0xda, 0x7f, 0);
 }
 
 #pragma thumb on
@@ -75,7 +75,7 @@ void func_020ff1d8(void) {
     for (i = 0; i < n; i++) {
         o = (ItemFBox *) e[0];
         o->mUnk_140 = (Unk021052fc *) AllocPooledMapObject();
-        o->mUnk_140->mUnk_fc = &o->mUnk_000.mUnk_000.mPos;
+        o->mUnk_140->mUnk_fc = &o->mUnk_000.mItemObject.mPos;
         e++;
     }
     p->mUnk_40 = 1;
@@ -138,7 +138,7 @@ u8 *func_020ff040(u8 *a, void *b, void *c) {
 
     if (b != NULL) {
         if (c != NULL) {
-            v = func_020f36d8(b);
+            v = GetItemPointLinkIndex(b);
         }
         if (c != NULL) {
             *(u8 *) a = v;
@@ -147,7 +147,7 @@ u8 *func_020ff040(u8 *a, void *b, void *c) {
         }
         a++;
         if (c == NULL) {
-            func_020f36a0(v, b);
+            SetItemPointLinkRefFromIndex(v, b);
         }
     } else {
         a++;

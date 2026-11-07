@@ -5,7 +5,7 @@
 
 // Object of item kind 3, element of gItemPools[3].
 typedef struct ItemKinoko {
-    /* 000 */ Unk020f2df0 mUnk_000;
+    /* 000 */ BouncingItemObject mUnk_000;
     /* 130 */ s32 mUnk_130;
     /* 134 */ BOOL mUnk_134;
 } ItemKinoko;
@@ -29,7 +29,7 @@ typedef struct ItemKouraR {
 
 // Object of item kind 2, element of gItemPools[2].
 typedef struct ItemBanana {
-    /* 000 */ Unk020f2df0 mUnk_000;
+    /* 000 */ BouncingItemObject mUnk_000;
     /* 130 */ s32 mUnk_130;
 } ItemBanana;
 
@@ -47,8 +47,8 @@ typedef struct ItemKouraG {
 #include "Main/Unknown/code_020e005c.h"
 #include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
 
-void func_020f49bc(Unk020f40dc *a);
-void InitHeldItem(Unk020f40dc *a, KartItems *b);
+void func_020f49bc(HeldItem *a);
+void InitHeldItem(HeldItem *a, KartItems *b);
 void CreateItemInfos(void);
 void func_020f4dfc(void **a, Vec3 *b, s32 c);
 void func_020f4e78(ItemKinoko *a, Vec3 *b, Vec3 *c);
@@ -57,7 +57,7 @@ void func_020f4f44(ItemKinoko *a);
 void func_020f4fd0(ItemKinoko *a);
 void DrawItemKinoko(ItemKinoko *a, void *b, void *c);
 void ResetItemKinoko(ItemKinoko *p0);
-void func_020f504c(ItemInUse *a, Unk020f40dc *b);
+void func_020f504c(ItemInUse *a, HeldItem *b);
 void InitItemBananaFromData(ItemBanana *a);
 void *func_020f5108(void *a, ItemBanana *b, void *c);
 void AdvanceItemBanana(ItemBanana *a);
@@ -78,8 +78,8 @@ void *func_020f6038(void *a, ItemKouraG *b, void *c);
 void AdvanceItemKouraG(ItemKouraG *a);
 BOOL InitItemKouraG(ItemInUse *a, ItemKouraG *b);
 void func_020f6220(void *a0, s32 b);
-void func_020f6264(ItemInUse *a, Unk020f40dc *b);
-void func_020f62b0(ItemInUse *a, Unk020f40dc *b);
+void func_020f6264(ItemInUse *a, HeldItem *b);
+void func_020f62b0(ItemInUse *a, HeldItem *b);
 void func_020f6388(ItemObject *a, Vec3 *b, Vec3 *c);
 void func_020f63cc(ItemObject *a);
 void func_020f65c4(ItemObject *a);

@@ -626,7 +626,7 @@ BOOL func_020f0154(KartItems *p) {
     }
     if (p->mItemInUse.mObjectKind != 0xf) {
         p->mFlags |= data_021595b8;
-    } else if (p->mHeldItem.mUnk_00 != 0x13) {
+    } else if (p->mHeldItem.mItemInfoIndex != 0x13) {
         p->mFlags |= data_021595bc;
     } else if (p->mSlotState != 0) {
         p->mFlags |= data_021595c0;
@@ -661,8 +661,8 @@ void func_020f0044(KartItems *p) {
     if ((p->mKart->mUnk_7c & 0x400) != 0) {
         return;
     }
-    if (p->mHeldItem.mUnk_00 != 0x13) {
-        func_020f45f0(&p->mHeldItem, 0);
+    if (p->mHeldItem.mItemInfoIndex != 0x13) {
+        ReleaseHeldItem(&p->mHeldItem, 0);
     }
     if (gRaceSetup->mMode == 5) {
         return;
@@ -695,8 +695,8 @@ void func_020eff40(KartItems *p) {
     if (f && p->mActiveItem != 0x13) {
         return;
     }
-    if (p->mHeldItem.mUnk_00 != 0x13 && p->mHeldItem.mUnk_20 == 0) {
-        func_020f41b0(&p->mHeldItem);
+    if (p->mHeldItem.mItemInfoIndex != 0x13 && p->mHeldItem.mObjectStartFramesLeft == 0) {
+        StartHeldItemObjects(&p->mHeldItem);
     }
     if (f) {
         return;
@@ -736,7 +736,7 @@ void func_020efea4(KartItems *p) {
 }
 
 BOOL func_020efd84(KartItems *p, s32 a) {
-    Unk020f40dc *r;
+    HeldItem *r;
     ItemPool *q;
     enum { K0 } i;
 
@@ -755,16 +755,16 @@ BOOL func_020efd84(KartItems *p, s32 a) {
             return TRUE;
         }
         StopItemSlot(p);
-        func_020f47e4(r, a);
+        SetHeldItem(r, a);
     } else {
-        if (r->mUnk_00 == 0x13 && r->mUnk_08 == 0) {
+        if (r->mItemInfoIndex == 0x13 && r->mObjectCount == 0) {
             i = gItemInfos[a].mObjectKind;
             q = &gItemPools[i];
             q->mReservedCount--;
         }
     }
-    func_020f4754(r, 1);
-    return r->mUnk_00 == 0x13;
+    RemoveHeldItemObjects(r, 1);
+    return r->mItemInfoIndex == 0x13;
 }
 
 void func_020efd1c(KartItems *p, ItemObject *a) {
@@ -784,27 +784,27 @@ void func_020efd1c(KartItems *p, ItemObject *a) {
 }
 
 void func_020efc74(KartItems *p, s32 a) {
-    Unk020f371c_Ref *r;
+    ItemPointLinkRef *r;
     Kart *b;
     Vec3 *v;
     s64 d;
     s32 t;
     if ((t = func_020f4090(a)) != 0) {
-        p->mUnk_1f0.mUnk_00 = (Unk020f371c *) t;
-        p->mUnk_1f0.mUnk_04 = 1;
+        p->mUnk_1f0.mLink = (ItemPointLink *) t;
+        p->mUnk_1f0.mNextLinksUsed = 1;
     }
-    if ((r = &p->mUnk_1f0)->mUnk_00 == NULL) {
+    if ((r = &p->mUnk_1f0)->mLink == NULL) {
         return;
     }
     b = p->mKart;
     v = &b->mUnk_98;
-    func_020f3c54(r, r, v);
-    d = (s64) (r->mUnk_00->mUnk_18->x - v->x) * (r->mUnk_00->mUnk_18->x - v->x);
-    d += (s64) (r->mUnk_00->mUnk_18->z - v->z) * (r->mUnk_00->mUnk_18->z - v->z);
+    PickNearestNearbyItemPointLink(r, r, v);
+    d = (s64) (r->mLink->mPointPos->x - v->x) * (r->mLink->mPointPos->x - v->x);
+    d += (s64) (r->mLink->mPointPos->z - v->z) * (r->mLink->mPointPos->z - v->z);
     if (d < ((s64) 0x15f9 << 32)) {
         return;
     }
-    func_020f3a58(r, r, v);
+    FollowItemPointLinksToPos(r, r, v);
 }
 
 #pragma thumb on
@@ -818,8 +818,8 @@ void InitKartItems(KartItems *a, s32 n) {
     InitHeldItem(&a->mHeldItem, a);
     InitItemInUse(&a->mItemInUse, a);
     q = (Unk02175620_060 *) gCourseMap;
-    a->mUnk_1f0.mUnk_00 = q->mUnk_060 != 0 ? q->mUnk_0b0 : 0;
-    a->mUnk_1f0.mUnk_04 = 1;
+    a->mUnk_1f0.mLink = q->mUnk_060 != 0 ? q->mUnk_0b0 : 0;
+    a->mUnk_1f0.mNextLinksUsed = 1;
     a->mUnk_204 = FALSE;
     a->mUnk_208 = FALSE;
     a->mUnk_20c = FALSE;

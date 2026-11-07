@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020f2dac.h" // Unk020f2df0
+#include "Main/Unknown/code_020f2dac.h" // BouncingItemObject
 #include "Main/Unknown/code_020e5d0c.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_021052fc.h"
@@ -10,7 +10,7 @@ struct ModelEffect;
 
 // Object of item kind 9, element of gItemPools[9].
 typedef struct ItemBomb {
-    /* 000 */ Unk020f2df0 mUnk_000;
+    /* 000 */ BouncingItemObject mUnk_000;
     /* 130 */ s32 mUnk_130;
     /* 134 */ s32 mUnk_134;
     /* 138 */ struct ModelEffect *mUnk_138;

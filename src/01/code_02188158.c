@@ -30,7 +30,7 @@ ItemBomb *func_ov001_02188158(Unk02188950 *a, u32 b, u32 c) {
     if (0 < v1) {
         do {
             v2 = func_020fd7a4(v4);
-            if ((v2 != NULL) && (v3 = func_ov001_021881a8(a, &v2->mUnk_000.mUnk_000.mPos, b, c), v3 != 0)) {
+            if ((v2 != NULL) && (v3 = func_ov001_021881a8(a, &v2->mUnk_000.mItemObject.mPos, b, c), v3 != 0)) {
                 return v2;
             }
             v4 = v4 + 1;

@@ -128,9 +128,9 @@ void func_ov001_0218a75c(Unk02188950 *b) {
         func_ov001_02187218(b, 3, NULL);
         func_ov001_02188d64(b, b->mPrm->mUnk_104, b->mPrm->mUnk_108);
         func_ov001_02188c48(b, b->mPrm->mUnk_110, b->mPrm->mUnk_110);
-        SetAnglePointAndMoveAnglePoint(b, &bomb->mUnk_000.mUnk_000.mPos);
+        SetAnglePointAndMoveAnglePoint(b, &bomb->mUnk_000.mItemObject.mPos);
         func_ov001_02188cec(b, b->mPrm->mUnk_10c);
-        func_ov001_02188de0(b, b->mPrm->mUnk_11c, b->mPrm->mUnk_120, &bomb->mUnk_000.mUnk_000.mPos,
+        func_ov001_02188de0(b, b->mPrm->mUnk_11c, b->mPrm->mUnk_120, &bomb->mUnk_000.mItemObject.mPos,
                             &func_ov001_0218a828);
         func_ov001_02188e24(b, b->mPrm->mUnk_124, 0);
         func_ov001_0218b278(b);

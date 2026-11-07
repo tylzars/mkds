@@ -161,7 +161,7 @@ s32 InitItemKouraW(ItemInUse *a, ItemKouraW *e) {
     Kart *p;
 
     func_020f9114(e);
-    if (a->mKartItems->mUnk_1f0.mUnk_00 != NULL) {
+    if (a->mKartItems->mUnk_1f0.mLink != NULL) {
         func_020ed268((Unk020ec8bc *) e, a, 0x14, 0xcc, 1, 1, 0, 0x6000, e->mRankKartIndex, 1);
         func_02046bcc(e->mUnk_2e8, 1);
     } else {
@@ -432,7 +432,7 @@ void UpdateItemKouraWState3(ItemKouraW *param_1) {
 void UpdateItemKouraWState2(ItemKouraW *param_1) {
     s32 i;
     void *q;
-    Unk020f371c *p;
+    ItemPointLink *p;
 
     if (param_1->mUnk_27c > 0xd000) {
         param_1->mUnk_27c -= 0xccd;
@@ -452,13 +452,13 @@ void UpdateItemKouraWState2(ItemKouraW *param_1) {
     func_020fc654(param_1);
     q = func_020fbd98_inline(param_1);
     func_020fc2e8(param_1, &param_1->mUnk_000.mVelocity, 1, q);
-    p = param_1->mKartItems->mUnk_1f0.mUnk_00;
+    p = param_1->mKartItems->mUnk_1f0.mLink;
     for (i = 0; i < 4; i++) {
         if (p == param_1->mUnk_168) {
             param_1->mNextState = 3;
             param_1->mNextStateRequested = 1;
         }
-        p = p->mUnk_00[0];
+        p = p->mNextLinks[0];
     }
 }
 
@@ -963,7 +963,7 @@ void StartItemSlotForKart(s32 param_1, s32 param_2, s32 param_3) {
     s32 v;
     BOOL c;
 
-    if (gKartItems[param_1].mHeldItem.mUnk_00 != 0x13) {
+    if (gKartItems[param_1].mHeldItem.mItemInfoIndex != 0x13) {
         return;
     }
     v = gRaceSetup->mCurrentEntries[param_1].mPlayer.mKind;
@@ -1157,7 +1157,7 @@ void InitItems(void) {
     s32 a;
     s32 i;
     enum { K0 } j;
-    Unk020f40dc *p;
+    HeldItem *p;
     u8 v;
 
     b = GetHeap(func_020364e8());
@@ -1169,7 +1169,7 @@ void InitItems(void) {
     CreateItemInfos();
     InitItemKinds();
     func_020f73a4();
-    func_020f357c();
+    InitItemPointLinkDirections();
     v = gRaceSetup->mKartCount;
     gKartItemsCount = v;
     gKartItems = HeapAlloc(b, v * 0x210);
@@ -1188,13 +1188,13 @@ void InitItems(void) {
     if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
         for (i = 0; i < gKartItemsCount; i++) {
             p = &gKartItems[i].mHeldItem;
-            func_020f47e4(p, 5);
+            SetHeldItem(p, 5);
             switch (GetKartVariant((u16) i)) {
                 case 0:
-                    func_020f4754(p, 1);
+                    RemoveHeldItemObjects(p, 1);
                     break;
                 case 1:
-                    func_020f4754(p, 2);
+                    RemoveHeldItemObjects(p, 2);
                     break;
             }
         }

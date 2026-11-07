@@ -25,25 +25,25 @@ typedef struct {
     /* 00 */ s32 mUnk_00;
 } Unk020f36d8;
 
-// Node with two lists of node pointers and a position pointer.
-typedef struct Unk020f371c {
-    /* 00 */ struct Unk020f371c *mUnk_00[3];
-    /* 0c */ struct Unk020f371c *mUnk_0c[3];
-    /* 18 */ Vec3 *mUnk_18;
+// One item point: the links that follow it and come before it, and a pointer to its position.
+typedef struct ItemPointLink {
+    /* 00 */ struct ItemPointLink *mNextLinks[3];
+    /* 0c */ struct ItemPointLink *mPreviousLinks[3];
+    /* 18 */ Vec3 *mPointPos;
     /* 1c */ s32 mUnk_1c;
     /* 20 */ u8 mUnk_20;
-    /* 21 */ u8 mUnk_21;
-    /* 22 */ u8 mUnk_22;
-    /* 23 */ u8 mUnk_23;
-    /* 24 */ u16 mUnk_24;
-    /* 26 */ u16 mUnk_26;
-} Unk020f371c;
+    /* 21 */ u8 mDirectionX;
+    /* 22 */ u8 mDirectionY;
+    /* 23 */ u8 mDirectionZ;
+    /* 24 */ u16 mNextCount;
+    /* 26 */ u16 mPreviousCount;
+} ItemPointLink;
 
-// A node and which of its two lists is used.
-typedef struct {
-    /* 00 */ Unk020f371c *mUnk_00;
-    /* 04 */ s32 mUnk_04;
-} Unk020f371c_Ref;
+// A link and which of its two lists is read.
+typedef struct ItemPointLinkRef {
+    /* 00 */ ItemPointLink *mLink;
+    /* 04 */ s32 mNextLinksUsed;
+} ItemPointLinkRef;
 
 // Nine halfwords moved together.
 typedef struct {
@@ -529,21 +529,21 @@ typedef struct ItemPool {
     /* 40 */ s32 mUnk_40;
 } ItemPool;
 
-// Value of the first word of Unk020f40dc.
+// Value of the first word of HeldItem.
 typedef enum { UNK_020F40DC_KIND_0 } Unk020f40dc_Kind;
 
-// Object handled by func_020f40dc and the functions after it.
-typedef struct {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ struct KartItems *mUnk_04;
-    /* 08 */ s32 mUnk_08;
+// The item a kart holds: its item index, how many are left and the objects it holds.
+typedef struct HeldItem {
+    /* 00 */ s32 mItemInfoIndex;
+    /* 04 */ struct KartItems *mKartItems;
+    /* 08 */ s32 mObjectCount;
     /* 0c */ s32 mUnk_0c;
-    /* 10 */ s16 mUnk_10;
+    /* 10 */ s16 mTimer;
     /* 12 */ s16 mUnk_12;
-    /* 14 */ ItemObject *mUnk_14[3];
-    /* 20 */ s32 mUnk_20;
+    /* 14 */ ItemObject *mObjects[3];
+    /* 20 */ s32 mObjectStartFramesLeft;
     /* 24 */ BOOL mUnk_24;
-} Unk020f40dc;
+} HeldItem;
 
 #include "Main/Unknown/code_020d6dc0.h"
 
@@ -554,23 +554,23 @@ extern Unk020f41c4_Row data_0215961c[];
 extern ItemInfo *gItemInfos;
 extern ItemPool *gItemPools;
 
-u8 func_020f36d8(Unk020f36d8 *p);
-void func_020f371c(Unk020f371c_Ref *in, Unk020f371c_Ref *out, u32 idx, s32 flag);
-BOOL func_020f3a58(Unk020f371c_Ref *in, Unk020f371c_Ref *out, Vec3 *pos);
-BOOL func_020f3bb4(Unk020f371c_Ref *a, Unk020f371c_Ref *b, Unk020f371c_Ref *out, Vec3 *pos);
-BOOL func_020f3c54(Unk020f371c_Ref *in, Unk020f371c_Ref *out, Vec3 *pos);
+u8 GetItemPointLinkIndex(Unk020f36d8 *p);
+void PickNextItemPointLink(ItemPointLinkRef *in, ItemPointLinkRef *out, u32 idx, s32 flag);
+BOOL FollowItemPointLinksToPos(ItemPointLinkRef *in, ItemPointLinkRef *out, Vec3 *pos);
+BOOL CopyCloserItemPointLinkRef(ItemPointLinkRef *a, ItemPointLinkRef *b, ItemPointLinkRef *out, Vec3 *pos);
+BOOL PickNearestNearbyItemPointLink(ItemPointLinkRef *in, ItemPointLinkRef *out, Vec3 *pos);
 s32 func_020f3fa8(Unk020f3fa8 *p, Vec3 *v);
 void func_020f4020(Unk020f3fa8 *p, Vec3 *points, s32 scale);
 s32 func_020f4090(s32 idx);
-void func_020f40a0(s32 idx, s32 amount);
-void func_020f40dc(Unk020f40dc *rec, s32 kind, s32 count);
-void func_020f413c(Unk020f40dc *rec, s32 *kind, s32 *count);
-void func_020f4188(Unk020f40dc *rec, s32 v);
-BOOL func_020f4198(Unk020f40dc *rec, s32 v);
-void func_020f41b0(Unk020f40dc *rec);
-void func_020f41c4(Unk020f40dc *rec);
-void func_020f45f0(Unk020f40dc *rec, s32 keep);
-void func_020f4718(Unk020f40dc *rec);
-void func_020f4754(Unk020f40dc *rec, s32 n);
-void func_020f47e4(Unk020f40dc *rec, s32 kind);
-void func_020f4884(Unk020f40dc *rec);
+void RemoveReservedItemObjects(s32 idx, s32 amount);
+void SetHeldItemWithCount(HeldItem *rec, s32 kind, s32 count);
+void RemoveHeldItem(HeldItem *rec, s32 *kind, s32 *count);
+void func_020f4188(HeldItem *rec, s32 v);
+BOOL StartHeldItemTimer(HeldItem *rec, s32 v);
+void StartHeldItemObjects(HeldItem *rec);
+void TakeHeldItemObjects(HeldItem *rec);
+void ReleaseHeldItem(HeldItem *rec, s32 keep);
+void ResetHeldItem(HeldItem *rec);
+void RemoveHeldItemObjects(HeldItem *rec, s32 n);
+void SetHeldItem(HeldItem *rec, s32 kind);
+void UpdateHeldItem(HeldItem *rec);

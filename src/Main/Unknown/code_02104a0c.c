@@ -76,9 +76,9 @@ void func_02105214(void) {
 }
 #pragma thumb off
 
-void func_021051d4(ItemInUse *p0, Unk020f40dc *p1) {
-    StartKartKiller(p1->mUnk_04->mKart);
-    func_020f4754(p1, 1);
+void func_021051d4(ItemInUse *p0, HeldItem *p1) {
+    StartKartKiller(p1->mKartItems->mKart);
+    RemoveHeldItemObjects(p1, 1);
     SetActiveItem(p0->mKartItems, 0xe);
 }
 
@@ -97,7 +97,7 @@ void func_02104ff8(void) {
     s32 i;
     s32 c;
     KartItems *p;
-    Unk020f40dc *q;
+    HeldItem *q;
     NNSSndSeqPlayer **v;
     u32 a = 0;
     u32 b = 0;
@@ -111,11 +111,11 @@ void func_02104ff8(void) {
         }
         p = &gKartItems[(u16) i];
         q = &p->mHeldItem;
-        if (q->mUnk_00 != 0x13) {
+        if (q->mItemInfoIndex != 0x13) {
             continue;
         }
         if (c == 0) {
-            func_020f47e4(q, 0x11);
+            SetHeldItem(q, 0x11);
             data_0217c704[i] = 0;
             if (i == gRaceSetup->mEntryIndex && (data_0217c780 & 1)) {
                 v = func_0210e128(func_02108ea0(0));
@@ -150,13 +150,13 @@ void func_02104f58(Unk02104c68 *p) {
     if (p->mUnk_138 != 0) {
         (p->mUnk_134)->mUnk_b0 = 1;
     }
-    if ((p->mUnk_000.mUnk_000.mFlags & 0x180000) == 0) {
-        p->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) func_02104a0c;
+    if ((p->mUnk_000.mItemObject.mFlags & 0x180000) == 0) {
+        p->mUnk_000.mItemObject.mUnk_120 = (void (*)(ItemObject *)) func_02104a0c;
     }
 }
 
 void func_02104f14(Unk02104c68 *p) {
-    u16 i = p->mUnk_000.mUnk_000.mUnk_78 & ~0xff00;
+    u16 i = p->mUnk_000.mItemObject.mUnk_78 & ~0xff00;
     if ((s32) data_0217c6e4[i] > 0) {
         data_0217c704[i] = 1;
     }
@@ -164,17 +164,17 @@ void func_02104f14(Unk02104c68 *p) {
 }
 
 void func_02104ee0(Unk02104c68 *p, void *a) {
-    func_020deb2c(&p->mUnk_000.mUnk_000.mPos, a, 0, (p->mUnk_000.mUnk_000.mFlags & 0x10000) ? 1 : 0, 0);
+    func_020deb2c(&p->mUnk_000.mItemObject.mPos, a, 0, (p->mUnk_000.mItemObject.mFlags & 0x10000) ? 1 : 0, 0);
 }
 
 void func_02104e58(Unk02104c68 *p) {
     p->mUnk_148 = 0x666;
     func_021053e4(p->mUnk_134);
-    p->mUnk_138 = (u16) (p->mUnk_000.mUnk_000.mUnk_78 & ~0xff00) == gRaceSetup->mEntryIndex;
+    p->mUnk_138 = (u16) (p->mUnk_000.mItemObject.mUnk_78 & ~0xff00) == gRaceSetup->mEntryIndex;
     if (p->mUnk_138 != 0) {
         (p->mUnk_134)->mUnk_b0 = 2;
     }
-    data_0217c6e4[(u16) (p->mUnk_000.mUnk_000.mUnk_78 & ~0xff00)] = 0x258;
+    data_0217c6e4[(u16) (p->mUnk_000.mItemObject.mUnk_78 & ~0xff00)] = 0x258;
 }
 
 void func_02104d78(ItemInUse *p0, Unk02104c68 *p1) {
@@ -182,37 +182,37 @@ void func_02104d78(ItemInUse *p0, Unk02104c68 *p1) {
     Unk021052fc *b = p1->mUnk_134;
     s32 n;
     if (p1->mUnk_138 != 0) {
-        VEC_MultAdd(((s64) p0->mUnk_084.z * -28877) >> 12, &p0->mUnk_02c.mUnk_0c, &p1->mUnk_000.mUnk_000.mPos,
+        VEC_MultAdd(((s64) p0->mUnk_084.z * -28877) >> 12, &p0->mUnk_02c.mUnk_0c, &p1->mUnk_000.mItemObject.mPos,
                     &p1->mUnk_13c);
         n = p1->mUnk_148;
-        t.x = ((s64) p1->mUnk_000.mUnk_000.mUnk_68.x * n) >> 12;
-        t.y = ((s64) p1->mUnk_000.mUnk_000.mUnk_68.y * n) >> 12;
-        t.z = ((s64) p1->mUnk_000.mUnk_000.mUnk_68.z * n) >> 12;
-        func_02105338(b, p1->mUnk_000.mUnk_000.mUnk_d8, &t);
+        t.x = ((s64) p1->mUnk_000.mItemObject.mUnk_68.x * n) >> 12;
+        t.y = ((s64) p1->mUnk_000.mItemObject.mUnk_68.y * n) >> 12;
+        t.z = ((s64) p1->mUnk_000.mItemObject.mUnk_68.z * n) >> 12;
+        func_02105338(b, p1->mUnk_000.mItemObject.mUnk_d8, &t);
     } else {
-        p1->mUnk_13c = p1->mUnk_000.mUnk_000.mPos;
-        func_02105338(b, p1->mUnk_000.mUnk_000.mUnk_d8, &p1->mUnk_000.mUnk_000.mUnk_68);
+        p1->mUnk_13c = p1->mUnk_000.mItemObject.mPos;
+        func_02105338(b, p1->mUnk_000.mItemObject.mUnk_d8, &p1->mUnk_000.mItemObject.mUnk_68);
     }
     func_021052fc(b);
 }
 
 s32 func_02104c68(ItemInUse *p0, Unk02104c68 *p1) {
     func_020f9114(p1);
-    p1->mUnk_000.mUnk_000.mUnk_78 |= data_0215a584;
+    p1->mUnk_000.mItemObject.mUnk_78 |= data_0215a584;
     if (p1->mUnk_138 != 0) {
         (p1->mUnk_134)->mUnk_b0 = 1;
     }
     if ((p0->mKartItems->mFlags & KART_ITEMS_THROW_FORWARD) != 0) {
-        func_020f3150(&p1->mUnk_000, p0, 0, 1, 0x4000, 0x3000, 0x59a);
-        StartSound(&p1->mUnk_000.mUnk_000.mSoundSource, 0xda, 0x7f, 0);
+        ThrowBouncingItem(&p1->mUnk_000, p0, 0, 1, 0x4000, 0x3000, 0x59a);
+        StartSound(&p1->mUnk_000.mItemObject.mSoundSource, 0xda, 0x7f, 0);
         p1->mUnk_130 = 1;
         return p1->mUnk_130;
     } else {
-        func_020f3150(&p1->mUnk_000, p0, 0, 0, 0x4000, 0x3000, 0x59a);
+        ThrowBouncingItem(&p1->mUnk_000, p0, 0, 0, 0x4000, 0x3000, 0x59a);
         if (p0->mKartVelocityLength < 0x1000) {
-            p1->mUnk_000.mUnk_000.mVelocity.x = 0;
-            p1->mUnk_000.mUnk_000.mVelocity.y = 0;
-            p1->mUnk_000.mUnk_000.mVelocity.z = 0;
+            p1->mUnk_000.mItemObject.mVelocity.x = 0;
+            p1->mUnk_000.mItemObject.mVelocity.y = 0;
+            p1->mUnk_000.mItemObject.mVelocity.z = 0;
         }
         p1->mUnk_130 = 0;
         return p1->mUnk_130;
@@ -228,43 +228,43 @@ void func_02104a0c(Unk02104c68 *p) {
     s32 n;
     s32 a;
     Unk021052fc *b;
-    if ((p->mUnk_000.mUnk_000.mFlags & 0x180000) != 0) {
-        if ((p->mUnk_000.mUnk_000.mFlags & 0x80000) != 0) {
-            func_020f6e58(&p->mUnk_000.mUnk_000);
-        } else if ((p->mUnk_000.mUnk_000.mFlags & 0x100000) != 0) {
-            func_020f758c(&p->mUnk_000.mUnk_000);
+    if ((p->mUnk_000.mItemObject.mFlags & 0x180000) != 0) {
+        if ((p->mUnk_000.mItemObject.mFlags & 0x80000) != 0) {
+            func_020f6e58(&p->mUnk_000.mItemObject);
+        } else if ((p->mUnk_000.mItemObject.mFlags & 0x100000) != 0) {
+            func_020f758c(&p->mUnk_000.mItemObject);
         }
-    } else if ((p->mUnk_000.mUnk_000.mFlags & 0x8000) != 0) {
+    } else if ((p->mUnk_000.mItemObject.mFlags & 0x8000) != 0) {
         if (gRaceSetup->mMode == MODE_BATTLE) {
-            i = p->mUnk_000.mUnk_000.mUnk_78 & ~0xff00;
+            i = p->mUnk_000.mItemObject.mUnk_78 & ~0xff00;
             v = data_0217c6e4[i] - 0x3c;
-            if (v < p->mUnk_000.mUnk_000.mUnk_d8) {
-                p->mUnk_000.mUnk_000.mUnk_d8 = v;
+            if (v < p->mUnk_000.mItemObject.mUnk_d8) {
+                p->mUnk_000.mItemObject.mUnk_d8 = v;
             }
             if (v < 0xa) {
                 func_020f9c40((s32) p);
                 if (v == 0) {
-                    ReleaseItemPoolObject(&gItemPools[p->mUnk_000.mUnk_000.mKind], &p->mUnk_000.mUnk_000);
+                    ReleaseItemPoolObject(&gItemPools[p->mUnk_000.mItemObject.mKind], &p->mUnk_000.mItemObject);
                     return;
                 }
             }
             data_0217c6e4[i]--;
         }
-        func_020f68b0(&p->mUnk_000.mUnk_000);
-    } else if ((p->mUnk_000.mUnk_000.mFlags & 0x4000) != 0) {
-        func_020f63cc(&p->mUnk_000.mUnk_000);
+        func_020f68b0(&p->mUnk_000.mItemObject);
+    } else if ((p->mUnk_000.mItemObject.mFlags & 0x4000) != 0) {
+        func_020f63cc(&p->mUnk_000.mItemObject);
     } else {
         if (p->mUnk_130 != 0) {
-            func_020f2df0(&p->mUnk_000, 0x1ec, 0xfec, 0, &buf);
+            AdvanceBouncingItem(&p->mUnk_000, 0x1ec, 0xfec, 0, &buf);
         } else {
-            func_020f2df0(&p->mUnk_000, 0x2e1, 0xf85, 0, &buf);
+            AdvanceBouncingItem(&p->mUnk_000, 0x2e1, 0xf85, 0, &buf);
         }
-        if ((p->mUnk_000.mUnk_000.mFlags & 8) != 0 && (p->mUnk_000.mUnk_000.mFlags & 3) == 0) {
+        if ((p->mUnk_000.mItemObject.mFlags & 8) != 0 && (p->mUnk_000.mItemObject.mFlags & 3) == 0) {
             if (p->mUnk_130 != 0) {
-                p->mUnk_000.mUnk_000.mVelocity.y <<= 1;
+                p->mUnk_000.mItemObject.mVelocity.y <<= 1;
             }
-            StopSound(&p->mUnk_000.mUnk_000.mSoundSource, 0xda);
-            func_020f6a6c(&p->mUnk_000.mUnk_000, &buf);
+            StopSound(&p->mUnk_000.mItemObject.mSoundSource, 0xda);
+            func_020f6a6c(&p->mUnk_000.mItemObject, &buf);
         }
     }
     a = p->mUnk_138;
@@ -272,15 +272,15 @@ void func_02104a0c(Unk02104c68 *p) {
     if (a != 0 && p->mUnk_148 < 0x1000) {
         p->mUnk_148 += 0xcd;
         n = p->mUnk_148;
-        t.x = ((s64) p->mUnk_000.mUnk_000.mUnk_68.x * n) >> 12;
-        t.y = ((s64) p->mUnk_000.mUnk_000.mUnk_68.y * n) >> 12;
-        t.z = ((s64) p->mUnk_000.mUnk_000.mUnk_68.z * n) >> 12;
-        VEC_Subtract(&p->mUnk_000.mUnk_000.mPos, &p->mUnk_13c, &d);
+        t.x = ((s64) p->mUnk_000.mItemObject.mUnk_68.x * n) >> 12;
+        t.y = ((s64) p->mUnk_000.mItemObject.mUnk_68.y * n) >> 12;
+        t.z = ((s64) p->mUnk_000.mItemObject.mUnk_68.z * n) >> 12;
+        VEC_Subtract(&p->mUnk_000.mItemObject.mPos, &p->mUnk_13c, &d);
         VEC_MultAdd(((s64) p->mUnk_148 * p->mUnk_148) >> 12, &d, &p->mUnk_13c, &p->mUnk_13c);
-        func_02105338(b, p->mUnk_000.mUnk_000.mUnk_d8, &t);
+        func_02105338(b, p->mUnk_000.mItemObject.mUnk_d8, &t);
     } else {
-        p->mUnk_13c = p->mUnk_000.mUnk_000.mPos;
-        func_02105338(b, p->mUnk_000.mUnk_000.mUnk_d8, &p->mUnk_000.mUnk_000.mUnk_68);
+        p->mUnk_13c = p->mUnk_000.mItemObject.mPos;
+        func_02105338(b, p->mUnk_000.mItemObject.mUnk_d8, &p->mUnk_000.mItemObject.mUnk_68);
     }
     func_021052fc(b);
 }

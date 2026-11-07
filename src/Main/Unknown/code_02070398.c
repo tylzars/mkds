@@ -156,8 +156,8 @@ void ResetKartToRespawnPoint(Kart *p) {
     MTX_RotY33_(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
     MTX_MultVec33(&data_02154f70, m, &b);
     if (gRaceSetup->mMode != MODE_BATTLE && gCourseMap->mItemRouteCount != 0) {
-        (e = &gKartItems[p->mIndex])->mUnk_1f0.mUnk_00 = GetCourseMapRespawnItemPointLink((u16) p->mRespawnSlot);
-        e->mUnk_1f0.mUnk_04 = 1;
+        (e = &gKartItems[p->mIndex])->mUnk_1f0.mLink = GetCourseMapRespawnItemPointLink((u16) p->mRespawnSlot);
+        e->mUnk_1f0.mNextLinksUsed = 1;
     }
     if (gRaceSetup->mMode != MODE_TIME_ATTACK) {
         x = data_usa_02154d4c[p->mIndex][0];

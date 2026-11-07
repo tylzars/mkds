@@ -21,7 +21,7 @@ extern u8 data_0215406d[];
 s32 IsKartInCourseMapKind3ShapeList(s32 a, u32 b);
 // Returns the element of mItemPointLinks given by mItemPointIndex of the respawn spot of slot a, NULL when there is no
 // respawn spot.
-struct Unk020f371c *GetCourseMapRespawnItemPointLink(u32 a);
+struct ItemPointLink *GetCourseMapRespawnItemPointLink(u32 a);
 // Looks up the respawn spot of slot a: writes its position to b and its rotation angles to c (a default position and
 // angles when there is none) and returns its element of mBattlePointLinks (mPointIndex), NULL for -1.
 Unk02175620_bc *GetCourseMapRespawnBattlePointLink(u32 a, Vec3 *b, Vec3 *c);

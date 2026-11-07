@@ -31,7 +31,7 @@ typedef struct Unk020f41c4_B Unk020f41c4_B;
 
 typedef struct CourseMapRoute CourseMapRoute;
 typedef struct Unk02175620_a0 Unk02175620_a0;
-typedef struct Unk020f371c Unk020f371c;
+typedef struct ItemPointLink ItemPointLink;
 
 // Takes the camera section: stores mCameraCount and mCameras (NULL when empty) and remembers the first entry of chain
 // 1, chain 2, kind 6, kind 7 (battle) and kind 8 (mission run) in the CourseMap members of those names. Returns 1.
@@ -93,7 +93,7 @@ void BuildCourseMapItemPointLinks(void *a);
 // Fills the link of point c of route b (pointer to its point and two values), joins it to link a as next and previous
 // (skipped when already joined), then goes on with the next point of the route and, at the route end, with the first
 // point of each following route other than route 0 and 255.
-void BuildCourseMapItemRouteLinks(Unk020f371c *a, CourseMapRoute *b, u16 c);
+void BuildCourseMapItemRouteLinks(ItemPointLink *a, CourseMapRoute *b, u16 c);
 Unk02175620_94 *GetCourseMapEntryGroupTableRow(unsigned int p0);
 void BuildCourseMapEntryGroupTable(void *a);
 void SetCourseMapCheckpointTotals(void);

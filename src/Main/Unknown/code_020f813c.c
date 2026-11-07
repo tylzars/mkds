@@ -208,8 +208,8 @@ void func_020f86c4(KartItems *param_1) {
         p->mActiveItem = 0x13;
         p->mUnk_020 = FALSE;
     } else {
-        if (p->mHeldItem.mUnk_00 != 0x13) {
-            func_020f45f0(&p->mHeldItem, 1);
+        if (p->mHeldItem.mItemInfoIndex != 0x13) {
+            ReleaseHeldItem(&p->mHeldItem, 1);
         }
     }
     param_1->mSlotState = 1;

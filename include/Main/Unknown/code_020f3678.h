@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_020f3678(u32 arg0, u32 arg1);
+u32 GetItemPointLinkDirection(u32 arg0, u32 arg1);

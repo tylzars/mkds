@@ -72,7 +72,7 @@ BOOL func_020fcbb8(ItemKouraW *p0, s32 v1) {
     }
     e = &(gKartItems)[v1];
     q = &p->mUnk_98;
-    if (e->mUnk_1f0.mUnk_00 != p0->mUnk_168) {
+    if (e->mUnk_1f0.mLink != p0->mUnk_168) {
         f = ((p0->mUnk_000.mFlags & 0x40000000) || (p->mUnk_48 & 1)) ? 1 : 0;
         VEC_Subtract(q, &p0->mUnk_000.mPos, &v);
         dx = v.x >> 12;

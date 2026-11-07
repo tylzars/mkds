@@ -479,7 +479,7 @@ void func_0207c978(KartAiItemUse *a, struct KartAi *b) {
     BOOL r;
 
     e = &gKartItems[b->mIndex];
-    t = e->mHeldItem.mUnk_00;
+    t = e->mHeldItem.mItemInfoIndex;
     if (a->mItemBitsEveryCall != 0) {
         if (t != 0x13) {
             a->mUnk_0c = 1;
@@ -508,7 +508,7 @@ void func_0207c8d8(KartAiItemUse *a, struct KartAi *b) {
     BOOL r;
 
     e = &gKartItems[b->mIndex];
-    t = e->mHeldItem.mUnk_00;
+    t = e->mHeldItem.mItemInfoIndex;
     if (a->mItemBitsEveryCall != 0) {
         if (t != 0x13) {
             a->mUnk_0c = 1;
@@ -681,7 +681,7 @@ void AdvanceItemBitRequests(struct KartAiItemUse *a, struct KartAi *b) {
         e = &gKartItems[v1];
         if (e->mItemInUse.mObjectKind != 0xf && a->mItemInUseEntry != NULL) {
             a->mItemInUseEntry->mHandler(a, b);
-        } else if ((a->mHeldItemEntry != 0) & (e->mHeldItem.mUnk_00 != 0x13)) {
+        } else if ((a->mHeldItemEntry != 0) & (e->mHeldItem.mItemInfoIndex != 0x13)) {
             a->mHeldItemEntry->mHandler(a, b);
         } else {
             RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
@@ -708,7 +708,7 @@ void func_0207c270(struct KartAiItemUse *a, struct KartAi *b) {
     if (IsKartEnded(b->mIndex) != 0) {
         return;
     }
-    if (gKartItems[b->mIndex].mHeldItem.mUnk_00 == 0xe) {
+    if (gKartItems[b->mIndex].mHeldItem.mItemInfoIndex == 0xe) {
         if (*(u16 *) &b->mUnk_08.mUnk_00.mLink->mUnk_24 > 1) {
             return;
         }
@@ -722,7 +722,7 @@ void SetupHeldItemEntry(struct KartAiItemUse *a, struct KartAi *b) {
     u32 v;
     enum { K0 } k;
 
-    k = gKartItems[b->mIndex].mHeldItem.mUnk_00;
+    k = gKartItems[b->mIndex].mHeldItem.mItemInfoIndex;
     a->mHeldItemEntry = &data_0217ae38[k];
     r = GetKartAiRandom();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;

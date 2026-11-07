@@ -423,7 +423,7 @@ void func_02088e44(KartAi *p) {
         return;
     }
     v1 = &gKartItems[m];
-    if (v1->mItemInUse.mObjectKind == 0xf && v1->mHeldItem.mUnk_00 == 0x13 && (p->mKart->mUnk_4c & 0x40) == 0) {
+    if (v1->mItemInUse.mObjectKind == 0xf && v1->mHeldItem.mItemInfoIndex == 0x13 && (p->mKart->mUnk_4c & 0x40) == 0) {
         goto clear;
     }
     if (func_0207f600(p->mTargetKart->mIndex) == FALSE) {
@@ -459,7 +459,7 @@ void func_02088e44(KartAi *p) {
     if (p->mTargetAhead != 0) {
         v1 = &gKartItems[p->mIndex];
         c = 1;
-        if (v1->mItemInUse.mObjectKind == 0xf && v1->mHeldItem.mUnk_00 == 0x13) {
+        if (v1->mItemInUse.mObjectKind == 0xf && v1->mHeldItem.mItemInfoIndex == 0x13) {
             if ((GetKart(p->mIndex)->mUnk_4c & 0x40) == 0) {
                 c = 0;
             }

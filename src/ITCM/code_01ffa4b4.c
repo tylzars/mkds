@@ -122,7 +122,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
         if (f & 0x400000) {
             func_020efc74(&(gKartItems)[p->mIndex], (u16) ((func_020d59f8(0x400000) & 0xe0) >> 5));
             if (p->mUnk_4c & 0x10000000) {
-                func_02090838(&p->mUnk_538.mUnk_2c, (Unk02080b1c_00 *) (gKartItems)[p->mIndex].mUnk_1f0.mUnk_00);
+                func_02090838(&p->mUnk_538.mUnk_2c, (Unk02080b1c_00 *) (gKartItems)[p->mIndex].mUnk_1f0.mLink);
             }
             if ((p->mUnk_7c & 2) && (f & 0x400000) && p->mState != KART_STATE_LAUNCH_DOUBLE_FLIP) {
                 func_0208c1f4(p->mAi);

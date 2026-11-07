@@ -109,8 +109,8 @@ static inline s32 func_02101f7c_inline(KartItems *v1, RaceSetup *o, s32 a, u16 k
         v2 = FALSE;
     } else {
         v2 = FALSE;
-        if (e->mHeldItem.mUnk_00 != 0x13 && e->mHeldItem.mUnk_20 == 0) {
-            v2 = e->mHeldItem.mUnk_00 != 0x10;
+        if (e->mHeldItem.mItemInfoIndex != 0x13 && e->mHeldItem.mObjectStartFramesLeft == 0) {
+            v2 = e->mHeldItem.mItemInfoIndex != 0x10;
         }
     }
     return v2;
@@ -253,8 +253,8 @@ void PickItemTeresaKartBattle(ItemTeresa *p, s32 a) {
                 l = 0;
             } else {
                 l = 0;
-                if (e->mHeldItem.mUnk_00 != 0x13 && e->mHeldItem.mUnk_20 == 0) {
-                    l = e->mHeldItem.mUnk_00 != 0x10;
+                if (e->mHeldItem.mItemInfoIndex != 0x13 && e->mHeldItem.mObjectStartFramesLeft == 0) {
+                    l = e->mHeldItem.mItemInfoIndex != 0x10;
                 }
             }
             if (l != 0) {
@@ -614,7 +614,7 @@ void EnterItemTeresaState2(ItemTeresa *p) {
 s32 func_02101014(ItemTeresa *p) {
     KartItems *e;
     Kart *q;
-    Unk020f40dc *r;
+    HeldItem *r;
     s32 a;
     s32 b;
     enum { K0 } k;
@@ -622,10 +622,10 @@ s32 func_02101014(ItemTeresa *p) {
     e = &gKartItems[(u16) p->mPickedKartIndex];
     q = e->mKart;
     r = &e->mHeldItem;
-    if (r->mUnk_00 == 0x13 || r->mUnk_20 != 0) {
+    if (r->mItemInfoIndex == 0x13 || r->mObjectStartFramesLeft != 0) {
         return 0xf;
     }
-    if (r->mUnk_00 == 0x10) {
+    if (r->mItemInfoIndex == 0x10) {
         return 0xf;
     }
     if (p->mUnk_144 != FALSE) {
@@ -642,11 +642,11 @@ s32 func_02101014(ItemTeresa *p) {
         return 0xf;
     }
     if (p->mUnk_000.mFlags & 0x8000000) {
-        p->mItemInfoIndex = r->mUnk_00;
-        p->mItemCount = r->mUnk_08;
+        p->mItemInfoIndex = r->mItemInfoIndex;
+        p->mItemCount = r->mObjectCount;
         func_0205a5b0(((u8 *) data_0217aa18)[p->mPickedKartIndex & 0xff]);
     } else {
-        func_020f413c(r, &p->mItemInfoIndex, &p->mItemCount);
+        RemoveHeldItem(r, &p->mItemInfoIndex, &p->mItemCount);
     }
     func_02068a10(q);
     k = p->mItemInfoIndex;
@@ -903,7 +903,7 @@ void UpdateItemTeresaState5(ItemTeresa *p) {
                     if (p->mUnk_24c == FALSE) {
                         func_0205a548(((u8 *) data_0217aa18)[e->mKartIndex & 0xff], p->mItemInfoIndex, p->mItemCount);
                     } else {
-                        func_020f40dc(&e->mHeldItem, p->mItemInfoIndex, p->mItemCount);
+                        SetHeldItemWithCount(&e->mHeldItem, p->mItemInfoIndex, p->mItemCount);
                     }
                     p->mItemInfoIndex = 0x13;
                     p->mItemCount = -0x40;
@@ -914,7 +914,8 @@ void UpdateItemTeresaState5(ItemTeresa *p) {
                     p->mItemObjectKind = 0xe;
                 }
                 if ((p->mUnk_000.mFlags & 0x8000000) && p->mUnk_24c != FALSE) {
-                    func_020fe694(0xb, p->mUnk_000.mId, 3, ((e->mHeldItem.mUnk_00 << 2) | e->mHeldItem.mUnk_08) & 0xff);
+                    func_020fe694(0xb, p->mUnk_000.mId, 3,
+                                  ((e->mHeldItem.mItemInfoIndex << 2) | e->mHeldItem.mObjectCount) & 0xff);
                 }
             }
         }
@@ -975,8 +976,8 @@ void UpdateItemTeresaState6(ItemTeresa *p) {
             } else {
                 i = 8;
             }
-            ((void (*)(s32 param_1, s32 param_2, s32 param_3)) func_020f40a0)(p->mItemInfoIndex, p->mItemCount,
-                                                                              (u16) i);
+            ((void (*)(s32 param_1, s32 param_2, s32 param_3)) RemoveReservedItemObjects)(p->mItemInfoIndex,
+                                                                                          p->mItemCount, (u16) i);
         }
         ReleaseItemPoolObject(gItemPools + p->mUnk_000.mKind, &p->mUnk_000);
     }

@@ -60,7 +60,7 @@ BOOL func_020ee528(ItemInUse *a) {
     return FALSE;
 }
 
-void StartItemInUse(ItemInUse *a, Unk020f40dc *b) {
+void StartItemInUse(ItemInUse *a, HeldItem *b) {
     void (*f1)(void *);
     s32 t;
     s32 k;
@@ -73,18 +73,18 @@ void StartItemInUse(ItemInUse *a, Unk020f40dc *b) {
     u16 *r;
     s32 u;
 
-    k = b->mUnk_00;
+    k = b->mItemInfoIndex;
     t = gItemInfos[k].mUseKind;
     s = gRaceSetup->mMode == 5;
     if (b->mUnk_0c != 0) {
-        if (b->mUnk_10 > b->mUnk_12) {
+        if (b->mTimer > b->mUnk_12) {
             return;
         }
     }
     f1 = gItemInUseStartTable[t];
     f2 = gItemInfos[k].mUseHook;
     if (!s) {
-        StartRaceRankListItemInUse(a->mKartIndex, k, b->mUnk_08);
+        StartRaceRankListItemInUse(a->mKartIndex, k, b->mObjectCount);
     }
     if (t == ITEM_USE_KIND_HOOK_ONLY) {
         if (f1 != NULL) {
@@ -112,7 +112,7 @@ void StartItemInUse(ItemInUse *a, Unk020f40dc *b) {
         f2(a, b);
     }
     func_0206c11c(a->mKart);
-    func_020f4718(b);
+    ResetHeldItem(b);
     if (a->mUnk_170 != NULL) {
         SetActiveItem(a->mKartItems, a->mItemInfoIndex);
     }

@@ -46,7 +46,7 @@ typedef struct ItemKouraW {
     /* 134 */ u8 mUnk_134[0x2c];
     /* 160 */ s32 mUnk_160;
     /* 164 */ u8 mUnk_164[4];
-    /* 168 */ Unk020f371c *mUnk_168;
+    /* 168 */ ItemPointLink *mUnk_168;
     /* 16c */ s32 mUnk_16c;
     /* 170 */ u32 mUnk_170;
     /* 174 */ u8 mUnk_174[0xa8];

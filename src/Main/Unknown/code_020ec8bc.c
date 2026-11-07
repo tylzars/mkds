@@ -116,7 +116,7 @@ void func_020ed268(Unk020ec8bc *p, ItemInUse *q, s32 a, s32 b, s32 c, s32 d, s32
     p->mUnk_214 = a;
     p->mUnk_218 = b;
     p->mUnk_21c = q->mKartItems->mUnk_1f0;
-    func_020f371c(&p->mUnk_21c, &p->mUnk_168, g, h);
+    PickNextItemPointLink(&p->mUnk_21c, &p->mUnk_168, g, h);
     p->mUnk_224 = 0;
 }
 
@@ -129,7 +129,7 @@ BOOL func_020ed0f4(Unk020ec8bc *p) {
 
     q = &p->mUnk_000.mUnk_000.mPos;
     r = &p->mUnk_000.mUnk_130;
-    VEC_Subtract(p->mUnk_168.mUnk_00->mUnk_18, q, &v[0]);
+    VEC_Subtract(p->mUnk_168.mLink->mPointPos, q, &v[0]);
     if ((s64) v[0].x * v[0].x + (s64) v[0].y * v[0].y + (s64) v[0].z * v[0].z >= 0x10) {
         Vec3NormalizeAndGetLengthUnchecked(&v[0], &v[1]);
     }
@@ -146,7 +146,7 @@ BOOL func_020ed0f4(Unk020ec8bc *p) {
         VEC_Subtract(q, &v[1], &v[2]);
         v[3] = *q;
         VEC_Add(q, &v[0], &v[4]);
-        v[5] = *p->mUnk_168.mUnk_00->mUnk_18;
+        v[5] = *p->mUnk_168.mLink->mPointPos;
         func_020f4020(&p->mUnk_170, &v[2], p->mUnk_000.mUnk_12c);
         return TRUE;
     }
@@ -178,10 +178,10 @@ void func_020ece1c(Unk020ec8bc *p, s32 a, s32 b, s32 c) {
     }
     q = &p->mUnk_000.mUnk_130;
     r = &p->mUnk_000.mUnk_13c;
-    if (func_020f3bb4(&p->mUnk_21c, &p->mUnk_168, &p->mUnk_21c, &p->mUnk_000.mUnk_000.mPos) != FALSE) {
-        func_020f371c(&p->mUnk_21c, &p->mUnk_168, b, c);
+    if (CopyCloserItemPointLinkRef(&p->mUnk_21c, &p->mUnk_168, &p->mUnk_21c, &p->mUnk_000.mUnk_000.mPos) != FALSE) {
+        PickNextItemPointLink(&p->mUnk_21c, &p->mUnk_168, b, c);
     }
-    VEC_Subtract(p->mUnk_168.mUnk_00->mUnk_18, &p->mUnk_000.mUnk_000.mPos, &v);
+    VEC_Subtract(p->mUnk_168.mLink->mPointPos, &p->mUnk_000.mUnk_000.mPos, &v);
     if (p->mUnk_000.mUnk_000.mFlags & 0x40000000) {
         s = VEC_DotProduct(r, &v);
         v.x -= (s32) (((u64) ((s64) r->x * s)) >> 12);
@@ -238,8 +238,8 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
     if (func_020d849c(&t->mUnk_00) != FALSE) {
         do {
             p->mUnk_21c = p->mUnk_168;
-            func_020f371c(&p->mUnk_21c, &p->mUnk_168, c, e);
-        } while (func_020f3fa8(t, p->mUnk_168.mUnk_00->mUnk_18) != 0);
+            PickNextItemPointLink(&p->mUnk_21c, &p->mUnk_168, c, e);
+        } while (func_020f3fa8(t, p->mUnk_168.mLink->mPointPos) != 0);
     }
     if (f) {
         v4c = *q;
@@ -339,6 +339,6 @@ void func_020ec8bc(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 d, s32 e, u16 f, s32
     func_020f1ea4(p, (d == 0) ? -1 : 0, e, c);
     p->mUnk_214 = a;
     p->mUnk_218 = b;
-    func_020f371c(&p->mUnk_21c, &p->mUnk_168, f, g);
+    PickNextItemPointLink(&p->mUnk_21c, &p->mUnk_168, f, g);
     p->mUnk_224 = 0;
 }

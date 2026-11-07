@@ -510,7 +510,7 @@ void func_0209086c(Unk020905a8 *a, u32 b) {
     Kart *p;
     p = GetKart(b);
     a->mUnk_24 = b;
-    SetupPointLinkCursor(&a->mUnk_00, b, (Unk02080b1c_00 *) gKartItems[b].mUnk_1f0.mUnk_00);
+    SetupPointLinkCursor(&a->mUnk_00, b, (Unk02080b1c_00 *) gKartItems[b].mUnk_1f0.mLink);
     a->mUnk_26 = 0;
     a->mUnk_28 = 0;
     p->mTurnAngle = 0;

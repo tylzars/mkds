@@ -424,8 +424,8 @@ u32 LookupRaceMNcerIndex(u32 a) {
             break;
         case 5:
             p = &gKartItems[GetFollowedKartOrEntryIndex()];
-            j = p->mHeldItem.mUnk_00;
-            switch (gItemInfos[j].mObjectKind == 3 ? (u16) p->mHeldItem.mUnk_08 : 0) {
+            j = p->mHeldItem.mItemInfoIndex;
+            switch (gItemInfos[j].mObjectKind == 3 ? (u16) p->mHeldItem.mObjectCount : 0) {
                 case 1:
                     r = 0xd;
                     break;
@@ -539,9 +539,9 @@ s32 LookupRaceSNcerIndex(s32 a, s32 b) {
             return 0x11;
         case 5:
             p = &gKartItems[(u16) a];
-            j = p->mHeldItem.mUnk_00;
+            j = p->mHeldItem.mItemInfoIndex;
             if (gItemInfos[j].mObjectKind == 3) {
-                k = (u16) p->mHeldItem.mUnk_08;
+                k = (u16) p->mHeldItem.mObjectCount;
             } else {
                 k = 0;
             }

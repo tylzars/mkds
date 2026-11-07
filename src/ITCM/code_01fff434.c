@@ -14,10 +14,10 @@
 #include "code_02147cd8.h"
 
 void UpdateKartItems(KartItems *p) {
-    Unk020f40dc *b = &p->mHeldItem;
+    HeldItem *b = &p->mHeldItem;
     ItemInUse *a = &p->mItemInUse;
     Kart *q;
-    Unk020f371c_Ref *r;
+    ItemPointLinkRef *r;
     Vec3 *v;
     s64 d;
     s32 k;
@@ -57,28 +57,28 @@ void UpdateKartItems(KartItems *p) {
     if (a->mObjectKind != 0xf) {
         AdvanceItemInUse(a);
     }
-    if (b->mUnk_00 != 0x13) {
-        if ((p->mFlags & 0x242) == 0x242 && b->mUnk_00 != 0x13 && b->mUnk_20 == 0 && (p->mFlags & 0x200) &&
-            q->mState == KART_STATE_NORMAL) {
+    if (b->mItemInfoIndex != 0x13) {
+        if ((p->mFlags & 0x242) == 0x242 && b->mItemInfoIndex != 0x13 && b->mObjectStartFramesLeft == 0 &&
+            (p->mFlags & 0x200) && q->mState == KART_STATE_NORMAL) {
             StartItemInUse(a, b);
         }
-        func_020f4884(b);
+        UpdateHeldItem(b);
     }
     if (p->mSlotState != 0 && UpdateItemSlot(p, p) != FALSE) {
         k = p->mSlotResult;
         FinishItemSlot(p);
         if (gItemInfos[k].mEnabled != FALSE) {
-            func_020f47e4(b, k);
+            SetHeldItem(b, k);
         }
     }
-    if (p->mKartIndex == GetRaceUpdateFramesMod8() && (r = &p->mUnk_1f0)->mUnk_00 != NULL) {
+    if (p->mKartIndex == GetRaceUpdateFramesMod8() && (r = &p->mUnk_1f0)->mLink != NULL) {
         q = p->mKart;
         v = &q->mUnk_98;
-        func_020f3c54(r, r, v);
-        d = (s64) (r->mUnk_00->mUnk_18->x - v->x) * (r->mUnk_00->mUnk_18->x - v->x);
-        d += (s64) (r->mUnk_00->mUnk_18->z - v->z) * (r->mUnk_00->mUnk_18->z - v->z);
+        PickNearestNearbyItemPointLink(r, r, v);
+        d = (s64) (r->mLink->mPointPos->x - v->x) * (r->mLink->mPointPos->x - v->x);
+        d += (s64) (r->mLink->mPointPos->z - v->z) * (r->mLink->mPointPos->z - v->z);
         if (d >= ((s64) 0x15f9 << 32)) {
-            func_020f3a58(r, r, v);
+            FollowItemPointLinksToPos(r, r, v);
         }
     }
     p->mUnk_208 = FALSE;
@@ -89,7 +89,7 @@ void func_01fff524(KartItems *p) {
     s32 a;
     p->mFlags &= ~0xff;
     if (gRaceSetup->mMode == 5) {
-        a = p->mHeldItem.mUnk_00;
+        a = p->mHeldItem.mItemInfoIndex;
         if (a == 0x13 || p->mItemInUse.mObjectKind != 0xf) {
             r = FALSE;
         } else {

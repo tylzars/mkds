@@ -125,7 +125,7 @@ void UpdateRaceRankList(void) {
     }
     for (i = 0; i < (s32) gRaceSetup->mKartCount; i++) {
         o = &gKartItems[i];
-        gRaceRankList->mUnk_040[i] = o->mHeldItem.mUnk_00 == 0x13 ? o->mActiveItem : o->mHeldItem.mUnk_00;
+        gRaceRankList->mUnk_040[i] = o->mHeldItem.mItemInfoIndex == 0x13 ? o->mActiveItem : o->mHeldItem.mItemInfoIndex;
         if (gRaceRankList->mUnk_0f8 % 0x1c == 0) {
             gRaceRankList->mUnk_060[i] = gRaceRankList->mUnk_080[i];
             gRaceRankList->mUnk_080[i] = GetKartRank(i);

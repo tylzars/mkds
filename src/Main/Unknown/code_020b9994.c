@@ -226,7 +226,7 @@ void func_020bab54(void) {
     }
     c = func_020bab54_inline(i);
     if (c->mSlotState == 0) {
-        data_0217b3cc->mUnk_0c = c->mHeldItem.mUnk_00 == 0x13 ? c->mActiveItem : c->mHeldItem.mUnk_00;
+        data_0217b3cc->mUnk_0c = c->mHeldItem.mItemInfoIndex == 0x13 ? c->mActiveItem : c->mHeldItem.mItemInfoIndex;
     } else {
         switch (n) {
             case 0:
@@ -306,8 +306,9 @@ void func_020bab54(void) {
     }
     if (func_020bab54_inline(i)->mUnk_204 != FALSE) {
         s32 q;
-        q = func_020bab54_inline(i)->mHeldItem.mUnk_00 == 0x13 ? func_020bab54_inline(i)->mActiveItem
-                                                               : func_020bab54_inline(i)->mHeldItem.mUnk_00;
+        q = func_020bab54_inline(i)->mHeldItem.mItemInfoIndex == 0x13
+                ? func_020bab54_inline(i)->mActiveItem
+                : func_020bab54_inline(i)->mHeldItem.mItemInfoIndex;
         if (q == 0xd) {
             data_0217b3cc->mUnk_18.mUnk_00 += 1;
             data_0217b3cc->mUnk_18.mUnk_04 = 0x1000;

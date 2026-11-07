@@ -101,7 +101,7 @@ void func_0205a5b0(u32 a) {
         return;
     }
     e->mUnk_04 = 0x13;
-    func_020f4718(&gKartItems[(u16) data_0217aa18->mUnk_06[a]].mHeldItem);
+    ResetHeldItem(&gKartItems[(u16) data_0217aa18->mUnk_06[a]].mHeldItem);
 }
 
 void func_0205a548(s32 a, s32 b, s32 c) {
@@ -110,5 +110,5 @@ void func_0205a548(s32 a, s32 b, s32 c) {
     e = &data_0217aa14->mUnk_104[a].mUnk_68_view;
     e->mUnk_00 = b;
     e->mUnk_04 = b;
-    func_020f40dc(&gKartItems[(u16) data_0217aa18->mUnk_06[a]].mHeldItem, b, c);
+    SetHeldItemWithCount(&gKartItems[(u16) data_0217aa18->mUnk_06[a]].mHeldItem, b, c);
 }

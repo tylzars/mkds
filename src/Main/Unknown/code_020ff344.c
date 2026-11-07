@@ -99,11 +99,11 @@ void func_020ff97c(Unk020ff97c *e) {
 void func_020ff910(ItemFBox *e, MtxFx43 *out) {
     Vec3 *v;
 
-    v = e->mUnk_000.mUnk_000.mUnk_d0;
-    e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[3].x = v->x >> 4;
-    e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[3].y = v->y >> 4;
-    e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[3].z = v->z >> 4;
-    *out = e->mUnk_000.mUnk_000.mUnk_94;
+    v = e->mUnk_000.mItemObject.mUnk_d0;
+    e->mUnk_000.mItemObject.mUnk_94.mUnk_00[3].x = v->x >> 4;
+    e->mUnk_000.mItemObject.mUnk_94.mUnk_00[3].y = v->y >> 4;
+    e->mUnk_000.mItemObject.mUnk_94.mUnk_00[3].z = v->z >> 4;
+    *out = e->mUnk_000.mItemObject.mUnk_94;
     MTX_Concat33((const s32 *) &data_0217c600, (const s32 *) out, (s32 *) out);
 }
 
@@ -111,65 +111,65 @@ void func_020ff6d8(ItemFBox *e, MtxFx43 *out) {
     s32 a, b;
     Vec3 *v;
 
-    if ((e->mUnk_000.mUnk_000.mFlags & 0x80000) && func_020b2ec0() == 0) {
+    if ((e->mUnk_000.mItemObject.mFlags & 0x80000) && func_020b2ec0() == 0) {
         s32 c, d;
 
-        c = ((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].x * e->mUnk_130.x +
-             (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].z * e->mUnk_130.z) >>
+        c = ((s64) e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0].x * e->mUnk_130.x +
+             (s64) e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0].z * e->mUnk_130.z) >>
             12;
         a = ((s64) e->mUnk_130.x * 0xa4) >> 12;
-        d = ((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].x * e->mUnk_130.x +
-             (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].z * e->mUnk_130.z) >>
+        d = ((s64) e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2].x * e->mUnk_130.x +
+             (s64) e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2].z * e->mUnk_130.z) >>
             12;
         b = ((s64) e->mUnk_130.z * 0xa4) >> 12;
-        e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].x = (s32) (e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].x + a);
-        e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].z += b;
-        if ((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].x * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].x +
-                (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].y * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].y +
-                (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].z * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].z >=
+        e->mUnk_000.mItemObject.mUnk_94.mUnk_00[1].x = (s32) (e->mUnk_000.mItemObject.mUnk_94.mUnk_00[1].x + a);
+        e->mUnk_000.mItemObject.mUnk_94.mUnk_00[1].z += b;
+        if ((s64) e->mUnk_000.mItemObject.mUnk_94.mUnk_00[1].x * e->mUnk_000.mItemObject.mUnk_94.mUnk_00[1].x +
+                (s64) e->mUnk_000.mItemObject.mUnk_94.mUnk_00[1].y * e->mUnk_000.mItemObject.mUnk_94.mUnk_00[1].y +
+                (s64) e->mUnk_000.mItemObject.mUnk_94.mUnk_00[1].z * e->mUnk_000.mItemObject.mUnk_94.mUnk_00[1].z >=
             0x10) {
-            Vec3NormalizeAndGetLengthUnchecked(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1],
-                                               &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1]);
+            Vec3NormalizeAndGetLengthUnchecked(&e->mUnk_000.mItemObject.mUnk_94.mUnk_00[1],
+                                               &e->mUnk_000.mItemObject.mUnk_94.mUnk_00[1]);
         }
         if (c * c > d * d) {
-            e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].x = (s32) (e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].x - a);
-            e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].z -= b;
-            Vec3CrossUnrounded(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2],
-                               &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0]);
-            if ((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].x * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].x +
-                    (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].y * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].y +
-                    (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].z * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].z >=
+            e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2].x = (s32) (e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2].x - a);
+            e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2].z -= b;
+            Vec3CrossUnrounded(&e->mUnk_000.mItemObject.mUnk_94.mUnk_00[1], &e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2],
+                               &e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0]);
+            if ((s64) e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0].x * e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0].x +
+                    (s64) e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0].y * e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0].y +
+                    (s64) e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0].z * e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0].z >=
                 0x10) {
-                Vec3NormalizeAndGetLengthUnchecked(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0],
-                                                   &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0]);
+                Vec3NormalizeAndGetLengthUnchecked(&e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0],
+                                                   &e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0]);
             }
-            Vec3CrossUnrounded(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1],
-                               &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2]);
+            Vec3CrossUnrounded(&e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0], &e->mUnk_000.mItemObject.mUnk_94.mUnk_00[1],
+                               &e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2]);
         } else {
-            e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].x -= a;
-            e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].z -= b;
-            Vec3CrossUnrounded(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1],
-                               &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2]);
-            if ((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].x * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].x +
-                    (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].y * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].y +
-                    (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].z * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].z >=
+            e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0].x -= a;
+            e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0].z -= b;
+            Vec3CrossUnrounded(&e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0], &e->mUnk_000.mItemObject.mUnk_94.mUnk_00[1],
+                               &e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2]);
+            if ((s64) e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2].x * e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2].x +
+                    (s64) e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2].y * e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2].y +
+                    (s64) e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2].z * e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2].z >=
                 0x10) {
-                Vec3NormalizeAndGetLengthUnchecked(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2],
-                                                   &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2]);
+                Vec3NormalizeAndGetLengthUnchecked(&e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2],
+                                                   &e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2]);
             }
-            Vec3CrossUnrounded(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2],
-                               &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0]);
+            Vec3CrossUnrounded(&e->mUnk_000.mItemObject.mUnk_94.mUnk_00[1], &e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2],
+                               &e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0]);
         }
     }
-    v = e->mUnk_000.mUnk_000.mUnk_d0;
-    e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[3].x = v->x >> 4;
-    e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[3].y = v->y >> 4;
-    e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[3].z = v->z >> 4;
-    *out = e->mUnk_000.mUnk_000.mUnk_94;
+    v = e->mUnk_000.mItemObject.mUnk_d0;
+    e->mUnk_000.mItemObject.mUnk_94.mUnk_00[3].x = v->x >> 4;
+    e->mUnk_000.mItemObject.mUnk_94.mUnk_00[3].y = v->y >> 4;
+    e->mUnk_000.mItemObject.mUnk_94.mUnk_00[3].z = v->z >> 4;
+    *out = e->mUnk_000.mItemObject.mUnk_94;
 }
 
 void ResetItemFBox(ItemFBox *e) {
-    *(MtxFx33 *) &e->mUnk_000.mUnk_000.mUnk_94 = *(MtxFx33 *) &data_0217c600;
+    *(MtxFx33 *) &e->mUnk_000.mItemObject.mUnk_94 = *(MtxFx33 *) &data_0217c600;
     func_021053e4(e->mUnk_140);
     e->mUnk_140->mUnk_b0 = 2;
     func_021052f0(e->mUnk_140, func_020ff910, e);
@@ -181,24 +181,24 @@ void StartItemFBox(ItemFBox *e) {
 }
 
 void AdvanceItemFBoxInUse(ItemInUse *a, ItemFBox *e) {
-    func_02105338(e->mUnk_140, e->mUnk_000.mUnk_000.mUnk_d8, &e->mUnk_000.mUnk_000.mUnk_68);
+    func_02105338(e->mUnk_140, e->mUnk_000.mItemObject.mUnk_d8, &e->mUnk_000.mItemObject.mUnk_68);
 }
 
 u32 InitItemFBox(ItemInUse *a, ItemFBox *e) {
     func_020f9114(e);
-    e->mUnk_000.mUnk_000.mUnk_78 |= data_0215a02c;
-    MTX_Concat33((const s32 *) &data_0217c600, (const s32 *) &e->mUnk_000.mUnk_000.mUnk_94,
-                 (s32 *) &e->mUnk_000.mUnk_000.mUnk_94);
+    e->mUnk_000.mItemObject.mUnk_78 |= data_0215a02c;
+    MTX_Concat33((const s32 *) &data_0217c600, (const s32 *) &e->mUnk_000.mItemObject.mUnk_94,
+                 (s32 *) &e->mUnk_000.mItemObject.mUnk_94);
     e->mUnk_130.x = 0;
     e->mUnk_130.y = 0;
     e->mUnk_130.z = 0;
     if ((a->mKartItems->mFlags & KART_ITEMS_THROW_FORWARD) != 0) {
-        func_020f3150(&e->mUnk_000, a, 0, 1, 0x4000, 0x3000, 0x59a);
-        StartSound(&e->mUnk_000.mUnk_000.mSoundSource, 0xda, 0x7f, 0);
+        ThrowBouncingItem(&e->mUnk_000, a, 0, 1, 0x4000, 0x3000, 0x59a);
+        StartSound(&e->mUnk_000.mItemObject.mSoundSource, 0xda, 0x7f, 0);
         e->mUnk_13c = 1;
         return e->mUnk_13c;
     }
-    func_020f3150(&e->mUnk_000, a, 0, 0, 0x4000, 0x3000, 0x59a);
+    ThrowBouncingItem(&e->mUnk_000, a, 0, 0, 0x4000, 0x3000, 0x59a);
     e->mUnk_13c = 0;
     return e->mUnk_13c;
 }
@@ -206,31 +206,31 @@ u32 InitItemFBox(ItemInUse *a, ItemFBox *e) {
 void AdvanceItemFBox(ItemFBox *e) {
     s32 t;
 
-    if (e->mUnk_000.mUnk_000.mFlags & 0x180000) {
-        if (e->mUnk_000.mUnk_000.mFlags & 0x80000) {
-            func_020f6e58(&e->mUnk_000.mUnk_000);
-        } else if (e->mUnk_000.mUnk_000.mFlags & 0x100000) {
-            func_020f758c(&e->mUnk_000.mUnk_000);
+    if (e->mUnk_000.mItemObject.mFlags & 0x180000) {
+        if (e->mUnk_000.mItemObject.mFlags & 0x80000) {
+            func_020f6e58(&e->mUnk_000.mItemObject);
+        } else if (e->mUnk_000.mItemObject.mFlags & 0x100000) {
+            func_020f758c(&e->mUnk_000.mItemObject);
         }
-    } else if (e->mUnk_000.mUnk_000.mFlags & 0x8000) {
-        func_020f68b0(&e->mUnk_000.mUnk_000);
-    } else if (e->mUnk_000.mUnk_000.mFlags & 0x4000) {
-        func_020f63cc(&e->mUnk_000.mUnk_000);
+    } else if (e->mUnk_000.mItemObject.mFlags & 0x8000) {
+        func_020f68b0(&e->mUnk_000.mItemObject);
+    } else if (e->mUnk_000.mItemObject.mFlags & 0x4000) {
+        func_020f63cc(&e->mUnk_000.mItemObject);
     } else {
         if (e->mUnk_13c != 0) {
-            func_020f2df0(&e->mUnk_000, 0x1ec, 0xfec, 0, (u32 *) &t);
+            AdvanceBouncingItem(&e->mUnk_000, 0x1ec, 0xfec, 0, (u32 *) &t);
         } else {
-            func_020f2df0(&e->mUnk_000, 0x2e1, 0xf85, 0, (u32 *) &t);
+            AdvanceBouncingItem(&e->mUnk_000, 0x2e1, 0xf85, 0, (u32 *) &t);
         }
-        if ((e->mUnk_000.mUnk_000.mFlags & 8) && (e->mUnk_000.mUnk_000.mFlags & 3) == 0) {
+        if ((e->mUnk_000.mItemObject.mFlags & 8) && (e->mUnk_000.mItemObject.mFlags & 3) == 0) {
             if (e->mUnk_13c != 0) {
-                e->mUnk_000.mUnk_000.mVelocity.y *= 2;
+                e->mUnk_000.mItemObject.mVelocity.y *= 2;
             }
-            StopSound(&e->mUnk_000.mUnk_000.mSoundSource, 0xda);
-            func_020f6a6c(&e->mUnk_000.mUnk_000, &t);
+            StopSound(&e->mUnk_000.mItemObject.mSoundSource, 0xda);
+            func_020f6a6c(&e->mUnk_000.mItemObject, &t);
         }
     }
-    func_02105338(e->mUnk_140, e->mUnk_000.mUnk_000.mUnk_d8, &e->mUnk_000.mUnk_000.mUnk_68);
+    func_02105338(e->mUnk_140, e->mUnk_000.mItemObject.mUnk_d8, &e->mUnk_000.mItemObject.mUnk_68);
 }
 
 s32 func_020ff3c4(ItemFBox *e) {
@@ -241,25 +241,25 @@ s32 func_020ff3c4(ItemFBox *e) {
         Vec3NormalizeAndGetLengthUnchecked(v, &e->mUnk_130);
     }
     e->mUnk_140->mUnk_b0 = 2;
-    if ((e->mUnk_000.mUnk_000.mFlags & 0x180000) == 0) {
-        e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) AdvanceItemFBox;
+    if ((e->mUnk_000.mItemObject.mFlags & 0x180000) == 0) {
+        e->mUnk_000.mItemObject.mUnk_120 = (void (*)(ItemObject *)) AdvanceItemFBox;
     }
     return 2;
 }
 
 void func_020ff344(ItemFBox *e) {
-    if ((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].x * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].x +
-            (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].y * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].y +
-            (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].z * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].z >=
+    if ((s64) e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0].x * e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0].x +
+            (s64) e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0].y * e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0].y +
+            (s64) e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0].z * e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0].z >=
         0x10) {
-        Vec3NormalizeAndGetLengthUnchecked(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0],
-                                           &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0]);
+        Vec3NormalizeAndGetLengthUnchecked(&e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0],
+                                           &e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0]);
     }
-    Vec3CrossUnrounded(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1],
-                       &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2]);
-    MTX_Concat33((const s32 *) &data_0217c600, (const s32 *) &e->mUnk_000.mUnk_000.mUnk_94,
-                 (s32 *) &e->mUnk_000.mUnk_000.mUnk_94);
-    if ((e->mUnk_000.mUnk_000.mFlags & 0x180000) == 0) {
-        e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) AdvanceItemFBox;
+    Vec3CrossUnrounded(&e->mUnk_000.mItemObject.mUnk_94.mUnk_00[0], &e->mUnk_000.mItemObject.mUnk_94.mUnk_00[1],
+                       &e->mUnk_000.mItemObject.mUnk_94.mUnk_00[2]);
+    MTX_Concat33((const s32 *) &data_0217c600, (const s32 *) &e->mUnk_000.mItemObject.mUnk_94,
+                 (s32 *) &e->mUnk_000.mItemObject.mUnk_94);
+    if ((e->mUnk_000.mItemObject.mFlags & 0x180000) == 0) {
+        e->mUnk_000.mItemObject.mUnk_120 = (void (*)(ItemObject *)) AdvanceItemFBox;
     }
 }

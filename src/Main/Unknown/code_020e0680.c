@@ -126,7 +126,7 @@ void func_020e2ccc(Unk020e20a8 *a) {
         return;
     }
     if (b < 8) {
-        func_020f3678((u32) gKartItems[b].mUnk_1f0.mUnk_00, (u32) &a->mUnk_02c);
+        GetItemPointLinkDirection((u32) gKartItems[b].mUnk_1f0.mLink, (u32) &a->mUnk_02c);
         a->mUnk_03c = Vec3DotUnrounded(&a->mUnk_02c, GetViewTransposeMatrixAxis2()) < 0;
     } else {
         a->mUnk_03c = FALSE;

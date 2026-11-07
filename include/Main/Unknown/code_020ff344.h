@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020f2dac.h" // Unk020f2df0
+#include "Main/Unknown/code_020f2dac.h" // BouncingItemObject
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 #include "Main/Unknown/code_020ffc4c.h"
@@ -38,7 +38,7 @@ typedef struct Unk020ff97c {
 
 // Object of item kind 7, element of gItemPools[7].
 typedef struct ItemFBox {
-    /* 000 */ Unk020f2df0 mUnk_000;
+    /* 000 */ BouncingItemObject mUnk_000;
     /* 130 */ Vec3 mUnk_130;
     /* 13c */ s32 mUnk_13c;
     /* 140 */ Unk021052fc *mUnk_140;

@@ -9,10 +9,10 @@
 #include "Main/Unknown/code_020f36d8.h" // ItemKind, ItemInfo
 
 // Element of gItemPools[8]: 0x14c bytes (the size in gItemKinds[8]), handled by func_02104a0c to
-// func_02104f58: the Unk020f2df0 part, words at 0x130 and 0x138, the Unk021052fc at 0x134, a vector at 0x13c and a
-// word at 0x148.
+// func_02104f58: the BouncingItemObject part, words at 0x130 and 0x138, the Unk021052fc at 0x134, a vector at 0x13c and
+// a word at 0x148.
 typedef struct Unk02104c68 {
-    /* 000 */ Unk020f2df0 mUnk_000;
+    /* 000 */ BouncingItemObject mUnk_000;
     /* 130 */ s32 mUnk_130;
     /* 134 */ Unk021052fc *mUnk_134;
     /* 138 */ s32 mUnk_138;
@@ -32,7 +32,7 @@ extern const ItemInfo data_0215a588;
 extern const ItemKind gItemKindKiller;
 
 void func_02105214(void);
-void func_021051d4(ItemInUse *p0, Unk020f40dc *p1);
+void func_021051d4(ItemInUse *p0, HeldItem *p1);
 void func_0210515c(s32 a);
 void func_02104ff8(void);
 void func_02104f84(s32 a);

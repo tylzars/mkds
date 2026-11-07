@@ -34,8 +34,8 @@ typedef struct KartItems {
     /* 024 */ s32 mUnk_024;
     /* 028 */ u32 mUnk_028;
     /* 02c */ s32 mUnk_02c;
-    // Record of the held item (Unk020f40dc: item at 0, 0x13 = none, uses left at 8)
-    /* 030 */ Unk020f40dc mHeldItem;
+    // Record of the held item (HeldItem: item at 0, 0x13 = none, uses left at 8)
+    /* 030 */ HeldItem mHeldItem;
     // The item in use. (replaces the three-line comment above mItemInUse)
     // Record of the item in use (ItemInUse: object kind at 0, 0xf = none; item index at 4; use state at 8; Kart at
     // 0x10; three object pointers at 0x14)
@@ -44,7 +44,7 @@ typedef struct KartItems {
     // not read
     /* 1ec */ u16 mFlags;
     /* 1ee */ u8 mUnk_1ee[2];
-    /* 1f0 */ Unk020f371c_Ref mUnk_1f0;
+    /* 1f0 */ ItemPointLinkRef mUnk_1f0;
     /* 1f8 */ u16 mKartIndex;
     /* 1fa */ u8 mUnk_1fa[2];
     /* 1fc */ Kart *mKart;

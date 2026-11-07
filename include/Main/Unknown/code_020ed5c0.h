@@ -191,7 +191,7 @@ void func_020edb00(ItemInUse *p);
 s32 func_020edb8c(ItemInUse *p, s32 a, s32 b, s32 c, Vec3 *d);
 s32 func_020edc9c(ItemInUse *p, s32 a, s32 b, s32 c, Vec3 *d);
 void AdvanceItemInUse(ItemInUse *p);
-void StartItemInUse(ItemInUse *a, Unk020f40dc *b);
+void StartItemInUse(ItemInUse *a, HeldItem *b);
 BOOL func_020ee528(ItemInUse *a);
 void func_020edf10(ItemInUse *p);
 void func_020ee160(ItemObject *a, ItemObject *b);
