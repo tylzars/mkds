@@ -162,7 +162,7 @@ void func_020d06b8(Unk020d029c *a) {
     s32 j;
     s32 k;
 
-    n = func_020c5db0();
+    n = GetRaceGoalMUpdateFrames();
     if (gRaceSetup->mMode != MODE_GRAND_PRIX && gRaceSetup->mMode != MODE_TIME_ATTACK) {
         return;
     }

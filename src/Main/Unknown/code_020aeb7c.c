@@ -42,7 +42,7 @@ void func_020aeb7c(void) {
     BOOL e;
     s32 v;
 
-    func_020c525c();
+    UpdateRaceLinkLevel();
     if (gRaceSetup->mRaceKind - 3 <= 3) {
         return;
     }
@@ -402,7 +402,7 @@ void func_020aeb7c(void) {
             case 2:
             case 3:
                 UpdateRaceHudSubScreenCellGroups();
-                func_020c43c4();
+                UpdateRaceTaPositions();
                 break;
             case 4:
             case 5:

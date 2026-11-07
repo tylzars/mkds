@@ -62,7 +62,7 @@ void func_0206edac(Kart *p, Vec3 *a) {
         p->mUnk_4c &= ~0x800;
         p->mUnk_48 &= ~0x2000000;
         p->mUnk_40c = GetRaceUpdateFrames();
-        func_020c4a04(p->mIndex);
+        ResetRaceTaKartPositions(p->mIndex);
         return;
     }
     if ((!(p->mUnk_4c & 0x10000000) && p->mVelocity.y < 0 &&

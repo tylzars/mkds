@@ -703,7 +703,7 @@ typedef struct RaceGoalS {
 
 extern RaceGoalS *gRaceGoalS;
 extern struct RaceStartGp *gRaceStartGp;
-extern struct Unk0217b3f0 *data_0217b3f0;
+extern struct RaceGoalM *gRaceGoalM;
 extern struct RaceNewRecordTa *gRaceNewRecordTa;
 extern s32 data_0217b3f8;
 extern EmblemChoises *gEmblemChoises;
@@ -830,16 +830,16 @@ typedef struct Unk0217b3d0 {
 } Unk0217b3d0;
 
 extern Unk0217b3d0 *gRaceTimeDigits;
-// 0x18-byte elements of the tables at member 0x10 of Unk0217b3e4.
-typedef struct Unk0217b3e4_10 {
-    /* 00 */ Vec3 mUnk_00;
-    /* 0c */ u16 mUnk_0c;
+// 0x18-byte elements of the tables at member 0x10 of RaceTaPositions.
+typedef struct RaceTaPositionSample {
+    /* 00 */ Vec3 mPos;
+    /* 0c */ u16 mAngle;
     /* 0e */ u8 mUnk_0e[2];
-    /* 10 */ s32 mUnk_10;
+    /* 10 */ s32 mKind;
     /* 14 */ s32 mUnk_14;
-} Unk0217b3e4_10;
+} RaceTaPositionSample;
 
-// 0x40-byte elements of the table at member 0x790 of Unk0217b3e4.
+// 0x40-byte elements of the table at member 0x790 of RaceTaPositions.
 typedef struct Unk0217b3e4_790 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ Vec3 mUnk_04[3];
@@ -847,26 +847,26 @@ typedef struct Unk0217b3e4_790 {
     /* 34 */ s32 mUnk_34[3];
 } Unk0217b3e4_790;
 
-// 0x10-byte elements of the table at member 0x810 of Unk0217b3e4.
-typedef struct Unk0217b3e4_810 {
+// 0x10-byte elements of the table at member 0x810 of RaceTaPositions.
+typedef struct Matrix2x2 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
-} Unk0217b3e4_810;
+} Matrix2x2;
 
-// Object behind data_0217b3e4, 0x910 bytes, allocated by func_020c4780.
-typedef struct Unk0217b3e4 {
-    /* 000 */ s32 mUnk_000;
-    /* 004 */ s32 mUnk_004[2];
-    /* 00c */ s32 mUnk_00c;
-    /* 010 */ Unk0217b3e4_10 mUnk_010[2][0x28];
+// Object behind gRaceTaPositions, 0x910 bytes, allocated by InitRaceTaPositions.
+typedef struct RaceTaPositions {
+    /* 000 */ s32 mVisible;
+    /* 004 */ s32 mKartVisible[2];
+    /* 00c */ s32 mSampleFrames;
+    /* 010 */ RaceTaPositionSample mSamples[2][0x28];
     /* 790 */ Unk0217b3e4_790 mUnk_790[2];
-    /* 810 */ Unk0217b3e4_810 mUnk_810[16];
-} Unk0217b3e4;
+    /* 810 */ Matrix2x2 mRotations[16];
+} RaceTaPositions;
 
-extern Unk0217b3e4 *data_0217b3e4;
-// Object behind data_0217b3ec.
+extern RaceTaPositions *gRaceTaPositions;
+// Object behind gRaceLinkLevel.
 typedef struct Unk0217b3ec {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
@@ -875,7 +875,7 @@ typedef struct Unk0217b3ec {
     /* 10 */ s32 mUnk_10;
 } Unk0217b3ec;
 
-extern Unk0217b3ec *data_0217b3ec;
+extern Unk0217b3ec *gRaceLinkLevel;
 extern Unk0217b3ec *gRaceLapNumber;
 // Object behind gRaceHudSubScreenSecondHand, 0x44 bytes allocated by CreateRaceHudSubScreenSecondHand: a table of
 // object pointers and two counts (as in RaceHudSubScreenCells), three halfwords and two arrays of three pairs.

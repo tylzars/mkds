@@ -111,7 +111,7 @@ void func_0206ff50(Kart *p, u32 a) {
     if (p->mUnk_48 & 0x1000) {
         return;
     }
-    func_020c4ab8(p->mIndex);
+    HideRaceTaKartPositions(p->mIndex);
     p->mUnk_48 |= 0x41000;
     p->mUnk_48 &= 0xdfe77fdf;
     p->mBoostTimer = 0;

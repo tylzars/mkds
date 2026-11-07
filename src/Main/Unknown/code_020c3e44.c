@@ -70,42 +70,42 @@
 #include "registers.h"
 
 u32 func_020c5dc4(void) {
-    return (data_0217b3f0->mUnk_00);
+    return (gRaceGoalM->mUnk_00);
 }
 
-u32 func_020c5db0(void) {
-    return (data_0217b3f0->mUnk_04);
+u32 GetRaceGoalMUpdateFrames(void) {
+    return (gRaceGoalM->mUpdateFrames);
 }
 
-void func_020c5ce0(void) {
-    data_0217b3f0 = HeapAlloc(GetHeap(func_020364e8()), 0x1c);
-    data_0217b3f0->mUnk_00 = 1;
-    data_0217b3f0->mUnk_04 = 0;
-    data_0217b3f0->mUnk_08 = 0;
-    data_0217b3f0->mUnk_0c = 0;
-    data_0217b3f0->mUnk_10 = 0;
+void InitRaceGoalM(void) {
+    gRaceGoalM = HeapAlloc(GetHeap(func_020364e8()), 0x1c);
+    gRaceGoalM->mUnk_00 = 1;
+    gRaceGoalM->mUpdateFrames = 0;
+    gRaceGoalM->mRankIndex = 0;
+    gRaceGoalM->mPointsGained = 0;
+    gRaceGoalM->mFirstPlaceKartIndex = 0;
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         if (func_0205fd78(gRaceSetup->mMode == MODE_MISSION_RUN ? gRaceSetup->mMissionTableRow : -1,
                           gRaceSetup->mMode == MODE_MISSION_RUN ? gRaceSetup->mMissionTableColumn : -1,
-                          &data_0217b3f0->mUnk_14) == 0) {
-            data_0217b3f0->mUnk_14 = 9;
+                          &gRaceGoalM->mUnk_14) == 0) {
+            gRaceGoalM->mUnk_14 = 9;
         }
     } else {
-        data_0217b3f0->mUnk_14 = 9;
+        gRaceGoalM->mUnk_14 = 9;
     }
-    data_0217b3f0->mUnk_18 = 9;
+    gRaceGoalM->mUnk_18 = 9;
 }
 
-u32 func_020c5ccc(void) {
+u32 ClearRaceGoalMPointer(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217b3f0;
+    value0 = (u32) &gRaceGoalM;
     value1 = 0u;
     *(u32 *) ((value0) + (0)) = value1;
     return value0;
 }
 
-void func_020c5940(void) {
+void UpdateRaceGoalM(void) {
     u32 b;
     s32 a;
     u16 i;
@@ -114,10 +114,10 @@ void func_020c5940(void) {
     s32 *q;
     Unk0217aa1c_00 *p;
 
-    n = data_0217b3f0->mUnk_04;
+    n = gRaceGoalM->mUpdateFrames;
     x = GetFollowedKartOrEntryIndex();
     if (gRaceProgress->mUnk_000[x].mStatus == 1 || gRaceProgress->mRaceDone != 0) {
-        data_0217b3f0->mUnk_00 = 0;
+        gRaceGoalM->mUnk_00 = 0;
     }
     if (func_020b1d0c() == 0) {
         return;
@@ -128,49 +128,49 @@ void func_020c5940(void) {
             return;
         }
     }
-    q = &data_0217b3f0->mUnk_04;
+    q = &gRaceGoalM->mUpdateFrames;
     if (*q < 0x7fffffff) {
         *q = *q + 1;
     }
     switch (gRaceSetup->mMode) {
         case MODE_GRAND_PRIX:
-            data_0217b3f0->mUnk_08 = GetKartRank(GetFollowedKartOrEntryIndex()) - 1;
+            gRaceGoalM->mRankIndex = GetKartRank(GetFollowedKartOrEntryIndex()) - 1;
             b = func_0205dc7c(GetFollowedKartOrEntryIndex());
             a = GetCourseIndexInCup();
             p = &data_0217aa1c->mUnk_000[a][func_0205dc7c(b)];
             a = p->mUnk_00;
-            data_0217b3f0->mUnk_0c = a - GetKartPreviousTotalPoints(GetFollowedKartOrEntryIndex());
+            gRaceGoalM->mPointsGained = a - GetKartPreviousTotalPoints(GetFollowedKartOrEntryIndex());
             if (n > 0x14) {
-                data_0217b3f0->mUnk_00 = 1;
+                gRaceGoalM->mUnk_00 = 1;
             }
             break;
         case MODE_TIME_ATTACK:
             if (n > 0x14) {
-                data_0217b3f0->mUnk_00 = 1;
+                gRaceGoalM->mUnk_00 = 1;
             }
             break;
         case MODE_VS:
         case 5:
-            data_0217b3f0->mUnk_08 = GetKartRank(GetFollowedKartOrEntryIndex()) - 1;
+            gRaceGoalM->mRankIndex = GetKartRank(GetFollowedKartOrEntryIndex()) - 1;
             for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
                 if (GetKartRank(i) == 1) {
                     break;
                 }
             }
-            data_0217b3f0->mUnk_10 = i;
+            gRaceGoalM->mFirstPlaceKartIndex = i;
             if (n > 0x14) {
-                data_0217b3f0->mUnk_00 = 1;
+                gRaceGoalM->mUnk_00 = 1;
             }
             break;
         case MODE_MISSION_RUN:
             if (IsKartEnded((u16) gRaceSetup->mEntryIndex) != 0 ? gRaceProgress->mEntryEndKind : 6) {
-                data_0217b3f0->mUnk_18 = 9;
+                gRaceGoalM->mUnk_18 = 9;
             } else {
-                data_0217b3f0->mUnk_18 = func_0205d140();
+                gRaceGoalM->mUnk_18 = func_0205d140();
             }
             if ((IsKartEnded((u16) gRaceSetup->mEntryIndex) != 0 ? gRaceProgress->mEntryEndKind : 6) == 0) {
                 if (n == 1) {
-                    switch (data_0217b3f0->mUnk_18) {
+                    switch (gRaceGoalM->mUnk_18) {
                         case 0:
                         case 1:
                         case 2:
@@ -188,19 +188,19 @@ void func_020c5940(void) {
                             break;
                     }
                 } else if (n > 0x1e) {
-                    data_0217b3f0->mUnk_00 = 1;
+                    gRaceGoalM->mUnk_00 = 1;
                 }
             } else if (n > 0x4b) {
-                data_0217b3f0->mUnk_00 = 1;
+                gRaceGoalM->mUnk_00 = 1;
             }
             break;
         default:
-            data_0217b3f0->mUnk_00 = 1;
+            gRaceGoalM->mUnk_00 = 1;
             break;
     }
 }
 
-void func_020c5804(Unk020c06c4 *a) {
+void DrawRaceGoalM(Unk020c06c4 *a) {
     s32 y;
     s32 k;
     s32 e[2];
@@ -214,24 +214,24 @@ void func_020c5804(Unk020c06c4 *a) {
     }
     switch (gRaceSetup->mMode) {
         case MODE_GRAND_PRIX:
-            func_020c55b0(a);
+            DrawRaceGoalMGrandPrix(a);
             break;
         case MODE_VS:
         case 5:
-            y = InterpolateS16(1, 0x40, 0, data_0217b3f0->mUnk_04, 0x14);
-            c = GetRaceGoalMNcerEntry(data_0217b3f0->mUnk_08);
+            y = InterpolateS16(1, 0x40, 0, gRaceGoalM->mUpdateFrames, 0x14);
+            c = GetRaceGoalMNcerEntry(gRaceGoalM->mRankIndex);
             e[0] = 0x18000;
             e[1] = (y + 0xa8) << 12;
             k = a->mUnk_400;
             a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e, 0, 1);
             break;
         case MODE_MISSION_RUN:
-            func_020c541c(a);
+            DrawRaceGoalMMissionRun(a);
             break;
     }
 }
 
-void func_020c55b0(Unk020c06c4 *a) {
+void DrawRaceGoalMGrandPrix(Unk020c06c4 *a) {
     s32 y;
     s32 k;
     s32 e0[2];
@@ -242,20 +242,20 @@ void func_020c55b0(Unk020c06c4 *a) {
     s32 z;
     void *c;
 
-    y = InterpolateS16(1, 0x40, 0, data_0217b3f0->mUnk_04, 0x14);
-    c = GetRaceGoalMNcerEntry(data_0217b3f0->mUnk_08);
+    y = InterpolateS16(1, 0x40, 0, gRaceGoalM->mUpdateFrames, 0x14);
+    c = GetRaceGoalMNcerEntry(gRaceGoalM->mRankIndex);
     e0[0] = 0x18000;
     e0[1] = (y + 0xa8) << 12;
     k = a->mUnk_400;
     a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e0, 0, 1);
 
-    c = GetRaceGoalMNcerEntry(data_0217b3f0->mUnk_0c + 8);
+    c = GetRaceGoalMNcerEntry(gRaceGoalM->mPointsGained + 8);
     e1[0] = 0x48000;
     e1[1] = (y + 0xb0) << 12;
     k = a->mUnk_400;
     a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e1, 0, 1);
 
-    c = GetRaceGoalMNcerEntry(func_020b4b98(data_0217b3f0->mUnk_0c) != FALSE ? 0x13 : 0x14);
+    c = GetRaceGoalMNcerEntry(func_020b4b98(gRaceGoalM->mPointsGained) != FALSE ? 0x13 : 0x14);
     e2[0] = 0x48000;
     e2[1] = (y + 0xb0) << 12;
     k = a->mUnk_400;
@@ -274,7 +274,7 @@ void func_020c55b0(Unk020c06c4 *a) {
     a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e4, 0, 1);
 }
 
-void func_020c541c(Unk020c06c4 *a) {
+void DrawRaceGoalMMissionRun(Unk020c06c4 *a) {
     s32 n;
     s32 y;
     s32 k;
@@ -283,9 +283,9 @@ void func_020c541c(Unk020c06c4 *a) {
     s32 e[2];
     void *c;
 
-    n = data_0217b3f0->mUnk_04;
+    n = gRaceGoalM->mUpdateFrames;
     y = InterpolateS16(1, -0x80, 0, n, 0x14);
-    if (data_0217b3f0->mUnk_14 != 9 && data_0217b3f0->mUnk_18 > data_0217b3f0->mUnk_14 && n >= 0x1e) {
+    if (gRaceGoalM->mUnk_14 != 9 && gRaceGoalM->mUnk_18 > gRaceGoalM->mUnk_14 && n >= 0x1e) {
         t = n - 10;
         if (t < 0x54) {
             n = t % 12;
@@ -294,7 +294,7 @@ void func_020c541c(Unk020c06c4 *a) {
             }
         }
     }
-    switch (data_0217b3f0->mUnk_18) {
+    switch (gRaceGoalM->mUnk_18) {
         case 0:
             v = 7;
             break;
@@ -320,7 +320,7 @@ void func_020c541c(Unk020c06c4 *a) {
             v = 0;
             break;
     }
-    if (data_0217b3f0->mUnk_18 >= 8) {
+    if (gRaceGoalM->mUnk_18 >= 8) {
         return;
     }
     c = GetRaceGoalMrMNcerEntry(v);
@@ -330,75 +330,75 @@ void func_020c541c(Unk020c06c4 *a) {
     a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e, 0, 1);
 }
 
-void func_020c53c4(void) {
-    data_0217b3ec = HeapAlloc(GetHeap(func_020364e8()), 0x14);
-    data_0217b3ec->mUnk_00 = 0;
-    data_0217b3ec->mUnk_04 = 0;
-    data_0217b3ec->mUnk_08 = 0;
-    data_0217b3ec->mUnk_0c = 0;
-    data_0217b3ec->mUnk_10 = 0;
+void InitRaceLinkLevel(void) {
+    gRaceLinkLevel = HeapAlloc(GetHeap(func_020364e8()), 0x14);
+    gRaceLinkLevel->mUnk_00 = 0;
+    gRaceLinkLevel->mUnk_04 = 0;
+    gRaceLinkLevel->mUnk_08 = 0;
+    gRaceLinkLevel->mUnk_0c = 0;
+    gRaceLinkLevel->mUnk_10 = 0;
 }
 
-u32 func_020c53b0(void) {
+u32 ClearRaceLinkLevelPointer(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217b3ec;
+    value0 = (u32) &gRaceLinkLevel;
     value1 = 0u;
     *(u32 *) ((value0) + (0)) = value1;
     return value0;
 }
 
-void func_020c525c(void) {
-    if (data_0217b3ec == NULL) {
+void UpdateRaceLinkLevel(void) {
+    if (gRaceLinkLevel == NULL) {
         return;
     }
     if (data_021759d0->mUnk_20 == 0) {
         return;
     }
     if (gRaceSetup->mMode == 5) {
-        data_0217b3ec->mUnk_04 = func_021205e8();
-        data_0217b3ec->mUnk_0c = data_0217b3ec->mUnk_10;
-        data_0217b3ec->mUnk_10 = func_0212a8d0();
-        if (data_0217b3ec->mUnk_10 != 0 && data_0217b3ec->mUnk_0c == 0) {
+        gRaceLinkLevel->mUnk_04 = func_021205e8();
+        gRaceLinkLevel->mUnk_0c = gRaceLinkLevel->mUnk_10;
+        gRaceLinkLevel->mUnk_10 = func_0212a8d0();
+        if (gRaceLinkLevel->mUnk_10 != 0 && gRaceLinkLevel->mUnk_0c == 0) {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x26);
         }
-        if (data_0217b3ec->mUnk_10 != 0) {
-            data_0217b3ec->mUnk_08++;
-            if (data_0217b3ec->mUnk_08 >= 0x78) {
-                data_0217b3ec->mUnk_08 = 0;
+        if (gRaceLinkLevel->mUnk_10 != 0) {
+            gRaceLinkLevel->mUnk_08++;
+            if (gRaceLinkLevel->mUnk_08 >= 0x78) {
+                gRaceLinkLevel->mUnk_08 = 0;
             }
         } else {
-            data_0217b3ec->mUnk_08 = 0;
-            data_0217b3ec->mUnk_0c = 0;
-            data_0217b3ec->mUnk_10 = 0;
+            gRaceLinkLevel->mUnk_08 = 0;
+            gRaceLinkLevel->mUnk_0c = 0;
+            gRaceLinkLevel->mUnk_10 = 0;
         }
     } else {
-        data_0217b3ec->mUnk_00 = data_0217aa00->mUnk_0004 == 0 ? 0 : WM_GetLinkLevel();
+        gRaceLinkLevel->mUnk_00 = data_0217aa00->mUnk_0004 == 0 ? 0 : WM_GetLinkLevel();
     }
 }
 
-void func_020c4f08(Unk020c06c4 *a) {
+void DrawRaceLinkLevel(Unk020c06c4 *a) {
     void *p = NULL;
     void *q = NULL;
 
-    if (data_0217b3ec == NULL) {
+    if (gRaceLinkLevel == NULL) {
         return;
     }
     if (data_021759d0->mUnk_20 != 0) {
         if (func_020b1d20() == 0) {
             if (gRaceSetup->mMode == 5) {
-                p = GetRaceMNcerEntry(data_0217b3ec->mUnk_04 + 0x28);
+                p = GetRaceMNcerEntry(gRaceLinkLevel->mUnk_04 + 0x28);
             } else {
-                p = GetRaceMNcerEntry(data_0217b3ec->mUnk_00 + 0x28);
+                p = GetRaceMNcerEntry(gRaceLinkLevel->mUnk_00 + 0x28);
             }
         } else {
             if (gRaceSetup->mMode == 5) {
-                p = GetRaceGoalMNcerEntry(data_0217b3ec->mUnk_04 + 0x3c);
+                p = GetRaceGoalMNcerEntry(gRaceLinkLevel->mUnk_04 + 0x3c);
             } else {
-                p = GetRaceGoalMNcerEntry(data_0217b3ec->mUnk_00 + 0x3c);
+                p = GetRaceGoalMNcerEntry(gRaceLinkLevel->mUnk_00 + 0x3c);
             }
         }
-        if (gRaceSetup->mMode == 5 && data_0217b3ec->mUnk_10 != 0 && data_0217b3ec->mUnk_08 < 0x69) {
+        if (gRaceSetup->mMode == 5 && gRaceLinkLevel->mUnk_10 != 0 && gRaceLinkLevel->mUnk_08 < 0x69) {
             if (func_020b1d20() != 0) {
                 q = GetRaceGoalMNcerEntry(0x42);
             } else {
@@ -448,12 +448,12 @@ void func_020c4f08(Unk020c06c4 *a) {
     }
 }
 
-void func_020c4e48(void) {
+void UploadRaceStartGpOam(void) {
     u32 v;
     u32 p;
 
-    DC_FlushRange(&gRaceStartGp->mUnk_18, 0x400);
-    GX_LoadOAM(&gRaceStartGp->mUnk_18, 0, 0x400);
+    DC_FlushRange(&gRaceStartGp->mMainOam, 0x400);
+    GX_LoadOAM(&gRaceStartGp->mMainOam, 0, 0x400);
     v = (reg_GX_POWCNT & 0x8000) >> 15;
     if (v != 0) {
         if (v == 1) {
@@ -476,10 +476,10 @@ void InitRaceStartGp(void) {
 
     gRaceStartGp = HeapAlloc(GetHeap(func_020364e8()), 0x41c);
     for (i = 0; i < 0x80; i++) {
-        Unk020c06c4_08 *e = &gRaceStartGp->mUnk_18.mUnk_000.mUnk_00[i];
+        Unk020c06c4_08 *e = &gRaceStartGp->mMainOam.mUnk_000.mUnk_00[i];
         e->mUnk_0a = 3;
     }
-    gRaceStartGp->mUnk_00 = 0;
+    gRaceStartGp->mUpdateFrames = 0;
     LoadNclrData(&gRaceStartGp->mRaceStartGpMONclr, FindSceneFileWrapper("race_start_gp_m_o.NCLR"));
     LoadNcgrData2(&gRaceStartGp->mRaceStartGpMONcgr, FindSceneFileWrapper("race_start_gp_m_o.NCGR"));
     ncer = NULL;
@@ -508,7 +508,7 @@ void InitRaceStartGp(void) {
     GX_LoadOBJ(gRaceStartGp->mRaceStartGpMONcgr->mData, 0, gRaceStartGp->mRaceStartGpMONcgr->mDataSize);
 }
 
-u32 func_020c4bd8(void) {
+u32 ClearRaceStartGpPointer(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &gRaceStartGp;
@@ -517,7 +517,7 @@ u32 func_020c4bd8(void) {
     return value0;
 }
 
-u16 func_020c4bb0(void) {
+u16 UpdateRaceStartGp(void) {
     u16 *v1;
     int *v2;
     v1 = ((u16 *) &reg_GX_POWCNT);
@@ -526,32 +526,32 @@ u16 func_020c4bb0(void) {
     return *v1;
 }
 
-const Vec3 data_02156880 = {0, 0, 0};
+const Vec3 gVec3Zero = {0, 0, 0};
 
-void func_020c4ae8(void) {
+void DrawRaceStartGp(void) {
     Unk020c06c4 *p;
     Unk020224e0_c *c;
     s32 v[2];
 
-    gRaceStartGp->mUnk_18.mUnk_400 = 0;
+    gRaceStartGp->mMainOam.mUnk_400 = 0;
     c = gRaceStartGp->mRaceStartGpMNcerEntries[0];
-    p = &gRaceStartGp->mUnk_18;
+    p = &gRaceStartGp->mMainOam;
     v[0] = 0x80000;
     v[1] = 0x60000;
     p->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &p->mUnk_000.mUnk_00[p->mUnk_400], 0x80 - p->mUnk_400, c,
                                          NULL, v, 0, 1);
-    DC_FlushRange(&gRaceStartGp->mUnk_18, 0x400);
-    MI_DmaFill32(3, &gRaceStartGp->mUnk_18.mUnk_000.mUnk_00[gRaceStartGp->mUnk_18.mUnk_400], 0xc0,
-                 (0x80 - gRaceStartGp->mUnk_18.mUnk_400) * 8);
+    DC_FlushRange(&gRaceStartGp->mMainOam, 0x400);
+    MI_DmaFill32(3, &gRaceStartGp->mMainOam.mUnk_000.mUnk_00[gRaceStartGp->mMainOam.mUnk_400], 0xc0,
+                 (0x80 - gRaceStartGp->mMainOam.mUnk_400) * 8);
 }
 
-void func_020c4ab8(s32 a) {
+void HideRaceTaKartPositions(s32 a) {
     if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
-        data_0217b3e4->mUnk_004[a] = 0;
+        gRaceTaPositions->mKartVisible[a] = 0;
     }
 }
 
-void func_020c4a04(s32 a) {
+void ResetRaceTaKartPositions(s32 a) {
     s32 i;
     s32 j;
 
@@ -559,15 +559,15 @@ void func_020c4a04(s32 a) {
         return;
     }
     for (i = 0; i < 0x28; i++) {
-        data_0217b3e4->mUnk_010[a][i].mUnk_10 = 0;
+        gRaceTaPositions->mSamples[a][i].mKind = 0;
     }
-    for (j = 0; j < data_0217b3e4->mUnk_790[a].mUnk_00; j++) {
-        data_0217b3e4->mUnk_790[a].mUnk_34[j] = 0x28;
+    for (j = 0; j < gRaceTaPositions->mUnk_790[a].mUnk_00; j++) {
+        gRaceTaPositions->mUnk_790[a].mUnk_34[j] = 0x28;
     }
-    data_0217b3e4->mUnk_004[a] = 1;
+    gRaceTaPositions->mKartVisible[a] = 1;
 }
 
-void func_020c4780(void) {
+void InitRaceTaPositions(void) {
     s32 a;
     s32 j;
     Vec3 v;
@@ -575,31 +575,31 @@ void func_020c4780(void) {
     if (gRaceSetup->mMode != MODE_TIME_ATTACK) {
         return;
     }
-    data_0217b3e4 = HeapAlloc(GetHeap(func_020364e8()), 0x910);
-    data_0217b3e4->mUnk_000 = 1;
+    gRaceTaPositions = HeapAlloc(GetHeap(func_020364e8()), 0x910);
+    gRaceTaPositions->mVisible = 1;
     for (a = 0; a < gRaceSetup->mKartCount; a++) {
-        data_0217b3e4->mUnk_004[a] = 1;
+        gRaceTaPositions->mKartVisible[a] = 1;
     }
-    data_0217b3e4->mUnk_00c = 0;
+    gRaceTaPositions->mSampleFrames = 0;
     for (a = 0; a < gRaceSetup->mKartCount; a++) {
         u16 w = (u32) func_020b6338(a);
         func_0207a91c(&v, a);
         for (j = 0; j < 0x28; j++) {
-            data_0217b3e4->mUnk_010[a][j].mUnk_00 = v;
-            data_0217b3e4->mUnk_010[a][j].mUnk_0c = w;
-            data_0217b3e4->mUnk_010[a][j].mUnk_10 = 0;
-            data_0217b3e4->mUnk_010[a][j].mUnk_14 = 3;
+            gRaceTaPositions->mSamples[a][j].mPos = v;
+            gRaceTaPositions->mSamples[a][j].mAngle = w;
+            gRaceTaPositions->mSamples[a][j].mKind = 0;
+            gRaceTaPositions->mSamples[a][j].mUnk_14 = 3;
         }
     }
     a = 0;
     if (a < gRaceSetup->mKartCount) {
-        Vec3 z = data_02156880;
+        Vec3 z = gVec3Zero;
         do {
-            data_0217b3e4->mUnk_790[a].mUnk_00 = 0;
+            gRaceTaPositions->mUnk_790[a].mUnk_00 = 0;
             for (j = 0; j < 3; j++) {
-                data_0217b3e4->mUnk_790[a].mUnk_04[j] = z;
-                data_0217b3e4->mUnk_790[a].mUnk_34[j] = -1;
-                data_0217b3e4->mUnk_790[a].mUnk_28[j] = 3;
+                gRaceTaPositions->mUnk_790[a].mUnk_04[j] = z;
+                gRaceTaPositions->mUnk_790[a].mUnk_34[j] = -1;
+                gRaceTaPositions->mUnk_790[a].mUnk_28[j] = 3;
             }
             a++;
         } while (a < gRaceSetup->mKartCount);
@@ -607,25 +607,25 @@ void func_020c4780(void) {
     for (a = 0; a < 16; a++) {
         s32 s = gPairsByAngle[((u16) (a * 0x10000 / 16) >> 4) * 2];
         s32 c = gPairsByAngle[((u16) (a * 0x10000 / 16) >> 4) * 2 + 1];
-        data_0217b3e4->mUnk_810[a].mUnk_00 = c;
-        data_0217b3e4->mUnk_810[a].mUnk_04 = s;
-        data_0217b3e4->mUnk_810[a].mUnk_08 = -s;
-        data_0217b3e4->mUnk_810[a].mUnk_0c = c;
+        gRaceTaPositions->mRotations[a].mUnk_00 = c;
+        gRaceTaPositions->mRotations[a].mUnk_04 = s;
+        gRaceTaPositions->mRotations[a].mUnk_08 = -s;
+        gRaceTaPositions->mRotations[a].mUnk_0c = c;
     }
 }
 
-u32 func_020c476c(void) {
+u32 ClearRaceTaPositionsPointer(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217b3e4;
+    value0 = (u32) &gRaceTaPositions;
     value1 = 0u;
     *(u32 *) ((value0) + (0)) = value1;
     return value0;
 }
 
-void func_020c43c4(void) {
+void UpdateRaceTaPositions(void) {
     Kart *p;
-    Unk0217b3e4 *d;
+    RaceTaPositions *d;
     u16 j;
     s32 n;
     u32 i;
@@ -637,23 +637,24 @@ void func_020c43c4(void) {
         return;
     }
     if ((u16) (data_02175628[func_020435bc()].mUnk_00 & 4) != 0) {
-        data_0217b3e4->mUnk_000 = data_0217b3e4->mUnk_000 == 0 ? 1 : 0;
+        gRaceTaPositions->mVisible = gRaceTaPositions->mVisible == 0 ? 1 : 0;
     }
     for (i = 0; i < gRaceSetup->mKartCount; i = (u16) (i + 1)) {
         if ((gKartItems)[i].mUnk_204 != FALSE) {
-            n = data_0217b3e4->mUnk_790[i].mUnk_00;
-            data_0217b3e4->mUnk_790[i].mUnk_00 = n + 1;
-            ((void (*)(Vec3 *, s32)) func_0207a91c)(&data_0217b3e4->mUnk_790[i].mUnk_04[n], i);
-            data_0217b3e4->mUnk_790[i].mUnk_28[n] = func_020b4e70(&data_0217b3e4->mUnk_790[i].mUnk_04[n]) != 0 ? 2 : 3;
+            n = gRaceTaPositions->mUnk_790[i].mUnk_00;
+            gRaceTaPositions->mUnk_790[i].mUnk_00 = n + 1;
+            ((void (*)(Vec3 *, s32)) func_0207a91c)(&gRaceTaPositions->mUnk_790[i].mUnk_04[n], i);
+            gRaceTaPositions->mUnk_790[i].mUnk_28[n] =
+                func_020b4e70(&gRaceTaPositions->mUnk_790[i].mUnk_04[n]) != 0 ? 2 : 3;
         }
     }
-    data_0217b3e4->mUnk_00c++;
-    if (data_0217b3e4->mUnk_00c > 0xf) {
-        data_0217b3e4->mUnk_00c = 0;
+    gRaceTaPositions->mSampleFrames++;
+    if (gRaceTaPositions->mSampleFrames > 0xf) {
+        gRaceTaPositions->mSampleFrames = 0;
         for (i = 0; i < gRaceSetup->mKartCount; i = (u16) (i + 1)) {
-            for (j = 0; j < data_0217b3e4->mUnk_790[i].mUnk_00; j = j + 1) {
-                if (data_0217b3e4->mUnk_790[i].mUnk_34[j] < 0x28) {
-                    data_0217b3e4->mUnk_790[i].mUnk_34[j]++;
+            for (j = 0; j < gRaceTaPositions->mUnk_790[i].mUnk_00; j = j + 1) {
+                if (gRaceTaPositions->mUnk_790[i].mUnk_34[j] < 0x28) {
+                    gRaceTaPositions->mUnk_790[i].mUnk_34[j]++;
                 }
             }
         }
@@ -661,29 +662,30 @@ void func_020c43c4(void) {
         func_020b1d50();
         for (i = 0; i < gRaceSetup->mKartCount; i = (u16) (i + 1)) {
             p = GetKart(i);
-            d = data_0217b3e4;
+            d = gRaceTaPositions;
             for (j = 0x27; j != 0; j--) {
-                d->mUnk_010[i][j] = d->mUnk_010[i][j - 1];
+                d->mSamples[i][j] = d->mSamples[i][j - 1];
             }
-            func_0207a91c(&data_0217b3e4->mUnk_010[i][0].mUnk_00, i);
-            data_0217b3e4->mUnk_010[i][0].mUnk_14 = func_020b4e70(&data_0217b3e4->mUnk_010[i][0].mUnk_00) != 0 ? 2 : 3;
-            data_0217b3e4->mUnk_010[i][0].mUnk_0c = func_020b6338(i);
+            func_0207a91c(&gRaceTaPositions->mSamples[i][0].mPos, i);
+            gRaceTaPositions->mSamples[i][0].mUnk_14 =
+                func_020b4e70(&gRaceTaPositions->mSamples[i][0].mPos) != 0 ? 2 : 3;
+            gRaceTaPositions->mSamples[i][0].mAngle = func_020b6338(i);
             if ((p->mUnk_44 & 0xa) != 0) {
-                data_0217b3e4->mUnk_010[i][0].mUnk_10 = 2;
+                gRaceTaPositions->mSamples[i][0].mKind = 2;
             } else if ((p->mUnk_48 & 0x80020) != 0) {
-                data_0217b3e4->mUnk_010[i][0].mUnk_10 = 3;
+                gRaceTaPositions->mSamples[i][0].mKind = 3;
             } else {
-                data_0217b3e4->mUnk_010[i][0].mUnk_10 = 1;
+                gRaceTaPositions->mSamples[i][0].mKind = 1;
             }
             if (gRaceProgress->mRaceDone != 0) {
-                data_0217b3e4->mUnk_010[i][0].mUnk_10 = 0;
-                data_0217b3e4->mUnk_004[i] = 0;
+                gRaceTaPositions->mSamples[i][0].mKind = 0;
+                gRaceTaPositions->mKartVisible[i] = 0;
             }
         }
     }
 }
 
-void func_020c3e44(Unk020c06c4 *a) {
+void DrawRaceTaPositions(Unk020c06c4 *a) {
     UnkPair020b502c o1;
     UnkPair020b502c o2;
     s32 w1[2];
@@ -706,7 +708,7 @@ void func_020c3e44(Unk020c06c4 *a) {
     if (gRaceSetup->mMode != MODE_TIME_ATTACK) {
         return;
     }
-    if (data_0217b3e4->mUnk_000 == 0) {
+    if (gRaceTaPositions->mVisible == 0) {
         return;
     }
     c = func_020ae5c4(a);
@@ -721,13 +723,13 @@ void func_020c3e44(Unk020c06c4 *a) {
     v = f;
     s = ((s64) v * 20) >> 12;
     for (i = 0; i < gRaceSetup->mKartCount; i++) {
-        if (data_0217b3e4->mUnk_004[i] != 0) {
+        if (gRaceTaPositions->mKartVisible[i] != 0) {
             if (gRaceProgress->mRaceDone == 0) {
-                for (j = 0; j < data_0217b3e4->mUnk_790[i].mUnk_00; j++) {
-                    if (data_0217b3e4->mUnk_790[i].mUnk_34[j] < 0x28) {
-                        if (ComputeRaceHudSubScreenPosition(&data_0217b3e4->mUnk_790[i].mUnk_04[j], &o1, s, 1, 1) !=
+                for (j = 0; j < gRaceTaPositions->mUnk_790[i].mUnk_00; j++) {
+                    if (gRaceTaPositions->mUnk_790[i].mUnk_34[j] < 0x28) {
+                        if (ComputeRaceHudSubScreenPosition(&gRaceTaPositions->mUnk_790[i].mUnk_04[j], &o1, s, 1, 1) !=
                             FALSE) {
-                            m = data_0217b3e4->mUnk_790[i].mUnk_28[j];
+                            m = gRaceTaPositions->mUnk_790[i].mUnk_28[j];
                             q = GetRaceSNcerEntry(0x4f);
                             n = a->mUnk_400;
                             w1[0] = o1.mUnk_00 << 12;
@@ -744,10 +746,10 @@ void func_020c3e44(Unk020c06c4 *a) {
                 }
             }
             for (j = 0; j < 0x28; j++) {
-                u16 x = (u16) (data_0217b3e4->mUnk_010[i][j].mUnk_0c + func_020b6368()) + 0x800;
+                u16 x = (u16) (gRaceTaPositions->mSamples[i][j].mAngle + func_020b6368()) + 0x800;
                 u16 y = ((x << 4) / 0x10000) % 16;
-                if (ComputeRaceHudSubScreenPosition(&data_0217b3e4->mUnk_010[i][j].mUnk_00, &o2, s, 1, 1) != FALSE) {
-                    switch (data_0217b3e4->mUnk_010[i][j].mUnk_10) {
+                if (ComputeRaceHudSubScreenPosition(&gRaceTaPositions->mSamples[i][j].mPos, &o2, s, 1, 1) != FALSE) {
+                    switch (gRaceTaPositions->mSamples[i][j].mKind) {
                         case 0:
                             r = NULL;
                             break;
@@ -762,13 +764,13 @@ void func_020c3e44(Unk020c06c4 *a) {
                             break;
                     }
                     if (r != NULL) {
-                        h = data_0217b3e4->mUnk_010[i][j].mUnk_14;
+                        h = gRaceTaPositions->mSamples[i][j].mUnk_14;
                         d = a->mUnk_400;
                         w2[0] = o2.mUnk_00 << 12;
                         w2[1] = o2.mUnk_04 << 12;
                         p = &a->mUnk_000.mUnk_00[d];
                         a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) p, 0x80 - d, r,
-                                                             &data_0217b3e4->mUnk_810[y].mUnk_00, w2, y + c, 1);
+                                                             &gRaceTaPositions->mRotations[y].mUnk_00, w2, y + c, 1);
                         for (; d < a->mUnk_400; d++, p++) {
                             if ((i != 0 ? 1 : -1) != -1) {
                                 p->mUnk_0a = i != 0 ? 1 : -1;
@@ -783,7 +785,7 @@ void func_020c3e44(Unk020c06c4 *a) {
         }
     }
     for (i = 0; i < 16; i++) {
-        Unk0217b3e4_810 *t = &data_0217b3e4->mUnk_810[i];
+        Matrix2x2 *t = &gRaceTaPositions->mRotations[i];
         (a->mUnk_000.mUnk_20 + c)[i].mUnk_06 = t->mUnk_00 >> 4;
         (a->mUnk_000.mUnk_20 + c)[i].mUnk_0e = t->mUnk_04 >> 4;
         (a->mUnk_000.mUnk_20 + c)[i].mUnk_16 = t->mUnk_08 >> 4;

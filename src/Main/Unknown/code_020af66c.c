@@ -138,7 +138,7 @@ void func_020b0b8c(void) {
 
     v = gRaceSetup->mRaceKind;
     if (v == RACE_KIND_START_GP) {
-        func_020c4e48();
+        UploadRaceStartGpOam();
         return;
     }
     if (v == RACE_KIND_AWARD) {
@@ -182,7 +182,7 @@ void func_020b0b8c(void) {
     }
     v = gRaceSetup->mMode;
     if (v == MODE_GRAND_PRIX && gRaceHud->mUnk_84c != 0) {
-        reg_G2_BG3OFS = 0x01ff0000 & (InterpolateS16(1, -64, 0, func_020c5db0(), 20) << 16);
+        reg_G2_BG3OFS = 0x01ff0000 & (InterpolateS16(1, -64, 0, GetRaceGoalMUpdateFrames(), 20) << 16);
     } else if (v == MODE_MISSION_RUN && gRaceHud->mUnk_84c != 0) {
         GXS_LoadBG0Char(func_020b3374()->mData, 0, 0x3000);
         GXS_LoadBG0Scr(func_020b32f8(), 0, 0x600);
@@ -373,9 +373,9 @@ void func_020b03bc(void) {
         func_020d12b0();
     }
     func_020bb530();
-    func_020c53c4();
+    InitRaceLinkLevel();
     func_020ba520();
-    func_020c5ce0();
+    InitRaceGoalM();
     InitRaceTimeDigits();
     InitRaceLapNumber();
     InitRaceMNumberPair();
@@ -384,7 +384,7 @@ void func_020b03bc(void) {
     InitRaceHudSubScreenCellGroups();
     InitRaceGoalS();
     InitRaceNewRecordTa();
-    func_020c4780();
+    InitRaceTaPositions();
     gRaceHud->mUpdateFrames = 0;
     for (i = 0; i < 7; i++) {
         gRaceHud->mNclrs[i] = NULL;
@@ -697,7 +697,7 @@ void func_020af86c(void) {
 
     v = gRaceSetup->mRaceKind;
     if (v == RACE_KIND_START_GP) {
-        func_020c4bd8();
+        ClearRaceStartGpPointer();
         return;
     }
     if (v == RACE_KIND_AWARD) {
@@ -719,9 +719,9 @@ void func_020af86c(void) {
         func_020d129c();
     }
     func_020bb51c();
-    func_020c53b0();
+    ClearRaceLinkLevelPointer();
     func_020ba50c();
-    func_020c5ccc();
+    ClearRaceGoalMPointer();
     func_020bc108();
     ClearRaceLapNumberPointer();
     func_020d2094();
@@ -730,7 +730,7 @@ void func_020af86c(void) {
     ClearRaceHudSubScreenCellGroups();
     func_020c31ec();
     func_020c6f84();
-    func_020c476c();
+    ClearRaceTaPositionsPointer();
     reg_GX_DISPCNT &= ~0xe000;
     reg_GXS_DB_DISPCNT &= ~0xe000;
 }
@@ -743,7 +743,7 @@ void func_020af66c(void) {
     }
     v = gRaceSetup->mRaceKind;
     if (v == RACE_KIND_START_GP) {
-        func_020c4bb0();
+        UpdateRaceStartGp();
         return;
     }
     if (v == RACE_KIND_AWARD) {
@@ -778,12 +778,12 @@ void func_020af66c(void) {
         func_020d2090();
         func_020d0a18();
         func_020ba3ec();
-        func_020c5940();
+        UpdateRaceGoalM();
     } else {
         func_020bb5cc();
         UpdateRaceLapNumber();
         func_020d0a18();
-        func_020c5940();
+        UpdateRaceGoalM();
     }
     func_020bbbb4();
     UpdateRaceRankList();
@@ -793,7 +793,7 @@ void func_020af66c(void) {
         case 2:
         case 3:
             UpdateRaceHudSubScreenCellGroups();
-            func_020c43c4();
+            UpdateRaceTaPositions();
             break;
         case 4:
         case 5:

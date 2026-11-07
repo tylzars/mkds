@@ -35,7 +35,7 @@ void func_020ae824(void) {
 
     v = gRaceSetup->mRaceKind;
     if (v == RACE_KIND_START_GP) {
-        func_020c4ae8();
+        DrawRaceStartGp();
         return;
     }
     if (v == RACE_KIND_AWARD) {
@@ -63,13 +63,13 @@ void func_020ae824(void) {
         DrawRaceLapAndTimeDifference((Unk020d029c *) gRaceHud->mUnk_004);
         DrawRaceMNumberPair((Unk020d029c *) gRaceHud->mUnk_004);
         func_020d06b8((Unk020d029c *) gRaceHud->mUnk_004);
-        func_020c4f08((Unk020c06c4 *) gRaceHud->mUnk_004);
+        DrawRaceLinkLevel((Unk020c06c4 *) gRaceHud->mUnk_004);
         func_020b9dfc((Unk020d029c *) gRaceHud->mUnk_004);
-        func_020c5804((Unk020c06c4 *) gRaceHud->mUnk_004);
+        DrawRaceGoalM((Unk020c06c4 *) gRaceHud->mUnk_004);
     } else {
         func_020d06b8((Unk020d029c *) gRaceHud->mUnk_004);
-        func_020c4f08((Unk020c06c4 *) gRaceHud->mUnk_004);
-        func_020c5804((Unk020c06c4 *) gRaceHud->mUnk_004);
+        DrawRaceLinkLevel((Unk020c06c4 *) gRaceHud->mUnk_004);
+        DrawRaceGoalM((Unk020c06c4 *) gRaceHud->mUnk_004);
     }
     DC_FlushRange(gRaceHud->mUnk_004, 0x400);
     MI_DmaFill32(3, gRaceHud->mUnk_004 + gRaceHud->mUnk_404 * 8, 0xc0, (0x80 - gRaceHud->mUnk_404) << 3);
@@ -90,7 +90,7 @@ void func_020ae824(void) {
         case 2:
         case 3:
             DrawRaceHudSubScreenCellGroups(gRaceHud->mUnk_408);
-            func_020c3e44((Unk020c06c4 *) gRaceHud->mUnk_408);
+            DrawRaceTaPositions((Unk020c06c4 *) gRaceHud->mUnk_408);
             break;
         case 4:
         case 5:

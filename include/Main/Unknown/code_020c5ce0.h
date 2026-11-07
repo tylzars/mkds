@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020c5ce0(void);
+void InitRaceGoalM(void);

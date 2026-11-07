@@ -6,24 +6,24 @@
 
 // Object behind gRaceStartGp, 0x41c bytes, allocated by InitRaceStartGp.
 typedef struct RaceStartGp {
-    /* 00 */ s32 mUnk_00;
+    /* 00 */ s32 mUpdateFrames;
     /* 04 */ Nclr *mRaceStartGpMONclr;
     /* 08 */ Ncgr *mRaceStartGpMONcgr;
     /* 0c */ Unk020224e0_c *mRaceStartGpMNcerEntries[3];
-    /* 18 */ Unk020c06c4 mUnk_18;
+    /* 18 */ Unk020c06c4 mMainOam;
 } RaceStartGp;
 
 void InitRaceStartGp(void);
 
-extern const Vec3 data_02156880;
+extern const Vec3 gVec3Zero;
 
-u32 func_020c476c(void);
-void func_020c4780(void);
-void func_020c4a04(s32 a);
-void func_020c4ab8(s32 a);
-void func_020c4ae8(void);
-u16 func_020c4bb0(void);
-void func_020c4e48(void);
-void func_020c4f08(Unk020c06c4 *a);
-void func_020c525c(void);
-u32 func_020c53b0(void);
+u32 ClearRaceTaPositionsPointer(void);
+void InitRaceTaPositions(void);
+void ResetRaceTaKartPositions(s32 a);
+void HideRaceTaKartPositions(s32 a);
+void DrawRaceStartGp(void);
+u16 UpdateRaceStartGp(void);
+void UploadRaceStartGpOam(void);
+void DrawRaceLinkLevel(Unk020c06c4 *a);
+void UpdateRaceLinkLevel(void);
+u32 ClearRaceLinkLevelPointer(void);
