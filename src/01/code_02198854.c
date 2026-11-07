@@ -89,7 +89,7 @@ void InitOptionSelectMenu(void *a) {
         func_02124a98(data_ov001_021a6a28[i], 1, gOptionSelectMenu->mOptionSelectMenuSNcer,
                       gOptionSelectMenu->mOptionSelectMenuSBncl);
     }
-    func_020ae6d4(func_ov001_0219e920(), func_ov001_0219e90c());
+    func_020ae6d4(GetOptionFirstBuffer(), GetOptionSecondBuffer());
     func_02124ed0(a, gOptionSelectMenu->mOptionSelectMenuMBncl, gOptionSelectMenu->mOptionSelectMenuMBnll,
                   &gOptionSelectMenu->mOptionSelectMenuMTable);
     func_02124ed0(a, gOptionSelectMenu->mOptionSelectMenuSBncl, gOptionSelectMenu->mOptionSelectMenuSBnll,
@@ -602,10 +602,10 @@ void AdvanceOptionSelectMenu(void) {
     AdvanceOptionSelectMenuOffsetTimers();
     p = gOptionSelectMenu;
     func_02124c30(p->mOptionSelectMenuMBncl, p->mOptionSelectMenuMNcer, p->mOptionSelectMenuMBnll,
-                  func_ov001_0219e920(), p->mOptionSelectMenuMTable);
+                  GetOptionFirstBuffer(), p->mOptionSelectMenuMTable);
     p = gOptionSelectMenu;
     func_02124c30(p->mOptionSelectMenuSBncl, p->mOptionSelectMenuSNcer, p->mOptionSelectMenuSBnll,
-                  func_ov001_0219e90c(), p->mOptionSelectMenuSTable);
+                  GetOptionSecondBuffer(), p->mOptionSelectMenuSTable);
 }
 
 void WriteOptionSelectMenuRegisters(void) {

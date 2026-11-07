@@ -54,7 +54,7 @@ void InitOptionTopMenu(void *heap) {
         func_02124a98(data_ov001_021a65dc[i], 1, gOptionTopMenu->mOptionTopMenuSNcer,
                       gOptionTopMenu->mOptionTopMenuSBncl);
     }
-    func_020ae6d4(func_ov001_0219e920(), func_ov001_0219e90c());
+    func_020ae6d4(GetOptionFirstBuffer(), GetOptionSecondBuffer());
     func_02124ed0(heap, gOptionTopMenu->mOptionTopMenuSBncl, NULL, &gOptionTopMenu->mOptionTopMenuSTable);
     for (i = 0; i < 3; i++) {
         for (j = 0; j < data_ov001_021a65e4[i]; j++) {
@@ -399,7 +399,7 @@ void AdvanceOptionTopMenu(void) {
     }
     func_ov001_021933dc();
     obj = gOptionTopMenu;
-    func_02124c30(obj->mOptionTopMenuSBncl, obj->mOptionTopMenuSNcer, NULL, func_ov001_0219e90c(),
+    func_02124c30(obj->mOptionTopMenuSBncl, obj->mOptionTopMenuSNcer, NULL, GetOptionSecondBuffer(),
                   obj->mOptionTopMenuSTable);
 }
 

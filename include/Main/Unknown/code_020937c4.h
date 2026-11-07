@@ -7,7 +7,7 @@
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
 #include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
 
-// Object of func_020937c4: after the shared part, a counter at 0xa0 and a word at 0xa4. A prefix view of the
+// Object of StartNsKiller2: after the shared part, a counter at 0xa0 and a word at 0xa4. A prefix view of the
 // kind 0x1a2 (NsKiller2) pool objects.
 typedef struct Unk020937c4 {
     /* 00 */ MapObject mUnk_00;
@@ -36,7 +36,7 @@ typedef struct NsKiller1 {
     /* ac */ Unk020e0144 mUnk_ac;
 } NsKiller1;
 
-void func_020937c4(Vec3 *a, Vec3 *b, u16 c);
+void StartNsKiller2(Vec3 *a, Vec3 *b, u16 c);
 void func_02093884(void);
 void func_020938a0(void);
 void func_020938c0(void);

@@ -31,7 +31,7 @@ void InitOptionEmbremSelect(void *a) {
         func_02124a98(data_ov001_021a6c38[i][0], 1, gOptionEmbremSelect->mOptionEmbremSelectSNcer,
                       gOptionEmbremSelect->mOptionEmbremSelectSBncl);
     }
-    func_020ae6d4(func_ov001_0219e920(), func_ov001_0219e90c());
+    func_020ae6d4(GetOptionFirstBuffer(), GetOptionSecondBuffer());
     func_02124ed0(a, gOptionEmbremSelect->mOptionEmbremSelectSBncl, gOptionEmbremSelect->mOptionEmbremSelectSBnll,
                   &gOptionEmbremSelect->mOptionEmbremSelectSTable);
     gOptionEmbremSelect->mOptionMessages = FindSceneFile("option.bmg");
@@ -433,7 +433,7 @@ void AdvanceOptionEmbremSelect(void) {
     func_ov001_0219d730();
     func_ov001_0219d6ac();
     func_02124c30(gOptionEmbremSelect->mOptionEmbremSelectSBncl, gOptionEmbremSelect->mOptionEmbremSelectSNcer,
-                  gOptionEmbremSelect->mOptionEmbremSelectSBnll, func_ov001_0219e90c(),
+                  gOptionEmbremSelect->mOptionEmbremSelectSBnll, GetOptionSecondBuffer(),
                   gOptionEmbremSelect->mOptionEmbremSelectSTable);
 }
 

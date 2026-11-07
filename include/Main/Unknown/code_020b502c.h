@@ -342,7 +342,7 @@ typedef struct CourseMap {
     /* b4 */ s32 mUnk_b4;
     // One 0x30-byte link per battle point (up to eight neighbour links, a pointer to the point, two values, a link
     // count and a bit mask), built from mBattlePoints and mBattleRoutes; read by
-    // FindCourseMapKind4ShapeBattlePointLink, GetCourseMapRespawnBattlePointLink and func_02040da8.
+    // FindCourseMapKind4ShapeBattlePointLink, GetCourseMapRespawnBattlePointLink and GetKeyedPlacementBattlePointLink.
     /* b8 */ Unk02175620_bc *mBattlePointLinks;
     /* bc */ Unk02175620_bc *mUnk_bc;
     /* c0 */ Unk02175620_bc *mUnk_c0;

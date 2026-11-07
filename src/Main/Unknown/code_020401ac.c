@@ -12,16 +12,16 @@
 #include "code_0200f5ac.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-Unk02175620_bc *func_02040da8(u32 a) {
+Unk02175620_bc *GetKeyedPlacementBattlePointLink(u32 a) {
     return &gCourseMap
                 ->mBattlePointLinks[gCourseMap->mKeyedPlacements[gCourseMap->mKeyedPlacementIndexByKey[a]].mUnk_18];
 }
 
-s32 func_02040d68(const UnkPair020b502c *a, const UnkPair020b502c *b) {
+s32 ComputeDotOfPairsRounded(const UnkPair020b502c *a, const UnkPair020b502c *b) {
     return ((s64) a->mUnk_00 * b->mUnk_00 + (s64) a->mUnk_04 * b->mUnk_04 + 0x800) >> 12;
 }
 
-s64 func_02040d24(const UnkPair020b502c *a, const UnkPair020b502c *b) {
+s64 ComputeDotOfPairsRoundedS64(const UnkPair020b502c *a, const UnkPair020b502c *b) {
     return ((s64) a->mUnk_00 * b->mUnk_00 + (s64) a->mUnk_04 * b->mUnk_04 + 0x800) >> 12;
 }
 
@@ -82,7 +82,7 @@ BOOL func_02040bc0(void) {
     }
 }
 
-void func_02040a8c(Unk0217561c_500 *a, s32 b) {
+void ComputeGrandPrixScoreTerms(RaceProgressScoreTerms *a, s32 b) {
     EntryKartCounters *t = GetEntryKartCounters();
     RaceProgress *d = gRaceProgress;
     RaceProgressKart *e = &d->mKarts[b];
@@ -110,12 +110,14 @@ void func_02040a8c(Unk0217561c_500 *a, s32 b) {
     a->mUnk_20 = t->mUnk_18 * -r->mUnk_1a;
 }
 
-s16 func_020408f0(s32 a) {
-    Unk0217561c_500 b;
+// Sum of the nine score terms (also saved in gRaceProgress->mUnk_500), clamped to -9999..9999; 0 unless kart a is the
+// local entry in Grand Prix or Mission Run.
+s16 ComputeRaceProgressKartScore(s32 a) {
+    RaceProgressScoreTerms b;
     EntryKartCounters *t;
     Unk021759c0 *g;
     RaceProgress *d = gRaceProgress;
-    Unk0217561c_500 *o = &d->mUnk_500;
+    RaceProgressScoreTerms *o = &d->mUnk_500;
     s32 s;
     u8 *h;
 
@@ -125,7 +127,7 @@ s16 func_020408f0(s32 a) {
     g = data_021759c0;
     switch (g->mMode) {
         case MODE_GRAND_PRIX:
-            func_02040a8c(&b, a);
+            ComputeGrandPrixScoreTerms(&b, a);
             break;
         case MODE_MISSION_RUN:
             h = (u8 *) g + 0x28;

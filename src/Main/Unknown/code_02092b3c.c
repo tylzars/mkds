@@ -152,10 +152,10 @@ void func_02092b5c(void *a, Unk020919e8 *p) {
         for (i = 0; i < 2; i++) {
             func_02092b5c_inline_5(&v3, p->mUnk_00.mPos.x, p->mUnk_00.mPos.y + 0x23000, p->mUnk_00.mPos.z);
             k = p->mUnk_00.mAngle;
-            r = func_02091f6c(func_020d22d0(), 0x1000) + 0x2000;
+            r = NextRandomBelow(func_020d22d0(), 0x1000) + 0x2000;
             k = k - 0xbb8 + func_02046524(func_020d22d0(), 0x1770);
             v4.x = func_020930a0(r, func_020930b0(k));
-            v4.y = func_02091f6c(func_020d22d0(), 0x400) - 0xa00;
+            v4.y = NextRandomBelow(func_020d22d0(), 0x400) - 0xa00;
             v4.z = func_020930a0(r, func_02093080(k));
             if (i == 0 && p->mUnk_a8 == 0) {
                 func_0209219c(0x8c, &v3, &v4, 0xf, 1, i == 0 ? 2 : 0);

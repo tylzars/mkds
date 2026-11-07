@@ -43,8 +43,8 @@ void InitOptionHensyuMenu(void *heap) {
         func_02124a98(data_ov001_021a6a84[i], 1, gOptionHensyuMenu->mOptionHensyuMenuSNcer,
                       gOptionHensyuMenu->mOptionHensyuMenuSBncl);
     }
-    a = func_ov001_0219e920();
-    func_020ae6d4(a, func_ov001_0219e90c());
+    a = GetOptionFirstBuffer();
+    func_020ae6d4(a, GetOptionSecondBuffer());
     func_02124ed0(heap, gOptionHensyuMenu->mOptionHensyuMenuSBncl, NULL, &gOptionHensyuMenu->mOptionHensyuMenuSTable);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6a8c[i]; j++) {
@@ -305,7 +305,7 @@ void AdvanceOptionHensyuMenu(void) {
     }
     func_ov001_02199a20();
     p = gOptionHensyuMenu;
-    func_02124c30(p->mOptionHensyuMenuSBncl, p->mOptionHensyuMenuSNcer, NULL, func_ov001_0219e90c(),
+    func_02124c30(p->mOptionHensyuMenuSBncl, p->mOptionHensyuMenuSNcer, NULL, GetOptionSecondBuffer(),
                   p->mOptionHensyuMenuSTable);
 }
 

@@ -100,7 +100,7 @@ void UpdateNsKiller1(void *a, NsKiller1 *p) {
             p->mUnk_a0--;
             break;
         case 3:
-            func_020937c4(&p->mUnk_00.mPos, &p->mUnk_00.mMatrix.mUnk_00[2], p->mUnk_00.mAngle);
+            StartNsKiller2(&p->mUnk_00.mPos, &p->mUnk_00.mMatrix.mUnk_00[2], p->mUnk_00.mAngle);
             if ((p->mUnk_00.mFlags & 0x12) == 0) {
                 StartEffect(0x4b, &p->mUnk_00.mPos);
                 StartEffect(0x4c, &p->mUnk_00.mPos);
@@ -224,7 +224,8 @@ void func_02093884(void) {
     func_0209bf48(NULL, UpdateNsKiller2, NULL);
 }
 
-void func_020937c4(Vec3 *a, Vec3 *b, u16 c) {
+// Starts a parked NsKiller2 at a (raised), flying along b with angle c.
+void StartNsKiller2(Vec3 *a, Vec3 *b, u16 c) {
     Unk020937c4 *o;
 
     o = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_NS_KILLER2));

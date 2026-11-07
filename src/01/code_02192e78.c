@@ -78,7 +78,7 @@ void InitOptionStates(void *heap, s16 a) {
     gOptionStates->mHeap = heap;
     gOptionStates->mUnk_28 = func_021250b0(heap);
     func_ov001_021930ac();
-    func_0212abdc(heap, func_ov001_0219e920());
+    func_0212abdc(heap, GetOptionFirstBuffer());
     arg.mUnk_00 = TRUE;
     arg.mUnk_04 = func_020b403c(1);
     arg.mUnk_08 = 0;

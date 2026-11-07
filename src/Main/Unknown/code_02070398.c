@@ -1401,7 +1401,7 @@ void func_020705fc(Kart *p, u32 b) {
     if (data_021759c0->mMode != MODE_BATTLE) {
         return;
     }
-    func_02089754(p->mUnk_310, func_02040da8(b));
+    func_02089754(p->mUnk_310, GetKeyedPlacementBattlePointLink(b));
 }
 
 void func_02070484(Kart *p, Vec4 *q) {

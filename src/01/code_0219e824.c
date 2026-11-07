@@ -17,8 +17,8 @@
 #include "01/unk_021a6000.h"
 #include "Main/Unknown/code_02105000.h"
 
-u8 *data_ov001_021ca404;
-u8 *data_ov001_021ca408;
+u8 *gNicknameBuffers;
+u8 *gOptionBuffers;
 
 static SceneCallbacks gOptionSceneCallbacks = {
     InitOptionScene, UpdateOptionScene, ReleaseOptionScene, func_ov001_0219e9a4, 0, 0, 10, 10, 0};
@@ -36,24 +36,24 @@ void InitOptionScene(s16 *a) {
     void *heap;
 
     heap = GetHeap(func_020364e8());
-    data_ov001_021ca408 = HeapAlloc(heap, 0x808);
+    gOptionBuffers = HeapAlloc(heap, 0x808);
     InitOptionStates((heap), *a);
 }
 
 void ReleaseOptionScene(void) {
     func_ov001_02192f8c();
-    data_ov001_021ca408 = NULL;
+    gOptionBuffers = NULL;
 }
 
 void func_ov001_0219e9a4(void) {
     func_ov001_02192ec4();
-    func_020ae5f0(data_ov001_021ca408, data_ov001_021ca408 + 0x404);
+    func_020ae5f0(gOptionBuffers, gOptionBuffers + 0x404);
 }
 
 void UpdateOptionScene(s16 *a) {
-    func_020ae6ac(data_ov001_021ca408, data_ov001_021ca408 + 0x404);
+    func_020ae6ac(gOptionBuffers, gOptionBuffers + 0x404);
     AdvanceOptionStates();
-    func_020ae630(data_ov001_021ca408, data_ov001_021ca408 + 0x404);
+    func_020ae630(gOptionBuffers, gOptionBuffers + 0x404);
     if (a != NULL && func_ov001_02192e84() != -1) {
         a[2] = func_ov001_02192e84();
     }
@@ -66,39 +66,39 @@ int RunOptionScene(void *a) {
     return 0;
 }
 
-u8 *func_ov001_0219e920(void) {
-    return data_ov001_021ca408;
+u8 *GetOptionFirstBuffer(void) {
+    return gOptionBuffers;
 }
 
-u8 *func_ov001_0219e90c(void) {
-    return data_ov001_021ca408 + 0x404;
+u8 *GetOptionSecondBuffer(void) {
+    return gOptionBuffers + 0x404;
 }
 
-void func_ov001_0219e8d8(s16 *a) {
+void InitNicknameScene(s16 *a) {
     void *heap;
 
     heap = GetHeap(func_020364e8());
-    data_ov001_021ca404 = HeapAlloc(heap, 0x808);
+    gNicknameBuffers = HeapAlloc(heap, 0x808);
     func_ov001_021987d4(heap, *a);
 }
 
-void func_ov001_0219e8c0(void) {
+void ReleaseNicknameScene(void) {
     func_ov001_021987bc();
-    data_ov001_021ca404 = NULL;
+    gNicknameBuffers = NULL;
 }
 
 void func_ov001_0219e89c(void) {
     u8 *p;
 
     func_ov001_0219854c();
-    p = data_ov001_021ca404;
+    p = gNicknameBuffers;
     func_020ae5f0(p, p + 0x404);
 }
 
-void func_ov001_0219e858(s16 *a) {
-    func_020ae6ac(data_ov001_021ca404, data_ov001_021ca404 + 0x404);
+void UpdateNicknameScene(s16 *a) {
+    func_020ae6ac(gNicknameBuffers, gNicknameBuffers + 0x404);
     func_ov001_02198554();
-    func_020ae630(data_ov001_021ca404, data_ov001_021ca404 + 0x404);
+    func_020ae630(gNicknameBuffers, gNicknameBuffers + 0x404);
     if (a != NULL && func_ov001_0219853c() != -1) {
         a[2] = func_ov001_0219853c();
     }
@@ -106,7 +106,7 @@ void func_ov001_0219e858(s16 *a) {
 
 int RunNicknameScene(void *a) {
     SceneCallbacks callbacks = {
-        func_ov001_0219e8d8, func_ov001_0219e858, func_ov001_0219e8c0, func_ov001_0219e89c, 0, 0, 10, 10, 0,
+        InitNicknameScene, UpdateNicknameScene, ReleaseNicknameScene, func_ov001_0219e89c, 0, 0, 10, 10, 0,
     };
 
     RunScene(a, &callbacks);

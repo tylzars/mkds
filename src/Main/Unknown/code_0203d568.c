@@ -337,7 +337,7 @@ void UpdateRaceProgressKarts(void) {
                 o = &gCourseMap->mCheckpoints[e->mCheckpoint].mDirection;
                 t.mUnk_00 = w.x;
                 t.mUnk_04 = w.z;
-                if (func_02040d68(&t, o) < -1394) {
+                if (ComputeDotOfPairsRounded(&t, o) < -1394) {
                     f = TRUE;
                 }
             }

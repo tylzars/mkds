@@ -96,7 +96,8 @@ void func_02091fd8(MapObjectList *a) {
     }
 }
 
-u32 func_02091f6c(Unk020f41c4_B *a, u32 b) {
+// Returns a random value below b (0 when b is 0), advancing the generator a.
+u32 NextRandomBelow(Unk020f41c4_B *a, u32 b) {
     if (b == 0) {
         return 0;
     }
@@ -200,10 +201,10 @@ void UpdateKanoke64(void *a, Unk020919e8 *p) {
         for (i = 0; i < 3; i++) {
             func_020919e8_inline_6(&v3, p->mUnk_00.mPos.x, p->mUnk_00.mPos.y + 0x19000, p->mUnk_00.mPos.z);
             k = p->mUnk_00.mAngle;
-            r = func_02091f6c(func_020d22d0(), 0x1000) + 0x800;
+            r = NextRandomBelow(func_020d22d0(), 0x1000) + 0x800;
             k = k - 0x3e8 + func_02046524(func_020d22d0(), 0x7d0);
             v4.x = func_02091f44(r, func_02091f54(k));
-            v4.y = func_02091f6c(func_020d22d0(), 0x400) + 0x2200;
+            v4.y = NextRandomBelow(func_020d22d0(), 0x400) + 0x2200;
             v4.z = func_02091f44(r, func_02091f24(k));
             if (i == 0 && p->mUnk_a8 == 0) {
                 func_0209219c(0x50, &v3, &v4, 0x28, 1, i == 0 ? 3 : 0);
@@ -253,7 +254,7 @@ void func_02091954(void *a) {
     func_0209bbd0(a, gCow);
 }
 
-void func_020918cc(void *a, Unk020919e8 *b) {
+void DrawCow(void *a, Unk020919e8 *b) {
     s32 w;
 
     w = 0x1e;
@@ -265,5 +266,5 @@ void func_020918cc(void *a, Unk020919e8 *b) {
 }
 
 void func_020918a8(void) {
-    func_0209bef0(CreateCow, func_020918cc, func_02091954);
+    func_0209bef0(CreateCow, DrawCow, func_02091954);
 }

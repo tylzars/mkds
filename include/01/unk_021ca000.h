@@ -181,8 +181,8 @@ typedef struct MissionRunBossIcon {
     /* 0c */ void *mBncl;
 } MissionRunBossIcon;
 
-extern u8 *data_ov001_021ca404;
-extern u8 *data_ov001_021ca408;
+extern u8 *gNicknameBuffers;
+extern u8 *gOptionBuffers;
 extern MissionRunBossIcon *gMissionRunBossIcon;
 
 #include "00/code_021832d8.h"

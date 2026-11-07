@@ -29,7 +29,7 @@ u32 GetCurrentKartIndex(u32 arg0) {
     return value0;
 }
 
-u32 func_020cc6f0(u32 arg0) {
+u32 GetCurrentPlayerKind(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;

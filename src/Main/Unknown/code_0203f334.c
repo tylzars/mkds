@@ -152,8 +152,8 @@ s32 func_0203fcac(const Vec3 *a, u16 b, u16 c) {
     l[1].mUnk_04 = a->z - r->mPointAZ;
     l[2].mUnk_00 = -r->mDirection.mUnk_00;
     l[2].mUnk_04 = -r->mDirection.mUnk_04;
-    x = func_02040d24(&l[0], &q->mDirection);
-    y = x + func_02040d24(&l[1], &l[2]);
+    x = ComputeDotOfPairsRoundedS64(&l[0], &q->mDirection);
+    y = x + ComputeDotOfPairsRoundedS64(&l[1], &l[2]);
     if (x > 0x7fffffff || y > 0x7fffffff || x < -0x80000000LL || y < -0x80000000LL) {
         x >>= 10;
         y >>= 10;

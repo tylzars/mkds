@@ -323,7 +323,7 @@ void FinishRaceProgressKart(RaceProgressKart *a, s32 b) {
     m = data_021759c0->mMode;
     if (m == MODE_GRAND_PRIX || m == MODE_MISSION_RUN) {
         if ((a->mFlags & 1) != 0) {
-            a->mScore = func_020408f0((u32) (a->mUnk_3c << 24) >> 28);
+            a->mScore = ComputeRaceProgressKartScore((u32) (a->mUnk_3c << 24) >> 28);
             d = a->mScore;
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 data_0217aa1c->mUnk_140 = d;

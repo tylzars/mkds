@@ -41,7 +41,7 @@ void func_020cc3e8(void) {
     for (i = 0; i < 8; i++) {
         func_02029930()->mUnk_00[i].mCharacterIndex = GetCurrentCharacterIndex(i);
         func_02029930()->mUnk_00[i].mKartIndex = GetCurrentKartIndex(i);
-        func_02029930()->mUnk_00[i].mUnk_08 = func_020cc6f0(i);
+        func_02029930()->mUnk_00[i].mUnk_08 = GetCurrentPlayerKind(i);
         if (GetCurrentUseTeams() != 0) {
             func_02029930()->mUnk_00[i].mTeamIndex = GetCurrentTeamIndex(i);
         } else {

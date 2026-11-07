@@ -123,7 +123,7 @@ typedef struct RaceProgressKart {
     // GetKartBestLapTime is only meaningful after all laps.
     /* 0c */ Unk0217aa1c_144_00 mLapTimes[6];
     /* 24 */ s32 mLap;
-    // Counted for the leader at each ranking step (kart 0 in a one-kart race); read by func_02040a8c.
+    // Counted for the leader at each ranking step (kart 0 in a one-kart race); read by ComputeGrandPrixScoreTerms.
     /* 28 */ s32 mFirstPlaceFrames;
     /* 2c */ s32 mFinishTimeMs;
     // 0x1 local entry, 0x2 ended by the mode 2 end, 0x4 facing against the checkpoint, 0x8 finish just happened, 0x10
@@ -223,7 +223,7 @@ typedef struct Unk0217561c_000 {
 } Unk0217561c_000;
 
 // Nine words.
-typedef struct Unk0217561c_500 {
+typedef struct RaceProgressScoreTerms {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ s32 mUnk_08;
@@ -233,7 +233,7 @@ typedef struct Unk0217561c_500 {
     /* 18 */ s32 mUnk_18;
     /* 1c */ s32 mUnk_1c;
     /* 20 */ s32 mUnk_20;
-} Unk0217561c_500;
+} RaceProgressScoreTerms;
 
 // 8-byte entries from 0x1c of the object behind RaceProgress.mUnk_4c8.
 typedef struct RankTimeGpEntry {
@@ -244,8 +244,8 @@ typedef struct RankTimeGpEntry {
     /* 06 */ u16 mUnk_06;
 } RankTimeGpEntry;
 
-// Object behind RaceProgress.mRankTimeGpFile: header 0x1c bytes (score weights read by func_02040a8c: halfwords
-// 0x0a..0x1a), then mEntryCount entries of 8 bytes.
+// Object behind RaceProgress.mRankTimeGpFile: header 0x1c bytes (score weights read by ComputeGrandPrixScoreTerms:
+// halfwords 0x0a..0x1a), then mEntryCount entries of 8 bytes.
 typedef struct RankTimeGp {
     /* 00 */ u8 mUnk_00[0x8];
     /* 08 */ u16 mEntryCount;
@@ -326,7 +326,7 @@ typedef struct RaceProgress {
     // goal; the step waits for 0x3c and then takes the entry out.
     /* 4fc */ u16 mFramesSinceFailure;
     /* 4fe */ u16 mUnk_4fe;
-    /* 500 */ Unk0217561c_500 mUnk_500;
+    /* 500 */ RaceProgressScoreTerms mUnk_500;
 } RaceProgress;
 
 // Entry of the table behind gItemKinds: one record per object kind (14, 0xa8 bytes each), a heap copy of the static
