@@ -307,15 +307,15 @@ s32 func_0203551c(u16 *a) {
                 func_02035c14();
             }
             func_0202e4b0();
-            i = func_0202e4a4();
+            i = GetScrollListSelectedRow();
             if (data_02174e68->mSelectedIndex != i) {
                 data_02174e68->mSelectedIndex = i;
                 PrintSelectedGhostRecord();
             }
-            if (func_0202e468() != 0) {
+            if (IsScrollListPickStarted() != 0) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
             }
-            if (func_0202e47c() != 0) {
+            if (IsScrollListPickFinished() != 0) {
                 SetupGhostNameSubTextTwoButtons();
                 RequestSelectReturnState4();
                 data_02174e68->mState = 2;

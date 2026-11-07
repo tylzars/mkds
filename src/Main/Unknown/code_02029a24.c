@@ -14,7 +14,7 @@ void CreateRaceSetupCopy(void *a) {
     u32 v1;
     v1 = ((u32) HeapAlloc(a, (0x00000110u)));
     *(u32 *) &gRaceSetupCopy = v1;
-    func_0202993c();
+    ResetRaceSetupCopy();
 }
 
 #pragma thumb off

@@ -51,42 +51,42 @@ void func_02029330(void) {
     }
 }
 
-void func_020292bc(void) {
+void MoveSelectKartNext(void) {
     SelectKart *d;
-    s32 i;
-    i = gSelectKart->mKartTableIndex + 1;
-    if (i >= 0x24) {
-        i = 0;
+    s32 index;
+    index = gSelectKart->mKartTableIndex + 1;
+    if (index >= 0x24) {
+        index = 0;
     }
-    while (d = gSelectKart, i != d->mKartTableIndex) {
-        if (func_0205fd2c(d->mUnk_098, d->mCharacterIndex, GetKartIndexAtTableIndex(i)) != 0) {
-            gSelectKart->mKartTableIndex = i;
+    while (d = gSelectKart, index != d->mKartTableIndex) {
+        if (func_0205fd2c(d->mUnk_098, d->mCharacterIndex, GetKartIndexAtTableIndex(index)) != 0) {
+            gSelectKart->mKartTableIndex = index;
             gSelectKart->mKartIndex = GetKartIndexAtTableIndex(gSelectKart->mKartTableIndex);
         } else {
-            i++;
-            if (i >= 0x24) {
-                i = 0;
+            index++;
+            if (index >= 0x24) {
+                index = 0;
             }
         }
     }
     func_02029330();
 }
 
-void func_02029248(void) {
+void MoveSelectKartPrev(void) {
     SelectKart *d;
-    s32 i;
-    i = gSelectKart->mKartTableIndex - 1;
-    if (i < 0) {
-        i = 0x23;
+    s32 index;
+    index = gSelectKart->mKartTableIndex - 1;
+    if (index < 0) {
+        index = 0x23;
     }
-    while (d = gSelectKart, i != d->mKartTableIndex) {
-        if (func_0205fd2c(d->mUnk_098, d->mCharacterIndex, GetKartIndexAtTableIndex(i)) != 0) {
-            gSelectKart->mKartTableIndex = i;
+    while (d = gSelectKart, index != d->mKartTableIndex) {
+        if (func_0205fd2c(d->mUnk_098, d->mCharacterIndex, GetKartIndexAtTableIndex(index)) != 0) {
+            gSelectKart->mKartTableIndex = index;
             gSelectKart->mKartIndex = GetKartIndexAtTableIndex(gSelectKart->mKartTableIndex);
         } else {
-            i--;
-            if (i < 0) {
-                i = 0x23;
+            index--;
+            if (index < 0) {
+                index = 0x23;
             }
         }
     }
@@ -95,17 +95,17 @@ void func_02029248(void) {
 
 #pragma thumb off
 
-u32 func_02029210(Unk02175628_48 *a) {
-    u32 r;
+u32 func_02029210(Unk02175628_48 *pair) {
+    u32 result;
 
-    if (func_020287ec(a) != 0 || func_0202881c(a) != 0) {
-        r = 1;
+    if (func_020287ec(pair) != 0 || func_0202881c(pair) != 0) {
+        result = 1;
     } else {
-        r = 0;
+        result = 0;
     }
-    return r;
+    return result;
 }
 
-u32 func_020291f0(u32 a) {
-    return func_02029210((Unk02175628_48 *) &data_02175628[a].mPairX);
+u32 func_020291f0(u32 slot) {
+    return func_02029210((Unk02175628_48 *) &data_02175628[slot].mPairX);
 }

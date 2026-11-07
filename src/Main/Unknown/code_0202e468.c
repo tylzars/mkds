@@ -3,20 +3,20 @@
 
 #pragma thumb on
 
-u32 func_0202e4a4(void) {
-    return (data_02174e48->mUnk_040);
+u32 GetScrollListSelectedRow(void) {
+    return (gScrollList->mSelectedRow);
 }
 
-void func_0202e490(u32 p0) {
-    data_02174e48->mUnk_660 = p0;
+void SetScrollListEnabled(u32 enabled) {
+    gScrollList->mEnabled = enabled;
 }
 
-u32 func_0202e47c(void) {
-    return (data_02174e48->mUnk_664);
+u32 IsScrollListPickFinished(void) {
+    return (gScrollList->mPickFinished);
 }
 
-u32 func_0202e468(void) {
-    return (data_02174e48->mUnk_668);
+u32 IsScrollListPickStarted(void) {
+    return (gScrollList->mPickStarted);
 }
 
 #pragma thumb off

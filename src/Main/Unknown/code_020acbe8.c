@@ -134,7 +134,7 @@ void UpdateTitleState2(Unk020aca24 *a) {
             u32 x = func_020acdec(i);
             u32 y = func_020acdc4(i);
             j = gTitleScene->mSelectedIndex;
-            n = func_020291c4(x, y, gTitleScene->mTitleSBnbl);
+            n = FindRectContainingPoint(x, y, gTitleScene->mTitleSBnbl);
             if (n != -1) {
                 if (j == n) {
                     gTitleScene->mSelectedPressed = TRUE;

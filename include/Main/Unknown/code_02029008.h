@@ -3,5 +3,5 @@
 #include "types.h"
 
 void func_02029008(void);
-u32 func_020290ac(s32 a);
-s32 func_020290fc(void);
+u32 IsSelectKartTouchRepeat(s32 rectIndex);
+s32 UpdateSelectKartTouchHold(void);

@@ -19,54 +19,54 @@
 
 #pragma optimize_for_size on
 #pragma thumb on
-s32 func_020290fc(void) {
-    s32 r = -1;
+s32 UpdateSelectKartTouchHold(void) {
+    s32 result = -1;
     Unk02174e50_24 *p = &gSelectKart->mSelectKartSParts;
-    u16 t = func_020435bc();
-    s32 x;
-    s32 y;
-    s32 z;
-    if (gSelectKart->mUnk_108 != FALSE) {
-        if (func_020291f0(t) != 0) {
-            x = func_0202874c(t);
-            y = func_02028724(t);
-            z = func_020291c4(x, y, p->mUnk_10);
-            if (z != gSelectKart->mUnk_110) {
-                gSelectKart->mUnk_108 = FALSE;
-                gSelectKart->mUnk_10c = 0;
+    u16 slotIndex = func_020435bc();
+    s32 pairX;
+    s32 pairY;
+    s32 rectIndex;
+    if (gSelectKart->mTouchHeld != FALSE) {
+        if (func_020291f0(slotIndex) != 0) {
+            pairX = func_0202874c(slotIndex);
+            pairY = func_02028724(slotIndex);
+            rectIndex = FindRectContainingPoint(pairX, pairY, p->mUnk_10);
+            if (rectIndex != gSelectKart->mTouchRect) {
+                gSelectKart->mTouchHeld = FALSE;
+                gSelectKart->mTouchHeldFrames = 0;
             } else {
-                gSelectKart->mUnk_10c++;
-                r = z;
+                gSelectKart->mTouchHeldFrames++;
+                result = rectIndex;
             }
         } else {
-            gSelectKart->mUnk_108 = FALSE;
-            gSelectKart->mUnk_10c = 0;
+            gSelectKart->mTouchHeld = FALSE;
+            gSelectKart->mTouchHeldFrames = 0;
         }
-    } else if (func_02028774(t) != 0) {
-        r = func_020291c4(func_0202874c(t), func_02028724(t), p->mUnk_10);
-        gSelectKart->mUnk_108 = TRUE;
-        gSelectKart->mUnk_10c = 0;
+    } else if (func_02028774(slotIndex) != 0) {
+        result = FindRectContainingPoint(func_0202874c(slotIndex), func_02028724(slotIndex), p->mUnk_10);
+        gSelectKart->mTouchHeld = TRUE;
+        gSelectKart->mTouchHeldFrames = 0;
     }
-    return r;
+    return result;
 }
 
-u32 func_020290ac(s32 a) {
-    u32 r = 0;
-    u32 t;
+u32 IsSelectKartTouchRepeat(s32 rectIndex) {
+    u32 result = 0;
+    u32 repeatDue;
     SelectKart *d = gSelectKart;
-    s32 n;
-    if (d->mUnk_110 == a) {
-        n = d->mUnk_10c;
-        r |= (n == 0);
-        t = 0;
-        if (n >= 0x3c) {
-            if ((n - 0x3c) % 0xf == 0) {
-                t = 1;
+    s32 heldFrames;
+    if (d->mTouchRect == rectIndex) {
+        heldFrames = d->mTouchHeldFrames;
+        result |= (heldFrames == 0);
+        repeatDue = 0;
+        if (heldFrames >= 0x3c) {
+            if ((heldFrames - 0x3c) % 0xf == 0) {
+                repeatDue = 1;
             }
         }
-        r |= t;
+        result |= repeatDue;
     }
-    return r;
+    return result;
 }
 
 void func_02029008(void) {

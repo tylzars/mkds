@@ -45,42 +45,42 @@ void func_0202eec0(void) {
     if (func_0202f0a8(a) != 0) {
         b = func_0202f080(a);
         c = func_0202f058(a);
-        data_02174e48->mUnk_01c = func_020291c4(b, c, data_02174e48->mUnk_00c);
-        data_02174e48->mUnk_020 = data_02174e48->mUnk_01c;
-        data_02174e48->mUnk_66c = TRUE;
+        gScrollList->mUnk_01c = FindRectContainingPoint(b, c, gScrollList->mUnk_00c);
+        gScrollList->mUnk_020 = gScrollList->mUnk_01c;
+        gScrollList->mUnk_66c = TRUE;
     } else {
-        data_02174e48->mUnk_020 = -1;
+        gScrollList->mUnk_020 = -1;
     }
-    if (data_02174e48->mUnk_66c != FALSE) {
+    if (gScrollList->mUnk_66c != FALSE) {
         if (func_0202efc8(a) != 0) {
             b = func_0202f080(a);
             c = func_0202f058(a);
-            d = func_020291c4(b, c, data_02174e48->mUnk_00c);
-            if (d != data_02174e48->mUnk_01c) {
-                data_02174e48->mUnk_01c = -1;
-                data_02174e48->mUnk_66c = FALSE;
+            d = FindRectContainingPoint(b, c, gScrollList->mUnk_00c);
+            if (d != gScrollList->mUnk_01c) {
+                gScrollList->mUnk_01c = -1;
+                gScrollList->mUnk_66c = FALSE;
             }
         } else {
-            data_02174e48->mUnk_01c = -1;
-            data_02174e48->mUnk_66c = FALSE;
+            gScrollList->mUnk_01c = -1;
+            gScrollList->mUnk_66c = FALSE;
         }
     }
-    if (func_0202ec7c(a, PAD_KEY_UP) != 0 || data_02174e48->mUnk_01c == data_02174e48->mUnk_010) {
-        data_02174e48->mUnk_050 = data_02174e48->mUnk_050 + 1;
+    if (func_0202ec7c(a, PAD_KEY_UP) != 0 || gScrollList->mUnk_01c == gScrollList->mUnk_010) {
+        gScrollList->mUnk_050 = gScrollList->mUnk_050 + 1;
     } else {
-        data_02174e48->mUnk_050 = 0;
+        gScrollList->mUnk_050 = 0;
     }
-    if (func_0202ec7c(a, PAD_KEY_DOWN) != 0 || data_02174e48->mUnk_01c == data_02174e48->mUnk_014) {
-        data_02174e48->mUnk_054 = data_02174e48->mUnk_054 + 1;
+    if (func_0202ec7c(a, PAD_KEY_DOWN) != 0 || gScrollList->mUnk_01c == gScrollList->mUnk_014) {
+        gScrollList->mUnk_054 = gScrollList->mUnk_054 + 1;
     } else {
-        data_02174e48->mUnk_054 = 0;
+        gScrollList->mUnk_054 = 0;
     }
 }
 
 void func_0202ee88(void) {
-    if (data_02174e48->mUnk_008[data_02174e48->mUnk_02e].mUnk_00 != 0) {
-        data_02174e48->mUnk_008[data_02174e48->mUnk_02e].mUnk_06 = data_02174e48->mUnk_030 *
-                                                                   (data_02174e48->mUnk_040 - data_02174e48->mUnk_044) /
-                                                                   (data_02174e48->mUnk_034 - 5);
+    if (gScrollList->mUnk_008[gScrollList->mUnk_02e].mUnk_00 != 0) {
+        gScrollList->mUnk_008[gScrollList->mUnk_02e].mUnk_06 =
+            gScrollList->mUnk_030 * (gScrollList->mSelectedRow - gScrollList->mSelectedVisibleRow) /
+            (gScrollList->mRowCount - 5);
     }
 }

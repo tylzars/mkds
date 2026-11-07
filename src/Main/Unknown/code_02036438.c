@@ -21,7 +21,7 @@ void func_02036438(void *heap) {
     *(s32 *) &data_02174e6c = v2;
     func_02036264((void *) v2, (0x00000654u));
     data_02174e6c->mHeap = v1;
-    func_020364a8(0, 0, 0x10, 0, 0);
+    SetSubBg1Cnt(0, 0, 0x10, 0, 0);
     v3 = func_020d1630()->mUnk_24;
     v4 = func_020d1630()->mUnk_28;
     GXS_LoadBG1Char(v3->mData, 0, v3->mDataSize);

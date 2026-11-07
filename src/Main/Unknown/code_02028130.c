@@ -84,9 +84,9 @@ int AdvanceSelectKart(void) {
         AdvancePaletteBlend();
     }
     if (func_020280dc() == 0) {
-        gSelectKart->mUnk_110 = func_020290fc();
+        gSelectKart->mTouchRect = UpdateSelectKartTouchHold();
     } else {
-        gSelectKart->mUnk_110 = -1;
+        gSelectKart->mTouchRect = -1;
     }
     d = gSelectKart;
     switch (d->mState) {
@@ -111,7 +111,7 @@ int AdvanceSelectKart(void) {
             if (func_02028774(t) != 0) {
                 x = IsSelectReturnState2NoState3Or4RequestAndInRect(func_0202874c(t), func_02028724(t));
             }
-            if (func_020286f4(t, PAD_KEY_A) != 0 || gSelectKart->mUnk_110 == 2 || func_02028f84() != 0) {
+            if (func_020286f4(t, PAD_KEY_A) != 0 || gSelectKart->mTouchRect == 2 || func_02028f84() != 0) {
                 gSelectKart->mStateFrames = 0;
                 gSelectKart->mResult = 1;
                 gSelectKart->mState = 4;
@@ -134,13 +134,13 @@ int AdvanceSelectKart(void) {
                     v = 0;
                 }
                 RequestSelectReturnState3WithSound(v);
-            } else if (GetNewOrRepeatBits(t, PAD_KEY_RIGHT) != 0 || func_020290ac(1) != 0) {
-                func_020292bc();
+            } else if (GetNewOrRepeatBits(t, PAD_KEY_RIGHT) != 0 || IsSelectKartTouchRepeat(1) != 0) {
+                MoveSelectKartNext();
                 gSelectKart->mUnk_114 = 3;
                 p->mUnk_18[1].mUnk_00 = 0;
                 p->mUnk_18[3].mUnk_00 = 1;
-            } else if (GetNewOrRepeatBits(t, PAD_KEY_LEFT) != 0 || func_020290ac(0) != 0) {
-                func_02029248();
+            } else if (GetNewOrRepeatBits(t, PAD_KEY_LEFT) != 0 || IsSelectKartTouchRepeat(0) != 0) {
+                MoveSelectKartPrev();
                 gSelectKart->mUnk_114 = 2;
                 p->mUnk_18[0].mUnk_00 = 0;
                 p->mUnk_18[2].mUnk_00 = 1;

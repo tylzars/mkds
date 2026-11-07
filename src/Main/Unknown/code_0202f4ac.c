@@ -4,14 +4,14 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "code_0214d018.h"
 
-void func_0202f530(void *p, u32 v, u32 n) {
-    volatile u32 value = v;
+void func_0202f530(void *dest, u32 fillValue, u32 size) {
+    volatile u32 value = fillValue;
 
-    MIi_CpuClearFast(value, p, n);
+    MIi_CpuClearFast(value, dest, size);
 }
 
-void func_0202f51c(void *p, u32 n) {
-    func_0202f530(p, 0, n);
+void func_0202f51c(void *dest, u32 size) {
+    func_0202f530(dest, 0, size);
 }
 
 void func_0202f4e0(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {

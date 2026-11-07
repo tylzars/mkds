@@ -86,9 +86,9 @@ typedef struct SelectKart {
     /* 0fc */ s32 mMode;
     /* 100 */ s32 mResult;
     /* 104 */ BOOL mUnk_104;
-    /* 108 */ BOOL mUnk_108;
-    /* 10c */ s32 mUnk_10c;
-    /* 110 */ s32 mUnk_110;
+    /* 108 */ BOOL mTouchHeld;
+    /* 10c */ s32 mTouchHeldFrames;
+    /* 110 */ s32 mTouchRect;
     /* 114 */ u16 mUnk_114;
     /* 116 */ u8 mUnk_116[2];
 } SelectKart;
@@ -315,7 +315,7 @@ typedef struct Unk02174e44 {
 } Unk02174e44;
 
 extern Unk02174e44 *data_02174e44;
-typedef struct Unk02174e48 {
+typedef struct ScrollList {
     /* 000 */ s32 mUnk_000;
     /* 004 */ u16 *mUnk_004;
     /* 008 */ Unk02124b1c *mUnk_008;
@@ -330,11 +330,11 @@ typedef struct Unk02174e48 {
     /* 02c */ u16 mUnk_02c;
     /* 02e */ u16 mUnk_02e;
     /* 030 */ s32 mUnk_030;
-    /* 034 */ s32 mUnk_034;
+    /* 034 */ s32 mRowCount;
     /* 038 */ s32 mUnk_038;
-    /* 03c */ s32 mUnk_03c;
-    /* 040 */ s32 mUnk_040;
-    /* 044 */ s32 mUnk_044;
+    /* 03c */ s32 mHiddenTopSlot;
+    /* 040 */ s32 mSelectedRow;
+    /* 044 */ s32 mSelectedVisibleRow;
     /* 048 */ s32 mUnk_048;
     /* 04c */ s32 mUnk_04c;
     /* 050 */ s32 mUnk_050;
@@ -342,14 +342,14 @@ typedef struct Unk02174e48 {
     /* 058 */ u16 mUnk_058[0x300];
     /* 658 */ s32 mUnk_658;
     /* 65c */ s32 mUnk_65c;
-    /* 660 */ s32 mUnk_660;
-    /* 664 */ s32 mUnk_664;
-    /* 668 */ s32 mUnk_668;
+    /* 660 */ s32 mEnabled;
+    /* 664 */ s32 mPickFinished;
+    /* 668 */ s32 mPickStarted;
     /* 66c */ BOOL mUnk_66c;
-    /* 670 */ s32 mUnk_670;
-} Unk02174e48;
+    /* 670 */ s32 mState;
+} ScrollList;
 
-extern Unk02174e48 *data_02174e48;
+extern ScrollList *gScrollList;
 extern struct Unk02174e4c *data_02174e4c;
 extern struct MultiSelectMemberGroup *gMultiSelectMemberGroup;
 extern struct MultiSelectNS *gMultiSelectNS;

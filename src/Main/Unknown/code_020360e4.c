@@ -24,33 +24,33 @@
 #pragma thumb on
 
 void func_02036108(void *a) {
-    void *h;
-    u32 b;
-    s32 j;
-    s32 i;
-    u16 v;
+    void *text;
+    u32 charBase;
+    s32 column;
+    s32 row;
+    u16 entry;
 
     func_02036438(a);
     data_02174e6c->mState = 9;
     data_02174e6c->mUnk_634 = FindFileInLoadedArchives(data_021646e0);
     data_02174e6c->mUnk_000 = func_020b403c(0);
-    b = G2S_GetBG1CharPtr();
-    h = GetBmgEntry(data_02174e6c->mUnk_634, 0x79);
-    NNS_G2dCharCanvasInitForBG(data_02174e6c->mUnk_004, (u8 *) b + 0x400, 0x20, 4, 4);
+    charBase = G2S_GetBG1CharPtr();
+    text = GetBmgEntry(data_02174e6c->mUnk_634, 0x79);
+    NNS_G2dCharCanvasInitForBG(data_02174e6c->mUnk_004, (u8 *) charBase + 0x400, 0x20, 4, 4);
     func_020362c4(&data_02174e6c->mUnk_024, data_02174e6c->mUnk_004, data_02174e6c->mUnk_000, 1, 4);
-    func_0203629c(&data_02174e6c->mUnk_024, 8, 0, 3, 0x209, h);
-    for (i = 0x16; i < 0x18; i++) {
-        for (j = 0; j < 0x20; j++) {
-            v = (((j + i + 1) & 1) << 12) | 1;
-            data_02174e6c->mUnk_034[j + i * 0x20] = v;
+    func_0203629c(&data_02174e6c->mUnk_024, 8, 0, 3, 0x209, text);
+    for (row = 0x16; row < 0x18; row++) {
+        for (column = 0; column < 0x20; column++) {
+            entry = (((column + row + 1) & 1) << 12) | 1;
+            data_02174e6c->mUnk_034[column + row * 0x20] = entry;
         }
     }
     DC_StoreRange(data_02174e6c->mUnk_034, 0x600);
     GXS_LoadBG3Scr(data_02174e6c->mUnk_034, 0, 0x600);
     func_02036264(data_02174e6c->mUnk_034, 0x600);
-    for (i = 0x14; i < 0x16; i++) {
-        for (j = 0; j < 0x20; j++) {
-            data_02174e6c->mUnk_034[j + i * 0x20] = j + (i - 0x14) * 0x20 + 0x20;
+    for (row = 0x14; row < 0x16; row++) {
+        for (column = 0; column < 0x20; column++) {
+            data_02174e6c->mUnk_034[column + row * 0x20] = column + (row - 0x14) * 0x20 + 0x20;
         }
     }
     DC_StoreRange(data_02174e6c->mUnk_034, 0x600);

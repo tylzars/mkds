@@ -7,10 +7,10 @@
 #pragma thumb on
 
 void func_0202f120(s32 a, s32 b, s32 c, s32 d) {
-    void (*f)(int, int, int, int) = data_02174e48->mUnk_028;
+    void (*f)(int, int, int, int) = gScrollList->mUnk_028;
     if (f != NULL) {
         if (a == 1) {
-            if (c < 0 || c >= data_02174e48->mUnk_034) {
+            if (c < 0 || c >= gScrollList->mRowCount) {
                 return;
             }
         }

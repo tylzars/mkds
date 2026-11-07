@@ -4,12 +4,12 @@
 
 #pragma thumb on
 
-void func_02033d9c(void) {
-    void *v1;
-    void *v2;
-    v1 = GetBmgEntry(gResultsBattle->mCommonMessages, 0x5d);
-    v2 = GetBmgEntry(gResultsBattle->mCommonMessages, 0x5f);
-    StartSelectChoises(v1, v2, 0);
+void StartResultsBattleChoices(void) {
+    void *firstText;
+    void *secondText;
+    firstText = GetBmgEntry(gResultsBattle->mCommonMessages, 0x5d);
+    secondText = GetBmgEntry(gResultsBattle->mCommonMessages, 0x5f);
+    StartSelectChoises(firstText, secondText, 0);
 }
 
 #pragma thumb off

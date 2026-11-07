@@ -22,15 +22,15 @@ u32 func_020299e4(void) {
 
 #pragma thumb on
 
-void func_0202993c(void) {
-    s32 i;
+void ResetRaceSetupCopy(void) {
+    s32 entryIndex;
     func_02029a38(gRaceSetupCopy, 0x110);
-    for (i = 0; i < 8; i++) {
-        gRaceSetupCopy->mEntries[i].mCharacterIndex = -1;
-        gRaceSetupCopy->mEntries[i].mKartIndex = -1;
-        gRaceSetupCopy->mEntries[i].mPlayerKind = 4;
-        gRaceSetupCopy->mEntries[i].mTeamIndex = -1;
-        gRaceSetupCopy->mEntries[i].mUnk_10 = 3;
+    for (entryIndex = 0; entryIndex < 8; entryIndex++) {
+        gRaceSetupCopy->mEntries[entryIndex].mCharacterIndex = -1;
+        gRaceSetupCopy->mEntries[entryIndex].mKartIndex = -1;
+        gRaceSetupCopy->mEntries[entryIndex].mPlayerKind = 4;
+        gRaceSetupCopy->mEntries[entryIndex].mTeamIndex = -1;
+        gRaceSetupCopy->mEntries[entryIndex].mUnk_10 = 3;
     }
     gRaceSetupCopy->mMissionTableRow = 1;
     gRaceSetupCopy->mMissionTableColumn = 1;

@@ -1,12 +1,12 @@
 #include "Main/Unknown/code_0202f058.h"
 #include "Main/Unknown/unk_02175628.h"
 
-u32 func_0202f0a0(Unk02175628_48 *p0) {
-    return p0->mPairX;
+u32 func_0202f0a0(Unk02175628_48 *pair) {
+    return pair->mPairX;
 }
 
-u32 func_0202f080(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_0202f080(u32 slot) {
+    u32 value0 = slot;
     u32 value1;
     u32 value2;
     u32 value12;
@@ -19,12 +19,12 @@ u32 func_0202f080(u32 arg0) {
     return value0;
 }
 
-u32 func_0202f078(Unk02175628_48 *p0) {
-    return p0->mPairY;
+u32 func_0202f078(Unk02175628_48 *pair) {
+    return pair->mPairY;
 }
 
-u32 func_0202f058(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_0202f058(u32 slot) {
+    u32 value0 = slot;
     u32 value1;
     u32 value2;
     u32 value12;

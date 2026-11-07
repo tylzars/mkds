@@ -2,9 +2,9 @@
 #include "Main/Unknown/unk_0217d068.h"
 #include "code_0212df7c.h"
 
-u32 func_0202ecbc(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
+u32 func_0202ecbc(u32 index, u32 archiveNo) {
+    u32 value0 = index;
+    u32 value1 = archiveNo;
     u32 value2;
     u32 value12;
     value12 = (u32) &NNS_SndArcPlayerStartSeqArc;
@@ -14,8 +14,8 @@ u32 func_0202ecbc(u32 arg0, u32 arg1) {
     return value0;
 }
 
-u32 func_0202ecac(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_0202ecac(u32 index) {
+    u32 value0 = index;
     u32 value1;
     u32 value12;
     value12 = (u32) &func_0202ecbc;

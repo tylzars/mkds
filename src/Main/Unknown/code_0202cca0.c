@@ -4,11 +4,11 @@
 
 #pragma thumb on
 
-void func_0202cca4(int a, int b) {
-    u32 v1;
-    if ((a != 0xc) || (b != 1)) {
-        v1 = func_02025eb0(a);
-        AddSeqQueueEntry(v1, b);
+void func_0202cca4(int characterIndex, int b) {
+    u32 tableValue;
+    if ((characterIndex != 0xc) || (b != 1)) {
+        tableValue = func_02025eb0(characterIndex);
+        AddSeqQueueEntry(tableValue, b);
     }
 }
 

@@ -133,7 +133,7 @@ s32 AdvanceMultiSelectNS(void) {
                 b = func_020306e0(i);
                 c = func_020306b8(i);
                 a = IsSelectReturnState2NoState3Or4RequestAndInRect(b, c);
-                b = func_020291c4(b, c, o->mBnbl);
+                b = FindRectContainingPoint(b, c, o->mBnbl);
             }
             if (func_02030688(i, PAD_KEY_A) != 0) {
                 func_0204aa28(gMultiSelectNS->mIndex == 1 ? 1 : 0);

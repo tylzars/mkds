@@ -51,7 +51,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     func_02028e00(gSelectKart, 0x118);
     gSelectKart->mHeap = h;
     gSelectKart->mMode = b;
-    gSelectKart->mUnk_110 = -1;
+    gSelectKart->mTouchRect = -1;
     switch (GetRaceSetupCopy()->mUnk_108) {
         case 1:
             func_02025f80(&gSelectKart->mUnk_0ac[0], 1, 10, -0x80, 0);

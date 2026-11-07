@@ -88,7 +88,7 @@ void func_0202f2b4(void *a) {
     data_02174e4c->mUnk_80c = data_02163260[data_02174e4c->mUnk_810];
     data_02174e4c->mUnk_808 = CreateExpHeapFromMaxFree(a);
     if (func_0202f19c() == 0) {
-        func_0202f554();
+        LoadMultiSelectFiles();
     }
     func_020ae6d4(data_02174e4c, data_02174e4c->mUnk_404);
     func_0202f478(0x10);

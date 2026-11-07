@@ -18,7 +18,7 @@ void func_020cae8c(void) {
     data_0217b43c->mUnk_938 = func_020ae488(n);
     if (n >= 10) {
         func_020ccc74(2, t[data_0217b43c->mUnk_930][0]);
-        func_0202993c();
+        ResetRaceSetupCopy();
         GetRaceSetupCopy()->mMode = t[data_0217b43c->mUnk_930][1];
     }
     func_020cb2d4();

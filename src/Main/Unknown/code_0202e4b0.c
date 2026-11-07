@@ -17,49 +17,49 @@
 void func_0202e530(void *a, s32 b, const void *c, u16 d, u16 e, s32 f, Unk02124b1c *g, void *h, const void *i, s32 j,
                    s32 k, s32 l, s32 m, void (*n)(int a, int b, int c, int d)) {
     s32 i0;
-    data_02174e48 = HeapAlloc(a, 0x674);
-    func_0202e68c(data_02174e48, 0x674);
-    data_02174e48->mUnk_000 = b;
+    gScrollList = HeapAlloc(a, 0x674);
+    func_0202e68c(gScrollList, 0x674);
+    gScrollList->mUnk_000 = b;
     b = b * 2;
-    data_02174e48->mUnk_004 = HeapAllocAligned(a, b, 0x20);
-    func_0202e680(c, data_02174e48->mUnk_004, b);
-    func_0202e680(i, data_02174e48->mUnk_058, 0x600);
-    data_02174e48->mUnk_02c = d;
-    data_02174e48->mUnk_02e = e;
-    data_02174e48->mUnk_030 = f;
-    data_02174e48->mUnk_008 = g;
-    data_02174e48->mUnk_034 = m;
-    data_02174e48->mUnk_028 = n;
-    data_02174e48->mUnk_00c = h;
-    data_02174e48->mUnk_010 = j;
-    data_02174e48->mUnk_014 = k;
-    data_02174e48->mUnk_018 = l;
-    data_02174e48->mUnk_660 = 1;
-    data_02174e48->mUnk_01c = -1;
-    data_02174e48->mUnk_020 = data_02174e48->mUnk_01c;
+    gScrollList->mUnk_004 = HeapAllocAligned(a, b, 0x20);
+    func_0202e680(c, gScrollList->mUnk_004, b);
+    func_0202e680(i, gScrollList->mUnk_058, 0x600);
+    gScrollList->mUnk_02c = d;
+    gScrollList->mUnk_02e = e;
+    gScrollList->mUnk_030 = f;
+    gScrollList->mUnk_008 = g;
+    gScrollList->mRowCount = m;
+    gScrollList->mUnk_028 = n;
+    gScrollList->mUnk_00c = h;
+    gScrollList->mUnk_010 = j;
+    gScrollList->mUnk_014 = k;
+    gScrollList->mUnk_018 = l;
+    gScrollList->mEnabled = 1;
+    gScrollList->mUnk_01c = -1;
+    gScrollList->mUnk_020 = gScrollList->mUnk_01c;
     func_0202edd0();
-    func_0202f120(0, -1, -1, func_0202edfc());
-    for (i0 = 0; i0 < 6 && i0 < data_02174e48->mUnk_034; i0++) {
+    func_0202f120(0, -1, -1, GetScrollListSelectedSlot());
+    for (i0 = 0; i0 < 6 && i0 < gScrollList->mRowCount; i0++) {
         func_0202f120(1, i0 + 1, i0, -1);
     }
     func_0202ee3c(0, 0);
     func_0202ee3c(6, 0);
-    for (i0 = data_02174e48->mUnk_034; i0 < 5; i0++) {
+    for (i0 = gScrollList->mRowCount; i0 < 5; i0++) {
         func_0202ee3c(i0 + 1, 0);
     }
-    data_02174e48->mUnk_008[data_02174e48->mUnk_02e].mUnk_00 = data_02174e48->mUnk_034 > 5;
-    if (data_02174e48->mUnk_034 == 0) {
-        data_02174e48->mUnk_008[data_02174e48->mUnk_02c].mUnk_00 = 0;
+    gScrollList->mUnk_008[gScrollList->mUnk_02e].mUnk_00 = gScrollList->mRowCount > 5;
+    if (gScrollList->mRowCount == 0) {
+        gScrollList->mUnk_008[gScrollList->mUnk_02c].mUnk_00 = 0;
     }
-    data_02174e48->mUnk_048 = 0xf;
+    gScrollList->mUnk_048 = 0xf;
 }
 
 void func_0202e4b0(void) {
-    data_02174e48->mUnk_668 = 0;
-    data_02174e48->mUnk_664 = data_02174e48->mUnk_668;
+    gScrollList->mPickStarted = 0;
+    gScrollList->mPickFinished = gScrollList->mPickStarted;
     func_0202eec0();
     func_0202ed04();
-    switch (data_02174e48->mUnk_670) {
+    switch (gScrollList->mState) {
         case 0:
             func_0202e9f0();
             break;

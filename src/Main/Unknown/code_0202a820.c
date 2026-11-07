@@ -368,13 +368,13 @@ s32 AdvanceWiFiVSCourseSelect(void) {
             func_0202b264();
             break;
         case 1:
-            if (func_0202e468() != 0) {
+            if (IsScrollListPickStarted() != 0) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x208);
             }
-            if (func_0202e47c() == 0 && gWiFiVSCourseSelect->mTimer != 0) {
+            if (IsScrollListPickFinished() == 0 && gWiFiVSCourseSelect->mTimer != 0) {
                 break;
             }
-            v = func_0202e4a4();
+            v = GetScrollListSelectedRow();
             if (v == 0) {
                 v = func_0202af60();
             } else {
@@ -383,7 +383,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
             SetWiFiSessionOwnPickedCourseId(data_usa_02153a4c[v]);
             gWiFiVSCourseSelect->mState = 2;
             gWiFiVSCourseSelect->mUnk_0b0 = 1;
-            func_0202e490(0);
+            SetScrollListEnabled(0);
             break;
         case 2:
             if (func_02121cd0() != 0) {

@@ -35,103 +35,105 @@ u16 func_0202ec7c(u32 a, u32 b) {
 void func_0202e9f0(void) {
     u32 a = func_020435bc();
     BOOL f;
-    if (data_02174e48->mUnk_660 == 0) {
+    if (gScrollList->mEnabled == 0) {
         return;
     }
-    data_02174e48->mUnk_048 = data_02174e48->mUnk_04c > 2 ? 5 : 0xf;
+    gScrollList->mUnk_048 = gScrollList->mUnk_04c > 2 ? 5 : 0xf;
     if (func_0202ecd4(a, PAD_KEY_A) != 0) {
-        data_02174e48->mUnk_670 = 5;
-        data_02174e48->mUnk_024 = data_02174e48->mUnk_044;
-        data_02174e48->mUnk_008[data_02174e48->mUnk_02c].mUnk_00 = 0;
-        data_02174e48->mUnk_038 = 10;
-        data_02174e48->mUnk_054 = 0;
-        data_02174e48->mUnk_050 = data_02174e48->mUnk_054;
-        data_02174e48->mUnk_04c = 0;
+        gScrollList->mState = 5;
+        gScrollList->mUnk_024 = gScrollList->mSelectedVisibleRow;
+        gScrollList->mUnk_008[gScrollList->mUnk_02c].mUnk_00 = 0;
+        gScrollList->mUnk_038 = 10;
+        gScrollList->mUnk_054 = 0;
+        gScrollList->mUnk_050 = gScrollList->mUnk_054;
+        gScrollList->mUnk_04c = 0;
         func_0202edd0();
         func_0202f120(0, -1, -1, -1);
         return;
     }
-    if (data_02174e48->mUnk_018 <= data_02174e48->mUnk_020 && data_02174e48->mUnk_020 < data_02174e48->mUnk_018 + 5 &&
-        data_02174e48->mUnk_020 - data_02174e48->mUnk_018 < data_02174e48->mUnk_034) {
-        data_02174e48->mUnk_670 = 5;
-        data_02174e48->mUnk_024 = data_02174e48->mUnk_020 - data_02174e48->mUnk_018;
-        f = data_02174e48->mUnk_024 != data_02174e48->mUnk_044;
-        data_02174e48->mUnk_008[data_02174e48->mUnk_02c].mUnk_00 = f;
-        data_02174e48->mUnk_038 = 10;
-        data_02174e48->mUnk_054 = 0;
-        data_02174e48->mUnk_050 = data_02174e48->mUnk_054;
-        data_02174e48->mUnk_04c = 0;
-        data_02174e48->mUnk_040 = data_02174e48->mUnk_040 + (data_02174e48->mUnk_024 - data_02174e48->mUnk_044);
-        data_02174e48->mUnk_044 = data_02174e48->mUnk_024;
+    if (gScrollList->mUnk_018 <= gScrollList->mUnk_020 && gScrollList->mUnk_020 < gScrollList->mUnk_018 + 5 &&
+        gScrollList->mUnk_020 - gScrollList->mUnk_018 < gScrollList->mRowCount) {
+        gScrollList->mState = 5;
+        gScrollList->mUnk_024 = gScrollList->mUnk_020 - gScrollList->mUnk_018;
+        f = gScrollList->mUnk_024 != gScrollList->mSelectedVisibleRow;
+        gScrollList->mUnk_008[gScrollList->mUnk_02c].mUnk_00 = f;
+        gScrollList->mUnk_038 = 10;
+        gScrollList->mUnk_054 = 0;
+        gScrollList->mUnk_050 = gScrollList->mUnk_054;
+        gScrollList->mUnk_04c = 0;
+        gScrollList->mSelectedRow =
+            gScrollList->mSelectedRow + (gScrollList->mUnk_024 - gScrollList->mSelectedVisibleRow);
+        gScrollList->mSelectedVisibleRow = gScrollList->mUnk_024;
         func_0202edd0();
-        func_0202f120(0, -1, -1, f != FALSE ? func_0202edfc() : -1);
+        func_0202f120(0, -1, -1, f != FALSE ? GetScrollListSelectedSlot() : -1);
         return;
     }
-    if ((func_0202ecd4(a, PAD_KEY_UP) != 0 || data_02174e48->mUnk_020 == data_02174e48->mUnk_010 ||
-         data_02174e48->mUnk_050 > data_02174e48->mUnk_048) &&
-        data_02174e48->mUnk_040 > 0) {
-        if (data_02174e48->mUnk_044 == 0) {
-            data_02174e48->mUnk_038 = data_02174e48->mUnk_048;
-            data_02174e48->mUnk_008[data_02174e48->mUnk_02c].mUnk_00 = 0;
-            data_02174e48->mUnk_670 = 3;
-            func_0202ee3c(data_02174e48->mUnk_03c, 1);
+    if ((func_0202ecd4(a, PAD_KEY_UP) != 0 || gScrollList->mUnk_020 == gScrollList->mUnk_010 ||
+         gScrollList->mUnk_050 > gScrollList->mUnk_048) &&
+        gScrollList->mSelectedRow > 0) {
+        if (gScrollList->mSelectedVisibleRow == 0) {
+            gScrollList->mUnk_038 = gScrollList->mUnk_048;
+            gScrollList->mUnk_008[gScrollList->mUnk_02c].mUnk_00 = 0;
+            gScrollList->mState = 3;
+            func_0202ee3c(gScrollList->mHiddenTopSlot, 1);
             func_0202f120(0, -1, -1, -1);
-            func_0202f120(2, data_02174e48->mUnk_03c, data_02174e48->mUnk_040 - data_02174e48->mUnk_044 - 1, -1);
+            func_0202f120(2, gScrollList->mHiddenTopSlot,
+                          gScrollList->mSelectedRow - gScrollList->mSelectedVisibleRow - 1, -1);
         } else {
-            data_02174e48->mUnk_670 = 1;
+            gScrollList->mState = 1;
         }
-        data_02174e48->mUnk_050 = 0;
-        data_02174e48->mUnk_04c = data_02174e48->mUnk_04c + 1;
-        if (data_02174e48->mUnk_01c == data_02174e48->mUnk_010) {
+        gScrollList->mUnk_050 = 0;
+        gScrollList->mUnk_04c = gScrollList->mUnk_04c + 1;
+        if (gScrollList->mUnk_01c == gScrollList->mUnk_010) {
             func_0202ed50(1);
         }
         func_0202ecac(3);
         return;
     }
-    if ((func_0202ecd4(a, PAD_KEY_DOWN) != 0 || data_02174e48->mUnk_020 == data_02174e48->mUnk_014 ||
-         data_02174e48->mUnk_054 > data_02174e48->mUnk_048) &&
-        data_02174e48->mUnk_040 < data_02174e48->mUnk_034 - 1) {
-        if (data_02174e48->mUnk_044 == 4) {
-            data_02174e48->mUnk_038 = data_02174e48->mUnk_048;
-            data_02174e48->mUnk_008[data_02174e48->mUnk_02c].mUnk_00 = 0;
-            data_02174e48->mUnk_670 = 4;
-            func_0202ee3c(func_0202ee68(), 1);
+    if ((func_0202ecd4(a, PAD_KEY_DOWN) != 0 || gScrollList->mUnk_020 == gScrollList->mUnk_014 ||
+         gScrollList->mUnk_054 > gScrollList->mUnk_048) &&
+        gScrollList->mSelectedRow < gScrollList->mRowCount - 1) {
+        if (gScrollList->mSelectedVisibleRow == 4) {
+            gScrollList->mUnk_038 = gScrollList->mUnk_048;
+            gScrollList->mUnk_008[gScrollList->mUnk_02c].mUnk_00 = 0;
+            gScrollList->mState = 4;
+            func_0202ee3c(GetScrollListHiddenBottomSlot(), 1);
             func_0202f120(0, -1, -1, -1);
             {
-                Unk02174e48 *q = data_02174e48;
-                func_0202f120(2, func_0202ee68(), q->mUnk_040 - q->mUnk_044 + 5, -1);
+                ScrollList *q = gScrollList;
+                func_0202f120(2, GetScrollListHiddenBottomSlot(), q->mSelectedRow - q->mSelectedVisibleRow + 5, -1);
             }
         } else {
-            data_02174e48->mUnk_670 = 2;
+            gScrollList->mState = 2;
         }
-        data_02174e48->mUnk_054 = 0;
-        data_02174e48->mUnk_04c = data_02174e48->mUnk_04c + 1;
-        if (data_02174e48->mUnk_01c == data_02174e48->mUnk_014) {
+        gScrollList->mUnk_054 = 0;
+        gScrollList->mUnk_04c = gScrollList->mUnk_04c + 1;
+        if (gScrollList->mUnk_01c == gScrollList->mUnk_014) {
             func_0202ed50(2);
         }
         func_0202ecac(3);
         return;
     }
-    if (func_0202ec7c(a, PAD_KEY_UP | PAD_KEY_DOWN) == 0 && data_02174e48->mUnk_01c != data_02174e48->mUnk_010 &&
-        data_02174e48->mUnk_01c != data_02174e48->mUnk_014) {
-        data_02174e48->mUnk_04c = 0;
+    if (func_0202ec7c(a, PAD_KEY_UP | PAD_KEY_DOWN) == 0 && gScrollList->mUnk_01c != gScrollList->mUnk_010 &&
+        gScrollList->mUnk_01c != gScrollList->mUnk_014) {
+        gScrollList->mUnk_04c = 0;
     }
 }
 
 void func_0202e9ac(void) {
-    data_02174e48->mUnk_044 = data_02174e48->mUnk_044 - 1;
-    data_02174e48->mUnk_040 = data_02174e48->mUnk_040 - 1;
+    gScrollList->mSelectedVisibleRow = gScrollList->mSelectedVisibleRow - 1;
+    gScrollList->mSelectedRow = gScrollList->mSelectedRow - 1;
     func_0202edd0();
-    func_0202f120(0, -1, -1, func_0202edfc());
-    data_02174e48->mUnk_670 = 0;
+    func_0202f120(0, -1, -1, GetScrollListSelectedSlot());
+    gScrollList->mState = 0;
 }
 
 void func_0202e968(void) {
-    data_02174e48->mUnk_044 = data_02174e48->mUnk_044 + 1;
-    data_02174e48->mUnk_040 = data_02174e48->mUnk_040 + 1;
+    gScrollList->mSelectedVisibleRow = gScrollList->mSelectedVisibleRow + 1;
+    gScrollList->mSelectedRow = gScrollList->mSelectedRow + 1;
     func_0202edd0();
-    func_0202f120(0, -1, -1, func_0202edfc());
-    data_02174e48->mUnk_670 = 0;
+    func_0202f120(0, -1, -1, GetScrollListSelectedSlot());
+    gScrollList->mState = 0;
 }
 
 void func_0202e84c(void) {
@@ -141,38 +143,38 @@ void func_0202e84c(void) {
     s32 a;
     Unk02124b1c *p;
     BOOL z = FALSE;
-    s32 t = func_0202ee68();
-    data_02174e48->mUnk_038 = data_02174e48->mUnk_038 - 1;
-    for (i = 0; i < data_02174e48->mUnk_000; i++) {
+    s32 t = GetScrollListHiddenBottomSlot();
+    gScrollList->mUnk_038 = gScrollList->mUnk_038 - 1;
+    for (i = 0; i < gScrollList->mUnk_000; i++) {
         for (j = z; j < 7; j++) {
-            k = data_02174e48->mUnk_004[i];
+            k = gScrollList->mUnk_004[i];
             a = func_0202ee20(j + k, (j + 1) % 7 + k);
-            p = &data_02174e48->mUnk_008[j + k];
+            p = &gScrollList->mUnk_008[j + k];
             if (j == t) {
                 p->mUnk_06 = a;
             } else {
-                p->mUnk_06 = InterpolateS16(1, a, z, data_02174e48->mUnk_038, data_02174e48->mUnk_048);
+                p->mUnk_06 = InterpolateS16(1, a, z, gScrollList->mUnk_038, gScrollList->mUnk_048);
             }
         }
     }
-    if (data_02174e48->mUnk_038 == 0) {
-        for (i = 0; i < data_02174e48->mUnk_000; i++) {
+    if (gScrollList->mUnk_038 == 0) {
+        for (i = 0; i < gScrollList->mUnk_000; i++) {
             for (j = z; j < 7; j++) {
-                p = &data_02174e48->mUnk_008[j + data_02174e48->mUnk_004[i]];
+                p = &gScrollList->mUnk_008[j + gScrollList->mUnk_004[i]];
                 p->mUnk_0e = p->mUnk_0e + p->mUnk_06;
                 p->mUnk_06 = 0;
             }
         }
-        data_02174e48->mUnk_008[data_02174e48->mUnk_02c].mUnk_00 = 1;
-        data_02174e48->mUnk_040 = data_02174e48->mUnk_040 - 1;
-        data_02174e48->mUnk_03c = t;
-        func_0202f120(1, data_02174e48->mUnk_03c, data_02174e48->mUnk_040 - 1, -1);
+        gScrollList->mUnk_008[gScrollList->mUnk_02c].mUnk_00 = 1;
+        gScrollList->mSelectedRow = gScrollList->mSelectedRow - 1;
+        gScrollList->mHiddenTopSlot = t;
+        func_0202f120(1, gScrollList->mHiddenTopSlot, gScrollList->mSelectedRow - 1, -1);
         {
-            Unk02174e48 *q = data_02174e48;
-            func_0202f120(0, q->mUnk_03c, q->mUnk_040 - 1, func_0202edfc());
+            ScrollList *q = gScrollList;
+            func_0202f120(0, q->mHiddenTopSlot, q->mSelectedRow - 1, GetScrollListSelectedSlot());
         }
-        data_02174e48->mUnk_670 = 0;
-        func_0202ee3c(data_02174e48->mUnk_03c, 0);
+        gScrollList->mState = 0;
+        func_0202ee3c(gScrollList->mHiddenTopSlot, 0);
     }
 }
 
@@ -183,53 +185,53 @@ void func_0202e72c(void) {
     s32 a;
     Unk02124b1c *p;
     BOOL z = FALSE;
-    data_02174e48->mUnk_038 = data_02174e48->mUnk_038 - 1;
-    for (i = 0; i < data_02174e48->mUnk_000; i++) {
+    gScrollList->mUnk_038 = gScrollList->mUnk_038 - 1;
+    for (i = 0; i < gScrollList->mUnk_000; i++) {
         for (j = z; j < 7; j++) {
-            k = data_02174e48->mUnk_004[i];
+            k = gScrollList->mUnk_004[i];
             a = func_0202ee20(j + k, (j + 6) % 7 + k);
-            p = &data_02174e48->mUnk_008[j + k];
-            if (j == data_02174e48->mUnk_03c) {
+            p = &gScrollList->mUnk_008[j + k];
+            if (j == gScrollList->mHiddenTopSlot) {
                 p->mUnk_06 = a;
             } else {
-                p->mUnk_06 = InterpolateS16(1, a, z, data_02174e48->mUnk_038, data_02174e48->mUnk_048);
+                p->mUnk_06 = InterpolateS16(1, a, z, gScrollList->mUnk_038, gScrollList->mUnk_048);
             }
         }
     }
-    if (data_02174e48->mUnk_038 == 0) {
-        for (i = 0; i < data_02174e48->mUnk_000; i++) {
+    if (gScrollList->mUnk_038 == 0) {
+        for (i = 0; i < gScrollList->mUnk_000; i++) {
             for (j = z; j < 7; j++) {
-                p = &data_02174e48->mUnk_008[j + data_02174e48->mUnk_004[i]];
+                p = &gScrollList->mUnk_008[j + gScrollList->mUnk_004[i]];
                 p->mUnk_0e = p->mUnk_0e + p->mUnk_06;
                 p->mUnk_06 = 0;
             }
         }
-        data_02174e48->mUnk_008[data_02174e48->mUnk_02c].mUnk_00 = 1;
-        data_02174e48->mUnk_040 = data_02174e48->mUnk_040 + 1;
-        func_0202f120(1, data_02174e48->mUnk_03c, data_02174e48->mUnk_040 + 1, -1);
+        gScrollList->mUnk_008[gScrollList->mUnk_02c].mUnk_00 = 1;
+        gScrollList->mSelectedRow = gScrollList->mSelectedRow + 1;
+        func_0202f120(1, gScrollList->mHiddenTopSlot, gScrollList->mSelectedRow + 1, -1);
         {
-            Unk02174e48 *q = data_02174e48;
-            q->mUnk_03c = (q->mUnk_03c + 1) % 7;
+            ScrollList *q = gScrollList;
+            q->mHiddenTopSlot = (q->mHiddenTopSlot + 1) % 7;
         }
         {
-            Unk02174e48 *q = data_02174e48;
-            func_0202f120(0, q->mUnk_03c, q->mUnk_040 - 1, func_0202edfc());
+            ScrollList *q = gScrollList;
+            func_0202f120(0, q->mHiddenTopSlot, q->mSelectedRow - 1, GetScrollListSelectedSlot());
         }
-        data_02174e48->mUnk_670 = 0;
-        func_0202ee3c(func_0202ee68(), 0);
+        gScrollList->mState = 0;
+        func_0202ee3c(GetScrollListHiddenBottomSlot(), 0);
     }
 }
 
 void func_0202e6c4(void) {
-    if (data_02174e48->mUnk_038 == 10) {
-        data_02174e48->mUnk_668 = 1;
+    if (gScrollList->mUnk_038 == 10) {
+        gScrollList->mPickStarted = 1;
     }
-    data_02174e48->mUnk_038 = data_02174e48->mUnk_038 - 1;
-    if (data_02174e48->mUnk_038 == 0) {
-        func_0202f120(0, -1, -1, func_0202edfc());
-        data_02174e48->mUnk_008[data_02174e48->mUnk_02c].mUnk_00 = 1;
-        data_02174e48->mUnk_670 = 0;
-        data_02174e48->mUnk_664 = 1;
+    gScrollList->mUnk_038 = gScrollList->mUnk_038 - 1;
+    if (gScrollList->mUnk_038 == 0) {
+        func_0202f120(0, -1, -1, GetScrollListSelectedSlot());
+        gScrollList->mUnk_008[gScrollList->mUnk_02c].mUnk_00 = 1;
+        gScrollList->mState = 0;
+        gScrollList->mPickFinished = 1;
     }
 }
 

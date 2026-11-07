@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020364a8(int a, int b, int c, int d, int e);
+void SetSubBg1Cnt(int a, int b, int c, int d, int e);

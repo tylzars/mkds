@@ -7,8 +7,8 @@
 
 void func_0202ee3c(s32 a, s32 b) {
     s32 i;
-    for (i = 0; i < data_02174e48->mUnk_000; i++) {
-        Unk02174e48 *p = data_02174e48;
+    for (i = 0; i < gScrollList->mUnk_000; i++) {
+        ScrollList *p = gScrollList;
         p->mUnk_008[a + p->mUnk_004[i]].mUnk_00 = b;
     }
 }

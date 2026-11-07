@@ -375,17 +375,17 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
         case 3:
             if (IsTxtSystemState2NoCloseRequest() != 0) {
                 func_0202e4b0();
-                i = func_0202e4a4();
+                i = GetScrollListSelectedRow();
                 if (gTimeAttackGhostSend->mUnk_0a4 != i) {
                     gTimeAttackGhostSend->mUnk_0a4 = i;
                     func_0202d6a0();
                 }
-                if (func_0202e468() != 0) {
+                if (IsScrollListPickStarted() != 0) {
                     NNS_SndArcSetCurrent(&data_0217c868);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 7);
                     NNS_SndArcSetCurrent(&data_0217d0a0);
                 }
-                if (func_0202e47c() != 0) {
+                if (IsScrollListPickFinished() != 0) {
                     func_0202d5c0();
                     func_02108c1c();
                     gTimeAttackGhostSend->mState = 4;

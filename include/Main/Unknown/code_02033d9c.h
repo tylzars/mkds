@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02033d9c(void);
+void StartResultsBattleChoices(void);

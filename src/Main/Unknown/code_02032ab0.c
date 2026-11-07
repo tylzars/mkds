@@ -372,7 +372,7 @@ void AdvanceResultsBattle(Unk02032ac4 *a) {
                 case 2:
                     v1 = UNK_02175628_INDEX_8;
                     if ((u16) (data_02175628[v1].mUnk_00 & PAD_KEY_A) != 0) {
-                        func_02033d9c();
+                        StartResultsBattleChoices();
                         gResultsBattle->mUnk_150 = 4;
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
                     }
@@ -383,7 +383,7 @@ void AdvanceResultsBattle(Unk02032ac4 *a) {
                         gResultsBattle->mUnk_150 = 5;
                     } else if ((u16) (data_02175628[func_020435bc()].mUnk_00 & PAD_KEY_A) != 0 ||
                                func_02033dd0() != 0) {
-                        func_02033d9c();
+                        StartResultsBattleChoices();
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
                         gResultsBattle->mUnk_150 = 4;
                     }
