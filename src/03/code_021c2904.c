@@ -35,21 +35,21 @@ void func_ov003_021c2a28(void) {
 
 void func_ov003_021c29d8(void) {
     data_ov003_021da198 = func_ov003_021d283c(0xc, -4);
-    if (func_ov003_021bb168(0xf, 0x40, func_ov003_021c2904, func_ov003_021c28f8, func_ov003_021c28f0, 0x800) != 1) {
+    if (StartExchange(0xf, 0x40, func_ov003_021c2904, func_ov003_021c28f8, func_ov003_021c28f0, 0x800) != 1) {
         OS_Terminate();
     }
     OS_Sleep(0xa);
 }
 
 void func_ov003_021c29b8(void) {
-    if (func_ov003_021bb0b0() != 1) {
+    if (StopExchange() != 1) {
         OS_Terminate();
     }
     func_ov003_021d2808(&data_ov003_021da198);
 }
 
 u32 func_ov003_021c2938(void) {
-    Unk021d8dc8 a;
+    ExchangeResult a;
     switch (data_ov003_021da198->mUnk_00) {
         case 0:
         case 1:
@@ -61,10 +61,10 @@ u32 func_ov003_021c2938(void) {
         case 4:
             return 2;
         case 6:
-            if (func_ov003_021bb058(&a) != 1) {
+            if (CopyExchangeResult(&a) != 1) {
                 OS_Terminate();
             }
-            if (a.mUnk_20 >= 0 && a.mUnk_20 <= 3 && a.mUnk_24 == 1) {
+            if (a.mKind >= 0 && a.mKind <= 3 && a.mUnk_24 == 1) {
                 return 3;
             }
             return 5;
@@ -74,8 +74,8 @@ u32 func_ov003_021c2938(void) {
 }
 
 void func_ov003_021c2918(void) {
-    Unk021d8dc8 a;
-    if (func_ov003_021bb058(&a) != 1) {
+    ExchangeResult a;
+    if (CopyExchangeResult(&a) != 1) {
         OS_Terminate();
     }
     func_ov003_021cd5e0((const Unk021cd5e0_arg *) &a);

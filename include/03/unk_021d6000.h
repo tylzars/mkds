@@ -6,9 +6,9 @@
 typedef struct Unk021d299c Unk021d299c;
 
 // Seven bytes moved as one value.
-typedef struct Unk021d68c8 {
-    /* 0 */ u8 mUnk_00[7];
-} Unk021d68c8;
+typedef struct Bytes7 {
+    /* 0 */ u8 mBytes[7];
+} Bytes7;
 
 // Entry of data_ov003_021d64f0, two halfwords.
 typedef struct Unk021d64f0 {
@@ -62,13 +62,13 @@ extern u16 data_ov003_021d6768[][2];
 extern u16 data_ov003_021d6780[][2];
 extern u16 data_ov003_021d6798[][2];
 extern u16 data_ov003_021d67b0[][2][2];
-extern u32 data_ov003_021d68b4;
-extern s32 data_ov003_021d68b8;
+extern u32 gThreadStackSize;
+extern s32 gTimeoutAtMs;
 extern s32 data_ov003_021d68bc;
 extern u8 *data_ov003_021d68ac;
 extern u32 data_ov003_021d68b0;
-extern char data_ov003_021d68c0[];
-extern Unk021d68c8 data_ov003_021d68c8;
+extern char gSixAsterisksString[];
+extern Bytes7 gKind2Item3Bytes;
 extern Unk021d6974 data_ov003_021d6974;
 extern u8 data_ov003_021d691c[];
 extern u8 data_ov003_021d697c[];
