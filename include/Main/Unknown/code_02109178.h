@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_02109178(u32 arg0);
+u32 func_02109178(u32 address);

@@ -225,7 +225,7 @@ void func_020b3728(void) {
                     }
                     break;
             }
-            if ((data_0217d084.mUnk_04 - 2) <= 1 && gRaceSetup->mMode != MODE_BATTLE) {
+            if ((data_0217d084.mMode - 2) <= 1 && gRaceSetup->mMode != MODE_BATTLE) {
                 d = gRaceSetup;
                 f = TRUE;
                 if (d->mRaceKind == RACE_KIND_DEMO) {

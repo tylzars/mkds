@@ -87,7 +87,7 @@ void StartSurfaceSound(SoundSource *a, int b, u32 c, u32 d, u32 e) {
             return;
         }
     }
-    v1 = func_0210bb74(b, c, d);
+    v1 = GetSurfaceSoundId(b, c, d);
     if (v1 != 0xffff) {
         StartSound(a, v1, 0x7f, 0);
         return;
@@ -109,7 +109,7 @@ void func_0210b4e0(Kart *a, s32 b, s32 c, s32 d) {
             break;
     }
     if (b != 0) {
-        StartSoundWhileRequested(&a->mSoundSource, func_0210bb74(1, c, d), 0x5f, -0x345);
+        StartSoundWhileRequested(&a->mSoundSource, GetSurfaceSoundId(1, c, d), 0x5f, -0x345);
     }
     StartSoundWhileRequested(&a->mSoundSource, e, 0x7f, 0);
 }
@@ -162,7 +162,7 @@ void StartKartSurfaceSoundWhileRequested(Kart *a, s32 b, s32 c, s32 d, u32 e) {
         }
         StartSoundWhileRequested(&a->mSoundSource, 0x74, g & 0xff, (s16) (f - w));
     } else {
-        i = func_0210bb74(b, c, d);
+        i = GetSurfaceSoundId(b, c, d);
         if (i == 0xffff) {
             return;
         }
@@ -395,7 +395,7 @@ void StartQueuedKartSound(Kart *a, s32 b, s32 c, s32 d) {
         } while (p != NULL);
     }
     e = TRUE;
-    if (data_0217d084.mUnk_04 != 2 && data_0217d084.mUnk_04 != 3) {
+    if (data_0217d084.mMode != 2 && data_0217d084.mMode != 3) {
         e = FALSE;
     }
     if (e == FALSE) {

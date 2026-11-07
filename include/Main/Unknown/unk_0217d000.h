@@ -37,10 +37,10 @@ typedef struct PaletteBlend {
     /* 8c */ BOOL mFirstBlend;
 } PaletteBlend;
 
-// Object behind data_0217d358.
-typedef struct Unk0217d358 {
-    /* 00 */ u8 *mUnk_00;
-} Unk0217d358;
+// Object behind gPicksHolder.
+typedef struct PicksHolder {
+    /* 00 */ u8 *mPicks;
+} PicksHolder;
 
 struct Nclr;
 
@@ -149,11 +149,11 @@ typedef struct Unk0217d070 {
     /* 10 */ NNSSndSeqPlayer *mUnk_10;
 } Unk0217d070;
 
-// Object at data_0217d084 (0x1c bytes); func_0210dc60 stores its second argument at 0x00.
+// Object at data_0217d084 (0x1c bytes); SetupSoundMode stores its second argument at 0x00.
 typedef struct Unk0217d084 {
-    /* 00 */ Unk0217d070 *mUnk_00;
-    /* 04 */ u32 mUnk_04;
-    /* 08 */ u32 mUnk_08;
+    /* 00 */ Unk0217d070 *mScenePlayers;
+    /* 04 */ u32 mMode;
+    /* 08 */ u32 mSavedMode;
     /* 0c */ u32 mUnk_0c;
     /* 10 */ u32 mUnk_10;
     /* 14 */ u32 mUnk_14;
@@ -753,7 +753,7 @@ extern Unk0217d244 data_0217d244;
 extern struct RecordScene *gRecordScene;
 extern RecordVSErase *gRecordVSErase;
 extern Wait *gWait;
-extern Unk0217d358 *data_0217d358;
+extern PicksHolder *gPicksHolder;
 extern KartIcon *gKartIcon;
 extern SelectRaceRule *gSelectRaceRule;
 extern SelectCupNameM *gSelectCupNameM;
@@ -801,8 +801,8 @@ extern volatile s32 data_0217d218;
 extern s32 data_0217d224[2];
 extern SeqQueue gSeqQueue;
 extern s32 data_0217d2dc[];
-extern void *data_0217d33c;
-extern void *data_0217d340;
+extern void *gRecordMainOam;
+extern void *gRecordSubOam;
 extern Unk0217d404 *data_0217d404;
 extern PaletteBlend *gPaletteBlend;
 extern struct NNSSndStrmThread *data_0217df04;
@@ -819,7 +819,7 @@ extern RecordList *gRecordList;
 // Pointer to the cup chooser object: set by InitSelectCupGrid, cleared by ReleaseSelectCupGrid.
 extern SelectCupGrid *gSelectCupGrid;
 extern SelectCupCourse *gSelectCupCourse;
-extern u32 data_0217d1bc;
+extern u32 gMicInitialized;
 extern u32 gSeqVariableEnabled[];
 extern u32 data_0217d010[];
 extern u32 data_0217d024[];

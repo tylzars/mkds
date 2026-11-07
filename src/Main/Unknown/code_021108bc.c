@@ -150,7 +150,7 @@ void func_02110cc8(s32 d) {
     if (c != 2 && c != RACE_KIND_NORMAL) {
         return;
     }
-    if (data_0217d084.mUnk_04 != 2) {
+    if (data_0217d084.mMode != 2) {
         return;
     }
     EndRaceSounds();
@@ -272,7 +272,7 @@ void func_02110aac(s32 a, s32 b) {
     NNSSndSeqPlayer **p;
     u32 x;
     u32 y;
-    p = func_02108e6c(1);
+    p = GetSndHandleSlot(1);
     if (a == 0) {
         x = 0x1ff;
     } else if (a == 1) {
@@ -281,7 +281,7 @@ void func_02110aac(s32 a, s32 b) {
         x = 0xffff;
     }
     func_02110aac_inline(p, x);
-    p = func_02108e6c(2);
+    p = GetSndHandleSlot(2);
     y = (b != 0) ? 0x201 : 0xffff;
     if (x != 0xffff) {
         y = 0xffff;
@@ -319,7 +319,7 @@ void func_021108bc(s32 a) {
     if (n < 2) {
         return;
     }
-    p = func_02108e6c((data_0217d1e0 & 1) ? 2 : 3);
+    p = GetSndHandleSlot((data_0217d1e0 & 1) ? 2 : 3);
     if (data_0217d204 >= 0x14) {
         data_0217d1e4 = 0;
     }

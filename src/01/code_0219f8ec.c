@@ -375,7 +375,7 @@ void func_ov001_021a0620(void) {
             func_ov001_021a0774();
         } else {
             b = gMissionRunMSsel->mMissionRunMSselMBncl->mUnk_06;
-            v = func_02116d10(7 - gMissionRunMSsel->mUnk_ac, 1);
+            v = LookupIndexChangeOffset(7 - gMissionRunMSsel->mUnk_ac, 1);
             gMissionRunMSsel->mBg0OffsetY = v;
             gMissionRunMSsel->mMissionRunMSselMTable[0].mUnk_06 = v;
             gMissionRunMSsel->mMissionRunMSselMTable[1].mUnk_06 = v;

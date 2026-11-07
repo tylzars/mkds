@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_0210d894(void *a, u32 b, const u8 *c);
+void func_0210d894(void *heapMemory, u32 heapSize, const u8 *filePath);

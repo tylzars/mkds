@@ -30,11 +30,11 @@ u8 *func_020ff2b0(u8 *a, ItemFBox *b, void *c) {
     u8 *p;
 
     if (b != NULL && c != NULL) {
-        func_020ff1b8(b->mUnk_13c, &b->mUnk_000.mItemObject.mVelocity.y);
+        func_020ff1b8(b->mThrownForward, &b->mUnk_000.mItemObject.mVelocity.y);
     }
     p = func_020fecdc(a, b, c);
     if (b != NULL && c == NULL) {
-        func_020ff1a0(b->mUnk_000.mItemObject.mVelocity.y, &b->mUnk_13c);
+        func_020ff1a0(b->mUnk_000.mItemObject.mVelocity.y, &b->mThrownForward);
     }
     if (b != NULL && c != NULL) {
         return func_020fe8ac(b->mUnk_000.mItemObject.mKind);
@@ -48,7 +48,7 @@ void InitItemFBoxFromData(ItemFBox *a) {
     if ((a->mUnk_000.mItemObject.mFlags & 0x10000000) == 0) {
         return;
     }
-    if (a->mUnk_13c == 0) {
+    if (a->mThrownForward == 0) {
         return;
     }
     StartSound(&a->mUnk_000.mItemObject.mSoundSource, 0xda, 0x7f, 0);
@@ -74,8 +74,8 @@ void func_020ff1d8(void) {
     n = p->mObjectCount;
     for (i = 0; i < n; i++) {
         o = (ItemFBox *) e[0];
-        o->mUnk_140 = (Unk021052fc *) AllocPooledMapObject();
-        o->mUnk_140->mUnk_fc = &o->mUnk_000.mItemObject.mPos;
+        o->mPooledMapObject = (Unk021052fc *) AllocPooledMapObject();
+        o->mPooledMapObject->mUnk_fc = &o->mUnk_000.mItemObject.mPos;
         e++;
     }
     p->mUnk_40 = 1;

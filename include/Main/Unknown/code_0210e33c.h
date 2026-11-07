@@ -26,7 +26,7 @@ typedef struct Unk0210e524 {
 } Unk0210e524;
 
 // Object data_0217d178: 16 words from 0x00 and a signed number at 0x40; LoadSndDataFromFile and func_0210ed20 add a
-// word to it, func_0210ef68 walks it and func_0210efac resets it.
+// word to it, ClearSndFileAddresses walks it and ClearSndFileIdList resets it.
 typedef struct Unk0217d178 {
     /* 00 */ u32 mFileIds[16];
     /* 40 */ s32 mCount;

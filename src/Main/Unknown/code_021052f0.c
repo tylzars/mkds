@@ -4,35 +4,35 @@
 #include "Main/Unknown/code_021052fc.h"
 #include "Main/Unknown/code_021053d8.h"
 
-void func_021053d8(u32 arg0) {
-    u32 value0 = arg0;
+void func_021053d8(u32 mapObject) {
+    u32 parkedObject = mapObject;
     u32 value12;
-    ParkMapObject((void *) value0);
+    ParkMapObject((void *) parkedObject);
 }
 
-void func_02105338(Unk021052fc *p, s32 a, Vec3 *v) {
-    p->mUnk_00.mPos = *p->mUnk_fc;
-    if (a < 1) {
-        a = 1;
+void SetPooledMapObjectFromItem(Unk021052fc *object, s32 alpha, Vec3 *scale) {
+    object->mUnk_00.mPos = *object->mUnk_fc;
+    if (alpha < 1) {
+        alpha = 1;
     }
-    p->mUnk_00.mAlpha = a;
-    p->mUnk_00.mScale.x = ((s64) v->x * 0x666) >> 12;
-    p->mUnk_00.mScale.y = ((s64) v->y * 0x666) >> 12;
-    p->mUnk_00.mScale.z = ((s64) v->z * 0x666) >> 12;
+    object->mUnk_00.mAlpha = alpha;
+    object->mUnk_00.mScale.x = ((s64) scale->x * 0x666) >> 12;
+    object->mUnk_00.mScale.y = ((s64) scale->y * 0x666) >> 12;
+    object->mUnk_00.mScale.z = ((s64) scale->z * 0x666) >> 12;
 }
 
-void func_021052fc(Unk021052fc *p) {
-    p->mUnk_a0 = p->mUnk_a0 + 1;
-    if (p->mUnk_a0 >= 0x12c) {
-        p->mUnk_a0 = 0;
+void AdvancePooledMapObject(Unk021052fc *object) {
+    object->mUnk_a0 = object->mUnk_a0 + 1;
+    if (object->mUnk_a0 >= 0x12c) {
+        object->mUnk_a0 = 0;
     }
-    p->mUnk_a2 = p->mUnk_a2 + 1;
-    if (p->mUnk_a2 >= 0x82) {
-        p->mUnk_a2 = 0;
+    object->mUnk_a2 = object->mUnk_a2 + 1;
+    if (object->mUnk_a2 >= 0x82) {
+        object->mUnk_a2 = 0;
     }
 }
 
-void func_021052f0(Unk021052fc *p0, void *p1, ItemFBox *p2) {
-    p0->mUnk_100 = p1;
-    p0->mUnk_104 = p2;
+void SetPooledMapObjectCallback(Unk021052fc *object, void *callback, ItemFBox *owner) {
+    object->mUnk_100 = callback;
+    object->mUnk_104 = owner;
 }

@@ -307,7 +307,7 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
     Matrix3x3FromQuaternion(&b->mUnk_000.mMatrix.mUnk_00[0].x, &b->mUnk_0a4);
     b->mUnk_10c += 0x600;
     if (b->mUnk_000.mDistanceSquaredAndFlags & 8) {
-        func_0210b7ec(b->mUnk_158, b->mUnk_000.mDistanceSquaredAndFlags & 0x3FFFFFE0);
+        AdvanceSoundDistanceSquaredChange(b->mUnk_158, b->mUnk_000.mDistanceSquaredAndFlags & 0x3FFFFFE0);
     }
     StartMapObjectSoundWhileRequested(&b->mUnk_000, b->mUnk_15c);
     if (b->mUnk_000.mPos.y < 0) {
@@ -508,7 +508,7 @@ void func_020e1f54(Unk020e1e98 *a, struct CourseMapRow *b, Unk020e1e98_154 *c) {
     func_020e1e98(a);
     a->mUnk_15c = c->mUnk_2c;
     a->mUnk_158 = func_020d286c(&a->mUnk_000);
-    func_0210b850(a->mUnk_158);
+    ResetSoundDistanceSquaredChange(a->mUnk_158);
     a->mUnk_000.mSound->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a6ec;
     a->mUnk_160 = c->mUnk_30;
 }

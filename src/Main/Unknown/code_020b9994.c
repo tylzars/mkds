@@ -162,7 +162,7 @@ void func_020bab54(void) {
         n = data_0217b3cc->mUnk_04;
         data_0217b3cc->mUnk_10 = 1;
     } else {
-        NNS_SndPlayerStopSeq(func_02108e88(), 0);
+        NNS_SndPlayerStopSeq(GetSndHandles(), 0);
         data_0217b3cc->mUnk_04 = 0;
         n = data_0217b3cc->mUnk_04;
         if (func_020bab54_inline(i)->mSlotShownItem >= 9) {
@@ -207,7 +207,7 @@ void func_020bab54(void) {
         data_0217b3cc->mUnk_10 = 0;
     }
     if (data_0217b3cc->mUnk_14 == 0 && data_0217b3cc->mUnk_10 != 0 && gRaceSetup->mRaceKind != 2) {
-        r2 = func_02108e88();
+        r2 = GetSndHandles();
         k2 = 0x3e;
         if (gRaceSetup->mCourseId == COURSE_ID_PINBALL) {
             k2 = 0x1c4;

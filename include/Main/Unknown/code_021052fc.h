@@ -4,8 +4,8 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
-// Object of func_021052fc (AllocPooledMapObject allocates them): the shared MapObject part, then counters that run and
-// wrap and whose three fixed-point words follow the vector at mUnk_fc.
+// Object of AdvancePooledMapObject (AllocPooledMapObject allocates them): the shared MapObject part, then counters that
+// run and wrap and whose three fixed-point words follow the vector at mUnk_fc.
 typedef struct Unk021052fc {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ u16 mUnk_a0;
@@ -19,5 +19,5 @@ typedef struct Unk021052fc {
     /* 104 */ void *mUnk_104;
 } Unk021052fc;
 
-void func_02105338(Unk021052fc *p, s32 a, Vec3 *v);
-void func_021052fc(Unk021052fc *p);
+void SetPooledMapObjectFromItem(Unk021052fc *object, s32 alpha, Vec3 *scale);
+void AdvancePooledMapObject(Unk021052fc *object);

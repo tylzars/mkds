@@ -81,7 +81,7 @@ void func_0205dee0(void) {
     GXx_SetMasterBrightness_(&reg_GX_MASTER_BRIGHT, 0x10);
     GXx_SetMasterBrightness_(&reg_GXS_DB_MASTER_BRIGHT, 0x10);
     WaitIrqAndTurnOnDisplays();
-    func_02108ec4();
+    SetCurrentSndArc();
     a = HeapAlloc(a, GetSndHeapsBufferSize(1));
     CreateSndHeaps(1, (u32) a);
     data_0217aa20->mUnk_0c = a;

@@ -540,7 +540,7 @@ void InitRecordTAtt(void *heap) {
     }
     LocateAndQueueRecordTAtt();
     CreateKartIcon(heap);
-    func_020ae6d4(func_02111318(), func_0211130c());
+    func_020ae6d4(GetRecordMainOam(), GetRecordSubOam());
     InitLayoutTable(heap, gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMBnll,
                     &gRecordTAtt->mRecordTAttMTable);
     InitLayoutTable(heap, gRecordTAtt->mRecordTAttSBncl, gRecordTAtt->mRecordTAttSBnll,
@@ -1207,10 +1207,10 @@ void AdvanceRecordTAtt(void) {
             break;
     }
     p = gRecordTAtt;
-    DrawLayoutTable(p->mRecordTAttMBncl, p->mRecordTAttMNcer, p->mRecordTAttMBnll, func_02111318(),
+    DrawLayoutTable(p->mRecordTAttMBncl, p->mRecordTAttMNcer, p->mRecordTAttMBnll, GetRecordMainOam(),
                     p->mRecordTAttMTable);
     p = gRecordTAtt;
-    DrawLayoutTable(p->mRecordTAttSBncl, p->mRecordTAttSNcer, p->mRecordTAttSBnll, func_0211130c(),
+    DrawLayoutTable(p->mRecordTAttSBncl, p->mRecordTAttSNcer, p->mRecordTAttSBnll, GetRecordSubOam(),
                     p->mRecordTAttSTable);
 }
 

@@ -1,6 +1,6 @@
 #include "Main/Unknown/code_0210f72c.h"
 
-u32 func_0210f738(void) {
+u32 GetTitleNoInputFrameLimit(void) {
     return 0x2b2u;
 }
 

@@ -9,5 +9,5 @@ typedef struct Unk02111324 {
 } Unk02111324;
 
 void UpdateRecordScene(Unk02111324 *a);
-void *func_02111318(void);
-void *func_0211130c(void);
+void *GetRecordMainOam(void);
+void *GetRecordSubOam(void);

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void SetSoundOutputEffect(s32 a);
+void SetSoundOutputEffect(s32 type);

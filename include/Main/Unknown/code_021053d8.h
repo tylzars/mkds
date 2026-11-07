@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_021053d8(u32 arg0);
+void func_021053d8(u32 mapObject);

@@ -20,7 +20,7 @@
 
 void SetKartSoundDistanceSquaredAndChange(Kart *a) {
     a->mSoundSource.mDistanceSquared = func_02086080(a->mIndex);
-    func_0210b7ec(&a->mUnk_518, func_02086080(a->mIndex));
+    AdvanceSoundDistanceSquaredChange(&a->mUnk_518, func_02086080(a->mIndex));
 }
 
 static inline void func_02063cc4_inline(u32 a, s32 b) {

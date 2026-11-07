@@ -152,7 +152,7 @@ void func_021162cc(void) {
     u16 buf[0x10];
     u32 t[3][3] = {0};
     u8 buf3[0x14];
-    Unk02116a4c a;
+    DateBytes a;
 
     v = GetRecordVSEraseFirstRecordIndex();
     if (GetRecordFriendKeyText(v + gRecordVSErase->mShownIndex, buf3)) {
@@ -199,7 +199,7 @@ void func_021162cc(void) {
             func_02124248(0, data_0215c530[2][2], gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
             func_021142d4(v + gRecordVSErase->mShownIndex, &a);
-            func_02116a4c(&a, buf);
+            FormatDate(&a, buf);
             func_02124224(0, 0xc, gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
             ReadRecordEmblem(v + gRecordVSErase->mShownIndex, gRecordVSErase->mEmblem,

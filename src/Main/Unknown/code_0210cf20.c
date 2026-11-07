@@ -29,8 +29,8 @@ void InitPlayingSoundPool(PlayingSound *sounds, s32 count) {
 
     func_0210e2c4(&data_0217d034, sounds, count, 0x1c);
     for (i = 0; i < count; i++) {
-        func_0210e328(sounds);
-        func_0210bce0(&sounds->mUnk_08);
+        ResetPlayingSoundHandle(sounds);
+        ClearThreeWords(&sounds->mUnk_08);
         sounds->mUnk_18 = 0;
         sounds->mSoundId = 0;
         sounds->mUnk_19 = 0;
@@ -72,7 +72,7 @@ void UpdateSoundSources(void) {
     for (p = l->mHead; p != NULL; p = l->mHead) {
         SetPlayingSoundsParams(p);
         if (p->mUnk_18 != 3) {
-            func_0210bc54(&l[p->mUnk_18], p);
+            RemoveListObject(&l[p->mUnk_18], p);
             p->mUnk_18 = 3;
         }
     }
@@ -92,7 +92,7 @@ void UpdateSoundSources(void) {
                 }
             }
             if (p->mUnk_18 != 3) {
-                func_0210bc54(&l[p->mUnk_18], p);
+                RemoveListObject(&l[p->mUnk_18], p);
                 p->mUnk_18 = 3;
             }
             p = m->mHead;
@@ -122,12 +122,12 @@ void StopSoundsOnAllSources(u32 fadeSteps) {
                 sound->mUnk_19 &= ~4;
                 sound->mUnk_19 &= ~8;
                 sound->mUnk_19 &= ~2;
-                func_0210bc54(&source->mPlayingSounds, sound);
+                RemoveListObject(&source->mPlayingSounds, sound);
                 sound = source->mPlayingSounds.mHead;
             } while (sound != NULL);
         }
         if (source->mUnk_18 != 3) {
-            func_0210bc54(&data_0217d048[source->mUnk_18], source);
+            RemoveListObject(&data_0217d048[source->mUnk_18], source);
             source->mUnk_18 = 3;
         }
         source = NNS_FndGetNextListObject(&data_0217d028, source);
@@ -194,8 +194,8 @@ void SetSoundVolumeFunction(s32 (*p0)(Unk0210bcf4 *)) {
 }
 
 void ResetPlayingSound(PlayingSound *arg0) {
-    func_0210e328(arg0);
-    func_0210bce0(&arg0->mUnk_08);
+    ResetPlayingSoundHandle(arg0);
+    ClearThreeWords(&arg0->mUnk_08);
     arg0->mUnk_18 = 0;
     arg0->mSoundId = 0;
     arg0->mUnk_19 = 0;
@@ -233,7 +233,7 @@ void func_0210cf20(SoundSource *a, u32 b) {
     a->mUnk_34 = 0;
     a->mOwnerPosSource = b;
     a->mUnk_18 = 3;
-    func_0210bce0(a->mUnk_1c);
-    func_0210bce0((u32 *) a);
-    func_0210bc8c(&data_0217d028, a);
+    ClearThreeWords(a->mUnk_1c);
+    ClearThreeWords((u32 *) a);
+    TryAppendListObject(&data_0217d028, a);
 }

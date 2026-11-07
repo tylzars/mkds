@@ -179,7 +179,7 @@ int AdvanceSelectKart(void) {
                     case 0:
                         GetRaceSetupCopy()->mEntries[gSelectKart->mEntryIndex].mKartIndex = d->mKartIndex;
                         GetRaceSetupCopy()->mEntries[gSelectKart->mEntryIndex].mUnk_14 = 1;
-                        func_02116ef8();
+                        FillRandomKartIndices();
                         gSelectKart->mState = 6;
                         break;
                     case 1:

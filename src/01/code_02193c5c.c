@@ -421,8 +421,8 @@ void InitRecordGpx(void *heap) {
     LocateAndQueueRecordGpx();
     CreateKartIcon(heap);
     CreateCupMark(heap);
-    p = func_02111318();
-    func_020ae6d4(p, func_0211130c());
+    p = GetRecordMainOam();
+    func_020ae6d4(p, GetRecordSubOam());
     InitLayoutTable(heap, gRecordGpx->mRecordGpxMBncl, gRecordGpx->mRecordGpxMBnll, &gRecordGpx->mRecordGpxMTable);
     InitLayoutTable(heap, gRecordGpx->mRecordGpxSBncl, gRecordGpx->mRecordGpxSBnll, &gRecordGpx->mRecordGpxSTable);
     gRecordGpx->mCommonMessages = FindFileInLoadedArchives("common.bmg");
@@ -757,9 +757,10 @@ void AdvanceRecordGpx(void) {
             break;
     }
     d = gRecordGpx;
-    DrawLayoutTable(d->mRecordGpxMBncl, d->mRecordGpxMNcer, d->mRecordGpxMBnll, func_02111318(), d->mRecordGpxMTable);
+    DrawLayoutTable(d->mRecordGpxMBncl, d->mRecordGpxMNcer, d->mRecordGpxMBnll, GetRecordMainOam(),
+                    d->mRecordGpxMTable);
     d = gRecordGpx;
-    DrawLayoutTable(d->mRecordGpxSBncl, d->mRecordGpxSNcer, d->mRecordGpxSBnll, func_0211130c(), d->mRecordGpxSTable);
+    DrawLayoutTable(d->mRecordGpxSBncl, d->mRecordGpxSNcer, d->mRecordGpxSBnll, GetRecordSubOam(), d->mRecordGpxSTable);
 }
 
 void func_ov001_02193ccc(void) {

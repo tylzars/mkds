@@ -237,7 +237,7 @@ void func_020cbb10(void) {
             func_020cc10c(1);
             break;
     }
-    func_0211717c(func_020cb99c());
+    CreateCharacterKartPicks(func_020cb99c());
     switch (GetRaceSetupCopy()->mMode) {
         case 0:
         default:

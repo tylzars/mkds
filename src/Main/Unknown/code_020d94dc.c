@@ -50,8 +50,8 @@ void InitWater(Unk020da384 *a, void *b, UnkFunc *c) {
 }
 
 // One step per UpdateRace call while the course has water: advances the height swing (4 states) and the two circles;
-// when mUnk_170 is set it also sets a value on entry 10 of data_0217c838 (func_02108e6c) every call (from func_020a02c8
-// on course 0x1f, else 0x7f000) and requests sound 0x114 when state 1 ends and 0x113 when state 3 ends.
+// when mUnk_170 is set it also sets a value on entry 10 of data_0217c838 (GetSndHandleSlot) every call (from
+// func_020a02c8 on course 0x1f, else 0x7f000) and requests sound 0x114 when state 1 ends and 0x113 when state 3 ends.
 void UpdateWater(Water *a) {
     s32 v;
     NNSSndSeqPlayer **h;
@@ -60,7 +60,7 @@ void UpdateWater(Water *a) {
     u16 w;
     s32 j;
     s32 k;
-    h = func_02108e6c(10);
+    h = GetSndHandleSlot(10);
     if (a->mUnk_170 != 0) {
         if (gRaceSetup->mCourseId != COURSE_ID_BEACH) {
             v = 0x7f000;

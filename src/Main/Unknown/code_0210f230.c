@@ -80,11 +80,11 @@ void func_0210f458(s32 a) {
     switch (data_0216cb4c) {
         case 3:
             if (v == 0x1cc) {
-                p = func_02108e88();
+                p = GetSndHandles();
                 if (*p != NULL) {
                     NNS_SndPlayerStopSeq(p, 0);
                 }
-                p = func_02108e6c(7);
+                p = GetSndHandleSlot(7);
                 if (*p != NULL) {
                     NNS_SndPlayerStopSeq(p, 0);
                 }
@@ -95,7 +95,7 @@ void func_0210f458(s32 a) {
             break;
     }
     if (v < 0xfff) {
-        p = func_02108e6c(a < 5 ? a + 7 : a + 2);
+        p = GetSndHandleSlot(a < 5 ? a + 7 : a + 2);
         if ((data_0217c780 & 1) == 0) {
             return;
         }
@@ -127,9 +127,9 @@ u32 func_0210f35c(s32 a, u32 b) {
     u32 ok;
 
     if (a == 0) {
-        p = func_02108e6c(0xa);
+        p = GetSndHandleSlot(0xa);
     } else {
-        p = func_02108e6c(0xb);
+        p = GetSndHandleSlot(0xb);
     }
     v = data_0217d1c0[a].mUnk_00;
     if (v == 0) {
@@ -165,9 +165,9 @@ u32 func_0210f230(u32 a, u32 b) {
     u32 ok;
 
     if (a == 0) {
-        p = func_02108e6c(0xa);
+        p = GetSndHandleSlot(0xa);
     } else {
-        p = func_02108e6c(0xb);
+        p = GetSndHandleSlot(0xb);
     }
     v = data_0217d1c0[a].mUnk_00;
     if (v == 0) {

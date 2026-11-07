@@ -24,8 +24,8 @@ void func_02046fb4(void *a) {
         return;
     }
     gTouchMicInput->mMicBuffer = HeapAllocAligned(a, 0x420, 0x20);
-    func_0210f130(gTouchMicInput->mMicBuffer);
-    func_0210f0f4(gTouchMicInput->mMicBuffer);
+    SetupMicAutoSampling(gTouchMicInput->mMicBuffer);
+    StartMicAutoSampling(gTouchMicInput->mMicBuffer);
     gTouchMicInput->mUnk_30_1 = 1;
     gTouchMicInput->mUnk_30_2 = 0;
     gTouchMicInput->mUnk_30_3 = 0;
@@ -45,7 +45,7 @@ void func_02046ee4(void) {
     if (gTouchMicInput->mUnk_30_1 == 0) {
         return;
     }
-    func_0210f0d8(gTouchMicInput->mMicBuffer);
+    StopMicAutoSampling(gTouchMicInput->mMicBuffer);
     gTouchMicInput->mMicBuffer = NULL;
     gTouchMicInput->mUnk_30_1 = 0;
     gTouchMicInput->mUnk_30_2 = 0;

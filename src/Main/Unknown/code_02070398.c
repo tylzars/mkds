@@ -189,7 +189,7 @@ void ResetKartToRespawnPoint(Kart *p) {
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         GetEntryKartCounters()->mUnk_18++;
     } else {
-        func_0210b850(&p->mUnk_518);
+        ResetSoundDistanceSquaredChange(&p->mUnk_518);
     }
     p->mUnk_4c |= 0xc00;
     p->mUnk_48 |= 0x2000000;
@@ -708,7 +708,7 @@ void func_02071ddc(Unk0206ceb4 *p0) {
 
 void InitKartSound(Kart *p) {
     InitSoundSource(&p->mSoundSource, 0, p->mPosSource);
-    func_0210a5a8(p, (Unk0210a5a8 *) &p->mUnk_450);
+    InitKartSoundCallbacks(p, (Unk0210a5a8 *) &p->mUnk_450);
     func_020719d0(p);
     switch (p->mKartModelsEntry->mUnk_000) {
         case 0:
@@ -757,13 +757,13 @@ void InitKartSound(Kart *p) {
             SetSoundSourceFlagBit(&p->mSoundSource, 2, 1);
         }
         if (gRaceSetup->mRaceKind == 2) {
-            func_0210b850(&p->mUnk_518);
+            ResetSoundDistanceSquaredChange(&p->mUnk_518);
         }
     } else {
         if (p->mSoundSource.mUnk_34 & 1) {
             SetSoundSourceFlagBit(&p->mSoundSource, 2, 1);
         }
-        func_0210b850(&p->mUnk_518);
+        ResetSoundDistanceSquaredChange(&p->mUnk_518);
     }
 }
 
@@ -1110,7 +1110,7 @@ void ResetKartMotionState(Kart *p, s32 b) {
             if (d != NULL) {
                 d->mUnk_19 |= 0x10;
             }
-            h = func_02108e6c(7);
+            h = GetSndHandleSlot(7);
             if (!(data_0217c780 & 1)) {
                 return;
             }
@@ -1301,7 +1301,7 @@ void AdvanceKartToKeyedPlacement(Kart *p) {
         p->mUnk_48 &= ~0x40000;
         p->mUnk_3e8 = (s16) ((s32) (((s64) b.x * 0x4000) >> 12) >> 12) + 0x32;
         if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mCourseId == COURSE_ID_AIRSHIP) {
-            NNS_SndPlayerStopSeq(func_02108e6c(7), 0x14);
+            NNS_SndPlayerStopSeq(GetSndHandleSlot(7), 0x14);
         }
     } else {
         if (d > 0x64000) {

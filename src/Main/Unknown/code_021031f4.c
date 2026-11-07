@@ -106,7 +106,7 @@ void func_0210465c(OrthoQuad *p) {
         return;
     }
     if (d == 0 && gOrthoQuadUseCreamEffect == 0 && p == gOrthoQuads) {
-        r = func_02108e6c(6);
+        r = GetSndHandleSlot(6);
         NNS_SndPlayerStopSeq(r, 1);
         if ((data_0217c780 & 1) != 0 && data_0217d084.mUnk_0c != 0) {
             if (*r != NULL) {
@@ -253,7 +253,7 @@ void UpdateOrthoQuads(void) {
     if (h == 0) {
         gOrthoQuadCount = 0;
         gOrthoQuadUseCreamEffect = FALSE;
-        NNS_SndPlayerStopSeq(func_02108e6c(6), 1);
+        NNS_SndPlayerStopSeq(GetSndHandleSlot(6), 1);
         return;
     }
     p = gOrthoQuadUseCreamEffect != 0 ? &gOrthoQuadCreamEffect : &gOrthoQuadGesoSumi;
@@ -418,7 +418,7 @@ void StartOrthoQuads(s32 kartIndex, s32 count, s32 useCreamEffect) {
     }
     gOrthoQuadCount = 0;
     gOrthoQuadUseCreamEffect = FALSE;
-    NNS_SndPlayerStopSeq(func_02108e6c(6), 1);
+    NNS_SndPlayerStopSeq(GetSndHandleSlot(6), 1);
     gOrthoQuadUseCreamEffect = useCreamEffect;
     for (i = 0; i < 8; i++) {
         gOrthoQuadCells[i] = 0;
@@ -484,7 +484,7 @@ void StopOrthoQuads(int v1) {
     }
     gOrthoQuadCount = 0;
     gOrthoQuadUseCreamEffect = FALSE;
-    NNS_SndPlayerStopSeq(func_02108e6c(6), 1);
+    NNS_SndPlayerStopSeq(GetSndHandleSlot(6), 1);
 }
 
 // Local entry only: moves the frame counter up to the hold count so the alpha starts to fall.
@@ -646,7 +646,7 @@ void InitOrthoQuads(void) {
     data_0217c638 = 0xffff;
     gOrthoQuadCount = 0;
     gOrthoQuadUseCreamEffect = FALSE;
-    NNS_SndPlayerStopSeq(func_02108e6c(6), 1);
+    NNS_SndPlayerStopSeq(GetSndHandleSlot(6), 1);
     q = func_020ed4d0(data_0216c7b4, NULL, data_0216c7c4);
     SetupOrthoQuadModel(&gOrthoQuadGesoSumi, q);
     gOrthoQuadFirstPolygonId = AllocPolygonId();

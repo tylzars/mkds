@@ -144,7 +144,7 @@ void UpdateTitleState2(Unk020aca24 *a) {
                 func_020acf04();
             }
         } else {
-            s32 m = func_0210f738();
+            s32 m = GetTitleNoInputFrameLimit();
             gTitleScene->mNoInputFrames++;
             if (gTitleScene->mNoInputFrames > m) {
                 if (IsSeqVariableChanged(0) != 0) {

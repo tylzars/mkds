@@ -602,16 +602,16 @@ void AdvanceRecordVS(void) {
     p = gRecordVS;
     switch (p->mShowsFriendKey) {
         case 0:
-            DrawLayoutTable(p->mRecordVSMBncl, p->mRecordVSMNcer, p->mRecordVSMBnll, func_02111318(),
+            DrawLayoutTable(p->mRecordVSMBncl, p->mRecordVSMNcer, p->mRecordVSMBnll, GetRecordMainOam(),
                             p->mRecordVSMTable);
             break;
         case 1:
-            DrawLayoutTable(p->mRecordVSMTransientBncl, p->mRecordVSMNcer, p->mRecordVSMTransientBnll, func_02111318(),
-                            p->mRecordVSMTransientTable);
+            DrawLayoutTable(p->mRecordVSMTransientBncl, p->mRecordVSMNcer, p->mRecordVSMTransientBnll,
+                            GetRecordMainOam(), p->mRecordVSMTransientTable);
             break;
     }
     p = gRecordVS;
-    DrawLayoutTable(p->mRecordVSSBncl, p->mRecordVSSNcer, p->mRecordVSSBnll, func_0211130c(), p->mRecordVSSTable);
+    DrawLayoutTable(p->mRecordVSSBncl, p->mRecordVSSNcer, p->mRecordVSSBnll, GetRecordSubOam(), p->mRecordVSSTable);
 }
 
 #pragma thumb off
@@ -777,7 +777,7 @@ void InitRecordSceneObject(void *a, s16 b) {
     gRecordScene->mPageIndex = 0;
     gRecordScene->mIndex = 0;
     func_021250b0(a);
-    func_0212abdc(a, func_02111318());
+    func_0212abdc(a, GetRecordMainOam());
     v.mUnk_00 = TRUE;
     v.mUnk_04 = func_020b403c(1);
     v.mUnk_08 = 0;

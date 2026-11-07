@@ -3,4 +3,4 @@
 #include "types.h"
 
 unsigned int func_0210f72c(void);
-unsigned int func_0210f738(void);
+unsigned int GetTitleNoInputFrameLimit(void);

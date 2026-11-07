@@ -76,7 +76,7 @@ void AdvanceRecordVSEraseIndexChange(void) {
         } else {
             a = gRecordVSErase->mRecordVSMBncl->mUnk_06;
             b = gRecordVSErase->mRecordVSMTransientBncl->mUnk_06;
-            v = func_02116d10(7 - gRecordVSErase->mIndexChangeTimer, 0);
+            v = LookupIndexChangeOffset(7 - gRecordVSErase->mIndexChangeTimer, 0);
             gRecordVSErase->mBg0OffsetY = v;
             gRecordVSErase->mRecordVSMTable[3].mUnk_06 = v;
             gRecordVSErase->mRecordVSMTable[a].mUnk_06 = v;
@@ -871,16 +871,16 @@ void AdvanceRecordVSErase(void) {
     switch (gRecordVSErase->mTransientDrawn) {
         case 0:
             DrawLayoutTable(gRecordVSErase->mRecordVSMBncl, gRecordVSErase->mRecordVSMNcer,
-                            gRecordVSErase->mRecordVSMBnll, func_02111318(), gRecordVSErase->mRecordVSMTable);
+                            gRecordVSErase->mRecordVSMBnll, GetRecordMainOam(), gRecordVSErase->mRecordVSMTable);
             break;
         case 1:
             DrawLayoutTable(gRecordVSErase->mRecordVSMTransientBncl, gRecordVSErase->mRecordVSMNcer,
-                            gRecordVSErase->mRecordVSMTransientBnll, func_02111318(),
+                            gRecordVSErase->mRecordVSMTransientBnll, GetRecordMainOam(),
                             gRecordVSErase->mRecordVSMTransientTable);
             break;
     }
     DrawLayoutTable(gRecordVSErase->mRecordVSSEraseBncl, gRecordVSErase->mRecordVSSNcer,
-                    gRecordVSErase->mRecordVSSEraseBnll, func_0211130c(), gRecordVSErase->mRecordVSSEraseTable);
+                    gRecordVSErase->mRecordVSSEraseBnll, GetRecordSubOam(), gRecordVSErase->mRecordVSSEraseTable);
 }
 
 void WriteRecordVSEraseBgOffsets(void) {

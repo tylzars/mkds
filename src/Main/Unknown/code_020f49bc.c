@@ -335,7 +335,7 @@ void StartItemKouraGSound(void *a0, s32 b) {
     if (!(a->mUnk_000.mUnk_000.mFlags & 0x400000)) {
         return;
     }
-    func_0210b7ec(&a->mUnk_16c, a->mUnk_000.mUnk_000.mUnk_d4 & ~0xc000001f);
+    AdvanceSoundDistanceSquaredChange(&a->mUnk_16c, a->mUnk_000.mUnk_000.mUnk_d4 & ~0xc000001f);
     StartSoundWhileRequested(&a->mUnk_000.mUnk_000.mSoundSource, 0xd7, 0x7f, 0);
 }
 
@@ -344,7 +344,7 @@ BOOL InitItemKouraG(ItemInUse *a, ItemKouraG *b) {
 
     v = gRaceSetup->mMode == MODE_BATTLE;
     func_020f9114(b);
-    func_0210b850(&b->mUnk_16c);
+    ResetSoundDistanceSquaredChange(&b->mUnk_16c);
     b->mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
     if (a->mKartItems->mFlags & 0x20) {
         func_020f2b94(b, a, v != FALSE ? 2 : 4, 0, 0, 0x5000);
@@ -384,7 +384,7 @@ void *func_020f6038(void *a, ItemKouraG *b, void *c) {
 
 void InitItemKouraGFromData(ItemKouraG *a) {
     func_020f8e78(a);
-    func_0210b850(&a->mUnk_16c);
+    ResetSoundDistanceSquaredChange(&a->mUnk_16c);
     a->mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
     func_020f1ea4(a, 9, a->mUnk_168, 0);
 }
@@ -396,7 +396,7 @@ void StartItemKouraRSound(void *a0, s32 b) {
     if (!(a->mUnk_000.mUnk_000.mUnk_000.mFlags & 0x400000)) {
         return;
     }
-    func_0210b7ec(&a->mUnk_258, a->mUnk_000.mUnk_000.mUnk_000.mUnk_d4 & ~0xc000001f);
+    AdvanceSoundDistanceSquaredChange(&a->mUnk_258, a->mUnk_000.mUnk_000.mUnk_000.mUnk_d4 & ~0xc000001f);
     StartSoundWhileRequested(&a->mUnk_000.mUnk_000.mUnk_000.mSoundSource, 0xd8, 0x7f, 0);
 }
 
@@ -414,7 +414,7 @@ s32 InitItemKouraR(ItemInUse *a, ItemKouraR *b) {
     u16 n;
 
     func_020f9114(b);
-    func_0210b850(&b->mUnk_258);
+    ResetSoundDistanceSquaredChange(&b->mUnk_258);
     b->mUnk_000.mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
     func_02046be8(&b->mStateMachine, (UnkFunc *const *) gItemKouraRStateTable, 7, b);
     if (a->mKartItems->mFlags & 0x20) {
@@ -751,7 +751,7 @@ void InitItemKouraRFromData(ItemKouraR *a) {
     u16 i;
 
     func_020f8e78(a);
-    func_0210b850(&a->mUnk_258);
+    ResetSoundDistanceSquaredChange(&a->mUnk_258);
     a->mUnk_000.mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
     func_02046be8(&a->mStateMachine, (UnkFunc *const *) gItemKouraRStateTable, 7, a);
     if (a->mThrowForward != 0) {

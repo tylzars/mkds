@@ -3,7 +3,7 @@
 
 #pragma thumb on
 void func_0211f378(void) {
-    u32 value3;
+    u32 unused;
     func_0211f598();
 }
 #pragma thumb off

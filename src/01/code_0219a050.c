@@ -265,7 +265,7 @@ void InitRecordTopMenu(void *heap) {
         func_02124a98(data_ov001_021a6ac4[i], 1, gRecordTopMenu->mRecordTopMenuSNcer,
                       gRecordTopMenu->mRecordTopMenuSBncl);
     }
-    func_020ae6d4(func_02111318(), func_0211130c());
+    func_020ae6d4(GetRecordMainOam(), GetRecordSubOam());
     InitLayoutTable(heap, gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMBnll,
                     &gRecordTopMenu->mRecordTopMenuMTable);
     InitLayoutTable(heap, gRecordTopMenu->mRecordTopMenuSBncl, NULL, &gRecordTopMenu->mRecordTopMenuSTable);
@@ -652,10 +652,10 @@ void AdvanceRecordTopMenu(void) {
             break;
     }
     p = gRecordTopMenu;
-    DrawLayoutTable(p->mRecordTopMenuMBncl, p->mRecordTopMenuMNcer, p->mRecordTopMenuMBnll, func_02111318(),
+    DrawLayoutTable(p->mRecordTopMenuMBncl, p->mRecordTopMenuMNcer, p->mRecordTopMenuMBnll, GetRecordMainOam(),
                     p->mRecordTopMenuMTable);
     p = gRecordTopMenu;
-    DrawLayoutTable(p->mRecordTopMenuSBncl, p->mRecordTopMenuSNcer, NULL, func_0211130c(), p->mRecordTopMenuSTable);
+    DrawLayoutTable(p->mRecordTopMenuSBncl, p->mRecordTopMenuSNcer, NULL, GetRecordSubOam(), p->mRecordTopMenuSTable);
 }
 
 void func_ov001_0219a0c0(void) {

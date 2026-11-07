@@ -32,7 +32,7 @@ void func_0204ac10(void) {
     if (!p->mUnk_1c_0) {
         return;
     }
-    func_0210dca8(&p->mUnk_08, func_0210d960());
+    func_0210dca8(&p->mUnk_08, GetSoundFadeSteps());
     data_021759d0->mUnk_1c_0 = 0;
 }
 

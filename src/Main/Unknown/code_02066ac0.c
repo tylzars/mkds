@@ -383,7 +383,7 @@ void func_02066fe0(Kart *a) {
         return;
     }
     g = 1;
-    if (data_0217d084.mUnk_04 != 2 && data_0217d084.mUnk_04 != 3) {
+    if (data_0217d084.mMode != 2 && data_0217d084.mMode != 3) {
         g = 0;
     }
     if (g == 0) {

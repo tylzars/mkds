@@ -190,12 +190,12 @@ void AdvanceBouncingItemBoxInUse(ItemInUse *p0, BouncingItemBox *p1) {
         t.x = ((s64) p1->mUnk_000.mItemObject.mScale.x * n) >> 12;
         t.y = ((s64) p1->mUnk_000.mItemObject.mScale.y * n) >> 12;
         t.z = ((s64) p1->mUnk_000.mItemObject.mScale.z * n) >> 12;
-        func_02105338(b, p1->mUnk_000.mItemObject.mUnk_d8, &t);
+        SetPooledMapObjectFromItem(b, p1->mUnk_000.mItemObject.mUnk_d8, &t);
     } else {
         p1->mMapObjectPos = p1->mUnk_000.mItemObject.mPos;
-        func_02105338(b, p1->mUnk_000.mItemObject.mUnk_d8, &p1->mUnk_000.mItemObject.mScale);
+        SetPooledMapObjectFromItem(b, p1->mUnk_000.mItemObject.mUnk_d8, &p1->mUnk_000.mItemObject.mScale);
     }
-    func_021052fc(b);
+    AdvancePooledMapObject(b);
 }
 
 s32 InitBouncingItemBox(ItemInUse *p0, BouncingItemBox *p1) {
@@ -279,10 +279,10 @@ void AdvanceBouncingItemBox(BouncingItemBox *p) {
         t.z = ((s64) p->mUnk_000.mItemObject.mScale.z * n) >> 12;
         VEC_Subtract(&p->mUnk_000.mItemObject.mPos, &p->mMapObjectPos, &d);
         VEC_MultAdd(((s64) p->mScaleRatio * p->mScaleRatio) >> 12, &d, &p->mMapObjectPos, &p->mMapObjectPos);
-        func_02105338(b, p->mUnk_000.mItemObject.mUnk_d8, &t);
+        SetPooledMapObjectFromItem(b, p->mUnk_000.mItemObject.mUnk_d8, &t);
     } else {
         p->mMapObjectPos = p->mUnk_000.mItemObject.mPos;
-        func_02105338(b, p->mUnk_000.mItemObject.mUnk_d8, &p->mUnk_000.mItemObject.mScale);
+        SetPooledMapObjectFromItem(b, p->mUnk_000.mItemObject.mUnk_d8, &p->mUnk_000.mItemObject.mScale);
     }
-    func_021052fc(b);
+    AdvancePooledMapObject(b);
 }

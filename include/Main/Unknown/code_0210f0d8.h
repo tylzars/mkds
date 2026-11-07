@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-typedef struct Unk0210f090 Unk0210f090;
+typedef struct MicBuffer MicBuffer;
 
-void func_0210f0d8(Unk0210f090 *p);
-void func_0210f0f4(Unk0210f090 *a);
-void func_0210f114(Unk0210f090 *p);
+void StopMicAutoSampling(MicBuffer *micBuffer);
+void StartMicAutoSampling(MicBuffer *micBuffer);
+void func_0210f114(MicBuffer *micBuffer);

@@ -8,4 +8,4 @@ typedef struct Unk02100094 {
     /* 04 */ u16 mUnk_04;
 } Unk02100094;
 
-s32 func_02100094(Unk02100094 *p);
+s32 func_02100094(Unk02100094 *list);

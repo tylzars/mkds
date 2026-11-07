@@ -47,10 +47,10 @@
 
 // Combines the entry's three bytes into one number to order entries by.
 u16 GetRecordSortKey(u16 a) {
-    Unk02116a4c w;
+    DateBytes w;
 
     func_021142d4((u8) a, &w);
-    return w.mUnk_00 * 0x1a0 + w.mUnk_01 * 32 + w.mUnk_02;
+    return w.mYear * 0x1a0 + w.mMonth * 32 + w.mDay;
 }
 
 // Orders b entries from index a by descending key.
@@ -379,7 +379,7 @@ void PrintRecordVSShownRecord(void) {
     u16 buf[16];
     u32 v[3][3] = {0};
     u8 s[0x14];
-    Unk02116a4c w;
+    DateBytes w;
     RecordVS *d;
     s32 i;
     s32 j;
@@ -429,7 +429,7 @@ void PrintRecordVSShownRecord(void) {
             func_02124248(0, data_0215c410[2][2], gRecordVS->mRecordVSMBnll, buf, gRecordVS->mRecordVSMBncl,
                           gRecordVS->mRecordVSMTable, 6);
             func_021142d4(a + gRecordVS->mShownIndex, &w);
-            func_02116a4c(&w, buf);
+            FormatDate(&w, buf);
             func_02124224(0, 0xc, gRecordVS->mRecordVSMBnll, buf, gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMTable,
                           6);
             ReadRecordEmblem(a + gRecordVS->mShownIndex, gRecordVS->mEmblem, gRecordVS->mEmblemConverted);
@@ -615,7 +615,7 @@ void AdvanceRecordVSIndexChange(void) {
         } else {
             a = gRecordVS->mRecordVSMBncl->mUnk_06;
             b = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
-            v = func_02116d10(7 - gRecordVS->mIndexChangeTimer, 0);
+            v = LookupIndexChangeOffset(7 - gRecordVS->mIndexChangeTimer, 0);
             gRecordVS->mBg0OffsetY = v;
             gRecordVS->mRecordVSMTable[3].mUnk_06 = v;
             gRecordVS->mRecordVSMTable[a].mUnk_06 = v;
@@ -917,7 +917,7 @@ void InitRecordVS(void *a) {
     } else {
         gRecordVS->mState = 0;
         func_021134d4();
-        func_020ae6d4(func_02111318(), func_0211130c());
+        func_020ae6d4(GetRecordMainOam(), GetRecordSubOam());
     }
     gRecordVS->mRecordVSSTable[24].mUnk_00 = 0;
     gRecordVS->mRecordVSSTable[25].mUnk_00 = 0;

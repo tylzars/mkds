@@ -1698,7 +1698,7 @@ void AdvanceKartModelMenuInput(void) {
     }
     b = FALSE;
     d = b;
-    func_02108e6c(2);
+    GetSndHandleSlot(2);
     v1 = UNK_02175628_INDEX_8;
     k = data_02175628[v1].mBits;
     if ((u16) (k & PAD_KEY_RIGHT) != 0) {
@@ -1728,7 +1728,7 @@ void AdvanceKartModelMenuInput(void) {
     if (d != 0 || b != FALSE) {
         a = 1;
     }
-    func_02108e6c(1);
+    GetSndHandleSlot(1);
     v1 = UNK_02175628_INDEX_8;
     k = data_02175628[v1].mBits;
     if ((u16) (k & PAD_KEY_X) != 0) {

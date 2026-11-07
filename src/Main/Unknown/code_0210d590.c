@@ -11,7 +11,7 @@ static inline void func_0210d614_inline(Unk0217d070 *a, u32 b, NNSSndSeqPlayer *
     if (a->mUnk_0b == 0xff) {
         return;
     }
-    func_0210d7dc(b, data_0216cb28, c);
+    StartSeqAtVolume(b, data_0216cb28, c);
 }
 
 void func_0210d6cc(Unk0217d070 *a) {

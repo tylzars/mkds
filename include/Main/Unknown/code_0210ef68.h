@@ -6,6 +6,6 @@
 
 typedef struct NNSSndHeap NNSSndHeap;
 
-u32 func_0210efcc(NNSSndArc *a, const u8 *b, NNSSndHeap *c, u32 d);
-void func_0210efac(Unk0217d178 *p);
-void func_0210ef68(Unk0217d178 *p);
+u32 SetupSndArcFromFile(NNSSndArc *arc, const u8 *filePath, NNSSndHeap *heap, u32 symbolLoadFlag);
+void ClearSndFileIdList(Unk0217d178 *fileIdList);
+void ClearSndFileAddresses(Unk0217d178 *fileIdList);

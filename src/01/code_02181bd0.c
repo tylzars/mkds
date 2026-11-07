@@ -257,7 +257,7 @@ void func_ov001_021828f0(void) {
             }
         }
     }
-    q = func_02108e6c(2);
+    q = GetSndHandleSlot(2);
     if ((data_0217c780 & 1) && data_0217d084.mUnk_0c != 0) {
         if (*q != 0) {
             NNS_SndPlayerStopSeq(q, 0);
@@ -293,7 +293,7 @@ void func_ov001_021827f0(void) {
             }
         }
     }
-    q = func_02108e6c(2);
+    q = GetSndHandleSlot(2);
     if ((data_0217c780 & 1) && data_0217d084.mUnk_0c != 0) {
         if (*q != 0) {
             NNS_SndPlayerStopSeq(q, 0);

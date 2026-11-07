@@ -273,7 +273,7 @@ void LoadSceneSoundSet(Unk0210e524 a, u32 b) {
     if (func_02105504() == 0) {
         return;
     }
-    func_02111158(gRaceSetup->mMode);
+    LoadSeqRowIfChanged(gRaceSetup->mMode);
 }
 
 u32 LoadSndDataFromFile(void) {
@@ -288,7 +288,7 @@ u32 LoadSndDataFromFile(void) {
     u32 n;
 
     NNS_SndArcSetCurrent(&data_0217c868);
-    v = func_0210efcc(&data_0217d0a0, data_0216cb30, data_0217d130, 0);
+    v = SetupSndArcFromFile(&data_0217d0a0, data_0216cb30, data_0217d130, 0);
     func_0210d990(1);
     if (v == 0) {
         return 0;
@@ -354,7 +354,7 @@ u32 LoadCourseSoundSet(u32 a, u32 b) {
     NNS_SndArcSetCurrent(&data_0217d0a0);
     x = LoadSoundSetIfChanged(v, 1) != 0;
     if (x != 0) {
-        x = func_02111158(a);
+        x = LoadSeqRowIfChanged(a);
     }
     return x;
 }

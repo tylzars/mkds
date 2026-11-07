@@ -180,7 +180,7 @@ void func_ov001_021a1b08(void) {
             gSelectEngine->mUnk_40 = gSelectEngine->mIndex;
             func_ov001_021a1bf8();
         } else {
-            v = func_02116d10(7 - gSelectEngine->mUnk_3c, 0);
+            v = LookupIndexChangeOffset(7 - gSelectEngine->mUnk_3c, 0);
             for (i = 0; i < 6; i++) {
                 gSelectEngine->mSelectEngineMTable[data_ov001_021a6f68[i]].mUnk_06 = v;
             }

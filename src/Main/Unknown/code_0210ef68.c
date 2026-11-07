@@ -6,38 +6,38 @@
 #include "fs_file.h"
 #include "Main/Unknown/code_0210e33c.h"
 
-u32 func_0210efcc(NNSSndArc *a, const u8 *b, NNSSndHeap *c, u32 d) {
-    a->mInfo = NULL;
-    a->mFat = NULL;
-    a->mSymbol = NULL;
-    if (FS_ConvertPathToFileID(&a->mFileId, b) == 0) {
+u32 SetupSndArcFromFile(NNSSndArc *arc, const u8 *filePath, NNSSndHeap *heap, u32 symbolLoadFlag) {
+    arc->mInfo = NULL;
+    arc->mFat = NULL;
+    arc->mSymbol = NULL;
+    if (FS_ConvertPathToFileID(&arc->mFileId, filePath) == 0) {
         return 0;
     }
-    FS_InitFile(&a->mFile);
-    if (FS_OpenFileFast(&a->mFile, a->mFileId) == 0) {
+    FS_InitFile(&arc->mFile);
+    if (FS_OpenFileFast(&arc->mFile, arc->mFileId) == 0) {
         return 0;
     }
-    a->mFileOpen = 1;
-    if (NNS_SndArcSetup(a, c, d) == 0) {
+    arc->mFileOpen = 1;
+    if (NNS_SndArcSetup(arc, heap, symbolLoadFlag) == 0) {
         return 0;
     }
-    NNS_SndArcSetCurrent(a);
+    NNS_SndArcSetCurrent(arc);
     return 1;
 }
 
-void func_0210efac(Unk0217d178 *p) {
+void ClearSndFileIdList(Unk0217d178 *fileIdList) {
     s32 i;
 
     for (i = 0; i < 16; i++) {
-        p->mFileIds[i] = 0;
+        fileIdList->mFileIds[i] = 0;
     }
-    p->mCount = 0;
+    fileIdList->mCount = 0;
 }
 
-void func_0210ef68(Unk0217d178 *p) {
+void ClearSndFileAddresses(Unk0217d178 *fileIdList) {
     s32 i;
 
-    for (i = 0; i < p->mCount; i++) {
-        NNS_SndArcSetFileAddress(p->mFileIds[i], NULL);
+    for (i = 0; i < fileIdList->mCount; i++) {
+        NNS_SndArcSetFileAddress(fileIdList->mFileIds[i], NULL);
     }
 }

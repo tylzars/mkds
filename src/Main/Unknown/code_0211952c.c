@@ -66,7 +66,7 @@ void func_02119d78(void) {
             func_02119e88();
         } else if (*(vu16 *) 0x027ffc40 != 2) {
             w = gSelectCupCourse->mSelectCupCourseTaOrVsMBncl->mUnk_06;
-            r = func_02116d10(7 - gSelectCupCourse->mIndexChangeTimer, 1);
+            r = LookupIndexChangeOffset(7 - gSelectCupCourse->mIndexChangeTimer, 1);
             gSelectCupCourse->mSelectCupCourseTaOrVsMTable[w].mUnk_06 = r;
             gSelectCupCourse->mSelectCupCourseTaOrVsMTable[w + 1].mUnk_06 = r;
         }

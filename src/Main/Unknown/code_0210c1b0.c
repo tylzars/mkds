@@ -63,13 +63,13 @@ void func_0210cc3c(SoundSource *p) {
                     s->mUnk_19 &= ~4;
                     s->mUnk_19 &= ~8;
                     s->mUnk_19 &= ~2;
-                    func_0210bc54(&p->mPlayingSounds, s);
+                    RemoveListObject(&p->mPlayingSounds, s);
                     v = 1;
                     continue;
                 }
             } else if (a->mUnk_19 & 1) {
                 if (p->mUnk_18 == 3) {
-                    func_0210bc8c(&data_0217d054, p);
+                    TryAppendListObject(&data_0217d054, p);
                     p->mUnk_18 = 1;
                 }
             }
@@ -80,7 +80,7 @@ void func_0210cc3c(SoundSource *p) {
             s->mUnk_19 &= ~4;
             s->mUnk_19 &= ~8;
             s->mUnk_19 &= ~2;
-            func_0210bc54(&p->mPlayingSounds, s);
+            RemoveListObject(&p->mPlayingSounds, s);
             v = 1;
             continue;
         }
@@ -101,11 +101,11 @@ void func_0210cc3c(SoundSource *p) {
     }
     if (p->mUnk_18 != v) {
         if (p->mUnk_18 != 3) {
-            func_0210bc54(&data_0217d048[p->mUnk_18], p);
+            RemoveListObject(&data_0217d048[p->mUnk_18], p);
             p->mUnk_18 = 3;
         }
         if (v != 3) {
-            func_0210bc8c(&data_0217d048[v], p);
+            TryAppendListObject(&data_0217d048[v], p);
             p->mUnk_18 = v;
         }
     }
@@ -185,8 +185,8 @@ PlayingSound *StartSoundEx(SoundSource *a, u32 b, u32 c, u32 d, s16 e) {
         f = (w->mSoundId == c) && (w->mUnk_18 == b);
         if (f) {
             StopPlayingSound(a, w, 0);
-            func_0210e328(w);
-            func_0210bce0(&w->mUnk_08);
+            ResetPlayingSoundHandle(w);
+            ClearThreeWords(&w->mUnk_08);
             w->mUnk_18 = 0;
             w->mSoundId = 0;
             w->mUnk_19 = 0;
@@ -201,13 +201,13 @@ PlayingSound *StartSoundEx(SoundSource *a, u32 b, u32 c, u32 d, s16 e) {
         func_0210c084(v, 0);
         u = v->mUnk_10;
         if (u != NULL) {
-            func_0210bc54(u, v);
+            RemoveListObject(u, v);
             func_0210bfbc((SoundSource *) (u - 1));
         }
         ResetPlayingSound(v);
     }
-    func_0210e328(v);
-    func_0210bce0(&v->mUnk_08);
+    ResetPlayingSoundHandle(v);
+    ClearThreeWords(&v->mUnk_08);
     v->mUnk_18 = 0;
     v->mSoundId = 0;
     v->mUnk_19 = 0;
@@ -218,13 +218,13 @@ PlayingSound *StartSoundEx(SoundSource *a, u32 b, u32 c, u32 d, s16 e) {
     v->mUnk_19 |= 2;
     v->mVolume = d;
     v->mUnk_14 = e;
-    func_0210bc8c(&a->mPlayingSounds, v);
+    TryAppendListObject(&a->mPlayingSounds, v);
     if (a->mUnk_18 != 0) {
         if (a->mUnk_18 != 3) {
-            func_0210bc54(&data_0217d048[a->mUnk_18], a);
+            RemoveListObject(&data_0217d048[a->mUnk_18], a);
             a->mUnk_18 = 3;
         }
-        func_0210bc8c(data_0217d048, a);
+        TryAppendListObject(data_0217d048, a);
         a->mUnk_18 = 0;
     }
     return v;
@@ -252,14 +252,14 @@ PlayingSound *StartSoundWhileRequestedEx(SoundSource *a, u32 b, u32 c, u32 d, s1
                     w->mVolume = d;
                     w->mUnk_14 = e;
                     if (a->mUnk_18 == 3) {
-                        func_0210bc8c(&data_0217d054, a);
+                        TryAppendListObject(&data_0217d054, a);
                         a->mUnk_18 = 1;
                     }
                     return w;
                 }
                 StopPlayingSound(a, w, 0);
-                func_0210e328(w);
-                func_0210bce0(&w->mUnk_08);
+                ResetPlayingSoundHandle(w);
+                ClearThreeWords(&w->mUnk_08);
                 w->mUnk_18 = 0;
                 w->mSoundId = 0;
                 w->mUnk_19 = 0;
@@ -275,13 +275,13 @@ PlayingSound *StartSoundWhileRequestedEx(SoundSource *a, u32 b, u32 c, u32 d, s1
         func_0210c084(v, 0);
         u = v->mUnk_10;
         if (u != NULL) {
-            func_0210bc54(u, v);
+            RemoveListObject(u, v);
             func_0210bfbc((SoundSource *) (u - 1));
         }
         ResetPlayingSound(v);
     }
-    func_0210e328(v);
-    func_0210bce0(&v->mUnk_08);
+    ResetPlayingSoundHandle(v);
+    ClearThreeWords(&v->mUnk_08);
     v->mUnk_18 = 0;
     v->mSoundId = 0;
     v->mUnk_19 = 0;
@@ -294,13 +294,13 @@ PlayingSound *StartSoundWhileRequestedEx(SoundSource *a, u32 b, u32 c, u32 d, s1
     v->mUnk_14 = e;
     v->mUnk_19 |= 4;
     v->mUnk_19 |= 8;
-    func_0210bc8c(&a->mPlayingSounds, v);
+    TryAppendListObject(&a->mPlayingSounds, v);
     if (a->mUnk_18 != 0) {
         if (a->mUnk_18 != 3) {
-            func_0210bc54(&data_0217d048[a->mUnk_18], a);
+            RemoveListObject(&data_0217d048[a->mUnk_18], a);
             a->mUnk_18 = 3;
         }
-        func_0210bc8c(data_0217d048, a);
+        TryAppendListObject(data_0217d048, a);
         a->mUnk_18 = 0;
     }
     return v;
@@ -338,7 +338,7 @@ void StopPlayingSound(SoundSource *p, PlayingSound *b, u32 c) {
     b->mUnk_19 &= ~4;
     b->mUnk_19 &= ~8;
     b->mUnk_19 &= ~2;
-    func_0210bc54(&p->mPlayingSounds, b);
+    RemoveListObject(&p->mPlayingSounds, b);
     v = 3;
     for (a = p->mPlayingSounds.mHead; a != NULL; a = NNS_FndGetNextListObject(&p->mPlayingSounds, a)) {
         f = a->mUnk_19;
@@ -352,11 +352,11 @@ void StopPlayingSound(SoundSource *p, PlayingSound *b, u32 c) {
     }
     if (p->mUnk_18 != v) {
         if (p->mUnk_18 != 3) {
-            func_0210bc54(&data_0217d048[p->mUnk_18], p);
+            RemoveListObject(&data_0217d048[p->mUnk_18], p);
             p->mUnk_18 = 3;
         }
         if (v != 3) {
-            func_0210bc8c(&data_0217d048[v], p);
+            TryAppendListObject(&data_0217d048[v], p);
             p->mUnk_18 = v;
         }
     }
@@ -370,10 +370,10 @@ void StopAllSoundsAndReleaseSoundSource(SoundSource *p) {
         a->mUnk_19 &= ~4;
         a->mUnk_19 &= ~8;
         a->mUnk_19 &= ~2;
-        func_0210bc54(&p->mPlayingSounds, a);
+        RemoveListObject(&p->mPlayingSounds, a);
     }
     if (p->mUnk_18 != 3) {
-        func_0210bc54(&data_0217d048[p->mUnk_18], p);
+        RemoveListObject(&data_0217d048[p->mUnk_18], p);
         p->mUnk_18 = 3;
     }
     ReleaseSoundSource(p);
@@ -395,7 +395,7 @@ void StopSoundsStartedWhileRequested(SoundSource *p, u32 b) {
             c->mUnk_19 &= ~4;
             c->mUnk_19 &= ~8;
             c->mUnk_19 &= ~2;
-            func_0210bc54(&p->mPlayingSounds, c);
+            RemoveListObject(&p->mPlayingSounds, c);
             v = 1;
             continue;
         }
@@ -417,11 +417,11 @@ void StopSoundsStartedWhileRequested(SoundSource *p, u32 b) {
     }
     if (p->mUnk_18 != v) {
         if (p->mUnk_18 != 3) {
-            func_0210bc54(&data_0217d048[p->mUnk_18], p);
+            RemoveListObject(&data_0217d048[p->mUnk_18], p);
             p->mUnk_18 = 3;
         }
         if (v != 3) {
-            func_0210bc8c(&data_0217d048[v], p);
+            TryAppendListObject(&data_0217d048[v], p);
             p->mUnk_18 = v;
         }
     }
@@ -432,12 +432,12 @@ void ReleaseSoundSource(SoundSource *p) {
 
     StopSoundsStartedWhileRequested(p, 0);
     for (a = p->mPlayingSounds.mHead; a != NULL; a = p->mPlayingSounds.mHead) {
-        func_0210bc54(&p->mPlayingSounds, a);
+        RemoveListObject(&p->mPlayingSounds, a);
     }
     if (p->mUnk_18 != 3) {
-        func_0210bc54(&data_0217d048[p->mUnk_18], p);
+        RemoveListObject(&data_0217d048[p->mUnk_18], p);
         p->mUnk_18 = 3;
     }
-    func_0210bc54(&data_0217d028, p);
+    RemoveListObject(&data_0217d028, p);
     p->mUnk_38 = 0;
 }

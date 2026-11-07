@@ -17,11 +17,11 @@ typedef struct Unk0216ca48 {
 extern Unk0216ca48 data_0216ca48;
 
 void func_0210b870(void);
-void func_0210b874(struct Unk020e71a0_94 *p, s32 b);
-int func_0210b8bc(void *p, s32 b);
-void func_0210b8f4(void *p, s32 b);
-void func_0210b924(void *p, s32 b);
-void func_0210b98c(struct Unk020e71a0_94 *p, s32 b);
-void func_0210ba38(struct Unk020e71a0_94 *p, s32 b);
-void func_0210ba78(void *p0, s32 b);
+void func_0210b874(struct Unk020e71a0_94 *mapSound, s32 b);
+int func_0210b8bc(void *soundSource, s32 b);
+void func_0210b8f4(void *position, s32 distanceSquared);
+void func_0210b924(void *position, s32 distanceSquared);
+void func_0210b98c(struct Unk020e71a0_94 *mapSound, s32 soundId);
+void func_0210ba38(struct Unk020e71a0_94 *mapSound, s32 soundId);
+void func_0210ba78(void *mapSound, s32 b);
 u32 func_0210bac0(void);

@@ -4,4 +4,4 @@
 
 typedef struct PlayingSound PlayingSound;
 
-void func_0210e328(PlayingSound *arg0);
+void ResetPlayingSoundHandle(PlayingSound *sound);

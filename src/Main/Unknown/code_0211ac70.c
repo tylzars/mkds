@@ -1445,16 +1445,16 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
         case 2:
         case 4:
             func_021170f8();
-            func_02116fb0();
+            FillRandomCharacterIndices();
             func_02117060();
-            func_02116ef8();
+            FillRandomKartIndices();
             break;
         case 3:
         case 5:
             func_021170f8();
-            func_02116fb0();
+            FillRandomCharacterIndices();
             func_02117060();
-            func_02116ec0();
+            SetKartIndicesFromCharacters();
             break;
     }
     switch (gSelectRaceRule->mMode) {

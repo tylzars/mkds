@@ -18,58 +18,58 @@
 #pragma thumb on
 
 void InitRecordScene(s16 *a) {
-    void *p;
-    p = GetHeap(GetCurrentHeapCall());
-    data_0217d33c = HeapAlloc(p, 0x404);
-    data_0217d340 = HeapAlloc(p, 0x404);
-    InitRecordSceneObject(p, *a);
+    void *heap;
+    heap = GetHeap(GetCurrentHeapCall());
+    gRecordMainOam = HeapAlloc(heap, 0x404);
+    gRecordSubOam = HeapAlloc(heap, 0x404);
+    InitRecordSceneObject(heap, *a);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 void ReleaseRecordScene(void) {
-    u32 value0;
-    u32 value1;
+    u32 address;
+    u32 zero;
     ReleaseRecordSceneObject();
-    value1 = 0u;
-    value0 = (u32) &data_0217d33c;
-    *(u32 *) ((value0) + 0u) = value1;
-    value0 = (u32) &data_0217d340;
-    *(u32 *) ((value0) + 0u) = value1;
+    zero = 0u;
+    address = (u32) &gRecordMainOam;
+    *(u32 *) ((address) + 0u) = zero;
+    address = (u32) &gRecordSubOam;
+    *(u32 *) ((address) + 0u) = zero;
 }
 #pragma thumb off
 
 #pragma thumb on
 void func_02111368(void) {
-    u32 value0;
-    u32 value1;
+    u32 mainOam;
+    u32 subOam;
     WriteRecordSceneRegisters();
-    value0 = (u32) &data_0217d33c;
-    value0 = *(const u32 *) ((value0) + 0u);
-    value1 = (u32) &data_0217d340;
-    value1 = *(const u32 *) ((value1) + 0u);
-    func_020ae5f0((void *) value0, (void *) value1);
+    mainOam = (u32) &gRecordMainOam;
+    mainOam = *(const u32 *) ((mainOam) + 0u);
+    subOam = (u32) &gRecordSubOam;
+    subOam = *(const u32 *) ((subOam) + 0u);
+    func_020ae5f0((void *) mainOam, (void *) subOam);
 }
 #pragma thumb off
 
 #pragma thumb on
 
 void UpdateRecordScene(Unk02111324 *a) {
-    func_020ae6ac(data_0217d33c, data_0217d340);
+    func_020ae6ac(gRecordMainOam, gRecordSubOam);
     AdvanceRecordScene();
-    func_020ae630(data_0217d33c, data_0217d340);
+    func_020ae630(gRecordMainOam, gRecordSubOam);
     if (a != NULL && GetRecordNextScene() != -1) {
         a->mUnk_04 = GetRecordNextScene();
     }
 }
 
-void *func_02111318(void) {
-    return data_0217d33c;
+void *GetRecordMainOam(void) {
+    return gRecordMainOam;
 }
 
-void *func_0211130c(void) {
-    return data_0217d340;
+void *GetRecordSubOam(void) {
+    return gRecordSubOam;
 }
 
 #pragma thumb off

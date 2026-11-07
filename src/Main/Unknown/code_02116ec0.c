@@ -15,126 +15,126 @@
 
 #pragma thumb on
 
-void func_0211717c(void *a) {
+void CreateCharacterKartPicks(void *heap) {
     u32 v1;
-    v1 = ((u32) HeapAlloc(a, 4));
-    *(u32 *) &data_0217d358 = v1;
-    v1 = (u32) func_0203bedc(a);
-    *(u32 *) (*(u32 *) &data_0217d358) = v1;
+    v1 = ((u32) HeapAlloc(heap, 4));
+    *(u32 *) &gPicksHolder = v1;
+    v1 = (u32) func_0203bedc(heap);
+    *(u32 *) (*(u32 *) &gPicksHolder) = v1;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_02117170(void) {
-    data_0217d358 = NULL;
+void ClearPicksHolderPointer(void) {
+    gPicksHolder = NULL;
 }
 
 void func_021170f8(void) {
     int n;
-    BOOL c;
-    u32 a, b;
+    BOOL isEightOrNine;
+    u32 zeroValue, noIndex;
 
-    func_0203bec0(data_0217d358->mUnk_00);
+    func_0203bec0(gPicksHolder->mPicks);
     if (data_021759d0->mUnk_20 == 0) {
         n = 1;
     } else {
-        c = TRUE;
+        isEightOrNine = TRUE;
         if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
-            c = FALSE;
+            isEightOrNine = FALSE;
         }
-        n = (u8) (c != FALSE ? CountSetBits(data_0217aa00->mParticipantMask) : 0);
+        n = (u8) (isEightOrNine != FALSE ? CountSetBits(data_0217aa00->mParticipantMask) : 0);
     }
-    a = 0;
-    b = ~0;
+    zeroValue = 0;
+    noIndex = ~0;
     for (; n < 8; n++) {
-        SetCharacterIndex(n, b);
-        func_020294ac(n, a);
+        SetCharacterIndex(n, noIndex);
+        func_020294ac(n, zeroValue);
     }
 }
 
 void func_02117060(void) {
     int i;
     int n;
-    BOOL c;
-    u32 a, b;
+    BOOL isEightOrNine;
+    u32 zeroValue, noIndex;
 
-    func_0203bec0(data_0217d358->mUnk_00);
+    func_0203bec0(gPicksHolder->mPicks);
     if (data_021759d0->mUnk_20 == 0) {
         n = 1;
     } else {
-        c = TRUE;
+        isEightOrNine = TRUE;
         if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
-            c = FALSE;
+            isEightOrNine = FALSE;
         }
-        n = (u8) (c != FALSE ? CountSetBits(data_0217aa00->mParticipantMask) : 0);
+        n = (u8) (isEightOrNine != FALSE ? CountSetBits(data_0217aa00->mParticipantMask) : 0);
     }
     for (i = 0; i < 8; i++) {
-        func_0203bea4(data_0217d358->mUnk_00, (u8) i, GetCharacterIndex(i));
+        func_0203bea4(gPicksHolder->mPicks, (u8) i, GetCharacterIndex(i));
     }
-    a = 0;
-    b = ~0;
+    zeroValue = 0;
+    noIndex = ~0;
     for (; n < 8; n++) {
-        SetKartIndex(n, b);
-        func_020294ac(n, a);
+        SetKartIndex(n, noIndex);
+        func_020294ac(n, zeroValue);
     }
 }
 
-void func_02116fb0(void) {
+void FillRandomCharacterIndices(void) {
     int i;
     int n;
-    BOOL c;
-    u32 v;
+    BOOL isEightOrNine;
+    u32 pickedIndex;
 
-    v = ~0;
+    pickedIndex = ~0;
     if (data_021759d0->mUnk_20 == 0) {
         n = 1;
     } else {
-        c = TRUE;
+        isEightOrNine = TRUE;
         if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
-            c = FALSE;
+            isEightOrNine = FALSE;
         }
-        n = (u8) (c != FALSE ? CountSetBits(data_0217aa00->mParticipantMask) : 0);
+        n = (u8) (isEightOrNine != FALSE ? CountSetBits(data_0217aa00->mParticipantMask) : 0);
     }
     for (i = 0; i < n; i++) {
-        func_0203bea4(data_0217d358->mUnk_00, (u8) i, GetCharacterIndex(i));
+        func_0203bea4(gPicksHolder->mPicks, (u8) i, GetCharacterIndex(i));
     }
-    PickRandomCharacters(data_0217d358->mUnk_00);
+    PickRandomCharacters(gPicksHolder->mPicks);
     for (; n < 8; n++) {
-        func_0203be48(data_0217d358->mUnk_00, n, &v, NULL);
-        SetCharacterIndex(n, v);
+        func_0203be48(gPicksHolder->mPicks, n, &pickedIndex, NULL);
+        SetCharacterIndex(n, pickedIndex);
     }
 }
 
-void func_02116ef8(void) {
+void FillRandomKartIndices(void) {
     int i;
     int n;
-    BOOL c;
-    u32 v;
+    BOOL isEightOrNine;
+    u32 pickedIndex;
 
-    v = ~0;
+    pickedIndex = ~0;
     if (data_021759d0->mUnk_20 == 0) {
         n = 1;
     } else {
-        c = TRUE;
+        isEightOrNine = TRUE;
         if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
-            c = FALSE;
+            isEightOrNine = FALSE;
         }
-        n = (u8) (c != FALSE ? CountSetBits(data_0217aa00->mParticipantMask) : 0);
+        n = (u8) (isEightOrNine != FALSE ? CountSetBits(data_0217aa00->mParticipantMask) : 0);
     }
     for (i = 0; i < n; i++) {
-        func_0203be88(data_0217d358->mUnk_00, (u8) i, GetKartIndex(i));
+        func_0203be88(gPicksHolder->mPicks, (u8) i, GetKartIndex(i));
     }
-    PickRandomKarts(data_0217d358->mUnk_00);
+    PickRandomKarts(gPicksHolder->mPicks);
     for (; n < 8; n++) {
-        func_0203be48(data_0217d358->mUnk_00, n, NULL, &v);
-        SetKartIndex(n, v);
+        func_0203be48(gPicksHolder->mPicks, n, NULL, &pickedIndex);
+        SetKartIndex(n, pickedIndex);
         func_020294ac(n, 1);
     }
 }
 
-void func_02116ec0(void) {
+void SetKartIndicesFromCharacters(void) {
     int i;
 
     for (i = 0; i < 8; i++) {

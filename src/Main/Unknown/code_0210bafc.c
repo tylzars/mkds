@@ -7,32 +7,32 @@
 #include "code_0212d214.h"
 #include "code_020172d0.h"
 
-u32 func_0210bc8c(void *a, void *b) {
-    BOOL i;
-    Unk0210bc54 *p;
+u32 TryAppendListObject(void *list, void *object) {
+    BOOL willAppend;
+    Unk0210bc54 *link;
 
-    p = OFFSET_PTR(Unk0210bc54, b, ((NNSFndList *) a)->mLinkOffset);
-    if (p->mUnk_08 != 0) {
-        i = FALSE;
+    link = OFFSET_PTR(Unk0210bc54, object, ((NNSFndList *) list)->mLinkOffset);
+    if (link->mUnk_08 != 0) {
+        willAppend = FALSE;
     } else {
-        i = TRUE;
-        p->mUnk_08 = a;
+        willAppend = TRUE;
+        link->mUnk_08 = list;
     }
-    if (i != FALSE) {
-        NNS_FndAppendListObject(a, b);
+    if (willAppend != FALSE) {
+        NNS_FndAppendListObject(list, object);
     } else {
         return 0;
     }
     return 1;
 }
 
-void func_0210bc54(NNSFndList *a, void *b) {
-    Unk0210bc54 *p;
+void RemoveListObject(NNSFndList *list, void *object) {
+    Unk0210bc54 *link;
 
-    NNS_FndRemoveListObject(a, b);
-    p = OFFSET_PTR(Unk0210bc54, b, a->mLinkOffset);
-    if (p->mUnk_08 != 0) {
-        p->mUnk_08 = 0;
+    NNS_FndRemoveListObject(list, object);
+    link = OFFSET_PTR(Unk0210bc54, object, list->mLinkOffset);
+    if (link->mUnk_08 != 0) {
+        link->mUnk_08 = 0;
     }
 }
 
@@ -40,62 +40,62 @@ void func_0210bc14(void) {
     __clear(data_0217cd30, 0x17 * sizeof(Unk0217cd30));
 }
 
-u32 func_0210bc00(u32 arg0, u32 arg1, void *arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = (u32) arg2;
-    u32 value3;
-    value3 = (u32) &data_0217cd30;
-    value0 = (value3) + ((value0 << 5));
+u32 func_0210bc00(u32 rowIndex, u32 columnIndex, void *entries) {
+    u32 value0 = rowIndex;
+    u32 value1 = columnIndex;
+    u32 value2 = (u32) entries;
+    u32 table;
+    table = (u32) &data_0217cd30;
+    value0 = (table) + ((value0 << 5));
     *(u32 *) ((value0) + ((value1 << 2))) = value2;
     return value0;
 }
 
-u32 func_0210bbec(u32 arg0, u32 arg1, Unk0216c860 *arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = (u32) arg2;
-    u32 value3;
-    value3 = (u32) &data_0217cd30;
-    value0 = (value3) + ((value0 << 5));
+u32 func_0210bbec(u32 rowIndex, u32 columnIndex, Unk0216c860 *entries) {
+    u32 value0 = rowIndex;
+    u32 value1 = columnIndex;
+    u32 value2 = (u32) entries;
+    u32 table;
+    table = (u32) &data_0217cd30;
+    value0 = (table) + ((value0 << 5));
     *(u32 *) ((value0) + ((value1 << 2))) = value2;
     return value0;
 }
 
-u32 func_0210bb74(s32 a, s32 b, s32 c) {
-    s32 p;
+u32 GetSurfaceSoundId(s32 entryIndex, s32 surfaceKind, s32 surfaceVariant) {
+    s32 idArray;
     s32 v;
 
-    p = ((Unk0217cd30 *) data_0217cd30)[b].mUnk_00[c];
-    v = p != 0 ? ((u32 *) p)[a] : 0xffff;
+    idArray = ((Unk0217cd30 *) data_0217cd30)[surfaceKind].mUnk_00[surfaceVariant];
+    v = idArray != 0 ? ((u32 *) idArray)[entryIndex] : 0xffff;
     if (v != 0xffff) {
         return (u16) v;
     }
-    v = data_0215a6fc[b][c];
+    v = data_0215a6fc[surfaceKind][surfaceVariant];
     if (v == 0x14) {
         v = 0xffff;
     }
     if (v == 0xffff) {
         return 0xffff;
     }
-    return *(u16 *) (data_0216ca84 + a * 0x26 + v * 2);
+    return *(u16 *) (data_0216ca84 + entryIndex * 0x26 + v * 2);
 }
 
-u32 func_0210bafc(s32 a, s32 b, s32 c) {
-    s32 p;
+u32 func_0210bafc(s32 entryIndex, s32 rowIndex, s32 columnIndex) {
+    s32 idArray;
     s32 v;
 
-    p = ((Unk0217cd30 *) data_0217cd30)[b].mUnk_00[c];
-    v = p != 0 ? ((u32 *) p)[a] : 0xffff;
+    idArray = ((Unk0217cd30 *) data_0217cd30)[rowIndex].mUnk_00[columnIndex];
+    v = idArray != 0 ? ((u32 *) idArray)[entryIndex] : 0xffff;
     if (v != 0xffff) {
         return (u16) v;
     }
-    v = data_0215a6fc[b][c];
+    v = data_0215a6fc[rowIndex][columnIndex];
     if (v == 0xe) {
         v = 0xffff;
     }
     if (v == 0xffff) {
         return 0xffff;
     }
-    return *(u16 *) (data_0216ca68 + a * 0x1a + v * 2);
+    return *(u16 *) (data_0216ca68 + entryIndex * 0x1a + v * 2);
 }

@@ -253,7 +253,7 @@ void UpdateFireball2(void *a, Fireball2 *b) {
             d = Vec3DotUnrounded(&v, &b->mUnk_00.mMatrix.mUnk_00[2]);
             if ((b->mUnk_19e4 < 0 && d > 0) || (b->mUnk_19e4 > 0 && d < 0)) {
                 func_02108e38();
-                h = func_02108e6c(7);
+                h = GetSndHandleSlot(7);
                 if ((data_0217c780 & 1) && data_0217d084.mUnk_0c != 0) {
                     if (h[0] != NULL) {
                         NNS_SndPlayerStopSeq(h, 0);

@@ -4,7 +4,7 @@
 #include "Main/Unknown/unk_02029930.h" // Unk02029930_f8
 #include "tp.h"
 
-typedef struct Unk0210f090 Unk0210f090;
+typedef struct MicBuffer MicBuffer;
 
 // Three values that func_020565e4 and func_0205660c fill: a halfword and two bytes.
 typedef struct Unk020565e4 {
@@ -260,7 +260,7 @@ typedef struct TouchMicInput {
         };
     };
     /* 34 */ u8 mUnk_34[0x8];
-    /* 3c */ Unk0210f090 *mMicBuffer;
+    /* 3c */ MicBuffer *mMicBuffer;
 } TouchMicInput;
 
 extern TouchMicInput *gTouchMicInput;

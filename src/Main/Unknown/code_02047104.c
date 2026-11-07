@@ -813,5 +813,5 @@ void InitTouchMicInput(void *a) {
     gTouchMicInput->mUnk_30_2 = 0;
     gTouchMicInput->mUnk_30_3 = 0;
     gTouchMicInput->mMicBuffer = NULL;
-    func_0210f1d4();
+    InitMicAndAmp();
 }

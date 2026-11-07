@@ -4,6 +4,6 @@
 
 void func_020bb5cc(void) {
     NNSSndSeqPlayer **v1;
-    v1 = func_02108e88();
+    v1 = GetSndHandles();
     NNS_SndPlayerStopSeq(v1, 0);
 }

@@ -12,93 +12,94 @@
 
 u32 func_0210bac0(void) {
     u32 value0;
-    u32 value1;
+    u32 zero;
     value0 = (u32) &data_0217ccac;
-    value1 = 0u;
-    *(u32 *) ((value0) + (0)) = value1;
+    zero = 0u;
+    *(u32 *) ((value0) + (0)) = zero;
     return value0;
 }
 
-void func_0210ba78(void *p0, s32 b) {
+void func_0210ba78(void *mapSound, s32 b) {
     Kart *p;
     s32 c;
 
-    p = p0;
+    p = mapSound;
     c = *(s32 *) data_0217ccac;
     StartSound(&p->mSoundSource, b + c, (0x7f - (c >> 1)) & 0xff, 0);
     *(u32 *) data_0217ccac = *(u32 *) (u32) data_0217ccac + 0xa;
 }
 
-void func_0210ba38(struct Unk020e71a0_94 *p, s32 b) {
-    func_0210ddf4(&data_0217d29c, p->mSoundSource.mDistanceSquared + 0x15f90, (void (*)(void *, int)) func_0210bad4, p,
-                  b);
+void func_0210ba38(struct Unk020e71a0_94 *mapSound, s32 soundId) {
+    func_0210ddf4(&data_0217d29c, mapSound->mSoundSource.mDistanceSquared + 0x15f90,
+                  (void (*)(void *, int)) func_0210bad4, mapSound, soundId);
 }
 
-void func_0210b98c(struct Unk020e71a0_94 *p, s32 b) {
-    s32 c;
+void func_0210b98c(struct Unk020e71a0_94 *mapSound, s32 soundId) {
+    s32 distanceOffset;
 
-    c = 0;
-    switch (b - 0x130) {
+    distanceOffset = 0;
+    switch (soundId - 0x130) {
         case 0:
-            c = 0x640;
+            distanceOffset = 0x640;
             break;
         case 1:
-            c = 0x1900;
+            distanceOffset = 0x1900;
             break;
         case 2:
-            c = 0x3840;
+            distanceOffset = 0x3840;
             break;
         case 8:
-            c = 0x6400;
+            distanceOffset = 0x6400;
             break;
         case 9:
-            c = 0xe100;
+            distanceOffset = 0xe100;
             break;
         case 3:
-            c = 0x9c40;
+            distanceOffset = 0x9c40;
             break;
         case 7:
-            c = 0x19;
+            distanceOffset = 0x19;
             break;
     }
-    func_0210ddf4(&data_0217d29c, p->mSoundSource.mDistanceSquared + c, func_0210ba78, p, b);
+    func_0210ddf4(&data_0217d29c, mapSound->mSoundSource.mDistanceSquared + distanceOffset, func_0210ba78, mapSound,
+                  soundId);
 }
 
-void func_0210b924(void *p, s32 b) {
-    Unk0216ca48 v;
-    Unk0216ca48 *q;
+void func_0210b924(void *position, s32 distanceSquared) {
+    Unk0216ca48 requestCopy;
+    Unk0216ca48 *request;
 
-    q = &v;
-    *q = data_0216ca48;
-    q->mUnk_04 = p;
-    q->mUnk_0c = b;
+    request = &requestCopy;
+    *request = data_0216ca48;
+    request->mUnk_04 = position;
+    request->mUnk_0c = distanceSquared;
     if (data_0217c780 & 1) {
-        func_0210bf24(0, q->mUnk_00, (u32) q->mUnk_04, q);
+        func_0210bf24(0, request->mUnk_00, (u32) request->mUnk_04, request);
     }
 }
 
-void func_0210b8f4(void *p, s32 b) {
-    func_0210ddf4(&data_0217d29c, b, func_0210b924, p, b);
+void func_0210b8f4(void *position, s32 distanceSquared) {
+    func_0210ddf4(&data_0217d29c, distanceSquared, func_0210b924, position, distanceSquared);
 }
 
-int func_0210b8bc(void *p, s32 b) {
-    s32 c;
+int func_0210b8bc(void *soundSource, s32 b) {
+    s32 clampedValue;
 
-    c = b >> 12;
-    if (c > 0x1e) {
-        c = 0x1e;
+    clampedValue = b >> 12;
+    if (clampedValue > 0x1e) {
+        clampedValue = 0x1e;
     }
-    return (s32) StartSound(p, 0x1ce, ((c * 2) + 0x3c) & 0xff, c - 0xa);
+    return (s32) StartSound(soundSource, 0x1ce, ((clampedValue * 2) + 0x3c) & 0xff, clampedValue - 0xa);
 }
 
-void func_0210b874(struct Unk020e71a0_94 *p, s32 b) {
+void func_0210b874(struct Unk020e71a0_94 *mapSound, s32 b) {
     s32 c;
-    NNSSndSeqPlayer **v;
+    NNSSndSeqPlayer **handle;
 
     c = (b >> 12) + 5;
-    v = (NNSSndSeqPlayer **) StartSoundWhileRequested(&p->mSoundSource, 0x1cd, 0x7f, (s16) c);
-    if (v != NULL) {
-        NNS_SndPlayerSetTrackModSpeed(v, 0xffff, c);
+    handle = (NNSSndSeqPlayer **) StartSoundWhileRequested(&mapSound->mSoundSource, 0x1cd, 0x7f, (s16) c);
+    if (handle != NULL) {
+        NNS_SndPlayerSetTrackModSpeed(handle, 0xffff, c);
     }
 }
 

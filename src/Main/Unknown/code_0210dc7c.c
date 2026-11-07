@@ -197,7 +197,7 @@ u32 func_0210dccc(Unk0217d060 *a, u32 b, u32 c, u32 d, LoadedSoundSet *e) {
 }
 
 void func_0210dcb8(Unk0217d060 *a, u32 b) {
-    func_0210d7dc(a->mUnk_00.mSeqId, b, &a->mUnk_0c);
+    StartSeqAtVolume(a->mUnk_00.mSeqId, b, &a->mUnk_0c);
 }
 
 void func_0210dca8(Unk0217d060 *a, u32 b) {

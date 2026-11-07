@@ -62,7 +62,7 @@ void func_02025030(Kart *a, Unk02024eec *b) {
 void func_02024fe8(Kart *a, Unk02024eec *b) {
     u32 v;
 
-    v = func_0210bb74(3, a->mSurfaceKind, a->mSurfaceVariant);
+    v = GetSurfaceSoundId(3, a->mSurfaceKind, a->mSurfaceVariant);
     StartSoundWhileRequested(&a->mSoundSource, v, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
 }
 

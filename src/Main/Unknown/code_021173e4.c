@@ -248,7 +248,7 @@ void AdvanceSelectCupGridIndexChange(void) {
             SetupSelectCupGridIndex();
         } else if (*(vu16 *) 0x027ffc40 != 2) {
             v = gSelectCupGrid->mSelectCupMBncl->mUnk_06;
-            b = func_02116d10(7 - gSelectCupGrid->mIndexChangeTimer, 1);
+            b = LookupIndexChangeOffset(7 - gSelectCupGrid->mIndexChangeTimer, 1);
             gSelectCupGrid->mBg0Offset = b;
             gSelectCupGrid->mSelectCupMTable[19].mUnk_06 = b;
             gSelectCupGrid->mSelectCupMTable[2].mUnk_06 = b;

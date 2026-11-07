@@ -27,9 +27,9 @@ void func_0210c134(SoundSource *a, u32 b) {
     a->mUnk_34 = 0;
     a->mOwnerPosSource = b;
     a->mUnk_18 = 3;
-    func_0210bce0((u32 *) a->mUnk_1c);
-    func_0210bce0((u32 *) a);
-    func_0210bc8c(&data_0217d028, a);
+    ClearThreeWords((u32 *) a->mUnk_1c);
+    ClearThreeWords((u32 *) a);
+    TryAppendListObject(&data_0217d028, a);
 }
 
 void func_0210c0bc(SoundSource *p) {
@@ -37,10 +37,10 @@ void func_0210c0bc(SoundSource *p) {
 
     StopSoundsStartedWhileRequested(p, 0);
     for (a = p->mPlayingSounds.mHead; a != NULL; a = p->mPlayingSounds.mHead) {
-        func_0210bc54(&p->mPlayingSounds, (u8 *) a);
+        RemoveListObject(&p->mPlayingSounds, (u8 *) a);
     }
     if (p->mUnk_18 != 3) {
-        func_0210bc54(&data_0217d048[p->mUnk_18], (u8 *) p);
+        RemoveListObject(&data_0217d048[p->mUnk_18], (u8 *) p);
         p->mUnk_18 = 3;
     }
 }
@@ -70,11 +70,11 @@ void func_0210bfbc(SoundSource *p) {
     }
     if (p->mUnk_18 != v) {
         if (p->mUnk_18 != 3) {
-            func_0210bc54(&data_0217d048[p->mUnk_18], (u8 *) p);
+            RemoveListObject(&data_0217d048[p->mUnk_18], (u8 *) p);
             p->mUnk_18 = 3;
         }
         if (v != 3) {
-            func_0210bc8c(&data_0217d048[v], p);
+            TryAppendListObject(&data_0217d048[v], p);
             p->mUnk_18 = v;
         }
     }
@@ -91,7 +91,7 @@ void func_0210bf24(u32 a, u32 b, u32 c, void *d) {
     func_0210c084(v, 0);
     w = v->mUnk_10;
     if (w != NULL) {
-        func_0210bc54(w, (u8 *) v);
+        RemoveListObject(w, (u8 *) v);
         func_0210bfbc((SoundSource *) (w - 1));
     }
     ResetPlayingSound(v);
@@ -115,10 +115,10 @@ u32 func_0210bcf4(u32 a, u32 b, u32 c, NNSSndSeqPlayer **d, void *e) {
 
     v = 0;
     ok = v;
-    if (data_0217d084.mUnk_04 == 4) {
+    if (data_0217d084.mMode == 4) {
         return v;
     }
-    if (data_0217d084.mUnk_04 == 0) {
+    if (data_0217d084.mMode == 0) {
         return v;
     }
     if (*d == NULL) {

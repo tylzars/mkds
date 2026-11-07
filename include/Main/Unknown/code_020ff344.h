@@ -40,21 +40,21 @@ typedef struct Unk020ff97c {
 typedef struct ItemFBox {
     /* 000 */ BouncingItemObject mUnk_000;
     /* 130 */ Vec3 mUnk_130;
-    /* 13c */ s32 mUnk_13c;
-    /* 140 */ Unk021052fc *mUnk_140;
+    /* 13c */ s32 mThrownForward;
+    /* 140 */ Unk021052fc *mPooledMapObject;
 } ItemFBox;
 
-void func_020ff344(ItemFBox *e);
-s32 func_020ff3c4(ItemFBox *e);
-void AdvanceItemFBox(ItemFBox *e);
-u32 InitItemFBox(ItemInUse *a, ItemFBox *e);
-void AdvanceItemFBoxInUse(ItemInUse *a, ItemFBox *e);
-void StartItemFBox(ItemFBox *e);
-void ResetItemFBox(ItemFBox *e);
-void func_020ff6d8(ItemFBox *e, MtxFx43 *out);
-void func_020ff910(ItemFBox *e, MtxFx43 *out);
-void func_020ff97c(Unk020ff97c *e);
-BOOL func_020ffabc(u32 a);
+void func_020ff344(ItemFBox *fbox);
+s32 func_020ff3c4(ItemFBox *fbox);
+void AdvanceItemFBox(ItemFBox *fbox);
+u32 InitItemFBox(ItemInUse *inUse, ItemFBox *fbox);
+void AdvanceItemFBoxInUse(ItemInUse *inUse, ItemFBox *fbox);
+void StartItemFBox(ItemFBox *fbox);
+void ResetItemFBox(ItemFBox *fbox);
+void func_020ff6d8(ItemFBox *fbox, MtxFx43 *out);
+void SetItemFBoxDrawMatrix(ItemFBox *fbox, MtxFx43 *out);
+void func_020ff97c(Unk020ff97c *object);
+BOOL func_020ffabc(u32 kind);
 Unk02100004 *func_020ffacc(void);
-void InitDram(Dram *a, struct CourseMapRow *b);
+void InitDram(Dram *dram, struct CourseMapRow *courseRow);
 void CreateDram(void);

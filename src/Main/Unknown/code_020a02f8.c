@@ -1048,14 +1048,14 @@ void func_020a0318(void *a, Unk020a0318 *p) {
     }
     if (p->mUnk_bc != 0) {
         if (p->mUnk_c4 != 0) {
-            if (*func_02108e6c(8) != NULL) {
+            if (*GetSndHandleSlot(8) != NULL) {
                 o = GetKart((u16) gRaceSetup->mEntryIndex);
                 p->mUnk_a0 = p->mUnk_a0 - (s32) (((s64) o->mVelocityLengthRatio * 0x1000) >> 12);
                 if (p->mUnk_a0 < 0xc000) {
                     p->mUnk_a0 = 0xc000;
                 }
             } else if (p->mUnk_c8-- <= 0) {
-                h = func_02108e6c(8);
+                h = GetSndHandleSlot(8);
                 s1.mUnk_00 = p->mUnk_bc;
                 s1.mUnk_04 = NULL;
                 s1.mUnk_08 = 4;
@@ -1069,17 +1069,17 @@ void func_020a0318(void *a, Unk020a0318 *p) {
         } else if (p->mUnk_c8 > 0) {
             p->mUnk_c8 = p->mUnk_c8 - 1;
         }
-        if (*func_02108e6c(8) != NULL) {
+        if (*GetSndHandleSlot(8) != NULL) {
             v = p->mUnk_a4 < p->mUnk_a0 ? p->mUnk_a4 : p->mUnk_a0;
-            SetSndHandleTrackVolume(func_02108e6c(8), v >> 12);
+            SetSndHandleTrackVolume(GetSndHandleSlot(8), v >> 12);
         }
     }
     if (p->mUnk_be == 0) {
         return;
     }
     if (p->mUnk_c4 != 0) {
-        if (*func_02108e6c(9) == NULL) {
-            h = func_02108e6c(9);
+        if (*GetSndHandleSlot(9) == NULL) {
+            h = GetSndHandleSlot(9);
             s2.mUnk_00 = p->mUnk_be;
             s2.mUnk_04 = NULL;
             s2.mUnk_08 = 4;
@@ -1087,10 +1087,10 @@ void func_020a0318(void *a, Unk020a0318 *p) {
             func_0210b760(&s2, h);
         }
     }
-    if (*func_02108e6c(9) == NULL) {
+    if (*GetSndHandleSlot(9) == NULL) {
         return;
     }
-    SetSndHandleTrackVolume(func_02108e6c(9), p->mUnk_a4 >> 12);
+    SetSndHandleTrackVolume(GetSndHandleSlot(9), p->mUnk_a4 >> 12);
 }
 
 void *func_020a02f8(void) {

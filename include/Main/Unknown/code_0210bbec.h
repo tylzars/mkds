@@ -4,5 +4,5 @@
 
 typedef struct Unk0216c860 Unk0216c860;
 
-u32 func_0210bbec(u32 arg0, u32 arg1, Unk0216c860 *arg2);
-u32 func_0210bc00(u32 arg0, u32 arg1, void *arg2);
+u32 func_0210bbec(u32 rowIndex, u32 columnIndex, Unk0216c860 *entries);
+u32 func_0210bc00(u32 rowIndex, u32 columnIndex, void *entries);

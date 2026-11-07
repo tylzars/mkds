@@ -545,7 +545,7 @@ void func_0210fb88(Unk0217d244 *a, NNSSndSeqPlayer **b) {
         }
     }
     func_0210fb88_inline(b, l, k, j);
-    p = func_02108e6c(5);
+    p = GetSndHandleSlot(5);
     if (n != -1 && i != 0) {
         l = IsSndHandleSet(p);
         if (l != 0 && IsSndHandleSeq(p, 0, n) == 0) {

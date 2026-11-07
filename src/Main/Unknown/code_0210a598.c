@@ -8,20 +8,20 @@
 #include "Main/Unknown/code_0210aa14.h"
 #include "Main/Unknown/unk_021759c0.h"
 
-void func_0210a5a8(Kart *a, Unk0210a5a8 *b) {
-    if (a->mUnk_7c & KART_7C_ENTRY_KIND_2) {
-        a->mSoundSource.mUnk_2c = (void (*)(void *, void *, u32)) func_0210ab44;
+void InitKartSoundCallbacks(Kart *kart, Unk0210a5a8 *b) {
+    if (kart->mUnk_7c & KART_7C_ENTRY_KIND_2) {
+        kart->mSoundSource.mUnk_2c = (void (*)(void *, void *, u32)) func_0210ab44;
     } else {
-        a->mSoundSource.mUnk_2c = (void (*)(void *, void *, u32)) StartKartPlayingSoundSeq;
+        kart->mSoundSource.mUnk_2c = (void (*)(void *, void *, u32)) StartKartPlayingSoundSeq;
     }
-    a->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) UpdateKartPlayingSound;
-    if (GetCurrentSceneNumber() == 2 || a->mIndex != gRaceSetup->mEntryIndex) {
+    kart->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) UpdateKartPlayingSound;
+    if (GetCurrentSceneNumber() == 2 || kart->mIndex != gRaceSetup->mEntryIndex) {
         b->mUnk_3c = func_0210a63c;
     } else {
         b->mUnk_3c = func_0210aa0c;
     }
 }
 
-void func_0210a598(Kart *a, s32 b) {
-    func_0210af40(a, b, 8);
+void func_0210a598(Kart *kart, s32 soundIndex) {
+    func_0210af40(kart, soundIndex, 8);
 }

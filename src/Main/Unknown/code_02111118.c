@@ -11,86 +11,87 @@
 #include "Main/Unknown/code_021112fc.h"
 
 void func_021112fc(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    data_0217d32c.mUnk_0c = value0;
+    u32 copy = arg0;
+    u32 unused;
+    data_0217d32c.mUnk_0c = copy;
 }
 
 u32 func_0211127c(void) {
-    u32 v1;
-    u32 v2;
-    v2 = 0xffffffff;
-    v1 = func_0202a360();
-    switch (v1) {
+    u32 selector;
+    u32 result;
+    result = 0xffffffff;
+    selector = func_0202a360();
+    switch (selector) {
         case 0:
-            v2 = 0x43;
+            result = 0x43;
             break;
         case 1:
-            v2 = 0x44;
+            result = 0x44;
             break;
         case 2:
-            v2 = 0x3f;
+            result = 0x3f;
             break;
         case 3:
-            v2 = 0x41;
+            result = 0x41;
             break;
         case 4:
-            v2 = 0x40;
+            result = 0x40;
             break;
         case 5:
-            v2 = 0x3f;
+            result = 0x3f;
             break;
         case 6:
-            v2 = 0x41;
+            result = 0x41;
             break;
         case 7:
-            v2 = 0x40;
+            result = 0x40;
     }
-    return v2;
+    return result;
 }
 
-void func_02111250(void *a, u32 b) {
-    data_0217d32c.mUnk_04 = NNS_SndHeapCreate(a, b);
+void CreateSeqRowHeap(void *heapMemory, u32 heapSize) {
+    data_0217d32c.mUnk_04 = NNS_SndHeapCreate(heapMemory, heapSize);
     data_0217d32c.mUnk_08 = NULL;
 }
 
-u32 func_02111158(s32 a) {
-    Unk0217d32c *p;
-    u32 *b;
-    NNSSndHeap *n;
+// Loads the sequences of the row for index a unless that row is already loaded; returns 0 if a load fails.
+u32 LoadSeqRowIfChanged(s32 index) {
+    Unk0217d32c *state;
+    u32 *row;
+    NNSSndHeap *savedHeap;
     s32 i;
-    n = data_0217d130;
-    p = &data_0217d32c;
-    if (a == 4 && (gRaceSetup->mMode == MODE_MISSION_RUN ? gRaceSetup->mMissionTableColumn : -1) == 9) {
-        b = data_0216cbc0;
+    savedHeap = data_0217d130;
+    state = &data_0217d32c;
+    if (index == 4 && (gRaceSetup->mMode == MODE_MISSION_RUN ? gRaceSetup->mMissionTableColumn : -1) == 9) {
+        row = data_0216cbc0;
     } else {
-        b = data_0216cbd8[a];
+        row = data_0216cbd8[index];
     }
-    if (p->mUnk_08 == b) {
+    if (state->mUnk_08 == row) {
         return 1;
     }
     data_0217d130 = data_0217d32c.mUnk_04;
-    NNS_SndHeapClear(p->mUnk_04);
+    NNS_SndHeapClear(state->mUnk_04);
     for (i = 0; i < 6; i++) {
-        if (b[i] != 0xff) {
-            if (NNS_SndArcLoadSeq(b[i], data_0217d130) == 0) {
-                data_0217d130 = n;
+        if (row[i] != 0xff) {
+            if (NNS_SndArcLoadSeq(row[i], data_0217d130) == 0) {
+                data_0217d130 = savedHeap;
                 return 0;
             }
         }
     }
-    p->mUnk_00 = a;
-    p->mUnk_08 = b;
-    data_0217d130 = n;
+    state->mUnk_00 = index;
+    state->mUnk_08 = row;
+    data_0217d130 = savedHeap;
     return 1;
 }
 
 u32 func_02111144(void) {
-    u32 value0;
-    value0 = (u32) &data_0217d32c;
-    value0 = *(const u32 *) ((value0) + (8));
-    value0 = *(const u32 *) ((value0) + (20));
-    return value0;
+    u32 value;
+    value = (u32) &data_0217d32c;
+    value = *(const u32 *) ((value) + (8));
+    value = *(const u32 *) ((value) + (20));
+    return value;
 }
 
 u32 func_02111118(void) {

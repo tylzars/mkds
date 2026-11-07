@@ -25,7 +25,7 @@ void ReleaseMenu(void) {
     }
     func_02125da0();
     func_0212abd0();
-    func_02117170();
+    ClearPicksHolderPointer();
     ReleaseAllResFiles();
     func_020cbabc(0);
     func_020cbaa8(0);

@@ -770,7 +770,7 @@ void UpdateJgState1(void) {
         }
     }
     if (frame == 0xa || frame == 0x28) {
-        player = func_02108e6c(4);
+        player = GetSndHandleSlot(4);
         data_0217b9dc.mUnk_0c = GetHorizontalCameraDistanceSquared(&gJgPos);
         NNS_SndPlayerStopSeq(player, 0);
         func_0210b760(&data_0217b9dc, player);
@@ -888,8 +888,8 @@ void EnterJgState4(void) {
     data_0217b8f0 = 1;
     data_0217b8bc = 1;
     data_0217b894 = 0;
-    NNS_SndPlayerStopSeq(func_02108e6c(4), 1);
-    player = func_02108e6c(4);
+    NNS_SndPlayerStopSeq(GetSndHandleSlot(4), 1);
+    player = GetSndHandleSlot(4);
     if ((data_0217c780 & 1) == 0) {
         return;
     }
@@ -954,7 +954,7 @@ void UpdateJgState5(void) {
     if (data_0217b8f0 != 0) {
         return;
     }
-    NNS_SndPlayerStopSeq(func_02108e6c(4), 1);
+    NNS_SndPlayerStopSeq(GetSndHandleSlot(4), 1);
     SetStateMachineState(&gJgStateMachine, 0);
 }
 

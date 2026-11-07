@@ -78,7 +78,7 @@ void func_020e79c4(void) {
     if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         return;
     }
-    NNS_SndPlayerStopSeq(func_02108e6c(4), 1);
+    NNS_SndPlayerStopSeq(GetSndHandleSlot(4), 1);
     gJgKart = NULL;
 }
 

@@ -553,13 +553,13 @@ int AdvanceSelectCharacter(void) {
                         GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mCharacterIndex = p->mUnk_0f0;
                         GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mKartIndex =
                             gSelectCharacter->mUnk_0f4;
-                        func_02116fb0();
+                        FillRandomCharacterIndices();
                         if (GetRaceSetupCopy()->mMode == 2) {
                             GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mUnk_14 = 1;
                             func_02077f48(1);
                             gSelectCharacter->mUnk_06c = 7;
                             func_02117060();
-                            func_02116ec0();
+                            SetKartIndicesFromCharacters();
                         } else {
                             func_02027424(1);
                             func_02077f5c();

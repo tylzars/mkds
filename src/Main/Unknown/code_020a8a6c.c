@@ -46,7 +46,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0a0.mUnk_00.mUnk_00 = 0x103;
                     p->mUnk_0a0.mUnk_00.mUnk_08 = 5;
                     p->mUnk_0a0.mUnk_00.mUnk_04 = &p->mUnk_0a0.mUnk_10;
-                    p->mUnk_0a0.mUnk_1c = func_02108e6c(8);
+                    p->mUnk_0a0.mUnk_1c = GetSndHandleSlot(8);
                     p->mUnk_0a0.mUnk_10.x = x1;
                     p->mUnk_0a0.mUnk_10.y = y1;
                     p->mUnk_0a0.mUnk_10.z = z1;
@@ -57,7 +57,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0c8.mUnk_00.mUnk_00 = 0x103;
                     p->mUnk_0c8.mUnk_00.mUnk_08 = 5;
                     p->mUnk_0c8.mUnk_00.mUnk_04 = &p->mUnk_0c8.mUnk_10;
-                    p->mUnk_0c8.mUnk_1c = func_02108e6c(9);
+                    p->mUnk_0c8.mUnk_1c = GetSndHandleSlot(9);
                     p->mUnk_0c8.mUnk_10.x = x2;
                     p->mUnk_0c8.mUnk_10.y = y2;
                     p->mUnk_0c8.mUnk_10.z = z2;
@@ -78,7 +78,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     } else {
                         v1 = 10;
                     }
-                    p->mUnk_0a0.mUnk_1c = func_02108e6c(v1);
+                    p->mUnk_0a0.mUnk_1c = GetSndHandleSlot(v1);
                     p->mUnk_0a0.mUnk_10.x = x3;
                     p->mUnk_0a0.mUnk_10.y = y3;
                     p->mUnk_0a0.mUnk_10.z = z3;
@@ -98,14 +98,14 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0a0.mUnk_00.mUnk_00 = 0x108;
                     p->mUnk_0a0.mUnk_00.mUnk_08 = 8;
                     p->mUnk_0a0.mUnk_00.mUnk_04 = &p->mUnk_0a0.mUnk_10;
-                    p->mUnk_0a0.mUnk_1c = func_02108e6c(8);
+                    p->mUnk_0a0.mUnk_1c = GetSndHandleSlot(8);
                     p->mUnk_0a0.mUnk_10.x = 0;
                     p->mUnk_0a0.mUnk_10.y = 0;
                     p->mUnk_0a0.mUnk_10.z = 0;
                     p->mUnk_0c8.mUnk_00.mUnk_00 = 0x107;
                     p->mUnk_0c8.mUnk_00.mUnk_08 = 8;
                     p->mUnk_0c8.mUnk_00.mUnk_04 = &p->mUnk_0c8.mUnk_10;
-                    p->mUnk_0c8.mUnk_1c = func_02108e6c(9);
+                    p->mUnk_0c8.mUnk_1c = GetSndHandleSlot(9);
                     p->mUnk_0c8.mUnk_10.x = 0;
                     p->mUnk_0c8.mUnk_10.y = 0;
                     p->mUnk_0c8.mUnk_10.z = 0;
@@ -116,14 +116,14 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0a0.mUnk_00.mUnk_00 = 0x1a0;
                     p->mUnk_0a0.mUnk_00.mUnk_08 = 8;
                     p->mUnk_0a0.mUnk_00.mUnk_04 = &p->mUnk_0a0.mUnk_10;
-                    p->mUnk_0a0.mUnk_1c = func_02108e6c(8);
+                    p->mUnk_0a0.mUnk_1c = GetSndHandleSlot(8);
                     p->mUnk_0a0.mUnk_10.x = 0;
                     p->mUnk_0a0.mUnk_10.y = 0;
                     p->mUnk_0a0.mUnk_10.z = 0;
                     p->mUnk_0c8.mUnk_00.mUnk_00 = 0x19f;
                     p->mUnk_0c8.mUnk_00.mUnk_08 = 8;
                     p->mUnk_0c8.mUnk_00.mUnk_04 = &p->mUnk_0c8.mUnk_10;
-                    p->mUnk_0c8.mUnk_1c = func_02108e6c(9);
+                    p->mUnk_0c8.mUnk_1c = GetSndHandleSlot(9);
                     p->mUnk_0c8.mUnk_10.x = 0;
                     p->mUnk_0c8.mUnk_10.y = 0;
                     p->mUnk_0c8.mUnk_10.z = 0;
@@ -138,7 +138,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0a0.mUnk_00.mUnk_00 = 0x109;
                     p->mUnk_0a0.mUnk_00.mUnk_08 = 6;
                     p->mUnk_0a0.mUnk_00.mUnk_04 = &p->mUnk_0a0.mUnk_10;
-                    p->mUnk_0a0.mUnk_1c = func_02108e6c(8);
+                    p->mUnk_0a0.mUnk_1c = GetSndHandleSlot(8);
                     p->mUnk_0a0.mUnk_10.x = x4;
                     p->mUnk_0a0.mUnk_10.y = y4;
                     p->mUnk_0a0.mUnk_10.z = z4;
@@ -151,7 +151,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0c8.mUnk_00.mUnk_00 = 0x109;
                     p->mUnk_0c8.mUnk_00.mUnk_08 = 6;
                     p->mUnk_0c8.mUnk_00.mUnk_04 = &p->mUnk_0c8.mUnk_10;
-                    p->mUnk_0c8.mUnk_1c = func_02108e6c(9);
+                    p->mUnk_0c8.mUnk_1c = GetSndHandleSlot(9);
                     p->mUnk_0c8.mUnk_10.x = x5;
                     p->mUnk_0c8.mUnk_10.y = y5;
                     p->mUnk_0c8.mUnk_10.z = z5;
