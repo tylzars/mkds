@@ -186,12 +186,12 @@ u32 RunRaceScene(SceneNumbers *a) {
     }
     if (gRaceSetup->mRaceKind != RACE_KIND_AWARD) {
         if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
-            b.mUnk_18 = 1;
-            b.mUnk_1a = 0x78;
+            b.mFadeToClearFrameCount = 1;
+            b.mFadeToFadedFrameCount = 0x78;
         }
     } else {
-        b.mUnk_18 = 0x3c;
-        b.mUnk_1a = 0x78;
+        b.mFadeToClearFrameCount = 0x3c;
+        b.mFadeToFadedFrameCount = 0x78;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_02043f28(1);

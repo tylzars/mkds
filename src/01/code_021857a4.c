@@ -169,7 +169,7 @@ void func_ov001_021858c8(void) {
         func_ov001_0218568c(0x16);
         GXS_SetGraphicsMode(0);
     }
-    func_021173e4();
+    WriteSelectCupGridRegisters();
 }
 
 #pragma thumb off

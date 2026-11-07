@@ -25,7 +25,7 @@ void func_020ce8d0(void) {
             GXS_SetGraphicsMode(0);
         }
     }
-    func_021173e4();
+    WriteSelectCupGridRegisters();
 }
 
 #pragma thumb off

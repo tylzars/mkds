@@ -512,7 +512,7 @@ void InitSceneSounds(s32 e) {
     func_02110a60();
     ResetSeqQueue();
     func_021104dc(0);
-    func_0210d970(func_0204a4e4());
+    func_0210d970(GetSceneFadeToFadedFrameCount());
     func_02110484();
     func_021103c0();
     switch (a) {

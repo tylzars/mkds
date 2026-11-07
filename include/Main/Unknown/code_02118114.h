@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02118114(void);
+void RequestSelectCupGridState6(void);

@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-void func_02118038(void);
+void RequestSelectCupGridState10(void);
 // Requests state 11: stores mNextState = 11 and zeroes mStateFrames; the next AdvanceSelectCupGrid call copies it to
 // mState and runs AdvanceSelectCupGridState11.
 void RequestSelectCupGridState11(void);

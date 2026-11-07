@@ -71,8 +71,8 @@ void func_020a29cc(void) {
         if (data_0217b200->mUnk_002 >= 3) {
             return;
         }
-        data_0217b200->mUnk_004 = -func_0204a508() * 0x6d;
-        v = -func_0204a508() * 0x36;
+        data_0217b200->mUnk_004 = -GetSceneFadeToClearFrameCount() * 0x6d;
+        v = -GetSceneFadeToClearFrameCount() * 0x36;
         d = data_0217b200;
         d->mUnk_008.mUnk_00 = v;
         p = &d->mUnk_008;

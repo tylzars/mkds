@@ -104,10 +104,10 @@ static inline void func_020487fc_inline7(void) {
         func_02043648();
     }
     if (func_02049820() == 1) {
-        if (!func_02049aa4()) {
+        if (!ShouldGoSleepMode()) {
             if (PM_GetLCDPower() == 1) {
                 t = OS_DisableInterrupts();
-                data_021759cc->mUnk_110 = TRUE;
+                gSceneRunState->mLcdOff = TRUE;
                 PM_SetLCDPower(0);
                 OS_RestoreInterrupts(t);
             }
@@ -122,7 +122,7 @@ static inline void func_020487fc_inline7(void) {
                 func_02049808(0);
                 func_020497f0(0);
             }
-            data_021759cc->mUnk_110 = FALSE;
+            gSceneRunState->mLcdOff = FALSE;
             OS_RestoreInterrupts(t);
         }
     }
@@ -189,21 +189,21 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
     s32 w;
 
     v = 0;
-    data_021759cc->mSceneFrames = v;
-    data_021759cc->mUnk_0e8 = v;
-    data_021759cc->mSceneCallbacks = *b;
-    data_021759cc->mUnk_10c = 6;
-    data_021759cc->mUnk_120 = 0;
-    data_021759cc->mUnk_118 = -1;
-    data_021759cc->mUnk_11c = 0;
+    gSceneRunState->mSceneFrames = v;
+    gSceneRunState->mPassCount = v;
+    gSceneRunState->mSceneCallbacks = *b;
+    gSceneRunState->mUnk_10c = 6;
+    gSceneRunState->mNextScene = 0;
+    gSceneRunState->mUnk_118 = -1;
+    gSceneRunState->mUnk_11c = 0;
     t = OS_DisableInterrupts();
     if (PM_GetLCDPower() == 1) {
-        data_021759cc->mUnk_110 = FALSE;
+        gSceneRunState->mLcdOff = FALSE;
     } else {
-        data_021759cc->mUnk_110 = TRUE;
+        gSceneRunState->mLcdOff = TRUE;
     }
     OS_RestoreInterrupts(t);
-    data_021759cc->mUnk_10c = 0;
+    gSceneRunState->mUnk_10c = 0;
     SetHeapGroupId(0);
     LoadArchiveSlotsForScene(a->mScene);
     SetHeapGroupId(9);
@@ -229,52 +229,52 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
     func_0204ac60();
     StartSceneSounds();
     WaitIrqAndTurnOnDisplays();
-    data_021759cc->mUnk_10c = 1;
+    gSceneRunState->mUnk_10c = 1;
     do {
         PrepareDisplayFrame();
         func_020487fc_inline7();
         UpdateSounds();
         func_020487fc_inline8();
         func_020487fc_inline9(b);
-        r = func_0204984c(a, data_021759cc->mUnk_10c != 4);
+        r = func_0204984c(a, gSceneRunState->mUnk_10c != 4);
         CallQueueDrain();
         if (r) {
-            a->mNextScene = data_021759cc->mUnk_120;
+            a->mNextScene = gSceneRunState->mNextScene;
             goto end;
         }
         UpdateWiFiSession();
-        data_021759cc->mUnk_0e8++;
+        gSceneRunState->mPassCount++;
         RecordFrameTimes();
     } while (func_02054754() != 1);
     func_02043b04();
-    StartFadeToClear(b->mUnk_18);
-    data_021759cc->mUnk_10c = 2;
+    StartFadeToClear(b->mFadeToClearFrameCount);
+    gSceneRunState->mUnk_10c = 2;
     do {
         PrepareDisplayFrame();
         func_020487fc_inline7();
         if (b->mUpdate != NULL) {
-            b->mUpdate(a, data_021759cc->mSceneFrames);
+            b->mUpdate(a, gSceneRunState->mSceneFrames);
         }
         UpdateSounds();
         v = func_020487fc_inline8();
         func_020487fc_inline9(b);
-        r = func_0204984c(a, data_021759cc->mUnk_10c != 4);
+        r = func_0204984c(a, gSceneRunState->mUnk_10c != 4);
         CallQueueDrain();
         if (r) {
-            a->mNextScene = data_021759cc->mUnk_120;
+            a->mNextScene = gSceneRunState->mNextScene;
             goto end;
         }
         if (b->mUnk_0c != NULL) {
-            b->mUnk_0c(a, data_021759cc->mSceneFrames);
+            b->mUnk_0c(a, gSceneRunState->mSceneFrames);
         }
         UpdateWiFiSession();
         if (!func_020487fc_inline6()) {
-            data_021759cc->mSceneFrames++;
+            gSceneRunState->mSceneFrames++;
         }
-        data_021759cc->mUnk_0e8++;
+        gSceneRunState->mPassCount++;
         RecordFrameTimes();
     } while (a->mNextScene == -1 && v == 0);
-    data_021759cc->mUnk_10c = 3;
+    gSceneRunState->mUnk_10c = 3;
     StopSceneSounds();
     if (data_021759d0->mUnk_1c_0) {
         if (a == NULL || func_0204a340(a->mScene, a->mNextScene)) {
@@ -285,35 +285,35 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
         func_02049e38(0);
     }
     if (data_021759d0->mUnk_20 == 4) {
-        StartFadeToFadedPositive(b->mUnk_1a);
+        StartFadeToFadedPositive(b->mFadeToFadedFrameCount);
     } else {
-        StartFadeToFadedNegative(b->mUnk_1a);
+        StartFadeToFadedNegative(b->mFadeToFadedFrameCount);
     }
     do {
         PrepareDisplayFrame();
         func_020487fc_inline7();
         if (b->mUpdate != NULL) {
-            b->mUpdate(0, data_021759cc->mSceneFrames);
+            b->mUpdate(0, gSceneRunState->mSceneFrames);
         }
         UpdateSounds();
         func_020487fc_inline8();
         func_020487fc_inline9(b);
-        func_0204984c(a, data_021759cc->mUnk_10c != 4);
+        func_0204984c(a, gSceneRunState->mUnk_10c != 4);
         CallQueueDrain();
         if (b->mUnk_0c != NULL) {
-            b->mUnk_0c(0, data_021759cc->mSceneFrames);
+            b->mUnk_0c(0, gSceneRunState->mSceneFrames);
         }
         UpdateWiFiSession();
         if (!func_020487fc_inline6()) {
-            data_021759cc->mSceneFrames++;
+            gSceneRunState->mSceneFrames++;
         }
-        data_021759cc->mUnk_0e8++;
+        gSceneRunState->mPassCount++;
         RecordFrameTimes();
     } while (!AreBrightnessFadesFaded());
 end:
     func_02043ae0();
     if (func_020487fc_inline13() && (v != 0 || GetNextSceneNumber() == 0)) {
-        data_021759cc->mUnk_10c = 4;
+        gSceneRunState->mUnk_10c = 4;
         data_021759d0->mUnk_20 = 0;
         c = FALSE;
         func_0204f7f4();
@@ -327,13 +327,13 @@ end:
                     c = TRUE;
                 }
             }
-            func_0204984c(a, data_021759cc->mUnk_10c != 4);
+            func_0204984c(a, gSceneRunState->mUnk_10c != 4);
             CallQueueDrain();
             UpdateWiFiSession();
             RecordFrameTimes();
         } while (!c);
     }
-    data_021759cc->mUnk_10c = 5;
+    gSceneRunState->mUnk_10c = 5;
     gDisplaySettings->mIrqCallback = NULL;
     if (func_020487fc_inline2()) {
         data_0217aa00->mUnk_0454 &= ~4;
@@ -358,13 +358,13 @@ end:
     if (v != 0) {
         a->mNextScene = 0;
     } else {
-        w = data_021759cc->mUnk_118;
+        w = gSceneRunState->mUnk_118;
         if (w != -1) {
             switch (w) {
                 case 4:
                 case 5:
                 case 6:
-                    a->mNextScene = data_021759cc->mUnk_120;
+                    a->mNextScene = gSceneRunState->mNextScene;
                     break;
                 default:
                     a->mNextScene = 0;
@@ -373,6 +373,6 @@ end:
         }
     }
     func_0204ad24();
-    data_021759cc->mSceneFrames = 0;
-    data_021759cc->mUnk_10c = 6;
+    gSceneRunState->mSceneFrames = 0;
+    gSceneRunState->mUnk_10c = 6;
 }

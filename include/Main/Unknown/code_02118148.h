@@ -15,9 +15,9 @@ void func_021181fc(void);
 // Requests state 1: stores mNextState = 1 and zeroes mStateFrames; the next AdvanceSelectCupGrid call copies it to
 // mState and runs AdvanceSelectCupGridState1.
 void RequestSelectCupGridState1(void);
-void func_021181cc(void);
+void RequestSelectCupGridState2(void);
 // Requests state 3: stores mNextState = 3 and zeroes mStateFrames; the next AdvanceSelectCupGrid call copies it to
 // mState and runs AdvanceSelectCupGridState3.
 void RequestSelectCupGridState3(void);
-void func_02118184(void);
-void func_02118148(void);
+void RequestSelectCupGridState4(void);
+void RequestSelectCupGridState5(void);

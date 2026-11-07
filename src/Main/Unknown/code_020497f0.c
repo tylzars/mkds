@@ -5,7 +5,7 @@
 #include "registers.h"
 
 u32 func_02049838(void) {
-    return (data_021759cc->mUnk_10c);
+    return (gSceneRunState->mUnk_10c);
 }
 
 u32 func_02049820(void) {

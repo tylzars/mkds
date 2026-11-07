@@ -40,7 +40,7 @@ void func_02039cbc(void) {
     f = func_02039e08(GetHeap(func_020364e8()), &a, &e, &b, &c, &d);
     CARD_SetPulledOutCallback(func_02039e00);
     func_0205e180(a);
-    func_02049c3c(a);
+    InitSceneRunState(a);
     func_020486d4(a);
     func_0204af70(a);
     func_020545e8(a);

@@ -14,5 +14,5 @@ void func_ov001_021854a4(void) {
         func_ov001_021854d8(0x16);
         GXS_SetGraphicsMode(0);
     }
-    func_021173e4();
+    WriteSelectCupGridRegisters();
 }

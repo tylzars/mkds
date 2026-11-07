@@ -10,5 +10,5 @@ u32 func_0204a540(void) {
 }
 
 u32 GetSceneFrames(void) {
-    return (data_021759cc->mSceneFrames);
+    return (gSceneRunState->mSceneFrames);
 }

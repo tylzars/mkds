@@ -265,14 +265,15 @@ typedef struct SelectCupGrid {
     // Calls of AdvanceSelectCupGridShownCourse since the shown course changed; at 0x4b the next course is shown and it
     // restarts at 0.
     /* 74 */ s32 mShownCourseFrames;
-    // Position 0 to 3 of the course of the cup at mIndex whose picture is shown: indexes data_0215ca1c[mIndex];
-    // AdvanceSelectCupGrid also shows the cell of that position differently from the other three.
+    // Position 0 to 3 of the course of the cup at mIndex whose picture is shown: indexes
+    // gSelectCupGridCourseIds[mIndex]; AdvanceSelectCupGrid also shows the cell of that position differently from the
+    // other three.
     /* 78 */ s16 mShownCourseIndex;
     /* 7a */ u8 mUnk_7a[2];
     // Set when the cup picture was asked for; AdvanceSelectCupGrid queues its data once it is ready.
     /* 7c */ BOOL mCupPicturePending;
-    /* 80 */ void *mUnk_80;
-    /* 84 */ void *mUnk_84;
+    /* 80 */ void *mMainOam;
+    /* 84 */ void *mSubOam;
     /* 88 */ s32 mResult;
 } SelectCupGrid;
 

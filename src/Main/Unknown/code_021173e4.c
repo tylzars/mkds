@@ -66,7 +66,7 @@
 
 #pragma thumb on
 
-void func_021189cc(void) {
+void RefreshSelectCupGridCupsEnabled(void) {
     int v1;
     u32 v3;
     v1 = 0;
@@ -94,7 +94,7 @@ void func_021188dc(void) {
             gSelectCupGrid->mSelectCupMTable[v + data_0215c7d8[i]].mUnk_00 = 1;
         }
         for (i = 0; i < 8; i++) {
-            for (k = 0, q = data_0215c9bc[i]; k < 6; k++) {
+            for (k = 0, q = gSelectCupGridCupCellIndices[i]; k < 6; k++) {
                 gSelectCupGrid->mSelectCupSTable[q[k]].mUnk_00 = 0;
             }
         }
@@ -103,12 +103,12 @@ void func_021188dc(void) {
         gSelectCupGrid->mSelectCupSTable[2].mUnk_00 = 1;
         gSelectCupGrid->mSelectCupSTable[3].mUnk_00 = 1;
         for (i = 0; i < 8; i++) {
-            gSelectCupGrid->mSelectCupSTable[data_0215c9bc[i][0]].mUnk_00 = 1;
+            gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][0]].mUnk_00 = 1;
         }
         for (i = 0; i < 8; i++) {
             p = gSelectCupGrid;
-            QueueCupMark(i, p->mSelectCupSNcer, p->mSelectCupSBncl, data_0215c9bc[i][4],
-                         func_02124a68(data_0215c9bc[i][4], p->mSelectCupSNcer, p->mSelectCupSBncl), 1);
+            QueueCupMark(i, p->mSelectCupSNcer, p->mSelectCupSBncl, gSelectCupGridCupCellIndices[i][4],
+                         func_02124a68(gSelectCupGridCupCellIndices[i][4], p->mSelectCupSNcer, p->mSelectCupSBncl), 1);
         }
     }
 }
@@ -120,7 +120,7 @@ void func_02118814(void) {
     if (*(vu16 *) 0x027ffc40 != 2) {
         z = FALSE;
         for (i = 0; i < 8; i++) {
-            u16 *q = data_0215c9bc[i];
+            u16 *q = gSelectCupGridCupCellIndices[i];
             gSelectCupGrid->mSelectCupSTable[q[1]].mUnk_00 = 0;
             gSelectCupGrid->mSelectCupSTable[q[2]].mUnk_00 = 0;
             gSelectCupGrid->mSelectCupSTable[q[3]].mUnk_00 = 0;
@@ -146,7 +146,8 @@ void func_02118814(void) {
 
 void RequestSelectCupGridCupPicture(void) {
     if (*(vu16 *) 0x027ffc40 != 2) {
-        TrySetCupPictureIndexAndQueueLoads(data_0215ca1c[gSelectCupGrid->mIndex][gSelectCupGrid->mShownCourseIndex]);
+        TrySetCupPictureIndexAndQueueLoads(
+            gSelectCupGridCourseIds[gSelectCupGrid->mIndex][gSelectCupGrid->mShownCourseIndex]);
         gSelectCupGrid->mCupPicturePending = TRUE;
     }
 }
@@ -171,8 +172,8 @@ void SetupSelectCupGridIndex(void) {
     for (i = 0; i < 4; i++) {
         p = gSelectCupGrid;
         func_0212426c(j, data_0215c7d8[i], gSelectCupGrid->mSelectCupMBnll,
-                      GetBmgEntry(p->mCommonMessages, data_0215c91c[p->mIndex][i]), p->mSelectCupMBncl,
-                      p->mSelectCupMTable);
+                      GetBmgEntry(p->mCommonMessages, gSelectCupGridCupMessageIndices[p->mIndex][i]),
+                      p->mSelectCupMBncl, p->mSelectCupMTable);
     }
     for (j = 0, q = data_0215c83c; j < 8; q++, j++) {
         gSelectCupGrid->mSelectCupMTable[*q].mUnk_00 = 0;
@@ -219,7 +220,7 @@ void SetupSelectCupGridIndex(void) {
 
 void func_021185ec(void) {
     SetCupIndex(data_0215c85c[gSelectCupGrid->mIndex]);
-    SetCourseId(data_0215c89c[gSelectCupGrid->mIndex]);
+    SetCourseId(gSelectCupGridFirstCourseIds[gSelectCupGrid->mIndex]);
 }
 #pragma thumb off
 
@@ -362,12 +363,12 @@ void func_021181fc(void) {
         gSelectCupGrid->mSelectCupSTable[3].mUnk_04 = 0xe0;
         for (i = 0; i < 4; i++) {
             for (j = 0; j < 6; j++) {
-                gSelectCupGrid->mSelectCupSTable[data_0215c9bc[i][j]].mUnk_04 = c;
+                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mUnk_04 = c;
             }
         }
         for (i = 4; i < 8; i++) {
             for (j = 0; j < 6; j++) {
-                gSelectCupGrid->mSelectCupSTable[data_0215c9bc[i][j]].mUnk_04 = 0xe0;
+                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mUnk_04 = 0xe0;
             }
         }
     }
@@ -378,7 +379,7 @@ void RequestSelectCupGridState1(void) {
     gSelectCupGrid->mStateFrames = 0;
 }
 
-void func_021181cc(void) {
+void RequestSelectCupGridState2(void) {
     gSelectCupGrid->mNextState = 2;
     gSelectCupGrid->mStateFrames = 0;
     RequestSelectReturnState1();
@@ -389,7 +390,7 @@ void RequestSelectCupGridState3(void) {
     gSelectCupGrid->mStateFrames = 0;
 }
 
-void func_02118184(void) {
+void RequestSelectCupGridState4(void) {
     gSelectCupGrid->mNextState = 4;
     gSelectCupGrid->mStateFrames = 0;
     if (*(vu16 *) 0x027ffc40 != 2) {
@@ -397,7 +398,7 @@ void func_02118184(void) {
     }
 }
 
-void func_02118148(void) {
+void RequestSelectCupGridState5(void) {
     void *a;
 
     gSelectCupGrid->mNextState = 5;
@@ -410,7 +411,7 @@ void func_02118148(void) {
 
 #pragma thumb on
 
-void func_02118114(void) {
+void RequestSelectCupGridState6(void) {
     gSelectCupGrid->mNextState = 6;
     gSelectCupGrid->mStateFrames = 0;
     SetSelectChoisesSoundId(0, 7);
@@ -422,13 +423,13 @@ void func_02118114(void) {
 
 #pragma thumb on
 
-void func_021180f8(void) {
+void RequestSelectCupGridState7(void) {
     gSelectCupGrid->mNextState = 7;
     gSelectCupGrid->mStateFrames = 0;
     RequestSelectChoisesState0();
 }
 
-void func_02118088(void) {
+void RequestSelectCupGridState8(void) {
     void *a;
 
     gSelectCupGrid->mNextState = 8;
@@ -446,7 +447,7 @@ void func_02118088(void) {
 
 #pragma thumb on
 
-void func_02118054(void) {
+void RequestSelectCupGridState9(void) {
     gSelectCupGrid->mNextState = 9;
     gSelectCupGrid->mStateFrames = 0;
     SetSelectChoisesSoundId(0, 5);
@@ -458,7 +459,7 @@ void func_02118054(void) {
 
 #pragma thumb on
 
-void func_02118038(void) {
+void RequestSelectCupGridState10(void) {
     gSelectCupGrid->mNextState = 0xa;
     gSelectCupGrid->mStateFrames = 0;
     RequestSelectChoisesState0();
@@ -488,14 +489,14 @@ void InitSelectCupGrid(void *a, void *b, void *c, s32 d) {
     gSelectCupGrid->mMode = d;
     gSelectCupGrid->mShownIndex = gSelectCupGrid->mIndex;
     gSelectCupGrid->mCupPicturePending = FALSE;
-    gSelectCupGrid->mUnk_80 = b;
-    gSelectCupGrid->mUnk_84 = c;
+    gSelectCupGrid->mMainOam = b;
+    gSelectCupGrid->mSubOam = c;
     gSelectCupGrid->mResult = 0;
     ResetSelectCupGridShownCourse();
-    func_021189cc();
+    RefreshSelectCupGridCupsEnabled();
     func_02118b48();
     if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
-        func_020ae6d4(gSelectCupGrid->mUnk_80, gSelectCupGrid->mUnk_84);
+        func_020ae6d4(gSelectCupGrid->mMainOam, gSelectCupGrid->mSubOam);
     }
     gSelectCupGrid->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     if (*(vu16 *) 0x027ffc40 != 2) {
@@ -513,7 +514,7 @@ void InitSelectCupGrid(void *a, void *b, void *c, s32 d) {
         CreateCommonCupMark(gSelectCupGrid->mHeap);
         CreateTrophyIcon(gSelectCupGrid->mHeap);
     } else {
-        func_0211f4b0(gSelectCupGrid->mHeap, gSelectCupGrid->mUnk_84);
+        func_0211f4b0(gSelectCupGrid->mHeap, gSelectCupGrid->mSubOam);
         if (func_020cccb4() != 0xc) {
             func_0211f394();
         } else {
@@ -598,17 +599,17 @@ void AdvanceSelectCupGridState1(void) {
         gSelectCupGrid->mSelectCupSTable[3].mUnk_04 = a;
         for (i = 0; i < 4; i++) {
             for (j = 0; j < 6; j++) {
-                gSelectCupGrid->mSelectCupSTable[data_0215c9bc[i][j]].mUnk_04 = -a;
+                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mUnk_04 = -a;
             }
         }
         for (i = 4; i < 8; i++) {
             for (j = 0; j < 6; j++) {
-                gSelectCupGrid->mSelectCupSTable[data_0215c9bc[i][j]].mUnk_04 = a;
+                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mUnk_04 = a;
             }
         }
     }
     if (gSelectCupGrid->mStateFrames >= 0xa) {
-        func_021181cc();
+        RequestSelectCupGridState2();
     }
 }
 
@@ -692,7 +693,7 @@ L1:
         case 3:
         case 4:
             if (data_0217b488->mUnk_08 == 2 || data_0217b488->mUnk_08 == 3) {
-                func_02118088();
+                RequestSelectCupGridState8();
                 if (*(vu16 *) 0x027ffc40 == 2) {
                     SetSelectReturnSoundId(-1);
                 }
@@ -725,17 +726,17 @@ L2:
             gSelectCupGrid->mUnk_68 = FALSE;
         }
         gSelectCupGrid->mIndex = d;
-        func_02118184();
+        RequestSelectCupGridState4();
         return;
     }
     if ((u16) (q->mUnk_00 & PAD_KEY_A) != 0) {
-        func_02118184();
+        RequestSelectCupGridState4();
         gSelectCupGrid->mUnk_68 = FALSE;
         return;
     }
     if (GetNewOrRepeatBits(8, PAD_KEY_UP) != 0) {
         a = gSelectCupGrid->mIndex;
-        b = data_0215c84c[a];
+        b = gSelectCupGridUpOffsets[a];
         if (b != 0) {
             t = a + b;
             if (gSelectCupGrid->mCupsEnabled[t] != 0) {
@@ -748,7 +749,7 @@ L2:
         }
     } else if (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0) {
         a = gSelectCupGrid->mIndex;
-        b = data_0215c7fc[a];
+        b = gSelectCupGridDownOffsets[a];
         if (b != 0) {
             t = a + b;
             if (gSelectCupGrid->mCupsEnabled[t] != 0) {
@@ -761,7 +762,7 @@ L2:
         }
     } else if (GetNewOrRepeatBits(8, PAD_KEY_LEFT) != 0) {
         a = gSelectCupGrid->mIndex;
-        b = data_0215c80c[a];
+        b = gSelectCupGridLeftOffsets[a];
         if (b != 0) {
             t = a + b;
             if (gSelectCupGrid->mCupsEnabled[t] != 0) {
@@ -774,7 +775,7 @@ L2:
         }
     } else if (GetNewOrRepeatBits(8, PAD_KEY_RIGHT) != 0) {
         a = gSelectCupGrid->mIndex;
-        b = data_0215c82c[a];
+        b = gSelectCupGridRightOffsets[a];
         if (b != 0) {
             t = a + b;
             if (gSelectCupGrid->mCupsEnabled[t] != 0) {
@@ -797,7 +798,7 @@ void AdvanceSelectCupGridState4(void) {
     gSelectCupGrid->mStateFrames = gSelectCupGrid->mStateFrames + 1;
     if (gSelectCupGrid->mStateFrames >= 10 && IsSelectCupGridIndexChangeRunning() == 0) {
         if (gSelectCupGrid->mMode == 0) {
-            func_02118148();
+            RequestSelectCupGridState5();
             return;
         }
         func_021185ec();
@@ -815,7 +816,7 @@ void AdvanceSelectCupGridState5(void) {
     AdvanceSelectCupGridShownCourse();
     v1 = IsSelectChoisesState1NoState0Request();
     if (v1 != 0) {
-        func_02118114();
+        RequestSelectCupGridState6();
     }
 }
 
@@ -824,7 +825,7 @@ void AdvanceSelectCupGridState6(void) {
     AdvanceSelectCupGridShownCourse();
     v1 = GetSelectChoisesDone();
     if (v1 != 0) {
-        func_021180f8();
+        RequestSelectCupGridState7();
     }
 }
 
@@ -862,7 +863,7 @@ void AdvanceSelectCupGridState8(void) {
     AdvanceSelectCupGridShownCourse();
     v1 = IsSelectChoisesState1NoState0Request();
     if (v1 != 0) {
-        func_02118054();
+        RequestSelectCupGridState9();
     }
 }
 
@@ -875,7 +876,7 @@ void AdvanceSelectCupGridState9(void) {
 
     AdvanceSelectCupGridShownCourse();
     if (GetSelectChoisesDone() != 0) {
-        func_02118038();
+        RequestSelectCupGridState10();
         if (*(vu16 *) 0x027ffc40 == 2) {
             a = GetSelectChoisesIndex();
             switch (a) {
@@ -951,12 +952,12 @@ void AdvanceSelectCupGridState11(void) {
         gSelectCupGrid->mSelectCupSTable[3].mUnk_04 = a;
         for (i = 0; i < 4; i++) {
             for (j = 0; j < 6; j++) {
-                gSelectCupGrid->mSelectCupSTable[data_0215c9bc[i][j]].mUnk_04 = -a;
+                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mUnk_04 = -a;
             }
         }
         for (i = 4; i < 8; i++) {
             for (j = 0; j < 6; j++) {
-                gSelectCupGrid->mSelectCupSTable[data_0215c9bc[i][j]].mUnk_04 = a;
+                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mUnk_04 = a;
             }
         }
     }
@@ -1020,8 +1021,8 @@ s32 AdvanceSelectCupGrid(void) {
             gSelectCupGrid->mCupPicturePending = FALSE;
         }
         func_02124c30(gSelectCupGrid->mSelectCupMBncl, gSelectCupGrid->mSelectCupMNcer, gSelectCupGrid->mSelectCupMBnll,
-                      gSelectCupGrid->mUnk_80, gSelectCupGrid->mSelectCupMTable);
-        func_02124c30(gSelectCupGrid->mSelectCupSBncl, gSelectCupGrid->mSelectCupSNcer, NULL, gSelectCupGrid->mUnk_84,
+                      gSelectCupGrid->mMainOam, gSelectCupGrid->mSelectCupMTable);
+        func_02124c30(gSelectCupGrid->mSelectCupSBncl, gSelectCupGrid->mSelectCupSNcer, NULL, gSelectCupGrid->mSubOam,
                       gSelectCupGrid->mSelectCupSTable);
     } else {
         func_0211f39c();
@@ -1035,7 +1036,7 @@ s32 AdvanceSelectCupGrid(void) {
 #pragma thumb off
 
 #pragma thumb on
-void func_021173e4(void) {
+void WriteSelectCupGridRegisters(void) {
     u32 value0;
     u32 value1;
     u32 value2;

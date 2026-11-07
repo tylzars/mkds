@@ -47,7 +47,7 @@ typedef struct Unk021759d0 {
 // The callbacks of one scene (0x20 bytes). RunScene copies it to mSceneCallbacks and calls mInit
 // once, then mUpdate and the unnamed slot 0x0c every frame, then mRelease once. 0x0c is the second
 // per-frame slot (it runs after mUpdate in the same pass and mostly copies the two 2D lists). 0x10
-// and 0x14 are called from two library callbacks registered in func_02049c3c; 0x18 and 0x1a are
+// and 0x14 are called from two library callbacks registered in InitSceneRunState; 0x18 and 0x1a are
 // fade lengths passed to StartFadeToClear / StartFadeToFadedPositive; 0x1c is a flag for func_02037658; all stay
 // unnamed. One instance per scene (the 16 entries of gSceneFuncs): seven tables are named, the
 // others are unnamed tables or stack literals.
@@ -65,37 +65,37 @@ typedef struct SceneCallbacks {
     // heap is destroyed by the caller. The Race slot also writes a save block in kind 6.
     /* 08 */ void (*mRelease)();
     /* 0c */ void (*mUnk_0c)();
-    /* 10 */ void (*mUnk_10)(void);
-    /* 14 */ void (*mUnk_14)(void);
-    /* 18 */ s16 mUnk_18;
-    /* 1a */ s16 mUnk_1a;
+    /* 10 */ void (*mPreSleep)(void);
+    /* 14 */ void (*mPostSleep)(void);
+    /* 18 */ s16 mFadeToClearFrameCount;
+    /* 1a */ s16 mFadeToFadedFrameCount;
     /* 1c */ int mUnk_1c;
 } SceneCallbacks;
 
-// Object behind data_021759cc.
-typedef struct Unk021759cc {
-    /* 000 */ void *mUnk_000;
-    /* 004 */ OSThread mUnk_004;
+// Object behind gSceneRunState.
+typedef struct SceneRunState {
+    /* 000 */ void *mThreadStack;
+    /* 004 */ OSThread mThread;
     /* 0bc */ u8 mUnk_0bc[8];
-    /* 0c4 */ OSThreadQueue mUnk_0c4;
-    /* 0cc */ PMSleepCallbackInfo mUnk_0cc;
-    /* 0d8 */ PMSleepCallbackInfo mUnk_0d8;
+    /* 0c4 */ OSThreadQueue mThreadQueue;
+    /* 0cc */ PMSleepCallbackInfo mPreSleepCallback;
+    /* 0d8 */ PMSleepCallbackInfo mPostSleepCallback;
     // Passes of RunScene's update loop and fade-out loop since they began (RunScene zeroes it at
     // :192 and :376); not counted while func_020487fc_inline6 is true (mode 5 with a flag, or the
     // data_0217aa00 flag tests). Only the Race slots use it (kind 6: the first 0x708 frames,
     // thresholds 0x5a ...).
     /* 0e4 */ s32 mSceneFrames;
-    /* 0e8 */ s32 mUnk_0e8;
+    /* 0e8 */ s32 mPassCount;
     // Copy of the running scene's SceneCallbacks, written once by RunScene; slots 0x10 / 0x14 and
     // the fade lengths are read from it (code_0204984c.c:125, :132, :431-438).
     /* 0ec */ SceneCallbacks mSceneCallbacks;
     /* 10c */ s32 mUnk_10c;
-    /* 110 */ BOOL mUnk_110;
+    /* 110 */ BOOL mLcdOff;
     /* 114 */ u8 mUnk_114[4];
     /* 118 */ s32 mUnk_118;
     /* 11c */ s32 mUnk_11c;
-    /* 120 */ s8 mUnk_120;
-} Unk021759cc;
+    /* 120 */ s8 mNextScene;
+} SceneRunState;
 
 // Part of DisplaySettings at 0x28, 0x38, 0x70 and 0x80: seven halfwords.
 typedef struct Bg01Cnt {
@@ -264,7 +264,7 @@ typedef struct Unk021759c8 {
 } Unk021759c8;
 
 extern Unk021759c8 *data_021759c8;
-extern Unk021759cc *data_021759cc;
+extern SceneRunState *gSceneRunState;
 extern Unk021759d0 *data_021759d0;
 
 // Object at data_usa_021759b8: 0x400 bytes (the end of them is the top of the stack of the OSThread) and two words.

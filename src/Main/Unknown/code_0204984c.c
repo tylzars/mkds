@@ -119,18 +119,18 @@ static inline void func_02049e38_inline(SceneNumbers *a) {
     }
 }
 
-s16 func_0204a508(void) {
-    if (data_021759cc->mUnk_10c == 6) {
+s16 GetSceneFadeToClearFrameCount(void) {
+    if (gSceneRunState->mUnk_10c == 6) {
         return -1;
     }
-    return data_021759cc->mSceneCallbacks.mUnk_18;
+    return gSceneRunState->mSceneCallbacks.mFadeToClearFrameCount;
 }
 
-u32 func_0204a4e4(void) {
-    if (data_021759cc->mUnk_10c == 6) {
+u32 GetSceneFadeToFadedFrameCount(void) {
+    if (gSceneRunState->mUnk_10c == 6) {
         return -1;
     }
-    return data_021759cc->mSceneCallbacks.mUnk_1a;
+    return gSceneRunState->mSceneCallbacks.mFadeToFadedFrameCount;
 }
 
 void func_0204a4d8(void) {
@@ -222,8 +222,8 @@ void func_0204a1a8(void *a) {
     while (1) {
         b = FALSE;
         c = FALSE;
-        OS_SleepThread(&data_021759cc->mUnk_0c4);
-        data_021759cc->mUnk_120 = 0;
+        OS_SleepThread(&gSceneRunState->mThreadQueue);
+        gSceneRunState->mNextScene = 0;
         func_0212b144();
         if (gDisplaySettings != NULL) {
             c = TRUE;
@@ -234,7 +234,7 @@ void func_0204a1a8(void *a) {
         if (func_0204984c_inline6()) {
             b = TRUE;
         }
-        func_0212ad28(data_021759cc->mUnk_118, data_021759cc->mUnk_11c);
+        func_0212ad28(gSceneRunState->mUnk_118, gSceneRunState->mUnk_11c);
         StopAllSeqPlayers();
         if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
             func_02108d00();
@@ -242,7 +242,7 @@ void func_0204a1a8(void *a) {
             func_02108c80();
         }
         if (b != FALSE) {
-            switch (data_021759cc->mUnk_118) {
+            switch (gSceneRunState->mUnk_118) {
                 case 1:
                 case 2:
                 case 3:
@@ -277,10 +277,10 @@ void func_0204a1a8(void *a) {
         } while (d == -1);
         switch (d) {
             case 1:
-                data_021759cc->mUnk_120 = 12;
+                gSceneRunState->mNextScene = 12;
                 break;
             default:
-                data_021759cc->mUnk_120 = 0;
+                gSceneRunState->mNextScene = 0;
                 break;
         }
     }
@@ -296,13 +296,13 @@ void func_02049f60(void) {
 
     a = FALSE;
     b = FALSE;
-    data_021759cc->mUnk_120 = 0;
+    gSceneRunState->mNextScene = 0;
     func_0212b144();
     if (gDisplaySettings != NULL) {
         b = TRUE;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        func_0212ad28(data_021759cc->mUnk_118, data_021759cc->mUnk_11c);
+        func_0212ad28(gSceneRunState->mUnk_118, gSceneRunState->mUnk_11c);
     }
     func_02039478();
     func_0203940c();
@@ -311,7 +311,7 @@ void func_02049f60(void) {
         a = TRUE;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_0212ad28(data_021759cc->mUnk_118, data_021759cc->mUnk_11c);
+        func_0212ad28(gSceneRunState->mUnk_118, gSceneRunState->mUnk_11c);
     }
     StopAllSeqPlayers();
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
@@ -319,11 +319,11 @@ void func_02049f60(void) {
     } else {
         func_02108c80();
     }
-    PM_DeletePreSleepCallback(&data_021759cc->mUnk_0cc);
-    PM_DeletePostSleepCallback(&data_021759cc->mUnk_0d8);
+    PM_DeletePreSleepCallback(&gSceneRunState->mPreSleepCallback);
+    PM_DeletePostSleepCallback(&gSceneRunState->mPostSleepCallback);
     PM_SetLCDPower(1);
     if (a != FALSE) {
-        switch (data_021759cc->mUnk_118) {
+        switch (gSceneRunState->mUnk_118) {
             case 1:
             case 2:
             case 3:
@@ -358,10 +358,10 @@ void func_02049f60(void) {
     } while (e == FALSE || g == -1);
     switch (g) {
         case 1:
-            data_021759cc->mUnk_120 = 12;
+            gSceneRunState->mNextScene = 12;
             break;
         default:
-            data_021759cc->mUnk_120 = 0;
+            gSceneRunState->mNextScene = 0;
             break;
     }
 }
@@ -391,8 +391,8 @@ void func_02049e38(s32 a) {
             c = FALSE;
             break;
     }
-    data_021759cc->mUnk_118 = a;
-    data_021759cc->mUnk_11c = c;
+    gSceneRunState->mUnk_118 = a;
+    gSceneRunState->mUnk_11c = c;
     func_02049f60();
     StopSceneSounds();
     if (data_021759d0->mUnk_1c_0) {
@@ -412,7 +412,7 @@ void func_02049e38(s32 a) {
     }
 }
 
-void func_02049d8c(void *a) {
+void ScenePreSleepCallback(void *a) {
     BOOL b;
     s32 c;
     BOOL d;
@@ -429,32 +429,32 @@ void func_02049d8c(void *a) {
         FinishDisplayFrame();
         RecordFrameTimes();
     } while (d == FALSE);
-    if (data_021759cc->mSceneCallbacks.mUnk_10 != NULL) {
-        data_021759cc->mSceneCallbacks.mUnk_10();
+    if (gSceneRunState->mSceneCallbacks.mPreSleep != NULL) {
+        gSceneRunState->mSceneCallbacks.mPreSleep();
     }
 }
 
-void func_02049d54(void) {
-    if (data_021759cc->mSceneCallbacks.mUnk_14 != NULL) {
-        data_021759cc->mSceneCallbacks.mUnk_14();
+void ScenePostSleepCallback(void) {
+    if (gSceneRunState->mSceneCallbacks.mPostSleep != NULL) {
+        gSceneRunState->mSceneCallbacks.mPostSleep();
     }
 }
 
-void func_02049c3c(void *a) {
-    data_021759cc = HeapAlloc(a, 0x124);
-    data_021759cc->mUnk_000 = HeapAllocAligned(a, 0x400, 0x20);
-    data_021759cc->mUnk_10c = 6;
-    data_021759cc->mUnk_110 = FALSE;
-    data_021759cc->mUnk_118 = -1;
-    data_021759cc->mUnk_11c = 0;
-    func_02049c3c_inline(&data_021759cc->mUnk_0c4);
-    OS_CreateThread(&data_021759cc->mUnk_004, (void (*)(void *)) func_0204a1a8, NULL,
-                    (u8 *) data_021759cc->mUnk_000 + 0x400, 0x400, 15);
-    OS_WakeupThreadDirect(&data_021759cc->mUnk_004);
-    func_02049c3c_inline2(&data_021759cc->mUnk_0cc, func_02049d8c);
-    func_02049c3c_inline2(&data_021759cc->mUnk_0d8, (void (*)(void *)) func_02049d54);
-    PM_AppendPreSleepCallback(&data_021759cc->mUnk_0cc);
-    PM_AppendPostSleepCallback(&data_021759cc->mUnk_0d8);
+void InitSceneRunState(void *a) {
+    gSceneRunState = HeapAlloc(a, 0x124);
+    gSceneRunState->mThreadStack = HeapAllocAligned(a, 0x400, 0x20);
+    gSceneRunState->mUnk_10c = 6;
+    gSceneRunState->mLcdOff = FALSE;
+    gSceneRunState->mUnk_118 = -1;
+    gSceneRunState->mUnk_11c = 0;
+    func_02049c3c_inline(&gSceneRunState->mThreadQueue);
+    OS_CreateThread(&gSceneRunState->mThread, (void (*)(void *)) func_0204a1a8, NULL,
+                    (u8 *) gSceneRunState->mThreadStack + 0x400, 0x400, 15);
+    OS_WakeupThreadDirect(&gSceneRunState->mThread);
+    func_02049c3c_inline2(&gSceneRunState->mPreSleepCallback, ScenePreSleepCallback);
+    func_02049c3c_inline2(&gSceneRunState->mPostSleepCallback, (void (*)(void *)) ScenePostSleepCallback);
+    PM_AppendPreSleepCallback(&gSceneRunState->mPreSleepCallback);
+    PM_AppendPostSleepCallback(&gSceneRunState->mPostSleepCallback);
 }
 
 u32 func_02049b6c(void) {
@@ -469,7 +469,7 @@ u32 func_02049b6c(void) {
     return r;
 }
 
-BOOL func_02049aa4(void) {
+BOOL ShouldGoSleepMode(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 || func_0204984c_inline2() ||
         (GetCurrentSceneNumber() == 12 && func_ov000_02180600() == FALSE) ||
         (GetCurrentSceneNumber() != 12 && gWiFiSession->mUnk_0008.mState != 0) || GetCurrentSceneNumber() == 13 ||
