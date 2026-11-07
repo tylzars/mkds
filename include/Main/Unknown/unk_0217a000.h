@@ -1470,10 +1470,10 @@ extern s32 gOtherKartFullPairCount;
 typedef Unk020f41c4_B Unk0217aebc_128;
 
 // Entry of the eight 0xc-byte entries at 0xb0 of KartAiShared: a word, then the links of a list.
-typedef struct Unk0217aebc_0b0 {
-    /* 00 */ s32 mUnk_00;
+typedef struct KartAiTableIndexEntry {
+    /* 00 */ s32 mTableIndex;
     /* 04 */ u8 mUnk_04[8];
-} Unk0217aebc_0b0;
+} KartAiTableIndexEntry;
 
 // One row of 'kartAIparam.bin'.
 typedef struct KartAiParamRow {
@@ -1484,17 +1484,17 @@ typedef struct KartAiParamRow {
 
 // State the CPU kart code shares: per-kart tables, the random generator pointer and the team counts.
 typedef struct KartAiShared {
-    /* 000 */ s32 mUnk_000[8];
+    /* 000 */ s32 mRaceProgressScaled[8];
     // Kart index at rank n + 1, -1 when no kart has that rank.
     /* 020 */ s32 mKartAtRank[8];
-    /* 040 */ s32 mUnk_040[8];
+    /* 040 */ s32 mKind1KartByRank[8];
     /* 060 */ s32 mUnk_060[8];
     /* 080 */ s32 mUnk_080;
     /* 084 */ s32 mUnk_084;
     /* 088 */ s32 mUnk_088;
     /* 08c */ s32 mUnk_08c;
-    /* 090 */ s32 mUnk_090[8];
-    /* 0b0 */ Unk0217aebc_0b0 mUnk_0b0[8];
+    /* 090 */ s32 mTableIndex[8];
+    /* 0b0 */ KartAiTableIndexEntry mTableIndexEntries[8];
     /* 110 */ s32 mUnk_110;
     /* 114 */ s32 mUnk_114[2];
     /* 11c */ s32 mUnk_11c;
@@ -1503,7 +1503,7 @@ typedef struct KartAiShared {
     /* 126 */ u8 mUnk_126[2];
     // The race's random generator, or the per-console one in time attack.
     /* 128 */ Unk0217aebc_128 *mRandom;
-    /* 12c */ NNSFndList mUnk_12c;
+    /* 12c */ NNSFndList mTableIndexList;
     /* 138 */ s32 mUnk_138;
     /* 13c */ s16 mUnk_13c;
     /* 13e */ s16 mUnk_13e[3];

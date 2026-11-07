@@ -192,7 +192,7 @@ void func_020d06b8(Unk020d029c *a) {
     a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, NULL, q[2], 0, 1);
     for (i = 0; i < GetLapCount(); i++) {
         j = 0;
-        if (func_020c70ec() != 0 && i + 1 == func_020c70d8()) {
+        if (func_020c70ec() != 0 && i + 1 == GetRaceNewRecordTaBestLapNumber()) {
             j = data_0217b49c->mUnk_ac;
         }
         c = GetRaceGoalMNcerEntry(i + 0x18 + j);

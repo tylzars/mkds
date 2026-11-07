@@ -158,7 +158,7 @@ u32 func_0207e200(struct Unk02089a24 *arg0, struct KartAi *arg1) {
     value0 = *(const u32 *) ((value4) + (0));
     *(u32 *) ((value4) + (16)) = value0;
     value0 = arg1->mIndex;
-    value0 = func_020853f0(value0);
+    value0 = GetKartAiTableIndex(value0);
     *(u32 *) ((value4) + (28)) = value0;
     value0 = *(const u32 *) ((value4) + (28));
     value2 = 0u;
@@ -208,7 +208,7 @@ void func_0207e088(struct Unk02089a24 *a, struct KartAi *b) {
     r = GetKartAiRandom();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     r4 = (s16) (u16) (r->mUnk_00 >> 52);
-    r5 = func_020853f0(b->mIndex);
+    r5 = GetKartAiTableIndex(b->mIndex);
     u = GetKart(b->mIndex)->mAi;
     if (u->mUnk_154 != 0) {
         r5 = r6;
@@ -251,7 +251,7 @@ void func_0207de84(struct Unk02089a24 *a, struct KartAi *b) {
         if (f != FALSE) {
             a->mUnk_14 = GetKartRank(b->mIndex);
         } else {
-            a->mUnk_14 = func_020854c0(b->mIndex);
+            a->mUnk_14 = GetKartRankAmongKind1(b->mIndex);
         }
         a->mUnk_08 = GetKartAiParamRow()->mUnk_00;
         if (func_02085390() != 0) {
@@ -395,7 +395,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct KartAi *b, s32 c) {
             }
         } else {
             g = GetKartRaceProgressScaled(m);
-            d = func_02085478();
+            d = GetFirstKind1KartByRank();
             if (d >= 0) {
                 e = GetKartRaceProgressScaled((u16) d) - g;
                 e -= (s32) (((s64) k[2] * func_0208548c()) >> 12);

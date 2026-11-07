@@ -40,8 +40,8 @@
 #include "01/code_021956dc.h"
 #include "Main/Unknown/code_0203c5f8.h"
 
-u32 func_020c70d8(void) {
-    return (gRaceNewRecordTa->mUnk_14);
+u32 GetRaceNewRecordTaBestLapNumber(void) {
+    return (gRaceNewRecordTa->mBestLapNumber);
 }
 
 s32 func_020c70bc(void) {
@@ -59,12 +59,12 @@ void InitRaceNewRecordTa(void) {
         return;
     }
     gRaceNewRecordTa = HeapAlloc(GetHeap(func_020364e8()), 0xe8);
-    gRaceNewRecordTa->mUnk_00 = func_020c610c;
-    gRaceNewRecordTa->mUnk_04 = 0;
-    gRaceNewRecordTa->mUnk_08 = 0;
-    gRaceNewRecordTa->mUnk_0c = -1;
-    gRaceNewRecordTa->mUnk_10 = 0;
-    gRaceNewRecordTa->mUnk_14 = 0;
+    gRaceNewRecordTa->mUpdate = func_020c610c;
+    gRaceNewRecordTa->mUpdateFrames = 0;
+    gRaceNewRecordTa->mFinishTimeIsRecord = 0;
+    gRaceNewRecordTa->mFinishRecordIndex = -1;
+    gRaceNewRecordTa->mBestLapIsRecord = 0;
+    gRaceNewRecordTa->mBestLapNumber = 0;
     gRaceNewRecordTa->mUnk_18 = 0;
     for (i = 0; i < 6; i++) {
         func_02056bc0(gRaceSetup->mCourseId, i, &gRaceNewRecordTa->mRecords[i]);
@@ -72,27 +72,27 @@ void InitRaceNewRecordTa(void) {
     gRaceNewRecordTa->mUnk_18 = 0;
     gRaceNewRecordTa->mUnk_dc = 0;
     gRaceNewRecordTa->mOffsetX = -0x100;
-    gRaceNewRecordTa->mUnk_e4 = 0;
+    gRaceNewRecordTa->mCycleFrames = 0;
 }
 
-void func_020c6f84(void) {
+void ClearRaceNewRecordTaPointer(void) {
     if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
         gRaceNewRecordTa = NULL;
     }
 }
 
-void func_020c6f14(void) {
+void UpdateRaceNewRecordTa(void) {
     if (gRaceSetup->mMode != MODE_TIME_ATTACK) {
         return;
     }
-    gRaceNewRecordTa->mUnk_00();
-    gRaceNewRecordTa->mUnk_e4 = gRaceNewRecordTa->mUnk_e4 + 1;
-    if (gRaceNewRecordTa->mUnk_e4 >= 0x18) {
-        gRaceNewRecordTa->mUnk_e4 = 0;
+    gRaceNewRecordTa->mUpdate();
+    gRaceNewRecordTa->mCycleFrames = gRaceNewRecordTa->mCycleFrames + 1;
+    if (gRaceNewRecordTa->mCycleFrames >= 0x18) {
+        gRaceNewRecordTa->mCycleFrames = 0;
     }
 }
 
-void func_020c6adc(Unk020c06c4 *a, s32 b, s32 c, TimeRecord *d) {
+void DrawRaceNewRecordTaTime(Unk020c06c4 *a, s32 b, s32 c, TimeRecord *d) {
     s32 e0[2];
     s32 e1[2];
     s32 e2[2];
@@ -160,7 +160,7 @@ void func_020c6adc(Unk020c06c4 *a, s32 b, s32 c, TimeRecord *d) {
     a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e8, 0, 1);
 }
 
-void func_020c692c(Unk020c06c4 *a, s32 b, s32 c, s32 d) {
+void DrawRaceNewRecordTaRow(Unk020c06c4 *a, s32 b, s32 c, s32 d) {
     s32 e0[2];
     s32 e1[2];
     TimeRecord l;
@@ -171,19 +171,19 @@ void func_020c692c(Unk020c06c4 *a, s32 b, s32 c, s32 d) {
     RaceNewRecordTa *m;
 
     m = gRaceNewRecordTa;
-    n = m->mUnk_e4;
+    n = m->mCycleFrames;
     f = FALSE;
     l = m->mRecords[b];
     if (b == 5) {
-        if ((m != NULL ? m->mUnk_10 : 0) != 0) {
+        if ((m != NULL ? m->mBestLapIsRecord : 0) != 0) {
             b = 0;
             f = TRUE;
         } else {
             b = 6;
         }
-    } else if (m->mUnk_08 == 0 || b < m->mUnk_0c) {
+    } else if (m->mFinishTimeIsRecord == 0 || b < m->mFinishRecordIndex) {
         b++;
-    } else if (b == m->mUnk_0c) {
+    } else if (b == m->mFinishRecordIndex) {
         b = 0;
         f = TRUE;
     }
@@ -202,7 +202,7 @@ void func_020c692c(Unk020c06c4 *a, s32 b, s32 c, s32 d) {
     if (f != FALSE && n >= 0x10) {
         return;
     }
-    func_020c6adc(a, c + 0xab, d, &l);
+    DrawRaceNewRecordTaTime(a, c + 0xab, d, &l);
 }
 
 void DrawRaceNewRecordTa(Unk020c06c4 *a) {
@@ -227,14 +227,14 @@ void DrawRaceNewRecordTa(Unk020c06c4 *a) {
         e1[1] = (i * 0x18 + 0x28) << 12;
         k = a->mUnk_400;
         a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e1, 0, 1);
-        func_020c692c(a, i, gRaceNewRecordTa->mOffsetX, x);
+        DrawRaceNewRecordTaRow(a, i, gRaceNewRecordTa->mOffsetX, x);
     }
     p = GetRaceNewRecordTaSNcerEntry(6);
     e2[0] = gRaceNewRecordTa->mOffsetX << 12;
     e2[1] = 0x9f000;
     k = a->mUnk_400;
     a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e2, 0, 1);
-    func_020c692c(a, i, gRaceNewRecordTa->mOffsetX + 1, 0xb4);
+    DrawRaceNewRecordTaRow(a, i, gRaceNewRecordTa->mOffsetX + 1, 0xb4);
 }
 
 BOOL func_020c657c(s32 a) {
@@ -283,10 +283,10 @@ found:
         e->mKartIndex = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mKartIndex;
         func_02056c6c(gRaceSetup->mCourseId, k, e);
         if (k != 5) {
-            gRaceNewRecordTa->mUnk_0c = k;
+            gRaceNewRecordTa->mFinishRecordIndex = k;
         }
     } else {
-        gRaceNewRecordTa->mUnk_0c = k;
+        gRaceNewRecordTa->mFinishRecordIndex = k;
     }
     return TRUE;
 }
@@ -302,7 +302,7 @@ BOOL func_020c6428(s32 a) {
     u16 n2;
 
     e = &gRaceNewRecordTa->mRecords[TIME_RECORD_BEST_LAP];
-    gRaceNewRecordTa->mUnk_14 = GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &x, &y, &z);
+    gRaceNewRecordTa->mBestLapNumber = GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &x, &y, &z);
     if (e->mFilled != 0) {
         if (z + (y * 1000 + x * 60000) >= e->mMillisecond + (e->mSecond * 1000 + e->mMinute * 60000)) {
             return FALSE;
@@ -351,13 +351,13 @@ void func_020c610c(void) {
         return;
     }
     if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
-        gRaceNewRecordTa->mUnk_08 = func_020c657c(1);
-        gRaceNewRecordTa->mUnk_10 = func_020c6428(1);
-        if (gRaceNewRecordTa->mUnk_08 != 0 || gRaceNewRecordTa->mUnk_10 != 0) {
+        gRaceNewRecordTa->mFinishTimeIsRecord = func_020c657c(1);
+        gRaceNewRecordTa->mBestLapIsRecord = func_020c6428(1);
+        if (gRaceNewRecordTa->mFinishTimeIsRecord != 0 || gRaceNewRecordTa->mBestLapIsRecord != 0) {
             gRaceNewRecordTa->mUnk_18 = 1;
             func_02056408();
-            gRaceNewRecordTa->mUnk_00 = func_020c5f7c;
-            gRaceNewRecordTa->mUnk_04 = 0;
+            gRaceNewRecordTa->mUpdate = func_020c5f7c;
+            gRaceNewRecordTa->mUpdateFrames = 0;
         } else {
             r = FALSE;
             if (func_020ba620() != 0) {
@@ -379,11 +379,11 @@ void func_020c610c(void) {
             if (r != FALSE) {
                 gRaceNewRecordTa->mUnk_18 = 1;
                 func_02056750(gRaceSetup->mCourseId, gRaceSetup->mEntryIndex);
-                gRaceNewRecordTa->mUnk_00 = func_020c5f08;
-                gRaceNewRecordTa->mUnk_04 = 0;
+                gRaceNewRecordTa->mUpdate = func_020c5f08;
+                gRaceNewRecordTa->mUpdateFrames = 0;
             } else {
-                gRaceNewRecordTa->mUnk_00 = func_020c5e30;
-                gRaceNewRecordTa->mUnk_04 = 0;
+                gRaceNewRecordTa->mUpdate = SlideInRaceNewRecordTa;
+                gRaceNewRecordTa->mUpdateFrames = 0;
             }
         }
     } else {
@@ -399,17 +399,17 @@ void func_020c610c(void) {
         }
         j = 0;
     found:
-        gRaceNewRecordTa->mUnk_08 = j;
+        gRaceNewRecordTa->mFinishTimeIsRecord = j;
         q = &gRaceNewRecordTa->mRecords[TIME_RECORD_BEST_LAP];
-        gRaceNewRecordTa->mUnk_14 = GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &d, &e, &f);
+        gRaceNewRecordTa->mBestLapNumber = GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &d, &e, &f);
         if (d == q->mMinute && e == q->mSecond && f == q->mMillisecond) {
             r = TRUE;
         } else {
             r = FALSE;
         }
-        gRaceNewRecordTa->mUnk_10 = r;
-        gRaceNewRecordTa->mUnk_00 = func_020c5e30;
-        gRaceNewRecordTa->mUnk_04 = 0;
+        gRaceNewRecordTa->mBestLapIsRecord = r;
+        gRaceNewRecordTa->mUpdate = SlideInRaceNewRecordTa;
+        gRaceNewRecordTa->mUpdateFrames = 0;
     }
     gRaceNewRecordTa->mUnk_dc = 1;
 }
@@ -449,12 +449,12 @@ void func_020c5f7c(void) {
     if (r != FALSE) {
         gRaceNewRecordTa->mUnk_18 = 1;
         func_02056750(gRaceSetup->mCourseId, gRaceSetup->mEntryIndex);
-        gRaceNewRecordTa->mUnk_00 = func_020c5f08;
-        gRaceNewRecordTa->mUnk_04 = 0;
+        gRaceNewRecordTa->mUpdate = func_020c5f08;
+        gRaceNewRecordTa->mUpdateFrames = 0;
     } else {
         gRaceNewRecordTa->mUnk_18 = 0;
-        gRaceNewRecordTa->mUnk_00 = func_020c5eb8;
-        gRaceNewRecordTa->mUnk_04 = 0;
+        gRaceNewRecordTa->mUpdate = ShowRaceNewRecordTaSubScreen;
+        gRaceNewRecordTa->mUpdateFrames = 0;
     }
 }
 
@@ -470,30 +470,30 @@ void func_020c5f08(void) {
         return;
     }
     gRaceNewRecordTa->mUnk_18 = 0;
-    gRaceNewRecordTa->mUnk_00 = func_020c5eb8;
-    gRaceNewRecordTa->mUnk_04 = 0;
+    gRaceNewRecordTa->mUpdate = ShowRaceNewRecordTaSubScreen;
+    gRaceNewRecordTa->mUpdateFrames = 0;
 }
 
-void func_020c5eb8(void) {
+void ShowRaceNewRecordTaSubScreen(void) {
     if (func_020b1a20() != 0) {
         return;
     }
     func_020b1d64();
-    gRaceNewRecordTa->mUnk_00 = func_020c5e30;
-    gRaceNewRecordTa->mUnk_04 = 0;
+    gRaceNewRecordTa->mUpdate = SlideInRaceNewRecordTa;
+    gRaceNewRecordTa->mUpdateFrames = 0;
 }
 
-void func_020c5e30(void) {
+void SlideInRaceNewRecordTa(void) {
     s32 n;
 
-    n = gRaceNewRecordTa->mUnk_04;
-    gRaceNewRecordTa->mUnk_04 = n + 1;
+    n = gRaceNewRecordTa->mUpdateFrames;
+    gRaceNewRecordTa->mUpdateFrames = n + 1;
     if (n < 0x14) {
         gRaceNewRecordTa->mOffsetX = InterpolateS16(1, -0x100, 0, n, 0x14);
     } else {
         gRaceNewRecordTa->mOffsetX = 0;
-        gRaceNewRecordTa->mUnk_00 = (void (*)(void)) func_020c5df0;
-        gRaceNewRecordTa->mUnk_04 = 0;
+        gRaceNewRecordTa->mUpdate = (void (*)(void)) func_020c5df0;
+        gRaceNewRecordTa->mUpdateFrames = 0;
     }
 }
 
@@ -506,9 +506,9 @@ u32 func_020c5df0(void) {
     s32 compareRight0;
     value0 = (u32) &gRaceNewRecordTa;
     value3 = *(const u32 *) ((value0) + (0));
-    value2 = gRaceNewRecordTa->mUnk_04;
+    value2 = gRaceNewRecordTa->mUpdateFrames;
     value1 = (value2) + (1u);
-    gRaceNewRecordTa->mUnk_04 = value1;
+    gRaceNewRecordTa->mUpdateFrames = value1;
     compareLeft0 = value2;
     compareRight0 = 0x3cu;
     if (compareLeft0 < compareRight0) {

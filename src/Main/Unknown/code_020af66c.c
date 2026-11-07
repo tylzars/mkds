@@ -729,7 +729,7 @@ void func_020af86c(void) {
     ClearRaceRankListPointer();
     ClearRaceHudSubScreenCellGroups();
     func_020c31ec();
-    func_020c6f84();
+    ClearRaceNewRecordTaPointer();
     ClearRaceTaPositionsPointer();
     reg_GX_DISPCNT &= ~0xe000;
     reg_GXS_DB_DISPCNT &= ~0xe000;
@@ -802,7 +802,7 @@ void func_020af66c(void) {
         case 6:
             break;
     }
-    func_020c6f14();
+    UpdateRaceNewRecordTa();
     gRaceHud->mUpdateFrames++;
     if (gRaceHud->mUpdateFrames >= 0xc00) {
         gRaceHud->mUpdateFrames = 0;

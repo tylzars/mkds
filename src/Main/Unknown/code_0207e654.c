@@ -164,7 +164,7 @@ void SetupRaceKartAi(KartAi *p, Kart *q, s32 a) {
     if (a != 0) {
         v = 0;
     } else {
-        v = func_020853f0(p->mIndex);
+        v = GetKartAiTableIndex(p->mIndex);
     }
     p->mUnk_88 = data_usa_0217ae38[v];
     p->mDriftChargeRandomLimit = data_usa_0217ae48[v];

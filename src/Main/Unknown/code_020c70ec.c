@@ -72,8 +72,8 @@ void func_020c7164(void) {
         return;
     }
     if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
-        gRaceNewRecordTa->mUnk_08 = func_020c657c(0);
-        gRaceNewRecordTa->mUnk_10 = func_020c6428(0);
+        gRaceNewRecordTa->mFinishTimeIsRecord = func_020c657c(0);
+        gRaceNewRecordTa->mBestLapIsRecord = func_020c6428(0);
         return;
     }
     GetKartFinishTime(GetFollowedKartOrEntryIndex(), &a, &b, &c);
@@ -88,20 +88,20 @@ void func_020c7164(void) {
     }
     j = 0;
 found:
-    gRaceNewRecordTa->mUnk_08 = j;
+    gRaceNewRecordTa->mFinishTimeIsRecord = j;
     q = &gRaceNewRecordTa->mRecords[TIME_RECORD_BEST_LAP];
-    gRaceNewRecordTa->mUnk_14 = GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &d, &e, &f);
-    gRaceNewRecordTa->mUnk_10 = (d == q->mMinute && e == q->mSecond && f == q->mMillisecond) ? 1 : 0;
+    gRaceNewRecordTa->mBestLapNumber = GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &d, &e, &f);
+    gRaceNewRecordTa->mBestLapIsRecord = (d == q->mMinute && e == q->mSecond && f == q->mMillisecond) ? 1 : 0;
 }
 
 s32 func_020c7148(void) {
-    return gRaceNewRecordTa != NULL ? gRaceNewRecordTa->mUnk_08 : 0;
+    return gRaceNewRecordTa != NULL ? gRaceNewRecordTa->mFinishTimeIsRecord : 0;
 }
 
 BOOL func_020c7108(void) {
     if (gRaceNewRecordTa != NULL) {
-        if (gRaceNewRecordTa->mUnk_08 != 0) {
-            if (gRaceNewRecordTa->mUnk_0c == 0) {
+        if (gRaceNewRecordTa->mFinishTimeIsRecord != 0) {
+            if (gRaceNewRecordTa->mFinishRecordIndex == 0) {
                 return TRUE;
             }
         }
@@ -111,5 +111,5 @@ BOOL func_020c7108(void) {
 }
 
 s32 func_020c70ec(void) {
-    return gRaceNewRecordTa != NULL ? gRaceNewRecordTa->mUnk_10 : 0;
+    return gRaceNewRecordTa != NULL ? gRaceNewRecordTa->mBestLapIsRecord : 0;
 }

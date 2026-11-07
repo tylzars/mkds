@@ -409,7 +409,7 @@ void func_020aeb7c(void) {
                 func_020c31c0();
                 break;
             case 6:
-                func_020c6f14();
+                UpdateRaceNewRecordTa();
                 break;
         }
     }
