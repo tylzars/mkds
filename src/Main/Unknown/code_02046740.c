@@ -6,7 +6,7 @@ void SetNextGrandPrixCourse(void) {
     gRaceSetup->mNextHeader.mCourseNumber = gRaceSetup->mCourseNumber + 1;
     if (gRaceSetup->mNextHeader.mCourseNumber <= 4) {
         gRaceSetup->mNextHeader.mCourseId =
-            data_02154128[gRaceSetup->mNextHeader.mCupIndex][gRaceSetup->mNextHeader.mCourseNumber - 1];
+            gCupCourseIdTable[gRaceSetup->mNextHeader.mCupIndex][gRaceSetup->mNextHeader.mCourseNumber - 1];
     }
     gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_START_GP;
 }

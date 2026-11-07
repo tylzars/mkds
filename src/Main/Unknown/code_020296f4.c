@@ -20,13 +20,13 @@ void func_020297bc(void) {
     func_0202991c(0);
     for (b = 0; b < 4; b++) {
         if (func_02122794(b) != 0) {
-            func_020468b0(a, gRaceSetupCopy->mEntries[b].mCharacterIndex, gRaceSetupCopy->mEntries[b].mKartIndex,
-                          gRaceSetupCopy->mEntries[b].mPlayerKind, -1, 3);
+            SetNextRaceEntry(a, gRaceSetupCopy->mEntries[b].mCharacterIndex, gRaceSetupCopy->mEntries[b].mKartIndex,
+                             gRaceSetupCopy->mEntries[b].mPlayerKind, -1, 3);
             a++;
         }
     }
     for (; a < 8; a++) {
-        func_020468b0(a, -1, -1, PLAYER_KIND_NONE, -1, 3);
+        SetNextRaceEntry(a, -1, -1, PLAYER_KIND_NONE, -1, 3);
     }
     func_02029908(5);
     func_020298f4(gRaceSetupCopy->mCourseId);

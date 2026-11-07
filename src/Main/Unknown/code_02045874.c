@@ -146,14 +146,14 @@ void func_02046024(s32 a) {
                 for (f = 0; f < n; f++) {
                     p = f / 4;
                     q = f % 4;
-                    if (e == data_02154128[t[p]][q]) {
+                    if (e == gCupCourseIdTable[t[p]][q]) {
                         break;
                     }
                 }
                 c = 0;
                 for (f = 0; f < n; f++) {
                     if (func_02046648(t[p]) != FALSE) {
-                        gRaceSetup->mCourseList[c] = data_02154128[t[p]][q];
+                        gRaceSetup->mCourseList[c] = gCupCourseIdTable[t[p]][q];
                         c = (u8) (c + 1);
                     }
                     q = q + 1;
@@ -210,7 +210,7 @@ void func_02046024(s32 a) {
                     p = k / 4;
                     q = k % 4;
                     if (func_02046648(t[p]) != FALSE) {
-                        gRaceSetup->mCourseList[c] = data_02154128[t[p]][q];
+                        gRaceSetup->mCourseList[c] = gCupCourseIdTable[t[p]][q];
                         c = (u8) (c + 1);
                     }
                 }
@@ -265,7 +265,7 @@ void func_02045ed0(void) {
             gRaceSetup->mNextHeader.mCourseNumber = 1;
             gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_START_GP;
             gRaceSetup->mNextHeader.mCourseId =
-                data_02154128[gRaceSetup->mNextHeader.mCupIndex][gRaceSetup->mNextHeader.mCourseNumber - 1];
+                gCupCourseIdTable[gRaceSetup->mNextHeader.mCupIndex][gRaceSetup->mNextHeader.mCourseNumber - 1];
             break;
         case MODE_VS:
             func_02046024(1);
@@ -334,11 +334,11 @@ BOOL func_02045bd4(void) {
                 break;
             }
         }
-        func_020468b0(i, gRaceSetup->mCurrentEntries[(u16) j].mCharacterIndex,
-                      gRaceSetup->mCurrentEntries[(u16) j].mKartIndex, PLAYER_KIND_CPU, -1, 3);
+        SetNextRaceEntry(i, gRaceSetup->mCurrentEntries[(u16) j].mCharacterIndex,
+                         gRaceSetup->mCurrentEntries[(u16) j].mKartIndex, PLAYER_KIND_CPU, -1, 3);
     }
     for (; i < 8; i++) {
-        func_020468b0(i, i, i * 3, PLAYER_KIND_NONE, -1, 3);
+        SetNextRaceEntry(i, i, i * 3, PLAYER_KIND_NONE, -1, 3);
     }
     for (i = 0; i < 8; i++) {
         n = GetKartCupRank(i) - 1;
@@ -397,7 +397,7 @@ void func_02045a2c(s32 a) {
             x = i;
             y = i * 3;
         }
-        func_020468b0(i, x, y, PLAYER_KIND_CPU, -1, 3);
+        SetNextRaceEntry(i, x, y, PLAYER_KIND_CPU, -1, 3);
     }
 }
 

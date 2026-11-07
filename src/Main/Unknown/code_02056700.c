@@ -66,7 +66,7 @@ void func_02056750(s32 a, u16 b) {
     u8 v1[0xf];
     u32 w;
 
-    n = func_0204684c();
+    n = FindCupCourseIndex();
     k = gRaceSetup->mCurrentEntries[b].mPlayer.mIndex;
     p = data_0217aa08->mUnk_14[0];
     if (n == -1) {
@@ -121,7 +121,7 @@ void func_02056700(u32 a) {
     GhostRecord *p;
 
     f = FALSE;
-    n = func_0204684c(a);
+    n = FindCupCourseIndex(a);
     p = data_0217aa08->mUnk_14[0];
     if (n == -1) {
         f = TRUE;

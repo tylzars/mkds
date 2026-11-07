@@ -64,7 +64,7 @@ void func_020e7a40(void) {
     }
     value0 = (u32) &gJgStateMachine;
     value1 = 4u;
-    func_02046bcc((void *) value0, value1);
+    SetStateMachineState((void *) value0, value1);
 }
 
 #pragma thumb off
@@ -186,7 +186,7 @@ void func_020e7760(void) {
     data_0217b9dc.mUnk_04 = &gJgPos;
     data_0217b9dc.mUnk_08 = 1;
     func_02046be8(&gJgStateMachine, (UnkFunc *const *) gJgStateTable, 7, NULL);
-    func_02046bcc(&gJgStateMachine, 0);
+    SetStateMachineState(&gJgStateMachine, 0);
 }
 
 void func_020e7460(void) {

@@ -27,7 +27,7 @@
 #include "code_0214d018.h"
 
 static inline void func_020446e0_inline(s32 f, u32 e, s32 d, u32 c, u32 b, s32 a) {
-    func_020468b0(a, b, c, d, e, f);
+    SetNextRaceEntry(a, b, c, d, e, f);
 }
 
 static inline Unk0217aa00_45c *func_02045084_inline(Unk0217aa00 *q, s32 a) {
@@ -251,7 +251,7 @@ BOOL func_02044e9c(s32 a, s32 b) {
     }
     p = data_0217aa08->mUnk_14[0];
     if (p->mFilled == 1) {
-        func_020468b0(b, p->mCharacterIndex, p->mKartIndex, PLAYER_KIND_GHOST, -1, 3);
+        SetNextRaceEntry(b, p->mCharacterIndex, p->mKartIndex, PLAYER_KIND_GHOST, -1, 3);
         gRaceSetup->mNextEntries[b].mPlayer.mUnk_10 = r;
         MI_CpuCopy8(p->mUnk_30, data_02175650[b].mUnk_00, 0xdcc);
         r = TRUE;
@@ -274,7 +274,7 @@ s32 func_02044d4c(s32 a, s32 b) {
     p = data_0217aa08->mUnk_14[1];
     r = p->mFilled == 1 ? 1 : 0;
     if (r != 0) {
-        func_020468b0(b, p->mCharacterIndex, p->mKartIndex, PLAYER_KIND_GHOST, -1, 3);
+        SetNextRaceEntry(b, p->mCharacterIndex, p->mKartIndex, PLAYER_KIND_GHOST, -1, 3);
         gRaceSetup->mNextEntries[b].mPlayer.mUnk_10 = 1;
         MI_CpuCopy8(&p->mUnk_30[0x200], data_02175650[b].mUnk_00, 0xdcc);
         func_02056574(1, &gRaceSetup->mUnk_3e8);
@@ -282,7 +282,7 @@ s32 func_02044d4c(s32 a, s32 b) {
             func_020565ac(1, i, &gRaceSetup->mUnk_3ec[i - 1]);
         }
     } else {
-        func_020468b0(b, 0, 0, PLAYER_KIND_NONE, -1, 3);
+        SetNextRaceEntry(b, 0, 0, PLAYER_KIND_NONE, -1, 3);
     }
     return r;
 }
@@ -296,7 +296,7 @@ BOOL func_02044bf8(s32 a, s32 b) {
     }
     p = data_0217aa08->mUnk_14[2];
     if (p != NULL && p->mFilled == 1) {
-        func_020468b0(b, p->mCharacterIndex, p->mKartIndex, PLAYER_KIND_GHOST, -1, 3);
+        SetNextRaceEntry(b, p->mCharacterIndex, p->mKartIndex, PLAYER_KIND_GHOST, -1, 3);
         gRaceSetup->mNextEntries[b].mPlayer.mUnk_10 = 2;
         MI_CpuCopy8(&p->mUnk_30[0x200], data_02175650[b].mUnk_00, 0xdcc);
         func_020565e4(p, &gRaceSetup->mUnk_3e8);
@@ -305,7 +305,7 @@ BOOL func_02044bf8(s32 a, s32 b) {
         }
         return TRUE;
     }
-    func_020468b0(b, 0, 0, PLAYER_KIND_NONE, -1, 3);
+    SetNextRaceEntry(b, 0, 0, PLAYER_KIND_NONE, -1, 3);
     return FALSE;
 }
 
@@ -400,7 +400,7 @@ void SetCurrentRaceFromNext(void) {
             break;
     }
     *(Unk02044940_block *) gRaceSetup = *(Unk02044940_block *) &gRaceSetup->mNextHeader;
-    func_02046968(r);
+    RefreshRaceSetupKartCounts(r);
     func_02044fc0();
     for (n = 0; n < 8; n++) {
         SetCurrentEntryPlayer(n);
@@ -423,7 +423,7 @@ void func_020446e0(void) {
                 gRaceSetup->mNextHeader.mCourseId = COURSE_ID_AWARD;
                 gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_AWARD;
                 for (i = 3; i < 8; i++) {
-                    func_020468b0(i, i, i * 3, PLAYER_KIND_NONE, -1, 3);
+                    SetNextRaceEntry(i, i, i * 3, PLAYER_KIND_NONE, -1, 3);
                 }
                 gRaceSetup->mNextHeader.mFollowedKartIndex = 0;
             } else if ((u32) (gRaceSetup->mNextHeader.mCourseId - 0x35) <= 1) {
@@ -446,7 +446,7 @@ void func_020446e0(void) {
                 for (k = 0; k < 32; k++) {
                     m = (s32) k / 4;
                     n = (s32) k % 4;
-                    b = data_02154128[m][n];
+                    b = gCupCourseIdTable[m][n];
                     if (gRaceSetup->mNextHeader.mCourseId == b) {
                         break;
                     }

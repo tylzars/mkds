@@ -68,7 +68,7 @@ typedef struct MultiSelectNS {
     /* 2c */ s32 mUnk_2c;
     /* 30 */ s32 mState;
     /* 34 */ s32 mStateFrames;
-    /* 38 */ s32 mUnk_38;
+    /* 38 */ s32 mOffset;
     /* 3c */ void *mHeap;
 } MultiSelectNS;
 

@@ -258,7 +258,7 @@ void func_020da628(Kuribo *p) {
     p->mUnk_f8 = 0x1000;
     p->mUnk_a4 = data_02158140;
     p->mUnk_b4 = data_02158150;
-    func_02046bcc(&p->mUnk_00.mStateMachine, 1);
+    SetStateMachineState(&p->mUnk_00.mStateMachine, 1);
     p->mUnk_00.mUnk_10.x = 0;
     p->mUnk_00.mUnk_10.y = 0;
     p->mUnk_00.mUnk_10.z = 0;

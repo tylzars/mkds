@@ -280,7 +280,7 @@ void InitItemTeresa(Unk02101d18 *x, ItemTeresa *p) {
     } else {
         p->mUnk_148 = TRUE;
     }
-    func_02046bcc(p->mUnk_12c, 0);
+    SetStateMachineState(p->mUnk_12c, 0);
     p->mUnk_24c = TRUE;
 }
 
@@ -289,7 +289,7 @@ void AdvanceItemTeresa(ItemTeresa *p) {
     Vec3 *w;
     Vec3 v;
 
-    func_02046b40(p->mUnk_12c);
+    AdvanceStateMachine(p->mUnk_12c);
     VEC_Subtract(&p->mUnk_000.mPos, &p->mUnk_000.mPrevPos, &p->mUnk_000.mVelocity);
     if (p->mUnk_000.mUnk_d0 != &p->mUnk_000.mDrawPos) {
         return;
@@ -1033,7 +1033,7 @@ void InitItemTeresaFromData(ItemTeresa *p) {
 
     func_020f8e78(p);
     func_0208adc8(&p->mUnk_000.mUnk_7c, 1);
-    func_02046bcc(p->mUnk_12c, 0);
+    SetStateMachineState(p->mUnk_12c, 0);
     if ((p->mUnk_000.mUnk_78 & 0x8000) == 0) {
         i = (u16) (p->mUnk_000.mUnk_78 & ~0xff00);
     } else {

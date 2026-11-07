@@ -195,7 +195,7 @@ void func_020dfae4(void) {
 }
 
 void UpdateMkdEfBubble(void *a, MkdEfBubbleObject *b) {
-    func_02046b40(&b->mUnk_00.mStateMachine);
+    AdvanceStateMachine(&b->mUnk_00.mStateMachine);
     if (b->mUnk_f0 != 0) {
         return;
     }

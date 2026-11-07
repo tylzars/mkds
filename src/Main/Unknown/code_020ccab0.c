@@ -15,9 +15,9 @@ void func_020ccab0(void) {
             func_020ccb48(i);
         } else {
             a = GetRaceSetupCopy()->mUseTeams != 0 ? GetRaceSetupCopy()->mEntries[i].mTeamIndex : -1;
-            func_020468b0(i, GetRaceSetupCopy()->mEntries[i].mCharacterIndex,
-                          GetRaceSetupCopy()->mEntries[i].mKartIndex, GetRaceSetupCopy()->mEntries[i].mPlayerKind, a,
-                          GetRaceSetupCopy()->mEntries[i].mUnk_10);
+            SetNextRaceEntry(i, GetRaceSetupCopy()->mEntries[i].mCharacterIndex,
+                             GetRaceSetupCopy()->mEntries[i].mKartIndex, GetRaceSetupCopy()->mEntries[i].mPlayerKind, a,
+                             GetRaceSetupCopy()->mEntries[i].mUnk_10);
         }
     }
 }

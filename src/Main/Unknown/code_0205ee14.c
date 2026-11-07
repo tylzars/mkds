@@ -56,7 +56,7 @@ u32 func_0205fe1c(u8 *a, TimeRecord *b, s32 c) {
     if (e >= 240000) {
         return 0;
     }
-    f = func_0204684c(c);
+    f = FindCupCourseIndex(c);
     if (f < 0 || f >= 32) {
         return 0;
     }

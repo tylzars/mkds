@@ -163,7 +163,7 @@ void UpdateJg(void) {
         ComputeJgMatrixAndInverse();
         UpdateJgPosition();
     }
-    func_02046b40(&gJgStateMachine);
+    AdvanceStateMachine(&gJgStateMachine);
     if (gJgStateMachine.mState != 0) {
         return;
     }
@@ -187,7 +187,7 @@ void UpdateJg(void) {
                 data_0217b8ac = 1;
             }
         }
-        func_02046bcc(&gJgStateMachine, 6);
+        SetStateMachineState(&gJgStateMachine, 6);
         return;
     }
     if (IsKartEnded(gJgKartIndex) != 0) {
@@ -212,7 +212,7 @@ void UpdateJg(void) {
                         data_0217b8ac = 1;
                     }
                 }
-                func_02046bcc(&gJgStateMachine, 6);
+                SetStateMachineState(&gJgStateMachine, 6);
                 return;
             }
             gJgKind = 0;
@@ -222,7 +222,7 @@ void UpdateJg(void) {
                     data_0217b8ac = 1;
                 }
             }
-            func_02046bcc(&gJgStateMachine, 6);
+            SetStateMachineState(&gJgStateMachine, 6);
             return;
         }
     }
@@ -241,7 +241,7 @@ void UpdateJg(void) {
         gJgKartPos = gJgKart->mPos;
         gJgKartPos.y -= gJgKart->mHopHeight;
         ComputeJgMatrixAndInverse();
-        func_02046bcc(&gJgStateMachine, 1);
+        SetStateMachineState(&gJgStateMachine, 1);
         return;
     }
     data_0217b8c4 = 0;
@@ -766,7 +766,7 @@ void UpdateJgState1(void) {
         data_0217b894 = 0;
         AdvanceJgPointsAndSetTarget(&gJgKind2Offset, &data_02159404, &data_02159410);
         if (data_0217b8f0 == 0 && data_0217b8bc == 0) {
-            func_02046bcc(&gJgStateMachine, 1);
+            SetStateMachineState(&gJgStateMachine, 1);
         }
     }
     if (frame == 0xa || frame == 0x28) {
@@ -776,12 +776,12 @@ void UpdateJgState1(void) {
         func_0210b760(&data_0217b9dc, player);
     }
     if (IsKartEnded(gJgKartIndex) != 0 || (gJgKart->mUnk_48 & 0x800) != 0) {
-        func_02046bcc(&gJgStateMachine, 5);
+        SetStateMachineState(&gJgStateMachine, 5);
         return;
     }
     if ((gRaceProgress->mUnk_000[gJgKartIndex].mFlags & 4) == 0) {
         if (++data_0217b8c4 > 0x3c) {
-            func_02046bcc(&gJgStateMachine, 5);
+            SetStateMachineState(&gJgStateMachine, 5);
             return;
         }
     } else {
@@ -790,7 +790,7 @@ void UpdateJgState1(void) {
     if ((gJgKart->mUnk_48 & 1) == 0) {
         return;
     }
-    func_02046bcc(&gJgStateMachine, 5);
+    SetStateMachineState(&gJgStateMachine, 5);
 }
 
 void EnterJgState2(void) {
@@ -812,7 +812,7 @@ void UpdateJgState2(void) {
     v.x += data_0217b88c;
     MTX_MultVec43(&v, &gJgMatrix, &gJgTargetPos);
     if (++data_0217b8b4 > gJgState2FrameCount || (gJgKart->mUnk_48 & 0x800) != 0) {
-        func_02046bcc(&gJgStateMachine, 5);
+        SetStateMachineState(&gJgStateMachine, 5);
     }
 }
 
@@ -831,7 +831,7 @@ void UpdateJgState3(void) {
     if ((gJgKart->mUnk_48 & 0x800) == 0) {
         return;
     }
-    func_02046bcc(&gJgStateMachine, 5);
+    SetStateMachineState(&gJgStateMachine, 5);
 }
 
 void EnterJgState4(void) {
@@ -912,7 +912,7 @@ void UpdateJgState4(void) {
         gJgKartPos = gJgKart->mPos;
     } else if (--data_0217b8b4 <= 0) {
         gJgMain.mUnk_18 = 0;
-        func_02046bcc(&gJgStateMachine, 5);
+        SetStateMachineState(&gJgStateMachine, 5);
     }
     if (func_0203c5e4() != 0) {
         matrix = func_020e6b48();
@@ -955,7 +955,7 @@ void UpdateJgState5(void) {
         return;
     }
     NNS_SndPlayerStopSeq(func_02108e6c(4), 1);
-    func_02046bcc(&gJgStateMachine, 0);
+    SetStateMachineState(&gJgStateMachine, 0);
 }
 
 void EnterJgState6(void) {
@@ -1028,13 +1028,13 @@ void UpdateJgState6(void) {
         switch (gJgKind) {
             case 0:
             case 1:
-                func_02046bcc(&gJgStateMachine, 2);
+                SetStateMachineState(&gJgStateMachine, 2);
                 break;
             case 3:
-                func_02046bcc(&gJgStateMachine, 3);
+                SetStateMachineState(&gJgStateMachine, 3);
                 break;
             default:
-                func_02046bcc(&gJgStateMachine, 5);
+                SetStateMachineState(&gJgStateMachine, 5);
                 break;
         }
     }

@@ -39,7 +39,7 @@ extern const s32 data_02154cd4[15];
 extern const s32 data_02154d10[15];
 extern const Vec3 data_02154f7c;
 extern const Vec3 data_02154f88;
-extern u32 data_02154128[][4];
+extern u32 gCupCourseIdTable[][4];
 extern u32 data_usa_021545d8[];
 extern u32 data_usa_02154604[];
 extern u32 data_usa_02154648[];

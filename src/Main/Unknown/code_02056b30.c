@@ -25,7 +25,7 @@ s32 func_02056bc0(s32 a, s32 b, TimeRecord *c) {
     BOOL r;
     s32 n;
 
-    n = func_0204684c(a);
+    n = FindCupCourseIndex(a);
     r = TRUE;
     if (n != -1) {
         func_02056c0c(&data_0217aa08->mUnk_0c->mUnk_004[b][n], c);

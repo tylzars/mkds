@@ -61,7 +61,7 @@ static inline u32 func_0203a908_inline(void) {
 }
 
 BOOL TryFormatGhostPath(u32 a, void *b, u32 c) {
-    int v = func_0204684c(a);
+    int v = FindCupCourseIndex(a);
     if (v == -1) {
         return FALSE;
     }

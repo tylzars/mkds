@@ -213,7 +213,7 @@ void func_0204f938(GhostRecord *a) {
     MI_CpuCopy8(a->mName, e, 0x14);
     e->mUnk_0e.mUnk_07_1 = a->mKartIndex;
     e->mUnk_18_0 = a->mCharacterIndex;
-    e->mUnk_18_4 = (u8) func_0204684c(a->mCourseId);
+    e->mUnk_18_4 = (u8) FindCupCourseIndex(a->mCourseId);
     e->mUnk_18_9 = a->mMinute;
     e->mUnk_18_16 = a->mSecond;
     e->mUnk_18_22 = a->mMillisecond;

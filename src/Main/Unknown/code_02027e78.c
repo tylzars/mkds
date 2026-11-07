@@ -81,11 +81,11 @@ void func_0202802c(u32 a, u32 b) {
     reg_G2S_DB_BG3OFS = (a & 0x1ff) | ((b << 16) & 0x1ff0000);
 }
 
-void func_02028010(u32 a) {
+void WriteSubBg3CntBits(u32 a) {
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | a;
 }
 
-void func_02027fd4(u32 a, u32 b, u32 c, u32 d) {
+void WriteSubBlendAlpha(u32 a, u32 b, u32 c, u32 d) {
     G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, a, b, c, d);
 }
 
@@ -101,7 +101,7 @@ u32 func_02027fb8(u32 arg0) {
     return value0;
 }
 
-u32 func_02027f90(u32 arg0, u32 arg1) {
+u32 WriteSubWinInBits(u32 arg0, u32 arg1) {
     u32 value0 = arg0;
     u32 value1 = arg1;
     u32 value2;
@@ -121,7 +121,7 @@ u32 func_02027f90(u32 arg0, u32 arg1) {
     return value0;
 }
 
-u32 func_02027f68(u32 arg0, u32 arg1) {
+u32 WriteSubWinOutBits(u32 arg0, u32 arg1) {
     u32 value0 = arg0;
     u32 value1 = arg1;
     u32 value2;
@@ -141,14 +141,14 @@ u32 func_02027f68(u32 arg0, u32 arg1) {
     return value0;
 }
 
-void func_02027f1c(u32 a, u32 b, u32 c, u32 d) {
+void WriteSubWin0HV(u32 a, u32 b, u32 c, u32 d) {
     reg_G2S_DB_WIN0H = ((a << 8) & 0xff00) | (c & 0xff);
     reg_G2S_DB_WIN0V = ((b << 8) & 0xff00) | (d & 0xff);
 }
 
 #pragma thumb on
 
-void func_02027e78(void) {
+void WriteSelectKartRegisters(void) {
     u32 a = 0x16;
     s32 b = func_02025ebc(&gSelectKart->mUnk_0ac[4]);
     if (gSelectKart->mState != 8) {
@@ -157,13 +157,13 @@ void func_02027e78(void) {
     func_02028074(0x19);
     func_02028058(a);
     func_0202802c(0, -b);
-    func_02028010(2);
-    func_02027fd4(0, 0x3f, 6, 10);
+    WriteSubBg3CntBits(2);
+    WriteSubBlendAlpha(0, 0x3f, 6, 10);
     if (b != 0 && gSelectKart->mState != 8) {
         func_02027fb8(1);
-        func_02027f90(0x1f, 1);
-        func_02027f68(7, 1);
-        func_02027f1c(0, 0, 0xff, b + 0xc0);
+        WriteSubWinInBits(0x1f, 1);
+        WriteSubWinOutBits(7, 1);
+        WriteSubWin0HV(0, 0, 0xff, b + 0xc0);
     } else {
         func_02027fb8(0);
     }

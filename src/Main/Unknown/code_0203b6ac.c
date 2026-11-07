@@ -123,7 +123,7 @@ void SetNextDemoRace(u8 *a) {
     r.mUnk_00 = _ll_mul(r.mUnk_08, r.mUnk_00) + r.mUnk_10;
     d = (u64) (u32) (r.mUnk_00 >> 32) * 4 >> 32;
     c = func_0203b8e4(&r);
-    gRaceSetup->mNextHeader.mCourseId = data_02154128[c][d];
+    gRaceSetup->mNextHeader.mCourseId = gCupCourseIdTable[c][d];
     r.mUnk_00 = _ll_mul(r.mUnk_08, r.mUnk_00) + r.mUnk_10;
     e = (u64) (u32) (r.mUnk_00 >> 32) * 8 >> 32;
     gRaceSetup->mNextHeader.mFollowedKartIndex = e;
@@ -157,7 +157,7 @@ void SetNextDemoRace(u8 *a) {
             l = 1;
         }
         func_0203be48(a, i, &x, &y);
-        func_020468b0(i, x, y, PLAYER_KIND_CPU, -1, l);
+        SetNextRaceEntry(i, x, y, PLAYER_KIND_CPU, -1, l);
     }
     func_020467a0();
 }

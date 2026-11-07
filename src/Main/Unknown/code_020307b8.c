@@ -33,7 +33,7 @@ void func_020309d8(void) {
     o = gMultiSelectNS;
     n = func_02030a18(o->mBncl) + func_02030a10(o->mBnll);
     for (i = 0; i < n; i++) {
-        o->mUnk_18[i].mUnk_06 = gMultiSelectNS->mUnk_38;
+        o->mUnk_18[i].mUnk_06 = gMultiSelectNS->mOffset;
     }
 }
 
@@ -102,7 +102,7 @@ void InitMultiSelectNS(void *a, void *b, void *c) {
     gMultiSelectNS->mUnk_1c = b;
     gMultiSelectNS->mUnk_20 = c;
     gMultiSelectNS->mBannerMessages = FindSceneFile(data_0216362c);
-    gMultiSelectNS->mUnk_38 = -0xc0;
+    gMultiSelectNS->mOffset = -0xc0;
     n = GX_GetSizeOfSubOBJ();
     o = gMultiSelectNS;
     LocateNcgr2(&o->mNcgr, FindSceneFile(data_02163638));

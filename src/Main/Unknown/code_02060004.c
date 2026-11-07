@@ -325,7 +325,7 @@ s32 func_02060268(s32 a) {
     TimeRecord b;
 
     c = TRUE;
-    d = func_0204684c(a);
+    d = FindCupCourseIndex(a);
     if (d == -1) {
         return c;
     }
@@ -393,7 +393,7 @@ BOOL GetTimeRecordName(s32 a, s32 b, void *v1) {
 }
 
 s32 func_020600b4(s32 a) {
-    return func_0203b96c(func_020467d0(a));
+    return func_0203b96c(FindCupIndexOfCourse(a));
 }
 
 void ClearCourseTimeRecords(s32 a) {
@@ -403,7 +403,7 @@ void ClearCourseTimeRecords(s32 a) {
     s32 c;
     TimeRecord b;
 
-    c = func_0204684c(a);
+    c = FindCupCourseIndex(a);
     d = FALSE;
     if (c == -1) {
         return;

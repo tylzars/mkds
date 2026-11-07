@@ -105,7 +105,7 @@ void func_020dc1d8(Wanwan *p, CourseMapRow *a) {
     p->mUnk_ac = p->mUnk_a0.y;
     p->mUnk_a0.y = p->mUnk_a0.y + p->mUnk_f0;
     func_02046be8(&p->mUnk_00.mStateMachine, data_0216befc, 6, p);
-    func_02046bcc(&p->mUnk_00.mStateMachine, 0);
+    SetStateMachineState(&p->mUnk_00.mStateMachine, 0);
     p->mUnk_200 = p->mUnk_00.mMatrix.mUnk_00[2];
     func_020dbf7c(p);
     p->mUnk_1fa = CreateCollisionSlot(&p->mUnk_00.mPos, p->mUnk_1ec, 0x400, p);
@@ -123,7 +123,7 @@ void func_020dc11c(Wanwan *p, CourseMapRow *a) {
     p->mUnk_ac = p->mUnk_a0.y;
     p->mUnk_a0.y = p->mUnk_a0.y + p->mUnk_f0;
     func_02046be8(&p->mUnk_00.mStateMachine, data_0216befc, 6, p);
-    func_02046bcc(&p->mUnk_00.mStateMachine, 5);
+    SetStateMachineState(&p->mUnk_00.mStateMachine, 5);
     func_020d7d4c(&p->mUnk_1a0, a, data_02158908, a->mUnk_28);
     func_020dbf7c(p);
 }

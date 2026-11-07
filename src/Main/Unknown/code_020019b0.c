@@ -118,7 +118,7 @@ void func_02001abc(void) {
 }
 
 void func_02001a74(Unk02001a74 *a) {
-    func_02046b40(&data_usa_ov001_021a99c0->mUnk_18);
+    AdvanceStateMachine(&data_usa_ov001_021a99c0->mUnk_18);
     if (a != NULL && data_usa_ov001_021a99c0->mUnk_18.mUnk_0e == 11) {
         a->mUnk_04 = 0;
     }

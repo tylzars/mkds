@@ -128,7 +128,7 @@ s32 func_02058cac(void) {
         }
         return 2;
     }
-    func_02046b40(&data_0217aa00->mUnk_1608);
+    AdvanceStateMachine(&data_0217aa00->mUnk_1608);
     if (!func_02058cac_inline4()) {
         if (func_02058b38_inline() == 1 && data_0217aa00->mUnk_0044.mChildCount == 0) {
             func_02050e60(7);

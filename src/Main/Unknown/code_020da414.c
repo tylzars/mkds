@@ -80,7 +80,7 @@ void InitKuribo(Kuribo *a, CourseMapRow *b) {
             Quaternion y = {0, 0, 0, 0x1000};
             a->mUnk_b4 = y;
         }
-        func_02046bcc(&a->mUnk_00.mStateMachine, 1);
+        SetStateMachineState(&a->mUnk_00.mStateMachine, 1);
         a->mUnk_00.mUnk_10.x = 0;
         a->mUnk_00.mUnk_10.y = 0;
         a->mUnk_00.mUnk_10.z = 0;

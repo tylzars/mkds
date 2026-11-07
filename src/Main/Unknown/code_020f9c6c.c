@@ -163,7 +163,7 @@ s32 InitItemKouraW(ItemInUse *a, ItemKouraW *e) {
     func_020f9114(e);
     if (a->mKartItems->mUnk_1f0.mLink != NULL) {
         func_020ed268((Unk020ec8bc *) e, a, 0x14, 0xcc, 1, 1, 0, 0x6000, e->mRankKartIndex, 1);
-        func_02046bcc(e->mUnk_2e8, 1);
+        SetStateMachineState(e->mUnk_2e8, 1);
     } else {
         SetItemKouraWKartItems(e, (u16) gRaceProgress->mKartAtRank[0]);
         p = e->mKartItems->mKart;
@@ -267,7 +267,7 @@ void UpdateItemKouraWOrientation(ItemKouraW *p, Vec3 *v, s32 v1, Vec3 *v2) {
 }
 
 void AdvanceItemKouraW(ItemKouraW *a) {
-    func_02046b40(a->mUnk_2e8);
+    AdvanceStateMachine(a->mUnk_2e8);
     func_020f9320(&a->mUnk_000, 0x3c000400u);
 }
 
@@ -703,7 +703,7 @@ void InitItemKouraWFromData(ItemKouraW *param_1) {
     func_020f8e78(param_1);
     if (param_1->mUnk_21c != 0) {
         func_020ec8bc((Unk020ec8bc *) param_1, 0x14, 0xcc, 1, 0, param_1->mUnk_2fc, gRaceProgress->mKartAtRank[0], 1);
-        func_02046bcc(&param_1->mUnk_2e8, 1);
+        SetStateMachineState(&param_1->mUnk_2e8, 1);
     } else if (param_1->mUnk_000.mFlags & 0x8000000) {
         v = (u16) gRaceProgress->mKartAtRank[0];
         if (param_1->mKartItems == NULL) {

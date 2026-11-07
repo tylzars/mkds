@@ -20,7 +20,7 @@ void func_0204eca0(void) {
 void func_0204ec28(u32 a, Unk0217aa00_24_50 *b) {
     data_0217aa00->mUnk_1e48[a].mUnk_00 = b->mUnk_0e.mUnk_07_1;
     data_0217aa00->mUnk_1e48[a].mUnk_01 = b->mUnk_18_0;
-    data_0217aa00->mUnk_1e48[a].mUnk_02 = func_02046828((u8) b->mUnk_18_4);
+    data_0217aa00->mUnk_1e48[a].mUnk_02 = GetCupCourseIdAtIndex((u8) b->mUnk_18_4);
     data_0217aa00->mUnk_1e48[a].mUnk_03 = b->mUnk_18_9;
     data_0217aa00->mUnk_1e48[a].mUnk_04 = b->mUnk_18_16;
     data_0217aa00->mUnk_1e48[a].mUnk_06 = b->mUnk_18_22;

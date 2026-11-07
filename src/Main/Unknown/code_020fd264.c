@@ -62,7 +62,7 @@ void ResetItemBomb(ItemBomb *a) {
     u32 v1;
     MTX_Identity43_((MtxFx43 *) a->mUnk_13c);
     func_02046be8(a->mUnk_184, (UnkFunc *const *) &gItemBombStateTable, 4, a);
-    func_02046bcc(a->mUnk_184, 0);
+    SetStateMachineState(a->mUnk_184, 0);
     a->mUnk_170 = 300;
     a->mUnk_174 = 0;
     v1 = 0x05f592e1u;
@@ -277,7 +277,7 @@ void func_020fdc08(ItemBomb *e, ItemBomb *b, Unk021052fc *c) {
     Unk021052fc *v1;
 
     b->mUnk_000.mItemObject.mUnk_d4 |= data_02159f2c;
-    func_02046b40(&e->mUnk_184);
+    AdvanceStateMachine(&e->mUnk_184);
     if (c->mUnk_00.mFlags & 0x100) {
         e->mUnk_198 = NULL;
         ReleaseItemPoolObject(gItemPools + e->mUnk_000.mItemObject.mKind, &e->mUnk_000.mItemObject);
@@ -316,7 +316,7 @@ void AdvanceItemBomb(ItemBomb *e) {
         func_020fdc08(e, e, e->mUnk_198);
         return;
     }
-    func_02046b40(&e->mUnk_184);
+    AdvanceStateMachine(&e->mUnk_184);
     if ((e->mUnk_000.mItemObject.mFlags & 0x80000) || e->mUnk_170 < 0) {
         func_020f7104(&e->mUnk_000.mItemObject, 1);
     }
@@ -481,7 +481,7 @@ void func_020fd754(void *a) {
     }
     func_020f9c40((s32) e);
     e->mUnk_1a0 = FALSE;
-    func_02046bcc(&e->mUnk_184, 3);
+    SetStateMachineState(&e->mUnk_184, 3);
     e->mUnk_174 = 0;
 }
 
@@ -531,7 +531,7 @@ void func_020fd540(void **b, Vec3 *v, s32 a) {
     }
     func_020f9114(e);
     func_02046be8(&e->mUnk_184, (UnkFunc *const *) gItemBombStateTable, 4, e);
-    func_02046bcc(&e->mUnk_184, 0);
+    SetStateMachineState(&e->mUnk_184, 0);
     e->mUnk_170 = 0x12c;
     e->mUnk_174 = 0;
     e->mUnk_178 = 8;
@@ -569,7 +569,7 @@ void ReleaseItemBomb(void **a) {
     Unk021052fc *v1;
 
     e = *a;
-    func_02046bcc(&e->mUnk_184, 0);
+    SetStateMachineState(&e->mUnk_184, 0);
     v1 = e->mUnk_198;
     if (v1 != NULL) {
         v1->mUnk_00.mFlags &= ~1;
@@ -594,7 +594,7 @@ void *StartItemBomb(void) {
     }
     func_020f9c40((s32) e);
     e->mUnk_1a0 = FALSE;
-    func_02046bcc(&e->mUnk_184, 3);
+    SetStateMachineState(&e->mUnk_184, 3);
     e->mUnk_174 = 0;
     return e;
 }
@@ -613,7 +613,7 @@ void *StartItemBombWithMapObject(void *b, s32 a) {
         }
         func_020f9c40((s32) e);
         e->mUnk_1a0 = FALSE;
-        func_02046bcc(&e->mUnk_184, 3);
+        SetStateMachineState(&e->mUnk_184, 3);
         e->mUnk_174 = 0;
     }
     if (e == NULL) {

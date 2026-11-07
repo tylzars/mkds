@@ -21,7 +21,7 @@ void func_0202dcf4(u32 a, void *b) {
     if (func_0202dd80(a) == 0) {
         e = func_0202e43c(data_02174e44->mUnk_814[a]);
         p = data_02174e44->mUnk_8bc;
-        n = func_0204684c(e);
+        n = FindCupCourseIndex(e);
         GetGhostRecordTime(p + n * 0x30, b);
     } else {
         a -= data_02174e44->mUnk_80c;
@@ -36,7 +36,7 @@ void func_0202dc68(u32 a, void *b) {
     if (func_0202dd80(a) == 0) {
         e = func_0202e43c(data_02174e44->mUnk_814[a]);
         p = data_02174e44->mUnk_8bc;
-        n = func_0204684c(e);
+        n = FindCupCourseIndex(e);
         GetGhostRecordName(p + n * 0x30, b);
     } else {
         a -= data_02174e44->mUnk_80c;
@@ -51,7 +51,7 @@ u32 func_0202dbe8(u32 a) {
     if (func_0202dd80(a) == 0) {
         e = func_0202e43c(data_02174e44->mUnk_814[a]);
         p = data_02174e44->mUnk_8bc;
-        n = func_0204684c(e);
+        n = FindCupCourseIndex(e);
         return GetGhostRecordCharacterIndex(p + n * 0x30);
     }
     a -= data_02174e44->mUnk_80c;
@@ -65,7 +65,7 @@ u32 func_0202db68(u32 a) {
     if (func_0202dd80(a) == 0) {
         e = func_0202e43c(data_02174e44->mUnk_814[a]);
         p = data_02174e44->mUnk_8bc;
-        n = func_0204684c(e);
+        n = FindCupCourseIndex(e);
         return GetGhostRecordKartIndex(p + n * 0x30);
     }
     a -= data_02174e44->mUnk_80c;

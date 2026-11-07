@@ -73,7 +73,7 @@ void UpdateObPakkunSf(u32 a, Unk020e43a8 *p) {
         s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
         func_0210b7a8(&s);
     }
-    func_02046b40(&p->mUnk_00.mStateMachine);
+    AdvanceStateMachine(&p->mUnk_00.mStateMachine);
 }
 
 u8 CollideKartWithObPakkunSf(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
@@ -145,7 +145,7 @@ void DrawSecondHand(u32 a, Unk020e43a8 *p, u32 b, u32 c) {
 }
 
 void UpdateSecondHand(u32 a, Unk020e43a8 *p) {
-    func_02046b40(&p->mUnk_00.mStateMachine);
+    AdvanceStateMachine(&p->mUnk_00.mStateMachine);
     QuaternionMultiplyAngleAroundY(&p->mUnk_a0.mUnk_0c.y, p->mUnk_00.mAngle, &p->mUnk_a0);
     Matrix3x3FromQuaternion(&p->mUnk_00.mMatrix, &p->mUnk_a0);
 }

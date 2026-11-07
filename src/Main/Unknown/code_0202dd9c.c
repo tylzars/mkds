@@ -81,7 +81,7 @@ void func_0202dfd4(void *a) {
     for (i = 0; i < 0x20; i++) {
         e = func_0202e43c(i);
         p = data_02174e44->mUnk_8bc;
-        n = func_0204684c(e);
+        n = FindCupCourseIndex(e);
         if (IsGhostRecordFilled(p + n * 0x30) != FALSE) {
             data_02174e44->mUnk_814[data_02174e44->mUnk_80c] = i;
             data_02174e44->mUnk_808++;

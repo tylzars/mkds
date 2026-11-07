@@ -148,7 +148,7 @@ void func_ov001_02185928(void) {
         GX_SetGraphicsMode(1, 0, 1);
     }
     func_ov001_0218568c(0x12);
-    func_02027e78();
+    WriteSelectKartRegisters();
 }
 
 void func_ov001_021858fc(void) {

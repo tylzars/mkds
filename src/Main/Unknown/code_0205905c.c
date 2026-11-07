@@ -48,7 +48,7 @@ BOOL func_020591cc(void) {
     if (!func_0205905c_inline2()) {
         return TRUE;
     }
-    func_02046b40(&data_0217aa00->mUnk_1608);
+    AdvanceStateMachine(&data_0217aa00->mUnk_1608);
     if (!func_0205905c_inline4()) {
         if (func_0205905c_inline() == 1 && data_0217aa00->mUnk_0044.mChildCount == 0) {
             func_02050e60(7);

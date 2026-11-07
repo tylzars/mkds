@@ -112,7 +112,7 @@ void UpdateWanwan(void *a, Wanwan *p) {
     s32 y;
 
     h = p->mUnk_b0;
-    func_02046b40(&p->mUnk_00.mStateMachine);
+    AdvanceStateMachine(&p->mUnk_00.mStateMachine);
     p->mUnk_00.mUnk_10.y -= 0x400;
     p->mUnk_00.mPos.y += p->mUnk_00.mUnk_10.y;
     k = FALSE;

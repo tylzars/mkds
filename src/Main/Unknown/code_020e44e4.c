@@ -89,7 +89,7 @@ void func_020e44e4(u32 a, Unk020e43a8 *p) {
     s32 old;
     s32 d;
     old = p->mUnk_00.mAngle;
-    func_02046b40(&p->mUnk_00.mStateMachine);
+    AdvanceStateMachine(&p->mUnk_00.mStateMachine);
     d = p->mUnk_00.mAngle - old;
     if (d > 0x8000) {
         d -= 0x10000;

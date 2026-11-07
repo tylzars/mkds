@@ -28,7 +28,7 @@ void func_020de4d4(u32 arg0, u32 arg1) {
     u32 value1 = arg1;
     u32 value12;
     value0 = (value1) + (0x80u);
-    func_02046b40((void *) value0);
+    AdvanceStateMachine((void *) value0);
 }
 
 u8 func_020de4a0(Unk020e43a8 *a, void *b, u8 *c, u8 *d) {

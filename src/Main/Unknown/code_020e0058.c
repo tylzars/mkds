@@ -151,7 +151,7 @@ void func_020e01f0(void *a0, Unk020e005c *a1) {
     }
     a1->mUnk_0e8 = a1->mPos;
     func_020d8a5c(b, &a1->mPos);
-    func_02046b40(&a1->mStateMachine);
+    AdvanceStateMachine(&a1->mStateMachine);
     VEC_Subtract(&a1->mPos, &a1->mUnk_0e8, &a1->mUnk_010);
     VEC_MultAdd(-a1->mUnk_104, &a1->mUnk_034, &a1->mPos, &a1->mUnk_0f4);
 }

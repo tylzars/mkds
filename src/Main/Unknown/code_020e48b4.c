@@ -136,7 +136,7 @@ void func_020e4df8(u32 arg0, u32 arg1) {
     u32 value1 = arg1;
     u32 value12;
     value0 = (value1) + (0x80u);
-    func_02046b40((void *) value0);
+    AdvanceStateMachine((void *) value0);
 }
 
 void EnterPukupukuState0(Unk020e4dec *p0) {

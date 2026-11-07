@@ -12,8 +12,8 @@
 #include "Main/Unknown/code_0205ee14.h" // Unk0205fd2c
 #include "code_02022a90.h" // NNSG2dCellTransferState
 
-// One entry of mEntries: character, kart, team and player kind; mUnk_10 is passed on as func_020468b0's sixth argument.
-// 0x18-byte elements of the table at member 0 of RaceSetupCopy.
+// One entry of mEntries: character, kart, team and player kind; mUnk_10 is passed on as SetNextRaceEntry's sixth
+// argument. 0x18-byte elements of the table at member 0 of RaceSetupCopy.
 typedef struct Unk02029930_00 {
     /* 00 */ s32 mCharacterIndex;
     /* 04 */ s32 mKartIndex;

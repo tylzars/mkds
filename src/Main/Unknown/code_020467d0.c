@@ -13,8 +13,8 @@
 #include "Main/Unknown/code_02038000.h"
 #include "Main/Unknown/code_020364e0.h"
 
-void func_02046bcc(void *b, u16 c) {
-    Unk02046b40 *a;
+void SetStateMachineState(void *b, u16 c) {
+    StateMachine *a;
 
     a = b;
     a->mStateFrames = 0;
@@ -23,9 +23,9 @@ void func_02046bcc(void *b, u16 c) {
     a->mNextState = c;
 }
 
-void func_02046b40(void *b) {
-    Unk02046b40 *a;
-    Unk02046b40_00 *e;
+void AdvanceStateMachine(void *b) {
+    StateMachine *a;
+    StateCallbacks *e;
 
     a = b;
     if (a->mNextStateRequested != 0) {
@@ -33,15 +33,15 @@ void func_02046b40(void *b) {
         a->mNextStateRequested = 0;
         a->mState = a->mNextState;
         a->mNextState = 0;
-        e = &a->mUnk_00[a->mState];
-        if (e->mUnk_00 != NULL) {
-            e->mUnk_00(a->mUnk_08);
+        e = &a->mStateTable[a->mState];
+        if (e->mEnter != NULL) {
+            e->mEnter(a->mObject);
         }
     } else {
-        e = &a->mUnk_00[a->mState];
+        e = &a->mStateTable[a->mState];
     }
-    if (e->mUnk_04 != NULL) {
-        e->mUnk_04(a->mUnk_08);
+    if (e->mUpdate != NULL) {
+        e->mUpdate(a->mObject);
     }
     a->mStateFrames++;
 }
@@ -80,7 +80,7 @@ void func_02046a3c(void *a) {
     func_0205dc54(a);
 }
 
-void func_02046968(s32 a) {
+void RefreshRaceSetupKartCounts(s32 a) {
     u8 b[2] = {0};
     s32 i;
     u8 n;
@@ -107,7 +107,7 @@ void func_02046968(s32 a) {
     }
 }
 
-void func_020468b0(int a, u32 b, u32 c, int d, u32 e, int f) {
+void SetNextRaceEntry(int a, u32 b, u32 c, int d, u32 e, int f) {
     gRaceSetup->mNextEntries[a].mCharacterIndex = b;
     gRaceSetup->mNextEntries[a].mPlayer.mKind = d;
     gRaceSetup->mNextEntries[a].mPlayer.mIndex = a;
@@ -121,7 +121,7 @@ void func_020468b0(int a, u32 b, u32 c, int d, u32 e, int f) {
     }
 }
 
-s32 func_0204684c(s32 a) {
+s32 FindCupCourseIndex(s32 a) {
     s32 i;
     s32 j;
     s8 r;
@@ -129,7 +129,7 @@ s32 func_0204684c(s32 a) {
     r = -1;
     for (i = 0; i < 8; i++) {
         for (j = 0; j < 4; j++) {
-            if (a == data_02154128[i][j]) {
+            if (a == gCupCourseIdTable[i][j]) {
                 r = j + i * 4;
                 break;
             }
@@ -138,11 +138,11 @@ s32 func_0204684c(s32 a) {
     return r;
 }
 
-u32 func_02046828(s32 a) {
-    return data_02154128[(u32) a / 4][a % 4];
+u32 GetCupCourseIdAtIndex(s32 a) {
+    return gCupCourseIdTable[(u32) a / 4][a % 4];
 }
 
-s32 func_020467d0(s32 a) {
+s32 FindCupIndexOfCourse(s32 a) {
     s32 r;
     s32 i;
     s32 j;
@@ -150,7 +150,7 @@ s32 func_020467d0(s32 a) {
     r = 9;
     for (i = 0; i < 8; i++) {
         for (j = 0; j < 4; j++) {
-            if (a == data_02154128[i][j]) {
+            if (a == gCupCourseIdTable[i][j]) {
                 r = i;
             }
         }

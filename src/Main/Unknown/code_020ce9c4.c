@@ -14,7 +14,7 @@ void func_020ce9c4(void) {
         GX_SetGraphicsMode(1, 0, 1);
     }
     GxsDispCntBits8To12Write(0x12);
-    func_02027e78();
+    WriteSelectKartRegisters();
 }
 
 #pragma thumb off

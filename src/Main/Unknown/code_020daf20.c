@@ -504,5 +504,5 @@ void UpdateKuribo(void *a, Kuribo *p) {
             p->mUnk_f4 = 1;
         }
     }
-    func_02046b40(&p->mUnk_00.mStateMachine);
+    AdvanceStateMachine(&p->mUnk_00.mStateMachine);
 }

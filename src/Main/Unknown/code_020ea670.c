@@ -155,7 +155,7 @@ void AdvanceWoodbox1(u32 arg0, u32 arg1) {
     u32 value1 = arg1;
     u32 value12;
     value0 = (value1) + (0x80u);
-    func_02046b40((void *) value0);
+    AdvanceStateMachine((void *) value0);
 }
 
 void EnterWoodbox1State0(Unk020ec194 *a) {

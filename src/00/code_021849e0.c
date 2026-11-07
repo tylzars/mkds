@@ -51,7 +51,7 @@ void AdvanceWiFiSelectKartState(void) {
 
 void func_ov000_02184a04(void) {
     u32 value3;
-    func_02027e78();
+    WriteSelectKartRegisters();
 }
 
 void RegisterSelectKartCallbacks(void) {

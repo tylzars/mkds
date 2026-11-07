@@ -135,7 +135,7 @@ void UpdateWiFiSession(void) {
     if (gWiFiSession->mUnk_0008.mState != 0) {
         UpdateBuddyStatuses();
     }
-    func_02046b40(&gWiFiSession->mUnk_0008);
+    AdvanceStateMachine(&gWiFiSession->mUnk_0008);
 }
 
 s32 func_02120340(u32 a, void *b, s32 c, u32 (*d)(void)) {

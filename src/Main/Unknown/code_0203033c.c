@@ -118,10 +118,10 @@ s32 AdvanceMultiSelectNS(void) {
         case 0:
             o->mStateFrames++;
             if (gMultiSelectNS->mStateFrames < 10) {
-                gMultiSelectNS->mUnk_38 = InterpolateS16(1, -0xc0, 0, gMultiSelectNS->mStateFrames, 10);
+                gMultiSelectNS->mOffset = InterpolateS16(1, -0xc0, 0, gMultiSelectNS->mStateFrames, 10);
             } else {
                 gMultiSelectNS->mStateFrames = 0;
-                gMultiSelectNS->mUnk_38 = 0;
+                gMultiSelectNS->mOffset = 0;
                 gMultiSelectNS->mState = 1;
             }
             func_020309d8();
@@ -180,9 +180,9 @@ s32 AdvanceMultiSelectNS(void) {
         case 3:
             o->mStateFrames++;
             if (gMultiSelectNS->mStateFrames < 10) {
-                gMultiSelectNS->mUnk_38 = InterpolateS16(1, 0, -0xc0, gMultiSelectNS->mStateFrames, 10);
+                gMultiSelectNS->mOffset = InterpolateS16(1, 0, -0xc0, gMultiSelectNS->mStateFrames, 10);
             } else {
-                gMultiSelectNS->mUnk_38 = 0;
+                gMultiSelectNS->mOffset = 0;
                 gMultiSelectNS->mState = 4;
             }
             func_020309d8();
