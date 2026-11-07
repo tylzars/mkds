@@ -124,7 +124,7 @@ void StartItemInUse(ItemInUse *a, HeldItem *b) {
         q->mAgeFrames = 0;
         q->mPrevPos = q->mPos;
         q->mVelocity = a->mKartVelocity;
-        func_020f9f08(q, a->mUnk_084.x, a->mUnk_084.y);
+        SetItemObjectScaleByRatios(q, a->mUnk_084.x, a->mUnk_084.y);
         q->mUnk_90 = r;
         q->mFlags |= 0x1000;
     }
@@ -136,7 +136,7 @@ BOOL func_020ee284(ItemObject *p, Vec3 *v, s32 d) {
     s32 z;
     s32 t;
 
-    t = d + p->mUnk_e0;
+    t = d + p->mRadius;
     x = p->mPos.x - v->x;
     y = p->mPos.y - v->y;
     z = p->mPos.z - v->z;
@@ -153,11 +153,11 @@ void func_020ee160(ItemObject *a, ItemObject *b) {
             return;
         }
     }
-    if (func_020ee284(a, &b->mPos, b->mUnk_e0) == FALSE) {
-        if (func_020ee284(a, &b->mPrevPos, b->mUnk_e0) == FALSE) {
+    if (func_020ee284(a, &b->mPos, b->mRadius) == FALSE) {
+        if (func_020ee284(a, &b->mPrevPos, b->mRadius) == FALSE) {
             return;
         }
-        if (func_020ee284(b, &a->mPrevPos, a->mUnk_e0) == FALSE) {
+        if (func_020ee284(b, &a->mPrevPos, a->mRadius) == FALSE) {
             return;
         }
     }
@@ -210,20 +210,20 @@ void func_020edf10(ItemInUse *p) {
     }
     for (j = n - 1; j >= 0; j--) {
         q = d[j];
-        if (q->mUnk_da == -1) {
+        if (q->mCollisionSlotIndex == -1) {
             if (func_020f91e0(q) != FALSE) {
                 idx = q->mKind;
                 if (gItemKinds[idx].mUnk_68 != 0) {
-                    func_020f9ca8(q);
+                    CreateItemObjectCollisionSlot(q);
                 }
             }
             continue;
         }
-        FindCollisionSlotsOverlappingSlot(q->mUnk_da, 0x6000);
+        FindCollisionSlotsOverlappingSlot(q->mCollisionSlotIndex, 0x6000);
         for (i = 0; i < data_0217b5a8; i++) {
             if ((data_0217b5bc[i] & 0x4000) != 0) {
                 ItemObject *e = data_0217b5c4[i];
-                if (e->mUnk_da == -1) {
+                if (e->mCollisionSlotIndex == -1) {
                     continue;
                 }
                 if ((e->mUnk_78 & 0x4000) != 0 && p->mKartIndex == (u16) (e->mUnk_78 & ~0xff00)) {
@@ -237,7 +237,7 @@ void func_020edf10(ItemInUse *p) {
                 }
                 func_020f944c(q, e);
             }
-            if (q->mUnk_da == -1) {
+            if (q->mCollisionSlotIndex == -1) {
                 break;
             }
         }
@@ -256,7 +256,7 @@ void AdvanceItemInUse(ItemInUse *p) {
     if (func_020ee528(p) != FALSE) {
         m = p->mObjectCount;
         for (n = 0; n < m; n++) {
-            func_020f9f08(p->mObjects[n], p->mUnk_084.x, p->mUnk_084.y);
+            SetItemObjectScaleByRatios(p->mObjects[n], p->mUnk_084.x, p->mUnk_084.y);
         }
     }
     if (gItemInUseAdvanceTable[id] != NULL) {
@@ -465,7 +465,7 @@ void func_020ed79c(Unk020ed718 *p, Vec3 *v) {
         } else {
             r = func_020e6b94(q->mUnk_d0);
         }
-        func_020e67c4(d, r, &q->mUnk_68, 0, 0x1f);
+        func_020e67c4(d, r, &q->mScale, 0, 0x1f);
         if ((d8 = q->mUnk_d8) != 0x1f) {
             d->mUnk_14 &= ~0x1f0000;
             d->mUnk_14 |= 0x1f0000;
@@ -524,7 +524,7 @@ void func_020ed5c0(ItemObject *p, Unk020e6488 *q, Vec3 *v) {
     } else {
         r = func_020e6b94(p->mUnk_d0);
     }
-    func_020e67c4(q, r, &p->mUnk_68, 0, 0x1f);
+    func_020e67c4(q, r, &p->mScale, 0, 0x1f);
     if ((d = p->mUnk_d8) != 0x1f) {
         q->mUnk_14 &= ~0x1f0000;
         q->mUnk_14 |= 0x1f0000;

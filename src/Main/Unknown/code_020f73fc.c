@@ -51,7 +51,7 @@ void func_020f77f8(ItemObject *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
                 if (p->mFlags & 0x8000) {
                     break;
                 }
-                m = p->mUnk_e0;
+                m = p->mRadius;
                 if ((s64) (c->x - p->mPos.x) * (c->x - p->mPos.x) + (s64) (c->y - p->mPos.y) * (c->y - p->mPos.y) +
                         (s64) (c->z - p->mPos.z) * (c->z - p->mPos.z) >=
                     (s64) m * m) {
@@ -64,7 +64,7 @@ void func_020f77f8(ItemObject *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
             if (p->mFlags & 0x8000) {
                 break;
             }
-            m = p->mUnk_e0;
+            m = p->mRadius;
             if ((s64) (c->x - p->mPos.x) * (c->x - p->mPos.x) + (s64) (c->y - p->mPos.y) * (c->y - p->mPos.y) +
                     (s64) (c->z - p->mPos.z) * (c->z - p->mPos.z) >=
                 (s64) m * m) {
@@ -73,7 +73,7 @@ void func_020f77f8(ItemObject *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
             if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
                 Vec3NormalizeAndGetLengthUnchecked(&v, &v);
             }
-            m = p->mUnk_e0;
+            m = p->mRadius;
             p->mPos.x = c->x + (s32) (((s64) m * v.x) >> 12);
             p->mPos.z = c->z + (s32) (((s64) m * v.z) >> 12);
             break;

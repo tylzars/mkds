@@ -18,19 +18,19 @@ void func_0208bf40(KartAi *p) {
 }
 
 void func_0208bef4(KartAi *p) {
-    if (p->mUnk_28.mUnk_14 != NULL) {
+    if (p->mUnk_28.mRequestedLink != NULL) {
         if (p->mUnk_28.mUnk_18 != FALSE) {
             return;
         }
     }
-    p->mUnk_28.mUnk_14 = FindCourseMapKind4ShapeBattlePointLink(&p->mKart->mPos);
-    if (p->mUnk_28.mUnk_14 != NULL) {
+    p->mUnk_28.mRequestedLink = FindCourseMapKind4ShapeBattlePointLink(&p->mKart->mPos);
+    if (p->mUnk_28.mRequestedLink != NULL) {
         p->mUnk_28.mUnk_18 = TRUE;
     }
 }
 
 BOOL func_0208bee0(KartAi *p) {
-    return p->mUnk_28.mUnk_14 != NULL;
+    return p->mUnk_28.mRequestedLink != NULL;
 }
 
 void func_0208bea4(Vec3 *a, Vec3 *b, KartAi *p) {

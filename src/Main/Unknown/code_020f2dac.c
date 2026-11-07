@@ -225,9 +225,9 @@ void TakeHeldItemObjects(HeldItem *rec) {
             elem->mVelocity.z = ((s64) dir->z * d) >> 12;
             VEC_MultAdd((s32) (((s64) w2 * vb) >> 12) + (s32) (((s64) d * va) >> 12), axis, &elem->mVelocity,
                         &elem->mVelocity);
-            elem->mUnk_68.x = 0xcd;
-            elem->mUnk_68.y = 0xcd;
-            elem->mUnk_68.z = 0xcd;
+            elem->mScale.x = 0xcd;
+            elem->mScale.y = 0xcd;
+            elem->mScale.z = 0xcd;
             elem->mUnk_7c = *halves;
             i++;
         } while (i < count);
@@ -724,15 +724,15 @@ void ThrowBouncingItem(BouncingItemObject *p, ItemInUse *a, s32 b, s32 c, s32 d,
     }
     if (c != 0) {
         p->mItemObject.mPos = a->mKart->mCollisionCenter;
-        VEC_MultAdd(p->mItemObject.mUnk_68.z * 10, &a->mUnk_02c.mUnk_18, &p->mItemObject.mPos, &p->mItemObject.mPos);
+        VEC_MultAdd(p->mItemObject.mScale.z * 10, &a->mUnk_02c.mUnk_18, &p->mItemObject.mPos, &p->mItemObject.mPos);
     } else {
-        if (a->mKartHopHeight != 0 && a->mKartVelocityLength < 0x2000 && p->mItemObject.mUnk_68.z < 0xccd) {
+        if (a->mKartHopHeight != 0 && a->mKartVelocityLength < 0x2000 && p->mItemObject.mScale.z < 0xccd) {
             VEC_Subtract(&a->mUnk_02c.mUnk_0c, &a->mUnk_02c.mUnk_18, &v);
             VEC_MultAdd(0x2000, &v, &p->mItemObject.mPos, &p->mItemObject.mPos);
         }
     }
-    if (p->mItemObject.mUnk_68.z < 0xccd) {
-        u = &p->mItemObject.mUnk_68;
+    if (p->mItemObject.mScale.z < 0xccd) {
+        u = &p->mItemObject.mScale;
         u->x = 0xccd;
         u->y = 0xccd;
         u->z = 0xccd;
@@ -758,10 +758,10 @@ void InitBouncingItem(BouncingItemObject *a, s32 b, Vec3 *c) {
     if (c != NULL) {
         a->mItemObject.mVelocity = *c;
     }
-    if (a->mItemObject.mUnk_68.z < 0xccd) {
-        a->mItemObject.mUnk_68.x = 0xccd;
-        a->mItemObject.mUnk_68.y = 0xccd;
-        a->mItemObject.mUnk_68.z = 0xccd;
+    if (a->mItemObject.mScale.z < 0xccd) {
+        a->mItemObject.mScale.x = 0xccd;
+        a->mItemObject.mScale.y = 0xccd;
+        a->mItemObject.mScale.z = 0xccd;
     }
     a->mBouncesRemaining = b;
     a->mItemObject.mUnk_124 = BounceItemObject;
@@ -783,8 +783,8 @@ void AdvanceBouncingItem(BouncingItemObject *a, s32 b, s32 c, s32 d, u32 *e) {
     p->x = ((s64) p->x * c) >> 12;
     p->y = ((s64) p->y * c) >> 12;
     p->z = ((s64) p->z * c) >> 12;
-    if (func_01ffdee4(q, &a->mItemObject.mPrevPos, 0, a->mItemObject.mUnk_dc, 0x24, a->mItemObject.mUnk_da, &t, &u,
-                      (s32 *) &v, &a->mItemObject.mUnk_fc, NULL, NULL, NULL, e) != 0) {
+    if (func_01ffdee4(q, &a->mItemObject.mPrevPos, 0, a->mItemObject.mUnk_dc, 0x24, a->mItemObject.mCollisionSlotIndex,
+                      &t, &u, (s32 *) &v, &a->mItemObject.mUnk_fc, NULL, NULL, NULL, e) != 0) {
         VEC_Add(&t, q, q);
         if (a->mItemObject.mUnk_fc & 0x1e34ef) {
             n = a->mBouncesRemaining;

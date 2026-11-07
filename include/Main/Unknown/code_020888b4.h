@@ -55,11 +55,11 @@ typedef struct KartAi {
     /* 44 */ Vec3 mUnk_44;
     /* 50 */ Vec3 mUnk_50;
     /* 5c */ Vec3 *mUnk_5c;
-    /* 60 */ Vec3 mUnk_60;
+    /* 60 */ Vec3 mSideOffset;
     /* 6c */ u16 mUnk_6c;
     /* 6e */ u16 mUnk_6e;
     /* 70 */ s32 mTurnAngleDegrees;
-    /* 74 */ s32 mUnk_74;
+    /* 74 */ s32 mSideOffsetRatio;
     /* 78 */ u16 mUnk_78;
     /* 7a */ u16 mUnk_7a;
     /* 7c */ s32 mUnk_7c;
@@ -67,11 +67,11 @@ typedef struct KartAi {
     /* 82 */ u8 mUnk_82[2];
     /* 84 */ s32 mUnk_84;
     /* 88 */ s32 mUnk_88;
-    /* 8c */ s32 mUnk_8c;
+    /* 8c */ s32 mDriftChargeRandomLimit;
     /* 90 */ s32 mUnk_90;
     /* 94 */ s32 mUnk_94;
     /* 98 */ s32 mUnk_98;
-    /* 9c */ s32 mUnk_9c;
+    /* 9c */ s32 mMinVelocityLength;
     /* a0 */ BOOL mUnk_a0;
     /* a4 */ s32 mUnk_a4;
     /* a8 */ s32 mUnk_a8;

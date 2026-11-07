@@ -265,8 +265,8 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
         q->y = q->y + r->y;
     }
     if (func_01ffdee4(q, &p->mUnk_000.mUnk_000.mPrevPos, 0, p->mUnk_000.mUnk_000.mUnk_dc, 4,
-                      p->mUnk_000.mUnk_000.mUnk_da, &v28, &v34, (s32 *) &v40, &p->mUnk_000.mUnk_000.mUnk_fc, NULL, NULL,
-                      NULL, NULL) != 0) {
+                      p->mUnk_000.mUnk_000.mCollisionSlotIndex, &v28, &v34, (s32 *) &v40, &p->mUnk_000.mUnk_000.mUnk_fc,
+                      NULL, NULL, NULL, NULL) != 0) {
         if (p->mUnk_000.mUnk_158 != 0) {
             if (v28.y > 0) {
                 q->y = q->y + v28.y;

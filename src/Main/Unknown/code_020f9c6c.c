@@ -109,8 +109,8 @@ void ResetItemKouraW(ItemKouraW *a) {
     a->mRank = 1;
     a->mRankKartIndex = gRaceProgress->mKartAtRank[0];
     a->mUnk_278 = 0;
-    a->mUnk_26c = 0;
-    a->mUnk_270 = 0xdc;
+    a->mPosStrip = 0;
+    a->mSoundId = 0xdc;
     a->mKartMask = 0;
     a->mUnk_2e4 = 0;
 }
@@ -119,7 +119,7 @@ void func_020fc94c(ItemKouraW *p) {
     func_0210b850(&p->mUnk_300);
     p->mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a67c;
     p->mUnk_160 = 0;
-    p->mUnk_000.mUnk_0c4 = p->mUnk_000.mPos;
+    p->mUnk_000.mDrawPos = p->mUnk_000.mPos;
     func_020f9c40((s32) p);
     p->mUnk_000.mFlags |= 0x200000;
     ClearItemKouraWKartItemsAndAngle(p);
@@ -141,7 +141,7 @@ void func_020fc94c(ItemKouraW *p) {
     p->mUnk_298.y = 0;
     p->mUnk_298.z = 0;
     VEC_Subtract(&p->mUnk_000.mVelocity, &p->mUnk_298, &p->mUnk_28c);
-    p->mUnk_000.mUnk_d0 = &p->mUnk_000.mUnk_0c4;
+    p->mUnk_000.mUnk_d0 = &p->mUnk_000.mDrawPos;
     func_0208adc8(&p->mUnk_000.mUnk_7c, 1);
 }
 
@@ -183,7 +183,7 @@ s32 InitItemKouraW(ItemInUse *a, ItemKouraW *e) {
     return 1;
 }
 
-void func_020fc654(ItemKouraW *p) {
+void UpdateItemKouraWDrawPos(ItemKouraW *p) {
     Vec3 buf;
     s16 v;
     s32 a;
@@ -193,21 +193,21 @@ void func_020fc654(ItemKouraW *p) {
         p->mUnk_268 += 0x5dc;
         v = gPairsByAngle[(p->mUnk_268 >> 4) * 2];
         VEC_MultAdd(a + (s32) (((s64) p->mUnk_264 * v) >> 12), &p->mUnk_000.mUnk_f0, &p->mUnk_000.mPos, &buf);
-        VEC_Subtract(&buf, &p->mUnk_000.mUnk_0c4, &buf);
-        VEC_MultAdd(0x333, &buf, &p->mUnk_000.mUnk_0c4, &p->mUnk_000.mUnk_0c4);
+        VEC_Subtract(&buf, &p->mUnk_000.mDrawPos, &buf);
+        VEC_MultAdd(0x333, &buf, &p->mUnk_000.mDrawPos, &p->mUnk_000.mDrawPos);
     } else {
-        p->mUnk_000.mUnk_0c4.y += p->mUnk_000.mVelocity.y >> 1;
+        p->mUnk_000.mDrawPos.y += p->mUnk_000.mVelocity.y >> 1;
         p->mUnk_268 += 0x5dc;
         v = gPairsByAngle[(p->mUnk_268 >> 4) * 2];
         a += (s32) (((s64) p->mUnk_264 * v) >> 12);
-        a = a + p->mUnk_000.mPos.y - p->mUnk_000.mUnk_0c4.y;
-        p->mUnk_000.mUnk_0c4.y += (s32) (((s64) a * 0x19a) >> 12);
-        p->mUnk_000.mUnk_0c4.x = p->mUnk_000.mPos.x;
-        p->mUnk_000.mUnk_0c4.z = p->mUnk_000.mPos.z;
+        a = a + p->mUnk_000.mPos.y - p->mUnk_000.mDrawPos.y;
+        p->mUnk_000.mDrawPos.y += (s32) (((s64) a * 0x19a) >> 12);
+        p->mUnk_000.mDrawPos.x = p->mUnk_000.mPos.x;
+        p->mUnk_000.mDrawPos.z = p->mUnk_000.mPos.z;
     }
 }
 
-void func_020fc2e8(ItemKouraW *p, Vec3 *v, s32 v1, Vec3 *v2) {
+void UpdateItemKouraWOrientation(ItemKouraW *p, Vec3 *v, s32 v1, Vec3 *v2) {
     Vec3 buf;
     Vec3 v3;
     Vec3 *v4 = &p->mUnk_28c;
@@ -279,10 +279,10 @@ void UpdateItemKouraWState0(ItemKouraW *param_1) {
         return;
     }
     func_0210b7ec(&param_1->mUnk_300, param_1->mUnk_000.mUnk_d4 & ~0xc000001f);
-    if (param_1->mUnk_270 == 1) {
+    if (param_1->mSoundId == 1) {
         return;
     }
-    StartSoundWhileRequested(&param_1->mUnk_000.mSoundSource, param_1->mUnk_270, 0x7f, 0);
+    StartSoundWhileRequested(&param_1->mUnk_000.mSoundSource, param_1->mSoundId, 0x7f, 0);
 }
 
 static inline Vec3 *func_020fbd98_inline(ItemKouraW *p) {
@@ -304,22 +304,22 @@ void UpdateItemKouraWState1(ItemKouraW *param_1) {
     Kart *p;
 
     if (param_1->mStateFrames == 8) {
-        param_1->mUnk_26c = StartPosStrip((u32) param_1->mUnk_000.mUnk_d0);
+        param_1->mPosStrip = StartPosStrip((u32) param_1->mUnk_000.mUnk_d0);
     }
     func_020ec918((Unk020ec8bc *) param_1, param_1->mUnk_27c, 0x21, param_1->mRankKartIndex, 1);
     if (!(param_1->mUnk_000.mFlags & 1)) {
         func_0210b7ec(&param_1->mUnk_300, param_1->mUnk_000.mUnk_d4 & ~0xc000001f);
-        if (param_1->mUnk_270 != 1) {
-            StartSoundWhileRequested(&param_1->mUnk_000.mSoundSource, param_1->mUnk_270, 0x7f, 0);
+        if (param_1->mSoundId != 1) {
+            StartSoundWhileRequested(&param_1->mUnk_000.mSoundSource, param_1->mSoundId, 0x7f, 0);
         }
     }
     param_1->mUnk_000.mVelocity.y -= (s32) (((s64) * (s32 *) param_1->mUnk_12c * 0x66) >> 12);
     if (param_1->mUnk_000.mFlags & 1) {
         return;
     }
-    func_020fc654(param_1);
+    UpdateItemKouraWDrawPos(param_1);
     q = func_020fbd98_inline(param_1);
-    func_020fc2e8(param_1, &param_1->mUnk_000.mVelocity, 1, q);
+    UpdateItemKouraWOrientation(param_1, &param_1->mUnk_000.mVelocity, 1, q);
     if (param_1->mUnk_278 == 0) {
         if (gRaceProgress->mRaceDone != 0) {
             param_1->mRank = 1;
@@ -393,7 +393,7 @@ void EnterItemKouraWState3(ItemKouraW *param_1) {
     param_1->mUnk_27c = VEC_Mag(&param_1->mUnk_000.mVelocity);
     param_1->mUnk_284 = 0x1e000;
     if (param_1->mKartItems->mKartIndex == gRaceSetup->mEntryIndex) {
-        param_1->mUnk_270 = 0xdd;
+        param_1->mSoundId = 0xdd;
     }
 }
 
@@ -415,8 +415,8 @@ void UpdateItemKouraWState3(ItemKouraW *param_1) {
     func_020fcedc(param_1, r, param_1->mUnk_27c, param_1->mUnk_284);
     if (!(param_1->mUnk_000.mFlags & 1)) {
         func_0210b7ec(&param_1->mUnk_300, param_1->mUnk_000.mUnk_d4 & ~0xc000001f);
-        if (param_1->mUnk_270 != 1) {
-            StartSoundWhileRequested(&param_1->mUnk_000.mSoundSource, param_1->mUnk_270, 0x7f, 0);
+        if (param_1->mSoundId != 1) {
+            StartSoundWhileRequested(&param_1->mUnk_000.mSoundSource, param_1->mSoundId, 0x7f, 0);
         }
     }
     if ((s64) param_1->mUnk_238.x * param_1->mUnk_238.x + (s64) param_1->mUnk_238.z * param_1->mUnk_238.z <
@@ -424,9 +424,9 @@ void UpdateItemKouraWState3(ItemKouraW *param_1) {
         param_1->mNextState = 4;
         param_1->mNextStateRequested = 1;
     }
-    func_020fc654(param_1);
+    UpdateItemKouraWDrawPos(param_1);
     q = func_020fbd98_inline(param_1);
-    func_020fc2e8(param_1, &param_1->mUnk_000.mVelocity, 1, q);
+    UpdateItemKouraWOrientation(param_1, &param_1->mUnk_000.mVelocity, 1, q);
 }
 
 void UpdateItemKouraWState2(ItemKouraW *param_1) {
@@ -442,16 +442,16 @@ void UpdateItemKouraWState2(ItemKouraW *param_1) {
     func_020ec918((Unk020ec8bc *) param_1, param_1->mUnk_27c, 0x21, param_1->mRankKartIndex, 1);
     if (!(param_1->mUnk_000.mFlags & 1)) {
         func_0210b7ec(&param_1->mUnk_300, param_1->mUnk_000.mUnk_d4 & ~0xc000001f);
-        if (param_1->mUnk_270 != 1) {
-            StartSoundWhileRequested(&param_1->mUnk_000.mSoundSource, param_1->mUnk_270, 0x7f, 0);
+        if (param_1->mSoundId != 1) {
+            StartSoundWhileRequested(&param_1->mUnk_000.mSoundSource, param_1->mSoundId, 0x7f, 0);
         }
     }
     if (param_1->mUnk_000.mFlags & 1) {
         return;
     }
-    func_020fc654(param_1);
+    UpdateItemKouraWDrawPos(param_1);
     q = func_020fbd98_inline(param_1);
-    func_020fc2e8(param_1, &param_1->mUnk_000.mVelocity, 1, q);
+    UpdateItemKouraWOrientation(param_1, &param_1->mUnk_000.mVelocity, 1, q);
     p = param_1->mKartItems->mUnk_1f0.mLink;
     for (i = 0; i < 4; i++) {
         if (p == param_1->mUnk_168) {
@@ -466,9 +466,9 @@ void EnterItemKouraWState4(ItemKouraW *param_1) {
     param_1->mUnk_264 = 0x5000;
     param_1->mUnk_288 = 0x3e8;
     VEC_Subtract(&param_1->mUnk_238, &param_1->mUnk_298, &param_1->mUnk_28c);
-    if (param_1->mUnk_26c != 0) {
-        StopPosStrip(param_1->mUnk_26c);
-        param_1->mUnk_26c = 0;
+    if (param_1->mPosStrip != 0) {
+        StopPosStrip(param_1->mPosStrip);
+        param_1->mPosStrip = 0;
     }
     if (param_1->mUnk_000.mFlags & 0x8000000) {
         func_020fe71c(5, param_1->mKartItems->mKartIndex, param_1->mUnk_000.mId);
@@ -494,11 +494,11 @@ void UpdateItemKouraWState4(ItemKouraW *param_1) {
     func_020fce94(param_1, 0x4cd, param_1->mUnk_27c, param_1->mUnk_284, param_1->mUnk_288);
     if (!(param_1->mUnk_000.mFlags & 1)) {
         func_0210b7ec(&param_1->mUnk_300, param_1->mUnk_000.mUnk_d4 & ~0xc000001f);
-        if (param_1->mUnk_270 != 1) {
-            StartSoundWhileRequested(&param_1->mUnk_000.mSoundSource, param_1->mUnk_270, 0x7f, 0);
+        if (param_1->mSoundId != 1) {
+            StartSoundWhileRequested(&param_1->mUnk_000.mSoundSource, param_1->mSoundId, 0x7f, 0);
         }
     }
-    func_020fc654(param_1);
+    UpdateItemKouraWDrawPos(param_1);
     if ((u32) param_1->mAngle < 0x11f40) {
         q = func_020fbd98_inline(param_1);
         if (q != NULL) {
@@ -515,7 +515,7 @@ void UpdateItemKouraWState4(ItemKouraW *param_1) {
         if (param_1->mStateFrames == 0) {
             VEC_Subtract(&v, &param_1->mUnk_298, &param_1->mUnk_28c);
         }
-        func_020fc2e8(param_1, &v, 1, q);
+        UpdateItemKouraWOrientation(param_1, &v, 1, q);
         return;
     }
     param_1->mNextState = 5;
@@ -525,8 +525,8 @@ void UpdateItemKouraWState4(ItemKouraW *param_1) {
 void EnterItemKouraWState5(ItemKouraW *param_1) {
     enum { K0 } k;
 
-    if (param_1->mUnk_000.mUnk_d0 == &param_1->mUnk_000.mUnk_0c4) {
-        param_1->mUnk_000.mPos = param_1->mUnk_000.mUnk_0c4;
+    if (param_1->mUnk_000.mUnk_d0 == &param_1->mUnk_000.mDrawPos) {
+        param_1->mUnk_000.mPos = param_1->mUnk_000.mDrawPos;
         param_1->mUnk_000.mUnk_d0 = &param_1->mUnk_000.mPos;
     }
     param_1->mUnk_260 = 0x28000;
@@ -573,7 +573,7 @@ void UpdateItemKouraWState5(ItemKouraW *param_1) {
     }
     VEC_Subtract(&v, &param_1->mUnk_2a4, &v);
     VEC_MultAdd(param_1->mUnk_284, &v, &param_1->mUnk_2a4, &param_1->mUnk_2a4);
-    func_020fc2e8(param_1, &param_1->mUnk_2a4, 0, q);
+    UpdateItemKouraWOrientation(param_1, &param_1->mUnk_2a4, 0, q);
 }
 
 void EnterItemKouraWState6(ItemKouraW *param_1) {
@@ -601,8 +601,9 @@ void UpdateItemKouraWState6(ItemKouraW *param_1) {
         Vec3 *pv;
 
         pv = &param_1->mUnk_000.mPos;
-        if (func_01ffdee4(pv, &param_1->mUnk_000.mPrevPos, 0, param_1->mUnk_000.mUnk_dc, 4, param_1->mUnk_000.mUnk_da,
-                          &v, NULL, NULL, &param_1->mUnk_000.mUnk_fc, NULL, NULL, NULL, NULL) != 0) {
+        if (func_01ffdee4(pv, &param_1->mUnk_000.mPrevPos, 0, param_1->mUnk_000.mUnk_dc, 4,
+                          param_1->mUnk_000.mCollisionSlotIndex, &v, NULL, NULL, &param_1->mUnk_000.mUnk_fc, NULL, NULL,
+                          NULL, NULL) != 0) {
             VEC_Add(&v, pv, pv);
             func_020f7104(&param_1->mUnk_000, 0);
             if (param_1->mUnk_000.mFlags & 0x8000000) {
@@ -610,13 +611,13 @@ void UpdateItemKouraWState6(ItemKouraW *param_1) {
             }
         }
     }
-    r = func_020fa0b8(param_1, gItemKinds[param_1->mUnk_000.mKind].mUnk_74,
-                      gItemKinds[param_1->mUnk_000.mKind].mUnk_78);
+    r = GrowItemObjectScale(param_1, gItemKinds[param_1->mUnk_000.mKind].mUnk_74,
+                            gItemKinds[param_1->mUnk_000.mKind].mUnk_78);
     if (func_020f9ce8(&param_1->mUnk_000) != 0) {
         return;
     }
     if (r) {
-        func_020fa030(&param_1->mUnk_000);
+        RefreshItemObjectScale(&param_1->mUnk_000);
     }
 }
 
@@ -627,9 +628,10 @@ void EnterItemKouraWState7(ItemKouraW *param_1) {
 
     param_1->mUnk_000.mFlags |= 0x800000;
     param_1->mUnk_000.mUnk_100 = 0;
-    param_1->mUnk_000.mUnk_68 = data_02159d84;
-    param_1->mUnk_2b0 = StartModelEffect(1, &param_1->mUnk_000.mPos, func_020f9160(&param_1->mUnk_000) == 0 ? 1 : 0);
-    q = param_1->mUnk_2b0;
+    param_1->mUnk_000.mScale = data_02159d84;
+    param_1->mModelEffect =
+        StartModelEffect(1, &param_1->mUnk_000.mPos, func_020f9160(&param_1->mUnk_000) == 0 ? 1 : 0);
+    q = param_1->mModelEffect;
     if (q != NULL) {
         v = q->mScale;
         v[0] = 0x1000;
@@ -656,7 +658,7 @@ void UpdateItemKouraWState7(ItemKouraW *param_1) {
     u32 v;
 
     v = param_1->mStateFrames;
-    if (func_020fa0b8(param_1, data_0217bd3c, data_0217bd44)) {
+    if (GrowItemObjectScale(param_1, gKouraWState7ScaleLimit, gKouraWState7ScaleStep)) {
         func_020f9fa8(&param_1->mUnk_000);
     }
     if (v < 0x16) {
@@ -733,7 +735,7 @@ void InitItemKouraWFromData(ItemKouraW *param_1) {
     Matrix3x3FromQuaternion(&param_1->mUnk_000.mUnk_94, &s.mUnk_0c);
 }
 
-void func_020faed0(ItemKouraW *param_1, s32 param_2, s32 param_3) {
+void DrawItemKouraWModel(ItemKouraW *param_1, s32 param_2, s32 param_3) {
     u32 n;
     Vec3 v;
     void *q;
@@ -743,13 +745,13 @@ void func_020faed0(ItemKouraW *param_1, s32 param_2, s32 param_3) {
             return;
         }
     }
-    v.x = v.z = param_1->mUnk_000.mUnk_68.x;
-    v.y = param_1->mUnk_000.mUnk_68.y;
+    v.x = v.z = param_1->mUnk_000.mScale.x;
+    v.y = param_1->mUnk_000.mScale.y;
     if (param_1->mUnk_000.mUnk_d8 != 0x1f) {
         u32 i;
         NNSG3dResMdl *o;
 
-        o = data_0217bd38->mUnk_004;
+        o = gKouraW->mUnk_004;
         n = (u16) param_1->mUnk_000.mUnk_d8;
         for (i = 0; i < o->mInfo.mNumMat; i++) {
             NNS_G3dMdlSetMdlAlpha(o, i, n);
@@ -766,7 +768,7 @@ void func_020faed0(ItemKouraW *param_1, s32 param_2, s32 param_3) {
         param_1->mUnk_000.mUnk_94.mUnk_00[3].z = pv->z >> 4;
         q = &param_1->mUnk_000.mUnk_94;
     }
-    func_020ea8a8(data_0217bd38, q, &v, 0x1f);
+    func_020ea8a8(gKouraW, q, &v, 0x1f);
     if (param_1->mUnk_000.mUnk_d8 == 0x1f) {
         return;
     }
@@ -774,7 +776,7 @@ void func_020faed0(ItemKouraW *param_1, s32 param_2, s32 param_3) {
         u32 i;
         NNSG3dResMdl *o;
 
-        o = data_0217bd38->mUnk_004;
+        o = gKouraW->mUnk_004;
         for (i = 0; i < o->mInfo.mNumMat; i++) {
             NNS_G3dMdlSetMdlAlpha(o, i, 0x1f);
         }
@@ -785,10 +787,10 @@ void DrawItemKouraW(ItemKouraW *param_1, s32 param_2, s32 param_3) {
     ModelEffect *q;
 
     if (param_1->mState != 7) {
-        func_020faed0(param_1, param_2, param_3);
+        DrawItemKouraWModel(param_1, param_2, param_3);
         return;
     }
-    q = param_1->mUnk_2b0;
+    q = param_1->mModelEffect;
     if (q == NULL) {
         return;
     }
@@ -818,30 +820,30 @@ BOOL IsItemKouraWState7(ItemKouraW *param_1) {
 
 Vec3 *func_020fad9c(ItemKouraW *param_1, s32 *param_2, s32 *param_3) {
     *param_2 = param_1->mStateFrames;
-    *param_3 = ((s64) param_1->mUnk_000.mUnk_68.z * data_0217bd40) >> 12;
+    *param_3 = ((s64) param_1->mUnk_000.mScale.z * gKouraWState7InverseLimit) >> 12;
     return &param_1->mUnk_000.mPos;
 }
 
 #pragma thumb on
 
-void func_020fad00(void) {
+void SetupItemKouraWKind(void) {
     s32 a;
     s32 b;
     s32 v;
 
-    data_0217bd3c = 0x1e000;
-    data_0217bd40 = FX_Div(0x1000, data_0217bd3c);
-    data_0217bd44 = 0x299a;
-    a = data_0217bd3c;
+    gKouraWState7ScaleLimit = 0x1e000;
+    gKouraWState7InverseLimit = FX_Div(0x1000, gKouraWState7ScaleLimit);
+    gKouraWState7ScaleStep = 0x299a;
+    a = gKouraWState7ScaleLimit;
     b = gItemKinds[5].mUnk_6c;
     v = ((s64) a * b) >> 12;
     data_0217bd34 = v;
     v >>= 12;
     data_0217bd34 = v;
     data_0217bd34 = v * v;
-    data_0217bd38 = func_020ed490(data_0216c6f4, data_0216c704);
+    gKouraW = func_020ed490(data_0216c6f4, data_0216c704);
     if (gRaceSetup->mCourseId == COURSE_ID_RAINBOW) {
-        NNS_G3dMdlSetMdlFogEnableFlagAll(data_0217bd38->mUnk_004, 0);
+        NNS_G3dMdlSetMdlFogEnableFlagAll(gKouraW->mUnk_004, 0);
     }
 }
 
@@ -865,7 +867,9 @@ static inline BOOL func_020fab34_inline(s32 param_1) {
     return FALSE;
 }
 
-BOOL func_020fab34(s32 *param_1) {
+// Replaces the rolled item by the fallback item when nothing was rolled or no objects are free for it; returns TRUE
+// when it did.
+BOOL ReplaceUnavailableItem(s32 *param_1) {
     s32 i;
     s32 v;
     ItemInfo *e;
@@ -1013,14 +1017,15 @@ static inline s32 func_020fa4c8_inline(ItemObject *e, Kart *a) {
             return 1;
         }
     }
-    r = e->mUnk_e0;
+    r = e->mRadius;
     x = e->mPos.x - a->mUnk_1d8.x;
     f = (s64) (e->mPos.z - a->mUnk_1d8.z) * (e->mPos.z - a->mUnk_1d8.z) +
         ((s64) x * x + (s64) (e->mPos.y - a->mUnk_1d8.y) * (e->mPos.y - a->mUnk_1d8.y));
     return f < (s64) r * r ? 1 : 0;
 }
 
-s32 func_020fa4c8(Kart *param_1) {
+// Returns how many item objects hit the kart; GetCollidedItemObject reads them.
+s32 CollideKartWithItemObjects(Kart *param_1) {
     s32 i;
     s32 n;
     BOOL fl;
@@ -1050,7 +1055,7 @@ s32 func_020fa4c8(Kart *param_1) {
         if ((param_1->mUnk_7c & 0x2000) && func_020f9880(e) != 0) {
             continue;
         }
-        data_0217bd30[n++] = e;
+        gCollidedItemObjects[n++] = e;
         if (e->mFlags & 0x1000) {
             RemoveItemInUseObject(&gKartItems[(u16) (e->mUnk_78 & ~0xff00)].mItemInUse, e);
         }
@@ -1074,8 +1079,8 @@ s32 func_020fa4c8(Kart *param_1) {
 
 #pragma thumb off
 
-struct ItemObject *func_020fa4b4(u32 arg0) {
-    return data_0217bd30[arg0];
+struct ItemObject *GetCollidedItemObject(u32 arg0) {
+    return gCollidedItemObjects[arg0];
 }
 
 #pragma thumb off
@@ -1120,7 +1125,8 @@ static inline ItemObject *func_020fa3d0_inline(s32 param_1, u16 param_2, void *p
     return p;
 }
 
-void func_020fa294(void) {
+// Starts an item object at every course map row of object kind 0x6d and rests it on the floor.
+void StartCourseMapItemObjects(void) {
     u32 i;
     u32 n;
     u32 v;
@@ -1132,7 +1138,7 @@ void func_020fa294(void) {
     n = gCourseMap->mRowCount;
     for (i = 0; i < n; i++) {
         e = &gCourseMap->mRows[i];
-        if (e->mUnk_24 == 0x6d) {
+        if (e->mKind == 0x6d) {
             k = e->mUnk_28;
             if (func_01ffdee4(e, 0, 0, 0xa000, 8, -2, 0, &m, 0, 0, 0, 0, 0, &v) == 0) {
                 m = data_02159cb0;
@@ -1199,8 +1205,8 @@ void InitItems(void) {
             }
         }
     }
-    data_0217bd30 = HeapAlloc(GetHeap(func_020364e8()), 0x40);
-    func_020fa294();
+    gCollidedItemObjects = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    StartCourseMapItemObjects();
     func_02102674();
     InitOrthoQuads();
     func_02104970();
@@ -1222,33 +1228,33 @@ s32 func_020fa0e8(s32 param_1, s32 param_2) {
 
 #pragma thumb off
 
-s32 func_020fa0b8(void *param_1, s32 param_2, s32 param_3) {
+s32 GrowItemObjectScale(void *param_1, s32 param_2, s32 param_3) {
     ItemObject *p = param_1;
 
-    if (p->mUnk_68.z < param_2) {
-        p->mUnk_68.z += param_3;
-        if (p->mUnk_68.z > param_2) {
-            p->mUnk_68.z = param_2;
+    if (p->mScale.z < param_2) {
+        p->mScale.z += param_3;
+        if (p->mScale.z > param_2) {
+            p->mScale.z = param_2;
         }
         return 1;
     }
     return 0;
 }
 
-void func_020fa030(ItemObject *param_1) {
+void RefreshItemObjectScale(ItemObject *param_1) {
     ItemKind *e;
     enum { K0 } k;
     s32 m;
 
     k = param_1->mKind;
     param_1->mFlags |= 0x40;
-    param_1->mUnk_68.y = param_1->mUnk_68.z;
-    param_1->mUnk_68.x = param_1->mUnk_68.y;
+    param_1->mScale.y = param_1->mScale.z;
+    param_1->mScale.x = param_1->mScale.y;
     e = &gItemKinds[k];
     m = e->mUnk_6c;
-    param_1->mUnk_dc = ((s64) param_1->mUnk_68.y * e->mUnk_64) >> 12;
-    param_1->mUnk_e0 = ((s64) param_1->mUnk_68.y * m) >> 12;
-    func_020d5148(param_1->mUnk_da, param_1->mUnk_e0 + 0xa000);
+    param_1->mUnk_dc = ((s64) param_1->mScale.y * e->mUnk_64) >> 12;
+    param_1->mRadius = ((s64) param_1->mScale.y * m) >> 12;
+    func_020d5148(param_1->mCollisionSlotIndex, param_1->mRadius + 0xa000);
 }
 
 void func_020f9fa8(ItemObject *param_1) {
@@ -1258,27 +1264,27 @@ void func_020f9fa8(ItemObject *param_1) {
 
     k = param_1->mKind;
     param_1->mFlags |= 0x40;
-    param_1->mUnk_68.y = param_1->mUnk_68.z;
-    param_1->mUnk_68.x = param_1->mUnk_68.y;
+    param_1->mScale.y = param_1->mScale.z;
+    param_1->mScale.x = param_1->mScale.y;
     e = &gItemKinds[k];
     m = e->mUnk_6c;
-    param_1->mUnk_dc = ((s64) param_1->mUnk_68.y * e->mUnk_64) >> 12;
-    param_1->mUnk_e0 = ((s64) param_1->mUnk_68.y * m) >> 12;
-    func_020d5148(param_1->mUnk_da, param_1->mUnk_e0);
+    param_1->mUnk_dc = ((s64) param_1->mScale.y * e->mUnk_64) >> 12;
+    param_1->mRadius = ((s64) param_1->mScale.y * m) >> 12;
+    func_020d5148(param_1->mCollisionSlotIndex, param_1->mRadius);
 }
 
-void func_020f9f08(ItemObject *param_1, s32 param_2, s32 param_3) {
+void SetItemObjectScaleByRatios(ItemObject *param_1, s32 param_2, s32 param_3) {
     ItemObject *p = param_1;
     enum { K0 } k;
     s32 m;
 
     k = p->mKind;
     m = gItemKinds[k].mUnk_68;
-    p->mUnk_68.x = ((s64) p->mUnk_68.z * param_2) >> 12;
-    p->mUnk_68.y = ((s64) p->mUnk_68.z * param_3) >> 12;
-    p->mUnk_dc = ((s64) p->mUnk_68.y * gItemKinds[k].mUnk_64) >> 12;
-    p->mUnk_e0 = ((s64) p->mUnk_68.y * m) >> 12;
-    func_020d5148(p->mUnk_da, p->mUnk_e0 + 0xa000);
+    p->mScale.x = ((s64) p->mScale.z * param_2) >> 12;
+    p->mScale.y = ((s64) p->mScale.z * param_3) >> 12;
+    p->mUnk_dc = ((s64) p->mScale.y * gItemKinds[k].mUnk_64) >> 12;
+    p->mRadius = ((s64) p->mScale.y * m) >> 12;
+    func_020d5148(p->mCollisionSlotIndex, p->mRadius + 0xa000);
 }
 
 s32 func_020f9dc8(ItemObject *param_1) {
@@ -1286,19 +1292,19 @@ s32 func_020f9dc8(ItemObject *param_1) {
     enum { K0 } k;
     s32 m;
 
-    if (param_1->mUnk_100 <= -0x29 || param_1->mUnk_100 >= 0x29 || param_1->mUnk_68.x - param_1->mUnk_68.y <= -0x29 ||
-        param_1->mUnk_68.x - param_1->mUnk_68.y >= 0x29) {
+    if (param_1->mUnk_100 <= -0x29 || param_1->mUnk_100 >= 0x29 || param_1->mScale.x - param_1->mScale.y <= -0x29 ||
+        param_1->mScale.x - param_1->mScale.y >= 0x29) {
         k = param_1->mKind;
         param_1->mFlags |= 0x40;
-        param_1->mUnk_68.y += param_1->mUnk_100;
-        param_1->mUnk_100 += (s32) (((s64) (param_1->mUnk_68.z - param_1->mUnk_68.y) * 0x333) >> 12);
+        param_1->mScale.y += param_1->mUnk_100;
+        param_1->mUnk_100 += (s32) (((s64) (param_1->mScale.z - param_1->mScale.y) * 0x333) >> 12);
         param_1->mUnk_100 = ((s64) param_1->mUnk_100 * 0xc00) >> 12;
-        param_1->mUnk_68.x = param_1->mUnk_68.z * 2 - param_1->mUnk_68.y;
+        param_1->mScale.x = param_1->mScale.z * 2 - param_1->mScale.y;
         e = &gItemKinds[k];
         m = e->mUnk_6c;
-        param_1->mUnk_dc = ((s64) param_1->mUnk_68.y * e->mUnk_64) >> 12;
-        param_1->mUnk_e0 = ((s64) param_1->mUnk_68.y * m) >> 12;
-        func_020d5148(param_1->mUnk_da, param_1->mUnk_e0 + 0xa000);
+        param_1->mUnk_dc = ((s64) param_1->mScale.y * e->mUnk_64) >> 12;
+        param_1->mRadius = ((s64) param_1->mScale.y * m) >> 12;
+        func_020d5148(param_1->mCollisionSlotIndex, param_1->mRadius + 0xa000);
         return 1;
     }
     param_1->mUnk_100 = 0;
@@ -1313,32 +1319,32 @@ s32 func_020f9ce8(ItemObject *param_1) {
     if (param_1->mUnk_100 != 0) {
         k = param_1->mKind;
         param_1->mFlags |= 0x40;
-        param_1->mUnk_68.y += (s32) (((s64) (param_1->mUnk_100 - param_1->mUnk_68.y) * 0x333) >> 12);
-        param_1->mUnk_68.x = param_1->mUnk_68.z * 2 - param_1->mUnk_68.y;
+        param_1->mScale.y += (s32) (((s64) (param_1->mUnk_100 - param_1->mScale.y) * 0x333) >> 12);
+        param_1->mScale.x = param_1->mScale.z * 2 - param_1->mScale.y;
         e = &gItemKinds[k];
         m = e->mUnk_6c;
-        param_1->mUnk_dc = ((s64) param_1->mUnk_68.y * e->mUnk_64) >> 12;
-        param_1->mUnk_e0 = ((s64) param_1->mUnk_68.y * m) >> 12;
-        func_020d5148(param_1->mUnk_da, param_1->mUnk_e0 + 0xa000);
+        param_1->mUnk_dc = ((s64) param_1->mScale.y * e->mUnk_64) >> 12;
+        param_1->mRadius = ((s64) param_1->mScale.y * m) >> 12;
+        func_020d5148(param_1->mCollisionSlotIndex, param_1->mRadius + 0xa000);
         return 1;
     }
     return 0;
 }
 
-void func_020f9ca8(void *param_1) {
+void CreateItemObjectCollisionSlot(void *param_1) {
     ItemObject *p = param_1;
 
-    if (p->mUnk_da != -1) {
+    if (p->mCollisionSlotIndex != -1) {
         return;
     }
-    p->mUnk_da = func_020d555c(&p->mPos, p->mUnk_e0 + 0xa000, 0x4000, p);
+    p->mCollisionSlotIndex = func_020d555c(&p->mPos, p->mRadius + 0xa000, 0x4000, p);
 }
 
 void func_020f9c6c(ItemObject *param_1) {
-    if (param_1->mUnk_da != -1) {
+    if (param_1->mCollisionSlotIndex != -1) {
         return;
     }
-    param_1->mUnk_da = func_020d555c(&param_1->mPos, param_1->mUnk_e0, 0x4000, param_1);
+    param_1->mCollisionSlotIndex = func_020d555c(&param_1->mPos, param_1->mRadius, 0x4000, param_1);
 }
 
 #pragma thumb on

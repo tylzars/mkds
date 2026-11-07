@@ -55,7 +55,7 @@ void func_020f91fc(void *b, s32 c) {
 BOOL func_020f91e0(ItemObject *a) {
     ItemObject *p = a;
 
-    return p->mUnk_68.z >= 0xccd;
+    return p->mScale.z >= 0xccd;
 }
 
 BOOL func_020f91c4(ItemObject *a, s32 b) {
@@ -126,16 +126,16 @@ void func_020f8e78(void *b) {
     enum { K0 } k;
     void (*f)(struct ItemObject *);
 
-    p->mUnk_68.z = 0xccd;
+    p->mScale.z = 0xccd;
     k = p->mKind;
     p->mFlags |= 0x40;
-    p->mUnk_68.y = p->mUnk_68.z;
-    p->mUnk_68.x = p->mUnk_68.y;
+    p->mScale.y = p->mScale.z;
+    p->mScale.x = p->mScale.y;
     e = &gItemKinds[k];
     m = e->mUnk_6c;
-    p->mUnk_dc = ((s64) p->mUnk_68.y * e->mUnk_64) >> 12;
-    p->mUnk_e0 = ((s64) p->mUnk_68.y * m) >> 12;
-    func_020d5148(p->mUnk_da, p->mUnk_e0 + 0xa000);
+    p->mUnk_dc = ((s64) p->mScale.y * e->mUnk_64) >> 12;
+    p->mRadius = ((s64) p->mScale.y * m) >> 12;
+    func_020d5148(p->mCollisionSlotIndex, p->mRadius + 0xa000);
     func_0208adc8(p->mUnk_7c.mUnk_00, 1);
     p->mUnk_90 = NULL;
     p->mUnk_f0 = data_02159ca0;
@@ -168,12 +168,12 @@ void func_020f8e78(void *b) {
     if (gItemKinds[k].mUnk_54 != 0) {
         return;
     }
-    a = p->mUnk_da != -1;
+    a = p->mCollisionSlotIndex != -1;
     if (a != FALSE) {
         return;
     }
     if (a != FALSE) {
         return;
     }
-    p->mUnk_da = func_020d555c(&p->mPos, p->mUnk_e0 + 0xa000, 0x4000, p);
+    p->mCollisionSlotIndex = func_020d555c(&p->mPos, p->mRadius + 0xa000, 0x4000, p);
 }

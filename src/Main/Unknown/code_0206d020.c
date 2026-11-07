@@ -351,7 +351,7 @@ void func_0206d18c(Kart *p) {
     if (p->mUnk_7c & 0x400400) {
         return;
     }
-    if (func_020fa4c8(p) == 0) {
+    if (CollideKartWithItemObjects(p) == 0) {
         return;
     }
     if (p->mUnk_7c & 0x402020) {
@@ -360,7 +360,7 @@ void func_0206d18c(Kart *p) {
     if (p->mUnk_4c & 0x800) {
         return;
     }
-    e = func_020fa4b4(0);
+    e = GetCollidedItemObject(0);
     r = 0;
     switch (e->mKind) {
         case 0:

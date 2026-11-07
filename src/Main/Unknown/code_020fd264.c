@@ -155,7 +155,7 @@ void EnterItemBombState2(ItemBomb *e) {
 
     e->mUnk_000.mItemObject.mFlags |= 0x800000;
     e->mUnk_000.mItemObject.mUnk_100 = 0;
-    e->mUnk_000.mItemObject.mUnk_68 = data_02159f30;
+    e->mUnk_000.mItemObject.mScale = data_02159f30;
     e->mUnk_138 =
         StartModelEffect(0, &e->mUnk_000.mItemObject.mPos, func_020f9160(&e->mUnk_000.mItemObject) == 0 ? 1 : 0);
     q = e->mUnk_138;
@@ -187,7 +187,7 @@ void UpdateItemBombState2(ItemBomb *e) {
     s32 t;
 
     t = e->mStateFrames;
-    if (func_020fa0b8(e, data_0217bd50, data_0217bd54) != 0) {
+    if (GrowItemObjectScale(e, data_0217bd50, data_0217bd54) != 0) {
         func_020f9fa8(&e->mUnk_000.mItemObject);
     }
     if (t < 0x16) {
@@ -526,7 +526,7 @@ void func_020fd540(void **b, Vec3 *v, s32 a) {
     v1 = e->mUnk_198;
     e->mUnk_000.mItemObject.mUnk_78 |= data_02159f28;
     if (v1 == NULL) {
-        func_020f9ca8(e);
+        CreateItemObjectCollisionSlot(e);
         e->mUnk_1a0 = TRUE;
     }
     func_020f9114(e);
@@ -631,7 +631,7 @@ void *StartItemBombWithMapObject(void *b, s32 a) {
 
 Vec3 *func_020fd308(ItemBomb *e, s32 *a, s32 *b) {
     *a = e->mStateFrames;
-    *b = ((s64) e->mUnk_000.mItemObject.mUnk_68.z * data_0217bd48) >> 12;
+    *b = ((s64) e->mUnk_000.mItemObject.mScale.z * data_0217bd48) >> 12;
     return &e->mUnk_000.mItemObject.mPos;
 }
 

@@ -155,7 +155,7 @@ void func_020f7c90(ItemObject *a, Vec3 *b, Vec3 *c) {
     }
     d = (s64) (a->mPos.x - b->x) * (a->mPos.x - b->x) + (s64) (a->mPos.y - b->y) * (a->mPos.y - b->y) +
         (s64) (a->mPos.z - b->z) * (a->mPos.z - b->z);
-    if (d >= (s64) a->mUnk_e0 * a->mUnk_e0) {
+    if (d >= (s64) a->mRadius * a->mRadius) {
         return;
     }
     a->mFlags |= 0x4000000;

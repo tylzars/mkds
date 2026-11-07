@@ -7,7 +7,7 @@ typedef struct CourseMapRow {
     /* 00 */ Vec3 mUnk_00;
     /* 0c */ Vec3 mUnk_0c;
     /* 18 */ Vec3 mUnk_18;
-    /* 24 */ u16 mUnk_24;
+    /* 24 */ u16 mKind;
     /* 26 */ s16 mUnk_26;
     /* 28 */ s16 mUnk_28;
     /* 2a */ s16 mUnk_2a;
@@ -62,8 +62,8 @@ typedef struct ItemKouraW {
     /* 264 */ s32 mUnk_264;
     /* 268 */ u16 mUnk_268;
     /* 26a */ u8 mUnk_26a[2];
-    /* 26c */ s32 mUnk_26c;
-    /* 270 */ s32 mUnk_270;
+    /* 26c */ s32 mPosStrip;
+    /* 270 */ s32 mSoundId;
     /* 274 */ u16 mRank;
     /* 276 */ u16 mRankKartIndex;
     /* 278 */ s32 mUnk_278;
@@ -76,7 +76,7 @@ typedef struct ItemKouraW {
     /* 28c */ Vec3 mUnk_28c;
     /* 298 */ Vec3 mUnk_298;
     /* 2a4 */ Vec3 mUnk_2a4;
-    /* 2b0 */ struct ModelEffect *mUnk_2b0;
+    /* 2b0 */ struct ModelEffect *mModelEffect;
     /* 2b4 */ u8 mUnk_2b4[0x30];
     /* 2e4 */ s32 mUnk_2e4;
     /* 2e8 */ u8 mUnk_2e8[4];
@@ -98,24 +98,24 @@ typedef struct ItemKouraW ItemKouraW;
 #include "Main/Unknown/code_020ea670.h"
 #include "Main/Unknown/code_0206bcb0.h"
 
-extern Unk020ea670 *data_0217bd38;
+extern Unk020ea670 *gKouraW;
 
 void func_020f9c6c(ItemObject *param_1);
-void func_020f9ca8(void *param_1);
+void CreateItemObjectCollisionSlot(void *param_1);
 s32 func_020f9ce8(ItemObject *param_1);
 s32 func_020f9dc8(ItemObject *param_1);
-void func_020f9f08(ItemObject *param_1, s32 param_2, s32 param_3);
+void SetItemObjectScaleByRatios(ItemObject *param_1, s32 param_2, s32 param_3);
 void func_020f9fa8(ItemObject *param_1);
-void func_020fa030(ItemObject *param_1);
-s32 func_020fa0b8(void *param_1, s32 param_2, s32 param_3);
+void RefreshItemObjectScale(ItemObject *param_1);
+s32 GrowItemObjectScale(void *param_1, s32 param_2, s32 param_3);
 s32 func_020fa0e8(s32 param_1, s32 param_2);
 void InitItems(void);
-void func_020fa294(void);
+void StartCourseMapItemObjects(void);
 // Takes an object of kind param_1 from its pool, reserves, starts and places it; returns 0 when the pool is full
 // (mLimit - mReservedCount <= 0).
 void *StartItemObjectOrZero(s32 param_1, u16 param_2, void *param_3, void *param_4);
-struct ItemObject *func_020fa4b4(u32 arg0);
-s32 func_020fa4c8(Kart *param_1);
+struct ItemObject *GetCollidedItemObject(u32 arg0);
+s32 CollideKartWithItemObjects(Kart *param_1);
 void StartItemSlotForKart(s32 param_1, s32 param_2, s32 param_3);
 void DrawItems(void *a);
 // Per-frame item step: mode-5 sync, the object pools whose mUnk_14 is set, every kart's record, the item timers, two
@@ -123,14 +123,14 @@ void DrawItems(void *a);
 void UpdateItems(void);
 void func_020fa9e4(void);
 BOOL TryReleaseItemObjectsForItemInfo(s32 param_1);
-BOOL func_020fab34(s32 *param_1);
+BOOL ReplaceUnavailableItem(s32 *param_1);
 BOOL IsItemInfoObjectCountFree(s32 param_1);
-void func_020fad00(void);
+void SetupItemKouraWKind(void);
 Vec3 *func_020fad9c(ItemKouraW *param_1, s32 *param_2, s32 *param_3);
 BOOL IsItemKouraWState7(ItemKouraW *param_1);
 s32 RequestItemKouraWState7(ItemKouraW *param_1);
 void DrawItemKouraW(ItemKouraW *param_1, s32 param_2, s32 param_3);
-void func_020faed0(ItemKouraW *param_1, s32 param_2, s32 param_3);
+void DrawItemKouraWModel(ItemKouraW *param_1, s32 param_2, s32 param_3);
 void InitItemKouraWFromData(ItemKouraW *param_1);
 void *func_020fb208(void *param_1, ItemKouraW *param_2, void *param_3);
 void UpdateItemKouraWState7(ItemKouraW *param_1);
@@ -147,8 +147,8 @@ void EnterItemKouraWState3(ItemKouraW *param_1);
 void UpdateItemKouraWState1(ItemKouraW *param_1);
 void UpdateItemKouraWState0(ItemKouraW *param_1);
 void AdvanceItemKouraW(ItemKouraW *a);
-void func_020fc2e8(ItemKouraW *p, Vec3 *v, s32 v1, Vec3 *v2);
-void func_020fc654(ItemKouraW *p);
+void UpdateItemKouraWOrientation(ItemKouraW *p, Vec3 *v, s32 v1, Vec3 *v2);
+void UpdateItemKouraWDrawPos(ItemKouraW *p);
 s32 InitItemKouraW(ItemInUse *a, ItemKouraW *e);
 void func_020fc8ec(ItemKouraW *e, s32 a);
 void func_020fc94c(ItemKouraW *p);

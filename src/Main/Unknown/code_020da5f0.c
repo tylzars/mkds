@@ -193,9 +193,9 @@ void func_020da820(Kuribo *p, Vec3 *a) {
     if (r == NULL) {
         return;
     }
-    r->mUnk_68.x = 0xcd;
-    r->mUnk_68.y = 0xcd;
-    r->mUnk_68.z = 0xcd;
+    r->mScale.x = 0xcd;
+    r->mScale.y = 0xcd;
+    r->mScale.z = 0xcd;
     d = VEC_Mag(a) + 0x5000;
     r->mVelocity.x = ((s64) s.x * d) >> 12;
     r->mVelocity.y = ((s64) s.y * d) >> 12;

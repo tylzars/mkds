@@ -197,9 +197,9 @@ void StartWoodbox1ItemObject(Woodbox1 *c, Vec3 *d) {
     q->mVelocity = *d;
     VEC_MultAdd(n, &a, &c->mUnk_000.mPos, &q->mPos);
     VEC_MultAdd(0, &b, &q->mPos, &q->mPos);
-    q->mUnk_68.x = 0xcd;
-    q->mUnk_68.y = 0xcd;
-    q->mUnk_68.z = 0xcd;
+    q->mScale.x = 0xcd;
+    q->mScale.y = 0xcd;
+    q->mScale.z = 0xcd;
     func_020f6630(q, 2, &c->mUnk_000.mPos, d, &c->mUnk_0bc);
 }
 

@@ -535,7 +535,7 @@ void func_02090748(Unk020905a8 *a) {
     s32 r;
     p = GetKart(a->mUnk_24);
     v = p->mPos;
-    a->mUnk_20 = func_0207eafc(a->mUnk_00.mLink->mUnk_18, &v, &p->mUnk_12c, &p->mUnk_138);
+    a->mUnk_20 = ComputeAngleToPositionDegrees(a->mUnk_00.mLink->mUnk_18, &v, &p->mUnk_12c, &p->mUnk_138);
     if ((p->mUnk_48 & 0x40000000) != 0 && p->mSurfaceVariant == 1) {
         r = IsPastPointLink(&a->mUnk_00, &v);
     } else {

@@ -63,19 +63,19 @@ void ResetItemObject(ItemObject *param_1, s32 param_2) {
     param_1->mKind = param_2;
     param_1->mFlags = 0;
     param_1->mUnk_7a = 0;
-    param_1->mUnk_68.x = 0;
-    param_1->mUnk_68.y = 0;
-    param_1->mUnk_68.z = 0;
+    param_1->mScale.x = 0;
+    param_1->mScale.y = 0;
+    param_1->mScale.z = 0;
     param_1->mUnk_100 = 0;
     param_1->mUnk_dc = 0x7b;
-    param_1->mUnk_e0 = 0x7b;
+    param_1->mRadius = 0x7b;
     param_1->mUnk_d8 = 0x1f;
     param_1->mUnk_fc = 0;
     param_1->mUnk_118 = 0;
     param_1->mUnk_114 = 5;
     param_1->mUnk_124 = NULL;
     param_1->mUnk_d0 = &param_1->mPos;
-    param_1->mUnk_da = -1;
+    param_1->mCollisionSlotIndex = -1;
     param_1->mUnk_104->mUnk_00 = NULL;
     if (gRaceSetup->mMode == 5) {
         param_1->mFlags |= 0x8000000;
@@ -102,8 +102,8 @@ void ResetItemObjectAtPos(ItemObject *param_1, s32 param_2, u16 param_3, Vec3 *p
 void ReleaseItemObject(ItemObject *param_1) {
     enum { K0 } k;
 
-    if (param_1->mUnk_da != -1) {
-        param_1->mUnk_da = func_020d5344(param_1->mUnk_da);
+    if (param_1->mCollisionSlotIndex != -1) {
+        param_1->mCollisionSlotIndex = func_020d5344(param_1->mCollisionSlotIndex);
     }
     if ((param_1->mFlags & 0x400000) != 0) {
         func_02109054(&param_1->mSoundSource);
@@ -137,11 +137,11 @@ BOOL func_020f97e0(ItemObject *param_1, Kart *param_2) {
     Vec3 d;
     s32 n;
 
-    if (param_1->mUnk_da == -1 ||
+    if (param_1->mCollisionSlotIndex == -1 ||
         param_2->mIndex == (u16) ((param_1->mUnk_78 & 0x4000) != 0 ? (u16) (param_1->mUnk_78 & ~0xff00) : 8)) {
         return FALSE;
     }
-    n = param_2->mRadius + param_1->mUnk_e0;
+    n = param_2->mRadius + param_1->mRadius;
     d.x = param_1->mPos.x - param_2->mUnk_1d8.x;
     d.y = param_1->mPos.y - param_2->mUnk_1d8.y;
     d.z = param_1->mPos.z - param_2->mUnk_1d8.z;
@@ -152,7 +152,7 @@ BOOL IsItemObjectOverlappingSphere(ItemObject *param_1, Vec3 *param_2, s32 param
     Vec3 d;
     s32 n;
 
-    n = param_3 + param_1->mUnk_e0;
+    n = param_3 + param_1->mRadius;
     d.x = param_1->mPos.x - param_2->x;
     d.y = param_1->mPos.y - param_2->y;
     d.z = param_1->mPos.z - param_2->z;
@@ -164,7 +164,7 @@ void func_020f95d4(ItemObject *param_1, ItemObject *param_2) {
     s32 a;
     s32 b;
 
-    if (param_2->mUnk_da == -1) {
+    if (param_2->mCollisionSlotIndex == -1) {
         return;
     }
     if ((param_2->mFlags & 0x1000) != 0) {
@@ -180,11 +180,11 @@ void func_020f95d4(ItemObject *param_1, ItemObject *param_2) {
             return;
         }
     }
-    if (IsItemObjectOverlappingSphere(param_1, &param_2->mPos, param_2->mUnk_e0) == FALSE) {
-        if (IsItemObjectOverlappingSphere(param_1, &param_2->mPrevPos, param_2->mUnk_e0) == FALSE) {
+    if (IsItemObjectOverlappingSphere(param_1, &param_2->mPos, param_2->mRadius) == FALSE) {
+        if (IsItemObjectOverlappingSphere(param_1, &param_2->mPrevPos, param_2->mRadius) == FALSE) {
             return;
         }
-        if (IsItemObjectOverlappingSphere(param_2, &param_1->mPrevPos, param_1->mUnk_e0) == FALSE) {
+        if (IsItemObjectOverlappingSphere(param_2, &param_1->mPrevPos, param_1->mRadius) == FALSE) {
             return;
         }
     }
@@ -210,7 +210,7 @@ void func_020f944c(ItemObject *param_1, MapObject *param_2) {
     ItemObject *p = param_1;
     MapObject *r = param_2;
 
-    if (IsSphereHittingMapObject(&p->mPos, p->mUnk_e0, r, &a) == FALSE) {
+    if (IsSphereHittingMapObject(&p->mPos, p->mRadius, r, &a) == FALSE) {
         return;
     }
     if ((r->mFlags & 0x40) == 0 && (p->mFlags & 0x80000) == 0 && func_020d6968(p->mKind, r) != 0) {
@@ -261,7 +261,8 @@ void func_020f9334(void *param_1, Vec3 *param_2, Vec3 *param_3, s32 param_4, Vec
     v.y = y;
     v.z = z;
 
-    func_01ffdee4(&v, param_2, 0, p->mUnk_dc >> 1, 0x24, p->mUnk_da, NULL, NULL, NULL, &a, NULL, NULL, NULL, NULL);
+    func_01ffdee4(&v, param_2, 0, p->mUnk_dc >> 1, 0x24, p->mCollisionSlotIndex, NULL, NULL, NULL, &a, NULL, NULL, NULL,
+                  NULL);
     if ((a & 0x1e34ef) != 0 || (p->mUnk_fc & 0x80000) != 0) {
         if ((p->mFlags & 0x4000000) != 0) {
             return;

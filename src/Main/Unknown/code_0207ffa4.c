@@ -138,7 +138,7 @@ void InitRacePointLinkCursor(Unk02080d34 *p, u16 kartIndex) {
     p->mUnk_00.mDirection = data_021557ec;
     VEC_Subtract(p->mUnk_00.mLink->mUnk_18, p->mUnk_00.mPreviousLink->mUnk_18, &p->mUnk_00.mDirection);
     Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_00.mDirection, &p->mUnk_00.mDirection);
-    p->mUnk_00.mUnk_14 = NULL;
+    p->mUnk_00.mRequestedLink = NULL;
     p->mUnk_00.mUnk_18 = FALSE;
     p->mKartIndex = kartIndex;
     p->mUnk_1e = 0;
@@ -147,7 +147,7 @@ void InitRacePointLinkCursor(Unk02080d34 *p, u16 kartIndex) {
 void ResetPointLinkCursor(LinkCursor *p, Unk02175620_bc *a) {
     p->mLink = a;
     p->mPreviousLink = p->mLink->mUnk_0c;
-    p->mUnk_14 = NULL;
+    p->mRequestedLink = NULL;
     p->mUnk_18 = FALSE;
     p->mDirection = data_021557ec;
     VEC_Subtract(p->mLink->mUnk_18, p->mPreviousLink->mUnk_18, &p->mDirection);
@@ -222,8 +222,8 @@ void AdvancePointLinkCursorTo(LinkCursor *p, Unk02175620_bc *a) {
 }
 
 void func_02080ac0(LinkCursor *p) {
-    if (p->mUnk_14 == NULL) {
-        p->mUnk_14 = p->mPreviousLink;
+    if (p->mRequestedLink == NULL) {
+        p->mRequestedLink = p->mPreviousLink;
         p->mUnk_18 = FALSE;
     }
 }
@@ -272,7 +272,7 @@ void ResetBattlePointLinkCursorNear(LinkCursor *p, Vec3 *a, Vec3 *b, u16 c) {
     p->mLink = r;
     p->mPreviousLink = r;
     p->mDirection = data_021557ec;
-    p->mUnk_14 = NULL;
+    p->mRequestedLink = NULL;
     p->mUnk_18 = FALSE;
 }
 
@@ -280,7 +280,7 @@ void ResetBattlePointLinkCursorTo(LinkCursor *p, Unk02175620_bc *a) {
     p->mPreviousLink = a;
     p->mLink = p->mPreviousLink;
     p->mDirection = data_021557ec;
-    p->mUnk_14 = NULL;
+    p->mRequestedLink = NULL;
     p->mUnk_18 = FALSE;
 }
 

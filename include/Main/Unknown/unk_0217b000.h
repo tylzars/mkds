@@ -924,7 +924,7 @@ extern u8 data_0217b86c[];
 extern Unk020e6488 *gItemModels[];
 struct ItemObject;
 
-extern struct ItemObject **data_0217bd30;
+extern struct ItemObject **gCollidedItemObjects;
 
 extern void *data_0217b040;
 extern s32 gKeyboardOffsetX;
@@ -1129,9 +1129,9 @@ extern u16 gItemSlotPossibleItemCount;
 // Length of gItemSlotSpinItems; 0 means the spin uses gItemSlotPossibleItems.
 extern u16 gItemSlotSpinItemCount;
 extern u16 data_0217bc7c[];
-extern s32 data_0217bd3c;
-extern s32 data_0217bd40;
-extern s32 data_0217bd44;
+extern s32 gKouraWState7ScaleLimit;
+extern s32 gKouraWState7InverseLimit;
+extern s32 gKouraWState7ScaleStep;
 extern volatile s32 data_0217bd34;
 extern s32 data_0217bd48;
 extern s32 data_0217bd4c;

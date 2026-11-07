@@ -75,7 +75,7 @@ typedef struct ItemObject {
     /* 4e */ s16 mId;
     /* 050 */ Vec3 mPos;
     /* 5c */ Vec3 mVelocity;
-    /* 68 */ Vec3 mUnk_68;
+    /* 68 */ Vec3 mScale;
     // Bit flags used by item code in 22 units; UpdateItemObject clears the low 12 bits on each call.
     /* 74 */ u32 mFlags;
     /* 78 */ u16 mUnk_78;
@@ -84,13 +84,13 @@ typedef struct ItemObject {
     /* 08e */ u8 mUnk_08e[2];
     /* 090 */ u16 *mUnk_90;
     /* 094 */ MtxFx43 mUnk_94;
-    /* 0c4 */ Vec3 mUnk_0c4;
+    /* 0c4 */ Vec3 mDrawPos;
     /* d0 */ Vec3 *mUnk_d0;
     /* 0d4 */ s32 mUnk_d4;
     /* 0d8 */ s16 mUnk_d8;
-    /* 0da */ s16 mUnk_da;
+    /* 0da */ s16 mCollisionSlotIndex;
     /* 0dc */ s32 mUnk_dc;
-    /* e0 */ s32 mUnk_e0;
+    /* e0 */ s32 mRadius;
     /* 0e4 */ Vec3 mPrevPos;
     /* 0f0 */ Vec3 mUnk_f0;
     /* fc */ u32 mUnk_fc;

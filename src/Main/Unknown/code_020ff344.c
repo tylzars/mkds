@@ -181,7 +181,7 @@ void StartItemFBox(ItemFBox *e) {
 }
 
 void AdvanceItemFBoxInUse(ItemInUse *a, ItemFBox *e) {
-    func_02105338(e->mUnk_140, e->mUnk_000.mItemObject.mUnk_d8, &e->mUnk_000.mItemObject.mUnk_68);
+    func_02105338(e->mUnk_140, e->mUnk_000.mItemObject.mUnk_d8, &e->mUnk_000.mItemObject.mScale);
 }
 
 u32 InitItemFBox(ItemInUse *a, ItemFBox *e) {
@@ -230,7 +230,7 @@ void AdvanceItemFBox(ItemFBox *e) {
             StartRestingItemObject(&e->mUnk_000.mItemObject, &t);
         }
     }
-    func_02105338(e->mUnk_140, e->mUnk_000.mItemObject.mUnk_d8, &e->mUnk_000.mItemObject.mUnk_68);
+    func_02105338(e->mUnk_140, e->mUnk_000.mItemObject.mUnk_d8, &e->mUnk_000.mItemObject.mScale);
 }
 
 s32 func_020ff3c4(ItemFBox *e) {

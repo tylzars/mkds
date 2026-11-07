@@ -174,11 +174,11 @@ void func_02089974(void) {
 void func_020898bc(KartAi *p) {
     Vec3 z = data_02155ebc;
 
-    p->mUnk_60 = z;
+    p->mSideOffset = z;
     p->mUnk_6c = 0;
     p->mUnk_6e = 0;
     p->mTurnAngleDegrees = 0;
-    p->mUnk_74 = 0;
+    p->mSideOffsetRatio = 0;
     p->mUnk_78 = 0;
     p->mUnk_7a = 0;
     p->mUnk_a4 = 0;
@@ -272,7 +272,7 @@ void func_02089494(KartAi *p) {
     q = p->mKart;
     s = &p->mUnk_28;
     g = &q->mUnk_138;
-    e = s->mUnk_14;
+    e = s->mRequestedLink;
     GetKartPos(&v, p->mIndex);
     if (q->mUnk_48 & 0x3840) {
         return;
@@ -282,7 +282,7 @@ void func_02089494(KartAi *p) {
         p->mUnk_a4 = func_020800a0(s);
         func_020892bc(p);
         p->mUnk_44 = *s->mLink->mUnk_20;
-        VEC_Add(&p->mUnk_44, &p->mUnk_60, &p->mUnk_44);
+        VEC_Add(&p->mUnk_44, &p->mSideOffset, &p->mUnk_44);
     } else {
         if (p->mIndex == GetRaceUpdateFramesMod8()) {
             f = p->mUnk_5c;
@@ -308,8 +308,8 @@ void func_02089494(KartAi *p) {
             p->mUnk_a4 = func_020800a0(s);
             func_020892bc(p);
             p->mUnk_44 = *s->mLink->mUnk_20;
-            VEC_Add(&p->mUnk_44, &p->mUnk_60, &p->mUnk_44);
-            s->mUnk_14 = NULL;
+            VEC_Add(&p->mUnk_44, &p->mSideOffset, &p->mUnk_44);
+            s->mRequestedLink = NULL;
             s->mUnk_18 = FALSE;
         }
     }
@@ -333,7 +333,7 @@ void func_020892bc(KartAi *p) {
     s32 n;
     s32 f;
 
-    VEC_CrossProduct(&p->mUnk_28.mDirection, &z, &p->mUnk_60);
+    VEC_CrossProduct(&p->mUnk_28.mDirection, &z, &p->mSideOffset);
     p->mUnk_6c++;
     if (p->mUnk_6c > p->mUnk_6e) {
         p->mUnk_6c = 0;
@@ -345,7 +345,7 @@ void func_020892bc(KartAi *p) {
         a = (s16) (u16) (r->mUnk_00 >> 52);
         t = (s32) (((s64) a * 0x2000 + 0x800) >> 12) - 0x1000;
         u = ((s64) t * 0x4ce + 0x800) >> 12;
-        n = p->mUnk_74 + u;
+        n = p->mSideOffsetRatio + u;
         if (func_020738f8(n) > 0xb36) {
             if (n > 0) {
                 n = 0xb36;
@@ -353,12 +353,12 @@ void func_020892bc(KartAi *p) {
                 n = -0xb36;
             }
         }
-        p->mUnk_74 = n;
+        p->mSideOffsetRatio = n;
     }
-    f = ((s64) p->mUnk_74 * p->mUnk_28.mLink->mUnk_24 + 0x800) >> 12;
-    p->mUnk_60.x = ((s64) p->mUnk_60.x * f) >> 12;
-    p->mUnk_60.y = ((s64) p->mUnk_60.y * f) >> 12;
-    p->mUnk_60.z = ((s64) p->mUnk_60.z * f) >> 12;
+    f = ((s64) p->mSideOffsetRatio * p->mUnk_28.mLink->mUnk_24 + 0x800) >> 12;
+    p->mSideOffset.x = ((s64) p->mSideOffset.x * f) >> 12;
+    p->mSideOffset.y = ((s64) p->mSideOffset.y * f) >> 12;
+    p->mSideOffset.z = ((s64) p->mSideOffset.z * f) >> 12;
 }
 
 void func_02088e44(KartAi *p) {
@@ -392,7 +392,7 @@ void func_02088e44(KartAi *p) {
         p->mUnk_5c = &p->mUnk_44;
         k = gSearchStartIndex;
         for (n = 0; n < (u32) gRaceSetup->mKartCount; n++) {
-            if (func_0207f554(p->mIndex, k) != 0) {
+            if (ShouldKartAiTargetKart(p->mIndex, k) != 0) {
                 o = GetKart(k);
                 v3 = &p->mKart->mPos;
                 d = func_020888b4_inline(v3, &o->mPos);

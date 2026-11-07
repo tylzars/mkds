@@ -138,7 +138,7 @@ found:
     k = v1->mKind;
     t = gItemKinds + k;
     if (t->mUnk_6c != 0) {
-        func_020f9ca8(v);
+        CreateItemObjectCollisionSlot(v);
     }
     v->mAgeFrames = 0;
     k = v->mKind;
@@ -250,7 +250,7 @@ found:
     e->mFlags |= 0x2000;
     j = v1->mKind;
     if (gItemKinds[j].mUnk_6c != 0) {
-        func_020f9ca8(e);
+        CreateItemObjectCollisionSlot(e);
     }
     e->mAgeFrames = 0;
     j = e->mKind;
@@ -534,7 +534,7 @@ void UpdateItemPool(ItemPool *a) {
                     k++;
                 }
             }
-            func_020d5180(&p->mPos, p->mUnk_e0 + k * 0xa000, 0x6000);
+            func_020d5180(&p->mPos, p->mRadius + k * 0xa000, 0x6000);
             p->mUnk_7a++;
             do {
                 p->mUnk_7a--;
@@ -849,7 +849,7 @@ void StartLastItemInUseObjectAndInit(ItemInUse *a, s32 f) {
             f = 0;
         }
     }
-    b->mUnk_d4 = gItemKinds[b->mKind].mViewTest(b->mUnk_d0, b->mUnk_e0 << 1, gItemKinds[b->mKind].mUnk_5c,
+    b->mUnk_d4 = gItemKinds[b->mKind].mViewTest(b->mUnk_d0, b->mRadius << 1, gItemKinds[b->mKind].mUnk_5c,
                                                 gItemKinds[b->mKind].mUnk_a4, 0x1f);
     if (b->mFlags & 0x400000) {
         func_020f90bc(b);
@@ -959,15 +959,15 @@ void AdvanceItemInUseOne(ItemInUse *a) {
 
     b = a->mObjects[0];
     c = a->mKartItems;
-    n = b->mUnk_68.z;
+    n = b->mScale.z;
     ComputeItemInUseObjectPosition(a, &b->mPos, &a->mUnk_0a8);
     if (b->mAgeFrames > 0xc) {
         k = b->mKind;
-        if (func_020fa0b8(b, gItemKinds[k].mUnk_70, 0x333) != 0) {
-            func_020f9f08(b, a->mUnk_084.x, a->mUnk_084.y);
+        if (GrowItemObjectScale(b, gItemKinds[k].mUnk_70, 0x333) != 0) {
+            SetItemObjectScaleByRatios(b, a->mUnk_084.x, a->mUnk_084.y);
         }
     }
-    if (n < 0xccd && b->mUnk_68.z >= 0xccd && a->mKartIndex == gRaceSetup->mEntryIndex) {
+    if (n < 0xccd && b->mScale.z >= 0xccd && a->mKartIndex == gRaceSetup->mEntryIndex) {
         func_020719bc(&c->mKart->mSoundSource, 0xe7);
     }
     if ((c->mFlags & 0x284) == 0x284 && a->mObjectKind != 0xf && a->mObjectStartFramesLeft == 0) {
@@ -1096,8 +1096,8 @@ void AdvanceItemInUseTrail(ItemInUse *a) {
     v = &p->mUnk_09c;
     k70 = gItemKinds[b->mKind].mUnk_70;
     ComputeItemInUseObjectPosition(a, &b->mPos, w);
-    if (func_020fa0b8(b, k70, 0x19a) != 0) {
-        func_020f9f08(b, a->mUnk_084.x, a->mUnk_084.y);
+    if (GrowItemObjectScale(b, k70, 0x19a) != 0) {
+        SetItemObjectScaleByRatios(b, a->mUnk_084.x, a->mUnk_084.y);
     }
     if (n > 1) {
         if (a->mUnk_080 != 0) {
@@ -1159,8 +1159,8 @@ void AdvanceItemInUseTrail(ItemInUse *a) {
         }
         VEC_MultAdd(d + (s32) (((s64) a->mUnk_084.z * 0x4333) >> 12), &a->mUnk_02c.mUnk_0c, t, &b->mPos);
         w = t;
-        if (func_020fa0b8(b, k70, 0x19a + i * 0xcd) != 0) {
-            func_020f9f08(b, a->mUnk_084.x, a->mUnk_084.y);
+        if (GrowItemObjectScale(b, k70, 0x19a + i * 0xcd) != 0) {
+            SetItemObjectScaleByRatios(b, a->mUnk_084.x, a->mUnk_084.y);
         }
     }
     if ((c->mFlags & 0x244) == 0x244 && a->mObjectKind != 0xf && a->mObjectStartFramesLeft == 0) {
@@ -1293,8 +1293,8 @@ void AdvanceItemInUseCircle(ItemInUse *a) {
     e = gItemKinds[k].mUnk_70;
     for (; i < n; i++) {
         q = a->mObjects[i];
-        if (func_020fa0b8(q, e, 0x19a) != 0) {
-            func_020f9f08(q, a->mUnk_084.x, a->mUnk_084.y);
+        if (GrowItemObjectScale(q, e, 0x19a) != 0) {
+            SetItemObjectScaleByRatios(q, a->mUnk_084.x, a->mUnk_084.y);
         }
     }
     if (a->mKartIndex == gRaceSetup->mEntryIndex) {

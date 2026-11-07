@@ -173,9 +173,9 @@ void DrawItemGesso(ItemGesso *p, s32 param_2, Unk020e6488 *t) {
     s.mUnk_00[1].y = ((s64) s.mUnk_00[1].y * d) >> 12;
     s.mUnk_00[1].z = ((s64) s.mUnk_00[1].z * d) >> 12;
     VEC_MultAdd(p->mUnk_19c, &s.mUnk_00[0], &s.mUnk_00[1], &s.mUnk_00[1]);
-    w.x = ((s64) p->mUnk_180 * p->mUnk_000.mUnk_68.x) >> 12;
-    w.y = ((s64) p->mUnk_184.x * p->mUnk_000.mUnk_68.y) >> 12;
-    w.z = p->mUnk_000.mUnk_68.z;
+    w.x = ((s64) p->mUnk_180 * p->mUnk_000.mScale.x) >> 12;
+    w.y = ((s64) p->mUnk_184.x * p->mUnk_000.mScale.y) >> 12;
+    w.z = p->mUnk_000.mScale.z;
     k = func_0203c5e4() != 0 ? 0xccd : 0x119a;
     w.x = ((s64) w.x * k) >> 12;
     w.y = ((s64) w.y * k) >> 12;

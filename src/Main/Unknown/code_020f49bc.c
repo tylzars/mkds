@@ -130,8 +130,8 @@ void AdvanceRestingItemObject(ItemObject *a) {
             if ((a->mUnk_48 & 7) != GetRaceUpdateFramesMod8()) {
                 return;
             }
-            if (func_01ffdee4(&a->mPos.x, NULL, 0, a->mUnk_dc, 0x44, a->mUnk_da, NULL, NULL, NULL, &a->mUnk_fc, NULL,
-                              NULL, NULL, &w) == 0) {
+            if (func_01ffdee4(&a->mPos.x, NULL, 0, a->mUnk_dc, 0x44, a->mCollisionSlotIndex, NULL, NULL, NULL,
+                              &a->mUnk_fc, NULL, NULL, NULL, &w) == 0) {
                 return;
             }
             if (func_020d5a68(&w, a->mUnk_fc, a->mUnk_104) != FALSE) {
@@ -160,7 +160,7 @@ void func_020f6830(ItemObject *a, Vec3 *b, Vec3 *c) {
     s32 n;
     u32 i;
 
-    d = a->mUnk_68.z - a->mUnk_68.y;
+    d = a->mScale.z - a->mScale.y;
     if (d * d >= 0x68be1) {
         return;
     }
@@ -249,8 +249,8 @@ void AdvanceFallingItemObject(ItemObject *a) {
     VEC_Add(p, q, q);
     a->mVelocity.x = ((s64) a->mVelocity.x * 0xfec) >> 12;
     p->z = ((s64) p->z * 0xfec) >> 12;
-    if (func_01ffdee4(q, &a->mPrevPos, 0, a->mUnk_dc, 0x44, a->mUnk_da, &v1, &v2, (s32 *) &v3, &a->mUnk_fc, NULL, NULL,
-                      NULL, &w) != 0) {
+    if (func_01ffdee4(q, &a->mPrevPos, 0, a->mUnk_dc, 0x44, a->mCollisionSlotIndex, &v1, &v2, (s32 *) &v3, &a->mUnk_fc,
+                      NULL, NULL, NULL, &w) != 0) {
         VEC_Add(&v1, q, q);
         if (a->mUnk_fc & 0x1e34ef) {
             func_020f9334(a, q, p, 0x385, &v2);
@@ -661,7 +661,7 @@ void UpdateItemKouraRState5(ItemKouraR *a) {
         func_0210ddf4(&data_0217d294, a->mUnk_000.mUnk_000.mUnk_000.mUnk_d4 & ~0xc000001f, StartItemKouraRSound, a, 0);
     }
     if (a->mStateMachine.mStateFrames <= 0x14) {
-        r = k->mRadius + ((a->mUnk_000.mUnk_000.mUnk_000.mUnk_e0 * 3) >> 1);
+        r = k->mRadius + ((a->mUnk_000.mUnk_000.mUnk_000.mRadius * 3) >> 1);
         n = a->mUnk_000.mUnk_000.mUnk_000.mPos.z - k->mUnk_1d8.z;
         t = a->mUnk_000.mUnk_000.mUnk_000.mPos.x - k->mUnk_1d8.x;
         if ((s64) t * t + (s64) n * n >= (s64) r * r) {
@@ -797,13 +797,13 @@ BOOL func_020f5324(void *a0, s32 b) {
 
     a = a0;
     k = GetKart(b);
-    r = k->mRadius + ((a->mUnk_000.mUnk_000.mUnk_000.mUnk_e0 * 3) >> 1);
+    r = k->mRadius + ((a->mUnk_000.mUnk_000.mUnk_000.mRadius * 3) >> 1);
     n = a->mUnk_000.mUnk_000.mUnk_000.mPos.z - k->mUnk_1d8.z;
     t = a->mUnk_000.mUnk_000.mUnk_000.mPos.x - k->mUnk_1d8.x;
     if ((s64) t * t + (s64) n * n < (s64) r * r) {
         return TRUE;
     }
-    if (a->mUnk_000.mUnk_000.mUnk_000.mUnk_da == -1) {
+    if (a->mUnk_000.mUnk_000.mUnk_000.mCollisionSlotIndex == -1) {
         return TRUE;
     }
     func_020f9c40((s32) a);
@@ -981,7 +981,7 @@ void StartBouncingItemKinoko(void **a, Vec3 *b, s32 c) {
 
     p = a[0];
     p->mUnk_000.mItemObject.mUnk_78 |= data_0215969c;
-    func_020f9ca8(p);
+    CreateItemObjectCollisionSlot(p);
     func_020f9114(p);
     InitBouncingItem(&p->mUnk_000, 0, b);
     if ((p->mUnk_000.mItemObject.mFlags & 0x180000) == 0) {

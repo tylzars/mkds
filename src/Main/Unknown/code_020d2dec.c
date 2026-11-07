@@ -372,11 +372,11 @@ void InitMapObjects(void) {
         if (gRaceSetup->mMode == MODE_TIME_ATTACK && (e->mUnk_38 & 1) == 0) {
             continue;
         }
-        CreateMapObject(e->mUnk_24, e, NULL);
-        gMapObjects->mHasKoopaBlock |= IsKoopaBlockKind(e->mUnk_24);
-        gMapObjects->mUnk_180 |= func_020e4320(e->mUnk_24);
-        gMapObjects->mUnk_184 |= func_020e3af0(e->mUnk_24);
-        gMapObjects->mUnk_188 |= func_020ffabc(e->mUnk_24);
+        CreateMapObject(e->mKind, e, NULL);
+        gMapObjects->mHasKoopaBlock |= IsKoopaBlockKind(e->mKind);
+        gMapObjects->mUnk_180 |= func_020e4320(e->mKind);
+        gMapObjects->mUnk_184 |= func_020e3af0(e->mKind);
+        gMapObjects->mUnk_188 |= func_020ffabc(e->mKind);
     }
     if (gMapObjects->mHasKoopaBlock != 0 || gMapObjects->mUnk_180 != 0 || gMapObjects->mUnk_184 != 0 ||
         gMapObjects->mUnk_188 != 0) {

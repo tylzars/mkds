@@ -18,7 +18,7 @@ typedef struct LinkCursor {
     /* 00 */ Unk02175620_bc *mLink;
     /* 04 */ Unk02175620_bc *mPreviousLink;
     /* 08 */ Vec3 mDirection;
-    /* 14 */ Unk02175620_bc *mUnk_14;
+    /* 14 */ Unk02175620_bc *mRequestedLink;
     /* 18 */ BOOL mUnk_18;
 } LinkCursor;
 

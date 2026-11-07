@@ -51,13 +51,13 @@ void func_020f2b94(void *a0, ItemInUse *b0, s32 c, s32 d, s32 e, s32 f) {
         }
         VEC_MultAdd(-0x1000, &b->mUnk_02c.mUnk_0c, &a->mUnk_000.mVelocity, &a->mUnk_000.mVelocity);
     }
-    if (a->mUnk_000.mUnk_68.z < 0xccd) {
-        a->mUnk_000.mUnk_68.x = 0xccd;
-        a->mUnk_000.mUnk_68.y = 0xccd;
-        a->mUnk_000.mUnk_68.z = 0xccd;
+    if (a->mUnk_000.mScale.z < 0xccd) {
+        a->mUnk_000.mScale.x = 0xccd;
+        a->mUnk_000.mScale.y = 0xccd;
+        a->mUnk_000.mScale.z = 0xccd;
         if (d != 0) {
             a->mUnk_000.mPos = b->mKart->mCollisionCenter;
-            VEC_MultAdd(a->mUnk_000.mUnk_68.z * 10, &b->mUnk_02c.mUnk_18, &a->mUnk_000.mPos, &a->mUnk_000.mPos);
+            VEC_MultAdd(a->mUnk_000.mScale.z * 10, &b->mUnk_02c.mUnk_18, &a->mUnk_000.mPos, &a->mUnk_000.mPos);
         }
     }
     if (c < 0) {
@@ -190,8 +190,8 @@ void func_020f2228(Unk020f1d70 *a, s32 b) {
     p = &a->mUnk_000.mVelocity;
     r = &a->mUnk_130;
     VEC_Add(p, q, q);
-    n = func_01ffdee4(q, &a->mUnk_000.mPrevPos, 0, a->mUnk_000.mUnk_dc, a->mUnk_164, a->mUnk_000.mUnk_da, &v1, &v2,
-                      (s32 *) &v3, &a->mUnk_000.mUnk_fc, NULL, NULL, NULL, NULL);
+    n = func_01ffdee4(q, &a->mUnk_000.mPrevPos, 0, a->mUnk_000.mUnk_dc, a->mUnk_164, a->mUnk_000.mCollisionSlotIndex,
+                      &v1, &v2, (s32 *) &v3, &a->mUnk_000.mUnk_fc, NULL, NULL, NULL, NULL);
     if (n != 0) {
         f = a->mUnk_000.mUnk_fc & 0x80000;
         if (a->mUnk_158 != 0) {

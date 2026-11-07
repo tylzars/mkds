@@ -53,8 +53,8 @@ void func_020fcf10(ItemKouraW *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     v2->y = (v2->y * (s32) e + t.y) >> f;
     v2->z = (v2->z * e + t.z) >> f;
     VEC_Add(v2, v1, v1);
-    if (func_01ffdee4(v1, &p0->mUnk_000.mPrevPos, 0, p0->mUnk_000.mUnk_dc, 4, p0->mUnk_000.mUnk_da, &t, NULL, NULL,
-                      NULL, NULL, NULL, NULL, NULL) == 0) {
+    if (func_01ffdee4(v1, &p0->mUnk_000.mPrevPos, 0, p0->mUnk_000.mUnk_dc, 4, p0->mUnk_000.mCollisionSlotIndex, &t,
+                      NULL, NULL, NULL, NULL, NULL, NULL, NULL) == 0) {
         return;
     }
     if ((p->mUnk_48 & 1) == 0) {

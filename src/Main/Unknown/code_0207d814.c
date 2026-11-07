@@ -38,20 +38,20 @@ void func_0207e594(struct KartAi *p, struct Kart *q, s32 a) {
     p->mUnk_06 = p->mIndex % 4;
     p->mUnk_88 = 0x1000;
     if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
-        p->mUnk_8c = 0;
+        p->mDriftChargeRandomLimit = 0;
     } else {
-        p->mUnk_8c = 0x1000;
+        p->mDriftChargeRandomLimit = 0x1000;
     }
-    p->mUnk_9c = ((s64) p->mKart->mPhysicalParam->mBaseSpeedLimit * 0x99a + 0x800) >> 12;
+    p->mMinVelocityLength = ((s64) p->mKart->mPhysicalParam->mBaseSpeedLimit * 0x99a + 0x800) >> 12;
     InitRacePointLinkCursor(&p->mUnk_08, p->mIndex);
-    func_0207f9cc(p, 0);
+    ResetKartAi(p, 0);
     p->mUnk_cc = 1;
 }
 
 void func_0207e564(struct KartAi *p, struct Unk02175620_bc *a) {
     ResetPointLinkCursor(&p->mUnk_08.mUnk_00, a);
-    func_0207f9cc(p, 1);
-    func_0207f9cc(p, 1);
+    ResetKartAi(p, 1);
+    ResetKartAi(p, 1);
 }
 
 void func_0207e4a4(struct KartAi *p) {
@@ -72,7 +72,7 @@ void func_0207e4a4(struct KartAi *p) {
     } else {
         t = &q->mUnk_138;
     }
-    r = s->mUnk_14;
+    r = s->mRequestedLink;
     GetKartPos(&a, p->mIndex);
     func_0207f6f0(p, s, q, r, &a, t);
     if (q->mState == KART_STATE_NORMAL) {
@@ -88,10 +88,10 @@ void func_0207e400(struct KartAi *p, struct Kart *q, s32 a) {
     p->mIndex = q->mIndex;
     p->mUnk_06 = p->mIndex % 4;
     p->mUnk_88 = 0x1000;
-    p->mUnk_8c = 0;
-    p->mUnk_9c = ((s64) p->mKart->mPhysicalParam->mBaseSpeedLimit * 0x99a + 0x800) >> 12;
+    p->mDriftChargeRandomLimit = 0;
+    p->mMinVelocityLength = ((s64) p->mKart->mPhysicalParam->mBaseSpeedLimit * 0x99a + 0x800) >> 12;
     InitRacePointLinkCursor(&p->mUnk_08, p->mIndex);
-    func_0207f9cc(p, 0);
+    ResetKartAi(p, 0);
     p->mUnk_cc = 1;
 }
 
@@ -108,7 +108,7 @@ void func_0207e35c(struct KartAi *p) {
     } else {
         t = &q->mUnk_138;
     }
-    r = s->mUnk_14;
+    r = s->mRequestedLink;
     GetKartPos(&a, p->mIndex);
     func_0207f6f0(p, s, q, r, &a, t);
     if (q->mState == KART_STATE_NORMAL) {

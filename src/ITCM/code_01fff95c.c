@@ -92,20 +92,20 @@ BOOL UpdateItemObject(ItemPool *a, ItemObject *p, s32 f) {
     }
     if (!(p->mFlags & 0x800000)) {
         if (p->mUnk_100 == 0) {
-            if (func_020fa0b8(p, a->mUnk_2c, 0x2e1) != 0) {
-                func_020fa030(p);
+            if (GrowItemObjectScale(p, a->mUnk_2c, 0x2e1) != 0) {
+                RefreshItemObjectScale(p);
             } else {
                 goto L_a20;
             }
         } else {
         L_a20:
             if (p->mFlags & 0xc000) {
-                r = func_020fa0b8(p, a->mUnk_30, 0x19a);
+                r = GrowItemObjectScale(p, a->mUnk_30, 0x19a);
                 if (func_020f9dc8(p) == 0 && r != 0) {
-                    func_020fa030(p);
+                    RefreshItemObjectScale(p);
                 }
-            } else if (func_020fa0b8(p, a->mUnk_30, a->mUnk_34) != 0) {
-                func_020fa030(p);
+            } else if (GrowItemObjectScale(p, a->mUnk_30, a->mUnk_34) != 0) {
+                RefreshItemObjectScale(p);
             }
         }
     }
@@ -115,14 +115,14 @@ BOOL UpdateItemObject(ItemPool *a, ItemObject *p, s32 f) {
     if (p->mFlags & 4) {
         return TRUE;
     }
-    if (!(p->mFlags & 0x8000) && p->mUnk_da != -1) {
+    if (!(p->mFlags & 0x8000) && p->mCollisionSlotIndex != -1) {
         if (f == 0) {
-            FindCollisionSlotsOverlappingSlot(p->mUnk_da, 0x6000);
+            FindCollisionSlotsOverlappingSlot(p->mCollisionSlotIndex, 0x6000);
         }
         for (i = 0; i < data_0217b5a8; i++) {
             w = data_0217b5bc[i];
             if (w & 0x4000) {
-                if (p->mUnk_da != data_0217b5cc[i]) {
+                if (p->mCollisionSlotIndex != data_0217b5cc[i]) {
                     func_020f95d4(p, data_0217b5c4[i]);
                 } else {
                     continue;
@@ -130,7 +130,7 @@ BOOL UpdateItemObject(ItemPool *a, ItemObject *p, s32 f) {
             } else if (w & 0x2000) {
                 func_020f944c(p, data_0217b5c4[i]);
             }
-            if (p->mUnk_da == -1) {
+            if (p->mCollisionSlotIndex == -1) {
                 break;
             }
         }
@@ -189,7 +189,7 @@ BOOL UpdateItemObject(ItemPool *a, ItemObject *p, s32 f) {
     }
     k = p->mKind;
     m = gItemKinds[k].mUnk_60;
-    p->mUnk_d4 = a->mUnk_28(p->mUnk_d0, p->mUnk_e0 * m, a->mUnk_38, a->mUnk_3c, 0x1f);
+    p->mUnk_d4 = a->mUnk_28(p->mUnk_d0, p->mRadius * m, a->mUnk_38, a->mUnk_3c, 0x1f);
     if (p->mUnk_d4 & 3) {
         p->mFlags |= 0x10000;
     } else {

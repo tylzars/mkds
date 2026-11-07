@@ -291,7 +291,7 @@ void AdvanceItemTeresa(ItemTeresa *p) {
 
     func_02046b40(p->mUnk_12c);
     VEC_Subtract(&p->mUnk_000.mPos, &p->mUnk_000.mPrevPos, &p->mUnk_000.mVelocity);
-    if (p->mUnk_000.mUnk_d0 != &p->mUnk_000.mUnk_0c4) {
+    if (p->mUnk_000.mUnk_d0 != &p->mUnk_000.mDrawPos) {
         return;
     }
     q = p->mKart;
@@ -301,7 +301,7 @@ void AdvanceItemTeresa(ItemTeresa *p) {
     w = &q->mUnk_98;
     VEC_Subtract(&p->mUnk_000.mPos, w, &v);
     MTX_MultVec33(&v, GetViewTransposeMatrix(), &v);
-    VEC_Add(w, &v, &p->mUnk_000.mUnk_0c4);
+    VEC_Add(w, &v, &p->mUnk_000.mDrawPos);
 }
 
 void func_02101964(ItemTeresa *p, s32 a) {
@@ -393,7 +393,7 @@ void EnterItemTeresaState0(ItemTeresa *p) {
     p->mUnk_17c = 0;
     p->mUnk_000.mUnk_d8 = 0x1f;
     if (p->mKart->mUnk_48 & 1) {
-        p->mUnk_000.mUnk_d0 = &p->mUnk_000.mUnk_0c4;
+        p->mUnk_000.mUnk_d0 = &p->mUnk_000.mDrawPos;
     }
 }
 
@@ -415,7 +415,7 @@ void func_0210174c(ItemTeresa *p) {
     }
     func_020d8488(&p->mUnk_1a4, &s);
     func_020d84c0(&p->mUnk_1a4.mUnk_00, s.y);
-    if (p->mUnk_000.mUnk_d0 == &p->mUnk_000.mUnk_0c4) {
+    if (p->mUnk_000.mUnk_d0 == &p->mUnk_000.mDrawPos) {
         v = (Vec3){s.x};
     } else {
         s32 f = s.x;
@@ -589,8 +589,8 @@ void EnterItemTeresaState2(ItemTeresa *p) {
             f(p, -1);
         }
     }
-    if (p->mUnk_000.mUnk_d0 == &p->mUnk_000.mUnk_0c4) {
-        p->mUnk_000.mPos = p->mUnk_000.mUnk_0c4;
+    if (p->mUnk_000.mUnk_d0 == &p->mUnk_000.mDrawPos) {
+        p->mUnk_000.mPos = p->mUnk_000.mDrawPos;
         p->mUnk_000.mUnk_d0 = &p->mUnk_000.mPos;
     }
     if (p->mPickedKartIndex < 8) {
@@ -600,7 +600,7 @@ void EnterItemTeresaState2(ItemTeresa *p) {
         p->mUnk_144 = FALSE;
         func_020f8e3c((u32) p->mKart, 0xf4);
         if (p->mKart->mUnk_48 & 1) {
-            p->mUnk_000.mUnk_d0 = &p->mUnk_000.mUnk_0c4;
+            p->mUnk_000.mUnk_d0 = &p->mUnk_000.mDrawPos;
         }
     }
     v[0] = ((s64) g->mSide.x * -0xa000) >> 12;
@@ -796,12 +796,12 @@ void UpdateItemTeresaState4(ItemTeresa *p) {
 }
 
 void func_02100b78(ItemTeresa *p0) {
-    p0->mUnk_000.mUnk_d0 = &p0->mUnk_000.mUnk_0c4;
+    p0->mUnk_000.mUnk_d0 = &p0->mUnk_000.mDrawPos;
 }
 
 void func_02100b54(ItemTeresa *p) {
-    if (p->mUnk_000.mUnk_d0 == &p->mUnk_000.mUnk_0c4) {
-        p->mUnk_000.mPos = p->mUnk_000.mUnk_0c4;
+    if (p->mUnk_000.mUnk_d0 == &p->mUnk_000.mDrawPos) {
+        p->mUnk_000.mPos = p->mUnk_000.mDrawPos;
         p->mUnk_000.mUnk_d0 = &p->mUnk_000.mPos;
     }
 }
@@ -1084,9 +1084,9 @@ void DrawItemTeresa(ItemTeresa *p, s32 c, Unk020e6488 *q) {
     a = 0x1e;
     func_01ff9048(0x14, &a, 1);
     func_01ff9048(0x19, SetViewTransposeMatrixPos(p->mUnk_000.mUnk_d0), 0xc);
-    z = p->mUnk_000.mUnk_68.z;
-    y = p->mUnk_000.mUnk_68.y;
-    x = p->mUnk_000.mUnk_68.x;
+    z = p->mUnk_000.mScale.z;
+    y = p->mUnk_000.mScale.y;
+    x = p->mUnk_000.mScale.x;
     v[0] = x;
     v[1] = y;
     v[2] = z;

@@ -96,7 +96,7 @@ s32 PickItem(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, s3
             break;
         }
     }
-    if (func_020fab34(&sel) != FALSE) {
+    if (ReplaceUnavailableItem(&sel) != FALSE) {
         TryReleaseItemObjectsForItemInfo(sel);
     }
     if (param_5 != 0) {

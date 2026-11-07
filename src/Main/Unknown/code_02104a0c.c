@@ -67,7 +67,7 @@ void func_02105214(void) {
     data_0217c730.mUnk_00 = buf;
     data_0217c73c = buf;
     data_0217c748 = data_0215a6c0;
-    data_0217c730.mUnk_24 = 0x6f;
+    data_0217c730.mKind = 0x6f;
     data_0217c730.mUnk_2e = 1;
     for (i = 0; i < gPooledMapObjectCount; i++) {
         gPooledMapObjects[i] = CreateMapObjectFromCourseMapRow(&data_0217c730, 0x6f);
@@ -185,13 +185,13 @@ void func_02104d78(ItemInUse *p0, Unk02104c68 *p1) {
         VEC_MultAdd(((s64) p0->mUnk_084.z * -28877) >> 12, &p0->mUnk_02c.mUnk_0c, &p1->mUnk_000.mItemObject.mPos,
                     &p1->mUnk_13c);
         n = p1->mUnk_148;
-        t.x = ((s64) p1->mUnk_000.mItemObject.mUnk_68.x * n) >> 12;
-        t.y = ((s64) p1->mUnk_000.mItemObject.mUnk_68.y * n) >> 12;
-        t.z = ((s64) p1->mUnk_000.mItemObject.mUnk_68.z * n) >> 12;
+        t.x = ((s64) p1->mUnk_000.mItemObject.mScale.x * n) >> 12;
+        t.y = ((s64) p1->mUnk_000.mItemObject.mScale.y * n) >> 12;
+        t.z = ((s64) p1->mUnk_000.mItemObject.mScale.z * n) >> 12;
         func_02105338(b, p1->mUnk_000.mItemObject.mUnk_d8, &t);
     } else {
         p1->mUnk_13c = p1->mUnk_000.mItemObject.mPos;
-        func_02105338(b, p1->mUnk_000.mItemObject.mUnk_d8, &p1->mUnk_000.mItemObject.mUnk_68);
+        func_02105338(b, p1->mUnk_000.mItemObject.mUnk_d8, &p1->mUnk_000.mItemObject.mScale);
     }
     func_021052fc(b);
 }
@@ -272,15 +272,15 @@ void func_02104a0c(Unk02104c68 *p) {
     if (a != 0 && p->mUnk_148 < 0x1000) {
         p->mUnk_148 += 0xcd;
         n = p->mUnk_148;
-        t.x = ((s64) p->mUnk_000.mItemObject.mUnk_68.x * n) >> 12;
-        t.y = ((s64) p->mUnk_000.mItemObject.mUnk_68.y * n) >> 12;
-        t.z = ((s64) p->mUnk_000.mItemObject.mUnk_68.z * n) >> 12;
+        t.x = ((s64) p->mUnk_000.mItemObject.mScale.x * n) >> 12;
+        t.y = ((s64) p->mUnk_000.mItemObject.mScale.y * n) >> 12;
+        t.z = ((s64) p->mUnk_000.mItemObject.mScale.z * n) >> 12;
         VEC_Subtract(&p->mUnk_000.mItemObject.mPos, &p->mUnk_13c, &d);
         VEC_MultAdd(((s64) p->mUnk_148 * p->mUnk_148) >> 12, &d, &p->mUnk_13c, &p->mUnk_13c);
         func_02105338(b, p->mUnk_000.mItemObject.mUnk_d8, &t);
     } else {
         p->mUnk_13c = p->mUnk_000.mItemObject.mPos;
-        func_02105338(b, p->mUnk_000.mItemObject.mUnk_d8, &p->mUnk_000.mItemObject.mUnk_68);
+        func_02105338(b, p->mUnk_000.mItemObject.mUnk_d8, &p->mUnk_000.mItemObject.mScale);
     }
     func_021052fc(b);
 }

@@ -15,38 +15,38 @@ void func_0208c0f0(KartAi *p, s32 a) {
     Kart *q = GetKart(a);
 
     p->mUnk_154 = (gRaceSetup->mCurrentEntries[a].mPlayer.mUnk_14 & 1) != 0;
-    func_0207fa74(p, q, p->mUnk_154);
+    SetupRaceKartAi(p, q, p->mUnk_154);
     func_0207e200(&p->mUnk_e8, p);
     func_0207c448(&p->mItemUse);
     func_0207e088(&p->mUnk_e8, p);
 }
 
 void func_0208c0c8(KartAi *p) {
-    func_0207f9a8(p);
+    ResetRaceKartAiAtPointLink(p);
     func_0207e1d4(&p->mUnk_e8, p);
     func_0207c448(&p->mItemUse);
 }
 
 void func_0208c09c(KartAi *p) {
-    func_0207f8f8(p);
+    AdvanceRaceKartAi(p);
     func_0207de84(&p->mUnk_e8, p);
     func_0207c270(&p->mItemUse, p);
 }
 
 void func_0208c050(KartAi *p) {
-    if (p->mUnk_08.mUnk_00.mUnk_14 != NULL) {
+    if (p->mUnk_08.mUnk_00.mRequestedLink != NULL) {
         if (p->mUnk_08.mUnk_00.mUnk_18 != FALSE) {
             return;
         }
     }
-    p->mUnk_08.mUnk_00.mUnk_14 = FindCourseMapKind4ShapeRacePointLink(&p->mKart->mPos);
-    if (p->mUnk_08.mUnk_00.mUnk_14 != NULL) {
+    p->mUnk_08.mUnk_00.mRequestedLink = FindCourseMapKind4ShapeRacePointLink(&p->mKart->mPos);
+    if (p->mUnk_08.mUnk_00.mRequestedLink != NULL) {
         p->mUnk_08.mUnk_00.mUnk_18 = TRUE;
     }
 }
 
 BOOL func_0208c03c(KartAi *p) {
-    return p->mUnk_08.mUnk_00.mUnk_14 != NULL;
+    return p->mUnk_08.mUnk_00.mRequestedLink != NULL;
 }
 
 void func_0208c000(Vec3 *a, Vec3 *b, KartAi *p) {
