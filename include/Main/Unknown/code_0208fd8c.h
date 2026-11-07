@@ -5,8 +5,8 @@
 struct Unk0208fd8c;
 struct Unk020888b4;
 
-// Entry of the tables at data_0217b0a4, data_0217ae34 and data_0217ae38, 0xc bytes: a function called with the
-// Unk0208fd8c and the Unk020888b4 at 0x00 and halfwords at 0x08 and 0x0a.
+// Entry of the tables at gBattleItemInUseEntries, data_0217ae34 and data_0217ae38, 0xc bytes: a function called with
+// the Unk0208fd8c and the Unk020888b4 at 0x00 and halfwords at 0x08 and 0x0a.
 typedef struct Unk0208fd8c_08 {
     /* 00 */ void (*mUnk_00)(struct Unk0208fd8c *a, struct Unk020888b4 *b);
     /* 04 */ s32 mUnk_04;
@@ -15,7 +15,7 @@ typedef struct Unk0208fd8c_08 {
 } Unk0208fd8c_08;
 
 // Object of 0x24 bytes at 0x11c of the object Unk020888b4 starts: pointers to entries of the tables at data_0217ae38
-// (0x04) and data_0217b0a4 or data_0217ae34 (0x08).
+// (0x04) and gBattleItemInUseEntries or data_0217ae34 (0x08).
 typedef struct Unk0208fd8c {
     /* 00 */ s16 mHeldItemTimer;
     /* 02 */ s16 mItemInUseTimer;

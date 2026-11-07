@@ -54,21 +54,22 @@ void func_02091784(void *a) {
     func_0209bbd0(a, gSmanTop);
 }
 
-void DrawSmanTop(void *a, Sman *b) {
+void DrawSmanTop(void *a, Sman *sman) {
     s32 c;
-    s32 m[9];
+    s32 matrix[9];
     s32 s[3];
     c = 0x1e;
     func_01ff9048(0x14, &c, 1);
-    func_01ff9048(0x19, func_020e6cbc(&b->mUnk_00.mPos), 0xc);
-    s[1] = b->mUnk_b8 >> 4;
+    func_01ff9048(0x19, func_020e6cbc(&sman->mUnk_00.mPos), 0xc);
+    s[1] = sman->mTopHeight >> 4;
     s[0] = 0;
     s[2] = 0;
     func_01ff9048(0x1c, s, 3);
-    func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
-    MTX_RotZ33_(m, gPairsByAngle[((u16) b->mUnk_a4 >> 4) * 2], gPairsByAngle[((u16) b->mUnk_a4 >> 4) * 2 + 1]);
-    func_01ff9048(0x1a, m, 9);
-    DrawMapObjectModel(a, gSmanTop, b);
+    func_01ff9048(0x1b, &sman->mUnk_00.mScale, 3);
+    MTX_RotZ33_(matrix, gPairsByAngle[((u16) sman->mAngleZ >> 4) * 2],
+                gPairsByAngle[((u16) sman->mAngleZ >> 4) * 2 + 1]);
+    func_01ff9048(0x1a, matrix, 9);
+    DrawMapObjectModel(a, gSmanTop, sman);
 }
 
 void CreateSmanBottom(void *a) {
@@ -82,20 +83,20 @@ void func_02091654(void *a) {
     func_0209bbd0(a, gSmanBottom);
 }
 
-void DrawSmanBottom(void *a, Sman *b) {
+void DrawSmanBottom(void *a, Sman *sman) {
     s32 c;
     s32 d[3];
     s32 v;
     c = 0x1e;
     func_01ff9048(0x14, &c, 1);
-    func_01ff9048(0x19, func_020e6cbc(&b->mUnk_00.mPos), 0xc);
-    func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
-    v = b->mUnk_b4;
+    func_01ff9048(0x19, func_020e6cbc(&sman->mUnk_00.mPos), 0xc);
+    func_01ff9048(0x1b, &sman->mUnk_00.mScale, 3);
+    v = sman->mBottomScale;
     d[0] = v;
     d[1] = v;
     d[2] = v;
     func_01ff9048(0x1b, d, 3);
-    DrawMapObjectModel(a, gSmanBottom, b);
+    DrawMapObjectModel(a, gSmanBottom, sman);
 }
 
 void func_0209151c(Unk0209151c *a) {
@@ -106,104 +107,105 @@ void func_0209151c(Unk0209151c *a) {
     }
     i = 0;
     while (i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL) {
-        p->mUnk_b0 = 0x1000;
-        p->mUnk_b4 = 0x1000;
+        p->mTopRiseProgress = 0x1000;
+        p->mBottomScale = 0x1000;
         i++;
-        p->mUnk_c0 = ((s64) p->mUnk_00.mScale.y * 0xf333) >> 12;
-        p->mUnk_c4 = ((s64) p->mUnk_00.mScale.y * 0x2000) >> 12;
-        p->mUnk_b8 = p->mUnk_c0;
+        p->mTopStartHeight = ((s64) p->mUnk_00.mScale.y * 0xf333) >> 12;
+        p->mTopLowHeight = ((s64) p->mUnk_00.mScale.y * 0x2000) >> 12;
+        p->mTopHeight = p->mTopStartHeight;
     }
 }
 
-void UpdateSman(void *a, Sman *b) {
+void UpdateSman(void *a, Sman *sman) {
     Unk0210b7a8 s;
     s32 t;
-    switch (b->mState) {
+    switch (sman->mState) {
         case 0:
-            b->mUnk_a0 = 1;
+            sman->mAngleZEnabled = 1;
             break;
         case 1:
-            b->mUnk_b8 = b->mUnk_b8 + b->mUnk_bc;
-            b->mUnk_bc = b->mUnk_bc - 0x400;
-            if (b->mUnk_bc < -0x6000) {
-                b->mUnk_bc = -0x6000;
+            sman->mTopHeight = sman->mTopHeight + sman->mTopHeightPerFrame;
+            sman->mTopHeightPerFrame = sman->mTopHeightPerFrame - 0x400;
+            if (sman->mTopHeightPerFrame < -0x6000) {
+                sman->mTopHeightPerFrame = -0x6000;
             }
-            if (b->mUnk_00.mCourseMapRow->mUnk_28 > 0) {
-                if (b->mUnk_b8 < 0) {
-                    ParkMapObject(&b->mUnk_00);
+            if (sman->mUnk_00.mCourseMapRow->mUnk_28 > 0) {
+                if (sman->mTopHeight < 0) {
+                    ParkMapObject(&sman->mUnk_00);
                 }
-            } else if (b->mUnk_b8 < b->mUnk_c4) {
-                b->mUnk_b8 = b->mUnk_c4;
-                b->mUnk_bc = 0;
-                b->mState = 2;
+            } else if (sman->mTopHeight < sman->mTopLowHeight) {
+                sman->mTopHeight = sman->mTopLowHeight;
+                sman->mTopHeightPerFrame = 0;
+                sman->mState = 2;
                 t = 2;
-                if ((b->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
-                    if (b->mUnk_00.mFarDistanceSquared != gSoundFalloffs[2].mUnk_20) {
-                        if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
+                if ((sman->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
+                    if (sman->mUnk_00.mFarDistanceSquared != gSoundFalloffs[2].mUnk_20) {
+                        if (sman->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                             t = 3;
                         } else {
                             t = 4;
                         }
                     }
                     s.mUnk_00 = 0x162;
-                    s.mUnk_04 = &b->mUnk_00.mPos;
+                    s.mUnk_04 = &sman->mUnk_00.mPos;
                     s.mUnk_08 = t;
-                    s.mUnk_0c = func_020d4ef4(&b->mUnk_00.mPos);
+                    s.mUnk_0c = func_020d4ef4(&sman->mUnk_00.mPos);
                     func_0210b7a8(&s);
                 }
             }
-            b->mUnk_a0 = 0;
+            sman->mAngleZEnabled = 0;
             break;
         case 2:
-            b->mUnk_ac = b->mUnk_ac + 1;
-            if (b->mUnk_ac >= 0x12b) {
-                b->mUnk_ac = 0;
-                b->mUnk_bc = ((b->mUnk_c0 - b->mUnk_c4) * 0x40) / 0x1000;
-                b->mState = 3;
+            sman->mStateFrames = sman->mStateFrames + 1;
+            if (sman->mStateFrames >= 0x12b) {
+                sman->mStateFrames = 0;
+                sman->mTopHeightPerFrame = ((sman->mTopStartHeight - sman->mTopLowHeight) * 0x40) / 0x1000;
+                sman->mState = 3;
             }
-            b->mUnk_a0 = 0;
+            sman->mAngleZEnabled = 0;
             break;
         case 3:
-            if (b->mUnk_b0 >= 0x1000) {
-                b->mUnk_b0 = 0x1000;
-                b->mUnk_b8 = b->mUnk_c0;
+            if (sman->mTopRiseProgress >= 0x1000) {
+                sman->mTopRiseProgress = 0x1000;
+                sman->mTopHeight = sman->mTopStartHeight;
             } else {
-                b->mUnk_b0 = b->mUnk_b0 + 0x40;
-                b->mUnk_b8 = b->mUnk_b8 + b->mUnk_bc;
+                sman->mTopRiseProgress = sman->mTopRiseProgress + 0x40;
+                sman->mTopHeight = sman->mTopHeight + sman->mTopHeightPerFrame;
             }
-            b->mUnk_ac = b->mUnk_ac + 1;
-            if (b->mUnk_ac > 10) {
-                b->mUnk_b4 = b->mUnk_b4 + 0x40;
-                if (b->mUnk_b4 >= 0x1000) {
-                    b->mUnk_ac = 0;
-                    b->mUnk_b4 = 0x1000;
-                    b->mUnk_00.mFlags = b->mUnk_00.mFlags & ~1;
-                    b->mState = 0;
+            sman->mStateFrames = sman->mStateFrames + 1;
+            if (sman->mStateFrames > 10) {
+                sman->mBottomScale = sman->mBottomScale + 0x40;
+                if (sman->mBottomScale >= 0x1000) {
+                    sman->mStateFrames = 0;
+                    sman->mBottomScale = 0x1000;
+                    sman->mUnk_00.mFlags = sman->mUnk_00.mFlags & ~1;
+                    sman->mState = 0;
                 }
             }
-            b->mUnk_a0 = 1;
+            sman->mAngleZEnabled = 1;
             break;
     }
-    if (b->mUnk_a0 == 0) {
+    if (sman->mAngleZEnabled == 0) {
         return;
     }
-    b->mUnk_a4 = b->mUnk_a4 + b->mUnk_a8;
-    if (b->mUnk_a4 >= 0) {
-        if (b->mUnk_a8 < 0) {
-            b->mUnk_a8 = -0xf0;
+    sman->mAngleZ = sman->mAngleZ + sman->mAngleZPerFrame;
+    if (sman->mAngleZ >= 0) {
+        if (sman->mAngleZPerFrame < 0) {
+            sman->mAngleZPerFrame = -0xf0;
         } else {
-            b->mUnk_a8 = b->mUnk_a8 - 8;
+            sman->mAngleZPerFrame = sman->mAngleZPerFrame - 8;
         }
     } else {
-        if (b->mUnk_a8 >= 0) {
-            b->mUnk_a8 = 0xf0;
+        if (sman->mAngleZPerFrame >= 0) {
+            sman->mAngleZPerFrame = 0xf0;
         } else {
-            b->mUnk_a8 = b->mUnk_a8 + 8;
+            sman->mAngleZPerFrame = sman->mAngleZPerFrame + 8;
         }
     }
 }
 
-void func_0209125c(void) {
+// Creates the kind record of Sman with two functions that put it into state 1 when their third argument points to 1.
+void CreateSmanKindData(void) {
     func_0209bf70(func_02091828, func_020917d0, NULL, 0, 1, 0x161);
 }
 
@@ -226,15 +228,15 @@ static inline BOOL func_02090940_inline(void) {
     return TRUE;
 }
 
-void *func_02091238(void) {
+void *CreateSmanTopDrawList(void) {
     return func_0209bef0(CreateSmanTop, DrawSmanTop, func_02091784);
 }
 
-void *func_02091214(void) {
+void *CreateSmanBottomDrawList(void) {
     return func_0209bef0(CreateSmanBottom, DrawSmanBottom, func_02091654);
 }
 
-void *func_020911f4(void) {
+void *CreateSmanUpdateList(void) {
     return func_0209bf48(func_0209151c, UpdateSman, NULL);
 }
 
@@ -494,13 +496,14 @@ BOOL func_02090940(void) {
     return func_02090940_inline();
 }
 
-void func_02090920(void *a) {
-    func_02048590(data_02166548, a, (void **) &data_0217b0b0);
+void LoadStaffGhostTime(void *a) {
+    func_02048590(gStaffGhostTimeBinName, a, (void **) &gStaffGhostTime);
 }
 
-BOOL func_020908d0(u32 a, void *c) {
-    Unk020908d0 *b = c;
-    return b->mUnk_03 * 1000 + b->mUnk_02 * 60000 + b->mUnk_00 < data_0217b0b0[a - 1];
+// TRUE when the time is smaller than entry a - 1 of the staff ghost times.
+BOOL IsTimeLessThanStaffGhostTime(u32 a, void *c) {
+    MinuteSecondMillisecondTime *b = c;
+    return b->mSecond * 1000 + b->mMinute * 60000 + b->mMillisecond < gStaffGhostTime[a - 1];
 }
 
 void func_0209086c(Unk020905a8 *a, u32 b) {
@@ -617,11 +620,12 @@ s32 func_020905a8(Unk020905a8 *a) {
     return r;
 }
 
-void func_02090354(void) {
+// Stores one of three sets of battle item entry tables and callbacks; any value other than 1 or 2 takes the third set.
+void SetupBattleItemEntryTablesAndCallbacks(void) {
     switch (data_021759c0->mUnk_014) {
         case 1:
-            data_0217b09c = data_021561d0;
-            data_0217b0a4 = data_02155fd8;
+            gBattleHeldItemEntries = data_021561d0;
+            gBattleItemInUseEntries = data_02155fd8;
             data_0217b0a0 = func_0208fafc;
             data_0217b090 = func_0208f7d4;
             data_0217b098 = func_0208f9ac;
@@ -630,8 +634,8 @@ void func_02090354(void) {
             data_0217b0a8 = func_0208f3d0;
             return;
         case 2:
-            data_0217b09c = data_021562a8;
-            data_0217b0a4 = data_02156128;
+            gBattleHeldItemEntries = data_021562a8;
+            gBattleItemInUseEntries = data_02156128;
             data_0217b0a0 = func_0208fba0;
             data_0217b090 = func_0208f810;
             data_0217b098 = func_0208f9ac;
@@ -640,8 +644,8 @@ void func_02090354(void) {
             data_0217b0a8 = func_0208f3d0;
             return;
         case 3:
-            data_0217b09c = data_02156380;
-            data_0217b0a4 = data_02156080;
+            gBattleHeldItemEntries = data_02156380;
+            gBattleItemInUseEntries = data_02156080;
             data_0217b0a0 = func_0208fcac;
             data_0217b090 = func_0208f8ac;
             data_0217b098 = func_0208fa50;
@@ -650,8 +654,8 @@ void func_02090354(void) {
             data_0217b0a8 = func_0208f434;
             return;
         default:
-            data_0217b09c = data_02156380;
-            data_0217b0a4 = data_02156080;
+            gBattleHeldItemEntries = data_02156380;
+            gBattleItemInUseEntries = data_02156080;
             data_0217b0a0 = func_0208fcac;
             data_0217b090 = func_0208f8ac;
             data_0217b098 = func_0208fa50;

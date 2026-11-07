@@ -12,10 +12,10 @@ u8 func_02091828(Sman *a, Kart *b, u8 *c, u8 *d) {
     u8 r;
     r = *d;
     if (*c == 1) {
-        a->mUnk_b8 = 0xf333;
-        a->mUnk_bc = 0x8000;
-        a->mUnk_b0 = 0;
-        a->mUnk_b4 = 0;
+        a->mTopHeight = 0xf333;
+        a->mTopHeightPerFrame = 0x8000;
+        a->mTopRiseProgress = 0;
+        a->mBottomScale = 0;
         a->mUnk_00.mFlags = a->mUnk_00.mFlags | *(u16 *) &data_02156458;
         a->mState = 1;
         func_020d26f8(&a->mUnk_00, b);
@@ -27,10 +27,10 @@ u8 func_020917d0(Sman *a, u32 b, u8 *c, u8 *d) {
     u8 v1;
     v1 = *d;
     if (*c == 1) {
-        a->mUnk_b8 = 0xf333;
-        a->mUnk_bc = 0x8000;
-        a->mUnk_b0 = 0;
-        a->mUnk_b4 = 0;
+        a->mTopHeight = 0xf333;
+        a->mTopHeightPerFrame = 0x8000;
+        a->mTopRiseProgress = 0;
+        a->mBottomScale = 0;
         a->mUnk_00.mFlags = a->mUnk_00.mFlags | *(u16 *) &data_02156458;
         a->mState = 1;
     }

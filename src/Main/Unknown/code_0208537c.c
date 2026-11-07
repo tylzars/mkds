@@ -125,7 +125,7 @@ void func_02085e04(void) {
     func_0207c78c();
     if (data_021759c0->mMode == MODE_BATTLE) {
         func_02089974();
-        func_02090354();
+        SetupBattleItemEntryTablesAndCallbacks();
     }
 }
 

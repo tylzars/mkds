@@ -81,7 +81,7 @@ extern const char gBakubakuNsbmdName[];
 extern const char gBakuShadowNsbmdName[];
 extern const char gMoveTreeNsbmdName[];
 extern const char gMoveTreeNsbcaName[];
-extern char data_02166548[];
+extern char gStaffGhostTimeBinName[];
 extern char gSmanBottomNsbmdName[];
 extern char gSmanTopNsbmdName[];
 extern char gFlipperNsbmdName[];

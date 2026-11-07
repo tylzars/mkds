@@ -37,7 +37,7 @@ void func_0211e480(void *a) {
     data_0217d374->mUnk_08 = (u8 *) func_02061418((u32) a);
     func_02061358(data_0217d374->mUnk_08);
     func_02057d9c();
-    func_02090920(a);
+    LoadStaffGhostTime(a);
 }
 
 void func_0211e474(void) {
@@ -169,7 +169,7 @@ s32 func_0211e160(u32 a) {
                 u32 buf;
 
                 func_02060134(data_0217d374->mUnk_0c, 0, &buf);
-                r = func_020908d0(data_0217d374->mUnk_0c, &buf);
+                r = IsTimeLessThanStaffGhostTime(data_0217d374->mUnk_0c, &buf);
             } else {
                 r = 0;
             }

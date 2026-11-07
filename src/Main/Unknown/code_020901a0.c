@@ -12,7 +12,7 @@ void func_020902fc(Unk0208fd8c *a, Unk020888b4 *b) {
     enum { K0 } i;
 
     i = *(s32 *) &gKartItems[b->mIndex].mHeldItem;
-    a->mHeldItemEntry = data_0217b09c + i;
+    a->mHeldItemEntry = gBattleHeldItemEntries + i;
     ResetHeldItemTimer(a);
 }
 

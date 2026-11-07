@@ -240,7 +240,7 @@ typedef struct Unk0217b080 {
 extern Unk0217b080 *data_0217b080;
 extern s32 data_0217b07c;
 extern s32 data_0217b084[2];
-extern Unk0208fd8c_08 *data_0217b0a4;
+extern Unk0208fd8c_08 *gBattleItemInUseEntries;
 
 // Object behind data_0217b08c, 0x38 bytes: 12-byte blocks at 0x00, 0x0c and 0x18.
 typedef struct Unk0217b08c {
@@ -256,8 +256,8 @@ extern UnkFunc *data_0217b098;
 extern UnkFunc *data_0217b0a0;
 extern UnkFunc *data_0217b0a8;
 extern UnkFunc *data_0217b0ac;
-extern Unk0208fd8c_08 *data_0217b09c;
-extern s32 *data_0217b0b0;
+extern Unk0208fd8c_08 *gBattleHeldItemEntries;
+extern s32 *gStaffGhostTime;
 extern void *gSmanBottom;
 extern void *gSmanTop;
 
