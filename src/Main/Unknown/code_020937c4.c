@@ -176,7 +176,7 @@ void DrawNsKiller2(void *a, NsKiller2 *p) {
 }
 
 void UpdateNsKiller2(void *a, NsKiller2 *p) {
-    if ((func_0207a780() & p->mUnk_00.mDigitMask) != 0) {
+    if ((GetKartKind3ShapeMask() & p->mUnk_00.mDigitMask) != 0) {
         p->mUnk_00.mFlags |= data_021564a8;
     } else {
         p->mUnk_00.mFlags &= ~2;

@@ -1189,7 +1189,7 @@ void InitItems(void) {
         for (i = 0; i < gKartItemsCount; i++) {
             p = &gKartItems[i].mHeldItem;
             func_020f47e4(p, 5);
-            switch (func_02079b40((u16) i)) {
+            switch (GetKartVariant((u16) i)) {
                 case 0:
                     func_020f4754(p, 1);
                     break;

@@ -74,7 +74,7 @@ typedef struct MapObject {
     /* 70 */ s32 mFarDistanceSquared;
     // Mask of the non-zero decimal digits of the course row's number (bit d is digit d; a number of 10000 or more first
     // sets flag 0x80 in mFlags), or copied from the source object. The visibility pass and the kinds that test it treat
-    // the object as out of view while a bit is shared with the word func_0207a780 returns.
+    // the object as out of view while a bit is shared with the word GetKartKind3ShapeMask returns.
     /* 74 */ u32 mDigitMask;
     // Result of the last view test of the object plus bits added by kinds. Bit 0: beyond mDrawDistance; bit 1: outside
     // the view planes (set with bit 0 when mAlpha is 1 or less); bit 2: beyond mFarDistanceSquared (func_020e71a0 also

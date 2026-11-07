@@ -549,7 +549,7 @@ typedef struct Kart {
     /* 528 */ u8 mUnk_528[0xc];
     /* 534 */ Vec3 *mUnk_534;
     /* 538 */ Unk0206ceb4 mUnk_538;
-    /* 590 */ struct Unk0206bcb0_590 *mKartModelsEntry;
+    /* 590 */ struct KartModelsEntry *mKartModelsEntry;
     /* 594 */ s32 mWobbleAmplitude;
     /* 598 */ s16 mWobbleDirection;
     /* 59a */ u8 mUnk_59a[2];

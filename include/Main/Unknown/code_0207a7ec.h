@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-unsigned int func_0207a7ec(void);
+unsigned int GetKartForwardSpeedRatio(void);

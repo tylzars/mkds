@@ -169,7 +169,7 @@ void StartItemSlot(KartItems *param_1, s32 param_2, s32 param_3, s32 param_4, s3
     if (p->mItemInUse.mObjectKind != 0xf && p->mItemInUse.mItemInfoIndex >= 9) {
         param_1->mSlotResult = PickItem(0, param_2, param_3, param_4, b, 9);
     } else {
-        param_1->mSlotResult = PickItem(func_02079b40(p->mKartIndex), param_2, param_3, param_4, b, 0x12);
+        param_1->mSlotResult = PickItem(GetKartVariant(p->mKartIndex), param_2, param_3, param_4, b, 0x12);
     }
     if (a) {
         func_0205a750(param_1->mSlotResult);

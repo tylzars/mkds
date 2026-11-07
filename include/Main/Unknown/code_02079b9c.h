@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-struct Unk0206bcb0_590;
+struct KartModelsEntry;
 
-void func_02079b9c(struct Unk0206bcb0_590 *a, s32 b);
+void SetKartModelTireAlpha(struct KartModelsEntry *a, s32 b);

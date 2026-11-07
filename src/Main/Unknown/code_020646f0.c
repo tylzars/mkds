@@ -84,7 +84,7 @@ void func_020646f0(Kart *a, s32 b) {
     a->mForward.z = m->mUnk_00[2].z;
     a->mTurnedForward = a->mForward;
     a->mDrawMatrix = &a->mUnk_150_m;
-    i = a->mKartModelsEntry->mUnk_008;
+    i = a->mKartModelsEntry->mCharacterAnimation;
     if (i == NULL) {
         return;
     }

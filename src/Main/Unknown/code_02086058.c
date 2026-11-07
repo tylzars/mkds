@@ -28,7 +28,7 @@ void func_02086a04(void) {
     Vec3 v30;
     s32 i;
     Unk0217b4f8 *q;
-    Unk0206bcb0_590 *s;
+    KartModelsEntry *s;
     s32 k;
     u32 e;
     Kart *p;

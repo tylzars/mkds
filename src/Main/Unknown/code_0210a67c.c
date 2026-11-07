@@ -471,7 +471,7 @@ void func_0210aa14(Kart *a, PlayingSound *b, s32 c) {
         }
     }
     if ((b->mUnk_19 & 0x20) && (b->mUnk_19 & 0x40)) {
-        g = func_02079b40(a->mIndex) + 0x2d;
+        g = GetKartVariant(a->mIndex) + 0x2d;
         NNS_SndArcPlayerStartSeqArcEx(&b->mUnk_00, f, g, c, d, e);
         if (b == NULL) {
             return;

@@ -61,7 +61,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
             func_02025f80(&gSelectKart->mUnk_0ac[0], 0, 10, -0x80, 0);
             func_02025f80(&gSelectKart->mUnk_0ac[2], 0, 10, 0x60, 0);
             if (func_020280dc() == 0) {
-                func_020789e4();
+                StartKartModelMenuBg0Increase();
                 func_02077f48(0);
             }
             break;

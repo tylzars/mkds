@@ -109,8 +109,8 @@ void InitWiFiStates(void *heap, s32 b) {
     LoadWiFiMenuSceneData();
     func_0202c65c(heap, func_ov000_021804f4());
     func_02078d64(GetHeap(func_020364e8()));
-    func_02078a9c(-1);
-    func_02078a34(-1);
+    RequestKartModelMenuCharacter(-1);
+    RequestKartModelMenuKart(-1);
     func_020476ac();
     gWiFiStates->mStateHeap = CreateExpHeapFromMaxFree(heap);
     ClearWiFiStateCallbacks();

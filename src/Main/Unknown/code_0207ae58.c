@@ -30,7 +30,7 @@ u32 func_0207b8dc(int a) {
     return data_usa_021551b4[a].mUnk_00;
 }
 
-void func_0207b8c4(struct Unk0206bcb0_590 *a) {
+void func_0207b8c4(struct KartModelsEntry *a) {
     Unk0206bcb0_590_24 *p;
 
     a->mUnk_024 = 0;
@@ -41,7 +41,7 @@ void func_0207b8c4(struct Unk0206bcb0_590 *a) {
 
 void func_0207b734(Kart *a) {
     s32 b;
-    Unk0206bcb0_590 *q;
+    KartModelsEntry *q;
     Unk0206bcb0_590_24 *p;
     Unk0206bcb0_590_08 *r;
     s32 c;
@@ -50,7 +50,7 @@ void func_0207b734(Kart *a) {
 
     q = a->mKartModelsEntry;
     p = (Unk0206bcb0_590_24 *) &q->mUnk_024;
-    r = q->mUnk_008;
+    r = q->mCharacterAnimation;
     c = p->mUnk_08;
     b = (a->mUnk_44 & KART_44_DRIFTING) != 0 ? 0x2000 : 0x1000;
     v = a->mUnk_48;
@@ -91,7 +91,7 @@ void func_0207b734(Kart *a) {
             return;
         }
         func_02087cfc(r, r->mUnk_1a, 1);
-        func_02087e90(q->mUnk_008, p->mUnk_18);
+        func_02087e90(q->mCharacterAnimation, p->mUnk_18);
         s = q->mUnk_00c;
         s->mUnk_0c = data_usa_021551a4[0];
         *s->mUnk_1c[s->mUnk_1a] = s->mUnk_0c;
@@ -102,18 +102,18 @@ void func_0207b734(Kart *a) {
     }
 }
 
-void func_0207b708(struct Unk0206bcb0_590 *a, s32 b) {
+void func_0207b708(struct KartModelsEntry *a, s32 b) {
     Unk0206bcb0_590_08 *p = a->mUnk_00c;
 
     p->mUnk_0c = data_usa_021551a4[b];
     *p->mUnk_1c[p->mUnk_1a] = p->mUnk_0c;
 }
 
-void func_0207b6c0(struct Unk0206bcb0_590 *a, s32 b, s32 c) {
+void func_0207b6c0(struct KartModelsEntry *a, s32 b, s32 c) {
     if (c != 0) {
-        func_02087e90(a->mUnk_008, b);
+        func_02087e90(a->mCharacterAnimation, b);
     } else {
-        func_02087f84(a->mUnk_008, (u16) b);
+        func_02087f84(a->mCharacterAnimation, (u16) b);
     }
 }
 
@@ -177,9 +177,9 @@ void func_0207b44c(Kart *a) {
         f = ((s16 *) &data_usa_021551dc[(b - 2) * 4])[GetKartRank(a->mIndex) - 1];
     }
     if (f == 0) {
-        Unk0206bcb0_590 *s = a->mKartModelsEntry;
+        KartModelsEntry *s = a->mKartModelsEntry;
         q = (Unk0206bcb0_590_24 *) &s->mUnk_024;
-        func_02087cfc(s->mUnk_008, (u16) f, 1);
+        func_02087cfc(s->mCharacterAnimation, (u16) f, 1);
         func_02068a64(a, 2, 1);
         if (e != 0) {
             a->mUnk_7c |= 0x10000;
@@ -210,7 +210,7 @@ void func_0207b44c(Kart *a) {
 void func_0207b354(Kart *p) {
     Unk0206bcb0_590_24 *q = (Unk0206bcb0_590_24 *) &p->mKartModelsEntry->mUnk_024;
     Unk020f41c4_B *r;
-    Unk0206bcb0_590 *s;
+    KartModelsEntry *s;
 
     if (q->mUnk_04 == FALSE) {
         return;
@@ -220,9 +220,9 @@ void func_0207b354(Kart *p) {
         return;
     }
     s = p->mKartModelsEntry;
-    if ((p->mUnk_7c & 0x40) != 0 || s->mUnk_008->mUnk_1a == 2) {
+    if ((p->mUnk_7c & 0x40) != 0 || s->mCharacterAnimation->mUnk_1a == 2) {
         func_02068a64(p, 0, 1);
-    } else if (s->mUnk_008->mUnk_1a == 0) {
+    } else if (s->mCharacterAnimation->mUnk_1a == 0) {
         func_02068a64(p, 2, 1);
     }
     r = &gRaceProgress->mLocalRandom;
@@ -232,8 +232,8 @@ void func_0207b354(Kart *p) {
 }
 
 void func_0207b284(Kart *p) {
-    Unk0206bcb0_590 *q = p->mKartModelsEntry;
-    Nsbmd *r = q->mUnk_010[0];
+    KartModelsEntry *q = p->mKartModelsEntry;
+    Nsbmd *r = q->mModels[0];
     Unk0206bcb0_590_08 *s = q->mUnk_00c;
     NNSG3dResMdl *t = r->mResMdl;
 
@@ -244,12 +244,12 @@ void func_0207b284(Kart *p) {
         q->mUnk_0ac = TRUE;
     }
     SetKartModelMaterialColors(t, 2);
-    t = q->mUnk_010[1]->mResMdl;
+    t = q->mModels[1]->mResMdl;
     NNS_G3dMdlSetMdlPolygonModeAll(t, 2);
     NNS_G3dReleaseMdlTex(t);
     SetKartModelMaterialColors(t, 2);
-    if (q->mUnk_010[2] != NULL) {
-        t = q->mUnk_010[2]->mResMdl;
+    if (q->mModels[2] != NULL) {
+        t = q->mModels[2]->mResMdl;
         NNS_G3dMdlSetMdlPolygonModeAll(t, 2);
         NNS_G3dReleaseMdlTex(t);
         SetKartModelMaterialColors(t, 2);
@@ -258,8 +258,8 @@ void func_0207b284(Kart *p) {
 }
 
 void func_0207b1a8(Kart *p) {
-    Unk0206bcb0_590 *q = p->mKartModelsEntry;
-    Nsbmd *r = q->mUnk_010[0];
+    KartModelsEntry *q = p->mKartModelsEntry;
+    Nsbmd *r = q->mModels[0];
     Unk0206bcb0_590_08 *s = q->mUnk_00c;
     NNSG3dResMdl *t = r->mResMdl;
     Nsbmd *u;
@@ -273,12 +273,12 @@ void func_0207b1a8(Kart *p) {
         q->mUnk_0ac = FALSE;
     }
     SetKartModelMaterialColors(t, 0);
-    u = q->mUnk_010[1];
+    u = q->mModels[1];
     t = u->mResMdl;
     NNS_G3dMdlSetMdlPolygonModeAll(t, 0);
     NNS_G3dBindMdlTex(t, u->mResFileEntry.mTexture);
     SetKartModelMaterialColors(t, 0);
-    v = q->mUnk_010[2];
+    v = q->mModels[2];
     if (v != NULL) {
         w = v->mResMdl;
         NNS_G3dMdlSetMdlPolygonModeAll(w, 0);
@@ -289,47 +289,47 @@ void func_0207b1a8(Kart *p) {
 }
 
 void func_0207b13c(Kart *p) {
-    Unk0206bcb0_590 *q = p->mKartModelsEntry;
+    KartModelsEntry *q = p->mKartModelsEntry;
     NNSG3dResMdl *r;
 
     if (q->mUnk_064 != FALSE) {
         return;
     }
-    r = q->mUnk_010[0]->mResMdl;
+    r = q->mModels[0]->mResMdl;
     NNS_G3dMdlSetMdlPolygonModeAll(r, 2);
     SetKartModelMaterialColors(r, 3);
-    r = q->mUnk_010[1]->mResMdl;
+    r = q->mModels[1]->mResMdl;
     NNS_G3dMdlSetMdlPolygonModeAll(r, 2);
     SetKartModelMaterialColors(r, 3);
 }
 
 void func_0207b0d0(Kart *p) {
-    Unk0206bcb0_590 *q = p->mKartModelsEntry;
+    KartModelsEntry *q = p->mKartModelsEntry;
     NNSG3dResMdl *r;
 
     if (q->mUnk_064 != FALSE) {
         return;
     }
-    r = q->mUnk_010[0]->mResMdl;
+    r = q->mModels[0]->mResMdl;
     NNS_G3dMdlSetMdlPolygonModeAll(r, 0);
     SetKartModelMaterialColors(r, 0);
-    r = q->mUnk_010[1]->mResMdl;
+    r = q->mModels[1]->mResMdl;
     NNS_G3dMdlSetMdlPolygonModeAll(r, 0);
     SetKartModelMaterialColors(r, 0);
 }
 
 void func_0207b054(Kart *p, s32 a, s32 b) {
-    Unk0206bcb0_590 *q = p->mKartModelsEntry;
+    KartModelsEntry *q = p->mKartModelsEntry;
     Unk0206bcb0_590_08 *s;
     Unk0206bcb0_590_24 *r = (Unk0206bcb0_590_24 *) &q->mUnk_024;
 
-    s = q->mUnk_008;
+    s = q->mCharacterAnimation;
     if (r->mUnk_14 != FALSE && s->mUnk_1a != 0) {
         func_02087cfc(s, s->mUnk_1a, 1);
     }
     r->mUnk_14 = TRUE;
     r->mUnk_18 = b;
-    func_02087e90(p->mKartModelsEntry->mUnk_008, a);
+    func_02087e90(p->mKartModelsEntry->mCharacterAnimation, a);
     func_02087cfc(s, (u16) a, 0);
 }
 

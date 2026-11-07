@@ -134,7 +134,7 @@ void func_020733ec(Kart *p) {
     InitKartPhysicalParams(p);
     func_02071e28(p);
     if (p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) {
-        func_0207a73c(FX_Div(0x1000, p->mPhysicalParam->mBaseSpeedLimit));
+        SetKartSpeedLimitReciprocal(FX_Div(0x1000, p->mPhysicalParam->mBaseSpeedLimit));
     }
     func_02071c18(p);
     func_020e0650((u32 *) &p->mUnk_208);

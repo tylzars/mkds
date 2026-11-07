@@ -33,7 +33,7 @@ void func_02028e38(void) {
     short *v2;
     v1 = func_020280dc();
     if (v1 == 0) {
-        v2 = func_02078b04(gSelectKart->mKartIndex, gSelectKart->mCharacterIndex);
+        v2 = ComputeKartMenuParams(gSelectKart->mKartIndex, gSelectKart->mCharacterIndex);
         v3 = (Unk02174e14_00 *) &gSelectKart->mSelectKartSParts;
         func_02028ec0(10, 0x10, *v2, v3);
         func_02028ec0(9, 0xf, v2[1], v3);

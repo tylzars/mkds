@@ -1235,7 +1235,7 @@ extern Camera *gCurrentChainCamera;
 // cameras also run entries but never pick by position.
 extern Camera *gEntryCamera;
 extern u8 data_0217acc0[];
-// 0x20-byte entries behind member 0x014 of Unk0217ad00.
+// 0x20-byte entries behind member 0x014 of KartModels.
 typedef struct Unk0217ad00_014 {
     /* 00 */ u8 mUnk_00[4];
     /* 04 */ u16 mUnk_04;
@@ -1243,18 +1243,18 @@ typedef struct Unk0217ad00_014 {
 } Unk0217ad00_014;
 
 // Object behind gKartModels (0x144 bytes); the addresses of 0x2c, 0x98 and 0x10c are passed on as objects.
-struct Unk0206bcb0_590;
+struct KartModelsEntry;
 
-typedef struct Unk0217ad00 {
+typedef struct KartModels {
     // Array of the per-kart model entries (0xb4 bytes each), allocated by InitKartModels with mKartCount elements;
     // Kart.mKartModelsEntry points into it.
-    /* 000 */ struct Unk0206bcb0_590 *mKartModelsEntries;
+    /* 000 */ struct KartModelsEntry *mKartModelsEntries;
     /* 004 */ u16 *mUnk_004;
     // Number of elements of mKartModelsEntries, copied from gRaceSetup->mKartCount; the loop bound over the
     // entries.
     /* 008 */ u16 mKartCount;
     /* 00a */ u8 mUnk_00a[2];
-    /* 00c */ s32 mUnk_00c;
+    /* 00c */ s32 mKartTireMaterialIndex;
     /* 010 */ u16 *mUnk_010;
     /* 014 */ Unk0217ad00_014 *mUnk_014;
     /* 018 */ s16 mUnk_018[8];
@@ -1262,11 +1262,11 @@ typedef struct Unk0217ad00 {
     /* 02c */ Nsbmd mUnk_02c;
     /* 098 */ Unk0207adf8 mUnk_098;
     /* 10c */ Unk02087d0c mUnk_10c;
-} Unk0217ad00;
+} KartModels;
 
-extern Unk0217ad00 *gKartModels;
+extern KartModels *gKartModels;
 
-// Object behind member 0x08 of an Unk0217ad08_058 (0x38 bytes); only the words below are read.
+// Object behind member 0x08 of an KartModelMenuSlot (0x38 bytes); only the words below are read.
 typedef struct Unk0217ad08_058_08 {
     /* 00 */ u8 mUnk_00[0xc];
     /* 0c */ s32 mUnk_0c;
@@ -1275,7 +1275,7 @@ typedef struct Unk0217ad08_058_08 {
     /* 1c */ s32 **mUnk_1c;
 } Unk0217ad08_058_08;
 
-// Object behind member 0x20 of an Unk0217ad08_058: a word at 0x10 and rows of three words from 0x14 and from 0x44.
+// Object behind member 0x20 of an KartModelMenuSlot: a word at 0x10 and rows of three words from 0x14 and from 0x44.
 typedef struct Unk0217ad08_058_20 {
     /* 00 */ u8 mUnk_00[0x10];
     /* 10 */ s32 mUnk_10;
@@ -1284,11 +1284,11 @@ typedef struct Unk0217ad08_058_20 {
     /* 50 */ u8 mUnk_50[0x90];
 } Unk0217ad08_058_20;
 
-// 0xb8-byte entries from 0x58 of Unk0217ad08.
-typedef struct Unk0217ad08_058 {
+// 0xb8-byte entries from 0x58 of KartModelMenuData.
+typedef struct KartModelMenuSlot {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
-    /* 08 */ Unk0217ad08_058_08 *mUnk_08;
+    /* 08 */ Unk0217ad08_058_08 *mCharacterAnimation;
     /* 0c */ u8 mUnk_0c[4];
     /* 10 */ struct Nsbmd *mUnk_10;
     /* 14 */ struct Nsbmd *mUnk_14;
@@ -1297,15 +1297,16 @@ typedef struct Unk0217ad08_058 {
     /* 20 */ Unk0217ad08_058_20 *mUnk_20;
     /* 24 */ u8 mUnk_24[0x8c];
     /* b0 */ s32 mUnk_b0;
-    /* b4 */ struct NNSG3dResTex *mUnk_b4;
-} Unk0217ad08_058;
+    /* b4 */ struct NNSG3dResTex *mEmblemTex;
+} KartModelMenuSlot;
 
 struct NNSG3dResFileHeader;
 
-// 0x34-byte entries from 0x1f4 of Unk0217ad08; the pointers at 0x08 to 0x28 are passed to NNS_G3dResDefaultRelease.
-typedef struct Unk0217ad08_1f4 {
-    /* 00 */ void *mUnk_00;
-    /* 04 */ struct NNSiFndHeapHead *mUnk_04;
+// 0x34-byte entries from 0x1f4 of KartModelMenuData; the pointers at 0x08 to 0x28 are passed to
+// NNS_G3dResDefaultRelease.
+typedef struct KartModelMenuFiles {
+    /* 00 */ void *mHeapMemory;
+    /* 04 */ struct NNSiFndHeapHead *mHeap;
     /* 08 */ struct NNSG3dResFileHeader *mUnk_08;
     /* 0c */ struct NNSG3dResFileHeader *mUnk_0c;
     /* 10 */ struct NNSG3dResFileHeader *mUnk_10;
@@ -1315,71 +1316,71 @@ typedef struct Unk0217ad08_1f4 {
     /* 20 */ struct NNSG3dResFileHeader *mUnk_20;
     /* 24 */ struct NNSG3dResFileHeader *mUnk_24;
     /* 28 */ struct NNSG3dResFileHeader *mUnk_28;
-    /* 2c */ BOOL mUnk_2c;
-    /* 30 */ u16 mUnk_30;
+    /* 2c */ BOOL mLoadRequested;
+    /* 30 */ u16 mLoadStep;
     /* 32 */ u8 mUnk_32[2];
-} Unk0217ad08_1f4;
+} KartModelMenuFiles;
 
-// Six halfwords; the 0xc-byte entries behind member 0x1c of Unk0217ad08.
+// Six halfwords; the 0xc-byte entries behind member 0x1c of KartModelMenuData.
 typedef struct Unk0217ad08_01c {
     /* 00 */ u16 mUnk_00[6];
 } Unk0217ad08_01c;
 
-// Embedded in Unk0217ad08 at 0x24 (0x34 bytes).
-typedef struct Unk0217ad08_024 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
+// Embedded in KartModelMenuData at 0x24 (0x34 bytes).
+typedef struct KartModelMenuView {
+    /* 00 */ s32 mCharacterIndex;
+    /* 04 */ s32 mKartIndex;
+    /* 08 */ s32 mScale;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s32 mUnk_10;
-    /* 14 */ u16 mUnk_14;
-    /* 16 */ u16 mUnk_16;
+    /* 14 */ u16 mSpinAngle;
+    /* 16 */ u16 mYawAngle;
     /* 18 */ s16 mUnk_18;
     /* 1a */ u16 mUnk_1a;
     /* 1c */ u8 mUnk_1c[0x10];
-    /* 2c */ s32 mUnk_2c;
-    /* 30 */ s32 mUnk_30;
-} Unk0217ad08_024;
+    /* 2c */ s32 mBg0Offset;
+    /* 30 */ s32 mBg0Direction;
+} KartModelMenuView;
 
-// Object behind data_0217ad08.
-typedef struct Unk0217ad08 {
-    /* 000 */ s32 mUnk_000;
-    /* 004 */ s32 mUnk_004;
-    /* 008 */ s32 mUnk_008;
-    /* 00c */ s16 mUnk_00c[6];
-    /* 018 */ s16 *mUnk_018;
-    /* 01c */ Unk0217ad08_01c *mUnk_01c;
-    /* 020 */ Unk0217ad08_058 *mUnk_020;
-    /* 024 */ Unk0217ad08_024 mUnk_024;
-    /* 058 */ Unk0217ad08_058 mUnk_058[2];
+// Object behind gKartModelMenu.
+typedef struct KartModelMenuData {
+    /* 000 */ s32 mKartIndex;
+    /* 004 */ s32 mKartListPos;
+    /* 008 */ s32 mKartListCount;
+    /* 00c */ s16 mMenuParams[6];
+    /* 018 */ s16 *mCharMenuParams;
+    /* 01c */ Unk0217ad08_01c *mKartMenuParams;
+    /* 020 */ KartModelMenuSlot *mLoadSlot;
+    /* 024 */ KartModelMenuView mView;
+    /* 058 */ KartModelMenuSlot mSlots[2];
     /* 1c8 */ Unk0217ad08_058_20 *mUnk_1c8;
-    /* 1cc */ struct Nsbmd *mUnk_1cc;
+    /* 1cc */ struct Nsbmd *mSelectModel;
     /* 1d0 */ void *mUnk_1d0;
-    /* 1d4 */ void *mUnk_1d4;
+    /* 1d4 */ void *mEmblemTex;
     /* 1d8 */ s32 mUnk_1d8;
     /* 1dc */ BOOL mUnk_1dc;
-    /* 1e0 */ BOOL mUnk_1e0;
-    /* 1e4 */ s32 mUnk_1e4;
-    /* 1e8 */ void *mUnk_1e8;
-    /* 1ec */ void *mUnk_1ec;
+    /* 1e0 */ BOOL mUseEmblemTex;
+    /* 1e4 */ s32 mMirrorMode;
+    /* 1e8 */ void *mEmblemData;
+    /* 1ec */ void *mEmblemPalette;
     /* 1f0 */ s16 mUnk_1f0;
     /* 1f2 */ u8 mUnk_1f2[2];
-    /* 1f4 */ Unk0217ad08_1f4 mUnk_1f4[2];
-    /* 25c */ s32 mUnk_25c;
-    /* 260 */ s32 mUnk_260;
-    /* 264 */ s16 mUnk_264;
-    /* 266 */ s16 mUnk_266;
+    /* 1f4 */ KartModelMenuFiles mFiles[2];
+    /* 25c */ s32 mCharacterRequested;
+    /* 260 */ s32 mKartRequested;
+    /* 264 */ s16 mShownSlotIndex;
+    /* 266 */ s16 mLoadSlotIndex;
     /* 268 */ struct Unk0205fd2c *mUnk_268;
-} Unk0217ad08;
+} KartModelMenuData;
 
-extern Unk0217ad08 *data_0217ad08;
-extern u16 data_0217ad10;
+extern KartModelMenuData *gKartModelMenu;
+extern u16 gKillerItemKartIndex;
 extern char gCharacterNsbcaPathBuffer[];
 // 1 when this is a mission run and the course has a shape of kind 2, else 0; set by InitKarts.
 extern s32 gMissionRunKind2ShapesPresent;
-extern u32 data_0217ad28;
-extern s32 data_0217ad2c;
-extern s32 data_0217ad30;
+extern u32 gKartKind3ShapeMask;
+extern s32 gKartSpeedLimitReciprocal;
+extern s32 gKartForwardSpeedRatio;
 struct Unk0201ca6c;
 
 // Two objects returned by StartEffect.

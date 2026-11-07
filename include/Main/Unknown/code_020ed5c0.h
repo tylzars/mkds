@@ -17,7 +17,7 @@ typedef struct Unk020ed718 {
     /* 014 */ s32 mUnk_014;
 } Unk020ed718;
 
-// The object behind the word at 0x20 of a Unk0206bcb0_590: the vectors from 0x48.
+// The object behind the word at 0x20 of a KartModelsEntry: the vectors from 0x48.
 typedef struct Unk0206bcb0_590_20 {
     /* 00 */ char mUnk_00[0x10];
     /* 10 */ s32 mUnk_10;
@@ -28,7 +28,7 @@ typedef struct Unk0206bcb0_590_20 {
 
 // The object behind the word at 0x590 of a Kart from its first byte:
 // the halfword at 0x40.
-// The object behind the word at 0x08 of a Unk0206bcb0_590: the halfword at 0x1a.
+// The object behind the word at 0x08 of a KartModelsEntry: the halfword at 0x1a.
 typedef struct Unk0206bcb0_590_08 {
     /* 00 */ u8 mUnk_00[2];
     /* 02 */ u16 mUnk_02;
@@ -40,7 +40,7 @@ typedef struct Unk0206bcb0_590_08 {
     /* 1c */ s32 **mUnk_1c;
 } Unk0206bcb0_590_08;
 
-// The object behind the word at 0x54 of a Unk0206bcb0_590.
+// The object behind the word at 0x54 of a KartModelsEntry.
 typedef struct Unk0206bcb0_590_54 {
     union {
         Vec3 mUnk_v[4];
@@ -56,7 +56,7 @@ typedef struct Unk0206bcb0_590_54 {
     };
 } Unk0206bcb0_590_54;
 
-// Halfwords at 0x6a of a Unk0206bcb0_590: three packed colours (0x00, 0x02, 0x04), per-channel start values and
+// Halfwords at 0x6a of a KartModelsEntry: three packed colours (0x00, 0x02, 0x04), per-channel start values and
 // differences, and a step at 0x2a.
 typedef struct Unk0206bcb0_590_6a {
     /* 00 */ u16 mUnk_00;
@@ -83,7 +83,7 @@ typedef struct Unk0206bcb0_590_6a {
     /* 2a */ s16 mUnk_2a;
 } Unk0206bcb0_590_6a;
 
-// Words and halfwords from 0x24 of a Unk0206bcb0_590.
+// Words and halfwords from 0x24 of a KartModelsEntry.
 typedef struct Unk0206bcb0_590_24 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ BOOL mUnk_04;
@@ -97,12 +97,12 @@ typedef struct Unk0206bcb0_590_24 {
 
 struct Nsbmd;
 
-typedef struct Unk0206bcb0_590 {
+typedef struct KartModelsEntry {
     /* 000 */ s32 mUnk_000;
     /* 004 */ s32 mUnk_004;
-    /* 008 */ Unk0206bcb0_590_08 *mUnk_008;
+    /* 008 */ Unk0206bcb0_590_08 *mCharacterAnimation;
     /* 00c */ Unk0206bcb0_590_08 *mUnk_00c;
-    /* 10 */ Nsbmd *mUnk_010[3];
+    /* 10 */ Nsbmd *mModels[3];
     /* 01c */ Unk0207adf8 *mUnk_01c;
     /* 020 */ Unk0206bcb0_590_20 *mUnk_020;
     /* 024 */ s32 mUnk_024;
@@ -125,7 +125,7 @@ typedef struct Unk0206bcb0_590 {
     /* 0a8 */ u8 mUnk_0a8[4];
     /* 0ac */ BOOL mUnk_0ac;
     /* 0b0 */ s32 mUnk_0b0;
-} Unk0206bcb0_590;
+} KartModelsEntry;
 
 // Three vectors at 0x00, 0x0c and 0x18.
 typedef struct {

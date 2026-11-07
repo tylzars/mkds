@@ -171,7 +171,7 @@ BOOL func_020d4d60(MapObject *p, s32 a) {
     if (h < q->mUnk_3c || q->mUnk_38 < h) {
         return TRUE;
     }
-    return (func_0207a780() & p->mDigitMask) != 0;
+    return (GetKartKind3ShapeMask() & p->mDigitMask) != 0;
 }
 
 void func_020d4d44(MtxFx43 *p) {
@@ -366,7 +366,7 @@ void func_020d47e0(void) {
 
     n = gMapObjects->mMapObjectCount;
     t = gMapObjects->mMapObjects;
-    f = func_0207a780();
+    f = GetKartKind3ShapeMask();
     g = GetRaceUpdateFrames() & 3;
     i = 0;
     if (n <= 0) {
@@ -422,7 +422,7 @@ void func_020d4698(void) {
     u16 a;
     u32 b;
 
-    f = func_0207a780();
+    f = GetKartKind3ShapeMask();
     i = 0;
     n = gMapObjects->mMapObjectCount;
     t = gMapObjects->mMapObjects;

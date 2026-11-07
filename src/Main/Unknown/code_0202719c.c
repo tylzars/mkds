@@ -418,7 +418,7 @@ void func_020273c0(void) {
     func_02025f14(&gSelectCharacter->mUnk_0f8[0], 2);
     func_02025f14(&gSelectCharacter->mUnk_0f8[1], 2);
     func_02025f14(&gSelectCharacter->mUnk_0f8[2], 2);
-    func_020789d4();
+    StartKartModelMenuBg0Decrease();
 }
 
 void func_0202734c(s32 a) {

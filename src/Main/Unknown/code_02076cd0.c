@@ -32,19 +32,19 @@
 #pragma thumb on
 
 void func_02077b3c(void) {
-    if (data_0217ad08->mUnk_25c != 0 || data_0217ad08->mUnk_260 != 0) {
-        data_0217ad08->mUnk_1f4[data_0217ad08->mUnk_266].mUnk_2c = TRUE;
-        data_0217ad08->mUnk_020->mUnk_00 = data_0217ad08->mUnk_024.mUnk_00;
-        data_0217ad08->mUnk_020->mUnk_04 = data_0217ad08->mUnk_024.mUnk_04;
-        data_0217ad08->mUnk_020->mUnk_20 = data_0217ad08->mUnk_1c8 + data_0217ad08->mUnk_024.mUnk_04;
+    if (gKartModelMenu->mCharacterRequested != 0 || gKartModelMenu->mKartRequested != 0) {
+        gKartModelMenu->mFiles[gKartModelMenu->mLoadSlotIndex].mLoadRequested = TRUE;
+        gKartModelMenu->mLoadSlot->mUnk_00 = gKartModelMenu->mView.mCharacterIndex;
+        gKartModelMenu->mLoadSlot->mUnk_04 = gKartModelMenu->mView.mKartIndex;
+        gKartModelMenu->mLoadSlot->mUnk_20 = gKartModelMenu->mUnk_1c8 + gKartModelMenu->mView.mKartIndex;
         func_02057df0(LoadKartAndCharacterFiles);
         data_0217aa0c->mUnk_f8 = 1;
     }
 }
 
 void func_02077b1c(void) {
-    data_0217ad08->mUnk_260 = 0;
-    data_0217ad08->mUnk_25c = data_0217ad08->mUnk_260;
+    gKartModelMenu->mKartRequested = 0;
+    gKartModelMenu->mCharacterRequested = gKartModelMenu->mKartRequested;
 }
 
 u32 func_02077a70(s32 *a, u32 b) {
@@ -70,7 +70,7 @@ u32 func_02077a70(s32 *a, u32 b) {
         if (func_02056dec(n) == 0) {
             *a = -1;
             for (i = 0; i < 8; i++) {
-                if (func_0205fd2c(data_0217ad08->mUnk_268, i, b) != 0) {
+                if (func_0205fd2c(gKartModelMenu->mUnk_268, i, b) != 0) {
                     *a = i;
                     break;
                 }
@@ -81,15 +81,15 @@ u32 func_02077a70(s32 *a, u32 b) {
             return 0;
         }
     }
-    return func_0205fd2c(data_0217ad08->mUnk_268, *a, b);
+    return func_0205fd2c(gKartModelMenu->mUnk_268, *a, b);
 }
 
 u16 func_02077a5c(void) {
-    return data_0217ad08->mUnk_004 + 1;
+    return gKartModelMenu->mKartListPos + 1;
 }
 
 u16 func_02077a4c(void) {
-    return data_0217ad08->mUnk_008;
+    return gKartModelMenu->mKartListCount;
 }
 
 void LoadEmblemSBNclr(void *a) {

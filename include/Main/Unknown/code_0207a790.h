@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_0207a790(s32 a);
+void SetKartKind3ShapeMask(s32 a);

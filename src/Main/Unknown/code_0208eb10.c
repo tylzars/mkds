@@ -615,7 +615,7 @@ s32 func_0208ec64(u32 a) {
 Unk0208ec64 *func_0208eb1c(s32 a) {
     Unk0208ec64 *p;
     Kart *o;
-    Unk0206bcb0_590 *t;
+    KartModelsEntry *t;
     Vec3 v;
     s32 h;
 

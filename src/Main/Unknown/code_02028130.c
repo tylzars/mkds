@@ -219,7 +219,7 @@ int AdvanceSelectKart(void) {
                     func_0202941c(2);
                 }
                 if (func_020280dc() == 0) {
-                    func_020789d4();
+                    StartKartModelMenuBg0Decrease();
                 } else {
                     func_0211f378();
                 }
@@ -239,10 +239,10 @@ int AdvanceSelectKart(void) {
             break;
     }
     if (func_020280dc() == 0) {
-        func_02078a9c(gSelectKart->mCharacterIndex);
-        func_02078a34(gSelectKart->mKartIndex);
-        func_02078420(GetRaceSetupCopy()->mMirrorMode);
-        func_020780f4();
+        RequestKartModelMenuCharacter(gSelectKart->mCharacterIndex);
+        RequestKartModelMenuKart(gSelectKart->mKartIndex);
+        AdvanceKartModelMenu(GetRaceSetupCopy()->mMirrorMode);
+        DrawKartModelMenu();
     }
     d = gSelectKart;
     if (d->mUnk_104 != FALSE) {

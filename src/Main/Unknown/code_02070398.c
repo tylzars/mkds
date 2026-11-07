@@ -678,7 +678,7 @@ void func_02071e28(Kart *p) {
         p->mUnk_7c |= KART_7C_ENTRY_KIND_2;
         p->mVisible = 0;
     }
-    if (p->mKartModelsEntry->mUnk_008 != NULL) {
+    if (p->mKartModelsEntry->mCharacterAnimation != NULL) {
         p->mUnk_7c |= KART_7C_MODELS_ENTRY_008_SET;
     }
     if (gRaceSetup->mMode == MODE_TIME_ATTACK || func_02062eb0() != 0) {
@@ -1265,7 +1265,7 @@ void func_020708a4(Kart *p) {
     if (p->mUnk_4c & 0x40) {
         s = &p->mUnk_538;
         func_0208181c(p->mIndex);
-        if ((p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) && p->mKartModelsEntry->mUnk_008->mUnk_1a == 0) {
+        if ((p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) && p->mKartModelsEntry->mCharacterAnimation->mUnk_1a == 0) {
             func_02068a64(p, 2, 1);
         }
         s->mUnk_06++;

@@ -96,8 +96,8 @@ void func_020cbb10(void) {
     SetHeapGroupId(9);
     if (func_020cbad0() == 0) {
         func_02078d64(func_020cb99c());
-        func_02078a9c(-1);
-        func_02078a34(-1);
+        RequestKartModelMenuCharacter(-1);
+        RequestKartModelMenuKart(-1);
     }
     SetHeapGroupId(5);
     if (func_020cbad0() == 0) {

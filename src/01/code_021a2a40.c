@@ -456,7 +456,7 @@ void func_ov001_021a401c(void) {
 
     a = func_02077a5c();
     b = func_02077a4c();
-    func_02078158();
+    AdvanceKartModelMenuInput();
     if (b >= 10) {
         func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemMLld, 4), 0);
         func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemMLld, 5), -5);
@@ -1028,7 +1028,7 @@ void func_ov001_021a2a40(void) {
     }
     func_020ae630(gEmblem, &gEmblem->mUnk_0404);
     func_020783c8();
-    func_020780b0();
+    DrawKartModelMenuUnmirrored();
     func_020ac390(GetEmblemGridCells(), gEmblem->mUnk_087c, GetEmblemGridSide());
     func_020ac2c4(GetEmblemGridCells(), gEmblem->mUnk_0a7c, GetEmblemGridSide());
 }

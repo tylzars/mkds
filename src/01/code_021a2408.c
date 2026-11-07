@@ -26,7 +26,7 @@ void func_ov001_021a2408(void) {
     u32 bits;
 
     if ((data_0217aa08->mUnk_28 == 0 ? (data_021759d4->mUnk_0c ? data_021759d4->mUnk_10 : 0) : 1) == 0) {
-        func_02077c1c();
+        AdvanceKartModelMenuLoad();
     }
 
     switch (gEmblem->mUnk_1098) {

@@ -77,7 +77,7 @@ void func_0207fec0(Unk02080b1c *p) {
     p->mPreviousLink = p->mLink;
     p->mLink = p->mLink->mUnk_00[i];
     t = data_usa_021557dc[p->mLink->mUnk_20->mUnk_04];
-    if (t != a->mKartModelsEntry->mUnk_008->mUnk_1a) {
+    if (t != a->mKartModelsEntry->mCharacterAnimation->mUnk_1a) {
         func_02068a64(a, t, 1);
     }
     VEC_Subtract(p->mLink->mUnk_18, p->mPreviousLink->mUnk_18, &p->mDirection);
@@ -108,7 +108,7 @@ void func_0207fd28(Unk02080b1c *p) {
     p->mPreviousLink = p->mLink;
     p->mLink = p->mLink->mUnk_00[i];
     t = data_usa_021557dc[p->mLink->mUnk_20->mUnk_04];
-    if (t != a->mKartModelsEntry->mUnk_008->mUnk_1a) {
+    if (t != a->mKartModelsEntry->mCharacterAnimation->mUnk_1a) {
         func_02068a64(a, t, 1);
     }
     if (p->mKartIndex != 0) {

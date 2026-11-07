@@ -159,7 +159,7 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
             func_02025f80(&gSelectCharacter->mUnk_0f8[0], 0, 10, -0x80, 0);
             func_02025f80(&gSelectCharacter->mUnk_0f8[2], 0, 10, 0x60, 0);
             if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-                func_020789e4();
+                StartKartModelMenuBg0Increase();
             }
             break;
         case 2:
@@ -622,7 +622,7 @@ int AdvanceSelectCharacter(void) {
                 }
                 func_02025f14(&gSelectCharacter->mUnk_0f8[1], 2);
                 if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-                    func_020789d4();
+                    StartKartModelMenuBg0Decrease();
                 } else if (GetRaceSetupCopy()->mMode == 2) {
                     func_0211f378();
                 }
@@ -657,10 +657,10 @@ int AdvanceSelectCharacter(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         p = gSelectCharacter;
         if (p->mUnk_08c != 2) {
-            func_02078a9c(p->mUnk_0f0);
-            func_02078a34(gSelectCharacter->mUnk_0f4);
+            RequestKartModelMenuCharacter(p->mUnk_0f0);
+            RequestKartModelMenuKart(gSelectCharacter->mUnk_0f4);
         }
-        func_02078420(GetRaceSetupCopy()->mMirrorMode);
+        AdvanceKartModelMenu(GetRaceSetupCopy()->mMirrorMode);
     }
     if (gSelectCharacter->mUnk_128 != FALSE) {
         func_0202bb80();
@@ -674,7 +674,7 @@ int AdvanceSelectCharacter(void) {
         func_0211f39c();
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_020780f4();
+        DrawKartModelMenu();
     }
     switch (r) {
         case 1:
@@ -686,8 +686,8 @@ int AdvanceSelectCharacter(void) {
             break;
         case 2:
             if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-                func_02078a9c(-1);
-                func_02078a34(-1);
+                RequestKartModelMenuCharacter(-1);
+                RequestKartModelMenuKart(-1);
             }
             GetRaceSetupCopy()->mUnk_108 = 0;
             break;

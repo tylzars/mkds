@@ -16,7 +16,7 @@ void func_ov001_021a401c(void) {
 
     a = func_02077a5c();
     b = func_02077a4c();
-    func_02078158();
+    AdvanceKartModelMenuInput();
     if (b >= 10) {
         func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemMLld, 4), 0);
         func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemMLld, 5), -5);

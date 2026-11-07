@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_0217a000.h" // Camera, Unk0217ad08
+#include "Main/Unknown/unk_0217a000.h" // Camera, KartModelMenuData
 #include "Main/Unknown/code_0207b960.h"
 #include "Main/Unknown/code_02073eb8.h"
 #include "code_02012b30.h"

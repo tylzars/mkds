@@ -88,7 +88,7 @@ void func_01ffb130(Kart *p) {
     if (p->mUnk_4c & 0x40) {
         q = &p->mUnk_538;
         func_0208181c(p->mIndex);
-        if ((p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) && p->mKartModelsEntry->mUnk_008->mUnk_1a == 0) {
+        if ((p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) && p->mKartModelsEntry->mCharacterAnimation->mUnk_1a == 0) {
             func_02068a64(p, 2, 1);
         }
         q->mUnk_06++;
@@ -193,7 +193,7 @@ void func_01ffb130(Kart *p) {
     func_01ff9c40(p);
     ScaleKartVelocityAndSetCappedLengthAndDirection(p, b);
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-        func_0207a74c(Vec3DotUnrounded(&p->mVelocity, &p->mTurnedForward));
+        SetKartForwardSpeedRatio(Vec3DotUnrounded(&p->mVelocity, &p->mTurnedForward));
         if ((p->mUnk_44 & 0x1000000) && p->mUnk_4d4 != 0) {
             p->mUnk_4d4 = ((s64) p->mUnk_4d4 * 0xfae) >> 12;
             if (p->mUnk_4d4 < 0xcd) {

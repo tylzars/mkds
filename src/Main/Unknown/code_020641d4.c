@@ -20,7 +20,7 @@
 #include "code_021471bc.h"
 
 void func_020641f0(Kart *a) {
-    Unk0206bcb0_590 *b;
+    KartModelsEntry *b;
     Unk0206bcb0_590_08 *c;
     Vec3 m;
     MtxFx43 d;
@@ -91,7 +91,7 @@ void func_020641f0(Kart *a) {
         a->mDrawMatrix = &a->mWobbleMatrix;
     }
     b = a->mKartModelsEntry;
-    if (b->mUnk_010[2] != NULL) {
+    if (b->mModels[2] != NULL) {
         r = (Vec4 *) &b->mUnk_024;
         j = (s64) r->w * r->x >> 12;
         l = (s64) j * 0xce4 >> 12;
@@ -100,7 +100,7 @@ void func_020641f0(Kart *a) {
             a->mTireSpinAngle = a->mTireSpinAngle + (u16) ((s64) a->mUnk_4d4 * 0x7d0 >> 12);
         } else {
             k = (s64) k * 0xfa0 >> 12;
-            if (func_020738f8(func_0207a7ec()) < 0x29) {
+            if (func_020738f8(GetKartForwardSpeedRatio()) < 0x29) {
                 k = 0;
                 if ((u16) (data_0217562a[o = a->mEntryIndex].mBits & 3) != 0 && IsRaceStarted() == 1) {
                     k = k + 0x190;
@@ -115,13 +115,13 @@ void func_020641f0(Kart *a) {
         }
         a->mUnk_4cc = l;
     }
-    c = a->mKartModelsEntry->mUnk_008;
+    c = a->mKartModelsEntry->mCharacterAnimation;
     if (c != NULL && c->mUnk_18 != 0) {
         func_0207b734(a);
         if (IsKartEnded(a->mIndex) != 0) {
             func_0207b354(a);
         }
-        c = a->mKartModelsEntry->mUnk_008;
+        c = a->mKartModelsEntry->mCharacterAnimation;
         *c->mUnk_1c[c->mUnk_1a] = c->mUnk_0c;
     }
     if ((a->mUnk_4c & 0x400000) != 0) {

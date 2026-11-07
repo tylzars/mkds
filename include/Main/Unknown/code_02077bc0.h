@@ -7,29 +7,29 @@ void LoadKartAndCharacterFiles(void);
 #include "Main/Unknown/code_020b4000.h" // Nclr
 
 typedef struct Unk0217ad00_014 Unk0217ad00_014;
-typedef struct Unk0217ad08_1f4 Unk0217ad08_1f4;
+typedef struct KartModelMenuFiles KartModelMenuFiles;
 
-typedef struct Unk0217ad08_058 Unk0217ad08_058;
+typedef struct KartModelMenuSlot KartModelMenuSlot;
 
-typedef struct Unk0217ad08_058 Unk0217ad08_058;
-typedef struct Unk0217ad08_024 Unk0217ad08_024;
+typedef struct KartModelMenuSlot KartModelMenuSlot;
+typedef struct KartModelMenuView KartModelMenuView;
 
 typedef struct NNSG3dResFileHeader NNSG3dResFileHeader;
 
-typedef struct Unk0217ad08_024 Unk0217ad08_024;
+typedef struct KartModelMenuView KartModelMenuView;
 
 void InitKartModels(void *a, u32 b);
 
-#include "Main/Unknown/code_020ed5c0.h" // Unk0206bcb0_590
+#include "Main/Unknown/code_020ed5c0.h" // KartModelsEntry
 
 void LoadKartModelMenuFile(void *a, const void *b, void **c);
 void CreateKillerItem(void *a);
-void CreateKartShadow(Unk0206bcb0_590 *a, void *b);
-void CreateTire(Unk0206bcb0_590 *a, void *b);
+void CreateKartShadow(KartModelsEntry *a, void *b);
+void CreateTire(KartModelsEntry *a, void *b);
 u16 *LoadKartAPaletteFromKartModelMenu(void *a);
 u16 *LoadKartAPaletteFromKartModelFile(void);
-void CreateKart(Unk0206bcb0_590 *a, void *b, s32 c);
-void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c);
+void CreateKart(KartModelsEntry *a, void *b, s32 c);
+void CreateCharacter(KartModelsEntry *a, void *b, s32 c);
 void InitKartModels(void *a, u32 b);
 
 // Declared here until the code that defines them is decompiled.
@@ -53,48 +53,48 @@ extern Nclr *gEmblemSBNclr;
 extern u8 *data_usa_0217acec;
 
 void InitLnkVramManagers(void *a);
-void func_02077c1c(void);
-void func_02077eb4(void *a, Unk0217ad08_1f4 *b);
+void AdvanceKartModelMenuLoad(void);
+void InitKartModelMenuFiles(void *a, KartModelMenuFiles *b);
 Nclr *GetEmblemSBNclr(void);
-void func_02077f0c(u16 *a, int b, u32 c);
+void AdvanceAngleToward(u16 *a, int b, u32 c);
 void func_02077f48(unsigned int p0);
 void func_02077f5c(void);
 Unk0217ad00_014 *func_02077f7c(int param_1);
-void func_02077f9c(int param_1, struct Unk0206bcb0_590 *param_2, Unk0217ad00_014 *param_3);
+void func_02077f9c(int param_1, struct KartModelsEntry *param_2, Unk0217ad00_014 *param_3);
 void func_0207800c(void);
 void func_02078078(void);
-void func_020780b0(void);
-void func_020780f4(void);
-void func_02078158(void);
+void DrawKartModelMenuUnmirrored(void);
+void DrawKartModelMenu(void);
+void AdvanceKartModelMenuInput(void);
 void func_020783c8(void);
-void func_02078420(s32 param_1);
-void func_0207851c(Unk0217ad08_058 *a);
-void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param_3);
+void AdvanceKartModelMenu(s32 param_1);
+void SetupKartModelEmblemTex(KartModelMenuSlot *a);
+void DrawKartModelMenuSlot(KartModelMenuSlot *param_1, KartModelMenuView *param_2, s32 param_3);
 void SetupLightFrustumAndLookAt(s32 param_1, s32 param_2);
 void SetFrustumProjection(s32 param_1);
-void func_020789d4(void);
-void func_020789e4(void);
-void func_020789f4(void);
-void func_02078a34(s32 param_1);
-void func_02078a9c(s32 param_1);
-s16 *func_02078b04(s32 param_1, s32 param_2);
+void StartKartModelMenuBg0Decrease(void);
+void StartKartModelMenuBg0Increase(void);
+void AdvanceKartModelMenuBg0Offset(void);
+void RequestKartModelMenuKart(s32 param_1);
+void RequestKartModelMenuCharacter(s32 param_1);
+s16 *ComputeKartMenuParams(s32 param_1, s32 param_2);
 void InitKartModelMenu(void *param_1);
 void func_02078c58(void *param_1);
 void func_02078d64(void *param_1);
-void func_02078e4c(void *param_1, void *param_2);
-void func_02078ee0(Unk0217ad08_024 *a, int b);
-void func_02078f18(void *a, Unk0217ad08_058 *b);
-void func_02078f78(NNSG3dResFileHeader *a);
-void func_02078f9c(void *c);
-void *func_02079008(void *a, NNSG3dResFileHeader *b);
-void func_02079014(Nsbmd *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c);
-void func_02079038(Nsbmd *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c);
-void func_02079078(void *a, Nsbmd *b, void *c, NNSG3dResFileHeader *d, NNSG3dResFileHeader *e, void *f);
+void QueueKartEmblemTexture(void *param_1, void *param_2);
+void InitKartModelMenuView(KartModelMenuView *a, int b);
+void InitKartModelMenuSlot(void *a, KartModelMenuSlot *b);
+void LoadKartModelMenuEmblemTexData(NNSG3dResFileHeader *a);
+void LoadKartModelMenuSelectModel(void *c);
+void *CreateKartModelMenuShadow(void *a, NNSG3dResFileHeader *b);
+void CreateKartModelMenuTire(Nsbmd *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c);
+void CreateKartModelMenuKart(Nsbmd *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c);
+void CreateKartModelMenuCharacter(void *a, Nsbmd *b, void *c, NNSG3dResFileHeader *d, NNSG3dResFileHeader *e, void *f);
 void func_020790e0(void *a, s32 b);
-void func_020792c8(Unk0206bcb0_590 *a, s32 b);
+void UploadKartModelsEntryPalettes(KartModelsEntry *a, s32 b);
 void UploadKartAPaletteSlice(Nsbmd *a, s32 b, void *c);
 void func_02079678(void *a, s32 b);
-void func_02079988(Unk0206bcb0_590 *a, int b);
+void SetKartModelsEntryVariant(KartModelsEntry *a, int b);
 void DrawKarts(void);
 Kart *GetKart(s32 idx);
 void GetKartPrevPos(Vec3 *dst, s32 idx);

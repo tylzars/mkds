@@ -101,7 +101,7 @@ void func_020cc3b8(void) {
 
 void func_020cc36c(void) {
     if (func_020cbad0() == 0) {
-        func_02077c1c();
+        AdvanceKartModelMenuLoad();
     }
     data_0217b43c->mUnk_014[data_0217b43c->mUnk_00c].mUnk_00();
     func_021258f0();

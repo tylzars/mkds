@@ -151,7 +151,7 @@ void func_02068b5c(Kart *a) {
 void func_02068a64(Kart *a, s32 b, s32 c) {
     u32 d;
     u32 j;
-    Unk0206bcb0_590 *e;
+    KartModelsEntry *e;
     BOOL h;
     BOOL i;
     s32 *f;
@@ -162,11 +162,11 @@ void func_02068a64(Kart *a, s32 b, s32 c) {
         e = a->mKartModelsEntry;
         h = FALSE;
         f = &e->mUnk_024;
-        g = e->mUnk_008->mUnk_1a;
+        g = e->mCharacterAnimation->mUnk_1a;
         i = TRUE;
         if (f[5] != 0) {
             if (g != 0) {
-                func_02087cfc(e->mUnk_008, (u16) g, 1);
+                func_02087cfc(e->mCharacterAnimation, (u16) g, 1);
             }
             f[5] = 0;
         }

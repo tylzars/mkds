@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-struct Unk0206bcb0_590;
+struct KartModelsEntry;
 
-void SetKartModelsEntryCourseColors(struct Unk0206bcb0_590 *a);
-s32 AdvanceKartModelColorBlend(struct Unk0206bcb0_590 *a, s32 b);
-void StartKartModelColorBlend(struct Unk0206bcb0_590 *a, u16 b, u16 c, u16 d);
+void SetKartModelsEntryCourseColors(struct KartModelsEntry *a);
+s32 AdvanceKartModelColorBlend(struct KartModelsEntry *a, s32 b);
+void StartKartModelColorBlend(struct KartModelsEntry *a, u16 b, u16 c, u16 d);

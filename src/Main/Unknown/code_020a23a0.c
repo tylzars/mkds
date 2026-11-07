@@ -267,7 +267,7 @@ void func_020a23cc(void) {
 }
 
 s32 func_020a23a0(Kart *a) {
-    Unk0206bcb0_590 *p;
+    KartModelsEntry *p;
 
     p = a->mKartModelsEntry;
     return data_02156600[p->mUnk_000] + p->mUnk_020->mUnk_48[p->mUnk_000].x;

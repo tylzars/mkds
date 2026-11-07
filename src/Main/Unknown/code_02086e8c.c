@@ -433,7 +433,7 @@ void func_02086f24(u32 a, void *b, void *c) {
     s32 h;
     u32 d;
     u32 f;
-    p = func_02079bcc((u16) a);
+    p = GetKartModelResMdl((u16) a);
     n = NNS_G3dGetResDictIdxByName(p + *(u32 *) (p + 8) + 4, &data_02155a54);
     q = p + *(u32 *) (p + 8);
     r = q + 4;
