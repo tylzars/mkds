@@ -229,7 +229,7 @@ void func_02043f28(u32 a) {
 void func_02043d10(void *a) {
     s32 i;
 
-    func_02047178();
+    InitTouchPanelAndSetCalibration();
     func_02047104(a);
     for (i = 0; i <= 1; i++) {
         func_0204aa04((u32) &data_02175628[i].mUnk_28, (u32) a);

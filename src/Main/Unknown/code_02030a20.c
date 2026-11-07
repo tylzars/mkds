@@ -464,7 +464,7 @@ void InitMultiSelectMember(void *a, void *b, void *c) {
     gMultiSelectMember->mUnk_5c = b;
     gMultiSelectMember->mUnk_60 = c;
     gMultiSelectMember->mBannerMessages = FindSceneFile(data_usa_021636f4);
-    gMultiSelectMember->mCommonMessages = func_02047a28(data_usa_02163700);
+    gMultiSelectMember->mCommonMessages = FindFileInLoadedArchives(data_usa_02163700);
     gMultiSelectMember->mUnk_6c = -1;
     v = GX_GetSizeOfOBJ();
     p = &gMultiSelectMember->mUnk_24[0];

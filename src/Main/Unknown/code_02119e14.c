@@ -449,7 +449,7 @@ void func_02119e88(void) {
 }
 
 void func_02119e50(void) {
-    func_02029580(data_0215cbec[data_0215cadc[func_0202968c()]][gSelectCupCourse->mIndex]);
+    SetCourseId(data_0215cbec[data_0215cadc[func_0202968c()]][gSelectCupCourse->mIndex]);
 }
 
 void func_02119e14(void) {

@@ -269,7 +269,7 @@ void InitRecordTopMenu(void *heap) {
     func_02124ed0(heap, gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMBnll,
                   &gRecordTopMenu->mRecordTopMenuMTable);
     func_02124ed0(heap, gRecordTopMenu->mRecordTopMenuSBncl, NULL, &gRecordTopMenu->mRecordTopMenuSTable);
-    gRecordTopMenu->mUnk_20 = func_02047a28("common.bmg");
+    gRecordTopMenu->mUnk_20 = FindFileInLoadedArchives("common.bmg");
     gRecordTopMenu->mRecordMessages = FindSceneFile("record.bmg");
     rem = 0x8000;
     rem -=

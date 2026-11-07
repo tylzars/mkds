@@ -68,7 +68,7 @@ void func_02001ba0(void *a) {
     func_02046be8(&data_usa_ov001_021a99c0->mUnk_18, data_02001080, 12, NULL);
     data_usa_ov001_021a99c0->mUnk_2c_0 = 0;
     data_usa_ov001_021a99c0->mUnk_30 = 0;
-    data_usa_ov001_021a99c0->mUnk_38 = func_02047a28(data_usa_ov001_021a7720);
+    data_usa_ov001_021a99c0->mUnk_38 = FindFileInLoadedArchives(data_usa_ov001_021a7720);
     v1.mUnk_00 = TRUE;
     v1.mUnk_04 = func_020b403c(1);
     v1.mUnk_08 = 0;

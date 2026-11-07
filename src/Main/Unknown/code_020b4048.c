@@ -8,22 +8,22 @@
 #pragma optimize_for_size on
 void LoadFontAndPlayerCharacterData(void) {
     if (func_020b41d4(1) != 0) {
-        func_020b478c(&gLCFontS, func_02047a28("LC_Font_s.NFTR"));
-        func_020b478c(&gLCFontM, func_02047a28("LC_Font_m.NFTR"));
-        func_020b478c(&gMarioFont, func_02047a28("marioFont.NFTR"));
+        func_020b478c(&gLCFontS, FindFileInLoadedArchives("LC_Font_s.NFTR"));
+        func_020b478c(&gLCFontM, FindFileInLoadedArchives("LC_Font_m.NFTR"));
+        func_020b478c(&gMarioFont, FindFileInLoadedArchives("marioFont.NFTR"));
         gFontTable[0] = &gLCFontS;
         gFontTable[1] = &gLCFontM;
         gFontTable[2] = &gMarioFont;
-        LoadNclrData(gPlayerCharacterNclr, func_02047a28("player_character_M_o.NCLR"));
-        LoadNclrData(gPlayerCharacterShyguyNclr, func_02047a28("player_character_M_shyguy_o.NCLR"));
-        LoadNcgrData2(gPlayerCharacterNcgr, func_02047a28("player_character_M.nce.ncgr"));
-        LoadNcerData(gPlayerCharacterNcer, func_02047a28("player_character_M.nce.ncer"));
-        gPlayerCharacterBncl[0] = func_02047a28("player_character_M.bncl");
-        LoadNclrData(&gPlayerCharacterLNclr, func_02047a28("player_character_L_o.NCLR"));
-        LoadNclrData(&gPlayerCharacterLShyguyNclr, func_02047a28("player_character_L_shyguy_o.NCLR"));
-        LoadNcgrData2(&gPlayerCharacterLNcgr, func_02047a28("player_character_L.nce.ncgr"));
-        LoadNcerData(&gPlayerCharacterLNcer, func_02047a28("player_character_L.nce.ncer"));
-        gPlayerCharacterBncl[1] = func_02047a28("player_character_L.bncl");
+        LoadNclrData(gPlayerCharacterNclr, FindFileInLoadedArchives("player_character_M_o.NCLR"));
+        LoadNclrData(gPlayerCharacterShyguyNclr, FindFileInLoadedArchives("player_character_M_shyguy_o.NCLR"));
+        LoadNcgrData2(gPlayerCharacterNcgr, FindFileInLoadedArchives("player_character_M.nce.ncgr"));
+        LoadNcerData(gPlayerCharacterNcer, FindFileInLoadedArchives("player_character_M.nce.ncer"));
+        gPlayerCharacterBncl[0] = FindFileInLoadedArchives("player_character_M.bncl");
+        LoadNclrData(&gPlayerCharacterLNclr, FindFileInLoadedArchives("player_character_L_o.NCLR"));
+        LoadNclrData(&gPlayerCharacterLShyguyNclr, FindFileInLoadedArchives("player_character_L_shyguy_o.NCLR"));
+        LoadNcgrData2(&gPlayerCharacterLNcgr, FindFileInLoadedArchives("player_character_L.nce.ncgr"));
+        LoadNcerData(&gPlayerCharacterLNcer, FindFileInLoadedArchives("player_character_L.nce.ncer"));
+        gPlayerCharacterBncl[1] = FindFileInLoadedArchives("player_character_L.bncl");
     }
 }
 

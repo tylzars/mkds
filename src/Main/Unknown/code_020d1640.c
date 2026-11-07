@@ -15,45 +15,45 @@
 
 void CreateSearchIconMBChildAndMultiDownload(void *param_1) {
     data_0217b4b0 = HeapAlloc(param_1, 0x2c);
-    data_0217b4b0->mUnk_00 = func_02047a28("search_icon_00.bncl");
-    data_0217b4b0->mUnk_04 = func_02047a28("search_icon_layout_00.bncl");
-    LoadNcgrData2(&data_0217b4b0->mUnk_08, func_02047a28("search_icon_00.nce.ncgr"));
-    LoadNcerData(&data_0217b4b0->mUnk_0c, func_02047a28("search_icon_00.nce.ncer"));
-    LoadNclrData(&data_0217b4b0->mUnk_10, func_02047a28("search_icon_00_o.nclr"));
+    data_0217b4b0->mUnk_00 = FindFileInLoadedArchives("search_icon_00.bncl");
+    data_0217b4b0->mUnk_04 = FindFileInLoadedArchives("search_icon_layout_00.bncl");
+    LoadNcgrData2(&data_0217b4b0->mUnk_08, FindFileInLoadedArchives("search_icon_00.nce.ncgr"));
+    LoadNcerData(&data_0217b4b0->mUnk_0c, FindFileInLoadedArchives("search_icon_00.nce.ncer"));
+    LoadNclrData(&data_0217b4b0->mUnk_10, FindFileInLoadedArchives("search_icon_00_o.nclr"));
     switch (data_021759d0->mUnk_04) {
         default:
-            func_020b478c(&data_0217b4b0->mUnk_14, func_02047a28("MBChild_us.NFTR"));
+            func_020b478c(&data_0217b4b0->mUnk_14, FindFileInLoadedArchives("MBChild_us.NFTR"));
             break;
         case 2:
-            func_020b478c(&data_0217b4b0->mUnk_14, func_02047a28("MBChild_fr.NFTR"));
+            func_020b478c(&data_0217b4b0->mUnk_14, FindFileInLoadedArchives("MBChild_fr.NFTR"));
             break;
         case 3:
-            func_020b478c(&data_0217b4b0->mUnk_14, func_02047a28("MBChild_ge.NFTR"));
+            func_020b478c(&data_0217b4b0->mUnk_14, FindFileInLoadedArchives("MBChild_ge.NFTR"));
             break;
         case 4:
-            func_020b478c(&data_0217b4b0->mUnk_14, func_02047a28("MBChild_it.NFTR"));
+            func_020b478c(&data_0217b4b0->mUnk_14, FindFileInLoadedArchives("MBChild_it.NFTR"));
             break;
         case 5:
-            func_020b478c(&data_0217b4b0->mUnk_14, func_02047a28("MBChild_es.NFTR"));
+            func_020b478c(&data_0217b4b0->mUnk_14, FindFileInLoadedArchives("MBChild_es.NFTR"));
             break;
     }
     switch (data_021759d0->mUnk_04) {
         default:
-            data_0217b4b0->mUnk_20 = func_02047a28("MBChild_us.bmg");
+            data_0217b4b0->mUnk_20 = FindFileInLoadedArchives("MBChild_us.bmg");
             break;
         case 2:
-            data_0217b4b0->mUnk_20 = func_02047a28("MBChild_fr.bmg");
+            data_0217b4b0->mUnk_20 = FindFileInLoadedArchives("MBChild_fr.bmg");
             break;
         case 3:
-            data_0217b4b0->mUnk_20 = func_02047a28("MBChild_ge.bmg");
+            data_0217b4b0->mUnk_20 = FindFileInLoadedArchives("MBChild_ge.bmg");
             break;
         case 4:
-            data_0217b4b0->mUnk_20 = func_02047a28("MBChild_it.bmg");
+            data_0217b4b0->mUnk_20 = FindFileInLoadedArchives("MBChild_it.bmg");
             break;
         case 5:
-            data_0217b4b0->mUnk_20 = func_02047a28("MBChild_es.bmg");
+            data_0217b4b0->mUnk_20 = FindFileInLoadedArchives("MBChild_es.bmg");
             break;
     }
-    LoadNcgrData(&data_0217b4b0->mUnk_24, func_02047a28("multi_download_00_b.NCGR"));
-    LoadNclrData(&data_0217b4b0->mUnk_28, func_02047a28("multi_download_00_b.NCLR"));
+    LoadNcgrData(&data_0217b4b0->mUnk_24, FindFileInLoadedArchives("multi_download_00_b.NCGR"));
+    LoadNclrData(&data_0217b4b0->mUnk_28, FindFileInLoadedArchives("multi_download_00_b.NCLR"));
 }

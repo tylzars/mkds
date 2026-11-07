@@ -141,7 +141,7 @@ void func_02001598(void) {
     void *v2;
     void *v3;
     void *v4;
-    v1 = func_02047a28(data_usa_ov001_021a7680);
+    v1 = FindFileInLoadedArchives(data_usa_ov001_021a7680);
     v2 = GetBmgEntry(v1, 124);
     v3 = GetBmgEntry(v1, 0);
     v4 = GetBmgEntry(v1, 1);

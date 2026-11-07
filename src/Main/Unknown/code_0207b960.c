@@ -77,9 +77,9 @@ void func_0207d5b8(Unk0208fd8c *a, struct Unk020888b4 *b) {
     u32 v;
 
     t = FALSE;
-    a->mUnk_00--;
-    if (a->mUnk_00 <= 0) {
-        a->mUnk_00 = 0;
+    a->mHeldItemTimer--;
+    if (a->mHeldItemTimer <= 0) {
+        a->mHeldItemTimer = 0;
         t = TRUE;
     }
     if (t == FALSE) {
@@ -87,10 +87,10 @@ void func_0207d5b8(Unk0208fd8c *a, struct Unk020888b4 *b) {
     }
     func_0204360c(b->mKart->mEntryIndex, 0x600);
     a->mUnk_10 = 0;
-    if (a->mUnk_08 == NULL) {
+    if (a->mItemInUseEntry == NULL) {
         return;
     }
-    n = a->mUnk_08->mTimerRandomLimit;
+    n = a->mItemInUseEntry->mTimerRandomLimit;
     r = func_0208537c();
     if (n == 0) {
         v = 0;
@@ -98,7 +98,7 @@ void func_0207d5b8(Unk0208fd8c *a, struct Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
     }
-    a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
+    a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
 
 void func_0207d4cc(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -108,9 +108,9 @@ void func_0207d4cc(Unk0208fd8c *a, struct Unk020888b4 *b) {
     u32 v;
 
     t = FALSE;
-    a->mUnk_00--;
-    if (a->mUnk_00 <= 0) {
-        a->mUnk_00 = 0;
+    a->mHeldItemTimer--;
+    if (a->mHeldItemTimer <= 0) {
+        a->mHeldItemTimer = 0;
         t = TRUE;
     }
     if (t == FALSE) {
@@ -118,10 +118,10 @@ void func_0207d4cc(Unk0208fd8c *a, struct Unk020888b4 *b) {
     }
     func_0204360c(b->mKart->mEntryIndex, 0x600);
     a->mUnk_10 = 0;
-    if (a->mUnk_08 == NULL) {
+    if (a->mItemInUseEntry == NULL) {
         return;
     }
-    n = a->mUnk_08->mTimerRandomLimit;
+    n = a->mItemInUseEntry->mTimerRandomLimit;
     r = func_0208537c();
     if (n == 0) {
         v = 0;
@@ -129,7 +129,7 @@ void func_0207d4cc(Unk0208fd8c *a, struct Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
     }
-    a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
+    a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
 void func_0207d474(Unk0208fd8c *a, struct Unk020888b4 *b) {
     Unk021759c0 *d;
@@ -161,9 +161,9 @@ void func_0207d3ec(Unk0208fd8c *a, struct Unk020888b4 *b) {
         BOOL t;
 
         t = FALSE;
-        a->mUnk_00--;
-        if (a->mUnk_00 <= 0) {
-            a->mUnk_00 = 0;
+        a->mHeldItemTimer--;
+        if (a->mHeldItemTimer <= 0) {
+            a->mHeldItemTimer = 0;
             t = TRUE;
         }
         if (t == FALSE) {
@@ -177,9 +177,9 @@ void func_0207d3a4(Unk0208fd8c *a, struct Unk020888b4 *b) {
     BOOL t;
 
     t = FALSE;
-    a->mUnk_00--;
-    if (a->mUnk_00 <= 0) {
-        a->mUnk_00 = 0;
+    a->mHeldItemTimer--;
+    if (a->mHeldItemTimer <= 0) {
+        a->mHeldItemTimer = 0;
         t = TRUE;
     }
     if (t == FALSE) {
@@ -192,9 +192,9 @@ void func_0207d35c(Unk0208fd8c *a, struct Unk020888b4 *b) {
     BOOL t;
 
     t = FALSE;
-    a->mUnk_00--;
-    if (a->mUnk_00 <= 0) {
-        a->mUnk_00 = 0;
+    a->mHeldItemTimer--;
+    if (a->mHeldItemTimer <= 0) {
+        a->mHeldItemTimer = 0;
         t = TRUE;
     }
     if (t == FALSE) {
@@ -213,10 +213,10 @@ void func_0207d194(Unk0208fd8c *a, struct Unk020888b4 *b) {
             a->mUnk_14 = 1;
             a->mUnk_1c = 2;
             a->mUnk_10 = 0;
-            if (a->mUnk_08 == NULL) {
+            if (a->mItemInUseEntry == NULL) {
                 return;
             }
-            n = a->mUnk_08->mTimerRandomLimit;
+            n = a->mItemInUseEntry->mTimerRandomLimit;
             r = func_0208537c();
             if (n == 0) {
                 v = 0;
@@ -224,17 +224,17 @@ void func_0207d194(Unk0208fd8c *a, struct Unk020888b4 *b) {
                 r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                 v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
             }
-            a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
+            a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
             return;
         } else {
             func_0204360c(b->mKart->mEntryIndex, 0x600);
             a->mUnk_18 = 1;
             a->mUnk_1e = 2;
             a->mUnk_10 = 0;
-            if (a->mUnk_08 == NULL) {
+            if (a->mItemInUseEntry == NULL) {
                 return;
             }
-            n = a->mUnk_08->mTimerRandomLimit;
+            n = a->mItemInUseEntry->mTimerRandomLimit;
             r = func_0208537c();
             if (n == 0) {
                 v = 0;
@@ -242,7 +242,7 @@ void func_0207d194(Unk0208fd8c *a, struct Unk020888b4 *b) {
                 r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                 v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
             }
-            a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
+            a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
             return;
         }
     } else {
@@ -261,10 +261,10 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
         a->mUnk_18 = 1;
         a->mUnk_1e = 2;
         a->mUnk_10 = 0;
-        if (a->mUnk_08 == NULL) {
+        if (a->mItemInUseEntry == NULL) {
             return;
         }
-        n = a->mUnk_08->mTimerRandomLimit;
+        n = a->mItemInUseEntry->mTimerRandomLimit;
         r = func_0208537c();
         if (n == 0) {
             v = 0;
@@ -272,17 +272,17 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
             v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
         }
-        a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
+        a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
         return;
     } else if ((u32) k >= 2 && k <= data_021759c0->mKartCount - 1) {
-        switch (a->mUnk_04->mUnk_04) {
+        switch (a->mHeldItemEntry->mUnk_04) {
             case 0:
                 func_0204360c(b->mKart->mEntryIndex, 0x600);
                 a->mUnk_10 = 0;
-                if (a->mUnk_08 == NULL) {
+                if (a->mItemInUseEntry == NULL) {
                     return;
                 }
-                n = a->mUnk_08->mTimerRandomLimit;
+                n = a->mItemInUseEntry->mTimerRandomLimit;
                 r = func_0208537c();
                 if (n == 0) {
                     v = 0;
@@ -290,17 +290,17 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
                     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                     v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
                 }
-                a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
+                a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
                 return;
             case 1:
                 func_0204360c(b->mKart->mEntryIndex, 0x600);
                 a->mUnk_14 = 1;
                 a->mUnk_1c = 2;
                 a->mUnk_10 = 0;
-                if (a->mUnk_08 == NULL) {
+                if (a->mItemInUseEntry == NULL) {
                     return;
                 }
-                n = a->mUnk_08->mTimerRandomLimit;
+                n = a->mItemInUseEntry->mTimerRandomLimit;
                 r = func_0208537c();
                 if (n == 0) {
                     v = 0;
@@ -308,17 +308,17 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
                     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                     v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
                 }
-                a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
+                a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
                 return;
             case 2:
                 func_0204360c(b->mKart->mEntryIndex, 0x600);
                 a->mUnk_18 = 1;
                 a->mUnk_1e = 2;
                 a->mUnk_10 = 0;
-                if (a->mUnk_08 == NULL) {
+                if (a->mItemInUseEntry == NULL) {
                     return;
                 }
-                n = a->mUnk_08->mTimerRandomLimit;
+                n = a->mItemInUseEntry->mTimerRandomLimit;
                 r = func_0208537c();
                 if (n == 0) {
                     v = 0;
@@ -326,7 +326,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
                     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                     v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
                 }
-                a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
+                a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
                 return;
             default:
                 return;
@@ -336,10 +336,10 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
         a->mUnk_14 = 1;
         a->mUnk_1c = 2;
         a->mUnk_10 = 0;
-        if (a->mUnk_08 == NULL) {
+        if (a->mItemInUseEntry == NULL) {
             return;
         }
-        n = a->mUnk_08->mTimerRandomLimit;
+        n = a->mItemInUseEntry->mTimerRandomLimit;
         r = func_0208537c();
         if (n == 0) {
             v = 0;
@@ -347,7 +347,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
             v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
         }
-        a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
+        a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
         return;
     }
 }
@@ -359,9 +359,9 @@ void func_0207cc74(Unk0208fd8c *a, struct Unk020888b4 *b) {
     u32 v;
 
     t = FALSE;
-    a->mUnk_00--;
-    if (a->mUnk_00 <= 0) {
-        a->mUnk_00 = 0;
+    a->mHeldItemTimer--;
+    if (a->mHeldItemTimer <= 0) {
+        a->mHeldItemTimer = 0;
         t = TRUE;
     }
     if (t == FALSE) {
@@ -372,10 +372,10 @@ void func_0207cc74(Unk0208fd8c *a, struct Unk020888b4 *b) {
     }
     func_0204360c(b->mKart->mEntryIndex, 0x600);
     a->mUnk_10 = 0;
-    if (a->mUnk_08 == NULL) {
+    if (a->mItemInUseEntry == NULL) {
         return;
     }
-    n = a->mUnk_08->mTimerRandomLimit;
+    n = a->mItemInUseEntry->mTimerRandomLimit;
     r = func_0208537c();
     if (n == 0) {
         v = 0;
@@ -383,7 +383,7 @@ void func_0207cc74(Unk0208fd8c *a, struct Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
     }
-    a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
+    a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
 
 void func_0207cb74(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -393,9 +393,9 @@ void func_0207cb74(Unk0208fd8c *a, struct Unk020888b4 *b) {
     u32 v;
 
     t = FALSE;
-    a->mUnk_00--;
-    if (a->mUnk_00 <= 0) {
-        a->mUnk_00 = 0;
+    a->mHeldItemTimer--;
+    if (a->mHeldItemTimer <= 0) {
+        a->mHeldItemTimer = 0;
         t = TRUE;
     }
     if (t == FALSE) {
@@ -406,10 +406,10 @@ void func_0207cb74(Unk0208fd8c *a, struct Unk020888b4 *b) {
     }
     func_0204360c(b->mKart->mEntryIndex, 0x600);
     a->mUnk_10 = 0;
-    if (a->mUnk_04 == NULL) {
+    if (a->mHeldItemEntry == NULL) {
         return;
     }
-    n = a->mUnk_04->mTimerRandomLimit;
+    n = a->mHeldItemEntry->mTimerRandomLimit;
     r = func_0208537c();
     if (n == 0) {
         v = 0;
@@ -417,7 +417,7 @@ void func_0207cb74(Unk0208fd8c *a, struct Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
     }
-    a->mUnk_00 = a->mUnk_04->mTimerBase + (u16) v;
+    a->mHeldItemTimer = a->mHeldItemEntry->mTimerBase + (u16) v;
 }
 
 u32 func_0207cb70(u32 p0) {
@@ -444,9 +444,9 @@ void func_0207ca60(Unk0208fd8c *a, struct Unk020888b4 *b) {
     BOOL r;
 
     r = FALSE;
-    a->mUnk_02--;
-    if (a->mUnk_02 <= 0) {
-        a->mUnk_02 = 0;
+    a->mItemInUseTimer--;
+    if (a->mItemInUseTimer <= 0) {
+        a->mItemInUseTimer = 0;
         r = TRUE;
     }
     if (r == FALSE) {
@@ -459,9 +459,9 @@ void func_0207ca18(Unk0208fd8c *a, struct Unk020888b4 *b) {
     BOOL r;
 
     r = FALSE;
-    a->mUnk_02--;
-    if (a->mUnk_02 <= 0) {
-        a->mUnk_02 = 0;
+    a->mItemInUseTimer--;
+    if (a->mItemInUseTimer <= 0) {
+        a->mItemInUseTimer = 0;
         r = TRUE;
     }
     if (r == FALSE) {
@@ -485,9 +485,9 @@ void func_0207c978(Unk0208fd8c *a, struct Unk020888b4 *b) {
             return;
         }
         r = FALSE;
-        a->mUnk_02--;
-        if (a->mUnk_02 <= 0) {
-            a->mUnk_02 = 0;
+        a->mItemInUseTimer--;
+        if (a->mItemInUseTimer <= 0) {
+            a->mItemInUseTimer = 0;
             r = TRUE;
         }
         if (r == FALSE) {
@@ -514,9 +514,9 @@ void func_0207c8d8(Unk0208fd8c *a, struct Unk020888b4 *b) {
             return;
         }
         r = FALSE;
-        a->mUnk_02--;
-        if (a->mUnk_02 <= 0) {
-            a->mUnk_02 = 0;
+        a->mItemInUseTimer--;
+        if (a->mItemInUseTimer <= 0) {
+            a->mItemInUseTimer = 0;
             r = TRUE;
         }
         if (r == FALSE) {
@@ -565,10 +565,10 @@ void func_0207c6d0(Unk0208fd8c *a, struct Unk020888b4 *b) {
 
     func_0204360c(b->mKart->mEntryIndex, 0x600);
     a->mUnk_10 = 0;
-    if (a->mUnk_04 == NULL) {
+    if (a->mHeldItemEntry == NULL) {
         return;
     }
-    n = a->mUnk_04->mTimerRandomLimit;
+    n = a->mHeldItemEntry->mTimerRandomLimit;
     r = func_0208537c();
     if (n == 0) {
         v = 0;
@@ -576,7 +576,7 @@ void func_0207c6d0(Unk0208fd8c *a, struct Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
     }
-    a->mUnk_00 = a->mUnk_04->mTimerBase + (u16) v;
+    a->mHeldItemTimer = a->mHeldItemEntry->mTimerBase + (u16) v;
 }
 
 void func_0207c614(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -586,10 +586,10 @@ void func_0207c614(Unk0208fd8c *a, struct Unk020888b4 *b) {
 
     func_0204360c(b->mKart->mEntryIndex, 0x600);
     a->mUnk_10 = 0;
-    if (a->mUnk_08 == NULL) {
+    if (a->mItemInUseEntry == NULL) {
         return;
     }
-    n = a->mUnk_08->mTimerRandomLimit;
+    n = a->mItemInUseEntry->mTimerRandomLimit;
     r = func_0208537c();
     if (n == 0) {
         v = 0;
@@ -597,7 +597,7 @@ void func_0207c614(Unk0208fd8c *a, struct Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
     }
-    a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
+    a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
 
 void func_0207c548(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -609,10 +609,10 @@ void func_0207c548(Unk0208fd8c *a, struct Unk020888b4 *b) {
     a->mUnk_14 = 1;
     a->mUnk_1c = 2;
     a->mUnk_10 = 0;
-    if (a->mUnk_08 == NULL) {
+    if (a->mItemInUseEntry == NULL) {
         return;
     }
-    n = a->mUnk_08->mTimerRandomLimit;
+    n = a->mItemInUseEntry->mTimerRandomLimit;
     r = func_0208537c();
     if (n == 0) {
         v = 0;
@@ -620,7 +620,7 @@ void func_0207c548(Unk0208fd8c *a, struct Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
     }
-    a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
+    a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
 
 void func_0207c47c(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -632,10 +632,10 @@ void func_0207c47c(Unk0208fd8c *a, struct Unk020888b4 *b) {
     a->mUnk_18 = 1;
     a->mUnk_1e = 2;
     a->mUnk_10 = 0;
-    if (a->mUnk_08 == NULL) {
+    if (a->mItemInUseEntry == NULL) {
         return;
     }
-    n = a->mUnk_08->mTimerRandomLimit;
+    n = a->mItemInUseEntry->mTimerRandomLimit;
     r = func_0208537c();
     if (n == 0) {
         v = 0;
@@ -643,14 +643,14 @@ void func_0207c47c(Unk0208fd8c *a, struct Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
     }
-    a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
+    a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
 
 void func_0207c448(Unk0208fd8c *p0) {
-    p0->mUnk_00 = 0x0u;
-    p0->mUnk_02 = 0x0u;
-    p0->mUnk_04 = NULL;
-    p0->mUnk_08 = NULL;
+    p0->mHeldItemTimer = 0x0u;
+    p0->mItemInUseTimer = 0x0u;
+    p0->mHeldItemEntry = NULL;
+    p0->mItemInUseEntry = NULL;
     p0->mUnk_0c = 0x0u;
     p0->mUnk_10 = 0x0u;
     p0->mUnk_14 = 0x0u;
@@ -670,10 +670,10 @@ void func_0207c2ec(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     v1 = b->mIndex;
     if (v1 == GetRaceUpdateFramesMod8()) {
         e = &gKartItems[v1];
-        if (e->mItemInUse.mUnk_000 != 0xf && a->mUnk_08 != NULL) {
-            a->mUnk_08->mUnk_00(a, b);
-        } else if ((a->mUnk_04 != 0) & (e->mHeldItem.mUnk_00 != 0x13)) {
-            a->mUnk_04->mUnk_00(a, b);
+        if (e->mItemInUse.mUnk_000 != 0xf && a->mItemInUseEntry != NULL) {
+            a->mItemInUseEntry->mUnk_00(a, b);
+        } else if ((a->mHeldItemEntry != 0) & (e->mHeldItem.mUnk_00 != 0x13)) {
+            a->mHeldItemEntry->mUnk_00(a, b);
         } else {
             func_0204360c(b->mKart->mEntryIndex, 0x600);
         }
@@ -707,21 +707,21 @@ void func_0207c270(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     func_0207c2ec(a, b);
 }
 
-void func_0207c144(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
+void SetupHeldItemEntry(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
     enum { K0 } k;
 
     k = gKartItems[b->mIndex].mHeldItem.mUnk_00;
-    a->mUnk_04 = &data_0217ae38[k];
+    a->mHeldItemEntry = &data_0217ae38[k];
     r = func_0208537c();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     a->mUnk_20 = (s16) (u16) (r->mUnk_00 >> 52);
-    if (a->mUnk_04 == NULL) {
+    if (a->mHeldItemEntry == NULL) {
         return;
     }
-    n = a->mUnk_04->mTimerRandomLimit;
+    n = a->mHeldItemEntry->mTimerRandomLimit;
     r = func_0208537c();
     if (n == 0) {
         v = 0;
@@ -729,18 +729,18 @@ void func_0207c144(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
     }
-    a->mUnk_00 = a->mUnk_04->mTimerBase + (u16) v;
+    a->mHeldItemTimer = a->mHeldItemEntry->mTimerBase + (u16) v;
 }
 
-void func_0207c0a0(struct Unk0208fd8c *a) {
+void ResetHeldItemTimer(struct Unk0208fd8c *a) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
 
-    if (a->mUnk_04 == NULL) {
+    if (a->mHeldItemEntry == NULL) {
         return;
     }
-    n = a->mUnk_04->mTimerRandomLimit;
+    n = a->mHeldItemEntry->mTimerRandomLimit;
     r = func_0208537c();
     if (n == 0) {
         v = 0;
@@ -748,29 +748,30 @@ void func_0207c0a0(struct Unk0208fd8c *a) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
     }
-    a->mUnk_00 = a->mUnk_04->mTimerBase + (u16) v;
+    a->mHeldItemTimer = a->mHeldItemEntry->mTimerBase + (u16) v;
 }
 
-s32 func_0207c078(struct Unk0208fd8c *a) {
+// Counts the held-item timer down; returns TRUE once it has run out.
+s32 DecrementHeldItemTimer(struct Unk0208fd8c *a) {
     BOOL r = FALSE;
 
-    a->mUnk_00--;
-    if (a->mUnk_00 <= 0) {
-        a->mUnk_00 = 0;
+    a->mHeldItemTimer--;
+    if (a->mHeldItemTimer <= 0) {
+        a->mHeldItemTimer = 0;
         r = TRUE;
     }
     return r;
 }
 
-void func_0207bfd4(struct Unk0208fd8c *a, struct Unk0208fd8c_08 *b) {
+void ResetItemInUseTimer(struct Unk0208fd8c *a, struct Unk0208fd8c_08 *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
 
-    if (a->mUnk_08 == NULL) {
+    if (a->mItemInUseEntry == NULL) {
         return;
     }
-    n = a->mUnk_08->mTimerRandomLimit;
+    n = a->mItemInUseEntry->mTimerRandomLimit;
     r = func_0208537c();
     if (n == 0) {
         v = 0;
@@ -778,33 +779,34 @@ void func_0207bfd4(struct Unk0208fd8c *a, struct Unk0208fd8c_08 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
     }
-    a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
+    a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
 
-s32 func_0207bfac(struct Unk0208fd8c *a) {
+// Counts the item-in-use timer down; returns TRUE once it has run out.
+s32 DecrementItemInUseTimer(struct Unk0208fd8c *a) {
     BOOL r = FALSE;
 
-    a->mUnk_02--;
-    if (a->mUnk_02 <= 0) {
-        a->mUnk_02 = 0;
+    a->mItemInUseTimer--;
+    if (a->mItemInUseTimer <= 0) {
+        a->mItemInUseTimer = 0;
         r = TRUE;
     }
     return r;
 }
 
-void func_0207becc(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
+void SetupItemInUseEntry(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
     enum { K0 } k;
 
     k = gKartItems[b->mIndex].mItemInUse.mUnk_000;
-    a->mUnk_08 = &data_0217ae34[k];
+    a->mItemInUseEntry = &data_0217ae34[k];
     a->mUnk_0c = 0;
-    if (a->mUnk_08 == NULL) {
+    if (a->mItemInUseEntry == NULL) {
         return;
     }
-    n = a->mUnk_08->mTimerRandomLimit;
+    n = a->mItemInUseEntry->mTimerRandomLimit;
     r = func_0208537c();
     if (n == 0) {
         v = 0;
@@ -812,7 +814,7 @@ void func_0207becc(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
     }
-    a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
+    a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
 
 void SetupPosCurve(PosCurve *a, struct CourseMapCamera *b) {

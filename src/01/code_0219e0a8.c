@@ -29,7 +29,7 @@ void CreateEndingScene(void *heap) {
         gEndingScene->mKind = 0;
     }
     gEndingScene->mIndex1Queued = FALSE;
-    gEndingScene->mCommonMessages = func_02047a28("common.bmg");
+    gEndingScene->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     func_ov001_0219e660();
     LoadAndQueueEndingSceneData();
     func_020ae6d4(gEndingScene->mMainOam, NULL);

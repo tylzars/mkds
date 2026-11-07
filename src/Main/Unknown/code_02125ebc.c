@@ -184,16 +184,16 @@ s32 func_0212717c(s32 d) {
         LocateNscr(&gTxtSystem->mBgNscrs[0], FindSceneFile(data_0216e720));
         LocateNclr(&c, FindSceneFile(data_0216e738));
     } else {
-        LocateNcgr(&a, func_02047a28(data_0216e750));
-        LocateNcgr(&b, func_02047a28(data_0216e768));
-        LocateNscr(&gTxtSystem->mBgNscrs[0], func_02047a28(data_0216e780));
-        LocateNscr(&gTxtSystem->mBgNscrs[1], func_02047a28(data_0216e798));
-        LocateNscr(&gTxtSystem->mBgNscrs[2], func_02047a28(data_0216e7b0));
-        LocateNscr(&gTxtSystem->mBgNscrs[3], func_02047a28(data_0216e7c8));
-        LocateNscr(&gTxtSystem->mBgNscrs[4], func_02047a28(data_0216e7e0));
-        LocateNscr(&gTxtSystem->mBgNscrs[5], func_02047a28(data_0216e7f8));
-        LocateNscr(&gTxtSystem->mBgNscrs[6], func_02047a28(data_0216e810));
-        LocateNclr(&c, func_02047a28(data_0216e828));
+        LocateNcgr(&a, FindFileInLoadedArchives(data_0216e750));
+        LocateNcgr(&b, FindFileInLoadedArchives(data_0216e768));
+        LocateNscr(&gTxtSystem->mBgNscrs[0], FindFileInLoadedArchives(data_0216e780));
+        LocateNscr(&gTxtSystem->mBgNscrs[1], FindFileInLoadedArchives(data_0216e798));
+        LocateNscr(&gTxtSystem->mBgNscrs[2], FindFileInLoadedArchives(data_0216e7b0));
+        LocateNscr(&gTxtSystem->mBgNscrs[3], FindFileInLoadedArchives(data_0216e7c8));
+        LocateNscr(&gTxtSystem->mBgNscrs[4], FindFileInLoadedArchives(data_0216e7e0));
+        LocateNscr(&gTxtSystem->mBgNscrs[5], FindFileInLoadedArchives(data_0216e7f8));
+        LocateNscr(&gTxtSystem->mBgNscrs[6], FindFileInLoadedArchives(data_0216e810));
+        LocateNclr(&c, FindFileInLoadedArchives(data_0216e828));
     }
     gTxtSystem->mCanvasFileCharIndex[0] = 0;
     DC_FlushRange(a->mData, a->mDataSize);

@@ -59,7 +59,7 @@ void InitWiFiAikotoba(void *a) {
     func_020ae6d4(c, func_ov000_021804e0());
     func_02124ed0(a, gWiFiAikotoba->mWiFiAikotobaBncl, NULL, &gWiFiAikotoba->mWiFiAikotobaTable);
     gWiFiAikotoba->mWiFiMessages = FindSceneFile(data_ov000_021b0ee8);
-    gWiFiAikotoba->mCommonMessages = func_02047a28(data_ov000_021b0ef4);
+    gWiFiAikotoba->mCommonMessages = FindFileInLoadedArchives(data_ov000_021b0ef4);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov000_021b06c8[i]; j++) {
             gWiFiAikotoba->mWiFiAikotobaTable[data_ov000_021b06d0[i][j]].mUnk_04 = 0xfa;

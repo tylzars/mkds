@@ -35,7 +35,7 @@ void InitOptionEmbremSelect(void *a) {
     func_02124ed0(a, gOptionEmbremSelect->mOptionEmbremSelectSBncl, gOptionEmbremSelect->mOptionEmbremSelectSBnll,
                   &gOptionEmbremSelect->mOptionEmbremSelectSTable);
     gOptionEmbremSelect->mOptionMessages = FindSceneFile("option.bmg");
-    gOptionEmbremSelect->mCommonMessages = func_02047a28("common.bmg");
+    gOptionEmbremSelect->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     func_021243ac(a, 0, gOptionEmbremSelect->mOptionEmbremSelectSBnll, 0xa0, 0xe, 9,
                   gOptionEmbremSelect->mOptionEmbremSelectSNcer, gOptionEmbremSelect->mOptionEmbremSelectSBncl,
                   gOptionEmbremSelect->mOptionEmbremSelectSTable, 0x4000);

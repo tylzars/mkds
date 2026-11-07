@@ -3,7 +3,7 @@
 #include "types.h"
 
 typedef struct NNSG3dResMdl NNSG3dResMdl;
-typedef struct Unk020ebef8 Unk020ebef8;
+typedef struct Woodbox1 Woodbox1;
 
 // First argument of func_020ea670, func_020ea740, func_020ea7cc and func_020ea8a8.
 typedef struct Unk020ea670 {
@@ -19,7 +19,7 @@ typedef struct Unk020ea868 {
     /* 06e */ u16 mUnk_06e;
 } Unk020ea868;
 
-// Second argument of func_020eb498, func_020eb760 and func_020eb7e0.
+// Second argument of InitWoodbox1, func_020eb760 and func_020eb7e0.
 typedef struct Unk020eb498 {
     /* 000 */ Vec3 mUnk_000;
     /* 00c */ u8 mUnk_00c[4];
@@ -78,13 +78,13 @@ void func_020eac20(Vec3 *param_1, s32 param_2);
 void func_020eacc0(Vec3 *param_1, s32 param_2, Vec3 *param_3, Vec3 *param_4);
 void func_020eb2a0(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4, Vec3 *param_5);
 void func_020eb3f0(Vec3 *param_1, Vec3 *param_2, s32 param_3, Vec3 *param_4);
-void func_020eb498(Unk020ebef8 *param_1, Unk020eb498 *param_2);
-void func_020eb720(void);
-u32 func_020eb760(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4);
-u32 func_020eb7e0(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4);
-void func_020eb8f8(Unk020ebef8 *param_1);
-void func_020ebab0(Unk020ebef8 *param_1);
-void func_020ebb04(Unk020ebef8 *param_1);
-BOOL func_020ebc2c(Unk020ebef8 *param_1);
-void func_020ebe68(Unk020ebef8 *param_1);
-void func_020ebeac(Unk020ebeac *p0);
+void InitWoodbox1(Woodbox1 *param_1, Unk020eb498 *param_2);
+void ClearWoodbox1Pointer(void);
+u32 func_020eb760(Woodbox1 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4);
+u32 func_020eb7e0(Woodbox1 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4);
+void UpdateWoodbox1State3(Woodbox1 *param_1);
+void UpdateWoodbox1State2(Woodbox1 *param_1);
+void EnterWoodbox1State2(Woodbox1 *param_1);
+BOOL func_020ebc2c(Woodbox1 *param_1);
+void UpdateWoodbox1State1(Woodbox1 *param_1);
+void EnterWoodbox1State1(Unk020ebeac *p0);

@@ -246,7 +246,7 @@ void InitTimeAttackGhostSend(void *a, void *b, void *c) {
     gTimeAttackGhostSend->mHeap = h;
     gTimeAttackGhostSend->mUnk_048[0] = b;
     gTimeAttackGhostSend->mUnk_048[1] = c;
-    gTimeAttackGhostSend->mCommonMessages = func_02047a28(data_usa_02162d04);
+    gTimeAttackGhostSend->mCommonMessages = FindFileInLoadedArchives(data_usa_02162d04);
     gTimeAttackGhostSend->mGhostMessages = FindSceneFile(gGhostBmgName);
     func_0204f240(gTimeAttackGhostSend->mHeap, 2);
     func_020258d4(0, gTimeAttackGhostSend, gTimeAttackGhostSendMBNcgrName, gTimeAttackGhostSendMBNclrName,

@@ -260,7 +260,7 @@ void InitSelectCupM(void *a, void *b, void *c) {
         gSelectCupM->mState = 0;
     }
     LocateAndQueueSelectCupM();
-    gSelectCupM->mCommonMessages = func_02047a28(data_0216e09c);
+    gSelectCupM->mCommonMessages = FindFileInLoadedArchives(data_0216e09c);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_02124ed0(gSelectCupM->mHeap, gSelectCupM->mMainBncl, gSelectCupM->mMainBnll, &gSelectCupM->mMainTable);
         func_02124ed0(gSelectCupM->mHeap, gSelectCupM->mSubBncl, gSelectCupM->mSubBnll, &gSelectCupM->mSubTable);

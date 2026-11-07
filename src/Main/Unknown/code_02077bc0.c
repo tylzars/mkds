@@ -1256,7 +1256,7 @@ void func_02078e4c(void *param_1, void *param_2) {
 
 void func_02078d64(void *param_1) {
     u32 i;
-    func_02047b6c(1);
+    SetHeapGroupId(1);
     func_02062860();
     NNS_G3dGeUseFastDma(0);
     data_021759d0->mUnk_1c &= ~8;
@@ -1275,14 +1275,14 @@ void func_02078d64(void *param_1) {
         data_0217ad08->mUnk_1e8 = data_0217aa08->mUnk_04->mUnk_008;
         data_0217ad08->mUnk_1ec = GetEmblemSBNclr()->mData;
     }
-    func_02047b6c(9);
+    SetHeapGroupId(9);
 }
 
 void func_02078c58(void *param_1) {
     u32 i;
     enum { K0 } j;
     s32 a;
-    func_02047b6c(1);
+    SetHeapGroupId(1);
     func_02062860();
     NNS_G3dGeUseFastDma(0);
     data_021759d0->mUnk_1c &= ~8;
@@ -1314,7 +1314,7 @@ void func_02078c58(void *param_1) {
     LoadKartAndCharacterFiles();
     func_02077c1c();
     func_02078ee0(&data_0217ad08->mUnk_024, 0);
-    func_02047b6c(9);
+    SetHeapGroupId(9);
 }
 
 void InitKartModelMenu(void *param_1) {
@@ -1342,7 +1342,7 @@ void InitKartModelMenu(void *param_1) {
         func_02078f18(param_1, &data_0217ad08->mUnk_058[i]);
     }
     func_02078ee0(&data_0217ad08->mUnk_024, 1);
-    func_02047b6c(9);
+    SetHeapGroupId(9);
 }
 
 s16 *func_02078b04(s32 param_1, s32 param_2) {

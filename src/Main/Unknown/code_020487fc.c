@@ -204,9 +204,9 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
     }
     OS_RestoreInterrupts(t);
     data_021759cc->mUnk_10c = 0;
-    func_02047b6c(0);
+    SetHeapGroupId(0);
     func_02047ba0(a->mScene);
-    func_02047b6c(9);
+    SetHeapGroupId(9);
     GetHeap(func_020364e8());
     CallQueueInit(HeapAlloc(GetHeap(func_020364e8()), 0x800), 0x80);
     if (func_0204a428(a->mScene, &n)) {
@@ -354,7 +354,7 @@ end:
     if (data_021759d0->mUnk_1c_1 && func_0204a340(a->mScene, a->mNextScene)) {
         func_0204aba8();
     }
-    func_02047b88();
+    ReleaseArchiveSlots();
     if (v != 0) {
         a->mNextScene = 0;
     } else {

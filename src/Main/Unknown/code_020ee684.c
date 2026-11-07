@@ -50,7 +50,8 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_020f1048(ItemPool *v1, s32 v2, ItemObject **out, u16 v3, Vec3 *v) {
+// Hands out count objects from the pool, releasing the first active one while the pool is too full.
+void TakeItemPoolObjects(ItemPool *v1, s32 v2, ItemObject **out, u16 v3, Vec3 *v) {
     s32 i;
 
     if (v1->mTakenCount + v2 > v1->mObjectCount) {
@@ -813,8 +814,8 @@ void InitKartItems(KartItems *a, s32 n) {
     a->mKart = GetKart(n);
     a->mUnk_200 = ((Unk021759c0_000 *) data_021759c0)->mUnk_07c[n].mUnk_00;
     InitItemSlot(a, a);
-    func_020f4b20(&a->mHeldItem, a);
-    func_020ee684(&a->mItemInUse, a);
+    InitHeldItem(&a->mHeldItem, a);
+    InitItemInUse(&a->mItemInUse, a);
     q = (Unk02175620_060 *) gCourseMap;
     a->mUnk_1f0.mUnk_00 = q->mUnk_060 != 0 ? q->mUnk_0b0 : 0;
     a->mUnk_1f0.mUnk_04 = 1;
@@ -1319,7 +1320,7 @@ void func_020ee6e8(Unk020eda5c *a, s32 i, ItemObject *v) {
     func_020efa48(a, v);
 }
 
-void func_020ee6a8(Unk020eda5c *a) {
+void ResetItemInUse(Unk020eda5c *a) {
     s32 i;
 
     a->mUnk_000 = 0xf;
@@ -1332,9 +1333,9 @@ void func_020ee6a8(Unk020eda5c *a) {
     a->mUnk_024 = 0;
 }
 
-void func_020ee684(Unk020eda5c *a, KartItems *b) {
+void InitItemInUse(Unk020eda5c *a, KartItems *b) {
     a->mUnk_00c = b;
     a->mUnk_010 = b->mKart;
     a->mUnk_028 = b->mKartIndex;
-    func_020ee6a8(a);
+    ResetItemInUse(a);
 }

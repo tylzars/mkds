@@ -79,8 +79,8 @@ typedef struct Unk02175620_060 {
     /* 0b0 */ void *mUnk_0b0;
 } Unk02175620_060;
 
-void func_020ee684(Unk020eda5c *a, KartItems *b);
-void func_020ee6a8(Unk020eda5c *a);
+void InitItemInUse(Unk020eda5c *a, KartItems *b);
+void ResetItemInUse(Unk020eda5c *a);
 void func_020ee6e8(Unk020eda5c *a, s32 i, ItemObject *v);
 void func_020ee748(Unk020eda5c *a);
 void func_020ee9b0(Unk020eda5c *a);
@@ -128,4 +128,4 @@ void StartItemObject(ItemPool *tab, ItemObject *v);
 // Hands an object back to its pool behind the active and taken parts and counts it out; what the object holds is
 // freed by ReleaseItemObject.
 void ReleaseItemPoolObject(ItemPool *tab, ItemObject *v);
-void func_020f1048(ItemPool *tab, s32 count, ItemObject **out, u16 kind, Vec3 *v);
+void TakeItemPoolObjects(ItemPool *tab, s32 count, ItemObject **out, u16 kind, Vec3 *v);

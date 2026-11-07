@@ -207,7 +207,7 @@ void func_020357dc(void *a, void *b, void *c) {
     data_02174e68->mHeap = h;
     data_02174e68->mUnk_24[0] = b;
     data_02174e68->mUnk_24[1] = c;
-    data_02174e68->mUnk_84 = func_02047a28(data_021644e0);
+    data_02174e68->mUnk_84 = FindFileInLoadedArchives(data_021644e0);
     data_02174e68->mUnk_88 = FindSceneFile(data_021644ec);
     s = &data_02174e68->mUnk_2c[0];
     n = GX_GetSizeOfOBJ();

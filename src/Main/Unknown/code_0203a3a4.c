@@ -142,19 +142,19 @@ void InitRaceScene(void) {
         func_02053e74();
     }
     func_02062860();
-    func_02047b6c(7);
+    SetHeapGroupId(7);
     func_02056158(p);
     func_0203ad58(p);
     func_020431e4();
-    func_02047b6c(9);
+    SetHeapGroupId(9);
     InitRace();
-    func_02047b6c(5);
+    SetHeapGroupId(5);
     InitChoisesS();
     func_020b03bc();
     if (data_021759c0->mUnk_00c != 3) {
         func_020af99c();
     }
-    func_02047b6c(8);
+    SetHeapGroupId(8);
     x = data_021759c0->mUnk_57;
     if (x == 0 && data_021759c0->mMode == MODE_MISSION_RUN) {
         if ((data_021759c0->mUnk_044 & 0x10) != 0) {
@@ -162,7 +162,7 @@ void InitRaceScene(void) {
         }
     }
     func_02043a9c(x);
-    func_02047b6c(9);
+    SetHeapGroupId(9);
     if (data_021759c0->mMode != MODE_BATTLE) {
         if (data_021759c0->mMode == 5) {
             f = FALSE;

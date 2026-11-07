@@ -57,9 +57,9 @@ void func_0208c000(Vec3 *a, Vec3 *b, Unk020888b4 *p) {
 }
 
 void func_0208bfec(Unk020888b4 *p) {
-    func_0207c144(&p->mUnk_11c, p);
+    SetupHeldItemEntry(&p->mUnk_11c, p);
 }
 
 void func_0208bfd8(Unk020888b4 *p) {
-    func_0207becc(&p->mUnk_11c, p);
+    SetupItemInUseEntry(&p->mUnk_11c, p);
 }

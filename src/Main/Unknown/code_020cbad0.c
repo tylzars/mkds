@@ -89,17 +89,17 @@ void func_020cbb10(void) {
     data_0217b43c->mUnk_95c = TRUE;
     func_020cc3b8();
     func_020ae6d4(data_0217b43c->mUnk_108, data_0217b43c->mUnk_50c);
-    func_02047b6c(9);
+    SetHeapGroupId(9);
     func_02062860();
-    func_02047b6c(5);
+    SetHeapGroupId(5);
     func_020629a4();
-    func_02047b6c(9);
+    SetHeapGroupId(9);
     if (func_020cbad0() == 0) {
         func_02078d64(func_020cb99c());
         func_02078a9c(-1);
         func_02078a34(-1);
     }
-    func_02047b6c(5);
+    SetHeapGroupId(5);
     if (func_020cbad0() == 0) {
         func_0211e480(func_020cb99c());
         InitCupPicture();

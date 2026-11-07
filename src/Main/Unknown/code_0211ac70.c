@@ -932,7 +932,7 @@ void func_0211c474(void) {
         func_020295a0();
     }
     func_02029570(data_0215cd28[gSelectRaceRule->mRowValues[1]]);
-    func_02029560(data_0215cce4[gSelectRaceRule->mRowValues[2]]);
+    SetCourseListMode(data_0215cce4[gSelectRaceRule->mRowValues[2]]);
     func_02029540(data_0215ccf0[gSelectRaceRule->mRowValues[3]]);
     switch (gSelectRaceRule->mRowValues[3]) {
         case 0:
@@ -943,9 +943,9 @@ void func_0211c474(void) {
             break;
     }
     if (gSelectRaceRule->mRowValues[4] == 0) {
-        func_02029520();
+        ClearUseTeams();
     } else {
-        func_02029530();
+        SetUseTeams();
     }
     func_0211c5ac();
 }
@@ -1112,15 +1112,15 @@ void func_0211bd84(void) {
     u32 b;
     a = 3;
     if (func_020cccb4() == 8 || func_020cccb4() == 9 || func_020cccb4() == 0xf) {
-        func_02029520();
+        ClearUseTeams();
         func_020295a0();
         func_020295c0(0);
         func_02029570(0);
-        func_02029560(0);
+        SetCourseListMode(0);
         func_02029540(0);
         func_02029550(0);
     }
-    if (func_0202962c() != 0) {
+    if (GetUseTeams() != 0) {
         switch (gSelectRaceRule->mMode) {
             case 0:
             case 1:
@@ -1174,7 +1174,7 @@ void func_0211bd84(void) {
             }
             break;
     }
-    b = data_0215cccc[func_0202965c()];
+    b = data_0215cccc[GetCourseListMode()];
     gSelectRaceRule->mRow = 2;
     while (b != gSelectRaceRule->mRowValues[2]) {
         MoveSelectRaceRuleValueNext(0);
@@ -1366,7 +1366,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
     }
     LocateAndQueueSelectRaceRule();
     func_02124ed0(gSelectRaceRule->mHeap, gSelectRaceRule->mBncl, gSelectRaceRule->mBnll, &gSelectRaceRule->mTable);
-    gSelectRaceRule->mCommonMessages = func_02047a28(data_0216de38);
+    gSelectRaceRule->mCommonMessages = FindFileInLoadedArchives(data_0216de38);
     gSelectRaceRule->mRuleMessages = FindSceneFile(data_0216de44);
     n = gSelectRaceRule->mBncl->mUnk_06;
     e = GX_GetSizeOfSubOBJ();

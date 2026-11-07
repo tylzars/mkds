@@ -103,7 +103,7 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
     a->mUnk_170 = NULL;
     a->mUnk_0e8 = gItemInfos[k].mObjectKind == 8 ? 0xb400 : 0x4333;
     u = *(vs32 *) &a->mUnk_000;
-    func_020f1048(&gItemPools[u], a->mUnk_020, a->mUnk_014, a->mUnk_010->mIndex, &a->mUnk_050);
+    TakeItemPoolObjects(&gItemPools[u], a->mUnk_020, a->mUnk_014, a->mUnk_010->mIndex, &a->mUnk_050);
     func_020ee528(a);
     if (f1 != NULL) {
         f1(a);
@@ -264,7 +264,7 @@ void func_020eddb4(Unk020eda5c *p) {
     }
     func_020edf10(p);
     if (p->mUnk_020 == 0) {
-        func_020ee6a8(p);
+        ResetItemInUse(p);
     }
     if (p->mUnk_024 <= 0) {
         return;
@@ -286,7 +286,7 @@ void func_020eddb4(Unk020eda5c *p) {
     if (p->mUnk_020 != 0) {
         return;
     }
-    func_020ee6a8(p);
+    ResetItemInUse(p);
 }
 
 s32 func_020edc9c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d) {
@@ -351,7 +351,7 @@ void func_020edb00(Unk020eda5c *p) {
         p->mUnk_020--;
         ReleaseItemPoolObject(&gItemPools[p->mUnk_014[p->mUnk_020]->mKind], p->mUnk_014[p->mUnk_020]);
     }
-    func_020ee6a8(p);
+    ResetItemInUse(p);
     if (p->mUnk_170 != NULL) {
         p->mUnk_00c->mActiveItem = 0x13;
         p->mUnk_170 = NULL;
@@ -379,7 +379,7 @@ void func_020eda5c(Unk020eda5c *p, ItemObject *q) {
             if (p->mUnk_020 != 0) {
                 return;
             }
-            func_020ee6a8(p);
+            ResetItemInUse(p);
             return;
         }
     }

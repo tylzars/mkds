@@ -47,12 +47,12 @@ void func_0207bd6c(PosCurve *a, struct CourseMapCamera *b);
 // Restarts the curve a on the entry b: clears its parameter and counters and, when the entry's group has four or more
 // points, loads the first four as its control points (nothing is loaded for fewer).
 void SetupPosCurve(PosCurve *a, struct CourseMapCamera *b);
-void func_0207becc(struct Unk0208fd8c *a, struct Unk020888b4 *b);
-s32 func_0207bfac(struct Unk0208fd8c *a);
-void func_0207bfd4(struct Unk0208fd8c *a, struct Unk0208fd8c_08 *b);
-s32 func_0207c078(struct Unk0208fd8c *a);
-void func_0207c0a0(struct Unk0208fd8c *a);
-void func_0207c144(struct Unk0208fd8c *a, struct Unk020888b4 *b);
+void SetupItemInUseEntry(struct Unk0208fd8c *a, struct Unk020888b4 *b);
+s32 DecrementItemInUseTimer(struct Unk0208fd8c *a);
+void ResetItemInUseTimer(struct Unk0208fd8c *a, struct Unk0208fd8c_08 *b);
+s32 DecrementHeldItemTimer(struct Unk0208fd8c *a);
+void ResetHeldItemTimer(struct Unk0208fd8c *a);
+void SetupHeldItemEntry(struct Unk0208fd8c *a, struct Unk020888b4 *b);
 void func_0207c270(struct Unk0208fd8c *a, struct Unk020888b4 *b);
 void func_0207c2ec(struct Unk0208fd8c *a, struct Unk020888b4 *b);
 void func_0207c448(Unk0208fd8c *p0);

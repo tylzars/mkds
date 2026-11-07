@@ -247,7 +247,7 @@ void InitRecordVSErase(void *a) {
                   &gRecordVSErase->mRecordVSMTransientTable);
     func_02124ed0(a, gRecordVSErase->mRecordVSSEraseBncl, gRecordVSErase->mRecordVSSEraseBnll,
                   &gRecordVSErase->mRecordVSSEraseTable);
-    gRecordVSErase->mCommonMessages = func_02047a28(data_0216d4a4);
+    gRecordVSErase->mCommonMessages = FindFileInLoadedArchives(data_0216d4a4);
     gRecordVSErase->mRecordMessages = FindSceneFile(data_0216d4b0);
     v = 0x8000;
     v -= func_021243ac(a, 0, gRecordVSErase->mRecordVSMBnll, 0x8c, 0x10, 0, gRecordVSErase->mRecordVSMNcer,

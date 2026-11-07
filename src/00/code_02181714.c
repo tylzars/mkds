@@ -61,7 +61,7 @@ void InitWiFiTopMenu(void *heap) {
     gWiFiTopMenu->mStateFrames = 0;
     gWiFiTopMenu->mUnk_18 = TRUE;
     gWiFiTopMenu->mWiFiMessages = FindSceneFile("wifi.bmg");
-    gWiFiTopMenu->mCommonMessages = func_02047a28("common.bmg");
+    gWiFiTopMenu->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     LocateAndQueueWiFiTopMenu();
     for (i = 0; i < 3; i++) {
         func_02124a98(data_ov000_021b05c0[i], 1, gWiFiTopMenu->mWiFiTopMenuSNcer, gWiFiTopMenu->mWiFiTopMenuBncl);

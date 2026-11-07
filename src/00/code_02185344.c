@@ -69,7 +69,7 @@ void InitWiFiAikotobaCheck(void *a) {
     gWiFiAikotobaCheck->mPendingWiFiState = -1;
     gWiFiAikotobaCheck->mStateFrames = 0;
     gWiFiAikotobaCheck->mWiFiMessages = FindSceneFile(data_ov000_021b0fc0);
-    gWiFiAikotobaCheck->mCommonMessages = func_02047a28(data_ov000_021b0fcc);
+    gWiFiAikotobaCheck->mCommonMessages = FindFileInLoadedArchives(data_ov000_021b0fcc);
     LocateAndUploadWiFiAikotobaCheck();
     b = func_ov000_021804f4();
     func_020ae6d4(b, func_ov000_021804e0());

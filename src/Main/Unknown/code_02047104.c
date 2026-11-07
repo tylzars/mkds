@@ -40,7 +40,7 @@
 
 #pragma thumb on
 
-void func_020483a0(char *a) {
+void BuildResultArchivePath(char *a) {
     const char *b;
 
     if (data_0217b488->mUnk_78 == 1) {
@@ -68,7 +68,7 @@ void func_02048350(char *a) {
 
 #pragma thumb on
 
-void func_02048324(char *a) {
+void BuildStaffRollArchivePath(char *a) {
     u32 v1;
     v1 = func_02048474();
     OS_SNPrintf(a, 0x80, data_021650bc, v1, data_021650d8);
@@ -98,7 +98,7 @@ void func_02048284(const char *a, char *b) {
 
 #pragma thumb on
 
-void func_02048050(int a, int b) {
+void LoadArchiveSlotForScene(int a, int b) {
     char c[0x80] = {0};
     u32 *d;
     s32 f;
@@ -136,7 +136,7 @@ void func_02048050(int a, int b) {
             }
             switch (b) {
                 case 10:
-                    func_020483a0(c);
+                    BuildResultArchivePath(c);
                     break;
                 case 2:
                     if (data_021759c0->mUnk_00c == 6) {
@@ -169,7 +169,7 @@ void func_02048050(int a, int b) {
                     break;
                 case 2:
                     if (data_021759c0->mUnk_00c == 6) {
-                        func_02048324(c);
+                        BuildStaffRollArchivePath(c);
                     } else {
                         func_0204840c(c, gSceneNames[b].mUnk_00);
                     }
@@ -203,15 +203,15 @@ void func_02048050(int a, int b) {
             break;
     }
     if (c[0] != 0) {
-        func_02047f7c(a, c, d, NULL, f, e, g);
+        LoadArchiveSlot(a, c, d, NULL, f, e, g);
     }
     h = *(s32 *) ((s32) &data_usa_021543e0[0].mUnk_04 + a * 0x18);
     if (h != -1) {
-        func_02048050(h, b);
+        LoadArchiveSlotForScene(h, b);
     }
 }
 
-void func_02047f7c(s32 a, const char *b, u32 *c, void *d, s32 e, s32 f, s32 g) {
+void LoadArchiveSlot(s32 a, const char *b, u32 *c, void *d, s32 e, s32 f, s32 g) {
     Unk021759c8_8c8 *p;
     s32 h;
 
@@ -230,23 +230,23 @@ void func_02047f7c(s32 a, const char *b, u32 *c, void *d, s32 e, s32 f, s32 g) {
                 if (h != -1) {
                     data_021759c8->mUnk_9b0[h].mUnk_08_31 = 1;
                 }
-                func_02047e0c();
+                UncompressArchiveMemory();
             } else {
                 p->mUnk_84 = p->mUnk_80;
             }
-            func_02047db8();
+            LoadArchiveSlotData();
         }
     } else {
         if (a == 0x13) {
-            func_02047e0c();
+            UncompressArchiveMemory();
         } else {
-            func_02047e94();
+            UncompressArchiveFile();
         }
-        func_02047db8();
+        LoadArchiveSlotData();
     }
 }
 
-void func_02047e94(void) {
+void UncompressArchiveFile(void) {
     Unk021759c8_8c8 *p;
     FSFile f;
     MIUncompContextLZ b;
@@ -281,7 +281,7 @@ void func_02047e94(void) {
     NNS_FndGetTotalFreeSizeForExpHeap(GetHeap(func_020364e8()));
 }
 
-void func_02047e0c(void) {
+void UncompressArchiveMemory(void) {
     Unk021759c8_8c8 *p;
     u32 n;
 
@@ -297,7 +297,7 @@ void func_02047e0c(void) {
     NNS_FndGetTotalFreeSizeForExpHeap(GetHeap(func_020364e8()));
 }
 
-void func_02047db8(void) {
+void LoadArchiveSlotData(void) {
     Unk021759c8_8c8 *p;
     ArchiveSlot *e;
 
@@ -311,7 +311,7 @@ void func_02047db8(void) {
     }
 }
 
-void func_02047cf0(int a) {
+void ReleaseArchiveSlot(int a) {
     BOOL b;
     s32 c;
 
@@ -338,35 +338,35 @@ void func_02047cf0(int a) {
 void func_02047ba0(s32 a) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 && a == 6 && data_0217b488->mUnk_74 == 0) {
     } else {
-        func_02048050(1, a);
+        LoadArchiveSlotForScene(1, a);
     }
     switch (a) {
         case 1:
         case 12:
-            func_02048050(5, a);
-            func_02048050(14, a);
-            func_02048050(16, a);
+            LoadArchiveSlotForScene(5, a);
+            LoadArchiveSlotForScene(14, a);
+            LoadArchiveSlotForScene(16, a);
             break;
         case 10:
-            func_02048050(0, a);
-            func_02048050(5, a);
-            func_02048050(16, a);
-            func_02048050(18, a);
+            LoadArchiveSlotForScene(0, a);
+            LoadArchiveSlotForScene(5, a);
+            LoadArchiveSlotForScene(16, a);
+            LoadArchiveSlotForScene(18, a);
             break;
         case 2:
-            func_02048050(18, a);
-            func_02048050(6, a);
-            func_02048050(8, a);
+            LoadArchiveSlotForScene(18, a);
+            LoadArchiveSlotForScene(6, a);
+            LoadArchiveSlotForScene(8, a);
             break;
         case 3:
-            func_02048050(0, a);
-            func_02048050(5, a);
-            func_02048050(16, a);
+            LoadArchiveSlotForScene(0, a);
+            LoadArchiveSlotForScene(5, a);
+            LoadArchiveSlotForScene(16, a);
             break;
         case 5:
-            func_02048050(5, a);
-            func_02048050(14, a);
-            func_02048050(16, a);
+            LoadArchiveSlotForScene(5, a);
+            LoadArchiveSlotForScene(14, a);
+            LoadArchiveSlotForScene(16, a);
             break;
         case 0:
         case 7:
@@ -376,36 +376,36 @@ void func_02047ba0(s32 a) {
         case 13:
         case 14:
         case 15:
-            func_02048050(5, a);
-            func_02048050(16, a);
+            LoadArchiveSlotForScene(5, a);
+            LoadArchiveSlotForScene(16, a);
             break;
         case 4:
             if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-                func_02048050(5, a);
-                func_02048050(16, a);
+                LoadArchiveSlotForScene(5, a);
+                LoadArchiveSlotForScene(16, a);
             }
             break;
         case 6:
             if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-                func_02048050(5, a);
-                func_02048050(16, a);
+                LoadArchiveSlotForScene(5, a);
+                LoadArchiveSlotForScene(16, a);
             }
             break;
     }
 }
 
-void func_02047b88(void) {
+void ReleaseArchiveSlots(void) {
     s32 i;
 
     for (i = 0; i < 20; i++) {
-        func_02047cf0(i);
+        ReleaseArchiveSlot(i);
     }
 }
 
 #pragma thumb off
 
 #pragma thumb on
-void func_02047b6c(u32 a) {
+void SetHeapGroupId(u32 a) {
     NNS_FndSetGroupIDForExpHeap(GetHeap(func_020364e8()), a);
 }
 #pragma thumb off
@@ -440,7 +440,8 @@ void *FindMainRaceOrMainEffectFile(const char *path) {
 
 #pragma thumb on
 
-void *func_02047a28(const char *path) {
+// Searches the archives that are loaded, in a fixed order, and returns the first match.
+void *FindFileInLoadedArchives(const char *path) {
     void *file;
 
     file = NULL;
@@ -586,47 +587,47 @@ void *LoadKartModelFile(const char *path) {
 #pragma thumb on
 
 void func_0204775c(void) {
-    func_02047cf0(6);
-    func_02047b6c((u16) 0);
-    func_02048050(7, 2);
-    func_02047b6c((u16) 9);
+    ReleaseArchiveSlot(6);
+    SetHeapGroupId((u16) 0);
+    LoadArchiveSlotForScene(7, 2);
+    SetHeapGroupId((u16) 9);
 }
 
 void func_02047728(void) {
     int v1;
-    func_02047cf0(7);
-    func_02047cf0(8);
-    func_02047b6c((u16) 0);
+    ReleaseArchiveSlot(7);
+    ReleaseArchiveSlot(8);
+    SetHeapGroupId((u16) 0);
     v1 = GetCurrentSceneNumber();
     if (v1 == 2) {
-        func_02048050(3, 2);
+        LoadArchiveSlotForScene(3, 2);
     }
-    func_02047b6c((u16) 9);
+    SetHeapGroupId((u16) 9);
 }
 
 void func_020476ec(void) {
     int v1;
-    func_02047cf0(0xd);
-    func_02047b6c((u16) 0);
+    ReleaseArchiveSlot(0xd);
+    SetHeapGroupId((u16) 0);
     v1 = GetCurrentSceneNumber();
     if (v1 == 2) {
-        func_02048050(5, 2);
-        func_02048050(0xb, 2);
-        func_02048050(0, 2);
+        LoadArchiveSlotForScene(5, 2);
+        LoadArchiveSlotForScene(0xb, 2);
+        LoadArchiveSlotForScene(0, 2);
     }
-    func_02047b6c((u16) 9);
+    SetHeapGroupId((u16) 9);
 }
 
 void func_020476ac(void) {
     u32 v1;
     v1 = GetCurrentSceneNumber();
-    func_02047cf0(10);
-    func_02047b6c((u16) 0);
-    func_02048050(1, v1);
-    func_02048050(5, v1);
-    func_02048050(0xe, v1);
-    func_02048050(0x10, v1);
-    func_02047b6c((u16) 9);
+    ReleaseArchiveSlot(10);
+    SetHeapGroupId((u16) 0);
+    LoadArchiveSlotForScene(1, v1);
+    LoadArchiveSlotForScene(5, v1);
+    LoadArchiveSlotForScene(0xe, v1);
+    LoadArchiveSlotForScene(0x10, v1);
+    SetHeapGroupId((u16) 9);
 }
 
 #pragma thumb off
@@ -676,7 +677,7 @@ void func_020474e4(void) {
 
 #pragma thumb on
 
-void func_02047498(const void *a, s32 b) {
+void RequestArchiveLoad(const void *a, s32 b) {
     Unk021759c8_9b0 *p = &data_021759c8->mUnk_9b0[b];
     func_0204f4d0(a, p->mUnk_00, &p->mUnk_04, p->mUnk_08_0, p->mUnk_08_29);
     p->mUnk_08_31 = 1;
@@ -691,26 +692,26 @@ void func_02047468(const void *a, u32 b) {
     char v2[128];
     v1 = func_02048440();
     OS_SNPrintf(v2, 0x80, gArchivePrefixFormat, a, v1);
-    func_02047498(v2, b);
+    RequestArchiveLoad(v2, b);
 }
 
 void func_020473e4(void) {
     func_0204f5e4();
     NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a80, 3);
-    func_02047498(gKartModelMainAArchivePath, 0xb);
-    func_02047498(gKartModelMainBArchivePath, 0xc);
-    func_02047498(gMenuDLArchivePath2, 0);
+    RequestArchiveLoad(gKartModelMainAArchivePath, 0xb);
+    RequestArchiveLoad(gKartModelMainBArchivePath, 0xc);
+    RequestArchiveLoad(gMenuDLArchivePath2, 0);
     func_02047468(gMenuDLArchivePrefix2, 1);
-    func_02047498(gMainRaceArchivePath, 8);
-    func_02047498(gMain2DArchivePath, 9);
+    RequestArchiveLoad(gMainRaceArchivePath, 8);
+    RequestArchiveLoad(gMain2DArchivePath, 9);
     func_02047468(gMain2DArchivePrefix, 10);
-    func_02047498(gMainEffectArchivePath, 0xd);
+    RequestArchiveLoad(gMainEffectArchivePath, 0xd);
 }
 
-void func_020473a8(void) {
+void RequestMenuDLArchives(void) {
     func_0204f5e4();
     NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a80, 3);
-    func_02047498(gMenuDLArchivePath, 0);
+    RequestArchiveLoad(gMenuDLArchivePath, 0);
     func_02047468(gMenuDLArchivePrefix, 1);
 }
 
@@ -722,21 +723,21 @@ void func_020472e4(void *a, void *b) {
     char c[128];
     func_0204f5e4();
     NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a80, 3);
-    func_02047498(gRaceArchivePath, 2);
+    RequestArchiveLoad(gRaceArchivePath, 2);
     func_02047468(gRaceArchivePrefix, 3);
     if (b == (void *) 3) {
-        func_02047498(gRaceVsArchivePath, 4);
+        RequestArchiveLoad(gRaceVsArchivePath, 4);
         func_02047468(gRaceVsArchivePrefix, 5);
     } else {
-        func_02047498(gRaceMgArchivePath, 4);
+        RequestArchiveLoad(gRaceMgArchivePath, 4);
         func_02047468(gRaceMgArchivePrefix, 5);
     }
     data_021759c8->mUnk_a74 = b;
     NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a7c, 3);
     func_02048498(c, (s32) a, 0);
-    func_02047498(c, 6);
+    RequestArchiveLoad(c, 6);
     func_02048498(c, (s32) a, 1);
-    func_02047498(c, 7);
+    RequestArchiveLoad(c, 7);
     data_021759c8->mUnk_a70 = a;
 }
 
@@ -744,10 +745,10 @@ void func_020472e4(void *a, void *b) {
 
 #pragma thumb on
 
-void func_020472a8(void) {
+void RequestResultDLArchives(void) {
     func_0204f5e4();
     NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a80, 3);
-    func_02047498(gResultDLArchivePath, 0xe);
+    RequestArchiveLoad(gResultDLArchivePath, 0xe);
     func_02047468(gResultDLArchivePrefix, 0xf);
 }
 
@@ -793,7 +794,7 @@ void func_020471b0(void *a) {
 
 #pragma thumb off
 
-void func_02047178(void) {
+void InitTouchPanelAndSetCalibration(void) {
     TPCalibrateParam v;
 
     TP_Init();

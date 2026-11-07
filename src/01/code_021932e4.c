@@ -43,7 +43,7 @@ void InitOptionTopMenu(void *heap) {
     gOptionTopMenu->mStateFrames = 0;
     gOptionTopMenu->mUnk_14 = TRUE;
     gOptionTopMenu->mOptionMessages = FindSceneFile(data_ov001_021a8254);
-    gOptionTopMenu->mCommonMessages = func_02047a28(data_ov001_021a8260);
+    gOptionTopMenu->mCommonMessages = FindFileInLoadedArchives(data_ov001_021a8260);
     if (GetOptionPrevState() == 1) {
         gOptionTopMenu->mBg0Offset = 0x32;
     } else {

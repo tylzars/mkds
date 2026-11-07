@@ -122,7 +122,7 @@ void *func_0212afac(void) {
     s32 v;
     a = NULL;
     if (*(vu16 *) 0x27ffc40 != 2) {
-        a = func_02047a28(data_0216ea6c);
+        a = FindFileInLoadedArchives(data_0216ea6c);
     }
     v = data_0217d408->mUnk_0000;
     if (v == 4) {

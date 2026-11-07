@@ -97,7 +97,7 @@ s32 PickItem(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, s3
         }
     }
     if (func_020fab34(&sel) != FALSE) {
-        func_020faa78(sel);
+        TryReleaseItemObjectsForItemInfo(sel);
     }
     if (param_5 != 0) {
         if (param_2 != 0) {
@@ -236,8 +236,8 @@ BOOL UpdateItemSlot(KartItems *param_1, KartItems *param_2) {
                 b = param_2->mKartIndex & 0xff;
                 if (func_0205a310(((u8 *) data_0217aa18)[b]) == 0) {
                     b = func_0205a2ac(((u8 *) data_0217aa18)[b]);
-                    if (func_020faca4(b) != FALSE) {
-                        func_020faa78(b);
+                    if (IsItemInfoObjectCountFree(b) != FALSE) {
+                        TryReleaseItemObjectsForItemInfo(b);
                     }
                     e = &gItemInfos[b];
                     j = e->mObjectKind;

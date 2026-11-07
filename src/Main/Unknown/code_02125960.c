@@ -24,22 +24,22 @@ void LoadTxtSystemAndSelectChoisesAndSelectReturnData(void) {
         LoadNscrData(&p.mNscr, FindSceneFile("txt_system_bg_00.nscr"));
         LoadNclrData(&p.mNclr, FindSceneFile("txt_system_b_00.nclr"));
     } else {
-        LoadNcgrData(&p.mNcgr, func_02047a28("txt_system_b_00.ncgr"));
-        LoadNcgrData(&p.mNcgr, func_02047a28("txt_system_b_01.ncgr"));
-        LoadNscrData(&p.mNscr, func_02047a28("txt_system_bg_00.nscr"));
-        LoadNscrData(&p.mNscr, func_02047a28("txt_system_bg_00_2.nscr"));
-        LoadNscrData(&p.mNscr, func_02047a28("txt_system_bg_01.nscr"));
-        LoadNscrData(&p.mNscr, func_02047a28("txt_system_bg_01_2.nscr"));
-        LoadNscrData(&p.mNscr, func_02047a28("txt_system_bg_02.nscr"));
-        LoadNscrData(&p.mNscr, func_02047a28("txt_system_bg_02_2.nscr"));
-        LoadNscrData(&p.mNscr, func_02047a28("txt_system_bg_02_3.nscr"));
-        LoadNclrData(&p.mNclr, func_02047a28("txt_system_b_00.nclr"));
-        LoadNcgrData(&p.mNcgr, func_02047a28("select_choises_s_b.ncgr"));
-        LoadNscrData(&p.mNscr, func_02047a28("select_choises_s_bg.nscr"));
-        LoadNclrData(&p.mNclr, func_02047a28("select_choises_s_b.nclr"));
-        LoadNcgrData(&p.mNcgr, func_02047a28("select_return_s_b_00.ncgr"));
-        LoadNscrData(&p.mNscr, func_02047a28("select_return_s_bg_00.nscr"));
-        LoadNclrData(&p.mNclr, func_02047a28("select_return_s_b_00.nclr"));
+        LoadNcgrData(&p.mNcgr, FindFileInLoadedArchives("txt_system_b_00.ncgr"));
+        LoadNcgrData(&p.mNcgr, FindFileInLoadedArchives("txt_system_b_01.ncgr"));
+        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("txt_system_bg_00.nscr"));
+        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("txt_system_bg_00_2.nscr"));
+        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("txt_system_bg_01.nscr"));
+        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("txt_system_bg_01_2.nscr"));
+        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("txt_system_bg_02.nscr"));
+        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("txt_system_bg_02_2.nscr"));
+        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("txt_system_bg_02_3.nscr"));
+        LoadNclrData(&p.mNclr, FindFileInLoadedArchives("txt_system_b_00.nclr"));
+        LoadNcgrData(&p.mNcgr, FindFileInLoadedArchives("select_choises_s_b.ncgr"));
+        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("select_choises_s_bg.nscr"));
+        LoadNclrData(&p.mNclr, FindFileInLoadedArchives("select_choises_s_b.nclr"));
+        LoadNcgrData(&p.mNcgr, FindFileInLoadedArchives("select_return_s_b_00.ncgr"));
+        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("select_return_s_bg_00.nscr"));
+        LoadNclrData(&p.mNclr, FindFileInLoadedArchives("select_return_s_b_00.nclr"));
     }
 }
 
@@ -90,18 +90,18 @@ s32 func_02125960(s32 a) {
         nclrS = nclrM;
     } else {
         if (data_0215d038[indexM] != 0) {
-            LoadNcgrData(&ncgrM, func_02047a28(gBackScreenMNcgrNames[indexM]));
-            LoadNscrData(&nscrM, func_02047a28(gBackScreenMNscrNames[indexM]));
-            LoadNclrData(&nclrM, func_02047a28(gBackScreenMNclrNames[indexM]));
+            LoadNcgrData(&ncgrM, FindFileInLoadedArchives(gBackScreenMNcgrNames[indexM]));
+            LoadNscrData(&nscrM, FindFileInLoadedArchives(gBackScreenMNscrNames[indexM]));
+            LoadNclrData(&nclrM, FindFileInLoadedArchives(gBackScreenMNclrNames[indexM]));
         } else {
             LoadNcgrData(&ncgrM, FindSceneFile(gBackScreenMNcgrNames[indexM]));
             LoadNscrData(&nscrM, FindSceneFile(gBackScreenMNscrNames[indexM]));
             LoadNclrData(&nclrM, FindSceneFile(gBackScreenMNclrNames[indexM]));
         }
         if (data_0215d038[indexS] != 0) {
-            LoadNcgrData(&ncgrS, func_02047a28(gBackScreenSNcgrNames[indexS]));
-            LoadNscrData(&nscrS, func_02047a28(gBackScreenSNscrNames[indexS]));
-            LoadNclrData(&nclrS, func_02047a28(gBackScreenSNclrNames[indexS]));
+            LoadNcgrData(&ncgrS, FindFileInLoadedArchives(gBackScreenSNcgrNames[indexS]));
+            LoadNscrData(&nscrS, FindFileInLoadedArchives(gBackScreenSNscrNames[indexS]));
+            LoadNclrData(&nclrS, FindFileInLoadedArchives(gBackScreenSNclrNames[indexS]));
         } else {
             LoadNcgrData(&ncgrS, FindSceneFile(gBackScreenSNcgrNames[indexS]));
             LoadNscrData(&nscrS, FindSceneFile(gBackScreenSNscrNames[indexS]));

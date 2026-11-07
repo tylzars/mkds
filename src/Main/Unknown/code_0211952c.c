@@ -237,7 +237,7 @@ void InitSelectCupCourse(void *b, void *c, void *d, s32 e) {
     gSelectCupCourse = HeapAlloc(a, 0x70);
     gSelectCupCourse->mHeap = a;
     gSelectCupCourse->mState = 0;
-    gSelectCupCourse->mIndex = data_0215cb7c[func_020296e4()];
+    gSelectCupCourse->mIndex = data_0215cb7c[GetCourseId()];
     gSelectCupCourse->mUnk_54 = TRUE;
     gSelectCupCourse->mIndexChangeTimer = 0;
     gSelectCupCourse->mMode = e;
@@ -247,7 +247,7 @@ void InitSelectCupCourse(void *b, void *c, void *d, s32 e) {
     gSelectCupCourse->mUnk_68 = d;
     gSelectCupCourse->mResult = 0;
     func_0211a3bc();
-    gSelectCupCourse->mCommonMessages = func_02047a28("common.bmg");
+    gSelectCupCourse->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     if (*(vu16 *) 0x027ffc40 != 2) {
         func_02124ed0(gSelectCupCourse->mHeap, gSelectCupCourse->mSelectCupCourseTaOrVsMBncl,
                       gSelectCupCourse->mSelectCupCourseTaOrVsMBnll, &gSelectCupCourse->mSelectCupCourseTaOrVsMTable);

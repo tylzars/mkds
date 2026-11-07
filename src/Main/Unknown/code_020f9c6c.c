@@ -157,7 +157,7 @@ void func_020fc8ec(ItemKouraW *e, s32 a) {
     e->mNextStateRequested = 1;
 }
 
-s32 func_020fc79c(Unk020eda5c *a, ItemKouraW *e) {
+s32 InitItemKouraW(Unk020eda5c *a, ItemKouraW *e) {
     Kart *p;
 
     func_020f9114(e);
@@ -266,7 +266,7 @@ void func_020fc2e8(ItemKouraW *p, Vec3 *v, s32 v1, Vec3 *v2) {
     *v4 = *v;
 }
 
-void func_020fc2c0(ItemKouraW *a) {
+void AdvanceItemKouraW(ItemKouraW *a) {
     func_02046b40(a->mUnk_2e8);
     func_020f9320(&a->mUnk_000, 0x3c000400u);
 }
@@ -781,7 +781,7 @@ void func_020faed0(ItemKouraW *param_1, s32 param_2, s32 param_3) {
     }
 }
 
-void func_020fae74(ItemKouraW *param_1, s32 param_2, s32 param_3) {
+void DrawItemKouraW(ItemKouraW *param_1, s32 param_2, s32 param_3) {
     Unk0208e490 *q;
 
     if (param_1->mState != 7) {
@@ -795,13 +795,14 @@ void func_020fae74(ItemKouraW *param_1, s32 param_2, s32 param_3) {
     q->mUnk_b4 = (param_1->mUnk_000.mFlags & 0x10000) == 0;
 }
 
-s32 func_020fade4(ItemKouraW *param_1) {
+// Asks for state 7 unless the object is already in it; returns 1.
+s32 RequestItemKouraWState7(ItemKouraW *param_1) {
     if (param_1->mState != 7) {
         func_02046be8(&param_1->mUnk_2e8, (UnkFunc *const *) gItemKouraWStateTable, 8, param_1);
         param_1->mNextState = 7;
         param_1->mNextStateRequested = 1;
         if ((param_1->mUnk_000.mFlags & 0x180000) == 0) {
-            param_1->mUnk_000.mUnk_120 = (void (*)(struct ItemObject *)) func_020fc2c0;
+            param_1->mUnk_000.mUnk_120 = (void (*)(struct ItemObject *)) AdvanceItemKouraW;
         }
         param_1->mUnk_000.mFlags &= ~0x8000;
         param_1->mUnk_000.mFlags |= 0x80000;
@@ -846,7 +847,7 @@ void func_020fad00(void) {
 
 #pragma thumb off
 
-BOOL func_020faca4(s32 param_1) {
+BOOL IsItemInfoObjectCountFree(s32 param_1) {
     if (param_1 != 0x13) {
         return gItemPools[gItemInfos[param_1].mObjectKind].mUnk_0c -
                    gItemPools[gItemInfos[param_1].mObjectKind].mReservedCount >=
@@ -891,7 +892,7 @@ done:
     return TRUE;
 }
 
-BOOL func_020faa78(s32 param_1) {
+BOOL TryReleaseItemObjectsForItemInfo(s32 param_1) {
     ItemInfo *e;
     s32 n;
     ItemPool *r;
@@ -945,7 +946,7 @@ void UpdateItems(void) {
     func_02104ff8();
 }
 
-void func_020fa8ac(void *a) {
+void DrawItems(void *a) {
     enum { K0 } i;
     void *q;
 
@@ -958,7 +959,7 @@ void func_020fa8ac(void *a) {
     }
 }
 
-void func_020fa78c(s32 param_1, s32 param_2, s32 param_3) {
+void StartItemSlotForKart(s32 param_1, s32 param_2, s32 param_3) {
     s32 v;
     BOOL c;
 
@@ -1087,7 +1088,7 @@ void *StartItemObjectOrZero(s32 param_1, u16 param_2, void *param_3, void *param
     if (gItemPools[param_1].mLimit - gItemPools[param_1].mReservedCount <= 0) {
         return 0;
     }
-    func_020f1048(&gItemPools[param_1], 1, &p, param_2, param_3);
+    TakeItemPoolObjects(&gItemPools[param_1], 1, &p, param_2, param_3);
     e = &gItemPools[param_1];
     e->mReservedCount++;
     StartItemObject(&gItemPools[p->mKind], p);
@@ -1108,7 +1109,7 @@ static inline ItemObject *func_020fa3d0_inline(s32 param_1, u16 param_2, void *p
     if (gItemPools[param_1].mLimit - gItemPools[param_1].mReservedCount <= 0) {
         return 0;
     }
-    func_020f1048(&gItemPools[param_1], 1, &p, param_2, param_3);
+    TakeItemPoolObjects(&gItemPools[param_1], 1, &p, param_2, param_3);
     e = &gItemPools[param_1];
     e->mReservedCount++;
     StartItemObject(&gItemPools[p->mKind], p);

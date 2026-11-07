@@ -249,7 +249,7 @@ void InitKeyboard(void *a, s32 b) {
             gKeyboard->mUnk_86[i][j] = data_0215d108[i][j];
         }
     }
-    gKeyboard->mCommonMessages = func_02047a28(data_0216ea60);
+    gKeyboard->mCommonMessages = FindFileInLoadedArchives(data_0216ea60);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < 2; j++) {
             func_02124ed0(a, gKeyboard->mBncls[i], gKeyboard->mBnlls[i], &gKeyboard->mTables[i][j]);

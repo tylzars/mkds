@@ -148,7 +148,7 @@ extern u16 data_0216cb20;
 extern s32 data_0216c3d4;
 extern const char gWoodbox1NsbmdName[];
 extern Vec3 data_0216c3d8;
-extern u32 data_0216c3e4[];
+extern u32 gWoodbox1StateTable[];
 extern const char data_0216c680[];
 extern u8 data_0216c6f4[];
 extern u8 data_0216c704[];

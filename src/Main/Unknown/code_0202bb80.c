@@ -220,7 +220,7 @@ void func_0202c65c(void *a, void *b) {
                       gSelectMenuEtcDownloadMBnllName, NULL, FindSceneFile);
     } else {
         func_02025b20(q, data_usa_02162b6c, data_usa_02162b88, data_usa_02162ba4, gSelectMenuEtcMBnclName,
-                      gSelectMenuEtcMBnllName, NULL, func_02047a28);
+                      gSelectMenuEtcMBnllName, NULL, FindFileInLoadedArchives);
     }
     func_02124ed0(data_02174e3c->mHeap, q->mUnk_0c, q->mUnk_14, &q->mUnk_18);
     for (i = 0; i < 8; i++) {
@@ -236,7 +236,7 @@ void func_0202c65c(void *a, void *b) {
     func_02025f80(&data_02174e3c->mUnk_210[3], 3, 10, 0x40, 0);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_02025b20(&data_02174e3c->mUnk_01c, data_usa_02162bf0, data_usa_02162c14, NULL,
-                      gSelectMenuEtcTitleMBnclName, NULL, NULL, func_02047a28);
+                      gSelectMenuEtcTitleMBnclName, NULL, NULL, FindFileInLoadedArchives);
     }
     data_02174e3c->mUnk_1fc = TRUE;
     FrmHeapShrinkInParent(data_02174e3c->mHeap);
@@ -344,8 +344,8 @@ void func_0202c0d4(s32 a, s32 b) {
             func_020258d4(0, v1, data_usa_02162904, data_usa_0216292c, data_usa_02162954, 0, FindSceneFile);
             func_020258d4(0, v1, data_usa_02162980, data_usa_021629a8, data_usa_021629d0, 1, FindSceneFile);
         } else {
-            func_020258d4(0, v1, data_usa_021629fc, data_usa_02162a18, data_usa_02162a34, 0, func_02047a28);
-            func_020258d4(0, v1, data_usa_02162a54, data_usa_02162a70, data_usa_02162a8c, 1, func_02047a28);
+            func_020258d4(0, v1, data_usa_021629fc, data_usa_02162a18, data_usa_02162a34, 0, FindFileInLoadedArchives);
+            func_020258d4(0, v1, data_usa_02162a54, data_usa_02162a70, data_usa_02162a8c, 1, FindFileInLoadedArchives);
         }
     } else if (data_02174e3c->mUnk_254 == 1) {
         func_02025f14(&data_02174e3c->mUnk_210[3], 0);

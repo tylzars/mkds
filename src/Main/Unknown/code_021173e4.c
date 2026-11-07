@@ -219,7 +219,7 @@ void SetupSelectCupGridIndex(void) {
 
 void func_021185ec(void) {
     func_02029590(data_0215c85c[gSelectCupGrid->mIndex]);
-    func_02029580(data_0215c89c[gSelectCupGrid->mIndex]);
+    SetCourseId(data_0215c89c[gSelectCupGrid->mIndex]);
 }
 #pragma thumb off
 
@@ -497,7 +497,7 @@ void InitSelectCupGrid(void *a, void *b, void *c, s32 d) {
     if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
         func_020ae6d4(gSelectCupGrid->mUnk_80, gSelectCupGrid->mUnk_84);
     }
-    gSelectCupGrid->mCommonMessages = func_02047a28("common.bmg");
+    gSelectCupGrid->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     if (*(vu16 *) 0x027ffc40 != 2) {
         gSelectCupGrid->mMenuMessages = FindSceneFile("menu.bmg");
         func_02124ed0(gSelectCupGrid->mHeap, gSelectCupGrid->mSelectCupMBncl, gSelectCupGrid->mSelectCupMBnll,

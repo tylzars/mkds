@@ -124,25 +124,25 @@ void InitRace(void) {
     NNS_GfdInitFrmPlttVramManager(0x10000, 1);
     func_0208533c();
     func_02077998();
-    func_02047b6c(1);
+    SetHeapGroupId(1);
     func_020875b4();
     InitKartModels(a, data_021759c0->mKartCount);
     func_0207800c();
     func_020872a4();
     func_02047728();
     InitMap2D();
-    func_02047b6c(2);
+    SetHeapGroupId(2);
     CreateCourseMap(a);
     InitCourseModels(a);
     func_020476ec();
-    func_02047b6c(7);
+    SetHeapGroupId(7);
     CreateRaceProgress(a);
     func_0205cd24(a);
-    func_02047b6c(2);
+    SetHeapGroupId(2);
     InitCourseCollision();
-    func_02047b6c(8);
+    SetHeapGroupId(8);
     func_020d58c0();
-    func_02047b6c(1);
+    SetHeapGroupId(1);
     func_0208aa30(a);
     func_02085e04();
     InitKarts(data_021759c0->mKartCount);
@@ -160,7 +160,7 @@ void InitRace(void) {
     data_0217aa6c = data_0217aa88;
     data_0217aa7c = &data_0217aa88->mViewMatrix;
     RefreshCameraProjection(data_0217aa88);
-    func_02047b6c(3);
+    SetHeapGroupId(3);
     switch (data_021759c0->mMode) {
         case MODE_BATTLE:
             InitStandings();
@@ -174,17 +174,17 @@ void InitRace(void) {
             }
             break;
     }
-    func_02047b6c(3);
+    SetHeapGroupId(3);
     func_020e7460();
     func_020e7760();
     InitMapObjects();
     InitItems();
-    func_02047b6c(6);
+    SetHeapGroupId(6);
     func_0208b934(a);
     func_020846c0(a);
     func_0208e570(a);
     func_0208f0f8(a);
-    func_02047b6c(9);
+    SetHeapGroupId(9);
     *(u16 *) 0x05000000 = 0xff00;
     reg_G3X_DISP3DCNT = reg_G3X_DISP3DCNT & 0xffffcffd;
     G3X_SetToonTable(data_0217aadc);
@@ -451,7 +451,7 @@ void func_02062078(void) {
     NNS_G3dGlbLightVector(0, gRace->mLightVectorX, gRace->mLightVectorY, gRace->mLightVectorZ);
     func_020e9810();
     DrawMapObjects((Unk020d4418 *) data_0217aa6c);
-    func_020fa8ac(data_0217aa7c);
+    DrawItems(data_0217aa7c);
     func_0208e358();
     func_01ff9234();
 }

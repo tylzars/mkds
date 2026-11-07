@@ -3,7 +3,7 @@
 
 #pragma thumb on
 
-u32 func_020296e4(void) {
+u32 GetCourseId(void) {
     return (data_02174e1c->mCourseId);
 }
 
@@ -35,7 +35,7 @@ u32 func_0202966c(void) {
     return (data_02174e1c->mUnk_c0);
 }
 
-u32 func_0202965c(void) {
+u32 GetCourseListMode(void) {
     return (data_02174e1c->mCourseListMode);
 }
 
@@ -47,7 +47,7 @@ u32 func_0202963c(void) {
     return (data_02174e1c->mUnk_ec);
 }
 
-u32 func_0202962c(void) {
+u32 GetUseTeams(void) {
     return (data_02174e1c->mUseTeams);
 }
 
@@ -55,11 +55,11 @@ u32 func_02029618(u16 p0) {
     return (data_02174e1c->mUnk_00[p0].mTeamIndex);
 }
 
-u32 func_02029608(void) {
+u32 GetMissionTableRow(void) {
     return (data_02174e1c->mMissionTableRow);
 }
 
-u32 func_020295f8(void) {
+u32 GetMissionTableColumn(void) {
     return (data_02174e1c->mMissionTableColumn);
 }
 
@@ -87,7 +87,7 @@ void func_02029590(u32 p0) {
     data_02174e1c->mUnk_cc = p0;
 }
 
-void func_02029580(u32 p0) {
+void SetCourseId(u32 p0) {
     data_02174e1c->mCourseId = p0;
 }
 
@@ -95,7 +95,7 @@ void func_02029570(u32 p0) {
     data_02174e1c->mUnk_c0 = p0;
 }
 
-void func_02029560(u32 p0) {
+void SetCourseListMode(u32 p0) {
     data_02174e1c->mCourseListMode = p0;
 }
 
@@ -107,11 +107,11 @@ void func_02029540(u32 p0) {
     data_02174e1c->mUnk_ec = p0;
 }
 
-void func_02029530(void) {
+void SetUseTeams(void) {
     data_02174e1c->mUseTeams = 1;
 }
 
-void func_02029520(void) {
+void ClearUseTeams(void) {
     data_02174e1c->mUseTeams = 0;
 }
 
@@ -151,15 +151,15 @@ void func_0202949c(u32 p0) {
     data_02174e1c->mUnk_e0 = p0;
 }
 
-void func_0202948c(u32 p0) {
+void SetMissionTableRow(u32 p0) {
     data_02174e1c->mMissionTableRow = (u8) p0;
 }
 
-void func_0202947c(u32 p0) {
+void SetMissionTableColumn(u32 p0) {
     data_02174e1c->mMissionTableColumn = (u8) p0;
 }
 
-void func_02029468(u32 p0) {
+void SetMissionFileRowIndex(u32 p0) {
     data_02174e1c->mMissionFileRowIndex = p0;
 }
 

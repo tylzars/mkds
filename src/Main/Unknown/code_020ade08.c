@@ -195,7 +195,7 @@ void FindMissionTableCell(u32 value, u8 *outRow, u8 *outColumn) {
     u8 row;
     u8 column;
 
-    table = (u32) func_02047a28("/missionTable.mtbl");
+    table = (u32) FindFileInLoadedArchives("/missionTable.mtbl");
     rowCount = func_0203b6a4(table);
     columnCount = func_0203b69c(table);
     for (row = 1; row <= rowCount; row++) {

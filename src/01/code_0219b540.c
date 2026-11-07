@@ -346,7 +346,7 @@ void InitSelectGhost(void *a, u32 b, u32 c) {
                   &gSelectGhost->mSelectCupCourseTaMTable);
     func_02124ed0(gSelectGhost->mHeap, gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSBnll,
                   &gSelectGhost->mSelectGhostSTable);
-    gSelectGhost->mCommonMessages = func_02047a28("common.bmg");
+    gSelectGhost->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     gSelectGhost->mMenuMessages = FindSceneFile("menu.bmg");
     rem = 0x8000;
     rem -= func_021243ac(gSelectGhost->mHeap, 0, gSelectGhost->mSelectCupCourseTaMBnll, 0xb4, 0xd, 0,

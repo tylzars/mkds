@@ -4,8 +4,8 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
-// First argument of func_020ebef8.
-typedef struct Unk020ebef8 {
+// First argument of StartWoodbox1ItemObject.
+typedef struct Woodbox1 {
     /* 000 */ MapObject mUnk_000;
     /* 0a0 */ Vec3 mUnk_0a0;
     /* 0ac */ u16 mUnk_0ac;
@@ -26,11 +26,11 @@ typedef struct Unk020ebef8 {
     /* 110 */ u16 mUnk_110;
     /* 112 */ u8 mUnk_112[2];
     /* 114 */ u8 mUnk_114[4];
-} Unk020ebef8;
+} Woodbox1;
 
-extern Unk020ebef8 *data_0217bbf0;
+extern Woodbox1 *data_0217bbf0;
 
-// Argument of func_020ec194.
+// Argument of EnterWoodbox1State0.
 typedef struct Unk020ec194 {
     /* 000 */ u8 mUnk_000[4];
     /* 004 */ Vec3 mUnk_004;
@@ -42,5 +42,5 @@ typedef struct Unk020ec194 {
     /* 0c8 */ u16 mUnk_0c8;
 } Unk020ec194;
 
-void func_020ebef8(Unk020ebef8 *c, Vec3 *d);
-void func_020ec194(Unk020ec194 *a);
+void StartWoodbox1ItemObject(Woodbox1 *c, Vec3 *d);
+void EnterWoodbox1State0(Unk020ec194 *a);

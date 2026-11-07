@@ -48,7 +48,7 @@ void func_ov001_021987d4(void *heap, s16 a) {
     data_ov001_021a9be4->mUnk_0e = -1;
     data_ov001_021a9be4->mUnk_00 = 0;
     data_ov001_021a9be4->mUnk_04 = data_ov001_021a9be4->mUnk_00;
-    data_ov001_021a9be4->mUnk_14 = func_02047a28("common.bmg");
+    data_ov001_021a9be4->mUnk_14 = FindFileInLoadedArchives("common.bmg");
 }
 
 void func_ov001_021987bc(void) {

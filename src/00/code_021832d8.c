@@ -134,7 +134,7 @@ void InitWiFiVSMatching(void *a) {
     func_02124ed0(a, gWiFiVSMatching->mWiFiVSMatchingBncl, gWiFiVSMatching->mWiFiVSMatchingBnll,
                   &gWiFiVSMatching->mWiFiVSMatchingTable);
     gWiFiVSMatching->mWiFiMessages = FindSceneFile(gWiFiBmgName2);
-    gWiFiVSMatching->mCommonMessages = func_02047a28(gCommonBmgName4);
+    gWiFiVSMatching->mCommonMessages = FindFileInLoadedArchives(gCommonBmgName4);
     func_ov000_02184670();
     i = 0;
     r = &data_ov000_021b068c[0][0];

@@ -543,7 +543,7 @@ void InitRecordTAtt(void *heap) {
     func_020ae6d4(func_02111318(), func_0211130c());
     func_02124ed0(heap, gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMBnll, &gRecordTAtt->mRecordTAttMTable);
     func_02124ed0(heap, gRecordTAtt->mRecordTAttSBncl, gRecordTAtt->mRecordTAttSBnll, &gRecordTAtt->mRecordTAttSTable);
-    gRecordTAtt->mCommonMessages = func_02047a28("common.bmg");
+    gRecordTAtt->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     gRecordTAtt->mGhostMessages = FindSceneFile("ghost.bmg");
     gRecordTAtt->mRecordMessages = FindSceneFile("record.bmg");
     rem = 0x8000;

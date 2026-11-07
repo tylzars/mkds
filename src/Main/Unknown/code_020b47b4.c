@@ -2,7 +2,7 @@
 #include "Main/Unknown/code_02047104.h"
 
 void *func_020b47cc(const char *arg0) {
-    return func_02047a28(arg0);
+    return FindFileInLoadedArchives(arg0);
 }
 
 void *FindSceneFileWrapper(const char *arg0) {

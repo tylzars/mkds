@@ -103,7 +103,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
             break;
     }
     if (func_020280dc() == 0) {
-        gSelectKart->mKartSelectMessages = func_02047a28(gKartSelectBmgName);
+        gSelectKart->mKartSelectMessages = FindFileInLoadedArchives(gKartSelectBmgName);
         gSelectKart->mUnk_098 = func_02056444(gSelectKart->mHeap);
     }
     g = gSelectKart;
@@ -124,13 +124,13 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
         if (g->mUnk_104 == FALSE) {
             p = &g->mSelectCharacterGpMParts;
             func_02025b20(p, gSelectCharacterGpMNcgrName2, gSelectCharacterGpMNcerName2, gSelectCharacterGpMONclrName2,
-                          gSelectCharacterGpMBnclName2, NULL, NULL, func_02047a28);
+                          gSelectCharacterGpMBnclName2, NULL, NULL, FindFileInLoadedArchives);
             func_02025a50(0, gSelectKart->mHeap, p);
             func_02025b20(&e, gSelectCharacterGpTitleMNcgrName2, gSelectCharacterGpTitleMNcerName2, NULL,
-                          gSelectCharacterGpTitleMBnclName2, NULL, NULL, func_02047a28);
+                          gSelectCharacterGpTitleMBnclName2, NULL, NULL, FindFileInLoadedArchives);
             func_02124748(1, e.mUnk_08, e.mUnk_00, e.mUnk_0c, 0, 0, p->mUnk_08, p->mUnk_0c);
             func_02025b20(&f, gSelectCharacterGpNameMNcgrName2, gSelectCharacterGpNameMNcerName2, NULL,
-                          gSelectCharacterGpNameMBnclName2, NULL, NULL, func_02047a28);
+                          gSelectCharacterGpNameMBnclName2, NULL, NULL, FindFileInLoadedArchives);
             func_02124748(data_usa_021537dc[gSelectKart->mCharacterIndex], f.mUnk_08, f.mUnk_00, f.mUnk_0c, 0, 2,
                           p->mUnk_08, p->mUnk_0c);
             func_02124748(data_usa_021537dc[gSelectKart->mCharacterIndex], f.mUnk_08, f.mUnk_00, f.mUnk_0c, 0, 1,
@@ -139,13 +139,13 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     }
     if (func_020280dc() == 0) {
         func_020258d4(1, &gSelectKart->mSelectKartSBParts, gSelectKartSBNcgrName, gSelectKartSBNclrName,
-                      gSelectKartSNscrName, 3, func_02047a28);
+                      gSelectKartSNscrName, 3, FindFileInLoadedArchives);
     }
     if (func_020280dc() == 0) {
         n = GX_GetSizeOfSubOBJ();
         p = &gSelectKart->mSelectKartSParts;
         func_02025b20(p, gSelectKartSNcgrName, gSelectKartSNcerName, gSelectKartSONclrName, gSelectKartSBnclName,
-                      gSelectKartSBnllName, gSelectKartSBnblName, func_02047a28);
+                      gSelectKartSBnllName, gSelectKartSBnblName, FindFileInLoadedArchives);
         func_02025a50(1, gSelectKart->mHeap, p);
         for (i = 0; i < 9; i++) {
             n -= func_02025a00(1, gSelectKart->mHeap, p, &data_usa_021537f4[i], n);
@@ -156,7 +156,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
             func_0212426c(1, n, p->mUnk_14, w, p->mUnk_0c, p->mUnk_18);
             func_02124094(n, 1, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
         }
-        w = GetBmgEntry(func_02047a28(gCommonBmgName2), data_usa_021537f4[6].mUnk_08);
+        w = GetBmgEntry(FindFileInLoadedArchives(gCommonBmgName2), data_usa_021537f4[6].mUnk_08);
         i = data_usa_02153834[4];
         func_0212426c(1, i, p->mUnk_14, w, p->mUnk_0c, p->mUnk_18);
         func_02124100(i, 1, p->mUnk_14, p->mUnk_18, p->mUnk_0c);

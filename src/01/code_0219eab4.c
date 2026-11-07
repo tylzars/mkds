@@ -190,8 +190,8 @@ void func_ov001_0219f3a4(void) {
 }
 
 void func_ov001_0219f37c(void) {
-    func_0202948c((gMissionRunLVsel->mIndex + 1) * 0x1000000 >> 0x18);
-    func_0202947c(1);
+    SetMissionTableRow((gMissionRunLVsel->mIndex + 1) * 0x1000000 >> 0x18);
+    SetMissionTableColumn(1);
 }
 
 BOOL func_ov001_0219f31c(void) {
@@ -299,7 +299,7 @@ void InitMissionRunLVsel(void *a, void *b, void *c) {
         data_0217b488->mUnk_14 = 0;
         func_02105a30(2);
     } else {
-        gMissionRunLVsel->mIndex = func_02029608() - 1;
+        gMissionRunLVsel->mIndex = GetMissionTableRow() - 1;
         if (func_020cccb4() == 0x1f) {
             func_02105a30(1);
         } else {

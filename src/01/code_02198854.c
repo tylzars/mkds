@@ -95,7 +95,7 @@ void InitOptionSelectMenu(void *a) {
     func_02124ed0(a, gOptionSelectMenu->mOptionSelectMenuSBncl, gOptionSelectMenu->mOptionSelectMenuSBnll,
                   &gOptionSelectMenu->mOptionSelectMenuSTable);
     gOptionSelectMenu->mOptionMessages = FindSceneFile(data_ov001_021a8644);
-    gOptionSelectMenu->mCommonMessages = func_02047a28(data_ov001_021a8650);
+    gOptionSelectMenu->mCommonMessages = FindFileInLoadedArchives(data_ov001_021a8650);
     InitOptionSelectMenuTexts();
     gOptionSelectMenu->mBg0Bg1Offset = -140;
     for (i = 0; i < 3; i++) {

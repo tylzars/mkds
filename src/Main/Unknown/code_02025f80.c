@@ -216,13 +216,13 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
     p = gSelectCharacter;
     if (p->mUnk_128 == FALSE) {
         func_02025b20(&p->mUnk_000, gSelectCharacterGpMNcgrName, gSelectCharacterGpMNcerName,
-                      gSelectCharacterGpMONclrName, gSelectCharacterGpMBnclName, NULL, NULL, func_02047a28);
+                      gSelectCharacterGpMONclrName, gSelectCharacterGpMBnclName, NULL, NULL, FindFileInLoadedArchives);
         func_02025a50(0, gSelectCharacter->mHeap, &p->mUnk_000);
         func_02025b20(&v, gSelectCharacterGpTitleMNcgrName, gSelectCharacterGpTitleMNcerName, NULL,
-                      gSelectCharacterGpTitleMBnclName, NULL, NULL, func_02047a28);
+                      gSelectCharacterGpTitleMBnclName, NULL, NULL, FindFileInLoadedArchives);
         func_02124748(0, v.mUnk_08, v.mUnk_00, v.mUnk_0c, 0, 0, p->mUnk_000.mUnk_08, p->mUnk_000.mUnk_0c);
         func_02025b20(&gSelectCharacter->mUnk_038, gSelectCharacterGpNameMNcgrName, gSelectCharacterGpNameMNcerName,
-                      NULL, gSelectCharacterGpNameMBnclName, NULL, NULL, func_02047a28);
+                      NULL, gSelectCharacterGpNameMBnclName, NULL, NULL, FindFileInLoadedArchives);
         p->mUnk_000.mUnk_18[9].mUnk_00 = 0;
         p->mUnk_000.mUnk_18[8].mUnk_00 = p->mUnk_000.mUnk_18[9].mUnk_00;
         p->mUnk_000.mUnk_18[7].mUnk_00 = p->mUnk_000.mUnk_18[8].mUnk_00;
@@ -233,7 +233,7 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         s = &gSelectCharacter->mUnk_01c;
         func_02025b20(s, gSelectCharacterSNcgrName, gSelectCharacterSNcerName, gSelectCharacterSONclrName,
-                      gSelectCharacterSBnclName, NULL, gSelectCharacterSBnblName, func_02047a28);
+                      gSelectCharacterSBnclName, NULL, gSelectCharacterSBnblName, FindFileInLoadedArchives);
         func_02025a50(1, gSelectCharacter->mHeap, s);
         s->mUnk_18[24].mUnk_00 = 0;
         for (i = 0; i < 12; i++) {
@@ -728,16 +728,16 @@ void func_02025f90(void) {
     Nclr *b = NULL;
     Unk02021dc8 *c = NULL;
 
-    LoadNcgrData2(&a, func_02047a28(data_usa_02161b3c));
-    LoadNcerData(&c, func_02047a28(data_usa_02161b5c));
-    LoadNclrData(&b, func_02047a28(data_usa_02161b7c));
-    LoadNcgrData2(&a, func_02047a28(data_usa_02161b9c));
-    LoadNcerData(&c, func_02047a28(data_usa_02161bb8));
-    LoadNclrData(&b, func_02047a28(data_usa_02161bd4));
-    LoadNcgrData2(&a, func_02047a28(data_usa_02161bf0));
-    LoadNcerData(&c, func_02047a28(data_usa_02161c14));
-    LoadNcgrData2(&a, func_02047a28(data_usa_02161c38));
-    LoadNcerData(&c, func_02047a28(data_usa_02161c60));
+    LoadNcgrData2(&a, FindFileInLoadedArchives(data_usa_02161b3c));
+    LoadNcerData(&c, FindFileInLoadedArchives(data_usa_02161b5c));
+    LoadNclrData(&b, FindFileInLoadedArchives(data_usa_02161b7c));
+    LoadNcgrData2(&a, FindFileInLoadedArchives(data_usa_02161b9c));
+    LoadNcerData(&c, FindFileInLoadedArchives(data_usa_02161bb8));
+    LoadNclrData(&b, FindFileInLoadedArchives(data_usa_02161bd4));
+    LoadNcgrData2(&a, FindFileInLoadedArchives(data_usa_02161bf0));
+    LoadNcerData(&c, FindFileInLoadedArchives(data_usa_02161c14));
+    LoadNcgrData2(&a, FindFileInLoadedArchives(data_usa_02161c38));
+    LoadNcerData(&c, FindFileInLoadedArchives(data_usa_02161c60));
 }
 
 void func_02025f80(Unk02025ebc *a, s32 b, s32 c, s16 d, s32 e) {

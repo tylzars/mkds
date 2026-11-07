@@ -129,7 +129,7 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(a, &v);
     func_020629a4();
-    gResultsBattle->mCommonMessages = func_02047a28(data_0216416c);
+    gResultsBattle->mCommonMessages = FindFileInLoadedArchives(data_0216416c);
     switch (gResultsBattle->mMode) {
         case 0:
             gResultsBattle->mUnk_0d0 = 0;

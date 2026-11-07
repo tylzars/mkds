@@ -54,11 +54,11 @@
 #include "01/code_0218155c.h"
 
 const Unk021594e4 data_021594e4 = {
-    0, 0, (u32) &func_020eb720, 0, (u32) &func_020ec1ec, 0, 0, 0, 0, 0,
+    0, 0, (u32) &ClearWoodbox1Pointer, 0, (u32) &AdvanceWoodbox1, 0, 0, 0, 0, 0,
 };
 
 const Unk0215950c data_0215950c = {
-    0, 0, (u32) &CreateWoodbox1, 0, (u32) &func_020ec1fc, 0, 1, 0, 0, 0, 0,
+    0, 0, (u32) &CreateWoodbox1, 0, (u32) &DrawWoodbox1, 0, 1, 0, 0, 0, 0,
 };
 
 const Unk02159538 data_02159538 = {
@@ -113,7 +113,7 @@ Unk021594e4 *func_020ec314(void) {
     return data_0217bbf4;
 }
 
-void func_020ec1fc(void *a, Unk020e43a8 *b, void *c, u32 d) {
+void DrawWoodbox1(void *a, Unk020e43a8 *b, void *c, u32 d) {
     u16 h;
     s32 t;
     Vec3 v;
@@ -135,7 +135,7 @@ void func_020ec1fc(void *a, Unk020e43a8 *b, void *c, u32 d) {
     func_020e53ac((Unk020e516c *) &b->mUnk_114, &t, 0, d);
 }
 
-void func_020ec1ec(u32 arg0, u32 arg1) {
+void AdvanceWoodbox1(u32 arg0, u32 arg1) {
     u32 value0;
     u32 value1 = arg1;
     u32 value12;
@@ -143,7 +143,7 @@ void func_020ec1ec(u32 arg0, u32 arg1) {
     func_02046b40((void *) value0);
 }
 
-void func_020ec194(Unk020ec194 *a) {
+void EnterWoodbox1State0(Unk020ec194 *a) {
     Vec3 v;
     Vec3 *p;
 
@@ -156,7 +156,8 @@ void func_020ec194(Unk020ec194 *a) {
     Matrix3x3FromQuaternion(&a->mUnk_028, &v);
 }
 
-void func_020ebef8(Unk020ebef8 *c, Vec3 *d) {
+// With a chance given by the box, starts one item object that moves off with the given velocity.
+void StartWoodbox1ItemObject(Woodbox1 *c, Vec3 *d) {
     s32 n;
     Vec3 a;
     Vec3 b;
@@ -202,7 +203,7 @@ void func_020ebef8(Unk020ebef8 *c, Vec3 *d) {
     func_020f6630(q, 2, &c->mUnk_000.mPos, d, &c->mUnk_0bc);
 }
 
-void func_020ebeac(Unk020ebeac *p0) {
+void EnterWoodbox1State1(Unk020ebeac *p0) {
     p0->mUnk_02 |= data_021594d8;
     p0->mUnk_02 |= data_021594dc;
     p0->mUnk_02 |= data_021594e0;
@@ -210,7 +211,7 @@ void func_020ebeac(Unk020ebeac *p0) {
 
 #pragma thumb off
 
-void func_020ebe68(Unk020ebef8 *param_1) {
+void UpdateWoodbox1State1(Woodbox1 *param_1) {
     if (param_1->mUnk_000.mStateMachine.mStateFrames < 900) {
         return;
     }
@@ -224,7 +225,7 @@ void func_020ebe68(Unk020ebef8 *param_1) {
     }
 }
 
-BOOL func_020ebc2c(Unk020ebef8 *param_1) {
+BOOL func_020ebc2c(Woodbox1 *param_1) {
     Vec3 v;
     Vec3 *p;
     s32 d;
@@ -271,7 +272,7 @@ BOOL func_020ebc2c(Unk020ebef8 *param_1) {
     return FALSE;
 }
 
-void func_020ebb04(Unk020ebef8 *param_1) {
+void EnterWoodbox1State2(Woodbox1 *param_1) {
     Vec3 v;
     u32 n;
     u16 h;
@@ -303,7 +304,7 @@ void func_020ebb04(Unk020ebef8 *param_1) {
     Matrix3x3FromQuaternion(&param_1->mUnk_000.mMatrix, &v);
 }
 
-void func_020ebab0(Unk020ebef8 *param_1) {
+void UpdateWoodbox1State2(Woodbox1 *param_1) {
     if (func_020ebc2c(param_1) != FALSE) {
         param_1->mUnk_000.mStateMachine.mNextState = 3;
         param_1->mUnk_000.mStateMachine.mNextStateRequested = 1;
@@ -313,7 +314,7 @@ void func_020ebab0(Unk020ebef8 *param_1) {
     VEC_Add(&param_1->mUnk_0b0, &param_1->mUnk_0cc, &param_1->mUnk_000.mPos);
 }
 
-void func_020eb8f8(Unk020ebef8 *param_1) {
+void UpdateWoodbox1State3(Woodbox1 *param_1) {
     Vec3 v;
     s32 d;
 
@@ -346,11 +347,11 @@ void func_020eb8f8(Unk020ebef8 *param_1) {
     }
 }
 
-u32 func_020eb7e0(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4) {
+u32 func_020eb7e0(Woodbox1 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4) {
     if (*param_3 == 3) {
         if (data_021759c0->mMode != MODE_TIME_ATTACK) {
             if (param_2->mUnk_29c == 1 || param_2->mUnk_2a4 > 0x3000) {
-                func_020ebef8(param_1, &param_2->mUnk_0a4);
+                StartWoodbox1ItemObject(param_1, &param_2->mUnk_0a4);
                 if (data_0217bbf0 == param_1) {
                     data_0217bbf0 = NULL;
                 }
@@ -374,12 +375,12 @@ u32 func_020eb7e0(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *p
     return *param_4;
 }
 
-u32 func_020eb760(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4) {
+u32 func_020eb760(Woodbox1 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4) {
     u32 v;
 
     v = *param_3 - 1;
     if (v <= 1) {
-        func_020ebef8(param_1, &param_2->mUnk_05c);
+        StartWoodbox1ItemObject(param_1, &param_2->mUnk_05c);
         if (data_0217bbf0 == param_1) {
             data_0217bbf0 = NULL;
         }
@@ -400,11 +401,11 @@ void CreateWoodbox1(void) {
     func_02084968(gWoodbox1, 0x3f, 2, 0x294a);
 }
 
-void func_020eb720(void) {
+void ClearWoodbox1Pointer(void) {
     data_0217bbf0 = NULL;
 }
 
-void func_020eb498(Unk020ebef8 *param_1, Unk020eb498 *param_2) {
+void InitWoodbox1(Woodbox1 *param_1, Unk020eb498 *param_2) {
     Vec3 v;
     s32 d;
 
@@ -445,7 +446,7 @@ void func_020eb498(Unk020ebef8 *param_1, Unk020eb498 *param_2) {
     param_1->mUnk_10c = 0x1555;
     param_1->mUnk_10e = param_2->mUnk_028;
     param_1->mUnk_110 = param_2->mUnk_02a;
-    func_02046be8(&param_1->mUnk_000.mStateMachine, (UnkFunc *const *) data_0216c3e4, 4, param_1);
+    func_02046be8(&param_1->mUnk_000.mStateMachine, (UnkFunc *const *) gWoodbox1StateTable, 4, param_1);
     param_1->mUnk_000.mStateMachine.mNextState = 0;
     param_1->mUnk_000.mStateMachine.mNextStateRequested = 1;
     func_020e516c(&param_1->mUnk_114, &param_2->mUnk_000, ((s64) param_1->mUnk_000.mScale.x * 0x19000) >> 12, 13);

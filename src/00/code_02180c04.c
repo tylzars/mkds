@@ -38,7 +38,7 @@ void func_ov000_021816b0(void *heap) {
     data_ov000_021b4c68->mPendingWiFiState = -1;
     data_ov000_021b4c68->mUnk_08 = 0;
     data_ov000_021b4c68->mWiFiMessages = FindSceneFile("wifi.bmg");
-    data_ov000_021b4c68->mCommonMessages = func_02047a28("common.bmg");
+    data_ov000_021b4c68->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     func_ov000_021816a0();
     func_0212a910(1, 1);
     func_021281c8(0xe);

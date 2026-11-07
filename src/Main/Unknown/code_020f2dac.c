@@ -204,7 +204,7 @@ void func_020f41c4(Unk020f40dc *rec) {
     count = rec->mUnk_08;
     va = ((s64) radius * gPairsByAngle[angle * 2]) >> 12;
     vb = ((s64) radius * gPairsByAngle[angle * 2 + 1]) >> 12;
-    func_020f1048(&gItemPools[tab], count, rec->mUnk_14, owner->mIndex, &owner->mUnk_98);
+    TakeItemPoolObjects(&gItemPools[tab], count, rec->mUnk_14, owner->mIndex, &owner->mUnk_98);
     i = 0;
     if (i < count) {
         row = &data_0215961c[count - 1];

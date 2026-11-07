@@ -145,7 +145,7 @@ void func_ov001_0218c0a4(Unk02188950 *a) {
         vel.y = a->mPrm->mUnk_19c;
         vel.z = ((s64) a->mPrm->mUnk_1a0 * gPairsByAngle[((u16) angle >> 4) * 2 + 1]) >> 12;
         if (i == sel) {
-            func_ov001_02187b2c(func_020f4ee8(), &pos, &vel, a->mPrm->mUnk_1ac);
+            func_ov001_02187b2c(StartItemKinokoOrZero(), &pos, &vel, a->mPrm->mUnk_1ac);
         } else {
             func_ov001_02187b94(func_ov001_02187dd4(), &pos, &vel, a->mPrm->mUnk_1b0);
         }

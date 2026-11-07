@@ -74,15 +74,15 @@ void func_0202b8d8(void) {
         LoadNscrData(&d, FindSceneFile(gSelectMenuEtcDownloadMBg00NscrName));
         LoadNscrData(&d, FindSceneFile(gSelectMenuEtcDownloadMBg01NscrName));
     } else {
-        LoadNcgrData(&a, func_02047a28(gSelectMenuEtcMBNcgrName));
-        LoadNcgrData2(&a, func_02047a28(gSelectMenuEtcMNcgrName));
-        LoadNcgrData2(&a, func_02047a28(gSelectMenuEtcTitleMNcgrName));
-        LoadNcerData(&c, func_02047a28(gSelectMenuEtcMNcerName));
-        LoadNcerData(&c, func_02047a28(gSelectMenuEtcTitleMNcerName));
-        LoadNclrData(&b, func_02047a28(gSelectMenuEtcMONclrName));
-        LoadNclrData(&b, func_02047a28(gSelectMenuEtcMBNclrName));
-        LoadNscrData(&d, func_02047a28(gSelectMenuEtcMBg00NscrName));
-        LoadNscrData(&d, func_02047a28(gSelectMenuEtcMBg01NscrName));
+        LoadNcgrData(&a, FindFileInLoadedArchives(gSelectMenuEtcMBNcgrName));
+        LoadNcgrData2(&a, FindFileInLoadedArchives(gSelectMenuEtcMNcgrName));
+        LoadNcgrData2(&a, FindFileInLoadedArchives(gSelectMenuEtcTitleMNcgrName));
+        LoadNcerData(&c, FindFileInLoadedArchives(gSelectMenuEtcMNcerName));
+        LoadNcerData(&c, FindFileInLoadedArchives(gSelectMenuEtcTitleMNcerName));
+        LoadNclrData(&b, FindFileInLoadedArchives(gSelectMenuEtcMONclrName));
+        LoadNclrData(&b, FindFileInLoadedArchives(gSelectMenuEtcMBNclrName));
+        LoadNscrData(&d, FindFileInLoadedArchives(gSelectMenuEtcMBg00NscrName));
+        LoadNscrData(&d, FindFileInLoadedArchives(gSelectMenuEtcMBg01NscrName));
     }
 }
 

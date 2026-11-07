@@ -75,7 +75,7 @@ void func_02029dcc(void *a, void *b, void *c) {
     MemFillWordsByBlock_inline(data_usa_02174e00, 0x60);
     data_usa_02174e00->mUnk_38[0] = b;
     data_usa_02174e00->mUnk_38[1] = c;
-    data_usa_02174e00->mUnk_4c = func_02047a28(data_usa_02162138);
+    data_usa_02174e00->mUnk_4c = FindFileInLoadedArchives(data_usa_02162138);
     data_usa_02174e00->mUnk_50 = FindSceneFile(data_usa_02162144);
     data_usa_02174e00->mUnk_40 = data_0217b488->mUnk_84;
     data_usa_02174e00->mUnk_48 = data_0217b488->mUnk_7c;

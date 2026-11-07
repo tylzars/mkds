@@ -44,7 +44,7 @@ typedef struct Unk02029930 {
     /* fc */ s8 mMissionTableRow;
     /* fd */ s8 mMissionTableColumn;
     /* fe */ u8 mUnk_fe[6];
-    // Set by func_02029468 from the mission table cell value minus 1: a 0-based position in mMissionFileRows.
+    // Set by SetMissionFileRowIndex from the mission table cell value minus 1: a 0-based position in mMissionFileRows.
     /* 104 */ u16 mMissionFileRowIndex;
     /* 106 */ u8 mUnk_106[2];
     /* 108 */ s32 mUnk_108;

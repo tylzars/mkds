@@ -65,7 +65,7 @@ void InitWiFiVSSetting(void *heap) {
     func_02124ed0(heap, gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mWiFiVSSettingBnll,
                   &gWiFiVSSetting->mWiFiVSSettingTable);
     gWiFiVSSetting->mWiFiMessages = FindSceneFile("wifi.bmg");
-    gWiFiVSSetting->mCommonMessages = func_02047a28("common.bmg");
+    gWiFiVSSetting->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     {
         s32 v = GX_GetSizeOfSubOBJ();
         u8 a[1] = {1};

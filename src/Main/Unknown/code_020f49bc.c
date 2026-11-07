@@ -338,7 +338,7 @@ void func_020f6220(void *a0, s32 b) {
     StartSoundWhileRequested(&a->mUnk_000.mUnk_000.mSoundSource, 0xd7, 0x7f, 0);
 }
 
-BOOL func_020f6150(Unk020eda5c *a, ItemKouraG *b) {
+BOOL InitItemKouraG(Unk020eda5c *a, ItemKouraG *b) {
     BOOL v;
 
     v = data_021759c0->mMode == MODE_BATTLE;
@@ -353,7 +353,7 @@ BOOL func_020f6150(Unk020eda5c *a, ItemKouraG *b) {
     return TRUE;
 }
 
-void func_020f60d0(ItemKouraG *a) {
+void AdvanceItemKouraG(ItemKouraG *a) {
     if (a->mUnk_000.mUnk_000.mAgeFrames > 0x258) {
         a->mUnk_000.mUnk_154 = 0;
     }
@@ -406,7 +406,8 @@ void func_020f5f7c(ItemKouraR *a, Vec3 *b, Vec3 *c) {
     a->mStateMachine.mNextStateRequested = 1;
 }
 
-s32 func_020f5d6c(Unk020eda5c *a, ItemKouraR *b) {
+// Called when an object is taken off the kart item list: sets up its state machine and first state.
+s32 InitItemKouraR(Unk020eda5c *a, ItemKouraR *b) {
     u16 x;
     u16 v;
     u16 n;
@@ -457,14 +458,14 @@ s32 func_020f5d6c(Unk020eda5c *a, ItemKouraR *b) {
     return b->mUnk_254;
 }
 
-void func_020f5d5c(u32 arg0) {
+void AdvanceItemKouraR(u32 arg0) {
     u32 value0 = arg0;
     u32 value12;
     value0 = (value0) + (0x23cu);
     func_02046b40((void *) value0);
 }
 
-void func_020f5d00(ItemKouraR *a) {
+void UpdateItemKouraRState0And1(ItemKouraR *a) {
     func_020f2228(&a->mUnk_000.mUnk_000, 0x8800);
     if (a->mUnk_000.mUnk_000.mUnk_000.mFlags & 1) {
         return;
@@ -814,7 +815,7 @@ BOOL func_020f5324(void *a0, s32 b) {
 // Runs func_020f9114, ors data_02159834 into the 0x78 halfword, then makes one of two
 // func_020f3150 calls depending on the 0x1ec halfword of the 0x0c pointer, and returns the
 // 0x130 word it stores.
-s32 func_020f5240(Unk020eda5c *a, ItemBanana *b) {
+s32 InitItemBanana(Unk020eda5c *a, ItemBanana *b) {
     KartItems *o;
     s32 n;
 
@@ -834,7 +835,7 @@ s32 func_020f5240(Unk020eda5c *a, ItemBanana *b) {
 
 // Calls func_020f2df0 with one of two pairs of numbers, and when the 0x74 bits allow it
 // doubles the 0x60 word and runs StopSound and func_020f6a6c.
-void func_020f518c(ItemBanana *a) {
+void AdvanceItemBanana(ItemBanana *a) {
     u32 v;
     u32 n;
 
@@ -907,7 +908,7 @@ void func_020f5040(ItemKinoko *p0) {
 #pragma thumb off
 
 // Runs func_020ed5c0 with the last two parameters swapped when the 0x134 word is set.
-void func_020f5008(ItemKinoko *a, void *b, void *c) {
+void DrawItemKinoko(ItemKinoko *a, void *b, void *c) {
     if (a->mUnk_134 == FALSE) {
         return;
     }
@@ -942,7 +943,7 @@ void func_020f4f44(ItemKinoko *a) {
 }
 
 // Returns what StartItemObjectOrZero gives, with its 0x134 and 0x130 words cleared.
-ItemKinoko *func_020f4ee8(void) {
+ItemKinoko *StartItemKinokoOrZero(void) {
     ItemKinoko *p;
 
     p = StartItemObjectOrZero(3, 8, &data_02159764, &data_02159764);
@@ -1035,7 +1036,7 @@ void CreateItemInfos(void) {
 
 #pragma thumb off
 
-void func_020f4b20(Unk020f40dc *a, KartItems *b) {
+void InitHeldItem(Unk020f40dc *a, KartItems *b) {
     s32 i;
 
     a->mUnk_04 = b;

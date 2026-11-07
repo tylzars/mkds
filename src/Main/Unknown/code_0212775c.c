@@ -87,9 +87,9 @@ s32 func_021286a0(s32 a) {
     s32 i;
     s32 j;
     s32 k;
-    LocateNcgr(&ncgr, func_02047a28("select_return_s_b_00.ncgr"));
-    LocateNscr(&nscr, func_02047a28("select_return_s_bg_00.nscr"));
-    LocateNclr(&nclr, func_02047a28("select_return_s_b_00.nclr"));
+    LocateNcgr(&ncgr, FindFileInLoadedArchives("select_return_s_b_00.ncgr"));
+    LocateNscr(&nscr, FindFileInLoadedArchives("select_return_s_bg_00.nscr"));
+    LocateNclr(&nclr, FindFileInLoadedArchives("select_return_s_b_00.nclr"));
     a -= ncgr->mDataSize;
     DC_FlushRange(ncgr->mData, ncgr->mDataSize);
     GXS_LoadBG2Char(ncgr->mData, a, ncgr->mDataSize);
@@ -472,9 +472,9 @@ s32 LoadSelectChoises(s32 d) {
     s32 y;
     Unk0215d064 *e;
 
-    LocateNcgr(&a, func_02047a28(gSelectChoisesSBNcgrName));
-    LocateNscr(&b, func_02047a28(gSelectChoisesSBgNscrName));
-    LocateNclr(&c, func_02047a28(gSelectChoisesSBNclrName));
+    LocateNcgr(&a, FindFileInLoadedArchives(gSelectChoisesSBNcgrName));
+    LocateNscr(&b, FindFileInLoadedArchives(gSelectChoisesSBgNscrName));
+    LocateNclr(&c, FindFileInLoadedArchives(gSelectChoisesSBNclrName));
     d = d - a->mDataSize;
     s = d >> 5;
     gSelectChoises->mFirstTileIndex = s;

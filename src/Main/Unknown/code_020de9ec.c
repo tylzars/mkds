@@ -328,7 +328,7 @@ void func_020deb2c(Vec3 *a, void *b, u32 c, int d, u32 e) {
         }
     }
     func_020d26ec(b, 0xd4);
-    func_020fa78c(v2, c, e);
+    StartItemSlotForKart(v2, c, e);
 }
 
 u8 func_020dea50(Unk020de6a8 *a, Unk020dea50_1 *b, void *c, u8 *d) {

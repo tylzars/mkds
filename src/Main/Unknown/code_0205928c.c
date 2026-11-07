@@ -157,10 +157,10 @@ s32 func_020595e8(s32 a, void *b, void *c) {
                         func_020472e4(b, c);
                         break;
                     case 2:
-                        func_020472a8();
+                        RequestResultDLArchives();
                         break;
                     case 3:
-                        func_020473a8();
+                        RequestMenuDLArchives();
                         break;
                 }
                 data_0217aa00->mUnk_000c = 0x27;

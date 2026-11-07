@@ -51,7 +51,7 @@ void InitSelectBattleStage(void *c, s32 d, void *e, void *f) {
     gSelectBattleStage->mUnk_20 = TRUE;
     gSelectBattleStage->mResult = -4;
     gSelectBattleStage->mMenuMessages = FindSceneFile("menu.bmg");
-    gSelectBattleStage->mCommonMessages = func_02047a28("common.bmg");
+    gSelectBattleStage->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     LocateAndQueueSelectBattleStage();
     CopyAndQueueSelectBattleStageNscrRect();
     for (i = 0; i < 6; i++) {
