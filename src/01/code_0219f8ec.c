@@ -653,8 +653,8 @@ void AdvanceMissionRunMSselState3(void) {
         flag_b = TRUE;
     }
     if (flag_b) {
-        result = RectTableFindContaining(gMissionRunMSsel->mMissionRunMSselSBnbl, data_02175628[slot].mUnk_48,
-                                         data_02175628[slot].mUnk_4a);
+        result = RectTableFindContaining(gMissionRunMSsel->mMissionRunMSselSBnbl, data_02175628[slot].mPairX,
+                                         data_02175628[slot].mPairY);
     }
     if ((u16) (data_02175628[slot].mUnk_00 & 2) == 0) {
         flag_b = FALSE;
@@ -666,8 +666,8 @@ void AdvanceMissionRunMSselState3(void) {
         if (flag_a == FALSE && data_02175628[slot].mPrevHasPair == 0 && value != 0) {
             flag_b = TRUE;
         }
-        if (!flag_b || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[slot].mUnk_48,
-                                                                       data_02175628[slot].mUnk_4a) == FALSE) {
+        if (!flag_b || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[slot].mPairX,
+                                                                       data_02175628[slot].mPairY) == FALSE) {
             goto skip;
         }
     }
@@ -697,7 +697,7 @@ skip:
         func_ov001_021a0488();
         return;
     }
-    if (func_020ae408(8, 0x40)) {
+    if (GetNewOrRepeatBits(8, 0x40)) {
         current = gMissionRunMSsel->mIndex;
         delta = data_ov001_021a6de8[current];
         if (delta == 0) {
@@ -712,7 +712,7 @@ skip:
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         return;
     }
-    if (func_020ae408(8, 0x80)) {
+    if (GetNewOrRepeatBits(8, 0x80)) {
         current = gMissionRunMSsel->mIndex;
         delta = data_ov001_021a6dac[current];
         if (delta == 0) {
@@ -727,7 +727,7 @@ skip:
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         return;
     }
-    if (func_020ae408(8, 0x20)) {
+    if (GetNewOrRepeatBits(8, 0x20)) {
         current = gMissionRunMSsel->mIndex;
         delta = data_ov001_021a6dc0[current];
         if (delta == 0) {
@@ -742,7 +742,7 @@ skip:
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         return;
     }
-    if (func_020ae408(8, 0x10)) {
+    if (GetNewOrRepeatBits(8, 0x10)) {
         current = gMissionRunMSsel->mIndex;
         delta = data_ov001_021a6dfc[current];
         if (delta == 0) {

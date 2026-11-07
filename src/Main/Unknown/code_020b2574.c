@@ -90,9 +90,9 @@ void func_020b2574(void) {
                         func_02105c4c();
                         gChoisesS->mCloseFrames = 1;
                     }
-                } else if (func_020ae408(func_020b2b54(), 0x40) != 0) {
+                } else if (GetNewOrRepeatBits(func_020b2b54(), 0x40) != 0) {
                     MoveChoisesSSelectedValue(-1);
-                } else if (func_020ae408(func_020b2b54(), 0x80) != 0) {
+                } else if (GetNewOrRepeatBits(func_020b2b54(), 0x80) != 0) {
                     MoveChoisesSSelectedValue(1);
                 }
             }
@@ -122,9 +122,9 @@ void func_020b2574(void) {
                     func_02105c4c();
                     gChoisesS->mCloseFrames = 1;
                 }
-            } else if (func_020ae408(func_020b2b54(), 0x40) != 0) {
+            } else if (GetNewOrRepeatBits(func_020b2b54(), 0x40) != 0) {
                 MoveChoisesSSelectedValue(-1);
-            } else if (func_020ae408(func_020b2b54(), 0x80) != 0) {
+            } else if (GetNewOrRepeatBits(func_020b2b54(), 0x80) != 0) {
                 MoveChoisesSSelectedValue(1);
             }
         }

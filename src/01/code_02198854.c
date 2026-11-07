@@ -271,7 +271,7 @@ void AdvanceOptionSelectMenuState2(void) {
         hasB = TRUE;
     }
     if (hasB != FALSE) {
-        r5 = RectTableFindContaining(p->mOptionSelectMenuSBnbl, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
+        r5 = RectTableFindContaining(p->mOptionSelectMenuSBnbl, data_02175628[idx].mPairX, data_02175628[idx].mPairY);
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 2) != 0) {
         goto L1;
@@ -285,8 +285,8 @@ void AdvanceOptionSelectMenuState2(void) {
         if (d == FALSE && data_02175628[idx].mPrevHasPair == 0 && v != 0) {
             c = TRUE;
         }
-        if (c != FALSE && IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
-                                                                          data_02175628[idx].mUnk_4a) != FALSE) {
+        if (c != FALSE && IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mPairX,
+                                                                          data_02175628[idx].mPairY) != FALSE) {
         L1:
             gOptionSelectMenu->mNextState = 4;
             gOptionSelectMenu->mNextOptionState = 0;
@@ -322,20 +322,20 @@ void AdvanceOptionSelectMenuState2(void) {
         gOptionSelectMenu->mIndex = 1;
         gOptionSelectMenu->mRowValues[gOptionSelectMenu->mIndex]++;
         StartSoundOncePerFrame(1);
-    } else if (func_020ae408(8, 0x40) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x40) != 0) {
         gOptionSelectMenu->mIndex--;
         if (gOptionSelectMenu->mIndex < 0) {
             gOptionSelectMenu->mIndex = 2;
         }
         StartSoundOncePerFrame(0);
-    } else if (func_020ae408(8, 0x80) != 0 ||
+    } else if (GetNewOrRepeatBits(8, 0x80) != 0 ||
                (gOptionSelectMenu->mIndex != 2 && (u16) (data_02175628[idx].mUnk_00 & 1) != 0)) {
         gOptionSelectMenu->mIndex++;
         if (gOptionSelectMenu->mIndex > 2) {
             gOptionSelectMenu->mIndex = 0;
         }
         StartSoundOncePerFrame(0);
-    } else if (gOptionSelectMenu->mIndex != 2 && func_020ae408(8, 0x20) != 0) {
+    } else if (gOptionSelectMenu->mIndex != 2 && GetNewOrRepeatBits(8, 0x20) != 0) {
         gOptionSelectMenu->mRowValues[gOptionSelectMenu->mIndex]--;
         gOptionSelectMenu->mOffsetTimers[gOptionSelectMenu->mIndex][0] = 6;
         if (gOptionSelectMenu->mIndex == 0) {
@@ -343,9 +343,9 @@ void AdvanceOptionSelectMenuState2(void) {
         } else {
             StartSoundOncePerFrame(1);
         }
-    } else if (gOptionSelectMenu->mIndex != 2 && func_020ae408(8, 0x10) != 0) {
+    } else if (gOptionSelectMenu->mIndex != 2 && GetNewOrRepeatBits(8, 0x10) != 0) {
         gOptionSelectMenu->mRowValues[gOptionSelectMenu->mIndex]++;
-        if (func_020ae408(8, 0x10) != 0) {
+        if (GetNewOrRepeatBits(8, 0x10) != 0) {
             gOptionSelectMenu->mOffsetTimers[gOptionSelectMenu->mIndex][1] = 6;
         }
         if (gOptionSelectMenu->mIndex == 0) {

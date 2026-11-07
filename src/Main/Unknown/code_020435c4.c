@@ -59,7 +59,7 @@ static inline void func_02043c14_inline(void) {
         p->mUnk_44 = 0;
         p->mBitMask = 0x2fff;
         func_0204a9e4((Unk02175650 *) &p->mUnk_28);
-        func_020470c4((Unk02175628_48 *) &p->mUnk_48);
+        func_020470c4((Unk02175628_48 *) &p->mPairX);
     }
     data_02175628[8].mSourceKind = 5;
     data_02175628[9].mSourceKind = 6;
@@ -95,7 +95,7 @@ void func_0204451c(u32 a) {
     if (f < 2) {
         q->mUnk_3d5[f] = a;
     }
-    gRaceSetup->mNextEntries[a].mPlayer.mUnk_16 = gRaceSetup->mUnk_3e1;
+    gRaceSetup->mNextEntries[a].mPlayer.mNumber = gRaceSetup->mUnk_3e1;
     gRaceSetup->mUnk_3e1 = gRaceSetup->mUnk_3e1 + 1;
 }
 
@@ -449,7 +449,7 @@ void func_02043648(void) {
         if (q == FALSE) {
             func_02039530(t, p);
         }
-        func_02046ca8((Unk02175628_48 *) &p->mUnk_48, n, o);
+        func_02046ca8((Unk02175628_48 *) &p->mPairX, n, o);
     }
 }
 

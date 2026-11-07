@@ -34,11 +34,11 @@ void func_020caf98(s32 a) {
         } else if (func_020cb1f4(v, 2)) {
             func_020ccc74(2, 0x1b);
             RequestSelectReturnState3WithSound(1);
-        } else if (func_020ae408(v, 0x40)) {
+        } else if (GetNewOrRepeatBits(v, 0x40)) {
             p = data_0217b43c;
             p->mUnk_930 = (p->mUnk_930 + 4) % 5;
             StartSoundOncePerFrame(0);
-        } else if (func_020ae408(v, 0x80)) {
+        } else if (GetNewOrRepeatBits(v, 0x80)) {
             p = data_0217b43c;
             p->mUnk_930 = (p->mUnk_930 + 6) % 5;
             StartSoundOncePerFrame(0);

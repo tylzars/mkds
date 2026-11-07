@@ -32,7 +32,7 @@ u32 func_0202efe8(Unk02175628_48 *a) {
 }
 
 u32 func_0202efc8(u32 a) {
-    return func_0202efe8((Unk02175628_48 *) &data_02175628[a].mUnk_48);
+    return func_0202efe8((Unk02175628_48 *) &data_02175628[a].mPairX);
 }
 
 #pragma thumb on

@@ -56,7 +56,7 @@ void func_020cc744(void) {
         SetNextMode(GetRaceSetupCopy()->mMode);
         SetNextCupIndex(GetRaceSetupCopy()->mCupIndex);
         if (GetRaceSetupCopy()->mMode == 0) {
-            GetRaceSetupCopy()->mCourseId = func_020ae3a4(GetRaceSetupCopy()->mCupIndex, 0);
+            GetRaceSetupCopy()->mCourseId = GetCupCourseId(GetRaceSetupCopy()->mCupIndex, 0);
         }
         SetNextCourseId(GetRaceSetupCopy()->mCourseId);
         if (GetRaceSetupCopy()->mMode == 1) {

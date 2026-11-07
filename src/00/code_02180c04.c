@@ -382,8 +382,8 @@ void func_ov000_02180cdc(void) {
             if (a == 0 && data_02175628[i].mPrevHasPair == 0 && v != 0) {
                 b = TRUE;
             }
-            if (b == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
-                                                                              data_02175628[i].mUnk_4a) == FALSE) {
+            if (b == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mPairX,
+                                                                              data_02175628[i].mPairY) == FALSE) {
                 goto next;
             }
         }

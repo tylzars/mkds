@@ -234,8 +234,8 @@ void AdvanceTimeAttackTopMenuState3(void) {
         flag2 = TRUE;
     }
     if (flag2 != FALSE) {
-        sel = RectTableFindContaining(gTimeAttackTopMenu->mTimeAttackTopMenuSBnbl, data_02175628[i].mUnk_48,
-                                      data_02175628[i].mUnk_4a);
+        sel = RectTableFindContaining(gTimeAttackTopMenu->mTimeAttackTopMenuSBnbl, data_02175628[i].mPairX,
+                                      data_02175628[i].mPairY);
     }
     e = &data_02175628[i];
     bits = e->mUnk_00 & 2;
@@ -247,8 +247,8 @@ void AdvanceTimeAttackTopMenuState3(void) {
         if (flag3 == 0 && data_02175628[i].mPrevHasPair == 0 && data_02175628[i].mHasPair != 0) {
             flag4 = TRUE;
         }
-        if (flag4 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
-                                                                              data_02175628[i].mUnk_4a) == FALSE) {
+        if (flag4 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mPairX,
+                                                                              data_02175628[i].mPairY) == FALSE) {
             goto next;
         }
     }
@@ -293,7 +293,7 @@ next:
         }
         func_ov001_021982e8();
     } else {
-        if (func_020ae408(8, 0x40) != 0) {
+        if (GetNewOrRepeatBits(8, 0x40) != 0) {
             func_ov001_02198264(gTimeAttackTopMenu->mIndex);
             gTimeAttackTopMenu->mIndex--;
             if (gTimeAttackTopMenu->mIndex < 0) {
@@ -301,7 +301,7 @@ next:
             }
             func_ov001_0219829c(gTimeAttackTopMenu->mIndex);
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
-        } else if (func_020ae408(8, 0x80) != 0) {
+        } else if (GetNewOrRepeatBits(8, 0x80) != 0) {
             func_ov001_02198264(gTimeAttackTopMenu->mIndex);
             gTimeAttackTopMenu->mIndex++;
             if (gTimeAttackTopMenu->mIndex >= 3) {

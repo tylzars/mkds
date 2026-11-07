@@ -399,8 +399,8 @@ void AdvanceMissionRunLVselState3(void) {
         f2 = TRUE;
     }
     if (f2 != FALSE) {
-        sel = RectTableFindContaining(gMissionRunLVsel->mMissionRunLVselS7Or6Bnbl, data_02175628[i].mUnk_48,
-                                      data_02175628[i].mUnk_4a);
+        sel = RectTableFindContaining(gMissionRunLVsel->mMissionRunLVselS7Or6Bnbl, data_02175628[i].mPairX,
+                                      data_02175628[i].mPairY);
     }
     if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
         BOOL g2 = FALSE;
@@ -411,8 +411,8 @@ void AdvanceMissionRunLVselState3(void) {
         if (g1 == FALSE && data_02175628[i].mPrevHasPair == 0 && data_02175628[i].mHasPair != 0) {
             g2 = TRUE;
         }
-        if (g2 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
-                                                                           data_02175628[i].mUnk_4a) == FALSE) {
+        if (g2 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mPairX,
+                                                                           data_02175628[i].mPairY) == FALSE) {
             goto next;
         }
     }
@@ -439,7 +439,7 @@ next:
         func_ov001_0219f1f4();
         return;
     }
-    if (func_020ae408(8, 0x40) != 0) {
+    if (GetNewOrRepeatBits(8, 0x40) != 0) {
         if (data_ov001_021a6ca0[gMissionRunLVsel->mIndex] != 0) {
             n = gMissionRunLVsel->mIndex + data_ov001_021a6ca0[gMissionRunLVsel->mIndex];
             if (func_ov001_0219f688(n) != 0) {
@@ -448,7 +448,7 @@ next:
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
             }
         }
-    } else if (func_020ae408(8, 0x80) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x80) != 0) {
         if (data_ov001_021a6cb0[gMissionRunLVsel->mIndex] != 0) {
             n = gMissionRunLVsel->mIndex + data_ov001_021a6cb0[gMissionRunLVsel->mIndex];
             if (func_ov001_0219f688(n) != 0) {
@@ -457,7 +457,7 @@ next:
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
             }
         }
-    } else if (func_020ae408(8, 0x20) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x20) != 0) {
         if (data_ov001_021a6cc0[gMissionRunLVsel->mIndex] != 0) {
             n = gMissionRunLVsel->mIndex + data_ov001_021a6cc0[gMissionRunLVsel->mIndex];
             if (func_ov001_0219f688(n) != 0) {
@@ -466,7 +466,7 @@ next:
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
             }
         }
-    } else if (func_020ae408(8, 0x10) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x10) != 0) {
         if (data_ov001_021a6cd0[gMissionRunLVsel->mIndex] != 0) {
             n = gMissionRunLVsel->mIndex + data_ov001_021a6cd0[gMissionRunLVsel->mIndex];
             if (func_ov001_0219f688(n) != 0) {

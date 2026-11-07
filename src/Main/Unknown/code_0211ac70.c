@@ -1075,9 +1075,9 @@ void func_0211bf94(void) {
                 c = TRUE;
             }
             if (c != FALSE) {
-                a = RectTableFindContaining(gSelectRaceRule->mBnbl, p->mUnk_48, p->mUnk_4a - gSelectRaceRule->mOffsetY);
+                a = RectTableFindContaining(gSelectRaceRule->mBnbl, p->mPairX, p->mPairY - gSelectRaceRule->mOffsetY);
             }
-            if (func_020ae408(n, 0x200) != 0 || a == 0x11) {
+            if (GetNewOrRepeatBits(n, 0x200) != 0 || a == 0x11) {
                 if (i == 0) {
                     if (a == 0x11) {
                         gSelectRaceRule->mRow = 4;
@@ -1089,7 +1089,7 @@ void func_0211bf94(void) {
                 } else {
                     func_0211d174(i, 0);
                 }
-            } else if (func_020ae408(n, 0x100) != 0 || a == 0x12) {
+            } else if (GetNewOrRepeatBits(n, 0x100) != 0 || a == 0x12) {
                 if (i == 0) {
                     if (a == 0x12) {
                         gSelectRaceRule->mRow = 4;
@@ -1769,21 +1769,21 @@ chain:
             gSelectRaceRule->mOnButton = 0;
             func_0211cafc();
         }
-    } else if (func_020ae408(8, 0x40) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x40) != 0) {
         MoveSelectRaceRuleRowPrevious();
-    } else if (func_020ae408(8, 0x80) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x80) != 0) {
         MoveSelectRaceRuleRowNext();
-    } else if (func_020ae408(8, 0x20) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x20) != 0) {
         if (gSelectRaceRule->mOnButton == 0) {
             MoveSelectRaceRuleValuePrevious(1);
         }
-    } else if (func_020ae408(8, 0x10) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x10) != 0) {
         if (gSelectRaceRule->mOnButton == 0) {
             MoveSelectRaceRuleValueNext(1);
         }
-    } else if (func_020ae408(8, 0x200) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x200) != 0) {
         func_0211ca8c();
-    } else if (func_020ae408(8, 0x100) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x100) != 0) {
         func_0211cafc();
     }
 end:

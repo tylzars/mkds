@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_020ae1f4(u32 arg0);
+u32 GetSlotPairY(u32 arg0);

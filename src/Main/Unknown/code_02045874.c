@@ -81,10 +81,10 @@ void func_02046594(void) {
     }
     for (i = 0; i < 8; i++) {
         if (f == FALSE && gRaceSetup->mNextEntries[i].mPlayer.mKind == 1) {
-            gRaceSetup->mNextEntries[i].mPlayer.mUnk_16 = k;
+            gRaceSetup->mNextEntries[i].mPlayer.mNumber = k;
             k = k + 1;
         } else {
-            gRaceSetup->mNextEntries[i].mPlayer.mUnk_16 = -1;
+            gRaceSetup->mNextEntries[i].mPlayer.mNumber = -1;
         }
     }
     gRaceSetup->mUnk_3e1 = k;

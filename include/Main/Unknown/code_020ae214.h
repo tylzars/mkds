@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-unsigned int func_020ae214(unsigned int p0);
+unsigned int GetPairY(unsigned int p0);

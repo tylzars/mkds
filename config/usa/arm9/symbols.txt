@@ -4097,39 +4097,39 @@ func_020add80 kind:function(arm,size=0x10) addr:0x020add80
 func_020add90 kind:function(arm,size=0x28) addr:0x020add90
 func_020addb8 kind:function(arm,size=0x24) addr:0x020addb8
 func_020adddc kind:function(thumb,size=0x2c) addr:0x020adddc
-func_020ade08 kind:function(thumb,size=0xb6) addr:0x020ade08
+PlotNibblePixels kind:function(thumb,size=0xb6) addr:0x020ade08
 SetPixel2Bit kind:function(thumb,size=0x3e) addr:0x020adec0
-func_020adf00 kind:function(thumb,size=0xb0) addr:0x020adf00
-func_020adfb0 kind:function(arm,size=0x28) addr:0x020adfb0
-func_020adfd8 kind:function(arm,size=0x18) addr:0x020adfd8
+RenderKartEntryName kind:function(thumb,size=0xb0) addr:0x020adf00
+DrawTextOnCanvas kind:function(arm,size=0x28) addr:0x020adfb0
+InitTextCanvas kind:function(arm,size=0x18) addr:0x020adfd8
 CopyKartEntryName kind:function(thumb,size=0xbc) addr:0x020adff0
-func_020ae0ac kind:function(arm,size=0x1c) addr:0x020ae0ac
+GetKartEntryNumber kind:function(arm,size=0x1c) addr:0x020ae0ac
 func_020ae0c8 kind:function(arm,size=0x1c) addr:0x020ae0c8
 func_020ae0e4 kind:function(arm,size=0x14) addr:0x020ae0e4
 GetKartEntryName kind:function(arm,size=0x1c) addr:0x020ae0f8
 func_020ae114 kind:function(arm,size=0x48) addr:0x020ae114
 func_020ae15c kind:function(arm,size=0x1c) addr:0x020ae15c
-func_020ae178 kind:function(thumb,size=0x58) addr:0x020ae178
-func_020ae1d0 kind:function(thumb,size=0x24) addr:0x020ae1d0
-func_020ae1f4 kind:function(arm,size=0x20) addr:0x020ae1f4
-func_020ae214 kind:function(arm,size=0x8) addr:0x020ae214
-func_020ae21c kind:function(arm,size=0x20) addr:0x020ae21c
-func_020ae23c kind:function(arm,size=0x8) addr:0x020ae23c
-func_020ae244 kind:function(thumb,size=0x4a) addr:0x020ae244
-func_020ae290 kind:function(arm,size=0x20) addr:0x020ae290
+GetCharacterBmgEntry kind:function(thumb,size=0x58) addr:0x020ae178
+ReverseBytes32 kind:function(thumb,size=0x24) addr:0x020ae1d0
+GetSlotPairY kind:function(arm,size=0x20) addr:0x020ae1f4
+GetPairY kind:function(arm,size=0x8) addr:0x020ae214
+GetSlotPairX kind:function(arm,size=0x20) addr:0x020ae21c
+GetPairX kind:function(arm,size=0x8) addr:0x020ae23c
+IsNewPairInRect kind:function(thumb,size=0x4a) addr:0x020ae244
+IsSlotPairNew kind:function(arm,size=0x20) addr:0x020ae290
 func_020ae2b0 kind:function(arm,size=0x34) addr:0x020ae2b0
-func_020ae2e4 kind:function(arm,size=0x24) addr:0x020ae2e4
+IsPairNew kind:function(arm,size=0x24) addr:0x020ae2e4
 func_020ae308 kind:function(arm,size=0x30) addr:0x020ae308
 func_020ae338 kind:function(arm,size=0x8) addr:0x020ae338
 FindMissionTableCell kind:function(thumb,size=0x64) addr:0x020ae340
-func_020ae3a4 kind:function(thumb,size=0x10) addr:0x020ae3a4
+GetCupCourseId kind:function(thumb,size=0x10) addr:0x020ae3a4
 func_020ae3b4 kind:function(thumb,size=0x22) addr:0x020ae3b4
 func_020ae3d8 kind:function(arm,size=0x1c) addr:0x020ae3d8
 func_020ae3f4 kind:function(arm,size=0x14) addr:0x020ae3f4
-func_020ae408 kind:function(thumb,size=0x20) addr:0x020ae408
+GetNewOrRepeatBits kind:function(thumb,size=0x20) addr:0x020ae408
 GetRepeatBits kind:function(arm,size=0x1c) addr:0x020ae428
 func_020ae444 kind:function(arm,size=0x14) addr:0x020ae444
-func_020ae458 kind:function(arm,size=0x1c) addr:0x020ae458
+GetNewBits kind:function(arm,size=0x1c) addr:0x020ae458
 func_020ae474 kind:function(arm,size=0x14) addr:0x020ae474
 func_020ae488 kind:function(thumb,size=0x38) addr:0x020ae488
 InterpolateS16 kind:function(thumb,size=0x8c) addr:0x020ae4c0
@@ -10120,7 +10120,7 @@ gTitleBmgName kind:data(any) addr:0x02167f94
 gTitleBmgName2 kind:data(any) addr:0x02167fa0
 @1939 kind:data(any) addr:0x02167fac local
 @4425 kind:data(any) addr:0x02167fe0 local
-data_02168024 kind:data(any) addr:0x0216801c
+gCupCourseIds kind:data(any) addr:0x0216801c
 @4913 kind:data(any) addr:0x021680f8 local
 @4914 kind:data(any) addr:0x02168104 local
 @4949 kind:data(any) addr:0x0216810c local

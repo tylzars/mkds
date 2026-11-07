@@ -413,8 +413,8 @@ void AdvanceSelectEngineState4(void) {
         b1 = TRUE;
     }
     if (b1 != FALSE) {
-        r5 = RectTableFindContaining(gSelectEngine->mSelectEngineAOrBSBnbl, data_02175628[idx].mUnk_48,
-                                     data_02175628[idx].mUnk_4a);
+        r5 = RectTableFindContaining(gSelectEngine->mSelectEngineAOrBSBnbl, data_02175628[idx].mPairX,
+                                     data_02175628[idx].mPairY);
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
         a2 = b2 = FALSE;
@@ -425,8 +425,8 @@ void AdvanceSelectEngineState4(void) {
         if (a2 == 0 && data_02175628[idx].mPrevHasPair == 0 && w != 0) {
             b2 = TRUE;
         }
-        if (b2 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
-                                                                           data_02175628[idx].mUnk_4a) == FALSE) {
+        if (b2 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mPairX,
+                                                                           data_02175628[idx].mPairY) == FALSE) {
             goto next;
         }
     }
@@ -453,7 +453,7 @@ next:
         func_ov001_021a1978();
         return;
     }
-    if (func_020ae408(8, 0x40) != 0) {
+    if (GetNewOrRepeatBits(8, 0x40) != 0) {
         if (func_02056dec(0x10) != 0) {
             t = gSelectEngine->mIndex;
             o = gSelectEngine;
@@ -467,7 +467,7 @@ next:
             o->mIndex = t + s;
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
-    } else if (func_020ae408(8, 0x80) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x80) != 0) {
         if (func_02056dec(0x10) != 0) {
             t = gSelectEngine->mIndex;
             o = gSelectEngine;
@@ -481,7 +481,7 @@ next:
             o->mIndex = t + s;
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
-    } else if (func_020ae408(8, 0x20) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x20) != 0) {
         if (func_02056dec(0x10) != 0) {
             t = gSelectEngine->mIndex;
             o = gSelectEngine;
@@ -495,7 +495,7 @@ next:
             o->mIndex = t + s;
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
-    } else if (func_020ae408(8, 0x10) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x10) != 0) {
         if (func_02056dec(0x10) != 0) {
             t = gSelectEngine->mIndex;
             o = gSelectEngine;

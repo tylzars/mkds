@@ -25,5 +25,5 @@ u32 func_020b2a94(Unk020b2a94 *p) {
 }
 
 u32 func_020b2a74(s32 a) {
-    return func_020b2a94((Unk020b2a94 *) &data_02175628[a].mUnk_48);
+    return func_020b2a94((Unk020b2a94 *) &data_02175628[a].mPairX);
 }

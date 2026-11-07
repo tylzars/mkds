@@ -242,8 +242,8 @@ void AdvanceSelectBattleStageState2(void) {
         b = TRUE;
     }
     if (b != FALSE) {
-        res = RectTableFindContaining(gSelectBattleStage->mSelectBattleStageBnbls[1], data_02175628[idx].mUnk_48,
-                                      data_02175628[idx].mUnk_4a);
+        res = RectTableFindContaining(gSelectBattleStage->mSelectBattleStageBnbls[1], data_02175628[idx].mPairX,
+                                      data_02175628[idx].mPairY);
     }
     for (i = 0; i < 6; i++) {
         if (res == gSelectBattleStageBnblRectIndices[i]) {
@@ -260,8 +260,8 @@ void AdvanceSelectBattleStageState2(void) {
         if (a == FALSE && data_02175628[idx].mPrevHasPair == 0 && x != 0) {
             b = TRUE;
         }
-        if (b == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
-                                                                          data_02175628[idx].mUnk_4a) == FALSE) {
+        if (b == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mPairX,
+                                                                          data_02175628[idx].mPairY) == FALSE) {
             goto next;
         }
     }
@@ -296,7 +296,7 @@ next:
         StartSoundOncePerFrame(5);
         return;
     }
-    if (func_020ae408(8, 0x40) != 0) {
+    if (GetNewOrRepeatBits(8, 0x40) != 0) {
         gSelectBattleStage->mIndex--;
         if (gSelectBattleStage->mIndex < 0) {
             gSelectBattleStage->mIndex = 5;
@@ -305,7 +305,7 @@ next:
         StartSoundOncePerFrame(0);
         return;
     }
-    if (func_020ae408(8, 0x80) != 0) {
+    if (GetNewOrRepeatBits(8, 0x80) != 0) {
         gSelectBattleStage->mIndex++;
         if (gSelectBattleStage->mIndex >= 6) {
             gSelectBattleStage->mIndex = 0;

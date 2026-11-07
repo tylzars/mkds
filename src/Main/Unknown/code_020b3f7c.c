@@ -16,7 +16,7 @@ void LocateBmgSections(Bmg *bmg) {
     for (i = 0; i < bmg->mSectionCount; i++) {
         section = p;
         p = p + ((BmgSectionHeader *) p)->mNextOffset;
-        tag = func_020ae1d0(((BmgSectionHeader *) section)->mTag);
+        tag = ReverseBytes32(((BmgSectionHeader *) section)->mTag);
         switch (tag) {
             case 0x494e4631:
                 data_0217b360 = (Unk0217b340 *) section;

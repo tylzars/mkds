@@ -134,12 +134,12 @@ int AdvanceSelectKart(void) {
                     v = 0;
                 }
                 RequestSelectReturnState3WithSound(v);
-            } else if (func_020ae408(t, 0x10) != 0 || func_020290ac(1) != 0) {
+            } else if (GetNewOrRepeatBits(t, 0x10) != 0 || func_020290ac(1) != 0) {
                 func_020292bc();
                 gSelectKart->mUnk_114 = 3;
                 p->mUnk_18[1].mUnk_00 = 0;
                 p->mUnk_18[3].mUnk_00 = 1;
-            } else if (func_020ae408(t, 0x20) != 0 || func_020290ac(0) != 0) {
+            } else if (GetNewOrRepeatBits(t, 0x20) != 0 || func_020290ac(0) != 0) {
                 func_02029248();
                 gSelectKart->mUnk_114 = 2;
                 p->mUnk_18[0].mUnk_00 = 0;

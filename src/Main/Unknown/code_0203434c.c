@@ -205,13 +205,13 @@ s32 func_02034370(Unk02034370 *a) {
                     } else if ((u16) (data_02175628[k].mUnk_00 & 2) != 0 || z != 0) {
                         data_02174e64->mState = 12;
                         RequestSelectReturnState3WithSound(0);
-                    } else if (func_020ae408(k, 0x40)) {
+                    } else if (GetNewOrRepeatBits(k, 0x40)) {
                         if (data_02174e64->mUnk_190 == 2) {
                             func_020352fc(0);
                         } else if (data_02174e64->mUnk_190 > 2) {
                             func_020352fc(1);
                         }
-                    } else if (func_020ae408(k, 0x80)) {
+                    } else if (GetNewOrRepeatBits(k, 0x80)) {
                         if (data_02174e64->mUnk_190 == 2) {
                             func_02035280(0);
                         } else if (data_02174e64->mUnk_190 > 2) {

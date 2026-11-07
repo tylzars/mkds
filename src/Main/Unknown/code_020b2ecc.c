@@ -89,7 +89,7 @@ u32 func_020b302c(void) {
     s32 n;
     s32 k;
     s32 i;
-    Unk020ae244 e[6];
+    PairRect e[6];
     s32 d;
     s32 t;
 
@@ -99,13 +99,13 @@ u32 func_020b302c(void) {
         n = gChoisesS->mLists[k].mValueCount;
         for (i = 0, d = 0xc - n * 2; i < n; i++) {
             t = (d + i * 4) * 8 + 6;
-            e[i].mUnk_00 = 8;
-            e[i].mUnk_04 = 0xf8;
-            e[i].mUnk_02 = t;
-            e[i].mUnk_06 = t + 0x16;
+            e[i].mMinX = 8;
+            e[i].mMaxX = 0xf8;
+            e[i].mMinY = t;
+            e[i].mMaxY = t + 0x16;
         }
         for (i = 0; i < n; i++) {
-            if (func_020ae244(func_020b2b54(), e[i]) != 0) {
+            if (IsNewPairInRect(func_020b2b54(), e[i]) != 0) {
                 if (gChoisesS->mSelectedValue != func_020b302c_inline()->mLists[k].mValues[i]) {
                     gChoisesS->mSelectedValue = gChoisesS->mLists[k].mValues[i];
                     MoveChoisesSSelectedValue(0);

@@ -501,11 +501,11 @@ void AdvanceRecordVSEraseState4(void) {
             }
             return;
         }
-        if (func_020ae408(8, 0x40) != 0) {
+        if (GetNewOrRepeatBits(8, 0x40) != 0) {
             DecrementRecordVSEraseIndex();
             return;
         }
-        if (func_020ae408(8, 0x80) != 0) {
+        if (GetNewOrRepeatBits(8, 0x80) != 0) {
             IncrementRecordVSEraseIndex();
         }
     }

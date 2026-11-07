@@ -108,7 +108,7 @@ void AdvanceSelectCupCourseState3(void) {
         gSelectCupCourse->mUnk_54 = FALSE;
         return;
     }
-    if (func_020ae408(8, 0x40) != 0) {
+    if (GetNewOrRepeatBits(8, 0x40) != 0) {
         gSelectCupCourse->mIndex = gSelectCupCourse->mIndex - 1;
         if (gSelectCupCourse->mIndex < 0) {
             gSelectCupCourse->mIndex = 3;
@@ -118,7 +118,7 @@ void AdvanceSelectCupCourseState3(void) {
         }
         return;
     }
-    if (func_020ae408(8, 0x80) != 0) {
+    if (GetNewOrRepeatBits(8, 0x80) != 0) {
         gSelectCupCourse->mIndex = gSelectCupCourse->mIndex + 1;
         if (gSelectCupCourse->mIndex >= 4) {
             gSelectCupCourse->mIndex = 0;

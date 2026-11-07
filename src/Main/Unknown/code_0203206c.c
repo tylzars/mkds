@@ -285,8 +285,8 @@ s32 AdvanceSelectGame(void) {
                 f = TRUE;
             }
             if (f != FALSE) {
-                d = data_02175628[v1].mUnk_48;
-                g = data_02175628[v1].mUnk_4a;
+                d = data_02175628[v1].mPairX;
+                g = data_02175628[v1].mPairY;
                 c = IsSelectReturnState2NoState3Or4RequestAndInRect(d, g);
                 d = RectTableFindContaining(q->mUnk_10, d, g);
             }
@@ -318,7 +318,7 @@ s32 AdvanceSelectGame(void) {
                     func_020329dc(0);
                 }
                 RequestSelectReturnState3WithSound(0);
-            } else if (func_020ae408(8, 0x40) != 0) {
+            } else if (GetNewOrRepeatBits(8, 0x40) != 0) {
                 if (gSelectGame->mSelectedIndex == 0) {
                     if (gSelectGame->mMode == 1) {
                         gSelectGame->mSelectedIndex = gSelectGame->mTableCount - 1;
@@ -326,7 +326,7 @@ s32 AdvanceSelectGame(void) {
                 } else {
                     gSelectGame->mSelectedIndex = gSelectGame->mSelectedIndex - 1;
                 }
-            } else if (func_020ae408(8, 0x80) != 0) {
+            } else if (GetNewOrRepeatBits(8, 0x80) != 0) {
                 if (gSelectGame->mSelectedIndex == gSelectGame->mTableCount - 1) {
                     if (gSelectGame->mMode == 1) {
                         gSelectGame->mSelectedIndex = 0;

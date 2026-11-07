@@ -26,5 +26,5 @@ BOOL func_020cb13c(u16 *a) {
 }
 
 s32 func_020cb11c(u32 a) {
-    return func_020cb13c(&data_02175628[a].mUnk_48);
+    return func_020cb13c(&data_02175628[a].mPairX);
 }

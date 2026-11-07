@@ -499,25 +499,25 @@ int AdvanceSelectCharacter(void) {
                 } else if (gSelectCharacter->mUnk_080 == 0 && (u16) (v & 2) != 0) {
                     func_020273c0();
                 } else {
-                    if (func_020ae408(i, 0x40) != 0) {
+                    if (GetNewOrRepeatBits(i, 0x40) != 0) {
                         p = gSelectCharacter;
                         t = p->mUnk_084[0];
                         if (t != -1) {
                             p->mUnk_060 = t;
                         }
-                    } else if (func_020ae408(i, 0x80) != 0) {
+                    } else if (GetNewOrRepeatBits(i, 0x80) != 0) {
                         p = gSelectCharacter;
                         t = p->mUnk_084[1];
                         if (t != -1) {
                             p->mUnk_060 = t;
                         }
-                    } else if (func_020ae408(i, 0x10) != 0) {
+                    } else if (GetNewOrRepeatBits(i, 0x10) != 0) {
                         p = gSelectCharacter;
                         t = p->mUnk_084[2];
                         if (t != -1) {
                             p->mUnk_060 = t;
                         }
-                    } else if (func_020ae408(i, 0x20) != 0) {
+                    } else if (GetNewOrRepeatBits(i, 0x20) != 0) {
                         p = gSelectCharacter;
                         t = p->mUnk_084[3];
                         if (t != -1) {

@@ -418,8 +418,8 @@ void AdvanceRecordTopMenuState4(void) {
         b = TRUE;
     }
     if (b != FALSE) {
-        sel = RectTableFindContaining(gRecordTopMenu->mRecordTopMenuSBnbl, data_02175628[i].mUnk_48,
-                                      data_02175628[i].mUnk_4a);
+        sel = RectTableFindContaining(gRecordTopMenu->mRecordTopMenuSBnbl, data_02175628[i].mPairX,
+                                      data_02175628[i].mPairY);
     }
     flags = data_02175628[i].mUnk_00 & 2;
     if (flags == 0) {
@@ -431,8 +431,8 @@ void AdvanceRecordTopMenuState4(void) {
         if (a2 == FALSE && data_02175628[i].mPrevHasPair == 0 && data_02175628[i].mHasPair != 0) {
             b2 = TRUE;
         }
-        if (b2 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
-                                                                           data_02175628[i].mUnk_4a) == FALSE) {
+        if (b2 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mPairX,
+                                                                           data_02175628[i].mPairY) == FALSE) {
             goto skip;
         }
     }
@@ -460,11 +460,11 @@ skip:
         if (flags != 0) {
             SetRecordTopMenuRowOff(gRecordTopMenu->mIndex);
             RequestRecordTopMenuState5();
-        } else if (func_020ae408(8, 0x40) != 0) {
+        } else if (GetNewOrRepeatBits(8, 0x40) != 0) {
             SetRecordTopMenuRowOff(gRecordTopMenu->mIndex);
             DecrementRecordTopMenuIndex();
             SetRecordTopMenuRowOn(gRecordTopMenu->mIndex);
-        } else if (func_020ae408(8, 0x80) != 0) {
+        } else if (GetNewOrRepeatBits(8, 0x80) != 0) {
             SetRecordTopMenuRowOff(gRecordTopMenu->mIndex);
             IncrementRecordTopMenuIndex();
             SetRecordTopMenuRowOn(gRecordTopMenu->mIndex);
@@ -565,7 +565,7 @@ void AdvanceRecordTopMenuState9(void) {
     BOOL a;
     u16 v;
 
-    RectTableFindContaining(gRecordTopMenu->mRecordTopMenuSBnbl, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
+    RectTableFindContaining(gRecordTopMenu->mRecordTopMenuSBnbl, data_02175628[i].mPairX, data_02175628[i].mPairY);
     flags = data_02175628[i].mUnk_00 & 2;
     if (flags == 0) {
         b = FALSE;
@@ -577,8 +577,8 @@ void AdvanceRecordTopMenuState9(void) {
         if (a == FALSE && data_02175628[i].mPrevHasPair == 0 && v != 0) {
             b = TRUE;
         }
-        if (b == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
-                                                                          data_02175628[i].mUnk_4a) == FALSE) {
+        if (b == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mPairX,
+                                                                          data_02175628[i].mPairY) == FALSE) {
             return;
         }
     }

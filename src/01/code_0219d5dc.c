@@ -148,8 +148,8 @@ void AdvanceOptionEmbremSelectState3(void) {
         cond2 = TRUE;
     }
     if (cond2 != FALSE) {
-        result = RectTableFindContaining(gOptionEmbremSelect->mOptionEmbremSelectSBnbl, data_02175628[index].mUnk_48,
-                                         data_02175628[index].mUnk_4a);
+        result = RectTableFindContaining(gOptionEmbremSelect->mOptionEmbremSelectSBnbl, data_02175628[index].mPairX,
+                                         data_02175628[index].mPairY);
     }
     flags = data_02175628[index].mUnk_00 & 2;
     if (flags != 0) {
@@ -164,8 +164,8 @@ void AdvanceOptionEmbremSelectState3(void) {
     if (cond1 == FALSE && data_02175628[index].mPrevHasPair == 0 && value != 0) {
         cond2 = TRUE;
     }
-    if (cond2 != FALSE && IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[index].mUnk_48,
-                                                                          data_02175628[index].mUnk_4a) != FALSE) {
+    if (cond2 != FALSE && IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[index].mPairX,
+                                                                          data_02175628[index].mPairY) != FALSE) {
     next:
         gOptionEmbremSelect->mNextState = 5;
         gOptionEmbremSelect->mNextOptionState = 2;
@@ -195,19 +195,19 @@ void AdvanceOptionEmbremSelectState3(void) {
             gOptionEmbremSelect->mUnk_08 = 1;
             gOptionEmbremSelect->mUnk_0c++;
             StartSoundOncePerFrame(1);
-        } else if (func_020ae408(8, 0x40) != 0 && gOptionEmbremSelect->mUnk_08 > 0) {
+        } else if (GetNewOrRepeatBits(8, 0x40) != 0 && gOptionEmbremSelect->mUnk_08 > 0) {
             gOptionEmbremSelect->mUnk_08--;
             StartSoundOncePerFrame(0);
-        } else if (func_020ae408(8, 0x80) != 0 && gOptionEmbremSelect->mUnk_08 < 1) {
+        } else if (GetNewOrRepeatBits(8, 0x80) != 0 && gOptionEmbremSelect->mUnk_08 < 1) {
             gOptionEmbremSelect->mUnk_08++;
             StartSoundOncePerFrame(0);
-        } else if (gOptionEmbremSelect->mUnk_08 == 1 && func_020ae408(8, 0x20) != 0) {
+        } else if (gOptionEmbremSelect->mUnk_08 == 1 && GetNewOrRepeatBits(8, 0x20) != 0) {
             gOptionEmbremSelect->mUnk_0c--;
             gOptionEmbremSelect->mOffsetTimers[0] = 6;
             StartSoundOncePerFrame(1);
-        } else if (gOptionEmbremSelect->mUnk_08 == 1 && func_020ae408(8, 0x10) != 0) {
+        } else if (gOptionEmbremSelect->mUnk_08 == 1 && GetNewOrRepeatBits(8, 0x10) != 0) {
             gOptionEmbremSelect->mUnk_0c++;
-            if (func_020ae408(8, 0x10) != 0) {
+            if (GetNewOrRepeatBits(8, 0x10) != 0) {
                 gOptionEmbremSelect->mOffsetTimers[1] = 6;
             }
             StartSoundOncePerFrame(1);

@@ -305,7 +305,7 @@ void AdvanceWiFiVSMatchingState1(void) {
         a = TRUE;
     }
     if (a != FALSE &&
-        IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a) !=
+        IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mPairX, data_02175628[idx].mPairY) !=
             FALSE &&
         func_021213a0() != FALSE) {
     hit:
@@ -582,8 +582,8 @@ void AdvanceWiFiVSMatchingState9(void) {
             if (a == FALSE) {
                 return;
             }
-            if (IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
-                                                                data_02175628[idx].mUnk_4a) == FALSE) {
+            if (IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mPairX, data_02175628[idx].mPairY) ==
+                FALSE) {
                 return;
             }
         }

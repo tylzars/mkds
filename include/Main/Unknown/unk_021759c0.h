@@ -24,7 +24,8 @@ typedef struct Unk021759c0_70 {
     /* 0c */ s32 mIndex;
     /* 10 */ s32 mUnk_10;
     /* 14 */ u16 mUnk_14;
-    /* 16 */ s8 mUnk_16;
+// Running number among the kind-1 entries; -1 when the entry has none.
+    /* 16 */ s8 mNumber;
     /* 17 */ u8 mUnk_17;
     /* 18 */ void *mName;
     /* 1c */ void *mEmblemData;

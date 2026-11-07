@@ -316,25 +316,25 @@ next:
         gWiFiVSSetting->mRow = 1;
         gWiFiVSSetting->mSettingIndex = gWiFiVSSetting->mSettingIndex + 1;
         StartSoundOncePerFrame(1);
-    } else if (func_020ae408(8, 0x40) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x40) != 0) {
         gWiFiVSSetting->mRow = gWiFiVSSetting->mRow - 1;
         if (gWiFiVSSetting->mRow < 0) {
             gWiFiVSSetting->mRow = 2;
         }
         StartSoundOncePerFrame(0);
-    } else if (func_020ae408(8, 0x80) != 0 || (gWiFiVSSetting->mRow == 1 && (u16) (e->mUnk_00 & 1) != 0)) {
+    } else if (GetNewOrRepeatBits(8, 0x80) != 0 || (gWiFiVSSetting->mRow == 1 && (u16) (e->mUnk_00 & 1) != 0)) {
         gWiFiVSSetting->mRow = gWiFiVSSetting->mRow + 1;
         if (gWiFiVSSetting->mRow > 2) {
             gWiFiVSSetting->mRow = 0;
         }
         StartSoundOncePerFrame(0);
-    } else if (gWiFiVSSetting->mRow == 1 && func_020ae408(8, 0x20) != 0) {
+    } else if (gWiFiVSSetting->mRow == 1 && GetNewOrRepeatBits(8, 0x20) != 0) {
         gWiFiVSSetting->mSettingIndex = gWiFiVSSetting->mSettingIndex - 1;
         gWiFiVSSetting->mIndexDecrementTimer = 6;
         StartSoundOncePerFrame(1);
-    } else if (gWiFiVSSetting->mRow == 1 && func_020ae408(8, 0x10) != 0) {
+    } else if (gWiFiVSSetting->mRow == 1 && GetNewOrRepeatBits(8, 0x10) != 0) {
         gWiFiVSSetting->mSettingIndex = gWiFiVSSetting->mSettingIndex + 1;
-        if (func_020ae408(8, 0x10) != 0) {
+        if (GetNewOrRepeatBits(8, 0x10) != 0) {
             gWiFiVSSetting->mIndexIncrementTimer = 6;
         }
         StartSoundOncePerFrame(1);

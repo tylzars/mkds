@@ -32,5 +32,5 @@ u32 func_020ace34(Unk02175628_48 *a) {
 }
 
 u32 func_020ace14(u32 a) {
-    return func_020ace34((Unk02175628_48 *) &data_02175628[a].mUnk_48);
+    return func_020ace34((Unk02175628_48 *) &data_02175628[a].mPairX);
 }

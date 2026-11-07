@@ -476,8 +476,8 @@ void AdvanceSelectGhostState2(void) {
         b = TRUE;
     }
     if (b != FALSE) {
-        r = RectTableFindContaining(gSelectGhost->mSelectGhostSBnbl, data_02175628[idx].mUnk_48,
-                                    data_02175628[idx].mUnk_4a);
+        r = RectTableFindContaining(gSelectGhost->mSelectGhostSBnbl, data_02175628[idx].mPairX,
+                                    data_02175628[idx].mPairY);
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
         d = FALSE;
@@ -488,8 +488,8 @@ void AdvanceSelectGhostState2(void) {
         if (c == FALSE && data_02175628[idx].mPrevHasPair == 0 && data_02175628[idx].mHasPair != 0) {
             d = TRUE;
         }
-        if (d == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
-                                                                          data_02175628[idx].mUnk_4a) == FALSE) {
+        if (d == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mPairX,
+                                                                          data_02175628[idx].mPairY) == FALSE) {
             goto next;
         }
     }
@@ -519,11 +519,11 @@ next:
         RequestSelectGhostState3();
         return;
     }
-    if (func_020ae408(8, 0x20) != 0) {
+    if (GetNewOrRepeatBits(8, 0x20) != 0) {
         func_ov001_0219bff4();
         return;
     }
-    if (func_020ae408(8, 0x10) != 0) {
+    if (GetNewOrRepeatBits(8, 0x10) != 0) {
         func_ov001_0219c058();
     }
 }

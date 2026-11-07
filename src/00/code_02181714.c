@@ -219,13 +219,13 @@ next:
         }
         StartSoundOncePerFrame(5);
     } else {
-        if (func_020ae408(8, 0x40) != 0) {
+        if (GetNewOrRepeatBits(8, 0x40) != 0) {
             gWiFiTopMenu->mIndex--;
             if (gWiFiTopMenu->mIndex < 0) {
                 gWiFiTopMenu->mIndex = 2;
             }
             StartSoundOncePerFrame(0);
-        } else if (func_020ae408(8, 0x80) != 0) {
+        } else if (GetNewOrRepeatBits(8, 0x80) != 0) {
             gWiFiTopMenu->mIndex++;
             if (gWiFiTopMenu->mIndex > 2) {
                 gWiFiTopMenu->mIndex = 0;
@@ -347,8 +347,8 @@ void AdvanceWiFiTopMenuState8(void) {
             if (a == 0 && data_02175628[i].mPrevHasPair == 0 && v != 0) {
                 b = TRUE;
             }
-            if (b == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
-                                                                              data_02175628[i].mUnk_4a) == FALSE) {
+            if (b == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mPairX,
+                                                                              data_02175628[i].mPairY) == FALSE) {
                 return;
             }
         }

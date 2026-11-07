@@ -156,8 +156,7 @@ void AdvanceWiFiAikotobaState3(void) {
         b = TRUE;
     }
     if (b != FALSE) {
-        a = RectTableFindContaining(gWiFiAikotoba->mWiFiAikotobaBnbl, data_02175628[i].mUnk_48,
-                                    data_02175628[i].mUnk_4a);
+        a = RectTableFindContaining(gWiFiAikotoba->mWiFiAikotobaBnbl, data_02175628[i].mPairX, data_02175628[i].mPairY);
     }
     if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
         b = FALSE;
@@ -169,8 +168,8 @@ void AdvanceWiFiAikotobaState3(void) {
         if (c == FALSE && data_02175628[i].mPrevHasPair == 0 && d != 0) {
             b = TRUE;
         }
-        if (b == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
-                                                                          data_02175628[i].mUnk_4a) == FALSE) {
+        if (b == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mPairX,
+                                                                          data_02175628[i].mPairY) == FALSE) {
             goto next;
         }
     }
@@ -208,12 +207,12 @@ next:
         StartSoundOncePerFrame(5);
         return;
     }
-    if (func_020ae408(8, 0x40) != 0 && gWiFiAikotoba->mUnk_08 > 0) {
+    if (GetNewOrRepeatBits(8, 0x40) != 0 && gWiFiAikotoba->mUnk_08 > 0) {
         gWiFiAikotoba->mUnk_08 = gWiFiAikotoba->mUnk_08 - 1;
         StartSoundOncePerFrame(0);
         return;
     }
-    if (func_020ae408(8, 0x80) != 0 && gWiFiAikotoba->mUnk_08 < 1) {
+    if (GetNewOrRepeatBits(8, 0x80) != 0 && gWiFiAikotoba->mUnk_08 < 1) {
         gWiFiAikotoba->mUnk_08 = gWiFiAikotoba->mUnk_08 + 1;
         StartSoundOncePerFrame(0);
     }

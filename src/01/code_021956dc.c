@@ -662,8 +662,8 @@ void AdvanceRecordTAttState2(void) {
         x = FALSE;
     }
     if (x != FALSE) {
-        a = RectTableFindContaining(gRecordTAtt->mRecordTAttSBnbl, data_02175628[idx].mUnk_48,
-                                    data_02175628[idx].mUnk_4a);
+        a = RectTableFindContaining(gRecordTAtt->mRecordTAttSBnbl, data_02175628[idx].mPairX,
+                                    data_02175628[idx].mPairY);
     }
     x = FALSE;
     y = FALSE;
@@ -675,8 +675,8 @@ void AdvanceRecordTAttState2(void) {
         x = TRUE;
     }
     if (x != FALSE) {
-        b = RectTableFindContaining(gRecordTAtt->mRecordTAttSBnbl, data_02175628[idx].mUnk_48,
-                                    data_02175628[idx].mUnk_4a);
+        b = RectTableFindContaining(gRecordTAtt->mRecordTAttSBnbl, data_02175628[idx].mPairX,
+                                    data_02175628[idx].mPairY);
     }
     if (a != 0) {
         gRecordTAtt->mUnk_88 = FALSE;
@@ -694,8 +694,8 @@ void AdvanceRecordTAttState2(void) {
         if (y == FALSE && data_02175628[idx].mPrevHasPair == 0 && v != 0) {
             x = TRUE;
         }
-        if (x == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
-                                                                          data_02175628[idx].mUnk_4a) == FALSE) {
+        if (x == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mPairX,
+                                                                          data_02175628[idx].mPairY) == FALSE) {
             goto other;
         }
     }
@@ -1095,8 +1095,8 @@ void AdvanceRecordTAttState15(void) {
         if (b == FALSE && data_02175628[i].mPrevHasPair == 0 && data_02175628[i].mHasPair != 0) {
             f = 1;
         }
-        if (f == 0 || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
-                                                                      data_02175628[i].mUnk_4a) == FALSE) {
+        if (f == 0 || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mPairX,
+                                                                      data_02175628[i].mPairY) == FALSE) {
             return;
         }
     }

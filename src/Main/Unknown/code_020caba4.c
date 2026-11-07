@@ -31,7 +31,7 @@ s32 func_020cacc0(void) {
     BOOL z;
     s32 i;
     s32 j;
-    Unk020ae244 r[6];
+    PairRect r[6];
 
     v = FALSE;
     if (gEmblemChoises->mUnk_00 != 0) {
@@ -41,14 +41,14 @@ s32 func_020cacc0(void) {
             s32 y;
 
             y = (12 - n * 2 + i * 4) * 8 + 6;
-            r[i].mUnk_00 = 8;
-            r[i].mUnk_04 = 0xf8;
-            r[i].mUnk_02 = y;
-            r[i].mUnk_06 = y + 0x16;
+            r[i].mMinX = 8;
+            r[i].mMaxX = 0xf8;
+            r[i].mMinY = y;
+            r[i].mMaxY = y + 0x16;
         }
         z = FALSE;
         for (j = 0; j < n; j++) {
-            if (func_020ae244(func_020ca9dc(), r[j])) {
+            if (IsNewPairInRect(func_020ca9dc(), r[j])) {
                 if (gEmblemChoises->mChoisesIndex != j) {
                     gEmblemChoises->mChoisesIndex = j;
                     func_020cadac(z);

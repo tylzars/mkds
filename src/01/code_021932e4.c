@@ -152,8 +152,8 @@ void AdvanceOptionTopMenuState3(void) {
         b = TRUE;
     }
     if (b != FALSE) {
-        result = RectTableFindContaining(gOptionTopMenu->mOptionTopMenuSBnbl, data_02175628[idx].mUnk_48,
-                                         data_02175628[idx].mUnk_4a);
+        result = RectTableFindContaining(gOptionTopMenu->mOptionTopMenuSBnbl, data_02175628[idx].mPairX,
+                                         data_02175628[idx].mPairY);
     }
     flagA = data_02175628[idx].mUnk_00 & 2;
     if (flagA == 0) {
@@ -165,8 +165,8 @@ void AdvanceOptionTopMenuState3(void) {
         if (a2 == FALSE && data_02175628[idx].mPrevHasPair == 0 && data_02175628[idx].mHasPair != 0) {
             b2 = TRUE;
         }
-        if (b2 != FALSE && IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
-                                                                           data_02175628[idx].mUnk_4a) != FALSE) {
+        if (b2 != FALSE && IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mPairX,
+                                                                           data_02175628[idx].mPairY) != FALSE) {
             goto leave;
         }
     } else {
@@ -207,13 +207,13 @@ void AdvanceOptionTopMenuState3(void) {
             gOptionTopMenu->mUnk_14 = FALSE;
         }
         StartSoundOncePerFrame(5);
-    } else if (func_020ae408(8, 0x40) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x40) != 0) {
         gOptionTopMenu->mIndex--;
         if (gOptionTopMenu->mIndex < 0) {
             gOptionTopMenu->mIndex = 2;
         }
         StartSoundOncePerFrame(0);
-    } else if (func_020ae408(8, 0x80) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x80) != 0) {
         gOptionTopMenu->mIndex++;
         if (gOptionTopMenu->mIndex > 2) {
             gOptionTopMenu->mIndex = 0;

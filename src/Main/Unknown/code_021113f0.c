@@ -290,11 +290,11 @@ l1:
         func_021137a8(gRecordVS->mIndex);
         return;
     }
-    if (func_020ae408(8, 0x40) != 0) {
+    if (GetNewOrRepeatBits(8, 0x40) != 0) {
         DecrementRecordVSIndex();
         return;
     }
-    if (func_020ae408(8, 0x80) != 0) {
+    if (GetNewOrRepeatBits(8, 0x80) != 0) {
         IncrementRecordVSIndex();
     }
 }

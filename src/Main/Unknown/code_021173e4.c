@@ -733,7 +733,7 @@ L2:
         gSelectCupGrid->mUnk_68 = FALSE;
         return;
     }
-    if (func_020ae408(8, 0x40) != 0) {
+    if (GetNewOrRepeatBits(8, 0x40) != 0) {
         a = gSelectCupGrid->mIndex;
         b = data_0215c84c[a];
         if (b != 0) {
@@ -746,7 +746,7 @@ L2:
                 }
             }
         }
-    } else if (func_020ae408(8, 0x80) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x80) != 0) {
         a = gSelectCupGrid->mIndex;
         b = data_0215c7fc[a];
         if (b != 0) {
@@ -759,7 +759,7 @@ L2:
                 }
             }
         }
-    } else if (func_020ae408(8, 0x20) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x20) != 0) {
         a = gSelectCupGrid->mIndex;
         b = data_0215c80c[a];
         if (b != 0) {
@@ -772,7 +772,7 @@ L2:
                 }
             }
         }
-    } else if (func_020ae408(8, 0x10) != 0) {
+    } else if (GetNewOrRepeatBits(8, 0x10) != 0) {
         a = gSelectCupGrid->mIndex;
         b = data_0215c82c[a];
         if (b != 0) {

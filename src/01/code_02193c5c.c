@@ -531,8 +531,7 @@ void AdvanceRecordGpxState2(void) {
         x1 = FALSE;
     }
     if (x1 != FALSE) {
-        a = RectTableFindContaining(gRecordGpx->mRecordGpxSBnbl, data_02175628[idx].mUnk_48,
-                                    data_02175628[idx].mUnk_4a);
+        a = RectTableFindContaining(gRecordGpx->mRecordGpxSBnbl, data_02175628[idx].mPairX, data_02175628[idx].mPairY);
     }
     x2 = FALSE;
     y2 = FALSE;
@@ -543,8 +542,7 @@ void AdvanceRecordGpxState2(void) {
         x2 = TRUE;
     }
     if (x2 != FALSE) {
-        b = RectTableFindContaining(gRecordGpx->mRecordGpxSBnbl, data_02175628[idx].mUnk_48,
-                                    data_02175628[idx].mUnk_4a);
+        b = RectTableFindContaining(gRecordGpx->mRecordGpxSBnbl, data_02175628[idx].mPairX, data_02175628[idx].mPairY);
     }
     if (a != 0) {
         gRecordGpx->mUnk_88 = FALSE;
@@ -561,8 +559,8 @@ void AdvanceRecordGpxState2(void) {
         if (y3 == FALSE && data_02175628[idx].mPrevHasPair == 0 && data_02175628[idx].mHasPair != 0) {
             x3 = TRUE;
         }
-        if (x3 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
-                                                                           data_02175628[idx].mUnk_4a) == FALSE) {
+        if (x3 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mPairX,
+                                                                           data_02175628[idx].mPairY) == FALSE) {
             goto next;
         }
     }

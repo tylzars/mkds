@@ -337,7 +337,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
         b = 1;
     }
     if (b != 0) {
-        c = IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[e].mUnk_48, data_02175628[e].mUnk_4a);
+        c = IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[e].mPairX, data_02175628[e].mPairY);
     }
     switch (gTimeAttackGhostSend->mState) {
         case 0:

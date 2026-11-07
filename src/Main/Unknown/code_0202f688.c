@@ -386,8 +386,8 @@ s32 AdvanceMultiSelectMemberGroup(Unk0202f764 *a) {
                 v5 = TRUE;
             }
             if (v5 != FALSE) {
-                x = data_02175628[v2].mUnk_48;
-                y = data_02175628[v2].mUnk_4a;
+                x = data_02175628[v2].mPairX;
+                y = data_02175628[v2].mPairY;
                 v3 = IsSelectReturnState2NoState3Or4RequestAndInRect(x, y);
                 v4 = RectTableFindContaining(q->mUnk_10, x, y);
             }
@@ -417,14 +417,14 @@ s32 AdvanceMultiSelectMemberGroup(Unk0202f764 *a) {
                 }
                 gMultiSelectMemberGroup->mState = 3;
                 RequestSelectReturnState3WithSound(1);
-            } else if (func_020ae408(v2, 0x40) != 0) {
+            } else if (GetNewOrRepeatBits(v2, 0x40) != 0) {
                 gMultiSelectMemberGroup->mUnk_48--;
                 if (gMultiSelectMemberGroup->mUnk_48 < 0) {
                     gMultiSelectMemberGroup->mUnk_48 = 4;
                 }
                 func_0203003c(1);
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
-            } else if (func_020ae408(v2, 0x80) != 0) {
+            } else if (GetNewOrRepeatBits(v2, 0x80) != 0) {
                 gMultiSelectMemberGroup->mUnk_48++;
                 if (gMultiSelectMemberGroup->mUnk_48 > 4) {
                     gMultiSelectMemberGroup->mUnk_48 = 0;
