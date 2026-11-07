@@ -111,7 +111,7 @@ void StartItemInUse(ItemInUse *a, HeldItem *b) {
     if (f2 != NULL) {
         f2(a, b);
     }
-    func_0206c11c(a->mKart);
+    SetupKartAiItemInUseEntry(a->mKart);
     ResetHeldItem(b);
     if (a->mUnk_170 != NULL) {
         SetActiveItem(a->mKartItems, a->mItemInfoIndex);

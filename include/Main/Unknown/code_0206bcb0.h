@@ -380,8 +380,8 @@ typedef struct Kart {
     /* 2b2 */ u16 mNearKartMask;
     /* 2b4 */ u16 mPrevNearKartMask;
     /* 2b6 */ u8 mUnk_2b6[2];
-    // Vertical speed of the hop arc: 0x1405 at the start (func_0206c5e4), mGravity added each step by AdvanceKartHop,
-    // integrated into mHopHeight, 0 once the height is below 0.
+    // Vertical speed of the hop arc: 0x1405 at the start (AdvanceKartDrift), mGravity added each step by
+    // AdvanceKartHop, integrated into mHopHeight, 0 once the height is below 0.
     /* 2b8 */ s32 mHopSpeed;
     // Height of the hop arc, integrated from mHopSpeed; 0 at the start and when it would go below 0. The camera, its
     // look-at and the replay record subtract it from mPos.y.
@@ -580,12 +580,12 @@ BOOL func_0206c094(Kart *p);
 int func_0206c0a8(Kart *p);
 BOOL func_0206c0b0(Kart *p);
 BOOL func_0206c0e0(Kart *p);
-void func_0206c11c(Kart *p);
-void func_0206c14c(Kart *p);
+void SetupKartAiItemInUseEntry(Kart *p);
+void SetupKartAiHeldItemEntry(Kart *p);
 void func_0206c17c(Kart *p);
 void func_0206c1ac(Unk0206c1ac *obj, Kart *p);
 void func_0206c2b4(Unk0206c1ac *obj, Kart *p);
-BOOL func_0206c354(Kart *p, const Vec3 *a, int flag);
+BOOL TryStartKartCollisionEffects(Kart *p, const Vec3 *a, int flag);
 void func_0206c450(Unk0206c1ac *obj, Kart *p);
 void func_0206c488(Unk0206c1ac *obj, Kart *p);
 
@@ -593,8 +593,8 @@ void func_0208b748(u32 idx, const Vec3 *pos, void *p, void (*cb)());
 int func_0206c494(Kart *p);
 void func_0206cc60(Kart *p, int arg);
 #include "Main/Unknown/code_0210ab48.h"
-void func_0206cdd4(Kart *p);
-void func_0206ceb4(s32 *out, Kart *p);
+void EndKartDrift(Kart *p);
+void AdvanceKartBoost(s32 *out, Kart *p);
 extern Unk0217d26c data_0217d26c[7];
 extern Unk0217d26c data_0217d274;
 extern Unk0217d26c data_0217d284;
@@ -603,9 +603,9 @@ extern Unk0217d26c data_0217d28c;
 void func_020718c8(void *p, int arg);
 void func_02071944(void *p, int arg);
 #include "Main/Unknown/code_021035ac.h"
-BOOL func_0206bcb0(Kart *p, int a, int b);
+BOOL TrySpinKart(Kart *p, int a, int b);
 BOOL TryStartKartState(Kart *p, KartState a);
-void func_0206c5e4(Kart *p);
+void AdvanceKartDrift(Kart *p);
 void GetKartForward(const Kart *p, Vec3 *out);
 void GetKartUp(const Kart *p, Vec3 *out);
 

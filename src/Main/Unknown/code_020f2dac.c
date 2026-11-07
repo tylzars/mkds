@@ -80,7 +80,7 @@ void SetHeldItem(HeldItem *rec, s32 kind) {
     rec->mItemInfoIndex = kind;
     rec->mObjectCount = k;
     rec->mObjectStartFramesLeft = 0;
-    func_0206c14c(rec->mKartItems->mKart);
+    SetupKartAiHeldItemEntry(rec->mKartItems->mKart);
     rec->mUnk_0c = gItemInfos[kind].mUnk_10;
     rec->mTimer = 0;
     rec->mUnk_12 = 0;
@@ -273,7 +273,7 @@ void SetHeldItemWithCount(HeldItem *rec, s32 kind, s32 count) {
     rec->mItemInfoIndex = kind;
     rec->mObjectCount = count;
     rec->mObjectStartFramesLeft = 0;
-    func_0206c14c(rec->mKartItems->mKart);
+    SetupKartAiHeldItemEntry(rec->mKartItems->mKart);
     rec->mUnk_0c = gItemInfos[kind].mUnk_10;
     rec->mTimer = 0;
     rec->mUnk_12 = 0;

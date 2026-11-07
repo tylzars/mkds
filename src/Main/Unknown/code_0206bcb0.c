@@ -11,7 +11,7 @@
 #include "ITCM/code_01ffba68.h"
 #include "Main/Unknown/code_020681f0.h"
 
-void func_0206ceb4(s32 *out, Kart *p) {
+void AdvanceKartBoost(s32 *out, Kart *p) {
     int id;
     u32 flags;
     Unk0206ceb4 *q;
@@ -60,7 +60,7 @@ void func_0206ceb4(s32 *out, Kart *p) {
     StartKartModelColorBlend(p->mKartModelsEntry, a, b, c);
 }
 
-void func_0206cdd4(Kart *p) {
+void EndKartDrift(Kart *p) {
     if (!(p->mUnk_44 & KART_44_ON_GROUND)) {
         p->mUnk_44 |= 0x8000;
     }
@@ -134,7 +134,8 @@ void func_0206cc60(Kart *p, int arg) {
     StartSoundWhileRequested(&p->mSoundSource, 0xd1, 0x7f, 0);
 }
 
-void func_0206c5e4(Kart *p) {
+// Drift step: the hop, the turn held after it, the charge, and the release with the mini-turbo.
+void AdvanceKartDrift(Kart *p) {
     u32 f = p->mUnk_44;
     BOOL hasB = (f & 2) != 0;
     u32 g;
@@ -358,7 +359,8 @@ void func_0206c450(Unk0206c1ac *obj, Kart *p) {
     func_02080e88(obj, p);
 }
 
-BOOL func_0206c354(Kart *p, const Vec3 *a, int flag) {
+// Starts the effects of a kart-kart hit at the contact point; flag picks the four-effect set.
+BOOL TryStartKartCollisionEffects(Kart *p, const Vec3 *a, int flag) {
     if (p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) {
         int arr[4] = {0x77, 0x76, 0x78, 0x79};
         u16 i = 0;
@@ -418,13 +420,13 @@ void func_0206c17c(Kart *p) {
     p->mUnk_504 = p->mUnk_506;
 }
 
-void func_0206c14c(Kart *p) {
+void SetupKartAiHeldItemEntry(Kart *p) {
     if (p->mUnk_7c & 0x2) {
         func_0208c1ac(p->mAi);
     }
 }
 
-void func_0206c11c(Kart *p) {
+void SetupKartAiItemInUseEntry(Kart *p) {
     if (p->mUnk_7c & 0x2) {
         func_0208c188(p->mAi);
     }
@@ -537,7 +539,8 @@ BOOL TryStartKartState(Kart *p, KartState a) {
     return TRUE;
 }
 
-BOOL func_0206bcb0(Kart *p, int a, int b) {
+// Starts a spin, or adds a turn to the spin already running.
+BOOL TrySpinKart(Kart *p, int a, int b) {
     int s = p->mState;
     BOOL x;
     BOOL ok;

@@ -523,7 +523,7 @@ void func_0207ebfc(KartAi *p) {
         p->mUnk_94 = 0;
         p->mUnk_98 = 0;
         p->mUnk_a0 = FALSE;
-        func_0206cdd4(q);
+        EndKartDrift(q);
         if (func_020738f8(p->mTurnAngleDegrees) <= 0x32000) {
             return;
         }

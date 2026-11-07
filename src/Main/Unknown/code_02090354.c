@@ -514,7 +514,7 @@ void func_0209086c(Unk020905a8 *a, u32 b) {
     a->mUnk_26 = 0;
     a->mUnk_28 = 0;
     p->mTurnAngle = 0;
-    func_0206cdd4(p);
+    EndKartDrift(p);
 }
 
 void func_02090838(Unk020905a8 *a, Unk02080b1c_00 *b) {

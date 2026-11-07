@@ -10,7 +10,7 @@
 
 int CollideKartWithMapObjectResponse3(Kart *p, s32 *a, MapObject *c) {
     if (p->mVelocityLength > 0x3000 || (c->mFlags & 0x200)) {
-        if (func_0206bcb0(p, 1, 0)) {
+        if (TrySpinKart(p, 1, 0)) {
             if (p->mKartModelsEntry->mUnk_058 == 0) {
                 StartEffect(0xc, &p->mPos);
                 StartEffect(0xd, &p->mPos);
@@ -29,7 +29,7 @@ int CollideKartWithMapObjectResponse3(Kart *p, s32 *a, MapObject *c) {
 
 int CollideKartWithMapObjectResponse4(Kart *p, s32 *a, MapObject *c) {
     if (p->mVelocityLength > 0x3000 || (c->mFlags & 0x200)) {
-        if (func_0206bcb0(p, 2, 0)) {
+        if (TrySpinKart(p, 2, 0)) {
             if (p->mKartModelsEntry->mUnk_058 == 0) {
                 StartEffect(0xc, &p->mPos);
                 StartEffect(0xd, &p->mPos);
@@ -48,7 +48,7 @@ int CollideKartWithMapObjectResponse4(Kart *p, s32 *a, MapObject *c) {
 
 int CollideKartWithMapObjectResponse6(Kart *p, s32 *a, MapObject *c) {
     if (p->mVelocityLength > 0x3000 || (c->mFlags & 0x200)) {
-        if (func_0206bcb0(p, 2, 0)) {
+        if (TrySpinKart(p, 2, 0)) {
             if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
                 GetEntryKartCounters()->mUnk_14++;
             }
@@ -62,7 +62,7 @@ int CollideKartWithMapObjectResponse6(Kart *p, s32 *a, MapObject *c) {
 }
 
 int CollideKartWithMapObjectResponse5(Kart *p, s32 *a) {
-    if (func_0206bcb0(p, 2, 0)) {
+    if (TrySpinKart(p, 2, 0)) {
         if (p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) {
             SetupKartFollowEffectWithVelocity(StartEffect(0x4f, &p->mPos), p->mIndex, 0x46);
         }

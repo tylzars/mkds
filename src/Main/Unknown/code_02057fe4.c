@@ -59,7 +59,7 @@ void UpdateMPState5(void) {
 
     if (func_02058a40_inline() == 1) {
         v = data_0217aa00->mUnk_15f6;
-        if (func_02059784() != 0) {
+        if (IsAllMPChildSharedDataCopied() != 0) {
             if (QueueMPDataHalfwordAndWord(1, v, v) != FALSE) {
                 func_02050034(v);
             }
@@ -223,7 +223,7 @@ void EnterMPState7(void) {
             n = 2;
         }
         for (j = 0; j < n; j++) {
-            data_0217aa00->mUnk_162c[i][j] = 0;
+            data_0217aa00->mChunkReceivedFlags[i][j] = 0;
         }
     }
     data_0217aa00->mUnk_162a = 0;
@@ -295,7 +295,7 @@ BOOL QueueMPChunk(u8 a, u8 *b, u16 c, u8 d, u8 e) {
     if ((data_0217aa00->mUnk_1608.mUnk_1a & 1) == 0) {
         return FALSE;
     }
-    q = data_0217aa00->mUnk_1624;
+    q = data_0217aa00->mChunkBuffer;
     q[1] = a;
     *(u16 *) (q + 2) = c;
     q[0] = d;
@@ -306,7 +306,7 @@ BOOL QueueMPChunk(u8 a, u8 *b, u16 c, u8 d, u8 e) {
     }
     DC_StoreRange(q, c + 4);
     data_0217aa00->mUnk_1608.mUnk_1a &= ~1;
-    if (QueueMPDataToPort(data_0217aa00->mUnk_1624, c + 4, e, NULL, &data_021652a0) == 0) {
+    if (QueueMPDataToPort(data_0217aa00->mChunkBuffer, c + 4, e, NULL, &data_021652a0) == 0) {
         data_0217aa00->mUnk_1608.mUnk_1a |= 1;
         return FALSE;
     }

@@ -166,14 +166,14 @@ void func_0203b1c8(void *a) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         func_0204f240(a, 1);
     }
-    func_020594d4();
+    RequestMPState18();
 }
 
 void func_0203b194(void *a) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         func_0204f240(a, 1);
     }
-    func_0205949c();
+    RequestMPState21();
 }
 
 void func_0203b0f8(void *a) {
@@ -192,7 +192,7 @@ void func_0203b0f8(void *a) {
     }
     if (f != 0) {
         func_0204e928(a, t == 1, r);
-        func_0205982c(a);
+        InitMPChunkBuffers(a);
     }
     ResetRaceSetup();
 }

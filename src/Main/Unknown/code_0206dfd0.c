@@ -207,12 +207,12 @@ void CollideKartWithKarts(Kart *p) {
                     StartKartModelScaleAnimation(q, 2);
                     p->mUnk_3d4 = 0xf;
                     if (s == 0) {
-                        s = func_0206c354(p, &n, k);
+                        s = TryStartKartCollisionEffects(p, &n, k);
                         if (s == 0) {
                             h.x = -n.x;
                             h.y = -n.y;
                             h.z = -n.z;
-                            s = func_0206c354(q, &h, k);
+                            s = TryStartKartCollisionEffects(q, &h, k);
                         }
                     }
                 }

@@ -8,5 +8,5 @@ void func_020445f8(void) {
     u32 value12;
     value0 = gRaceSetup->mNextHeader.mCourseId;
     value1 = gRaceSetup->mNextHeader.mMode;
-    func_0205950c((void *) value0, (void *) value1);
+    RequestMPState16((void *) value0, (void *) value1);
 }

@@ -300,7 +300,7 @@ void func_01ffc6c0(Kart *p) {
                 b = func_0206c494(p);
             }
             a = func_01ffc27c(p, b);
-            func_0206c5e4(p);
+            AdvanceKartDrift(p);
             func_01ffba68(p);
         }
         func_01ffc090(p, a);
@@ -621,7 +621,7 @@ void func_01ffba68(Kart *p) {
     c = v;
     f = p->mUnk_48;
     if (f & KART_48_BOOST) {
-        func_0206ceb4(&v, p);
+        AdvanceKartBoost(&v, p);
     } else if (f & 4) {
         v = -0x19a;
         if (p->mUnk_4c & 0x40) {

@@ -613,7 +613,7 @@ void StartKartThunderShrink(Kart *p) {
     q->mUnk_04 = 0;
     p->mUnk_394 = 0xb33;
     p->mUnk_4c |= KART_4C_THUNDER_SHRINK;
-    func_0206bcb0(p, 2, 1);
+    TrySpinKart(p, 2, 1);
     func_0210f9ac(p);
     func_020eff40(&(gKartItems)[p->mIndex]);
     if (gRaceSetup->mMode == MODE_MISSION_RUN && gRaceSetup->mMode == MODE_MISSION_RUN) {

@@ -41,7 +41,7 @@ u32 func_02059b28(u32 a) {
     u32 r;
     u32 i;
 
-    p = data_0217aa00->mUnk_162c[a];
+    p = data_0217aa00->mChunkReceivedFlags[a];
     r = 1;
     if (func_02059878_inline() == 1) {
         n = 0x12;
@@ -99,7 +99,7 @@ void func_02059954(u8 *a) {
             break;
         default:
             MI_CpuCopy8(a + 4, e->mUnk_000 + v1, *(u16 *) (a + 2));
-            data_0217aa00->mUnk_162c[a[0]][a[1]] = 1;
+            data_0217aa00->mChunkReceivedFlags[a[0]][a[1]] = 1;
             if (func_02059b28(a[0]) != 0) {
                 f = 1;
             }

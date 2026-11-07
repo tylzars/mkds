@@ -509,7 +509,7 @@ typedef struct Unk0217aa00_15bc {
     /* 04 */ Unk0214461c *mUnk_04;
     /* 08 */ void *mUnk_08;
     /* 0c */ Unk0217aa00_15c8 *mUnk_0c;
-    /* 10 */ s32 mUnk_10[8];
+    /* 10 */ s32 mSharedDataCopied[8];
     /* 30 */ u8 mUnk_30;
     /* 31 */ u8 mUnk_31[3];
     /* 34 */ s32 mUnk_34;
@@ -665,18 +665,18 @@ typedef struct Unk0217aa00 {
         Unk0217aa00_15bc mUnk_15bc_view;
     };
     /* 1608 */ Unk0217aa00_1608 mUnk_1608;
-    /* 1624 */ void *mUnk_1624;
+    /* 1624 */ void *mChunkBuffer;
     /* 1628 */ u8 mEntryChunkIndex;
     /* 1629 */ u8 mEntryChunkSlot;
     /* 162a */ u8 mUnk_162a;
     /* 162b */ u8 mUnk_162b[0x1];
-    /* 162c */ u8 *mUnk_162c[8];
+    /* 162c */ u8 *mChunkReceivedFlags[8];
     /* 164c */ u8 mUnk_164c;
     /* 164d */ u8 mUnk_164d;
     /* 164e */ u8 mUnk_164e;
     /* 164f */ u8 mUnk_164f;
-    /* 1650 */ void *mUnk_1650;
-    /* 1654 */ void *mUnk_1654;
+    /* 1650 */ void *mCourseId;
+    /* 1654 */ void *mMode;
     /* 1658 */ union {
         struct {
             /* 1658 */ void *mUnk_1658;

@@ -369,7 +369,7 @@ void func_0206d18c(Kart *p) {
             r = TryStartKartState3(p);
             break;
         case 2:
-            r = func_0206bcb0(p, 1, r);
+            r = TrySpinKart(p, 1, r);
             if (r != 0 && p->mKartModelsEntry->mUnk_058 == 0) {
                 StartEffect(0xc, &p->mPos);
                 StartEffect(0xd, &p->mPos);
@@ -390,14 +390,14 @@ void func_0206d18c(Kart *p) {
             break;
         case 5:
             if (((ItemKouraW *) e)->mUnk_2e4 != 0) {
-                r = func_0206bcb0(p, 2, r);
+                r = TrySpinKart(p, 2, r);
             } else {
                 r = TryStartKartState6(p);
             }
             break;
         case 9:
             if (((ItemKouraW *) e)->mUnk_16c != 0) {
-                r = func_0206bcb0(p, 2, r);
+                r = TrySpinKart(p, 2, r);
             } else {
                 r = TryStartKartState6(p);
             }

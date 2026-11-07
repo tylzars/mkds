@@ -77,7 +77,7 @@ s32 CollideKartWithMapObjectResponse14(Kart *a, s32 *b) {
         }
         StopDispCapBlend();
     }
-    if (func_0206bcb0(a, 1, 0) != FALSE) {
+    if (TrySpinKart(a, 1, 0) != FALSE) {
         func_02081224(a->mIndex);
     }
     return 5;

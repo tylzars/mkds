@@ -228,9 +228,9 @@ BOOL func_0205373c(void) {
     for (i = 0; i < 8; i++) {
         if (v1 != FALSE && (data_0217aa00->mUnk_15f6 & (1 << i)) != 0) {
             MI_CpuCopy8(&buf[i], &q->mUnk_0c[i], 8);
-            q->mUnk_10[i] = 1;
+            q->mSharedDataCopied[i] = 1;
         } else {
-            q->mUnk_10[i] = 0;
+            q->mSharedDataCopied[i] = 0;
         }
     }
     return v1 != FALSE;

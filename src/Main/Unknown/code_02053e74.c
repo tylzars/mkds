@@ -77,7 +77,7 @@ static inline s32 func_02054754_inline2(Unk0217aa00_15bc *q, Unk0217aa00_15c8 *e
 
     for (i = 1; i < 8; i++) {
         if (mask & (1 << i)) {
-            if (q->mUnk_10[i] == 0) {
+            if (q->mSharedDataCopied[i] == 0) {
                 ok = FALSE;
                 i = 8;
             } else {
@@ -303,7 +303,7 @@ BOOL func_02054754(void) {
     if (func_0204ffbc() != 0) {
         return TRUE;
     }
-    if (q->mUnk_10[0] != 0) {
+    if (q->mSharedDataCopied[0] != 0) {
         Unk0217aa00 *p;
 
         p = data_0217aa00;
@@ -422,7 +422,7 @@ void func_02054208(Unk0217aa00_15bc *a) {
     a->mUnk_3a = 0;
     MI_CpuFill8(data_0217aa00->mUnk_15c4, 0, 8);
     for (i = 0; i < 8; i++) {
-        a->mUnk_10[i] = 0;
+        a->mSharedDataCopied[i] = 0;
         MI_CpuFill8(&a->mUnk_0c[i], 0, 8);
     }
     a->mUnk_3c[0] = 0;
