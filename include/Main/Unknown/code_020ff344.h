@@ -46,11 +46,11 @@ typedef struct ItemFBox {
 
 void func_020ff344(ItemFBox *e);
 s32 func_020ff3c4(ItemFBox *e);
-void func_020ff438(ItemFBox *e);
-u32 func_020ff538(Unk020eda5c *a, ItemFBox *e);
-void func_020ff638(Unk020eda5c *a, ItemFBox *e);
-void func_020ff654(ItemFBox *e);
-void func_020ff67c(ItemFBox *e);
+void AdvanceItemFBox(ItemFBox *e);
+u32 InitItemFBox(Unk020eda5c *a, ItemFBox *e);
+void AdvanceItemFBoxInUse(Unk020eda5c *a, ItemFBox *e);
+void StartItemFBox(ItemFBox *e);
+void ResetItemFBox(ItemFBox *e);
 void func_020ff6d8(ItemFBox *e, MtxFx43 *out);
 void func_020ff910(ItemFBox *e, MtxFx43 *out);
 void func_020ff97c(Unk020ff97c *e);

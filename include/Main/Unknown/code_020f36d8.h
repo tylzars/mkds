@@ -341,23 +341,45 @@ typedef struct ItemKind {
     /* 0c */ s32 mObjectCount;
     /* 10 */ s32 mUnk_10;
     /* 14 */ u8 mUnk_14[4];
-    /* 18 */ void (*mUnk_18)(void *);
-    /* 1c */ void (*mUnk_1c)(void *);
-    /* 20 */ void (*mUnk_20)(void *, void *);
-    /* 24 */ s32 (*mUnk_24)(void *, void *);
-    /* 28 */ void (*mUnk_28)(struct ItemObject *);
-    /* 2c */ void (*mUnk_2c)(void *, void *, void *);
-    /* 30 */ s32 (*mUnk_30)(Vec3 *, s32, s32, s32, u16);
+    // Called with the object by ResetItemObject after it has reset the common fields.
+    /* 18 */ void (*mReset)(void *);
+    // Called with the object when StartItemObject moves it into the started part of its pool.
+    /* 1c */ void (*mStart)(void *);
+    // Called by func_020ef350 with the item-in-use record and its first object, which is not started yet.
+    /* 20 */ void (*mAdvanceInUse)(void *, void *);
+    // Called with the item-in-use record and the object by func_020efa60 after it takes the object out of the record
+    // and starts it.
+    /* 24 */ s32 (*mInit)(void *, void *);
+    // Copied into the object's per-call callback (ItemObject.mUnk_120) when the object is started, unless flags
+    // 0x180000 are set.
+    /* 28 */ void (*mAdvance)(struct ItemObject *);
+    // Draw callback of the objects of the kind's pool.
+    /* 2c */ void (*mDraw)(void *, void *, void *);
+    // View test, the same function type the map objects use: position, radius, draw distance, far distance squared,
+    // alpha.
+    /* 30 */ s32 (*mViewTest)(Vec3 *, s32, s32, s32, u16);
+    // Called with the object by func_020f7184 when its second argument is 0; returns 0 to end the call with 2, 1 to end
+    // it with 0, anything else lets it continue.
     /* 34 */ UnkWordFunc *mUnk_34;
+    // Called with the object after StartItemObject and func_020f6630 have set it up from a kart; the entries that exist
+    // set the object's mUnk_120 to the kind's mAdvance unless flags 0x180000 are set.
     /* 38 */ void (*mUnk_38)(void *);
-    /* 3c */ void (*mUnk_3c)(void *);
+    // Called with the object at the end of ReleaseItemObject.
+    /* 3c */ void (*mRelease)(void *);
     /* 40 */ s32 mUnk_40;
     /* 44 */ s32 mUnk_44;
-    /* 48 */ void *(*mUnk_48)(void *, void *, s32);
-    /* 4c */ s32 mUnk_4c;
-    /* 50 */ void (*mUnk_50)(void *);
+    // Copies the object's fields into the byte buffer (third argument non-zero) or back from it (zero); after a write
+    // it also stamps the frame count and hands the buffer on (func_020fe8ac); with no object and no buffer it returns
+    // the byte count.
+    /* 48 */ void *(*mCopyData)(void *, void *, s32);
+    // Byte count that mCopyData copies after the first byte of its record.
+    /* 4c */ s32 mDataSize;
+    // Called with the object right after a buffer was read into it (see mCopyData); every entry starts with
+    // func_020f8e78.
+    /* 50 */ void (*mInitFromData)(void *);
     /* 54 */ s32 mUnk_54;
-    /* 58 */ u32 mUnk_58;
+    // Returns the kind's far distance squared; when NULL the value of gSoundFalloffs[1].mUnk_20 is used.
+    /* 58 */ u32 mGetFarDistanceSquared;
     /* 5c */ s32 mUnk_5c;
     /* 60 */ s32 mUnk_60;
     /* 64 */ s32 mUnk_64;

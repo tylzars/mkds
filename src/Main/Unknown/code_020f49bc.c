@@ -381,7 +381,7 @@ void *func_020f6038(void *a, ItemKouraG *b, void *c) {
     return p;
 }
 
-void func_020f5ffc(ItemKouraG *a) {
+void InitItemKouraGFromData(ItemKouraG *a) {
     func_020f8e78(a);
     func_0210b850(&a->mUnk_16c);
     a->mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
@@ -743,7 +743,7 @@ void *func_020f5550(void *a, ItemKouraR *b, void *c) {
 
 // Stores func_0210a77c in the 0x30 word, moves the seven words of gItemKouraRStateTable to 0x23c,
 // then picks one of three calls from the 0x254/0x21c words.
-void func_020f53d0(ItemKouraR *a) {
+void InitItemKouraRFromData(ItemKouraR *a) {
     u16 x;
     u32 n;
     u16 v;
@@ -877,7 +877,7 @@ void *func_020f5108(void *a, ItemBanana *b, void *c) {
 }
 
 // Runs func_020f8e78 and func_020f2d98, then StartSound when the two 0x74/0x130 tests pass.
-void func_020f50b4(ItemBanana *a) {
+void InitItemBananaFromData(ItemBanana *a) {
     func_020f8e78(a);
     func_020f2d98(&a->mUnk_000, 0);
     if ((a->mUnk_000.mUnk_000.mFlags & 0x10000000) == 0) {
@@ -901,7 +901,7 @@ void func_020f504c(Unk020eda5c *a, Unk020f40dc *b) {
     func_020fe958(3);
 }
 
-void func_020f5040(ItemKinoko *p0) {
+void ResetItemKinoko(ItemKinoko *p0) {
     p0->mUnk_134 = TRUE;
 }
 

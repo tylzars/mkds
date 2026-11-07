@@ -42,7 +42,7 @@ u8 *func_020ff2b0(u8 *a, ItemFBox *b, void *c) {
     return p;
 }
 
-void func_020ff25c(ItemFBox *a) {
+void InitItemFBoxFromData(ItemFBox *a) {
     func_020f8e78(a);
     func_020f2d98(&a->mUnk_000, 0);
     if ((a->mUnk_000.mUnk_000.mFlags & 0x10000000) == 0) {
@@ -412,7 +412,7 @@ u8 *func_020fe8ac(u32 a) {
     u32 b;
     s32 n;
 
-    b = gItemKinds[a].mUnk_4c & 0xff;
+    b = gItemKinds[a].mDataSize & 0xff;
     data_0217bd6c[0] = GetRaceUpdateFrames();
     n = data_0217aa14->mUnk_724;
     if (n >= (u8) (b + 1) && func_0205ad44() != FALSE) {

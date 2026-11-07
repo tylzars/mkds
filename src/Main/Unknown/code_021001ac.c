@@ -267,7 +267,7 @@ void PickItemTeresaKartBattle(ItemTeresa *p, s32 a) {
     } while (i < end);
 }
 
-void func_02101d18(Unk02101d18 *x, ItemTeresa *p) {
+void InitItemTeresa(Unk02101d18 *x, ItemTeresa *p) {
     Kart *q;
 
     q = x->mUnk_10;
@@ -284,7 +284,7 @@ void func_02101d18(Unk02101d18 *x, ItemTeresa *p) {
     p->mUnk_24c = TRUE;
 }
 
-void func_02101c84(ItemTeresa *p) {
+void AdvanceItemTeresa(ItemTeresa *p) {
     Kart *q;
     Vec3 *w;
     Vec3 v;
@@ -1027,7 +1027,7 @@ void func_021004c4(void *p, ItemTeresa *a, void *b) {
     func_020fe8ac(a->mUnk_000.mKind);
 }
 
-void func_0210045c(ItemTeresa *p) {
+void InitItemTeresaFromData(ItemTeresa *p) {
     int i;
 
     func_020f8e78(p);
@@ -1063,7 +1063,7 @@ void func_021003e8(ItemTeresa *p, u32 sel, s32 v1) {
     }
 }
 
-void func_021001ac(ItemTeresa *p, s32 c, Unk020e6488 *q) {
+void DrawItemTeresa(ItemTeresa *p, s32 c, Unk020e6488 *q) {
     s32 a;
     s32 n;
     s32 b;

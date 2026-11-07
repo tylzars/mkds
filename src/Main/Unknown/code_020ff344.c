@@ -168,23 +168,23 @@ void func_020ff6d8(ItemFBox *e, MtxFx43 *out) {
     *out = e->mUnk_000.mUnk_000.mUnk_94;
 }
 
-void func_020ff67c(ItemFBox *e) {
+void ResetItemFBox(ItemFBox *e) {
     *(MtxFx33 *) &e->mUnk_000.mUnk_000.mUnk_94 = *(MtxFx33 *) &data_0217c600;
     func_021053e4(e->mUnk_140);
     e->mUnk_140->mUnk_b0 = 2;
     func_021052f0(e->mUnk_140, func_020ff910, e);
 }
 
-void func_020ff654(ItemFBox *e) {
+void StartItemFBox(ItemFBox *e) {
     e->mUnk_140->mUnk_b0 = 1;
     func_021052f0(e->mUnk_140, func_020ff6d8, e);
 }
 
-void func_020ff638(Unk020eda5c *a, ItemFBox *e) {
+void AdvanceItemFBoxInUse(Unk020eda5c *a, ItemFBox *e) {
     func_02105338(e->mUnk_140, e->mUnk_000.mUnk_000.mUnk_d8, &e->mUnk_000.mUnk_000.mUnk_68);
 }
 
-u32 func_020ff538(Unk020eda5c *a, ItemFBox *e) {
+u32 InitItemFBox(Unk020eda5c *a, ItemFBox *e) {
     func_020f9114(e);
     e->mUnk_000.mUnk_000.mUnk_78 |= data_0215a02c;
     MTX_Concat33((const s32 *) &data_0217c600, (const s32 *) &e->mUnk_000.mUnk_000.mUnk_94,
@@ -203,7 +203,7 @@ u32 func_020ff538(Unk020eda5c *a, ItemFBox *e) {
     return e->mUnk_13c;
 }
 
-void func_020ff438(ItemFBox *e) {
+void AdvanceItemFBox(ItemFBox *e) {
     s32 t;
 
     if (e->mUnk_000.mUnk_000.mFlags & 0x180000) {
@@ -242,7 +242,7 @@ s32 func_020ff3c4(ItemFBox *e) {
     }
     e->mUnk_140->mUnk_b0 = 2;
     if ((e->mUnk_000.mUnk_000.mFlags & 0x180000) == 0) {
-        e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) func_020ff438;
+        e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) AdvanceItemFBox;
     }
     return 2;
 }
@@ -260,6 +260,6 @@ void func_020ff344(ItemFBox *e) {
     MTX_Concat33((const s32 *) &data_0217c600, (const s32 *) &e->mUnk_000.mUnk_000.mUnk_94,
                  (s32 *) &e->mUnk_000.mUnk_000.mUnk_94);
     if ((e->mUnk_000.mUnk_000.mFlags & 0x180000) == 0) {
-        e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) func_020ff438;
+        e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) AdvanceItemFBox;
     }
 }

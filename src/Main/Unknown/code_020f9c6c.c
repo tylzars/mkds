@@ -103,7 +103,7 @@ void func_020fcb30(ItemKouraW *p) {
     p->mUnk_170 = 1;
 }
 
-void func_020fcac0(ItemKouraW *a) {
+void ResetItemKouraW(ItemKouraW *a) {
     func_02046be8(&a->mUnk_2e8, (UnkFunc *const *) gItemKouraWStateTable, 8, a);
     MTX_Identity43_((MtxFx43 *) a->mUnk_2b4);
     a->mRank = 1;
@@ -692,7 +692,7 @@ void *func_020fb208(void *param_1, ItemKouraW *param_2, void *param_3) {
     return r;
 }
 
-void func_020fb038(ItemKouraW *param_1) {
+void InitItemKouraWFromData(ItemKouraW *param_1) {
     s32 v;
     Unk020fb038 s;
     Kart *q;
@@ -1142,7 +1142,7 @@ void func_020fa294(void) {
                 void (*t)(ItemObject *);
 
                 k = p->mKind;
-                t = gItemKinds[k].mUnk_28;
+                t = gItemKinds[k].mAdvance;
                 if ((p->mFlags & 0x180000) == 0) {
                     p->mUnk_120 = t;
                 }
@@ -1209,7 +1209,7 @@ void InitItems(void) {
 s32 func_020fa0e8(s32 param_1, s32 param_2) {
     switch (param_2) {
         case 0:
-            return (u8) ((u8) gItemKinds[param_1].mUnk_4c + 1);
+            return (u8) ((u8) gItemKinds[param_1].mDataSize + 1);
         case 1:
             return 0x12;
         case 2:

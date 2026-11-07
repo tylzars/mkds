@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_020fcb3c(void);
+u32 GetItemKouraWFarDistanceSquared(void);

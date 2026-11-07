@@ -19,7 +19,7 @@ extern Unk0217be00 data_0217c200[];
 extern Unk0217be00 data_0217be00[];
 
 u8 *func_020ff2b0(u8 *a, ItemFBox *b, void *c);
-void func_020ff25c(ItemFBox *a);
+void InitItemFBoxFromData(ItemFBox *a);
 void func_020ff1d8(void);
 void func_020ff1b8(s32 a, s32 *p);
 void func_020ff1a0(s32 a, s32 *p);

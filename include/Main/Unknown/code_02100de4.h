@@ -49,7 +49,7 @@ typedef struct ItemTeresa {
     /* 270 */ s32 mStallFrames;
 } ItemTeresa;
 
-// First argument of func_02101d18: objects at 0x0c and 0x10.
+// First argument of InitItemTeresa: objects at 0x0c and 0x10.
 typedef struct Unk02101d18 {
     /* 00 */ u8 mUnk_00[0xc];
     /* 0c */ struct KartItems *mUnk_0c;
@@ -69,5 +69,5 @@ void UpdateItemTeresaState1(ItemTeresa *p);
 void PickItemTeresaKartBattle(ItemTeresa *p, s32 param_2);
 void PickItemTeresaKartByRank(ItemTeresa *p, s32 param_2);
 void UpdateItemTeresaState2(ItemTeresa *p);
-void func_02101c84(ItemTeresa *p);
-void func_02101d18(Unk02101d18 *x, ItemTeresa *p);
+void AdvanceItemTeresa(ItemTeresa *p);
+void InitItemTeresa(Unk02101d18 *x, ItemTeresa *p);

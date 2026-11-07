@@ -59,7 +59,7 @@ void func_020f9b0c(ItemObject *param_1) {
 void ResetItemObject(ItemObject *param_1, s32 param_2) {
     void (*f)(void *);
 
-    f = gItemKinds[param_2].mUnk_18;
+    f = gItemKinds[param_2].mReset;
     param_1->mKind = param_2;
     param_1->mFlags = 0;
     param_1->mUnk_7a = 0;
@@ -112,8 +112,8 @@ void ReleaseItemObject(ItemObject *param_1) {
     }
     param_1->mFlags |= 4;
     k = param_1->mKind;
-    if (gItemKinds[k].mUnk_3c != NULL) {
-        gItemKinds[k].mUnk_3c(param_1);
+    if (gItemKinds[k].mRelease != NULL) {
+        gItemKinds[k].mRelease(param_1);
     }
 }
 

@@ -74,7 +74,7 @@ void ResetItemBomb(ItemBomb *a) {
     a->mUnk_198 = NULL;
 }
 
-s32 func_020fe268(Unk020eda5c *a, ItemBomb *e) {
+s32 InitItemBomb(Unk020eda5c *a, ItemBomb *e) {
     func_020f9114(e);
     e->mUnk_000.mUnk_000.mUnk_78 |= data_02159f3c;
     e->mUnk_134 = (s32) (((s64) a->mUnk_068 * 0x1ec) >> 12) + 0x333;
@@ -124,7 +124,7 @@ void UpdateItemBombState0(ItemBomb *e) {
     StopSound(&e->mUnk_000.mUnk_000.mSoundSource, 0xda);
     func_020f6a6c(&e->mUnk_000.mUnk_000, &v);
     if ((e->mUnk_000.mUnk_000.mFlags & 0x180000) == 0) {
-        e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) func_020fdae8;
+        e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) AdvanceItemBomb;
     }
     e->mNextState = 1;
     e->mNextStateRequested = 1;
@@ -310,7 +310,7 @@ void func_020fdc08(ItemBomb *e, ItemBomb *b, Unk021052fc *c) {
     }
 }
 
-void func_020fdae8(ItemBomb *e) {
+void AdvanceItemBomb(ItemBomb *e) {
     if (e->mUnk_198 != NULL) {
         func_020fdc08(e, e, e->mUnk_198);
         return;
@@ -368,7 +368,7 @@ void *func_020fda50(void *a, ItemBomb *b, void *c) {
     return r;
 }
 
-void func_020fd9d8(ItemBomb *e) {
+void InitItemBombFromData(ItemBomb *e) {
     func_020f8e78(e);
     func_020f2d98(&e->mUnk_000, e->mUnk_130 != 0 ? 3 : 2);
     func_02046be8(&e->mUnk_184, (UnkFunc *const *) gItemBombStateTable, 4, e);
@@ -381,7 +381,7 @@ void func_020fd9d8(ItemBomb *e) {
     StartSound(&e->mUnk_000.mUnk_000.mSoundSource, 0xda, 0x7f, 0);
 }
 
-void func_020fd938(ItemBomb *e, Vec3 *a, Unk020e6488 *b) {
+void DrawItemBomb(ItemBomb *e, Vec3 *a, Unk020e6488 *b) {
     if (e->mUnk_1a0 == FALSE) {
         return;
     }
@@ -400,13 +400,13 @@ void func_020fd938(ItemBomb *e, Vec3 *a, Unk020e6488 *b) {
     e->mUnk_138->mUnk_b4 = (e->mUnk_000.mUnk_000.mFlags & 0x10000) == 0;
 }
 
-int func_020fd8b0(ItemBomb *e) {
+int RequestItemBombState2(ItemBomb *e) {
     if (e->mState != 2) {
         func_02046be8(&e->mUnk_184, (UnkFunc *const *) gItemBombStateTable, 4, e);
         e->mNextState = 2;
         e->mNextStateRequested = 1;
         if ((e->mUnk_000.mUnk_000.mFlags & 0x180000) == 0) {
-            e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) func_020fdae8;
+            e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) AdvanceItemBomb;
         }
         e->mUnk_000.mUnk_000.mFlags &= ~0x8000;
         e->mUnk_000.mUnk_000.mFlags |= 0x80000;
@@ -421,7 +421,7 @@ void func_020fd83c(ItemBomb *e) {
     }
     func_02046be8(&e->mUnk_184, (UnkFunc *const *) gItemBombStateTable, 4, e);
     if ((e->mUnk_000.mUnk_000.mFlags & 0x180000) == 0) {
-        e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) func_020fdae8;
+        e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) AdvanceItemBomb;
     }
     e->mNextState = 1;
     e->mNextStateRequested = 1;
@@ -542,7 +542,7 @@ void func_020fd540(void **b, Vec3 *v, s32 a) {
     e->mUnk_130 = 1;
     func_020f30ec(&e->mUnk_000, 3, v);
     if ((e->mUnk_000.mUnk_000.mFlags & 0x180000) == 0) {
-        e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) func_020fdae8;
+        e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) AdvanceItemBomb;
     }
     if (v1 != NULL) {
         v1->mUnk_00.mFlags &= ~2;

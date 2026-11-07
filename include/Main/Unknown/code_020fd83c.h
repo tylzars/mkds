@@ -34,11 +34,11 @@ typedef struct ItemBomb {
 } ItemBomb;
 
 void func_020fd83c(ItemBomb *e);
-int func_020fd8b0(ItemBomb *e);
-void func_020fd938(ItemBomb *e, Vec3 *a, Unk020e6488 *b);
-void func_020fd9d8(ItemBomb *e);
+int RequestItemBombState2(ItemBomb *e);
+void DrawItemBomb(ItemBomb *e, Vec3 *a, Unk020e6488 *b);
+void InitItemBombFromData(ItemBomb *e);
 void *func_020fda50(void *a, ItemBomb *b, void *c);
-void func_020fdae8(ItemBomb *e);
+void AdvanceItemBomb(ItemBomb *e);
 void func_020fdc08(ItemBomb *e, ItemBomb *b, Unk021052fc *c);
 void func_020fdd78(ItemBomb *e);
 void func_020fde18(ItemBomb *e);

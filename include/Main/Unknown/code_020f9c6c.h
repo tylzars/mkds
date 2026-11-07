@@ -30,8 +30,8 @@ typedef struct Unk020e6b38 {
     /* 18 */ Vec3 mUnk_18;
 } Unk020e6b38;
 
-// Stack object of func_020fb038: the two vectors Vec3NormalizeAndGetLengthUnchecked and QuaternionFromYAxisToVec3
-// write.
+// Stack object of InitItemKouraWFromData: the two vectors Vec3NormalizeAndGetLengthUnchecked and
+// QuaternionFromYAxisToVec3 write.
 typedef struct Unk020fb038 {
     /* 00 */ Vec3 mUnk_00;
     /* 0c */ Vec3 mUnk_0c;
@@ -131,7 +131,7 @@ BOOL IsItemKouraWState7(ItemKouraW *param_1);
 s32 RequestItemKouraWState7(ItemKouraW *param_1);
 void DrawItemKouraW(ItemKouraW *param_1, s32 param_2, s32 param_3);
 void func_020faed0(ItemKouraW *param_1, s32 param_2, s32 param_3);
-void func_020fb038(ItemKouraW *param_1);
+void InitItemKouraWFromData(ItemKouraW *param_1);
 void *func_020fb208(void *param_1, ItemKouraW *param_2, void *param_3);
 void UpdateItemKouraWState7(ItemKouraW *param_1);
 void EnterItemKouraWState7(ItemKouraW *param_1);
@@ -152,5 +152,5 @@ void func_020fc654(ItemKouraW *p);
 s32 InitItemKouraW(Unk020eda5c *a, ItemKouraW *e);
 void func_020fc8ec(ItemKouraW *e, s32 a);
 void func_020fc94c(ItemKouraW *p);
-void func_020fcac0(ItemKouraW *a);
+void ResetItemKouraW(ItemKouraW *a);
 void func_020fcb30(ItemKouraW *p);

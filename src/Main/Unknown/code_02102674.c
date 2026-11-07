@@ -25,7 +25,7 @@
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_0210298c(ItemGesso *p) {
+void AdvanceItemGesso(ItemGesso *p) {
     Kart *q;
     Unk020748a8 *s;
     s32 a2;
@@ -151,7 +151,7 @@ void func_0210298c(ItemGesso *p) {
     VEC_Add(&s->mPos, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
 }
 
-void func_021027ac(ItemGesso *p, s32 param_2, Unk020e6488 *t) {
+void DrawItemGesso(ItemGesso *p, s32 param_2, Unk020e6488 *t) {
     Vec3 w;
     MtxFx43 s;
     s32 k;
@@ -204,7 +204,7 @@ void func_02102764(void *param_1, ItemGesso *param_2, void *param_3) {
     func_020fe8ac(param_2->mUnk_000.mKind);
 }
 
-void func_02102744(ItemGesso *p) {
+void InitItemGessoFromData(ItemGesso *p) {
     func_020f8e78(p);
     func_02102eb8((u32) p, 1);
 }

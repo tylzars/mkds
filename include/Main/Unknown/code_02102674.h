@@ -35,7 +35,7 @@ typedef struct ItemGesso {
     /* 1a0 */ u8 mUnk_1a0[0x14];
 } ItemGesso;
 
-// Object returned by GetChaseCamera and passed to the vector helpers by func_0210298c.
+// Object returned by GetChaseCamera and passed to the vector helpers by AdvanceItemGesso.
 typedef struct Unk020748a8 {
     /* 000 */ Vec3 mUp;
     /* 00c */ Vec3 mSide;
@@ -63,7 +63,7 @@ extern Unk0215a3b0 data_0215a3b0[];
 
 void func_02102674(void);
 void func_02102718(void);
-void func_02102744(ItemGesso *p);
+void InitItemGessoFromData(ItemGesso *p);
 void func_02102764(void *param_1, ItemGesso *param_2, void *param_3);
-void func_021027ac(ItemGesso *p, s32 param_2, Unk020e6488 *t);
-void func_0210298c(ItemGesso *p);
+void DrawItemGesso(ItemGesso *p, s32 param_2, Unk020e6488 *t);
+void AdvanceItemGesso(ItemGesso *p);

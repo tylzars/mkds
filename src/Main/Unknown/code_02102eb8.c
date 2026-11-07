@@ -19,7 +19,7 @@
 #include "03/code_021b7bb4.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_021031ac(ItemGesso *p) {
+void ResetItemGesso(ItemGesso *p) {
     s32 i;
 
     p->mKart = NULL;

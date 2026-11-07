@@ -142,8 +142,8 @@ found:
     v->mAgeFrames = 0;
     k = v->mKind;
     t = gItemKinds + k;
-    if (t->mUnk_1c != NULL) {
-        t->mUnk_1c(v);
+    if (t->mStart != NULL) {
+        t->mStart(v);
     }
 }
 
@@ -204,10 +204,10 @@ void func_020f0d04(ItemObject *p) {
             func_020f73fc(p);
         }
     } else {
-        f = gItemKinds[i].mUnk_48;
+        f = gItemKinds[i].mCopyData;
         z = f(z, p, 1);
         f(z, p, 0);
-        gItemKinds[i].mUnk_50(p);
+        gItemKinds[i].mInitFromData(p);
     }
     p->mFlags |= 0x20000000;
 }
@@ -253,14 +253,14 @@ found:
     }
     e->mAgeFrames = 0;
     j = e->mKind;
-    if (gItemKinds[j].mUnk_1c != NULL) {
-        gItemKinds[j].mUnk_1c(e);
+    if (gItemKinds[j].mStart != NULL) {
+        gItemKinds[j].mStart(e);
     }
     if (c != 0) {
         g = func_020fe4b4;
     } else {
         j = e->mKind;
-        g = gItemKinds[j].mUnk_50;
+        g = gItemKinds[j].mInitFromData;
     }
     g(e);
     e->mFlags |= 0x20000000;
@@ -397,7 +397,7 @@ void func_020f0758(ItemPool *a, s32 m, s32 b, u8 *c, s32 d) {
     switch (m) {
         case 0:
             k = a->mKind;
-            if (!gItemKinds[k].mUnk_48) {
+            if (!gItemKinds[k].mCopyData) {
                 return;
             }
             if (c[1] == 0xff) {
@@ -597,8 +597,8 @@ void CreateItemPool(ItemPool *q, s32 a, s32 *b) {
         k++;
         q->mObjects[i]->mPoolIndex = i;
     }
-    q->mUnk_24 = gItemKinds[a].mUnk_2c;
-    q->mUnk_28 = gItemKinds[a].mUnk_30;
+    q->mUnk_24 = gItemKinds[a].mDraw;
+    q->mUnk_28 = gItemKinds[a].mViewTest;
     q->mUnk_2c = gItemKinds[a].mUnk_70;
     q->mUnk_30 = gItemKinds[a].mUnk_74;
     q->mUnk_34 = gItemKinds[a].mUnk_78;
@@ -838,7 +838,7 @@ void func_020efa60(Unk020eda5c *a, s32 f) {
 
     a->mUnk_020--;
     b = a->mUnk_014[a->mUnk_020];
-    cb = gItemKinds[b->mKind].mUnk_24;
+    cb = gItemKinds[b->mKind].mInit;
     func_020efb84(a, b);
     if (cb(a, b) == 0) {
         if (a->mUnk_00c->mUnk_208 != FALSE) {
@@ -846,12 +846,12 @@ void func_020efa60(Unk020eda5c *a, s32 f) {
             f = 0;
         }
     }
-    b->mUnk_d4 = gItemKinds[b->mKind].mUnk_30(b->mUnk_d0, b->mUnk_e0 << 1, gItemKinds[b->mKind].mUnk_5c,
-                                              gItemKinds[b->mKind].mUnk_a4, 0x1f);
+    b->mUnk_d4 = gItemKinds[b->mKind].mViewTest(b->mUnk_d0, b->mUnk_e0 << 1, gItemKinds[b->mKind].mUnk_5c,
+                                                gItemKinds[b->mKind].mUnk_a4, 0x1f);
     if (b->mFlags & 0x400000) {
         func_020f90bc(b);
     }
-    v = gItemKinds[b->mKind].mUnk_28;
+    v = gItemKinds[b->mKind].mAdvance;
     if ((b->mFlags & 0x180000) == 0) {
         b->mUnk_120 = v;
     }
@@ -1007,8 +1007,8 @@ void func_020ef350(Unk020eda5c *a) {
         Vec3CrossUnrounded(&b->mUnk_94.mUnk_00[1], &b->mUnk_94.mUnk_00[2], &b->mUnk_94.mUnk_00[0]);
     }
     k = b->mKind;
-    if (gItemKinds[k].mUnk_20 != NULL) {
-        gItemKinds[k].mUnk_20(a, b);
+    if (gItemKinds[k].mAdvanceInUse != NULL) {
+        gItemKinds[k].mAdvanceInUse(a, b);
     }
 }
 

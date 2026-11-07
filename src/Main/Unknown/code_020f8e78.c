@@ -111,7 +111,7 @@ void func_020f9054(ItemObject *a, s32 b, void *c, s32 d) {
     ItemObject *p = a;
     void *(*f)(void *, void *, s32);
 
-    f = d != 0 ? func_020fe4c0 : gItemKinds[b].mUnk_48;
+    f = d != 0 ? func_020fe4c0 : gItemKinds[b].mCopyData;
     ResetItemObject(p, b);
     f(c, p, 0);
     p->mFlags &= ~0x400000;
@@ -157,7 +157,7 @@ void func_020f8e78(void *b) {
         p->mFlags |= 0x400000;
     }
     k = p->mKind;
-    f = gItemKinds[k].mUnk_28;
+    f = gItemKinds[k].mAdvance;
     if ((p->mFlags & 0x180000) == 0) {
         p->mUnk_120 = f;
     }
