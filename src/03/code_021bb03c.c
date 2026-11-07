@@ -549,13 +549,13 @@ u8 *func_ov003_021bdc5c(const u8 *p, u32 *a, s32 *b) {
     const u8 *d;
     const u8 *e;
     c = 0;
-    *a = func_ov003_021b7c44_inline(*(u16 *) p);
-    *b = func_ov003_021b7c44_inline(*(u16 *) (p + 2));
+    *a = SwapBytes16_inline(*(u16 *) p);
+    *b = SwapBytes16_inline(*(u16 *) (p + 2));
     d = p + 6 + *b;
     for (e = p; e < d; e++) {
         c += *e;
     }
-    if ((u16) c != func_ov003_021b7c44_inline(*(u16 *) d)) {
+    if ((u16) c != SwapBytes16_inline(*(u16 *) d)) {
         return NULL;
     }
     return (u8 *) p + 6;
@@ -567,8 +567,8 @@ u8 *func_ov003_021bdc08(u8 **p, u8 *a, u32 *b, s32 *c) {
     if (d >= a) {
         return NULL;
     }
-    *b = func_ov003_021b7c44_inline(*(u16 *) d);
-    *c = func_ov003_021b7c44_inline(*(u16 *) (d + 2));
+    *b = SwapBytes16_inline(*(u16 *) d);
+    *c = SwapBytes16_inline(*(u16 *) (d + 2));
     d += 4;
     *p = d + (((*c + 0xb) & ~7) - 4);
     return d;
@@ -577,7 +577,7 @@ u8 *func_ov003_021bdc08(u8 **p, u8 *a, u32 *b, s32 *c) {
 u8 *func_ov003_021bdbd0(const u8 *p, u32 *a, s32 *b) {
     u8 *c;
     c = (u8 *) p + 8;
-    return func_ov003_021bdc08(&c, c + func_ov003_021b7c44_inline(*(u16 *) p), a, b);
+    return func_ov003_021bdc08(&c, c + SwapBytes16_inline(*(u16 *) p), a, b);
 }
 
 s32 func_ov003_021bdb0c(u8 *p, u32 a, u8 *b, u32 c, const void *d) {
@@ -594,7 +594,7 @@ s32 func_ov003_021bdb0c(u8 *p, u32 a, u8 *b, u32 c, const void *d) {
     b[5] = 0;
     b[6] = 0;
     b[7] = 0;
-    *(u16 *) b = func_ov003_021b7c44_inline(c - 8);
+    *(u16 *) b = SwapBytes16_inline(c - 8);
     if (d != NULL) {
         func_ov003_021bccd0(p + 6, b, c, d, 0x10);
         c += 8;
@@ -607,14 +607,14 @@ s32 func_ov003_021bdb0c(u8 *p, u32 a, u8 *b, u32 c, const void *d) {
     p[3] = 0;
     p[4] = 0;
     p[5] = 0;
-    *(u16 *) p = func_ov003_021b7c44_inline(a);
-    *(u16 *) (p + 2) = func_ov003_021b7c44_inline(c);
+    *(u16 *) p = SwapBytes16_inline(a);
+    *(u16 *) (p + 2) = SwapBytes16_inline(c);
     e += 6;
     e += c;
     for (f = p; f < e; f++) {
         g += *f;
     }
-    *(u16 *) e = func_ov003_021b7c44_inline(g);
+    *(u16 *) e = SwapBytes16_inline(g);
     return e + 2 - p;
 }
 
@@ -624,9 +624,9 @@ u8 *func_ov003_021bdaa4(u8 *p, u32 a, const void *b, u32 c) {
     p[1] = 0;
     p[2] = 0;
     p[3] = 0;
-    *(u16 *) p = func_ov003_021b7c44_inline(a);
+    *(u16 *) p = SwapBytes16_inline(a);
     d = ((c + 0xb) & ~7) - 4;
-    *(u16 *) (p + 2) = func_ov003_021b7c44_inline(c);
+    *(u16 *) (p + 2) = SwapBytes16_inline(c);
     p = (u8 *) p + 4;
     memset(p, 0, d);
     memcpy(p, b, c);
@@ -681,13 +681,13 @@ BOOL func_ov003_021bd998(const u8 *p, s32 *a) {
         do {
             switch (c) {
                 case 1:
-                    b = func_ov003_021b7c44_inline(*(u16 *) e);
+                    b = SwapBytes16_inline(*(u16 *) e);
                     break;
                 case 2:
-                    g = func_ov003_021b7c44_inline(*(u16 *) e);
+                    g = SwapBytes16_inline(*(u16 *) e);
                     break;
                 case 5:
-                    h = func_ov003_021b7c44_inline(*(u16 *) e);
+                    h = SwapBytes16_inline(*(u16 *) e);
                     break;
             }
             e = func_ov003_021bdc08(&f, d, &c, &k);
@@ -780,7 +780,7 @@ s32 func_ov003_021bd59c(u8 *p) {
     u8 *l;
     a = p + 8;
     b = FALSE;
-    c = a + func_ov003_021b7c44_inline(*(u16 *) p);
+    c = a + SwapBytes16_inline(*(u16 *) p);
     f = func_ov003_021bdc08(&a, c, &d, &e);
     while (f != NULL) {
         switch (d) {
@@ -790,13 +790,13 @@ s32 func_ov003_021bd59c(u8 *p) {
                 b = TRUE;
                 break;
             case 0x202:
-                data_ov003_021d8fb0.mUnk_2c = func_ov003_021b7c44_inline(*(u16 *) f);
+                data_ov003_021d8fb0.mUnk_2c = SwapBytes16_inline(*(u16 *) f);
                 break;
             case 0x203: {
                 s32 g;
                 s32 h;
                 u8 *i;
-                g = func_ov003_021b7c44_inline(*(u16 *) f);
+                g = SwapBytes16_inline(*(u16 *) f);
                 h = 0;
                 i = (u8 *) data_ov003_021d8eb0;
                 for (; h < 4; h++) {
@@ -808,7 +808,7 @@ s32 func_ov003_021bd59c(u8 *p) {
             case 0x204: {
                 u32 g;
                 s32 h;
-                g = func_ov003_021b7c44_inline(*(u16 *) f);
+                g = SwapBytes16_inline(*(u16 *) f);
                 h = 0;
                 l = (u8 *) data_ov003_021d8eb0;
                 for (; h < 4; h++) {
@@ -818,7 +818,7 @@ s32 func_ov003_021bd59c(u8 *p) {
                 break;
             }
             case 0x205:
-                data_ov003_021d8fb0.mUnk_30 = func_ov003_021b7c44_inline(*(u16 *) f);
+                data_ov003_021d8fb0.mUnk_30 = SwapBytes16_inline(*(u16 *) f);
                 break;
             case 0x206:
             case 0x207:

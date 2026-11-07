@@ -870,7 +870,7 @@ Expression shapes:
 - A call result that must be the left operand of a compare or add (`cmp r0, rX`, `add rD, r0, rX` where ours has
   the call on the right): the compiler puts the call on the right whatever the written order, and a local holding
   the call result keeps the written order. Write `r = f(b, c); if (r != d)` or `c = f(p->x); g(..., c + x, ...)`
-  (func_ov003_021b8160). Inside an `&&` chain use a comma expression `(c = GetKartRank(a->mUnk_74), c == i)`;
+  (XorBytesWithKeyStreamAndCheckCrc). Inside an `&&` chain use a comma expression `(c = GetKartRank(a->mUnk_74), c == i)`;
   `(c = f()) == i` is still swapped (func_02066fe0).
 - The same holds for a heavier left operand: `mUnk_20 == v1` with `mUnk_20` an array element stays `cmp v1,
   mUnk_20`; the element through a pointer local (`q = &d->mUnk_44[v2]; if (q->mUnk_20 == v1)`) stays on the left
@@ -881,7 +881,7 @@ Expression shapes:
 - Memory locals (those whose address is used) go in the frame in size groups, smallest first: 1 byte, 2 bytes, 3 to
   8 bytes, 9 to 64 bytes, over 64; within a group in declaration order. A struct the decompiler made from adjacent
   stack bytes that sits wrong against a smaller local is separate locals (`s8 d; s16 g; s16 h; u8 k[8];`,
-  func_ov003_021b8498). Two locals in the 9 to 64 group: declaration order decides (`Vec3 v;` before `Unk0210b7a8
+  SendPacketKind2000). Two locals in the 9 to 64 group: declaration order decides (`Vec3 v;` before `Unk0210b7a8
   s;`, func_0209d84c).
 - A local declared inside a loop body gets a higher slot than any function-scope local: declare it at function
   scope (func_ov003_021ce5b8).

@@ -396,7 +396,7 @@ s32 func_ov003_021ba05c(Unk021b94c4 *req) {
         func_ov003_021b9518();
         return -1;
     }
-    func_ov003_021b9134(-1);
+    ReportStateChange(-1);
     ret = func_ov003_021b9570(req);
     func_ov003_021ba164(data_ov003_021d7c54);
     func_ov003_021b9518();
@@ -435,7 +435,7 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
     mode = 0;
     attempts = mode;
     addr = mode;
-    func_ov003_021b7d84(list, 0, sizeof(list));
+    FillBytes(list, 0, sizeof(list));
     scan.mUnk_00 = req->mUnk_106;
     if (scan.mUnk_00 == -1) {
         scan.mUnk_00 = 10;
@@ -465,7 +465,7 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
     }
 
     cnt = 0;
-    func_ov003_021b9134(0);
+    ReportStateChange(0);
     delay = scan.mUnk_02;
     while (1) {
         if (data_ov003_021d7c44 != NULL) {
@@ -477,7 +477,7 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
             func_ov003_021b9518();
             return -1;
         }
-        result = func_ov003_021b91f0(data_ov003_021d7c44);
+        result = CheckSingleEssidAossEntry(data_ov003_021d7c44);
         if (result == 4) {
             req->mUnk_116 = 2;
             func_ov003_021b9518();
@@ -495,9 +495,9 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
         cnt++;
     }
 
-    func_ov003_021b9134(1);
-    func_ov003_021b7d84(&request, 0, 0x3c);
-    if (func_ov003_021b91a4(&request) != 0) {
+    ReportStateChange(1);
+    FillBytes(&request, 0, 0x3c);
+    if (FillEssidAossAndMelcoRequest(&request) != 0) {
         req->mUnk_116 = 0xf;
         func_ov003_021b9518();
         return -1;
@@ -508,7 +508,7 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
         func_ov003_021b9518();
         return -1;
     }
-    func_ov003_021b7d84(data_ov003_021d7c4c, 0, 0x58);
+    FillBytes(data_ov003_021d7c4c, 0, 0x58);
     cnt = 0;
     if (scan.mUnk_00 > 0) {
         do {
@@ -540,7 +540,7 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
         return -1;
     }
     func_ov003_021b9518();
-    func_ov003_021b916c(3, list, req->mUnk_110);
+    FillPacketTags(3, list, req->mUnk_110);
     data_ov003_021d6804 = func_ov003_021b7cf8(2, 2, 0);
     if (data_ov003_021d6804 < 0) {
         req->mUnk_116 = 0xf;
@@ -553,9 +553,9 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
         func_ov003_021b9518();
         return -1;
     }
-    func_ov003_021b7d84(&info, 0, 8);
+    FillBytes(&info, 0, 8);
     info.mUnk_01 = 2;
-    info.mUnk_04 = func_ov003_021b7cac(0xc0a80b65);
+    info.mUnk_04 = SwapBytes32(0xc0a80b65);
     info.mUnk_02 = func_ov003_021b7c94(0x5790);
     if (func_ov003_021b7cec(data_ov003_021d6804, &info, 8) < 0) {
         req->mUnk_116 = 0xf;
@@ -565,7 +565,7 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
 
     while (1) {
         buffer = data_ov003_021d7c54;
-        func_ov003_021b7d84(&buf, 0, 0x14);
+        FillBytes(&buf, 0, 0x14);
         buf.mUnk_10 = 0xc0a80b65;
         buf.mUnk_00 = 0xc0a80b01;
         while (1) {
@@ -596,7 +596,7 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
                         func_ov003_021b9518();
                         return -1;
                     }
-                    result = func_ov003_021b91f0(data_ov003_021d7c44);
+                    result = CheckSingleEssidAossEntry(data_ov003_021d7c44);
                     if (result == 4) {
                         req->mUnk_116 = 2;
                         func_ov003_021b9518();
@@ -624,7 +624,7 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
                     func_ov003_021b9518();
                     return -1;
                 }
-                func_ov003_021b7d84(data_ov003_021d7c4c, 0, 0x58);
+                FillBytes(data_ov003_021d7c4c, 0, 0x58);
                 cnt = 0;
                 if (scan.mUnk_00 > 0) {
                     do {
@@ -670,9 +670,9 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
                     func_ov003_021b9518();
                     return -1;
                 }
-                func_ov003_021b7d84(&info, 0, 8);
+                FillBytes(&info, 0, 8);
                 info.mUnk_01 = 2;
-                info.mUnk_04 = func_ov003_021b7cac(addr);
+                info.mUnk_04 = SwapBytes32(addr);
                 info.mUnk_02 = func_ov003_021b7c94(0x5790);
                 if (func_ov003_021b7cec(data_ov003_021d6804, &info, 8) < 0) {
                     req->mUnk_116 = 0xf;
@@ -680,13 +680,13 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
                     return -1;
                 }
             }
-            if (func_ov003_021b86e4(mode, &buf, list, data_ov003_021d6804) == -1) {
+            if (ReportStateAndSendPacketForMode(mode, &buf, list, data_ov003_021d6804) == -1) {
                 func_ov003_021b94b8(mode + 0x1000);
                 req->mUnk_116 = 0xf;
                 func_ov003_021b9518();
                 return -1;
             }
-            func_ov003_021b7d84(buffer, 0, 0x5f8);
+            FillBytes(buffer, 0, 0x5f8);
             func_ov003_021b7ba8(&set);
             func_ov003_021b7ba0(data_ov003_021d6804, &set);
             wait.mUnk_00 = timeout / 1000;
@@ -711,8 +711,8 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
         srcLen = 8;
         received = func_ov003_021b7d68(data_ov003_021d6804, buffer->mUnk_0c, 0x5dc, 0, &src2, &srcLen);
         buffer->mUnk_00 = data_ov003_021d6804;
-        buffer->mUnk_04 = func_ov003_021b7c44(received);
-        state = func_ov003_021b9078(mode, buffer, &attempts, list, data_ov003_021d6804);
+        buffer->mUnk_04 = SwapBytes16(received);
+        state = AdvanceStepByKind(mode, buffer, &attempts, list, data_ov003_021d6804);
         if (state == 0x64) {
             ret = 0;
             goto cleanup;
@@ -733,7 +733,7 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
                     return -1;
                 }
                 cnt = 0;
-                func_ov003_021b9134(4);
+                ReportStateChange(4);
                 while (1) {
                     if (data_ov003_021d7c44 != NULL) {
                         func_ov003_021ba164(data_ov003_021d7c44);
@@ -744,7 +744,7 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
                         func_ov003_021b9518();
                         return -1;
                     }
-                    result = func_ov003_021b91f0(data_ov003_021d7c44);
+                    result = CheckSingleEssidAossEntry(data_ov003_021d7c44);
                     if (result == 4) {
                         req->mUnk_116 = 2;
                         func_ov003_021b9518();
@@ -767,7 +767,7 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
                     func_ov003_021b9518();
                     return -1;
                 }
-                func_ov003_021b7d84(data_ov003_021d7c4c, 0, 0x58);
+                FillBytes(data_ov003_021d7c4c, 0, 0x58);
                 cnt = 0;
                 if (scan.mUnk_00 > 0) {
                     do {
@@ -811,9 +811,9 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
                     func_ov003_021b9518();
                     return -1;
                 }
-                func_ov003_021b7d84(&info, 0, 8);
+                FillBytes(&info, 0, 8);
                 info.mUnk_01 = 2;
-                info.mUnk_04 = func_ov003_021b7cac(addr);
+                info.mUnk_04 = SwapBytes32(addr);
                 info.mUnk_02 = func_ov003_021b7c94(0x5790);
                 if (func_ov003_021b7cec(data_ov003_021d6804, &info, 8) < 0) {
                     req->mUnk_116 = 0xf;
@@ -875,7 +875,7 @@ cleanup:
         func_ov003_021b9518();
         return -1;
     }
-    if (func_ov003_021b929c(req) != 0) {
+    if (CheckAndCopyValueRecordsToRequest(req) != 0) {
         req->mUnk_116 = 6;
         func_ov003_021b9518();
         return -1;
@@ -904,9 +904,9 @@ void func_ov003_021b9518(void) {
 }
 
 void func_ov003_021b94c4(Unk021b94c4 *req) {
-    func_ov003_021b7d84(data_ov003_021d7c58, 0, 8);
+    FillBytes(data_ov003_021d7c58, 0, 8);
     data_ov003_021d7c50 = 1;
-    func_ov003_021b7d84(&data_ov003_021d7c6c, 0, 0x1c);
+    FillBytes(&data_ov003_021d7c6c, 0, 0x1c);
     data_ov003_021d7c6c.mUnk_00 = req->mUnk_006;
     data_ov003_021d7c6c.mUnk_04 = req->mUnk_004;
     data_ov003_021d7c6c.mUnk_08 = req->mUnk_000 & 0xf;
