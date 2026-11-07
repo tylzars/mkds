@@ -61,4 +61,4 @@ Unk020e466c *func_020e466c(void);
 Unk020e46c8 *func_020e46c8(void);
 Unk020e46c8 *func_020e4718(void);
 Unk020e46c8 *func_020e4768(void);
-void func_020e47c8(Unk020e43a8 *p, Vec3 *a);
+void InitPukupuku(Unk020e43a8 *p, Vec3 *a);

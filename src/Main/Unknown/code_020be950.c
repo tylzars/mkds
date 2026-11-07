@@ -295,12 +295,13 @@ void InitRaceHudSubScreenCellGroups(void) {
             gRaceHudSubScreenCellGroups->mDrawFunctions[n] = gRaceHudSubScreenCellGroupFunctions[i].mDraw;
         }
     }
-    if (func_020c7464()) {
+    if (CreateRaceHudSubScreenItemBoxCells()) {
         s32 n;
         s32 i;
 
         n = gRaceHudSubScreenCellGroups->mGroupCount++;
-        for (i = 0; gRaceHudSubScreenCellGroupFunctions[i].mCreate != func_020c7464 && i < 49; i++) {
+        for (i = 0; gRaceHudSubScreenCellGroupFunctions[i].mCreate != CreateRaceHudSubScreenItemBoxCells && i < 49;
+             i++) {
         }
         if (i < 49) {
             gRaceHudSubScreenCellGroups->mClearFunctions[n] = gRaceHudSubScreenCellGroupFunctions[i].mClear;
@@ -308,12 +309,13 @@ void InitRaceHudSubScreenCellGroups(void) {
             gRaceHudSubScreenCellGroups->mDrawFunctions[n] = gRaceHudSubScreenCellGroupFunctions[i].mDraw;
         }
     }
-    if (func_020c7690()) {
+    if (CreateRaceHudSubScreenEarthenPipeCells()) {
         s32 n;
         s32 i;
 
         n = gRaceHudSubScreenCellGroups->mGroupCount++;
-        for (i = 0; gRaceHudSubScreenCellGroupFunctions[i].mCreate != func_020c7690 && i < 49; i++) {
+        for (i = 0; gRaceHudSubScreenCellGroupFunctions[i].mCreate != CreateRaceHudSubScreenEarthenPipeCells && i < 49;
+             i++) {
         }
         if (i < 49) {
             gRaceHudSubScreenCellGroups->mClearFunctions[n] = gRaceHudSubScreenCellGroupFunctions[i].mClear;
@@ -389,12 +391,13 @@ void InitRaceHudSubScreenCellGroups(void) {
             gRaceHudSubScreenCellGroups->mDrawFunctions[n] = gRaceHudSubScreenCellGroupFunctions[i].mDraw;
         }
     }
-    if (func_020c7d54()) {
+    if (CreateRaceHudSubScreenPukupukuCells()) {
         s32 n;
         s32 i;
 
         n = gRaceHudSubScreenCellGroups->mGroupCount++;
-        for (i = 0; gRaceHudSubScreenCellGroupFunctions[i].mCreate != func_020c7d54 && i < 49; i++) {
+        for (i = 0; gRaceHudSubScreenCellGroupFunctions[i].mCreate != CreateRaceHudSubScreenPukupukuCells && i < 49;
+             i++) {
         }
         if (i < 49) {
             gRaceHudSubScreenCellGroups->mClearFunctions[n] = gRaceHudSubScreenCellGroupFunctions[i].mClear;
@@ -429,12 +432,12 @@ void InitRaceHudSubScreenCellGroups(void) {
             gRaceHudSubScreenCellGroups->mDrawFunctions[n] = gRaceHudSubScreenCellGroupFunctions[i].mDraw;
         }
     }
-    if (func_020c8d30()) {
+    if (CreateRaceHudSubScreenSecondHand()) {
         s32 n;
         s32 i;
 
         n = gRaceHudSubScreenCellGroups->mGroupCount++;
-        for (i = 0; gRaceHudSubScreenCellGroupFunctions[i].mCreate != func_020c8d30 && i < 49; i++) {
+        for (i = 0; gRaceHudSubScreenCellGroupFunctions[i].mCreate != CreateRaceHudSubScreenSecondHand && i < 49; i++) {
         }
         if (i < 49) {
             gRaceHudSubScreenCellGroups->mClearFunctions[n] = gRaceHudSubScreenCellGroupFunctions[i].mClear;

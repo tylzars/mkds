@@ -4,7 +4,7 @@
 
 typedef struct Unk020e43a8 Unk020e43a8;
 
-// Second argument of func_020e5684: a vector at 0x0c, halfwords from 0x28.
+// Second argument of InitSecondHand: a vector at 0x0c, halfwords from 0x28.
 typedef struct Unk020e5684 {
     /* 00 */ u8 mUnk_00[0x0c];
     /* 0c */ Vec3 mUnk_0c;
@@ -20,7 +20,7 @@ void CreateSecondHand(void);
 
 typedef struct Unk020e43a8 Unk020e43a8;
 
-// 0x28-byte object func_020e59e4 loads from data_021590ec.
+// 0x28-byte object CreateSecondHandUpdateList loads from data_021590ec.
 typedef struct Unk020e59e4 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;
@@ -34,7 +34,7 @@ typedef struct Unk020e59e4 {
     /* 24 */ u32 mUnk_24;
 } Unk020e59e4;
 
-// 0x2c-byte object func_020e5a40 loads from data_02159114.
+// 0x2c-byte object CreateSecondHandDrawList loads from data_02159114.
 typedef struct Unk020e5a40 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;
@@ -49,7 +49,7 @@ typedef struct Unk020e5a40 {
     /* 28 */ u32 mUnk_28;
 } Unk020e5a40;
 
-// 0x40-byte object func_020e5a9c loads from data_02159140.
+// 0x40-byte object CreateSecondHandKindData loads from data_02159140.
 typedef struct Unk020e5a9c {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;
@@ -78,11 +78,11 @@ extern Unk020e5a40 *data_0217b82c;
 extern Unk020e59e4 *data_0217b834;
 extern Unk020e5a40 *data_0217b840;
 
-void func_020e5684(Unk020e43a8 *p, Unk020e5684 *q);
+void InitSecondHand(Unk020e43a8 *p, Unk020e5684 *q);
 void func_020e57a0(Unk020e43a8 *p, Vec3 *a, s32 b, Vec3 *c);
 void UpdateSecondHand(u32 a, Unk020e43a8 *p);
 void DrawSecondHand(u32 a, Unk020e43a8 *p, u32 b, u32 c);
-Unk020e59e4 *func_020e59e4(void);
-Unk020e5a40 *func_020e5a40(void);
-Unk020e5a9c *func_020e5a9c(void);
+Unk020e59e4 *CreateSecondHandUpdateList(void);
+Unk020e5a40 *CreateSecondHandDrawList(void);
+Unk020e5a9c *CreateSecondHandKindData(void);
 void func_020e5aec(Unk020e43a8 *p);

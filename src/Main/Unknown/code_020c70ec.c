@@ -18,7 +18,7 @@
 #include "Main/Unknown/code_020c0d9c.h"
 #include "Main/Unknown/code_0203c5f8.h"
 
-void func_020c7310(void) {
+void UpdateRaceHudSubScreenItemBoxCells(void) {
     s32 i;
     s32 k;
     s32 n;
@@ -29,26 +29,28 @@ void func_020c7310(void) {
     n = 0;
     c = func_020c0db0();
     k = 0;
-    for (i = 0; i < data_0217b3fc->mObjectCount; i++) {
-        if (data_0217b3f8 == 0 || IsRaceHudSubScreenPairNearCenter(&data_0217b3fc->mUnk_0c[i]) != FALSE) {
-            p = data_0217b3fc->mObjects[i];
+    for (i = 0; i < gRaceHudSubScreenItemBoxCells->mObjectCount; i++) {
+        if (data_0217b3f8 == 0 ||
+            IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenItemBoxCells->mUnk_0c[i]) != FALSE) {
+            p = gRaceHudSubScreenItemBoxCells->mObjects[i];
             if ((p->mFlags & 1) == 0) {
                 v = &p->mPos;
-                if (ComputeRaceHudSubScreenPosition(v, &data_0217b3fc->mCells[k].mDrawPos, c, 0, 0) != FALSE) {
-                    data_0217b3fc->mCells[k].mCell = GetRaceSNcerEntry(0x4e);
-                    data_0217b3fc->mCells[k].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
-                    data_0217b3fc->mCells[k].mUnk_0e = p->mFlags & 0x20;
+                if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenItemBoxCells->mCells[k].mDrawPos, c, 0, 0) !=
+                    FALSE) {
+                    gRaceHudSubScreenItemBoxCells->mCells[k].mCell = GetRaceSNcerEntry(0x4e);
+                    gRaceHudSubScreenItemBoxCells->mCells[k].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
+                    gRaceHudSubScreenItemBoxCells->mCells[k].mUnk_0e = p->mFlags & 0x20;
                     n++;
                     k++;
                 }
             }
         }
     }
-    data_0217b3fc->mCellCount = n;
+    gRaceHudSubScreenItemBoxCells->mCellCount = n;
 }
 
-void func_020c72f4(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, data_0217b3fc, 0);
+void DrawRaceHudSubScreenItemBoxCells(Unk020c06c4 *a) {
+    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenItemBoxCells, 0);
 }
 
 void func_020c7164(void) {

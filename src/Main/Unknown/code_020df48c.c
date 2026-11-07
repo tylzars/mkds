@@ -92,5 +92,5 @@ void func_020df48c(void *a, Unk020de6a8 *b) {
     if (b->mUnk_0b0 == 0) {
         func_020e5668(&b->mUnk_0b4, &b->mUnk_000.mPos);
     }
-    func_020debec(a, b);
+    UpdateItemBox(a, b);
 }

@@ -43,14 +43,14 @@
 #include "Main/Unknown/code_020e6f50.h"
 #include "Main/Unknown/unk_0217b000.h"
 
-Unk020e50dc *func_020e50dc(void) {
+Unk020e50dc *CreatePukupukuKindData(void) {
     Unk020e50dc *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
     *p = *(Unk020e50dc *) data_02159070;
     return p;
 }
 
-Unk020e5080 *func_020e5080(void) {
+Unk020e5080 *CreatePukupukuDrawList(void) {
     Unk020e5080 *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     data_0217b7f8 = p;
@@ -68,7 +68,7 @@ Unk020e5024 *func_020e5024(void) {
     return data_0217b7fc;
 }
 
-Unk020e4fc8 *func_020e4fc8(void) {
+Unk020e4fc8 *CreatePukupukuUpdateList(void) {
     Unk020e4fc8 *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     data_0217b7f4 = p;

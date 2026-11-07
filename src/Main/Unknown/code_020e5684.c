@@ -112,14 +112,14 @@ void func_020e5aec(Unk020e43a8 *p) {
 
 #pragma thumb off
 
-Unk020e5a9c *func_020e5a9c(void) {
+Unk020e5a9c *CreateSecondHandKindData(void) {
     Unk020e5a9c *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
     *p = *(Unk020e5a9c *) data_02159140;
     return p;
 }
 
-Unk020e5a40 *func_020e5a40(void) {
+Unk020e5a40 *CreateSecondHandDrawList(void) {
     Unk020e5a40 *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     data_0217b824 = p;
@@ -128,7 +128,7 @@ Unk020e5a40 *func_020e5a40(void) {
     return data_0217b824;
 }
 
-Unk020e59e4 *func_020e59e4(void) {
+Unk020e59e4 *CreateSecondHandUpdateList(void) {
     Unk020e59e4 *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     data_0217b81c = p;
@@ -235,7 +235,7 @@ void CreateSecondHand(void) {
     func_02084968(gSecondHand, 0x3f, 2, 0x294a);
 }
 
-void func_020e5684(Unk020e43a8 *p, Unk020e5684 *q) {
+void InitSecondHand(Unk020e43a8 *p, Unk020e5684 *q) {
     p->mUnk_00.mExtent.y = ((s64) p->mUnk_00.mScale.x * 0x4b000) >> 12;
     func_02046be8(&p->mUnk_00.mStateMachine, (UnkFunc *const *) data_0216c240, 4, p);
     QuaternionFromVec3Degrees(&q->mUnk_0c, (u32 *) &p->mUnk_a0.mUnk_00);

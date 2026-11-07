@@ -32,7 +32,7 @@
 #pragma thumb on
 
 void func_020df428(Unk020de6a8 *a, Unk020de6a8_1 *b) {
-    func_020de6a8(a, b);
+    InitItemBox(a, b);
     if (a->mUnk_0f8 != 0) {
         a->mUnk_108.mUnk_00.mUnk_08 = (0x0000ffffu);
         return;
@@ -55,7 +55,7 @@ void func_020df3f8(void) {
 }
 #pragma thumb off
 
-Unk020de390 *func_020df3a8(void) {
+Unk020de390 *CreateItemBoxKindData(void) {
     Unk020de390 *p;
 
     p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
@@ -63,14 +63,14 @@ Unk020de390 *func_020df3a8(void) {
     return p;
 }
 
-Unk020de334 *func_020df34c(void) {
+Unk020de334 *CreateBoxDrawList(void) {
     data_0217b70c = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     *data_0217b70c = data_02158628;
     func_020d49d8(&data_0217b70c);
     return data_0217b70c;
 }
 
-Unk020de334 *func_020df2f0(void) {
+Unk020de334 *CreateQuestionDrawList(void) {
     data_0217b700 = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     *data_0217b700 = data_021585fc;
     func_020d49d8(&data_0217b700);
@@ -84,18 +84,18 @@ Unk020de334 *func_020df294(void) {
     return data_0217b714;
 }
 
-Unk020de2d8 *func_020df238(void) {
+Unk020de2d8 *CreateItemBoxUpdateList(void) {
     data_0217b718 = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     *data_0217b718 = data_021585a8;
     func_020e6f50(&data_0217b718);
     return data_0217b718;
 }
 
-void func_020df220(void) {
-    func_020e6a18(data_0217b71c);
+void SetupDrawBox(void) {
+    func_020e6a18(gBox);
 }
 
-void func_020df07c(void *a, Unk020de6a8 *b, void *c, u16 d) {
+void DrawBox(void *a, Unk020de6a8 *b, void *c, u16 d) {
     MtxFx43 q;
     Unk020e6488 *p;
     Vec3 *w;
@@ -113,7 +113,7 @@ void func_020df07c(void *a, Unk020de6a8 *b, void *c, u16 d) {
     if (b->mUnk_100 != NULL) {
         b->mUnk_100(b->mUnk_104, &q);
         r = AllocPolygonIdWrapping();
-        p = data_0217b71c;
+        p = gBox;
         p->mUnk_14 = p->mUnk_14 & 0xc0ffffff;
         p->mUnk_14 = p->mUnk_14 | r << 24;
     } else {
@@ -135,29 +135,29 @@ void func_020df07c(void *a, Unk020de6a8 *b, void *c, u16 d) {
         q.mUnk_00[3].y = w->y >> 4;
         q.mUnk_00[3].z = w->z >> 4;
         y = b->mUnk_0f0;
-        p = data_0217b71c;
+        p = gBox;
         p->mUnk_14 = p->mUnk_14 & 0xc0ffffff;
         p->mUnk_14 = p->mUnk_14 | y << 24;
     }
     x = b->mUnk_0e8;
-    p = data_0217b71c;
+    p = gBox;
     p->mUnk_14 = p->mUnk_14 & 0xffe0ffff;
     p->mUnk_14 = p->mUnk_14 | x << 16;
     if (b->mUnk_0fc != NULL) {
         if (b->mUnk_000.mScale.z < 0x29) {
             return;
         }
-        func_020e67c4(data_0217b71c, &q, &b->mUnk_000.mScale, 0, d);
+        func_020e67c4(gBox, &q, &b->mUnk_000.mScale, 0, d);
     } else {
-        func_020e67c4(data_0217b71c, &q, NULL, 0, d);
+        func_020e67c4(gBox, &q, NULL, 0, d);
     }
 }
 
-void func_020df064(void) {
-    func_020e6a18(data_0217b710);
+void SetupDrawQuestion(void) {
+    func_020e6a18(gQuestion);
 }
 
-void func_020def00(void *a, Unk020de6a8 *b, void *c, u16 d) {
+void DrawQuestion(void *a, Unk020de6a8 *b, void *c, u16 d) {
     MtxFx43 q;
     s32 e;
     s32 f;
@@ -196,15 +196,15 @@ void func_020def00(void *a, Unk020de6a8 *b, void *c, u16 d) {
     q.mUnk_00[3].x = w->x >> 4;
     q.mUnk_00[3].y = w->y >> 4;
     q.mUnk_00[3].z = w->z >> 4;
-    p = data_0217b710;
+    p = gQuestion;
     x = b->mUnk_0ec;
     p->mUnk_14 &= 0xffe0ffff;
     p->mUnk_14 |= (u16) x << 16;
     y = b->mUnk_0f0;
-    p2 = data_0217b710;
+    p2 = gQuestion;
     p2->mUnk_14 &= 0xc0ffffff;
     p2->mUnk_14 |= y << 24;
-    func_020e67c4(data_0217b710, &q, b->mUnk_0fc != NULL ? &b->mUnk_000.mScale : 0, 0, d);
+    func_020e67c4(gQuestion, &q, b->mUnk_0fc != NULL ? &b->mUnk_000.mScale : 0, 0, d);
 }
 
 void func_020dee8c(void) {
@@ -286,7 +286,7 @@ void func_020dec4c(void *a, Unk020de6a8 *b, u32 c, u32 d) {
     func_020e5370(&v, q, (u16) n, d);
 }
 
-void func_020debec(void *a, Unk020de6a8 *b) {
+void UpdateItemBox(void *a, Unk020de6a8 *b) {
     u32 n;
 
     b->mUnk_0a0++;
@@ -331,7 +331,7 @@ void func_020deb2c(Vec3 *a, void *b, u32 c, int d, u32 e) {
     StartItemSlotForKart(v2, c, e);
 }
 
-u8 func_020dea50(Unk020de6a8 *a, Unk020dea50_1 *b, void *c, u8 *d) {
+u8 CollideKartWithItemBox(Unk020de6a8 *a, Unk020dea50_1 *b, void *c, u8 *d) {
     s32 v;
     BOOL n;
     u32 m;

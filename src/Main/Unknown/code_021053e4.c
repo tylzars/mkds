@@ -13,7 +13,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 
 const Unk0215a64c data_usa_0215a64c = {
-    0, 0x108, func_02105464, func_02105480, func_020df294, func_020df2f0, func_020df34c, {0}};
+    0, 0x108, func_02105464, func_02105480, func_020df294, CreateQuestionDrawList, CreateBoxDrawList, {0}};
 
 const Unk0215a680 data_0215a680 = {{0, 0, 0, 0xf000, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0}};
 
@@ -53,7 +53,7 @@ Unk0215a680 *func_02105480(void) {
 }
 
 void func_02105464(void *p, void *q) {
-    func_020de6a8(p, q);
+    InitItemBox(p, q);
     ParkMapObject(p);
 }
 

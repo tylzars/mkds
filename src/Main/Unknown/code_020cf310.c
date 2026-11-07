@@ -212,7 +212,7 @@ void func_020cf340(Unk020cf340 *a) {
                     }
                 }
             }
-            p = func_021000d0(0xca);
+            p = func_021000d0(MAP_OBJECT_KIND_KOOPA_BLOCK);
             if (p != NULL) {
                 r = func_02100084(p);
                 for (i = 0; i < 4; i++) {

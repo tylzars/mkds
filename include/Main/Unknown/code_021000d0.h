@@ -20,21 +20,31 @@ extern MapObjectKindRow data_0216b288[];
 // Kind numbers (the mKind member of MapObjectKindRow) of rows whose class the tree names: the Init function in the
 // row's descriptor (CreateCream and CreateBerry, the model loaders, for the last two rows) carries the class name; for
 // RainStar, Rock, Rock2, ObPakkunSf and Pendulum it is a function of the lists the row builds. Other rows stay
-// literals.
+// literals. CarA, BusA and TruckA share one Init: their CreateKindData function carries the class name.
+// The class ItemBox also has kind 0xc9 (own Init and update list), which stays a literal.
+#define MAP_OBJECT_KIND_ITEM_BOX 0x65
 #define MAP_OBJECT_KIND_WOODBOX1 0x67
 #define MAP_OBJECT_KIND_SHINE16 0x6a
 #define MAP_OBJECT_KIND_BALLOON 0x6c
 #define MAP_OBJECT_KIND_MISSION_GATE 0x6e
 #define MAP_OBJECT_KIND_SHINE_BALLOON 0x70
+#define MAP_OBJECT_KIND_KOOPA_BLOCK 0xca
 #define MAP_OBJECT_KIND_BRIDGE 0xcc
+#define MAP_OBJECT_KIND_SECOND_HAND 0xcd
 #define MAP_OBJECT_KIND_PENDULUM 0xcf
+#define MAP_OBJECT_KIND_EARTHEN_PIPE 0x12f
 #define MAP_OBJECT_KIND_TERESA 0x13b
 #define MAP_OBJECT_KIND_RAIN_STAR 0x154
 #define MAP_OBJECT_KIND_STOP_SIGN 0x159
 #define MAP_OBJECT_KIND_KURIBO 0x191
 #define MAP_OBJECT_KIND_ROCK 0x192
 #define MAP_OBJECT_KIND_DOSSUN 0x193
+#define MAP_OBJECT_KIND_BUS_A 0x195
 #define MAP_OBJECT_KIND_MKD_EF_BUBBLE 0x198
+#define MAP_OBJECT_KIND_CAR_A 0x19a
+#define MAP_OBJECT_KIND_CHOROPU 0x199
+#define MAP_OBJECT_KIND_PUKUPUKU 0x19b
+#define MAP_OBJECT_KIND_TRUCK_A 0x19c
 #define MAP_OBJECT_KIND_SMAN 0x19d
 #define MAP_OBJECT_KIND_BASABASA 0x19f
 #define MAP_OBJECT_KIND_NS_KILLER2 0x1a2

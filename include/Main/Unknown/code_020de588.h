@@ -8,7 +8,7 @@
 #include "Main/Unknown/code_020d849c.h"
 #include "Main/Unknown/code_020e516c.h"
 
-// Second argument of func_020de6a8: a Vec3 at 0x00 and halfwords at 0x26, 0x28, 0x2a, 0x2c, 0x2e, 0x30 and 0x34.
+// Second argument of InitItemBox: a Vec3 at 0x00 and halfwords at 0x26, 0x28, 0x2a, 0x2c, 0x2e, 0x30 and 0x34.
 typedef struct Unk020de6a8_1 {
     /* 00 */ Vec3 mUnk_00;
     /* 0c */ u8 mUnk_0c[0x1a];
@@ -22,7 +22,7 @@ typedef struct Unk020de6a8_1 {
     /* 34 */ s16 mUnk_34;
 } Unk020de6a8_1;
 
-// Object of 0x108 or more bytes handled by func_020de6a8.
+// Object of 0x108 or more bytes handled by InitItemBox.
 typedef struct Unk020de6a8 {
     /* 000 */ MapObject mUnk_000;
     /* 0a0 */ u16 mUnk_0a0;
@@ -47,9 +47,9 @@ typedef struct Unk020de6a8 {
     /* 108 */ Unk020d84e4 mUnk_108;
 } Unk020de6a8;
 
-void func_020de84c(void);
-void func_020de6a8(Unk020de6a8 *a, Unk020de6a8_1 *b);
-Unk020de390 *func_020de658(void);
-Unk020de334 *func_020de5fc(void);
-Unk020de2d8 *func_020de5a0(void);
+void CreateBoxAndQuestion(void);
+void InitItemBox(Unk020de6a8 *a, Unk020de6a8_1 *b);
+Unk020de390 *CreateEarthenPipeKindData(void);
+Unk020de334 *CreateEarthenPipeDrawList(void);
+Unk020de2d8 *CreateEarthenPipeUpdateList(void);
 void SetupDrawEarthenPipe(void);

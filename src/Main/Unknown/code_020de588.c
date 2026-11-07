@@ -15,7 +15,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 
 #pragma thumb on
-void func_020de84c(void) {
+void CreateBoxAndQuestion(void) {
     s32 i;
     s32 j;
     s32 a;
@@ -23,14 +23,14 @@ void func_020de84c(void) {
     u32 n;
     Unk020e6488 *p;
 
-    func_020e6488(&data_0217b71c, FindMainRaceOrMainEffectMapObjFile("box.nsbmd"), 0, 0);
-    func_020e6488(&data_0217b710, FindMainRaceOrMainEffectMapObjFile("question.nsbmd"), 0, 0);
-    func_020e6ab8(data_0217b71c);
-    func_020e6ab8(data_0217b710);
-    p = data_0217b71c;
+    func_020e6488(&gBox, FindMainRaceOrMainEffectMapObjFile("box.nsbmd"), 0, 0);
+    func_020e6488(&gQuestion, FindMainRaceOrMainEffectMapObjFile("question.nsbmd"), 0, 0);
+    func_020e6ab8(gBox);
+    func_020e6ab8(gQuestion);
+    p = gBox;
     p->mUnk_10 = p->mUnk_10 & 0x8000ffff;
     p->mUnk_10 = p->mUnk_10 | 0x52940000;
-    p = data_0217b710;
+    p = gQuestion;
     p->mUnk_10 = p->mUnk_10 & 0x8000ffff;
     p->mUnk_10 = p->mUnk_10 | 0x52940000;
     data_0217b704 = HeapAlloc(GetHeap(func_020364e8()), 0x1770);
@@ -51,12 +51,12 @@ void func_020de84c(void) {
         data_0217b708[j].mUnk_04 = gPairsByAngle[n * 2];
     }
     if (gRaceSetup->mCourseId == COURSE_ID_RAINBOW) {
-        data_0217b71c->mUnk_14 &= 0xffff7fff;
-        data_0217b710->mUnk_14 &= 0xffff7fff;
+        gBox->mUnk_14 &= 0xffff7fff;
+        gQuestion->mUnk_14 &= 0xffff7fff;
     }
 }
 
-void func_020de6a8(Unk020de6a8 *a, Unk020de6a8_1 *b) {
+void InitItemBox(Unk020de6a8 *a, Unk020de6a8_1 *b) {
     Unk020f41c4_B *r;
     Vec3 v;
     BOOL v1;
@@ -115,7 +115,7 @@ void func_020de6a8(Unk020de6a8 *a, Unk020de6a8_1 *b) {
 }
 #pragma thumb off
 
-Unk020de390 *func_020de658(void) {
+Unk020de390 *CreateEarthenPipeKindData(void) {
     Unk020de390 *p;
 
     p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
@@ -123,14 +123,14 @@ Unk020de390 *func_020de658(void) {
     return p;
 }
 
-Unk020de334 *func_020de5fc(void) {
+Unk020de334 *CreateEarthenPipeDrawList(void) {
     data_0217b6f8 = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     *data_0217b6f8 = data_021584fc;
     func_020d49d8(&data_0217b6f8);
     return data_0217b6f8;
 }
 
-Unk020de2d8 *func_020de5a0(void) {
+Unk020de2d8 *CreateEarthenPipeUpdateList(void) {
     data_0217b6ec = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     *data_0217b6ec = data_021584d4;
     func_020e6f50(&data_0217b6ec);

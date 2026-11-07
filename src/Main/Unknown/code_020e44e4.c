@@ -23,7 +23,7 @@
 
 #pragma thumb on
 
-void func_020e47c8(Unk020e43a8 *p, Vec3 *a) {
+void InitPukupuku(Unk020e43a8 *p, Vec3 *a) {
     func_02046be8(&p->mUnk_00.mStateMachine, (UnkFunc *const *) data_0216c1ec, 4, p);
     p->mUnk_00.mPos.y = p->mUnk_00.mPos.y + (s32) (((s64) p->mUnk_00.mScale.y * 0xa000) >> 12);
     p->mUnk_a0.mUnk_18 = p->mUnk_00.mPos;
