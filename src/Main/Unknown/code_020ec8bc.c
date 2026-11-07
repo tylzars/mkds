@@ -46,7 +46,7 @@ Unk020e6488 *func_020ed4d0(u8 *a, u8 *b, u8 *c) {
     void *q;
     void *r;
 
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     q = func_020ed548(a);
     r = func_020ed548(b);
     func_020e64b8(p, q, r, 0);
@@ -63,7 +63,7 @@ void *func_020ed490(u8 *a, u8 *b) {
     void *p;
     void *q;
 
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x6c);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x6c);
     q = func_020ed548(a);
     InitNsbmd(p, q);
     func_02084968(p, 4, 2, 0x294a);

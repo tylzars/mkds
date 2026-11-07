@@ -60,7 +60,7 @@ void BuildResultArchivePathWithLanguage(char *a) {
     } else {
         b = data_usa_021650e4;
     }
-    c = func_02048474();
+    c = GetLanguageCode();
     OS_SNPrintf(a, 0x80, gResultLanguageArchivePathFormat, gSceneNames[10].mName, b, c, data_usa_02165100);
 }
 
@@ -70,7 +70,7 @@ void BuildResultArchivePathWithLanguage(char *a) {
 
 void BuildStaffRollArchivePath(char *a) {
     u32 v1;
-    v1 = func_02048474();
+    v1 = GetLanguageCode();
     OS_SNPrintf(a, 0x80, gStaffRollLanguageArchivePathFormat, v1, data_021650d8);
 }
 
@@ -83,14 +83,14 @@ void BuildSceneModeArchivePath(char *a, const char *b, int c) {
 void BuildSceneModeLanguageArchivePath(char *a, const char *b, int c) {
     u32 v1;
     if (*b != 0) {
-        v1 = func_02048474();
+        v1 = GetLanguageCode();
         OS_SNPrintf(a, 0x80, gSceneModeLanguageArchivePathFormat, b, gModeArchiveNames[c], v1, data_02165098);
     }
 }
 
 void BuildArchivePathWithLanguage(const char *a, char *b) {
     u32 v1;
-    v1 = func_02048474();
+    v1 = GetLanguageCode();
     OS_SNPrintf(b, 0x80, gLanguageArchivePathFormat, a, v1);
 }
 
@@ -120,7 +120,7 @@ void LoadArchiveSlotForScene(int a, int b) {
     switch (a) {
         case 3:
         case 13:
-            func_02048498(c, gRaceSetup->mCourseId, a != 3);
+            BuildCourseArchivePath(c, gRaceSetup->mCourseId, a != 3);
             break;
         case 5:
             switch (b) {
@@ -142,11 +142,11 @@ void LoadArchiveSlotForScene(int a, int b) {
                     if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
                         OS_SNPrintf(c, 0x80, gStaffRollArchivePath);
                     } else {
-                        func_020483e4(c, gSceneNames[b].mName);
+                        BuildSceneArchivePath(c, gSceneNames[b].mName);
                     }
                     break;
                 default:
-                    func_020483e4(c, gSceneNames[b].mName);
+                    BuildSceneArchivePath(c, gSceneNames[b].mName);
                     break;
             }
             g = gSceneNames[b].mUnk_04;
@@ -171,11 +171,11 @@ void LoadArchiveSlotForScene(int a, int b) {
                     if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
                         BuildStaffRollArchivePath(c);
                     } else {
-                        func_0204840c(c, gSceneNames[b].mName);
+                        BuildSceneArchivePathWithLanguage(c, gSceneNames[b].mName);
                     }
                     break;
                 default:
-                    func_0204840c(c, gSceneNames[b].mName);
+                    BuildSceneArchivePathWithLanguage(c, gSceneNames[b].mName);
                     break;
             }
             break;
@@ -266,9 +266,9 @@ void UncompressArchiveFile(void) {
         return;
     }
     if (p->mUnk_90 != 0) {
-        p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, -0x20);
+        p->mUnk_84 = HeapAllocAligned(GetHeap(GetCurrentHeapCall()), n, -0x20);
     } else {
-        p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, 0x20);
+        p->mUnk_84 = HeapAllocAligned(GetHeap(GetCurrentHeapCall()), n, 0x20);
     }
     MI_InitUncompContextLZ(&b, p->mUnk_84, (const MICompressionHeader *) p->mUnk_88);
     do {
@@ -278,7 +278,7 @@ void UncompressArchiveFile(void) {
         }
     } while (MI_ReadUncompLZ8(&b, (const u8 *) p->mUnk_88, r) != 0);
     DC_StoreRange(p->mUnk_84, n);
-    NNS_FndGetTotalFreeSizeForExpHeap(GetHeap(func_020364e8()));
+    NNS_FndGetTotalFreeSizeForExpHeap(GetHeap(GetCurrentHeapCall()));
 }
 
 void UncompressArchiveMemory(void) {
@@ -288,13 +288,13 @@ void UncompressArchiveMemory(void) {
     p = &data_021759c8->mUnk_8c8;
     n = *p->mUnk_80 >> 8;
     if (p->mUnk_90 != 0) {
-        p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, -0x20);
+        p->mUnk_84 = HeapAllocAligned(GetHeap(GetCurrentHeapCall()), n, -0x20);
     } else {
-        p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, 0x20);
+        p->mUnk_84 = HeapAllocAligned(GetHeap(GetCurrentHeapCall()), n, 0x20);
     }
     MI_UncompressLZ8(p->mUnk_80, p->mUnk_84);
     DC_StoreRange(p->mUnk_84, n);
-    NNS_FndGetTotalFreeSizeForExpHeap(GetHeap(func_020364e8()));
+    NNS_FndGetTotalFreeSizeForExpHeap(GetHeap(GetCurrentHeapCall()));
 }
 
 void LoadArchiveSlotData(void) {
@@ -327,11 +327,11 @@ void ReleaseArchiveSlot(int a) {
             }
         }
         if (b != FALSE) {
-            HeapFree(GetHeap(func_020364e8()), data_021759c8->mUnk_00[a].mData);
+            HeapFree(GetHeap(GetCurrentHeapCall()), data_021759c8->mUnk_00[a].mData);
         }
         data_021759c8->mUnk_00[a].mLoaded = 0;
         data_021759c8->mUnk_00[a].mData = 0;
-        NNS_FndGetTotalFreeSizeForExpHeap(GetHeap(func_020364e8()));
+        NNS_FndGetTotalFreeSizeForExpHeap(GetHeap(GetCurrentHeapCall()));
     }
 }
 
@@ -406,7 +406,7 @@ void ReleaseArchiveSlots(void) {
 
 #pragma thumb on
 void SetHeapGroupId(u32 a) {
-    NNS_FndSetGroupIDForExpHeap(GetHeap(func_020364e8()), a);
+    NNS_FndSetGroupIDForExpHeap(GetHeap(GetCurrentHeapCall()), a);
 }
 #pragma thumb off
 
@@ -549,7 +549,7 @@ void *LoadKartModelFile(const char *path) {
         } else {
             OS_SNPrintf(fullPath, 0x80, data_usa_02165010, archiveName, path);
         }
-        file = func_02048504(fullPath, 8);
+        file = LoadFileAligned(fullPath, 8);
     } else {
         if (data_021759c8->mUnk_00[6].mLoaded != 0) {
             archiveName = gArchiveNames[6];
@@ -558,7 +558,7 @@ void *LoadKartModelFile(const char *path) {
             } else {
                 OS_SNPrintf(fullPath, 0x80, data_usa_02165020, archiveName, path);
             }
-            file = func_02048504(fullPath, 8);
+            file = LoadFileAligned(fullPath, 8);
         }
         if (file == NULL && data_021759c8->mUnk_00[7].mLoaded != 0) {
             archiveName = gArchiveNames[7];
@@ -567,7 +567,7 @@ void *LoadKartModelFile(const char *path) {
             } else {
                 OS_SNPrintf(fullPath, 0x80, data_usa_02165030, archiveName, path);
             }
-            file = func_02048504(fullPath, 8);
+            file = LoadFileAligned(fullPath, 8);
         }
         if (file == NULL && data_021759c8->mUnk_00[8].mLoaded != 0) {
             archiveName = gArchiveNames[8];
@@ -576,7 +576,7 @@ void *LoadKartModelFile(const char *path) {
             } else {
                 OS_SNPrintf(fullPath, 0x80, data_usa_02165040, archiveName, path);
             }
-            file = func_02048504(fullPath, 8);
+            file = LoadFileAligned(fullPath, 8);
         }
     }
     return file;
@@ -691,7 +691,7 @@ void RequestArchiveLoad(const void *a, s32 b) {
 void RequestArchiveLoadWithLanguage(const void *a, u32 b) {
     u32 v1;
     char v2[128];
-    v1 = func_02048440();
+    v1 = GetMPLanguageCode();
     OS_SNPrintf(v2, 0x80, gArchivePrefixFormat, a, v1);
     RequestArchiveLoad(v2, b);
 }
@@ -735,9 +735,9 @@ void RequestRaceArchives(void *a, void *b) {
     }
     data_021759c8->mUnk_a74 = b;
     NNS_FndFreeToFrmHeap(data_021759c8->mCourseBufferHeap, 3);
-    func_02048498(c, (s32) a, 0);
+    BuildCourseArchivePath(c, (s32) a, 0);
     RequestArchiveLoad(c, 6);
-    func_02048498(c, (s32) a, 1);
+    BuildCourseArchivePath(c, (s32) a, 1);
     RequestArchiveLoad(c, 7);
     data_021759c8->mUnk_a70 = a;
 }
@@ -777,7 +777,7 @@ void ResizeMainEffectArchiveBlock(u8 *a, u32 b) {
     u8 *p;
 
     p = data_021759c8->mUnk_84c;
-    NNS_FndResizeForMBlockExpHeap(GetHeap(func_020364e8()), p, b + (a - p));
+    NNS_FndResizeForMBlockExpHeap(GetHeap(GetCurrentHeapCall()), p, b + (a - p));
 }
 
 void func_020471b0(void *a) {

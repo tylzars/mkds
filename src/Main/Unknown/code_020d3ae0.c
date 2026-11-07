@@ -308,7 +308,7 @@ void func_020d4a10(MapObjectList *p, s32 a) {
 
 #pragma thumb on
 u32 InitMapObjectDrawList(MapObjectList *arg0) {
-    arg0->mMapObjects = HeapAlloc(GetHeap(func_020364e8()), arg0->mMapObjectCount << 2);
+    arg0->mMapObjects = HeapAlloc(GetHeap(GetCurrentHeapCall()), arg0->mMapObjectCount << 2);
     arg0->mMapObjectCount = 0;
     return 0;
 }
@@ -336,7 +336,7 @@ void func_020d4990(MapObjectList *p) {
     s32 i;
 
     if (p->mUnk_1c != NULL) {
-        p->mUnk_24 = HeapAlloc(GetHeap(func_020364e8()), p->mMapObjectCount * 4);
+        p->mUnk_24 = HeapAlloc(GetHeap(GetCurrentHeapCall()), p->mMapObjectCount * 4);
         for (i = 0; i < p->mMapObjectCount; i++) {
             p->mUnk_24[i] = p->mMapObjects[i];
         }

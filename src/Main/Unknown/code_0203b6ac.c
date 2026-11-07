@@ -159,7 +159,7 @@ void SetNextDemoRace(u8 *a) {
         func_0203be48(a, i, &x, &y);
         SetNextRaceEntry(i, x, y, PLAYER_KIND_CPU, -1, l);
     }
-    func_020467a0();
+    ResetCupToFirstCourse();
 }
 
 #pragma thumb off

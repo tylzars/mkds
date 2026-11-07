@@ -20,7 +20,7 @@ void func_020b255c(void) {
 #pragma thumb off
 
 void *func_020b2540(void) {
-    return GetHeap(func_020364e8());
+    return GetHeap(GetCurrentHeapCall());
 }
 
 u32 func_020b252c(void) {

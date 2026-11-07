@@ -165,7 +165,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                 continue;
             }
             kindData = a->mKindData;
-            object = HeapAlloc(GetHeap(func_020364e8()), a->mObjectSize);
+            object = HeapAlloc(GetHeap(GetCurrentHeapCall()), a->mObjectSize);
             a->mObjectCount++;
             if (courseRow != NULL) {
                 object->mCourseMapRow = courseRow;
@@ -307,7 +307,7 @@ void InitMapObjects(void) {
     MapObjectList *x;
     MapObjectList **y;
     MapObjects *q;
-    h = GetHeap(func_020364e8());
+    h = GetHeap(GetCurrentHeapCall());
     func_020d22e0();
     data_0217b4cc = GetMapObjectFirstPolygonId();
     data_0217b4c0 = data_0217b4cc + 9;

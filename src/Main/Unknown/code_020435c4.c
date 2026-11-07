@@ -53,13 +53,13 @@ static inline void func_02043c14_inline(void) {
     for (i = 0; i < 10; i++) {
         p = &data_02175628[(u32) i];
         func_02039728(p);
-        func_02039520(p, 0xff3, 0x1e, 0xa);
+        SetInputSlotRepeat(p, 0xff3, 0x1e, 0xa);
         p->mSourceKind = 0;
         p->mRequestedBits = 0;
         p->mUnk_44 = 0;
         p->mBitMask = 0x2fff;
         func_0204a9e4((Unk02175650 *) &p->mUnk_28);
-        func_020470c4((Unk02175628_48 *) &p->mPairX);
+        ResetInputSlotPair((Unk02175628_48 *) &p->mPairX);
     }
     data_02175628[8].mSourceKind = 5;
     data_02175628[9].mSourceKind = 6;
@@ -69,7 +69,7 @@ static inline void func_02043c14_inline(void) {
     for (k = 0; k < 10; k++) {
         func_02039728(q);
         q->mRequestedBits = 0;
-        func_02039520(q, 0xff3, 0x1e, 0xa);
+        SetInputSlotRepeat(q, 0xff3, 0x1e, 0xa);
         q++;
     }
 }
@@ -257,7 +257,7 @@ void func_02043b48(void) {
     for (i = 0; i < 10; i++) {
         func_02039728(p);
         p->mRequestedBits = 0;
-        func_02039520(p, 0xff3, 0x1e, 0xa);
+        SetInputSlotRepeat(p, 0xff3, 0x1e, 0xa);
         p++;
     }
     func_02047054();
@@ -266,7 +266,7 @@ void func_02043b48(void) {
     for (j = 0; j < 10; j++) {
         q->mUnk_12 = 0;
         q->mUnk_14 = 0;
-        func_02039520(q, 0xff3, 0x1e, 0xa);
+        SetInputSlotRepeat(q, 0xff3, 0x1e, 0xa);
         q++;
     }
     data_02175624->mUnk_02 = 0;

@@ -45,7 +45,7 @@ void InitKartEffects(u32 a) {
     u16 j;
 
     i = 0;
-    gKartEffects = HeapAlloc(GetHeap(func_020364e8()), a * 0x58);
+    gKartEffects = HeapAlloc(GetHeap(GetCurrentHeapCall()), a * 0x58);
     data_0217ae70 = a;
     for (; i < a; i++) {
         e = &gKartEffects[i];

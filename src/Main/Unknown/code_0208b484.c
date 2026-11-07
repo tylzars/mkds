@@ -83,7 +83,7 @@ void func_0208b934(void *a) {
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         t = NULL;
         data_0217b03c = SPLManager_New((void *(*) (u32)) func_0208bd04, 0x32, 0xc8, 3, 0xe, 0x1e);
-        func_02048590(data_usa_02166168, c, &t);
+        LoadFileIntoHeap(data_usa_02166168, c, &t);
         SPLManager_LoadResources(data_0217b03c, t);
         SPLManager_UploadTextures(data_0217b03c);
         SPLManager_UploadPalettes(data_0217b03c);

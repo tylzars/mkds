@@ -133,20 +133,20 @@ void InitKoopaBlock(Unk020e005c *a, CourseMapRow *b) {
 Unk020de390 *CreateMkdEfBubbleKindData(void) {
     Unk020de390 *p;
 
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     *p = data_021587dc;
     return p;
 }
 
 Unk020de334 *CreateMkdEfBubbleDrawList(void) {
-    data_0217b774 = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    data_0217b774 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     *data_0217b774 = data_021587b0;
     func_020d49d8(&data_0217b774);
     return data_0217b774;
 }
 
 Unk020dfc44 *CreateMkdEfBubbleUpdateList(void) {
-    data_0217b76c = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    data_0217b76c = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     *data_0217b76c = data_02158784;
     func_020e6f50(&data_0217b76c);
     data_0217b76c->mUnk_28 = FX_Div(0x4000000, 0x1333);

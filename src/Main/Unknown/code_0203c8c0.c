@@ -1,8 +1,8 @@
 #include "Main/Unknown/code_0203c8c0.h"
 #include "Main/Unknown/code_020f36d8.h"
 
-u16 func_0203c8c0(int arg0) {
-    u32 value0 = arg0;
+u16 GetKartHighestLap(int kart) {
+    u32 value0 = kart;
     u32 value1;
     u32 value2;
     value2 = (u32) &gRaceProgress;

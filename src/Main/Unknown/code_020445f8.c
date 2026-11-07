@@ -2,11 +2,11 @@
 #include "Main/Unknown/code_0205928c.h"
 #include "Main/Unknown/unk_021759c0.h"
 
-void func_020445f8(void) {
-    u32 value0;
-    u32 value1;
+void RequestMPState16ForNextRace(void) {
+    u32 courseId;
+    u32 mode;
     u32 value12;
-    value0 = gRaceSetup->mNextHeader.mCourseId;
-    value1 = gRaceSetup->mNextHeader.mMode;
-    RequestMPState16((void *) value0, (void *) value1);
+    courseId = gRaceSetup->mNextHeader.mCourseId;
+    mode = gRaceSetup->mNextHeader.mMode;
+    RequestMPState16((void *) courseId, (void *) mode);
 }

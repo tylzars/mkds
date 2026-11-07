@@ -642,7 +642,7 @@ void InitOrthoQuads(void) {
     Unk020e6488 *q;
     s32 i;
 
-    gOrthoQuads = HeapAlloc(GetHeap(func_020364e8()), 0xd0);
+    gOrthoQuads = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0xd0);
     data_0217c638 = 0xffff;
     gOrthoQuadCount = 0;
     gOrthoQuadUseCreamEffect = FALSE;

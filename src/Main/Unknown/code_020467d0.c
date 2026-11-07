@@ -49,7 +49,7 @@ void AdvanceStateMachine(void *b) {
 void func_02046ae4(void) {
     u8 *p;
 
-    p = CreateDisplaySettings(GetHeap(func_020364e8()), data_usa_02154868);
+    p = CreateDisplaySettings(GetHeap(GetCurrentHeapCall()), data_usa_02154868);
     SetBg1Record(p + 0x28, 0, 0, 0, 0, 4, 0, 0);
     InitDisplayFromSettings(p);
 }

@@ -23,7 +23,7 @@ void func_020ea5b0(Unk020e6488 *a, u32 b, Vec3 *c) {
 #pragma thumb on
 
 void func_020ea588(void **a, void *b, void *c) {
-    *a = HeapAlloc(GetHeap(func_020364e8()), 0x6c);
+    *a = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x6c);
     InitNsbmd(*a, b);
 }
 

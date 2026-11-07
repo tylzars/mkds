@@ -107,7 +107,7 @@ void func_02046ca8(Unk02175628_48 *a, s32 b, s32 c) {
             d.mY = e;
             d.mTouch = 1;
         }
-        *(TPData *) &a->mUnk_08 = *(TPData *) a;
+        *(TPData *) &a->mPrevPairX = *(TPData *) a;
         *(TPData *) a = d;
         if (a->mHasPair != 0) {
             a->mNoPairCount = 0;

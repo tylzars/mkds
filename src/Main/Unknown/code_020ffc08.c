@@ -28,7 +28,7 @@
 Unk02100004 *func_02100004(void) {
     Unk02100004 *p;
 
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     {
         Unk02100004 v1 = {0};
 
@@ -40,7 +40,7 @@ Unk02100004 *func_02100004(void) {
 Unk020fffa8 *func_020fffa8(void) {
     Unk020fffa8 *p;
 
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     data_0217c624 = p;
     *p = data_0215a12c;
     func_020e6f50(&data_0217c624);
@@ -50,7 +50,7 @@ Unk020fffa8 *func_020fffa8(void) {
 Unk020fff4c *func_020fff4c(void) {
     Unk020fff4c *p;
 
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     data_0217c62c = p;
     *p = data_0215a100;
     func_020d49d8(&data_0217c62c);

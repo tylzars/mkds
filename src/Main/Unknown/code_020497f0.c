@@ -17,10 +17,10 @@ u32 func_02049820(void) {
     return value0;
 }
 
-void func_02049808(s32 a) {
-    GXx_SetMasterBrightness_(&reg_GX_MASTER_BRIGHT, a);
+void SetMainMasterBrightness(s32 brightness) {
+    GXx_SetMasterBrightness_(&reg_GX_MASTER_BRIGHT, brightness);
 }
 
-void func_020497f0(s32 a) {
-    GXx_SetMasterBrightness_(&reg_GXS_DB_MASTER_BRIGHT, a);
+void SetSubMasterBrightness(s32 brightness) {
+    GXx_SetMasterBrightness_(&reg_GXS_DB_MASTER_BRIGHT, brightness);
 }

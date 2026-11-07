@@ -159,7 +159,7 @@ void func_0203b1fc(void *a) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         func_0204f240(a, 1);
     }
-    func_020445f8();
+    RequestMPState16ForNextRace();
 }
 
 void func_0203b1c8(void *a) {

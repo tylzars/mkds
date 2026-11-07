@@ -22,7 +22,7 @@ void func_020f73d4(u32 arg0) {
 u32 func_020f73a4(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) func_020364e8();
+    value0 = (u32) GetCurrentHeapCall();
     value0 = (u32) GetHeap((void *) value0);
     value1 = 0xcu;
     value0 = (u32) HeapAlloc((void *) value0, value1);

@@ -7,188 +7,189 @@
 
 #pragma thumb on
 
-void func_0203bc64(u8 *b) {
-    Unk0203ba84 *a;
-    Unk020f41c4_B l;
-    u32 f;
-    u8 k;
-    Unk020f41c4_B *r;
+void PickRandomKarts(u8 *rawPicks) {
+    CharacterKartPicks *picks;
+    Unk020f41c4_B localRandom;
+    u32 givenBits;
+    u8 entry;
+    Unk020f41c4_B *random;
     u8 u;
-    u8 n;
-    u8 m;
-    s32 e;
-    s32 t;
-    s32 w;
-    u32 g;
-    s32 y;
-    BOOL c;
-    u64 t1;
-    u64 t2;
+    u8 candidateBits;
+    u8 seen;
+    s32 kart;
+    s32 character;
+    s32 firstKart;
+    u32 candidateCount;
+    s32 pick;
+    BOOL useSharedRandom;
+    u64 firstTick;
+    u64 secondTick;
 
-    a = (Unk0203ba84 *) b;
-    f = a->mUnk_00;
-    c = FALSE;
+    picks = (CharacterKartPicks *) rawPicks;
+    givenBits = picks->mKartGivenBits;
+    useSharedRandom = FALSE;
     if ((data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000) != 0 && data_0217aa00->mUnk_0004 != 0xd) {
-        c = TRUE;
+        useSharedRandom = TRUE;
     }
-    if (c != FALSE) {
-        r = &data_0217aa00->mUnk_1ee8;
+    if (useSharedRandom != FALSE) {
+        random = &data_0217aa00->mUnk_1ee8;
     } else {
-        t1 = OS_GetTick();
-        t2 = OS_GetTick();
-        l.mUnk_00 = ((u32) t1 << 24) + (u32) (t2 >> 8);
-        l.mUnk_08 = 0x5d588b656c078965;
-        l.mUnk_10 = 0x269ec3;
-        r = &l;
+        firstTick = OS_GetTick();
+        secondTick = OS_GetTick();
+        localRandom.mUnk_00 = ((u32) firstTick << 24) + (u32) (secondTick >> 8);
+        localRandom.mUnk_08 = 0x5d588b656c078965;
+        localRandom.mUnk_10 = 0x269ec3;
+        random = &localRandom;
     }
-    for (k = 0; k < 8; k++) {
-        e = -1;
-        t = a->mUnk_04[k];
-        n = 0;
-        if ((f & (1 << k)) == 0) {
-            a->mUnk_24[k] = -1;
+    for (entry = 0; entry < 8; entry++) {
+        kart = -1;
+        character = picks->mCharacterIndices[entry];
+        candidateBits = 0;
+        if ((givenBits & (1 << entry)) == 0) {
+            picks->mKartIndices[entry] = -1;
             u = 0;
-            w = t * 3;
+            firstKart = character * 3;
             for (; u < 3; u++) {
-                if (func_0205fc98(a->mUnk_44, t, u + w) != FALSE) {
-                    n = n | (1 << u);
+                if (func_0205fc98(picks->mUnk_44, character, u + firstKart) != FALSE) {
+                    candidateBits = candidateBits | (1 << u);
                 }
             }
             for (u = 0; u < 8; u++) {
-                if ((f & (1 << u)) != 0 && a->mUnk_24[u] >= w && a->mUnk_24[u] < (t + 1) * 3) {
-                    n = n & ~(1 << (a->mUnk_24[u] - w));
+                if ((givenBits & (1 << u)) != 0 && picks->mKartIndices[u] >= firstKart &&
+                    picks->mKartIndices[u] < (character + 1) * 3) {
+                    candidateBits = candidateBits & ~(1 << (picks->mKartIndices[u] - firstKart));
                 }
             }
-            if (n == 0) {
+            if (candidateBits == 0) {
                 for (u = 0; u < 3; u++) {
-                    if (func_0205fc98(a->mUnk_44, t, u + w) != FALSE) {
-                        n = n | (1 << u);
+                    if (func_0205fc98(picks->mUnk_44, character, u + firstKart) != FALSE) {
+                        candidateBits = candidateBits | (1 << u);
                     }
                 }
             }
-            g = CountSetBits(n);
-            if (g == 0) {
-                y = 0;
+            candidateCount = CountSetBits(candidateBits);
+            if (candidateCount == 0) {
+                pick = 0;
             } else {
-                r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-                if (g == 0) {
-                    y = r->mUnk_00 >> 32;
+                random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
+                if (candidateCount == 0) {
+                    pick = random->mUnk_00 >> 32;
                 } else {
-                    y = ((r->mUnk_00 >> 32) * g) >> 32;
+                    pick = ((random->mUnk_00 >> 32) * candidateCount) >> 32;
                 }
             }
-            m = 0;
-            for (u = 0; u < 3 && e == -1; u++) {
-                if ((n & (1 << u)) != 0) {
-                    if (m == (u16) y) {
-                        e = u + w;
+            seen = 0;
+            for (u = 0; u < 3 && kart == -1; u++) {
+                if ((candidateBits & (1 << u)) != 0) {
+                    if (seen == (u16) pick) {
+                        kart = u + firstKart;
                     } else {
-                        m = m + 1;
+                        seen = seen + 1;
                     }
                 }
             }
-            a->mUnk_24[k] = e;
+            picks->mKartIndices[entry] = kart;
         }
     }
 }
 
-void func_0203ba84(u8 *b) {
-    Unk0203ba84 *a;
-    Unk020f41c4_B l;
-    u16 m;
-    BOOL c;
+void PickRandomCharacters(u8 *rawPicks) {
+    CharacterKartPicks *picks;
+    Unk020f41c4_B localRandom;
+    u16 availableBits;
+    BOOL useSharedRandom;
     s32 x;
-    u32 f;
-    Unk020f41c4_B *r;
-    u8 i;
-    u8 k;
-    u32 g;
-    u32 n;
-    u32 t;
-    s32 v;
-    s32 e;
-    s32 y;
-    u8 j;
-    u64 t1;
-    u64 t2;
+    u32 givenBits;
+    Unk020f41c4_B *random;
+    u8 character;
+    u8 entry;
+    u32 availableCount;
+    u32 seen;
+    u32 givenCharacter;
+    s32 checkId;
+    s32 pickedCharacter;
+    s32 pick;
+    u8 candidate;
+    u64 firstTick;
+    u64 secondTick;
 
-    a = (Unk0203ba84 *) b;
-    m = 0;
-    f = a->mUnk_01;
-    c = FALSE;
+    picks = (CharacterKartPicks *) rawPicks;
+    availableBits = 0;
+    givenBits = picks->mCharacterGivenBits;
+    useSharedRandom = FALSE;
     if (data_0217aa00 == NULL) {
         x = 0;
     } else {
         x = data_0217aa00->mUnk_0000;
     }
     if (x != 0 && data_0217aa00->mUnk_0004 != 0xd) {
-        c = TRUE;
+        useSharedRandom = TRUE;
     }
-    if (c != FALSE) {
-        r = &data_0217aa00->mUnk_1ee8;
+    if (useSharedRandom != FALSE) {
+        random = &data_0217aa00->mUnk_1ee8;
     } else {
-        t1 = OS_GetTick();
-        t2 = OS_GetTick();
-        l.mUnk_00 = ((u32) t1 << 24) + (u32) (t2 >> 8);
-        l.mUnk_08 = 0x5d588b656c078965;
-        l.mUnk_10 = 0x269ec3;
-        r = &l;
+        firstTick = OS_GetTick();
+        secondTick = OS_GetTick();
+        localRandom.mUnk_00 = ((u32) firstTick << 24) + (u32) (secondTick >> 8);
+        localRandom.mUnk_08 = 0x5d588b656c078965;
+        localRandom.mUnk_10 = 0x269ec3;
+        random = &localRandom;
     }
-    for (i = 0; i < 0xd; i++) {
-        v = -1;
-        if (i != 0xc) {
-            switch (i) {
+    for (character = 0; character < 0xd; character++) {
+        checkId = -1;
+        if (character != 0xc) {
+            switch (character) {
                 case 8:
-                    v = 0x14;
+                    checkId = 0x14;
                     break;
                 case 9:
-                    v = 0x15;
+                    checkId = 0x15;
                     break;
                 case 10:
-                    v = 0x16;
+                    checkId = 0x16;
                     break;
                 case 11:
-                    v = 0x17;
+                    checkId = 0x17;
                     break;
             }
-            if (v == -1 || func_0205fc28(v) != 0) {
-                m = m | (1 << i);
+            if (checkId == -1 || func_0205fc28(checkId) != 0) {
+                availableBits = availableBits | (1 << character);
             }
         }
     }
-    for (k = 0; k < 8; k++) {
-        t = a->mUnk_04[k];
-        if (t != -1 && (f & (1 << k)) != 0) {
-            m = m & ~(1 << t);
+    for (entry = 0; entry < 8; entry++) {
+        givenCharacter = picks->mCharacterIndices[entry];
+        if (givenCharacter != -1 && (givenBits & (1 << entry)) != 0) {
+            availableBits = availableBits & ~(1 << givenCharacter);
         }
     }
-    for (k = 0; k < 8; k++) {
-        e = -1;
-        g = CountSetBits(m);
-        n = 0;
-        if ((f & (1 << k)) == 0) {
-            a->mUnk_04[k] = -1;
-            if (g == 0) {
-                y = n;
+    for (entry = 0; entry < 8; entry++) {
+        pickedCharacter = -1;
+        availableCount = CountSetBits(availableBits);
+        seen = 0;
+        if ((givenBits & (1 << entry)) == 0) {
+            picks->mCharacterIndices[entry] = -1;
+            if (availableCount == 0) {
+                pick = seen;
             } else {
-                r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-                if (g == 0) {
-                    y = r->mUnk_00 >> 32;
+                random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
+                if (availableCount == 0) {
+                    pick = random->mUnk_00 >> 32;
                 } else {
-                    y = ((r->mUnk_00 >> 32) * g) >> 32;
+                    pick = ((random->mUnk_00 >> 32) * availableCount) >> 32;
                 }
             }
-            for (j = 0; j < 0xd && e == -1; j++) {
-                if ((m & (1 << j)) != 0) {
-                    if (n == (u16) y) {
-                        m = m & ~(1 << j);
-                        e = j;
+            for (candidate = 0; candidate < 0xd && pickedCharacter == -1; candidate++) {
+                if ((availableBits & (1 << candidate)) != 0) {
+                    if (seen == (u16) pick) {
+                        availableBits = availableBits & ~(1 << candidate);
+                        pickedCharacter = candidate;
                     } else {
-                        n = (u8) (n + 1);
+                        seen = (u8) (seen + 1);
                     }
                 }
             }
-            a->mUnk_04[k] = e;
+            picks->mCharacterIndices[entry] = pickedCharacter;
         }
     }
 }

@@ -8,7 +8,7 @@
 u32 func_020d12b0(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) func_020364e8();
+    value0 = (u32) GetCurrentHeapCall();
     value0 = (u32) GetHeap((void *) value0);
     value1 = 4u;
     value0 = (u32) HeapAlloc((void *) value0, value1);

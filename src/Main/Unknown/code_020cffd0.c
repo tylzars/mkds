@@ -83,7 +83,7 @@ void DrawRaceHudSubScreenFireball2Cells(void *a) {
 void InitRaceGoalTimes(void) {
     u16 i;
 
-    gRaceGoalTimes = HeapAlloc(GetHeap(func_020364e8()), 0xb0);
+    gRaceGoalTimes = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0xb0);
     gRaceGoalTimes->mFinishTime.mUnk_00[0] = 0;
     gRaceGoalTimes->mFinishTime.mUnk_00[1] = 0;
     gRaceGoalTimes->mFinishTime.mUnk_00[2] = 0;

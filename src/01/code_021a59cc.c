@@ -115,7 +115,7 @@ BOOL func_ov001_021a6278(void) {
 }
 
 void func_ov001_021a6238(s32 originX, s32 originY, s32 side, s32 scrSide, s32 tableCount) {
-    data_ov001_021ca420 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    data_ov001_021ca420 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
     data_ov001_021ca420->mOriginX = originX;
     data_ov001_021ca420->mOriginY = originY;
     data_ov001_021ca420->mSide = side;

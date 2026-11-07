@@ -77,7 +77,7 @@
 
 void InitShine16(MapObject *p) {
     ParkMapObject(p);
-    p->mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    p->mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
     InitSoundSource(&p->mSound->mSoundSource, 0xb, &p->mPos);
     func_0210bae8(&p->mSound->mSoundSource);
     p->mFarDistanceSquared = gSoundFalloffs[0xb].mUnk_20;

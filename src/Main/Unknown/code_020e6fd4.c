@@ -200,7 +200,7 @@ void func_020e7460(void) {
     s32 n;
     s32 k;
 
-    h = GetHeap(func_020364e8());
+    h = GetHeap(GetCurrentHeapCall());
     if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         return;
     }
@@ -266,7 +266,7 @@ void func_020e7460(void) {
 Unk020e7410 *func_020e7410(void) {
     Unk020e7410 *p;
 
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     *p = *(Unk020e7410 *) data_02159370;
     return p;
 }
@@ -274,7 +274,7 @@ Unk020e7410 *func_020e7410(void) {
 MapObjectList *func_020e73b4(void) {
     MapObjectList *p;
 
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     data_0217b864 = p;
     *p = *(MapObjectList *) data_02159348;
     func_020e6f50(&data_0217b864);
@@ -302,8 +302,8 @@ void func_020e730c(void) {
     s32 i;
 
     n = ((MapObjectList *) data_0217b864)->mMapObjectCount;
-    *(void **) data_0217b86c = HeapAlloc(GetHeap(func_020364e8()), n * 4);
-    data_0217b868 = HeapAlloc(GetHeap(func_020364e8()), n * 2);
+    *(void **) data_0217b86c = HeapAlloc(GetHeap(GetCurrentHeapCall()), n * 4);
+    data_0217b868 = HeapAlloc(GetHeap(GetCurrentHeapCall()), n * 2);
     for (i = 0; i < ((MapObjectList *) data_0217b864)->mMapObjectCount; i++) {
         s32 k;
 

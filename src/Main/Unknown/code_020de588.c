@@ -33,7 +33,7 @@ void CreateBoxAndQuestion(void) {
     p = gQuestion;
     p->mUnk_10 = p->mUnk_10 & 0x8000ffff;
     p->mUnk_10 = p->mUnk_10 | 0x52940000;
-    data_0217b704 = HeapAlloc(GetHeap(func_020364e8()), 0x1770);
+    data_0217b704 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x1770);
     for (i = 0; i < 0x12c; i++) {
         n = (u16) (((u32) i << 16) / 0x12c) >> 4;
         a = gPairsByAngle[n * 2 + 1];
@@ -44,7 +44,7 @@ void CreateBoxAndQuestion(void) {
         data_0217b704[i].mUnk_0c = ((s64) b * b) >> 12;
         data_0217b704[i].mUnk_10 = ((s64) a * b) >> 12;
     }
-    data_0217b708 = HeapAlloc(GetHeap(func_020364e8()), 0x410);
+    data_0217b708 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x410);
     for (j = 0; j < 0x82; j++) {
         n = (u16) (((u32) j << 16) / 0x82) >> 4;
         data_0217b708[j].mUnk_00 = gPairsByAngle[n * 2 + 1];
@@ -118,20 +118,20 @@ void InitItemBox(Unk020de6a8 *a, Unk020de6a8_1 *b) {
 Unk020de390 *CreateEarthenPipeKindData(void) {
     Unk020de390 *p;
 
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     *p = data_02158528;
     return p;
 }
 
 Unk020de334 *CreateEarthenPipeDrawList(void) {
-    data_0217b6f8 = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    data_0217b6f8 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     *data_0217b6f8 = data_021584fc;
     func_020d49d8(&data_0217b6f8);
     return data_0217b6f8;
 }
 
 Unk020de2d8 *CreateEarthenPipeUpdateList(void) {
-    data_0217b6ec = HeapAlloc(GetHeap(func_020364e8()), 0x28);
+    data_0217b6ec = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     *data_0217b6ec = data_021584d4;
     func_020e6f50(&data_0217b6ec);
     return data_0217b6ec;

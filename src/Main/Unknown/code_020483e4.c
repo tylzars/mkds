@@ -20,190 +20,190 @@
 
 #pragma thumb on
 
-void func_020486d4(void *a) {
-    s32 i;
+void InitArchiveSlots(void *heap) {
+    s32 index;
 
-    data_021759c8 = HeapAlloc(a, 0xa84);
-    data_021759c8->mUnk_8c8.mUnk_88 = HeapAllocAligned(a, 0x400, 0x20);
-    for (i = 0; i < 20; i++) {
-        data_021759c8->mUnk_00[i].mLoaded = 0;
+    data_021759c8 = HeapAlloc(heap, 0xa84);
+    data_021759c8->mUnk_8c8.mUnk_88 = HeapAllocAligned(heap, 0x400, 0x20);
+    for (index = 0; index < 20; index++) {
+        data_021759c8->mUnk_00[index].mLoaded = 0;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        data_021759c8->mUnk_8c0 = FS_TryLoadTable(0, 0);
-        data_021759c8->mUnk_8c4 = HeapAlloc(a, data_021759c8->mUnk_8c0);
-        FS_TryLoadTable((u32) data_021759c8->mUnk_8c4, data_021759c8->mUnk_8c0);
+        data_021759c8->mFileTableSize = FS_TryLoadTable(0, 0);
+        data_021759c8->mFileTable = HeapAlloc(heap, data_021759c8->mFileTableSize);
+        FS_TryLoadTable((u32) data_021759c8->mFileTable, data_021759c8->mFileTableSize);
     }
-    for (i = 0; i < 16; i++) {
-        func_020487a0(i);
+    for (index = 0; index < 16; index++) {
+        ResetArchiveBuffer(index);
     }
     data_021759c8->mUnk_a70 = NULL;
     data_021759c8->mUnk_a78 = NULL;
     data_021759c8->mCourseBufferHeap = NULL;
-    FS_InitFile(&data_021759c8->mUnk_968);
+    FS_InitFile(&data_021759c8->mFile);
 }
 
-int func_02048684(const char *a, void *b, u32 c) {
-    FSFile f;
-    u32 r;
-    u32 n;
+int ReadWholeFile(const char *path, void *buffer, u32 maxSize) {
+    FSFile file;
+    u32 opened;
+    u32 size;
 
-    FS_InitFile(&f);
-    r = FS_OpenFile(&f, (const u8 *) a);
-    if (r != 0) {
-        n = f.mProp.p.mUnk_08 - f.mProp.p.mUnk_04;
-        if (c != 0 && n > c) {
-            r = 0;
+    FS_InitFile(&file);
+    opened = FS_OpenFile(&file, (const u8 *) path);
+    if (opened != 0) {
+        size = file.mProp.p.mUnk_08 - file.mProp.p.mUnk_04;
+        if (maxSize != 0 && size > maxSize) {
+            opened = 0;
         } else {
-            if (FS_ReadFile(&f, b, n) < 0) {
-                r = 0;
+            if (FS_ReadFile(&file, buffer, size) < 0) {
+                opened = 0;
             }
-            FS_CloseFile(&f);
+            FS_CloseFile(&file);
         }
     }
-    return r;
+    return opened;
 }
 
-u32 func_0204863c(void *a, void *b, u32 c) {
-    FSFile f;
-    u32 r;
+u32 ReadFileBytes(void *path, void *buffer, u32 size) {
+    FSFile file;
+    u32 opened;
 
-    FS_InitFile(&f);
-    r = FS_OpenFile(&f, a);
-    if (r != 0) {
-        if (c <= (f.mProp.p.mUnk_08 - f.mProp.p.mUnk_04)) {
-            if (FS_ReadFile(&f, b, c) < 0) {
-                r = 0;
+    FS_InitFile(&file);
+    opened = FS_OpenFile(&file, path);
+    if (opened != 0) {
+        if (size <= (file.mProp.p.mUnk_08 - file.mProp.p.mUnk_04)) {
+            if (FS_ReadFile(&file, buffer, size) < 0) {
+                opened = 0;
             }
-            FS_CloseFile(&f);
+            FS_CloseFile(&file);
         }
     }
-    return r;
+    return opened;
 }
 
-u32 func_02048590(char *a, NNSiFndHeapHead *b, void **c) {
-    u32 s;
-    FSFile *p;
-    u32 n;
-    void *t;
+u32 LoadFileIntoHeap(char *path, NNSiFndHeapHead *heap, void **outData) {
+    u32 opened;
+    FSFile *file;
+    u32 size;
+    void *data;
 
-    p = &data_021759c8->mUnk_968;
-    if (((p->mStat & 1) ? 1 : 0) != 0) {
+    file = &data_021759c8->mFile;
+    if (((file->mStat & 1) ? 1 : 0) != 0) {
         return 0;
     }
-    if (((p->mStat & 0x10) ? 1 : 0) != 0) {
-        FS_CloseFile(p);
+    if (((file->mStat & 0x10) ? 1 : 0) != 0) {
+        FS_CloseFile(file);
     }
-    s = FS_OpenFile(p, (const u8 *) a);
-    if (s != 0) {
-        n = p->mProp.p.mUnk_08 - p->mProp.p.mUnk_04;
-        t = HeapAlloc(b, n);
-        *c = t;
-        if (t == NULL) {
-            s = 0;
+    opened = FS_OpenFile(file, (const u8 *) path);
+    if (opened != 0) {
+        size = file->mProp.p.mUnk_08 - file->mProp.p.mUnk_04;
+        data = HeapAlloc(heap, size);
+        *outData = data;
+        if (data == NULL) {
+            opened = 0;
         }
-        if (s != 0) {
-            if (FS_ReadFile(p, t, n) < 0) {
-                s = 0;
-                HeapFree(b, t);
+        if (opened != 0) {
+            if (FS_ReadFile(file, data, size) < 0) {
+                opened = 0;
+                HeapFree(heap, data);
             }
         }
-        FS_CloseFile(p);
+        FS_CloseFile(file);
     }
-    if (s == 0) {
-        n = -1;
-        *c = NULL;
+    if (opened == 0) {
+        size = -1;
+        *outData = NULL;
     }
-    return n;
+    return size;
 }
 
-void *func_02048504(const char *a, s32 b) {
-    FSFile f;
-    u32 s;
-    void *r;
-    u32 n;
+void *LoadFileAligned(const char *path, s32 alignment) {
+    FSFile file;
+    u32 opened;
+    void *data;
+    u32 size;
 
-    r = NULL;
+    data = NULL;
     if (FS_IsAvailable() == 0) {
         return NULL;
     }
-    FS_InitFile(&f);
-    s = FS_OpenFile(&f, (const u8 *) a);
-    if (s != 0) {
-        n = f.mProp.p.mUnk_08 - f.mProp.p.mUnk_04;
-        r = HeapAllocAligned(GetHeap(func_020364e8()), n, b);
-        DC_StoreRange(r, n);
-        if (r == NULL) {
-            s = 0;
+    FS_InitFile(&file);
+    opened = FS_OpenFile(&file, (const u8 *) path);
+    if (opened != 0) {
+        size = file.mProp.p.mUnk_08 - file.mProp.p.mUnk_04;
+        data = HeapAllocAligned(GetHeap(GetCurrentHeapCall()), size, alignment);
+        DC_StoreRange(data, size);
+        if (data == NULL) {
+            opened = 0;
         } else {
-            if (FS_ReadFile(&f, r, n) < 0) {
-                HeapFree(GetHeap(func_020364e8()), r);
-                s = 0;
+            if (FS_ReadFile(&file, data, size) < 0) {
+                HeapFree(GetHeap(GetCurrentHeapCall()), data);
+                opened = 0;
             }
-            FS_CloseFile(&f);
+            FS_CloseFile(&file);
         }
     }
-    if (s == 0) {
-        r = NULL;
+    if (opened == 0) {
+        data = NULL;
     }
-    return r;
+    return data;
 }
 
-void func_02048498(char *a, s32 b, s32 c) {
+void BuildCourseArchivePath(char *path, s32 courseId, s32 useTexture) {
     BOOL d;
-    const char *e;
-    const char *f;
+    const char *textureSuffix;
+    const char *dSuffix;
 
     d = FALSE;
-    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 && data_usa_02154228[b].mUnk_04 == 1) {
+    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 && data_usa_02154228[courseId].mUnk_04 == 1) {
         d = TRUE;
     }
-    if (c != 0) {
-        e = data_usa_02165164;
+    if (useTexture != 0) {
+        textureSuffix = data_usa_02165164;
     } else {
-        e = data_usa_02165168;
+        textureSuffix = data_usa_02165168;
     }
     if (d != FALSE) {
-        f = data_usa_0216516c;
+        dSuffix = data_usa_0216516c;
     } else {
-        f = data_usa_02165170;
+        dSuffix = data_usa_02165170;
     }
-    OS_SNPrintf(a, 0x80, data_usa_02165174, data_usa_02154228[b].mUnk_00, f, e);
+    OS_SNPrintf(path, 0x80, data_usa_02165174, data_usa_02154228[courseId].mUnk_00, dSuffix, textureSuffix);
 }
 
-u32 func_02048474(void) {
-    s32 a;
+u32 GetLanguageCode(void) {
+    s32 languageIndex;
 
-    a = data_021759d0->mUnk_04;
-    if (data_021759d0->mUnk_00 == 2 && a == 1) {
-        a += 5;
+    languageIndex = data_021759d0->mUnk_04;
+    if (data_021759d0->mUnk_00 == 2 && languageIndex == 1) {
+        languageIndex += 5;
     }
-    return ((u32 *) data_02164dc8)[a];
+    return ((u32 *) data_02164dc8)[languageIndex];
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-u32 func_02048440(void) {
-    u32 v1;
-    v1 = data_0217aa00->mUnk_043c;
+u32 GetMPLanguageCode(void) {
+    u32 languageIndex;
+    languageIndex = data_0217aa00->mUnk_043c;
     if ((data_021759d0->mUnk_00 == 2) && (((s32 *) data_021759d0)[1] == 1)) {
-        v1 = v1 + 5;
+        languageIndex = languageIndex + 5;
     }
-    return ((u32 *) &data_02164dc8)[v1];
+    return ((u32 *) &data_02164dc8)[languageIndex];
 }
 
-void func_0204840c(char *a, const char *b) {
-    u32 v1;
-    if (*b != 0) {
-        v1 = func_02048474();
-        OS_SNPrintf(a, 0x80, data_02165148, b, v1, data_0216515c);
+void BuildSceneArchivePathWithLanguage(char *path, const char *sceneName) {
+    u32 languageCode;
+    if (*sceneName != 0) {
+        languageCode = GetLanguageCode();
+        OS_SNPrintf(path, 0x80, data_02165148, sceneName, languageCode, data_0216515c);
     }
 }
 
-void func_020483e4(char *a, const char *b) {
-    if (*b != 0) {
-        OS_SNPrintf(a, 0x80, data_0216512c, b, data_02165140);
+void BuildSceneArchivePath(char *path, const char *sceneName) {
+    if (*sceneName != 0) {
+        OS_SNPrintf(path, 0x80, data_0216512c, sceneName, data_02165140);
     }
 }
 

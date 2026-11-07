@@ -132,7 +132,7 @@ void UpdateIronBall(void *a, IronBall *p) {
             }
             w = p->mUnk_0ac;
             for (i = 0; i < gRaceSetup->mKartCount; i++) {
-                if (func_0203c8c0((u16) i) >= w) {
+                if (GetKartHighestLap((u16) i) >= w) {
                     f = TRUE;
                     goto found;
                 }

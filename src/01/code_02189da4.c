@@ -172,7 +172,7 @@ void UpdateBombKing(u32 a, Unk02188950 *b) {
 
 void func_ov001_0218a034(Unk02188950 *a) {
     CreateParkedMapObjects(0xc9, 0xa, a);
-    a->mUnk_000.mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    a->mUnk_000.mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
     InitSoundSource((SoundSource *) a->mUnk_000.mSound, 0xc, &a->mUnk_000.mPos);
     a->mUnk_000.mFarDistanceSquared = data_0217cbec[0x50 / 4];
 }

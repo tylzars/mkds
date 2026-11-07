@@ -787,7 +787,7 @@ void InitStandings(void) {
     s32 i;
     KartStanding *e;
 
-    gStandings = HeapAlloc(GetHeap(func_020364e8()), 0x3c0);
+    gStandings = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x3c0);
     for (i = 0; i < 8; i++) {
         e = &gStandings->mKarts[i];
         e->mUnk_1c = -2;

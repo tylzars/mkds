@@ -8,7 +8,7 @@
 #pragma thumb on
 
 void func_020ea55c(void **a, void *b, u32 c) {
-    *a = HeapAlloc(GetHeap(func_020364e8()), 0x74);
+    *a = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x74);
     InitShadowModel(*a, b, (u8) c);
 }
 

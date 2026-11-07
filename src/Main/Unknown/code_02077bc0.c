@@ -136,7 +136,7 @@ void func_0207ad88(ShadowModel *a, u32 b, u32 c) {
 
 void InitKarts(u32 a) {
     u16 i;
-    void *h = GetHeap(func_020364e8());
+    void *h = GetHeap(GetCurrentHeapCall());
     EntryKartCounters *q;
     gKarts = HeapAlloc(h, a * 0x5a8);
     gKartCount = a;
@@ -1125,7 +1125,7 @@ void CreateKillerItem(void *a) {
 void LoadKartModelMenuFile(void *a, const void *b, void **c) {
     char d[0x100];
     snprintf(d, 0x100, "/data/KartModelMenu/%s", b);
-    func_02048590(d, a, c);
+    LoadFileIntoHeap(d, a, c);
 }
 
 void func_020790e0(void *a, s32 b) {
@@ -1924,15 +1924,15 @@ void LoadKartAndCharacterFiles(void) {
         NNS_G3dResDefaultRelease(p->mUnk_28);
     }
     e = (char *) &gKartModelMenu->mUnk_1c8[c];
-    func_02048590(BuildCharacterNsbmdPath(b, 1), p->mHeap, (void **) &p->mUnk_08);
-    func_02048590(BuildCharacterNsbtxPath(b, 1), p->mHeap, (void **) &p->mUnk_0c);
-    func_02048590(BuildCharacterNsbcaPath(b, 2), p->mHeap, &p->mUnk_14);
-    func_02048590(BuildEmblemNsbtxPath(b), p->mHeap, (void **) &p->mUnk_10);
-    func_02048590(BuildKartNsbmdPath(c), p->mHeap, (void **) &p->mUnk_18);
-    func_02048590(BuildKartNsbtxPath(c), p->mHeap, (void **) &p->mUnk_1c);
-    func_02048590(BuildKartShadowNsbmdPath(c), p->mHeap, (void **) &p->mUnk_28);
-    func_02048590(BuildTireNsbmdPath(c, e), p->mHeap, (void **) &p->mUnk_20);
-    func_02048590(BuildTireNsbtxPath(c, e), p->mHeap, (void **) &p->mUnk_24);
+    LoadFileIntoHeap(BuildCharacterNsbmdPath(b, 1), p->mHeap, (void **) &p->mUnk_08);
+    LoadFileIntoHeap(BuildCharacterNsbtxPath(b, 1), p->mHeap, (void **) &p->mUnk_0c);
+    LoadFileIntoHeap(BuildCharacterNsbcaPath(b, 2), p->mHeap, &p->mUnk_14);
+    LoadFileIntoHeap(BuildEmblemNsbtxPath(b), p->mHeap, (void **) &p->mUnk_10);
+    LoadFileIntoHeap(BuildKartNsbmdPath(c), p->mHeap, (void **) &p->mUnk_18);
+    LoadFileIntoHeap(BuildKartNsbtxPath(c), p->mHeap, (void **) &p->mUnk_1c);
+    LoadFileIntoHeap(BuildKartShadowNsbmdPath(c), p->mHeap, (void **) &p->mUnk_28);
+    LoadFileIntoHeap(BuildTireNsbmdPath(c, e), p->mHeap, (void **) &p->mUnk_20);
+    LoadFileIntoHeap(BuildTireNsbtxPath(c, e), p->mHeap, (void **) &p->mUnk_24);
 }
 
 // Builds the slot being loaded over three calls, then shows it and loads into the other slot next.

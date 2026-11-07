@@ -65,7 +65,7 @@ void StartRaceRankListItemInUse(s32 kartIndex, s32 itemId, s32 b) {
 void InitRaceRankList(void) {
     u8 i;
 
-    gRaceRankList = HeapAlloc(GetHeap(func_020364e8()), 0x15c);
+    gRaceRankList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x15c);
     for (i = 0; i < (s32) gRaceSetup->mKartCount; i++) {
         gRaceRankList->mUnk_080[i] = 1;
         gRaceRankList->mUnk_060[i] = gRaceRankList->mUnk_080[i];
@@ -637,7 +637,7 @@ void func_020bcbe8(RaceHudOamBuffer *a) {
 }
 
 void InitRaceLapNumber(void) {
-    gRaceLapNumber = HeapAlloc(GetHeap(func_020364e8()), 0x14);
+    gRaceLapNumber = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x14);
     gRaceLapNumber->mUnk_00 = 0;
     gRaceLapNumber->mUnk_04 = 0;
     gRaceLapNumber->mUnk_08 = (u16) (GetLapCount() - 1);
@@ -678,7 +678,7 @@ void UpdateRaceLapNumber(void) {
         }
     }
     gRaceLapNumber->mUnk_04 = gRaceLapNumber->mUnk_00;
-    gRaceLapNumber->mUnk_00 = func_0203c8c0(GetFollowedKartOrEntryIndex()) - 1;
+    gRaceLapNumber->mUnk_00 = GetKartHighestLap(GetFollowedKartOrEntryIndex()) - 1;
     if (gRaceLapNumber->mUnk_00 != gRaceLapNumber->mUnk_04 && gRaceLapNumber->mUnk_08 > 0) {
         if (gRaceLapNumber->mUnk_00 < gRaceLapNumber->mUnk_08) {
             v = 0x41;
@@ -847,7 +847,7 @@ void DrawRaceLapAndTimeDifference(RaceHudOamBuffer *a) {
 void InitRaceTimeDigits(void) {
     s32 i;
 
-    gRaceTimeDigits = HeapAlloc(GetHeap(func_020364e8()), 0x38);
+    gRaceTimeDigits = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x38);
     gRaceTimeDigits->mUnk_00.mUnk_00[0] = 0;
     gRaceTimeDigits->mUnk_00.mUnk_00[1] = 0;
     gRaceTimeDigits->mUnk_00.mUnk_00[2] = 0;

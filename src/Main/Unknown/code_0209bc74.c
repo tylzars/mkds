@@ -13,12 +13,12 @@
 void *CreateMapObjectModelAnimated(void *a, const char *b) {
     MapObjectModel *o;
 
-    o = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    o = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     if (a != NULL) {
         ((Unk0209bc74_a *) a)->mUnk_18 = 1;
     }
     o->mNsbmdFile = FindCourseMapObjFile(b);
-    o->mAnimatedModel = HeapAlloc(GetHeap(func_020364e8()), 0x6c);
+    o->mAnimatedModel = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x6c);
     InitNsbmd(o->mAnimatedModel, o->mNsbmdFile);
     SetNsbmdEmiAll(o->mAnimatedModel, 0x294a);
     SetNsbmdLightEnableFlagAll(o->mAnimatedModel, 2);
@@ -32,7 +32,7 @@ void CreateMapObjectModelNsbcaAnimation(MapObjectModel *a, const char *b) {
     void *x;
 
     x = FindCourseMapObjFile(b);
-    a->mAnimations[0] = HeapAlloc(GetHeap(func_020364e8()), 0x38);
+    a->mAnimations[0] = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x38);
     func_020ea514(0, a->mAnimatedModel, a->mAnimations[0], a->mNsbmdFile, x);
 }
 #pragma thumb off
@@ -42,7 +42,7 @@ void CreateMapObjectModelNsbtaAnimation(MapObjectModel *a, const char *b) {
     void *x;
 
     x = FindCourseMapObjFile(b);
-    a->mAnimations[3] = HeapAlloc(GetHeap(func_020364e8()), 0x38);
+    a->mAnimations[3] = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x38);
     func_020ea514(1, a->mAnimatedModel, a->mAnimations[3], a->mNsbmdFile, x);
 }
 #pragma thumb off
@@ -52,7 +52,7 @@ void CreateMapObjectModelNsbtpAnimation(MapObjectModel *a, const char *b) {
     void *x;
 
     x = FindCourseMapObjFile(b);
-    a->mAnimations[1] = HeapAlloc(GetHeap(func_020364e8()), 0x38);
+    a->mAnimations[1] = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x38);
     func_020ea514(2, a->mAnimatedModel, a->mAnimations[1], a->mNsbmdFile, x);
 }
 #pragma thumb off
@@ -62,12 +62,12 @@ void *CreateMapObjectModelShadow(void *a, const char *b) {
     MapObjectModel *o;
     void *x;
 
-    o = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    o = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     x = FindCourseMapObjFile(b);
     if (a != NULL) {
         ((Unk0209bc74_a *) a)->mUnk_18 = 1;
     }
-    o->mShadowModel = HeapAlloc(GetHeap(func_020364e8()), 0x74);
+    o->mShadowModel = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x74);
     InitShadowModel(o->mShadowModel, x, 0x3f);
     o->mScale = data_021565b8;
     return o;
@@ -80,12 +80,12 @@ void *CreateMapObjectModelNsbmd(void *a, const char *b) {
     void *x;
     Unk020e6488 *m;
 
-    o = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    o = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     x = FindCourseMapObjFile(b);
     if (a != NULL) {
         ((Unk0209bc74_a *) a)->mUnk_18 = 2;
     }
-    o->mNsbmdModel = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    o->mNsbmdModel = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     func_020e64b8(o->mNsbmdModel, x, NULL, 0);
     m = o->mNsbmdModel;
     m->mUnk_10 &= 0x8000ffff;
@@ -106,13 +106,13 @@ void *CreateMapObjectModelNsbmdNsbtp(void *a, const char *b, const char *c) {
     void *y;
     Unk020e6488 *m;
 
-    o = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    o = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     x = FindCourseMapObjFile(b);
     y = FindCourseMapObjFile(c);
     if (a != NULL) {
         ((Unk0209bc74_a *) a)->mUnk_18 = 2;
     }
-    o->mNsbmdModel = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    o->mNsbmdModel = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     func_020e64b8(o->mNsbmdModel, x, y, 0);
     m = o->mNsbmdModel;
     m->mUnk_10 &= 0x8000ffff;

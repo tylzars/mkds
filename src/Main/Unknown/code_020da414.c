@@ -91,7 +91,7 @@ void InitKuribo(Kuribo *a, CourseMapRow *b) {
 
 Unk020da414 *func_020da414(void) {
     Unk020da414 *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     {
         Unk020da414 v = {0};
         *p = v;

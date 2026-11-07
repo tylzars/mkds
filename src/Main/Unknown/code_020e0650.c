@@ -7,7 +7,7 @@ void func_020e0650(u32 *arg0) {
     u32 value1;
     u32 value4;
     value4 = value0;
-    value0 = (u32) func_020364e8();
+    value0 = (u32) GetCurrentHeapCall();
     value0 = (u32) GetHeap((void *) value0);
     value1 = 0x1cu;
     value0 = (u32) HeapAlloc((void *) value0, value1);

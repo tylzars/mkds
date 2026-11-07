@@ -5,31 +5,31 @@
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/unk_02174000.h"
 
-u32 func_020364f8(Unk02036590 *a, u32 b) {
-    u32 c;
-    void *d;
-    a->mUnk_10 = data_02174e70;
-    if (a->mUnk_10 != NULL) {
-        d = a->mUnk_10->mHeap;
+u32 RunHeapCall(HeapCall *call, u32 argument) {
+    u32 result;
+    void *outerHeap;
+    call->mParent = gCurrentHeapCall;
+    if (call->mParent != NULL) {
+        outerHeap = call->mParent->mHeap;
     } else {
-        d = func_020365ac();
+        outerHeap = func_020365ac();
     }
-    a->mHeap = CreateExpHeapFromMaxFree(d);
-    data_02174e70 = a;
-    c = ((u32(*)(u32)) a->mUnk_04)(b);
-    if (a->mUnk_08 != 0) {
-        ((void (*)(void)) a->mUnk_08)();
+    call->mHeap = CreateExpHeapFromMaxFree(outerHeap);
+    gCurrentHeapCall = call;
+    result = ((u32(*)(u32)) call->mFunc)(argument);
+    if (call->mAfterFunc != 0) {
+        ((void (*)(void)) call->mAfterFunc)();
     }
-    data_02174e70 = a->mUnk_10;
-    HeapDestroy(a->mHeap);
-    a->mHeap = NULL;
-    return c;
+    gCurrentHeapCall = call->mParent;
+    HeapDestroy(call->mHeap);
+    call->mHeap = NULL;
+    return result;
 }
 
-void *func_020364e8(void) {
-    return data_02174e70;
+void *GetCurrentHeapCall(void) {
+    return gCurrentHeapCall;
 }
 
-void *GetHeap(Unk02036590 *a) {
-    return a->mHeap;
+void *GetHeap(HeapCall *call) {
+    return call->mHeap;
 }

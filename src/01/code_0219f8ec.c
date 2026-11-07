@@ -340,11 +340,10 @@ void func_ov001_021a0774(void) {
     d = gMissionRunMSsel;
     func_0212426c(
         0, 0, gMissionRunMSsel->mMissionRunMSselMBnll,
-        GetBmgEntry(
-            d->mMissionMessages,
-            d->mUnk_50[func_0203b680((u32) (gMissionRunMSsel->mMissionTableMtbl), GetMissionTableRow(), d->mIndex + 1) -
-                       1]
-                .mUnk_0c),
+        GetBmgEntry(d->mMissionMessages, d->mUnk_50[GetMissionTableValue((u32) (gMissionRunMSsel->mMissionTableMtbl),
+                                                                         GetMissionTableRow(), d->mIndex + 1) -
+                                                    1]
+                                             .mUnk_0c),
         d->mMissionRunMSselMBncl, d->mMissionRunMSselMTable);
 }
 
@@ -355,7 +354,7 @@ void func_ov001_021a0734(void) {
     SetMissionTableColumn((s8) (gMissionRunMSsel->mIndex + 1));
     v0 = GetMissionTableRow();
     v1 = GetMissionTableColumn();
-    SetMissionFileRowIndex((u16) (func_0203b680((u32) (gMissionRunMSsel->mMissionTableMtbl), v0, v1) - 1));
+    SetMissionFileRowIndex((u16) (GetMissionTableValue((u32) (gMissionRunMSsel->mMissionTableMtbl), v0, v1) - 1));
 }
 
 BOOL func_ov001_021a071c(void) {

@@ -14,7 +14,7 @@
 
 void InitWiFiMenuScene(s16 *a) {
     void *b;
-    b = GetHeap(func_020364e8());
+    b = GetHeap(GetCurrentHeapCall());
     data_ov000_021b4c60 = HeapAlloc(b, 0x808);
     InitWiFiStates(b, *a);
 }

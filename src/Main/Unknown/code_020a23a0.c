@@ -116,7 +116,7 @@ void func_020a269c(s32 a, u32 b) {
     s32 x;
     Unk0219b250_Item *s;
 
-    data_0217b200 = HeapAlloc(GetHeap(func_020364e8()), 0x124);
+    data_0217b200 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x124);
     data_0217b200->mUnk_002 = b;
     data_0217b200->mUnk_000 = a;
     if (a < 9 && b < 3) {
@@ -139,9 +139,9 @@ void func_020a269c(s32 a, u32 b) {
         } else {
             SetNsbmdCullModeAll(&data_0217b200->mUnk_028, 2);
         }
-        v3 = GetHeap(func_020364e8());
+        v3 = GetHeap(GetCurrentHeapCall());
         InitModelAnimation(2, &data_0217b200->mUnk_094, &data_0217b200->mUnk_028, 1, v3, v1);
-        InitModelAnimationEntries(&data_0217b200->mUnk_094, v2, GetHeap(func_020364e8()));
+        InitModelAnimationEntries(&data_0217b200->mUnk_094, v2, GetHeap(GetCurrentHeapCall()));
         SetModelAnimation(&data_0217b200->mUnk_094, 0);
         x = data_0217b200->mUnk_002;
         if (x != 0) {
@@ -152,7 +152,7 @@ void func_020a269c(s32 a, u32 b) {
         s = &data_0217b200->mUnk_094;
         s->mUnk_0c = f;
         *s->mUnk_1c[s->mUnk_1a] = s->mUnk_0c;
-        func_0208b934(GetHeap(func_020364e8()));
+        func_0208b934(GetHeap(GetCurrentHeapCall()));
         if (b == 0) {
             Vec3 w0 = {0, 0, 0};
 

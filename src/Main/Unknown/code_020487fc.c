@@ -119,8 +119,8 @@ static inline void func_020487fc_inline7(void) {
             t = OS_DisableInterrupts();
             PM_SetLCDPower(1);
             if (AreBrightnessFadesClear()) {
-                func_02049808(0);
-                func_020497f0(0);
+                SetMainMasterBrightness(0);
+                SetSubMasterBrightness(0);
             }
             gSceneRunState->mLcdOff = FALSE;
             OS_RestoreInterrupts(t);
@@ -207,8 +207,8 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
     SetHeapGroupId(0);
     LoadArchiveSlotsForScene(a->mScene);
     SetHeapGroupId(9);
-    GetHeap(func_020364e8());
-    CallQueueInit(HeapAlloc(GetHeap(func_020364e8()), 0x800), 0x80);
+    GetHeap(GetCurrentHeapCall());
+    CallQueueInit(HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x800), 0x80);
     if (func_0204a428(a->mScene, &n)) {
         func_0204acd0(n);
     }

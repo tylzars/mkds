@@ -98,7 +98,7 @@ static inline BOOL func_0209fdb4_inline_b(void) {
     s32 i;
 
     for (i = 0; i < gRaceSetup->mKartCount; i++) {
-        if (func_0203c8c0((u16) i) >= 2) {
+        if (GetKartHighestLap((u16) i) >= 2) {
             return TRUE;
         }
     }
@@ -142,7 +142,7 @@ void func_0209fc78(MapObject *p) {
 
     i = p->mCourseMapRow->mUnk_28;
     if (data_usa_0217b18c[i] == NULL) {
-        data_usa_0217b18c[i] = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+        data_usa_0217b18c[i] = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
         *data_usa_0217b18c[i] = *data_usa_0217b18c[0];
     }
     switch (i) {

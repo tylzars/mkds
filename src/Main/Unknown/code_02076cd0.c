@@ -125,14 +125,14 @@ void func_02077998(void) {
 void CreateChaseCamera(void) {
     Kart *a = GetKart(gRaceSetup->mEntryIndex);
 
-    gChaseCamera = HeapAlloc(GetHeap(func_020364e8()), 0x270);
+    gChaseCamera = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x270);
     SetupCameraBehindKart();
     GetKartForward(a, &gChaseCamera->mSavedKartForward);
     RefreshCameraProjection(gChaseCamera);
 }
 
 void func_020777ac(u32 a) {
-    void *h = GetHeap(func_020364e8());
+    void *h = GetHeap(GetCurrentHeapCall());
     u16 i;
     u16 n;
     CourseMapCamera *e;
@@ -200,7 +200,7 @@ void func_02077750(Unk02077750 *a, CourseMapCamera *b) {
 }
 
 void CreateChainCameraPair(void) {
-    void *h = GetHeap(func_020364e8());
+    void *h = GetHeap(GetCurrentHeapCall());
 
     gFirstChainCamera = HeapAlloc(h, 0x270);
     gSecondChainCamera = HeapAlloc(h, 0x270);
@@ -223,7 +223,7 @@ void CreateChainCameraPair(void) {
 }
 
 void CreateFirstChainCamera(void) {
-    gFirstChainCamera = HeapAlloc(GetHeap(func_020364e8()), 0x270);
+    gFirstChainCamera = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x270);
     gSecondChainCamera = NULL;
     SetupCamera(gFirstChainCamera);
     gFirstChainCamera->mCourseMapCamera = gCourseMap->mFirstChainStartEntry;

@@ -579,7 +579,7 @@ void CreateItemPool(ItemPool *q, s32 a, s32 *b) {
     s32 k;
     s32 i;
 
-    v = GetHeap(func_020364e8());
+    v = GetHeap(GetCurrentHeapCall());
     k = *b;
     n = gItemKinds[a].mObjectCount;
     s = gItemKinds[a].mObjectSize;

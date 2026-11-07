@@ -37,14 +37,14 @@ void CreateEmblemGrid(s32 side, s32 scrSide, s32 tableCount) {
     s32 i;
     void *heap;
 
-    heap = GetHeap(func_020364e8());
+    heap = GetHeap(GetCurrentHeapCall());
     gEmblemGrid = HeapAllocAligned(heap, 0x30, 0x20);
     gEmblemGrid->mSide = side;
     gEmblemGrid->mScrSide = scrSide;
     gEmblemGrid->mTableCount = tableCount;
-    heap = GetHeap(func_020364e8());
+    heap = GetHeap(GetCurrentHeapCall());
     gEmblemGrid->mUnk_18 = HeapAllocAligned(heap, gEmblemGrid->mTableCount * 2, 0x20);
-    heap = GetHeap(func_020364e8());
+    heap = GetHeap(GetCurrentHeapCall());
     gEmblemGrid->mBuffers[0] = HeapAllocAligned(heap, gEmblemGrid->mScrSide / 8 * (gEmblemGrid->mScrSide / 8), 0x20);
     MI_CpuFill8(gEmblemGrid->mBuffers[0], gEmblemGrid->mSide / 8 * gEmblemGrid->mSide / 8,
                 gEmblemGrid->mScrSide / 8 * (gEmblemGrid->mScrSide / 8));
@@ -53,13 +53,13 @@ void CreateEmblemGrid(s32 side, s32 scrSide, s32 tableCount) {
             gEmblemGrid->mBuffers[0][i * gEmblemGrid->mScrSide / 8 + j] = j + i * gEmblemGrid->mSide / 8;
         }
     }
-    heap = GetHeap(func_020364e8());
+    heap = GetHeap(GetCurrentHeapCall());
     gEmblemGrid->mBuffers[1] = HeapAllocAligned(heap, gEmblemGrid->mSide * gEmblemGrid->mSide + 0x40, 0x20);
-    heap = GetHeap(func_020364e8());
+    heap = GetHeap(GetCurrentHeapCall());
     gEmblemGrid->mBuffers[2] = HeapAllocAligned(heap, gEmblemGrid->mSide * gEmblemGrid->mSide + 0x40, 0x20);
-    heap = GetHeap(func_020364e8());
+    heap = GetHeap(GetCurrentHeapCall());
     gEmblemGrid->mBuffers[3] = HeapAllocAligned(heap, gEmblemGrid->mSide * gEmblemGrid->mSide, 0x20);
-    heap = GetHeap(func_020364e8());
+    heap = GetHeap(GetCurrentHeapCall());
     gEmblemGrid->mBuffers[4] = HeapAllocAligned(heap, gEmblemGrid->mSide * gEmblemGrid->mSide * 2, 0x20);
 }
 

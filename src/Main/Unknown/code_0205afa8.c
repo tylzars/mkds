@@ -18,7 +18,7 @@ s32 func_0205afa8(void) {
 
     a = data_0217aa18->mUnk_06[func_ov000_0219bb50()];
     b = GetKartStartRank(a);
-    c = func_0203c240(a) & 0x7ffff;
+    c = GetKartFinishTimeMs(a) & 0x7ffff;
     if (IsKartEnded(a) != 0 && gRaceProgress->mUnk_000[a].mStatus != 1 && data_0217aa14->mUnk_72c == FALSE) {
         c = 0x7ffff;
     }
@@ -28,7 +28,7 @@ s32 func_0205afa8(void) {
     if (gRaceProgress->mUnk_000[a].mStatus == 1) {
         d = 0;
     } else {
-        d = 6 - func_0203c8c0(a);
+        d = 6 - GetKartHighestLap(a);
     }
     e = (d << 19) & 0x380000;
     if (IsKartEnded(a) == 0 && data_0217aa14->mUnk_72c == FALSE) {

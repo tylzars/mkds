@@ -13,7 +13,7 @@
 void *data_ov001_021ca40c;
 
 void InitEndingScene(void) {
-    void *heap = GetHeap(func_020364e8());
+    void *heap = GetHeap(GetCurrentHeapCall());
 
     data_ov001_021ca40c = HeapAlloc(heap, 4);
     CreateEndingScene(heap);

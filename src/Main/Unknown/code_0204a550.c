@@ -107,7 +107,7 @@ BOOL func_0204a620(Unk02175650 *a) {
 }
 
 void InitEmblemScene(void) {
-    GetHeap(func_020364e8());
+    GetHeap(GetCurrentHeapCall());
     StopWvrAndWait();
     func_02043c14();
     func_ov001_021a23f4();

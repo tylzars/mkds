@@ -424,7 +424,7 @@ u8 *LoadItemSlotTableData(ItemSlotTable *param_1, u8 *param_2) {
     a = *param_2++;
     b = *param_2++;
     param_1->mRowCount = a;
-    param_1->mRows = HeapAlloc(GetHeap(func_020364e8()), (a + 1) * 0x24);
+    param_1->mRows = HeapAlloc(GetHeap(GetCurrentHeapCall()), (a + 1) * 0x24);
     tab = param_1->mRows;
     for (i = 0; i < b; i++) {
         for (j = 0; j < a; j++) {

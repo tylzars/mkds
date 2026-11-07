@@ -26,7 +26,7 @@
 #include "Main/Unknown/code_0203c8dc.h"
 
 void InitRaceStartSequence(void) {
-    gRaceStartSequence = HeapAlloc(GetHeap(func_020364e8()), 0xc);
+    gRaceStartSequence = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0xc);
     gRaceStartSequence->mCounting = FALSE;
     gRaceStartSequence->mDone = 0;
     gRaceStartSequence->mSequenceFrames = 0;

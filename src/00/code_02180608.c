@@ -108,7 +108,7 @@ void InitWiFiStates(void *heap, s32 b) {
     func_02125de0(heap, &c);
     LoadWiFiMenuSceneData();
     func_0202c65c(heap, func_ov000_021804f4());
-    func_02078d64(GetHeap(func_020364e8()));
+    func_02078d64(GetHeap(GetCurrentHeapCall()));
     RequestKartModelMenuCharacter(-1);
     RequestKartModelMenuKart(-1);
     func_020476ac();

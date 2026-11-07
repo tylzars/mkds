@@ -3,7 +3,7 @@
 
 u32 func_020ae754(void) {
     u32 value0;
-    value0 = (u32) func_020364e8();
+    value0 = (u32) GetCurrentHeapCall();
     value0 = (u32) GetHeap((void *) value0);
     return value0;
 }

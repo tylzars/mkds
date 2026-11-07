@@ -412,7 +412,7 @@ void func_ov001_021832cc(u32 b, Unk02188950 *d) {
 }
 
 void func_ov001_02183294(Unk02188950 *a) {
-    a->mUnk_000.mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    a->mUnk_000.mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
     InitSoundSource((SoundSource *) a->mUnk_000.mSound, 0xc, &a->mUnk_000.mPos);
     a->mUnk_000.mFarDistanceSquared = data_0217cbec[20];
 }

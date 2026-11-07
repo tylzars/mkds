@@ -20,7 +20,7 @@ u16 GetFollowedKartOrEntryIndex(void) {
 u16 func_020b4d2c(void) {
     u16 a;
 
-    a = func_0203c8c0(
+    a = GetKartHighestLap(
         (u16) (gRaceSetup->mRaceKind == RACE_KIND_DEMO ? gRaceSetup->mFollowedKartIndex : gRaceSetup->mEntryIndex));
     if (IsKartEnded((u16) (gRaceSetup->mRaceKind == RACE_KIND_DEMO ? gRaceSetup->mFollowedKartIndex
                                                                    : gRaceSetup->mEntryIndex)) == 0) {

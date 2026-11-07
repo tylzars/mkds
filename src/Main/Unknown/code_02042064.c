@@ -439,7 +439,7 @@ s32 LoadCourseMapRespawnsData(void *a, ...) {
     u16 t;
     CourseMapRespawn *p;
 
-    h = GetHeap(func_020364e8());
+    h = GetHeap(GetCurrentHeapCall());
     gCourseMap->mRespawnCount = ReadCourseMapSectionCount(&a);
     gCourseMap->mRespawns = a;
     if (gRaceSetup->mMode == MODE_BATTLE) {
@@ -515,7 +515,7 @@ void BuildCourseMapKeyedPlacementIndexByKey(void) {
         gCourseMap->mKeyedPlacementIndexByKey = NULL;
         return;
     }
-    gCourseMap->mKeyedPlacementIndexByKey = HeapAlloc(GetHeap(func_020364e8()), n * 2);
+    gCourseMap->mKeyedPlacementIndexByKey = HeapAlloc(GetHeap(GetCurrentHeapCall()), n * 2);
     for (i = 0; i < n; i++) {
         gCourseMap->mKeyedPlacementIndexByKey[gCourseMap->mKeyedPlacements[i].mKey] = i;
     }
@@ -681,7 +681,7 @@ void BuildCourseMapKind3ShapeLists(void) {
     u16 i;
     u16 j;
 
-    h = GetHeap(func_020364e8());
+    h = GetHeap(GetCurrentHeapCall());
     i = 0;
     for (j = 0; j < 8; j++) {
         gCourseMap->mKind3ShapeLists[j] = NULL;

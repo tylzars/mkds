@@ -102,7 +102,7 @@ void func_020d2950(MapObject *b, s32 c) {
 }
 
 void CreateMapObjectSoundSourceFalloff2(MapObject *a) {
-    a->mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    a->mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
     InitSoundSource(&a->mSound->mSoundSource, 2, &a->mPos);
     a->mFarDistanceSquared = gSoundFalloffs[2].mUnk_20;
     SetSoundSourceEnabled(&a->mSound->mSoundSource, 0);
@@ -112,7 +112,7 @@ void CreateMapObjectSoundSourceFalloff2(MapObject *a) {
 }
 
 Unk0210b7ec *func_020d286c(MapObject *a) {
-    a->mSound = HeapAlloc(GetHeap(func_020364e8()), 0x60);
+    a->mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x60);
     InitSoundSource(&a->mSound->mSoundSource, 2, &a->mPos);
     a->mFarDistanceSquared = gSoundFalloffs[2].mUnk_20;
     SetSoundSourceEnabled(&a->mSound->mSoundSource, 0);
@@ -123,7 +123,7 @@ Unk0210b7ec *func_020d286c(MapObject *a) {
 }
 
 void CreateMapObjectSoundSourceFalloff3(MapObject *a) {
-    a->mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    a->mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
     InitSoundSource(&a->mSound->mSoundSource, 3, &a->mPos);
     a->mFarDistanceSquared = gSoundFalloffs[3].mUnk_20;
     SetSoundSourceEnabled(&a->mSound->mSoundSource, 0);
@@ -133,7 +133,7 @@ void CreateMapObjectSoundSourceFalloff3(MapObject *a) {
 }
 
 void CreateMapObjectSoundSourceFalloff4(MapObject *a) {
-    a->mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    a->mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
     InitSoundSource(&a->mSound->mSoundSource, 4, &a->mPos);
     a->mFarDistanceSquared = gSoundFalloffs[4].mUnk_20;
     SetSoundSourceEnabled(&a->mSound->mSoundSource, 0);

@@ -37,11 +37,11 @@ void func_02039cbc(void) {
     void *d;
     void *e;
     u32 f;
-    f = func_02039e08(GetHeap(func_020364e8()), &a, &e, &b, &c, &d);
+    f = func_02039e08(GetHeap(GetCurrentHeapCall()), &a, &e, &b, &c, &d);
     CARD_SetPulledOutCallback(func_02039e00);
     func_0205e180(a);
     InitSceneRunState(a);
-    func_020486d4(a);
+    InitArchiveSlots(a);
     func_0204af70(a);
     InitConnection(a);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {

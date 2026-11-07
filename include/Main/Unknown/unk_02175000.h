@@ -251,10 +251,10 @@ typedef struct Unk021759c8 {
             /* 8bc */ void *mUnk_8bc;
         };
     };
-    /* 8c0 */ u32 mUnk_8c0;
-    /* 8c4 */ void *mUnk_8c4;
+    /* 8c0 */ u32 mFileTableSize;
+    /* 8c4 */ void *mFileTable;
     /* 8c8 */ Unk021759c8_8c8 mUnk_8c8;
-    /* 968 */ FSFile mUnk_968;
+    /* 968 */ FSFile mFile;
     /* 9b0 */ ArchiveBuffer mBuffers[16];
     /* a70 */ void *mUnk_a70;
     /* a74 */ void *mUnk_a74;

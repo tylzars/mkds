@@ -8,7 +8,7 @@ u32 InitMapObjectUpdateList(MapObjectList *arg0) {
     u32 value1;
     u32 value4;
     value4 = (value0) + (0u);
-    value0 = (u32) func_020364e8();
+    value0 = (u32) GetCurrentHeapCall();
     value0 = (u32) GetHeap((void *) value0);
     value1 = *(const u16 *) ((value4) + 4u);
     value1 = (value1 << 2);

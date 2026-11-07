@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void *func_02036c4c(void *arg0, u32 arg1);
+void *CreateExpHeapOverBlock(void *start, u32 size);

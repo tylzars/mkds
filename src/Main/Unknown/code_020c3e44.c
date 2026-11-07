@@ -78,7 +78,7 @@ u32 GetRaceGoalMUpdateFrames(void) {
 }
 
 void InitRaceGoalM(void) {
-    gRaceGoalM = HeapAlloc(GetHeap(func_020364e8()), 0x1c);
+    gRaceGoalM = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x1c);
     gRaceGoalM->mUnk_00 = 1;
     gRaceGoalM->mUpdateFrames = 0;
     gRaceGoalM->mRankIndex = 0;
@@ -331,7 +331,7 @@ void DrawRaceGoalMMissionRun(Unk020c06c4 *a) {
 }
 
 void InitRaceLinkLevel(void) {
-    gRaceLinkLevel = HeapAlloc(GetHeap(func_020364e8()), 0x14);
+    gRaceLinkLevel = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x14);
     gRaceLinkLevel->mUnk_00 = 0;
     gRaceLinkLevel->mUnk_04 = 0;
     gRaceLinkLevel->mUnk_08 = 0;
@@ -474,7 +474,7 @@ void InitRaceStartGp(void) {
     s32 s;
     s32 i;
 
-    gRaceStartGp = HeapAlloc(GetHeap(func_020364e8()), 0x41c);
+    gRaceStartGp = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x41c);
     for (i = 0; i < 0x80; i++) {
         Unk020c06c4_08 *e = &gRaceStartGp->mMainOam.mUnk_000.mUnk_00[i];
         e->mUnk_0a = 3;
@@ -575,7 +575,7 @@ void InitRaceTaPositions(void) {
     if (gRaceSetup->mMode != MODE_TIME_ATTACK) {
         return;
     }
-    gRaceTaPositions = HeapAlloc(GetHeap(func_020364e8()), 0x910);
+    gRaceTaPositions = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x910);
     gRaceTaPositions->mVisible = 1;
     for (a = 0; a < gRaceSetup->mKartCount; a++) {
         gRaceTaPositions->mKartVisible[a] = 1;

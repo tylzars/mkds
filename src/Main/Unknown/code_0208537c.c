@@ -58,7 +58,7 @@ void InitKartAiShared(void) {
     u16 i;
     BOOL z;
     s32 m;
-    gKartAiShared = HeapAlloc(GetHeap(func_020364e8()), 0x144);
+    gKartAiShared = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x144);
     z = FALSE;
     m = -1;
     for (i = 0; i < 8; i++) {

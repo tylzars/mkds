@@ -58,7 +58,7 @@ void func_02057d9c(void) {
 }
 
 void func_02057d7c(void) {
-    func_02001ba0(GetHeap(func_020364e8()));
+    func_02001ba0(GetHeap(GetCurrentHeapCall()));
 }
 
 void func_02057d70(void) {

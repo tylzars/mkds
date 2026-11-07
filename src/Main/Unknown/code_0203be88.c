@@ -77,7 +77,7 @@ u32 func_0203c0bc(void) {
 }
 
 void InitTitleScene(void) {
-    GetHeap(func_020364e8());
+    GetHeap(GetCurrentHeapCall());
     ClearLcdcBankAndStartWvrAndWait();
     CreateTitleScene();
     func_02043c14();
@@ -136,7 +136,7 @@ void func_0203bf04(Unk0203bf04_a *a, Unk0203bf04_b *b) {
 #pragma thumb on
 
 u8 *func_0203bedc(void *a) {
-    Unk0203ba84 *p;
+    CharacterKartPicks *p;
     void *t;
     p = HeapAlloc(a, 0x48);
     t = func_02056444(a);
@@ -146,24 +146,24 @@ u8 *func_0203bedc(void *a) {
 }
 
 void func_0203bec0(u8 *a) {
-    Unk0203ba84 *p = (Unk0203ba84 *) a;
+    CharacterKartPicks *p = (CharacterKartPicks *) a;
     u8 i;
-    p->mUnk_00 = 0;
-    p->mUnk_01 = 0;
+    p->mKartGivenBits = 0;
+    p->mCharacterGivenBits = 0;
     for (i = 0; i < 8; i++) {
-        p->mUnk_04[i] = -1;
-        p->mUnk_24[i] = -1;
+        p->mCharacterIndices[i] = -1;
+        p->mKartIndices[i] = -1;
     }
 }
 
 void func_0203bea4(u8 *a, u32 b, u32 c) {
-    Unk0203ba84 *p = (Unk0203ba84 *) a;
-    p->mUnk_01 |= 1 << b;
-    p->mUnk_04[b] = c;
+    CharacterKartPicks *p = (CharacterKartPicks *) a;
+    p->mCharacterGivenBits |= 1 << b;
+    p->mCharacterIndices[b] = c;
 }
 
 void func_0203be88(u8 *a, u32 b, u32 c) {
-    Unk0203ba84 *p = (Unk0203ba84 *) a;
-    p->mUnk_00 |= 1 << b;
-    p->mUnk_24[b] = c;
+    CharacterKartPicks *p = (CharacterKartPicks *) a;
+    p->mKartGivenBits |= 1 << b;
+    p->mKartIndices[b] = c;
 }

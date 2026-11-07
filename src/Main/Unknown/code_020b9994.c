@@ -56,7 +56,7 @@
 void func_020bb530(void) {
     Unk0217b3cc *p;
 
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     data_0217b3cc = p;
     p->mUnk_00 = 0;
     data_0217b3cc->mUnk_04 = 0;
@@ -428,7 +428,7 @@ void func_020ba520(void) {
     Unk0217b3c8 *q;
     s32 v;
 
-    q = HeapAlloc(GetHeap(func_020364e8()), 0xc);
+    q = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0xc);
     data_0217b3c8 = q;
     v = gRaceSetup->mMode;
     switch (v) {

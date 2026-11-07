@@ -287,13 +287,13 @@ void func_ov001_0218cdb8(Unk02188950 *e) {
     b->mUnk_0a4 = (struct Unk0218dabc *) a;
     c->mUnk_0a4 = (struct Unk0218dabc *) b;
     d->mUnk_0a4 = (struct Unk0218dabc *) c;
-    e->mUnk_000.mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    e->mUnk_000.mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
     InitSoundSource(&e->mUnk_000.mSound->mSoundSource, 0xd, &e->mUnk_000.mPos);
     e->mUnk_000.mFarDistanceSquared = data_0217cbec[0x1d];
 }
 
 void func_ov001_0218cd80(Unk02188950 *a) {
-    a->mUnk_000.mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    a->mUnk_000.mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
     InitSoundSource(&a->mUnk_000.mSound->mSoundSource, 0xd, &a->mUnk_000.mPos);
     a->mUnk_000.mFarDistanceSquared = data_0217cbec[0x1d];
 }

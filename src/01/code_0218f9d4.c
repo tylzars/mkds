@@ -67,7 +67,7 @@
 #include "Main/Unknown/code_02061654.h"
 
 void func_ov001_02192890(Unk02188950 *a) {
-    a->mUnk_000.mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    a->mUnk_000.mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
     InitSoundSource((SoundSource *) a->mUnk_000.mSound, 0xc, &a->mUnk_000.mPos);
     a->mUnk_000.mFarDistanceSquared = data_0217cbec[0x14];
 }

@@ -53,7 +53,7 @@ void InitIronBall(IronBall *p) {
     Vec3 v = data_02167974;
 
     SetMapObjectScale(&p->mUnk_000, &v);
-    p->mUnk_000.mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    p->mUnk_000.mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
     InitSoundSource(&p->mUnk_000.mSound->mSoundSource, 10, &p->mUnk_000.mPos);
     p->mUnk_000.mFarDistanceSquared = gSoundFalloffs[10].mUnk_20;
     p->mUnk_128 = DecimalNonZeroDigitsToBitMask(p->mUnk_000.mCourseMapRow->mUnk_34);

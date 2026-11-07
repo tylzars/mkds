@@ -187,16 +187,17 @@ u16 KeyboardCursorCallback(s32 a, u16 b) {
 void InitKeyboardTextEntry(s32 a, s32 b, s32 c) {
     KeyboardTextEntry *p;
 
-    gKeyboardTextEntry = HeapAlloc(GetHeap(func_020364e8()), 0x78);
+    gKeyboardTextEntry = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x78);
     gKeyboardTextEntry->mTextCapacity = c;
     gKeyboardTextEntry->mTextLimit = c;
     gKeyboardTextEntry->mTextIndex = 0;
     gKeyboardTextEntry->mUnk_48 = 0;
-    gKeyboardTextEntry->mText = HeapAlloc(GetHeap(func_020364e8()), (c + 1) * 2);
+    gKeyboardTextEntry->mText = HeapAlloc(GetHeap(GetCurrentHeapCall()), (c + 1) * 2);
     gKeyboardTextEntry->mBg2ScrSize = b * (a * 2);
-    gKeyboardTextEntry->mBg2Scr = HeapAlloc(GetHeap(func_020364e8()), gKeyboardTextEntry->mBg2ScrSize);
+    gKeyboardTextEntry->mBg2Scr = HeapAlloc(GetHeap(GetCurrentHeapCall()), gKeyboardTextEntry->mBg2ScrSize);
     gKeyboardTextEntry->mBg2CharSize = 0x4020;
-    gKeyboardTextEntry->mBg2Char = HeapAllocAligned(GetHeap(func_020364e8()), gKeyboardTextEntry->mBg2CharSize, 0x20);
+    gKeyboardTextEntry->mBg2Char =
+        HeapAllocAligned(GetHeap(GetCurrentHeapCall()), gKeyboardTextEntry->mBg2CharSize, 0x20);
     p = gKeyboardTextEntry;
     InitKeyboardKeysAndCanvas(func_020b403c(0), p->mBg2Char, p->mBg2Scr, a, b, 0);
     SetKeyboardCursorCallback(KeyboardCursorCallback);

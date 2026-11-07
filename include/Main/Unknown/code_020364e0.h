@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-typedef struct Unk02036590 Unk02036590;
+typedef struct HeapCall HeapCall;
 
-void *GetHeap(Unk02036590 *a);
-void *func_020364e8(void);
-u32 func_020364f8(Unk02036590 *a, u32 b);
+void *GetHeap(HeapCall *call);
+void *GetCurrentHeapCall(void);
+u32 RunHeapCall(HeapCall *call, u32 argument);

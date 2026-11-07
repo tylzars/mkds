@@ -14,7 +14,7 @@ typedef struct Unk0209bef0 {
 
 #pragma thumb on
 void *CreateMapObjectUpdateList(void *arg0, void *arg1, void *arg2) {
-    Unk0209bef0 *p = HeapAlloc(GetHeap(func_020364e8()), 40);
+    Unk0209bef0 *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 40);
     p->mInit = arg0;
     p->mBeforeObjects = arg2;
     p->mForEachObject = arg1;
@@ -26,7 +26,7 @@ void *CreateMapObjectUpdateList(void *arg0, void *arg1, void *arg2) {
 #pragma thumb on
 // The 1 in the name is the value stored at +0x18, not a slot of the kind row.
 void *CreateMapObjectDrawList1(void *arg0, void *arg1, void *arg2) {
-    Unk0209bef0 *p = HeapAlloc(GetHeap(func_020364e8()), 44);
+    Unk0209bef0 *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 44);
     p->mUnk_18 = 1;
     p->mInit = arg0;
     p->mBeforeObjects = arg2;
@@ -38,7 +38,7 @@ void *CreateMapObjectDrawList1(void *arg0, void *arg1, void *arg2) {
 
 #pragma thumb on
 void *CreateMapObjectDrawList2(void *arg0, void *arg1, void *arg2) {
-    Unk0209bef0 *p = HeapAlloc(GetHeap(func_020364e8()), 44);
+    Unk0209bef0 *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 44);
     p->mUnk_18 = 2;
     p->mInit = arg0;
     p->mBeforeObjects = arg2;

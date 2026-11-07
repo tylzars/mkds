@@ -3,7 +3,7 @@
 
 void *func_020b6800(void) {
     void *value0;
-    value0 = func_020364e8();
+    value0 = GetCurrentHeapCall();
     value0 = GetHeap(value0);
     return value0;
 }

@@ -65,7 +65,7 @@ void func_0205e180(void *a) {
 void func_0205e0b0(void) {
     void *h;
     s32 m;
-    h = GetHeap(func_020364e8());
+    h = GetHeap(GetCurrentHeapCall());
     switch (data_0217aa20->mUnk_00) {
         case 0:
             if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {

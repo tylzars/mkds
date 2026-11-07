@@ -300,7 +300,7 @@ u32 IsInOverlayRange(struct Unk021000d0 *address) {
 }
 
 void InitResultScene(void) {
-    func_0202a658(GetHeap(func_020364e8()));
+    func_0202a658(GetHeap(GetCurrentHeapCall()));
 }
 
 void ReleaseResultScene(void) {

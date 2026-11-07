@@ -528,7 +528,7 @@ s32 func_020d6910(s32 a, MapObject *b) {
 }
 
 Unk02156adc *CreateRockKindData(void) {
-    Unk02156adc *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    Unk02156adc *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     *p = data_02156adc;
     p->mUnk_38 = 0x3e8000;
     p->mUnk_3c = -0x3e8000;
@@ -536,7 +536,7 @@ Unk02156adc *CreateRockKindData(void) {
 }
 
 RockDrawList *CreateRockDrawList(void) {
-    RockDrawList *p = HeapAlloc(GetHeap(func_020364e8()), 0x5c);
+    RockDrawList *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x5c);
     data_0217b650 = p;
     *p = data_02156a80;
     func_020d49d8(&data_0217b650);
@@ -544,7 +544,7 @@ RockDrawList *CreateRockDrawList(void) {
 }
 
 RockDrawList *CreateRock2DrawList(void) {
-    RockDrawList *p = HeapAlloc(GetHeap(func_020364e8()), 0x5c);
+    RockDrawList *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x5c);
     data_0217b650 = p;
     *p = data_02156a24;
     func_020d49d8(&data_0217b650);
@@ -552,7 +552,7 @@ RockDrawList *CreateRock2DrawList(void) {
 }
 
 RockUpdateList *CreateRockUpdateList(void) {
-    RockUpdateList *p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
+    RockUpdateList *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     data_0217b654 = p;
     *p = data_021569fc;
     func_020e6f50(&data_0217b654);

@@ -279,7 +279,7 @@ u8 CountEmblemEntries(void) {
 #pragma thumb on
 
 void func_0205e530(void) {
-    func_0202dfd4(GetHeap(func_020364e8()));
+    func_0202dfd4(GetHeap(GetCurrentHeapCall()));
 }
 
 void func_0205e528(void) {

@@ -44,7 +44,7 @@
 #include "Main/Unknown/code_02044618.h"
 
 void *func_020ada10(void) {
-    return GetHeap(func_020364e8());
+    return GetHeap(GetCurrentHeapCall());
 }
 
 u32 GetTitleBlendDone(void) {

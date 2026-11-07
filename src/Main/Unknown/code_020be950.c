@@ -97,7 +97,7 @@ BOOL CreateRaceHudSubScreenCells(RaceHudSubScreenCells **a, s32 b) {
             return FALSE;
         }
     }
-    *a = HeapAlloc(GetHeap(func_020364e8()), 0x14);
+    *a = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x14);
     if (t != FALSE) {
         (*a)->mObjects = (Unk0217b498_00 **) func_0210008c(p);
     } else {
@@ -105,7 +105,7 @@ BOOL CreateRaceHudSubScreenCells(RaceHudSubScreenCells **a, s32 b) {
     }
     (*a)->mCellCount = 0;
     (*a)->mObjectCount = n;
-    (*a)->mUnk_0c = HeapAlloc(GetHeap(func_020364e8()), n * 8);
+    (*a)->mUnk_0c = HeapAlloc(GetHeap(GetCurrentHeapCall()), n * 8);
     for (i = 0; i < n; i++) {
         ComputeRaceHudSubScreenCoursePosition(&(*a)->mObjects[i]->mPos, &(*a)->mUnk_0c[i]);
     }
@@ -117,10 +117,10 @@ BOOL CreateRaceHudSubScreenCellsWithCount(RaceHudSubScreenCells **a, s32 b) {
     if (b == 0) {
         return FALSE;
     }
-    *a = HeapAlloc(GetHeap(func_020364e8()), 0x14);
+    *a = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x14);
     (*a)->mCellCount = 0;
     (*a)->mObjectCount = b;
-    (*a)->mUnk_0c = HeapAlloc(GetHeap(func_020364e8()), b * 8);
+    (*a)->mUnk_0c = HeapAlloc(GetHeap(GetCurrentHeapCall()), b * 8);
     (*a)->mCells = func_020ae730(b, 0x14);
     return TRUE;
 }
@@ -251,7 +251,7 @@ void DrawRaceHudSubScreenCellsScaled(Unk020c06c4 *a, RaceHudSubScreenCells *b, s
 }
 
 void InitRaceHudSubScreenCellGroups(void) {
-    gRaceHudSubScreenCellGroups = HeapAlloc(GetHeap(func_020364e8()), 0x25c);
+    gRaceHudSubScreenCellGroups = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x25c);
     gRaceHudSubScreenCellGroups->mUnk_000 = 0;
     gRaceHudSubScreenCellGroups->mUnk_004 = 0;
     gRaceHudSubScreenCellGroups->mUnk_008 = 0;

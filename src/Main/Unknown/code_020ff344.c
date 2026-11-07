@@ -56,7 +56,7 @@ void InitDram(Dram *a, struct CourseMapRow *b) {
 Unk02100004 *func_020ffacc(void) {
     Unk02100004 *p;
 
-    p = GetHeap(func_020364e8());
+    p = GetHeap(GetCurrentHeapCall());
     p = HeapAlloc(p, 0x40);
     *p = data_0215a068;
     return p;

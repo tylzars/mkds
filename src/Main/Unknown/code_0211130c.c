@@ -19,7 +19,7 @@
 
 void InitRecordScene(s16 *a) {
     void *p;
-    p = GetHeap(func_020364e8());
+    p = GetHeap(GetCurrentHeapCall());
     data_0217d33c = HeapAlloc(p, 0x404);
     data_0217d340 = HeapAlloc(p, 0x404);
     InitRecordSceneObject(p, *a);

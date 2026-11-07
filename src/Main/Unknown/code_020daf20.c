@@ -56,14 +56,14 @@
 
 Unk020dbf2c *CreateDossunKindData(void) {
     Unk020dbf2c *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     *p = data_0215828c;
     return p;
 }
 
 Unk020dbed0 *CreateDossunDrawList(void) {
     Unk020dbed0 *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     data_0217b698 = p;
     *p = data_02158260;
     func_020d49d8(&data_0217b698);
@@ -72,7 +72,7 @@ Unk020dbed0 *CreateDossunDrawList(void) {
 
 Unk020dbe74 *CreateDossunUpdateList(void) {
     Unk020dbe74 *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     data_0217b690 = p;
     *p = data_02158238;
     func_020e6f50(&data_0217b690);
@@ -416,14 +416,14 @@ void InitDossun(Dossun *p, CourseMapRow *a) {
 
 Unk020db268 *CreateKuriboKindData(void) {
     Unk020db268 *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     *p = data_021581b8;
     return p;
 }
 
 Unk020db20c *CreateKuriboDrawList(void) {
     Unk020db20c *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     data_0217b680 = p;
     *p = data_0215818c;
     func_020d49d8(&data_0217b680);
@@ -432,7 +432,7 @@ Unk020db20c *CreateKuriboDrawList(void) {
 
 Unk020db1b0 *CreateKuriboUpdateList(void) {
     Unk020db1b0 *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     data_0217b684 = p;
     *p = data_02158164;
     func_020e6f50(&data_0217b684);

@@ -2,15 +2,16 @@
 
 #include "types.h"
 
-// Object of func_0203ba84 and func_0203bc64: flag bytes at 0 and 1, two arrays of eight words and a pointer at 0x44.
-typedef struct Unk0203ba84 {
-    /* 00 */ u8 mUnk_00;
-    /* 01 */ u8 mUnk_01;
+// The characters and karts of eight entries; a set bit in the given bits means the caller already set that entry's
+// value.
+typedef struct CharacterKartPicks {
+    /* 00 */ u8 mKartGivenBits;
+    /* 01 */ u8 mCharacterGivenBits;
     /* 02 */ u8 mUnk_02[2];
-    /* 04 */ s32 mUnk_04[8];
-    /* 24 */ s32 mUnk_24[8];
+    /* 04 */ s32 mCharacterIndices[8];
+    /* 24 */ s32 mKartIndices[8];
     /* 44 */ struct Unk0205fd2c *mUnk_44;
-} Unk0203ba84;
+} CharacterKartPicks;
 
-void func_0203ba84(u8 *b);
-void func_0203bc64(u8 *b);
+void PickRandomCharacters(u8 *rawPicks);
+void PickRandomKarts(u8 *rawPicks);

@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/unk_02029930.h" // Unk02029930_f8
 #include "Main/Unknown/code_02025ebc.h" // Unk02025ebc
-#include "Main/Unknown/code_02036588.h" // Unk02036590
+#include "Main/Unknown/code_02036588.h" // HeapCall
 #include "Main/Unknown/unk_02153000.h" // Unk021535b4
 #include "Main/Unknown/code_020b4000.h" // Ncgr, Nscr, Nclr
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c, Unk0201ea30
@@ -110,7 +110,7 @@ typedef struct Unk02174e3c_4c {
     /* 14 */ u16 mName[0xc];
 } Unk02174e3c_4c;
 
-extern Unk02036590 data_02174e88;
+extern HeapCall gRootHeapCall;
 
 // 0x1c-byte part of Unk02174e14, at 0x00, 0x1c and 0x38; InitSelectCharacter has two on the stack, one filled by
 // func_02025b84. ResultsBattle has four from 0x48.
@@ -374,10 +374,10 @@ typedef struct Unk02174e68 {
 extern Unk02174e68 *data_02174e68;
 struct Unk02174e6c;
 extern struct Unk02174e6c *data_02174e6c;
-extern Unk02036590 *data_02174e70;
+extern HeapCall *gCurrentHeapCall;
 
 // Object at data_02174e78: mUnk_0c is the pointer func_020365ac returns; mUnk_10 overlaps the first member of
-// data_02174e88.
+// gRootHeapCall.
 typedef struct Unk02174e78 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;

@@ -177,7 +177,7 @@ void DrawRaceHudSubScreenItemCells(Unk020c06c4 *a) {
 s32 CreateRaceHudSubScreenKarts(void) {
     s32 i;
 
-    gRaceHudSubScreenKarts = HeapAlloc(GetHeap(func_020364e8()), 0x194);
+    gRaceHudSubScreenKarts = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x194);
     CreateRaceHudSubScreenCellsWithCount(&gRaceHudSubScreenKarts->mUnk_190, 0x18);
     for (i = 0; i < 8; i++) {
         gRaceHudSubScreenKarts->mUnk_000[i] = 0;
@@ -513,7 +513,7 @@ BOOL CreateRaceHudSubScreenSecondHand(void) {
     if (n == 0) {
         return FALSE;
     }
-    gRaceHudSubScreenSecondHand = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    gRaceHudSubScreenSecondHand = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
     gRaceHudSubScreenSecondHand->mObjects = func_02100084(a);
     gRaceHudSubScreenSecondHand->mUnk_04 = n;
     gRaceHudSubScreenSecondHand->mObjectCount = n;

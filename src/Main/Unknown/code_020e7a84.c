@@ -58,9 +58,9 @@
 #pragma thumb on
 
 void CreateModelAnimation(u32 param_1, void *param_2, void **param_3, void *param_4, void *param_5) {
-    *param_3 = HeapAlloc(GetHeap(func_020364e8()), 0x38);
-    InitModelAnimation(param_1, *param_3, param_2, 1, GetHeap(func_020364e8()), param_4);
-    InitModelAnimationEntries(*param_3, param_5, GetHeap(func_020364e8()));
+    *param_3 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x38);
+    InitModelAnimation(param_1, *param_3, param_2, 1, GetHeap(GetCurrentHeapCall()), param_4);
+    InitModelAnimationEntries(*param_3, param_5, GetHeap(GetCurrentHeapCall()));
     SetModelAnimation(*param_3, 0);
 }
 
@@ -194,7 +194,7 @@ void UpdateJg(void) {
         return;
     }
     if (gJgLapAndReverseEnabled != 0) {
-        lap = func_0203c8c0(gJgKartIndex);
+        lap = GetKartHighestLap(gJgKartIndex);
         if (gJgHighestLap < (u32) lap) {
             Vec3 v;
             gJgHighestLap = lap;

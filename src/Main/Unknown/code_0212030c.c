@@ -73,7 +73,7 @@ void DeleteWiFiSessionHeap(void) {
 
     if (gWiFiSession->mHeap != NULL) {
         NNS_FndDestroyExpHeap(gWiFiSession->mHeap);
-        HeapFree(GetHeap(func_020364e8()), gWiFiSession->mHeapBuffer);
+        HeapFree(GetHeap(GetCurrentHeapCall()), gWiFiSession->mHeapBuffer);
     }
     gWiFiSession->mHeapCreated = FALSE;
     p = &gWiFiSession->mUnk_0008;

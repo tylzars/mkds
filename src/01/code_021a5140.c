@@ -29,7 +29,7 @@ void InitEmblem(void) {
     Unk020391d4 unk;
     Unk0217aa08_04 *p;
 
-    gEmblem = HeapAlloc(GetHeap(func_020364e8()), 0x10c0);
+    gEmblem = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x10c0);
     InitDisplaySettingsDesc(&unk);
     unk.mUnk_06 = 1;
     unk.mUnk_08 = 0;
@@ -43,7 +43,7 @@ void InitEmblem(void) {
     unk.mUnk_04 = 0x10;
     unk.mUnk_1c = 4;
     unk.mUnk_1e = 8;
-    InitDisplayFromSettings(CreateDisplaySettings(GetHeap(func_020364e8()), &unk));
+    InitDisplayFromSettings(CreateDisplaySettings(GetHeap(GetCurrentHeapCall()), &unk));
     LoadNclrData(&gEmblem->mEmblemMONclr, (FindSceneFile("emblem_m_o.NCLR")));
     LoadNcgrData2(&gEmblem->mEmblemMONcgr, (FindSceneFile("emblem_m_o.NCGR")));
     LoadNcerData(&gEmblem->mEmblemMNcer, FindSceneFile("emblem_m.NCER"));
@@ -76,7 +76,7 @@ void InitEmblem(void) {
     LoadNscrData(&gEmblem->mEmblemCameraSDSNscr, (FindSceneFile("emblem_camera_s_DS.NSCR")));
     LoadNscrData(&gEmblem->mEmblemCameraSBgNscr, (FindSceneFile("emblem_camera_s_bg.NSCR")));
     CreateEmblemInput();
-    func_02078c58(GetHeap(func_020364e8()));
+    func_02078c58(GetHeap(GetCurrentHeapCall()));
     InitEmblemChoises();
     func_020ae6d4(&gEmblem->mUnk_0000, &gEmblem->mUnk_0404);
     func_ov001_021a6238(0x40, 0x10, 0x20, 0x80, 0x10);

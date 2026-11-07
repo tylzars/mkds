@@ -129,7 +129,7 @@ void func_020733ec(Kart *p) {
     Vec3 *v;
     u16 i;
 
-    h = GetHeap(func_020364e8());
+    h = GetHeap(GetCurrentHeapCall());
     p->mUnk_230 = func_02071568;
     InitKartPhysicalParams(p);
     func_02071e28(p);

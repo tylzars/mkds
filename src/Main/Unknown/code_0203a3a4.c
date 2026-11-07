@@ -134,7 +134,7 @@ void InitRaceScene(void) {
     s32 x;
     WiFiSession *q;
     BOOL f;
-    p = GetHeap(func_020364e8());
+    p = GetHeap(GetCurrentHeapCall());
     CreateOverlayExpHeap();
     if (gRaceSetup->mRaceKind == RACE_KIND_START_GP || gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
         StopWvrAndWait();
@@ -183,7 +183,7 @@ void InitRaceScene(void) {
         }
     } else {
         if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
-            func_02046fb4(GetHeap(func_020364e8()));
+            func_02046fb4(GetHeap(GetCurrentHeapCall()));
         }
     }
 }

@@ -80,28 +80,28 @@ void InitChoropu(Unk020e1e98 *a, struct CourseMapRow *b) {
 #pragma thumb off
 
 void *CreateCarAKindData(void) {
-    Unk020e03f8 *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    Unk020e03f8 *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
 
     *p = data_02158b3c;
     return p;
 }
 
 void *CreateTruckAKindData(void) {
-    Unk020e03f8 *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    Unk020e03f8 *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
 
     *p = data_02158afc;
     return p;
 }
 
 void *CreateBusAKindData(void) {
-    Unk020e03f8 *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    Unk020e03f8 *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
 
     *p = data_02158abc;
     return p;
 }
 
 void *func_020e2db8(void) {
-    Unk020e03f8 *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    Unk020e03f8 *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
 
     data_0217b79c = (Unk0217b79c *) p;
     *p = data_02158a7c;
@@ -110,7 +110,7 @@ void *func_020e2db8(void) {
 }
 
 void *func_020e2d5c(void) {
-    Unk020e0340 *p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
+    Unk020e0340 *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
 
     data_0217b7a4 = p;
     *p = data_02158a54;

@@ -5,18 +5,18 @@
 
 #pragma thumb on
 
-void func_020487e0(const void *a, void *b, u32 c) {
-    MI_UncompressLZ8(a, b);
-    DC_StoreRange(b, c);
+void func_020487e0(const void *source, void *destination, u32 size) {
+    MI_UncompressLZ8(source, destination);
+    DC_StoreRange(destination, size);
 }
 
-void func_020487a0(int a) {
-    ArchiveBuffer *v1;
-    v1 = &data_021759c8->mBuffers[a];
-    v1->mHeap = NULL;
-    v1->mUnk_08 = v1->mUnk_08 & (0xe0000000u);
-    v1->mUnk_08 = v1->mUnk_08 | (0x20000000u);
-    v1->mUnk_08 = v1->mUnk_08 & (0xbfffffffu);
+void ResetArchiveBuffer(int bufferIndex) {
+    ArchiveBuffer *buffer;
+    buffer = &data_021759c8->mBuffers[bufferIndex];
+    buffer->mHeap = NULL;
+    buffer->mUnk_08 = buffer->mUnk_08 & (0xe0000000u);
+    buffer->mUnk_08 = buffer->mUnk_08 | (0x20000000u);
+    buffer->mUnk_08 = buffer->mUnk_08 & (0xbfffffffu);
 }
 
 #pragma thumb off

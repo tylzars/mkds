@@ -70,7 +70,7 @@ void func_020875b4(void) {
     Unk02086250 *q;
     s32 w;
     BOOL k;
-    v1 = GetHeap(func_020364e8());
+    v1 = GetHeap(GetCurrentHeapCall());
     if (gRaceSetup->mMode == MODE_GRAND_PRIX) {
         f = TRUE;
     } else {
@@ -255,7 +255,7 @@ void func_020872a4(void) {
     Unk02086250_1c *q;
     Unk02086098 *e1;
     Unk02086098 *e3;
-    v1 = GetHeap(func_020364e8());
+    v1 = GetHeap(GetCurrentHeapCall());
     UploadKartEmblems();
     data_0217aedc = 0;
     gKartEmblemPlltBuffer = HeapAllocAligned(v1, 0x20, -4);

@@ -497,7 +497,7 @@ BOOL IsAllGrandPrixRecordsTopRank(void) {
 }
 
 void LoadStaffGhostTime(void *a) {
-    func_02048590(gStaffGhostTimeBinName, a, (void **) &gStaffGhostTime);
+    LoadFileIntoHeap(gStaffGhostTimeBinName, a, (void **) &gStaffGhostTime);
 }
 
 // TRUE when the time is smaller than entry a - 1 of the staff ghost times.

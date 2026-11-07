@@ -18,7 +18,7 @@ void CreateItemKinds(void) {
     s32 m;
     u32 v;
 
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x930);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x930);
     gItemKinds = p;
     p[0] = gItemKindKouraG;
     p[1] = gItemKindKouraR;

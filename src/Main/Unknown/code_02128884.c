@@ -20,7 +20,7 @@
 #pragma thumb on
 void InitKeyboardScene(s16 *a) {
     void *h;
-    h = GetHeap(func_020364e8());
+    h = GetHeap(GetCurrentHeapCall());
     data_0217d3fc = HeapAlloc(h, 0x808);
     InitKeyboard(h, a[0]);
 }

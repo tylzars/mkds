@@ -396,7 +396,7 @@ void InitCollisionSlots(void) {
     s16 i;
     s16 j;
 
-    h = GetHeap(func_020364e8());
+    h = GetHeap(GetCurrentHeapCall());
     gCollisionSlotCount = 0;
     gFirstFreeCollisionSlot = 0;
     gCollisionSlotHighEnds = HeapAlloc(h, 0x400);

@@ -149,7 +149,7 @@ void func_ov001_02180800(void) {
 #pragma thumb off
 
 void *func_ov001_021807e4(void) {
-    return GetHeap(func_020364e8());
+    return GetHeap(GetCurrentHeapCall());
 }
 
 void func_ov001_021807a8(Unk02180774 *p0, u32 p1, u32 p2, u32 p3, u32 p4, u32 p5, u32 p6, u32 p7) {
@@ -201,7 +201,7 @@ void func_ov001_02180610(void) {
 }
 
 void func_ov001_021805f4(void) {
-    func_020364e8();
+    GetCurrentHeapCall();
     ClearEmblemChoisesPointer();
     data_ov001_021a99e4 = NULL;
 }

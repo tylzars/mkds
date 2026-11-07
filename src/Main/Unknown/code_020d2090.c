@@ -75,7 +75,7 @@ u32 DecimalNonZeroDigitsToBitMask(s32 c) {
 
 void InitRaceMNumberPair(void) {
     RaceMNumberPair *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     gRaceMNumberPair = p;
     p->mCourseNumber = gRaceSetup->mCourseNumber;
     if (gRaceSetup->mMode == 5) {

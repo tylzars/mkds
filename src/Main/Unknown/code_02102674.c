@@ -225,7 +225,7 @@ void func_02102718(void) {
 void func_02102674(void) {
     s32 i;
 
-    data_0217c630 = HeapAlloc(GetHeap(func_020364e8()), 0x52);
+    data_0217c630 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x52);
     for (i = 0; i <= 0x28; i++) {
         data_0217c630[i] = ((0x28 - i) << 12) / (0x29 - i);
     }

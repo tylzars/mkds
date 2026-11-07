@@ -63,7 +63,7 @@ void func_0205dee0(void) {
     void *b;
     void *c;
     void *a;
-    a = GetHeap(func_020364e8());
+    a = GetHeap(GetCurrentHeapCall());
     func_02057d9c();
     if (data_021759d4->mUnk_0c != 0) {
         CARD_WaitBackupAsync();
@@ -95,7 +95,7 @@ static inline BOOL func_0205dd38_inline(void) {
 }
 
 s32 RunScenes(s16 *a) {
-    Unk02036590 q;
+    HeapCall q;
     void *h;
     func_0205e0b0();
     while (func_0205dd38_inline()) {
@@ -103,8 +103,8 @@ s32 RunScenes(s16 *a) {
         gSceneNumbers[0] = gSceneNumbers[1];
         gSceneNumbers[1] = *a;
         gSceneNumbers[2] = -1;
-        func_02036590(&q, gSceneFuncs[*a]);
-        func_020364f8(&q, (u32) gSceneNumbers);
+        InitHeapCall(&q, gSceneFuncs[*a]);
+        RunHeapCall(&q, (u32) gSceneNumbers);
         if (gSceneNumbers[2] != -1) {
             *a = gSceneNumbers[2];
         } else {
@@ -125,7 +125,7 @@ s32 RunScenes(s16 *a) {
                 break;
         }
     }
-    h = GetHeap(func_020364e8());
+    h = GetHeap(GetCurrentHeapCall());
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2 && data_0217aa20->mUnk_0c != NULL) {
         ReleaseSndHeaps();
         HeapFree(h, data_0217aa20->mUnk_0c);
@@ -143,7 +143,7 @@ s32 RunScenes(s16 *a) {
 }
 
 void RunScenesForever(void) {
-    Unk02036590 q;
+    HeapCall q;
     data_0217aa20->mUnk_08 = 9;
     data_0217aa20->mUnk_00 = 0;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
@@ -153,8 +153,8 @@ void RunScenesForever(void) {
     }
     do {
         data_0217aa20->mUnk_04 = 3;
-        func_02036590(&q, (u32) RunScenes);
-        func_020364f8(&q, (u32) &data_0217aa20->mUnk_08);
+        InitHeapCall(&q, (u32) RunScenes);
+        RunHeapCall(&q, (u32) &data_0217aa20->mUnk_08);
         data_0217aa20->mUnk_00 = data_0217aa20->mUnk_04;
     } while (1);
 }

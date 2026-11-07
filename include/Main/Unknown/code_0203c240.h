@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_0203c240(u32 arg0);
+u32 GetKartFinishTimeMs(u32 kart);

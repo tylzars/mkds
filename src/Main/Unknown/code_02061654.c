@@ -115,7 +115,7 @@ void InitRace(void) {
     s16 i;
     u16 j;
 
-    a = GetHeap(func_020364e8());
+    a = GetHeap(GetCurrentHeapCall());
     SetKartModelPathPrefix(0);
     gRace = HeapAlloc(a, 72);
     InitRaceFields();

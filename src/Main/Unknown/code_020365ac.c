@@ -84,15 +84,15 @@ void func_020365f0(void) {
     data_02174e78.mUnk_08 = OS_GetArenaLo(0);
     func_02036678();
     a = OS_GetArenaLo(0);
-    data_02174e78.mHeap = func_02036c4c(a, (u8 *) OS_GetArenaHi(0) - a);
-    func_02036590(&data_02174e88, 0);
+    data_02174e78.mHeap = CreateExpHeapOverBlock(a, (u8 *) OS_GetArenaHi(0) - a);
+    InitHeapCall(&gRootHeapCall, 0);
     data_02174e78.mUnk_10 = data_usa_021646ec;
     func_020394cc();
 }
 
 void func_020365bc(u32 a) {
-    func_02036588(&data_02174e88, a);
-    func_020364f8(&data_02174e88, 0xbeef);
+    SetHeapCallFunc(&gRootHeapCall, a);
+    RunHeapCall(&gRootHeapCall, 0xbeef);
 }
 
 void *func_020365ac(void) {

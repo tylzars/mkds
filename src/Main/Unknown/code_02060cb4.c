@@ -27,8 +27,8 @@ void func_020613a0(void) {
     i = 0;
     a = data_0217aa08->mUnk_40;
     for (; i < 0x20; i++) {
-        func_0203b070(i, b, 0x80);
-        func_0204863c(b, a + i * 0x230, 0x230);
+        FormatGhostFilePath(i, b, 0x80);
+        ReadFileBytes(b, a + i * 0x230, 0x230);
     }
     func_02057504();
     data_0217aa08->mUnk_40 = NULL;

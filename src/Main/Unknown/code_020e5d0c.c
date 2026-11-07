@@ -61,9 +61,9 @@ void func_020e6514(Unk020e52bc *param_1, Unk020e6514 *param_2, Unk020e6488 *p) {
         x.mUnk_00 = d->mUnk_014;
         n = GetModelAnimationFrameCountFixed(param_2) >> 12;
         p->mUnk_1a = n;
-        t = GetHeap(func_020364e8());
+        t = GetHeap(GetCurrentHeapCall());
         p->mUnk_1c = HeapAlloc(t, n * 4);
-        t = GetHeap(func_020364e8());
+        t = GetHeap(GetCurrentHeapCall());
         p->mUnk_20 = HeapAlloc(t, n * 4);
         i = 0;
         if (i < n) {
@@ -82,18 +82,18 @@ void func_020e6514(Unk020e52bc *param_1, Unk020e6514 *param_2, Unk020e6488 *p) {
         }
     } else {
         p->mUnk_1a = 1;
-        p->mUnk_1c = HeapAlloc(GetHeap(func_020364e8()), 4);
-        p->mUnk_20 = HeapAlloc(GetHeap(func_020364e8()), 4);
+        p->mUnk_1c = HeapAlloc(GetHeap(GetCurrentHeapCall()), 4);
+        p->mUnk_20 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 4);
         p->mUnk_1c[0] = d->mUnk_014;
         p->mUnk_20[0] = d->mUnk_01c;
     }
 }
 
 void func_020e64b8(Unk020e6488 *p, void *a, void *b, s32 c) {
-    p->mUnk_24 = HeapAlloc(GetHeap(func_020364e8()), 0x6c);
+    p->mUnk_24 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x6c);
     InitNsbmd(p->mUnk_24, a);
     if (b != NULL) {
-        p->mUnk_28 = HeapAlloc(GetHeap(func_020364e8()), 0x38);
+        p->mUnk_28 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x38);
         func_020ea514(2, p->mUnk_24, p->mUnk_28, a, b);
     } else {
         p->mUnk_28 = NULL;
@@ -102,7 +102,7 @@ void func_020e64b8(Unk020e6488 *p, void *a, void *b, s32 c) {
 }
 
 void func_020e6488(Unk020e6488 **param_1, void *param_2, void *param_3, u32 param_4) {
-    *param_1 = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    *param_1 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     func_020e64b8(*param_1, param_2, param_3, param_4);
 }
 
@@ -110,14 +110,14 @@ void func_020e6488(Unk020e6488 **param_1, void *param_2, void *param_3, u32 para
 
 Unk020e5a9c *func_020e6438(void) {
     Unk020e5a9c *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     *p = data_021592d0;
     return p;
 }
 
 Unk020e5a40 *func_020e63dc(void) {
     Unk020e5a40 *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     data_0217b840 = p;
     *p = data_021592a4;
     func_020d49d8(&data_0217b840);
@@ -126,7 +126,7 @@ Unk020e5a40 *func_020e63dc(void) {
 
 Unk020e59e4 *func_020e6380(void) {
     Unk020e59e4 *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     data_0217b834 = p;
     *p = data_0215927c;
     func_020e6f50(&data_0217b834);
@@ -265,14 +265,14 @@ void func_020e5e24(Unk020e5e24 *p, Unk020e5e24_2 *q) {
 
 Unk020e5a9c *func_020e5dd4(void) {
     Unk020e5a9c *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     *p = data_02159208;
     return p;
 }
 
 Unk020e5a40 *func_020e5d78(void) {
     Unk020e5a40 *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     data_0217b82c = p;
     *p = data_021591dc;
     func_020d49d8(&data_0217b82c);
@@ -281,7 +281,7 @@ Unk020e5a40 *func_020e5d78(void) {
 
 Unk020e59e4 *func_020e5d24(void) {
     Unk020e59e4 *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     data_0217b828 = p;
     *p = data_021591b4;
     return p;

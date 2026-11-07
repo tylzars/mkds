@@ -1166,7 +1166,7 @@ void InitItems(void) {
     HeldItem *p;
     u8 v;
 
-    b = GetHeap(func_020364e8());
+    b = GetHeap(GetCurrentHeapCall());
     a = 0;
     CreateItemSlotTables();
     func_020f82e8(1);
@@ -1205,7 +1205,7 @@ void InitItems(void) {
             }
         }
     }
-    gCollidedItemObjects = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    gCollidedItemObjects = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     StartCourseMapItemObjects();
     func_02102674();
     InitOrthoQuads();

@@ -10,9 +10,9 @@
 void func_020ea514(u32 a, void *b, void *c, void *d, void *e) {
     void *p;
 
-    p = GetHeap(func_020364e8());
+    p = GetHeap(GetCurrentHeapCall());
     InitModelAnimation(a, c, b, 1, p, d);
-    InitModelAnimationEntries(c, e, GetHeap(func_020364e8()));
+    InitModelAnimationEntries(c, e, GetHeap(GetCurrentHeapCall()));
     SetModelAnimation(c, 0);
 }
 

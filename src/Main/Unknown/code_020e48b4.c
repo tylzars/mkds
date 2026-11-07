@@ -45,14 +45,14 @@
 
 PukupukuKindData *CreatePukupukuKindData(void) {
     PukupukuKindData *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     *p = *(PukupukuKindData *) data_02159070;
     return p;
 }
 
 PukupukuDrawList *CreatePukupukuDrawList(void) {
     PukupukuDrawList *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     gPukupukuDrawList = p;
     *p = *(PukupukuDrawList *) data_02159044;
     func_020d49d8(&gPukupukuDrawList);
@@ -61,7 +61,7 @@ PukupukuDrawList *CreatePukupukuDrawList(void) {
 
 PukupukuShadowDrawList *CreatePukupukuShadowDrawList(void) {
     PukupukuShadowDrawList *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     gPukupukuShadowDrawList = p;
     *p = *(PukupukuShadowDrawList *) data_02159018;
     func_020d49d8(&gPukupukuShadowDrawList);
@@ -70,7 +70,7 @@ PukupukuShadowDrawList *CreatePukupukuShadowDrawList(void) {
 
 PukupukuUpdateList *CreatePukupukuUpdateList(void) {
     PukupukuUpdateList *p;
-    p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
+    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     gPukupukuUpdateList = p;
     *p = *(PukupukuUpdateList *) data_02158ff0;
     func_020e6f50(&gPukupukuUpdateList);

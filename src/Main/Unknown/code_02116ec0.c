@@ -100,7 +100,7 @@ void func_02116fb0(void) {
     for (i = 0; i < n; i++) {
         func_0203bea4(data_0217d358->mUnk_00, (u8) i, GetCharacterIndex(i));
     }
-    func_0203ba84(data_0217d358->mUnk_00);
+    PickRandomCharacters(data_0217d358->mUnk_00);
     for (; n < 8; n++) {
         func_0203be48(data_0217d358->mUnk_00, n, &v, NULL);
         SetCharacterIndex(n, v);
@@ -126,7 +126,7 @@ void func_02116ef8(void) {
     for (i = 0; i < n; i++) {
         func_0203be88(data_0217d358->mUnk_00, (u8) i, GetKartIndex(i));
     }
-    func_0203bc64(data_0217d358->mUnk_00);
+    PickRandomKarts(data_0217d358->mUnk_00);
     for (; n < 8; n++) {
         func_0203be48(data_0217d358->mUnk_00, n, NULL, &v);
         SetKartIndex(n, v);

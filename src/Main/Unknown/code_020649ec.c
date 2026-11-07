@@ -213,7 +213,7 @@ void InitKart(Kart *a, void (**b)(Kart *)) {
     u16 i;
     Unk0206bcb0_590_08 *d;
 
-    GetHeap(func_020364e8());
+    GetHeap(GetCurrentHeapCall());
     c = gRaceSetup->mCurrentEntries[a->mIndex].mPlayer.mKind == PLAYER_KIND_PEER;
     a->mKartModelsEntry = GetKartModelsEntry(a->mIndex);
     func_0208adc8(&a->mKartModelsEntry->mUnk_040, 1);

@@ -362,10 +362,10 @@ void func_020b03bc(void) {
     }
     if (v == RACE_KIND_STAFF_ROLL) {
         InitEndingStaffRoll();
-        InitStaffRollText(GetHeap(func_020364e8()));
+        InitStaffRollText(GetHeap(GetCurrentHeapCall()));
         return;
     }
-    gRaceHud = HeapAlloc(GetHeap(func_020364e8()), 0x914);
+    gRaceHud = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x914);
     InitRaceStartSequence();
     func_020b3b08();
     InitRaceHudSubScreenProjection();
@@ -523,7 +523,7 @@ void InitMap2D(void) {
     if (gRaceSetup->mRaceKind == RACE_KIND_AWARD || gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         return;
     }
-    data_0217b34c = HeapAlloc(GetHeap(func_020364e8()), 0x400);
+    data_0217b34c = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x400);
     for (i = 0; i < 2; i++) {
         nclrs[i] = NULL;
         ncgrs[i] = NULL;

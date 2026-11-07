@@ -35,7 +35,7 @@ int RunEndingScene(void *a) {
 void InitOptionScene(s16 *a) {
     void *heap;
 
-    heap = GetHeap(func_020364e8());
+    heap = GetHeap(GetCurrentHeapCall());
     gOptionBuffers = HeapAlloc(heap, 0x808);
     InitOptionStates((heap), *a);
 }
@@ -77,7 +77,7 @@ u8 *GetOptionSecondBuffer(void) {
 void InitNicknameScene(s16 *a) {
     void *heap;
 
-    heap = GetHeap(func_020364e8());
+    heap = GetHeap(GetCurrentHeapCall());
     gNicknameBuffers = HeapAlloc(heap, 0x808);
     func_ov001_021987d4(heap, *a);
 }

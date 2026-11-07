@@ -22,7 +22,7 @@ void LoadCupPictureNclr(void) {
     a = data_0216aea8[i * 2];
     b = data_0216aeac[i * 2];
     snprintf(buf, 0x100, "%s%s%02d%s", gCupPicturePrefix, a == 0 ? gCupPictureNitro : gCupPictureRetro, b, "_m_b.NCLR");
-    func_02048684(buf, gCupPicture->mCupPictureNclrFile, 0x228);
+    ReadWholeFile(buf, gCupPicture->mCupPictureNclrFile, 0x228);
     LoadNclrData(&gCupPicture->mCupPictureNclr, gCupPicture->mCupPictureNclrFile);
 }
 
@@ -36,7 +36,7 @@ void LoadCupPictureNcgr(void) {
     a = data_0216aea8[i * 2];
     b = data_0216aeac[i * 2];
     snprintf(buf, 0x100, "%s%s%02d%s", gCupPicturePrefix, a == 0 ? gCupPictureNitro : gCupPictureRetro, b, "_m_b.NCGR");
-    func_02048684(buf, gCupPicture->mCupPictureNcgrFile, 0xe00);
+    ReadWholeFile(buf, gCupPicture->mCupPictureNcgrFile, 0xe00);
     LoadNcgrData(&gCupPicture->mCupPictureNcgr, gCupPicture->mCupPictureNcgrFile);
 }
 
@@ -51,7 +51,7 @@ void LoadCupPictureNscr(void) {
     b = data_0216aeac[i * 2];
     snprintf(buf, 0x100, "%s%s%02d%s", gCupPicturePrefix, a == 0 ? gCupPictureNitro : gCupPictureRetro, b,
              "_m_picture.NSCR");
-    func_02048684(buf, gCupPicture->mCupPictureNscrFile, 0x824);
+    ReadWholeFile(buf, gCupPicture->mCupPictureNscrFile, 0x824);
     LoadNscrData(&gCupPicture->mCupPictureNscr, gCupPicture->mCupPictureNscrFile);
 }
 #pragma thumb off
