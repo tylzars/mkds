@@ -792,10 +792,10 @@ void DrawShadowWithMaxAlpha(Unk020ea868 *param_1, void *param_2, Vec3 *param_3, 
     v = param_1->mUnk_06e;
     if (param_4 < v) {
         param_1->mUnk_06e = param_4;
-        func_0207aec8(param_1, param_2, param_3);
+        DrawShadowWithMatrix(param_1, param_2, param_3);
         param_1->mUnk_06e = v;
     } else {
-        func_0207aec8(param_1, param_2, param_3);
+        DrawShadowWithMatrix(param_1, param_2, param_3);
     }
 }
 

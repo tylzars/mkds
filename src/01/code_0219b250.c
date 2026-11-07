@@ -61,7 +61,7 @@ Unk0219b250 *LoadMapObjectModelShadow(Unk0219b478 *p0, const char *p1) {
         p0->mUnk_18 = 1;
     }
     o->mShadowModel = HeapAlloc(GetHeap(func_020364e8()), 0x74);
-    func_0207afa8(o->mShadowModel, r, 0x3f);
+    InitShadowModel(o->mShadowModel, r, 0x3f);
     SetMapObjectModelFogEnabled(o, 0);
     o->mScale = data_ov001_021a6b20;
     return o;

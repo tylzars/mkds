@@ -92,7 +92,7 @@ void func_020641f0(Kart *a) {
     }
     b = a->mKartModelsEntry;
     if (b->mModels[2] != NULL) {
-        r = (Vec4 *) &b->mUnk_024;
+        r = (Vec4 *) &b->mTurnFrameOffset;
         j = (s64) r->w * r->x >> 12;
         l = (s64) j * 0xce4 >> 12;
         k = a->mVelocityLengthRatio;
@@ -118,7 +118,7 @@ void func_020641f0(Kart *a) {
     }
     c = a->mKartModelsEntry->mCharacterAnimation;
     if (c != NULL && c->mUnk_18 != 0) {
-        func_0207b734(a);
+        AdvanceKartCharacterAnimation(a);
         if (IsKartEnded(a->mIndex) != 0) {
             func_0207b354(a);
         }

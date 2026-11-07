@@ -73,7 +73,7 @@ void AdvanceKartState1And2(Kart *p) {
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
     if ((p->mUnk_7c & 0x2) && gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
-        func_02088c7c(p->mAi);
+        PickKartAiBalloonCountGoal(p->mAi);
     }
 }
 
@@ -210,7 +210,7 @@ void AdvanceKartState6(Kart *p) {
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
     if ((p->mUnk_7c & 0x2) && gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
-        func_02088c7c(p->mAi);
+        PickKartAiBalloonCountGoal(p->mAi);
     }
     p->mUnk_4c &= ~0x80000010;
     if (p->mUnk_44 & KART_44_ON_GROUND) {
@@ -332,7 +332,7 @@ void AdvanceKartState3(Kart *p) {
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
     if ((p->mUnk_7c & 0x2) && gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
-        func_02088c7c(p->mAi);
+        PickKartAiBalloonCountGoal(p->mAi);
     }
 }
 
@@ -475,7 +475,7 @@ void AdvanceKartState4(Kart *p) {
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
     if ((p->mUnk_7c & 0x2) && gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
-        func_02088c7c(p->mAi);
+        PickKartAiBalloonCountGoal(p->mAi);
     }
     if (p->mUnk_44 & KART_44_ON_GROUND) {
         p->mTurnAngle = 0;
@@ -590,7 +590,7 @@ void AdvanceKartState5(Kart *p) {
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
     if ((p->mUnk_7c & 0x2) && gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
-        func_02088c7c(p->mAi);
+        PickKartAiBalloonCountGoal(p->mAi);
     }
     if (p->mUnk_44 & KART_44_ON_GROUND) {
         p->mTurnAngle = 0;

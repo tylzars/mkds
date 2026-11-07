@@ -161,7 +161,7 @@ void func_02068a64(Kart *a, s32 b, s32 c) {
     if ((d & KART_7C_MODELS_ENTRY_008_SET) != 0) {
         e = a->mKartModelsEntry;
         h = FALSE;
-        f = &e->mUnk_024;
+        f = &e->mTurnFrameOffset;
         g = e->mCharacterAnimation->mUnk_1a;
         i = TRUE;
         if (f[5] != 0) {
@@ -189,22 +189,22 @@ void func_02068a64(Kart *a, s32 b, s32 c) {
             }
         }
         if (i != FALSE) {
-            func_0207b6c0(a->mKartModelsEntry, b, c);
+            SetCharacterAnimation(a->mKartModelsEntry, b, c);
         }
-        func_0207b708(a->mKartModelsEntry, h);
+        SetCharacterFaceFrameIndex(a->mKartModelsEntry, h);
     } else {
         h = FALSE;
         if (b == 1 || (d & 0x20000) != 0) {
             h = TRUE;
         }
-        func_0207b708(a->mKartModelsEntry, h);
+        SetCharacterFaceFrameIndex(a->mKartModelsEntry, h);
     }
 }
 
 void func_02068a10(Kart *a) {
     if ((a->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0) {
-        func_0207b054(a, 1, 0);
-        func_0207b708(a->mKartModelsEntry, 1);
+        StartKartCharacterAnimationOnce(a, 1, 0);
+        SetCharacterFaceFrameIndex(a->mKartModelsEntry, 1);
     }
     if ((a->mUnk_48 & 0x840) != 0) {
         return;

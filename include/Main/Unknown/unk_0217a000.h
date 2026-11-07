@@ -12,7 +12,7 @@
 #include "code_02012b30.h" // MtxFx43
 #include "Main/Unknown/code_02006954.h"
 #include "Main/Unknown/code_0207b960.h" // PosCurve
-#include "Main/Unknown/code_0207adf8.h" // Unk0207adf8
+#include "Main/Unknown/code_0207adf8.h" // ShadowModel
 #include "Main/Unknown/code_020846c0.h" // Nsbmd
 #include "Main/Unknown/code_02087d0c.h" // Unk02087d0c
 #include "code_02003024.h"
@@ -1268,7 +1268,7 @@ typedef struct KartModels {
     /* 018 */ s16 mUnk_018[8];
     /* 028 */ void *mUnk_028;
     /* 02c */ Nsbmd mUnk_02c;
-    /* 098 */ Unk0207adf8 mUnk_098;
+    /* 098 */ ShadowModel mUnk_098;
     /* 10c */ Unk02087d0c mUnk_10c;
 } KartModels;
 
@@ -1301,7 +1301,7 @@ typedef struct KartModelMenuSlot {
     /* 10 */ struct Nsbmd *mUnk_10;
     /* 14 */ struct Nsbmd *mUnk_14;
     /* 18 */ struct Nsbmd *mUnk_18;
-    /* 1c */ struct Unk0207adf8 *mUnk_1c;
+    /* 1c */ struct ShadowModel *mUnk_1c;
     /* 20 */ Unk0217ad08_058_20 *mUnk_20;
     /* 24 */ u8 mUnk_24[0x8c];
     /* b0 */ s32 mUnk_b0;

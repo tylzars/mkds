@@ -55,7 +55,8 @@ static inline s32 func_020888b4_inline(const Vec3 *a, const Vec3 *b) {
     return x * x + z * z;
 }
 
-void func_02089c3c(Unk02089b4c *a, KartAi *b) {
+// Recomputes the CPU kart's speed limit on its own turn of eight frames and sets the kart's limit from it.
+void AdvanceBattleKartAiSpeedLimit(KartAiSpeedLimit *a, KartAi *b) {
     s32 m;
     Kart *q;
 
@@ -65,17 +66,17 @@ void func_02089c3c(Unk02089b4c *a, KartAi *b) {
         if (m > 0xa000) {
             m = 0xa000;
         }
-        func_02089b4c(a, b, m);
-        if (a->mUnk_10 < m) {
-            m = a->mUnk_10;
+        SetBattleKartAiTurnSpeedLimit(a, b, m);
+        if (a->mTurnSpeedLimit < m) {
+            m = a->mTurnSpeedLimit;
         }
         if (m > 0xa000) {
             m = 0xa000;
         }
-        a->mUnk_04 = m;
-        if (b->mUnk_a4 != 0) {
-            if (a->mUnk_04 > b->mUnk_a4) {
-                a->mUnk_04 = b->mUnk_a4;
+        a->mSpeedLimit = m;
+        if (b->mLinkSpeedLimit != 0) {
+            if (a->mSpeedLimit > b->mLinkSpeedLimit) {
+                a->mSpeedLimit = b->mLinkSpeedLimit;
             }
         }
     }
@@ -84,14 +85,14 @@ void func_02089c3c(Unk02089b4c *a, KartAi *b) {
         return;
     }
     if ((q->mUnk_48 & 0x10000020) == 0) {
-        q->mSpeedLimitGoal = a->mUnk_04;
+        q->mSpeedLimitGoal = a->mSpeedLimit;
     }
 }
 
-void func_02089b4c(Unk02089b4c *a, KartAi *b, s32 c) {
+void SetBattleKartAiTurnSpeedLimit(KartAiSpeedLimit *a, KartAi *b, s32 c) {
     s32 t;
 
-    a->mUnk_10 = c;
+    a->mTurnSpeedLimit = c;
     if (b->mTurnAngleDegrees <= 0x5000) {
         return;
     }
@@ -99,12 +100,12 @@ void func_02089b4c(Unk02089b4c *a, KartAi *b, s32 c) {
     if (t > 0x1000) {
         t = 0x1000;
     }
-    a->mUnk_10 = ((s64) (0x1000 - (s32) (((s64) t * 0x99c + 0x800) >> 12)) * 0x6000 + 0x800) >> 12;
-    if (b->mUnk_d0 == NULL) {
+    a->mTurnSpeedLimit = ((s64) (0x1000 - (s32) (((s64) t * 0x99c + 0x800) >> 12)) * 0x6000 + 0x800) >> 12;
+    if (b->mTargetShine == NULL) {
         return;
     }
     if (b->mEntryForwardDot > 0xb33) {
-        a->mUnk_10 = a->mUnk_10 >> 1;
+        a->mTurnSpeedLimit = a->mTurnSpeedLimit >> 1;
     }
 }
 
@@ -148,7 +149,7 @@ void func_02089a24(KartAi *a, Unk02089a24 *b) {
     b->mUnk_30 = func_0207d8e4(0);
 }
 
-void func_02089974(void) {
+void SetupBattleKartAiParams(void) {
     RaceSetup *t;
 
     gSearchStartIndex = 0;
@@ -171,7 +172,7 @@ void func_02089974(void) {
     }
 }
 
-void func_020898bc(KartAi *p) {
+void ResetBattleKartAi(KartAi *p) {
     Vec3 z = data_02155ebc;
 
     p->mSideOffset = z;
@@ -181,27 +182,27 @@ void func_020898bc(KartAi *p) {
     p->mSideOffsetRatio = 0;
     p->mUnk_78 = 0;
     p->mUnk_7a = 0;
-    p->mUnk_a4 = 0;
+    p->mLinkSpeedLimit = 0;
     p->mUnk_a8 = 0;
     p->mUnk_ac = 0;
     p->mTargetKart = NULL;
     p->mTargetAhead = 0;
     p->mTargetDistanceSquared = 0;
     p->mTargetDistanceSquared = -0x1000;
-    p->mUnk_50 = z;
-    p->mUnk_5c = &p->mUnk_44;
+    p->mTargetKartPos = z;
+    p->mHeadingPos = &p->mLinkPosWithSideOffset;
     p->mUnk_c2 = 0;
     p->mUnk_c4 = FALSE;
     p->mUnk_c8 = 0;
     p->mUnk_ca = 0;
     p->mUnk_cc = 0;
-    p->mUnk_d0 = NULL;
+    p->mTargetShine = NULL;
     p->mEntrySearchStartIndex = 0;
     p->mEntryForwardDot = 0;
-    p->mUnk_dc = z;
+    p->mTargetShinePos = z;
 }
 
-void func_02089788(KartAi *p, Kart *q) {
+void SetupBattleKartAi(KartAi *p, Kart *q) {
     Unk02165ff0 *t;
     Unk0217aebc_128 *r;
     s16 j;
@@ -211,9 +212,9 @@ void func_02089788(KartAi *p, Kart *q) {
     p->mKart = q;
     p->mIndex = q->mIndex;
     p->mUnk_06 = p->mIndex % 4;
-    ResetBattlePointLinkCursorNear(&p->mUnk_28, &q->mPos, &q->mUnk_138, q->mIndex);
-    p->mUnk_44 = *p->mUnk_28.mLink->mUnk_20;
-    func_020898bc(p);
+    ResetBattlePointLinkCursorNear(&p->mBattleLinkCursor, &q->mPos, &q->mUnk_138, q->mIndex);
+    p->mLinkPosWithSideOffset = *p->mBattleLinkCursor.mLink->mUnk_20;
+    ResetBattleKartAi(p);
     if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
         t = data_0217b030;
         k = 0;
@@ -226,32 +227,32 @@ void func_02089788(KartAi *p, Kart *q) {
                 break;
             }
         }
-        p->mUnk_c0 = k;
+        p->mBalloonCountGoal = k;
     } else {
-        p->mUnk_c0 = 0;
+        p->mBalloonCountGoal = 0;
     }
 }
 
-void func_02089754(KartAi *p, Unk02175620_bc *a) {
-    ResetBattlePointLinkCursorTo(&p->mUnk_28, a);
-    p->mUnk_44 = *p->mUnk_28.mLink->mUnk_20;
-    func_020898bc(p);
+void ResetBattleKartAiAtPointLink(KartAi *p, Unk02175620_bc *a) {
+    ResetBattlePointLinkCursorTo(&p->mBattleLinkCursor, a);
+    p->mLinkPosWithSideOffset = *p->mBattleLinkCursor.mLink->mUnk_20;
+    ResetBattleKartAi(p);
 }
 
-void func_020896e0(KartAi *p) {
+void AdvanceBattleKartAi(KartAi *p) {
     func_02088d34(p);
     if (p->mUnk_c4 == FALSE) {
         func_0207e668(p);
     }
     func_02089494(p);
     if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
-        func_02088e44(p);
+        AdvanceBattleKartAiTargetKart(p);
         return;
     }
-    if (p->mUnk_d0 != NULL) {
-        func_02088e44(p);
+    if (p->mTargetShine != NULL) {
+        AdvanceBattleKartAiTargetKart(p);
     }
-    func_02088a0c(p);
+    AdvanceBattleKartAiTargetShine(p);
 }
 
 void func_02089494(KartAi *p) {
@@ -270,7 +271,7 @@ void func_02089494(KartAi *p) {
     s32 y;
 
     q = p->mKart;
-    s = &p->mUnk_28;
+    s = &p->mBattleLinkCursor;
     g = &q->mUnk_138;
     e = s->mRequestedLink;
     GetKartPos(&v, p->mIndex);
@@ -279,13 +280,13 @@ void func_02089494(KartAi *p) {
     }
     if (e != NULL && s->mLink != e) {
         AdvanceBattlePointLinkCursorTo(s, e);
-        p->mUnk_a4 = func_020800a0(s);
-        func_020892bc(p);
-        p->mUnk_44 = *s->mLink->mUnk_20;
-        VEC_Add(&p->mUnk_44, &p->mSideOffset, &p->mUnk_44);
+        p->mLinkSpeedLimit = func_020800a0(s);
+        AdvanceBattleKartAiSideOffset(p);
+        p->mLinkPosWithSideOffset = *s->mLink->mUnk_20;
+        VEC_Add(&p->mLinkPosWithSideOffset, &p->mSideOffset, &p->mLinkPosWithSideOffset);
     } else {
         if (p->mIndex == GetRaceUpdateFramesMod8()) {
-            f = p->mUnk_5c;
+            f = p->mHeadingPos;
             z = *g;
             VEC_Subtract(f, &q->mPos, &t);
             z.y = 0;
@@ -304,11 +305,11 @@ void func_02089494(KartAi *p) {
             } else {
                 y = -1;
             }
-            AdvanceBattlePointLinkCursor(s, &v, &q->mUnk_138, p->mIndex, p->mUnk_d0, y);
-            p->mUnk_a4 = func_020800a0(s);
-            func_020892bc(p);
-            p->mUnk_44 = *s->mLink->mUnk_20;
-            VEC_Add(&p->mUnk_44, &p->mSideOffset, &p->mUnk_44);
+            AdvanceBattlePointLinkCursor(s, &v, &q->mUnk_138, p->mIndex, p->mTargetShine, y);
+            p->mLinkSpeedLimit = func_020800a0(s);
+            AdvanceBattleKartAiSideOffset(p);
+            p->mLinkPosWithSideOffset = *s->mLink->mUnk_20;
+            VEC_Add(&p->mLinkPosWithSideOffset, &p->mSideOffset, &p->mLinkPosWithSideOffset);
             s->mRequestedLink = NULL;
             s->mUnk_18 = FALSE;
         }
@@ -320,12 +321,12 @@ void func_02089494(KartAi *p) {
         return;
     }
     RequestBits(p->mKart->mEntryIndex, PAD_KEY_A);
-    VEC_Subtract(p->mUnk_5c, &v, &w);
+    VEC_Subtract(p->mHeadingPos, &v, &w);
     AdvanceKartAiHeading(p, &w, g);
 }
 
-void func_020892bc(KartAi *p) {
-    Vec3 z = data_02155eb0;
+void AdvanceBattleKartAiSideOffset(KartAi *p) {
+    Vec3 z = gVec3UnitY;
     Unk0217aebc_128 *r;
     s32 a;
     s32 t;
@@ -333,7 +334,7 @@ void func_020892bc(KartAi *p) {
     s32 n;
     s32 f;
 
-    VEC_CrossProduct(&p->mUnk_28.mDirection, &z, &p->mSideOffset);
+    VEC_CrossProduct(&p->mBattleLinkCursor.mDirection, &z, &p->mSideOffset);
     p->mUnk_6c++;
     if (p->mUnk_6c > p->mUnk_6e) {
         p->mUnk_6c = 0;
@@ -355,13 +356,13 @@ void func_020892bc(KartAi *p) {
         }
         p->mSideOffsetRatio = n;
     }
-    f = ((s64) p->mSideOffsetRatio * p->mUnk_28.mLink->mUnk_24 + 0x800) >> 12;
+    f = ((s64) p->mSideOffsetRatio * p->mBattleLinkCursor.mLink->mUnk_24 + 0x800) >> 12;
     p->mSideOffset.x = ((s64) p->mSideOffset.x * f) >> 12;
     p->mSideOffset.y = ((s64) p->mSideOffset.y * f) >> 12;
     p->mSideOffset.z = ((s64) p->mSideOffset.z * f) >> 12;
 }
 
-void func_02088e44(KartAi *p) {
+void AdvanceBattleKartAiTargetKart(KartAi *p) {
     Kart *q;
     Kart *o;
     KartItems *v1;
@@ -389,7 +390,7 @@ void func_02088e44(KartAi *p) {
         return;
     }
     if (p->mTargetKart == NULL) {
-        p->mUnk_5c = &p->mUnk_44;
+        p->mHeadingPos = &p->mLinkPosWithSideOffset;
         k = gSearchStartIndex;
         for (n = 0; n < (u32) gRaceSetup->mKartCount; n++) {
             if (ShouldKartAiTargetKart(p->mIndex, k) != 0) {
@@ -468,29 +469,29 @@ void func_02088e44(KartAi *p) {
         y = (p->mTargetKart->mUnk_4c & 0x40) != 0 ? 1 : 0;
         if (x != 0 && y == 0 && p->mTargetForwardDot > 0xb33) {
             u = p->mTargetKart->mPos;
-            u.y = p->mUnk_44.y;
-            t = *p->mUnk_28.mLink->mUnk_20;
-            z = data_02155eb0;
-            VEC_CrossProduct(&p->mUnk_28.mDirection, &z, &e);
+            u.y = p->mLinkPosWithSideOffset.y;
+            t = *p->mBattleLinkCursor.mLink->mUnk_20;
+            z = gVec3UnitY;
+            VEC_CrossProduct(&p->mBattleLinkCursor.mDirection, &z, &e);
             VEC_Subtract(&u, &t, &w);
             d = Vec3DotUnrounded(&w, &e);
-            c = p->mUnk_28.mLink->mUnk_24;
+            c = p->mBattleLinkCursor.mLink->mUnk_24;
             if (func_020738f8(d) >= c) {
-                p->mUnk_5c = &p->mUnk_44;
+                p->mHeadingPos = &p->mLinkPosWithSideOffset;
             } else {
-                p->mUnk_50 = u;
-                p->mUnk_5c = &p->mUnk_50;
+                p->mTargetKartPos = u;
+                p->mHeadingPos = &p->mTargetKartPos;
             }
         } else {
-            p->mUnk_5c = &p->mUnk_44;
+            p->mHeadingPos = &p->mLinkPosWithSideOffset;
         }
     } else {
-        p->mUnk_5c = &p->mUnk_44;
+        p->mHeadingPos = &p->mLinkPosWithSideOffset;
     }
     return;
 clear:
     p->mTargetKart = NULL;
-    p->mUnk_5c = &p->mUnk_44;
+    p->mHeadingPos = &p->mLinkPosWithSideOffset;
 }
 
 void func_02088d34(KartAi *p) {
@@ -508,7 +509,7 @@ void func_02088d34(KartAi *p) {
     }
     a = GetBalloonOrShineCount(p->mIndex);
     b = GetBalloonsLeftToMake(p->mIndex);
-    if (a >= p->mUnk_c0) {
+    if (a >= p->mBalloonCountGoal) {
         return;
     }
     c = FALSE;
@@ -526,7 +527,7 @@ void func_02088d34(KartAi *p) {
     p->mUnk_c4 = TRUE;
 }
 
-void func_02088c7c(KartAi *p) {
+void PickKartAiBalloonCountGoal(KartAi *p) {
     s32 *t = data_0217b030->mUnk_0c;
     Unk0217aebc_128 *r;
     s16 j;
@@ -542,10 +543,10 @@ void func_02088c7c(KartAi *p) {
             break;
         }
     }
-    p->mUnk_c0 = k;
+    p->mBalloonCountGoal = k;
 }
 
-void func_02088a0c(KartAi *p) {
+void AdvanceBattleKartAiTargetShine(KartAi *p) {
     Unk020888b4_d0 *r;
     Vec3 u;
     Vec3 v;
@@ -561,7 +562,7 @@ void func_02088a0c(KartAi *p) {
     Vec3 *v1;
     Vec3 *v2;
 
-    r = p->mUnk_d0;
+    r = p->mTargetShine;
     if (r != NULL) {
         if (!(r->mFlags & 1)) {
             v1 = &r->mPos;
@@ -585,38 +586,39 @@ void func_02088a0c(KartAi *p) {
                 }
                 if (n != FALSE && p->mEntryForwardDot > 0xb33) {
                     u = r->mPos;
-                    u.y = p->mUnk_44.y;
-                    t = *p->mUnk_28.mLink->mUnk_20;
-                    z = data_02155eb0;
-                    VEC_CrossProduct(&p->mUnk_28.mDirection, &z, &e);
+                    u.y = p->mLinkPosWithSideOffset.y;
+                    t = *p->mBattleLinkCursor.mLink->mUnk_20;
+                    z = gVec3UnitY;
+                    VEC_CrossProduct(&p->mBattleLinkCursor.mDirection, &z, &e);
                     VEC_Subtract(&u, &t, &w);
                     m = Vec3DotUnrounded(&w, &e);
-                    x = p->mUnk_28.mLink->mUnk_24;
+                    x = p->mBattleLinkCursor.mLink->mUnk_24;
                     if (func_020738f8(m) >= x) {
-                        p->mUnk_5c = &p->mUnk_44;
+                        p->mHeadingPos = &p->mLinkPosWithSideOffset;
                     } else {
-                        p->mUnk_dc = u;
-                        p->mUnk_5c = &p->mUnk_dc;
+                        p->mTargetShinePos = u;
+                        p->mHeadingPos = &p->mTargetShinePos;
                     }
                 } else {
-                    p->mUnk_5c = &p->mUnk_44;
+                    p->mHeadingPos = &p->mLinkPosWithSideOffset;
                 }
             } else {
-                p->mUnk_d0 = NULL;
-                p->mUnk_5c = &p->mUnk_44;
+                p->mTargetShine = NULL;
+                p->mHeadingPos = &p->mLinkPosWithSideOffset;
             }
         } else {
-            p->mUnk_d0 = NULL;
-            p->mUnk_5c = &p->mUnk_44;
+            p->mTargetShine = NULL;
+            p->mHeadingPos = &p->mLinkPosWithSideOffset;
         }
     } else {
         if (p->mIndex == GetRaceUpdateFramesMod8()) {
-            func_020888b4(p, 0x17d7840, gEntryYDifferenceLimit);
+            FindKartAiTargetShine(p, 0x17d7840, gEntryYDifferenceLimit);
         }
     }
 }
 
-BOOL func_020888b4(KartAi *p, s32 a, s32 b) {
+// Picks a Shine16 object within the given x/z and y ranges as the CPU kart's target; TRUE if one was found.
+BOOL FindKartAiTargetShine(KartAi *p, s32 a, s32 b) {
     Unk02100094 *l;
     s16 i;
     s32 n;
@@ -666,7 +668,7 @@ BOOL func_020888b4(KartAi *p, s32 a, s32 b) {
     }
     p->mEntrySearchStartIndex = k;
     if (r != NULL) {
-        p->mUnk_d0 = r;
+        p->mTargetShine = r;
         return TRUE;
     }
     return FALSE;

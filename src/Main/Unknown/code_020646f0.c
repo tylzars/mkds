@@ -89,6 +89,6 @@ void func_020646f0(Kart *a, s32 b) {
         return;
     }
     if (i->mUnk_18 != 0) {
-        i->mUnk_0c = a->mKartModelsEntry->mUnk_02c;
+        i->mUnk_0c = a->mKartModelsEntry->mMiddleFrame;
     }
 }

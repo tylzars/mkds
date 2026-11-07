@@ -12,29 +12,29 @@
 #include "Main/Unknown/code_02077bc0.h"
 
 void func_0208bf40(KartAi *p) {
-    func_020896e0(p);
-    func_02089c3c(&p->mUnk_140, p);
+    AdvanceBattleKartAi(p);
+    AdvanceBattleKartAiSpeedLimit(&p->mAiSpeedLimit, p);
     func_0209033c(&p->mItemUse, p);
 }
 
 void func_0208bef4(KartAi *p) {
-    if (p->mUnk_28.mRequestedLink != NULL) {
-        if (p->mUnk_28.mUnk_18 != FALSE) {
+    if (p->mBattleLinkCursor.mRequestedLink != NULL) {
+        if (p->mBattleLinkCursor.mUnk_18 != FALSE) {
             return;
         }
     }
-    p->mUnk_28.mRequestedLink = FindCourseMapKind4ShapeBattlePointLink(&p->mKart->mPos);
-    if (p->mUnk_28.mRequestedLink != NULL) {
-        p->mUnk_28.mUnk_18 = TRUE;
+    p->mBattleLinkCursor.mRequestedLink = FindCourseMapKind4ShapeBattlePointLink(&p->mKart->mPos);
+    if (p->mBattleLinkCursor.mRequestedLink != NULL) {
+        p->mBattleLinkCursor.mUnk_18 = TRUE;
     }
 }
 
 BOOL func_0208bee0(KartAi *p) {
-    return p->mUnk_28.mRequestedLink != NULL;
+    return p->mBattleLinkCursor.mRequestedLink != NULL;
 }
 
 void func_0208bea4(Vec3 *a, Vec3 *b, KartAi *p) {
-    LinkCursor *s = &p->mUnk_28;
+    LinkCursor *s = &p->mBattleLinkCursor;
 
     *a = *s->mLink->mUnk_20;
     *b = s->mDirection;

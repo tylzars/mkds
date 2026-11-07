@@ -125,12 +125,12 @@
 #include "Main/Unknown/code_0203c8dc.h"
 #include "code_021471bc.h"
 
-void func_0207ad88(Unk0207adf8 *a, u32 b, u32 c) {
-    if ((a->mUnk_70 & 1) != 0) {
-        func_02084ad8(a, a->mUnk_6e);
-        data_02155a20[a->mUnk_00.mDrawKind](a);
-        func_02084a88(a, a->mUnk_6e, a->mUnk_6c);
-        data_02155a20[a->mUnk_00.mDrawKind](a);
+void func_0207ad88(ShadowModel *a, u32 b, u32 c) {
+    if ((a->mFlags & 1) != 0) {
+        func_02084ad8(a, a->mAlpha);
+        data_02155a20[a->mNsbmd.mDrawKind](a);
+        func_02084a88(a, a->mAlpha, a->mPolygonId);
+        data_02155a20[a->mNsbmd.mDrawKind](a);
     }
 }
 
@@ -942,7 +942,7 @@ void CreateCharacter(KartModelsEntry *a, void *b, s32 c) {
             s = func_02047950(BuildCharacterNsbcaPath(e8, i));
             if (s != NULL) {
                 void *w = NNS_G3dGetJntAnmByIdx(NNS_G3dGetJntAnmSet(s), 0);
-                func_020881b0(a->mCharacterAnimation, i, w, func_0207b8dc(i), b);
+                func_020881b0(a->mCharacterAnimation, i, w, GetCharacterAnimationLoopFlag(i), b);
                 if (i == 0) {
                     d = TRUE;
                 }
@@ -951,16 +951,16 @@ void CreateCharacter(KartModelsEntry *a, void *b, s32 c) {
         } while (i < 4);
         if (d != FALSE) {
             func_02087f84(a->mCharacterAnimation, 0);
-            a->mUnk_02c = (func_02087d0c(a->mCharacterAnimation) - 0x1000) / 2;
-            a->mUnk_030 = FX_Div(0x1000, a->mUnk_02c);
+            a->mMiddleFrame = (func_02087d0c(a->mCharacterAnimation) - 0x1000) / 2;
+            a->mMiddleFrameReciprocal = FX_Div(0x1000, a->mMiddleFrame);
         } else {
             a->mCharacterAnimation->mUnk_18 = 0;
         }
     }
-    a->mUnk_00c = HeapAlloc(b, 0x38);
-    func_0208823c(2, a->mUnk_00c, a->mModels[0], 1, b, NULL);
-    func_0208805c(a->mUnk_00c, gKartModels->mUnk_028, b);
-    func_02087f84(a->mUnk_00c, 0);
+    a->mFaceAnimation = HeapAlloc(b, 0x38);
+    func_0208823c(2, a->mFaceAnimation, a->mModels[0], 1, b, NULL);
+    func_0208805c(a->mFaceAnimation, gKartModels->mUnk_028, b);
+    func_02087f84(a->mFaceAnimation, 0);
 }
 
 void CreateKart(KartModelsEntry *a, void *b, s32 c) {
@@ -1102,9 +1102,9 @@ void CreateKartShadow(KartModelsEntry *a, void *b) {
     u8 *p;
     v6 = func_02047950(BuildKartShadowNsbmdPath(a->mUnk_004));
     a->mUnk_01c = HeapAlloc(b, 0x74);
-    AddResFileEntry(&a->mUnk_01c->mUnk_00.mResFileEntry, v6, v6);
+    AddResFileEntry(&a->mUnk_01c->mNsbmd.mResFileEntry, v6, v6);
     p = (u8 *) NNS_G3dGetMdlSet(v6);
-    func_0207b000(&a->mUnk_01c->mUnk_00, p + *(s32 *) (p + *(u16 *) (p + 0xe) + 0xc), 3);
+    InitShadowModelFromResMdl(&a->mUnk_01c->mNsbmd, p + *(s32 *) (p + *(u16 *) (p + 0xe) + 0xc), 3);
 }
 
 void CreateKillerItem(void *a) {
@@ -1118,7 +1118,7 @@ void CreateKillerItem(void *a) {
     func_0208823c(0, &gKartModels->mUnk_10c, &gKartModels->mUnk_02c, 1, a, v4);
     func_0208805c(&gKartModels->mUnk_10c, v8, a);
     func_02087f84(&gKartModels->mUnk_10c, 0);
-    func_0207afa8(&gKartModels->mUnk_098, v7, 3);
+    InitShadowModel(&gKartModels->mUnk_098, v7, 3);
     func_020638dc(&gKartModels->mUnk_02c);
 }
 
@@ -1152,7 +1152,7 @@ void CreateKartModelMenuCharacter(void *a, Nsbmd *b, void *c, NNSG3dResFileHeade
     SetKartModelMaterialColors(v2, 1);
     func_0208823c(0, c, b, 1, a, NULL);
     v1 = NNS_G3dGetJntAnmByIdx(NNS_G3dGetJntAnmSet(f), 0);
-    v3 = func_0207b8dc(2);
+    v3 = GetCharacterAnimationLoopFlag(2);
     func_020881b0(c, 0, v1, v3, a);
     func_02087f84(c, 0);
 }
@@ -1179,7 +1179,7 @@ void CreateKartModelMenuTire(Nsbmd *a, NNSG3dResFileHeader *b, NNSG3dResFileHead
 #pragma thumb on
 
 void *CreateKartModelMenuShadow(void *a, NNSG3dResFileHeader *b) {
-    return func_0207afa8(a, b, 3);
+    return InitShadowModel(a, b, 3);
 }
 
 void LoadKartModelMenuSelectModel(void *c) {
@@ -1528,11 +1528,11 @@ void DrawKartModelMenuSlot(KartModelMenuSlot *param_1, KartModelMenuView *param_
         SetFrustumProjection(param_3);
         if (param_1->mUnk_1c != NULL) {
             if (param_3 != 0) {
-                param_1->mUnk_1c->mUnk_00.mCullModesSwapped = 1;
+                param_1->mUnk_1c->mNsbmd.mCullModesSwapped = 1;
             } else {
-                param_1->mUnk_1c->mUnk_00.mCullModesSwapped = 0;
+                param_1->mUnk_1c->mNsbmd.mCullModesSwapped = 0;
             }
-            ((void (*)(Unk0207adf8 *)) func_0207adf8)(param_1->mUnk_1c);
+            ((void (*)(ShadowModel *)) func_0207adf8)(param_1->mUnk_1c);
         }
         if (param_1->mUnk_14 != NULL) {
             if (param_3 != 0) {

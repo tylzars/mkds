@@ -1402,7 +1402,7 @@ void PlaceKartAtKeyedPlacement(Kart *p, u32 b) {
     if (gRaceSetup->mMode != MODE_BATTLE) {
         return;
     }
-    func_02089754(p->mAi, GetKeyedPlacementBattlePointLink(b));
+    ResetBattleKartAiAtPointLink(p->mAi, GetKeyedPlacementBattlePointLink(b));
 }
 
 void func_02070484(Kart *p, Vec4 *q) {

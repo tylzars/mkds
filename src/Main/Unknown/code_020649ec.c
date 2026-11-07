@@ -283,7 +283,7 @@ void InitKart(Kart *a, void (**b)(Kart *)) {
         a->mUnk_174.y = a->mUnk_174.y >> 4;
         a->mUnk_174.z = a->mUnk_174.z >> 4;
         if ((a->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0) {
-            func_0207b734(a);
+            AdvanceKartCharacterAnimation(a);
             d = a->mKartModelsEntry->mCharacterAnimation;
             *d->mUnk_1c[d->mUnk_1a] = d->mUnk_0c;
         }

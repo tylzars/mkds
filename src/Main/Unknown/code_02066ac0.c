@@ -336,7 +336,7 @@ void func_02066fe0(Kart *a) {
             }
         }
     }
-    func_0207b44c(a);
+    StartKartWinOrLoseAnimation(a);
     StopOrthoQuads(a->mIndex);
     ReleaseKartStarEffects(a->mIndex);
     if ((a->mUnk_4c & 0x40) != 0) {

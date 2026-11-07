@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk02089b4c Unk02089b4c;
+typedef struct KartAiSpeedLimit KartAiSpeedLimit;
 typedef struct KartAi KartAi;
 
-void func_02089ce4(Unk02089b4c *p0, KartAi *p1);
+void func_02089ce4(KartAiSpeedLimit *p0, KartAi *p1);

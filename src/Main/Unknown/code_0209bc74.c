@@ -68,7 +68,7 @@ void *CreateMapObjectModelShadow(void *a, const char *b) {
         ((Unk0209bc74_a *) a)->mUnk_18 = 1;
     }
     o->mShadowModel = HeapAlloc(GetHeap(func_020364e8()), 0x74);
-    func_0207afa8(o->mShadowModel, x, 0x3f);
+    InitShadowModel(o->mShadowModel, x, 0x3f);
     o->mScale = data_021565b8;
     return o;
 }

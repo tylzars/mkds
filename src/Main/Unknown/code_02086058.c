@@ -73,7 +73,7 @@ void func_02086a04(void) {
             }
             if (d < 0) {
                 s->mUnk_058 = s->mUnk_05c = s->mUnk_060 = TRUE;
-                s->mUnk_01c->mUnk_70 &= ~1;
+                s->mUnk_01c->mFlags &= ~1;
                 p->mUnk_4c |= 0x800000;
             } else {
                 g = FALSE;
@@ -88,17 +88,17 @@ void func_02086a04(void) {
                 } else {
                     p->mUnk_4c &= ~0x800000;
                     s->mUnk_058 = s->mUnk_05c = s->mUnk_060 = FALSE;
-                    s->mUnk_01c->mUnk_70 |= 1;
+                    s->mUnk_01c->mFlags |= 1;
                     if (e > data_0217aed8->z) {
                         p->mUnk_4c |= 0x800000;
                         s->mUnk_058 = s->mUnk_05c = s->mUnk_060 = TRUE;
-                        s->mUnk_01c->mUnk_70 &= ~1;
+                        s->mUnk_01c->mFlags &= ~1;
                     } else if (e > data_0217aed8->y) {
                         s->mUnk_058 = s->mUnk_060 = TRUE;
-                        s->mUnk_01c->mUnk_70 &= ~1;
+                        s->mUnk_01c->mFlags &= ~1;
                     } else if (e > data_0217aed8->x) {
                         s->mUnk_060 = TRUE;
-                        s->mUnk_01c->mUnk_70 &= ~1;
+                        s->mUnk_01c->mFlags &= ~1;
                     }
                 }
             }

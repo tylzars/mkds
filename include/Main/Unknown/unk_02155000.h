@@ -36,7 +36,7 @@ extern Vec3 gKartSideDirectionVectors[];
 extern void (*gKartSurfaceEffectFunctions[])(struct Kart *p);
 extern Vec3 data_02155a14;
 extern Vec3 data_02155a48;
-extern Vec3 data_02155eb0;
+extern Vec3 gVec3UnitY;
 extern Vec3 data_02155ebc;
 
 // 12-byte entries; BuildEmblemNsbtxPath reads the string pointer at 0x00.

@@ -77,7 +77,7 @@ void func_0207e4a4(struct KartAi *p) {
     func_0207f6f0(p, s, q, r, &a, t);
     if (q->mState == KART_STATE_NORMAL) {
         RequestBits(p->mKart->mEntryIndex, PAD_KEY_A);
-        VEC_Subtract(&p->mUnk_44, &a, &b);
+        VEC_Subtract(&p->mLinkPosWithSideOffset, &a, &b);
         AdvanceKartAiHeading(p, &b, t);
     }
     func_0207ebfc(p);
@@ -113,7 +113,7 @@ void func_0207e35c(struct KartAi *p) {
     func_0207f6f0(p, s, q, r, &a, t);
     if (q->mState == KART_STATE_NORMAL) {
         RequestBits(p->mKart->mEntryIndex, PAD_KEY_A);
-        VEC_Subtract(&p->mUnk_44, &a, &b);
+        VEC_Subtract(&p->mLinkPosWithSideOffset, &a, &b);
         AdvanceKartAiHeading(p, &b, t);
     }
     func_0207ebfc(p);

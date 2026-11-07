@@ -456,7 +456,7 @@ void func_0206d18c(Kart *p) {
         }
         f = q->mUnk_7c;
         if ((f & 0x10) && !(f & 0x30000)) {
-            func_0207b054(q, 2, 0);
+            StartKartCharacterAnimationOnce(q, 2, 0);
         }
     }
     if (p->mUnk_7c & 0x200) {
@@ -478,7 +478,7 @@ void func_0206d138(Kart *p) {
     if (f & 0x30000) {
         return;
     }
-    func_0207b054(p, 2, 0);
+    StartKartCharacterAnimationOnce(p, 2, 0);
 }
 
 void StartKartBoost(Kart *p, KartBoostKind a, int b) {

@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_020846c0.h" // Nsbmd
-#include "Main/Unknown/code_0207adf8.h" // Unk0207adf8
+#include "Main/Unknown/code_0207adf8.h" // ShadowModel
 #include "Main/Unknown/code_020e5d0c.h"
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_02087d0c.h"
@@ -84,16 +84,16 @@ typedef struct Unk0206bcb0_590_6a {
 } Unk0206bcb0_590_6a;
 
 // Words and halfwords from 0x24 of a KartModelsEntry.
-typedef struct Unk0206bcb0_590_24 {
-    /* 00 */ s32 mUnk_00;
+typedef struct CharacterAnimationState {
+    /* 00 */ s32 mTurnFrameOffset;
     /* 04 */ BOOL mUnk_04;
-    /* 08 */ s32 mUnk_08;
+    /* 08 */ s32 mMiddleFrame;
     /* 0c */ u8 mUnk_0c[4];
     /* 10 */ s16 mUnk_10;
     /* 12 */ u8 mUnk_12[2];
-    /* 14 */ BOOL mUnk_14;
-    /* 18 */ s16 mUnk_18;
-} Unk0206bcb0_590_24;
+    /* 14 */ BOOL mNextAnimationPending;
+    /* 18 */ s16 mNextAnimationIndex;
+} CharacterAnimationState;
 
 struct Nsbmd;
 
@@ -101,14 +101,14 @@ typedef struct KartModelsEntry {
     /* 000 */ s32 mUnk_000;
     /* 004 */ s32 mUnk_004;
     /* 008 */ Unk0206bcb0_590_08 *mCharacterAnimation;
-    /* 00c */ Unk0206bcb0_590_08 *mUnk_00c;
+    /* 00c */ Unk0206bcb0_590_08 *mFaceAnimation;
     /* 10 */ Nsbmd *mModels[3];
-    /* 01c */ Unk0207adf8 *mUnk_01c;
+    /* 01c */ ShadowModel *mUnk_01c;
     /* 020 */ Unk0206bcb0_590_20 *mUnk_020;
-    /* 024 */ s32 mUnk_024;
+    /* 024 */ s32 mTurnFrameOffset;
     /* 028 */ u8 mUnk_028[4];
-    /* 02c */ s32 mUnk_02c;
-    /* 030 */ s32 mUnk_030;
+    /* 02c */ s32 mMiddleFrame;
+    /* 030 */ s32 mMiddleFrameReciprocal;
     /* 034 */ u8 mUnk_034[0xc];
     /* 040 */ u16 mUnk_040;
     /* 042 */ u8 mUnk_042[0x12];

@@ -125,7 +125,7 @@ void InitKartAiShared(void) {
     func_0207e268();
     func_0207c78c();
     if (gRaceSetup->mMode == MODE_BATTLE) {
-        func_02089974();
+        SetupBattleKartAiParams();
         SetupBattleItemEntries();
     }
 }

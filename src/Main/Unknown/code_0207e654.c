@@ -178,7 +178,7 @@ void SetupRaceKartAi(KartAi *p, Kart *q, s32 a) {
 }
 
 void ResetKartAi(KartAi *p, s32 a) {
-    p->mUnk_44 = *p->mUnk_08.mUnk_00.mLink->mUnk_18;
+    p->mLinkPosWithSideOffset = *p->mUnk_08.mUnk_00.mLink->mUnk_18;
     p->mSideOffset = data_usa_021557d0;
     p->mUnk_6c = 0;
     p->mUnk_6e = 0;
@@ -195,7 +195,7 @@ void ResetKartAi(KartAi *p, s32 a) {
     p->mTargetAhead = 0;
     p->mTargetDistanceSquared = 0;
     p->mTargetForwardDot = -0x1000;
-    p->mUnk_c0 = 0;
+    p->mBalloonCountGoal = 0;
     p->mUnk_c2 = 0;
     p->mUnk_c4 = FALSE;
     p->mUnk_90 = 0;
@@ -233,7 +233,7 @@ void AdvanceRaceKartAi(KartAi *p) {
     func_0207f6f0(p, q, a, s, &v, t);
     if (a->mState == KART_STATE_NORMAL) {
         RequestBits(p->mKart->mEntryIndex, PAD_KEY_A);
-        VEC_Subtract(&p->mUnk_44, &v, &w);
+        VEC_Subtract(&p->mLinkPosWithSideOffset, &v, &w);
         AdvanceKartAiHeading(p, &w, t);
     }
     func_0207ebfc(p);
@@ -261,7 +261,7 @@ void func_0207f6f0(KartAi *p, LinkCursor *q, Kart *r, Unk02175620_bc *s, Vec3 *a
             SetKartAiSideOffsetFromKart(p);
         }
         c = &r->mUnk_12c;
-        VEC_Subtract(&p->mUnk_44, &r->mPos, &v);
+        VEC_Subtract(&p->mLinkPosWithSideOffset, &r->mPos, &v);
         d = VEC_DotProduct(c, &v);
         v.x = v.x - (s32) (((s64) r->mUnk_12c.x * d) >> 12);
         v.y = v.y - (s32) (((s64) c->y * d) >> 12);
@@ -290,7 +290,7 @@ void func_0207f6f0(KartAi *p, LinkCursor *q, Kart *r, Unk02175620_bc *s, Vec3 *a
 }
 
 void func_0207f668(KartAi *p, LinkCursor *q, Kart *r) {
-    p->mUnk_44 = *q->mLink->mUnk_18;
+    p->mLinkPosWithSideOffset = *q->mLink->mUnk_18;
     if (r->mUnk_48 & 0x40000000) {
         return;
     }
@@ -302,11 +302,11 @@ void func_0207f668(KartAi *p, LinkCursor *q, Kart *r) {
             AdvanceKartAiSideOffset(p);
         }
     }
-    VEC_Add(&p->mUnk_44, &p->mSideOffset, &p->mUnk_44);
+    VEC_Add(&p->mLinkPosWithSideOffset, &p->mSideOffset, &p->mLinkPosWithSideOffset);
 }
 
 void func_0207f630(KartAi *p, LinkCursor *q, Kart *r) {
-    p->mUnk_44 = *q->mLink->mUnk_18;
+    p->mLinkPosWithSideOffset = *q->mLink->mUnk_18;
     p->mSideOffset = data_usa_021557d0;
     p->mSideOffsetRatio = 0;
 }
@@ -504,7 +504,7 @@ void func_0207ebfc(KartAi *p) {
     if (p->mUnk_90 == 3 && (q->mUnk_44 & KART_44_ON_GROUND)) {
         a = &q->mUnk_12c;
         c = &q->mUnk_138;
-        VEC_Subtract(&p->mUnk_44, &q->mPos, &v1);
+        VEC_Subtract(&p->mLinkPosWithSideOffset, &q->mPos, &v1);
         n = VEC_DotProduct(a, &v1);
         v1.x -= (s32) (((s64) a->x * n) >> 12);
         v1.y -= (s32) (((s64) a->y * n) >> 12);
@@ -527,7 +527,7 @@ void func_0207ebfc(KartAi *p) {
         if (func_020738f8(p->mTurnAngleDegrees) <= 0x32000) {
             return;
         }
-        VEC_Subtract(&p->mUnk_44, &q->mPos, &v0);
+        VEC_Subtract(&p->mLinkPosWithSideOffset, &q->mPos, &v0);
         p->mUnk_90 = 4;
         q2 = p->mKart;
         GetKartUp(q2, &v3);
@@ -677,7 +677,7 @@ void SetKartAiSideOffsetFromKart(KartAi *p) {
     p->mSideOffset.x = ((s64) p->mSideOffset.x * s) >> 12;
     p->mSideOffset.y = ((s64) p->mSideOffset.y * s) >> 12;
     p->mSideOffset.z = ((s64) p->mSideOffset.z * s) >> 12;
-    VEC_Add(&a, &p->mSideOffset, &p->mUnk_44);
+    VEC_Add(&a, &p->mSideOffset, &p->mLinkPosWithSideOffset);
 }
 
 void func_0207e668(KartAi *p) {

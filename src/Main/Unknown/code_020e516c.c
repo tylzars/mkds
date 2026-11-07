@@ -85,7 +85,7 @@ void func_020e53ac(Unk020e516c *p, void *d, u32 e, u32 f) {
 
 void func_020e5370(Vec3 *a, MtxFx43 *b, u32 c, u32 d) {
     gJgShadow->mUnk_06e = c < d ? c : d;
-    func_0207aec8(gJgShadow, b, a);
+    DrawShadowWithMatrix(gJgShadow, b, a);
 }
 
 void func_020e5348(u32 a, u32 b) {

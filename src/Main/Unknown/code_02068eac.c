@@ -549,8 +549,8 @@ void func_0206924c(Kart *p, u32 a) {
     }
     StartKartModelColorBlend(p->mKartModelsEntry, 0, 0x1084, 0);
     if (p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) {
-        func_0207b054(p, 1, 0);
-        func_0207b708(p->mKartModelsEntry, 1);
+        StartKartCharacterAnimationOnce(p, 1, 0);
+        SetCharacterFaceFrameIndex(p->mKartModelsEntry, 1);
     }
     if (!(p->mUnk_48 & 0x840)) {
         func_0210af40(p, p->mUnk_3cc, 0);
