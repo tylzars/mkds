@@ -9,7 +9,7 @@ the CodeWarrior mwccarm 1.2 base compiler; flags and evidence are in `compiler.m
 
 - `src/Main/Unknown/` holds the main binary's code and `src/ITCM/` the code that runs from ITCM, one file per unit,
   named `code_<address>.c`.
-  `src/00/`, `src/01/`, `src/03/` hold overlays 0, 1 and 3. Library code is in `libs/`: `libs/msl/` for the C library, `libs/mathlib/` for the arithmetic routines the compiler calls, `libs/NitroSDK/<module>/` and `libs/NitroSystem/<module>/` by module (`os`, `gx`, `g3d`, ...), `libs/Unknown/` for the rest.
+  `src/00/`, `src/01/`, `src/03/` hold overlays 0, 1 and 3. Library code is in `libs/`: `libs/msl/` for the C library, `libs/mathlib/` for the arithmetic routines the compiler calls, `libs/NitroSDK/`, `libs/NitroSystem/` and `libs/NitroDWC/` by module (`os`, `gx`, `g3d`, `account`, ...), `libs/spl/` for the particle library, `libs/Unknown/` for the rest.
   `include/` mirrors `src/` (`include/01/code_0218254c.h` for `src/01/code_0218254c.c`); a library's headers are in
   its `include/` folder (`libs/msl/include/`, `libs/NitroSDK/os/include/`). Hand-written assembly units are `.s` files next to the C ones (`libs/Unknown/src/`).
 - `config/usa/arm9/` is the `dsd` configuration of the main module: `symbols.txt`, `relocs.txt`, `delinks.txt` (the

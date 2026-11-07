@@ -8,7 +8,7 @@ to reproduce it; a setting with no exact match that breaks when it changes is un
 | Code | Compiler | Flags | Evidence |
 |---|---|---|---|
 | Game code (main + overlays) | 1.2 base (ARM: sp2 identical) | `-O4,p -inline on,noauto -char unsigned -str noreuse -proc arm946e -interworking` | exact matches below |
-| Library code (`libs/NitroSDK/`, `libs/NitroSystem/`, `libs/Unknown/`) | 1.2 base (sp2, sp2p3 identical) | `-O4,p -inline on,noauto -char signed -str noreuse -proc arm946e -interworking` | below |
+| Library code (`libs/NitroSDK/`, `libs/NitroSystem/`, `libs/NitroDWC/`, `libs/spl/`, `libs/Unknown/`) | 1.2 base (sp2, sp2p3 identical) | `-O4,p -inline on,noauto -char signed -str noreuse -proc arm946e -interworking` | below |
 | C library (`libs/msl/`) | 1.2 base | as library code, with `-char unsigned` | below |
 | Compiler arithmetic routines (`libs/mathlib/`) | 1.2 base | as library code | the routines the compiler calls for `/`, `%`, float, double and 64-bit operations |
 
