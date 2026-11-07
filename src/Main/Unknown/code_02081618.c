@@ -188,7 +188,7 @@ void func_020840c0(Kart *p) {
 void StartKartBoostCameraEffect(u32 a, Kart *p) {
     Unk0201ca6c *o;
 
-    if (func_02061818() != 0) {
+    if (GetCurrentCameraKind() != 0) {
         return;
     }
     GetChaseCamera();
@@ -459,7 +459,7 @@ void AdvanceKartBoostCameraEffect(Unk0201ca6c *p, s32 a) {
     }
     g = GetChaseCamera();
     q = p->mUnk_94;
-    if (func_02061818() != 0 || (p->mUnk_24.mUnk_00_1 != 0 && (p->mUnk_98 = p->mUnk_98 + 1, p->mUnk_98 > 5))) {
+    if (GetCurrentCameraKind() != 0 || (p->mUnk_24.mUnk_00_1 != 0 && (p->mUnk_98 = p->mUnk_98 + 1, p->mUnk_98 > 5))) {
         p->mUnk_24.mUnk_00_0 = 1;
         gKartBoostCameraEffect = NULL;
         return;

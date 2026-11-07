@@ -387,7 +387,7 @@ void InitKartPhysicalParams(Kart *p) {
     p->mPhysicalParam = GetKartPhysicalParam(p->mIndex);
     a = 0x1000;
     b = 0;
-    if (func_02062eb0() == 0) {
+    if (IsRaceAwardOrStaffRoll() == 0) {
         switch (gRaceSetup->mEngineIndex) {
             case 0:
                 a = 0xb33;
@@ -681,7 +681,7 @@ void func_02071e28(Kart *p) {
     if (p->mKartModelsEntry->mCharacterAnimation != NULL) {
         p->mUnk_7c |= KART_7C_MODELS_ENTRY_008_SET;
     }
-    if (gRaceSetup->mMode == MODE_TIME_ATTACK || func_02062eb0() != 0) {
+    if (gRaceSetup->mMode == MODE_TIME_ATTACK || IsRaceAwardOrStaffRoll() != 0) {
         p->mUnk_7c |= 0x8000000;
     }
 }

@@ -50,8 +50,8 @@ void func_0211e418(u32 a) {
     data_0217d374->mUnk_0c = a;
     data_0217d374->mUnk_10 = -1;
     for (i = 0; i < 0xa; i++) {
-        if (func_0206174c(data_0217d374->mUnk_04 + (u8) i * 0x230) != FALSE &&
-            func_02061654(data_0217d374->mUnk_04 + (u8) i * 0x230) == a) {
+        if (IsGhostRecordFilled(data_0217d374->mUnk_04 + (u8) i * 0x230) != FALSE &&
+            GetGhostRecordCourseId(data_0217d374->mUnk_04 + (u8) i * 0x230) == a) {
             data_0217d374->mUnk_10 = i;
             return;
         }
@@ -64,14 +64,14 @@ void func_0211e38c(u32 a, void *b) {
     switch (a) {
         case 0:
             p = data_0217d374->mUnk_00;
-            func_02061704(p + func_0204684c(data_0217d374->mUnk_0c) * 0x30, b);
+            GetGhostRecordTime(p + func_0204684c(data_0217d374->mUnk_0c) * 0x30, b);
             break;
         case 1:
-            func_02061704(data_0217d374->mUnk_04 + (u8) data_0217d374->mUnk_10 * 0x230, b);
+            GetGhostRecordTime(data_0217d374->mUnk_04 + (u8) data_0217d374->mUnk_10 * 0x230, b);
             break;
         case 2:
             p = data_0217d374->mUnk_08;
-            func_02061704(p + func_0204684c(data_0217d374->mUnk_0c) * 0x230, b);
+            GetGhostRecordTime(p + func_0204684c(data_0217d374->mUnk_0c) * 0x230, b);
             break;
         case 4:
             break;
@@ -85,14 +85,14 @@ void func_0211e2f8(u32 a, void *b) {
     switch (a) {
         case 0:
             p = data_0217d374->mUnk_00;
-            func_020616c0(p + func_0204684c(data_0217d374->mUnk_0c) * 0x30, buf);
+            GetGhostRecordName(p + func_0204684c(data_0217d374->mUnk_0c) * 0x30, buf);
             break;
         case 1:
-            func_020616c0(data_0217d374->mUnk_04 + (u8) data_0217d374->mUnk_10 * 0x230, buf);
+            GetGhostRecordName(data_0217d374->mUnk_04 + (u8) data_0217d374->mUnk_10 * 0x230, buf);
             break;
         case 2:
             p = data_0217d374->mUnk_08;
-            func_020616c0(p + func_0204684c(data_0217d374->mUnk_0c) * 0x230, buf);
+            GetGhostRecordName(p + func_0204684c(data_0217d374->mUnk_0c) * 0x230, buf);
             break;
         case 4:
             break;
@@ -111,14 +111,14 @@ s32 func_0211e274(u32 a) {
             break;
         case 0:
             p = data_0217d374->mUnk_00;
-            r = func_0206169c(p + func_0204684c(data_0217d374->mUnk_0c) * 0x30);
+            r = GetGhostRecordCharacterIndex(p + func_0204684c(data_0217d374->mUnk_0c) * 0x30);
             break;
         case 1:
-            r = func_0206169c(data_0217d374->mUnk_04 + (u8) data_0217d374->mUnk_10 * 0x230);
+            r = GetGhostRecordCharacterIndex(data_0217d374->mUnk_04 + (u8) data_0217d374->mUnk_10 * 0x230);
             break;
         case 2:
             p = data_0217d374->mUnk_08;
-            r = func_0206169c(p + func_0204684c(data_0217d374->mUnk_0c) * 0x230);
+            r = GetGhostRecordCharacterIndex(p + func_0204684c(data_0217d374->mUnk_0c) * 0x230);
             break;
     }
     return r;
@@ -134,14 +134,14 @@ s32 func_0211e1f0(u32 a) {
             break;
         case 0:
             p = data_0217d374->mUnk_00;
-            r = func_02061678(p + func_0204684c(data_0217d374->mUnk_0c) * 0x30);
+            r = GetGhostRecordKartIndex(p + func_0204684c(data_0217d374->mUnk_0c) * 0x30);
             break;
         case 1:
-            r = func_02061678(data_0217d374->mUnk_04 + (u8) data_0217d374->mUnk_10 * 0x230);
+            r = GetGhostRecordKartIndex(data_0217d374->mUnk_04 + (u8) data_0217d374->mUnk_10 * 0x230);
             break;
         case 2:
             p = data_0217d374->mUnk_08;
-            r = func_02061678(p + func_0204684c(data_0217d374->mUnk_0c) * 0x230);
+            r = GetGhostRecordKartIndex(p + func_0204684c(data_0217d374->mUnk_0c) * 0x230);
             break;
     }
     return r;
@@ -157,7 +157,7 @@ s32 func_0211e160(u32 a) {
             break;
         case 0:
             p = data_0217d374->mUnk_00;
-            r = func_0206174c(p + func_0204684c(data_0217d374->mUnk_0c) * 0x30);
+            r = IsGhostRecordFilled(p + func_0204684c(data_0217d374->mUnk_0c) * 0x30);
             break;
         case 1:
             if (data_0217d374->mUnk_10 != -1) {

@@ -185,21 +185,21 @@ void SetCurrentEntryPlayer(s32 a) {
         case 2:
             switch (gRaceSetup->mCurrentEntries[a].mPlayer.mUnk_10) {
                 case 0:
-                    *b0 = &data_0217aa08->mUnk_14[0]->mUnk_0c;
+                    *b0 = &data_0217aa08->mUnk_14[0]->mName;
                     *b1 = &data_0217aa08->mUnk_04->mUnk_008;
                     *b2 = g != FALSE ? 1 : 0;
                     *b3 = data_0217aa08->mUnk_14[0]->mUnk_08_2;
                     *b4 = 0;
                     break;
                 case 1:
-                    *b0 = &data_0217aa08->mUnk_14[1]->mUnk_0c;
+                    *b0 = &data_0217aa08->mUnk_14[1]->mName;
                     *b1 = &data_0217aa08->mUnk_14[1]->mUnk_30;
                     *b2 = data_0217aa08->mUnk_14[1]->mUnk_08_1;
                     *b3 = data_0217aa08->mUnk_14[1]->mUnk_08_2;
                     *b4 = data_0217aa08->mUnk_14[1]->mUnk_2f_0;
                     break;
                 case 2:
-                    *b0 = &data_0217aa08->mUnk_14[2]->mUnk_0c;
+                    *b0 = &data_0217aa08->mUnk_14[2]->mName;
                     *b1 = &data_0217aa08->mUnk_14[2]->mUnk_30;
                     *b2 = 1;
                     *b3 = data_0217aa08->mUnk_14[2]->mUnk_08_2;
@@ -243,15 +243,15 @@ void func_02044fc0(void) {
 BOOL func_02044e9c(s32 a, s32 b) {
     u8 i;
     BOOL r;
-    Unk0217aa08_14 *p;
+    GhostRecord *p;
 
     r = FALSE;
     if (gRaceSetup->mNextHeader.mRaceKind == 2) {
         return TRUE;
     }
     p = data_0217aa08->mUnk_14[0];
-    if (p->mUnk_08_0 == 1) {
-        func_020468b0(b, p->mUnk_04_0, p->mUnk_04_4, 2, -1, 3);
+    if (p->mFilled == 1) {
+        func_020468b0(b, p->mCharacterIndex, p->mKartIndex, 2, -1, 3);
         gRaceSetup->mNextEntries[b].mPlayer.mUnk_10 = r;
         MI_CpuCopy8(p->mUnk_30, data_02175650[b].mUnk_00, 0xdcc);
         r = TRUE;
@@ -264,7 +264,7 @@ BOOL func_02044e9c(s32 a, s32 b) {
 }
 
 s32 func_02044d4c(s32 a, s32 b) {
-    Unk0217aa08_14 *p;
+    GhostRecord *p;
     s32 r;
     u8 i;
 
@@ -272,9 +272,9 @@ s32 func_02044d4c(s32 a, s32 b) {
         return 1;
     }
     p = data_0217aa08->mUnk_14[1];
-    r = p->mUnk_08_0 == 1 ? 1 : 0;
+    r = p->mFilled == 1 ? 1 : 0;
     if (r != 0) {
-        func_020468b0(b, p->mUnk_04_0, p->mUnk_04_4, 2, -1, 3);
+        func_020468b0(b, p->mCharacterIndex, p->mKartIndex, 2, -1, 3);
         gRaceSetup->mNextEntries[b].mPlayer.mUnk_10 = 1;
         MI_CpuCopy8(&p->mUnk_30[0x200], data_02175650[b].mUnk_00, 0xdcc);
         func_02056574(1, &gRaceSetup->mUnk_3e8);
@@ -288,15 +288,15 @@ s32 func_02044d4c(s32 a, s32 b) {
 }
 
 BOOL func_02044bf8(s32 a, s32 b) {
-    Unk0217aa08_14 *p;
+    GhostRecord *p;
     u8 i;
 
     if (gRaceSetup->mNextHeader.mRaceKind == 2) {
         return TRUE;
     }
     p = data_0217aa08->mUnk_14[2];
-    if (p != NULL && p->mUnk_08_0 == 1) {
-        func_020468b0(b, p->mUnk_04_0, p->mUnk_04_4, 2, -1, 3);
+    if (p != NULL && p->mFilled == 1) {
+        func_020468b0(b, p->mCharacterIndex, p->mKartIndex, 2, -1, 3);
         gRaceSetup->mNextEntries[b].mPlayer.mUnk_10 = 2;
         MI_CpuCopy8(&p->mUnk_30[0x200], data_02175650[b].mUnk_00, 0xdcc);
         func_020565e4(p, &gRaceSetup->mUnk_3e8);
@@ -311,7 +311,7 @@ BOOL func_02044bf8(s32 a, s32 b) {
 
 void SetCurrentRaceFromNext(void) {
     s16 h;
-    Unk0217aa08_14 *e;
+    GhostRecord *e;
     Unk0217aa00 *q;
     u16 n;
     u16 r;
@@ -331,11 +331,11 @@ void SetCurrentRaceFromNext(void) {
         case MODE_TIME_ATTACK:
             n = 1;
             e = data_0217aa08->mUnk_14[0];
-            if (e->mUnk_08_0 == 1) {
+            if (e->mFilled == 1) {
                 gRaceSetup->mUnk_3e6 = 1;
-                gRaceSetup->mUnk_3e4 = e->mUnk_08_8;
-                gRaceSetup->mUnk_3e5 = e->mUnk_08_15;
-                gRaceSetup->mUnk_3e2 = e->mUnk_08_22;
+                gRaceSetup->mUnk_3e4 = e->mMinute;
+                gRaceSetup->mUnk_3e5 = e->mSecond;
+                gRaceSetup->mUnk_3e2 = e->mMillisecond;
             } else {
                 gRaceSetup->mUnk_3e6 = 0;
                 gRaceSetup->mUnk_3e4 = 0;

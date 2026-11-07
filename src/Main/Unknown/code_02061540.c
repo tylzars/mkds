@@ -7,21 +7,21 @@
 void func_02061588(void) {
     u8 i;
     u8 *a;
-    Unk0217aa08_14 *b;
+    GhostRecord *b;
 
     a = data_0217aa08->mUnk_40;
     for (i = 0; i < 0x20; i++) {
-        b = (Unk0217aa08_14 *) (a + i * 0x30);
+        b = (GhostRecord *) (a + i * 0x30);
         if (func_020573f8(i) != 0) {
             func_0205786c(1, i, b);
             if (data_021759d4->mUnk_0c != 0) {
                 CARD_WaitBackupAsync();
             }
             if (data_021759d4->mUnk_04 != NULL) {
-                b->mUnk_08_0 = 0;
+                b->mFilled = 0;
             }
         } else {
-            b->mUnk_08_0 = 0;
+            b->mFilled = 0;
         }
     }
     data_0217aa08->mUnk_40 = NULL;

@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk0217aa08_14 Unk0217aa08_14;
+typedef struct GhostRecord GhostRecord;
 
-Unk0217aa08_14 *func_02056284(const char *a);
+GhostRecord *func_02056284(const char *a);

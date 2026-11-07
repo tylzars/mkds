@@ -79,7 +79,7 @@ void UpdateRaceStartSequence(void) {
             return;
         }
         p->mCounting = TRUE;
-        func_020617f0();
+        SetRaceUpdateFramesUnlimited();
         SetMapObjectsRunUpdateLists();
         return;
     }

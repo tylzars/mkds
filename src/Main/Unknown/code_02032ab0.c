@@ -108,7 +108,7 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
     if (gResultsBattle->mMode == 3) {
         func_02123a48(3);
     }
-    func_02062860();
+    Init3dEngine();
     r = CreateDisplaySettings(a, data_021547f0);
     SetBg0Record(r->mUnk_28, 3, 0, 0, 0, 0xd, 2, 0);
     SetBg1Record(r->mUnk_28, 0, 0, 0, 0, 0xc, 0, 0);

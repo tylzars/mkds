@@ -776,7 +776,7 @@ u32 IsCharacterPNameUsed(s32 e) {
     if (d == 0 && gRaceSetup->mMode != MODE_MISSION_RUN) {
         c = 0;
     }
-    if (c == 0 && func_02062eb0() == 0) {
+    if (c == 0 && IsRaceAwardOrStaffRoll() == 0) {
         b = 0;
     }
     if (b == 0 && gRaceSetup->mMode != MODE_TIME_ATTACK) {
@@ -1262,7 +1262,7 @@ void QueueKartEmblemTexture(void *param_1, void *param_2) {
 void func_02078d64(void *param_1) {
     u32 i;
     SetHeapGroupId(1);
-    func_02062860();
+    Init3dEngine();
     NNS_G3dGeUseFastDma(0);
     data_021759d0->mUnk_1c &= ~8;
     InitLnkVramManagers(param_1);
@@ -1288,7 +1288,7 @@ void func_02078c58(void *param_1) {
     enum { K0 } j;
     s32 a;
     SetHeapGroupId(1);
-    func_02062860();
+    Init3dEngine();
     NNS_G3dGeUseFastDma(0);
     data_021759d0->mUnk_1c &= ~8;
     InitLnkVramManagers(param_1);

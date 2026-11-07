@@ -15,41 +15,41 @@
 #pragma thumb on
 
 void func_02056670(u32 a) {
-    Unk0217aa08_14 *p;
+    GhostRecord *p;
 
     p = data_0217aa08->mUnk_14[1];
     if (func_020573c8(a) == 0) {
-        p->mUnk_08_0 = 0;
+        p->mFilled = 0;
     } else {
         func_020578fc(a, p);
     }
 }
 
-s32 func_0205660c(Unk0217aa08_14 *a, s32 b, Unk020565e4 *c) {
+s32 func_0205660c(GhostRecord *a, s32 b, Unk020565e4 *c) {
     u8 i;
     u32 v;
 
     i = (b - 1) * 3;
     v = 0;
-    if (a->mUnk_08_0 == 0) {
+    if (a->mFilled == 0) {
         return v;
     }
-    v |= a->mUnk_20[i] << 16;
-    v |= a->mUnk_20[i + 1] << 8;
-    v |= a->mUnk_20[i + 2];
+    v |= a->mLapTimes[i] << 16;
+    v |= a->mLapTimes[i + 1] << 8;
+    v |= a->mLapTimes[i + 2];
     c->mUnk_02 = (v >> 17) & 0x7f;
     c->mUnk_03 = (v >> 10) & 0x7f;
     c->mUnk_00 = v & 0x3ff;
     return 1;
 }
 
-BOOL func_020565e4(Unk0217aa08_14 *a, Unk020565e4 *b) {
-    if (a->mUnk_08_0 == 0) {
+BOOL func_020565e4(GhostRecord *a, Unk020565e4 *b) {
+    if (a->mFilled == 0) {
         return FALSE;
     }
-    b->mUnk_02 = a->mUnk_08_8;
-    b->mUnk_03 = a->mUnk_08_15;
-    b->mUnk_00 = a->mUnk_08_22;
+    b->mUnk_02 = a->mMinute;
+    b->mUnk_03 = a->mSecond;
+    b->mUnk_00 = a->mMillisecond;
     return TRUE;
 }
 

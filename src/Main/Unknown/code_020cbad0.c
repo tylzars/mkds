@@ -90,7 +90,7 @@ void func_020cbb10(void) {
     func_020cc3b8();
     func_020ae6d4(data_0217b43c->mUnk_108, data_0217b43c->mUnk_50c);
     SetHeapGroupId(9);
-    func_02062860();
+    Init3dEngine();
     SetHeapGroupId(5);
     func_020629a4();
     SetHeapGroupId(9);

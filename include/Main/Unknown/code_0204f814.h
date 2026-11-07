@@ -2,11 +2,11 @@
 
 #include "types.h"
 
-typedef struct Unk0217aa08_14 Unk0217aa08_14;
+typedef struct GhostRecord GhostRecord;
 
 void func_0204f814(void);
 void func_0204f8a0(u8 a);
-void func_0204f938(Unk0217aa08_14 *a);
+void func_0204f938(GhostRecord *a);
 void func_0204fb40(s32 a);
 s32 func_0204fcec(u16 a, void *b);
 s32 func_0204fe1c(u16 a);

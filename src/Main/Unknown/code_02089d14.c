@@ -121,7 +121,7 @@ void func_0208a460(void *a) {
     for (i = 0; i < 8; i++) {
         data_0217b034->mUnk_000[i] = NULL;
     }
-    if (func_02062eb0() != 0) {
+    if (IsRaceAwardOrStaffRoll() != 0) {
         return;
     }
     for (i = 0; i <= 2; i++) {

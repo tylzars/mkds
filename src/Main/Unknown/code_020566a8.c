@@ -9,7 +9,7 @@
 
 void func_020566a8(u32 a, int b) {
     int v1;
-    Unk0217aa08_14 *v2;
+    GhostRecord *v2;
     v2 = data_0217aa08->mUnk_14[1];
     *(u32 *) (b + 8) = *(u32 *) (b + 8) & 0xfffffffe | 1;
     MI_CpuCopy8(((u16 *) (u32) b), ((u32 *) v2), (0x00001000u));

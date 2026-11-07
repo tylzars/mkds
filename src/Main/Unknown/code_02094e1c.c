@@ -163,7 +163,7 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
     switch (o->mUnk_ac) {
         case 0:
             k = FALSE;
-            if (func_02061818() == 2) {
+            if (GetCurrentCameraKind() == 2) {
                 for (i = 0; i < o->mUnk_00.mCourseMapRow->mUnk_2a; i++) {
                     if (o->mUnk_00.mCourseMapRow->mUnk_28 > 0) {
                         f = 0.5f + (o->mUnk_00.mCourseMapRow->mUnk_28 << 12);
@@ -183,13 +183,13 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
             }
             o->mUnk_ac = 1;
         case 1:
-            if (func_02061818() == 2) {
+            if (GetCurrentCameraKind() == 2) {
                 break;
             }
             if (o->mUnk_a4 == FALSE) {
                 break;
             }
-            if (func_02061818() != 0) {
+            if (GetCurrentCameraKind() != 0) {
                 func_020952dc(o, 0x1e, 0x14, 0x1f4, 4);
             } else {
                 func_020952dc(o, 6, 4, 0xa, 0x14);
@@ -203,7 +203,7 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
                 break;
             }
             if (o->mUnk_a4 != FALSE) {
-                if (func_02061818() != 0) {
+                if (GetCurrentCameraKind() != 0) {
                     func_020952dc(o, 0x1e, 1, 0x1f4, 4);
                 } else {
                     func_020952dc(o, 6, 1, 0xa, 0x14);
@@ -224,7 +224,7 @@ u32 func_02094e3c(void) {
 
     m = gRaceSetup->mMode;
     if (m == MODE_VS || m == 5) {
-        if (func_02061818() == 0) {
+        if (GetCurrentCameraKind() == 0) {
             return 0;
         }
     }

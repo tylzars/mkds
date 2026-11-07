@@ -197,7 +197,7 @@ void func_0204fb40(s32 a) {
     q->mUnk_0e = a != 0 ? 1 : 0;
 }
 
-void func_0204f938(Unk0217aa08_14 *a) {
+void func_0204f938(GhostRecord *a) {
     Unk02143c30 *q;
     Unk0217aa00_24_50 *e;
     RTCTime t;
@@ -210,13 +210,13 @@ void func_0204f938(Unk0217aa08_14 *a) {
     MIi_CpuCopy32(data_02154788, q, 0x40);
     e = data_0217aa00->mUnk_0044.mUnk_38;
     e->mUnk_0e.mUnk_07_0 = 1;
-    MI_CpuCopy8(a->mUnk_0c, e, 0x14);
-    e->mUnk_0e.mUnk_07_1 = a->mUnk_04_4;
-    e->mUnk_18_0 = a->mUnk_04_0;
-    e->mUnk_18_4 = (u8) func_0204684c(a->mUnk_04_10);
-    e->mUnk_18_9 = a->mUnk_08_8;
-    e->mUnk_18_16 = a->mUnk_08_15;
-    e->mUnk_18_22 = a->mUnk_08_22;
+    MI_CpuCopy8(a->mName, e, 0x14);
+    e->mUnk_0e.mUnk_07_1 = a->mKartIndex;
+    e->mUnk_18_0 = a->mCharacterIndex;
+    e->mUnk_18_4 = (u8) func_0204684c(a->mCourseId);
+    e->mUnk_18_9 = a->mMinute;
+    e->mUnk_18_16 = a->mSecond;
+    e->mUnk_18_22 = a->mMillisecond;
     GetClockTimeOrZero(&t);
     h = t.mHour;
     if (h >= 0x12) {

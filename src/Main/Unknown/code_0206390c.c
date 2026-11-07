@@ -80,7 +80,7 @@ void func_0206390c(Unk0206390c *a) {
     if (k != ((a->mUnk_08 & 0x10) != 0 ? a->mUnk_ae : -1)) {
         return;
     }
-    i = func_0206182c();
+    i = GetCurrentViewMatrix();
     NNS_G3dGetCurrentMtx(&d, c);
     MTX_Inverse43(i, &e);
     MTX_Concat43(&d, &e, &d);

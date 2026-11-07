@@ -98,7 +98,7 @@ void DrawSun(void *a, Unk0209d3fc *b) {
         func_01ff9048(0x1c, &v, 3);
     }
     func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
-    if (func_02061818() == 2) {
+    if (GetCurrentCameraKind() == 2) {
         func_0209bbd0(a, gSun);
         SetMapObjectModelNsbcaFrameIndex(gSun, b->mNsbcaFrameIndex);
         DrawMapObjectModel(a, gSun, b);

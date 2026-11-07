@@ -12,29 +12,29 @@ extern u16 data_021653e8;
 extern s16 data_021653ec;
 extern Vec3 data_021653f0;
 
-u32 func_02061654(void *a);
-s32 func_02061678(void *a);
-s32 func_0206169c(void *a);
-BOOL func_020616c0(void *a, void *b);
-BOOL func_02061704(void *a, TimeRecord *b);
-BOOL func_0206174c(void *a);
-u16 func_02061768(void);
-s32 func_02061788(void);
+u32 GetGhostRecordCourseId(void *a);
+s32 GetGhostRecordKartIndex(void *a);
+s32 GetGhostRecordCharacterIndex(void *a);
+BOOL GetGhostRecordName(void *a, void *b);
+BOOL GetGhostRecordTime(void *a, TimeRecord *b);
+BOOL IsGhostRecordFilled(void *a);
+u16 GetSplMaxPolyId(void);
+s32 GetMapObjectFirstPolygonId(void);
 // Returns TRUE and writes the number of update frames since SetRaceUpdateFramesAtEntryEnd to a, or returns FALSE when
 // that has not run yet.
 s32 TryGetRaceUpdateFramesSinceEntryEnd(u32 *a);
 // Stores the current mUpdateFrames in Race.mUpdateFramesAtEntryEnd; called when the end handler of the kart of the
 // selected entry first runs.
 u32 SetRaceUpdateFramesAtEntryEnd(void);
-u32 func_020617f0(void);
+u32 SetRaceUpdateFramesUnlimited(void);
 void *GetCurrentCamera(void);
-unsigned int func_02061818(void);
-MtxFx43 *func_0206182c(void);
-unsigned int func_0206183c(void);
-void func_0206184c(void);
-void func_02061860(void);
-void func_02061874(void);
-void func_02061944(s32 a, s32 b);
+unsigned int GetCurrentCameraKind(void);
+MtxFx43 *GetCurrentViewMatrix(void);
+unsigned int IsFadeFogActive(void);
+void SetFadeFogHoldFramesToLimit(void);
+void ClearFadeFogHoldFrames(void);
+void StartFadeFog(void);
+void BuildFadeFog(s32 a, s32 b);
 void InitRaceFog(void);
 // Returns Race.mUpdateFramesMod2; changes nothing.
 unsigned int GetRaceUpdateFramesMod2(void);
@@ -50,16 +50,16 @@ void StartRace(void);
 unsigned int IsRaceStarted(void);
 void func_02062000(void);
 void func_02062004(void);
-void func_02062078(void);
-// Sets the direction of light 0 that func_02062078 gives to the 3D engine (Race.mLightVectorX, Y and Z) from a.
+void DrawRaceWorld(void);
+// Sets the direction of light 0 that DrawRaceWorld gives to the 3D engine (Race.mLightVectorX, Y and Z) from a.
 void SetRaceLightVector(const Vec3 *a);
 void DrawRace(void);
 void UpdateRace(void);
-void func_02062860(void);
+void Init3dEngine(void);
 void func_020629a4(void);
-void func_02062a0c(void);
+void InitRaceFields(void);
 void InitRace(void);
-unsigned int func_02062eb0(void);
+unsigned int IsRaceAwardOrStaffRoll(void);
 // Returns Race.mUseChainCameras: 1 for the kinds 3 to 5 of RaceSetup.mUnk_00c, which other code also uses to tell
 // those kinds apart; changes nothing.
 unsigned int GetRaceUseChainCameras(void);

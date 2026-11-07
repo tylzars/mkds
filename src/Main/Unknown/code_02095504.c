@@ -234,7 +234,7 @@ void UpdateBakubaku(void *a, Bakubaku *p) {
 
     switch (p->mState) {
         case 0:
-            if (func_02061818() != 2) {
+            if (GetCurrentCameraKind() != 2) {
                 o = GetKart((u16) gRaceSetup->mEntryIndex);
                 q = &o->mPos;
                 v2 = q->x - p->mUnk_a4.x;

@@ -133,33 +133,33 @@ typedef struct Unk0217aa08_10 {
 } Unk0217aa08_10;
 
 // The 0xe00 bytes behind members 0x14 and 0x18 of Unk0217aa08.
-typedef struct Unk0217aa08_14 {
+typedef struct GhostRecord {
     /* 00 */ u8 mUnk_00[4];
     /* 04 */ union {
         u32 mUnk_04;
         struct {
-            u32 mUnk_04_0 : 4;
-            u32 mUnk_04_4 : 6;
-            u32 mUnk_04_10 : 6;
-            u32 mUnk_04_16 : 7;
-            u32 mUnk_04_23 : 4;
-            u32 mUnk_04_27 : 5;
+            u32 mCharacterIndex : 4;
+            u32 mKartIndex : 6;
+            u32 mCourseId : 6;
+            u32 mYear : 7;
+            u32 mMonth : 4;
+            u32 mDay : 5;
         };
     };
     /* 08 */ union {
         u32 mUnk_08;
         struct {
-            u32 mUnk_08_0 : 1;
+            u32 mFilled : 1;
             u32 mUnk_08_1 : 1;
             u32 mUnk_08_2 : 2;
             u32 mUnk_08_4 : 4;
-            u32 mUnk_08_8 : 7;
-            u32 mUnk_08_15 : 7;
-            u32 mUnk_08_22 : 10;
+            u32 mMinute : 7;
+            u32 mSecond : 7;
+            u32 mMillisecond : 10;
         };
     };
-    /* 0c */ u8 mUnk_0c[0x14];
-    /* 20 */ u8 mUnk_20[0xf];
+    /* 0c */ u8 mName[0x14];
+    /* 20 */ u8 mLapTimes[0xf];
     /* 2f */ union {
         u8 mUnk_2f;
         struct {
@@ -167,7 +167,7 @@ typedef struct Unk0217aa08_14 {
         };
     };
     /* 30 */ u8 mUnk_30[0xdd0];
-} Unk0217aa08_14;
+} GhostRecord;
 
 // One buddy: counts per kind of match, the date of the last result, the name and four flags; 60 entries from 0x04 of
 // BuddyRecordBlock.
@@ -218,7 +218,7 @@ typedef struct Unk0217aa08 {
     /* 08 */ Unk0217aa08_08 *mUnk_08;
     /* 0c */ Unk0217aa08_0c *mUnk_0c;
     /* 10 */ Unk0217aa08_10 *mUnk_10;
-    /* 14 */ Unk0217aa08_14 *mUnk_14[3];
+    /* 14 */ GhostRecord *mUnk_14[3];
     /* 20 */ BuddyRecordBlock *mBuddyRecordBlock;
     /* 24 */ Unk0217aa08_24 *mUnk_24;
     /* 28 */ u8 mUnk_28;
@@ -988,7 +988,8 @@ typedef struct Race {
     // returns it.
     /* 00 */ s16 mStarted;
     /* 02 */ u8 mUnk_02[2];
-    // Counts calls of UpdateRace; in mode 5 held at 128 until mUpdateFramesUnlimited is set (func_020617f0).
+    // Counts calls of UpdateRace; in mode 5 held at 128 until mUpdateFramesUnlimited is set
+    // (SetRaceUpdateFramesUnlimited).
     /* 04 */ s32 mUpdateFrames;
     // Counts calls of DrawRace; never read (2 writes, 0 reads).
     /* 08 */ s32 mDrawFrames;
@@ -1007,12 +1008,12 @@ typedef struct Race {
     // Counts calls of UpdateRace since mToonTableOffset last changed; when it exceeds data_021653ec (2) it restarts at
     // 0 and mToonTableOffset advances (every third call).
     /* 1c */ s32 mToonTableFrames;
-    // 1 from the start of a fog fade (func_02061874) until UpdateRace ends it, else 0: while it is 1 DrawRace writes
+    // 1 from the start of a fog fade (StartFadeFog) until UpdateRace ends it, else 0: while it is 1 DrawRace writes
     // the fade fog into the fog registers instead of the course fog. UpdateRace holds it for 72 calls, then steps
     // data_021653e8 from 72 down to 0 in steps of 4 and clears it. DrawRace compares it with mDrawnFadeFog.
     /* 20 */ s32 mFadeFog;
     // The value of mFadeFog that DrawRace last handled; DrawRace writes the fog registers when it differs from
-    // mFadeFog, then copies mFadeFog here. func_02061874 sets it to 0 when it is 1 so that the next DrawRace writes the
+    // mFadeFog, then copies mFadeFog here. StartFadeFog sets it to 0 when it is 1 so that the next DrawRace writes the
     // registers again.
     /* 24 */ s32 mDrawnFadeFog;
     // 1 when RaceSetup.mUnk_00c is 3, 4 or 5, else 0. While it is 1, InitRace creates the chain cameras, UpdateRace
@@ -1026,31 +1027,31 @@ typedef struct Race {
     // Mode 5 only: set by UpdateRace when mUpdateFrames reaches 128 while mUpdateFramesUnlimited is FALSE; from then on
     // mUpdateFrames stays put until mUpdateFramesUnlimited is set. Never cleared again.
     /* 30 */ BOOL mUpdateFramesLimitReached;
-    // Mode 5 only: FALSE at set-up, set by func_020617f0 (called by UpdateRaceStartSequence when it begins counting);
-    // once set, UpdateRace counts mUpdateFrames on every call with no stop at 128.
+    // Mode 5 only: FALSE at set-up, set by SetRaceUpdateFramesUnlimited (called by UpdateRaceStartSequence when it
+    // begins counting); once set, UpdateRace counts mUpdateFrames on every call with no stop at 128.
     /* 34 */ BOOL mUpdateFramesUnlimited;
-    /* 38 */ s32 mUnk_38;
+    /* 38 */ s32 mIsAwardOrStaffRoll;
     // Value of mUpdateFrames when the end handler of the kart of the selected entry (RaceSetup.mEntryIndex) first
     // ran, stored by SetRaceUpdateFramesAtEntryEnd (in mission run mode that is after the end wait); 0 until then.
     /* 3c */ s32 mUpdateFramesAtEntryEnd;
-    // x component of the direction of light 0, the vector func_02062078 gives to NNS_G3dGlbLightVector; set at InitRace
+    // x component of the direction of light 0, the vector DrawRaceWorld gives to NNS_G3dGlbLightVector; set at InitRace
     // from data_021653f0 and by SetRaceLightVector.
     /* 40 */ s16 mLightVectorX;
-    // y component of the direction of light 0, the vector func_02062078 gives to NNS_G3dGlbLightVector; set at InitRace
+    // y component of the direction of light 0, the vector DrawRaceWorld gives to NNS_G3dGlbLightVector; set at InitRace
     // from data_021653f0 and by SetRaceLightVector.
     /* 42 */ s16 mLightVectorY;
-    // z component of the direction of light 0, the vector func_02062078 gives to NNS_G3dGlbLightVector; set at InitRace
+    // z component of the direction of light 0, the vector DrawRaceWorld gives to NNS_G3dGlbLightVector; set at InitRace
     // from data_021653f0 and by SetRaceLightVector.
     /* 44 */ s16 mLightVectorZ;
 } Race;
 
 extern Race *gRace;
-extern s32 data_0217aa64;
+extern s32 gFadeFogActive;
 struct Unk02077750;
 
 // The viewer of a race: position, look-at point, three axes, view matrix and frustum. One class, several instances:
 // gChaseCamera follows the selected kart, gEntryCamera and gFirstChainCamera / gSecondChainCamera step through
-// CourseMapCamera entries; data_0217aa6c points at the one used this frame.
+// CourseMapCamera entries; gCurrentCamera points at the one used this frame.
 typedef struct Camera {
     /* 000 */ Vec3 mUp;
     // baseUp x forward, perpendicular to mUp and mForward. Sign not fixed (left or right is not shown); not updated
@@ -1187,7 +1188,7 @@ typedef struct Camera {
     // mFrustumTop and mFrustumBottom up or down by 1.3 of its half height (RefreshCameraProjection).
     /* 24c */ s32 mFrustumShift;
     // Which camera this instance is: 0 chase, 1 entry camera, 2 chain camera, 3 entry camera in mode 2 with a kind 7
-    // entry; tested by outside code (func_02061818).
+    // entry; tested by outside code (GetCurrentCameraKind).
     /* 250 */ s32 mKind;
     /* 254 */ s32 mUnk_254;
     /* 258 */ BOOL mUnk_258;
@@ -1199,7 +1200,7 @@ typedef struct Camera {
     /* 26e */ u8 mUnk_26e[0x2];
 } Camera;
 
-extern Camera *data_0217aa6c;
+extern Camera *gCurrentCamera;
 extern u16 data_0217aa28;
 extern u16 data_0217aa30;
 extern s16 data_0217aa34;
@@ -1207,24 +1208,24 @@ extern u16 data_0217aa38;
 extern s16 data_0217aa3c;
 extern s16 data_0217aa40;
 extern s32 data_0217aa44;
-extern s32 data_0217aa48;
-extern s32 data_0217aa4c;
+extern s32 gCourseFogOffset;
+extern s32 gFadeFogStepping;
 extern s32 data_0217aa50;
 extern s32 data_0217aa58;
-extern Camera *data_0217aa5c;
+extern Camera *gRaceEntryCamera;
 extern s32 data_0217aa60;
 extern s32 data_0217aa68;
-extern s32 data_0217aa70;
+extern s32 gFadeFogOffset;
 extern void *data_0217aa74;
 extern s32 data_0217aa78;
 extern s32 data_0217aa80;
 extern s32 data_0217aa84;
-extern Camera *data_0217aa88;
+extern Camera *gRaceChaseCamera;
 extern u32 data_0217aa8c[4];
-extern u32 data_0217aa9c[8];
-extern u32 data_0217aabc[8];
+extern u32 gFadeFogTable[8];
+extern u32 gCourseFogTable[8];
 extern u16 data_0217aadc[32];
-extern MtxFx43 *data_0217aa7c;
+extern MtxFx43 *gCurrentViewMatrix;
 extern u32 data_0217ac10;
 extern void *data_0217ac14;
 extern void *data_0217ac18[15];
@@ -1596,7 +1597,7 @@ typedef struct Unk0217aa24 {
 
 extern Unk0217aa20 *data_0217aa20;
 extern Unk0217aa24 *data_0217aa24;
-extern u16 data_0217aa2c;
+extern u16 gFadeFogHoldFrames;
 // Set to 1 when TryUpdateEntryCamera is entered; cleared once per UpdateRace call by ClearCameraEntryFlags.
 // RefreshCameraProjection does not skip the chase camera's projection while it is 1.
 extern s32 gEntryCameraUpdateRan;

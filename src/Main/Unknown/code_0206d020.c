@@ -404,7 +404,7 @@ void func_0206d18c(Kart *p) {
             break;
         case 6:
             i = r;
-            func_02061874();
+            StartFadeFog();
             StartEffectsAtOtherKarts(p->mIndex);
             t = p->mUnk_7c & 0x200;
             if (t) {

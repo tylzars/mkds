@@ -104,7 +104,7 @@ void func_02086a04(void) {
             }
         }
     }
-    if (func_02061818() != 3) {
+    if (GetCurrentCameraKind() != 3) {
         n = 0;
         for (j = data_0217aed0->mUnk_074[gRaceSetup->mEntryIndex] + 1; j < gRaceSetup->mKartCount; j++) {
             Unk02086250 *t;
@@ -141,7 +141,7 @@ void func_0208677c(void) {
     Unk02086250 *p;
     Vec3 *w;
     Kart *m;
-    if (func_02061818() == 0) {
+    if (GetCurrentCameraKind() == 0) {
         data_0217aed8 = &data_02155a3c;
     } else {
         data_0217aed8 = &data_02155a48;
@@ -156,7 +156,7 @@ void func_0208677c(void) {
         x = data_0217aed0->mUnk_104[p->mUnk_0c];
         r = 0x1000;
         if (x > 0) {
-            if (data_0217aed0->mUnk_124[p->mUnk_0c] < 0x9c400 || func_02061818() == 3) {
+            if (data_0217aed0->mUnk_124[p->mUnk_0c] < 0x9c400 || GetCurrentCameraKind() == 3) {
                 x -= 0x14000;
                 p->mUnk_20 = 1;
                 p->mUnk_14 = 1;
@@ -170,7 +170,7 @@ void func_0208677c(void) {
             }
         }
         if (data_0217aed0->mUnk_0e4[p->mUnk_0c] != 0 || (GetKart(p->mUnk_0c)->mUnk_7c & 0x402020) != 0 ||
-            (func_020738f8(w->y - GetKart(gRaceSetup->mEntryIndex)->mPos.y) > 0x96000 && func_02061818() != 3)) {
+            (func_020738f8(w->y - GetKart(gRaceSetup->mEntryIndex)->mPos.y) > 0x96000 && GetCurrentCameraKind() != 3)) {
             p->mUnk_20 = -1;
         }
         if (p->mUnk_18 != FALSE) {
@@ -268,7 +268,7 @@ void func_02086250(MtxFx43 *a) {
     MtxFx43 *m;
     Unk02086250 *p;
     BOOL f;
-    if (func_02061818() != 0 && func_02061818() != 3) {
+    if (GetCurrentCameraKind() != 0 && GetCurrentCameraKind() != 3) {
         return;
     }
     reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 8;

@@ -175,7 +175,7 @@ void func_020733ec(Kart *p) {
         p->mUnk_514 = HeapAlloc(h, 0xb8);
         func_02071fb8(p, h);
     }
-    if (func_02062eb0() != 0) {
+    if (IsRaceAwardOrStaffRoll() != 0) {
         p->mUnk_44 |= 0x1000000;
     }
 }

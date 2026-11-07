@@ -5,7 +5,7 @@
 
 #pragma thumb on
 
-void func_0205786c(u32 a, u32 b, Unk0217aa08_14 *c) {
+void func_0205786c(u32 a, u32 b, GhostRecord *c) {
     Unk021759d4 *d;
     u32 t;
     u32 n;
@@ -33,7 +33,7 @@ void func_0205786c(u32 a, u32 b, Unk0217aa08_14 *c) {
     }
 }
 
-void func_02057800(u32 a, u32 b, Unk0217aa08_14 *c) {
+void func_02057800(u32 a, u32 b, GhostRecord *c) {
     void (*f)(u32, u32);
     Unk021759d4 *d;
     u32 t;

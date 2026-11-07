@@ -4,7 +4,7 @@
 
 typedef struct Camera Camera;
 
-// The object behind data_0217aa6c.
+// The object behind gCurrentCamera.
 typedef Camera Unk02073904;
 
 extern s32 data_usa_021656a4;

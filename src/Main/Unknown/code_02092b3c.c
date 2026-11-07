@@ -127,7 +127,7 @@ void func_02092b5c(void *a, Unk020919e8 *p) {
 
     switch (p->mUnk_ac) {
         case 0:
-            if (func_02061818() == 2) {
+            if (GetCurrentCameraKind() == 2) {
                 p->mUnk_ac = 1;
                 return;
             }

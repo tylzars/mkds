@@ -191,7 +191,7 @@ void func_02069e10(Kart *p) {
     u32 w;
 
     i = 0;
-    func_02061874();
+    StartFadeFog();
     StartEffectsAtOtherKarts(p->mIndex);
     w = p->mUnk_7c & 0x200;
     if (w != 0) {

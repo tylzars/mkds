@@ -63,7 +63,7 @@ void func_0208b934(void *a) {
         }
     }
     data_0217b040 = c;
-    data_0217b044 = SPLManager_New((void *(*) (u32)) func_0208bd04, f, e, 3, 0xe, func_02061768());
+    data_0217b044 = SPLManager_New((void *(*) (u32)) func_0208bd04, f, e, 3, 0xe, GetSplMaxPolyId());
     g = FindMainRaceOrMainEffectFile(data_usa_02166138);
     SPLManager_LoadResources(data_0217b044, g);
     SPLManager_UploadTextures(data_0217b044);

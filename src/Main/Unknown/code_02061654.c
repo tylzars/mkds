@@ -103,11 +103,11 @@ u32 GetRaceUseChainCameras(void) {
     return (gRace->mUseChainCameras);
 }
 
-u32 func_02062eb0(void) {
-    return (gRace->mUnk_38);
+u32 IsRaceAwardOrStaffRoll(void) {
+    return (gRace->mIsAwardOrStaffRoll);
 }
 
-// Builds the race world and gRace. Not part of it: the screen and 3D engine set-up (func_02062860, called before), the
+// Builds the race world and gRace. Not part of it: the screen and 3D engine set-up (Init3dEngine, called before), the
 // net and the HUD, which are in the scene slot InitRaceScene.
 void InitRace(void) {
     void *a;
@@ -118,7 +118,7 @@ void InitRace(void) {
     a = GetHeap(func_020364e8());
     SetKartModelPathPrefix(0);
     gRace = HeapAlloc(a, 72);
-    func_02062a0c();
+    InitRaceFields();
     b = GX_GetBankForTex();
     NNS_GfdInitFrmTexVramManager(((b >> 3) & 1) + ((b >> 2) & 1) + ((b >> 1) & 1) + (b & 1), 1);
     NNS_GfdInitFrmPlttVramManager(0x10000, 1);
@@ -155,11 +155,11 @@ void InitRace(void) {
             CreateChainCameraPair();
         }
     }
-    data_0217aa88 = GetChaseCamera();
-    data_0217aa5c = func_02074898();
-    data_0217aa6c = data_0217aa88;
-    data_0217aa7c = &data_0217aa88->mViewMatrix;
-    RefreshCameraProjection(data_0217aa88);
+    gRaceChaseCamera = GetChaseCamera();
+    gRaceEntryCamera = func_02074898();
+    gCurrentCamera = gRaceChaseCamera;
+    gCurrentViewMatrix = &gRaceChaseCamera->mViewMatrix;
+    RefreshCameraProjection(gRaceChaseCamera);
     SetHeapGroupId(3);
     switch (gRaceSetup->mMode) {
         case MODE_BATTLE:
@@ -205,7 +205,7 @@ void InitRace(void) {
     }
 }
 
-void func_02062a0c(void) {
+void InitRaceFields(void) {
     Vec3 v;
     s32 m;
 
@@ -225,9 +225,9 @@ void func_02062a0c(void) {
     gRace->mLightVectorZ = v.z;
     gRace->mUseChainCameras = (gRaceSetup->mRaceKind - 3) <= 2 ? 1 : 0;
     gRace->mUseFirstChainCamera = gRaceSetup->mRaceKind == 4 ? 1 : 0;
-    gRace->mUnk_38 =
+    gRace->mIsAwardOrStaffRoll =
         (gRaceSetup->mRaceKind == RACE_KIND_AWARD || gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) != 0 ? 1 : 0;
-    gRace->mStarted = gRace->mUnk_38 != 0 ? 1 : 0;
+    gRace->mStarted = gRace->mIsAwardOrStaffRoll != 0 ? 1 : 0;
 }
 
 void func_020629a4(void) {
@@ -239,7 +239,7 @@ void func_020629a4(void) {
     func_0208533c();
 }
 
-void func_02062860(void) {
+void Init3dEngine(void) {
     NNS_G3dInit();
     NNS_G3dGlbInit();
     func_01ff92b4();
@@ -293,26 +293,26 @@ void UpdateRace(void) {
         } else {
             v = UpdateChainCameraPair();
         }
-        data_0217aa7c = v;
-        data_0217aa6c = GetCurrentChainCamera();
+        gCurrentViewMatrix = v;
+        gCurrentCamera = GetCurrentChainCamera();
     } else if (func_0203c5e4() != 0) {
-        UpdateChaseCamera(data_0217aa88, GetKart(gRaceSetup->mFollowedKartIndex));
-        UpdateCameraView(data_0217aa88);
-        if (TryUpdateEntryCamera(data_0217aa5c) != 0) {
-            data_0217aa6c = data_0217aa5c;
-            data_0217aa7c = &data_0217aa5c->mViewMatrix;
+        UpdateChaseCamera(gRaceChaseCamera, GetKart(gRaceSetup->mFollowedKartIndex));
+        UpdateCameraView(gRaceChaseCamera);
+        if (TryUpdateEntryCamera(gRaceEntryCamera) != 0) {
+            gCurrentCamera = gRaceEntryCamera;
+            gCurrentViewMatrix = &gRaceEntryCamera->mViewMatrix;
         } else {
-            data_0217aa6c = data_0217aa88;
-            data_0217aa7c = &data_0217aa88->mViewMatrix;
+            gCurrentCamera = gRaceChaseCamera;
+            gCurrentViewMatrix = &gRaceChaseCamera->mViewMatrix;
         }
     } else {
-        UpdateChaseCamera(data_0217aa88, GetKart(gRaceSetup->mEntryIndex));
-        UpdateCameraView(data_0217aa88);
-        data_0217aa6c = data_0217aa88;
-        data_0217aa7c = &data_0217aa88->mViewMatrix;
+        UpdateChaseCamera(gRaceChaseCamera, GetKart(gRaceSetup->mEntryIndex));
+        UpdateCameraView(gRaceChaseCamera);
+        gCurrentCamera = gRaceChaseCamera;
+        gCurrentViewMatrix = &gRaceChaseCamera->mViewMatrix;
     }
-    RefreshCameraProjection(data_0217aa6c);
-    UpdateViewFrustum((Unk020d4f94 *) data_0217aa7c);
+    RefreshCameraProjection(gCurrentCamera);
+    UpdateViewFrustum((Unk020d4f94 *) gCurrentViewMatrix);
     if (GetCameraEntryChanged() != 0) {
         RequestViewTestRefresh();
     }
@@ -322,22 +322,22 @@ void UpdateRace(void) {
     UpdateModelEffects();
     UpdatePosStrips();
     func_0208b8c8();
-    if (data_0217aa64 != 0) {
-        if (data_0217aa4c != 0) {
+    if (gFadeFogActive != 0) {
+        if (gFadeFogStepping != 0) {
             if (data_021653e8 == 0) {
                 gRace->mFadeFog = 0;
                 SetKartModelsFogEnable(1);
                 SetCourseModelsFogEnableFlags(0);
-                data_0217aa64 = 0;
-                data_0217aa4c = 0;
+                gFadeFogActive = 0;
+                gFadeFogStepping = 0;
             } else {
-                func_02061944(data_021653e8, 0);
+                BuildFadeFog(data_021653e8, 0);
             }
             data_021653e8 -= 4;
         } else {
-            data_0217aa2c++;
-            if (data_0217aa2c >= 72) {
-                data_0217aa4c = 1;
+            gFadeFogHoldFrames++;
+            if (gFadeFogHoldFrames >= 72) {
+                gFadeFogStepping = 1;
             }
         }
     }
@@ -376,32 +376,32 @@ void UpdateRace(void) {
 // Draws the 3D scene and writes the fog registers when the fade state changes; advances no game value. Has its own gate
 // in the scene slot; the HUD draw is in the scene slot too.
 void DrawRace(void) {
-    if (data_0217aa4c != 0) {
-        G3X_SetFog(1, 0, data_0217aa80, data_0217aa70);
-        G3X_SetFogTable(data_0217aa9c);
+    if (gFadeFogStepping != 0) {
+        G3X_SetFog(1, 0, data_0217aa80, gFadeFogOffset);
+        G3X_SetFogTable(gFadeFogTable);
         reg_G3X_FOG_COLOR = data_0217aa28 | (data_0217aa68 << 16);
     } else if (gRace->mFadeFog != gRace->mDrawnFadeFog) {
         if (gRace->mFadeFog == 0) {
             if (gCourseMap->mSettings->mFogEnabled != 0) {
-                G3X_SetFog(1, 0, data_0217aa80, data_0217aa48);
+                G3X_SetFog(1, 0, data_0217aa80, gCourseFogOffset);
                 reg_G3X_FOG_COLOR = data_0217aa38 | (data_0217aa50 << 16);
-                G3X_SetFogTable(data_0217aabc);
+                G3X_SetFogTable(gCourseFogTable);
             } else {
                 G3X_SetFog(0, 0, 5, 0);
             }
         } else {
             G3X_SetFog(1, 0, data_0217aa80, 0);
             reg_G3X_FOG_COLOR = data_0217aa30 | (data_0217aa60 << 16);
-            G3X_SetFogTable(data_0217aa9c);
+            G3X_SetFogTable(gFadeFogTable);
         }
     }
     gRace->mDrawnFadeFog = gRace->mFadeFog;
-    func_02062078();
-    func_0208b870(data_0217aa7c);
-    DrawPosStrips(data_0217aa7c);
+    DrawRaceWorld();
+    func_0208b870(gCurrentViewMatrix);
+    DrawPosStrips(gCurrentViewMatrix);
     func_02089fa0();
     if (gRace->mUseChainCameras == 0) {
-        func_02086250(data_0217aa7c);
+        func_02086250(gCurrentViewMatrix);
     }
     DrawOrthoQuads();
     gRace->mDrawFrames++;
@@ -413,16 +413,16 @@ void SetRaceLightVector(const Vec3 *a) {
     gRace->mLightVectorZ = a->z;
 }
 
-void func_02062078(void) {
+void DrawRaceWorld(void) {
     Vec3 c;
     Vec3 a;
     Vec3 b;
     u32 v;
     Camera *p;
 
-    ApplyCameraFrustum(data_0217aa6c, 1);
-    ApplyCameraLookAt(data_0217aa6c);
-    p = data_0217aa6c;
+    ApplyCameraFrustum(gCurrentCamera, 1);
+    ApplyCameraLookAt(gCurrentCamera);
+    p = gCurrentCamera;
     NNS_G3dGlbLightVector(0, gRace->mLightVectorX, gRace->mLightVectorY, gRace->mLightVectorZ);
     NNS_G3dGlbLightColor(0, 0x7fff);
     a.x = p->mViewMatrix.mUnk_00[0].y;
@@ -438,21 +438,21 @@ void func_02062078(void) {
     NNS_G3dGlbLightVector(1, (s16) c.x, (s16) c.y, (s16) c.z);
     NNS_G3dGlbLightColor(1, 0x7fff);
     NNS_G3dGlbFlushP();
-    func_01ff9048(23, data_0217aa7c, 12);
+    func_01ff9048(23, gCurrentViewMatrix, 12);
     v = 30;
     func_01ff9048(19, &v, 1);
     DrawCourseModelV();
-    ApplyCameraFrustum(data_0217aa6c, 0);
+    ApplyCameraFrustum(gCurrentCamera, 0);
     NNS_G3dGlbFlushP();
     func_01ff92e0(data_0217aa74);
     DrawCourseModel();
-    func_020d4418((Unk020d4418 *) data_0217aa6c);
+    func_020d4418((Unk020d4418 *) gCurrentCamera);
     func_01ff92b4();
     DrawKarts();
     NNS_G3dGlbLightVector(0, gRace->mLightVectorX, gRace->mLightVectorY, gRace->mLightVectorZ);
     DrawJg();
-    DrawMapObjects((Unk020d4418 *) data_0217aa6c);
-    DrawItems(data_0217aa7c);
+    DrawMapObjects((Unk020d4418 *) gCurrentCamera);
+    DrawItems(gCurrentViewMatrix);
     DrawModelEffects();
     func_01ff9234();
 }
@@ -509,18 +509,19 @@ void InitRaceFog(void) {
     u16 i;
     u8 m;
 
-    func_02061944(72, 1);
+    BuildFadeFog(72, 1);
     data_021653e8 = 72;
-    data_0217aa4c = 0;
-    data_0217aa64 = 0;
-    data_0217aa2c = 0;
+    gFadeFogStepping = 0;
+    gFadeFogActive = 0;
+    gFadeFogHoldFrames = 0;
     gRace->mDrawnFadeFog = 0;
     gRace->mFadeFog = gRace->mDrawnFadeFog;
     if (gCourseMap->mSettings->mFogEnabled != 0) {
         m = gCourseMap->mSettings->mFogTableMode;
         if (m == 0) {
             for (i = 0; i < 8; i++) {
-                data_0217aabc[i] = ((i * 4) << 2) | ((i * 16 + 4) << 8) | ((i * 16 + 8) << 16) | ((i * 16 + 12) << 24);
+                gCourseFogTable[i] =
+                    ((i * 4) << 2) | ((i * 16 + 4) << 8) | ((i * 16 + 8) << 16) | ((i * 16 + 12) << 24);
             }
         } else if (m == 1) {
             for (i = 0; i < 32; i++) {
@@ -531,7 +532,7 @@ void InitRaceFog(void) {
             }
             a[0] = 0;
             for (i = 0; i < 8; i++) {
-                data_0217aabc[i] = a[i * 4] | (a[i * 4 + 1] << 8) | (a[i * 4 + 2] << 16) | (a[i * 4 + 3] << 24);
+                gCourseFogTable[i] = a[i * 4] | (a[i * 4 + 1] << 8) | (a[i * 4 + 2] << 16) | (a[i * 4 + 3] << 24);
             }
         } else if (m == 2) {
             for (i = 0; i < 32; i++) {
@@ -542,27 +543,27 @@ void InitRaceFog(void) {
             }
             a[0] = 0;
             for (i = 0; i < 8; i++) {
-                data_0217aabc[i] = a[i * 4] | (a[i * 4 + 1] << 8) | (a[i * 4 + 2] << 16) | (a[i * 4 + 3] << 24);
+                gCourseFogTable[i] = a[i * 4] | (a[i * 4 + 1] << 8) | (a[i * 4 + 2] << 16) | (a[i * 4 + 3] << 24);
             }
         }
         data_0217aa38 = gCourseMap->mSettings->mColorAndFogAlpha & 0x7fff;
         data_0217aa50 = ((u32) gCourseMap->mSettings->mColorAndFogAlpha >> 15) & 31;
         data_0217aa80 = gCourseMap->mSettings->mUnk_07;
-        data_0217aa48 = gCourseMap->mSettings->mFogOffset / 512;
+        gCourseFogOffset = gCourseMap->mSettings->mFogOffset / 512;
         data_0217aa40 = data_0217aa38 & 31;
         data_0217aa34 = (data_0217aa38 >> 5) & 31;
         data_0217aa3c = (data_0217aa38 >> 10) & 31;
     }
     if (gCourseMap->mSettings->mFogEnabled != 0) {
-        G3X_SetFog(1, 0, data_0217aa80, data_0217aa48);
+        G3X_SetFog(1, 0, data_0217aa80, gCourseFogOffset);
         reg_G3X_FOG_COLOR = data_0217aa38 | (data_0217aa50 << 16);
-        G3X_SetFogTable(data_0217aabc);
+        G3X_SetFogTable(gCourseFogTable);
     } else {
         G3X_SetFog(0, 0, 5, 0);
     }
 }
 
-void func_02061944(s32 a, s32 b) {
+void BuildFadeFog(s32 a, s32 b) {
     s32 t;
     s32 u;
     u32 j;
@@ -581,9 +582,9 @@ void func_02061944(s32 a, s32 b) {
                         ((s32) (((s64) data_0217aa3c * u + 0x800) >> 12) << 10);
         data_0217aa68 =
             (s32) (((s64) u * data_0217aa50 + 0x800) >> 12) + (s32) (((s64) t * data_0217aa60 + 0x800) >> 12);
-        data_0217aa70 = ((s64) u * data_0217aa48 + 0x800) >> 12;
+        gFadeFogOffset = ((s64) u * gCourseFogOffset + 0x800) >> 12;
         for (i = 0; i < 8; i++) {
-            w = data_0217aabc[i];
+            w = gCourseFogTable[i];
             data_0217aa8c[0] = w & 0xff;
             data_0217aa8c[1] = (w & 0xff00) >> 8;
             data_0217aa8c[2] = (w & 0xff0000) >> 16;
@@ -592,18 +593,18 @@ void func_02061944(s32 a, s32 b) {
                 e = data_0217aa8c[j];
                 data_0217aa8c[j] = (s32) (((s64) e * (s32) u + 0x800) >> 12) + data_0217aa44;
             }
-            data_0217aa9c[i] =
+            gFadeFogTable[i] =
                 data_0217aa8c[0] | (data_0217aa8c[1] << 8) | (data_0217aa8c[2] << 16) | (data_0217aa8c[3] << 24);
         }
         data_0217aa58 = w;
     } else {
         for (i = 0; i < 8; i++) {
-            data_0217aa9c[i] = a | (a << 8) | (a << 16) | (a << 24);
+            gFadeFogTable[i] = a | (a << 8) | (a << 16) | (a << 24);
         }
     }
 }
 
-void func_02061874(void) {
+void StartFadeFog(void) {
     if (gRace->mDrawnFadeFog == 1) {
         gRace->mDrawnFadeFog = 0;
     }
@@ -611,49 +612,49 @@ void func_02061874(void) {
     SetKartModelsFogEnable(0);
     SetCourseModelsFogEnableFlags(1);
     data_021653e8 = 72;
-    func_02061944(72, 1);
-    data_0217aa4c = 0;
-    data_0217aa64 = 1;
-    data_0217aa2c = 0;
-    data_0217aa70 = 0;
+    BuildFadeFog(72, 1);
+    gFadeFogStepping = 0;
+    gFadeFogActive = 1;
+    gFadeFogHoldFrames = 0;
+    gFadeFogOffset = 0;
     data_0217aa28 = data_0217aa30;
     data_0217aa68 = data_0217aa60;
 }
 
-void func_02061860(void) {
+void ClearFadeFogHoldFrames(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217aa2c;
+    value0 = (u32) &gFadeFogHoldFrames;
     value1 = 0u;
     *(u16 *) ((value0) + (0)) = value1;
 }
 
-void func_0206184c(void) {
+void SetFadeFogHoldFramesToLimit(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217aa2c;
+    value0 = (u32) &gFadeFogHoldFrames;
     value1 = 0x48u;
     *(u16 *) ((value0) + (0)) = value1;
 }
 
-u32 func_0206183c(void) {
-    return (data_0217aa64);
+u32 IsFadeFogActive(void) {
+    return (gFadeFogActive);
 }
 
-MtxFx43 *func_0206182c(void) {
-    return data_0217aa7c;
+MtxFx43 *GetCurrentViewMatrix(void) {
+    return gCurrentViewMatrix;
 }
 
-u32 func_02061818(void) {
-    return (data_0217aa6c->mKind);
+u32 GetCurrentCameraKind(void) {
+    return (gCurrentCamera->mKind);
 }
 
-// The camera used this frame: data_0217aa6c (returned as void *).
+// The camera used this frame: gCurrentCamera (returned as void *).
 void *GetCurrentCamera(void) {
-    return (void *) ((u32) data_0217aa6c);
+    return (void *) ((u32) gCurrentCamera);
 }
 
-u32 func_020617f0(void) {
+u32 SetRaceUpdateFramesUnlimited(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &gRace;
@@ -686,74 +687,74 @@ s32 TryGetRaceUpdateFramesSinceEntryEnd(u32 *a) {
     return c;
 }
 
-s32 func_02061788(void) {
+s32 GetMapObjectFirstPolygonId(void) {
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         return 0x2e;
     }
     return 0x1f;
 }
 
-u16 func_02061768(void) {
+u16 GetSplMaxPolyId(void) {
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         return 0x2d;
     }
     return 0x1e;
 }
 
-BOOL func_0206174c(void *v) {
-    Unk0217aa08_14 *a = v;
+BOOL IsGhostRecordFilled(void *v) {
+    GhostRecord *a = v;
 
-    if (a->mUnk_08_0 == 1) {
+    if (a->mFilled == 1) {
         return TRUE;
     }
     return FALSE;
 }
 
-BOOL func_02061704(void *v, TimeRecord *b) {
-    Unk0217aa08_14 *a = v;
+BOOL GetGhostRecordTime(void *v, TimeRecord *b) {
+    GhostRecord *a = v;
 
-    if (a->mUnk_08_0 != 1) {
+    if (a->mFilled != 1) {
         return FALSE;
     }
-    b->mMinute = a->mUnk_08_8;
-    b->mSecond = a->mUnk_08_15;
-    b->mMillisecond = a->mUnk_08_22;
+    b->mMinute = a->mMinute;
+    b->mSecond = a->mSecond;
+    b->mMillisecond = a->mMillisecond;
     return TRUE;
 }
 
-BOOL func_020616c0(void *v, void *b) {
-    Unk0217aa08_14 *a = v;
+BOOL GetGhostRecordName(void *v, void *b) {
+    GhostRecord *a = v;
 
-    if (a->mUnk_08_0 != 1) {
+    if (a->mFilled != 1) {
         return FALSE;
     }
-    MI_CpuCopy8(a->mUnk_0c, b, 0x14);
+    MI_CpuCopy8(a->mName, b, 0x14);
     return TRUE;
 }
 
-s32 func_0206169c(void *v) {
-    Unk0217aa08_14 *a = v;
+s32 GetGhostRecordCharacterIndex(void *v) {
+    GhostRecord *a = v;
 
-    if (a->mUnk_08_0 != 1) {
+    if (a->mFilled != 1) {
         return -1;
     }
-    return a->mUnk_04_0;
+    return a->mCharacterIndex;
 }
 
-s32 func_02061678(void *v) {
-    Unk0217aa08_14 *a = v;
+s32 GetGhostRecordKartIndex(void *v) {
+    GhostRecord *a = v;
 
-    if (a->mUnk_08_0 != 1) {
+    if (a->mFilled != 1) {
         return -1;
     }
-    return a->mUnk_04_4;
+    return a->mKartIndex;
 }
 
-u32 func_02061654(void *v) {
-    Unk0217aa08_14 *a = v;
+u32 GetGhostRecordCourseId(void *v) {
+    GhostRecord *a = v;
 
-    if (a->mUnk_08_0 != 1) {
+    if (a->mFilled != 1) {
         return 0;
     }
-    return a->mUnk_04_10;
+    return a->mCourseId;
 }

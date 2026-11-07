@@ -54,12 +54,12 @@ void DrawTeresa(void *a, Teresa *b) {
     SetMapObjectModelPolygonId(gTeresa, AllocPolygonIdWrapping());
     SetMapObjectModelNsbtpFrameIndex(gTeresa, b->mUnk_ae);
     SetMapObjectModelAlpha(gTeresa, b->mUnk_ac);
-    SetMapObjectModelFogEnabled(gTeresa, func_0206183c());
+    SetMapObjectModelFogEnabled(gTeresa, IsFadeFogActive());
     SetMapObjectModelMirror(gTeresa, b->mUnk_b0, 0);
     w = 0x1e;
     func_01ff9048(0x14, &w, 1);
     func_01ff9048(0x19, SetViewTransposeMatrixPos(&b->mUnk_00.mPos), 0xc);
-    if (func_02061818() == 2) {
+    if (GetCurrentCameraKind() == 2) {
         v[0] = 0x2000;
         v[1] = 0x2000;
         v[2] = 0x2000;
@@ -182,7 +182,7 @@ void UpdateTeresa(void *a, Teresa *o) {
     func_02094768_inline_2(&o->mUnk_dc.mUnk_18, &o->mUnk_dc.mUnk_1c);
     m = o->mUnk_dc.mUnk_04;
     n = o->mUnk_10c;
-    if (func_02061818() == 2) {
+    if (GetCurrentCameraKind() == 2) {
         o->mUnk_00.mPos.x = o->mUnk_a0.x + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2 + 1]) >> 12);
         o->mUnk_00.mPos.y = o->mUnk_a0.y + m;
         o->mUnk_00.mPos.z = o->mUnk_a0.z + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2]) >> 12);
@@ -252,7 +252,7 @@ void StartTeresa(Vec3 *a) {
     }
     o->mUnk_ac = 0;
     o->mUnk_a0 = *a;
-    if (func_02061818() == 0) {
+    if (GetCurrentCameraKind() == 0) {
         g = GetChaseCamera();
         e = func_02094000_inline(&gRaceProgress->mLocalRandom, 0x30);
         c = (u16) (func_02094000_inline(&gRaceProgress->mLocalRandom, 0) >> 20);
@@ -278,7 +278,7 @@ void StartTeresa(Vec3 *a) {
     o->mUnk_100 = q;
     o->mUnk_104 = 0x2000;
     o->mUnk_108 = p;
-    if (func_02061818() == 2) {
+    if (GetCurrentCameraKind() == 2) {
         o->mUnk_b4 = 0;
         o->mUnk_b8 = 0xffff;
         o->mState = 0;

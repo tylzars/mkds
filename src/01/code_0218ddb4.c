@@ -133,7 +133,7 @@ s32 func_ov001_0218f634(Unk02188950 *a) {
         func_ov001_02188d8c(a, &obj->mPos);
     }
     func_ov001_0218f6d8(a);
-    func_02061860();
+    ClearFadeFogHoldFrames();
     return 0;
 }
 
@@ -185,7 +185,7 @@ s32 func_ov001_0218f3ec(Unk02188950 *a) {
         func_ov001_02188d8c(a, &v);
     }
     func_ov001_0218f6d8(a);
-    func_02061860();
+    ClearFadeFogHoldFrames();
     return 0;
 }
 
@@ -327,7 +327,7 @@ void func_ov001_0218edc8(Unk02188950 *a) {
 }
 
 u32 func_ov001_0218edb8(void) {
-    func_02061860();
+    ClearFadeFogHoldFrames();
     return 0;
 }
 
@@ -410,7 +410,7 @@ u32 func_ov001_0218ea98(Unk02188950 *a) {
         v1 = v2;
     }
     a->mUnk_000.mPos.y = v1;
-    func_02061860();
+    ClearFadeFogHoldFrames();
     return 0;
 }
 
@@ -448,7 +448,7 @@ void func_ov001_0218e8d8(Unk02188950 *a) {
 void func_ov001_0218e8b0(Unk02188950 *a) {
     func_ov001_02187218(a, 1, NULL);
     func_ov001_021888a4(a, 0, 0x19000);
-    func_0206184c();
+    SetFadeFogHoldFramesToLimit();
     func_ov001_021827f0();
 }
 
@@ -500,7 +500,7 @@ void func_ov001_0218e710(Unk02188950 *p) {
         data_0217d21c = data_0217d20c;
     }
     data_0217d20c = 6;
-    func_0206184c();
+    SetFadeFogHoldFramesToLimit();
 }
 
 void func_ov001_0218e690(Unk02188950 *p) {
@@ -625,7 +625,7 @@ void func_ov001_0218e298(Unk02188950 *a, Kart *b) {
     func_ov001_021888a4(a, 0, 0x32000);
     a->mUnk_0a8 = 1;
     if (!(gRaceSetup->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0)) {
-        func_02061874();
+        StartFadeFog();
     }
 }
 

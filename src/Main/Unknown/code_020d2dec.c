@@ -309,7 +309,7 @@ void InitMapObjects(void) {
     MapObjects *q;
     h = GetHeap(func_020364e8());
     func_020d22e0();
-    data_0217b4cc = func_02061788();
+    data_0217b4cc = GetMapObjectFirstPolygonId();
     data_0217b4c0 = data_0217b4cc + 9;
     gWrappingPolygonIdBase = data_0217b4c0 + 1;
     n = gCourseMap->mRowCount;

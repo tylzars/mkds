@@ -79,7 +79,7 @@ void func_020875b4(void) {
     data_0217aed0 = HeapAlloc(v1, 0x194);
     data_0217aed0->mUnk_184 = 0;
     data_0217aed0->mUnk_188 = NULL;
-    if (func_02062eb0() != 0) {
+    if (IsRaceAwardOrStaffRoll() != 0) {
         data_0217aed0->mUnk_020 = 0;
     } else if (f == FALSE) {
         data_0217aed0->mUnk_020 = gRaceSetup->mKartCount - 1;

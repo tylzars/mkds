@@ -141,7 +141,7 @@ void InitRaceScene(void) {
         ClearLcdcBankAndStartWvrAndWait();
         func_02053e74();
     }
-    func_02062860();
+    Init3dEngine();
     SetHeapGroupId(7);
     func_02056158(p);
     func_0203ad58(p);

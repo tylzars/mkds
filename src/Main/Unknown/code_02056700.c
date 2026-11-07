@@ -55,7 +55,7 @@ void func_020569a8(void *a) {
 }
 
 void func_02056750(s32 a, u16 b) {
-    Unk0217aa08_14 *p;
+    GhostRecord *p;
     s32 k;
     s32 n;
     u8 m;
@@ -74,25 +74,25 @@ void func_02056750(s32 a, u16 b) {
     }
     MI_CpuFill8(p, 0, 0xe00);
     GetClockDateOrDefault(t);
-    p->mUnk_04_16 = t[0];
-    p->mUnk_04_23 = t[1];
-    p->mUnk_04_27 = t[2];
+    p->mYear = t[0];
+    p->mMonth = t[1];
+    p->mDay = t[2];
     w = gRaceSetup->mCurrentEntries[b].mCharacterIndex;
-    p->mUnk_04_0 = (u8) w;
+    p->mCharacterIndex = (u8) w;
     w = gRaceSetup->mCurrentEntries[b].mKartIndex;
-    p->mUnk_04_4 = (u8) w;
+    p->mKartIndex = (u8) w;
     w = gRaceSetup->mCourseId;
-    p->mUnk_04_10 = (u8) w;
-    p->mUnk_08_0 = 1;
+    p->mCourseId = (u8) w;
+    p->mFilled = 1;
     p->mUnk_08_1 = 0;
     p->mUnk_08_2 = data_021759d0->mUnk_00;
     p->mUnk_08_4 = 0;
     p->mUnk_2f_0 = func_02056208();
     GetKartFinishTime(b, &v.mUnk_00, &v.mUnk_01, &v.mUnk_02);
-    p->mUnk_08_8 = v.mUnk_00;
-    p->mUnk_08_15 = v.mUnk_01;
-    p->mUnk_08_22 = v.mUnk_02;
-    MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, p->mUnk_0c, 0x14);
+    p->mMinute = v.mUnk_00;
+    p->mSecond = v.mUnk_01;
+    p->mMillisecond = v.mUnk_02;
+    MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, p->mName, 0x14);
     MI_CpuCopy8(data_02175628[k].mUnk_28, p->mUnk_30, 0xdcc);
     MI_CpuFill8(v1, 0, 0xf);
     for (i = 1; i <= GetLapCount(); i++) {
@@ -106,7 +106,7 @@ void func_02056750(s32 a, u16 b) {
         v1[j + 1] = w >> 8;
         v1[j + 2] = w;
     }
-    MI_CpuCopy8(v1, p->mUnk_20, 0xf);
+    MI_CpuCopy8(v1, p->mLapTimes, 0xf);
     m = n;
     func_020579d0(m, p);
     if (func_020573f8(m) == 0) {
@@ -118,7 +118,7 @@ void func_02056750(s32 a, u16 b) {
 void func_02056700(u32 a) {
     s32 n;
     BOOL f;
-    Unk0217aa08_14 *p;
+    GhostRecord *p;
 
     f = FALSE;
     n = func_0204684c(a);
@@ -129,7 +129,7 @@ void func_02056700(u32 a) {
         f = TRUE;
     }
     if (f != FALSE) {
-        p->mUnk_08_0 = 0;
+        p->mFilled = 0;
     } else {
         func_0205798c(n, p);
     }

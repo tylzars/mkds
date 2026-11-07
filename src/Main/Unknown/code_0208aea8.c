@@ -167,11 +167,11 @@ void CreateKartPhysicalParamTable(void *a, u32 b) {
 }
 
 // Copies the kart row and the character row of the files to the slot after choosing the rows (rows 0 when
-// func_02062eb0() != 0; character + 0x25 in mode 2).
+// IsRaceAwardOrStaffRoll() != 0; character + 0x25 in mode 2).
 void CopyKartPhysicalParams(u32 a, u32 b, u32 c) {
     u8 *p = gKartPhysicalParamTable->mKartParamFile;
     u8 *q = gKartPhysicalParamTable->mCharParamFile;
-    if (func_02062eb0() != 0) {
+    if (IsRaceAwardOrStaffRoll() != 0) {
         c = 0;
         b = c;
     } else if (gRaceSetup->mMode == MODE_BATTLE) {
