@@ -494,9 +494,9 @@ void WriteOptionSelectMenuTableOffsets(void) {
     }
     for (i = 0; i < 2; i++) {
         for (j = 0; j < 3; j++) {
-            gOptionSelectMenu->mOptionSelectMenuSTable[gOptionSelectMenuOffsetTimerSTableIndices[i][j][0]].mUnk_04 -=
+            gOptionSelectMenu->mOptionSelectMenuSTable[gOptionSelectMenuTimerSTableIndices[i][j][0]].mUnk_04 -=
                 func_020adc64(6 - gOptionSelectMenu->mOffsetTimers[i][0]);
-            gOptionSelectMenu->mOptionSelectMenuSTable[gOptionSelectMenuOffsetTimerSTableIndices[i][j][1]].mUnk_04 +=
+            gOptionSelectMenu->mOptionSelectMenuSTable[gOptionSelectMenuTimerSTableIndices[i][j][1]].mUnk_04 +=
                 func_020adc64(6 - gOptionSelectMenu->mOffsetTimers[i][1]);
         }
     }
@@ -550,22 +550,20 @@ void AdvanceOptionSelectMenuOffsetTimers(void) {
         for (j = 0; j < 2; j++) {
             if (i == gOptionSelectMenu->mIndex) {
                 if (gOptionSelectMenu->mOffsetTimers[i][j] > 0) {
-                    gOptionSelectMenu->mOptionSelectMenuSTable[gOptionSelectMenuOffsetTimerSTableIndices[i][0][j]]
-                        .mUnk_00 = 1;
-                    gOptionSelectMenu->mOptionSelectMenuSTable[gOptionSelectMenuOffsetTimerSTableIndices[i][1][j]]
-                        .mUnk_00 = 1;
+                    gOptionSelectMenu->mOptionSelectMenuSTable[gOptionSelectMenuTimerSTableIndices[i][0][j]].mUnk_00 =
+                        1;
+                    gOptionSelectMenu->mOptionSelectMenuSTable[gOptionSelectMenuTimerSTableIndices[i][1][j]].mUnk_00 =
+                        1;
                     gOptionSelectMenu->mOffsetTimers[i][j]--;
                 } else {
-                    gOptionSelectMenu->mOptionSelectMenuSTable[gOptionSelectMenuOffsetTimerSTableIndices[i][0][j]]
-                        .mUnk_00 = 0;
-                    gOptionSelectMenu->mOptionSelectMenuSTable[gOptionSelectMenuOffsetTimerSTableIndices[i][1][j]]
-                        .mUnk_00 = 1;
+                    gOptionSelectMenu->mOptionSelectMenuSTable[gOptionSelectMenuTimerSTableIndices[i][0][j]].mUnk_00 =
+                        0;
+                    gOptionSelectMenu->mOptionSelectMenuSTable[gOptionSelectMenuTimerSTableIndices[i][1][j]].mUnk_00 =
+                        1;
                 }
             } else {
-                gOptionSelectMenu->mOptionSelectMenuSTable[gOptionSelectMenuOffsetTimerSTableIndices[i][0][j]].mUnk_00 =
-                    0;
-                gOptionSelectMenu->mOptionSelectMenuSTable[gOptionSelectMenuOffsetTimerSTableIndices[i][1][j]].mUnk_00 =
-                    0;
+                gOptionSelectMenu->mOptionSelectMenuSTable[gOptionSelectMenuTimerSTableIndices[i][0][j]].mUnk_00 = 0;
+                gOptionSelectMenu->mOptionSelectMenuSTable[gOptionSelectMenuTimerSTableIndices[i][1][j]].mUnk_00 = 0;
             }
         }
     }

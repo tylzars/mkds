@@ -60,7 +60,7 @@ extern u8 data_ov001_021a6a30[];
 extern u8 data_ov001_021a6a34[];
 extern u8 gOptionSelectMenuValueSTableIndices[][3];
 extern s32 gOptionSelectMenuGroupSTableCounts[];
-extern u8 gOptionSelectMenuOffsetTimerSTableIndices[][3][2];
+extern u8 gOptionSelectMenuTimerSTableIndices[][3][2];
 extern u8 gOptionSelectMenuGroupSTableIndices[][12];
 
 void RegisterOptionSelectMenuCallbacks(void);

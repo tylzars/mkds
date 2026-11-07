@@ -150,7 +150,7 @@ void CopyOtherPlayerEmblemsToBlocks(void) {
     func_02057504();
 }
 
-void CopyWiFiSessionOtherPlayerEmblemsToBlocks(void) {
+void CopyWiFiOtherEmblemsToBlocks(void) {
     u8 i;
     u16 j;
     Unk0217aa00_45c *e;
@@ -250,7 +250,7 @@ void func_0205e5c4(s32 a) {
         if (d == 0) {
             return;
         }
-        f = CopyWiFiSessionOtherPlayerEmblemsToBlocks;
+        f = CopyWiFiOtherEmblemsToBlocks;
     }
     func_02057514();
     func_02057df0(f);

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 ClearOrthoQuadCreamEffectModelPointer(void);
+u32 ClearOrthoQuadCreamEffectPointer(void);

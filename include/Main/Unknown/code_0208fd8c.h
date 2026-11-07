@@ -27,18 +27,17 @@ typedef struct Unk0208fd8c {
     /* 10 */ s32 mItemBitsEveryCall;
 // While set, AdvanceItemBitRequests sends ITEM_THROW_FORWARD_BIT on its calls that do not run the entry function;
 // mBit6Timer (set to 2) counts those calls down.
-    /* 14 */ s32 mBit6Pending;
+    /* 14 */ s32 mThrowForwardPending;
 // While set, AdvanceItemBitRequests sends the item bit 0x80 on its calls that do not run the entry function and no
 // bit 0x40 is pending; mBit7Timer (set to 2) counts those calls down.
-    /* 18 */ s32 mBit7Pending;
-    /* 1c */ s16 mBit6Timer;
-    /* 1e */ s16 mBit7Timer;
+    /* 18 */ s32 mThrowBehindPending;
+    /* 1c */ s16 mThrowForwardTimer;
+    /* 1e */ s16 mThrowBehindTimer;
     /* 20 */ s32 mRandomValue;
 } Unk0208fd8c;
 
 void SetupBattleItemInUseEntry(Unk0208fd8c *a, struct KartAi *b);
-void RequestItemBitsOnceAndResetHeldItemTimerWhenHeldItemTimerRunsOutAndTurnAngleBelow10Degrees(Unk0208fd8c *a,
-                                                                                                struct KartAi *b);
+void func_0208fdcc(Unk0208fd8c *a, struct KartAi *b);
 void func_0208fe1c(Unk0208fd8c *a, struct KartAi *b);
 void func_0208fe58(Unk0208fd8c *a, struct KartAi *b);
 void func_0208fefc(Unk0208fd8c *a, struct KartAi *b);

@@ -1224,8 +1224,8 @@ void func_020708a4(Kart *p) {
         if (s->mUnk_1c <= 0x190) {
             s->mUnk_1c = 0x190;
             p->mUnk_4c |= 0x20000;
-            StartKartModelsEntryColorInterpolation(p->mKartModelsEntry, GetKartCourseDiffColor(),
-                                                   GetKartCourseEmiColor(), GetKartCourseAmbColor());
+            StartKartModelColorBlend(p->mKartModelsEntry, GetKartCourseDiffColor(), GetKartCourseEmiColor(),
+                                     GetKartCourseAmbColor());
         }
     }
     if (p->mUnk_4c & 0x8000000) {

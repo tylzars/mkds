@@ -126,7 +126,7 @@ void InitKartAiShared(void) {
     func_0207c78c();
     if (data_021759c0->mMode == MODE_BATTLE) {
         func_02089974();
-        SetupBattleItemEntryTablesAndCallbacks();
+        SetupBattleItemEntries();
     }
 }
 

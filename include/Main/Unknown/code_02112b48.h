@@ -4,7 +4,7 @@
 
 void AdvanceRecordVSIndexChange(void);
 void func_021134d4(void);
-void RequestRecordVSState1AndPrintShownRecord(void);
+void RequestRecordVSState1(void);
 void RequestRecordVSState2AndRefreshPage(void);
 void func_02113480(void);
 void RequestRecordVSState4(void);

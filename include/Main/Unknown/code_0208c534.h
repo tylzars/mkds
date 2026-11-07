@@ -123,10 +123,10 @@ void AdvanceKartLevel4Effects(KartTurnEffects *p, Kart *q);
 void ResetKartLevel4Effects(KartTurnEffects *p);
 void ShowKartEffectsFirstOnly(KartTurnEffects *p);
 void ShowKartEffectsWithSecond(KartTurnEffects *p);
-void ShowKartTurnStartLevel3Level2Effects(KartTurnEffects *p);
+void ShowKartNonLevel4Effects(KartTurnEffects *p);
 void HideKartEffectsFirstOnly(KartTurnEffects *p);
 void HideKartEffectsWithSecond(KartTurnEffects *p);
-void HideKartTurnStartLevel3Level2Effects(KartTurnEffects *p);
+void HideKartNonLevel4Effects(KartTurnEffects *p);
 // Sets the direction and the position of the first level 4 object of each side from the side arrays.
 void PlaceKartLevel4EffectsFirstOnly(KartTurnEffects *p, Vec3s16 *a, Vec3 *b);
 // Sets the direction and the position of both level 4 objects of each side from the side arrays (the position is the

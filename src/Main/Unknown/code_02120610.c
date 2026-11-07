@@ -166,7 +166,7 @@ void func_021219cc(void) {
     }
 }
 
-BOOL IsMessageKindBelow10AndSizeFromToEqual(Unk02121990 *a, u32 b, u32 c, u32 d) {
+BOOL DoesMessageHeaderMatch(Unk02121990 *a, u32 b, u32 c, u32 d) {
     if (a->mKind < 10) {
         if (a->mSize == b) {
             if (a->mFromIndex == c) {

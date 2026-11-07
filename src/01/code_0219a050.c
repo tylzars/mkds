@@ -145,7 +145,7 @@ void RequestRecordTopMenuState4(void) {
     gRecordTopMenu->mStateFrames = 0;
 }
 
-void RequestRecordTopMenuState5AndStartSound(void) {
+void RequestRecordTopMenuState5(void) {
     gRecordTopMenu->mNextState = 5;
     gRecordTopMenu->mStateFrames = 0;
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
@@ -163,19 +163,19 @@ void RequestRecordTopMenuState7(void) {
     gRecordTopMenu->mStateFrames = 0;
 }
 
-void RequestRecordTopMenuState8AndSetupTxtSystemSubText(void) {
+void RequestRecordTopMenuState8(void) {
     gRecordTopMenu->mNextState = 8;
     gRecordTopMenu->mStateFrames = 0;
     SetupTxtSystemSubText(GetBmgEntry(gRecordTopMenu->mUnk_20, 0x76));
 }
 
-void RequestRecordTopMenuState9AndStartSound(void) {
+void RequestRecordTopMenuState9(void) {
     gRecordTopMenu->mNextState = 9;
     gRecordTopMenu->mStateFrames = 0;
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
 }
 
-void RequestRecordTopMenuState10AndRequestTxtSystemClose(void) {
+void RequestRecordTopMenuState10(void) {
     gRecordTopMenu->mNextState = 10;
     gRecordTopMenu->mStateFrames = 0;
     RequestTxtSystemClose();
@@ -187,7 +187,7 @@ void RequestRecordTopMenuState11(void) {
     gRecordTopMenu->mStateFrames = 0;
 }
 
-void IncrementRecordTopMenuIndexAndStartSound(void) {
+void IncrementRecordTopMenuIndex(void) {
     gRecordTopMenu->mIndex++;
     if (gRecordTopMenu->mIndex >= 3) {
         gRecordTopMenu->mIndex = 0;
@@ -195,7 +195,7 @@ void IncrementRecordTopMenuIndexAndStartSound(void) {
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
 }
 
-void DecrementRecordTopMenuIndexAndStartSound(void) {
+void DecrementRecordTopMenuIndex(void) {
     gRecordTopMenu->mIndex--;
     if (gRecordTopMenu->mIndex < 0) {
         gRecordTopMenu->mIndex = 2;
@@ -453,20 +453,20 @@ skip:
                 gRecordTopMenu->mIndex = t;
                 SetRecordTopMenuRowOn(gRecordTopMenu->mIndex);
             }
-            RequestRecordTopMenuState5AndStartSound();
+            RequestRecordTopMenuState5();
         }
     } else {
         flags = data_02175628[i].mUnk_00 & 1;
         if (flags != 0) {
             SetRecordTopMenuRowOff(gRecordTopMenu->mIndex);
-            RequestRecordTopMenuState5AndStartSound();
+            RequestRecordTopMenuState5();
         } else if (func_020ae408(8, 0x40) != 0) {
             SetRecordTopMenuRowOff(gRecordTopMenu->mIndex);
-            DecrementRecordTopMenuIndexAndStartSound();
+            DecrementRecordTopMenuIndex();
             SetRecordTopMenuRowOn(gRecordTopMenu->mIndex);
         } else if (func_020ae408(8, 0x80) != 0) {
             SetRecordTopMenuRowOff(gRecordTopMenu->mIndex);
-            IncrementRecordTopMenuIndexAndStartSound();
+            IncrementRecordTopMenuIndex();
             SetRecordTopMenuRowOn(gRecordTopMenu->mIndex);
         }
     }
@@ -546,7 +546,7 @@ void AdvanceRecordTopMenuState7(void) {
         gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mUnk_04 = v;
     }
     if (gRecordTopMenu->mStateFrames >= 10) {
-        RequestRecordTopMenuState8AndSetupTxtSystemSubText();
+        RequestRecordTopMenuState8();
     }
 }
 
@@ -554,7 +554,7 @@ void AdvanceRecordTopMenuState8(void) {
     int v1;
     v1 = func_02125fa4();
     if (v1 != 0) {
-        RequestRecordTopMenuState9AndStartSound();
+        RequestRecordTopMenuState9();
     }
 }
 
@@ -582,7 +582,7 @@ void AdvanceRecordTopMenuState9(void) {
             return;
         }
     }
-    RequestRecordTopMenuState10AndRequestTxtSystemClose();
+    RequestRecordTopMenuState10();
     RequestSelectReturnState3WithSound(0);
 }
 

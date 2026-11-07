@@ -228,7 +228,7 @@ void func_02080ac0(LinkCursor *p) {
     }
 }
 
-void ResetBattlePointLinkCursorByPositionAndDirection(LinkCursor *p, Vec3 *a, Vec3 *b, u16 c) {
+void ResetBattlePointLinkCursorNear(LinkCursor *p, Vec3 *a, Vec3 *b, u16 c) {
     Unk02175620_bc *r = NULL;
     u16 i;
     u16 j;

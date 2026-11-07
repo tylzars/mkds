@@ -44,9 +44,9 @@ void func_02090088(Unk0208fd8c *a, KartAi *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (s16) (u16) (r->mUnk_00 >> 52);
         if (v < 0xb33) {
-            RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
+            UseItemForwardAndResetInUseTimer(a, b);
         } else {
-            RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+            UseItemBehindAndResetInUseTimer(a, b);
         }
     } else {
         if (b->mTargetKart == NULL) {
@@ -56,9 +56,9 @@ void func_02090088(Unk0208fd8c *a, KartAi *b) {
             return;
         }
         if (b->mTargetAhead != 0 && b->mTargetForwardDot > 0xb33) {
-            RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
+            UseItemForwardAndResetInUseTimer(a, b);
         } else {
-            RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+            UseItemBehindAndResetInUseTimer(a, b);
         }
     }
 }
@@ -74,9 +74,9 @@ void func_0208ffe4(Unk0208fd8c *a, KartAi *b) {
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     v = (s16) (u16) (r->mUnk_00 >> 52);
     if (v < 0xb33) {
-        RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
+        UseItemForwardAndResetInUseTimer(a, b);
     } else {
-        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+        UseItemBehindAndResetInUseTimer(a, b);
     }
 }
 
@@ -93,9 +93,9 @@ void func_0208fefc(Unk0208fd8c *a, struct KartAi *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (s16) (u16) (r->mUnk_00 >> 52);
         if (v > 0xccd) {
-            RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+            UseItemBehindAndResetInUseTimer(a, b);
         } else {
-            RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
+            UseItemForwardAndResetInUseTimer(a, b);
         }
     } else {
         if (b->mTargetKart == NULL) {
@@ -104,7 +104,7 @@ void func_0208fefc(Unk0208fd8c *a, struct KartAi *b) {
         if (b->mTargetDistanceSquared >= 0x15f90) {
             return;
         }
-        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+        UseItemBehindAndResetInUseTimer(a, b);
     }
 }
 
@@ -119,9 +119,9 @@ void func_0208fe58(Unk0208fd8c *a, struct KartAi *b) {
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     v = (s16) (u16) (r->mUnk_00 >> 52);
     if (v > 0xccd) {
-        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+        UseItemBehindAndResetInUseTimer(a, b);
     } else {
-        RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
+        UseItemForwardAndResetInUseTimer(a, b);
     }
 }
 
@@ -129,18 +129,17 @@ void func_0208fe1c(Unk0208fd8c *a, struct KartAi *b) {
     if (DecrementHeldItemTimer(a) == 0) {
         return;
     }
-    RequestItemBitsOnceAndResetItemInUseTimer(a, b);
+    UseItemAndResetInUseTimer(a, b);
 }
 
-void RequestItemBitsOnceAndResetHeldItemTimerWhenHeldItemTimerRunsOutAndTurnAngleBelow10Degrees(Unk0208fd8c *a,
-                                                                                                struct KartAi *b) {
+void func_0208fdcc(Unk0208fd8c *a, struct KartAi *b) {
     if (DecrementHeldItemTimer(a) == 0) {
         return;
     }
     if (b->mTurnAngleDegrees >= 0xa000) {
         return;
     }
-    RequestItemBitsOnceAndResetHeldItemTimer(a, b);
+    UseItemAndResetHeldTimer(a, b);
 }
 
 void SetupBattleItemInUseEntry(Unk0208fd8c *a, struct KartAi *b) {
@@ -164,8 +163,7 @@ void func_0208fd24(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void RequestItemBitsOnceThenBit6OrBit7ByTargetAheadAndForwardDotWhenTargetKartWithinDistance(Unk0208fd8c *a,
-                                                                                             struct KartAi *b) {
+void ThrowItemAtNearTarget(Unk0208fd8c *a, struct KartAi *b) {
     if (b->mTargetKart == NULL) {
         return;
     }
@@ -173,9 +171,9 @@ void RequestItemBitsOnceThenBit6OrBit7ByTargetAheadAndForwardDotWhenTargetKartWi
         return;
     }
     if (b->mTargetAhead != 0 && b->mTargetForwardDot > 0xb33) {
-        RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
+        UseItemForwardAndResetInUseTimer(a, b);
     } else {
-        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+        UseItemBehindAndResetInUseTimer(a, b);
     }
 }
 
@@ -188,9 +186,9 @@ void func_0208fba0(Unk0208fd8c *a, struct KartAi *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (s16) (u16) (r->mUnk_00 >> 52);
         if (v < 0xb33) {
-            RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
+            UseItemForwardAndResetInUseTimer(a, b);
         } else {
-            RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+            UseItemBehindAndResetInUseTimer(a, b);
         }
     } else {
         if (b->mTargetKart == NULL) {
@@ -200,9 +198,9 @@ void func_0208fba0(Unk0208fd8c *a, struct KartAi *b) {
             return;
         }
         if (b->mTargetAhead != 0 && b->mTargetForwardDot > 0xb33) {
-            RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
+            UseItemForwardAndResetInUseTimer(a, b);
         } else {
-            RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+            UseItemBehindAndResetInUseTimer(a, b);
         }
     }
 }
@@ -218,9 +216,9 @@ void func_0208fafc(Unk0208fd8c *a, struct KartAi *b) {
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     v = (s16) (u16) (r->mUnk_00 >> 52);
     if (v < 0xb33) {
-        RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
+        UseItemForwardAndResetInUseTimer(a, b);
     } else {
-        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+        UseItemBehindAndResetInUseTimer(a, b);
     }
 }
 
@@ -236,9 +234,9 @@ void func_0208fa50(Unk0208fd8c *a, struct KartAi *b) {
         return;
     }
     if (b->mTargetAhead != 0 && b->mTargetForwardDot > 0xb33) {
-        RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
+        UseItemForwardAndResetInUseTimer(a, b);
     } else {
-        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+        UseItemBehindAndResetInUseTimer(a, b);
     }
 }
 
@@ -253,9 +251,9 @@ void func_0208f9ac(Unk0208fd8c *a, struct KartAi *b) {
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     v = (s16) (u16) (r->mUnk_00 >> 52);
     if (v < 0xb33) {
-        RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
+        UseItemForwardAndResetInUseTimer(a, b);
     } else {
-        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+        UseItemBehindAndResetInUseTimer(a, b);
     }
 // Calls one of two handlers, by whether the item in use is the circling kind.
 }
@@ -284,7 +282,7 @@ void func_0208f8ac(Unk0208fd8c *a, struct KartAi *b) {
     if (b->mTargetForwardDot <= 0x666) {
         return;
     }
-    RequestItemBitsOnceAndResetItemInUseTimer(a, b);
+    UseItemAndResetInUseTimer(a, b);
 }
 
 void func_0208f810(Unk0208fd8c *a, struct KartAi *b) {
@@ -303,14 +301,14 @@ void func_0208f810(Unk0208fd8c *a, struct KartAi *b) {
     if (b->mTargetForwardDot <= 0x666) {
         return;
     }
-    RequestItemBitsOnceAndResetItemInUseTimer(a, b);
+    UseItemAndResetInUseTimer(a, b);
 }
 
-void RequestItemBitsOnceAndResetItemInUseTimerWhenItemInUseTimerRunsOut(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemAfterInUse(Unk0208fd8c *a, struct KartAi *b) {
     if (DecrementItemInUseTimer(a) == 0) {
         return;
     }
-    RequestItemBitsOnceAndResetItemInUseTimer(a, b);
+    UseItemAndResetInUseTimer(a, b);
 }
 
 void func_0208f754(Unk0208fd8c *a, struct KartAi *b) {
@@ -326,7 +324,7 @@ void func_0208f754(Unk0208fd8c *a, struct KartAi *b) {
     if (b->mTargetAhead == 0) {
         return;
     }
-    RequestItemBitsOnceAndResetItemInUseTimer(a, b);
+    UseItemAndResetInUseTimer(a, b);
 }
 
 void func_0208f6d4(Unk0208fd8c *a, struct KartAi *b) {
@@ -342,7 +340,7 @@ void func_0208f6d4(Unk0208fd8c *a, struct KartAi *b) {
     if (b->mTargetAhead == 0) {
         return;
     }
-    RequestItemBitsOnceAndResetItemInUseTimer(a, b);
+    UseItemAndResetInUseTimer(a, b);
 // Calls one of two handlers, by whether the item in use is use kind 3.
 }
 
@@ -368,9 +366,9 @@ void func_0208f5c4(Unk0208fd8c *a, struct KartAi *b) {
         if (b->mTargetForwardDot <= 0xb33) {
             return;
         }
-        RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
+        UseItemForwardAndResetInUseTimer(a, b);
     } else {
-        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+        UseItemBehindAndResetInUseTimer(a, b);
     }
 }
 
@@ -383,9 +381,9 @@ void func_0208f4e8(Unk0208fd8c *a, struct KartAi *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (s16) (u16) (r->mUnk_00 >> 52);
         if (v > 0xb33) {
-            RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+            UseItemBehindAndResetInUseTimer(a, b);
         } else {
-            RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
+            UseItemForwardAndResetInUseTimer(a, b);
         }
     } else {
         if (b->mTargetKart == NULL) {
@@ -394,7 +392,7 @@ void func_0208f4e8(Unk0208fd8c *a, struct KartAi *b) {
         if (b->mTargetDistanceSquared >= 0x15f90) {
             return;
         }
-        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+        UseItemBehindAndResetInUseTimer(a, b);
     }
 }
 
@@ -413,14 +411,13 @@ void func_0208f434(Unk0208fd8c *a, struct KartAi *b) {
         if (b->mTargetForwardDot <= 0xb33) {
             return;
         }
-        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+        UseItemBehindAndResetInUseTimer(a, b);
     } else {
-        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+        UseItemBehindAndResetInUseTimer(a, b);
     }
 }
 
-void RequestItemBitsOnceThenBit7AndResetItemInUseTimerWhenItemInUseTimerRunsOutOrTargetKartWithinDistance(
-    Unk0208fd8c *a, struct KartAi *b) {
+void UseItemBehindAfterInUseOrNearTarget(Unk0208fd8c *a, struct KartAi *b) {
     if (DecrementItemInUseTimer(a) == 0) {
         if (b->mTargetKart == NULL) {
             return;
@@ -429,7 +426,7 @@ void RequestItemBitsOnceThenBit7AndResetItemInUseTimerWhenItemInUseTimerRunsOutO
             return;
         }
     }
-    RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
+    UseItemBehindAndResetInUseTimer(a, b);
 }
 
 void func_0208f0f8(void *a) {

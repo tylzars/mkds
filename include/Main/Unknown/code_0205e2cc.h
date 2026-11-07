@@ -23,7 +23,7 @@ void func_0205e528(void);
 void func_0205e530(void);
 u8 CountEmblemEntries(void);
 void func_0205e5c4(s32 a);
-void CopyWiFiSessionOtherPlayerEmblemsToBlocks(void);
+void CopyWiFiOtherEmblemsToBlocks(void);
 void CopyOtherPlayerEmblemsToBlocks(void);
 void SetupEmblemBlock(EmblemBlock *a, u8 b);
 BOOL CopyEmblemFromBlock(EmblemBlock *a, u8 b, Unk021141c8 *c);

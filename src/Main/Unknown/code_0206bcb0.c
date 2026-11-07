@@ -57,7 +57,7 @@ void func_0206ceb4(s32 *out, Kart *p) {
     a = GetKartCourseDiffColor();
     b = GetKartCourseEmiColor();
     c = GetKartCourseAmbColor();
-    StartKartModelsEntryColorInterpolation(p->mKartModelsEntry, a, b, c);
+    StartKartModelColorBlend(p->mKartModelsEntry, a, b, c);
 }
 
 void func_0206cdd4(Kart *p) {

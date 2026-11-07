@@ -39,7 +39,7 @@ typedef struct Unk0209151c {
     /* 04 */ u16 mUnk_04;
 } Unk0209151c;
 
-void SetupBattleItemEntryTablesAndCallbacks(void);
+void SetupBattleItemEntries(void);
 s32 func_020905a8(Unk020905a8 *a);
 void func_02090638(Unk020905a8 *a);
 void func_02090748(Unk020905a8 *a);

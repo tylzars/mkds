@@ -48,7 +48,7 @@
 
 void AdvanceSelectRaceRuleState6(void) {
     if (GetSelectChoisesDone() != 0) {
-        RequestSelectRaceRuleState7AndRequestSelectChoisesState0();
+        RequestSelectRaceRuleState7();
         switch (GetSelectChoisesIndex()) {
             case 0:
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 7);

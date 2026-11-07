@@ -71,7 +71,7 @@ static inline CourseMapCheckpoint *func_02043078_inline(u16 i) {
 }
 
 // Sums mUnk_18 along the route, plus the average of the sums of the routes that follow it.
-s32 ComputeCourseMapCheckpointSumFromRoute(u16 a) {
+s32 ComputeCourseMapRouteCheckpointSum(u16 a) {
     u16 n;
     s32 s;
     CourseMapRoute *e;
@@ -90,7 +90,7 @@ s32 ComputeCourseMapCheckpointSumFromRoute(u16 a) {
     for (m = 0; m < 3; m++) {
         c = (e->mNextRoutes)[m];
         if (c != -1 && c != 0) {
-            s += ComputeCourseMapCheckpointSumFromRoute(c);
+            s += ComputeCourseMapRouteCheckpointSum(c);
             n++;
         }
     }
@@ -101,21 +101,21 @@ s32 ComputeCourseMapCheckpointSumFromRoute(u16 a) {
 }
 
 // Both values are 0 on courses with more than one start placement.
-void SetCourseMapCheckpointSumAndQuotient(void) {
+void SetCourseMapCheckpointTotals(void) {
     u32 a;
     u32 b;
 
     a = 0;
     b = 0;
     if (gCourseMap->mStartPlacementCount <= 1) {
-        a = ComputeCourseMapCheckpointSumFromRoute(0);
+        a = ComputeCourseMapRouteCheckpointSum(0);
         b = a / 15000;
     }
     gCourseMap->mUnk_104 = a;
     gCourseMap->mUnk_108 = b;
 }
 
-void BuildCourseMapEntryGroupTableAndCheckpointSum(void *a) {
+void BuildCourseMapEntryGroupTable(void *a) {
     CourseMap *g;
     Unk02175620_94 *t;
     u16 n;
@@ -141,7 +141,7 @@ void BuildCourseMapEntryGroupTableAndCheckpointSum(void *a) {
     } else {
         g->mEntryGroupTable = NULL;
     }
-    SetCourseMapCheckpointSumAndQuotient();
+    SetCourseMapCheckpointTotals();
 }
 #pragma thumb off
 
@@ -818,7 +818,7 @@ void CreateCourseMap(void *a) {
             offset++;
         }
     }
-    BuildCourseMapEntryGroupTableAndCheckpointSum(a);
+    BuildCourseMapEntryGroupTable(a);
     BuildCourseMapPointLinks(a);
     gCourseMap->mLapProgressBaseMax = 0;
     for (j = 0; j < gCourseMap->mCheckpointRouteCount; j++) {

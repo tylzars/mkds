@@ -36,7 +36,7 @@ void func_0211fef4(u32 a, void *b, u32 c) {
     if (gWiFiSession->mUnk_1f38 == FALSE) {
         return;
     }
-    if (IsMessageKindBelow10AndSizeFromToEqual(b, c, a, func_ov000_0219bb50()) != FALSE) {
+    if (DoesMessageHeaderMatch(b, c, a, func_ov000_0219bb50()) != FALSE) {
         return;
     }
     func_0205b504(a, b, c, 0);

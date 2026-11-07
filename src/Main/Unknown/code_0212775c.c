@@ -105,7 +105,7 @@ s32 LoadSelectReturn(s32 a) {
     return a;
 }
 
-void RefreshAndQueueSelectReturnPaletteBits(s32 a) {
+void SetSelectReturnPaletteBits(s32 a) {
     s32 i;
     u16 v;
     v = 0xc000;
@@ -125,7 +125,7 @@ void AdvanceSelectReturnState0(void) {
     if (gSelectReturn->mState1Requested != FALSE) {
         gSelectReturn->mNextState = 1;
         gSelectReturn->mStateFrames = 0;
-        RefreshAndQueueSelectReturnPaletteBits(1);
+        SetSelectReturnPaletteBits(1);
     }
 }
 
@@ -149,7 +149,7 @@ void AdvanceSelectReturnState2(void) {
     v1 = gSelectReturn;
     if (v1->mState3Requested != FALSE) {
         v1->mNextState = 3;
-        RefreshAndQueueSelectReturnPaletteBits(0);
+        SetSelectReturnPaletteBits(0);
         return;
     }
     if (v1->mState4Requested != FALSE) {
@@ -169,10 +169,10 @@ void AdvanceSelectReturnState3(void) {
     if (p->mStateFrames >= 9) {
         if (p->mState4Requested != FALSE) {
             p->mNextState = 4;
-            RefreshAndQueueSelectReturnPaletteBits(0);
+            SetSelectReturnPaletteBits(0);
         } else {
             p->mNextState = 2;
-            RefreshAndQueueSelectReturnPaletteBits(1);
+            SetSelectReturnPaletteBits(1);
         }
         gSelectReturn->mStateFrames = 0;
         gSelectReturn->mState3Requested = FALSE;

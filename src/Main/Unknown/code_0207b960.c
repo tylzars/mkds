@@ -101,7 +101,7 @@ void func_0207d5b8(Unk0208fd8c *a, struct KartAi *b) {
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
 
-void RequestItemBitsOnceAndResetItemInUseTimerWhenHeldItemTimerRunsOut(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemAfterHeld(Unk0208fd8c *a, struct KartAi *b) {
     BOOL t;
     Unk0217aebc_128 *r;
     u16 n;
@@ -143,7 +143,7 @@ void func_0207d474(Unk0208fd8c *a, struct KartAi *b) {
             return;
         }
     }
-    RequestItemBitsByTargetAheadOrKartRankWhenHeldItemTimerRunsOut(a, b);
+    UseItemByTargetOrRankAfterHeld(a, b);
 }
 void func_0207d3ec(Unk0208fd8c *a, struct KartAi *b) {
     Unk021759c0 *d;
@@ -173,7 +173,7 @@ void func_0207d3ec(Unk0208fd8c *a, struct KartAi *b) {
     RequestItemBitsByKartRank(a, b);
 }
 
-void RequestItemBitsByTargetAheadOrKartRankWhenHeldItemTimerRunsOut(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemByTargetOrRankAfterHeld(Unk0208fd8c *a, struct KartAi *b) {
     BOOL t;
 
     t = FALSE;
@@ -185,10 +185,10 @@ void RequestItemBitsByTargetAheadOrKartRankWhenHeldItemTimerRunsOut(Unk0208fd8c 
     if (t == FALSE) {
         return;
     }
-    RequestItemBitsByTargetAheadOrKartRank(a, b);
+    UseItemByTargetOrRank(a, b);
 }
 
-void RequestItemBitsByKartRankWhenHeldItemTimerRunsOut(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemByRankAfterHeld(Unk0208fd8c *a, struct KartAi *b) {
     BOOL t;
 
     t = FALSE;
@@ -202,7 +202,7 @@ void RequestItemBitsByKartRankWhenHeldItemTimerRunsOut(Unk0208fd8c *a, struct Ka
     }
     RequestItemBitsByKartRank(a, b);
 }
-void RequestItemBitsByTargetAheadOrKartRank(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemByTargetOrRank(Unk0208fd8c *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
@@ -210,8 +210,8 @@ void RequestItemBitsByTargetAheadOrKartRank(Unk0208fd8c *a, struct KartAi *b) {
     if (IsTargetKartSet(b) != FALSE) {
         if (GetTargetAhead(b) != 0) {
             RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-            a->mBit6Pending = 1;
-            a->mBit6Timer = 2;
+            a->mThrowForwardPending = 1;
+            a->mThrowForwardTimer = 2;
             a->mItemBitsEveryCall = 0;
             if (a->mItemInUseEntry == NULL) {
                 return;
@@ -228,8 +228,8 @@ void RequestItemBitsByTargetAheadOrKartRank(Unk0208fd8c *a, struct KartAi *b) {
             return;
         } else {
             RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-            a->mBit7Pending = 1;
-            a->mBit7Timer = 2;
+            a->mThrowBehindPending = 1;
+            a->mThrowBehindTimer = 2;
             a->mItemBitsEveryCall = 0;
             if (a->mItemInUseEntry == NULL) {
                 return;
@@ -259,8 +259,8 @@ void RequestItemBitsByKartRank(Unk0208fd8c *a, struct KartAi *b) {
     rank = GetKartRank(b->mIndex);
     if (rank == 1) {
         RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-        a->mBit7Pending = 1;
-        a->mBit7Timer = 2;
+        a->mThrowBehindPending = 1;
+        a->mThrowBehindTimer = 2;
         a->mItemBitsEveryCall = 0;
         if (a->mItemInUseEntry == NULL) {
             return;
@@ -295,8 +295,8 @@ void RequestItemBitsByKartRank(Unk0208fd8c *a, struct KartAi *b) {
                 return;
             case 1:
                 RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-                a->mBit6Pending = 1;
-                a->mBit6Timer = 2;
+                a->mThrowForwardPending = 1;
+                a->mThrowForwardTimer = 2;
                 a->mItemBitsEveryCall = 0;
                 if (a->mItemInUseEntry == NULL) {
                     return;
@@ -313,8 +313,8 @@ void RequestItemBitsByKartRank(Unk0208fd8c *a, struct KartAi *b) {
                 return;
             case 2:
                 RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-                a->mBit7Pending = 1;
-                a->mBit7Timer = 2;
+                a->mThrowBehindPending = 1;
+                a->mThrowBehindTimer = 2;
                 a->mItemBitsEveryCall = 0;
                 if (a->mItemInUseEntry == NULL) {
                     return;
@@ -334,8 +334,8 @@ void RequestItemBitsByKartRank(Unk0208fd8c *a, struct KartAi *b) {
         }
     } else {
         RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-        a->mBit6Pending = 1;
-        a->mBit6Timer = 2;
+        a->mThrowForwardPending = 1;
+        a->mThrowForwardTimer = 2;
         a->mItemBitsEveryCall = 0;
         if (a->mItemInUseEntry == NULL) {
             return;
@@ -353,8 +353,7 @@ void RequestItemBitsByKartRank(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void RequestItemBitsOnceAndResetItemInUseTimerWhenHeldItemTimerRunsOutAndTurnAngleBelow20Degrees(Unk0208fd8c *a,
-                                                                                                 struct KartAi *b) {
+void UseItemAfterHeldIfTurnUnder20(Unk0208fd8c *a, struct KartAi *b) {
     BOOL t;
     Unk0217aebc_128 *r;
     u16 n;
@@ -388,8 +387,7 @@ void RequestItemBitsOnceAndResetItemInUseTimerWhenHeldItemTimerRunsOutAndTurnAng
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
 
-void RequestItemBitsOnceAndResetHeldItemTimerWhenHeldItemTimerRunsOutAndTurnAngleBelow20Degrees(Unk0208fd8c *a,
-                                                                                                struct KartAi *b) {
+void func_0207cb74(Unk0208fd8c *a, struct KartAi *b) {
     BOOL t;
     Unk0217aebc_128 *r;
     u16 n;
@@ -445,7 +443,7 @@ void func_0207caa8(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void RequestItemBitsByTargetAheadOrKartRankWhenItemInUseTimerRunsOut(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemByTargetOrRankAfterInUse(Unk0208fd8c *a, struct KartAi *b) {
     BOOL r;
 
     r = FALSE;
@@ -457,10 +455,10 @@ void RequestItemBitsByTargetAheadOrKartRankWhenItemInUseTimerRunsOut(Unk0208fd8c
     if (r == FALSE) {
         return;
     }
-    RequestItemBitsByTargetAheadOrKartRank(a, b);
+    UseItemByTargetOrRank(a, b);
 }
 
-void RequestItemBitsByKartRankWhenItemInUseTimerRunsOut(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemByRankAfterInUse(Unk0208fd8c *a, struct KartAi *b) {
     BOOL r;
 
     r = FALSE;
@@ -498,9 +496,9 @@ void func_0207c978(Unk0208fd8c *a, struct KartAi *b) {
         if (r == FALSE) {
             return;
         }
-        RequestItemBitsByTargetAheadOrKartRank(a, b);
+        UseItemByTargetOrRank(a, b);
     } else {
-        RequestItemBitsByTargetAheadOrKartRank(a, b);
+        UseItemByTargetOrRank(a, b);
     }
 }
 
@@ -538,33 +536,33 @@ void func_0207c78c(void) {
         case 1:
             data_0217ae38 = data_usa_021554a4;
             data_0217ae34 = data_usa_0215524c;
-            data_0217ae48 = RequestItemBitsByKartRankWhenItemInUseTimerRunsOut;
+            data_0217ae48 = UseItemByRankAfterInUse;
             data_0217ae44 = func_0207c8d8;
-            data_0217ae3c = RequestItemBitsByKartRankWhenItemInUseTimerRunsOut;
+            data_0217ae3c = UseItemByRankAfterInUse;
             data_0217ae40 = func_0207c8d8;
             break;
         case 2:
             data_0217ae38 = data_usa_021552f4;
             data_0217ae34 = data_usa_0215524c;
-            data_0217ae48 = RequestItemBitsByKartRankWhenItemInUseTimerRunsOut;
+            data_0217ae48 = UseItemByRankAfterInUse;
             data_0217ae44 = func_0207c8d8;
-            data_0217ae3c = RequestItemBitsByKartRankWhenItemInUseTimerRunsOut;
+            data_0217ae3c = UseItemByRankAfterInUse;
             data_0217ae40 = func_0207c8d8;
             break;
         case 3:
         default:
             data_0217ae38 = data_usa_021553cc;
             data_0217ae34 = data_usa_0215524c;
-            data_0217ae48 = RequestItemBitsByTargetAheadOrKartRankWhenItemInUseTimerRunsOut;
+            data_0217ae48 = UseItemByTargetOrRankAfterInUse;
             data_0217ae44 = func_0207c978;
-            data_0217ae3c = RequestItemBitsByTargetAheadOrKartRankWhenItemInUseTimerRunsOut;
+            data_0217ae3c = UseItemByTargetOrRankAfterInUse;
             data_0217ae40 = func_0207c978;
             break;
     }
 }
 
 // Also stops the every-call request of the item bits.
-void RequestItemBitsOnceAndResetHeldItemTimer(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemAndResetHeldTimer(Unk0208fd8c *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
@@ -586,7 +584,7 @@ void RequestItemBitsOnceAndResetHeldItemTimer(Unk0208fd8c *a, struct KartAi *b) 
 }
 
 // Also stops the every-call request of the item bits.
-void RequestItemBitsOnceAndResetItemInUseTimer(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemAndResetInUseTimer(Unk0208fd8c *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
@@ -608,14 +606,14 @@ void RequestItemBitsOnceAndResetItemInUseTimer(Unk0208fd8c *a, struct KartAi *b)
 }
 
 // Also stops the every-call request of the item bits.
-void RequestItemBitsOnceThenBit6AndResetItemInUseTimer(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemForwardAndResetInUseTimer(Unk0208fd8c *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
 
     RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-    a->mBit6Pending = 1;
-    a->mBit6Timer = 2;
+    a->mThrowForwardPending = 1;
+    a->mThrowForwardTimer = 2;
     a->mItemBitsEveryCall = 0;
     if (a->mItemInUseEntry == NULL) {
         return;
@@ -632,14 +630,14 @@ void RequestItemBitsOnceThenBit6AndResetItemInUseTimer(Unk0208fd8c *a, struct Ka
 }
 
 // Also stops the every-call request of the item bits.
-void RequestItemBitsOnceThenBit7AndResetItemInUseTimer(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemBehindAndResetInUseTimer(Unk0208fd8c *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
 
     RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-    a->mBit7Pending = 1;
-    a->mBit7Timer = 2;
+    a->mThrowBehindPending = 1;
+    a->mThrowBehindTimer = 2;
     a->mItemBitsEveryCall = 0;
     if (a->mItemInUseEntry == NULL) {
         return;
@@ -662,10 +660,10 @@ void func_0207c448(Unk0208fd8c *p0) {
     p0->mItemInUseEntry = NULL;
     p0->mUnk_0c = 0x0u;
     p0->mItemBitsEveryCall = 0x0u;
-    p0->mBit6Pending = 0x0u;
-    p0->mBit7Pending = 0x0u;
-    p0->mBit6Timer = 0x0u;
-    p0->mBit7Timer = 0x0u;
+    p0->mThrowForwardPending = 0x0u;
+    p0->mThrowBehindPending = 0x0u;
+    p0->mThrowForwardTimer = 0x0u;
+    p0->mThrowBehindTimer = 0x0u;
     p0->mRandomValue = 0x0u;
 }
 
@@ -688,17 +686,17 @@ void AdvanceItemBitRequests(struct Unk0208fd8c *a, struct KartAi *b) {
         } else {
             RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
         }
-    } else if (a->mBit6Pending != 0) {
+    } else if (a->mThrowForwardPending != 0) {
         RequestBits(b->mKart->mEntryIndex, ITEM_THROW_FORWARD_BIT);
-        a->mBit6Timer--;
-        if (a->mBit6Timer <= 0) {
-            a->mBit6Pending = 0;
+        a->mThrowForwardTimer--;
+        if (a->mThrowForwardTimer <= 0) {
+            a->mThrowForwardPending = 0;
         }
-    } else if (a->mBit7Pending != 0) {
+    } else if (a->mThrowBehindPending != 0) {
         RequestBits(b->mKart->mEntryIndex, 0x80);
-        a->mBit7Timer--;
-        if (a->mBit7Timer <= 0) {
-            a->mBit7Pending = 0;
+        a->mThrowBehindTimer--;
+        if (a->mThrowBehindTimer <= 0) {
+            a->mThrowBehindPending = 0;
         }
     }
     if (a->mItemBitsEveryCall != 0) {

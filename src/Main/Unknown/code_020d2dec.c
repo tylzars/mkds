@@ -356,7 +356,7 @@ void InitMapObjects(void) {
     gMapObjects->mUnk_188 = 0;
     gCourseWater = NULL;
     gCourseWaterEfct = NULL;
-    ClearOrthoQuadCreamEffectModelPointer();
+    ClearOrthoQuadCreamEffectPointer();
     func_020d7df8();
     InitMatrices();
     func_020d4bf0();

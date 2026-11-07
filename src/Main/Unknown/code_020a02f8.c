@@ -311,7 +311,7 @@ u16 func_020a1cd8(s32 a) {
     return v;
 }
 
-void MoveKartTowardFirstRankAndRefreshCountRange(u16 a) {
+void MoveKartTowardFirstRank(u16 a) {
     s32 i;
     s32 j;
     s32 n;
@@ -347,7 +347,7 @@ void MoveKartTowardFirstRankAndRefreshCountRange(u16 a) {
     }
 }
 
-void MoveKartTowardLastRankAndRefreshCountRange(u16 a) {
+void MoveKartTowardLastRank(u16 a) {
     s32 i;
     s32 j;
     s32 n;
@@ -400,7 +400,7 @@ void EliminateKart(u16 a) {
     if ((u32) a >= data_021759c0->mKartCount) {
         return;
     }
-    MoveKartTowardLastRankAndRefreshCountRange(a);
+    MoveKartTowardLastRank(a);
     if (data_021759c0->mMode == MODE_BATTLE) {
         func_02068b5c(GetKart(a));
     } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
@@ -410,7 +410,7 @@ void EliminateKart(u16 a) {
     }
 }
 
-void SetWinnerAndEndTimerWhenOneTeamRemains(void) {
+void SetWinnerIfOneTeamLeft(void) {
     s32 n;
     s32 v;
     s32 i;
@@ -496,7 +496,7 @@ void EliminateKartAndCheckWinner(u16 a) {
         return;
     }
     EliminateKart(a);
-    SetWinnerAndEndTimerWhenOneTeamRemains();
+    SetWinnerIfOneTeamLeft();
 }
 
 u16 func_020a1520(void) {
@@ -527,7 +527,7 @@ u16 func_020a1520(void) {
                     EliminateKart(k);
                 }
             }
-            SetWinnerAndEndTimerWhenOneTeamRemains();
+            SetWinnerIfOneTeamLeft();
             if (gStandings->mWinnerTeamId >= 0) {
                 return 0;
             }
@@ -692,9 +692,9 @@ u16 GetBalloonOrShineCount(u16 a) {
 void AddBalloonOrShineCountAndMoveRank(u16 a, s32 b) {
     gStandings->mKarts[a].mBalloonOrShineCount += b;
     if (b > 0) {
-        MoveKartTowardFirstRankAndRefreshCountRange(a);
+        MoveKartTowardFirstRank(a);
     } else if (b < 0) {
-        MoveKartTowardLastRankAndRefreshCountRange(a);
+        MoveKartTowardLastRank(a);
     }
 }
 
@@ -722,7 +722,7 @@ BOOL IsKartEliminated(int a) {
     return FALSE;
 }
 
-s32 IsKartAtLowestBalloonOrShineCountBelowHighest(u16 a) {
+s32 func_020a1048(u16 a) {
     Standings *d;
     BOOL r;
     s32 v;

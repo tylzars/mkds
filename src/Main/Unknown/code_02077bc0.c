@@ -486,7 +486,7 @@ u16 GetKartCourseAmbColor(void) {
     return gKartModels->mUnk_004[1];
 }
 
-void StartKartModelsEntryColorInterpolation(struct Unk0206bcb0_590 *a, u16 b, u16 c, u16 d) {
+void StartKartModelColorBlend(struct Unk0206bcb0_590 *a, u16 b, u16 c, u16 d) {
     Unk0206bcb0_590_6a *q;
 
     q = &a->mUnk_06a;
@@ -511,7 +511,7 @@ void StartKartModelsEntryColorInterpolation(struct Unk0206bcb0_590 *a, u16 b, u1
     q->mUnk_2a = 0;
 }
 
-s32 AdvanceKartModelsEntryColorInterpolation(struct Unk0206bcb0_590 *a, s32 b) {
+s32 AdvanceKartModelColorBlend(struct Unk0206bcb0_590 *a, s32 b) {
     Unk0206bcb0_590_6a *q = &a->mUnk_06a;
     BOOL r = FALSE;
 

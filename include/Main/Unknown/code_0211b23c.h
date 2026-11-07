@@ -5,9 +5,9 @@
 void ReleaseSelectRaceRule(void);
 void InitSelectRaceRule(void *a, s32 b, void *c, s32 d);
 void RequestSelectRaceRuleState8(void);
-void RequestSelectRaceRuleState7AndRequestSelectChoisesState0(void);
+void RequestSelectRaceRuleState7(void);
 void RequestSelectRaceRuleState6(void);
-void RequestSelectRaceRuleState5AndStartSelectChoises(void);
+void RequestSelectRaceRuleState5(void);
 void func_0211ba58(void);
 void RequestSelectRaceRuleState3(void);
 void func_0211baac(void);

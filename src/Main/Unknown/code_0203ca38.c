@@ -177,7 +177,7 @@ static inline u16 func_0203cd14_inline(s32 v) {
 }
 
 // TRUE once no kart is still racing in battle, until the race is marked done.
-BOOL IsBattleEveryKartEndedAndRaceNotDone(void) {
+BOOL ShouldFinishBattle(void) {
     u32 i;
     s32 c;
     BOOL r = TRUE;
@@ -352,7 +352,7 @@ void UpdateRaceProgress(void) {
             gRaceProgress->mKartAtRank[i] = -1;
         }
         func_0203d078();
-        if (IsBattleEveryKartEndedAndRaceNotDone() != 0) {
+        if (ShouldFinishBattle() != 0) {
             FinishRaceProgress();
         }
     }

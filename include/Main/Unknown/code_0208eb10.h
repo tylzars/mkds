@@ -44,15 +44,14 @@ void func_0208ee40(u32 arg0, u32 arg1);
 void func_0208ee7c(const MtxFx43 *a);
 void func_0208f0a0(void);
 void func_0208f0f8(void *a);
-void RequestItemBitsOnceThenBit7AndResetItemInUseTimerWhenItemInUseTimerRunsOutOrTargetKartWithinDistance(
-    Unk0208fd8c *a, struct KartAi *b);
+void UseItemBehindAfterInUseOrNearTarget(Unk0208fd8c *a, struct KartAi *b);
 void func_0208f434(Unk0208fd8c *a, struct KartAi *b);
 void func_0208f4e8(Unk0208fd8c *a, struct KartAi *b);
 void func_0208f5c4(Unk0208fd8c *a, struct KartAi *b);
 void func_0208f670(Unk0208fd8c *a, struct KartAi *b);
 void func_0208f6d4(Unk0208fd8c *a, struct KartAi *b);
 void func_0208f754(Unk0208fd8c *a, struct KartAi *b);
-void RequestItemBitsOnceAndResetItemInUseTimerWhenItemInUseTimerRunsOut(Unk0208fd8c *a, struct KartAi *b);
+void UseItemAfterInUse(Unk0208fd8c *a, struct KartAi *b);
 void func_0208f810(Unk0208fd8c *a, struct KartAi *b);
 void func_0208f8ac(Unk0208fd8c *a, struct KartAi *b);
 void func_0208f948(Unk0208fd8c *a, struct KartAi *b);
@@ -60,7 +59,6 @@ void func_0208f9ac(Unk0208fd8c *a, struct KartAi *b);
 void func_0208fa50(Unk0208fd8c *a, struct KartAi *b);
 void func_0208fafc(Unk0208fd8c *a, struct KartAi *b);
 void func_0208fba0(Unk0208fd8c *a, struct KartAi *b);
-void RequestItemBitsOnceThenBit6OrBit7ByTargetAheadAndForwardDotWhenTargetKartWithinDistance(Unk0208fd8c *a,
-                                                                                             struct KartAi *b);
+void ThrowItemAtNearTarget(Unk0208fd8c *a, struct KartAi *b);
 void func_0208fd24(Unk0208fd8c *a, struct KartAi *b);
 unsigned int func_0208fd88(unsigned int p0);

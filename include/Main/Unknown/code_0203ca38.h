@@ -15,6 +15,6 @@ void FinishRaceProgressKartWithEndKind4(u16 a);
 // (func_020688a0, func_0207a828, FinishStandings) and clears the flag; before the entry has ended it tests the mission
 // end checks and ends the entry with FinishRaceProgressKartWithEndKind, kind 2, 3 or 4.
 void AdvanceMissionRunEnd(void);
-BOOL IsBattleEveryKartEndedAndRaceNotDone(void);
+BOOL ShouldFinishBattle(void);
 void func_0203d078(void);
 void FinishRaceProgress(void);

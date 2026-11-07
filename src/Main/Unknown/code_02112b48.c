@@ -678,7 +678,7 @@ void func_021134d4(void) {
     }
 }
 
-void RequestRecordVSState1AndPrintShownRecord(void) {
+void RequestRecordVSState1(void) {
     gRecordVS->mNextState = 1;
     gRecordVS->mStateFrames = 0;
     PrintRecordVSShownRecord();

@@ -720,7 +720,7 @@ void *CreateMapObjectKindData(void *param_1, void *param_2, void *param_3, u32 p
     return o;
 }
 
-u32 CreateMapObjectKindDataWithoutCallbacks(void) {
+u32 CreateEmptyMapObjectKindData(void) {
     return (u32) CreateMapObjectKindData(NULL, NULL, NULL, 0, 1);
 }
 

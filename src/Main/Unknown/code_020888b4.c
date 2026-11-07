@@ -211,7 +211,7 @@ void func_02089788(KartAi *p, Kart *q) {
     p->mKart = q;
     p->mIndex = q->mIndex;
     p->mUnk_06 = p->mIndex % 4;
-    ResetBattlePointLinkCursorByPositionAndDirection(&p->mUnk_28, &q->mPos, &q->mUnk_138, q->mIndex);
+    ResetBattlePointLinkCursorNear(&p->mUnk_28, &q->mPos, &q->mUnk_138, q->mIndex);
     p->mUnk_44 = *p->mUnk_28.mLink->mUnk_20;
     func_020898bc(p);
     if (data_021759c0->mUnk_18 == 0) {

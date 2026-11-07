@@ -367,7 +367,7 @@ s32 ComputeSoundPan(Unk0210bcf4 *p) {
 }
 
 // Returns the distance to the camera; also stores the forward and side distance in the record.
-u32 ComputeSoundDistanceAndCameraForwardAndSide(Unk0210bcf4 *p) {
+u32 ComputeSoundDistanceAndOffsets(Unk0210bcf4 *p) {
     u32 a;
     u32 b;
 

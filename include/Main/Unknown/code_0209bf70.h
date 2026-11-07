@@ -101,7 +101,7 @@ extern u16 data_usa_021565d4;
 extern const char data_usa_02167328[];
 
 Unk0209bf70 *func_0209bf70(void *a, void *b, void *c, u32 d, u16 e, u16 f);
-u32 CreateMapObjectKindDataWithoutCallbacks(void);
+u32 CreateEmptyMapObjectKindData(void);
 void *CreateMapObjectKindData(void *param_1, void *param_2, void *param_3, u32 param_4, u16 param_5);
 BOOL StartBoundWobble(s32 a);
 void CreateBoundUpdateList(void);

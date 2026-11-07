@@ -122,7 +122,7 @@ static inline s32 func_0210ca4c_inline(u32 k, u8 a, u16 b) {
     return 0;
 }
 
-u32 SetPlayingSoundsVolumePanAndPriority(SoundSource *p) {
+u32 SetPlayingSoundsParams(SoundSource *p) {
     Unk0210bcf4 st;
     s32 n;
     PlayingSound *a;

@@ -118,7 +118,7 @@ void ResetSelectGhost(void) {
     gSelectGhost->mSelectGhostSTable[cnt + 5].mUnk_06 = -0xc0;
     for (i = 0; i < 2; i++) {
         gSelectGhost->mSelectGhostSTable[gSelectGhostTimerZeroSTableIndices[i]].mUnk_06 = -0xc0;
-        gSelectGhost->mSelectGhostSTable[gSelectGhostTimerRunningSTableIndices[i]].mUnk_06 = -0xc0;
+        gSelectGhost->mSelectGhostSTable[gSelectGhostRunningSTableIndices[i]].mUnk_06 = -0xc0;
     }
 }
 
@@ -134,14 +134,14 @@ void RequestSelectGhostState2(void) {
     gSelectGhost->mStateFrames = 0;
 }
 
-void RequestSelectGhostState3StopPaletteBlendAndStartSound(void) {
+void RequestSelectGhostState3(void) {
     gSelectGhost->mNextState = 3;
     gSelectGhost->mStateFrames = 0;
     StopPaletteBlend();
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
 }
 
-void RequestSelectGhostState4AndStartSelectChoises(void) {
+void RequestSelectGhostState4(void) {
     gSelectGhost->mNextState = 4;
     gSelectGhost->mStateFrames = 0;
     StartSelectChoises(GetBmgEntry(gSelectGhost->mCommonMessages, 4), GetBmgEntry(gSelectGhost->mCommonMessages, 2), 0);
@@ -153,7 +153,7 @@ void RequestSelectGhostState5(void) {
     gSelectGhost->mStateFrames = 0;
 }
 
-void RequestSelectGhostState6AndRequestSelectChoisesState0(void) {
+void RequestSelectGhostState6(void) {
     gSelectGhost->mNextState = 6;
     gSelectGhost->mStateFrames = 0;
     RequestSelectChoisesState0();
@@ -177,18 +177,18 @@ void func_ov001_0219c358(void) {
 // Stores both offsets and steps both timers; each timer switches its rows on or off.
 void AdvanceSelectGhostOffsetTimers(void) {
     s32 i;
-    gSelectGhost->mSelectGhostSTable[gSelectGhostTimerRunningSTableIndices[0]].mUnk_04 =
+    gSelectGhost->mSelectGhostSTable[gSelectGhostRunningSTableIndices[0]].mUnk_04 =
         -func_020adc64(6 - gSelectGhost->mOffsetTimers[0]);
-    gSelectGhost->mSelectGhostSTable[gSelectGhostTimerRunningSTableIndices[1]].mUnk_04 =
+    gSelectGhost->mSelectGhostSTable[gSelectGhostRunningSTableIndices[1]].mUnk_04 =
         func_020adc64(6 - gSelectGhost->mOffsetTimers[1]);
     for (i = 0; i < 2; i++) {
         if (gSelectGhost->mOffsetTimers[i] > 0) {
             gSelectGhost->mOffsetTimers[i]--;
             gSelectGhost->mSelectGhostSTable[gSelectGhostTimerZeroSTableIndices[i]].mUnk_00 = 0;
-            gSelectGhost->mSelectGhostSTable[gSelectGhostTimerRunningSTableIndices[i]].mUnk_00 = 1;
+            gSelectGhost->mSelectGhostSTable[gSelectGhostRunningSTableIndices[i]].mUnk_00 = 1;
         } else {
             gSelectGhost->mSelectGhostSTable[gSelectGhostTimerZeroSTableIndices[i]].mUnk_00 = 1;
-            gSelectGhost->mSelectGhostSTable[gSelectGhostTimerRunningSTableIndices[i]].mUnk_00 = 0;
+            gSelectGhost->mSelectGhostSTable[gSelectGhostRunningSTableIndices[i]].mUnk_00 = 0;
         }
     }
 }
@@ -433,7 +433,7 @@ void AdvanceSelectGhostState0(void) {
     }
     for (i = 0; i < 2; i++) {
         gSelectGhost->mSelectGhostSTable[gSelectGhostTimerZeroSTableIndices[i]].mUnk_06 = v;
-        gSelectGhost->mSelectGhostSTable[gSelectGhostTimerRunningSTableIndices[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[gSelectGhostRunningSTableIndices[i]].mUnk_06 = v;
     }
     if (gSelectGhost->mStateFrames >= 10) {
         RequestSelectGhostState1();
@@ -508,7 +508,7 @@ next:
         return;
     }
     if (r == 3) {
-        RequestSelectGhostState3StopPaletteBlendAndStartSound();
+        RequestSelectGhostState3();
         return;
     }
     if (r == 2) {
@@ -516,7 +516,7 @@ next:
         return;
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 1) != 0) {
-        RequestSelectGhostState3StopPaletteBlendAndStartSound();
+        RequestSelectGhostState3();
         return;
     }
     if (func_020ae408(8, 0x20) != 0) {
@@ -532,7 +532,7 @@ void AdvanceSelectGhostState3(void) {
     AdvanceSelectGhostOffsetTimers();
     gSelectGhost->mStateFrames++;
     if (gSelectGhost->mStateFrames >= 10) {
-        RequestSelectGhostState4AndStartSelectChoises();
+        RequestSelectGhostState4();
     }
 }
 
@@ -546,7 +546,7 @@ void AdvanceSelectGhostState5(void) {
     int v1;
     v1 = GetSelectChoisesDone();
     if (v1 != 0) {
-        RequestSelectGhostState6AndRequestSelectChoisesState0();
+        RequestSelectGhostState6();
     }
 }
 
@@ -611,7 +611,7 @@ void AdvanceSelectGhostState7(void) {
     }
     for (i = 0; i < 2; i++) {
         gSelectGhost->mSelectGhostSTable[gSelectGhostTimerZeroSTableIndices[i]].mUnk_06 = v;
-        gSelectGhost->mSelectGhostSTable[gSelectGhostTimerRunningSTableIndices[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[gSelectGhostRunningSTableIndices[i]].mUnk_06 = v;
     }
     gSelectGhost->mSelectGhostSTable[n + 5].mUnk_06 = w;
 }

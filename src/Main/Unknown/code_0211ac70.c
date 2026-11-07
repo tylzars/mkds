@@ -1299,7 +1299,7 @@ void func_0211ba58(void) {
     func_0211c474();
 }
 
-void RequestSelectRaceRuleState5AndStartSelectChoises(void) {
+void RequestSelectRaceRuleState5(void) {
     void *a;
     gSelectRaceRule->mNextState = 5;
     gSelectRaceRule->mStateFrames = 0;
@@ -1314,7 +1314,7 @@ void RequestSelectRaceRuleState6(void) {
     gSelectRaceRule->mStateFrames = 0;
 }
 
-void RequestSelectRaceRuleState7AndRequestSelectChoisesState0(void) {
+void RequestSelectRaceRuleState7(void) {
     gSelectRaceRule->mNextState = 7;
     gSelectRaceRule->mStateFrames = 0;
     RequestSelectChoisesState0();
@@ -1801,7 +1801,7 @@ void AdvanceSelectRaceRuleState4(void) {
     }
     if (gSelectRaceRule->mStateFrames >= 10) {
         if (gSelectRaceRule->mMode == 3 || gSelectRaceRule->mRowValues[2] == 1) {
-            RequestSelectRaceRuleState5AndStartSelectChoises();
+            RequestSelectRaceRuleState5();
             return;
         }
         RequestSelectRaceRuleState8();

@@ -21,4 +21,4 @@ void InitSoundFalloffs(void);
 // Writes nothing.
 s32 ComputeSoundVolume(Unk0210bcf4 *p);
 s32 ComputeSoundPan(Unk0210bcf4 *p);
-u32 ComputeSoundDistanceAndCameraForwardAndSide(Unk0210bcf4 *p);
+u32 ComputeSoundDistanceAndOffsets(Unk0210bcf4 *p);

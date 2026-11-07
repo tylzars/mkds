@@ -616,7 +616,7 @@ void SkipOrthoQuadsHoldAndSetVelocities(int b2) {
     } while (i < gOrthoQuadCount);
 }
 
-u32 ClearOrthoQuadCreamEffectModelPointer(void) {
+u32 ClearOrthoQuadCreamEffectPointer(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &gOrthoQuadCreamEffect;

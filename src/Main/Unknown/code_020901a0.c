@@ -16,25 +16,25 @@ void SetupBattleHeldItemEntry(Unk0208fd8c *a, KartAi *b) {
     ResetHeldItemTimer(a);
 }
 
-void RequestItemBitsOnceAndResetItemInUseTimerWhenTargetKartSet(Unk0208fd8c *a, KartAi *b) {
+void UseItemWhenHasTarget(Unk0208fd8c *a, KartAi *b) {
     if (b->mTargetKart == NULL) {
         return;
     }
-    RequestItemBitsOnceAndResetItemInUseTimer(a, b);
+    UseItemAndResetInUseTimer(a, b);
 }
 
-void RequestItemBitsOnceAndResetItemInUseTimerWhenHeldItemTimerRunsOutOrTargetKartSet(Unk0208fd8c *a, KartAi *b) {
+void UseItemAfterHeldOrOnTarget(Unk0208fd8c *a, KartAi *b) {
     if (DecrementHeldItemTimer(a) == 0 && b->mTargetKart == NULL) {
         return;
     }
-    RequestItemBitsOnceAndResetItemInUseTimer(a, b);
+    UseItemAndResetInUseTimer(a, b);
 }
 
 void func_0209024c(Unk0208fd8c *a, KartAi *b) {
     if (DecrementHeldItemTimer(a) == 0) {
         return;
     }
-    RequestItemBitsOnceAndResetItemInUseTimer(a, b);
+    UseItemAndResetInUseTimer(a, b);
 }
 
 void func_020901f0(Unk0208fd8c *a, KartAi *b) {
@@ -44,16 +44,15 @@ void func_020901f0(Unk0208fd8c *a, KartAi *b) {
     if (b->mTurnAngleDegrees >= 0xa000) {
         return;
     }
-    RequestItemBitsOnceAndResetItemInUseTimer(a, b);
+    UseItemAndResetInUseTimer(a, b);
 }
 
-void RequestItemBitsOnceAndResetItemInUseTimerWhenHeldItemTimerRunsOutAndTurnAngleBelow10Degrees(Unk0208fd8c *a,
-                                                                                                 KartAi *b) {
+void UseItemAfterHeldIfTurnUnder10(Unk0208fd8c *a, KartAi *b) {
     if (DecrementHeldItemTimer(a) == 0) {
         return;
     }
     if (b->mTurnAngleDegrees >= 0xa000) {
         return;
     }
-    RequestItemBitsOnceAndResetItemInUseTimer(a, b);
+    UseItemAndResetInUseTimer(a, b);
 }

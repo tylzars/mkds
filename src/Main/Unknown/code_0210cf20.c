@@ -68,7 +68,7 @@ void func_0210d2cc(void) {
     func_0210e280(&data_0217d034);
     l = data_0217d048;
     for (p = l->mHead; p != NULL; p = l->mHead) {
-        SetPlayingSoundsVolumePanAndPriority(p);
+        SetPlayingSoundsParams(p);
         if (p->mUnk_18 != 3) {
             func_0210bc54(&l[p->mUnk_18], p);
             p->mUnk_18 = 3;
@@ -81,7 +81,7 @@ void func_0210d2cc(void) {
         l = data_0217d048;
         do {
             if ((t++ & 3) == data_0217d010[0]) {
-                SetPlayingSoundsVolumePanAndPriority(p);
+                SetPlayingSoundsParams(p);
             } else if ((t & 1) == (data_0217d010[0] & 1)) {
                 for (q = p->mPlayingSounds.mHead; q != NULL; q = NNS_FndGetNextListObject(&p->mPlayingSounds, q)) {
                     if (q->mUnk_00 != NULL) {

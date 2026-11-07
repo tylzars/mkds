@@ -1197,12 +1197,12 @@ u32 func_020a3f48(void) {
     d = data_021759c0;
     k = d->mMode;
     if (k == MODE_BATTLE && d->mUnk_18 == 0) {
-        return CreateMapObjectKindDataWithoutCallbacks();
+        return CreateEmptyMapObjectKindData();
     }
     if (k != MODE_MISSION_RUN) {
         return 0;
     }
-    return CreateMapObjectKindDataWithoutCallbacks();
+    return CreateEmptyMapObjectKindData();
 }
 
 void *func_020a3f2c(void) {

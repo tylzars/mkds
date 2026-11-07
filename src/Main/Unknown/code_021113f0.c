@@ -62,7 +62,7 @@ void AdvanceRecordVSState0(void) {
     int v1;
     v1 = AreBrightnessFadesClear();
     if (v1 != 0) {
-        RequestRecordVSState1AndPrintShownRecord();
+        RequestRecordVSState1();
     }
 }
 

@@ -74,7 +74,7 @@ typedef struct SelectGhost {
 #include "Main/Unknown/unk_02175000.h"
 #include "Main/Unknown/unk_02175628.h"
 
-extern u16 gSelectGhostTimerRunningSTableIndices[];
+extern u16 gSelectGhostRunningSTableIndices[];
 extern u16 gSelectGhostTimerZeroSTableIndices[];
 extern u16 gSelectGhostMenuMessageIndices[];
 extern u16 data_ov001_021a6b48[];
@@ -105,10 +105,10 @@ void RefreshSelectGhostForIndex(void);
 void AdvanceSelectGhostOffsetTimers(void);
 void func_ov001_0219c358(void);
 void RequestSelectGhostState7(void);
-void RequestSelectGhostState6AndRequestSelectChoisesState0(void);
+void RequestSelectGhostState6(void);
 void RequestSelectGhostState5(void);
-void RequestSelectGhostState4AndStartSelectChoises(void);
-void RequestSelectGhostState3StopPaletteBlendAndStartSound(void);
+void RequestSelectGhostState4(void);
+void RequestSelectGhostState3(void);
 void RequestSelectGhostState2(void);
 void RequestSelectGhostState1(void);
 void ResetSelectGhost(void);
