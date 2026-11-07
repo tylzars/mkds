@@ -230,7 +230,7 @@ void func_0203aacc(void) {
         }
     }
     func_02046ee4();
-    func_020b1de4();
+    ClearChoisesSPointer();
     func_02062004();
     func_020af86c();
     func_02056144();

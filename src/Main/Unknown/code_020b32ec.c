@@ -12,11 +12,11 @@ Ncgr *func_020b3374(void) {
     int v1;
     v1 = func_020b2d04();
     if (v1 == 1) {
-        gChoisesS->mChoisesSBNcgr->mData = gChoisesS->mUnk_174;
+        gChoisesS->mChoisesSBNcgr->mData = gChoisesS->mList1Chars;
     } else {
         v1 = func_020b2d04();
         if (v1 == 2) {
-            gChoisesS->mChoisesSBNcgr->mData = gChoisesS->mUnk_178;
+            gChoisesS->mChoisesSBNcgr->mData = gChoisesS->mList2Chars;
         }
     }
     return gChoisesS->mChoisesSBNcgr;
@@ -46,7 +46,7 @@ void *func_020b32f8(void) {
 }
 
 u32 func_020b32ec(void) {
-    return (gChoisesS->mUnk_00c);
+    return (gChoisesS->mPickLocked);
 }
 
 #pragma thumb off

@@ -57,7 +57,7 @@ s32 func_020b3120(s32 a) {
         k = func_020b2d04();
         n = gChoisesS->mLists[k].mValueCount;
         for (; i < n; i++) {
-            if (gChoisesS->mUnk_028 == gChoisesS->mLists[k].mValues[i]) {
+            if (gChoisesS->mSelectedValue == gChoisesS->mLists[k].mValues[i]) {
                 break;
             }
         }
@@ -65,17 +65,17 @@ s32 func_020b3120(s32 a) {
             a = 0;
         } else if (n == 2) {
             if (a != 0 && i + a >= 0 && i + a < n) {
-                gChoisesS->mUnk_034 = 0;
+                gChoisesS->mCycleFrames = 0;
                 func_02105ac0(0);
             } else {
                 a = 0;
             }
         } else if (a != 0) {
-            gChoisesS->mUnk_034 = 0;
+            gChoisesS->mCycleFrames = 0;
             func_02105ac0(0);
         }
         d = gChoisesS;
-        d->mUnk_028 = d->mLists[k].mValues[(n + (i + a)) % n];
+        d->mSelectedValue = d->mLists[k].mValues[(n + (i + a)) % n];
     }
     return i;
 }
@@ -106,8 +106,8 @@ u32 func_020b302c(void) {
         }
         for (i = 0; i < n; i++) {
             if (func_020ae244(func_020b2b54(), e[i]) != 0) {
-                if (gChoisesS->mUnk_028 != func_020b302c_inline()->mLists[k].mValues[i]) {
-                    gChoisesS->mUnk_028 = gChoisesS->mLists[k].mValues[i];
+                if (gChoisesS->mSelectedValue != func_020b302c_inline()->mLists[k].mValues[i]) {
+                    gChoisesS->mSelectedValue = gChoisesS->mLists[k].mValues[i];
                     func_020b3120(0);
                 } else {
                     gChoisesS->mUnk_010 = TRUE;
@@ -116,7 +116,7 @@ u32 func_020b302c(void) {
             }
         }
         if (r != 0) {
-            if (gChoisesS->mUnk_028 == 0) {
+            if (gChoisesS->mSelectedValue == 0) {
                 func_02105c4c();
             } else {
                 func_020b3278();
@@ -129,18 +129,18 @@ u32 func_020b302c(void) {
 void func_020b3008(void) {
     ChoisesS *p;
 
-    gChoisesS->mUnk_024 = 0;
+    gChoisesS->mPickedValue = 0;
     p = gChoisesS;
-    p->mUnk_028 = p->mLists[func_020b2d04()].mValues[0];
+    p->mSelectedValue = p->mLists[func_020b2d04()].mValues[0];
 }
 
 void func_020b2f88(s32 a) {
-    if (gChoisesS->mUnk_00c != 0) {
+    if (gChoisesS->mPickLocked != 0) {
         return;
     }
     if (a != 0 && func_020b2e98() == 0) {
         if (func_020b29c4() != 0) {
-            gChoisesS->mUnk_000 = a;
+            gChoisesS->mOpenDuringRace = a;
         } else if (func_020b2b70() != 0) {
             gChoisesS->mUnk_008 = a;
         } else {
@@ -149,15 +149,15 @@ void func_020b2f88(s32 a) {
         func_020b3008();
     } else if (a == 0 && func_020b2e98() != 0) {
         if (func_020b29c4() != 0) {
-            gChoisesS->mUnk_000 = a;
+            gChoisesS->mOpenDuringRace = a;
         } else if (func_020b2b70() != 0) {
             gChoisesS->mUnk_008 = a;
         } else {
             return;
         }
     }
-    if (gChoisesS->mUnk_024 != 0) {
-        gChoisesS->mUnk_00c = 1;
+    if (gChoisesS->mPickedValue != 0) {
+        gChoisesS->mPickLocked = 1;
     }
 }
 

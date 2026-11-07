@@ -37,13 +37,13 @@ void InitChoisesS(void) {
     s32 i;
 
     gChoisesS = HeapAlloc(func_020b2540(), 0x1a4);
-    gChoisesS->mUnk_000 = 0;
-    gChoisesS->mUnk_004 = 0;
+    gChoisesS->mOpenDuringRace = 0;
+    gChoisesS->mPrevOpenDuringRace = 0;
     gChoisesS->mUnk_008 = 0;
-    gChoisesS->mUnk_00c = 0;
-    gChoisesS->mUnk_014 = 0;
+    gChoisesS->mPickLocked = 0;
+    gChoisesS->mPickFrames = 0;
     gChoisesS->mUnk_010 = FALSE;
-    gChoisesS->mUnk_01c = 0;
+    gChoisesS->mAutoPickFrames = 0;
     if (func_020b252c() == MODE_MISSION_RUN) {
         gChoisesS->mUnk_020 = func_020adb34();
     } else {
@@ -163,61 +163,61 @@ void InitChoisesS(void) {
         gChoisesS->mList1Nscr = gChoisesS->mChoisesSNscrs[gChoisesS->mLists[1].mValueCount - 1];
         gChoisesS->mList2Nscr = gChoisesS->mChoisesSNscrs[gChoisesS->mLists[2].mValueCount - 1];
         gChoisesS->mList3Nscr = gChoisesS->mChoisesSNscrs[gChoisesS->mLists[3].mValueCount - 1];
-        gChoisesS->mUnk_174 = HeapAlloc(func_020b2540(), func_020b3260(gChoisesS->mLists[1].mValueCount));
+        gChoisesS->mList1Chars = HeapAlloc(func_020b2540(), func_020b3260(gChoisesS->mLists[1].mValueCount));
         switch (func_020b252c()) {
             case MODE_BATTLE:
             case MODE_VS:
             case MODE_MISSION_RUN:
-                gChoisesS->mUnk_178 = HeapAlloc(func_020b2540(), func_020b3260(gChoisesS->mLists[2].mValueCount));
+                gChoisesS->mList2Chars = HeapAlloc(func_020b2540(), func_020b3260(gChoisesS->mLists[2].mValueCount));
                 break;
         }
-        gChoisesS->mUnk_0a8 = func_020b403c(2);
-        NNS_G2dCharCanvasInitForBG(gChoisesS->mUnk_0ac[0], func_020b3374()->mData, 0x20, 0xc, 4);
+        gChoisesS->mFont = func_020b403c(2);
+        NNS_G2dCharCanvasInitForBG(gChoisesS->mCharCanvases[0], func_020b3374()->mData, 0x20, 0xc, 4);
         p = gChoisesS;
-        func_020b24cc(&p->mUnk_12c[0], p->mUnk_0ac[0], p->mUnk_0a8, func_020b4acc(), 0);
-        NNS_G2dCharCanvasInitForBG(gChoisesS->mUnk_0ac[1], gChoisesS->mUnk_174, 0x20, 0xc, 4);
+        func_020b24cc(&p->mTextCanvases[0], p->mCharCanvases[0], p->mFont, func_020b4acc(), 0);
+        NNS_G2dCharCanvasInitForBG(gChoisesS->mCharCanvases[1], gChoisesS->mList1Chars, 0x20, 0xc, 4);
         p = gChoisesS;
-        func_020b24cc(&p->mUnk_12c[1], p->mUnk_0ac[1], p->mUnk_0a8, func_020b4acc(), 0);
+        func_020b24cc(&p->mTextCanvases[1], p->mCharCanvases[1], p->mFont, func_020b4acc(), 0);
         n = func_020b3260(gChoisesS->mLists[1].mValueCount) >> 1;
         for (i = 0; i < n; i++) {
-            gChoisesS->mUnk_174[i] = func_020b3374()->mData[i];
+            gChoisesS->mList1Chars[i] = func_020b3374()->mData[i];
         }
-        if (gChoisesS->mUnk_178 != NULL) {
-            NNS_G2dCharCanvasInitForBG(gChoisesS->mUnk_0ac[2], gChoisesS->mUnk_178, 0x20, 0xc, 4);
+        if (gChoisesS->mList2Chars != NULL) {
+            NNS_G2dCharCanvasInitForBG(gChoisesS->mCharCanvases[2], gChoisesS->mList2Chars, 0x20, 0xc, 4);
             p = gChoisesS;
-            func_020b24cc(&p->mUnk_12c[2], p->mUnk_0ac[2], p->mUnk_0a8, func_020b4acc(), 0);
+            func_020b24cc(&p->mTextCanvases[2], p->mCharCanvases[2], p->mFont, func_020b4acc(), 0);
             n = func_020b3260(gChoisesS->mLists[2].mValueCount) >> 1;
             for (i = 0; i < n; i++) {
-                gChoisesS->mUnk_178[i] = func_020b3374()->mData[i];
+                gChoisesS->mList2Chars[i] = func_020b3374()->mData[i];
             }
         }
-        NNS_G2dCharCanvasInitForBG(gChoisesS->mUnk_0ac[3], func_020b3374()->mData, 0x20, 0xc, 4);
+        NNS_G2dCharCanvasInitForBG(gChoisesS->mCharCanvases[3], func_020b3374()->mData, 0x20, 0xc, 4);
         p = gChoisesS;
-        func_020b24cc(&p->mUnk_12c[3], p->mUnk_0ac[3], p->mUnk_0a8, func_020b4acc(), 0);
+        func_020b24cc(&p->mTextCanvases[3], p->mCharCanvases[3], p->mFont, func_020b4acc(), 0);
         if (func_020b24e4() != 2) {
             for (i = 0; i < gChoisesS->mLists[0].mValueCount; i++) {
-                func_020b24a4(&gChoisesS->mUnk_12c[0], 0x90, i * 16 + 9, 0xc, 0x412,
+                func_020b24a4(&gChoisesS->mTextCanvases[0], 0x90, i * 16 + 9, 0xc, 0x412,
                               func_020b320c(0, gChoisesS->mLists[0].mValues[i]));
             }
         } else {
             for (i = 0; i < gChoisesS->mLists[3].mValueCount; i++) {
-                func_020b24a4(&gChoisesS->mUnk_12c[3], 0x90, i * 16 + 9, 0xc, 0x412,
+                func_020b24a4(&gChoisesS->mTextCanvases[3], 0x90, i * 16 + 9, 0xc, 0x412,
                               func_020b320c(3, gChoisesS->mLists[3].mValues[i]));
             }
         }
         for (i = 0; i < gChoisesS->mLists[1].mValueCount; i++) {
-            func_020b24a4(&gChoisesS->mUnk_12c[1], 0x90, i * 16 + 9, 0xc, 0x412,
+            func_020b24a4(&gChoisesS->mTextCanvases[1], 0x90, i * 16 + 9, 0xc, 0x412,
                           func_020b320c(1, gChoisesS->mLists[1].mValues[i]));
         }
         for (i = 0; i < gChoisesS->mLists[2].mValueCount; i++) {
-            func_020b24a4(&gChoisesS->mUnk_12c[2], 0x90, i * 16 + 9, 0xc, 0x412,
+            func_020b24a4(&gChoisesS->mTextCanvases[2], 0x90, i * 16 + 9, 0xc, 0x412,
                           func_020b320c(2, gChoisesS->mLists[2].mValues[i]));
         }
     } else {
         gChoisesS->mChoisesSBNclr = NULL;
         gChoisesS->mChoisesSBNcgr = NULL;
-        gChoisesS->mUnk_174 = NULL;
-        gChoisesS->mUnk_178 = NULL;
+        gChoisesS->mList1Chars = NULL;
+        gChoisesS->mList2Chars = NULL;
         gChoisesS->mList0Nscr = NULL;
         gChoisesS->mList1Nscr = NULL;
         gChoisesS->mList2Nscr = NULL;
@@ -225,7 +225,7 @@ void InitChoisesS(void) {
     }
 }
 
-void func_020b1de4(void) {
+void ClearChoisesSPointer(void) {
     gChoisesS = NULL;
 }
 
