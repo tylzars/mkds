@@ -20,7 +20,7 @@ u32 func_020acef4(void) {
     return 0x8u;
 }
 
-u16 func_020acee0(Unk02175628 *a, u32 b) {
+u16 func_020acee0(InputSlot *a, u32 b) {
     return a->mUnk_00 & b;
 }
 

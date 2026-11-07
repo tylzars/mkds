@@ -47,8 +47,8 @@ static inline void func_02043a34_inline(void) {
 static inline void func_02043c14_inline(void) {
     s32 i;
     s32 k;
-    Unk02175628 *p;
-    Unk02175628 *q;
+    InputSlot *p;
+    InputSlot *q;
 
     for (i = 0; i < 10; i++) {
         p = &data_02175628[(u32) i];
@@ -250,8 +250,8 @@ void func_02043c14(void) {
 void func_02043b48(void) {
     s32 i;
     s32 j;
-    Unk02175628 *p;
-    Unk02175628 *q;
+    InputSlot *p;
+    InputSlot *q;
 
     p = data_02175628;
     for (i = 0; i < 10; i++) {
@@ -279,7 +279,7 @@ void func_02043b3c(void) {
 
 void func_02043b04(void) {
     s32 i;
-    Unk02175628 *p;
+    InputSlot *p;
 
     p = data_02175628;
     for (i = 0; i < 10; i++) {
@@ -331,7 +331,7 @@ void func_02043648(void) {
     u16 m;
     u16 t;
     s32 n;
-    Unk02175628 *p;
+    InputSlot *p;
     s32 o;
     BOOL q;
     s32 c;
@@ -381,11 +381,11 @@ void func_02043648(void) {
                             m = x;
                             if (w & 4) {
                                 m = x & 0xffcf;
-                                if (x & 0x20) {
-                                    m |= 0x10;
+                                if (x & PAD_KEY_LEFT) {
+                                    m |= PAD_KEY_RIGHT;
                                 }
-                                if (x & 0x10) {
-                                    m |= 0x20;
+                                if (x & PAD_KEY_RIGHT) {
+                                    m |= PAD_KEY_LEFT;
                                 }
                             }
                             func_0204a798((Unk02175650 *) &p->mUnk_28, m);
@@ -418,11 +418,11 @@ void func_02043648(void) {
                             m = func_0204ffe8(func_02050064(i));
                             if (data_02175624->mUnk_04 & 4) {
                                 t = m & 0xffcf;
-                                if (m & 0x20) {
-                                    t |= 0x10;
+                                if (m & PAD_KEY_LEFT) {
+                                    t |= PAD_KEY_RIGHT;
                                 }
-                                if (m & 0x10) {
-                                    t |= 0x20;
+                                if (m & PAD_KEY_RIGHT) {
+                                    t |= PAD_KEY_LEFT;
                                 }
                                 m = t;
                             }

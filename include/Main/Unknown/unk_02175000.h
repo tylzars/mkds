@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_02036c5c.h"
 #include "code_020182c0.h" // Unk020182c0
-#include "Main/Unknown/unk_02175628.h" // Unk02175628
+#include "Main/Unknown/unk_02175628.h" // InputSlot
 #include "code_02017f24.h" // NNSiFndHeapHead
 #include "code_0200db4c.h"
 #include "Main/Unknown/code_020d22c0.h" // Unk020f41c4_B
@@ -163,7 +163,7 @@ typedef struct DisplaySettings {
 
 // Objects whose layout isn't known yet.
 extern DisplaySettings *gDisplaySettings;
-extern Unk02175628 data_021755dc;
+extern InputSlot data_021755dc;
 typedef struct Unk02175624 {
     /* 00 */ u8 mUnk_00[2];
     /* 02 */ u16 mUnk_02;

@@ -573,9 +573,9 @@ void func_02090638(Unk020905a8 *a) {
     w = p->mHeadingAngle + (s16) (((s64) v * 0xb6 + 0x800) >> 12);
     b = *(volatile s32 *) &p->mEntryIndex;
     m = data_0217562a[b].mBits;
-    if ((u16) (m & 0x20) != 0) {
+    if ((u16) (m & PAD_KEY_LEFT) != 0) {
         p->mHeadingAngle = p->mHeadingAngle + 0xa0;
-    } else if ((u16) (m & 0x10) != 0) {
+    } else if ((u16) (m & PAD_KEY_RIGHT) != 0) {
         p->mHeadingAngle = p->mHeadingAngle - 0xa0;
     }
     d = w - p->mHeadingAngle;

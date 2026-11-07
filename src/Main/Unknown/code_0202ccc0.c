@@ -390,7 +390,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
                     func_02108c1c();
                     gTimeAttackGhostSend->mState = 4;
                 } else {
-                    t = data_02175628[e].mUnk_00 & 2;
+                    t = data_02175628[e].mUnk_00 & PAD_KEY_B;
                     if (t != 0 || c != 0) {
                         data_0217b488->mUnk_08 = 5;
                         if (p != NULL) {
@@ -430,7 +430,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
             }
             break;
         case 6:
-            t = data_02175628[e].mUnk_00 & 2;
+            t = data_02175628[e].mUnk_00 & PAD_KEY_B;
             if (t != 0 || c != 0) {
                 RequestSelectReturnState3WithSound(0);
                 SetSelectReturnSoundId(0xf);

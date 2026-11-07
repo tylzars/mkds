@@ -251,7 +251,7 @@ void AdvanceWiFiVSSettingState4(void) {
     BOOL v6;
     s32 v7;
     s32 v8;
-    Unk02175628 *e;
+    InputSlot *e;
     u32 messageIndex;
 
     if (data_02175674[i].mUnk_00 == 0 && data_02175680[i].mUnk_00 < 5) {
@@ -265,7 +265,7 @@ void AdvanceWiFiVSSettingState4(void) {
                                      data_02175672[i].mUnk_00);
     }
     e = &data_02175628[i];
-    v8 = e->mUnk_00 & 2;
+    v8 = e->mUnk_00 & PAD_KEY_B;
     if ((u16) v8 == 0) {
         v7 = v6 = FALSE;
         if (data_02175674[i].mUnk_00 == 0 && data_02175680[i].mUnk_00 < 5) {
@@ -286,7 +286,7 @@ void AdvanceWiFiVSSettingState4(void) {
     RequestTxtSystemClose();
     goto end;
 next:
-    v8 = e->mUnk_00 & 1;
+    v8 = e->mUnk_00 & PAD_KEY_A;
     if (((u16) v8 != 0 && gWiFiVSSetting->mRow == 2) || v4 == 2) {
         gWiFiVSSetting->mNextState = 5;
         if (gWiFiVSSetting->mRow == 2) {
@@ -295,7 +295,7 @@ next:
         gWiFiVSSetting->mPendingWiFiState = 3;
         gWiFiVSSetting->mRow = 2;
         data_0217b488->mUnk_54 = data_ov000_021b05ec[gWiFiVSSetting->mSettingIndex];
-        if ((u16) (data_0217562a[i].mBits & 0x100) != 0) {
+        if ((u16) (data_0217562a[i].mBits & PAD_KEY_R) != 0) {
             func_ov000_02180638(1);
         }
         SetWiFiVSSettingIndex(gWiFiVSSetting->mSettingIndex);
@@ -316,25 +316,26 @@ next:
         gWiFiVSSetting->mRow = 1;
         gWiFiVSSetting->mSettingIndex = gWiFiVSSetting->mSettingIndex + 1;
         StartSoundOncePerFrame(1);
-    } else if (GetNewOrRepeatBits(8, 0x40) != 0) {
+    } else if (GetNewOrRepeatBits(8, PAD_KEY_UP) != 0) {
         gWiFiVSSetting->mRow = gWiFiVSSetting->mRow - 1;
         if (gWiFiVSSetting->mRow < 0) {
             gWiFiVSSetting->mRow = 2;
         }
         StartSoundOncePerFrame(0);
-    } else if (GetNewOrRepeatBits(8, 0x80) != 0 || (gWiFiVSSetting->mRow == 1 && (u16) (e->mUnk_00 & 1) != 0)) {
+    } else if (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0 ||
+               (gWiFiVSSetting->mRow == 1 && (u16) (e->mUnk_00 & PAD_KEY_A) != 0)) {
         gWiFiVSSetting->mRow = gWiFiVSSetting->mRow + 1;
         if (gWiFiVSSetting->mRow > 2) {
             gWiFiVSSetting->mRow = 0;
         }
         StartSoundOncePerFrame(0);
-    } else if (gWiFiVSSetting->mRow == 1 && GetNewOrRepeatBits(8, 0x20) != 0) {
+    } else if (gWiFiVSSetting->mRow == 1 && GetNewOrRepeatBits(8, PAD_KEY_LEFT) != 0) {
         gWiFiVSSetting->mSettingIndex = gWiFiVSSetting->mSettingIndex - 1;
         gWiFiVSSetting->mIndexDecrementTimer = 6;
         StartSoundOncePerFrame(1);
-    } else if (gWiFiVSSetting->mRow == 1 && GetNewOrRepeatBits(8, 0x10) != 0) {
+    } else if (gWiFiVSSetting->mRow == 1 && GetNewOrRepeatBits(8, PAD_KEY_RIGHT) != 0) {
         gWiFiVSSetting->mSettingIndex = gWiFiVSSetting->mSettingIndex + 1;
-        if (GetNewOrRepeatBits(8, 0x10) != 0) {
+        if (GetNewOrRepeatBits(8, PAD_KEY_RIGHT) != 0) {
             gWiFiVSSetting->mIndexIncrementTimer = 6;
         }
         StartSoundOncePerFrame(1);
@@ -468,7 +469,7 @@ void AdvanceWiFiVSSettingState7(void) {
         return;
     }
     if (IsTxtSystemState2NoCloseRequest() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
-        if ((u16) (data_02175628[v1].mUnk_00 & 2) == 0) {
+        if ((u16) (data_02175628[v1].mUnk_00 & PAD_KEY_B) == 0) {
             a = FALSE;
             b = FALSE;
             v = data_02175674[v1].mUnk_00;
@@ -507,7 +508,7 @@ void AdvanceWiFiVSSettingState8(void) {
         return;
     }
     if (IsTxtSystemState2NoCloseRequest() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
-        if ((u16) (data_02175628[v1].mUnk_00 & 2) == 0) {
+        if ((u16) (data_02175628[v1].mUnk_00 & PAD_KEY_B) == 0) {
             a = FALSE;
             b = FALSE;
             v = data_02175674[v1].mUnk_00;

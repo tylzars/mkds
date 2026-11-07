@@ -516,16 +516,16 @@ void func_02066ac0(Kart *a) {
         m = NNS_FndGetNextListObject(&e->mUnk_80, m);
     }
     if ((a->mUnk_514->mUnk_44 & 2) != 0) {
-        RequestBits(a->mEntryIndex, 1);
+        RequestBits(a->mEntryIndex, PAD_KEY_A);
     }
     if ((a->mUnk_514->mUnk_44 & 4) != 0) {
-        RequestBits(a->mEntryIndex, 2);
+        RequestBits(a->mEntryIndex, PAD_KEY_B);
     }
     if ((a->mUnk_514->mUnk_44 & 8) != 0) {
-        RequestBits(a->mEntryIndex, 0x20);
+        RequestBits(a->mEntryIndex, PAD_KEY_LEFT);
     }
     if ((a->mUnk_514->mUnk_44 & 0x10) != 0) {
-        RequestBits(a->mEntryIndex, 0x10);
+        RequestBits(a->mEntryIndex, PAD_KEY_RIGHT);
     }
     if ((a->mUnk_514->mUnk_44 & 1) != 0) {
         a->mUnk_44 = a->mUnk_44 | KART_44_ON_GROUND;

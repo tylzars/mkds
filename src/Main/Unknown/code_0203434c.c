@@ -194,7 +194,7 @@ s32 func_02034370(Unk02034370 *a) {
                         data_02174e64->mUnk_18c = TRUE;
                         data_02174e64->mUnk_090 = 0;
                         data_02174e64->mState = 3;
-                    } else if ((u16) (data_02175628[k].mUnk_00 & 1) != 0 && data_02174e64->mUnk_080 >= 0) {
+                    } else if ((u16) (data_02175628[k].mUnk_00 & PAD_KEY_A) != 0 && data_02174e64->mUnk_080 >= 0) {
                         func_020351c8();
                         func_02035228(0);
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
@@ -202,16 +202,16 @@ s32 func_02034370(Unk02034370 *a) {
                         data_02174e64->mUnk_18c = TRUE;
                         data_02174e64->mUnk_090 = 0;
                         data_02174e64->mState = 3;
-                    } else if ((u16) (data_02175628[k].mUnk_00 & 2) != 0 || z != 0) {
+                    } else if ((u16) (data_02175628[k].mUnk_00 & PAD_KEY_B) != 0 || z != 0) {
                         data_02174e64->mState = 12;
                         RequestSelectReturnState3WithSound(0);
-                    } else if (GetNewOrRepeatBits(k, 0x40)) {
+                    } else if (GetNewOrRepeatBits(k, PAD_KEY_UP)) {
                         if (data_02174e64->mUnk_190 == 2) {
                             func_020352fc(0);
                         } else if (data_02174e64->mUnk_190 > 2) {
                             func_020352fc(1);
                         }
-                    } else if (GetNewOrRepeatBits(k, 0x80)) {
+                    } else if (GetNewOrRepeatBits(k, PAD_KEY_DOWN)) {
                         if (data_02174e64->mUnk_190 == 2) {
                             func_02035280(0);
                         } else if (data_02174e64->mUnk_190 > 2) {

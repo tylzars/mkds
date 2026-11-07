@@ -250,7 +250,7 @@ void AdvanceSelectBattleStageState2(void) {
             sel = i;
         }
     }
-    if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
+    if ((u16) (data_02175628[idx].mUnk_00 & PAD_KEY_B) == 0) {
         b = FALSE;
         a = FALSE;
         x = data_02175628[idx].mHasPair;
@@ -282,9 +282,9 @@ void AdvanceSelectBattleStageState2(void) {
     gSelectBattleStage->mUnk_2c = TRUE;
     return;
 next:
-    if ((u16) (data_02175628[idx].mUnk_00 & 1) != 0 || sel != -4) {
+    if ((u16) (data_02175628[idx].mUnk_00 & PAD_KEY_A) != 0 || sel != -4) {
         prev = gSelectBattleStage->mIndex;
-        if ((u16) (data_02175628[idx].mUnk_00 & 1) == 0) {
+        if ((u16) (data_02175628[idx].mUnk_00 & PAD_KEY_A) == 0) {
             gSelectBattleStage->mIndex = sel;
         }
         if (gSelectBattleStage->mIndex == prev) {
@@ -296,7 +296,7 @@ next:
         StartSoundOncePerFrame(5);
         return;
     }
-    if (GetNewOrRepeatBits(8, 0x40) != 0) {
+    if (GetNewOrRepeatBits(8, PAD_KEY_UP) != 0) {
         gSelectBattleStage->mIndex--;
         if (gSelectBattleStage->mIndex < 0) {
             gSelectBattleStage->mIndex = 5;
@@ -305,7 +305,7 @@ next:
         StartSoundOncePerFrame(0);
         return;
     }
-    if (GetNewOrRepeatBits(8, 0x80) != 0) {
+    if (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0) {
         gSelectBattleStage->mIndex++;
         if (gSelectBattleStage->mIndex >= 6) {
             gSelectBattleStage->mIndex = 0;

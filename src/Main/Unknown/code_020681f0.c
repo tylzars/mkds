@@ -423,7 +423,7 @@ void AdvanceKartDriftCharge(Kart *a) {
         }
         k = a->mEntryIndex;
         e = data_02175628[k].mUnk_00;
-        if ((u16) (e & 0x20) != 0) {
+        if ((u16) (e & PAD_KEY_LEFT) != 0) {
             c = &a->mLeftTurnCount;
             if (a->mAwayTurnCounter == c) {
                 if (c[1] == c[0]) {
@@ -440,7 +440,7 @@ void AdvanceKartDriftCharge(Kart *a) {
                     StartSound(&a->mSoundSource, 0xd2, 0x7f, 0);
                 }
             }
-        } else if ((u16) (e & 0x10) != 0) {
+        } else if ((u16) (e & PAD_KEY_RIGHT) != 0) {
             d = &a->mRightTurnCount;
             if (a->mTowardTurnCounter == d) {
                 c = &a->mLeftTurnCount;

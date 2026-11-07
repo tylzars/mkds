@@ -871,7 +871,8 @@ void UpdateStandings(void) {
             }
             e->mUnk_64 = v;
             gStandings->mKarts[i].mUnk_68 = -(gStandings->mKarts[i].mUnk_68 <= 0);
-            if (func_01ffc67c(o) != FALSE || (u16) (data_02175628[o->mEntryIndex].mBits & 3) != 0) {
+            if (func_01ffc67c(o) != FALSE ||
+                (u16) (data_02175628[o->mEntryIndex].mBits & (PAD_KEY_A | PAD_KEY_B)) != 0) {
                 gStandings->mKarts[i].mUnk_68 = -1;
                 gStandings->mKarts[i].mUnk_64 = -1;
             } else if (IsRaceStarted() == 1) {

@@ -713,7 +713,7 @@ s32 func_02030ea4(Unk02030b18 *a) {
                 z = IsSelectReturnState2NoState3Or4RequestAndInRect(x, y);
                 m = RectTableFindContaining(p->mUnk_10, x, y);
             }
-            if ((u16) (data_02175628[k].mUnk_00 & 1) != 0 || m == 0) {
+            if ((u16) (data_02175628[k].mUnk_00 & PAD_KEY_A) != 0 || m == 0) {
                 if (gMultiSelectMember->mUnk_74 > 0 && gMultiSelectMember->mUnk_a0[3].mUnk_00 == 1) {
                     func_02031b30(0);
                     RequestSelectReturnState4();
@@ -727,7 +727,7 @@ s32 func_02030ea4(Unk02030b18 *a) {
                     break;
                 }
             }
-            if ((u16) (data_02175628[k].mUnk_00 & 2) != 0 || z != 0) {
+            if ((u16) (data_02175628[k].mUnk_00 & PAD_KEY_B) != 0 || z != 0) {
                 gMultiSelectMember->mUnk_6c = 1;
                 gMultiSelectMember->mState = 3;
                 gMultiSelectMember->mUnk_7c = TRUE;
@@ -894,7 +894,7 @@ s32 func_02030b18(Unk02030b18 *a) {
                 }
                 gMultiSelectMember->mState = 7;
             } else if (y == 0) {
-                if ((u16) (data_02175628[k].mUnk_00 & 2) != 0 || v != 0) {
+                if ((u16) (data_02175628[k].mUnk_00 & PAD_KEY_B) != 0 || v != 0) {
                     gMultiSelectMember->mUnk_6c = 0;
                     gMultiSelectMember->mState = 3;
                     gMultiSelectMember->mUnk_7c = TRUE;

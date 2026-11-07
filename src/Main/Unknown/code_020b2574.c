@@ -41,14 +41,14 @@ void func_020b2574(void) {
         if (func_020b2bc8() != 0) {
             if (func_020b2b70() != 0) {
                 if (func_020b252c() == MODE_MISSION_RUN && func_020b2b5c() != 0 && func_020b2f58() != 0) {
-                    if (func_020b2b24(func_020b2b54(), 1) != 0 || func_020b2a74(func_020b2b54()) != 0) {
+                    if (func_020b2b24(func_020b2b54(), PAD_KEY_A) != 0 || func_020b2a74(func_020b2b54()) != 0) {
                         gChoisesS->mPickedValue = 10;
                         gChoisesS->mSelectedValue = gChoisesS->mPickedValue;
                         gChoisesS->mPickLocked = 1;
                         func_020b3278();
                     }
                 } else if (func_020b252c() == MODE_MISSION_RUN && func_020b2ecc() != 0) {
-                    if (func_020b2b24(func_020b2b54(), 1) != 0 || func_020b2a74(func_020b2b54()) != 0) {
+                    if (func_020b2b24(func_020b2b54(), PAD_KEY_A) != 0 || func_020b2a74(func_020b2b54()) != 0) {
                         gChoisesS->mPickedValue = 6;
                         gChoisesS->mSelectedValue = gChoisesS->mPickedValue;
                         gChoisesS->mPickLocked = 1;
@@ -56,7 +56,7 @@ void func_020b2574(void) {
                         func_020b2a60(1);
                     }
                 } else if (func_020b252c() == MODE_MISSION_RUN && func_020b2b5c() != 0) {
-                    if (func_020b2b24(func_020b2b54(), 1) != 0 || func_020b2a74(func_020b2b54()) != 0) {
+                    if (func_020b2b24(func_020b2b54(), PAD_KEY_A) != 0 || func_020b2a74(func_020b2b54()) != 0) {
                         gChoisesS->mPickedValue = 6;
                         gChoisesS->mSelectedValue = gChoisesS->mPickedValue;
                         gChoisesS->mPickLocked = 1;
@@ -72,7 +72,7 @@ void func_020b2574(void) {
                     }
                 } else if (func_020b302c() != 0) {
                     gChoisesS->mPickFrames = 1;
-                } else if (func_020b2b24(func_020b2b54(), 1) != 0) {
+                } else if (func_020b2b24(func_020b2b54(), PAD_KEY_A) != 0) {
                     if (func_020b2e98() != 0) {
                         if (gChoisesS->mSelectedValue == 0) {
                             func_02105c4c();
@@ -85,14 +85,14 @@ void func_020b2574(void) {
                         func_02105d70();
                         func_020b2f88(1);
                     }
-                } else if (func_020b2b24(func_020b2b54(), 2) != 0) {
+                } else if (func_020b2b24(func_020b2b54(), PAD_KEY_B) != 0) {
                     if (func_020b2e98() != 0) {
                         func_02105c4c();
                         gChoisesS->mCloseFrames = 1;
                     }
-                } else if (GetNewOrRepeatBits(func_020b2b54(), 0x40) != 0) {
+                } else if (GetNewOrRepeatBits(func_020b2b54(), PAD_KEY_UP) != 0) {
                     MoveChoisesSSelectedValue(-1);
-                } else if (GetNewOrRepeatBits(func_020b2b54(), 0x80) != 0) {
+                } else if (GetNewOrRepeatBits(func_020b2b54(), PAD_KEY_DOWN) != 0) {
                     MoveChoisesSSelectedValue(1);
                 }
             }
@@ -107,7 +107,7 @@ void func_020b2574(void) {
                 }
             } else if (func_020b302c() != 0) {
                 gChoisesS->mPickFrames = 1;
-            } else if (func_020b2b24(func_020b2b54(), 1) != 0) {
+            } else if (func_020b2b24(func_020b2b54(), PAD_KEY_A) != 0) {
                 if (func_020b2e98() != 0) {
                     if (gChoisesS->mSelectedValue == 0) {
                         func_02105c4c();
@@ -117,14 +117,14 @@ void func_020b2574(void) {
                     gChoisesS->mPickFrames = 1;
                     gChoisesS->mUnk_010 = TRUE;
                 }
-            } else if (func_020b2b24(func_020b2b54(), 2) != 0) {
+            } else if (func_020b2b24(func_020b2b54(), PAD_KEY_B) != 0) {
                 if (func_020b2e98() != 0) {
                     func_02105c4c();
                     gChoisesS->mCloseFrames = 1;
                 }
-            } else if (GetNewOrRepeatBits(func_020b2b54(), 0x40) != 0) {
+            } else if (GetNewOrRepeatBits(func_020b2b54(), PAD_KEY_UP) != 0) {
                 MoveChoisesSSelectedValue(-1);
-            } else if (GetNewOrRepeatBits(func_020b2b54(), 0x80) != 0) {
+            } else if (GetNewOrRepeatBits(func_020b2b54(), PAD_KEY_DOWN) != 0) {
                 MoveChoisesSSelectedValue(1);
             }
         }

@@ -49,11 +49,10 @@ void func_0202ed04(void) {
 
 #pragma thumb off
 
-u16 func_0202ecf0(Unk02175628 *a, u32 b) {
+u16 func_0202ecf0(InputSlot *a, u32 b) {
     return a->mUnk_00 & b;
 }
 
 u16 func_0202ecd4(u32 a, u32 b) {
     return func_0202ecf0(&data_02175628[a], b);
 }
-

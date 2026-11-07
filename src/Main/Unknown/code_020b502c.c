@@ -428,7 +428,7 @@ void func_020b5658(RaceHudSubScreenBgAffine *out) {
     out->mY1 = out->mCenterY - 0x60;
 }
 
-u16 func_020b5644(Unk02175628 *p, s32 mask) {
+u16 func_020b5644(InputSlot *p, s32 mask) {
     return p->mBits & mask;
 }
 
@@ -443,7 +443,7 @@ void UpdateRaceHudSubScreenScroll(void) {
     Vec3 dir;
 
     func_020b6a18(&lo, &hi);
-    if (func_020b5628(func_020435bc(), 0x20) != 0) {
+    if (func_020b5628(func_020435bc(), PAD_KEY_LEFT) != 0) {
         if (gRaceHudSubScreenProjection->mScrollTimer != 0) {
             gRaceHudSubScreenProjection->mScrollPosition.x -= 0xa000;
             if (gRaceHudSubScreenProjection->mScrollPosition.x < lo.mUnk_00) {
@@ -454,7 +454,7 @@ void UpdateRaceHudSubScreenScroll(void) {
         }
         gRaceHudSubScreenProjection->mScrollTimer = 600;
     }
-    if (func_020b5628(func_020435bc(), 0x10) != 0) {
+    if (func_020b5628(func_020435bc(), PAD_KEY_RIGHT) != 0) {
         if (gRaceHudSubScreenProjection->mScrollTimer != 0) {
             gRaceHudSubScreenProjection->mScrollPosition.x += 0xa000;
             if (gRaceHudSubScreenProjection->mScrollPosition.x > hi.mUnk_00) {
@@ -465,7 +465,7 @@ void UpdateRaceHudSubScreenScroll(void) {
         }
         gRaceHudSubScreenProjection->mScrollTimer = 600;
     }
-    if (func_020b5628(func_020435bc(), 0x40) != 0) {
+    if (func_020b5628(func_020435bc(), PAD_KEY_UP) != 0) {
         if (gRaceHudSubScreenProjection->mScrollTimer != 0) {
             gRaceHudSubScreenProjection->mScrollPosition.z -= 0xa000;
             if (gRaceHudSubScreenProjection->mScrollPosition.z < lo.mUnk_04) {
@@ -476,7 +476,7 @@ void UpdateRaceHudSubScreenScroll(void) {
         }
         gRaceHudSubScreenProjection->mScrollTimer = 600;
     }
-    if (func_020b5628(func_020435bc(), 0x80) != 0) {
+    if (func_020b5628(func_020435bc(), PAD_KEY_DOWN) != 0) {
         if (gRaceHudSubScreenProjection->mScrollTimer != 0) {
             gRaceHudSubScreenProjection->mScrollPosition.z += 0xa000;
             if (gRaceHudSubScreenProjection->mScrollPosition.z > hi.mUnk_04) {

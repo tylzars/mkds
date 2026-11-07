@@ -9,7 +9,7 @@ void func_0203c98c(void) {
     u32 i;
     func_02043544(1);
     for (i = 0; i < gRaceSetup->mKartCount; i = (u16) (i + 1)) {
-        Unk02175628 *e = &data_02175628[gRaceSetup->mCurrentEntries[i].mPlayer.mIndex];
+        InputSlot *e = &data_02175628[gRaceSetup->mCurrentEntries[i].mPlayer.mIndex];
         if (e->mSourceKind != 1) {
             if (e->mSourceKind == 2) {
                 func_0204a978((Unk02175650 *) &e->mUnk_28);

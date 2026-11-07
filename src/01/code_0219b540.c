@@ -479,7 +479,7 @@ void AdvanceSelectGhostState2(void) {
         r = RectTableFindContaining(gSelectGhost->mSelectGhostSBnbl, data_02175628[idx].mPairX,
                                     data_02175628[idx].mPairY);
     }
-    if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
+    if ((u16) (data_02175628[idx].mUnk_00 & PAD_KEY_B) == 0) {
         d = FALSE;
         c = FALSE;
         if (data_02175628[idx].mHasPair == 0 && data_02175628[idx].mNoPairCount < 5) {
@@ -515,15 +515,15 @@ next:
         func_ov001_0219c058();
         return;
     }
-    if ((u16) (data_02175628[idx].mUnk_00 & 1) != 0) {
+    if ((u16) (data_02175628[idx].mUnk_00 & PAD_KEY_A) != 0) {
         RequestSelectGhostState3();
         return;
     }
-    if (GetNewOrRepeatBits(8, 0x20) != 0) {
+    if (GetNewOrRepeatBits(8, PAD_KEY_LEFT) != 0) {
         func_ov001_0219bff4();
         return;
     }
-    if (GetNewOrRepeatBits(8, 0x10) != 0) {
+    if (GetNewOrRepeatBits(8, PAD_KEY_RIGHT) != 0) {
         func_ov001_0219c058();
     }
 }

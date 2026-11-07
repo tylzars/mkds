@@ -472,7 +472,7 @@ void AdvanceTxtSystemState2(void) {
         }
     }
     w = data_02175628[v].mUnk_00;
-    if ((u16) (w & 1) == 0) {
+    if ((u16) (w & PAD_KEY_A) == 0) {
         if (func_02126a00_inline2(v) == 0 || m != 1 ||
             func_02126a00_inline(x, y, gTxtSystemHitRects[4].mUnk_00, gTxtSystemHitRects[4].mUnk_01,
                                  gTxtSystemHitRects[4].mUnk_02, gTxtSystemHitRects[4].mUnk_03) == FALSE) {
@@ -505,7 +505,7 @@ void AdvanceTxtSystemState2(void) {
     return;
 L:
     if (m == 2) {
-        if ((u16) (w & 0x20) != 0 && p->mSelectedIndex == 1) {
+        if ((u16) (w & PAD_KEY_LEFT) != 0 && p->mSelectedIndex == 1) {
             p->mSelectedIndex = 0;
             func_02126ef8();
             StartSoundOncePerFrame(0);

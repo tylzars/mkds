@@ -523,12 +523,12 @@ void func_ov001_021a30e0(void) {
         dx = 0;
         dy = 0;
         dz = 0;
-        dx += GetNewOrRepeatBits(8, 0x20) ? -1 : 0;
-        dx += GetNewOrRepeatBits(8, 0x10) ? 1 : 0;
-        dy += GetNewOrRepeatBits(8, 0x40) ? -1 : 0;
-        dy += GetNewOrRepeatBits(8, 0x80) ? 1 : 0;
-        dz += GetNewOrRepeatBits(8, 0x200) ? -1 : 0;
-        dz += GetNewOrRepeatBits(8, 0x100) ? 1 : 0;
+        dx += GetNewOrRepeatBits(8, PAD_KEY_LEFT) ? -1 : 0;
+        dx += GetNewOrRepeatBits(8, PAD_KEY_RIGHT) ? 1 : 0;
+        dy += GetNewOrRepeatBits(8, PAD_KEY_UP) ? -1 : 0;
+        dy += GetNewOrRepeatBits(8, PAD_KEY_DOWN) ? 1 : 0;
+        dz += GetNewOrRepeatBits(8, PAD_KEY_L) ? -1 : 0;
+        dz += GetNewOrRepeatBits(8, PAD_KEY_R) ? 1 : 0;
 
         switch (gEmblem->mUnk_1094) {
             case 0:
@@ -835,12 +835,12 @@ void func_ov001_021a2e0c(void) {
     h = 0;
     v = 0;
     w = 0;
-    h += (GetNewOrRepeatBits(8, 0x20) != 0) ? -1 : 0;
-    h += (GetNewOrRepeatBits(8, 0x10) != 0) ? 1 : 0;
-    v += (GetNewOrRepeatBits(8, 0x40) != 0) ? -1 : 0;
-    v += (GetNewOrRepeatBits(8, 0x80) != 0) ? 1 : 0;
-    w += (GetNewOrRepeatBits(8, 0x200) != 0) ? -1 : 0;
-    w += (GetNewOrRepeatBits(8, 0x100) != 0) ? 1 : 0;
+    h += (GetNewOrRepeatBits(8, PAD_KEY_LEFT) != 0) ? -1 : 0;
+    h += (GetNewOrRepeatBits(8, PAD_KEY_RIGHT) != 0) ? 1 : 0;
+    v += (GetNewOrRepeatBits(8, PAD_KEY_UP) != 0) ? -1 : 0;
+    v += (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0) ? 1 : 0;
+    w += (GetNewOrRepeatBits(8, PAD_KEY_L) != 0) ? -1 : 0;
+    w += (GetNewOrRepeatBits(8, PAD_KEY_R) != 0) ? 1 : 0;
     gEmblem->mUnk_1080 = w + (func_ov001_021a63b4() - 1);
     t = gEmblem->mUnk_1080;
     if (t < 0) {

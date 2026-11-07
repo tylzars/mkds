@@ -427,7 +427,7 @@ void AdvanceRecordVSEraseState4(void) {
     if (v != 6) {
         gRecordVSErase->mUnk_9c = FALSE;
     }
-    if ((u16) (data_02175628[i].mUnk_00 & 2) != 0 ||
+    if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_B) != 0 ||
         ((n = !(data_02175674[i].mUnk_00 == 0 && data_02175680[i].mUnk_00 < 5) &&
               (data_0217567c[i].mUnk_00 == 0 && data_02175674[i].mUnk_00 != 0)) &&
          IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) !=
@@ -441,7 +441,7 @@ void AdvanceRecordVSEraseState4(void) {
         return;
     }
     if ((v == 5 && gRecordVSErase->mUnk_98 != FALSE) || (w == 5 && gRecordVSErase->mUnk_98 == FALSE) ||
-        (u16) (data_0217562a[i].mBits & 0x20) != 0) {
+        (u16) (data_0217562a[i].mBits & PAD_KEY_LEFT) != 0) {
         if (IsRecordVSEraseIndexChangeRunning() != 0) {
             return;
         }
@@ -456,7 +456,7 @@ void AdvanceRecordVSEraseState4(void) {
         return;
     }
     if ((v == 6 && gRecordVSErase->mUnk_9c != FALSE) || (w == 6 && gRecordVSErase->mUnk_9c == FALSE) ||
-        (u16) (data_0217562a[i].mBits & 0x10) != 0) {
+        (u16) (data_0217562a[i].mBits & PAD_KEY_RIGHT) != 0) {
         if (IsRecordVSEraseIndexChangeRunning() != 0) {
             return;
         }
@@ -489,7 +489,7 @@ void AdvanceRecordVSEraseState4(void) {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
     } else {
-        if ((u16) (data_02175628[i].mUnk_00 & 1) != 0) {
+        if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_A) != 0) {
             if (IsRecordFlagged(s + gRecordVSErase->mIndex) == 0) {
                 if (IsRecordVSEraseIndexChangeRunning() == 0) {
                     func_02115d90();
@@ -501,11 +501,11 @@ void AdvanceRecordVSEraseState4(void) {
             }
             return;
         }
-        if (GetNewOrRepeatBits(8, 0x40) != 0) {
+        if (GetNewOrRepeatBits(8, PAD_KEY_UP) != 0) {
             DecrementRecordVSEraseIndex();
             return;
         }
-        if (GetNewOrRepeatBits(8, 0x80) != 0) {
+        if (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0) {
             IncrementRecordVSEraseIndex();
         }
     }

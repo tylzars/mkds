@@ -75,7 +75,7 @@ void AdvanceSelectCupCourseState3(void) {
         a = RectTableFindContaining(gSelectCupCourse->mSelectCupMBnbl, data_02175670[i].mUnk_00,
                                     data_02175672[i].mUnk_00 + 0x20);
     }
-    if ((u16) (data_02175628[i].mUnk_00 & 2) != 0 ||
+    if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_B) != 0 ||
         (func_02119340_inline(i) != 0 && IsSelectReturnState2NoState3Or4RequestAndInRect(
                                              data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) != FALSE)) {
         if (func_02119dfc() == 0) {
@@ -103,12 +103,12 @@ void AdvanceSelectCupCourseState3(void) {
         func_02119ba8();
         return;
     }
-    if ((u16) (data_02175628[i].mUnk_00 & 1) != 0) {
+    if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_A) != 0) {
         func_02119ba8();
         gSelectCupCourse->mUnk_54 = FALSE;
         return;
     }
-    if (GetNewOrRepeatBits(8, 0x40) != 0) {
+    if (GetNewOrRepeatBits(8, PAD_KEY_UP) != 0) {
         gSelectCupCourse->mIndex = gSelectCupCourse->mIndex - 1;
         if (gSelectCupCourse->mIndex < 0) {
             gSelectCupCourse->mIndex = 3;
@@ -118,7 +118,7 @@ void AdvanceSelectCupCourseState3(void) {
         }
         return;
     }
-    if (GetNewOrRepeatBits(8, 0x80) != 0) {
+    if (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0) {
         gSelectCupCourse->mIndex = gSelectCupCourse->mIndex + 1;
         if (gSelectCupCourse->mIndex >= 4) {
             gSelectCupCourse->mIndex = 0;

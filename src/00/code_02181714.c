@@ -161,7 +161,7 @@ void AdvanceWiFiTopMenuState3(void) {
         v2 =
             RectTableFindContaining(gWiFiTopMenu->mWiFiTopMenuBnbl, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
     }
-    v5 = data_02175628[i].mUnk_00 & 2;
+    v5 = data_02175628[i].mUnk_00 & PAD_KEY_B;
     if ((u16) v5 == 0) {
         v7 = v6 = FALSE;
         if (data_02175674[i].mUnk_00 == 0 && data_02175680[i].mUnk_00 < 5) {
@@ -182,7 +182,7 @@ void AdvanceWiFiTopMenuState3(void) {
     }
     return;
 next:
-    v5 = data_02175628[i].mUnk_00 & 1;
+    v5 = data_02175628[i].mUnk_00 & PAD_KEY_A;
     if ((u16) v5 != 0 || v2 <= 2) {
         v4 = gWiFiTopMenu->mIndex;
         if ((u16) v5 == 0) {
@@ -219,13 +219,13 @@ next:
         }
         StartSoundOncePerFrame(5);
     } else {
-        if (GetNewOrRepeatBits(8, 0x40) != 0) {
+        if (GetNewOrRepeatBits(8, PAD_KEY_UP) != 0) {
             gWiFiTopMenu->mIndex--;
             if (gWiFiTopMenu->mIndex < 0) {
                 gWiFiTopMenu->mIndex = 2;
             }
             StartSoundOncePerFrame(0);
-        } else if (GetNewOrRepeatBits(8, 0x80) != 0) {
+        } else if (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0) {
             gWiFiTopMenu->mIndex++;
             if (gWiFiTopMenu->mIndex > 2) {
                 gWiFiTopMenu->mIndex = 0;
@@ -338,7 +338,7 @@ void AdvanceWiFiTopMenuState8(void) {
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
     }
     if (IsTxtSystemState2NoCloseRequest() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
-        if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
+        if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_B) == 0) {
             a = b = FALSE;
             v = data_02175628[i].mHasPair;
             if (v == 0 && data_02175628[i].mNoPairCount < 5) {

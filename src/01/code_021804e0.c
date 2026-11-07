@@ -107,11 +107,11 @@ void func_ov001_02180800(void) {
         } else if (data_ov001_021a99e4->mUnk_0004 == 3) {
             idx = 2;
         }
-        if (func_ov001_021805bc(keys, 0x20) != 0) {
+        if (func_ov001_021805bc(keys, PAD_KEY_LEFT) != 0) {
             data_ov001_021a99e8 = (data_ov001_021a99e8 + 8) % 9;
             func_ov001_02180af8(data_ov001_021a99e4->mUnk_0018[idx], 0);
             moved = TRUE;
-        } else if (func_ov001_021805bc(keys, 0x10) != 0) {
+        } else if (func_ov001_021805bc(keys, PAD_KEY_RIGHT) != 0) {
             data_ov001_021a99e8 = (data_ov001_021a99e8 + 1) % 9;
             func_ov001_02180af8(data_ov001_021a99e4->mUnk_0018[idx], 0);
             moved = TRUE;
@@ -212,7 +212,7 @@ u32 func_ov001_021805ec(void) {
     return 0x8u;
 }
 
-u16 func_ov001_021805d8(Unk02175628 *p0, u32 p1) {
+u16 func_ov001_021805d8(InputSlot *p0, u32 p1) {
     return p0->mUnk_00 & p1;
 }
 
@@ -230,10 +230,10 @@ void func_ov001_0218052c(Unk0218052c *p0) {
     func_020ae718();
     if (p0 != NULL) {
         v = func_ov001_021805ec();
-        if (func_ov001_021805bc(v, 1) != 0) {
+        if (func_ov001_021805bc(v, PAD_KEY_A) != 0) {
             p0->mUnk_04 = 0;
         }
-        if (func_ov001_021805bc(v, 0x400) != 0) {
+        if (func_ov001_021805bc(v, PAD_KEY_X) != 0) {
             g = data_ov001_021a99e4;
             g->mUnk_0004 = (g->mUnk_0004 + 1) % 4;
             data_ov001_021a99e4->mUnk_0008 = 1;

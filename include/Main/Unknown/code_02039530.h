@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk02175628 Unk02175628;
+typedef struct InputSlot InputSlot;
 
-void func_02039530(u32 a, Unk02175628 *b);
+void func_02039530(u32 a, InputSlot *b);

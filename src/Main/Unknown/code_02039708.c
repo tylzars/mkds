@@ -1,7 +1,7 @@
 #include "Main/Unknown/code_02039708.h"
 #include "Main/Unknown/unk_02175628.h"
 
-void func_02039728(Unk02175628 *p0) {
+void func_02039728(InputSlot *p0) {
     p0->mUnk_00 = 0x0u;
     p0->mBits = 0x0u;
     p0->mClearedBits = 0x0u;
@@ -18,7 +18,7 @@ void func_02039728(Unk02175628 *p0) {
     p0->mUnk_24 = 0x0u;
 }
 
-void func_02039708(Unk02175628 *p0) {
+void func_02039708(InputSlot *p0) {
     p0->mUnk_00 = 0x0u;
     p0->mBits = 0x0u;
     p0->mClearedBits = 0x0u;

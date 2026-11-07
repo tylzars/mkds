@@ -693,7 +693,7 @@ void AdvanceItemBitRequests(struct KartAiItemUse *a, struct KartAi *b) {
             a->mThrowForwardPending = 0;
         }
     } else if (a->mThrowBehindPending != 0) {
-        RequestBits(b->mKart->mEntryIndex, 0x80);
+        RequestBits(b->mKart->mEntryIndex, PAD_KEY_DOWN);
         a->mThrowBehindTimer--;
         if (a->mThrowBehindTimer <= 0) {
             a->mThrowBehindPending = 0;

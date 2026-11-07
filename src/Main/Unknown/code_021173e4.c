@@ -636,8 +636,8 @@ void AdvanceSelectCupGridState3(void) {
     int b;
     int a;
     u16 x;
-    Unk02175628 *p;
-    Unk02175628 *q;
+    InputSlot *p;
+    InputSlot *q;
 
     s = -1;
     n = UNK_02175628_INDEX_8;
@@ -658,7 +658,7 @@ void AdvanceSelectCupGridState3(void) {
                                     data_02175672[n].mUnk_00);
     }
     q = &data_02175628[n];
-    if ((u16) (data_02175628[n].mUnk_00 & 2) != 0) {
+    if ((u16) (data_02175628[n].mUnk_00 & PAD_KEY_B) != 0) {
         goto L1;
     }
     b = 0;
@@ -728,12 +728,12 @@ L2:
         func_02118184();
         return;
     }
-    if ((u16) (q->mUnk_00 & 1) != 0) {
+    if ((u16) (q->mUnk_00 & PAD_KEY_A) != 0) {
         func_02118184();
         gSelectCupGrid->mUnk_68 = FALSE;
         return;
     }
-    if (GetNewOrRepeatBits(8, 0x40) != 0) {
+    if (GetNewOrRepeatBits(8, PAD_KEY_UP) != 0) {
         a = gSelectCupGrid->mIndex;
         b = data_0215c84c[a];
         if (b != 0) {
@@ -746,7 +746,7 @@ L2:
                 }
             }
         }
-    } else if (GetNewOrRepeatBits(8, 0x80) != 0) {
+    } else if (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0) {
         a = gSelectCupGrid->mIndex;
         b = data_0215c7fc[a];
         if (b != 0) {
@@ -759,7 +759,7 @@ L2:
                 }
             }
         }
-    } else if (GetNewOrRepeatBits(8, 0x20) != 0) {
+    } else if (GetNewOrRepeatBits(8, PAD_KEY_LEFT) != 0) {
         a = gSelectCupGrid->mIndex;
         b = data_0215c80c[a];
         if (b != 0) {
@@ -772,7 +772,7 @@ L2:
                 }
             }
         }
-    } else if (GetNewOrRepeatBits(8, 0x10) != 0) {
+    } else if (GetNewOrRepeatBits(8, PAD_KEY_RIGHT) != 0) {
         a = gSelectCupGrid->mIndex;
         b = data_0215c82c[a];
         if (b != 0) {

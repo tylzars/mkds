@@ -1657,7 +1657,7 @@ void AdvanceKartModelMenuInput(void) {
         w = ~a;
         v1 = UNK_02175628_INDEX_8;
         k = data_02175628[v1].mUnk_00;
-        if ((u16) (k & 0x100) != 0) {
+        if ((u16) (k & PAD_KEY_R) != 0) {
             d = a;
             do {
                 gKartModelMenu->mKartIndex++;
@@ -1675,7 +1675,7 @@ void AdvanceKartModelMenuInput(void) {
             if (gKartModelMenu->mKartListPos >= gKartModelMenu->mKartListCount) {
                 gKartModelMenu->mKartListPos = 0;
             }
-        } else if ((u16) (k & 0x200) != 0) {
+        } else if ((u16) (k & PAD_KEY_L) != 0) {
             d = a;
             do {
                 gKartModelMenu->mKartIndex--;
@@ -1700,23 +1700,23 @@ void AdvanceKartModelMenuInput(void) {
     func_02108e6c(2);
     v1 = UNK_02175628_INDEX_8;
     k = data_02175628[v1].mBits;
-    if ((u16) (k & 0x10) != 0) {
+    if ((u16) (k & PAD_KEY_RIGHT) != 0) {
         q->mYawAngle += 0x1c2;
         b = TRUE;
-    } else if ((u16) (k & 0x20) != 0) {
+    } else if ((u16) (k & PAD_KEY_LEFT) != 0) {
         q->mYawAngle -= 0x1c2;
         b = TRUE;
     }
     v1 = UNK_02175628_INDEX_8;
     k = data_02175628[v1].mBits;
-    if ((u16) (k & 0x80) != 0) {
+    if ((u16) (k & PAD_KEY_DOWN) != 0) {
         q->mUnk_18 += 0x1c2;
         if (q->mUnk_18 > 0x1b58) {
             q->mUnk_18 = 0x1b58;
         } else {
             d = 1;
         }
-    } else if ((u16) (k & 0x40) != 0) {
+    } else if ((u16) (k & PAD_KEY_UP) != 0) {
         q->mUnk_18 -= 0x1c2;
         if (q->mUnk_18 < -0x1388) {
             q->mUnk_18 = -0x1388;
@@ -1730,7 +1730,7 @@ void AdvanceKartModelMenuInput(void) {
     func_02108e6c(1);
     v1 = UNK_02175628_INDEX_8;
     k = data_02175628[v1].mBits;
-    if ((u16) (k & 0x400) != 0) {
+    if ((u16) (k & PAD_KEY_X) != 0) {
         q->mScale += 0x7b;
         if (q->mScale > data_usa_021656e0) {
             q->mScale = data_usa_021656e0;
@@ -1740,7 +1740,7 @@ void AdvanceKartModelMenuInput(void) {
     } else {
         v1 = UNK_02175628_INDEX_8;
         k = data_02175628[v1].mBits;
-        if ((u16) (k & 2) != 0) {
+        if ((u16) (k & PAD_KEY_B) != 0) {
             q->mScale -= 0x7b;
             if (q->mScale < 0x800) {
                 q->mScale = 0x800;

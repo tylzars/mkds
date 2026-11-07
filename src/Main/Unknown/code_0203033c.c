@@ -69,7 +69,7 @@ u32 func_020306b8(u32 arg0) {
     return value0;
 }
 
-u16 func_020306a4(Unk02175628 *a, u32 b) {
+u16 func_020306a4(InputSlot *a, u32 b) {
     return a->mUnk_00 & b;
 }
 
@@ -135,21 +135,21 @@ s32 AdvanceMultiSelectNS(void) {
                 a = IsSelectReturnState2NoState3Or4RequestAndInRect(b, c);
                 b = func_020291c4(b, c, o->mBnbl);
             }
-            if (func_02030688(i, 1) != 0) {
+            if (func_02030688(i, PAD_KEY_A) != 0) {
                 func_0204aa28(gMultiSelectNS->mIndex == 1 ? 1 : 0);
                 gMultiSelectNS->mUnk_2c = 2;
                 gMultiSelectNS->mState = 2;
                 RefreshMultiSelectNS(0);
                 func_02030654(4);
-            } else if (func_02030688(i, 2) != 0 || a != 0) {
+            } else if (func_02030688(i, PAD_KEY_B) != 0 || a != 0) {
                 gMultiSelectNS->mUnk_2c = 0;
                 gMultiSelectNS->mState = 3;
                 RequestSelectReturnState3WithSound(0);
-            } else if (func_02030688(i, 0x40) != 0 && gMultiSelectNS->mIndex > 0) {
+            } else if (func_02030688(i, PAD_KEY_UP) != 0 && gMultiSelectNS->mIndex > 0) {
                 gMultiSelectNS->mIndex--;
                 RefreshMultiSelectNS(1);
                 func_0203062c(0);
-            } else if (func_02030688(i, 0x80) != 0 && gMultiSelectNS->mIndex < 1) {
+            } else if (func_02030688(i, PAD_KEY_DOWN) != 0 && gMultiSelectNS->mIndex < 1) {
                 gMultiSelectNS->mIndex++;
                 RefreshMultiSelectNS(1);
                 func_0203062c(0);

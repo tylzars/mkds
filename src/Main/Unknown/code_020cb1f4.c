@@ -2,7 +2,7 @@
 #include "Main/Unknown/unk_02175628.h"
 
 #pragma optimize_for_size on
-u16 func_020cb210(Unk02175628 *a, u32 b) {
+u16 func_020cb210(InputSlot *a, u32 b) {
     return a->mUnk_00 & b;
 }
 

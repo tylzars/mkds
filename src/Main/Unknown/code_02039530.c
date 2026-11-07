@@ -3,7 +3,7 @@
 #include "Main/Unknown/unk_02175628.h"
 #include "code_0200f5ac.h"
 
-void func_02039530(u32 a, Unk02175628 *b) {
+void func_02039530(u32 a, InputSlot *b) {
     u16 c;
     if (b->mUnk_20 != 0) {
         func_020392c8(a);

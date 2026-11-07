@@ -292,7 +292,7 @@ void AdvanceWiFiVSMatchingState1(void) {
         }
     }
     if (IsTxtSystemState2NoCloseRequest() != 0 && IsSelectReturnState2NoState3Or4Request() != 0 &&
-        (u16) (data_02175628[idx].mUnk_00 & 2) != 0) {
+        (u16) (data_02175628[idx].mUnk_00 & PAD_KEY_B) != 0) {
         goto hit;
     }
     a = FALSE;
@@ -569,7 +569,7 @@ void AdvanceWiFiVSMatchingState9(void) {
         func_02126638(GetBmgEntry(gWiFiVSMatching->mWiFiMessages, 13), 0, 0, 1, 0, 0, 0);
     }
     if (IsTxtSystemState2NoCloseRequest() != 0) {
-        if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
+        if ((u16) (data_02175628[idx].mUnk_00 & PAD_KEY_B) == 0) {
             a = FALSE;
             b = FALSE;
             v = data_02175628[idx].mHasPair;

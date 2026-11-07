@@ -48,7 +48,7 @@ void func_02043410(void) {
     u16 i;
     u16 j;
     Unk0217aa00 *z;
-    Unk02175628 *p;
+    InputSlot *p;
 
     for (i = 0; i < 8; i++) {
         p = &data_02175628[i];
@@ -79,7 +79,7 @@ void func_020431e4(void) {
     u16 j;
     s32 w;
     BOOL t;
-    Unk02175628 *p;
+    InputSlot *p;
     RaceSetup *q;
     Unk0217aa00 *z;
     s32 s;

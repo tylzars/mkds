@@ -148,7 +148,7 @@ void AdvanceKartDrift(Kart *p) {
     }
     if (p->mAirborneFrames >= 5 && !(f & 0x1a)) {
         k = p->mEntryIndex;
-        if ((u16) (data_02175628[k].mBits & 0x100)) {
+        if ((u16) (data_02175628[k].mBits & PAD_KEY_R)) {
             if (f & 1) {
                 goto recheck;
             }
@@ -182,7 +182,7 @@ recheck:
     g = p->mTurnDirection;
     if (!(f & KART_44_DRIFTING) && (f & KART_44_ON_GROUND)) {
         if ((f & 3) && p->mVelocityLength > (s32) (((s64) p->mPhysicalParam->mBaseSpeedLimit * 0x8cd) >> 12) &&
-            g != 0 && (u16) (data_02175628[k = p->mEntryIndex].mBits & 0x100)) {
+            g != 0 && (u16) (data_02175628[k = p->mEntryIndex].mBits & PAD_KEY_R)) {
             p->mUnk_44 |= KART_44_DRIFTING;
             p->mDriftCharge = 1;
             if (p->mTurnDirection > 0) {
@@ -205,7 +205,7 @@ recheck:
     f = p->mUnk_44;
     if (f & KART_44_DRIFTING) {
         k = p->mEntryIndex;
-        if (!((u16) (data_02175628[k].mBits & 0x100) && (p->mUnk_48 & 2) &&
+        if (!((u16) (data_02175628[k].mBits & PAD_KEY_R) && (p->mUnk_48 & 2) &&
               p->mVelocityLength >= p->mPhysicalParam->mBaseSpeedLimit / 2 && !(f & 0x2000c0))) {
             if (!(f & KART_44_ON_GROUND)) {
                 p->mUnk_44 |= 0x8000;
@@ -269,7 +269,7 @@ recheck:
         return;
     }
     k = p->mEntryIndex;
-    if (!(u16) (data_02175628[k].mUnk_00 & 0x100)) {
+    if (!(u16) (data_02175628[k].mUnk_00 & PAD_KEY_R)) {
         if (!(p->mUnk_44 & 0x20000000)) {
             return;
         }
@@ -320,11 +320,11 @@ int func_0206c494(Kart *p) {
         pending = FALSE;
         k = p->mEntryIndex;
         bits = data_02175628[k].mBits;
-        if ((u16) (bits & 0x20)) {
+        if ((u16) (bits & PAD_KEY_LEFT)) {
             dir = TRUE;
             p->mTurnDirection = -1;
             delta = 500;
-        } else if ((u16) (bits & 0x10)) {
+        } else if ((u16) (bits & PAD_KEY_RIGHT)) {
             dir = TRUE;
             p->mTurnDirection = 1;
             delta = -500;

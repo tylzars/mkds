@@ -129,7 +129,7 @@ s16 func_020ae488(s32 a) {
 
 #pragma thumb off
 
-u16 func_020ae474(Unk02175628 *a, u32 b) {
+u16 func_020ae474(InputSlot *a, u32 b) {
     return a->mUnk_00 & b;
 }
 
@@ -138,7 +138,7 @@ u16 GetNewBits(u32 a, u32 b) {
 }
 
 // Returns the masked bits in place, not 0 or 1.
-u16 func_020ae444(Unk02175628 *a, u32 b) {
+u16 func_020ae444(InputSlot *a, u32 b) {
     return a->mRepeatBits & b;
 }
 

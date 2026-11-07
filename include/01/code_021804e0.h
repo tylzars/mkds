@@ -26,7 +26,7 @@ void func_ov001_0218051c(void);
 void func_ov001_02180524(void);
 void func_ov001_0218052c(Unk0218052c *p0);
 unsigned int func_ov001_021805bc(unsigned int p0, unsigned int p1);
-u16 func_ov001_021805d8(Unk02175628 *p0, unsigned int p1);
+u16 func_ov001_021805d8(InputSlot *p0, unsigned int p1);
 unsigned int func_ov001_021805ec(void);
 void func_ov001_021805f4(void);
 void func_ov001_02180610(void);

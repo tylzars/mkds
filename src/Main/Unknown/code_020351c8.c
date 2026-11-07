@@ -319,7 +319,7 @@ s32 func_0203551c(u16 *a) {
                 func_02035b78();
                 RequestSelectReturnState4();
                 data_02174e68->mUnk_8c = 2;
-            } else if ((u16) (data_02175628[k].mUnk_00 & 2) != 0 || z != 0) {
+            } else if ((u16) (data_02175628[k].mUnk_00 & PAD_KEY_B) != 0 || z != 0) {
                 e = GetBmgEntry(data_02174e68->mUnk_88, 0x54);
                 h = GetBmgEntry(data_02174e68->mUnk_84, 4);
                 SetTxtSystemSoundId(0, 5);

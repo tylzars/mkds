@@ -2,6 +2,20 @@
 
 #include "types.h"
 
+#define PAD_KEY_B 0x2
+#define PAD_KEY_DOWN 0x80
+#define PAD_KEY_L 0x200
+#define PAD_KEY_LEFT 0x20
+#define PAD_KEY_R 0x100
+#define PAD_KEY_RIGHT 0x10
+#define PAD_KEY_START 0x8
+#define PAD_KEY_UP 0x40
+#define PAD_KEY_X 0x400
+#define PAD_KEY_Y 0x800
+// Bits of the pad key word (the slots' mUnk_00, mBits, mRepeatBits ... and the keyboard's key word): one bit per key.
+#define PAD_KEY_A 0x1
+// The four direction keys together.
+#define PAD_KEY_DIRECTIONS 0xf0
 // Slot of data_02175628 that the code addresses through a constant.
 typedef enum Unk02175628Index { UNK_02175628_INDEX_8 = 8 } Unk02175628Index;
 
@@ -20,7 +34,7 @@ typedef struct Unk02175650 {
 } Unk02175650;
 
 // One 0x5c-byte element of the array at data_02175628.
-typedef struct Unk02175628 {
+typedef struct InputSlot {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u16 mBits;
     /* 04 */ u16 mClearedBits;
@@ -60,7 +74,7 @@ typedef struct Unk02175628 {
     /* 58 */ u16 mNoPairCount;
     /* 5a */ u8 mUnk_5a;
     /* 5b */ u8 mUnk_5b;
-} Unk02175628;
+} InputSlot;
 
 // The 0x14 bytes at 0x48 of an element of data_02175628 (the same bytes as its mUnk_48 to mUnk_5b).
 typedef struct Unk02175628_48 {
@@ -76,16 +90,16 @@ typedef struct Unk02175628_48 {
     /* 12 */ u8 mUnk_12[0x2];
 } Unk02175628_48;
 
-extern Unk02175628 data_0217562c[];
+extern InputSlot data_0217562c[];
 
-extern Unk02175628 data_02175680[];
+extern InputSlot data_02175680[];
 
-extern Unk02175628 data_0217567c[];
+extern InputSlot data_0217567c[];
 
-extern Unk02175628 data_02175674[];
+extern InputSlot data_02175674[];
 
-extern Unk02175628 data_02175672[];
+extern InputSlot data_02175672[];
 
-extern Unk02175628 data_02175670[];
+extern InputSlot data_02175670[];
 
-extern Unk02175628 data_02175628[];
+extern InputSlot data_02175628[];

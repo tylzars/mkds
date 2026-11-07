@@ -222,7 +222,7 @@ void AdvanceTimeAttackTopMenuState3(void) {
     s32 dir = 3;
     Unk02175628Index i = UNK_02175628_INDEX_8;
     BOOL flag1 = FALSE;
-    Unk02175628 *e;
+    InputSlot *e;
     s32 bits;
     BOOL flag4;
     s32 flag3;
@@ -238,7 +238,7 @@ void AdvanceTimeAttackTopMenuState3(void) {
                                       data_02175628[i].mPairY);
     }
     e = &data_02175628[i];
-    bits = e->mUnk_00 & 2;
+    bits = e->mUnk_00 & PAD_KEY_B;
     if ((u16) bits == 0) {
         flag3 = flag4 = FALSE;
         if (data_02175628[i].mHasPair == 0 && data_02175628[i].mNoPairCount < 5) {
@@ -258,7 +258,7 @@ void AdvanceTimeAttackTopMenuState3(void) {
     RequestSelectReturnState3WithSound(0);
     return;
 next:
-    bits = e->mUnk_00 & 1;
+    bits = e->mUnk_00 & PAD_KEY_A;
     if ((u16) bits != 0 || sel <= 2) {
         if ((u16) bits == 0) {
             func_ov001_02198264(gTimeAttackTopMenu->mIndex);
@@ -293,7 +293,7 @@ next:
         }
         func_ov001_021982e8();
     } else {
-        if (GetNewOrRepeatBits(8, 0x40) != 0) {
+        if (GetNewOrRepeatBits(8, PAD_KEY_UP) != 0) {
             func_ov001_02198264(gTimeAttackTopMenu->mIndex);
             gTimeAttackTopMenu->mIndex--;
             if (gTimeAttackTopMenu->mIndex < 0) {
@@ -301,7 +301,7 @@ next:
             }
             func_ov001_0219829c(gTimeAttackTopMenu->mIndex);
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
-        } else if (GetNewOrRepeatBits(8, 0x80) != 0) {
+        } else if (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0) {
             func_ov001_02198264(gTimeAttackTopMenu->mIndex);
             gTimeAttackTopMenu->mIndex++;
             if (gTimeAttackTopMenu->mIndex >= 3) {

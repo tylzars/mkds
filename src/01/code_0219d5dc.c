@@ -151,7 +151,7 @@ void AdvanceOptionEmbremSelectState3(void) {
         result = RectTableFindContaining(gOptionEmbremSelect->mOptionEmbremSelectSBnbl, data_02175628[index].mPairX,
                                          data_02175628[index].mPairY);
     }
-    flags = data_02175628[index].mUnk_00 & 2;
+    flags = data_02175628[index].mUnk_00 & PAD_KEY_B;
     if (flags != 0) {
         goto next;
     }
@@ -181,7 +181,7 @@ void AdvanceOptionEmbremSelectState3(void) {
         }
         func_02056d40();
     } else {
-        flags = data_02175628[index].mUnk_00 & 1;
+        flags = data_02175628[index].mUnk_00 & PAD_KEY_A;
         if ((flags != 0 && gOptionEmbremSelect->mUnk_08 == 0) || result == 0) {
             if (gOptionEmbremSelect->mUnk_08 == 0) {
                 gOptionEmbremSelect->mUnk_24 = FALSE;
@@ -195,19 +195,19 @@ void AdvanceOptionEmbremSelectState3(void) {
             gOptionEmbremSelect->mUnk_08 = 1;
             gOptionEmbremSelect->mUnk_0c++;
             StartSoundOncePerFrame(1);
-        } else if (GetNewOrRepeatBits(8, 0x40) != 0 && gOptionEmbremSelect->mUnk_08 > 0) {
+        } else if (GetNewOrRepeatBits(8, PAD_KEY_UP) != 0 && gOptionEmbremSelect->mUnk_08 > 0) {
             gOptionEmbremSelect->mUnk_08--;
             StartSoundOncePerFrame(0);
-        } else if (GetNewOrRepeatBits(8, 0x80) != 0 && gOptionEmbremSelect->mUnk_08 < 1) {
+        } else if (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0 && gOptionEmbremSelect->mUnk_08 < 1) {
             gOptionEmbremSelect->mUnk_08++;
             StartSoundOncePerFrame(0);
-        } else if (gOptionEmbremSelect->mUnk_08 == 1 && GetNewOrRepeatBits(8, 0x20) != 0) {
+        } else if (gOptionEmbremSelect->mUnk_08 == 1 && GetNewOrRepeatBits(8, PAD_KEY_LEFT) != 0) {
             gOptionEmbremSelect->mUnk_0c--;
             gOptionEmbremSelect->mOffsetTimers[0] = 6;
             StartSoundOncePerFrame(1);
-        } else if (gOptionEmbremSelect->mUnk_08 == 1 && GetNewOrRepeatBits(8, 0x10) != 0) {
+        } else if (gOptionEmbremSelect->mUnk_08 == 1 && GetNewOrRepeatBits(8, PAD_KEY_RIGHT) != 0) {
             gOptionEmbremSelect->mUnk_0c++;
-            if (GetNewOrRepeatBits(8, 0x10) != 0) {
+            if (GetNewOrRepeatBits(8, PAD_KEY_RIGHT) != 0) {
                 gOptionEmbremSelect->mOffsetTimers[1] = 6;
             }
             StartSoundOncePerFrame(1);

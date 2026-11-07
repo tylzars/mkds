@@ -20,7 +20,7 @@ typedef struct Unk02175628_48 Unk02175628_48;
 
 void FindMissionTableCell(u32 value, u8 *outRow, u8 *outColumn);
 
-typedef struct Unk02175628 Unk02175628;
+typedef struct InputSlot InputSlot;
 
 extern u32 gCupCourseIds[];
 
@@ -42,9 +42,9 @@ unsigned int func_020ae338(Unk02175628_48 *p0);
 u32 GetCupCourseId(s32 a, s32 b);
 u32 func_020ae3b4(u32 a);
 u16 GetRepeatBits(u32 a, u32 b);
-u16 func_020ae444(Unk02175628 *a, u32 b);
+u16 func_020ae444(InputSlot *a, u32 b);
 u16 GetNewBits(u32 a, u32 b);
-u16 func_020ae474(Unk02175628 *a, u32 b);
+u16 func_020ae474(InputSlot *a, u32 b);
 s16 func_020ae488(s32 a);
 s16 InterpolateS16(s32 a, s16 b, s16 c, s32 d, s32 e);
 s32 func_020ae54c(s32 a);

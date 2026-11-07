@@ -253,7 +253,7 @@ u32 func_0203a9ec(u32 a) {
     }
     if (func_0203a9ec_inline() != 0) {
         Unk02175628Index i = UNK_02175628_INDEX_8;
-        if ((u16) (data_02175628[i].mUnk_00 & 1) != 0) {
+        if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_A) != 0) {
             return 1;
         }
     }

@@ -13,7 +13,7 @@ u32 func_020b2b54(void) {
     return 0x8u;
 }
 
-u16 func_020b2b40(Unk02175628 *p, u32 a) {
+u16 func_020b2b40(InputSlot *p, u32 a) {
     return p->mUnk_00 & a;
 }
 

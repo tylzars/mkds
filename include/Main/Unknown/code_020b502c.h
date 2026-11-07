@@ -431,7 +431,7 @@ s32 GetAnglePairFirst(s32 x);
 s32 GetAnglePairSecond(s32 x);
 void UpdateRaceHudSubScreenScroll(void);
 u16 func_020b5628(s32 idx, s32 mask);
-u16 func_020b5644(Unk02175628 *p, s32 mask);
+u16 func_020b5644(InputSlot *p, s32 mask);
 void func_020b5658(RaceHudSubScreenBgAffine *out);
 s32 MulFx64c(s32 a, s64 k);
 Unk020b57e4 *func_020b57e4(void);

@@ -656,7 +656,7 @@ void AdvanceMissionRunMSselState3(void) {
         result = RectTableFindContaining(gMissionRunMSsel->mMissionRunMSselSBnbl, data_02175628[slot].mPairX,
                                          data_02175628[slot].mPairY);
     }
-    if ((u16) (data_02175628[slot].mUnk_00 & 2) == 0) {
+    if ((u16) (data_02175628[slot].mUnk_00 & PAD_KEY_B) == 0) {
         flag_b = FALSE;
         flag_a = FALSE;
         value = data_02175628[slot].mHasPair;
@@ -692,12 +692,12 @@ skip:
         func_ov001_021a0488();
         return;
     }
-    if ((u16) (data_02175628[slot].mUnk_00 & 1) != 0) {
+    if ((u16) (data_02175628[slot].mUnk_00 & PAD_KEY_A) != 0) {
         gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mIndex] = 5;
         func_ov001_021a0488();
         return;
     }
-    if (GetNewOrRepeatBits(8, 0x40)) {
+    if (GetNewOrRepeatBits(8, PAD_KEY_UP)) {
         current = gMissionRunMSsel->mIndex;
         delta = data_ov001_021a6de8[current];
         if (delta == 0) {
@@ -712,7 +712,7 @@ skip:
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         return;
     }
-    if (GetNewOrRepeatBits(8, 0x80)) {
+    if (GetNewOrRepeatBits(8, PAD_KEY_DOWN)) {
         current = gMissionRunMSsel->mIndex;
         delta = data_ov001_021a6dac[current];
         if (delta == 0) {
@@ -727,7 +727,7 @@ skip:
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         return;
     }
-    if (GetNewOrRepeatBits(8, 0x20)) {
+    if (GetNewOrRepeatBits(8, PAD_KEY_LEFT)) {
         current = gMissionRunMSsel->mIndex;
         delta = data_ov001_021a6dc0[current];
         if (delta == 0) {
@@ -742,7 +742,7 @@ skip:
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         return;
     }
-    if (GetNewOrRepeatBits(8, 0x10)) {
+    if (GetNewOrRepeatBits(8, PAD_KEY_RIGHT)) {
         current = gMissionRunMSsel->mIndex;
         delta = data_ov001_021a6dfc[current];
         if (delta == 0) {

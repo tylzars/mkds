@@ -660,7 +660,7 @@ void AdvanceSelectChoisesState1(void) {
         }
     }
     w = data_02175628[v].mUnk_00;
-    if ((u16) (w & 1) != 0 || hit != -1) {
+    if ((u16) (w & PAD_KEY_A) != 0 || hit != -1) {
         if (hit == -1 || gSelectChoises->mIndex == hit) {
             func_02127d28();
         } else {
@@ -674,7 +674,7 @@ void AdvanceSelectChoisesState1(void) {
             }
         }
     } else {
-        if ((u16) (w & 2) != 0) {
+        if ((u16) (w & PAD_KEY_B) != 0) {
             gSelectChoises->mIndexNone = 1;
             gSelectChoises->mState2Frames = 0xb;
             gSelectChoises->mNextState = 2;
@@ -685,7 +685,7 @@ void AdvanceSelectChoisesState1(void) {
             }
             return;
         }
-        if ((u16) (w & 0x40) != 0 && gSelectChoises->mIndex == 1) {
+        if ((u16) (w & PAD_KEY_UP) != 0 && gSelectChoises->mIndex == 1) {
             gSelectChoises->mIndex = 0;
             RefreshAndQueueSelectChoises();
             if (gSelectChoises->mDisplayBitOn != 0) {
@@ -693,7 +693,7 @@ void AdvanceSelectChoisesState1(void) {
             }
             return;
         }
-        if ((u16) (w & 0x80) != 0 && gSelectChoises->mIndex == 0) {
+        if ((u16) (w & PAD_KEY_DOWN) != 0 && gSelectChoises->mIndex == 0) {
             gSelectChoises->mIndex = 1;
             RefreshAndQueueSelectChoises();
             if (gSelectChoises->mDisplayBitOn != 0) {

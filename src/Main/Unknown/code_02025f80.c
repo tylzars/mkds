@@ -491,33 +491,33 @@ int AdvanceSelectCharacter(void) {
                 }
             } else {
                 v = data_02175628[i].mUnk_00;
-                if ((u16) (v & 1) != 0) {
+                if ((u16) (v & PAD_KEY_A) != 0) {
                     gSelectCharacter->mUnk_068 = 0;
                     gSelectCharacter->mUnk_06c = 5;
                     func_02027188();
                     func_021106a8(func_02025eb0(gSelectCharacter->mUnk_0f0), 0);
-                } else if (gSelectCharacter->mUnk_080 == 0 && (u16) (v & 2) != 0) {
+                } else if (gSelectCharacter->mUnk_080 == 0 && (u16) (v & PAD_KEY_B) != 0) {
                     func_020273c0();
                 } else {
-                    if (GetNewOrRepeatBits(i, 0x40) != 0) {
+                    if (GetNewOrRepeatBits(i, PAD_KEY_UP) != 0) {
                         p = gSelectCharacter;
                         t = p->mUnk_084[0];
                         if (t != -1) {
                             p->mUnk_060 = t;
                         }
-                    } else if (GetNewOrRepeatBits(i, 0x80) != 0) {
+                    } else if (GetNewOrRepeatBits(i, PAD_KEY_DOWN) != 0) {
                         p = gSelectCharacter;
                         t = p->mUnk_084[1];
                         if (t != -1) {
                             p->mUnk_060 = t;
                         }
-                    } else if (GetNewOrRepeatBits(i, 0x10) != 0) {
+                    } else if (GetNewOrRepeatBits(i, PAD_KEY_RIGHT) != 0) {
                         p = gSelectCharacter;
                         t = p->mUnk_084[2];
                         if (t != -1) {
                             p->mUnk_060 = t;
                         }
-                    } else if (GetNewOrRepeatBits(i, 0x20) != 0) {
+                    } else if (GetNewOrRepeatBits(i, PAD_KEY_LEFT) != 0) {
                         p = gSelectCharacter;
                         t = p->mUnk_084[3];
                         if (t != -1) {

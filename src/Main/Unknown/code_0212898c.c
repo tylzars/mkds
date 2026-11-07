@@ -480,7 +480,7 @@ void AdvanceKeyboardState2(void) {
     w = GetKeyboardText();
     MIi_CpuCopy16(w, q, 0x18);
     UpdateKeyboardFriendKeyButtons();
-    if (v == 1 || (GetKeyboardCursorValueWrapper() == 1 && (u16) (data_02175628[i].mUnk_00 & 1) != 0)) {
+    if (v == 1 || (GetKeyboardCursorValueWrapper() == 1 && (u16) (data_02175628[i].mUnk_00 & PAD_KEY_A) != 0)) {
         p = gKeyboard;
         if (p->mButtonEnabled[0] != 0) {
             p->mNextState = 3;
@@ -492,7 +492,7 @@ void AdvanceKeyboardState2(void) {
         } else {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
         }
-    } else if (v == 0 || (GetKeyboardCursorValueWrapper() == 2 && (u16) (data_02175628[i].mUnk_00 & 1) != 0)) {
+    } else if (v == 0 || (GetKeyboardCursorValueWrapper() == 2 && (u16) (data_02175628[i].mUnk_00 & PAD_KEY_A) != 0)) {
         gKeyboard->mNextState = 3;
         gKeyboard->mUnk_2c[2].mUnk_10 = 0;
         RequestTxtSystemClose();
@@ -657,7 +657,7 @@ void AdvanceKeyboardState7(void) {
     w = GetKeyboardText();
     MIi_CpuCopy16(w, q, 0x18);
     UpdateKeyboardNameButtons();
-    if (v == 5 || (GetKeyboardCursorValueWrapper() == 1 && (u16) (data_02175628[i].mUnk_00 & 1) != 0)) {
+    if (v == 5 || (GetKeyboardCursorValueWrapper() == 1 && (u16) (data_02175628[i].mUnk_00 & PAD_KEY_A) != 0)) {
         p = gKeyboard;
         if (p->mButtonEnabled[0] != 0) {
             p->mNextState = 8;
@@ -669,7 +669,7 @@ void AdvanceKeyboardState7(void) {
         } else {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
         }
-    } else if (v == 6 || (GetKeyboardCursorValueWrapper() == 2 && (u16) (data_02175628[i].mUnk_00 & 1) != 0)) {
+    } else if (v == 6 || (GetKeyboardCursorValueWrapper() == 2 && (u16) (data_02175628[i].mUnk_00 & PAD_KEY_A) != 0)) {
         p = gKeyboard;
         if (p->mButtonEnabled[1] != 0) {
             p->mNextState = 8;
@@ -681,7 +681,7 @@ void AdvanceKeyboardState7(void) {
         } else {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
         }
-    } else if ((u16) (data_02175628[i].mUnk_00 & 0x800) != 0) {
+    } else if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_Y) != 0) {
         if (data_021759d0->mUnk_00 == 0) {
             gKeyboard->mLayout = data_0215d11c[gKeyboard->mLayout];
         } else {

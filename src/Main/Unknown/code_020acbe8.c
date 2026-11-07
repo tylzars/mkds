@@ -68,11 +68,11 @@ void UpdateTitleState2(Unk020aca24 *a) {
 
     if (a != NULL) {
         i = func_020acef4();
-        if (func_020acec4(i, 1) != 0) {
+        if (func_020acec4(i, PAD_KEY_A) != 0) {
             SetTitleState(4, 8);
             func_020acf04();
             gTitleScene->mSelectedPressed = TRUE;
-        } else if (GetNewOrRepeatBits(i, 0x30) != 0) {
+        } else if (GetNewOrRepeatBits(i, (PAD_KEY_LEFT | PAD_KEY_RIGHT)) != 0) {
             switch (gTitleScene->mSelectedIndex) {
                 case 3:
                     gTitleScene->mSelectedIndex = 4;
@@ -86,7 +86,7 @@ void UpdateTitleState2(Unk020aca24 *a) {
                     break;
             }
             gTitleScene->mNoInputFrames = 0;
-        } else if (GetNewOrRepeatBits(i, 0x40) != 0) {
+        } else if (GetNewOrRepeatBits(i, PAD_KEY_UP) != 0) {
             switch (gTitleScene->mSelectedIndex) {
                 case 0:
                     if (gTitleScene->mPreferEntry4 != FALSE) {
@@ -108,7 +108,7 @@ void UpdateTitleState2(Unk020aca24 *a) {
             }
             StartSoundOncePerFrame(0);
             gTitleScene->mNoInputFrames = 0;
-        } else if (GetNewOrRepeatBits(i, 0x80) != 0) {
+        } else if (GetNewOrRepeatBits(i, PAD_KEY_DOWN) != 0) {
             switch (gTitleScene->mSelectedIndex) {
                 case 0:
                     gTitleScene->mSelectedIndex = 1;

@@ -1075,7 +1075,7 @@ void AdvanceSelectRaceRuleTeamInput(void) {
     BOOL c;
     BOOL b;
     u32 n;
-    Unk02175628 *p;
+    InputSlot *p;
     u16 y;
     if (gSelectRaceRule->mRowValues[4] == 2) {
         for (i = 0; i < 8; i++) {
@@ -1094,7 +1094,7 @@ void AdvanceSelectRaceRuleTeamInput(void) {
             if (c != FALSE) {
                 a = RectTableFindContaining(gSelectRaceRule->mBnbl, p->mPairX, p->mPairY - gSelectRaceRule->mOffsetY);
             }
-            if (GetNewOrRepeatBits(n, 0x200) != 0 || a == 0x11) {
+            if (GetNewOrRepeatBits(n, PAD_KEY_L) != 0 || a == 0x11) {
                 if (i == 0) {
                     if (a == 0x11) {
                         gSelectRaceRule->mRow = 4;
@@ -1106,7 +1106,7 @@ void AdvanceSelectRaceRuleTeamInput(void) {
                 } else {
                     ChangeSelectRaceRulePlayerTeam(i, 0);
                 }
-            } else if (GetNewOrRepeatBits(n, 0x100) != 0 || a == 0x12) {
+            } else if (GetNewOrRepeatBits(n, PAD_KEY_R) != 0 || a == 0x12) {
                 if (i == 0) {
                     if (a == 0x12) {
                         gSelectRaceRule->mRow = 4;
@@ -1680,9 +1680,9 @@ void AdvanceSelectRaceRuleState2(void) {
 }
 
 void AdvanceSelectRaceRuleState3(void) {
-    Unk02175628 *p;
-    Unk02175628 *q;
-    Unk02175628 *r;
+    InputSlot *p;
+    InputSlot *q;
+    InputSlot *r;
     u32 a;
     BOOL c;
     BOOL b;
@@ -1715,7 +1715,7 @@ void AdvanceSelectRaceRuleState3(void) {
         }
     }
     r = &data_02175628[i];
-    if ((u16) (r->mUnk_00 & 2) == 0) {
+    if ((u16) (r->mUnk_00 & PAD_KEY_B) == 0) {
         c = FALSE;
         b = FALSE;
         x = p->mUnk_00;
@@ -1769,7 +1769,7 @@ chain:
             gSelectRaceRule->mOnButton = 0;
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
-    } else if ((u16) (r->mUnk_00 & 1) != 0) {
+    } else if ((u16) (r->mUnk_00 & PAD_KEY_A) != 0) {
         if (gSelectRaceRule->mOnButton != 0) {
             RequestSelectRaceRuleState4();
             gSelectRaceRule->mUnk_84 = 0;
@@ -1788,21 +1788,21 @@ chain:
             gSelectRaceRule->mOnButton = 0;
             IncrementSelectRaceRuleCourseCount();
         }
-    } else if (GetNewOrRepeatBits(8, 0x40) != 0) {
+    } else if (GetNewOrRepeatBits(8, PAD_KEY_UP) != 0) {
         MoveSelectRaceRuleRowPrevious();
-    } else if (GetNewOrRepeatBits(8, 0x80) != 0) {
+    } else if (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0) {
         MoveSelectRaceRuleRowNext();
-    } else if (GetNewOrRepeatBits(8, 0x20) != 0) {
+    } else if (GetNewOrRepeatBits(8, PAD_KEY_LEFT) != 0) {
         if (gSelectRaceRule->mOnButton == 0) {
             MoveSelectRaceRuleValuePrevious(1);
         }
-    } else if (GetNewOrRepeatBits(8, 0x10) != 0) {
+    } else if (GetNewOrRepeatBits(8, PAD_KEY_RIGHT) != 0) {
         if (gSelectRaceRule->mOnButton == 0) {
             MoveSelectRaceRuleValueNext(1);
         }
-    } else if (GetNewOrRepeatBits(8, 0x200) != 0) {
+    } else if (GetNewOrRepeatBits(8, PAD_KEY_L) != 0) {
         DecrementSelectRaceRuleCourseCount();
-    } else if (GetNewOrRepeatBits(8, 0x100) != 0) {
+    } else if (GetNewOrRepeatBits(8, PAD_KEY_R) != 0) {
         IncrementSelectRaceRuleCourseCount();
     }
 end:

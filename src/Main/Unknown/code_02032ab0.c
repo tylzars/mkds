@@ -359,7 +359,7 @@ void AdvanceResultsBattle(Unk02032ac4 *a) {
         case 3:
             switch (gResultsBattle->mMode) {
                 case 0:
-                    if ((u16) (data_02175628[func_020435bc()].mUnk_00 & 1) != 0) {
+                    if ((u16) (data_02175628[func_020435bc()].mUnk_00 & PAD_KEY_A) != 0) {
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
                         if (a != NULL) {
                             a->mUnk_04 = 1;
@@ -370,7 +370,7 @@ void AdvanceResultsBattle(Unk02032ac4 *a) {
                 case 1:
                 case 2:
                     v1 = UNK_02175628_INDEX_8;
-                    if ((u16) (data_02175628[v1].mUnk_00 & 1) != 0) {
+                    if ((u16) (data_02175628[v1].mUnk_00 & PAD_KEY_A) != 0) {
                         func_02033d9c();
                         gResultsBattle->mUnk_150 = 4;
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
@@ -380,7 +380,8 @@ void AdvanceResultsBattle(Unk02032ac4 *a) {
                     if (func_02033dfc() != 0) {
                         func_02121dec(1);
                         gResultsBattle->mUnk_150 = 5;
-                    } else if ((u16) (data_02175628[func_020435bc()].mUnk_00 & 1) != 0 || func_02033dd0() != 0) {
+                    } else if ((u16) (data_02175628[func_020435bc()].mUnk_00 & PAD_KEY_A) != 0 ||
+                               func_02033dd0() != 0) {
                         func_02033d9c();
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
                         gResultsBattle->mUnk_150 = 4;

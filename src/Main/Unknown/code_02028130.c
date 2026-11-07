@@ -48,7 +48,7 @@
 
 #pragma optimize_for_size on
 
-u16 func_02028710(Unk02175628 *a, u32 b) {
+u16 func_02028710(InputSlot *a, u32 b) {
     return a->mUnk_00 & b;
 }
 
@@ -111,7 +111,7 @@ int AdvanceSelectKart(void) {
             if (func_02028774(t) != 0) {
                 x = IsSelectReturnState2NoState3Or4RequestAndInRect(func_0202874c(t), func_02028724(t));
             }
-            if (func_020286f4(t, 1) != 0 || gSelectKart->mUnk_110 == 2 || func_02028f84() != 0) {
+            if (func_020286f4(t, PAD_KEY_A) != 0 || gSelectKart->mUnk_110 == 2 || func_02028f84() != 0) {
                 gSelectKart->mStateFrames = 0;
                 gSelectKart->mResult = 1;
                 gSelectKart->mState = 4;
@@ -120,7 +120,7 @@ int AdvanceSelectKart(void) {
                 func_021106a8(func_02025eb0(gSelectKart->mCharacterIndex), 1);
                 func_02077f48(1);
                 StopPaletteBlend();
-            } else if (func_020286f4(t, 2) != 0 || x != 0) {
+            } else if (func_020286f4(t, PAD_KEY_B) != 0 || x != 0) {
                 gSelectKart->mStateFrames = 0;
                 gSelectKart->mResult = 2;
                 func_0202941c(0);
@@ -134,12 +134,12 @@ int AdvanceSelectKart(void) {
                     v = 0;
                 }
                 RequestSelectReturnState3WithSound(v);
-            } else if (GetNewOrRepeatBits(t, 0x10) != 0 || func_020290ac(1) != 0) {
+            } else if (GetNewOrRepeatBits(t, PAD_KEY_RIGHT) != 0 || func_020290ac(1) != 0) {
                 func_020292bc();
                 gSelectKart->mUnk_114 = 3;
                 p->mUnk_18[1].mUnk_00 = 0;
                 p->mUnk_18[3].mUnk_00 = 1;
-            } else if (GetNewOrRepeatBits(t, 0x20) != 0 || func_020290ac(0) != 0) {
+            } else if (GetNewOrRepeatBits(t, PAD_KEY_LEFT) != 0 || func_020290ac(0) != 0) {
                 func_02029248();
                 gSelectKart->mUnk_114 = 2;
                 p->mUnk_18[0].mUnk_00 = 0;

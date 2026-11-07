@@ -232,7 +232,7 @@ void AdvanceRaceKartAi(KartAi *p) {
     GetKartPos(&v, p->mIndex);
     func_0207f6f0(p, q, a, s, &v, t);
     if (a->mState == KART_STATE_NORMAL) {
-        RequestBits(p->mKart->mEntryIndex, 1);
+        RequestBits(p->mKart->mEntryIndex, PAD_KEY_A);
         VEC_Subtract(&p->mUnk_44, &v, &w);
         AdvanceKartAiHeading(p, &w, t);
     }
@@ -484,7 +484,7 @@ void func_0207ebfc(KartAi *p) {
     func_02080cc0(&p->mUnk_08.mUnk_00);
     q = p->mKart;
     if (p->mUnk_90 == 1) {
-        RequestBits(q->mEntryIndex, 0x100);
+        RequestBits(q->mEntryIndex, PAD_KEY_R);
         p->mUnk_90 = 2;
     }
     if (p->mUnk_90 == 4) {
@@ -562,7 +562,7 @@ void func_0207ebfc(KartAi *p) {
             q->mUnk_48 |= KART_48_TURN_RIGHT;
         }
     }
-    RequestBits(q->mEntryIndex, 0x100);
+    RequestBits(q->mEntryIndex, PAD_KEY_R);
     p->mUnk_98++;
     b = FALSE;
     if (p->mUnk_98 == 0x28 && p->mUnk_a0 != FALSE) {

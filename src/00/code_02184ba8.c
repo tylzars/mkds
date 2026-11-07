@@ -158,7 +158,7 @@ void AdvanceWiFiAikotobaState3(void) {
     if (b != FALSE) {
         a = RectTableFindContaining(gWiFiAikotoba->mWiFiAikotobaBnbl, data_02175628[i].mPairX, data_02175628[i].mPairY);
     }
-    if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
+    if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_B) == 0) {
         b = FALSE;
         c = FALSE;
         d = data_02175628[i].mHasPair;
@@ -178,7 +178,7 @@ void AdvanceWiFiAikotobaState3(void) {
     RequestSelectReturnState3WithSound(0);
     return;
 next:
-    e = data_02175628[i].mUnk_00 & 1;
+    e = data_02175628[i].mUnk_00 & PAD_KEY_A;
     if ((u16) e != 0 || a <= 1) {
         p = gWiFiAikotoba;
         f = p->mUnk_08;
@@ -207,12 +207,12 @@ next:
         StartSoundOncePerFrame(5);
         return;
     }
-    if (GetNewOrRepeatBits(8, 0x40) != 0 && gWiFiAikotoba->mUnk_08 > 0) {
+    if (GetNewOrRepeatBits(8, PAD_KEY_UP) != 0 && gWiFiAikotoba->mUnk_08 > 0) {
         gWiFiAikotoba->mUnk_08 = gWiFiAikotoba->mUnk_08 - 1;
         StartSoundOncePerFrame(0);
         return;
     }
-    if (GetNewOrRepeatBits(8, 0x80) != 0 && gWiFiAikotoba->mUnk_08 < 1) {
+    if (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0 && gWiFiAikotoba->mUnk_08 < 1) {
         gWiFiAikotoba->mUnk_08 = gWiFiAikotoba->mUnk_08 + 1;
         StartSoundOncePerFrame(0);
     }

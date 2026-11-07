@@ -235,7 +235,7 @@ void func_02029aa0(Unk02029aa0 *a) {
             if (w >= t) {
                 void *q;
                 u32 f;
-                if (!(u16) (data_02175628[v1].mUnk_00 & 1)) {
+                if (!(u16) (data_02175628[v1].mUnk_00 & PAD_KEY_A)) {
                     BOOL y;
                     BOOL x;
                     u16 z;

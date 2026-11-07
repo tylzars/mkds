@@ -637,7 +637,7 @@ BOOL func_020f0154(KartItems *p) {
         p->mFlags |= data_021595c4;
     }
     i = p->mEntryIndex;
-    v = data_0217562a[i].mBits & 0x80;
+    v = data_0217562a[i].mBits & PAD_KEY_DOWN;
     if (v != 0) {
         p->mFlags |= data_021595c8;
     }
@@ -980,7 +980,7 @@ void AdvanceItemInUseOne(ItemInUse *a) {
             c->mFlags |= data_021595a0;
         }
         i = c->mEntryIndex;
-        if ((u16) (data_0217562a[i].mBits & 0x80) != 0) {
+        if ((u16) (data_0217562a[i].mBits & PAD_KEY_DOWN) != 0) {
             c->mFlags |= data_021595a4;
         }
         StartLastItemInUseObjectAndInit(a, 1);

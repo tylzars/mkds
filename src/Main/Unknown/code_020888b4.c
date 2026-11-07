@@ -319,7 +319,7 @@ void func_02089494(KartAi *p) {
     if (p->mUnk_c4 != FALSE) {
         return;
     }
-    RequestBits(p->mKart->mEntryIndex, 1);
+    RequestBits(p->mKart->mEntryIndex, PAD_KEY_A);
     VEC_Subtract(p->mUnk_5c, &v, &w);
     AdvanceKartAiHeading(p, &w, g);
 }

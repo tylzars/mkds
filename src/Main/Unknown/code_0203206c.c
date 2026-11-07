@@ -290,7 +290,7 @@ s32 AdvanceSelectGame(void) {
                 c = IsSelectReturnState2NoState3Or4RequestAndInRect(d, g);
                 d = RectTableFindContaining(q->mUnk_10, d, g);
             }
-            if ((u16) (data_02175628[v1].mUnk_00 & 1) != 0) {
+            if ((u16) (data_02175628[v1].mUnk_00 & PAD_KEY_A) != 0) {
                 func_020328f8(0);
                 func_02032a20();
             } else if (d >= 0) {
@@ -302,7 +302,7 @@ s32 AdvanceSelectGame(void) {
                         break;
                     }
                 }
-            } else if ((u16) (data_02175628[v1].mUnk_00 & 2) != 0 || c != 0) {
+            } else if ((u16) (data_02175628[v1].mUnk_00 & PAD_KEY_B) != 0 || c != 0) {
                 if (gSelectGame->mMode == 0) {
                     gSelectGame->mResult = 2;
                     gSelectGame->mState = 9;
@@ -318,7 +318,7 @@ s32 AdvanceSelectGame(void) {
                     func_020329dc(0);
                 }
                 RequestSelectReturnState3WithSound(0);
-            } else if (GetNewOrRepeatBits(8, 0x40) != 0) {
+            } else if (GetNewOrRepeatBits(8, PAD_KEY_UP) != 0) {
                 if (gSelectGame->mSelectedIndex == 0) {
                     if (gSelectGame->mMode == 1) {
                         gSelectGame->mSelectedIndex = gSelectGame->mTableCount - 1;
@@ -326,7 +326,7 @@ s32 AdvanceSelectGame(void) {
                 } else {
                     gSelectGame->mSelectedIndex = gSelectGame->mSelectedIndex - 1;
                 }
-            } else if (GetNewOrRepeatBits(8, 0x80) != 0) {
+            } else if (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0) {
                 if (gSelectGame->mSelectedIndex == gSelectGame->mTableCount - 1) {
                     if (gSelectGame->mMode == 1) {
                         gSelectGame->mSelectedIndex = 0;

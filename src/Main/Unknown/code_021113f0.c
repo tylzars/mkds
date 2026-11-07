@@ -161,8 +161,8 @@ void AdvanceRecordVSState4(void) {
     BOOL g;
     BOOL f;
     u16 x;
-    Unk02175628 *p;
-    Unk02175628 *q;
+    InputSlot *p;
+    InputSlot *q;
     s16 t;
     a = -1;
     b = -1;
@@ -201,7 +201,7 @@ void AdvanceRecordVSState4(void) {
         gRecordVS->mUnk_8c = FALSE;
     }
     q = &data_02175628[i];
-    if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
+    if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_B) == 0) {
         g = FALSE;
         f = FALSE;
         x = p->mUnk_00;
@@ -230,7 +230,7 @@ void AdvanceRecordVSState4(void) {
     return;
 l1:
     if ((a == 10 && gRecordVS->mUnk_88 != FALSE) || (b == 10 && gRecordVS->mUnk_88 == FALSE) ||
-        (u16) (data_0217562a[i].mBits & 0x20) != 0) {
+        (u16) (data_0217562a[i].mBits & PAD_KEY_LEFT) != 0) {
         if (IsRecordVSIndexChangeRunning() != 0) {
             return;
         }
@@ -245,7 +245,7 @@ l1:
         return;
     }
     if ((a == 11 && gRecordVS->mUnk_8c != FALSE) || (b == 11 && gRecordVS->mUnk_8c == FALSE) ||
-        (u16) (data_0217562a[i].mBits & 0x10) != 0) {
+        (u16) (data_0217562a[i].mBits & PAD_KEY_RIGHT) != 0) {
         if (IsRecordVSIndexChangeRunning() != 0) {
             return;
         }
@@ -281,20 +281,20 @@ l1:
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         return;
     }
-    if (b == 12 || (u16) (q->mUnk_00 & 0x400) != 0) {
+    if (b == 12 || (u16) (q->mUnk_00 & PAD_KEY_X) != 0) {
         func_021132b4();
         gRecordVS->mUnk_90 = 4;
         return;
     }
-    if ((u16) (q->mUnk_00 & 1) != 0) {
+    if ((u16) (q->mUnk_00 & PAD_KEY_A) != 0) {
         ToggleRecordVSRowFlag(gRecordVS->mIndex);
         return;
     }
-    if (GetNewOrRepeatBits(8, 0x40) != 0) {
+    if (GetNewOrRepeatBits(8, PAD_KEY_UP) != 0) {
         DecrementRecordVSIndex();
         return;
     }
-    if (GetNewOrRepeatBits(8, 0x80) != 0) {
+    if (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0) {
         IncrementRecordVSIndex();
     }
 }

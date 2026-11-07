@@ -421,7 +421,7 @@ void AdvanceRecordTopMenuState4(void) {
         sel = RectTableFindContaining(gRecordTopMenu->mRecordTopMenuSBnbl, data_02175628[i].mPairX,
                                       data_02175628[i].mPairY);
     }
-    flags = data_02175628[i].mUnk_00 & 2;
+    flags = data_02175628[i].mUnk_00 & PAD_KEY_B;
     if (flags == 0) {
         b2 = FALSE;
         a2 = FALSE;
@@ -456,15 +456,15 @@ skip:
             RequestRecordTopMenuState5();
         }
     } else {
-        flags = data_02175628[i].mUnk_00 & 1;
+        flags = data_02175628[i].mUnk_00 & PAD_KEY_A;
         if (flags != 0) {
             SetRecordTopMenuRowOff(gRecordTopMenu->mIndex);
             RequestRecordTopMenuState5();
-        } else if (GetNewOrRepeatBits(8, 0x40) != 0) {
+        } else if (GetNewOrRepeatBits(8, PAD_KEY_UP) != 0) {
             SetRecordTopMenuRowOff(gRecordTopMenu->mIndex);
             DecrementRecordTopMenuIndex();
             SetRecordTopMenuRowOn(gRecordTopMenu->mIndex);
-        } else if (GetNewOrRepeatBits(8, 0x80) != 0) {
+        } else if (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0) {
             SetRecordTopMenuRowOff(gRecordTopMenu->mIndex);
             IncrementRecordTopMenuIndex();
             SetRecordTopMenuRowOn(gRecordTopMenu->mIndex);
@@ -566,7 +566,7 @@ void AdvanceRecordTopMenuState9(void) {
     u16 v;
 
     RectTableFindContaining(gRecordTopMenu->mRecordTopMenuSBnbl, data_02175628[i].mPairX, data_02175628[i].mPairY);
-    flags = data_02175628[i].mUnk_00 & 2;
+    flags = data_02175628[i].mUnk_00 & PAD_KEY_B;
     if (flags == 0) {
         b = FALSE;
         a = FALSE;
