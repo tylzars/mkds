@@ -185,7 +185,7 @@ void func_02044060(u32 a) {
     if (data_021759d4->mUnk_04 != NULL) {
         data_0217aa08->mUnk_14[0]->mFilled = 0;
     }
-    if (func_0203b018(a, v1, 0x80) != FALSE) {
+    if (TryFormatGhostPath(a, v1, 0x80) != FALSE) {
         p = func_02056284(v1);
     }
     if (p != NULL) {

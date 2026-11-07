@@ -464,7 +464,7 @@ void func_0204ce60(void) {
     if (v1 != 0) {
         v3 = func_02006954(v4, v2);
     } else {
-        v3 = func_02006914(v4, v2);
+        v3 = BuildChildPacket(v4, v2);
     }
     p->mUnk_0008 = WM_SetMPDataToPortEx(func_0204ce60, NULL, v4, v3, 0xffff, p->mUnk_0030, 3) == 2;
     p->mUnk_0004 = data_02175ec0.mUnk_0008 == FALSE;
@@ -507,7 +507,7 @@ void func_0204cc94(Unk0204cc94 *a) {
             if (v1 != 0) {
                 v3 = func_02006954(v4, v2);
             } else {
-                v3 = func_02006914(v4, v2);
+                v3 = BuildChildPacket(v4, v2);
             }
             p->mUnk_0008 = WM_SetMPDataToPortEx(func_0204ce60, NULL, v4, v3, 0xffff, p->mUnk_0030, 3) == 2;
             p->mUnk_0004 = data_02175ec0.mUnk_0008 == FALSE;
@@ -526,7 +526,7 @@ void func_0204cc94(Unk0204cc94 *a) {
                 z->mUnk_46d8 = z->mUnk_46d8 | (1 << m);
                 func_0200692c(s, n, m);
             } else {
-                func_020068f4(s, n);
+                ReceiveParentPacketChecked(s, n);
             }
             return;
     }
@@ -1007,7 +1007,7 @@ void func_0204be0c(void) {
     if (z != 0) {
         r = func_02006954(q, h);
     } else {
-        r = func_02006914(q, h);
+        r = BuildChildPacket(q, h);
     }
     g->mUnk_0008 = WM_SetMPDataToPortEx(func_0204ce60, NULL, q, r, 0xffff, g->mUnk_0030, 3) == 2;
     g->mUnk_0004 = data_02175ec0.mUnk_0008 == FALSE;

@@ -13,9 +13,9 @@ typedef struct Vec3s16 Vec3s16;
 // Objects whose layout isn't known yet.
 extern s16 data_021614b4[];
 extern s16 data_021615b8[];
-extern s32 data_02161770;
-extern u32 data_02161774;
-extern s32 data_02161778;
+extern s32 gLastSentChunkIndex;
+extern u32 gLastSentBlockId;
+extern s32 gPrevSentChunkIndex;
 extern s32 data_0216177c;
 extern u32 gOwnIndex;
 extern u16 data_02161790;

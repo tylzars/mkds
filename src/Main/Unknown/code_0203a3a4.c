@@ -60,12 +60,12 @@ static inline u32 func_0203a908_inline(void) {
     return b;
 }
 
-BOOL func_0203b018(u32 a, void *b, u32 c) {
+BOOL TryFormatGhostPath(u32 a, void *b, u32 c) {
     int v = func_0204684c(a);
     if (v == -1) {
         return FALSE;
     }
-    OS_SNPrintf(b, c, data_usa_02164754, v & 0xff);
+    OS_SNPrintf(b, c, gGhostPathFormat, v & 0xff);
     return TRUE;
 }
 
@@ -82,16 +82,17 @@ static inline u32 func_0203a9ec_inline(void) {
     return 0;
 }
 
-u32 func_0203afe4(u32 a) {
+// The staff roll waits 0x708 frames before the race runs.
+u32 ShouldUpdateRace(u32 a) {
     if (gRaceSetup->mRaceKind != RACE_KIND_STAFF_ROLL) {
         return 1;
     }
     return a >= 0x708;
 }
 
-void func_0203ad58(void *a) {
+void SetupRaceDisplay(void *a) {
     DisplaySettings *b;
-    b = CreateDisplaySettings(a, data_usa_02164718[gRaceSetup->mRaceKind]);
+    b = CreateDisplaySettings(a, gRaceDisplaySettingsDescs[gRaceSetup->mRaceKind]);
     SetG3xSwapBits(b, 1, 1);
     SetBg0Record(&b->mMainBg0, 1, 0, 0, 1, 0, 0, 0);
     switch (gRaceSetup->mRaceKind) {
@@ -144,7 +145,7 @@ void InitRaceScene(void) {
     Init3dEngine();
     SetHeapGroupId(7);
     InitDispCap(p);
-    func_0203ad58(p);
+    SetupRaceDisplay(p);
     func_020431e4();
     SetHeapGroupId(9);
     InitRace();
@@ -244,7 +245,8 @@ void func_0203aaa8(void) {
     func_020b0b8c();
 }
 
-u32 func_0203a9ec(u32 a) {
+// The award scene ends after 0x564 frames, or on a new key press once some Grand Prix record is filled.
+u32 ShouldEndAwardRace(u32 a) {
     if (a > 0x564) {
         return 1;
     }
@@ -260,7 +262,8 @@ u32 func_0203a9ec(u32 a) {
     return 0;
 }
 
-u32 func_0203a908(u32 a) {
+// The staff roll can end early on input after 0xb4 frames when its flag for the mode is set.
+u32 ShouldEndStaffRoll(u32 a) {
     u32 r;
     s32 t = 0x18;
     if (gRaceSetup->mMode != MODE_GRAND_PRIX) {
@@ -290,7 +293,8 @@ void func_0203a8e0(u32 p0) {
     data_021759d0->mUnk_44 = p0;
 }
 
-void func_0203a520(Unk0203a0dc *a, u32 b) {
+// Turns the value picked on the choice screen into the next scene and the settings that go with it.
+void SetNextSceneFromPickedValue(Unk0203a0dc *a, u32 b) {
     s32 r;
     data_0217b488->mUnk_08 = 0;
     r = -1;
@@ -439,7 +443,7 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
             break;
     }
     if (r != -1) {
-        a->mUnk_04 = r;
+        a->mNextScene = r;
     }
 }
 
@@ -459,7 +463,7 @@ u32 func_0203a4cc(void) {
     return 0x8u;
 }
 
-u16 func_0203a4a8(u32 a, u32 b) {
+u16 GetDownBits(u32 a, u32 b) {
     u32 v;
     v = data_02175628[a].mBits;
     return v & b;

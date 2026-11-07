@@ -63,7 +63,7 @@ void func_0204ed84(void) {
                 break;
             case 2:
                 data_usa_0216522c.mMaxDataSize = 0xe;
-                b = func_02006914(data_0217aa00->mUnk_1e30, 0xe);
+                b = BuildChildPacket(data_0217aa00->mUnk_1e30, 0xe);
                 c = 1;
                 break;
         }
@@ -97,7 +97,7 @@ void func_0204ed04(Unk0204ed04 *a) {
                     func_0200692c(b, a->mUnk_10, a->mUnk_12);
                     break;
                 case 2:
-                    func_020068f4(b, a->mUnk_10);
+                    ReceiveParentPacketChecked(b, a->mUnk_10);
                     break;
             }
         }

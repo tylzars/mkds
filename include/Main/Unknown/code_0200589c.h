@@ -4,14 +4,14 @@
 
 // Starts at offset 0x24 of an entry of BlockTransfer; 0x44 bytes (see func_020062f4).
 typedef struct ChunkReceiveState {
-    /* 00 */ s32 mUnk_00;
+    /* 00 */ s32 mSize;
     /* 04 */ s32 mChunkCount;
     /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
+    /* 0c */ s32 mLastReceivedChunkIndex;
     /* 10 */ s32 mReceivedChunkCount;
-    /* 14 */ u32 *mUnk_14;
-    /* 18 */ u8 *mUnk_18;
-    /* 1c */ u8 mUnk_1c[0x28];
+    /* 14 */ u32 *mChunkBitmap;
+    /* 18 */ u8 *mBuffer;
+    /* 1c */ u8 mInlineChunkBitmap[0x28];
 } ChunkReceiveState;
 
 // Entry of BlockTransfer; 0x68 bytes.

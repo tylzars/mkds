@@ -54,7 +54,7 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
                 }
                 if (c != 0) {
                     func_0203a8e0(c);
-                    func_0203a520(a, c);
+                    SetNextSceneFromPickedValue(a, c);
                 }
                 switch (GetCurrentRaceKind()) {
                     case RACE_KIND_DEMO:
@@ -66,7 +66,7 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
                             }
                         }
                         if (c == 0) {
-                            if (func_0203a4a8(func_0203a4cc(), 0x2fff) != 0) {
+                            if (GetDownBits(func_0203a4cc(), 0x2fff) != 0) {
                                 c = 1;
                                 func_0203a48c(5);
                                 func_0203a4d4(1);
@@ -77,14 +77,14 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
                             }
                         }
                         if (c != 0) {
-                            a->mUnk_04 = 0;
+                            a->mNextScene = 0;
                         }
                         break;
                     case RACE_KIND_START_GP:
                     case 4:
-                        if (IsCameraChainEnded() != 0 || (b > 0x5a && (func_0203a4a8(func_0203a4cc(), 0xc0f) != 0 ||
+                        if (IsCameraChainEnded() != 0 || (b > 0x5a && (GetDownBits(func_0203a4cc(), 0xc0f) != 0 ||
                                                                        func_0203a3cc(func_0203a4cc()) != 0))) {
-                            a->mUnk_04 = 2;
+                            a->mNextScene = 2;
                             SetNextRaceKind(0);
                         }
                         break;
@@ -93,14 +93,14 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
                             case MODE_GRAND_PRIX:
                             case MODE_TIME_ATTACK:
                                 if (func_0203c0bc() != 0) {
-                                    a->mUnk_04 = 2;
+                                    a->mNextScene = 2;
                                 }
                                 break;
                         }
                         break;
                     case RACE_KIND_AWARD:
-                        if (func_0203a9ec(b) != 0) {
-                            a->mUnk_04 = 0xa;
+                        if (ShouldEndAwardRace(b) != 0) {
+                            a->mNextScene = 0xa;
                         }
                         break;
                     case RACE_KIND_STAFF_ROLL:
@@ -109,17 +109,17 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
                             c = 0x2b02;
                         }
                         if (b > c) {
-                            a->mUnk_04 = 0xf;
+                            a->mNextScene = 0xf;
                             break;
                         }
-                        if (func_0203a908(b) != 0) {
+                        if (ShouldEndStaffRoll(b) != 0) {
                             func_ov001_0219e0c4();
-                            a->mUnk_04 = 0xf;
+                            a->mNextScene = 0xf;
                         }
                         break;
                 }
             }
-            if (func_0203afe4(b) != 0) {
+            if (ShouldUpdateRace(b) != 0) {
                 UpdateRace();
             }
             func_020af66c();

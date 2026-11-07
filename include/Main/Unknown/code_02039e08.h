@@ -5,10 +5,10 @@
 typedef struct SceneNumbers SceneNumbers;
 typedef struct NNSiFndHeapHead NNSiFndHeapHead;
 
-// Object whose halfword at 0x04 UpdateRaceScene and func_0203a520 write.
+// Object whose halfword at 0x04 UpdateRaceScene and SetNextSceneFromPickedValue write.
 typedef struct Unk0203a0dc {
     /* 00 */ u8 mUnk_00[0x4];
-    /* 04 */ u16 mUnk_04;
+    /* 04 */ u16 mNextScene;
 } Unk0203a0dc;
 
 u32 func_02039e08(NNSiFndHeapHead *a, void **b, void **c, void **d, void **e, void **f);
@@ -31,7 +31,7 @@ u32 RunRaceScene(SceneNumbers *a);
 void func_0203a050(void);
 void func_0203a05c(void);
 // Slot mUpdate of the Race scene: end-of-race and next-scene logic (writes mNextScene 0, 2, 0xa,
-// 0xf), UpdateRace (only if func_0203afe4 allows: in kind 6 after 0x708 frames) and the step
+// 0xf), UpdateRace (only if ShouldUpdateRace allows: in kind 6 after 0x708 frames) and the step
 // func_020af66c of the screen objects (kind 3 RaceStartGp, kind 6 EndingStaffRoll, else the RaceHud elements), both
 // behind func_02049b6c / func_0204359c, then DrawRace (own gate: not in kind 6
 // before 0x708 frames, not in mode 5 while func_02037a20 is set) and the matching draw func_020ae824. With a == NULL

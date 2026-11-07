@@ -5,8 +5,8 @@
 
 void func_0200635c(ChunkReceiveState *a, u32 b) {
     a->mReceivedChunkCount = a->mReceivedChunkCount + 1;
-    a->mUnk_0c = b;
-    a->mUnk_14[(s32) b >> 5] = a->mUnk_14[(s32) b >> 5] | 1 << (b & 0x1f);
+    a->mLastReceivedChunkIndex = b;
+    a->mChunkBitmap[(s32) b >> 5] = a->mChunkBitmap[(s32) b >> 5] | 1 << (b & 0x1f);
 }
 
 #pragma thumb off

@@ -320,7 +320,7 @@ s32 func_02006c2c(u8 *a, s32 b) {
             return v2;
         }
     }
-    return func_020068b4(a, 0xfffe, 0);
+    return WriteEmptyPacket(a, 0xfffe, 0);
 }
 
 #pragma thumb off
@@ -368,7 +368,7 @@ void func_02006b50(u8 *a, s32 b) {
     if (func_0200589c(v1, a, b) != 0) {
         return;
     }
-    func_020068b4(a, 0xffff, 0);
+    WriteEmptyPacket(a, 0xffff, 0);
 }
 
 void func_02006aac(s32 a, s32 b, void (*c)(BlockTransferRecord *)) {
