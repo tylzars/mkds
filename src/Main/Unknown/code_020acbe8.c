@@ -147,7 +147,7 @@ void UpdateTitleState2(Unk020aca24 *a) {
             s32 m = func_0210f738();
             gTitleScene->mNoInputFrames++;
             if (gTitleScene->mNoInputFrames > m) {
-                if (func_0210f75c(0) != 0) {
+                if (IsSeqVariableChanged(0) != 0) {
                     a->mNextScene = 2;
                     func_0203b6ac(gTitleScene->mUnk_8b8);
                 }

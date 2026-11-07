@@ -60,7 +60,7 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
                     case 1:
                         c = 0;
                         if (b > func_0210f72c()) {
-                            if (func_0210f75c(1) != 0) {
+                            if (IsSeqVariableChanged(1) != 0) {
                                 c = 1;
                                 func_0203a4d4(0);
                             }

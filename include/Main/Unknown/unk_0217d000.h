@@ -392,20 +392,22 @@ typedef struct Unk0217d380 {
 
 // Object at data_0217d244 (0x10 bytes).
 typedef struct Unk0217d244 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ u32 mUnk_0c;
+    // 0: normal; 1: volume target 0; 2: volume target full.
+    /* 00 */ s32 mVolumeOverride;
+    /* 04 */ s32 mPitchAngle;
+    /* 08 */ s32 mFlags;
+    /* 0c */ u32 mKartNear;
 } Unk0217d244;
 
-// Object at data_0217d2a4.
-typedef struct Unk0217d2a4 {
-    /* 00 */ s32 mUnk_00[14];
-    /* 38 */ s32 mUnk_38[14];
-    /* 70 */ s32 mUnk_70;
-    /* 74 */ s32 mUnk_74;
-    /* 78 */ s32 mUnk_78;
-} Unk0217d2a4;
+// Object at gSeqQueue.
+typedef struct SeqQueue {
+    // 14 queued pairs; 13 in mPairNo and 2 in mPairSide mark an empty entry.
+    /* 00 */ s32 mPairNo[14];
+    /* 38 */ s32 mPairSide[14];
+    /* 70 */ s32 mWriteIndex;
+    /* 74 */ s32 mReadIndex;
+    /* 78 */ s32 mNextStartTimer;
+} SeqQueue;
 
 // Object behind data_0217d374, allocated by func_0211e480.
 typedef struct Unk0217d374 {
@@ -723,7 +725,7 @@ extern u32 data_0217d064;
 extern s32 data_0217d1f4;
 extern s32 data_0217d20c;
 extern s32 data_0217d21c;
-extern u32 data_0217d220;
+extern u32 gAnySeqVariableEnabled;
 extern Unk0217d244 data_0217d244;
 extern struct Unk0217d344 *data_0217d344;
 extern RecordVSErase *gRecordVSErase;
@@ -746,7 +748,7 @@ extern Unk0217d3fc *data_0217d3fc;
 extern Keyboard *gKeyboard;
 extern Unk0217d408 *data_0217d408;
 extern u32 data_0217d1f0;
-extern s32 data_0217d22c[];
+extern s32 gLapProgressSoundGaps[];
 extern s32 data_0217d320;
 extern s32 data_0217d324;
 extern s32 data_0217d328;
@@ -774,7 +776,7 @@ extern s32 data_0217d210;
 extern s32 data_0217d214;
 extern volatile s32 data_0217d218;
 extern s32 data_0217d224[2];
-extern Unk0217d2a4 data_0217d2a4;
+extern SeqQueue gSeqQueue;
 extern s32 data_0217d2dc[];
 extern void *data_0217d33c;
 extern void *data_0217d340;
@@ -795,7 +797,7 @@ extern Unk0217d34c *data_0217d34c;
 extern SelectCupGrid *gSelectCupGrid;
 extern SelectCupCourse *gSelectCupCourse;
 extern u32 data_0217d1bc;
-extern u32 data_0217d23c[];
+extern u32 gSeqVariableEnabled[];
 extern u32 data_0217d010[];
 extern u32 data_0217d024[];
 extern Unk0217c7c4 data_0217d034;

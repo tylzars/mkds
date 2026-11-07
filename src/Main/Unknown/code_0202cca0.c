@@ -8,7 +8,7 @@ void func_0202cca4(int a, int b) {
     u32 v1;
     if ((a != 0xc) || (b != 1)) {
         v1 = func_02025eb0(a);
-        func_02110720(v1, b);
+        AddSeqQueueEntry(v1, b);
     }
 }
 

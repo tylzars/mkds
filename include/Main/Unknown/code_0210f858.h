@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-unsigned int func_0210f858(void);
+unsigned int IsAnySeqVariableEnabled(void);

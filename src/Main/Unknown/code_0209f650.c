@@ -247,7 +247,7 @@ void UpdateTownMonte(void *a, TownMonte *p) {
     if (p->mUnk_a2 == 0) {
         return;
     }
-    if (p->mUnk_00.mCourseMapRow->mUnk_28 != func_0210f744(0)) {
+    if (p->mUnk_00.mCourseMapRow->mUnk_28 != GetSeqVariableSinceChangeFrames(0)) {
         return;
     }
     w = p->mUnk_a2;

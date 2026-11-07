@@ -58,30 +58,31 @@ void func_02110874(void) {
     data_0217d1f4 = 7;
 }
 
-void func_02110838(void) {
+void ResetSeqQueue(void) {
     s32 i;
     i = 0;
-    data_0217d2a4.mUnk_78 = i;
-    data_0217d2a4.mUnk_70 = i;
-    data_0217d2a4.mUnk_74 = i;
+    gSeqQueue.mNextStartTimer = i;
+    gSeqQueue.mWriteIndex = i;
+    gSeqQueue.mReadIndex = i;
     for (i = 0; i < 14; i++) {
-        data_0217d2a4.mUnk_00[i] = 13;
-        data_0217d2a4.mUnk_38[i] = 2;
+        gSeqQueue.mPairNo[i] = 13;
+        gSeqQueue.mPairSide[i] = 2;
     }
 }
 
-void func_02110754(void) {
-    Unk0217d2a4 *p = &data_0217d2a4;
+// Starts the next queued seq once the delay since the previous start has run out.
+void UpdateSeqQueue(void) {
+    SeqQueue *p = &gSeqQueue;
     s32 i;
     s32 v;
     s32 w;
     s32 t;
     u32 x;
-    if (p->mUnk_78 == 0) {
-        i = p->mUnk_74;
-        v = p->mUnk_00[i];
+    if (p->mNextStartTimer == 0) {
+        i = p->mReadIndex;
+        v = p->mPairNo[i];
         if (v != 13) {
-            w = p->mUnk_38[i];
+            w = p->mPairSide[i];
             t = 3;
             if (v == 12) {
                 if (w == 0) {
@@ -97,33 +98,33 @@ void func_02110754(void) {
             if (data_0217d068 != NULL) {
                 SetSndHandleTrackVolume(&data_0217d068, 0x3c);
             }
-            data_0217d2a4.mUnk_00[p->mUnk_74] = 13;
-            data_0217d2dc[p->mUnk_74] = 2;
-            p->mUnk_78 = 0x19;
-            p->mUnk_74 = p->mUnk_74 + 1;
-            i = p->mUnk_74;
+            gSeqQueue.mPairNo[p->mReadIndex] = 13;
+            data_0217d2dc[p->mReadIndex] = 2;
+            p->mNextStartTimer = 0x19;
+            p->mReadIndex = p->mReadIndex + 1;
+            i = p->mReadIndex;
             if (i == 14) {
                 i = 0;
             }
-            p->mUnk_74 = i;
+            p->mReadIndex = i;
         }
     }
-    if (p->mUnk_78 > 0) {
-        p->mUnk_78 = p->mUnk_78 - 1;
+    if (p->mNextStartTimer > 0) {
+        p->mNextStartTimer = p->mNextStartTimer - 1;
     }
 }
 
-void func_02110720(u32 a, u32 b) {
+void AddSeqQueueEntry(u32 a, u32 b) {
     s32 i;
     s32 n;
-    i = data_0217d2a4.mUnk_70;
-    data_0217d2a4.mUnk_00[i] = a;
+    i = gSeqQueue.mWriteIndex;
+    gSeqQueue.mPairNo[i] = a;
     n = i + 1;
-    data_0217d2a4.mUnk_38[i] = b;
+    gSeqQueue.mPairSide[i] = b;
     if (n == 14) {
         n = 0;
     }
-    data_0217d2a4.mUnk_70 = n;
+    gSeqQueue.mWriteIndex = n;
 }
 
 void func_021106a8(s32 a, s32 b) {
@@ -151,7 +152,7 @@ void func_02110698(void) {
     StartSoundOncePerFrame(0);
 }
 
-s32 func_02110640(Unk0217c7f0 *a, s32 b) {
+s32 StepValueTowardTarget(Unk0217c7f0 *a, s32 b) {
     s32 c;
     s32 d;
     c = a->mUnk_04 >> 12;
@@ -190,22 +191,22 @@ void func_021105a0(void) {
     }
 }
 
-s32 func_02110590(u32 arg0) {
+s32 GetLapProgressSoundGap(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    value1 = (u32) &data_0217d22c;
+    value1 = (u32) &gLapProgressSoundGaps;
     value0 = *(const u32 *) ((value1) + ((value0 << 2)));
     return value0;
 }
 
-u16 func_0211057c(int a) {
+u16 GetLapProgressSoundId(int a) {
     return data_0216cba0[a];
 }
 
-void func_02110534(u32 a) {
+void SetLapProgressSoundGaps(u32 a) {
     s32 i;
     for (i = 0; i < 2; i++) {
-        data_0217d22c[i] = FX_Div(data_0215c3a4[i], a);
+        gLapProgressSoundGaps[i] = FX_Div(data_0215c3a4[i], a);
     }
 }
 
@@ -258,8 +259,8 @@ void func_021103c0(void) {
     data_0217d224[1] = FX_Div(0x7f000, 0x5a000);
     data_0217d210 = FX_Div(data_0216cb28 << 12, 0x23000);
     data_0217d214 = FX_Div(0x7f000, 0x19000);
-    data_0217d234.mUnk_00 = data_0217d1fc;
-    data_0217d234.mUnk_04 = 0x7f000;
+    gVolumeFade.mVolumePerFrame = data_0217d1fc;
+    gVolumeFade.mVolume = 0x7f000;
     data_0217d218 = data_0216cb28;
 }
 
@@ -287,7 +288,7 @@ u32 func_02110324(void) {
     return a;
 }
 
-// Moves the object at data_0217d234 towards t.
+// Moves the object at gVolumeFade towards t.
 static inline void func_02110114_inline(NNSSndSeqPlayer **p, s32 v, s32 k, s32 t) {
     s32 m;
     s32 c;
@@ -295,24 +296,24 @@ static inline void func_02110114_inline(NNSSndSeqPlayer **p, s32 v, s32 k, s32 t
     s32 x;
     func_02108eb4(1, v);
     NNS_SndPlayerSetTrackPitch(p, 0xffff, k);
-    c = data_0217d234.mUnk_04 >> 12;
+    c = gVolumeFade.mVolume >> 12;
     if (t == c) {
         r = -1;
     } else {
         if (c <= t) {
-            x = data_0217d234.mUnk_04 + data_0217d234.mUnk_00;
+            x = gVolumeFade.mVolume + gVolumeFade.mVolumePerFrame;
             if ((x >> 12) > t) {
                 x = t << 12;
             }
         } else {
-            x = data_0217d234.mUnk_04 - data_0217d234.mUnk_00;
+            x = gVolumeFade.mVolume - gVolumeFade.mVolumePerFrame;
             if ((x >> 12) < t) {
                 x = t << 12;
             }
         }
         c = x >> 12;
         r = c;
-        data_0217d234.mUnk_04 = x;
+        gVolumeFade.mVolume = x;
     }
     data_0217d218 = c;
     m = data_0216cb28;
@@ -366,9 +367,9 @@ void func_02110114(NNSSndSeqPlayer **a) {
         data_0217d1e8++;
     }
     if (b != data_0216cb28) {
-        data_0217d234.mUnk_00 = data_0217d224[0];
+        gVolumeFade.mVolumePerFrame = data_0217d224[0];
     } else {
-        data_0217d234.mUnk_00 = data_0217d224[1];
+        gVolumeFade.mVolumePerFrame = data_0217d224[1];
     }
     func_02110114_inline(a, 0x7f, 0, b);
 }
@@ -427,7 +428,7 @@ void func_0211003c(u32 a, NNSSndSeqPlayer **b) {
     NNS_SndArcPlayerStartSeqArc(b, 0, a);
 }
 
-// Fades the object at data_0217d234 towards t, then writes the value that was reached.
+// Fades the object at gVolumeFade towards t, then writes the value that was reached.
 static inline void func_0210fb88_inline(NNSSndSeqPlayer **p, s32 v, s32 k, s32 t) {
     s32 m;
     s32 c;
@@ -435,24 +436,24 @@ static inline void func_0210fb88_inline(NNSSndSeqPlayer **p, s32 v, s32 k, s32 t
     s32 x;
     func_02108eb4(1, v);
     NNS_SndPlayerSetTrackPitch(p, 0xffff, k);
-    c = data_0217d234.mUnk_04 >> 12;
+    c = gVolumeFade.mVolume >> 12;
     if (t == c) {
         r = -1;
     } else {
         if (c <= t) {
-            x = data_0217d234.mUnk_04 + data_0217d234.mUnk_00;
+            x = gVolumeFade.mVolume + gVolumeFade.mVolumePerFrame;
             if ((x >> 12) > t) {
                 x = t << 12;
             }
         } else {
-            x = data_0217d234.mUnk_04 - data_0217d234.mUnk_00;
+            x = gVolumeFade.mVolume - gVolumeFade.mVolumePerFrame;
             if ((x >> 12) < t) {
                 x = t << 12;
             }
         }
         c = x >> 12;
         r = c;
-        data_0217d234.mUnk_04 = x;
+        gVolumeFade.mVolume = x;
     }
     data_0217d218 = c;
     m = data_0216cb28;
@@ -483,8 +484,8 @@ void func_0210fb88(Unk0217d244 *a, NNSSndSeqPlayer **b) {
     i = k;
     l = 0x7f;
     n = -1;
-    if (a->mUnk_00 > 0) {
-        switch (a->mUnk_00) {
+    if (a->mVolumeOverride > 0) {
+        switch (a->mVolumeOverride) {
             case 1:
                 l = k;
                 break;
@@ -498,13 +499,13 @@ void func_0210fb88(Unk0217d244 *a, NNSSndSeqPlayer **b) {
         func_02110114(b);
         return;
     }
-    a->mUnk_0c = (TryGetMinKartDistanceSquared(&x) != FALSE && x < 0x8d04) ? 1 : 0;
-    if ((a->mUnk_08 >> 2) & 1) {
+    a->mKartNear = (TryGetMinKartDistanceSquared(&x) != FALSE && x < 0x8d04) ? 1 : 0;
+    if ((a->mFlags >> 2) & 1) {
         j = 0;
         l = 0x1e;
         n = 0xff;
         i = 0x7f;
-    } else if (a->mUnk_0c != 0) {
+    } else if (a->mKartNear != 0) {
         y = (x - 2500) << 12;
         w = y;
         z = (s32) (((s64) data_0217d208 * y + 0x800) >> 12) >> 12;
@@ -529,15 +530,15 @@ void func_0210fb88(Unk0217d244 *a, NNSSndSeqPlayer **b) {
     }
     if (gSceneSoundState.mRaceState != 1) {
         k = 0;
-    } else if ((a->mUnk_08 >> 1) & 1) {
-        a->mUnk_04 += 0x1111;
-        a->mUnk_04 &= 0xffff;
-        k = (s32) (((s64) gPairsByAngle[(a->mUnk_04 >> 4) * 2] * 0x30000 + 0x800) >> 12) >> 12;
+    } else if ((a->mFlags >> 1) & 1) {
+        a->mPitchAngle += 0x1111;
+        a->mPitchAngle &= 0xffff;
+        k = (s32) (((s64) gPairsByAngle[(a->mPitchAngle >> 4) * 2] * 0x30000 + 0x800) >> 12) >> 12;
         k += 0x80;
         if (j > 0x3c) {
             j = 0x3c;
         }
-    } else if ((a->mUnk_08 >> 3) & 1) {
+    } else if ((a->mFlags >> 3) & 1) {
         k = 0x40;
         if (j == data_0216cb28) {
             j = data_0216cb28 - 10;
@@ -573,10 +574,10 @@ u32 func_0210fb68(void) {
     u32 value1;
     value0 = (u32) &data_0217d244;
     value1 = 0u;
-    data_0217d244.mUnk_04 = value1;
-    data_0217d244.mUnk_08 = value1;
-    data_0217d244.mUnk_0c = value1;
-    data_0217d244.mUnk_00 = value1;
+    data_0217d244.mPitchAngle = value1;
+    data_0217d244.mFlags = value1;
+    data_0217d244.mKartNear = value1;
+    data_0217d244.mVolumeOverride = value1;
     return value0;
 }
 
@@ -585,7 +586,7 @@ u32 func_0210fb54(void) {
     u32 value1;
     value0 = (u32) &data_0217d244;
     value1 = 1u;
-    data_0217d244.mUnk_00 = value1;
+    data_0217d244.mVolumeOverride = value1;
     return value0;
 }
 
@@ -602,15 +603,15 @@ void func_0210faf4(void) {
 }
 
 u32 func_0210fad4(void) {
-    if ((data_0217d244.mUnk_08 >> 2) & 1) {
+    if ((data_0217d244.mFlags >> 2) & 1) {
         return 1;
     }
     return 0;
 }
 
-u32 func_0210fac4(void) {
+u32 IsKartNear(void) {
     u32 value0;
-    value0 = data_0217d244.mUnk_0c;
+    value0 = data_0217d244.mKartNear;
     return value0;
 }
 
@@ -618,19 +619,19 @@ u32 func_0210faac(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &data_0217d244;
-    value1 = data_0217d244.mUnk_08;
+    value1 = data_0217d244.mFlags;
     value1 = (value1) | (8u);
-    data_0217d244.mUnk_08 = value1;
+    data_0217d244.mFlags = value1;
     return value0;
 }
 
 void func_0210fa74(u32 a) {
     if (a == 1) {
-        data_0217d244.mUnk_08 |= 2;
+        data_0217d244.mFlags |= 2;
     } else {
-        data_0217d244.mUnk_08 &= ~2;
+        data_0217d244.mFlags &= ~2;
     }
-    data_0217d244.mUnk_04 = 0;
+    data_0217d244.mPitchAngle = 0;
 }
 
 void func_0210fa40(u32 a, u32 b) {
@@ -638,9 +639,9 @@ void func_0210fa40(u32 a, u32 b) {
         return;
     }
     if (a == 1) {
-        data_0217d244.mUnk_08 |= 4;
+        data_0217d244.mFlags |= 4;
     } else {
-        data_0217d244.mUnk_08 &= ~4;
+        data_0217d244.mFlags &= ~4;
     }
 }
 
@@ -677,81 +678,82 @@ void func_0210f8b0(Unk0217d060 *a, s32 b, s32 c) {
     }
     func_0210dccc(a, b, c, 0xff, func_02108950());
     for (i = 0; i < 2; i++) {
-        data_0217d254[i].mUnk_00 = -1;
-        data_0217d254[i].mUnk_02 = -1;
-        data_0217d254[i].mUnk_04 = -1;
-        data_0217d254[i].mUnk_08[0] = i;
+        gSeqVariableReadings[i].mValue = -1;
+        gSeqVariableReadings[i].mPrevValue = -1;
+        gSeqVariableReadings[i].mSinceChangeFrames = -1;
+        gSeqVariableReadings[i].mVariableNo[0] = i;
     }
-    data_0217d23c[0] = 1;
+    gSeqVariableEnabled[0] = 1;
     for (j = 0; j < 2; j++) {
-        if (data_0217d23c[j] == 1) {
+        if (gSeqVariableEnabled[j] == 1) {
             break;
         }
     }
-    data_0217d23c[1] = 1;
+    gSeqVariableEnabled[1] = 1;
     for (j = 0; j < 2; j++) {
-        if (data_0217d23c[j] == 1) {
-            data_0217d220 = 1;
+        if (gSeqVariableEnabled[j] == 1) {
+            gAnySeqVariableEnabled = 1;
             return;
         }
     }
-    data_0217d220 = 0;
+    gAnySeqVariableEnabled = 0;
 }
 
-void func_0210f868(u32 a, u32 b) {
+void SetSeqVariableEnabled(u32 a, u32 b) {
     s32 i;
-    data_0217d23c[a] = b;
+    gSeqVariableEnabled[a] = b;
     for (i = 0; i < 2; i++) {
-        if (data_0217d23c[i] == 1) {
-            data_0217d220 = 1;
+        if (gSeqVariableEnabled[i] == 1) {
+            gAnySeqVariableEnabled = 1;
             return;
         }
     }
-    data_0217d220 = 0;
+    gAnySeqVariableEnabled = 0;
 }
 
-u32 func_0210f858(void) {
-    return data_0217d220;
+u32 IsAnySeqVariableEnabled(void) {
+    return gAnySeqVariableEnabled;
 }
 
-void func_0210f808(void) {
+void ResetSeqVariableReadings(void) {
     u8 i;
 
     for (i = 0; i < 2; i++) {
-        data_0217d254[i].mUnk_00 = -1;
-        data_0217d254[i].mUnk_02 = -1;
-        data_0217d254[i].mUnk_04 = -1;
-        data_0217d254[i].mUnk_08[0] = i;
+        gSeqVariableReadings[i].mValue = -1;
+        gSeqVariableReadings[i].mPrevValue = -1;
+        gSeqVariableReadings[i].mSinceChangeFrames = -1;
+        gSeqVariableReadings[i].mVariableNo[0] = i;
     }
 }
 
-void func_0210f780(NNSSndSeqPlayer **a) {
-    Unk0217d254 *p;
+// Reads each enabled slot's sequence variable and counts the updates since it last changed.
+void UpdateSeqVariableReadings(NNSSndSeqPlayer **a) {
+    SeqVariableReading *p;
     s32 i;
 
     for (i = 0; i < 2; i++) {
-        p = &data_0217d254[i];
-        if (data_0217d23c[i] == 0) {
+        p = &gSeqVariableReadings[i];
+        if (gSeqVariableEnabled[i] == 0) {
             continue;
         }
-        if (NNS_SndPlayerReadVariable(a, p->mUnk_08[0], (s16 *) p) == 0) {
+        if (NNS_SndPlayerReadVariable(a, p->mVariableNo[0], (s16 *) p) == 0) {
             continue;
         }
-        if (p->mUnk_02 != p->mUnk_00) {
-            p->mUnk_04 = 0;
+        if (p->mPrevValue != p->mValue) {
+            p->mSinceChangeFrames = 0;
         } else {
-            if (p->mUnk_04 >= 0) {
-                p->mUnk_04++;
+            if (p->mSinceChangeFrames >= 0) {
+                p->mSinceChangeFrames++;
             }
         }
-        p->mUnk_02 = p->mUnk_00;
+        p->mPrevValue = p->mValue;
     }
 }
 
-u32 func_0210f75c(u32 a) {
-    return data_0217d254[a].mUnk_04 == 0;
+u32 IsSeqVariableChanged(u32 a) {
+    return gSeqVariableReadings[a].mSinceChangeFrames == 0;
 }
 
-u32 func_0210f744(u32 a) {
-    return data_0217d254[a].mUnk_04;
+u32 GetSeqVariableSinceChangeFrames(u32 a) {
+    return gSeqVariableReadings[a].mSinceChangeFrames;
 }

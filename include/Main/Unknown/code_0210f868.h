@@ -8,4 +8,4 @@ typedef struct Unk0217d060 Unk0217d060;
 void func_0210f9f0(void *a0, int b);
 void func_0210f9ac(Kart *a);
 void func_0210f8b0(Unk0217d060 *a, s32 b, s32 c);
-void func_0210f868(u32 a, u32 b);
+void SetSeqVariableEnabled(u32 a, u32 b);

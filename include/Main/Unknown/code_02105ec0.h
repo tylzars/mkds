@@ -101,13 +101,13 @@ typedef struct Unk0217d060 {
 
 extern Unk0217d060 *data_0217d060;
 
-// Object behind data_0217d234.
-typedef struct Unk0217d234 {
-    /* 00 */ u32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-} Unk0217d234;
+// Object behind gVolumeFade.
+typedef struct VolumeFade {
+    /* 00 */ u32 mVolumePerFrame;
+    /* 04 */ s32 mVolume;
+} VolumeFade;
 
-extern Unk0217d234 data_0217d234;
+extern VolumeFade gVolumeFade;
 
 // Values of the two switches in InitSound.
 typedef enum { E0 = 0, E1 = 1, E2 = 2 } Unk02108344;

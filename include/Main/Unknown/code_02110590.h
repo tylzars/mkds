@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-s32 func_02110590(u32 arg0);
+s32 GetLapProgressSoundGap(u32 arg0);

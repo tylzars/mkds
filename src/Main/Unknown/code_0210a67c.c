@@ -175,8 +175,8 @@ void func_0210b2a8(Kart *a, s32 b, s32 c, s32 d, u32 e) {
                 if (k < 0) {
                     k = -k;
                 }
-                if (k > func_02110590(m)) {
-                    n = func_0211057c(m);
+                if (k > GetLapProgressSoundGap(m)) {
+                    n = GetLapProgressSoundId(m);
                     p->mUnk_2c++;
                     StartSound(&a->mSoundSource, (u16) ((p->mUnk_2c & 1) + n), 0x7f, 0);
                     p->mUnk_28 = j;
@@ -465,7 +465,7 @@ void func_0210aa14(Kart *a, PlayingSound *b, s32 c) {
         } else if (g == 3) {
             f = 5;
         } else if (g == 6) {
-            if (func_0210fad4() != 0 || func_0210fac4() != 0) {
+            if (func_0210fad4() != 0 || IsKartNear() != 0) {
                 f = 7;
             }
         }

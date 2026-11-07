@@ -505,12 +505,12 @@ void InitSceneSounds(s32 e) {
     data_0216cb28 = v;
     c = func_0202511c(a, &buf);
     if (data_0217d060 == NULL) {
-        func_0210f808();
-        func_0210f868(0, 0);
-        func_0210f868(1, 0);
+        ResetSeqVariableReadings();
+        SetSeqVariableEnabled(0, 0);
+        SetSeqVariableEnabled(1, 0);
     }
     func_02110a60();
-    func_02110838();
+    ResetSeqQueue();
     func_021104dc(0);
     func_0210d970(func_0204a4e4());
     func_02110484();
@@ -520,8 +520,8 @@ void InitSceneSounds(s32 e) {
             v = gRaceSetup->mCourseId;
             switch (v) {
                 case COURSE_ID_TOWN:
-                    func_0210f868(0, 1);
-                    func_0210f868(1, 1);
+                    SetSeqVariableEnabled(0, 1);
+                    SetSeqVariableEnabled(1, 1);
                     break;
                 case COURSE_ID_MANSION:
                     func_0210bbec(0x15, data_0216c860[0].mUnk_04, &data_0216c860[0]);
@@ -850,7 +850,7 @@ void StartSceneSounds(void) {
             data_0217c7b0 = 1;
         }
         if (gRaceSetup->mMode != MODE_BATTLE) {
-            func_02110534(gCourseMap->mCheckpointSum);
+            SetLapProgressSoundGaps(gCourseMap->mCheckpointSum);
             gSceneSoundState.mLapCount = GetLapCount();
         }
     } else {
@@ -951,7 +951,7 @@ void func_02106dc8(void) {
     if (data_0217c78c != 0) {
         if (gSceneSoundState.mRaceState == 1) {
             func_0210d5c0(&data_0217d070);
-            NNS_SndPlayerSetVolume(&data_0217d07c, data_0217d234.mUnk_04 >> 12);
+            NNS_SndPlayerSetVolume(&data_0217d07c, gVolumeFade.mVolume >> 12);
             NNS_SndPlayerSetTempoRatio(&data_0217d07c, 0x12c);
             func_0210faac();
         }
@@ -973,7 +973,7 @@ void EndRaceSounds(void) {
     if (data_0217c78c != 0) {
         if (gSceneSoundState.mRaceState == 1) {
             func_0210d5c0(&data_0217d070);
-            NNS_SndPlayerSetVolume(&data_0217d07c, data_0217d234.mUnk_04 >> 12);
+            NNS_SndPlayerSetVolume(&data_0217d07c, gVolumeFade.mVolume >> 12);
             NNS_SndPlayerSetTempoRatio(&data_0217d07c, 0x12c);
             func_0210faac();
         }
@@ -1143,13 +1143,13 @@ void UpdateRaceSounds(void) {
             gSceneSoundState.mRaceFrames++;
             if (gSceneSoundState.mRaceFrames == 0x28) {
                 func_0210d5c0(&data_0217d070);
-                NNS_SndPlayerSetVolume(&data_0217d07c, data_0217d234.mUnk_04 >> 12);
+                NNS_SndPlayerSetVolume(&data_0217d07c, gVolumeFade.mVolume >> 12);
             }
             q = &data_0217c7f0;
             i = q->mUnk_08;
             if (i == 1) {
                 q->mUnk_00 = data_0217c80c[i];
-                a = func_02110640(q, data_0217c7fc[i]);
+                a = StepValueTowardTarget(q, data_0217c7fc[i]);
                 if (a != -1) {
                     b = data_0217c804[i];
                     if (func_0210d980() != 0) {
@@ -1173,10 +1173,10 @@ void UpdateRaceSounds(void) {
     }
     if (gRaceSetup->mMode != MODE_BATTLE) {
         v = &data_0217d07c;
-        if (func_0210f858() != 0) {
-            func_0210f780(v);
+        if (IsAnySeqVariableEnabled() != 0) {
+            UpdateSeqVariableReadings(v);
             if (gRaceSetup->mCourseId == COURSE_ID_TOWN) {
-                if (func_0210f75c(0) != 0 || func_0210f75c(1) != 0) {
+                if (IsSeqVariableChanged(0) != 0 || IsSeqVariableChanged(1) != 0) {
                     func_0210f35c(0, 0x1a9);
                 }
             }
@@ -1206,7 +1206,7 @@ void UpdateRaceSounds(void) {
                 data_0217c78c = 1;
             } else if (gSceneSoundState.mRaceState == 1) {
                 func_0210d5c0(&data_0217d070);
-                NNS_SndPlayerSetVolume(&data_0217d07c, data_0217d234.mUnk_04 >> 12);
+                NNS_SndPlayerSetVolume(&data_0217d07c, gVolumeFade.mVolume >> 12);
                 NNS_SndPlayerSetTempoRatio(&data_0217d07c, 0x12c);
                 func_0210faac();
             }
@@ -1339,7 +1339,7 @@ void UpdateSceneSoundState(void) {
     i = q->mUnk_08;
     if (i == 0) {
         q->mUnk_00 = data_0217c80c[i];
-        a = func_02110640(q, data_0217c7fc[i]);
+        a = StepValueTowardTarget(q, data_0217c7fc[i]);
         if (a != -1) {
             b = data_0217c804[i];
             if (func_0210d980() != 0) {
@@ -1371,13 +1371,13 @@ void UpdateSceneSoundState(void) {
         }
     } else if (GetCurrentSceneNumber() == 1 || GetCurrentSceneNumber() == 0xc) {
         if (*(vu16 *) 0x027ffc40 != 2) {
-            func_02110754();
+            UpdateSeqQueue();
         }
     } else if (GetCurrentSceneNumber() == 3) {
         func_02110874();
     }
     if (data_0217d060 != NULL && data_0217d060->mUnk_00.mUnk_00 == 0 && data_0217d060->mUnk_0c != NULL) {
-        func_0210f780(&data_0217d060->mUnk_0c);
+        UpdateSeqVariableReadings(&data_0217d060->mUnk_0c);
     }
     gSceneSoundState.mSceneFrames++;
 }
