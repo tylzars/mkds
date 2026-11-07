@@ -4,11 +4,11 @@
 #include "code_020219e8.h" // Unk02021a5c
 
 // 3 bytes: NNSi_G2dFontGetStringWidth adds the first two, or reads the third.
-typedef struct Unk02022c80 {
-    /* 00 */ s8 mUnk_00;
-    /* 01 */ u8 mUnk_01;
-    /* 02 */ s8 mUnk_02;
-} Unk02022c80;
+typedef struct NNSG2dCharWidths {
+    /* 00 */ s8 mLeft;
+    /* 01 */ u8 mGlyphWidth;
+    /* 02 */ s8 mCharWidth;
+} NNSG2dCharWidths;
 
 // Entry of the chain at 0x0c of an Unk02022ce4: a range of mUnk_00..mUnk_02 with 8 bytes of header, then
 // entries of mUnk_0a (of the object) bytes.
@@ -48,7 +48,7 @@ typedef struct Unk02022ce4 {
     /* 00 */ u8 mUnk_00;
     /* 01 */ s8 mUnk_01;
     /* 02 */ u16 mUnk_02;
-    /* 04 */ Unk02022c80 mUnk_04;
+    /* 04 */ NNSG2dCharWidths mUnk_04;
     /* 07 */ u8 mUnk_07;
     /* 08 */ Unk02022ce4_08 *mUnk_08;
     /* 0c */ Unk02022c80_n *mUnk_0c;
@@ -78,7 +78,7 @@ typedef struct Unk02022b10 {
 void NNSi_G2dFontGetTextRect(Unk02022b10 *pRect, Unk02022aa8 *pFont, s32 hSpace, s32 vSpace, u8 *txt);
 s32 NNSi_G2dFontGetTextHeight(Unk02022aa8 *pFont, s32 vSpace, u8 *txt);
 s32 NNSi_G2dFontGetStringWidth(Unk02022aa8 *pFont, s32 hSpace, u8 *str, u8 **pPos);
-Unk02022c80 *NNS_G2dFontGetCharWidthsFromIndex(Unk02022aa8 *pFont, u32 idx);
+NNSG2dCharWidths *NNS_G2dFontGetCharWidthsFromIndex(Unk02022aa8 *pFont, u32 idx);
 u32 NNS_G2dFontFindGlyphIndex(Unk02022aa8 *pFont, u32 code);
 void NNS_G2dFontInitUTF16(Unk02022aa8 *pFont, Unk02021f9c *pNftrFile);
 void NNS_G2dFontInitAuto(Unk02022aa8 *pFont, Unk02021f9c *pNftrFile);

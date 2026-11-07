@@ -22,7 +22,7 @@ typedef struct Unk02166108 {
 } Unk02166108;
 
 // Function stored at data_0217b050: writes a word to the first argument and returns the object.
-typedef Unk020184e4 *Unk0217b050Func(s32 *a, s32 b);
+typedef SPLManager *Unk0217b050Func(s32 *a, s32 b);
 extern Unk0217b050Func *data_0217b050;
 
 extern Unk0217b048 *data_0217b048;
@@ -38,4 +38,4 @@ void CopyKartPhysicalParams(u32 a, u32 b, u32 c);
 void CreateKartPhysicalParamTable(void *a, u32 b);
 void func_0208afe4(void);
 void func_0208b190(void);
-Unk020184e4 *func_0208b458(s32 *a, s32 b);
+SPLManager *func_0208b458(s32 *a, s32 b);

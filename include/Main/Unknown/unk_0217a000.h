@@ -2,11 +2,11 @@
 
 #include "types.h"
 #include "Main/Unknown/code_020d22c0.h" // Unk020f41c4_B
-#include "code_02004dc0.h" // Unk020055f0, FSFile
+#include "code_02004dc0.h" // FSOverlayInfo, FSFile
 #include "code_0212d214.h"
 #include "os_thread.h"
 #include "code_02142eac.h" // Unk021438f0, Unk02143a78, Unk02143c30
-#include "code_021445e0.h" // Unk021450ec, Unk0214461c
+#include "code_021445e0.h" // WMDataSharingInfo, WMDataSet
 #include "code_02147cd8.h" // Vec3s16
 #include "code_0214a748.h" // Unk0214ad4c
 #include "code_02012b30.h" // MtxFx43
@@ -505,8 +505,8 @@ typedef struct Unk0217aa00_15c8 {
 
 // Members 0x15bc to 0x1607 of Unk0217aa00 as one object.
 typedef struct Unk0217aa00_15bc {
-    /* 00 */ Unk021450ec *mUnk_00;
-    /* 04 */ Unk0214461c *mUnk_04;
+    /* 00 */ WMDataSharingInfo *mUnk_00;
+    /* 04 */ WMDataSet *mUnk_04;
     /* 08 */ void *mUnk_08;
     /* 0c */ Unk0217aa00_15c8 *mUnk_0c;
     /* 10 */ s32 mSharedDataCopied[8];
@@ -646,8 +646,8 @@ typedef struct Unk0217aa00 {
     /* 045c */ Unk0217aa00_45c mUnk_045c[8];
     /* 15bc */ union {
         struct {
-            /* 15bc */ Unk021450ec *mUnk_15bc;
-            /* 15c0 */ Unk0214461c *mUnk_15c0;
+            /* 15bc */ WMDataSharingInfo *mUnk_15bc;
+            /* 15c0 */ WMDataSet *mUnk_15c0;
             /* 15c4 */ Unk0217aa00_15c4 *mUnk_15c4;
             /* 15c8 */ Unk0217aa00_15c8 *mUnk_15c8;
             /* 15cc */ s32 mUnk_15cc;
@@ -791,7 +791,7 @@ typedef struct Unk0217aa10 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ Unk0217aa10_08 mUnk_08[3];
-    /* 2c */ Unk020055f0 mUnk_2c;
+    /* 2c */ FSOverlayInfo mUnk_2c;
     /* 58 */ FSFile mUnk_58;
     /* a0 */ struct NNSiFndHeapHead *mUnk_a0;
     /* a4 */ void *mUnk_a4;

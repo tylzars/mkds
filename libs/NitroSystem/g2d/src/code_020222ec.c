@@ -102,7 +102,7 @@ static inline void MulMtx22(const s32 *mtx, const s32 *pSrc, s32 *pDst) {
     }
 }
 
-u16 NNS_G2dMakeCellToOams(Unk020224e0_o *pDstOams, u16 numDstOam, Unk020224e0_c *pCell, s32 *pMtxSR, s32 *pBaseTrans,
+u16 NNS_G2dMakeCellToOams(GXOamAttr *pDstOams, u16 numDstOam, Unk020224e0_c *pCell, s32 *pMtxSR, s32 *pBaseTrans,
                           u16 affineIndex, s32 bDoubleAffine) {
     u16 i;
     u16 numAttrs;
@@ -113,7 +113,7 @@ u16 NNS_G2dMakeCellToOams(Unk020224e0_o *pDstOams, u16 numDstOam, Unk020224e0_c 
     s32 sizeBits;
     s32 shape;
     s32 size;
-    Unk020224e0_o *dstOam;
+    GXOamAttr *dstOam;
     Unk020224e0_s *pSrcOam;
     s16 posX;
     s16 posY;

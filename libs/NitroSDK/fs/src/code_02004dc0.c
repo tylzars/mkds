@@ -31,38 +31,38 @@ u8 data_02161764[4] = "rom";
 u32 data_0216176c = 0x40;
 
 // Returns the size of the overlay image: the compressed size when the compressed flag is set, else the image size.
-s32 FSi_GetOverlayBinarySize(Unk020055f0 *info) {
+s32 FSi_GetOverlayBinarySize(FSOverlayInfo *info) {
     if (info->mUnk_1c.b[3] & 1) {
         return info->mUnk_1c.f.mUnk_00_0;
     }
-    return info->mUnk_08;
+    return info->mRamSize;
 }
 
 // Invalidates the caches over the overlay and zeroes its uninitialized part.
-void FS_ClearOverlayImage(Unk020055f0 *info) {
+void FS_ClearOverlayImage(FSOverlayInfo *info) {
     u8 *image;
     s32 imageSize;
     s32 totalSize;
 
-    imageSize = info->mUnk_08;
-    totalSize = imageSize + info->mUnk_0c;
-    image = info->mUnk_04;
+    imageSize = info->mRamSize;
+    totalSize = imageSize + info->mBssSize;
+    image = info->mRamAddress;
     IC_InvalidateRange(image, totalSize);
     DC_InvalidateRange(image, totalSize);
     MI_CpuFill8(image + imageSize, 0, totalSize - imageSize);
 }
 
 // Gives the archive and file number of an overlay.
-void FS_GetOverlayFileID(FSFileID *fileID, Unk020055f0 *info) {
+void FS_GetOverlayFileID(FSFileID *fileID, FSOverlayInfo *info) {
     FSFileID id;
 
     id.mArc = &data_0216f36c;
-    id.mFileId = info->mUnk_18;
+    id.mFileId = info->mFileId;
     *fileID = id;
 }
 
 // Reads an overlay entry from the overlay table in ROM, then looks up where its file lies.
-u32 FSi_LoadOverlayInfoCore(Unk020055f0 *info, u32 selector, u32 index, FSArchive *archive, u8 *base0, u32 size0,
+u32 FSi_LoadOverlayInfoCore(FSOverlayInfo *info, u32 selector, u32 index, FSArchive *archive, u8 *base0, u32 size0,
                             u8 *base1, u32 size1) {
     FSFile file;
     FSFileID fileID;
@@ -90,7 +90,7 @@ u32 FSi_LoadOverlayInfoCore(Unk020055f0 *info, u32 selector, u32 index, FSArchiv
         return 0;
     }
     FS_CloseFile(&file);
-    info->mUnk_20 = selector;
+    info->mTarget = selector;
     FS_GetOverlayFileID(&fileID, info);
     if (FS_OpenFileFast(&file, fileID) == 0) {
         return 0;
@@ -102,7 +102,7 @@ u32 FSi_LoadOverlayInfoCore(Unk020055f0 *info, u32 selector, u32 index, FSArchiv
 }
 
 // Fills in an overlay record from the attached overlay table, or from the ROM table when none is attached.
-u32 FS_LoadOverlayInfo(Unk020055f0 *info, u32 selector, u32 index) {
+u32 FS_LoadOverlayInfo(FSOverlayInfo *info, u32 selector, u32 index) {
     FSFile file;
     FSFileID fileID;
     Unk02005704 *table;
@@ -119,7 +119,7 @@ u32 FS_LoadOverlayInfo(Unk020055f0 *info, u32 selector, u32 index) {
             return 0;
         }
         MI_CpuCopy8(table->mUnk_00 + index * 32, info, 0x20);
-        info->mUnk_20 = selector;
+        info->mTarget = selector;
         FS_InitFile(&file);
         FS_GetOverlayFileID(&fileID, info);
         if (FS_OpenFileFast(&file, fileID) == 0) {
@@ -137,7 +137,7 @@ u32 FS_LoadOverlayInfo(Unk020055f0 *info, u32 selector, u32 index) {
 }
 
 // Starts reading an overlay image without waiting; the file stays open until the read ends.
-u32 FS_LoadOverlayImageAsync(Unk020055f0 *info, FSFile *file) {
+u32 FS_LoadOverlayImageAsync(FSOverlayInfo *info, FSFile *file) {
     FSFileID fileID;
     s32 size;
 
@@ -148,7 +148,7 @@ u32 FS_LoadOverlayImageAsync(Unk020055f0 *info, FSFile *file) {
     }
     size = FSi_GetOverlayBinarySize(info);
     FS_ClearOverlayImage(info);
-    if (size == FS_ReadFileAsync(file, info->mUnk_04, size)) {
+    if (size == FS_ReadFileAsync(file, info->mRamAddress, size)) {
         return 1;
     }
     FS_CloseFile(file);
@@ -156,7 +156,7 @@ u32 FS_LoadOverlayImageAsync(Unk020055f0 *info, FSFile *file) {
 }
 
 // Reads an overlay image into memory and waits for it.
-u32 FS_LoadOverlayImage(Unk020055f0 *info) {
+u32 FS_LoadOverlayImage(FSOverlayInfo *info) {
     FSFileID fileID;
     FSFile file;
     s32 size;
@@ -168,7 +168,7 @@ u32 FS_LoadOverlayImage(Unk020055f0 *info) {
     }
     size = FSi_GetOverlayBinarySize(info);
     FS_ClearOverlayImage(info);
-    if (size != FS_ReadFile(&file, info->mUnk_04, size)) {
+    if (size != FS_ReadFile(&file, info->mRamAddress, size)) {
         FS_CloseFile(&file);
         return 0;
     }
@@ -194,7 +194,7 @@ u32 FSi_CompareDigest(const u8 *expected, const u8 *data, u32 size) {
 }
 
 // Checks the overlay when authentication is required, flushes it and runs its initializers.
-void FS_StartOverlay(Unk020055f0 *info) {
+void FS_StartOverlay(FSOverlayInfo *info) {
     u32 size;
     u32 verified;
     void (**initFunc)(void);
@@ -204,22 +204,22 @@ void FS_StartOverlay(Unk020055f0 *info) {
     if (*(u16 *) 0x27ffc40 == 2) {
         verified = 0;
         if (info->mUnk_1c.b[3] & 2) {
-            if (info->mUnk_00 < ((u8 *) &data_0216f340 - (u8 *) OverlaySignatures) / 20) {
-                verified = FSi_CompareDigest(OverlaySignatures[info->mUnk_00], info->mUnk_04, size);
+            if (info->mId < ((u8 *) &data_0216f340 - (u8 *) OverlaySignatures) / 20) {
+                verified = FSi_CompareDigest(OverlaySignatures[info->mId], info->mRamAddress, size);
             }
         }
         if (verified == 0) {
-            MI_CpuFill8(info->mUnk_04, 0, size);
+            MI_CpuFill8(info->mRamAddress, 0, size);
             OS_Terminate();
             return;
         }
     }
     if (info->mUnk_1c.b[3] & 1) {
-        func_02000934(info->mUnk_04 + size);
+        func_02000934(info->mRamAddress + size);
     }
-    DC_FlushRange(info->mUnk_04, info->mUnk_08);
-    initFunc = info->mUnk_10;
-    initEnd = info->mUnk_14;
+    DC_FlushRange(info->mRamAddress, info->mRamSize);
+    initFunc = info->mSinitInit;
+    initEnd = info->mSinitInitEnd;
     if (initFunc >= initEnd) {
         return;
     }
@@ -232,7 +232,7 @@ void FS_StartOverlay(Unk020055f0 *info) {
 }
 
 // Runs and removes the end handlers whose function or object lies inside the overlay.
-void FS_EndOverlay(Unk020055f0 *info) {
+void FS_EndOverlay(FSOverlayInfo *info) {
     Unk02005210 *prev;
     Unk02005210 *base;
     Unk02005210 *cur;
@@ -246,8 +246,8 @@ void FS_EndOverlay(Unk020055f0 *info) {
     void *arg;
 
     for (;;) {
-        low = (u32) info->mUnk_04;
-        high = low + (info->mUnk_08 + info->mUnk_0c);
+        low = (u32) info->mRamAddress;
+        high = low + (info->mRamSize + info->mBssSize);
         first = 0;
         removedLast = 0;
         enabled = OS_DisableInterrupts();
@@ -295,14 +295,14 @@ void FS_EndOverlay(Unk020055f0 *info) {
 }
 
 // Ends the overlay.
-u32 FS_UnloadOverlayImage(Unk020055f0 *info) {
+u32 FS_UnloadOverlayImage(FSOverlayInfo *info) {
     FS_EndOverlay(info);
     return 1;
 }
 
 // Loads an overlay and starts it.
 u32 FS_LoadOverlay(u32 selector, u32 index) {
-    Unk020055f0 info;
+    FSOverlayInfo info;
 
     if (FS_LoadOverlayInfo(&info, selector, index) == 0 || FS_LoadOverlayImage(&info) == 0) {
         return 0;
@@ -313,7 +313,7 @@ u32 FS_LoadOverlay(u32 selector, u32 index) {
 
 // Ends a loaded overlay.
 u32 FS_UnloadOverlay(u32 selector, u32 index) {
-    Unk020055f0 info;
+    FSOverlayInfo info;
 
     if (FS_LoadOverlayInfo(&info, selector, index) == 0 || FS_UnloadOverlayImage(&info) == 0) {
         return 0;

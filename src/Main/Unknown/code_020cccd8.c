@@ -641,7 +641,7 @@ void DrawRaceHudSubScreenFlipperCells(Unk020c06c4 *a) {
             x4 = x->mDrawPos.mUnk_04;
             z[0] = x0 << 12;
             z[1] = x4 << 12;
-            a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[w], 0x80 - w, x8, v1, z, k, 1);
+            a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[w], 0x80 - w, x8, v1, z, k, 1);
             for (; w < a->mUnk_400; w++) {
                 if (h != -1) {
                     a->mUnk_000.mUnk_00[w].mUnk_0e = h;

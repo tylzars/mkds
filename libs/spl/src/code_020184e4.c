@@ -861,7 +861,7 @@ void SPLUtil_RotateY(s32 sinValue, s32 cosValue, MtxFx43 *mtx) {
     mtx->mUnk_00[3].z = 0;
 }
 
-void SPLDraw_Billboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
+void SPLDraw_Billboard(SPLManager *mgr, Unk0201e3c8 *ptcl) {
     Vec3 t;
     MtxFx43 m;
     s32 k;
@@ -879,14 +879,14 @@ void SPLDraw_Billboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
     u8 w;
     s32 h;
 
-    s = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_30;
-    q = mgr->mUnk_44;
-    w = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28;
+    s = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_30;
+    q = mgr->mRenderStateViewMatrix;
+    w = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28;
     h = ptcl->mUnk_34;
     c0 = ptcl->mUnk_36;
-    c1 = mgr->mUnk_40->mUnk_72;
+    c1 = mgr->mRenderStateEmitter->mUnk_72;
     k = (ptcl->mUnk_2e_0 * (ptcl->mUnk_2e_5 + 1)) >> 5;
-    reg_G3_POLYGON_ATTR = (ptcl->mUnk_2e_10 << 24) | (mgr->mUnk_3c | 0xc0) | (k << 16);
+    reg_G3_POLYGON_ATTR = (ptcl->mUnk_2e_10 << 24) | (mgr->mMiscPolygonAttr | 0xc0) | (k << 16);
     reg_G3_POLYGON_ATTR; // read back after the write
     if (k == 0) {
         return;
@@ -901,7 +901,7 @@ void SPLDraw_Billboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
     } else {
         f1 = ((s64) f1 * h + 0x800) >> 12;
     }
-    if (mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23 == 0) {
+    if (mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23 == 0) {
         t.x = ptcl->mUnk_08.x + ptcl->mUnk_38.x;
         t.y = ptcl->mUnk_08.y + ptcl->mUnk_38.y;
         t.z = ptcl->mUnk_08.z + ptcl->mUnk_38.z;
@@ -923,9 +923,9 @@ void SPLDraw_Billboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
         reg_G3_MTX_IDENTITY = 0;
         G3_MultMtx43(&m);
     } else {
-        t.x = ptcl->mUnk_08.x + ptcl->mUnk_38.x - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
-        t.y = ptcl->mUnk_08.y + ptcl->mUnk_38.y - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
-        t.z = ptcl->mUnk_08.z + ptcl->mUnk_38.z - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
+        t.x = ptcl->mUnk_08.x + ptcl->mUnk_38.x - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.x;
+        t.y = ptcl->mUnk_08.y + ptcl->mUnk_38.y - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.y;
+        t.z = ptcl->mUnk_08.z + ptcl->mUnk_38.z - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.z;
         MTX_MultVec43(&t, q, &t);
         t0 = gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2];
         t1 = gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2 + 1];
@@ -942,9 +942,9 @@ void SPLDraw_Billboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
         m.mUnk_00[3].y = t.y;
         m.mUnk_00[3].z = t.z;
         reg_G3_MTX_IDENTITY = 0;
-        z = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
-        y = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
-        x = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
+        z = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.z;
+        y = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.y;
+        x = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.x;
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
@@ -952,11 +952,12 @@ void SPLDraw_Billboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
     }
     reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
                           ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
-    SPLUtil_DrawXYPlane(mgr->mUnk_40->mUnk_78, mgr->mUnk_40->mUnk_7a, mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_50,
-                        mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_52);
+    SPLUtil_DrawXYPlane(mgr->mRenderStateEmitter->mUnk_78, mgr->mRenderStateEmitter->mUnk_7a,
+                        mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_50,
+                        mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_52);
 }
 
-void SPLDraw_Child_Billboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
+void SPLDraw_Child_Billboard(SPLManager *mgr, Unk0201e3c8 *ptcl) {
     Vec3 t;
     MtxFx43 m;
     s32 k;
@@ -972,17 +973,17 @@ void SPLDraw_Child_Billboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
     s32 s;
     MtxFx43 *q;
 
-    s = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_30;
-    q = mgr->mUnk_44;
+    s = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_30;
+    q = mgr->mRenderStateViewMatrix;
     k = (ptcl->mUnk_2e_0 * (ptcl->mUnk_2e_5 + 1)) >> 5;
-    reg_G3_POLYGON_ATTR = (ptcl->mUnk_2e_10 << 24) | (mgr->mUnk_3c | 0xc0) | (k << 16);
+    reg_G3_POLYGON_ATTR = (ptcl->mUnk_2e_10 << 24) | (mgr->mMiscPolygonAttr | 0xc0) | (k << 16);
     reg_G3_POLYGON_ATTR; // read back after the write
     if (k == 0) {
         return;
     }
     f1 = ptcl->mUnk_30;
     f0 = ((s64) f1 * s + 0x800) >> 12;
-    switch (mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
+    switch (mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
         case 0:
             f0 = ((s64) f0 * ptcl->mUnk_34 + 0x800) >> 12;
             f1 = ((s64) f1 * ptcl->mUnk_34 + 0x800) >> 12;
@@ -994,7 +995,7 @@ void SPLDraw_Child_Billboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
             f1 = ((s64) f1 * ptcl->mUnk_34 + 0x800) >> 12;
             break;
     }
-    if (mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23 == 0) {
+    if (mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23 == 0) {
         t.x = ptcl->mUnk_08.x + ptcl->mUnk_38.x;
         t.y = ptcl->mUnk_08.y + ptcl->mUnk_38.y;
         t.z = ptcl->mUnk_08.z + ptcl->mUnk_38.z;
@@ -1016,9 +1017,9 @@ void SPLDraw_Child_Billboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
         reg_G3_MTX_IDENTITY = 0;
         G3_MultMtx43(&m);
     } else {
-        t.x = ptcl->mUnk_08.x + ptcl->mUnk_38.x - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
-        t.y = ptcl->mUnk_08.y + ptcl->mUnk_38.y - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
-        t.z = ptcl->mUnk_08.z + ptcl->mUnk_38.z - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
+        t.x = ptcl->mUnk_08.x + ptcl->mUnk_38.x - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.x;
+        t.y = ptcl->mUnk_08.y + ptcl->mUnk_38.y - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.y;
+        t.z = ptcl->mUnk_08.z + ptcl->mUnk_38.z - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.z;
         MTX_MultVec43(&t, q, &t);
         t0 = gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2];
         t1 = gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2 + 1];
@@ -1035,22 +1036,22 @@ void SPLDraw_Child_Billboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
         m.mUnk_00[3].y = t.y;
         m.mUnk_00[3].z = t.z;
         reg_G3_MTX_IDENTITY = 0;
-        z = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
-        y = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
-        x = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
+        z = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.z;
+        y = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.y;
+        x = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.x;
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
         G3_MultMtx43(&m);
     }
     c0 = ptcl->mUnk_36;
-    c1 = mgr->mUnk_40->mUnk_72;
+    c1 = mgr->mRenderStateEmitter->mUnk_72;
     reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
                           ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
-    SPLUtil_DrawXYPlane(mgr->mUnk_40->mUnk_7c, mgr->mUnk_40->mUnk_7e, 0, 0);
+    SPLUtil_DrawXYPlane(mgr->mRenderStateEmitter->mUnk_7c, mgr->mRenderStateEmitter->mUnk_7e, 0, 0);
 }
 
-void SPLDraw_DirectionalBillboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
+void SPLDraw_DirectionalBillboard(SPLManager *mgr, Unk0201e3c8 *ptcl) {
     Vec3 c;
     Vec3 pos;
     Vec3 v;
@@ -1071,17 +1072,17 @@ void SPLDraw_DirectionalBillboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
     s32 j;
     s32 n;
 
-    m = mgr->mUnk_44;
-    s = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_30;
+    m = mgr->mRenderStateViewMatrix;
+    s = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_30;
     a = (ptcl->mUnk_2e_0 * (ptcl->mUnk_2e_5 + 1)) >> 5;
-    reg_G3_POLYGON_ATTR = (ptcl->mUnk_2e_10 << 24) | (mgr->mUnk_3c | 0xc0) | (a << 16);
+    reg_G3_POLYGON_ATTR = (ptcl->mUnk_2e_10 << 24) | (mgr->mMiscPolygonAttr | 0xc0) | (a << 16);
     reg_G3_POLYGON_ATTR; // read back after the write
     if (a == 0) {
         return;
     }
     w = ptcl->mUnk_30;
     h = ((s64) w * s + 0x800) >> 12;
-    switch (mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
+    switch (mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
         case 0:
             h = ((s64) h * ptcl->mUnk_34 + 0x800) >> 12;
             w = ((s64) w * ptcl->mUnk_34 + 0x800) >> 12;
@@ -1093,7 +1094,7 @@ void SPLDraw_DirectionalBillboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
             w = ((s64) w * ptcl->mUnk_34 + 0x800) >> 12;
             break;
     }
-    if (!mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23) {
+    if (!mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23) {
         pos.x = ptcl->mUnk_08.x + ptcl->mUnk_38.x;
         pos.y = ptcl->mUnk_08.y + ptcl->mUnk_38.y;
         pos.z = ptcl->mUnk_08.z + ptcl->mUnk_38.z;
@@ -1116,7 +1117,7 @@ void SPLDraw_DirectionalBillboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
         if (t < 0) {
             t = -t;
         }
-        u = ((s64) (0x1000 - t) * (s32) mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_8 + 0x800) >> 12;
+        u = ((s64) (0x1000 - t) * (s32) mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_48.mUnk_00_8 + 0x800) >> 12;
         x = ((s64) w * (u + 0x1000) + 0x800) >> 12;
         buf[0] = ((s64) v.x * h + 0x800) >> 12;
         buf[3] = ((s64) -v.y * x + 0x800) >> 12;
@@ -1133,9 +1134,9 @@ void SPLDraw_DirectionalBillboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
         reg_G3_MTX_IDENTITY = 0;
         G3_MultMtx43(buf);
     } else {
-        pos.x = ptcl->mUnk_08.x + ptcl->mUnk_38.x - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
-        pos.y = ptcl->mUnk_08.y + ptcl->mUnk_38.y - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
-        pos.z = ptcl->mUnk_08.z + ptcl->mUnk_38.z - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
+        pos.x = ptcl->mUnk_08.x + ptcl->mUnk_38.x - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.x;
+        pos.y = ptcl->mUnk_08.y + ptcl->mUnk_38.y - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.y;
+        pos.z = ptcl->mUnk_08.z + ptcl->mUnk_38.z - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.z;
         v = ptcl->mUnk_14;
         col.x = m->mUnk_00[0].z;
         col.y = m->mUnk_00[1].z;
@@ -1155,7 +1156,7 @@ void SPLDraw_DirectionalBillboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
         if (t < 0) {
             t = -t;
         }
-        u = ((s64) (0x1000 - t) * (s32) mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_8 + 0x800) >> 12;
+        u = ((s64) (0x1000 - t) * (s32) mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_48.mUnk_00_8 + 0x800) >> 12;
         x = ((s64) w * (u + 0x1000) + 0x800) >> 12;
         buf[0] = ((s64) v.x * h + 0x800) >> 12;
         buf[3] = ((s64) -v.y * x + 0x800) >> 12;
@@ -1170,23 +1171,24 @@ void SPLDraw_DirectionalBillboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
         buf[8] = 0x1000;
         buf[11] = pos.z;
         reg_G3_MTX_IDENTITY = 0;
-        n = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
-        j = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
-        i = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
+        n = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.z;
+        j = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.y;
+        i = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.x;
         reg_G3_MTX_TRANS = i;
         reg_G3_MTX_TRANS = j;
         reg_G3_MTX_TRANS = n;
         G3_MultMtx43(buf);
     }
     q = ptcl->mUnk_36;
-    k = mgr->mUnk_40->mUnk_72;
+    k = mgr->mRenderStateEmitter->mUnk_72;
     reg_G3_COLOR = (u16) ((((q & 0x1f) * (k & 0x1f)) >> 5) | ((((q & 0x3e0) * (k & 0x3e0)) >> 15) << 5) |
                           ((((q & 0x7c00) * (k & 0x7c00)) >> 25) << 10));
-    SPLUtil_DrawXYPlane(mgr->mUnk_40->mUnk_78, mgr->mUnk_40->mUnk_7a, mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_50,
-                        mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_52);
+    SPLUtil_DrawXYPlane(mgr->mRenderStateEmitter->mUnk_78, mgr->mRenderStateEmitter->mUnk_7a,
+                        mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_50,
+                        mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_52);
 }
 
-void SPLDraw_Child_DirectionalBillboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
+void SPLDraw_Child_DirectionalBillboard(SPLManager *mgr, Unk0201e3c8 *ptcl) {
     Vec3 c;
     Vec3 pos;
     Vec3 v;
@@ -1207,17 +1209,17 @@ void SPLDraw_Child_DirectionalBillboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
     s32 j;
     s32 n;
 
-    m = mgr->mUnk_44;
-    s = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_30;
+    m = mgr->mRenderStateViewMatrix;
+    s = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_30;
     a = (ptcl->mUnk_2e_0 * (ptcl->mUnk_2e_5 + 1)) >> 5;
-    reg_G3_POLYGON_ATTR = (ptcl->mUnk_2e_10 << 24) | (mgr->mUnk_3c | 0xc0) | (a << 16);
+    reg_G3_POLYGON_ATTR = (ptcl->mUnk_2e_10 << 24) | (mgr->mMiscPolygonAttr | 0xc0) | (a << 16);
     reg_G3_POLYGON_ATTR; // read back after the write
     if (a == 0) {
         return;
     }
     w = ptcl->mUnk_30;
     h = ((s64) w * s + 0x800) >> 12;
-    switch (mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
+    switch (mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
         case 0:
             h = ((s64) h * ptcl->mUnk_34 + 0x800) >> 12;
             w = ((s64) w * ptcl->mUnk_34 + 0x800) >> 12;
@@ -1229,7 +1231,7 @@ void SPLDraw_Child_DirectionalBillboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
             w = ((s64) w * ptcl->mUnk_34 + 0x800) >> 12;
             break;
     }
-    if (!mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23) {
+    if (!mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23) {
         pos.x = ptcl->mUnk_08.x + ptcl->mUnk_38.x;
         pos.y = ptcl->mUnk_08.y + ptcl->mUnk_38.y;
         pos.z = ptcl->mUnk_08.z + ptcl->mUnk_38.z;
@@ -1252,7 +1254,7 @@ void SPLDraw_Child_DirectionalBillboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
         if (t < 0) {
             t = -t;
         }
-        u = ((s64) (0x1000 - t) * (s32) mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_8 + 0x800) >> 12;
+        u = ((s64) (0x1000 - t) * (s32) mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_48.mUnk_00_8 + 0x800) >> 12;
         x = ((s64) w * (u + 0x1000) + 0x800) >> 12;
         buf[0] = ((s64) v.x * h + 0x800) >> 12;
         buf[3] = ((s64) -v.y * x + 0x800) >> 12;
@@ -1269,9 +1271,9 @@ void SPLDraw_Child_DirectionalBillboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
         reg_G3_MTX_IDENTITY = 0;
         G3_MultMtx43(buf);
     } else {
-        pos.x = ptcl->mUnk_08.x + ptcl->mUnk_38.x - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
-        pos.y = ptcl->mUnk_08.y + ptcl->mUnk_38.y - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
-        pos.z = ptcl->mUnk_08.z + ptcl->mUnk_38.z - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
+        pos.x = ptcl->mUnk_08.x + ptcl->mUnk_38.x - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.x;
+        pos.y = ptcl->mUnk_08.y + ptcl->mUnk_38.y - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.y;
+        pos.z = ptcl->mUnk_08.z + ptcl->mUnk_38.z - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.z;
         v = ptcl->mUnk_14;
         col.x = m->mUnk_00[0].z;
         col.y = m->mUnk_00[1].z;
@@ -1291,7 +1293,7 @@ void SPLDraw_Child_DirectionalBillboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
         if (t < 0) {
             t = -t;
         }
-        u = ((s64) (0x1000 - t) * (s32) mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_8 + 0x800) >> 12;
+        u = ((s64) (0x1000 - t) * (s32) mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_48.mUnk_00_8 + 0x800) >> 12;
         x = ((s64) w * (u + 0x1000) + 0x800) >> 12;
         buf[0] = ((s64) v.x * h + 0x800) >> 12;
         buf[3] = ((s64) -v.y * x + 0x800) >> 12;
@@ -1306,22 +1308,22 @@ void SPLDraw_Child_DirectionalBillboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
         buf[8] = 0x1000;
         buf[11] = pos.z;
         reg_G3_MTX_IDENTITY = 0;
-        n = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
-        j = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
-        i = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
+        n = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.z;
+        j = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.y;
+        i = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.x;
         reg_G3_MTX_TRANS = i;
         reg_G3_MTX_TRANS = j;
         reg_G3_MTX_TRANS = n;
         G3_MultMtx43(buf);
     }
     q = ptcl->mUnk_36;
-    k = mgr->mUnk_40->mUnk_72;
+    k = mgr->mRenderStateEmitter->mUnk_72;
     reg_G3_COLOR = (u16) ((((q & 0x1f) * (k & 0x1f)) >> 5) | ((((q & 0x3e0) * (k & 0x3e0)) >> 15) << 5) |
                           ((((q & 0x7c00) * (k & 0x7c00)) >> 25) << 10));
-    SPLUtil_DrawXYPlane(mgr->mUnk_40->mUnk_7c, mgr->mUnk_40->mUnk_7e, 0, 0);
+    SPLUtil_DrawXYPlane(mgr->mRenderStateEmitter->mUnk_7c, mgr->mRenderStateEmitter->mUnk_7e, 0, 0);
 }
 
-void SPLDraw_Polygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
+void SPLDraw_Polygon(SPLManager *mgr, Unk0201e3c8 *ptcl) {
     MtxFx43 a;
     MtxFx43 b;
     MtxFx43 c;
@@ -1335,16 +1337,16 @@ void SPLDraw_Polygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
     s32 z;
 
     k = (ptcl->mUnk_2e_0 * (ptcl->mUnk_2e_5 + 1)) >> 5;
-    reg_G3_POLYGON_ATTR = (ptcl->mUnk_2e_10 << 24) | (mgr->mUnk_3c | 0xc0) | (k << 16);
+    reg_G3_POLYGON_ATTR = (ptcl->mUnk_2e_10 << 24) | (mgr->mMiscPolygonAttr | 0xc0) | (k << 16);
     reg_G3_POLYGON_ATTR; // read back after the write
     if (k == 0) {
         return;
     }
-    data_02161ac8[mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_17](gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2],
-                                                                      gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2 + 1], &b);
+    data_02161ac8[mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_00.mUnk_00_17](
+        gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2], gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2 + 1], &b);
     f1 = ptcl->mUnk_30;
-    f0 = ((s64) f1 * mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_30 + 0x800) >> 12;
-    switch (mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
+    f0 = ((s64) f1 * mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_30 + 0x800) >> 12;
+    switch (mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
         case 0:
             f0 = ((s64) f0 * ptcl->mUnk_34 + 0x800) >> 12;
             f1 = ((s64) f1 * ptcl->mUnk_34 + 0x800) >> 12;
@@ -1358,36 +1360,36 @@ void SPLDraw_Polygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
     }
     MTX_Scale43_(&c, f0, f1, f1);
     MTX_Concat43(&c, &b, &a);
-    if (mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23 == 0) {
+    if (mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23 == 0) {
         a.mUnk_00[3].x = ptcl->mUnk_08.x + ptcl->mUnk_38.x;
         a.mUnk_00[3].y = ptcl->mUnk_08.y + ptcl->mUnk_38.y;
         a.mUnk_00[3].z = ptcl->mUnk_08.z + ptcl->mUnk_38.z;
-        G3_LoadMtx43(mgr->mUnk_44);
+        G3_LoadMtx43(mgr->mRenderStateViewMatrix);
         G3_MultMtx43(&a);
     } else {
-        a.mUnk_00[3].x = ptcl->mUnk_08.x + ptcl->mUnk_38.x - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
-        a.mUnk_00[3].y = ptcl->mUnk_08.y + ptcl->mUnk_38.y - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
-        a.mUnk_00[3].z = ptcl->mUnk_08.z + ptcl->mUnk_38.z - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
+        a.mUnk_00[3].x = ptcl->mUnk_08.x + ptcl->mUnk_38.x - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.x;
+        a.mUnk_00[3].y = ptcl->mUnk_08.y + ptcl->mUnk_38.y - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.y;
+        a.mUnk_00[3].z = ptcl->mUnk_08.z + ptcl->mUnk_38.z - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.z;
         reg_G3_MTX_IDENTITY = 0;
-        z = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
-        y = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
-        x = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
+        z = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.z;
+        y = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.y;
+        x = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.x;
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
-        G3_MultMtx43(mgr->mUnk_44);
+        G3_MultMtx43(mgr->mRenderStateViewMatrix);
         G3_MultMtx43(&a);
     }
     c0 = ptcl->mUnk_36;
-    c1 = mgr->mUnk_40->mUnk_72;
+    c1 = mgr->mRenderStateEmitter->mUnk_72;
     reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
                           ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
-    data_02161ac0[mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_19](mgr->mUnk_40->mUnk_78, mgr->mUnk_40->mUnk_7a,
-                                                                      mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_50,
-                                                                      mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_52);
+    data_02161ac0[mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_00.mUnk_00_19](
+        mgr->mRenderStateEmitter->mUnk_78, mgr->mRenderStateEmitter->mUnk_7a,
+        mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_50, mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_52);
 }
 
-void SPLDraw_Child_Polygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
+void SPLDraw_Child_Polygon(SPLManager *mgr, Unk0201e3c8 *ptcl) {
     MtxFx43 a;
     MtxFx43 b;
     MtxFx43 c;
@@ -1401,16 +1403,16 @@ void SPLDraw_Child_Polygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
     s32 z;
 
     k = (ptcl->mUnk_2e_0 * (ptcl->mUnk_2e_5 + 1)) >> 5;
-    reg_G3_POLYGON_ATTR = (ptcl->mUnk_2e_10 << 24) | (mgr->mUnk_3c | 0xc0) | (k << 16);
+    reg_G3_POLYGON_ATTR = (ptcl->mUnk_2e_10 << 24) | (mgr->mMiscPolygonAttr | 0xc0) | (k << 16);
     reg_G3_POLYGON_ATTR; // read back after the write
     if (k == 0) {
         return;
     }
-    data_02161ac8[mgr->mUnk_40->mUnk_20->mUnk_14->mUnk_00_9](gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2],
-                                                             gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2 + 1], &b);
+    data_02161ac8[mgr->mRenderStateEmitter->mUnk_20->mUnk_14->mUnk_00_9](
+        gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2], gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2 + 1], &b);
     f1 = ptcl->mUnk_30;
-    f0 = ((s64) f1 * mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_30 + 0x800) >> 12;
-    switch (mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
+    f0 = ((s64) f1 * mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_30 + 0x800) >> 12;
+    switch (mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
         case 0:
             f0 = ((s64) f0 * ptcl->mUnk_34 + 0x800) >> 12;
             f1 = ((s64) f1 * ptcl->mUnk_34 + 0x800) >> 12;
@@ -1424,34 +1426,35 @@ void SPLDraw_Child_Polygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
     }
     MTX_Scale43_(&c, f0, f1, f1);
     MTX_Concat43(&b, &c, &a);
-    if (mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23 == 0) {
+    if (mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23 == 0) {
         a.mUnk_00[3].x = ptcl->mUnk_08.x + ptcl->mUnk_38.x;
         a.mUnk_00[3].y = ptcl->mUnk_08.y + ptcl->mUnk_38.y;
         a.mUnk_00[3].z = ptcl->mUnk_08.z + ptcl->mUnk_38.z;
-        G3_LoadMtx43(mgr->mUnk_44);
+        G3_LoadMtx43(mgr->mRenderStateViewMatrix);
         G3_MultMtx43(&a);
     } else {
-        a.mUnk_00[3].x = ptcl->mUnk_08.x + ptcl->mUnk_38.x - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
-        a.mUnk_00[3].y = ptcl->mUnk_08.y + ptcl->mUnk_38.y - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
-        a.mUnk_00[3].z = ptcl->mUnk_08.z + ptcl->mUnk_38.z - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
+        a.mUnk_00[3].x = ptcl->mUnk_08.x + ptcl->mUnk_38.x - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.x;
+        a.mUnk_00[3].y = ptcl->mUnk_08.y + ptcl->mUnk_38.y - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.y;
+        a.mUnk_00[3].z = ptcl->mUnk_08.z + ptcl->mUnk_38.z - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.z;
         reg_G3_MTX_IDENTITY = 0;
-        z = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
-        y = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
-        x = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
+        z = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.z;
+        y = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.y;
+        x = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.x;
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
-        G3_MultMtx43(mgr->mUnk_44);
+        G3_MultMtx43(mgr->mRenderStateViewMatrix);
         G3_MultMtx43(&a);
     }
     c0 = ptcl->mUnk_36;
-    c1 = mgr->mUnk_40->mUnk_72;
+    c1 = mgr->mRenderStateEmitter->mUnk_72;
     reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
                           ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
-    data_02161ac0[mgr->mUnk_40->mUnk_20->mUnk_14->mUnk_00_11](mgr->mUnk_40->mUnk_7c, mgr->mUnk_40->mUnk_7e, 0, 0);
+    data_02161ac0[mgr->mRenderStateEmitter->mUnk_20->mUnk_14->mUnk_00_11](mgr->mRenderStateEmitter->mUnk_7c,
+                                                                          mgr->mRenderStateEmitter->mUnk_7e, 0, 0);
 }
 
-void SPLDraw_DirectionalPolygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
+void SPLDraw_DirectionalPolygon(SPLManager *mgr, Unk0201e3c8 *ptcl) {
     MtxFx43 a;
     MtxFx43 b;
     MtxFx43 c;
@@ -1471,15 +1474,15 @@ void SPLDraw_DirectionalPolygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
     s32 z;
 
     k = (ptcl->mUnk_2e_0 * (ptcl->mUnk_2e_5 + 1)) >> 5;
-    reg_G3_POLYGON_ATTR = (ptcl->mUnk_2e_10 << 24) | (mgr->mUnk_3c | 0xc0) | (k << 16);
+    reg_G3_POLYGON_ATTR = (ptcl->mUnk_2e_10 << 24) | (mgr->mMiscPolygonAttr | 0xc0) | (k << 16);
     reg_G3_POLYGON_ATTR; // read back after the write
     if (k == 0) {
         return;
     }
-    data_02161ac8[mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_17](gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2],
-                                                                      gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2 + 1], &b);
+    data_02161ac8[mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_00.mUnk_00_17](
+        gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2], gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2 + 1], &b);
     MTX_Identity43_(&d);
-    if (mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_31 == 0) {
+    if (mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_48.mUnk_00_31 == 0) {
         VEC_Normalize(&ptcl->mUnk_14, &v);
     } else {
         VEC_Normalize(&ptcl->mUnk_08, &v);
@@ -1509,8 +1512,8 @@ void SPLDraw_DirectionalPolygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
     d.mUnk_00[2].z = w.z;
     MTX_Concat43(&b, &d, &b);
     f1 = ptcl->mUnk_30;
-    f0 = ((s64) f1 * mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_30 + 0x800) >> 12;
-    switch (mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
+    f0 = ((s64) f1 * mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_30 + 0x800) >> 12;
+    switch (mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
         case 0:
             f0 = ((s64) f0 * ptcl->mUnk_34 + 0x800) >> 12;
             f1 = ((s64) f1 * ptcl->mUnk_34 + 0x800) >> 12;
@@ -1524,36 +1527,36 @@ void SPLDraw_DirectionalPolygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
     }
     MTX_Scale43_(&c, f0, f1, f1);
     MTX_Concat43(&c, &b, &a);
-    if (mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23 == 0) {
+    if (mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23 == 0) {
         a.mUnk_00[3].x = ptcl->mUnk_08.x + ptcl->mUnk_38.x;
         a.mUnk_00[3].y = ptcl->mUnk_08.y + ptcl->mUnk_38.y;
         a.mUnk_00[3].z = ptcl->mUnk_08.z + ptcl->mUnk_38.z;
-        G3_LoadMtx43(mgr->mUnk_44);
+        G3_LoadMtx43(mgr->mRenderStateViewMatrix);
         G3_MultMtx43(&a);
     } else {
-        a.mUnk_00[3].x = ptcl->mUnk_08.x + ptcl->mUnk_38.x - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
-        a.mUnk_00[3].y = ptcl->mUnk_08.y + ptcl->mUnk_38.y - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
-        a.mUnk_00[3].z = ptcl->mUnk_08.z + ptcl->mUnk_38.z - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
+        a.mUnk_00[3].x = ptcl->mUnk_08.x + ptcl->mUnk_38.x - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.x;
+        a.mUnk_00[3].y = ptcl->mUnk_08.y + ptcl->mUnk_38.y - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.y;
+        a.mUnk_00[3].z = ptcl->mUnk_08.z + ptcl->mUnk_38.z - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.z;
         reg_G3_MTX_IDENTITY = 0;
-        z = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
-        y = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
-        x = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
+        z = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.z;
+        y = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.y;
+        x = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.x;
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
-        G3_MultMtx43(mgr->mUnk_44);
+        G3_MultMtx43(mgr->mRenderStateViewMatrix);
         G3_MultMtx43(&a);
     }
     c0 = ptcl->mUnk_36;
-    c1 = mgr->mUnk_40->mUnk_72;
+    c1 = mgr->mRenderStateEmitter->mUnk_72;
     reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
                           ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
-    data_02161ac0[mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_19](mgr->mUnk_40->mUnk_78, mgr->mUnk_40->mUnk_7a,
-                                                                      mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_50,
-                                                                      mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_52);
+    data_02161ac0[mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_00.mUnk_00_19](
+        mgr->mRenderStateEmitter->mUnk_78, mgr->mRenderStateEmitter->mUnk_7a,
+        mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_50, mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_52);
 }
 
-void SPLDraw_Child_DirectionalPolygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
+void SPLDraw_Child_DirectionalPolygon(SPLManager *mgr, Unk0201e3c8 *ptcl) {
     MtxFx43 a;
     MtxFx43 b;
     MtxFx43 c;
@@ -1573,15 +1576,15 @@ void SPLDraw_Child_DirectionalPolygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
     s32 z;
 
     k = (ptcl->mUnk_2e_0 * (ptcl->mUnk_2e_5 + 1)) >> 5;
-    reg_G3_POLYGON_ATTR = (ptcl->mUnk_2e_10 << 24) | (mgr->mUnk_3c | 0xc0) | (k << 16);
+    reg_G3_POLYGON_ATTR = (ptcl->mUnk_2e_10 << 24) | (mgr->mMiscPolygonAttr | 0xc0) | (k << 16);
     reg_G3_POLYGON_ATTR; // read back after the write
     if (k == 0) {
         return;
     }
-    data_02161ac8[mgr->mUnk_40->mUnk_20->mUnk_14->mUnk_00_9](gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2],
-                                                             gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2 + 1], &b);
+    data_02161ac8[mgr->mRenderStateEmitter->mUnk_20->mUnk_14->mUnk_00_9](
+        gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2], gPairsByAngle[(ptcl->mUnk_20 >> 4) * 2 + 1], &b);
     MTX_Identity43_(&d);
-    if (mgr->mUnk_40->mUnk_20->mUnk_14->mUnk_10.mUnk_00_6 == 0) {
+    if (mgr->mRenderStateEmitter->mUnk_20->mUnk_14->mUnk_10.mUnk_00_6 == 0) {
         VEC_Normalize(&ptcl->mUnk_14, &v);
     } else {
         VEC_Normalize(&ptcl->mUnk_08, &v);
@@ -1611,8 +1614,8 @@ void SPLDraw_Child_DirectionalPolygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
     d.mUnk_00[2].z = w.z;
     MTX_Concat43(&b, &d, &b);
     f1 = ptcl->mUnk_30;
-    f0 = ((s64) f1 * mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_30 + 0x800) >> 12;
-    switch (mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
+    f0 = ((s64) f1 * mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_30 + 0x800) >> 12;
+    switch (mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_48.mUnk_00_28) {
         case 0:
             f0 = ((s64) f0 * ptcl->mUnk_34 + 0x800) >> 12;
             f1 = ((s64) f1 * ptcl->mUnk_34 + 0x800) >> 12;
@@ -1626,31 +1629,32 @@ void SPLDraw_Child_DirectionalPolygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl) {
     }
     MTX_Scale43_(&c, f0, f1, f1);
     MTX_Concat43(&b, &c, &a);
-    if (mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23 == 0) {
+    if (mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_00.mUnk_00_23 == 0) {
         a.mUnk_00[3].x = ptcl->mUnk_08.x + ptcl->mUnk_38.x;
         a.mUnk_00[3].y = ptcl->mUnk_08.y + ptcl->mUnk_38.y;
         a.mUnk_00[3].z = ptcl->mUnk_08.z + ptcl->mUnk_38.z;
-        G3_LoadMtx43(mgr->mUnk_44);
+        G3_LoadMtx43(mgr->mRenderStateViewMatrix);
         G3_MultMtx43(&a);
     } else {
-        a.mUnk_00[3].x = ptcl->mUnk_08.x + ptcl->mUnk_38.x - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
-        a.mUnk_00[3].y = ptcl->mUnk_08.y + ptcl->mUnk_38.y - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
-        a.mUnk_00[3].z = ptcl->mUnk_08.z + ptcl->mUnk_38.z - mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
+        a.mUnk_00[3].x = ptcl->mUnk_08.x + ptcl->mUnk_38.x - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.x;
+        a.mUnk_00[3].y = ptcl->mUnk_08.y + ptcl->mUnk_38.y - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.y;
+        a.mUnk_00[3].z = ptcl->mUnk_08.z + ptcl->mUnk_38.z - mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.z;
         reg_G3_MTX_IDENTITY = 0;
-        z = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.z;
-        y = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
-        x = mgr->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
+        z = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.z;
+        y = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.y;
+        x = mgr->mRenderStateEmitter->mUnk_20->mUnk_00->mUnk_04.x;
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
-        G3_MultMtx43(mgr->mUnk_44);
+        G3_MultMtx43(mgr->mRenderStateViewMatrix);
         G3_MultMtx43(&a);
     }
     c0 = ptcl->mUnk_36;
-    c1 = mgr->mUnk_40->mUnk_72;
+    c1 = mgr->mRenderStateEmitter->mUnk_72;
     reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
                           ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
-    data_02161ac0[mgr->mUnk_40->mUnk_20->mUnk_14->mUnk_00_11](mgr->mUnk_40->mUnk_7c, mgr->mUnk_40->mUnk_7e, 0, 0);
+    data_02161ac0[mgr->mRenderStateEmitter->mUnk_20->mUnk_14->mUnk_00_11](mgr->mRenderStateEmitter->mUnk_7c,
+                                                                          mgr->mRenderStateEmitter->mUnk_7e, 0, 0);
 }
 
 typedef enum { UNK_02019DF8_KIND_0 } Unk02019df8_Kind;
@@ -1737,7 +1741,7 @@ void SPLEmitter_Init(Unk0201ca6c *emtr, Unk0201ca6c_20 *res, Vec3 *pos) {
     emtr->mUnk_98 = 0;
 }
 
-void SPLEmitter_Update(Unk020184e4 *mgr, Unk0201ca6c *emtr) {
+void SPLEmitter_Update(SPLManager *mgr, Unk0201ca6c *emtr) {
     Unk0201ca6c_20 *c;
     s32 cnt;
     Unk0201e3c8 *n0;
@@ -1821,12 +1825,12 @@ void SPLEmitter_Update(Unk020184e4 *mgr, Unk0201ca6c *emtr) {
             }
         }
         if (emtr->mUnk_20->mUnk_00->mUnk_00.mUnk_00_30) {
-            n0->mUnk_2e_10 = mgr->mUnk_38_18;
+            n0->mUnk_2e_10 = mgr->mPolygonIDFix;
         } else {
-            n0->mUnk_2e_10 = mgr->mUnk_38_12;
-            mgr->mUnk_38_12++;
-            if (mgr->mUnk_38_12 > mgr->mUnk_38_6) {
-                mgr->mUnk_38_12 = mgr->mUnk_38_0;
+            n0->mUnk_2e_10 = mgr->mPolygonIDCurrent;
+            mgr->mPolygonIDCurrent++;
+            if (mgr->mPolygonIDCurrent > mgr->mPolygonIDMax) {
+                mgr->mPolygonIDCurrent = mgr->mPolygonIDMin;
             }
         }
         n0->mUnk_26++;
@@ -1872,12 +1876,12 @@ void SPLEmitter_Update(Unk020184e4 *mgr, Unk0201ca6c *emtr) {
             n0->mUnk_08.y += n0->mUnk_14.y + emtr->mUnk_34.y;
             n0->mUnk_08.z += n0->mUnk_14.z + emtr->mUnk_34.z;
             if (emtr->mUnk_20->mUnk_00->mUnk_00.mUnk_00_31) {
-                n0->mUnk_2e_10 = mgr->mUnk_38_18;
+                n0->mUnk_2e_10 = mgr->mPolygonIDFix;
             } else {
-                n0->mUnk_2e_10 = mgr->mUnk_38_12;
-                mgr->mUnk_38_12++;
-                if (mgr->mUnk_38_12 > mgr->mUnk_38_6) {
-                    mgr->mUnk_38_12 = mgr->mUnk_38_0;
+                n0->mUnk_2e_10 = mgr->mPolygonIDCurrent;
+                mgr->mPolygonIDCurrent++;
+                if (mgr->mPolygonIDCurrent > mgr->mPolygonIDMax) {
+                    mgr->mPolygonIDCurrent = mgr->mPolygonIDMin;
                 }
             }
             n0->mUnk_26++;
@@ -1893,17 +1897,17 @@ void SPLEmitter_Update(Unk020184e4 *mgr, Unk0201ca6c *emtr) {
     }
 }
 
-void SPLManager_DrawParticles(Unk020184e4 *mgr) {
+void SPLManager_DrawParticles(SPLManager *mgr) {
     Unk0201ca6c *n;
     Unk0201ca6c_20_00 *d;
-    void (*f)(Unk020184e4 *mgr, Unk0201e3c8 *b);
+    void (*f)(SPLManager *mgr, Unk0201e3c8 *b);
     void (*g)(Unk020184e4_2c *mgr);
     Unk0201e3c8 *e;
 
-    n = mgr->mUnk_40;
+    n = mgr->mRenderStateEmitter;
     d = n->mUnk_20->mUnk_00;
     f = 0;
-    SPLUtil_SetTexture(mgr->mUnk_2c + d->mUnk_47);
+    SPLUtil_SetTexture(mgr->mTextures + d->mUnk_47);
     switch (d->mUnk_00.mUnk_00_4) {
         case 0:
             f = SPLDraw_Billboard;
@@ -1927,24 +1931,24 @@ void SPLManager_DrawParticles(Unk020184e4 *mgr) {
         g = SPLUtil_SetTexture_Stub;
     }
     for (e = n->mUnk_08.mUnk_00; e != 0; e = e->mUnk_00) {
-        g(mgr->mUnk_2c + e->mUnk_2c);
+        g(mgr->mTextures + e->mUnk_2c);
         f(mgr, e);
     }
 }
 
-void SPLManager_DrawChildParticles(Unk020184e4 *mgr) {
+void SPLManager_DrawChildParticles(SPLManager *mgr) {
     Unk0201ca6c *n;
     Unk0201ca6c_20 *c;
-    void (*f)(Unk020184e4 *mgr, Unk0201e3c8 *b);
+    void (*f)(SPLManager *mgr, Unk0201e3c8 *b);
     Unk0201e3c8 *e;
 
-    n = mgr->mUnk_40;
+    n = mgr->mRenderStateEmitter;
     f = 0;
     c = n->mUnk_20;
     if (c->mUnk_00->mUnk_00.mUnk_00_16 == 0) {
         return;
     }
-    SPLUtil_SetTexture(mgr->mUnk_2c + c->mUnk_14->mUnk_0f);
+    SPLUtil_SetTexture(mgr->mTextures + c->mUnk_14->mUnk_0f);
     switch (c->mUnk_14->mUnk_00_7) {
         case 0:
             f = SPLDraw_Child_Billboard;
@@ -1967,10 +1971,10 @@ void SPLManager_DrawChildParticles(Unk020184e4 *mgr) {
     }
 }
 
-void SPLManager_DoDraw(Unk020184e4 *mgr) {
+void SPLManager_DoDraw(SPLManager *mgr) {
     Unk0201ca6c_20_00 *d;
 
-    d = mgr->mUnk_40->mUnk_20->mUnk_00;
+    d = mgr->mRenderStateEmitter->mUnk_20->mUnk_00;
     if (d->mUnk_00.mUnk_00_21) {
         SPLManager_DrawChildParticles(mgr);
         if (d->mUnk_00.mUnk_00_22) {
@@ -2012,31 +2016,31 @@ u32 SPLUtil_AllocPaletteVRAM(s32 size, s32 is4Pltt) {
     return (data_021619f4(size, is4Pltt, 0) & 0xffff) << 3;
 }
 
-Unk020184e4 *SPLManager_New(void *(*alloc)(u32 size), u16 maxEmitters, u16 maxParticles, s32 fixPolyId, u16 minPolyId,
-                            u16 maxPolyId) {
-    Unk020184e4 *mgr;
+SPLManager *SPLManager_New(void *(*alloc)(u32 size), u16 maxEmitters, u16 maxParticles, s32 fixPolyId, u16 minPolyId,
+                           u16 maxPolyId) {
+    SPLManager *mgr;
     s32 i;
     u8 *block;
 
     mgr = alloc(0x4c);
     MI_CpuFill8(mgr, 0, 0x4c);
-    mgr->mUnk_34 = maxEmitters;
-    mgr->mUnk_36 = maxParticles;
-    mgr->mUnk_38_0 = minPolyId;
-    mgr->mUnk_38_6 = maxPolyId;
-    mgr->mUnk_38_12 = mgr->mUnk_38_0;
-    mgr->mUnk_38_18 = fixPolyId;
-    mgr->mUnk_38_24 = 0;
+    mgr->mMaxEmitters = maxEmitters;
+    mgr->mMaxParticles = maxParticles;
+    mgr->mPolygonIDMin = minPolyId;
+    mgr->mPolygonIDMax = maxPolyId;
+    mgr->mPolygonIDCurrent = mgr->mPolygonIDMin;
+    mgr->mPolygonIDFix = fixPolyId;
+    mgr->mPolygonIDDrawOrder = 0;
     mgr->mUnk_38_25 = 0;
-    mgr->mUnk_00 = alloc;
+    mgr->mAlloc = alloc;
     mgr->mUnk_04[0].mUnk_04 = 0;
     mgr->mUnk_04[1].mUnk_04 = 0;
     mgr->mUnk_04[2].mUnk_04 = 0;
     mgr->mUnk_04[0].mUnk_00 = 0;
     mgr->mUnk_04[1].mUnk_00 = 0;
     mgr->mUnk_04[2].mUnk_00 = 0;
-    mgr->mUnk_3c = 0;
-    mgr->mUnk_48 = 0;
+    mgr->mMiscPolygonAttr = 0;
+    mgr->mCurrentCycle = 0;
     block = alloc(maxEmitters * 0x9c);
     MI_CpuFill8(block, 0, maxEmitters * 0x9c);
     for (i = 0; i < maxEmitters; i++) {
@@ -2049,14 +2053,14 @@ Unk020184e4 *SPLManager_New(void *(*alloc)(u32 size), u16 maxEmitters, u16 maxPa
         SPLList_PushFront(&mgr->mUnk_04[2], (Unk0201e3c8 *) block);
         block += 0x44;
     }
-    mgr->mUnk_28 = 0;
-    mgr->mUnk_2c = 0;
-    mgr->mUnk_32 = 0;
-    mgr->mUnk_30 = mgr->mUnk_32;
+    mgr->mResources = 0;
+    mgr->mTextures = 0;
+    mgr->mTexCount = 0;
+    mgr->mResCount = mgr->mTexCount;
     return mgr;
 }
 
-void SPLManager_LoadResources(Unk020184e4 *mgr, Unk02018a1c *data) {
+void SPLManager_LoadResources(SPLManager *mgr, Unk02018a1c *data) {
     s32 i;
     s32 off;
     Unk0201ca6c_20 *e;
@@ -2066,12 +2070,12 @@ void SPLManager_LoadResources(Unk020184e4 *mgr, Unk02018a1c *data) {
     Unk020184e4_2c_00 *d;
 
     off = 0x20;
-    mgr->mUnk_30 = data->mUnk_08;
-    mgr->mUnk_32 = data->mUnk_0a;
-    mgr->mUnk_28 = mgr->mUnk_00(mgr->mUnk_30 << 5);
-    MI_CpuFill8(mgr->mUnk_28, 0, mgr->mUnk_30 << 5);
-    for (i = 0; i < mgr->mUnk_30; i++) {
-        e = mgr->mUnk_28 + i;
+    mgr->mResCount = data->mUnk_08;
+    mgr->mTexCount = data->mUnk_0a;
+    mgr->mResources = mgr->mAlloc(mgr->mResCount << 5);
+    MI_CpuFill8(mgr->mResources, 0, mgr->mResCount << 5);
+    for (i = 0; i < mgr->mResCount; i++) {
+        e = mgr->mResources + i;
         e->mUnk_00 = OFFSET_PTR(Unk0201ca6c_20_00, data, off);
         off += 0x58;
         flags = e->mUnk_00->mUnk_00;
@@ -2108,7 +2112,7 @@ void SPLManager_LoadResources(Unk020184e4 *mgr, Unk02018a1c *data) {
         e->mUnk_1c = flags.mUnk_00_24 + flags.mUnk_00_25 + flags.mUnk_00_26 + flags.mUnk_00_27 + flags.mUnk_00_28 +
                      flags.mUnk_00_29;
         if (e->mUnk_1c != 0) {
-            e->mUnk_18 = mgr->mUnk_00(e->mUnk_1c << 3);
+            e->mUnk_18 = mgr->mAlloc(e->mUnk_1c << 3);
             g = e->mUnk_18;
             if (flags.mUnk_00_24) {
                 g->mUnk_04 = (u8 *) data + off;
@@ -2149,10 +2153,10 @@ void SPLManager_LoadResources(Unk020184e4 *mgr, Unk02018a1c *data) {
             e->mUnk_18 = 0;
         }
     }
-    mgr->mUnk_2c = mgr->mUnk_00(mgr->mUnk_32 * 0x14);
-    MI_CpuFill8(mgr->mUnk_2c, 0, mgr->mUnk_32 * 0x14);
-    for (i = 0; i < mgr->mUnk_32; i++) {
-        h = mgr->mUnk_2c + i;
+    mgr->mTextures = mgr->mAlloc(mgr->mTexCount * 0x14);
+    MI_CpuFill8(mgr->mTextures, 0, mgr->mTexCount * 0x14);
+    for (i = 0; i < mgr->mTexCount; i++) {
+        h = mgr->mTextures + i;
         d = OFFSET_PTR(Unk020184e4_2c_00, data, off);
         h->mUnk_00 = d;
         h->mUnk_10 = 1 << (d->mUnk_04.mUnk_00_4 + 3);
@@ -2162,18 +2166,18 @@ void SPLManager_LoadResources(Unk020184e4 *mgr, Unk02018a1c *data) {
     }
 }
 
-s32 SPLManager_UploadTexturesEx(Unk020184e4 *mgr, u32 (*vramAlloc)(s32 size, s32 isSpecial)) {
+s32 SPLManager_UploadTexturesEx(SPLManager *mgr, u32 (*vramAlloc)(s32 size, s32 isSpecial)) {
     s32 i;
     Unk020184e4_2c *e;
     Unk020184e4_2c_00 *d;
     u32 t;
 
     GX_BeginLoadTex();
-    for (i = 0; i < mgr->mUnk_32; i++) {
-        e = mgr->mUnk_2c + i;
+    for (i = 0; i < mgr->mTexCount; i++) {
+        e = mgr->mTextures + i;
         d = e->mUnk_00;
         if (d->mUnk_04.mUnk_00_17) {
-            e->mUnk_04 = mgr->mUnk_2c[d->mUnk_04.mUnk_00_18].mUnk_04;
+            e->mUnk_04 = mgr->mTextures[d->mUnk_04.mUnk_00_18].mUnk_04;
         } else {
             t = vramAlloc(d->mUnk_08, d->mUnk_04.mUnk_00_0 == 5 ? 1 : 0);
             GX_LoadTex((u8 *) e->mUnk_00 + 0x20, t, d->mUnk_08);
@@ -2184,15 +2188,15 @@ s32 SPLManager_UploadTexturesEx(Unk020184e4 *mgr, u32 (*vramAlloc)(s32 size, s32
     return 1;
 }
 
-s32 SPLManager_UploadPalettesEx(Unk020184e4 *mgr, u32 (*vramAlloc)(s32 size, s32 isSpecial)) {
+s32 SPLManager_UploadPalettesEx(SPLManager *mgr, u32 (*vramAlloc)(s32 size, s32 isSpecial)) {
     s32 i;
     Unk020184e4_2c *e;
     Unk020184e4_2c_00 *d;
     u32 t;
 
     GX_BeginLoadTexPltt();
-    for (i = 0; i < mgr->mUnk_32; i++) {
-        e = mgr->mUnk_2c + i;
+    for (i = 0; i < mgr->mTexCount; i++) {
+        e = mgr->mTextures + i;
         d = e->mUnk_00;
         t = 0;
         if (d->mUnk_10 != 0) {
@@ -2205,15 +2209,15 @@ s32 SPLManager_UploadPalettesEx(Unk020184e4 *mgr, u32 (*vramAlloc)(s32 size, s32
     return 1;
 }
 
-s32 SPLManager_UploadTextures(Unk020184e4 *mgr) {
+s32 SPLManager_UploadTextures(SPLManager *mgr) {
     return SPLManager_UploadTexturesEx(mgr, SPLUtil_AllocTextureVRAM);
 }
 
-s32 SPLManager_UploadPalettes(Unk020184e4 *mgr) {
+s32 SPLManager_UploadPalettes(SPLManager *mgr) {
     return SPLManager_UploadPalettesEx(mgr, SPLUtil_AllocPaletteVRAM);
 }
 
-void SPLManager_Update(Unk020184e4 *mgr) {
+void SPLManager_Update(SPLManager *mgr) {
     Unk0201ca6c *emtr;
     Unk0201ca6c *next;
     Unk0201ca6c_20_00 *header;
@@ -2228,7 +2232,7 @@ void SPLManager_Update(Unk020184e4 *mgr) {
             }
         }
         if (emtr->mUnk_24.mUnk_00_2 == 0) {
-            if (emtr->mUnk_80_16 == 0 || mgr->mUnk_48 == emtr->mUnk_80_16 - 1) {
+            if (emtr->mUnk_80_16 == 0 || mgr->mCurrentCycle == emtr->mUnk_80_16 - 1) {
                 SPLEmitter_Update(mgr, emtr);
             }
         }
@@ -2240,27 +2244,27 @@ void SPLManager_Update(Unk020184e4 *mgr) {
             }
         }
     }
-    mgr->mUnk_48++;
-    if (mgr->mUnk_48 > 1) {
-        mgr->mUnk_48 = 0;
+    mgr->mCurrentCycle++;
+    if (mgr->mCurrentCycle > 1) {
+        mgr->mCurrentCycle = 0;
     }
 }
 
-void SPLManager_Draw(Unk020184e4 *mgr, MtxFx43 *viewMatrix) {
+void SPLManager_Draw(SPLManager *mgr, MtxFx43 *viewMatrix) {
     Unk0201ca6c *emtr;
 
     reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 8;
-    mgr->mUnk_44 = viewMatrix;
-    if (mgr->mUnk_38_24 == 0) {
+    mgr->mRenderStateViewMatrix = viewMatrix;
+    if (mgr->mPolygonIDDrawOrder == 0) {
         for (emtr = (Unk0201ca6c *) mgr->mUnk_04[0].mUnk_00; emtr != 0; emtr = emtr->mUnk_00) {
-            mgr->mUnk_40 = emtr;
+            mgr->mRenderStateEmitter = emtr;
             if (emtr->mUnk_24.mUnk_00_3 == 0) {
                 SPLManager_DoDraw(mgr);
             }
         }
     } else {
         for (emtr = (Unk0201ca6c *) mgr->mUnk_04[0].mUnk_08; emtr != 0; emtr = emtr->mUnk_04) {
-            mgr->mUnk_40 = emtr;
+            mgr->mRenderStateEmitter = emtr;
             if (emtr->mUnk_24.mUnk_00_3 == 0) {
                 SPLManager_DoDraw(mgr);
             }
@@ -2268,13 +2272,13 @@ void SPLManager_Draw(Unk020184e4 *mgr, MtxFx43 *viewMatrix) {
     }
 }
 
-Unk0201ca6c *SPLManager_CreateEmitter(Unk020184e4 *mgr, s32 resourceId, Vec3 *pos) {
+Unk0201ca6c *SPLManager_CreateEmitter(SPLManager *mgr, s32 resourceId, Vec3 *pos) {
     Unk0201ca6c *emtr;
 
     emtr = 0;
     if (mgr->mUnk_04[1].mUnk_00 != 0) {
         emtr = (Unk0201ca6c *) SPLList_PopFront(&mgr->mUnk_04[1]);
-        SPLEmitter_Init(emtr, mgr->mUnk_28 + resourceId, pos);
+        SPLEmitter_Init(emtr, mgr->mResources + resourceId, pos);
         SPLList_PushFront(&mgr->mUnk_04[0], (Unk0201e3c8 *) emtr);
         if (emtr->mUnk_20->mUnk_00->mUnk_00.mUnk_00_14) {
             emtr = 0;
@@ -2283,14 +2287,14 @@ Unk0201ca6c *SPLManager_CreateEmitter(Unk020184e4 *mgr, s32 resourceId, Vec3 *po
     return emtr;
 }
 
-Unk0201ca6c *SPLManager_CreateEmitterWithCallbackEx(Unk020184e4 *mgr, s32 resourceId, Vec3 *pos, s32 param,
+Unk0201ca6c *SPLManager_CreateEmitterWithCallbackEx(SPLManager *mgr, s32 resourceId, Vec3 *pos, s32 param,
                                                     void (*initCallback)(Unk0201ca6c *emtr, s32 param)) {
     Unk0201ca6c *emtr;
 
     emtr = 0;
     if (mgr->mUnk_04[1].mUnk_00 != 0) {
         emtr = (Unk0201ca6c *) SPLList_PopFront(&mgr->mUnk_04[1]);
-        SPLEmitter_Init(emtr, mgr->mUnk_28 + resourceId, pos);
+        SPLEmitter_Init(emtr, mgr->mResources + resourceId, pos);
         if (initCallback != 0) {
             initCallback(emtr, param);
         }
@@ -2302,7 +2306,7 @@ Unk0201ca6c *SPLManager_CreateEmitterWithCallbackEx(Unk020184e4 *mgr, s32 resour
     return emtr;
 }
 
-void SPLManager_DeleteEmitter(Unk020184e4 *mgr, Unk0201ca6c *emtr) {
+void SPLManager_DeleteEmitter(SPLManager *mgr, Unk0201ca6c *emtr) {
     Unk0201e3c8 *particle;
 
     while ((particle = SPLList_PopFront(&emtr->mUnk_08)) != 0) {

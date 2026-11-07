@@ -72,7 +72,7 @@ void func_ov003_021ccf30(Unk021ccf30 *a) {
             if ((p->mUnk_2c & 0x10) == 0) {
                 q->mUnk_28 = 0;
             } else {
-                Unk02142f24 v2;
+                WMOtherElements v2;
                 s32 k;
                 s32 n;
                 q->mUnk_28 = 1;

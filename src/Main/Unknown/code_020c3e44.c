@@ -223,7 +223,7 @@ void DrawRaceGoalM(Unk020c06c4 *a) {
             e[0] = 0x18000;
             e[1] = (y + 0xa8) << 12;
             k = a->mUnk_400;
-            a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e, 0, 1);
+            a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e, 0, 1);
             break;
         case MODE_MISSION_RUN:
             DrawRaceGoalMMissionRun(a);
@@ -247,31 +247,31 @@ void DrawRaceGoalMGrandPrix(Unk020c06c4 *a) {
     e0[0] = 0x18000;
     e0[1] = (y + 0xa8) << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e0, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e0, 0, 1);
 
     c = GetRaceGoalMNcerEntry(gRaceGoalM->mPointsGained + 8);
     e1[0] = 0x48000;
     e1[1] = (y + 0xb0) << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e1, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e1, 0, 1);
 
     c = GetRaceGoalMNcerEntry(func_020b4b98(gRaceGoalM->mPointsGained) != FALSE ? 0x13 : 0x14);
     e2[0] = 0x48000;
     e2[1] = (y + 0xb0) << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e2, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e2, 0, 1);
 
     c = GetRaceGoalMNcerEntry(0x40);
     e3[0] = 0xda000;
     e3[1] = (y + 0xa6) << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e3, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e3, 0, 1);
 
     c = GetRaceGoalMNcerEntry(0x41);
     e4[0] = 0xda000;
     e4[1] = (y + 0xa6) << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e4, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e4, 0, 1);
 }
 
 void DrawRaceGoalMMissionRun(Unk020c06c4 *a) {
@@ -327,7 +327,7 @@ void DrawRaceGoalMMissionRun(Unk020c06c4 *a) {
     e[0] = (y + 0x80) << 12;
     e[1] = 0x60000;
     k = a->mUnk_400;
-    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e, 0, 1);
 }
 
 void InitRaceLinkLevel(void) {
@@ -416,7 +416,7 @@ void DrawRaceLinkLevel(Unk020c06c4 *a) {
         v[0] = 0xf8000;
         v[1] = 0xb8000;
         e = &a->mUnk_000.mUnk_00[n];
-        a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) e, 0x80 - n, p, NULL, v, 0, 1);
+        a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) e, 0x80 - n, p, NULL, v, 0, 1);
         for (; n < a->mUnk_400; n++, e++) {
             e->mUnk_0a = 2;
             e->mUnk_0e = 1;
@@ -424,7 +424,7 @@ void DrawRaceLinkLevel(Unk020c06c4 *a) {
         w[0] = 0xf8000;
         w[1] = 0xb8000;
         n = a->mUnk_400;
-        a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[n], 0x80 - n, p, NULL, w, 0, 1);
+        a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[n], 0x80 - n, p, NULL, w, 0, 1);
     }
     if (q != NULL) {
         s32 v[2];
@@ -436,7 +436,7 @@ void DrawRaceLinkLevel(Unk020c06c4 *a) {
         v[0] = 0xf8000;
         v[1] = 0xa7000;
         e = &a->mUnk_000.mUnk_00[n];
-        a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) e, 0x80 - n, q, NULL, v, 0, 1);
+        a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) e, 0x80 - n, q, NULL, v, 0, 1);
         for (; n < a->mUnk_400; n++, e++) {
             e->mUnk_0a = 2;
             e->mUnk_0e = 1;
@@ -444,7 +444,7 @@ void DrawRaceLinkLevel(Unk020c06c4 *a) {
         w[0] = 0xf8000;
         w[1] = 0xa7000;
         n = a->mUnk_400;
-        a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[n], 0x80 - n, q, NULL, w, 0, 1);
+        a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[n], 0x80 - n, q, NULL, w, 0, 1);
     }
 }
 
@@ -538,8 +538,8 @@ void DrawRaceStartGp(void) {
     p = &gRaceStartGp->mMainOam;
     v[0] = 0x80000;
     v[1] = 0x60000;
-    p->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &p->mUnk_000.mUnk_00[p->mUnk_400], 0x80 - p->mUnk_400, c,
-                                         NULL, v, 0, 1);
+    p->mUnk_400 +=
+        NNS_G2dMakeCellToOams((GXOamAttr *) &p->mUnk_000.mUnk_00[p->mUnk_400], 0x80 - p->mUnk_400, c, NULL, v, 0, 1);
     DC_FlushRange(&gRaceStartGp->mMainOam, 0x400);
     MI_DmaFill32(3, &gRaceStartGp->mMainOam.mUnk_000.mUnk_00[gRaceStartGp->mMainOam.mUnk_400], 0xc0,
                  (0x80 - gRaceStartGp->mMainOam.mUnk_400) * 8);
@@ -735,7 +735,7 @@ void DrawRaceTaPositions(Unk020c06c4 *a) {
                             w1[0] = o1.mUnk_00 << 12;
                             w1[1] = o1.mUnk_04 << 12;
                             e = &a->mUnk_000.mUnk_00[n];
-                            a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) e, 0x80 - n, q, NULL, w1, 0, 1);
+                            a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) e, 0x80 - n, q, NULL, w1, 0, 1);
                             for (; n < a->mUnk_400; n++, e++) {
                                 if (m != -1) {
                                     e->mUnk_0e = m;
@@ -769,7 +769,7 @@ void DrawRaceTaPositions(Unk020c06c4 *a) {
                         w2[0] = o2.mUnk_00 << 12;
                         w2[1] = o2.mUnk_04 << 12;
                         p = &a->mUnk_000.mUnk_00[d];
-                        a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) p, 0x80 - d, r,
+                        a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) p, 0x80 - d, r,
                                                              &gRaceTaPositions->mRotations[y].mUnk_00, w2, y + c, 1);
                         for (; d < a->mUnk_400; d++, p++) {
                             if ((i != 0 ? 1 : -1) != -1) {

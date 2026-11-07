@@ -107,13 +107,13 @@ void func_ov001_0218516c(Unk021ca41c_085c *a, Unk0218516c *b) {
                     pos_a[0] = x << 12;
                     pos_a[1] = y << 12;
                     b->mUnk_400 +=
-                        NNS_G2dMakeCellToOams((Unk020224e0_o *) &b->mUnk_000[b->mUnk_400 * 8], 0x80 - b->mUnk_400,
+                        NNS_G2dMakeCellToOams((GXOamAttr *) &b->mUnk_000[b->mUnk_400 * 8], 0x80 - b->mUnk_400,
                                               (Unk020224e0_c *) cell, mtx, pos_a, idx, 1);
                 } else {
                     cell = (Unk021a5a58_2c_2c *) entry->mUnk_2c.mUnk_2c;
                     pos_b[0] = x << 12;
                     pos_b[1] = y << 12;
-                    b->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &b->mUnk_000[b->mUnk_400 * 8],
+                    b->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &b->mUnk_000[b->mUnk_400 * 8],
                                                          0x80 - b->mUnk_400, (Unk020224e0_c *) cell, NULL, pos_b, 0, 0);
                 }
             }

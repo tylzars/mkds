@@ -32,7 +32,7 @@ s32 func_020adc7c(const u16 *a, u16 *b) {
             return i;
         }
         func_020adce0(v, p, a[i]);
-        t = ((Unk02022c80 *) v[0])->mUnk_02;
+        t = ((NNSG2dCharWidths *) v[0])->mCharWidth;
         if (v1 + t > 0x30) {
             return i;
         }

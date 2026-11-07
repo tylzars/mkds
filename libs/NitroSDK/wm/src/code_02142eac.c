@@ -803,8 +803,8 @@ u16 WM_GetDispersionScanPeriod(void) {
 }
 
 // Collects the extra information elements that follow the game info of a scanned parent.
-Unk02142f24 WM_GetOtherElements(const u16 *bssDesc) {
-    Unk02142f24 elements;
+WMOtherElements WM_GetOtherElements(const u16 *bssDesc) {
+    WMOtherElements elements;
     const u8 *body;
     s32 i;
     u8 bodyLength;

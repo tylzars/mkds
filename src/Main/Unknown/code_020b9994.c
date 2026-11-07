@@ -336,8 +336,8 @@ void func_020ba63c(RaceHudOamBuffer *p) {
     Unk020224e0_c *t;
     Unk020224e0_c *r;
     s32 l;
-    Unk020224e0_o *q;
-    Unk020224e0_o *o;
+    GXOamAttr *q;
+    GXOamAttr *o;
     u16 k;
 
     x = data_0217b3cc->mUnk_00;
@@ -511,7 +511,7 @@ void func_020b9dfc(RaceHudOamBuffer *p) {
     u16 n;
     s32 i;
     s32 l;
-    Unk020224e0_o *q;
+    GXOamAttr *q;
     Unk020224e0_c *t;
 
     if (gRaceSetup->mRaceKind == 4) {

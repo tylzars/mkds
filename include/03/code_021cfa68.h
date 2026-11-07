@@ -44,9 +44,9 @@ typedef struct Unk021da2a8 {
     /* 13b0 */ u32 mUnk_13b0;
     /* 13b4 */ u8 pad_13b4[0xc];
     /* 13c0 */ u8 mUnk_13c0[0x20];
-    /* 13e0 */ Unk021450ec mUnk_13e0;
-    /* 1c00 */ Unk0214461c mUnk_1c00;
-    /* 1e00 */ Unk021450ec mUnk_1e00;
+    /* 13e0 */ WMDataSharingInfo mUnk_13e0;
+    /* 1c00 */ WMDataSet mUnk_1c00;
+    /* 1e00 */ WMDataSharingInfo mUnk_1e00;
 } Unk021da2a8;
 
 extern Unk021da2a8 *data_ov003_021da2a8;

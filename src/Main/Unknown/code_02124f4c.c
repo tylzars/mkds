@@ -59,7 +59,7 @@ void func_021253f8(Unk021243ac_20 *a, s32 *b, s32 *c, s32 *d, void *e, u16 *f, s
     s32 r7;
     u32 u;
     u16 ch;
-    Unk02022c80 *p;
+    NNSG2dCharWidths *p;
     s32 *w;
     u16 *q;
 
@@ -98,7 +98,7 @@ void func_021253f8(Unk021243ac_20 *a, s32 *b, s32 *c, s32 *d, void *e, u16 *f, s
                                                 u = r5->mUnk_00->mUnk_02;
                                             }
                                             p = NNS_G2dFontGetCharWidthsFromIndex(r5, u);
-                                            *w += p->mUnk_02 + v10;
+                                            *w += p->mCharWidth + v10;
                                         } else {
                                             *w += v24;
                                         }
@@ -115,7 +115,7 @@ void func_021253f8(Unk021243ac_20 *a, s32 *b, s32 *c, s32 *d, void *e, u16 *f, s
                                             u = r5->mUnk_00->mUnk_02;
                                         }
                                         p = NNS_G2dFontGetCharWidthsFromIndex(r5, u);
-                                        *w += p->mUnk_02 + v10;
+                                        *w += p->mCharWidth + v10;
                                     } else {
                                         *w += v24;
                                     }
@@ -133,7 +133,7 @@ void func_021253f8(Unk021243ac_20 *a, s32 *b, s32 *c, s32 *d, void *e, u16 *f, s
                                                 u = r5->mUnk_00->mUnk_02;
                                             }
                                             p = NNS_G2dFontGetCharWidthsFromIndex(r5, u);
-                                            *w += p->mUnk_02 + v10;
+                                            *w += p->mCharWidth + v10;
                                         } else {
                                             *w += v24;
                                         }
@@ -150,7 +150,7 @@ void func_021253f8(Unk021243ac_20 *a, s32 *b, s32 *c, s32 *d, void *e, u16 *f, s
                                             u = r5->mUnk_00->mUnk_02;
                                         }
                                         p = NNS_G2dFontGetCharWidthsFromIndex(r5, u);
-                                        *w += p->mUnk_02 + v10;
+                                        *w += p->mCharWidth + v10;
                                     } else {
                                         *w += v24;
                                     }
@@ -187,7 +187,7 @@ void func_021253f8(Unk021243ac_20 *a, s32 *b, s32 *c, s32 *d, void *e, u16 *f, s
                             u = r5->mUnk_00->mUnk_02;
                         }
                         p = NNS_G2dFontGetCharWidthsFromIndex(r5, u);
-                        *w += p->mUnk_02 + r7;
+                        *w += p->mCharWidth + r7;
                     } else {
                         *w += h + r7;
                     }
@@ -227,7 +227,7 @@ void func_021251c4(Unk021243ac_20 *a, s32 b, s32 *c, s32 d, s32 e, s32 f, s32 g,
     Unk02022aa8 *v18;
     s32 v1c;
     s32 v20;
-    Unk02022c80 *v24;
+    NNSG2dCharWidths *v24;
     u16 ch;
     u8 t0;
     u16 t2;
@@ -297,9 +297,9 @@ void func_021251c4(Unk021243ac_20 *a, s32 b, s32 *c, s32 d, s32 e, s32 f, s32 g,
                     u = v18->mUnk_00->mUnk_02;
                 }
                 v24 = NNS_G2dFontGetCharWidthsFromIndex(v18, u);
-                x += (n - v24->mUnk_02) >> 1;
+                x += (n - v24->mCharWidth) >> 1;
                 NNS_G2dCharCanvasDrawChar((Unk02023374 *) a->mUnk_00, a->mUnk_04, x, y, i, ch);
-                x += n - ((n - v24->mUnk_02) >> 1);
+                x += n - ((n - v24->mCharWidth) >> 1);
             }
             if (x > v20) {
                 return;

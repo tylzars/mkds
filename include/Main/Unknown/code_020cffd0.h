@@ -19,7 +19,7 @@ typedef struct RaceGoalTimes {
 
 // Argument of DrawRaceGoalTimeDigits and DrawRaceGoalTimes: 0x80 elements of 8 bytes, then a halfword.
 typedef struct RaceHudOamBuffer {
-    /* 000 */ Unk020224e0_o mOams[0x80];
+    /* 000 */ GXOamAttr mOams[0x80];
     /* 400 */ u16 mOamCount;
 } RaceHudOamBuffer;
 

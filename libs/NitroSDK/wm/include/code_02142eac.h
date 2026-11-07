@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk021450ec Unk021450ec;
+typedef struct WMDataSharingInfo WMDataSharingInfo;
 
 typedef struct Unk021425e8 Unk021425e8;
 typedef void (*Unk021425e8Func)(Unk021425e8 *);
@@ -94,14 +94,14 @@ struct Unk021425e8 {
 };
 
 // Result of WM_GetOtherElements: mUnk_00 counts the filled entries of mUnk_04.
-typedef struct Unk02142f24 {
+typedef struct WMOtherElements {
     /* 00 */ u8 mUnk_00;
     /* 04 */ struct {
         /* 00 */ u8 mUnk_00;
         /* 01 */ u8 mUnk_01;
         /* 04 */ const u8 *mUnk_04;
     } mUnk_04[16];
-} Unk02142f24;
+} WMOtherElements;
 
 // Header of the MP receive buffer: mUnk_04 is the number of records, mUnk_06 the size of each, and the records start at
 // mUnk_0a.
@@ -224,5 +224,5 @@ u16 WM_GetAllowedChannel(void);
 u16 WM_GetLinkLevel(void);
 u16 WM_GetDispersionBeaconPeriod(void);
 u16 WM_GetDispersionScanPeriod(void);
-Unk02142f24 WM_GetOtherElements(const u16 *bssDesc);
+WMOtherElements WM_GetOtherElements(const u16 *bssDesc);
 u16 WM_GetNextTgid(void);

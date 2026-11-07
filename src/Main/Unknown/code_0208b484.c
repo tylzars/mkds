@@ -87,18 +87,18 @@ void func_0208b934(void *a) {
         SPLManager_LoadResources(data_0217b03c, t);
         SPLManager_UploadTextures(data_0217b03c);
         SPLManager_UploadPalettes(data_0217b03c);
-        data_0217b03c->mUnk_3c = 0x8000;
+        data_0217b03c->mMiscPolygonAttr = 0x8000;
     }
-    data_0217b044->mUnk_38_24 = 1;
-    data_0217b04c->mUnk_38_24 = 1;
+    data_0217b044->mPolygonIDDrawOrder = 1;
+    data_0217b04c->mPolygonIDDrawOrder = 1;
     if (data_0217b03c != NULL) {
-        data_0217b03c->mUnk_38_24 = 1;
+        data_0217b03c->mPolygonIDDrawOrder = 1;
     }
     InitKartTurnEffects(a);
     if (gRaceSetup->mCourseId != COURSE_ID_RAINBOW) {
-        data_0217b044->mUnk_3c = 0x8000;
+        data_0217b044->mMiscPolygonAttr = 0x8000;
     } else {
-        data_0217b044->mUnk_3c = 0;
+        data_0217b044->mMiscPolygonAttr = 0;
     }
     InitCourseCameraEffects();
     switch (gRaceSetup->mCourseId) {
@@ -145,7 +145,7 @@ void *StartEffect(u32 a, const Vec3 *b) {
     s32 e;
     Vec3 v;
     Unk0201ca6c *q;
-    Unk020184e4 *p = data_0217b050(&e, a);
+    SPLManager *p = data_0217b050(&e, a);
     v.x = b->x >> 4;
     v.y = b->y >> 4;
     v.z = b->z >> 4;
@@ -163,7 +163,7 @@ void *StartEffect(u32 a, const Vec3 *b) {
 void func_0208b748(u32 a, const Vec3 *b, void *c, void (*d)()) {
     s32 e;
     Vec3 v;
-    Unk020184e4 *p = data_0217b050(&e, a);
+    SPLManager *p = data_0217b050(&e, a);
     v.x = b->x >> 4;
     v.y = b->y >> 4;
     v.z = b->z >> 4;
@@ -174,14 +174,14 @@ void func_0208b710(Unk0201ca6c *a) {
     u32 v1;
     u8 v2[8];
     v1 = (*(UnkWordFunc *) (u32) data_0217b050)(v2, 0);
-    SPLManager_DeleteEmitter((Unk020184e4 *) v1, a);
+    SPLManager_DeleteEmitter((SPLManager *) v1, a);
 }
 
 void func_0208b6d0(Unk0201ca6c **a) {
     u32 v1;
     u8 v2[8];
     v1 = (*(UnkWordFunc *) (u32) data_0217b050)(v2, 0);
-    SPLManager_DeleteEmitter((Unk020184e4 *) v1, *a);
+    SPLManager_DeleteEmitter((SPLManager *) v1, *a);
     *a = NULL;
 }
 
@@ -222,7 +222,7 @@ void *func_0208b498(u32 a, Vec3 *b, u32 c, s32 d) {
     Vec3 w;
     Vec3 v;
     Unk0201ca6c *q;
-    Unk020184e4 *p = data_0217b050(&e, a);
+    SPLManager *p = data_0217b050(&e, a);
     v.x = b->x >> 4;
     v.y = b->y >> 4;
     v.z = b->z >> 4;

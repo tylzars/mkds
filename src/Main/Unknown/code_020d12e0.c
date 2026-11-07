@@ -77,7 +77,7 @@ u16 UpdateEndingStaffRoll(void) {
 void DrawEndingStaffRoll(void) {
     RaceHudOamBuffer *b;
     s32 i;
-    Unk020224e0_o *e;
+    GXOamAttr *e;
     Unk0217b4ac *a;
     Unk020224e0_c *c;
     u32 *w;

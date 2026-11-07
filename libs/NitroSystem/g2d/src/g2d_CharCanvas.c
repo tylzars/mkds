@@ -171,7 +171,7 @@ void LetterChar(Unk02023d84 *pInfo) {
     }
 }
 
-void DrawGlyphLine(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl, Unk02023374_24 *pGlyph) {
+void DrawGlyphLine(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl, NNSG2dGlyph *pGlyph) {
     Unk02023d84 info;
     s32 glyphWidth;
     s32 rowSkip;
@@ -194,7 +194,7 @@ void DrawGlyphLine(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 c
     u8 *pBase;
 
     bytesPerChar = (pCanvas->mUnk_0c * 0x40) / 8;
-    glyphWidth = pGlyph->mUnk_00->mUnk_01;
+    glyphWidth = pGlyph->mPWidths->mGlyphWidth;
     glyphHeight = pFont->mUnk_00->mUnk_08->mUnk_01;
     canvasW = pCanvas->mUnk_04;
     canvasH = pCanvas->mUnk_08;
@@ -244,7 +244,7 @@ void DrawGlyphLine(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 c
     if (y >= 0) {
         y &= 7;
     }
-    info.mUnk_04 = pGlyph->mUnk_04;
+    info.mUnk_04 = pGlyph->mImage;
     limitY = y - numY * 8;
     info.mUnk_10 = glyphWidth;
     info.mUnk_24 = cl - 1;
@@ -265,7 +265,7 @@ void DrawGlyphLine(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 c
     }
 }
 
-void DrawGlyph1D(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl, Unk02023374_24 *pGlyph) {
+void DrawGlyph1D(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl, NNSG2dGlyph *pGlyph) {
     Unk02023d84 info;
     s32 glyphWidth;
     u32 canvasW;
@@ -293,7 +293,7 @@ void DrawGlyph1D(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl,
     u32 width;
 
     bytesPerChar = (pCanvas->mUnk_0c * 0x40) / 8;
-    glyphWidth = pGlyph->mUnk_00->mUnk_01;
+    glyphWidth = pGlyph->mPWidths->mGlyphWidth;
     canvasW = pCanvas->mUnk_04;
     canvasH = pCanvas->mUnk_08;
     glyphHeight = pFont->mUnk_00->mUnk_08->mUnk_01;
@@ -342,7 +342,7 @@ void DrawGlyph1D(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl,
     }
     limitX = x - numX * 8;
     limitY = y - numY * 8;
-    info.mUnk_04 = pGlyph->mUnk_04;
+    info.mUnk_04 = pGlyph->mImage;
     info.mUnk_24 = cl - 1;
     info.mUnk_14 = glyphHeight;
     info.mUnk_10 = glyphWidth;
@@ -535,7 +535,7 @@ void ClearArea1D(Unk02023374 *pCanvas, u32 cl, s32 x, s32 y, s32 w, s32 h) {
 }
 
 void InitCharCanvas(Unk02023374 *pCanvas, void *charBase, s32 areaWidth, s32 areaHeight, u32 bpp,
-                    void (*drawGlyph)(Unk02023374 *, Unk02022aa8 *, s32, s32, u32, Unk02023374_24 *),
+                    void (*drawGlyph)(Unk02023374 *, Unk02022aa8 *, s32, s32, u32, NNSG2dGlyph *),
                     void (*clearAll)(Unk02023374 *, u32), void (*clearArea)(Unk02023374 *, u32, s32, s32, s32, s32),
                     u32 stride) {
     pCanvas->mUnk_04 = areaWidth;
@@ -549,7 +549,7 @@ void InitCharCanvas(Unk02023374 *pCanvas, void *charBase, s32 areaWidth, s32 are
 }
 
 s32 NNS_G2dCharCanvasDrawChar(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl, u16 ccode) {
-    Unk02023374_24 glyph;
+    NNSG2dGlyph glyph;
     u32 glyphIdx;
     Unk02022ce4_08 *pRes;
 
@@ -557,14 +557,14 @@ s32 NNS_G2dCharCanvasDrawChar(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s
     if (glyphIdx == 0xffff) {
         glyphIdx = pFont->mUnk_00->mUnk_02;
     }
-    glyph.mUnk_00 = NNS_G2dFontGetCharWidthsFromIndex(pFont, glyphIdx);
+    glyph.mPWidths = NNS_G2dFontGetCharWidthsFromIndex(pFont, glyphIdx);
     pRes = pFont->mUnk_00->mUnk_08;
-    glyph.mUnk_04 = &pRes->mUnk_08[glyphIdx * pRes->mUnk_02];
-    pCanvas->mUnk_14(pCanvas, pFont, x + glyph.mUnk_00->mUnk_00, y, cl, &glyph);
+    glyph.mImage = &pRes->mUnk_08[glyphIdx * pRes->mUnk_02];
+    pCanvas->mUnk_14(pCanvas, pFont, x + glyph.mPWidths->mLeft, y, cl, &glyph);
     if (pFont->mUnk_08 != 0) {
-        return glyph.mUnk_00->mUnk_00 + glyph.mUnk_00->mUnk_01;
+        return glyph.mPWidths->mLeft + glyph.mPWidths->mGlyphWidth;
     }
-    return glyph.mUnk_00->mUnk_02;
+    return glyph.mPWidths->mCharWidth;
 }
 
 void NNS_G2dCharCanvasInitForBG(void *pCC, void *charBase, u32 areaWidth, u32 areaHeight, u32 colorMode) {

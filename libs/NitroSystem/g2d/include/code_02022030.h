@@ -30,9 +30,9 @@ typedef struct Unk020224e0_s {
     /* 04 */ u16 mUnk_04;
 } Unk020224e0_s;
 
-typedef struct Unk020224e0_o {
+typedef struct GXOamAttr {
     /* 00 */ u16 mUnk_00[4];
-} Unk020224e0_o;
+} GXOamAttr;
 
 // Cell of a cell bank: the count, the attribute entries, then the bounds (absent when bit 0 of the bank's mUnk_02 is
 // clear).

@@ -116,8 +116,8 @@ u32 func_0202469c(Unk02021f9c *a, Unk02022ce4 **b) {
     }
     *b = (Unk02022ce4 *) (p + 1);
     if (r != 0) {
-        (*b)->mUnk_07 = (*b)->mUnk_04.mUnk_02;
-        (*b)->mUnk_04.mUnk_02 = 0;
+        (*b)->mUnk_07 = (*b)->mUnk_04.mCharWidth;
+        (*b)->mUnk_04.mCharWidth = 0;
     }
     return r + 1;
 }

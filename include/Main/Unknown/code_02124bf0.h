@@ -2,12 +2,12 @@
 
 #include "types.h"
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c, Unk02021dc8, Unk0201ea30
-#include "code_02022030.h" // Unk020224e0_o
+#include "code_02022030.h" // GXOamAttr
 
 // 0x20 bytes: four 8-byte entries (the table behind Unk02124c70 is indexed in 8-byte steps by func_02124c70 and in
 // 0x20-byte steps for the groups of four it fills).
 typedef struct Unk02124c70_00 {
-    /* 00 */ Unk020224e0_o mUnk_00[4];
+    /* 00 */ GXOamAttr mUnk_00[4];
 } Unk02124c70_00;
 
 // 0x404 bytes: 0x20 groups of four 8-byte entries, then two halfwords (func_02124c70 adds the return value of

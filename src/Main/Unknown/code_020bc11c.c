@@ -171,7 +171,7 @@ void UpdateRaceRankList(void) {
 
 void DrawRaceRankList(RaceHudOamBuffer *a) {
     s32 *e;
-    Unk020224e0_o *p;
+    GXOamAttr *p;
 
     if (GetRaceStartSequenceFrames() < 0x168) {
         return;

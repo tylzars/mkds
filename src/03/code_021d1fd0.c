@@ -173,7 +173,7 @@ void func_ov003_021d211c(void *a, u32 b, u32 c, u32 d, u16 e, int f) {
 void func_ov003_021d2094(void *e, s32 f, u32 g, u32 h, s32 l, u16 *m, s32 n) {
     Unk02022aa8 *a;
     u32 b;
-    Unk02022c80 *c;
+    NNSG2dCharWidths *c;
     s32 d;
 
     while (*m != 0) {
@@ -184,9 +184,9 @@ void func_ov003_021d2094(void *e, s32 f, u32 g, u32 h, s32 l, u16 *m, s32 n) {
         }
         c = NNS_G2dFontGetCharWidthsFromIndex(a, b);
         if (a->mUnk_08 != 0) {
-            d = c->mUnk_00 + c->mUnk_01;
+            d = c->mLeft + c->mGlyphWidth;
         } else {
-            d = c->mUnk_02;
+            d = c->mCharWidth;
         }
         func_ov003_021d211c(e, f + ((l - d) >> 1), g, h, *m, n);
         f += l;

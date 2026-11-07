@@ -194,7 +194,7 @@ extern s32 gEntryYDifferenceLimit;
 extern Unk02165ff0 *data_0217b030;
 
 // Objects whose layout isn't known yet.
-struct Unk020184e4;
+struct SPLManager;
 
 // Object behind gKartPhysicalParamTable (0x14 bytes), made once per race: the per-slot records (mKartParams) and
 // character rows (mCharParams) and the two loaded files. mFirstBaseSpeedLimit is a copy of file word 0x10.
@@ -208,10 +208,10 @@ typedef struct KartPhysicalParamTable {
 
 extern KartPhysicalParamTable *gKartPhysicalParamTable;
 
-extern struct Unk020184e4 *data_0217b03c;
+extern struct SPLManager *data_0217b03c;
 
-extern struct Unk020184e4 *data_0217b044;
-extern struct Unk020184e4 *data_0217b04c;
+extern struct SPLManager *data_0217b044;
+extern struct SPLManager *data_0217b04c;
 extern UnkFunc *data_0217b054;
 
 // Function pointers set by func_0208c284 (the targets take different parameters).

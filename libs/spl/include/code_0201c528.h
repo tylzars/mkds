@@ -4,7 +4,7 @@
 #include "code_02012b30.h" // MtxFx43
 #include "code_02147cd8.h"
 
-// Linked through mUnk_00/mUnk_04; on the lists at Unk0201ca6c 0x08 and 0x14 and Unk020184e4 0x1c.
+// Linked through mUnk_00/mUnk_04; on the lists at Unk0201ca6c 0x08 and 0x14 and SPLManager 0x1c.
 typedef struct Unk0201e3c8 {
     /* 00 */ struct Unk0201e3c8 *mUnk_00;
     /* 04 */ struct Unk0201e3c8 *mUnk_04;

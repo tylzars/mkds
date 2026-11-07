@@ -15,24 +15,24 @@ typedef struct Unk02005704 {
 } Unk02005704;
 
 // Record of 0x2c bytes: the first 0x20 bytes are read from a table entry of 0x20 bytes.
-typedef struct Unk020055f0 {
-    /* 00 */ u32 mUnk_00;
-    /* 04 */ u8 *mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ void (**mUnk_10)(void);
-    /* 14 */ void (**mUnk_14)(void);
-    /* 18 */ s32 mUnk_18;
+typedef struct FSOverlayInfo {
+    /* 00 */ u32 mId;
+    /* 04 */ u8 *mRamAddress;
+    /* 08 */ s32 mRamSize;
+    /* 0c */ s32 mBssSize;
+    /* 10 */ void (**mSinitInit)(void);
+    /* 14 */ void (**mSinitInitEnd)(void);
+    /* 18 */ s32 mFileId;
     /* 1c */ union {
         struct {
             u32 mUnk_00_0 : 24;
         } f;
         u8 b[4];
     } mUnk_1c;
-    /* 20 */ u32 mUnk_20;
+    /* 20 */ u32 mTarget;
     /* 24 */ u32 mUnk_24;
     /* 28 */ u32 mUnk_28;
-} Unk020055f0;
+} FSOverlayInfo;
 
 // Node of the list at data_0217eeb0 that FS_EndOverlay walks.
 typedef struct Unk02005210 {
@@ -63,15 +63,15 @@ void FSi_OnRomReadDone(FSArchive *archive);
 void FS_AttachOverlayTable(u32 selector, u8 *data, u32 size);
 u32 FS_UnloadOverlay(u32 selector, u32 index);
 u32 FS_LoadOverlay(u32 selector, u32 index);
-u32 FS_UnloadOverlayImage(Unk020055f0 *info);
-void FS_EndOverlay(Unk020055f0 *info);
-void FS_StartOverlay(Unk020055f0 *info);
+u32 FS_UnloadOverlayImage(FSOverlayInfo *info);
+void FS_EndOverlay(FSOverlayInfo *info);
+void FS_StartOverlay(FSOverlayInfo *info);
 u32 FSi_CompareDigest(const u8 *expected, const u8 *data, u32 size);
-u32 FS_LoadOverlayImage(Unk020055f0 *info);
-u32 FS_LoadOverlayImageAsync(Unk020055f0 *info, FSFile *file);
-u32 FS_LoadOverlayInfo(Unk020055f0 *info, u32 selector, u32 index);
-u32 FSi_LoadOverlayInfoCore(Unk020055f0 *info, u32 selector, u32 index, FSArchive *archive, u8 *base0, u32 size0,
+u32 FS_LoadOverlayImage(FSOverlayInfo *info);
+u32 FS_LoadOverlayImageAsync(FSOverlayInfo *info, FSFile *file);
+u32 FS_LoadOverlayInfo(FSOverlayInfo *info, u32 selector, u32 index);
+u32 FSi_LoadOverlayInfoCore(FSOverlayInfo *info, u32 selector, u32 index, FSArchive *archive, u8 *base0, u32 size0,
                             u8 *base1, u32 size1);
-void FS_GetOverlayFileID(FSFileID *fileID, Unk020055f0 *info);
-void FS_ClearOverlayImage(Unk020055f0 *info);
-s32 FSi_GetOverlayBinarySize(Unk020055f0 *info);
+void FS_GetOverlayFileID(FSFileID *fileID, FSOverlayInfo *info);
+void FS_ClearOverlayImage(FSOverlayInfo *info);
+s32 FSi_GetOverlayBinarySize(FSOverlayInfo *info);

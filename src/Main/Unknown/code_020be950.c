@@ -177,7 +177,7 @@ void DrawRaceHudSubScreenCells(Unk020c06c4 *a, RaceHudSubScreenCells *b, s32 c) 
             e[0] = x << 12;
             e[1] = y << 12;
             a->mUnk_400 +=
-                NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, z, c != 0 ? d : 0, e, n, 1);
+                NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, z, c != 0 ? d : 0, e, n, 1);
             t = &a->mUnk_000.mUnk_00[k];
             for (; k < a->mUnk_400; k++, t++) {
                 if ((q != 0 ? 1 : -1) != -1) {
@@ -236,7 +236,7 @@ void DrawRaceHudSubScreenCellsScaled(Unk020c06c4 *a, RaceHudSubScreenCells *b, s
             k = a->mUnk_400;
             e[0] = x << 12;
             e[1] = y << 12;
-            a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, z, d, e, n, 1);
+            a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, z, d, e, n, 1);
             t = &a->mUnk_000.mUnk_00[k];
             for (; k < a->mUnk_400; k++, t++) {
                 if ((q != 0 ? 1 : -1) != -1) {

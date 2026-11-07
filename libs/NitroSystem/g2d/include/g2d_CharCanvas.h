@@ -6,10 +6,10 @@
 #include "code_020245a4.h" // Unk020247fc
 
 // Two pointers, passed by address to the function at 0x14 of Unk02023374.
-typedef struct Unk02023374_24 {
-    /* 00 */ Unk02022c80 *mUnk_00;
-    /* 04 */ u8 *mUnk_04;
-} Unk02023374_24;
+typedef struct NNSG2dGlyph {
+    /* 00 */ NNSG2dCharWidths *mPWidths;
+    /* 04 */ u8 *mImage;
+} NNSG2dGlyph;
 
 // 0x20-byte object set up by NNS_G2dCharCanvasInitForOBJ1D and NNS_G2dCharCanvasInitForBG: a buffer of 8 x 8 blocks of
 // mUnk_0c * 8 bytes and the functions that draw into it.
@@ -19,7 +19,7 @@ typedef struct Unk02023374 {
     /* 08 */ s32 mUnk_08;
     /* 0c */ u8 mUnk_0c;
     /* 10 */ u32 mUnk_10;
-    /* 14 */ void (*mUnk_14)(struct Unk02023374 *, Unk02022aa8 *, s32, s32, u32, Unk02023374_24 *);
+    /* 14 */ void (*mUnk_14)(struct Unk02023374 *, Unk02022aa8 *, s32, s32, u32, NNSG2dGlyph *);
     /* 18 */ void (*mUnk_18)(struct Unk02023374 *, u32);
     /* 1c */ void (*mUnk_1c)(struct Unk02023374 *, u32, s32, s32, s32, s32);
 } Unk02023374;
@@ -39,13 +39,13 @@ typedef struct Unk02023d84 {
 } Unk02023d84;
 
 void InitCharCanvas(Unk02023374 *a, void *b, s32 c, s32 d, u32 e,
-                    void (*f)(Unk02023374 *, Unk02022aa8 *, s32, s32, u32, Unk02023374_24 *),
+                    void (*f)(Unk02023374 *, Unk02022aa8 *, s32, s32, u32, NNSG2dGlyph *),
                     void (*g)(Unk02023374 *, u32), void (*h)(Unk02023374 *, u32, s32, s32, s32, s32), u32 i);
 void ClearArea1D(Unk02023374 *pCanvas, u32 cl, s32 x, s32 y, s32 w, s32 h);
 void ClearAreaLine(Unk02023374 *pCanvas, u32 cl, s32 x, s32 y, s32 w, s32 h);
 void ClearContinuous(Unk02023374 *pCanvas, u32 cl);
-void DrawGlyph1D(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl, Unk02023374_24 *pGlyph);
-void DrawGlyphLine(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl, Unk02023374_24 *pGlyph);
+void DrawGlyph1D(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl, NNSG2dGlyph *pGlyph);
+void DrawGlyphLine(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl, NNSG2dGlyph *pGlyph);
 void LetterChar(Unk02023d84 *pInfo);
 void ClearChar(u8 *pChar, s32 x, s32 y, s32 w, s32 h, u32 cl8, s32 bpp);
 u32 OBJSizeToShape(const u8 *pSize);

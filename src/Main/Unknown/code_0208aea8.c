@@ -20,7 +20,7 @@ static inline u32 func_0208b190_inline(Unk020f41c4_B *b, u32 n) {
     return ((b->mUnk_00 >> 32) * n) >> 32;
 }
 
-Unk020184e4 *func_0208b458(s32 *a, s32 b) {
+SPLManager *func_0208b458(s32 *a, s32 b) {
     if (b >= 0x3e8) {
         b -= 0x3e8;
         *a = b;
@@ -89,7 +89,7 @@ void func_0208b190(void) {
         s32 e;
         Vec3 v;
         Unk0201ca6c *q;
-        Unk020184e4 *p;
+        SPLManager *p;
         Vec3 *t = &data_usa_02155f78[w[m]];
         f = data_0217b050;
         p = f(&e, u[m]);
@@ -125,7 +125,7 @@ void func_0208afe4(void) {
         s32 e;
         Vec3 v;
         Unk0201ca6c *q;
-        Unk020184e4 *p = data_0217b050(&e, b.mUnk_00[i]);
+        SPLManager *p = data_0217b050(&e, b.mUnk_00[i]);
         v.x = k;
         v.y = l;
         v.z = m;
@@ -142,7 +142,7 @@ void func_0208afe4(void) {
         s32 e;
         Vec3 v;
         Unk0201ca6c *q;
-        Unk020184e4 *p = data_0217b050(&e, a.mUnk_00[i]);
+        SPLManager *p = data_0217b050(&e, a.mUnk_00[i]);
         v.x = x >> 4;
         v.y = l;
         v.z = m;

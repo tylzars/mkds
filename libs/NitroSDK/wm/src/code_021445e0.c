@@ -12,18 +12,18 @@
 #include "code_0214d018.h"
 
 // Starts key sharing on port: data sharing of 2 bytes per station for all stations in double mode.
-int WM_StartKeySharing(Unk021450ec *buf, u16 port) {
+int WM_StartKeySharing(WMDataSharingInfo *buf, u16 port) {
     return WM_StartDataSharing(buf, port, 0xffff, 2, 1);
 }
 
 // Ends key sharing.
-int WM_EndKeySharing(Unk021450ec *buf) {
+int WM_EndKeySharing(WMDataSharingInfo *buf) {
     return WM_EndDataSharing(buf);
 }
 
 // Starts sharing dataLength bytes per station on port between the stations in aidBitmap, using dsInfo as the work area.
 // The parent sends the first data sets itself; a child waits for them.
-int WM_StartDataSharing(Unk021450ec *dsInfo, u16 port, u16 aidBitmap, u16 dataLength, BOOL doubleMode) {
+int WM_StartDataSharing(WMDataSharingInfo *dsInfo, u16 port, u16 aidBitmap, u16 dataLength, BOOL doubleMode) {
     u32 readyMembers;
     u32 ownIndex;
     Unk02142988 *status;
@@ -31,7 +31,7 @@ int WM_StartDataSharing(Unk021450ec *dsInfo, u16 port, u16 aidBitmap, u16 dataLe
     int i;
     u16 mask;
     u32 count;
-    Unk0214461c *block;
+    WMDataSet *block;
 
     readyMembers = 1;
     status = WMi_GetSystemWork()->mStatusArea;
@@ -103,7 +103,7 @@ int WM_StartDataSharing(Unk021450ec *dsInfo, u16 port, u16 aidBitmap, u16 dataLe
 }
 
 // Ends data sharing and removes the port callback; returns 3 when dsInfo is not running data sharing.
-int WM_EndDataSharing(Unk021450ec *dsInfo) {
+int WM_EndDataSharing(WMDataSharingInfo *dsInfo) {
     Unk02142aa8 *work;
     UnkFunc *registered;
     int result;
@@ -129,7 +129,7 @@ int WM_EndDataSharing(Unk021450ec *dsInfo) {
 
 // Takes the next complete data set of all stations into receiveData and sends sendData for the next round. Returns 0
 // when a data set was delivered, 5 when there is none yet and 1 after a send failure.
-int WM_StepDataSharing(Unk021450ec *dsInfo, void *sendData, Unk0214461c *receiveData) {
+int WM_StepDataSharing(WMDataSharingInfo *dsInfo, void *sendData, WMDataSet *receiveData) {
     int late;
     int result;
     Unk02142988 *status;
@@ -253,7 +253,7 @@ int WM_StepDataSharing(Unk021450ec *dsInfo, void *sendData, Unk0214461c *receive
 void WmDataSharingSetDataCallback(Unk02144920 *callback) {
     Unk02142aa8 *work;
     Unk02142988 *status;
-    Unk021450ec *share;
+    WMDataSharingInfo *share;
     UnkFunc *registered;
     u32 code;
     u32 ownIndex;
@@ -295,7 +295,7 @@ void WmDataSharingSetDataCallback(Unk02144920 *callback) {
 // Port callback of a parent: sends the next data set when the previous send finished (7), a child's data arrived (0x15)
 // or a child dropped out (9).
 void WmDataSharingReceiveCallback_Parent(Unk02144920 *callback) {
-    Unk021450ec *share;
+    WMDataSharingInfo *share;
     u32 enabled;
     enum { K0 } bit;
     u32 member;
@@ -342,7 +342,7 @@ void WmDataSharingReceiveCallback_Parent(Unk02144920 *callback) {
 // Port callback of a child: stores the data set the parent sent (0x15) as the next one to read.
 void WmDataSharingReceiveCallback_Child(Unk02144920 *callback) {
     Unk02142988 *status;
-    Unk021450ec *share;
+    WMDataSharingInfo *share;
     u32 size;
     u32 blockMask;
     u32 ownIndex;
@@ -388,7 +388,7 @@ void WmDataSharingReceiveCallback_Child(Unk02144920 *callback) {
 }
 
 // Stores the data of station aid (zero when data is NULL) in the current data set and marks the station as arrived.
-void WmDataSharingReceiveData(Unk021450ec *dsInfo, u32 aid, const void *data) {
+void WmDataSharingReceiveData(WMDataSharingInfo *dsInfo, u32 aid, const void *data) {
     u32 mask;
     u16 block;
     u32 enabled;
@@ -423,7 +423,7 @@ void WmDataSharingReceiveData(Unk021450ec *dsInfo, u32 aid, const void *data) {
 }
 
 // When the current data set is complete, makes the next one current and sends the finished one to the other stations.
-void WmDataSharingSendDataSet(Unk021450ec *dsInfo, u32 delayed) {
+void WmDataSharingSendDataSet(WMDataSharingInfo *dsInfo, u32 delayed) {
     u32 enabled;
     u16 done;
     u32 ready;
@@ -470,7 +470,7 @@ void WmDataSharingSendDataSet(Unk021450ec *dsInfo, u32 delayed) {
 }
 
 // Returns the data of station aid in receiveData, or NULL when the station has no data in it.
-u8 *WM_GetSharedDataAddress(Unk021450ec *dsInfo, Unk0214461c *receiveData, u32 aid) {
+u8 *WM_GetSharedDataAddress(WMDataSharingInfo *dsInfo, WMDataSet *receiveData, u32 aid) {
     u32 mask;
     u32 held;
     u32 arrived;
@@ -494,6 +494,6 @@ u8 *WM_GetSharedDataAddress(Unk021450ec *dsInfo, Unk0214461c *receiveData, u32 a
 }
 
 // Returns the data of station aid in receiveBuf: the data of the stations in aidBitmap that come before it are skipped.
-u8 *WmGetSharedDataAddress(Unk021450ec *dsInfo, u32 aidBitmap, u8 *receiveBuf, u32 aid) {
+u8 *WmGetSharedDataAddress(WMDataSharingInfo *dsInfo, u32 aidBitmap, u8 *receiveBuf, u32 aid) {
     return receiveBuf + dsInfo->mMemberDataSize * CountSetBits(aidBitmap & ((1 << aid) - 1));
 }

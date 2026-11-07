@@ -1076,8 +1076,8 @@ void DrawKeyboardGlyphs(KeyboardKeys *a) {
     Unk02022aa8 *f;
     KeyboardRect *e;
     Unk02022ce4_08 *u;
-    Unk02022c80 *t;
-    Unk02023374_24 v1;
+    NNSG2dCharWidths *t;
+    NNSG2dGlyph v1;
     Unk02023374 v2;
     s32 c;
     KeyboardLayout *q;
@@ -1108,10 +1108,10 @@ void DrawKeyboardGlyphs(KeyboardKeys *a) {
                     v = f->mUnk_00->mUnk_02;
                 }
                 t = NNS_G2dFontGetCharWidthsFromIndex(f, v);
-                v1.mUnk_00 = t;
+                v1.mPWidths = t;
                 u = f->mUnk_00->mUnk_08;
-                v1.mUnk_04 = u->mUnk_08 + v * u->mUnk_02;
-                h = (e->mWidth - t->mUnk_01) / 2;
+                v1.mImage = u->mUnk_08 + v * u->mUnk_02;
+                h = (e->mWidth - t->mGlyphWidth) / 2;
                 v2.mUnk_14(&v2, f, e->mX + h, e->mY + (e->mHeight - c) / 2, gKeyboardCanvas.mUnk_20, &v1);
             }
             n++;

@@ -41,7 +41,7 @@ void func_020d1de8(RaceHudOamBuffer *param_1, s32 param_2) {
     s32 t[20] = {0,    205,  410,  614,  819,  1638, 2253, 2867, 3891, 4506,
                  4710, 4915, 5120, 5325, 5325, 5120, 4915, 4710, 4506, 4096};
     s32 a;
-    Unk020224e0_o *e;
+    GXOamAttr *e;
 
     if (param_2 < 0) {
         gRaceMNumberPair->mOffsetX = 0;
