@@ -6,11 +6,12 @@
 
 #pragma thumb on
 
-void func_020ac2c4(const u8 *a, u8 *b, int c) {
+// The reverse of SplitBytesIntoNibbles: joins pairs of 4-bit entries into bytes.
+void JoinNibblesIntoBytes(const u8 *nibbles, u8 *bytes, int side) {
     int i;
-    int n = c * c / 2;
-    for (i = 0; i < n; i++) {
-        b[i] = a[i * 2] | (a[i * 2 + 1] << 4);
+    int byteCount = side * side / 2;
+    for (i = 0; i < byteCount; i++) {
+        bytes[i] = nibbles[i * 2] | (nibbles[i * 2 + 1] << 4);
     }
 }
 

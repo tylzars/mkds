@@ -671,7 +671,7 @@ BOOL StartBoundWobble(s32 a) {
     Unk0210b7a8 s;
     s32 k;
 
-    p = func_0209bc5c(func_02100138(MAP_OBJECT_KIND_BOUND), a);
+    p = GetMapObjectFromList(func_02100138(MAP_OBJECT_KIND_BOUND), a);
     if (p->mWobbling == FALSE) {
         p->mWobbleXAngle = 0x8000;
         p->mWobbleXMid = 0x1000;

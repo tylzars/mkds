@@ -12,7 +12,7 @@
 #pragma optimize_for_size on
 
 void func_020adce0(u32 *a, Unk02022aa8 *b, u32 c) {
-    func_020add18(a, b, func_020add90(b, c));
+    GetFontGlyph(a, b, func_020add90(b, c));
 }
 
 #pragma thumb on

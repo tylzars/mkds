@@ -46,7 +46,7 @@ typedef struct Balloon {
     /* fc */ s32 mState;
 } Balloon;
 
-void SetBalloonDrawCountAndList(Balloon *p0, u16 p1, void *p2);
-void SetBalloonKartIndex(Balloon *p0, u16 p1);
-s32 GetBalloonScaleFactor(Balloon *p0);
-void func_020a2e68(Balloon *p0);
+void SetBalloonDrawCountAndList(Balloon *balloon, u16 drawCount, void *drawList);
+void SetBalloonKartIndex(Balloon *balloon, u16 kartIndex);
+s32 GetBalloonScaleFactor(Balloon *balloon);
+void func_020a2e68(Balloon *balloon);

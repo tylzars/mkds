@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-unsigned int func_020ace0c(unsigned int p0);
+unsigned int func_020ace0c(unsigned int pair);

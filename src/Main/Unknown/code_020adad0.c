@@ -6,7 +6,7 @@
 
 void SetTitleState(u32 a, u32 b) {
     gTitleScene->mStateFrames = 0;
-    gTitleScene->mUnk_04 = TRUE;
+    gTitleScene->mStateChanged = TRUE;
     gTitleScene->mPrevState = gTitleScene->mState;
     gTitleScene->mState = a;
     gTitleScene->mNextState = b;

@@ -6,26 +6,26 @@
 
 #pragma thumb on
 
-u32 func_020ad264(u32 p0) {
-    return p0;
+u32 func_020ad264(u32 value) {
+    return value;
 }
 
 void UpdateTitleState0(void) {
-    int v1;
-    int v2;
-    v2 = 0;
+    int stateFrames;
+    int waitFrames;
+    waitFrames = 0;
     if (gTitleScene->mBlendDone == FALSE) {
-        v2 = 0x6b;
+        waitFrames = 0x6b;
     }
-    v1 = GetTitleStateFrames();
-    if (v1 >= v2) {
+    stateFrames = GetTitleStateFrames();
+    if (stateFrames >= waitFrames) {
         SetTitleState(1, 8);
     }
     AdvanceTitleBlend();
 }
 
-u32 func_020ad230(u32 p0) {
-    return p0;
+u32 func_020ad230(u32 value) {
+    return value;
 }
 
 #pragma thumb off

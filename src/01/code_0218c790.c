@@ -14,5 +14,5 @@
 #include "Main/Unknown/code_0209bef0.h"
 
 u32 func_ov001_0218c790(Unk02188950 *a) {
-    return func_0209b60c(a->mNsbmd);
+    return GetMapObjectModelNsbtpFrameIndex(a->mNsbmd);
 }

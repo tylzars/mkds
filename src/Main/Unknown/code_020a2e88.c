@@ -1,20 +1,21 @@
 #include "Main/Unknown/code_020a2e88.h"
 
-void func_020a2ebc(Balloon *a, Vec3 *b) {
-    a->mNoKartTimer = 0x1e;
-    a->mKartIndex = -1;
-    a->mDrawCount = 1;
-    a->mDrawList = NULL;
-    if (b == NULL) {
+// Sets the balloon's kart index to -1 and starts a countdown; given a position, places the balloon there.
+void func_020a2ebc(Balloon *balloon, Vec3 *position) {
+    balloon->mNoKartTimer = 0x1e;
+    balloon->mKartIndex = -1;
+    balloon->mDrawCount = 1;
+    balloon->mDrawList = NULL;
+    if (position == NULL) {
         return;
     }
-    a->mUnk_00.mPos.x = b->x;
-    a->mUnk_00.mPos.y = b->y + 0xf666;
-    a->mUnk_00.mPos.z = b->z;
+    balloon->mUnk_00.mPos.x = position->x;
+    balloon->mUnk_00.mPos.y = position->y + 0xf666;
+    balloon->mUnk_00.mPos.z = position->z;
 }
 
 // Copies the two vectors into mTargetPos and mTargetVelocity.
-void SetBalloonTargetPosAndVelocity(Balloon *a, Vec3 *b, Vec3 *c) {
-    a->mTargetPos = *b;
-    a->mTargetVelocity = *c;
+void SetBalloonTargetPosAndVelocity(Balloon *balloon, Vec3 *targetPos, Vec3 *targetVelocity) {
+    balloon->mTargetPos = *targetPos;
+    balloon->mTargetVelocity = *targetVelocity;
 }

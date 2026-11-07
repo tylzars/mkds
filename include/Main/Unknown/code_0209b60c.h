@@ -4,5 +4,5 @@
 
 typedef struct Unk0219b250 Unk0219b250;
 
-u32 func_0209b60c(Unk0219b250 *arg0);
-u32 GetMapObjectModelNsbcaFrameIndex(Unk0219b250 *arg0);
+u32 GetMapObjectModelNsbtpFrameIndex(Unk0219b250 *model);
+u32 GetMapObjectModelNsbcaFrameIndex(Unk0219b250 *model);

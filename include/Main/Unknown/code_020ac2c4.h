@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020ac2c4(const u8 *a, u8 *b, int c);
+void JoinNibblesIntoBytes(const u8 *nibbles, u8 *bytes, int side);

@@ -915,7 +915,7 @@ void func_ov001_021a2cf0(void) {
             break;
         case 1:
             SetEmblemChoisesShownAndReset(0);
-            func_020ac390(GetEmblemGridCells(), gEmblem->mUnk_087c, GetEmblemGridSide());
+            JoinNibbleTilesIntoBytes(GetEmblemGridCells(), gEmblem->mUnk_087c, GetEmblemGridSide());
             func_020569a8(gEmblem->mUnk_087c);
             gEmblem->mUnk_1090 = 0xb;
             gEmblem->mUnk_1098 = 1;
@@ -1029,6 +1029,6 @@ void func_ov001_021a2a40(void) {
     func_020ae630(gEmblem, &gEmblem->mUnk_0404);
     func_020783c8();
     DrawKartModelMenuUnmirrored();
-    func_020ac390(GetEmblemGridCells(), gEmblem->mUnk_087c, GetEmblemGridSide());
-    func_020ac2c4(GetEmblemGridCells(), gEmblem->mUnk_0a7c, GetEmblemGridSide());
+    JoinNibbleTilesIntoBytes(GetEmblemGridCells(), gEmblem->mUnk_087c, GetEmblemGridSide());
+    JoinNibblesIntoBytes(GetEmblemGridCells(), gEmblem->mUnk_0a7c, GetEmblemGridSide());
 }

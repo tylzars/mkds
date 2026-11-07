@@ -1,21 +1,21 @@
 #include "Main/Unknown/code_020a2e4c.h"
 
-void func_020a2e68(Balloon *p0) {
-    p0->mUnk_e0 = 0;
+void func_020a2e68(Balloon *balloon) {
+    balloon->mUnk_e0 = 0;
 }
 
 // Returns mScaleFactor.
-s32 GetBalloonScaleFactor(Balloon *p0) {
-    return p0->mScaleFactor;
+s32 GetBalloonScaleFactor(Balloon *balloon) {
+    return balloon->mScaleFactor;
 }
 
 // Stores mKartIndex.
-void SetBalloonKartIndex(Balloon *p0, u16 p1) {
-    p0->mKartIndex = p1;
+void SetBalloonKartIndex(Balloon *balloon, u16 kartIndex) {
+    balloon->mKartIndex = kartIndex;
 }
 
 // Stores mDrawCount and mDrawList.
-void SetBalloonDrawCountAndList(Balloon *p0, u16 p1, void *p2) {
-    p0->mDrawCount = p1;
-    p0->mDrawList = p2;
+void SetBalloonDrawCountAndList(Balloon *balloon, u16 drawCount, void *drawList) {
+    balloon->mDrawCount = drawCount;
+    balloon->mDrawList = drawList;
 }

@@ -229,7 +229,7 @@ void ReadRecordEmblem(u16 a, EmblemData *b, void *c) {
         b->mUnk_200 = 1;
         MIi_CpuCopyFast(gRecordList->mUnk_0c, b, 0x200);
     }
-    func_020ac2fc(b, c, 0x20);
+    CopyBytesIntoTiles(b, c, 0x20);
 }
 
 // Empties the slot and rebuilds the list.

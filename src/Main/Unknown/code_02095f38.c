@@ -32,7 +32,7 @@
 
 u32 func_0209753c(u32 a) {
     Unk0209753c *v1;
-    v1 = func_0209bc5c(func_02100138(MAP_OBJECT_KIND_FLIPPER), a);
+    v1 = GetMapObjectFromList(func_02100138(MAP_OBJECT_KIND_FLIPPER), a);
     v1->mUnk_ebc = 0xaa;
     return 1;
 }

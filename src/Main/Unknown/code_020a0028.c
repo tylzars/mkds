@@ -16,67 +16,68 @@ void CreateAirship(void *a) {
     SetMapObjectModelPolygonId(gAirship, 0x3f);
 }
 
-void DrawAirship(void *a, Airship *p) {
+void DrawAirship(void *a, Airship *airship) {
     s32 v;
-    s32 q[9];
+    s32 rotationMatrix[9];
     Vec3 w;
 
     v = 0x1e;
     func_01ff9048(0x14, &v, 1);
-    w.y = (p->mUnk_a0 + p->mUnk_ac) >> 4;
+    w.y = (airship->mUnk_a0 + airship->mUnk_ac) >> 4;
     w.x = 0;
     w.z = 0;
     func_01ff9048(0x1c, &w, 3);
-    p->mUnk_00.mMatrix.mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
-    p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
-    p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
-    func_01ff9048(0x19, &p->mUnk_00.mMatrix, 0xc);
-    if (p->mUnk_00.mAngle != 0) {
-        MTX_RotY33_(q, gPairsByAngle[((p->mUnk_00.mAngle >> 4) << 1)],
-                    gPairsByAngle[((p->mUnk_00.mAngle >> 4) << 1) + 1]);
-        func_01ff9048(0x1a, q, 9);
+    airship->mUnk_00.mMatrix.mUnk_00[3].x = airship->mUnk_00.mPos.x >> 4;
+    airship->mUnk_00.mMatrix.mUnk_00[3].y = airship->mUnk_00.mPos.y >> 4;
+    airship->mUnk_00.mMatrix.mUnk_00[3].z = airship->mUnk_00.mPos.z >> 4;
+    func_01ff9048(0x19, &airship->mUnk_00.mMatrix, 0xc);
+    if (airship->mUnk_00.mAngle != 0) {
+        MTX_RotY33_(rotationMatrix, gPairsByAngle[((airship->mUnk_00.mAngle >> 4) << 1)],
+                    gPairsByAngle[((airship->mUnk_00.mAngle >> 4) << 1) + 1]);
+        func_01ff9048(0x1a, rotationMatrix, 9);
     }
-    func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
-    DrawMapObjectModel(a, gAirship, p);
+    func_01ff9048(0x1b, &airship->mUnk_00.mScale, 3);
+    DrawMapObjectModel(a, gAirship, airship);
 }
 
-void InitAirshipObjects(Unk020a0064 *p) {
+void InitAirshipObjects(Unk020a0064 *list) {
     s32 i;
-    Airship *o;
+    Airship *airship;
     BOOL z;
     s32 v;
 
-    if (p == NULL) {
+    if (list == NULL) {
         return;
     }
     z = FALSE;
-    for (i = 0; i < p->mUnk_04 && (o = p->mUnk_00[i]) != NULL; i++) {
-        InitGroupFollower(&o->mUnk_c8, o->mUnk_00.mCourseMapRow, z);
-        o->mUnk_a4 = (o->mUnk_00.mCourseMapRow->mUnk_28 * 0x5000L) / 100;
-        v = o->mUnk_a4;
-        o->mUnk_c8.mUnk_04 = v;
-        o->mUnk_c8.mUnk_10 = ((s64) v * o->mUnk_c8.mUnk_00->mUnk_00[o->mUnk_c8.mUnk_0c].mUnk_34) >> 12;
-        o->mUnk_a0 = o->mUnk_00.mPos.y;
-        func_020d8bf8(&o->mUnk_c8, &o->mUnk_00.mPos, &o->mUnk_00.mUnk_10);
-        o->mUnk_a0 = o->mUnk_a0 - o->mUnk_00.mPos.y;
-        o->mUnk_a8 = 0;
-        o->mUnk_b4 = 0;
-        o->mUnk_b8 = 0x50000;
-        o->mUnk_bc = 0;
-        o->mUnk_c0 = 0xb6;
-        o->mUnk_c4 = 0;
-        if (o->mUnk_00.mCourseMapRow->mUnk_2a != 0) {
-            o->mState = 0;
+    for (i = 0; i < list->mUnk_04 && (airship = list->mUnk_00[i]) != NULL; i++) {
+        InitGroupFollower(&airship->mUnk_c8, airship->mUnk_00.mCourseMapRow, z);
+        airship->mUnk_a4 = (airship->mUnk_00.mCourseMapRow->mUnk_28 * 0x5000L) / 100;
+        v = airship->mUnk_a4;
+        airship->mUnk_c8.mUnk_04 = v;
+        airship->mUnk_c8.mUnk_10 =
+            ((s64) v * airship->mUnk_c8.mUnk_00->mUnk_00[airship->mUnk_c8.mUnk_0c].mUnk_34) >> 12;
+        airship->mUnk_a0 = airship->mUnk_00.mPos.y;
+        func_020d8bf8(&airship->mUnk_c8, &airship->mUnk_00.mPos, &airship->mUnk_00.mUnk_10);
+        airship->mUnk_a0 = airship->mUnk_a0 - airship->mUnk_00.mPos.y;
+        airship->mUnk_a8 = 0;
+        airship->mUnk_b4 = 0;
+        airship->mUnk_b8 = 0x50000;
+        airship->mUnk_bc = 0;
+        airship->mUnk_c0 = 0xb6;
+        airship->mUnk_c4 = 0;
+        if (airship->mUnk_00.mCourseMapRow->mUnk_2a != 0) {
+            airship->mState = 0;
         } else {
-            o->mState = 2;
+            airship->mState = 2;
         }
     }
 }
 
-s32 func_020a0044(s32 a) {
-    return gPairsByAngle[((a >> 4) << 1) + 1];
+s32 func_020a0044(s32 angle) {
+    return gPairsByAngle[((angle >> 4) << 1) + 1];
 }
 
-s32 func_020a0028(s32 a, s32 b) {
-    return ((s64) a * b + 0x800) >> 12;
+s32 func_020a0028(s32 multiplicand, s32 multiplier) {
+    return ((s64) multiplicand * multiplier + 0x800) >> 12;
 }

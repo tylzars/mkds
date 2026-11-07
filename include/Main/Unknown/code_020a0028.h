@@ -33,7 +33,7 @@ typedef struct Unk020a0064 {
 } Unk020a0064;
 
 void CreateAirship(void *a);
-void DrawAirship(void *a, Airship *p);
-void InitAirshipObjects(Unk020a0064 *p);
-s32 func_020a0044(s32 a);
-s32 func_020a0028(s32 a, s32 b);
+void DrawAirship(void *a, Airship *airship);
+void InitAirshipObjects(Unk020a0064 *list);
+s32 func_020a0044(s32 angle);
+s32 func_020a0028(s32 multiplicand, s32 multiplier);

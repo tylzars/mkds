@@ -526,7 +526,8 @@ struct Unk0201ea30;
 // 0x8bc bytes.
 typedef struct TitleScene {
     /* 000 */ s32 mStateFrames;
-    /* 004 */ BOOL mUnk_04;
+    // TRUE from every change of state (and creation) until the current state's handler has run; nothing reads it.
+    /* 004 */ BOOL mStateChanged;
     /* 008 */ s32 mPrevState;
     /* 00c */ s32 mState;
     /* 010 */ s32 mNextState;

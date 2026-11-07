@@ -83,7 +83,7 @@ void InitEmblem(void) {
     p = data_0217aa08->mEmblemRecord;
     if (p->mFilled) {
         MI_CpuCopy8(p->mEmblemData, gEmblem->mUnk_087c, 0x200);
-        func_020ac454(gEmblem->mUnk_087c, gEmblem->mUnk_0c7c, GetEmblemGridSide());
+        SplitBytesIntoNibbleTiles(gEmblem->mUnk_087c, gEmblem->mUnk_0c7c, GetEmblemGridSide());
         SetEmblemGridCells(gEmblem->mUnk_0c7c);
         SwapEmblemGridCells();
         SetEmblemGridCells(gEmblem->mUnk_0c7c);

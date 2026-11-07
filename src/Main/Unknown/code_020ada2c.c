@@ -11,7 +11,7 @@ void AdvanceTitleStates(s32 a) {
     func_020ae6ac(&gTitleScene->mMainOam, &gTitleScene->mSubOam);
     i = gTitleScene->mState;
     gTitleScene->mStateHandlers[i].mUpdate(a);
-    func_020ada7c((s32 *) gTitleScene);
+    IncrementCounterSaturating((s32 *) gTitleScene);
     func_02125928();
     func_020ae630(&gTitleScene->mMainOam, &gTitleScene->mSubOam);
 }

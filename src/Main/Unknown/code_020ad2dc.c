@@ -118,7 +118,7 @@ void CreateTitleScene(void) {
     useTrueFiles = IsAllGrandPrixRecordsTopRank();
     gTitleScene = HeapAlloc(func_020ada10(), 0x8bc);
     gTitleScene->mStateFrames = 0;
-    gTitleScene->mUnk_04 = TRUE;
+    gTitleScene->mStateChanged = TRUE;
     gTitleScene->mPrevState = 0;
     gTitleScene->mState = 0;
     gTitleScene->mNextState = 8;

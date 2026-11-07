@@ -5,9 +5,9 @@
 #pragma thumb on
 
 void func_020ae718(void) {
-    u64 v1;
-    v1 = OS_GetTick();
-    *(u64 *) &data_0217b344 = v1;
+    u64 tick;
+    tick = OS_GetTick();
+    *(u64 *) &data_0217b344 = tick;
 }
 
 #pragma thumb off

@@ -9,17 +9,17 @@
 
 void func_020ada94(void) {
     gTitleScene->mStateHandlers[gTitleScene->mState].mUnk_00();
-    gTitleScene->mUnk_04 = FALSE;
+    gTitleScene->mStateChanged = FALSE;
     func_021258f0();
     func_020ae5f0(&gTitleScene->mMainOam, &gTitleScene->mSubOam);
 }
 
 #pragma thumb off
 
-void func_020ada7c(int *a) {
-    u32 v1;
-    v1 = *(u32 *) a;
-    if ((s32) v1 < 0x7fffffff) {
-        *a = v1 + 1;
+void IncrementCounterSaturating(int *counter) {
+    u32 value;
+    value = *(u32 *) counter;
+    if ((s32) value < 0x7fffffff) {
+        *counter = value + 1;
     }
 }

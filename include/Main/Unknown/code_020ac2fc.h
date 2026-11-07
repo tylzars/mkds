@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-void func_020ac2fc(void *a, u8 *b, s32 c);
-void func_020ac390(void *a, u8 *b, s32 c);
-void func_020ac454(void *a, u8 *b, s32 c);
+void CopyBytesIntoTiles(void *bytes, u8 *tiles, s32 side);
+void JoinNibbleTilesIntoBytes(void *tiles, u8 *bytes, s32 side);
+void SplitBytesIntoNibbleTiles(void *bytes, u8 *tiles, s32 side);

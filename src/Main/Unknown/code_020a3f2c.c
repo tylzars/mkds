@@ -878,7 +878,7 @@ void BalloonKartEliminatedCallback(u16 a) {
             }
         }
         if (l != NULL) {
-            func_020a2f0c(l, a);
+            ParkBalloon(l, a);
         }
     } while (GetBalloonOrShineCount(a) != 0);
 }

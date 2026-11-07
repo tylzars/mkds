@@ -371,7 +371,7 @@ void AdvanceWiFiVSMatchingState1(void) {
                           gWiFiVSMatching->mWiFiVSMatchingBncl, gWiFiVSMatching->mWiFiVSMatchingTable);
             dst = gWiFiVSMatching->mOtherEmblems[0];
             dst += i * 0x200;
-            func_020ac2fc(func_02120294(gWiFiVSMatching->mOtherIndices[i]), dst, 0x20);
+            CopyBytesIntoTiles(func_02120294(gWiFiVSMatching->mOtherIndices[i]), dst, 0x20);
             gWiFiVSMatching->mUnk_16d8[i] = func_02120278(gWiFiVSMatching->mOtherIndices[i]);
         }
         for (i = 0; i < 3; i++) {

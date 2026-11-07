@@ -12,7 +12,7 @@ void *func_020ae730(s32 a, s32 b) {
 
     p = NULL;
     if (a > 0) {
-        p = HeapAlloc((void *) func_020ae754(), b * a);
+        p = HeapAlloc((void *) GetCurrentHeap(), b * a);
     }
     return p;
 }

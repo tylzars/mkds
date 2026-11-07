@@ -23,37 +23,37 @@
 #include "Main/Unknown/code_020acde4.h"
 #include "Main/Unknown/code_020ace0c.h"
 
-u32 func_020ace0c(u32 p0) {
-    return (*OFFSET_PTR(const u16, p0, 0));
+u32 func_020ace0c(u32 pair) {
+    return (*OFFSET_PTR(const u16, pair, 0));
 }
 
-u32 func_020acdec(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_020acdec(u32 slotIndex) {
+    u32 value0 = slotIndex;
     u32 value1;
-    u32 value2;
-    u32 value12;
-    value2 = (u32) &data_02175628;
+    u32 slotsAddress;
+    u32 functionAddress;
+    slotsAddress = (u32) &data_02175628;
     value1 = 0x5cu;
-    value1 = (value0) * (value1) + (value2);
-    value12 = (u32) &func_020ace0c;
+    value1 = (value0) * (value1) + (slotsAddress);
+    functionAddress = (u32) &func_020ace0c;
     value0 = (value1) + (0x48u);
     value0 = func_020ace0c(value0);
     return value0;
 }
 
-u32 func_020acde4(u32 p0) {
-    return (*OFFSET_PTR(const u16, p0, 2));
+u32 func_020acde4(u32 pair) {
+    return (*OFFSET_PTR(const u16, pair, 2));
 }
 
-u32 func_020acdc4(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_020acdc4(u32 slotIndex) {
+    u32 value0 = slotIndex;
     u32 value1;
-    u32 value2;
-    u32 value12;
-    value2 = (u32) &data_02175628;
+    u32 slotsAddress;
+    u32 functionAddress;
+    slotsAddress = (u32) &data_02175628;
     value1 = 0x5cu;
-    value1 = (value0) * (value1) + (value2);
-    value12 = (u32) &func_020acde4;
+    value1 = (value0) * (value1) + (slotsAddress);
+    functionAddress = (u32) &func_020acde4;
     value0 = (value1) + (0x48u);
     value0 = func_020acde4(value0);
     return value0;
@@ -62,17 +62,17 @@ u32 func_020acdc4(u32 arg0) {
 #pragma thumb on
 
 void UpdateTitleState2(Unk020aca24 *a) {
-    u32 i;
-    s32 j;
-    s32 n;
+    u32 slotIndex;
+    s32 previousIndex;
+    s32 rectIndex;
 
     if (a != NULL) {
-        i = func_020acef4();
-        if (func_020acec4(i, PAD_KEY_A) != 0) {
+        slotIndex = func_020acef4();
+        if (func_020acec4(slotIndex, PAD_KEY_A) != 0) {
             SetTitleState(4, 8);
             func_020acf04();
             gTitleScene->mSelectedPressed = TRUE;
-        } else if (GetNewOrRepeatBits(i, (PAD_KEY_LEFT | PAD_KEY_RIGHT)) != 0) {
+        } else if (GetNewOrRepeatBits(slotIndex, (PAD_KEY_LEFT | PAD_KEY_RIGHT)) != 0) {
             switch (gTitleScene->mSelectedIndex) {
                 case 3:
                     gTitleScene->mSelectedIndex = 4;
@@ -86,7 +86,7 @@ void UpdateTitleState2(Unk020aca24 *a) {
                     break;
             }
             gTitleScene->mNoInputFrames = 0;
-        } else if (GetNewOrRepeatBits(i, PAD_KEY_UP) != 0) {
+        } else if (GetNewOrRepeatBits(slotIndex, PAD_KEY_UP) != 0) {
             switch (gTitleScene->mSelectedIndex) {
                 case 0:
                     if (gTitleScene->mPreferEntry4 != FALSE) {
@@ -108,7 +108,7 @@ void UpdateTitleState2(Unk020aca24 *a) {
             }
             StartSoundOncePerFrame(0);
             gTitleScene->mNoInputFrames = 0;
-        } else if (GetNewOrRepeatBits(i, PAD_KEY_DOWN) != 0) {
+        } else if (GetNewOrRepeatBits(slotIndex, PAD_KEY_DOWN) != 0) {
             switch (gTitleScene->mSelectedIndex) {
                 case 0:
                     gTitleScene->mSelectedIndex = 1;
@@ -130,23 +130,23 @@ void UpdateTitleState2(Unk020aca24 *a) {
             }
             StartSoundOncePerFrame(0);
             gTitleScene->mNoInputFrames = 0;
-        } else if (func_020ace14(i) != 0) {
-            u32 x = func_020acdec(i);
-            u32 y = func_020acdc4(i);
-            j = gTitleScene->mSelectedIndex;
-            n = FindRectContainingPoint(x, y, gTitleScene->mTitleSBnbl);
-            if (n != -1) {
-                if (j == n) {
+        } else if (func_020ace14(slotIndex) != 0) {
+            u32 pointX = func_020acdec(slotIndex);
+            u32 pointY = func_020acdc4(slotIndex);
+            previousIndex = gTitleScene->mSelectedIndex;
+            rectIndex = FindRectContainingPoint(pointX, pointY, gTitleScene->mTitleSBnbl);
+            if (rectIndex != -1) {
+                if (previousIndex == rectIndex) {
                     gTitleScene->mSelectedPressed = TRUE;
                 }
-                gTitleScene->mSelectedIndex = n;
+                gTitleScene->mSelectedIndex = rectIndex;
                 SetTitleState(4, 8);
                 func_020acf04();
             }
         } else {
-            s32 m = GetTitleNoInputFrameLimit();
+            s32 noInputFrameLimit = GetTitleNoInputFrameLimit();
             gTitleScene->mNoInputFrames++;
-            if (gTitleScene->mNoInputFrames > m) {
+            if (gTitleScene->mNoInputFrames > noInputFrameLimit) {
                 if (IsSeqVariableChanged(0) != 0) {
                     a->mNextScene = 2;
                     SetNextDemoRace(gTitleScene->mUnk_8b8);
@@ -160,10 +160,10 @@ void UpdateTitleState2(Unk020aca24 *a) {
 #pragma thumb off
 
 #pragma thumb on
-u32 func_020acbf0(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value3;
-    value3 = (u32) &func_020ad230;
+u32 func_020acbf0(u32 value) {
+    u32 value0 = value;
+    u32 functionAddress;
+    functionAddress = (u32) &func_020ad230;
     value0 = func_020ad230(value0);
     return value0;
 }
