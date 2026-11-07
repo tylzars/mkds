@@ -69,7 +69,7 @@ void func_02086a04(void) {
                 b = FALSE;
             }
             if ((a != FALSE && b == FALSE) || (a == FALSE && b != FALSE)) {
-                func_0210cfbc(&p->mSoundSource, 2, 1);
+                SetSoundSourceFlagBit(&p->mSoundSource, 2, 1);
             }
             if (d < 0) {
                 s->mUnk_058 = s->mUnk_05c = s->mUnk_060 = TRUE;

@@ -154,14 +154,14 @@ void func_0205896c(void) {
 
 void func_02058950(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        func_02059ea4(2);
+        StartLoadOverlay(2);
     }
 }
 
 void func_02058910(void) {
-    if (func_02059ce8() != 0) {
+    if (TryFinishOverlayLoad() != 0) {
         if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-            func_0205a108();
+            CreateOverlayFrmHeap();
             func_020474e4();
         }
         func_02058910_inline(3);

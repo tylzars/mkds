@@ -49,7 +49,7 @@ void func_020c1060(void) {
                 }
                 c = v != 0 ? 1 : x1;
                 p = func_0205dc7c(i);
-                r = func_0205db28();
+                r = GetCourseIndexInCup();
                 w = data_0217aa1c->mUnk_000[r][func_0205dc7c(p)].mUnk_05;
                 a[i] = w * 16 + c * 8 + 8 - GetKartRank(i);
             } else {
@@ -60,12 +60,12 @@ void func_020c1060(void) {
                 }
                 c = v != 0 ? 1 : x3;
                 p = func_0205dc7c(i);
-                r = func_0205db28();
+                r = GetCourseIndexInCup();
                 s = &data_0217aa1c->mUnk_000[r][func_0205dc7c(p)];
                 w = s->mUnk_00;
                 a[i] = w * 16 + c * 8 + 8 - GetKartRank(i);
                 p = func_0205dc7c(i);
-                r = func_0205db28();
+                r = GetCourseIndexInCup();
                 s = &data_0217aa1c->mUnk_000[r][func_0205dc7c(p)];
                 gRaceGoalS->mUnk_0020[i] = s->mUnk_00;
             }
@@ -81,7 +81,7 @@ void func_020c1060(void) {
             for (j = 0; j < (u32) gRaceSetup->mKartCount; j++) {
                 if (k == gRaceGoalS->mUnk_0040[j]) {
                     m = j;
-                    func_0205d76c(k, (j + 1) & 0xff);
+                    SetKartCupRank(k, (j + 1) & 0xff);
                     data_0217b488->mUnk_ec[k] = j;
                     break;
                 }
@@ -142,7 +142,7 @@ void func_020c0ee4(void) {
 }
 
 static inline Unk0217aa1c_144_00 *func_020c0dd8_inline(s32 j) {
-    return &data_0217aa1c->mUnk_144[func_0205db28()].mUnk_00[j];
+    return &data_0217aa1c->mUnk_144[GetCourseIndexInCup()].mUnk_00[j];
 }
 
 void func_020c0dd8(void) {

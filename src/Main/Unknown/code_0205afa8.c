@@ -17,7 +17,7 @@ s32 func_0205afa8(void) {
     s32 e;
 
     a = data_0217aa18->mUnk_06[func_ov000_0219bb50()];
-    b = func_0205d27c(a);
+    b = GetKartStartRank(a);
     c = func_0203c240(a) & 0x7ffff;
     if (IsKartEnded(a) != 0 && gRaceProgress->mUnk_000[a].mStatus != 1 && data_0217aa14->mUnk_72c == FALSE) {
         c = 0x7ffff;

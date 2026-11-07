@@ -19,9 +19,9 @@ void func_0210c134(SoundSource *a, u32 b) {
     void *v1;
     void *v2;
     NNS_FndInitList(&a->mPlayingSounds, 8);
-    v1 = (void *) func_0210d0b4;
+    v1 = (void *) StartPlayingSoundSeqArc;
     a->mUnk_38 = 1;
-    v2 = (void *) func_0210d078;
+    v2 = (void *) SetPlayingSoundTrackParams;
     a->mUnk_2c = v1;
     a->mUnk_30 = v2;
     a->mUnk_34 = 0;
@@ -94,7 +94,7 @@ void func_0210bf24(u32 a, u32 b, u32 c, void *d) {
         func_0210bc54(w, (u8 *) v);
         func_0210bfbc((SoundSource *) (w - 1));
     }
-    func_0210cfe8(v);
+    ResetPlayingSound(v);
     func_0210bcf4(a, b, c, &v->mUnk_00, d);
 }
 

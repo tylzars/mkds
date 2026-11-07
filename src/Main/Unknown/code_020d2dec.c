@@ -332,7 +332,7 @@ void InitMapObjects(void) {
         if (row->mKind == 0) {
             break;
         }
-        if (data_0217aa10->mUnk_00 != 1 && func_02059c04(d) != 0) {
+        if (data_0217aa10->mUnk_00 != 1 && IsInOverlayRange(d) != 0) {
             break;
         }
         if (d != NULL) {

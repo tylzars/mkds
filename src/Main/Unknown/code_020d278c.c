@@ -105,9 +105,9 @@ void CreateMapObjectSoundSourceFalloff2(MapObject *a) {
     a->mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
     InitSoundSource(&a->mSound->mSoundSource, 2, &a->mPos);
     a->mFarDistanceSquared = gSoundFalloffs[2].mUnk_20;
-    func_0210cf9c(&a->mSound->mSoundSource, 0);
+    SetSoundSourceEnabled(&a->mSound->mSoundSource, 0);
     if (a->mSound->mSoundSource.mUnk_34 & 1) {
-        func_0210cfbc(&a->mSound->mSoundSource, 2, 1);
+        SetSoundSourceFlagBit(&a->mSound->mSoundSource, 2, 1);
     }
 }
 
@@ -115,9 +115,9 @@ Unk0210b7ec *func_020d286c(MapObject *a) {
     a->mSound = HeapAlloc(GetHeap(func_020364e8()), 0x60);
     InitSoundSource(&a->mSound->mSoundSource, 2, &a->mPos);
     a->mFarDistanceSquared = gSoundFalloffs[2].mUnk_20;
-    func_0210cf9c(&a->mSound->mSoundSource, 0);
+    SetSoundSourceEnabled(&a->mSound->mSoundSource, 0);
     if (a->mSound->mSoundSource.mUnk_34 & 1) {
-        func_0210cfbc(&a->mSound->mSoundSource, 2, 1);
+        SetSoundSourceFlagBit(&a->mSound->mSoundSource, 2, 1);
     }
     return &a->mSound->mUnk_44;
 }
@@ -126,9 +126,9 @@ void CreateMapObjectSoundSourceFalloff3(MapObject *a) {
     a->mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
     InitSoundSource(&a->mSound->mSoundSource, 3, &a->mPos);
     a->mFarDistanceSquared = gSoundFalloffs[3].mUnk_20;
-    func_0210cf9c(&a->mSound->mSoundSource, 0);
+    SetSoundSourceEnabled(&a->mSound->mSoundSource, 0);
     if (a->mSound->mSoundSource.mUnk_34 & 1) {
-        func_0210cfbc(&a->mSound->mSoundSource, 2, 1);
+        SetSoundSourceFlagBit(&a->mSound->mSoundSource, 2, 1);
     }
 }
 
@@ -136,8 +136,8 @@ void CreateMapObjectSoundSourceFalloff4(MapObject *a) {
     a->mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
     InitSoundSource(&a->mSound->mSoundSource, 4, &a->mPos);
     a->mFarDistanceSquared = gSoundFalloffs[4].mUnk_20;
-    func_0210cf9c(&a->mSound->mSoundSource, 0);
+    SetSoundSourceEnabled(&a->mSound->mSoundSource, 0);
     if (a->mSound->mSoundSource.mUnk_34 & 1) {
-        func_0210cfbc(&a->mSound->mSoundSource, 2, 1);
+        SetSoundSourceFlagBit(&a->mSound->mSoundSource, 2, 1);
     }
 }

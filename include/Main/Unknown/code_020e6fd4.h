@@ -9,7 +9,7 @@
 struct MapObject;
 struct CourseMapRow;
 
-// Object behind MapObject.mUnk_94, passed to func_0210cfbc (which reads its halfword at 0x34).
+// Object behind MapObject.mUnk_94, passed to SetSoundSourceFlagBit (which reads its halfword at 0x34).
 typedef struct Unk020e71a0_94 {
     // Sound source of the map object (the sounds started on it).
     /* 00 */ SoundSource mSoundSource;

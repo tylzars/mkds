@@ -49,7 +49,7 @@ extern UnkFunc *const data_021652b0[];
 extern UnkFunc *const data_02165388[];
 struct Kart;
 extern void (*const gKartStateFunctions[])(struct Kart *);
-extern const SceneCallbacks data_02165368;
+extern const SceneCallbacks gResultSceneCallbacks;
 extern const SceneCallbacks data_usa_021651b0;
 extern const char data_02165074[];
 extern const char data_02165080[];

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-unsigned int func_020ad9fc(void);
+unsigned int GetTitleBlendDone(void);

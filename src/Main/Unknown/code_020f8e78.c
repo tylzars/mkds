@@ -86,7 +86,7 @@ void func_020f9114(void *b) {
     enum { K0 } a = p->mKind;
 
     func_02109038(p, gItemKinds[a].mUnk_a0, &p->mPos);
-    func_0210cf9c(&p->mSoundSource, 1);
+    SetSoundSourceEnabled(&p->mSoundSource, 1);
     p->mFlags |= 0x400000;
 }
 
@@ -153,7 +153,7 @@ void func_020f8e78(void *b) {
     if ((p->mFlags & 0x400000) == 0) {
         k = p->mKind;
         func_02109038(p, gItemKinds[k].mUnk_a0, &p->mPos);
-        func_0210cf9c(&p->mSoundSource, 1);
+        SetSoundSourceEnabled(&p->mSoundSource, 1);
         p->mFlags |= 0x400000;
     }
     k = p->mKind;

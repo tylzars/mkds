@@ -110,7 +110,7 @@ void ResetRaceSetup(void) {
         e->mUnk_03 = 0;
         e->mUnk_00 = 0;
     }
-    func_0205db50();
+    ResetCupRecords();
     func_0205d07c();
     SetCurrentRaceFromNext();
 }
@@ -432,7 +432,7 @@ void func_020446e0(void) {
                 for (c = 0; c < 8; c++) {
                     s8 j;
                     for (j = 0; j < gRaceSetup->mKartCount; j++) {
-                        if (c + 1 == func_0205d4e8((u16) j)) {
+                        if (c + 1 == GetKartCupRank((u16) j)) {
                             break;
                         }
                     }

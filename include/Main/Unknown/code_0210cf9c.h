@@ -4,5 +4,5 @@
 
 typedef struct SoundSource SoundSource;
 
-void func_0210cfbc(SoundSource *p, s32 b, s32 c);
-void func_0210cf9c(SoundSource *p, s32 b);
+void SetSoundSourceFlagBit(SoundSource *p, s32 bit, s32 value);
+void SetSoundSourceEnabled(SoundSource *p, s32 enabled);

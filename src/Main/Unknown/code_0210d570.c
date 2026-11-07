@@ -7,6 +7,6 @@ u32 func_0210d58c(Unk0217d070 *p0) {
 }
 
 void func_0210d570(Unk0217d070 *a, s32 b) {
-    func_0210d0ec();
+    ReleaseAllSoundSources();
     a->mUnk_00 = 0;
 }

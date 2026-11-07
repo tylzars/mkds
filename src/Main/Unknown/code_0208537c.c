@@ -188,7 +188,7 @@ void func_02085bec(void) {
     if (gRaceSetup->mMode == MODE_GRAND_PRIX) {
         for (i = 0; i < gRaceSetup->mKartCount; i++) {
             k = i;
-            v = func_0205d3f0(k);
+            v = GetKartPreviousTotalPoints(k);
             f = FALSE;
             if (gRaceSetup->mCurrentEntries[k].mPlayer.mKind <= 3 &&
                 ((1 << gRaceSetup->mCurrentEntries[k].mPlayer.mKind) & 0xd)) {

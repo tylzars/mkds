@@ -14,7 +14,7 @@
 #pragma opt_rebuildconditionals off
 
 s32 RunResultScene(SceneNumbers *a) {
-    SceneCallbacks b = data_02165368;
+    SceneCallbacks b = gResultSceneCallbacks;
 
     RunScene(a, &b);
     return 0;

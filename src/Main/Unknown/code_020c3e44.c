@@ -136,10 +136,10 @@ void func_020c5940(void) {
         case MODE_GRAND_PRIX:
             data_0217b3f0->mUnk_08 = GetKartRank(GetFollowedKartOrEntryIndex()) - 1;
             b = func_0205dc7c(GetFollowedKartOrEntryIndex());
-            a = func_0205db28();
+            a = GetCourseIndexInCup();
             p = &data_0217aa1c->mUnk_000[a][func_0205dc7c(b)];
             a = p->mUnk_00;
-            data_0217b3f0->mUnk_0c = a - func_0205d3f0(GetFollowedKartOrEntryIndex());
+            data_0217b3f0->mUnk_0c = a - GetKartPreviousTotalPoints(GetFollowedKartOrEntryIndex());
             if (n > 0x14) {
                 data_0217b3f0->mUnk_00 = 1;
             }

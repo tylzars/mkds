@@ -57,7 +57,7 @@ void func_02039cbc(void) {
     func_02043d10(a);
     func_0204ba2c(a);
     func_02057ed8(a);
-    func_0205a140(a);
+    InitOverlayTable(a);
     func_020cefa0(a);
     func_020471b0(a);
     func_0212b158(a);
@@ -67,6 +67,6 @@ void func_02039cbc(void) {
     }
     ResetRaceSetup();
     func_0204b9ac();
-    func_0205a0e4();
+    ResetCurrentOverlay();
     func_020cef1c();
 }

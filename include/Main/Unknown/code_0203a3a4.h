@@ -22,7 +22,7 @@ u32 func_0203a9ec(u32 a);
 void func_0203aaa8(void);
 void func_0203aacc(void);
 // Slot mInit of the Race scene; not the whole preparation (RunRaceScene and RunScene's prologue run
-// before it). Calls in order: func_02059dc8 (creates the heap that func_02059d80 destroys),
+// before it). Calls in order: CreateOverlayExpHeap (creates the heap that FreeOverlayExpHeap destroys),
 // StopWvrAndWait (kinds 3 and 5) or ClearLcdcBankAndStartWvrAndWait + func_02053e74, func_02062860, func_02056158,
 // func_0203ad58 (screen layout), func_020431e4, InitRace, InitChoisesS, func_020b03bc,
 // func_020af99c (not kind 3), func_02043a9c, and the mode 5 net state / mode 2 func_02046fb4

@@ -11,8 +11,8 @@ void func_0210d9a0(Unk0217d084 *a, u32 b) {
     switch (b) {
         case 0:
             if (a->mUnk_04 != 0) {
-                func_0210d200(0);
-                func_0210d120(0);
+                StopSoundsOnAllSources(0);
+                StopAllPlayingSounds(0);
                 NNS_SndPlayerStopSeq(&a->mUnk_00->mUnk_10, 0);
                 NNS_SndPlayerStopSeq(&a->mUnk_00->mUnk_0c, 0);
                 if (a->mUnk_18 != NULL) {
@@ -24,8 +24,8 @@ void func_0210d9a0(Unk0217d084 *a, u32 b) {
             break;
         case 1:
             if (a->mUnk_04 != 1) {
-                func_0210d200(0);
-                func_0210d120(0);
+                StopSoundsOnAllSources(0);
+                StopAllPlayingSounds(0);
                 if (a->mUnk_04 == 5) {
                     v = func_0210d960();
                     NNS_SndPlayerMoveVolume(&a->mUnk_00->mUnk_0c, 0x7f, v);
@@ -49,7 +49,7 @@ void func_0210d9a0(Unk0217d084 *a, u32 b) {
                     if (a->mUnk_18 != NULL) {
                         NNS_SndPlayerMoveVolume(a->mUnk_18, 0x7f, w);
                     }
-                    func_0210d1a4(0x7f, v);
+                    StartPlayingSoundsFade(0x7f, v);
                 }
                 a->mUnk_10 = 1;
                 a->mUnk_0c = 1;
@@ -59,8 +59,8 @@ void func_0210d9a0(Unk0217d084 *a, u32 b) {
             if (a->mUnk_04 != 3) {
                 a->mUnk_10 = 0;
                 a->mUnk_0c = 0;
-                func_0210d200(5);
-                func_0210d120(5);
+                StopSoundsOnAllSources(5);
+                StopAllPlayingSounds(5);
                 NNS_SndPlayerStopSeq(&a->mUnk_00->mUnk_10, 5);
             }
             break;
@@ -68,8 +68,8 @@ void func_0210d9a0(Unk0217d084 *a, u32 b) {
             if (a->mUnk_04 != 4) {
                 a->mUnk_10 = 0;
                 a->mUnk_0c = 0;
-                func_0210d200(v);
-                func_0210d120(v);
+                StopSoundsOnAllSources(v);
+                StopAllPlayingSounds(v);
                 NNS_SndPlayerStopSeq(&a->mUnk_00->mUnk_10, v);
                 NNS_SndPlayerStopSeq(&a->mUnk_00->mUnk_0c, v);
                 if (a->mUnk_18 != NULL) {
@@ -86,7 +86,7 @@ void func_0210d9a0(Unk0217d084 *a, u32 b) {
                 }
                 a->mUnk_10 = 0;
                 a->mUnk_0c = 0;
-                func_0210d1a4(0, v);
+                StartPlayingSoundsFade(0, v);
                 a->mUnk_08 = a->mUnk_04;
             }
             break;

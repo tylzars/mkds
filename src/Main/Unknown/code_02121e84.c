@@ -19,8 +19,8 @@ void func_02122728(void) {
     PackWiFiSessionIndices();
 }
 
-// Gives each index in mKartMask the next running number in mPackedIndices (others -1) and tells func_0205d0e8 the old
-// and new number.
+// Gives each index in mKartMask the next running number in mPackedIndices (others -1) and tells CopyKartCupRecords the
+// old and new number.
 void PackWiFiSessionIndices(void) {
     u8 i;
     s8 a = 0;
@@ -33,7 +33,7 @@ void PackWiFiSessionIndices(void) {
                 t = gWiFiSession->mPackedIndices[i];
                 gWiFiSession->mPackedIndices[i] = a;
                 a++;
-                func_0205d0e8(t, gWiFiSession->mPackedIndices[i]);
+                CopyKartCupRecords(t, gWiFiSession->mPackedIndices[i]);
             }
         } else {
             gWiFiSession->mPackedIndices[i] = -1;

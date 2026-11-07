@@ -273,7 +273,7 @@ void func_0205f700(void) {
                         t = func_0205f700_inline(i, a);
                         break;
                     case 1:
-                        if (c == func_0205d480()) {
+                        if (c == GetCupWinningTeam()) {
                             t = 0;
                         } else if (gRaceProgress->mUnk_000[i].mStatus == 4) {
                             t = 2;
@@ -452,7 +452,7 @@ static inline u16 func_0205ef70_inline(u16 a) {
     Unk0217aa1c_00 *p;
 
     b = func_0205dc7c(a);
-    c = func_0205db28();
+    c = GetCourseIndexInCup();
     d = func_0205dc7c(b);
     p = &data_0217aa1c->mUnk_000[c][0];
     p += d;
@@ -483,7 +483,7 @@ void func_0205ef70(void) {
         return;
     }
     GetClockDateOrDefault(v1);
-    c = func_0205d4e8((u16) gRaceSetup->mEntryIndex);
+    c = GetKartCupRank((u16) gRaceSetup->mEntryIndex);
     h = func_0205ef70_inline(gRaceSetup->mEntryIndex);
     m = gWiFiSession->mKartCountCopy - 1;
     g = gWiFiSession->mKartCountCopy;
@@ -503,9 +503,9 @@ void func_0205ef70(void) {
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         t = 2;
         if (i != gRaceSetup->mEntryIndex) {
-            if (c < func_0205d4e8(i)) {
+            if (c < GetKartCupRank(i)) {
                 t = 0;
-            } else if (c > func_0205d4e8(i)) {
+            } else if (c > GetKartCupRank(i)) {
                 t = 1;
             }
             if (h == func_0205ef70_inline(i)) {

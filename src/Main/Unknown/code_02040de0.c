@@ -72,7 +72,7 @@ void GetCourseMapStartPlacementWithOffsets(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e
 // (kart + mStartPlacementOffset) % 8 in battle.
 void GetCourseMapKartStartPlacement(Vec3 *a, Vec3 *b, s32 c) {
     u16 i = gRaceSetup->mKartCount - 1;
-    s32 j = (u16) (func_0205d27c(c) - 1);
+    s32 j = (u16) (GetKartStartRank(c) - 1);
     s32 k;
     s32 l;
     s32 n;

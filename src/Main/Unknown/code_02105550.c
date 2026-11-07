@@ -436,7 +436,7 @@ void func_0210823c(void) {
         func_0210dd44(OFFSET_PTR(Unk0217d26c, data_0217d26c, i * sizeof(Unk0217d26c)));
     }
     func_0210e280(&data_0217c7c4);
-    func_0210d2cc();
+    UpdateSoundSources();
     if (data_0217c7a4 == 1) {
         p = data_0217c788;
         v = p != NULL && p->mSeqArcIndex == 0 && p->mSeqNo == 0;

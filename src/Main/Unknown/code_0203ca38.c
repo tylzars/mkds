@@ -56,11 +56,11 @@ void FinishRaceProgress(void) {
                 if (gRaceProgress->mUnk_000[a].mStatus != 4) {
                     z = LookupRankPoints(w);
                 }
-                func_0205d9d4(a, w, z);
-                func_0205d818(a, &gRaceProgress->mKarts[a].mLapTimes[5]);
+                SetKartCourseResult(a, w, z);
+                SetKartCourseFinishTime(a, &gRaceProgress->mKarts[a].mLapTimes[5]);
                 if (gRaceSetup->mMode == 5) {
                     if (gRaceProgress->mUnk_000[a].mStatus == 4) {
-                        func_0205d974(a);
+                        ClearKartCourseTotalPoints(a);
                     }
                 }
                 if (f != FALSE) {
@@ -118,7 +118,7 @@ void FinishRaceProgress(void) {
         }
     }
     if (f != FALSE) {
-        func_0205d558(v);
+        SetTeamWinCountsAndPoints(v);
     }
     gRaceProgress->mRaceDone = 1;
 }

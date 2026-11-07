@@ -148,7 +148,7 @@ void func_0205cd24(void *a) {
         j = data_0217aa18->mUnk_06[m];
         data_0217aa14->mUnk_104[m].mUnk_80 = 0;
         if (j >= 0) {
-            data_0217aa14->mUnk_104[m].mUnk_86_1 = func_0205d27c((u8) j);
+            data_0217aa14->mUnk_104[m].mUnk_86_1 = GetKartStartRank((u8) j);
         } else {
             data_0217aa14->mUnk_104[m].mUnk_86_1 = 0;
         }
@@ -398,7 +398,7 @@ void func_0205c470(void) {
     for (i = 0; i < 4; i++) {
         if ((data_0217aa14->mUnk_0fc & (1 << i)) != 0 && (data_0217aa14->mUnk_749 & (1 << i)) == 0) {
             if (data_0217aa18->mUnk_06[i] >= 0) {
-                data_0217aa14->mUnk_104[i].mUnk_80 = (func_0205d27c((u8) data_0217aa18->mUnk_06[i]) - 1) | 0x700000;
+                data_0217aa14->mUnk_104[i].mUnk_80 = (GetKartStartRank((u8) data_0217aa18->mUnk_06[i]) - 1) | 0x700000;
             }
         }
     }
@@ -520,7 +520,7 @@ void func_0205be0c(void) {
                 x = x & g;
                 if (f == 0 && IsRaceStarted() == 0) {
                     if (data_0217aa18->mUnk_06[i] != -1) {
-                        f = (func_0205d27c((u16) data_0217aa18->mUnk_06[i]) - 1) | 0x700000;
+                        f = (GetKartStartRank((u16) data_0217aa18->mUnk_06[i]) - 1) | 0x700000;
                     }
                 }
                 if (f != 0) {

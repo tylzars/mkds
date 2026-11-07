@@ -754,14 +754,14 @@ void func_02071c18(Kart *p) {
     p->mUnk_3d0 = p->mKartModelsEntry->mUnk_004 % 3;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         if (!(p->mSoundSource.mUnk_34 & 1)) {
-            func_0210cfbc(&p->mSoundSource, 2, 1);
+            SetSoundSourceFlagBit(&p->mSoundSource, 2, 1);
         }
         if (gRaceSetup->mUnk_00c == 2) {
             func_0210b850(&p->mUnk_518);
         }
     } else {
         if (p->mSoundSource.mUnk_34 & 1) {
-            func_0210cfbc(&p->mSoundSource, 2, 1);
+            SetSoundSourceFlagBit(&p->mSoundSource, 2, 1);
         }
         func_0210b850(&p->mUnk_518);
     }

@@ -19,7 +19,7 @@ void AdvanceTitleBlend(void) {
         func_020ad2f0(0, 0, 0, 0);
     } else {
         func_020ad2f0(0, 0, 0, 0);
-        func_020ad2dc(1);
+        SetTitleBlendDone(1);
         gTitleScene->mBlendDone = TRUE;
         gTitleScene->mBlendFrames--;
     }

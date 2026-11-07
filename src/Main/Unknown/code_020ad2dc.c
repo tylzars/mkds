@@ -47,7 +47,7 @@ void *func_020ada10(void) {
     return GetHeap(func_020364e8());
 }
 
-u32 func_020ad9fc(void) {
+u32 GetTitleBlendDone(void) {
     return (data_0217b488->mUnk_00);
 }
 
@@ -110,12 +110,12 @@ void func_020ad820(u32 p0) {
 #pragma thumb on
 
 void CreateTitleScene(void) {
-    s32 r;
+    s32 useTrueFiles;
     s32 d;
-    void *h;
+    void *displaySettings;
     Unk02125de0Arg s;
 
-    r = func_02090940();
+    useTrueFiles = func_02090940();
     gTitleScene = HeapAlloc(func_020ada10(), 0x8bc);
     gTitleScene->mStateFrames = 0;
     gTitleScene->mUnk_04 = TRUE;
@@ -123,25 +123,25 @@ void CreateTitleScene(void) {
     gTitleScene->mState = 0;
     gTitleScene->mNextState = 8;
     gTitleScene->mNoInputFrames = 0;
-    gTitleScene->mBlendDone = func_020ad9fc() != 0;
+    gTitleScene->mBlendDone = GetTitleBlendDone() != 0;
     gTitleScene->mSelectedIndex = 0;
     gTitleScene->mSelectedPressed = FALSE;
     gTitleScene->mPreferEntry4 = TRUE;
     gTitleScene->mSelectedOffset = 0;
-    gTitleScene->mBlendFrames = func_020ad9fc() != 0 ? 0x6b : 0;
+    gTitleScene->mBlendFrames = GetTitleBlendDone() != 0 ? 0x6b : 0;
     AdvanceTitleBlend();
     InitTitleStateHandlers();
     func_020ae6d4(&gTitleScene->mMainOam, &gTitleScene->mSubOam);
     LoadNclrData(&gTitleScene->mTitleTrueMBOrMBNclr,
-                 FindSceneFileWrapper(r != 0 ? gTitleTrueMBNclrName : gTitleMBNclrName));
+                 FindSceneFileWrapper(useTrueFiles != 0 ? gTitleTrueMBNclrName : gTitleMBNclrName));
     LoadNclrData(&gTitleScene->mTitleSBNclr, FindSceneFileWrapper(gTitleSBNclrName));
     LoadNcgrData(&gTitleScene->mTitleTrueMBOrMBNcgr,
-                 FindSceneFileWrapper(r != 0 ? gTitleTrueMBNcgrName : gTitleMBNcgrName));
+                 FindSceneFileWrapper(useTrueFiles != 0 ? gTitleTrueMBNcgrName : gTitleMBNcgrName));
     LoadNcgrData(&gTitleScene->mTitleSBNcgr, FindSceneFileWrapper(gTitleSBNcgrName));
     LoadNscrData(&gTitleScene->mTitleTrueM1OrM1Nscr,
-                 FindSceneFileWrapper(r != 0 ? gTitleTrueM1NscrName : gTitleM1NscrName));
+                 FindSceneFileWrapper(useTrueFiles != 0 ? gTitleTrueM1NscrName : gTitleM1NscrName));
     LoadNscrData(&gTitleScene->mTitleTrueM2OrM2Nscr,
-                 FindSceneFileWrapper(r != 0 ? gTitleTrueM2NscrName : gTitleM2NscrName));
+                 FindSceneFileWrapper(useTrueFiles != 0 ? gTitleTrueM2NscrName : gTitleM2NscrName));
     LoadNscrData(&gTitleScene->mTitleSBgNscr, FindSceneFileWrapper(gTitleSBgNscrName));
     LoadNclrData(&gTitleScene->mTitleSONclr, FindSceneFileWrapper(gTitleSONclrName));
     LoadNcgrData2(&gTitleScene->mTitleSNceNcgr, FindSceneFileWrapper(gTitleSNceNcgrName));
@@ -149,12 +149,12 @@ void CreateTitleScene(void) {
     gTitleScene->mTitleSBncl = FindSceneFileWrapper(gTitleSBnclName);
     gTitleScene->mTitleSBnbl = FindSceneFileWrapper(gTitleSBnblName);
     gTitleScene->mTitleSBnll = FindSceneFileWrapper(gTitleSBnllName);
-    h = CreateDisplaySettings(func_020ada10(), data_02156840);
-    func_020ad9c0(h, 0, 0, 0, 0, 2, 0, 0);
-    func_020ad98c(h, 2, 0, 0, 1, 14, 4);
-    func_020ad958(h, 3, 0, 0, 1, 15, 4);
-    func_020ad924(h, 3, 0, 0, 0, 1, 6);
-    InitDisplayFromSettings(h);
+    displaySettings = CreateDisplaySettings(func_020ada10(), data_02156840);
+    func_020ad9c0(displaySettings, 0, 0, 0, 0, 2, 0, 0);
+    func_020ad98c(displaySettings, 2, 0, 0, 1, 14, 4);
+    func_020ad958(displaySettings, 3, 0, 0, 1, 15, 4);
+    func_020ad924(displaySettings, 3, 0, 0, 0, 1, 6);
+    InitDisplayFromSettings(displaySettings);
     func_02124ed0(func_020ada10(), gTitleScene->mTitleSBncl, gTitleScene->mTitleSBnll, &gTitleScene->mTitleTable);
     func_02124a98(0, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
     func_02124a98(1, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
@@ -226,6 +226,7 @@ void func_020ad2f0(u32 a, u32 b, u32 c, u32 d) {
     G2x_SetBlendAlpha_(&reg_G2_BLDCNT, a, b, c, d);
 }
 
-void func_020ad2dc(u32 p0) {
+// Set when the title blend has run to its end; CreateTitleScene then starts its blend already finished.
+void SetTitleBlendDone(u32 p0) {
     data_0217b488->mUnk_00 = p0;
 }

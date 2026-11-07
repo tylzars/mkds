@@ -431,7 +431,7 @@ Pointer locals and addresses:
 - A global's address load is reused only along single-predecessor blocks; the block after an `if` loads it again. A
   second address load early in the ROM means the access sits below the preceding `if` (RtcCommonCallback). Two
   statements that share global addresses in the ROM have no branch between them: set the flag first (`b = 0;
-  if (a == 0) { b = 1; }`, then both statements; func_0205d6d0).
+  if (a == 0) { b = 1; }`, then both statements; SetCupWinningTeam).
 - An extra copy `ldr r0, [..]; adds r5, r0, #0; adds r5, #8` means the plain loaded value is used a second time
   (func_0204b7b8 passed the base to the call instead of the adjusted pointer).
 - A kept `add rX, rY, #0` between two summed terms, with the first term never stored: accumulate from zero in a local,

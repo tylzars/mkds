@@ -10,7 +10,7 @@
 
 // Reads the table of data_0217aa1c, a row chosen by one call and a column by another.
 static inline Unk0217aa1c_00 *func_02033e6c_inline(u32 a) {
-    return &data_0217aa1c->mUnk_000[func_0205db28()][func_0205dc7c(a)];
+    return &data_0217aa1c->mUnk_000[GetCourseIndexInCup()][func_0205dc7c(a)];
 }
 
 #pragma thumb on
@@ -173,7 +173,7 @@ void func_02033e6c(void) {
         }
     } else {
         for (k = 0; k < gResultsBattle->mUnk_0d8; k++) {
-            gResultsBattle->mUnk_0e4[k].mUnk_08 = func_0205d4e8(k) - 1;
+            gResultsBattle->mUnk_0e4[k].mUnk_08 = GetKartCupRank(k) - 1;
         }
     }
 }

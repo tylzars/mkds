@@ -204,7 +204,7 @@ PlayingSound *StartSoundEx(SoundSource *a, u32 b, u32 c, u32 d, s16 e) {
             func_0210bc54(u, v);
             func_0210bfbc((SoundSource *) (u - 1));
         }
-        func_0210cfe8(v);
+        ResetPlayingSound(v);
     }
     func_0210e328(v);
     func_0210bce0(&v->mUnk_08);
@@ -278,7 +278,7 @@ PlayingSound *StartSoundWhileRequestedEx(SoundSource *a, u32 b, u32 c, u32 d, s1
             func_0210bc54(u, v);
             func_0210bfbc((SoundSource *) (u - 1));
         }
-        func_0210cfe8(v);
+        ResetPlayingSound(v);
     }
     func_0210e328(v);
     func_0210bce0(&v->mUnk_08);

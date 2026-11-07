@@ -5,7 +5,7 @@
 
 typedef struct Unk0210bcf4 Unk0210bcf4;
 
-void func_0210d020(s32 (*p0)(Unk0210bcf4 *));
-void func_0210d030(u32 (*p0)(Unk0210bcf4 *));
-void func_0210d040(s32 (*p0)(Unk0210bcf4 *));
-void func_0210d050(NNSSndSeqPlayer **a, u32 b, u32 c, u32 d);
+void SetSoundVolumeFunction(s32 (*p0)(Unk0210bcf4 *));
+void SetSoundDistanceFunction(u32 (*p0)(Unk0210bcf4 *));
+void SetSoundPanFunction(s32 (*p0)(Unk0210bcf4 *));
+void StartSoundSeqArc(NNSSndSeqPlayer **handle, u32 b, u32 soundId, u32 priority);

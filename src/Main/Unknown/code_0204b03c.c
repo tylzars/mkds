@@ -215,9 +215,9 @@ u32 func_0204b084(u32 *p, u32 n, u32 a) {
 
 void func_0204b03c(void) {
     if (data_021759d0->mUnk_20 == 3) {
-        func_02059c34();
-        func_02059ea4(0);
-        func_02059e1c();
+        ReleaseCurrentOverlay();
+        StartLoadOverlay(0);
+        FinishOverlayLoad();
     }
     func_0202f2b4(GetHeap(func_020364e8()));
 }

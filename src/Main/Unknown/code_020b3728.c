@@ -78,7 +78,7 @@ void func_020b3cd8(void) {
             }
             g = f != FALSE ? 1 : 0;
             k = func_0205dc7c(i);
-            m = func_0205db28();
+            m = GetCourseIndexInCup();
             v = data_0217aa1c->mUnk_000[m][func_0205dc7c(k)].mUnk_05;
             a[i] = (v << 4) + (g << 3) + 8 - GetKartRank(i);
         } else {
@@ -90,7 +90,7 @@ void func_020b3cd8(void) {
             }
             g = f != FALSE ? 1 : 0;
             k = func_0205dc7c(i);
-            m = func_0205db28();
+            m = GetCourseIndexInCup();
             q = &data_0217aa1c->mUnk_000[m][func_0205dc7c(k)];
             v = q->mUnk_00;
             a[i] = (v << 4) + (g << 3) + 8 - GetKartRank(i);
@@ -104,7 +104,7 @@ void func_020b3cd8(void) {
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         for (j = 0; j < (u32) gRaceSetup->mKartCount; j++) {
             if (i == b[j]) {
-                func_0205d76c(i, j + 1);
+                SetKartCupRank(i, j + 1);
                 break;
             }
         }
@@ -112,11 +112,11 @@ void func_020b3cd8(void) {
 }
 
 static inline Unk0217aa1c_144_00 *func_020b3b58_inline(s32 j) {
-    return &data_0217aa1c->mUnk_144[func_0205db28()].mUnk_00[j];
+    return &data_0217aa1c->mUnk_144[GetCourseIndexInCup()].mUnk_00[j];
 }
 
 static inline Unk0217aa1c_144 *func_020b3b58_inline2(void) {
-    return &data_0217aa1c->mUnk_144[func_0205db28()];
+    return &data_0217aa1c->mUnk_144[GetCourseIndexInCup()];
 }
 
 void func_020b3b58(void) {
@@ -133,7 +133,7 @@ void func_020b3b58(void) {
     if (d->mUnk_1c == 1 || d->mMode == MODE_BATTLE) {
         a = func_020b3b58_inline(0)->mUnk_02;
     } else {
-        q = &data_0217aa1c->mUnk_144[func_0205db28()].mUnk_00[0];
+        q = &data_0217aa1c->mUnk_144[GetCourseIndexInCup()].mUnk_00[0];
         a = q->mUnk_00;
     }
     d = gRaceSetup;
@@ -147,11 +147,11 @@ void func_020b3b58(void) {
         b = func_020b3b58_inline2()->mUnk_00[1].mUnk_00;
     }
     if (a > b) {
-        func_0205d6d0(0);
+        SetCupWinningTeam(0);
         return;
     }
     if (b > a) {
-        func_0205d6d0(1);
+        SetCupWinningTeam(1);
         return;
     }
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
@@ -159,7 +159,7 @@ void func_020b3b58(void) {
             break;
         }
     }
-    func_0205d6d0(gRaceSetup->mCurrentEntries[i].mPlayer.mTeamIndex);
+    SetCupWinningTeam(gRaceSetup->mCurrentEntries[i].mPlayer.mTeamIndex);
 }
 
 void func_020b3b08(void) {

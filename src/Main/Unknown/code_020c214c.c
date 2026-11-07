@@ -212,20 +212,20 @@ void InitRaceGoalS(void) {
         if (gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE) {
             e = gRaceSetup->mCurrentEntries[j].mPlayer.mKind;
             k = e == 0 || e == 2 || e == 3 ? 1 : 0;
-            l = func_0205d360(j);
+            l = GetKartPreviousWinCount(j);
             s[j] = l * 16 + k * 8;
             if (gRaceSetup->mMode == MODE_VS || gRaceSetup->mMode == 5) {
-                s[j] = s[j] + (8 - func_0205d27c(j));
+                s[j] = s[j] + (8 - GetKartStartRank(j));
             } else {
                 s[j] += 8 - j;
             }
-            gRaceGoalS->mUnk_0020[j] = func_0205d360(j);
+            gRaceGoalS->mUnk_0020[j] = GetKartPreviousWinCount(j);
         } else {
             e = gRaceSetup->mCurrentEntries[j].mPlayer.mKind;
             l = e == 0 || e == 2 || e == 3 ? 1 : 0;
-            k = func_0205d3f0(j);
-            s[j] = k * 16 + l * 8 + 8 - func_0205d27c(j);
-            gRaceGoalS->mUnk_0020[j] = func_0205d3f0(j);
+            k = GetKartPreviousTotalPoints(j);
+            s[j] = k * 16 + l * 8 + 8 - GetKartStartRank(j);
+            gRaceGoalS->mUnk_0020[j] = GetKartPreviousTotalPoints(j);
         }
     }
     for (g = 0; g < gRaceSetup->mKartCount; g = (u16) (g + 1)) {
@@ -563,10 +563,10 @@ void func_020c214c(Unk020c06c4 *a) {
             f = FALSE;
         }
         if (f != FALSE) {
-            s = &data_0217aa1c->mUnk_144[func_0205db28()];
+            s = &data_0217aa1c->mUnk_144[GetCourseIndexInCup()];
             v = s->mUnk_00[i].mUnk_02;
         } else {
-            s = &data_0217aa1c->mUnk_144[func_0205db28()];
+            s = &data_0217aa1c->mUnk_144[GetCourseIndexInCup()];
             v = s->mUnk_00[i].mUnk_00;
         }
         func_020c2304(a, v, t2[i] + (i == 0 ? -d : d), 0xb6);

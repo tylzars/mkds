@@ -72,15 +72,15 @@ void func_0205e0b0(void) {
                 m = 2;
             } else {
                 m = 0;
-                func_02059ea4(1);
-                func_02059e1c();
+                StartLoadOverlay(1);
+                FinishOverlayLoad();
             }
             func_02054368(h);
             break;
         case 1:
             m = 1;
-            func_02059ea4(0);
-            func_02059e1c();
+            StartLoadOverlay(0);
+            FinishOverlayLoad();
             CreateWiFiSessionHeap(h);
             break;
     }

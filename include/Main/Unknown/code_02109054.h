@@ -11,8 +11,8 @@ typedef struct PlayingSound PlayingSound;
 // member of the entry.
 PlayingSound *StartSound(SoundSource *p, u32 a, u32 b, s16 c);
 // Starts sound a on the source p and keeps it only while it is started again between two runs of the expiry step of
-// func_0210cc3c, which func_0210d2cc runs after UpdateRace has set data_0217d020. A sound already started this way on
-// the source is refreshed with the new volume. Returns the PlayingSound, NULL under the conditions of StartSound.
+// func_0210cc3c, which UpdateSoundSources runs after UpdateRace has set data_0217d020. A sound already started this way
+// on the source is refreshed with the new volume. Returns the PlayingSound, NULL under the conditions of StartSound.
 PlayingSound *StartSoundWhileRequested(SoundSource *p, u32 a, u32 b, s32 c);
 // Stops the first started sound with id a on the source p without a fade. A sound the library has not started yet is
 // not stopped.

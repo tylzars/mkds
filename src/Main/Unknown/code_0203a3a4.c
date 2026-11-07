@@ -134,7 +134,7 @@ void InitRaceScene(void) {
     WiFiSession *q;
     BOOL f;
     p = GetHeap(func_020364e8());
-    func_02059dc8();
+    CreateOverlayExpHeap();
     if (gRaceSetup->mUnk_00c == 3 || gRaceSetup->mUnk_00c == 5) {
         StopWvrAndWait();
     } else {
@@ -235,7 +235,7 @@ void func_0203aacc(void) {
     func_020af86c();
     func_02056144();
     func_02053e54();
-    func_02059d80();
+    FreeOverlayExpHeap();
 }
 
 void func_0203aaa8(void) {

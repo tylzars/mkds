@@ -354,7 +354,7 @@ void func_020e71a0(MapObject *p) {
             return;
         }
     call:
-        func_0210cfbc(&q->mSoundSource, 2, 1);
+        SetSoundSourceFlagBit(&q->mSoundSource, 2, 1);
     } else {
         s32 v;
 
@@ -363,10 +363,10 @@ void func_020e71a0(MapObject *p) {
         if (func_020d4d60(p, v) != FALSE) {
             p->mDistanceSquaredAndFlags |= data_02159310;
             if ((q->mSoundSource.mUnk_34 & 1) != 0) {
-                func_0210cfbc(&q->mSoundSource, 2, 1);
+                SetSoundSourceFlagBit(&q->mSoundSource, 2, 1);
             }
         } else if ((q->mSoundSource.mUnk_34 & 1) == 0) {
-            func_0210cfbc(&q->mSoundSource, 2, 1);
+            SetSoundSourceFlagBit(&q->mSoundSource, 2, 1);
         }
     }
 }
