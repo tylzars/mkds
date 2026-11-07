@@ -127,12 +127,12 @@ void func_020b3410(void) {
         }
     }
     if (a == -21) {
-        func_02089ef4(0);
+        SetStemSet(0);
     }
     if (a != 180) {
         return;
     }
-    func_02089ef4(1);
+    SetStemSet(1);
 }
 
 s32 GetRaceStartSequenceFrames(void) {

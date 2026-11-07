@@ -56,19 +56,17 @@ void func_02001d30(Unk02001d30 *a, s32 b, const char *c, const char *d, const ch
 void func_02001ba0(void *a) {
     Unk02125de0Arg v1;
     u8 *v2;
-    data_usa_ov001_021a99c0 = HeapAlloc(a, 60);
+    gLogoScene = HeapAlloc(a, 60);
     v2 = CreateDisplaySettings(a, data_usa_021547c8);
     SetBg1Record(v2 + 0x28, 1, 0, 0, 0, 0, 1, 0);
     SetBg1Record(v2 + 0x70, 1, 0, 0, 0, 0, 2, 0);
     InitDisplayFromSettings(v2);
-    func_02001d30(&data_usa_ov001_021a99c0->mUnk_00, 1, data_usa_ov001_021a768c, data_usa_ov001_021a76a8,
-                  data_usa_ov001_021a76c4);
-    func_02001d30(&data_usa_ov001_021a99c0->mUnk_0c, 0, data_usa_ov001_021a76dc, data_usa_ov001_021a76f4,
-                  data_usa_ov001_021a770c);
-    func_02046be8(&data_usa_ov001_021a99c0->mUnk_18, data_02001080, 12, NULL);
-    data_usa_ov001_021a99c0->mUnk_2c_0 = 0;
-    data_usa_ov001_021a99c0->mUnk_30 = 0;
-    data_usa_ov001_021a99c0->mUnk_38 = FindFileInLoadedArchives(data_usa_ov001_021a7720);
+    func_02001d30(&gLogoScene->mUnk_00, 1, data_usa_ov001_021a768c, data_usa_ov001_021a76a8, data_usa_ov001_021a76c4);
+    func_02001d30(&gLogoScene->mUnk_0c, 0, data_usa_ov001_021a76dc, data_usa_ov001_021a76f4, data_usa_ov001_021a770c);
+    func_02046be8(&gLogoScene->mStateMachine, data_02001080, 12, NULL);
+    gLogoScene->mUnk_2c_0 = 0;
+    gLogoScene->mUnk_30 = 0;
+    gLogoScene->mCommonMessages = FindFileInLoadedArchives(data_usa_ov001_021a7720);
     v1.mUnk_00 = TRUE;
     v1.mUnk_04 = func_020b403c(1);
     v1.mUnk_08 = 0;
@@ -87,7 +85,7 @@ void ApplySavedSoundMode(void) {
     s32 v1;
     s32 v2;
     v1 = 0;
-    data_usa_ov001_021a99c0 = NULL;
+    gLogoScene = NULL;
     v2 = data_0217aa08->mUnk_00->mSoundMode;
     switch (v2) {
         case SOUND_MODE_STEREO:
@@ -109,7 +107,7 @@ void func_02001abc(void) {
     s32 v2;
     v1 = 0;
     func_021258f0();
-    v2 = data_usa_ov001_021a99c0->mUnk_30;
+    v2 = gLogoScene->mUnk_30;
     if (v2 > 90) {
         v1 = (-(v2 - 90) * 16) / 30;
     }
@@ -118,8 +116,8 @@ void func_02001abc(void) {
 }
 
 void func_02001a74(Unk02001a74 *a) {
-    AdvanceStateMachine(&data_usa_ov001_021a99c0->mUnk_18);
-    if (a != NULL && data_usa_ov001_021a99c0->mUnk_18.mUnk_0e == 11) {
+    AdvanceStateMachine(&gLogoScene->mStateMachine);
+    if (a != NULL && gLogoScene->mStateMachine.mState == 11) {
         a->mUnk_04 = 0;
     }
     func_02125928();
@@ -127,21 +125,21 @@ void func_02001a74(Unk02001a74 *a) {
 
 void func_02001a44(void) {
     func_02056f98();
-    data_usa_ov001_021a99c0->mUnk_2c_1 = 0;
+    gLogoScene->mUnk_2c_1 = 0;
 }
 
 void func_020019b0(void) {
     s32 v1;
     Unk021a99c0_18 *v2;
-    data_usa_ov001_021a99c0->mUnk_30 = data_usa_ov001_021a99c0->mUnk_30 + 1;
-    if (data_usa_ov001_021a99c0->mUnk_30 > 120) {
-        v2 = &data_usa_ov001_021a99c0->mUnk_18;
-        v2->mUnk_10 = 1;
-        v2->mUnk_12 = 1;
+    gLogoScene->mUnk_30 = gLogoScene->mUnk_30 + 1;
+    if (gLogoScene->mUnk_30 > 120) {
+        v2 = &gLogoScene->mStateMachine;
+        v2->mNextState = 1;
+        v2->mNextStateRequested = 1;
     }
     v1 = func_020435bc();
     if ((data_02175628[v1].mBits & 0xf03) != 0xf03) {
         return;
     }
-    data_usa_ov001_021a99c0->mUnk_2c_0 = 1;
+    gLogoScene->mUnk_2c_0 = 1;
 }

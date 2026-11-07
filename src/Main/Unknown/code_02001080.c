@@ -15,10 +15,30 @@
 #pragma section MAIN_TEXT begin
 
 UnkFunc *data_02001080[24] = {
-    func_02001a44, func_020019b0, func_020019ac, func_02001878, func_02001830, func_020017cc,
-    func_02001770, func_020016ac, func_0200165c, func_020015f0, func_02001598, func_02001500,
-    func_0200148c, func_02001350, func_02001300, func_02001294, func_02001290, func_02001238,
-    func_020011f0, func_0200118c, func_02001144, func_020010e0, NULL,          NULL,
+    func_02001a44,
+    func_020019b0,
+    func_020019ac,
+    UpdateLogoState1,
+    EnterLogoState2,
+    UpdateLogoState2,
+    EnterLogoState3,
+    UpdateLogoState3,
+    EnterLogoState4,
+    UpdateLogoState4,
+    EnterLogoState5,
+    UpdateLogoState5,
+    EnterLogoState6,
+    UpdateLogoState6,
+    EnterLogoState7,
+    func_02001294,
+    func_02001290,
+    func_02001238,
+    func_020011f0,
+    func_0200118c,
+    func_02001144,
+    func_020010e0,
+    NULL,
+    NULL,
 };
 
 #pragma section MAIN_TEXT end
@@ -26,20 +46,20 @@ UnkFunc *data_02001080[24] = {
 void func_02001238(void) {
     Unk021a99c0_18 *v1;
     if (data_usa_02174e54 == 3) {
-        v1 = &data_usa_ov001_021a99c0->mUnk_18;
-        v1->mUnk_10 = 9;
-        v1->mUnk_12 = 1;
+        v1 = &gLogoScene->mStateMachine;
+        v1->mNextState = 9;
+        v1->mNextStateRequested = 1;
         return;
     }
-    v1 = &data_usa_ov001_021a99c0->mUnk_18;
-    v1->mUnk_10 = 11;
-    v1->mUnk_12 = 1;
+    v1 = &gLogoScene->mStateMachine;
+    v1->mNextState = 11;
+    v1->mNextStateRequested = 1;
 }
 
 void func_020011f0(void) {
     void *v1;
-    v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 137);
-    SetupTxtSystemSubTextButton(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 6));
+    v1 = GetBmgEntry(gLogoScene->mCommonMessages, 137);
+    SetupTxtSystemSubTextButton(v1, GetBmgEntry(gLogoScene->mCommonMessages, 6));
 }
 
 void func_0200118c(void) {
@@ -51,15 +71,15 @@ void func_0200118c(void) {
     if (IsTxtSystemState0NoOpenRequest() == 0) {
         return;
     }
-    v1 = &data_usa_ov001_021a99c0->mUnk_18;
-    v1->mUnk_10 = 10;
-    v1->mUnk_12 = 1;
+    v1 = &gLogoScene->mStateMachine;
+    v1->mNextState = 10;
+    v1->mNextStateRequested = 1;
 }
 
 void func_02001144(void) {
     void *v1;
-    v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 138);
-    SetupTxtSystemSubTextButton(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 4));
+    v1 = GetBmgEntry(gLogoScene->mCommonMessages, 138);
+    SetupTxtSystemSubTextButton(v1, GetBmgEntry(gLogoScene->mCommonMessages, 4));
 }
 
 void func_020010e0(void) {
@@ -71,7 +91,7 @@ void func_020010e0(void) {
     if (IsTxtSystemState0NoOpenRequest() == 0) {
         return;
     }
-    v1 = &data_usa_ov001_021a99c0->mUnk_18;
-    v1->mUnk_10 = 11;
-    v1->mUnk_12 = 1;
+    v1 = &gLogoScene->mStateMachine;
+    v1->mNextState = 11;
+    v1->mNextStateRequested = 1;
 }

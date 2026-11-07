@@ -73,7 +73,7 @@ void func_020bbbb4(void) {
     }
     if (a == 0 && ((b == 5 && c == 0) || b < 5) && gRaceTimeDigits->mUnk_20[0] == 0) {
         if (gRaceProgress->mUnk_000[GetFollowedKartOrEntryIndex()].mStatus != 2) {
-            func_02089ef4(2);
+            SetStemSet(2);
         }
         if ((data_0217c780 & 1) != 0) {
             r = func_0210e128(func_02108ea0(0));

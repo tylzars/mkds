@@ -91,7 +91,7 @@ void func_0202b8d8(void) {
 #pragma thumb on
 
 u32 func_0202b8c0(void) {
-    if (data_02174e3c->mUnk_040 == 0) {
+    if (data_02174e3c->mTimer == 0) {
         return 1;
     }
     return 0;
@@ -104,7 +104,7 @@ u32 func_0202b888(void) {
     int v4;
     v1 = 1;
     v2 = 0;
-    if (0 < data_02174e3c->mUnk_048) {
+    if (0 < data_02174e3c->mPlayerCount) {
         v3 = 0;
         do {
             v4 = ((u32) GetRaceSetupCopy());
@@ -130,7 +130,7 @@ void func_0202b7c0(s32 a) {
         case 0:
         case 1:
             for (i = 0; i < 8; i++) {
-                if (i < data_02174e3c->mUnk_048 || data_02174e3c->mUnk_208 != 0) {
+                if (i < data_02174e3c->mPlayerCount || data_02174e3c->mUnk_208 != 0) {
                     func_0202cc18(i, 1);
                 }
             }
@@ -154,7 +154,7 @@ void func_0202b6f0(s32 a) {
     if (data_02174e3c->mUnk_204 != a) {
         if (a != 0) {
             for (i = 0; i < 8; i++) {
-                if (i < data_02174e3c->mUnk_048 || data_02174e3c->mUnk_208 != 0) {
+                if (i < data_02174e3c->mPlayerCount || data_02174e3c->mUnk_208 != 0) {
                     if (data_02174e3c->mUnk_04c[i].mUnk_00 == 0) {
                         k = 1;
                     } else if (data_02174e3c->mUnk_04c[i].mUnk_00 == 1) {
@@ -167,7 +167,7 @@ void func_0202b6f0(s32 a) {
             func_02025f14(&data_02174e3c->mUnk_210[0], 2);
         } else {
             for (i = 0; i < 8; i++) {
-                if (i < data_02174e3c->mUnk_048 || data_02174e3c->mUnk_208 != 0) {
+                if (i < data_02174e3c->mPlayerCount || data_02174e3c->mUnk_208 != 0) {
                     func_0202cc18(i, 1);
                 }
             }
@@ -204,7 +204,7 @@ void func_0202b618(s32 a) {
     s32 b;
     if (data_02174e3c->mUnk_208 != a) {
         if (a != 0) {
-            for (i = data_02174e3c->mUnk_048; i < 8; i++) {
+            for (i = data_02174e3c->mPlayerCount; i < 8; i++) {
                 if (data_02174e3c->mUnk_204 != 0) {
                     if (data_02174e3c->mUnk_04c[i].mUnk_00 == 1) {
                         b = 3;
@@ -218,7 +218,7 @@ void func_0202b618(s32 a) {
                 func_0202cb68(i);
             }
         } else {
-            for (i = data_02174e3c->mUnk_048; i < 8; i++) {
+            for (i = data_02174e3c->mPlayerCount; i < 8; i++) {
                 func_0202cb2c(i);
             }
         }

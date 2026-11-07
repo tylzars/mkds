@@ -7,15 +7,15 @@
 
 // 0x14 bytes: a table of 0x6c-byte objects at 0x00, three tables of 0x38-byte objects at 0x04, 0x08 and 0x0c, and the
 // number of entries of the first table at 0x10.
-typedef struct Unk0208a69c {
+typedef struct StemSet {
     /* 00 */ Nsbmd *mNsbmds;
     /* 04 */ ModelAnimation *mNsbcaNsbmaNsbtp[3];
     /* 10 */ u16 mNsbmdCount;
-} Unk0208a69c;
+} StemSet;
 
-void func_02089fa0(void);
-void func_0208a218(void);
-void func_0208a31c(s32 a);
-void func_0208a460(void *a);
-void InitNsbmdNsbcaNsbmaNsbtp(void *a, Unk0208a69c *b, const Unk02155ee8 *c, u16 d);
-void func_0208aa30(void *a);
+void DrawStemSets(void);
+void UpdateStemSets(void);
+void StartStemSet(s32 a);
+void InitStemSetArray(void *a);
+void InitNsbmdNsbcaNsbmaNsbtp(void *a, StemSet *b, const Unk02155ee8 *c, u16 d);
+void InitStemSets(void *a);

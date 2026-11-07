@@ -18,7 +18,7 @@
 #include "Main/Unknown/types_02180728.h" // Unk02180728
 #include "Main/Unknown/code_020ae000.h"
 #include "Main/Unknown/code_020ae630.h"
-#include "Main/Unknown/code_02089fa0.h" // Unk0208a69c
+#include "Main/Unknown/code_02089fa0.h" // StemSet
 #include "code_0214a748.h" // Unk0214ad4c
 
 struct Unk020f41c4_B;
@@ -262,30 +262,32 @@ extern s32 *gStaffGhostTime;
 extern void *gSmanBottom;
 extern void *gSmanTop;
 
-// The 0x10 bytes at 0x784 of Unk0217b034; the callbacks at 0x794 and 0x798 get their address.
-typedef struct Unk0217b034_784 {
-    /* 00 */ u16 mUnk_00;
+// The 0x10 bytes at 0x784 of StemSets; the callbacks at 0x794 and 0x798 get their address.
+typedef struct TimedQuad {
+    /* 00 */ u16 mTimer;
     /* 02 */ s16 mUnk_02;
-    /* 04 */ u16 mUnk_04;
+    /* 04 */ u16 mColor;
     /* 06 */ u8 mUnk_06[2];
-    /* 08 */ BOOL mUnk_08;
+    /* 08 */ BOOL mEnabled;
     /* 0c */ u8 mUnk_0c[4];
-} Unk0217b034_784;
+} TimedQuad;
 
-// Object behind data_0217b034, 0x79c bytes.
-typedef struct Unk0217b034 {
-    /* 000 */ Unk0208a69c *mUnk_000[9];
+// Object behind gStemSets, 0x79c bytes.
+typedef struct StemSets {
+    // Entries 0 to 7 are the sets; entry 8 is a copy of the one shown.
+    /* 000 */ StemSet *mSets[9];
     /* 024 */ u8 mUnk_024[0x718];
-    /* 73c */ s32 mUnk_73c;
-    /* 740 */ u16 mUnk_740;
-    /* 742 */ u16 mUnk_742;
-    /* 744 */ Unk0214ad4c mUnk_744;
-    /* 784 */ Unk0217b034_784 mUnk_784;
-    /* 794 */ void (*mUnk_794)(Unk0217b034_784 *);
-    /* 798 */ void (*mUnk_798)(Unk0217b034_784 *);
-} Unk0217b034;
+    // Index of the set DrawStemSets draws; 9 means none.
+    /* 73c */ s32 mShownIndex;
+    /* 740 */ u16 mShownFrames;
+    /* 742 */ u16 mShownFrameCount;
+    /* 744 */ Unk0214ad4c mOrthoMtx;
+    /* 784 */ TimedQuad mTimedQuad;
+    /* 794 */ void (*mStartFunction)(TimedQuad *);
+    /* 798 */ void (*mUpdateFunction)(TimedQuad *);
+} StemSets;
 
-extern Unk0217b034 *data_0217b034;
+extern StemSets *gStemSets;
 extern u32 gUnparkedTeresaCount;
 extern void *gChandelier;
 // One kart's entry of Standings (0x70 bytes, indexed by kart index): its count, rank, side id, elimination status and

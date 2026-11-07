@@ -2,9 +2,9 @@
 
 #include "types.h"
 
-typedef struct Unk0217b034_784 Unk0217b034_784;
+typedef struct TimedQuad TimedQuad;
 
-extern void (*data_02155ec8[])(Unk0217b034_784 *a);
-extern void (*data_02155ecc[])(Unk0217b034_784 *a);
+extern void (*data_02155ec8[])(TimedQuad *a);
+extern void (*data_02155ecc[])(TimedQuad *a);
 
 void func_02089d14(u32 a);

@@ -143,7 +143,7 @@ void InitRace(void) {
     SetHeapGroupId(8);
     InitCollisionSlots();
     SetHeapGroupId(1);
-    func_0208aa30(a);
+    InitStemSets(a);
     InitKartAiShared();
     InitKarts(gRaceSetup->mKartCount);
     CreateChaseCamera();
@@ -341,7 +341,7 @@ void UpdateRace(void) {
             }
         }
     }
-    func_0208a218();
+    UpdateStemSets();
     UpdateRaceProgress();
     UpdateKartSoundDistancesSquared();
     func_0208677c();
@@ -399,7 +399,7 @@ void DrawRace(void) {
     DrawRaceWorld();
     func_0208b870(gCurrentViewMatrix);
     DrawPosStrips(gCurrentViewMatrix);
-    func_02089fa0();
+    DrawStemSets();
     if (gRace->mUseChainCameras == 0) {
         func_02086250(gCurrentViewMatrix);
     }

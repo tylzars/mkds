@@ -31,22 +31,22 @@
 #include "code_0214a748.h"
 #include "code_021471bc.h"
 
-void func_0208aa30(void *a) {
-    Unk0217b034_784 *p;
+void InitStemSets(void *a) {
+    TimedQuad *p;
 
-    data_0217b034 = HeapAlloc(a, 0x79c);
-    func_0208a460(a);
-    data_0217b034->mUnk_73c = 9;
+    gStemSets = HeapAlloc(a, 0x79c);
+    InitStemSetArray(a);
+    gStemSets->mShownIndex = 9;
     reg_G3_MTX_MODE = 0;
-    G3i_OrthoW_(0x60000, -0x60000, -0x80000, 0x80000, 0, 0x1000, 0x200, 1, &data_0217b034->mUnk_744);
-    p = &data_0217b034->mUnk_784;
-    data_0217b034->mUnk_784.mUnk_00 = 0;
+    G3i_OrthoW_(0x60000, -0x60000, -0x80000, 0x80000, 0, 0x1000, 0x200, 1, &gStemSets->mOrthoMtx);
+    p = &gStemSets->mTimedQuad;
+    gStemSets->mTimedQuad.mTimer = 0;
     p->mUnk_02 = 0;
-    p->mUnk_04 = 0x7fff;
-    p->mUnk_08 = FALSE;
+    p->mColor = 0x7fff;
+    p->mEnabled = FALSE;
 }
 
-void InitNsbmdNsbcaNsbmaNsbtp(void *a, Unk0208a69c *b, const Unk02155ee8 *c, u16 d) {
+void InitNsbmdNsbcaNsbmaNsbtp(void *a, StemSet *b, const Unk02155ee8 *c, u16 d) {
     char s[0x80];
     void *n;
     u16 i;
@@ -113,62 +113,62 @@ void InitNsbmdNsbcaNsbmaNsbtp(void *a, Unk0208a69c *b, const Unk02155ee8 *c, u16
     }
 }
 
-void func_0208a460(void *a) {
+void InitStemSetArray(void *a) {
     s16 i;
-    Unk0208a69c *p;
-    Unk0208a69c *q;
+    StemSet *p;
+    StemSet *q;
 
     for (i = 0; i < 8; i++) {
-        data_0217b034->mUnk_000[i] = NULL;
+        gStemSets->mSets[i] = NULL;
     }
     if (IsRaceAwardOrStaffRoll() != 0) {
         return;
     }
     for (i = 0; i <= 2; i++) {
         if (i == 2) {
-            data_0217b034->mUnk_000[i] = HeapAlloc(a, 0x14);
-            p = data_0217b034->mUnk_000[0];
-            q = data_0217b034->mUnk_000[2];
+            gStemSets->mSets[i] = HeapAlloc(a, 0x14);
+            p = gStemSets->mSets[0];
+            q = gStemSets->mSets[2];
             q->mNsbmds = p->mNsbmds;
             q->mNsbcaNsbmaNsbtp[0] = NULL;
             q->mNsbcaNsbmaNsbtp[1] = p->mNsbcaNsbmaNsbtp[1];
             q->mNsbcaNsbmaNsbtp[2] = p->mNsbcaNsbmaNsbtp[2];
             q->mNsbmdCount = p->mNsbmdCount;
         } else {
-            data_0217b034->mUnk_000[i] = HeapAlloc(a, 0x14);
-            InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[i], &gCountStartStems[(u32) i], i);
+            gStemSets->mSets[i] = HeapAlloc(a, 0x14);
+            InitNsbmdNsbcaNsbmaNsbtp(a, gStemSets->mSets[i], &gCountStartStems[(u32) i], i);
         }
     }
     if (gRaceSetup->mMode == MODE_BATTLE || gRaceSetup->mUnk_1c == 1) {
-        data_0217b034->mUnk_000[4] = HeapAlloc(a, 0x14);
-        InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[4], &gWinStems, 4);
-        data_0217b034->mUnk_000[5] = HeapAlloc(a, 0x14);
-        InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[5], &gLoseStems, 5);
+        gStemSets->mSets[4] = HeapAlloc(a, 0x14);
+        InitNsbmdNsbcaNsbmaNsbtp(a, gStemSets->mSets[4], &gWinStems, 4);
+        gStemSets->mSets[5] = HeapAlloc(a, 0x14);
+        InitNsbmdNsbcaNsbmaNsbtp(a, gStemSets->mSets[5], &gLoseStems, 5);
     } else if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-        data_0217b034->mUnk_000[6] = HeapAlloc(a, 0x14);
-        InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[6], &gCompleteStems, 6);
-        data_0217b034->mUnk_000[7] = HeapAlloc(a, 0x14);
-        InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[7], &gFailedStems, 7);
+        gStemSets->mSets[6] = HeapAlloc(a, 0x14);
+        InitNsbmdNsbcaNsbmaNsbtp(a, gStemSets->mSets[6], &gCompleteStems, 6);
+        gStemSets->mSets[7] = HeapAlloc(a, 0x14);
+        InitNsbmdNsbcaNsbmaNsbtp(a, gStemSets->mSets[7], &gFailedStems, 7);
     } else {
-        data_0217b034->mUnk_000[3] = HeapAlloc(a, 0x14);
-        InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[3], &gGoalStems, 3);
+        gStemSets->mSets[3] = HeapAlloc(a, 0x14);
+        InitNsbmdNsbcaNsbmaNsbtp(a, gStemSets->mSets[3], &gGoalStems, 3);
     }
 }
 
-void func_0208a31c(s32 a) {
-    Unk0208a69c *p;
+void StartStemSet(s32 a) {
+    StemSet *p;
     ModelAnimation *e;
     u16 i;
     s32 f;
     s32 v;
 
-    data_0217b034->mUnk_000[8] = data_0217b034->mUnk_000[a];
-    p = data_0217b034->mUnk_000[8];
+    gStemSets->mSets[8] = gStemSets->mSets[a];
+    p = gStemSets->mSets[8];
     if (p == NULL) {
-        data_0217b034->mUnk_73c = 9;
+        gStemSets->mShownIndex = 9;
         return;
     }
-    data_0217b034->mUnk_73c = a;
+    gStemSets->mShownIndex = a;
     for (i = 0; i < p->mNsbmdCount; i++) {
         if (p->mNsbcaNsbmaNsbtp[0] != NULL) {
             SetModelAnimation(&p->mNsbcaNsbmaNsbtp[0][i], 0);
@@ -202,18 +202,18 @@ void func_0208a31c(s32 a) {
     }
 }
 
-void func_0208a218(void) {
-    Unk0208a69c *p;
+void UpdateStemSets(void) {
+    StemSet *p;
     u16 i;
 
-    if (data_0217b034->mUnk_73c == 1 || data_0217b034->mUnk_73c == 3) {
-        data_0217b034->mUnk_740++;
-        if (data_0217b034->mUnk_740 > data_0217b034->mUnk_742) {
-            data_0217b034->mUnk_73c = 9;
+    if (gStemSets->mShownIndex == 1 || gStemSets->mShownIndex == 3) {
+        gStemSets->mShownFrames++;
+        if (gStemSets->mShownFrames > gStemSets->mShownFrameCount) {
+            gStemSets->mShownIndex = 9;
         }
     }
-    if (data_0217b034->mUnk_73c != 9) {
-        p = data_0217b034->mUnk_000[8];
+    if (gStemSets->mShownIndex != 9) {
+        p = gStemSets->mSets[8];
         for (i = 0; i < p->mNsbmdCount; i++) {
             if (p->mNsbcaNsbmaNsbtp[0] != NULL) {
                 AdvanceModelAnimation(p->mNsbcaNsbmaNsbtp[0]);
@@ -226,12 +226,12 @@ void func_0208a218(void) {
             }
         }
     }
-    if (data_0217b034->mUnk_784.mUnk_08 != FALSE) {
-        data_0217b034->mUnk_798(&data_0217b034->mUnk_784);
+    if (gStemSets->mTimedQuad.mEnabled != FALSE) {
+        gStemSets->mUpdateFunction(&gStemSets->mTimedQuad);
     }
 }
 
-void func_02089fa0(void) {
+void DrawStemSets(void) {
     MtxFx43 a;
     MtxFx43 b;
     Vec3 d;
@@ -244,19 +244,19 @@ void func_02089fa0(void) {
     if (gRaceSetup->mRaceKind != RACE_KIND_NORMAL) {
         return;
     }
-    if (data_0217b034->mUnk_73c != 9) {
+    if (gStemSets->mShownIndex != 9) {
         c = &b.mUnk_00[3];
         c->x = 0;
         c->y = 0;
         c->z = 0;
         d = data_0216608c;
         b.mUnk_00[3].y = data_02166048;
-        if (data_0217b034->mUnk_73c == 2) {
+        if (gStemSets->mShownIndex == 2) {
             b.mUnk_00[3].y = 0x50000;
         }
         MTX_Identity33_(&b);
-        for (i = 0; i < data_0217b034->mUnk_000[8]->mNsbmdCount; i++) {
-            e = &data_0217b034->mUnk_000[8]->mNsbmds[i];
+        for (i = 0; i < gStemSets->mSets[8]->mNsbmdCount; i++) {
+            e = &gStemSets->mSets[8]->mNsbmds[i];
             G3i_OrthoW_(0x60000, -0x60000, -0x80000, 0x80000, 0, 0x1000, 0x1f6, 0,
                         (Unk0214ad4c *) data_0217029c.mProjMtx);
             data_0217029c.mFlag &= ~0x50;
@@ -268,16 +268,16 @@ void func_02089fa0(void) {
             func_01ff8cf0(e);
         }
     }
-    if (data_0217b034->mUnk_784.mUnk_08 != FALSE) {
+    if (gStemSets->mTimedQuad.mEnabled != FALSE) {
         reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 8;
         reg_G3_SPE_EMI = 0x4210;
         reg_G3_DIF_AMB = 0x42100000;
         reg_G3_MTX_MODE = 0;
-        G3_LoadMtx44(&data_0217b034->mUnk_744);
+        G3_LoadMtx44(&gStemSets->mOrthoMtx);
         reg_G3_TEXIMAGE_PARAM = 0x20000000;
         reg_G3_MTX_MODE = 2;
         reg_G3_MTX_IDENTITY = 0;
-        func_02089d70(&data_0217b034->mUnk_784);
+        DrawTimedQuad(&gStemSets->mTimedQuad);
     }
 }
 
@@ -285,42 +285,41 @@ u32 func_02089f9c(u32 p0) {
     return p0;
 }
 
-void func_02089ef4(s32 a) {
+void SetStemSet(s32 a) {
     if (a == 9) {
-        data_0217b034->mUnk_73c = a;
+        gStemSets->mShownIndex = a;
         return;
     }
-    if (data_0217b034->mUnk_73c != a || a == 2) {
-        func_0208a31c(a);
+    if (gStemSets->mShownIndex != a || a == 2) {
+        StartStemSet(a);
     }
-    data_0217b034->mUnk_740 = 0;
-    if (data_0217b034->mUnk_73c == 1 || data_0217b034->mUnk_73c == 3) {
-        data_0217b034->mUnk_742 =
-            GetModelAnimationFrameCountFixed(data_0217b034->mUnk_000[8]->mNsbcaNsbmaNsbtp[0]) >> 12;
+    gStemSets->mShownFrames = 0;
+    if (gStemSets->mShownIndex == 1 || gStemSets->mShownIndex == 3) {
+        gStemSets->mShownFrameCount = GetModelAnimationFrameCountFixed(gStemSets->mSets[8]->mNsbcaNsbmaNsbtp[0]) >> 12;
     }
 }
 
-void func_02089ecc(Unk02089ecc *p0) {
-    p0->mUnk_00 = 0xau;
+void StartTimedQuad(Unk02089ecc *p0) {
+    p0->mTimer = 0xau;
     p0->mUnk_02 = 0xcu;
-    p0->mUnk_04 = 0x7fffu;
-    p0->mUnk_08 = 0x1u;
+    p0->mColor = 0x7fffu;
+    p0->mEnabled = 0x1u;
 }
 
-void func_02089e68(Unk02089e68 *a) {
-    a->mUnk_02 = (s32) (((s64) ((s32) a->mUnk_00 << 12) * 0x1333 + 0x800) >> 12) >> 12;
-    a->mUnk_00 = a->mUnk_00 - 1;
-    if (a->mUnk_00 <= 0) {
-        a->mUnk_08 = 0;
+void UpdateTimedQuad(Unk02089e68 *a) {
+    a->mUnk_02 = (s32) (((s64) ((s32) a->mTimer << 12) * 0x1333 + 0x800) >> 12) >> 12;
+    a->mTimer = a->mTimer - 1;
+    if (a->mTimer <= 0) {
+        a->mEnabled = 0;
     }
 }
 
-void func_02089e10(int a) {
+void WriteQuadVertex(int a) {
     reg_G3_VTX_16 = data_02155ed0[a * 3] | data_02155ed0[a * 3 + 1] << 16;
     reg_G3_VTX_16 = data_02155ed0[a * 3 + 2];
 }
 
-void func_02089d70(Unk0217b034_784 *a) {
+void DrawTimedQuad(TimedQuad *a) {
     u32 *v1;
     u32 *v2;
     v1 = ((u32 *) &reg_G3_MTX_SCALE);
@@ -330,16 +329,16 @@ void func_02089d70(Unk0217b034_784 *a) {
     v2 = ((u32 *) &reg_G3_BEGIN_VTXS);
     *v1 = 0xa000;
     *v2 = 1;
-    reg_G3_COLOR = a->mUnk_04;
-    func_02089e10(0);
-    func_02089e10(1);
-    func_02089e10(2);
-    func_02089e10(3);
+    reg_G3_COLOR = a->mColor;
+    WriteQuadVertex(0);
+    WriteQuadVertex(1);
+    WriteQuadVertex(2);
+    WriteQuadVertex(3);
     reg_G3_END_VTXS = 0;
 }
 
 void func_02089d14(u32 a) {
-    data_0217b034->mUnk_794 = data_02155ec8[a];
-    data_0217b034->mUnk_798 = data_02155ecc[a];
-    data_0217b034->mUnk_794(&data_0217b034->mUnk_784);
+    gStemSets->mStartFunction = data_02155ec8[a];
+    gStemSets->mUpdateFunction = data_02155ecc[a];
+    gStemSets->mStartFunction(&gStemSets->mTimedQuad);
 }

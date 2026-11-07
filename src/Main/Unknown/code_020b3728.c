@@ -214,13 +214,13 @@ void func_020b3728(void) {
             switch (d->mMode) {
                 case MODE_GRAND_PRIX:
                 case MODE_TIME_ATTACK:
-                    func_02089ef4(3);
+                    SetStemSet(3);
                     break;
                 case MODE_VS:
                 case 5:
                     if (d->mUnk_1c != 1) {
                         if (gRaceProgress->mUnk_000[GetFollowedKartOrEntryIndex()].mStatus == 1) {
-                            func_02089ef4(3);
+                            SetStemSet(3);
                         }
                     }
                     break;
@@ -263,15 +263,15 @@ void func_020b3728(void) {
             switch (d->mMode) {
                 case MODE_VS:
                     if (d->mUnk_1c == 1) {
-                        func_02089ef4((GetKart(d->mEntryIndex)->mUnk_7c & 0x2000000) ? 4 : 5);
+                        SetStemSet((GetKart(d->mEntryIndex)->mUnk_7c & 0x2000000) ? 4 : 5);
                     }
                     break;
                 case MODE_BATTLE:
-                    func_02089ef4((GetKart(d->mEntryIndex)->mUnk_7c & 0x2000000) ? 4 : 5);
+                    SetStemSet((GetKart(d->mEntryIndex)->mUnk_7c & 0x2000000) ? 4 : 5);
                     break;
                 case MODE_MISSION_RUN:
                     if ((IsKartEnded((u16) d->mEntryIndex) ? gRaceProgress->mEntryEndKind : 6) != 0) {
-                        func_02089ef4(7);
+                        SetStemSet(7);
                     }
                     break;
                 case MODE_GRAND_PRIX:
@@ -293,7 +293,7 @@ void func_020b3728(void) {
     switch (d->mMode) {
         case MODE_MISSION_RUN:
             if ((IsKartEnded((u16) d->mEntryIndex) ? gRaceProgress->mEntryEndKind : 6) == 0) {
-                func_02089ef4(6);
+                SetStemSet(6);
             }
             break;
         case MODE_GRAND_PRIX:

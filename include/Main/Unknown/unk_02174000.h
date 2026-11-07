@@ -107,7 +107,7 @@ typedef struct Unk02174e3c_4c_04 {
 typedef struct Unk02174e3c_4c {
     /* 00 */ s32 mUnk_00;
     /* 04 */ Unk02174e3c_4c_04 mUnk_04;
-    /* 14 */ u16 mUnk_14[0xc];
+    /* 14 */ u16 mName[0xc];
 } Unk02174e3c_4c;
 
 extern Unk02036590 data_02174e88;
@@ -161,9 +161,9 @@ typedef struct Unk02174e3c {
     /* 01c */ Unk02174e14_00 mUnk_01c;
     /* 038 */ void *mUnk_038;
     /* 03c */ void *mHeap;
-    /* 040 */ s32 mUnk_040;
+    /* 040 */ s32 mTimer;
     /* 044 */ s32 mUnk_044;
-    /* 048 */ s32 mUnk_048;
+    /* 048 */ s32 mPlayerCount;
     /* 04c */ Unk02174e3c_4c mUnk_04c[8];
     /* 1ac */ s32 mUnk_1ac[4];
     /* 1bc */ s32 mUnk_1bc[8];

@@ -1763,7 +1763,7 @@ data_usa_ov001_021a9918 kind:data(any) addr:0x021a9918
 data_usa_ov001_021a9938 kind:data(any) addr:0x021a9938
 data_usa_ov001_021a995c kind:data(any) addr:0x021a995c
 data_usa_ov001_021a9980 kind:data(any) addr:0x021a9980
-data_usa_ov001_021a99c0 kind:bss addr:0x021a99c0 ambiguous
+gLogoScene kind:bss addr:0x021a99c0 ambiguous
 data_ov001_021a99e4 kind:bss addr:0x021a99c4
 data_ov001_021a99e8 kind:bss addr:0x021a99c8
 data_ov001_021a99ec kind:bss addr:0x021a99cc

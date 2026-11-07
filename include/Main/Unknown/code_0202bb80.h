@@ -70,7 +70,7 @@ extern u16 *data_usa_02174e18;
 void func_0202bb80(void);
 void func_0202c0d4(s32 a, s32 b);
 void func_0202c65c(void *a, void *b);
-void func_0202c884(s32 a, u16 *b);
+void PrintEntryName(s32 a, u16 *b);
 void func_0202c8dc(void);
 void func_0202c960(void);
 void func_0202cb2c(s32 a);
