@@ -8,22 +8,22 @@ typedef struct Nclr Nclr;
 typedef struct Unk02021dc8 Unk02021dc8;
 
 // Elements of the table at member 0x14 of Unk0217b43c.
-typedef struct Unk0217b43c_14 {
+typedef struct ScreenCallbacks {
     /* 0 */ void (*mUnk_00)(void);
-    /* 4 */ void (*mUnk_04)(u32 a);
-} Unk0217b43c_14;
+    /* 4 */ void (*mUpdate)(u32 a);
+} ScreenCallbacks;
 
 // Object behind data_0217b43c.
 typedef struct Unk0217b43c {
     /* 000 */ s32 mUnk_000;
     /* 004 */ s32 mUnk_004;
     /* 008 */ s32 mUnk_008;
-    /* 00c */ s32 mUnk_00c;
+    /* 00c */ s32 mScreenNumber;
     /* 010 */ s32 mUnk_010;
-    /* 014 */ Unk0217b43c_14 mUnk_014[0x1e];
+    /* 014 */ ScreenCallbacks mScreenCallbacks[0x1e];
     /* 104 */ BOOL mUnk_104;
-    /* 108 */ u8 mUnk_108[0x404];
-    /* 50c */ u8 mUnk_50c[0x404];
+    /* 108 */ u8 mMainOam[0x404];
+    /* 50c */ u8 mSubOam[0x404];
     /* 910 */ Nclr *mSinglePlaySelectModeMONclr;
     /* 914 */ Ncgr *mSinglePlaySelectModeMNcgr;
     /* 918 */ Unk02021dc8 *mSinglePlaySelectModeMNcer;

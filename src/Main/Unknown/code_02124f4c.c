@@ -350,8 +350,8 @@ void *func_021250b0(void *a) {
     Unk02180774 *p;
 
     p = CreateDisplaySettings(a, &t);
-    SetBg1Record(p->mUnk_28, 0, 0, 0, 0, 0x12, 2, 0);
-    SetBg3RecordParams(p->mUnk_70, 1, 0, 0, 0, 0x10, 4);
+    SetBg1Record(p->mMainBgRecords, 0, 0, 0, 0, 0x12, 2, 0);
+    SetBg3RecordParams(p->mSubBgRecords, 1, 0, 0, 0, 0x10, 4);
     InitDisplayFromSettings(p);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;
@@ -363,8 +363,8 @@ void *func_02125028(void *a) {
     Unk02180774 *p;
 
     p = CreateDisplaySettings(a, &t);
-    SetBg1Record(p->mUnk_28, 0, 0, 0, 0, 0x12, 2, 0);
-    SetBg3RecordParams(p->mUnk_70, 1, 0, 0, 0, 0xf, 0);
+    SetBg1Record(p->mMainBgRecords, 0, 0, 0, 0, 0x12, 2, 0);
+    SetBg3RecordParams(p->mSubBgRecords, 1, 0, 0, 0, 0xf, 0);
     InitDisplayFromSettings(p);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;

@@ -110,11 +110,11 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
     }
     Init3dEngine();
     r = CreateDisplaySettings(a, data_021547f0);
-    SetBg0Record(r->mUnk_28, 3, 0, 0, 0, 0xd, 2, 0);
-    SetBg1Record(r->mUnk_28, 0, 0, 0, 0, 0xc, 0, 0);
-    SetBg2RecordParams(r->mUnk_28, 2, 0, 0, 0, 0x1e, 6);
-    SetBg3RecordParams(r->mUnk_28, 3, 0, 0, 0, 0x1d, 6);
-    SetBg3RecordParams(r->mUnk_70, 3, 0, 0, 0, 1, 6);
+    SetBg0Record(r->mMainBgRecords, 3, 0, 0, 0, 0xd, 2, 0);
+    SetBg1Record(r->mMainBgRecords, 0, 0, 0, 0, 0xc, 0, 0);
+    SetBg2RecordParams(r->mMainBgRecords, 2, 0, 0, 0, 0x1e, 6);
+    SetBg3RecordParams(r->mMainBgRecords, 3, 0, 0, 0, 0x1d, 6);
+    SetBg3RecordParams(r->mSubBgRecords, 3, 0, 0, 0, 1, 6);
     InitDisplayFromSettings(r);
     v.mUnk_00 = 0;
     v.mUnk_04 = NULL;

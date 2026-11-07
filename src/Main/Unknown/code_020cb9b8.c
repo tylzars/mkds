@@ -15,8 +15,8 @@
 #pragma optimize_for_size on
 void func_020cb9b8(void) {
     if (data_0217b43c->mUnk_104 == FALSE) {
-        data_0217b43c->mUnk_008 = data_0217b43c->mUnk_00c;
-        data_0217b43c->mUnk_00c = 0x1f;
+        data_0217b43c->mUnk_008 = data_0217b43c->mScreenNumber;
+        data_0217b43c->mScreenNumber = 0x1f;
         func_020cb618();
     }
     if (func_020cbad0() == 0) {

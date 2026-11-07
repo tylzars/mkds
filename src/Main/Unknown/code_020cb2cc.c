@@ -13,9 +13,9 @@ void func_020cb2d4(void) {
     Unk0217b43c *v1;
     func_020cb340();
     v1 = data_0217b43c;
-    func_02124c30(v1->mSinglePlaySelectModeMBncl, v1->mSinglePlaySelectModeMNcer, NULL, v1->mUnk_108, v1->mUnk_93c);
+    func_02124c30(v1->mSinglePlaySelectModeMBncl, v1->mSinglePlaySelectModeMNcer, NULL, v1->mMainOam, v1->mUnk_93c);
     v1 = data_0217b43c;
-    func_02124c30(v1->mSinglePlaySelectModeSBncl, v1->mSinglePlaySelectModeSNcer, NULL, v1->mUnk_50c, v1->mUnk_948);
+    func_02124c30(v1->mSinglePlaySelectModeSBncl, v1->mSinglePlaySelectModeSNcer, NULL, v1->mSubOam, v1->mUnk_948);
 }
 
 #pragma thumb off

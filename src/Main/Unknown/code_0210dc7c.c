@@ -179,16 +179,16 @@ void func_0210dd44(Unk0217d26c *a) {
     }
 }
 
-u32 func_0210dccc(Unk0217d060 *a, u32 b, u32 c, u32 d, Unk0217c7b4 *e) {
-    Unk0215c380 v;
+u32 func_0210dccc(Unk0217d060 *a, u32 b, u32 c, u32 d, LoadedSoundSet *e) {
+    SoundSet v;
 
-    v.mUnk_00 = b;
+    v.mSeqId = b;
     v.mUnk_04 = c;
     v.mUnk_08 = d;
     a->mUnk_00 = v;
-    if (func_0210e3ec(e, a->mUnk_00) == 0) {
-        func_0210e434(e);
-        func_0210e33c(e, a->mUnk_00);
+    if (IsSoundSetLoaded(e, a->mUnk_00) == 0) {
+        ReleaseSoundSet(e);
+        LoadSoundSet(e, a->mUnk_00);
     }
     NNS_SndHandleInit(&a->mUnk_0c);
     data_0217d060 = a;
@@ -197,7 +197,7 @@ u32 func_0210dccc(Unk0217d060 *a, u32 b, u32 c, u32 d, Unk0217c7b4 *e) {
 }
 
 void func_0210dcb8(Unk0217d060 *a, u32 b) {
-    func_0210d7dc(a->mUnk_00.mUnk_00, b, &a->mUnk_0c);
+    func_0210d7dc(a->mUnk_00.mSeqId, b, &a->mUnk_0c);
 }
 
 void func_0210dca8(Unk0217d060 *a, u32 b) {
@@ -205,6 +205,6 @@ void func_0210dca8(Unk0217d060 *a, u32 b) {
 }
 
 void func_0210dc7c(Unk0217d060 *a) {
-    func_0210e434(a->mUnk_10);
+    ReleaseSoundSet(a->mUnk_10);
     data_0217d060 = NULL;
 }

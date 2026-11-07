@@ -22,7 +22,7 @@ void func_020cb340(void) {
         a[b + 5].mUnk_00 = 0;
         a[b + 10].mUnk_00 = 1;
     }
-    if (data_0217b43c->mUnk_00c == 3) {
+    if (data_0217b43c->mScreenNumber == 3) {
         a[b].mUnk_04 = data_0217b43c->mUnk_938;
         a[b + 5].mUnk_04 = data_0217b43c->mUnk_938;
         a[b + 10].mUnk_04 = data_0217b43c->mUnk_938;

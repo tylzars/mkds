@@ -20,14 +20,16 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/unk_0217d000.h"
 
-const Unk0215c380 data_0215c38c = {0xff, 0xff, 0xff};
-const Unk0215c380 data_0215c380 = {0xff, 0xff, 0xff};
-const Unk0215c380 data_0215c398 = {0xff, 0xff, 0xff};
+const SoundSet data_0215c38c = {0xff, 0xff, 0xff};
+const SoundSet data_0215c380 = {0xff, 0xff, 0xff};
+const SoundSet data_0215c398 = {0xff, 0xff, 0xff};
 
-void func_0210ef34(void) {
-    func_0210e434(func_02108950());
+void ReleaseLoadedSoundSet(void) {
+    ReleaseSoundSet(func_02108950());
 }
 
+// Loads wave archives 0 and 0x50 (taken from archives 0x61 and 0x62 when b is set), assigns bank 0's wave archives to
+// it, then loads group a.
 u32 func_0210ed20(u32 a, u32 b) {
     NNSSndArcBankInfo *p;
     NNSSndArcWaveArcInfo *q;
@@ -55,9 +57,9 @@ u32 func_0210ed20(u32 a, u32 b) {
             NNS_SndArcSetFileAddress(w, NNS_SndArcGetFileAddress(v));
             NNS_SndArcSetFileAddress(v, NULL);
             ok = 1;
-            n = data_0217d178.mUnk_40;
-            data_0217d178.mUnk_40 = n + 1;
-            data_0217d178.mUnk_00[n] = w;
+            n = data_0217d178.mCount;
+            data_0217d178.mCount = n + 1;
+            data_0217d178.mFileIds[n] = w;
         }
         if (ok == 0) {
             return 0;
@@ -77,9 +79,9 @@ u32 func_0210ed20(u32 a, u32 b) {
             NNS_SndArcSetFileAddress(w, NNS_SndArcGetFileAddress(v));
             NNS_SndArcSetFileAddress(v, NULL);
             ok = 1;
-            n = data_0217d178.mUnk_40;
-            data_0217d178.mUnk_40 = n + 1;
-            data_0217d178.mUnk_00[n] = w;
+            n = data_0217d178.mCount;
+            data_0217d178.mCount = n + 1;
+            data_0217d178.mFileIds[n] = w;
         }
         if (ok == 0) {
             return 0;
@@ -113,37 +115,38 @@ u32 func_0210ed20(u32 a, u32 b) {
         }
         SND_AssignWaveArc(x, i, r);
     }
-    if (func_0210e50c(a) == 0) {
+    if (LoadSndGroup(a) == 0) {
         return 0;
     }
     return 1;
 }
 
-u32 func_0210e98c(Unk0215c380 v, u32 d) {
+// Releases the loaded set and loads v unless it is empty or already loaded; d adds extra wave archives for some sets.
+u32 LoadSoundSetIfChanged(SoundSet v, u32 d) {
     Unk0217d134 *p;
     u32 ok;
     u32 n;
     s32 i;
     Unk0217d134 *t;
 
-    if (v.mUnk_00 == 0xff && v.mUnk_04 == 0xff && v.mUnk_08 == 0xff) {
+    if (v.mSeqId == 0xff && v.mUnk_04 == 0xff && v.mUnk_08 == 0xff) {
         return 1;
     }
-    if (func_0210e3ec(func_02108950(), v) != 0) {
+    if (IsSoundSetLoaded(func_02108950(), v) != 0) {
         return 1;
     }
-    func_0210e434(func_02108950());
+    ReleaseSoundSet(func_02108950());
     p = &data_0217d134;
-    for (i = 0; i < p->mUnk_40; i++) {
-        NNS_SndArcSetFileAddress(p->mUnk_00[i], NULL);
+    for (i = 0; i < p->mCount; i++) {
+        NNS_SndArcSetFileAddress(p->mFileIds[i], NULL);
     }
     t = &data_0217d134;
     for (i = 0; i < 16; i++) {
-        t->mUnk_00[i] = 0;
+        t->mFileIds[i] = 0;
     }
-    t->mUnk_40 = 0;
+    t->mCount = 0;
     if (d != 0) {
-        switch (v.mUnk_00) {
+        switch (v.mSeqId) {
             case 0x4a:
                 if (NNS_SndArcLoadWaveArc(0x63, data_0217d130) == 0) {
                     ok = 0;
@@ -160,9 +163,9 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                     NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
                     NNS_SndArcSetFileAddress(a, NULL);
                     ok = 1;
-                    n = data_0217d134.mUnk_40;
-                    data_0217d134.mUnk_40 = n + 1;
-                    data_0217d134.mUnk_00[n] = b;
+                    n = data_0217d134.mCount;
+                    data_0217d134.mCount = n + 1;
+                    data_0217d134.mFileIds[n] = b;
                 }
                 if (ok == 0) {
                     return 0;
@@ -184,9 +187,9 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                     NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
                     NNS_SndArcSetFileAddress(a, NULL);
                     ok = 1;
-                    n = data_0217d134.mUnk_40;
-                    data_0217d134.mUnk_40 = n + 1;
-                    data_0217d134.mUnk_00[n] = b;
+                    n = data_0217d134.mCount;
+                    data_0217d134.mCount = n + 1;
+                    data_0217d134.mFileIds[n] = b;
                 }
                 if (ok == 0) {
                     return 0;
@@ -208,9 +211,9 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                     NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
                     NNS_SndArcSetFileAddress(a, NULL);
                     ok = 1;
-                    n = data_0217d134.mUnk_40;
-                    data_0217d134.mUnk_40 = n + 1;
-                    data_0217d134.mUnk_00[n] = b;
+                    n = data_0217d134.mCount;
+                    data_0217d134.mCount = n + 1;
+                    data_0217d134.mFileIds[n] = b;
                 }
                 if (ok == 0) {
                     return 0;
@@ -233,16 +236,16 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                 NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
                 NNS_SndArcSetFileAddress(a, NULL);
                 ok = 1;
-                n = data_0217d134.mUnk_40;
-                data_0217d134.mUnk_40 = n + 1;
-                data_0217d134.mUnk_00[n] = b;
+                n = data_0217d134.mCount;
+                data_0217d134.mCount = n + 1;
+                data_0217d134.mFileIds[n] = b;
             }
             if (ok == 0) {
                 return 0;
             }
         }
     }
-    return func_0210e33c(func_02108950(), v) != 0;
+    return LoadSoundSet(func_02108950(), v) != 0;
 }
 
 void func_0210e920(void) {
@@ -257,23 +260,23 @@ void func_0210e920(void) {
 
 void func_0210e8f8(u32 a) {
     func_0210ed20(0, a);
-    func_0210e4c8(func_02108950());
+    SaveSndHeapState(func_02108950());
 }
 
-void func_0210e888(Unk0210e524 a, u32 b) {
-    Unk0215c380 v;
+void LoadSceneSoundSet(Unk0210e524 a, u32 b) {
+    SoundSet v;
 
-    v.mUnk_00 = a.mUnk_01;
+    v.mSeqId = a.mUnk_01;
     v.mUnk_04 = a.mUnk_02;
     v.mUnk_08 = a.mUnk_03;
-    func_0210e98c(v, b);
+    LoadSoundSetIfChanged(v, b);
     if (func_02105504() == 0) {
         return;
     }
     func_02111158(gRaceSetup->mMode);
 }
 
-u32 func_0210e680(void) {
+u32 LoadSndDataFromFile(void) {
     NNSSndArcSeqArcInfo *p;
     NNSSndArcSeqArcInfo *q;
     NNSSndArcWaveArcInfo *v1;
@@ -299,9 +302,9 @@ u32 func_0210e680(void) {
     b = q->mFileId;
     NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
     NNS_SndArcSetFileAddress(a, NULL);
-    n = data_0217d178.mUnk_40;
-    data_0217d178.mUnk_40 = n + 1;
-    data_0217d178.mUnk_00[n] = b;
+    n = data_0217d178.mCount;
+    data_0217d178.mCount = n + 1;
+    data_0217d178.mFileIds[n] = b;
     if (NNS_SndArcLoadWaveArc(0x3e, data_0217d130) != 0) {
         v1 = NNS_SndArcGetWaveArcInfo(0x3e);
         v2 = NNS_SndArcGetWaveArcInfo(0x3d);
@@ -310,9 +313,9 @@ u32 func_0210e680(void) {
         NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
         NNS_SndArcSetFileAddress(a, NULL);
         ok = 1;
-        n = data_0217d178.mUnk_40;
-        data_0217d178.mUnk_40 = n + 1;
-        data_0217d178.mUnk_00[n] = b;
+        n = data_0217d178.mCount;
+        data_0217d178.mCount = n + 1;
+        data_0217d178.mFileIds[n] = b;
     } else {
         ok = 0;
     }
@@ -334,22 +337,22 @@ u32 func_0210e680(void) {
     if (func_0210ed20(1, 1) == 0) {
         return 0;
     }
-    func_0210e4c8(func_02108950());
+    SaveSndHeapState(func_02108950());
     return 1;
 }
 
-u32 func_0210e5e4(u32 a, u32 b) {
+u32 LoadCourseSoundSet(u32 a, u32 b) {
     Unk0210e524 c, d;
-    Unk0215c380 v;
+    SoundSet v;
     u32 x;
 
     func_0202553c(b, &c);
     d = c;
-    v.mUnk_00 = d.mUnk_01;
+    v.mSeqId = d.mUnk_01;
     v.mUnk_04 = d.mUnk_02;
     v.mUnk_08 = d.mUnk_03;
     NNS_SndArcSetCurrent(&data_0217d0a0);
-    x = func_0210e98c(v, 1) != 0;
+    x = LoadSoundSetIfChanged(v, 1) != 0;
     if (x != 0) {
         x = func_02111158(a);
     }
@@ -358,51 +361,52 @@ u32 func_0210e5e4(u32 a, u32 b) {
 
 u32 func_0210e524(void) {
     Unk0215316c b, c;
-    Unk0215c380 v;
+    SoundSet v;
 
     b = func_0202577c(0x29);
     b.mUnk_00[1] = func_0211127c();
     c = b;
-    v.mUnk_00 = c.mUnk_00[1];
+    v.mSeqId = c.mUnk_00[1];
     v.mUnk_04 = c.mUnk_00[2];
     v.mUnk_08 = c.mUnk_00[3];
     NNS_SndArcSetCurrent(&data_0217d0a0);
-    return func_0210e98c(v, 1) != 0;
+    return LoadSoundSetIfChanged(v, 1) != 0;
 }
 
-u32 func_0210e50c(s32 a) {
+u32 LoadSndGroup(s32 a) {
     return NNS_SndArcLoadGroup(a, data_0217d130);
 }
 
-void func_0210e4ec(Unk0217c7b4 *p) {
-    p->mUnk_00 = data_0215c398;
-    p->mUnk_0c = 0xff00;
+void ResetLoadedSoundSet(LoadedSoundSet *p) {
+    p->mSoundSet = data_0215c398;
+    p->mHeapState = 0xff00;
 }
 
-void func_0210e4c8(Unk0217c7b4 *p) {
-    p->mUnk_0c = NNS_SndHeapSaveState(data_0217d130);
+void SaveSndHeapState(LoadedSoundSet *p) {
+    p->mHeapState = NNS_SndHeapSaveState(data_0217d130);
 }
 
-void func_0210e434(Unk0217c7b4 *p) {
-    Unk0215c380 v = data_0215c380;
+// Restores the heap to the state saved before the set was loaded.
+void ReleaseSoundSet(LoadedSoundSet *p) {
+    SoundSet v = data_0215c380;
 
-    if (v.mUnk_00 == p->mUnk_00.mUnk_00 && v.mUnk_04 == p->mUnk_00.mUnk_04 && v.mUnk_08 == p->mUnk_00.mUnk_08) {
+    if (v.mSeqId == p->mSoundSet.mSeqId && v.mUnk_04 == p->mSoundSet.mUnk_04 && v.mUnk_08 == p->mSoundSet.mUnk_08) {
         return;
     }
-    NNS_SndHeapLoadState(data_0217d130, p->mUnk_0c);
+    NNS_SndHeapLoadState(data_0217d130, p->mHeapState);
     NNS_SndHeapGetCurrentLevel(data_0217d130);
-    p->mUnk_00 = data_0215c38c;
+    p->mSoundSet = data_0215c38c;
 }
 
-u32 func_0210e3ec(Unk0217c7b4 *p, Unk0215c380 v) {
-    if (v.mUnk_00 == p->mUnk_00.mUnk_00 && v.mUnk_04 == p->mUnk_00.mUnk_04 && v.mUnk_08 == p->mUnk_00.mUnk_08) {
+u32 IsSoundSetLoaded(LoadedSoundSet *p, SoundSet v) {
+    if (v.mSeqId == p->mSoundSet.mSeqId && v.mUnk_04 == p->mSoundSet.mUnk_04 && v.mUnk_08 == p->mSoundSet.mUnk_08) {
         return 1;
     }
     return 0;
 }
 
-u32 func_0210e33c(Unk0217c7b4 *p, Unk0215c380 v) {
-    if (v.mUnk_00 != 0xff && NNS_SndArcLoadSeq(v.mUnk_00, data_0217d130) == 0) {
+u32 LoadSoundSet(LoadedSoundSet *p, SoundSet v) {
+    if (v.mSeqId != 0xff && NNS_SndArcLoadSeq(v.mSeqId, data_0217d130) == 0) {
         return 0;
     }
     if (v.mUnk_04 != 0xff && NNS_SndArcLoadBank(v.mUnk_04, data_0217d130) == 0) {
@@ -411,6 +415,6 @@ u32 func_0210e33c(Unk0217c7b4 *p, Unk0215c380 v) {
     if (v.mUnk_08 != 0xff && NNS_SndArcLoadBank(v.mUnk_08, data_0217d130) == 0) {
         return 0;
     }
-    p->mUnk_00 = v;
+    p->mSoundSet = v;
     return 1;
 }

@@ -329,7 +329,7 @@ void UpdateMPState16(void) {
 void func_0205933c(void) {
     u32 a;
 
-    a = func_0210e5e4((u32) data_0217aa00->mMode, (u32) data_0217aa00->mCourseId);
+    a = LoadCourseSoundSet((u32) data_0217aa00->mMode, (u32) data_0217aa00->mCourseId);
     if (*(u16 *) 0x027ffc40 == 2) {
         func_02043f28(0);
     }

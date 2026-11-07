@@ -52,19 +52,19 @@ u32 GetTitleBlendDone(void) {
 }
 
 void func_020ad9c0(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
-    SetBg1Record(a->mUnk_28, b, c, d, e, f, g, h);
+    SetBg1Record(a->mMainBgRecords, b, c, d, e, f, g, h);
 }
 
 void func_020ad98c(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    SetBg2RecordParams(a->mUnk_28, b, c, d, e, f, g);
+    SetBg2RecordParams(a->mMainBgRecords, b, c, d, e, f, g);
 }
 
 void func_020ad958(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    SetBg3RecordParams(a->mUnk_28, b, c, d, e, f, g);
+    SetBg3RecordParams(a->mMainBgRecords, b, c, d, e, f, g);
 }
 
 void func_020ad924(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    SetBg3RecordParams(a->mUnk_70, b, c, d, e, f, g);
+    SetBg3RecordParams(a->mSubBgRecords, b, c, d, e, f, g);
 }
 
 void func_020ad904(u32 a) {

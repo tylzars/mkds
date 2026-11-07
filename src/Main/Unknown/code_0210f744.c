@@ -672,7 +672,7 @@ void func_0210f9ac(Kart *a) {
 void func_0210f8b0(Unk0217d060 *a, s32 b, s32 c) {
     u8 i;
     s32 j;
-    func_0210ef34();
+    ReleaseLoadedSoundSet();
     if (b == 4) {
         c = 0x23;
     }

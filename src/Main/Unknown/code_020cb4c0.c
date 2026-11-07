@@ -35,17 +35,17 @@ void func_020cb51c(u32 a) {
                 data_0217b43c->mUnk_95c = TRUE;
             }
         }
-        func_020ae6ac(data_0217b43c->mUnk_108, data_0217b43c->mUnk_50c);
+        func_020ae6ac(data_0217b43c->mMainOam, data_0217b43c->mSubOam);
         if (data_0217b43c->mUnk_104 != FALSE) {
             data_0217b43c->mUnk_104 = FALSE;
             func_020cb6c0();
             p = data_0217b43c;
-            k = p->mUnk_00c;
-            p->mUnk_014[k].mUnk_04(a);
+            k = p->mScreenNumber;
+            p->mScreenCallbacks[k].mUpdate(a);
         } else {
             p = data_0217b43c;
-            k = p->mUnk_00c;
-            p->mUnk_014[k].mUnk_04(a);
+            k = p->mScreenNumber;
+            p->mScreenCallbacks[k].mUpdate(a);
             if (data_0217b43c->mUnk_004 != 0) {
                 func_020cb618();
                 func_020cb6c0();
@@ -66,6 +66,6 @@ void func_020cb4c0(void) {
                 return;
             }
         }
-        func_020ae630(data_0217b43c->mUnk_108, data_0217b43c->mUnk_50c);
+        func_020ae630(data_0217b43c->mMainOam, data_0217b43c->mSubOam);
     }
 }

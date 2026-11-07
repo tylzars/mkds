@@ -70,25 +70,25 @@ void func_020cbb10(void) {
     data_0217b43c = HeapAlloc(func_020cb99c(), 0x960);
     CreateRaceSetupCopy(func_020cb99c());
     r = CreateDisplaySettings(func_020cb99c(), data_0215688c);
-    func_020cc330(r, 1, 0, 0, 0, 0xd, 2, 0);
+    SetMainBg0Record(r, 1, 0, 0, 0, 0xd, 2, 0);
     func_020cc2f4(r, 0, 0, 0, 0, 0xc, 0, 0);
     func_020cc2c0(r, 0, 0, 0, 0, 0x1e, 6);
     func_020cc28c(r, 3, 0, 0, 0, 0x1d, 4);
-    func_020cc250(r, 0, 0, 0, 0, 0xb, 0, 0);
-    func_020cc214(r, 3, 0, 0, 0, 0xd, 0, 0);
+    SetSubBg0Record(r, 0, 0, 0, 0, 0xb, 0, 0);
+    SetSubBg1Record(r, 3, 0, 0, 0, 0xd, 0, 0);
     func_020cc1e0(r, 0, 0, 0, 0, 0xe, 0);
     func_020cc1ac(r, 2, 0, 0, 0, 0xf, 0);
     InitDisplayFromSettings(r);
     data_0217b43c->mUnk_000 = 0;
     data_0217b43c->mUnk_004 = 1;
     data_0217b43c->mUnk_008 = 0x1f;
-    data_0217b43c->mUnk_00c = 0x1f;
+    data_0217b43c->mScreenNumber = 0x1f;
     data_0217b43c->mUnk_010 = 0x1f;
     data_0217b43c->mUnk_104 = TRUE;
     data_0217b43c->mUnk_958 = TRUE;
     data_0217b43c->mUnk_95c = TRUE;
-    func_020cc3b8();
-    func_020ae6d4(data_0217b43c->mUnk_108, data_0217b43c->mUnk_50c);
+    CopyMenuScreenCallbacks();
+    func_020ae6d4(data_0217b43c->mMainOam, data_0217b43c->mSubOam);
     SetHeapGroupId(9);
     Init3dEngine();
     SetHeapGroupId(5);
@@ -135,10 +135,10 @@ void func_020cbb10(void) {
         func_02124a98(4, 1, p->mSinglePlaySelectModeSNcer, p->mSinglePlaySelectModeSBncl);
     }
     func_0202b8d8();
-    func_0202c65c(func_020cb99c(), data_0217b43c->mUnk_108);
+    func_0202c65c(func_020cb99c(), data_0217b43c->mMainOam);
     data_0217b43c->mUnk_954 = func_0203bedc(func_020cb99c());
     func_020cc18c(0x10);
-    func_020cc168(0x10);
+    SetSubDispcntBits(0x10);
     func_020cba6c(0, 0x3f, 6, 10);
     func_020cba30(0, 0x3f, 6, 10);
     func_020cc150(0);
@@ -173,14 +173,14 @@ void func_020cbb10(void) {
     if (func_020cae54() == 2) {
         ClearSelectReturnDisplayBitOn();
     }
-    func_0212abdc(func_020cb99c(), data_0217b43c->mUnk_108);
+    func_0212abdc(func_020cb99c(), data_0217b43c->mMainOam);
     switch (func_020cc120()) {
         case 0:
             func_020ccc74(0, 0x1f);
             func_020cc10c(1);
             break;
         case 1:
-            func_020cc3e8();
+            CopyCurrentToRaceSetupCopy();
             switch (GetRaceSetupCopy()->mMode) {
                 case 0:
                     func_020ccc74(5, 0x1f);
@@ -201,7 +201,7 @@ void func_020cbb10(void) {
             }
             break;
         case 2:
-            func_020cc3e8();
+            CopyCurrentToRaceSetupCopy();
             switch (GetRaceSetupCopy()->mMode) {
                 case 3:
                     func_020ccc74(0xb, 0x1f);
@@ -217,7 +217,7 @@ void func_020cbb10(void) {
             }
             break;
         case 3:
-            func_020cc3e8();
+            CopyCurrentToRaceSetupCopy();
             if (func_020cc0f8() != 0 || func_020cc0e4() != 0) {
                 func_020ccc74(SCREEN_MISSION_RUN_LVSEL, 0x1f);
             } else {
@@ -230,7 +230,7 @@ void func_020cbb10(void) {
             func_020ccc74(0xe, 0x1f);
             break;
         case 5:
-            func_020cc3e8();
+            CopyCurrentToRaceSetupCopy();
             GetRaceSetupCopy()->mMode = 1;
             func_020ccc74(SCREEN_TIME_ATTACK_TOP_MENU, 0x1f);
             func_020cbabc(0);

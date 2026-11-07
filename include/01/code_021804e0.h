@@ -13,8 +13,8 @@ typedef struct Unk0218052c {
 // Object at the start of a 0xdc-byte allocation made by CreateDisplaySettings.
 typedef struct Unk02180774 {
     /* 00 */ u8 mUnk_00[0x28];
-    /* 28 */ u8 mUnk_28[0x48];
-    /* 70 */ u8 mUnk_70[0x6c];
+    /* 28 */ u8 mMainBgRecords[0x48];
+    /* 70 */ u8 mSubBgRecords[0x6c];
 } Unk02180774;
 
 // Scene function of gSceneFuncs[5] (scene 'Test' in gSceneNames): copies the callbacks and calls

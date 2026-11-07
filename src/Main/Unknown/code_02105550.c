@@ -205,7 +205,7 @@ void func_0210895c(void) {
     NNS_SndPlayerStopSeq(&data_0217c778, 1);
 }
 
-Unk0217c7b4 *func_02108950(void) {
+LoadedSoundSet *func_02108950(void) {
     return &data_0217c7b4;
 }
 
@@ -272,7 +272,7 @@ void ReleaseSndHeaps(void) {
     func_0210efac(func_0210ef50());
     ((u32 *) &data_0216c7d8)[0] = data_0215a6f4[0];
     ((u32 *) &data_0216c7d8)[1] = data_0215a6f4[1];
-    func_0210e4ec(&data_0217c7b4);
+    ResetLoadedSoundSet(&data_0217c7b4);
 }
 
 void CreateSndHeaps(u32 a, u32 b) {
@@ -297,7 +297,7 @@ void CreateSndHeaps(u32 a, u32 b) {
     }
     ((u32 *) &data_0216c7d8)[0] = data_0215a6ec[0];
     ((u32 *) &data_0216c7d8)[1] = data_0215a6ec[1];
-    func_0210e4ec(&data_0217c7b4);
+    ResetLoadedSoundSet(&data_0217c7b4);
     data_0217c77c = NNS_SndHeapCreate((void *) b, c);
     d = 0;
     data_0217d130 = NULL;
@@ -732,7 +732,7 @@ void InitSceneSounds(s32 e) {
     func_021105a0();
     func_0210fb68();
     if (*(vu16 *) 0x027ffc40 != 2) {
-        func_0210e888(buf, 0);
+        LoadSceneSoundSet(buf, 0);
     }
     if (a != 1) {
         return;
@@ -1376,7 +1376,7 @@ void UpdateSceneSoundState(void) {
     } else if (GetCurrentSceneNumber() == 3) {
         func_02110874();
     }
-    if (data_0217d060 != NULL && data_0217d060->mUnk_00.mUnk_00 == 0 && data_0217d060->mUnk_0c != NULL) {
+    if (data_0217d060 != NULL && data_0217d060->mUnk_00.mSeqId == 0 && data_0217d060->mUnk_0c != NULL) {
         UpdateSeqVariableReadings(&data_0217d060->mUnk_0c);
     }
     gSceneSoundState.mSceneFrames++;

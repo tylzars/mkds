@@ -29,15 +29,15 @@ void func_0210efac(Unk0217d178 *p) {
     s32 i;
 
     for (i = 0; i < 16; i++) {
-        p->mUnk_00[i] = 0;
+        p->mFileIds[i] = 0;
     }
-    p->mUnk_40 = 0;
+    p->mCount = 0;
 }
 
 void func_0210ef68(Unk0217d178 *p) {
     s32 i;
 
-    for (i = 0; i < p->mUnk_40; i++) {
-        NNS_SndArcSetFileAddress(p->mUnk_00[i], NULL);
+    for (i = 0; i < p->mCount; i++) {
+        NNS_SndArcSetFileAddress(p->mFileIds[i], NULL);
     }
 }

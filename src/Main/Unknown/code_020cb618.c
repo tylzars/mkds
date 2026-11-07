@@ -37,10 +37,10 @@ void func_020cb6c0(void) {
     s32 v;
 
     p = data_0217b43c;
-    if (p->mUnk_00c != p->mUnk_008) {
-        switch (p->mUnk_00c) {
+    if (p->mScreenNumber != p->mUnk_008) {
+        switch (p->mScreenNumber) {
             case SCREEN_SELECT_ENGINE:
-                InitSelectEngine(func_020cb99c(), p->mUnk_108, p->mUnk_50c);
+                InitSelectEngine(func_020cb99c(), p->mMainOam, p->mSubOam);
                 break;
             case 5:
             case 8:
@@ -48,17 +48,17 @@ void func_020cb6c0(void) {
             case 21:
                 v = (func_020cae54() == 0) ? UNK_020CB6C0_0 : UNK_020CB6C0_1;
                 p = data_0217b43c;
-                InitSelectCharacter(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
+                InitSelectCharacter(func_020cb99c(), v, p->mMainOam, p->mSubOam);
                 break;
             case 6:
             case 9:
             case 22:
                 v = (func_020cae54() == 0) ? UNK_020CB6C0_0 : UNK_020CB6C0_1;
                 p = data_0217b43c;
-                InitSelectKart(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
+                InitSelectKart(func_020cb99c(), v, p->mMainOam, p->mSubOam);
                 break;
             case 7:
-                InitSelectCupGrid(func_020cb99c(), p->mUnk_108, p->mUnk_50c, 0);
+                InitSelectCupGrid(func_020cb99c(), p->mMainOam, p->mSubOam, 0);
                 break;
             case 11:
                 if (func_020cae54() == 0) {
@@ -69,10 +69,10 @@ void func_020cb6c0(void) {
                     v = 4;
                 }
                 p = data_0217b43c;
-                InitSelectCupGrid(func_020cb99c(), p->mUnk_108, p->mUnk_50c, v);
+                InitSelectCupGrid(func_020cb99c(), p->mMainOam, p->mSubOam, v);
                 break;
             case 23:
-                InitSelectCupGrid(func_020cb99c(), p->mUnk_108, p->mUnk_50c, 1);
+                InitSelectCupGrid(func_020cb99c(), p->mMainOam, p->mSubOam, 1);
                 break;
             case 13:
                 if (func_020cae54() == 0) {
@@ -83,10 +83,10 @@ void func_020cb6c0(void) {
                     v = 3;
                 }
                 p = data_0217b43c;
-                InitSelectCupCourse(func_020cb99c(), p->mUnk_108, p->mUnk_50c, v);
+                InitSelectCupCourse(func_020cb99c(), p->mMainOam, p->mSubOam, v);
                 break;
             case 25:
-                InitSelectCupCourse(func_020cb99c(), p->mUnk_108, p->mUnk_50c, 0);
+                InitSelectCupCourse(func_020cb99c(), p->mMainOam, p->mSubOam, 0);
                 break;
             case 10:
                 if (func_020cae54() == 0) {
@@ -97,7 +97,7 @@ void func_020cb6c0(void) {
                     v = 4;
                 }
                 p = data_0217b43c;
-                InitSelectRaceRule(func_020cb99c(), (s32) p->mUnk_108, p->mUnk_50c, v);
+                InitSelectRaceRule(func_020cb99c(), (s32) p->mMainOam, p->mSubOam, v);
                 break;
             case 16:
                 if (func_020cae54() == 0) {
@@ -108,39 +108,39 @@ void func_020cb6c0(void) {
                     v = 5;
                 }
                 p = data_0217b43c;
-                InitSelectRaceRule(func_020cb99c(), (s32) p->mUnk_108, p->mUnk_50c, v);
+                InitSelectRaceRule(func_020cb99c(), (s32) p->mMainOam, p->mSubOam, v);
                 break;
             case 14:
                 v = (func_020cae54() == 0) ? UNK_020CB6C0_0 : UNK_020CB6C0_1;
                 p = data_0217b43c;
-                InitSelectGame(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
+                InitSelectGame(func_020cb99c(), v, p->mMainOam, p->mSubOam);
                 break;
             case SCREEN_SELECT_BATTLE_STAGE:
                 v = (GetRaceSetupCopy()->mBattleKind == BATTLE_KIND_BALLOON) ? UNK_020CB6C0_1 : UNK_020CB6C0_0;
                 p = data_0217b43c;
-                InitSelectBattleStage(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
+                InitSelectBattleStage(func_020cb99c(), v, p->mMainOam, p->mSubOam);
                 break;
             case SCREEN_MISSION_RUN_LVSEL:
-                InitMissionRunLVsel(func_020cb99c(), p->mUnk_108, p->mUnk_50c);
+                InitMissionRunLVsel(func_020cb99c(), p->mMainOam, p->mSubOam);
                 break;
             case SCREEN_MISSION_RUN_MSSEL:
-                InitMissionRunMSsel(func_020cb99c(), p->mUnk_108, p->mUnk_50c);
+                InitMissionRunMSsel(func_020cb99c(), p->mMainOam, p->mSubOam);
                 break;
             case SCREEN_TIME_ATTACK_TOP_MENU:
-                InitTimeAttackTopMenu(func_020cb99c(), p->mUnk_108, (s32) p->mUnk_50c);
+                InitTimeAttackTopMenu(func_020cb99c(), p->mMainOam, (s32) p->mSubOam);
                 break;
             case SCREEN_SELECT_GHOST:
-                InitSelectGhost(func_020cb99c(), (u32) p->mUnk_108, (u32) p->mUnk_50c);
+                InitSelectGhost(func_020cb99c(), (u32) p->mMainOam, (u32) p->mSubOam);
                 break;
             case 12:
             case 24:
-                InitSelectCupM(func_020cb99c(), p->mUnk_108, p->mUnk_50c);
+                InitSelectCupM(func_020cb99c(), p->mMainOam, p->mSubOam);
                 break;
             case 29:
                 func_020cc744();
                 break;
         }
-        switch (data_0217b43c->mUnk_00c) {
+        switch (data_0217b43c->mScreenNumber) {
             case 10:
             case 11:
             case 12:
@@ -163,7 +163,7 @@ void func_020cb6c0(void) {
 }
 
 void func_020cb618(void) {
-    if (data_0217b43c->mUnk_00c != data_0217b43c->mUnk_008) {
+    if (data_0217b43c->mScreenNumber != data_0217b43c->mUnk_008) {
         switch (data_0217b43c->mUnk_008) {
             case SCREEN_SELECT_ENGINE:
                 ReleaseSelectEngine();

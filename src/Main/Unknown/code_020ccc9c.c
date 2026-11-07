@@ -17,7 +17,7 @@ u32 func_020cccb4(void) {
 }
 
 u32 func_020ccca8(void) {
-    return (data_0217b43c->mUnk_00c);
+    return (data_0217b43c->mScreenNumber);
 }
 
 u32 func_020ccc9c(void) {

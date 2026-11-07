@@ -2,21 +2,21 @@
 
 #include "types.h"
 
-// Three words, at 0, 4 and 8: func_0210e33c, func_0210e3ec and func_0210e434 take one by value.
-typedef struct Unk0215c380 {
-    /* 00 */ u32 mUnk_00;
+// Three words, at 0, 4 and 8: LoadSoundSet, IsSoundSetLoaded and ReleaseSoundSet take one by value.
+typedef struct SoundSet {
+    /* 00 */ u32 mSeqId;
     /* 04 */ u32 mUnk_04;
     /* 08 */ u32 mUnk_08;
-} Unk0215c380;
+} SoundSet;
 
-// Object data_0217c7b4, which func_02108950 returns: an Unk0215c380 at 0 and a word at 0xc that
-// func_0210e4c8 and func_0210e434 write.
-typedef struct Unk0217c7b4 {
-    /* 00 */ Unk0215c380 mUnk_00;
-    /* 0c */ u32 mUnk_0c;
-} Unk0217c7b4;
+// Object data_0217c7b4, which func_02108950 returns: an SoundSet at 0 and a word at 0xc that
+// SaveSndHeapState and ReleaseSoundSet write.
+typedef struct LoadedSoundSet {
+    /* 00 */ SoundSet mSoundSet;
+    /* 0c */ u32 mHeapState;
+} LoadedSoundSet;
 
-// Four bytes at 0 to 3: func_0202553c writes one, and func_0210e5e4 and func_0210e888 read the bytes at 1, 2
+// Four bytes at 0 to 3: func_0202553c writes one, and LoadCourseSoundSet and LoadSceneSoundSet read the bytes at 1, 2
 // and 3.
 typedef struct Unk0210e524 {
     /* 00 */ u8 mUnk_00;
@@ -25,11 +25,11 @@ typedef struct Unk0210e524 {
     /* 03 */ u8 mUnk_03;
 } Unk0210e524;
 
-// Object data_0217d178: 16 words from 0x00 and a signed number at 0x40; func_0210e680 and func_0210ed20 add a
+// Object data_0217d178: 16 words from 0x00 and a signed number at 0x40; LoadSndDataFromFile and func_0210ed20 add a
 // word to it, func_0210ef68 walks it and func_0210efac resets it.
 typedef struct Unk0217d178 {
-    /* 00 */ u32 mUnk_00[16];
-    /* 40 */ s32 mUnk_40;
+    /* 00 */ u32 mFileIds[16];
+    /* 40 */ s32 mCount;
 } Unk0217d178;
 
 // data_0217d134 has the same layout and goes through the same functions.
@@ -38,23 +38,23 @@ typedef Unk0217d178 Unk0217d134;
 extern Unk0217d134 data_0217d134;
 extern Unk0217d178 data_0217d178;
 
-extern const Unk0215c380 data_0215c380;
-extern const Unk0215c380 data_0215c38c;
-extern const Unk0215c380 data_0215c398;
-extern Unk0217c7b4 data_0217c7b4;
+extern const SoundSet data_0215c380;
+extern const SoundSet data_0215c38c;
+extern const SoundSet data_0215c398;
+extern LoadedSoundSet data_0217c7b4;
 
-void func_0210ef34(void);
+void ReleaseLoadedSoundSet(void);
 u32 func_0210ed20(u32 a, u32 b);
-u32 func_0210e98c(Unk0215c380 v, u32 d);
+u32 LoadSoundSetIfChanged(SoundSet v, u32 d);
 void func_0210e920(void);
 void func_0210e8f8(u32 a);
-void func_0210e888(Unk0210e524 a, u32 b);
-u32 func_0210e680(void);
-u32 func_0210e5e4(u32 a, u32 b);
+void LoadSceneSoundSet(Unk0210e524 a, u32 b);
+u32 LoadSndDataFromFile(void);
+u32 LoadCourseSoundSet(u32 a, u32 b);
 u32 func_0210e524(void);
-u32 func_0210e50c(s32 a);
-void func_0210e4ec(Unk0217c7b4 *p);
-void func_0210e4c8(Unk0217c7b4 *p);
-void func_0210e434(Unk0217c7b4 *p);
-u32 func_0210e3ec(Unk0217c7b4 *p, Unk0215c380 v);
-u32 func_0210e33c(Unk0217c7b4 *p, Unk0215c380 v);
+u32 LoadSndGroup(s32 a);
+void ResetLoadedSoundSet(LoadedSoundSet *p);
+void SaveSndHeapState(LoadedSoundSet *p);
+void ReleaseSoundSet(LoadedSoundSet *p);
+u32 IsSoundSetLoaded(LoadedSoundSet *p, SoundSet v);
+u32 LoadSoundSet(LoadedSoundSet *p, SoundSet v);

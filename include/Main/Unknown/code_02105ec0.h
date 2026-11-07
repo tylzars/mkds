@@ -94,9 +94,9 @@ extern NNSSndSeqPlayer *data_0217c854;
 
 // Object data_0217d060 points to.
 typedef struct Unk0217d060 {
-    /* 00 */ Unk0215c380 mUnk_00;
+    /* 00 */ SoundSet mUnk_00;
     /* 0c */ NNSSndSeqPlayer *mUnk_0c;
-    /* 10 */ Unk0217c7b4 *mUnk_10;
+    /* 10 */ LoadedSoundSet *mUnk_10;
 } Unk0217d060;
 
 extern Unk0217d060 *data_0217d060;
