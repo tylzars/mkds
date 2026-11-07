@@ -6,12 +6,12 @@
 #include "Main/Unknown/code_021000d0.h"
 
 #pragma thumb on
-void func_020ca688(u32 a) {
-    gEmblemChoises->mUnk_00 = a;
+void SetEmblemChoisesShownAndReset(u32 shown) {
+    gEmblemChoises->mUnk_00 = shown;
     func_020cac9c();
 }
 #pragma thumb off
 
-s32 func_020ca670(void) {
-    return CreateRaceHudSubScreenCells(&data_0217b434, MAP_OBJECT_KIND_SHINE16);
+s32 CreateRaceHudSubScreenShine16Cells(void) {
+    return CreateRaceHudSubScreenCells(&gRaceHudSubScreenShine16Cells, MAP_OBJECT_KIND_SHINE16);
 }

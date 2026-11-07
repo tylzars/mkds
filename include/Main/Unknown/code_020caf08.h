@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020caf08(void);
+void UpdateSinglePlaySelectMenuScreen2(void);

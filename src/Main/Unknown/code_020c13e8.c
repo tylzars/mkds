@@ -40,7 +40,7 @@ void func_020c1ef8(void) {
         gRaceGoalS->mUnk_00b0 = 0;
         func_020b1d90();
     } else {
-        gRaceGoalS->mUnk_00ac = func_020c1e70;
+        gRaceGoalS->mUnk_00ac = SlideInRaceGoalS;
         gRaceGoalS->mUnk_00b0 = 0;
     }
     neg = -1;
@@ -74,7 +74,7 @@ void func_020c1ef8(void) {
     }
 }
 
-void func_020c1e70(void) {
+void SlideInRaceGoalS(void) {
     s32 n;
 
     n = gRaceGoalS->mUnk_00b0++;

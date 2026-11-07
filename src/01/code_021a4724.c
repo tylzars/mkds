@@ -109,8 +109,8 @@ void func_ov001_021a4ba0(void) {
 }
 
 void func_ov001_021a4b28(void) {
-    func_020ca6a8();
-    func_020ca688(1);
+    RequestEmblemChoisesGraphicsUpload();
+    SetEmblemChoisesShownAndReset(1);
     gEmblem->mUnk_1090 = 10;
     gEmblem->mUnk_1098 = 14;
     func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 1), -3);
@@ -119,7 +119,7 @@ void func_ov001_021a4b28(void) {
 }
 
 void func_ov001_021a4aac(void) {
-    func_020ca688(0);
+    SetEmblemChoisesShownAndReset(0);
     gEmblem->mUnk_1090 = 0;
     gEmblem->mUnk_1098 = 15;
     gEmblem->mUnk_10b0 = FALSE;

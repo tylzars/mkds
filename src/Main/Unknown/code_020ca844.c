@@ -8,7 +8,7 @@
 
 #pragma thumb on
 #pragma optimize_for_size on
-void func_020ca844(void) {
+void UpdateEmblemChoises(void) {
     gEmblemChoises->mUnk_24++;
     if (gEmblemChoises->mUnk_24 >= 0x32) {
         gEmblemChoises->mUnk_24 = 0;
@@ -17,27 +17,27 @@ void func_020ca844(void) {
         gEmblemChoises->mUnk_04 != 0) {
         if (func_020cacc0()) {
             gEmblemChoises->mUnk_14 = 1;
-        } else if (func_020ca9ac(func_020ca9dc(), PAD_KEY_A)) {
+        } else if (func_020ca9ac(GetEmblemChoisesInputSlot(), PAD_KEY_A)) {
             gEmblemChoises->mUnk_14 = 1;
             gEmblemChoises->mUnk_10 = TRUE;
             switch (gEmblemChoises->mChoisesIndex) {
                 case 0:
-                    func_020ca984(0x10);
+                    StartEmblemChoisesSound(0x10);
                     break;
                 case 1:
-                    func_020ca984(0xb);
+                    StartEmblemChoisesSound(0xb);
                     break;
                 case 2:
-                    func_020ca984(5);
+                    StartEmblemChoisesSound(5);
                     break;
             }
-        } else if (func_020ca9ac(func_020ca9dc(), PAD_KEY_B | PAD_KEY_START)) {
+        } else if (func_020ca9ac(GetEmblemChoisesInputSlot(), PAD_KEY_B | PAD_KEY_START)) {
             gEmblemChoises->mUnk_18 = 1;
-            func_020ca984(0x10);
+            StartEmblemChoisesSound(0x10);
         }
-        if (func_020ca9ac(func_020ca9dc(), PAD_KEY_UP)) {
+        if (func_020ca9ac(GetEmblemChoisesInputSlot(), PAD_KEY_UP)) {
             func_020cadac(-1);
-        } else if (func_020ca9ac(func_020ca9dc(), PAD_KEY_DOWN)) {
+        } else if (func_020ca9ac(GetEmblemChoisesInputSlot(), PAD_KEY_DOWN)) {
             func_020cadac(1);
         }
     }

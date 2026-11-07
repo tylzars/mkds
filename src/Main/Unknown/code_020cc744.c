@@ -50,7 +50,7 @@ void func_020cc744(void) {
             case 2:
             case 3:
             case 4:
-                func_020ccab0();
+                SetNextRaceEntriesFromRaceSetupCopy();
                 break;
         }
         SetNextMode(GetRaceSetupCopy()->mMode);

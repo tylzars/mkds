@@ -53,17 +53,17 @@ void DrawRaceHudSubScreenItemBoxCells(Unk020c06c4 *a) {
     DrawRaceHudSubScreenCells(a, gRaceHudSubScreenItemBoxCells, 0);
 }
 
-void func_020c7164(void) {
-    u8 a;
-    u8 b;
-    u16 c;
-    u8 d;
-    u8 e;
-    u16 f;
+void RefreshRaceNewRecordTaRecordFlags(void) {
+    u8 minute;
+    u8 second;
+    u16 millisecond;
+    u8 bestMinute;
+    u8 bestSecond;
+    u16 bestMillisecond;
     s32 j;
-    s32 t;
-    TimeRecord *q;
-    TimeRecord *r;
+    s32 finishMs;
+    TimeRecord *record;
+    TimeRecord *records;
 
     if (gRaceSetup->mMode != MODE_TIME_ATTACK) {
         return;
@@ -76,12 +76,13 @@ void func_020c7164(void) {
         gRaceNewRecordTa->mBestLapIsRecord = func_020c6428(0);
         return;
     }
-    GetKartFinishTime(GetFollowedKartOrEntryIndex(), &a, &b, &c);
-    r = gRaceNewRecordTa->mRecords;
-    t = b * 1000 + a * 60000 + c;
+    GetKartFinishTime(GetFollowedKartOrEntryIndex(), &minute, &second, &millisecond);
+    records = gRaceNewRecordTa->mRecords;
+    finishMs = second * 1000 + minute * 60000 + millisecond;
     for (j = 4; j >= 0; j--) {
-        q = &r[j];
-        if (q->mFilled != 0 && t == q->mMillisecond + (q->mSecond * 1000 + q->mMinute * 60000)) {
+        record = &records[j];
+        if (record->mFilled != 0 &&
+            finishMs == record->mMillisecond + (record->mSecond * 1000 + record->mMinute * 60000)) {
             j = 1;
             goto found;
         }
@@ -89,16 +90,19 @@ void func_020c7164(void) {
     j = 0;
 found:
     gRaceNewRecordTa->mFinishTimeIsRecord = j;
-    q = &gRaceNewRecordTa->mRecords[TIME_RECORD_BEST_LAP];
-    gRaceNewRecordTa->mBestLapNumber = GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &d, &e, &f);
-    gRaceNewRecordTa->mBestLapIsRecord = (d == q->mMinute && e == q->mSecond && f == q->mMillisecond) ? 1 : 0;
+    record = &gRaceNewRecordTa->mRecords[TIME_RECORD_BEST_LAP];
+    gRaceNewRecordTa->mBestLapNumber =
+        GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &bestMinute, &bestSecond, &bestMillisecond);
+    gRaceNewRecordTa->mBestLapIsRecord =
+        (bestMinute == record->mMinute && bestSecond == record->mSecond && bestMillisecond == record->mMillisecond) ? 1
+                                                                                                                    : 0;
 }
 
-s32 func_020c7148(void) {
+s32 IsRaceNewRecordTaFinishRecord(void) {
     return gRaceNewRecordTa != NULL ? gRaceNewRecordTa->mFinishTimeIsRecord : 0;
 }
 
-BOOL func_020c7108(void) {
+BOOL IsRaceNewRecordTaFinishRecordFirst(void) {
     if (gRaceNewRecordTa != NULL) {
         if (gRaceNewRecordTa->mFinishTimeIsRecord != 0) {
             if (gRaceNewRecordTa->mFinishRecordIndex == 0) {
@@ -110,6 +114,6 @@ BOOL func_020c7108(void) {
     return FALSE;
 }
 
-s32 func_020c70ec(void) {
+s32 IsRaceNewRecordTaBestLapRecord(void) {
     return gRaceNewRecordTa != NULL ? gRaceNewRecordTa->mBestLapIsRecord : 0;
 }

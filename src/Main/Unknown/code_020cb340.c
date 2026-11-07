@@ -6,25 +6,25 @@
 #pragma thumb on
 #pragma optimize_for_size on
 void func_020cb340(void) {
-    Unk02124b1c *a;
-    s32 b;
+    Unk02124b1c *subCells;
+    s32 selectedIndex;
     s32 i;
 
-    a = data_0217b43c->mUnk_948;
-    b = data_0217b43c->mUnk_930;
+    subCells = data_0217b43c->mUnk_948;
+    selectedIndex = data_0217b43c->mUnk_930;
     for (i = 0; i <= 9; i++) {
-        a[i].mUnk_00 = 1;
+        subCells[i].mUnk_00 = 1;
     }
     for (i = 10; i <= 14; i++) {
-        a[i].mUnk_00 = 0;
+        subCells[i].mUnk_00 = 0;
     }
-    if (func_020ccca8() != 3 || data_0217b43c->mUnk_934 == FALSE || func_020ccccc() >= 5) {
-        a[b + 5].mUnk_00 = 0;
-        a[b + 10].mUnk_00 = 1;
+    if (GetMenuScreenNumber() != 3 || data_0217b43c->mUnk_934 == FALSE || GetFramesSinceMenuScreenSwitch() >= 5) {
+        subCells[selectedIndex + 5].mUnk_00 = 0;
+        subCells[selectedIndex + 10].mUnk_00 = 1;
     }
     if (data_0217b43c->mScreenNumber == 3) {
-        a[b].mUnk_04 = data_0217b43c->mUnk_938;
-        a[b + 5].mUnk_04 = data_0217b43c->mUnk_938;
-        a[b + 10].mUnk_04 = data_0217b43c->mUnk_938;
+        subCells[selectedIndex].mUnk_04 = data_0217b43c->mUnk_938;
+        subCells[selectedIndex + 5].mUnk_04 = data_0217b43c->mUnk_938;
+        subCells[selectedIndex + 10].mUnk_04 = data_0217b43c->mUnk_938;
     }
 }

@@ -32,10 +32,10 @@ void func_020cb48c(int arg0) {
 
 #pragma thumb on
 
-void func_020cb3e4(void) {
-    int v1;
-    v1 = func_020cccc0();
-    if (v1 != 0) {
+void SetupSinglePlaySelectGraphics(void) {
+    int screenChanged;
+    screenChanged = func_020cccc0();
+    if (screenChanged != 0) {
         func_020cb4a8(0x18);
         GX_SetGraphicsMode(1, 0, 0);
         GX_LoadOBJPltt(data_0217b43c->mSinglePlaySelectModeMONclr->mData, 0, (0x000001a0u));

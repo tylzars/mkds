@@ -24,8 +24,8 @@ u32 func_020cab74(void) {
            8;
 }
 
-u32 func_020cab58(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_020cab58(u32 bits) {
+    u32 value0 = bits;
     u32 value1;
     u32 value2;
     value2 = 0x4001000u;
@@ -36,8 +36,8 @@ u32 func_020cab58(u32 arg0) {
     return value0;
 }
 
-void func_020cab2c(u32 a, u32 b) {
-    reg_G2S_DB_BG0OFS = (a & 0x1ff) | ((b << 16) & 0x1ff0000);
+void func_020cab2c(u32 x, u32 y) {
+    reg_G2S_DB_BG0OFS = (x & 0x1ff) | ((y << 16) & 0x1ff0000);
 }
 
 void func_020caae8(u32 a, u32 b, u32 c, u32 d, s32 e) {

@@ -5,9 +5,9 @@
 #include "Main/Unknown/unk_0217d068.h"
 #include "code_0212df7c.h"
 
-u32 func_020cb1dc(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
+u32 func_020cb1dc(u32 seqIndex, u32 seqArcNo) {
+    u32 value0 = seqIndex;
+    u32 value1 = seqArcNo;
     u32 value2;
     u32 value12;
     value12 = (u32) &NNS_SndArcPlayerStartSeqArc;
@@ -17,8 +17,8 @@ u32 func_020cb1dc(u32 arg0, u32 arg1) {
     return value0;
 }
 
-u32 func_020cb1cc(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_020cb1cc(u32 seqIndex) {
+    u32 value0 = seqIndex;
     u32 value1;
     u32 value12;
     value12 = (u32) &func_020cb1dc;
@@ -27,6 +27,6 @@ u32 func_020cb1cc(u32 arg0) {
     return value0;
 }
 
-u32 func_020cb1c4(u16 *p0) {
-    return p0[2];
+u32 func_020cb1c4(u16 *pair) {
+    return pair[2];
 }

@@ -135,8 +135,8 @@ void func_ov001_021a4ba0(void) {
 }
 
 void func_ov001_021a4b28(void) {
-    func_020ca6a8();
-    func_020ca688(1);
+    RequestEmblemChoisesGraphicsUpload();
+    SetEmblemChoisesShownAndReset(1);
     gEmblem->mUnk_1090 = 10;
     gEmblem->mUnk_1098 = 14;
     func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 1), -3);
@@ -145,7 +145,7 @@ void func_ov001_021a4b28(void) {
 }
 
 void func_ov001_021a4aac(void) {
-    func_020ca688(0);
+    SetEmblemChoisesShownAndReset(0);
     gEmblem->mUnk_1090 = 0;
     gEmblem->mUnk_1098 = 15;
     gEmblem->mUnk_10b0 = FALSE;
@@ -907,26 +907,26 @@ void func_ov001_021a2d90(void) {
 void func_ov001_021a2cf0(void) {
     s32 v;
 
-    v = func_020ca69c();
+    v = GetEmblemChoisesResult();
     switch (v) {
         case -2:
         case 0:
             func_ov001_021a4aac();
             break;
         case 1:
-            func_020ca688(0);
+            SetEmblemChoisesShownAndReset(0);
             func_020ac390(GetEmblemGridCells(), gEmblem->mUnk_087c, GetEmblemGridSide());
             func_020569a8(gEmblem->mUnk_087c);
             gEmblem->mUnk_1090 = 0xb;
             gEmblem->mUnk_1098 = 1;
             break;
         case 2:
-            func_020ca688(0);
+            SetEmblemChoisesShownAndReset(0);
             gEmblem->mUnk_1090 = 0xb;
             gEmblem->mUnk_1098 = 1;
             break;
     }
-    func_020ca844();
+    UpdateEmblemChoises();
     func_020ca83c();
 }
 

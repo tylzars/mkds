@@ -10,7 +10,7 @@
 
 #pragma thumb on
 #pragma optimize_for_size on
-void func_020ca9e4(void) {
+void DrawEmblemChoises(void) {
     if (gEmblemChoises->mUnk_08 != FALSE) {
         GXS_LoadBGPltt(gEmblemChoises->mChoisesSBNclr->mData + 0xe0, 0x1c0, 0x40);
         GXS_LoadBG0Char(gEmblemChoises->mChoisesSBNcgr->mData, 0, 0x3000);

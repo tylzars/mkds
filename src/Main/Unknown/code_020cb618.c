@@ -153,7 +153,7 @@ void func_020cb6c0(void) {
                 break;
             case 8:
             case 15:
-                if (func_020cccb4() == 0xe) {
+                if (GetPreviousMenuScreenNumber() == 0xe) {
                     data_0217b43c->mUnk_958 = FALSE;
                     data_0217b43c->mUnk_95c = FALSE;
                 }

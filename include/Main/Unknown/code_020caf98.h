@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020caf98(s32 a);
+void UpdateSinglePlaySelectInput(s32 a);

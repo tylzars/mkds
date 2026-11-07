@@ -300,7 +300,7 @@ void func_0211a3bc(void) {
     CallQueueAppend(0xf, 0, g->mData, 0x140);
     CallQueueAppend(8, 0, f->mData, f->mDataSize);
     CallQueueAppend(8, 0x800, gSelectCupCourse->mUnk_24, 0x800);
-    if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
+    if (GetPreviousMenuScreenNumber() != 0x18 && GetPreviousMenuScreenNumber() != 0xc) {
         CallQueueAppend(0x17, 0, h->mData, h->mDataSize);
         CallQueueAppend(0x1f, 0, j->mData, 0x140);
         CallQueueAppend(0x1b, 0, i->mData, i->mDataSize);

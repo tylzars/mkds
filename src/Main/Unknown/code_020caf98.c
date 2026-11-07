@@ -18,12 +18,12 @@
 
 #pragma thumb on
 #pragma optimize_for_size on
-void func_020caf98(s32 a) {
+void UpdateSinglePlaySelectInput(s32 a) {
     u32 v;
-    u32 b;
-    s32 c;
-    s32 o;
-    Unk0217b43c *p;
+    u32 pairX;
+    s32 touchedIndex;
+    s32 previousSelected;
+    Unk0217b43c *menu;
 
     if (a != 0) {
         v = func_020cb224();
@@ -35,31 +35,31 @@ void func_020caf98(s32 a) {
             func_020ccc74(2, 0x1b);
             RequestSelectReturnState3WithSound(1);
         } else if (GetNewOrRepeatBits(v, PAD_KEY_UP)) {
-            p = data_0217b43c;
-            p->mUnk_930 = (p->mUnk_930 + 4) % 5;
+            menu = data_0217b43c;
+            menu->mUnk_930 = (menu->mUnk_930 + 4) % 5;
             StartSoundOncePerFrame(0);
         } else if (GetNewOrRepeatBits(v, PAD_KEY_DOWN)) {
-            p = data_0217b43c;
-            p->mUnk_930 = (p->mUnk_930 + 6) % 5;
+            menu = data_0217b43c;
+            menu->mUnk_930 = (menu->mUnk_930 + 6) % 5;
             StartSoundOncePerFrame(0);
         } else if (func_020cb11c(v)) {
-            b = func_020cb0f4(v);
+            pairX = func_020cb0f4(v);
             v = func_020cb0cc(v);
-            c = FindRectContainingPoint(b, v, data_0217b43c->mSinglePlaySelectModeSBnbl);
-            p = data_0217b43c;
-            o = p->mUnk_930;
-            if (c != -1) {
-                if (o == c) {
-                    p->mUnk_934 = TRUE;
+            touchedIndex = FindRectContainingPoint(pairX, v, data_0217b43c->mSinglePlaySelectModeSBnbl);
+            menu = data_0217b43c;
+            previousSelected = menu->mUnk_930;
+            if (touchedIndex != -1) {
+                if (previousSelected == touchedIndex) {
+                    menu->mUnk_934 = TRUE;
                 }
-                data_0217b43c->mUnk_930 = c;
+                data_0217b43c->mUnk_930 = touchedIndex;
                 func_020ccc74(3, 0x1f);
                 func_020cb1cc(5);
-            } else if (IsSelectReturnState2NoState3Or4RequestAndInRect(b, v)) {
+            } else if (IsSelectReturnState2NoState3Or4RequestAndInRect(pairX, v)) {
                 func_020ccc74(2, 0x1b);
                 RequestSelectReturnState3WithSound(1);
             }
         }
     }
-    func_020cb2d4();
+    DrawSinglePlaySelectCells();
 }

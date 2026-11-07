@@ -231,7 +231,7 @@ void func_ov001_0219f2a4(void) {
 void func_ov001_0219f260(void) {
     gMissionRunLVsel->mNextState = 1;
     gMissionRunLVsel->mStateFrames = 0;
-    if (func_020cccb4() == SCREEN_MISSION_RUN_MSSEL) {
+    if (GetPreviousMenuScreenNumber() == SCREEN_MISSION_RUN_MSSEL) {
         gMissionRunLVsel->mUnk_48 = -256;
     } else {
         gMissionRunLVsel->mUnk_48 = 0x100;
@@ -300,7 +300,7 @@ void InitMissionRunLVsel(void *a, void *b, void *c) {
         func_02105a30(2);
     } else {
         gMissionRunLVsel->mIndex = GetMissionTableRow() - 1;
-        if (func_020cccb4() == 0x1f) {
+        if (GetPreviousMenuScreenNumber() == 0x1f) {
             func_02105a30(1);
         } else {
             func_02105a30(0);

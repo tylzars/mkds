@@ -85,7 +85,7 @@ void func_02119c20(void) {
     gSelectCupCourse->mNextState = 0;
     gSelectCupCourse->mStateFrames = 0;
     if (*(vu16 *) 0x027ffc40 != 2) {
-        if (func_020cccb4() != SCREEN_SELECT_GHOST) {
+        if (GetPreviousMenuScreenNumber() != SCREEN_SELECT_GHOST) {
             w = gSelectCupCourse->mSelectCupCourseTaOrVsMBncl->mUnk_06;
             gSelectCupCourse->mBg0Offset = -0xc0;
             gSelectCupCourse->mSelectCupCourseTaOrVsMTable[0].mUnk_06 = -0xc0;
@@ -101,7 +101,7 @@ void func_02119c20(void) {
             gSelectCupCourse->mSelectCupCourseTaOrVsMTable[w + 4].mUnk_06 = -0xc0;
             gSelectCupCourse->mSelectCupCourseTaOrVsMTable[w + 5].mUnk_06 = -0xc0;
         }
-        if (func_020cccb4() != SCREEN_SELECT_GHOST) {
+        if (GetPreviousMenuScreenNumber() != SCREEN_SELECT_GHOST) {
             v = -0x20;
         } else {
             v = -0xe0;
@@ -334,7 +334,7 @@ void AdvanceSelectCupCourseState1(void) {
     if (*(vu16 *) 0x027ffc40 != 2) {
         InterpolateS16(1, 0x100, 0, gSelectCupCourse->mStateFrames, 10);
         v = InterpolateS16(1, -0xc0, 0, gSelectCupCourse->mStateFrames, 10);
-        if (func_020cccb4() != SCREEN_SELECT_GHOST) {
+        if (GetPreviousMenuScreenNumber() != SCREEN_SELECT_GHOST) {
             w = gSelectCupCourse->mSelectCupCourseTaOrVsMBncl->mUnk_06;
             gSelectCupCourse->mBg0Offset = v;
             gSelectCupCourse->mSelectCupCourseTaOrVsMTable[0].mUnk_06 = v;
@@ -350,7 +350,7 @@ void AdvanceSelectCupCourseState1(void) {
             gSelectCupCourse->mSelectCupCourseTaOrVsMTable[w + 4].mUnk_06 = v;
             gSelectCupCourse->mSelectCupCourseTaOrVsMTable[w + 5].mUnk_06 = v;
         }
-        if (func_020cccb4() == SCREEN_SELECT_GHOST) {
+        if (GetPreviousMenuScreenNumber() == SCREEN_SELECT_GHOST) {
             w = gSelectCupCourse->mSelectCupMBncl->mUnk_06;
             gSelectCupCourse->mBg3Offset = v - 0x20;
             gSelectCupCourse->mSelectCupMTable[0x14].mUnk_06 = v - 0x20;

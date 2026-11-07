@@ -9,13 +9,15 @@
 
 #pragma thumb on
 
-void func_020cb2d4(void) {
-    Unk0217b43c *v1;
+void DrawSinglePlaySelectCells(void) {
+    Unk0217b43c *menu;
     func_020cb340();
-    v1 = data_0217b43c;
-    func_02124c30(v1->mSinglePlaySelectModeMBncl, v1->mSinglePlaySelectModeMNcer, NULL, v1->mMainOam, v1->mUnk_93c);
-    v1 = data_0217b43c;
-    func_02124c30(v1->mSinglePlaySelectModeSBncl, v1->mSinglePlaySelectModeSNcer, NULL, v1->mSubOam, v1->mUnk_948);
+    menu = data_0217b43c;
+    func_02124c30(menu->mSinglePlaySelectModeMBncl, menu->mSinglePlaySelectModeMNcer, NULL, menu->mMainOam,
+                  menu->mUnk_93c);
+    menu = data_0217b43c;
+    func_02124c30(menu->mSinglePlaySelectModeSBncl, menu->mSinglePlaySelectModeSNcer, NULL, menu->mSubOam,
+                  menu->mUnk_948);
 }
 
 #pragma thumb off
@@ -23,6 +25,6 @@ void func_020cb2d4(void) {
 #pragma thumb on
 void func_020cb2cc(void) {
     u32 value3;
-    func_020cb3e4();
+    SetupSinglePlaySelectGraphics();
 }
 #pragma thumb off

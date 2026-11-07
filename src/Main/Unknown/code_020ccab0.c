@@ -6,18 +6,18 @@
 
 #pragma optimize_for_size on
 #pragma thumb on
-void func_020ccab0(void) {
+void SetNextRaceEntriesFromRaceSetupCopy(void) {
     u8 i;
-    s32 a;
+    s32 teamIndex;
 
     for (i = 0; i < 8; i++) {
         if (GetRaceSetupCopy()->mCpuDifficulty == 0 && GetRaceSetupCopy()->mEntries[i].mPlayerKind == 1) {
             func_020ccb48(i);
         } else {
-            a = GetRaceSetupCopy()->mUseTeams != 0 ? GetRaceSetupCopy()->mEntries[i].mTeamIndex : -1;
+            teamIndex = GetRaceSetupCopy()->mUseTeams != 0 ? GetRaceSetupCopy()->mEntries[i].mTeamIndex : -1;
             SetNextRaceEntry(i, GetRaceSetupCopy()->mEntries[i].mCharacterIndex,
-                             GetRaceSetupCopy()->mEntries[i].mKartIndex, GetRaceSetupCopy()->mEntries[i].mPlayerKind, a,
-                             GetRaceSetupCopy()->mEntries[i].mUnk_10);
+                             GetRaceSetupCopy()->mEntries[i].mKartIndex, GetRaceSetupCopy()->mEntries[i].mPlayerKind,
+                             teamIndex, GetRaceSetupCopy()->mEntries[i].mUnk_10);
         }
     }
 }

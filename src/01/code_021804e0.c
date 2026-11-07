@@ -54,8 +54,8 @@ void func_ov001_02180800(void) {
                 func_ov001_02180c24(0);
                 func_ov001_02180bf8(0);
                 func_ov001_02180bc0(0, 0, 4, 4, 0);
-                func_020ca688(1);
-                func_020ca6a8();
+                SetEmblemChoisesShownAndReset(1);
+                RequestEmblemChoisesGraphicsUpload();
                 break;
             case 1:
             case 2:
@@ -80,7 +80,7 @@ void func_ov001_02180800(void) {
         }
     }
     if (data_ov001_021a99e4->mUnk_0004 == 0) {
-        func_020ca9e4();
+        DrawEmblemChoises();
     } else if ((u32) (data_ov001_021a99e4->mUnk_0004 - 1) <= 2) {
         u32 keys;
         BOOL moved;
@@ -202,7 +202,7 @@ void func_ov001_02180610(void) {
 
 void func_ov001_021805f4(void) {
     func_020364e8();
-    func_020ca6b8();
+    ClearEmblemChoisesPointer();
     data_ov001_021a99e4 = NULL;
 }
 
@@ -238,13 +238,13 @@ void func_ov001_0218052c(Unk0218052c *p0) {
             g->mUnk_0004 = (g->mUnk_0004 + 1) % 4;
             data_ov001_021a99e4->mUnk_0008 = 1;
             if (data_ov001_021a99e4->mUnk_0004 == 1) {
-                func_020ca688(0);
+                SetEmblemChoisesShownAndReset(0);
             }
         }
     }
     switch (data_ov001_021a99e4->mUnk_0004) {
         case 0:
-            func_020ca844();
+            UpdateEmblemChoises();
             func_020ca83c();
             break;
         case 1:

@@ -218,8 +218,10 @@ void func_020b0b8c(void) {
                 reg_G2S_DB_BG0CNT &= ~0x40;
                 reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & 0x43) | 0x10c;
                 func_020b17a4();
-                GXS_LoadBGPltt(func_020c3e2c(0)->mUnk_00->mData, 0, func_020c3e2c(0)->mUnk_00->mDataSize);
-                GXS_LoadBG1Char(func_020c3e2c(0)->mUnk_04->mData, 0, func_020c3e2c(0)->mUnk_04->mDataSize);
+                GXS_LoadBGPltt(GetRaceGoalSBPaletteAndChars(0)->mUnk_00->mData, 0,
+                               GetRaceGoalSBPaletteAndChars(0)->mUnk_00->mDataSize);
+                GXS_LoadBG1Char(GetRaceGoalSBPaletteAndChars(0)->mUnk_04->mData, 0,
+                                GetRaceGoalSBPaletteAndChars(0)->mUnk_04->mDataSize);
                 GXS_LoadOBJPltt(GetRaceNclrNcgr(7)->mNclr->mData, 0, 0x80);
                 GXS_LoadOBJ(GetRaceNclrNcgr(7)->mNcgr->mData, 0, 0x4000);
                 GXS_LoadBG0Char(func_020b3374()->mData, 0, 0x3000);
@@ -460,7 +462,7 @@ void func_020b03bc(void) {
     DC_FlushRange(GetChoisesSBNclr()->mData, 0x200);
     for (i = 0; i < 0x20; i++) {
         w = GetChoisesSBNclr()->mData[i + 0xe0];
-        func_020c3e2c(0)->mUnk_00->mData[i + 0xe0] = w;
+        GetRaceGoalSBPaletteAndChars(0)->mUnk_00->mData[i + 0xe0] = w;
     }
     G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 0x3f, 6, 10);
     if (gRaceSetup->mMode == MODE_GRAND_PRIX) {

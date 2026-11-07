@@ -312,7 +312,7 @@ void FinishRaceProgressKart(RaceProgressKart *a, s32 b) {
     }
     a->mFlags |= 8;
     if ((a->mFlags & 1) != 0 && (a->mFlags & 0x10) == 0) {
-        func_020c7164();
+        RefreshRaceNewRecordTaRecordFlags();
     }
     t = &a->mLapTimes[5];
     if (b != 0) {

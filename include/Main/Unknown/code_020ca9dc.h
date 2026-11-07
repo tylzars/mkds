@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-unsigned int func_020ca9dc(void);
+unsigned int GetEmblemChoisesInputSlot(void);

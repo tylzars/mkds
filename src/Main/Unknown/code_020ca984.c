@@ -7,21 +7,21 @@
 #include "Main/Unknown/unk_0217d068.h"
 #include "code_0212df7c.h"
 
-u32 func_020ca9dc(void) {
+u32 GetEmblemChoisesInputSlot(void) {
     return 0x8u;
 }
 
-u16 func_020ca9c8(InputSlot *a, u32 b) {
-    return a->mUnk_00 & b;
+u16 func_020ca9c8(InputSlot *slot, u32 mask) {
+    return slot->mUnk_00 & mask;
 }
 
-u16 func_020ca9ac(u32 a, u32 b) {
-    return func_020ca9c8(&data_02175628[a], b);
+u16 func_020ca9ac(u32 slotIndex, u32 mask) {
+    return func_020ca9c8(&data_02175628[slotIndex], mask);
 }
 
-u32 func_020ca994(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
+u32 func_020ca994(u32 seqIndex, u32 seqArcNo) {
+    u32 value0 = seqIndex;
+    u32 value1 = seqArcNo;
     u32 value2;
     u32 value12;
     value12 = (u32) &NNS_SndArcPlayerStartSeqArc;
@@ -31,12 +31,12 @@ u32 func_020ca994(u32 arg0, u32 arg1) {
     return value0;
 }
 
-u32 func_020ca984(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
+u32 StartEmblemChoisesSound(u32 seqIndex) {
+    u32 value0 = seqIndex;
+    u32 seqArcNo;
     u32 value12;
     value12 = (u32) &func_020ca994;
-    value1 = 0u;
-    value0 = func_020ca994(value0, value1);
+    seqArcNo = 0u;
+    value0 = func_020ca994(value0, seqArcNo);
     return value0;
 }

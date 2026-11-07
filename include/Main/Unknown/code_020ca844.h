@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020ca844(void);
+void UpdateEmblemChoises(void);

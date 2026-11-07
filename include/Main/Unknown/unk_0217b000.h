@@ -153,7 +153,8 @@ typedef struct ViewFrustum {
     /* 54 */ BOOL mViewTestRefreshPending;
 } ViewFrustum;
 
-// Object behind gEmblemChoises, 0x6c bytes (InitEmblemChoises allocates it); func_020ca9e4 calls the function at 0x0c.
+// Object behind gEmblemChoises, 0x6c bytes (InitEmblemChoises allocates it); DrawEmblemChoises calls the function at
+// 0x0c.
 typedef struct EmblemChoises {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
@@ -979,7 +980,7 @@ extern RaceHudSubScreenCells *gRaceHudSubScreenKoopaBlockCells;
 extern RaceHudSubScreenCells *data_0217b420;
 extern RaceHudSubScreenCells *gRaceHudSubScreenItemCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenCrabCells;
-extern RaceHudSubScreenCells *data_0217b434;
+extern RaceHudSubScreenCells *gRaceHudSubScreenShine16Cells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenPendulumCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenNsKiller2Cells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenFlipperCells;

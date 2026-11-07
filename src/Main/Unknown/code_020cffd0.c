@@ -132,7 +132,7 @@ void UpdateRaceGoalTimes(void) {
     if (gRaceSetup->mMode != MODE_TIME_ATTACK) {
         return;
     }
-    if (func_020c7148() == 0 && func_020c70ec() == 0) {
+    if (IsRaceNewRecordTaFinishRecord() == 0 && IsRaceNewRecordTaBestLapRecord() == 0) {
         return;
     }
     gRaceGoalTimes->mUnk_a8++;
@@ -184,19 +184,19 @@ void DrawRaceGoalTimes(RaceHudOamBuffer *a) {
     for (i = 0; i < 6; i++) {
         t[i] = InterpolateS16(1, 0x80, 0, n - i * 4, 0x14);
     }
-    c = GetRaceGoalMNcerEntry((func_020c7148() != 0 ? gRaceGoalTimes->mCellIndexAdd : 0) + 0x15);
+    c = GetRaceGoalMNcerEntry((IsRaceNewRecordTaFinishRecord() != 0 ? gRaceGoalTimes->mCellIndexAdd : 0) + 0x15);
     q[1][0] = (t[0] + 0xa2) << 12;
     q[1][1] = 0x10000;
     a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q[1], 0, 1);
     DrawRaceGoalTimeDigits(a, t[0], 0x10, &gRaceGoalTimes->mFinishTime,
-                           func_020c7148() != 0 ? gRaceGoalTimes->mCellIndexAdd : 0);
-    c = GetRaceGoalMNcerEntry((func_020c70ec() != 0 ? gRaceGoalTimes->mCellIndexAdd : 0) + 0x16);
+                           IsRaceNewRecordTaFinishRecord() != 0 ? gRaceGoalTimes->mCellIndexAdd : 0);
+    c = GetRaceGoalMNcerEntry((IsRaceNewRecordTaBestLapRecord() != 0 ? gRaceGoalTimes->mCellIndexAdd : 0) + 0x16);
     q[2][0] = (t[1] + 0x99) << 12;
     q[2][1] = 0x28000;
     a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q[2], 0, 1);
     for (i = 0; i < GetLapCount(); i++) {
         j = 0;
-        if (func_020c70ec() != 0 && i + 1 == GetRaceNewRecordTaBestLapNumber()) {
+        if (IsRaceNewRecordTaBestLapRecord() != 0 && i + 1 == GetRaceNewRecordTaBestLapNumber()) {
             j = gRaceGoalTimes->mCellIndexAdd;
         }
         c = GetRaceGoalMNcerEntry(i + 0x18 + j);

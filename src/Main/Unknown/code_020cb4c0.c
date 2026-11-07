@@ -16,7 +16,7 @@
 
 #pragma thumb on
 #pragma optimize_for_size on
-void func_020cb51c(u32 a) {
+void UpdateMenuScreen(u32 a) {
     Unk0217b43c *p;
     enum { K0 } k;
 

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020ca520(void);
+void ClearRaceHudSubScreenCrabCells(void);

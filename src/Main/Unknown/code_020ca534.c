@@ -17,33 +17,34 @@
 #include "Main/Unknown/code_020c0d9c.h"
 #include "Main/Unknown/code_021000d0.h"
 
-void func_020ca568(void) {
+void UpdateRaceHudSubScreenShine16Cells(void) {
     s32 i;
     s32 n;
     u32 v;
 
     n = 0;
     v = func_020c0db0();
-    for (i = 0; i < data_0217b434->mObjectCount; i++) {
+    for (i = 0; i < gRaceHudSubScreenShine16Cells->mObjectCount; i++) {
         Unk0217b498_00 *p;
 
-        p = data_0217b434->mObjects[i];
+        p = gRaceHudSubScreenShine16Cells->mObjects[i];
         if (!(p->mFlags & 1)) {
-            if (ComputeRaceHudSubScreenPosition(&p->mPos, &data_0217b434->mCells[n].mDrawPos, v, 1, 1)) {
-                data_0217b434->mCells[n].mCell = GetRaceSNcerEntry(0xb6);
-                data_0217b434->mCells[n].mUnk_0c = (p->mFlags & 0x20) ? 2 : 1;
-                data_0217b434->mCells[n].mUnk_0e = p->mFlags & 0x20;
+            if (ComputeRaceHudSubScreenPosition(&p->mPos, &gRaceHudSubScreenShine16Cells->mCells[n].mDrawPos, v, 1,
+                                                1)) {
+                gRaceHudSubScreenShine16Cells->mCells[n].mCell = GetRaceSNcerEntry(0xb6);
+                gRaceHudSubScreenShine16Cells->mCells[n].mUnk_0c = (p->mFlags & 0x20) ? 2 : 1;
+                gRaceHudSubScreenShine16Cells->mCells[n].mUnk_0e = p->mFlags & 0x20;
                 n++;
             }
         }
     }
-    data_0217b434->mCellCount = n;
+    gRaceHudSubScreenShine16Cells->mCellCount = n;
 }
 
-void func_020ca54c(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, data_0217b434, 0);
+void DrawRaceHudSubScreenShine16Cells(Unk020c06c4 *a) {
+    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenShine16Cells, 0);
 }
 
-s32 func_020ca534(void) {
+s32 CreateRaceHudSubScreenCrabCells(void) {
     return CreateRaceHudSubScreenCells(&gRaceHudSubScreenCrabCells, MAP_OBJECT_KIND_CRAB);
 }

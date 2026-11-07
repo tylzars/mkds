@@ -17,7 +17,7 @@ u32 func_02039e08(NNSiFndHeapHead *a, void **b, void **c, void **d, void **e, vo
 u32 RunMenuScene(SceneNumbers *a);
 void UpdateMenuScene(void);
 void func_02039f50(void);
-// Slot mRelease: releases the current screen (func_020cb9b8, clears data_0217b43c), clears bit 0 of
+// Slot mRelease: releases the current screen (ReleaseMenu, clears data_0217b43c), clears bit 0 of
 // data_021759d0->mUnk_50 and, in mode 1, resets the CPU entries 1..7 of mNextEntries
 // (ResetTimeAttackNextEntries).
 void ReleaseMenuScene(void);

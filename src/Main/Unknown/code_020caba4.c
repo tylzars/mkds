@@ -48,7 +48,7 @@ s32 func_020cacc0(void) {
         }
         z = FALSE;
         for (j = 0; j < n; j++) {
-            if (IsNewPairInRect(func_020ca9dc(), r[j])) {
+            if (IsNewPairInRect(GetEmblemChoisesInputSlot(), r[j])) {
                 if (gEmblemChoises->mChoisesIndex != j) {
                     gEmblemChoises->mChoisesIndex = j;
                     func_020cadac(z);
@@ -57,13 +57,13 @@ s32 func_020cacc0(void) {
                 }
                 switch (gEmblemChoises->mChoisesIndex) {
                     case 0:
-                        func_020ca984(0x10);
+                        StartEmblemChoisesSound(0x10);
                         break;
                     case 1:
-                        func_020ca984(0xb);
+                        StartEmblemChoisesSound(0xb);
                         break;
                     case 2:
-                        func_020ca984(5);
+                        StartEmblemChoisesSound(5);
                         break;
                 }
                 v = TRUE;

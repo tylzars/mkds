@@ -246,7 +246,7 @@ void func_020b3728(void) {
                     }
                 }
                 if (f != FALSE) {
-                    if (func_020c7148() != 0 || func_020c70ec() != 0) {
+                    if (IsRaceNewRecordTaFinishRecord() != 0 || IsRaceNewRecordTaBestLapRecord() != 0) {
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x44);
                     } else {
                         b = gRaceProgress->mUnk_000[GetFollowedKartOrEntryIndex()].mStatus;

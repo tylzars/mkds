@@ -1125,13 +1125,14 @@ void AdvanceSelectRaceRuleTeamInput(void) {
 }
 
 // Sets every row to the race setup copy's value and rebuilds the teams from its entries; first clears the copy when
-// func_020cccb4() returns 8, 9 or 0xf.
+// GetPreviousMenuScreenNumber() returns 8, 9 or 0xf.
 void ReadRaceSetupCopyIntoSelectRaceRule(void) {
     s32 a;
     s32 i;
     u32 b;
     a = 3;
-    if (func_020cccb4() == 8 || func_020cccb4() == 9 || func_020cccb4() == 0xf) {
+    if (GetPreviousMenuScreenNumber() == 8 || GetPreviousMenuScreenNumber() == 9 ||
+        GetPreviousMenuScreenNumber() == 0xf) {
         ClearUseTeams();
         func_020295a0();
         SetEngineIndex(0);

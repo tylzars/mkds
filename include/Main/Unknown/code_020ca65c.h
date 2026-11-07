@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020ca65c(void);
+void ClearRaceHudSubScreenShine16Cells(void);

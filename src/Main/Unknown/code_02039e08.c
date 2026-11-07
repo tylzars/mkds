@@ -205,7 +205,7 @@ void InitMenuScene(void) {
 }
 
 void ReleaseMenuScene(void) {
-    func_020cb9b8();
+    ReleaseMenu();
     data_021759d0->mUnk_50 &= ~1;
     ResetTimeAttackNextEntries();
 }
@@ -215,7 +215,7 @@ void func_02039f50(void) {
 }
 
 void UpdateMenuScene(void) {
-    func_020cb51c();
+    UpdateMenuScreen();
     func_020cb4c0();
 }
 

@@ -136,7 +136,7 @@ void InitTimeAttackTopMenu(void *a, void *b, s32 c) {
     gTimeAttackTopMenu->mUnk_30 = c;
     gTimeAttackTopMenu->mResult = 0;
     func_ov001_02198368();
-    if (func_020cccb4() == 0x1f) {
+    if (GetPreviousMenuScreenNumber() == 0x1f) {
         if (data_0217b488->mUnk_0c == 0) {
             gTimeAttackTopMenu->mIndex = 1;
         } else {

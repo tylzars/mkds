@@ -4,7 +4,7 @@
 
 #pragma thumb on
 
-s32 func_020ccccc(void) {
+s32 GetFramesSinceMenuScreenSwitch(void) {
     return data_0217b43c->mUnk_000;
 }
 
@@ -12,15 +12,15 @@ u32 func_020cccc0(void) {
     return (data_0217b43c->mUnk_004);
 }
 
-u32 func_020cccb4(void) {
+u32 GetPreviousMenuScreenNumber(void) {
     return (data_0217b43c->mUnk_008);
 }
 
-u32 func_020ccca8(void) {
+u32 GetMenuScreenNumber(void) {
     return (data_0217b43c->mScreenNumber);
 }
 
-u32 func_020ccc9c(void) {
+u32 GetNextMenuScreenNumber(void) {
     return (data_0217b43c->mUnk_010);
 }
 

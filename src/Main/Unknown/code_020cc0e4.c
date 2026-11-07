@@ -31,8 +31,8 @@ u32 func_020cc120(void) {
     return (data_0217b488->mUnk_08);
 }
 
-void func_020cc10c(u32 p0) {
-    data_0217b488->mUnk_04 = p0;
+void func_020cc10c(u32 value) {
+    data_0217b488->mUnk_04 = value;
 }
 
 u32 func_020cc0f8(void) {

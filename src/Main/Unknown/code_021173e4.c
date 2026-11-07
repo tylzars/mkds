@@ -317,7 +317,7 @@ void func_021181fc(void) {
     gSelectCupGrid->mStateFrames = 0;
     if (*(vu16 *) 0x027ffc40 != 2) {
         v = gSelectCupGrid->mSelectCupMBncl->mUnk_06;
-        if (func_020cccb4() == 0x18 || func_020cccb4() == 0xc) {
+        if (GetPreviousMenuScreenNumber() == 0x18 || GetPreviousMenuScreenNumber() == 0xc) {
             b = 0;
             gSelectCupGrid->mBg0Offset = b;
             gSelectCupGrid->mSelectCupMTable[20].mUnk_06 = b;
@@ -476,7 +476,7 @@ void InitSelectCupGrid(void *a, void *b, void *c, s32 d) {
 
     reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 1;
     reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0x9004;
-    if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
+    if (GetPreviousMenuScreenNumber() != 0x18 && GetPreviousMenuScreenNumber() != 0xc) {
         reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x1800;
     }
     a = CreateFrmHeapFromMaxFree(a);
@@ -495,7 +495,7 @@ void InitSelectCupGrid(void *a, void *b, void *c, s32 d) {
     ResetSelectCupGridShownCourse();
     RefreshSelectCupGridCupsEnabled();
     func_02118b48();
-    if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
+    if (GetPreviousMenuScreenNumber() != 0x18 && GetPreviousMenuScreenNumber() != 0xc) {
         func_020ae6d4(gSelectCupGrid->mMainOam, gSelectCupGrid->mSubOam);
     }
     gSelectCupGrid->mCommonMessages = FindFileInLoadedArchives("common.bmg");
@@ -515,7 +515,7 @@ void InitSelectCupGrid(void *a, void *b, void *c, s32 d) {
         CreateTrophyIcon(gSelectCupGrid->mHeap);
     } else {
         func_0211f4b0(gSelectCupGrid->mHeap, gSelectCupGrid->mSubOam);
-        if (func_020cccb4() != 0xc) {
+        if (GetPreviousMenuScreenNumber() != 0xc) {
             func_0211f394();
         } else {
             func_0211f380();
@@ -574,7 +574,7 @@ void AdvanceSelectCupGridState1(void) {
         v = gSelectCupGrid->mSelectCupMBncl->mUnk_06;
         a = InterpolateS16(1, 0xe0, 0, gSelectCupGrid->mStateFrames, 0xa);
         b = InterpolateS16(1, -192, 0, gSelectCupGrid->mStateFrames, 0xa);
-        if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
+        if (GetPreviousMenuScreenNumber() != 0x18 && GetPreviousMenuScreenNumber() != 0xc) {
             gSelectCupGrid->mBg0Offset = b;
             gSelectCupGrid->mSelectCupMTable[19].mUnk_06 = b;
             gSelectCupGrid->mSelectCupMTable[2].mUnk_06 = b;

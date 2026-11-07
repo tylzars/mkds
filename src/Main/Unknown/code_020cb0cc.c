@@ -9,8 +9,8 @@ u32 func_020cb114(u32 p0) {
     return (*OFFSET_PTR(const u16, p0, 0));
 }
 
-u32 func_020cb0f4(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_020cb0f4(u32 slotIndex) {
+    u32 value0 = slotIndex;
     u32 value1;
     u32 value2;
     u32 value12;
@@ -27,8 +27,8 @@ u32 func_020cb0ec(u32 p0) {
     return (*OFFSET_PTR(const u16, p0, 2));
 }
 
-u32 func_020cb0cc(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_020cb0cc(u32 slotIndex) {
+    u32 value0 = slotIndex;
     u32 value1;
     u32 value2;
     u32 value12;

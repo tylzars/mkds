@@ -421,7 +421,7 @@ void func_02118b48(void) {
     LocateNcer(&gSelectCupGrid->mSelectCupSNcer, FindSceneFile(data_0216d6b4));
     LocateNclr(&d, FindSceneFile(data_0216d68c));
     p = b->mData;
-    if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
+    if (GetPreviousMenuScreenNumber() != 0x18 && GetPreviousMenuScreenNumber() != 0xc) {
         CallQueueAppend(4, 0, e->mData, e->mDataSize);
         CallQueueAppend(0xf, 0, g->mData, 0x100);
         CallQueueAppend(8, 0, &f->mData, f->mDataSize);

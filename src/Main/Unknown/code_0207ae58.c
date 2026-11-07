@@ -170,7 +170,7 @@ void StartKartWinOrLoseAnimation(Kart *a) {
         }
     } else if (m == MODE_TIME_ATTACK) {
         if ((t & 4) == 0) {
-            if (func_020c7148() != 0 || func_020c70ec() != 0) {
+            if (IsRaceNewRecordTaFinishRecord() != 0 || IsRaceNewRecordTaBestLapRecord() != 0) {
                 f = 0;
             } else {
                 f = 2;

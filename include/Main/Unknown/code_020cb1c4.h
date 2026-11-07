@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-unsigned int func_020cb1c4(u16 *p0);
+unsigned int func_020cb1c4(u16 *pair);

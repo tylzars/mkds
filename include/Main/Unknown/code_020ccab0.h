@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020ccab0(void);
+void SetNextRaceEntriesFromRaceSetupCopy(void);

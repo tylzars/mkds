@@ -183,7 +183,7 @@ void func_ov001_021a0b3c(void) {
             func_02124a20(data_ov001_021a6e7c[i][1], 5, gMissionRunMSsel->mMissionRunMSselSNcer,
                           gMissionRunMSsel->mMissionRunMSselSBncl);
             if (gMissionRunMSsel->mUnk_a0 != 0) {
-                if (func_020cccb4() == SCREEN_MISSION_RUN_LVSEL) {
+                if (GetPreviousMenuScreenNumber() == SCREEN_MISSION_RUN_LVSEL) {
                     gMissionRunMSsel->mIndex = 8;
                 }
                 if (gMissionRunMSsel->mUnk_a4 == FALSE) {

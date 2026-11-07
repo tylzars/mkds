@@ -78,13 +78,13 @@ void LocateAndQueueSelectCupM(void) {
     LocateNcer(&gSelectCupM->mSubNcer, FindSceneFile(gSelectCupMNcerName3));
     LocateNclr(&d, FindSceneFile(gSelectCupMONclrName3));
     v = b->mData;
-    if (!(func_020cccb4() == 0x17 || func_020cccb4() == 0xb)) {
+    if (!(GetPreviousMenuScreenNumber() == 0x17 || GetPreviousMenuScreenNumber() == 0xb)) {
         CallQueueAppend(4, 0, e->mData, e->mDataSize);
         CallQueueAppend(0xf, 0, g->mData, 0x140);
         CallQueueAppend(8, 0, f->mData, f->mDataSize);
         CallQueueAppend(8, 0x800, gSelectCupM->mUnk_20, 0x800);
     }
-    if (!(func_020cccb4() == 0x19 || func_020cccb4() == 0xd)) {
+    if (!(GetPreviousMenuScreenNumber() == 0x19 || GetPreviousMenuScreenNumber() == 0xd)) {
         CallQueueAppend(0x17, 0, h->mData, h->mDataSize);
         CallQueueAppend(0x1f, 0, j->mData, 0x140);
         CallQueueAppend(0x1b, 0, i->mData, i->mDataSize);
@@ -254,7 +254,7 @@ void InitSelectCupM(void *a, void *b, void *c) {
     gSelectCupM->mUnk_48 = b;
     gSelectCupM->mUnk_4c = c;
     gSelectCupM->mUnk_50 = 0;
-    if (func_020cccb4() == 0x19 || func_020cccb4() == 0xd) {
+    if (GetPreviousMenuScreenNumber() == 0x19 || GetPreviousMenuScreenNumber() == 0xd) {
         gSelectCupM->mState = 1;
     } else {
         gSelectCupM->mState = 0;
@@ -282,7 +282,7 @@ void InitSelectCupM(void *a, void *b, void *c) {
         func_0211f380();
     }
     InitSelectCupMCellsAndRequestCupPicture();
-    if (func_020cccb4() == 0x19 || func_020cccb4() == 0xd) {
+    if (GetPreviousMenuScreenNumber() == 0x19 || GetPreviousMenuScreenNumber() == 0xd) {
         StartSelectCupMState1();
     } else {
         StartSelectCupMState0();

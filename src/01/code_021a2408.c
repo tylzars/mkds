@@ -171,6 +171,6 @@ void func_ov001_021a2408(void) {
         }
         gEmblem->mUnk_10b8 = FALSE;
     }
-    func_020ca9e4();
+    DrawEmblemChoises();
     func_020ae5f0(&gEmblem->mUnk_0000, &gEmblem->mUnk_0404);
 }

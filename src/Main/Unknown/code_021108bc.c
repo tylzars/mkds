@@ -132,7 +132,7 @@ s32 func_02110e58(void) {
             break;
         case MODE_TIME_ATTACK:
             a = (data_0217d32c.mUnk_0c == 0) ? 1 : 2;
-            if (a == func_020c7108()) {
+            if (a == IsRaceNewRecordTaFinishRecordFirst()) {
                 a = 0;
             }
             break;

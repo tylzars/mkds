@@ -3,12 +3,12 @@
 #include "00/code_02181f98.h"
 #include "code_0214a390.h"
 
-void func_020cbabc(u32 p0) {
-    data_0217b488->mUnk_08 = p0;
+void func_020cbabc(u32 value) {
+    data_0217b488->mUnk_08 = value;
 }
 
-void func_020cbaa8(u32 p0) {
-    data_0217b488->mUnk_10 = p0;
+void func_020cbaa8(u32 value) {
+    data_0217b488->mUnk_10 = value;
 }
 
 void func_020cba6c(u32 a, u32 b, u32 c, u32 d) {

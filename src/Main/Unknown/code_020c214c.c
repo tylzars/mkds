@@ -86,7 +86,7 @@ void UpdateRaceGoalSOffset(void) {
     switch (gRaceGoalS->mOffsetState) {
         case 0:
             gRaceGoalS->mOffset = -0x20;
-            if (gRaceGoalS->mUnk_00ac == func_020c1e70) {
+            if (gRaceGoalS->mUnk_00ac == SlideInRaceGoalS) {
                 gRaceGoalS->mOffsetState = 1;
                 gRaceGoalS->mOffsetStateFrames = 0;
             } else {

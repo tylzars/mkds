@@ -14,13 +14,13 @@ void func_020cae8c(void) {
     s32 t[5][2] = {{4, 0}, {0x14, 1}, {8, 3}, {0xe, 2}, {0x12, 4}};
     s32 n;
 
-    n = func_020ccccc();
+    n = GetFramesSinceMenuScreenSwitch();
     data_0217b43c->mUnk_938 = func_020ae488(n);
     if (n >= 10) {
         func_020ccc74(2, t[data_0217b43c->mUnk_930][0]);
         ResetRaceSetupCopy();
         GetRaceSetupCopy()->mMode = t[data_0217b43c->mUnk_930][1];
     }
-    func_020cb2d4();
+    DrawSinglePlaySelectCells();
 }
 #pragma thumb off
