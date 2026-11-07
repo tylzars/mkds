@@ -453,7 +453,8 @@ void func_02043648(void) {
     }
 }
 
-void func_0204360c(s32 a, u32 b) {
+// Takes effect only for slots whose source kind is 3 or 7.
+void RequestBits(s32 a, u32 b) {
     if (data_02175628[a].mSourceKind == 3 || data_02175628[a].mSourceKind == 7) {
         data_02175628[a].mRequestedBits |= b;
     }

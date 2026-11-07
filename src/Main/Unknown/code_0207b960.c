@@ -85,8 +85,8 @@ void func_0207d5b8(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (t == FALSE) {
         return;
     }
-    func_0204360c(b->mKart->mEntryIndex, 0x600);
-    a->mUnk_10 = 0;
+    RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
+    a->mItemBitsEveryCall = 0;
     if (a->mItemInUseEntry == NULL) {
         return;
     }
@@ -101,7 +101,7 @@ void func_0207d5b8(Unk0208fd8c *a, struct Unk020888b4 *b) {
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
 
-void func_0207d4cc(Unk0208fd8c *a, struct Unk020888b4 *b) {
+void RequestItemBitsOnceAndResetItemInUseTimerWhenHeldItemTimerRunsOut(Unk0208fd8c *a, struct Unk020888b4 *b) {
     BOOL t;
     Unk0217aebc_128 *r;
     u16 n;
@@ -116,8 +116,8 @@ void func_0207d4cc(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (t == FALSE) {
         return;
     }
-    func_0204360c(b->mKart->mEntryIndex, 0x600);
-    a->mUnk_10 = 0;
+    RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
+    a->mItemBitsEveryCall = 0;
     if (a->mItemInUseEntry == NULL) {
         return;
     }
@@ -138,8 +138,8 @@ void func_0207d474(Unk0208fd8c *a, struct Unk020888b4 *b) {
     d = data_021759c0;
     n = b->mIndex;
     if ((d->mCurrentEntries[n].mPlayer.mUnk_14 & 1) != 0) {
-        if (a->mUnk_20 <= 0xc00) {
-            a->mUnk_10 = 1;
+        if (a->mRandomValue <= 0xc00) {
+            a->mItemBitsEveryCall = 1;
             return;
         }
     }
@@ -152,8 +152,8 @@ void func_0207d3ec(Unk0208fd8c *a, struct Unk020888b4 *b) {
     d = data_021759c0;
     n = b->mIndex;
     if ((d->mCurrentEntries[n].mPlayer.mUnk_14 & 1) != 0) {
-        if (a->mUnk_20 <= 0x400) {
-            a->mUnk_10 = 1;
+        if (a->mRandomValue <= 0x400) {
+            a->mItemBitsEveryCall = 1;
             return;
         }
     }
@@ -170,7 +170,7 @@ void func_0207d3ec(Unk0208fd8c *a, struct Unk020888b4 *b) {
             return;
         }
     }
-    func_0207cd74(a, b);
+    RequestItemBitsByKartRank(a, b);
 }
 
 void func_0207d3a4(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -188,7 +188,7 @@ void func_0207d3a4(Unk0208fd8c *a, struct Unk020888b4 *b) {
     func_0207d194(a, b);
 }
 
-void func_0207d35c(Unk0208fd8c *a, struct Unk020888b4 *b) {
+void RequestItemBitsByKartRankWhenHeldItemTimerRunsOut(Unk0208fd8c *a, struct Unk020888b4 *b) {
     BOOL t;
 
     t = FALSE;
@@ -200,7 +200,7 @@ void func_0207d35c(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (t == FALSE) {
         return;
     }
-    func_0207cd74(a, b);
+    RequestItemBitsByKartRank(a, b);
 }
 void func_0207d194(Unk0208fd8c *a, struct Unk020888b4 *b) {
     Unk0217aebc_128 *r;
@@ -209,10 +209,10 @@ void func_0207d194(Unk0208fd8c *a, struct Unk020888b4 *b) {
 
     if (func_0207e654(b) != FALSE) {
         if (func_0207e64c(b) != 0) {
-            func_0204360c(b->mKart->mEntryIndex, 0x600);
-            a->mUnk_14 = 1;
-            a->mUnk_1c = 2;
-            a->mUnk_10 = 0;
+            RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
+            a->mBit6Pending = 1;
+            a->mBit6Timer = 2;
+            a->mItemBitsEveryCall = 0;
             if (a->mItemInUseEntry == NULL) {
                 return;
             }
@@ -227,10 +227,10 @@ void func_0207d194(Unk0208fd8c *a, struct Unk020888b4 *b) {
             a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
             return;
         } else {
-            func_0204360c(b->mKart->mEntryIndex, 0x600);
-            a->mUnk_18 = 1;
-            a->mUnk_1e = 2;
-            a->mUnk_10 = 0;
+            RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
+            a->mBit7Pending = 1;
+            a->mBit7Timer = 2;
+            a->mItemBitsEveryCall = 0;
             if (a->mItemInUseEntry == NULL) {
                 return;
             }
@@ -246,10 +246,10 @@ void func_0207d194(Unk0208fd8c *a, struct Unk020888b4 *b) {
             return;
         }
     } else {
-        func_0207cd74(a, b);
+        RequestItemBitsByKartRank(a, b);
     }
 }
-void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
+void RequestItemBitsByKartRank(Unk0208fd8c *a, struct Unk020888b4 *b) {
     Unk0217aebc_128 *r;
     s32 k;
     u16 n;
@@ -257,10 +257,10 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
 
     k = GetKartRank(b->mIndex);
     if (k == 1) {
-        func_0204360c(b->mKart->mEntryIndex, 0x600);
-        a->mUnk_18 = 1;
-        a->mUnk_1e = 2;
-        a->mUnk_10 = 0;
+        RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
+        a->mBit7Pending = 1;
+        a->mBit7Timer = 2;
+        a->mItemBitsEveryCall = 0;
         if (a->mItemInUseEntry == NULL) {
             return;
         }
@@ -275,10 +275,10 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
         a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
         return;
     } else if ((u32) k >= 2 && k <= data_021759c0->mKartCount - 1) {
-        switch (a->mHeldItemEntry->mUnk_04) {
+        switch (a->mHeldItemEntry->mThenBitKind) {
             case 0:
-                func_0204360c(b->mKart->mEntryIndex, 0x600);
-                a->mUnk_10 = 0;
+                RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
+                a->mItemBitsEveryCall = 0;
                 if (a->mItemInUseEntry == NULL) {
                     return;
                 }
@@ -293,10 +293,10 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
                 a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
                 return;
             case 1:
-                func_0204360c(b->mKart->mEntryIndex, 0x600);
-                a->mUnk_14 = 1;
-                a->mUnk_1c = 2;
-                a->mUnk_10 = 0;
+                RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
+                a->mBit6Pending = 1;
+                a->mBit6Timer = 2;
+                a->mItemBitsEveryCall = 0;
                 if (a->mItemInUseEntry == NULL) {
                     return;
                 }
@@ -311,10 +311,10 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
                 a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
                 return;
             case 2:
-                func_0204360c(b->mKart->mEntryIndex, 0x600);
-                a->mUnk_18 = 1;
-                a->mUnk_1e = 2;
-                a->mUnk_10 = 0;
+                RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
+                a->mBit7Pending = 1;
+                a->mBit7Timer = 2;
+                a->mItemBitsEveryCall = 0;
                 if (a->mItemInUseEntry == NULL) {
                     return;
                 }
@@ -332,10 +332,10 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
                 return;
         }
     } else {
-        func_0204360c(b->mKart->mEntryIndex, 0x600);
-        a->mUnk_14 = 1;
-        a->mUnk_1c = 2;
-        a->mUnk_10 = 0;
+        RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
+        a->mBit6Pending = 1;
+        a->mBit6Timer = 2;
+        a->mItemBitsEveryCall = 0;
         if (a->mItemInUseEntry == NULL) {
             return;
         }
@@ -370,8 +370,8 @@ void func_0207cc74(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (b->mUnk_70 >= 0x14000) {
         return;
     }
-    func_0204360c(b->mKart->mEntryIndex, 0x600);
-    a->mUnk_10 = 0;
+    RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
+    a->mItemBitsEveryCall = 0;
     if (a->mItemInUseEntry == NULL) {
         return;
     }
@@ -404,8 +404,8 @@ void func_0207cb74(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (b->mUnk_70 >= 0x14000) {
         return;
     }
-    func_0204360c(b->mKart->mEntryIndex, 0x600);
-    a->mUnk_10 = 0;
+    RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
+    a->mItemBitsEveryCall = 0;
     if (a->mHeldItemEntry == NULL) {
         return;
     }
@@ -455,7 +455,7 @@ void func_0207ca60(Unk0208fd8c *a, struct Unk020888b4 *b) {
     func_0207d194(a, b);
 }
 
-void func_0207ca18(Unk0208fd8c *a, struct Unk020888b4 *b) {
+void RequestItemBitsByKartRankWhenItemInUseTimerRunsOut(Unk0208fd8c *a, struct Unk020888b4 *b) {
     BOOL r;
 
     r = FALSE;
@@ -467,7 +467,7 @@ void func_0207ca18(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (r == FALSE) {
         return;
     }
-    func_0207cd74(a, b);
+    RequestItemBitsByKartRank(a, b);
 }
 
 void func_0207c978(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -477,7 +477,7 @@ void func_0207c978(Unk0208fd8c *a, struct Unk020888b4 *b) {
 
     e = &gKartItems[b->mIndex];
     t = e->mHeldItem.mUnk_00;
-    if (a->mUnk_10 != 0) {
+    if (a->mItemBitsEveryCall != 0) {
         if (t != 0x13) {
             a->mUnk_0c = 1;
         }
@@ -506,7 +506,7 @@ void func_0207c8d8(Unk0208fd8c *a, struct Unk020888b4 *b) {
 
     e = &gKartItems[b->mIndex];
     t = e->mHeldItem.mUnk_00;
-    if (a->mUnk_10 != 0) {
+    if (a->mItemBitsEveryCall != 0) {
         if (t != 0x13) {
             a->mUnk_0c = 1;
         }
@@ -522,9 +522,9 @@ void func_0207c8d8(Unk0208fd8c *a, struct Unk020888b4 *b) {
         if (r == FALSE) {
             return;
         }
-        func_0207cd74(a, b);
+        RequestItemBitsByKartRank(a, b);
     } else {
-        func_0207cd74(a, b);
+        RequestItemBitsByKartRank(a, b);
     }
 }
 
@@ -533,17 +533,17 @@ void func_0207c78c(void) {
         case 1:
             data_0217ae38 = data_usa_021554a4;
             data_0217ae34 = data_usa_0215524c;
-            data_0217ae48 = func_0207ca18;
+            data_0217ae48 = RequestItemBitsByKartRankWhenItemInUseTimerRunsOut;
             data_0217ae44 = func_0207c8d8;
-            data_0217ae3c = func_0207ca18;
+            data_0217ae3c = RequestItemBitsByKartRankWhenItemInUseTimerRunsOut;
             data_0217ae40 = func_0207c8d8;
             break;
         case 2:
             data_0217ae38 = data_usa_021552f4;
             data_0217ae34 = data_usa_0215524c;
-            data_0217ae48 = func_0207ca18;
+            data_0217ae48 = RequestItemBitsByKartRankWhenItemInUseTimerRunsOut;
             data_0217ae44 = func_0207c8d8;
-            data_0217ae3c = func_0207ca18;
+            data_0217ae3c = RequestItemBitsByKartRankWhenItemInUseTimerRunsOut;
             data_0217ae40 = func_0207c8d8;
             break;
         case 3:
@@ -558,13 +558,14 @@ void func_0207c78c(void) {
     }
 }
 
-void func_0207c6d0(Unk0208fd8c *a, struct Unk020888b4 *b) {
+// Also stops the every-call request of the item bits.
+void RequestItemBitsOnceAndResetHeldItemTimer(Unk0208fd8c *a, struct Unk020888b4 *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
 
-    func_0204360c(b->mKart->mEntryIndex, 0x600);
-    a->mUnk_10 = 0;
+    RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
+    a->mItemBitsEveryCall = 0;
     if (a->mHeldItemEntry == NULL) {
         return;
     }
@@ -579,13 +580,14 @@ void func_0207c6d0(Unk0208fd8c *a, struct Unk020888b4 *b) {
     a->mHeldItemTimer = a->mHeldItemEntry->mTimerBase + (u16) v;
 }
 
-void func_0207c614(Unk0208fd8c *a, struct Unk020888b4 *b) {
+// Also stops the every-call request of the item bits.
+void RequestItemBitsOnceAndResetItemInUseTimer(Unk0208fd8c *a, struct Unk020888b4 *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
 
-    func_0204360c(b->mKart->mEntryIndex, 0x600);
-    a->mUnk_10 = 0;
+    RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
+    a->mItemBitsEveryCall = 0;
     if (a->mItemInUseEntry == NULL) {
         return;
     }
@@ -600,15 +602,16 @@ void func_0207c614(Unk0208fd8c *a, struct Unk020888b4 *b) {
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
 
-void func_0207c548(Unk0208fd8c *a, struct Unk020888b4 *b) {
+// Also stops the every-call request of the item bits.
+void RequestItemBitsOnceThenBit6AndResetItemInUseTimer(Unk0208fd8c *a, struct Unk020888b4 *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
 
-    func_0204360c(b->mKart->mEntryIndex, 0x600);
-    a->mUnk_14 = 1;
-    a->mUnk_1c = 2;
-    a->mUnk_10 = 0;
+    RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
+    a->mBit6Pending = 1;
+    a->mBit6Timer = 2;
+    a->mItemBitsEveryCall = 0;
     if (a->mItemInUseEntry == NULL) {
         return;
     }
@@ -623,15 +626,16 @@ void func_0207c548(Unk0208fd8c *a, struct Unk020888b4 *b) {
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
 
-void func_0207c47c(Unk0208fd8c *a, struct Unk020888b4 *b) {
+// Also stops the every-call request of the item bits.
+void RequestItemBitsOnceThenBit7AndResetItemInUseTimer(Unk0208fd8c *a, struct Unk020888b4 *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
 
-    func_0204360c(b->mKart->mEntryIndex, 0x600);
-    a->mUnk_18 = 1;
-    a->mUnk_1e = 2;
-    a->mUnk_10 = 0;
+    RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
+    a->mBit7Pending = 1;
+    a->mBit7Timer = 2;
+    a->mItemBitsEveryCall = 0;
     if (a->mItemInUseEntry == NULL) {
         return;
     }
@@ -652,15 +656,17 @@ void func_0207c448(Unk0208fd8c *p0) {
     p0->mHeldItemEntry = NULL;
     p0->mItemInUseEntry = NULL;
     p0->mUnk_0c = 0x0u;
-    p0->mUnk_10 = 0x0u;
-    p0->mUnk_14 = 0x0u;
-    p0->mUnk_18 = 0x0u;
-    p0->mUnk_1c = 0x0u;
-    p0->mUnk_1e = 0x0u;
-    p0->mUnk_20 = 0x0u;
+    p0->mItemBitsEveryCall = 0x0u;
+    p0->mBit6Pending = 0x0u;
+    p0->mBit7Pending = 0x0u;
+    p0->mBit6Timer = 0x0u;
+    p0->mBit7Timer = 0x0u;
+    p0->mRandomValue = 0x0u;
 }
 
-void func_0207c2ec(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
+// When the race frame count mod 8 matches this kart's index, runs the entry function; on the other calls sends the
+// pending bit 6 or 7.
+void AdvanceItemBitRequests(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     u16 v1;
     KartItems *e;
 
@@ -675,23 +681,23 @@ void func_0207c2ec(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
         } else if ((a->mHeldItemEntry != 0) & (e->mHeldItem.mUnk_00 != 0x13)) {
             a->mHeldItemEntry->mUnk_00(a, b);
         } else {
-            func_0204360c(b->mKart->mEntryIndex, 0x600);
+            RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
         }
-    } else if (a->mUnk_14 != 0) {
-        func_0204360c(b->mKart->mEntryIndex, 0x40);
-        a->mUnk_1c--;
-        if (a->mUnk_1c <= 0) {
-            a->mUnk_14 = 0;
+    } else if (a->mBit6Pending != 0) {
+        RequestBits(b->mKart->mEntryIndex, 0x40);
+        a->mBit6Timer--;
+        if (a->mBit6Timer <= 0) {
+            a->mBit6Pending = 0;
         }
-    } else if (a->mUnk_18 != 0) {
-        func_0204360c(b->mKart->mEntryIndex, 0x80);
-        a->mUnk_1e--;
-        if (a->mUnk_1e <= 0) {
-            a->mUnk_18 = 0;
+    } else if (a->mBit7Pending != 0) {
+        RequestBits(b->mKart->mEntryIndex, 0x80);
+        a->mBit7Timer--;
+        if (a->mBit7Timer <= 0) {
+            a->mBit7Pending = 0;
         }
     }
-    if (a->mUnk_10 != 0) {
-        func_0204360c(b->mKart->mEntryIndex, 0x600);
+    if (a->mItemBitsEveryCall != 0) {
+        RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
     }
 }
 
@@ -704,7 +710,7 @@ void func_0207c270(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
             return;
         }
     }
-    func_0207c2ec(a, b);
+    AdvanceItemBitRequests(a, b);
 }
 
 void SetupHeldItemEntry(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -717,7 +723,7 @@ void SetupHeldItemEntry(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     a->mHeldItemEntry = &data_0217ae38[k];
     r = func_0208537c();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    a->mUnk_20 = (s16) (u16) (r->mUnk_00 >> 52);
+    a->mRandomValue = (s16) (u16) (r->mUnk_00 >> 52);
     if (a->mHeldItemEntry == NULL) {
         return;
     }

@@ -76,7 +76,7 @@ void func_0207e4a4(struct Unk020888b4 *p) {
     GetKartPos(&a, p->mIndex);
     func_0207f6f0(p, s, q, r, &a, t);
     if (q->mState == KART_STATE_NORMAL) {
-        func_0204360c(p->mKart->mEntryIndex, 1);
+        RequestBits(p->mKart->mEntryIndex, 1);
         VEC_Subtract(&p->mUnk_44, &a, &b);
         func_01ffd224(p, &b, t);
     }
@@ -112,7 +112,7 @@ void func_0207e35c(struct Unk020888b4 *p) {
     GetKartPos(&a, p->mIndex);
     func_0207f6f0(p, s, q, r, &a, t);
     if (q->mState == KART_STATE_NORMAL) {
-        func_0204360c(p->mKart->mEntryIndex, 1);
+        RequestBits(p->mKart->mEntryIndex, 1);
         VEC_Subtract(&p->mUnk_44, &a, &b);
         func_01ffd224(p, &b, t);
     }

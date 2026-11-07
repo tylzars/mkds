@@ -44,9 +44,9 @@ void func_02090088(Unk0208fd8c *a, Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (s16) (u16) (r->mUnk_00 >> 52);
         if (v < 0xb33) {
-            func_0207c548(a, b);
+            RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
         } else {
-            func_0207c47c(a, b);
+            RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
         }
     } else {
         if (b->mUnk_b0 == NULL) {
@@ -56,9 +56,9 @@ void func_02090088(Unk0208fd8c *a, Unk020888b4 *b) {
             return;
         }
         if (b->mUnk_b4 != 0 && b->mUnk_bc > 0xb33) {
-            func_0207c548(a, b);
+            RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
         } else {
-            func_0207c47c(a, b);
+            RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
         }
     }
 }
@@ -74,9 +74,9 @@ void func_0208ffe4(Unk0208fd8c *a, Unk020888b4 *b) {
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     v = (s16) (u16) (r->mUnk_00 >> 52);
     if (v < 0xb33) {
-        func_0207c548(a, b);
+        RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
     } else {
-        func_0207c47c(a, b);
+        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
     }
 }
 
@@ -93,9 +93,9 @@ void func_0208fefc(Unk0208fd8c *a, struct Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (s16) (u16) (r->mUnk_00 >> 52);
         if (v > 0xccd) {
-            func_0207c47c(a, b);
+            RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
         } else {
-            func_0207c548(a, b);
+            RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
         }
     } else {
         if (b->mUnk_b0 == NULL) {
@@ -104,7 +104,7 @@ void func_0208fefc(Unk0208fd8c *a, struct Unk020888b4 *b) {
         if (b->mUnk_b8 >= 0x15f90) {
             return;
         }
-        func_0207c47c(a, b);
+        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
     }
 }
 
@@ -119,9 +119,9 @@ void func_0208fe58(Unk0208fd8c *a, struct Unk020888b4 *b) {
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     v = (s16) (u16) (r->mUnk_00 >> 52);
     if (v > 0xccd) {
-        func_0207c47c(a, b);
+        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
     } else {
-        func_0207c548(a, b);
+        RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
     }
 }
 
@@ -129,7 +129,7 @@ void func_0208fe1c(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (DecrementHeldItemTimer(a) == 0) {
         return;
     }
-    func_0207c614(a, b);
+    RequestItemBitsOnceAndResetItemInUseTimer(a, b);
 }
 
 void func_0208fdcc(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -139,10 +139,10 @@ void func_0208fdcc(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (b->mUnk_70 >= 0xa000) {
         return;
     }
-    func_0207c6d0(a, b);
+    RequestItemBitsOnceAndResetHeldItemTimer(a, b);
 }
 
-void func_0208fd8c(Unk0208fd8c *a, struct Unk020888b4 *b) {
+void SetupBattleItemInUseEntry(Unk0208fd8c *a, struct Unk020888b4 *b) {
     enum { K0 } k = (gKartItems)[b->mIndex].mItemInUse.mUnk_000;
     Unk0208fd8c_08 *t = &gBattleItemInUseEntries[k];
 
@@ -170,9 +170,9 @@ void func_0208fcac(Unk0208fd8c *a, struct Unk020888b4 *b) {
         return;
     }
     if (b->mUnk_b4 != 0 && b->mUnk_bc > 0xb33) {
-        func_0207c548(a, b);
+        RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
     } else {
-        func_0207c47c(a, b);
+        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
     }
 }
 
@@ -185,9 +185,9 @@ void func_0208fba0(Unk0208fd8c *a, struct Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (s16) (u16) (r->mUnk_00 >> 52);
         if (v < 0xb33) {
-            func_0207c548(a, b);
+            RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
         } else {
-            func_0207c47c(a, b);
+            RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
         }
     } else {
         if (b->mUnk_b0 == NULL) {
@@ -197,9 +197,9 @@ void func_0208fba0(Unk0208fd8c *a, struct Unk020888b4 *b) {
             return;
         }
         if (b->mUnk_b4 != 0 && b->mUnk_bc > 0xb33) {
-            func_0207c548(a, b);
+            RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
         } else {
-            func_0207c47c(a, b);
+            RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
         }
     }
 }
@@ -215,14 +215,14 @@ void func_0208fafc(Unk0208fd8c *a, struct Unk020888b4 *b) {
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     v = (s16) (u16) (r->mUnk_00 >> 52);
     if (v < 0xb33) {
-        func_0207c548(a, b);
+        RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
     } else {
-        func_0207c47c(a, b);
+        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
     }
 }
 
 void func_0208fa50(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    a->mUnk_10 = 1;
+    a->mItemBitsEveryCall = 1;
     if (DecrementItemInUseTimer(a) == 0) {
         return;
     }
@@ -233,9 +233,9 @@ void func_0208fa50(Unk0208fd8c *a, struct Unk020888b4 *b) {
         return;
     }
     if (b->mUnk_b4 != 0 && b->mUnk_bc > 0xb33) {
-        func_0207c548(a, b);
+        RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
     } else {
-        func_0207c47c(a, b);
+        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
     }
 }
 
@@ -250,9 +250,9 @@ void func_0208f9ac(Unk0208fd8c *a, struct Unk020888b4 *b) {
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     v = (s16) (u16) (r->mUnk_00 >> 52);
     if (v < 0xb33) {
-        func_0207c548(a, b);
+        RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
     } else {
-        func_0207c47c(a, b);
+        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
     }
 }
 
@@ -280,7 +280,7 @@ void func_0208f8ac(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (b->mUnk_bc <= 0x666) {
         return;
     }
-    func_0207c614(a, b);
+    RequestItemBitsOnceAndResetItemInUseTimer(a, b);
 }
 
 void func_0208f810(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -299,14 +299,14 @@ void func_0208f810(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (b->mUnk_bc <= 0x666) {
         return;
     }
-    func_0207c614(a, b);
+    RequestItemBitsOnceAndResetItemInUseTimer(a, b);
 }
 
 void func_0208f7d4(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (DecrementItemInUseTimer(a) == 0) {
         return;
     }
-    func_0207c614(a, b);
+    RequestItemBitsOnceAndResetItemInUseTimer(a, b);
 }
 
 void func_0208f754(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -322,7 +322,7 @@ void func_0208f754(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (b->mUnk_b4 == 0) {
         return;
     }
-    func_0207c614(a, b);
+    RequestItemBitsOnceAndResetItemInUseTimer(a, b);
 }
 
 void func_0208f6d4(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -338,7 +338,7 @@ void func_0208f6d4(Unk0208fd8c *a, struct Unk020888b4 *b) {
     if (b->mUnk_b4 == 0) {
         return;
     }
-    func_0207c614(a, b);
+    RequestItemBitsOnceAndResetItemInUseTimer(a, b);
 }
 
 void func_0208f670(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -363,9 +363,9 @@ void func_0208f5c4(Unk0208fd8c *a, struct Unk020888b4 *b) {
         if (b->mUnk_bc <= 0xb33) {
             return;
         }
-        func_0207c548(a, b);
+        RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
     } else {
-        func_0207c47c(a, b);
+        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
     }
 }
 
@@ -378,9 +378,9 @@ void func_0208f4e8(Unk0208fd8c *a, struct Unk020888b4 *b) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         v = (s16) (u16) (r->mUnk_00 >> 52);
         if (v > 0xb33) {
-            func_0207c47c(a, b);
+            RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
         } else {
-            func_0207c548(a, b);
+            RequestItemBitsOnceThenBit6AndResetItemInUseTimer(a, b);
         }
     } else {
         if (b->mUnk_b0 == NULL) {
@@ -389,12 +389,12 @@ void func_0208f4e8(Unk0208fd8c *a, struct Unk020888b4 *b) {
         if (b->mUnk_b8 >= 0x15f90) {
             return;
         }
-        func_0207c47c(a, b);
+        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
     }
 }
 
 void func_0208f434(Unk0208fd8c *a, struct Unk020888b4 *b) {
-    a->mUnk_10 = 1;
+    a->mItemBitsEveryCall = 1;
     if (DecrementItemInUseTimer(a) == 0) {
         return;
     }
@@ -408,9 +408,9 @@ void func_0208f434(Unk0208fd8c *a, struct Unk020888b4 *b) {
         if (b->mUnk_bc <= 0xb33) {
             return;
         }
-        func_0207c47c(a, b);
+        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
     } else {
-        func_0207c47c(a, b);
+        RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
     }
 }
 
@@ -423,7 +423,7 @@ void func_0208f3d0(Unk0208fd8c *a, struct Unk020888b4 *b) {
             return;
         }
     }
-    func_0207c47c(a, b);
+    RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
 }
 
 void func_0208f0f8(void *a) {

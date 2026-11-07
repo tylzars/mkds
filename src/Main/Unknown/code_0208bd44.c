@@ -41,11 +41,11 @@ void func_0208bea4(Vec3 *a, Vec3 *b, Unk020888b4 *p) {
 }
 
 void func_0208be90(Unk020888b4 *p) {
-    func_020902fc(&p->mUnk_11c, p);
+    SetupBattleHeldItemEntry(&p->mUnk_11c, p);
 }
 
 void func_0208be7c(Unk020888b4 *p) {
-    func_0208fd8c(&p->mUnk_11c, p);
+    SetupBattleItemInUseEntry(&p->mUnk_11c, p);
 }
 
 void func_0208be00(Unk020888b4 *p, s32 a) {

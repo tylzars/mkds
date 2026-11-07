@@ -2,11 +2,14 @@
 
 #include "types.h"
 
+// The pair of input bits the item code tests to use the held item.
+#define ITEM_BITS 0x600
+
 typedef struct Unk02029930_f8 Unk02029930_f8;
 
 u32 func_020435c4(void);
 void func_020435d4(u32 a);
-void func_0204360c(s32 a, u32 b);
+void RequestBits(s32 a, u32 b);
 void func_02043648(void);
 unsigned int func_02043a20(void);
 void func_02043a34(void);

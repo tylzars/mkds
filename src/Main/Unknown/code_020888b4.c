@@ -319,7 +319,7 @@ void func_02089494(Unk020888b4 *p) {
     if (p->mUnk_c4 != FALSE) {
         return;
     }
-    func_0204360c(p->mKart->mEntryIndex, 1);
+    RequestBits(p->mKart->mEntryIndex, 1);
     VEC_Subtract(p->mUnk_5c, &v, &w);
     func_01ffd224(p, &w, g);
 }

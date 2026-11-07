@@ -1,4 +1,5 @@
 #include "ITCM/code_01fff434.h"
+#include "Main/Unknown/code_020435c4.h"
 #include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01ffc000.h"
 #include "Main/Unknown/code_02061654.h"
@@ -25,7 +26,7 @@ void UpdateKartItems(KartItems *p) {
     u32 g;
     f = p->mFlags;
     g = f & 0x1000;
-    t = data_0217562a[p->mUnk_200].mBits & 0x600;
+    t = data_0217562a[p->mUnk_200].mBits & ITEM_BITS;
     q = p->mKart;
     p->mFlags &= ~0xf200;
     if (t) {
