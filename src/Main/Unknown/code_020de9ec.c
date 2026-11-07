@@ -268,7 +268,7 @@ void func_020dec4c(void *a, Unk020de6a8 *b, u32 c, u32 d) {
         data_0217b720.mUnk_00[3].x = p->x >> 4;
         data_0217b720.mUnk_00[3].y = p->y >> 4;
         data_0217b720.mUnk_00[3].z = p->z >> 4;
-        func_020e5370(&data_0217b760, &data_0217b720, (u16) n, d);
+        DrawJgShadowWithMatrix(&data_0217b760, &data_0217b720, (u16) n, d);
         return;
     }
     v.x = ((s64) b->mUnk_000.mScale.x * 0x1666) >> 12;
@@ -283,7 +283,7 @@ void func_020dec4c(void *a, Unk020de6a8 *b, u32 c, u32 d) {
         data_0217b720.mUnk_00[3].z = p->z >> 4;
         q = &data_0217b720;
     }
-    func_020e5370(&v, q, (u16) n, d);
+    DrawJgShadowWithMatrix(&v, q, (u16) n, d);
 }
 
 void UpdateItemBox(void *a, Unk020de6a8 *b) {

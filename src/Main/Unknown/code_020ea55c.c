@@ -7,9 +7,9 @@
 
 #pragma thumb on
 
-void func_020ea55c(void **a, void *b, u32 c) {
-    *a = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x74);
-    InitShadowModel(*a, b, (u8) c);
+void CreateShadowModel(void **slot, void *file, u32 c) {
+    *slot = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x74);
+    InitShadowModel(*slot, file, (u8) c);
 }
 
 #pragma thumb off

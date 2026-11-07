@@ -3,19 +3,19 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/code_020f1258.h"
 
-BOOL func_020f1180(ItemKouraR *a, u32 b) {
-    u16 i;
-    u32 r;
-    u32 n;
-    int v;
+BOOL TrySetItemKouraRNearestKartItems(ItemKouraR *item, u32 checkRank) {
+    u16 kartIndex;
+    u32 nearestDistanceSquared;
+    u32 kartCount;
+    int distanceSquared;
 
-    r = 0;
-    n = gRaceSetup->mKartCount;
-    for (i = 0; i < n; i++) {
-        v = func_020f1258(a, i, r, b);
-        if (v != 0) {
-            r = v;
+    nearestDistanceSquared = 0;
+    kartCount = gRaceSetup->mKartCount;
+    for (kartIndex = 0; kartIndex < kartCount; kartIndex++) {
+        distanceSquared = TrySetItemKouraRKartItems(item, kartIndex, nearestDistanceSquared, checkRank);
+        if (distanceSquared != 0) {
+            nearestDistanceSquared = distanceSquared;
         }
     }
-    return r != 0;
+    return nearestDistanceSquared != 0;
 }

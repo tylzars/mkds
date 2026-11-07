@@ -88,7 +88,7 @@ void InitIronBallObjects(Unk020a9a5c *p) {
         o->mUnk_11c = o->mUnk_000.mCourseMapRow->mUnk_00;
         o->mUnk_000.mPos = o->mUnk_11c;
         o->mUnk_11c.y += 0x1000;
-        func_020e516c(&o->mUnk_0e8, &o->mUnk_11c, o->mUnk_000.mExtent.x << 1, k);
+        RefreshShadowMatrix(&o->mUnk_0e8, &o->mUnk_11c, o->mUnk_000.mExtent.x << 1, k);
         RefreshMapObjectMatrixFromHitNormal(&o->mUnk_000);
         InitGroupFollower(&o->mUnk_0c4, o->mUnk_000.mCourseMapRow, z0);
         func_020d8918(&o->mUnk_0c4, &o->mUnk_11c, &o->mUnk_000.mUnk_10);
@@ -295,7 +295,7 @@ void UpdateIronBall(void *a, IronBall *p) {
     }
     p->mUnk_0a0 = v;
     if (p->mUnk_12c == 2) {
-        func_020e516c(&p->mUnk_0e8, &p->mUnk_11c, p->mUnk_000.mExtent.x << 1, 0x1c);
+        RefreshShadowMatrix(&p->mUnk_0e8, &p->mUnk_11c, p->mUnk_000.mExtent.x << 1, 0x1c);
         p->mUnk_11c.y += 0x1000;
         p->mUnk_12c = 1;
     }
@@ -310,7 +310,7 @@ void UpdateIronBall(void *a, IronBall *p) {
                 v = 0;
             }
             p->mUnk_0e8.mUnk_030 = v;
-            func_020e5634(&p->mUnk_0e8, &p->mUnk_11c);
+            SetShadowPositionRaised(&p->mUnk_0e8, &p->mUnk_11c);
         }
         p->mUnk_000.mFlags &= ~1;
     } else {

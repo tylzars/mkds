@@ -310,7 +310,7 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
             }
         }
     }
-    func_020f2150(p);
+    ApplyItemObjectGravity(p);
     r->x = q->x - p->mUnk_000.mUnk_000.mPrevPos.x;
     r->z = q->z - p->mUnk_000.mUnk_000.mPrevPos.z;
 }

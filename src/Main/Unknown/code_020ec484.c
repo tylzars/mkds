@@ -7,29 +7,29 @@
 #include "Main/Unknown/code_020ec504.h"
 #include "Main/Unknown/unk_02159000.h"
 
-void func_020ec504(int a) {
-    u16 v1;
-    *(u16 *) (a + 2) = *(u16 *) (a + 2) | (*(u16 *) &data_02159578);
-    v1 = FreeCollisionSlot(*(s16 *) (a + 100));
-    *(u16 *) (a + 100) = v1;
+void func_020ec504(int object) {
+    u16 newSlot;
+    *(u16 *) (object + 2) = *(u16 *) (object + 2) | (*(u16 *) &data_02159578);
+    newSlot = FreeCollisionSlot(*(s16 *) (object + 100));
+    *(u16 *) (object + 100) = newSlot;
 }
 
-void func_020ec490(Unk020ec490 *a) {
-    if (a->mUnk_a8) {
-        a->mUnk_ac = a->mUnk_ac + a->mUnk_ae;
+void func_020ec490(Unk020ec490 *object) {
+    if (object->mUnk_a8) {
+        object->mUnk_ac = object->mUnk_ac + object->mUnk_ae;
     } else {
-        a->mUnk_ac = a->mUnk_ac - a->mUnk_ae;
+        object->mUnk_ac = object->mUnk_ac - object->mUnk_ae;
     }
-    a->mUnk_10.y -= a->mUnk_a4;
-    VEC_Add(&a->mUnk_04, &a->mUnk_10, &a->mUnk_04);
-    if (a->mUnk_04.y < a->mUnk_a0) {
-        a->mUnk_90 = 2;
-        a->mUnk_92 = 1;
+    object->mUnk_10.y -= object->mUnk_a4;
+    VEC_Add(&object->mUnk_04, &object->mUnk_10, &object->mUnk_04);
+    if (object->mUnk_04.y < object->mUnk_a0) {
+        object->mUnk_90 = 2;
+        object->mUnk_92 = 1;
     }
 }
 
-void func_020ec484(u32 arg0) {
-    u32 value0 = arg0;
+void func_020ec484(u32 objectAddress) {
+    u32 object = objectAddress;
     u32 value12;
-    ParkMapObject((void *) value0);
+    ParkMapObject((void *) object);
 }

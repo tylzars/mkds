@@ -91,7 +91,7 @@ void CreateKoopaBlock(void) {
     void *r;
 
     r = FindCourseMapObjFile("koopa_block.nsbmd");
-    func_020ea588(&gKoopaBlock, r, NULL);
+    CreateNsbmd(&gKoopaBlock, r, NULL);
     func_02084968(gKoopaBlock, 0x3f, 2, 0x294a);
     SetMapObjectsModel(data_0217b784, gKoopaBlock);
 }

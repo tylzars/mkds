@@ -4,6 +4,6 @@
 
 typedef struct ItemKouraW ItemKouraW;
 
-BOOL func_020fcbb8(ItemKouraW *p0, s32 v1);
-void func_020fcce4(ItemKouraW *p0, s32 a, s32 b);
-void func_020fce94(ItemKouraW *p0, s32 a, s32 b, s32 c, u16 d);
+BOOL TrySetItemKouraWKartItems(ItemKouraW *item, s32 kartIndex);
+void SteerItemKouraWToKartForward(ItemKouraW *item, s32 gain, s32 lift);
+void SteerItemKouraWToNextAnglePoint(ItemKouraW *item, s32 gain, s32 maxStep, s32 radius, u16 angleStep);

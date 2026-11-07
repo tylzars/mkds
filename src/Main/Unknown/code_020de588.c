@@ -101,7 +101,7 @@ void InitItemBox(Unk020de6a8 *a, Unk020de6a8_1 *b) {
             if (a->mUnk_0a8 != 0) {
                 v.y += 0x800;
             }
-            if (func_020e516c(&a->mUnk_0b4, &v, 0x14000, 0xd) == 0) {
+            if (RefreshShadowMatrix(&a->mUnk_0b4, &v, 0x14000, 0xd) == 0) {
                 a->mUnk_0b0 = 2;
             }
         }

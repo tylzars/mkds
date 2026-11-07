@@ -61,7 +61,7 @@ void DrawMoveTree(void *a, MoveTree *p, u32 c, u32 d) {
     if ((s32) (p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f) >= 0x27100) {
         return;
     }
-    func_020e5668(&p->mUnk_dc, &p->mUnk_00.mPos);
+    SetShadowPositionXZ(&p->mUnk_dc, &p->mUnk_00.mPos);
     func_020e53ac(&p->mUnk_dc, NULL, c, d);
 }
 
@@ -74,7 +74,7 @@ void InitMoveTreeObjects(MapObjectList *p) {
     }
     for (i = 0; i < p->mMapObjectCount && (e = p->mMapObjects[i]) != NULL; i++) {
         e->mUnk_a8 = (e->mUnk_00.mCourseMapRow->mUnk_28 << 12) / 100;
-        func_020e516c(&e->mUnk_dc, &e->mUnk_00.mPos, 0x54666, 14);
+        RefreshShadowMatrix(&e->mUnk_dc, &e->mUnk_00.mPos, 0x54666, 14);
     }
 }
 

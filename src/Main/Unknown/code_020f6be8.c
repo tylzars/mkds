@@ -14,33 +14,33 @@
 #include "Main/Unknown/code_020f9c40.h"
 #include "code_02147cd8.h"
 
-s32 func_020f7184(ItemObject *a, s32 b, s32 c) {
-    Vec3 *v = &a->mVelocity;
-    ItemKind *e;
+s32 func_020f7184(ItemObject *item, s32 b, s32 c) {
+    Vec3 *velocity = &item->mVelocity;
+    ItemKind *kindInfo;
     s32 r;
-    enum { K0 } k;
+    enum { K0 } kind;
 
-    if (a->mFlags & 0x80000) {
+    if (item->mFlags & 0x80000) {
         return 2;
     }
-    if (c == 0 && (a->mFlags & 0x8000000) && !(a->mFlags & 0x10000000) && !(a->mFlags & 0x20000000)) {
-        if (a->mUnk_78 & 0xf00) {
+    if (c == 0 && (item->mFlags & 0x8000000) && !(item->mFlags & 0x10000000) && !(item->mFlags & 0x20000000)) {
+        if (item->mUnk_78 & 0xf00) {
             return 2;
         }
         if (b == 0) {
-            a->mUnk_78 |= data_02159b6c;
+            item->mUnk_78 |= data_02159b6c;
         } else {
-            a->mUnk_78 |= data_02159b68;
-            func_020f9c40((s32) a);
+            item->mUnk_78 |= data_02159b68;
+            FreeItemObjectCollisionSlot((s32) item);
         }
-        a->mAdvance = NULL;
+        item->mAdvance = NULL;
         return 1;
     }
     if (b == 0) {
-        k = a->mKind;
-        e = &gItemKinds[k];
-        if (e->mUnk_34 != NULL) {
-            r = e->mUnk_34(a);
+        kind = item->mKind;
+        kindInfo = &gItemKinds[kind];
+        if (kindInfo->mUnk_34 != NULL) {
+            r = kindInfo->mUnk_34(item);
             if (r == 0) {
                 return 2;
             }
@@ -50,180 +50,181 @@ s32 func_020f7184(ItemObject *a, s32 b, s32 c) {
         }
     }
     if (b != 0) {
-        a->mUnk_108.y = 0x266;
+        item->mUnk_108.y = 0x266;
     } else {
-        a->mUnk_108.y = 0x333;
-        if (!(a->mFlags & 0x8000)) {
-            a->mUnk_108.y += (s32) (((s64) VEC_Mag(v) * 0x15c) >> 12);
-            if (a->mUnk_108.y > 0x5c3) {
-                a->mUnk_108.y = 0x5c3;
+        item->mUnk_108.y = 0x333;
+        if (!(item->mFlags & 0x8000)) {
+            item->mUnk_108.y += (s32) (((s64) VEC_Mag(velocity) * 0x15c) >> 12);
+            if (item->mUnk_108.y > 0x5c3) {
+                item->mUnk_108.y = 0x5c3;
             }
         }
     }
-    k = a->mKind;
-    e = &gItemKinds[k];
-    if (e->mUnk_40 == 0) {
-        a->mAdvance = func_020f6e58;
+    kind = item->mKind;
+    kindInfo = &gItemKinds[kind];
+    if (kindInfo->mUnk_40 == 0) {
+        item->mAdvance = func_020f6e58;
     }
-    a->mUnk_124 = (void (*)(ItemObject *, Vec3 *, Vec3 *)) func_020f6be4;
-    if (a->mUnk_f0.y != 0) {
-        Vec3 *w = &a->mUnk_f0;
+    item->mUnk_124 = (void (*)(ItemObject *, Vec3 *, Vec3 *)) func_020f6be4;
+    if (item->mUnk_f0.y != 0) {
+        Vec3 *normal = &item->mUnk_f0;
 
-        r = Vec3DotUnrounded(v, w);
+        r = Vec3DotUnrounded(velocity, normal);
         if (r < 0x3000) {
-            VEC_MultAdd(0x3000 - r, w, v, v);
+            VEC_MultAdd(0x3000 - r, normal, velocity, velocity);
         }
     }
-    a->mFlags |= 0x80001;
-    func_020f9c40((s32) a);
-    r = Vec3DotUnrounded(v, func_020e6b28());
+    item->mFlags |= 0x80001;
+    FreeItemObjectCollisionSlot((s32) item);
+    r = Vec3DotUnrounded(velocity, func_020e6b28());
     if (r > 1) {
-        a->mUnk_108.x = 1;
+        item->mUnk_108.x = 1;
     } else {
-        a->mUnk_108.x = 0;
+        item->mUnk_108.x = 0;
     }
     return 0;
 }
 
-void func_020f7104(ItemObject *a, s32 b) {
-    s32 r;
+void func_020f7104(ItemObject *item, s32 b) {
+    s32 result;
 
-    if (!(a->mFlags & 0x8000000)) {
-        func_020f7184(a, 0, 0);
+    if (!(item->mFlags & 0x8000000)) {
+        func_020f7184(item, 0, 0);
         return;
     }
-    r = func_020f7184(a, 0, 0);
-    if (r != 0) {
+    result = func_020f7184(item, 0, 0);
+    if (result != 0) {
         return;
     }
     if (b == 0) {
         return;
     }
-    func_020fe7a0(a->mKind, 0, 8, a->mId);
+    func_020fe7a0(item->mKind, 0, 8, item->mId);
 }
 
-void func_020f70f0(ItemObject *a) {
-    func_020f7184(a, 0, 1);
+void func_020f70f0(ItemObject *item) {
+    func_020f7184(item, 0, 1);
 }
 
-void func_020f7070(void *a, s32 b) {
-    ItemObject *p = a;
-    s32 r;
+void func_020f7070(void *objectParam, s32 b) {
+    ItemObject *item = objectParam;
+    s32 result;
 
-    if (!(p->mFlags & 0x8000000)) {
-        func_020f7184(p, 1, 0);
+    if (!(item->mFlags & 0x8000000)) {
+        func_020f7184(item, 1, 0);
         return;
     }
-    r = func_020f7184(p, 1, 0);
-    if (r != 0) {
+    result = func_020f7184(item, 1, 0);
+    if (result != 0) {
         return;
     }
     if (b == 0) {
         return;
     }
-    func_020fe7a0(p->mKind, 1, 8, p->mId);
+    func_020fe7a0(item->mKind, 1, 8, item->mId);
 }
 
-void func_020f705c(ItemObject *a) {
-    func_020f7184(a, 1, 1);
+void func_020f705c(ItemObject *item) {
+    func_020f7184(item, 1, 1);
 }
 
-void func_020f6fc4(void *a, s32 b) {
-    ItemObject *p = a;
-    s32 r;
-    enum { K0 } k;
+void func_020f6fc4(void *objectParam, s32 b) {
+    ItemObject *item = objectParam;
+    s32 result;
+    enum { K0 } kind;
 
-    r = func_020f7184(p, 0, 0);
-    if (r <= 1) {
-        k = p->mKind;
-        func_020f91fc(p, gItemKinds[k].mUnk_94);
+    result = func_020f7184(item, 0, 0);
+    if (result <= 1) {
+        kind = item->mKind;
+        func_020f91fc(item, gItemKinds[kind].mUnk_94);
     }
-    if (r != 0) {
+    if (result != 0) {
         return;
     }
-    if (!(p->mFlags & 0x8000000)) {
+    if (!(item->mFlags & 0x8000000)) {
         return;
     }
     if (b == 0) {
         return;
     }
-    if (p->mKind == 5) {
+    if (item->mKind == 5) {
         return;
     }
-    func_020fe7a0(p->mKind, 2, 8, p->mId);
+    func_020fe7a0(item->mKind, 2, 8, item->mId);
 }
 
-void func_020f6f10(ItemObject *a, s32 b, s32 c) {
-    s32 r;
-    enum { K0 } k;
+void func_020f6f10(ItemObject *item, s32 b, s32 c) {
+    s32 result;
+    enum { K0 } kind;
 
-    r = func_020f7184(a, 0, 0);
-    if (r <= 1) {
-        k = a->mKind;
-        func_020f91fc(a, gItemKinds[k].mUnk_98);
+    result = func_020f7184(item, 0, 0);
+    if (result <= 1) {
+        kind = item->mKind;
+        func_020f91fc(item, gItemKinds[kind].mUnk_98);
     }
-    if (r != 0) {
+    if (result != 0) {
         return;
     }
-    if (!(a->mFlags & 0x8000000)) {
+    if (!(item->mFlags & 0x8000000)) {
         return;
     }
     if (b == 0) {
         return;
     }
-    if (a->mKind == 5) {
+    if (item->mKind == 5) {
         return;
     }
-    func_020fe7a0(a->mKind, 3, c, a->mId);
+    func_020fe7a0(item->mKind, 3, c, item->mId);
 }
 
-void func_020f6e58(ItemObject *a) {
-    Vec3 v;
+void func_020f6e58(ItemObject *item) {
+    Vec3 direction;
 
-    Vec3CrossUnrounded(&a->mUnk_f0, GetViewTransposeMatrixAxis2(), &v);
-    VEC_MultAdd(a->mUnk_108.x != 0 ? a->mUnk_108.y : -a->mUnk_108.y, &v, &a->mUnk_f0, &a->mUnk_f0);
-    a->mFlags |= 0x80;
-    a->mVelocity.y -= 0x400;
-    VEC_Add(&a->mPos, &a->mVelocity, &a->mPos);
-    a->mUnk_d8--;
-    if (a->mUnk_d8 > 0) {
+    Vec3CrossUnrounded(&item->mUnk_f0, GetViewTransposeMatrixAxis2(), &direction);
+    VEC_MultAdd(item->mUnk_108.x != 0 ? item->mUnk_108.y : -item->mUnk_108.y, &direction, &item->mUnk_f0,
+                &item->mUnk_f0);
+    item->mFlags |= 0x80;
+    item->mVelocity.y -= 0x400;
+    VEC_Add(&item->mPos, &item->mVelocity, &item->mPos);
+    item->mUnk_d8--;
+    if (item->mUnk_d8 > 0) {
         return;
     }
-    ReleaseItemPoolObject(&gItemPools[a->mKind], a);
+    ReleaseItemPoolObject(&gItemPools[item->mKind], item);
 }
 
-void func_020f6be8(ItemObject *b, Vec3 *c, Vec3 *e, Vec3 *f) {
-    Vec3 v;
-    Vec3 a;
-    Vec3 *q;
+void func_020f6be8(ItemObject *item, Vec3 *otherPos, Vec3 *otherVelocity, Vec3 *normal) {
+    Vec3 away;
+    Vec3 relativeVelocity;
+    Vec3 *push;
     s32 dot;
-    s64 d;
+    s64 lengthSquared;
 
-    VEC_Subtract(e, &b->mVelocity, &a);
-    VEC_Subtract(&b->mPos, c, &v);
-    dot = VEC_DotProduct(f, &v);
-    v.x -= (s32) (((s64) f->x * dot) >> 12);
-    v.y -= (s32) (((s64) f->y * dot) >> 12);
-    v.z -= (s32) (((s64) f->z * dot) >> 12);
-    d = (s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z;
-    if (d >= 0x10) {
-        Vec3NormalizeAndGetLengthUnchecked(&v, &v);
+    VEC_Subtract(otherVelocity, &item->mVelocity, &relativeVelocity);
+    VEC_Subtract(&item->mPos, otherPos, &away);
+    dot = VEC_DotProduct(normal, &away);
+    away.x -= (s32) (((s64) normal->x * dot) >> 12);
+    away.y -= (s32) (((s64) normal->y * dot) >> 12);
+    away.z -= (s32) (((s64) normal->z * dot) >> 12);
+    lengthSquared = (s64) away.x * away.x + (s64) away.y * away.y + (s64) away.z * away.z;
+    if (lengthSquared >= 0x10) {
+        Vec3NormalizeAndGetLengthUnchecked(&away, &away);
     }
-    if (b->mFlags & 0x8000) {
-        VEC_MultAdd(0x666, &a, &b->mVelocity, &b->mVelocity);
-        q = data_0217bc4c;
-        q->x = ((s64) v.x * 0xccd) >> 12;
-        q->y = ((s64) v.y * 0xccd) >> 12;
-        q->z = ((s64) v.z * 0xccd) >> 12;
-        VEC_Add(&b->mVelocity, data_0217bc4c, &b->mVelocity);
+    if (item->mFlags & 0x8000) {
+        VEC_MultAdd(0x666, &relativeVelocity, &item->mVelocity, &item->mVelocity);
+        push = data_0217bc4c;
+        push->x = ((s64) away.x * 0xccd) >> 12;
+        push->y = ((s64) away.y * 0xccd) >> 12;
+        push->z = ((s64) away.z * 0xccd) >> 12;
+        VEC_Add(&item->mVelocity, data_0217bc4c, &item->mVelocity);
     } else {
-        b->mVelocity.x = ((s64) e->x * 0x8cd) >> 12;
-        b->mVelocity.y = ((s64) e->y * 0x8cd) >> 12;
-        b->mVelocity.z = ((s64) e->z * 0x8cd) >> 12;
-        q = data_0217bc4c;
-        q->x = ((s64) v.x * 0x1800) >> 12;
-        q->y = ((s64) v.y * 0x1800) >> 12;
-        q->z = ((s64) v.z * 0x1800) >> 12;
-        VEC_Add(&b->mVelocity, data_0217bc4c, &b->mVelocity);
+        item->mVelocity.x = ((s64) otherVelocity->x * 0x8cd) >> 12;
+        item->mVelocity.y = ((s64) otherVelocity->y * 0x8cd) >> 12;
+        item->mVelocity.z = ((s64) otherVelocity->z * 0x8cd) >> 12;
+        push = data_0217bc4c;
+        push->x = ((s64) away.x * 0x1800) >> 12;
+        push->y = ((s64) away.y * 0x1800) >> 12;
+        push->z = ((s64) away.z * 0x1800) >> 12;
+        VEC_Add(&item->mVelocity, data_0217bc4c, &item->mVelocity);
     }
 }

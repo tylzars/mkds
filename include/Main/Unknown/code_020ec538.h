@@ -20,7 +20,7 @@ extern const Vec3 data_0215957c;
 extern const Vec3 data_02159588;
 extern const Vec3 data_02159594;
 
-void func_020ec538(Unk020e43a8 *param_1, const Unk020ec6e4 *param_2);
-void func_020ec6e4(Unk020e43a8 *param_1, Unk020ec6e4 *param_2);
-BOOL func_020ec7e8(Unk020e43a8 *param_1);
-void func_020ec854(Unk020e43a8 *param_1, s32 param_2, u32 param_3, u16 param_4, u32 param_5, s32 param_6);
+void func_020ec538(Unk020e43a8 *object, const Unk020ec6e4 *other);
+void func_020ec6e4(Unk020e43a8 *object, Unk020ec6e4 *other);
+BOOL func_020ec7e8(Unk020e43a8 *object);
+void func_020ec854(Unk020e43a8 *object, s32 lowestY, u32 gravity, u16 angleStep, u32 upwardSpeed, s32 pushSpeed);

@@ -73,7 +73,7 @@ void InitChoropu(Unk020e1e98 *a, struct CourseMapRow *b) {
     a->mUnk_0a0 = b->mUnk_2a;
     a->mUnk_000.mStateMachine.mNextState = 0;
     a->mUnk_000.mStateMachine.mNextStateRequested = 1;
-    func_020e516c(&a->mUnk_0b4.mUnk_08, &a->mUnk_000.mPos, ((s64) a->mUnk_000.mScale.x * 0x1b000) >> 12, 0x1e);
+    RefreshShadowMatrix(&a->mUnk_0b4.mUnk_08, &a->mUnk_000.mPos, ((s64) a->mUnk_000.mScale.x * 0x1b000) >> 12, 0x1e);
     a->mUnk_000.mFlags |= data_02158b7c;
 }
 
@@ -451,13 +451,13 @@ void func_020e20a8(Unk020e20a8 *a) {
     c = FindCourseMapObjFile(gTruckANsbmdName);
     a->mUnk_038 = gRaceSetup->mMode != MODE_MISSION_RUN && func_0203c5e4() == 0 && (u16) gRaceSetup->mEntryIndex < 8;
     a->mUnk_03c = FALSE;
-    func_020ea588(&gCarA, b, NULL);
-    func_020ea588(&gTruckA, c, NULL);
-    func_020ea588(&gBusA, FindCourseMapObjFile(gBusANsbmdName), NULL);
-    func_020ea588(&gCarTire, FindCourseMapObjFile(gCarTireNsbmdName), NULL);
-    func_020ea55c(&gCarAShadow, FindCourseMapObjFile(gCarAShadowNsbmdName), 7);
-    func_020ea55c(&gTruckAShadow, FindCourseMapObjFile(gTruckAShadowNsbmdName), 7);
-    func_020ea55c(&gBusAShadow, FindCourseMapObjFile(gBusAShadowNsbmdName), 7);
+    CreateNsbmd(&gCarA, b, NULL);
+    CreateNsbmd(&gTruckA, c, NULL);
+    CreateNsbmd(&gBusA, FindCourseMapObjFile(gBusANsbmdName), NULL);
+    CreateNsbmd(&gCarTire, FindCourseMapObjFile(gCarTireNsbmdName), NULL);
+    CreateShadowModel(&gCarAShadow, FindCourseMapObjFile(gCarAShadowNsbmdName), 7);
+    CreateShadowModel(&gTruckAShadow, FindCourseMapObjFile(gTruckAShadowNsbmdName), 7);
+    CreateShadowModel(&gBusAShadow, FindCourseMapObjFile(gBusAShadowNsbmdName), 7);
     CreateModelAnimation(2, gCarA, &gCarANsbtp, b, FindCourseMapObjFile(gCarANsbtpName));
     CreateModelAnimation(2, gTruckA, &gTruckANsbtp, c, FindCourseMapObjFile(gTruckANsbtpName));
     func_02084968(gCarA, 0x3f, 2, 0x294a);

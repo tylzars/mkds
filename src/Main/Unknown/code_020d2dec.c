@@ -533,7 +533,7 @@ void func_020d2e24(void) {
     if (gCourseWater != NULL) {
         InitWaterModels(gCourseWater);
     }
-    func_020e52bc();
+    CreateObjShadowAndJgShadow();
     for (i = 0; i < n; p++, i++) {
         if ((*p)->mInit != NULL) {
             (*p)->mInit(*p);

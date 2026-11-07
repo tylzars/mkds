@@ -120,7 +120,7 @@ void func_020fc94c(ItemKouraW *p) {
     p->mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a67c;
     p->mUnk_160 = 0;
     p->mUnk_000.mDrawPos = p->mUnk_000.mPos;
-    func_020f9c40((s32) p);
+    FreeItemObjectCollisionSlot((s32) p);
     p->mUnk_000.mFlags |= 0x200000;
     ClearItemKouraWKartItemsAndAngle(p);
     if (gRaceProgress->mRaceDone != 0) {
@@ -350,7 +350,7 @@ void UpdateItemKouraWState1(ItemKouraW *param_1) {
         }
         param_1->mKartMask |= 1 << param_1->mRankKartIndex;
     }
-    if (func_020fcbb8(param_1, param_1->mRankKartIndex) != 0) {
+    if (TrySetItemKouraWKartItems(param_1, param_1->mRankKartIndex) != 0) {
         p = param_1->mKartItems->mKart;
         r = ((param_1->mUnk_000.mFlags & 0x40000000) || (p->mUnk_48 & 1)) ? 2 : 3;
         param_1->mNextState = r;
@@ -362,7 +362,7 @@ void UpdateItemKouraWState1(ItemKouraW *param_1) {
     }
     r = (u16) GetRaceUpdateFramesMod8();
     if ((param_1->mKartMask & (1 << r)) != 0 && param_1->mRankKartIndex != r && IsKartEnded(r) != 0 &&
-        func_020fcbb8(param_1, r) != 0) {
+        TrySetItemKouraWKartItems(param_1, r) != 0) {
         p = param_1->mKartItems->mKart;
         v = ((param_1->mUnk_000.mFlags & 0x40000000) || (p->mUnk_48 & 1)) ? 2 : 3;
         param_1->mNextState = v;
@@ -412,7 +412,7 @@ void UpdateItemKouraWState3(ItemKouraW *param_1) {
     } else {
         param_1->mUnk_27c += 0xccd;
     }
-    func_020fcedc(param_1, r, param_1->mUnk_27c, param_1->mUnk_284);
+    SteerItemKouraWAtAngleZero(param_1, r, param_1->mUnk_27c, param_1->mUnk_284);
     if (!(param_1->mUnk_000.mFlags & 1)) {
         func_0210b7ec(&param_1->mUnk_300, param_1->mUnk_000.mUnk_d4 & ~0xc000001f);
         if (param_1->mSoundId != 1) {
@@ -491,7 +491,7 @@ void UpdateItemKouraWState4(ItemKouraW *param_1) {
     } else {
         param_1->mUnk_284 -= 0xccd;
     }
-    func_020fce94(param_1, 0x4cd, param_1->mUnk_27c, param_1->mUnk_284, param_1->mUnk_288);
+    SteerItemKouraWToNextAnglePoint(param_1, 0x4cd, param_1->mUnk_27c, param_1->mUnk_284, param_1->mUnk_288);
     if (!(param_1->mUnk_000.mFlags & 1)) {
         func_0210b7ec(&param_1->mUnk_300, param_1->mUnk_000.mUnk_d4 & ~0xc000001f);
         if (param_1->mSoundId != 1) {
@@ -547,7 +547,7 @@ void UpdateItemKouraWState5(ItemKouraW *param_1) {
     s32 z;
 
     param_1->mUnk_260 += 0x4cd;
-    func_020fcce4(param_1, param_1->mUnk_264, param_1->mUnk_260);
+    SteerItemKouraWToKartForward(param_1, param_1->mUnk_264, param_1->mUnk_260);
     if (param_1->mUnk_264 < 0xb33) {
         param_1->mUnk_264 += 0x52;
     }
@@ -591,7 +591,7 @@ void UpdateItemKouraWState6(ItemKouraW *param_1) {
     Vec3 v;
 
     param_1->mUnk_260 -= 0x7000;
-    func_020fcce4(param_1, 0xb33, param_1->mUnk_260);
+    SteerItemKouraWToKartForward(param_1, 0xb33, param_1->mUnk_260);
     if (param_1->mUnk_260 < -0x32000) {
         func_020f7104(&param_1->mUnk_000, 0);
         if (param_1->mUnk_000.mFlags & 0x8000000) {
@@ -667,7 +667,7 @@ void UpdateItemKouraWState7(ItemKouraW *param_1) {
     if (v == 0x16) {
         param_1->mUnk_2e4 = 1;
     } else if (v == 0x2a) {
-        func_020f9c40((s32) param_1);
+        FreeItemObjectCollisionSlot((s32) param_1);
     }
     if (v <= 0x55) {
         return;

@@ -199,10 +199,10 @@ void func_020f0d04(ItemObject *p) {
             func_020f705c(p);
         }
         if (p->mUnk_78 & 0x200) {
-            func_020f7600(p);
+            StartItemObjectReleaseTimer(p);
         }
         if (p->mUnk_78 & 0x100) {
-            func_020f73fc(p);
+            StartItemObjectRelease(p);
         }
     } else {
         f = gItemKinds[i].mCopyData;
@@ -273,10 +273,10 @@ found:
             func_020f705c(e);
         }
         if (e->mUnk_78 & 0x200) {
-            func_020f7600(e);
+            StartItemObjectReleaseTimer(e);
         }
         if (e->mUnk_78 & 0x100) {
-            func_020f73fc(e);
+            StartItemObjectRelease(e);
         }
     } else if ((e->mUnk_78 & 0x1000) == 0) {
         k = (u16) ((e->mUnk_78 & 0x8000) == 0 ? (u16) (e->mUnk_78 & ~0xff00) : 8);

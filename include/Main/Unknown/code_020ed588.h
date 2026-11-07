@@ -5,4 +5,4 @@
 typedef struct Unk020e6488 Unk020e6488;
 typedef struct ItemObject ItemObject;
 
-void func_020ed588(ItemObject *a, Unk020e6488 *b);
+void func_020ed588(ItemObject *item, Unk020e6488 *model);

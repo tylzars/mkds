@@ -23,7 +23,7 @@ void CreateMkdEfBubble(void) {
     void *nsbmd;
 
     nsbmd = FindCourseMapObjFile("mkd_ef_bubble.nsbmd");
-    func_020ea588(&gMkdEfBubble, nsbmd, NULL);
+    CreateNsbmd(&gMkdEfBubble, nsbmd, NULL);
     func_02084968(gMkdEfBubble, 0x3f, 2, 0x294a);
     gMkdEfBubbleNsbta = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x38);
     func_020ea514(1, gMkdEfBubble, gMkdEfBubbleNsbta, nsbmd, FindCourseMapObjFile("mkd_ef_bubble.nsbta"));
@@ -41,7 +41,7 @@ void InitMkdEfBubble(MkdEfBubbleObject *a, CourseMapRow *b) {
     a->mUnk_a8 = 0;
     a->mUnk_00.mStateMachine.mNextState = 0;
     a->mUnk_00.mStateMachine.mNextStateRequested = 1;
-    func_020e516c(&a->mUnk_b0, &a->mUnk_00.mPos, ((s64) a->mUnk_00.mScale.x * 0x18000) >> 12, 0xd);
+    RefreshShadowMatrix(&a->mUnk_b0, &a->mUnk_00.mPos, ((s64) a->mUnk_00.mScale.x * 0x18000) >> 12, 0xd);
     a->mUnk_00.mFlags |= data_02158740;
 }
 #pragma thumb off
@@ -90,7 +90,7 @@ void func_020df48c(void *a, Unk020de6a8 *b) {
         b->mUnk_000.mPos.y += 0x10000;
     }
     if (b->mUnk_0b0 == 0) {
-        func_020e5668(&b->mUnk_0b4, &b->mUnk_000.mPos);
+        SetShadowPositionXZ(&b->mUnk_0b4, &b->mUnk_000.mPos);
     }
     UpdateItemBox(a, b);
 }

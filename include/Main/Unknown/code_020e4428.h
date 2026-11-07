@@ -7,4 +7,4 @@ typedef struct Unk020e4428 {
     /* 14c */ u32 mUnk_14c;
 } Unk020e4428;
 
-void func_020e4428(Unk020e4428 *p0);
+void func_020e4428(Unk020e4428 *object);

@@ -64,15 +64,15 @@ typedef struct Unk020e54e4 {
 
 extern Unk020e54e4 *data_0217b818;
 
-// Destination of func_020e516c.
+// Destination of RefreshShadowMatrix.
 typedef struct Unk020e516c {
     /* 000 */ s32 mUnk_000[12];
     /* 030 */ u16 mUnk_030;
 } Unk020e516c;
 
 void func_020e5348(u32 a, u32 b);
-void func_020e5370(Vec3 *a, MtxFx43 *b, u32 c, u32 d);
-void func_020e53ac(Unk020e516c *p, void *d, u32 e, u32 f);
-void func_020e54e4(void *d, void *e, u32 f, u32 g);
-s32 func_020e516c(void *a, Vec3 *v, s32 b, u32 c);
-void func_020e52bc(void);
+void DrawJgShadowWithMatrix(Vec3 *a, MtxFx43 *b, u32 c, u32 d);
+void func_020e53ac(Unk020e516c *shadow, void *wordPointer, u32 unused, u32 value);
+void func_020e54e4(void *shadowData, void *wordPointer, u32 unused, u32 value);
+s32 RefreshShadowMatrix(void *shadow, Vec3 *position, s32 scale, u32 value);
+void CreateObjShadowAndJgShadow(void);

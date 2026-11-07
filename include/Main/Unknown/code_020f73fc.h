@@ -6,9 +6,9 @@
 #include "Main/Unknown/code_020e6fd4.h"
 #include "Main/Unknown/code_020f9334.h"
 
-void func_020f77f8(ItemObject *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e);
-void func_020f7658(ItemObject *b, s32 c);
-void func_020f7600(ItemObject *a);
-void func_020f758c(ItemObject *a);
-void func_020f7430(ItemObject *b, s32 c);
-void func_020f73fc(ItemObject *a);
+void func_020f77f8(ItemObject *itemParam, s32 hitType, Vec3 *otherPos, Vec3 *otherVelocity, MapObject *mapObject);
+void func_020f7658(ItemObject *item, s32 c);
+void StartItemObjectReleaseTimer(ItemObject *item);
+void AdvanceItemObjectReleaseTimer(ItemObject *item);
+void func_020f7430(ItemObject *item, s32 c);
+void StartItemObjectRelease(ItemObject *item);

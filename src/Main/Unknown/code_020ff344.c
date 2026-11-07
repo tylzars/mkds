@@ -28,7 +28,7 @@
 #pragma thumb on
 
 void CreateDram(void) {
-    func_020ea588(&gDram, FindCourseMapObjFile(gDramNsbmdName), NULL);
+    CreateNsbmd(&gDram, FindCourseMapObjFile(gDramNsbmdName), NULL);
     func_02084968(gDram, 0x3f, 2, 0x294a);
 }
 
@@ -210,7 +210,7 @@ void AdvanceItemFBox(ItemFBox *e) {
         if (e->mUnk_000.mItemObject.mFlags & 0x80000) {
             func_020f6e58(&e->mUnk_000.mItemObject);
         } else if (e->mUnk_000.mItemObject.mFlags & 0x100000) {
-            func_020f758c(&e->mUnk_000.mItemObject);
+            AdvanceItemObjectReleaseTimer(&e->mUnk_000.mItemObject);
         }
     } else if (e->mUnk_000.mItemObject.mFlags & 0x8000) {
         AdvanceRestingItemObject(&e->mUnk_000.mItemObject);

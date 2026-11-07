@@ -3,13 +3,13 @@
 
 #pragma thumb on
 
-u32 func_020f1d40(int a) {
-    u32 v1;
-    UnkWordFunc *v2;
-    v2 = (UnkWordFunc *) gItemKinds[a].mCopyData;
-    if (v2 != NULL) {
-        v1 = (*v2)(0, 0, 1);
-        return v1;
+u32 GetItemKindCopyDataSize(int kind) {
+    u32 size;
+    UnkWordFunc *copyData;
+    copyData = (UnkWordFunc *) gItemKinds[kind].mCopyData;
+    if (copyData != NULL) {
+        size = (*copyData)(0, 0, 1);
+        return size;
     }
     return 0;
 }

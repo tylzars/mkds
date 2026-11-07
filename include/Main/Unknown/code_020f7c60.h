@@ -4,4 +4,4 @@
 
 typedef struct SoundSource SoundSource;
 
-void *func_020f7c60(SoundSource *arg0, u32 arg1);
+void *func_020f7c60(SoundSource *source, u32 soundId);

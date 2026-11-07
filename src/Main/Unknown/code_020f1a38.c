@@ -35,7 +35,7 @@ void CreateItemKinds(void) {
     p[12] = gItemKindKinokoP;
     p[13] = gItemKindKiller;
     for (i = 0; i < 0xe; i++) {
-        gItemKinds[i].mDataSize = func_020f1d40(i);
+        gItemKinds[i].mDataSize = GetItemKindCopyDataSize(i);
         v = gItemKinds[i].mGetFarDistanceSquared;
         if (v != 0) {
             v = ((u32(*)(void)) v)();

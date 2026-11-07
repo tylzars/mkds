@@ -55,10 +55,10 @@ typedef struct Unk020e46c8 {
     /* 3c */ u32 mUnk_3c;
 } Unk020e46c8;
 
-void func_020e44e4(u32 a, Unk020e43a8 *p);
+void func_020e44e4(u32 unused, Unk020e43a8 *object);
 Unk020e4610 *func_020e4610(void);
 Unk020e466c *func_020e466c(void);
 Unk020e46c8 *func_020e46c8(void);
 Unk020e46c8 *func_020e4718(void);
 Unk020e46c8 *func_020e4768(void);
-void InitPukupuku(Unk020e43a8 *p, Vec3 *a);
+void InitPukupuku(Unk020e43a8 *pukupuku, Vec3 *position);

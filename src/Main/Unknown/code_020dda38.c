@@ -35,7 +35,7 @@ void func_020de184(Unk020de000 *o) {
     VEC_MultAdd(-p->mUnk_f0, &p->mUnk_00.mMatrix.mUnk_00[2], &p->mUnk_00.mPos, &w);
     v = p->mUnk_a0;
     v.y -= p->mUnk_f0 >> 1;
-    func_020dd8b0(&o->mUnk_a4, &v, &w);
+    SetWanwanChainPointsEvenly(&o->mUnk_a4, &v, &w);
     if (o->mUnk_f4 != FALSE) {
         return;
     }
@@ -66,7 +66,8 @@ void func_020de000(Unk020de000 *o, void *a, Wanwan *p) {
     } else {
         d = 0x55000;
     }
-    func_020dd950(&o->mUnk_a4, &o->mUnk_04, &o->mUnk_04, d - p->mUnk_f0, p->mUnk_fc != 0 ? 4 : 7, 0x6000, &o->mUnk_1c);
+    InitWanwanChain(&o->mUnk_a4, &o->mUnk_04, &o->mUnk_04, d - p->mUnk_f0, p->mUnk_fc != 0 ? 4 : 7, 0x6000,
+                    &o->mUnk_1c);
     if (o->mUnk_f4 == FALSE) {
         func_020dda2c(&o->mUnk_a4);
         o->mUnk_a4.mUnk_04 -= 0xcd;

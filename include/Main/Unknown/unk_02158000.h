@@ -13,17 +13,18 @@ extern Vec3 data_021581f8;
 extern struct Unk020dbe74 data_02158238;
 extern struct Unk020dbed0 data_02158260;
 extern struct Unk020dbf2c data_0215828c;
-// Object of 0x28 bytes made by func_020de2d8 and the other factories that copy a template from 0x02158xxx.
+// Object of 0x28 bytes made by CreateWanwanChainUpdateList and the other factories that copy a template from
+// 0x02158xxx.
 typedef struct Unk020de2d8 {
     /* 00 */ u32 mUnk_00[10];
 } Unk020de2d8;
 
-// Object of 0x2c bytes made by func_020de334 and the other factories that copy a template from 0x02158xxx.
+// Object of 0x2c bytes made by CreateWanwanChainDrawList and the other factories that copy a template from 0x02158xxx.
 typedef struct Unk020de334 {
     /* 00 */ u32 mUnk_00[11];
 } Unk020de334;
 
-// Object of 0x40 bytes made by func_020de390 and the other factories that copy a template from 0x02158xxx.
+// Object of 0x40 bytes made by CreateWanwanChainKindData and the other factories that copy a template from 0x02158xxx.
 typedef struct Unk020de390 {
     /* 00 */ u32 mUnk_00[16];
 } Unk020de390;

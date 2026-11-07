@@ -4,4 +4,4 @@
 
 #include "Main/Unknown/code_020fcf10.h"
 
-void func_020fcedc(ItemKouraW *a, u32 b, u32 c, u32 d);
+void SteerItemKouraWAtAngleZero(ItemKouraW *item, u32 gain, u32 maxStep, u32 radius);

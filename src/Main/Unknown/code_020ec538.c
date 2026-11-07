@@ -9,67 +9,67 @@ const Vec3 data_02159588 = {0x1000, 0, 0};
 const Vec3 data_0215957c = {0x1000, 0, 0};
 const Vec3 data_02159594 = {0, 0, 0};
 
-void func_020ec854(Unk020e43a8 *param_1, s32 param_2, u32 param_3, u16 param_4, u32 param_5, s32 param_6) {
-    param_1->mUnk_0a0 = param_2;
-    param_1->mUnk_0a4 = param_3;
-    param_1->mUnk_0a8 = 1;
-    param_1->mUnk_0ac = 0;
-    param_1->mUnk_0ae = param_4;
-    param_1->mUnk_0b0 = param_5;
-    param_1->mUnk_0b4 = param_6;
+void func_020ec854(Unk020e43a8 *object, s32 lowestY, u32 gravity, u16 angleStep, u32 upwardSpeed, s32 pushSpeed) {
+    object->mUnk_0a0 = lowestY;
+    object->mUnk_0a4 = gravity;
+    object->mUnk_0a8 = 1;
+    object->mUnk_0ac = 0;
+    object->mUnk_0ae = angleStep;
+    object->mUnk_0b0 = upwardSpeed;
+    object->mUnk_0b4 = pushSpeed;
 }
 
-BOOL func_020ec7e8(Unk020e43a8 *param_1) {
-    if (param_1->mUnk_0a8) {
-        param_1->mUnk_0ac = param_1->mUnk_0ac + param_1->mUnk_0ae;
+BOOL func_020ec7e8(Unk020e43a8 *object) {
+    if (object->mUnk_0a8) {
+        object->mUnk_0ac = object->mUnk_0ac + object->mUnk_0ae;
     } else {
-        param_1->mUnk_0ac = param_1->mUnk_0ac - param_1->mUnk_0ae;
+        object->mUnk_0ac = object->mUnk_0ac - object->mUnk_0ae;
     }
-    param_1->mUnk_00.mUnk_10.y = param_1->mUnk_00.mUnk_10.y - param_1->mUnk_0a4;
-    VEC_Add(&param_1->mUnk_00.mPos, &param_1->mUnk_00.mUnk_10, &param_1->mUnk_00.mPos);
-    return param_1->mUnk_00.mPos.y < param_1->mUnk_0a0;
+    object->mUnk_00.mUnk_10.y = object->mUnk_00.mUnk_10.y - object->mUnk_0a4;
+    VEC_Add(&object->mUnk_00.mPos, &object->mUnk_00.mUnk_10, &object->mUnk_00.mPos);
+    return object->mUnk_00.mPos.y < object->mUnk_0a0;
 }
 
-void func_020ec6e4(Unk020e43a8 *param_1, Unk020ec6e4 *param_2) {
-    Vec3 v;
-    s32 s;
+void func_020ec6e4(Unk020e43a8 *object, Unk020ec6e4 *other) {
+    Vec3 offset;
+    s32 pushSpeed;
 
-    VEC_Subtract(&param_1->mUnk_00.mPos, &param_2->mUnk_080, &v);
-    if ((s64) v.z * param_2->mUnk_0a4 - (s64) v.x * param_2->mUnk_0ac < 0) {
-        s32 x = param_2->mUnk_050.x;
-        s32 z = param_2->mUnk_050.z;
-        v.z = -x;
-        v.x = z;
-        v.y = 0;
-        param_1->mUnk_0a8 = 1;
+    VEC_Subtract(&object->mUnk_00.mPos, &other->mUnk_080, &offset);
+    if ((s64) offset.z * other->mUnk_0a4 - (s64) offset.x * other->mUnk_0ac < 0) {
+        s32 x = other->mUnk_050.x;
+        s32 z = other->mUnk_050.z;
+        offset.z = -x;
+        offset.x = z;
+        offset.y = 0;
+        object->mUnk_0a8 = 1;
     } else {
-        s32 x = param_2->mUnk_050.x;
-        s32 z = -param_2->mUnk_050.z;
-        v.z = x;
-        v.x = z;
-        v.y = 0;
-        param_1->mUnk_0a8 = 0;
+        s32 x = other->mUnk_050.x;
+        s32 z = -other->mUnk_050.z;
+        offset.z = x;
+        offset.x = z;
+        offset.y = 0;
+        object->mUnk_0a8 = 0;
     }
-    s = param_1->mUnk_0b4;
-    param_1->mUnk_00.mUnk_10.x = ((s64) v.x * s) >> 12;
-    param_1->mUnk_00.mUnk_10.y = ((s64) v.y * s) >> 12;
-    param_1->mUnk_00.mUnk_10.z = ((s64) v.z * s) >> 12;
-    param_1->mUnk_00.mUnk_10.x = param_1->mUnk_00.mUnk_10.x + (param_2->mUnk_0a4 >> 1);
-    param_1->mUnk_00.mUnk_10.z = param_1->mUnk_00.mUnk_10.z + (param_2->mUnk_0ac >> 1);
-    param_1->mUnk_00.mUnk_10.y = param_1->mUnk_0b0;
+    pushSpeed = object->mUnk_0b4;
+    object->mUnk_00.mUnk_10.x = ((s64) offset.x * pushSpeed) >> 12;
+    object->mUnk_00.mUnk_10.y = ((s64) offset.y * pushSpeed) >> 12;
+    object->mUnk_00.mUnk_10.z = ((s64) offset.z * pushSpeed) >> 12;
+    object->mUnk_00.mUnk_10.x = object->mUnk_00.mUnk_10.x + (other->mUnk_0a4 >> 1);
+    object->mUnk_00.mUnk_10.z = object->mUnk_00.mUnk_10.z + (other->mUnk_0ac >> 1);
+    object->mUnk_00.mUnk_10.y = object->mUnk_0b0;
 }
 
-void func_020ec538(Unk020e43a8 *param_1, const Unk020ec6e4 *param_2) {
+void func_020ec538(Unk020e43a8 *object, const Unk020ec6e4 *other) {
     Vec3 out;
-    Vec3 a;
-    Vec3 b;
-    s32 s;
+    Vec3 otherPoint;
+    Vec3 otherVector;
+    s32 pushSpeed;
 
-    a = param_2 ? param_2->mUnk_050 : param_1->mUnk_00.mPos;
-    b = param_2 ? param_2->mUnk_05c : data_02159594;
-    VEC_Subtract(&param_1->mUnk_00.mPos, &a, &out);
-    if ((s64) out.z * b.x - (s64) out.x * b.z < 0) {
-        if (Vec3NormalizeXZAndGetLengthOrZero(&b, &out) == 0) {
+    otherPoint = other ? other->mUnk_050 : object->mUnk_00.mPos;
+    otherVector = other ? other->mUnk_05c : data_02159594;
+    VEC_Subtract(&object->mUnk_00.mPos, &otherPoint, &out);
+    if ((s64) out.z * otherVector.x - (s64) out.x * otherVector.z < 0) {
+        if (Vec3NormalizeXZAndGetLengthOrZero(&otherVector, &out) == 0) {
             out = data_0215957c;
         } else {
             s32 x = out.x;
@@ -78,9 +78,9 @@ void func_020ec538(Unk020e43a8 *param_1, const Unk020ec6e4 *param_2) {
             out.x = z;
             out.y = 0;
         }
-        param_1->mUnk_0a8 = 1;
+        object->mUnk_0a8 = 1;
     } else {
-        if (Vec3NormalizeXZAndGetLengthOrZero(&b, &out) == 0) {
+        if (Vec3NormalizeXZAndGetLengthOrZero(&otherVector, &out) == 0) {
             out = data_02159588;
         } else {
             s32 x = out.x;
@@ -89,13 +89,13 @@ void func_020ec538(Unk020e43a8 *param_1, const Unk020ec6e4 *param_2) {
             out.x = z;
             out.y = 0;
         }
-        param_1->mUnk_0a8 = 0;
+        object->mUnk_0a8 = 0;
     }
-    s = param_1->mUnk_0b4;
-    param_1->mUnk_00.mUnk_10.x = ((s64) out.x * s) >> 12;
-    param_1->mUnk_00.mUnk_10.y = ((s64) out.y * s) >> 12;
-    param_1->mUnk_00.mUnk_10.z = ((s64) out.z * s) >> 12;
-    param_1->mUnk_00.mUnk_10.x = param_1->mUnk_00.mUnk_10.x + (b.x >> 1);
-    param_1->mUnk_00.mUnk_10.z = param_1->mUnk_00.mUnk_10.z + (b.z >> 1);
-    param_1->mUnk_00.mUnk_10.y = param_1->mUnk_0b0;
+    pushSpeed = object->mUnk_0b4;
+    object->mUnk_00.mUnk_10.x = ((s64) out.x * pushSpeed) >> 12;
+    object->mUnk_00.mUnk_10.y = ((s64) out.y * pushSpeed) >> 12;
+    object->mUnk_00.mUnk_10.z = ((s64) out.z * pushSpeed) >> 12;
+    object->mUnk_00.mUnk_10.x = object->mUnk_00.mUnk_10.x + (otherVector.x >> 1);
+    object->mUnk_00.mUnk_10.z = object->mUnk_00.mUnk_10.z + (otherVector.z >> 1);
+    object->mUnk_00.mUnk_10.y = object->mUnk_0b0;
 }

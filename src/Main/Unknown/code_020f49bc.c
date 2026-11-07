@@ -257,7 +257,7 @@ void AdvanceFallingItemObject(ItemObject *a) {
         }
         if (a->mUnk_fc & 0x214300) {
             a->mFlags |= 0x20;
-            func_020f92e8(p, &v3);
+            BounceItemVelocityOffSurface(p, &v3);
             if (func_020f9290(a, &v3) != FALSE) {
                 return;
             }
@@ -284,7 +284,7 @@ void AdvanceFallingItemObject(ItemObject *a) {
 }
 
 void func_020f6388(ItemObject *a, Vec3 *b, Vec3 *c) {
-    func_020f92e8(&a->mVelocity, c);
+    BounceItemVelocityOffSurface(&a->mVelocity, c);
     if (a->mFlags & 0x1000000) {
         return;
     }
@@ -451,7 +451,7 @@ s32 InitItemKouraR(ItemInUse *a, ItemKouraR *b) {
         }
         b->mUnk_000.mUnk_000.mUnk_000.mFlags |= 0x200000;
     }
-    func_020f1a14(b);
+    ResetItemKouraRKartItems(b);
     if (b->mUnk_000.mUnk_000.mUnk_000.mFlags & 0x8000000) {
         b->mStateMachine.mNextState = 0;
         b->mStateMachine.mNextStateRequested = 1;
@@ -509,7 +509,7 @@ void UpdateItemKouraRState2(ItemKouraR *a) {
         return;
     }
     if (a->mStateMachine.mStateFrames > 0x10) {
-        if (func_020f11f0(a, 0) == 0) {
+        if (TrySetItemKouraRKartItemsByFrame(a, 0) == 0) {
             return;
         }
         a->mStateMachine.mNextState = 4;
@@ -521,7 +521,7 @@ void UpdateItemKouraRState2(ItemKouraR *a) {
         return;
     }
     if (a->mStateMachine.mStateFrames > 4) {
-        if (func_020f1180(a, 0) == FALSE) {
+        if (TrySetItemKouraRNearestKartItems(a, 0) == FALSE) {
             return;
         }
         a->mStateMachine.mNextState = 4;
@@ -566,7 +566,7 @@ void UpdateItemKouraRState3(ItemKouraR *a) {
         return;
     }
     if (a->mStateMachine.mStateFrames > 0x10) {
-        if (func_020f11f0(a, 1) == 0) {
+        if (TrySetItemKouraRKartItemsByFrame(a, 1) == 0) {
             return;
         }
         a->mStateMachine.mNextState = 4;
@@ -578,7 +578,7 @@ void UpdateItemKouraRState3(ItemKouraR *a) {
         return;
     }
     if (a->mStateMachine.mStateFrames > 4) {
-        if (func_020f1180(a, 1) == FALSE) {
+        if (TrySetItemKouraRNearestKartItems(a, 1) == FALSE) {
             return;
         }
         a->mStateMachine.mNextState = 4;
@@ -783,7 +783,7 @@ void InitItemKouraRFromData(ItemKouraR *a) {
         a->mStateMachine.mNextStateRequested = 1;
         func_020f1ea4(a, 0, a->mUnk_250, 0);
     }
-    func_020f1a14(a);
+    ResetItemKouraRKartItems(a);
 }
 
 // Returns 1 while GetKart(b) is within the 0x1d0/0x1d4 radius of the 0x50/0x54/0x58
@@ -806,10 +806,10 @@ BOOL func_020f5324(void *a0, s32 b) {
     if (a->mUnk_000.mUnk_000.mUnk_000.mCollisionSlotIndex == -1) {
         return TRUE;
     }
-    func_020f9c40((s32) a);
+    FreeItemObjectCollisionSlot((s32) a);
     a->mStateMachine.mNextState = 5;
     a->mStateMachine.mNextStateRequested = 1;
-    func_020f112c(a, b);
+    SetItemKouraRKartItems(a, b);
     return FALSE;
 }
 
@@ -877,10 +877,10 @@ void *func_020f5108(void *a, ItemBanana *b, void *c) {
     return p;
 }
 
-// Runs func_020f8e78 and func_020f2d98, then StartSound when the two 0x74/0x130 tests pass.
+// Runs func_020f8e78 and StartItemObjectBouncing, then StartSound when the two 0x74/0x130 tests pass.
 void InitItemBananaFromData(ItemBanana *a) {
     func_020f8e78(a);
-    func_020f2d98(&a->mUnk_000, 0);
+    StartItemObjectBouncing(&a->mUnk_000, 0);
     if ((a->mUnk_000.mItemObject.mFlags & 0x10000000) == 0) {
         return;
     }
@@ -954,7 +954,7 @@ ItemKinoko *StartItemKinokoOrZero(void) {
     if ((p->mUnk_000.mItemObject.mFlags & 0x180000) == 0) {
         p->mUnk_000.mItemObject.mAdvance = NULL;
     }
-    func_020f9c40((s32) p);
+    FreeItemObjectCollisionSlot((s32) p);
     p->mVisible = FALSE;
     p->mTimer = 0;
     return p;

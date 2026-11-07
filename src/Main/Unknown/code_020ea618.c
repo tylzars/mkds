@@ -2,19 +2,19 @@
 #include "Main/Unknown/code_0209bc74.h"
 #include "Main/Unknown/code_020d3b10.h"
 
-void func_020ea618(Unk0209bc74_14 *a, int b) {
-    u16 v1;
-    u16 v2;
-    u16 v3;
-    v1 = a->mUnk_6e;
-    if (b < v1) {
-        v2 = a->mUnk_6c;
-        v3 = AllocPolygonIdWrapping();
-        a->mUnk_6c = v3;
-        a->mUnk_6e = b;
-        func_0207ad88(a);
-        a->mUnk_6c = v2;
-        a->mUnk_6e = v1;
+void func_020ea618(Unk0209bc74_14 *model, int value) {
+    u16 savedValue;
+    u16 savedPolygonId;
+    u16 newPolygonId;
+    savedValue = model->mUnk_6e;
+    if (value < savedValue) {
+        savedPolygonId = model->mUnk_6c;
+        newPolygonId = AllocPolygonIdWrapping();
+        model->mUnk_6c = newPolygonId;
+        model->mUnk_6e = value;
+        func_0207ad88(model);
+        model->mUnk_6c = savedPolygonId;
+        model->mUnk_6e = savedValue;
         return;
     }
     func_0207ad88();

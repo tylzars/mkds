@@ -44,7 +44,7 @@ u8 *func_020ff2b0(u8 *a, ItemFBox *b, void *c) {
 
 void InitItemFBoxFromData(ItemFBox *a) {
     func_020f8e78(a);
-    func_020f2d98(&a->mUnk_000, 0);
+    StartItemObjectBouncing(&a->mUnk_000, 0);
     if ((a->mUnk_000.mItemObject.mFlags & 0x10000000) == 0) {
         return;
     }

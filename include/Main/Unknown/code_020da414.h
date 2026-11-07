@@ -33,5 +33,5 @@ typedef struct Kuribo {
 } Kuribo;
 
 /* also runs for source-created objects with b == NULL (then only mUnk_100 is set) */
-void InitKuribo(Kuribo *a, CourseMapRow *b);
+void InitKuribo(Kuribo *kuribo, CourseMapRow *row);
 Unk020da414 *func_020da414(void);

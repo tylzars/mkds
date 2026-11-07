@@ -84,8 +84,8 @@ void UpdateWanwanState5(Wanwan *p) {
 
 #pragma thumb on
 void CreateWanwanAndRockShadow(void) {
-    func_020ea588((void **) &gWanwan, FindCourseMapObjFile("wanwan.nsbmd"), NULL);
-    func_020ea55c((void **) &gWanwanRockShadow, FindCourseMapObjFile("rock_shadow.nsbmd"), 0x3f);
+    CreateNsbmd((void **) &gWanwan, FindCourseMapObjFile("wanwan.nsbmd"), NULL);
+    CreateShadowModel((void **) &gWanwanRockShadow, FindCourseMapObjFile("rock_shadow.nsbmd"), 0x3f);
     func_02084968(gWanwan, 0x3f, 2, 0x294a);
 }
 #pragma thumb off

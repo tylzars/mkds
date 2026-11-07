@@ -24,14 +24,14 @@ typedef struct Unk020f1d70 {
     /* 166 */ u8 mUnk_166[2];
 } Unk020f1d70;
 
-void func_020f1d70(void *a0, const Vec3 *b);
-void func_020f1ea4(void *a0, s32 b, s32 c, s32 d);
-void func_020f1f98(Unk020f1d70 *a, Vec3 *b, Vec3 *c);
-void func_020f2028(ItemObject *a);
-void func_020f2150(void *a0);
-void func_020f2228(Unk020f1d70 *a, s32 b);
-void func_020f2768(Unk020f1d70 *a, Vec3 *b, Vec3 *c);
-void func_020f288c(Unk020f1d70 *a, Vec3 *b);
-void func_020f29e8(ItemKouraR *a);
-void func_020f2a6c(Vec3 *a, Vec3 *b, Vec3 *c);
-void func_020f2b94(void *a0, ItemInUse *b0, s32 c, s32 d, s32 e, s32 f);
+void func_020f1d70(void *objectParam, const Vec3 *direction);
+void func_020f1ea4(void *objectParam, s32 hitLimit, s32 reverse, s32 d);
+void func_020f1f98(Unk020f1d70 *object, Vec3 *otherVelocity, Vec3 *awayDirection);
+void func_020f2028(ItemObject *object);
+void ApplyItemObjectGravity(void *objectParam);
+void func_020f2228(Unk020f1d70 *object, s32 targetSpeed);
+void func_020f2768(Unk020f1d70 *object, Vec3 *hitNormal, Vec3 *c);
+void func_020f288c(Unk020f1d70 *object, Vec3 *hitNormal);
+void func_020f29e8(ItemKouraR *item);
+void func_020f2a6c(Vec3 *direction, Vec3 *normal, Vec3 *result);
+void func_020f2b94(void *objectParam, ItemInUse *inUseParam, s32 hitLimit, s32 d, s32 e, s32 f);

@@ -13,51 +13,51 @@
 #include "Main/Unknown/unk_0217b000.h"
 
 #pragma thumb on
-void InitEarthenPipe(Unk020e43a8 *a) {
-    a->mUnk_00.mPos.y += (s32) (((s64) a->mUnk_00.mScale.y * 0xd000) >> 12);
-    func_020ec854(a, a->mUnk_00.mPos.y - 0xc0000, 0x400, 0x400, 0x5000, 0x2000);
-    func_020ec884(a);
+void InitEarthenPipe(Unk020e43a8 *pipe) {
+    pipe->mUnk_00.mPos.y += (s32) (((s64) pipe->mUnk_00.mScale.y * 0xd000) >> 12);
+    func_020ec854(pipe, pipe->mUnk_00.mPos.y - 0xc0000, 0x400, 0x400, 0x5000, 0x2000);
+    func_020ec884(pipe);
 }
 #pragma thumb off
 
-Unk020de390 *func_020de390(void) {
-    Unk020de390 *p;
+Unk020de390 *CreateWanwanChainKindData(void) {
+    Unk020de390 *kindData;
 
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
-    *p = data_02158460;
-    return p;
+    kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
+    *kindData = data_02158460;
+    return kindData;
 }
 
-Unk020de334 *func_020de334(void) {
+Unk020de334 *CreateWanwanChainDrawList(void) {
     data_0217b6dc = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     *data_0217b6dc = data_02158434;
     func_020d49d8(&data_0217b6dc);
     return data_0217b6dc;
 }
 
-Unk020de2d8 *func_020de2d8(void) {
+Unk020de2d8 *CreateWanwanChainUpdateList(void) {
     data_0217b6e0 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     *data_0217b6e0 = data_0215840c;
     func_020e6f50(&data_0217b6e0);
     return data_0217b6e0;
 }
 
-void DrawWanwanChain(void *a, Unk020de000 *b, s32 c, u16 d) {
-    func_020ddaa0(&b->mUnk_a4, gWanwanChain, c, d);
-    if (b->mUnk_f4 == FALSE) {
+void DrawWanwanChain(void *unused, Unk020de000 *chainObject, s32 c, u16 d) {
+    func_020ddaa0(&chainObject->mUnk_a4, gWanwanChain, c, d);
+    if (chainObject->mUnk_f4 == FALSE) {
         return;
     }
-    func_020dda38(&b->mUnk_a4, gWanwanKui, &b->mUnk_04, c, d);
+    func_020dda38(&chainObject->mUnk_a4, gWanwanKui, &chainObject->mUnk_04, c, d);
 }
 
-void UpdateWanwanChain(void *a, Unk020de000 *b) {
-    Vec3 v;
-    Wanwan *p;
+void UpdateWanwanChain(void *unused, Unk020de000 *chainObject) {
+    Vec3 endPoint;
+    Wanwan *wanwan;
 
-    p = b->mUnk_a0;
-    if (b->mUnk_f4 == FALSE) {
-        b->mUnk_04 = p->mUnk_00.mPos;
+    wanwan = chainObject->mUnk_a0;
+    if (chainObject->mUnk_f4 == FALSE) {
+        chainObject->mUnk_04 = wanwan->mUnk_00.mPos;
     }
-    VEC_MultAdd(-p->mUnk_f0, &p->mUnk_00.mMatrix.mUnk_00[2], &p->mUnk_00.mPos, &v);
-    func_020ddb44(&b->mUnk_a4, &v, &p->mUnk_00.mUnk_10);
+    VEC_MultAdd(-wanwan->mUnk_f0, &wanwan->mUnk_00.mMatrix.mUnk_00[2], &wanwan->mUnk_00.mPos, &endPoint);
+    func_020ddb44(&chainObject->mUnk_a4, &endPoint, &wanwan->mUnk_00.mUnk_10);
 }

@@ -10,85 +10,85 @@
 #include "Main/Unknown/code_020ee684.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_020fce94(ItemKouraW *p0, s32 a, s32 b, s32 c, u16 d) {
-    p0->mAngle += d;
-    func_020fcf10(p0, b, (u16) p0->mAngle, c, a, 1, 1);
+void SteerItemKouraWToNextAnglePoint(ItemKouraW *item, s32 gain, s32 maxStep, s32 radius, u16 angleStep) {
+    item->mAngle += angleStep;
+    SteerItemKouraWToAnglePoint(item, maxStep, (u16) item->mAngle, radius, gain, 1, 1);
 }
 
-void func_020fcce4(ItemKouraW *p0, s32 a, s32 b) {
+void SteerItemKouraWToKartForward(ItemKouraW *item, s32 gain, s32 lift) {
     Vec3 v;
-    s32 f;
-    Vec3 *v1;
-    Vec3 *v2;
-    Kart *p;
+    s32 flagBit0;
+    Vec3 *pos;
+    Vec3 *velocity;
+    Kart *kart;
 
-    p = p0->mKartItems->mKart;
-    f = (p->mUnk_48 & 1) ? 1 : 0;
-    p0->mUnk_22c = p->mSignedTurnedForward;
-    v1 = &p0->mUnk_000.mPos;
-    v2 = &p0->mUnk_000.mVelocity;
-    if (p->mUnk_44 & 0x100) {
-        p0->mUnk_22c.x = -p0->mUnk_22c.x;
-        p0->mUnk_22c.y = -p0->mUnk_22c.y;
-        p0->mUnk_22c.z = -p0->mUnk_22c.z;
+    kart = item->mKartItems->mKart;
+    flagBit0 = (kart->mUnk_48 & 1) ? 1 : 0;
+    item->mUnk_22c = kart->mSignedTurnedForward;
+    pos = &item->mUnk_000.mPos;
+    velocity = &item->mUnk_000.mVelocity;
+    if (kart->mUnk_44 & 0x100) {
+        item->mUnk_22c.x = -item->mUnk_22c.x;
+        item->mUnk_22c.y = -item->mUnk_22c.y;
+        item->mUnk_22c.z = -item->mUnk_22c.z;
     }
-    if (func_0206c0b0(p) == FALSE) {
-        p0->mUnk_244 = p->mDrawMatrixPos;
+    if (func_0206c0b0(kart) == FALSE) {
+        item->mUnk_244 = kart->mDrawMatrixPos;
     }
-    VEC_MultAdd(0x14ffa, &p0->mUnk_22c, &p0->mUnk_244, &v);
-    if (f == 0) {
-        v.y += b;
+    VEC_MultAdd(0x14ffa, &item->mUnk_22c, &item->mUnk_244, &v);
+    if (flagBit0 == 0) {
+        v.y += lift;
     } else {
-        VEC_MultAdd(b, &p->mGroundNormal, &v, &v);
+        VEC_MultAdd(lift, &kart->mGroundNormal, &v, &v);
     }
-    VEC_Subtract(&v, v1, &v);
-    v2->x = ((s64) v.x * a) >> 12;
-    v2->y = ((s64) v.y * a) >> 12;
-    v2->z = ((s64) v.z * a) >> 12;
-    VEC_Add(v2, v1, v1);
-    if (f == 0) {
+    VEC_Subtract(&v, pos, &v);
+    velocity->x = ((s64) v.x * gain) >> 12;
+    velocity->y = ((s64) v.y * gain) >> 12;
+    velocity->z = ((s64) v.z * gain) >> 12;
+    VEC_Add(velocity, pos, pos);
+    if (flagBit0 == 0) {
         return;
     }
-    if (func_01ffdee4(v1, &p0->mUnk_000.mPrevPos, 0, p0->mUnk_000.mUnk_dc, 4, p0->mUnk_000.mCollisionSlotIndex, &v,
-                      NULL, NULL, NULL, NULL, NULL, NULL, NULL) == 0) {
+    if (func_01ffdee4(pos, &item->mUnk_000.mPrevPos, 0, item->mUnk_000.mUnk_dc, 4, item->mUnk_000.mCollisionSlotIndex,
+                      &v, NULL, NULL, NULL, NULL, NULL, NULL, NULL) == 0) {
         return;
     }
-    VEC_Add(v1, &v, v1);
+    VEC_Add(pos, &v, pos);
 }
 
-BOOL func_020fcbb8(ItemKouraW *p0, s32 v1) {
-    Kart *p;
-    KartItems *e;
+BOOL TrySetItemKouraWKartItems(ItemKouraW *item, s32 kartIndex) {
+    Kart *kart;
+    KartItems *kartItems;
     Vec3 v;
-    Vec3 *q;
-    s32 f;
-    s32 n;
-    s32 dx;
-    s32 dz;
+    Vec3 *kartPos;
+    s32 shortRange;
+    s32 normalDistance;
+    s32 offsetX;
+    s32 offsetZ;
 
-    p = GetKart(v1);
-    if (func_0206c0b0(p) != FALSE) {
+    kart = GetKart(kartIndex);
+    if (func_0206c0b0(kart) != FALSE) {
         return FALSE;
     }
-    e = &(gKartItems)[v1];
-    q = &p->mDrawMatrixPos;
-    if (e->mUnk_1f0.mLink != p0->mUnk_168) {
-        f = ((p0->mUnk_000.mFlags & 0x40000000) || (p->mUnk_48 & 1)) ? 1 : 0;
-        VEC_Subtract(q, &p0->mUnk_000.mPos, &v);
-        dx = v.x >> 12;
-        dz = v.z >> 12;
-        if (dx * dx + dz * dz > (f ? 0x9c40 : 0x27100)) {
+    kartItems = &(gKartItems)[kartIndex];
+    kartPos = &kart->mDrawMatrixPos;
+    if (kartItems->mUnk_1f0.mLink != item->mUnk_168) {
+        shortRange = ((item->mUnk_000.mFlags & 0x40000000) || (kart->mUnk_48 & 1)) ? 1 : 0;
+        VEC_Subtract(kartPos, &item->mUnk_000.mPos, &v);
+        offsetX = v.x >> 12;
+        offsetZ = v.z >> 12;
+        if (offsetX * offsetX + offsetZ * offsetZ > (shortRange ? 0x9c40 : 0x27100)) {
             return FALSE;
         }
-        n = Vec3DotUnrounded(&p0->mUnk_000.mUnk_f0, &v) >> 12;
-        if (n * n > 0x9c4) {
+        normalDistance = Vec3DotUnrounded(&item->mUnk_000.mUnk_f0, &v) >> 12;
+        if (normalDistance * normalDistance > 0x9c4) {
             return FALSE;
         }
     }
-    if (p0->mUnk_000.mFlags & 0x10000000) {
+    if (item->mUnk_000.mFlags & 0x10000000) {
         return FALSE;
     }
-    p0->mKartItems = e;
-    p0->mUnk_244 = *q;
+    item->mKartItems = kartItems;
+    item->mUnk_244 = *kartPos;
     return TRUE;
 }

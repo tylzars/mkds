@@ -196,7 +196,7 @@ void UpdateItemBombState2(ItemBomb *e) {
     if (t == 0x16) {
         e->mUnk_16c = TRUE;
     } else if (t == 0x2a) {
-        func_020f9c40((s32) e);
+        FreeItemObjectCollisionSlot((s32) e);
     }
     if (t <= 0x55) {
         return;
@@ -371,7 +371,7 @@ void *func_020fda50(void *a, ItemBomb *b, void *c) {
 
 void InitItemBombFromData(ItemBomb *e) {
     func_020f8e78(e);
-    func_020f2d98(&e->mUnk_000, e->mUnk_130 != 0 ? 3 : 2);
+    StartItemObjectBouncing(&e->mUnk_000, e->mUnk_130 != 0 ? 3 : 2);
     func_02046be8(&e->mUnk_184, (UnkFunc *const *) gItemBombStateTable, 4, e);
     if (!(e->mUnk_000.mItemObject.mFlags & 0x10000000)) {
         return;
@@ -479,7 +479,7 @@ void func_020fd754(void *a) {
     if ((e->mUnk_000.mItemObject.mFlags & 0x180000) == 0) {
         e->mUnk_000.mItemObject.mAdvance = NULL;
     }
-    func_020f9c40((s32) e);
+    FreeItemObjectCollisionSlot((s32) e);
     e->mUnk_1a0 = FALSE;
     SetStateMachineState(&e->mUnk_184, 3);
     e->mUnk_174 = 0;
@@ -592,7 +592,7 @@ void *StartItemBomb(void) {
     if ((e->mUnk_000.mItemObject.mFlags & 0x180000) == 0) {
         e->mUnk_000.mItemObject.mAdvance = NULL;
     }
-    func_020f9c40((s32) e);
+    FreeItemObjectCollisionSlot((s32) e);
     e->mUnk_1a0 = FALSE;
     SetStateMachineState(&e->mUnk_184, 3);
     e->mUnk_174 = 0;
@@ -611,7 +611,7 @@ void *StartItemBombWithMapObject(void *b, s32 a) {
         if ((e->mUnk_000.mItemObject.mFlags & 0x180000) == 0) {
             e->mUnk_000.mItemObject.mAdvance = NULL;
         }
-        func_020f9c40((s32) e);
+        FreeItemObjectCollisionSlot((s32) e);
         e->mUnk_1a0 = FALSE;
         SetStateMachineState(&e->mUnk_184, 3);
         e->mUnk_174 = 0;

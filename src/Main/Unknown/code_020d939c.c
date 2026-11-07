@@ -1,19 +1,20 @@
 #include "Main/Unknown/code_020d939c.h"
 #include "Main/Unknown/code_020d94dc.h"
 
-void func_020d939c(Unk020e0144_00_0 *a, s32 b, s32 c, Vec3 *d, Vec3 *e) {
-    s32 f;
-    s32 g;
-    s32 h;
-    s32 i;
-    s32 j;
-    s32 k;
-    s32 l;
-    s32 m;
-    func_020d970c(b, &f, &g, &h, &i, &j, &k, &l, &m);
-    func_020d95c0(a->mUnk_00, d, f, g, h, i);
-    func_020d95c0(a->mUnk_00, e, j, k, l, m);
-    e->x = ((s64) e->x * c) >> 24;
-    e->y = ((s64) e->y * c) >> 24;
-    e->z = ((s64) e->z * c) >> 24;
+void func_020d939c(Unk020e0144_00_0 *segment, s32 fraction, s32 scale, Vec3 *firstResult, Vec3 *secondResult) {
+    s32 firstWeight0;
+    s32 firstWeight1;
+    s32 firstWeight2;
+    s32 firstWeight3;
+    s32 secondWeight0;
+    s32 secondWeight1;
+    s32 secondWeight2;
+    s32 secondWeight3;
+    func_020d970c(fraction, &firstWeight0, &firstWeight1, &firstWeight2, &firstWeight3, &secondWeight0, &secondWeight1,
+                  &secondWeight2, &secondWeight3);
+    func_020d95c0(segment->mUnk_00, firstResult, firstWeight0, firstWeight1, firstWeight2, firstWeight3);
+    func_020d95c0(segment->mUnk_00, secondResult, secondWeight0, secondWeight1, secondWeight2, secondWeight3);
+    secondResult->x = ((s64) secondResult->x * scale) >> 24;
+    secondResult->y = ((s64) secondResult->y * scale) >> 24;
+    secondResult->z = ((s64) secondResult->z * scale) >> 24;
 }

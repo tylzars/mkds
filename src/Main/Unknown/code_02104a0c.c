@@ -234,7 +234,7 @@ void AdvanceBouncingItemBox(BouncingItemBox *p) {
         if ((p->mUnk_000.mItemObject.mFlags & 0x80000) != 0) {
             func_020f6e58(&p->mUnk_000.mItemObject);
         } else if ((p->mUnk_000.mItemObject.mFlags & 0x100000) != 0) {
-            func_020f758c(&p->mUnk_000.mItemObject);
+            AdvanceItemObjectReleaseTimer(&p->mUnk_000.mItemObject);
         }
     } else if ((p->mUnk_000.mItemObject.mFlags & 0x8000) != 0) {
         if (gRaceSetup->mMode == MODE_BATTLE) {
@@ -244,7 +244,7 @@ void AdvanceBouncingItemBox(BouncingItemBox *p) {
                 p->mUnk_000.mItemObject.mUnk_d8 = v;
             }
             if (v < 0xa) {
-                func_020f9c40((s32) p);
+                FreeItemObjectCollisionSlot((s32) p);
                 if (v == 0) {
                     ReleaseItemPoolObject(&gItemPools[p->mUnk_000.mItemObject.mKind], &p->mUnk_000.mItemObject);
                     return;

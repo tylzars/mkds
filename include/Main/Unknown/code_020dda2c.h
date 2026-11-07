@@ -4,4 +4,4 @@
 
 typedef struct Unk020dd950 Unk020dd950;
 
-void func_020dda2c(Unk020dd950 *p0);
+void func_020dda2c(Unk020dd950 *chain);

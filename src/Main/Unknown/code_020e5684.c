@@ -231,7 +231,7 @@ void ComputeSphereHitOnSecondHand(Unk020e43a8 *p, Vec3 *a, s32 b, Vec3 *c) {
 #pragma thumb on
 
 void CreateSecondHand(void) {
-    func_020ea588(&gSecondHand, FindCourseMapObjFile(gSecondHandNsbmdName), NULL);
+    CreateNsbmd(&gSecondHand, FindCourseMapObjFile(gSecondHandNsbmdName), NULL);
     func_02084968(gSecondHand, 0x3f, 2, 0x294a);
 }
 

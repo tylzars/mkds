@@ -232,8 +232,8 @@ BOOL func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
 #pragma thumb on
 
 void CreatePendulumAndPendulumShadow(void) {
-    func_020ea588(&gPendulum, FindCourseMapObjFile(gPendulumNsbmdName), NULL);
-    func_020ea55c(&gPendulumShadow, FindCourseMapObjFile(gPendulumShadowNsbmdName), 0x3f);
+    CreateNsbmd(&gPendulum, FindCourseMapObjFile(gPendulumNsbmdName), NULL);
+    CreateShadowModel(&gPendulumShadow, FindCourseMapObjFile(gPendulumShadowNsbmdName), 0x3f);
     func_02084968(gPendulum, 0x3f, 2, 0x294a);
 }
 

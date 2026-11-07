@@ -809,7 +809,7 @@ void AdvanceBouncingItem(BouncingItemObject *a, s32 b, s32 c, s32 d, u32 *e) {
         }
         if (a->mItemObject.mUnk_fc & 0x214300) {
             a->mItemObject.mFlags |= 0x20;
-            func_020f92e8(p, &v);
+            BounceItemVelocityOffSurface(p, &v);
             if (func_020f9290(a, &v) != FALSE) {
                 return;
             }
@@ -832,7 +832,7 @@ void AdvanceBouncingItem(BouncingItemObject *a, s32 b, s32 c, s32 d, u32 *e) {
 
 // Hit handler of bouncing items: reflects the velocity about the surface normal.
 void BounceItemObject(ItemObject *a, Vec3 *b, Vec3 *c) {
-    func_020f92e8(&a->mVelocity, c);
+    BounceItemVelocityOffSurface(&a->mVelocity, c);
     if (a->mFlags & 0x1000000) {
         return;
     }

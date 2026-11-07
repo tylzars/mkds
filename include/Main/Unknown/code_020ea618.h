@@ -5,4 +5,4 @@
 
 typedef struct Unk0209bc74_14 Unk0209bc74_14;
 
-void func_020ea618(Unk0209bc74_14 *a, int b);
+void func_020ea618(Unk0209bc74_14 *model, int value);

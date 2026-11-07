@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020f9c40(int arg0);
+void FreeItemObjectCollisionSlot(int object);

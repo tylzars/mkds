@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-void func_020f92e8(Vec3 *a, Vec3 *b);
+void BounceItemVelocityOffSurface(Vec3 *velocity, Vec3 *normal);
 typedef struct ItemObject ItemObject;
 
-void func_020f9320(ItemObject *p0, unsigned int p1);
+void func_020f9320(ItemObject *item, unsigned int clearBits);

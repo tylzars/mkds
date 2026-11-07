@@ -146,7 +146,7 @@ void DrawWoodbox1(void *a, Unk020e43a8 *b, void *c, u32 d) {
     v.z = b->mUnk_00.mPos.z;
     v.y = b->mUnk_0b4 - (s32) (((s64) b->mUnk_0bc * b->mUnk_cc) >> 12) - (s32) (((s64) b->mUnk_0c4 * b->mUnk_d4) >> 12);
     VEC_MultAdd(-b->mUnk_00.mExtent.x, (const Vec3 *) &b->mUnk_0bc, &v, &v);
-    func_020e5634((Unk020e516c *) &b->mUnk_114, &v);
+    SetShadowPositionRaised((Unk020e516c *) &b->mUnk_114, &v);
     func_020e53ac((Unk020e516c *) &b->mUnk_114, &t, 0, d);
 }
 
@@ -412,7 +412,7 @@ u32 CollideItemObjectWithWoodbox1(Woodbox1 *param_1, Unk020eb498 *param_2, u8 *p
 #pragma thumb on
 
 void CreateWoodbox1(void) {
-    func_020ea588((void **) &gWoodbox1, FindCourseMapObjFile(gWoodbox1NsbmdName), NULL);
+    CreateNsbmd((void **) &gWoodbox1, FindCourseMapObjFile(gWoodbox1NsbmdName), NULL);
     func_02084968(gWoodbox1, 0x3f, 2, 0x294a);
 }
 
@@ -464,7 +464,7 @@ void InitWoodbox1(Woodbox1 *param_1, Unk020eb498 *param_2) {
     func_02046be8(&param_1->mUnk_000.mStateMachine, (UnkFunc *const *) gWoodbox1StateTable, 4, param_1);
     param_1->mUnk_000.mStateMachine.mNextState = 0;
     param_1->mUnk_000.mStateMachine.mNextStateRequested = 1;
-    func_020e516c(&param_1->mUnk_114, &param_2->mUnk_000, ((s64) param_1->mUnk_000.mScale.x * 0x19000) >> 12, 13);
+    RefreshShadowMatrix(&param_1->mUnk_114, &param_2->mUnk_000, ((s64) param_1->mUnk_000.mScale.x * 0x19000) >> 12, 13);
 }
 
 #pragma thumb off

@@ -34,67 +34,67 @@ const u8 data_020da414_pad[1] = {1};
 
 #pragma thumb on
 
-void InitKuribo(Kuribo *a, CourseMapRow *b) {
-    Unk02042044 *e;
-    Vec3 *q;
-    Unk020e005c_080 *o;
-    a->mUnk_100 = 0x1f;
-    if (b != NULL) {
-        InitGroupFollower(&a->mUnk_cc, b, (b->mUnk_28 << 11) / 100);
-        e = GetCourseMapGroupEntry(b->mUnk_26, b->mUnk_2e);
-        a->mUnk_a0 = e->mUnk_00.y;
-        a->mUnk_f8 = b->mUnk_28 * 0xb4 / 100;
-        a->mUnk_fc = b->mUnk_2a == 0;
-        func_02046be8(&a->mUnk_00.mStateMachine, data_0216be68, 6, a);
-        func_020d90a8(&a->mUnk_cc, a->mUnk_00.mCourseMapRow->mUnk_2e, 1);
-        func_020d8b88(&a->mUnk_cc, &a->mUnk_00.mPos);
-        a->mUnk_00.mPos.y = a->mUnk_a0;
-        q = &a->mUnk_00.mUnk_10;
-        q->x = 0;
-        q->y = 0;
-        q->z = 0;
+void InitKuribo(Kuribo *kuribo, CourseMapRow *row) {
+    Unk02042044 *startEntry;
+    Vec3 *zeroedVector;
+    Unk020e005c_080 *stateMachine;
+    kuribo->mUnk_100 = 0x1f;
+    if (row != NULL) {
+        InitGroupFollower(&kuribo->mUnk_cc, row, (row->mUnk_28 << 11) / 100);
+        startEntry = GetCourseMapGroupEntry(row->mUnk_26, row->mUnk_2e);
+        kuribo->mUnk_a0 = startEntry->mUnk_00.y;
+        kuribo->mUnk_f8 = row->mUnk_28 * 0xb4 / 100;
+        kuribo->mUnk_fc = row->mUnk_2a == 0;
+        func_02046be8(&kuribo->mUnk_00.mStateMachine, data_0216be68, 6, kuribo);
+        func_020d90a8(&kuribo->mUnk_cc, kuribo->mUnk_00.mCourseMapRow->mUnk_2e, 1);
+        func_020d8b88(&kuribo->mUnk_cc, &kuribo->mUnk_00.mPos);
+        kuribo->mUnk_00.mPos.y = kuribo->mUnk_a0;
+        zeroedVector = &kuribo->mUnk_00.mUnk_10;
+        zeroedVector->x = 0;
+        zeroedVector->y = 0;
+        zeroedVector->z = 0;
         {
-            Quaternion x = {0, 0, 0, 0x1000};
-            a->mUnk_a4 = x;
+            Quaternion identityA = {0, 0, 0, 0x1000};
+            kuribo->mUnk_a4 = identityA;
         }
         {
-            Quaternion y = {0, 0, 0, 0x1000};
-            a->mUnk_b4 = y;
+            Quaternion identityB = {0, 0, 0, 0x1000};
+            kuribo->mUnk_b4 = identityB;
         }
-        a->mUnk_f0 = 0;
-        a->mUnk_f4 = 0;
-        o = &a->mUnk_00.mStateMachine;
-        o->mNextState = 0;
-        o->mNextStateRequested = 1;
+        kuribo->mUnk_f0 = 0;
+        kuribo->mUnk_f4 = 0;
+        stateMachine = &kuribo->mUnk_00.mStateMachine;
+        stateMachine->mNextState = 0;
+        stateMachine->mNextStateRequested = 1;
     } else {
-        a->mUnk_cc.mUnk_08 = 0xffff;
-        a->mUnk_a0 = 0;
-        a->mUnk_fc = 0;
-        func_02046be8(&a->mUnk_00.mStateMachine, data_0216be68, 6, a);
-        a->mUnk_f8 = 0x1000;
+        kuribo->mUnk_cc.mUnk_08 = 0xffff;
+        kuribo->mUnk_a0 = 0;
+        kuribo->mUnk_fc = 0;
+        func_02046be8(&kuribo->mUnk_00.mStateMachine, data_0216be68, 6, kuribo);
+        kuribo->mUnk_f8 = 0x1000;
         {
-            Quaternion x = {0, 0, 0, 0x1000};
-            a->mUnk_a4 = x;
+            Quaternion identityA = {0, 0, 0, 0x1000};
+            kuribo->mUnk_a4 = identityA;
         }
         {
-            Quaternion y = {0, 0, 0, 0x1000};
-            a->mUnk_b4 = y;
+            Quaternion identityB = {0, 0, 0, 0x1000};
+            kuribo->mUnk_b4 = identityB;
         }
-        SetStateMachineState(&a->mUnk_00.mStateMachine, 1);
-        a->mUnk_00.mUnk_10.x = 0;
-        a->mUnk_00.mUnk_10.y = 0;
-        a->mUnk_00.mUnk_10.z = 0;
+        SetStateMachineState(&kuribo->mUnk_00.mStateMachine, 1);
+        kuribo->mUnk_00.mUnk_10.x = 0;
+        kuribo->mUnk_00.mUnk_10.y = 0;
+        kuribo->mUnk_00.mUnk_10.z = 0;
     }
 }
 
 #pragma thumb off
 
 Unk020da414 *func_020da414(void) {
-    Unk020da414 *p;
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
+    Unk020da414 *object;
+    object = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     {
-        Unk020da414 v = {0};
-        *p = v;
+        Unk020da414 zeros = {0};
+        *object = zeros;
     }
-    return p;
+    return object;
 }

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020ea55c(void **a, void *b, u32 c);
+void CreateShadowModel(void **slot, void *file, u32 c);

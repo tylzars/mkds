@@ -127,7 +127,7 @@ void DrawPukupukuShadow(u32 a, Unk020e43a8 *p, u32 b, u32 c) {
     s.mUnk_00 = 0x1000 - (s.mUnk_00 >> 6);
     s.mUnk_04 = p->mUnk_00.mPos;
     s.mUnk_04.y = p->mUnk_f4.z + p->mUnk_100;
-    func_020e5634((Unk020e516c *) &p->mUnk_c8, &s.mUnk_04);
+    SetShadowPositionRaised((Unk020e516c *) &p->mUnk_c8, &s.mUnk_04);
     func_020e54e4((Unk020e516c *) &p->mUnk_c8, &s, 0, c);
 }
 

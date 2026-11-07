@@ -66,7 +66,7 @@ void ResetItemTeresa(Unk021025d8 *a) {
     func_02046be8(a->mUnk_12c, v1, 7, a);
     a->mUnk_140 = 8;
     a->mUnk_144 = 0;
-    func_020f9c40((s32) a);
+    FreeItemObjectCollisionSlot((s32) a);
     a->mUnk_24c = 0;
     a->mUnk_250 = 0xffffffff;
     a->mUnk_254 = 0x12;
@@ -1092,7 +1092,7 @@ void DrawItemTeresa(ItemTeresa *p, s32 c, Unk020e6488 *q) {
     v[2] = z;
     func_01ff9048(0x1b, v, 3);
     if (p->mItemObjectKind < 0xe && p->mState >= 3) {
-        r = func_020ed578(p->mItemObjectKind);
+        r = GetItemModel(p->mItemObjectKind);
         n = p->mUnk_164;
         b2 = p->mItemCount;
         if (p->mUnk_000.mUnk_d8 < 0x1f) {

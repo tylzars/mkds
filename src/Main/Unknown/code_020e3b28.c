@@ -69,23 +69,23 @@ void func_020e4184(Unk020e1dc0 *a) {
         if (m[e->mUnk_158] == 0) {
             switch (e->mUnk_158) {
                 case 0:
-                    func_020ea588(&gTestCylinder, FindCourseMapObjFile(gTestCylinderNsbmdName), NULL);
+                    CreateNsbmd(&gTestCylinder, FindCourseMapObjFile(gTestCylinderNsbmdName), NULL);
                     func_02084968(gTestCylinder, 0x3f, 2, 0x294a);
                     break;
                 case 1:
-                    func_020ea588(&gGearBlack, FindCourseMapObjFile(gGearBlackNsbmdName), NULL);
+                    CreateNsbmd(&gGearBlack, FindCourseMapObjFile(gGearBlackNsbmdName), NULL);
                     func_02084968(gGearBlack, 0x3f, 2, 0x294a);
                     break;
                 case 2:
-                    func_020ea588(&gGearWhite, FindCourseMapObjFile(gGearWhiteNsbmdName), NULL);
+                    CreateNsbmd(&gGearWhite, FindCourseMapObjFile(gGearWhiteNsbmdName), NULL);
                     func_02084968(gGearWhite, 0x3f, 2, 0x294a);
                     break;
                 case 3:
-                    func_020ea588(&gRotaryRoom, FindCourseMapObjFile(gRotaryRoomNsbmdName), NULL);
+                    CreateNsbmd(&gRotaryRoom, FindCourseMapObjFile(gRotaryRoomNsbmdName), NULL);
                     func_02084968(gRotaryRoom, 0x3f, 2, 0x294a);
                     break;
                 case 4:
-                    func_020ea588(&gRotaryBridge, FindCourseMapObjFile(gRotaryBridgeNsbmdName), NULL);
+                    CreateNsbmd(&gRotaryBridge, FindCourseMapObjFile(gRotaryBridgeNsbmdName), NULL);
                     func_02084968(gRotaryBridge, 0x3f, 2, 0x294a);
                     break;
             }

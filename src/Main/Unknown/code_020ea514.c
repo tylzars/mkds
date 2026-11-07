@@ -8,10 +8,10 @@
 #pragma thumb on
 
 void func_020ea514(u32 a, void *b, void *c, void *d, void *e) {
-    void *p;
+    void *heap;
 
-    p = GetHeap(GetCurrentHeapCall());
-    InitModelAnimation(a, c, b, 1, p, d);
+    heap = GetHeap(GetCurrentHeapCall());
+    InitModelAnimation(a, c, b, 1, heap, d);
     InitModelAnimationEntries(c, e, GetHeap(GetCurrentHeapCall()));
     SetModelAnimation(c, 0);
 }

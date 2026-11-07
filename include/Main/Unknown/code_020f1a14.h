@@ -4,4 +4,4 @@
 
 typedef struct ItemKouraR ItemKouraR;
 
-void func_020f1a14(ItemKouraR *p0);
+void ResetItemKouraRKartItems(ItemKouraR *item);

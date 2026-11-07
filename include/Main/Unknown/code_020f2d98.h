@@ -4,4 +4,4 @@
 
 typedef struct BouncingItemObject BouncingItemObject;
 
-void func_020f2d98(BouncingItemObject *p0, unsigned int p1);
+void StartItemObjectBouncing(BouncingItemObject *object, unsigned int bouncesRemaining);

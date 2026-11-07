@@ -4,4 +4,4 @@
 
 typedef struct Unk020e6488 Unk020e6488;
 
-Unk020e6488 *func_020ed578(u32 arg0);
+Unk020e6488 *GetItemModel(u32 kind);
