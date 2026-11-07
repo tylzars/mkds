@@ -743,7 +743,7 @@ BOOL IsWaterPresent(void) {
     return gCourseWater != NULL;
 }
 
-// y minus mHeight of gCourseWater (negative below the water), 0x270f000 when the course has no water; asked by the
+// y minus mHeight of gCourseWater (negative below the water), 9999.0 (fx32) when the course has no water; asked by the
 // camera; it does not look at mUnk_170 or WaterEfct.
 s32 GetHeightAboveWater(s32 a) {
     return gCourseWater != NULL ? a - gCourseWater->mHeight : 0x270f000;
@@ -772,7 +772,7 @@ u32 func_020d3d94(void) {
 }
 
 // Y minus mHeight when the Water exists and mUnk_170 is non-zero (mini stage 3, beach), else y minus WaterEfct.mHeight,
-// else 0x270f000; Or = the second source when the first is not used; asked by the kart steps, the kart sound and the
+// else 9999.0 (fx32); Or = the second source when the first is not used; asked by the kart steps, the kart sound and the
 // overlay-1 objects.
 s32 GetHeightAboveWaterOrEfct(s32 a) {
     if (gCourseWater != NULL && gCourseWater->mUnk_170 != 0) {

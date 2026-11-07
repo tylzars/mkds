@@ -54,7 +54,7 @@ typedef struct Bound {
     /* 120 */ s32 mKartTimers[8];
 } Bound;
 
-// Sun, kind 0x1ad: UpdateSun steps mState 0 to 4 and back; state 3 unparks a kind 0x1ae object twice per cycle.
+// Sun, kind 0x1ad: UpdateSun steps mState 0 to 4 and back; state 3 unparks a MAP_OBJECT_KIND_SUN_FIREBALL object twice per cycle.
 typedef struct Sun {
     /* 000 */ MapObject mUnk_000;
     /* 0a0 */ u32 mUnk_0a0;

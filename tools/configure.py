@@ -109,7 +109,7 @@ delinks = json.loads(subprocess.run([DSD, "json", "delinks", "-c", str(dsd_confi
                                     check=True, capture_output=True, text=True).stdout)
 
 dsd_config_files = sorted(str(p) for p in config_dir.rglob("*") if p.suffix in (".txt", ".yaml"))
-include_dirs = ["include"] + sorted(str(p) for p in Path("libs").glob("*/include"))
+include_dirs = ["include"] + sorted(str(p) for p in Path("libs").rglob("include") if p.is_dir())
 sources = sorted(p for d in ("src", "libs") for p in Path(d).rglob("*") if p.suffix in (".c", ".cpp", ".s"))
 
 lines: list[str] = []

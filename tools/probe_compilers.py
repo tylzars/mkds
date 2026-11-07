@@ -42,7 +42,7 @@ EXTRACT = ROOT / f"extract/{VERSION}"
 EXTRA_INCLUDES = "".join(f"-i {shlex.quote(d)} " for d in os.environ.get("PROBE_INCLUDE", "").split(":") if d)
 # The project's flags minus the ones each probe varies (optimization, inlining) and the C++-only ones (added per file).
 _VARIED = ("-O", "-inline", "-ipa", "-Cpp_exceptions", "-RTTI", "-sym", "-msgstyle")
-INCLUDES = ["include"] + sorted(str(p.relative_to(ROOT)) for p in (ROOT / "libs").glob("*/include"))
+INCLUDES = ["include"] + sorted(str(p.relative_to(ROOT)) for p in (ROOT / "libs").rglob("include") if p.is_dir())
 COMMON_FLAGS = f"-d version_{VERSION.upper()} " + EXTRA_INCLUDES + " ".join(f"-i {d}" for d in INCLUDES)
 BASE_FLAGS = " ".join(f for f in CC_FLAGS if not f.startswith(_VARIED)) + " " + COMMON_FLAGS
 # The default sweep varies the optimization level and keeps the project's -ipa / -inline settings.
