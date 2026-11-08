@@ -42,22 +42,22 @@ BOOL func_02046648(s32 a) {
         case 5:
             return TRUE;
         case 2:
-            if (func_0205fbb8(n)) {
+            if (IsBitSetInAnyParticipant(n)) {
                 return TRUE;
             }
             break;
         case 3:
-            if (func_0205fbb8(n + 4)) {
+            if (IsBitSetInAnyParticipant(n + 4)) {
                 return TRUE;
             }
             break;
         case 6:
-            if (func_0205fbb8(n + 8)) {
+            if (IsBitSetInAnyParticipant(n + 8)) {
                 return TRUE;
             }
             break;
         case 7:
-            if (func_0205fbb8(n + 12)) {
+            if (IsBitSetInAnyParticipant(n + 12)) {
                 return TRUE;
             }
             break;

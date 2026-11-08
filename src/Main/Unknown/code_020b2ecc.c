@@ -193,7 +193,7 @@ u32 func_020b2ecc(void) {
     s32 v1;
     s32 r;
 
-    r = func_0205fd78(GetMissionRunTableRow(), GetMissionRunTableColumn(), &v1);
+    r = GetMissionRecordValue(GetMissionRunTableRow(), GetMissionRunTableColumn(), &v1);
     if (func_020b2d54() == 0 && gChoisesS->mUnk_020 != FALSE && r != 0 && (u32) (v1 - 5) <= 2) {
         return 1;
     }

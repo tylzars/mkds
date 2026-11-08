@@ -765,7 +765,7 @@ void RequestRecordVSState8(void) {
     for (i = 0; i < 2; i++) {
         gRecordVS->mRecordVSSTable[data_0215c3ac[i]].mVisible = 0;
     }
-    func_0205edf8();
+    WriteBackupBuddyRecords();
 }
 
 void RequestRecordVSState9(void) {

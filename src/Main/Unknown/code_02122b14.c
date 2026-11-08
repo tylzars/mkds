@@ -319,7 +319,7 @@ void AdvanceWiFiSessionStep1(void) {
     generator->mValue = seedSum;
     generator->mMultiplier = 0x5d588b656c078965;
     generator->mIncrement = 0x269ec3;
-    func_0205e5c4(0);
+    StartCopyOtherEmblems(0);
     gWiFiSession->mSendRecordMask = 0;
     gWiFiSession->mReceivedMask = 0;
     gWiFiSession->mStepFrames = 0;

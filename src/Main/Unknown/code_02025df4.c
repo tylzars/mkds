@@ -12,7 +12,7 @@ int func_02025df4(KartAppear *appear, u32 characterIndex) {
     tableIndex = 0;
     do {
         kartIndex = GetKartIndexAtTableIndex(tableIndex);
-        testResult = func_0205fd2c(appear, characterIndex, kartIndex);
+        testResult = IsKartAppearWithinLimit(appear, characterIndex, kartIndex);
         if (testResult != 0) {
             count = count + 1;
         }

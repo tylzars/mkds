@@ -483,7 +483,7 @@ void CreateRaceProgress(void *heap) {
     gRaceProgress->mRankTimeGpFile = FindMainRaceOrMainEffectFile(gRankTimeGpRttName);
     SetRankTimeFromRankTimeGp(gRaceProgress->mRankTimeGpFile);
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-        func_0205e2cc(heap);
+        CreateShapeMapObjectCountList(heap);
     }
     InitRaceProgress();
 }

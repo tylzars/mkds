@@ -85,9 +85,9 @@ void InitRaceGoalM(void) {
     gRaceGoalM->mPointsGained = 0;
     gRaceGoalM->mFirstPlaceKartIndex = 0;
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-        if (func_0205fd78(gRaceSetup->mMode == MODE_MISSION_RUN ? gRaceSetup->mMissionTableRow : -1,
-                          gRaceSetup->mMode == MODE_MISSION_RUN ? gRaceSetup->mMissionTableColumn : -1,
-                          &gRaceGoalM->mUnk_14) == 0) {
+        if (GetMissionRecordValue(gRaceSetup->mMode == MODE_MISSION_RUN ? gRaceSetup->mMissionTableRow : -1,
+                                  gRaceSetup->mMode == MODE_MISSION_RUN ? gRaceSetup->mMissionTableColumn : -1,
+                                  &gRaceGoalM->mUnk_14) == 0) {
             gRaceGoalM->mUnk_14 = 9;
         }
     } else {

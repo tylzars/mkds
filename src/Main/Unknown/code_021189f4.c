@@ -495,9 +495,9 @@ u32 GetSelectCupGridCupEnabled(u32 cupIndex) {
                     break;
                 default:
                     if (GetMirrorMode() != 0) {
-                        enabled = func_0205fbb8(data_0215c8bc[cupIndex]);
+                        enabled = IsBitSetInAnyParticipant(data_0215c8bc[cupIndex]);
                     } else {
-                        enabled = func_0205fbb8(data_0215c95c[cupIndex][data_0215c7f0[GetEngineIndex()]]);
+                        enabled = IsBitSetInAnyParticipant(data_0215c95c[cupIndex][data_0215c7f0[GetEngineIndex()]]);
                     }
                     break;
             }

@@ -342,7 +342,7 @@ void func_02031960(void) {
                             RequestTxtSystemClose();
                         }
                         func_02108d80();
-                        func_0205e5c4(1);
+                        StartCopyOtherEmblems(1);
                         gMultiSelectMember->mUnk_148 = FALSE;
                         gMultiSelectMember->mUnk_70 = 6;
                     }
@@ -417,7 +417,7 @@ void func_020317a0(void) {
                     if (gMultiSelectMember->mTimer == 0) {
                         SetupTxtSystemSubText(GetBmgEntry(gMultiSelectMember->mCommonMessages, 0x81));
                         func_02108d80();
-                        func_0205e5c4(1);
+                        StartCopyOtherEmblems(1);
                         gMultiSelectMember->mUnk_148 = FALSE;
                         gMultiSelectMember->mTimer = 0x78;
                         gMultiSelectMember->mUnk_70 = 6;

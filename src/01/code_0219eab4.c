@@ -77,7 +77,7 @@ s32 func_ov001_0219f6a0(s16 a) {
     next = a + 1;
 
     for (; i < 9; i++) {
-        if (func_0205fd78(next, (u8) (i + 1), &out)) {
+        if (GetMissionRecordValue(next, (u8) (i + 1), &out)) {
             if (out < result) {
                 result = out;
             }
@@ -172,7 +172,7 @@ void func_ov001_0219f3a4(void) {
         j = 0;
         x = i + 1;
         for (; j < 9; j++) {
-            ok &= func_0205fd78(x, (u8) (j + 1), &out);
+            ok &= GetMissionRecordValue(x, (u8) (j + 1), &out);
             if (!ok || out < 5) {
                 all = FALSE;
             }
@@ -201,9 +201,9 @@ BOOL func_ov001_0219f31c(void) {
     s32 out;
 
     for (i = 0; i < 8; i++) {
-        ok &= func_0205fd78((u8) (gMissionRunLVsel->mIndex + 1), (u8) (i + 1), &out);
+        ok &= GetMissionRecordValue((u8) (gMissionRunLVsel->mIndex + 1), (u8) (i + 1), &out);
     }
-    result = func_0205fd78((u8) (gMissionRunLVsel->mIndex + 1), 9, &out);
+    result = GetMissionRecordValue((u8) (gMissionRunLVsel->mIndex + 1), 9, &out);
     if (ok != 0 && result == 0) {
         return TRUE;
     }

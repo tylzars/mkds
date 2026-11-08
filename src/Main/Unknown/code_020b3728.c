@@ -199,7 +199,7 @@ void func_020b3728(void) {
     if (gRaceProgress->mRaceDone != 0 && data_0217b35c->mUnk_0c == FALSE) {
         func_020b3cd8();
         func_020b3b58();
-        func_0205eeb0();
+        SetRaceResultRecords();
         data_0217b35c->mUnk_0c = TRUE;
     }
     i = GetFollowedKartOrEntryIndex();

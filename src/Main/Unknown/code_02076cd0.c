@@ -70,7 +70,7 @@ u32 func_02077a70(s32 *a, u32 b) {
         if (IsBackupFlagSet(n) == 0) {
             *a = -1;
             for (i = 0; i < 8; i++) {
-                if (func_0205fd2c(gKartModelMenu->mUnk_268, i, b) != 0) {
+                if (IsKartAppearWithinLimit(gKartModelMenu->mUnk_268, i, b) != 0) {
                     *a = i;
                     break;
                 }
@@ -81,7 +81,7 @@ u32 func_02077a70(s32 *a, u32 b) {
             return 0;
         }
     }
-    return func_0205fd2c(gKartModelMenu->mUnk_268, *a, b);
+    return IsKartAppearWithinLimit(gKartModelMenu->mUnk_268, *a, b);
 }
 
 u16 func_02077a5c(void) {

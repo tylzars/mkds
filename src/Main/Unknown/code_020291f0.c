@@ -59,7 +59,7 @@ void MoveSelectKartNext(void) {
         index = 0;
     }
     while (d = gSelectKart, index != d->mKartTableIndex) {
-        if (func_0205fd2c(d->mUnk_098, d->mCharacterIndex, GetKartIndexAtTableIndex(index)) != 0) {
+        if (IsKartAppearWithinLimit(d->mUnk_098, d->mCharacterIndex, GetKartIndexAtTableIndex(index)) != 0) {
             gSelectKart->mKartTableIndex = index;
             gSelectKart->mKartIndex = GetKartIndexAtTableIndex(gSelectKart->mKartTableIndex);
         } else {
@@ -80,7 +80,7 @@ void MoveSelectKartPrev(void) {
         index = 0x23;
     }
     while (d = gSelectKart, index != d->mKartTableIndex) {
-        if (func_0205fd2c(d->mUnk_098, d->mCharacterIndex, GetKartIndexAtTableIndex(index)) != 0) {
+        if (IsKartAppearWithinLimit(d->mUnk_098, d->mCharacterIndex, GetKartIndexAtTableIndex(index)) != 0) {
             gSelectKart->mKartTableIndex = index;
             gSelectKart->mKartIndex = GetKartIndexAtTableIndex(gSelectKart->mKartTableIndex);
         } else {

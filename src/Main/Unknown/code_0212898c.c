@@ -829,7 +829,7 @@ void AdvanceKeyboardState10(void) {
             keyboard = gKeyboard;
             if (keyboard->mUnk_2c[2].mMode == 0xc) {
                 func_02060cb4(&keyboard->mUnk_2c[2], &keyboard->mUnk_2c[1]);
-                func_0205edf8();
+                WriteBackupBuddyRecords();
                 message = GetBmgEntry(gKeyboard->mCommonMessages, 0x81);
                 SetupTxtSystemSubTextEx(message, 0, 1, 1, 0, 1);
                 gKeyboard->mNextState = 0xb;

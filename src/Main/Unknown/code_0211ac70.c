@@ -563,7 +563,7 @@ void func_0211cfd0(void) {
 BOOL IsSelectRaceRuleValueAllowed(void) {
     SelectRaceRule *selectRaceRule;
     selectRaceRule = gSelectRaceRule;
-    if (selectRaceRule->mRow == 0 && selectRaceRule->mRowValues[0] == 3 && func_0205fbb8(0x10) == 0) {
+    if (selectRaceRule->mRow == 0 && selectRaceRule->mRowValues[0] == 3 && IsBitSetInAnyParticipant(0x10) == 0) {
         return FALSE;
     }
     selectRaceRule = gSelectRaceRule;

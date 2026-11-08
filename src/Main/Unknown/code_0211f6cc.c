@@ -48,7 +48,7 @@ void func_0211fe44(void) {
     }
     CopyWiFiBuddiesToRecordBlock(&gWiFiSession->mBuddies[0]);
     RefreshNotYetBuddyFlags();
-    func_0205edf8();
+    WriteBackupBuddyRecords();
     while (data_0217aa08->mBusy == 0 ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0) : 1) {
     }
     gWiFiSession->mBuddiesChanged = FALSE;
@@ -226,7 +226,7 @@ void func_0211f6e8(u32 a, u32 b) {
     MergeBuddyRecords(b, a);
     CopyWiFiBuddiesToRecordBlock(&gWiFiSession->mBuddies[0]);
     RefreshNotYetBuddyFlags();
-    func_0205edf8();
+    WriteBackupBuddyRecords();
     while (data_0217aa08->mBusy == 0 ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0) : 1) {
     }
 }

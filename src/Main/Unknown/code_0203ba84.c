@@ -152,7 +152,7 @@ void PickRandomCharacters(u8 *rawPicks) {
                     checkId = 0x17;
                     break;
             }
-            if (checkId == -1 || func_0205fc28(checkId) != 0) {
+            if (checkId == -1 || IsBitSetInAllParticipants(checkId) != 0) {
                 availableBits = availableBits | (1 << character);
             }
         }

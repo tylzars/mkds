@@ -269,7 +269,7 @@ BOOL func_ov001_02197210(void) {
     u8 buf[0x14];
 
     if (IsTimeRecordFilled(data_ov001_021a6900[gRecordTAtt->mIndex], data_ov001_021a6828[0]) != FALSE) {
-        if (func_0205fdb4(data_ov001_021a6900[gRecordTAtt->mIndex], buf) != 0) {
+        if (FormatFirstCourseTimeRecord(data_ov001_021a6900[gRecordTAtt->mIndex], buf) != 0) {
             return TRUE;
         }
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
@@ -439,7 +439,7 @@ void func_ov001_02196dbc(void) {
     k = 0;
     gRecordTAtt->mNextState = 14;
     gRecordTAtt->mStateFrames = i;
-    func_0205fdb4(data_ov001_021a6900[gRecordTAtt->mIndex], buf);
+    FormatFirstCourseTimeRecord(data_ov001_021a6900[gRecordTAtt->mIndex], buf);
     while (n < 19) {
         k++;
         if (k > 4) {

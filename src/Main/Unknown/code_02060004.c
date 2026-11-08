@@ -18,406 +18,406 @@
 #include "00/code_021832d8.h"
 #include "00/code_0219d948.h"
 
-static inline s32 func_02060004_inline(s32 a, s32 b, TimeRecord *c) {
-    BOOL r;
+static inline s32 func_02060004_inline(s32 courseId, s32 recordIndex, TimeRecord *timeRecord) {
+    BOOL isFilled;
 
-    if (GetCourseTimeRecord(a, b, c) != 0 && c->mFilled != 0) {
-        r = TRUE;
+    if (GetCourseTimeRecord(courseId, recordIndex, timeRecord) != 0 && timeRecord->mFilled != 0) {
+        isFilled = TRUE;
     } else {
-        r = FALSE;
+        isFilled = FALSE;
     }
-    return r;
+    return isFilled;
 }
 
-void CopyWiFiBuddiesToRecordBlock(Unk0217d384_19f0 *a) {
-    MI_CpuCopy8(a, (u8 *) data_0217aa08->mBuddyRecordBlock + 0x874, 0x2d0);
+void CopyWiFiBuddiesToRecordBlock(Unk0217d384_19f0 *buddies) {
+    MI_CpuCopy8(buddies, (u8 *) data_0217aa08->mBuddyRecordBlock + 0x874, 0x2d0);
 }
 
 void RefreshNotYetBuddyFlags(void) {
-    BuddyRecord a;
-    u8 i;
+    BuddyRecord buddyRecord;
+    u8 recordIndex;
 
-    for (i = 0; i < 60; i++) {
-        func_0205ee14(i, &a);
-        if (a.mFilled == 1 && a.mNotYetBuddy == 1 &&
-            DWC_IsBuddyFriendData((DWCAccFriendData *) ((u8 *) data_0217aa08->mBuddyRecordBlock + 0x874 + i * 12)) !=
-                0) {
-            a.mNotYetBuddy = 0;
-            func_0205ee74(i, &a);
+    for (recordIndex = 0; recordIndex < 60; recordIndex++) {
+        GetBuddyRecord(recordIndex, &buddyRecord);
+        if (buddyRecord.mFilled == 1 && buddyRecord.mNotYetBuddy == 1 &&
+            DWC_IsBuddyFriendData(
+                (DWCAccFriendData *) ((u8 *) data_0217aa08->mBuddyRecordBlock + 0x874 + recordIndex * 12)) != 0) {
+            buddyRecord.mNotYetBuddy = 0;
+            SetBuddyRecord(recordIndex, &buddyRecord);
         }
     }
 }
 
-BOOL IsBuddyRecordFilled(u8 a) {
-    BuddyRecord b;
+BOOL IsBuddyRecordFilled(u8 recordIndex) {
+    BuddyRecord buddyRecord;
 
-    func_0205ee14(a, &b);
-    if (b.mFilled == 1) {
+    GetBuddyRecord(recordIndex, &buddyRecord);
+    if (buddyRecord.mFilled == 1) {
         return TRUE;
     }
     return FALSE;
 }
 
-s32 IsBuddyRecordFlagged(u8 a) {
-    BuddyRecord b;
+s32 IsBuddyRecordFlagged(u8 recordIndex) {
+    BuddyRecord buddyRecord;
 
-    func_0205ee14(a, &b);
-    if (b.mFilled == 1) {
-        return b.mFlagged;
+    GetBuddyRecord(recordIndex, &buddyRecord);
+    if (buddyRecord.mFilled == 1) {
+        return buddyRecord.mFlagged;
     }
     return 0;
 }
 
-s32 func_02060ac8(u8 a) {
-    BuddyRecord b;
+s32 func_02060ac8(u8 recordIndex) {
+    BuddyRecord buddyRecord;
 
-    func_0205ee14(a, &b);
-    if (b.mFilled == 1) {
-        return b.mResultCounts[0][0];
+    GetBuddyRecord(recordIndex, &buddyRecord);
+    if (buddyRecord.mFilled == 1) {
+        return buddyRecord.mResultCounts[0][0];
     }
     return -1;
 }
 
-s32 func_02060a94(u8 a) {
-    BuddyRecord b;
+s32 func_02060a94(u8 recordIndex) {
+    BuddyRecord buddyRecord;
 
-    func_0205ee14(a, &b);
-    if (b.mFilled == 1) {
-        return b.mResultCounts[0][1];
+    GetBuddyRecord(recordIndex, &buddyRecord);
+    if (buddyRecord.mFilled == 1) {
+        return buddyRecord.mResultCounts[0][1];
     }
     return -1;
 }
 
-s32 func_02060a60(u8 a) {
-    BuddyRecord b;
+s32 func_02060a60(u8 recordIndex) {
+    BuddyRecord buddyRecord;
 
-    func_0205ee14(a, &b);
-    if (b.mFilled == 1) {
-        return b.mResultCounts[1][0];
+    GetBuddyRecord(recordIndex, &buddyRecord);
+    if (buddyRecord.mFilled == 1) {
+        return buddyRecord.mResultCounts[1][0];
     }
     return -1;
 }
 
-s32 func_02060a2c(u8 a) {
-    BuddyRecord b;
+s32 func_02060a2c(u8 recordIndex) {
+    BuddyRecord buddyRecord;
 
-    func_0205ee14(a, &b);
-    if (b.mFilled == 1) {
-        return b.mResultCounts[1][1];
+    GetBuddyRecord(recordIndex, &buddyRecord);
+    if (buddyRecord.mFilled == 1) {
+        return buddyRecord.mResultCounts[1][1];
     }
     return -1;
 }
 
-s32 func_020609f8(u8 a) {
-    BuddyRecord b;
+s32 func_020609f8(u8 recordIndex) {
+    BuddyRecord buddyRecord;
 
-    func_0205ee14(a, &b);
-    if (b.mFilled == 1) {
-        return b.mResultCounts[2][0];
+    GetBuddyRecord(recordIndex, &buddyRecord);
+    if (buddyRecord.mFilled == 1) {
+        return buddyRecord.mResultCounts[2][0];
     }
     return -1;
 }
 
-s32 func_020609c4(u8 a) {
-    BuddyRecord b;
+s32 func_020609c4(u8 recordIndex) {
+    BuddyRecord buddyRecord;
 
-    func_0205ee14(a, &b);
-    if (b.mFilled == 1) {
-        return b.mResultCounts[2][1];
+    GetBuddyRecord(recordIndex, &buddyRecord);
+    if (buddyRecord.mFilled == 1) {
+        return buddyRecord.mResultCounts[2][1];
     }
     return -1;
 }
 
-BOOL GetBuddyRecordDate(u8 a, u8 *b) {
-    BuddyRecord c;
+BOOL GetBuddyRecordDate(u8 recordIndex, u8 *dateOut) {
+    BuddyRecord buddyRecord;
 
-    func_0205ee14(a, &c);
-    if (c.mFilled != 1) {
+    GetBuddyRecord(recordIndex, &buddyRecord);
+    if (buddyRecord.mFilled != 1) {
         return FALSE;
     }
-    b[0] = c.mYear;
-    b[1] = c.mMonth;
-    b[2] = c.mDay;
+    dateOut[0] = buddyRecord.mYear;
+    dateOut[1] = buddyRecord.mMonth;
+    dateOut[2] = buddyRecord.mDay;
     return TRUE;
 }
 
-BOOL GetBuddyRecordName(u8 a, void *b) {
-    BuddyRecord c;
+BOOL GetBuddyRecordName(u8 recordIndex, void *nameOut) {
+    BuddyRecord buddyRecord;
 
-    func_0205ee14(a, &c);
-    if (c.mFilled != 1) {
+    GetBuddyRecord(recordIndex, &buddyRecord);
+    if (buddyRecord.mFilled != 1) {
         return FALSE;
     }
-    MI_CpuCopy8(c.mName, b, 0x14);
+    MI_CpuCopy8(buddyRecord.mName, nameOut, 0x14);
     return TRUE;
 }
 
-BOOL SetBuddyRecordFlag(u8 a, s32 b) {
-    BuddyRecord c;
+BOOL SetBuddyRecordFlag(u8 recordIndex, s32 flag) {
+    BuddyRecord buddyRecord;
 
-    func_0205ee14(a, &c);
-    if (c.mFilled == 1) {
-        c.mFlagged = b != 0;
-        func_0205ee74(a, &c);
+    GetBuddyRecord(recordIndex, &buddyRecord);
+    if (buddyRecord.mFilled == 1) {
+        buddyRecord.mFlagged = flag != 0;
+        SetBuddyRecord(recordIndex, &buddyRecord);
         return TRUE;
     }
     return FALSE;
 }
 
-s32 RemoveBuddyRecord(u8 a) {
-    BuddyRecord b;
-    BOOL c;
+s32 RemoveBuddyRecord(u8 recordIndex) {
+    BuddyRecord buddyRecord;
+    BOOL wasFilled;
 
-    func_0205ee14(a, &b);
-    c = b.mFilled == 1;
-    MI_CpuFill8(&b, 0, 0x24);
-    b.mFilled = 0;
-    func_0205ee74(a, &b);
+    GetBuddyRecord(recordIndex, &buddyRecord);
+    wasFilled = buddyRecord.mFilled == 1;
+    MI_CpuFill8(&buddyRecord, 0, 0x24);
+    buddyRecord.mFilled = 0;
+    SetBuddyRecord(recordIndex, &buddyRecord);
     if (gWiFiSession->mUnk_0008.mState != 0) {
-        RemoveBuddyEntry((u8 *) data_0217aa08->mBuddyRecordBlock + 0x874 + a * 12);
+        RemoveBuddyEntry((u8 *) data_0217aa08->mBuddyRecordBlock + 0x874 + recordIndex * 12);
     } else {
-        MI_CpuFill8((u8 *) data_0217aa08->mBuddyRecordBlock + 0x874 + a * 12, 0, 0xc);
+        MI_CpuFill8((u8 *) data_0217aa08->mBuddyRecordBlock + 0x874 + recordIndex * 12, 0, 0xc);
     }
-    func_0205edf8();
-    return c;
+    WriteBackupBuddyRecords();
+    return wasFilled;
 }
 
-void MergeBuddyRecords(u8 a, u8 b) {
-    BuddyRecord c;
-    BuddyRecord d;
-    BuddyRecord e;
+void MergeBuddyRecords(u8 keptIndex, u8 mergedIndex) {
+    BuddyRecord keptRecord;
+    BuddyRecord mergedRecord;
+    BuddyRecord combinedRecord;
 
-    func_0205ee14(a, &c);
-    func_0205ee14(b, &d);
-    ResetBuddyRecord((u32) &e);
-    if (d.mNotYetBuddy == 0) {
-        e.mResultCounts[0][0] = e.mResultCounts[0][0] + d.mResultCounts[0][0];
-        e.mResultCounts[0][1] = e.mResultCounts[0][1] + d.mResultCounts[0][1];
-        e.mResultCounts[1][0] = e.mResultCounts[1][0] + d.mResultCounts[1][0];
-        e.mResultCounts[1][1] = e.mResultCounts[1][1] + d.mResultCounts[1][1];
-        e.mResultCounts[2][0] = e.mResultCounts[2][0] + d.mResultCounts[2][0];
-        e.mResultCounts[2][1] = e.mResultCounts[2][1] + d.mResultCounts[2][1];
-        MI_CpuCopy8(d.mName, e.mName, 0x14);
-        e.mYear = d.mYear;
-        e.mMonth = d.mMonth;
-        e.mDay = d.mDay;
+    GetBuddyRecord(keptIndex, &keptRecord);
+    GetBuddyRecord(mergedIndex, &mergedRecord);
+    ResetBuddyRecord((u32) &combinedRecord);
+    if (mergedRecord.mNotYetBuddy == 0) {
+        combinedRecord.mResultCounts[0][0] = combinedRecord.mResultCounts[0][0] + mergedRecord.mResultCounts[0][0];
+        combinedRecord.mResultCounts[0][1] = combinedRecord.mResultCounts[0][1] + mergedRecord.mResultCounts[0][1];
+        combinedRecord.mResultCounts[1][0] = combinedRecord.mResultCounts[1][0] + mergedRecord.mResultCounts[1][0];
+        combinedRecord.mResultCounts[1][1] = combinedRecord.mResultCounts[1][1] + mergedRecord.mResultCounts[1][1];
+        combinedRecord.mResultCounts[2][0] = combinedRecord.mResultCounts[2][0] + mergedRecord.mResultCounts[2][0];
+        combinedRecord.mResultCounts[2][1] = combinedRecord.mResultCounts[2][1] + mergedRecord.mResultCounts[2][1];
+        MI_CpuCopy8(mergedRecord.mName, combinedRecord.mName, 0x14);
+        combinedRecord.mYear = mergedRecord.mYear;
+        combinedRecord.mMonth = mergedRecord.mMonth;
+        combinedRecord.mDay = mergedRecord.mDay;
     }
-    if (c.mNotYetBuddy == 0) {
-        e.mResultCounts[0][0] = e.mResultCounts[0][0] + c.mResultCounts[0][0];
-        e.mResultCounts[0][1] = e.mResultCounts[0][1] + c.mResultCounts[0][1];
-        e.mResultCounts[1][0] = e.mResultCounts[1][0] + c.mResultCounts[1][0];
-        e.mResultCounts[1][1] = e.mResultCounts[1][1] + c.mResultCounts[1][1];
-        e.mResultCounts[2][0] = e.mResultCounts[2][0] + c.mResultCounts[2][0];
-        e.mResultCounts[2][1] = e.mResultCounts[2][1] + d.mResultCounts[2][1];
-        MI_CpuCopy8(c.mName, e.mName, 0x14);
-        e.mYear = c.mYear;
-        e.mMonth = c.mMonth;
-        e.mDay = c.mDay;
+    if (keptRecord.mNotYetBuddy == 0) {
+        combinedRecord.mResultCounts[0][0] = combinedRecord.mResultCounts[0][0] + keptRecord.mResultCounts[0][0];
+        combinedRecord.mResultCounts[0][1] = combinedRecord.mResultCounts[0][1] + keptRecord.mResultCounts[0][1];
+        combinedRecord.mResultCounts[1][0] = combinedRecord.mResultCounts[1][0] + keptRecord.mResultCounts[1][0];
+        combinedRecord.mResultCounts[1][1] = combinedRecord.mResultCounts[1][1] + keptRecord.mResultCounts[1][1];
+        combinedRecord.mResultCounts[2][0] = combinedRecord.mResultCounts[2][0] + keptRecord.mResultCounts[2][0];
+        combinedRecord.mResultCounts[2][1] = combinedRecord.mResultCounts[2][1] + mergedRecord.mResultCounts[2][1];
+        MI_CpuCopy8(keptRecord.mName, combinedRecord.mName, 0x14);
+        combinedRecord.mYear = keptRecord.mYear;
+        combinedRecord.mMonth = keptRecord.mMonth;
+        combinedRecord.mDay = keptRecord.mDay;
     }
-    e.mFilled = 1;
-    e.mNotYetBuddy = 0;
-    e.mUnk_22_2 = c.mUnk_22_2;
-    e.mFlagged = c.mFlagged == 1 || d.mFlagged == 1;
-    func_0205ee74(a, &e);
-    MI_CpuFill8(&d, 0, 0x24);
-    d.mFilled = 0;
-    func_0205ee74(b, &d);
+    combinedRecord.mFilled = 1;
+    combinedRecord.mNotYetBuddy = 0;
+    combinedRecord.mUnk_22_2 = keptRecord.mUnk_22_2;
+    combinedRecord.mFlagged = keptRecord.mFlagged == 1 || mergedRecord.mFlagged == 1;
+    SetBuddyRecord(keptIndex, &combinedRecord);
+    MI_CpuFill8(&mergedRecord, 0, 0x24);
+    mergedRecord.mFilled = 0;
+    SetBuddyRecord(mergedIndex, &mergedRecord);
 }
 
-s32 GetBuddyFriendKeyText(u8 a, void *b) {
-    u8 *e;
-    BOOL d;
-    BOOL g;
-    BuddyRecord c;
+BOOL GetBuddyFriendKeyText(u8 recordIndex, void *textOut) {
+    u8 *friendData;
+    BOOL found;
+    BOOL hasFriendKey;
+    BuddyRecord buddyRecord;
 
-    d = FALSE;
-    func_0205ee14(a, &c);
-    e = (u8 *) data_0217aa08->mBuddyRecordBlock + 0x874 + a * 12;
-    if (c.mFilled == 1 && c.mNotYetBuddy == 1 && IsFriendDataTypeNonZero(e) != 0) {
-        g = TRUE;
+    found = FALSE;
+    GetBuddyRecord(recordIndex, &buddyRecord);
+    friendData = (u8 *) data_0217aa08->mBuddyRecordBlock + 0x874 + recordIndex * 12;
+    if (buddyRecord.mFilled == 1 && buddyRecord.mNotYetBuddy == 1 && IsFriendDataTypeNonZero(friendData) != 0) {
+        hasFriendKey = TRUE;
     } else {
-        g = FALSE;
+        hasFriendKey = FALSE;
     }
-    if (g != FALSE) {
-        u64 f = DWC_GetFriendKey((DWCAccFriendData *) e);
+    if (hasFriendKey != FALSE) {
+        u64 friendKey = DWC_GetFriendKey((DWCAccFriendData *) friendData);
 
-        FormatFriendKey(f, f >> 32, (u32) b);
-        d = TRUE;
+        FormatFriendKey(friendKey, friendKey >> 32, (u32) textOut);
+        found = TRUE;
     }
-    return d;
+    return found;
 }
 
-s32 IsGrandPrixRecordFilled(s32 a, s32 b) {
-    TimeRecord c;
+s32 IsGrandPrixRecordFilled(s32 cup, s32 engineClass) {
+    TimeRecord timeRecord;
 
-    GetGrandPrixRecord(a, b, &c);
-    if (c.mFilled == 0) {
+    GetGrandPrixRecord(cup, engineClass, &timeRecord);
+    if (timeRecord.mFilled == 0) {
         return 0;
     }
-    return c.mFilled;
+    return timeRecord.mFilled;
 }
 
-s32 GetGrandPrixRecordCharacterIndex(s32 a, s32 b) {
-    TimeRecord c;
+s32 GetGrandPrixRecordCharacterIndex(s32 cup, s32 engineClass) {
+    TimeRecord timeRecord;
 
-    GetGrandPrixRecord(a, b, &c);
-    if (c.mFilled != 0) {
-        return c.mCharacterIndex;
+    GetGrandPrixRecord(cup, engineClass, &timeRecord);
+    if (timeRecord.mFilled != 0) {
+        return timeRecord.mCharacterIndex;
     }
     return -1;
 }
 
-s32 GetGrandPrixRecordKartIndex(s32 a, s32 b) {
-    TimeRecord c;
+s32 GetGrandPrixRecordKartIndex(s32 cup, s32 engineClass) {
+    TimeRecord timeRecord;
 
-    GetGrandPrixRecord(a, b, &c);
-    if (c.mFilled != 0) {
-        return c.mKartIndex;
+    GetGrandPrixRecord(cup, engineClass, &timeRecord);
+    if (timeRecord.mFilled != 0) {
+        return timeRecord.mKartIndex;
     }
     return -1;
 }
 
-s32 GetGrandPrixRecordCupRank(s32 a, s32 b) {
-    TimeRecord c;
+s32 GetGrandPrixRecordCupRank(s32 cup, s32 engineClass) {
+    TimeRecord timeRecord;
 
-    GetGrandPrixRecord(a, b, &c);
-    if (c.mFilled != 0) {
-        return c.mCupRank;
+    GetGrandPrixRecord(cup, engineClass, &timeRecord);
+    if (timeRecord.mFilled != 0) {
+        return timeRecord.mCupRank;
     }
     return 3;
 }
 
-s32 func_02060390(s32 a, s32 b) {
-    TimeRecord c;
+s32 GetGrandPrixRecordTotalPoints(s32 cup, s32 engineClass) {
+    TimeRecord timeRecord;
 
-    GetGrandPrixRecord(a, b, &c);
-    if (c.mFilled != 0) {
-        return (s8) c.mTotalPoints;
+    GetGrandPrixRecord(cup, engineClass, &timeRecord);
+    if (timeRecord.mFilled != 0) {
+        return (s8) timeRecord.mTotalPoints;
     }
     return -1;
 }
 
-s32 func_02060364(s32 a, s32 b) {
-    TimeRecord c;
+s32 func_02060364(s32 cup, s32 engineClass) {
+    TimeRecord timeRecord;
 
-    GetGrandPrixRecord(a, b, &c);
-    if (c.mFilled != 0) {
-        return c.mUnk_1e;
+    GetGrandPrixRecord(cup, engineClass, &timeRecord);
+    if (timeRecord.mFilled != 0) {
+        return timeRecord.mUnk_1e;
     }
     return 9;
 }
 
-BOOL GetGrandPrixRecordTime(s32 a, s32 b, void *c) {
-    TimeRecord d;
+BOOL GetGrandPrixRecordTime(s32 cup, s32 engineClass, void *timeOut) {
+    TimeRecord timeRecord;
 
-    GetGrandPrixRecord(a, b, &d);
-    if (d.mFilled == 0) {
+    GetGrandPrixRecord(cup, engineClass, &timeRecord);
+    if (timeRecord.mFilled == 0) {
         return FALSE;
     }
-    MI_CpuCopy8(&d, c, 4);
+    MI_CpuCopy8(&timeRecord, timeOut, 4);
     return TRUE;
 }
 
-s32 func_02060268(s32 a) {
-    u8 i;
-    BOOL c;
-    s32 d;
-    TimeRecord b;
+BOOL func_02060268(s32 courseId) {
+    u8 recordIndex;
+    BOOL noRecords;
+    s32 cupCourseIndex;
+    TimeRecord timeRecord;
 
-    c = TRUE;
-    d = FindCupCourseIndex(a);
-    if (d == -1) {
-        return c;
+    noRecords = TRUE;
+    cupCourseIndex = FindCupCourseIndex(courseId);
+    if (cupCourseIndex == -1) {
+        return noRecords;
     }
-    if (IsCourseGhostBitSet(d) == 0) {
-        return c;
+    if (IsCourseGhostBitSet(cupCourseIndex) == 0) {
+        return noRecords;
     }
-    for (i = 0; i < 6; i++) {
-        if (func_02060004_inline(a, i, &b)) {
-            c = FALSE;
+    for (recordIndex = 0; recordIndex < 6; recordIndex++) {
+        if (func_02060004_inline(courseId, recordIndex, &timeRecord)) {
+            noRecords = FALSE;
             break;
         }
     }
-    return c;
+    return noRecords;
 }
 
-BOOL IsTimeRecordFilled(s32 a, s32 b) {
-    TimeRecord c;
+BOOL IsTimeRecordFilled(s32 courseId, s32 recordIndex) {
+    TimeRecord timeRecord;
 
-    if (GetCourseTimeRecord(a, b, &c) != 0 && c.mFilled != 0) {
+    if (GetCourseTimeRecord(courseId, recordIndex, &timeRecord) != 0 && timeRecord.mFilled != 0) {
         return TRUE;
     }
     return FALSE;
 }
 
-s32 GetTimeRecordCharacterIndex(s32 a, s32 b) {
-    TimeRecord c;
+s32 GetTimeRecordCharacterIndex(s32 courseId, s32 recordIndex) {
+    TimeRecord timeRecord;
 
-    if (func_02060004_inline(a, b, &c)) {
-        return c.mCharacterIndex;
+    if (func_02060004_inline(courseId, recordIndex, &timeRecord)) {
+        return timeRecord.mCharacterIndex;
     }
     return -1;
 }
 
-s32 GetTimeRecordKartIndex(s32 a, s32 b) {
-    TimeRecord c;
+s32 GetTimeRecordKartIndex(s32 courseId, s32 recordIndex) {
+    TimeRecord timeRecord;
 
-    if (func_02060004_inline(a, b, &c)) {
-        return c.mKartIndex;
+    if (func_02060004_inline(courseId, recordIndex, &timeRecord)) {
+        return timeRecord.mKartIndex;
     }
     return -1;
 }
 
-BOOL GetTimeRecordTime(s32 a, s32 b, void *v1) {
-    TimeRecord c;
-    TimeRecord *d;
+BOOL GetTimeRecordTime(s32 courseId, s32 recordIndex, void *timeOut) {
+    TimeRecord timeRecord;
+    TimeRecord *outRecord;
 
-    if (!func_02060004_inline(a, b, &c)) {
+    if (!func_02060004_inline(courseId, recordIndex, &timeRecord)) {
         return FALSE;
     }
-    d = v1;
-    d->mMinute = c.mMinute;
-    d->mSecond = c.mSecond;
-    d->mMillisecond = c.mMillisecond;
+    outRecord = timeOut;
+    outRecord->mMinute = timeRecord.mMinute;
+    outRecord->mSecond = timeRecord.mSecond;
+    outRecord->mMillisecond = timeRecord.mMillisecond;
     return TRUE;
 }
 
-BOOL GetTimeRecordName(s32 a, s32 b, void *v1) {
-    TimeRecord c;
+BOOL GetTimeRecordName(s32 courseId, s32 recordIndex, void *nameOut) {
+    TimeRecord timeRecord;
 
-    if (!func_02060004_inline(a, b, &c)) {
+    if (!func_02060004_inline(courseId, recordIndex, &timeRecord)) {
         return FALSE;
     }
-    MI_CpuCopy8(c.mName, v1, 0x14);
+    MI_CpuCopy8(timeRecord.mName, nameOut, 0x14);
     return TRUE;
 }
 
-s32 func_020600b4(s32 a) {
-    return func_0203b96c(FindCupIndexOfCourse(a));
+s32 func_020600b4(s32 courseId) {
+    return func_0203b96c(FindCupIndexOfCourse(courseId));
 }
 
-void ClearCourseTimeRecords(s32 a) {
-    u8 i;
-    BOOL d;
+void ClearCourseTimeRecords(s32 courseId) {
+    u8 recordIndex;
+    BOOL ghostBitCleared;
     u8 e;
-    s32 c;
-    TimeRecord b;
+    s32 cupCourseIndex;
+    TimeRecord timeRecord;
 
-    c = FindCupCourseIndex(a);
-    d = FALSE;
-    if (c == -1) {
+    cupCourseIndex = FindCupCourseIndex(courseId);
+    ghostBitCleared = FALSE;
+    if (cupCourseIndex == -1) {
         return;
     }
-    e = c;
+    e = cupCourseIndex;
     if (IsCourseGhostBitSet(e) != 0) {
         ClearCourseGhostBit(e);
-        d = TRUE;
+        ghostBitCleared = TRUE;
     }
-    for (i = 0; i < 6; i++) {
-        MI_CpuFill8(&b, 0, 0x20);
-        SetCourseTimeRecord(a, i, &b);
+    for (recordIndex = 0; recordIndex < 6; recordIndex++) {
+        MI_CpuFill8(&timeRecord, 0, 0x20);
+        SetCourseTimeRecord(courseId, recordIndex, &timeRecord);
     }
-    if (d != FALSE) {
+    if (ghostBitCleared != FALSE) {
         func_020563ec();
     } else {
         WriteBackupCourseTimeRecords();

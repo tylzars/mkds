@@ -3,4 +3,4 @@
 #include "types.h"
 
 void func_0205edcc(void);
-void func_0205edf8(void);
+void WriteBackupBuddyRecords(void);

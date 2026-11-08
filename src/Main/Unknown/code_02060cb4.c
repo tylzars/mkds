@@ -104,7 +104,7 @@ s32 func_02061104(const void *a) {
     for (i = 0; i < 60; i++) {
         u8 *g;
 
-        func_0205ee14(i, &c);
+        GetBuddyRecord(i, &c);
         if (c.mFilled == 1) {
             g = f + i * 12;
             if (func_02152698(g) != 0 && DWC_IsEqualFriendData((DWCAccFriendData *) g, (DWCAccFriendData *) b) != 0) {
@@ -130,7 +130,7 @@ s32 func_0206105c(const void *a) {
     for (i = 0; i < 60; i++) {
         u8 *e;
 
-        func_0205ee14(i, &b);
+        GetBuddyRecord(i, &b);
         if (b.mFilled == 1) {
             e = d + i * 12;
             if (func_02152698(e) != 0 && DWC_IsEqualFriendData((DWCAccFriendData *) e, a) != 0) {
@@ -165,7 +165,7 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
     t = g[2];
     p = a;
     for (i = 0; i < 60; i = (s8) (i + 1), p += 12) {
-        func_0205ee14((u8) i, &k);
+        GetBuddyRecord((u8) i, &k);
         if (k.mFilled == 1 && func_02152698(c) != 0 && func_02152698(p) != 0 &&
             DWC_IsEqualFriendData((DWCAccFriendData *) p, (DWCAccFriendData *) c) != 0) {
             m = i;
@@ -181,7 +181,7 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
     }
     if (m == -1) {
         for (i = 0; i < 60; i = (s8) (i + 1)) {
-            func_0205ee14((u8) i, &k);
+            GetBuddyRecord((u8) i, &k);
             if (k.mFilled == 0) {
                 m = i;
                 break;
@@ -194,7 +194,7 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
         h.mMonth = 12;
         h.mDay = 31;
         for (i = 0; i < 60; i = (s8) (i + 1)) {
-            func_0205ee14((u8) i, &k);
+            GetBuddyRecord((u8) i, &k);
             j.mYear = k.mYear;
             j.mMonth = k.mMonth;
             j.mDay = k.mDay;
@@ -212,7 +212,7 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
     }
     MI_CpuCopy8(c, a + m * 12, 12);
     v = m;
-    func_0205ee14(v, &k);
+    GetBuddyRecord(v, &k);
     if (n == FALSE) {
         ResetBuddyRecord((u32) &k);
     }
@@ -227,7 +227,7 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
     MI_CpuCopy8(b, k.mName, 0x14);
     k.mUnk_22_2 = e != 0;
     k.mFilled = 1;
-    func_0205ee74(v, &k);
+    SetBuddyRecord(v, &k);
     return m;
 }
 

@@ -28,13 +28,13 @@ u32 func_0205e2b8(void) {
 s32 func_0205e1c4(void) {
     BOOL result = FALSE;
     u16 i = 0;
-    Unk0217aa24_00 *entry;
+    ShapeMapObjectCount *entry;
     CourseMapShape *courseMapShape;
     s32 mapObjectCount;
     u16 j;
     u8 insideCount;
-    for (i = 0; i < data_0217aa24->mUnk_04; i++) {
-        entry = &data_0217aa24->mUnk_00[i];
+    for (i = 0; i < data_0217aa24->mEntryCount; i++) {
+        entry = &data_0217aa24->mEntries[i];
         courseMapShape = GetCourseMapShape(entry->mShapeIndex);
         mapObjectCount = FindMapObjectsOfKindInRadius(&courseMapShape->mPos, entry->mRadius, courseMapShape->mUnk_3c);
         insideCount = 0;
@@ -43,11 +43,11 @@ s32 func_0205e1c4(void) {
                 insideCount = insideCount + 1;
             }
         }
-        if (entry->mUnk_09 < insideCount) {
-            entry->mUnk_08++;
+        if (entry->mMapObjectCount < insideCount) {
+            entry->mIncreaseCount++;
         }
-        entry->mUnk_09 = insideCount;
-        if (entry->mUnk_08 > courseMapShape->mUnk_3e) {
+        entry->mMapObjectCount = insideCount;
+        if (entry->mIncreaseCount > courseMapShape->mUnk_3e) {
             result = TRUE;
             break;
         }

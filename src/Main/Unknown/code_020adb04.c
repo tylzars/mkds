@@ -71,7 +71,7 @@ s32 func_020adc04(void) {
 
     a = func_020adbe4();
     b = func_020adbc4();
-    return func_0205fd78(a, b, &v);
+    return GetMissionRecordValue(a, b, &v);
 }
 
 #pragma thumb off
@@ -103,7 +103,7 @@ BOOL func_020adb34(void) {
     }
     for (i = 1; i <= 6; i++) {
         for (j = 1; j <= 9; j++) {
-            r = func_0205fd78(i, j, &v);
+            r = GetMissionRecordValue(i, j, &v);
             if (i == func_020adbe4() && j == func_020adbc4()) {
                 if (r != 0 && (u32) (v - 5) <= 2) {
                     return FALSE;

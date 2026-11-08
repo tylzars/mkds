@@ -3,7 +3,7 @@
 #include "Main/Unknown/code_02057764.h"
 #include "Main/Unknown/unk_0217a000.h"
 
-void func_0205edf8(void) {
+void WriteBackupBuddyRecords(void) {
     u32 value0;
     u32 value12;
     value0 = (u32) &data_0217aa08;

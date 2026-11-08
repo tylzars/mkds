@@ -1581,25 +1581,25 @@ typedef struct RunScenesState {
     /* 0c */ void *mSndHeapsBuffer;
 } RunScenesState;
 
-// 0xc-byte entries of the array behind member 0x00 of Unk0217aa24.
-typedef struct Unk0217aa24_00 {
+// 0xc-byte entries of the array behind member 0x00 of ShapeMapObjectCountList.
+typedef struct ShapeMapObjectCount {
     /* 00 */ u16 mShapeIndex;
     /* 02 */ u8 mUnk_02[2];
     /* 04 */ s32 mRadius;
-    /* 08 */ u8 mUnk_08;
-    /* 09 */ u8 mUnk_09;
+    /* 08 */ u8 mIncreaseCount;
+    /* 09 */ u8 mMapObjectCount;
     /* 0a */ u8 mUnk_0a[2];
-} Unk0217aa24_00;
+} ShapeMapObjectCount;
 
 // Object behind data_0217aa24, 8 bytes.
-typedef struct Unk0217aa24 {
-    /* 00 */ Unk0217aa24_00 *mUnk_00;
-    /* 04 */ u16 mUnk_04;
+typedef struct ShapeMapObjectCountList {
+    /* 00 */ ShapeMapObjectCount *mEntries;
+    /* 04 */ u16 mEntryCount;
     /* 06 */ u8 mUnk_06[2];
-} Unk0217aa24;
+} ShapeMapObjectCountList;
 
 extern RunScenesState *gRunScenesState;
-extern Unk0217aa24 *data_0217aa24;
+extern ShapeMapObjectCountList *data_0217aa24;
 extern u16 gFadeFogHoldFrames;
 // Set to 1 when TryUpdateEntryCamera is entered; cleared once per UpdateRace call by ClearCameraEntryFlags.
 // RefreshCameraProjection does not skip the chase camera's projection while it is 1.

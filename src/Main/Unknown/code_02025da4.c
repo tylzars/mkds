@@ -12,7 +12,7 @@ s32 func_02025da4(KartAppear *appear, u32 characterIndex, s32 kartIndex) {
     tableIndex = startIndex;
     do {
         tableKartIndex = GetKartIndexAtTableIndex(tableIndex);
-        if (func_0205fd2c(appear, characterIndex, tableKartIndex) != 0) {
+        if (IsKartAppearWithinLimit(appear, characterIndex, tableKartIndex) != 0) {
             if (tableKartIndex == kartIndex) {
                 break;
             }

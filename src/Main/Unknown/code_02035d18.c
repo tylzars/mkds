@@ -56,7 +56,7 @@ s32 func_02035f5c(u32 sceneNumbers) {
                     if (func_02035e44() != 0) {
                         func_02035e38();
                     }
-                    func_0205e5c4(1);
+                    StartCopyOtherEmblems(1);
                     gWLMenuMessage->mState = 6;
                     break;
                 case 2:

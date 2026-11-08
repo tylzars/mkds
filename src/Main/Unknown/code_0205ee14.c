@@ -32,210 +32,211 @@
 #pragma opt_rebuildconditionals off
 
 static inline BOOL func_0205f218_inline(void) {
-    ConnectionWork *p;
+    ConnectionWork *connectionWork;
 
-    p = data_0217aa00;
-    return (p == NULL ? 0 : p->mUnk_0000) != 0 && p->mUnk_0004 != 13;
+    connectionWork = data_0217aa00;
+    return (connectionWork == NULL ? 0 : connectionWork->mUnk_0000) != 0 && connectionWork->mUnk_0004 != 13;
 }
 
-u32 func_0205fe1c(u8 *a, TimeRecord *b, s32 c) {
-    u8 d[10] = {0};
+BOOL FormatTimeRecordChars(u8 *charsOut, TimeRecord *timeRecord, s32 courseId) {
+    u8 packedBytes[10] = {0};
     u32 e;
-    s32 f;
-    u32 g;
-    u8 m;
-    s32 i;
-    u16 k;
-    u8 j;
-    u32 n;
-    s32 h;
+    s32 cupCourseIndex;
+    u32 characterKartValue;
+    u8 bitPosition;
+    s32 charIndex;
+    u16 charValue;
+    u8 bitIndex;
+    u32 bitOffset;
+    s32 byteIndex;
     u8 q;
-    s32 x;
+    s32 xorKey;
 
-    e = b->mMillisecond + (b->mSecond * 1000 + b->mMinute * 60000);
+    e = timeRecord->mMillisecond + (timeRecord->mSecond * 1000 + timeRecord->mMinute * 60000);
     if (e >= 240000) {
         return 0;
     }
-    f = FindCupCourseIndex(c);
-    if (f < 0 || f >= 32) {
+    cupCourseIndex = FindCupCourseIndex(courseId);
+    if (cupCourseIndex < 0 || cupCourseIndex >= 32) {
         return 0;
     }
-    g = b->mCharacterIndex * 37 + b->mKartIndex;
-    if (g >= 0x200) {
+    characterKartValue = timeRecord->mCharacterIndex * 37 + timeRecord->mKartIndex;
+    if (characterKartValue >= 0x200) {
         return 0;
     }
-    e = ((e & 0x3ffff) << 14) | ((f & 0x1f) << 9);
-    *(u32 *) &d[0] = e | (g & 0x1ff);
-    MI_CpuCopy8(&b->mName, &d[4], 4);
-    *(u16 *) &d[8] = 0;
-    WriteBlockTail(d, 10, 1);
-    x = 0xc3;
-    for (h = 9; h >= 0; h--) {
-        d[h] ^= x;
-        x = d[h];
+    e = ((e & 0x3ffff) << 14) | ((cupCourseIndex & 0x1f) << 9);
+    *(u32 *) &packedBytes[0] = e | (characterKartValue & 0x1ff);
+    MI_CpuCopy8(&timeRecord->mName, &packedBytes[4], 4);
+    *(u16 *) &packedBytes[8] = 0;
+    WriteBlockTail(packedBytes, 10, 1);
+    xorKey = 0xc3;
+    for (byteIndex = 9; byteIndex >= 0; byteIndex--) {
+        packedBytes[byteIndex] ^= xorKey;
+        xorKey = packedBytes[byteIndex];
     }
-    for (i = 0, n = 0; i < 16; i++) {
-        k = 0;
-        for (j = 0; j < 5; j++) {
-            q = n;
-            m = q + j;
-            k = (u16) (k | ((d[(u8) (m / 8)] >> (u8) (7 - m % 8)) & 1)) << 1;
+    for (charIndex = 0, bitOffset = 0; charIndex < 16; charIndex++) {
+        charValue = 0;
+        for (bitIndex = 0; bitIndex < 5; bitIndex++) {
+            q = bitOffset;
+            bitPosition = q + bitIndex;
+            charValue = (u16) (charValue | ((packedBytes[(u8) (bitPosition / 8)] >> (u8) (7 - bitPosition % 8)) & 1))
+                        << 1;
         }
-        a[i] = data_usa_0215494c[(u8) (k / 2)];
-        n += 5;
+        charsOut[charIndex] = gTimeRecordCharTable[(u8) (charValue / 2)];
+        bitOffset += 5;
     }
     return 1;
 }
 
-s32 func_0205fdb4(s32 a, void *b) {
-    TimeRecord c;
-    BOOL d;
+BOOL FormatFirstCourseTimeRecord(s32 courseId, void *charsOut) {
+    TimeRecord timeRecord;
+    BOOL hasRecord;
 
-    d = FALSE;
-    if (GetCourseTimeRecord(a, 0, &c) != 0 && c.mFilled != 0) {
-        d = TRUE;
+    hasRecord = FALSE;
+    if (GetCourseTimeRecord(courseId, 0, &timeRecord) != 0 && timeRecord.mFilled != 0) {
+        hasRecord = TRUE;
     }
-    if (d == FALSE) {
+    if (hasRecord == FALSE) {
         return 0;
     }
-    return func_0205fe1c(b, &c, a);
+    return FormatTimeRecordChars(charsOut, &timeRecord, courseId);
 }
 
-s32 func_0205fd78(s32 a, s32 b, s32 *v1) {
-    UnpackedMissionRecord c;
-    BOOL d;
+BOOL GetMissionRecordValue(s32 row, s32 column, s32 *valueOut) {
+    UnpackedMissionRecord missionRecord;
+    BOOL isFilled;
 
-    d = FALSE;
-    GetMissionRecord(a, b, &c);
-    if (c.mFilled == 1) {
-        d = TRUE;
-        *v1 = c.mValue;
+    isFilled = FALSE;
+    GetMissionRecord(row, column, &missionRecord);
+    if (missionRecord.mFilled == 1) {
+        isFilled = TRUE;
+        *valueOut = missionRecord.mValue;
     }
-    return d;
+    return isFilled;
 }
 
-u32 func_0205fd2c(KartAppear *a, u32 b, u32 c) {
-    u8 d;
-    u8 e;
+BOOL IsKartAppearWithinLimit(KartAppear *kartAppear, u32 characterIndex, u32 kartIndex) {
+    u8 limit;
+    u8 appearValue;
 
-    d = func_02056d98();
-    e = a->mFileData->mUnk_06[c][b];
-    if (e != 0 && e <= d) {
+    limit = func_02056d98();
+    appearValue = kartAppear->mFileData->mValues[kartIndex][characterIndex];
+    if (appearValue != 0 && appearValue <= limit) {
         return 1;
     }
     return 0;
 }
 
-BOOL func_0205fc98(KartAppear *a, u32 b, u32 c) {
-    u8 d;
-    u8 e;
+BOOL func_0205fc98(KartAppear *kartAppear, u32 characterIndex, u32 kartIndex) {
+    u8 limit;
+    u8 appearValue;
 
     if (func_0205f218_inline() != FALSE) {
-        d = data_0217aa08->mParticipantMinValue;
+        limit = data_0217aa08->mParticipantMinValue;
     } else {
-        d = func_02056d98();
+        limit = func_02056d98();
     }
-    e = a->mFileData->mUnk_06[c][b];
-    if (e != 0 && e <= d) {
+    appearValue = kartAppear->mFileData->mValues[kartIndex][characterIndex];
+    if (appearValue != 0 && appearValue <= limit) {
         return TRUE;
     }
     return FALSE;
 }
 
-s32 func_0205fc28(s32 a) {
+s32 IsBitSetInAllParticipants(s32 bitIndex) {
     if (func_0205f218_inline() == FALSE) {
-        return IsBackupFlagSet(a);
+        return IsBackupFlagSet(bitIndex);
     }
-    return func_02056e00(a, data_0217aa08->mParticipantAndBits);
+    return func_02056e00(bitIndex, data_0217aa08->mParticipantAndBits);
 }
 
-s32 func_0205fbb8(s32 a) {
+s32 IsBitSetInAnyParticipant(s32 bitIndex) {
     if (func_0205f218_inline() == FALSE) {
-        return IsBackupFlagSet(a);
+        return IsBackupFlagSet(bitIndex);
     }
-    return func_02056e00(a, data_0217aa08->mParticipantOrBits);
+    return func_02056e00(bitIndex, data_0217aa08->mParticipantOrBits);
 }
 
-void func_0205fa00(u32 a, s32 *b, u32 c, u32 d) {
-    RaceSetup *p;
-    BuddyRecord e;
-    u16 *f;
-    u16 *g;
-    u8 h;
-    s32 r;
+void AddBuddyRecordResult(u32 entryIndex, s32 *date, u32 matchKind, u32 resultKind) {
+    RaceSetup *raceSetup;
+    BuddyRecord buddyRecord;
+    u16 *firstCount;
+    u16 *secondCount;
+    u8 buddyIndex;
+    s32 foundIndex;
 
-    p = gRaceSetup;
-    if (a == p->mEntryIndex) {
+    raceSetup = gRaceSetup;
+    if (entryIndex == raceSetup->mEntryIndex) {
         return;
     }
-    if (p->mCurrentEntries[a].mPlayer.mUnk_20 == 0) {
+    if (raceSetup->mCurrentEntries[entryIndex].mPlayer.mUnk_20 == 0) {
         return;
     }
-    r = func_0206105c((const void *) p->mCurrentEntries[a].mPlayer.mUnk_20);
-    if (r == -1) {
+    foundIndex = func_0206105c((const void *) raceSetup->mCurrentEntries[entryIndex].mPlayer.mUnk_20);
+    if (foundIndex == -1) {
         return;
     }
-    h = r;
-    func_0205ee14(h, &e);
-    if (e.mFilled == 0) {
-        ResetBuddyRecord((u32) &e);
+    buddyIndex = foundIndex;
+    GetBuddyRecord(buddyIndex, &buddyRecord);
+    if (buddyRecord.mFilled == 0) {
+        ResetBuddyRecord((u32) &buddyRecord);
     }
-    if (gRaceSetup->mCurrentEntries[a].mPlayer.mName != NULL) {
-        MI_CpuCopy8(gRaceSetup->mCurrentEntries[a].mPlayer.mName, e.mName, 0x14);
+    if (gRaceSetup->mCurrentEntries[entryIndex].mPlayer.mName != NULL) {
+        MI_CpuCopy8(gRaceSetup->mCurrentEntries[entryIndex].mPlayer.mName, buddyRecord.mName, 0x14);
     }
-    switch (c) {
+    switch (matchKind) {
         case 0:
-            f = &e.mResultCounts[0][0];
-            g = &e.mResultCounts[0][1];
+            firstCount = &buddyRecord.mResultCounts[0][0];
+            secondCount = &buddyRecord.mResultCounts[0][1];
             break;
         case 1:
-            f = &e.mResultCounts[1][0];
-            g = &e.mResultCounts[1][1];
+            firstCount = &buddyRecord.mResultCounts[1][0];
+            secondCount = &buddyRecord.mResultCounts[1][1];
             break;
         case 2:
-            f = &e.mResultCounts[2][0];
-            g = &e.mResultCounts[2][1];
+            firstCount = &buddyRecord.mResultCounts[2][0];
+            secondCount = &buddyRecord.mResultCounts[2][1];
             break;
     }
-    switch (d) {
+    switch (resultKind) {
         case 0:
-            if (*f < 0xffff) {
-                *f = *f + 1;
+            if (*firstCount < 0xffff) {
+                *firstCount = *firstCount + 1;
             }
             break;
         case 1:
-            if (*g < 0xffff) {
-                *g = *g + 1;
+            if (*secondCount < 0xffff) {
+                *secondCount = *secondCount + 1;
             }
             break;
     }
-    e.mYear = b[0];
-    e.mMonth = b[1];
-    e.mDay = b[2];
-    e.mFilled = 1;
-    func_0205ee74(h, &e);
+    buddyRecord.mYear = date[0];
+    buddyRecord.mMonth = date[1];
+    buddyRecord.mDay = date[2];
+    buddyRecord.mFilled = 1;
+    SetBuddyRecord(buddyIndex, &buddyRecord);
 }
 
-static inline u32 func_0205f700_inline(u16 i, u32 a) {
-    if (GetKartRank(i) > a) {
+static inline u32 func_0205f700_inline(u16 kartIndex, u32 ownRank) {
+    if (GetKartRank(kartIndex) > ownRank) {
         return 0;
     }
     return 1;
 }
 
-void func_0205f700(void) {
-    BOOL v1;
-    u32 t;
-    u16 i;
-    u32 a;
-    u32 d;
-    u32 e;
-    s32 c;
-    s32 r;
-    s32 v2[3];
+void AddVSBuddyRecordResults(void) {
+    BOOL countsChanged;
+    u32 outcome;
+    u16 entryIndex;
+    u32 ownRank;
+    u32 firstTotal;
+    u32 secondTotal;
+    s32 teamIndex;
+    s32 playerKind;
+    s32 date[3];
 
-    v1 = FALSE;
-    c = -1;
+    countsChanged = FALSE;
+    teamIndex = -1;
     if (func_0205f218_inline() == FALSE) {
         return;
     }
@@ -248,78 +249,78 @@ void func_0205f700(void) {
     if (gRaceProgress->mRaceDone == 0) {
         return;
     }
-    GetClockDateOrDefault(v2);
-    a = GetKartRank((u16) gRaceSetup->mEntryIndex);
+    GetClockDateOrDefault(date);
+    ownRank = GetKartRank((u16) gRaceSetup->mEntryIndex);
     if (gRaceSetup->mUseTeams != 0) {
-        c = gRaceSetup->mCurrentEntries[(u16) gRaceSetup->mEntryIndex].mPlayer.mTeamIndex;
+        teamIndex = gRaceSetup->mCurrentEntries[(u16) gRaceSetup->mEntryIndex].mPlayer.mTeamIndex;
     }
-    d = data_0217aa08->mFirstBlock->mUnk_34[0];
-    e = data_0217aa08->mFirstBlock->mUnk_34[1];
-    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-        if (i == gRaceSetup->mEntryIndex) {
+    firstTotal = data_0217aa08->mFirstBlock->mUnk_34[0];
+    secondTotal = data_0217aa08->mFirstBlock->mUnk_34[1];
+    for (entryIndex = 0; entryIndex < (u32) gRaceSetup->mKartCount; entryIndex++) {
+        if (entryIndex == gRaceSetup->mEntryIndex) {
             continue;
         }
-        r = gRaceSetup->mCurrentEntries[i].mPlayer.mKind;
-        if (r == PLAYER_KIND_CPU || r == PLAYER_KIND_NONE || r == PLAYER_KIND_GHOST) {
+        playerKind = gRaceSetup->mCurrentEntries[entryIndex].mPlayer.mKind;
+        if (playerKind == PLAYER_KIND_CPU || playerKind == PLAYER_KIND_NONE || playerKind == PLAYER_KIND_GHOST) {
             continue;
         }
         if (gRaceSetup->mUseTeams != 0) {
-            if (c == gRaceSetup->mCurrentEntries[i].mPlayer.mTeamIndex) {
-                t = 2;
+            if (teamIndex == gRaceSetup->mCurrentEntries[entryIndex].mPlayer.mTeamIndex) {
+                outcome = 2;
             } else {
                 switch (gRaceSetup->mRuleKind) {
                     case 0:
                     case 2:
-                        t = func_0205f700_inline(i, a);
+                        outcome = func_0205f700_inline(entryIndex, ownRank);
                         break;
                     case 1:
-                        if (c == GetCupWinningTeam()) {
-                            t = 0;
-                        } else if (gRaceProgress->mUnk_000[i].mStatus == 4) {
-                            t = 2;
+                        if (teamIndex == GetCupWinningTeam()) {
+                            outcome = 0;
+                        } else if (gRaceProgress->mUnk_000[entryIndex].mStatus == 4) {
+                            outcome = 2;
                         } else {
-                            t = 1;
+                            outcome = 1;
                         }
                         break;
                 }
             }
         } else {
-            t = func_0205f700_inline(i, a);
+            outcome = func_0205f700_inline(entryIndex, ownRank);
         }
-        if ((data_0217aa00->mUnk_0457 & (1 << data_0217aa00->mUnk_1e8c[data_0217aa00->mUnk_1e8c[i]])) == 0) {
-            func_0205fa00(i, v2, 0, t);
+        if ((data_0217aa00->mUnk_0457 & (1 << data_0217aa00->mUnk_1e8c[data_0217aa00->mUnk_1e8c[entryIndex]])) == 0) {
+            AddBuddyRecordResult(entryIndex, date, 0, outcome);
         }
-        if (t == 0) {
-            if (d < data_usa_021653e0) {
-                d++;
-                v1 = TRUE;
+        if (outcome == 0) {
+            if (firstTotal < gResultTotalMax) {
+                firstTotal++;
+                countsChanged = TRUE;
             }
-        } else if (t == 1) {
-            if (e < data_usa_021653e0) {
-                e++;
-                v1 = TRUE;
+        } else if (outcome == 1) {
+            if (secondTotal < gResultTotalMax) {
+                secondTotal++;
+                countsChanged = TRUE;
             }
         }
     }
-    if (v1 != FALSE) {
-        data_0217aa08->mFirstBlock->mUnk_34[0] = d;
-        data_0217aa08->mFirstBlock->mUnk_34[1] = e;
+    if (countsChanged != FALSE) {
+        data_0217aa08->mFirstBlock->mUnk_34[0] = firstTotal;
+        data_0217aa08->mFirstBlock->mUnk_34[1] = secondTotal;
         func_0205edcc();
     } else {
-        func_0205edf8();
+        WriteBackupBuddyRecords();
     }
 }
 
-void func_0205f498(void) {
-    u16 i;
-    u32 a;
-    u32 b;
-    BOOL v1;
-    u32 t;
-    s32 r;
-    s32 v2[5];
+void AddBattleBuddyRecordResults(void) {
+    u16 entryIndex;
+    u32 firstTotal;
+    u32 secondTotal;
+    BOOL countsChanged;
+    u32 outcome;
+    s32 playerKind;
+    s32 date[5];
 
-    v1 = FALSE;
+    countsChanged = FALSE;
     if (func_0205f218_inline() == FALSE) {
         return;
     }
@@ -332,61 +333,61 @@ void func_0205f498(void) {
     if (IsWinnerDecidedAndEndReached() == 0) {
         return;
     }
-    GetClockDateOrDefault(v2);
-    a = data_0217aa08->mFirstBlock->mUnk_34[2];
-    b = data_0217aa08->mFirstBlock->mUnk_34[3];
-    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-        if (i == gRaceSetup->mEntryIndex) {
+    GetClockDateOrDefault(date);
+    firstTotal = data_0217aa08->mFirstBlock->mUnk_34[2];
+    secondTotal = data_0217aa08->mFirstBlock->mUnk_34[3];
+    for (entryIndex = 0; entryIndex < (u32) gRaceSetup->mKartCount; entryIndex++) {
+        if (entryIndex == gRaceSetup->mEntryIndex) {
             continue;
         }
-        r = gRaceSetup->mCurrentEntries[i].mPlayer.mKind;
-        if (r == PLAYER_KIND_CPU || r == PLAYER_KIND_NONE || r == PLAYER_KIND_GHOST) {
+        playerKind = gRaceSetup->mCurrentEntries[entryIndex].mPlayer.mKind;
+        if (playerKind == PLAYER_KIND_CPU || playerKind == PLAYER_KIND_NONE || playerKind == PLAYER_KIND_GHOST) {
             continue;
         }
-        t = 2;
+        outcome = 2;
         if (IsKartOnWinningTeamAtEnd((u16) gRaceSetup->mEntryIndex) != 0) {
-            if (IsKartOnWinningTeamAtEnd(i) == 0) {
-                t = 0;
+            if (IsKartOnWinningTeamAtEnd(entryIndex) == 0) {
+                outcome = 0;
             }
-        } else if (IsKartOnWinningTeamAtEnd(i) != 0) {
-            if (gRaceProgress->mUnk_000[i].mStatus != 4) {
-                t = 1;
+        } else if (IsKartOnWinningTeamAtEnd(entryIndex) != 0) {
+            if (gRaceProgress->mUnk_000[entryIndex].mStatus != 4) {
+                outcome = 1;
             }
         }
-        if ((data_0217aa00->mUnk_0457 & (1 << data_0217aa00->mUnk_1e8c[data_0217aa00->mUnk_1e8c[i]])) == 0) {
-            func_0205fa00(i, v2, 1, t);
+        if ((data_0217aa00->mUnk_0457 & (1 << data_0217aa00->mUnk_1e8c[data_0217aa00->mUnk_1e8c[entryIndex]])) == 0) {
+            AddBuddyRecordResult(entryIndex, date, 1, outcome);
         }
-        if (t == 0) {
-            if (a < data_usa_021653e0) {
-                v1 = TRUE;
-                a++;
+        if (outcome == 0) {
+            if (firstTotal < gResultTotalMax) {
+                countsChanged = TRUE;
+                firstTotal++;
             }
-        } else if (t == 1) {
-            if (b < data_usa_021653e0) {
-                v1 = TRUE;
-                b++;
+        } else if (outcome == 1) {
+            if (secondTotal < gResultTotalMax) {
+                countsChanged = TRUE;
+                secondTotal++;
             }
         }
     }
-    if (v1 != FALSE) {
-        data_0217aa08->mFirstBlock->mUnk_34[2] = a;
-        data_0217aa08->mFirstBlock->mUnk_34[3] = b;
+    if (countsChanged != FALSE) {
+        data_0217aa08->mFirstBlock->mUnk_34[2] = firstTotal;
+        data_0217aa08->mFirstBlock->mUnk_34[3] = secondTotal;
         func_0205edcc();
     } else {
-        func_0205edf8();
+        WriteBackupBuddyRecords();
     }
 }
 
 void func_0205f218(void) {
-    u16 i;
-    u32 a;
-    u32 b;
-    BOOL v1;
-    u32 t;
-    s32 r;
-    s32 v2[5];
+    u16 entryIndex;
+    u32 firstTotal;
+    u32 secondTotal;
+    BOOL countsChanged;
+    u32 outcome;
+    s32 playerKind;
+    s32 date[5];
 
-    v1 = FALSE;
+    countsChanged = FALSE;
     if (func_0205f218_inline() == FALSE) {
         return;
     }
@@ -399,79 +400,79 @@ void func_0205f218(void) {
     if (IsWinnerDecidedAndEndReached() == 0) {
         return;
     }
-    GetClockDateOrDefault(v2);
+    GetClockDateOrDefault(date);
     GetKartRank((u16) gRaceSetup->mEntryIndex);
-    a = data_0217aa08->mFirstBlock->mUnk_34[2];
-    b = data_0217aa08->mFirstBlock->mUnk_34[3];
-    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-        if (i == gRaceSetup->mEntryIndex) {
+    firstTotal = data_0217aa08->mFirstBlock->mUnk_34[2];
+    secondTotal = data_0217aa08->mFirstBlock->mUnk_34[3];
+    for (entryIndex = 0; entryIndex < (u32) gRaceSetup->mKartCount; entryIndex++) {
+        if (entryIndex == gRaceSetup->mEntryIndex) {
             continue;
         }
-        r = gRaceSetup->mCurrentEntries[i].mPlayer.mKind;
-        if (r == PLAYER_KIND_CPU || r == PLAYER_KIND_NONE || r == PLAYER_KIND_GHOST) {
+        playerKind = gRaceSetup->mCurrentEntries[entryIndex].mPlayer.mKind;
+        if (playerKind == PLAYER_KIND_CPU || playerKind == PLAYER_KIND_NONE || playerKind == PLAYER_KIND_GHOST) {
             continue;
         }
-        t = 2;
+        outcome = 2;
         if (IsKartOnWinningTeamAtEnd((u16) gRaceSetup->mEntryIndex) != 0) {
-            if (IsKartOnWinningTeamAtEnd(i) == 0) {
-                t = 0;
+            if (IsKartOnWinningTeamAtEnd(entryIndex) == 0) {
+                outcome = 0;
             }
-        } else if (IsKartOnWinningTeamAtEnd(i) != 0) {
-            if (gRaceProgress->mUnk_000[i].mStatus != 4) {
-                t = 1;
+        } else if (IsKartOnWinningTeamAtEnd(entryIndex) != 0) {
+            if (gRaceProgress->mUnk_000[entryIndex].mStatus != 4) {
+                outcome = 1;
             }
         }
-        if ((data_0217aa00->mUnk_0457 & (1 << data_0217aa00->mUnk_1e8c[data_0217aa00->mUnk_1e8c[i]])) == 0) {
-            func_0205fa00(i, v2, 1, t);
+        if ((data_0217aa00->mUnk_0457 & (1 << data_0217aa00->mUnk_1e8c[data_0217aa00->mUnk_1e8c[entryIndex]])) == 0) {
+            AddBuddyRecordResult(entryIndex, date, 1, outcome);
         }
-        if (t == 0) {
-            if (a < data_usa_021653e0) {
-                v1 = TRUE;
-                a++;
+        if (outcome == 0) {
+            if (firstTotal < gResultTotalMax) {
+                countsChanged = TRUE;
+                firstTotal++;
             }
-        } else if (t == 1) {
-            if (b < data_usa_021653e0) {
-                v1 = TRUE;
-                b++;
+        } else if (outcome == 1) {
+            if (secondTotal < gResultTotalMax) {
+                countsChanged = TRUE;
+                secondTotal++;
             }
         }
     }
-    if (v1 != FALSE) {
-        data_0217aa08->mFirstBlock->mUnk_34[2] = a;
-        data_0217aa08->mFirstBlock->mUnk_34[3] = b;
+    if (countsChanged != FALSE) {
+        data_0217aa08->mFirstBlock->mUnk_34[2] = firstTotal;
+        data_0217aa08->mFirstBlock->mUnk_34[3] = secondTotal;
         func_0205edcc();
     } else {
-        func_0205edf8();
+        WriteBackupBuddyRecords();
     }
 }
 
-static inline u16 func_0205ef70_inline(u16 a) {
-    s32 b;
-    s32 c;
-    s32 d;
-    KartCourseResult *p;
+static inline u16 func_0205ef70_inline(u16 entryIndex) {
+    s32 lowByte;
+    s32 courseIndexInCup;
+    s32 lowByteAgain;
+    KartCourseResult *courseResult;
 
-    b = GetLowByte(a);
-    c = GetCourseIndexInCup();
-    d = GetLowByte(b);
-    p = &gCupRecords->mUnk_000[c][0];
-    p += d;
-    return p->mTotalPoints;
+    lowByte = GetLowByte(entryIndex);
+    courseIndexInCup = GetCourseIndexInCup();
+    lowByteAgain = GetLowByte(lowByte);
+    courseResult = &gCupRecords->mUnk_000[courseIndexInCup][0];
+    courseResult += lowByteAgain;
+    return courseResult->mTotalPoints;
 }
 
 void func_0205ef70(void) {
-    u16 i;
-    s32 c;
-    u32 a;
-    u32 b;
-    u32 g;
-    u16 h;
-    u32 t;
-    s8 m;
-    s32 v1[3];
+    u16 entryIndex;
+    s32 ownCupRank;
+    u32 firstTotal;
+    u32 secondTotal;
+    u32 kartCountCopy;
+    u16 ownPoints;
+    u32 outcome;
+    s8 otherKartCount;
+    s32 date[3];
 
-    a = data_0217aa08->mFirstBlock->mUnk_34[4];
-    b = data_0217aa08->mFirstBlock->mUnk_34[5];
+    firstTotal = data_0217aa08->mFirstBlock->mUnk_34[4];
+    secondTotal = data_0217aa08->mFirstBlock->mUnk_34[5];
     func_0205b32c();
     if (gRaceSetup->mCourseNumber <= 3) {
         return;
@@ -482,58 +483,58 @@ void func_0205ef70(void) {
     if (gRaceProgress->mUnk_000[(u16) gRaceSetup->mEntryIndex].mStatus == 4) {
         return;
     }
-    GetClockDateOrDefault(v1);
-    c = GetKartCupRank((u16) gRaceSetup->mEntryIndex);
-    h = func_0205ef70_inline(gRaceSetup->mEntryIndex);
-    m = gWiFiSession->mKartCountCopy - 1;
-    g = gWiFiSession->mKartCountCopy;
-    if (m > 0) {
-        if (b < m) {
-            b = 0;
+    GetClockDateOrDefault(date);
+    ownCupRank = GetKartCupRank((u16) gRaceSetup->mEntryIndex);
+    ownPoints = func_0205ef70_inline(gRaceSetup->mEntryIndex);
+    otherKartCount = gWiFiSession->mKartCountCopy - 1;
+    kartCountCopy = gWiFiSession->mKartCountCopy;
+    if (otherKartCount > 0) {
+        if (secondTotal < otherKartCount) {
+            secondTotal = 0;
         } else {
-            b -= m;
+            secondTotal -= otherKartCount;
         }
     }
-    if ((s16) (g - gRaceSetup->mKartCount) > 0) {
-        a += (s16) (g - gRaceSetup->mKartCount);
-        if (a > data_usa_021653e0) {
-            a = data_usa_021653e0;
+    if ((s16) (kartCountCopy - gRaceSetup->mKartCount) > 0) {
+        firstTotal += (s16) (kartCountCopy - gRaceSetup->mKartCount);
+        if (firstTotal > gResultTotalMax) {
+            firstTotal = gResultTotalMax;
         }
     }
-    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-        t = 2;
-        if (i != gRaceSetup->mEntryIndex) {
-            if (c < GetKartCupRank(i)) {
-                t = 0;
-            } else if (c > GetKartCupRank(i)) {
-                t = 1;
+    for (entryIndex = 0; entryIndex < (u32) gRaceSetup->mKartCount; entryIndex++) {
+        outcome = 2;
+        if (entryIndex != gRaceSetup->mEntryIndex) {
+            if (ownCupRank < GetKartCupRank(entryIndex)) {
+                outcome = 0;
+            } else if (ownCupRank > GetKartCupRank(entryIndex)) {
+                outcome = 1;
             }
-            if (h == func_0205ef70_inline(i)) {
-                t = 2;
+            if (ownPoints == func_0205ef70_inline(entryIndex)) {
+                outcome = 2;
             }
-            func_0205fa00(i, v1, 2, t);
-            if (t == 0) {
-                if (a < data_usa_021653e0) {
-                    a++;
+            AddBuddyRecordResult(entryIndex, date, 2, outcome);
+            if (outcome == 0) {
+                if (firstTotal < gResultTotalMax) {
+                    firstTotal++;
                 }
-            } else if (t == 1) {
-                if (b < data_usa_021653e0) {
-                    b++;
+            } else if (outcome == 1) {
+                if (secondTotal < gResultTotalMax) {
+                    secondTotal++;
                 }
             }
         }
     }
     data_0217aa08->mFirstBlock->mElo = GetPlayerRecordElo(func_ov000_0219bb50());
-    data_0217aa08->mFirstBlock->mUnk_34[4] = a;
-    data_0217aa08->mFirstBlock->mUnk_34[5] = b;
+    data_0217aa08->mFirstBlock->mUnk_34[4] = firstTotal;
+    data_0217aa08->mFirstBlock->mUnk_34[5] = secondTotal;
     func_0205edcc();
 }
 
-void func_0205eeb0(void) {
+void SetRaceResultRecords(void) {
     if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
         switch (gRaceSetup->mMode) {
             case MODE_VS:
-                func_0205f700();
+                AddVSBuddyRecordResults();
                 break;
             case MODE_MISSION_RUN:
                 TrySetMissionRecord();
@@ -541,7 +542,7 @@ void func_0205eeb0(void) {
             case MODE_BATTLE:
                 switch (gRaceSetup->mBattleKind) {
                     case BATTLE_KIND_BALLOON:
-                        func_0205f498();
+                        AddBattleBuddyRecordResults();
                         break;
                     case BATTLE_KIND_SHINE:
                         func_0205f218();
@@ -555,13 +556,13 @@ void func_0205eeb0(void) {
     }
 }
 
-void func_0205ee74(u32 a, BuddyRecord *b) {
-    MI_CpuCopy8(b, &data_0217aa08->mBuddyRecordBlock->mRecords[a], 0x24);
+void SetBuddyRecord(u32 recordIndex, BuddyRecord *buddyRecord) {
+    MI_CpuCopy8(buddyRecord, &data_0217aa08->mBuddyRecordBlock->mRecords[recordIndex], 0x24);
 }
 
-u32 func_0205ee14(u32 a, BuddyRecord *b) {
-    if (b != NULL) {
-        MI_CpuCopy8(&data_0217aa08->mBuddyRecordBlock->mRecords[a], b, 0x24);
+u32 GetBuddyRecord(u32 recordIndex, BuddyRecord *buddyRecordOut) {
+    if (buddyRecordOut != NULL) {
+        MI_CpuCopy8(&data_0217aa08->mBuddyRecordBlock->mRecords[recordIndex], buddyRecordOut, 0x24);
     }
-    return data_0217aa08->mBuddyRecordBlock->mRecords[a].mFilled != 0;
+    return data_0217aa08->mBuddyRecordBlock->mRecords[recordIndex].mFilled != 0;
 }
