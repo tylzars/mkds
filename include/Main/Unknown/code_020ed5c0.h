@@ -9,13 +9,13 @@
 #include "Main/Unknown/code_02087d0c.h"
 
 // The object behind the word at 0x20 of a KartModelsEntry: the vectors from 0x48.
-typedef struct Unk0206bcb0_590_20 {
+typedef struct KartOffsetData {
     /* 00 */ char mUnk_00[0x10];
     /* 10 */ s32 mUnk_10;
     /* 14 */ Vec3 mUnk_14[4];
     /* 44 */ u8 mUnk_44[4];
     /* 48 */ Vec3 mUnk_48[1];
-} Unk0206bcb0_590_20;
+} KartOffsetData;
 
 // The object behind the word at 0x590 of a Kart from its first byte:
 // the halfword at 0x40.
@@ -49,10 +49,10 @@ typedef struct Unk0206bcb0_590_54 {
 
 // Halfwords at 0x6a of a KartModelsEntry: three packed colours (0x00, 0x02, 0x04), per-channel start values and
 // differences, and a step at 0x2a.
-typedef struct Unk0206bcb0_590_6a {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ u16 mUnk_04;
+typedef struct KartModelColorBlend {
+    /* 00 */ u16 mDiffColor;
+    /* 02 */ u16 mEmiColor;
+    /* 04 */ u16 mAmbColor;
     /* 06 */ s16 mUnk_06;
     /* 08 */ s16 mUnk_08;
     /* 0a */ s16 mUnk_0a;
@@ -71,8 +71,8 @@ typedef struct Unk0206bcb0_590_6a {
     /* 24 */ s16 mUnk_24;
     /* 26 */ s16 mUnk_26;
     /* 28 */ s16 mUnk_28;
-    /* 2a */ s16 mUnk_2a;
-} Unk0206bcb0_590_6a;
+    /* 2a */ s16 mBlendProgress;
+} KartModelColorBlend;
 
 // Words and halfwords from 0x24 of a KartModelsEntry.
 typedef struct CharacterAnimationState {
@@ -89,13 +89,13 @@ typedef struct CharacterAnimationState {
 struct Nsbmd;
 
 typedef struct KartModelsEntry {
-    /* 000 */ s32 mUnk_000;
-    /* 004 */ s32 mUnk_004;
+    /* 000 */ s32 mCharacterIndex;
+    /* 004 */ s32 mKartIndex;
     /* 008 */ KartModelAnimationView *mCharacterAnimation;
     /* 00c */ KartModelAnimationView *mFaceAnimation;
     /* 10 */ Nsbmd *mModels[3];
-    /* 01c */ ShadowModel *mUnk_01c;
-    /* 020 */ Unk0206bcb0_590_20 *mUnk_020;
+    /* 01c */ ShadowModel *mShadowModel;
+    /* 020 */ KartOffsetData *mKartOffsetData;
     /* 024 */ s32 mTurnFrameOffset;
     /* 028 */ u8 mUnk_028[4];
     /* 02c */ s32 mMiddleFrame;
@@ -108,8 +108,8 @@ typedef struct KartModelsEntry {
     /* 05c */ s32 mUnk_05c;
     /* 060 */ BOOL mUnk_060;
     /* 064 */ BOOL mUnk_064;
-    /* 068 */ u16 mUnk_068;
-    /* 06a */ Unk0206bcb0_590_6a mUnk_06a;
+    /* 068 */ u16 mVariant;
+    /* 06a */ KartModelColorBlend mColorBlend;
     /* 096 */ u8 mUnk_096[2];
     /* 098 */ u8 mUnk_098[0xc];
     /* 0a4 */ s32 mUnk_0a4;

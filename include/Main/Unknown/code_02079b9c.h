@@ -4,4 +4,4 @@
 
 struct KartModelsEntry;
 
-void SetKartModelTireAlpha(struct KartModelsEntry *a, s32 b);
+void SetKartModelTireAlpha(struct KartModelsEntry *kartModelsEntry, s32 visible);

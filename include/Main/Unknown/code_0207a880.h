@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-u16 GetKartHeadingAngle(s32 a);
-u32 GetKartItemEffect(u32 a);
+u16 GetKartHeadingAngle(s32 kartIndex);
+u32 GetKartItemEffect(u32 kartIndex);

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 GetKartVariant(u32 a);
+u32 GetKartVariant(u32 kartIndex);

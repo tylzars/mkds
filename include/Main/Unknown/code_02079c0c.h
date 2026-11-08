@@ -4,6 +4,7 @@
 
 struct KartModelsEntry;
 
-void SetKartModelsEntryCourseColors(struct KartModelsEntry *a);
-s32 AdvanceKartModelColorBlend(struct KartModelsEntry *a, s32 b);
-void StartKartModelColorBlend(struct KartModelsEntry *a, u16 b, u16 c, u16 d);
+void SetKartModelsEntryCourseColors(struct KartModelsEntry *kartModelsEntry);
+s32 AdvanceKartModelColorBlend(struct KartModelsEntry *kartModelsEntry, s32 blendAmount);
+void StartKartModelColorBlend(struct KartModelsEntry *kartModelsEntry, u16 targetDiffColor, u16 targetEmiColor,
+                              u16 targetAmbColor);

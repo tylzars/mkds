@@ -1025,7 +1025,7 @@ void func_ov001_021a2a40(void) {
             break;
     }
     func_020ae630(gEmblem, &gEmblem->mUnk_0404);
-    func_020783c8();
+    AdvanceShownSlotAndQueueEmblem();
     DrawKartModelMenuUnmirrored();
     JoinNibbleTilesIntoBytes(GetEmblemGridCells(), gEmblem->mUnk_087c, GetEmblemGridSide());
     JoinNibblesIntoBytes(GetEmblemGridCells(), gEmblem->mUnk_0a7c, GetEmblemGridSide());

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void SetKartForwardSpeedRatio(s32 a);
+void SetKartForwardSpeedRatio(s32 forwardSpeed);

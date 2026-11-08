@@ -34,9 +34,10 @@
 void QueueKartModelMenuLoad(void) {
     if (gKartModelMenu->mCharacterRequested != 0 || gKartModelMenu->mKartRequested != 0) {
         gKartModelMenu->mFiles[gKartModelMenu->mLoadSlotIndex].mLoadRequested = TRUE;
-        gKartModelMenu->mLoadSlot->mUnk_00 = gKartModelMenu->mView.mCharacterIndex;
-        gKartModelMenu->mLoadSlot->mUnk_04 = gKartModelMenu->mView.mKartIndex;
-        gKartModelMenu->mLoadSlot->mUnk_20 = gKartModelMenu->mUnk_1c8 + gKartModelMenu->mView.mKartIndex;
+        gKartModelMenu->mLoadSlot->mCharacterIndex = gKartModelMenu->mView.mCharacterIndex;
+        gKartModelMenu->mLoadSlot->mKartIndex = gKartModelMenu->mView.mKartIndex;
+        gKartModelMenu->mLoadSlot->mKartOffsetData =
+            gKartModelMenu->mKartOffsetTable + gKartModelMenu->mView.mKartIndex;
         QueueThreadFunction(LoadKartAndCharacterFiles);
         gThreadFunctionQueue->mRunRequested = 1;
     }
@@ -70,7 +71,7 @@ BOOL func_02077a70(s32 *characterIndex, u32 kartIndex) {
         if (IsBackupFlagSet(n) == 0) {
             *characterIndex = -1;
             for (i = 0; i < 8; i++) {
-                if (IsKartAppearWithinLimit(gKartModelMenu->mUnk_268, i, kartIndex) != 0) {
+                if (IsKartAppearWithinLimit(gKartModelMenu->mKartAppear, i, kartIndex) != 0) {
                     *characterIndex = i;
                     break;
                 }
@@ -81,7 +82,7 @@ BOOL func_02077a70(s32 *characterIndex, u32 kartIndex) {
             return 0;
         }
     }
-    return IsKartAppearWithinLimit(gKartModelMenu->mUnk_268, *characterIndex, kartIndex);
+    return IsKartAppearWithinLimit(gKartModelMenu->mKartAppear, *characterIndex, kartIndex);
 }
 
 u16 func_02077a5c(void) {

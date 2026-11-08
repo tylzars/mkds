@@ -1245,11 +1245,11 @@ extern Camera *gCurrentChainCamera;
 extern Camera *gEntryCamera;
 extern u8 data_0217acc0[];
 // 0x20-byte entries behind member 0x014 of KartModels.
-typedef struct Unk0217ad00_014 {
+typedef struct HeyhoPalette {
     /* 00 */ u8 mUnk_00[4];
     /* 04 */ u16 mUnk_04;
     /* 06 */ u8 mUnk_06[0x1a];
-} Unk0217ad00_014;
+} HeyhoPalette;
 
 // Object behind gKartModels (0x144 bytes); the addresses of 0x2c, 0x98 and 0x10c are passed on as objects.
 struct KartModelsEntry;
@@ -1258,19 +1258,19 @@ typedef struct KartModels {
     // Array of the per-kart model entries (0xb4 bytes each), allocated by InitKartModels with mKartCount elements;
     // Kart.mKartModelsEntry points into it.
     /* 000 */ struct KartModelsEntry *mKartModelsEntries;
-    /* 004 */ u16 *mUnk_004;
+    /* 004 */ u16 *mCourseColors;
     // Number of elements of mKartModelsEntries, copied from gRaceSetup->mKartCount; the loop bound over the
     // entries.
     /* 008 */ u16 mKartCount;
     /* 00a */ u8 mUnk_00a[2];
     /* 00c */ s32 mKartTireMaterialIndex;
-    /* 010 */ u16 *mUnk_010;
-    /* 014 */ Unk0217ad00_014 *mUnk_014;
-    /* 018 */ s16 mUnk_018[8];
-    /* 028 */ void *mUnk_028;
-    /* 02c */ Nsbmd mUnk_02c;
-    /* 098 */ ShadowModel mUnk_098;
-    /* 10c */ ModelAnimation mUnk_10c;
+    /* 010 */ u16 *mKartAPalette;
+    /* 014 */ HeyhoPalette *mHeyhoPalettes;
+    /* 018 */ s16 mHeyhoPaletteIndices[8];
+    /* 028 */ void *mPFaceanimNsbtpFile;
+    /* 02c */ Nsbmd mKillerItem;
+    /* 098 */ ShadowModel mKillerItemS;
+    /* 10c */ ModelAnimation mKillerItemNsbca;
 } KartModels;
 
 extern KartModels *gKartModels;
@@ -1295,15 +1295,15 @@ typedef struct Unk0217ad08_058_20 {
 
 // 0xb8-byte entries from 0x58 of KartModelMenuData.
 typedef struct KartModelMenuSlot {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
+    /* 00 */ s32 mCharacterIndex;
+    /* 04 */ s32 mKartIndex;
     /* 08 */ Unk0217ad08_058_08 *mCharacterAnimation;
     /* 0c */ u8 mUnk_0c[4];
-    /* 10 */ struct Nsbmd *mUnk_10;
-    /* 14 */ struct Nsbmd *mUnk_14;
-    /* 18 */ struct Nsbmd *mUnk_18;
-    /* 1c */ struct ShadowModel *mUnk_1c;
-    /* 20 */ Unk0217ad08_058_20 *mUnk_20;
+    /* 10 */ struct Nsbmd *mCharacterNsbmd;
+    /* 14 */ struct Nsbmd *mKartNsbmd;
+    /* 18 */ struct Nsbmd *mTireNsbmd;
+    /* 1c */ struct ShadowModel *mShadowModel;
+    /* 20 */ Unk0217ad08_058_20 *mKartOffsetData;
     /* 24 */ u8 mUnk_24[0x8c];
     /* b0 */ s32 mUnk_b0;
     /* b4 */ struct NNSG3dResTex *mEmblemTex;
@@ -1316,24 +1316,24 @@ struct NNSG3dResFileHeader;
 typedef struct KartModelMenuFiles {
     /* 00 */ void *mHeapMemory;
     /* 04 */ struct NNSiFndHeapHead *mHeap;
-    /* 08 */ struct NNSG3dResFileHeader *mUnk_08;
-    /* 0c */ struct NNSG3dResFileHeader *mUnk_0c;
-    /* 10 */ struct NNSG3dResFileHeader *mUnk_10;
-    /* 14 */ void *mUnk_14;
-    /* 18 */ struct NNSG3dResFileHeader *mUnk_18;
-    /* 1c */ struct NNSG3dResFileHeader *mUnk_1c;
-    /* 20 */ struct NNSG3dResFileHeader *mUnk_20;
-    /* 24 */ struct NNSG3dResFileHeader *mUnk_24;
-    /* 28 */ struct NNSG3dResFileHeader *mUnk_28;
+    /* 08 */ struct NNSG3dResFileHeader *mCharacterNsbmdFile;
+    /* 0c */ struct NNSG3dResFileHeader *mCharacterNsbtxFile;
+    /* 10 */ struct NNSG3dResFileHeader *mEmblemNsbtxFile;
+    /* 14 */ void *mCharacterNsbcaFile;
+    /* 18 */ struct NNSG3dResFileHeader *mKartNsbmdFile;
+    /* 1c */ struct NNSG3dResFileHeader *mKartNsbtxFile;
+    /* 20 */ struct NNSG3dResFileHeader *mTireNsbmdFile;
+    /* 24 */ struct NNSG3dResFileHeader *mTireNsbtxFile;
+    /* 28 */ struct NNSG3dResFileHeader *mKartShadowNsbmdFile;
     /* 2c */ BOOL mLoadRequested;
     /* 30 */ u16 mLoadStep;
     /* 32 */ u8 mUnk_32[2];
 } KartModelMenuFiles;
 
 // Six halfwords; the 0xc-byte entries behind member 0x1c of KartModelMenuData.
-typedef struct Unk0217ad08_01c {
+typedef struct KartMenuParams {
     /* 00 */ u16 mUnk_00[6];
-} Unk0217ad08_01c;
+} KartMenuParams;
 
 // Embedded in KartModelMenuData at 0x24 (0x34 bytes).
 typedef struct KartModelMenuView {
@@ -1358,13 +1358,13 @@ typedef struct KartModelMenuData {
     /* 008 */ s32 mKartListCount;
     /* 00c */ s16 mMenuParams[6];
     /* 018 */ s16 *mCharMenuParams;
-    /* 01c */ Unk0217ad08_01c *mKartMenuParams;
+    /* 01c */ KartMenuParams *mKartMenuParams;
     /* 020 */ KartModelMenuSlot *mLoadSlot;
     /* 024 */ KartModelMenuView mView;
     /* 058 */ KartModelMenuSlot mSlots[2];
-    /* 1c8 */ Unk0217ad08_058_20 *mUnk_1c8;
+    /* 1c8 */ Unk0217ad08_058_20 *mKartOffsetTable;
     /* 1cc */ struct Nsbmd *mSelectModel;
-    /* 1d0 */ void *mUnk_1d0;
+    /* 1d0 */ void *mKartAPalette;
     /* 1d4 */ void *mEmblemTex;
     /* 1d8 */ s32 mUnk_1d8;
     /* 1dc */ BOOL mUnk_1dc;
@@ -1379,7 +1379,7 @@ typedef struct KartModelMenuData {
     /* 260 */ s32 mKartRequested;
     /* 264 */ s16 mShownSlotIndex;
     /* 266 */ s16 mLoadSlotIndex;
-    /* 268 */ struct KartAppear *mUnk_268;
+    /* 268 */ struct KartAppear *mKartAppear;
 } KartModelMenuData;
 
 extern KartModelMenuData *gKartModelMenu;

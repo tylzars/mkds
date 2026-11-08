@@ -255,8 +255,8 @@ void AdvanceKartRaceStartBoost(Kart *kart) {
                     bits7c = kart->mUnk_7c;
                     if ((bits7c & 0x10) && kart->mKartModelsEntry->mUnk_058 == 0) {
                         if ((bits7c & 1) || !(bits7c & 0x402000)) {
-                            VEC_MultAdd(g.mUnk_00[kart->mKartModelsEntry->mUnk_004] << 4, &kart->mUnk_138, &kart->mPos,
-                                        &e);
+                            VEC_MultAdd(g.mUnk_00[kart->mKartModelsEntry->mKartIndex] << 4, &kart->mUnk_138,
+                                        &kart->mPos, &e);
                             func_0208b748(0x72, &e, kart, func_0206c1ac);
                             func_0208b748(0x73, &e, kart, func_0206c1ac);
                         }
@@ -293,8 +293,8 @@ void AdvanceKartRaceStartBoost(Kart *kart) {
                     bits7c = kart->mUnk_7c;
                     if ((bits7c & 0x10) && kart->mKartModelsEntry->mUnk_058 == 0) {
                         if ((bits7c & 1) || !(bits7c & 0x402000)) {
-                            VEC_MultAdd(h.mUnk_00[kart->mKartModelsEntry->mUnk_004] << 4, &kart->mUnk_138, &kart->mPos,
-                                        &f);
+                            VEC_MultAdd(h.mUnk_00[kart->mKartModelsEntry->mKartIndex] << 4, &kart->mUnk_138,
+                                        &kart->mPos, &f);
                             func_0208b748(0x72, &f, kart, func_0206c1ac);
                             func_0208b748(0x73, &f, kart, func_0206c1ac);
                         }

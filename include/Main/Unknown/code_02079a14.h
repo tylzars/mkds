@@ -7,4 +7,4 @@
 #include "Main/Unknown/code_0207ae58.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_02079a14(KartModelsEntry *a);
+void func_02079a14(KartModelsEntry *kartModelsEntry);

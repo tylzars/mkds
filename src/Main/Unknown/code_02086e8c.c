@@ -242,8 +242,8 @@ u16 GetKartPaletteColor(int a) {
     if (gRaceSetup->mUseTeams != 0) {
         return data_02155a28[gRaceSetup->mCurrentEntries[a].mPlayer.mTeamIndex];
     }
-    if (GetKartModelsEntry(a)->mUnk_000 == 0xc) {
-        return func_02077f7c(a)->mUnk_04;
+    if (GetKartModelsEntry(a)->mCharacterIndex == 0xc) {
+        return GetHeyhoPalette(a)->mUnk_04;
     }
     return data_02155a64[a];
 }

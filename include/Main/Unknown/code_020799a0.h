@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 IsCharacterPNameUsed(s32 e);
+BOOL IsCharacterPNameUsed(s32 kartIndex);

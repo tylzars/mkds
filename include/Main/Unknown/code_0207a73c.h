@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void SetKartSpeedLimitReciprocal(unsigned int p0);
+void SetKartSpeedLimitReciprocal(unsigned int speedLimitReciprocal);

@@ -128,7 +128,7 @@ void InitRace(void) {
     SetHeapGroupId(1);
     func_020875b4();
     InitKartModels(heap, gRaceSetup->mKartCount);
-    func_0207800c();
+    SetupHeyhoPalettes();
     func_020872a4();
     func_02047728();
     InitMap2D();

@@ -712,7 +712,7 @@ void InitKartSound(Kart *kart) {
     InitSoundSource(&kart->mSoundSource, 0, kart->mPosSource);
     InitKartSoundCallbacks(kart, (Unk0210a5a8 *) &kart->mUnk_450);
     func_020719d0(kart);
-    switch (kart->mKartModelsEntry->mUnk_000) {
+    switch (kart->mKartModelsEntry->mCharacterIndex) {
         case 0:
             kart->mSoundIndex = 4;
             break;
@@ -753,7 +753,7 @@ void InitKartSound(Kart *kart) {
             kart->mSoundIndex = 12;
             break;
     }
-    kart->mUnk_3d0 = kart->mKartModelsEntry->mUnk_004 % 3;
+    kart->mUnk_3d0 = kart->mKartModelsEntry->mKartIndex % 3;
     if (kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         if (!(kart->mSoundSource.mSourceFlags & 1)) {
             SetSoundSourceFlagBit(&kart->mSoundSource, 2, 1);
@@ -799,7 +799,7 @@ void func_020719d0(Kart *kart) {
     kartSound->mUnk_30 = 0;
     kartSound->mUnk_34 = -1;
     kartSound->mUnk_38 = -1;
-    switch (kart->mKartModelsEntry->mUnk_004 / 3) {
+    switch (kart->mKartModelsEntry->mKartIndex / 3) {
         case 0:
             k = 4;
             break;
@@ -841,7 +841,7 @@ void func_020719d0(Kart *kart) {
             break;
     }
     kartSound->mUnk_68 = k;
-    i = func_0202578c(kart->mKartModelsEntry->mUnk_004);
+    i = func_0202578c(kart->mKartModelsEntry->mKartIndex);
     rowOffset = i * 0x1c;
     a = *(s32 *) (data_02161ae8 + rowOffset);
     b = *(s32 *) (data_02161aec + rowOffset);

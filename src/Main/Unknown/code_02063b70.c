@@ -82,7 +82,7 @@ void DrawKart(Kart *kart) {
         func_01ff9048(0x19, &kart->mUnk_120, 0xc);
         func_01ff9048(0x1b, &kart->mScale, 3);
         func_02063cc4_inline2(0x1b, kart->mModelScaleX, kart->mModelScaleY, kart->mModelScaleZ);
-        func_0207ae58(modelsEntry->mUnk_01c);
+        func_0207ae58(modelsEntry->mShadowModel);
         func_02063cc4_inline(0x14, 0x1e);
     }
     func_01ff9048(0x19, kart->mDrawMatrix, 0xc);
@@ -90,7 +90,7 @@ void DrawKart(Kart *kart) {
     func_02063cc4_inline(0x13, 0x1d);
     func_02063cc4_inline2(0x1b, kart->mModelScaleX, kart->mModelScaleY, kart->mModelScaleZ);
     if (b == 0) {
-        func_0207ae58(modelsEntry->mUnk_01c);
+        func_0207ae58(modelsEntry->mShadowModel);
     }
     func_0208ab4c(&modelsEntry->mUnk_040);
     if (modelsEntry->mUnk_058 == 0) {
@@ -100,7 +100,7 @@ void DrawKart(Kart *kart) {
         DrawNsbmd(modelsEntry->mModels[1]);
         if (modelsEntry->mModels[2] != NULL) {
             f = kart->mKartModelsEntry->mUnk_054;
-            h = kart->mKartModelsEntry->mUnk_020->mUnk_10;
+            h = kart->mKartModelsEntry->mKartOffsetData->mUnk_10;
             func_02063cc4_inline(0x14, 0x1c);
             func_01ff9048(0x1c, &f->mUnk_18, 3);
             pairIndex = (kart->mTireSpinAngle >> 4) * 2;
@@ -132,7 +132,7 @@ void DrawKart(Kart *kart) {
     if (modelsEntry->mUnk_05c != 0) {
         return;
     }
-    translation = ((Vec3 *) &modelsEntry->mUnk_020->mUnk_44)[modelsEntry->mUnk_000];
+    translation = ((Vec3 *) &modelsEntry->mKartOffsetData->mUnk_44)[modelsEntry->mCharacterIndex];
     translation.y = translation.y + (kart->mModelOffsetY + kart->mUnk_4f0.z);
     func_02063cc4_inline(0x14, 0x1d);
     func_01ff9048(0x1c, &translation, 3);

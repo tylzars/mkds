@@ -6,6 +6,6 @@
 extern s32 gMinKartDistanceSquaredPresent;
 extern s32 gMinKartDistanceSquared;
 
-void SetKartModelMaterialColors(NNSG3dResMdl *a, u32 b);
-s32 func_0207a218(void);
-BOOL TryGetMinKartDistanceSquared(s32 *a);
+void SetKartModelMaterialColors(NNSG3dResMdl *mdl, u32 colorSet);
+BOOL func_0207a218(void);
+BOOL TryGetMinKartDistanceSquared(s32 *distanceSquared);

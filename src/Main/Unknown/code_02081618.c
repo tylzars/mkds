@@ -73,7 +73,7 @@ void ComputeKartSidePoints(Kart *p) {
     e = &gKartEffects[p->mIndex];
     p->mUnk_174 = *p->mPosSource;
     for (i = 0; i < 2; i++) {
-        v = p->mKartModelsEntry->mUnk_020->mUnk_14[i + 2];
+        v = p->mKartModelsEntry->mKartOffsetData->mUnk_14[i + 2];
         v.y = 0;
         v.x = v.x + gKartSideOffsetsX[i];
         q.x = ((s64) v.x * p->mScale.x) >> 12;
@@ -1285,8 +1285,8 @@ void AdvanceKartStarEffects(s32 a) {
     i = 0;
     do {
         if (e->mEffects[i] != NULL) {
-            VEC_MultAdd(((s64) q->mScale.y * data_02155854[q->mKartModelsEntry->mUnk_000] + 0x800) >> 12, &q->mUnk_12c,
-                        &q->mPos, &v);
+            VEC_MultAdd(((s64) q->mScale.y * data_02155854[q->mKartModelsEntry->mCharacterIndex] + 0x800) >> 12,
+                        &q->mUnk_12c, &q->mPos, &v);
             func_0208b5b0(e->mEffects[i], &v);
             w.x = ((s64) q->mEffectVelocity.x * 0xc00) >> 12;
             w.y = ((s64) q->mEffectVelocity.y * 0xc00) >> 12;

@@ -628,16 +628,16 @@ PosStrip *StartAwardKartPosStrip(s32 a) {
         if (p != NULL) {
             o = GetKart(a);
             t = o->mKartModelsEntry;
-            v = ((Vec3 *) &t->mUnk_020->mUnk_44)[t->mUnk_000];
+            v = ((Vec3 *) &t->mKartOffsetData->mUnk_44)[t->mCharacterIndex];
             p->mFollowedPos = (u32) &o->mPos;
             p->mStopped = 0;
             p->mHeight = 0x400;
             p->mKartIndex = a;
-            h = (v.y + (data_02166418[t->mUnk_000][0] >> 4) - data_02166480[t->mUnk_004]) / 2;
+            h = (v.y + (data_02166418[t->mCharacterIndex][0] >> 4) - data_02166480[t->mKartIndex]) / 2;
             p->mHeight = h;
             p->mOffsetX = v.x << 4;
-            p->mOffsetY = (data_02166480[t->mUnk_004] + h) << 4;
-            p->mOffsetZ = data_0216641c[t->mUnk_000][0] + (v.z << 4);
+            p->mOffsetY = (data_02166480[t->mKartIndex] + h) << 4;
+            p->mOffsetZ = data_0216641c[t->mCharacterIndex][0] + (v.z << 4);
             NNS_FndRemoveListObject(&gPosStrips->mLists[1], p);
             NNS_FndAppendListObject(&gPosStrips->mLists[0], p);
         }
