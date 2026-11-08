@@ -28,14 +28,14 @@
 void func_ov003_021c4804(void) {
     data_ov003_021da1c4 = 0;
     func_ov003_021c47b0();
-    func_ov003_021bf578(99);
+    PrintMessage(99);
     func_ov003_021c212c(func_ov003_021c4788);
 }
 
 void func_ov003_021c47b0(void) {
     void *v2 = &data_ov003_021d7180;
     void *v3 = &GX_LoadBG2Scr;
-    u32 v4 = func_ov003_021bf620(v2, v3);
+    u32 v4 = LoadFileToVram(v2, v3);
     u32 v5 = 0x4001008u;
     u32 v6 = (*(u16 *) ((v5) + (0)));
     u32 v8 = ((v6) & ~(0x3u));

@@ -77,11 +77,11 @@ void CreateApList(void) {
 void LoadApListFilesAndSetBgCnt(void) {
     u8 a[0x19] = "char/xb4ApListBack.nsc.l";
     u8 b[0x16] = "char/ybBgStep31.ncl.l";
-    func_ov003_021bf620(gJb4ApListNscName, GX_LoadBG3Scr);
-    gApList->mXb4ApListBackNsc = func_ov003_021d14b8(func_ov003_021bf650(a), NULL, 4);
+    LoadFileToVram(gJb4ApListNscName, GX_LoadBG3Scr);
+    gApList->mXb4ApListBackNsc = func_ov003_021d14b8(BuildFilePathWithLanguage(a), NULL, 4);
     func_ov003_021cca30(gApList->mXb4ApListBackNsc);
     func_ov003_021cc9fc();
-    gApList->mYbBgStep31Ncl = func_ov003_021d14b8(func_ov003_021bf650(b), NULL, 4);
+    gApList->mYbBgStep31Ncl = func_ov003_021d14b8(BuildFilePathWithLanguage(b), NULL, 4);
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 3;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
     reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 3;
@@ -278,7 +278,7 @@ void func_ov003_021c5f9c(void) {
             break;
         case 2:
             if (gApList->mScrollTimer == 0) {
-                func_ov003_021bf698();
+                ReleaseSelectionObjectSlots();
                 *(u16 *) &gApListScrollY = FX_DivS32(gApList->mScrollYMax * func_ov003_021cce6c(), gApList->mUnk_53);
                 RefreshApList();
                 gApList->mScrollTimer = 4;
@@ -405,7 +405,7 @@ void func_ov003_021c5cdc(void) {
     }
     func_ov003_021d2188(gApList->mUnk_0c);
     func_ov003_021cce78();
-    func_ov003_021bf698();
+    ReleaseSelectionObjectSlots();
     func_ov003_021bf410();
     func_ov003_021cca10();
     func_ov003_021d1490(gApList->mXb4ApListBackNsc);
@@ -541,7 +541,7 @@ void RefreshApListRowPositions(void) {
 void AdvanceApListScrollYDecrease(u32 param_0) {
     int a;
     func_ov003_021cce38();
-    func_ov003_021bf698();
+    ReleaseSelectionObjectSlots();
     if (*(u16 *) &gApListScrollY > 4) {
         *(u16 *) &gApListScrollY = *(u16 *) &gApListScrollY - 4;
     } else {
@@ -569,7 +569,7 @@ void AdvanceApListScrollYDecrease(u32 param_0) {
 void AdvanceApListScrollYIncrease(u32 param_0) {
     int a;
     func_ov003_021cce38();
-    func_ov003_021bf698();
+    ReleaseSelectionObjectSlots();
     *(u16 *) &gApListScrollY = *(u16 *) &gApListScrollY + 4;
     a = FX_ModS32(*(u16 *) &gApListScrollY, 0x1c);
     if (a >= 4) {
@@ -606,7 +606,7 @@ void func_ov003_021c590c(void) {
     } else {
         b = 3;
     }
-    func_ov003_021bf760(b, data_ov003_021d63b8[a * 4], data_ov003_021d63bc[a * 4], data_ov003_021d63ba[a * 4]);
+    PlaceSelectionPair(b, data_ov003_021d63b8[a * 4], data_ov003_021d63bc[a * 4], data_ov003_021d63ba[a * 4]);
 }
 
 void MoveApListSelectedRow(int param_0) {

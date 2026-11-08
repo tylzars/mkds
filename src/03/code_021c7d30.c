@@ -108,16 +108,16 @@ void LoadJb3ListFilesAndSetBgCnt(void) {
     b = gYbBgStep2NclName;
     c = gYbBgStep21NclName;
     reg_G2_BG2CNT = (reg_G2_BG2CNT & 0x43) | 0xe18;
-    func_ov003_021bf620(gYbObjKbNclName3, GX_LoadOBJPltt);
-    func_ov003_021bf620(gJbBgStep2NcgName, GX_LoadBG3Char);
-    func_ov003_021bf620(gJbBgStep21NcgName, GX_LoadBG2Char);
-    func_ov003_021bf620(&b, GX_LoadBGPltt);
-    func_ov003_021bf620(gJb3ListNscName, GX_LoadBG3Scr);
-    gJb3List->mJb3ListBackNsc = func_ov003_021d14b8(func_ov003_021bf650((u8 *) &a), NULL, 4);
+    LoadFileToVram(gYbObjKbNclName3, GX_LoadOBJPltt);
+    LoadFileToVram(gJbBgStep2NcgName, GX_LoadBG3Char);
+    LoadFileToVram(gJbBgStep21NcgName, GX_LoadBG2Char);
+    LoadFileToVram(&b, GX_LoadBGPltt);
+    LoadFileToVram(gJb3ListNscName, GX_LoadBG3Scr);
+    gJb3List->mJb3ListBackNsc = func_ov003_021d14b8(BuildFilePathWithLanguage((u8 *) &a), NULL, 4);
     func_ov003_021cca30(gJb3List->mJb3ListBackNsc);
     func_ov003_021cc9fc();
-    gJb3List->mYbBgStep2NclFiles[0] = func_ov003_021d14b8(func_ov003_021bf650((u8 *) &b), NULL, 4);
-    gJb3List->mYbBgStep2NclFiles[1] = func_ov003_021d14b8(func_ov003_021bf650((u8 *) &c), NULL, 4);
+    gJb3List->mYbBgStep2NclFiles[0] = func_ov003_021d14b8(BuildFilePathWithLanguage((u8 *) &b), NULL, 4);
+    gJb3List->mYbBgStep2NclFiles[1] = func_ov003_021d14b8(BuildFilePathWithLanguage((u8 *) &c), NULL, 4);
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~0x3) | 0x3;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~0x3) | 0x3;
     reg_G2_BG0CNT = (reg_G2_BG0CNT & ~0x3) | 0x3;
@@ -352,7 +352,7 @@ void UpdateJb3ListScrollInput(void) {
                 if (gJb3List->mScrollTimer != 0) {
                     return;
                 }
-                func_ov003_021bf698();
+                ReleaseSelectionObjectSlots();
                 gJb3ListScrollY = _s32_div_f(func_ov003_021cce6c() * 0x91, 0x37);
                 RefreshJb3List();
                 gJb3List->mScrollTimer = 4;
@@ -446,7 +446,7 @@ void func_ov003_021c8c14(void) {
     }
     func_ov003_021cce78();
     func_ov003_021d2168(0);
-    func_ov003_021bf698();
+    ReleaseSelectionObjectSlots();
     if (gJb3List->mUnk_40 != 0xc) {
         func_ov003_021bf410();
     }
@@ -455,7 +455,7 @@ void func_ov003_021c8c14(void) {
     for (i = 0; i < 2; i++) {
         func_ov003_021d1490(gJb3List->mYbBgStep2NclFiles[i]);
     }
-    func_ov003_021bf620(gYbObjMainNclName4, GX_LoadOBJPltt);
+    LoadFileToVram(gYbObjMainNclName4, GX_LoadOBJPltt);
     func_ov003_021d272c(1, 1);
     func_ov003_021d272c(0, 0x1d);
     reg_G2_BG0OFS = 0;
@@ -916,7 +916,7 @@ int GetJb3ListEntryIndexOfRow(int a) {
 void AdvanceJb3ListScrollYDecrease(u32 b) {
     s32 a;
     func_ov003_021cce38();
-    func_ov003_021bf698();
+    ReleaseSelectionObjectSlots();
     if (gJb3ListScrollY > 6) {
         gJb3ListScrollY = gJb3ListScrollY - 6;
     } else {
@@ -944,7 +944,7 @@ void AdvanceJb3ListScrollYDecrease(u32 b) {
 void AdvanceJb3ListScrollYIncrease(u32 b) {
     s32 a;
     func_ov003_021cce38();
-    func_ov003_021bf698();
+    ReleaseSelectionObjectSlots();
     gJb3ListScrollY = gJb3ListScrollY + 6;
     a = FX_ModS32(gJb3ListScrollY, 0x1d);
     if (a >= 6) {
@@ -979,13 +979,13 @@ void func_ov003_021c81b8(void) {
     a = data_ov003_021d73d0;
     d = a.mUnk_00[gJb3ListSelectedId];
     if (d >= 3) {
-        func_ov003_021bf760(3, data_ov003_021d64b4[d].mUnk_00, data_ov003_021d64b4[d].mUnk_04,
-                            data_ov003_021d64b4[d].mUnk_02);
+        PlaceSelectionPair(3, data_ov003_021d64b4[d].mUnk_00, data_ov003_021d64b4[d].mUnk_04,
+                           data_ov003_021d64b4[d].mUnk_02);
         return;
     }
     b = data_ov003_021d64b4[d];
     b.mUnk_02 = b.mUnk_02 + gJb3ListSelectedRow * 0x1d;
-    func_ov003_021bf760(1, b.mUnk_00, b.mUnk_04, b.mUnk_02);
+    PlaceSelectionPair(1, b.mUnk_00, b.mUnk_04, b.mUnk_02);
 }
 
 void SetJb3ListSelectedIdFromRow(void) {

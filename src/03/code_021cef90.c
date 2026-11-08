@@ -74,7 +74,7 @@ void func_ov003_021cefc0(u32 a, s32 b, s32 c, u32 d, u32 e) {
     data_ov003_021da284->mUnk_10 = func_ov003_021d23b0(0, 0x20, 0xc, 1, &v2, 0);
     data_ov003_021da284->mUnk_04 = func_ov003_021d19e0(0, v2, 0);
     func_ov003_021d2070(data_ov003_021da284->mUnk_10, 0, 0, data_ov003_021d6768[b][0], data_ov003_021d6768[b][1], 2,
-                        func_ov003_021bf4dc(), v);
+                        GetLanguageTextFlags(), v);
     func_ov003_021d1ffc(data_ov003_021da284->mUnk_10, 0x100, 0, data_ov003_021da284->mUnk_04, 0);
     func_ov003_021d254c(0, 0, 0x1f, 0);
     func_ov003_021d254c(0, 1, 0x1f, v1.mUnk_00[data_ov003_021da284->mUnk_1c]);

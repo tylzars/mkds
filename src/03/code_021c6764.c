@@ -70,16 +70,16 @@ void CreateEdit(void) {
 void LoadEditFilesAndSetBgCnt(void) {
     void *v2 = &gYbObjKbNclName;
     void *v3 = &GX_LoadOBJPltt;
-    u32 v4 = func_ov003_021bf620(v2, v3);
+    u32 v4 = LoadFileToVram(v2, v3);
     void *v5 = &gJbBgStep3NcgName2;
     void *v6 = &GX_LoadBG2Char;
-    u32 v7 = func_ov003_021bf620(v5, v6);
+    u32 v7 = LoadFileToVram(v5, v6);
     void *v8 = &gYbBgStep3NclName2;
     void *v9 = &GX_LoadBGPltt;
-    u32 v10 = func_ov003_021bf620(v8, v9);
+    u32 v10 = LoadFileToVram(v8, v9);
     void *v11 = &gXb4EditNscName;
     void *v12 = &GX_LoadBG2Scr;
-    u32 v13 = func_ov003_021bf620(v11, v12);
+    u32 v13 = LoadFileToVram(v11, v12);
     u32 v14 = 0x4001008u;
     u32 v15 = (*(u16 *) ((v14) + (0)));
     u32 v17 = ((v15) & ~(0x3u));
@@ -135,20 +135,20 @@ void func_ov003_021c6d0c(void) {
     int v1;
     v1 = func_ov003_021d1f70(1);
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
-        func_ov003_021c0d2c();
+        CreateEditKeyboard();
         StartSoundSeq(0x14);
         if (gEdit->mCharCount == 0) {
-            func_ov003_021c0cd0(0);
+            SetEditKeyboardRemoveCharEnabled(0);
         }
         if (gEdit->mCharCount == ' ') {
-            func_ov003_021c0cbc(0);
+            SetEditKeyboardAddCharEnabled(0);
         }
         func_ov003_021c212c(func_ov003_021c6cf0);
     }
 }
 
 void func_ov003_021c6cf0(void) {
-    if (func_ov003_021c0ce4() != 255) {
+    if (GetEditKeyboardInput() != 255) {
         func_ov003_021c212c(UpdateEdit);
     }
 }
@@ -161,7 +161,7 @@ void UpdateEdit(void) {
 void UpdateEditInput(void) {
     int a;
     Edit *b;
-    a = func_ov003_021c0ce4();
+    a = GetEditKeyboardInput();
     switch (a) {
         case 0x80:
             b = gEdit;
@@ -172,9 +172,9 @@ void UpdateEditInput(void) {
                 b = gEdit;
                 b->mText[b->mCharCount] = 0;
                 if (gEdit->mCharCount == 0) {
-                    func_ov003_021c0cd0(0);
+                    SetEditKeyboardRemoveCharEnabled(0);
                 }
-                func_ov003_021c0cbc(1);
+                SetEditKeyboardAddCharEnabled(1);
             }
             break;
         case 0x82:
@@ -204,9 +204,9 @@ void UpdateEditInput(void) {
                 b->mText[b->mCharCount] = a;
                 b = gEdit;
                 b->mCharCount = b->mCharCount + 1;
-                func_ov003_021c0cd0(1);
+                SetEditKeyboardRemoveCharEnabled(1);
                 if (gEdit->mCharCount == 0x20) {
-                    func_ov003_021c0cbc(0);
+                    SetEditKeyboardAddCharEnabled(0);
                 }
             }
             break;
@@ -226,7 +226,7 @@ void func_ov003_021c6b58(void) {
     int v1;
     v1 = func_ov003_021d1f70(1);
     if (v1 == 0) {
-        func_ov003_021c0cf8();
+        StartEditKeyboardSlideOut();
         StartSoundSeq(0x15);
         func_ov003_021c212c(func_ov003_021c6acc);
     }
@@ -235,7 +235,7 @@ void func_ov003_021c6b58(void) {
 void func_ov003_021c6acc(void) {
     s32 a[2] = {0x9b, 0x9c};
     s32 b;
-    if (func_ov003_021c0ca8() == 0) {
+    if (HasEditKeyboard() == 0) {
         if (gEdit->mUnk_2a == 0) {
             func_ov003_021c212c(func_ov003_021c6a18);
         } else if (gEdit->mUnk_2a == 2) {
@@ -255,7 +255,7 @@ void func_ov003_021c6a18(void) {
     func_ov003_021bf410();
     func_ov003_021d2f00((u32 *) (u32) gEdit->mUnk_04);
     func_ov003_021d2168(0);
-    func_ov003_021bf620(&gYbObjMainNclName2, &GX_LoadOBJPltt);
+    LoadFileToVram(&gYbObjMainNclName2, &GX_LoadOBJPltt);
     func_ov003_021d272c(1, 1);
     func_ov003_021d272c(0, 0x15);
     func_ov003_021c20dc(&v1, v2);

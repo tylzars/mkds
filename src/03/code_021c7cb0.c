@@ -14,7 +14,7 @@ void SetupJb4Error(void) {
 void LoadJb4ErrorFileAndSetBgCnt(void) {
     void *v2 = &gJb4ErrorNscName;
     void *v3 = &GX_LoadBG2Scr;
-    u32 v4 = func_ov003_021bf620(v2, v3);
+    u32 v4 = LoadFileToVram(v2, v3);
     u32 v5 = 0x4001008u;
     u32 v6 = (*(u16 *) ((v5) + (0)));
     u32 v8 = ((v6) & ~(0x3u));

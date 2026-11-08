@@ -25,7 +25,7 @@ void func_ov003_021cc110(void) {
     data_ov003_021da250 = 0;
     func_ov003_021cc0ac();
     LoadHlScr(8);
-    func_ov003_021bf578(0x6f);
+    PrintMessage(0x6f);
     StartSoundSeq(0x10);
     func_ov003_021c212c(func_ov003_021cc084);
 }
@@ -33,7 +33,7 @@ void func_ov003_021cc110(void) {
 void func_ov003_021cc0ac(void) {
     void *v2 = &gXb4MultiNscName10;
     void *v3 = &GX_LoadBG2Scr;
-    u32 v4 = func_ov003_021bf620(v2, v3);
+    u32 v4 = LoadFileToVram(v2, v3);
     u32 v5 = 0x4001008u;
     u32 v6 = (*(u16 *) ((v5) + (0)));
     u32 v8 = ((v6) & ~(0x3u));

@@ -64,7 +64,7 @@ void func_ov003_021c35bc(void) {
 
 void func_ov003_021c3598(void) {
     func_ov003_021c3534();
-    func_ov003_021bf578(0x57);
+    PrintMessage(0x57);
     func_ov003_021cd42c();
     func_ov003_021c212c(func_ov003_021c350c);
 }
@@ -72,7 +72,7 @@ void func_ov003_021c3598(void) {
 void func_ov003_021c3534(void) {
     void *v2 = &gYb5MultiNscName2;
     void *v3 = &GX_LoadBG2Scr;
-    u32 v4 = func_ov003_021bf620(v2, v3);
+    u32 v4 = LoadFileToVram(v2, v3);
     u32 v5 = 0x4001008u;
     u32 v6 = (*(u16 *) ((v5) + (0)));
     u32 v8 = ((v6) & ~(0x3u));

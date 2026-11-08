@@ -21,7 +21,7 @@
 void func_ov003_021c2b28(void) {
     func_ov003_021cdb90();
     func_ov003_021c25b4();
-    func_ov003_021bf7f4();
+    InitSelectionObjects();
     InitHlScr();
     func_ov003_021bf4d0();
     if (func_ov003_021c20d0() == 1 && func_ov003_021c20a8(2) != 0) {
@@ -29,22 +29,22 @@ void func_ov003_021c2b28(void) {
     } else {
         data_ov003_021da19c = func_ov003_021c2564(data_ov003_021d6ea0[func_ov003_021c20d0()]);
     }
-    func_ov003_021d1cb0(1, func_ov003_021bf650(data_ov003_021d6ec8));
-    func_ov003_021d1cb0(0, func_ov003_021bf650(data_ov003_021d6edc));
-    func_ov003_021bf620(data_ov003_021d6ef0, GXS_LoadBG1Char);
-    func_ov003_021bf620(data_ov003_021d6f04, GXS_LoadBGPltt);
-    func_ov003_021bf620(data_ov003_021d6f18, GXS_LoadOBJ);
-    func_ov003_021bf620(data_ov003_021d6f30, GXS_LoadOBJPltt);
-    func_ov003_021bf620(data_ov003_021d6f48, GX_LoadBG2Char);
-    func_ov003_021bf620(data_ov003_021d6f60, GX_LoadBGPltt);
-    func_ov003_021bf620(data_ov003_021d6f78, GX_LoadOBJ);
-    func_ov003_021bf620(data_ov003_021d6f90, GX_LoadOBJPltt);
+    func_ov003_021d1cb0(1, BuildFilePathWithLanguage(data_ov003_021d6ec8));
+    func_ov003_021d1cb0(0, BuildFilePathWithLanguage(data_ov003_021d6edc));
+    LoadFileToVram(data_ov003_021d6ef0, GXS_LoadBG1Char);
+    LoadFileToVram(data_ov003_021d6f04, GXS_LoadBGPltt);
+    LoadFileToVram(data_ov003_021d6f18, GXS_LoadOBJ);
+    LoadFileToVram(data_ov003_021d6f30, GXS_LoadOBJPltt);
+    LoadFileToVram(data_ov003_021d6f48, GX_LoadBG2Char);
+    LoadFileToVram(data_ov003_021d6f60, GX_LoadBGPltt);
+    LoadFileToVram(data_ov003_021d6f78, GX_LoadOBJ);
+    LoadFileToVram(data_ov003_021d6f90, GX_LoadOBJPltt);
     switch (func_ov003_021c20c0()) {
         case 0:
-            func_ov003_021bf620(data_ov003_021d6fa8, GXS_LoadBG1Scr);
+            LoadFileToVram(data_ov003_021d6fa8, GXS_LoadBG1Scr);
             break;
         case 1:
-            func_ov003_021bf620(data_ov003_021d6fbc, GXS_LoadBG1Scr);
+            LoadFileToVram(data_ov003_021d6fbc, GXS_LoadBG1Scr);
             break;
     }
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;

@@ -39,7 +39,7 @@
 
 void func_ov003_021cb3d8(void) {
     if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0 && func_ov003_021bf2f0() != 0) {
-        func_ov003_021bf698();
+        ReleaseSelectionObjectSlots();
         func_ov003_021bf410();
         func_ov003_021d1490(gYbBgStep21Ncl);
         func_ov003_021d272c(1, 1);
@@ -87,10 +87,10 @@ void MoveWaySelection(int param_1) {
         gWaySelectedIndex = b;
     }
     StartSoundSeq(8);
-    func_ov003_021bf6c8(data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_00,
-                        data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_04,
-                        data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_02,
-                        data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_06);
+    PlaceSelectionCorners(data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_00,
+                          data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_04,
+                          data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_02,
+                          data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_06);
 }
 
 void func_ov003_021cb2e0(void) {
@@ -113,11 +113,11 @@ void CreateAp(void) {
 
 void LoadApFilesAndSetBgCnt(void) {
     Unk021d75c8 a = gYbBgStep11NclName2;
-    func_ov003_021bf620(gYbObjWayNclName, GX_LoadOBJPltt);
-    func_ov003_021bf620(gJbBgStep1NcgName3, GX_LoadBG2Char);
-    func_ov003_021bf620(gJbBgStep1NclName3, GX_LoadBGPltt);
-    func_ov003_021bf620(gJb2ApNscName, GX_LoadBG2Scr);
-    gAp->mYbBgStep11Ncl = func_ov003_021d14b8(func_ov003_021bf650((u8 *) &a), NULL, 4);
+    LoadFileToVram(gYbObjWayNclName, GX_LoadOBJPltt);
+    LoadFileToVram(gJbBgStep1NcgName3, GX_LoadBG2Char);
+    LoadFileToVram(gJbBgStep1NclName3, GX_LoadBGPltt);
+    LoadFileToVram(gJb2ApNscName, GX_LoadBG2Scr);
+    gAp->mYbBgStep11Ncl = func_ov003_021d14b8(BuildFilePathWithLanguage((u8 *) &a), NULL, 4);
     func_ov003_021d2784(1, 0x10);
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 3;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;

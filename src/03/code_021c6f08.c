@@ -73,16 +73,16 @@ void CreateEditAddr(void) {
 void LoadEditAddrFilesAndSetBgCnt(void) {
     void *v2 = &gYbObjKbNclName2;
     void *v3 = &GX_LoadOBJPltt;
-    u32 v4 = func_ov003_021bf620(v2, v3);
+    u32 v4 = LoadFileToVram(v2, v3);
     void *v5 = &gJbBgStep3NcgName3;
     void *v6 = &GX_LoadBG2Char;
-    u32 v7 = func_ov003_021bf620(v5, v6);
+    u32 v7 = LoadFileToVram(v5, v6);
     void *v8 = &gYbBgStep3NclName3;
     void *v9 = &GX_LoadBGPltt;
-    u32 v10 = func_ov003_021bf620(v8, v9);
+    u32 v10 = LoadFileToVram(v8, v9);
     void *v11 = &gXb4EditAddrNscName;
     void *v12 = &GX_LoadBG2Scr;
-    u32 v13 = func_ov003_021bf620(v11, v12);
+    u32 v13 = LoadFileToVram(v11, v12);
     u32 v14 = 0x4001008u;
     u32 v15 = (*(u16 *) ((v14) + (0)));
     u32 v17 = ((v15) & ~(0x3u));
@@ -336,7 +336,7 @@ void func_ov003_021c722c(void) {
     func_ov003_021bf410();
     func_ov003_021d2f00((u32 *) (u32) (gEditAddr->mUnk_04));
     func_ov003_021d2168(0);
-    func_ov003_021bf620(&gYbObjMainNclName3, &GX_LoadOBJPltt);
+    LoadFileToVram(&gYbObjMainNclName3, &GX_LoadOBJPltt);
     func_ov003_021d272c(1, 1);
     func_ov003_021d272c(0, 0x15);
     func_ov003_021c20dc(v1, NULL);

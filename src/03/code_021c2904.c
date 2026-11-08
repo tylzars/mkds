@@ -25,7 +25,7 @@ void func_ov003_021c2a28(void) {
         func_ov003_021d1c90(1);
         func_ov003_021d1c90(0);
         ReleaseHlScr();
-        func_ov003_021bf7dc();
+        ReleaseSelectionObjects();
         func_ov003_021c2544(data_ov003_021da19c);
         func_ov003_021c25a4();
         func_ov003_021cdb80();

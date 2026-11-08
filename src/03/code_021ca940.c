@@ -205,10 +205,10 @@ void func_ov003_021cacfc(void) {
                 func_ov003_021d197c(gAp->mUnk_10[i]);
             }
         }
-        func_ov003_021bf698();
+        ReleaseSelectionObjectSlots();
         func_ov003_021bf410();
         func_ov003_021d1490(gAp->mYbBgStep11Ncl);
-        func_ov003_021bf620(gYbObjMainNclName5, GX_LoadOBJPltt);
+        LoadFileToVram(gYbObjMainNclName5, GX_LoadOBJPltt);
         func_ov003_021d272c(1, 1);
         func_ov003_021d272c(0, 0x14);
         if (gAp->mUnk_1d == 2) {
@@ -241,11 +241,11 @@ void func_ov003_021cacfc(void) {
 void func_ov003_021caca8(void) {
     u8 a = gApSelectedIndex[0];
     if (a < 4) {
-        func_ov003_021bf6c8(data_ov003_021d6540[a].mUnk_00, data_ov003_021d6540[a].mUnk_04,
-                            data_ov003_021d6540[a].mUnk_02, data_ov003_021d6540[a].mUnk_06);
+        PlaceSelectionCorners(data_ov003_021d6540[a].mUnk_00, data_ov003_021d6540[a].mUnk_04,
+                              data_ov003_021d6540[a].mUnk_02, data_ov003_021d6540[a].mUnk_06);
     } else {
-        func_ov003_021bf760(0, data_ov003_021d6540[a].mUnk_00, data_ov003_021d6540[a].mUnk_04,
-                            data_ov003_021d6540[a].mUnk_02);
+        PlaceSelectionPair(0, data_ov003_021d6540[a].mUnk_00, data_ov003_021d6540[a].mUnk_04,
+                           data_ov003_021d6540[a].mUnk_02);
     }
 }
 

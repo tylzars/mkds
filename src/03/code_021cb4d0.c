@@ -47,19 +47,19 @@ void SetupWay(void) {
     LoadHlSetScr();
     func_ov003_021bf43c(0x7e, data_ov003_021d6578[func_ov003_021c20d0()], a->mUnk_f4 + 1);
     func_ov003_021bf5ec(1);
-    func_ov003_021bf6c8(data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_00,
-                        data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_04,
-                        data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_02,
-                        data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_06);
+    PlaceSelectionCorners(data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_00,
+                          data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_04,
+                          data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_02,
+                          data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_06);
     func_ov003_021c212c(func_ov003_021cb71c);
 }
 
 void LoadWayFilesAndSetBgCnt(void) {
     Unk021d7654 a = gYbBgStep21NclName2;
-    func_ov003_021bf620(gJbBgStep2NcgName2, GX_LoadBG2Char);
-    func_ov003_021bf620(gYbBgStep2NclName2, GX_LoadBGPltt);
-    func_ov003_021bf620(gJb3WayNscName, GX_LoadBG2Scr);
-    gYbBgStep21Ncl = func_ov003_021d14b8(func_ov003_021bf650((u8 *) &a), NULL, 4);
+    LoadFileToVram(gJbBgStep2NcgName2, GX_LoadBG2Char);
+    LoadFileToVram(gYbBgStep2NclName2, GX_LoadBGPltt);
+    LoadFileToVram(gJb3WayNscName, GX_LoadBG2Scr);
+    gYbBgStep21Ncl = func_ov003_021d14b8(BuildFilePathWithLanguage((u8 *) &a), NULL, 4);
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 3;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
     reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 3;
@@ -102,10 +102,10 @@ void UpdateWayInput(void) {
         if (func_ov003_021d2a34(&gWayRects[func_ov003_021c20a8(1)][i]) != 0) {
             SetButtonResultIfNone(1);
             gWaySelectedIndex = i;
-            func_ov003_021bf6c8(data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_00,
-                                data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_04,
-                                data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_02,
-                                data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_06);
+            PlaceSelectionCorners(data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_00,
+                                  data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_04,
+                                  data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_02,
+                                  data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_06);
             return;
         }
     }

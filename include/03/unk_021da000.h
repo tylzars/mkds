@@ -42,7 +42,7 @@ typedef struct Unk021da280 Unk021da280;
 typedef struct Unk021cf260 Unk021cf260;
 extern SlideButtons *data_ov003_021da108;
 extern u8 data_ov003_021da10c;
-extern Unk021d1770 **data_ov003_021da150;
+extern Unk021d1770 **gSelectionObjects;
 // 8-byte object returned by func_ov003_021d1c18: bits 0-7 and bits 16-24 of the word at 0x00 are two coordinates.
 typedef struct Unk021bf920 {
     /* 00 */ u32 mUnk_00;
@@ -58,28 +58,28 @@ typedef struct Unk021da158 {
 
 extern Unk021da158 *data_ov003_021da158;
 
-// Object behind data_ov003_021da15c.
-typedef struct Unk021da15c {
-    /* 000 */ void *mUnk_000[3][4];
-    /* 030 */ Unk021bf920 *mUnk_030[0x2f];
-    /* 0ec */ Unk021bf920 *mUnk_0ec[4];
-    /* 0fc */ Unk021d1770 *mUnk_0fc[2];
+// The on-screen keys of the Edit screen.
+typedef struct EditKeyboard {
+    /* 000 */ void *mRowTexts[3][4];
+    /* 030 */ Unk021bf920 *mKeys[0x2f];
+    /* 0ec */ Unk021bf920 *mExtraKeys[4];
+    /* 0fc */ Unk021d1770 *mRow4Keys[2];
     /* 104 */ void *mUnk_104[4];
-    /* 114 */ Unk021d1770 *mUnk_114;
-    /* 118 */ Unk021d34e0 *mUnk_118;
-    /* 11c */ u8 mUnk_11c;
-    /* 11d */ u8 mUnk_11d;
-    /* 11e */ s8 mUnk_11e;
-    /* 11f */ s8 mUnk_11f;
+    /* 114 */ Unk021d1770 *mCursor;
+    /* 118 */ Unk021d34e0 *mStepTask;
+    /* 11c */ u8 mInput;
+    /* 11d */ u8 mPage;
+    /* 11e */ s8 mPressedKeyIndex;
+    /* 11f */ s8 mHighlightedKeyIndex;
     /* 120 */ s8 mUnk_120;
-    /* 121 */ s8 mUnk_121;
-    /* 122 */ u8 mUnk_122;
-    /* 123 */ u8 mUnk_123;
-    /* 124 */ u8 mUnk_124;
-    /* 125 */ u8 mUnk_125;
-} Unk021da15c;
+    /* 121 */ s8 mCursorKeyIndex;
+    /* 122 */ u8 mRepeatCalls;
+    /* 123 */ u8 mRemoveCharEnabled;
+    /* 124 */ u8 mAddCharEnabled;
+    /* 125 */ u8 mRemoveDisabledSoundPlayed;
+} EditKeyboard;
 
-extern Unk021da15c *data_ov003_021da15c;
+extern EditKeyboard *gEditKeyboard;
 struct Unk021da160;
 extern struct Unk021da160 *data_ov003_021da160;
 extern u8 data_ov003_021da164[];

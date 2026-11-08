@@ -7,67 +7,67 @@
 #include "03/code_021d27d8.h"
 #include "03/unk_021da000.h"
 
-void func_ov003_021bf7f4(void) {
-    data_ov003_021da150 = func_ov003_021d283c(0x10, 4);
+void InitSelectionObjects(void) {
+    gSelectionObjects = func_ov003_021d283c(0x10, 4);
 }
 
-void func_ov003_021bf7dc(void) {
-    func_ov003_021bf698();
-    func_ov003_021d2808(&data_ov003_021da150);
+void ReleaseSelectionObjects(void) {
+    ReleaseSelectionObjectSlots();
+    func_ov003_021d2808(&gSelectionObjects);
 }
 
-void func_ov003_021bf760(u32 c, u32 d, u32 e, u32 f) {
+void PlaceSelectionPair(u32 pairIndex, u32 leftX, u32 rightX, u32 yPos) {
     s32 i;
-    u8 *a;
+    u8 *objectIds;
 
-    func_ov003_021bf698();
+    ReleaseSelectionObjectSlots();
     i = 0;
-    a = data_ov003_021d5f4c + c * 2;
+    objectIds = data_ov003_021d5f4c + pairIndex * 2;
     for (; i < 2; i++) {
-        data_ov003_021da150[i] = func_ov003_021d1be4(0, *a, 1);
-        func_ov003_021d1790(data_ov003_021da150[i], -1, 1);
-        a++;
+        gSelectionObjects[i] = func_ov003_021d1be4(0, *objectIds, 1);
+        func_ov003_021d1790(gSelectionObjects[i], -1, 1);
+        objectIds++;
     }
-    func_ov003_021d17d4(data_ov003_021da150[0], -1, d, f);
-    func_ov003_021d17d4(data_ov003_021da150[1], -1, e, f);
+    func_ov003_021d17d4(gSelectionObjects[0], -1, leftX, yPos);
+    func_ov003_021d17d4(gSelectionObjects[1], -1, rightX, yPos);
 }
 
-void func_ov003_021bf6c8(u32 a, u32 b, u32 c, u32 d) {
-    int v1;
-    int v2;
-    int v3;
-    Unk021d1770 *v4;
-    v1 = 6;
-    func_ov003_021bf698();
-    v2 = 0;
-    v3 = 0;
+void PlaceSelectionCorners(u32 left, u32 right, u32 top, u32 bottom) {
+    int objectId;
+    int count;
+    int slot;
+    Unk021d1770 *object;
+    objectId = 6;
+    ReleaseSelectionObjectSlots();
+    count = 0;
+    slot = 0;
     do {
-        v4 = func_ov003_021d1be4(0, v1, 1);
-        data_ov003_021da150[v3] = v4;
-        func_ov003_021d1790(data_ov003_021da150[v3], 0xffffffff, 1);
-        v3 = v3 + 1;
-        v2 = v2 + 1;
-        v1 = v1 + 1;
-    } while (v2 < 4);
-    func_ov003_021d17d4(data_ov003_021da150[0], 0xffffffff, a, c);
-    func_ov003_021d17d4(data_ov003_021da150[1], 0xffffffff, b, c);
-    func_ov003_021d17d4(data_ov003_021da150[2], 0xffffffff, a, d);
-    func_ov003_021d17d4(data_ov003_021da150[3], 0xffffffff, b, d);
+        object = func_ov003_021d1be4(0, objectId, 1);
+        gSelectionObjects[slot] = object;
+        func_ov003_021d1790(gSelectionObjects[slot], 0xffffffff, 1);
+        slot = slot + 1;
+        count = count + 1;
+        objectId = objectId + 1;
+    } while (count < 4);
+    func_ov003_021d17d4(gSelectionObjects[0], 0xffffffff, left, top);
+    func_ov003_021d17d4(gSelectionObjects[1], 0xffffffff, right, top);
+    func_ov003_021d17d4(gSelectionObjects[2], 0xffffffff, left, bottom);
+    func_ov003_021d17d4(gSelectionObjects[3], 0xffffffff, right, bottom);
 }
 
-void func_ov003_021bf698(void) {
-    int v1;
-    int v2;
-    Unk021d1770 *p;
-    v1 = 0;
-    v2 = 0;
+void ReleaseSelectionObjectSlots(void) {
+    int count;
+    int slot;
+    Unk021d1770 *object;
+    count = 0;
+    slot = 0;
     do {
-        p = data_ov003_021da150[v2];
-        if (NULL != p) {
-            func_ov003_021d197c(p);
-            data_ov003_021da150[v2] = NULL;
+        object = gSelectionObjects[slot];
+        if (NULL != object) {
+            func_ov003_021d197c(object);
+            gSelectionObjects[slot] = NULL;
         }
-        v2 = v2 + 1;
-        v1 = v1 + 1;
-    } while (v1 < 4);
+        slot = slot + 1;
+        count = count + 1;
+    } while (count < 4);
 }

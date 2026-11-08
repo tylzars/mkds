@@ -22,7 +22,7 @@ void ReleaseHlScr(void) {
 void LoadHlScr(int b) {
     void *a;
 
-    a = func_ov003_021d14b8(func_ov003_021bf650(gHlNscNames[b]), NULL, 4);
+    a = func_ov003_021d14b8(BuildFilePathWithLanguage(gHlNscNames[b]), NULL, 4);
     MIi_CpuCopyFast(a, gHlScr, 0xc0);
     func_ov003_021d1490(a);
     func_ov003_021d3544(1, UploadHlScr, NULL, 0x78);

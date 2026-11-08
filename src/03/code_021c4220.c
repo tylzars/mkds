@@ -58,6 +58,6 @@ void func_ov003_021c4240(void) {
 
 void func_ov003_021c4220(void) {
     func_ov003_021c41d4();
-    func_ov003_021bf578(0x61);
+    PrintMessage(0x61);
     func_ov003_021c212c(func_ov003_021c41ac);
 }

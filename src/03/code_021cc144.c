@@ -32,20 +32,20 @@ void SetupXb3Multi(void) {
     LoadHlScr(8);
     func_ov003_021bf43c(0x85, -1, 0);
     func_ov003_021bf5ec(1);
-    func_ov003_021bf578(0x6c);
+    PrintMessage(0x6c);
     func_ov003_021c212c(func_ov003_021cc310);
 }
 
 void LoadXb3MultiFilesAndSetBgCnt(void) {
     void *v2 = &gJbBgStep2NcgName3;
     void *v3 = &GX_LoadBG2Char;
-    u32 v4 = func_ov003_021bf620(v2, v3);
+    u32 v4 = LoadFileToVram(v2, v3);
     void *v5 = &gYbBgStep2NclName3;
     void *v6 = &GX_LoadBGPltt;
-    u32 v7 = func_ov003_021bf620(v5, v6);
+    u32 v7 = LoadFileToVram(v5, v6);
     void *v8 = &gXb3MultiNscName;
     void *v9 = &GX_LoadBG2Scr;
-    u32 v10 = func_ov003_021bf620(v8, v9);
+    u32 v10 = LoadFileToVram(v8, v9);
     u32 v11 = 0x4001008u;
     u32 v12 = (*(u16 *) ((v11) + (0)));
     u32 v14 = ((v12) & ~(0x3u));

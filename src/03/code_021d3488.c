@@ -48,7 +48,7 @@ void func_ov003_021d35c0(void) {
 }
 
 void func_ov003_021d3558(int a) {
-    Unk021d34e4 *b;
+    TaskEntry *b;
     s32 c;
     u32 d;
 
@@ -73,12 +73,12 @@ void func_ov003_021d3558(int a) {
 }
 
 u32 func_ov003_021d3544(u32 p0, void *p1, void *p2, u32 p3) {
-    return (u32) func_ov003_021d34e4(p0, (void (*)(Unk021d34e4 *, u32))(p1), (u32) p2, p3, 0x0u);
+    return (u32) func_ov003_021d34e4(p0, (void (*)(TaskEntry *, u32))(p1), (u32) p2, p3, 0x0u);
 }
 
-Unk021d34e4 *func_ov003_021d34e4(u32 a, void (*b)(Unk021d34e4 *a, u32 b), u32 c, u32 d, u8 e) {
-    Unk021d34e4 *f;
-    Unk021d34e4 *g;
+TaskEntry *func_ov003_021d34e4(u32 a, void (*b)(TaskEntry *a, u32 b), u32 c, u32 d, u8 e) {
+    TaskEntry *f;
+    TaskEntry *g;
     u32 h;
 
     f = func_ov003_021d1cd4(data_ov003_021da32c[a].mUnk_00);

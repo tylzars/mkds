@@ -122,7 +122,7 @@ void PrintJb4Error(void) {
     g = data_ov003_021d6418[func_ov003_021c20d0() * 2];
     func_ov003_021d2094(d, g, f, 2, 0xa, h, 0);
     func_ov003_021d2070(d, data_ov003_021d6410[0], data_ov003_021d6410[1], data_ov003_021d6410[2],
-                        data_ov003_021d6410[3], 2, func_ov003_021bf4dc(), e);
+                        data_ov003_021d6410[3], 2, GetLanguageTextFlags(), e);
     func_ov003_021d1fd0(d);
 }
 

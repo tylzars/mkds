@@ -46,7 +46,7 @@ void SetupUsb(void) {
     a[0] = 0;
     MIi_CpuClear16(a[0], &a[1], 0x16);
     MIi_CpuCopy16(b.mUnk_04, &a[1], b.mUnk_18 * 2);
-    func_ov003_021bf4f4((u32) &a[1], 0x6d);
+    PrintMessageAndText((u32) &a[1], 0x6d);
     func_ov003_021beef8(0);
     func_ov003_021ce920(func_ov003_021cc4ec);
     StartSoundSeq(0xb);
@@ -56,13 +56,13 @@ void SetupUsb(void) {
 void LoadUsbFilesAndSetBgCnt(void) {
     void *v2 = &gJbBgStep3NcgName8;
     void *v3 = &GX_LoadBG2Char;
-    u32 v4 = func_ov003_021bf620(v2, v3);
+    u32 v4 = LoadFileToVram(v2, v3);
     void *v5 = &gYbBgStep3NclName8;
     void *v6 = &GX_LoadBGPltt;
-    u32 v7 = func_ov003_021bf620(v5, v6);
+    u32 v7 = LoadFileToVram(v5, v6);
     void *v8 = &gJb4UsbNscName;
     void *v9 = &GX_LoadBG2Scr;
-    u32 v10 = func_ov003_021bf620(v8, v9);
+    u32 v10 = LoadFileToVram(v8, v9);
     u32 v11 = 0x4001008u;
     u32 v12 = (*(u16 *) ((v11) + (0)));
     u32 v14 = ((v12) & ~(0x3u));

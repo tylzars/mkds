@@ -31,14 +31,14 @@ void func_ov003_021c4670(void) {
     func_ov003_021c460c();
     LoadHlScr(19);
     func_ov003_021bf43c(141, -1, 0);
-    func_ov003_021bf578(93);
+    PrintMessage(93);
     func_ov003_021c212c(func_ov003_021c45d0);
 }
 
 void func_ov003_021c460c(void) {
     void *v2 = &data_ov003_021d716c;
     void *v3 = &GX_LoadBG2Scr;
-    u32 v4 = func_ov003_021bf620(v2, v3);
+    u32 v4 = LoadFileToVram(v2, v3);
     u32 v5 = 0x4001008u;
     u32 v6 = (*(u16 *) ((v5) + (0)));
     u32 v8 = ((v6) & ~(0x3u));
@@ -183,6 +183,6 @@ void func_ov003_021c4410(void) {
 
 void func_ov003_021c43f0(void) {
     func_ov003_021c43a4();
-    func_ov003_021bf578(0x5c);
+    PrintMessage(0x5c);
     func_ov003_021c212c(func_ov003_021c437c);
 }

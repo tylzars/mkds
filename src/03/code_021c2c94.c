@@ -34,18 +34,19 @@ void SetupJb2Menu(void) {
     LoadHlScr(0);
     func_ov003_021bf43c(0x7a, -1, 0);
     func_ov003_021cdcf0(4);
-    func_ov003_021bf6c8(data_ov003_021d6328[gJb2MenuSelectedIndex * 4], data_ov003_021d632c[gJb2MenuSelectedIndex * 4],
-                        data_ov003_021d632a[gJb2MenuSelectedIndex * 4], data_ov003_021d632e[gJb2MenuSelectedIndex * 4]);
+    PlaceSelectionCorners(
+        data_ov003_021d6328[gJb2MenuSelectedIndex * 4], data_ov003_021d632c[gJb2MenuSelectedIndex * 4],
+        data_ov003_021d632a[gJb2MenuSelectedIndex * 4], data_ov003_021d632e[gJb2MenuSelectedIndex * 4]);
     func_ov003_021c212c(func_ov003_021c2f98);
 }
 
 void LoadJb2MenuFilesAndSetBgCnt(void) {
     Unk021d6fd4 a;
     a = gYbBgStep11NclName;
-    func_ov003_021bf620(gJbBgStep1NcgName2, GX_LoadBG2Char);
-    func_ov003_021bf620(gJbBgStep1NclName2, GX_LoadBGPltt);
-    func_ov003_021bf620(gJb2MenuNscName, GX_LoadBG2Scr);
-    gYbBgStep11Ncl = func_ov003_021d14b8(func_ov003_021bf650(a.mUnk_00), NULL, 4);
+    LoadFileToVram(gJbBgStep1NcgName2, GX_LoadBG2Char);
+    LoadFileToVram(gJbBgStep1NclName2, GX_LoadBGPltt);
+    LoadFileToVram(gJb2MenuNscName, GX_LoadBG2Scr);
+    gYbBgStep11Ncl = func_ov003_021d14b8(BuildFilePathWithLanguage(a.mUnk_00), NULL, 4);
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 3;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
     reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 3;
@@ -88,7 +89,7 @@ void UpdateJb2MenuInput(void) {
         if (func_ov003_021d2a34(&gJb2MenuRects[i]) != 0) {
             SetButtonResultIfNone(1);
             gJb2MenuSelectedIndex = i;
-            func_ov003_021bf6c8(
+            PlaceSelectionCorners(
                 data_ov003_021d6328[gJb2MenuSelectedIndex * 4], data_ov003_021d632c[gJb2MenuSelectedIndex * 4],
                 data_ov003_021d632a[gJb2MenuSelectedIndex * 4], data_ov003_021d632e[gJb2MenuSelectedIndex * 4]);
             return;
@@ -143,7 +144,7 @@ void func_ov003_021c2d9c(void) {
 
 void func_ov003_021c2d18(void) {
     if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0) {
-        func_ov003_021bf698();
+        ReleaseSelectionObjectSlots();
         func_ov003_021bf410();
         func_ov003_021d1490(gYbBgStep11Ncl);
         func_ov003_021d272c(1, 1);
@@ -165,7 +166,7 @@ void MoveJb2MenuSelection(s32 a) {
     if (a != 1 && a != 3) {
         gJb2MenuSelectedIndex ^= 1;
         StartSoundSeq(8);
-        func_ov003_021bf6c8(
+        PlaceSelectionCorners(
             data_ov003_021d6328[gJb2MenuSelectedIndex * 4], data_ov003_021d632c[gJb2MenuSelectedIndex * 4],
             data_ov003_021d632a[gJb2MenuSelectedIndex * 4], data_ov003_021d632e[gJb2MenuSelectedIndex * 4]);
     }

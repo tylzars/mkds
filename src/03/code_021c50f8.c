@@ -48,7 +48,7 @@ void func_ov003_021c54dc(void) {
     LoadHlSetScr();
     func_ov003_021bf43c(0x82, -1, 0);
     func_ov003_021bf5ec(2);
-    func_ov003_021bf578(0x67);
+    PrintMessage(0x67);
     func_ov003_021beef8(0);
     func_ov003_021c1fc8();
     StartSoundSeq(0xb);
@@ -56,9 +56,9 @@ void func_ov003_021c54dc(void) {
 }
 
 void func_ov003_021c5458(void) {
-    func_ov003_021bf620(data_ov003_021d71d0, GX_LoadBG2Char);
-    func_ov003_021bf620(data_ov003_021d71e8, GX_LoadBGPltt);
-    func_ov003_021bf620(data_ov003_021d7200, GX_LoadBG2Scr);
+    LoadFileToVram(data_ov003_021d71d0, GX_LoadBG2Char);
+    LoadFileToVram(data_ov003_021d71e8, GX_LoadBGPltt);
+    LoadFileToVram(data_ov003_021d7200, GX_LoadBG2Scr);
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 3;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
     reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 3;

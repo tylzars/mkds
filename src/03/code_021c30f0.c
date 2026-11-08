@@ -32,14 +32,14 @@ void SetupYb5Multi(void) {
     LoadYb5MultiFileAndSetBgCnt();
     LoadHlScr(18);
     func_ov003_021bf43c(140, -1, 0);
-    func_ov003_021bf578(85);
+    PrintMessage(85);
     func_ov003_021c212c(func_ov003_021c330c);
 }
 
 void LoadYb5MultiFileAndSetBgCnt(void) {
     void *v2 = &gYb5MultiNscName;
     void *v3 = &GX_LoadBG2Scr;
-    u32 v4 = func_ov003_021bf620(v2, v3);
+    u32 v4 = LoadFileToVram(v2, v3);
     u32 v5 = 0x4001008u;
     u32 v6 = (*(u16 *) ((v5) + (0)));
     u32 v8 = ((v6) & ~(0x3u));

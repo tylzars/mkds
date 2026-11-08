@@ -28,417 +28,419 @@
 #include "03/unk_021d67d8.h"
 #include "registers.h"
 
-static inline void func_ov003_021bfbd0_inline(Unk021bf920 *p, u32 *x, u32 *y) {
-    *x = (p->mUnk_00 & 0x1ff0000) >> 16;
-    *y = p->mUnk_00 & 0xff;
+static inline void func_ov003_021bfbd0_inline(Unk021bf920 *object, u32 *x, u32 *y) {
+    *x = (object->mUnk_00 & 0x1ff0000) >> 16;
+    *y = object->mUnk_00 & 0xff;
 }
 
 void func_ov003_021c0318(void) {
-    s32 a;
+    s32 cursorKeyIndex;
     if (func_ov003_021d2ae8(0x20) != 0) {
-        func_ov003_021bfce0(0);
+        MoveEditKeyboardCursor(0);
     }
     if (func_ov003_021d2ae8(0x40) != 0) {
-        func_ov003_021bfce0(1);
+        MoveEditKeyboardCursor(1);
     }
     if (func_ov003_021d2ae8(0x10) != 0) {
-        func_ov003_021bfce0(2);
+        MoveEditKeyboardCursor(2);
     }
     if (func_ov003_021d2ae8(0x80) != 0) {
-        func_ov003_021bfce0(3);
+        MoveEditKeyboardCursor(3);
     }
     if (func_ov003_021d2b04(1) != 0) {
-        a = data_ov003_021da15c->mUnk_121;
-        if (a < 0x2f) {
-            if (data_ov003_021da15c->mUnk_124 == 0) {
+        cursorKeyIndex = gEditKeyboard->mCursorKeyIndex;
+        if (cursorKeyIndex < 0x2f) {
+            if (gEditKeyboard->mAddCharEnabled == 0) {
                 StartSoundSeq(9);
                 return;
             }
-            data_ov003_021da15c->mUnk_11c = data_ov003_021d6bdc[data_ov003_021da15c->mUnk_11d][a];
-            if (data_ov003_021da15c->mUnk_11d == 1) {
-                func_ov003_021c00ec(0);
+            gEditKeyboard->mInput = data_ov003_021d6bdc[gEditKeyboard->mPage][cursorKeyIndex];
+            if (gEditKeyboard->mPage == 1) {
+                ChangeEditKeyboardPage(0);
             }
             return;
         }
-        if (a - 0x2f < 4) {
-            switch (a - 0x2f) {
+        if (cursorKeyIndex - 0x2f < 4) {
+            switch (cursorKeyIndex - 0x2f) {
                 case 0:
-                    func_ov003_021c06b0();
+                    ToggleEditKeyboardPage2();
                     return;
                 case 1:
-                    func_ov003_021c0680();
+                    ToggleEditKeyboardPage1();
                     return;
                 case 2:
-                    if (data_ov003_021da15c->mUnk_124 == 0) {
+                    if (gEditKeyboard->mAddCharEnabled == 0) {
                         StartSoundSeq(9);
                         return;
                     }
                     break;
                 case 3:
-                    if (data_ov003_021da15c->mUnk_123 == 0) {
+                    if (gEditKeyboard->mRemoveCharEnabled == 0) {
                         StartSoundSeq(9);
                         return;
                     }
                     break;
             }
-            if (data_ov003_021da15c->mUnk_11d == 1) {
-                func_ov003_021c00ec(0);
+            if (gEditKeyboard->mPage == 1) {
+                ChangeEditKeyboardPage(0);
             }
-            data_ov003_021da15c->mUnk_11c = data_ov003_021d5f80[a - 0x2f];
+            gEditKeyboard->mInput = data_ov003_021d5f80[cursorKeyIndex - 0x2f];
             return;
         }
-        data_ov003_021da15c->mUnk_11c = data_ov003_021d5f6c[a - 0x33];
+        gEditKeyboard->mInput = data_ov003_021d5f6c[cursorKeyIndex - 0x33];
     }
     if (func_ov003_021d2ae8(2) != 0) {
-        if (data_ov003_021da15c->mUnk_123 == 0) {
-            if (data_ov003_021da15c->mUnk_125 != 0) {
+        if (gEditKeyboard->mRemoveCharEnabled == 0) {
+            if (gEditKeyboard->mRemoveDisabledSoundPlayed != 0) {
                 return;
             }
             StartSoundSeq(9);
-            data_ov003_021da15c->mUnk_125 = 1;
+            gEditKeyboard->mRemoveDisabledSoundPlayed = 1;
             return;
         }
-        data_ov003_021da15c->mUnk_11c = 0x80;
+        gEditKeyboard->mInput = 0x80;
     } else if (func_ov003_021d2acc(2) != 0) {
-        data_ov003_021da15c->mUnk_125 = 0;
+        gEditKeyboard->mRemoveDisabledSoundPlayed = 0;
     }
     if (func_ov003_021d2b04(0x400) != 0) {
-        func_ov003_021c06b0();
+        ToggleEditKeyboardPage2();
     }
     if (func_ov003_021d2b04(0x800) != 0) {
-        func_ov003_021c0680();
+        ToggleEditKeyboardPage1();
     }
 }
 
-void func_ov003_021c0154(u32 param_1, s32 param_2, u32 param_3) {
-    u8 a[5];
-    u8 c[5];
-    u8 d[5];
+void SetEditKeyboardRowY(u32 page, s32 row, u32 yPos) {
+    u8 keyCounts[5];
+    u8 extraKeyCounts[5];
+    u8 row4KeyCounts[5];
     s32 i;
-    s32 j;
-    s32 k;
-    Unk021bf920 *p;
-    *(Unk021c1364_05 *) a = *(Unk021c1364_05 *) data_ov003_021d6bcc;
-    *(Unk021c1364_05 *) c = *(Unk021c1364_05 *) data_ov003_021d6bd4;
-    *(Unk021c1364_05 *) d = *(Unk021c1364_05 *) data_ov003_021d6bc4;
-    j = param_2 * 12;
-    for (i = 0; i < a[(u32) param_2]; i++, j++) {
-        p = data_ov003_021da15c->mUnk_030[j];
-        p->mUnk_00 = p->mUnk_00 & 0xc1fffcff;
-        p = data_ov003_021da15c->mUnk_030[j];
-        p->mUnk_00 = ((data_ov003_021d5fb0[j][0] & 0x1ff) << 16) | ((p->mUnk_00 & 0xfe00ff00) | (param_3 & 0xff));
+    s32 keyIndex;
+    s32 extraKeyIndex;
+    Unk021bf920 *key;
+    *(Unk021c1364_05 *) keyCounts = *(Unk021c1364_05 *) data_ov003_021d6bcc;
+    *(Unk021c1364_05 *) extraKeyCounts = *(Unk021c1364_05 *) data_ov003_021d6bd4;
+    *(Unk021c1364_05 *) row4KeyCounts = *(Unk021c1364_05 *) data_ov003_021d6bc4;
+    keyIndex = row * 12;
+    for (i = 0; i < keyCounts[(u32) row]; i++, keyIndex++) {
+        key = gEditKeyboard->mKeys[keyIndex];
+        key->mUnk_00 = key->mUnk_00 & 0xc1fffcff;
+        key = gEditKeyboard->mKeys[keyIndex];
+        key->mUnk_00 =
+            ((data_ov003_021d5fb0[keyIndex][0] & 0x1ff) << 16) | ((key->mUnk_00 & 0xfe00ff00) | (yPos & 0xff));
     }
-    if (param_2 < 4) {
-        func_ov003_021d1ffc(data_ov003_021da15c->mUnk_000[param_1][param_2], data_ov003_021d5fb0[param_2 * 12][0],
-                            param_3, data_ov003_021da15c->mUnk_104[param_2], 2);
+    if (row < 4) {
+        func_ov003_021d1ffc(gEditKeyboard->mRowTexts[page][row], data_ov003_021d5fb0[row * 12][0], yPos,
+                            gEditKeyboard->mUnk_104[row], 2);
     }
-    k = FX_ModS32(param_2 + 3, 4);
-    for (i = 0; i < c[(u32) param_2]; i++) {
-        p = data_ov003_021da15c->mUnk_0ec[k];
-        p->mUnk_00 = p->mUnk_00 & 0xc1fffcff;
-        p = data_ov003_021da15c->mUnk_0ec[k];
-        p->mUnk_00 = ((data_ov003_021d5f90[k][0] & 0x1ff) << 16) | ((p->mUnk_00 & 0xfe00ff00) | (param_3 & 0xff));
+    extraKeyIndex = FX_ModS32(row + 3, 4);
+    for (i = 0; i < extraKeyCounts[(u32) row]; i++) {
+        key = gEditKeyboard->mExtraKeys[extraKeyIndex];
+        key->mUnk_00 = key->mUnk_00 & 0xc1fffcff;
+        key = gEditKeyboard->mExtraKeys[extraKeyIndex];
+        key->mUnk_00 =
+            ((data_ov003_021d5f90[extraKeyIndex][0] & 0x1ff) << 16) | ((key->mUnk_00 & 0xfe00ff00) | (yPos & 0xff));
     }
-    for (i = 0; i < d[(u32) param_2]; i++) {
-        func_ov003_021d18f0(data_ov003_021da15c->mUnk_0fc[i], -1, 0, 0);
-        func_ov003_021d17d4(data_ov003_021da15c->mUnk_0fc[i], -1, data_ov003_021d5f88[i][0], param_3);
+    for (i = 0; i < row4KeyCounts[(u32) row]; i++) {
+        func_ov003_021d18f0(gEditKeyboard->mRow4Keys[i], -1, 0, 0);
+        func_ov003_021d17d4(gEditKeyboard->mRow4Keys[i], -1, data_ov003_021d5f88[i][0], yPos);
     }
 }
 
-void func_ov003_021c00ec(int param_1) {
-    BOOL a;
-    BOOL b;
+void ChangeEditKeyboardPage(int page) {
+    BOOL page2Selected;
+    BOOL page1Selected;
     s32 i;
-    s32 j;
-    a = FALSE;
-    b = FALSE;
-    data_ov003_021da15c->mUnk_11d = param_1;
+    s32 firstKeyIndex;
+    page2Selected = FALSE;
+    page1Selected = FALSE;
+    gEditKeyboard->mPage = page;
     i = 0;
     if (i < 4) {
-        j = 0;
+        firstKeyIndex = 0;
         do {
-            func_ov003_021c0154(param_1, i, data_ov003_021d5fb0[j][1]);
-            j = (s32) (j + 12);
+            SetEditKeyboardRowY(page, i, data_ov003_021d5fb0[firstKeyIndex][1]);
+            firstKeyIndex = (s32) (firstKeyIndex + 12);
             i++;
         } while (i < 4);
     }
-    if (param_1 == 2) {
-        a = TRUE;
-    } else if (param_1 == 1) {
-        b = TRUE;
+    if (page == 2) {
+        page2Selected = TRUE;
+    } else if (page == 1) {
+        page1Selected = TRUE;
     }
-    func_ov003_021c0050(0x2f, a);
-    func_ov003_021c0050(0x30, b);
+    SetEditKeyboardKeyHighlight(0x2f, page2Selected);
+    SetEditKeyboardKeyHighlight(0x30, page1Selected);
 }
 
-void func_ov003_021c0050(int param_1, int param_2) {
-    Unk021bf920 *p;
-    s32 a;
-    if (param_1 < 0) {
+void SetEditKeyboardKeyHighlight(int keyIndex, int highlight) {
+    Unk021bf920 *key;
+    s32 extraKeyIndex;
+    if (keyIndex < 0) {
         return;
     }
-    if (param_1 < 0x2f) {
-        p = data_ov003_021da15c->mUnk_030[param_1];
-        p->mUnk_00 = p->mUnk_00 & 0xfffff3ff;
-        p->mUnk_04 = (p->mUnk_04 & 0xffff0fff) | (data_ov003_021d5f60[param_2] << 12);
+    if (keyIndex < 0x2f) {
+        key = gEditKeyboard->mKeys[keyIndex];
+        key->mUnk_00 = key->mUnk_00 & 0xfffff3ff;
+        key->mUnk_04 = (key->mUnk_04 & 0xffff0fff) | (data_ov003_021d5f60[highlight] << 12);
         return;
     }
-    a = param_1 - 0x2f;
-    if (a < 4) {
-        p = data_ov003_021da15c->mUnk_0ec[a];
-        p->mUnk_00 = p->mUnk_00 & 0xfffff3ff;
-        p->mUnk_04 = (p->mUnk_04 & 0xffff0fff) | (data_ov003_021d5f60[param_2] << 12);
+    extraKeyIndex = keyIndex - 0x2f;
+    if (extraKeyIndex < 4) {
+        key = gEditKeyboard->mExtraKeys[extraKeyIndex];
+        key->mUnk_00 = key->mUnk_00 & 0xfffff3ff;
+        key->mUnk_04 = (key->mUnk_04 & 0xffff0fff) | (data_ov003_021d5f60[highlight] << 12);
         return;
     }
-    func_ov003_021d1890(data_ov003_021da15c->mUnk_0fc[param_1 - 0x33], -1, 0, data_ov003_021d5f64[param_2]);
+    func_ov003_021d1890(gEditKeyboard->mRow4Keys[keyIndex - 0x33], -1, 0, data_ov003_021d5f64[highlight]);
 }
 
-void func_ov003_021bffb0(void) {
-    u32 a;
-    switch (data_ov003_021da15c->mUnk_121) {
+void PlaceEditKeyboardCursor(void) {
+    u32 imageIndex;
+    switch (gEditKeyboard->mCursorKeyIndex) {
         case 0x2f:
-            a = 0x42;
+            imageIndex = 0x42;
             break;
         case 0x30:
-            a = 0x41;
+            imageIndex = 0x41;
             break;
         case 0x31:
-            a = 0x43;
+            imageIndex = 0x43;
             break;
         case 0x32:
-            a = 0x41;
+            imageIndex = 0x41;
             break;
         case 0x33:
         case 0x34:
-            a = 0x45;
+            imageIndex = 0x45;
             break;
         default:
-            a = 0x40;
+            imageIndex = 0x40;
             break;
     }
-    func_ov003_021d1c3c(0, a, func_ov003_021d1974(data_ov003_021da15c->mUnk_114, 0));
-    func_ov003_021d1790(data_ov003_021da15c->mUnk_114, -1, 2);
-    func_ov003_021d17d4(data_ov003_021da15c->mUnk_114, -1, data_ov003_021d606c[data_ov003_021da15c->mUnk_121][0],
-                        data_ov003_021d606e[data_ov003_021da15c->mUnk_121][0]);
+    func_ov003_021d1c3c(0, imageIndex, func_ov003_021d1974(gEditKeyboard->mCursor, 0));
+    func_ov003_021d1790(gEditKeyboard->mCursor, -1, 2);
+    func_ov003_021d17d4(gEditKeyboard->mCursor, -1, data_ov003_021d606c[gEditKeyboard->mCursorKeyIndex][0],
+                        data_ov003_021d606e[gEditKeyboard->mCursorKeyIndex][0]);
 }
 
-void func_ov003_021bfce0(int param_1) {
-    s8 a;
-    a = data_ov003_021da15c->mUnk_121;
-    data_ov003_021da15c->mUnk_121 = data_ov003_021d6140[a][param_1];
-    if (data_ov003_021da15c->mUnk_121 == 0x2e && param_1 == 3) {
-        data_ov003_021da15c->mUnk_120 = a;
-    } else if (data_ov003_021da15c->mUnk_121 == 0x33 && (param_1 == 1 || param_1 == 3)) {
-        data_ov003_021da15c->mUnk_120 = a;
-    } else if (data_ov003_021da15c->mUnk_121 == 0x34 && (param_1 == 1 || param_1 == 3)) {
-        if (a != 0x2e) {
-            data_ov003_021da15c->mUnk_120 = a;
+void MoveEditKeyboardCursor(int direction) {
+    s8 previousKeyIndex;
+    previousKeyIndex = gEditKeyboard->mCursorKeyIndex;
+    gEditKeyboard->mCursorKeyIndex = data_ov003_021d6140[previousKeyIndex][direction];
+    if (gEditKeyboard->mCursorKeyIndex == 0x2e && direction == 3) {
+        gEditKeyboard->mUnk_120 = previousKeyIndex;
+    } else if (gEditKeyboard->mCursorKeyIndex == 0x33 && (direction == 1 || direction == 3)) {
+        gEditKeyboard->mUnk_120 = previousKeyIndex;
+    } else if (gEditKeyboard->mCursorKeyIndex == 0x34 && (direction == 1 || direction == 3)) {
+        if (previousKeyIndex != 0x2e) {
+            gEditKeyboard->mUnk_120 = previousKeyIndex;
         }
-    } else if (data_ov003_021da15c->mUnk_121 == -1) {
-        if (data_ov003_021da15c->mUnk_120 == 0x23 || data_ov003_021da15c->mUnk_120 == 0x32) {
-            data_ov003_021da15c->mUnk_121 = 0x23;
+    } else if (gEditKeyboard->mCursorKeyIndex == -1) {
+        if (gEditKeyboard->mUnk_120 == 0x23 || gEditKeyboard->mUnk_120 == 0x32) {
+            gEditKeyboard->mCursorKeyIndex = 0x23;
         } else {
-            data_ov003_021da15c->mUnk_121 = 0x22;
+            gEditKeyboard->mCursorKeyIndex = 0x22;
         }
-    } else if (data_ov003_021da15c->mUnk_121 == -2) {
-        switch (data_ov003_021da15c->mUnk_120) {
+    } else if (gEditKeyboard->mCursorKeyIndex == -2) {
+        switch (gEditKeyboard->mUnk_120) {
             case 0:
             case 0x31:
-                data_ov003_021da15c->mUnk_121 = 0x31;
+                gEditKeyboard->mCursorKeyIndex = 0x31;
                 break;
             case 1:
             case 0x24:
-                data_ov003_021da15c->mUnk_121 = 0x24;
+                gEditKeyboard->mCursorKeyIndex = 0x24;
                 break;
             case 3:
             case 0x26:
-                data_ov003_021da15c->mUnk_121 = 0x26;
+                gEditKeyboard->mCursorKeyIndex = 0x26;
                 break;
             case 4:
             case 0x27:
-                data_ov003_021da15c->mUnk_121 = 0x27;
+                gEditKeyboard->mCursorKeyIndex = 0x27;
                 break;
             case 5:
             case 0x28:
-                data_ov003_021da15c->mUnk_121 = 0x28;
+                gEditKeyboard->mCursorKeyIndex = 0x28;
                 break;
             default:
-                data_ov003_021da15c->mUnk_121 = 0x25;
+                gEditKeyboard->mCursorKeyIndex = 0x25;
                 break;
         }
-    } else if (data_ov003_021da15c->mUnk_121 == -3) {
-        switch (data_ov003_021da15c->mUnk_120) {
+    } else if (gEditKeyboard->mCursorKeyIndex == -3) {
+        switch (gEditKeyboard->mUnk_120) {
             case 6:
             case 0x29:
-                data_ov003_021da15c->mUnk_121 = 0x29;
+                gEditKeyboard->mCursorKeyIndex = 0x29;
                 break;
             case 7:
             case 0x2a:
-                data_ov003_021da15c->mUnk_121 = 0x2a;
+                gEditKeyboard->mCursorKeyIndex = 0x2a;
                 break;
             case 9:
             case 0x2c:
-                data_ov003_021da15c->mUnk_121 = 0x2c;
+                gEditKeyboard->mCursorKeyIndex = 0x2c;
                 break;
             case 10:
             case 0x2d:
-                data_ov003_021da15c->mUnk_121 = 0x2d;
+                gEditKeyboard->mCursorKeyIndex = 0x2d;
                 break;
             case 11:
             case 0x22:
             case 0x23:
             case 0x32:
-                data_ov003_021da15c->mUnk_121 = 0x2e;
+                gEditKeyboard->mCursorKeyIndex = 0x2e;
                 break;
             default:
-                data_ov003_021da15c->mUnk_121 = 0x2b;
+                gEditKeyboard->mCursorKeyIndex = 0x2b;
                 break;
         }
-    } else if (data_ov003_021da15c->mUnk_121 == -4) {
-        switch (data_ov003_021da15c->mUnk_120) {
+    } else if (gEditKeyboard->mCursorKeyIndex == -4) {
+        switch (gEditKeyboard->mUnk_120) {
             case 0:
             case 0x31:
-                data_ov003_021da15c->mUnk_121 = 0;
+                gEditKeyboard->mCursorKeyIndex = 0;
                 break;
             case 1:
             case 0x24:
-                data_ov003_021da15c->mUnk_121 = 1;
+                gEditKeyboard->mCursorKeyIndex = 1;
                 break;
             case 3:
             case 0x26:
-                data_ov003_021da15c->mUnk_121 = 3;
+                gEditKeyboard->mCursorKeyIndex = 3;
                 break;
             case 4:
             case 0x27:
-                data_ov003_021da15c->mUnk_121 = 4;
+                gEditKeyboard->mCursorKeyIndex = 4;
                 break;
             case 5:
             case 0x28:
-                data_ov003_021da15c->mUnk_121 = 5;
+                gEditKeyboard->mCursorKeyIndex = 5;
                 break;
             default:
-                data_ov003_021da15c->mUnk_121 = 2;
+                gEditKeyboard->mCursorKeyIndex = 2;
                 break;
         }
-    } else if (data_ov003_021da15c->mUnk_121 == -5) {
-        switch (data_ov003_021da15c->mUnk_120) {
+    } else if (gEditKeyboard->mCursorKeyIndex == -5) {
+        switch (gEditKeyboard->mUnk_120) {
             case 6:
             case 0x29:
-                data_ov003_021da15c->mUnk_121 = 6;
+                gEditKeyboard->mCursorKeyIndex = 6;
                 break;
             case 7:
             case 0x2a:
-                data_ov003_021da15c->mUnk_121 = 7;
+                gEditKeyboard->mCursorKeyIndex = 7;
                 break;
             case 9:
             case 0x2c:
-                data_ov003_021da15c->mUnk_121 = 9;
+                gEditKeyboard->mCursorKeyIndex = 9;
                 break;
             case 10:
             case 0x2d:
-                data_ov003_021da15c->mUnk_121 = 10;
+                gEditKeyboard->mCursorKeyIndex = 10;
                 break;
             case 11:
             case 0x22:
-                data_ov003_021da15c->mUnk_121 = 11;
+                gEditKeyboard->mCursorKeyIndex = 11;
                 break;
             case 0x23:
             case 0x32:
-                data_ov003_021da15c->mUnk_121 = 0x32;
+                gEditKeyboard->mCursorKeyIndex = 0x32;
                 break;
             default:
-                data_ov003_021da15c->mUnk_121 = 8;
+                gEditKeyboard->mCursorKeyIndex = 8;
                 break;
         }
     }
-    func_ov003_021bffb0();
+    PlaceEditKeyboardCursor();
     StartSoundSeq(8);
 }
 
-void func_ov003_021bfc80(Unk021d34e0 *param_1) {
-    s32 a;
-    s32 b;
-    func_ov003_021bfbd0_inline(func_ov003_021d1974(data_ov003_021da15c->mUnk_0fc[0], 0), (u32 *) &a, (u32 *) &b);
-    b += 12;
-    func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 4, b);
-    if (b >= 0xc0) {
-        func_ov003_021d34e0(param_1, func_ov003_021bfc28);
+void AdvanceEditKeyboardSlideOutRow4(Unk021d34e0 *task) {
+    s32 xPos;
+    s32 yPos;
+    func_ov003_021bfbd0_inline(func_ov003_021d1974(gEditKeyboard->mRow4Keys[0], 0), (u32 *) &xPos, (u32 *) &yPos);
+    yPos += 12;
+    SetEditKeyboardRowY(gEditKeyboard->mPage, 4, yPos);
+    if (yPos >= 0xc0) {
+        func_ov003_021d34e0(task, AdvanceEditKeyboardSlideOutRow3);
     }
 }
 
-void func_ov003_021bfc28(Unk021d34e0 *param_1) {
-    s32 a;
+void AdvanceEditKeyboardSlideOutRow3(Unk021d34e0 *task) {
+    s32 xPos;
     s32 y;
-    func_ov003_021bfbd0_inline(data_ov003_021da15c->mUnk_030[36], (u32 *) &a, (u32 *) &y);
+    func_ov003_021bfbd0_inline(gEditKeyboard->mKeys[36], (u32 *) &xPos, (u32 *) &y);
     y += 12;
-    func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 3, y);
+    SetEditKeyboardRowY(gEditKeyboard->mPage, 3, y);
     if (y >= 0xc0) {
-        func_ov003_021d34e0(param_1, func_ov003_021bfbd0);
+        func_ov003_021d34e0(task, AdvanceEditKeyboardSlideOutRow2);
     }
 }
 
-void func_ov003_021bfbd0(Unk021d34e0 *param_1) {
-    s32 a;
-    s32 b;
-    func_ov003_021bfbd0_inline(data_ov003_021da15c->mUnk_030[24], (u32 *) &a, (u32 *) &b);
-    b += 12;
-    func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 2, b);
-    if (b >= 0xc0) {
-        func_ov003_021d34e0(param_1, func_ov003_021bfb7c);
+void AdvanceEditKeyboardSlideOutRow2(Unk021d34e0 *task) {
+    s32 xPos;
+    s32 yPos;
+    func_ov003_021bfbd0_inline(gEditKeyboard->mKeys[24], (u32 *) &xPos, (u32 *) &yPos);
+    yPos += 12;
+    SetEditKeyboardRowY(gEditKeyboard->mPage, 2, yPos);
+    if (yPos >= 0xc0) {
+        func_ov003_021d34e0(task, AdvanceEditKeyboardSlideOutRow1);
     }
 }
 
-void func_ov003_021bfb7c(Unk021d34e0 *param_1) {
+void AdvanceEditKeyboardSlideOutRow1(Unk021d34e0 *task) {
     s32 x;
     s32 y;
-    func_ov003_021bfbd0_inline(data_ov003_021da15c->mUnk_030[12], (u32 *) &x, (u32 *) &y);
+    func_ov003_021bfbd0_inline(gEditKeyboard->mKeys[12], (u32 *) &x, (u32 *) &y);
     y += 12;
-    func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 1, y);
+    SetEditKeyboardRowY(gEditKeyboard->mPage, 1, y);
     if (y >= 0xc0) {
-        func_ov003_021d34e0(param_1, func_ov003_021bfb28);
+        func_ov003_021d34e0(task, AdvanceEditKeyboardSlideOutRow0);
     }
 }
 
-void func_ov003_021bfb28(Unk021d34e0 *param_1) {
-    s32 a;
+void AdvanceEditKeyboardSlideOutRow0(Unk021d34e0 *task) {
+    s32 xPos;
     s32 y;
-    func_ov003_021bfbd0_inline(data_ov003_021da15c->mUnk_030[0], (u32 *) &a, (u32 *) &y);
+    func_ov003_021bfbd0_inline(gEditKeyboard->mKeys[0], (u32 *) &xPos, (u32 *) &y);
     y += 12;
-    func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 0, y);
+    SetEditKeyboardRowY(gEditKeyboard->mPage, 0, y);
     if (y >= 0xc0) {
-        func_ov003_021d34e0(param_1, func_ov003_021bfa80);
+        func_ov003_021d34e0(task, ReleaseEditKeyboard);
     }
 }
 
-void func_ov003_021bfa80(u32 param_1) {
+void ReleaseEditKeyboard(u32 task) {
     s32 i;
     s32 j;
-    func_ov003_021d34c8(0, param_1);
+    func_ov003_021d34c8(0, task);
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 4; j++) {
-            func_ov003_021d2388(data_ov003_021da15c->mUnk_000[i][j]);
+            func_ov003_021d2388(gEditKeyboard->mRowTexts[i][j]);
             if (i == 0) {
-                func_ov003_021d197c(data_ov003_021da15c->mUnk_104[j]);
+                func_ov003_021d197c(gEditKeyboard->mUnk_104[j]);
             }
         }
     }
     for (i = 0; i < 2; i++) {
-        func_ov003_021d197c(data_ov003_021da15c->mUnk_0fc[i]);
+        func_ov003_021d197c(gEditKeyboard->mRow4Keys[i]);
     }
     for (i = 0; i < 4; i++) {
-        func_ov003_021d2f00((u32 *) data_ov003_021da15c->mUnk_0ec[i]);
+        func_ov003_021d2f00((u32 *) gEditKeyboard->mExtraKeys[i]);
     }
     for (i = 0; i < 0x2f; i++) {
-        func_ov003_021d2f00((u32 *) data_ov003_021da15c->mUnk_030[i]);
+        func_ov003_021d2f00((u32 *) gEditKeyboard->mKeys[i]);
     }
-    func_ov003_021d2808(&data_ov003_021da15c);
+    func_ov003_021d2808(&gEditKeyboard);
 }
 
-void func_ov003_021bf9e8(int param_1) {
+void func_ov003_021bf9e8(int row) {
     if (data_ov003_021da158 == NULL) {
         data_ov003_021da158 = func_ov003_021d285c(0xc, 4);
-        data_ov003_021da158->mUnk_08 = param_1;
-        data_ov003_021da158->mUnk_00 = func_ov003_021d1c18(0, data_ov003_021d5f58[param_1][0]);
+        data_ov003_021da158->mUnk_08 = row;
+        data_ov003_021da158->mUnk_00 = func_ov003_021d1c18(0, data_ov003_021d5f58[row][0]);
         data_ov003_021da158->mUnk_00->mUnk_00 =
             ((data_ov003_021d5f54[0] & 0x1ff) << 16) |
             ((data_ov003_021da158->mUnk_00->mUnk_00 & 0xfe00ff00) | (data_ov003_021d5f54[1] & 0xff));
@@ -456,17 +458,18 @@ void func_ov003_021bf9b8(void) {
 }
 
 void func_ov003_021bf920(void) {
-    u32 i;
-    u16 a;
-    i = 0;
-    a = reg_OS_IME;
+    u32 linkLevel;
+    u16 savedIme;
+    linkLevel = 0;
+    savedIme = reg_OS_IME;
     reg_OS_IME = 0;
     if (WM_GetAllowedChannel() != 0x8000) {
-        i = WM_GetLinkLevel();
+        linkLevel = WM_GetLinkLevel();
     }
     reg_OS_IME;
-    reg_OS_IME = a;
-    func_ov003_021d1c3c(0, data_ov003_021d5f58[data_ov003_021da158->mUnk_08][i], (u8 *) data_ov003_021da158->mUnk_00);
+    reg_OS_IME = savedIme;
+    func_ov003_021d1c3c(0, data_ov003_021d5f58[data_ov003_021da158->mUnk_08][linkLevel],
+                        (u8 *) data_ov003_021da158->mUnk_00);
     data_ov003_021da158->mUnk_00->mUnk_00 =
         ((data_ov003_021d5f54[0] & 0x1ff) << 16) |
         ((data_ov003_021da158->mUnk_00->mUnk_00 & 0xfe00ff00) | (data_ov003_021d5f54[1] & 0xff));
@@ -475,13 +478,13 @@ void func_ov003_021bf920(void) {
 
 void InitHlScr(void) {
     gHlScr = func_ov003_021d285c(0xc0, 4);
-    func_ov003_021bf620(gJbBgHlNcgName, GX_LoadBG1Char);
+    LoadFileToVram(gJbBgHlNcgName, GX_LoadBG1Char);
     switch (func_ov003_021c20c0()) {
         case 0:
-            func_ov003_021bf620(gHlNscNames[0], GX_LoadBG1Scr);
+            LoadFileToVram(gHlNscNames[0], GX_LoadBG1Scr);
             break;
         case 1:
-            func_ov003_021bf620(gHlNscNames[1], GX_LoadBG1Scr);
+            LoadFileToVram(gHlNscNames[1], GX_LoadBG1Scr);
             break;
     }
 }

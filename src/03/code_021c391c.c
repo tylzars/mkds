@@ -52,8 +52,9 @@ void SetupOptMenu(void) {
         ((data_ov003_021d634c[0] & 0x1ff) << 16) | ((a->mUnk_00 & 0xfe00ff00) | (data_ov003_021d634c[1] & 0xff));
     a = data_ov003_021da1b8;
     a->mUnk_04 = (a->mUnk_04 & 0xfffff3ff) | 0xc00;
-    func_ov003_021bf6c8(data_ov003_021d6368[gOptMenuSelectedIndex * 4], data_ov003_021d636c[gOptMenuSelectedIndex * 4],
-                        data_ov003_021d636a[gOptMenuSelectedIndex * 4], data_ov003_021d636e[gOptMenuSelectedIndex * 4]);
+    PlaceSelectionCorners(
+        data_ov003_021d6368[gOptMenuSelectedIndex * 4], data_ov003_021d636c[gOptMenuSelectedIndex * 4],
+        data_ov003_021d636a[gOptMenuSelectedIndex * 4], data_ov003_021d636e[gOptMenuSelectedIndex * 4]);
     func_ov003_021c212c(func_ov003_021c3c88);
 }
 
@@ -67,10 +68,10 @@ void LoadOptMenuFilesAndSetBgCnt(void) {
     s32 i;
     b = gYbBgOptionNclName;
     c = gYbBgOption1NclName;
-    func_ov003_021bf620(gJbBgOptionNcgName, GX_LoadBG2Char);
-    func_ov003_021bf620(gJb5OptMenuNscName, GX_LoadBG2Scr);
-    gYbBgOption1Ncl = func_ov003_021d14b8(func_ov003_021bf650(c.mUnk_00), NULL, 4);
-    a = func_ov003_021d14b8(func_ov003_021bf650(b.mUnk_00), NULL, 4);
+    LoadFileToVram(gJbBgOptionNcgName, GX_LoadBG2Char);
+    LoadFileToVram(gJb5OptMenuNscName, GX_LoadBG2Scr);
+    gYbBgOption1Ncl = func_ov003_021d14b8(BuildFilePathWithLanguage(c.mUnk_00), NULL, 4);
+    a = func_ov003_021d14b8(BuildFilePathWithLanguage(b.mUnk_00), NULL, 4);
     DWCi_BM_GetWiFiInfo(&d);
     if (d.mAttestedUserId == 0) {
         e = a + 0xc0;
@@ -124,7 +125,7 @@ void UpdateOptMenuInput(void) {
         if (func_ov003_021d2a34(&gOptMenuRects[i]) != 0) {
             SetButtonResultIfNone(1);
             gOptMenuSelectedIndex = i;
-            func_ov003_021bf6c8(
+            PlaceSelectionCorners(
                 data_ov003_021d6368[gOptMenuSelectedIndex * 4], data_ov003_021d636c[gOptMenuSelectedIndex * 4],
                 data_ov003_021d636a[gOptMenuSelectedIndex * 4], data_ov003_021d636e[gOptMenuSelectedIndex * 4]);
             return;
@@ -188,7 +189,7 @@ void func_ov003_021c3a7c(void) {
 void func_ov003_021c39a4(void) {
     if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0 && func_ov003_021bf2f0() != 0) {
         func_ov003_021d2f00((u32 *) data_ov003_021da1b8);
-        func_ov003_021bf698();
+        ReleaseSelectionObjectSlots();
         func_ov003_021bf410();
         func_ov003_021d1490(gYbBgOption1Ncl);
         func_ov003_021d272c(1, 1);
@@ -222,8 +223,9 @@ void MoveOptMenuSelection(s32 a) {
         gOptMenuSelectedIndex = FX_ModS32(gOptMenuSelectedIndex + 1, 3);
     }
     StartSoundSeq(8);
-    func_ov003_021bf6c8(data_ov003_021d6368[gOptMenuSelectedIndex * 4], data_ov003_021d636c[gOptMenuSelectedIndex * 4],
-                        data_ov003_021d636a[gOptMenuSelectedIndex * 4], data_ov003_021d636e[gOptMenuSelectedIndex * 4]);
+    PlaceSelectionCorners(
+        data_ov003_021d6368[gOptMenuSelectedIndex * 4], data_ov003_021d636c[gOptMenuSelectedIndex * 4],
+        data_ov003_021d636a[gOptMenuSelectedIndex * 4], data_ov003_021d636e[gOptMenuSelectedIndex * 4]);
 }
 
 void func_ov003_021c391c(void) {

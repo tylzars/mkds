@@ -38,7 +38,7 @@ void func_ov003_021c9fd4(void) {
     *(u8 *) &data_ov003_021da21c = 0;
     func_ov003_021c9f70();
     LoadHlSetScr();
-    func_ov003_021bf578(0x71);
+    PrintMessage(0x71);
     func_ov003_021beef8(2);
     func_ov003_021c212c(func_ov003_021c9f48);
 }
@@ -46,7 +46,7 @@ void func_ov003_021c9fd4(void) {
 void func_ov003_021c9f70(void) {
     void *v2 = &gXb4MultiNscName4;
     void *v3 = &GX_LoadBG2Scr;
-    u32 v4 = func_ov003_021bf620(v2, v3);
+    u32 v4 = LoadFileToVram(v2, v3);
     u32 v5 = 0x4001008u;
     u32 v6 = (*(u16 *) ((v5) + (0)));
     u32 v8 = ((v6) & ~(0x3u));
