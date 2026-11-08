@@ -176,7 +176,7 @@ void DrawRaceRankList(RaceHudOamBuffer *a) {
     if (GetRaceStartSequenceFrames() < 0x168) {
         return;
     }
-    gRaceRankList->mUnk_0e4 = func_020ae5c4(a);
+    gRaceRankList->mUnk_0e4 = AllocOamMatrixIndex(a);
     switch (gRaceSetup->mMode) {
         case MODE_GRAND_PRIX:
         case MODE_VS:
@@ -211,7 +211,7 @@ u32 GetRaceRankListSNcerIndex(u16 kartIndex) {
     Unk0217b3d8_fc *e;
     s32 v;
 
-    if (func_020b1cf4(kartIndex) != 0) {
+    if (GetRaceHudKartRemoved(kartIndex) != 0) {
         cellIndex = 0x25;
     } else if (gRaceSetup->mMode == MODE_BATTLE && IsKartOnWinningTeamAtEnd(kartIndex) != 0) {
         cellIndex = 0x24;
@@ -270,7 +270,7 @@ void func_020bdf08(RaceHudOamBuffer *a) {
         v = 0;
         if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated(i) != FALSE) {
             v = 1;
-        } else if (gRaceSetup->mMode != MODE_BATTLE && (func_020b1cf4(i) != 0 || func_0207a84c(i) != 0)) {
+        } else if (gRaceSetup->mMode != MODE_BATTLE && (GetRaceHudKartRemoved(i) != 0 || func_0207a84c(i) != 0)) {
             v = 1;
         }
         if (v != 0) {
@@ -332,7 +332,8 @@ void func_020bdb34(RaceHudOamBuffer *a) {
         s = 0;
         if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
             s = 1;
-        } else if (gRaceSetup->mMode != MODE_BATTLE && (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
+        } else if (gRaceSetup->mMode != MODE_BATTLE &&
+                   (GetRaceHudKartRemoved((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
             s = 1;
         }
         s = s != 0 ? 0x6d : 0x65;
@@ -343,7 +344,8 @@ void func_020bdb34(RaceHudOamBuffer *a) {
         v = 0;
         if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
             v = 1;
-        } else if (gRaceSetup->mMode != MODE_BATTLE && (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
+        } else if (gRaceSetup->mMode != MODE_BATTLE &&
+                   (GetRaceHudKartRemoved((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
             v = 1;
         }
         if (v != 0) {
@@ -403,7 +405,8 @@ void func_020bd850(RaceHudOamBuffer *a) {
         v = 0;
         if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
             v = 1;
-        } else if (gRaceSetup->mMode != MODE_BATTLE && (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
+        } else if (gRaceSetup->mMode != MODE_BATTLE &&
+                   (GetRaceHudKartRemoved((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
             v = 1;
         }
         if (v != 0) {
@@ -485,7 +488,8 @@ void func_020bd178(RaceHudOamBuffer *a) {
         s = 0;
         if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
             s = 1;
-        } else if (gRaceSetup->mMode != MODE_BATTLE && (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
+        } else if (gRaceSetup->mMode != MODE_BATTLE &&
+                   (GetRaceHudKartRemoved((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
             s = 1;
         }
         s = s != 0 ? 0x6d : 0x65;
@@ -524,7 +528,8 @@ void func_020bd178(RaceHudOamBuffer *a) {
         v = 0;
         if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
             v = 1;
-        } else if (gRaceSetup->mMode != MODE_BATTLE && (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
+        } else if (gRaceSetup->mMode != MODE_BATTLE &&
+                   (GetRaceHudKartRemoved((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
             v = 1;
         }
         if (v != 0) {
@@ -617,7 +622,8 @@ void func_020bcbe8(RaceHudOamBuffer *a) {
         v = 0;
         if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
             v = 1;
-        } else if (gRaceSetup->mMode != MODE_BATTLE && (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
+        } else if (gRaceSetup->mMode != MODE_BATTLE &&
+                   (GetRaceHudKartRemoved((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
             v = 1;
         }
         if (v != 0) {

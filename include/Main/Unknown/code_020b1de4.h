@@ -49,7 +49,7 @@ typedef struct ChoisesS {
     /* 18c */ Nscr *mChoisesSNscrs[6];
 } ChoisesS;
 
-void func_020b24cc(TextCanvas *a, void *b, void *c, s32 d, s32 e);
-u32 func_020b24a4(TextCanvas *a, s32 b, s32 c, u32 d, u32 e, void *f);
+void func_020b24cc(TextCanvas *textCanvas, void *charCanvas, void *font, s32 charSpacing, s32 lineSpacing);
+u32 func_020b24a4(TextCanvas *textCanvas, s32 textX, s32 textY, u32 color, u32 flags, void *text);
 void InitChoisesS(void);
 void ClearChoisesSPointer(void);

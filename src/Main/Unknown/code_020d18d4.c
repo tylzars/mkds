@@ -58,7 +58,7 @@ void func_020d1de8(RaceHudOamBuffer *oamBuffer, s32 startFrames) {
         gRaceMNumberPair->mOffsetX = 0;
         gRaceMNumberPair->mCellMatrix = gRaceMNumberPair->mScaleMatrix;
         gRaceMNumberPair->mScale = scale;
-        gRaceMNumberPair->mMatrixIndex = func_020ae5c4(oamBuffer);
+        gRaceMNumberPair->mMatrixIndex = AllocOamMatrixIndex(oamBuffer);
         matrix = gRaceMNumberPair->mCellMatrix;
         matrixOams = &oamBuffer->mOams[gRaceMNumberPair->mMatrixIndex * 4];
         matrixOams[0].mUnk_00[3] = matrix[0] >> 4;

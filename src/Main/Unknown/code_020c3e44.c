@@ -722,9 +722,9 @@ void DrawRaceTaPositions(Unk020c06c4 *oamBuffer) {
     if (gRaceTaPositions->mVisible == 0) {
         return;
     }
-    firstRotationSlot = func_020ae5c4(oamBuffer);
+    firstRotationSlot = AllocOamMatrixIndex(oamBuffer);
     for (i = 1; i < 16; i++) {
-        func_020ae5c4(oamBuffer);
+        AllocOamMatrixIndex(oamBuffer);
     }
     if ((func_020b1d50() * 3) > 0) {
         f = (func_020b1d50() * 0x3000) + 0.5f;

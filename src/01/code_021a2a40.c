@@ -938,7 +938,7 @@ void func_ov001_021a2a40(void) {
         t -= 0x100000;
     }
     gEmblem->mUnk_10a8 = t;
-    func_020ae6ac(gEmblem, &gEmblem->mUnk_0404);
+    ClearOamListCounts(gEmblem, &gEmblem->mUnk_0404);
     AdvanceLld(gEmblem->mEmblemMLld, &gEmblem->mUnk_0000);
     switch (gEmblem->mUnk_1090) {
         case 0:

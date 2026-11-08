@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_020b1cdc(u32 kartIndex, u32 arg1);
+u32 SetRaceHudKartRemoved(u32 kartIndex, u32 removed);

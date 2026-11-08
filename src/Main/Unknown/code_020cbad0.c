@@ -88,7 +88,7 @@ void InitMenu(void) {
     data_0217b43c->mUnk_958 = TRUE;
     data_0217b43c->mUnk_95c = TRUE;
     CopyMenuScreenCallbacks();
-    func_020ae6d4(data_0217b43c->mMainOam, data_0217b43c->mSubOam);
+    ResetOamLists(data_0217b43c->mMainOam, data_0217b43c->mSubOam);
     SetHeapGroupId(9);
     Init3dEngine();
     SetHeapGroupId(5);

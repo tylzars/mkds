@@ -382,7 +382,7 @@ void func_020ba63c(RaceHudOamBuffer *p) {
         e[1] = (x + 0x18) << 12;
         p->mOamCount += NNS_G2dMakeCellToOams(&p->mOams[p->mOamCount], 0x80 - p->mOamCount, t, NULL, e, 0, 1);
     } else {
-        k = func_020ae5c4(p);
+        k = AllocOamMatrixIndex(p);
         w[0] = FX_Div(0x1000, data_0217b3cc->mUnk_18.mUnk_04);
         w[1] = 0;
         w[2] = 0;

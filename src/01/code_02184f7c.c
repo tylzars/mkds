@@ -92,7 +92,7 @@ void AdvanceLld(Lld *lld, OamBuffer *oamBuffer) {
             screenY = (entry->mPosY >> 12) + lld->mOffsetY;
             if (screenX >= -64 && screenX <= 0x140 && screenY >= -48 && screenY <= 0xf0) {
                 if (entry->mScale != 0x1000) {
-                    u16 idx = func_020ae5c4(oamBuffer);
+                    u16 idx = AllocOamMatrixIndex(oamBuffer);
                     s32 mtx[4] = {0, 0, 0, 0};
 
                     mtx[0] = FX_Div(0x1000, entry->mScale);

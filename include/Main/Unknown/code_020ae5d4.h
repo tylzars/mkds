@@ -4,4 +4,4 @@
 
 typedef struct OamList OamList;
 
-u32 func_020ae5d4(OamList *oamList);
+u32 IncrementOamMatrixCount(OamList *oamList);

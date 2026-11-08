@@ -31,7 +31,7 @@
 
 void func_020ae824(void) {
     u32 v;
-    s32 a;
+    s32 subScreenState;
 
     v = gRaceSetup->mRaceKind;
     if (v == RACE_KIND_START_GP) {
@@ -50,54 +50,54 @@ void func_020ae824(void) {
     }
     func_020b3410();
     func_020b3724();
-    gRaceHud->mUnk_404 = 0;
-    gRaceHud->mUnk_406 = 0;
+    gRaceHud->mMainOamCount = 0;
+    gRaceHud->mMainMatrixCount = 0;
     if (gRaceSetup->mRaceKind == 4) {
-        func_020d1198((RaceHudOamBuffer *) gRaceHud->mUnk_004);
+        func_020d1198((RaceHudOamBuffer *) gRaceHud->mMainOam);
     }
     v = gRaceSetup->mMode;
     if ((v == MODE_BATTLE        ? gRaceProgress->mRaceDone
          : v == MODE_MISSION_RUN ? IsFramesSinceFinishPastWait()
                                  : (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
-        func_020ba63c((RaceHudOamBuffer *) gRaceHud->mUnk_004);
-        DrawRaceLapAndTimeDifference((RaceHudOamBuffer *) gRaceHud->mUnk_004);
-        DrawRaceMNumberPair((RaceHudOamBuffer *) gRaceHud->mUnk_004);
-        DrawRaceGoalTimes((RaceHudOamBuffer *) gRaceHud->mUnk_004);
-        DrawRaceLinkLevel((Unk020c06c4 *) gRaceHud->mUnk_004);
-        func_020b9dfc((RaceHudOamBuffer *) gRaceHud->mUnk_004);
-        DrawRaceGoalM((Unk020c06c4 *) gRaceHud->mUnk_004);
+        func_020ba63c((RaceHudOamBuffer *) gRaceHud->mMainOam);
+        DrawRaceLapAndTimeDifference((RaceHudOamBuffer *) gRaceHud->mMainOam);
+        DrawRaceMNumberPair((RaceHudOamBuffer *) gRaceHud->mMainOam);
+        DrawRaceGoalTimes((RaceHudOamBuffer *) gRaceHud->mMainOam);
+        DrawRaceLinkLevel((Unk020c06c4 *) gRaceHud->mMainOam);
+        func_020b9dfc((RaceHudOamBuffer *) gRaceHud->mMainOam);
+        DrawRaceGoalM((Unk020c06c4 *) gRaceHud->mMainOam);
     } else {
-        DrawRaceGoalTimes((RaceHudOamBuffer *) gRaceHud->mUnk_004);
-        DrawRaceLinkLevel((Unk020c06c4 *) gRaceHud->mUnk_004);
-        DrawRaceGoalM((Unk020c06c4 *) gRaceHud->mUnk_004);
+        DrawRaceGoalTimes((RaceHudOamBuffer *) gRaceHud->mMainOam);
+        DrawRaceLinkLevel((Unk020c06c4 *) gRaceHud->mMainOam);
+        DrawRaceGoalM((Unk020c06c4 *) gRaceHud->mMainOam);
     }
-    DC_FlushRange(gRaceHud->mUnk_004, 0x400);
-    MI_DmaFill32(3, gRaceHud->mUnk_004 + gRaceHud->mUnk_404 * 8, 0xc0, (0x80 - gRaceHud->mUnk_404) << 3);
-    gRaceHud->mUnk_808 = 0;
-    gRaceHud->mUnk_80a = 0;
-    a = gRaceHud->mSubScreenState;
-    if (a != 4 && a != 5) {
-        func_020bb5ec((RaceHudOamBuffer *) gRaceHud->mUnk_408);
+    DC_FlushRange(gRaceHud->mMainOam, 0x400);
+    MI_DmaFill32(3, gRaceHud->mMainOam + gRaceHud->mMainOamCount * 8, 0xc0, (0x80 - gRaceHud->mMainOamCount) << 3);
+    gRaceHud->mSubOamCount = 0;
+    gRaceHud->mSubMatrixCount = 0;
+    subScreenState = gRaceHud->mSubScreenState;
+    if (subScreenState != 4 && subScreenState != 5) {
+        func_020bb5ec((RaceHudOamBuffer *) gRaceHud->mSubOam);
     }
-    DrawRaceRankList((RaceHudOamBuffer *) gRaceHud->mUnk_408);
-    DC_FlushRange(gRaceHud->mUnk_408, 0x400);
-    MI_DmaFill32(3, gRaceHud->mUnk_408 + gRaceHud->mUnk_808 * 8, 0xc0, (0x80 - gRaceHud->mUnk_808) << 3);
+    DrawRaceRankList((RaceHudOamBuffer *) gRaceHud->mSubOam);
+    DC_FlushRange(gRaceHud->mSubOam, 0x400);
+    MI_DmaFill32(3, gRaceHud->mSubOam + gRaceHud->mSubOamCount * 8, 0xc0, (0x80 - gRaceHud->mSubOamCount) << 3);
     switch (gRaceHud->mSubScreenState) {
         case 0:
-            DrawRaceHudSubScreenCellGroups(gRaceHud->mUnk_408);
+            DrawRaceHudSubScreenCellGroups(gRaceHud->mSubOam);
             break;
         case 1:
         case 2:
         case 3:
-            DrawRaceHudSubScreenCellGroups(gRaceHud->mUnk_408);
-            DrawRaceTaPositions((Unk020c06c4 *) gRaceHud->mUnk_408);
+            DrawRaceHudSubScreenCellGroups(gRaceHud->mSubOam);
+            DrawRaceTaPositions((Unk020c06c4 *) gRaceHud->mSubOam);
             break;
         case 4:
         case 5:
-            DrawRaceGoalS((Unk020c06c4 *) gRaceHud->mUnk_408);
+            DrawRaceGoalS((Unk020c06c4 *) gRaceHud->mSubOam);
             break;
         case 6:
-            DrawRaceNewRecordTa((Unk020c06c4 *) gRaceHud->mUnk_408);
+            DrawRaceNewRecordTa((Unk020c06c4 *) gRaceHud->mSubOam);
             break;
     }
 }

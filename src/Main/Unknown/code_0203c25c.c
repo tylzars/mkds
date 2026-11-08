@@ -72,7 +72,7 @@ void RemoveRaceProgressKart(u16 a) {
     }
     p->mStatus = 4;
     func_02069044(GetKart(a));
-    func_020b1cdc(a, 1);
+    SetRaceHudKartRemoved(a, 1);
     if (IsRaceEndConditionMet() != 0) {
         switch (gRaceSetup->mMode) {
             case MODE_TIME_ATTACK:

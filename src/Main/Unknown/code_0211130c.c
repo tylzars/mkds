@@ -49,14 +49,14 @@ void func_02111368(void) {
     mainOam = *(const u32 *) ((mainOam) + 0u);
     subOam = (u32) &gRecordSubOam;
     subOam = *(const u32 *) ((subOam) + 0u);
-    func_020ae5f0((void *) mainOam, (void *) subOam);
+    UploadOamLists((void *) mainOam, (void *) subOam);
 }
 #pragma thumb off
 
 #pragma thumb on
 
 void UpdateRecordScene(Unk02111324 *sceneNumbers) {
-    func_020ae6ac(gRecordMainOam, gRecordSubOam);
+    ClearOamListCounts(gRecordMainOam, gRecordSubOam);
     AdvanceRecordScene();
     func_020ae630(gRecordMainOam, gRecordSubOam);
     if (sceneNumbers != NULL && GetRecordNextScene() != -1) {

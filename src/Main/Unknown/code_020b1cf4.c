@@ -16,6 +16,6 @@ u32 func_020b1d0c(void) {
     return (gRaceHud->mUnk_84c);
 }
 
-u32 func_020b1cf4(u32 p0) {
-    return (gRaceHud->mUnk_89c[p0]);
+u32 GetRaceHudKartRemoved(u32 kartIndex) {
+    return (gRaceHud->mKartRemoved[kartIndex]);
 }

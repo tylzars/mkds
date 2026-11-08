@@ -570,7 +570,7 @@ typedef struct Unk0217b350_858 {
 
 // On-screen display of the race, one record behind gRaceHud (0x914 bytes, allocated by func_020b03bc on the scene heap,
 // set NULL by the release slot func_020af86c, never freed). It holds the two 0x400-byte sprite entry buffers the
-// element draws append to (mUnk_004 for the main screen, mUnk_408 for the sub screen, copied to 0x07000000 /
+// element draws append to (mUnk_004 for the main screen, mSubOam for the sub screen, copied to 0x07000000 /
 // 0x07000400), the loaded graphics, the sub-screen page (mSubScreenState) and the goal-background delay; the elements
 // themselves (time digits, number pair, goal page, new-record page) are separate objects. It does not exist in kinds 3,
 // 5 and 6 of gRaceSetup->mUnk_00c (the scene slots run RaceStartGp / EndingStaffRoll there).
@@ -581,12 +581,12 @@ typedef struct RaceHud {
     // 0xc00. An animation clock: read by the upload slot (value / 6 = scroll of the sub-screen page 0) and by
     // GetRaceHudUpdateFrames (value / 32).
     /* 000 */ s32 mUpdateFrames;
-    /* 004 */ u8 mUnk_004[0x400];
-    /* 404 */ u16 mUnk_404;
-    /* 406 */ u16 mUnk_406;
-    /* 408 */ u8 mUnk_408[0x400];
-    /* 808 */ u16 mUnk_808;
-    /* 80a */ u16 mUnk_80a;
+    /* 004 */ u8 mMainOam[0x400];
+    /* 404 */ u16 mMainOamCount;
+    /* 406 */ u16 mMainMatrixCount;
+    /* 408 */ u8 mSubOam[0x400];
+    /* 808 */ u16 mSubOamCount;
+    /* 80a */ u16 mSubMatrixCount;
     /* 80c */ struct Nclr *mNclrs[2];
     /* 814 */ struct Ncgr *mNcgrs[2];
     /* 81c */ struct Nscr *mNscrs[3];
@@ -613,8 +613,8 @@ typedef struct RaceHud {
     // FALSE from func_020b03bc until the scene's screen set-up func_020af99c ends and sets it TRUE (never cleared
     // again); the step, the draw, the page choice and the upload slot return at once while FALSE.
     /* 898 */ BOOL mEnabled;
-    /* 89c */ s32 mUnk_89c[8];
-    /* 8bc */ s32 mUnk_8bc[8];
+    /* 89c */ s32 mKartRemoved[8];
+    /* 8bc */ s32 mRemovedSoundPlayed[8];
     /* 8dc */ s32 mUnk_8dc;
     /* 8e0 */ s32 mUnk_8e0;
     // Set once in func_020b03bc: 1 only in mode 1 with more than one kart; gates func_020b1a34 (the computation) and

@@ -422,7 +422,7 @@ void InitRecordGpx(void *heap) {
     CreateKartIcon(heap);
     CreateCupMark(heap);
     p = GetRecordMainOam();
-    func_020ae6d4(p, GetRecordSubOam());
+    ResetOamLists(p, GetRecordSubOam());
     InitLayoutTable(heap, gRecordGpx->mRecordGpxMBncl, gRecordGpx->mRecordGpxMBnll, &gRecordGpx->mRecordGpxMTable);
     InitLayoutTable(heap, gRecordGpx->mRecordGpxSBncl, gRecordGpx->mRecordGpxSBnll, &gRecordGpx->mRecordGpxSTable);
     gRecordGpx->mCommonMessages = FindFileInLoadedArchives("common.bmg");

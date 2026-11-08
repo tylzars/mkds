@@ -14,10 +14,10 @@ typedef struct Unk020ae630_00 {
 // Object of 0x404 bytes: 0x80 elements of 8 bytes, then two halfwords.
 typedef struct Unk020ae630 {
     /* 000 */ Unk020ae630_00 mUnk_00[0x80];
-    /* 400 */ u16 mUnk_400;
-    /* 402 */ u16 mUnk_402;
+    /* 400 */ u16 mOamCount;
+    /* 402 */ u16 mMatrixCount;
 } Unk020ae630;
 
-void func_020ae630(void *c, void *d);
-void func_020ae6ac(void *c, void *d);
-void func_020ae6d4(void *c, void *d);
+void func_020ae630(void *mainOam, void *subOam);
+void ClearOamListCounts(void *mainOam, void *subOam);
+void ResetOamLists(void *mainOam, void *subOam);

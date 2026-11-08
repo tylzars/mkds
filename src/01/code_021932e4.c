@@ -54,7 +54,7 @@ void InitOptionTopMenu(void *heap) {
         func_02124a98(data_ov001_021a65dc[i], 1, gOptionTopMenu->mOptionTopMenuSNcer,
                       gOptionTopMenu->mOptionTopMenuSBncl);
     }
-    func_020ae6d4(GetOptionFirstBuffer(), GetOptionSecondBuffer());
+    ResetOamLists(GetOptionFirstBuffer(), GetOptionSecondBuffer());
     InitLayoutTable(heap, gOptionTopMenu->mOptionTopMenuSBncl, NULL, &gOptionTopMenu->mOptionTopMenuSTable);
     for (i = 0; i < 3; i++) {
         for (j = 0; j < data_ov001_021a65e4[i]; j++) {

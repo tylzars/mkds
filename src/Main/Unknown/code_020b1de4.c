@@ -17,23 +17,23 @@
 #include "Main/Unknown/code_020b3000.h"
 #include "g2d_CharCanvas.h"
 
-void func_020b24cc(TextCanvas *a, void *b, void *c, s32 d, s32 e) {
-    a->mCharCanvas = b;
-    a->mFont = c;
-    a->mCharSpacing = d;
-    a->mLineSpacing = e;
+void func_020b24cc(TextCanvas *textCanvas, void *charCanvas, void *font, s32 charSpacing, s32 lineSpacing) {
+    textCanvas->mCharCanvas = charCanvas;
+    textCanvas->mFont = font;
+    textCanvas->mCharSpacing = charSpacing;
+    textCanvas->mLineSpacing = lineSpacing;
 }
 
-u32 func_020b24a4(TextCanvas *a, s32 b, s32 c, u32 d, u32 e, void *f) {
-    return NNSi_G2dTextCanvasDrawText(a, b, c, d, e, f);
+u32 func_020b24a4(TextCanvas *textCanvas, s32 textX, s32 textY, u32 color, u32 flags, void *text) {
+    return NNSi_G2dTextCanvasDrawText(textCanvas, textX, textY, color, flags, text);
 }
 
 #pragma thumb on
 #pragma optimize_for_size on
 
 void InitChoisesS(void) {
-    ChoisesS *p;
-    u32 n;
+    ChoisesS *choisesS;
+    u32 charCount;
     s32 i;
 
     gChoisesS = HeapAlloc(func_020b2540(), 0x1a4);
@@ -174,27 +174,27 @@ void InitChoisesS(void) {
         }
         gChoisesS->mFont = func_020b403c(2);
         NNS_G2dCharCanvasInitForBG(gChoisesS->mCharCanvases[0], func_020b3374()->mData, 0x20, 0xc, 4);
-        p = gChoisesS;
-        func_020b24cc(&p->mTextCanvases[0], p->mCharCanvases[0], p->mFont, func_020b4acc(), 0);
+        choisesS = gChoisesS;
+        func_020b24cc(&choisesS->mTextCanvases[0], choisesS->mCharCanvases[0], choisesS->mFont, func_020b4acc(), 0);
         NNS_G2dCharCanvasInitForBG(gChoisesS->mCharCanvases[1], gChoisesS->mList1Chars, 0x20, 0xc, 4);
-        p = gChoisesS;
-        func_020b24cc(&p->mTextCanvases[1], p->mCharCanvases[1], p->mFont, func_020b4acc(), 0);
-        n = GetChoisesSListCharsSize(gChoisesS->mLists[1].mValueCount) >> 1;
-        for (i = 0; i < n; i++) {
+        choisesS = gChoisesS;
+        func_020b24cc(&choisesS->mTextCanvases[1], choisesS->mCharCanvases[1], choisesS->mFont, func_020b4acc(), 0);
+        charCount = GetChoisesSListCharsSize(gChoisesS->mLists[1].mValueCount) >> 1;
+        for (i = 0; i < charCount; i++) {
             gChoisesS->mList1Chars[i] = func_020b3374()->mData[i];
         }
         if (gChoisesS->mList2Chars != NULL) {
             NNS_G2dCharCanvasInitForBG(gChoisesS->mCharCanvases[2], gChoisesS->mList2Chars, 0x20, 0xc, 4);
-            p = gChoisesS;
-            func_020b24cc(&p->mTextCanvases[2], p->mCharCanvases[2], p->mFont, func_020b4acc(), 0);
-            n = GetChoisesSListCharsSize(gChoisesS->mLists[2].mValueCount) >> 1;
-            for (i = 0; i < n; i++) {
+            choisesS = gChoisesS;
+            func_020b24cc(&choisesS->mTextCanvases[2], choisesS->mCharCanvases[2], choisesS->mFont, func_020b4acc(), 0);
+            charCount = GetChoisesSListCharsSize(gChoisesS->mLists[2].mValueCount) >> 1;
+            for (i = 0; i < charCount; i++) {
                 gChoisesS->mList2Chars[i] = func_020b3374()->mData[i];
             }
         }
         NNS_G2dCharCanvasInitForBG(gChoisesS->mCharCanvases[3], func_020b3374()->mData, 0x20, 0xc, 4);
-        p = gChoisesS;
-        func_020b24cc(&p->mTextCanvases[3], p->mCharCanvases[3], p->mFont, func_020b4acc(), 0);
+        choisesS = gChoisesS;
+        func_020b24cc(&choisesS->mTextCanvases[3], choisesS->mCharCanvases[3], choisesS->mFont, func_020b4acc(), 0);
         if (func_020b24e4() != 2) {
             for (i = 0; i < gChoisesS->mLists[0].mValueCount; i++) {
                 func_020b24a4(&gChoisesS->mTextCanvases[0], 0x90, i * 16 + 9, 0xc, 0x412,

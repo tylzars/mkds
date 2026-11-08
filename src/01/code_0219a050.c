@@ -267,7 +267,7 @@ void InitRecordTopMenu(void *heap) {
         func_02124a98(data_ov001_021a6ac4[i], 1, gRecordTopMenu->mRecordTopMenuSNcer,
                       gRecordTopMenu->mRecordTopMenuSBncl);
     }
-    func_020ae6d4(GetRecordMainOam(), GetRecordSubOam());
+    ResetOamLists(GetRecordMainOam(), GetRecordSubOam());
     InitLayoutTable(heap, gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMBnll,
                     &gRecordTopMenu->mRecordTopMenuMTable);
     InitLayoutTable(heap, gRecordTopMenu->mRecordTopMenuSBncl, NULL, &gRecordTopMenu->mRecordTopMenuSTable);

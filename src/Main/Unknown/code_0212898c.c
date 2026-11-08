@@ -201,7 +201,7 @@ void InitKeyboard(void *heap, s32 mode) {
     func_02125de0(heap, &config);
     func_02129c18();
     LoadKeyboardFiles();
-    func_020ae6d4(GetKeyboardFirstBuffer(), GetKeyboardSecondBuffer());
+    ResetOamLists(GetKeyboardFirstBuffer(), GetKeyboardSecondBuffer());
     InitKeyboardTextEntry(0x20, 0x40, 0xc);
     SetKeyboardOffset(0, 0x28);
     SetKeyboardButtonCorners();

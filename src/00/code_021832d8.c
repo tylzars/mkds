@@ -130,7 +130,7 @@ void InitWiFiVSMatching(void *a) {
     gWiFiVSMatching->mUnk_40 = FALSE;
     LocateAndQueueWiFiVSMatching();
     b = func_ov000_021804f4();
-    func_020ae6d4(b, func_ov000_021804e0());
+    ResetOamLists(b, func_ov000_021804e0());
     InitLayoutTable(a, gWiFiVSMatching->mWiFiVSMatchingBncl, gWiFiVSMatching->mWiFiVSMatchingBnll,
                     &gWiFiVSMatching->mWiFiVSMatchingTable);
     gWiFiVSMatching->mWiFiMessages = FindSceneFile(gWiFiBmgName2);

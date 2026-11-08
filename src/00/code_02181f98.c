@@ -61,7 +61,7 @@ void InitWiFiVSSetting(void *heap) {
         func_02124a98(data_ov000_021b060c[i][0], 1, gWiFiVSSetting->mWiFiVSSettingSNcer,
                       gWiFiVSSetting->mWiFiVSSettingBncl);
     }
-    func_020ae6d4(func_ov000_021804f4(), func_ov000_021804e0());
+    ResetOamLists(func_ov000_021804f4(), func_ov000_021804e0());
     InitLayoutTable(heap, gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mWiFiVSSettingBnll,
                     &gWiFiVSSetting->mWiFiVSSettingTable);
     gWiFiVSSetting->mWiFiMessages = FindSceneFile("wifi.bmg");

@@ -60,7 +60,7 @@ void InitSelectBattleStage(void *c, s32 d, void *e, void *f) {
     }
     gSelectBattleStage->mUnk_1078 = e;
     gSelectBattleStage->mUnk_107c = f;
-    func_020ae6d4(e, f);
+    ResetOamLists(e, f);
     for (i = 0; i < 2; i++) {
         InitLayoutTable(gSelectBattleStage->mHeap, gSelectBattleStage->mSelectBattleStageBncls[i],
                         gSelectBattleStage->mSelectBattleStageBnlls[i],

@@ -89,7 +89,7 @@ void InitOptionSelectMenu(void *a) {
         func_02124a98(data_ov001_021a6a28[i], 1, gOptionSelectMenu->mOptionSelectMenuSNcer,
                       gOptionSelectMenu->mOptionSelectMenuSBncl);
     }
-    func_020ae6d4(GetOptionFirstBuffer(), GetOptionSecondBuffer());
+    ResetOamLists(GetOptionFirstBuffer(), GetOptionSecondBuffer());
     InitLayoutTable(a, gOptionSelectMenu->mOptionSelectMenuMBncl, gOptionSelectMenu->mOptionSelectMenuMBnll,
                     &gOptionSelectMenu->mOptionSelectMenuMTable);
     InitLayoutTable(a, gOptionSelectMenu->mOptionSelectMenuSBncl, gOptionSelectMenu->mOptionSelectMenuSBnll,

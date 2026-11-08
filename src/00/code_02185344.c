@@ -72,7 +72,7 @@ void InitWiFiAikotobaCheck(void *a) {
     gWiFiAikotobaCheck->mCommonMessages = FindFileInLoadedArchives(data_ov000_021b0fcc);
     LocateAndUploadWiFiAikotobaCheck();
     b = func_ov000_021804f4();
-    func_020ae6d4(b, func_ov000_021804e0());
+    ResetOamLists(b, func_ov000_021804e0());
     InitLayoutTable(a, gWiFiAikotobaCheck->mWiFiAikotobaCheckBncl, gWiFiAikotobaCheck->mWiFiAikotobaCheckBnll,
                     &gWiFiAikotobaCheck->mWiFiAikotobaCheckTable);
     gWiFiAikotobaCheck->mOffset = 0x50;

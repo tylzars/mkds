@@ -98,7 +98,7 @@ void InitGhostScene(void *heap) {
             gGhostScene->mSlotGhostCount++;
         }
     }
-    func_020ae6d4(gGhostScene, gGhostScene->mSubOam);
+    ResetOamLists(gGhostScene, gGhostScene->mSubOam);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;
     switch (data_0217b488->mGhostSceneInitialCallbacksIndex) {
@@ -129,7 +129,7 @@ void AdvanceGhostScene(s32 sceneNumbers) {
         oldCallbacks->mRelease();
         gGhostScene->mCurrentCallbacks->mInit(gGhostScene->mHeap, gGhostScene, gGhostScene->mSubOam);
     } else {
-        func_020ae6ac(gGhostScene, gGhostScene->mSubOam);
+        ClearOamListCounts(gGhostScene, gGhostScene->mSubOam);
         nextIndex = gGhostScene->mCurrentCallbacks->mAdvance(sceneNumbers);
         if (nextIndex != -1) {
             gGhostScene->mRequestedCallbacksIndex = nextIndex;
@@ -152,7 +152,7 @@ void ReleaseGhostScene(void) {
 void func_0202dec8(void) {
     func_021258f0();
     gGhostScene->mCurrentCallbacks->mUnk_0c();
-    func_020ae5f0(gGhostScene, gGhostScene->mSubOam);
+    UploadOamLists(gGhostScene, gGhostScene->mSubOam);
 }
 
 #pragma thumb off

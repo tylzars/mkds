@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-unsigned int GetPairY(unsigned int p0);
+unsigned int GetPairY(unsigned int pair);

@@ -921,7 +921,7 @@ void InitRecordVS(void *heap) {
     } else {
         gRecordVS->mState = 0;
         RequestRecordVSState0();
-        func_020ae6d4(GetRecordMainOam(), GetRecordSubOam());
+        ResetOamLists(GetRecordMainOam(), GetRecordSubOam());
     }
     gRecordVS->mRecordVSSTable[24].mVisible = 0;
     gRecordVS->mRecordVSSTable[25].mVisible = 0;

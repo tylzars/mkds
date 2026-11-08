@@ -301,7 +301,7 @@ void InitSelectEngine(void *a, void *b, void *c) {
     }
     gSelectEngine->mUnk_40 = gSelectEngine->mIndex;
     LocateAndQueueSelectEngine();
-    func_020ae6d4(gSelectEngine->mUnk_44, gSelectEngine->mUnk_48);
+    ResetOamLists(gSelectEngine->mUnk_44, gSelectEngine->mUnk_48);
     InitLayoutTable(gSelectEngine->mHeap, gSelectEngine->mSelectEngineMBncl, NULL, &gSelectEngine->mSelectEngineMTable);
     InitLayoutTable(gSelectEngine->mHeap, gSelectEngine->mSelectEngineAOrBSBncl, NULL,
                     &gSelectEngine->mSelectEngineAOrBSTable);

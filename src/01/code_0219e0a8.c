@@ -32,7 +32,7 @@ void CreateEndingScene(void *heap) {
     gEndingScene->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     func_ov001_0219e660();
     LoadAndQueueEndingSceneData();
-    func_020ae6d4(gEndingScene->mMainOam, NULL);
+    ResetOamLists(gEndingScene->mMainOam, NULL);
     InitLayoutTable(gEndingScene->mHeap, gEndingScene->mEndingThanksBncl, gEndingScene->mEndingThanksBnll,
                     &gEndingScene->mEndingThanksTable);
     result = NULL;
@@ -251,7 +251,7 @@ void AdvanceEndingSceneState7(void) {
 
 void AdvanceEndingScene(void) {
     gEndingScene->mState = gEndingScene->mNextState;
-    func_020ae6ac(gEndingScene->mMainOam, NULL);
+    ClearOamListCounts(gEndingScene->mMainOam, NULL);
     switch (gEndingScene->mState) {
         case 0:
             AdvanceEndingSceneState0();
@@ -290,7 +290,7 @@ void func_ov001_0219e0d4(void) {
         bits = (reg_GX_DISPCNT & 0x1f00) >> 8;
         reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | ((bits | 0x10) << 8);
     }
-    func_020ae5f0(gEndingScene->mMainOam, NULL);
+    UploadOamLists(gEndingScene->mMainOam, NULL);
 }
 
 void func_ov001_0219e0c4(void) {

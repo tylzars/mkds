@@ -35,7 +35,7 @@ void UpdateMenuScreen(u32 a) {
                 data_0217b43c->mUnk_95c = TRUE;
             }
         }
-        func_020ae6ac(data_0217b43c->mMainOam, data_0217b43c->mSubOam);
+        ClearOamListCounts(data_0217b43c->mMainOam, data_0217b43c->mSubOam);
         if (data_0217b43c->mScreenInitPending != FALSE) {
             data_0217b43c->mScreenInitPending = FALSE;
             InitCurrentMenuScreen();

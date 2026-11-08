@@ -56,7 +56,7 @@ void InitWiFiAikotoba(void *a) {
         func_02124a98(data_ov000_021b06c0[i], 1, gWiFiAikotoba->mWiFiAikotobaSNcer, gWiFiAikotoba->mWiFiAikotobaBncl);
     }
     c = func_ov000_021804f4();
-    func_020ae6d4(c, func_ov000_021804e0());
+    ResetOamLists(c, func_ov000_021804e0());
     InitLayoutTable(a, gWiFiAikotoba->mWiFiAikotobaBncl, NULL, &gWiFiAikotoba->mWiFiAikotobaTable);
     gWiFiAikotoba->mWiFiMessages = FindSceneFile(data_ov000_021b0ee8);
     gWiFiAikotoba->mCommonMessages = FindFileInLoadedArchives(data_ov000_021b0ef4);

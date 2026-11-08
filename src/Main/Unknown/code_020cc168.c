@@ -109,7 +109,7 @@ void func_020cc36c(void) {
     data_0217b43c->mScreenCallbacks[data_0217b43c->mScreenNumber].mUnk_00();
     func_021258f0();
     data_0217b43c->mUnk_004 = 0;
-    func_020ae5f0(data_0217b43c->mMainOam, data_0217b43c->mSubOam);
+    UploadOamLists(data_0217b43c->mMainOam, data_0217b43c->mSubOam);
 }
 #pragma thumb off
 

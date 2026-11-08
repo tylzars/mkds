@@ -526,7 +526,7 @@ void InitMissionRunMSsel(void *a, void *b, void *c) {
     }
     func_ov001_021a0e34();
     LocateAndQueueMissionRunMSsel();
-    func_020ae6d4(gMissionRunMSsel->mUnk_b4, gMissionRunMSsel->mUnk_b8);
+    ResetOamLists(gMissionRunMSsel->mUnk_b4, gMissionRunMSsel->mUnk_b8);
     InitLayoutTable(gMissionRunMSsel->mHeap, gMissionRunMSsel->mMissionRunMSselMBncl,
                     gMissionRunMSsel->mMissionRunMSselMBnll, &gMissionRunMSsel->mMissionRunMSselMTable);
     InitLayoutTable(gMissionRunMSsel->mHeap, gMissionRunMSsel->mMissionRunMSselSBncl,

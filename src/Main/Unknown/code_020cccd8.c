@@ -635,7 +635,7 @@ void DrawRaceHudSubScreenFlipperCells(Unk020c06c4 *oamBuffer) {
                     Matrix2x2Rotation(matrix, (u16) (d + (0x4000 - gRaceHudSubScreenFlipperCells->mCells[i].mUnk_10)));
                 }
             }
-            matrixIndex = func_020ae5c4(oamBuffer);
+            matrixIndex = AllocOamMatrixIndex(oamBuffer);
             oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_06 = matrix[0] >> 4;
             oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_0e = matrix[1] >> 4;
             oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_16 = matrix[2] >> 4;

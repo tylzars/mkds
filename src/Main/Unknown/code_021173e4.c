@@ -498,7 +498,7 @@ void InitSelectCupGrid(void *heap, void *mainOam, void *subOam, s32 mode) {
     RefreshSelectCupGridCupsEnabled();
     func_02118b48();
     if (GetPreviousMenuScreenNumber() != 0x18 && GetPreviousMenuScreenNumber() != 0xc) {
-        func_020ae6d4(gSelectCupGrid->mMainOam, gSelectCupGrid->mSubOam);
+        ResetOamLists(gSelectCupGrid->mMainOam, gSelectCupGrid->mSubOam);
     }
     gSelectCupGrid->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     if (*(vu16 *) 0x027ffc40 != 2) {

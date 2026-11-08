@@ -163,7 +163,7 @@ void DrawRaceHudSubScreenCells(Unk020c06c4 *a, RaceHudSubScreenCells *b, s32 c) 
                 } else {
                     Matrix2x2Rotation(d, (u16) (v + (0x8000 - b->mCells[i].mUnk_10)));
                 }
-                n = func_020ae5c4(a);
+                n = AllocOamMatrixIndex(a);
                 a->mUnk_000.mUnk_20[n].mUnk_06 = d[0] >> 4;
                 a->mUnk_000.mUnk_20[n].mUnk_0e = d[1] >> 4;
                 a->mUnk_000.mUnk_20[n].mUnk_16 = d[2] >> 4;
@@ -224,7 +224,7 @@ void DrawRaceHudSubScreenCellsScaled(Unk020c06c4 *a, RaceHudSubScreenCells *b, s
             } else {
                 Matrix2x2ReciprocalScale(d, b->mUnk_0c[i].mUnk_00);
             }
-            n = func_020ae5c4(a);
+            n = AllocOamMatrixIndex(a);
             a->mUnk_000.mUnk_20[n].mUnk_06 = d[0] >> 4;
             a->mUnk_000.mUnk_20[n].mUnk_0e = d[1] >> 4;
             a->mUnk_000.mUnk_20[n].mUnk_16 = d[2] >> 4;

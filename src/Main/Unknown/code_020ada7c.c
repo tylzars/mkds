@@ -11,7 +11,7 @@ void func_020ada94(void) {
     gTitleScene->mStateHandlers[gTitleScene->mState].mUnk_00();
     gTitleScene->mStateChanged = FALSE;
     func_021258f0();
-    func_020ae5f0(&gTitleScene->mMainOam, &gTitleScene->mSubOam);
+    UploadOamLists(&gTitleScene->mMainOam, &gTitleScene->mSubOam);
 }
 
 #pragma thumb off

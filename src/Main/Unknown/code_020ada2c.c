@@ -8,7 +8,7 @@
 
 void AdvanceTitleStates(s32 a) {
     enum { K0 } i;
-    func_020ae6ac(&gTitleScene->mMainOam, &gTitleScene->mSubOam);
+    ClearOamListCounts(&gTitleScene->mMainOam, &gTitleScene->mSubOam);
     i = gTitleScene->mState;
     gTitleScene->mStateHandlers[i].mUpdate(a);
     IncrementCounterSaturating((s32 *) gTitleScene);

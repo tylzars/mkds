@@ -308,7 +308,7 @@ void InitMissionRunLVsel(void *a, void *b, void *c) {
     }
     func_ov001_0219f3a4();
     LocateAndQueueMissionRunLVsel();
-    func_020ae6d4(gMissionRunLVsel->mUnk_50, gMissionRunLVsel->mUnk_54);
+    ResetOamLists(gMissionRunLVsel->mUnk_50, gMissionRunLVsel->mUnk_54);
     InitLayoutTable(gMissionRunLVsel->mHeap, gMissionRunLVsel->mMissionRunLVselS7Or6Bncl,
                     gMissionRunLVsel->mMissionRunLVselS7Or6Bnll, &gMissionRunLVsel->mMissionRunLVselS7Or6Table);
     remaining = GX_GetSizeOfSubOBJ();

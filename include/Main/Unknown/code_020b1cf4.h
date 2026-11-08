@@ -14,7 +14,7 @@
 #include "Main/Unknown/code_0207a880.h"
 #include "Main/Unknown/code_020b502c.h" // RaceHudSubScreenBgAffine
 
-unsigned int func_020b1cf4(unsigned int p0);
+unsigned int GetRaceHudKartRemoved(unsigned int kartIndex);
 unsigned int func_020b1d0c(void);
 unsigned int func_020b1d20(void);
 RaceHudSubScreenBgAffine *GetRaceHudSubScreenBgAffine(void);

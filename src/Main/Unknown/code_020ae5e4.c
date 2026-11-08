@@ -4,19 +4,19 @@
 
 #pragma thumb on
 
-void func_020ae5f0(void *a, void *b) {
-    if (a != NULL) {
-        DC_FlushRange(a, 0x00000400u);
-        GX_LoadOAM(a, 0, 0x00000400u);
+void UploadOamLists(void *mainOamList, void *subOamList) {
+    if (mainOamList != NULL) {
+        DC_FlushRange(mainOamList, 0x00000400u);
+        GX_LoadOAM(mainOamList, 0, 0x00000400u);
     }
-    if (b != NULL) {
-        DC_FlushRange(b, 0x00000400u);
-        GXS_LoadOAM(b, 0, 0x00000400u);
+    if (subOamList != NULL) {
+        DC_FlushRange(subOamList, 0x00000400u);
+        GXS_LoadOAM(subOamList, 0, 0x00000400u);
     }
 }
 
-u16 func_020ae5e4(const void *p0) {
-    return ((u32) * (const u16 *) ((u8 *) p0 + 0 + (0x402u)));
+u16 GetOamMatrixCount(const void *oamList) {
+    return ((u32) * (const u16 *) ((u8 *) oamList + 0 + (0x402u)));
 }
 
 #pragma thumb off

@@ -11,11 +11,11 @@ typedef struct Unk02124c70_00 {
 } Unk02124c70_00;
 
 // 0x404 bytes: 0x20 groups of four 8-byte entries, then two halfwords (DrawLayoutEntry adds the return value of
-// NNS_G2dMakeCellToOams to mUnk_400; func_020ae5e4 returns mUnk_402).
+// NNS_G2dMakeCellToOams to mUnk_400; GetOamMatrixCount returns mUnk_402).
 typedef struct OamList {
     /* 000 */ Unk02124c70_00 mUnk_000[0x20];
-    /* 400 */ u16 mUnk_400;
-    /* 402 */ u16 mUnk_402;
+    /* 400 */ u16 mOamCount;
+    /* 402 */ u16 mMatrixCount;
 } OamList;
 
 void InitLayoutTable(void *heap, Unk0201ea30 *cellLayout, Unk0201ea30 *labelLayout, LayoutTableEntry **tableOut);

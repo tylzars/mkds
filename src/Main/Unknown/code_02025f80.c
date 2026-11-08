@@ -683,7 +683,7 @@ int AdvanceSelectCharacter(void) {
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_02124bf0(sParts->mCellLayout, sParts->mCells, NULL, gSelectCharacter->mUnk_058, sParts->mCellTable);
-        func_020ae5d4(gSelectCharacter->mUnk_058);
+        IncrementOamMatrixCount(gSelectCharacter->mUnk_058);
     } else if (GetRaceSetupCopy()->mMode == 2) {
         AdvanceSelectRaceRuleWait();
     }

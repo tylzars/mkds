@@ -135,7 +135,7 @@ void CreateTitleScene(void) {
     gTitleScene->mBlendFrames = GetTitleBlendDone() != 0 ? 0x6b : 0;
     AdvanceTitleBlend();
     InitTitleStateHandlers();
-    func_020ae6d4(&gTitleScene->mMainOam, &gTitleScene->mSubOam);
+    ResetOamLists(&gTitleScene->mMainOam, &gTitleScene->mSubOam);
     LoadNclrData(&gTitleScene->mTitleTrueMBOrMBNclr,
                  FindSceneFileWrapper(useTrueFiles != 0 ? gTitleTrueMBNclrName : gTitleMBNclrName));
     LoadNclrData(&gTitleScene->mTitleSBNclr, FindSceneFileWrapper(gTitleSBNclrName));

@@ -7,14 +7,14 @@
 
 #pragma thumb on
 
-void *func_020ae730(s32 a, s32 b) {
-    void *p;
+void *func_020ae730(s32 count, s32 elementSize) {
+    void *memory;
 
-    p = NULL;
-    if (a > 0) {
-        p = HeapAlloc((void *) GetCurrentHeap(), b * a);
+    memory = NULL;
+    if (count > 0) {
+        memory = HeapAlloc((void *) GetCurrentHeap(), elementSize * count);
     }
-    return p;
+    return memory;
 }
 
 #pragma thumb off

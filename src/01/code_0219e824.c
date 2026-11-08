@@ -47,11 +47,11 @@ void ReleaseOptionScene(void) {
 
 void func_ov001_0219e9a4(void) {
     func_ov001_02192ec4();
-    func_020ae5f0(gOptionBuffers, gOptionBuffers + 0x404);
+    UploadOamLists(gOptionBuffers, gOptionBuffers + 0x404);
 }
 
 void UpdateOptionScene(s16 *a) {
-    func_020ae6ac(gOptionBuffers, gOptionBuffers + 0x404);
+    ClearOamListCounts(gOptionBuffers, gOptionBuffers + 0x404);
     AdvanceOptionStates();
     func_020ae630(gOptionBuffers, gOptionBuffers + 0x404);
     if (a != NULL && func_ov001_02192e84() != -1) {
@@ -92,11 +92,11 @@ void func_ov001_0219e89c(void) {
 
     func_ov001_0219854c();
     p = gNicknameBuffers;
-    func_020ae5f0(p, p + 0x404);
+    UploadOamLists(p, p + 0x404);
 }
 
 void UpdateNicknameScene(s16 *a) {
-    func_020ae6ac(gNicknameBuffers, gNicknameBuffers + 0x404);
+    ClearOamListCounts(gNicknameBuffers, gNicknameBuffers + 0x404);
     func_ov001_02198554();
     func_020ae630(gNicknameBuffers, gNicknameBuffers + 0x404);
     if (a != NULL && func_ov001_0219853c() != -1) {

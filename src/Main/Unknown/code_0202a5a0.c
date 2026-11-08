@@ -27,7 +27,7 @@
 void InitResultsByMode(void *heap) {
     gResultScene = HeapAlloc(heap, 0x80c);
     MemFillWordsByBlock_inline(gResultScene, 0x80c);
-    func_020ae6d4(gResultScene, gResultScene->mSubOam);
+    ResetOamLists(gResultScene, gResultScene->mSubOam);
     gResultScene->mMode = gRaceSetup->mMode;
     if (gResultScene->mMode == 0) {
         InitResultsGp(heap, gResultScene, gResultScene->mSubOam);
@@ -51,7 +51,7 @@ void AdvanceResultsByMode(u32 sceneNumbers) {
     int result;
     result = func_02049b6c();
     if (result == 0) {
-        func_020ae6ac(gResultScene, gResultScene->mSubOam);
+        ClearOamListCounts(gResultScene, gResultScene->mSubOam);
         if (gResultScene->mMode == 0) {
             AdvanceResultsGp((SceneNumbersView *) sceneNumbers);
         } else {
@@ -77,7 +77,7 @@ void func_0202a5a0(void) {
     } else {
         func_02032aa8();
     }
-    func_020ae5f0(gResultScene, gResultScene->mSubOam);
+    UploadOamLists(gResultScene, gResultScene->mSubOam);
 }
 
 #pragma thumb off

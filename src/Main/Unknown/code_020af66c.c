@@ -97,7 +97,7 @@
 #include "Main/Unknown/code_0212b1a8.h"
 #include "Main/Unknown/code_0203c5f8.h"
 
-void func_020b18b0(void) {
+void InitSubScreenGraphicsMode5(void) {
     if (func_020b64e8() != 0) {
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1c00;
     } else {
@@ -113,7 +113,7 @@ void func_020b18b0(void) {
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x8810 | ((func_020b6430() != 0) << 13);
 }
 
-void func_020b17a4(void) {
+void InitSubScreenGraphicsMode0(void) {
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1e00;
     GXS_SetGraphicsMode(0);
     reg_G2S_DB_BG1OFS = 0;
@@ -187,10 +187,10 @@ void func_020b0b8c(void) {
         GXS_LoadBG0Char(func_020b3374()->mData, 0, 0x3000);
         GXS_LoadBG0Scr(func_020b32f8(), 0, 0x600);
     }
-    DC_FlushRange(gRaceHud->mUnk_004, 0x400);
-    GX_LoadOAM(gRaceHud->mUnk_004, 0, 0x400);
-    DC_FlushRange(gRaceHud->mUnk_408, 0x400);
-    GXS_LoadOAM(gRaceHud->mUnk_408, 0, 0x400);
+    DC_FlushRange(gRaceHud->mMainOam, 0x400);
+    GX_LoadOAM(gRaceHud->mMainOam, 0, 0x400);
+    DC_FlushRange(gRaceHud->mSubOam, 0x400);
+    GXS_LoadOAM(gRaceHud->mSubOam, 0, 0x400);
     if (gRaceHud->mSubScreenEnabled != FALSE) {
         switch (gRaceHud->mSubScreenState) {
             case 0:
@@ -208,7 +208,7 @@ void func_020b0b8c(void) {
             case 1:
             case 2:
             case 3:
-                func_020b18b0();
+                InitSubScreenGraphicsMode5();
                 GXS_LoadBGPltt(GetChoisesSBNclr()->mData, 0, 0x200);
                 break;
             case 4:
@@ -217,7 +217,7 @@ void func_020b0b8c(void) {
                 reg_G2S_DB_BG0CNT = reg_G2S_DB_BG0CNT & ~3;
                 reg_G2S_DB_BG0CNT &= ~0x40;
                 reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & 0x43) | 0x10c;
-                func_020b17a4();
+                InitSubScreenGraphicsMode0();
                 GXS_LoadBGPltt(GetRaceGoalSBPaletteAndChars(0)->mUnk_00->mData, 0,
                                GetRaceGoalSBPaletteAndChars(0)->mUnk_00->mDataSize);
                 GXS_LoadBG1Char(GetRaceGoalSBPaletteAndChars(0)->mUnk_04->mData, 0,
@@ -338,29 +338,29 @@ void func_020b0b8c(void) {
         G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 0x3f, 6, 10);
     }
     for (i = 0; i < gRaceSetup->mKartCount; i++) {
-        if (gRaceHud->mUnk_89c[i] != 0 && gRaceHud->mUnk_8bc[i] == 0) {
+        if (gRaceHud->mKartRemoved[i] != 0 && gRaceHud->mRemovedSoundPlayed[i] == 0) {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x52);
-            gRaceHud->mUnk_8bc[i] = 1;
+            gRaceHud->mRemovedSoundPlayed[i] = 1;
         }
     }
 }
 
 void func_020b03bc(void) {
     s32 i;
-    u32 v;
-    u16 *p;
+    u32 raceKind;
+    u16 *choisesSBPalette;
     u32 j;
-    u16 w;
+    u16 paletteColor;
 
-    v = gRaceSetup->mRaceKind;
-    if (v == RACE_KIND_START_GP) {
+    raceKind = gRaceSetup->mRaceKind;
+    if (raceKind == RACE_KIND_START_GP) {
         InitRaceStartGp();
         return;
     }
-    if (v == RACE_KIND_AWARD) {
+    if (raceKind == RACE_KIND_AWARD) {
         return;
     }
-    if (v == RACE_KIND_STAFF_ROLL) {
+    if (raceKind == RACE_KIND_STAFF_ROLL) {
         InitEndingStaffRoll();
         InitStaffRollText(GetHeap(GetCurrentHeapCall()));
         return;
@@ -428,8 +428,8 @@ void func_020b03bc(void) {
     }
     gRaceHud->mEnabled = FALSE;
     for (i = 0; i < 8; i++) {
-        gRaceHud->mUnk_89c[i] = 0;
-        gRaceHud->mUnk_8bc[i] = 0;
+        gRaceHud->mKartRemoved[i] = 0;
+        gRaceHud->mRemovedSoundPlayed[i] = 0;
     }
     gRaceHud->mUnk_8dc = 0;
     gRaceHud->mUnk_8e0 = -1;
@@ -441,8 +441,8 @@ void func_020b03bc(void) {
     gRaceHud->mStepHasRun = 0;
     gRaceHud->mUnk_90c = FALSE;
     gRaceHud->mUnk_910 = gRaceSetup->mMode == MODE_MISSION_RUN ? IsMissionRunRecordFilled() : 0;
-    MI_DmaFill32(3, gRaceHud->mUnk_004, 0xc0, 0x400);
-    MI_DmaFill32(3, gRaceHud->mUnk_408, 0xc0, 0x400);
+    MI_DmaFill32(3, gRaceHud->mMainOam, 0xc0, 0x400);
+    MI_DmaFill32(3, gRaceHud->mSubOam, 0xc0, 0x400);
     LoadNclrData(&gRaceHud->mNclrs[0], FindSceneFileWrapper("race_m_b.NCLR"));
     LoadNcgrData(&gRaceHud->mNcgrs[0], FindSceneFileWrapper("race_m_b.NCGR"));
     LoadNscrData(&gRaceHud->mNscrs[0], FindSceneFileWrapper("race_m_pause.NSCR"));
@@ -454,15 +454,15 @@ void func_020b03bc(void) {
         DC_FlushRange(((Ncgr *) gRaceHud->mNscrs[0])->mData, ((Ncgr *) gRaceHud->mNscrs[0])->mDataSize);
         DC_FlushRange(gRaceHud->mNscrs[2]->mData, gRaceHud->mNscrs[2]->mDataSize);
     }
-    p = GetChoisesSBNclr()->mData;
+    choisesSBPalette = GetChoisesSBNclr()->mData;
     for (i = 0; i < 0x80; i++) {
-        data_0217b34c[i + 0x80] = p[i + 0x80];
+        data_0217b34c[i + 0x80] = choisesSBPalette[i + 0x80];
     }
     GetChoisesSBNclr()->mData[0] = data_0217b34c[0x100];
     DC_FlushRange(GetChoisesSBNclr()->mData, 0x200);
     for (i = 0; i < 0x20; i++) {
-        w = GetChoisesSBNclr()->mData[i + 0xe0];
-        GetRaceGoalSBPaletteAndChars(0)->mUnk_00->mData[i + 0xe0] = w;
+        paletteColor = GetChoisesSBNclr()->mData[i + 0xe0];
+        GetRaceGoalSBPaletteAndChars(0)->mUnk_00->mData[i + 0xe0] = paletteColor;
     }
     G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 0x3f, 6, 10);
     if (gRaceSetup->mMode == MODE_GRAND_PRIX) {
@@ -488,22 +488,22 @@ void func_020b03bc(void) {
     }
 }
 
-static inline void InitMap2D_inline(u16 *v1) {
+static inline void InitMap2D_inline(u16 *screenMap) {
     s32 j;
     s32 i;
-    u16 *v2 = v1;
+    u16 *screenMapCopy = screenMap;
 
     for (i = 3; i < 24; i++) {
-        s32 v3 = i * 32;
+        s32 rowStart = i * 32;
         for (j = 14; j < 32; j++) {
-            s32 x = j + v3;
-            s32 y = v3 + (45 - j);
-            if (x < y) {
-                u16 t = v2[y];
-                v2[y] = v2[x];
-                v2[x] = t;
+            s32 index = j + rowStart;
+            s32 mirroredIndex = rowStart + (45 - j);
+            if (index < mirroredIndex) {
+                u16 tile = screenMapCopy[mirroredIndex];
+                screenMapCopy[mirroredIndex] = screenMapCopy[index];
+                screenMapCopy[index] = tile;
             }
-            v2[x] ^= 0x400;
+            screenMapCopy[index] ^= 0x400;
         }
     }
 }
@@ -512,11 +512,11 @@ void InitMap2D(void) {
     Nclr *nclrs[3];
     Ncgr *ncgrs[3];
     Nscr *nscrs[4];
-    BOOL v1;
+    BOOL hasGlobalFiles;
     s32 i;
-    s32 k;
+    s32 shineBattleFlag;
 
-    v1 = gRaceSetup->mMode != MODE_MISSION_RUN;
+    hasGlobalFiles = gRaceSetup->mMode != MODE_MISSION_RUN;
     if (gRaceSetup->mRaceKind == RACE_KIND_START_GP) {
         return;
     }
@@ -533,13 +533,13 @@ void InitMap2D(void) {
     }
 
     if (func_02047250()) {
-        if (v1) {
+        if (hasGlobalFiles) {
             LoadNclrData(&nclrs[0], FindCourseFileWrapper("Map2D/global.NCLR"));
             LoadNclrData(&nclrs[1], FindCourseFileWrapper("Map2D/global2.NCLR"));
         }
         LoadNclrData(&nclrs[2], FindCourseFileWrapper("Map2D/local.NCLR"));
     } else {
-        if (v1) {
+        if (hasGlobalFiles) {
             LocateNclr(&nclrs[0], FindCourseFileWrapper("Map2D/global.NCLR"));
             LocateNclr(&nclrs[1], FindCourseFileWrapper("Map2D/global.NCLR"));
         }
@@ -547,13 +547,13 @@ void InitMap2D(void) {
     }
 
     if (func_02047250()) {
-        if (v1) {
+        if (hasGlobalFiles) {
             LoadNcgrData(&ncgrs[0], FindCourseFileWrapper("Map2D/global.NCGR"));
             LoadNcgrData(&ncgrs[1], FindCourseFileWrapper("Map2D/global2.NCGR"));
         }
         LoadNcgrData(&ncgrs[2], FindCourseFileWrapper("Map2D/local.NCGR"));
     } else {
-        if (v1) {
+        if (hasGlobalFiles) {
             LocateNcgr(&ncgrs[0], FindCourseFileWrapper("Map2D/global.NCGR"));
             LocateNcgr(&ncgrs[1], FindCourseFileWrapper("Map2D/global2.NCGR"));
         }
@@ -561,7 +561,7 @@ void InitMap2D(void) {
     }
 
     if (func_02047250()) {
-        if (v1) {
+        if (hasGlobalFiles) {
             LoadNscrData(&nscrs[0], FindCourseFileWrapper("Map2D/global1.NSCR"));
             LoadNscrData(&nscrs[1], FindCourseFileWrapper("Map2D/global2.NSCR"));
         }
@@ -570,7 +570,7 @@ void InitMap2D(void) {
             LoadNscrData(&nscrs[3], FindCourseFileWrapper("Map2D/local3.NSCR"));
         }
     } else {
-        if (v1) {
+        if (hasGlobalFiles) {
             LocateNscr(&nscrs[0], FindCourseFileWrapper("Map2D/global1.NSCR"));
             LocateNscr(&nscrs[1], FindCourseFileWrapper("Map2D/global2.NSCR"));
         }
@@ -580,21 +580,21 @@ void InitMap2D(void) {
         }
     }
 
-    if (v1) {
+    if (hasGlobalFiles) {
         if (gRaceSetup->mMirrorMode != 0) {
             InitMap2D_inline(nscrs[0]->mData);
         }
-        k = 0;
+        shineBattleFlag = 0;
         if (gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mBattleKind == BATTLE_KIND_SHINE) {
-            k = 1;
+            shineBattleFlag = 1;
         }
         for (i = 0; i < 16; i++) {
-            nclrs[0]->mData[i + 16] = nclrs[1]->mData[(k + 1) * 16 + i];
+            nclrs[0]->mData[i + 16] = nclrs[1]->mData[(shineBattleFlag + 1) * 16 + i];
         }
         for (i = 0; i < 0x400; i++) {
             s32 r = nscrs[1]->mData[i];
             r %= 0x400;
-            nscrs[1]->mData[i] = (u16) (nscrs[1]->mData[i] & 0xfc00) | (r + ((k + 6) << 5));
+            nscrs[1]->mData[i] = (u16) (nscrs[1]->mData[i] & 0xfc00) | (r + ((shineBattleFlag + 6) << 5));
         }
         DC_StoreAll();
         GXS_SetGraphicsMode(5);
@@ -614,7 +614,7 @@ void InitMap2D(void) {
         GXS_LoadBG3Scr(nscrs[1]->mData, 0, nscrs[1]->mDataSize);
     }
 
-    func_020b18b0();
+    InitSubScreenGraphicsMode5();
     GXS_LoadBGPltt(nclrs[2]->mData, 0, 0x200);
     GXS_LoadBG3Char(ncgrs[2]->mData, 0, ncgrs[2]->mDataSize);
     GXS_LoadBG2Scr(nscrs[2]->mData, 0, nscrs[2]->mDataSize);
@@ -627,26 +627,26 @@ void InitMap2D(void) {
     GXS_LoadBGExtPltt(nclrs[2]->mData, 0x6000, 0x200);
     GXS_EndLoadBGExtPltt();
     for (i = 0; i < 0x100; i++) {
-        if (v1) {
+        if (hasGlobalFiles) {
             data_0217b34c[i] = nclrs[0]->mData[i];
         }
         (data_0217b34c + i)[0x100] = nclrs[2]->mData[i];
     }
-    if (v1) {
+    if (hasGlobalFiles) {
         DC_FlushRange(data_0217b34c, 0x200);
     }
     DC_FlushRange(data_0217b34c + 0x100, 0x200);
 }
 
 void func_020af99c(void) {
-    u32 v;
+    u32 raceKind;
     u16 w;
 
-    v = gRaceSetup->mRaceKind;
-    if (v == RACE_KIND_START_GP) {
+    raceKind = gRaceSetup->mRaceKind;
+    if (raceKind == RACE_KIND_START_GP) {
         return;
     }
-    if (v == RACE_KIND_AWARD || v == RACE_KIND_STAFF_ROLL) {
+    if (raceKind == RACE_KIND_AWARD || raceKind == RACE_KIND_STAFF_ROLL) {
         return;
     }
     w = gCourseMap->mSettings->mColorAndFogAlpha & 0x7fff;
@@ -672,7 +672,7 @@ void func_020af99c(void) {
     GXS_SetGraphicsMode(5);
     GXS_LoadOBJPltt(GetRaceNclrNcgr(6)->mNclr->mData, 0, GetRaceNclrNcgr(6)->mNclr->mDataSize);
     GXS_LoadOBJ(GetRaceNclrNcgr(6)->mNcgr->mData, 0, 0x4000);
-    func_020b17a4();
+    InitSubScreenGraphicsMode0();
     GXS_LoadBG1Scr(GetRaceGoalSNscr(0)->mData, 0, GetRaceGoalSNscr(0)->mDataSize);
     GXS_LoadBG2Scr(GetRaceGoalSNscr(1)->mData, 0, GetRaceGoalSNscr(1)->mDataSize);
     GXS_LoadBG3Scr(GetRaceGoalSNscr(2)->mData, 0, GetRaceGoalSNscr(2)->mDataSize);
@@ -690,22 +690,22 @@ void func_020af99c(void) {
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & 0x43) | 0x10c;
     GXS_LoadBG0Char(func_020b3374()->mData, 0, func_020b3374()->mDataSize);
     GXS_LoadBG0Scr(func_020b32f8(), 0, 0x600);
-    func_020b18b0();
+    InitSubScreenGraphicsMode5();
     gRaceHud->mEnabled = TRUE;
 }
 
 void func_020af86c(void) {
-    u32 v;
+    u32 raceKind;
 
-    v = gRaceSetup->mRaceKind;
-    if (v == RACE_KIND_START_GP) {
+    raceKind = gRaceSetup->mRaceKind;
+    if (raceKind == RACE_KIND_START_GP) {
         ClearRaceStartGpPointer();
         return;
     }
-    if (v == RACE_KIND_AWARD) {
+    if (raceKind == RACE_KIND_AWARD) {
         return;
     }
-    if (v == RACE_KIND_STAFF_ROLL) {
+    if (raceKind == RACE_KIND_STAFF_ROLL) {
         ClearStaffRollTextPointer();
         ClearEndingStaffRollPointer();
         return;

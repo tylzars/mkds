@@ -31,7 +31,7 @@ void InitOptionEmbremSelect(void *a) {
         func_02124a98(data_ov001_021a6c38[i][0], 1, gOptionEmbremSelect->mOptionEmbremSelectSNcer,
                       gOptionEmbremSelect->mOptionEmbremSelectSBncl);
     }
-    func_020ae6d4(GetOptionFirstBuffer(), GetOptionSecondBuffer());
+    ResetOamLists(GetOptionFirstBuffer(), GetOptionSecondBuffer());
     InitLayoutTable(a, gOptionEmbremSelect->mOptionEmbremSelectSBncl, gOptionEmbremSelect->mOptionEmbremSelectSBnll,
                     &gOptionEmbremSelect->mOptionEmbremSelectSTable);
     gOptionEmbremSelect->mOptionMessages = FindSceneFile("option.bmg");

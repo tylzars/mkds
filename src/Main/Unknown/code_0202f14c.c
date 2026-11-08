@@ -90,7 +90,7 @@ void InitWLMenuScene(void *heap) {
     if (func_0202f19c() == 0) {
         LoadMultiSelectFiles();
     }
-    func_020ae6d4(gWLMenuScene, gWLMenuScene->mSubOam);
+    ResetOamLists(gWLMenuScene, gWLMenuScene->mSubOam);
     func_0202f478(0x10);
     func_0202f454(0x10);
     gWLMenuScene->mCurrentCallbacks->mUnk_00(gWLMenuScene->mHeap, gWLMenuScene, gWLMenuScene->mSubOam);
@@ -107,7 +107,7 @@ void AdvanceWLMenuScene(void *a) {
         previousCallbacks->mUnk_08();
         gWLMenuScene->mCurrentCallbacks->mUnk_00(gWLMenuScene->mHeap, gWLMenuScene, gWLMenuScene->mSubOam);
     } else {
-        func_020ae6ac(gWLMenuScene, gWLMenuScene->mSubOam);
+        ClearOamListCounts(gWLMenuScene, gWLMenuScene->mSubOam);
         callbacksIndex = gWLMenuScene->mCurrentCallbacks->mUnk_04(a);
         if (callbacksIndex != -1) {
             gWLMenuScene->mRequestedCallbacksIndex = callbacksIndex;
@@ -157,7 +157,7 @@ void func_0202f160(void) {
         func_021258f0();
     }
     gWLMenuScene->mCurrentCallbacks->mUnk_0c();
-    func_020ae5f0(gWLMenuScene, gWLMenuScene->mSubOam);
+    UploadOamLists(gWLMenuScene, gWLMenuScene->mSubOam);
 }
 
 Unk02174e4c_818 *func_0202f14c(void) {

@@ -540,7 +540,7 @@ void InitRecordTAtt(void *heap) {
     }
     LocateAndQueueRecordTAtt();
     CreateKartIcon(heap);
-    func_020ae6d4(GetRecordMainOam(), GetRecordSubOam());
+    ResetOamLists(GetRecordMainOam(), GetRecordSubOam());
     InitLayoutTable(heap, gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMBnll,
                     &gRecordTAtt->mRecordTAttMTable);
     InitLayoutTable(heap, gRecordTAtt->mRecordTAttSBncl, gRecordTAtt->mRecordTAttSBnll,

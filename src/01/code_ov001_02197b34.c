@@ -150,7 +150,7 @@ void InitTimeAttackTopMenu(void *a, void *b, s32 c) {
         func_02124a98(data_ov001_021a6a10[i], 1, gTimeAttackTopMenu->mTimeAttackTopMenuSNcer,
                       gTimeAttackTopMenu->mTimeAttackTopMenuSBncl);
     }
-    func_020ae6d4(gTimeAttackTopMenu->mUnk_2c, (void *) gTimeAttackTopMenu->mUnk_30);
+    ResetOamLists(gTimeAttackTopMenu->mUnk_2c, (void *) gTimeAttackTopMenu->mUnk_30);
     InitLayoutTable(gTimeAttackTopMenu->mHeap, gTimeAttackTopMenu->mTimeAttackTopMenuSBncl, NULL,
                     &gTimeAttackTopMenu->mTimeAttackTopMenuSTable);
     for (i = 0; i < 3; i++) {

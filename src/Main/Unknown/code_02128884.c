@@ -43,11 +43,11 @@ SceneCallbacks gKeyboardSceneCallbacks = {
 #pragma thumb on
 void func_0212891c(void) {
     func_0212899c();
-    func_020ae5f0(data_0217d3fc, &data_0217d3fc->mUnk_404);
+    UploadOamLists(data_0217d3fc, &data_0217d3fc->mUnk_404);
 }
 
 void UpdateKeyboardScene(s16 *sceneNumbers) {
-    func_020ae6ac(data_0217d3fc, &data_0217d3fc->mUnk_404);
+    ClearOamListCounts(data_0217d3fc, &data_0217d3fc->mUnk_404);
     AdvanceKeyboard();
     func_020ae630(data_0217d3fc, &data_0217d3fc->mUnk_404);
     if (sceneNumbers != NULL) {

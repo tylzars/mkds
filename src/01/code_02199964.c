@@ -44,7 +44,7 @@ void InitOptionHensyuMenu(void *heap) {
                       gOptionHensyuMenu->mOptionHensyuMenuSBncl);
     }
     a = GetOptionFirstBuffer();
-    func_020ae6d4(a, GetOptionSecondBuffer());
+    ResetOamLists(a, GetOptionSecondBuffer());
     InitLayoutTable(heap, gOptionHensyuMenu->mOptionHensyuMenuSBncl, NULL, &gOptionHensyuMenu->mOptionHensyuMenuSTable);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6a8c[i]; j++) {

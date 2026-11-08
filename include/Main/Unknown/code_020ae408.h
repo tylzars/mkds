@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u16 GetNewOrRepeatBits(u32 a, u32 b);
+u16 GetNewOrRepeatBits(u32 slotIndex, u32 mask);

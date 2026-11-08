@@ -66,7 +66,7 @@ void InitWiFiTopMenu(void *heap) {
     for (i = 0; i < 3; i++) {
         func_02124a98(data_ov000_021b05c0[i], 1, gWiFiTopMenu->mWiFiTopMenuSNcer, gWiFiTopMenu->mWiFiTopMenuBncl);
     }
-    func_020ae6d4(func_ov000_021804f4(), func_ov000_021804e0());
+    ResetOamLists(func_ov000_021804f4(), func_ov000_021804e0());
     InitLayoutTable(heap, gWiFiTopMenu->mWiFiTopMenuBncl, NULL, &gWiFiTopMenu->mWiFiTopMenuTable);
     for (j = 0; j < 3; j++) {
         for (k = 0; k < data_ov000_021b05cc[j]; k++) {

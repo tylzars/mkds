@@ -35,7 +35,7 @@
 #include "Main/Unknown/code_0203c5f8.h"
 
 void func_020aeb7c(void) {
-    BOOL a;
+    BOOL subScreenEnabled;
     BOOL d;
     BOOL b;
     BOOL c;
@@ -68,7 +68,7 @@ void func_020aeb7c(void) {
                     gRaceHud->mUnk_850 = 0xc;
                 }
             } else {
-                a = FALSE;
+                subScreenEnabled = FALSE;
                 b = FALSE;
                 c = FALSE;
                 if (gRaceSetup->mRaceKind != RACE_KIND_DEMO && gRaceSetup->mRaceKind != 4) {
@@ -95,10 +95,10 @@ void func_020aeb7c(void) {
                         }
                     }
                     if (d != FALSE) {
-                        a = TRUE;
+                        subScreenEnabled = TRUE;
                     }
                 }
-                if (a != FALSE) {
+                if (subScreenEnabled != FALSE) {
                     gRaceHud->mSubScreenEnabled = TRUE;
                     switch (gRaceHud->mSubScreenState) {
                         case 0:
@@ -123,7 +123,7 @@ void func_020aeb7c(void) {
                     gRaceHud->mUnk_850 = 0xc;
                 }
             } else {
-                a = FALSE;
+                subScreenEnabled = FALSE;
                 b = FALSE;
                 c = FALSE;
                 if (gRaceSetup->mRaceKind != RACE_KIND_DEMO && gRaceSetup->mRaceKind != 4) {
@@ -150,10 +150,10 @@ void func_020aeb7c(void) {
                         }
                     }
                     if (d != FALSE) {
-                        a = TRUE;
+                        subScreenEnabled = TRUE;
                     }
                 }
-                if (a != FALSE) {
+                if (subScreenEnabled != FALSE) {
                     gRaceHud->mSubScreenEnabled = TRUE;
                     if (gRaceSetup->mRaceKind != 2) {
                         switch (gRaceHud->mSubScreenState) {
@@ -199,7 +199,7 @@ void func_020aeb7c(void) {
                     gRaceHud->mUnk_850 = 0x8c;
                 }
             } else {
-                a = FALSE;
+                subScreenEnabled = FALSE;
                 b = FALSE;
                 c = FALSE;
                 if (gRaceSetup->mRaceKind != RACE_KIND_DEMO && gRaceSetup->mRaceKind != 4) {
@@ -226,10 +226,10 @@ void func_020aeb7c(void) {
                         }
                     }
                     if (d != FALSE) {
-                        a = TRUE;
+                        subScreenEnabled = TRUE;
                     }
                 }
-                if (a != FALSE) {
+                if (subScreenEnabled != FALSE) {
                     gRaceHud->mSubScreenEnabled = TRUE;
                     switch (gRaceHud->mSubScreenState) {
                         case 0:
@@ -269,7 +269,7 @@ void func_020aeb7c(void) {
                     gRaceHud->mUnk_840 = TRUE;
                     gRaceHud->mUnk_850 = 0x8c;
                 } else {
-                    a = FALSE;
+                    subScreenEnabled = FALSE;
                     b = FALSE;
                     c = FALSE;
                     if (gRaceSetup->mRaceKind != RACE_KIND_DEMO && gRaceSetup->mRaceKind != 4) {
@@ -296,10 +296,10 @@ void func_020aeb7c(void) {
                             }
                         }
                         if (d != FALSE) {
-                            a = TRUE;
+                            subScreenEnabled = TRUE;
                         }
                     }
-                    if (a != FALSE) {
+                    if (subScreenEnabled != FALSE) {
                         gRaceHud->mSubScreenEnabled = TRUE;
                         switch (gRaceHud->mSubScreenState) {
                             case 0:
@@ -316,7 +316,7 @@ void func_020aeb7c(void) {
                     }
                 }
             } else {
-                a = FALSE;
+                subScreenEnabled = FALSE;
                 b = FALSE;
                 c = FALSE;
                 if (gRaceSetup->mRaceKind != RACE_KIND_DEMO && gRaceSetup->mRaceKind != 4) {
@@ -343,10 +343,10 @@ void func_020aeb7c(void) {
                         }
                     }
                     if (d != FALSE) {
-                        a = TRUE;
+                        subScreenEnabled = TRUE;
                     }
                 }
-                if (a != FALSE) {
+                if (subScreenEnabled != FALSE) {
                     gRaceHud->mSubScreenEnabled = TRUE;
                     switch (gRaceHud->mSubScreenState) {
                         case 0:
