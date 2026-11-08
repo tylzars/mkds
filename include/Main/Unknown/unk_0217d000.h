@@ -737,12 +737,12 @@ typedef struct StaffRollText {
     /* 858 */ void *mHeap;
 } StaffRollText;
 
-typedef struct Unk0210bcf4 Unk0210bcf4;
+typedef struct SoundParams SoundParams;
 
 // Objects whose layout isn't known yet.
-extern s32 (*data_0217d014)(Unk0210bcf4 *);
-extern u32 (*data_0217d018)(Unk0210bcf4 *);
-extern s32 (*data_0217d01c)(Unk0210bcf4 *);
+extern s32 (*data_0217d014)(SoundParams *);
+extern u32 (*data_0217d018)(SoundParams *);
+extern s32 (*data_0217d01c)(SoundParams *);
 extern NNSFndList data_0217d028;
 extern u32 data_0217d064;
 extern s32 data_0217d1f4;

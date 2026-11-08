@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void SetLapProgressSoundGaps(u32 a);
+void SetLapProgressSoundGaps(u32 divisor);

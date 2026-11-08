@@ -654,7 +654,7 @@ s32 func_02068ec0(Kart *p, s32 a) {
         if (gRaceSetup->mMode == MODE_BATTLE && a == 0) {
             StartSound(&p->mSoundSource, 0xd3, 0x7f, 0);
             if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON && (data_0217c780 & 1)) {
-                h = func_0210e128(func_02108ea0(0));
+                h = TakeSoundHandleEntry(func_02108ea0(0));
                 if (data_0217d084.mUnk_0c != 0) {
                     if (h[0] != NULL) {
                         NNS_SndPlayerStopSeq(h, 0);

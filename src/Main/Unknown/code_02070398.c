@@ -753,14 +753,14 @@ void InitKartSound(Kart *p) {
     }
     p->mUnk_3d0 = p->mKartModelsEntry->mUnk_004 % 3;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-        if (!(p->mSoundSource.mUnk_34 & 1)) {
+        if (!(p->mSoundSource.mSourceFlags & 1)) {
             SetSoundSourceFlagBit(&p->mSoundSource, 2, 1);
         }
         if (gRaceSetup->mRaceKind == 2) {
             ResetSoundDistanceSquaredChange(&p->mUnk_518);
         }
     } else {
-        if (p->mSoundSource.mUnk_34 & 1) {
+        if (p->mSoundSource.mSourceFlags & 1) {
             SetSoundSourceFlagBit(&p->mSoundSource, 2, 1);
         }
         ResetSoundDistanceSquaredChange(&p->mUnk_518);
@@ -920,7 +920,7 @@ void func_020718c8(void *p, int v1) {
     int v;
 
     v = func_02086080(((Kart *) p)->mIndex);
-    func_0210ddf4(&data_0217d284, v + func_0210a588(), func_02071914, p, v1);
+    AddSoundRequest(&data_0217d284, v + func_0210a588(), func_02071914, p, v1);
 }
 
 void func_02071894(Kart *p) {
@@ -1108,7 +1108,7 @@ void ResetKartMotionState(Kart *p, s32 b) {
             func_02089d14(0);
             d = StartSound((SoundSource *) p, 0x15c, 0x7f, 0);
             if (d != NULL) {
-                d->mUnk_19 |= 0x10;
+                d->mFlags |= 0x10;
             }
             h = GetSndHandleSlot(7);
             if (!(data_0217c780 & 1)) {
@@ -1128,7 +1128,7 @@ void ResetKartMotionState(Kart *p, s32 b) {
         case COURSE_ID_PINBALL:
             d = StartSound((SoundSource *) p, 0x15b, 0x7f, 0);
             if (d != NULL) {
-                d->mUnk_19 |= 0x10;
+                d->mFlags |= 0x10;
             }
             break;
     }
@@ -1250,7 +1250,7 @@ void AdvanceKartToKeyedPlacement(Kart *p) {
     if (p->mUnk_4c & 0x2000) {
         s = &p->mUnk_538;
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-            func_0210ddf4(data_0217d26c, func_02086080(p->mIndex), func_020718c8, p, 0xa3);
+            AddSoundRequest(data_0217d26c, func_02086080(p->mIndex), func_020718c8, p, 0xa3);
         }
         s->mUnk_0a++;
         if (s->mUnk_0a > KART_KILLER_RANK_END_FRAMES && (p->mUnk_4c & 0x2000)) {
@@ -1384,7 +1384,7 @@ void PlaceKartAtKeyedPlacement(Kart *p, u32 b) {
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         SetupCameraBehindKart();
         if (data_0217c780 & 1) {
-            h = func_0210e128(func_02108ea0(0));
+            h = TakeSoundHandleEntry(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (h[0] != NULL) {
                     NNS_SndPlayerStopSeq(h, 0);

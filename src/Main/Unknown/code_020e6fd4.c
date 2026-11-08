@@ -182,8 +182,8 @@ void func_020e7760(void) {
             gJgState2FrameCount = 0x2d;
             break;
     }
-    data_0217b9dc.mUnk_00 = 0x101;
-    data_0217b9dc.mUnk_04 = &gJgPos;
+    data_0217b9dc.mSoundId = 0x101;
+    data_0217b9dc.mPositionSource = &gJgPos;
     data_0217b9dc.mUnk_08 = 1;
     func_02046be8(&gJgStateMachine, (UnkFunc *const *) gJgStateTable, 7, NULL);
     SetStateMachineState(&gJgStateMachine, 0);
@@ -343,7 +343,7 @@ void func_020e71a0(MapObject *object) {
     if ((object->mFlags & 2) == 0) {
         sound->mSoundSource.mDistanceSquared = object->mDistanceSquaredAndFlags & ~0xc000001f;
         resultIsFalse = (func_020d4ddc(object) == FALSE);
-        hasSoundBit0 = (sound->mSoundSource.mUnk_34 & 1) != 0;
+        hasSoundBit0 = (sound->mSoundSource.mSourceFlags & 1) != 0;
         if (resultIsFalse != FALSE) {
             if (hasSoundBit0 != FALSE) {
                 goto ret;
@@ -366,10 +366,10 @@ void func_020e71a0(MapObject *object) {
         sound->mSoundSource.mDistanceSquared = distanceSquared;
         if (func_020d4d60(object, distanceSquared) != FALSE) {
             object->mDistanceSquaredAndFlags |= data_02159310;
-            if ((sound->mSoundSource.mUnk_34 & 1) != 0) {
+            if ((sound->mSoundSource.mSourceFlags & 1) != 0) {
                 SetSoundSourceFlagBit(&sound->mSoundSource, 2, 1);
             }
-        } else if ((sound->mSoundSource.mUnk_34 & 1) == 0) {
+        } else if ((sound->mSoundSource.mSourceFlags & 1) == 0) {
             SetSoundSourceFlagBit(&sound->mSoundSource, 2, 1);
         }
     }

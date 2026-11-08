@@ -35,8 +35,8 @@ static inline void func_020a826c_inline(Unk020a826c_a0 *q) {
     } else {
         v = 0;
     }
-    q->mUnk_00.mUnk_0c = GetHorizontalCameraDistanceSquared(&q->mUnk_10);
-    if (q->mUnk_00.mUnk_0c < v) {
+    q->mUnk_00.mDistanceSquared = GetHorizontalCameraDistanceSquared(&q->mUnk_10);
+    if (q->mUnk_00.mDistanceSquared < v) {
         q->mUnk_24 = q->mUnk_24 == 0 ? 1 : 2;
         if (GetRaceUseChainCameras() != 0) {
             func_0210b734(&q->mUnk_00, q->mUnk_1c);
@@ -54,9 +54,9 @@ void func_020a826c(void *a, Unk020a826c *p) {
     switch (p->mUnk_0f0) {
         case 1:
             if (IsRaceStarted() == 1) {
-                v = p->mUnk_0c8.mUnk_00.mUnk_00;
+                v = p->mUnk_0c8.mUnk_00.mSoundId;
                 NNS_SndPlayerStopSeq(p->mUnk_0a0.mUnk_1c, 0);
-                p->mUnk_0a0.mUnk_00.mUnk_00 = v;
+                p->mUnk_0a0.mUnk_00.mSoundId = v;
                 p->mUnk_0f0 = 2;
             }
             func_020a826c_inline(&p->mUnk_0a0);
@@ -67,7 +67,7 @@ void func_020a826c(void *a, Unk020a826c *p) {
                 p->mUnk_0a0.mUnk_24 == 0 && p->mUnk_0a0.mUnk_20 != FALSE) {
                 v = func_02110c40();
                 NNS_SndPlayerStopSeq(p->mUnk_0a0.mUnk_1c, 0);
-                p->mUnk_0a0.mUnk_00.mUnk_00 = v;
+                p->mUnk_0a0.mUnk_00.mSoundId = v;
                 p->mUnk_0f0 = 3;
             }
             func_020a826c_inline(&p->mUnk_0a0);
@@ -77,9 +77,9 @@ void func_020a826c(void *a, Unk020a826c *p) {
             if (IsKartEnded((u16) gRaceSetup->mEntryIndex) != 0) {
                 ParkMapObject(&p->mUnk_000);
             } else if (p->mUnk_0a0.mUnk_20 == FALSE) {
-                v = p->mUnk_0c8.mUnk_00.mUnk_00;
+                v = p->mUnk_0c8.mUnk_00.mSoundId;
                 NNS_SndPlayerStopSeq(p->mUnk_0a0.mUnk_1c, 0);
-                p->mUnk_0a0.mUnk_00.mUnk_00 = v;
+                p->mUnk_0a0.mUnk_00.mSoundId = v;
                 p->mUnk_0f0 = 2;
             }
             func_020a826c_inline(&p->mUnk_0a0);

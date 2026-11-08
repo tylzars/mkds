@@ -120,7 +120,7 @@ void UpdateBouncingItemBoxTimers(void) {
             SetHeldItem(heldItem, 0x11);
             gBouncingItemBoxTimerRunning[i] = 0;
             if (i == gRaceSetup->mEntryIndex && (data_0217c780 & 1)) {
-                sndHandle = func_0210e128(func_02108ea0(0));
+                sndHandle = TakeSoundHandleEntry(func_02108ea0(0));
                 if (data_0217d084.mUnk_0c != 0) {
                     if (sndHandle[0] != NULL) {
                         NNS_SndPlayerStopSeq(sndHandle, 0);

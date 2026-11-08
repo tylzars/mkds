@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_021108ac(unsigned int p0);
+void func_021108ac(unsigned int value);

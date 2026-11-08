@@ -521,7 +521,7 @@ void func_020e1f54(Unk020e1e98 *vehicle, struct CourseMapRow *courseRow, Unk020e
     vehicle->mUnk_15c = kindInfo->mUnk_2c;
     vehicle->mUnk_158 = func_020d286c(&vehicle->mUnk_000);
     ResetSoundDistanceSquaredChange(vehicle->mUnk_158);
-    vehicle->mUnk_000.mSound->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a6ec;
+    vehicle->mUnk_000.mSound->mSoundSource.mTrackParamsFunction = (void (*)(void *, void *, void *)) func_0210a6ec;
     vehicle->mUnk_160 = kindInfo->mUnk_30;
 }
 

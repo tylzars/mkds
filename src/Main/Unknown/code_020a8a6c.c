@@ -43,9 +43,9 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     z1 = q->mUnk_00.z + (-0x4a6000);
                     y1 = q->mUnk_00.y;
                     x1 = q->mUnk_00.x + (-0x2c6000);
-                    p->mUnk_0a0.mUnk_00.mUnk_00 = 0x103;
+                    p->mUnk_0a0.mUnk_00.mSoundId = 0x103;
                     p->mUnk_0a0.mUnk_00.mUnk_08 = 5;
-                    p->mUnk_0a0.mUnk_00.mUnk_04 = &p->mUnk_0a0.mUnk_10;
+                    p->mUnk_0a0.mUnk_00.mPositionSource = &p->mUnk_0a0.mUnk_10;
                     p->mUnk_0a0.mUnk_1c = GetSndHandleSlot(8);
                     p->mUnk_0a0.mUnk_10.x = x1;
                     p->mUnk_0a0.mUnk_10.y = y1;
@@ -54,9 +54,9 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     z2 = q->mUnk_00.z + 0x726000;
                     y2 = q->mUnk_00.y;
                     x2 = q->mUnk_00.x + (-0x7ee000);
-                    p->mUnk_0c8.mUnk_00.mUnk_00 = 0x103;
+                    p->mUnk_0c8.mUnk_00.mSoundId = 0x103;
                     p->mUnk_0c8.mUnk_00.mUnk_08 = 5;
-                    p->mUnk_0c8.mUnk_00.mUnk_04 = &p->mUnk_0c8.mUnk_10;
+                    p->mUnk_0c8.mUnk_00.mPositionSource = &p->mUnk_0c8.mUnk_10;
                     p->mUnk_0c8.mUnk_1c = GetSndHandleSlot(9);
                     p->mUnk_0c8.mUnk_10.x = x2;
                     p->mUnk_0c8.mUnk_10.y = y2;
@@ -68,9 +68,9 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     z3 = q->mUnk_00.z;
                     y3 = q->mUnk_00.y;
                     x3 = q->mUnk_00.x;
-                    p->mUnk_0a0.mUnk_00.mUnk_00 = 0x109;
+                    p->mUnk_0a0.mUnk_00.mSoundId = 0x109;
                     p->mUnk_0a0.mUnk_00.mUnk_08 = 4;
-                    p->mUnk_0a0.mUnk_00.mUnk_04 = &p->mUnk_0a0.mUnk_10;
+                    p->mUnk_0a0.mUnk_00.mPositionSource = &p->mUnk_0a0.mUnk_10;
                     if (i == 0) {
                         v1 = 8;
                     } else if (i == 1) {
@@ -95,16 +95,16 @@ void func_020a8a6c(Unk020a8a6c *a) {
             switch (gRaceSetup->mCourseId) {
                 case COURSE_ID_CROSS:
                     p->mUnk_0f0 = 1;
-                    p->mUnk_0a0.mUnk_00.mUnk_00 = 0x108;
+                    p->mUnk_0a0.mUnk_00.mSoundId = 0x108;
                     p->mUnk_0a0.mUnk_00.mUnk_08 = 8;
-                    p->mUnk_0a0.mUnk_00.mUnk_04 = &p->mUnk_0a0.mUnk_10;
+                    p->mUnk_0a0.mUnk_00.mPositionSource = &p->mUnk_0a0.mUnk_10;
                     p->mUnk_0a0.mUnk_1c = GetSndHandleSlot(8);
                     p->mUnk_0a0.mUnk_10.x = 0;
                     p->mUnk_0a0.mUnk_10.y = 0;
                     p->mUnk_0a0.mUnk_10.z = 0;
-                    p->mUnk_0c8.mUnk_00.mUnk_00 = 0x107;
+                    p->mUnk_0c8.mUnk_00.mSoundId = 0x107;
                     p->mUnk_0c8.mUnk_00.mUnk_08 = 8;
-                    p->mUnk_0c8.mUnk_00.mUnk_04 = &p->mUnk_0c8.mUnk_10;
+                    p->mUnk_0c8.mUnk_00.mPositionSource = &p->mUnk_0c8.mUnk_10;
                     p->mUnk_0c8.mUnk_1c = GetSndHandleSlot(9);
                     p->mUnk_0c8.mUnk_10.x = 0;
                     p->mUnk_0c8.mUnk_10.y = 0;
@@ -113,16 +113,16 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     break;
                 case COURSE_ID_MARIO:
                     p->mUnk_0f0 = 1;
-                    p->mUnk_0a0.mUnk_00.mUnk_00 = 0x1a0;
+                    p->mUnk_0a0.mUnk_00.mSoundId = 0x1a0;
                     p->mUnk_0a0.mUnk_00.mUnk_08 = 8;
-                    p->mUnk_0a0.mUnk_00.mUnk_04 = &p->mUnk_0a0.mUnk_10;
+                    p->mUnk_0a0.mUnk_00.mPositionSource = &p->mUnk_0a0.mUnk_10;
                     p->mUnk_0a0.mUnk_1c = GetSndHandleSlot(8);
                     p->mUnk_0a0.mUnk_10.x = 0;
                     p->mUnk_0a0.mUnk_10.y = 0;
                     p->mUnk_0a0.mUnk_10.z = 0;
-                    p->mUnk_0c8.mUnk_00.mUnk_00 = 0x19f;
+                    p->mUnk_0c8.mUnk_00.mSoundId = 0x19f;
                     p->mUnk_0c8.mUnk_00.mUnk_08 = 8;
-                    p->mUnk_0c8.mUnk_00.mUnk_04 = &p->mUnk_0c8.mUnk_10;
+                    p->mUnk_0c8.mUnk_00.mPositionSource = &p->mUnk_0c8.mUnk_10;
                     p->mUnk_0c8.mUnk_1c = GetSndHandleSlot(9);
                     p->mUnk_0c8.mUnk_10.x = 0;
                     p->mUnk_0c8.mUnk_10.y = 0;
@@ -135,9 +135,9 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     z4 = q->mUnk_00.z;
                     y4 = q->mUnk_00.y;
                     x4 = q->mUnk_00.x;
-                    p->mUnk_0a0.mUnk_00.mUnk_00 = 0x109;
+                    p->mUnk_0a0.mUnk_00.mSoundId = 0x109;
                     p->mUnk_0a0.mUnk_00.mUnk_08 = 6;
-                    p->mUnk_0a0.mUnk_00.mUnk_04 = &p->mUnk_0a0.mUnk_10;
+                    p->mUnk_0a0.mUnk_00.mPositionSource = &p->mUnk_0a0.mUnk_10;
                     p->mUnk_0a0.mUnk_1c = GetSndHandleSlot(8);
                     p->mUnk_0a0.mUnk_10.x = x4;
                     p->mUnk_0a0.mUnk_10.y = y4;
@@ -148,9 +148,9 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     z5 = q->mUnk_00.z;
                     y5 = q->mUnk_00.y;
                     x5 = q->mUnk_00.x;
-                    p->mUnk_0c8.mUnk_00.mUnk_00 = 0x109;
+                    p->mUnk_0c8.mUnk_00.mSoundId = 0x109;
                     p->mUnk_0c8.mUnk_00.mUnk_08 = 6;
-                    p->mUnk_0c8.mUnk_00.mUnk_04 = &p->mUnk_0c8.mUnk_10;
+                    p->mUnk_0c8.mUnk_00.mPositionSource = &p->mUnk_0c8.mUnk_10;
                     p->mUnk_0c8.mUnk_1c = GetSndHandleSlot(9);
                     p->mUnk_0c8.mUnk_10.x = x5;
                     p->mUnk_0c8.mUnk_10.y = y5;

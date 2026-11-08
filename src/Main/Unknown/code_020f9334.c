@@ -107,7 +107,7 @@ void ReleaseItemObject(ItemObject *item) {
     }
     if ((item->mFlags & 0x400000) != 0) {
         func_02109054(&item->mSoundSource);
-        item->mSoundSource.mUnk_30 = NULL;
+        item->mSoundSource.mTrackParamsFunction = NULL;
         item->mFlags &= ~0x400000;
     }
     item->mFlags |= 4;

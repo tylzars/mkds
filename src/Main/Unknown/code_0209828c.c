@@ -343,10 +343,10 @@ void UpdatePakkun(void *a, Pakkun *p) {
                     } else {
                         t = 4;
                     }
-                    s.mUnk_00 = 0x171;
-                    s.mUnk_04 = &p->mUnk_000.mPos;
+                    s.mSoundId = 0x171;
+                    s.mPositionSource = &p->mUnk_000.mPos;
                     s.mUnk_08 = t;
-                    s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_000.mPos);
+                    s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&p->mUnk_000.mPos);
                     func_0210b7a8(&s);
                 }
             } else if (p->mUnk_0a4 == 0) {

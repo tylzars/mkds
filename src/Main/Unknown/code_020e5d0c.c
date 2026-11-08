@@ -161,10 +161,10 @@ void UpdatePendulum(u32 param_1, PendulumObject *pendulum) {
             } else {
                 falloffIndex = 4;
             }
-            soundRequest.mUnk_00 = 0x173;
-            soundRequest.mUnk_04 = &pendulum->mUnk_04;
+            soundRequest.mSoundId = 0x173;
+            soundRequest.mPositionSource = &pendulum->mUnk_04;
             soundRequest.mUnk_08 = falloffIndex;
-            soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(&pendulum->mUnk_04);
+            soundRequest.mDistanceSquared = GetHorizontalCameraDistanceSquared(&pendulum->mUnk_04);
             func_0210b7a8(&soundRequest);
         }
     }

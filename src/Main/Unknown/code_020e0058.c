@@ -135,10 +135,10 @@ void UpdateKoopaBlock(void *a0, Unk020e005c *koopaBlock) {
         falloffIndex = koopaBlock->mFarDistanceSquared == gSoundFalloffs[2].mUnk_20
                            ? 2
                            : (koopaBlock->mFarDistanceSquared == gSoundFalloffs[3].mUnk_20 ? 3 : 4);
-        soundRequest.mUnk_00 = 0x17e;
-        soundRequest.mUnk_04 = &koopaBlock->mPos;
+        soundRequest.mSoundId = 0x17e;
+        soundRequest.mPositionSource = &koopaBlock->mPos;
         soundRequest.mUnk_08 = falloffIndex;
-        soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(&koopaBlock->mPos);
+        soundRequest.mDistanceSquared = GetHorizontalCameraDistanceSquared(&koopaBlock->mPos);
         func_0210b7a8(&soundRequest);
         return;
     }

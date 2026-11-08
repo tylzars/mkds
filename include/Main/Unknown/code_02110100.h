@@ -6,7 +6,7 @@
 #include "code_0212bcac.h"
 
 void func_021103c0(void);
-void func_02110350(Unk020e71a0_94 *a);
+void func_02110350(Unk020e71a0_94 *mapSound);
 u32 func_02110324(void);
-void func_02110114(NNSSndSeqPlayer **a);
-u32 IsSndHandleSet(NNSSndSeqPlayer **a);
+void func_02110114(NNSSndSeqPlayer **handle);
+u32 IsSndHandleSet(NNSSndSeqPlayer **handle);

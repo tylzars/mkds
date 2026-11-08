@@ -117,7 +117,7 @@ void ResetItemKouraW(ItemKouraW *item) {
 
 void func_020fc94c(ItemKouraW *item) {
     ResetSoundDistanceSquaredChange(&item->mUnk_300);
-    item->mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a67c;
+    item->mUnk_000.mSoundSource.mTrackParamsFunction = (void (*)(void *, void *, void *)) func_0210a67c;
     item->mUnk_160 = 0;
     item->mUnk_000.mDrawPos = item->mUnk_000.mPos;
     FreeItemObjectCollisionSlot((s32) item);
@@ -643,7 +643,7 @@ void EnterItemKouraWState7(ItemKouraW *param_1) {
     }
     func_020f91fc(param_1, 0xdf);
     if (data_0217c780 & 1) {
-        sndHandle = func_0210e128(func_02108ea0(0));
+        sndHandle = TakeSoundHandleEntry(func_02108ea0(0));
         if (data_0217d084.mUnk_0c != 0) {
             if (*sndHandle != NULL) {
                 NNS_SndPlayerStopSeq(sndHandle, 0);

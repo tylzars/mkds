@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u16 GetLapProgressSoundId(int a);
+u16 GetLapProgressSoundId(int index);

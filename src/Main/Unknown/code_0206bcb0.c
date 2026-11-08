@@ -35,7 +35,7 @@ void AdvanceKartBoost(s32 *out, Kart *p) {
     *out = 0x1000;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         id = (p->mUnk_48 & 0x8000) ? 0xa0 : 0x9e;
-        func_0210ddf4(data_0217d26c, func_02086080(p->mIndex), func_020718c8, p, id);
+        AddSoundRequest(data_0217d26c, func_02086080(p->mIndex), func_020718c8, p, id);
     }
     if (!(p->mUnk_48 & 0x20000000)) {
         return;
@@ -282,7 +282,7 @@ recheck:
     }
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         id = func_02086080(p->mIndex);
-        func_0210ddf4(&data_0217d284, id + func_0210a578(), func_02071944, p, 0xcf);
+        AddSoundRequest(&data_0217d284, id + func_0210a578(), func_02071944, p, 0xcf);
     }
     p->mUnk_44 |= 0x806;
     p->mUnk_44 &= 0xffff7ff7;

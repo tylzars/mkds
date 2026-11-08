@@ -230,10 +230,10 @@ void EnterMkdEfBubbleState0(MkdEfBubbleObject *bubble) {
         } else {
             falloffIndex = 4;
         }
-        soundRequest.mUnk_00 = 0x18c;
-        soundRequest.mUnk_04 = &bubble->mUnk_00.mPos;
+        soundRequest.mSoundId = 0x18c;
+        soundRequest.mPositionSource = &bubble->mUnk_00.mPos;
         soundRequest.mUnk_08 = falloffIndex;
-        soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(&bubble->mUnk_00.mPos);
+        soundRequest.mDistanceSquared = GetHorizontalCameraDistanceSquared(&bubble->mUnk_00.mPos);
         func_0210b7a8(&soundRequest);
     }
     bubble->mUnk_e4 = 0;

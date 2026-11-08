@@ -49,5 +49,5 @@ extern Unk0216cb50 data_0216cb50[5];
 
 void func_0210f5d4(u32 a);
 void func_0210f458(s32 a);
-u32 func_0210f35c(s32 a, u32 b);
-u32 func_0210f230(u32 a, u32 b);
+u32 func_0210f35c(s32 a, u32 soundId);
+u32 func_0210f230(u32 a, u32 soundId);

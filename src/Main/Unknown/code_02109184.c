@@ -304,13 +304,13 @@ void InitSoundFalloffs(void) {
                                  (((s32) ((((s64) (w16.mOuterDistance << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
 }
 
-s32 ComputeSoundVolume(Unk0210bcf4 *p) {
+s32 ComputeSoundVolume(SoundParams *p) {
     Kart *k;
     SoundFalloff *e;
     s32 v;
     s32 a;
 
-    k = (Kart *) p->mUnk_00;
+    k = (Kart *) p->mSource;
     v = 0;
     if (k != NULL) {
         if (k != NULL && k->mSoundSource.mFalloffIndex == 0 && k->mIndex != gRaceSetup->mEntryIndex) {
@@ -321,7 +321,7 @@ s32 ComputeSoundVolume(Unk0210bcf4 *p) {
     } else {
         e = &gSoundFalloffs[p->mUnk_20->mUnk_08];
     }
-    a = p->mUnk_10;
+    a = p->mDistance;
     if (a <= e->mInnerDistance) {
         v = e->mMaxVolume;
     } else if (a <= e->mUnk_04) {
@@ -348,7 +348,7 @@ s32 ComputeSoundVolume(Unk0210bcf4 *p) {
 }
 
 // Returns the pan, from -0x80 to 0x7f.
-s32 ComputeSoundPan(Unk0210bcf4 *p) {
+s32 ComputeSoundPan(SoundParams *p) {
     u32 a;
     s32 v;
 
@@ -367,18 +367,18 @@ s32 ComputeSoundPan(Unk0210bcf4 *p) {
 }
 
 // Returns the distance to the camera; also stores the forward and side distance in the record.
-u32 ComputeSoundDistanceAndOffsets(Unk0210bcf4 *p) {
+u32 ComputeSoundDistanceAndOffsets(SoundParams *p) {
     u32 a;
     u32 b;
 
-    if (p->mUnk_00 != NULL) {
-        a = ((Kart *) p->mUnk_00)->mSoundSource.mDistanceSquared;
+    if (p->mSource != NULL) {
+        a = ((Kart *) p->mSource)->mSoundSource.mDistanceSquared;
     } else {
         a = p->mUnk_20->mUnk_0c;
     }
     reg_CP_SQRTCNT = 0;
     *(vu32 *) 0x040002b8 = a;
-    b = p->mUnk_04;
+    b = p->mPositionSource;
     p->mUnk_08 = GetCameraForwardDistance(b) >> 12;
     p->mUnk_0c = GetCameraSideDistance(b) >> 12;
     while (reg_CP_SQRTCNT & 0x8000) {

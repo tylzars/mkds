@@ -43,17 +43,17 @@ void func_02108edc(s32 a, s32 b) {
         if (!(data_0217c780 & 1)) {
             return;
         }
-        playingSound = func_0210e128(&data_0217c7c4);
+        playingSound = TakeSoundHandleEntry(&data_0217c7c4);
         if (data_0217d084.mUnk_0c == 0) {
             return;
         }
-        if (playingSound->mUnk_00 != NULL) {
-            NNS_SndPlayerStopSeq(&playingSound->mUnk_00, 0);
+        if (playingSound->mSeqPlayer != NULL) {
+            NNS_SndPlayerStopSeq(&playingSound->mSeqPlayer, 0);
         }
-        if (playingSound->mUnk_00 != NULL) {
-            NNS_SndPlayerStopSeq(&playingSound->mUnk_00, 0);
+        if (playingSound->mSeqPlayer != NULL) {
+            NNS_SndPlayerStopSeq(&playingSound->mSeqPlayer, 0);
         }
-        NNS_SndArcPlayerStartSeqArc(&playingSound->mUnk_00, 0, c);
+        NNS_SndArcPlayerStartSeqArc(&playingSound->mSeqPlayer, 0, c);
     }
 }
 

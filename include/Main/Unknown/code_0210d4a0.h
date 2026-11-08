@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-unsigned int func_0210d4a0(unsigned int p0);
+unsigned int func_0210d4a0(unsigned int value);

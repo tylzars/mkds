@@ -27,14 +27,14 @@
 void InitPlayingSoundPool(PlayingSound *sounds, s32 count) {
     s32 i;
 
-    func_0210e2c4(&data_0217d034, sounds, count, 0x1c);
+    InitSoundHandlePool(&data_0217d034, sounds, count, 0x1c);
     for (i = 0; i < count; i++) {
         ResetPlayingSoundHandle(sounds);
         ClearThreeWords(&sounds->mUnk_08);
-        sounds->mUnk_18 = 0;
+        sounds->mSeqArcNo = 0;
         sounds->mSoundId = 0;
-        sounds->mUnk_19 = 0;
-        sounds->mUnk_14 = 0;
+        sounds->mFlags = 0;
+        sounds->mPitch = 0;
         sounds->mVolume = 0x7f;
         sounds++;
     }
@@ -46,57 +46,58 @@ void InitPlayingSoundPool(PlayingSound *sounds, s32 count) {
     data_0217d024[0] = 0;
 }
 
-u32 func_0210d4a0(u32 p0) {
-    return p0;
+u32 func_0210d4a0(u32 value) {
+    return value;
 }
 
 // The sound pass: list 0 sources get volume and pan every call, list 1 sources in turns over four calls.
 void UpdateSoundSources(void) {
-    NNSFndList *l;
-    u32 t;
-    PlayingSound *q;
-    NNSFndList *m;
-    SoundSource *p;
+    NNSFndList *updateLists;
+    u32 countThisPass;
+    PlayingSound *sound;
+    NNSFndList *secondUpdateList;
+    SoundSource *source;
 
     if (data_0217d084.mUnk_10 == 0) {
         return;
     }
     if (data_0217d020 != 0) {
-        for (p = data_0217d028.mHead; p != NULL; p = NNS_FndGetNextListObject(&data_0217d028, p)) {
-            func_0210cc3c(p);
+        for (source = data_0217d028.mHead; source != NULL; source = NNS_FndGetNextListObject(&data_0217d028, source)) {
+            func_0210cc3c(source);
         }
         data_0217d020 = 0;
     }
-    func_0210e280(&data_0217d034);
-    l = data_0217d048;
-    for (p = l->mHead; p != NULL; p = l->mHead) {
-        SetPlayingSoundsParams(p);
-        if (p->mUnk_18 != 3) {
-            RemoveListObject(&l[p->mUnk_18], p);
-            p->mUnk_18 = 3;
+    IncrementSoundHandleAges(&data_0217d034);
+    updateLists = data_0217d048;
+    for (source = updateLists->mHead; source != NULL; source = updateLists->mHead) {
+        SetPlayingSoundsParams(source);
+        if (source->mUpdateListIndex != 3) {
+            RemoveListObject(&updateLists[source->mUpdateListIndex], source);
+            source->mUpdateListIndex = 3;
         }
     }
-    m = &data_0217d054;
-    p = m->mHead;
-    t = data_0217d024[0];
-    if (p != NULL) {
-        l = data_0217d048;
+    secondUpdateList = &data_0217d054;
+    source = secondUpdateList->mHead;
+    countThisPass = data_0217d024[0];
+    if (source != NULL) {
+        updateLists = data_0217d048;
         do {
-            if ((t++ & 3) == data_0217d010[0]) {
-                SetPlayingSoundsParams(p);
-            } else if ((t & 1) == (data_0217d010[0] & 1)) {
-                for (q = p->mPlayingSounds.mHead; q != NULL; q = NNS_FndGetNextListObject(&p->mPlayingSounds, q)) {
-                    if (q->mUnk_00 != NULL) {
-                        p->mUnk_30(p, q, NULL);
+            if ((countThisPass++ & 3) == data_0217d010[0]) {
+                SetPlayingSoundsParams(source);
+            } else if ((countThisPass & 1) == (data_0217d010[0] & 1)) {
+                for (sound = source->mPlayingSounds.mHead; sound != NULL;
+                     sound = NNS_FndGetNextListObject(&source->mPlayingSounds, sound)) {
+                    if (sound->mSeqPlayer != NULL) {
+                        source->mTrackParamsFunction(source, sound, NULL);
                     }
                 }
             }
-            if (p->mUnk_18 != 3) {
-                RemoveListObject(&l[p->mUnk_18], p);
-                p->mUnk_18 = 3;
+            if (source->mUpdateListIndex != 3) {
+                RemoveListObject(&updateLists[source->mUpdateListIndex], source);
+                source->mUpdateListIndex = 3;
             }
-            p = m->mHead;
-        } while (p != NULL);
+            source = secondUpdateList->mHead;
+        } while (source != NULL);
     }
     data_0217d010[0]++;
     if (data_0217d010[0] == 4) {
@@ -118,17 +119,17 @@ void StopSoundsOnAllSources(u32 fadeSteps) {
         sound = source->mPlayingSounds.mHead;
         if (sound != NULL) {
             do {
-                NNS_SndPlayerStopSeq(&sound->mUnk_00, fadeSteps);
-                sound->mUnk_19 &= ~4;
-                sound->mUnk_19 &= ~8;
-                sound->mUnk_19 &= ~2;
+                NNS_SndPlayerStopSeq(&sound->mSeqPlayer, fadeSteps);
+                sound->mFlags &= ~4;
+                sound->mFlags &= ~8;
+                sound->mFlags &= ~2;
                 RemoveListObject(&source->mPlayingSounds, sound);
                 sound = source->mPlayingSounds.mHead;
             } while (sound != NULL);
         }
-        if (source->mUnk_18 != 3) {
-            RemoveListObject(&data_0217d048[source->mUnk_18], source);
-            source->mUnk_18 = 3;
+        if (source->mUpdateListIndex != 3) {
+            RemoveListObject(&data_0217d048[source->mUpdateListIndex], source);
+            source->mUpdateListIndex = 3;
         }
         source = NNS_FndGetNextListObject(&data_0217d028, source);
     } while (source != NULL);
@@ -136,27 +137,27 @@ void StopSoundsOnAllSources(u32 fadeSteps) {
 
 // Fades every sound in the pool to the volume over the given number of steps.
 void StartPlayingSoundsFade(s32 volume, s32 steps) {
-    u8 *p;
+    u8 *entryAddress;
     s32 i;
 
-    p = data_0217d034.mUnk_0c;
-    for (i = 0; i < data_0217d034.mUnk_00; i++) {
-        NNS_SndPlayerMoveVolume(&((PlayingSound *) p)->mUnk_00, volume, steps);
-        p += data_0217d034.mUnk_10;
+    entryAddress = data_0217d034.mEntries;
+    for (i = 0; i < data_0217d034.mCount; i++) {
+        NNS_SndPlayerMoveVolume(&((PlayingSound *) entryAddress)->mSeqPlayer, volume, steps);
+        entryAddress += data_0217d034.mEntrySize;
     }
 }
 
 void StopAllPlayingSounds(u32 fadeSteps) {
-    u8 *p;
+    u8 *entryAddress;
     s32 i;
 
-    p = data_0217d034.mUnk_0c;
-    for (i = 0; i < data_0217d034.mUnk_00; i++) {
-        NNS_SndPlayerStopSeq(&((PlayingSound *) p)->mUnk_00, fadeSteps);
-        ((PlayingSound *) p)->mUnk_19 &= ~4;
-        ((PlayingSound *) p)->mUnk_19 &= ~8;
-        ((PlayingSound *) p)->mUnk_19 &= ~2;
-        p += data_0217d034.mUnk_10;
+    entryAddress = data_0217d034.mEntries;
+    for (i = 0; i < data_0217d034.mCount; i++) {
+        NNS_SndPlayerStopSeq(&((PlayingSound *) entryAddress)->mSeqPlayer, fadeSteps);
+        ((PlayingSound *) entryAddress)->mFlags &= ~4;
+        ((PlayingSound *) entryAddress)->mFlags &= ~8;
+        ((PlayingSound *) entryAddress)->mFlags &= ~2;
+        entryAddress += data_0217d034.mEntrySize;
     }
 }
 
@@ -168,72 +169,72 @@ void ReleaseAllSoundSources(void) {
 
 // Start slot of a source (offset 0x2c): starts the library sequence of the entry at the given priority.
 void StartPlayingSoundSeqArc(u32 a, PlayingSound *sound, u32 priority) {
-    NNS_SndArcPlayerStartSeqArcEx(&sound->mUnk_00, -1, -1, priority, sound->mUnk_18, sound->mSoundId);
+    NNS_SndArcPlayerStartSeqArcEx(&sound->mSeqPlayer, -1, -1, priority, sound->mSeqArcNo, sound->mSoundId);
 }
 
 // Per-entry slot of a source (offset 0x30): sets track volume and pitch of a started sound.
 void SetPlayingSoundTrackParams(u32 a, PlayingSound *sound) {
-    NNS_SndPlayerSetTrackVolume(&sound->mUnk_00, data_0216cb20, sound->mVolume);
-    NNS_SndPlayerSetTrackPitch(&sound->mUnk_00, data_0216cb20, sound->mUnk_14);
+    NNS_SndPlayerSetTrackVolume(&sound->mSeqPlayer, data_0216cb20, sound->mVolume);
+    NNS_SndPlayerSetTrackPitch(&sound->mSeqPlayer, data_0216cb20, sound->mPitch);
 }
 
-void StartSoundSeqArc(NNSSndSeqPlayer **handle, u32 b, u32 soundId, u32 priority) {
-    NNS_SndArcPlayerStartSeqArcEx(handle, -1, -1, priority, b, soundId);
+void StartSoundSeqArc(NNSSndSeqPlayer **handle, u32 seqArcNo, u32 soundId, u32 priority) {
+    NNS_SndArcPlayerStartSeqArcEx(handle, -1, -1, priority, seqArcNo, soundId);
 }
 
-void SetSoundPanFunction(s32 (*p0)(Unk0210bcf4 *)) {
-    data_0217d01c = p0;
+void SetSoundPanFunction(s32 (*panFunction)(SoundParams *)) {
+    data_0217d01c = panFunction;
 }
 
-void SetSoundDistanceFunction(u32 (*p0)(Unk0210bcf4 *)) {
-    data_0217d018 = p0;
+void SetSoundDistanceFunction(u32 (*distanceFunction)(SoundParams *)) {
+    data_0217d018 = distanceFunction;
 }
 
-void SetSoundVolumeFunction(s32 (*p0)(Unk0210bcf4 *)) {
-    data_0217d014 = p0;
+void SetSoundVolumeFunction(s32 (*volumeFunction)(SoundParams *)) {
+    data_0217d014 = volumeFunction;
 }
 
-void ResetPlayingSound(PlayingSound *arg0) {
-    ResetPlayingSoundHandle(arg0);
-    ClearThreeWords(&arg0->mUnk_08);
-    arg0->mUnk_18 = 0;
-    arg0->mSoundId = 0;
-    arg0->mUnk_19 = 0;
-    arg0->mUnk_14 = 0;
-    arg0->mVolume = 0x7f;
+void ResetPlayingSound(PlayingSound *sound) {
+    ResetPlayingSoundHandle(sound);
+    ClearThreeWords(&sound->mUnk_08);
+    sound->mSeqArcNo = 0;
+    sound->mSoundId = 0;
+    sound->mFlags = 0;
+    sound->mPitch = 0;
+    sound->mVolume = 0x7f;
 }
 
 // Every caller passes bit 2 with 1: the sound pass then flips bit 0 and clears bit 2.
-void SetSoundSourceFlagBit(SoundSource *p, s32 bit, s32 value) {
+void SetSoundSourceFlagBit(SoundSource *source, s32 bit, s32 value) {
     if (value == 1) {
-        p->mUnk_34 |= 1 << bit;
+        source->mSourceFlags |= 1 << bit;
     } else {
-        p->mUnk_34 &= ~(1 << bit);
+        source->mSourceFlags &= ~(1 << bit);
     }
 }
 
 // Bit 0 of the flag word: a sound can start on the source only while it is set.
-void SetSoundSourceEnabled(SoundSource *p, s32 enabled) {
+void SetSoundSourceEnabled(SoundSource *source, s32 enabled) {
     if (enabled == 1) {
-        p->mUnk_34 |= 1;
+        source->mSourceFlags |= 1;
     } else {
-        p->mUnk_34 &= ~1;
+        source->mSourceFlags &= ~1;
     }
 }
 
-void func_0210cf20(SoundSource *a, u32 b) {
-    void *v1;
-    void *v2;
-    NNS_FndInitList(&a->mPlayingSounds, 8);
-    v1 = (void *) StartPlayingSoundSeqArc;
-    a->mUnk_38 = 1;
-    v2 = (void *) SetPlayingSoundTrackParams;
-    a->mUnk_2c = v1;
-    a->mUnk_30 = v2;
-    a->mUnk_34 = 0;
-    a->mOwnerPosSource = b;
-    a->mUnk_18 = 3;
-    ClearThreeWords(a->mUnk_1c);
-    ClearThreeWords((u32 *) a);
-    TryAppendListObject(&data_0217d028, a);
+void InitAndRegisterSoundSource(SoundSource *source, u32 positionSource) {
+    void *startFunction;
+    void *trackParamsFunction;
+    NNS_FndInitList(&source->mPlayingSounds, 8);
+    startFunction = (void *) StartPlayingSoundSeqArc;
+    source->mUnk_38 = 1;
+    trackParamsFunction = (void *) SetPlayingSoundTrackParams;
+    source->mStartSeqFunction = startFunction;
+    source->mTrackParamsFunction = trackParamsFunction;
+    source->mSourceFlags = 0;
+    source->mOwnerPosSource = positionSource;
+    source->mUpdateListIndex = 3;
+    ClearThreeWords(source->mUnk_1c);
+    ClearThreeWords((u32 *) source);
+    TryAppendListObject(&data_0217d028, source);
 }

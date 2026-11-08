@@ -74,10 +74,10 @@ u32 CollideKartWithCoverPooHole(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
                         } else {
                             t = 4;
                         }
-                        s.mUnk_00 = 0x16e;
-                        s.mUnk_04 = &p->mUnk_00.mPos;
+                        s.mSoundId = 0x16e;
+                        s.mPositionSource = &p->mUnk_00.mPos;
                         s.mUnk_08 = t;
-                        s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
+                        s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
                         func_0210b7a8(&s);
                     }
                 }
@@ -157,10 +157,10 @@ u32 CollideKartWithCoverPooHole(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
                         } else {
                             t = 4;
                         }
-                        s2.mUnk_00 = 0x16f;
-                        s2.mUnk_04 = &p->mUnk_00.mPos;
+                        s2.mSoundId = 0x16f;
+                        s2.mPositionSource = &p->mUnk_00.mPos;
                         s2.mUnk_08 = t;
-                        s2.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
+                        s2.mDistanceSquared = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
                         func_0210b7a8(&s2);
                     }
                 }
@@ -410,10 +410,10 @@ static inline void func_02095fec_inline_2(CoverPooHole *p, s32 n) {
     } else {
         v = 4;
     }
-    s.mUnk_00 = n;
-    s.mUnk_04 = &p->mUnk_00.mPos;
+    s.mSoundId = n;
+    s.mPositionSource = &p->mUnk_00.mPos;
     s.mUnk_08 = v;
-    s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
+    s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
     func_0210b7a8(&s);
 }
 

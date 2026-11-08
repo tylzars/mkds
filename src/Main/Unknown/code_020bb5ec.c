@@ -76,7 +76,7 @@ void func_020bbbb4(void) {
             SetStemSet(2);
         }
         if ((data_0217c780 & 1) != 0) {
-            r = func_0210e128(func_02108ea0(0));
+            r = TakeSoundHandleEntry(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (*r != NULL) {
                     NNS_SndPlayerStopSeq(r, 0);
@@ -93,7 +93,7 @@ void func_020bbbb4(void) {
     }
     if (a == 0 && ((b == 4 && c == 0) || b < 4) && gRaceTimeDigits->mUnk_20[1] == 0) {
         if ((data_0217c780 & 1) != 0) {
-            r = func_0210e128(func_02108ea0(0));
+            r = TakeSoundHandleEntry(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (*r != NULL) {
                     NNS_SndPlayerStopSeq(r, 0);
@@ -110,7 +110,7 @@ void func_020bbbb4(void) {
     }
     if (a == 0 && ((b == 3 && c == 0) || b < 3) && gRaceTimeDigits->mUnk_20[2] == 0) {
         if ((data_0217c780 & 1) != 0) {
-            r = func_0210e128(func_02108ea0(0));
+            r = TakeSoundHandleEntry(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (*r != NULL) {
                     NNS_SndPlayerStopSeq(r, 0);
@@ -127,7 +127,7 @@ void func_020bbbb4(void) {
     }
     if (a == 0 && ((b == 2 && c == 0) || b < 2) && gRaceTimeDigits->mUnk_20[3] == 0) {
         if ((data_0217c780 & 1) != 0) {
-            r = func_0210e128(func_02108ea0(0));
+            r = TakeSoundHandleEntry(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (*r != NULL) {
                     NNS_SndPlayerStopSeq(r, 0);
@@ -144,7 +144,7 @@ void func_020bbbb4(void) {
     }
     if (a == 0 && ((b == 1 && c == 0) || b < 1) && gRaceTimeDigits->mUnk_20[4] == 0) {
         if ((data_0217c780 & 1) != 0) {
-            r = func_0210e128(func_02108ea0(0));
+            r = TakeSoundHandleEntry(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (*r != NULL) {
                     NNS_SndPlayerStopSeq(r, 0);

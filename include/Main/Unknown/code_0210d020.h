@@ -3,9 +3,9 @@
 #include "types.h"
 #include "code_0212bcac.h"
 
-typedef struct Unk0210bcf4 Unk0210bcf4;
+typedef struct SoundParams SoundParams;
 
-void SetSoundVolumeFunction(s32 (*p0)(Unk0210bcf4 *));
-void SetSoundDistanceFunction(u32 (*p0)(Unk0210bcf4 *));
-void SetSoundPanFunction(s32 (*p0)(Unk0210bcf4 *));
-void StartSoundSeqArc(NNSSndSeqPlayer **handle, u32 b, u32 soundId, u32 priority);
+void SetSoundVolumeFunction(s32 (*volumeFunction)(SoundParams *));
+void SetSoundDistanceFunction(u32 (*distanceFunction)(SoundParams *));
+void SetSoundPanFunction(s32 (*panFunction)(SoundParams *));
+void StartSoundSeqArc(NNSSndSeqPlayer **handle, u32 seqArcNo, u32 soundId, u32 priority);

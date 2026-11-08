@@ -106,7 +106,7 @@ void CreateMapObjectSoundSourceFalloff2(MapObject *mapObject) {
     InitSoundSource(&mapObject->mSound->mSoundSource, 2, &mapObject->mPos);
     mapObject->mFarDistanceSquared = gSoundFalloffs[2].mUnk_20;
     SetSoundSourceEnabled(&mapObject->mSound->mSoundSource, 0);
-    if (mapObject->mSound->mSoundSource.mUnk_34 & 1) {
+    if (mapObject->mSound->mSoundSource.mSourceFlags & 1) {
         SetSoundSourceFlagBit(&mapObject->mSound->mSoundSource, 2, 1);
     }
 }
@@ -116,7 +116,7 @@ SoundDistanceSquaredChange *func_020d286c(MapObject *mapObject) {
     InitSoundSource(&mapObject->mSound->mSoundSource, 2, &mapObject->mPos);
     mapObject->mFarDistanceSquared = gSoundFalloffs[2].mUnk_20;
     SetSoundSourceEnabled(&mapObject->mSound->mSoundSource, 0);
-    if (mapObject->mSound->mSoundSource.mUnk_34 & 1) {
+    if (mapObject->mSound->mSoundSource.mSourceFlags & 1) {
         SetSoundSourceFlagBit(&mapObject->mSound->mSoundSource, 2, 1);
     }
     return &mapObject->mSound->mUnk_44;
@@ -127,7 +127,7 @@ void CreateMapObjectSoundSourceFalloff3(MapObject *mapObject) {
     InitSoundSource(&mapObject->mSound->mSoundSource, 3, &mapObject->mPos);
     mapObject->mFarDistanceSquared = gSoundFalloffs[3].mUnk_20;
     SetSoundSourceEnabled(&mapObject->mSound->mSoundSource, 0);
-    if (mapObject->mSound->mSoundSource.mUnk_34 & 1) {
+    if (mapObject->mSound->mSoundSource.mSourceFlags & 1) {
         SetSoundSourceFlagBit(&mapObject->mSound->mSoundSource, 2, 1);
     }
 }
@@ -137,7 +137,7 @@ void CreateMapObjectSoundSourceFalloff4(MapObject *mapObject) {
     InitSoundSource(&mapObject->mSound->mSoundSource, 4, &mapObject->mPos);
     mapObject->mFarDistanceSquared = gSoundFalloffs[4].mUnk_20;
     SetSoundSourceEnabled(&mapObject->mSound->mSoundSource, 0);
-    if (mapObject->mSound->mSoundSource.mUnk_34 & 1) {
+    if (mapObject->mSound->mSoundSource.mSourceFlags & 1) {
         SetSoundSourceFlagBit(&mapObject->mSound->mSoundSource, 2, 1);
     }
 }

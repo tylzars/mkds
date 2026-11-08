@@ -17,6 +17,6 @@ typedef struct Unk0210bc54 {
 
 u32 func_0210bafc(s32 entryIndex, s32 rowIndex, s32 columnIndex);
 u32 GetSurfaceSoundId(s32 entryIndex, s32 surfaceKind, s32 surfaceVariant);
-void func_0210bc14(void);
+void ClearSurfaceSoundIds(void);
 void RemoveListObject(NNSFndList *list, void *object);
 u32 TryAppendListObject(void *list, void *object);

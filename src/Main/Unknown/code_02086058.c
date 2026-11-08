@@ -63,7 +63,7 @@ void func_02086a04(void) {
             if (e > gSoundFalloffs[0].mUnk_20) {
                 a = FALSE;
             }
-            if (p->mSoundSource.mUnk_34 & 1) {
+            if (p->mSoundSource.mSourceFlags & 1) {
                 b = TRUE;
             } else {
                 b = FALSE;

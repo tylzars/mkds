@@ -3,19 +3,20 @@
 #include "types.h"
 
 typedef struct Unk0217c7c4 Unk0217c7c4;
-typedef struct Unk0217d060 Unk0217d060;
+typedef struct SoundSetPlayer SoundSetPlayer;
 typedef struct LoadedSoundSet LoadedSoundSet;
-typedef struct Unk0217d26c Unk0217d26c;
+typedef struct SoundRequestQueue SoundRequestQueue;
 typedef struct NNSSndHeap NNSSndHeap;
 
-void *func_0210e128(Unk0217c7c4 *a);
-void func_0210e280(Unk0217c7c4 *a);
-void func_0210e2c4(Unk0217c7c4 *a, void *b, s32 c, s32 d);
-void func_0210e094(Unk0217d26c *a, s32 b, NNSSndHeap *c);
-void func_0210e03c(Unk0217d26c *a);
-void func_0210dd44(Unk0217d26c *a);
-void func_0210ddf4(Unk0217d26c *a, int b, void (*c)(void *, int), void *p, int d);
-u32 func_0210dccc(Unk0217d060 *a, u32 b, u32 c, u32 d, LoadedSoundSet *e);
-void func_0210dcb8(Unk0217d060 *a, u32 b);
-void func_0210dca8(Unk0217d060 *a, u32 b);
-void func_0210dc7c(Unk0217d060 *a);
+void *TakeSoundHandleEntry(Unk0217c7c4 *pool);
+void IncrementSoundHandleAges(Unk0217c7c4 *pool);
+void InitSoundHandlePool(Unk0217c7c4 *pool, void *entries, s32 count, s32 entrySize);
+void InitSoundRequestQueue(SoundRequestQueue *queue, s32 count, NNSSndHeap *heap);
+void ResetSoundRequestQueue(SoundRequestQueue *queue);
+void RunSoundRequests(SoundRequestQueue *queue);
+void AddSoundRequest(SoundRequestQueue *queue, int sortKey, void (*function)(void *, int), void *firstArgument,
+                     int secondArgument);
+u32 InitSoundSetPlayer(SoundSetPlayer *player, u32 seqId, u32 firstBankId, u32 secondBankId, LoadedSoundSet *loadedSet);
+void StartSoundSetSeq(SoundSetPlayer *player, u32 volume);
+void StopSoundSetSeq(SoundSetPlayer *player, u32 fadeSteps);
+void ReleaseSoundSetPlayer(SoundSetPlayer *player);

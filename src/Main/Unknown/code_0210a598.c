@@ -10,11 +10,11 @@
 
 void InitKartSoundCallbacks(Kart *kart, Unk0210a5a8 *b) {
     if (kart->mUnk_7c & KART_7C_ENTRY_KIND_2) {
-        kart->mSoundSource.mUnk_2c = (void (*)(void *, void *, u32)) func_0210ab44;
+        kart->mSoundSource.mStartSeqFunction = (void (*)(void *, void *, u32)) func_0210ab44;
     } else {
-        kart->mSoundSource.mUnk_2c = (void (*)(void *, void *, u32)) StartKartPlayingSoundSeq;
+        kart->mSoundSource.mStartSeqFunction = (void (*)(void *, void *, u32)) StartKartPlayingSoundSeq;
     }
-    kart->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) UpdateKartPlayingSound;
+    kart->mSoundSource.mTrackParamsFunction = (void (*)(void *, void *, void *)) UpdateKartPlayingSound;
     if (GetCurrentSceneNumber() == 2 || kart->mIndex != gRaceSetup->mEntryIndex) {
         b->mUnk_3c = func_0210a63c;
     } else {

@@ -134,10 +134,10 @@ void UpdateWanwan(void *unused, Wanwan *wanwan) {
                     } else {
                         y = 4;
                     }
-                    c.mUnk_00 = 0x1a1;
-                    c.mUnk_04 = &wanwan->mUnk_00.mPos;
+                    c.mSoundId = 0x1a1;
+                    c.mPositionSource = &wanwan->mUnk_00.mPos;
                     c.mUnk_08 = y;
-                    c.mUnk_0c = GetHorizontalCameraDistanceSquared(&wanwan->mUnk_00.mPos);
+                    c.mDistanceSquared = GetHorizontalCameraDistanceSquared(&wanwan->mUnk_00.mPos);
                     func_0210b7a8(&c);
                 }
             }
@@ -155,10 +155,10 @@ void UpdateWanwan(void *unused, Wanwan *wanwan) {
                     } else {
                         y = 4;
                     }
-                    d.mUnk_00 = 0x1df;
-                    d.mUnk_04 = &wanwan->mUnk_00.mPos;
+                    d.mSoundId = 0x1df;
+                    d.mPositionSource = &wanwan->mUnk_00.mPos;
                     d.mUnk_08 = y;
-                    d.mUnk_0c = GetHorizontalCameraDistanceSquared(&wanwan->mUnk_00.mPos);
+                    d.mDistanceSquared = GetHorizontalCameraDistanceSquared(&wanwan->mUnk_00.mPos);
                     func_0210b7a8(&d);
                 }
             }
@@ -208,8 +208,8 @@ void UpdateWanwan(void *unused, Wanwan *wanwan) {
         }
         if (wanwan->mUnk_fc == 0 && !(wanwan->mUnk_00.mDistanceSquaredAndFlags & 4) && k != FALSE) {
             b = data_0216bedc;
-            b.mUnk_04 = &wanwan->mUnk_00.mPos;
-            b.mUnk_0c = wanwan->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f;
+            b.mPositionSource = &wanwan->mUnk_00.mPos;
+            b.mDistanceSquared = wanwan->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f;
             func_0210b7a8(&b);
         }
     }
@@ -403,10 +403,10 @@ void EnterWanwanState1(Wanwan *wanwan) {
     } else {
         falloffIndex = 4;
     }
-    soundRequest.mUnk_00 = 0x12c;
-    soundRequest.mUnk_04 = &wanwan->mUnk_00.mPos;
+    soundRequest.mSoundId = 0x12c;
+    soundRequest.mPositionSource = &wanwan->mUnk_00.mPos;
     soundRequest.mUnk_08 = falloffIndex;
-    soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(&wanwan->mUnk_00.mPos);
+    soundRequest.mDistanceSquared = GetHorizontalCameraDistanceSquared(&wanwan->mUnk_00.mPos);
     func_0210b7a8(&soundRequest);
 }
 

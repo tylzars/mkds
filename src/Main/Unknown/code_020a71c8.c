@@ -60,10 +60,10 @@ u8 func_020a7fc4(Sanbo *p, Kart *a, u8 *b, u8 *c) {
         StartSoundIfKartStarOrKiller(&p->mUnk_000, a);
     } else {
         if (p->mUnk_0a4 == 0) {
-            s.mUnk_00 = 0x193;
-            s.mUnk_04 = &p->mUnk_000.mPos;
+            s.mSoundId = 0x193;
+            s.mPositionSource = &p->mUnk_000.mPos;
             s.mUnk_08 = 2;
-            s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_000.mPos);
+            s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&p->mUnk_000.mPos);
             func_0210b7a8(&s);
             p->mUnk_0ac = 0x14;
         }
@@ -83,10 +83,10 @@ u8 func_020a7f18(Sanbo *p, Kart *a, u8 *b, u8 *c) {
         p->mUnk_000.mFlags = p->mUnk_000.mFlags | data_021567e8;
     } else {
         if (p->mUnk_0a4 == 0) {
-            s.mUnk_00 = 0x193;
-            s.mUnk_04 = &p->mUnk_000.mPos;
+            s.mSoundId = 0x193;
+            s.mPositionSource = &p->mUnk_000.mPos;
             s.mUnk_08 = 2;
-            s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_000.mPos);
+            s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&p->mUnk_000.mPos);
             func_0210b7a8(&s);
             p->mUnk_0ac = 0x14;
         }
@@ -341,10 +341,10 @@ void UpdateSanbo(void *a, Sanbo *p) {
             if (p->mUnk_0b0[0].mUnk_1c >= 0xc000) {
                 return;
             }
-            s.mUnk_00 = 0x194;
-            s.mUnk_04 = &p->mUnk_000.mPos;
+            s.mSoundId = 0x194;
+            s.mPositionSource = &p->mUnk_000.mPos;
             s.mUnk_08 = 2;
-            s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_000.mPos);
+            s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&p->mUnk_000.mPos);
             func_0210b7a8(&s);
             p->mUnk_0ac = 0x14;
             break;

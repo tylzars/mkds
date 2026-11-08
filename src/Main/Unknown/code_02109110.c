@@ -11,5 +11,5 @@ void InitSoundSource(SoundSource *source, u32 falloffIndex, Vec3 *ownerPosSource
     value3 = ~(0u);
     value1 = value2;
     *(u32 *) ((value0) + (64)) = value3;
-    func_0210cf20(source, value1);
+    InitAndRegisterSoundSource(source, value1);
 }

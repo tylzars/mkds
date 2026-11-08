@@ -101,10 +101,10 @@ void func_ov001_02182d30(void) {
         o->mUnk_000.mUnk_10.y = c->mVelocity.y + 0x4000;
         o->mUnk_000.mUnk_10.z = c->mVelocity.z + (s32) (((s64) b * gPairsByAngle[(a >> 4) * 2 + 1]) >> 12);
         o->mUnk_000.mFlags &= ~1;
-        arg.mUnk_00 = 0x1d9;
-        arg.mUnk_04 = NULL;
+        arg.mSoundId = 0x1d9;
+        arg.mPositionSource = NULL;
         arg.mUnk_08 = 2;
-        arg.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
+        arg.mDistanceSquared = GetHorizontalCameraDistanceSquared(NULL);
         func_0210b7a8(&arg);
     }
 }
@@ -147,10 +147,10 @@ void func_ov001_02182bdc(void) {
         o->mUnk_000.mUnk_10.x = (((s64) b * gPairsByAngle[(a >> 4) * 2]) >> 12);
         o->mUnk_000.mUnk_10.y = 0x4000;
         o->mUnk_000.mUnk_10.z = (((s64) b * gPairsByAngle[(a >> 4) * 2 + 1]) >> 12);
-        arg.mUnk_00 = 0x1d9;
-        arg.mUnk_04 = NULL;
+        arg.mSoundId = 0x1d9;
+        arg.mPositionSource = NULL;
         arg.mUnk_08 = 2;
-        arg.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
+        arg.mDistanceSquared = GetHorizontalCameraDistanceSquared(NULL);
         func_0210b7a8(&arg);
     }
 }

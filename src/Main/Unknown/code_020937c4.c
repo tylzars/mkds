@@ -90,8 +90,8 @@ void UpdateNsKiller1(void *a, NsKiller1 *p) {
                 if ((p->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
                     NNS_SndPlayerStopSeq(GetSndHandleSlot(8), 0);
                     s = data_0216676c;
-                    s.mUnk_04 = &p->mUnk_00.mPos;
-                    s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
+                    s.mPositionSource = &p->mUnk_00.mPos;
+                    s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
                     func_0210b708(&s, GetSndHandleSlot(8));
                 }
             } else if (p->mUnk_a0 <= 0) {
@@ -126,7 +126,7 @@ void InitNsKiller2(NsKiller2 *p) {
     ParkMapObject(&p->mUnk_00);
     p->mUnk_a8 = func_020d286c(&p->mUnk_00);
     ResetSoundDistanceSquaredChange(p->mUnk_a8);
-    p->mUnk_00.mSound->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a6b4;
+    p->mUnk_00.mSound->mSoundSource.mTrackParamsFunction = (void (*)(void *, void *, void *)) func_0210a6b4;
 }
 
 u8 func_02093b7c(NsKiller2 *a, Kart *b, u8 *c, u8 *d) {

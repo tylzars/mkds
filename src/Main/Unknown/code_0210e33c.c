@@ -30,60 +30,60 @@ void ReleaseLoadedSoundSet(void) {
 
 // Loads wave archives 0 and 0x50 (taken from archives 0x61 and 0x62 when b is set), assigns bank 0's wave archives to
 // it, then loads group a.
-u32 func_0210ed20(u32 a, u32 b) {
-    NNSSndArcBankInfo *p;
-    NNSSndArcWaveArcInfo *q;
+u32 func_0210ed20(u32 groupId, u32 moveWaveArcs) {
+    NNSSndArcBankInfo *bankInfo;
+    NNSSndArcWaveArcInfo *waveArcInfo;
     Unk02021968 *r;
     u32 v;
-    u32 w;
-    Unk02021968 *x;
-    u32 ok;
-    u32 n;
+    u32 fileId;
+    Unk02021968 *bankFile;
+    u32 loaded;
+    u32 listCount;
     s32 i;
 
-    if (b != 0) {
+    if (moveWaveArcs != 0) {
         if (NNS_SndArcLoadWaveArc(0x61, data_0217d130) == 0) {
-            ok = 0;
+            loaded = 0;
         } else {
-            NNSSndArcWaveArcInfo *q;
+            NNSSndArcWaveArcInfo *waveArcInfo;
             NNSSndArcWaveArcInfo *r;
             u32 v;
-            u32 w;
+            u32 fileId;
 
-            q = NNS_SndArcGetWaveArcInfo(0x61);
+            waveArcInfo = NNS_SndArcGetWaveArcInfo(0x61);
             r = NNS_SndArcGetWaveArcInfo(0);
-            w = (r)->mFileId;
-            v = q->mFileId;
-            NNS_SndArcSetFileAddress(w, NNS_SndArcGetFileAddress(v));
+            fileId = (r)->mFileId;
+            v = waveArcInfo->mFileId;
+            NNS_SndArcSetFileAddress(fileId, NNS_SndArcGetFileAddress(v));
             NNS_SndArcSetFileAddress(v, NULL);
-            ok = 1;
-            n = data_0217d178.mCount;
-            data_0217d178.mCount = n + 1;
-            data_0217d178.mFileIds[n] = w;
+            loaded = 1;
+            listCount = data_0217d178.mCount;
+            data_0217d178.mCount = listCount + 1;
+            data_0217d178.mFileIds[listCount] = fileId;
         }
-        if (ok == 0) {
+        if (loaded == 0) {
             return 0;
         }
         if (NNS_SndArcLoadWaveArc(0x62, data_0217d130) == 0) {
-            ok = 0;
+            loaded = 0;
         } else {
-            NNSSndArcWaveArcInfo *q;
+            NNSSndArcWaveArcInfo *waveArcInfo;
             NNSSndArcWaveArcInfo *r;
             u32 v;
-            u32 w;
+            u32 fileId;
 
-            q = NNS_SndArcGetWaveArcInfo(0x62);
+            waveArcInfo = NNS_SndArcGetWaveArcInfo(0x62);
             r = NNS_SndArcGetWaveArcInfo(0x50);
-            w = (r)->mFileId;
-            v = q->mFileId;
-            NNS_SndArcSetFileAddress(w, NNS_SndArcGetFileAddress(v));
+            fileId = (r)->mFileId;
+            v = waveArcInfo->mFileId;
+            NNS_SndArcSetFileAddress(fileId, NNS_SndArcGetFileAddress(v));
             NNS_SndArcSetFileAddress(v, NULL);
-            ok = 1;
-            n = data_0217d178.mCount;
-            data_0217d178.mCount = n + 1;
-            data_0217d178.mFileIds[n] = w;
+            loaded = 1;
+            listCount = data_0217d178.mCount;
+            data_0217d178.mCount = listCount + 1;
+            data_0217d178.mFileIds[listCount] = fileId;
         }
-        if (ok == 0) {
+        if (loaded == 0) {
             return 0;
         }
     } else {
@@ -94,45 +94,45 @@ u32 func_0210ed20(u32 a, u32 b) {
             return 0;
         }
     }
-    p = NNS_SndArcGetBankInfo(0);
-    x = NNS_SndArcGetFileAddress(p->mFileId);
+    bankInfo = NNS_SndArcGetBankInfo(0);
+    bankFile = NNS_SndArcGetFileAddress(bankInfo->mFileId);
     for (i = 0; i < 4; i++) {
-        v = p->mWaveArcNo[i];
+        v = bankInfo->mWaveArcNo[i];
         if (v == 0xffff) {
             continue;
         }
-        q = NNS_SndArcGetWaveArcInfo(v);
-        if (q == NULL) {
+        waveArcInfo = NNS_SndArcGetWaveArcInfo(v);
+        if (waveArcInfo == NULL) {
             break;
         }
-        w = q->mFileId;
-        r = NNS_SndArcGetFileAddress(w);
-        if (x == NULL) {
+        fileId = waveArcInfo->mFileId;
+        r = NNS_SndArcGetFileAddress(fileId);
+        if (bankFile == NULL) {
             continue;
         }
         if (r == NULL) {
             continue;
         }
-        SND_AssignWaveArc(x, i, r);
+        SND_AssignWaveArc(bankFile, i, r);
     }
-    if (LoadSndGroup(a) == 0) {
+    if (LoadSndGroup(groupId) == 0) {
         return 0;
     }
     return 1;
 }
 
 // Releases the loaded set and loads v unless it is empty or already loaded; d adds extra wave archives for some sets.
-u32 LoadSoundSetIfChanged(SoundSet v, u32 d) {
+u32 LoadSoundSetIfChanged(SoundSet soundSet, u32 loadExtras) {
     SndFileIdList *p;
-    u32 ok;
-    u32 n;
+    u32 loaded;
+    u32 listCount;
     s32 i;
-    SndFileIdList *t;
+    SndFileIdList *list;
 
-    if (v.mSeqId == 0xff && v.mUnk_04 == 0xff && v.mUnk_08 == 0xff) {
+    if (soundSet.mSeqId == 0xff && soundSet.mUnk_04 == 0xff && soundSet.mUnk_08 == 0xff) {
         return 1;
     }
-    if (IsSoundSetLoaded(GetLoadedSoundSet(), v) != 0) {
+    if (IsSoundSetLoaded(GetLoadedSoundSet(), soundSet) != 0) {
         return 1;
     }
     ReleaseSoundSet(GetLoadedSoundSet());
@@ -140,112 +140,112 @@ u32 LoadSoundSetIfChanged(SoundSet v, u32 d) {
     for (i = 0; i < p->mCount; i++) {
         NNS_SndArcSetFileAddress(p->mFileIds[i], NULL);
     }
-    t = &data_0217d134;
+    list = &data_0217d134;
     for (i = 0; i < 16; i++) {
-        t->mFileIds[i] = 0;
+        list->mFileIds[i] = 0;
     }
-    t->mCount = 0;
-    if (d != 0) {
-        switch (v.mSeqId) {
+    list->mCount = 0;
+    if (loadExtras != 0) {
+        switch (soundSet.mSeqId) {
             case 0x4a:
                 if (NNS_SndArcLoadWaveArc(0x63, data_0217d130) == 0) {
-                    ok = 0;
+                    loaded = 0;
                 } else {
                     NNSSndArcWaveArcInfo *p;
-                    NNSSndArcWaveArcInfo *q;
-                    u32 a;
-                    u32 b;
+                    NNSSndArcWaveArcInfo *destWaveArc;
+                    u32 sourceFileId;
+                    u32 destFileId;
 
                     p = NNS_SndArcGetWaveArcInfo(0x63);
-                    q = NNS_SndArcGetWaveArcInfo(0x31);
-                    b = q->mFileId;
-                    a = p->mFileId;
-                    NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
-                    NNS_SndArcSetFileAddress(a, NULL);
-                    ok = 1;
-                    n = data_0217d134.mCount;
-                    data_0217d134.mCount = n + 1;
-                    data_0217d134.mFileIds[n] = b;
+                    destWaveArc = NNS_SndArcGetWaveArcInfo(0x31);
+                    destFileId = destWaveArc->mFileId;
+                    sourceFileId = p->mFileId;
+                    NNS_SndArcSetFileAddress(destFileId, NNS_SndArcGetFileAddress(sourceFileId));
+                    NNS_SndArcSetFileAddress(sourceFileId, NULL);
+                    loaded = 1;
+                    listCount = data_0217d134.mCount;
+                    data_0217d134.mCount = listCount + 1;
+                    data_0217d134.mFileIds[listCount] = destFileId;
                 }
-                if (ok == 0) {
+                if (loaded == 0) {
                     return 0;
                 }
                 break;
             case 0x2b:
                 if (NNS_SndArcLoadWaveArc(0x64, data_0217d130) == 0) {
-                    ok = 0;
+                    loaded = 0;
                 } else {
                     NNSSndArcWaveArcInfo *p;
-                    NNSSndArcWaveArcInfo *q;
-                    u32 a;
-                    u32 b;
+                    NNSSndArcWaveArcInfo *destWaveArc;
+                    u32 sourceFileId;
+                    u32 destFileId;
 
                     p = NNS_SndArcGetWaveArcInfo(0x64);
-                    q = NNS_SndArcGetWaveArcInfo(0x58);
-                    b = q->mFileId;
-                    a = p->mFileId;
-                    NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
-                    NNS_SndArcSetFileAddress(a, NULL);
-                    ok = 1;
-                    n = data_0217d134.mCount;
-                    data_0217d134.mCount = n + 1;
-                    data_0217d134.mFileIds[n] = b;
+                    destWaveArc = NNS_SndArcGetWaveArcInfo(0x58);
+                    destFileId = destWaveArc->mFileId;
+                    sourceFileId = p->mFileId;
+                    NNS_SndArcSetFileAddress(destFileId, NNS_SndArcGetFileAddress(sourceFileId));
+                    NNS_SndArcSetFileAddress(sourceFileId, NULL);
+                    loaded = 1;
+                    listCount = data_0217d134.mCount;
+                    data_0217d134.mCount = listCount + 1;
+                    data_0217d134.mFileIds[listCount] = destFileId;
                 }
-                if (ok == 0) {
+                if (loaded == 0) {
                     return 0;
                 }
                 break;
             case 0xf:
                 if (NNS_SndArcLoadWaveArc(0x34, data_0217d130) == 0) {
-                    ok = 0;
+                    loaded = 0;
                 } else {
                     NNSSndArcWaveArcInfo *p;
-                    NNSSndArcWaveArcInfo *q;
-                    u32 a;
-                    u32 b;
+                    NNSSndArcWaveArcInfo *destWaveArc;
+                    u32 sourceFileId;
+                    u32 destFileId;
 
                     p = NNS_SndArcGetWaveArcInfo(0x34);
-                    q = NNS_SndArcGetWaveArcInfo(0x33);
-                    b = q->mFileId;
-                    a = p->mFileId;
-                    NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
-                    NNS_SndArcSetFileAddress(a, NULL);
-                    ok = 1;
-                    n = data_0217d134.mCount;
-                    data_0217d134.mCount = n + 1;
-                    data_0217d134.mFileIds[n] = b;
+                    destWaveArc = NNS_SndArcGetWaveArcInfo(0x33);
+                    destFileId = destWaveArc->mFileId;
+                    sourceFileId = p->mFileId;
+                    NNS_SndArcSetFileAddress(destFileId, NNS_SndArcGetFileAddress(sourceFileId));
+                    NNS_SndArcSetFileAddress(sourceFileId, NULL);
+                    loaded = 1;
+                    listCount = data_0217d134.mCount;
+                    data_0217d134.mCount = listCount + 1;
+                    data_0217d134.mFileIds[listCount] = destFileId;
                 }
-                if (ok == 0) {
+                if (loaded == 0) {
                     return 0;
                 }
                 break;
         }
-        if (v.mUnk_04 == 0x10) {
+        if (soundSet.mUnk_04 == 0x10) {
             if (NNS_SndArcLoadWaveArc(0x13, data_0217d130) == 0) {
-                ok = 0;
+                loaded = 0;
             } else {
                 NNSSndArcWaveArcInfo *p;
-                NNSSndArcWaveArcInfo *q;
-                u32 a;
-                u32 b;
+                NNSSndArcWaveArcInfo *destWaveArc;
+                u32 sourceFileId;
+                u32 destFileId;
 
                 p = NNS_SndArcGetWaveArcInfo(0x13);
-                q = NNS_SndArcGetWaveArcInfo(0x12);
-                b = q->mFileId;
-                a = p->mFileId;
-                NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
-                NNS_SndArcSetFileAddress(a, NULL);
-                ok = 1;
-                n = data_0217d134.mCount;
-                data_0217d134.mCount = n + 1;
-                data_0217d134.mFileIds[n] = b;
+                destWaveArc = NNS_SndArcGetWaveArcInfo(0x12);
+                destFileId = destWaveArc->mFileId;
+                sourceFileId = p->mFileId;
+                NNS_SndArcSetFileAddress(destFileId, NNS_SndArcGetFileAddress(sourceFileId));
+                NNS_SndArcSetFileAddress(sourceFileId, NULL);
+                loaded = 1;
+                listCount = data_0217d134.mCount;
+                data_0217d134.mCount = listCount + 1;
+                data_0217d134.mFileIds[listCount] = destFileId;
             }
-            if (ok == 0) {
+            if (loaded == 0) {
                 return 0;
             }
         }
     }
-    return LoadSoundSet(GetLoadedSoundSet(), v) != 0;
+    return LoadSoundSet(GetLoadedSoundSet(), soundSet) != 0;
 }
 
 void func_0210e920(void) {
@@ -258,18 +258,18 @@ void func_0210e920(void) {
     NNS_SndArcLoadSeqArc(0, data_0217d130);
 }
 
-void func_0210e8f8(u32 a) {
-    func_0210ed20(0, a);
+void func_0210e8f8(u32 moveWaveArcs) {
+    func_0210ed20(0, moveWaveArcs);
     SaveSndHeapState(GetLoadedSoundSet());
 }
 
-void LoadSceneSoundSet(Unk0210e524 a, u32 b) {
-    SoundSet v;
+void LoadSceneSoundSet(Unk0210e524 soundRow, u32 loadExtras) {
+    SoundSet soundSet;
 
-    v.mSeqId = a.mUnk_01;
-    v.mUnk_04 = a.mUnk_02;
-    v.mUnk_08 = a.mUnk_03;
-    LoadSoundSetIfChanged(v, b);
+    soundSet.mSeqId = soundRow.mUnk_01;
+    soundSet.mUnk_04 = soundRow.mUnk_02;
+    soundSet.mUnk_08 = soundRow.mUnk_03;
+    LoadSoundSetIfChanged(soundSet, loadExtras);
     if (func_02105504() == 0) {
         return;
     }
@@ -277,61 +277,61 @@ void LoadSceneSoundSet(Unk0210e524 a, u32 b) {
 }
 
 u32 LoadSndDataFromFile(void) {
-    NNSSndArcSeqArcInfo *p;
-    NNSSndArcSeqArcInfo *q;
-    NNSSndArcWaveArcInfo *v1;
-    NNSSndArcWaveArcInfo *v2;
-    u32 v;
-    u32 a;
-    u32 b;
-    u32 ok;
-    u32 n;
+    NNSSndArcSeqArcInfo *sourceSeqArc;
+    NNSSndArcSeqArcInfo *destSeqArc;
+    NNSSndArcWaveArcInfo *sourceWaveArc;
+    NNSSndArcWaveArcInfo *destWaveArc;
+    u32 loadResult;
+    u32 sourceFileId;
+    u32 destFileId;
+    u32 loaded;
+    u32 listCount;
 
     NNS_SndArcSetCurrent(&data_0217c868);
-    v = SetupSndArcFromFile(&data_0217d0a0, data_0216cb30, data_0217d130, 0);
+    loadResult = SetupSndArcFromFile(&data_0217d0a0, data_0216cb30, data_0217d130, 0);
     func_0210d990(1);
-    if (v == 0) {
+    if (loadResult == 0) {
         return 0;
     }
     if (NNS_SndArcLoadSeqArc(1, data_0217d130) == 0) {
         return 0;
     }
-    p = NNS_SndArcGetSeqArcInfo(1);
-    q = NNS_SndArcGetSeqArcInfo(0);
-    a = p->mFileId;
-    b = q->mFileId;
-    NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
-    NNS_SndArcSetFileAddress(a, NULL);
-    n = data_0217d178.mCount;
-    data_0217d178.mCount = n + 1;
-    data_0217d178.mFileIds[n] = b;
+    sourceSeqArc = NNS_SndArcGetSeqArcInfo(1);
+    destSeqArc = NNS_SndArcGetSeqArcInfo(0);
+    sourceFileId = sourceSeqArc->mFileId;
+    destFileId = destSeqArc->mFileId;
+    NNS_SndArcSetFileAddress(destFileId, NNS_SndArcGetFileAddress(sourceFileId));
+    NNS_SndArcSetFileAddress(sourceFileId, NULL);
+    listCount = data_0217d178.mCount;
+    data_0217d178.mCount = listCount + 1;
+    data_0217d178.mFileIds[listCount] = destFileId;
     if (NNS_SndArcLoadWaveArc(0x3e, data_0217d130) != 0) {
-        v1 = NNS_SndArcGetWaveArcInfo(0x3e);
-        v2 = NNS_SndArcGetWaveArcInfo(0x3d);
-        b = v2->mFileId;
-        a = v1->mFileId;
-        NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
-        NNS_SndArcSetFileAddress(a, NULL);
-        ok = 1;
-        n = data_0217d178.mCount;
-        data_0217d178.mCount = n + 1;
-        data_0217d178.mFileIds[n] = b;
+        sourceWaveArc = NNS_SndArcGetWaveArcInfo(0x3e);
+        destWaveArc = NNS_SndArcGetWaveArcInfo(0x3d);
+        destFileId = destWaveArc->mFileId;
+        sourceFileId = sourceWaveArc->mFileId;
+        NNS_SndArcSetFileAddress(destFileId, NNS_SndArcGetFileAddress(sourceFileId));
+        NNS_SndArcSetFileAddress(sourceFileId, NULL);
+        loaded = 1;
+        listCount = data_0217d178.mCount;
+        data_0217d178.mCount = listCount + 1;
+        data_0217d178.mFileIds[listCount] = destFileId;
     } else {
-        ok = 0;
+        loaded = 0;
     }
-    if (ok == 0) {
+    if (loaded == 0) {
         return 0;
     }
     if (NNS_SndArcLoadWaveArc(1, data_0217d130) == 0) {
-        ok = 0;
+        loaded = 0;
     } else if (NNS_SndArcLoadBankEx(0, 2, data_0217d130) == 0) {
-        ok = 0;
+        loaded = 0;
     } else if (NNS_SndArcLoadSeqArc(0, data_0217d130) == 0) {
-        ok = 0;
+        loaded = 0;
     } else {
-        ok = 1;
+        loaded = 1;
     }
-    if (ok == 0) {
+    if (loaded == 0) {
         return 0;
     }
     if (func_0210ed20(1, 1) == 0) {
@@ -342,79 +342,81 @@ u32 LoadSndDataFromFile(void) {
 }
 
 u32 LoadCourseSoundSet(u32 a, u32 b) {
-    Unk0210e524 c, d;
-    SoundSet v;
-    u32 x;
+    Unk0210e524 row, rowCopy;
+    SoundSet soundSet;
+    u32 loaded;
 
-    GetCourseSoundRowIndex(b, &c);
-    d = c;
-    v.mSeqId = d.mUnk_01;
-    v.mUnk_04 = d.mUnk_02;
-    v.mUnk_08 = d.mUnk_03;
+    GetCourseSoundRowIndex(b, &row);
+    rowCopy = row;
+    soundSet.mSeqId = rowCopy.mUnk_01;
+    soundSet.mUnk_04 = rowCopy.mUnk_02;
+    soundSet.mUnk_08 = rowCopy.mUnk_03;
     NNS_SndArcSetCurrent(&data_0217d0a0);
-    x = LoadSoundSetIfChanged(v, 1) != 0;
-    if (x != 0) {
-        x = LoadSeqRowIfChanged(a);
+    loaded = LoadSoundSetIfChanged(soundSet, 1) != 0;
+    if (loaded != 0) {
+        loaded = LoadSeqRowIfChanged(a);
     }
-    return x;
+    return loaded;
 }
 
 u32 func_0210e524(void) {
-    SoundRow b, c;
-    SoundSet v;
+    SoundRow row, rowCopy;
+    SoundSet soundSet;
 
-    b = GetSoundRow(0x29);
-    b.mUnk_00[1] = func_0211127c();
-    c = b;
-    v.mSeqId = c.mUnk_00[1];
-    v.mUnk_04 = c.mUnk_00[2];
-    v.mUnk_08 = c.mUnk_00[3];
+    row = GetSoundRow(0x29);
+    row.mUnk_00[1] = func_0211127c();
+    rowCopy = row;
+    soundSet.mSeqId = rowCopy.mUnk_00[1];
+    soundSet.mUnk_04 = rowCopy.mUnk_00[2];
+    soundSet.mUnk_08 = rowCopy.mUnk_00[3];
     NNS_SndArcSetCurrent(&data_0217d0a0);
-    return LoadSoundSetIfChanged(v, 1) != 0;
+    return LoadSoundSetIfChanged(soundSet, 1) != 0;
 }
 
-u32 LoadSndGroup(s32 a) {
-    return NNS_SndArcLoadGroup(a, data_0217d130);
+u32 LoadSndGroup(s32 groupId) {
+    return NNS_SndArcLoadGroup(groupId, data_0217d130);
 }
 
-void ResetLoadedSoundSet(LoadedSoundSet *p) {
-    p->mSoundSet = data_0215c398;
-    p->mHeapState = 0xff00;
+void ResetLoadedSoundSet(LoadedSoundSet *loadedSet) {
+    loadedSet->mSoundSet = data_0215c398;
+    loadedSet->mHeapState = 0xff00;
 }
 
-void SaveSndHeapState(LoadedSoundSet *p) {
-    p->mHeapState = NNS_SndHeapSaveState(data_0217d130);
+void SaveSndHeapState(LoadedSoundSet *loadedSet) {
+    loadedSet->mHeapState = NNS_SndHeapSaveState(data_0217d130);
 }
 
 // Restores the heap to the state saved before the set was loaded.
-void ReleaseSoundSet(LoadedSoundSet *p) {
-    SoundSet v = data_0215c380;
+void ReleaseSoundSet(LoadedSoundSet *loadedSet) {
+    SoundSet emptySet = data_0215c380;
 
-    if (v.mSeqId == p->mSoundSet.mSeqId && v.mUnk_04 == p->mSoundSet.mUnk_04 && v.mUnk_08 == p->mSoundSet.mUnk_08) {
+    if (emptySet.mSeqId == loadedSet->mSoundSet.mSeqId && emptySet.mUnk_04 == loadedSet->mSoundSet.mUnk_04 &&
+        emptySet.mUnk_08 == loadedSet->mSoundSet.mUnk_08) {
         return;
     }
-    NNS_SndHeapLoadState(data_0217d130, p->mHeapState);
+    NNS_SndHeapLoadState(data_0217d130, loadedSet->mHeapState);
     NNS_SndHeapGetCurrentLevel(data_0217d130);
-    p->mSoundSet = data_0215c38c;
+    loadedSet->mSoundSet = data_0215c38c;
 }
 
-u32 IsSoundSetLoaded(LoadedSoundSet *p, SoundSet v) {
-    if (v.mSeqId == p->mSoundSet.mSeqId && v.mUnk_04 == p->mSoundSet.mUnk_04 && v.mUnk_08 == p->mSoundSet.mUnk_08) {
+u32 IsSoundSetLoaded(LoadedSoundSet *loadedSet, SoundSet soundSet) {
+    if (soundSet.mSeqId == loadedSet->mSoundSet.mSeqId && soundSet.mUnk_04 == loadedSet->mSoundSet.mUnk_04 &&
+        soundSet.mUnk_08 == loadedSet->mSoundSet.mUnk_08) {
         return 1;
     }
     return 0;
 }
 
-u32 LoadSoundSet(LoadedSoundSet *p, SoundSet v) {
-    if (v.mSeqId != 0xff && NNS_SndArcLoadSeq(v.mSeqId, data_0217d130) == 0) {
+u32 LoadSoundSet(LoadedSoundSet *loadedSet, SoundSet soundSet) {
+    if (soundSet.mSeqId != 0xff && NNS_SndArcLoadSeq(soundSet.mSeqId, data_0217d130) == 0) {
         return 0;
     }
-    if (v.mUnk_04 != 0xff && NNS_SndArcLoadBank(v.mUnk_04, data_0217d130) == 0) {
+    if (soundSet.mUnk_04 != 0xff && NNS_SndArcLoadBank(soundSet.mUnk_04, data_0217d130) == 0) {
         return 0;
     }
-    if (v.mUnk_08 != 0xff && NNS_SndArcLoadBank(v.mUnk_08, data_0217d130) == 0) {
+    if (soundSet.mUnk_08 != 0xff && NNS_SndArcLoadBank(soundSet.mUnk_08, data_0217d130) == 0) {
         return 0;
     }
-    p->mSoundSet = v;
+    loadedSet->mSoundSet = soundSet;
     return 1;
 }

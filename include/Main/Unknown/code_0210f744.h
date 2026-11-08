@@ -16,6 +16,6 @@ typedef struct SeqVariableReading {
 extern SeqVariableReading gSeqVariableReadings[];
 
 void ResetSeqVariableReadings(void);
-void UpdateSeqVariableReadings(NNSSndSeqPlayer **a);
-u32 IsSeqVariableChanged(u32 a);
-u32 GetSeqVariableSinceChangeFrames(u32 a);
+void UpdateSeqVariableReadings(NNSSndSeqPlayer **handle);
+u32 IsSeqVariableChanged(u32 slot);
+u32 GetSeqVariableSinceChangeFrames(u32 slot);

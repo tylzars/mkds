@@ -15,429 +15,435 @@
 
 #pragma opt_loop_invariants off
 
-void func_0210cc3c(SoundSource *p) {
-    PlayingSound *a;
-    PlayingSound *s;
+void func_0210cc3c(SoundSource *source) {
+    PlayingSound *sound;
+    PlayingSound *removedSound;
     u32 v;
-    u32 f;
+    u32 hadBit8;
 
     v = 0;
     if (data_0217d084.mUnk_10 == 0) {
         return;
     }
-    if ((p->mUnk_34 & 1) == 0) {
-        if (p->mUnk_34 & 2) {
-            StopSoundsStartedWhileRequested(p, 0);
+    if ((source->mSourceFlags & 1) == 0) {
+        if (source->mSourceFlags & 2) {
+            StopSoundsStartedWhileRequested(source, 0);
         }
-        p->mUnk_34 &= ~2;
-        if ((p->mUnk_34 & 4) == 0) {
+        source->mSourceFlags &= ~2;
+        if ((source->mSourceFlags & 4) == 0) {
             return;
         }
-        if ((p->mUnk_34 & 1) == 0) {
-            p->mUnk_34 |= 1;
+        if ((source->mSourceFlags & 1) == 0) {
+            source->mSourceFlags |= 1;
         } else {
-            p->mUnk_34 &= ~1;
+            source->mSourceFlags &= ~1;
         }
-        p->mUnk_34 &= ~4;
+        source->mSourceFlags &= ~4;
         return;
     }
-    p->mUnk_34 |= 2;
-    if (p->mUnk_34 & 4) {
-        if ((p->mUnk_34 & 1) == 0) {
-            p->mUnk_34 |= 1;
+    source->mSourceFlags |= 2;
+    if (source->mSourceFlags & 4) {
+        if ((source->mSourceFlags & 1) == 0) {
+            source->mSourceFlags |= 1;
         } else {
-            p->mUnk_34 &= ~1;
+            source->mSourceFlags &= ~1;
         }
-        p->mUnk_34 &= ~4;
+        source->mSourceFlags &= ~4;
     }
-    a = p->mPlayingSounds.mHead;
-    while (a != NULL) {
-        f = (a->mUnk_19 & 8) != 0;
-        a->mUnk_19 &= ~8;
-        if (a->mUnk_00 != NULL) {
-            if (a->mUnk_19 & 4) {
-                if (f == 0) {
-                    s = a;
-                    a = NNS_FndGetNextListObject(&p->mPlayingSounds, a);
-                    NNS_SndPlayerStopSeq(&s->mUnk_00, 0);
-                    s->mUnk_19 &= ~4;
-                    s->mUnk_19 &= ~8;
-                    s->mUnk_19 &= ~2;
-                    RemoveListObject(&p->mPlayingSounds, s);
+    sound = source->mPlayingSounds.mHead;
+    while (sound != NULL) {
+        hadBit8 = (sound->mFlags & 8) != 0;
+        sound->mFlags &= ~8;
+        if (sound->mSeqPlayer != NULL) {
+            if (sound->mFlags & 4) {
+                if (hadBit8 == 0) {
+                    removedSound = sound;
+                    sound = NNS_FndGetNextListObject(&source->mPlayingSounds, sound);
+                    NNS_SndPlayerStopSeq(&removedSound->mSeqPlayer, 0);
+                    removedSound->mFlags &= ~4;
+                    removedSound->mFlags &= ~8;
+                    removedSound->mFlags &= ~2;
+                    RemoveListObject(&source->mPlayingSounds, removedSound);
                     v = 1;
                     continue;
                 }
-            } else if (a->mUnk_19 & 1) {
-                if (p->mUnk_18 == 3) {
-                    TryAppendListObject(&data_0217d054, p);
-                    p->mUnk_18 = 1;
+            } else if (sound->mFlags & 1) {
+                if (source->mUpdateListIndex == 3) {
+                    TryAppendListObject(&data_0217d054, source);
+                    source->mUpdateListIndex = 1;
                 }
             }
-        } else if ((a->mUnk_19 & 2) == 0) {
-            s = a;
-            a = NNS_FndGetNextListObject(&p->mPlayingSounds, a);
-            NNS_SndPlayerStopSeq(&s->mUnk_00, 0);
-            s->mUnk_19 &= ~4;
-            s->mUnk_19 &= ~8;
-            s->mUnk_19 &= ~2;
-            RemoveListObject(&p->mPlayingSounds, s);
+        } else if ((sound->mFlags & 2) == 0) {
+            removedSound = sound;
+            sound = NNS_FndGetNextListObject(&source->mPlayingSounds, sound);
+            NNS_SndPlayerStopSeq(&removedSound->mSeqPlayer, 0);
+            removedSound->mFlags &= ~4;
+            removedSound->mFlags &= ~8;
+            removedSound->mFlags &= ~2;
+            RemoveListObject(&source->mPlayingSounds, removedSound);
             v = 1;
             continue;
         }
-        a = NNS_FndGetNextListObject(&p->mPlayingSounds, a);
+        sound = NNS_FndGetNextListObject(&source->mPlayingSounds, sound);
     }
     if (v == 0) {
         return;
     }
     v = 3;
-    for (a = p->mPlayingSounds.mHead; a != NULL; a = NNS_FndGetNextListObject(&p->mPlayingSounds, a)) {
-        if (a->mUnk_19 & 2) {
+    for (sound = source->mPlayingSounds.mHead; sound != NULL;
+         sound = NNS_FndGetNextListObject(&source->mPlayingSounds, sound)) {
+        if (sound->mFlags & 2) {
             v = 0;
             break;
         }
-        if (a->mUnk_19 & 8 || a->mUnk_19 & 1) {
+        if (sound->mFlags & 8 || sound->mFlags & 1) {
             v = 1;
         }
     }
-    if (p->mUnk_18 != v) {
-        if (p->mUnk_18 != 3) {
-            RemoveListObject(&data_0217d048[p->mUnk_18], p);
-            p->mUnk_18 = 3;
+    if (source->mUpdateListIndex != v) {
+        if (source->mUpdateListIndex != 3) {
+            RemoveListObject(&data_0217d048[source->mUpdateListIndex], source);
+            source->mUpdateListIndex = 3;
         }
         if (v != 3) {
-            TryAppendListObject(&data_0217d048[v], p);
-            p->mUnk_18 = v;
+            TryAppendListObject(&data_0217d048[v], source);
+            source->mUpdateListIndex = v;
         }
     }
 }
 
-static inline s32 func_0210ca4c_inline(u32 k, u8 a, u16 b) {
-    s32 n = k + (NNS_SndArcGetSeqArcParam(a, b)->mPlayerPrio - 0x40);
-    if (n > 0) {
-        if (n >= 0x7f) {
-            n = 0x7f;
+static inline s32 func_0210ca4c_inline(u32 volumeForPriority, u8 seqArcNo, u16 soundId) {
+    s32 priority = volumeForPriority + (NNS_SndArcGetSeqArcParam(seqArcNo, soundId)->mPlayerPrio - 0x40);
+    if (priority > 0) {
+        if (priority >= 0x7f) {
+            priority = 0x7f;
         }
-        return n;
+        return priority;
     }
     return 0;
 }
 
-u32 SetPlayingSoundsParams(SoundSource *p) {
-    Unk0210bcf4 st;
+u32 SetPlayingSoundsParams(SoundSource *source) {
+    SoundParams params;
     s32 n;
-    PlayingSound *a;
+    PlayingSound *sound;
 
-    n = p->mOwnerPosSource;
-    st.mUnk_00 = p;
-    st.mUnk_04 = n;
-    st.mUnk_20 = NULL;
-    st.mUnk_14 = 0;
-    st.mUnk_1c = 0;
-    st.mUnk_18 = 0;
-    if (st.mUnk_04 == 0) {
-        st.mUnk_10 = 0;
-        st.mUnk_14 = 0x7f;
-        st.mUnk_1c = 0x7f;
-        st.mUnk_18 = 0;
+    n = source->mOwnerPosSource;
+    params.mSource = source;
+    params.mPositionSource = n;
+    params.mUnk_20 = NULL;
+    params.mVolume = 0;
+    params.mUnk_1c = 0;
+    params.mPan = 0;
+    if (params.mPositionSource == 0) {
+        params.mDistance = 0;
+        params.mVolume = 0x7f;
+        params.mUnk_1c = 0x7f;
+        params.mPan = 0;
     } else {
-        st.mUnk_10 = data_0217d018(&st);
-        st.mUnk_1c = st.mUnk_14 = data_0217d014(&st);
-        st.mUnk_18 = data_0217d01c(&st);
+        params.mDistance = data_0217d018(&params);
+        params.mUnk_1c = params.mVolume = data_0217d014(&params);
+        params.mPan = data_0217d01c(&params);
     }
-    if (st.mUnk_14 <= 0) {
-        func_0210c0bc(p);
+    if (params.mVolume <= 0) {
+        func_0210c0bc(source);
         return 0;
     }
-    for (a = p->mPlayingSounds.mHead; a != NULL; a = NNS_FndGetNextListObject(&p->mPlayingSounds, a)) {
+    for (sound = source->mPlayingSounds.mHead; sound != NULL;
+         sound = NNS_FndGetNextListObject(&source->mPlayingSounds, sound)) {
         n = -1;
-        if (a->mUnk_19 & 2) {
-            n = func_0210ca4c_inline(st.mUnk_1c, a->mUnk_18, a->mSoundId);
-            p->mUnk_2c(p, a, n);
-            a->mUnk_19 &= ~2;
+        if (sound->mFlags & 2) {
+            n = func_0210ca4c_inline(params.mUnk_1c, sound->mSeqArcNo, sound->mSoundId);
+            source->mStartSeqFunction(source, sound, n);
+            sound->mFlags &= ~2;
         }
-        if (a->mUnk_00 != NULL) {
+        if (sound->mSeqPlayer != NULL) {
             if (n == -1) {
-                n = func_0210ca4c_inline(st.mUnk_1c, a->mUnk_18, a->mSoundId);
+                n = func_0210ca4c_inline(params.mUnk_1c, sound->mSeqArcNo, sound->mSoundId);
             }
-            NNS_SndPlayerSetVolume(&a->mUnk_00, st.mUnk_14);
-            NNS_SndPlayerSetPlayerPriority(&a->mUnk_00, n);
-            NNS_SndPlayerSetTrackPan(&a->mUnk_00, data_0216cb20, st.mUnk_18);
-            p->mUnk_30(p, a, &st);
+            NNS_SndPlayerSetVolume(&sound->mSeqPlayer, params.mVolume);
+            NNS_SndPlayerSetPlayerPriority(&sound->mSeqPlayer, n);
+            NNS_SndPlayerSetTrackPan(&sound->mSeqPlayer, data_0216cb20, params.mPan);
+            source->mTrackParamsFunction(source, sound, &params);
         }
     }
     return 1;
 }
 
-PlayingSound *StartSoundEx(SoundSource *a, u32 b, u32 c, u32 d, s16 e) {
-    PlayingSound *v;
-    PlayingSound *w;
-    NNSFndList *u;
-    u32 f;
+PlayingSound *StartSoundEx(SoundSource *source, u32 seqArcNo, u32 soundId, u32 volume, s16 pitch) {
+    PlayingSound *sound;
+    PlayingSound *candidate;
+    NNSFndList *sourceList;
+    u32 matches;
 
-    v = NULL;
+    sound = NULL;
     if (data_0217d084.mUnk_10 == 0) {
-        return v;
+        return sound;
     }
-    if ((a->mUnk_34 & 1) == 0) {
-        return v;
+    if ((source->mSourceFlags & 1) == 0) {
+        return sound;
     }
-    for (w = a->mPlayingSounds.mHead; w != NULL; w = NNS_FndGetNextListObject(&a->mPlayingSounds, w)) {
-        f = (w->mSoundId == c) && (w->mUnk_18 == b);
-        if (f) {
-            StopPlayingSound(a, w, 0);
-            ResetPlayingSoundHandle(w);
-            ClearThreeWords(&w->mUnk_08);
-            w->mUnk_18 = 0;
-            w->mSoundId = 0;
-            w->mUnk_19 = 0;
-            w->mUnk_14 = 0;
-            w->mVolume = 0x7f;
-            v = w;
+    for (candidate = source->mPlayingSounds.mHead; candidate != NULL;
+         candidate = NNS_FndGetNextListObject(&source->mPlayingSounds, candidate)) {
+        matches = (candidate->mSoundId == soundId) && (candidate->mSeqArcNo == seqArcNo);
+        if (matches) {
+            StopPlayingSound(source, candidate, 0);
+            ResetPlayingSoundHandle(candidate);
+            ClearThreeWords(&candidate->mUnk_08);
+            candidate->mSeqArcNo = 0;
+            candidate->mSoundId = 0;
+            candidate->mFlags = 0;
+            candidate->mPitch = 0;
+            candidate->mVolume = 0x7f;
+            sound = candidate;
             break;
         }
     }
-    if (v == NULL) {
-        v = func_0210e128(&data_0217d034);
-        func_0210c084(v, 0);
-        u = v->mUnk_10;
-        if (u != NULL) {
-            RemoveListObject(u, v);
-            func_0210bfbc((SoundSource *) (u - 1));
+    if (sound == NULL) {
+        sound = TakeSoundHandleEntry(&data_0217d034);
+        func_0210c084(sound, 0);
+        sourceList = sound->mUnk_10;
+        if (sourceList != NULL) {
+            RemoveListObject(sourceList, sound);
+            RefreshSoundSourceUpdateList((SoundSource *) (sourceList - 1));
         }
-        ResetPlayingSound(v);
+        ResetPlayingSound(sound);
     }
-    ResetPlayingSoundHandle(v);
-    ClearThreeWords(&v->mUnk_08);
-    v->mUnk_18 = 0;
-    v->mSoundId = 0;
-    v->mUnk_19 = 0;
-    v->mUnk_14 = 0;
-    v->mVolume = 0x7f;
-    v->mUnk_18 = b;
-    v->mSoundId = c;
-    v->mUnk_19 |= 2;
-    v->mVolume = d;
-    v->mUnk_14 = e;
-    TryAppendListObject(&a->mPlayingSounds, v);
-    if (a->mUnk_18 != 0) {
-        if (a->mUnk_18 != 3) {
-            RemoveListObject(&data_0217d048[a->mUnk_18], a);
-            a->mUnk_18 = 3;
+    ResetPlayingSoundHandle(sound);
+    ClearThreeWords(&sound->mUnk_08);
+    sound->mSeqArcNo = 0;
+    sound->mSoundId = 0;
+    sound->mFlags = 0;
+    sound->mPitch = 0;
+    sound->mVolume = 0x7f;
+    sound->mSeqArcNo = seqArcNo;
+    sound->mSoundId = soundId;
+    sound->mFlags |= 2;
+    sound->mVolume = volume;
+    sound->mPitch = pitch;
+    TryAppendListObject(&source->mPlayingSounds, sound);
+    if (source->mUpdateListIndex != 0) {
+        if (source->mUpdateListIndex != 3) {
+            RemoveListObject(&data_0217d048[source->mUpdateListIndex], source);
+            source->mUpdateListIndex = 3;
         }
-        TryAppendListObject(data_0217d048, a);
-        a->mUnk_18 = 0;
+        TryAppendListObject(data_0217d048, source);
+        source->mUpdateListIndex = 0;
     }
-    return v;
+    return sound;
 }
 
-PlayingSound *StartSoundWhileRequestedEx(SoundSource *a, u32 b, u32 c, u32 d, s16 e) {
-    PlayingSound *v;
-    PlayingSound *w;
-    NNSFndList *u;
-    u32 f;
+PlayingSound *StartSoundWhileRequestedEx(SoundSource *source, u32 seqArcNo, u32 soundId, u32 volume, s16 pitch) {
+    PlayingSound *sound;
+    PlayingSound *candidate;
+    NNSFndList *sourceList;
+    u32 matches;
 
-    v = NULL;
+    sound = NULL;
     if (data_0217d084.mUnk_10 == 0) {
-        return v;
+        return sound;
     }
-    if ((a->mUnk_34 & 1) == 0) {
-        return v;
+    if ((source->mSourceFlags & 1) == 0) {
+        return sound;
     }
-    for (w = a->mPlayingSounds.mHead; w != NULL; w = NNS_FndGetNextListObject(&a->mPlayingSounds, w)) {
-        if (w->mUnk_19 & 4) {
-            f = (w->mSoundId == c) && (w->mUnk_18 == b);
-            if (f) {
-                if (w->mUnk_00 != NULL) {
-                    w->mUnk_19 |= 8;
-                    w->mVolume = d;
-                    w->mUnk_14 = e;
-                    if (a->mUnk_18 == 3) {
-                        TryAppendListObject(&data_0217d054, a);
-                        a->mUnk_18 = 1;
+    for (candidate = source->mPlayingSounds.mHead; candidate != NULL;
+         candidate = NNS_FndGetNextListObject(&source->mPlayingSounds, candidate)) {
+        if (candidate->mFlags & 4) {
+            matches = (candidate->mSoundId == soundId) && (candidate->mSeqArcNo == seqArcNo);
+            if (matches) {
+                if (candidate->mSeqPlayer != NULL) {
+                    candidate->mFlags |= 8;
+                    candidate->mVolume = volume;
+                    candidate->mPitch = pitch;
+                    if (source->mUpdateListIndex == 3) {
+                        TryAppendListObject(&data_0217d054, source);
+                        source->mUpdateListIndex = 1;
                     }
-                    return w;
+                    return candidate;
                 }
-                StopPlayingSound(a, w, 0);
-                ResetPlayingSoundHandle(w);
-                ClearThreeWords(&w->mUnk_08);
-                w->mUnk_18 = 0;
-                w->mSoundId = 0;
-                w->mUnk_19 = 0;
-                w->mUnk_14 = 0;
-                w->mVolume = 0x7f;
-                v = w;
+                StopPlayingSound(source, candidate, 0);
+                ResetPlayingSoundHandle(candidate);
+                ClearThreeWords(&candidate->mUnk_08);
+                candidate->mSeqArcNo = 0;
+                candidate->mSoundId = 0;
+                candidate->mFlags = 0;
+                candidate->mPitch = 0;
+                candidate->mVolume = 0x7f;
+                sound = candidate;
                 break;
             }
         }
     }
-    if (v == NULL) {
-        v = func_0210e128(&data_0217d034);
-        func_0210c084(v, 0);
-        u = v->mUnk_10;
-        if (u != NULL) {
-            RemoveListObject(u, v);
-            func_0210bfbc((SoundSource *) (u - 1));
+    if (sound == NULL) {
+        sound = TakeSoundHandleEntry(&data_0217d034);
+        func_0210c084(sound, 0);
+        sourceList = sound->mUnk_10;
+        if (sourceList != NULL) {
+            RemoveListObject(sourceList, sound);
+            RefreshSoundSourceUpdateList((SoundSource *) (sourceList - 1));
         }
-        ResetPlayingSound(v);
+        ResetPlayingSound(sound);
     }
-    ResetPlayingSoundHandle(v);
-    ClearThreeWords(&v->mUnk_08);
-    v->mUnk_18 = 0;
-    v->mSoundId = 0;
-    v->mUnk_19 = 0;
-    v->mUnk_14 = 0;
-    v->mVolume = 0x7f;
-    v->mUnk_18 = b;
-    v->mSoundId = c;
-    v->mUnk_19 |= 2;
-    v->mVolume = d;
-    v->mUnk_14 = e;
-    v->mUnk_19 |= 4;
-    v->mUnk_19 |= 8;
-    TryAppendListObject(&a->mPlayingSounds, v);
-    if (a->mUnk_18 != 0) {
-        if (a->mUnk_18 != 3) {
-            RemoveListObject(&data_0217d048[a->mUnk_18], a);
-            a->mUnk_18 = 3;
+    ResetPlayingSoundHandle(sound);
+    ClearThreeWords(&sound->mUnk_08);
+    sound->mSeqArcNo = 0;
+    sound->mSoundId = 0;
+    sound->mFlags = 0;
+    sound->mPitch = 0;
+    sound->mVolume = 0x7f;
+    sound->mSeqArcNo = seqArcNo;
+    sound->mSoundId = soundId;
+    sound->mFlags |= 2;
+    sound->mVolume = volume;
+    sound->mPitch = pitch;
+    sound->mFlags |= 4;
+    sound->mFlags |= 8;
+    TryAppendListObject(&source->mPlayingSounds, sound);
+    if (source->mUpdateListIndex != 0) {
+        if (source->mUpdateListIndex != 3) {
+            RemoveListObject(&data_0217d048[source->mUpdateListIndex], source);
+            source->mUpdateListIndex = 3;
         }
-        TryAppendListObject(data_0217d048, a);
-        a->mUnk_18 = 0;
+        TryAppendListObject(data_0217d048, source);
+        source->mUpdateListIndex = 0;
     }
-    return v;
+    return sound;
 }
 
-static inline u32 func_0210c558_inline(PlayingSound *p, u32 b, u32 c) {
-    return p->mSoundId == c && p->mUnk_18 == b;
+static inline u32 func_0210c558_inline(PlayingSound *sound, u32 seqArcNo, u32 soundId) {
+    return sound->mSoundId == soundId && sound->mSeqArcNo == seqArcNo;
 }
 
-void StopSoundEx(SoundSource *a, u32 b, u32 c, u32 d) {
-    PlayingSound *v;
-    u32 f;
+void StopSoundEx(SoundSource *source, u32 seqArcNo, u32 soundId, u32 fadeSteps) {
+    PlayingSound *sound;
+    u32 matches;
 
     if (data_0217d084.mUnk_10 == 0) {
         return;
     }
-    v = a->mPlayingSounds.mHead;
-    while (v != NULL) {
-        f = (v->mUnk_00 != NULL) && func_0210c558_inline(v, b, c);
-        if (f) {
-            StopPlayingSound(a, v, d);
+    sound = source->mPlayingSounds.mHead;
+    while (sound != NULL) {
+        matches = (sound->mSeqPlayer != NULL) && func_0210c558_inline(sound, seqArcNo, soundId);
+        if (matches) {
+            StopPlayingSound(source, sound, fadeSteps);
             return;
         }
-        v = NNS_FndGetNextListObject(&a->mPlayingSounds, v);
+        sound = NNS_FndGetNextListObject(&source->mPlayingSounds, sound);
     }
 }
 
-void StopPlayingSound(SoundSource *p, PlayingSound *b, u32 c) {
-    PlayingSound *a;
+void StopPlayingSound(SoundSource *source, PlayingSound *sound, u32 fadeSteps) {
+    PlayingSound *entry;
     void *n;
-    u32 v;
-    u32 f;
+    u32 updateListIndex;
+    u32 soundFlags;
 
-    NNS_SndPlayerStopSeq(&b->mUnk_00, c);
-    b->mUnk_19 &= ~4;
-    b->mUnk_19 &= ~8;
-    b->mUnk_19 &= ~2;
-    RemoveListObject(&p->mPlayingSounds, b);
-    v = 3;
-    for (a = p->mPlayingSounds.mHead; a != NULL; a = NNS_FndGetNextListObject(&p->mPlayingSounds, a)) {
-        f = a->mUnk_19;
-        if (f & 2) {
-            v = 0;
+    NNS_SndPlayerStopSeq(&sound->mSeqPlayer, fadeSteps);
+    sound->mFlags &= ~4;
+    sound->mFlags &= ~8;
+    sound->mFlags &= ~2;
+    RemoveListObject(&source->mPlayingSounds, sound);
+    updateListIndex = 3;
+    for (entry = source->mPlayingSounds.mHead; entry != NULL;
+         entry = NNS_FndGetNextListObject(&source->mPlayingSounds, entry)) {
+        soundFlags = entry->mFlags;
+        if (soundFlags & 2) {
+            updateListIndex = 0;
             break;
         }
-        if (f & 8 || f & 1) {
-            v = 1;
+        if (soundFlags & 8 || soundFlags & 1) {
+            updateListIndex = 1;
         }
     }
-    if (p->mUnk_18 != v) {
-        if (p->mUnk_18 != 3) {
-            RemoveListObject(&data_0217d048[p->mUnk_18], p);
-            p->mUnk_18 = 3;
+    if (source->mUpdateListIndex != updateListIndex) {
+        if (source->mUpdateListIndex != 3) {
+            RemoveListObject(&data_0217d048[source->mUpdateListIndex], source);
+            source->mUpdateListIndex = 3;
         }
-        if (v != 3) {
-            TryAppendListObject(&data_0217d048[v], p);
-            p->mUnk_18 = v;
+        if (updateListIndex != 3) {
+            TryAppendListObject(&data_0217d048[updateListIndex], source);
+            source->mUpdateListIndex = updateListIndex;
         }
     }
 }
 
-void StopAllSoundsAndReleaseSoundSource(SoundSource *p) {
-    PlayingSound *a;
+void StopAllSoundsAndReleaseSoundSource(SoundSource *source) {
+    PlayingSound *sound;
 
-    for (a = p->mPlayingSounds.mHead; a != NULL; a = p->mPlayingSounds.mHead) {
-        NNS_SndPlayerStopSeq(&a->mUnk_00, 0);
-        a->mUnk_19 &= ~4;
-        a->mUnk_19 &= ~8;
-        a->mUnk_19 &= ~2;
-        RemoveListObject(&p->mPlayingSounds, a);
+    for (sound = source->mPlayingSounds.mHead; sound != NULL; sound = source->mPlayingSounds.mHead) {
+        NNS_SndPlayerStopSeq(&sound->mSeqPlayer, 0);
+        sound->mFlags &= ~4;
+        sound->mFlags &= ~8;
+        sound->mFlags &= ~2;
+        RemoveListObject(&source->mPlayingSounds, sound);
     }
-    if (p->mUnk_18 != 3) {
-        RemoveListObject(&data_0217d048[p->mUnk_18], p);
-        p->mUnk_18 = 3;
+    if (source->mUpdateListIndex != 3) {
+        RemoveListObject(&data_0217d048[source->mUpdateListIndex], source);
+        source->mUpdateListIndex = 3;
     }
-    ReleaseSoundSource(p);
+    ReleaseSoundSource(source);
 }
 
-void StopSoundsStartedWhileRequested(SoundSource *p, u32 b) {
-    PlayingSound *a;
-    PlayingSound *c;
+void StopSoundsStartedWhileRequested(SoundSource *source, u32 fadeSteps) {
+    PlayingSound *sound;
+    PlayingSound *removedSound;
     u32 v;
-    u8 f;
+    u8 soundFlags;
 
     v = 0;
-    a = p->mPlayingSounds.mHead;
-    while (a != NULL) {
-        if (a->mUnk_19 & 4) {
-            c = a;
-            a = NNS_FndGetNextListObject(&p->mPlayingSounds, a);
-            NNS_SndPlayerStopSeq(&c->mUnk_00, b);
-            c->mUnk_19 &= ~4;
-            c->mUnk_19 &= ~8;
-            c->mUnk_19 &= ~2;
-            RemoveListObject(&p->mPlayingSounds, c);
+    sound = source->mPlayingSounds.mHead;
+    while (sound != NULL) {
+        if (sound->mFlags & 4) {
+            removedSound = sound;
+            sound = NNS_FndGetNextListObject(&source->mPlayingSounds, sound);
+            NNS_SndPlayerStopSeq(&removedSound->mSeqPlayer, fadeSteps);
+            removedSound->mFlags &= ~4;
+            removedSound->mFlags &= ~8;
+            removedSound->mFlags &= ~2;
+            RemoveListObject(&source->mPlayingSounds, removedSound);
             v = 1;
             continue;
         }
-        a = NNS_FndGetNextListObject(&p->mPlayingSounds, a);
+        sound = NNS_FndGetNextListObject(&source->mPlayingSounds, sound);
     }
     if (v == 0) {
         return;
     }
     v = 3;
-    for (a = p->mPlayingSounds.mHead; a != NULL; a = NNS_FndGetNextListObject(&p->mPlayingSounds, a)) {
-        f = a->mUnk_19;
-        if (f & 2) {
+    for (sound = source->mPlayingSounds.mHead; sound != NULL;
+         sound = NNS_FndGetNextListObject(&source->mPlayingSounds, sound)) {
+        soundFlags = sound->mFlags;
+        if (soundFlags & 2) {
             v = 0;
             break;
         }
-        if (f & 8 || f & 1) {
+        if (soundFlags & 8 || soundFlags & 1) {
             v = 1;
         }
     }
-    if (p->mUnk_18 != v) {
-        if (p->mUnk_18 != 3) {
-            RemoveListObject(&data_0217d048[p->mUnk_18], p);
-            p->mUnk_18 = 3;
+    if (source->mUpdateListIndex != v) {
+        if (source->mUpdateListIndex != 3) {
+            RemoveListObject(&data_0217d048[source->mUpdateListIndex], source);
+            source->mUpdateListIndex = 3;
         }
         if (v != 3) {
-            TryAppendListObject(&data_0217d048[v], p);
-            p->mUnk_18 = v;
+            TryAppendListObject(&data_0217d048[v], source);
+            source->mUpdateListIndex = v;
         }
     }
 }
 
-void ReleaseSoundSource(SoundSource *p) {
-    void *a;
+void ReleaseSoundSource(SoundSource *source) {
+    void *sound;
 
-    StopSoundsStartedWhileRequested(p, 0);
-    for (a = p->mPlayingSounds.mHead; a != NULL; a = p->mPlayingSounds.mHead) {
-        RemoveListObject(&p->mPlayingSounds, a);
+    StopSoundsStartedWhileRequested(source, 0);
+    for (sound = source->mPlayingSounds.mHead; sound != NULL; sound = source->mPlayingSounds.mHead) {
+        RemoveListObject(&source->mPlayingSounds, sound);
     }
-    if (p->mUnk_18 != 3) {
-        RemoveListObject(&data_0217d048[p->mUnk_18], p);
-        p->mUnk_18 = 3;
+    if (source->mUpdateListIndex != 3) {
+        RemoveListObject(&data_0217d048[source->mUpdateListIndex], source);
+        source->mUpdateListIndex = 3;
     }
-    RemoveListObject(&data_0217d028, p);
-    p->mUnk_38 = 0;
+    RemoveListObject(&data_0217d028, source);
+    source->mUnk_38 = 0;
 }

@@ -53,22 +53,22 @@ typedef struct Unk0217c7f0 {
 
 extern Unk0217c7f0 data_0217c7f0;
 
-// View of data_0217c7c4; func_0210e280 takes it.
+// View of data_0217c7c4; IncrementSoundHandleAges takes it.
 typedef struct Unk0217c7c4 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ u8 *mUnk_08;
-    /* 0c */ u8 *mUnk_0c;
-    /* 10 */ s32 mUnk_10;
+    /* 00 */ s32 mCount;
+    /* 04 */ s32 mNextIndex;
+    /* 08 */ u8 *mNextEntry;
+    /* 0c */ u8 *mEntries;
+    /* 10 */ s32 mEntrySize;
 } Unk0217c7c4;
 
 extern Unk0217c7c4 data_0217c7c4;
 
 // The first eight bytes of each element of the table an Unk0217c7c4 describes: a handle at 0 and a word at 4.
-typedef struct Unk0210e2c4 {
-    /* 00 */ NNSSndSeqPlayer *mUnk_00;
-    /* 04 */ s32 mUnk_04;
-} Unk0210e2c4;
+typedef struct SoundHandleEntry {
+    /* 00 */ NNSSndSeqPlayer *mSeqPlayer;
+    /* 04 */ s32 mAge;
+} SoundHandleEntry;
 
 // Object behind gSceneSoundState.
 typedef struct SceneSoundState {
@@ -93,13 +93,13 @@ extern SceneSoundState gSceneSoundState;
 extern NNSSndSeqPlayer *data_0217c854;
 
 // Object data_0217d060 points to.
-typedef struct Unk0217d060 {
-    /* 00 */ SoundSet mUnk_00;
-    /* 0c */ NNSSndSeqPlayer *mUnk_0c;
-    /* 10 */ LoadedSoundSet *mUnk_10;
-} Unk0217d060;
+typedef struct SoundSetPlayer {
+    /* 00 */ SoundSet mSoundSet;
+    /* 0c */ NNSSndSeqPlayer *mSeqPlayer;
+    /* 10 */ LoadedSoundSet *mLoadedSet;
+} SoundSetPlayer;
 
-extern Unk0217d060 *data_0217d060;
+extern SoundSetPlayer *data_0217d060;
 
 // Object behind gVolumeFade.
 typedef struct VolumeFade {

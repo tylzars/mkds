@@ -176,10 +176,10 @@ void UpdatePukupukuState0(Unk020e43a8 *pukupuku) {
         } else {
             falloffIndex = 4;
         }
-        soundRequest.mUnk_00 = 0x10b;
-        soundRequest.mUnk_04 = &pukupuku->mUnk_00.mPos;
+        soundRequest.mSoundId = 0x10b;
+        soundRequest.mPositionSource = &pukupuku->mUnk_00.mPos;
         soundRequest.mUnk_08 = falloffIndex;
-        soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(&pukupuku->mUnk_00.mPos);
+        soundRequest.mDistanceSquared = GetHorizontalCameraDistanceSquared(&pukupuku->mUnk_00.mPos);
         func_0210b7a8(&soundRequest);
     }
     pukupuku->mUnk_00.mPos.y = y;

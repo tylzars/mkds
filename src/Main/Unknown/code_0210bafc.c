@@ -36,29 +36,29 @@ void RemoveListObject(NNSFndList *list, void *object) {
     }
 }
 
-void func_0210bc14(void) {
+void ClearSurfaceSoundIds(void) {
     __clear(data_0217cd30, 0x17 * sizeof(Unk0217cd30));
 }
 
-u32 func_0210bc00(u32 rowIndex, u32 columnIndex, void *entries) {
+u32 SetSurfaceSoundIds(u32 rowIndex, u32 columnIndex, void *entries) {
     u32 value0 = rowIndex;
-    u32 value1 = columnIndex;
-    u32 value2 = (u32) entries;
+    u32 columnCopy = columnIndex;
+    u32 entriesCopy = (u32) entries;
     u32 table;
     table = (u32) &data_0217cd30;
     value0 = (table) + ((value0 << 5));
-    *(u32 *) ((value0) + ((value1 << 2))) = value2;
+    *(u32 *) ((value0) + ((columnCopy << 2))) = entriesCopy;
     return value0;
 }
 
 u32 func_0210bbec(u32 rowIndex, u32 columnIndex, Unk0216c860 *entries) {
     u32 value0 = rowIndex;
-    u32 value1 = columnIndex;
-    u32 value2 = (u32) entries;
+    u32 columnCopy = columnIndex;
+    u32 entriesCopy = (u32) entries;
     u32 table;
     table = (u32) &data_0217cd30;
     value0 = (table) + ((value0 << 5));
-    *(u32 *) ((value0) + ((value1 << 2))) = value2;
+    *(u32 *) ((value0) + ((columnCopy << 2))) = entriesCopy;
     return value0;
 }
 

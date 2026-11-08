@@ -46,9 +46,9 @@ void func_020f91fc(void *itemParam, s32 soundId) {
         return;
     }
     request = data_0216c698;
-    request.mUnk_04 = &item->mPos;
-    request.mUnk_00 = soundId;
-    request.mUnk_0c = item->mDistanceSquaredAndFlags & ~0xc000001f;
+    request.mPositionSource = &item->mPos;
+    request.mSoundId = soundId;
+    request.mDistanceSquared = item->mDistanceSquaredAndFlags & ~0xc000001f;
     func_0210b7a8(&request);
 }
 
@@ -96,7 +96,7 @@ void func_020f90dc(ItemObject *itemParam) {
         return;
     }
     func_02109054(&item->mSoundSource);
-    item->mSoundSource.mUnk_30 = NULL;
+    item->mSoundSource.mTrackParamsFunction = NULL;
     item->mFlags &= ~0x400000;
 }
 

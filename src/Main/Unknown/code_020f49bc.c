@@ -298,7 +298,7 @@ void StartItemThunder(ItemInUse *itemInUse, HeldItem *heldItem) {
     NNSSndSeqPlayer **seqPlayer;
 
     if (data_0217c780 & 1) {
-        seqPlayer = func_0210e128(func_02108ea0(0));
+        seqPlayer = TakeSoundHandleEntry(func_02108ea0(0));
         if (data_0217d084.mUnk_0c != 0) {
             if (*seqPlayer != NULL) {
                 NNS_SndPlayerStopSeq(seqPlayer, 0);
@@ -346,7 +346,7 @@ BOOL InitItemKouraG(ItemInUse *itemInUse, ItemKouraG *koura) {
     isBattle = gRaceSetup->mMode == MODE_BATTLE;
     func_020f9114(koura);
     ResetSoundDistanceSquaredChange(&koura->mUnk_16c);
-    koura->mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
+    koura->mUnk_000.mUnk_000.mSoundSource.mTrackParamsFunction = (void (*)(void *, void *, void *)) func_0210a77c;
     if (itemInUse->mKartItems->mFlags & 0x20) {
         InitItemObjectThrow(koura, itemInUse, isBattle != FALSE ? 2 : 4, 0, 0, 0x5000);
         return FALSE;
@@ -363,8 +363,8 @@ void AdvanceItemKouraG(ItemKouraG *koura) {
     if (koura->mUnk_000.mUnk_000.mFlags & 1) {
         return;
     }
-    func_0210ddf4(&data_0217d294, (koura->mUnk_000.mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f) + 0x9c40,
-                  StartItemKouraGSound, koura, 0);
+    AddSoundRequest(&data_0217d294, (koura->mUnk_000.mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f) + 0x9c40,
+                    StartItemKouraGSound, koura, 0);
 }
 
 void *func_020f6038(void *buffer, ItemKouraG *koura, void *toBuffer) {
@@ -387,7 +387,7 @@ void *func_020f6038(void *buffer, ItemKouraG *koura, void *toBuffer) {
 void InitItemKouraGFromData(ItemKouraG *koura) {
     func_020f8e78(koura);
     ResetSoundDistanceSquaredChange(&koura->mUnk_16c);
-    koura->mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
+    koura->mUnk_000.mUnk_000.mSoundSource.mTrackParamsFunction = (void (*)(void *, void *, void *)) func_0210a77c;
     InitItemObjectMotion(koura, 9, koura->mUnk_168, 0);
 }
 
@@ -418,7 +418,8 @@ s32 InitItemKouraR(ItemInUse *itemInUse, ItemKouraR *kouraR) {
 
     func_020f9114(kouraR);
     ResetSoundDistanceSquaredChange(&kouraR->mUnk_258);
-    kouraR->mUnk_000.mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
+    kouraR->mUnk_000.mUnk_000.mUnk_000.mSoundSource.mTrackParamsFunction =
+        (void (*)(void *, void *, void *)) func_0210a77c;
     func_02046be8(&kouraR->mStateMachine, (UnkFunc *const *) gItemKouraRStateTable, 7, kouraR);
     if (itemInUse->mKartItems->mFlags & 0x20) {
         kouraR->mThrowForward = 0;
@@ -475,8 +476,8 @@ void UpdateItemKouraRState0And1(ItemKouraR *kouraR) {
     if (kouraR->mUnk_000.mUnk_000.mUnk_000.mFlags & 1) {
         return;
     }
-    func_0210ddf4(&data_0217d294, kouraR->mUnk_000.mUnk_000.mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f,
-                  StartItemKouraRSound, kouraR, 0);
+    AddSoundRequest(&data_0217d294, kouraR->mUnk_000.mUnk_000.mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f,
+                    StartItemKouraRSound, kouraR, 0);
 }
 
 void func_020f5cc4(ItemObject *item, u32 kartIndex) {
@@ -508,8 +509,8 @@ void func_020f5cc4(ItemObject *item, u32 kartIndex) {
 void UpdateItemKouraRState2(ItemKouraR *kouraR) {
     AdvanceItemObjectMotion(&kouraR->mUnk_000.mUnk_000, 0x8800);
     if (!(kouraR->mUnk_000.mUnk_000.mUnk_000.mFlags & 1)) {
-        func_0210ddf4(&data_0217d294, kouraR->mUnk_000.mUnk_000.mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f,
-                      StartItemKouraRSound, kouraR, 0);
+        AddSoundRequest(&data_0217d294, kouraR->mUnk_000.mUnk_000.mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f,
+                        StartItemKouraRSound, kouraR, 0);
     }
     if (kouraR->mUnk_000.mUnk_000.mUnk_000.mFlags & 1) {
         return;
@@ -562,8 +563,8 @@ void UpdateItemKouraRState3(ItemKouraR *kouraR) {
     }
     AdvanceLinkFollowingItem(&kouraR->mUnk_000, 0xd000, 0x29, targetKartIndex, 0);
     if (!(kouraR->mUnk_000.mUnk_000.mUnk_000.mFlags & 1)) {
-        func_0210ddf4(&data_0217d294, kouraR->mUnk_000.mUnk_000.mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f,
-                      StartItemKouraRSound, kouraR, 0);
+        AddSoundRequest(&data_0217d294, kouraR->mUnk_000.mUnk_000.mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f,
+                        StartItemKouraRSound, kouraR, 0);
     }
     if (kouraR->mUnk_000.mUnk_000.mUnk_000.mFlags & 1) {
         return;
@@ -647,8 +648,8 @@ void UpdateItemKouraRState4(ItemKouraR *kouraR) {
     if (kouraR->mUnk_000.mUnk_000.mUnk_000.mFlags & 1) {
         return;
     }
-    func_0210ddf4(&data_0217d294, kouraR->mUnk_000.mUnk_000.mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f,
-                  StartItemKouraRSound, kouraR, 0);
+    AddSoundRequest(&data_0217d294, kouraR->mUnk_000.mUnk_000.mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f,
+                    StartItemKouraRSound, kouraR, 0);
 }
 
 // Checks func_0206c0e0 of the 0x1fc object, then the 0x240 counter and the sum of the two
@@ -668,8 +669,8 @@ void UpdateItemKouraRState5(ItemKouraR *kouraR) {
         func_020f14a0(kouraR, 0x10000, 0x333, 0);
     }
     if ((kouraR->mUnk_000.mUnk_000.mUnk_000.mFlags & 1) == 0) {
-        func_0210ddf4(&data_0217d294, kouraR->mUnk_000.mUnk_000.mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f,
-                      StartItemKouraRSound, kouraR, 0);
+        AddSoundRequest(&data_0217d294, kouraR->mUnk_000.mUnk_000.mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f,
+                        StartItemKouraRSound, kouraR, 0);
     }
     if (kouraR->mStateMachine.mStateFrames <= 0x14) {
         hitRadius = kart->mRadius + ((kouraR->mUnk_000.mUnk_000.mUnk_000.mRadius * 3) >> 1);
@@ -682,14 +683,14 @@ void UpdateItemKouraRState5(ItemKouraR *kouraR) {
     func_020f6f10(&kouraR->mUnk_000.mUnk_000.mUnk_000, 0, 8);
 }
 
-// Runs AdvanceItemObjectMotion and hands StartItemKouraRSound to func_0210ddf4 when the 0x74 bit 0 is clear.
+// Runs AdvanceItemObjectMotion and hands StartItemKouraRSound to AddSoundRequest when the 0x74 bit 0 is clear.
 void UpdateItemKouraRState6(ItemKouraR *kouraR) {
     AdvanceItemObjectMotion(&kouraR->mUnk_000.mUnk_000, 0xc000);
     if (kouraR->mUnk_000.mUnk_000.mUnk_000.mFlags & 1) {
         return;
     }
-    func_0210ddf4(&data_0217d294, kouraR->mUnk_000.mUnk_000.mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f,
-                  StartItemKouraRSound, kouraR, 0);
+    AddSoundRequest(&data_0217d294, kouraR->mUnk_000.mUnk_000.mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f,
+                    StartItemKouraRSound, kouraR, 0);
 }
 
 // Runs func_0210a598 with the 0x3bc word of the 0x1fc object when the 0x78 high bits of the
@@ -764,7 +765,8 @@ void InitItemKouraRFromData(ItemKouraR *kouraR) {
 
     func_020f8e78(kouraR);
     ResetSoundDistanceSquaredChange(&kouraR->mUnk_258);
-    kouraR->mUnk_000.mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
+    kouraR->mUnk_000.mUnk_000.mUnk_000.mSoundSource.mTrackParamsFunction =
+        (void (*)(void *, void *, void *)) func_0210a77c;
     func_02046be8(&kouraR->mStateMachine, (UnkFunc *const *) gItemKouraRStateTable, 7, kouraR);
     if (kouraR->mThrowForward != 0) {
         if (kouraR->mUnk_000.mPreviousLink.mLink != NULL) {

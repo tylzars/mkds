@@ -96,21 +96,21 @@ typedef struct EntryKartCounters {
 
 struct Kart;
 
-// 16-byte entry of the table at Unk0217d26c.mUnk_04: func_0210dd44 calls mUnk_04 with the words at 8 and 0xc.
-typedef struct Unk0210ddf4 {
-    /* 00 */ u32 mUnk_00;
-    /* 04 */ void (*mUnk_04)(void *, s32);
-    /* 08 */ void *mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-} Unk0210ddf4;
+// 16-byte entry of the table at SoundRequestQueue.mUnk_04: RunSoundRequests calls mUnk_04 with the words at 8 and 0xc.
+typedef struct SoundRequest {
+    /* 00 */ u32 mSortKey;
+    /* 04 */ void (*mFunction)(void *, s32);
+    /* 08 */ void *mFirstArgument;
+    /* 0c */ s32 mSecondArgument;
+} SoundRequest;
 
-typedef struct Unk0217d26c {
-    /* 0 */ s32 mUnk_00;
-    /* 4 */ Unk0210ddf4 *mUnk_04;
-} Unk0217d26c;
+typedef struct SoundRequestQueue {
+    /* 0 */ s32 mCapacity;
+    /* 4 */ SoundRequest *mRequests;
+} SoundRequestQueue;
 
-extern Unk0217d26c data_0217d294;
-extern Unk0217d26c data_0217d29c;
+extern SoundRequestQueue data_0217d294;
+extern SoundRequestQueue data_0217d29c;
 
 // Frames before the Killer effect may end early because of the kart's rank.
 #define KART_KILLER_RANK_END_FRAMES 0xb4
@@ -595,10 +595,10 @@ void func_0206cc60(Kart *p, int arg);
 #include "Main/Unknown/code_0210ab48.h"
 void EndKartDrift(Kart *p);
 void AdvanceKartBoost(s32 *out, Kart *p);
-extern Unk0217d26c data_0217d26c[7];
-extern Unk0217d26c data_0217d274;
-extern Unk0217d26c data_0217d284;
-extern Unk0217d26c data_0217d28c;
+extern SoundRequestQueue data_0217d26c[7];
+extern SoundRequestQueue data_0217d274;
+extern SoundRequestQueue data_0217d284;
+extern SoundRequestQueue data_0217d28c;
 #include "Main/Unknown/code_0210dc7c.h"
 void func_020718c8(void *p, int arg);
 void func_02071944(void *p, int arg);

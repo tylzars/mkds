@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void func_0210fa74(u32 a);
-void func_0210fa40(u32 a, u32 b);
+void func_0210fa74(u32 enabled);
+void func_0210fa40(u32 enabled, u32 b);

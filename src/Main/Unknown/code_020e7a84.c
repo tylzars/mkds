@@ -773,7 +773,7 @@ void UpdateJgState1(void) {
     }
     if (frame == 0xa || frame == 0x28) {
         seqPlayer = GetSndHandleSlot(4);
-        data_0217b9dc.mUnk_0c = GetHorizontalCameraDistanceSquared(&gJgPos);
+        data_0217b9dc.mDistanceSquared = GetHorizontalCameraDistanceSquared(&gJgPos);
         NNS_SndPlayerStopSeq(seqPlayer, 0);
         func_0210b760(&data_0217b9dc, seqPlayer);
     }

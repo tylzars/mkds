@@ -140,7 +140,7 @@ s32 ApplyKartSurfaceKind7(Kart *a) {
         if (a->mSurfaceVariant > 0 && (a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
             c = StartSound(&a->mSoundSource, b.mUnk_00[a->mSurfaceVariant - 1], 0x7f, 0);
             if (c != NULL) {
-                c->mUnk_19 = c->mUnk_19 | 0x10;
+                c->mFlags = c->mFlags | 0x10;
             }
         }
     } else {
@@ -173,7 +173,7 @@ s32 ApplyKartSurfaceKind18(Kart *a) {
         if (a->mSurfaceVariant > 0 && (a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
             c = StartSound(&a->mSoundSource, b.mUnk_00[a->mSurfaceVariant - 1], 0x7f, 0);
             if (c != NULL) {
-                c->mUnk_19 = c->mUnk_19 | 0x10;
+                c->mFlags = c->mFlags | 0x10;
             }
         }
     } else {
@@ -213,7 +213,7 @@ s32 ApplyKartSurfaceKind19(Kart *a) {
         if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
             b = StartSound(&a->mSoundSource, 0x1b9, 0x7f, 0);
             if (b != NULL) {
-                b->mUnk_19 = b->mUnk_19 | 0x10;
+                b->mFlags = b->mFlags | 0x10;
             }
         }
     } else {

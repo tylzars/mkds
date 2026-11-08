@@ -146,10 +146,10 @@ void UpdateSman(void *a, Sman *sman) {
                             t = 4;
                         }
                     }
-                    s.mUnk_00 = 0x162;
-                    s.mUnk_04 = &sman->mUnk_00.mPos;
+                    s.mSoundId = 0x162;
+                    s.mPositionSource = &sman->mUnk_00.mPos;
                     s.mUnk_08 = t;
-                    s.mUnk_0c = GetHorizontalCameraDistanceSquared(&sman->mUnk_00.mPos);
+                    s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&sman->mUnk_00.mPos);
                     func_0210b7a8(&s);
                 }
             }

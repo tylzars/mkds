@@ -70,23 +70,23 @@ void func_0210f5d4(u32 a) {
 }
 
 void func_0210f458(s32 a) {
-    u16 v;
-    u16 w;
-    u16 n;
-    NNSSndSeqPlayer **p;
+    u16 tableValue;
+    u16 lowBits;
+    u16 entryIndex;
+    NNSSndSeqPlayer **handle;
 
-    v = data_0216cb50[data_0216cb4c].mUnk_00[a];
-    w = v & 0xfff;
+    tableValue = data_0216cb50[data_0216cb4c].mUnk_00[a];
+    lowBits = tableValue & 0xfff;
     switch (data_0216cb4c) {
         case 3:
-            if (v == 0x1cc) {
-                p = GetSndHandles();
-                if (*p != NULL) {
-                    NNS_SndPlayerStopSeq(p, 0);
+            if (tableValue == 0x1cc) {
+                handle = GetSndHandles();
+                if (*handle != NULL) {
+                    NNS_SndPlayerStopSeq(handle, 0);
                 }
-                p = GetSndHandleSlot(7);
-                if (*p != NULL) {
-                    NNS_SndPlayerStopSeq(p, 0);
+                handle = GetSndHandleSlot(7);
+                if (*handle != NULL) {
+                    NNS_SndPlayerStopSeq(handle, 0);
                 }
             };
             break;
@@ -94,108 +94,108 @@ void func_0210f458(s32 a) {
             func_02108e38();
             break;
     }
-    if (v < 0xfff) {
-        p = GetSndHandleSlot(a < 5 ? a + 7 : a + 2);
+    if (tableValue < 0xfff) {
+        handle = GetSndHandleSlot(a < 5 ? a + 7 : a + 2);
         if ((data_0217c780 & 1) == 0) {
             return;
         }
         if (data_0217d084.mUnk_0c == 0) {
             return;
         }
-        if (*p != NULL) {
-            NNS_SndPlayerStopSeq(p, 0);
+        if (*handle != NULL) {
+            NNS_SndPlayerStopSeq(handle, 0);
         }
-        if (*p != NULL) {
-            NNS_SndPlayerStopSeq(p, 0);
+        if (*handle != NULL) {
+            NNS_SndPlayerStopSeq(handle, 0);
         }
-        NNS_SndArcPlayerStartSeqArc(p, 0, v);
+        NNS_SndArcPlayerStartSeqArc(handle, 0, tableValue);
         return;
     }
-    if (w >= 4) {
+    if (lowBits >= 4) {
         return;
     }
-    n = ((v & 0xf000) >> 12) - 1;
-    a = a - data_0217d1c8[n].mUnk_00;
-    data_0217d1c4[n].mUnk_00 = data_0217d1c0[n].mUnk_00;
-    data_0217d1c0[n].mUnk_00 = a;
+    entryIndex = ((tableValue & 0xf000) >> 12) - 1;
+    a = a - data_0217d1c8[entryIndex].mUnk_00;
+    data_0217d1c4[entryIndex].mUnk_00 = data_0217d1c0[entryIndex].mUnk_00;
+    data_0217d1c0[entryIndex].mUnk_00 = a;
 }
 
-u32 func_0210f35c(s32 a, u32 b) {
-    NNSSndSeqPlayer **p;
+u32 func_0210f35c(s32 a, u32 soundId) {
+    NNSSndSeqPlayer **handle;
     u32 v;
-    u8 c;
+    u8 trackVolume;
     u32 ok;
 
     if (a == 0) {
-        p = GetSndHandleSlot(0xa);
+        handle = GetSndHandleSlot(0xa);
     } else {
-        p = GetSndHandleSlot(0xb);
+        handle = GetSndHandleSlot(0xb);
     }
     v = data_0217d1c0[a].mUnk_00;
     if (v == 0) {
-        c = 0;
+        trackVolume = 0;
         ok = 0;
     } else {
-        c = data_0217d1cc[a].mUnk_00[v - 1];
+        trackVolume = data_0217d1cc[a].mUnk_00[v - 1];
         ok = 1;
     }
     if (ok != 0) {
         if ((data_0217c780 & 1) != 0) {
             if (data_0217d084.mUnk_0c != 0) {
-                if (*p != NULL) {
-                    NNS_SndPlayerStopSeq(p, 0);
+                if (*handle != NULL) {
+                    NNS_SndPlayerStopSeq(handle, 0);
                 }
-                if (*p != NULL) {
-                    NNS_SndPlayerStopSeq(p, 0);
+                if (*handle != NULL) {
+                    NNS_SndPlayerStopSeq(handle, 0);
                 }
-                NNS_SndArcPlayerStartSeqArc(p, 0, b);
+                NNS_SndArcPlayerStartSeqArc(handle, 0, soundId);
             }
         }
-        if (*p != NULL) {
-            SetSndHandleTrackVolume(p, c);
+        if (*handle != NULL) {
+            SetSndHandleTrackVolume(handle, trackVolume);
         }
     }
     return ok;
 }
 
-u32 func_0210f230(u32 a, u32 b) {
-    NNSSndSeqPlayer **p;
+u32 func_0210f230(u32 a, u32 soundId) {
+    NNSSndSeqPlayer **handle;
     u32 v;
-    u8 c;
+    u8 trackVolume;
     u32 ok;
 
     if (a == 0) {
-        p = GetSndHandleSlot(0xa);
+        handle = GetSndHandleSlot(0xa);
     } else {
-        p = GetSndHandleSlot(0xb);
+        handle = GetSndHandleSlot(0xb);
     }
     v = data_0217d1c0[a].mUnk_00;
     if (v == 0) {
-        c = 0;
+        trackVolume = 0;
         ok = 0;
     } else {
-        c = data_0217d1cc[a].mUnk_00[v - 1];
+        trackVolume = data_0217d1cc[a].mUnk_00[v - 1];
         ok = 1;
     }
     if (ok != 0) {
-        if (*p == NULL) {
+        if (*handle == NULL) {
             if ((data_0217c780 & 1) != 0) {
                 if (data_0217d084.mUnk_0c != 0) {
-                    if (*p != NULL) {
-                        NNS_SndPlayerStopSeq(p, 0);
+                    if (*handle != NULL) {
+                        NNS_SndPlayerStopSeq(handle, 0);
                     }
-                    if (*p != NULL) {
-                        NNS_SndPlayerStopSeq(p, 0);
+                    if (*handle != NULL) {
+                        NNS_SndPlayerStopSeq(handle, 0);
                     }
-                    NNS_SndArcPlayerStartSeqArc(p, 0, b);
+                    NNS_SndArcPlayerStartSeqArc(handle, 0, soundId);
                 }
             }
-            SetSndHandleTrackVolume(p, c);
-        } else if (*p != NULL && data_0217d1c4[a].mUnk_00 != v) {
-            SetSndHandleTrackVolume(p, c);
+            SetSndHandleTrackVolume(handle, trackVolume);
+        } else if (*handle != NULL && data_0217d1c4[a].mUnk_00 != v) {
+            SetSndHandleTrackVolume(handle, trackVolume);
         }
     } else {
-        NNS_SndPlayerStopSeq(p, 0xa);
+        NNS_SndPlayerStopSeq(handle, 0xa);
     }
     return ok;
 }

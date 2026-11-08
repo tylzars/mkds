@@ -800,10 +800,10 @@ s32 BalloonKartsHitEachOtherCallback(u16 a, u16 b) {
         }
     }
     if (a == gRaceSetup->mEntryIndex || b == gRaceSetup->mEntryIndex) {
-        s.mUnk_00 = 0x14f;
-        s.mUnk_04 = NULL;
+        s.mSoundId = 0x14f;
+        s.mPositionSource = NULL;
         s.mUnk_08 = 2;
-        s.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
+        s.mDistanceSquared = GetHorizontalCameraDistanceSquared(NULL);
         func_0210b7a8(&s);
     }
     return 1;

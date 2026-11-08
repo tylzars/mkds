@@ -44,8 +44,8 @@
 #include "Main/Unknown/code_02086058.h"
 #include "01/code_021813f4.h"
 
-void func_021108ac(u32 p0) {
-    data_0217d1f4 = p0;
+void func_021108ac(u32 value) {
+    data_0217d1f4 = value;
 }
 
 void func_02110874(void) {
@@ -72,76 +72,76 @@ void ResetSeqQueue(void) {
 
 // Starts the next queued seq once the delay since the previous start has run out.
 void UpdateSeqQueue(void) {
-    SeqQueue *p = &gSeqQueue;
-    s32 i;
-    s32 v;
-    s32 w;
-    s32 t;
-    u32 x;
-    if (p->mNextStartTimer == 0) {
-        i = p->mReadIndex;
-        v = p->mPairNo[i];
-        if (v != 13) {
-            w = p->mPairSide[i];
-            t = 3;
-            if (v == 12) {
-                if (w == 0) {
-                    x = 0x47;
+    SeqQueue *queue = &gSeqQueue;
+    s32 readIndex;
+    s32 pairNo;
+    s32 pairSide;
+    s32 seqArcNo;
+    u32 seqIndex;
+    if (queue->mNextStartTimer == 0) {
+        readIndex = queue->mReadIndex;
+        pairNo = queue->mPairNo[readIndex];
+        if (pairNo != 13) {
+            pairSide = queue->mPairSide[readIndex];
+            seqArcNo = 3;
+            if (pairNo == 12) {
+                if (pairSide == 0) {
+                    seqIndex = 0x47;
                 } else {
-                    x = 0x48;
+                    seqIndex = 0x48;
                 }
-                t = 0;
+                seqArcNo = 0;
             } else {
-                x = (u16) (w + v * 2);
+                seqIndex = (u16) (pairSide + pairNo * 2);
             }
-            NNS_SndArcPlayerStartSeqArc(&data_0217d068, t, x);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, seqArcNo, seqIndex);
             if (data_0217d068 != NULL) {
                 SetSndHandleTrackVolume(&data_0217d068, 0x3c);
             }
-            gSeqQueue.mPairNo[p->mReadIndex] = 13;
-            data_0217d2dc[p->mReadIndex] = 2;
-            p->mNextStartTimer = 0x19;
-            p->mReadIndex = p->mReadIndex + 1;
-            i = p->mReadIndex;
-            if (i == 14) {
-                i = 0;
+            gSeqQueue.mPairNo[queue->mReadIndex] = 13;
+            data_0217d2dc[queue->mReadIndex] = 2;
+            queue->mNextStartTimer = 0x19;
+            queue->mReadIndex = queue->mReadIndex + 1;
+            readIndex = queue->mReadIndex;
+            if (readIndex == 14) {
+                readIndex = 0;
             }
-            p->mReadIndex = i;
+            queue->mReadIndex = readIndex;
         }
     }
-    if (p->mNextStartTimer > 0) {
-        p->mNextStartTimer = p->mNextStartTimer - 1;
+    if (queue->mNextStartTimer > 0) {
+        queue->mNextStartTimer = queue->mNextStartTimer - 1;
     }
 }
 
-void AddSeqQueueEntry(u32 a, u32 b) {
-    s32 i;
-    s32 n;
-    i = gSeqQueue.mWriteIndex;
-    gSeqQueue.mPairNo[i] = a;
-    n = i + 1;
-    gSeqQueue.mPairSide[i] = b;
-    if (n == 14) {
-        n = 0;
+void AddSeqQueueEntry(u32 pairNo, u32 pairSide) {
+    s32 writeIndex;
+    s32 nextIndex;
+    writeIndex = gSeqQueue.mWriteIndex;
+    gSeqQueue.mPairNo[writeIndex] = pairNo;
+    nextIndex = writeIndex + 1;
+    gSeqQueue.mPairSide[writeIndex] = pairSide;
+    if (nextIndex == 14) {
+        nextIndex = 0;
     }
-    gSeqQueue.mWriteIndex = n;
+    gSeqQueue.mWriteIndex = nextIndex;
 }
 
-void func_021106a8(s32 a, s32 b) {
-    u16 id;
+void func_021106a8(s32 pairNo, s32 pairSide) {
+    u16 seqIndex;
     u32 mode;
     mode = 3;
-    if (a == 0xc) {
-        if (b == 0) {
-            id = 0x47;
+    if (pairNo == 0xc) {
+        if (pairSide == 0) {
+            seqIndex = 0x47;
         } else {
-            id = 0x48;
+            seqIndex = 0x48;
         }
         mode = 0;
     } else {
-        id = b + a * 2;
+        seqIndex = pairSide + pairNo * 2;
     }
-    NNS_SndArcPlayerStartSeqArc(&data_0217d068, mode, id);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, mode, seqIndex);
     if (data_0217d068 != NULL) {
         SetSndHandleTrackVolume(&data_0217d068, 100);
     }
@@ -152,61 +152,61 @@ void func_02110698(void) {
     StartSoundOncePerFrame(0);
 }
 
-s32 StepValueTowardTarget(Unk0217c7f0 *a, s32 b) {
-    s32 c;
-    s32 d;
-    c = a->mUnk_04 >> 12;
-    if (b == c) {
+s32 StepValueTowardTarget(Unk0217c7f0 *a, s32 target) {
+    s32 currentValue;
+    s32 nextValue;
+    currentValue = a->mUnk_04 >> 12;
+    if (target == currentValue) {
         return -1;
     }
-    if (c <= b) {
-        d = a->mUnk_04 + a->mUnk_00;
-        if ((d >> 12) > b) {
-            d = b << 12;
+    if (currentValue <= target) {
+        nextValue = a->mUnk_04 + a->mUnk_00;
+        if ((nextValue >> 12) > target) {
+            nextValue = target << 12;
         }
     } else {
-        d = a->mUnk_04 - a->mUnk_00;
-        if ((d >> 12) < b) {
-            d = b << 12;
+        nextValue = a->mUnk_04 - a->mUnk_00;
+        if ((nextValue >> 12) < target) {
+            nextValue = target << 12;
         }
     }
-    a->mUnk_04 = d;
+    a->mUnk_04 = nextValue;
     return a->mUnk_04 >> 12;
 }
 
-void func_021105d8(void) {
+void InitSoundRequestQueues(void) {
     s32 i;
-    Unk0217d26c *p;
-    for (i = 0, p = data_0217d26c; i < 7; i++, p++) {
-        s32 t[7] = {1, 3, 2, 1, 3, 2, 3};
-        func_0210e094(p, t[i], data_0217d130);
+    SoundRequestQueue *queue;
+    for (i = 0, queue = data_0217d26c; i < 7; i++, queue++) {
+        s32 capacities[7] = {1, 3, 2, 1, 3, 2, 3};
+        InitSoundRequestQueue(queue, capacities[i], data_0217d130);
     }
 }
 
-void func_021105a0(void) {
+void ResetSoundRequestQueues(void) {
     s32 i;
-    Unk0217d26c *p;
-    for (i = 0, p = data_0217d26c; i < 7; i++, p++) {
-        func_0210e03c(p);
+    SoundRequestQueue *queue;
+    for (i = 0, queue = data_0217d26c; i < 7; i++, queue++) {
+        ResetSoundRequestQueue(queue);
     }
 }
 
 s32 GetLapProgressSoundGap(u32 arg0) {
     u32 value0 = arg0;
-    u32 value1;
-    value1 = (u32) &gLapProgressSoundGaps;
-    value0 = *(const u32 *) ((value1) + ((value0 << 2)));
+    u32 tableAddress;
+    tableAddress = (u32) &gLapProgressSoundGaps;
+    value0 = *(const u32 *) ((tableAddress) + ((value0 << 2)));
     return value0;
 }
 
-u16 GetLapProgressSoundId(int a) {
-    return data_0216cba0[a];
+u16 GetLapProgressSoundId(int index) {
+    return data_0216cba0[index];
 }
 
-void SetLapProgressSoundGaps(u32 a) {
+void SetLapProgressSoundGaps(u32 divisor) {
     s32 i;
     for (i = 0; i < 2; i++) {
-        gLapProgressSoundGaps[i] = FX_Div(data_0215c3a4[i], a);
+        gLapProgressSoundGaps[i] = FX_Div(data_0215c3a4[i], divisor);
     }
 }
 
@@ -264,15 +264,15 @@ void func_021103c0(void) {
     data_0217d218 = data_0216cb28;
 }
 
-void func_02110350(Unk020e71a0_94 *a) {
-    s32 v;
-    v = (s32) (((s64) data_0217d214 * (0x1f000 - func_ov001_02181528()) + 0x800) >> 12) >> 12;
-    if (v < 0) {
-        v = 0;
-    } else if (v > 0x7f) {
-        v = 0x7f;
+void func_02110350(Unk020e71a0_94 *mapSound) {
+    s32 attenuation;
+    attenuation = (s32) (((s64) data_0217d214 * (0x1f000 - func_ov001_02181528()) + 0x800) >> 12) >> 12;
+    if (attenuation < 0) {
+        attenuation = 0;
+    } else if (attenuation > 0x7f) {
+        attenuation = 0x7f;
     }
-    StartSoundWhileRequested(&a->mSoundSource, 0x231, (0x7f - v) & 0xff, 0);
+    StartSoundWhileRequested(&mapSound->mSoundSource, 0x231, (0x7f - attenuation) & 0xff, 0);
 }
 
 u32 func_02110324(void) {
@@ -289,31 +289,31 @@ u32 func_02110324(void) {
 }
 
 // Moves the object at gVolumeFade towards t.
-static inline void func_02110114_inline(NNSSndSeqPlayer **p, s32 v, s32 k, s32 t) {
+static inline void func_02110114_inline(NNSSndSeqPlayer **handle, s32 v, s32 pitch, s32 targetVolume) {
     s32 m;
     s32 c;
-    s32 r;
-    s32 x;
+    s32 steppedVolume;
+    s32 nextVolume;
     func_02108eb4(1, v);
-    NNS_SndPlayerSetTrackPitch(p, 0xffff, k);
+    NNS_SndPlayerSetTrackPitch(handle, 0xffff, pitch);
     c = gVolumeFade.mVolume >> 12;
-    if (t == c) {
-        r = -1;
+    if (targetVolume == c) {
+        steppedVolume = -1;
     } else {
-        if (c <= t) {
-            x = gVolumeFade.mVolume + gVolumeFade.mVolumePerFrame;
-            if ((x >> 12) > t) {
-                x = t << 12;
+        if (c <= targetVolume) {
+            nextVolume = gVolumeFade.mVolume + gVolumeFade.mVolumePerFrame;
+            if ((nextVolume >> 12) > targetVolume) {
+                nextVolume = targetVolume << 12;
             }
         } else {
-            x = gVolumeFade.mVolume - gVolumeFade.mVolumePerFrame;
-            if ((x >> 12) < t) {
-                x = t << 12;
+            nextVolume = gVolumeFade.mVolume - gVolumeFade.mVolumePerFrame;
+            if ((nextVolume >> 12) < targetVolume) {
+                nextVolume = targetVolume << 12;
             }
         }
-        c = x >> 12;
-        r = c;
-        gVolumeFade.mVolume = x;
+        c = nextVolume >> 12;
+        steppedVolume = c;
+        gVolumeFade.mVolume = nextVolume;
     }
     data_0217d218 = c;
     m = data_0216cb28;
@@ -324,37 +324,37 @@ static inline void func_02110114_inline(NNSSndSeqPlayer **p, s32 v, s32 k, s32 t
         m = c;
     }
     data_0217d218 = m;
-    if (r != -1) {
-        NNS_SndPlayerSetVolume(p, r);
+    if (steppedVolume != -1) {
+        NNS_SndPlayerSetVolume(handle, steppedVolume);
     }
 }
 
-void func_02110114(NNSSndSeqPlayer **a) {
-    s32 b;
+void func_02110114(NNSSndSeqPlayer **handle) {
+    s32 targetVolume;
     s32 c;
     c = data_0217d20c;
-    b = data_0216cb28;
+    targetVolume = data_0216cb28;
     switch (c) {
         case 0:
             c = (s32) (((s64) data_0217d210 * (0x29000 - func_ov001_02181528()) + 0x800) >> 12) >> 12;
-            b = 0;
+            targetVolume = 0;
             if (c >= 0) {
-                b = data_0216cb28;
-                if (c <= b) {
-                    b = c;
+                targetVolume = data_0216cb28;
+                if (c <= targetVolume) {
+                    targetVolume = c;
                 }
             }
             break;
         case 1:
-            b = 0;
+            targetVolume = 0;
             break;
         case 2:
-            b = 0;
+            targetVolume = 0;
             break;
         case 5:
             if (data_0217d21c == 2) {
                 if (data_0217d1e8 < 0x14) {
-                    b = 0;
+                    targetVolume = 0;
                 }
             }
             break;
@@ -366,40 +366,40 @@ void func_02110114(NNSSndSeqPlayer **a) {
     } else {
         data_0217d1e8++;
     }
-    if (b != data_0216cb28) {
+    if (targetVolume != data_0216cb28) {
         gVolumeFade.mVolumePerFrame = data_0217d224[0];
     } else {
         gVolumeFade.mVolumePerFrame = data_0217d224[1];
     }
-    func_02110114_inline(a, 0x7f, 0, b);
+    func_02110114_inline(handle, 0x7f, 0, targetVolume);
 }
 
-u32 IsSndHandleSet(NNSSndSeqPlayer **a) {
-    if (*a != NULL) {
+u32 IsSndHandleSet(NNSSndSeqPlayer **handle) {
+    if (*handle != NULL) {
         return 1;
     }
     return 0;
 }
 
-u32 IsSndHandleSeq(NNSSndSeqPlayer **arg0, u32 arg1, u32 arg2) {
-    u32 value0 = (u32) arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
+u32 IsSndHandleSeq(NNSSndSeqPlayer **handle, u32 seqArcNo, u32 index) {
+    u32 value0 = (u32) handle;
+    u32 value1 = seqArcNo;
+    u32 value2 = index;
     u32 value3;
-    u32 value12;
+    u32 player;
     u32 compareLeft0;
     u32 compareRight0;
     u32 compareLeft1;
     u32 compareRight1;
-    value12 = *(const u32 *) ((value0) + (0));
+    player = *(const u32 *) ((value0) + (0));
     value0 = 0u;
-    value3 = *(const u16 *) ((value12) + (58));
+    value3 = *(const u16 *) ((player) + (58));
     compareLeft0 = value3;
     compareRight0 = value2;
     if (compareLeft0 != compareRight0) {
         return value0;
     }
-    value2 = *(const u16 *) ((value12) + (56));
+    value2 = *(const u16 *) ((player) + (56));
     compareLeft1 = value2;
     compareRight1 = value1;
     if (compareLeft1 == compareRight1) {
@@ -408,52 +408,52 @@ u32 IsSndHandleSeq(NNSSndSeqPlayer **arg0, u32 arg1, u32 arg2) {
     return value0;
 }
 
-void StopSndHandleSeq(NNSSndSeqPlayer **a, u32 b) {
-    NNS_SndPlayerStopSeq(a, b);
+void StopSndHandleSeq(NNSSndSeqPlayer **handle, u32 fadeSteps) {
+    NNS_SndPlayerStopSeq(handle, fadeSteps);
 }
 
-void func_0211003c(u32 a, NNSSndSeqPlayer **b) {
+void func_0211003c(u32 soundId, NNSSndSeqPlayer **handle) {
     if ((data_0217c780 & 1) == 0) {
         return;
     }
     if (data_0217d084.mUnk_0c == 0) {
         return;
     }
-    if (*b != NULL) {
-        NNS_SndPlayerStopSeq(b, 0);
+    if (*handle != NULL) {
+        NNS_SndPlayerStopSeq(handle, 0);
     }
-    if (*b != NULL) {
-        NNS_SndPlayerStopSeq(b, 0);
+    if (*handle != NULL) {
+        NNS_SndPlayerStopSeq(handle, 0);
     }
-    NNS_SndArcPlayerStartSeqArc(b, 0, a);
+    NNS_SndArcPlayerStartSeqArc(handle, 0, soundId);
 }
 
 // Fades the object at gVolumeFade towards t, then writes the value that was reached.
-static inline void func_0210fb88_inline(NNSSndSeqPlayer **p, s32 v, s32 k, s32 t) {
+static inline void func_0210fb88_inline(NNSSndSeqPlayer **handle, s32 v, s32 pitch, s32 targetVolume) {
     s32 m;
     s32 c;
-    s32 r;
-    s32 x;
+    s32 steppedVolume;
+    s32 nextVolume;
     func_02108eb4(1, v);
-    NNS_SndPlayerSetTrackPitch(p, 0xffff, k);
+    NNS_SndPlayerSetTrackPitch(handle, 0xffff, pitch);
     c = gVolumeFade.mVolume >> 12;
-    if (t == c) {
-        r = -1;
+    if (targetVolume == c) {
+        steppedVolume = -1;
     } else {
-        if (c <= t) {
-            x = gVolumeFade.mVolume + gVolumeFade.mVolumePerFrame;
-            if ((x >> 12) > t) {
-                x = t << 12;
+        if (c <= targetVolume) {
+            nextVolume = gVolumeFade.mVolume + gVolumeFade.mVolumePerFrame;
+            if ((nextVolume >> 12) > targetVolume) {
+                nextVolume = targetVolume << 12;
             }
         } else {
-            x = gVolumeFade.mVolume - gVolumeFade.mVolumePerFrame;
-            if ((x >> 12) < t) {
-                x = t << 12;
+            nextVolume = gVolumeFade.mVolume - gVolumeFade.mVolumePerFrame;
+            if ((nextVolume >> 12) < targetVolume) {
+                nextVolume = targetVolume << 12;
             }
         }
-        c = x >> 12;
-        r = c;
-        gVolumeFade.mVolume = x;
+        c = nextVolume >> 12;
+        steppedVolume = c;
+        gVolumeFade.mVolume = nextVolume;
     }
     data_0217d218 = c;
     m = data_0216cb28;
@@ -464,49 +464,50 @@ static inline void func_0210fb88_inline(NNSSndSeqPlayer **p, s32 v, s32 k, s32 t
         m = c;
     }
     data_0217d218 = m;
-    if (r != -1) {
-        NNS_SndPlayerSetVolume(p, r);
+    if (steppedVolume != -1) {
+        NNS_SndPlayerSetVolume(handle, steppedVolume);
     }
 }
 
-void func_0210fb88(SeqPlayerControl *a, NNSSndSeqPlayer **b) {
-    u32 i;
-    s32 j;
-    s32 k;
+void func_0210fb88(SeqPlayerControl *control, NNSSndSeqPlayer **handle) {
+    u32 slotVolume;
+    s32 targetVolume;
+    s32 pitch;
     s32 l;
-    s32 n;
-    s32 x;
+    s32 slotSeqIndex;
+    s32 minKartDistanceSquared;
     s32 y;
     s64 w;
     s32 z;
-    NNSSndSeqPlayer **p;
-    k = 0;
-    i = k;
+    NNSSndSeqPlayer **slotHandle;
+    pitch = 0;
+    slotVolume = pitch;
     l = 0x7f;
-    n = -1;
-    if (a->mVolumeOverride > 0) {
-        switch (a->mVolumeOverride) {
+    slotSeqIndex = -1;
+    if (control->mVolumeOverride > 0) {
+        switch (control->mVolumeOverride) {
             case 1:
-                l = k;
+                l = pitch;
                 break;
             case 2:
                 break;
         }
-        func_0210fb88_inline(b, 0x7f, 0, l);
+        func_0210fb88_inline(handle, 0x7f, 0, l);
         return;
     }
     if (data_0217d1ec != 0) {
-        func_02110114(b);
+        func_02110114(handle);
         return;
     }
-    a->mKartNear = (TryGetMinKartDistanceSquared(&x) != FALSE && x < 0x8d04) ? 1 : 0;
-    if ((a->mFlags >> 2) & 1) {
-        j = 0;
+    control->mKartNear =
+        (TryGetMinKartDistanceSquared(&minKartDistanceSquared) != FALSE && minKartDistanceSquared < 0x8d04) ? 1 : 0;
+    if ((control->mFlags >> 2) & 1) {
+        targetVolume = 0;
         l = 0x1e;
-        n = 0xff;
-        i = 0x7f;
-    } else if (a->mKartNear != 0) {
-        y = (x - 2500) << 12;
+        slotSeqIndex = 0xff;
+        slotVolume = 0x7f;
+    } else if (control->mKartNear != 0) {
+        y = (minKartDistanceSquared - 2500) << 12;
         w = y;
         z = (s32) (((s64) data_0217d208 * y + 0x800) >> 12) >> 12;
         z += 0x1e;
@@ -517,84 +518,84 @@ void func_0210fb88(SeqPlayerControl *a, NNSSndSeqPlayer **b) {
         }
         l = z & 0xff;
         z = (s32) ((data_0217d200 * w + 0x800) >> 12) >> 12;
-        i = (0x9d - l) & 0xff;
-        j = z + 0x14;
-        n = 0xfe;
-        if (j < 0) {
-            j = 0;
-        } else if (j > 0x7f) {
-            j = 0x7f;
+        slotVolume = (0x9d - l) & 0xff;
+        targetVolume = z + 0x14;
+        slotSeqIndex = 0xfe;
+        if (targetVolume < 0) {
+            targetVolume = 0;
+        } else if (targetVolume > 0x7f) {
+            targetVolume = 0x7f;
         }
     } else {
-        j = data_0216cb28;
+        targetVolume = data_0216cb28;
     }
     if (gSceneSoundState.mRaceState != 1) {
-        k = 0;
-    } else if ((a->mFlags >> 1) & 1) {
-        a->mPitchAngle += 0x1111;
-        a->mPitchAngle &= 0xffff;
-        k = (s32) (((s64) gPairsByAngle[(a->mPitchAngle >> 4) * 2] * 0x30000 + 0x800) >> 12) >> 12;
-        k += 0x80;
-        if (j > 0x3c) {
-            j = 0x3c;
+        pitch = 0;
+    } else if ((control->mFlags >> 1) & 1) {
+        control->mPitchAngle += 0x1111;
+        control->mPitchAngle &= 0xffff;
+        pitch = (s32) (((s64) gPairsByAngle[(control->mPitchAngle >> 4) * 2] * 0x30000 + 0x800) >> 12) >> 12;
+        pitch += 0x80;
+        if (targetVolume > 0x3c) {
+            targetVolume = 0x3c;
         }
-    } else if ((a->mFlags >> 3) & 1) {
-        k = 0x40;
-        if (j == data_0216cb28) {
-            j = data_0216cb28 - 10;
+    } else if ((control->mFlags >> 3) & 1) {
+        pitch = 0x40;
+        if (targetVolume == data_0216cb28) {
+            targetVolume = data_0216cb28 - 10;
         }
     }
-    func_0210fb88_inline(b, l, k, j);
-    p = GetSndHandleSlot(5);
-    if (n != -1 && i != 0) {
-        l = IsSndHandleSet(p);
-        if (l != 0 && IsSndHandleSeq(p, 0, n) == 0) {
-            StopSndHandleSeq(p, 0);
-            func_0211003c(n & 0xff, p);
+    func_0210fb88_inline(handle, l, pitch, targetVolume);
+    slotHandle = GetSndHandleSlot(5);
+    if (slotSeqIndex != -1 && slotVolume != 0) {
+        l = IsSndHandleSet(slotHandle);
+        if (l != 0 && IsSndHandleSeq(slotHandle, 0, slotSeqIndex) == 0) {
+            StopSndHandleSeq(slotHandle, 0);
+            func_0211003c(slotSeqIndex & 0xff, slotHandle);
         } else if (l == 0) {
-            func_0211003c(n & 0xff, p);
+            func_0211003c(slotSeqIndex & 0xff, slotHandle);
         }
-        if (IsSndHandleSet(p) == 0) {
+        if (IsSndHandleSet(slotHandle) == 0) {
             return;
         }
-        if (i > 0x7f) {
-            i = 0x7f;
+        if (slotVolume > 0x7f) {
+            slotVolume = 0x7f;
         }
-        SetSndHandleTrackVolume(p, i);
+        SetSndHandleTrackVolume(slotHandle, slotVolume);
     } else {
-        if (IsSndHandleSet(p) == 0) {
+        if (IsSndHandleSet(slotHandle) == 0) {
             return;
         }
-        StopSndHandleSeq(p, 0x1e);
+        StopSndHandleSeq(slotHandle, 0x1e);
     }
 }
 
 u32 func_0210fb68(void) {
-    u32 value0;
-    u32 value1;
-    value0 = (u32) &data_0217d244;
-    value1 = 0u;
-    data_0217d244.mPitchAngle = value1;
-    data_0217d244.mFlags = value1;
-    data_0217d244.mKartNear = value1;
-    data_0217d244.mVolumeOverride = value1;
-    return value0;
+    u32 controlAddress;
+    u32 zero;
+    controlAddress = (u32) &data_0217d244;
+    zero = 0u;
+    data_0217d244.mPitchAngle = zero;
+    data_0217d244.mFlags = zero;
+    data_0217d244.mKartNear = zero;
+    data_0217d244.mVolumeOverride = zero;
+    return controlAddress;
 }
 
 u32 func_0210fb54(void) {
-    u32 value0;
-    u32 value1;
-    value0 = (u32) &data_0217d244;
-    value1 = 1u;
-    data_0217d244.mVolumeOverride = value1;
-    return value0;
+    u32 controlAddress;
+    u32 overrideValue;
+    controlAddress = (u32) &data_0217d244;
+    overrideValue = 1u;
+    data_0217d244.mVolumeOverride = overrideValue;
+    return controlAddress;
 }
 
 void func_0210fb10(void) {
-    NNSSndSeqPlayer **v1;
-    v1 = &data_0217d07c;
+    NNSSndSeqPlayer **handle;
+    handle = &data_0217d07c;
     *((u32 *) ((u32) (&data_0217d244))) = 2;
-    NNS_SndPlayerSetTrackMuteEx(v1, 1, 1);
+    NNS_SndPlayerSetTrackMuteEx(handle, 1, 1);
     NNS_SndPlayerSetTempoRatio(&data_0217d07c, 0xd9);
 }
 
@@ -610,23 +611,23 @@ u32 IsThunderShrinkFlagSet(void) {
 }
 
 u32 IsKartNear(void) {
-    u32 value0;
-    value0 = data_0217d244.mKartNear;
-    return value0;
+    u32 kartNear;
+    kartNear = data_0217d244.mKartNear;
+    return kartNear;
 }
 
 u32 func_0210faac(void) {
-    u32 value0;
-    u32 value1;
-    value0 = (u32) &data_0217d244;
-    value1 = data_0217d244.mFlags;
-    value1 = (value1) | (8u);
-    data_0217d244.mFlags = value1;
-    return value0;
+    u32 controlAddress;
+    u32 flags;
+    controlAddress = (u32) &data_0217d244;
+    flags = data_0217d244.mFlags;
+    flags = (flags) | (8u);
+    data_0217d244.mFlags = flags;
+    return controlAddress;
 }
 
-void func_0210fa74(u32 a) {
-    if (a == 1) {
+void func_0210fa74(u32 enabled) {
+    if (enabled == 1) {
         data_0217d244.mFlags |= 2;
     } else {
         data_0217d244.mFlags &= ~2;
@@ -634,49 +635,49 @@ void func_0210fa74(u32 a) {
     data_0217d244.mPitchAngle = 0;
 }
 
-void func_0210fa40(u32 a, u32 b) {
+void func_0210fa40(u32 enabled, u32 b) {
     if (b == 0) {
         return;
     }
-    if (a == 1) {
+    if (enabled == 1) {
         data_0217d244.mFlags |= 4;
     } else {
         data_0217d244.mFlags &= ~4;
     }
 }
 
-u32 func_0210fa3c(u32 p0) {
-    return p0;
+u32 func_0210fa3c(u32 value) {
+    return value;
 }
 
 u32 func_0210fa28(void) {
-    u32 value0;
-    u32 value1;
-    value0 = (u32) &data_0217d1f0;
-    value1 = 0u;
-    *(u32 *) ((value0) + (0)) = value1;
-    return value0;
+    u32 counterAddress;
+    u32 zero;
+    counterAddress = (u32) &data_0217d1f0;
+    zero = 0u;
+    *(u32 *) ((counterAddress) + (0)) = zero;
+    return counterAddress;
 }
 
-void func_0210f9f0(void *a0, int b) {
-    Kart *a = a0;
-    u32 v = data_0217d1f0;
-    data_0217d1f0 = v + 1;
-    StartSound(&a->mSoundSource, v + 0xea, 0x7f, 0);
+void func_0210f9f0(void *kartAddress, int b) {
+    Kart *kart = kartAddress;
+    u32 counter = data_0217d1f0;
+    data_0217d1f0 = counter + 1;
+    StartSound(&kart->mSoundSource, counter + 0xea, 0x7f, 0);
 }
 
-void func_0210f9ac(Kart *a) {
-    func_0210ddf4(&data_0217d28c, func_02086080(a->mIndex), func_0210f9f0, a, 0);
+void func_0210f9ac(Kart *kart) {
+    AddSoundRequest(&data_0217d28c, func_02086080(kart->mIndex), func_0210f9f0, kart, 0);
 }
 
-void func_0210f8b0(Unk0217d060 *a, s32 b, s32 c) {
+void func_0210f8b0(SoundSetPlayer *player, s32 seqId, s32 firstBankId) {
     u8 i;
     s32 j;
     ReleaseLoadedSoundSet();
-    if (b == 4) {
-        c = 0x23;
+    if (seqId == 4) {
+        firstBankId = 0x23;
     }
-    func_0210dccc(a, b, c, 0xff, GetLoadedSoundSet());
+    InitSoundSetPlayer(player, seqId, firstBankId, 0xff, GetLoadedSoundSet());
     for (i = 0; i < 2; i++) {
         gSeqVariableReadings[i].mValue = -1;
         gSeqVariableReadings[i].mPrevValue = -1;
@@ -699,9 +700,9 @@ void func_0210f8b0(Unk0217d060 *a, s32 b, s32 c) {
     gAnySeqVariableEnabled = 0;
 }
 
-void SetSeqVariableEnabled(u32 a, u32 b) {
+void SetSeqVariableEnabled(u32 slot, u32 enabled) {
     s32 i;
-    gSeqVariableEnabled[a] = b;
+    gSeqVariableEnabled[slot] = enabled;
     for (i = 0; i < 2; i++) {
         if (gSeqVariableEnabled[i] == 1) {
             gAnySeqVariableEnabled = 1;
@@ -727,33 +728,33 @@ void ResetSeqVariableReadings(void) {
 }
 
 // Reads each enabled slot's sequence variable and counts the updates since it last changed.
-void UpdateSeqVariableReadings(NNSSndSeqPlayer **a) {
-    SeqVariableReading *p;
+void UpdateSeqVariableReadings(NNSSndSeqPlayer **handle) {
+    SeqVariableReading *reading;
     s32 i;
 
     for (i = 0; i < 2; i++) {
-        p = &gSeqVariableReadings[i];
+        reading = &gSeqVariableReadings[i];
         if (gSeqVariableEnabled[i] == 0) {
             continue;
         }
-        if (NNS_SndPlayerReadVariable(a, p->mVariableNo[0], (s16 *) p) == 0) {
+        if (NNS_SndPlayerReadVariable(handle, reading->mVariableNo[0], (s16 *) reading) == 0) {
             continue;
         }
-        if (p->mPrevValue != p->mValue) {
-            p->mSinceChangeFrames = 0;
+        if (reading->mPrevValue != reading->mValue) {
+            reading->mSinceChangeFrames = 0;
         } else {
-            if (p->mSinceChangeFrames >= 0) {
-                p->mSinceChangeFrames++;
+            if (reading->mSinceChangeFrames >= 0) {
+                reading->mSinceChangeFrames++;
             }
         }
-        p->mPrevValue = p->mValue;
+        reading->mPrevValue = reading->mValue;
     }
 }
 
-u32 IsSeqVariableChanged(u32 a) {
-    return gSeqVariableReadings[a].mSinceChangeFrames == 0;
+u32 IsSeqVariableChanged(u32 slot) {
+    return gSeqVariableReadings[slot].mSinceChangeFrames == 0;
 }
 
-u32 GetSeqVariableSinceChangeFrames(u32 a) {
-    return gSeqVariableReadings[a].mSinceChangeFrames;
+u32 GetSeqVariableSinceChangeFrames(u32 slot) {
+    return gSeqVariableReadings[slot].mSinceChangeFrames;
 }

@@ -518,7 +518,7 @@ u16 func_020a1520(void) {
         }
     }
     if (data_0217c780 & 1) {
-        h = func_0210e128(func_02108ea0(0));
+        h = TakeSoundHandleEntry(func_02108ea0(0));
         if (data_0217d084.mUnk_0c != 0) {
             if (h[0] != NULL) {
                 NNS_SndPlayerStopSeq(h, 0);
@@ -1009,10 +1009,10 @@ void func_020a0318(void *a, Unk020a0318 *p) {
                 }
             } else if (p->mUnk_c8-- <= 0) {
                 h = GetSndHandleSlot(8);
-                s1.mUnk_00 = p->mUnk_bc;
-                s1.mUnk_04 = NULL;
+                s1.mSoundId = p->mUnk_bc;
+                s1.mPositionSource = NULL;
                 s1.mUnk_08 = 4;
-                s1.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
+                s1.mDistanceSquared = GetHorizontalCameraDistanceSquared(NULL);
                 func_0210b760(&s1, h);
                 r = &gRaceProgress->mLocalRandom;
                 r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
@@ -1033,10 +1033,10 @@ void func_020a0318(void *a, Unk020a0318 *p) {
     if (p->mUnk_c4 != 0) {
         if (*GetSndHandleSlot(9) == NULL) {
             h = GetSndHandleSlot(9);
-            s2.mUnk_00 = p->mUnk_be;
-            s2.mUnk_04 = NULL;
+            s2.mSoundId = p->mUnk_be;
+            s2.mPositionSource = NULL;
             s2.mUnk_08 = 4;
-            s2.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
+            s2.mDistanceSquared = GetHorizontalCameraDistanceSquared(NULL);
             func_0210b760(&s2, h);
         }
     }

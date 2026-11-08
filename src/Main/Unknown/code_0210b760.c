@@ -26,12 +26,12 @@ void AdvanceSoundDistanceSquaredChange(SoundDistanceSquaredChange *tracker, u32 
 
 void func_0210b7a8(Unk0210b7a8 *request) {
     if (data_0217c780 & 1) {
-        func_0210bf24(0, request->mUnk_00, (u32) request->mUnk_04, request);
+        func_0210bf24(0, request->mSoundId, (u32) request->mPositionSource, request);
     }
 }
 
 void func_0210b760(Unk0210b7a8 *request, NNSSndSeqPlayer **handle) {
     if (data_0217c780 & 1) {
-        func_0210bee8(0, request->mUnk_00, (u32) request->mUnk_04, handle, request);
+        func_0210bee8(0, request->mSoundId, (u32) request->mPositionSource, handle, request);
     }
 }

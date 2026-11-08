@@ -127,18 +127,18 @@ void func_020d4e28(ItemObject *itemObject, Vec3 *position, u32 distanceAndFlags)
     s32 cameraHeightAboveItem;
 
     if (distanceAndFlags & 4) {
-        if (itemObject->mSoundSource.mUnk_34 & 1) {
+        if (itemObject->mSoundSource.mSourceFlags & 1) {
             SetSoundSourceFlagBit(&itemObject->mSoundSource, 2, 1);
         }
         return;
     }
     cameraHeightAboveItem = gViewFrustum.mCameraPos.y - position->y;
     if (cameraHeightAboveItem > -0x12c000 && cameraHeightAboveItem < data_0217b4f4) {
-        if (!(itemObject->mSoundSource.mUnk_34 & 1)) {
+        if (!(itemObject->mSoundSource.mSourceFlags & 1)) {
             SetSoundSourceFlagBit(&itemObject->mSoundSource, 2, 1);
         }
     } else {
-        if (itemObject->mSoundSource.mUnk_34 & 1) {
+        if (itemObject->mSoundSource.mSourceFlags & 1) {
             SetSoundSourceFlagBit(&itemObject->mSoundSource, 2, 1);
         }
     }

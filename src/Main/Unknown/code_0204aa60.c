@@ -23,7 +23,7 @@ void func_0204ac60(void) {
         return;
     }
     data_021759d0->mUnk_1c_0 = 1;
-    func_0210dcb8(&data_021759d0->mUnk_08, data_0216cb28);
+    StartSoundSetSeq(&data_021759d0->mUnk_08, data_0216cb28);
 }
 
 void func_0204ac10(void) {
@@ -32,7 +32,7 @@ void func_0204ac10(void) {
     if (!p->mUnk_1c_0) {
         return;
     }
-    func_0210dca8(&p->mUnk_08, GetSoundFadeSteps());
+    StopSoundSetSeq(&p->mUnk_08, GetSoundFadeSteps());
     data_021759d0->mUnk_1c_0 = 0;
 }
 
@@ -43,7 +43,7 @@ void func_0204aba8(void) {
     if (!data_021759d0->mUnk_1c_1) {
         return;
     }
-    func_0210dc7c(&data_021759d0->mUnk_08);
+    ReleaseSoundSetPlayer(&data_021759d0->mUnk_08);
     data_021759d0->mUnk_1c_1 = 0;
 }
 
@@ -51,7 +51,7 @@ void func_0204ab64(u32 a) {
     if (!data_021759d0->mUnk_1c_0) {
         return;
     }
-    func_0210dca8(&data_021759d0->mUnk_08, a);
+    StopSoundSetSeq(&data_021759d0->mUnk_08, a);
 }
 
 s32 func_0204aab4(s32 a, s32 b) {

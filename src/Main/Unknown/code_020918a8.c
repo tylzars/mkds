@@ -56,10 +56,10 @@ static inline void func_020919e8_inline_3(Unk020919e8 *p, s32 n) {
     } else {
         v = 4;
     }
-    s.mUnk_00 = n;
-    s.mUnk_04 = &p->mUnk_00.mPos;
+    s.mSoundId = n;
+    s.mPositionSource = &p->mUnk_00.mPos;
     s.mUnk_08 = v;
-    s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
+    s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
     func_0210b7a8(&s);
 }
 

@@ -5,5 +5,5 @@
 
 void func_0210a644(Kart *kart) {
     kart->mUnk_450.mUnk_34 = gSceneSoundState.mRaceFrames;
-    kart->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a724;
+    kart->mSoundSource.mTrackParamsFunction = (void (*)(void *, void *, void *)) func_0210a724;
 }

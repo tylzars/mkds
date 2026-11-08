@@ -686,7 +686,7 @@ void UpdateRaceLapNumber(void) {
                 v = 0x1c7;
             }
             if (data_0217c780 & 1) {
-                a = func_0210e128(func_02108ea0(0));
+                a = TakeSoundHandleEntry(func_02108ea0(0));
                 if (data_0217d084.mUnk_0c != 0) {
                     if (*a != NULL) {
                         NNS_SndPlayerStopSeq(a, 0);

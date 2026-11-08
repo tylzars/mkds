@@ -696,10 +696,10 @@ BOOL StartBoundWobble(s32 a) {
             } else {
                 k = 4;
             }
-            s.mUnk_00 = 0x1cf;
-            s.mUnk_04 = &p->mUnk_000.mPos;
+            s.mSoundId = 0x1cf;
+            s.mPositionSource = &p->mUnk_000.mPos;
             s.mUnk_08 = k;
-            s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_000.mPos);
+            s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&p->mUnk_000.mPos);
             func_0210b7a8(&s);
         }
         return TRUE;

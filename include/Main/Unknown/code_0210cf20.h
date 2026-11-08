@@ -4,4 +4,4 @@
 
 typedef struct SoundSource SoundSource;
 
-void func_0210cf20(SoundSource *a, u32 b);
+void InitAndRegisterSoundSource(SoundSource *source, u32 positionSource);

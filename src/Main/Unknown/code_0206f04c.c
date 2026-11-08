@@ -93,7 +93,7 @@ void func_0206ff50(Kart *p, u32 a) {
         p->mRespawnSlot = c;
         if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mCourseId == COURSE_ID_RAINBOW &&
             (data_0217c780 & 1)) {
-            d = func_0210e128(func_02108ea0(0));
+            d = TakeSoundHandleEntry(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (d[0] != NULL) {
                     NNS_SndPlayerStopSeq(d, 0);

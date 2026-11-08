@@ -7,10 +7,10 @@
 #include "code_0212d214.h"
 #include "Main/Unknown/code_0210bcf4.h"
 typedef struct Unk0210b7a8 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ Vec3 *mUnk_04;
+    /* 00 */ s32 mSoundId;
+    /* 04 */ Vec3 *mPositionSource;
     /* 08 */ s32 mUnk_08;
-    /* 0c */ u32 mUnk_0c;
+    /* 0c */ u32 mDistanceSquared;
 } Unk0210b7a8;
 
 // Object of AdvanceSoundDistanceSquaredChange: a value at 0x00, the previous value at 0x04, their difference at 0x08

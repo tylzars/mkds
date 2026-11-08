@@ -43,10 +43,10 @@ void StartSoundAtPositionIfNear(s32 soundId, Vec3 *position, s32 falloffKind) {
     if (distanceSquared >= (falloffKind == 2 ? gSoundFalloffs[2].mUnk_20 : gSoundFalloffs[4].mUnk_20)) {
         return;
     }
-    request.mUnk_00 = soundId;
-    request.mUnk_04 = position;
+    request.mSoundId = soundId;
+    request.mPositionSource = position;
     request.mUnk_08 = falloffKind;
-    request.mUnk_0c = distanceSquared;
+    request.mDistanceSquared = distanceSquared;
     func_0210b7a8(&request);
 }
 

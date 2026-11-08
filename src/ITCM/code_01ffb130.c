@@ -73,7 +73,7 @@ void func_01ffb130(Kart *p) {
     if (p->mUnk_4c & 0x2000) {
         q = &p->mUnk_538;
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-            func_0210ddf4(data_0217d26c, func_02086080(p->mIndex), func_020718c8, p, 0xa3);
+            AddSoundRequest(data_0217d26c, func_02086080(p->mIndex), func_020718c8, p, 0xa3);
         }
         q->mUnk_0a++;
         if (q->mUnk_0a > 0xb4 && (p->mUnk_4c & 0x2000)) {

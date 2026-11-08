@@ -386,7 +386,7 @@ void InitSound(void *buffer, u32 b, u32 c) {
         b = b - seqRowHeapSize;
     }
     func_0210d894(buffer, b, c != 0 ? data_0216c8d0 : 0);
-    func_021105d8();
+    InitSoundRequestQueues();
     NNS_SndArcInitOnMemory(&data_0217c868, data_0215a880);
     NNS_SndArcSetCurrent(&data_0217d0a0);
     if (c != 0) {
@@ -405,7 +405,7 @@ void InitSound(void *buffer, u32 b, u32 c) {
     for (i = 0; i < 12; i++) {
         NNS_SndHandleInit(&data_0217c838[i]);
     }
-    func_0210e2c4(&data_0217c7c4, data_0217c7d8, 3, 8);
+    InitSoundHandlePool(&data_0217c7c4, data_0217c7d8, 3, 8);
     NNS_SndHandleInit(&data_0217c7ac);
     NNS_SndHandleInit(&data_0217c788);
     NNS_SndHandleInit(&data_0217c778);
@@ -435,9 +435,9 @@ void UpdateSounds(void) {
     func_0210fa28();
     func_0210bac0();
     for (i = 0; i < 7; i++) {
-        func_0210dd44(OFFSET_PTR(Unk0217d26c, data_0217d26c, i * sizeof(Unk0217d26c)));
+        RunSoundRequests(OFFSET_PTR(SoundRequestQueue, data_0217d26c, i * sizeof(SoundRequestQueue)));
     }
-    func_0210e280(&data_0217c7c4);
+    IncrementSoundHandleAges(&data_0217c7c4);
     UpdateSoundSources();
     if (data_0217c7a4 == 1) {
         seqPlayer = data_0217c788;
@@ -469,7 +469,7 @@ void InitSceneSounds(s32 e) {
     if (*(vu16 *) 0x027ffc40 == 2 && GetCurrentSceneNumber() == 6) {
         return;
     }
-    func_0210bc14();
+    ClearSurfaceSoundIds();
     a = GetCurrentSceneNumber();
     v = 0x69;
     b = FALSE;
@@ -628,7 +628,7 @@ void InitSceneSounds(s32 e) {
                     func_0210bbec(0x10, data_0216c860[12].mUnk_04, &data_0216c860[12]);
                     break;
                 case COURSE_ID_OLD_LUIGI_AGB:
-                    func_0210bc00(data_0216c7e0.mUnk_10, data_0216c7e0.mUnk_14, &data_0216c7e0);
+                    SetSurfaceSoundIds(data_0216c7e0.mUnk_10, data_0216c7e0.mUnk_14, &data_0216c7e0);
                     break;
                 case COURSE_ID_MR_STAGE3:
                     func_0210bbec(0x15, data_0216c860[13].mUnk_04, &data_0216c860[13]);
@@ -729,7 +729,7 @@ void InitSceneSounds(s32 e) {
     InitSoundFalloffsAndPlayingSounds();
     func_0210b870();
     InitKartSoundQueue();
-    func_021105a0();
+    ResetSoundRequestQueues();
     func_0210fb68();
     if (*(vu16 *) 0x027ffc40 != 2) {
         LoadSceneSoundSet(buf, 0);
@@ -987,9 +987,9 @@ void EndRaceSounds(void) {
         NNS_SndPlayerStopSeq(data_0217c838 + i, GetEndRaceFadeSteps());
     }
     fadeSteps = GetEndRaceFadeSteps();
-    for (j = 0, playerCursor = (&data_0217c7c4)->mUnk_0c; j < (&data_0217c7c4)->mUnk_00; j++) {
+    for (j = 0, playerCursor = (&data_0217c7c4)->mEntries; j < (&data_0217c7c4)->mCount; j++) {
         NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) playerCursor, fadeSteps);
-        playerCursor += (&data_0217c7c4)->mUnk_10;
+        playerCursor += (&data_0217c7c4)->mEntrySize;
     }
 }
 
@@ -1376,8 +1376,8 @@ void UpdateSceneSoundState(void) {
     } else if (GetCurrentSceneNumber() == 3) {
         func_02110874();
     }
-    if (data_0217d060 != NULL && data_0217d060->mUnk_00.mSeqId == 0 && data_0217d060->mUnk_0c != NULL) {
-        UpdateSeqVariableReadings(&data_0217d060->mUnk_0c);
+    if (data_0217d060 != NULL && data_0217d060->mSoundSet.mSeqId == 0 && data_0217d060->mSeqPlayer != NULL) {
+        UpdateSeqVariableReadings(&data_0217d060->mSeqPlayer);
     }
     gSceneSoundState.mSceneFrames++;
 }
@@ -1399,9 +1399,9 @@ void StopSceneSounds(void) {
         NNS_SndPlayerStopSeq(data_0217c838 + i, GetSoundFadeSteps());
     }
     fadeSteps = GetSoundFadeSteps();
-    for (j = 0, playerCursor = (&data_0217c7c4)->mUnk_0c; j < (&data_0217c7c4)->mUnk_00; j++) {
+    for (j = 0, playerCursor = (&data_0217c7c4)->mEntries; j < (&data_0217c7c4)->mCount; j++) {
         NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) playerCursor, fadeSteps);
-        playerCursor += (&data_0217c7c4)->mUnk_10;
+        playerCursor += (&data_0217c7c4)->mEntrySize;
     }
     NNS_SndPlayerStopSeq(&data_0217c788, 13);
     NNS_SndPlayerStopSeq(&data_0217c778, 13);
@@ -1425,9 +1425,9 @@ void StopSceneSoundsAtOnce(void) {
         NNS_SndPlayerStopSeq(data_0217c838 + i, 0);
     }
     playerTable = &data_0217c7c4;
-    for (j = 0, playerCursor = playerTable->mUnk_0c; j < playerTable->mUnk_00; j++) {
+    for (j = 0, playerCursor = playerTable->mEntries; j < playerTable->mCount; j++) {
         NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) playerCursor, 0);
-        playerCursor += playerTable->mUnk_10;
+        playerCursor += playerTable->mEntrySize;
     }
     data_0217c7a4 = 0;
     NNS_SndPlayerStopSeq(&data_0217c788, 0);
@@ -1470,9 +1470,9 @@ void func_02105d70(void) {
     }
     fadeSteps = GetSoundFadeSteps();
     playerTable = &data_0217c7c4;
-    for (j = 0, playerCursor = playerTable->mUnk_0c; j < playerTable->mUnk_00; j++) {
+    for (j = 0, playerCursor = playerTable->mEntries; j < playerTable->mCount; j++) {
         NNS_SndPlayerMoveVolume((NNSSndSeqPlayer **) playerCursor, 0, fadeSteps);
-        playerCursor += playerTable->mUnk_10;
+        playerCursor += playerTable->mEntrySize;
     }
     SetSoundFadeSteps(savedFadeSteps);
 }
@@ -1507,9 +1507,9 @@ void func_02105c4c(void) {
     }
     fadeSteps = GetSoundFadeSteps();
     playerTable = &data_0217c7c4;
-    for (j = 0, playerCursor = playerTable->mUnk_0c; j < playerTable->mUnk_00; j++) {
+    for (j = 0, playerCursor = playerTable->mEntries; j < playerTable->mCount; j++) {
         NNS_SndPlayerMoveVolume((NNSSndSeqPlayer **) playerCursor, 0x7f, fadeSteps);
-        playerCursor += playerTable->mUnk_10;
+        playerCursor += playerTable->mEntrySize;
     }
     SetSoundFadeSteps(savedFadeSteps);
 }
@@ -1538,9 +1538,9 @@ void func_02105b64(s32 a) {
     }
     fadeSteps = GetSoundFadeSteps();
     playerTable = &data_0217c7c4;
-    for (j = 0, playerCursor = playerTable->mUnk_0c; j < playerTable->mUnk_00; j++) {
+    for (j = 0, playerCursor = playerTable->mEntries; j < playerTable->mCount; j++) {
         NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) playerCursor, fadeSteps);
-        playerCursor += playerTable->mUnk_10;
+        playerCursor += playerTable->mEntrySize;
     }
     SetSoundMode(&data_0217d084, 4);
 }

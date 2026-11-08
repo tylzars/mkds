@@ -89,10 +89,10 @@ void UpdateWater(Water *water) {
             if (water->mHoldFrames > water->mHighHoldFrameCount) {
                 water->mState = 2;
                 if (water->mUnk_170 != 0 && volume >= 0) {
-                    highSoundRequest.mUnk_00 = 0x114;
-                    highSoundRequest.mUnk_04 = NULL;
+                    highSoundRequest.mSoundId = 0x114;
+                    highSoundRequest.mPositionSource = NULL;
                     highSoundRequest.mUnk_08 = 4;
-                    highSoundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
+                    highSoundRequest.mDistanceSquared = GetHorizontalCameraDistanceSquared(NULL);
                     func_0210b760(&highSoundRequest, soundHandleSlot);
                 }
             } else if (water->mHoldFrames > (water->mHighHoldFrameCount >> 1)) {
@@ -120,10 +120,10 @@ void UpdateWater(Water *water) {
             if (water->mHoldFrames > water->mLowHoldFrameCount) {
                 water->mState = 0;
                 if (water->mUnk_170 != 0 && volume >= 0) {
-                    lowSoundRequest.mUnk_00 = 0x113;
-                    lowSoundRequest.mUnk_04 = NULL;
+                    lowSoundRequest.mSoundId = 0x113;
+                    lowSoundRequest.mPositionSource = NULL;
                     lowSoundRequest.mUnk_08 = 4;
-                    lowSoundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
+                    lowSoundRequest.mDistanceSquared = GetHorizontalCameraDistanceSquared(NULL);
                     func_0210b760(&lowSoundRequest, soundHandleSlot);
                 }
             } else if (water->mHoldFrames > (water->mLowHoldFrameCount >> 1)) {

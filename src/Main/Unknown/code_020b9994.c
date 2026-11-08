@@ -172,7 +172,7 @@ void func_020bab54(void) {
                     k = 0x1c6;
                 }
                 if ((data_0217c780 & 1) != 0) {
-                    r = func_0210e128(func_02108ea0(0));
+                    r = TakeSoundHandleEntry(func_02108ea0(0));
                     if (data_0217d084.mUnk_0c != 0) {
                         if (*r != NULL) {
                             NNS_SndPlayerStopSeq(r, 0);
@@ -191,7 +191,7 @@ void func_020bab54(void) {
                     k = 0x1c5;
                 }
                 if ((data_0217c780 & 1) != 0) {
-                    r = func_0210e128(func_02108ea0(0));
+                    r = TakeSoundHandleEntry(func_02108ea0(0));
                     if (data_0217d084.mUnk_0c != 0) {
                         if (*r != NULL) {
                             NNS_SndPlayerStopSeq(r, 0);

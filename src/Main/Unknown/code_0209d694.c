@@ -104,10 +104,10 @@ void func_0209d84c(void *a, Unk0209d694 *p) {
         case 0:
             if (p->mUnk_a4-- <= 0) {
                 p->mUnk_b8 = 1;
-                s.mUnk_00 = 0x195;
-                s.mUnk_04 = &p->mUnk_00.mPos;
+                s.mSoundId = 0x195;
+                s.mPositionSource = &p->mUnk_00.mPos;
                 s.mUnk_08 = 2;
-                s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
+                s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
                 func_0210b7a8(&s);
             }
             break;

@@ -4,5 +4,5 @@
 
 void func_0210a664(Kart *kart) {
     kart->mUnk_450.mUnk_34 = (~(0x0u));
-    kart->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) UpdateKartPlayingSound;
+    kart->mSoundSource.mTrackParamsFunction = (void (*)(void *, void *, void *)) UpdateKartPlayingSound;
 }

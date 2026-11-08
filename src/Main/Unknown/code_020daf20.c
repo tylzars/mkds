@@ -254,10 +254,10 @@ void UpdateDossun(void *unused, Dossun *dossun) {
                 } else {
                     n = 4;
                 }
-                soundRequest.mUnk_00 = 0x166;
-                soundRequest.mUnk_04 = &dossun->mUnk_00.mPos;
+                soundRequest.mSoundId = 0x166;
+                soundRequest.mPositionSource = &dossun->mUnk_00.mPos;
                 soundRequest.mUnk_08 = n;
-                soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(&dossun->mUnk_00.mPos);
+                soundRequest.mDistanceSquared = GetHorizontalCameraDistanceSquared(&dossun->mUnk_00.mPos);
                 func_0210b7a8(&soundRequest);
             }
             StartCameraWobbleAtDistance(dossun->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f, 0x1000);
@@ -494,10 +494,10 @@ void UpdateKuribo(void *unused, Kuribo *kuribo) {
             } else {
                 falloffIndex = 4;
             }
-            soundRequest.mUnk_00 = 0x182;
-            soundRequest.mUnk_04 = &kuribo->mUnk_00.mPos;
+            soundRequest.mSoundId = 0x182;
+            soundRequest.mPositionSource = &kuribo->mUnk_00.mPos;
             soundRequest.mUnk_08 = falloffIndex;
-            soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(&kuribo->mUnk_00.mPos);
+            soundRequest.mDistanceSquared = GetHorizontalCameraDistanceSquared(&kuribo->mUnk_00.mPos);
             func_0210b7a8(&soundRequest);
         }
     }

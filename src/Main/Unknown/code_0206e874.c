@@ -54,7 +54,7 @@ void func_0206edac(Kart *p, Vec3 *a) {
         k = (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) ? 3 : 2;
         x = data_usa_0216ca38[2];
         c = func_02086080(p->mIndex);
-        func_0210ddf4(data_0217d26c + k, c + x, (void (*)(void *, int)) func_02071958, p, 2);
+        AddSoundRequest(data_0217d26c + k, c + x, (void (*)(void *, int)) func_02071958, p, 2);
         StartKartModelScaleAnimation(p, 0);
     }
     p->mUnk_4dc = 7;

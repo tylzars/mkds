@@ -15,160 +15,161 @@
 #include "Main/Unknown/code_0210d0b4.h"
 #include "code_0201750c.h"
 
-void func_0210c134(SoundSource *a, u32 b) {
-    void *v1;
-    void *v2;
-    NNS_FndInitList(&a->mPlayingSounds, 8);
-    v1 = (void *) StartPlayingSoundSeqArc;
-    a->mUnk_38 = 1;
-    v2 = (void *) SetPlayingSoundTrackParams;
-    a->mUnk_2c = v1;
-    a->mUnk_30 = v2;
-    a->mUnk_34 = 0;
-    a->mOwnerPosSource = b;
-    a->mUnk_18 = 3;
-    ClearThreeWords((u32 *) a->mUnk_1c);
-    ClearThreeWords((u32 *) a);
-    TryAppendListObject(&data_0217d028, a);
+void func_0210c134(SoundSource *source, u32 positionSource) {
+    void *startFunction;
+    void *trackParamsFunction;
+    NNS_FndInitList(&source->mPlayingSounds, 8);
+    startFunction = (void *) StartPlayingSoundSeqArc;
+    source->mUnk_38 = 1;
+    trackParamsFunction = (void *) SetPlayingSoundTrackParams;
+    source->mStartSeqFunction = startFunction;
+    source->mTrackParamsFunction = trackParamsFunction;
+    source->mSourceFlags = 0;
+    source->mOwnerPosSource = positionSource;
+    source->mUpdateListIndex = 3;
+    ClearThreeWords((u32 *) source->mUnk_1c);
+    ClearThreeWords((u32 *) source);
+    TryAppendListObject(&data_0217d028, source);
 }
 
-void func_0210c0bc(SoundSource *p) {
-    void *a;
+void func_0210c0bc(SoundSource *source) {
+    void *sound;
 
-    StopSoundsStartedWhileRequested(p, 0);
-    for (a = p->mPlayingSounds.mHead; a != NULL; a = p->mPlayingSounds.mHead) {
-        RemoveListObject(&p->mPlayingSounds, (u8 *) a);
+    StopSoundsStartedWhileRequested(source, 0);
+    for (sound = source->mPlayingSounds.mHead; sound != NULL; sound = source->mPlayingSounds.mHead) {
+        RemoveListObject(&source->mPlayingSounds, (u8 *) sound);
     }
-    if (p->mUnk_18 != 3) {
-        RemoveListObject(&data_0217d048[p->mUnk_18], (u8 *) p);
-        p->mUnk_18 = 3;
+    if (source->mUpdateListIndex != 3) {
+        RemoveListObject(&data_0217d048[source->mUpdateListIndex], (u8 *) source);
+        source->mUpdateListIndex = 3;
     }
 }
 
-void func_0210c084(PlayingSound *p, u32 b) {
-    NNS_SndPlayerStopSeq(&p->mUnk_00, b);
-    p->mUnk_19 &= ~4;
-    p->mUnk_19 &= ~8;
-    p->mUnk_19 &= ~2;
+void func_0210c084(PlayingSound *sound, u32 fadeSteps) {
+    NNS_SndPlayerStopSeq(&sound->mSeqPlayer, fadeSteps);
+    sound->mFlags &= ~4;
+    sound->mFlags &= ~8;
+    sound->mFlags &= ~2;
 }
 
-void func_0210bfbc(SoundSource *p) {
-    PlayingSound *a;
-    u32 v;
-    u8 f;
+void RefreshSoundSourceUpdateList(SoundSource *source) {
+    PlayingSound *sound;
+    u32 updateListIndex;
+    u8 soundFlags;
 
-    v = 3;
-    for (a = p->mPlayingSounds.mHead; a != NULL; a = NNS_FndGetNextListObject(&p->mPlayingSounds, a)) {
-        f = a->mUnk_19;
-        if (f & 2) {
-            v = 0;
+    updateListIndex = 3;
+    for (sound = source->mPlayingSounds.mHead; sound != NULL;
+         sound = NNS_FndGetNextListObject(&source->mPlayingSounds, sound)) {
+        soundFlags = sound->mFlags;
+        if (soundFlags & 2) {
+            updateListIndex = 0;
             break;
         }
-        if (f & 8 || f & 1) {
-            v = 1;
+        if (soundFlags & 8 || soundFlags & 1) {
+            updateListIndex = 1;
         }
     }
-    if (p->mUnk_18 != v) {
-        if (p->mUnk_18 != 3) {
-            RemoveListObject(&data_0217d048[p->mUnk_18], (u8 *) p);
-            p->mUnk_18 = 3;
+    if (source->mUpdateListIndex != updateListIndex) {
+        if (source->mUpdateListIndex != 3) {
+            RemoveListObject(&data_0217d048[source->mUpdateListIndex], (u8 *) source);
+            source->mUpdateListIndex = 3;
         }
-        if (v != 3) {
-            TryAppendListObject(&data_0217d048[v], p);
-            p->mUnk_18 = v;
+        if (updateListIndex != 3) {
+            TryAppendListObject(&data_0217d048[updateListIndex], source);
+            source->mUpdateListIndex = updateListIndex;
         }
     }
 }
 
-void func_0210bf24(u32 a, u32 b, u32 c, void *d) {
-    PlayingSound *v;
-    NNSFndList *w;
+void func_0210bf24(u32 seqArcNo, u32 soundId, u32 positionSource, void *request) {
+    PlayingSound *sound;
+    NNSFndList *sourceList;
 
     if (data_0217d084.mUnk_10 == 0) {
         return;
     }
-    v = func_0210e128(&data_0217d034);
-    func_0210c084(v, 0);
-    w = v->mUnk_10;
-    if (w != NULL) {
-        RemoveListObject(w, (u8 *) v);
-        func_0210bfbc((SoundSource *) (w - 1));
+    sound = TakeSoundHandleEntry(&data_0217d034);
+    func_0210c084(sound, 0);
+    sourceList = sound->mUnk_10;
+    if (sourceList != NULL) {
+        RemoveListObject(sourceList, (u8 *) sound);
+        RefreshSoundSourceUpdateList((SoundSource *) (sourceList - 1));
     }
-    ResetPlayingSound(v);
-    func_0210bcf4(a, b, c, &v->mUnk_00, d);
+    ResetPlayingSound(sound);
+    func_0210bcf4(seqArcNo, soundId, positionSource, &sound->mSeqPlayer, request);
 }
 
-u32 func_0210bee8(u32 a, u32 b, u32 c, NNSSndSeqPlayer **d, void *e) {
+u32 func_0210bee8(u32 seqArcNo, u32 soundId, u32 positionSource, NNSSndSeqPlayer **handle, void *request) {
     if (data_0217d084.mUnk_10 == 0) {
-        return a;
+        return seqArcNo;
     }
-    return func_0210bcf4(a, b, c, d, e);
+    return func_0210bcf4(seqArcNo, soundId, positionSource, handle, request);
 }
 
-u32 func_0210bcf4(u32 a, u32 b, u32 c, NNSSndSeqPlayer **d, void *e) {
-    Unk0210bcf4 st;
+u32 func_0210bcf4(u32 seqArcNo, u32 soundId, u32 positionSource, NNSSndSeqPlayer **handle, void *request) {
+    SoundParams params;
     u32 v;
-    u32 ok;
-    u32 t;
-    s32 n;
-    s32 k;
+    u32 runThisCall;
+    u32 countThisPass;
+    s32 priority;
+    s32 volumeForPriority;
 
     v = 0;
-    ok = v;
+    runThisCall = v;
     if (data_0217d084.mMode == 4) {
         return v;
     }
     if (data_0217d084.mMode == 0) {
         return v;
     }
-    if (*d == NULL) {
+    if (*handle == NULL) {
         v = 1;
-        ok = v;
+        runThisCall = v;
     } else {
-        t = data_0217d024[0];
-        data_0217d024[0] = t + 1;
-        if ((t & 3) == data_0217d010[0]) {
-            ok = 1;
+        countThisPass = data_0217d024[0];
+        data_0217d024[0] = countThisPass + 1;
+        if ((countThisPass & 3) == data_0217d010[0]) {
+            runThisCall = 1;
         }
     }
-    if (ok == 0) {
-        return ok;
+    if (runThisCall == 0) {
+        return runThisCall;
     }
-    st.mUnk_00 = NULL;
-    st.mUnk_04 = c;
-    st.mUnk_20 = e;
-    st.mUnk_14 = 0;
-    st.mUnk_1c = 0;
-    st.mUnk_18 = 0;
-    if (c == 0) {
-        st.mUnk_10 = 0;
-        st.mUnk_14 = 0x7f;
-        st.mUnk_1c = 0x7f;
-        st.mUnk_18 = 0;
+    params.mSource = NULL;
+    params.mPositionSource = positionSource;
+    params.mUnk_20 = request;
+    params.mVolume = 0;
+    params.mUnk_1c = 0;
+    params.mPan = 0;
+    if (positionSource == 0) {
+        params.mDistance = 0;
+        params.mVolume = 0x7f;
+        params.mUnk_1c = 0x7f;
+        params.mPan = 0;
     } else {
-        st.mUnk_10 = data_0217d018(&st);
-        st.mUnk_1c = st.mUnk_14 = data_0217d014(&st);
-        st.mUnk_18 = data_0217d01c(&st);
+        params.mDistance = data_0217d018(&params);
+        params.mUnk_1c = params.mVolume = data_0217d014(&params);
+        params.mPan = data_0217d01c(&params);
     }
-    if (st.mUnk_14 <= 0) {
-        if (*d == NULL) {
-            return (u32) *d;
+    if (params.mVolume <= 0) {
+        if (*handle == NULL) {
+            return (u32) *handle;
         }
-        return NNS_SndPlayerStopSeq(d, 0);
+        return NNS_SndPlayerStopSeq(handle, 0);
     }
-    k = st.mUnk_1c;
-    n = k + (NNS_SndArcGetSeqArcParam(a, b)->mPlayerPrio - 0x40);
-    if (n > 0) {
-        if (n >= 0x7f) {
-            n = 0x7f;
+    volumeForPriority = params.mUnk_1c;
+    priority = volumeForPriority + (NNS_SndArcGetSeqArcParam(seqArcNo, soundId)->mPlayerPrio - 0x40);
+    if (priority > 0) {
+        if (priority >= 0x7f) {
+            priority = 0x7f;
         }
     } else {
-        n = 0;
+        priority = 0;
     }
     if (v != 0) {
-        data_0216cb1c[0](d, a, b, n);
+        data_0216cb1c[0](handle, seqArcNo, soundId, priority);
     }
-    NNS_SndPlayerSetVolume(d, st.mUnk_14);
-    NNS_SndPlayerSetPlayerPriority(d, n);
-    return NNS_SndPlayerSetTrackPan(d, data_0216cb20, st.mUnk_18);
+    NNS_SndPlayerSetVolume(handle, params.mVolume);
+    NNS_SndPlayerSetPlayerPriority(handle, priority);
+    return NNS_SndPlayerSetTrackPan(handle, data_0216cb20, params.mPan);
 }

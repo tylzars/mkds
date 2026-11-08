@@ -8,14 +8,14 @@
 #include "os_thread.h"
 #include "Main/Unknown/code_020d22c0.h" // RandomState64
 #include "pm.h" // PMSleepCallbackInfo
-#include "Main/Unknown/code_02105ec0.h" // Unk0217d060
+#include "Main/Unknown/code_02105ec0.h" // SoundSetPlayer
 
 // Object behind data_021759d0 (0x7c bytes); the 0x14 bytes at 0x2a are the source of a block move into
 // data_0217aa08.
 typedef struct Unk021759d0 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
-    /* 08 */ Unk0217d060 mUnk_08;
+    /* 08 */ SoundSetPlayer mUnk_08;
     /* 1c */ union {
         s32 mUnk_1c;
         struct {

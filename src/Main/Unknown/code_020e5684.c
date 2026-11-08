@@ -68,10 +68,10 @@ void UpdateObPakkunSf(u32 a, Unk020e43a8 *obPakkunSf) {
         } else {
             falloffIndex = 4;
         }
-        soundRequest.mUnk_00 = 0x163;
-        soundRequest.mUnk_04 = &obPakkunSf->mUnk_00.mPos;
+        soundRequest.mSoundId = 0x163;
+        soundRequest.mPositionSource = &obPakkunSf->mUnk_00.mPos;
         soundRequest.mUnk_08 = falloffIndex;
-        soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(&obPakkunSf->mUnk_00.mPos);
+        soundRequest.mDistanceSquared = GetHorizontalCameraDistanceSquared(&obPakkunSf->mUnk_00.mPos);
         func_0210b7a8(&soundRequest);
     }
     AdvanceStateMachine(&obPakkunSf->mUnk_00.mStateMachine);
