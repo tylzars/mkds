@@ -10,9 +10,9 @@
 #include "fs_file.h"
 #include "Main/Unknown/code_02008e10.h"
 
-// Entry of the list that data_0216fc4c walks (the lists are chained through mUnk_4bc). func_02008934 returns one;
+// Entry of the list that gGameInfoList walks (the lists are chained through mUnk_4bc). GetEntryOrNull returns one;
 // the 0xc0 bytes at 0x4c0 are moved out by func_0200b1b0.
-typedef struct Unk0200b610 {
+typedef struct GameInfoEntry {
     /* 000 */ u8 mUnk_000[0x220];
     /* 220 */ u8 mUnk_220[0x16];
     /* 236 */ u8 mUnk_236;
@@ -32,28 +32,28 @@ typedef struct Unk0200b610 {
     /* 4b5 */ u8 mUnk_4b5;
     /* 4b6 */ u8 mUnk_4b6[2];
     /* 4b8 */ u32 mUnk_4b8;
-    /* 4bc */ struct Unk0200b610 *mUnk_4bc;
+    /* 4bc */ struct GameInfoEntry *mNext;
     /* 4c0 */ u8 mUnk_4c0[0xc0];
-} Unk0200b610;
+} GameInfoEntry;
 
-// State of the walk over the Unk0200b610 list: the first entry, the current entry, the position in the current
-// entry, and five bytes that func_020096c0 clears.
-typedef struct Unk0216fc4c {
-    /* 00 */ Unk0200b610 *mUnk_00;
-    /* 04 */ Unk0200b610 *mUnk_04;
+// State of the walk over the GameInfoEntry list: the first entry, the current entry, the position in the current
+// entry, and five bytes that ResetGameInfoWalk clears.
+typedef struct GameInfoList {
+    /* 00 */ GameInfoEntry *mFirst;
+    /* 04 */ GameInfoEntry *mCurrent;
     /* 08 */ u8 *mUnk_08;
-    /* 0c */ u8 mUnk_0c;
+    /* 0c */ u8 mState;
     /* 0d */ u8 mUnk_0d;
     /* 0e */ u8 mUnk_0e;
     /* 0f */ u8 mUnk_0f;
     /* 10 */ u8 mUnk_10;
-    /* 11 */ u8 mUnk_11;
+    /* 11 */ u8 mNextSequence;
     /* 12 */ u8 mUnk_12[2];
-} Unk0216fc4c;
+} GameInfoList;
 
 // 0x70-byte block that func_020092d0 and func_020094b8 fill and pass to WM_SetGameInfo. The halfword at 0xc and
 // the bytes from 0xe have another layout in func_020094b8.
-typedef struct Unk0216fc60 {
+typedef struct GameInfoBlock {
     /* 00 */ u32 mUnk_00;
     /* 04 */ union {
         u8 mUnk_04;
@@ -64,8 +64,8 @@ typedef struct Unk0216fc60 {
     };
     /* 05 */ u8 mUnk_05;
     /* 06 */ u8 mUnk_06;
-    /* 07 */ u8 mUnk_07;
-    /* 08 */ u16 mUnk_08;
+    /* 07 */ u8 mSequence;
+    /* 08 */ u16 mChecksum;
     /* 0a */ u8 mUnk_0a;
     /* 0b */ u8 mUnk_0b;
     /* 0c */ union {
@@ -75,7 +75,7 @@ typedef struct Unk0216fc60 {
     /* 0e */ u16 mUnk_0e;
     /* 10 */ u8 mUnk_10[0x58];
     /* 68 */ u8 mUnk_68[8];
-} Unk0216fc60;
+} GameInfoBlock;
 
 // Fields func_02009828 reads.
 typedef struct Unk02009828 {
@@ -91,25 +91,25 @@ typedef struct Unk02009828 {
 extern u8 data_0216fc30;
 extern u32 data_0216fc44;
 extern void (*data_0216fc48)(u32 a);
-extern Unk0216fc4c data_0216fc4c;
-extern Unk0216fc60 data_0216fc60;
+extern GameInfoList gGameInfoList;
+extern GameInfoBlock gGameInfoBlock;
 extern u8 data_0216fce0[0xc0];
 extern Unk0216fc1c data_0216fd30[1];
 
-u32 func_020091fc(Unk02007ec4 *a);
-u32 func_0200921c(Unk02008f00Func a, u32 b, Unk02007ec4 *c);
-void func_020092d0(u32 a, u16 b, u32 c);
+u32 func_020091fc(ScanBlock *scanBlock);
+u32 AddScanResult(Unk02008f00Func callback, u32 b, ScanBlock *scanBlock);
+void func_020092d0(u32 ggid, u16 tgid, u32 attr);
 void func_02009494(void);
-void func_020094b8(u32 a, u16 b, u32 c);
+void func_020094b8(u32 ggid, u16 tgid, u32 attr);
 void func_020095c4(void);
-u32 func_020095fc(void);
-void func_0200964c(u32 a, u16 b, u32 c);
-void func_020096c0(void);
-void func_020096d4(void);
-void func_020096f4(Unk0200b610 *a);
-u32 GetU16StringLength(const u16 *a);
-void func_0200973c(Unk0200b610 *a, const void *b, u32 c, u32 d);
-u32 LoadFileIfSizeMatches(const u8 *a, u8 *b, u32 c);
-void func_02009828(Unk0200b610 *a, Unk02009828 *b, const u8 *c);
+u32 AdvanceGameInfoEntry(void);
+void SetNextGameInfo(u32 ggid, u16 tgid, u32 attr);
+void ResetGameInfoWalk(void);
+void InitGameInfoList(void);
+void AppendGameInfoEntry(GameInfoEntry *newEntry);
+u32 GetU16StringLength(const u16 *string);
+void func_0200973c(GameInfoEntry *entry, const void *records, u32 recordMask, u32 d);
+u32 LoadFileIfSizeMatches(const u8 *path, u8 *buffer, u32 isLarge);
+void func_02009828(GameInfoEntry *entry, Unk02009828 *params, const u8 *record);
 
 // Declared here until the code that defines them is decompiled.

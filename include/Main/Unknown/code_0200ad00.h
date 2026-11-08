@@ -76,6 +76,6 @@ typedef struct DataRangeTable {
 
 void func_0200ad00(void);
 u32 IsMPReadyToSendData(void);
-u32 AdvanceScanChannel(Unk02143a78 *a);
-u32 CopyFromDataRanges(DataRangeTable *a, u32 b, void *c, u32 d);
-void AddDataRange(DataRangeTable *a, u32 b, u32 c, u8 *d, u32 e);
+u32 AdvanceScanChannel(Unk02143a78 *scanParams);
+u32 CopyFromDataRanges(DataRangeTable *table, u32 offset, void *destination, u32 byteCount);
+void AddDataRange(DataRangeTable *table, u32 offset, u32 size, u8 *data, u32 value);

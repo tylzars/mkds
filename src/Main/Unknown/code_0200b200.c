@@ -20,8 +20,8 @@ void ScanConnectEndScanCallback(Unk021425e8 *a) {
 }
 
 u32 StartConnectToEntry(u32 entryIndex) {
-    Unk02008934 *v1;
-    v1 = func_02008934(entryIndex);
+    EntryRecord *v1;
+    v1 = GetEntryOrNull(entryIndex);
     if (v1 == NULL) {
         return 0;
     }
@@ -30,7 +30,7 @@ u32 StartConnectToEntry(u32 entryIndex) {
     SetupMPLink((u32) gScanConnectWork->mMPLink);
     SetMPLinkCallback((u32) MPLinkCallback);
     SetScanConnectStateAndNotify(1, 0);
-    MI_CpuCopy8(v1->mUnk_4c0, gScanConnectWork->mScanBuffer, 0xc0);
+    MI_CpuCopy8(v1->mScanBuffer, gScanConnectWork->mScanBuffer, 0xc0);
     ScanConnectStartConnect(gScanConnectWork->mScanBuffer);
     return 1;
 }

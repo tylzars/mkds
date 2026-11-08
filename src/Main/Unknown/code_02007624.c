@@ -142,7 +142,7 @@ void func_020079c4(s32 eventCode, Unk021425e8 *eventData) {
                 v2 = i * 0x5d4;
                 if ((OFFSET_PTR(Unk0216fdac, work, v2))->mEntryUsed != 0 &&
                     (OFFSET_PTR(Unk0216fdac, work, v2))->mUnk_1d50 != 0) {
-                    func_0200973c((Unk0200b610 *) (work->mUnk_1788 + 0xe4 + v2), work->mUnk_1340,
+                    func_0200973c((GameInfoEntry *) (work->mUnk_1788 + 0xe4 + v2), work->mUnk_1340,
                                   (OFFSET_PTR(Unk0216fdac, work, v2))->mUnk_1d4e,
                                   (OFFSET_PTR(Unk0216fdac, work, v2))->mUnk_1d50);
                     (OFFSET_PTR(Unk0216fdac, data_0216fdac, v2))->mUnk_1d50 = v1;
@@ -154,7 +154,7 @@ void func_020079c4(s32 eventCode, Unk021425e8 *eventData) {
                 u16 tgid;
                 ggid = GetGgid();
                 tgid = GetTgid();
-                func_0200964c(ggid, tgid, GetGameInfoAttr());
+                SetNextGameInfo(ggid, tgid, GetGameInfoAttr());
             }
             break;
         case 0xff:

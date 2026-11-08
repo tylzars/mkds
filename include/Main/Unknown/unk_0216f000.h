@@ -34,8 +34,8 @@ struct WirelessWork;
 extern struct WirelessWork *gWirelessWork;
 struct Unk0216fdac;
 extern struct Unk0216fdac *data_0216fdac;
-struct Unk0200aeec_head;
-extern struct Unk0200aeec_head *data_0216fde0;
+struct WorkerQueue;
+extern struct WorkerQueue *gWorkerQueue;
 extern u8 gScanConnectInitialized[];
 struct ScanConnectWork;
 extern struct ScanConnectWork *gScanConnectWork;
@@ -52,8 +52,8 @@ extern u8 OverlaySignatures[][0x14];
 // 0 and clears it when its first argument is 0. Initial value 1.
 extern u8 gDispOn[];
 extern u32 data_0216f074[];
-extern void (*data_0216fc34)(void);
-extern void (*data_0216fc38)(u8 *);
+extern void (*gClearBssidCallback)(void);
+extern void (*gSetBssidCallback)(u8 *);
 extern Unk02143a78 gScanParams;
 
 extern u32 data_0216ff44;

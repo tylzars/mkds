@@ -4,164 +4,165 @@
 
 #pragma thumb on
 
-void func_02008d68(u32 a) {
-    if (data_0216fc3c->mUnk_05 != data_0216fc40->mUnk_10[a].mUnk_4b3) {
-        func_0200895c(a);
-        func_02008a4c(a);
-        data_0216fc40->mUnk_10[a].mUnk_4b3 = data_0216fc3c->mUnk_05;
+void func_02008d68(u32 entryIndex) {
+    if (gReceivedGameInfo->mUnk_05 != gEntryTable->mEntries[entryIndex].mUnk_4b3) {
+        func_0200895c(entryIndex);
+        SetScanBssidFromEntry(entryIndex);
+        gEntryTable->mEntries[entryIndex].mUnk_4b3 = gReceivedGameInfo->mUnk_05;
     }
 }
 
-void func_02008d30(u32 a) {
-    if (data_0216fc3c->mUnk_06 != data_0216fc40->mUnk_10[a].mUnk_4b4) {
-        func_02008a4c(a);
+void func_02008d30(u32 entryIndex) {
+    if (gReceivedGameInfo->mUnk_06 != gEntryTable->mEntries[entryIndex].mUnk_4b4) {
+        SetScanBssidFromEntry(entryIndex);
     }
 }
 
-void func_02008cbc(const u8 *a) {
+void ExpireEntriesWithBssid(const u8 *bssid) {
     s32 i;
-    u32 v1;
-    u32 z;
+    u32 entryOffset;
+    u32 zero;
     i = 0;
-    v1 = 0;
-    z = 0;
+    entryOffset = 0;
+    zero = 0;
     for (; i < 0x10; i++) {
-        if (data_0216fc40->mUnk_00 & (1 << i)) {
-            u8 *q = data_0216fc40->mUnk_10[0].mUnk_4c4;
-            u8 *p = q + v1;
-            if (a[0] == q[v1] && a[1] == p[1] && a[2] == p[2] && a[3] == p[3] && a[4] == p[4] && a[5] == p[5]) {
-                *(s16 *) ((u8 *) data_0216fc40 + v1 + 0x59a) = z;
+        if (gEntryTable->mUsedMask & (1 << i)) {
+            u8 *firstBssid = gEntryTable->mEntries[0].mBssid;
+            u8 *entryBssid = firstBssid + entryOffset;
+            if (bssid[0] == firstBssid[entryOffset] && bssid[1] == entryBssid[1] && bssid[2] == entryBssid[2] &&
+                bssid[3] == entryBssid[3] && bssid[4] == entryBssid[4] && bssid[5] == entryBssid[5]) {
+                *(s16 *) ((u8 *) gEntryTable + entryOffset + 0x59a) = zero;
             }
         }
-        v1 += sizeof(Unk02008934);
+        entryOffset += sizeof(EntryRecord);
     }
 }
 
-void func_02008c08(u32 a) {
-    Unk02008934 *e;
-    u8 *v1;
-    u8 *p;
-    Unk0216fc1c *s;
-    u32 n;
-    e = &data_0216fc40->mUnk_10[a];
-    v1 = &e->mUnk_358;
-    if (e->mUnk_4b3 == data_0216fc3c->mUnk_05 && (e->mUnk_580 & (1 << data_0216fc3c->mUnk_0a)) != 0) {
+void func_02008c08(u32 entryIndex) {
+    EntryRecord *entry;
+    u8 *dataEnd;
+    u8 *destination;
+    Unk0216fc1c *gameInfo;
+    u32 byteCount;
+    entry = &gEntryTable->mEntries[entryIndex];
+    dataEnd = &entry->mUnk_358;
+    if (entry->mUnk_4b3 == gReceivedGameInfo->mUnk_05 && (entry->mUnk_580 & (1 << gReceivedGameInfo->mUnk_0a)) != 0) {
         return;
     }
-    if (data_0216fc3c->mUnk_04 == 0) {
-        p = (u8 *) e;
+    if (gReceivedGameInfo->mUnk_04 == 0) {
+        destination = (u8 *) entry;
     } else {
-        p = e->mUnk_220;
+        destination = entry->mUnk_220;
     }
-    s = data_0216fc3c;
-    p += s->mUnk_0a * 0x62;
-    n = *(u8 *) &s->mUnk_0c;
-    if (p + n > v1) {
+    gameInfo = gReceivedGameInfo;
+    destination += gameInfo->mUnk_0a * 0x62;
+    byteCount = *(u8 *) &gameInfo->mUnk_0c;
+    if (destination + byteCount > dataEnd) {
         return;
     }
-    MIi_CpuCopy16(&data_0216fc3c->mUnk_0e, p, n);
-    e->mUnk_4b2 = data_0216fc3c->mUnk_04;
-    e->mUnk_580 |= 1 << data_0216fc3c->mUnk_0a;
-    e->mUnk_584 = (1 << data_0216fc3c->mUnk_0b) - 1;
+    MIi_CpuCopy16(&gReceivedGameInfo->mUnk_0e, destination, byteCount);
+    entry->mUnk_4b2 = gReceivedGameInfo->mUnk_04;
+    entry->mUnk_580 |= 1 << gReceivedGameInfo->mUnk_0a;
+    entry->mUnk_584 = (1 << gReceivedGameInfo->mUnk_0b) - 1;
 }
 
-void func_02008aa0(u32 a) {
-    Unk02008934 *e;
+void func_02008aa0(u32 entryIndex) {
+    EntryRecord *entry;
     s32 i;
     u32 j;
-    u8 *p;
-    vu16 v1;
-    u16 z;
-    e = &data_0216fc40->mUnk_10[a];
-    if (e->mUnk_4b4 != data_0216fc3c->mUnk_06) {
-        if ((u8) (e->mUnk_4b4 + 1) == data_0216fc3c->mUnk_06) {
+    u8 *record;
+    vu16 clearValue;
+    u16 zero;
+    entry = &gEntryTable->mEntries[entryIndex];
+    if (entry->mUnk_4b4 != gReceivedGameInfo->mUnk_06) {
+        if ((u8) (entry->mUnk_4b4 + 1) == gReceivedGameInfo->mUnk_06) {
             i = 0;
-            p = e->mUnk_35e;
-            z = 0;
+            record = entry->mUnk_35e;
+            zero = 0;
             for (; i < 0xf; i++) {
-                if (data_0216fc3c->mUnk_0e & (2 << i)) {
-                    v1 = z;
-                    MIi_CpuClear16(v1, p, 0x16);
+                if (gReceivedGameInfo->mUnk_0e & (2 << i)) {
+                    clearValue = zero;
+                    MIi_CpuClear16(clearValue, record, 0x16);
                 }
-                p += 0x16;
+                record += 0x16;
             }
-            *(u16 *) &e->mUnk_588 &= ~data_0216fc3c->mUnk_0e;
-            data_0216fc40->mUnk_04 &= ~(1 << a);
+            *(u16 *) &entry->mUnk_588 &= ~gReceivedGameInfo->mUnk_0e;
+            gEntryTable->mUnk_04 &= ~(1 << entryIndex);
         } else {
             vu16 v2 = 0;
-            MIi_CpuClear16(v2, e->mUnk_35e, 0x14a);
-            e->mUnk_588 = 0;
-            data_0216fc40->mUnk_04 &= ~(1 << a);
+            MIi_CpuClear16(v2, entry->mUnk_35e, 0x14a);
+            entry->mUnk_588 = 0;
+            gEntryTable->mUnk_04 &= ~(1 << entryIndex);
         }
-        e->mUnk_4b4 = data_0216fc3c->mUnk_06;
-    } else if (e->mUnk_588 == data_0216fc3c->mUnk_0c) {
+        entry->mUnk_4b4 = gReceivedGameInfo->mUnk_06;
+    } else if (entry->mUnk_588 == gReceivedGameInfo->mUnk_0c) {
         return;
     }
-    e->mUnk_358 = data_0216fc3c->mUnk_0a;
-    e->mUnk_35a = data_0216fc3c->mUnk_0c;
-    e->mUnk_35c = data_0216fc3c->mUnk_0e;
-    e->mUnk_588 |= 1;
+    entry->mUnk_358 = gReceivedGameInfo->mUnk_0a;
+    entry->mUnk_35a = gReceivedGameInfo->mUnk_0c;
+    entry->mUnk_35c = gReceivedGameInfo->mUnk_0e;
+    entry->mUnk_588 |= 1;
     for (i = 0; i < 8; i++) {
-        e->mUnk_4a8[i] = data_0216fc3c->mUnk_68[i];
+        entry->mUnk_4a8[i] = gReceivedGameInfo->mUnk_68[i];
     }
     for (j = 0; j < 4; j++) {
-        u32 n = data_0216fc3c->mUnk_10[j].mUnk_00_4;
-        if (n != 0) {
-            MIi_CpuCopy16(&data_0216fc3c->mUnk_10[j], &e->mUnk_35e[(n - 1) * 0x16], 0x16);
-            e->mUnk_588 |= 1 << n;
+        u32 recordNumber = gReceivedGameInfo->mUnk_10[j].mUnk_00_4;
+        if (recordNumber != 0) {
+            MIi_CpuCopy16(&gReceivedGameInfo->mUnk_10[j], &entry->mUnk_35e[(recordNumber - 1) * 0x16], 0x16);
+            entry->mUnk_588 |= 1 << recordNumber;
         }
     }
 }
 
-void func_02008a4c(u32 a) {
-    if (data_0216fc40->mUnk_06 == 0) {
-        if (data_0216fc38 != NULL) {
-            data_0216fc38(data_0216fc40->mUnk_10[a].mUnk_4c4);
+void SetScanBssidFromEntry(u32 entryIndex) {
+    if (gEntryTable->mUnk_06 == 0) {
+        if (gSetBssidCallback != NULL) {
+            gSetBssidCallback(gEntryTable->mEntries[entryIndex].mBssid);
         }
-        data_0216fc40->mUnk_0c = 0x16;
-        data_0216fc40->mUnk_06 = 1 << a;
-        data_0216fc40->mUnk_08 = 0x321;
+        gEntryTable->mUnk_0c = 0x16;
+        gEntryTable->mUnk_06 = 1 << entryIndex;
+        gEntryTable->mUnk_08 = 0x321;
     }
 }
 
-void func_02008a14(void) {
-    if (data_0216fc40->mUnk_06 != 0) {
-        if (*data_0216fc34 != 0) {
-            (*data_0216fc34)();
+void ClearScanBssid(void) {
+    if (gEntryTable->mUnk_06 != 0) {
+        if (*gClearBssidCallback != 0) {
+            (*gClearBssidCallback)();
         }
-        data_0216fc40->mUnk_0c = 1;
-        data_0216fc40->mUnk_06 = 0;
-        data_0216fc40->mUnk_0a = 0;
+        gEntryTable->mUnk_0c = 1;
+        gEntryTable->mUnk_06 = 0;
+        gEntryTable->mUnk_0a = 0;
     }
 }
 
-void func_020089d0(u32 a) {
-    u32 m = 1 << a;
-    vu16 v1;
-    data_0216fc40->mUnk_02 &= ~m;
-    data_0216fc40->mUnk_04 &= ~m;
-    v1 = 0;
-    MIi_CpuClear16(v1, &data_0216fc40->mUnk_10[a], sizeof(Unk02008934));
+void ClearEntry(u32 entryIndex) {
+    u32 entryBit = 1 << entryIndex;
+    vu16 clearValue;
+    gEntryTable->mUnk_02 &= ~entryBit;
+    gEntryTable->mUnk_04 &= ~entryBit;
+    clearValue = 0;
+    MIi_CpuClear16(clearValue, &gEntryTable->mEntries[entryIndex], sizeof(EntryRecord));
 }
 
-void func_0200895c(u32 a) {
-    u32 m = 1 << a;
-    vu16 v1;
-    data_0216fc40->mUnk_02 &= ~m;
-    data_0216fc40->mUnk_04 &= ~m;
-    data_0216fc40->mUnk_10[a].mUnk_580 = 0;
-    data_0216fc40->mUnk_10[a].mUnk_584 = 0;
-    data_0216fc40->mUnk_10[a].mUnk_588 = 0;
-    data_0216fc40->mUnk_10[a].mUnk_58c = 0;
-    v1 = 0;
-    MIi_CpuClear16(v1, &data_0216fc40->mUnk_10[a], 0x4c0);
+void func_0200895c(u32 entryIndex) {
+    u32 entryBit = 1 << entryIndex;
+    vu16 clearValue;
+    gEntryTable->mUnk_02 &= ~entryBit;
+    gEntryTable->mUnk_04 &= ~entryBit;
+    gEntryTable->mEntries[entryIndex].mUnk_580 = 0;
+    gEntryTable->mEntries[entryIndex].mUnk_584 = 0;
+    gEntryTable->mEntries[entryIndex].mUnk_588 = 0;
+    gEntryTable->mEntries[entryIndex].mUnk_58c = 0;
+    clearValue = 0;
+    MIi_CpuClear16(clearValue, &gEntryTable->mEntries[entryIndex], 0x4c0);
 }
 
-Unk02008934 *func_02008934(u32 a) {
-    if ((data_0216fc40->mUnk_02 & (1 << a)) == 0) {
+EntryRecord *GetEntryOrNull(u32 entryIndex) {
+    if ((gEntryTable->mUnk_02 & (1 << entryIndex)) == 0) {
         return NULL;
     }
-    return &data_0216fc40->mUnk_10[a];
+    return &gEntryTable->mEntries[entryIndex];
 }
 
 #pragma thumb off

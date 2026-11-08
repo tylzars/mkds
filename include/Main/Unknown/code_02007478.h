@@ -12,9 +12,9 @@
 #include "Main/Unknown/code_02008908.h"
 #include "Main/Unknown/code_0214d000.h"
 
-// Object func_0200aeec runs LoadDataRange on: the member at 0x10 is the entry of DataRangeTable that is read.
+// Object QueueWorkerTask runs LoadDataRange on: the member at 0x10 is the entry of DataRangeTable that is read.
 typedef struct Unk02007478 {
-    /* 00 */ Unk0200aeec mUnk_00;
+    /* 00 */ WorkerTask mUnk_00;
     /* 10 */ DataRange *mDataRange;
     /* 14 */ DataRangeTable *mDataRangeTable;
 } Unk02007478;

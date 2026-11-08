@@ -9,145 +9,145 @@
 
 #pragma thumb on
 
-void func_0200991c(void *p0) {
-    data_0216fc40 = p0;
+void SetEntryTable(void *entryTable) {
+    gEntryTable = entryTable;
 }
 
 #pragma thumb off
 
 #pragma thumb on
-u32 func_02009908(UnkFunc *arg0, UnkFunc *arg1) {
-    u32 value0 = (u32) arg0;
-    u32 value1 = (u32) arg1;
-    u32 value2;
-    value2 = (u32) &data_0216fc38;
-    *(u32 *) ((value2) + 0u) = value0;
-    value0 = (u32) &data_0216fc34;
-    *(u32 *) ((value0) + 0u) = value1;
+u32 SetScanBssidCallbacks(UnkFunc *setCallback, UnkFunc *clearCallback) {
+    u32 value0 = (u32) setCallback;
+    u32 clearCallbackCopy = (u32) clearCallback;
+    u32 setCallbackSlot;
+    setCallbackSlot = (u32) &gSetBssidCallback;
+    *(u32 *) ((setCallbackSlot) + 0u) = value0;
+    value0 = (u32) &gClearBssidCallback;
+    *(u32 *) ((value0) + 0u) = clearCallbackCopy;
     return value0;
 }
 #pragma thumb off
 
 #pragma thumb on
 
-void func_02009828(Unk0200b610 *a, Unk02009828 *b, const u8 *c) {
+void func_02009828(GameInfoEntry *entry, Unk02009828 *params, const u8 *record) {
     u32 v1;
     u32 v2;
-    volatile u16 w;
-    w = 0;
-    MIi_CpuClear16(w, a, 0x4c0);
-    a->mUnk_4b2 = 0;
-    v1 = LoadFileIfSizeMatches(b->mUnk_0c, (u8 *) a, 1) == 0;
-    v2 = LoadFileIfSizeMatches(b->mUnk_10, (u8 *) a, 0) == 0;
+    volatile u16 clearValue;
+    clearValue = 0;
+    MIi_CpuClear16(clearValue, entry, 0x4c0);
+    entry->mUnk_4b2 = 0;
+    v1 = LoadFileIfSizeMatches(params->mUnk_0c, (u8 *) entry, 1) == 0;
+    v2 = LoadFileIfSizeMatches(params->mUnk_10, (u8 *) entry, 0) == 0;
     if ((v1 | v2) != 0) {
-        a->mUnk_4b2 = 1;
-        MemFillWordsByBlock_inline(a, 0x220);
+        entry->mUnk_4b2 = 1;
+        MemFillWordsByBlock_inline(entry, 0x220);
     }
-    a->mUnk_4b8 = b->mUnk_14;
-    if (c != NULL) {
-        MIi_CpuCopy16(c, a->mUnk_220, 0x16);
+    entry->mUnk_4b8 = params->mUnk_14;
+    if (record != NULL) {
+        MIi_CpuCopy16(record, entry->mUnk_220, 0x16);
     }
-    a->mUnk_236 = b->mUnk_18;
-    v1 = GetU16StringLength(b->mUnk_04) * 2;
-    MIi_CpuCopy16(b->mUnk_04, a->mUnk_238, (u16) v1);
-    MIi_CpuCopy16(b->mUnk_08, a->mUnk_298, 0xc0);
-    a->mUnk_358 = 1;
-    a->mUnk_35a = 1;
-    a->mUnk_4b0 = 1;
+    entry->mUnk_236 = params->mUnk_18;
+    v1 = GetU16StringLength(params->mUnk_04) * 2;
+    MIi_CpuCopy16(params->mUnk_04, entry->mUnk_238, (u16) v1);
+    MIi_CpuCopy16(params->mUnk_08, entry->mUnk_298, 0xc0);
+    entry->mUnk_358 = 1;
+    entry->mUnk_35a = 1;
+    entry->mUnk_4b0 = 1;
 }
 
 // Reads file a into b (b + 0x20 when c is non-zero) only when its size is 0x20 (c == 0) or 0x200 (c != 0).
-u32 LoadFileIfSizeMatches(const u8 *a, u8 *b, u32 c) {
-    FSFile v1;
-    u32 v2;
-    if (c != 0) {
-        v2 = 0x200;
+u32 LoadFileIfSizeMatches(const u8 *path, u8 *buffer, u32 isLarge) {
+    FSFile file;
+    u32 expectedSize;
+    if (isLarge != 0) {
+        expectedSize = 0x200;
     } else {
-        v2 = 0x20;
+        expectedSize = 0x20;
     }
-    if (c != 0) {
-        b += 0x20;
+    if (isLarge != 0) {
+        buffer += 0x20;
     }
-    if (a == NULL) {
+    if (path == NULL) {
         return 0;
     }
-    FS_InitFile(&v1);
-    if (FS_OpenFile(&v1, a) == 0) {
+    FS_InitFile(&file);
+    if (FS_OpenFile(&file, path) == 0) {
         return 0;
     }
-    if (v2 != v1.mProp.w.mUnk_08 - v1.mProp.w.mUnk_04) {
-        FS_CloseFile(&v1);
+    if (expectedSize != file.mProp.w.mUnk_08 - file.mProp.w.mUnk_04) {
+        FS_CloseFile(&file);
         return 0;
     }
-    FS_ReadFile(&v1, b, v2);
-    FS_CloseFile(&v1);
+    FS_ReadFile(&file, buffer, expectedSize);
+    FS_CloseFile(&file);
     return 1;
 }
 
-void func_0200973c(Unk0200b610 *a, const void *b, u32 c, u32 d) {
+void func_0200973c(GameInfoEntry *entry, const void *records, u32 recordMask, u32 d) {
     u8 v1;
     s32 i;
     v1 = 1;
-    MIi_CpuCopy16(b, a->mUnk_35e, 0x14a);
+    MIi_CpuCopy16(records, entry->mUnk_35e, 0x14a);
     for (i = 0; i < 15; i++) {
-        if ((c & (2 << i)) != 0) {
+        if ((recordMask & (2 << i)) != 0) {
             v1++;
         }
     }
-    a->mUnk_358 = v1;
-    a->mUnk_35a = c | 1;
-    a->mUnk_35c = d;
-    a->mUnk_4b4++;
+    entry->mUnk_358 = v1;
+    entry->mUnk_35a = recordMask | 1;
+    entry->mUnk_35c = d;
+    entry->mUnk_4b4++;
 }
 
-u32 GetU16StringLength(const u16 *a) {
-    u32 n;
-    for (n = 0; *a++ != 0; n++) {
+u32 GetU16StringLength(const u16 *string) {
+    u32 length;
+    for (length = 0; *string++ != 0; length++) {
     }
-    return n;
+    return length;
 }
 
-void func_020096f4(Unk0200b610 *a) {
-    Unk0200b610 *v1;
-    Unk0200b610 *v2;
-    if (data_0216fc4c.mUnk_00 == NULL) {
-        data_0216fc4c.mUnk_00 = a;
+void AppendGameInfoEntry(GameInfoEntry *newEntry) {
+    GameInfoEntry *lastEntry;
+    GameInfoEntry *nextEntry;
+    if (gGameInfoList.mFirst == NULL) {
+        gGameInfoList.mFirst = newEntry;
     } else {
-        v1 = data_0216fc4c.mUnk_00;
-        v2 = v1->mUnk_4bc;
-        if (v2 != NULL) {
+        lastEntry = gGameInfoList.mFirst;
+        nextEntry = lastEntry->mNext;
+        if (nextEntry != NULL) {
             do {
-                v1 = v2;
-                v2 = v2->mUnk_4bc;
-            } while (v2 != NULL);
+                lastEntry = nextEntry;
+                nextEntry = nextEntry->mNext;
+            } while (nextEntry != NULL);
         }
-        v1->mUnk_4bc = a;
+        lastEntry->mNext = newEntry;
     }
-    a->mUnk_4bc = NULL;
+    newEntry->mNext = NULL;
 }
 
-void func_020096d4(void) {
-    data_0216fc4c.mUnk_00 = NULL;
-    data_0216fc4c.mUnk_04 = NULL;
-    data_0216fc4c.mUnk_0c = 1;
+void InitGameInfoList(void) {
+    gGameInfoList.mFirst = NULL;
+    gGameInfoList.mCurrent = NULL;
+    gGameInfoList.mState = 1;
     data_0216fc48 = NULL;
-    func_020096c0();
+    ResetGameInfoWalk();
 }
 
-void func_020096c0(void) {
-    data_0216fc4c.mUnk_0d = 0;
-    data_0216fc4c.mUnk_0e = 0;
-    data_0216fc4c.mUnk_0f = 0;
-    data_0216fc4c.mUnk_10 = 0;
-    data_0216fc4c.mUnk_11 = 0;
+void ResetGameInfoWalk(void) {
+    gGameInfoList.mUnk_0d = 0;
+    gGameInfoList.mUnk_0e = 0;
+    gGameInfoList.mUnk_0f = 0;
+    gGameInfoList.mUnk_10 = 0;
+    gGameInfoList.mNextSequence = 0;
 }
 
-void func_0200964c(u32 a, u16 b, u32 c) {
+void SetNextGameInfo(u32 ggid, u16 tgid, u32 attr) {
     while (1) {
-        switch (data_0216fc4c.mUnk_0c) {
+        switch (gGameInfoList.mState) {
             case 0:
             case 1:
-                if (func_020095fc() == 0) {
+                if (AdvanceGameInfoEntry() == 0) {
                     return;
                 }
                 break;
@@ -155,13 +155,13 @@ void func_0200964c(u32 a, u16 b, u32 c) {
                 func_020095c4();
                 break;
             case 3:
-                func_020094b8(a, b, c);
+                func_020094b8(ggid, tgid, attr);
                 return;
             case 4:
                 func_02009494();
                 break;
             case 5:
-                func_020092d0(a, b, c);
+                func_020092d0(ggid, tgid, attr);
                 return;
             case 6:
                 break;
@@ -169,171 +169,172 @@ void func_0200964c(u32 a, u16 b, u32 c) {
     }
 }
 
-u32 func_020095fc(void) {
-    Unk0200b610 *v1;
-    v1 = data_0216fc4c.mUnk_00;
-    if (v1 == NULL) {
+u32 AdvanceGameInfoEntry(void) {
+    GameInfoEntry *entry;
+    entry = gGameInfoList.mFirst;
+    if (entry == NULL) {
         return 0;
     }
-    if (data_0216fc4c.mUnk_04 != NULL) {
-        if (data_0216fc4c.mUnk_04->mUnk_4bc != NULL) {
-            v1 = data_0216fc4c.mUnk_04->mUnk_4bc;
+    if (gGameInfoList.mCurrent != NULL) {
+        if (gGameInfoList.mCurrent->mNext != NULL) {
+            entry = gGameInfoList.mCurrent->mNext;
         }
     }
-    data_0216fc4c.mUnk_04 = v1;
-    func_020096c0();
-    data_0216fc4c.mUnk_0e = data_0216fc4c.mUnk_04->mUnk_4b4;
-    data_0216fc4c.mUnk_0c = 2;
+    gGameInfoList.mCurrent = entry;
+    ResetGameInfoWalk();
+    gGameInfoList.mUnk_0e = gGameInfoList.mCurrent->mUnk_4b4;
+    gGameInfoList.mState = 2;
     return 1;
 }
 
 void func_020095c4(void) {
-    Unk0200b610 *v1;
-    if (data_0216fc4c.mUnk_0c == 2) {
-        v1 = data_0216fc4c.mUnk_04;
-        if (v1->mUnk_4b2 == 0) {
-            data_0216fc4c.mUnk_10 = 9;
-            data_0216fc4c.mUnk_08 = (u8 *) v1;
+    GameInfoEntry *entry;
+    if (gGameInfoList.mState == 2) {
+        entry = gGameInfoList.mCurrent;
+        if (entry->mUnk_4b2 == 0) {
+            gGameInfoList.mUnk_10 = 9;
+            gGameInfoList.mUnk_08 = (u8 *) entry;
         } else {
-            data_0216fc4c.mUnk_10 = 4;
-            data_0216fc4c.mUnk_08 = (u8 *) v1 + 0x220;
+            gGameInfoList.mUnk_10 = 4;
+            gGameInfoList.mUnk_08 = (u8 *) entry + 0x220;
         }
-        data_0216fc4c.mUnk_0c = 3;
+        gGameInfoList.mState = 3;
     }
 }
 
-void func_020094b8(u32 a, u16 b, u32 c) {
-    Unk0200b610 *v1;
-    u8 *v2;
-    u8 *v3;
-    volatile u16 w;
-    v3 = (u8 *) data_0216fc4c.mUnk_04 + 0x358;
-    v2 = data_0216fc4c.mUnk_08;
-    if (v2 + 0x62 <= v3) {
-        data_0216fc60.mUnk_0c_b = 0x62;
+void func_020094b8(u32 ggid, u16 tgid, u32 attr) {
+    GameInfoEntry *entry;
+    u8 *source;
+    u8 *dataEnd;
+    volatile u16 clearValue;
+    dataEnd = (u8 *) gGameInfoList.mCurrent + 0x358;
+    source = gGameInfoList.mUnk_08;
+    if (source + 0x62 <= dataEnd) {
+        gGameInfoBlock.mUnk_0c_b = 0x62;
     } else {
-        data_0216fc60.mUnk_0c_b = v3 - v2;
-        w = 0;
-        MIi_CpuClear16(w, (u8 *) &data_0216fc60.mUnk_0e + data_0216fc60.mUnk_0c_b, 0x62 - data_0216fc60.mUnk_0c_b);
+        gGameInfoBlock.mUnk_0c_b = dataEnd - source;
+        clearValue = 0;
+        MIi_CpuClear16(clearValue, (u8 *) &gGameInfoBlock.mUnk_0e + gGameInfoBlock.mUnk_0c_b,
+                       0x62 - gGameInfoBlock.mUnk_0c_b);
     }
-    MIi_CpuCopy16(data_0216fc4c.mUnk_08, &data_0216fc60.mUnk_0e, data_0216fc60.mUnk_0c_b);
-    data_0216fc60.mUnk_0a = data_0216fc4c.mUnk_0f;
-    data_0216fc60.mUnk_0b = data_0216fc4c.mUnk_10;
-    v1 = data_0216fc4c.mUnk_04;
-    data_0216fc60.mUnk_04_0 = v1->mUnk_4b2;
-    data_0216fc60.mUnk_05 = v1->mUnk_4b3;
-    data_0216fc60.mUnk_06 = data_0216fc4c.mUnk_0e;
-    data_0216fc60.mUnk_00 = v1->mUnk_4b8;
-    data_0216fc60.mUnk_04_2 = v1->mUnk_4b5;
-    data_0216fc60.mUnk_07 = data_0216fc4c.mUnk_11++;
-    data_0216fc60.mUnk_08 = 0;
-    data_0216fc60.mUnk_08 = ComputeU16Checksum(&data_0216fc60.mUnk_08, 0x68);
-    data_0216fc4c.mUnk_0f++;
-    if (data_0216fc4c.mUnk_0f < data_0216fc4c.mUnk_10) {
-        data_0216fc4c.mUnk_08 += 0x62;
+    MIi_CpuCopy16(gGameInfoList.mUnk_08, &gGameInfoBlock.mUnk_0e, gGameInfoBlock.mUnk_0c_b);
+    gGameInfoBlock.mUnk_0a = gGameInfoList.mUnk_0f;
+    gGameInfoBlock.mUnk_0b = gGameInfoList.mUnk_10;
+    entry = gGameInfoList.mCurrent;
+    gGameInfoBlock.mUnk_04_0 = entry->mUnk_4b2;
+    gGameInfoBlock.mUnk_05 = entry->mUnk_4b3;
+    gGameInfoBlock.mUnk_06 = gGameInfoList.mUnk_0e;
+    gGameInfoBlock.mUnk_00 = entry->mUnk_4b8;
+    gGameInfoBlock.mUnk_04_2 = entry->mUnk_4b5;
+    gGameInfoBlock.mSequence = gGameInfoList.mNextSequence++;
+    gGameInfoBlock.mChecksum = 0;
+    gGameInfoBlock.mChecksum = ComputeU16Checksum(&gGameInfoBlock.mChecksum, 0x68);
+    gGameInfoList.mUnk_0f++;
+    if (gGameInfoList.mUnk_0f < gGameInfoList.mUnk_10) {
+        gGameInfoList.mUnk_08 += 0x62;
     } else {
-        data_0216fc4c.mUnk_0c = 4;
+        gGameInfoList.mState = 4;
     }
-    c |= 2;
-    WM_SetGameInfo(NULL, &data_0216fc60, 0x70, a, b, c);
+    attr |= 2;
+    WM_SetGameInfo(NULL, &gGameInfoBlock, 0x70, ggid, tgid, attr);
 }
 
 void func_02009494(void) {
-    data_0216fc4c.mUnk_04->mUnk_4b0 = 1;
-    data_0216fc4c.mUnk_0e = data_0216fc4c.mUnk_04->mUnk_4b4;
-    data_0216fc4c.mUnk_0c = 5;
+    gGameInfoList.mCurrent->mUnk_4b0 = 1;
+    gGameInfoList.mUnk_0e = gGameInfoList.mCurrent->mUnk_4b4;
+    gGameInfoList.mState = 5;
 }
 
-void func_020092d0(u32 a, u16 b, u32 c) {
-    Unk0200b610 *v1;
-    u32 v2;
-    u32 v3;
-    u8 *v4;
+void func_020092d0(u32 ggid, u16 tgid, u32 attr) {
+    GameInfoEntry *entry;
+    u32 pendingMask;
+    u32 recordBit;
+    u8 *destination;
     s32 i;
-    s32 j;
-    u32 n;
-    volatile u16 w;
-    if (data_0216fc4c.mUnk_0e != data_0216fc4c.mUnk_04->mUnk_4b4) {
+    s32 sourceOffset;
+    u32 recordCount;
+    volatile u16 clearValue;
+    if (gGameInfoList.mUnk_0e != gGameInfoList.mCurrent->mUnk_4b4) {
         func_02009494();
     }
-    data_0216fc60.mUnk_04_0 = 2;
-    v1 = data_0216fc4c.mUnk_04;
-    data_0216fc60.mUnk_05 = v1->mUnk_4b3;
-    data_0216fc60.mUnk_06 = data_0216fc4c.mUnk_0e;
-    data_0216fc60.mUnk_00 = v1->mUnk_4b8;
-    data_0216fc60.mUnk_04_2 = v1->mUnk_4b5;
-    data_0216fc60.mUnk_07 = data_0216fc4c.mUnk_11++;
-    data_0216fc60.mUnk_0a = v1->mUnk_358;
-    data_0216fc60.mUnk_0c = v1->mUnk_35a;
-    data_0216fc60.mUnk_0e = v1->mUnk_35c;
+    gGameInfoBlock.mUnk_04_0 = 2;
+    entry = gGameInfoList.mCurrent;
+    gGameInfoBlock.mUnk_05 = entry->mUnk_4b3;
+    gGameInfoBlock.mUnk_06 = gGameInfoList.mUnk_0e;
+    gGameInfoBlock.mUnk_00 = entry->mUnk_4b8;
+    gGameInfoBlock.mUnk_04_2 = entry->mUnk_4b5;
+    gGameInfoBlock.mSequence = gGameInfoList.mNextSequence++;
+    gGameInfoBlock.mUnk_0a = entry->mUnk_358;
+    gGameInfoBlock.mUnk_0c = entry->mUnk_35a;
+    gGameInfoBlock.mUnk_0e = entry->mUnk_35c;
     if (data_0216fc44 == 0 && data_0216fc48 != NULL) {
-        data_0216fc48(v1->mUnk_4b8);
+        data_0216fc48(entry->mUnk_4b8);
     }
     for (i = 0; i < 8; i++) {
-        data_0216fc60.mUnk_68[i] = data_0216fc4c.mUnk_04->mUnk_4a8[i];
+        gGameInfoBlock.mUnk_68[i] = gGameInfoList.mCurrent->mUnk_4a8[i];
     }
-    w = 0;
-    MIi_CpuClear16(w, data_0216fc60.mUnk_10, 0x58);
-    n = 0;
-    v2 = (u16) (data_0216fc4c.mUnk_04->mUnk_4b0 ^ data_0216fc4c.mUnk_04->mUnk_35a);
+    clearValue = 0;
+    MIi_CpuClear16(clearValue, gGameInfoBlock.mUnk_10, 0x58);
+    recordCount = 0;
+    pendingMask = (u16) (gGameInfoList.mCurrent->mUnk_4b0 ^ gGameInfoList.mCurrent->mUnk_35a);
     i = 0;
-    v4 = data_0216fc60.mUnk_10;
-    j = 0;
+    destination = gGameInfoBlock.mUnk_10;
+    sourceOffset = 0;
     for (; i < 15; i++) {
-        v3 = 2 << i;
-        if ((v2 & v3) != 0) {
-            MIi_CpuCopy16(data_0216fc4c.mUnk_04->mUnk_35e + j, v4, 0x16);
-            data_0216fc4c.mUnk_04->mUnk_4b0 |= v3;
-            v4 += 0x16;
-            n++;
-            if (n == 4) {
+        recordBit = 2 << i;
+        if ((pendingMask & recordBit) != 0) {
+            MIi_CpuCopy16(gGameInfoList.mCurrent->mUnk_35e + sourceOffset, destination, 0x16);
+            gGameInfoList.mCurrent->mUnk_4b0 |= recordBit;
+            destination += 0x16;
+            recordCount++;
+            if (recordCount == 4) {
                 break;
             }
         }
-        j += 0x16;
+        sourceOffset += 0x16;
     }
-    if (n < 4) {
-        data_0216fc60.mUnk_10[n * 0x16] &= ~0xf0;
+    if (recordCount < 4) {
+        gGameInfoBlock.mUnk_10[recordCount * 0x16] &= ~0xf0;
     }
-    data_0216fc60.mUnk_08 = 0;
-    data_0216fc60.mUnk_08 = ComputeU16Checksum(&data_0216fc60.mUnk_08, 0x68);
-    if (data_0216fc4c.mUnk_04->mUnk_4b0 == data_0216fc4c.mUnk_04->mUnk_35a) {
-        data_0216fc4c.mUnk_0c = 1;
+    gGameInfoBlock.mChecksum = 0;
+    gGameInfoBlock.mChecksum = ComputeU16Checksum(&gGameInfoBlock.mChecksum, 0x68);
+    if (gGameInfoList.mCurrent->mUnk_4b0 == gGameInfoList.mCurrent->mUnk_35a) {
+        gGameInfoList.mState = 1;
     }
-    c |= 2;
-    WM_SetGameInfo(NULL, &data_0216fc60, 0x70, a, b, c);
+    attr |= 2;
+    WM_SetGameInfo(NULL, &gGameInfoBlock, 0x70, ggid, tgid, attr);
     if (data_0216fc44 == 1 && data_0216fc48 != NULL) {
-        data_0216fc48(data_0216fc4c.mUnk_04->mUnk_4b8);
+        data_0216fc48(gGameInfoList.mCurrent->mUnk_4b8);
     }
 }
 
-void func_020092a4(void) {
-    MemFillWordsByBlock_inline(data_0216fc40, 0x5910);
-    data_0216fc40->mUnk_0c = 1;
+void ClearEntryTable(void) {
+    MemFillWordsByBlock_inline(gEntryTable, 0x5910);
+    gEntryTable->mUnk_0c = 1;
 }
 
-u32 func_0200921c(Unk02008f00Func a, u32 b, Unk02007ec4 *c) {
-    s32 v1;
-    if (func_020091fc(c) == 0) {
+u32 AddScanResult(Unk02008f00Func callback, u32 b, ScanBlock *scanBlock) {
+    s32 entryIndex;
+    if (func_020091fc(scanBlock) == 0) {
         return 0;
     }
-    MIi_CpuCopy16(c, data_0216fce0, 0xc0);
-    c = (Unk02007ec4 *) data_0216fce0;
-    data_0216fc3c = data_0216fd30;
-    if (ComputeU16Checksum(OFFSET_PTR(u16, data_0216fc3c, 8), 0x68) != 0) {
+    MIi_CpuCopy16(scanBlock, data_0216fce0, 0xc0);
+    scanBlock = (ScanBlock *) data_0216fce0;
+    gReceivedGameInfo = data_0216fd30;
+    if (ComputeU16Checksum(OFFSET_PTR(u16, gReceivedGameInfo, 8), 0x68) != 0) {
         return 0;
     }
-    v1 = func_02009098((u8 *) c, a);
-    if (v1 < 0) {
+    entryIndex = FindOrAddEntry((u8 *) scanBlock, callback);
+    if (entryIndex < 0) {
         return 0;
     }
-    func_02008e10((u8 *) c, v1, b);
-    func_02008ff0(v1, a);
+    UpdateEntryFromScan((u8 *) scanBlock, entryIndex, b);
+    func_02008ff0(entryIndex, callback);
     return 1;
 }
 
-u32 func_020091fc(Unk02007ec4 *a) {
-    if ((a->mUnk_4b & 2) == 0 || a->mUnk_40 != 1) {
+u32 func_020091fc(ScanBlock *scanBlock) {
+    if ((scanBlock->mUnk_4b & 2) == 0 || scanBlock->mUnk_40 != 1) {
         return 0;
     }
     return 1;
@@ -343,11 +344,11 @@ u32 func_020091fc(Unk02007ec4 *a) {
 
 #pragma thumb on
 
-void func_020091e0(u16 *p0, u32 p1) {
-    p0[5] = 0x20u;
-    p0[6] = p1;
-    p0[7] = ((((p1) & (0xffff0000u))) >> 16);
-    p0[8] = (p0[0x24]);
+void func_020091e0(u16 *scanBlock, u32 p1) {
+    scanBlock[5] = 0x20u;
+    scanBlock[6] = p1;
+    scanBlock[7] = ((((p1) & (0xffff0000u))) >> 16);
+    scanBlock[8] = (scanBlock[0x24]);
 }
 
 #pragma thumb off

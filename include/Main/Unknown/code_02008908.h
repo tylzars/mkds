@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-int func_02008908(int a, u32 b, u32 c);
+int FlushAndSendMPData(int size, u32 childMask, u32 data);

@@ -5,9 +5,9 @@
 #include "Main/Unknown/code_02008dbc.h"
 #include "Main/Unknown/code_020091e0.h"
 
-void func_02008e10(u8 *a, u32 b, u32 c);
-void func_02008f00(Unk02008f00Func a, u32 b);
-void func_02008ff0(u32 a, Unk02008f00Func b);
-s32 func_02009098(const u8 *a, Unk02008f00Func b);
+void UpdateEntryFromScan(u8 *scanBlock, u32 entryIndex, u32 c);
+void UpdateEntryTimers(Unk02008f00Func callback, u32 b);
+void func_02008ff0(u32 entryIndex, Unk02008f00Func callback);
+s32 FindOrAddEntry(const u8 *scanBlock, Unk02008f00Func callback);
 
 // Declared here until the code that defines it is decompiled.

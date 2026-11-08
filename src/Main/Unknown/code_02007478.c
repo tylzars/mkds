@@ -50,7 +50,7 @@ u32 func_020074d8(void) {
     if (v9 != NULL) {
         MI_CpuCopy8(data_0216fdac->mUnk_1788 + v4 * 0x5d4, v9, 0xe4);
     }
-    return func_02008908(0xea, childMask, *(u32 *) &data_0216fdac);
+    return FlushAndSendMPData(0xea, childMask, *(u32 *) &data_0216fdac);
 }
 
 void LoadDataRange(Unk02007478 *job) {

@@ -65,8 +65,8 @@ typedef struct Unk0216fdac {
     /* 1d5c */ u8 mUnk_1d5c[0x74c8 - 0x1d5c];
     /* 74c8 */ s32 mUnk_74c8;
     /* 74cc */ u8 mUnk_74cc[0x74e0 - 0x74cc];
-    /* 74e0 */ Unk0200aeec_head mUnk_74e0;
-    /* ---- */ u8 mUnk_74e0_end[0x800 - sizeof(Unk0200aeec_head)];
+    /* 74e0 */ WorkerQueue mUnk_74e0;
+    /* ---- */ u8 mUnk_74e0_end[0x800 - sizeof(WorkerQueue)];
     /* 7ce0 */ u8 mUnk_7ce0[0x18];
 } Unk0216fdac;
 

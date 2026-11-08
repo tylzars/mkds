@@ -10,7 +10,7 @@
 
 // 0xc0-byte record: the first 0x3c bytes are taken from 0x027ffc42 when the halfword at 0x027ffc40 is 2 (or from
 // address 0); the halfwords at 0x4c and 0x4e and the bytes from 0x4a are set by func_02007ec4 and func_0200b15c.
-typedef struct Unk02007ec4 {
+typedef struct ScanBlock {
     /* 00 */ u8 mUnk_00[0xc];
     /* 0c */ u16 mUnk_0c;
     /* 0e */ u16 mUnk_0e;
@@ -27,7 +27,7 @@ typedef struct Unk02007ec4 {
     /* 4c */ u16 mUnk_4c;
     /* 4e */ u16 mUnk_4e;
     /* 50 */ u8 mUnk_50[0x70];
-} Unk02007ec4;
+} ScanBlock;
 
 // Filled by func_0200806c.
 typedef struct Unk020072c0_buf {
@@ -76,7 +76,7 @@ typedef struct Unk02008188 {
     /* 258 */ u32 mUnk_258[1];
 } Unk02008188;
 
-void func_02007ec4(Unk02007ec4 *record, u16 b, u16 c, u32 d, u32 e);
+void func_02007ec4(ScanBlock *record, u16 b, u16 c, u32 d, u32 e);
 u32 func_02007f38(u32 rangeIndex, u32 address, u32 size);
 u32 func_02007ff0(u32 rangeIndex, u32 address, u32 size);
 BOOL func_0200806c(Unk020072c0_buf *result, void *b, u16 chunk, void *d);

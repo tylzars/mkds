@@ -49,19 +49,19 @@ u32 func_02008310(void *rangeTable, Unk02008188 *source) {
         OS_RestoreInterrupts(savedInterrupts);
         return 0;
     }
-    func_02009828((Unk0200b610 *) (data_0216fdac->mUnk_1788 + 0xe4 + entryOffset), rangeTable,
+    func_02009828((GameInfoEntry *) (data_0216fdac->mUnk_1788 + 0xe4 + entryOffset), rangeTable,
                   (const u8 *) &data_0216fdac->mUnk_1300);
     (OFFSET_PTR(Unk0216fdac, data_0216fdac, entryOffset))->mUnk_1d21 = entryIndex;
-    func_020096f4((Unk0200b610 *) (data_0216fdac->mUnk_1788 + 0xe4 + entryOffset));
+    AppendGameInfoEntry((GameInfoEntry *) (data_0216fdac->mUnk_1788 + 0xe4 + entryOffset));
     (OFFSET_PTR(Unk0216fdac, data_0216fdac, entryOffset))->mUnk_1d1f = data_0216fc30++;
     (OFFSET_PTR(Unk0216fdac, data_0216fdac, entryOffset))->mUnk_1d4e = 1;
     (OFFSET_PTR(Unk0216fdac, data_0216fdac, entryOffset))->mUnk_1d44 = source;
     (OFFSET_PTR(Unk0216fdac, data_0216fdac, entryOffset))->mUnk_1d54 = &source->mUnk_1e8;
     (OFFSET_PTR(Unk0216fdac, data_0216fdac, entryOffset))->mUnk_1d58 = source->mUnk_258;
     if ((OFFSET_PTR(Unk0216fdac, data_0216fdac, entryOffset))->mUnk_1d54->mUnk_30[3].mUnk_0c != 0) {
-        if (func_0200b018() == 0) {
+        if (IsWorkerActive() == 0) {
             func_0200b00c(data_0216fdac->mUnk_7ce0);
-            func_0200b02c(&data_0216fdac->mUnk_74e0, 0x800);
+            StartWorkerThread(&data_0216fdac->mUnk_74e0, 0x800);
         }
     }
     (OFFSET_PTR(Unk0216fdac, data_0216fdac, entryOffset))->mEntryUsed = 1;
@@ -277,7 +277,7 @@ u32 func_02007f38(u32 rangeIndex, u32 address, u32 size) {
     return 0;
 }
 
-void func_02007ec4(Unk02007ec4 *record, u16 b, u16 c, u32 d, u32 e) {
+void func_02007ec4(ScanBlock *record, u16 b, u16 c, u32 d, u32 e) {
     u32 v1;
     u32 v2;
     u16 *p = (u16 *) 0x027ffc40;

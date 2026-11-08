@@ -318,9 +318,9 @@ void InitScanConnectWork(ScanConnectWork *a, void *b) {
         gScanConnectWork = a;
         a->mState = 0;
         MI_CpuCopy8(b, gScanConnectWork->mUnk_05c4, 0x16);
-        func_0200991c(gScanConnectWork->mUnk_05e8);
-        func_020092a4();
-        func_02009908((UnkFunc *) SetScanBssid, (UnkFunc *) ClearUseScanBssid);
+        SetEntryTable(gScanConnectWork->mUnk_05e8);
+        ClearEntryTable();
+        SetScanBssidCallbacks((UnkFunc *) SetScanBssid, (UnkFunc *) ClearUseScanBssid);
     }
 }
 
@@ -468,11 +468,11 @@ void ScanConnectStartScanCallback(Unk021425e8 *a) {
         case 5:
             if (a->mUnk_38.mUnk_00[1] == gScanConnectWork->mUnk_05e4) {
                 DC_InvalidateRange(gScanConnectWork->mScanBuffer, 0xc0);
-                func_0200921c(EntryCallback, a->mUnk_12, (Unk02007ec4 *) gScanConnectWork->mScanBuffer);
-                func_02008f00(EntryCallback, 1);
+                AddScanResult(EntryCallback, a->mUnk_12, (ScanBlock *) gScanConnectWork->mScanBuffer);
+                UpdateEntryTimers(EntryCallback, 1);
             }
         case 4:
-            func_02008f00(EntryCallback, 0);
+            UpdateEntryTimers(EntryCallback, 0);
             if (gScanConnectWork->mRepeatScan != 0) {
                 ScanConnectStartScan();
             } else {
@@ -485,7 +485,7 @@ void ScanConnectStartScanCallback(Unk021425e8 *a) {
     }
 }
 
-void CallScanCallbackWithEntry(u32 a, Unk02008934 *entry, u32 entryIndex) {
+void CallScanCallbackWithEntry(u32 a, EntryRecord *entry, u32 entryIndex) {
     ScanEntryArgs v;
     ScanConnectWork *d;
     d = gScanConnectWork;
@@ -493,7 +493,7 @@ void CallScanCallbackWithEntry(u32 a, Unk02008934 *entry, u32 entryIndex) {
         v.mEntryIndex = entryIndex;
         if (entry != NULL) {
             v.mEntry = entry;
-            v.mScanBuffer = entry->mUnk_4c0;
+            v.mScanBuffer = entry->mScanBuffer;
         } else {
             v.mEntry = NULL;
             v.mScanBuffer = NULL;

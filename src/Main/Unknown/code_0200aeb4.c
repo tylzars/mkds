@@ -9,99 +9,100 @@
 
 #pragma thumb on
 
-u32 func_0200b15c(u32 a, Unk02007ec4 *b, u16 c, u16 d, u32 e, u32 f) {
-    u32 v1;
-    u32 v2;
-    if (func_0200b1b0(a, (struct Unk0217aa00_24 *) b) == 0) {
+u32 func_0200b15c(u32 entryIndex, ScanBlock *scanBlock, u16 c, u16 d, u32 e, u32 f) {
+    u32 bit8;
+    u32 bit4;
+    if (func_0200b1b0(entryIndex, (struct Unk0217aa00_24 *) scanBlock) == 0) {
         return 0;
     }
-    b->mUnk_3c = 0x10;
-    b->mUnk_4a = 0;
-    b->mUnk_4c = c;
-    b->mUnk_4e = d;
-    v1 = 0;
+    scanBlock->mUnk_3c = 0x10;
+    scanBlock->mUnk_4a = 0;
+    scanBlock->mUnk_4c = c;
+    scanBlock->mUnk_4e = d;
+    bit8 = 0;
     if (f != 0) {
-        v1 = 8;
+        bit8 = 8;
     }
     if (e != 0) {
-        v2 = 4;
+        bit4 = 4;
     } else {
-        v2 = 0;
+        bit4 = 0;
     }
-    b->mUnk_4b = v2 | v1 | 1;
+    scanBlock->mUnk_4b = bit4 | bit8 | 1;
     return 1;
 }
 
-void func_0200b08c(void *param_1) {
-    Unk0200aeec_head *a;
-    Unk0200aeec *v1;
+void RunWorkerTasks(void *argument) {
+    WorkerQueue *workerQueue;
+    WorkerTask *task;
     u32 v2;
-    u32 v3;
-    void (*v4)(Unk0200aeec *);
-    u32 v5;
-    u32 v6;
-    a = param_1;
-    v6 = 0;
+    u32 savedInterrupts;
+    void (*doneFunction)(WorkerTask *);
+    u32 currentPriority;
+    u32 priorityWhenEmpty;
+    workerQueue = argument;
+    priorityWhenEmpty = 0;
     for (;;) {
         v2 = OS_DisableInterrupts();
-        while (a->mUnk_c0 == NULL) {
-            OS_SetThreadPriority(&a->mUnk_00, v6);
+        while (workerQueue->mFirstTask == NULL) {
+            OS_SetThreadPriority(&workerQueue->mThread, priorityWhenEmpty);
             OS_SleepThread(NULL);
         }
-        v1 = a->mUnk_c0;
-        a->mUnk_c0 = a->mUnk_c0->mUnk_00;
-        OS_SetThreadPriority(&a->mUnk_00, v1->mUnk_04_1);
+        task = workerQueue->mFirstTask;
+        workerQueue->mFirstTask = workerQueue->mFirstTask->mNext;
+        OS_SetThreadPriority(&workerQueue->mThread, task->mPriority);
         OS_RestoreInterrupts(v2);
-        if (v1->mUnk_08 != NULL) {
-            ((void (*)(Unk0200aeec *)) v1->mUnk_08)(v1);
+        if (task->mRun != NULL) {
+            ((void (*)(WorkerTask *)) task->mRun)(task);
         }
-        v3 = OS_DisableInterrupts();
-        v4 = (void (*)(Unk0200aeec *)) v1->mUnk_0c;
-        v5 = OS_GetThreadPriority(&a->mUnk_00);
-        if (a->mUnk_c0 == NULL) {
-            v2 = v6;
-        } else if (v5 < a->mUnk_c0->mUnk_04_1) {
-            v2 = a->mUnk_c0->mUnk_04_1;
+        savedInterrupts = OS_DisableInterrupts();
+        doneFunction = (void (*)(WorkerTask *)) task->mDone;
+        currentPriority = OS_GetThreadPriority(&workerQueue->mThread);
+        if (workerQueue->mFirstTask == NULL) {
+            v2 = priorityWhenEmpty;
+        } else if (currentPriority < workerQueue->mFirstTask->mPriority) {
+            v2 = workerQueue->mFirstTask->mPriority;
         } else {
-            v2 = v5;
+            v2 = currentPriority;
         }
-        if (v2 != v5) {
-            OS_SetThreadPriority(&a->mUnk_00, v2);
+        if (v2 != currentPriority) {
+            OS_SetThreadPriority(&workerQueue->mThread, v2);
         }
-        v1->mUnk_00 = NULL;
-        v1->mUnk_04_0 = 0;
-        if (v4 != NULL) {
-            v4(v1);
+        task->mNext = NULL;
+        task->mInUse = 0;
+        if (doneFunction != NULL) {
+            doneFunction(task);
         }
-        if (v1 == &a->mUnk_c4) {
+        if (task == &workerQueue->mStopTask) {
             break;
         }
-        OS_RestoreInterrupts(v3);
+        OS_RestoreInterrupts(savedInterrupts);
     }
     OS_ExitThread();
 }
 
-void func_0200b02c(Unk0200aeec_head *a, u32 b) {
-    u32 v1;
-    u32 v2;
-    v1 = OS_DisableInterrupts();
-    if (data_0216fde0 == NULL) {
-        data_0216fde0 = a;
-        func_0200b00c(&a->mUnk_c4);
-        a->mUnk_c0 = NULL;
-        v2 = (b - 0xe4) & ~3;
-        OS_CreateThread(&a->mUnk_00, func_0200b08c, a, (u8 *) a + 0xe4 + v2, v2, 0);
-        OS_WakeupThreadDirect(&a->mUnk_00);
+void StartWorkerThread(WorkerQueue *workerQueue, u32 totalSize) {
+    u32 savedInterrupts;
+    u32 stackSize;
+    savedInterrupts = OS_DisableInterrupts();
+    if (gWorkerQueue == NULL) {
+        gWorkerQueue = workerQueue;
+        func_0200b00c(&workerQueue->mStopTask);
+        workerQueue->mFirstTask = NULL;
+        stackSize = (totalSize - 0xe4) & ~3;
+        OS_CreateThread(&workerQueue->mThread, RunWorkerTasks, workerQueue, (u8 *) workerQueue + 0xe4 + stackSize,
+                        stackSize, 0);
+        OS_WakeupThreadDirect(&workerQueue->mThread);
     }
-    OS_RestoreInterrupts(v1);
+    OS_RestoreInterrupts(savedInterrupts);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-u32 func_0200b018(void) {
-    if (data_0216fde0 != NULL) {
+u32 IsWorkerActive(void) {
+    if (gWorkerQueue != NULL) {
         return 1;
     }
     return 0;
@@ -112,105 +113,105 @@ u32 func_0200b018(void) {
 #pragma thumb on
 void func_0200b00c(void *arg0) {
     void *value0 = arg0;
-    u32 value1;
-    u32 value2;
+    u32 fillValue;
+    u32 byteCount;
     u32 value3;
-    value1 = 0u;
-    value2 = 32u;
-    MI_CpuFill8(value0, value1, value2);
+    fillValue = 0u;
+    byteCount = 32u;
+    MI_CpuFill8(value0, fillValue, byteCount);
 }
 #pragma thumb off
 
 #pragma thumb on
 
-u32 func_0200aff8(Unk0200aeec *a) {
-    if (a->mUnk_04_0 != 0) {
+u32 IsWorkerTaskInUse(WorkerTask *task) {
+    if (task->mInUse != 0) {
         return 1;
     }
     return 0;
 }
 
-void func_0200aeec(Unk0200aeec *a, void *b, void *c, u32 d) {
-    Unk0200aeec_head *v1;
-    u32 v2;
-    u32 v3;
-    Unk0200aeec *v4;
-    Unk0200aeec *v5;
-    v1 = data_0216fde0;
-    if (func_0200b018() == 0) {
+void QueueWorkerTask(WorkerTask *task, void *run, void *done, u32 priority) {
+    WorkerQueue *workerQueue;
+    u32 threadPriority;
+    u32 savedInterrupts;
+    WorkerTask *previous;
+    WorkerTask *next;
+    workerQueue = gWorkerQueue;
+    if (IsWorkerActive() == 0) {
         OS_Terminate();
     }
-    if (a->mUnk_04_0 != 0) {
+    if (task->mInUse != 0) {
         OS_Terminate();
     }
-    if (d > 31) {
-        v2 = OS_GetThreadPriority(&v1->mUnk_00);
-        if (d == 32) {
-            if (v2 != 0) {
-                d = v2 - 1;
+    if (priority > 31) {
+        threadPriority = OS_GetThreadPriority(&workerQueue->mThread);
+        if (priority == 32) {
+            if (threadPriority != 0) {
+                priority = threadPriority - 1;
             } else {
-                d = 0;
+                priority = 0;
             }
-        } else if (d == 33) {
-            if (v2 < 31) {
-                d = v2 + 1;
+        } else if (priority == 33) {
+            if (threadPriority < 31) {
+                priority = threadPriority + 1;
             } else {
-                d = 31;
+                priority = 31;
             }
-        } else if (d == 34) {
-            d = v2;
+        } else if (priority == 34) {
+            priority = threadPriority;
         } else {
-            d = 31;
+            priority = 31;
         }
     }
-    v3 = OS_DisableInterrupts();
-    a->mUnk_04_0 = 1;
-    a->mUnk_04_1 = d;
-    a->mUnk_08 = b;
-    a->mUnk_0c = c;
-    if (v1->mUnk_c0 == NULL) {
-        if (a == &v1->mUnk_c4) {
-            data_0216fde0 = NULL;
+    savedInterrupts = OS_DisableInterrupts();
+    task->mInUse = 1;
+    task->mPriority = priority;
+    task->mRun = run;
+    task->mDone = done;
+    if (workerQueue->mFirstTask == NULL) {
+        if (task == &workerQueue->mStopTask) {
+            gWorkerQueue = NULL;
         }
-        v1->mUnk_c0 = a;
-        OS_WakeupThreadDirect(&v1->mUnk_00);
+        workerQueue->mFirstTask = task;
+        OS_WakeupThreadDirect(&workerQueue->mThread);
     } else {
-        v4 = v1->mUnk_c0;
-        if (a == &v1->mUnk_c4) {
-            if (v4->mUnk_00 != NULL) {
+        previous = workerQueue->mFirstTask;
+        if (task == &workerQueue->mStopTask) {
+            if (previous->mNext != NULL) {
                 do {
-                    v4 = v4->mUnk_00;
-                } while (v4->mUnk_00 != NULL);
+                    previous = previous->mNext;
+                } while (previous->mNext != NULL);
             }
-            v4->mUnk_00 = a;
-            data_0216fde0 = NULL;
-        } else if (v4->mUnk_04_1 > d) {
-            v1->mUnk_c0 = a;
-            a->mUnk_00 = v4;
+            previous->mNext = task;
+            gWorkerQueue = NULL;
+        } else if (previous->mPriority > priority) {
+            workerQueue->mFirstTask = task;
+            task->mNext = previous;
         } else {
-            while ((v5 = v4->mUnk_00) != NULL && v5->mUnk_04_1 <= d) {
-                v4 = v5;
+            while ((next = previous->mNext) != NULL && next->mPriority <= priority) {
+                previous = next;
             }
-            a->mUnk_00 = v5;
-            v4->mUnk_00 = a;
+            task->mNext = next;
+            previous->mNext = task;
         }
     }
-    OS_RestoreInterrupts(v3);
+    OS_RestoreInterrupts(savedInterrupts);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_0200aeb4(void *a) {
-    u32 v1;
-    int v2;
-    v1 = ((s64) OS_DisableInterrupts());
-    v2 = func_0200b018();
-    if (v2 != 0) {
-        func_0200aeec(&data_0216fde0->mUnk_c4, NULL, a, 0);
+void RequestWorkerStop(void *done) {
+    u32 savedInterrupts;
+    int workerActive;
+    savedInterrupts = ((s64) OS_DisableInterrupts());
+    workerActive = IsWorkerActive();
+    if (workerActive != 0) {
+        QueueWorkerTask(&gWorkerQueue->mStopTask, NULL, done, 0);
     }
-    OS_RestoreInterrupts(v1);
+    OS_RestoreInterrupts(savedInterrupts);
 }
 
 #pragma thumb off

@@ -62,7 +62,7 @@ u32 func_020072c0(void) {
     rangeTable = childEntry->mUnk_1d54;
     if (CopyFromDataRanges(rangeTable, v10, v9, v2.mUnk_04) == 0) {
         loadJob = (Unk02007478 *) data_0216fdac->mUnk_7ce0;
-        if (func_0200aff8(&loadJob->mUnk_00) == 0) {
+        if (IsWorkerTaskInUse(&loadJob->mUnk_00) == 0) {
             if (rangeTable->mUnk_00 != 0) {
                 range = rangeTable->mUnk_30;
                 lowestRange = NULL;
@@ -81,14 +81,14 @@ u32 func_020072c0(void) {
                 lowestRange->mOffset = v10 & ~0x1f;
                 loadJob->mDataRange = lowestRange;
                 loadJob->mDataRangeTable = rangeTable;
-                func_0200aeec(&loadJob->mUnk_00, (void *) LoadDataRange, NULL, 4);
+                QueueWorkerTask(&loadJob->mUnk_00, (void *) LoadDataRange, NULL, 4);
             }
         }
         return 21;
     }
     work = data_0216fdac;
-    return func_02008908(v2.mUnk_04 + 6, (OFFSET_PTR(Unk0216fdac, work, work->mUnk_1525 * 0x5d4))->mUnk_1d4c,
-                         (u32) work);
+    return FlushAndSendMPData(v2.mUnk_04 + 6, (OFFSET_PTR(Unk0216fdac, work, work->mUnk_1525 * 0x5d4))->mUnk_1d4c,
+                              (u32) work);
 }
 
 int func_020071b4(void) {
