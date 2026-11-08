@@ -236,7 +236,7 @@ static inline void func_02094000_inline_2(Unk02094000_bc *p, u16 a, s32 b, s32 c
 
 void StartTeresa(Vec3 *a) {
     Teresa *o;
-    Unk020748a8 *g;
+    Camera *g;
     s32 p;
     s32 q;
     s32 e;

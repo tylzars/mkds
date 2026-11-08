@@ -87,7 +87,7 @@ done:
 }
 
 u32 SetupItemGesso(ItemGesso *gesso, s32 fromData) {
-    Unk020748a8 *camera;
+    Camera *camera;
     s32 entryIndex;
     s32 kartIndex;
 
@@ -105,7 +105,7 @@ u32 SetupItemGesso(ItemGesso *gesso, s32 fromData) {
     VEC_MultAdd(func_0203c5e4() != 0 ? 0x5800 : 0xa800, &camera->mForward, &gesso->mUnk_000.mPos,
                 &gesso->mUnk_000.mPos);
     VEC_Subtract(&gesso->mUnk_000.mPos, &camera->mPos, &gesso->mViewOffset);
-    MTX_MultVec33(&gesso->mViewOffset, camera->mViewMatrix, &gesso->mViewOffset);
+    MTX_MultVec33(&gesso->mViewOffset, &camera->mViewMatrix.mUnk_00[0].x, &gesso->mViewOffset);
     if (fromData != 0) {
         if (gesso->mUnk_000.mFlags & 0x10000000) {
             SetupNextItemGessoStep(gesso);

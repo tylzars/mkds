@@ -60,6 +60,7 @@
 #include "Main/Unknown/code_02108e6c.h"
 #include "Main/Unknown/code_020d4000.h"
 #include "Main/Unknown/code_0210b708.h"
+#include "Main/Unknown/code_0210b000.h"
 #include "01/code_02187000.h"
 #include "Main/Unknown/code_020d22c0.h"
 #include "01/code_02182000.h"
@@ -520,9 +521,9 @@ void func_ov001_0218e690(Unk02188950 *p) {
 
 s32 func_ov001_0218e650(Unk02188950 *a) {
     if (a->mStateFrames == 50) {
-        Unk021a7c08 local = {0x22f, 0, 0xe, 0};
-        local.mUnk_04 = &a->mUnk_000.mPos;
-        local.mUnk_0c = GetHorizontalCameraDistanceSquared(&a->mUnk_000.mPos);
+        Unk0210b7a8 local = {0x22f, 0, 0xe, 0};
+        local.mPositionSource = &a->mUnk_000.mPos;
+        local.mDistanceSquared = GetHorizontalCameraDistanceSquared(&a->mUnk_000.mPos);
         func_0210b734(&local, func_02108e7c());
     }
     return 0;

@@ -3,6 +3,7 @@
 #include "types.h"
 
 typedef struct TimeRecord TimeRecord;
+typedef struct Camera Camera;
 
 // Declared here until the code that defines them is decompiled.
 
@@ -27,7 +28,7 @@ s32 TryGetRaceUpdateFramesSinceEntryEnd(u32 *framesOut);
 // selected entry first runs.
 u32 SetRaceUpdateFramesAtEntryEnd(void);
 u32 SetRaceUpdateFramesUnlimited(void);
-void *GetCurrentCamera(void);
+Camera *GetCurrentCamera(void);
 unsigned int GetCurrentCameraKind(void);
 MtxFx43 *GetCurrentViewMatrix(void);
 unsigned int IsFadeFogActive(void);

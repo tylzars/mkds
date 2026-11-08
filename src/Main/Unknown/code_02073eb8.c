@@ -903,7 +903,7 @@ void UpdateCameraLookAtBlend(Camera *camera) {
     }
 }
 
-void *GetChaseCamera(void) {
+Camera *GetChaseCamera(void) {
     return gChaseCamera;
 }
 

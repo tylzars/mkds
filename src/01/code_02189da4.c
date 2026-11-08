@@ -45,9 +45,10 @@
 #include "Main/Unknown/code_020d4000.h"
 #include "Main/Unknown/code_02108e6c.h"
 #include "Main/Unknown/code_0210b708.h"
+#include "Main/Unknown/code_0210b000.h"
 
 void func_ov001_0218a30c(Unk02188950 *mapObject) {
-    Unk021a7c08 soundRequest;
+    Unk0210b7a8 soundRequest;
 
     func_ov001_02187218(mapObject, 8, NULL);
     ReleaseEffects(mapObject);
@@ -57,8 +58,8 @@ void func_ov001_0218a30c(Unk02188950 *mapObject) {
     StartEffectAtOffset(mapObject, 0, 0x2000, 0, 0x40d, 0);
     StartEffectAtOffset(mapObject, 0, 0x2000, 0, 0x40f, 0);
     soundRequest = data_ov001_021a7ad0;
-    soundRequest.mUnk_04 = &mapObject->mUnk_000.mPos;
-    soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(&mapObject->mUnk_000.mPos);
+    soundRequest.mPositionSource = &mapObject->mUnk_000.mPos;
+    soundRequest.mDistanceSquared = GetHorizontalCameraDistanceSquared(&mapObject->mUnk_000.mPos);
     func_0210b734(&soundRequest, func_02108e7c());
     mapObject->mUnk_000.mFlags |= data_ov001_021a6588;
     mapObject->mUnk_000.mFlags |= data_ov001_021a658c;

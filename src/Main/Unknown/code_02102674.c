@@ -27,7 +27,7 @@
 
 void AdvanceItemGesso(ItemGesso *p) {
     Kart *kart;
-    Unk020748a8 *camera;
+    Camera *camera;
     s32 ageFrames;
     s32 i;
     s32 kartCount;

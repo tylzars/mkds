@@ -452,7 +452,7 @@ void AdvanceKartBoostCameraEffect(Unk0201ca6c *effect, s32 a) {
     Vec3 viewPos;
     Vec3 forwardOffset;
     Vec3 effectPos;
-    Unk020748a8 *chaseCamera;
+    Camera *chaseCamera;
     Kart *kart;
 
     if (a != 0) {
@@ -851,7 +851,7 @@ void InitCourseCameraEffects(void) {
 void func_02082a10(Unk0201ca6c *effect, s32 a) {
     Vec3 forwardFlat;
     Vec3 effectPos;
-    Unk020748a8 *chaseCamera;
+    Camera *chaseCamera;
 
     if (a != 0) {
         return;
@@ -878,7 +878,7 @@ void func_02082750(Unk0201ca6c *effect, s32 a) {
     Vec3 effectPos;
     MtxFx33 rotation;
     Vec3 rotatedVector;
-    Unk020748a8 *chaseCamera;
+    Camera *chaseCamera;
     Kart *kart;
     s32 speedRatio;
     s32 k;
@@ -988,7 +988,7 @@ void func_020824d0(Unk0201ca6c *effect, s32 a) {
 void func_02082368(Unk0201ca6c *effect, s32 a) {
     Vec3 forwardFlat;
     Vec3 effectPos;
-    Unk020748a8 *chaseCamera;
+    Camera *chaseCamera;
     Kart *kart;
     s32 speedRatio;
 
@@ -1019,7 +1019,7 @@ void func_02082368(Unk0201ca6c *effect, s32 a) {
 void func_020821cc(Unk0201ca6c *effect, s32 a) {
     Vec3 forwardFlat;
     Vec3 effectPos;
-    Unk020748a8 *chaseCamera;
+    Camera *chaseCamera;
     s32 k;
     Kart *kart;
     s32 speedRatio;

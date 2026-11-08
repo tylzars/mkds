@@ -56,6 +56,7 @@
 #include "01/code_0218ddb4.h"
 #include "Main/Unknown/code_02100000.h"
 #include "Main/Unknown/code_0210b708.h"
+#include "Main/Unknown/code_0210b000.h"
 #include "Main/Unknown/code_02108e6c.h"
 #include "Main/Unknown/code_020d4000.h"
 #include "Main/Unknown/unk_0217a000.h"
@@ -66,7 +67,7 @@ void func_ov001_0218d2c4(Unk02188950 *a) {
     int i;
     Unk0218d87c *list;
     Unk02188950 *p;
-    Unk021a7c08 local;
+    Unk0210b7a8 local;
 
     func_ov001_02187218(a, 8, NULL);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
@@ -80,8 +81,8 @@ void func_ov001_0218d2c4(Unk02188950 *a) {
         }
     }
     local = data_ov001_021a7c08;
-    local.mUnk_04 = &a->mUnk_000.mPos;
-    local.mUnk_0c = GetHorizontalCameraDistanceSquared(&a->mUnk_000.mPos);
+    local.mPositionSource = &a->mUnk_000.mPos;
+    local.mDistanceSquared = GetHorizontalCameraDistanceSquared(&a->mUnk_000.mPos);
     func_0210b734(&local, func_02108e7c());
 }
 

@@ -73,7 +73,7 @@ void SetCameraHalfFovAngleGoal(unsigned int halfFovAngleGoal);
 Camera *GetCurrentChainCamera(void);
 Camera *GetEntryCamera(void);
 // Returns the chase camera (gChaseCamera).
-void *GetChaseCamera(void);
+Camera *GetChaseCamera(void);
 // Sets mLookAt between the entry's first point (mUnk_18) and second point (mUnk_24) by mLookAtBlend, which grows by the
 // entry's mLookAtBlendPerFrame up to 0x1000; without a step it copies the first point.
 void UpdateCameraLookAtBlend(Camera *camera);

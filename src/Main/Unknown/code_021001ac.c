@@ -309,8 +309,8 @@ void AdvanceItemTeresa(ItemTeresa *teresa) {
 void func_02101964(ItemTeresa *teresa, s32 a) {
     Kart *kart;
     Vec3 *position;
-    s32 *camera;
-    s32 *cameraSide;
+    Camera *camera;
+    Vec3 *cameraSide;
     s32 delta[3];
     s32 k;
     BOOL m;
@@ -352,7 +352,7 @@ void func_02101964(ItemTeresa *teresa, s32 a) {
         position->y -= kart->mHopHeight;
     }
     VEC_Add(position, (Vec3 *) &teresa->mOffsetX, position);
-    cameraSide = camera + 3;
+    cameraSide = &camera->mSide;
     if (teresa->mUnk_15c != FALSE) {
         s = 0xccd;
         c = 0x800;
@@ -362,14 +362,14 @@ void func_02101964(ItemTeresa *teresa, s32 a) {
     }
     if (a != 0) {
         n = ((s64) * (s32 *) kart->mPhysicalParam * kart->mScale.z + 0x800) >> 12;
-        position->x += (s32) (((s64) -n * cameraSide[0]) >> 12);
-        position->z += (s32) (((s64) -n * cameraSide[2]) >> 12);
+        position->x += (s32) (((s64) -n * cameraSide->x) >> 12);
+        position->z += (s32) (((s64) -n * cameraSide->z) >> 12);
     }
     delta[0] -= position->x;
     delta[2] -= position->z;
-    t = ((s64) cameraSide[0] * delta[0] + (s64) cameraSide[2] * delta[2]) >> 12;
-    delta[0] = ((s64) cameraSide[0] * t) >> 12;
-    delta[2] = ((s64) cameraSide[2] * t) >> 12;
+    t = ((s64) cameraSide->x * delta[0] + (s64) cameraSide->z * delta[2]) >> 12;
+    delta[0] = ((s64) cameraSide->x * t) >> 12;
+    delta[2] = ((s64) cameraSide->z * t) >> 12;
     delta[0] = ((s64) delta[0] * s) >> 12;
     delta[2] = ((s64) delta[2] * s) >> 12;
     if (delta[0] > c) {

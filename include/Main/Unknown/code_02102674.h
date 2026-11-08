@@ -35,20 +35,6 @@ typedef struct ItemGesso {
     /* 1a0 */ u8 mUnk_1a0[0x14];
 } ItemGesso;
 
-// Object returned by GetChaseCamera and passed to the vector helpers by AdvanceItemGesso.
-typedef struct Unk020748a8 {
-    /* 000 */ Vec3 mUp;
-    /* 00c */ Vec3 mSide;
-    /* 018 */ Vec3 mLookAt;
-    /* 024 */ Vec3 mPos;
-    // The first nine words (the 3x3 part) of the camera's 4x3 view matrix; the translation words lie in mUnk_054.
-    /* 030 */ s32 mViewMatrix[9];
-    /* 054 */ u8 mUnk_054[0x48];
-    /* 09c */ Vec3 mViewPos;
-    /* 0a8 */ u8 mUnk_0a8[0xb4];
-    /* 15c */ Vec3 mForward;
-} Unk020748a8;
-
 // Row of the 0xc-byte table behind gItemGessoSteps.
 typedef struct ItemGessoStep {
     /* 00 */ s16 mTargetVelocityX;

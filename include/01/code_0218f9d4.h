@@ -15,14 +15,6 @@ typedef struct Unk0218fd20 {
     /* 50 */ Vec3 mUnk_50;
 } Unk0218fd20;
 
-// Four words handed to func_0210b734; the second points at the Vec3 of Unk02188950.
-typedef struct Unk02190ee0 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ Vec3 *mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ u32 mUnk_0c;
-} Unk02190ee0;
-
 #include "01/code_02185ef4.h"
 
 #include "01/callees_0219b000.h"

@@ -655,9 +655,9 @@ u32 GetCurrentCameraKind(void) {
     return (gCurrentCamera->mKind);
 }
 
-// The camera used this frame: gCurrentCamera (returned as void *).
-void *GetCurrentCamera(void) {
-    return (void *) ((u32) gCurrentCamera);
+// The camera used this frame: gCurrentCamera.
+Camera *GetCurrentCamera(void) {
+    return gCurrentCamera;
 }
 
 u32 SetRaceUpdateFramesUnlimited(void) {

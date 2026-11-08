@@ -128,7 +128,7 @@ s32 func_020b6430(void) {
 
 u16 func_020b6368(void) {
     u16 r = 0;
-    Unk020748a8 *p;
+    Camera *p;
     s32 a;
 
     switch (GetRaceHudSubScreenState()) {
@@ -138,7 +138,7 @@ u16 func_020b6368(void) {
             } else {
                 p = GetChaseCamera();
             }
-            a = FX_Atan2Idx(p->mViewMatrix[8], p->mViewMatrix[2]);
+            a = FX_Atan2Idx(p->mViewMatrix.mUnk_00[2].z, p->mViewMatrix.mUnk_00[0].z);
             r = (0x14000 - a) % 0x10000;
             gRaceHudSubScreenProjection->mScrollTimer = 0;
             break;
