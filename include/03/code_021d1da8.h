@@ -2,12 +2,12 @@
 
 #include "types.h"
 
-typedef struct Unk021d1da8 {
-    /* 00 */ u32 mUnk_00;
+typedef struct BlendBrightnessFadeSlot {
+    /* 00 */ u32 mTask;
     /* 04 */ s16 mFrames;
     /* 06 */ u16 mFrameCount;
-    /* 08 */ u8 mUnk_08;
+    /* 08 */ u8 mKind;
     /* 09 */ u8 mEnabled;
-} Unk021d1da8;
+} BlendBrightnessFadeSlot;
 
-void func_ov003_021d1da8(u32 task, Unk021d1da8 *state);
+void AdvanceBlendBrightnessFadeWait(u32 task, BlendBrightnessFadeSlot *state);

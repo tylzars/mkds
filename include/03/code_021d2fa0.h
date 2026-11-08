@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk021d1d88 Unk021d1d88;
+typedef struct PointerStack PointerStack;
 
 typedef struct Unk021d309c {
     /* 00 */ struct Unk021d309c *mUnk_00;
@@ -16,12 +16,12 @@ typedef struct Unk021d31b0 {
     /* 180 */ Unk021d309c mUnk_180;
     /* 18c */ Unk021d309c mUnk_18c;
     /* 198 */ void *mUnk_198;
-    /* 19c */ Unk021d1d88 *mUnk_19c;
+    /* 19c */ PointerStack *mUnk_19c;
 } Unk021d31b0;
 
 typedef struct Unk021d2fa0 {
     /* 000 */ u8 mUnk_000[2][0x400];
-    /* 800 */ Unk021d1d88 *mUnk_800[2];
+    /* 800 */ PointerStack *mUnk_800[2];
     /* 808 */ u32 mUnk_808;
 } Unk021d2fa0;
 

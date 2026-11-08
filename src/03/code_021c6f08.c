@@ -62,8 +62,8 @@ void CreateEditAddr(void) {
     LoadHlScr(c + 0xb);
     func_ov003_021bf43c(b[c], -1, 0);
     func_ov003_021bf5ec(2);
-    gEditAddr->mUnk_00 = func_ov003_021d2288(0, 0);
-    gEditAddr->mUnk_04 = func_ov003_021d1c18(0, 0x3f);
+    gEditAddr->mUnk_00 = InitBgTextCanvas(0, 0);
+    gEditAddr->mUnk_04 = CreateOamEntryFromNceImage(0, 0x3f);
     gEditAddr->mUnk_04->mUnk_04 = (gEditAddr->mUnk_04->mUnk_04 & 0xfffff3ff) | 0xc00;
     func_ov003_021c7160();
     PrintEditAddrText();
@@ -127,8 +127,8 @@ void LoadEditAddrFilesAndSetBgCnt(void) {
 }
 
 void func_ov003_021c7678(void) {
-    func_ov003_021d1ee0(2, 1, 1, 8);
-    func_ov003_021d1ee0(2, 0, 0x15, 8);
+    StartBlendBrightnessFade(2, 1, 1, 8);
+    StartBlendBrightnessFade(2, 0, 0x15, 8);
     CombineDispcntBits(1, 1);
     CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c7614);
@@ -136,8 +136,8 @@ void func_ov003_021c7678(void) {
 
 void func_ov003_021c7614(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
-    if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
+    if ((v1 == 0) && (v1 = IsBlendBrightnessFadeSlotBusy(0), v1 == 0)) {
         CreateEditAddrKeyboard();
         StartSoundSeq(0x14);
         if (gEditAddr->mGroupIndex == 0) {
@@ -299,13 +299,13 @@ u32 func_ov003_021c735c(s32 a) {
 void func_ov003_021c7358(void) {}
 
 void func_ov003_021c733c(void) {
-    func_ov003_021d1dd0(8);
+    StartBlendBrightnessFadeWait(8);
     SetUpdateFunction(func_ov003_021c7314);
 }
 
 void func_ov003_021c7314(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
     if (v1 == 0) {
         StartEditAddrKeyboardSlideOut();
         StartSoundSeq(0x15);
@@ -335,7 +335,7 @@ void func_ov003_021c722c(void) {
     int v1[1];
     func_ov003_021bf410();
     func_ov003_021d2f00((u32 *) (u32) (gEditAddr->mUnk_04));
-    func_ov003_021d2168(0);
+    ReleaseBgTextCanvasOfScreen(0);
     LoadFileToVram(&gYbObjMainNclName3, &GX_LoadOBJPltt);
     ClearDispcntBits(1, 1);
     ClearDispcntBits(0, 0x15);
@@ -361,7 +361,7 @@ void PrintEditAddrText(void) {
     a[3] = data_ov003_021d7308[3];
     a[2] = data_ov003_021d63f8[0];
     a[3] = data_ov003_021d63f8[1];
-    func_ov003_021d2060(gEditAddr->mUnk_00, 0);
+    ClearBgTextCanvas(gEditAddr->mUnk_00, 0);
     b = 0;
     a[5] = 0;
     c = gEditAddrCharX;
@@ -370,11 +370,11 @@ void PrintEditAddrText(void) {
         a[4] = s->mText[b];
         d = *c;
         a[0] = d;
-        func_ov003_021d2070(s->mUnk_00, d, a[1], a[2], a[3], 2, 0x480, &a[4]);
+        DrawCanvasTextRect(s->mUnk_00, d, a[1], a[2], a[3], 2, 0x480, &a[4]);
         c++;
         b++;
     } while (b < 12);
-    func_ov003_021d1fd0(gEditAddr->mUnk_00);
+    RequestBgTextCanvasUpload(gEditAddr->mUnk_00);
 }
 
 void func_ov003_021c7160(void) {

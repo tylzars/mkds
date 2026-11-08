@@ -100,14 +100,14 @@ void func_ov003_021ccea4(u32 a, u32 b, u16 c, u16 d, u32 e) {
     data_ov003_021da268->mUnk_19 = b;
     data_ov003_021da268->mOffset = e;
     SetPosition(c, d, &data_ov003_021da268->mX);
-    data_ov003_021da268->mResource = func_ov003_021d1be4(0, data_ov003_021d662c[a], 1);
-    func_ov003_021d17d4(data_ov003_021da268->mResource, -1, c, d + e);
+    data_ov003_021da268->mResource = CreateOamRangeFromNceImage(0, data_ov003_021d662c[a], 1);
+    SetOamRangePosition(data_ov003_021da268->mResource, -1, c, d + e);
     func_ov003_021d1790(data_ov003_021da268->mResource, -1, 1);
     data_ov003_021da268->mUnk_0c = func_ov003_021d3544(0, func_ov003_021ccd18, NULL, 0x80);
 }
 
 void func_ov003_021cce78(void) {
     func_ov003_021d34c0(0, data_ov003_021da268->mUnk_0c);
-    func_ov003_021d197c(data_ov003_021da268->mResource);
+    DeleteOamRange(data_ov003_021da268->mResource);
     FreeExpHeapBlockAndClearPointer(&data_ov003_021da268);
 }

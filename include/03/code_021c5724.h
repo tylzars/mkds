@@ -4,7 +4,7 @@
 #include "03/types_021d299c.h"
 
 typedef struct Unk021da104_04 Unk021da104_04;
-typedef struct Unk021d2188 Unk021d2188;
+typedef struct BgTextCanvas BgTextCanvas;
 typedef struct Rect Rect;
 
 // 0x5c bytes.
@@ -12,7 +12,7 @@ typedef struct ApList {
     /* 00 */ u8 *mEntries;
     /* 04 */ void *mXb4ApListBackNsc;
     /* 08 */ void *mYbBgStep31Ncl;
-    /* 0c */ Unk021d2188 *mUnk_0c;
+    /* 0c */ BgTextCanvas *mUnk_0c;
     /* 10 */ Unk021da104_04 *mUnk_10[5];
     /* 24 */ Unk021da104_04 *mUnk_24[5];
     /* 38 */ u32 mScrollTask;

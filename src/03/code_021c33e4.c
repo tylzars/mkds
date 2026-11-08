@@ -27,24 +27,24 @@ void func_ov003_021c3468(void) {
 
 void func_ov003_021c3448(void) {
     DisableButtonTouch();
-    func_ov003_021d1dd0(8);
+    StartBlendBrightnessFadeWait(8);
     SetUpdateFunction(func_ov003_021c3410);
 }
 
 void func_ov003_021c3410(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
     if (v1 == 0) {
-        func_ov003_021d1ee0(3, 1, 0x3f, 0x40);
-        func_ov003_021d1ee0(3, 0, 0x3f, 0x40);
+        StartBlendBrightnessFade(3, 1, 0x3f, 0x40);
+        StartBlendBrightnessFade(3, 0, 0x3f, 0x40);
         SetUpdateFunction(func_ov003_021c33e4);
     }
 }
 
 void func_ov003_021c33e4(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
-    if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
+    if ((v1 == 0) && (v1 = IsBlendBrightnessFadeSlotBusy(0), v1 == 0)) {
         OS_SpinWait((0x01000000u));
         PM_ForceToPowerOff();
     }

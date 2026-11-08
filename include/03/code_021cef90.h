@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk021d1770 Unk021d1770;
+typedef struct OamRange OamRange;
 
 // K&R on purpose: code_021cef90.c calls WriteWinRect with a u8 array, and the typed header of this function
 // declares it with u16 *.

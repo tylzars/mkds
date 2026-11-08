@@ -29,10 +29,10 @@ void ReleaseSlideButtons(u32 task) {
     }
     for (i = 0; i < 2; i++) {
         if (data_ov003_021da108->mButtons[i] != 0) {
-            func_ov003_021d197c(data_ov003_021da108->mButtons[i]);
+            DeleteOamRange(data_ov003_021da108->mButtons[i]);
         }
     }
-    func_ov003_021d197c(data_ov003_021da108->mUnk_08);
+    DeleteOamRange(data_ov003_021da108->mUnk_08);
     FreeExpHeapBlockAndClearPointer(&data_ov003_021da108);
 }
 
@@ -52,7 +52,7 @@ void AdvanceButtonReset(u32 task) {
         for (i = 0; i < buttonCount; i++) {
             slideButtons = data_ov003_021da108;
             imageIndex = (data_ov003_021d5edc + slideButtons->mKind * 2)[i];
-            func_ov003_021d1c3c(0, imageIndex, func_ov003_021d1974(slideButtons->mButtons[i], 0));
+            CopyNceImageToOamEntries(0, imageIndex, GetOamRangeEntry(slideButtons->mButtons[i], 0));
             func_ov003_021d1790(data_ov003_021da108->mButtons[i], -1, 1);
         }
         SetSlideButtonsY(data_ov003_021d5ec4[1]);
@@ -74,7 +74,7 @@ void func_ov003_021beef8(int index) {
     object = AllocZeroedExpHeapBlock(0xc, 4);
     data_ov003_021da104 = object;
     object->mUnk_08 = index;
-    data_ov003_021da104->mUnk_04 = func_ov003_021d1c18(0, 0x47);
+    data_ov003_021da104->mUnk_04 = CreateOamEntryFromNceImage(0, 0x47);
     innerObject = data_ov003_021da104->mUnk_04;
     innerObject->mUnk_04 = (innerObject->mUnk_04 & 0xfffff3ff) | 0x400;
     innerObject = data_ov003_021da104->mUnk_04;
@@ -99,7 +99,7 @@ void func_ov003_021bee24(void) {
 
     data_ov003_021da104->mUnk_09 = FX_ModS32(data_ov003_021da104->mUnk_09 + 1, 0x28);
     c = FX_DivS32(data_ov003_021da104->mUnk_09, 5) + 0x47;
-    func_ov003_021d1c3c(0, c, (u8 *) data_ov003_021da104->mUnk_04);
+    CopyNceImageToOamEntries(0, c, (u8 *) data_ov003_021da104->mUnk_04);
     innerObject = data_ov003_021da104->mUnk_04;
     innerObject->mUnk_04 = (innerObject->mUnk_04 & 0xfffff3ff) | 0x400;
     object = data_ov003_021da104;

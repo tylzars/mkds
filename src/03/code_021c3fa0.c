@@ -8,7 +8,7 @@
 #include "03/code_021d1f70.h"
 
 void func_ov003_021c3fa0(void) {
-    if (func_ov003_021d1f70(0) == 0) {
+    if (IsBlendBrightnessFadeSlotBusy(0) == 0) {
         func_ov003_021c27d0(func_ov003_021c3e8c);
         SetUpdateFunction(func_ov003_021c3f8c);
     }

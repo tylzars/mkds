@@ -66,24 +66,24 @@ void PrintMessage(u32 messageIndex) {
     void *canvas;
     void *message;
 
-    canvas = func_ov003_021d2288(0, 0);
+    canvas = InitBgTextCanvas(0, 0);
     message = GetMessageEntry(gMessages, messageIndex);
-    func_ov003_021d2070(canvas, data_ov003_021d5f0c[0], data_ov003_021d5f0c[1], data_ov003_021d5f0c[2],
-                        data_ov003_021d5f0c[3], 2, GetLanguageTextFlags(), message);
-    func_ov003_021d1fd0(canvas);
+    DrawCanvasTextRect(canvas, data_ov003_021d5f0c[0], data_ov003_021d5f0c[1], data_ov003_021d5f0c[2],
+                       data_ov003_021d5f0c[3], 2, GetLanguageTextFlags(), message);
+    RequestBgTextCanvasUpload(canvas);
 }
 
 void PrintMessageAndText(u32 text, u32 messageIndex) {
     void *canvas;
     void *message;
 
-    canvas = func_ov003_021d2288(0, 0);
+    canvas = InitBgTextCanvas(0, 0);
     message = GetMessageEntry(gMessages, messageIndex);
-    func_ov003_021d2070(canvas, data_ov003_021d5f14[0], data_ov003_021d5f14[1], data_ov003_021d5f14[2],
-                        data_ov003_021d5f14[3], 2, GetLanguageTextFlags(), message);
-    func_ov003_021d214c((u32) canvas, data_ov003_021d5f34[GetLanguageIndex() * 2],
-                        data_ov003_021d5f36[GetLanguageIndex() * 2], 2, 0x209, text);
-    func_ov003_021d1fd0(canvas);
+    DrawCanvasTextRect(canvas, data_ov003_021d5f14[0], data_ov003_021d5f14[1], data_ov003_021d5f14[2],
+                       data_ov003_021d5f14[3], 2, GetLanguageTextFlags(), message);
+    DrawCanvasText((u32) canvas, data_ov003_021d5f34[GetLanguageIndex() * 2],
+                   data_ov003_021d5f36[GetLanguageIndex() * 2], 2, 0x209, text);
+    RequestBgTextCanvasUpload(canvas);
 }
 
 u32 GetLanguageTextFlags(void) {

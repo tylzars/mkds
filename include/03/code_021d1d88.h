@@ -2,11 +2,11 @@
 
 #include "types.h"
 
-typedef struct Unk021d1d88 {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u8 mUnk_02;
-    /* 03 */ u8 mUnk_03;
-    /* 04 */ void *mUnk_04[1];
-} Unk021d1d88;
+typedef struct PointerStack {
+    /* 00 */ u16 mSlotCount;
+    /* 02 */ u8 mBottomIndex;
+    /* 03 */ u8 mTopIndex;
+    /* 04 */ void *mPointers[1];
+} PointerStack;
 
-Unk021d1d88 *func_ov003_021d1d88(u32 count);
+PointerStack *CreatePointerStack(u32 count);

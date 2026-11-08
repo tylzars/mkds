@@ -59,8 +59,8 @@ void CreateEdit(void) {
         func_ov003_021bf43c(a[b], -1, 0);
     }
     func_ov003_021bf5ec(2);
-    gEdit->mUnk_00 = func_ov003_021d2288(0, 0);
-    gEdit->mUnk_04 = func_ov003_021d1c18(0, 0x3e);
+    gEdit->mUnk_00 = InitBgTextCanvas(0, 0);
+    gEdit->mUnk_04 = CreateOamEntryFromNceImage(0, 0x3e);
     gEdit->mUnk_04->mUnk_04 = (gEdit->mUnk_04->mUnk_04 & 0xfffff3ff) | 0xc00;
     func_ov003_021c6914();
     PrintEditText();
@@ -124,8 +124,8 @@ void LoadEditFilesAndSetBgCnt(void) {
 }
 
 void func_ov003_021c6d68(void) {
-    func_ov003_021d1ee0(2, 1, 1, 8);
-    func_ov003_021d1ee0(2, 0, 0x15, 8);
+    StartBlendBrightnessFade(2, 1, 1, 8);
+    StartBlendBrightnessFade(2, 0, 0x15, 8);
     CombineDispcntBits(1, 1);
     CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c6d0c);
@@ -133,8 +133,8 @@ void func_ov003_021c6d68(void) {
 
 void func_ov003_021c6d0c(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
-    if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
+    if ((v1 == 0) && (v1 = IsBlendBrightnessFadeSlotBusy(0), v1 == 0)) {
         CreateEditKeyboard();
         StartSoundSeq(0x14);
         if (gEdit->mCharCount == 0) {
@@ -218,13 +218,13 @@ void UpdateEditInput(void) {
 void func_ov003_021c6b9c(void) {}
 
 void func_ov003_021c6b80(void) {
-    func_ov003_021d1dd0(8);
+    StartBlendBrightnessFadeWait(8);
     SetUpdateFunction(func_ov003_021c6b58);
 }
 
 void func_ov003_021c6b58(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
     if (v1 == 0) {
         StartEditKeyboardSlideOut();
         StartSoundSeq(0x15);
@@ -254,7 +254,7 @@ void func_ov003_021c6a18(void) {
     int v2[1];
     func_ov003_021bf410();
     func_ov003_021d2f00((u32 *) (u32) gEdit->mUnk_04);
-    func_ov003_021d2168(0);
+    ReleaseBgTextCanvasOfScreen(0);
     LoadFileToVram(&gYbObjMainNclName2, &GX_LoadOBJPltt);
     ClearDispcntBits(1, 1);
     ClearDispcntBits(0, 0x15);
@@ -284,7 +284,7 @@ void PrintEditText(void) {
     b.mUnk_02 = gEditLineY[0];
     b.mUnk_04 = data_ov003_021d63e4[0];
     b.mUnk_06 = data_ov003_021d63e4[1];
-    func_ov003_021d2060(gEdit->mUnk_00, 0);
+    ClearBgTextCanvas(gEdit->mUnk_00, 0);
     c[1] = 0;
     i = 0;
     k = i;
@@ -302,9 +302,9 @@ void PrintEditText(void) {
             c[0] = s->mText[i];
         }
         b.mUnk_00 = gEditColumnX[k];
-        func_ov003_021d2070(s->mUnk_00, b.mUnk_00, b.mUnk_02, b.mUnk_04, b.mUnk_06, 2, 0x480, c);
+        DrawCanvasTextRect(s->mUnk_00, b.mUnk_00, b.mUnk_02, b.mUnk_04, b.mUnk_06, 2, 0x480, c);
     }
-    func_ov003_021d1fd0(gEdit->mUnk_00);
+    RequestBgTextCanvasUpload(gEdit->mUnk_00);
 }
 
 void func_ov003_021c6914(void) {

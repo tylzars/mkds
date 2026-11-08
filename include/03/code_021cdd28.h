@@ -9,10 +9,10 @@ typedef struct Unk021cdd48_66a8 {
     /* 02 */ u16 mUnk_02;
 } Unk021cdd48_66a8;
 
-typedef struct Unk021d1770 Unk021d1770;
+typedef struct OamRange OamRange;
 
 typedef struct Unk021ce0f0 {
-    /* 00 */ Unk021d1770 *mUnk_00[5];
+    /* 00 */ OamRange *mUnk_00[5];
     /* 14 */ u32 mTask;
     /* 18 */ u8 mUnk_18;
 } Unk021ce0f0;

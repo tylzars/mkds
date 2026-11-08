@@ -34,17 +34,17 @@ void SetupJb5Move(void) {
     void *b;
     u16 c[12];
     a = func_ov003_021c27b4();
-    b = func_ov003_021d2288(0, 0);
+    b = InitBgTextCanvas(0, 0);
     data_ov003_021da1d4 = 0;
     data_ov003_021da1d0 = 0;
     LoadJb5MoveFileAndSetBgCnt();
     c[0] = 0;
     MIi_CpuClear16(c[0], &c[1], 0x16);
     MIi_CpuCopy16(a + 2, &c[1], a[1] * 2);
-    func_ov003_021d2070(b, data_ov003_021d6380.mUnk_00, data_ov003_021d6380.mUnk_02,
-                        data_ov003_021d6380.mUnk_04 - data_ov003_021d6380.mUnk_00,
-                        data_ov003_021d6380.mUnk_06 - data_ov003_021d6380.mUnk_02, 2, 0x480, &c[1]);
-    func_ov003_021d1fd0(b);
+    DrawCanvasTextRect(b, data_ov003_021d6380.mUnk_00, data_ov003_021d6380.mUnk_02,
+                       data_ov003_021d6380.mUnk_04 - data_ov003_021d6380.mUnk_00,
+                       data_ov003_021d6380.mUnk_06 - data_ov003_021d6380.mUnk_02, 2, 0x480, &c[1]);
+    RequestBgTextCanvasUpload(b);
     func_ov003_021c27d0(func_ov003_021c4ad4);
     SetUpdateFunction(func_ov003_021c4cb0);
 }
@@ -97,14 +97,14 @@ void LoadJb5MoveFileAndSetBgCnt(void) {
 }
 
 void func_ov003_021c4cb0(void) {
-    func_ov003_021d1ee0(2, 0, 0x15, 8);
+    StartBlendBrightnessFade(2, 0, 0x15, 8);
     CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c4c84);
 }
 
 void func_ov003_021c4c84(void) {
     int v1;
-    v1 = func_ov003_021d1f70(0);
+    v1 = IsBlendBrightnessFadeSlotBusy(0);
     if (v1 == 0) {
         func_ov003_021cefc0(0x5f, 4, 0, 0xffffffff, 0);
         SetUpdateFunction(func_ov003_021c4c64);
@@ -148,15 +148,15 @@ void func_ov003_021c4bc4(void) {
     v1 = func_ov003_021cef6c();
     if (v1 == 0) {
         if ((*(u8 *) &data_ov003_021da1d4) == 0) {
-            func_ov003_021d1ee0(3, 1, 1, 8);
+            StartBlendBrightnessFade(3, 1, 1, 8);
         }
-        func_ov003_021d1ee0(3, 0, 0x15, 8);
+        StartBlendBrightnessFade(3, 0, 0x15, 8);
         SetUpdateFunction(func_ov003_021c4b78);
     }
 }
 
 void func_ov003_021c4b78(void) {
-    if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0) {
+    if (IsBlendBrightnessFadeSlotBusy(1) == 0 && IsBlendBrightnessFadeSlotBusy(0) == 0) {
         if (data_ov003_021da1d0 == 0 && data_ov003_021da1d4 == 1) {
             func_ov003_021c27c8();
         } else {
@@ -169,7 +169,7 @@ void func_ov003_021c4b78(void) {
 void func_ov003_021c4ae0(void) {
     int v1;
     if (((data_ov003_021da1d0 == 0) && (data_ov003_021da1d4 != 0)) || (v1 = func_ov003_021c27e4(), v1 != 0)) {
-        func_ov003_021d2168(0);
+        ReleaseBgTextCanvasOfScreen(0);
         ClearDispcntBits(0, 0x15);
         if (data_ov003_021da1d4 == 0) {
             func_ov003_021bf410();

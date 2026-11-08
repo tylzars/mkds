@@ -3,7 +3,7 @@
 #include "types.h"
 
 typedef struct Unk021bf920 Unk021bf920;
-typedef struct Unk021d1770 Unk021d1770;
+typedef struct OamRange OamRange;
 typedef struct TaskEntry TaskEntry;
 
 // Object behind gEditAddrKeyboard.
@@ -11,9 +11,9 @@ typedef struct EditAddrKeyboard {
     /* 00 */ void *mRowTexts[4];
     /* 10 */ Unk021bf920 *mDigitKeys[10];
     /* 38 */ Unk021bf920 *mExtraKeys[2];
-    /* 40 */ Unk021d1770 *mRow4Keys[2];
-    /* 48 */ Unk021d1770 *mUnk_48[4];
-    /* 58 */ struct Unk021d1770 *mCursor;
+    /* 40 */ OamRange *mRow4Keys[2];
+    /* 48 */ OamRange *mUnk_48[4];
+    /* 58 */ struct OamRange *mCursor;
     /* 5c */ TaskEntry *mStepTask;
     /* 60 */ u8 mInput;
     /* 61 */ s8 mPressedKeyIndex;

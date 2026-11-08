@@ -16,7 +16,7 @@ void func_ov003_021d2f78(void) {
 
 u8 *func_ov003_021d2f44(int a, u8 *b) {
     u8 *v1;
-    v1 = func_ov003_021d1cd4(data_ov003_021da2f0->mUnk_800[a]);
+    v1 = PopPointerStack(data_ov003_021da2f0->mUnk_800[a]);
     MIi_CpuCopy32(b, v1, 8);
     return v1;
 }
@@ -30,11 +30,11 @@ void func_ov003_021d2f00(u32 *a) {
     if ((u32) a >= (u32) b + 0x400) {
         c = 1;
     }
-    func_ov003_021d1d0c(b->mUnk_800[c], a);
+    PushPointerStack(b->mUnk_800[c], a);
 }
 
-Unk021d1770_08 *func_ov003_021d2eec(int a, int b) {
-    return (Unk021d1770_08 *) (&data_ov003_021da2f0->mUnk_000[a][b * 8]);
+OamEntry *func_ov003_021d2eec(int a, int b) {
+    return (OamEntry *) (&data_ov003_021da2f0->mUnk_000[a][b * 8]);
 }
 
 void *func_ov003_021d2ecc(void) {

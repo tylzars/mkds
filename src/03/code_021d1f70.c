@@ -6,22 +6,22 @@
 #include "03/unk_021da000.h"
 #include "code_0214a390.h"
 
-void func_ov003_021d1f98(void) {
-    data_ov003_021da2c0 = AllocZeroedExpHeapBlock(0x18, 4);
+void InitBlendBrightnessFadeSlotsFaded(void) {
+    gBlendBrightnessFadeSlots = AllocZeroedExpHeapBlock(0x18, 4);
     G2x_SetBlendBrightness_(&reg_G2_BLDCNT, 0x3f, 0x10);
     G2x_SetBlendBrightness_(&reg_G2S_DB_BLDCNT, 0x3f, 0x10);
 }
 
-void func_ov003_021d1f88(void) {
-    FreeExpHeapBlockAndClearPointer(&data_ov003_021da2c0);
+void FreeBlendBrightnessFadeSlots(void) {
+    FreeExpHeapBlockAndClearPointer(&gBlendBrightnessFadeSlots);
 }
 
-u8 func_ov003_021d1f70(int a) {
-    Unk021d1da8 *v1;
-    if (a == 1) {
-        v1 = data_ov003_021da2c0;
+u8 IsBlendBrightnessFadeSlotBusy(int screen) {
+    BlendBrightnessFadeSlot *slot;
+    if (screen == 1) {
+        slot = gBlendBrightnessFadeSlots;
     } else {
-        v1 = data_ov003_021da2c0 + 1;
+        slot = gBlendBrightnessFadeSlots + 1;
     }
-    return v1->mEnabled;
+    return slot->mEnabled;
 }

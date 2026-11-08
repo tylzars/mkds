@@ -130,8 +130,8 @@ void SetEditKeyboardRowY(u32 page, s32 row, u32 yPos) {
             ((data_ov003_021d5fb0[keyIndex][0] & 0x1ff) << 16) | ((key->mUnk_00 & 0xfe00ff00) | (yPos & 0xff));
     }
     if (row < 4) {
-        func_ov003_021d1ffc(gEditKeyboard->mRowTexts[page][row], data_ov003_021d5fb0[row * 12][0], yPos,
-                            gEditKeyboard->mUnk_104[row], 2);
+        ArrangeObjTextCanvasRange(gEditKeyboard->mRowTexts[page][row], data_ov003_021d5fb0[row * 12][0], yPos,
+                                  gEditKeyboard->mUnk_104[row], 2);
     }
     extraKeyIndex = FX_ModS32(row + 3, 4);
     for (i = 0; i < extraKeyCounts[(u32) row]; i++) {
@@ -142,8 +142,8 @@ void SetEditKeyboardRowY(u32 page, s32 row, u32 yPos) {
             ((data_ov003_021d5f90[extraKeyIndex][0] & 0x1ff) << 16) | ((key->mUnk_00 & 0xfe00ff00) | (yPos & 0xff));
     }
     for (i = 0; i < row4KeyCounts[(u32) row]; i++) {
-        func_ov003_021d18f0(gEditKeyboard->mRow4Keys[i], -1, 0, 0);
-        func_ov003_021d17d4(gEditKeyboard->mRow4Keys[i], -1, data_ov003_021d5f88[i][0], yPos);
+        SetOamRangeEffect(gEditKeyboard->mRow4Keys[i], -1, 0, 0);
+        SetOamRangePosition(gEditKeyboard->mRow4Keys[i], -1, data_ov003_021d5f88[i][0], yPos);
     }
 }
 
@@ -218,9 +218,9 @@ void PlaceEditKeyboardCursor(void) {
             imageIndex = 0x40;
             break;
     }
-    func_ov003_021d1c3c(0, imageIndex, func_ov003_021d1974(gEditKeyboard->mCursor, 0));
+    CopyNceImageToOamEntries(0, imageIndex, GetOamRangeEntry(gEditKeyboard->mCursor, 0));
     func_ov003_021d1790(gEditKeyboard->mCursor, -1, 2);
-    func_ov003_021d17d4(gEditKeyboard->mCursor, -1, data_ov003_021d606c[gEditKeyboard->mCursorKeyIndex][0],
+    SetOamRangePosition(gEditKeyboard->mCursor, -1, data_ov003_021d606c[gEditKeyboard->mCursorKeyIndex][0],
                         data_ov003_021d606e[gEditKeyboard->mCursorKeyIndex][0]);
 }
 
@@ -360,7 +360,7 @@ void MoveEditKeyboardCursor(int direction) {
 void AdvanceEditKeyboardSlideOutRow4(TaskEntry *task) {
     s32 xPos;
     s32 yPos;
-    func_ov003_021bfbd0_inline(func_ov003_021d1974(gEditKeyboard->mRow4Keys[0], 0), (u32 *) &xPos, (u32 *) &yPos);
+    func_ov003_021bfbd0_inline(GetOamRangeEntry(gEditKeyboard->mRow4Keys[0], 0), (u32 *) &xPos, (u32 *) &yPos);
     yPos += 12;
     SetEditKeyboardRowY(gEditKeyboard->mPage, 4, yPos);
     if (yPos >= 0xc0) {
@@ -418,14 +418,14 @@ void ReleaseEditKeyboard(u32 task) {
     func_ov003_021d34c8(0, task);
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 4; j++) {
-            func_ov003_021d2388(gEditKeyboard->mRowTexts[i][j]);
+            DeleteObjTextCanvas(gEditKeyboard->mRowTexts[i][j]);
             if (i == 0) {
-                func_ov003_021d197c(gEditKeyboard->mUnk_104[j]);
+                DeleteOamRange(gEditKeyboard->mUnk_104[j]);
             }
         }
     }
     for (i = 0; i < 2; i++) {
-        func_ov003_021d197c(gEditKeyboard->mRow4Keys[i]);
+        DeleteOamRange(gEditKeyboard->mRow4Keys[i]);
     }
     for (i = 0; i < 4; i++) {
         func_ov003_021d2f00((u32 *) gEditKeyboard->mExtraKeys[i]);
@@ -440,7 +440,7 @@ void CreateLinkLevel(int row) {
     if (gLinkLevel == NULL) {
         gLinkLevel = AllocExpHeapBlock(0xc, 4);
         gLinkLevel->mUnk_08 = row;
-        gLinkLevel->mUnk_00 = func_ov003_021d1c18(0, data_ov003_021d5f58[row][0]);
+        gLinkLevel->mUnk_00 = CreateOamEntryFromNceImage(0, data_ov003_021d5f58[row][0]);
         gLinkLevel->mUnk_00->mUnk_00 = ((data_ov003_021d5f54[0] & 0x1ff) << 16) |
                                        ((gLinkLevel->mUnk_00->mUnk_00 & 0xfe00ff00) | (data_ov003_021d5f54[1] & 0xff));
         gLinkLevel->mUnk_00->mUnk_04 = (gLinkLevel->mUnk_00->mUnk_04 & 0xfffff3ff) | 0x800;
@@ -467,7 +467,7 @@ void UpdateLinkLevel(void) {
     }
     reg_OS_IME;
     reg_OS_IME = savedIme;
-    func_ov003_021d1c3c(0, data_ov003_021d5f58[gLinkLevel->mUnk_08][linkLevel], (u8 *) gLinkLevel->mUnk_00);
+    CopyNceImageToOamEntries(0, data_ov003_021d5f58[gLinkLevel->mUnk_08][linkLevel], (u8 *) gLinkLevel->mUnk_00);
     gLinkLevel->mUnk_00->mUnk_00 = ((data_ov003_021d5f54[0] & 0x1ff) << 16) |
                                    ((gLinkLevel->mUnk_00->mUnk_00 & 0xfe00ff00) | (data_ov003_021d5f54[1] & 0xff));
     gLinkLevel->mUnk_00->mUnk_04 = (gLinkLevel->mUnk_00->mUnk_04 & 0xfffff3ff) | 0x800;

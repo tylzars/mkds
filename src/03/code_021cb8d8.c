@@ -128,18 +128,18 @@ void func_ov003_021cbaa0(void) {
 
 void func_ov003_021cba54(void) {
     int v1[1];
-    func_ov003_021d1ee0(2, 0, 0x15, 8);
+    StartBlendBrightnessFade(2, 0, 0x15, 8);
     CombineDispcntBits(0, 0x15);
     func_ov003_021c20dc(NULL, v1);
     if (v1[0] == 0) {
-        func_ov003_021d1ee0(2, 1, 1, 8);
+        StartBlendBrightnessFade(2, 1, 1, 8);
         CombineDispcntBits(1, 1);
     }
     SetUpdateFunction(func_ov003_021cba2c);
 }
 
 void func_ov003_021cba2c(void) {
-    if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0) {
+    if (IsBlendBrightnessFadeSlotBusy(1) == 0 && IsBlendBrightnessFadeSlotBusy(0) == 0) {
         SetUpdateFunction(func_ov003_021cba14);
     }
 }
@@ -157,13 +157,13 @@ void func_ov003_021cba0c(void) {}
 void func_ov003_021cba08(void) {}
 
 void func_ov003_021cb9e8(void) {
-    func_ov003_021d1ee0(3, 0, 0x15, 8);
+    StartBlendBrightnessFade(3, 0, 0x15, 8);
     SetUpdateFunction(func_ov003_021cb9c8);
 }
 
 void func_ov003_021cb9c8(void) {
     int v1;
-    v1 = func_ov003_021d1f70(0);
+    v1 = IsBlendBrightnessFadeSlotBusy(0);
     if (v1 == 0) {
         SetUpdateFunction(func_ov003_021cb948);
     }
@@ -175,7 +175,7 @@ void func_ov003_021cb948(void) {
         MI_CpuCopy8(func_0215109c(), a->mUnk_000[0].mUnk_f0, 0xe);
         MI_CpuCopy8(func_0215109c(), a->mUnk_000[1].mUnk_f0, 0xe);
         func_ov003_021beecc();
-        func_ov003_021d2168(0);
+        ReleaseBgTextCanvasOfScreen(0);
         ClearDispcntBits(0, 0x15);
         if (data_ov003_021da248 == 0) {
             func_ov003_021c2120(0, 1);

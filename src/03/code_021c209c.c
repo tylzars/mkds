@@ -97,7 +97,7 @@ void func_ov003_021c2398(void) {
     func_ov003_021d35f4();
     func_ov003_021d1654();
     InitKeyTouchInput();
-    func_ov003_021d1f98();
+    InitBlendBrightnessFadeSlotsFaded();
     work = AllocExpHeapBlock(0x700, 0x20);
     DWC_BM_Init(work);
     FreeExpHeapBlockAndClearPointer(&work);
@@ -149,10 +149,10 @@ void func_ov003_021c2188(void) {
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0xf00;
     powerControl = &reg_GX_POWCNT;
     *powerControl = *powerControl & ~0x8000;
-    func_ov003_021d2490();
+    InitTextCanvases();
     func_ov003_021d2fdc();
     func_ov003_021d31b0();
-    func_ov003_021d1b3c();
+    InitOamRanges();
     GX_DispOn();
     *(u32 *) 0x4001000 = *(u32 *) 0x4001000 | 0x10000;
     GX_VBlankIntr(1);
@@ -165,10 +165,10 @@ void func_ov003_021c2138(void) {
     ReleaseKeyTouchInput();
     func_ov003_021d2dcc();
     func_ov003_021cdc28();
-    func_ov003_021d1af0();
+    ReleaseOamRanges();
     func_ov003_021d2f78();
-    func_ov003_021d244c();
-    func_ov003_021d1f88();
+    ReleaseTextCanvases();
+    FreeBlendBrightnessFadeSlots();
     func_ov003_021d15f4();
     func_ov003_021d35c0();
     ReleaseExpHeap();

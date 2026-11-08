@@ -1,95 +1,96 @@
 #include "03/code_021d1790.h"
 #include "03/code_021d1770.h"
 
-static inline void func_ov003_021d17d4_inline(Unk021d1770_08 *p, u32 *x, u32 *y) {
+static inline void func_ov003_021d17d4_inline(OamEntry *p, u32 *x, u32 *y) {
     *x = (p->mUnk_00 & 0x1ff0000) >> 16;
     *y = p->mUnk_00 & 0xff;
 }
 
-void func_ov003_021d18f0(Unk021d1770 *param_1, s32 param_2, u32 param_3, u32 param_4) {
-    Unk021d1770_08 *a = param_1->mUnk_08;
+void SetOamRangeEffect(OamRange *range, s32 index, u32 effect, u32 affineIndex) {
+    OamEntry *entries = range->mEntries;
     s32 i;
 
-    if (param_2 >= 0) {
-        if (param_3 != 0x100 && param_3 != 0x300) {
-            u32 t = a[param_2].mUnk_00;
+    if (index >= 0) {
+        if (effect != 0x100 && effect != 0x300) {
+            u32 word = entries[index].mUnk_00;
 
-            a[param_2].mUnk_00 = (t & 0xc1fffcff) | param_3;
+            entries[index].mUnk_00 = (word & 0xc1fffcff) | effect;
         } else {
-            u32 t = a[param_2].mUnk_00;
+            u32 word = entries[index].mUnk_00;
 
-            a[param_2].mUnk_00 = (param_4 << 25) | ((t & 0xc1fffcff) | param_3);
+            entries[index].mUnk_00 = (affineIndex << 25) | ((word & 0xc1fffcff) | effect);
         }
     } else {
-        for (i = 0; i < param_1->mUnk_0c; i++) {
-            if (param_3 != 0x100 && param_3 != 0x300) {
-                a->mUnk_00 = (a->mUnk_00 & 0xc1fffcff) | param_3;
+        for (i = 0; i < range->mEntryCount; i++) {
+            if (effect != 0x100 && effect != 0x300) {
+                entries->mUnk_00 = (entries->mUnk_00 & 0xc1fffcff) | effect;
             } else {
-                a->mUnk_00 = (param_4 << 25) | ((a->mUnk_00 & 0xc1fffcff) | param_3);
+                entries->mUnk_00 = (affineIndex << 25) | ((entries->mUnk_00 & 0xc1fffcff) | effect);
             }
-            a++;
+            entries++;
         }
     }
 }
 
-void func_ov003_021d1890(Unk021d1770 *param_1, s32 param_2, u32 param_3, u32 param_4) {
+void func_ov003_021d1890(OamRange *range, s32 index, u32 param_3, u32 param_4) {
     s32 i;
-    Unk021d1770_08 *a = param_1->mUnk_08;
+    OamEntry *entries = range->mEntries;
 
-    if (param_2 >= 0) {
-        u32 t = a[param_2].mUnk_00;
+    if (index >= 0) {
+        u32 t = entries[index].mUnk_00;
         u32 u;
 
-        a[param_2].mUnk_00 = (t & 0xfffff3ff) | (param_3 << 10);
-        u = a[param_2].mUnk_04;
-        a[param_2].mUnk_04 = (u & 0xffff0fff) | (param_4 << 12);
+        entries[index].mUnk_00 = (t & 0xfffff3ff) | (param_3 << 10);
+        u = entries[index].mUnk_04;
+        entries[index].mUnk_04 = (u & 0xffff0fff) | (param_4 << 12);
     } else {
-        for (i = 0; i < param_1->mUnk_0c; i++) {
-            a->mUnk_00 = (a->mUnk_00 & 0xfffff3ff) | (param_3 << 10);
-            a->mUnk_04 = (a->mUnk_04 & 0xffff0fff) | (param_4 << 12);
-            a++;
+        for (i = 0; i < range->mEntryCount; i++) {
+            entries->mUnk_00 = (entries->mUnk_00 & 0xfffff3ff) | (param_3 << 10);
+            entries->mUnk_04 = (entries->mUnk_04 & 0xffff0fff) | (param_4 << 12);
+            entries++;
         }
     }
 }
 
-void func_ov003_021d17d4(Unk021d1770 *param_1, s32 param_2, u32 param_3, u32 param_4) {
-    Unk021d1770_08 *a = param_1->mUnk_08;
+void SetOamRangePosition(OamRange *range, s32 index, u32 xPos, u32 yPos) {
+    OamEntry *entries = range->mEntries;
     s32 i;
-    s32 b;
-    s32 c;
-    s32 d;
-    s32 e;
-    s32 f;
-    s32 g;
+    s32 firstX;
+    s32 firstY;
+    s32 deltaX;
+    s32 deltaY;
+    s32 entryX;
+    s32 entryY;
 
-    if (param_2 >= 0) {
-        u32 t = a[param_2].mUnk_00;
+    if (index >= 0) {
+        u32 word = entries[index].mUnk_00;
 
-        a[param_2].mUnk_00 = ((param_3 & 0x1ff) << 16) | ((t & 0xfe00ff00) | (param_4 & 0xff));
+        entries[index].mUnk_00 = ((xPos & 0x1ff) << 16) | ((word & 0xfe00ff00) | (yPos & 0xff));
     } else {
-        func_ov003_021d17d4_inline(a, (u32 *) &b, (u32 *) &c);
-        a->mUnk_00 = ((param_3 & 0x1ff) << 16) | ((a->mUnk_00 & 0xfe00ff00) | (param_4 & 0xff));
-        d = param_3 - b;
-        e = param_4 - c;
-        for (i = 1; i < param_1->mUnk_0c; i++) {
-            func_ov003_021d17d4_inline(&a[i], (u32 *) &f, (u32 *) &g);
-            a[i].mUnk_00 = (((f + d) & 0x1ff) << 16) | ((a[i].mUnk_00 & 0xfe00ff00) | ((g + e) & 0xff));
+        func_ov003_021d17d4_inline(entries, (u32 *) &firstX, (u32 *) &firstY);
+        entries->mUnk_00 = ((xPos & 0x1ff) << 16) | ((entries->mUnk_00 & 0xfe00ff00) | (yPos & 0xff));
+        deltaX = xPos - firstX;
+        deltaY = yPos - firstY;
+        for (i = 1; i < range->mEntryCount; i++) {
+            func_ov003_021d17d4_inline(&entries[i], (u32 *) &entryX, (u32 *) &entryY);
+            entries[i].mUnk_00 =
+                (((entryX + deltaX) & 0x1ff) << 16) | ((entries[i].mUnk_00 & 0xfe00ff00) | ((entryY + deltaY) & 0xff));
         }
     }
 }
 
-void func_ov003_021d1790(Unk021d1770 *param_1, s32 param_2, u32 param_3) {
-    Unk021d1770_08 *a = param_1->mUnk_08;
+void func_ov003_021d1790(OamRange *range, s32 index, u32 param_3) {
+    OamEntry *entries = range->mEntries;
     s32 i;
 
-    if (param_2 >= 0) {
-        u32 t = a[param_2].mUnk_04;
+    if (index >= 0) {
+        u32 word = entries[index].mUnk_04;
 
-        a[param_2].mUnk_04 = (t & 0xfffff3ff) | (param_3 << 10);
+        entries[index].mUnk_04 = (word & 0xfffff3ff) | (param_3 << 10);
     } else {
-        for (i = 0; i < param_1->mUnk_0c; i++) {
-            a->mUnk_04 = (a->mUnk_04 & 0xfffff3ff) | (param_3 << 10);
-            a++;
+        for (i = 0; i < range->mEntryCount; i++) {
+            entries->mUnk_04 = (entries->mUnk_04 & 0xfffff3ff) | (param_3 << 10);
+            entries++;
         }
     }
 }

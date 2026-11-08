@@ -67,7 +67,7 @@ void CreateApList(void) {
     func_ov003_021bf5ec(2);
     func_ov003_021c6508();
     func_ov003_021c6400();
-    gApList->mUnk_0c = func_ov003_021d2288(0, 0);
+    gApList->mUnk_0c = InitBgTextCanvas(0, 0);
     gApList->mBgOffsetTask = func_ov003_021d3544(1, WriteApListBgOffset, NULL, 0x6e);
     RefreshApList();
     func_ov003_021c590c();
@@ -120,15 +120,15 @@ void func_ov003_021c6400(void) {
         n = 5;
     }
     for (i = 0; i < n; i++) {
-        gApList->mUnk_10[i] = func_ov003_021d1c18(0, data_ov003_021d6388[0]);
-        gApList->mUnk_24[i] = func_ov003_021d1c18(0, data_ov003_021d638c[0]);
+        gApList->mUnk_10[i] = CreateOamEntryFromNceImage(0, data_ov003_021d6388[0]);
+        gApList->mUnk_24[i] = CreateOamEntryFromNceImage(0, data_ov003_021d638c[0]);
     }
     for (j = 0; j < 3; j++) {
-        func_ov003_021d1c3c(0, data_ov003_021d6388[j], (u8 *) gApList->mUnk_10[0]);
+        CopyNceImageToOamEntries(0, data_ov003_021d6388[j], (u8 *) gApList->mUnk_10[0]);
         gApList->mUnk_42[j] = gApList->mUnk_10[0]->mUnk_04 & 0x3ff;
     }
     for (j = 0; j < 4; j++) {
-        func_ov003_021d1c3c(0, data_ov003_021d638c[j], (u8 *) gApList->mUnk_24[0]);
+        CopyNceImageToOamEntries(0, data_ov003_021d638c[j], (u8 *) gApList->mUnk_24[0]);
         gApList->mUnk_48[j] = gApList->mUnk_24[0]->mUnk_04 & 0x3ff;
     }
     for (i = 0; i < n; i++) {
@@ -141,8 +141,8 @@ void func_ov003_021c6400(void) {
 }
 
 void func_ov003_021c63c4(void) {
-    func_ov003_021d1ee0(2, 1, 1, 8);
-    func_ov003_021d1ee0(2, 0, 0x1d, 8);
+    StartBlendBrightnessFade(2, 1, 1, 8);
+    StartBlendBrightnessFade(2, 0, 0x1d, 8);
     CombineDispcntBits(1, 1);
     CombineDispcntBits(0, 0x1d);
     SetUpdateFunction(func_ov003_021c6394);
@@ -150,8 +150,8 @@ void func_ov003_021c63c4(void) {
 
 void func_ov003_021c6394(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
-    if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
+    if ((v1 == 0) && (v1 = IsBlendBrightnessFadeSlotBusy(0), v1 == 0)) {
         func_ov003_021bf5c8(0);
         SetUpdateFunction(func_ov003_021c6370);
     }
@@ -365,19 +365,19 @@ void func_ov003_021c5ec4(void) {
 
 void func_ov003_021c5ea4(void) {
     DisableButtonTouch();
-    func_ov003_021d1dd0(8);
+    StartBlendBrightnessFadeWait(8);
     SetUpdateFunction(func_ov003_021c5e54);
 }
 
 void func_ov003_021c5e54(void) {
-    if (func_ov003_021d1f70(1) == 0) {
+    if (IsBlendBrightnessFadeSlotBusy(1) == 0) {
         if (gApList->mUnk_54 != 0) {
             StartSlideButtonsOut();
         } else {
             DisableButtonTouch();
         }
-        func_ov003_021d1ee0(3, 1, 1, 8);
-        func_ov003_021d1ee0(3, 0, 0x1d, 8);
+        StartBlendBrightnessFade(3, 1, 1, 8);
+        StartBlendBrightnessFade(3, 0, 0x1d, 8);
         SetUpdateFunction(func_ov003_021c5cdc);
     }
 }
@@ -385,10 +385,10 @@ void func_ov003_021c5e54(void) {
 void func_ov003_021c5cdc(void) {
     int i;
     ApList *s;
-    if (func_ov003_021d1f70(1) != 0) {
+    if (IsBlendBrightnessFadeSlotBusy(1) != 0) {
         return;
     }
-    if (func_ov003_021d1f70(0) != 0) {
+    if (IsBlendBrightnessFadeSlotBusy(0) != 0) {
         return;
     }
     if (func_ov003_021bf2f0() == 0) {
@@ -403,7 +403,7 @@ void func_ov003_021c5cdc(void) {
             func_ov003_021d2f00((u32 *) gApList->mUnk_24[i]);
         }
     }
-    func_ov003_021d2188(gApList->mUnk_0c);
+    ReleaseBgTextCanvas(gApList->mUnk_0c);
     func_ov003_021cce78();
     ReleaseSelectionObjectSlots();
     func_ov003_021bf410();
@@ -447,7 +447,7 @@ void RefreshApList(void) {
     int v4;
     v1 = FX_DivS32(*(u16 *) &gApListScrollY, 0x1c);
     v4 = gApList->mEntryCount;
-    func_ov003_021d2060(gApList->mUnk_0c, 0);
+    ClearBgTextCanvas(gApList->mUnk_0c, 0);
     if (5 < v4) {
         v4 = 5;
     }
@@ -468,7 +468,7 @@ void RefreshApList(void) {
             v1 = v1 + 1;
         } while (v3 < v4);
     }
-    func_ov003_021d1fd0(gApList->mUnk_0c);
+    RequestBgTextCanvasUpload(gApList->mUnk_0c);
     RefreshApListRowPositions();
 }
 
@@ -494,7 +494,7 @@ void PrintApListEntryText(int param_0, int param_1) {
         for (i = 0; i < n; i++) {
             a[i] = (gApList->mEntries + c)[i];
         }
-        func_ov003_021d2094(gApList->mUnk_0c, 0xa, param_1, 2, 0xa, a, 1);
+        DrawCharsCentered(gApList->mUnk_0c, 0xa, param_1, 2, 0xa, a, 1);
         if (b > 0x10) {
             MI_CpuFill8(a, 0, 0x22);
             n = b - 0x10;
@@ -502,7 +502,7 @@ void PrintApListEntryText(int param_0, int param_1) {
                 a[i] = (gApList->mEntries + c)[i + 0x10];
             }
             param_1 += 0xc;
-            func_ov003_021d2094(gApList->mUnk_0c, 0xa, param_1, 2, 0xa, a, 1);
+            DrawCharsCentered(gApList->mUnk_0c, 0xa, param_1, 2, 0xa, a, 1);
         }
     }
 }

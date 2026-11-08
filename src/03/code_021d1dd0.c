@@ -10,46 +10,46 @@
 u8 data_ov003_021d1e14_pad1[1];
 u8 data_ov003_021d1e14_pad2[8];
 
-void func_ov003_021d1e14(u32 param_1, Unk021d1da8 *param_2) {
-    u8 a[4] = {0x11, 0x10, 0x01, 0x00};
-    s8 b[4] = {0x00, -0x10, 0x00, 0x10};
-    s32 c;
-    u8 d;
+void AdvanceBlendBrightnessFade(u32 task, BlendBrightnessFadeSlot *slot) {
+    u8 bitsByKind[4] = {0x11, 0x10, 0x01, 0x00};
+    s8 finalLevels[4] = {0x00, -0x10, 0x00, 0x10};
+    s32 level;
+    u8 bits;
 
-    param_2->mFrames++;
-    c = FX_DivS32(param_2->mFrames << 4, param_2->mFrameCount);
-    d = a[param_2->mUnk_08];
-    if (d & 1) {
-        c = 0x10 - c;
+    slot->mFrames++;
+    level = FX_DivS32(slot->mFrames << 4, slot->mFrameCount);
+    bits = bitsByKind[slot->mKind];
+    if (bits & 1) {
+        level = 0x10 - level;
     }
-    if (d & 0x10) {
-        c = -c;
+    if (bits & 0x10) {
+        level = -level;
     }
-    if (param_2 == data_ov003_021da2c0) {
-        G2x_ChangeBlendBrightness_(&reg_G2S_DB_BLDCNT, c);
+    if (slot == gBlendBrightnessFadeSlots) {
+        G2x_ChangeBlendBrightness_(&reg_G2S_DB_BLDCNT, level);
     } else {
-        G2x_ChangeBlendBrightness_(&reg_G2_BLDCNT, c);
+        G2x_ChangeBlendBrightness_(&reg_G2_BLDCNT, level);
     }
-    if (param_2->mFrames >= param_2->mFrameCount) {
-        if (param_2 == data_ov003_021da2c0) {
-            G2x_ChangeBlendBrightness_(&reg_G2S_DB_BLDCNT, b[param_2->mUnk_08]);
+    if (slot->mFrames >= slot->mFrameCount) {
+        if (slot == gBlendBrightnessFadeSlots) {
+            G2x_ChangeBlendBrightness_(&reg_G2S_DB_BLDCNT, finalLevels[slot->mKind]);
         } else {
-            G2x_ChangeBlendBrightness_(&reg_G2_BLDCNT, b[param_2->mUnk_08]);
+            G2x_ChangeBlendBrightness_(&reg_G2_BLDCNT, finalLevels[slot->mKind]);
         }
-        param_2->mEnabled = 0;
-        func_ov003_021d34c8(1, param_1);
+        slot->mEnabled = 0;
+        func_ov003_021d34c8(1, task);
     }
 }
 
-u32 func_ov003_021d1dd0(u16 param_1) {
-    Unk021d1da8 *a = data_ov003_021da2c0;
+u32 StartBlendBrightnessFadeWait(u16 frameCount) {
+    BlendBrightnessFadeSlot *slot = gBlendBrightnessFadeSlots;
 
-    if (a->mEnabled != 0) {
+    if (slot->mEnabled != 0) {
         return 0;
     }
-    a->mUnk_00 = func_ov003_021d3544(1, func_ov003_021d1da8, a, 200);
-    a->mFrames = 0;
-    a->mFrameCount = param_1;
-    a->mEnabled = 1;
+    slot->mTask = func_ov003_021d3544(1, AdvanceBlendBrightnessFadeWait, slot, 200);
+    slot->mFrames = 0;
+    slot->mFrameCount = frameCount;
+    slot->mEnabled = 1;
     return 1;
 }

@@ -44,8 +44,8 @@
 #include "03/code_021cc8d4.h"
 
 void func_ov003_021cb0e0(void) {
-    func_ov003_021d1ee0(2, 1, 1, 8);
-    func_ov003_021d1ee0(2, 0, 0x14, 8);
+    StartBlendBrightnessFade(2, 1, 1, 8);
+    StartBlendBrightnessFade(2, 0, 0x14, 8);
     CombineDispcntBits(1, 1);
     CombineDispcntBits(0, 0x14);
     SetUpdateFunction(func_ov003_021cb0b0);
@@ -53,8 +53,8 @@ void func_ov003_021cb0e0(void) {
 
 void func_ov003_021cb0b0(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
-    if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
+    if ((v1 == 0) && (v1 = IsBlendBrightnessFadeSlotBusy(0), v1 == 0)) {
         func_ov003_021bf5c8(0);
         SetUpdateFunction(func_ov003_021cb084);
     }
@@ -174,35 +174,35 @@ void func_ov003_021cae88(void) {
         func_ov003_021ce0c4();
     }
     DisableButtonTouch();
-    func_ov003_021d1dd0(8);
+    StartBlendBrightnessFadeWait(8);
     SetUpdateFunction(func_ov003_021cae28);
 }
 
 void func_ov003_021cae28(void) {
-    if (func_ov003_021d1f70(1) == 0) {
+    if (IsBlendBrightnessFadeSlotBusy(1) == 0) {
         if (gAp->mUnk_1d == 1) {
             if (gApSelectedIndex[0] == 3 || func_ov003_021cdb6c()->mUnk_00.mUnk_e7 != 0xff) {
                 StartSlideButtonsOut();
             }
         }
-        func_ov003_021d1ee0(3, 1, 1, 8);
-        func_ov003_021d1ee0(3, 0, 0x14, 8);
+        StartBlendBrightnessFade(3, 1, 1, 8);
+        StartBlendBrightnessFade(3, 0, 0x14, 8);
         SetUpdateFunction(func_ov003_021cacfc);
     }
 }
 
 void func_ov003_021cacfc(void) {
     u32 i;
-    if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0 && func_ov003_021cdd28() != 0 &&
+    if (IsBlendBrightnessFadeSlotBusy(1) == 0 && IsBlendBrightnessFadeSlotBusy(0) == 0 && func_ov003_021cdd28() != 0 &&
         func_ov003_021bf2f0() != 0) {
         for (i = 0; i < 3; i++) {
             if (gAp->mUnk_04[i] != NULL) {
-                func_ov003_021d197c(gAp->mUnk_04[i]);
+                DeleteOamRange(gAp->mUnk_04[i]);
             }
         }
         for (i = 0; i < 3; i++) {
             if (gAp->mUnk_10[i] != NULL) {
-                func_ov003_021d197c(gAp->mUnk_10[i]);
+                DeleteOamRange(gAp->mUnk_10[i]);
             }
         }
         ReleaseSelectionObjectSlots();
@@ -345,8 +345,8 @@ void MoveApSelection(int a) {
 
 void func_ov003_021caae0(void) {
     s32 a = gApSelectedIndex[0] - 4;
-    func_ov003_021d1c3c(0, 0x32, func_ov003_021d1974(gAp->mUnk_10[a], 0));
-    func_ov003_021d17d4(gAp->mUnk_10[a], -1, data_ov003_021d64f0[a + 3].mUnk_00, data_ov003_021d64f0[a + 3].mUnk_02);
+    CopyNceImageToOamEntries(0, 0x32, GetOamRangeEntry(gAp->mUnk_10[a], 0));
+    SetOamRangePosition(gAp->mUnk_10[a], -1, data_ov003_021d64f0[a + 3].mUnk_00, data_ov003_021d64f0[a + 3].mUnk_02);
     func_ov003_021d1790(gAp->mUnk_10[a], -1, 3);
 }
 
@@ -356,16 +356,16 @@ void func_ov003_021ca9e8(void) {
         case 1:
             StartSoundSeq(0xe);
             func_ov003_021cd4ac(a);
-            func_ov003_021d1c3c(0, data_ov003_021d64e4[3], func_ov003_021d1974(gAp->mUnk_04[a], 0));
-            func_ov003_021d17d4(gAp->mUnk_04[a], -1, data_ov003_021d64f0[a].mUnk_00, data_ov003_021d64f0[a].mUnk_02);
+            CopyNceImageToOamEntries(0, data_ov003_021d64e4[3], GetOamRangeEntry(gAp->mUnk_04[a], 0));
+            SetOamRangePosition(gAp->mUnk_04[a], -1, data_ov003_021d64f0[a].mUnk_00, data_ov003_021d64f0[a].mUnk_02);
             func_ov003_021d1790(gAp->mUnk_04[a], -1, 3);
-            func_ov003_021d197c(gAp->mUnk_10[a]);
+            DeleteOamRange(gAp->mUnk_10[a]);
             gAp->mUnk_10[a] = NULL;
             break;
         case 0:
             StartSoundSeq(7);
-            func_ov003_021d1c3c(0, 0x11, func_ov003_021d1974(gAp->mUnk_10[a], 0));
-            func_ov003_021d17d4(gAp->mUnk_10[a], -1, data_ov003_021d64f0[a + 3].mUnk_00,
+            CopyNceImageToOamEntries(0, 0x11, GetOamRangeEntry(gAp->mUnk_10[a], 0));
+            SetOamRangePosition(gAp->mUnk_10[a], -1, data_ov003_021d64f0[a + 3].mUnk_00,
                                 data_ov003_021d64f0[a + 3].mUnk_02);
             func_ov003_021d1790(gAp->mUnk_10[a], -1, 3);
             break;

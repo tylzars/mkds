@@ -29,13 +29,13 @@ void CreateSlideButtons(u32 kind) {
     if (buttonCount > 0) {
         imageCursor = data_ov003_021d5edc + kind * 2;
         do {
-            data_ov003_021da108->mButtons[i] = func_ov003_021d1be4(0, *imageCursor, 1);
+            data_ov003_021da108->mButtons[i] = CreateOamRangeFromNceImage(0, *imageCursor, 1);
             func_ov003_021d1790(data_ov003_021da108->mButtons[i], -1, 1);
             imageCursor++;
             i++;
         } while (i < buttonCount);
     }
-    data_ov003_021da108->mUnk_08 = func_ov003_021d1be4(0, 1, 1);
+    data_ov003_021da108->mUnk_08 = CreateOamRangeFromNceImage(0, 1, 1);
     func_ov003_021d1790(data_ov003_021da108->mUnk_08, -1, 1);
     SetSlideButtonsY(0xc0);
     data_ov003_021da108->mStepTask = (TaskEntry *) func_ov003_021d3544(0, AdvanceSlideButtonsIn, NULL, 0x78);
@@ -86,9 +86,9 @@ void SetSlideButtonsY(s32 yPosition) {
 
     buttonCount = data_ov003_021d5ecc[data_ov003_021da108->mKind];
     buttonY = yPosition + data_ov003_021d5ed4[1] - data_ov003_021d5ec4[1];
-    func_ov003_021d17d4(data_ov003_021da108->mUnk_08, -1, data_ov003_021d5ec4[0], yPosition);
+    SetOamRangePosition(data_ov003_021da108->mUnk_08, -1, data_ov003_021d5ec4[0], yPosition);
     for (i = 0; i < buttonCount; i++) {
-        func_ov003_021d17d4(data_ov003_021da108->mButtons[i], -1,
+        SetOamRangePosition(data_ov003_021da108->mButtons[i], -1,
                             data_ov003_021d5ed4[(data_ov003_021d5eec + data_ov003_021da108->mKind * 2)[i] * 2],
                             buttonY);
     }
@@ -98,7 +98,7 @@ void AdvanceSlideButtonsIn(TaskEntry *task) {
     u32 a;
     s32 yPosition;
 
-    func_ov003_021d1770(data_ov003_021da108->mUnk_08, 0, &a, &yPosition);
+    GetOamRangeEntryPosition(data_ov003_021da108->mUnk_08, 0, &a, &yPosition);
     yPosition = yPosition - 4;
     SetSlideButtonsY(yPosition);
     if (yPosition <= data_ov003_021d5ec4[1]) {
@@ -139,9 +139,9 @@ void AdvanceButtonTouch(void) {
                     break;
                 }
                 touchedImage = (data_ov003_021d5edc + data_ov003_021da108->mKind * 2)[i] + 1;
-                func_ov003_021d1c3c(0, touchedImage, func_ov003_021d1974(data_ov003_021da108->mButtons[i], 0));
+                CopyNceImageToOamEntries(0, touchedImage, GetOamRangeEntry(data_ov003_021da108->mButtons[i], 0));
                 positionIndex = (data_ov003_021d5eec + data_ov003_021da108->mKind * 2)[i];
-                func_ov003_021d17d4(data_ov003_021da108->mButtons[i], -1, data_ov003_021d5ed4[positionIndex * 2],
+                SetOamRangePosition(data_ov003_021da108->mButtons[i], -1, data_ov003_021d5ed4[positionIndex * 2],
                                     data_ov003_021d5ed6[positionIndex * 2]);
                 func_ov003_021d1790(data_ov003_021da108->mButtons[i], -1, 1);
                 data_ov003_021da108->mResetTask = func_ov003_021d3544(0, AdvanceButtonReset, NULL, 0x6e);
@@ -156,7 +156,7 @@ void AdvanceButtonTouch(void) {
 void AdvanceSlideButtonsOut(TaskEntry *task) {
     u32 stackValue;
     int yPosition;
-    func_ov003_021d1770(data_ov003_021da108->mUnk_08, 0, &stackValue, &yPosition);
+    GetOamRangeEntryPosition(data_ov003_021da108->mUnk_08, 0, &stackValue, &yPosition);
     yPosition = yPosition + 4;
     SetSlideButtonsY(yPosition);
     if (192 <= yPosition) {

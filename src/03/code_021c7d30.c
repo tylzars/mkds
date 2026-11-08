@@ -79,17 +79,17 @@ void CreateJb3List(void) {
     func_ov003_021bf5ec(1);
     LoadHlListScr();
     func_ov003_021ccea4(2, 0x55, 0xf1, 0x41, _s32_div_f(gJb3ListScrollY * 0x37, 0x91));
-    gJb3List->mUnk_14 = func_ov003_021d2288(0, 1);
+    gJb3List->mUnk_14 = InitBgTextCanvas(0, 1);
     for (i = 0; i < 7; i++) {
-        gJb3List->mUnk_18[i] = func_ov003_021d1c18(0, data_ov003_021d6478[0][1]);
+        gJb3List->mUnk_18[i] = CreateOamEntryFromNceImage(0, data_ov003_021d6478[0][1]);
     }
     switch (b->mUnk_00.mUnk_e7) {
         case 1:
-            gJb3List->mUnk_34 = func_ov003_021d1c18(0, 0x50);
+            gJb3List->mUnk_34 = CreateOamEntryFromNceImage(0, 0x50);
             gJb3List->mUnk_34->mUnk_04 = (gJb3List->mUnk_34->mUnk_04 & ~0xc00) | 0xc00;
             break;
         case 2:
-            gJb3List->mUnk_34 = func_ov003_021d1c18(0, 0x51);
+            gJb3List->mUnk_34 = CreateOamEntryFromNceImage(0, 0x51);
             gJb3List->mUnk_34->mUnk_04 = (gJb3List->mUnk_34->mUnk_04 & ~0xc00) | 0xc00;
             break;
     }
@@ -138,15 +138,15 @@ void func_ov003_021c94c8(void) {
 }
 
 void func_ov003_021c948c(void) {
-    func_ov003_021d1ee0(2, 1, 1, 8);
-    func_ov003_021d1ee0(2, 0, 0x1d, 8);
+    StartBlendBrightnessFade(2, 1, 1, 8);
+    StartBlendBrightnessFade(2, 0, 0x1d, 8);
     CombineDispcntBits(1, 1);
     CombineDispcntBits(0, 0x1d);
     SetUpdateFunction(func_ov003_021c9464);
 }
 
 void func_ov003_021c9464(void) {
-    if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0) {
+    if (IsBlendBrightnessFadeSlotBusy(1) == 0 && IsBlendBrightnessFadeSlotBusy(0) == 0) {
         SetUpdateFunction(UpdateJb3List);
     }
 }
@@ -407,16 +407,16 @@ void UpdateJb3ListScrollInput(void) {
 
 void func_ov003_021c8e80(void) {
     func_ov003_021cce38();
-    func_ov003_021d1dd0(8);
+    StartBlendBrightnessFadeWait(8);
     SetUpdateFunction(func_ov003_021c8e48);
 }
 
 void func_ov003_021c8e48(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
     if (v1 == 0) {
-        func_ov003_021d1ee0(3, 1, 1, 8);
-        func_ov003_021d1ee0(3, 0, 0x1d, 8);
+        StartBlendBrightnessFade(3, 1, 1, 8);
+        StartBlendBrightnessFade(3, 0, 0x1d, 8);
         SetUpdateFunction(func_ov003_021c8c14);
     }
 }
@@ -430,10 +430,10 @@ void func_ov003_021c8c14(void) {
     int i;
     u32 v;
     Unk021cd5e0_400 *r;
-    if (func_ov003_021d1f70(1) != 0) {
+    if (IsBlendBrightnessFadeSlotBusy(1) != 0) {
         return;
     }
-    if (func_ov003_021d1f70(0) != 0) {
+    if (IsBlendBrightnessFadeSlotBusy(0) != 0) {
         return;
     }
     func_ov003_021d34c0(0, gJb3List->mIdTimerTask);
@@ -445,7 +445,7 @@ void func_ov003_021c8c14(void) {
         func_ov003_021d2f00((u32 *) gJb3List->mUnk_34);
     }
     func_ov003_021cce78();
-    func_ov003_021d2168(0);
+    ReleaseBgTextCanvasOfScreen(0);
     ReleaseSelectionObjectSlots();
     if (gJb3List->mUnk_40 != 0xc) {
         func_ov003_021bf410();
@@ -521,7 +521,7 @@ void RefreshJb3List(void) {
     int i;
     int j;
     a = FX_DivS32(gJb3ListScrollY, 0x1d);
-    func_ov003_021d2060(gJb3List->mUnk_14, 0);
+    ClearBgTextCanvas(gJb3List->mUnk_14, 0);
     for (i = 0, j = a; i < 5; i++, j++) {
         PrintJb3ListEntryText(j, i);
     }
@@ -530,7 +530,7 @@ void RefreshJb3List(void) {
         SetupJb3ListEntryCells(a, i);
     }
     func_ov003_021cc9fc();
-    func_ov003_021d1fd0(gJb3List->mUnk_14);
+    RequestBgTextCanvasUpload(gJb3List->mUnk_14);
     RefreshJb3ListRowPositions();
 }
 
@@ -729,7 +729,7 @@ void SetupJb3ListCell(int d, int e, int f) {
         }
     }
     if (data_ov003_021d6478[d][e] != 0) {
-        func_ov003_021d1c3c(0, data_ov003_021d6478[d][e], (u8 *) *p);
+        CopyNceImageToOamEntries(0, data_ov003_021d6478[d][e], (u8 *) *p);
         c = (a[d] & 0x1ff) << 16;
         (*p)->mUnk_00 = c | ((*p)->mUnk_00 & 0xfe00ff00);
         (*p)->mUnk_04 = ((*p)->mUnk_04 & ~0xc00) | 0xc00;
@@ -765,7 +765,7 @@ void PrintJb3ListEntryString(const u8 *g, int h) {
     if (a <= 0x10) {
         d += 5;
     }
-    func_ov003_021d2094(gJb3List->mUnk_14, 0x48, d, 2, 8, f, 1);
+    DrawCharsCentered(gJb3List->mUnk_14, 0x48, d, 2, 8, f, 1);
     if (a > 0x10) {
         MI_CpuFill8(f, 0, 0x22);
         e = a - 0x10;
@@ -777,14 +777,14 @@ void PrintJb3ListEntryString(const u8 *g, int h) {
                 f[i] = c;
             }
         }
-        func_ov003_021d2094(gJb3List->mUnk_14, 0x48, d + 0xc, 2, 8, f, 1);
+        DrawCharsCentered(gJb3List->mUnk_14, 0x48, d + 0xc, 2, 8, f, 1);
     }
 }
 
 void PrintJb3ListEntryBytes(const u8 *b, int c) {
     u16 a[16];
     swprintf(a, 0x10, gDotSeparatedBytesFormat, b[0], b[1], b[2], b[3]);
-    func_ov003_021d2094(gJb3List->mUnk_14, 0x5f, c * 0x1d + 8, 2, 7, a, 1);
+    DrawCharsCentered(gJb3List->mUnk_14, 0x5f, c * 0x1d + 8, 2, 7, a, 1);
 }
 
 void RefreshJb3ListRowPositions(void) {

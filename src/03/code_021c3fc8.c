@@ -33,24 +33,24 @@ void func_ov003_021c4108(void) {
 
 void func_ov003_021c40e8(void) {
     DisableButtonTouch();
-    func_ov003_021d1dd0(8);
+    StartBlendBrightnessFadeWait(8);
     SetUpdateFunction(func_ov003_021c40b0);
 }
 
 void func_ov003_021c40b0(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
     if (v1 == 0) {
-        func_ov003_021d1ee0(3, 1, 0x3f, 0x40);
-        func_ov003_021d1ee0(3, 0, 0x3f, 0x40);
+        StartBlendBrightnessFade(3, 1, 0x3f, 0x40);
+        StartBlendBrightnessFade(3, 0, 0x3f, 0x40);
         SetUpdateFunction(func_ov003_021c4084);
     }
 }
 
 void func_ov003_021c4084(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
-    if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
+    if ((v1 == 0) && (v1 = IsBlendBrightnessFadeSlotBusy(0), v1 == 0)) {
         OS_SpinWait((0x01000000u));
         PM_ForceToPowerOff();
     }
@@ -113,7 +113,7 @@ void func_ov003_021c3ff0(void) {
 }
 
 void func_ov003_021c3fc8(void) {
-    func_ov003_021d1ee0(2, 0, 0x15, 8);
+    StartBlendBrightnessFade(2, 0, 0x15, 8);
     CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c3fa0);
 }

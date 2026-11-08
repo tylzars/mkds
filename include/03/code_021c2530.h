@@ -2,12 +2,12 @@
 
 #include "types.h"
 
-typedef struct Unk021d1d88 Unk021d1d88;
+typedef struct PointerStack PointerStack;
 typedef struct MessageFile MessageFile;
 
 typedef struct MessagesPool {
     /* 00 */ u8 pad_00[0x60];
-    /* 60 */ Unk021d1d88 *mFreeList;
+    /* 60 */ PointerStack *mFreeList;
 } MessagesPool;
 
 extern MessagesPool *gMessagesPool;

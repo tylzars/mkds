@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk021d1d88 Unk021d1d88;
+typedef struct PointerStack PointerStack;
 
-void *func_ov003_021d1cd4(Unk021d1d88 *d);
-void func_ov003_021d1d0c(Unk021d1d88 *c, void *d);
+void *PopPointerStack(PointerStack *stack);
+void PushPointerStack(PointerStack *stack, void *pointer);

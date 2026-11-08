@@ -46,7 +46,7 @@ void SetupOptMenu(void) {
     LoadHlScr(0x10);
     func_ov003_021cdcf0(3);
     func_ov003_021bf43c(0x88, -1, 0);
-    data_ov003_021da1b8 = func_ov003_021d1c18(0, 0x5b);
+    data_ov003_021da1b8 = CreateOamEntryFromNceImage(0, 0x5b);
     a = data_ov003_021da1b8;
     a->mUnk_00 =
         ((data_ov003_021d634c[0] & 0x1ff) << 16) | ((a->mUnk_00 & 0xfe00ff00) | (data_ov003_021d634c[1] & 0xff));
@@ -90,8 +90,8 @@ void LoadOptMenuFilesAndSetBgCnt(void) {
 }
 
 void func_ov003_021c3c88(void) {
-    func_ov003_021d1ee0(2, 1, 1, 8);
-    func_ov003_021d1ee0(2, 0, 0x14, 8);
+    StartBlendBrightnessFade(2, 1, 1, 8);
+    StartBlendBrightnessFade(2, 0, 0x14, 8);
     CombineDispcntBits(1, 1);
     CombineDispcntBits(0, 0x14);
     SetUpdateFunction(func_ov003_021c3c58);
@@ -99,8 +99,8 @@ void func_ov003_021c3c88(void) {
 
 void func_ov003_021c3c58(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
-    if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
+    if ((v1 == 0) && (v1 = IsBlendBrightnessFadeSlotBusy(0), v1 == 0)) {
         func_ov003_021bf5c8(0);
         SetUpdateFunction(func_ov003_021c3c34);
     }
@@ -169,25 +169,25 @@ void func_ov003_021c3ae4(void) {
 
 void func_ov003_021c3ac4(void) {
     DisableButtonTouch();
-    func_ov003_021d1dd0(8);
+    StartBlendBrightnessFadeWait(8);
     SetUpdateFunction(func_ov003_021c3a7c);
 }
 
 void func_ov003_021c3a7c(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
     if (v1 == 0) {
         if ((*(u8 *) &data_ov003_021da1b0) != 0) {
             StartSlideButtonsOut();
         }
-        func_ov003_021d1ee0(3, 1, 1, 8);
-        func_ov003_021d1ee0(3, 0, 0x14, 8);
+        StartBlendBrightnessFade(3, 1, 1, 8);
+        StartBlendBrightnessFade(3, 0, 0x14, 8);
         SetUpdateFunction(func_ov003_021c39a4);
     }
 }
 
 void func_ov003_021c39a4(void) {
-    if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0 && func_ov003_021bf2f0() != 0) {
+    if (IsBlendBrightnessFadeSlotBusy(1) == 0 && IsBlendBrightnessFadeSlotBusy(0) == 0 && func_ov003_021bf2f0() != 0) {
         func_ov003_021d2f00((u32 *) data_ov003_021da1b8);
         ReleaseSelectionObjectSlots();
         func_ov003_021bf410();

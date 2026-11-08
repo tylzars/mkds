@@ -231,6 +231,6 @@ void func_ov003_021cca9c(s32 a, u16 *b) {
 
 void func_ov003_021cca74(s32 offset) {
     Unk021cca74 *state = data_ov003_021da268;
-    func_ov003_021d17d4(state->mResource, -1, state->mX, offset + state->mY);
+    SetOamRangePosition(state->mResource, -1, state->mX, offset + state->mY);
     data_ov003_021da268->mOffset = offset;
 }

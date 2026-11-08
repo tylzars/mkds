@@ -5,8 +5,8 @@
 #include "03/code_021d3488.h"
 
 typedef struct SlideButtons {
-    /* 00 */ Unk021d1770 *mButtons[2];
-    /* 08 */ Unk021d1770 *mUnk_08;
+    /* 00 */ OamRange *mButtons[2];
+    /* 08 */ OamRange *mUnk_08;
     /* 0c */ TaskEntry *mStepTask;
     /* 10 */ u32 mResetTask;
     /* 14 */ u16 mStepFrames;

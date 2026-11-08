@@ -3,7 +3,7 @@
 #include "types.h"
 
 typedef struct Unk021cca74 {
-    /* 00 */ struct Unk021d1770 *mResource;
+    /* 00 */ struct OamRange *mResource;
     /* 04 */ u8 mUnk_04[8];
     /* 0c */ u32 mUnk_0c;
     /* 10 */ u16 mX;

@@ -57,9 +57,9 @@ void func_ov003_021ce408(u32 a) {
     s32 i;
     data_ov003_021da27c = AllocZeroedExpHeapBlock(0x1c, 4);
     for (i = 0; i < 5; i++) {
-        data_ov003_021da27c->mUnk_00[i] = func_ov003_021d1be4(1, data_ov003_021d6688[a][i], 1);
+        data_ov003_021da27c->mUnk_00[i] = CreateOamRangeFromNceImage(1, data_ov003_021d6688[a][i], 1);
         func_ov003_021d1790(data_ov003_021da27c->mUnk_00[i], -1, 0);
-        func_ov003_021d17d4(data_ov003_021da27c->mUnk_00[i], -1, -0x2a, data_ov003_021d66a8[i].mUnk_02);
+        SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, -0x2a, data_ov003_021d66a8[i].mUnk_02);
         func_ov003_021d1890(data_ov003_021da27c->mUnk_00[i], -1, 0, data_ov003_021d6698[a][i]);
     }
     data_ov003_021da27c->mTask = func_ov003_021d3544(0, func_ov003_021ce370, NULL, 0x78);
@@ -71,17 +71,17 @@ void func_ov003_021ce370(TaskEntry *a) {
     s32 i;
     s32 w;
     s32 h;
-    func_ov003_021d1770(data_ov003_021da27c->mUnk_00[0], 0, (u32 *) &w, &h);
+    GetOamRangeEntryPosition(data_ov003_021da27c->mUnk_00[0], 0, (u32 *) &w, &h);
     w += 8;
     if (w < data_ov003_021d66a8[0].mUnk_00 || w > 0x100) {
         for (i = 0; i < 5; i++) {
-            func_ov003_021d17d4(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
+            SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
         }
         return;
     }
     w = data_ov003_021d66a8[0].mUnk_00;
     for (i = 0; i < 5; i++) {
-        func_ov003_021d17d4(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
+        SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
     }
     func_ov003_021d34e0(a, func_ov003_021ce2d0);
 }
@@ -90,17 +90,17 @@ void func_ov003_021ce2d0(TaskEntry *a) {
     s32 i;
     s32 w;
     s32 h;
-    func_ov003_021d1770(data_ov003_021da27c->mUnk_00[1], 0, (u32 *) &w, &h);
+    GetOamRangeEntryPosition(data_ov003_021da27c->mUnk_00[1], 0, (u32 *) &w, &h);
     w += 8;
     if (w < data_ov003_021d66a8[1].mUnk_00 || w > 0x100) {
         for (i = 1; i < 5; i++) {
-            func_ov003_021d17d4(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
+            SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
         }
         return;
     }
     w = data_ov003_021d66a8[1].mUnk_00;
     for (i = 1; i < 5; i++) {
-        func_ov003_021d17d4(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
+        SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
     }
     func_ov003_021d34e0(a, func_ov003_021ce230);
 }
@@ -109,17 +109,17 @@ void func_ov003_021ce230(TaskEntry *a) {
     s32 i;
     s32 w;
     s32 h;
-    func_ov003_021d1770(data_ov003_021da27c->mUnk_00[2], 0, (u32 *) &w, &h);
+    GetOamRangeEntryPosition(data_ov003_021da27c->mUnk_00[2], 0, (u32 *) &w, &h);
     w += 8;
     if (w < data_ov003_021d66a8[2].mUnk_00 || w > 0x100) {
         for (i = 2; i < 5; i++) {
-            func_ov003_021d17d4(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
+            SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
         }
         return;
     }
     w = data_ov003_021d66a8[2].mUnk_00;
     for (i = 2; i < 5; i++) {
-        func_ov003_021d17d4(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
+        SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
     }
     func_ov003_021d34e0(a, func_ov003_021ce190);
 }
@@ -128,17 +128,17 @@ void func_ov003_021ce190(TaskEntry *a) {
     s32 i;
     s32 w;
     s32 h;
-    func_ov003_021d1770(data_ov003_021da27c->mUnk_00[3], 0, (u32 *) &w, &h);
+    GetOamRangeEntryPosition(data_ov003_021da27c->mUnk_00[3], 0, (u32 *) &w, &h);
     w += 8;
     if (w < data_ov003_021d66a8[3].mUnk_00 || w > 0x100) {
         for (i = 3; i < 5; i++) {
-            func_ov003_021d17d4(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
+            SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
         }
         return;
     }
     w = data_ov003_021d66a8[3].mUnk_00;
     for (i = 3; i < 5; i++) {
-        func_ov003_021d17d4(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
+        SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
     }
     func_ov003_021d34e0(a, func_ov003_021ce110);
 }
@@ -147,17 +147,17 @@ void func_ov003_021ce110(TaskEntry *a) {
     s32 i;
     s32 w;
     s32 h;
-    func_ov003_021d1770(data_ov003_021da27c->mUnk_00[4], 0, (u32 *) &w, &h);
+    GetOamRangeEntryPosition(data_ov003_021da27c->mUnk_00[4], 0, (u32 *) &w, &h);
     w += 8;
     if (w < data_ov003_021d66a8[4].mUnk_00 || w > 0x100) {
         for (i = 4; i < 5; i++) {
-            func_ov003_021d17d4(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
+            SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
         }
         return;
     }
     w = data_ov003_021d66a8[4].mUnk_00;
     for (i = 4; i < 5; i++) {
-        func_ov003_021d17d4(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
+        SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
     }
     func_ov003_021d34e0(a, func_ov003_021ce0f0);
 }

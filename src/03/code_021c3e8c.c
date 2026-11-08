@@ -20,17 +20,17 @@ void func_ov003_021c3f88(void) {}
 void func_ov003_021c3f84(void) {}
 
 void func_ov003_021c3f64(void) {
-    func_ov003_021d1ee0(3, 0, 0x15, 8);
+    StartBlendBrightnessFade(3, 0, 0x15, 8);
     SetUpdateFunction(func_ov003_021c3ef0);
 }
 
 void func_ov003_021c3ef0(void) {
     int v1;
-    v1 = func_ov003_021d1f70(0);
+    v1 = IsBlendBrightnessFadeSlotBusy(0);
     if ((v1 == 0) && (v1 = func_ov003_021c27e4(), v1 != 0)) {
         ReleaseLinkLevel();
         func_ov003_021beecc();
-        func_ov003_021d2168(0);
+        ReleaseBgTextCanvasOfScreen(0);
         ClearDispcntBits(0, 0x15);
         func_ov003_021c2120(0, 1);
         if ((*(u8 *) &data_ov003_021da1bc) == 0) {

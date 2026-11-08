@@ -20,7 +20,7 @@ void func_ov003_021d31b0(void) {
 
     data_ov003_021da2f4 = AllocZeroedExpHeapBlock(0x340, 4);
     for (i = 0; i < 2; i++) {
-        data_ov003_021da2f4[i].mUnk_19c = func_ov003_021d1d60(0x20, &data_ov003_021da2f4[i], 0xc);
+        data_ov003_021da2f4[i].mUnk_19c = CreateFilledPointerStack(0x20, &data_ov003_021da2f4[i], 0xc);
         data_ov003_021da2f4[i].mUnk_198 = func_ov003_021d2ecc();
         data_ov003_021da2f4[i].mUnk_180.mUnk_08 = 0x300;
         data_ov003_021da2f4[i].mUnk_18c.mUnk_08 = 0x400;
@@ -38,7 +38,7 @@ Unk021d309c *func_ov003_021d309c(u32 a, s32 b, s32 c, u32 *d) {
     s32 l;
     u32 i;
 
-    e = func_ov003_021d1cd4(data_ov003_021da2f4[a].mUnk_19c);
+    e = PopPointerStack(data_ov003_021da2f4[a].mUnk_19c);
     l = (b + 3 & ~3) >> 2;
     e->mUnk_0a = l;
     i = OS_DisableIrqMask(1);
@@ -93,7 +93,7 @@ void func_ov003_021d305c(u32 c) {
     if (c >= (u32) a + 0x1a0) {
         b = 1;
     }
-    func_ov003_021d1d0c(a[b].mUnk_19c, (void *) c);
+    PushPointerStack(a[b].mUnk_19c, (void *) c);
 }
 
 void func_ov003_021d2fdc(void) {
@@ -105,7 +105,7 @@ void func_ov003_021d2fdc(void) {
     b = 0x200;
     MIi_CpuClearFast(b, a, 0x800);
     for (i = 0; i < 2; i++) {
-        data_ov003_021da2f0->mUnk_800[i] = func_ov003_021d1d60(0x40, data_ov003_021da2f0->mUnk_000[i], 8);
+        data_ov003_021da2f0->mUnk_800[i] = CreateFilledPointerStack(0x40, data_ov003_021da2f0->mUnk_000[i], 8);
     }
     data_ov003_021da2f0->mUnk_808 = func_ov003_021d3544(1, func_ov003_021d2fa0, NULL, 200);
 }

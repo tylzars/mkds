@@ -7,7 +7,7 @@
 #include "03/code_021d1f70.h"
 
 void func_ov003_021c2aa0(void) {
-    if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0) {
+    if (IsBlendBrightnessFadeSlotBusy(1) == 0 && IsBlendBrightnessFadeSlotBusy(0) == 0) {
         switch (GetMode()) {
             case 0:
                 func_ov003_021c2120(0, 1);

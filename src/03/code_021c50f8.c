@@ -67,15 +67,15 @@ void func_ov003_021c5458(void) {
 }
 
 void func_ov003_021c541c(void) {
-    func_ov003_021d1ee0(2, 1, 1, 8);
-    func_ov003_021d1ee0(2, 0, 0x15, 8);
+    StartBlendBrightnessFade(2, 1, 1, 8);
+    StartBlendBrightnessFade(2, 0, 0x15, 8);
     CombineDispcntBits(1, 1);
     CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c53ec);
 }
 
 void func_ov003_021c53ec(void) {
-    if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0) {
+    if (IsBlendBrightnessFadeSlotBusy(1) == 0 && IsBlendBrightnessFadeSlotBusy(0) == 0) {
         func_ov003_021bf5c8(1);
         SetUpdateFunction(func_ov003_021c53b4);
     }
@@ -144,31 +144,31 @@ void func_ov003_021c52a0(void) {
     if (data_ov003_021da1e4 != 0) {
         func_ov003_021d34c0(1, data_ov003_021da1e4);
     }
-    func_ov003_021d1dd0(8);
+    StartBlendBrightnessFadeWait(8);
     SetUpdateFunction(func_ov003_021c5258);
 }
 
 void func_ov003_021c5258(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
     if (v1 == 0) {
         StartSlideButtonsOut();
         if (data_ov003_021da1dc == 0) {
-            func_ov003_021d1ee0(3, 1, 1, 8);
+            StartBlendBrightnessFade(3, 1, 1, 8);
         }
-        func_ov003_021d1ee0(3, 0, 0x15, 8);
+        StartBlendBrightnessFade(3, 0, 0x15, 8);
         SetUpdateFunction(func_ov003_021c51bc);
     }
 }
 
 void func_ov003_021c51bc(void) {
     int v1;
-    v1 = func_ov003_021d1f70(0);
-    if ((v1 == 0) && (((data_ov003_021da1dc != 0 || (v1 = func_ov003_021d1f70(1), v1 == 0)) &&
+    v1 = IsBlendBrightnessFadeSlotBusy(0);
+    if ((v1 == 0) && (((data_ov003_021da1dc != 0 || (v1 = IsBlendBrightnessFadeSlotBusy(1), v1 == 0)) &&
                        (v1 = func_ov003_021bf2f0(), v1 != 0)))) {
         func_ov003_021c1f84((data_ov003_021da1dc != 0));
         func_ov003_021beecc();
-        func_ov003_021d2168(0);
+        ReleaseBgTextCanvasOfScreen(0);
         if (data_ov003_021da1dc == 0) {
             func_ov003_021bf410();
             ClearDispcntBits(1, 1);

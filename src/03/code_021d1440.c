@@ -51,7 +51,7 @@ void func_ov003_021d1654(void) {
     f = FS_LoadArchiveTables(&data_ov003_021da2b0->mUnk_88, 0, 0);
     data_ov003_021da2b0->mUnk_00 = AllocExpHeapBlock(f, 4);
     FS_LoadArchiveTables(&data_ov003_021da2b0->mUnk_88, (u32) data_ov003_021da2b0->mUnk_00, f);
-    data_ov003_021da2b0->mUnk_84 = func_ov003_021d1d60(0x20, data_ov003_021da2b0->mUnk_04, 4);
+    data_ov003_021da2b0->mUnk_84 = CreateFilledPointerStack(0x20, data_ov003_021da2b0->mUnk_04, 4);
     OS_SPrintf(d, data_ov003_021d7bf8, data_ov003_021d67d8);
     FS_ChangeDir((u8 *) d);
 }
@@ -102,7 +102,7 @@ void *func_ov003_021d14b8(const u8 *f, u32 *g, s32 h) {
     u32 c;
     s32 e;
 
-    func_ov003_021d1cd4(data_ov003_021da2b0->mUnk_84);
+    PopPointerStack(data_ov003_021da2b0->mUnk_84);
     FS_InitFile(&a);
     if (FS_OpenFile(&a, f) == 0) {
         OS_Terminate();
@@ -137,7 +137,7 @@ void *func_ov003_021d14b8(const u8 *f, u32 *g, s32 h) {
 
 void func_ov003_021d1490(void *a, ...) {
     FreeExpHeapBlockAndClearPointer(&a);
-    func_ov003_021d1d0c(data_ov003_021da2b0->mUnk_84, a);
+    PushPointerStack(data_ov003_021da2b0->mUnk_84, a);
 }
 
 u32 func_ov003_021d1440(const u8 *c, const char *d, s32 e) {

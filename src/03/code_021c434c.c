@@ -6,15 +6,15 @@
 #include "03/code_021d254c.h"
 
 void func_ov003_021c437c(void) {
-    func_ov003_021d1ee0(2, 0, 0x15, 8);
+    StartBlendBrightnessFade(2, 0, 0x15, 8);
     CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c434c);
 }
 
 void func_ov003_021c434c(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
-    if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
+    if ((v1 == 0) && (v1 = IsBlendBrightnessFadeSlotBusy(0), v1 == 0)) {
         func_ov003_021bf5c8(4);
         SetUpdateFunction(func_ov003_021c4328);
     }

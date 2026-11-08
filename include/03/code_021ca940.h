@@ -5,8 +5,8 @@
 
 typedef struct Ap {
     /* 00 */ void *mYbBgStep11Ncl;
-    /* 04 */ Unk021d1770 *mUnk_04[3];
-    /* 10 */ Unk021d1770 *mUnk_10[3];
+    /* 04 */ OamRange *mUnk_04[3];
+    /* 10 */ OamRange *mUnk_10[3];
     /* 1c */ u8 mUnk_1c;
     /* 1d */ u8 mUnk_1d;
 } Ap;

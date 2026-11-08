@@ -45,8 +45,8 @@ void func_ov003_021cbf0c(void) {
 }
 
 void func_ov003_021cbed0(void) {
-    func_ov003_021d1ee0(2, 1, 1, 8);
-    func_ov003_021d1ee0(2, 0, 0x14, 8);
+    StartBlendBrightnessFade(2, 1, 1, 8);
+    StartBlendBrightnessFade(2, 0, 0x14, 8);
     CombineDispcntBits(1, 1);
     CombineDispcntBits(0, 0x14);
     SetUpdateFunction(func_ov003_021cbe78);

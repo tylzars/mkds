@@ -12,7 +12,7 @@
 
 void InitMessagesPool(void) {
     gMessagesPool = AllocExpHeapBlock(sizeof(MessagesPool), 4);
-    gMessagesPool->mFreeList = func_ov003_021d1d60(8, gMessagesPool, 12);
+    gMessagesPool->mFreeList = CreateFilledPointerStack(8, gMessagesPool, 12);
 }
 
 void FreeMessagesPool(void) {
@@ -23,7 +23,7 @@ MessageFile *LoadMessages(void *path) {
     MessageFile *messages;
     u8 *section;
     u32 size;
-    messages = func_ov003_021d1cd4(gMessagesPool->mFreeList);
+    messages = PopPointerStack(gMessagesPool->mFreeList);
     messages->mFile = func_ov003_021d14b8(path, &size, 4);
     section = messages->mFile + 0x20;
     messages->mOffsets = OFFSET_PTR(u32, section, 0x10);
@@ -33,7 +33,7 @@ MessageFile *LoadMessages(void *path) {
 
 void ReleaseMessages(MessageFile *messages) {
     func_ov003_021d1490(messages->mFile);
-    func_ov003_021d1d0c(gMessagesPool->mFreeList, messages);
+    PushPointerStack(gMessagesPool->mFreeList, messages);
 }
 
 void *GetMessageEntry(MessageFile *messages, u32 index) {

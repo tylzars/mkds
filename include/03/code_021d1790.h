@@ -2,9 +2,9 @@
 
 #include "types.h"
 
-typedef struct Unk021d1770 Unk021d1770;
+typedef struct OamRange OamRange;
 
-void func_ov003_021d1790(Unk021d1770 *param_1, s32 param_2, u32 param_3);
-void func_ov003_021d17d4(Unk021d1770 *param_1, s32 param_2, u32 param_3, u32 param_4);
-void func_ov003_021d1890(Unk021d1770 *param_1, s32 param_2, u32 param_3, u32 param_4);
-void func_ov003_021d18f0(Unk021d1770 *param_1, s32 param_2, u32 param_3, u32 param_4);
+void func_ov003_021d1790(OamRange *range, s32 index, u32 param_3);
+void SetOamRangePosition(OamRange *range, s32 index, u32 xPos, u32 yPos);
+void func_ov003_021d1890(OamRange *range, s32 index, u32 param_3, u32 param_4);
+void SetOamRangeEffect(OamRange *range, s32 index, u32 effect, u32 affineIndex);

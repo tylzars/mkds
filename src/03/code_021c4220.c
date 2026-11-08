@@ -31,25 +31,25 @@ void func_ov003_021c42cc(void) {
 
 void func_ov003_021c42ac(void) {
     DisableButtonTouch();
-    func_ov003_021d1dd0(8);
+    StartBlendBrightnessFadeWait(8);
     SetUpdateFunction(func_ov003_021c427c);
 }
 
 void func_ov003_021c427c(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
     if (v1 == 0) {
         StartSlideButtonsOut();
-        func_ov003_021d1ee0(3, 0, 0x15, 8);
+        StartBlendBrightnessFade(3, 0, 0x15, 8);
         SetUpdateFunction(func_ov003_021c4240);
     }
 }
 
 void func_ov003_021c4240(void) {
     int v1;
-    v1 = func_ov003_021d1f70(0);
+    v1 = IsBlendBrightnessFadeSlotBusy(0);
     if ((v1 == 0) && (v1 = func_ov003_021bf2f0(), v1 != 0)) {
-        func_ov003_021d2168(0);
+        ReleaseBgTextCanvasOfScreen(0);
         ClearDispcntBits(0, 0x15);
         func_ov003_021c2120(0, 1);
         SetUpdateFunction(func_ov003_021c5098);

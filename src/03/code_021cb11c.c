@@ -38,7 +38,7 @@
 #include "registers.h"
 
 void func_ov003_021cb3d8(void) {
-    if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0 && func_ov003_021bf2f0() != 0) {
+    if (IsBlendBrightnessFadeSlotBusy(1) == 0 && IsBlendBrightnessFadeSlotBusy(0) == 0 && func_ov003_021bf2f0() != 0) {
         ReleaseSelectionObjectSlots();
         func_ov003_021bf410();
         func_ov003_021d1490(gYbBgStep21Ncl);
@@ -133,13 +133,13 @@ void func_ov003_021cb11c(void) {
         if (a == 0xff) {
             a = 3;
         } else {
-            gAp->mUnk_10[i] = func_ov003_021d1be4(0, 0x11, 1);
-            func_ov003_021d17d4(gAp->mUnk_10[i], -1, data_ov003_021d64f0[i + 3].mUnk_00,
+            gAp->mUnk_10[i] = CreateOamRangeFromNceImage(0, 0x11, 1);
+            SetOamRangePosition(gAp->mUnk_10[i], -1, data_ov003_021d64f0[i + 3].mUnk_00,
                                 data_ov003_021d64f0[i + 3].mUnk_02);
             func_ov003_021d1790(gAp->mUnk_10[i], -1, 3);
         }
-        gAp->mUnk_04[i] = func_ov003_021d1be4(0, data_ov003_021d64e4[a], 1);
-        func_ov003_021d17d4(gAp->mUnk_04[i], -1, data_ov003_021d64f0[i].mUnk_00, data_ov003_021d64f0[i].mUnk_02);
+        gAp->mUnk_04[i] = CreateOamRangeFromNceImage(0, data_ov003_021d64e4[a], 1);
+        SetOamRangePosition(gAp->mUnk_04[i], -1, data_ov003_021d64f0[i].mUnk_00, data_ov003_021d64f0[i].mUnk_02);
         func_ov003_021d1790(gAp->mUnk_04[i], -1, 3);
     }
 }

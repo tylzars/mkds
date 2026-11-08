@@ -6,7 +6,7 @@
 #include "03/code_021d1dd0.h"
 
 void func_ov003_021c2a74(void) {
-    func_ov003_021d1ee0(3, 1, 0x3f, 0x14);
-    func_ov003_021d1ee0(3, 0, 0x3f, 0x14);
+    StartBlendBrightnessFade(3, 1, 0x3f, 0x14);
+    StartBlendBrightnessFade(3, 0, 0x3f, 0x14);
     SetUpdateFunction(func_ov003_021c2a28);
 }

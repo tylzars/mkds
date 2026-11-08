@@ -49,7 +49,7 @@ void func_ov003_021cee98(u32 a) {
     u32 w;
     s32 h;
 
-    func_ov003_021d1770(data_ov003_021da284->mUnk_00, 0, &w, &h);
+    GetOamRangeEntryPosition(data_ov003_021da284->mUnk_00, 0, &w, &h);
     h -= 0xc;
     if (h > data_ov003_021d6780[data_ov003_021da284->mUnk_1c][1]) {
         func_ov003_021cec50(h);
@@ -109,14 +109,14 @@ void func_ov003_021cec50(s32 a) {
     s32 x;
     s32 y;
 
-    func_ov003_021d17d4(data_ov003_021da284->mUnk_00, -1, data_ov003_021d6780[data_ov003_021da284->mUnk_1c][0], a);
-    func_ov003_021d17d4(data_ov003_021da284->mUnk_04, -1,
+    SetOamRangePosition(data_ov003_021da284->mUnk_00, -1, data_ov003_021d6780[data_ov003_021da284->mUnk_1c][0], a);
+    SetOamRangePosition(data_ov003_021da284->mUnk_04, -1,
                         data_ov003_021d6714[0] + data_ov003_021d6780[data_ov003_021da284->mUnk_1c][0],
                         a + data_ov003_021d6714[1]);
     func_ov003_021cec00(data_ov003_021da284->mUnk_00, a);
     func_ov003_021cec00(data_ov003_021da284->mUnk_04, a);
     for (i = 0; i < data_ov003_021d6720[data_ov003_021da284->mUnk_1c]; i++) {
-        func_ov003_021d17d4(
+        SetOamRangePosition(
             data_ov003_021da284->mUnk_08[i], -1,
             data_ov003_021d67b0[data_ov003_021da284->mUnk_1c][data_ov003_021d6730[data_ov003_021da284->mUnk_1c][i]][0],
             a +
@@ -140,29 +140,29 @@ void func_ov003_021cec50(s32 a) {
     WriteWinRect(0, 0, v1);
 }
 
-void func_ov003_021cec00(Unk021d1770 *a, s32 b) {
+void func_ov003_021cec00(OamRange *a, s32 b) {
     s32 n;
     s32 i;
     u32 w;
     s32 h;
     s32 x;
 
-    n = func_ov003_021d1970(a);
+    n = GetOamRangeEntryCount(a);
     for (i = 0; i < n; i++) {
-        func_ov003_021d1770(a, i, &w, &h);
+        GetOamRangeEntryPosition(a, i, &w, &h);
         if (h >= b && h < 0xc0) {
             x = 0;
         } else {
             x = 0x200;
         }
-        func_ov003_021d18f0(a, i, x, 0);
+        SetOamRangeEffect(a, i, x, 0);
     }
 }
 
 void func_ov003_021ceb80(s32 a) {
-    func_ov003_021d1c3c(0, data_ov003_021d6748[data_ov003_021da284->mUnk_1c][a] + 1,
-                        func_ov003_021d1974(data_ov003_021da284->mUnk_08[a], 0));
-    func_ov003_021d17d4(
+    CopyNceImageToOamEntries(0, data_ov003_021d6748[data_ov003_021da284->mUnk_1c][a] + 1,
+                             GetOamRangeEntry(data_ov003_021da284->mUnk_08[a], 0));
+    SetOamRangePosition(
         data_ov003_021da284->mUnk_08[a], -1,
         data_ov003_021d67b0[data_ov003_021da284->mUnk_1c][data_ov003_021d6730[data_ov003_021da284->mUnk_1c][a]][0],
         data_ov003_021d67b0[data_ov003_021da284->mUnk_1c][data_ov003_021d6730[data_ov003_021da284->mUnk_1c][a]][1]);
@@ -180,7 +180,7 @@ void func_ov003_021ceaf8(TaskEntry *a) {
     u32 w;
     s32 h;
 
-    func_ov003_021d1770(data_ov003_021da284->mUnk_00, 0, &w, &h);
+    GetOamRangeEntryPosition(data_ov003_021da284->mUnk_00, 0, &w, &h);
     h += 0xc;
     func_ov003_021cec50(h);
     if (h >= 192) {
@@ -204,14 +204,14 @@ void func_ov003_021cea3c(u32 a) {
     s32 i;
 
     reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
-    func_ov003_021d197c(data_ov003_021da284->mUnk_00);
-    func_ov003_021d197c(data_ov003_021da284->mUnk_04);
+    DeleteOamRange(data_ov003_021da284->mUnk_00);
+    DeleteOamRange(data_ov003_021da284->mUnk_04);
     for (i = 0; i < data_ov003_021d6720[data_ov003_021da284->mUnk_1c]; i++) {
         if (data_ov003_021da284->mUnk_08[i] != NULL) {
-            func_ov003_021d197c(data_ov003_021da284->mUnk_08[i]);
+            DeleteOamRange(data_ov003_021da284->mUnk_08[i]);
         }
     }
-    func_ov003_021d2388(data_ov003_021da284->mUnk_10);
+    DeleteObjTextCanvas(data_ov003_021da284->mUnk_10);
     func_ov003_021d34c8(1, a);
     FreeExpHeapBlockAndClearPointer(&data_ov003_021da284);
 }

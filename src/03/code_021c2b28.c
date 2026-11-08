@@ -29,8 +29,8 @@ void func_ov003_021c2b28(void) {
     } else {
         gMessages = LoadMessages(gLanguageBmgNames[GetLanguageIndex()]);
     }
-    func_ov003_021d1cb0(1, BuildFilePathWithLanguage(gJtMainNceName));
-    func_ov003_021d1cb0(0, BuildFilePathWithLanguage(gJbMainNceName));
+    LoadNceFile(1, BuildFilePathWithLanguage(gJtMainNceName));
+    LoadNceFile(0, BuildFilePathWithLanguage(gJbMainNceName));
     LoadFileToVram(gJtBgMainNcgName, GXS_LoadBG1Char);
     LoadFileToVram(gJtBgMainNclName, GXS_LoadBGPltt);
     LoadFileToVram(gJtObjMainNcgName, GXS_LoadOBJ);

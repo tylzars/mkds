@@ -3,6 +3,6 @@
 #include "types.h"
 #include "03/unk_021da000.h"
 
-u32 func_ov003_021d1dd0(u16 param_1);
-void func_ov003_021d1e14(u32 param_1, Unk021d1da8 *param_2);
-u32 func_ov003_021d1ee0(s32 param_1, s32 param_2, u32 param_3, u16 param_4);
+u32 StartBlendBrightnessFadeWait(u16 frameCount);
+void AdvanceBlendBrightnessFade(u32 task, BlendBrightnessFadeSlot *slot);
+u32 StartBlendBrightnessFade(s32 kind, s32 screen, u32 plane, u16 frameCount);

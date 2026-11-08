@@ -6,27 +6,27 @@
 #include "code_0214a348.h"
 #include "code_0214a390.h"
 
-u32 func_ov003_021d1ee0(s32 param_1, s32 param_2, u32 param_3, u16 param_4) {
-    s8 a[4] = {-0x10, 0x00, 0x10, 0x00};
-    Unk021d1da8 *b;
+u32 StartBlendBrightnessFade(s32 kind, s32 screen, u32 plane, u16 frameCount) {
+    s8 startLevels[4] = {-0x10, 0x00, 0x10, 0x00};
+    BlendBrightnessFadeSlot *slot;
 
-    if (param_2 == 1) {
-        b = data_ov003_021da2c0;
+    if (screen == 1) {
+        slot = gBlendBrightnessFadeSlots;
     } else {
-        b = data_ov003_021da2c0 + 1;
+        slot = gBlendBrightnessFadeSlots + 1;
     }
-    if (b->mEnabled != 0) {
+    if (slot->mEnabled != 0) {
         return 0;
     }
-    if (param_2 == 1) {
-        G2x_SetBlendBrightness_(&reg_G2S_DB_BLDCNT, param_3, a[param_1]);
+    if (screen == 1) {
+        G2x_SetBlendBrightness_(&reg_G2S_DB_BLDCNT, plane, startLevels[kind]);
     } else {
-        G2x_SetBlendBrightness_(&reg_G2_BLDCNT, param_3, a[param_1]);
+        G2x_SetBlendBrightness_(&reg_G2_BLDCNT, plane, startLevels[kind]);
     }
-    b->mUnk_00 = func_ov003_021d3544(1, func_ov003_021d1e14, b, 200);
-    b->mFrames = 0;
-    b->mUnk_08 = param_1;
-    b->mFrameCount = param_4;
-    b->mEnabled = 1;
+    slot->mTask = func_ov003_021d3544(1, AdvanceBlendBrightnessFade, slot, 200);
+    slot->mFrames = 0;
+    slot->mKind = kind;
+    slot->mFrameCount = frameCount;
+    slot->mEnabled = 1;
     return 1;
 }

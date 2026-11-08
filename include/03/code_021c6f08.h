@@ -2,11 +2,11 @@
 
 #include "types.h"
 
-typedef struct Unk021d2188 Unk021d2188;
+typedef struct BgTextCanvas BgTextCanvas;
 typedef struct Unk021da1f8_04 Unk021da1f8_04;
 
 typedef struct EditAddr {
-    /* 00 */ Unk021d2188 *mUnk_00;
+    /* 00 */ BgTextCanvas *mUnk_00;
     /* 04 */ Unk021da1f8_04 *mUnk_04;
     /* 08 */ u8 mText[0xc];
     /* 14 */ u8 mGroupIndex;

@@ -84,8 +84,8 @@ void func_ov003_021c98d0(void) {
 }
 
 void func_ov003_021c9894(void) {
-    func_ov003_021d1ee0(2, 1, 1, 8);
-    func_ov003_021d1ee0(2, 0, 0x14, 8);
+    StartBlendBrightnessFade(2, 1, 1, 8);
+    StartBlendBrightnessFade(2, 0, 0x14, 8);
     CombineDispcntBits(1, 1);
     CombineDispcntBits(0, 0x14);
     SetUpdateFunction(func_ov003_021c985c);
@@ -93,8 +93,8 @@ void func_ov003_021c9894(void) {
 
 void func_ov003_021c985c(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
-    if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
+    if ((v1 == 0) && (v1 = IsBlendBrightnessFadeSlotBusy(0), v1 == 0)) {
         func_ov003_021cefc0(0x96, 5, 1, 0xffffffff, 0);
         SetUpdateFunction(func_ov003_021c9838);
     }
@@ -115,15 +115,15 @@ void func_ov003_021c9834(void) {}
 void func_ov003_021c9830(void) {}
 
 void func_ov003_021c9804(void) {
-    func_ov003_021d1ee0(3, 1, 1, 8);
-    func_ov003_021d1ee0(3, 0, 0x14, 8);
+    StartBlendBrightnessFade(3, 1, 1, 8);
+    StartBlendBrightnessFade(3, 0, 0x14, 8);
     SetUpdateFunction(func_ov003_021c97c0);
 }
 
 void func_ov003_021c97c0(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
-    if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
+    if ((v1 == 0) && (v1 = IsBlendBrightnessFadeSlotBusy(0), v1 == 0)) {
         func_ov003_021bf410();
         ClearDispcntBits(1, 1);
         ClearDispcntBits(0, 0x14);

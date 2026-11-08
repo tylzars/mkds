@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk021d1d88 Unk021d1d88;
+typedef struct PointerStack PointerStack;
 
 typedef struct TaskEntry {
     /* 00 */ struct TaskEntry *mUnk_00;
@@ -15,8 +15,8 @@ typedef struct TaskEntry {
 } TaskEntry;
 
 typedef struct Unk021d34c8 {
-    /* 00 */ Unk021d1d88 *mUnk_00;
-    /* 04 */ struct Unk021d1d88 *mResource;
+    /* 00 */ PointerStack *mUnk_00;
+    /* 04 */ struct PointerStack *mResource;
     /* 08 */ void *mUnk_08;
     /* 0c */ TaskEntry mUnk_0c;
     /* 20 */ TaskEntry mUnk_20;

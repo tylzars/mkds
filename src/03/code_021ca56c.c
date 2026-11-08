@@ -103,8 +103,8 @@ void func_ov003_021ca864(void) {
 }
 
 void func_ov003_021ca828(void) {
-    func_ov003_021d1ee0(2, 1, 1, 8);
-    func_ov003_021d1ee0(2, 0, 0x15, 8);
+    StartBlendBrightnessFade(2, 1, 1, 8);
+    StartBlendBrightnessFade(2, 0, 0x15, 8);
     CombineDispcntBits(1, 1);
     CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021ca7f8);
@@ -112,8 +112,8 @@ void func_ov003_021ca828(void) {
 
 void func_ov003_021ca7f8(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
-    if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
+    if ((v1 == 0) && (v1 = IsBlendBrightnessFadeSlotBusy(0), v1 == 0)) {
         func_ov003_021bf5c8(1);
         SetUpdateFunction(func_ov003_021ca7d4);
     }
@@ -191,30 +191,30 @@ void func_ov003_021ca6a8(void) {
 
 void func_ov003_021ca688(void) {
     DisableButtonTouch();
-    func_ov003_021d1dd0(8);
+    StartBlendBrightnessFadeWait(8);
     SetUpdateFunction(func_ov003_021ca64c);
 }
 
 void func_ov003_021ca64c(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
     if (v1 == 0) {
         StartSlideButtonsOut();
-        func_ov003_021d1ee0(3, 1, 1, 8);
-        func_ov003_021d1ee0(3, 0, 0x15, 8);
+        StartBlendBrightnessFade(3, 1, 1, 8);
+        StartBlendBrightnessFade(3, 0, 0x15, 8);
         SetUpdateFunction(func_ov003_021ca5b0);
     }
 }
 
 void func_ov003_021ca5b0(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
-    if (((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) && (v1 = func_ov003_021bf2f0(), v1 != 0)) {
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
+    if (((v1 == 0) && (v1 = IsBlendBrightnessFadeSlotBusy(0), v1 == 0)) && (v1 = func_ov003_021bf2f0(), v1 != 0)) {
         do {
             v1 = func_ov003_021cd118();
         } while (v1 == 0);
         func_ov003_021beecc();
-        func_ov003_021d2168(0);
+        ReleaseBgTextCanvasOfScreen(0);
         func_ov003_021bf410();
         ClearDispcntBits(1, 1);
         ClearDispcntBits(0, 0x15);

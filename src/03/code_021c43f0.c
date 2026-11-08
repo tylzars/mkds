@@ -83,8 +83,8 @@ void func_ov003_021c460c(void) {
 }
 
 void func_ov003_021c45d0(void) {
-    func_ov003_021d1ee0(2, 1, 1, 8);
-    func_ov003_021d1ee0(2, 0, 0x15, 8);
+    StartBlendBrightnessFade(2, 1, 1, 8);
+    StartBlendBrightnessFade(2, 0, 0x15, 8);
     CombineDispcntBits(1, 1);
     CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c45ac);
@@ -92,7 +92,7 @@ void func_ov003_021c45d0(void) {
 
 void func_ov003_021c45ac(void) {
     int v1;
-    v1 = func_ov003_021d1f70(0);
+    v1 = IsBlendBrightnessFadeSlotBusy(0);
     if (v1 == 0) {
         func_ov003_021bf5c8(3);
         SetUpdateFunction(func_ov003_021c4588);
@@ -143,29 +143,29 @@ void func_ov003_021c4500(void) {
 
 void func_ov003_021c44e0(void) {
     DisableButtonTouch();
-    func_ov003_021d1dd0(8);
+    StartBlendBrightnessFadeWait(8);
     SetUpdateFunction(func_ov003_021c4498);
 }
 
 void func_ov003_021c4498(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
     if (v1 == 0) {
         StartSlideButtonsOut();
         if (data_ov003_021da1c0 == 0) {
-            func_ov003_021d1ee0(3, 1, 1, 8);
+            StartBlendBrightnessFade(3, 1, 1, 8);
         }
-        func_ov003_021d1ee0(3, 0, 0x15, 8);
+        StartBlendBrightnessFade(3, 0, 0x15, 8);
         SetUpdateFunction(func_ov003_021c4410);
     }
 }
 
 void func_ov003_021c4410(void) {
     int v1;
-    v1 = func_ov003_021d1f70(0);
-    if ((v1 == 0) && (((data_ov003_021da1c0 != 0 || (v1 = func_ov003_021d1f70(1), v1 == 0)) &&
+    v1 = IsBlendBrightnessFadeSlotBusy(0);
+    if ((v1 == 0) && (((data_ov003_021da1c0 != 0 || (v1 = IsBlendBrightnessFadeSlotBusy(1), v1 == 0)) &&
                        (v1 = func_ov003_021bf2f0(), v1 != 0)))) {
-        func_ov003_021d2168(0);
+        ReleaseBgTextCanvasOfScreen(0);
         if (data_ov003_021da1c0 == 0) {
             func_ov003_021bf410();
             ClearDispcntBits(1, 1);

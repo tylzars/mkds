@@ -115,27 +115,27 @@ void PrintJb4Error(void) {
     } else {
         c = 0;
     }
-    d = func_ov003_021d2288(0, data_ov003_021d6408[GetLanguageIndex()]);
+    d = InitBgTextCanvas(0, data_ov003_021d6408[GetLanguageIndex()]);
     e = GetMessageEntry(gMessages, c);
     swprintf(h, 8, gDecimalFormat, -*(s32 *) gJb4ErrorCode);
     f = data_ov003_021d641a[GetLanguageIndex() * 2];
     g = data_ov003_021d6418[GetLanguageIndex() * 2];
-    func_ov003_021d2094(d, g, f, 2, 0xa, h, 0);
-    func_ov003_021d2070(d, data_ov003_021d6410[0], data_ov003_021d6410[1], data_ov003_021d6410[2],
-                        data_ov003_021d6410[3], 2, GetLanguageTextFlags(), e);
-    func_ov003_021d1fd0(d);
+    DrawCharsCentered(d, g, f, 2, 0xa, h, 0);
+    DrawCanvasTextRect(d, data_ov003_021d6410[0], data_ov003_021d6410[1], data_ov003_021d6410[2],
+                       data_ov003_021d6410[3], 2, GetLanguageTextFlags(), e);
+    RequestBgTextCanvasUpload(d);
 }
 
 void func_ov003_021c79e4(void) {
-    func_ov003_021d1ee0(2, 0, 0x15, 8);
+    StartBlendBrightnessFade(2, 0, 0x15, 8);
     CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c79b4);
 }
 
 void func_ov003_021c79b4(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
-    if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
+    if ((v1 == 0) && (v1 = IsBlendBrightnessFadeSlotBusy(0), v1 == 0)) {
         func_ov003_021bf5c8(4);
         SetUpdateFunction(func_ov003_021c7990);
     }
@@ -175,17 +175,17 @@ void func_ov003_021c7934(void) {
 
 void func_ov003_021c7914(void) {
     DisableButtonTouch();
-    func_ov003_021d1dd0(8);
+    StartBlendBrightnessFadeWait(8);
     SetUpdateFunction(func_ov003_021c78d8);
 }
 
 void func_ov003_021c78d8(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
     if (v1 == 0) {
         StartSlideButtonsOut();
-        func_ov003_021d1ee0(3, 1, 1, 8);
-        func_ov003_021d1ee0(3, 0, 0x15, 8);
+        StartBlendBrightnessFade(3, 1, 1, 8);
+        StartBlendBrightnessFade(3, 0, 0x15, 8);
         SetUpdateFunction(func_ov003_021c7850);
     }
 }
@@ -193,9 +193,9 @@ void func_ov003_021c78d8(void) {
 void func_ov003_021c7850(void) {
     int v1;
     int v2[1];
-    v1 = func_ov003_021d1f70(1);
-    if (((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) && (v1 = func_ov003_021bf2f0(), v1 != 0)) {
-        func_ov003_021d2168(0);
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
+    if (((v1 == 0) && (v1 = IsBlendBrightnessFadeSlotBusy(0), v1 == 0)) && (v1 = func_ov003_021bf2f0(), v1 != 0)) {
+        ReleaseBgTextCanvasOfScreen(0);
         func_ov003_021bf410();
         ClearDispcntBits(1, 1);
         ClearDispcntBits(0, 0x15);

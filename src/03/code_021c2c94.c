@@ -54,8 +54,8 @@ void LoadJb2MenuFilesAndSetBgCnt(void) {
 }
 
 void func_ov003_021c2f98(void) {
-    func_ov003_021d1ee0(2, 1, 1, 8);
-    func_ov003_021d1ee0(2, 0, 0x14, 8);
+    StartBlendBrightnessFade(2, 1, 1, 8);
+    StartBlendBrightnessFade(2, 0, 0x14, 8);
     CombineDispcntBits(1, 1);
     CombineDispcntBits(0, 0x14);
     SetUpdateFunction(func_ov003_021c2f68);
@@ -63,8 +63,8 @@ void func_ov003_021c2f98(void) {
 
 void func_ov003_021c2f68(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
-    if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
+    if ((v1 == 0) && (v1 = IsBlendBrightnessFadeSlotBusy(0), v1 == 0)) {
         func_ov003_021bf5c8(0);
         SetUpdateFunction(func_ov003_021c2f44);
     }
@@ -128,22 +128,22 @@ void func_ov003_021c2df4(void) {
 
 void func_ov003_021c2dd4(void) {
     DisableButtonTouch();
-    func_ov003_021d1dd0(8);
+    StartBlendBrightnessFadeWait(8);
     SetUpdateFunction(func_ov003_021c2d9c);
 }
 
 void func_ov003_021c2d9c(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
     if (v1 == 0) {
-        func_ov003_021d1ee0(3, 1, 1, 8);
-        func_ov003_021d1ee0(3, 0, 0x14, 8);
+        StartBlendBrightnessFade(3, 1, 1, 8);
+        StartBlendBrightnessFade(3, 0, 0x14, 8);
         SetUpdateFunction(func_ov003_021c2d18);
     }
 }
 
 void func_ov003_021c2d18(void) {
-    if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0) {
+    if (IsBlendBrightnessFadeSlotBusy(1) == 0 && IsBlendBrightnessFadeSlotBusy(0) == 0) {
         ReleaseSelectionObjectSlots();
         func_ov003_021bf410();
         func_ov003_021d1490(gYbBgStep11Ncl);

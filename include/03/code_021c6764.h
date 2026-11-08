@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk021d2188 Unk021d2188;
+typedef struct BgTextCanvas BgTextCanvas;
 
 // Object at 0x04 of Edit.
 typedef struct Unk021da1f8_04 {
@@ -11,7 +11,7 @@ typedef struct Unk021da1f8_04 {
 } Unk021da1f8_04;
 
 typedef struct Edit {
-    /* 00 */ Unk021d2188 *mUnk_00;
+    /* 00 */ BgTextCanvas *mUnk_00;
     /* 04 */ Unk021da1f8_04 *mUnk_04;
     /* 08 */ u8 mText[0x20];
     /* 28 */ u8 mUnk_28;

@@ -6,7 +6,7 @@
 #include "03/code_021c4ad4.h"
 #include "03/code_021cfa68.h"
 #include "types.h"
-#include "03/code_021d1770.h" // Unk021d1770
+#include "03/code_021d1770.h" // OamRange
 #include "03/code_021d1d88.h"
 #include "03/code_021d1da8.h"
 #include "code_02003024.h" // FSArchive
@@ -22,7 +22,7 @@ typedef struct Jb3List {
     /* 04 */ u8 mIdTimer[4];
     /* 08 */ u16 *mJb3ListBackNsc;
     /* 0c */ void *mYbBgStep2NclFiles[2];
-    /* 14 */ Unk021d2188 *mUnk_14;
+    /* 14 */ BgTextCanvas *mUnk_14;
     /* 18 */ Unk021da104_04 *mUnk_18[7];
     /* 34 */ Unk021da104_04 *mUnk_34;
     /* 38 */ u32 mScrollTask;
@@ -42,8 +42,9 @@ typedef struct Unk021da280 Unk021da280;
 typedef struct Unk021cf260 Unk021cf260;
 extern SlideButtons *data_ov003_021da108;
 extern u8 data_ov003_021da10c;
-extern Unk021d1770 **gSelectionObjects;
-// 8-byte object returned by func_ov003_021d1c18: bits 0-7 and bits 16-24 of the word at 0x00 are two coordinates.
+extern OamRange **gSelectionObjects;
+// 8-byte object returned by CreateOamEntryFromNceImage: bits 0-7 and bits 16-24 of the word at 0x00 are two
+// coordinates.
 typedef struct Unk021bf920 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u16 mUnk_04;
@@ -63,9 +64,9 @@ typedef struct EditKeyboard {
     /* 000 */ void *mRowTexts[3][4];
     /* 030 */ Unk021bf920 *mKeys[0x2f];
     /* 0ec */ Unk021bf920 *mExtraKeys[4];
-    /* 0fc */ Unk021d1770 *mRow4Keys[2];
+    /* 0fc */ OamRange *mRow4Keys[2];
     /* 104 */ void *mUnk_104[4];
-    /* 114 */ Unk021d1770 *mCursor;
+    /* 114 */ OamRange *mCursor;
     /* 118 */ TaskEntry *mStepTask;
     /* 11c */ u8 mInput;
     /* 11d */ u8 mPage;
@@ -145,12 +146,12 @@ extern void *data_ov003_021da278;
 struct Unk021ce0f0;
 extern struct Unk021ce0f0 *data_ov003_021da27c;
 extern Unk021da280 *data_ov003_021da280;
-// Object behind data_ov003_021da284: func_ov003_021ceaf8 passes 0x00 to func_ov003_021d1770 and reads the byte at
+// Object behind data_ov003_021da284: func_ov003_021ceaf8 passes 0x00 to GetOamRangeEntryPosition and reads the byte at
 // 0x1e; func_ov003_021cef80 reads the byte at 0x1b.
 typedef struct Unk021da284 {
-    /* 00 */ Unk021d1770 *mUnk_00;
-    /* 04 */ Unk021d1770 *mUnk_04;
-    /* 08 */ Unk021d1770 *mUnk_08[2];
+    /* 00 */ OamRange *mUnk_00;
+    /* 04 */ OamRange *mUnk_04;
+    /* 08 */ OamRange *mUnk_08[2];
     /* 10 */ void *mUnk_10;
     /* 14 */ u32 mUnk_14;
     /* 18 */ u16 mUnk_18;
@@ -214,7 +215,7 @@ extern Unk021da2ac *data_ov003_021da2ac;
 typedef struct Unk021da2b0 {
     /* 00 */ void *mUnk_00;
     /* 04 */ void *mUnk_04[0x20];
-    /* 84 */ Unk021d1d88 *mUnk_84;
+    /* 84 */ PointerStack *mUnk_84;
     /* 88 */ FSArchive mUnk_88;
     /* e4 */ u16 mUnk_e4;
     /* e6 */ u8 mUnk_e6[2];
@@ -223,25 +224,25 @@ typedef struct Unk021da2b0 {
 extern Unk021da2b0 *data_ov003_021da2b0;
 // Two objects of 0x228 bytes: 32 objects from 0x000, two list heads at 0x200 and 0x210, a pointer at 0x220 and the
 // list of the free objects at 0x224.
-typedef struct Unk021da2b4 {
-    /* 000 */ Unk021d1770 mUnk_000[0x20];
-    /* 200 */ Unk021d1770 mUnk_200;
-    /* 210 */ Unk021d1770 mUnk_210;
+typedef struct OamRanges {
+    /* 000 */ OamRange mRanges[0x20];
+    /* 200 */ OamRange mListStart;
+    /* 210 */ OamRange mListEnd;
     /* 220 */ void *mUnk_220;
-    /* 224 */ Unk021d1d88 *mUnk_224;
-} Unk021da2b4;
+    /* 224 */ PointerStack *mFreeRanges;
+} OamRanges;
 
-extern Unk021da2b4 *data_ov003_021da2b4;
+extern OamRanges *gOamRanges;
 // Eight-byte records at the start of a resource: a number at 0x00 and the offset of a table at 0x04.
-typedef struct Unk021da2b8 {
-    /* 00 */ u16 mUnk_00;
+typedef struct NceImage {
+    /* 00 */ u16 mEntryCount;
     /* 02 */ u16 mUnk_02;
-    /* 04 */ u32 mUnk_04;
-} Unk021da2b8;
+    /* 04 */ u32 mEntriesOffset;
+} NceImage;
 
-extern Unk021da2b8 *data_ov003_021da2b8[];
-extern Unk021d1da8 *data_ov003_021da2c0;
-extern Unk021d1fd0 *data_ov003_021da2c4;
+extern NceImage *gNceFiles[];
+extern BlendBrightnessFadeSlot *gBlendBrightnessFadeSlots;
+extern TextCanvases *gTextCanvases;
 extern u8 gLcdOff;
 extern u8 gTouchRepeatFrames;
 extern KeyTouchInput *gKeyTouchInput;

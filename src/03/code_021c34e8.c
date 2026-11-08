@@ -34,26 +34,26 @@ void func_ov003_021c366c(void) {
 
 void func_ov003_021c364c(void) {
     DisableButtonTouch();
-    func_ov003_021d1dd0(8);
+    StartBlendBrightnessFadeWait(8);
     SetUpdateFunction(func_ov003_021c3610);
 }
 
 void func_ov003_021c3610(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
     if (v1 == 0) {
         StartSlideButtonsOut();
-        func_ov003_021d1ee0(3, 1, 1, 8);
-        func_ov003_021d1ee0(3, 0, 0x15, 8);
+        StartBlendBrightnessFade(3, 1, 1, 8);
+        StartBlendBrightnessFade(3, 0, 0x15, 8);
         SetUpdateFunction(func_ov003_021c35bc);
     }
 }
 
 void func_ov003_021c35bc(void) {
     int v1;
-    v1 = func_ov003_021d1f70(1);
-    if (((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) && (v1 = func_ov003_021bf2f0(), v1 != 0)) {
-        func_ov003_021d2168(0);
+    v1 = IsBlendBrightnessFadeSlotBusy(1);
+    if (((v1 == 0) && (v1 = IsBlendBrightnessFadeSlotBusy(0), v1 == 0)) && (v1 = func_ov003_021bf2f0(), v1 != 0)) {
+        ReleaseBgTextCanvasOfScreen(0);
         func_ov003_021bf410();
         ClearDispcntBits(1, 1);
         ClearDispcntBits(0, 0x15);
@@ -117,14 +117,14 @@ void func_ov003_021c3534(void) {
 }
 
 void func_ov003_021c350c(void) {
-    func_ov003_021d1ee0(2, 0, 0x15, 8);
+    StartBlendBrightnessFade(2, 0, 0x15, 8);
     CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c34e8);
 }
 
 void func_ov003_021c34e8(void) {
     int v1;
-    v1 = func_ov003_021d1f70(0);
+    v1 = IsBlendBrightnessFadeSlotBusy(0);
     if (v1 == 0) {
         func_ov003_021bf5c8(5);
         SetUpdateFunction(func_ov003_021c34c4);

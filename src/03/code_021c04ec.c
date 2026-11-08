@@ -39,45 +39,45 @@ void CreateEditKeyboard(void) {
     gEditKeyboard->mRemoveCharEnabled = 1;
     gEditKeyboard->mAddCharEnabled = 1;
     for (i = 0; i < 0x2f; i++) {
-        gEditKeyboard->mKeys[i] = func_ov003_021d1c18(0, 0x34);
+        gEditKeyboard->mKeys[i] = CreateOamEntryFromNceImage(0, 0x34);
         gEditKeyboard->mKeys[i]->mUnk_00 = (gEditKeyboard->mKeys[i]->mUnk_00 & 0xc1fffcff) | 0x200;
         gEditKeyboard->mKeys[i]->mUnk_04 = (gEditKeyboard->mKeys[i]->mUnk_04 & 0xfffff3ff) | 0xc00;
     }
     for (i = 0; i < 4; i++) {
-        gEditKeyboard->mExtraKeys[i] = func_ov003_021d1c18(0, data_ov003_021d5f70[i]);
+        gEditKeyboard->mExtraKeys[i] = CreateOamEntryFromNceImage(0, data_ov003_021d5f70[i]);
         gEditKeyboard->mExtraKeys[i]->mUnk_00 = (gEditKeyboard->mExtraKeys[i]->mUnk_00 & 0xc1fffcff) | 0x200;
         gEditKeyboard->mExtraKeys[i]->mUnk_04 = (gEditKeyboard->mExtraKeys[i]->mUnk_04 & 0xfffff3ff) | 0xc00;
     }
     for (i = 0; i < 2; i++) {
-        gEditKeyboard->mRow4Keys[i] = func_ov003_021d1be4(0, data_ov003_021d5f68[i], 1);
-        func_ov003_021d18f0(gEditKeyboard->mRow4Keys[i], -1, 0x200, 0);
+        gEditKeyboard->mRow4Keys[i] = CreateOamRangeFromNceImage(0, data_ov003_021d5f68[i], 1);
+        SetOamRangeEffect(gEditKeyboard->mRow4Keys[i], -1, 0x200, 0);
         func_ov003_021d1790(gEditKeyboard->mRow4Keys[i], -1, 3);
     }
     text[1] = 0;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 4; j++) {
             gEditKeyboard->mRowTexts[i][j] =
-                func_ov003_021d23b0(0, data_ov003_021d5f74[0], data_ov003_021d5f74[1], 0, &w, 0);
+                CreateObjTextCanvas(0, data_ov003_021d5f74[0], data_ov003_021d5f74[1], 0, &w, 0);
             charIndex = j * 12;
             for (k = 0, textRect[0] = 0; k < 12; k++, charIndex++, textRect[0] += 0x12) {
                 text[0] = data_ov003_021d6be8[i][charIndex];
-                func_ov003_021d2070(gEditKeyboard->mRowTexts[i][j], textRect[0], textRect[1], textRect[2], textRect[3],
-                                    2, 0x480, text);
+                DrawCanvasTextRect(gEditKeyboard->mRowTexts[i][j], textRect[0], textRect[1], textRect[2], textRect[3],
+                                   2, 0x480, text);
             }
             if (i == 0) {
-                gEditKeyboard->mUnk_104[j] = func_ov003_021d19e0(0, w, 1);
+                gEditKeyboard->mUnk_104[j] = CreateOamRange(0, w, 1);
             }
         }
     }
-    gEditKeyboard->mCursor = func_ov003_021d1be4(0, 0x40, 1);
-    func_ov003_021d18f0(gEditKeyboard->mCursor, -1, 0x200, 0);
+    gEditKeyboard->mCursor = CreateOamRangeFromNceImage(0, 0x40, 1);
+    SetOamRangeEffect(gEditKeyboard->mCursor, -1, 0x200, 0);
     func_ov003_021d1790(gEditKeyboard->mCursor, -1, 2);
     gEditKeyboard->mStepTask = (TaskEntry *) func_ov003_021d3544(0, AdvanceEditKeyboardSlideInRow0, NULL, 0x78);
     SetEditKeyboardRowY(gEditKeyboard->mPage, 0, 0xc0);
 }
 
 void StartEditKeyboardSlideOut(void) {
-    func_ov003_021d197c(gEditKeyboard->mCursor);
+    DeleteOamRange(gEditKeyboard->mCursor);
     func_ov003_021d34e0(gEditKeyboard->mStepTask, AdvanceEditKeyboardSlideOutRow4);
 }
 
@@ -164,7 +164,7 @@ void AdvanceEditKeyboardSlideInRow3(TaskEntry *task) {
 void AdvanceEditKeyboardSlideInRow4(TaskEntry *task) {
     u32 x;
     s32 y;
-    func_ov003_021d1770(gEditKeyboard->mRow4Keys[0], 0, &x, &y);
+    GetOamRangeEntryPosition(gEditKeyboard->mRow4Keys[0], 0, &x, &y);
     y -= 12;
     if (y > data_ov003_021d5f88[0][1]) {
         SetEditKeyboardRowY(gEditKeyboard->mPage, 4, y);
