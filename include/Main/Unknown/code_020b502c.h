@@ -84,7 +84,7 @@ typedef struct {
 
 // 0x30-byte entries of the table at CourseMap.mUnk_bc (ResetBattlePointLinkCursorNear searches it).
 typedef struct PointLink {
-    /* 00 */ struct PointLink *mUnk_00[3];
+    /* 00 */ struct PointLink *mLinks[3];
     /* 0c */ struct PointLink *mUnk_0c;
     /* 10 */ u8 mUnk_10[8];
     /* 18 */ Vec3 *mUnk_18;
@@ -92,7 +92,7 @@ typedef struct PointLink {
     /* 20 */ Vec3 *mUnk_20;
     /* 24 */ s32 mUnk_24;
     /* 28 */ s16 *mUnk_28;
-    /* 2c */ u16 mUnk_2c;
+    /* 2c */ u16 mLinkCount;
     /* 2e */ u8 mUnk_2e;
     /* 2f */ u8 mUnk_2f;
 } PointLink;

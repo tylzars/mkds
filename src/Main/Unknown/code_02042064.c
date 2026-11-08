@@ -352,9 +352,9 @@ void BuildCourseMapBattlePointLinks(void *heap) {
     for (i = 0; i < gCourseMap->mBattlePointCount; i++) {
         link = q[0] + i;
         for (k = 0; k < 8; k++) {
-            link->mUnk_00[k] = NULL;
+            link->mLinks[k] = NULL;
         }
-        link->mUnk_2c = 0;
+        link->mLinkCount = 0;
         link->mUnk_20 = NULL;
         link->mUnk_28 = NULL;
         link->mUnk_24 = 0;
@@ -376,33 +376,33 @@ void BuildCourseMapBattlePointLinks(void *heap) {
             for (b = 0; b < 8; b++) {
                 if (route->mUnk_0c[b] != 0xff) {
                     pointLink->mUnk_2e |= 1 << linkCount;
-                    pointLink->mUnk_00[linkCount++] = q[0] + route->mUnk_0c[b];
+                    pointLink->mLinks[linkCount++] = q[0] + route->mUnk_0c[b];
                 }
             }
             if (route->mUnk_02 > 1) {
-                pointLink->mUnk_00[linkCount++] = pointLink + 1;
+                pointLink->mLinks[linkCount++] = pointLink + 1;
             }
         }
         if (pointIndex == lastPoint) {
             for (c = 0; c < 8; c++) {
                 if (route->mUnk_04[c] != 0xff) {
                     pointLink->mUnk_2e |= 1 << linkCount;
-                    pointLink->mUnk_00[linkCount++] = q[0] + route->mUnk_04[c];
+                    pointLink->mLinks[linkCount++] = q[0] + route->mUnk_04[c];
                 }
             }
             if (route->mUnk_02 > 1) {
-                pointLink->mUnk_00[linkCount++] = pointLink - 1;
+                pointLink->mLinks[linkCount++] = pointLink - 1;
             }
         }
         if (pointIndex != route->mUnk_00 && pointIndex != lastPoint) {
             linkCount = 0;
-            pointLink->mUnk_00[linkCount++] = pointLink + 1;
-            pointLink->mUnk_00[linkCount++] = pointLink - 1;
+            pointLink->mLinks[linkCount++] = pointLink + 1;
+            pointLink->mLinks[linkCount++] = pointLink - 1;
         }
         pointLink->mUnk_20 = &battlePoint->mPos;
         pointLink->mUnk_24 = battlePoint->mUnk_0c;
         pointLink->mUnk_28 = battlePoint->mUnk_10;
-        pointLink->mUnk_2c = linkCount;
+        pointLink->mLinkCount = linkCount;
     }
 }
 

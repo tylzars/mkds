@@ -4,4 +4,4 @@
 
 typedef struct LinkCursor LinkCursor;
 
-s16 func_02080cc0(LinkCursor *p);
+s16 func_02080cc0(LinkCursor *linkCursor);

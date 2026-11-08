@@ -7,84 +7,84 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_020812d0(s32 a) {
-    Kart *q = GetKart(a);
-    Unk0201ca6c *p;
-    u16 i;
+void func_020812d0(s32 kartIndex) {
+    Kart *kart = GetKart(kartIndex);
+    Unk0201ca6c *effect;
+    u16 effectIndex;
 
-    if (!(q->mUnk_4c & 0x8000)) {
+    if (!(kart->mUnk_4c & 0x8000)) {
         return;
     }
-    i = 0;
+    effectIndex = 0;
     do {
-        p = StartEffect(0x58, &data_02155a14);
-        p->mUnk_94 = q;
-        p->mUnk_98_24 = i;
-        i = i + 1;
-        p->mUnk_90 = func_02081298;
-    } while (i < 2);
+        effect = StartEffect(0x58, &data_02155a14);
+        effect->mUnk_94 = kart;
+        effect->mUnk_98_24 = effectIndex;
+        effectIndex = effectIndex + 1;
+        effect->mUnk_90 = func_02081298;
+    } while (effectIndex < 2);
 }
 
-void func_02081298(Unk0201ca6c *p, s32 a) {
+void func_02081298(Unk0201ca6c *effect, s32 a) {
     if (a != 0) {
         return;
     }
-    AdvanceKartSideEffect(p, a);
-    if (p->mUnk_98_0 >= 7) {
-        p->mUnk_98_8 = 1;
+    AdvanceKartSideEffect(effect, a);
+    if (effect->mUnk_98_0 >= 7) {
+        effect->mUnk_98_8 = 1;
     } else {
-        p->mUnk_98_0 = p->mUnk_98_0 + 1;
+        effect->mUnk_98_0 = effect->mUnk_98_0 + 1;
     }
 }
 
-void func_02081224(u32 a) {
-    KartEffects *e = &gKartEffects[a];
-    Unk0201ca6c *p;
+void func_02081224(u32 kartIndex) {
+    KartEffects *kartEffects = &gKartEffects[kartIndex];
+    Unk0201ca6c *effect;
 
-    if (e->mUnk_30 != NULL) {
-        func_0208b710(e->mUnk_30);
+    if (kartEffects->mUnk_30 != NULL) {
+        func_0208b710(kartEffects->mUnk_30);
     }
-    e->mUnk_30 = StartEffect(0x5e, &data_02155a14);
-    p = e->mUnk_30;
-    p->mUnk_98_16 = 0;
-    p->mUnk_98_8 = 0x78;
-    p->mUnk_98_24 = a;
-    p->mUnk_90 = func_02081120;
+    kartEffects->mUnk_30 = StartEffect(0x5e, &data_02155a14);
+    effect = kartEffects->mUnk_30;
+    effect->mUnk_98_16 = 0;
+    effect->mUnk_98_8 = 0x78;
+    effect->mUnk_98_24 = kartIndex;
+    effect->mUnk_90 = func_02081120;
 }
 
-void func_02081120(Unk0201ca6c *p, s32 a) {
-    u32 v1;
-    u8 j;
-    u8 i;
-    Vec3 *v;
-    s32 x;
-    s32 y;
-    s32 z;
+void func_02081120(Unk0201ca6c *effect, s32 a) {
+    u32 ended;
+    u8 elapsedFrames;
+    u8 kartIndex;
+    Vec3 *kartPosition;
+    s32 kartX;
+    s32 kartY;
+    s32 kartZ;
 
     if (a != 0) {
         return;
     }
-    i = p->mUnk_98_24;
-    j = p->mUnk_98_16;
-    v1 = 0;
-    v = GetKart(i)->mPosSource;
-    x = v->x;
-    y = v->y;
-    z = v->z;
-    p->mUnk_28.x = (x >> 4) + p->mUnk_20->mUnk_00->mUnk_04.x;
-    p->mUnk_28.y = (y >> 4) + p->mUnk_20->mUnk_00->mUnk_04.y;
-    p->mUnk_28.z = (z >> 4) + p->mUnk_20->mUnk_00->mUnk_04.z;
-    if (j >= p->mUnk_98_8) {
-        if (j == p->mUnk_98_8) {
-            v1 = 1;
-            p->mUnk_24.mUnk_00_0 = 1;
+    kartIndex = effect->mUnk_98_24;
+    elapsedFrames = effect->mUnk_98_16;
+    ended = 0;
+    kartPosition = GetKart(kartIndex)->mPosSource;
+    kartX = kartPosition->x;
+    kartY = kartPosition->y;
+    kartZ = kartPosition->z;
+    effect->mUnk_28.x = (kartX >> 4) + effect->mUnk_20->mUnk_00->mUnk_04.x;
+    effect->mUnk_28.y = (kartY >> 4) + effect->mUnk_20->mUnk_00->mUnk_04.y;
+    effect->mUnk_28.z = (kartZ >> 4) + effect->mUnk_20->mUnk_00->mUnk_04.z;
+    if (elapsedFrames >= effect->mUnk_98_8) {
+        if (elapsedFrames == effect->mUnk_98_8) {
+            ended = 1;
+            effect->mUnk_24.mUnk_00_0 = 1;
         }
     } else {
-        p->mUnk_98_16 = j + 1;
+        effect->mUnk_98_16 = elapsedFrames + 1;
     }
-    if (v1 != 0) {
-        gKartEffects[i].mUnk_30 = NULL;
+    if (ended != 0) {
+        gKartEffects[kartIndex].mUnk_30 = NULL;
         return;
     }
-    p->mUnk_6c = (s16) GetKart(i)->mScale.z;
+    effect->mUnk_6c = (s16) GetKart(kartIndex)->mScale.z;
 }

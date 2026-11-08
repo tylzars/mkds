@@ -49,7 +49,7 @@ void SetupAwardMissionRunKartAi(struct KartAi *kartAi, struct Kart *kart, s32 a)
 }
 
 void ResetAwardMissionRunKartAi(struct KartAi *kartAi, struct PointLink *pointLink) {
-    ResetPointLinkCursor(&kartAi->mUnk_08.mUnk_00, pointLink);
+    ResetPointLinkCursor(&kartAi->mUnk_08.mLinkCursor, pointLink);
     ResetKartAi(kartAi, 1);
     ResetKartAi(kartAi, 1);
 }
@@ -65,7 +65,7 @@ void AdvanceAwardMissionRunKartAi(struct KartAi *kartAi) {
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         func_0207e668(kartAi);
     }
-    linkCursor = &kartAi->mUnk_08.mUnk_00;
+    linkCursor = &kartAi->mUnk_08.mLinkCursor;
     kart = kartAi->mKart;
     if (kartAi->mUnk_90 == 2) {
         kartForward = &kart->mTurnedForward;
@@ -98,7 +98,7 @@ void SetupStaffRollKartAi(struct KartAi *kartAi, struct Kart *kart, s32 a) {
 void AdvanceStaffRollKartAi(struct KartAi *kartAi) {
     Vec3 kartPos;
     Vec3 toLinkPos;
-    LinkCursor *linkCursor = &kartAi->mUnk_08.mUnk_00;
+    LinkCursor *linkCursor = &kartAi->mUnk_08.mLinkCursor;
     Kart *kart = kartAi->mKart;
     Vec3 *kartForward;
     PointLink *requestedLink;
@@ -488,7 +488,7 @@ void func_0207d814(struct KartAiRaceSpeedLimit *raceSpeedLimit, struct KartAi *k
         return;
     }
     if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
-        speedRatio = GetPointLinkSpeedRatio((PointLinkCursor *) &kartAi->mUnk_08.mUnk_00);
+        speedRatio = GetPointLinkSpeedRatio((PointLinkCursor *) &kartAi->mUnk_08.mLinkCursor);
         kartAi->mKart->mForwardSpeed =
             ((s64) kartAi->mKart->mPhysicalParam->mBaseSpeedLimit * speedRatio + 0x800) >> 12;
         kartAi->mKart->mSpeedLimitGoal = kartAi->mKart->mForwardSpeed;

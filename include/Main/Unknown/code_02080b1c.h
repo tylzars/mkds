@@ -17,7 +17,7 @@ typedef struct Unk02080b1c_00 {
     /* 18 */ Vec3 *mUnk_18;
     /* 1c */ s32 mUnk_1c;
     /* 20 */ Unk02080b1c_20 *mUnk_20;
-    /* 24 */ u16 mUnk_24;
+    /* 24 */ u16 mNextCount;
     /* 26 */ u8 mUnk_26[2];
 } Unk02080b1c_00;
 
@@ -41,6 +41,6 @@ typedef struct KartKillerCursor {
     /* 28 */ s16 mUnk_28;
 } KartKillerCursor;
 
-void AdvancePointLinkCursor(PointLinkCursor *p);
-s32 IsPastPointLink(PointLinkCursor *p, Vec3 *a);
-s32 IsWithinPointLinkDistance(PointLinkCursor *p, Vec3 *a);
+void AdvancePointLinkCursor(PointLinkCursor *pointLinkCursor);
+BOOL IsPastPointLink(PointLinkCursor *pointLinkCursor, Vec3 *position);
+BOOL IsWithinPointLinkDistance(PointLinkCursor *pointLinkCursor, Vec3 *position);

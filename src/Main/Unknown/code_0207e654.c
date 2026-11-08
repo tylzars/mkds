@@ -72,7 +72,7 @@ void AdvanceAwardPointLinkCursor(PointLinkCursor *pointLinkCursor) {
     Kart *kart = GetKart(pointLinkCursor->mKartIndex);
     s32 animation;
 
-    if (pointLinkCursor->mLink->mUnk_24 > 1) {
+    if (pointLinkCursor->mLink->mNextCount > 1) {
         nextLinkIndex = pointLinkCursor->mKartIndex;
     }
     pointLinkCursor->mPreviousLink = pointLinkCursor->mLink;
@@ -97,7 +97,7 @@ void AdvanceStaffRollPointLinkCursor(PointLinkCursor *pointLinkCursor) {
     u16 nextLinkIndex;
     s32 animation;
 
-    if (pointLinkCursor->mLink->mUnk_24 > 1 && pointLinkCursor->mUnk_1e < 2) {
+    if (pointLinkCursor->mLink->mNextCount > 1 && pointLinkCursor->mUnk_1e < 2) {
         if (pointLinkCursor->mUnk_1e == 0) {
             nextLinkIndex = pointLinkCursor->mKartIndex / 3;
         } else {
@@ -181,7 +181,7 @@ void SetupRaceKartAi(KartAi *kartAi, Kart *kart, s32 a) {
 }
 
 void ResetKartAi(KartAi *kartAi, s32 a) {
-    kartAi->mLinkPosWithSideOffset = *kartAi->mUnk_08.mUnk_00.mLink->mUnk_18;
+    kartAi->mLinkPosWithSideOffset = *kartAi->mUnk_08.mLinkCursor.mLink->mUnk_18;
     kartAi->mSideOffset = data_usa_021557d0;
     kartAi->mUnk_6c = 0;
     kartAi->mUnk_6e = 0;
@@ -211,7 +211,7 @@ void ResetKartAi(KartAi *kartAi, s32 a) {
 void ResetRaceKartAiAtPointLink(KartAi *kartAi) {
     PointLink *pointLink;
 
-    ResetPointLinkCursor(&kartAi->mUnk_08.mUnk_00, pointLink);
+    ResetPointLinkCursor(&kartAi->mUnk_08.mLinkCursor, pointLink);
     ResetKartAi(kartAi, 1);
 }
 
@@ -224,7 +224,7 @@ void AdvanceRaceKartAi(KartAi *kartAi) {
     PointLink *requestedLink;
 
     func_0207e668(kartAi);
-    linkCursor = &kartAi->mUnk_08.mUnk_00;
+    linkCursor = &kartAi->mUnk_08.mLinkCursor;
     kart = kartAi->mKart;
     if (kartAi->mUnk_90 == 2) {
         kartForward = &kart->mTurnedForward;
@@ -398,7 +398,7 @@ void func_0207f05c(KartAi *kartAi) {
     Vec3 g;
     Vec3 unitY;
     Vec3 h;
-    s32 linkValue = func_02080cc0(&kartAi->mUnk_08.mUnk_00);
+    s32 linkValue = func_02080cc0(&kartAi->mUnk_08.mLinkCursor);
     BOOL conditionsMet;
     s32 sideRange;
     s32 sidewaysDistance;
@@ -411,12 +411,12 @@ void func_0207f05c(KartAi *kartAi) {
         kartAiRandom->mValue = kartAiRandom->mMultiplier * kartAiRandom->mValue + kartAiRandom->mIncrement;
         randomValue = (s16) (u16) (kartAiRandom->mValue >> 52);
         if (randomValue <= kartAi->mUnk_88 && kartAi->mKart->mVelocityLength >= kartAi->mMinVelocityLength) {
-            linkPos = *kartAi->mUnk_08.mUnk_00.mLink->mUnk_18;
+            linkPos = *kartAi->mUnk_08.mLinkCursor.mLink->mUnk_18;
             unitY = data_usa_021557c4;
-            Vec3CrossUnrounded(&kartAi->mUnk_08.mUnk_00.mDirection, &unitY, &sideAxis);
+            Vec3CrossUnrounded(&kartAi->mUnk_08.mLinkCursor.mDirection, &unitY, &sideAxis);
             VEC_Subtract(&kartAi->mKart->mPos, &linkPos, &kartOffset);
             sidewaysDistance = Vec3DotUnrounded(&kartOffset, &sideAxis);
-            sideRange = kartAi->mUnk_08.mUnk_00.mLink->mUnk_1c;
+            sideRange = kartAi->mUnk_08.mLinkCursor.mLink->mUnk_1c;
             if (GetAbsoluteValue(sidewaysDistance) < sideRange) {
                 conditionsMet = TRUE;
             }
@@ -457,11 +457,11 @@ void func_0207f05c(KartAi *kartAi) {
         return;
     }
     kartAi->mUnk_90 = 3;
-    e = *kartAi->mUnk_08.mUnk_00.mLink->mUnk_18;
+    e = *kartAi->mUnk_08.mLinkCursor.mLink->mUnk_18;
     h = data_usa_021557c4;
-    Vec3CrossUnrounded(&kartAi->mUnk_08.mUnk_00.mDirection, &h, &f);
+    Vec3CrossUnrounded(&kartAi->mUnk_08.mLinkCursor.mDirection, &h, &f);
     VEC_Subtract(&kartAi->mKart->mPos, &e, &g);
-    kartAi->mSideOffsetRatio = FX_Div(Vec3DotUnrounded(&g, &f), kartAi->mUnk_08.mUnk_00.mLink->mUnk_1c + 0x1000);
+    kartAi->mSideOffsetRatio = FX_Div(Vec3DotUnrounded(&g, &f), kartAi->mUnk_08.mLinkCursor.mLink->mUnk_1c + 0x1000);
     if (GetAbsoluteValue(kartAi->mSideOffsetRatio) > 0x1000) {
         if (kartAi->mSideOffsetRatio > 0) {
             kartAi->mSideOffsetRatio = 0x1000;
@@ -486,7 +486,7 @@ void func_0207ebfc(KartAi *kartAi) {
     s32 m;
     BOOL chargeRollPassed;
 
-    func_02080cc0(&kartAi->mUnk_08.mUnk_00);
+    func_02080cc0(&kartAi->mUnk_08.mLinkCursor);
     kart = kartAi->mKart;
     if (kartAi->mUnk_90 == 1) {
         RequestBits(kart->mEntryIndex, PAD_KEY_R);
@@ -622,7 +622,7 @@ void AdvanceKartAiSideOffset(KartAi *kartAi) {
     Vec3 unitY = data_usa_021557c4;
     s32 sideDistance;
 
-    Vec3CrossUnrounded(&kartAi->mUnk_08.mUnk_00.mDirection, &unitY, &kartAi->mSideOffset);
+    Vec3CrossUnrounded(&kartAi->mUnk_08.mLinkCursor.mDirection, &unitY, &kartAi->mSideOffset);
     kartAi->mUnk_6c++;
     if (kartAi->mUnk_6c > kartAi->mUnk_6e) {
         RandomState64 *kartAiRandom;
@@ -647,7 +647,7 @@ void AdvanceKartAiSideOffset(KartAi *kartAi) {
         }
         kartAi->mSideOffsetRatio = newSideOffsetRatio;
     }
-    sideDistance = ((s64) kartAi->mSideOffsetRatio * kartAi->mUnk_08.mUnk_00.mLink->mUnk_1c) >> 12;
+    sideDistance = ((s64) kartAi->mSideOffsetRatio * kartAi->mUnk_08.mLinkCursor.mLink->mUnk_1c) >> 12;
     kartAi->mSideOffset.x = ((s64) kartAi->mSideOffset.x * sideDistance) >> 12;
     kartAi->mSideOffset.y = ((s64) kartAi->mSideOffset.y * sideDistance) >> 12;
     kartAi->mSideOffset.z = ((s64) kartAi->mSideOffset.z * sideDistance) >> 12;
@@ -663,14 +663,14 @@ void SetKartAiSideOffsetFromKart(KartAi *kartAi) {
     Vec3 unitY;
     s32 s;
 
-    linkPos = *kartAi->mUnk_08.mUnk_00.mLink->mUnk_18;
-    linkPosCopy = *kartAi->mUnk_08.mUnk_00.mLink->mUnk_18;
+    linkPos = *kartAi->mUnk_08.mLinkCursor.mLink->mUnk_18;
+    linkPosCopy = *kartAi->mUnk_08.mLinkCursor.mLink->mUnk_18;
     unitY = data_usa_021557c4;
     unitYCopy = *(Vec3 *) &data_usa_021557c4;
-    Vec3CrossUnrounded(&kartAi->mUnk_08.mUnk_00.mDirection, &unitYCopy, &sideAxis);
+    Vec3CrossUnrounded(&kartAi->mUnk_08.mLinkCursor.mDirection, &unitYCopy, &sideAxis);
     VEC_Subtract(&kartAi->mKart->mPos, &linkPosCopy, &kartOffset);
     s = Vec3DotUnrounded(&kartOffset, &sideAxis);
-    kartAi->mSideOffsetRatio = FX_Div(s, kartAi->mUnk_08.mUnk_00.mLink->mUnk_1c + 0x1000);
+    kartAi->mSideOffsetRatio = FX_Div(s, kartAi->mUnk_08.mLinkCursor.mLink->mUnk_1c + 0x1000);
     if (GetAbsoluteValue(kartAi->mSideOffsetRatio) > 0x1000) {
         if (kartAi->mSideOffsetRatio > 0) {
             kartAi->mSideOffsetRatio = 0x1000;
@@ -678,8 +678,8 @@ void SetKartAiSideOffsetFromKart(KartAi *kartAi) {
         kartAi->mSideOffsetRatio = -0x1000;
     }
     g = unitY;
-    Vec3CrossUnrounded(&kartAi->mUnk_08.mUnk_00.mDirection, &g, &kartAi->mSideOffset);
-    s = ((s64) kartAi->mSideOffsetRatio * kartAi->mUnk_08.mUnk_00.mLink->mUnk_1c) >> 12;
+    Vec3CrossUnrounded(&kartAi->mUnk_08.mLinkCursor.mDirection, &g, &kartAi->mSideOffset);
+    s = ((s64) kartAi->mSideOffsetRatio * kartAi->mUnk_08.mLinkCursor.mLink->mUnk_1c) >> 12;
     kartAi->mSideOffset.x = ((s64) kartAi->mSideOffset.x * s) >> 12;
     kartAi->mSideOffset.y = ((s64) kartAi->mSideOffset.y * s) >> 12;
     kartAi->mSideOffset.z = ((s64) kartAi->mSideOffset.z * s) >> 12;
@@ -737,7 +737,7 @@ void func_0207e668(KartAi *kartAi) {
             } else {
                 kartAi->mUnk_a8 = 2;
                 kartAi->mUnk_7a = 0xb4;
-                func_02080ac0(&kartAi->mUnk_08.mUnk_00);
+                SetRequestedLinkToPreviousIfNone(&kartAi->mUnk_08.mLinkCursor);
             }
             break;
         case 2:

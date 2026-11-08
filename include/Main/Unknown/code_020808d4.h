@@ -3,6 +3,6 @@
 #include "types.h"
 #include "Main/Unknown/code_0207ffa4.h"
 
-void func_02080ac0(LinkCursor *p);
-void ResetBattlePointLinkCursorNear(LinkCursor *p, Vec3 *a, Vec3 *b, u16 c);
-void ResetBattlePointLinkCursorTo(LinkCursor *p, PointLink *a);
+void SetRequestedLinkToPreviousIfNone(LinkCursor *linkCursor);
+void ResetBattlePointLinkCursorNear(LinkCursor *linkCursor, Vec3 *position, Vec3 *direction, u16 c);
+void ResetBattlePointLinkCursorTo(LinkCursor *linkCursor, PointLink *pointLink);

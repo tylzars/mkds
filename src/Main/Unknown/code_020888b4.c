@@ -280,7 +280,7 @@ void func_02089494(KartAi *p) {
     }
     if (e != NULL && s->mLink != e) {
         AdvanceBattlePointLinkCursorTo(s, e);
-        p->mLinkSpeedLimit = func_020800a0(s);
+        p->mLinkSpeedLimit = GetBattlePointLinkSpeedLimit(s);
         AdvanceBattleKartAiSideOffset(p);
         p->mLinkPosWithSideOffset = *s->mLink->mUnk_20;
         VEC_Add(&p->mLinkPosWithSideOffset, &p->mSideOffset, &p->mLinkPosWithSideOffset);
@@ -306,7 +306,7 @@ void func_02089494(KartAi *p) {
                 y = -1;
             }
             AdvanceBattlePointLinkCursor(s, &v, &q->mUnk_138, p->mIndex, p->mTargetShine, y);
-            p->mLinkSpeedLimit = func_020800a0(s);
+            p->mLinkSpeedLimit = GetBattlePointLinkSpeedLimit(s);
             AdvanceBattleKartAiSideOffset(p);
             p->mLinkPosWithSideOffset = *s->mLink->mUnk_20;
             VEC_Add(&p->mLinkPosWithSideOffset, &p->mSideOffset, &p->mLinkPosWithSideOffset);

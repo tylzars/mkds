@@ -5,4 +5,4 @@
 typedef struct LinkCursor LinkCursor;
 typedef struct PointLink PointLink;
 
-void AdvancePointLinkCursorTo(LinkCursor *p, PointLink *a);
+void AdvancePointLinkCursorTo(LinkCursor *linkCursor, PointLink *pointLink);

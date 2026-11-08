@@ -66,7 +66,7 @@ void func_0207d6a4(struct KartAiRaceSpeedLimit *raceSpeedLimit, struct KartAi *k
     if ((kartAi->mKart->mUnk_48 & 0x10000020) != 0) {
         return;
     }
-    x = GetPointLinkSpeedRatio((PointLinkCursor *) &kartAi->mUnk_08.mUnk_00);
+    x = GetPointLinkSpeedRatio((PointLinkCursor *) &kartAi->mUnk_08.mLinkCursor);
     kartAi->mKart->mSpeedLimitGoal = ((s64) raceSpeedLimit->mSpeedLimit * x + 0x800) >> 12;
 }
 
@@ -724,7 +724,7 @@ void AdvanceRaceItemBitRequests(struct KartAiItemUse *itemUse, struct KartAi *ka
         return;
     }
     if (gKartItems[kartAi->mIndex].mHeldItem.mItemInfoIndex == 0xe) {
-        if (*(u16 *) &kartAi->mUnk_08.mUnk_00.mLink->mUnk_24 > 1) {
+        if (*(u16 *) &kartAi->mUnk_08.mLinkCursor.mLink->mUnk_24 > 1) {
             return;
         }
     }

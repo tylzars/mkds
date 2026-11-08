@@ -31,481 +31,517 @@
 #include "code_0201c528.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_02081060(Kart *p) {
-    Unk0201ca6c *e;
+void func_02081060(Kart *kart) {
+    Unk0201ca6c *effect;
 
-    if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
+    if (!(kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
         return;
     }
-    if (data_0217ae94[p->mIndex] != NULL) {
+    if (data_0217ae94[kart->mIndex] != NULL) {
         return;
     }
-    data_0217ae94[p->mIndex] = StartEffect(0x80, &data_02155a14);
-    e = data_0217ae94[p->mIndex];
-    e->mUnk_98_24 = p->mIndex;
-    e->mUnk_94 = 0;
-    e->mUnk_90 = AdvanceKartAheadEffect;
+    data_0217ae94[kart->mIndex] = StartEffect(0x80, &data_02155a14);
+    effect = data_0217ae94[kart->mIndex];
+    effect->mUnk_98_24 = kart->mIndex;
+    effect->mUnk_94 = 0;
+    effect->mUnk_90 = AdvanceKartAheadEffect;
 }
 
-void func_02081000(Kart *p) {
-    Unk0201ca6c *e = data_0217ae94[p->mIndex];
+void func_02081000(Kart *kart) {
+    Unk0201ca6c *effect = data_0217ae94[kart->mIndex];
 
-    if (e == NULL) {
+    if (effect == NULL) {
         return;
     }
-    e->mUnk_98_16 = 0;
-    e->mUnk_98_8 = 3;
-    e->mUnk_90 = AdvanceKartAheadEffectWithLimit;
-    data_0217ae94[p->mIndex] = NULL;
+    effect->mUnk_98_16 = 0;
+    effect->mUnk_98_8 = 3;
+    effect->mUnk_90 = AdvanceKartAheadEffectWithLimit;
+    data_0217ae94[kart->mIndex] = NULL;
 }
 
-void func_02080fb8(Kart *p) {
-    if (data_0217ae94[p->mIndex] == NULL) {
+void func_02080fb8(Kart *kart) {
+    if (data_0217ae94[kart->mIndex] == NULL) {
         return;
     }
-    func_0208b710(data_0217ae94[p->mIndex]);
-    data_0217ae94[p->mIndex] = NULL;
+    func_0208b710(data_0217ae94[kart->mIndex]);
+    data_0217ae94[kart->mIndex] = NULL;
 }
 
-void func_02080f44(Kart *p) {
-    Unk0201ca6c *e;
+void func_02080f44(Kart *kart) {
+    Unk0201ca6c *effect;
 
-    if (data_0217ae74[p->mIndex] != NULL) {
+    if (data_0217ae74[kart->mIndex] != NULL) {
         return;
     }
-    data_0217ae74[p->mIndex] = StartEffect(0x7f, &data_02155a14);
-    e = data_0217ae74[p->mIndex];
-    e->mUnk_98_24 = p->mIndex;
-    e->mUnk_94 = (void *) 1;
-    e->mUnk_90 = AdvanceKartAheadEffect;
+    data_0217ae74[kart->mIndex] = StartEffect(0x7f, &data_02155a14);
+    effect = data_0217ae74[kart->mIndex];
+    effect->mUnk_98_24 = kart->mIndex;
+    effect->mUnk_94 = (void *) 1;
+    effect->mUnk_90 = AdvanceKartAheadEffect;
 }
 
-void func_02080ee4(Kart *p) {
-    Unk0201ca6c *e = data_0217ae74[p->mIndex];
+void func_02080ee4(Kart *kart) {
+    Unk0201ca6c *effect = data_0217ae74[kart->mIndex];
 
-    if (e == NULL) {
+    if (effect == NULL) {
         return;
     }
-    e->mUnk_98_16 = 0;
-    e->mUnk_98_8 = 5;
-    e->mUnk_90 = AdvanceKartAheadEffectWithLimit;
-    data_0217ae74[p->mIndex] = NULL;
+    effect->mUnk_98_16 = 0;
+    effect->mUnk_98_8 = 5;
+    effect->mUnk_90 = AdvanceKartAheadEffectWithLimit;
+    data_0217ae74[kart->mIndex] = NULL;
 }
 
-void func_02080e9c(Kart *p) {
-    if (data_0217ae74[p->mIndex] == NULL) {
+void func_02080e9c(Kart *kart) {
+    if (data_0217ae74[kart->mIndex] == NULL) {
         return;
     }
-    func_0208b710(data_0217ae74[p->mIndex]);
-    data_0217ae74[p->mIndex] = NULL;
+    func_0208b710(data_0217ae74[kart->mIndex]);
+    data_0217ae74[kart->mIndex] = NULL;
 }
 
-void func_02080e88(Unk0201ca6c *p, Kart *q) {
-    p->mUnk_6c = (s16) q->mScale.z;
+void func_02080e88(Unk0201ca6c *effect, Kart *kart) {
+    effect->mUnk_6c = (s16) kart->mScale.z;
 }
 
-s32 IsWithinBattlePointLinkDistance(LinkCursor *p, Vec3 *a) {
-    Vec3 v;
-    s32 n;
-    BOOL r = FALSE;
+BOOL IsWithinBattlePointLinkDistance(LinkCursor *linkCursor, Vec3 *position) {
+    Vec3 offset;
+    s32 radius;
+    BOOL result = FALSE;
 
-    n = p->mLink->mUnk_24;
-    VEC_Subtract(p->mLink->mUnk_20, a, &v);
-    v.y = r;
-    if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z < (s64) n * n) {
-        r = TRUE;
+    radius = linkCursor->mLink->mUnk_24;
+    VEC_Subtract(linkCursor->mLink->mUnk_20, position, &offset);
+    offset.y = result;
+    if ((s64) offset.x * offset.x + (s64) offset.y * offset.y + (s64) offset.z * offset.z < (s64) radius * radius) {
+        result = TRUE;
     }
-    return r;
+    return result;
 }
 
-s32 IsPastBattlePointLink(LinkCursor *p, Vec3 *a) {
-    Vec3 v;
-    Vec3 *t = p->mLink->mUnk_20;
-    BOOL r = FALSE;
+BOOL IsPastBattlePointLink(LinkCursor *linkCursor, Vec3 *position) {
+    Vec3 offset;
+    Vec3 *linkPosition = linkCursor->mLink->mUnk_20;
+    BOOL result = FALSE;
 
-    if (p->mDirection.x != 0 || p->mDirection.y != 0 || p->mDirection.z != 0) {
-        VEC_Subtract(a, t, &v);
-        if (Vec3DotUnrounded(&p->mDirection, &v) > 0) {
-            r = TRUE;
+    if (linkCursor->mDirection.x != 0 || linkCursor->mDirection.y != 0 || linkCursor->mDirection.z != 0) {
+        VEC_Subtract(position, linkPosition, &offset);
+        if (Vec3DotUnrounded(&linkCursor->mDirection, &offset) > 0) {
+            result = TRUE;
         }
     }
-    return r;
+    return result;
 }
 
-void InitRacePointLinkCursor(Unk02080d34 *p, u16 kartIndex) {
-    p->mUnk_00.mLink = gCourseMap->mRaceRoute0FirstLink;
-    p->mUnk_00.mPreviousLink = p->mUnk_00.mLink->mUnk_0c;
-    p->mUnk_00.mDirection = data_021557ec;
-    VEC_Subtract(p->mUnk_00.mLink->mUnk_18, p->mUnk_00.mPreviousLink->mUnk_18, &p->mUnk_00.mDirection);
-    Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_00.mDirection, &p->mUnk_00.mDirection);
-    p->mUnk_00.mRequestedLink = NULL;
-    p->mUnk_00.mUnk_18 = FALSE;
-    p->mKartIndex = kartIndex;
-    p->mUnk_1e = 0;
+void InitRacePointLinkCursor(Unk02080d34 *racePointLinkCursor, u16 kartIndex) {
+    racePointLinkCursor->mLinkCursor.mLink = gCourseMap->mRaceRoute0FirstLink;
+    racePointLinkCursor->mLinkCursor.mPreviousLink = racePointLinkCursor->mLinkCursor.mLink->mUnk_0c;
+    racePointLinkCursor->mLinkCursor.mDirection = data_021557ec;
+    VEC_Subtract(racePointLinkCursor->mLinkCursor.mLink->mUnk_18,
+                 racePointLinkCursor->mLinkCursor.mPreviousLink->mUnk_18, &racePointLinkCursor->mLinkCursor.mDirection);
+    Vec3NormalizeAndGetLengthUnchecked(&racePointLinkCursor->mLinkCursor.mDirection,
+                                       &racePointLinkCursor->mLinkCursor.mDirection);
+    racePointLinkCursor->mLinkCursor.mRequestedLink = NULL;
+    racePointLinkCursor->mLinkCursor.mUnk_18 = FALSE;
+    racePointLinkCursor->mKartIndex = kartIndex;
+    racePointLinkCursor->mUnk_1e = 0;
 }
 
-void ResetPointLinkCursor(LinkCursor *p, PointLink *a) {
-    p->mLink = a;
-    p->mPreviousLink = p->mLink->mUnk_0c;
-    p->mRequestedLink = NULL;
-    p->mUnk_18 = FALSE;
-    p->mDirection = data_021557ec;
-    VEC_Subtract(p->mLink->mUnk_18, p->mPreviousLink->mUnk_18, &p->mDirection);
-    Vec3NormalizeAndGetLengthUnchecked(&p->mDirection, &p->mDirection);
+void ResetPointLinkCursor(LinkCursor *linkCursor, PointLink *pointLink) {
+    linkCursor->mLink = pointLink;
+    linkCursor->mPreviousLink = linkCursor->mLink->mUnk_0c;
+    linkCursor->mRequestedLink = NULL;
+    linkCursor->mUnk_18 = FALSE;
+    linkCursor->mDirection = data_021557ec;
+    VEC_Subtract(linkCursor->mLink->mUnk_18, linkCursor->mPreviousLink->mUnk_18, &linkCursor->mDirection);
+    Vec3NormalizeAndGetLengthUnchecked(&linkCursor->mDirection, &linkCursor->mDirection);
 }
 
-s16 func_02080cc0(LinkCursor *p) {
-    return *(s16 *) p->mLink->mUnk_20;
+s16 func_02080cc0(LinkCursor *linkCursor) {
+    return *(s16 *) linkCursor->mLink->mUnk_20;
 }
 
-s32 IsWithinPointLinkDistance(PointLinkCursor *p, Vec3 *a) {
-    Vec3 v;
-    s32 d;
-    BOOL r;
-    Unk02080b1c_00 *n = p->mLink;
+BOOL IsWithinPointLinkDistance(PointLinkCursor *pointLinkCursor, Vec3 *position) {
+    Vec3 offset;
+    s32 radius;
+    BOOL result;
+    Unk02080b1c_00 *link = pointLinkCursor->mLink;
 
-    r = FALSE;
-    d = n->mUnk_1c;
-    VEC_Subtract(n->mUnk_18, a, &v);
-    v.y = r;
-    if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z < (s64) d * d) {
-        r = TRUE;
+    result = FALSE;
+    radius = link->mUnk_1c;
+    VEC_Subtract(link->mUnk_18, position, &offset);
+    offset.y = result;
+    if ((s64) offset.x * offset.x + (s64) offset.y * offset.y + (s64) offset.z * offset.z < (s64) radius * radius) {
+        result = TRUE;
     }
-    return r;
+    return result;
 }
 
-s32 IsPastPointLink(PointLinkCursor *p, Vec3 *a) {
-    Vec3 v;
-    BOOL r;
-    Vec3 *w = p->mLink->mUnk_18;
+BOOL IsPastPointLink(PointLinkCursor *pointLinkCursor, Vec3 *position) {
+    Vec3 offset;
+    BOOL result;
+    Vec3 *linkPosition = pointLinkCursor->mLink->mUnk_18;
 
-    r = FALSE;
-    if (p->mDirection.x != 0 || p->mDirection.y != 0 || p->mDirection.z != 0) {
-        VEC_Subtract(a, w, &v);
-        if (Vec3DotUnrounded(&p->mDirection, &v) > 0) {
-            r = TRUE;
+    result = FALSE;
+    if (pointLinkCursor->mDirection.x != 0 || pointLinkCursor->mDirection.y != 0 ||
+        pointLinkCursor->mDirection.z != 0) {
+        VEC_Subtract(position, linkPosition, &offset);
+        if (Vec3DotUnrounded(&pointLinkCursor->mDirection, &offset) > 0) {
+            result = TRUE;
         }
     }
-    return r;
+    return result;
 }
 
-void AdvancePointLinkCursor(PointLinkCursor *p) {
-    u16 i = 0;
-    u16 n;
-    u32 v;
-    RandomState64 *q;
+void AdvancePointLinkCursor(PointLinkCursor *pointLinkCursor) {
+    u16 nextIndex = 0;
+    u16 nextLinkCount;
+    u32 randomValue;
+    RandomState64 *kartAiRandom;
 
-    if (!(GetKart(p->mKartIndex)->mUnk_4c & 0x10000000)) {
-        n = p->mLink->mUnk_24;
-        if (n > 1) {
-            q = GetKartAiRandom();
-            if (n == 0) {
-                v = 0;
+    if (!(GetKart(pointLinkCursor->mKartIndex)->mUnk_4c & 0x10000000)) {
+        nextLinkCount = pointLinkCursor->mLink->mNextCount;
+        if (nextLinkCount > 1) {
+            kartAiRandom = GetKartAiRandom();
+            if (nextLinkCount == 0) {
+                randomValue = 0;
             } else {
-                q->mValue = (s64) q->mMultiplier * (s64) q->mValue + q->mIncrement;
-                v = (n == 0) ? (u32) (q->mValue >> 32) : (u32) (((q->mValue >> 32) * (u32) n) >> 32);
+                kartAiRandom->mValue =
+                    (s64) kartAiRandom->mMultiplier * (s64) kartAiRandom->mValue + kartAiRandom->mIncrement;
+                randomValue = (nextLinkCount == 0) ? (u32) (kartAiRandom->mValue >> 32)
+                                                   : (u32) (((kartAiRandom->mValue >> 32) * (u32) nextLinkCount) >> 32);
             }
-            i = v;
+            nextIndex = randomValue;
         }
     }
-    p->mPreviousLink = p->mLink;
-    p->mLink = p->mLink->mUnk_00[i];
-    VEC_Subtract(p->mLink->mUnk_18, p->mPreviousLink->mUnk_18, &p->mDirection);
-    Vec3NormalizeAndGetLengthUnchecked(&p->mDirection, &p->mDirection);
+    pointLinkCursor->mPreviousLink = pointLinkCursor->mLink;
+    pointLinkCursor->mLink = pointLinkCursor->mLink->mUnk_00[nextIndex];
+    VEC_Subtract(pointLinkCursor->mLink->mUnk_18, pointLinkCursor->mPreviousLink->mUnk_18,
+                 &pointLinkCursor->mDirection);
+    Vec3NormalizeAndGetLengthUnchecked(&pointLinkCursor->mDirection, &pointLinkCursor->mDirection);
 }
 
-void AdvancePointLinkCursorTo(LinkCursor *p, PointLink *a) {
-    p->mPreviousLink = p->mLink;
-    p->mLink = a;
-    VEC_Subtract(p->mLink->mUnk_18, p->mPreviousLink->mUnk_18, &p->mDirection);
-    Vec3NormalizeAndGetLengthUnchecked(&p->mDirection, &p->mDirection);
+void AdvancePointLinkCursorTo(LinkCursor *linkCursor, PointLink *pointLink) {
+    linkCursor->mPreviousLink = linkCursor->mLink;
+    linkCursor->mLink = pointLink;
+    VEC_Subtract(linkCursor->mLink->mUnk_18, linkCursor->mPreviousLink->mUnk_18, &linkCursor->mDirection);
+    Vec3NormalizeAndGetLengthUnchecked(&linkCursor->mDirection, &linkCursor->mDirection);
 }
 
-void func_02080ac0(LinkCursor *p) {
-    if (p->mRequestedLink == NULL) {
-        p->mRequestedLink = p->mPreviousLink;
-        p->mUnk_18 = FALSE;
+void SetRequestedLinkToPreviousIfNone(LinkCursor *linkCursor) {
+    if (linkCursor->mRequestedLink == NULL) {
+        linkCursor->mRequestedLink = linkCursor->mPreviousLink;
+        linkCursor->mUnk_18 = FALSE;
     }
 }
 
-void ResetBattlePointLinkCursorNear(LinkCursor *p, Vec3 *a, Vec3 *b, u16 c) {
-    PointLink *r = NULL;
-    u16 i;
-    u16 j;
-    s32 k;
-    s32 m;
+void ResetBattlePointLinkCursorNear(LinkCursor *linkCursor, Vec3 *position, Vec3 *direction, u16 c) {
+    PointLink *bestLink = NULL;
+    u16 pointIndex;
+    u16 candidateIndex;
+    s32 slot;
+    s32 bestDot;
     s32 d;
-    PointLink *v1 = gCourseMap->mFirstBattlePointLink;
-    PointLink *v2[3] = {0, 0, 0};
-    s32 v3[3];
-    Vec3 v;
-    Vec3 w;
+    PointLink *firstLink = gCourseMap->mFirstBattlePointLink;
+    PointLink *nearestLinks[3] = {0, 0, 0};
+    s32 nearestDistances[3];
+    Vec3 offset;
+    Vec3 directionToLink;
 
-    v3[0] = v3[1] = v3[2] = 0xc8000;
-    m = -0x1000;
-    for (i = 0; i < gCourseMap->mBattlePointCount; i++) {
-        VEC_Subtract(&gCourseMap->mBattlePoints[i].mPos, a, &v);
-        d = VEC_Mag(&v);
+    nearestDistances[0] = nearestDistances[1] = nearestDistances[2] = 0xc8000;
+    bestDot = -0x1000;
+    for (pointIndex = 0; pointIndex < gCourseMap->mBattlePointCount; pointIndex++) {
+        VEC_Subtract(&gCourseMap->mBattlePoints[pointIndex].mPos, position, &offset);
+        d = VEC_Mag(&offset);
         if (d < 0xc8000) {
-            for (k = 0; k < 3; k++) {
-                if (d < v3[k]) {
-                    v3[k] = d;
-                    v2[k] = &v1[i];
+            for (slot = 0; slot < 3; slot++) {
+                if (d < nearestDistances[slot]) {
+                    nearestDistances[slot] = d;
+                    nearestLinks[slot] = &firstLink[pointIndex];
                     break;
                 }
             }
         }
     }
-    for (j = 0; j < 3; j++) {
-        if (v2[j] != NULL) {
-            VEC_Subtract(v2[j]->mUnk_20, a, &w);
-            if ((s64) w.x * w.x + (s64) w.y * w.y + (s64) w.z * w.z >= 0x10) {
-                Vec3NormalizeAndGetLengthUnchecked(&w, &w);
+    for (candidateIndex = 0; candidateIndex < 3; candidateIndex++) {
+        if (nearestLinks[candidateIndex] != NULL) {
+            VEC_Subtract(nearestLinks[candidateIndex]->mUnk_20, position, &directionToLink);
+            if ((s64) directionToLink.x * directionToLink.x + (s64) directionToLink.y * directionToLink.y +
+                    (s64) directionToLink.z * directionToLink.z >=
+                0x10) {
+                Vec3NormalizeAndGetLengthUnchecked(&directionToLink, &directionToLink);
             }
-            d = Vec3DotUnrounded(&w, b);
-            if (d >= m) {
-                r = v2[j];
-                m = d;
+            d = Vec3DotUnrounded(&directionToLink, direction);
+            if (d >= bestDot) {
+                bestLink = nearestLinks[candidateIndex];
+                bestDot = d;
             }
         }
     }
-    p->mLink = r;
-    p->mPreviousLink = r;
-    p->mDirection = data_021557ec;
-    p->mRequestedLink = NULL;
-    p->mUnk_18 = FALSE;
+    linkCursor->mLink = bestLink;
+    linkCursor->mPreviousLink = bestLink;
+    linkCursor->mDirection = data_021557ec;
+    linkCursor->mRequestedLink = NULL;
+    linkCursor->mUnk_18 = FALSE;
 }
 
-void ResetBattlePointLinkCursorTo(LinkCursor *p, PointLink *a) {
-    p->mPreviousLink = a;
-    p->mLink = p->mPreviousLink;
-    p->mDirection = data_021557ec;
-    p->mRequestedLink = NULL;
-    p->mUnk_18 = FALSE;
+void ResetBattlePointLinkCursorTo(LinkCursor *linkCursor, PointLink *pointLink) {
+    linkCursor->mPreviousLink = pointLink;
+    linkCursor->mLink = linkCursor->mPreviousLink;
+    linkCursor->mDirection = data_021557ec;
+    linkCursor->mRequestedLink = NULL;
+    linkCursor->mUnk_18 = FALSE;
 }
 
-void AdvanceBattlePointLinkCursor(LinkCursor *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s32 e) {
-    s32 m2;
-    PointLink *r;
-    s32 m1;
-    PointLink *v1 = p->mLink;
-    u16 n2 = 0;
-    PointLink *v2[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+void AdvanceBattlePointLinkCursor(LinkCursor *linkCursor, Vec3 *position, Vec3 *direction, u16 kartIndex,
+                                  Unk020888b4_d0 *targetShine, s32 targetKartIndex) {
+    s32 bestFallbackDot;
+    PointLink *nextLink;
+    s32 lowestTargetDot;
+    PointLink *currentLink = linkCursor->mLink;
+    u16 fallbackCount = 0;
+    PointLink *candidateLinks[8] = {0, 0, 0, 0, 0, 0, 0, 0};
     u16 n1;
-    s32 m0;
-    Kart *o;
-    PointLink *q;
-    s32 u;
-    u16 n;
-    u16 l;
-    u16 h;
-    u32 v32;
+    s32 bestTargetDot;
+    Kart *kart;
+    PointLink *neighborLink;
+    s32 targetDot;
+    u16 candidateCount;
+    u16 chosenIndex;
+    u16 pairIndex;
+    u32 randomValue;
     BOOL v3;
-    PointLink *f;
+    PointLink *fallbackLink;
     u16 n0;
-    s32 t;
-    u16 i;
-    u8 j;
-    RandomState64 *g;
+    s32 directionDot;
+    u16 linkIndex;
+    u8 neighborLinkIndex;
+    RandomState64 *kartAiRandom;
     u16 k;
-    Vec3 v;
-    Vec3 w;
-    Vec3 x;
-    Vec3 y;
-    Vec3 z[2];
-    Vec3 s;
+    Vec3 directionToTargetShine;
+    Vec3 directionToLink;
+    Vec3 directionToTargetKart;
+    Vec3 directionToCandidateLink;
+    Vec3 directionsToCandidates[2];
+    Vec3 neighborLinkDirection;
 
-    m2 = -0x1000;
-    m1 = 0x1000;
-    r = NULL;
-    m0 = m2;
-    f = NULL;
-    if (p->mLink->mUnk_2c == 1) {
-        r = p->mLink->mUnk_00[0];
+    bestFallbackDot = -0x1000;
+    lowestTargetDot = 0x1000;
+    nextLink = NULL;
+    bestTargetDot = bestFallbackDot;
+    fallbackLink = NULL;
+    if (linkCursor->mLink->mLinkCount == 1) {
+        nextLink = linkCursor->mLink->mLinks[0];
     } else {
         PointLink *v4[2] = {0, 0};
 
-        n = 0;
+        candidateCount = 0;
         n1 = 0;
         n1 = n1;
         n0 = 0;
-        if (d != NULL) {
+        if (targetShine != NULL) {
             k = 0;
-            VEC_Subtract(&d->mPos, &GetKart(c)->mPos, &v);
-            if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
-                Vec3NormalizeAndGetLengthUnchecked(&v, &v);
+            VEC_Subtract(&targetShine->mPos, &GetKart(kartIndex)->mPos, &directionToTargetShine);
+            if ((s64) directionToTargetShine.x * directionToTargetShine.x +
+                    (s64) directionToTargetShine.y * directionToTargetShine.y +
+                    (s64) directionToTargetShine.z * directionToTargetShine.z >=
+                0x10) {
+                Vec3NormalizeAndGetLengthUnchecked(&directionToTargetShine, &directionToTargetShine);
             }
-            for (i = 0; i < p->mLink->mUnk_2c; i++) {
-                if (p->mPreviousLink == ((const LinkCursor *) p)->mLink->mUnk_00[i]) {
+            for (linkIndex = 0; linkIndex < linkCursor->mLink->mLinkCount; linkIndex++) {
+                if (linkCursor->mPreviousLink == ((const LinkCursor *) linkCursor)->mLink->mLinks[linkIndex]) {
                     continue;
                 }
-                VEC_Subtract(p->mLink->mUnk_00[i]->mUnk_20, &GetKart(c)->mPos, &w);
-                if ((s64) w.x * w.x + (s64) w.y * w.y + (s64) w.z * w.z >= 0x10) {
-                    Vec3NormalizeAndGetLengthUnchecked(&w, &w);
+                VEC_Subtract(linkCursor->mLink->mLinks[linkIndex]->mUnk_20, &GetKart(kartIndex)->mPos,
+                             &directionToLink);
+                if ((s64) directionToLink.x * directionToLink.x + (s64) directionToLink.y * directionToLink.y +
+                        (s64) directionToLink.z * directionToLink.z >=
+                    0x10) {
+                    Vec3NormalizeAndGetLengthUnchecked(&directionToLink, &directionToLink);
                 }
-                t = Vec3DotUnrounded(&w, b);
-                if (t >= -0x800) {
-                    u = VEC_DotProduct(&v, &w);
-                    if (u > m0 || k == 0) {
-                        m0 = u;
+                directionDot = Vec3DotUnrounded(&directionToLink, direction);
+                if (directionDot >= -0x800) {
+                    targetDot = VEC_DotProduct(&directionToTargetShine, &directionToLink);
+                    if (targetDot > bestTargetDot || k == 0) {
+                        bestTargetDot = targetDot;
                         k++;
-                        r = p->mLink->mUnk_00[i];
+                        nextLink = linkCursor->mLink->mLinks[linkIndex];
                     }
-                } else if (t >= m2 || n2 == 0) {
-                    m2 = t;
-                    f = p->mLink->mUnk_00[i];
-                    n2++;
+                } else if (directionDot >= bestFallbackDot || fallbackCount == 0) {
+                    bestFallbackDot = directionDot;
+                    fallbackLink = linkCursor->mLink->mLinks[linkIndex];
+                    fallbackCount++;
                 }
             }
-        } else if (e != -1) {
+        } else if (targetKartIndex != -1) {
             n1 = (u16) n1;
-            if (GetKart(e)->mUnk_4c & 0x40) {
+            if (GetKart(targetKartIndex)->mUnk_4c & 0x40) {
                 v3 = TRUE;
             } else {
                 v3 = FALSE;
             }
-            o = GetKart(c);
-            VEC_Subtract(&GetKart(e)->mPos, &o->mPos, &x);
-            if ((s64) x.x * x.x + (s64) x.y * x.y + (s64) x.z * x.z >= 0x10) {
-                Vec3NormalizeAndGetLengthUnchecked(&x, &x);
+            kart = GetKart(kartIndex);
+            VEC_Subtract(&GetKart(targetKartIndex)->mPos, &kart->mPos, &directionToTargetKart);
+            if ((s64) directionToTargetKart.x * directionToTargetKart.x +
+                    (s64) directionToTargetKart.y * directionToTargetKart.y +
+                    (s64) directionToTargetKart.z * directionToTargetKart.z >=
+                0x10) {
+                Vec3NormalizeAndGetLengthUnchecked(&directionToTargetKart, &directionToTargetKart);
             }
-            for (i = 0; i < p->mLink->mUnk_2c; i++) {
-                if (p->mPreviousLink == ((const LinkCursor *) p)->mLink->mUnk_00[i]) {
+            for (linkIndex = 0; linkIndex < linkCursor->mLink->mLinkCount; linkIndex++) {
+                if (linkCursor->mPreviousLink == ((const LinkCursor *) linkCursor)->mLink->mLinks[linkIndex]) {
                     continue;
                 }
-                VEC_Subtract(p->mLink->mUnk_00[i]->mUnk_20, &GetKart(c)->mPos, &y);
-                if ((s64) y.x * y.x + (s64) y.y * y.y + (s64) y.z * y.z >= 0x10) {
-                    Vec3NormalizeAndGetLengthUnchecked(&y, &y);
+                VEC_Subtract(linkCursor->mLink->mLinks[linkIndex]->mUnk_20, &GetKart(kartIndex)->mPos,
+                             &directionToCandidateLink);
+                if ((s64) directionToCandidateLink.x * directionToCandidateLink.x +
+                        (s64) directionToCandidateLink.y * directionToCandidateLink.y +
+                        (s64) directionToCandidateLink.z * directionToCandidateLink.z >=
+                    0x10) {
+                    Vec3NormalizeAndGetLengthUnchecked(&directionToCandidateLink, &directionToCandidateLink);
                 }
-                t = Vec3DotUnrounded(&y, b);
-                if (t >= -0x800) {
+                directionDot = Vec3DotUnrounded(&directionToCandidateLink, direction);
+                if (directionDot >= -0x800) {
                     if (v3 == FALSE) {
-                        u = VEC_DotProduct(&x, &y);
-                        if (u > m0 || n0 == 0) {
-                            m0 = u;
-                            r = p->mLink->mUnk_00[i];
+                        targetDot = VEC_DotProduct(&directionToTargetKart, &directionToCandidateLink);
+                        if (targetDot > bestTargetDot || n0 == 0) {
+                            bestTargetDot = targetDot;
+                            nextLink = linkCursor->mLink->mLinks[linkIndex];
                             n0++;
                         }
                     } else {
-                        u = VEC_DotProduct(&x, &y);
-                        if (u < m1 || n1 == 0) {
-                            m1 = u;
-                            r = p->mLink->mUnk_00[i];
+                        targetDot = VEC_DotProduct(&directionToTargetKart, &directionToCandidateLink);
+                        if (targetDot < lowestTargetDot || n1 == 0) {
+                            lowestTargetDot = targetDot;
+                            nextLink = linkCursor->mLink->mLinks[linkIndex];
                             n1++;
                         }
                     }
-                } else if (t >= m2 || n2 == 0) {
-                    m2 = t;
-                    f = p->mLink->mUnk_00[i];
-                    n2++;
+                } else if (directionDot >= bestFallbackDot || fallbackCount == 0) {
+                    bestFallbackDot = directionDot;
+                    fallbackLink = linkCursor->mLink->mLinks[linkIndex];
+                    fallbackCount++;
                 }
             }
         } else {
-            for (i = 0; i < p->mLink->mUnk_2c; i++) {
-                if (p->mPreviousLink != ((const LinkCursor *) p)->mLink->mUnk_00[i] &&
-                    !(p->mLink->mUnk_2e & (1 << (u8) i))) {
-                    v4[n0] = ((const LinkCursor *) p)->mLink->mUnk_00[i];
+            for (linkIndex = 0; linkIndex < linkCursor->mLink->mLinkCount; linkIndex++) {
+                if (linkCursor->mPreviousLink != ((const LinkCursor *) linkCursor)->mLink->mLinks[linkIndex] &&
+                    !(linkCursor->mLink->mUnk_2e & (1 << (u8) linkIndex))) {
+                    v4[n0] = ((const LinkCursor *) linkCursor)->mLink->mLinks[linkIndex];
                     n0++;
                     n1 = 1;
                 }
             }
             if (n1 != 0) {
-                l = 0;
+                chosenIndex = 0;
                 if (n0 > 1) {
-                    for (h = 0; h < 2; h++) {
-                        VEC_Subtract(v4[h]->mUnk_20, p->mLink->mUnk_20, &z[h]);
-                        if ((s64) z[h].x * z[h].x + (s64) z[h].y * z[h].y + (s64) z[h].z * z[h].z >= 0x10) {
-                            Vec3NormalizeAndGetLengthUnchecked(&z[h], &z[h]);
+                    for (pairIndex = 0; pairIndex < 2; pairIndex++) {
+                        VEC_Subtract(v4[pairIndex]->mUnk_20, linkCursor->mLink->mUnk_20,
+                                     &directionsToCandidates[pairIndex]);
+                        if ((s64) directionsToCandidates[pairIndex].x * directionsToCandidates[pairIndex].x +
+                                (s64) directionsToCandidates[pairIndex].y * directionsToCandidates[pairIndex].y +
+                                (s64) directionsToCandidates[pairIndex].z * directionsToCandidates[pairIndex].z >=
+                            0x10) {
+                            Vec3NormalizeAndGetLengthUnchecked(&directionsToCandidates[pairIndex],
+                                                               &directionsToCandidates[pairIndex]);
                         }
                     }
-                    if (Vec3DotUnrounded(&z[0], b) < Vec3DotUnrounded(&z[1], b)) {
-                        l = 1;
+                    if (Vec3DotUnrounded(&directionsToCandidates[0], direction) <
+                        Vec3DotUnrounded(&directionsToCandidates[1], direction)) {
+                        chosenIndex = 1;
                     }
                 }
-                v2[0] = v4[l];
-                n = 1;
+                candidateLinks[0] = v4[chosenIndex];
+                candidateCount = 1;
             } else {
-                for (i = 0; i < ((const PointLink *) p->mLink)->mUnk_2c; i++) {
-                    if (p->mPreviousLink != ((const LinkCursor *) p)->mLink->mUnk_00[i] &&
-                        (p->mLink->mUnk_2e & (1 << (u8) i))) {
-                        s = data_021557ec;
-                        q = p->mLink->mUnk_00[i];
-                        for (j = 0; j < q->mUnk_2c; j++) {
-                            if (!(q->mUnk_2e & (1 << j)) && ((const LinkCursor *) p)->mLink != q->mUnk_00[j]) {
-                                VEC_Subtract(q->mUnk_00[j]->mUnk_20, q->mUnk_20, &s);
-                                if ((s64) s.x * (s64) s.x + (s64) s.y * (s64) s.y + (s64) s.z * (s64) s.z >= 0x10) {
-                                    Vec3NormalizeAndGetLengthUnchecked(&s, &s);
+                for (linkIndex = 0; linkIndex < ((const PointLink *) linkCursor->mLink)->mLinkCount; linkIndex++) {
+                    if (linkCursor->mPreviousLink != ((const LinkCursor *) linkCursor)->mLink->mLinks[linkIndex] &&
+                        (linkCursor->mLink->mUnk_2e & (1 << (u8) linkIndex))) {
+                        neighborLinkDirection = data_021557ec;
+                        neighborLink = linkCursor->mLink->mLinks[linkIndex];
+                        for (neighborLinkIndex = 0; neighborLinkIndex < neighborLink->mLinkCount; neighborLinkIndex++) {
+                            if (!(neighborLink->mUnk_2e & (1 << neighborLinkIndex)) &&
+                                ((const LinkCursor *) linkCursor)->mLink != neighborLink->mLinks[neighborLinkIndex]) {
+                                VEC_Subtract(neighborLink->mLinks[neighborLinkIndex]->mUnk_20, neighborLink->mUnk_20,
+                                             &neighborLinkDirection);
+                                if ((s64) neighborLinkDirection.x * (s64) neighborLinkDirection.x +
+                                        (s64) neighborLinkDirection.y * (s64) neighborLinkDirection.y +
+                                        (s64) neighborLinkDirection.z * (s64) neighborLinkDirection.z >=
+                                    0x10) {
+                                    Vec3NormalizeAndGetLengthUnchecked(&neighborLinkDirection, &neighborLinkDirection);
                                 }
                                 break;
                             }
                         }
-                        t = Vec3DotUnrounded(&s, b);
-                        if (t >= -0x800) {
-                            v2[n] = p->mLink->mUnk_00[i];
-                            n++;
-                        } else if (t >= m2 || n2 == 0) {
-                            m2 = t;
-                            f = p->mLink->mUnk_00[i];
-                            n2++;
+                        directionDot = Vec3DotUnrounded(&neighborLinkDirection, direction);
+                        if (directionDot >= -0x800) {
+                            candidateLinks[candidateCount] = linkCursor->mLink->mLinks[linkIndex];
+                            candidateCount++;
+                        } else if (directionDot >= bestFallbackDot || fallbackCount == 0) {
+                            bestFallbackDot = directionDot;
+                            fallbackLink = linkCursor->mLink->mLinks[linkIndex];
+                            fallbackCount++;
                         }
                     }
                 }
             }
         }
-        if (r == NULL) {
-            if (n == 0) {
-                r = f;
+        if (nextLink == NULL) {
+            if (candidateCount == 0) {
+                nextLink = fallbackLink;
             } else {
-                if (n == 1) {
+                if (candidateCount == 1) {
                     k = 0;
                 } else {
-                    g = GetKartAiRandom();
-                    if (n == 0) {
-                        v32 = 0;
+                    kartAiRandom = GetKartAiRandom();
+                    if (candidateCount == 0) {
+                        randomValue = 0;
                     } else {
-                        g->mValue = g->mMultiplier * g->mValue + g->mIncrement;
-                        if (n == 0) {
-                            v32 = g->mValue >> 32;
+                        kartAiRandom->mValue =
+                            kartAiRandom->mMultiplier * kartAiRandom->mValue + kartAiRandom->mIncrement;
+                        if (candidateCount == 0) {
+                            randomValue = kartAiRandom->mValue >> 32;
                         } else {
-                            v32 = ((g->mValue >> 32) * (u32) n) >> 32;
+                            randomValue = ((kartAiRandom->mValue >> 32) * (u32) candidateCount) >> 32;
                         }
                     }
-                    k = v32;
+                    k = randomValue;
                 }
-                r = v2[k];
+                nextLink = candidateLinks[k];
             }
         }
     }
-    p->mLink = r;
-    p->mPreviousLink = v1;
-    p->mDirection = data_021557ec;
-    VEC_Subtract(p->mLink->mUnk_20, p->mPreviousLink->mUnk_20, &p->mDirection);
-    if ((s64) p->mDirection.x * p->mDirection.x + (s64) p->mDirection.y * p->mDirection.y +
-            (s64) p->mDirection.z * p->mDirection.z >=
+    linkCursor->mLink = nextLink;
+    linkCursor->mPreviousLink = currentLink;
+    linkCursor->mDirection = data_021557ec;
+    VEC_Subtract(linkCursor->mLink->mUnk_20, linkCursor->mPreviousLink->mUnk_20, &linkCursor->mDirection);
+    if ((s64) linkCursor->mDirection.x * linkCursor->mDirection.x +
+            (s64) linkCursor->mDirection.y * linkCursor->mDirection.y +
+            (s64) linkCursor->mDirection.z * linkCursor->mDirection.z >=
         0x10) {
-        Vec3NormalizeAndGetLengthUnchecked(&p->mDirection, &p->mDirection);
+        Vec3NormalizeAndGetLengthUnchecked(&linkCursor->mDirection, &linkCursor->mDirection);
     }
 }
 
-s32 func_020800a0(LinkCursor *p) {
-    s32 r = 0;
-    s16 a = *p->mLink->mUnk_28;
+s32 GetBattlePointLinkSpeedLimit(LinkCursor *linkCursor) {
+    s32 result = 0;
+    s16 unscaledSpeedLimit = *linkCursor->mLink->mUnk_28;
 
-    if (a != 0) {
-        r = ((s64) a * 0x28f5c) >> 12;
+    if (unscaledSpeedLimit != 0) {
+        result = ((s64) unscaledSpeedLimit * 0x28f5c) >> 12;
     }
-    return r;
+    return result;
 }
 
-void AdvanceBattlePointLinkCursorTo(LinkCursor *p, PointLink *a) {
-    p->mPreviousLink = p->mLink;
-    p->mLink = a;
-    p->mDirection = data_021557ec;
-    VEC_Subtract(p->mLink->mUnk_20, p->mPreviousLink->mUnk_20, &p->mDirection);
-    if ((s64) p->mDirection.x * p->mDirection.x + (s64) p->mDirection.y * p->mDirection.y +
-            (s64) p->mDirection.z * p->mDirection.z >=
+void AdvanceBattlePointLinkCursorTo(LinkCursor *linkCursor, PointLink *pointLink) {
+    linkCursor->mPreviousLink = linkCursor->mLink;
+    linkCursor->mLink = pointLink;
+    linkCursor->mDirection = data_021557ec;
+    VEC_Subtract(linkCursor->mLink->mUnk_20, linkCursor->mPreviousLink->mUnk_20, &linkCursor->mDirection);
+    if ((s64) linkCursor->mDirection.x * linkCursor->mDirection.x +
+            (s64) linkCursor->mDirection.y * linkCursor->mDirection.y +
+            (s64) linkCursor->mDirection.z * linkCursor->mDirection.z >=
         0x10) {
-        Vec3NormalizeAndGetLengthUnchecked(&p->mDirection, &p->mDirection);
+        Vec3NormalizeAndGetLengthUnchecked(&linkCursor->mDirection, &linkCursor->mDirection);
     }
 }
 
