@@ -28,11 +28,11 @@ static inline u16 func_0209f800_inline(u32 n) {
     u32 r;
 
     if (n == 0x10000) {
-        b = func_020d22d0();
+        b = GetMapObjectRandom();
         b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
         return ((b->mUnk_00 >> 32) * 0x10000) >> 32;
     } else {
-        b = func_020d22d0();
+        b = GetMapObjectRandom();
         m = (u16) n;
         if (m == 0) {
             r = 0;
@@ -218,7 +218,7 @@ void InitTownMonteObjects(Unk0209f800 *a) {
         p->mUnk_a8 = 0;
         n = GetMapObjectModelNsbtpFrameCount(gTownMonte);
         p->mNsbtpFrameIndex = func_0209f800_inline(n);
-        r = func_020d22d0();
+        r = GetMapObjectRandom();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         m = ((r->mUnk_00 >> 32) * 0x1a) >> 32;
         for (j = 0; j < m; j++) {
@@ -230,7 +230,7 @@ void InitTownMonteObjects(Unk0209f800 *a) {
             } else if (p->mNsbtpFrameIndex == 1) {
                 p->mUnk_a2 = 0x1a8;
             } else if (p->mNsbtpFrameIndex == 2) {
-                r = func_020d22d0();
+                r = GetMapObjectRandom();
                 r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                 p->mUnk_a2 = (u16) (((r->mUnk_00 >> 32) * 2) >> 32) != 0 ? 0x1a7 : 0x1a8;
             }

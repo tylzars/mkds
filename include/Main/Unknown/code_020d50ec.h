@@ -29,8 +29,8 @@ typedef struct CollisionSlotEnd {
     /* 02 */ s32 mEndX : 16;
 } CollisionSlotEnd;
 
-u32 FreeCollisionSlot(s32 a);
-s32 CreateCollisionSlot(Vec3 *a, s32 b, s32 c, void *d);
+u32 FreeCollisionSlot(s32 slotIndex);
+s32 CreateCollisionSlot(Vec3 *centerPos, s32 radius, s32 flags, void *object);
 // Object behind the pointer func_020d5a68 and func_020d5aa0 read: a pointer at 0x00 and a word at 0x04.
 typedef struct Unk020d5a68 {
     /* 00 */ Unk020e005c *mUnk_00;
@@ -38,7 +38,7 @@ typedef struct Unk020d5a68 {
 } Unk020d5a68;
 
 // Element object of InitRock: MapObject and the words and halfword used after it.
-typedef struct Unk020d5bf0 {
+typedef struct RockObject {
     /* 000 */ MapObject mMapObject;
     /* 0a0 */ s32 mStartY;
     /* 0a4 */ Unk020d84e4 mUnk_0a4;
@@ -59,7 +59,7 @@ typedef struct Unk020d5bf0 {
     /* 118 */ s32 mBottomOffsetReciprocal;
     /* 11c */ s32 mBottomOffset;
     /* 120 */ s32 mBounceRatio;
-} Unk020d5bf0;
+} RockObject;
 
 // Twelve bytes func_020d634c fills: a word and three halfwords.
 typedef struct Unk020d634c {
@@ -70,22 +70,22 @@ typedef struct Unk020d634c {
     /* 0a */ u8 mUnk_0a[2];
 } Unk020d634c;
 
-void UpdateRock(void *a, Unk020d5bf0 *p);
-void func_020d634c(Unk020d5bf0 *p, s32 b);
-u8 func_020d5f8c(Unk020d5bf0 *a, s32 b, u8 *c, u8 *d);
-u8 func_020d5f64(Unk020d5bf0 *a, s32 b, u8 *c, u8 *d);
-void ResetRock(Unk020d5bf0 *p);
-void InitRock(Unk020d5bf0 *p, struct CourseMapRow *q);
+void UpdateRock(void *a, RockObject *rock);
+void func_020d634c(RockObject *rock, s32 b);
+u8 func_020d5f8c(RockObject *rock, s32 b, u8 *firstResponsePtr, u8 *secondResponsePtr);
+u8 func_020d5f64(RockObject *rock, s32 b, u8 *firstResponsePtr, u8 *secondResponsePtr);
+void ResetRock(RockObject *rock);
+void InitRock(RockObject *rock, struct CourseMapRow *courseRow);
 void CreateNsbmdAndShadowNsbmd(void *a, const char *name, const char *shadowName);
 void CreateRock(void *a);
 void CreateRock2(void *a);
-void LoadCourseCollisionData(Unk0217b614 *p, Unk0217b614 *a);
+void LoadCourseCollisionData(Unk0217b614 *collision, Unk0217b614 *file);
 void InitCourseCollision(void);
-void func_020d5aa0(void *a, u32 b, Unk020e04b0 *c, Vec3 *d, Vec3 *e);
-BOOL func_020d5a68(void *a, u32 b, Unk020e04b0 *c);
-u16 PickCollisionHitValue(u32 a);
+void func_020d5aa0(void *hitListPtr, u32 b, Unk020e04b0 *link, Vec3 *d, Vec3 *e);
+BOOL func_020d5a68(void *hitListPtr, u32 b, Unk020e04b0 *link);
+u16 PickCollisionHitValue(u32 mask);
 void InitCollisionSlots(void);
-void FindCollisionSlotsAroundPos(Vec3 *a, s32 b, s32 c);
-void SetCollisionSlotRadius(s16 a, s32 b);
-void DisableCollisionSlot(s16 a);
-void EnableCollisionSlot(s16 a);
+void FindCollisionSlotsAroundPos(Vec3 *position, s32 radius, s32 flagMask);
+void SetCollisionSlotRadius(s16 slotIndex, s32 radius);
+void DisableCollisionSlot(s16 slotIndex);
+void EnableCollisionSlot(s16 slotIndex);

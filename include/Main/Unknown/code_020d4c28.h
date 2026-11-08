@@ -12,11 +12,11 @@ typedef struct Unk020d4f94 {
     /* 24 */ Vec3 mUnk_24;
 } Unk020d4f94;
 
-void UpdateViewFrustum(Unk020d4f94 *p);
-u32 func_020d4f34(Vec3 *a, s32 b, s32 c, s32 d);
-s32 GetHorizontalCameraDistanceSquared(Vec3 *p);
-void func_020d4e28(ItemObject *p, Vec3 *v, u32 a);
-BOOL func_020d4ddc(MapObject *p);
-BOOL func_020d4d60(MapObject *p, s32 a);
-void func_020d4d44(MtxFx43 *p);
-void DrawMapObjectList(MapObjectList *p, MtxFx43 *a);
+void UpdateViewFrustum(Unk020d4f94 *viewMatrix);
+u32 func_020d4f34(Vec3 *position, s32 b, s32 c, s32 distanceLimitSquared);
+s32 GetHorizontalCameraDistanceSquared(Vec3 *position);
+void func_020d4e28(ItemObject *itemObject, Vec3 *position, u32 distanceAndFlags);
+BOOL func_020d4ddc(MapObject *mapObject);
+BOOL func_020d4d60(MapObject *mapObject, s32 distanceSquared);
+void func_020d4d44(MtxFx43 *viewMatrix);
+void DrawMapObjectList(MapObjectList *list, MtxFx43 *viewMatrix);

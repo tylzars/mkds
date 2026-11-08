@@ -57,11 +57,11 @@ BOOL func_020a6f94(Unk02100094 *a) {
     if (v1 > 0) {
         n = (u16) v1;
         if (n == 0x10000) {
-            g = func_020d22d0();
+            g = GetMapObjectRandom();
             g->mUnk_00 = (s64) g->mUnk_08 * (s64) g->mUnk_00 + g->mUnk_10;
             v2 = ((u64) (u32) (g->mUnk_00 >> 32) * 0x10000) >> 32;
         } else {
-            g = func_020d22d0();
+            g = GetMapObjectRandom();
             if ((u16) n == 0) {
                 r = 0;
             } else {

@@ -219,7 +219,7 @@ void UpdateSun(Unk02100094 *a, Sun *p) {
                 break;
             }
             if (p->mUnk_0a0 == 0) {
-                p->mUnk_0a4 = ((u64) CollideKartWithBound_inline(func_020d22d0()) * 0x10000) >> 32;
+                p->mUnk_0a4 = ((u64) CollideKartWithBound_inline(GetMapObjectRandom()) * 0x10000) >> 32;
             } else {
                 p->mUnk_0a4 += 0x8000;
             }

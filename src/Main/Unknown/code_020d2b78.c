@@ -16,142 +16,142 @@
 #pragma thumb on
 
 void func_020d2d94(void) {
-    int v1;
-    MapObjectList **v2;
-    void **v3;
-    MapObjectList **v4;
-    v2 = gMapObjects->mDrawLists;
-    v4 = gMapObjects->mUpdateLists;
-    v1 = 0;
+    int index;
+    MapObjectList **drawListSlot;
+    void **listSlot;
+    MapObjectList **updateListSlot;
+    drawListSlot = gMapObjects->mDrawLists;
+    updateListSlot = gMapObjects->mUpdateLists;
+    index = 0;
     do {
-        if (*v2 != NULL) {
-            v3 = *(void ***) ((s32) *v2 + 0x28);
-            if (v3 != NULL) {
-                *v3 = NULL;
+        if (*drawListSlot != NULL) {
+            listSlot = *(void ***) ((s32) *drawListSlot + 0x28);
+            if (listSlot != NULL) {
+                *listSlot = NULL;
             }
-            *v2 = NULL;
+            *drawListSlot = NULL;
         }
-        v2 = v2 + 1;
-        v1 = v1 + 1;
-    } while (v1 < 0x18);
-    v1 = 0;
+        drawListSlot = drawListSlot + 1;
+        index = index + 1;
+    } while (index < 0x18);
+    index = 0;
     do {
-        if (*v4 != NULL) {
-            v3 = (*v4)->mUnk_24;
-            if (v3 != NULL) {
-                *v3 = NULL;
+        if (*updateListSlot != NULL) {
+            listSlot = (*updateListSlot)->mUnk_24;
+            if (listSlot != NULL) {
+                *listSlot = NULL;
             }
-            *v4 = NULL;
+            *updateListSlot = NULL;
         }
-        v4 = v4 + 1;
-        v1 = v1 + 1;
-    } while (v1 < 0x10);
+        updateListSlot = updateListSlot + 1;
+        index = index + 1;
+    } while (index < 0x10);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-s32 func_020d2c2c(Vec3 *b, Vec3 *c, s32 d, s16 e, s32 f, Vec3 *g) {
-    s32 a;
+s32 func_020d2c2c(Vec3 *position, Vec3 *velocity, s32 radius, s16 collisionSlotIndex, s32 itemKind, Vec3 *hitOffset) {
+    s32 bestResponse;
     s32 i;
-    a = 0;
-    FindCollisionSlotsOverlappingSlot(e, 0x2000);
+    bestResponse = 0;
+    FindCollisionSlotsOverlappingSlot(collisionSlotIndex, 0x2000);
     i = 0;
     if (gFoundCollisionSlotCount != 0) {
-        Vec3 v;
-        Vec3 mn;
-        Vec3 mx;
-        ItemObject *q;
-        MapObject *p;
-        s32 r;
-        s32 t;
+        Vec3 overlapOffset;
+        Vec3 lowest;
+        Vec3 highest;
+        ItemObject *itemObject;
+        MapObject *mapObject;
+        s32 response;
+        s32 overlapX;
         {
-            Vec3 z1 = {0, 0, 0};
-            mn = z1;
+            Vec3 zeroLow = {0, 0, 0};
+            lowest = zeroLow;
         }
         {
-            Vec3 z2 = {0, 0, 0};
-            mx = z2;
+            Vec3 zeroHigh = {0, 0, 0};
+            highest = zeroHigh;
         }
-        q = &gMapObjects->mUnk_18c;
+        itemObject = &gMapObjects->mUnk_18c;
         for (; i < gFoundCollisionSlotCount; i++) {
-            p = gFoundCollisionSlotObjects[i];
-            if (IsSphereHittingMapObject(b, d, p, &v) != FALSE) {
-                if (!(p->mFlags & 0x40) && DoesItemObjectRespondToMapObject(f, p) != 0) {
-                    t = v.x;
-                    mn.x = ((const Vec3 *) &v)->x < mn.x ? t : mn.x;
-                    mn.y = v.y < mn.y ? v.y : mn.y;
-                    mn.z = v.z < mn.z ? v.z : mn.z;
-                    mx.x = t > mx.x ? t : mx.x;
-                    mx.y = v.y > mx.y ? v.y : mx.y;
-                    mx.z = v.z > mx.z ? v.z : mx.z;
+            mapObject = gFoundCollisionSlotObjects[i];
+            if (IsSphereHittingMapObject(position, radius, mapObject, &overlapOffset) != FALSE) {
+                if (!(mapObject->mFlags & 0x40) && DoesItemObjectRespondToMapObject(itemKind, mapObject) != 0) {
+                    overlapX = overlapOffset.x;
+                    lowest.x = ((const Vec3 *) &overlapOffset)->x < lowest.x ? overlapX : lowest.x;
+                    lowest.y = overlapOffset.y < lowest.y ? overlapOffset.y : lowest.y;
+                    lowest.z = overlapOffset.z < lowest.z ? overlapOffset.z : lowest.z;
+                    highest.x = overlapX > highest.x ? overlapX : highest.x;
+                    highest.y = overlapOffset.y > highest.y ? overlapOffset.y : highest.y;
+                    highest.z = overlapOffset.z > highest.z ? overlapOffset.z : highest.z;
                 }
-                q->mPos = *b;
-                q->mVelocity = *c;
-                q->mKind = f;
-                r = func_020d6a54(q, p, NULL);
-                if (r > a) {
-                    a = r;
+                itemObject->mPos = *position;
+                itemObject->mVelocity = *velocity;
+                itemObject->mKind = itemKind;
+                response = func_020d6a54(itemObject, mapObject, NULL);
+                if (response > bestResponse) {
+                    bestResponse = response;
                 }
             }
         }
-        if (a != 0 && g != NULL) {
-            g->x = mx.x + mn.x;
-            g->y = mx.y + mn.y;
-            if (g->y < 0) {
-                g->y = 0;
+        if (bestResponse != 0 && hitOffset != NULL) {
+            hitOffset->x = highest.x + lowest.x;
+            hitOffset->y = highest.y + lowest.y;
+            if (hitOffset->y < 0) {
+                hitOffset->y = 0;
             }
-            g->z = mx.z + mn.z;
+            hitOffset->z = highest.z + lowest.z;
         }
     }
-    return a;
+    return bestResponse;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-u32 func_020d2c20(void) {
-    return (data_0217b4ec);
+u32 GetMapObjectKindCount(void) {
+    return (gMapObjectKindCount);
 }
 
 // The water_efct.nsbmd file: WaterEfct's if gCourseWaterEfct exists, else the Water's own when mUnk_170 is non-zero,
 // else NULL; passed as an effect model file to SetupModelEffectKind.
 void *GetWaterEfctNsbmdFile(void) {
-    Water *v1;
+    Water *water;
     if (gCourseWaterEfct != NULL) {
         return gCourseWaterEfct->mNsbmdFile;
     }
-    v1 = gCourseWater;
-    if ((v1 != NULL) && (v1->mUnk_170 != 0)) {
-        return v1->mEfctNsbmdFile;
+    water = gCourseWater;
+    if ((water != NULL) && (water->mUnk_170 != 0)) {
+        return water->mEfctNsbmdFile;
     }
     return NULL;
 }
 
 // The water_efct.nsbca file, same rule as GetWaterEfctNsbmdFile.
 void *GetWaterEfctNsbcaFile(void) {
-    Water *v1;
+    Water *water;
     if (gCourseWaterEfct != NULL) {
         return gCourseWaterEfct->mNsbcaFile;
     }
-    v1 = gCourseWater;
-    if ((v1 != NULL) && (v1->mUnk_170 != 0)) {
-        return v1->mEfctNsbcaFile;
+    water = gCourseWater;
+    if ((water != NULL) && (water->mUnk_170 != 0)) {
+        return water->mEfctNsbcaFile;
     }
     return NULL;
 }
 
 // The water_efct.nsbma file, same rule as GetWaterEfctNsbmdFile.
 void *GetWaterEfctNsbmaFile(void) {
-    Water *v1;
+    Water *water;
     if (gCourseWaterEfct != NULL) {
         return gCourseWaterEfct->mNsbmaFile;
     }
-    v1 = gCourseWater;
-    if ((v1 != NULL) && (v1->mUnk_170 != 0)) {
-        return v1->mEfctNsbmaFile;
+    water = gCourseWater;
+    if ((water != NULL) && (water->mUnk_170 != 0)) {
+        return water->mEfctNsbmaFile;
     }
     return NULL;
 }

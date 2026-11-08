@@ -127,7 +127,7 @@ void func_0209d84c(void *a, Unk0209d694 *p) {
                         t = p->mUnk_00.mPos.x - p->mUnk_a8.x;
                         k = p->mUnk_00.mPos.z - p->mUnk_a8.z;
                         if ((s64) t * t + (s64) k * k < 0x2710000000LL) {
-                            r = (u16) (((u64) func_0209d84c_inline(func_020d22d0()) * 0x10000) >> 32);
+                            r = (u16) (((u64) func_0209d84c_inline(GetMapObjectRandom()) * 0x10000) >> 32);
                             k = (r >> 4) * 2;
                             p->mUnk_00.mUnk_10.x = ((s64) gPairsByAngle[k] * 0x1800) >> 12;
                             p->mUnk_00.mUnk_10.z = ((s64) gPairsByAngle[k + 1] * 0x1800) >> 12;
@@ -162,7 +162,7 @@ void func_0209d84c(void *a, Unk0209d694 *p) {
             p->mUnk_00.mUnk_10.y = t;
             p->mUnk_00.mPos.y = p->mUnk_00.mPos.y + p->mUnk_00.mUnk_10.y;
             if (p->mUnk_00.mUnk_10.y < 0) {
-                p->mUnk_b4 = ((u64) func_0209d84c_inline(func_020d22d0()) * 0x10000) >> 32;
+                p->mUnk_b4 = ((u64) func_0209d84c_inline(GetMapObjectRandom()) * 0x10000) >> 32;
                 p->mUnk_b8 = 3;
             }
             break;

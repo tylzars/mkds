@@ -86,7 +86,7 @@ void func_020ffdd4(MapObjectList *v1) {
             return;
         }
     }
-    q = func_020d22d0();
+    q = GetMapObjectRandom();
     q->mUnk_00 = q->mUnk_08 * q->mUnk_00 + q->mUnk_10;
     t = ((u64) (u32) (q->mUnk_00 >> 32) * 6) >> 32;
     for (i = 0; i < n; i++) {

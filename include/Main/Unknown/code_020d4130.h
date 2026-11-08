@@ -15,7 +15,7 @@ typedef struct Unk020d4418 {
 void UpdateMapObjectViewTests(void);
 void RefreshMapObjectViewTests(void);
 void UpdateMapObjects(void);
-void DrawMapObjects(Unk020d4418 *p);
-void func_020d4418(Unk020d4418 *p);
-s32 FindMapObjectsTouchingKart(Kart *a, Vec3 *b, Vec3 *c);
-s32 FindMapObjectsOfKindInRadius(Vec3 *a, s32 b, s32 c);
+void DrawMapObjects(Unk020d4418 *view);
+void func_020d4418(Unk020d4418 *view);
+s32 FindMapObjectsTouchingKart(Kart *kart, Vec3 *position, Vec3 *hitOffset);
+s32 FindMapObjectsOfKindInRadius(Vec3 *position, s32 radius, s32 kind);

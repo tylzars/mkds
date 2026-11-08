@@ -21,4 +21,4 @@ typedef struct Unk0217b4b0 {
     /* 28 */ Nclr *mUnk_28;
 } Unk0217b4b0;
 
-void CreateSearchIconMBChildAndMultiDownload(void *param_1);
+void CreateSearchIconMBChildAndMultiDownload(void *heap);

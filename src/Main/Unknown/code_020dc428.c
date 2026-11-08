@@ -301,7 +301,7 @@ void UpdateWanwanState0(Wanwan *p) {
             q = p->mUnk_160[0];
             while (1) {
                 a = p->mUnk_f8;
-                r = func_020d22d0();
+                r = GetMapObjectRandom();
                 n = a - 0x2d000;
                 if (n == 0) {
                     v = 0;
@@ -313,7 +313,7 @@ void UpdateWanwanState0(Wanwan *p) {
                         v = (u32) (((u64) (r->mUnk_00 >> 32) * (u64) n) >> 32);
                     }
                 }
-                r = func_020d22d0();
+                r = GetMapObjectRandom();
                 d = v + 0x2d000;
                 r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                 i = (u16) (((r->mUnk_00 >> 32) * 0x10000) >> 32) >> 4;

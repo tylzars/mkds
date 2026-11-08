@@ -364,7 +364,7 @@ void InitCoverPooHoleObjects(Unk020968f4 *p) {
     }
     for (i = 0; i < p->mUnk_04 && (o = p->mUnk_00[i]) != NULL; i++) {
         o->mUnk_a8 = 0x1000;
-        v1 = func_020d22d0();
+        v1 = GetMapObjectRandom();
         v1->mUnk_00 = (s64) v1->mUnk_08 * (s64) v1->mUnk_00 + v1->mUnk_10;
         o->mTimer =
             (u16) (o->mUnk_00.mCourseMapRow->mUnk_28 + (u16) (((u64) (u32) (v1->mUnk_00 >> 32) * 60) >> 32) - 30);
@@ -391,7 +391,7 @@ s32 func_020968c0(s32 a, s32 b) {
 static inline u16 func_02095fec_inline(u32 n) {
     Unk020f41c4_B *b;
 
-    b = func_020d22d0();
+    b = GetMapObjectRandom();
     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
     return (u32) (((b->mUnk_00 >> 32) * n) >> 32);
 }

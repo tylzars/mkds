@@ -19,7 +19,7 @@ void func_ov001_0218aef4(Unk02188950 *a) {
     s32 idx;
     Vec3 pos;
 
-    rng = func_020d22d0();
+    rng = GetMapObjectRandom();
     rng->mUnk_00 = (s64) rng->mUnk_08 * (s64) rng->mUnk_00 + rng->mUnk_10;
     angle = (u16) (((rng->mUnk_00 >> 32) << 16) >> 32);
     for (i = 0; i < 3; i++) {

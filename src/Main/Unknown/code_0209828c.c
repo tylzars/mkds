@@ -123,11 +123,11 @@ static inline u32 func_020983c4_inline(u32 n) {
     u32 t;
     u32 m;
     if (n == 0x10000) {
-        r = func_020d22d0();
+        r = GetMapObjectRandom();
         r->mUnk_00 = r->mUnk_10 + (s64) r->mUnk_08 * (s64) r->mUnk_00;
         return (u16) ((r->mUnk_00 >> 32) * 0x10000 >> 32);
     }
-    r = func_020d22d0();
+    r = GetMapObjectRandom();
     m = (u16) n;
     if (m == 0) {
         t = 0;

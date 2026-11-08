@@ -4,4 +4,4 @@
 
 typedef struct MapObject MapObject;
 
-MapObject *GetFoundMapObject(u32 arg0);
+MapObject *GetFoundMapObject(u32 index);

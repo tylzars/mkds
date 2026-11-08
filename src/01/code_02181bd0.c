@@ -85,10 +85,10 @@ void func_ov001_02182d30(void) {
     c = GetKart((u16) gRaceSetup->mEntryIndex);
     o = UnparkFirstParkedMapObject(func_02100138(0x68));
     if (o != NULL) {
-        rnd = func_020d22d0();
+        rnd = GetMapObjectRandom();
         rnd->mUnk_00 = (s64) rnd->mUnk_08 * (s64) rnd->mUnk_00 + rnd->mUnk_10;
         a = (u16) (((u64) (u32) (rnd->mUnk_00 >> 32) * 0x10000) >> 32);
-        rnd = func_020d22d0();
+        rnd = GetMapObjectRandom();
         rnd->mUnk_00 = (s64) rnd->mUnk_08 * (s64) rnd->mUnk_00 + rnd->mUnk_10;
         b = (u32) (((u64) (u32) (rnd->mUnk_00 >> 32) * 0x800) >> 32) + 0x800;
         o->mUnk_0f8 = 3;
@@ -122,10 +122,10 @@ void func_ov001_02182bdc(void) {
     c = GetKart((u16) gRaceSetup->mEntryIndex);
     o = UnparkFirstParkedMapObject(func_02100138(0x68));
     if (o != NULL) {
-        rnd = func_020d22d0();
+        rnd = GetMapObjectRandom();
         rnd->mUnk_00 = (s64) rnd->mUnk_08 * (s64) rnd->mUnk_00 + rnd->mUnk_10;
         a = (u16) (((u64) (u32) (rnd->mUnk_00 >> 32) * 0x10000) >> 32);
-        rnd = func_020d22d0();
+        rnd = GetMapObjectRandom();
         rnd->mUnk_00 = (s64) rnd->mUnk_08 * (s64) rnd->mUnk_00 + rnd->mUnk_10;
         b = (u32) (((u64) (u32) (rnd->mUnk_00 >> 32) * 0x800) >> 32) + 0x800;
         o->mUnk_0f8 = 5;
@@ -179,7 +179,7 @@ void func_ov001_02182a3c(s32 a) {
                 n++;
                 if (n <= a) {
                     if (p->mUnk_0e8 == NULL) {
-                        rng = func_020d22d0();
+                        rng = GetMapObjectRandom();
                         rng->mUnk_00 = (s64) rng->mUnk_08 * (s64) rng->mUnk_00 + rng->mUnk_10;
                         r = ((u64) (u32) (rng->mUnk_00 >> 32) * 0x10000) >> 32;
                         p->mUnk_0b0 = 0x1000;

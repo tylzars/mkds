@@ -90,11 +90,11 @@ void func_ov001_0218c0a4(Unk02188950 *a) {
     angle = a->mAngle - a0->mUnk_1a4 * (a->mUnk_138 / 2);
     n1 = a0->mUnk_1a8;
     if (n1 == 0x10000) {
-        r = func_020d22d0();
+        r = GetMapObjectRandom();
         r->mUnk_00 = r->mUnk_10 + (s64) r->mUnk_08 * (s64) r->mUnk_00;
         res1 = (r->mUnk_00 >> 32) * 0x10000 >> 32;
     } else {
-        r = func_020d22d0();
+        r = GetMapObjectRandom();
         if ((u16) n1 == 0) {
             t1 = 0;
         } else {
@@ -111,11 +111,11 @@ void func_ov001_0218c0a4(Unk02188950 *a) {
     if (res1 == 0) {
         n2 = a->mUnk_138;
         if (n2 == 0x10000) {
-            r = func_020d22d0();
+            r = GetMapObjectRandom();
             r->mUnk_00 = r->mUnk_10 + (s64) r->mUnk_08 * (s64) r->mUnk_00;
             res2 = (r->mUnk_00 >> 32) * 0x10000 >> 32;
         } else {
-            r = func_020d22d0();
+            r = GetMapObjectRandom();
             if ((u16) n2 == 0) {
                 t2 = 0;
             } else {

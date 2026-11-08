@@ -4,4 +4,4 @@
 
 typedef struct MapObjectList MapObjectList;
 
-void ClearMapObjectList(MapObjectList *arg0);
+void ClearMapObjectList(MapObjectList *list);

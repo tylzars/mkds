@@ -187,7 +187,7 @@ void UpdateIronBall(void *a, IronBall *p) {
                 return;
             }
         } else if (e->mUnk_10 >= 0) {
-            q = func_020d22d0();
+            q = GetMapObjectRandom();
             q->mUnk_00 = q->mUnk_08 * q->mUnk_00 + q->mUnk_10;
             u = ((u64) (u32) (q->mUnk_00 >> 32) * 5) >> 32;
             if (u != 0) {

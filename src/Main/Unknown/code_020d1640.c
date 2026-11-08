@@ -13,8 +13,8 @@
 #include "Main/Unknown/code_020b3000.h"
 #include "Main/Unknown/code_020b4000.h"
 
-void CreateSearchIconMBChildAndMultiDownload(void *param_1) {
-    data_0217b4b0 = HeapAlloc(param_1, 0x2c);
+void CreateSearchIconMBChildAndMultiDownload(void *heap) {
+    data_0217b4b0 = HeapAlloc(heap, 0x2c);
     data_0217b4b0->mUnk_00 = FindFileInLoadedArchives("search_icon_00.bncl");
     data_0217b4b0->mUnk_04 = FindFileInLoadedArchives("search_icon_layout_00.bncl");
     LoadNcgrData2(&data_0217b4b0->mUnk_08, FindFileInLoadedArchives("search_icon_00.nce.ncgr"));

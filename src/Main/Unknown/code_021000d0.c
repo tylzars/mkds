@@ -3,7 +3,7 @@
 #include "Main/Unknown/code_020d2b78.h"
 
 void *func_02100138(u32 a) {
-    s32 n = func_020d2c20();
+    s32 n = GetMapObjectKindCount();
     s32 i;
 
     for (i = 0; i < n; i++) {
@@ -15,7 +15,7 @@ void *func_02100138(u32 a) {
 }
 
 void *func_021000d0(u32 a) {
-    s32 n = func_020d2c20();
+    s32 n = GetMapObjectKindCount();
     s32 i;
 
     for (i = 0; i < n; i++) {

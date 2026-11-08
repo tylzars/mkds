@@ -9,15 +9,15 @@
 #pragma thumb on
 
 void InitCupPicture(void) {
-    int v1;
-    Unk0217b4a4 *v3;
-    u32 v2;
-    v1 = func_020d1158();
-    if (v1 == 0) {
-        v2 = func_020d113c();
-        v3 = HeapAlloc((void *) v2, (0x0000185cu));
-        gCupPicture = v3;
-        v3->mCupPictureIndex = 0;
+    int result;
+    CupPicture *cupPicture;
+    u32 heap;
+    result = func_020d1158();
+    if (result == 0) {
+        heap = func_020d113c();
+        cupPicture = HeapAlloc((void *) heap, (0x0000185cu));
+        gCupPicture = cupPicture;
+        cupPicture->mCupPictureIndex = 0;
         TrySetCupPictureIndexAndQueueLoads(0x14);
     }
 }

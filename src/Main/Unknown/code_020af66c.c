@@ -707,7 +707,7 @@ void func_020af86c(void) {
     }
     if (v == RACE_KIND_STAFF_ROLL) {
         func_0212b5d8();
-        func_020d1450();
+        ClearEndingStaffRollPointer();
         return;
     }
     G2x_SetBlendAlpha_(&reg_G2_BLDCNT, 0, 0, 0x10, 0x10);
@@ -726,7 +726,7 @@ void func_020af86c(void) {
     ClearRaceGoalMPointer();
     func_020bc108();
     ClearRaceLapNumberPointer();
-    func_020d2094();
+    ClearRaceMNumberPairPointer();
     ClearRaceGoalTimesPointer();
     ClearRaceRankListPointer();
     ClearRaceHudSubScreenCellGroups();

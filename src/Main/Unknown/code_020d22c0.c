@@ -9,42 +9,42 @@
 
 // Puts a pooled map object aside: saves the low flag nibble in the high nibble, sets flags 1, 2, 8 and 4 (the update
 // walk skips flag 4) and the parked bit 0x100, and disables its collision slot if it has one.
-void ParkMapObject(MapObject *a) {
-    a->mFlags &= ~0xf000;
-    a->mFlags |= (a->mFlags & 0xf) << 12;
-    a->mFlags |= data_021568b4;
-    a->mFlags |= data_021568b8;
-    a->mFlags |= data_021568bc;
-    a->mFlags |= data_021568c0;
-    if (a->mCollisionSlotIndex != -1) {
-        DisableCollisionSlot(a->mCollisionSlotIndex);
+void ParkMapObject(MapObject *mapObject) {
+    mapObject->mFlags &= ~0xf000;
+    mapObject->mFlags |= (mapObject->mFlags & 0xf) << 12;
+    mapObject->mFlags |= data_021568b4;
+    mapObject->mFlags |= data_021568b8;
+    mapObject->mFlags |= data_021568bc;
+    mapObject->mFlags |= data_021568c0;
+    if (mapObject->mCollisionSlotIndex != -1) {
+        DisableCollisionSlot(mapObject->mCollisionSlotIndex);
     }
-    a->mFlags |= data_021568c4;
+    mapObject->mFlags |= data_021568c4;
 }
 
 // Brings a parked map object back: restores the low flag nibble from the high one, sets mUnk_66 to 0x1f unless the
 // restored flags contain 2, enables its collision slot if it has one and clears the parked bit 0x100.
-void UnparkMapObject(MapObject *a) {
-    a->mFlags &= ~0xf;
-    a->mFlags |= (a->mFlags & 0xf000) >> 12;
-    if (!(a->mFlags & 2)) {
-        a->mAlpha = 0x1f;
+void UnparkMapObject(MapObject *mapObject) {
+    mapObject->mFlags &= ~0xf;
+    mapObject->mFlags |= (mapObject->mFlags & 0xf000) >> 12;
+    if (!(mapObject->mFlags & 2)) {
+        mapObject->mAlpha = 0x1f;
     }
-    if (a->mCollisionSlotIndex != -1) {
-        EnableCollisionSlot(a->mCollisionSlotIndex);
+    if (mapObject->mCollisionSlotIndex != -1) {
+        EnableCollisionSlot(mapObject->mCollisionSlotIndex);
     }
-    a->mFlags &= ~0x100;
+    mapObject->mFlags &= ~0x100;
 }
 
-void func_020d22e0(void) {
-    data_0217b4bc = gRaceSetup->mMode == 5 ? &gRaceProgress->mFixedSeedRandom : &gRaceProgress->mRandom;
-    data_0217b4b8 = &gRaceProgress->mRandom;
+void SetRaceRandomPointers(void) {
+    gMapObjectRandom = gRaceSetup->mMode == 5 ? &gRaceProgress->mFixedSeedRandom : &gRaceProgress->mRandom;
+    gRaceRandom = &gRaceProgress->mRandom;
 }
 
-Unk020f41c4_B *func_020d22d0(void) {
-    return (Unk020f41c4_B *) ((u32) data_0217b4bc);
+Unk020f41c4_B *GetMapObjectRandom(void) {
+    return (Unk020f41c4_B *) ((u32) gMapObjectRandom);
 }
 
-Unk020f41c4_B *func_020d22c0(void) {
-    return (Unk020f41c4_B *) ((u32) data_0217b4b8);
+Unk020f41c4_B *GetRaceRandom(void) {
+    return (Unk020f41c4_B *) ((u32) gRaceRandom);
 }

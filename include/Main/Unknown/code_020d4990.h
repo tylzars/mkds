@@ -4,4 +4,4 @@
 
 typedef struct MapObjectList MapObjectList;
 
-void func_020d4990(MapObjectList *p);
+void func_020d4990(MapObjectList *list);

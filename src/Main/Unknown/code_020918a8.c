@@ -29,7 +29,7 @@
 static inline u32 func_020919e8_inline(u32 n) {
     Unk020f41c4_B *b;
 
-    b = func_020d22d0();
+    b = GetMapObjectRandom();
     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
     return ((b->mUnk_00 >> 32) * n) >> 32;
 }
@@ -37,7 +37,7 @@ static inline u32 func_020919e8_inline(u32 n) {
 static inline u16 func_020919e8_inline_2(u32 n) {
     Unk020f41c4_B *b;
 
-    b = func_020d22d0();
+    b = GetMapObjectRandom();
     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
     return (u32) (((b->mUnk_00 >> 32) * n) >> 32);
 }
@@ -157,7 +157,7 @@ static inline BOOL func_020919e8_inline_4(Unk020919e8 *p, s32 k) {
 
 static inline void func_020919e8_inline_6(Vec3 *v, s32 x, s32 y, s32 z) {
     v->x = x - 0x5000 + func_020919e8_inline(0xa000);
-    func_020d22d0();
+    GetMapObjectRandom();
     v->y = y;
     v->z = z - 0x28000 + func_020919e8_inline(0x50000);
 }
@@ -201,10 +201,10 @@ void UpdateKanoke64(void *a, Unk020919e8 *p) {
         for (i = 0; i < 3; i++) {
             func_020919e8_inline_6(&v3, p->mUnk_00.mPos.x, p->mUnk_00.mPos.y + 0x19000, p->mUnk_00.mPos.z);
             k = p->mUnk_00.mAngle;
-            r = NextRandomBelow(func_020d22d0(), 0x1000) + 0x800;
-            k = k - 0x3e8 + func_02046524(func_020d22d0(), 0x7d0);
+            r = NextRandomBelow(GetMapObjectRandom(), 0x1000) + 0x800;
+            k = k - 0x3e8 + func_02046524(GetMapObjectRandom(), 0x7d0);
             v4.x = func_02091f44(r, func_02091f54(k));
-            v4.y = NextRandomBelow(func_020d22d0(), 0x400) + 0x2200;
+            v4.y = NextRandomBelow(GetMapObjectRandom(), 0x400) + 0x2200;
             v4.z = func_02091f44(r, func_02091f24(k));
             if (i == 0 && p->mUnk_a8 == 0) {
                 StartBasabasa(0x50, &v3, &v4, 0x28, 1, i == 0 ? 3 : 0);

@@ -30,35 +30,35 @@
 
 #pragma thumb on
 
-void func_020d7d4c(Unk020d84e4 *a, struct CourseMapRow *b, s32 c, s32 d) {
-    InitGroupFollower(&a->mUnk_00, b, c);
-    a->mUnk_24 = c / 100;
-    a->mUnk_28 = (c * d) / 100;
-    func_020d859c(a, 0, 1);
+void func_020d7d4c(Unk020d84e4 *follower, struct CourseMapRow *courseRow, s32 speed, s32 d) {
+    InitGroupFollower(&follower->mUnk_00, courseRow, speed);
+    follower->mUnk_24 = speed / 100;
+    follower->mUnk_28 = (speed * d) / 100;
+    func_020d859c(follower, 0, 1);
 }
 
-void func_020d7d18(Unk020d849c *p, s32 a, Vec3 **b, s32 c) {
-    func_020d80e4(&p->mUnk_00, a, 0, b[0], b[1], b[2], b[3]);
-    SetSegmentProgressRate(p, c);
-    p->mUnk_5c = 0;
+void func_020d7d18(Unk020d849c *segmentProgress, s32 a, Vec3 **points, s32 rate) {
+    func_020d80e4(&segmentProgress->mUnk_00, a, 0, points[0], points[1], points[2], points[3]);
+    SetSegmentProgressRate(segmentProgress, rate);
+    segmentProgress->mUnk_5c = 0;
 }
 
-BOOL func_020d7c84(Unk020d849c *p, s32 a, Vec3 **b) {
+BOOL func_020d7c84(Unk020d849c *segmentProgress, s32 a, Vec3 **points) {
     s32 v;
-    p->mUnk_5c = p->mUnk_5c - 0x1000000;
-    p->mUnk_5c = ((s64) p->mUnk_5c * (s64) p->mUnk_00.mUnk_30) >> 12;
-    func_020d80e4(&p->mUnk_00, a, 0, b[0], b[1], b[2], b[3]);
-    v = p->mUnk_00.mUnk_34;
+    segmentProgress->mUnk_5c = segmentProgress->mUnk_5c - 0x1000000;
+    segmentProgress->mUnk_5c = ((s64) segmentProgress->mUnk_5c * (s64) segmentProgress->mUnk_00.mUnk_30) >> 12;
+    func_020d80e4(&segmentProgress->mUnk_00, a, 0, points[0], points[1], points[2], points[3]);
+    v = segmentProgress->mUnk_00.mUnk_34;
     if (v != 0) {
-        p->mUnk_5c = ((s64) p->mUnk_5c * (s64) v) >> 24;
+        segmentProgress->mUnk_5c = ((s64) segmentProgress->mUnk_5c * (s64) v) >> 24;
     }
     if (v != 0) {
-        v = ((s64) p->mUnk_54 * (s64) v) >> 12;
+        v = ((s64) segmentProgress->mUnk_54 * (s64) v) >> 12;
     } else {
         v = 0x1000000;
     }
-    p->mUnk_58 = v;
-    if (p->mUnk_5c >= 0x1000000) {
+    segmentProgress->mUnk_58 = v;
+    if (segmentProgress->mUnk_5c >= 0x1000000) {
         return TRUE;
     }
     return FALSE;
@@ -66,544 +66,546 @@ BOOL func_020d7c84(Unk020d849c *p, s32 a, Vec3 **b) {
 
 #pragma thumb off
 
-void SetViewYawQuaternion(MtxFx43 *a) {
-    s32 t;
-    s32 i;
-    t = FX_Atan2(a->mUnk_00[0].z, a->mUnk_00[2].z);
-    t = (((s64) t * 0x28BE60DB9391LL) + 0x80000000000LL) >> 44;
-    i = (u16) ((u16) t >> 1) >> 4;
+void SetViewYawQuaternion(MtxFx43 *viewMatrix) {
+    s32 angle;
+    s32 pairIndex;
+    angle = FX_Atan2(viewMatrix->mUnk_00[0].z, viewMatrix->mUnk_00[2].z);
+    angle = (((s64) angle * 0x28BE60DB9391LL) + 0x80000000000LL) >> 44;
+    pairIndex = (u16) ((u16) angle >> 1) >> 4;
     gViewYawQuaternion.mComponents[0] = 0;
-    gViewYawQuaternion.mComponents[1] = gPairsByAngle[i * 2];
+    gViewYawQuaternion.mComponents[1] = gPairsByAngle[pairIndex * 2];
     gViewYawQuaternion.mComponents[2] = 0;
-    gViewYawQuaternion.mComponents[3] = gPairsByAngle[i * 2 + 1];
+    gViewYawQuaternion.mComponents[3] = gPairsByAngle[pairIndex * 2 + 1];
 }
 
-void QuaternionFromYAxisToVec3(Vec3 *a, void *q) {
-    Quaternion *b = q;
-    s32 r = FX_Sqrt((a->y + 0x1000) << 1);
-    FX_DivAsync(a->z, r);
-    b->mComponents[1] = 0;
-    b->mComponents[0] = FX_GetDivResult();
-    FX_DivAsync(-a->x, r);
-    b->mComponents[3] = r >> 1;
-    b->mComponents[2] = FX_GetDivResult();
+void QuaternionFromYAxisToVec3(Vec3 *direction, void *output) {
+    Quaternion *quaternion = output;
+    s32 root = FX_Sqrt((direction->y + 0x1000) << 1);
+    FX_DivAsync(direction->z, root);
+    quaternion->mComponents[1] = 0;
+    quaternion->mComponents[0] = FX_GetDivResult();
+    FX_DivAsync(-direction->x, root);
+    quaternion->mComponents[3] = root >> 1;
+    quaternion->mComponents[2] = FX_GetDivResult();
 }
 
-void QuaternionFromAngleAroundY(s32 a, Quaternion *b) {
-    s32 i = (u16) (a >> 1) >> 4;
-    b->mComponents[0] = 0;
-    b->mComponents[1] = gPairsByAngle[i * 2];
-    b->mComponents[2] = 0;
-    b->mComponents[3] = gPairsByAngle[i * 2 + 1];
+void QuaternionFromAngleAroundY(s32 angle, Quaternion *quaternion) {
+    s32 pairIndex = (u16) (angle >> 1) >> 4;
+    quaternion->mComponents[0] = 0;
+    quaternion->mComponents[1] = gPairsByAngle[pairIndex * 2];
+    quaternion->mComponents[2] = 0;
+    quaternion->mComponents[3] = gPairsByAngle[pairIndex * 2 + 1];
 }
 
-void QuaternionFromVec3AndAngleAroundY(void *p, s32 b, void *q) {
-    Vec3 *a = p;
-    Quaternion *c = q;
-    s32 r;
-    s32 d;
-    s32 i;
-    s32 s;
-    s32 k;
-    s64 w = (s64) ((a->y + 0x1000) << 1) << 32;
+void QuaternionFromVec3AndAngleAroundY(void *directionPtr, s32 angle, void *outputPtr) {
+    Vec3 *direction = directionPtr;
+    Quaternion *quaternion = outputPtr;
+    s32 root;
+    s32 quotient;
+    s32 pairIndex;
+    s32 pairFirst;
+    s32 pairSecond;
+    s64 radicand = (s64) ((direction->y + 0x1000) << 1) << 32;
     reg_CP_SQRTCNT = 1;
-    reg_CP_SQRT_PARAM = w;
-    r = FX_GetSqrtResult();
-    FX_DivAsync(a->z, r);
-    i = (u16) (b >> 1) >> 4;
-    s = gPairsByAngle[i * 2];
-    k = gPairsByAngle[i * 2 + 1];
-    c->mComponents[1] = ((r >> 1) * s) >> 12;
-    c->mComponents[3] = ((r >> 1) * k) >> 12;
-    d = FX_GetDivResult();
-    FX_DivAsync(-a->x, r);
-    c->mComponents[0] = (d * k) >> 12;
-    c->mComponents[2] = (d * s) >> 12;
-    d = FX_GetDivResult();
-    c->mComponents[0] = c->mComponents[0] - ((d * s) >> 12);
-    c->mComponents[2] = c->mComponents[2] + ((d * k) >> 12);
+    reg_CP_SQRT_PARAM = radicand;
+    root = FX_GetSqrtResult();
+    FX_DivAsync(direction->z, root);
+    pairIndex = (u16) (angle >> 1) >> 4;
+    pairFirst = gPairsByAngle[pairIndex * 2];
+    pairSecond = gPairsByAngle[pairIndex * 2 + 1];
+    quaternion->mComponents[1] = ((root >> 1) * pairFirst) >> 12;
+    quaternion->mComponents[3] = ((root >> 1) * pairSecond) >> 12;
+    quotient = FX_GetDivResult();
+    FX_DivAsync(-direction->x, root);
+    quaternion->mComponents[0] = (quotient * pairSecond) >> 12;
+    quaternion->mComponents[2] = (quotient * pairFirst) >> 12;
+    quotient = FX_GetDivResult();
+    quaternion->mComponents[0] = quaternion->mComponents[0] - ((quotient * pairFirst) >> 12);
+    quaternion->mComponents[2] = quaternion->mComponents[2] + ((quotient * pairSecond) >> 12);
 }
 
-void func_020d79b0(void *p, u32 b, void *q) {
-    Quaternion *a = p;
-    Quaternion *c = q;
-    s32 i = (u16) (b >> 1) >> 4;
-    s32 s = gPairsByAngle[i * 2];
-    s32 k = gPairsByAngle[i * 2 + 1];
-    c->mComponents[0] = (a->mComponents[0] * k - a->mComponents[2] * s) >> 12;
-    c->mComponents[1] = (a->mComponents[3] * s) >> 12;
-    c->mComponents[2] = (a->mComponents[2] * k + a->mComponents[0] * s) >> 12;
-    c->mComponents[3] = (a->mComponents[3] * k) >> 12;
+void func_020d79b0(void *quaternionPtr, u32 angle, void *outputPtr) {
+    Quaternion *quaternion = quaternionPtr;
+    Quaternion *result = outputPtr;
+    s32 pairIndex = (u16) (angle >> 1) >> 4;
+    s32 pairFirst = gPairsByAngle[pairIndex * 2];
+    s32 pairSecond = gPairsByAngle[pairIndex * 2 + 1];
+    result->mComponents[0] = (quaternion->mComponents[0] * pairSecond - quaternion->mComponents[2] * pairFirst) >> 12;
+    result->mComponents[1] = (quaternion->mComponents[3] * pairFirst) >> 12;
+    result->mComponents[2] = (quaternion->mComponents[2] * pairSecond + quaternion->mComponents[0] * pairFirst) >> 12;
+    result->mComponents[3] = (quaternion->mComponents[3] * pairSecond) >> 12;
 }
 
-void func_020d7938(Quaternion *a, Quaternion *b, Quaternion *c) {
-    c->mComponents[0] = (a->mComponents[0] * b->mComponents[3] - a->mComponents[2] * b->mComponents[1]) >> 12;
-    c->mComponents[1] = (a->mComponents[3] * b->mComponents[1]) >> 12;
-    c->mComponents[2] = (a->mComponents[2] * b->mComponents[3] + a->mComponents[0] * b->mComponents[1]) >> 12;
-    c->mComponents[3] = (a->mComponents[3] * b->mComponents[3]) >> 12;
+void func_020d7938(Quaternion *first, Quaternion *second, Quaternion *result) {
+    result->mComponents[0] =
+        (first->mComponents[0] * second->mComponents[3] - first->mComponents[2] * second->mComponents[1]) >> 12;
+    result->mComponents[1] = (first->mComponents[3] * second->mComponents[1]) >> 12;
+    result->mComponents[2] =
+        (first->mComponents[2] * second->mComponents[3] + first->mComponents[0] * second->mComponents[1]) >> 12;
+    result->mComponents[3] = (first->mComponents[3] * second->mComponents[3]) >> 12;
 }
 
-void QuaternionMultiplyAngleAroundX(Quaternion *a, s32 b, Quaternion *c) {
-    Quaternion q = *a;
-    s32 i = (u16) (b >> 1) >> 4;
-    s32 s = gPairsByAngle[i * 2];
-    s32 k = gPairsByAngle[i * 2 + 1];
-    c->mComponents[0] = (q.mComponents[3] * s + q.mComponents[0] * k) >> 12;
-    c->mComponents[1] = (q.mComponents[1] * k + q.mComponents[2] * s) >> 12;
-    c->mComponents[2] = (q.mComponents[2] * k - q.mComponents[1] * s) >> 12;
-    c->mComponents[3] = (q.mComponents[3] * k - q.mComponents[0] * s) >> 12;
+void QuaternionMultiplyAngleAroundX(Quaternion *quaternion, s32 angle, Quaternion *result) {
+    Quaternion source = *quaternion;
+    s32 pairIndex = (u16) (angle >> 1) >> 4;
+    s32 pairFirst = gPairsByAngle[pairIndex * 2];
+    s32 pairSecond = gPairsByAngle[pairIndex * 2 + 1];
+    result->mComponents[0] = (source.mComponents[3] * pairFirst + source.mComponents[0] * pairSecond) >> 12;
+    result->mComponents[1] = (source.mComponents[1] * pairSecond + source.mComponents[2] * pairFirst) >> 12;
+    result->mComponents[2] = (source.mComponents[2] * pairSecond - source.mComponents[1] * pairFirst) >> 12;
+    result->mComponents[3] = (source.mComponents[3] * pairSecond - source.mComponents[0] * pairFirst) >> 12;
 }
 
-void QuaternionMultiplyAngleAroundY(void *m, s32 b, void *o) {
-    Quaternion *a = m;
-    Quaternion *c = o;
-    Quaternion q = *a;
-    s32 i = (u16) (b >> 1) >> 4;
-    s32 s = gPairsByAngle[i * 2];
-    s32 k = gPairsByAngle[i * 2 + 1];
-    c->mComponents[0] = (q.mComponents[0] * k - q.mComponents[2] * s) >> 12;
-    c->mComponents[1] = (q.mComponents[3] * s + q.mComponents[1] * k) >> 12;
-    c->mComponents[2] = (q.mComponents[2] * k + q.mComponents[0] * s) >> 12;
-    c->mComponents[3] = (q.mComponents[3] * k - q.mComponents[1] * s) >> 12;
+void QuaternionMultiplyAngleAroundY(void *quaternionPtr, s32 angle, void *resultPtr) {
+    Quaternion *quaternion = quaternionPtr;
+    Quaternion *result = resultPtr;
+    Quaternion source = *quaternion;
+    s32 pairIndex = (u16) (angle >> 1) >> 4;
+    s32 pairFirst = gPairsByAngle[pairIndex * 2];
+    s32 pairSecond = gPairsByAngle[pairIndex * 2 + 1];
+    result->mComponents[0] = (source.mComponents[0] * pairSecond - source.mComponents[2] * pairFirst) >> 12;
+    result->mComponents[1] = (source.mComponents[3] * pairFirst + source.mComponents[1] * pairSecond) >> 12;
+    result->mComponents[2] = (source.mComponents[2] * pairSecond + source.mComponents[0] * pairFirst) >> 12;
+    result->mComponents[3] = (source.mComponents[3] * pairSecond - source.mComponents[1] * pairFirst) >> 12;
 }
 
-void QuaternionMultiplyAngleAroundZ(void *m, s32 b, void *o) {
-    Quaternion *a = m;
-    Quaternion *c = o;
-    Quaternion q = *a;
-    s32 i = (u16) (b >> 1) >> 4;
-    s32 s = gPairsByAngle[i * 2];
-    s32 k = gPairsByAngle[i * 2 + 1];
-    c->mComponents[0] = (q.mComponents[0] * k + q.mComponents[1] * s) >> 12;
-    c->mComponents[1] = (q.mComponents[1] * k - q.mComponents[0] * s) >> 12;
-    c->mComponents[2] = (q.mComponents[3] * s + q.mComponents[2] * k) >> 12;
-    c->mComponents[3] = (q.mComponents[3] * k - q.mComponents[2] * s) >> 12;
+void QuaternionMultiplyAngleAroundZ(void *quaternionPtr, s32 angle, void *resultPtr) {
+    Quaternion *quaternion = quaternionPtr;
+    Quaternion *result = resultPtr;
+    Quaternion source = *quaternion;
+    s32 pairIndex = (u16) (angle >> 1) >> 4;
+    s32 pairFirst = gPairsByAngle[pairIndex * 2];
+    s32 pairSecond = gPairsByAngle[pairIndex * 2 + 1];
+    result->mComponents[0] = (source.mComponents[0] * pairSecond + source.mComponents[1] * pairFirst) >> 12;
+    result->mComponents[1] = (source.mComponents[1] * pairSecond - source.mComponents[0] * pairFirst) >> 12;
+    result->mComponents[2] = (source.mComponents[3] * pairFirst + source.mComponents[2] * pairSecond) >> 12;
+    result->mComponents[3] = (source.mComponents[3] * pairSecond - source.mComponents[2] * pairFirst) >> 12;
 }
 
-void func_020d76a8(Quaternion *a, s32 b, Quaternion *c) {
-    Quaternion q = *a;
-    s32 i = (u16) (b >> 1) >> 4;
-    s32 s = gPairsByAngle[i * 2];
-    s32 k = gPairsByAngle[i * 2 + 1];
-    c->mComponents[0] = (q.mComponents[3] * s) >> 12;
-    c->mComponents[1] = (q.mComponents[1] * k) >> 12;
-    c->mComponents[2] = (-q.mComponents[1] * s) >> 12;
-    c->mComponents[3] = (q.mComponents[3] * k) >> 12;
+void func_020d76a8(Quaternion *quaternion, s32 angle, Quaternion *result) {
+    Quaternion source = *quaternion;
+    s32 pairIndex = (u16) (angle >> 1) >> 4;
+    s32 pairFirst = gPairsByAngle[pairIndex * 2];
+    s32 pairSecond = gPairsByAngle[pairIndex * 2 + 1];
+    result->mComponents[0] = (source.mComponents[3] * pairFirst) >> 12;
+    result->mComponents[1] = (source.mComponents[1] * pairSecond) >> 12;
+    result->mComponents[2] = (-source.mComponents[1] * pairFirst) >> 12;
+    result->mComponents[3] = (source.mComponents[3] * pairSecond) >> 12;
 }
 
-void QuaternionBlendTowardNearerSign(void *p, void *q, void *r, s32 d) {
-    Quaternion *a = p;
-    Quaternion *b = q;
-    Quaternion *c = r;
-    s32 v = a->mComponents[0] * b->mComponents[0] + a->mComponents[1] * b->mComponents[1] +
-            a->mComponents[2] * b->mComponents[2] + a->mComponents[3] * b->mComponents[3];
-    if (v < 0) {
-        c->mComponents[0] = a->mComponents[0] + ((d * -(b->mComponents[0] + a->mComponents[0])) >> 12);
-        c->mComponents[1] = a->mComponents[1] + ((d * -(b->mComponents[1] + a->mComponents[1])) >> 12);
-        c->mComponents[2] = a->mComponents[2] + ((d * -(b->mComponents[2] + a->mComponents[2])) >> 12);
-        c->mComponents[3] = a->mComponents[3] + ((d * -(b->mComponents[3] + a->mComponents[3])) >> 12);
+void QuaternionBlendTowardNearerSign(void *fromPtr, void *toPtr, void *resultPtr, s32 amount) {
+    Quaternion *from = fromPtr;
+    Quaternion *to = toPtr;
+    Quaternion *result = resultPtr;
+    s32 dot = from->mComponents[0] * to->mComponents[0] + from->mComponents[1] * to->mComponents[1] +
+              from->mComponents[2] * to->mComponents[2] + from->mComponents[3] * to->mComponents[3];
+    if (dot < 0) {
+        result->mComponents[0] = from->mComponents[0] + ((amount * -(to->mComponents[0] + from->mComponents[0])) >> 12);
+        result->mComponents[1] = from->mComponents[1] + ((amount * -(to->mComponents[1] + from->mComponents[1])) >> 12);
+        result->mComponents[2] = from->mComponents[2] + ((amount * -(to->mComponents[2] + from->mComponents[2])) >> 12);
+        result->mComponents[3] = from->mComponents[3] + ((amount * -(to->mComponents[3] + from->mComponents[3])) >> 12);
     } else {
-        c->mComponents[0] = a->mComponents[0] + ((d * (b->mComponents[0] - a->mComponents[0])) >> 12);
-        c->mComponents[1] = a->mComponents[1] + ((d * (b->mComponents[1] - a->mComponents[1])) >> 12);
-        c->mComponents[2] = a->mComponents[2] + ((d * (b->mComponents[2] - a->mComponents[2])) >> 12);
-        c->mComponents[3] = a->mComponents[3] + ((d * (b->mComponents[3] - a->mComponents[3])) >> 12);
+        result->mComponents[0] = from->mComponents[0] + ((amount * (to->mComponents[0] - from->mComponents[0])) >> 12);
+        result->mComponents[1] = from->mComponents[1] + ((amount * (to->mComponents[1] - from->mComponents[1])) >> 12);
+        result->mComponents[2] = from->mComponents[2] + ((amount * (to->mComponents[2] - from->mComponents[2])) >> 12);
+        result->mComponents[3] = from->mComponents[3] + ((amount * (to->mComponents[3] - from->mComponents[3])) >> 12);
     }
 }
 
-void QuaternionNormalizeUnlessNearOne(Quaternion *a, Quaternion *b) {
-    s64 w;
-    s32 r;
-    s64 q;
-    s64 t;
-    w = a->mComponents[0] * a->mComponents[0] + a->mComponents[1] * a->mComponents[1] +
-        a->mComponents[2] * a->mComponents[2] + a->mComponents[3] * a->mComponents[3];
-    if (w > 0xE66666 && w < 0x119999A) {
-        *b = *a;
+void QuaternionNormalizeUnlessNearOne(Quaternion *input, Quaternion *output) {
+    s64 lengthSquared;
+    s32 root;
+    s64 quotient;
+    s64 factor;
+    lengthSquared = input->mComponents[0] * input->mComponents[0] + input->mComponents[1] * input->mComponents[1] +
+                    input->mComponents[2] * input->mComponents[2] + input->mComponents[3] * input->mComponents[3];
+    if (lengthSquared > 0xE66666 && lengthSquared < 0x119999A) {
+        *output = *input;
         return;
     }
     reg_CP_DIVCNT = 2;
     reg_CP_DIV_NUMER = 0x1000000000000LL << 8;
-    reg_CP_DIV_DENOM = w;
+    reg_CP_DIV_DENOM = lengthSquared;
     reg_CP_SQRTCNT = 1;
-    reg_CP_SQRT_PARAM = w << 2;
+    reg_CP_SQRT_PARAM = lengthSquared << 2;
     while (reg_CP_SQRTCNT & 0x8000) {
     }
-    r = reg_CP_SQRT_RESULT;
+    root = reg_CP_SQRT_RESULT;
     while (reg_CP_DIVCNT & 0x8000) {
     }
-    q = reg_CP_DIV_RESULT;
-    t = q * r;
-    b->mComponents[0] = (t * a->mComponents[0] + 0x100000000000LL) >> 45;
-    b->mComponents[1] = (t * a->mComponents[1] + 0x100000000000LL) >> 45;
-    b->mComponents[2] = (t * a->mComponents[2] + 0x100000000000LL) >> 45;
-    b->mComponents[3] = (t * a->mComponents[3] + 0x100000000000LL) >> 45;
+    quotient = reg_CP_DIV_RESULT;
+    factor = quotient * root;
+    output->mComponents[0] = (factor * input->mComponents[0] + 0x100000000000LL) >> 45;
+    output->mComponents[1] = (factor * input->mComponents[1] + 0x100000000000LL) >> 45;
+    output->mComponents[2] = (factor * input->mComponents[2] + 0x100000000000LL) >> 45;
+    output->mComponents[3] = (factor * input->mComponents[3] + 0x100000000000LL) >> 45;
 }
 
-void QuaternionFromVec3Degrees(Vec3 *a, u32 *m) {
-    Quaternion *b = (Quaternion *) m;
-    Quaternion p;
-    Quaternion q;
-    Quaternion r;
-    s32 i;
-    s32 s;
-    s32 c;
-    s32 t;
-    t = ((s64) a->x * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
-    i = (u16) ((u16) t >> 1) >> 4;
-    p.mComponents[0] = gPairsByAngle[i * 2];
-    p.mComponents[3] = gPairsByAngle[i * 2 + 1];
-    p.mComponents[1] = 0;
-    p.mComponents[2] = 0;
-    q = p;
-    t = ((s64) a->y * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
-    i = (u16) ((u16) t >> 1) >> 4;
-    s = gPairsByAngle[i * 2];
-    c = gPairsByAngle[i * 2 + 1];
-    p.mComponents[0] = (q.mComponents[0] * c - q.mComponents[2] * s) >> 12;
-    p.mComponents[2] = (q.mComponents[2] * c + q.mComponents[0] * s) >> 12;
-    p.mComponents[1] = (q.mComponents[3] * s + q.mComponents[1] * c) >> 12;
-    p.mComponents[3] = (q.mComponents[3] * c - q.mComponents[1] * s) >> 12;
-    r = p;
-    t = ((s64) a->z * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
-    i = (u16) ((u16) t >> 1) >> 4;
-    s = gPairsByAngle[i * 2];
-    c = gPairsByAngle[i * 2 + 1];
-    b->mComponents[0] = (r.mComponents[0] * c + r.mComponents[1] * s) >> 12;
-    b->mComponents[1] = (r.mComponents[1] * c - r.mComponents[0] * s) >> 12;
-    b->mComponents[2] = (r.mComponents[3] * s + r.mComponents[2] * c) >> 12;
-    b->mComponents[3] = (r.mComponents[3] * c - r.mComponents[2] * s) >> 12;
+void QuaternionFromVec3Degrees(Vec3 *degrees, u32 *resultWords) {
+    Quaternion *result = (Quaternion *) resultWords;
+    Quaternion partial;
+    Quaternion afterX;
+    Quaternion afterXY;
+    s32 pairIndex;
+    s32 pairFirst;
+    s32 pairSecond;
+    s32 angle;
+    angle = ((s64) degrees->x * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
+    pairIndex = (u16) ((u16) angle >> 1) >> 4;
+    partial.mComponents[0] = gPairsByAngle[pairIndex * 2];
+    partial.mComponents[3] = gPairsByAngle[pairIndex * 2 + 1];
+    partial.mComponents[1] = 0;
+    partial.mComponents[2] = 0;
+    afterX = partial;
+    angle = ((s64) degrees->y * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
+    pairIndex = (u16) ((u16) angle >> 1) >> 4;
+    pairFirst = gPairsByAngle[pairIndex * 2];
+    pairSecond = gPairsByAngle[pairIndex * 2 + 1];
+    partial.mComponents[0] = (afterX.mComponents[0] * pairSecond - afterX.mComponents[2] * pairFirst) >> 12;
+    partial.mComponents[2] = (afterX.mComponents[2] * pairSecond + afterX.mComponents[0] * pairFirst) >> 12;
+    partial.mComponents[1] = (afterX.mComponents[3] * pairFirst + afterX.mComponents[1] * pairSecond) >> 12;
+    partial.mComponents[3] = (afterX.mComponents[3] * pairSecond - afterX.mComponents[1] * pairFirst) >> 12;
+    afterXY = partial;
+    angle = ((s64) degrees->z * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
+    pairIndex = (u16) ((u16) angle >> 1) >> 4;
+    pairFirst = gPairsByAngle[pairIndex * 2];
+    pairSecond = gPairsByAngle[pairIndex * 2 + 1];
+    result->mComponents[0] = (afterXY.mComponents[0] * pairSecond + afterXY.mComponents[1] * pairFirst) >> 12;
+    result->mComponents[1] = (afterXY.mComponents[1] * pairSecond - afterXY.mComponents[0] * pairFirst) >> 12;
+    result->mComponents[2] = (afterXY.mComponents[3] * pairFirst + afterXY.mComponents[2] * pairSecond) >> 12;
+    result->mComponents[3] = (afterXY.mComponents[3] * pairSecond - afterXY.mComponents[2] * pairFirst) >> 12;
 }
 
-s32 Vec3NormalizeAndGetLengthOrZero(Vec3 *a, Vec3 *b) {
-    s64 w;
-    s32 r;
-    s64 q;
-    s64 t;
-    w = (s64) a->x * a->x;
-    w += (s64) a->y * a->y;
-    w += (s64) a->z * a->z;
-    if (w < 16) {
+s32 Vec3NormalizeAndGetLengthOrZero(Vec3 *vector, Vec3 *result) {
+    s64 lengthSquared;
+    s32 root;
+    s64 quotient;
+    s64 factor;
+    lengthSquared = (s64) vector->x * vector->x;
+    lengthSquared += (s64) vector->y * vector->y;
+    lengthSquared += (s64) vector->z * vector->z;
+    if (lengthSquared < 16) {
         return 0;
     }
     reg_CP_DIVCNT = 2;
     reg_CP_DIV_NUMER = 0x1000000000000LL << 8;
-    reg_CP_DIV_DENOM = w;
+    reg_CP_DIV_DENOM = lengthSquared;
     reg_CP_SQRTCNT = 1;
-    reg_CP_SQRT_PARAM = w << 2;
+    reg_CP_SQRT_PARAM = lengthSquared << 2;
     while (reg_CP_SQRTCNT & 0x8000) {
     }
-    r = reg_CP_SQRT_RESULT;
+    root = reg_CP_SQRT_RESULT;
     while (reg_CP_DIVCNT & 0x8000) {
     }
-    q = reg_CP_DIV_RESULT;
-    t = q * r;
-    b->x = (t * a->x + 0x100000000000LL) >> 45;
-    b->y = (t * a->y + 0x100000000000LL) >> 45;
-    b->z = (t * a->z + 0x100000000000LL) >> 45;
-    return (r + 1) >> 1;
+    quotient = reg_CP_DIV_RESULT;
+    factor = quotient * root;
+    result->x = (factor * vector->x + 0x100000000000LL) >> 45;
+    result->y = (factor * vector->y + 0x100000000000LL) >> 45;
+    result->z = (factor * vector->z + 0x100000000000LL) >> 45;
+    return (root + 1) >> 1;
 }
 
-s32 Vec3NormalizeXZAndGetLengthOrZero(Vec3 *a, Vec3 *b) {
-    s64 w;
-    s32 r;
-    s64 q;
-    s64 t;
-    s32 x = a->x;
-    s32 z = a->z;
-    w = (s64) x * x + (s64) z * z;
-    if (w < 16) {
+s32 Vec3NormalizeXZAndGetLengthOrZero(Vec3 *vector, Vec3 *result) {
+    s64 lengthSquared;
+    s32 root;
+    s64 quotient;
+    s64 factor;
+    s32 x = vector->x;
+    s32 z = vector->z;
+    lengthSquared = (s64) x * x + (s64) z * z;
+    if (lengthSquared < 16) {
         return 0;
     }
     reg_CP_DIVCNT = 2;
     reg_CP_DIV_NUMER = 0x1000000000000LL << 8;
-    reg_CP_DIV_DENOM = w;
+    reg_CP_DIV_DENOM = lengthSquared;
     reg_CP_SQRTCNT = 1;
-    reg_CP_SQRT_PARAM = w << 2;
+    reg_CP_SQRT_PARAM = lengthSquared << 2;
     while (reg_CP_SQRTCNT & 0x8000) {
     }
-    r = reg_CP_SQRT_RESULT;
+    root = reg_CP_SQRT_RESULT;
     while (reg_CP_DIVCNT & 0x8000) {
     }
-    q = reg_CP_DIV_RESULT;
-    t = q * r;
-    b->x = (t * a->x + 0x100000000000LL) >> 45;
-    b->z = (t * a->z + 0x100000000000LL) >> 45;
-    return (r + 1) >> 1;
+    quotient = reg_CP_DIV_RESULT;
+    factor = quotient * root;
+    result->x = (factor * vector->x + 0x100000000000LL) >> 45;
+    result->z = (factor * vector->z + 0x100000000000LL) >> 45;
+    return (root + 1) >> 1;
 }
 
-void Vec3RotateAroundY(Vec3 *a, s32 b, Vec3 *c) {
-    s32 m[9];
-    s32 i = b >> 4;
-    MTX_RotY33_(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
-    MTX_MultVec33(a, m, c);
+void Vec3RotateAroundY(Vec3 *vector, s32 angle, Vec3 *result) {
+    s32 matrix[9];
+    s32 pairIndex = angle >> 4;
+    MTX_RotY33_(matrix, gPairsByAngle[pairIndex * 2], gPairsByAngle[pairIndex * 2 + 1]);
+    MTX_MultVec33(vector, matrix, result);
 }
 
-void Matrix3x3FromVec3Degrees(Vec3 *a, s32 *b) {
-    s32 m[9];
-    s32 i;
-    s32 j;
-    s32 k;
-    i = (u16) ((((s64) a->x * 0xB60B60B60BLL) + 0x80000000000LL) >> 44);
-    j = (u16) ((((s64) a->y * 0xB60B60B60BLL) + 0x80000000000LL) >> 44);
-    k = (u16) ((((s64) a->z * 0xB60B60B60BLL) + 0x80000000000LL) >> 44);
-    MTX_RotX33_(b, gPairsByAngle[(i >> 4) * 2], gPairsByAngle[(i >> 4) * 2 + 1]);
-    MTX_RotY33_(m, gPairsByAngle[(j >> 4) * 2], gPairsByAngle[(j >> 4) * 2 + 1]);
-    MTX_Concat33(b, m, b);
-    MTX_RotZ33_(m, gPairsByAngle[(k >> 4) * 2], gPairsByAngle[(k >> 4) * 2 + 1]);
-    MTX_Concat33(b, m, b);
+void Matrix3x3FromVec3Degrees(Vec3 *degrees, s32 *matrix) {
+    s32 rotation[9];
+    s32 angleX;
+    s32 angleY;
+    s32 angleZ;
+    angleX = (u16) ((((s64) degrees->x * 0xB60B60B60BLL) + 0x80000000000LL) >> 44);
+    angleY = (u16) ((((s64) degrees->y * 0xB60B60B60BLL) + 0x80000000000LL) >> 44);
+    angleZ = (u16) ((((s64) degrees->z * 0xB60B60B60BLL) + 0x80000000000LL) >> 44);
+    MTX_RotX33_(matrix, gPairsByAngle[(angleX >> 4) * 2], gPairsByAngle[(angleX >> 4) * 2 + 1]);
+    MTX_RotY33_(rotation, gPairsByAngle[(angleY >> 4) * 2], gPairsByAngle[(angleY >> 4) * 2 + 1]);
+    MTX_Concat33(matrix, rotation, matrix);
+    MTX_RotZ33_(rotation, gPairsByAngle[(angleZ >> 4) * 2], gPairsByAngle[(angleZ >> 4) * 2 + 1]);
+    MTX_Concat33(matrix, rotation, matrix);
 }
 
-u32 GetKartMapObjectResponseByKind(s32 a, s32 b, s32 c, s32 d) {
-    u32 v = data_0216b96c[c][b][d];
-    if (v == 1) {
-        v = a != 0 ? 2 : 0;
+u32 GetKartMapObjectResponseByKind(s32 flagBit, s32 itemEffect, s32 kindHundreds, s32 kindRemainder) {
+    u32 response = data_0216b96c[kindHundreds][itemEffect][kindRemainder];
+    if (response == 1) {
+        response = flagBit != 0 ? 2 : 0;
     }
-    return v;
+    return response;
 }
 
-u32 func_020d6d8c(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value3 = arg3;
+u32 func_020d6d8c(u32 zeroResultFlag, u32 itemKind, u32 kindHundreds, u32 kindRemainder) {
+    u32 value0 = zeroResultFlag;
+    u32 value1 = itemKind;
+    u32 kindHundredsCopy = kindHundreds;
+    u32 kindRemainderCopy = kindRemainder;
     u32 value12;
-    u32 value14;
-    u32 compareLeft0;
-    u32 compareRight0;
-    value14 = (u32) &data_0216bb7c;
+    u32 tableAddress;
+    u32 flagCopy;
+    u32 zero;
+    tableAddress = (u32) &data_0216bb7c;
     value12 = 0x38u;
-    value12 = (value2) * (value12) + (value14);
+    value12 = (kindHundredsCopy) * (value12) + (tableAddress);
     value1 = *(const u32 *) ((value12) + ((value1 << 2)));
-    compareLeft0 = value0;
-    compareRight0 = 0u;
-    value0 = *(const u8 *) ((value1) + (value3));
-    if (compareLeft0 != compareRight0) {
+    flagCopy = value0;
+    zero = 0u;
+    value0 = *(const u8 *) ((value1) + (kindRemainderCopy));
+    if (flagCopy != zero) {
         value0 = 0u;
     }
     return value0;
 }
 
-u32 GetItemObjectResponseByKind(s32 a, s32 b, s32 c, s32 d, s32 e) {
-    u32 v = data_0216ba2c[c][b][d];
-    if (a != 0 && v == 1 && e != 0) {
-        v = 2;
+u32 GetItemObjectResponseByKind(s32 flagBit, s32 itemKind, s32 kindHundreds, s32 kindRemainder, s32 kindDataValue) {
+    u32 response = data_0216ba2c[kindHundreds][itemKind][kindRemainder];
+    if (flagBit != 0 && response == 1 && kindDataValue != 0) {
+        response = 2;
     }
-    return v;
+    return response;
 }
 
-s32 func_020d6be0(Kart *a, MapObject *b) {
-    s32 r = b->mKind;
-    s32 n = 0;
-    s32 f;
-    s32 v;
+s32 func_020d6be0(Kart *kart, MapObject *mapObject) {
+    s32 kindRemainder = mapObject->mKind;
+    s32 kindHundreds = 0;
+    s32 flagBit;
+    s32 response;
     s32 buf[2];
-    f = b->mFlags & 0x800;
-    while (r >= 100) {
-        r -= 100;
-        n++;
+    flagBit = mapObject->mFlags & 0x800;
+    while (kindRemainder >= 100) {
+        kindRemainder -= 100;
+        kindHundreds++;
     }
-    if (b->mKindData->mUnk_00 != NULL) {
-        v = data_0216b9cc[n][a->mItemEffect][r];
-        if (f != 0 && v != 2 && v != 4) {
-            v = 0;
+    if (mapObject->mKindData->mUnk_00 != NULL) {
+        response = data_0216b9cc[kindHundreds][kart->mItemEffect][kindRemainder];
+        if (flagBit != 0 && response != 2 && response != 4) {
+            response = 0;
         }
-        buf[0] = v;
-        v = data_0216b96c[n][a->mItemEffect][r];
-        if (v == 1) {
-            v = f != 0 ? 2 : 0;
+        buf[0] = response;
+        response = data_0216b96c[kindHundreds][kart->mItemEffect][kindRemainder];
+        if (response == 1) {
+            response = flagBit != 0 ? 2 : 0;
         }
-        buf[1] = v;
-        if ((b->mFlags & 0x80) == 0) {
-            buf[1] = b->mKindData->mUnk_00(b, a, &buf[0], &buf[1]);
+        buf[1] = response;
+        if ((mapObject->mFlags & 0x80) == 0) {
+            buf[1] = mapObject->mKindData->mUnk_00(mapObject, kart, &buf[0], &buf[1]);
         }
         if (gRaceSetup->mMode == MODE_MISSION_RUN && buf[0] == 1 && gRaceSetup->mMode == MODE_MISSION_RUN) {
-            func_ov001_0218175c(b->mKind);
+            func_ov001_0218175c(mapObject->mKind);
         }
         return buf[1];
     }
-    v = data_0216b96c[n][a->mItemEffect][r];
-    if (v != 1) {
-        return v;
+    response = data_0216b96c[kindHundreds][kart->mItemEffect][kindRemainder];
+    if (response != 1) {
+        return response;
     }
-    return f != 0 ? 2 : 0;
+    return flagBit != 0 ? 2 : 0;
 }
 
-s32 func_020d6a54(ItemObject *a, MapObject *b, s32 *c) {
-    s32 r = b->mKind;
-    s32 n = 0;
-    s32 f = b->mFlags & 0x800;
-    s32 v;
+s32 func_020d6a54(ItemObject *itemObject, MapObject *mapObject, s32 *firstResponseOut) {
+    s32 kindRemainder = mapObject->mKind;
+    s32 kindHundreds = 0;
+    s32 flagBit = mapObject->mFlags & 0x800;
+    s32 response;
     s32 buf[2];
-    s32 t;
-    while (r >= 100) {
-        r -= 100;
-        n++;
+    s32 kindDataValue;
+    while (kindRemainder >= 100) {
+        kindRemainder -= 100;
+        kindHundreds++;
     }
-    if (b->mKindData->mUnk_04 != NULL) {
-        v = data_0216bb7c[n][a->mKind][r];
-        if (f != 0) {
-            v = 0;
+    if (mapObject->mKindData->mUnk_04 != NULL) {
+        response = data_0216bb7c[kindHundreds][itemObject->mKind][kindRemainder];
+        if (flagBit != 0) {
+            response = 0;
         }
-        buf[0] = v;
-        t = b->mKindData->mUnk_20;
-        v = data_0216ba2c[n][a->mKind][r];
-        if (f != 0 && v == 1 && t != 0) {
-            v = 2;
+        buf[0] = response;
+        kindDataValue = mapObject->mKindData->mUnk_20;
+        response = data_0216ba2c[kindHundreds][itemObject->mKind][kindRemainder];
+        if (flagBit != 0 && response == 1 && kindDataValue != 0) {
+            response = 2;
         }
-        buf[1] = v;
-        if ((b->mFlags & 0x80) == 0) {
-            buf[1] = b->mKindData->mUnk_04(b, a, &buf[0], &buf[1]);
+        buf[1] = response;
+        if ((mapObject->mFlags & 0x80) == 0) {
+            buf[1] = mapObject->mKindData->mUnk_04(mapObject, itemObject, &buf[0], &buf[1]);
         }
         if (gRaceSetup->mMode == MODE_MISSION_RUN && buf[0] == 1 && gRaceSetup->mMode == MODE_MISSION_RUN) {
-            func_ov001_0218175c(b->mKind);
+            func_ov001_0218175c(mapObject->mKind);
         }
-        if (c != NULL) {
-            *c = buf[0];
+        if (firstResponseOut != NULL) {
+            *firstResponseOut = buf[0];
         }
         return buf[1];
     }
-    if (c != NULL) {
-        *c = 0;
+    if (firstResponseOut != NULL) {
+        *firstResponseOut = 0;
     }
-    t = b->mKindData->mUnk_20;
-    v = data_0216ba2c[n][a->mKind][r];
-    if (f != 0 && v == 1 && t != 0) {
-        v = 2;
+    kindDataValue = mapObject->mKindData->mUnk_20;
+    response = data_0216ba2c[kindHundreds][itemObject->mKind][kindRemainder];
+    if (flagBit != 0 && response == 1 && kindDataValue != 0) {
+        response = 2;
     }
-    return v;
+    return response;
 }
 
-s32 DoesKartRespondToMapObject(s32 a, MapObject *b) {
-    s32 r = b->mKind;
-    s32 n = 0;
-    s32 v;
-    s32 f;
-    while (r >= 100) {
-        r -= 100;
-        n++;
+s32 DoesKartRespondToMapObject(s32 itemEffect, MapObject *mapObject) {
+    s32 kindRemainder = mapObject->mKind;
+    s32 kindHundreds = 0;
+    s32 response;
+    s32 flagBit;
+    while (kindRemainder >= 100) {
+        kindRemainder -= 100;
+        kindHundreds++;
     }
-    f = b->mFlags & 0x800;
-    v = data_0216b96c[n][a][r];
-    if (v == 1) {
-        v = f != 0 ? 2 : 0;
+    flagBit = mapObject->mFlags & 0x800;
+    response = data_0216b96c[kindHundreds][itemEffect][kindRemainder];
+    if (response == 1) {
+        response = flagBit != 0 ? 2 : 0;
     }
-    return v != 0 ? 1 : 0;
+    return response != 0 ? 1 : 0;
 }
 
-s32 DoesItemObjectRespondToMapObject(s32 a, MapObject *b) {
-    s32 r = b->mKind;
-    s32 n = 0;
-    s32 v;
-    s32 f;
-    s32 x;
-    while (r >= 100) {
-        r -= 100;
-        n++;
+s32 DoesItemObjectRespondToMapObject(s32 itemKind, MapObject *mapObject) {
+    s32 kindRemainder = mapObject->mKind;
+    s32 kindHundreds = 0;
+    s32 response;
+    s32 flagBit;
+    s32 kindDataValue;
+    while (kindRemainder >= 100) {
+        kindRemainder -= 100;
+        kindHundreds++;
     }
-    f = b->mFlags & 0x800;
-    x = b->mKindData->mUnk_20;
-    v = data_0216ba2c[n][a][r];
-    if (f != 0 && v == 1 && x != 0) {
-        v = 2;
+    flagBit = mapObject->mFlags & 0x800;
+    kindDataValue = mapObject->mKindData->mUnk_20;
+    response = data_0216ba2c[kindHundreds][itemKind][kindRemainder];
+    if (flagBit != 0 && response == 1 && kindDataValue != 0) {
+        response = 2;
     }
-    return v != 0 ? 1 : 0;
+    return response != 0 ? 1 : 0;
 }
 
-s32 func_020d6910(s32 a, MapObject *b) {
-    MapObject *p = b;
-    s32 r = p->mKind;
-    s32 n = 0;
-    s32 v;
-    s32 f;
-    while (r >= 100) {
-        r -= 100;
-        n++;
+s32 func_020d6910(s32 itemKind, MapObject *mapObject) {
+    MapObject *object = mapObject;
+    s32 kindRemainder = object->mKind;
+    s32 kindHundreds = 0;
+    s32 response;
+    s32 flagBit;
+    while (kindRemainder >= 100) {
+        kindRemainder -= 100;
+        kindHundreds++;
     }
-    f = p->mFlags & 0x800;
-    v = data_0216bb7c[n][a][r];
-    if (f != 0) {
-        v = 0;
+    flagBit = object->mFlags & 0x800;
+    response = data_0216bb7c[kindHundreds][itemKind][kindRemainder];
+    if (flagBit != 0) {
+        response = 0;
     }
-    return v;
+    return response;
 }
 
 Unk02156adc *CreateRockKindData(void) {
-    Unk02156adc *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
-    *p = data_02156adc;
-    p->mUnk_38 = 0x3e8000;
-    p->mUnk_3c = -0x3e8000;
-    return p;
+    Unk02156adc *kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
+    *kindData = data_02156adc;
+    kindData->mUnk_38 = 0x3e8000;
+    kindData->mUnk_3c = -0x3e8000;
+    return kindData;
 }
 
 RockDrawList *CreateRockDrawList(void) {
-    RockDrawList *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x5c);
-    data_0217b650 = p;
-    *p = data_02156a80;
+    RockDrawList *drawList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x5c);
+    data_0217b650 = drawList;
+    *drawList = data_02156a80;
     func_020d49d8(&data_0217b650);
     return data_0217b650;
 }
 
 RockDrawList *CreateRock2DrawList(void) {
-    RockDrawList *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x5c);
-    data_0217b650 = p;
-    *p = data_02156a24;
+    RockDrawList *drawList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x5c);
+    data_0217b650 = drawList;
+    *drawList = data_02156a24;
     func_020d49d8(&data_0217b650);
     return data_0217b650;
 }
 
 RockUpdateList *CreateRockUpdateList(void) {
-    RockUpdateList *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
-    data_0217b654 = p;
-    *p = data_021569fc;
+    RockUpdateList *updateList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
+    data_0217b654 = updateList;
+    *updateList = data_021569fc;
     func_020e6f50(&data_0217b654);
     return data_0217b654;
 }
 
 void SetupDrawRock(void) {
-    s32 i = (s32) (GetRaceUpdateFrames() << 25 >> 16) >> 4;
-    MTX_RotY33_(data_0217b650->mUnk_2c.mUnk_00, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
+    s32 pairIndex = (s32) (GetRaceUpdateFrames() << 25 >> 16) >> 4;
+    MTX_RotY33_(data_0217b650->mUnk_2c.mUnk_00, gPairsByAngle[pairIndex * 2], gPairsByAngle[pairIndex * 2 + 1]);
 }
 
-void func_020d655c(void *a, Unk020d655c *b, void *c, s32 d) {
-    Vec3 v0;
-    Vec3 v1;
-    Vec3 v2;
-    Vec3 v3;
-    RockShadowMatrix *p;
-    s32 r;
+void func_020d655c(void *a, Unk020d655c *rock, void *c, s32 alpha) {
+    Vec3 tiltAxis;
+    Vec3 crossProduct;
+    Vec3 xAxis;
+    Vec3 yAxis;
+    RockShadowMatrix *shadowMatrix;
+    s32 dot;
     if (func_020b2ec0() == 0) {
-        v2 = b->mUnk_00.mMatrix.mUnk_00[0];
-        v3 = b->mUnk_00.mMatrix.mUnk_00[1];
-        v0.x = ((s64) b->mUnk_00.mUnk_10.z * (s64) b->mUnk_118) >> 12;
-        v0.z = -(s32) (((s64) b->mUnk_00.mUnk_10.x * (s64) b->mUnk_118) >> 12);
-        v0.y = 0;
-        Vec3CrossUnrounded(&v0, &v2, &v1);
-        VEC_Add(&v2, &v1, &v2);
-        Vec3NormalizeAndGetLengthUnchecked(&v2, &b->mUnk_00.mMatrix.mUnk_00[0]);
-        Vec3CrossUnrounded(&v0, &v3, &v1);
-        VEC_Add(&v3, &v1, &v3);
-        r = VEC_DotProduct(&b->mUnk_00.mMatrix.mUnk_00[0], &v3);
-        v3.x = v3.x - (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[0].x * (s64) r) >> 12);
-        v3.y = v3.y - (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[0].y * (s64) r) >> 12);
-        v3.z = v3.z - (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[0].z * (s64) r) >> 12);
-        Vec3NormalizeAndGetLengthUnchecked(&v3, &b->mUnk_00.mMatrix.mUnk_00[1]);
-        Vec3CrossUnrounded(&b->mUnk_00.mMatrix.mUnk_00[0], &b->mUnk_00.mMatrix.mUnk_00[1],
-                           &b->mUnk_00.mMatrix.mUnk_00[2]);
+        xAxis = rock->mUnk_00.mMatrix.mUnk_00[0];
+        yAxis = rock->mUnk_00.mMatrix.mUnk_00[1];
+        tiltAxis.x = ((s64) rock->mUnk_00.mUnk_10.z * (s64) rock->mUnk_118) >> 12;
+        tiltAxis.z = -(s32) (((s64) rock->mUnk_00.mUnk_10.x * (s64) rock->mUnk_118) >> 12);
+        tiltAxis.y = 0;
+        Vec3CrossUnrounded(&tiltAxis, &xAxis, &crossProduct);
+        VEC_Add(&xAxis, &crossProduct, &xAxis);
+        Vec3NormalizeAndGetLengthUnchecked(&xAxis, &rock->mUnk_00.mMatrix.mUnk_00[0]);
+        Vec3CrossUnrounded(&tiltAxis, &yAxis, &crossProduct);
+        VEC_Add(&yAxis, &crossProduct, &yAxis);
+        dot = VEC_DotProduct(&rock->mUnk_00.mMatrix.mUnk_00[0], &yAxis);
+        yAxis.x = yAxis.x - (s32) (((s64) rock->mUnk_00.mMatrix.mUnk_00[0].x * (s64) dot) >> 12);
+        yAxis.y = yAxis.y - (s32) (((s64) rock->mUnk_00.mMatrix.mUnk_00[0].y * (s64) dot) >> 12);
+        yAxis.z = yAxis.z - (s32) (((s64) rock->mUnk_00.mMatrix.mUnk_00[0].z * (s64) dot) >> 12);
+        Vec3NormalizeAndGetLengthUnchecked(&yAxis, &rock->mUnk_00.mMatrix.mUnk_00[1]);
+        Vec3CrossUnrounded(&rock->mUnk_00.mMatrix.mUnk_00[0], &rock->mUnk_00.mMatrix.mUnk_00[1],
+                           &rock->mUnk_00.mMatrix.mUnk_00[2]);
     }
-    b->mUnk_00.mMatrix.mUnk_00[3].x = b->mUnk_00.mPos.x >> 4;
-    b->mUnk_00.mMatrix.mUnk_00[3].y = b->mUnk_00.mPos.y >> 4;
-    b->mUnk_00.mMatrix.mUnk_00[3].z = b->mUnk_00.mPos.z >> 4;
-    DrawNsbmdWithMatrixAndMaxAlpha(gRock, &b->mUnk_00.mMatrix, &b->mUnk_00.mScale, d);
-    p = &data_0217b650->mUnk_2c;
-    p->mUnk_24.x = b->mUnk_00.mPos.x >> 4;
-    p->mUnk_24.y = b->mUnk_00.mPos.y >> 4;
-    p->mUnk_24.z = b->mUnk_00.mPos.z >> 4;
-    DrawShadowWithMaxAlpha(gRockShadow, &data_0217b650->mUnk_2c, &b->mUnk_00.mScale, d);
+    rock->mUnk_00.mMatrix.mUnk_00[3].x = rock->mUnk_00.mPos.x >> 4;
+    rock->mUnk_00.mMatrix.mUnk_00[3].y = rock->mUnk_00.mPos.y >> 4;
+    rock->mUnk_00.mMatrix.mUnk_00[3].z = rock->mUnk_00.mPos.z >> 4;
+    DrawNsbmdWithMatrixAndMaxAlpha(gRock, &rock->mUnk_00.mMatrix, &rock->mUnk_00.mScale, alpha);
+    shadowMatrix = &data_0217b650->mUnk_2c;
+    shadowMatrix->mUnk_24.x = rock->mUnk_00.mPos.x >> 4;
+    shadowMatrix->mUnk_24.y = rock->mUnk_00.mPos.y >> 4;
+    shadowMatrix->mUnk_24.z = rock->mUnk_00.mPos.z >> 4;
+    DrawShadowWithMaxAlpha(gRockShadow, &data_0217b650->mUnk_2c, &rock->mUnk_00.mScale, alpha);
 }
 
-void func_020d6538(Unk020d6538_a *p0, Unk020d634c *p1) {
-    p0->mUnk_5c = p1->mUnk_00;
-    p0->mUnk_64 = p1->mUnk_04;
-    p0->mUnk_68 = p1->mUnk_06;
-    p0->mUnk_6c = p1->mUnk_08;
+void func_020d6538(Unk020d6538_a *emitter, Unk020d634c *params) {
+    emitter->mUnk_5c = params->mUnk_00;
+    emitter->mUnk_64 = params->mUnk_04;
+    emitter->mUnk_68 = params->mUnk_06;
+    emitter->mUnk_6c = params->mUnk_08;
 }

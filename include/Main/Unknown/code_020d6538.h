@@ -53,22 +53,22 @@ typedef struct Unk02156adc {
 
 #include "Main/Unknown/code_020d50ec.h" // Unk020d634c
 
-void func_020d6538(Unk020d6538_a *p0, Unk020d634c *p1);
-void func_020d655c(void *a, Unk020d655c *b, void *c, s32 d);
+void func_020d6538(Unk020d6538_a *emitter, Unk020d634c *params);
+void func_020d655c(void *a, Unk020d655c *rock, void *c, s32 alpha);
 void SetupDrawRock(void);
 RockUpdateList *CreateRockUpdateList(void);
 RockDrawList *CreateRock2DrawList(void);
 RockDrawList *CreateRockDrawList(void);
 Unk02156adc *CreateRockKindData(void);
-s32 func_020d6910(s32 a, MapObject *b);
+s32 func_020d6910(s32 itemKind, MapObject *mapObject);
 // 1 when the ItemObject kind a has a response to the map object b, else 0.
-s32 DoesItemObjectRespondToMapObject(s32 a, MapObject *b);
+s32 DoesItemObjectRespondToMapObject(s32 itemKind, MapObject *mapObject);
 // 1 when the Kart item effect a has a response to the map object b, else 0.
-s32 DoesKartRespondToMapObject(s32 a, MapObject *b);
+s32 DoesKartRespondToMapObject(s32 itemEffect, MapObject *mapObject);
 // Response code for the ItemObject a and the map object b; the kind's own callback may change it; the second value goes
 // to *c.
-s32 func_020d6a54(ItemObject *a, MapObject *b, s32 *c);
+s32 func_020d6a54(ItemObject *itemObject, MapObject *mapObject, s32 *firstResponseOut);
 // Index into data_0217ac18 of the Kart a response to the map object b; the kind's own callback may change it.
-s32 func_020d6be0(Kart *a, MapObject *b);
-u32 GetItemObjectResponseByKind(s32 a, s32 b, s32 c, s32 d, s32 e);
-u32 func_020d6d8c(u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+s32 func_020d6be0(Kart *kart, MapObject *mapObject);
+u32 GetItemObjectResponseByKind(s32 flagBit, s32 itemKind, s32 kindHundreds, s32 kindRemainder, s32 kindDataValue);
+u32 func_020d6d8c(u32 zeroResultFlag, u32 itemKind, u32 kindHundreds, u32 kindRemainder);

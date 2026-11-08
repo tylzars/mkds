@@ -5,6 +5,6 @@
 typedef struct MapObject MapObject;
 
 // Starts sound arg1 at volume 0x7f on the sound source behind MapObject.mUnk_94 with StartSoundWhileRequested.
-void StartMapObjectSoundWhileRequested(MapObject *arg0, u32 arg1);
+void StartMapObjectSoundWhileRequested(MapObject *mapObject, u32 soundId);
 // Starts sound arg1 at volume 0x7f on the sound source behind MapObject.mUnk_94 (StartSound).
-void StartMapObjectSound(MapObject *arg0, u32 arg1);
+void StartMapObjectSound(MapObject *mapObject, u32 soundId);

@@ -73,13 +73,13 @@ void func_0209b388(Crab *a, Vec3 *b, Vec3 *c, Vec3 *d) {
         a->mUnk_000.mUnk_10.y = ((s64) v.y * 0x1800) >> 12;
         a->mUnk_000.mUnk_10.z = ((s64) v.z * 0x1800) >> 12;
     } else {
-        r = func_020d22d0();
+        r = GetMapObjectRandom();
         z = (u16) func_0209b388_inline(r, 0x10000);
         x = gPairsByAngle[((u16) z >> 4) * 2 + 1];
         x = ((s64) x * 0x1800) >> 12;
         a->mUnk_000.mUnk_10.x = x;
         a->mUnk_000.mUnk_10.z = x;
-        r = func_020d22d0();
+        r = GetMapObjectRandom();
         if ((u16) func_0209b388_inline(r, 2) != 0) {
             a->mUnk_0a0 = 0x71c;
         } else {
@@ -184,7 +184,7 @@ void InitCrabObjects(Unk0209af98 *p) {
         o->mUnk_0d0.mUnk_14 = 0;
         o->mUnk_0d0.mUnk_18 = 0xe39;
         o->mUnk_0d0.mUnk_1c = 0;
-        r = func_020d22d0();
+        r = GetMapObjectRandom();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         o->mUnk_0a4 = (u16) ((u16) (((u64) (u32) (r->mUnk_00 >> 32) * 60) >> 32) + 30);
         o->mState = 0;
@@ -262,7 +262,7 @@ void UpdateCrab(void *a, Crab *b) {
                 b->mUnk_0d0.mUnk_14 = 0;
                 b->mUnk_0d0.mUnk_18 = 0xe39;
                 b->mUnk_0d0.mUnk_1c = 0;
-                r = func_020d22d0();
+                r = GetMapObjectRandom();
                 r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                 b->mUnk_0a4 = (u16) ((u16) (((u64) (u32) (r->mUnk_00 >> 32) * 60) >> 32) + 30);
                 b->mState = 0;
@@ -332,7 +332,7 @@ void UpdateCrab(void *a, Crab *b) {
             b->mUnk_0d0.mUnk_14 = 0;
             b->mUnk_0d0.mUnk_18 = 0xe39;
             b->mUnk_0d0.mUnk_1c = 0;
-            r = func_020d22d0();
+            r = GetMapObjectRandom();
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
             b->mUnk_0a4 = (u16) ((u16) (((u64) (u32) (r->mUnk_00 >> 32) * 60) >> 32) + 30);
             b->mState = 0;

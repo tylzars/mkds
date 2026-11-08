@@ -15,18 +15,19 @@
 #include "Main/Unknown/code_020d6000.h"
 #include "Main/Unknown/code_020b4000.h"
 
-BOOL func_020d2234(MapObject *d, ItemObject *e) {
-    s32 a;
-    s32 c;
-    s32 b;
-    a = d->mKind;
-    b = e->mKind;
-    c = 0;
-    while (a >= 100) {
-        a -= 100;
-        c++;
+BOOL func_020d2234(MapObject *mapObject, ItemObject *itemObject) {
+    s32 kindRemainder;
+    s32 kindHundreds;
+    s32 itemKind;
+    kindRemainder = mapObject->mKind;
+    itemKind = itemObject->mKind;
+    kindHundreds = 0;
+    while (kindRemainder >= 100) {
+        kindRemainder -= 100;
+        kindHundreds++;
     }
-    if (func_020d6d8c(0, b, c, a) == 0 || GetItemObjectResponseByKind(0, b, c, a, 3) != 2) {
+    if (func_020d6d8c(0, itemKind, kindHundreds, kindRemainder) == 0 ||
+        GetItemObjectResponseByKind(0, itemKind, kindHundreds, kindRemainder, 3) != 2) {
         return FALSE;
     }
     return TRUE;
@@ -34,50 +35,50 @@ BOOL func_020d2234(MapObject *d, ItemObject *e) {
 
 #pragma thumb on
 
-void *FindMainRaceOrMainEffectMapObjFile(const char *a) {
+void *FindMainRaceOrMainEffectMapObjFile(const char *name) {
     char buf[0x100];
-    snprintf(buf, 0x100, "MapObj/%s", a);
+    snprintf(buf, 0x100, "MapObj/%s", name);
     return FindMainRaceOrMainEffectFile(buf);
 }
 
-void *FindCourseMapObjFile(const char *a) {
+void *FindCourseMapObjFile(const char *name) {
     char buf[0x100];
-    snprintf(buf, 0x100, "MapObj/%s", a);
+    snprintf(buf, 0x100, "MapObj/%s", name);
     return FindCourseFile(buf);
 }
 
-u32 DecimalNonZeroDigitsToBitMask(s32 c) {
-    u32 a;
-    s32 b;
-    a = 0;
-    if (c >= 1000) {
-        b = c / 1000;
-        a |= 1 << b;
-        c = (s16) (c - b * 1000);
+u32 DecimalNonZeroDigitsToBitMask(s32 number) {
+    u32 bitMask;
+    s32 digit;
+    bitMask = 0;
+    if (number >= 1000) {
+        digit = number / 1000;
+        bitMask |= 1 << digit;
+        number = (s16) (number - digit * 1000);
     }
-    if (c >= 100) {
-        b = c / 100;
-        a |= 1 << b;
-        c = (s16) (c - b * 100);
+    if (number >= 100) {
+        digit = number / 100;
+        bitMask |= 1 << digit;
+        number = (s16) (number - digit * 100);
     }
-    if (c >= 10) {
-        b = c / 10;
-        a |= 1 << b;
-        c = (s16) (c - b * 10);
+    if (number >= 10) {
+        digit = number / 10;
+        bitMask |= 1 << digit;
+        number = (s16) (number - digit * 10);
     }
-    if (c >= 1) {
-        a |= 1 << c;
+    if (number >= 1) {
+        bitMask |= 1 << number;
     }
-    return a;
+    return bitMask;
 }
 
 #pragma thumb off
 
 void InitRaceMNumberPair(void) {
-    RaceMNumberPair *p;
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
-    gRaceMNumberPair = p;
-    p->mCourseNumber = gRaceSetup->mCourseNumber;
+    RaceMNumberPair *pair;
+    pair = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
+    gRaceMNumberPair = pair;
+    pair->mCourseNumber = gRaceSetup->mCourseNumber;
     if (gRaceSetup->mMode == 5) {
         gRaceMNumberPair->mCourseCount = 4;
     } else if (gRaceSetup->mMode == MODE_VS && gRaceSetup->mRuleKind == 2) {
@@ -85,20 +86,20 @@ void InitRaceMNumberPair(void) {
     } else {
         gRaceMNumberPair->mCourseCount = 0;
     }
-    Matrix2x2ReciprocalScale(gRaceMNumberPair->mUnk_08, 0x1000);
-    gRaceMNumberPair->mUnk_18 = NULL;
-    gRaceMNumberPair->mUnk_1c = 0;
-    gRaceMNumberPair->mUnk_20 = 0;
+    Matrix2x2ReciprocalScale(gRaceMNumberPair->mScaleMatrix, 0x1000);
+    gRaceMNumberPair->mCellMatrix = NULL;
+    gRaceMNumberPair->mScale = 0;
+    gRaceMNumberPair->mMatrixIndex = 0;
     gRaceMNumberPair->mOffsetX = 0;
 }
 
-u32 func_020d2094(void) {
-    u32 value0;
-    u32 value1;
-    value0 = (u32) &gRaceMNumberPair;
-    value1 = 0u;
-    *(u32 *) ((value0) + (0)) = value1;
-    return value0;
+u32 ClearRaceMNumberPairPointer(void) {
+    u32 address;
+    u32 zero;
+    address = (u32) &gRaceMNumberPair;
+    zero = 0u;
+    *(u32 *) ((address) + (0)) = zero;
+    return address;
 }
 
 void func_020d2090(void) {}

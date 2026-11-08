@@ -122,10 +122,10 @@ typedef struct RaceMNumberPair {
     // drawn). mUnk_3d8 has another meaning (score threshold) in mode 2 and for mUnk_1c == 1; this member never copies
     // that one.
     /* 04 */ s32 mCourseCount;
-    /* 08 */ s32 mUnk_08[4];
-    /* 18 */ s32 *mUnk_18;
-    /* 1c */ s32 mUnk_1c;
-    /* 20 */ u16 mUnk_20;
+    /* 08 */ s32 mScaleMatrix[4];
+    /* 18 */ s32 *mCellMatrix;
+    /* 1c */ s32 mScale;
+    /* 20 */ u16 mMatrixIndex;
     /* 22 */ u8 mUnk_22[2];
     // X added to every sprite of the pair: 0, or eased by InterpolateS16 (func_020d1de8) for the slide-in.
     /* 24 */ s32 mOffsetX;
@@ -716,10 +716,10 @@ extern struct RaceNewRecordTa *gRaceNewRecordTa;
 extern s32 data_0217b3f8;
 extern EmblemChoises *gEmblemChoises;
 extern struct Unk0217b43c *data_0217b43c;
-extern struct Unk0217b4a4 *gCupPicture;
+extern struct CupPicture *gCupPicture;
 extern struct Unk0217b4b0 *data_0217b4b0;
-extern struct Unk020f41c4_B *data_0217b4b8;
-extern struct Unk020f41c4_B *data_0217b4bc;
+extern struct Unk020f41c4_B *gRaceRandom;
+extern struct Unk020f41c4_B *gMapObjectRandom;
 // The same pointer as gWaterEfct, stored by SetCourseWaterEfct (the last call of CreateWaterEfct) and set to NULL in
 // InitMapObjects; the water_efct getters and the level getter read this one.
 extern Unk0217b4d8 *gCourseWaterEfct;
@@ -729,7 +729,7 @@ extern s32 data_0217b4e0;
 // InitMapObjects before the objects are created, so NULL means the course has no water; the update, draw, getters and
 // camera read this one, while gWater (never cleared) is only the creators' variable.
 extern struct Water *gCourseWater;
-extern s32 data_0217b4ec;
+extern s32 gMapObjectKindCount;
 extern struct MapObjects *gMapObjects;
 extern s32 data_0217b4f4;
 extern ViewFrustum gViewFrustum;
@@ -917,7 +917,7 @@ extern RaceHudSubScreenSecondHand *gRaceHudSubScreenSecondHand;
 extern RaceHudSubScreenKarts *gRaceHudSubScreenKarts;
 extern struct RaceGoalTimes *gRaceGoalTimes;
 extern u8 data_0217b4a8[];
-extern struct Unk0217b4ac *gEndingStaffRoll;
+extern struct EndingStaffRollObject *gEndingStaffRoll;
 extern RaceMNumberPair *gRaceMNumberPair;
 extern u16 data_0217b4c0;
 extern u16 gWrappingPolygonId;

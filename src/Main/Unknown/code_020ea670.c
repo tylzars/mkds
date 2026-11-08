@@ -187,7 +187,7 @@ void StartWoodbox1ItemObject(Woodbox1 *c, Vec3 *d) {
     if (gRaceSetup->mMode == 5) {
         return;
     }
-    p = func_020d22c0();
+    p = GetRaceRandom();
     p->mUnk_00 = p->mUnk_08 * p->mUnk_00 + p->mUnk_10;
     if (c->mItemChancePercent <= (u16) (((u64) (u32) (p->mUnk_00 >> 32) * 100) >> 32)) {
         return;
@@ -204,10 +204,10 @@ void StartWoodbox1ItemObject(Woodbox1 *c, Vec3 *d) {
         Vec3NormalizeAndGetLengthUnchecked(d, &a);
     }
     Vec3CrossUnrounded(&c->mGroundUp, &a, &b);
-    p = func_020d22c0();
+    p = GetRaceRandom();
     p->mUnk_00 = p->mUnk_08 * p->mUnk_00 + p->mUnk_10;
     n = ((s64) (s32) ((u32) (((u64) (u32) (p->mUnk_00 >> 32) * 0x1800) >> 32) + 0x119a) << 12) >> 12;
-    p = func_020d22c0();
+    p = GetRaceRandom();
     p->mUnk_00 = p->mUnk_08 * p->mUnk_00 + p->mUnk_10;
     q->mVelocity = *d;
     VEC_MultAdd(n, &a, &c->mUnk_000.mPos, &q->mPos);

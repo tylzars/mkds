@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_020d2094(void);
+u32 ClearRaceMNumberPairPointer(void);

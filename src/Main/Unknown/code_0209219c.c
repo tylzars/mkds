@@ -175,11 +175,11 @@ static inline u16 func_0209219c_inline(u32 n) {
     u32 r;
 
     if (n == 0x10000) {
-        b = func_020d22d0();
+        b = GetMapObjectRandom();
         b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
         return ((b->mUnk_00 >> 32) * 0x10000) >> 32;
     } else {
-        b = func_020d22d0();
+        b = GetMapObjectRandom();
         m = (u16) n;
         if (m == 0) {
             r = 0;
@@ -218,7 +218,7 @@ void StartBasabasa(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {
     p->mUnk_00.mFlags |= data_usa_02156468;
     p->mUnk_bc = e;
     p->mUnk_c0 = f;
-    r = func_020d22d0();
+    r = GetMapObjectRandom();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     p->mUnk_b0 = (u16) (((r->mUnk_00 >> 32) * 30) >> 32);
     n = (d << 12) >> 16;

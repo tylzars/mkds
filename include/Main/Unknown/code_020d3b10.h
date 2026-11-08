@@ -4,6 +4,6 @@
 
 u16 AllocPolygonIdWrapping(void);
 u16 AllocPolygonId(void);
-u16 CountMapObjectsOfKind(u32 b);
+u16 CountMapObjectsOfKind(u32 kind);
 void func_020d3b74(void);
 void func_020d3b10(void);

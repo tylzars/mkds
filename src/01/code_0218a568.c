@@ -144,11 +144,11 @@ void func_ov001_0218a6b0(Unk02188950 *c) {
 
     n = (u16) c->mPrm->mUnk_208;
     if (n == 0x10000) {
-        a = func_020d22d0();
+        a = GetMapObjectRandom();
         a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
         b = (u16) (((a->mUnk_00 >> 32) * 0x10000) >> 32);
     } else {
-        a = func_020d22d0();
+        a = GetMapObjectRandom();
         if ((u16) n == 0) {
             b = 0;
         } else {

@@ -188,13 +188,13 @@ void UpdatePukupukuState0(Unk020e43a8 *p) {
         Unk020f41c4_B *r;
 
         p->mUnk_00.mUnk_10.y = 0x3199;
-        r = func_020d22d0();
+        r = GetMapObjectRandom();
         p->mUnk_c4 = (u16) func_020e4ad0_inline(r, 3) + 4;
     } else {
         Unk020f41c4_B *r;
 
         p->mUnk_00.mUnk_10.y = 0x2000;
-        r = func_020d22d0();
+        r = GetMapObjectRandom();
         p->mUnk_00.mUnk_10.y = p->mUnk_00.mUnk_10.y + func_020e4ad0_inline(r, 0x800);
     }
     if (p->mUnk_00.mPos.x > p->mUnk_a0.mUnk_18.x + 0x14000) {
@@ -204,7 +204,7 @@ void UpdatePukupukuState0(Unk020e43a8 *p) {
     } else {
         Unk020f41c4_B *r;
 
-        r = func_020d22d0();
+        r = GetMapObjectRandom();
         p->mUnk_00.mUnk_10.x = func_020e4ad0_inline(r, 0x1998) - 0xccc;
     }
     if (p->mUnk_00.mPos.z > p->mUnk_a0.mUnk_18.z + 0x14000) {
@@ -218,7 +218,7 @@ void UpdatePukupukuState0(Unk020e43a8 *p) {
     {
         Unk020f41c4_B *r;
 
-        r = func_020d22d0();
+        r = GetMapObjectRandom();
         p->mUnk_00.mUnk_10.z = func_020e4ad0_inline(r, 0x1998) - 0xccc;
     }
 }
