@@ -599,8 +599,8 @@ void StartParentCallback(Unk021425e8 *event) {
                 AddChild(event->mUnk_10, &event->mUnk_0a[0], (Unk0217aa00_45c *) event->mUnk_14);
                 break;
             case 0:
-                MI_CpuCopy8(&data_0217aa08->mUnk_00->mPlayerName, &data_0217aa00->mUnk_045c[0], 0x14);
-                MI_CpuCopy8(&data_0217aa08->mUnk_00->mUnk_20, &data_0217aa00->mUnk_045c[0].mBits, 4);
+                MI_CpuCopy8(&data_0217aa08->mFirstBlock->mPlayerName, &data_0217aa00->mUnk_045c[0], 0x14);
+                MI_CpuCopy8(&data_0217aa08->mFirstBlock->mFlags, &data_0217aa00->mUnk_045c[0].mBits, 4);
                 v = 0;
                 role = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
                 switch (role) {

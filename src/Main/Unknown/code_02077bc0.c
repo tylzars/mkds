@@ -1277,7 +1277,7 @@ void func_02078d64(void *param_1) {
     for (i = 0; i < 2; i = (u16) (i + 1)) {
         InitKartModelMenuFiles(param_1, &gKartModelMenu->mFiles[i]);
     }
-    if (data_0217aa08->mEmblemRecord->mFilled != 0 && data_0217aa08->mUnk_00->mUnk_31_3 == 0) {
+    if (data_0217aa08->mEmblemRecord->mFilled != 0 && data_0217aa08->mFirstBlock->mUnk_31_3 == 0) {
         gKartModelMenu->mEmblemData = data_0217aa08->mEmblemRecord->mEmblemData;
         gKartModelMenu->mEmblemPalette = GetEmblemSBNclr()->mData;
     }
@@ -1654,7 +1654,7 @@ void AdvanceKartModelMenuInput(void) {
     KartModelMenuFiles *p;
 
     p = &gKartModelMenu->mFiles[gKartModelMenu->mLoadSlotIndex];
-    if (data_0217aa0c->mUnk_f8 == 0 && p->mLoadRequested == FALSE) {
+    if (gThreadFunctionQueue->mRunRequested == 0 && p->mLoadRequested == FALSE) {
         w = ~a;
         v1 = UNK_02175628_INDEX_8;
         k = data_02175628[v1].mUnk_00;
@@ -1944,7 +1944,7 @@ void AdvanceKartModelMenuLoad(void) {
     Unk0217ad08_058_08 *r;
 
     G2Bg0OfsWrite(gKartModelMenu->mView.mBg0Offset);
-    if (data_0217aa0c->mUnk_f8 == 0) {
+    if (gThreadFunctionQueue->mRunRequested == 0) {
         p = &gKartModelMenu->mFiles[gKartModelMenu->mLoadSlotIndex];
         if (p->mLoadRequested != FALSE) {
             q = gKartModelMenu->mLoadSlot;

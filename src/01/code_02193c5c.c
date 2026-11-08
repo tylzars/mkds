@@ -273,7 +273,7 @@ void func_ov001_02194d18(void) {
 }
 
 u32 func_ov001_02194d04(s32 a) {
-    return func_02056dec(data_ov001_021a6700[a]);
+    return IsBackupFlagSet(data_ov001_021a6700[a]);
 }
 
 u32 func_ov001_02194c9c(u32 a) {
@@ -292,7 +292,7 @@ u32 func_ov001_02194c9c(u32 a) {
         case 6:
         case 7:
             for (i = 0; i < 3; i++) {
-                result |= func_02056dec(data_ov001_021a6760[a][i]);
+                result |= IsBackupFlagSet(data_ov001_021a6760[a][i]);
             }
             result |= func_ov001_02194d04(a);
             break;

@@ -35,8 +35,8 @@ void SetupWiFiSession(u32 mode) {
                     SetPeerReceiveBuffer(i, &gWiFiSession->mPlayerRecords[i], 0x244);
                     GetRaceSetupCopy()->mEntries[i].mPlayerKind = 3;
                 } else {
-                    gWiFiSession->mPlayerRecords[i].mUnk_238 = data_0217aa08->mUnk_00->mUnk_34[4];
-                    gWiFiSession->mPlayerRecords[i].mUnk_23c = data_0217aa08->mUnk_00->mUnk_34[5];
+                    gWiFiSession->mPlayerRecords[i].mUnk_238 = data_0217aa08->mFirstBlock->mUnk_34[4];
+                    gWiFiSession->mPlayerRecords[i].mUnk_23c = data_0217aa08->mFirstBlock->mUnk_34[5];
                     GetRaceSetupCopy()->mEntries[i].mPlayerKind = 0;
                 }
                 GetRaceSetupCopy()->mEntries[i].mCharacterIndex = -1;
@@ -141,7 +141,7 @@ s32 UpdateWiFiSessionStep(void) {
             break;
         case 2:
             UpdateWiFiSessionStepTimeout(0x1c20);
-            if (data_0217aa08->mUnk_28 == 0) {
+            if (data_0217aa08->mBusy == 0) {
                 backup = gBackupAccess;
                 if (backup->mBackupEnabled != 0) {
                     waitFlag = backup->mCommandRunning;

@@ -345,7 +345,7 @@ void UpdateLinkLevelIconTiles(void) {
         gLinkLevelIcons->mIconLevel[slotCount] = linkLevel;
     } else if (gLinkLevelIcons->mIconEnabled[4] != 0) {
         flag = FALSE;
-        if (!data_0217aa08->mUnk_00->mLocateFriendOff) {
+        if (!data_0217aa08->mFirstBlock->mLocateFriendOff) {
             if (func_021213f4() != FALSE) {
                 flag = TRUE;
             }

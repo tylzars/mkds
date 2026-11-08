@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02057ca4(void *a);
+void WriteBackupFirstBlock(void *block);

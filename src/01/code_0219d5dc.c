@@ -84,10 +84,10 @@ void LocateAndQueueOptionEmbremSelect(void) {
 }
 
 BOOL func_ov001_0219de38(void) {
-    if (data_0217aa08->mUnk_00->mUnk_31_3 == 0) {
+    if (data_0217aa08->mFirstBlock->mUnk_31_3 == 0) {
         return FALSE;
     }
-    if (data_0217aa08->mUnk_00->mUnk_31_3 != 0) {
+    if (data_0217aa08->mFirstBlock->mUnk_31_3 != 0) {
         return TRUE;
     }
     return TRUE;
@@ -175,9 +175,9 @@ void AdvanceOptionEmbremSelectState3(void) {
             RequestSelectReturnState3WithSound(0);
         }
         if (gOptionEmbremSelect->mUnk_0c == 0) {
-            data_0217aa08->mUnk_00->mUnk_31_3 = 0;
+            data_0217aa08->mFirstBlock->mUnk_31_3 = 0;
         } else {
-            data_0217aa08->mUnk_00->mUnk_31_3 = 1;
+            data_0217aa08->mFirstBlock->mUnk_31_3 = 1;
         }
         func_02056d40();
     } else {
@@ -295,7 +295,7 @@ void AdvanceOptionEmbremSelectState6(void) {
     s32 value;
 
     if (GetTxtSystemDone() != 0) {
-        if (data_0217aa08->mUnk_28 == 0) {
+        if (data_0217aa08->mBusy == 0) {
             if (gBackupAccess->mBackupEnabled != 0) {
                 value = gBackupAccess->mCommandRunning;
             } else {

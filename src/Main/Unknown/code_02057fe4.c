@@ -546,7 +546,7 @@ void EnterMPState13(void) {
     if (data_0217aa00->mUnk_0000 == 2) {
         ownIndex = data_0217aa00->mOwnIndex;
     }
-    MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_20, data_0217aa00->mUnk_045c[(u16) ownIndex].mBits, 4);
+    MI_CpuCopy8(data_0217aa08->mFirstBlock->mFlags, data_0217aa00->mUnk_045c[(u16) ownIndex].mBits, 4);
     data_0217aa00->mUnk_162a |= 1;
 }
 

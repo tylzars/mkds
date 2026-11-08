@@ -7,24 +7,24 @@
 
 #pragma thumb on
 
-void func_02057710(Unk0217aa08_24 *a, s32 b) {
-    s32 c = b * 0xb00;
-    u32 *v;
-    v = gBackupAccess->mBuffer;
+void WriteBackupEmblemBlock(EmblemBlockData *blockData, s32 blockIndex) {
+    s32 blockOffset = blockIndex * 0xb00;
+    u32 *buffer;
+    buffer = gBackupAccess->mBuffer;
     if (gBackupAccess->mBackupEnabled != 0) {
-        MI_CpuCopy8(a, v, 0xb00);
-        v[0] = 0x45464b4e;
-        StartBackupWriteTwoCopies(c + 0x2b00, c + 0x33a00, v, 0xb00, NULL, 0);
+        MI_CpuCopy8(blockData, buffer, 0xb00);
+        buffer[0] = 0x45464b4e;
+        StartBackupWriteTwoCopies(blockOffset + 0x2b00, blockOffset + 0x33a00, buffer, 0xb00, NULL, 0);
     }
 }
 
-void func_020576b8(Unk0217aa08_24 *a, s32 b) {
-    s32 c = b * 0xb00;
+void ReadBackupEmblemBlock(EmblemBlockData *blockData, s32 blockIndex) {
+    s32 blockOffset = blockIndex * 0xb00;
     if (gBackupAccess->mBackupEnabled != 0) {
-        gBackupAccess->mReadTarget = a;
+        gBackupAccess->mReadTarget = blockData;
         gBackupAccess->mUnk_5c = -1;
-        StartBackupReadTwoCopies(c + 0x2b00, c + 0x33a00, gBackupAccess->mBuffer, 0xb00, CopyBackupReadToBlock,
-                                 0x45464b4e, 0);
+        StartBackupReadTwoCopies(blockOffset + 0x2b00, blockOffset + 0x33a00, gBackupAccess->mBuffer, 0xb00,
+                                 CopyBackupReadToBlock, 0x45464b4e, 0);
     }
 }
 

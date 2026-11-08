@@ -12,7 +12,7 @@
 u32 func_020d0f60(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217aa0c;
+    value0 = (u32) &gThreadFunctionQueue;
     value1 = 1u;
     value0 = *(const u32 *) ((value0) + (0));
     *(u32 *) ((value0) + (248)) = value1;
@@ -29,9 +29,9 @@ u32 TrySetCupPictureIndexAndQueueLoads(int cupPictureIndex) {
     } else if (func_020d0ec4() != FALSE) {
         if (gCupPicture->mCupPictureIndex != cupPictureIndex) {
             gCupPicture->mCupPictureIndex = cupPictureIndex;
-            func_02057df0(LoadCupPictureNclr);
-            func_02057df0(LoadCupPictureNcgr);
-            func_02057df0(LoadCupPictureNscr);
+            QueueThreadFunction(LoadCupPictureNclr);
+            QueueThreadFunction(LoadCupPictureNcgr);
+            QueueThreadFunction(LoadCupPictureNscr);
             func_020d0f60();
         }
     } else {
@@ -42,5 +42,5 @@ u32 TrySetCupPictureIndexAndQueueLoads(int cupPictureIndex) {
 #pragma thumb off
 
 u32 func_020d0ee8(void) {
-    return (data_0217aa0c->mUnk_f8);
+    return (gThreadFunctionQueue->mRunRequested);
 }

@@ -9,73 +9,73 @@
 #include "Main/Unknown/unk_02165000.h"
 #include "Main/Unknown/unk_0217a000.h"
 
-void func_02057e8c(void *a) {
+void RunQueuedThreadFunctions(void *threadArgument) {
     for (;;) {
-        if (data_0217aa0c->mUnk_f8 != 0) {
-            void (*f)(void) = func_02057f8c(data_0217aa0c);
-            if (f == NULL) {
-                data_0217aa0c->mUnk_f8 = 0;
+        if (gThreadFunctionQueue->mRunRequested != 0) {
+            void (*queuedFunction)(void) = func_02057f8c(gThreadFunctionQueue);
+            if (queuedFunction == NULL) {
+                gThreadFunctionQueue->mRunRequested = 0;
             } else {
-                f();
+                queuedFunction();
             }
         }
         OS_Sleep(2);
     }
 }
 
-u32 func_02057df0(void (*a)(void)) {
-    s32 n;
-    s32 i;
-    Unk0217aa0c *p = data_0217aa0c;
-    u8 k;
-    void (*f)(void);
-    if (p->mUnk_f8 != 0) {
+u32 QueueThreadFunction(void (*function)(void)) {
+    s32 checkedCount;
+    s32 searchIndex;
+    ThreadFunctionQueue *queue = gThreadFunctionQueue;
+    u8 slotIndex;
+    void (*slotFunction)(void);
+    if (queue->mRunRequested != 0) {
         return 0;
     }
-    i = p->mUnk_28;
-    n = 0;
+    searchIndex = queue->mNewestIndex;
+    checkedCount = 0;
     do {
-        k = i % 10;
-        f = p->mUnk_00[k];
-        if (f == NULL) {
+        slotIndex = searchIndex % 10;
+        slotFunction = queue->mFunctions[slotIndex];
+        if (slotFunction == NULL) {
             break;
         }
-        n++;
-        i++;
-    } while (n < 10);
-    if (f != NULL) {
+        checkedCount++;
+        searchIndex++;
+    } while (checkedCount < 10);
+    if (slotFunction != NULL) {
         return 0;
     }
-    p->mUnk_00[k] = a;
-    p->mUnk_28 = k;
+    queue->mFunctions[slotIndex] = function;
+    queue->mNewestIndex = slotIndex;
     return 1;
 }
 
-void func_02057d9c(void) {
-    while (data_0217aa0c->mUnk_f8 != 0) {
+void WaitThreadFunctionsDone(void) {
+    while (gThreadFunctionQueue->mRunRequested != 0) {
         OS_WaitIrq(1, 1);
     }
 }
 
-void func_02057d7c(void) {
+void InitLogoSceneCallback(void) {
     InitLogoScene(GetHeap(GetCurrentHeapCall()));
 }
 
-void func_02057d70(void) {
+void ApplySavedSoundModeCallback(void) {
     ApplySavedSoundMode();
 }
 
-void func_02057d64(void) {
+void WriteLogoSceneRegistersCallback(void) {
     WriteLogoSceneRegisters();
 }
 
-void func_02057d58(void *a) {
-    UpdateLogoScene(a);
+void UpdateLogoSceneCallback(void *sceneNumbers) {
+    UpdateLogoScene(sceneNumbers);
 }
 
-s32 RunLogoScene(SceneNumbers *a) {
-    SceneCallbacks b = data_02165280;
+s32 RunLogoScene(SceneNumbers *sceneNumbers) {
+    SceneCallbacks callbacks = gLogoSceneCallbacks;
 
-    RunScene(a, &b);
+    RunScene(sceneNumbers, &callbacks);
     return 0;
 }

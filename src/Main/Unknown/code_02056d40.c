@@ -9,6 +9,6 @@ void func_02056d40(void) {
     value0 = (u32) &data_0217aa08;
     value0 = *(const u32 *) ((value0) + 0u);
     value0 = *(const u32 *) ((value0) + 0u);
-    func_02057ca4((void *) value0);
+    WriteBackupFirstBlock((void *) value0);
 }
 #pragma thumb off

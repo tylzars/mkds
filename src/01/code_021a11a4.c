@@ -83,7 +83,7 @@ void LocateAndQueueSelectEngine(void) {
     LocateNcgr2(&c, FindSceneFile(gSelectEngineSNcgrName));
     LocateNcer(&gSelectEngine->mSelectEngineSNcer, FindSceneFile(gSelectEngineSNcerName));
     LocateNclr(&d, FindSceneFile(gSelectEngineSONclrName));
-    if (func_02056dec(0x10) != 0) {
+    if (IsBackupFlagSet(0x10) != 0) {
         gSelectEngine->mSelectEngineAOrBSBncl = FindSceneFile(gSelectEngineBSBnclName);
         gSelectEngine->mSelectEngineAOrBSBnbl = FindSceneFile(gSelectEngineBSBnblName);
     } else {
@@ -137,7 +137,7 @@ void func_ov001_021a1c34(void) {
             gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[i][1]].mVisible = 1;
         }
     }
-    if (func_02056dec(0x10) == 0) {
+    if (IsBackupFlagSet(0x10) == 0) {
         for (i = 0; i < 3; i++) {
             gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[3][i]].mVisible = 0;
         }
@@ -207,7 +207,7 @@ void func_ov001_021a1a04(void) {
     gSelectEngine->mSelectEngineMTable[6].mOffsetY = -0xc0;
     for (i = 0; i < 4; i++) {
         gSelectEngine->mSelectEngineMTable[data_ov001_021a6f28[i]].mOffsetY = 0xc0;
-        if (func_02056dec(0x10) != 0) {
+        if (IsBackupFlagSet(0x10) != 0) {
             switch (i) {
                 case 0:
                 case 2:
@@ -339,7 +339,7 @@ void AdvanceSelectEngineState1(void) {
     gSelectEngine->mSelectEngineMTable[6].mOffsetY = b;
     for (i = 0; i < 4; i++) {
         gSelectEngine->mSelectEngineMTable[data_ov001_021a6f28[i]].mOffsetY = -b;
-        if (func_02056dec(0x10)) {
+        if (IsBackupFlagSet(0x10)) {
             switch (i) {
                 case 0:
                 case 2:
@@ -454,7 +454,7 @@ next:
         return;
     }
     if (GetNewOrRepeatBits(8, PAD_KEY_UP) != 0) {
-        if (func_02056dec(0x10) != 0) {
+        if (IsBackupFlagSet(0x10) != 0) {
             t = gSelectEngine->mIndex;
             o = gSelectEngine;
             s = data_ov001_021a6f20[t];
@@ -468,7 +468,7 @@ next:
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
     } else if (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0) {
-        if (func_02056dec(0x10) != 0) {
+        if (IsBackupFlagSet(0x10) != 0) {
             t = gSelectEngine->mIndex;
             o = gSelectEngine;
             s = data_ov001_021a6f30[t];
@@ -482,7 +482,7 @@ next:
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
     } else if (GetNewOrRepeatBits(8, PAD_KEY_LEFT) != 0) {
-        if (func_02056dec(0x10) != 0) {
+        if (IsBackupFlagSet(0x10) != 0) {
             t = gSelectEngine->mIndex;
             o = gSelectEngine;
             s = data_ov001_021a6f38[t];
@@ -496,7 +496,7 @@ next:
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
     } else if (GetNewOrRepeatBits(8, PAD_KEY_RIGHT) != 0) {
-        if (func_02056dec(0x10) != 0) {
+        if (IsBackupFlagSet(0x10) != 0) {
             t = gSelectEngine->mIndex;
             o = gSelectEngine;
             s = data_ov001_021a6f60[t];
@@ -541,7 +541,7 @@ void AdvanceSelectEngineState6(void) {
     gSelectEngine->mSelectEngineMTable[6].mOffsetY = b;
     for (i = 0; i < 4; i++) {
         gSelectEngine->mSelectEngineMTable[data_ov001_021a6f28[i]].mOffsetY = -b;
-        if (func_02056dec(0x10) != 0) {
+        if (IsBackupFlagSet(0x10) != 0) {
             switch (i) {
                 case 0:
                 case 2:

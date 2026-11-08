@@ -102,9 +102,9 @@ void func_ov001_02198624(void) {
     if (IsTxtSystemState0NoOpenRequest() != 0) {
         if (GetTxtSystemSelectedIndex() == 0) {
             d = data_021759d0->mOwnerText;
-            data_0217aa08->mUnk_00->mUnk_31_0 = 1;
-            MI_CpuFill8(data_0217aa08->mUnk_00->mPlayerName, 0, 0x14);
-            MI_CpuCopy8(d, data_0217aa08->mUnk_00->mPlayerName, 0x14);
+            data_0217aa08->mFirstBlock->mUnk_31_0 = 1;
+            MI_CpuFill8(data_0217aa08->mFirstBlock->mPlayerName, 0, 0x14);
+            MI_CpuCopy8(d, data_0217aa08->mFirstBlock->mPlayerName, 0x14);
             func_02056d40();
             data_ov001_021a9be4->mUnk_04 = 3;
             a = GetBmgEntry(data_ov001_021a9be4->mUnk_14, 0x13);
@@ -124,7 +124,7 @@ void func_ov001_021985b0(void) {
         return;
     }
     if (IsTxtSystemState0NoOpenRequest() != 0) {
-        if (data_0217aa08->mUnk_28 == 0) {
+        if (data_0217aa08->mBusy == 0) {
             if (gBackupAccess->mBackupEnabled != 0) {
                 v = gBackupAccess->mCommandRunning;
             } else {

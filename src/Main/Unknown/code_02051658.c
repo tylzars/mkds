@@ -353,7 +353,7 @@ void StartConnect(ScanBlockView *a, void *b, s32 (*c)(), s32 (*d)(), s32 (*e)())
     u8 v1[0x18];
 
     MI_CpuFill8(v1, 0, 0x18);
-    MI_CpuCopy8(&data_0217aa08->mUnk_00->mPlayerName, v1, 0x14);
+    MI_CpuCopy8(&data_0217aa08->mFirstBlock->mPlayerName, v1, 0x14);
     if (a != NULL) {
         *data_0217aa00->mUnk_0024 = *a;
     }

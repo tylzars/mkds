@@ -443,7 +443,7 @@ void func_020c5f7c(void) {
     BOOL hasSetupTime;
     s32 waiting;
 
-    if (data_0217aa08->mUnk_28 == 0) {
+    if (data_0217aa08->mBusy == 0) {
         waiting = gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0;
     } else {
         waiting = 1;
@@ -484,7 +484,7 @@ void func_020c5f7c(void) {
 void func_020c5f08(void) {
     s32 waiting;
 
-    if (data_0217aa08->mUnk_28 == 0) {
+    if (data_0217aa08->mBusy == 0) {
         waiting = gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0;
     } else {
         waiting = 1;

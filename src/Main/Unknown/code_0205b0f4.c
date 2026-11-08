@@ -993,7 +993,7 @@ void func_0205b0f4(void) {
     u8 t;
     u16 v;
     u32 n;
-    Unk0217aa08_00 *q;
+    BackupFirstBlock *q;
 
     for (i = 0; i < 4; i++) {
         v1 = 1 << i;
@@ -1033,7 +1033,7 @@ void func_0205b0f4(void) {
         return;
     }
     v = gWiFiSession->mUnk_0008.mState;
-    q = data_0217aa08->mUnk_00;
+    q = data_0217aa08->mFirstBlock;
     n = q->mUnk_34[5];
     if (v != 0) {
         s8 c = gWiFiSession->mKartCountCopy - 1;
@@ -1046,7 +1046,7 @@ void func_0205b0f4(void) {
         }
         q->mUnk_34[5] = n;
         func_02056d40();
-        func_02057d9c();
+        WaitThreadFunctionsDone();
         if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }

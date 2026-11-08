@@ -49,23 +49,23 @@ BOOL CopyEmblemFromBlock(EmblemBlock *a, u8 b, EmblemData *c) {
     if (e.mFilled == 0 || e.mUnk_22_2 == 0) {
         return FALSE;
     }
-    c->mUnk_200 = (a->mUnk_04.mUnk_004 & (1 << m)) != 0;
+    c->mUnk_200 = (a->mUnk_04.mFilledBits & (1 << m)) != 0;
     if (c->mUnk_200 != 0) {
-        MI_CpuCopy8(a->mUnk_04.mUnk_008[m], c, 0x200);
+        MI_CpuCopy8(a->mUnk_04.mEmblems[m], c, 0x200);
     }
     return TRUE;
 }
 
 void SetupEmblemBlock(EmblemBlock *a, u8 b) {
     u8 c = b / 5;
-    if (func_0205743c(c, &data_0217aa08->mUnk_00->mUnk_2c[2], 2) == 0) {
+    if (IsBitArrayBitSet(c, &data_0217aa08->mFirstBlock->mUnk_2c[2], 2) == 0) {
         a->mBlockIndex = -1;
         return;
     }
     if (c == a->mBlockIndex) {
         return;
     }
-    func_020576b8(&a->mUnk_04, c);
+    ReadBackupEmblemBlock(&a->mUnk_04, c);
     a->mBlockIndex = c;
 }
 
@@ -75,7 +75,7 @@ void CopyOtherPlayerEmblemsToBlocks(void) {
     Unk0217aa00_45c *e;
     u8 c[12];
     s8 d[8];
-    Unk0217aa08_24 *r;
+    EmblemBlockData *r;
     s32 v1;
     s32 v2;
     u16 k;
@@ -114,15 +114,15 @@ void CopyOtherPlayerEmblemsToBlocks(void) {
     }
     for (i = 0; i < 12; i++) {
         if (c[i] != 0) {
-            r = data_0217aa08->mUnk_24;
-            if (func_0205743c(i, &data_0217aa08->mUnk_00->mUnk_2c[2], 2) != 0) {
-                func_020576b8(r, i);
+            r = data_0217aa08->mEmblemBlockData;
+            if (IsBitArrayBitSet(i, &data_0217aa08->mFirstBlock->mUnk_2c[2], 2) != 0) {
+                ReadBackupEmblemBlock(r, i);
                 if (gBackupAccess->mBackupEnabled != 0) {
                     CARD_WaitBackupAsync();
                 }
             } else {
                 MI_CpuFill8(r, 0, 0xb00);
-                func_0205746c(i, &data_0217aa08->mUnk_00->mUnk_2c[2], 2);
+                SetBitArrayBit(i, &data_0217aa08->mFirstBlock->mUnk_2c[2], 2);
                 f = TRUE;
             }
             v1 = i * 5;
@@ -131,23 +131,23 @@ void CopyOtherPlayerEmblemsToBlocks(void) {
                 t = d[k];
                 if (t >= v1 && t < v2) {
                     x = t % 5;
-                    r->mUnk_004 |= 1 << x;
-                    MI_CpuCopy8((u8 *) &data_0217aa00->mUnk_045c[k] + 0x14, r->mUnk_008[x], 0x200);
+                    r->mFilledBits |= 1 << x;
+                    MI_CpuCopy8((u8 *) &data_0217aa00->mUnk_045c[k] + 0x14, r->mEmblems[x], 0x200);
                 }
             }
-            func_02057710(r, i);
+            WriteBackupEmblemBlock(r, i);
             if (gBackupAccess->mBackupEnabled != 0) {
                 CARD_WaitBackupAsync();
             }
         }
     }
     if (f != FALSE) {
-        func_02057ca4(data_0217aa08->mUnk_00);
+        WriteBackupFirstBlock(data_0217aa08->mFirstBlock);
         if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }
-    func_02057504();
+    ClearBackupBusy();
 }
 
 void CopyWiFiOtherEmblemsToBlocks(void) {
@@ -156,7 +156,7 @@ void CopyWiFiOtherEmblemsToBlocks(void) {
     Unk0217aa00_45c *e;
     u8 c[12];
     s8 d[4];
-    Unk0217aa08_24 *r;
+    EmblemBlockData *r;
     s32 v1;
     s32 v2;
     u8 x;
@@ -187,15 +187,15 @@ void CopyWiFiOtherEmblemsToBlocks(void) {
     }
     for (i = 0; i < 12; i++) {
         if (c[i] != 0) {
-            r = data_0217aa08->mUnk_24;
-            if (func_0205743c(i, &data_0217aa08->mUnk_00->mUnk_2c[2], 2) != 0) {
-                func_020576b8(r, i);
+            r = data_0217aa08->mEmblemBlockData;
+            if (IsBitArrayBitSet(i, &data_0217aa08->mFirstBlock->mUnk_2c[2], 2) != 0) {
+                ReadBackupEmblemBlock(r, i);
                 if (gBackupAccess->mBackupEnabled != 0) {
                     CARD_WaitBackupAsync();
                 }
             } else {
                 MI_CpuFill8(r, 0, 0xb00);
-                func_0205746c(i, &data_0217aa08->mUnk_00->mUnk_2c[2], 2);
+                SetBitArrayBit(i, &data_0217aa08->mFirstBlock->mUnk_2c[2], 2);
             }
             v1 = i * 5;
             v2 = (i + 1) * 5;
@@ -205,16 +205,16 @@ void CopyWiFiOtherEmblemsToBlocks(void) {
                 if (t >= v1 && t < v2) {
                     x = t % 5;
                     *q = *q | (1 << x);
-                    MI_CpuCopy8((u8 *) GetWiFiSessionPlayerRecordData(k & 0xff) + 0x14, r->mUnk_008[x], 0x200);
+                    MI_CpuCopy8((u8 *) GetWiFiSessionPlayerRecordData(k & 0xff) + 0x14, r->mEmblems[x], 0x200);
                 }
             }
-            func_02057710(r, i);
+            WriteBackupEmblemBlock(r, i);
             if (gBackupAccess->mBackupEnabled != 0) {
                 CARD_WaitBackupAsync();
             }
         }
     }
-    func_02057504();
+    ClearBackupBusy();
 }
 
 static inline s32 func_0205e5c4_inline(void) {
@@ -252,9 +252,9 @@ void func_0205e5c4(s32 a) {
         }
         f = CopyWiFiOtherEmblemsToBlocks;
     }
-    func_02057514();
-    func_02057df0(f);
-    data_0217aa0c->mUnk_f8 = 1;
+    SetBackupBusy();
+    QueueThreadFunction(f);
+    gThreadFunctionQueue->mRunRequested = 1;
 }
 
 static inline u8 func_0205e548_inline(void *a) {

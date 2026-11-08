@@ -123,15 +123,15 @@ typedef struct SelectEngine {
     /* 00 */ struct Unk02021dc8 *mSelectEngineMNcer;
     /* 04 */ struct Unk0201ea30 *mSelectEngineMBncl;
     /* 08 */ struct Unk02021dc8 *mSelectEngineSNcer;
-    // gp/select_engine_B_s.bncl when func_02056dec(0x10) != 0, else gp/select_engine_A_s.bncl; the same flag hides item
-    // 3 (A layout has no fourth item)
-    // (code_021a11a4.c:139-143 zeroes the cells of item 3 when func_02056dec(0x10) is 0)
+    // gp/select_engine_B_s.bncl when IsBackupFlagSet(0x10) != 0, else gp/select_engine_A_s.bncl; the same flag hides
+    // item 3 (A layout has no fourth item) (code_021a11a4.c:139-143 zeroes the cells of item 3 when
+    // IsBackupFlagSet(0x10) is 0)
     /* 0c */ struct Unk0201ea30 *mSelectEngineAOrBSBncl;
     // same variant as mSelectEngineAOrBSBncl (.bnbl)
     /* 10 */ void *mSelectEngineAOrBSBnbl;
     // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by InitLayoutTable
     /* 14 */ LayoutTableEntry *mSelectEngineMTable;
-    // cell records of mSelectEngineAOrBSBncl (variant chosen by func_02056dec(0x10))
+    // cell records of mSelectEngineAOrBSBncl (variant chosen by IsBackupFlagSet(0x10))
     /* 18 */ LayoutTableEntry *mSelectEngineAOrBSTable;
     /* 1c */ void *mUnk_1c;
     /* 20 */ void *mHeap;

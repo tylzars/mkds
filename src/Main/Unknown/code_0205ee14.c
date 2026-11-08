@@ -144,14 +144,14 @@ BOOL func_0205fc98(KartAppear *a, u32 b, u32 c) {
 
 s32 func_0205fc28(s32 a) {
     if (func_0205f218_inline() == FALSE) {
-        return func_02056dec(a);
+        return IsBackupFlagSet(a);
     }
     return func_02056e00(a, data_0217aa08->mParticipantAndBits);
 }
 
 s32 func_0205fbb8(s32 a) {
     if (func_0205f218_inline() == FALSE) {
-        return func_02056dec(a);
+        return IsBackupFlagSet(a);
     }
     return func_02056e00(a, data_0217aa08->mParticipantOrBits);
 }
@@ -253,8 +253,8 @@ void func_0205f700(void) {
     if (gRaceSetup->mUseTeams != 0) {
         c = gRaceSetup->mCurrentEntries[(u16) gRaceSetup->mEntryIndex].mPlayer.mTeamIndex;
     }
-    d = data_0217aa08->mUnk_00->mUnk_34[0];
-    e = data_0217aa08->mUnk_00->mUnk_34[1];
+    d = data_0217aa08->mFirstBlock->mUnk_34[0];
+    e = data_0217aa08->mFirstBlock->mUnk_34[1];
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         if (i == gRaceSetup->mEntryIndex) {
             continue;
@@ -302,8 +302,8 @@ void func_0205f700(void) {
         }
     }
     if (v1 != FALSE) {
-        data_0217aa08->mUnk_00->mUnk_34[0] = d;
-        data_0217aa08->mUnk_00->mUnk_34[1] = e;
+        data_0217aa08->mFirstBlock->mUnk_34[0] = d;
+        data_0217aa08->mFirstBlock->mUnk_34[1] = e;
         func_0205edcc();
     } else {
         func_0205edf8();
@@ -333,8 +333,8 @@ void func_0205f498(void) {
         return;
     }
     GetClockDateOrDefault(v2);
-    a = data_0217aa08->mUnk_00->mUnk_34[2];
-    b = data_0217aa08->mUnk_00->mUnk_34[3];
+    a = data_0217aa08->mFirstBlock->mUnk_34[2];
+    b = data_0217aa08->mFirstBlock->mUnk_34[3];
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         if (i == gRaceSetup->mEntryIndex) {
             continue;
@@ -369,8 +369,8 @@ void func_0205f498(void) {
         }
     }
     if (v1 != FALSE) {
-        data_0217aa08->mUnk_00->mUnk_34[2] = a;
-        data_0217aa08->mUnk_00->mUnk_34[3] = b;
+        data_0217aa08->mFirstBlock->mUnk_34[2] = a;
+        data_0217aa08->mFirstBlock->mUnk_34[3] = b;
         func_0205edcc();
     } else {
         func_0205edf8();
@@ -401,8 +401,8 @@ void func_0205f218(void) {
     }
     GetClockDateOrDefault(v2);
     GetKartRank((u16) gRaceSetup->mEntryIndex);
-    a = data_0217aa08->mUnk_00->mUnk_34[2];
-    b = data_0217aa08->mUnk_00->mUnk_34[3];
+    a = data_0217aa08->mFirstBlock->mUnk_34[2];
+    b = data_0217aa08->mFirstBlock->mUnk_34[3];
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         if (i == gRaceSetup->mEntryIndex) {
             continue;
@@ -437,8 +437,8 @@ void func_0205f218(void) {
         }
     }
     if (v1 != FALSE) {
-        data_0217aa08->mUnk_00->mUnk_34[2] = a;
-        data_0217aa08->mUnk_00->mUnk_34[3] = b;
+        data_0217aa08->mFirstBlock->mUnk_34[2] = a;
+        data_0217aa08->mFirstBlock->mUnk_34[3] = b;
         func_0205edcc();
     } else {
         func_0205edf8();
@@ -470,8 +470,8 @@ void func_0205ef70(void) {
     s8 m;
     s32 v1[3];
 
-    a = data_0217aa08->mUnk_00->mUnk_34[4];
-    b = data_0217aa08->mUnk_00->mUnk_34[5];
+    a = data_0217aa08->mFirstBlock->mUnk_34[4];
+    b = data_0217aa08->mFirstBlock->mUnk_34[5];
     func_0205b32c();
     if (gRaceSetup->mCourseNumber <= 3) {
         return;
@@ -523,9 +523,9 @@ void func_0205ef70(void) {
             }
         }
     }
-    data_0217aa08->mUnk_00->mElo = GetPlayerRecordElo(func_ov000_0219bb50());
-    data_0217aa08->mUnk_00->mUnk_34[4] = a;
-    data_0217aa08->mUnk_00->mUnk_34[5] = b;
+    data_0217aa08->mFirstBlock->mElo = GetPlayerRecordElo(func_ov000_0219bb50());
+    data_0217aa08->mFirstBlock->mUnk_34[4] = a;
+    data_0217aa08->mFirstBlock->mUnk_34[5] = b;
     func_0205edcc();
 }
 

@@ -49,8 +49,7 @@ void func_0211fe44(void) {
     CopyWiFiBuddiesToRecordBlock(&gWiFiSession->mBuddies[0]);
     RefreshNotYetBuddyFlags();
     func_0205edf8();
-    while (data_0217aa08->mUnk_28 == 0 ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0)
-                                       : 1) {
+    while (data_0217aa08->mBusy == 0 ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0) : 1) {
     }
     gWiFiSession->mBuddiesChanged = FALSE;
 }
@@ -113,7 +112,7 @@ void SetupWiFiSessionLogin(void) {
     MI_CpuFill8(&gWiFiSession->mUserData, 0, 0x350);
     MI_CpuFill8(&gWiFiSession->mConnection, 0, 0xe24);
     if (func_02061290() != 0) {
-        MI_CpuCopy8(&data_0217aa08->mUnk_00->mUserData, &gWiFiSession->mUserData, 0x40);
+        MI_CpuCopy8(&data_0217aa08->mFirstBlock->mUserData, &gWiFiSession->mUserData, 0x40);
     } else {
         DWC_CreateUserData((DWCAccUserData *) &gWiFiSession->mUserData, 0x414d434a);
     }
@@ -162,8 +161,8 @@ u32 UpdateWiFiSessionLogin(void) {
             func_0211fa70();
             break;
         case 3:
-            if (data_0217aa08->mUnk_28 == 0 ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0)
-                                            : 1) {
+            if (data_0217aa08->mBusy == 0 ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0)
+                                          : 1) {
                 break;
             }
             DWC_ReportUserData((DWCAccUserData *) &gWiFiSession->mUserData);
@@ -191,7 +190,7 @@ void WiFiSessionLoginCallback(s32 result) {
     if (result == 0) {
         if (DWCi_Acc_IsDirty((DWCAccUserData *) &gWiFiSession->mUserData) != 0) {
             DWCi_Acc_ClearDirty((DWCAccUserData *) &gWiFiSession->mUserData);
-            MI_CpuCopy8(&gWiFiSession->mUserData, &data_0217aa08->mUnk_00->mUserData, 0x40);
+            MI_CpuCopy8(&gWiFiSession->mUserData, &data_0217aa08->mFirstBlock->mUserData, 0x40);
             func_02056d40();
         }
         gWiFiSession->mLogin.mStep = 3;
@@ -228,8 +227,7 @@ void func_0211f6e8(u32 a, u32 b) {
     CopyWiFiBuddiesToRecordBlock(&gWiFiSession->mBuddies[0]);
     RefreshNotYetBuddyFlags();
     func_0205edf8();
-    while (data_0217aa08->mUnk_28 == 0 ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0)
-                                       : 1) {
+    while (data_0217aa08->mBusy == 0 ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0) : 1) {
     }
 }
 

@@ -33,11 +33,11 @@ BOOL LoadPendingFiles(void) {
         return FALSE;
     }
     if (previousIndex >= 0 && data_0217aa00->mBlockEntries[previousIndex].mUncompressPending != 0) {
-        if (data_0217aa0c->mUnk_f8 != 0) {
+        if (gThreadFunctionQueue->mRunRequested != 0) {
             return FALSE;
         }
-        func_02057df0(UncompressPendingFile);
-        data_0217aa0c->mUnk_f8 = 1;
+        QueueThreadFunction(UncompressPendingFile);
+        gThreadFunctionQueue->mRunRequested = 1;
         return FALSE;
     }
     if (nextIndex >= 12 || data_0217aa00->mBlockEntries[nextIndex].mPath == 0) {

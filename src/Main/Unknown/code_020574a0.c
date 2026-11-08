@@ -6,10 +6,10 @@
 
 #pragma thumb on
 
-void func_020574a0(void) {
-    func_02057514();
-    func_02057df0(func_020574c8);
-    data_0217aa0c->mUnk_f8 = 1;
+void StartWriteBackupFirstBlock(void) {
+    SetBackupBusy();
+    QueueThreadFunction(WriteBackupFirstBlockAndWait);
+    gThreadFunctionQueue->mRunRequested = 1;
 }
 
 #pragma thumb off

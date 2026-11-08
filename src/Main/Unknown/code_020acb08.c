@@ -8,7 +8,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 
 u32 func_020acbc0(void) {
-    return data_0217aa08->mUnk_00->mUnk_31_0 != 0;
+    return data_0217aa08->mFirstBlock->mUnk_31_0 != 0;
 }
 
 #pragma optimize_for_size on

@@ -329,7 +329,7 @@ s32 func_02060268(s32 a) {
     if (d == -1) {
         return c;
     }
-    if (func_020573f8(d) == 0) {
+    if (IsCourseGhostBitSet(d) == 0) {
         return c;
     }
     for (i = 0; i < 6; i++) {
@@ -409,8 +409,8 @@ void ClearCourseTimeRecords(s32 a) {
         return;
     }
     e = c;
-    if (func_020573f8(e) != 0) {
-        func_020573e0(e);
+    if (IsCourseGhostBitSet(e) != 0) {
+        ClearCourseGhostBit(e);
         d = TRUE;
     }
     for (i = 0; i < 6; i++) {

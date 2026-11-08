@@ -453,9 +453,9 @@ u32 GetSelectCupGridCupEnabled(u32 cupIndex) {
                     break;
                 default:
                     if (GetMirrorMode() != 0) {
-                        enabled = func_02056dec(data_0215c8bc[cupIndex]);
+                        enabled = IsBackupFlagSet(data_0215c8bc[cupIndex]);
                     } else {
-                        enabled = func_02056dec(data_0215c95c[cupIndex][data_0215c7f0[GetEngineIndex()]]);
+                        enabled = IsBackupFlagSet(data_0215c95c[cupIndex][data_0215c7f0[GetEngineIndex()]]);
                     }
                     break;
             }
@@ -472,9 +472,9 @@ u32 GetSelectCupGridCupEnabled(u32 cupIndex) {
                     enabled = 0;
                     for (i = 0; i < 4; i++) {
                         if (i == 3) {
-                            enabled |= func_02056dec(data_0215c8bc[cupIndex]);
+                            enabled |= IsBackupFlagSet(data_0215c8bc[cupIndex]);
                         } else {
-                            enabled |= func_02056dec(data_0215c95c[cupIndex][i]);
+                            enabled |= IsBackupFlagSet(data_0215c95c[cupIndex][i]);
                         }
                     }
                     break;

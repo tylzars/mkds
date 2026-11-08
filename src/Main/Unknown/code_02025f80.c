@@ -263,22 +263,22 @@ void InitSelectCharacter(void *parentHeap, s32 mode, void *mainOam, void *subOam
     for (i = 0; i < 8; i++) {
         gSelectCharacter->mUnk_090[i] = data_021535b4[i];
     }
-    if (func_02056dec(0x15) != 0) {
+    if (IsBackupFlagSet(0x15) != 0) {
         gSelectCharacter->mUnk_090[i] = data_021535b4[8];
         i++;
         gSelectCharacter->mUnk_07c++;
     }
-    if (func_02056dec(0x14) != 0) {
+    if (IsBackupFlagSet(0x14) != 0) {
         gSelectCharacter->mUnk_090[i] = data_021535b4[9];
         i++;
         gSelectCharacter->mUnk_07c++;
     }
-    if (func_02056dec(0x16) != 0) {
+    if (IsBackupFlagSet(0x16) != 0) {
         gSelectCharacter->mUnk_090[i] = data_021535b4[10];
         i++;
         gSelectCharacter->mUnk_07c++;
     }
-    if (func_02056dec(0x17) != 0) {
+    if (IsBackupFlagSet(0x17) != 0) {
         gSelectCharacter->mUnk_090[i] = data_021535b4[11];
         i++;
         gSelectCharacter->mUnk_07c++;

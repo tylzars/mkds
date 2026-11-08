@@ -18,5 +18,5 @@ void func_0205edcc(void) {
     value0 = *(const u32 *) ((value0) + (0));
     value0 = *(const u32 *) ((value0) + (32));
     WriteBackupBuddyRecordBlock((void *) value0);
-    func_020574a0();
+    StartWriteBackupFirstBlock();
 }

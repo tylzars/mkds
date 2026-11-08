@@ -5,18 +5,18 @@
 
 #pragma thumb on
 
-void func_02057ca4(void *a) {
-    u32 *v = gBackupAccess->mBuffer;
+void WriteBackupFirstBlock(void *block) {
+    u32 *buffer = gBackupAccess->mBuffer;
     if (gBackupAccess->mBackupEnabled != 0) {
-        enum { K0 = 0x53444b4d } b;
-        enum { K1 = 0x30315653 } c;
-        MI_CpuCopy8(a, v, 0x100);
-        b = K0;
-        c = K1;
-        v[0] = b;
-        v[1] = c;
-        v[2] = 0x59534b4e;
-        StartBackupWriteTwoCopies(0, 0x30f00, v, 0x100, NULL, 1);
+        enum { K0 = 0x53444b4d } firstWord;
+        enum { K1 = 0x30315653 } secondWord;
+        MI_CpuCopy8(block, buffer, 0x100);
+        firstWord = K0;
+        secondWord = K1;
+        buffer[0] = firstWord;
+        buffer[1] = secondWord;
+        buffer[2] = 0x59534b4e;
+        StartBackupWriteTwoCopies(0, 0x30f00, buffer, 0x100, NULL, 1);
     }
 }
 

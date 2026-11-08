@@ -83,14 +83,14 @@ s32 func_02058dc0(void (*callback)(void)) {
             break;
         case 2:
             if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-                func_02057df0(callback);
-                data_0217aa0c->mUnk_f8 = 1;
+                QueueThreadFunction(callback);
+                gThreadFunctionQueue->mRunRequested = 1;
             }
             data_0217aa00->mUnk_1e34 = 3;
             QueueMPDataHalfword(3, 1);
             break;
         case 3:
-            if (data_0217aa0c->mUnk_f8 == 0) {
+            if (gThreadFunctionQueue->mRunRequested == 0) {
                 if (data_0217aa00->mUnk_164f != 0) {
                     func_02050e60(7);
                 } else {

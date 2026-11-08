@@ -25,7 +25,7 @@ void func_ov001_021a2408(void) {
     u16 *dst;
     u32 bits;
 
-    if ((data_0217aa08->mUnk_28 == 0 ? (gBackupAccess->mBackupEnabled ? gBackupAccess->mCommandRunning : 0) : 1) == 0) {
+    if ((data_0217aa08->mBusy == 0 ? (gBackupAccess->mBackupEnabled ? gBackupAccess->mCommandRunning : 0) : 1) == 0) {
         AdvanceKartModelMenuLoad();
     }
 

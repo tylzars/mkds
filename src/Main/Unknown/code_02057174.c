@@ -11,17 +11,17 @@
 
 #pragma thumb on
 
-void func_0205721c(u32 a) {
+void ResetBackupFirstBlockAndRecords(u32 copyOwnerName) {
     ClearEmblemRecord();
     ClearGrandPrixRecordBlock();
     ClearCourseTimeRecordBlock();
     ClearMissionRecordBlock();
     func_02057260();
     ClearBuddyRecordBlock();
-    func_02057304(a);
+    ResetBackupFirstBlock(copyOwnerName);
 }
 
-void func_02057174(void) {
+void WriteBackupFirstBlockAndRecords(void) {
     WriteBackupEmblemRecord(data_0217aa08->mEmblemRecord);
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
@@ -42,11 +42,11 @@ void func_02057174(void) {
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    func_02057ca4(data_0217aa08->mUnk_00);
+    WriteBackupFirstBlock(data_0217aa08->mFirstBlock);
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    func_02057504();
+    ClearBackupBusy();
 }
 
 #pragma thumb off

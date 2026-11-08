@@ -90,7 +90,7 @@ static inline s32 func_0204984c_inline7(void) {
 }
 
 static inline s32 func_0204984c_inline8(void) {
-    if (!data_0217aa08->mUnk_28) {
+    if (!data_0217aa08->mBusy) {
         return func_0204984c_inline7();
     }
     return 1;

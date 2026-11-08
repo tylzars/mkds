@@ -253,7 +253,7 @@ u32 func_020911a8(void) {
     if (GetCurrentSceneNumber() == 10) {
         r = func_02090ff4();
         func_02056d40();
-        func_02057d9c();
+        WaitThreadFunctionsDone();
         if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
@@ -334,45 +334,45 @@ u32 func_02090cf8(void) {
     r = 0;
     for (i = 0; i < 4; i++) {
         t = 0;
-        if (func_02056dec(i) == 0) {
+        if (IsBackupFlagSet(i) == 0) {
             if (func_02090cf8_inline(0, i) != FALSE && func_02090cf8_inline(1, i) != FALSE) {
-                func_02056e24(i);
+                SetBackupFlag(i);
                 t = 1;
             }
         }
         r = r | t;
         t = 0;
         j4 = i + 4;
-        if (func_02056dec(j4) == 0) {
+        if (IsBackupFlagSet(j4) == 0) {
             if (func_02090cf8_inline(2, i) != FALSE) {
-                func_02056e24(j4);
+                SetBackupFlag(j4);
                 t = 2;
             }
         }
         r = r | t;
         t = 0;
         j8 = i + 8;
-        if (func_02056dec(j8) == 0) {
+        if (IsBackupFlagSet(j8) == 0) {
             if (func_02090cf8_inline(4, i) != FALSE && func_02090cf8_inline(5, i) != FALSE) {
-                func_02056e24(j8);
+                SetBackupFlag(j8);
                 t = 4;
             }
         }
         r = r | t;
         t = 0;
         j12 = i + 12;
-        if (func_02056dec(j12) == 0) {
+        if (IsBackupFlagSet(j12) == 0) {
             if (func_02090cf8_inline(6, i) != FALSE) {
-                func_02056e24(j12);
+                SetBackupFlag(j12);
                 t = 8;
             }
         }
         r = r | t;
     }
     q = 0;
-    if (func_02056dec(0x10) == 0) {
+    if (IsBackupFlagSet(0x10) == 0) {
         if (func_02090cf8_inline(3, 2) != FALSE && func_02090cf8_inline(7, 2) != FALSE) {
-            func_02056e24(0x10);
+            SetBackupFlag(0x10);
             q = 0x10;
         }
     }
@@ -384,9 +384,9 @@ u32 func_02090b24(void) {
     BOOL t;
     r = 0;
     t = FALSE;
-    if (func_02056dec(0x14) == 0) {
+    if (IsBackupFlagSet(0x14) == 0) {
         if ((IsGrandPrixRecordFilled(3, 0) != 0 && GetGrandPrixRecordCupRank(3, 0) == 0) ? 1 : 0) {
-            func_02056e24(0x14);
+            SetBackupFlag(0x14);
             t = TRUE;
         }
     }
@@ -394,9 +394,9 @@ u32 func_02090b24(void) {
         r = r | 0x20;
     }
     t = FALSE;
-    if (func_02056dec(0x15) == 0) {
+    if (IsBackupFlagSet(0x15) == 0) {
         if ((IsGrandPrixRecordFilled(7, t) != 0 && GetGrandPrixRecordCupRank(7, t) == 0) ? 1 : 0) {
-            func_02056e24(0x15);
+            SetBackupFlag(0x15);
             t = TRUE;
         }
     }
@@ -404,9 +404,9 @@ u32 func_02090b24(void) {
         r = r | 0x40;
     }
     t = FALSE;
-    if (func_02056dec(0x16) == 0) {
+    if (IsBackupFlagSet(0x16) == 0) {
         if ((IsGrandPrixRecordFilled(7, 1) != 0 && GetGrandPrixRecordCupRank(7, 1) == 0) ? 1 : 0) {
-            func_02056e24(0x16);
+            SetBackupFlag(0x16);
             t = TRUE;
         }
     }
@@ -414,7 +414,7 @@ u32 func_02090b24(void) {
         r = r | 0x80;
     }
     t = FALSE;
-    if (func_02056dec(0x17) == 0) {
+    if (IsBackupFlagSet(0x17) == 0) {
         BOOL f;
         if (IsGrandPrixRecordFilled(3, 3) != 0 && GetGrandPrixRecordCupRank(3, 3) == 0) {
             f = TRUE;
@@ -431,7 +431,7 @@ u32 func_02090b24(void) {
         }
         if (f != FALSE) {
         l1:
-            func_02056e24(0x17);
+            SetBackupFlag(0x17);
             t = TRUE;
         }
     }

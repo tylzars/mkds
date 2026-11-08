@@ -133,7 +133,7 @@ void func_020442d0(u32 courseId) {
     data_0217aa08->mGhostRecords[2]->mFilled = 0;
     data_0217aa08->mGhostRecords[0]->mFilled = 0;
     ReadCourseGhostRecord(courseId);
-    func_02057d9c();
+    WaitThreadFunctionsDone();
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
@@ -150,7 +150,7 @@ void func_0204419c(u32 courseId, u32 b) {
     data_0217aa08->mGhostRecords[2]->mFilled = 0;
     data_0217aa08->mGhostRecords[0]->mFilled = 0;
     ReadCourseGhostRecord(courseId);
-    func_02057d9c();
+    WaitThreadFunctionsDone();
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
@@ -158,7 +158,7 @@ void func_0204419c(u32 courseId, u32 b) {
         data_0217aa08->mGhostRecords[0]->mFilled = 0;
     }
     ReadSlotGhostRecord(b);
-    func_02057d9c();
+    WaitThreadFunctionsDone();
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
@@ -179,7 +179,7 @@ void func_02044060(u32 courseId) {
     data_0217aa08->mGhostRecords[2]->mFilled = 0;
     data_0217aa08->mGhostRecords[0]->mFilled = 0;
     ReadCourseGhostRecord(courseId);
-    func_02057d9c();
+    WaitThreadFunctionsDone();
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
@@ -201,7 +201,7 @@ void func_02043fb0(u32 courseId) {
     data_0217aa08->mGhostRecords[2]->mFilled = 0;
     data_0217aa08->mGhostRecords[0]->mFilled = 0;
     ReadCourseGhostRecord(courseId);
-    func_02057d9c();
+    WaitThreadFunctionsDone();
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }

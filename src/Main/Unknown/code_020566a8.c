@@ -13,11 +13,11 @@ void WriteSlotGhostRecord(u32 index, int source) {
     destination = data_0217aa08->mGhostRecords[1];
     *(u32 *) (source + 8) = *(u32 *) (source + 8) & 0xfffffffe | 1;
     MI_CpuCopy8(((u16 *) (u32) source), ((u32 *) destination), (0x00001000u));
-    func_02057944(index, destination);
-    slotBit = func_020573c8(index);
+    WriteBackupSlotGhost(index, destination);
+    slotBit = IsSlotGhostBitSet(index);
     if (slotBit == 0) {
-        func_0205746c(index, data_0217aa08->mUnk_00->mSlotGhostBits, 2);
-        func_020574a0();
+        SetBitArrayBit(index, data_0217aa08->mFirstBlock->mSlotGhostBits, 2);
+        StartWriteBackupFirstBlock();
     }
 }
 

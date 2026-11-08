@@ -13,5 +13,5 @@ u32 IsBackupCommandRunning(void) {
 }
 
 u32 IsBackupBusy(void) {
-    return data_0217aa08->mUnk_28 != 0 ? 1 : IsBackupCommandRunning();
+    return data_0217aa08->mBusy != 0 ? 1 : IsBackupCommandRunning();
 }

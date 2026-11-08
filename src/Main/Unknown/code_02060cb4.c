@@ -25,50 +25,50 @@ void func_020613a0(void) {
     char b[0x80];
 
     i = 0;
-    a = data_0217aa08->mUnk_40;
+    a = data_0217aa08->mReadDestination;
     for (; i < 0x20; i++) {
         FormatGhostFilePath(i, b, 0x80);
         ReadFileBytes(b, a + i * 0x230, 0x230);
     }
-    func_02057504();
-    data_0217aa08->mUnk_40 = NULL;
+    ClearBackupBusy();
+    data_0217aa08->mReadDestination = NULL;
 }
 
 void func_02061358(void *a) {
-    data_0217aa08->mUnk_40 = a;
-    func_02057514();
-    func_02057df0((void (*)(void)) func_020613a0);
-    data_0217aa0c->mUnk_f8 = 1;
+    data_0217aa08->mReadDestination = a;
+    SetBackupBusy();
+    QueueThreadFunction((void (*)(void)) func_020613a0);
+    gThreadFunctionQueue->mRunRequested = 1;
 }
 
 void func_020612b0(void) {
-    Unk0217aa08_00 *a;
+    BackupFirstBlock *a;
     u32 b;
     u32 c;
 
     gWiFiSession->mKartCountCopy = gWiFiSession->mKartCount;
-    a = data_0217aa08->mUnk_00;
+    a = data_0217aa08->mFirstBlock;
     b = a->mUnk_34[5] + (u8) (gWiFiSession->mKartCountCopy - 1);
     c = data_021653e4 + 3;
     if (b > c) {
         b = c;
     }
-    data_0217aa08->mUnk_00->mUnk_34[5] = b;
-    func_02057ca4(data_0217aa08->mUnk_00);
+    data_0217aa08->mFirstBlock->mUnk_34[5] = b;
+    WriteBackupFirstBlock(data_0217aa08->mFirstBlock);
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
 }
 
 s32 func_02061290(void) {
-    return DWC_CheckValidConsole((DWCAccUserData *) data_0217aa08->mUnk_00->mUserData);
+    return DWC_CheckValidConsole((DWCAccUserData *) data_0217aa08->mFirstBlock->mUserData);
 }
 
 s32 func_02061250(void) {
     u64 a;
     s32 b;
 
-    a = DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mUnk_00->mUserData);
+    a = DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mFirstBlock->mUserData);
     b = 0;
     if (a != b) {
         b = 1;
@@ -79,7 +79,7 @@ s32 func_02061250(void) {
 void func_02061220(u32 a) {
     u64 b;
 
-    b = DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mUnk_00->mUserData);
+    b = DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mFirstBlock->mUserData);
     FormatFriendKey(b, b >> 32, a);
 }
 
@@ -95,7 +95,7 @@ s32 func_02061104(const void *a) {
     if (DWC_Acc_CheckFriendKey(d, 0x414d434a) == 0) {
         return 1;
     }
-    if (d == DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mUnk_00->mUserData)) {
+    if (d == DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mFirstBlock->mUserData)) {
         return 1;
     }
     InitFriendDataFromFriendKey(b, d, d >> 32);

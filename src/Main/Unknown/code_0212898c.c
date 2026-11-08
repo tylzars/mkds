@@ -162,7 +162,7 @@ void func_0212a448(void) {
     u16 text[12];
     text[0] = 0;
     MIi_CpuClear16(text[0], &text[1], 0x16);
-    MIi_CpuCopy16(data_0217aa08->mUnk_00->mPlayerName, &text[1], 0x14);
+    MIi_CpuCopy16(data_0217aa08->mFirstBlock->mPlayerName, &text[1], 0x14);
     SetKeyboardText(&text[1]);
 }
 
@@ -834,9 +834,9 @@ void AdvanceKeyboardState10(void) {
                 SetupTxtSystemSubTextEx(message, 0, 1, 1, 0, 1);
                 gKeyboard->mNextState = 0xb;
             } else {
-                data_0217aa08->mUnk_00->mUnk_31_0 = 1;
-                MI_CpuFill8(data_0217aa08->mUnk_00->mPlayerName, 0, 0x14);
-                MI_CpuCopy8(&keyboard->mUnk_2c[1], data_0217aa08->mUnk_00->mPlayerName, 0x14);
+                data_0217aa08->mFirstBlock->mUnk_31_0 = 1;
+                MI_CpuFill8(data_0217aa08->mFirstBlock->mPlayerName, 0, 0x14);
+                MI_CpuCopy8(&keyboard->mUnk_2c[1], data_0217aa08->mFirstBlock->mPlayerName, 0x14);
                 func_02056d40();
                 SetTxtSystemOpenSoundId(0x21);
                 message = GetBmgEntry(gKeyboard->mCommonMessages, 0x10);
@@ -871,9 +871,8 @@ void AdvanceKeyboardState11(void) {
     if (IsTxtSystemState2NoCloseRequest() != 0) {
         keyboard = gKeyboard;
         if (keyboard->mStateFrames > 0x5a) {
-            w = (data_0217aa08->mUnk_28 == 0)
-                    ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0)
-                    : 1;
+            w = (data_0217aa08->mBusy == 0) ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0)
+                                            : 1;
             if (w == 0) {
                 keyboard->mNextState = 0xc;
                 gKeyboard->mStateFrames = 0;
@@ -896,8 +895,7 @@ void AdvanceKeyboardState12(void) {
         RequestTxtSystemClose();
     }
     if (IsTxtSystemState0NoOpenRequest() != 0) {
-        w = (data_0217aa08->mUnk_28 == 0) ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0)
-                                          : 1;
+        w = (data_0217aa08->mBusy == 0) ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0) : 1;
         if (w == 0) {
             SetTxtSystemOpenSoundId(0x23);
             mode = gKeyboard->mUnk_2c[2].mMode;

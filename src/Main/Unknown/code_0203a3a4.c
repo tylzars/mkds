@@ -221,10 +221,10 @@ void func_0203aacc(void) {
                 flagIndex = 0x19;
             }
         }
-        if (func_02056dec(flagIndex) == 0) {
-            func_02056e24(flagIndex);
+        if (IsBackupFlagSet(flagIndex) == 0) {
+            SetBackupFlag(flagIndex);
             func_02056d40();
-            func_02057d9c();
+            WaitThreadFunctionsDone();
             if (gBackupAccess->mBackupEnabled != 0) {
                 CARD_WaitBackupAsync();
             }
@@ -276,7 +276,7 @@ u32 ShouldEndStaffRoll(u32 sceneFrames) {
         }
     }
     result = 0;
-    if (func_02056dec(flagIndex) != 0 && sceneFrames > 0xb4) {
+    if (IsBackupFlagSet(flagIndex) != 0 && sceneFrames > 0xb4) {
         InputSlotIndex slotIndex = UNK_02175628_INDEX_8;
         if ((u16) (data_02175628[slotIndex].mBits & 0xc0f) != 0 || func_0203a908_inline() != 0) {
             result = 1;

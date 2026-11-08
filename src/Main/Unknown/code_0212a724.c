@@ -7,7 +7,7 @@
 
 s32 func_0212a8d0(void) {
     BOOL result = FALSE;
-    if (!data_0217aa08->mUnk_00->mLocateFriendOff) {
+    if (!data_0217aa08->mFirstBlock->mLocateFriendOff) {
         if (func_021213f4() != FALSE) {
             result = TRUE;
         }

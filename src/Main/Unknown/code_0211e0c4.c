@@ -30,13 +30,13 @@ void InitGhostRecordSet(void *heap) {
     gGhostRecordSet = HeapAlloc(heap, 0x14);
     gGhostRecordSet->mCourseGhostRecords = (u8 *) CreateCourseGhostRecords((u32) heap);
     func_02061540(gGhostRecordSet->mCourseGhostRecords);
-    func_02057d9c();
+    WaitThreadFunctionsDone();
     gGhostRecordSet->mSlotGhostRecords = (u8 *) func_0206152c((u32) heap);
     func_02061428(gGhostRecordSet->mSlotGhostRecords);
-    func_02057d9c();
+    WaitThreadFunctionsDone();
     gGhostRecordSet->mGhostFileRecords = (u8 *) CreateGhostFileRecords((u32) heap);
     func_02061358(gGhostRecordSet->mGhostFileRecords);
-    func_02057d9c();
+    WaitThreadFunctionsDone();
     LoadStaffGhostTime(heap);
 }
 

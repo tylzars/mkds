@@ -7,7 +7,7 @@
 
 #pragma thumb on
 
-void func_02057c60(void *block) {
+void ReadBackupFirstBlock(void *block) {
     if (gBackupAccess->mBackupEnabled != 0) {
         gBackupAccess->mReadTarget = block;
         StartBackupReadTwoCopies(0, 0x30f00, gBackupAccess->mBuffer, 0x100, CopyBackupReadToBlock, 0x59534b4e, 1);

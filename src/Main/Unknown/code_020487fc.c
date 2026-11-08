@@ -174,7 +174,7 @@ static inline BOOL func_020487fc_inline13(void) {
 }
 
 static inline s32 func_020487fc_inline14(void) {
-    if (!data_0217aa08->mUnk_28) {
+    if (!data_0217aa08->mBusy) {
         return func_020487fc_inline10();
     }
     return 1;

@@ -6,22 +6,22 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "os_thread.h"
 
-void (*func_02057f8c(Unk0217aa0c *queue))(void) {
+void (*func_02057f8c(ThreadFunctionQueue *queue))(void) {
     void (**lastFilledSlot)(void) = NULL;
     void (*callback)(void) = NULL;
     s32 filledCount = 0;
     s32 slot;
-    u8 startSlot = queue->mUnk_28;
+    u8 startSlot = queue->mNewestIndex;
     do {
         slot = startSlot - filledCount;
         if (slot < 0) {
             slot += 10;
         }
-        if (queue->mUnk_00[slot] == NULL) {
+        if (queue->mFunctions[slot] == NULL) {
             break;
         }
         filledCount++;
-        lastFilledSlot = &queue->mUnk_00[slot];
+        lastFilledSlot = &queue->mFunctions[slot];
     } while (filledCount < 10);
     if (lastFilledSlot != NULL) {
         callback = *lastFilledSlot;
@@ -31,16 +31,17 @@ void (*func_02057f8c(Unk0217aa0c *queue))(void) {
 }
 
 void func_02057ed8(void *heap) {
-    Unk0217aa0c *queue;
+    ThreadFunctionQueue *queue;
     s32 i;
-    data_0217aa0c = HeapAlloc(heap, 0xfc);
-    data_0217aa0c->mUnk_f4 = HeapAllocAligned(heap, 0x800, 0x20);
-    OS_CreateThread(&data_0217aa0c->mUnk_2c, func_02057e8c, NULL, (u8 *) data_0217aa0c->mUnk_f4 + 0x800, 0x800, 0x11);
-    OS_WakeupThreadDirect(&data_0217aa0c->mUnk_2c);
-    data_0217aa0c->mUnk_f8 = 0;
-    queue = data_0217aa0c;
+    gThreadFunctionQueue = HeapAlloc(heap, 0xfc);
+    gThreadFunctionQueue->mThreadStack = HeapAllocAligned(heap, 0x800, 0x20);
+    OS_CreateThread(&gThreadFunctionQueue->mThread, RunQueuedThreadFunctions, NULL,
+                    (u8 *) gThreadFunctionQueue->mThreadStack + 0x800, 0x800, 0x11);
+    OS_WakeupThreadDirect(&gThreadFunctionQueue->mThread);
+    gThreadFunctionQueue->mRunRequested = 0;
+    queue = gThreadFunctionQueue;
     for (i = 0; i < 10; i++) {
-        queue->mUnk_00[i] = NULL;
+        queue->mFunctions[i] = NULL;
     }
-    queue->mUnk_28 = 0;
+    queue->mNewestIndex = 0;
 }

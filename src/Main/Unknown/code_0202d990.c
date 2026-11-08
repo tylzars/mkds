@@ -87,10 +87,10 @@ void StartReadListedGhost(s32 index) {
     s32 recordIndex;
     if (IsSlotGhostIndex(index) == 0) {
         recordIndex = gGhostScene->mCupCourseIndices[index];
-        func_0205798c(recordIndex, GetCourseGhostBuffer());
+        ReadBackupCourseGhost(recordIndex, GetCourseGhostBuffer());
     } else {
         recordIndex = gGhostScene->mSlotIndices[index - GetCourseGhostCount()];
-        func_020578fc((u8) recordIndex, (GhostRecord *) GetSlotGhostBuffer());
+        ReadBackupSlotGhost((u8) recordIndex, (GhostRecord *) GetSlotGhostBuffer());
     }
 }
 

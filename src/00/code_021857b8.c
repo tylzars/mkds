@@ -28,7 +28,7 @@ void func_ov000_02185920(void) {
 
 void func_ov000_0218583c(void) {
     u32 a;
-    Unk0217aa08_00 *p;
+    BackupFirstBlock *p;
     s8 b;
 
     if (AreBrightnessFadesFaded() != 0) {
@@ -42,7 +42,7 @@ void func_ov000_0218583c(void) {
         reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffff1fff;
         GX_SetGraphicsMode(1, 0, 1);
         if (data_0217b488->mUnk_6c != FALSE) {
-            p = data_0217aa08->mUnk_00;
+            p = data_0217aa08->mFirstBlock;
             a = p->mUnk_34[5];
             b = gWiFiSession->mKartCountCopy - 1;
             if (b > 0) {
@@ -54,7 +54,7 @@ void func_ov000_0218583c(void) {
             }
             p->mUnk_34[5] = a;
             func_02056d40();
-            func_02057d9c();
+            WaitThreadFunctionsDone();
             if (gBackupAccess->mBackupEnabled != 0) {
                 CARD_WaitBackupAsync();
             }

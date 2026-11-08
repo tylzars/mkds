@@ -93,7 +93,7 @@ void FillAndWriteCourseGhostRecord(s32 courseId, u16 entryIndex) {
     ghostRecord->mMinute = kartTime.mMinute;
     ghostRecord->mSecond = kartTime.mSecond;
     ghostRecord->mMillisecond = kartTime.mMillisecond;
-    MI_CpuCopy8(data_0217aa08->mUnk_00->mPlayerName, ghostRecord->mName, 0x14);
+    MI_CpuCopy8(data_0217aa08->mFirstBlock->mPlayerName, ghostRecord->mName, 0x14);
     MI_CpuCopy8(data_02175628[playerIndex].mUnk_28, ghostRecord->mUnk_30, 0xdcc);
     MI_CpuFill8(lapBytes, 0, 0xf);
     for (lapNumber = 1; lapNumber <= GetLapCount(); lapNumber++) {
@@ -109,10 +109,10 @@ void FillAndWriteCourseGhostRecord(s32 courseId, u16 entryIndex) {
     }
     MI_CpuCopy8(lapBytes, ghostRecord->mLapTimes, 0xf);
     courseIndexByte = cupCourseIndex;
-    func_020579d0(courseIndexByte, ghostRecord);
-    if (func_020573f8(courseIndexByte) == 0) {
-        func_0205746c(courseIndexByte, data_0217aa08->mUnk_00->mCourseGhostBits, 4);
-        func_020574a0();
+    WriteBackupCourseGhost(courseIndexByte, ghostRecord);
+    if (IsCourseGhostBitSet(courseIndexByte) == 0) {
+        SetBitArrayBit(courseIndexByte, data_0217aa08->mFirstBlock->mCourseGhostBits, 4);
+        StartWriteBackupFirstBlock();
     }
 }
 
@@ -126,13 +126,13 @@ void ReadCourseGhostRecord(u32 courseId) {
     ghostRecord = data_0217aa08->mGhostRecords[0];
     if (cupCourseIndex == -1) {
         noGhost = TRUE;
-    } else if (func_020573f8(cupCourseIndex) == 0) {
+    } else if (IsCourseGhostBitSet(cupCourseIndex) == 0) {
         noGhost = TRUE;
     }
     if (noGhost != FALSE) {
         ghostRecord->mFilled = 0;
     } else {
-        func_0205798c(cupCourseIndex, ghostRecord);
+        ReadBackupCourseGhost(cupCourseIndex, ghostRecord);
     }
 }
 

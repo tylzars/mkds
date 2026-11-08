@@ -89,7 +89,7 @@ void ApplySavedSoundMode(void) {
     s32 soundMode;
     outputEffect = 0;
     gLogoScene = NULL;
-    soundMode = data_0217aa08->mUnk_00->mSoundMode;
+    soundMode = data_0217aa08->mFirstBlock->mSoundMode;
     switch (soundMode) {
         case SOUND_MODE_STEREO:
             break;
@@ -127,7 +127,7 @@ void UpdateLogoScene(SceneNumbersView *sceneNumbers) {
 }
 
 void EnterLogoState0(void) {
-    func_02056f98();
+    StartReadBackupFirstBlockAndRecords();
     gLogoScene->mUnk_2c_1 = 0;
 }
 

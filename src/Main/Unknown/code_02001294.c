@@ -14,7 +14,7 @@ void UpdateLogoState1(void) {
     StateMachine *stateMachine;
     s32 v3;
     LogoScene *scene;
-    if (data_0217aa08->mUnk_28 == 0) {
+    if (data_0217aa08->mBusy == 0) {
         if (gBackupAccess->mBackupEnabled != 0) {
             v1 = gBackupAccess->mCommandRunning;
         } else {
@@ -26,7 +26,7 @@ void UpdateLogoState1(void) {
     if (v1 != 0) {
         return;
     }
-    v3 = data_0217aa08->mUnk_2c;
+    v3 = data_0217aa08->mReadStatus;
     if (v3 != 0) {
         if (v3 == 3) {
             gLogoScene->mUnk_2c_1 = 1;
@@ -79,7 +79,7 @@ void UpdateLogoState2(void) {
 
 void EnterLogoState3(void) {
     void *message;
-    func_02056e48();
+    StartResetFailedBackupBlocks();
     message = GetBmgEntry(gLogoScene->mCommonMessages, 126);
     SetupTxtSystemSubTextEx(message, 1, 1, 1, 0, 1);
     gLogoScene->mSubTextFrames = 0;
@@ -92,7 +92,7 @@ void UpdateLogoState3(void) {
     if (IsTxtSystemState2AfterState1() != 0) {
         StartSoundOncePerFrame(34);
     }
-    if (data_0217aa08->mUnk_28 == 0) {
+    if (data_0217aa08->mBusy == 0) {
         if (gBackupAccess->mBackupEnabled != 0) {
             v1 = gBackupAccess->mCommandRunning;
         } else {
@@ -189,7 +189,7 @@ void UpdateLogoState6(void) {
         if (IsTxtSystemState2AfterState1() != 0) {
             StartSoundOncePerFrame(34);
         }
-        if (data_0217aa08->mUnk_28 == 0) {
+        if (data_0217aa08->mBusy == 0) {
             if (gBackupAccess->mBackupEnabled != 0) {
                 v2 = gBackupAccess->mCommandRunning;
             } else {
@@ -210,7 +210,7 @@ void UpdateLogoState6(void) {
             stateMachine->mNextStateRequested = 1;
         }
     } else {
-        if (data_0217aa08->mUnk_28 == 0) {
+        if (data_0217aa08->mBusy == 0) {
             if (gBackupAccess->mBackupEnabled != 0) {
                 v2 = gBackupAccess->mCommandRunning;
             } else {

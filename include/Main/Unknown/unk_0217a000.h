@@ -17,15 +17,15 @@
 #include "Main/Unknown/code_02087d0c.h" // ModelAnimation
 #include "code_02003024.h"
 
-// Values of Unk0217aa08_00.mSoundMode.
+// Values of BackupFirstBlock.mSoundMode.
 typedef enum { SOUND_MODE_SURROUND, SOUND_MODE_STEREO, SOUND_MODE_HEADPHONES } SoundMode;
 
 // Objects whose layout isn't known yet.
-// What data_0217aa08 points to.
-typedef struct Unk0217aa08_00 {
+// The 0x100-byte block read and written at backup offset 0.
+typedef struct BackupFirstBlock {
     /* 00 */ u8 mUnk_00[0xc];
     /* 0c */ u8 mPlayerName[0x14];
-    /* 20 */ u8 mUnk_20[2];
+    /* 20 */ u8 mFlags[2];
     /* 22 */ u8 mUnk_22;
     /* 23 */ u8 mUnk_23;
     /* 24 */ u16 mElo;
@@ -53,7 +53,7 @@ typedef struct Unk0217aa08_00 {
     /* 6c */ u8 mUnk_6c[0x4];
     /* 70 */ s32 mUnk_70;
     /* 74 */ u8 mUnk_74[0x18];
-} Unk0217aa08_00;
+} BackupFirstBlock;
 
 // The player's saved emblem: a filled flag and the 0x200 emblem bytes.
 typedef struct EmblemRecord {
@@ -205,27 +205,27 @@ typedef struct BuddyRecordBlock {
 } BuddyRecordBlock;
 
 // 0xb00 bytes behind member 0x24 of Unk0217aa08: a byte at 0x04 and five 0x200-byte rows from 0x08.
-typedef struct Unk0217aa08_24 {
+typedef struct EmblemBlockData {
     /* 000 */ u8 mUnk_000[4];
-    /* 004 */ u8 mUnk_004;
+    /* 004 */ u8 mFilledBits;
     /* 005 */ u8 mUnk_005[3];
-    /* 008 */ u8 mUnk_008[5][0x200];
+    /* 008 */ u8 mEmblems[5][0x200];
     /* a08 */ u8 mUnk_a08[0xf8];
-} Unk0217aa08_24;
+} EmblemBlockData;
 
 typedef struct Unk0217aa08 {
-    /* 00 */ Unk0217aa08_00 *mUnk_00;
+    /* 00 */ BackupFirstBlock *mFirstBlock;
     /* 04 */ EmblemRecord *mEmblemRecord;
     /* 08 */ GrandPrixRecordBlock *mGrandPrixRecordBlock;
     /* 0c */ CourseTimeRecordBlock *mCourseTimeRecordBlock;
     /* 10 */ MissionRecordBlock *mMissionRecordBlock;
     /* 14 */ GhostRecord *mGhostRecords[3];
     /* 20 */ BuddyRecordBlock *mBuddyRecordBlock;
-    /* 24 */ Unk0217aa08_24 *mUnk_24;
-    /* 28 */ u8 mUnk_28;
+    /* 24 */ EmblemBlockData *mEmblemBlockData;
+    /* 28 */ u8 mBusy;
     /* 29 */ u8 mUnk_29;
-    /* 2a */ u16 mUnk_2a;
-    /* 2c */ s32 mUnk_2c;
+    /* 2a */ u16 mFailedBlockBits;
+    /* 2c */ s32 mReadStatus;
     /* 30 */ u8 mParticipantAndBits[4];
     /* 34 */ u8 mParticipantOrBits[4];
     /* 38 */ u8 mParticipantMaxValue;
@@ -233,7 +233,7 @@ typedef struct Unk0217aa08 {
     /* 3a */ u8 mUnk_3a[2];
     /* 3c */ u8 mUnk_3c;
     /* 3d */ u8 mUnk_3d[3];
-    /* 40 */ void *mUnk_40;
+    /* 40 */ void *mReadDestination;
     /* 44 */ union {
         s32 mUnk_44;
         struct {
@@ -767,18 +767,18 @@ typedef struct ConnectionWork {
 
 extern ConnectionWork *data_0217aa00;
 extern Unk0217aa08 *data_0217aa08;
-// Object behind data_0217aa0c; the OSThread at 0x2c is passed to OS_CreateThread and OS_WakeupThreadDirect.
-typedef struct Unk0217aa0c {
-    /* 00 */ void (*mUnk_00[10])(void);
-    /* 28 */ u8 mUnk_28;
+// Object behind gThreadFunctionQueue; the OSThread at 0x2c is passed to OS_CreateThread and OS_WakeupThreadDirect.
+typedef struct ThreadFunctionQueue {
+    /* 00 */ void (*mFunctions[10])(void);
+    /* 28 */ u8 mNewestIndex;
     /* 29 */ u8 mUnk_29[3];
-    /* 2c */ OSThread mUnk_2c;
+    /* 2c */ OSThread mThread;
     /* e4 */ u8 mUnk_e4[0x10];
-    /* f4 */ void *mUnk_f4;
-    /* f8 */ s32 mUnk_f8;
-} Unk0217aa0c;
+    /* f4 */ void *mThreadStack;
+    /* f8 */ s32 mRunRequested;
+} ThreadFunctionQueue;
 
-extern Unk0217aa0c *data_0217aa0c;
+extern ThreadFunctionQueue *gThreadFunctionQueue;
 // 0xc-byte entries from 0x08 of OverlayLoader.
 typedef struct OverlayLoaderEntry {
     /* 00 */ s32 mOverlayId;

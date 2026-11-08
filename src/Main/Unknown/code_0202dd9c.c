@@ -77,7 +77,7 @@ void InitGhostScene(void *heap) {
     }
     gGhostScene->mCourseGhostRecords = (u8 *) CreateCourseGhostRecords((u32) heap);
     func_02061540(gGhostScene->mCourseGhostRecords);
-    func_02057d9c();
+    WaitThreadFunctionsDone();
     for (i = 0; i < 0x20; i++) {
         courseId = func_0202e43c(i);
         courseRecords = gGhostScene->mCourseGhostRecords;
@@ -90,7 +90,7 @@ void InitGhostScene(void *heap) {
     }
     gGhostScene->mSlotGhostRecords = (u8 *) func_0206152c((u32) heap);
     func_02061428(gGhostScene->mSlotGhostRecords);
-    func_02057d9c();
+    WaitThreadFunctionsDone();
     for (i = 0; i < 10; i++) {
         if (IsGhostRecordFilled(gGhostScene->mSlotGhostRecords + (u8) i * 0x230) != FALSE) {
             gGhostScene->mSlotIndices[gGhostScene->mSlotGhostCount] = i;

@@ -37,8 +37,8 @@ void func_02077b3c(void) {
         gKartModelMenu->mLoadSlot->mUnk_00 = gKartModelMenu->mView.mCharacterIndex;
         gKartModelMenu->mLoadSlot->mUnk_04 = gKartModelMenu->mView.mKartIndex;
         gKartModelMenu->mLoadSlot->mUnk_20 = gKartModelMenu->mUnk_1c8 + gKartModelMenu->mView.mKartIndex;
-        func_02057df0(LoadKartAndCharacterFiles);
-        data_0217aa0c->mUnk_f8 = 1;
+        QueueThreadFunction(LoadKartAndCharacterFiles);
+        gThreadFunctionQueue->mRunRequested = 1;
     }
 }
 
@@ -67,7 +67,7 @@ u32 func_02077a70(s32 *a, u32 b) {
                 n = 0x17;
                 break;
         }
-        if (func_02056dec(n) == 0) {
+        if (IsBackupFlagSet(n) == 0) {
             *a = -1;
             for (i = 0; i < 8; i++) {
                 if (func_0205fd2c(gKartModelMenu->mUnk_268, i, b) != 0) {

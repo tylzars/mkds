@@ -140,7 +140,7 @@ void SetCurrentEntryPlayer(s32 entryIndex) {
     b5 = &gRaceSetup->mCurrentEntries[entryIndex].mPlayer.mUnk_20;
     f = FALSE;
     if (p->mEmblemRecord->mFilled != 0) {
-        f = p->mUnk_00->mUnk_31_3 == 0;
+        f = p->mFirstBlock->mUnk_31_3 == 0;
     }
     if (f != FALSE) {
         g = TRUE;
@@ -154,7 +154,7 @@ void SetCurrentEntryPlayer(s32 entryIndex) {
     *b3 = data_021759d0->mUnk_00;
     *b4 = 0;
     if (entryIndex == gRaceSetup->mEntryIndex) {
-        *nameSlot = &data_0217aa08->mUnk_00->mPlayerName;
+        *nameSlot = &data_0217aa08->mFirstBlock->mPlayerName;
         *emblemDataSlot = &data_0217aa08->mEmblemRecord->mEmblemData;
         *b2 = g != FALSE ? 1 : 0;
         *b3 = data_021759d0->mUnk_00;

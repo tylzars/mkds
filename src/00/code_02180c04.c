@@ -76,7 +76,7 @@ WiFiStateCallbacks data_ov000_021b0a98 = {func_ov000_021816b0, func_ov000_021816
                                           (void (*)(void)) func_ov000_02180c28};
 
 static inline s32 func_ov000_02180e58_inline(void) {
-    if (data_0217aa08->mUnk_28 == 0) {
+    if (data_0217aa08->mBusy == 0) {
         if (gBackupAccess->mBackupEnabled != 0) {
             return gBackupAccess->mCommandRunning;
         }

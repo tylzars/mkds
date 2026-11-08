@@ -124,7 +124,7 @@ static inline s32 func_0203551c_inline(void) {
 }
 
 static inline s32 func_0203551c_inline_2(void) {
-    if (data_0217aa08->mUnk_28 == 0) {
+    if (data_0217aa08->mBusy == 0) {
         return func_0203551c_inline();
     }
     return 1;

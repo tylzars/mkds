@@ -64,7 +64,7 @@ void func_0205dee0(void) {
     void *c;
     void *a;
     a = GetHeap(GetCurrentHeapCall());
-    func_02057d9c();
+    WaitThreadFunctionsDone();
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }

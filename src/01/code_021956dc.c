@@ -948,7 +948,7 @@ void AdvanceRecordTAttState10(void) {
         if (GetTxtSystemSelectedIndex() == 0) {
             if (func_02060268(data_ov001_021a6900[gRecordTAtt->mIndex]) == 0) {
                 ClearCourseTimeRecords(data_ov001_021a6900[gRecordTAtt->mIndex]);
-                func_02057d9c();
+                WaitThreadFunctionsDone();
                 if (gBackupAccess->mBackupEnabled != 0) {
                     CARD_WaitBackupAsync();
                 }

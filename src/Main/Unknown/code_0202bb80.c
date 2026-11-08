@@ -272,7 +272,7 @@ void SetupPlayerEntryList(s32 mode, s32 screenKind) {
                 gPlayerEntryList->mPlayerCount = 1;
                 gPlayerEntryList->mEntryIndex = 0;
                 gPlayerEntryList->mUnk_208 = 1;
-                MIi_CpuCopy16(data_0217aa08->mUnk_00->mPlayerName,
+                MIi_CpuCopy16(data_0217aa08->mFirstBlock->mPlayerName,
                               gPlayerEntryList->mEntries[gPlayerEntryList->mEntryIndex].mName, 0x14);
                 func_0202c8dc();
                 break;

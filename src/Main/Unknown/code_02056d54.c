@@ -13,193 +13,193 @@
 #pragma thumb on
 
 void func_02057130(void) {
-    func_0205721c(((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2);
+    ResetBackupFirstBlockAndRecords(((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_02057514();
-        func_02057df0(func_02057174);
-        data_0217aa0c->mUnk_f8 = 1;
+        SetBackupBusy();
+        QueueThreadFunction(WriteBackupFirstBlockAndRecords);
+        gThreadFunctionQueue->mRunRequested = 1;
     }
 }
 
-void func_02056fdc(void) {
-    u16 a;
+void ReadBackupFirstBlockAndRecords(void) {
+    u16 failedBlockBits;
 
-    a = 0;
-    data_0217aa08->mUnk_2c = 0;
-    func_02057c60(data_0217aa08->mUnk_00);
+    failedBlockBits = 0;
+    data_0217aa08->mReadStatus = 0;
+    ReadBackupFirstBlock(data_0217aa08->mFirstBlock);
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     if (gBackupAccess->mErrorCode != NULL) {
         if ((s32) gBackupAccess->mErrorCode == 4) {
-            data_0217aa08->mUnk_2a = 0xffff;
-            data_0217aa08->mUnk_2c = 4;
-            func_02057504();
+            data_0217aa08->mFailedBlockBits = 0xffff;
+            data_0217aa08->mReadStatus = 4;
+            ClearBackupBusy();
             return;
         }
-        a |= 1;
+        failedBlockBits |= 1;
     }
     ReadBackupEmblemRecord(data_0217aa08->mEmblemRecord);
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     if (gBackupAccess->mErrorCode != NULL) {
-        a |= 2;
+        failedBlockBits |= 2;
     }
     ReadBackupGrandPrixRecordBlock(data_0217aa08->mGrandPrixRecordBlock);
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     if (gBackupAccess->mErrorCode != NULL) {
-        a |= 4;
+        failedBlockBits |= 4;
     }
     ReadBackupCourseTimeRecordBlock(data_0217aa08->mCourseTimeRecordBlock);
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     if (gBackupAccess->mErrorCode != NULL) {
-        a |= 8;
+        failedBlockBits |= 8;
     }
     ReadBackupMissionRecordBlock(data_0217aa08->mMissionRecordBlock);
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     if (gBackupAccess->mErrorCode != NULL) {
-        a |= 0x10;
+        failedBlockBits |= 0x10;
     }
     ReadBackupBuddyRecordBlock(data_0217aa08->mBuddyRecordBlock);
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     if (gBackupAccess->mErrorCode != NULL) {
-        a |= 0x20;
+        failedBlockBits |= 0x20;
     }
-    if (data_0217aa08->mUnk_2c == 0) {
-        if (a != 0) {
-            data_0217aa08->mUnk_2c = 3;
+    if (data_0217aa08->mReadStatus == 0) {
+        if (failedBlockBits != 0) {
+            data_0217aa08->mReadStatus = 3;
         } else {
-            data_0217aa08->mUnk_2c = 0;
+            data_0217aa08->mReadStatus = 0;
         }
     }
-    data_0217aa08->mUnk_2a = a;
-    func_02057504();
+    data_0217aa08->mFailedBlockBits = failedBlockBits;
+    ClearBackupBusy();
 }
 
-void func_02056f98(void) {
+void StartReadBackupFirstBlockAndRecords(void) {
     data_0217aa08->mUnk_44_0 = 1;
     data_0217aa08->mUnk_3c = 0;
-    data_0217aa08->mUnk_2a = 0;
-    func_02057514();
-    func_02057df0(func_02056fdc);
-    data_0217aa0c->mUnk_f8 = 1;
+    data_0217aa08->mFailedBlockBits = 0;
+    SetBackupBusy();
+    QueueThreadFunction(ReadBackupFirstBlockAndRecords);
+    gThreadFunctionQueue->mRunRequested = 1;
 }
 
-void func_02056e70(void) {
-    if (data_0217aa08->mUnk_2a & 2) {
+void ResetFailedBackupBlocks(void) {
+    if (data_0217aa08->mFailedBlockBits & 2) {
         ClearEmblemRecord();
         WriteBackupEmblemRecord(data_0217aa08->mEmblemRecord);
         if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }
-    if (data_0217aa08->mUnk_2a & 4) {
+    if (data_0217aa08->mFailedBlockBits & 4) {
         ClearGrandPrixRecordBlock();
         WriteBackupGrandPrixRecordBlock(data_0217aa08->mGrandPrixRecordBlock);
         if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }
-    if (data_0217aa08->mUnk_2a & 8) {
+    if (data_0217aa08->mFailedBlockBits & 8) {
         ClearCourseTimeRecordBlock();
         WriteBackupCourseTimeRecordBlock(data_0217aa08->mCourseTimeRecordBlock);
         if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }
-    if (data_0217aa08->mUnk_2a & 0x10) {
+    if (data_0217aa08->mFailedBlockBits & 0x10) {
         ClearMissionRecordBlock();
         WriteBackupMissionRecordBlock(data_0217aa08->mMissionRecordBlock);
         if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }
-    if (data_0217aa08->mUnk_2a & 0x20) {
+    if (data_0217aa08->mFailedBlockBits & 0x20) {
         ClearBuddyRecordBlock();
         WriteBackupBuddyRecordBlock(data_0217aa08->mBuddyRecordBlock);
         if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }
-    if (data_0217aa08->mUnk_2a & 1) {
-        func_02057304(((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2);
-        func_02057ca4(data_0217aa08->mUnk_00);
+    if (data_0217aa08->mFailedBlockBits & 1) {
+        ResetBackupFirstBlock(((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2);
+        WriteBackupFirstBlock(data_0217aa08->mFirstBlock);
         if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }
-    data_0217aa08->mUnk_2a = 0;
-    func_02057504();
+    data_0217aa08->mFailedBlockBits = 0;
+    ClearBackupBusy();
 }
 
-void func_02056e48(void) {
-    func_02057514();
-    func_02057df0(func_02056e70);
-    data_0217aa0c->mUnk_f8 = 1;
+void StartResetFailedBackupBlocks(void) {
+    SetBackupBusy();
+    QueueThreadFunction(ResetFailedBackupBlocks);
+    gThreadFunctionQueue->mRunRequested = 1;
 }
 
-void func_02056e24(s32 a) {
-    u8 *b;
+void SetBackupFlag(s32 flagIndex) {
+    u8 *flagBytes;
 
-    b = data_0217aa08->mUnk_00->mUnk_20;
-    b[a >> 3] |= 1 << (a & 7);
+    flagBytes = data_0217aa08->mFirstBlock->mFlags;
+    flagBytes[flagIndex >> 3] |= 1 << (flagIndex & 7);
 }
 
-u32 func_02056e00(s32 a, u8 *b) {
-    u32 r;
+BOOL func_02056e00(s32 bitIndex, u8 *bytes) {
+    u32 isSet;
 
-    r = 1;
-    if (((1 << (a & 7)) & b[a >> 3]) == 0) {
-        r = 0;
+    isSet = 1;
+    if (((1 << (bitIndex & 7)) & bytes[bitIndex >> 3]) == 0) {
+        isSet = 0;
     }
-    return r;
+    return isSet;
 }
 
-u32 func_02056dec(u32 a) {
-    return func_02056e00(a, data_0217aa08->mUnk_00->mUnk_20);
+BOOL IsBackupFlagSet(u32 flagIndex) {
+    return func_02056e00(flagIndex, data_0217aa08->mFirstBlock->mFlags);
 }
 
-u8 func_02056dac(u8 *a) {
-    u8 r;
+u8 func_02056dac(u8 *bytes) {
+    u8 result;
 
-    r = 1;
-    if (func_02056e00(0x13, a)) {
-        r = 4;
-    } else if (func_02056e00(0x12, a)) {
-        r = 3;
-    } else if (func_02056e00(0x11, a)) {
-        r = 2;
+    result = 1;
+    if (func_02056e00(0x13, bytes)) {
+        result = 4;
+    } else if (func_02056e00(0x12, bytes)) {
+        result = 3;
+    } else if (func_02056e00(0x11, bytes)) {
+        result = 2;
     }
-    return r;
+    return result;
 }
 
 u8 func_02056d98(void) {
-    return func_02056dac(data_0217aa08->mUnk_00->mUnk_20);
+    return func_02056dac(data_0217aa08->mFirstBlock->mFlags);
 }
 
-void func_02056d54(u32 a) {
-    u8 *b;
+void func_02056d54(u32 value) {
+    u8 *flagBytes;
 
-    if (a > 3) {
-        b = data_0217aa08->mUnk_00->mUnk_20;
-        b[2] |= 8;
+    if (value > 3) {
+        flagBytes = data_0217aa08->mFirstBlock->mFlags;
+        flagBytes[2] |= 8;
     }
-    if (a > 2) {
-        b = data_0217aa08->mUnk_00->mUnk_20;
-        b[2] |= 4;
+    if (value > 2) {
+        flagBytes = data_0217aa08->mFirstBlock->mFlags;
+        flagBytes[2] |= 4;
     }
-    if (a > 1) {
-        b = data_0217aa08->mUnk_00->mUnk_20;
-        b[2] |= 2;
+    if (value > 1) {
+        flagBytes = data_0217aa08->mFirstBlock->mFlags;
+        flagBytes[2] |= 2;
     }
 }
 

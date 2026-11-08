@@ -7,7 +7,7 @@
 
 void func_020563ec(void) {
     WriteBackupCourseTimeRecordBlock(data_0217aa08->mCourseTimeRecordBlock);
-    func_020574a0();
+    StartWriteBackupFirstBlock();
 }
 
 #pragma thumb off

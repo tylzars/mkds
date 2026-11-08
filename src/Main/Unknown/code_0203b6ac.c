@@ -26,22 +26,26 @@ BOOL func_0203b96c(s32 cupIndex) {
         case 5:
             return TRUE;
         case 2:
-            if (func_02056dec(0) != 0 || func_02056dec(1) != 0 || func_02056dec(2) != 0 || func_02056dec(3) != 0) {
+            if (IsBackupFlagSet(0) != 0 || IsBackupFlagSet(1) != 0 || IsBackupFlagSet(2) != 0 ||
+                IsBackupFlagSet(3) != 0) {
                 return TRUE;
             }
             break;
         case 3:
-            if (func_02056dec(4) != 0 || func_02056dec(5) != 0 || func_02056dec(6) != 0 || func_02056dec(7) != 0) {
+            if (IsBackupFlagSet(4) != 0 || IsBackupFlagSet(5) != 0 || IsBackupFlagSet(6) != 0 ||
+                IsBackupFlagSet(7) != 0) {
                 return TRUE;
             }
             break;
         case 6:
-            if (func_02056dec(8) != 0 || func_02056dec(9) != 0 || func_02056dec(10) != 0 || func_02056dec(11) != 0) {
+            if (IsBackupFlagSet(8) != 0 || IsBackupFlagSet(9) != 0 || IsBackupFlagSet(10) != 0 ||
+                IsBackupFlagSet(11) != 0) {
                 return TRUE;
             }
             break;
         case 7:
-            if (func_02056dec(12) != 0 || func_02056dec(13) != 0 || func_02056dec(14) != 0 || func_02056dec(15) != 0) {
+            if (IsBackupFlagSet(12) != 0 || IsBackupFlagSet(13) != 0 || IsBackupFlagSet(14) != 0 ||
+                IsBackupFlagSet(15) != 0) {
                 return TRUE;
             }
             break;

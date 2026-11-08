@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk0217aa0c Unk0217aa0c;
+typedef struct ThreadFunctionQueue ThreadFunctionQueue;
 
 void func_02057ed8(void *heap);
-void (*func_02057f8c(Unk0217aa0c *a))(void);
+void (*func_02057f8c(ThreadFunctionQueue *a))(void);

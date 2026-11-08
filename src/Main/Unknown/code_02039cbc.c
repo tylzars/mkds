@@ -49,7 +49,7 @@ void func_02039cbc(void) {
         InitWiFiSession(backHeap);
     }
     func_02046a3c(backHeap);
-    func_02057524(backHeap);
+    InitBackupBuffers(backHeap);
     InitSound(soundBuffer, soundBufferSize, ((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2);
     SetSoundOutputEffect(1);
     if (OS_IsRunOnEmulator() == 0) {

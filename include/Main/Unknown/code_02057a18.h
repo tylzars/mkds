@@ -18,4 +18,4 @@ void ReadBackupGrandPrixRecordBlock(void *block);
 void WriteBackupGrandPrixRecordBlock(GrandPrixRecordBlock *block);
 void ReadBackupEmblemRecord(void *block);
 void WriteBackupEmblemRecord(EmblemRecord *block);
-void func_02057c60(void *block);
+void ReadBackupFirstBlock(void *block);

@@ -238,7 +238,7 @@ void InitRecordTopMenu(void *heap) {
     u16 base;
     s32 i;
     s32 j;
-    Unk0217aa08_00 **pp;
+    BackupFirstBlock **pp;
 
     reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 1;
     reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0x8800;
@@ -295,7 +295,7 @@ void InitRecordTopMenu(void *heap) {
                       GetBmgEntry(gRecordTopMenu->mRecordMessages, gRecordTopMenuRecordMessageIndices[i]),
                       gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMTable);
     }
-    pp = &data_0217aa08->mUnk_00;
+    pp = &data_0217aa08->mFirstBlock;
     scores[1][0] = (*pp)->mUnk_34[0];
     scores[2][0] = (*pp)->mUnk_34[1];
     scores[1][1] = (*pp)->mUnk_34[2];

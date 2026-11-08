@@ -8,58 +8,58 @@
 
 #pragma thumb on
 
-void func_020579d0(u32 a, const void *b) {
-    u32 t;
-    void *p;
+void WriteBackupCourseGhost(u32 index, const void *record) {
+    u32 offset;
+    void *buffer;
 
-    t = a * 0xe00;
-    p = gBackupAccess->mBuffer;
+    offset = index * 0xe00;
+    buffer = gBackupAccess->mBuffer;
     if (gBackupAccess->mBackupEnabled != 0) {
-        MI_CpuCopy8(b, p, 0xe00);
-        *(u32 *) p = 0x47504b4e;
-        StartBackupWriteOneCopy(t + 0xaf00, p, 0xe00, 0);
+        MI_CpuCopy8(record, buffer, 0xe00);
+        *(u32 *) buffer = 0x47504b4e;
+        StartBackupWriteOneCopy(offset + 0xaf00, buffer, 0xe00, 0);
     }
 }
 
-void func_0205798c(u8 a, GhostRecord *b) {
-    u32 t;
-    BackupAccess *d;
-    void *p;
+void ReadBackupCourseGhost(u8 index, GhostRecord *ghostRecord) {
+    u32 offset;
+    BackupAccess *backupAccess;
+    void *buffer;
 
-    t = a * 0xe00;
-    d = gBackupAccess;
-    p = d->mBuffer;
-    if (d->mBackupEnabled != 0) {
-        d->mReadTarget = b;
-        StartBackupReadOneCopy(t + 0xaf00, p, 0xe00, CopyBackupReadToBlock, 0x47504b4e);
+    offset = index * 0xe00;
+    backupAccess = gBackupAccess;
+    buffer = backupAccess->mBuffer;
+    if (backupAccess->mBackupEnabled != 0) {
+        backupAccess->mReadTarget = ghostRecord;
+        StartBackupReadOneCopy(offset + 0xaf00, buffer, 0xe00, CopyBackupReadToBlock, 0x47504b4e);
     }
 }
 
-void func_02057944(s32 a, const void *b) {
-    u32 t;
-    void *p;
+void WriteBackupSlotGhost(s32 index, const void *record) {
+    u32 offset;
+    void *buffer;
 
-    t = a << 12;
-    p = gBackupAccess->mBuffer;
+    offset = index << 12;
+    buffer = gBackupAccess->mBuffer;
     if (gBackupAccess->mBackupEnabled != 0) {
-        MI_CpuCopy8(b, p, 0x1000);
-        *(u32 *) p = 0x47444b4e;
-        StartBackupWriteOneCopy(t + 0x26f00, p, 0x1000, 0);
+        MI_CpuCopy8(record, buffer, 0x1000);
+        *(u32 *) buffer = 0x47444b4e;
+        StartBackupWriteOneCopy(offset + 0x26f00, buffer, 0x1000, 0);
     }
 }
 
-void func_020578fc(u32 a, GhostRecord *b) {
-    u32 t;
-    BackupAccess *d;
-    s32 c;
+void ReadBackupSlotGhost(u32 index, GhostRecord *ghostRecord) {
+    u32 offset;
+    BackupAccess *backupAccess;
+    s32 backupEnabled;
 
-    t = a << 12;
-    d = gBackupAccess;
-    c = d->mBackupEnabled;
-    if (c != 0) {
-        d->mReadTarget = b;
-        gBackupAccess->mUnk_6c = a;
-        StartBackupReadOneCopy(t + 0x26f00, gBackupAccess->mBuffer, 0x1000, CopyBackupReadToBlock, 0x47444b4e);
+    offset = index << 12;
+    backupAccess = gBackupAccess;
+    backupEnabled = backupAccess->mBackupEnabled;
+    if (backupEnabled != 0) {
+        backupAccess->mReadTarget = ghostRecord;
+        gBackupAccess->mUnk_6c = index;
+        StartBackupReadOneCopy(offset + 0x26f00, gBackupAccess->mBuffer, 0x1000, CopyBackupReadToBlock, 0x47444b4e);
     }
 }
 

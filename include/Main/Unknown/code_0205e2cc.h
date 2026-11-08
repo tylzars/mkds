@@ -6,11 +6,11 @@
 #include "Main/Unknown/code_02114158.h"
 
 // Five emblems of the saved data: the index of the block (emblem number / 5, -1 for none) and the saved block.
-// 0xb04 bytes: a signed byte at 0x00 and, from 0x04, an Unk0217aa08_24.
+// 0xb04 bytes: a signed byte at 0x00 and, from 0x04, an EmblemBlockData.
 typedef struct EmblemBlock {
     /* 00 */ s8 mBlockIndex;
     /* 01 */ u8 mUnk_01[3];
-    /* 04 */ Unk0217aa08_24 mUnk_04;
+    /* 04 */ EmblemBlockData mUnk_04;
 } EmblemBlock;
 
 void func_0205e2cc(void *a);

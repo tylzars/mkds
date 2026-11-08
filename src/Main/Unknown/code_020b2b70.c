@@ -24,7 +24,7 @@ s32 func_020b2c24(void) {
 }
 
 s32 func_020b2bf0(void) {
-    if (data_0217aa08->mUnk_28 != 0) {
+    if (data_0217aa08->mBusy != 0) {
         return 1;
     }
     return func_020b2c24();

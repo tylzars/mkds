@@ -9,10 +9,10 @@ void func_02061588(void) {
     u8 *a;
     GhostRecord *b;
 
-    a = data_0217aa08->mUnk_40;
+    a = data_0217aa08->mReadDestination;
     for (i = 0; i < 0x20; i++) {
         b = (GhostRecord *) (a + i * 0x30);
-        if (func_020573f8(i) != 0) {
+        if (IsCourseGhostBitSet(i) != 0) {
             func_0205786c(1, i, b);
             if (gBackupAccess->mBackupEnabled != 0) {
                 CARD_WaitBackupAsync();
@@ -24,13 +24,13 @@ void func_02061588(void) {
             b->mFilled = 0;
         }
     }
-    data_0217aa08->mUnk_40 = NULL;
-    func_02057504();
+    data_0217aa08->mReadDestination = NULL;
+    ClearBackupBusy();
 }
 
 void func_02061540(void *a) {
-    data_0217aa08->mUnk_40 = a;
-    func_02057514();
-    func_02057df0((void (*)(void)) func_02061588);
-    data_0217aa0c->mUnk_f8 = 1;
+    data_0217aa08->mReadDestination = a;
+    SetBackupBusy();
+    QueueThreadFunction((void (*)(void)) func_02061588);
+    gThreadFunctionQueue->mRunRequested = 1;
 }

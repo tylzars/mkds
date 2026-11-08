@@ -52,7 +52,7 @@ void FillGrandPrixRecord(TimeRecord *record) {
     record->mMinute = 0;
     record->mSecond = 0;
     record->mMillisecond = 0;
-    MI_CpuCopy8(data_0217aa08->mUnk_00->mPlayerName, record->mName, 0x14);
+    MI_CpuCopy8(data_0217aa08->mFirstBlock->mPlayerName, record->mName, 0x14);
     for (courseIndex = 0; courseIndex < 4; courseIndex++) {
         SumTimes(record, &data_0217b488->mCourseTimes[courseIndex], record);
     }
