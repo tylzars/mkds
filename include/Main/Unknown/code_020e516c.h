@@ -71,8 +71,8 @@ typedef struct Unk020e516c {
 } Unk020e516c;
 
 void func_020e5348(u32 a, u32 b);
-void DrawJgShadowWithMatrix(Vec3 *a, MtxFx43 *b, u32 c, u32 d);
-void func_020e53ac(Unk020e516c *shadow, void *wordPointer, u32 unused, u32 value);
-void func_020e54e4(void *shadowData, void *wordPointer, u32 unused, u32 value);
-s32 RefreshShadowMatrix(void *shadow, Vec3 *position, s32 scale, u32 value);
+void DrawJgShadowWithMatrix(Vec3 *scale, MtxFx43 *matrix, u32 c, u32 d);
+void func_020e53ac(Unk020e516c *shadow, void *wordPointer, u32 unused, u32 alpha);
+void func_020e54e4(void *shadowData, void *wordPointer, u32 unused, u32 alpha);
+s32 RefreshShadowMatrix(void *shadow, Vec3 *position, s32 scale, u32 alphaCap);
 void CreateObjShadowAndJgShadow(void);

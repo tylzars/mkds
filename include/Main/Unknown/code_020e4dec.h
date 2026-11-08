@@ -7,4 +7,4 @@ typedef struct Unk020e4dec {
     /* ac */ u16 mUnk_ac;
 } Unk020e4dec;
 
-void EnterPukupukuState0(Unk020e4dec *p0);
+void EnterPukupukuState0(Unk020e4dec *pukupuku);

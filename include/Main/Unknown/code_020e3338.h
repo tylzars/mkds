@@ -13,4 +13,4 @@ typedef struct Unk020e3338 {
     /* ac */ u32 mUnk_ac;
 } Unk020e3338;
 
-void func_020e3338(Unk020e3338 *p0);
+void func_020e3338(Unk020e3338 *choropu);

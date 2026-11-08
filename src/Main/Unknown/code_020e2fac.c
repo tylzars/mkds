@@ -42,222 +42,222 @@ void SetupDrawChoropuShadow(void) {
     func_020e55b4();
 }
 
-void DrawChoropuShadow(void *a, Unk020e1e98 *b, u32 c, u32 d) {
-    func_020e54e4(&b->mUnk_0b4.mUnk_08, NULL, 0, d);
+void DrawChoropuShadow(void *a, Unk020e1e98 *choropu, u32 c, u32 alpha) {
+    func_020e54e4(&choropu->mUnk_0b4.mUnk_08, NULL, 0, alpha);
 }
 
-void func_020e35e4(u32 arg0, u32 arg1) {
+void func_020e35e4(u32 arg0, u32 object) {
     u32 value0;
-    u32 value1 = arg1;
+    u32 value1 = object;
     u32 value12;
     value0 = (value1) + (0x80u);
     AdvanceStateMachine((void *) value0);
 }
 
-void EnterChoropuState0(Unk020e35a0 *p0) {
-    p0->mUnk_08 = p0->mUnk_ac;
-    p0->mUnk_14 = 0x0u;
-    p0->mUnk_02 |= data_02158bb8;
-    p0->mUnk_02 |= data_02158bb4;
+void EnterChoropuState0(Unk020e35a0 *choropu) {
+    choropu->mUnk_08 = choropu->mUnk_ac;
+    choropu->mUnk_14 = 0x0u;
+    choropu->mUnk_02 |= data_02158bb8;
+    choropu->mUnk_02 |= data_02158bb4;
 }
 
-void UpdateChoropuState0(Unk020e1e98 *a) {
-    if (a->mUnk_000.mStateMachine.mStateFrames >= a->mUnk_0a0) {
-        a->mUnk_000.mStateMachine.mNextState = 1;
-        a->mUnk_000.mStateMachine.mNextStateRequested = 1;
+void UpdateChoropuState0(Unk020e1e98 *choropu) {
+    if (choropu->mUnk_000.mStateMachine.mStateFrames >= choropu->mUnk_0a0) {
+        choropu->mUnk_000.mStateMachine.mNextState = 1;
+        choropu->mUnk_000.mStateMachine.mNextStateRequested = 1;
     }
 }
 
-void EnterChoropuState1(Unk020e3538 *p0) {
-    p0->mUnk_08 = p0->mUnk_ac;
-    p0->mUnk_14 = 0x1000u;
-    p0->mUnk_b8 = 0x0u;
-    p0->mUnk_02 |= data_02158bb8;
-    p0->mUnk_02 |= data_02158bb4;
+void EnterChoropuState1(Unk020e3538 *choropu) {
+    choropu->mUnk_08 = choropu->mUnk_ac;
+    choropu->mUnk_14 = 0x1000u;
+    choropu->mUnk_b8 = 0x0u;
+    choropu->mUnk_02 |= data_02158bb8;
+    choropu->mUnk_02 |= data_02158bb4;
 }
 
-void UpdateChoropuState1(Unk020e1e98 *a) {
-    a->mUnk_000.mPos.y = a->mUnk_000.mPos.y + a->mUnk_000.mUnk_10.y;
-    if (a->mUnk_000.mPos.y > a->mUnk_0ac + 0x11199) {
-        a->mUnk_000.mPos.y = a->mUnk_0ac + 0x11199;
-        a->mUnk_000.mStateMachine.mNextState = 2;
-        a->mUnk_000.mStateMachine.mNextStateRequested = 1;
+void UpdateChoropuState1(Unk020e1e98 *choropu) {
+    choropu->mUnk_000.mPos.y = choropu->mUnk_000.mPos.y + choropu->mUnk_000.mUnk_10.y;
+    if (choropu->mUnk_000.mPos.y > choropu->mUnk_0ac + 0x11199) {
+        choropu->mUnk_000.mPos.y = choropu->mUnk_0ac + 0x11199;
+        choropu->mUnk_000.mStateMachine.mNextState = 2;
+        choropu->mUnk_000.mStateMachine.mNextStateRequested = 1;
     }
 }
 
-void EnterChoropuState2(Unk020e34ec *p0) {
-    p0->mUnk_14 = 0x0u;
+void EnterChoropuState2(Unk020e34ec *choropu) {
+    choropu->mUnk_14 = 0x0u;
 }
 
-void UpdateChoropuState2(Unk020e1e98 *a) {
-    if (a->mUnk_000.mStateMachine.mStateFrames >= 0x14) {
-        a->mUnk_000.mStateMachine.mNextState = 3;
-        a->mUnk_000.mStateMachine.mNextStateRequested = 1;
+void UpdateChoropuState2(Unk020e1e98 *choropu) {
+    if (choropu->mUnk_000.mStateMachine.mStateFrames >= 0x14) {
+        choropu->mUnk_000.mStateMachine.mNextState = 3;
+        choropu->mUnk_000.mStateMachine.mNextStateRequested = 1;
     }
 }
 
-void EnterChoropuState3(Unk020e34c0 *p0) {
-    p0->mUnk_14 = ((0x0u) - (0x1000u));
+void EnterChoropuState3(Unk020e34c0 *choropu) {
+    choropu->mUnk_14 = ((0x0u) - (0x1000u));
 }
 
-void UpdateChoropuState3(Unk020e1e98 *a) {
-    Unk0210b7a8 buf;
-    s32 v;
+void UpdateChoropuState3(Unk020e1e98 *choropu) {
+    Unk0210b7a8 soundRequest;
+    s32 falloffIndex;
 
-    a->mUnk_000.mPos.y = a->mUnk_000.mPos.y + a->mUnk_000.mUnk_10.y;
-    if (a->mUnk_000.mPos.y >= a->mUnk_0ac) {
+    choropu->mUnk_000.mPos.y = choropu->mUnk_000.mPos.y + choropu->mUnk_000.mUnk_10.y;
+    if (choropu->mUnk_000.mPos.y >= choropu->mUnk_0ac) {
         return;
     }
-    if ((a->mUnk_000.mDistanceSquaredAndFlags & 0x4) == 0) {
-        v = a->mUnk_000.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20
-                ? 2
-                : (a->mUnk_000.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20 ? 3 : 4);
-        buf.mUnk_00 = 0x128;
-        buf.mUnk_04 = &a->mUnk_000.mPos;
-        buf.mUnk_08 = v;
-        buf.mUnk_0c = GetHorizontalCameraDistanceSquared(&a->mUnk_000.mPos);
-        func_0210b7a8(&buf);
+    if ((choropu->mUnk_000.mDistanceSquaredAndFlags & 0x4) == 0) {
+        falloffIndex = choropu->mUnk_000.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20
+                           ? 2
+                           : (choropu->mUnk_000.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20 ? 3 : 4);
+        soundRequest.mUnk_00 = 0x128;
+        soundRequest.mUnk_04 = &choropu->mUnk_000.mPos;
+        soundRequest.mUnk_08 = falloffIndex;
+        soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(&choropu->mUnk_000.mPos);
+        func_0210b7a8(&soundRequest);
     }
-    a->mUnk_000.mStateMachine.mNextState = 4;
-    a->mUnk_000.mStateMachine.mNextStateRequested = 1;
+    choropu->mUnk_000.mStateMachine.mNextState = 4;
+    choropu->mUnk_000.mStateMachine.mNextStateRequested = 1;
 }
 
-void EnterChoropuState4(Unk020e1e98 *a) {
-    a->mUnk_000.mPos.y = a->mUnk_0ac;
-    a->mUnk_000.mUnk_10.y = 0x4800;
-    a->mUnk_000.mFlags &= ~0x1;
-    if ((a->mUnk_000.mDistanceSquaredAndFlags & 0x3) != 0) {
+void EnterChoropuState4(Unk020e1e98 *choropu) {
+    choropu->mUnk_000.mPos.y = choropu->mUnk_0ac;
+    choropu->mUnk_000.mUnk_10.y = 0x4800;
+    choropu->mUnk_000.mFlags &= ~0x1;
+    if ((choropu->mUnk_000.mDistanceSquaredAndFlags & 0x3) != 0) {
         if (func_0203c5e4() == 0) {
             return;
         }
     }
-    StartEffect(0x30, &a->mUnk_000.mCourseMapRow->mUnk_00);
+    StartEffect(0x30, &choropu->mUnk_000.mCourseMapRow->mUnk_00);
 }
 
-void UpdateChoropuState4(Unk020e1e98 *a) {
-    a->mUnk_000.mUnk_10.y -= 0x266;
-    a->mUnk_000.mPos.y = a->mUnk_000.mPos.y + a->mUnk_000.mUnk_10.y;
-    if (a->mUnk_000.mPos.y < a->mUnk_0b0) {
-        a->mUnk_000.mStateMachine.mNextState = 5;
-        a->mUnk_000.mStateMachine.mNextStateRequested = 1;
+void UpdateChoropuState4(Unk020e1e98 *choropu) {
+    choropu->mUnk_000.mUnk_10.y -= 0x266;
+    choropu->mUnk_000.mPos.y = choropu->mUnk_000.mPos.y + choropu->mUnk_000.mUnk_10.y;
+    if (choropu->mUnk_000.mPos.y < choropu->mUnk_0b0) {
+        choropu->mUnk_000.mStateMachine.mNextState = 5;
+        choropu->mUnk_000.mStateMachine.mNextStateRequested = 1;
     }
 }
 
 // Same body as EnterChoropuState0; this is the enter slot of state 5.
-void func_020e3338(Unk020e3338 *p0) {
-    p0->mUnk_08 = p0->mUnk_ac;
-    p0->mUnk_14 = 0x0u;
-    p0->mUnk_02 |= data_02158bb8;
-    p0->mUnk_02 |= data_02158bb4;
+void func_020e3338(Unk020e3338 *choropu) {
+    choropu->mUnk_08 = choropu->mUnk_ac;
+    choropu->mUnk_14 = 0x0u;
+    choropu->mUnk_02 |= data_02158bb8;
+    choropu->mUnk_02 |= data_02158bb4;
 }
 
-void UpdateChoropuState5(Unk020e1e98 *a) {
-    if (a->mUnk_000.mStateMachine.mStateFrames >= a->mUnk_0a4) {
-        a->mUnk_000.mStateMachine.mNextState = 1;
-        a->mUnk_000.mStateMachine.mNextStateRequested = 1;
+void UpdateChoropuState5(Unk020e1e98 *choropu) {
+    if (choropu->mUnk_000.mStateMachine.mStateFrames >= choropu->mUnk_0a4) {
+        choropu->mUnk_000.mStateMachine.mNextState = 1;
+        choropu->mUnk_000.mStateMachine.mNextStateRequested = 1;
     }
 }
 
-void EnterChoropuState6(Unk020e1e98 *p0) {
-    p0->mUnk_000.mFlags = (((p0->mUnk_000.mFlags)) | ((data_02158bb4)));
+void EnterChoropuState6(Unk020e1e98 *choropu) {
+    choropu->mUnk_000.mFlags = (((choropu->mUnk_000.mFlags)) | ((data_02158bb4)));
 }
 
-void UpdateChoropuState6(Unk020e1e98 *a) {
-    if (a->mUnk_0b4.mUnk_00 != 0) {
-        a->mUnk_0b4.mUnk_04 += 0x400;
+void UpdateChoropuState6(Unk020e1e98 *choropu) {
+    if (choropu->mUnk_0b4.mUnk_00 != 0) {
+        choropu->mUnk_0b4.mUnk_04 += 0x400;
     } else {
-        a->mUnk_0b4.mUnk_04 -= 0x400;
+        choropu->mUnk_0b4.mUnk_04 -= 0x400;
     }
-    a->mUnk_000.mUnk_10.y -= 0x400;
-    a->mUnk_000.mPos.y = a->mUnk_000.mPos.y + a->mUnk_000.mUnk_10.y;
-    if (a->mUnk_000.mPos.y < a->mUnk_0b0) {
-        a->mUnk_000.mStateMachine.mNextState = 5;
-        a->mUnk_000.mStateMachine.mNextStateRequested = 1;
+    choropu->mUnk_000.mUnk_10.y -= 0x400;
+    choropu->mUnk_000.mPos.y = choropu->mUnk_000.mPos.y + choropu->mUnk_000.mUnk_10.y;
+    if (choropu->mUnk_000.mPos.y < choropu->mUnk_0b0) {
+        choropu->mUnk_000.mStateMachine.mNextState = 5;
+        choropu->mUnk_000.mStateMachine.mNextStateRequested = 1;
     }
 }
 
-u32 func_020e32a0(u32 p0) {
-    return p0;
+u32 func_020e32a0(u32 value) {
+    return value;
 }
 
-void UpdateChoropuState7(Unk020e1e98 *a) {
-    a->mUnk_000.mUnk_10.y -= 0x266;
-    a->mUnk_000.mPos.y = a->mUnk_000.mPos.y + a->mUnk_000.mUnk_10.y;
-    if (a->mUnk_000.mPos.y < a->mUnk_0b0) {
-        Unk020e005c_080 *p = &a->mUnk_000.mStateMachine;
+void UpdateChoropuState7(Unk020e1e98 *choropu) {
+    choropu->mUnk_000.mUnk_10.y -= 0x266;
+    choropu->mUnk_000.mPos.y = choropu->mUnk_000.mPos.y + choropu->mUnk_000.mUnk_10.y;
+    if (choropu->mUnk_000.mPos.y < choropu->mUnk_0b0) {
+        Unk020e005c_080 *stateMachine = &choropu->mUnk_000.mStateMachine;
 
-        p->mNextState = 5;
-        p->mNextStateRequested = 1;
+        stateMachine->mNextState = 5;
+        stateMachine->mNextStateRequested = 1;
     }
-    if (a->mUnk_0b4.mUnk_00 != 0) {
-        a->mUnk_0b4.mUnk_04 += 0x400;
+    if (choropu->mUnk_0b4.mUnk_00 != 0) {
+        choropu->mUnk_0b4.mUnk_04 += 0x400;
     } else {
-        a->mUnk_0b4.mUnk_04 -= 0x400;
+        choropu->mUnk_0b4.mUnk_04 -= 0x400;
     }
 }
 
 // Case 1 starts state 6 with an upward speed; case 2 starts state 7 unless player kind 2 or already there.
-u8 CollideKartWithChoropu(Unk020e1e98 *a, Kart *b, u8 *c, u8 *d) {
-    Vec3 v;
+u8 CollideKartWithChoropu(Unk020e1e98 *choropu, Kart *kart, u8 *c, u8 *d) {
+    Vec3 offsetFromKart;
 
     switch (c[0]) {
         case 2:
-            if (gRaceSetup->mCurrentEntries[b->mIndex].mPlayer.mKind == PLAYER_KIND_GHOST) {
+            if (gRaceSetup->mCurrentEntries[kart->mIndex].mPlayer.mKind == PLAYER_KIND_GHOST) {
                 return d[0];
             }
-            if (a->mUnk_000.mStateMachine.mState == 7) {
+            if (choropu->mUnk_000.mStateMachine.mState == 7) {
                 return d[0];
             }
-            a->mUnk_000.mStateMachine.mNextState = 7;
-            a->mUnk_000.mStateMachine.mNextStateRequested = 1;
-            StartSoundIfKartStarOrKiller(&a->mUnk_000, b);
+            choropu->mUnk_000.mStateMachine.mNextState = 7;
+            choropu->mUnk_000.mStateMachine.mNextStateRequested = 1;
+            StartSoundIfKartStarOrKiller(&choropu->mUnk_000, kart);
             break;
         case 1:
-            VEC_Subtract(&a->mUnk_000.mPos, &b->mPos, &v);
-            if ((s64) v.z * b->mVelocity.x - (s64) v.x * b->mVelocity.z < 0) {
-                a->mUnk_0b4.mUnk_00 = 1;
+            VEC_Subtract(&choropu->mUnk_000.mPos, &kart->mPos, &offsetFromKart);
+            if ((s64) offsetFromKart.z * kart->mVelocity.x - (s64) offsetFromKart.x * kart->mVelocity.z < 0) {
+                choropu->mUnk_0b4.mUnk_00 = 1;
             } else {
-                a->mUnk_0b4.mUnk_00 = 0;
+                choropu->mUnk_0b4.mUnk_00 = 0;
             }
-            a->mUnk_000.mUnk_10.y = 0x4000;
-            a->mUnk_000.mStateMachine.mNextState = 6;
-            a->mUnk_000.mStateMachine.mNextStateRequested = 1;
-            a->mUnk_000.mFlags |= data_02158bb4;
-            StartSoundIfKartStarOrKiller(&a->mUnk_000, b);
+            choropu->mUnk_000.mUnk_10.y = 0x4000;
+            choropu->mUnk_000.mStateMachine.mNextState = 6;
+            choropu->mUnk_000.mStateMachine.mNextStateRequested = 1;
+            choropu->mUnk_000.mFlags |= data_02158bb4;
+            StartSoundIfKartStarOrKiller(&choropu->mUnk_000, kart);
             break;
     }
     return d[0];
 }
 
 // Case 1 starts state 6 with an upward speed, as CollideKartWithChoropu does for a kart.
-u8 CollideItemObjectWithChoropu(Unk020e1e98 *a, Unk020e246c *b, u8 *c, u8 *d) {
-    Vec3 v;
-    Vec3 w;
+u8 CollideItemObjectWithChoropu(Unk020e1e98 *choropu, Unk020e246c *itemObject, u8 *c, u8 *d) {
+    Vec3 offsetFromItem;
+    Vec3 offset;
 
     if (c[0] == 1) {
-        if (b != NULL) {
-            VEC_Subtract(&a->mUnk_000.mPos, &b->mUnk_050, &v);
-            if ((s64) v.z * b->mUnk_05c - (s64) v.x * b->mUnk_064 < 0) {
-                a->mUnk_0b4.mUnk_00 = 1;
+        if (itemObject != NULL) {
+            VEC_Subtract(&choropu->mUnk_000.mPos, &itemObject->mUnk_050, &offsetFromItem);
+            if ((s64) offsetFromItem.z * itemObject->mUnk_05c - (s64) offsetFromItem.x * itemObject->mUnk_064 < 0) {
+                choropu->mUnk_0b4.mUnk_00 = 1;
             } else {
-                a->mUnk_0b4.mUnk_00 = 0;
+                choropu->mUnk_0b4.mUnk_00 = 0;
             }
-            a->mUnk_000.mUnk_10.y = 0x4000;
-            a->mUnk_000.mStateMachine.mNextState = 6;
-            a->mUnk_000.mStateMachine.mNextStateRequested = 1;
-            a->mUnk_000.mFlags |= data_02158bb4;
-            func_020f8ddc(b);
+            choropu->mUnk_000.mUnk_10.y = 0x4000;
+            choropu->mUnk_000.mStateMachine.mNextState = 6;
+            choropu->mUnk_000.mStateMachine.mNextStateRequested = 1;
+            choropu->mUnk_000.mFlags |= data_02158bb4;
+            func_020f8ddc(itemObject);
         } else {
-            VEC_Subtract(&a->mUnk_000.mPos, &a->mUnk_000.mPos, &w);
-            if ((s64) w.z * data_02158c7c.x - (s64) w.x * data_02158c7c.z < 0) {
-                a->mUnk_0b4.mUnk_00 = 1;
+            VEC_Subtract(&choropu->mUnk_000.mPos, &choropu->mUnk_000.mPos, &offset);
+            if ((s64) offset.z * data_02158c7c.x - (s64) offset.x * data_02158c7c.z < 0) {
+                choropu->mUnk_0b4.mUnk_00 = 1;
             } else {
-                a->mUnk_0b4.mUnk_00 = 0;
+                choropu->mUnk_0b4.mUnk_00 = 0;
             }
-            a->mUnk_000.mUnk_10.y = 0x4000;
-            a->mUnk_000.mStateMachine.mNextState = 6;
-            a->mUnk_000.mStateMachine.mNextStateRequested = 1;
-            a->mUnk_000.mFlags |= data_02158bb4;
+            choropu->mUnk_000.mUnk_10.y = 0x4000;
+            choropu->mUnk_000.mStateMachine.mNextState = 6;
+            choropu->mUnk_000.mStateMachine.mNextStateRequested = 1;
+            choropu->mUnk_000.mFlags |= data_02158bb4;
         }
     }
     return d[0];
@@ -266,11 +266,11 @@ u8 CollideItemObjectWithChoropu(Unk020e1e98 *a, Unk020e246c *b, u8 *c, u8 *d) {
 #pragma thumb on
 
 void CreateChoropu(void) {
-    void *v1;
-    void *v2;
-    v1 = FindCourseMapObjFile(gChoropuNsbmdName);
-    v2 = FindCourseMapObjFile(gChoropuNsbtpName);
-    func_020e6488((Unk020e6488 **) (((u32 *) &gChoropu)), v1, v2, 0);
+    void *nsbmdFile;
+    void *nsbtpFile;
+    nsbmdFile = FindCourseMapObjFile(gChoropuNsbmdName);
+    nsbtpFile = FindCourseMapObjFile(gChoropuNsbtpName);
+    func_020e6488((Unk020e6488 **) (((u32 *) &gChoropu)), nsbmdFile, nsbtpFile, 0);
     func_020e6ab8(gChoropu);
 }
 

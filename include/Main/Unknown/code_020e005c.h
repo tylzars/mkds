@@ -96,6 +96,6 @@ typedef struct Unk020e005c {
     /* 16c */ u16 mUnk_16c;
 } Unk020e005c;
 
-void func_020e005c(Unk020e005c *a);
-void func_020e00f8(Unk020e005c *a);
-void func_020e012c(Unk020e005c *a);
+void UpdateKoopaBlockState1(Unk020e005c *koopaBlock);
+void EnterKoopaBlockState1(Unk020e005c *koopaBlock);
+void UpdateKoopaBlockState0(Unk020e005c *koopaBlock);

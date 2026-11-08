@@ -7,4 +7,4 @@ typedef struct Unk020e5950 {
     /* c8 */ u32 mUnk_c8;
 } Unk020e5950;
 
-void EnterSecondHandState0(Unk020e5950 *p0);
+void EnterSecondHandState0(Unk020e5950 *secondHand);

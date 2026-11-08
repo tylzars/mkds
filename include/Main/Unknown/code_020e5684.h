@@ -78,11 +78,11 @@ extern Unk020e5a40 *data_0217b82c;
 extern Unk020e59e4 *data_0217b834;
 extern Unk020e5a40 *data_0217b840;
 
-void InitSecondHand(Unk020e43a8 *p, Unk020e5684 *q);
-void ComputeSphereHitOnSecondHand(Unk020e43a8 *p, Vec3 *a, s32 b, Vec3 *c);
-void UpdateSecondHand(u32 a, Unk020e43a8 *p);
-void DrawSecondHand(u32 a, Unk020e43a8 *p, u32 b, u32 c);
+void InitSecondHand(Unk020e43a8 *secondHand, Unk020e5684 *courseRow);
+void ComputeSphereHitOnSecondHand(Unk020e43a8 *secondHand, Vec3 *sphereCenter, s32 sphereRadius, Vec3 *overlapOffset);
+void UpdateSecondHand(u32 a, Unk020e43a8 *secondHand);
+void DrawSecondHand(u32 a, Unk020e43a8 *secondHand, u32 b, u32 alpha);
 Unk020e59e4 *CreateSecondHandUpdateList(void);
 Unk020e5a40 *CreateSecondHandDrawList(void);
 Unk020e5a9c *CreateSecondHandKindData(void);
-void InitObPakkunSf(Unk020e43a8 *p);
+void InitObPakkunSf(Unk020e43a8 *obPakkunSf);

@@ -15,4 +15,4 @@ typedef struct Unk020e3538 {
     /* b8 */ u16 mUnk_b8;
 } Unk020e3538;
 
-void EnterChoropuState1(Unk020e3538 *p0);
+void EnterChoropuState1(Unk020e3538 *choropu);

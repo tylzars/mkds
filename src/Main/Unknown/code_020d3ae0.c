@@ -558,13 +558,13 @@ void func_020d4418(Unk020d4418 *view) {
 
     viewMatrix = &view->mUnk_30;
     if (gMapObjects->mHasKoopaBlock != 0) {
-        func_020dff88(viewMatrix);
+        DrawAllKoopaBlocks(viewMatrix);
     }
     if (gMapObjects->mUnk_180 != 0) {
         func_020e435c(viewMatrix);
     }
     if (gMapObjects->mUnk_184 != 0) {
-        func_020e3b28(viewMatrix);
+        DrawAllBridges(viewMatrix);
     }
 }
 

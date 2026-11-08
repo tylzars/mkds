@@ -10,5 +10,5 @@ typedef struct Unk020e57fc {
     /* 29c */ u32 mUnk_29c;
 } Unk020e57fc;
 
-void UpdateSecondHandState3(Unk020e43a8 *p);
-s32 CollideKartWithSecondHand(Unk020e43a8 *p, Unk020e57fc *q, s32 a, u8 *b);
+void UpdateSecondHandState3(Unk020e43a8 *secondHand);
+s32 CollideKartWithSecondHand(Unk020e43a8 *secondHand, Unk020e57fc *kart, s32 a, u8 *b);

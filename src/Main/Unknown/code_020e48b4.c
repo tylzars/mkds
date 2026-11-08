@@ -44,35 +44,35 @@
 #include "Main/Unknown/unk_0217b000.h"
 
 PukupukuKindData *CreatePukupukuKindData(void) {
-    PukupukuKindData *p;
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
-    *p = *(PukupukuKindData *) data_02159070;
-    return p;
+    PukupukuKindData *kindData;
+    kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
+    *kindData = *(PukupukuKindData *) data_02159070;
+    return kindData;
 }
 
 PukupukuDrawList *CreatePukupukuDrawList(void) {
-    PukupukuDrawList *p;
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
-    gPukupukuDrawList = p;
-    *p = *(PukupukuDrawList *) data_02159044;
+    PukupukuDrawList *drawList;
+    drawList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
+    gPukupukuDrawList = drawList;
+    *drawList = *(PukupukuDrawList *) data_02159044;
     func_020d49d8(&gPukupukuDrawList);
     return gPukupukuDrawList;
 }
 
 PukupukuShadowDrawList *CreatePukupukuShadowDrawList(void) {
-    PukupukuShadowDrawList *p;
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
-    gPukupukuShadowDrawList = p;
-    *p = *(PukupukuShadowDrawList *) data_02159018;
+    PukupukuShadowDrawList *shadowDrawList;
+    shadowDrawList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
+    gPukupukuShadowDrawList = shadowDrawList;
+    *shadowDrawList = *(PukupukuShadowDrawList *) data_02159018;
     func_020d49d8(&gPukupukuShadowDrawList);
     return gPukupukuShadowDrawList;
 }
 
 PukupukuUpdateList *CreatePukupukuUpdateList(void) {
-    PukupukuUpdateList *p;
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
-    gPukupukuUpdateList = p;
-    *p = *(PukupukuUpdateList *) data_02158ff0;
+    PukupukuUpdateList *updateList;
+    updateList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
+    gPukupukuUpdateList = updateList;
+    *updateList = *(PukupukuUpdateList *) data_02158ff0;
     func_020e6f50(&gPukupukuUpdateList);
     return gPukupukuUpdateList;
 }
@@ -81,34 +81,34 @@ void SetupDrawPukupuku(void) {
     func_020e6a18(gPukupuku);
 }
 
-void DrawPukupuku(u32 a, Unk020e43a8 *p, u32 b, u16 c) {
-    Unk020e6488 *q;
-    s32 neg;
+void DrawPukupuku(u32 a, Unk020e43a8 *pukupuku, u32 b, u16 alpha) {
+    Unk020e6488 *model;
+    s32 mirrored;
     u32 v;
 
-    if (p->mUnk_00.mStateMachine.mState == 0) {
-        MtxFx43 *r;
-        neg = p->mUnk_00.mCollisionSlotIndex & 1;
-        r = SetViewTransposeMatrixPos(&p->mUnk_00.mPos);
-        q = gPukupuku;
-        q->mUnk_14 = q->mUnk_14 | 0xc0;
-        gPukupukuDrawScale = p->mUnk_00.mScale;
-        if (neg) {
+    if (pukupuku->mUnk_00.mStateMachine.mState == 0) {
+        MtxFx43 *matrix;
+        mirrored = pukupuku->mUnk_00.mCollisionSlotIndex & 1;
+        matrix = SetViewTransposeMatrixPos(&pukupuku->mUnk_00.mPos);
+        model = gPukupuku;
+        model->mUnk_14 = model->mUnk_14 | 0xc0;
+        gPukupukuDrawScale = pukupuku->mUnk_00.mScale;
+        if (mirrored) {
             gPukupukuDrawScale.x = -gPukupukuDrawScale.x;
         }
-        func_020e67c4(q, r, &gPukupukuDrawScale, 0, c);
+        func_020e67c4(model, matrix, &gPukupukuDrawScale, 0, alpha);
     } else {
-        MtxFx43 *r;
-        neg = p->mUnk_00.mCollisionSlotIndex & 1;
-        v = *(u16 *) &p->mUnk_a0.mUnk_0c.x;
-        r = SetViewTransposeMatrixPos(&p->mUnk_00.mPos);
-        q = gPukupuku;
-        q->mUnk_14 = q->mUnk_14 | 0xc0;
-        gPukupukuDrawScale = p->mUnk_00.mScale;
-        if (neg) {
+        MtxFx43 *matrix;
+        mirrored = pukupuku->mUnk_00.mCollisionSlotIndex & 1;
+        v = *(u16 *) &pukupuku->mUnk_a0.mUnk_0c.x;
+        matrix = SetViewTransposeMatrixPos(&pukupuku->mUnk_00.mPos);
+        model = gPukupuku;
+        model->mUnk_14 = model->mUnk_14 | 0xc0;
+        gPukupukuDrawScale = pukupuku->mUnk_00.mScale;
+        if (mirrored) {
             gPukupukuDrawScale.x = -gPukupukuDrawScale.x;
         }
-        func_020e66e4(q, r, v, &gPukupukuDrawScale, 0, c);
+        func_020e66e4(model, matrix, v, &gPukupukuDrawScale, 0, alpha);
     }
 }
 
@@ -117,18 +117,18 @@ void func_020e4e9c(void) {
     func_020e55b4();
 }
 
-void DrawPukupukuShadow(u32 a, Unk020e43a8 *p, u32 b, u32 c) {
-    Unk020e4e08 s;
+void DrawPukupukuShadow(u32 a, Unk020e43a8 *pukupuku, u32 b, u32 alpha) {
+    Unk020e4e08 shadowParams;
 
-    if (p->mUnk_00.mStateMachine.mState != 0 && p->mUnk_00.mStateMachine.mState != 1) {
+    if (pukupuku->mUnk_00.mStateMachine.mState != 0 && pukupuku->mUnk_00.mStateMachine.mState != 1) {
         return;
     }
-    s.mUnk_00 = p->mUnk_00.mPos.y - p->mUnk_a0.mUnk_18.y;
-    s.mUnk_00 = 0x1000 - (s.mUnk_00 >> 6);
-    s.mUnk_04 = p->mUnk_00.mPos;
-    s.mUnk_04.y = p->mUnk_f4.z + p->mUnk_100;
-    SetShadowPositionRaised((Unk020e516c *) &p->mUnk_c8, &s.mUnk_04);
-    func_020e54e4((Unk020e516c *) &p->mUnk_c8, &s, 0, c);
+    shadowParams.mUnk_00 = pukupuku->mUnk_00.mPos.y - pukupuku->mUnk_a0.mUnk_18.y;
+    shadowParams.mUnk_00 = 0x1000 - (shadowParams.mUnk_00 >> 6);
+    shadowParams.mUnk_04 = pukupuku->mUnk_00.mPos;
+    shadowParams.mUnk_04.y = pukupuku->mUnk_f4.z + pukupuku->mUnk_100;
+    SetShadowPositionRaised((Unk020e516c *) &pukupuku->mUnk_c8, &shadowParams.mUnk_04);
+    func_020e54e4((Unk020e516c *) &pukupuku->mUnk_c8, &shadowParams, 0, alpha);
 }
 
 void func_020e4df8(u32 arg0, u32 arg1) {
@@ -139,155 +139,155 @@ void func_020e4df8(u32 arg0, u32 arg1) {
     AdvanceStateMachine((void *) value0);
 }
 
-void EnterPukupukuState0(Unk020e4dec *p0) {
-    p0->mUnk_ac = 0x0u;
+void EnterPukupukuState0(Unk020e4dec *pukupuku) {
+    pukupuku->mUnk_ac = 0x0u;
 }
 
-static inline u32 func_020e4ad0_inline(Unk020f41c4_B *r, u32 c) {
-    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    if (c == 0) {
-        return r->mUnk_00 >> 32;
+static inline u32 func_020e4ad0_inline(Unk020f41c4_B *random, u32 range) {
+    random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
+    if (range == 0) {
+        return random->mUnk_00 >> 32;
     } else {
-        return ((r->mUnk_00 >> 32) * c) >> 32;
+        return ((random->mUnk_00 >> 32) * range) >> 32;
     }
 }
 
-void UpdatePukupukuState0(Unk020e43a8 *p) {
+void UpdatePukupukuState0(Unk020e43a8 *pukupuku) {
     s32 y;
 
-    p->mUnk_00.mUnk_10.y -= 0x385;
-    VEC_Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+    pukupuku->mUnk_00.mUnk_10.y -= 0x385;
+    VEC_Add(&pukupuku->mUnk_00.mPos, &pukupuku->mUnk_00.mUnk_10, &pukupuku->mUnk_00.mPos);
     y = 0;
-    y += (s32) (((s64) p->mUnk_104 * (p->mUnk_00.mPos.x - p->mUnk_a0.mUnk_18.x)) >> 12);
-    y += (s32) (((s64) p->mUnk_108 * (p->mUnk_00.mPos.z - p->mUnk_a0.mUnk_18.z)) >> 12);
-    p->mUnk_100 = y;
-    y = p->mUnk_a0.mUnk_18.y + p->mUnk_100;
-    if (p->mUnk_00.mPos.y >= y) {
+    y += (s32) (((s64) pukupuku->mUnk_104 * (pukupuku->mUnk_00.mPos.x - pukupuku->mUnk_a0.mUnk_18.x)) >> 12);
+    y += (s32) (((s64) pukupuku->mUnk_108 * (pukupuku->mUnk_00.mPos.z - pukupuku->mUnk_a0.mUnk_18.z)) >> 12);
+    pukupuku->mUnk_100 = y;
+    y = pukupuku->mUnk_a0.mUnk_18.y + pukupuku->mUnk_100;
+    if (pukupuku->mUnk_00.mPos.y >= y) {
         return;
     }
-    if (!(p->mUnk_00.mDistanceSquaredAndFlags & 4)) {
-        Unk0210b7a8 s;
-        u32 k;
+    if (!(pukupuku->mUnk_00.mDistanceSquaredAndFlags & 4)) {
+        Unk0210b7a8 soundRequest;
+        u32 falloffIndex;
 
-        if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
-            k = 2;
-        } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
-            k = 3;
+        if (pukupuku->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
+            falloffIndex = 2;
+        } else if (pukupuku->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
+            falloffIndex = 3;
         } else {
-            k = 4;
+            falloffIndex = 4;
         }
-        s.mUnk_00 = 0x10b;
-        s.mUnk_04 = &p->mUnk_00.mPos;
-        s.mUnk_08 = k;
-        s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
-        func_0210b7a8(&s);
+        soundRequest.mUnk_00 = 0x10b;
+        soundRequest.mUnk_04 = &pukupuku->mUnk_00.mPos;
+        soundRequest.mUnk_08 = falloffIndex;
+        soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(&pukupuku->mUnk_00.mPos);
+        func_0210b7a8(&soundRequest);
     }
-    p->mUnk_00.mPos.y = y;
-    p->mUnk_c4 = p->mUnk_c4 - 1;
-    if (p->mUnk_c4 == 0) {
-        Unk020f41c4_B *r;
+    pukupuku->mUnk_00.mPos.y = y;
+    pukupuku->mUnk_c4 = pukupuku->mUnk_c4 - 1;
+    if (pukupuku->mUnk_c4 == 0) {
+        Unk020f41c4_B *random;
 
-        p->mUnk_00.mUnk_10.y = 0x3199;
-        r = GetMapObjectRandom();
-        p->mUnk_c4 = (u16) func_020e4ad0_inline(r, 3) + 4;
+        pukupuku->mUnk_00.mUnk_10.y = 0x3199;
+        random = GetMapObjectRandom();
+        pukupuku->mUnk_c4 = (u16) func_020e4ad0_inline(random, 3) + 4;
     } else {
-        Unk020f41c4_B *r;
+        Unk020f41c4_B *random;
 
-        p->mUnk_00.mUnk_10.y = 0x2000;
-        r = GetMapObjectRandom();
-        p->mUnk_00.mUnk_10.y = p->mUnk_00.mUnk_10.y + func_020e4ad0_inline(r, 0x800);
+        pukupuku->mUnk_00.mUnk_10.y = 0x2000;
+        random = GetMapObjectRandom();
+        pukupuku->mUnk_00.mUnk_10.y = pukupuku->mUnk_00.mUnk_10.y + func_020e4ad0_inline(random, 0x800);
     }
-    if (p->mUnk_00.mPos.x > p->mUnk_a0.mUnk_18.x + 0x14000) {
-        p->mUnk_00.mUnk_10.x = -0xccc;
-    } else if (p->mUnk_00.mPos.x < p->mUnk_a0.mUnk_18.x - 0x14000) {
-        p->mUnk_00.mUnk_10.x = 0xccc;
+    if (pukupuku->mUnk_00.mPos.x > pukupuku->mUnk_a0.mUnk_18.x + 0x14000) {
+        pukupuku->mUnk_00.mUnk_10.x = -0xccc;
+    } else if (pukupuku->mUnk_00.mPos.x < pukupuku->mUnk_a0.mUnk_18.x - 0x14000) {
+        pukupuku->mUnk_00.mUnk_10.x = 0xccc;
     } else {
-        Unk020f41c4_B *r;
+        Unk020f41c4_B *random;
 
-        r = GetMapObjectRandom();
-        p->mUnk_00.mUnk_10.x = func_020e4ad0_inline(r, 0x1998) - 0xccc;
+        random = GetMapObjectRandom();
+        pukupuku->mUnk_00.mUnk_10.x = func_020e4ad0_inline(random, 0x1998) - 0xccc;
     }
-    if (p->mUnk_00.mPos.z > p->mUnk_a0.mUnk_18.z + 0x14000) {
-        p->mUnk_00.mUnk_10.z = -0xccc;
+    if (pukupuku->mUnk_00.mPos.z > pukupuku->mUnk_a0.mUnk_18.z + 0x14000) {
+        pukupuku->mUnk_00.mUnk_10.z = -0xccc;
         return;
     }
-    if (p->mUnk_00.mPos.z < p->mUnk_a0.mUnk_18.z - 0x14000) {
-        p->mUnk_00.mUnk_10.z = 0xccc;
+    if (pukupuku->mUnk_00.mPos.z < pukupuku->mUnk_a0.mUnk_18.z - 0x14000) {
+        pukupuku->mUnk_00.mUnk_10.z = 0xccc;
         return;
     }
     {
-        Unk020f41c4_B *r;
+        Unk020f41c4_B *random;
 
-        r = GetMapObjectRandom();
-        p->mUnk_00.mUnk_10.z = func_020e4ad0_inline(r, 0x1998) - 0xccc;
+        random = GetMapObjectRandom();
+        pukupuku->mUnk_00.mUnk_10.z = func_020e4ad0_inline(random, 0x1998) - 0xccc;
     }
 }
 
-void EnterPukupukuState1(Unk020e43a8 *p0) {
-    p0->mUnk_00.mFlags = (((p0->mUnk_00.mFlags)) | ((data_02158fe4)));
+void EnterPukupukuState1(Unk020e43a8 *pukupuku) {
+    pukupuku->mUnk_00.mFlags = (((pukupuku->mUnk_00.mFlags)) | ((data_02158fe4)));
 }
 
-void UpdatePukupukuState1(Unk020e43a8 *p) {
-    if (func_020ec7e8(p) == FALSE) {
+void UpdatePukupukuState1(Unk020e43a8 *pukupuku) {
+    if (func_020ec7e8(pukupuku) == FALSE) {
         return;
     }
-    if (p->mUnk_00.mCourseMapRow->mUnk_28 == 0) {
-        p->mUnk_00.mStateMachine.mNextState = 2;
-        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
+    if (pukupuku->mUnk_00.mCourseMapRow->mUnk_28 == 0) {
+        pukupuku->mUnk_00.mStateMachine.mNextState = 2;
+        pukupuku->mUnk_00.mStateMachine.mNextStateRequested = 1;
         return;
     }
-    ParkMapObject(&p->mUnk_00);
+    ParkMapObject(&pukupuku->mUnk_00);
 }
 
-void EnterPukupukuState2(Unk020e4a34 *p0) {
-    p0->mUnk_02 |= data_02158fe8;
-    p0->mUnk_02 |= data_02158fec;
+void EnterPukupukuState2(Unk020e4a34 *pukupuku) {
+    pukupuku->mUnk_02 |= data_02158fe8;
+    pukupuku->mUnk_02 |= data_02158fec;
 }
 
-void UpdatePukupukuState2(Unk020e43a8 *p) {
-    if (p->mUnk_00.mStateMachine.mStateFrames > 0x12c) {
-        p->mUnk_00.mStateMachine.mNextState = 3;
-        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
+void UpdatePukupukuState2(Unk020e43a8 *pukupuku) {
+    if (pukupuku->mUnk_00.mStateMachine.mStateFrames > 0x12c) {
+        pukupuku->mUnk_00.mStateMachine.mNextState = 3;
+        pukupuku->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
-void EnterPukupukuState3(Unk020e49c0 *p0) {
-    p0->mUnk_04 = p0->mUnk_b8;
-    p0->mUnk_0c = p0->mUnk_c0;
-    p0->mUnk_10 = 0x0u;
-    p0->mUnk_14 = 0x3199u;
-    p0->mUnk_18 = 0x0u;
-    p0->mUnk_02 = (((p0->mUnk_02)) & ~(0x2u));
-    p0->mUnk_02 = (((p0->mUnk_02)) & ~(0x8u));
-    p0->mUnk_66 = 0x1fu;
-    p0->mUnk_02 = (((p0->mUnk_02)) & ~(0x1u));
+void EnterPukupukuState3(Unk020e49c0 *pukupuku) {
+    pukupuku->mUnk_04 = pukupuku->mUnk_b8;
+    pukupuku->mUnk_0c = pukupuku->mUnk_c0;
+    pukupuku->mUnk_10 = 0x0u;
+    pukupuku->mUnk_14 = 0x3199u;
+    pukupuku->mUnk_18 = 0x0u;
+    pukupuku->mUnk_02 = (((pukupuku->mUnk_02)) & ~(0x2u));
+    pukupuku->mUnk_02 = (((pukupuku->mUnk_02)) & ~(0x8u));
+    pukupuku->mUnk_66 = 0x1fu;
+    pukupuku->mUnk_02 = (((pukupuku->mUnk_02)) & ~(0x1u));
 }
 
-void UpdatePukupukuState3(Unk020e43a8 *p) {
-    p->mUnk_00.mPos.y = p->mUnk_00.mPos.y + p->mUnk_00.mUnk_10.y;
-    if (p->mUnk_00.mPos.y > p->mUnk_a0.mUnk_18.y) {
-        p->mUnk_00.mStateMachine.mNextState = 0;
-        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
+void UpdatePukupukuState3(Unk020e43a8 *pukupuku) {
+    pukupuku->mUnk_00.mPos.y = pukupuku->mUnk_00.mPos.y + pukupuku->mUnk_00.mUnk_10.y;
+    if (pukupuku->mUnk_00.mPos.y > pukupuku->mUnk_a0.mUnk_18.y) {
+        pukupuku->mUnk_00.mStateMachine.mNextState = 0;
+        pukupuku->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
-u8 CollideKartWithPukupuku(Unk020e43a8 *a, Unk020ec6e4 *b, u8 *c, u8 *d) {
+u8 CollideKartWithPukupuku(Unk020e43a8 *pukupuku, Unk020ec6e4 *kart, u8 *c, u8 *d) {
     if (*c == 1) {
-        func_020ec6e4(a, b);
-        a->mUnk_00.mStateMachine.mNextState = 1;
-        a->mUnk_00.mStateMachine.mNextStateRequested = 1;
-        a->mUnk_00.mFlags = a->mUnk_00.mFlags | (data_02158fe4);
-        StartSoundIfKartStarOrKiller((void *) a, (void *) b);
+        func_020ec6e4(pukupuku, kart);
+        pukupuku->mUnk_00.mStateMachine.mNextState = 1;
+        pukupuku->mUnk_00.mStateMachine.mNextStateRequested = 1;
+        pukupuku->mUnk_00.mFlags = pukupuku->mUnk_00.mFlags | (data_02158fe4);
+        StartSoundIfKartStarOrKiller((void *) pukupuku, (void *) kart);
     }
     return *d;
 }
 
-s32 CollideItemObjectWithPukupuku(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
+s32 CollideItemObjectWithPukupuku(Unk020e43a8 *pukupuku, void *itemObject, u8 *b, u8 *c) {
     if (*b == 1) {
-        func_020ec538(p, a);
-        p->mUnk_00.mFlags |= data_02158fe4;
-        p->mUnk_00.mStateMachine.mNextState = 1;
-        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
+        func_020ec538(pukupuku, itemObject);
+        pukupuku->mUnk_00.mFlags |= data_02158fe4;
+        pukupuku->mUnk_00.mStateMachine.mNextState = 1;
+        pukupuku->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
     return *c;
 }
@@ -295,9 +295,9 @@ s32 CollideItemObjectWithPukupuku(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
 #pragma thumb on
 
 void CreatePukupuku(void) {
-    void *v1;
-    v1 = FindCourseMapObjFile(gPukupukuNsbmdName);
-    func_020e6488((Unk020e6488 **) (((u32 *) &gPukupuku)), v1, 0, 0);
+    void *nsbmdFile;
+    nsbmdFile = FindCourseMapObjFile(gPukupukuNsbmdName);
+    func_020e6488((Unk020e6488 **) (((u32 *) &gPukupuku)), nsbmdFile, 0, 0);
     func_020e6ab8(gPukupuku);
 }
 

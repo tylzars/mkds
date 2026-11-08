@@ -24,19 +24,19 @@
 
 #pragma thumb off
 
-void func_020e4380(Unk020e3ef4 *a) {
-    if (a->mUnk_000.mStateMachine.mStateFrames > a->mUnk_148) {
-        a->mUnk_000.mStateMachine.mNextState = 0;
-        a->mUnk_000.mStateMachine.mNextStateRequested = 1;
+void func_020e4380(Unk020e3ef4 *object) {
+    if (object->mUnk_000.mStateMachine.mStateFrames > object->mUnk_148) {
+        object->mUnk_000.mStateMachine.mNextState = 0;
+        object->mUnk_000.mStateMachine.mNextStateRequested = 1;
     }
 }
 
-void func_020e435c(void *a) {
-    func_020e1e38(data_0217b7e4, a, func_020e1dec);
+void func_020e435c(void *viewMatrix) {
+    func_020e1e38(data_0217b7e4, viewMatrix, func_020e1dec);
 }
 
-BOOL func_020e4320(s32 a) {
-    switch (a) {
+BOOL func_020e4320(s32 kind) {
+    switch (kind) {
         case 0xcb:
         case 0xce:
         case 0xd0:
@@ -49,25 +49,25 @@ BOOL func_020e4320(s32 a) {
 
 #pragma thumb on
 
-void func_020e4184(Unk020e1dc0 *a) {
-    Unk020e3ef4 *e;
-    s32 i;
-    s32 k;
-    s32 n;
+void func_020e4184(Unk020e1dc0 *list) {
+    Unk020e3ef4 *object;
+    s32 objectIndex;
+    s32 modelIndex;
+    s32 objectCount;
     s32 j;
     s32 l;
-    u32 *p;
-    u32 m[5];
+    u32 *loadedFlagSlot;
+    u32 modelLoaded[5];
 
-    for (k = 0; k < 5; k++) {
-        m[k] = 0;
+    for (modelIndex = 0; modelIndex < 5; modelIndex++) {
+        modelLoaded[modelIndex] = 0;
     }
-    n = a->mUnk_04;
-    for (i = 0; i < n; i++) {
-        e = a->mUnk_00[i];
-        p = &m[e->mUnk_158];
-        if (m[e->mUnk_158] == 0) {
-            switch (e->mUnk_158) {
+    objectCount = list->mUnk_04;
+    for (objectIndex = 0; objectIndex < objectCount; objectIndex++) {
+        object = list->mUnk_00[objectIndex];
+        loadedFlagSlot = &modelLoaded[object->mUnk_158];
+        if (modelLoaded[object->mUnk_158] == 0) {
+            switch (object->mUnk_158) {
                 case 0:
                     CreateNsbmd(&gTestCylinder, FindCourseMapObjFile(gTestCylinderNsbmdName), NULL);
                     func_02084968(gTestCylinder, 0x3f, 2, 0x294a);
@@ -89,208 +89,209 @@ void func_020e4184(Unk020e1dc0 *a) {
                     func_02084968(gRotaryBridge, 0x3f, 2, 0x294a);
                     break;
             }
-            *p = 1;
+            *loadedFlagSlot = 1;
         }
     }
-    l = a->mUnk_04;
+    l = list->mUnk_04;
     for (j = 0; j < l; j++) {
-        e = a->mUnk_00[j];
-        switch (e->mUnk_158) {
+        object = list->mUnk_00[j];
+        switch (object->mUnk_158) {
             case 0:
-                e->mModel = gTestCylinder;
+                object->mModel = gTestCylinder;
                 break;
             case 1:
-                e->mModel = gGearBlack;
+                object->mModel = gGearBlack;
                 break;
             case 2:
-                e->mModel = gGearWhite;
+                object->mModel = gGearWhite;
                 break;
             case 3:
-                e->mModel = gRotaryRoom;
+                object->mModel = gRotaryRoom;
                 break;
             case 4:
-                e->mModel = gRotaryBridge;
+                object->mModel = gRotaryBridge;
                 break;
         }
     }
 }
 
-void func_020e410c(Unk020e1dc0 *a) {
-    Unk020e3ef4 *e;
-    s32 i;
-    s32 j;
-    s32 n;
+void func_020e410c(Unk020e1dc0 *list) {
+    Unk020e3ef4 *object;
+    s32 index;
+    s32 previousIndex;
+    s32 count;
     u32 z;
     u32 z2;
-    Vec3 v;
-    Unk020e3ef4 **p;
+    Vec3 offset;
+    Unk020e3ef4 **objects;
 
-    p = a->mUnk_00;
-    j = -1;
+    objects = list->mUnk_00;
+    previousIndex = -1;
     z = 0;
     z2 = 0;
-    n = a->mUnk_04;
-    for (i = 0; i < n; i++) {
-        e = p[i];
-        if (e->mUnk_000.mKind == 0xcb) {
-            if (j < 0) {
-                e->mUnk_138 = z;
+    count = list->mUnk_04;
+    for (index = 0; index < count; index++) {
+        object = objects[index];
+        if (object->mUnk_000.mKind == 0xcb) {
+            if (previousIndex < 0) {
+                object->mUnk_138 = z;
             } else {
-                VEC_Subtract(&p[j]->mUnk_000.mPos, &e->mUnk_000.mPos, &v);
-                v.y = z2;
-                e->mUnk_154 = VEC_Mag(&v);
-                e->mUnk_154 -= p[j]->mUnk_000.mExtent.x;
+                VEC_Subtract(&objects[previousIndex]->mUnk_000.mPos, &object->mUnk_000.mPos, &offset);
+                offset.y = z2;
+                object->mUnk_154 = VEC_Mag(&offset);
+                object->mUnk_154 -= objects[previousIndex]->mUnk_000.mExtent.x;
             }
-            j = i;
+            previousIndex = index;
         }
     }
 }
 
-void func_020e3ef4(Unk020e3ef4 *a, struct CourseMapRow *b, Unk020e1e98_154 *c) {
-    func_02046be8(&a->mUnk_000.mStateMachine, (UnkFunc *const *) data_0216c168, 4, a);
-    a->mUnk_0e8 = a->mUnk_000.mPos;
-    a->mUnk_0a0 = *(Unk020e38a0_28 *) &a->mUnk_000.mMatrix;
-    a->mUnk_0c4 = *(Unk020e38a0_28 *) &a->mUnk_000.mMatrix;
-    a->mUnk_124.x = 0;
-    a->mUnk_124.y = 0;
-    a->mUnk_124.z = 0;
-    a->mUnk_130 = c->mUnk_00 != 0 ? 0 : 1;
-    a->mUnk_144 = b->mUnk_2c;
-    a->mUnk_146 = b->mUnk_2a;
-    a->mUnk_148 = b->mUnk_2e;
-    a->mUnk_14a = b->mUnk_28 * 0x80 / 100;
-    if (b->mUnk_30 != 0) {
-        a->mUnk_14a = -a->mUnk_14a;
+void func_020e3ef4(Unk020e3ef4 *object, struct CourseMapRow *courseRow, Unk020e1e98_154 *kindInfo) {
+    func_02046be8(&object->mUnk_000.mStateMachine, (UnkFunc *const *) data_0216c168, 4, object);
+    object->mUnk_0e8 = object->mUnk_000.mPos;
+    object->mUnk_0a0 = *(Unk020e38a0_28 *) &object->mUnk_000.mMatrix;
+    object->mUnk_0c4 = *(Unk020e38a0_28 *) &object->mUnk_000.mMatrix;
+    object->mUnk_124.x = 0;
+    object->mUnk_124.y = 0;
+    object->mUnk_124.z = 0;
+    object->mUnk_130 = kindInfo->mUnk_00 != 0 ? 0 : 1;
+    object->mUnk_144 = courseRow->mUnk_2c;
+    object->mUnk_146 = courseRow->mUnk_2a;
+    object->mUnk_148 = courseRow->mUnk_2e;
+    object->mUnk_14a = courseRow->mUnk_28 * 0x80 / 100;
+    if (courseRow->mUnk_30 != 0) {
+        object->mUnk_14a = -object->mUnk_14a;
     }
-    a->mUnk_000.mAngle = 0;
-    if (a->mUnk_144 != 0) {
-        a->mUnk_150 = 0x1000 / a->mUnk_144;
+    object->mUnk_000.mAngle = 0;
+    if (object->mUnk_144 != 0) {
+        object->mUnk_150 = 0x1000 / object->mUnk_144;
     } else {
-        a->mUnk_150 = 0;
+        object->mUnk_150 = 0;
     }
-    a->mUnk_14c = 0;
-    a->mUnk_100 = ((s64) c->mUnk_04 * a->mUnk_000.mScale.x) >> 12;
-    a->mUnk_104 = (s32) (((s64) c->mUnk_08 * a->mUnk_000.mScale.y) >> 12) >> 1;
-    if (c->mUnk_00 != 0) {
-        a->mUnk_110 = FALSE;
-        a->mUnk_114.x = 1;
+    object->mUnk_14c = 0;
+    object->mUnk_100 = ((s64) kindInfo->mUnk_04 * object->mUnk_000.mScale.x) >> 12;
+    object->mUnk_104 = (s32) (((s64) kindInfo->mUnk_08 * object->mUnk_000.mScale.y) >> 12) >> 1;
+    if (kindInfo->mUnk_00 != 0) {
+        object->mUnk_110 = FALSE;
+        object->mUnk_114.x = 1;
     } else {
-        a->mUnk_110 = TRUE;
-        a->mUnk_114.x = 0;
+        object->mUnk_110 = TRUE;
+        object->mUnk_114.x = 0;
     }
-    a->mUnk_114.z = 0;
-    a->mUnk_120 = c->mUnk_10;
-    a->mUnk_134 = 1;
-    a->mUnk_138 = c->mUnk_14;
-    a->mUnk_000.mFlags |= data_02158d58;
-    a->mUnk_000.mStateMachine.mNextState = 0;
-    a->mUnk_000.mStateMachine.mNextStateRequested = 1;
-    a->mUnk_158 = c->mUnk_0c;
-    if (a->mUnk_158 == 1 && b->mUnk_32 == 0) {
-        a->mUnk_158 = 2;
+    object->mUnk_114.z = 0;
+    object->mUnk_120 = kindInfo->mUnk_10;
+    object->mUnk_134 = 1;
+    object->mUnk_138 = kindInfo->mUnk_14;
+    object->mUnk_000.mFlags |= data_02158d58;
+    object->mUnk_000.mStateMachine.mNextState = 0;
+    object->mUnk_000.mStateMachine.mNextStateRequested = 1;
+    object->mUnk_158 = kindInfo->mUnk_0c;
+    if (object->mUnk_158 == 1 && courseRow->mUnk_32 == 0) {
+        object->mUnk_158 = 2;
     }
-    a->mUnk_000.mFlags &= ~2;
-    a->mUnk_000.mFlags &= ~8;
-    a->mUnk_000.mAlpha = 0x1f;
-    if (c->mUnk_0c == 0) {
-        a->mUnk_15c = b->mUnk_0c.x > 0 ? 0x175 : 0x176;
+    object->mUnk_000.mFlags &= ~2;
+    object->mUnk_000.mFlags &= ~8;
+    object->mUnk_000.mAlpha = 0x1f;
+    if (kindInfo->mUnk_0c == 0) {
+        object->mUnk_15c = courseRow->mUnk_0c.x > 0 ? 0x175 : 0x176;
     } else {
-        a->mUnk_15c = c->mUnk_18;
+        object->mUnk_15c = kindInfo->mUnk_18;
     }
-    if (a->mUnk_15c != -1) {
-        CreateMapObjectSoundSourceFalloff3(&a->mUnk_000);
+    if (object->mUnk_15c != -1) {
+        CreateMapObjectSoundSourceFalloff3(&object->mUnk_000);
     }
 }
 
 #pragma thumb off
 
-void *func_020e3ea4(void) {
-    void *p;
+void *CreateBridgeKindData(void) {
+    void *kindData;
 
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
-    *(Unk020e03f8 *) p = *(const Unk020e03f8 *) data_02158d18;
-    return p;
+    kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
+    *(Unk020e03f8 *) kindData = *(const Unk020e03f8 *) data_02158d18;
+    return kindData;
 }
 
-void *func_020e3e48(void) {
-    void *p;
+void *CreateBridgeDrawList(void) {
+    void *drawList;
 
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x30);
-    *(void **) data_0217b7c4 = p;
-    *(Unk020e3e48 *) p = *(const Unk020e3e48 *) data_02158ce8;
+    drawList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x30);
+    *(void **) data_0217b7c4 = drawList;
+    *(Unk020e3e48 *) drawList = *(const Unk020e3e48 *) data_02158ce8;
     func_020d49d8(&data_0217b7c4);
     return *(void **) data_0217b7c4;
 }
 
-void *func_020e3dec(void) {
-    void *p;
+void *CreateBridgeUpdateList(void) {
+    void *updateList;
 
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
-    data_0217b7c8 = p;
-    *(Unk020e0340 *) p = *(const Unk020e0340 *) data_02158cc0;
+    updateList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
+    data_0217b7c8 = updateList;
+    *(Unk020e0340 *) updateList = *(const Unk020e0340 *) data_02158cc0;
     func_020e6f50(&data_0217b7c8);
     return data_0217b7c8;
 }
 
-void UpdateBridge(s32 a, Bridge *b) {
-    s16 t;
-    s32 d;
+void UpdateBridge(s32 a, Bridge *bridge) {
+    s16 sine;
+    s32 angleDelta;
     u16 x;
     u16 y;
 
-    t = gPairsByAngle[(b->mUnk_148 >> 4) * 2];
-    x = b->mUnk_144 + (s32) (((s64) t * b->mUnk_144) >> 12);
+    sine = gPairsByAngle[(bridge->mUnk_148 >> 4) * 2];
+    x = bridge->mUnk_144 + (s32) (((s64) sine * bridge->mUnk_144) >> 12);
     y = 0x10000 - x;
-    d = y - b->mUnk_14a;
-    if (d > 0x8000) {
-        d -= 0x10000;
+    angleDelta = y - bridge->mUnk_14a;
+    if (angleDelta > 0x8000) {
+        angleDelta -= 0x10000;
     }
-    if (d < -0x8000) {
-        d += 0x10000;
+    if (angleDelta < -0x8000) {
+        angleDelta += 0x10000;
     }
-    b->mUnk_124.x = ((s64) b->mUnk_000.mMatrix.mUnk_00[0].x * d) >> 12;
-    b->mUnk_124.y = ((s64) b->mUnk_000.mMatrix.mUnk_00[0].y * d) >> 12;
-    b->mUnk_124.z = ((s64) b->mUnk_000.mMatrix.mUnk_00[0].z * d) >> 12;
-    b->mUnk_14a = y;
-    b->mUnk_0a0 = *(Unk020e38a0_28 *) &b->mUnk_000.mMatrix;
-    MTX_RotX33_((s32 *) &b->mUnk_000.mMatrix, gPairsByAngle[(y >> 4) * 2], gPairsByAngle[(y >> 4) * 2 + 1]);
-    MTX_Concat33((const s32 *) &b->mUnk_000.mMatrix, (const s32 *) &b->mUnk_0c4, (s32 *) &b->mUnk_000.mMatrix);
-    VEC_MultAdd(-b->mUnk_104, &b->mUnk_000.mMatrix.mUnk_00[1], &b->mUnk_000.mPos, &b->mUnk_0f4);
-    if (b->mUnk_150 != 0) {
-        b->mUnk_150--;
+    bridge->mUnk_124.x = ((s64) bridge->mUnk_000.mMatrix.mUnk_00[0].x * angleDelta) >> 12;
+    bridge->mUnk_124.y = ((s64) bridge->mUnk_000.mMatrix.mUnk_00[0].y * angleDelta) >> 12;
+    bridge->mUnk_124.z = ((s64) bridge->mUnk_000.mMatrix.mUnk_00[0].z * angleDelta) >> 12;
+    bridge->mUnk_14a = y;
+    bridge->mUnk_0a0 = *(Unk020e38a0_28 *) &bridge->mUnk_000.mMatrix;
+    MTX_RotX33_((s32 *) &bridge->mUnk_000.mMatrix, gPairsByAngle[(y >> 4) * 2], gPairsByAngle[(y >> 4) * 2 + 1]);
+    MTX_Concat33((const s32 *) &bridge->mUnk_000.mMatrix, (const s32 *) &bridge->mUnk_0c4,
+                 (s32 *) &bridge->mUnk_000.mMatrix);
+    VEC_MultAdd(-bridge->mUnk_104, &bridge->mUnk_000.mMatrix.mUnk_00[1], &bridge->mUnk_000.mPos, &bridge->mUnk_0f4);
+    if (bridge->mUnk_150 != 0) {
+        bridge->mUnk_150--;
         return;
     }
-    if (b->mUnk_000.mSound != NULL) {
-        StartMapObjectSoundWhileRequested(&b->mUnk_000, 0x189);
+    if (bridge->mUnk_000.mSound != NULL) {
+        StartMapObjectSoundWhileRequested(&bridge->mUnk_000, 0x189);
     }
-    b->mUnk_148 += b->mUnk_146;
-    if (b->mUnk_148 >= 0x4000 && b->mUnk_148 < b->mUnk_146 + 0x4000) {
-        b->mUnk_150 = b->mUnk_14c;
-    } else if (b->mUnk_148 >= 0xc000 && b->mUnk_148 < b->mUnk_146 + 0xc000) {
-        b->mUnk_150 = b->mUnk_14e;
+    bridge->mUnk_148 += bridge->mUnk_146;
+    if (bridge->mUnk_148 >= 0x4000 && bridge->mUnk_148 < bridge->mUnk_146 + 0x4000) {
+        bridge->mUnk_150 = bridge->mUnk_14c;
+    } else if (bridge->mUnk_148 >= 0xc000 && bridge->mUnk_148 < bridge->mUnk_146 + 0xc000) {
+        bridge->mUnk_150 = bridge->mUnk_14e;
     }
-    y = 0x10000 - b->mUnk_14a;
-    b->mUnk_154 = (s32) ((((s64) (s32) (u16) (0x10000 - b->mUnk_14a) * 0x1680000) + 0x80000) >> 20) << 1;
-    if (b->mUnk_154 > ((Unk020e1dc0 *) *(void **) data_0217b7c4)->mUnk_2c) {
-        b->mUnk_154 = ((Unk020e1dc0 *) *(void **) data_0217b7c4)->mUnk_2c;
+    y = 0x10000 - bridge->mUnk_14a;
+    bridge->mUnk_154 = (s32) ((((s64) (s32) (u16) (0x10000 - bridge->mUnk_14a) * 0x1680000) + 0x80000) >> 20) << 1;
+    if (bridge->mUnk_154 > ((Unk020e1dc0 *) *(void **) data_0217b7c4)->mUnk_2c) {
+        bridge->mUnk_154 = ((Unk020e1dc0 *) *(void **) data_0217b7c4)->mUnk_2c;
     }
-    if (b->mUnk_154 < 0) {
-        b->mUnk_154 = 0;
+    if (bridge->mUnk_154 < 0) {
+        bridge->mUnk_154 = 0;
     }
 }
 
-void func_020e3b4c(Unk020e3ef4 *a, void *b, u32 c) {
-    Unk020e1e98_12c *p;
+void DrawBridge(Unk020e3ef4 *object, void *viewMatrix, u32 alpha) {
+    Unk020e1e98_12c *animation;
 
-    a->mUnk_000.mMatrix.mUnk_00[3].x = a->mUnk_000.mPos.x >> 4;
-    a->mUnk_000.mMatrix.mUnk_00[3].y = a->mUnk_000.mPos.y >> 4;
-    a->mUnk_000.mMatrix.mUnk_00[3].z = a->mUnk_000.mPos.z >> 4;
-    p = gBridgeNsbca;
-    p->mUnk_0c = a->mUnk_154;
-    *p->mUnk_1c[p->mUnk_1a] = p->mUnk_0c;
-    DrawNsbmdWithMatrixAndMaxAlpha(a->mModel, &a->mUnk_000.mMatrix, &a->mUnk_000.mScale.x, c);
+    object->mUnk_000.mMatrix.mUnk_00[3].x = object->mUnk_000.mPos.x >> 4;
+    object->mUnk_000.mMatrix.mUnk_00[3].y = object->mUnk_000.mPos.y >> 4;
+    object->mUnk_000.mMatrix.mUnk_00[3].z = object->mUnk_000.mPos.z >> 4;
+    animation = gBridgeNsbca;
+    animation->mUnk_0c = object->mUnk_154;
+    *animation->mUnk_1c[animation->mUnk_1a] = animation->mUnk_0c;
+    DrawNsbmdWithMatrixAndMaxAlpha(object->mModel, &object->mUnk_000.mMatrix, &object->mUnk_000.mScale.x, alpha);
 }
 
-void func_020e3b28(void *a) {
-    func_020e1e38(*(void **) data_0217b7c4, a, func_020e3b4c);
+void DrawAllBridges(void *viewMatrix) {
+    func_020e1e38(*(void **) data_0217b7c4, viewMatrix, DrawBridge);
 }

@@ -275,7 +275,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                     slotFlags |= data_021568e0;
                 }
                 if (IsKoopaBlockKind(object->mKind) != 0 || func_020e4320(object->mKind) != FALSE ||
-                    func_020e3af0(object->mKind) != FALSE || func_020ffabc(object->mKind) != FALSE) {
+                    IsBridgeKind(object->mKind) != FALSE || func_020ffabc(object->mKind) != FALSE) {
                     slotFlags |= data_021568e4;
                 }
                 object->mCollisionSlotIndex =
@@ -391,7 +391,7 @@ void InitMapObjects(void) {
         CreateMapObject(courseRow->mKind, courseRow, NULL);
         gMapObjects->mHasKoopaBlock |= IsKoopaBlockKind(courseRow->mKind);
         gMapObjects->mUnk_180 |= func_020e4320(courseRow->mKind);
-        gMapObjects->mUnk_184 |= func_020e3af0(courseRow->mKind);
+        gMapObjects->mUnk_184 |= IsBridgeKind(courseRow->mKind);
         gMapObjects->mUnk_188 |= func_020ffabc(courseRow->mKind);
     }
     if (gMapObjects->mHasKoopaBlock != 0 || gMapObjects->mUnk_180 != 0 || gMapObjects->mUnk_184 != 0 ||

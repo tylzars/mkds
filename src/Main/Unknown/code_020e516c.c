@@ -28,7 +28,7 @@ void func_020e55b4(void) {
     func_01ff9048(0x31, &data_0217b814->mUnk_008, 1);
 }
 
-void func_020e54e4(void *shadowData, void *wordPointer, u32 unused, u32 value) {
+void func_020e54e4(void *shadowData, void *wordPointer, u32 unused, u32 alpha) {
     u32 word;
     u32 b;
     u32 threeWords[3];
@@ -46,14 +46,14 @@ void func_020e54e4(void *shadowData, void *wordPointer, u32 unused, u32 value) {
         func_01ff9048(0x1b, threeWords, 3);
     }
     word = data_0217b814->mUnk_00c;
-    value = value < shadow->mUnk_030 ? value : shadow->mUnk_030;
+    alpha = alpha < shadow->mUnk_030 ? alpha : shadow->mUnk_030;
     word = word & ~0x1f0000;
-    word = word | (value << 16);
+    word = word | (alpha << 16);
     func_01ff9048(0x29, &word, 1);
     func_01ff9144(&data_0217b818->mUnk_000[data_0217b818->mUnk_008], data_0217b818->mUnk_00c);
 }
 
-void func_020e53ac(Unk020e516c *shadow, void *wordPointer, u32 unused, u32 value) {
+void func_020e53ac(Unk020e516c *shadow, void *wordPointer, u32 unused, u32 alpha) {
     u32 x;
     u32 word;
     u32 b;
@@ -76,16 +76,16 @@ void func_020e53ac(Unk020e516c *shadow, void *wordPointer, u32 unused, u32 value
         func_01ff9048(0x1b, threeWords, 3);
     }
     word = data_0217b814->mUnk_00c;
-    value = value < shadow->mUnk_030 ? value : shadow->mUnk_030;
+    alpha = alpha < shadow->mUnk_030 ? alpha : shadow->mUnk_030;
     word = word & ~0x1f0000;
-    word = word | (value << 16);
+    word = word | (alpha << 16);
     func_01ff9048(0x29, &word, 1);
     func_01ff9144(&data_0217b818->mUnk_000[data_0217b818->mUnk_008], data_0217b818->mUnk_00c);
 }
 
-void DrawJgShadowWithMatrix(Vec3 *a, MtxFx43 *b, u32 c, u32 d) {
+void DrawJgShadowWithMatrix(Vec3 *scale, MtxFx43 *matrix, u32 c, u32 d) {
     gJgShadow->mUnk_06e = c < d ? c : d;
-    DrawShadowWithMatrix(gJgShadow, b, a);
+    DrawShadowWithMatrix(gJgShadow, matrix, scale);
 }
 
 void func_020e5348(u32 a, u32 b) {
@@ -114,7 +114,7 @@ void CreateObjShadowAndJgShadow(void) {
     }
 }
 
-s32 RefreshShadowMatrix(void *shadow, Vec3 *position, s32 scale, u32 value) {
+s32 RefreshShadowMatrix(void *shadow, Vec3 *position, s32 scale, u32 alphaCap) {
     Quaternion rotation;
     Vec3 direction;
     Vec3 raisedPosition;
@@ -146,7 +146,7 @@ s32 RefreshShadowMatrix(void *shadow, Vec3 *position, s32 scale, u32 value) {
     shadowCopy->mUnk_000[9] = raisedPosition.x >> 4;
     shadowCopy->mUnk_000[10] = raisedPosition.y >> 4;
     shadowCopy->mUnk_000[11] = raisedPosition.z >> 4;
-    shadowCopy->mUnk_030 = value;
+    shadowCopy->mUnk_030 = alphaCap;
     return hit;
 }
 

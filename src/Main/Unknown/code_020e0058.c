@@ -26,50 +26,50 @@
 #include "Main/Unknown/code_0210b000.h"
 #include "Main/Unknown/unk_0217c000.h"
 
-void func_020e0584(Unk020e005c *a, Vec3 *b, Vec3 *c, Unk020e04b0 *d) {
-    Vec3 e;
+void func_020e0584(Unk020e005c *object, Vec3 *position, Vec3 *velocity, Unk020e04b0 *link) {
+    Vec3 offset;
     s32 f;
     s32 g;
 
-    VEC_Subtract(b, &a->mPos, &e);
-    f = Vec3DotUnrounded(&e, &a->mUnk_040);
-    g = Vec3DotUnrounded(&e, &a->mUnk_034);
-    d->mUnk_04.x = Vec3DotUnrounded(&e, &a->mUnk_028);
-    d->mUnk_04.y = g;
-    d->mUnk_04.z = f;
-    if (c != NULL && a->mUnk_130 != FALSE) {
-        f = Vec3DotUnrounded(c, &a->mUnk_040);
-        g = Vec3DotUnrounded(c, &a->mUnk_034);
-        d->mUnk_10.x = Vec3DotUnrounded(c, &a->mUnk_028);
-        d->mUnk_10.y = g;
-        d->mUnk_10.z = f;
+    VEC_Subtract(position, &object->mPos, &offset);
+    f = Vec3DotUnrounded(&offset, &object->mUnk_040);
+    g = Vec3DotUnrounded(&offset, &object->mUnk_034);
+    link->mUnk_04.x = Vec3DotUnrounded(&offset, &object->mUnk_028);
+    link->mUnk_04.y = g;
+    link->mUnk_04.z = f;
+    if (velocity != NULL && object->mUnk_130 != FALSE) {
+        f = Vec3DotUnrounded(velocity, &object->mUnk_040);
+        g = Vec3DotUnrounded(velocity, &object->mUnk_034);
+        link->mUnk_10.x = Vec3DotUnrounded(velocity, &object->mUnk_028);
+        link->mUnk_10.y = g;
+        link->mUnk_10.z = f;
     } else {
-        d->mUnk_10.x = 0;
-        d->mUnk_10.y = 0;
-        d->mUnk_10.z = 0;
+        link->mUnk_10.x = 0;
+        link->mUnk_10.y = 0;
+        link->mUnk_10.z = 0;
     }
-    d->mUnk_00 = a;
+    link->mUnk_00 = object;
 }
 
-void func_020e0538(Unk020e04b0 *a, Vec3 *b) {
-    Unk020e005c *c = a->mUnk_00;
+void func_020e0538(Unk020e04b0 *link, Vec3 *outPosition) {
+    Unk020e005c *object = link->mUnk_00;
 
-    if (c == NULL) {
+    if (object == NULL) {
         return;
     }
-    MTX_MultVec33(&a->mUnk_04, &c->mUnk_028.x, b);
-    VEC_Add(&c->mPos, b, b);
+    MTX_MultVec33(&link->mUnk_04, &object->mUnk_028.x, outPosition);
+    VEC_Add(&object->mPos, outPosition, outPosition);
 }
 
-BOOL func_020e04b0(Unk020e04b0 *a, Vec3 *b, Vec3 *c) {
-    Unk020e005c *d = a->mUnk_00;
+BOOL func_020e04b0(Unk020e04b0 *link, Vec3 *outPosition, Vec3 *outVelocity) {
+    Unk020e005c *object = link->mUnk_00;
 
-    if (d != NULL) {
-        MTX_MultVec33(&a->mUnk_04, &d->mUnk_028.x, b);
-        VEC_Add(&d->mPos, b, b);
-        if (d->mUnk_130 != FALSE) {
-            MTX_MultVec33(&a->mUnk_10, &d->mUnk_028.x, c);
-            if (c->y < d->mUnk_120) {
+    if (object != NULL) {
+        MTX_MultVec33(&link->mUnk_04, &object->mUnk_028.x, outPosition);
+        VEC_Add(&object->mPos, outPosition, outPosition);
+        if (object->mUnk_130 != FALSE) {
+            MTX_MultVec33(&link->mUnk_10, &object->mUnk_028.x, outVelocity);
+            if (outVelocity->y < object->mUnk_120) {
                 return TRUE;
             }
         }
@@ -77,144 +77,145 @@ BOOL func_020e04b0(Unk020e04b0 *a, Vec3 *b, Vec3 *c) {
     return FALSE;
 }
 
-s32 func_020e0448(Unk020e0448 *a) {
-    Unk020e3ef4 *b = a->mUnk_00;
-    s64 c;
-    s64 d;
+s32 func_020e0448(Unk020e0448 *link) {
+    Unk020e3ef4 *object = link->mUnk_00;
+    s64 horizontalDistanceSquared;
+    s64 limitSquared;
 
-    if (b->mUnk_138 != 0 && b->mUnk_000.mKind == 0xcb) {
-        c = (s64) a->mUnk_04.x * a->mUnk_04.x + (s64) a->mUnk_04.z * a->mUnk_04.z;
-        d = (s64) b->mUnk_154 * b->mUnk_154;
-        return c >= d;
+    if (object->mUnk_138 != 0 && object->mUnk_000.mKind == 0xcb) {
+        horizontalDistanceSquared = (s64) link->mUnk_04.x * link->mUnk_04.x + (s64) link->mUnk_04.z * link->mUnk_04.z;
+        limitSquared = (s64) object->mUnk_154 * object->mUnk_154;
+        return horizontalDistanceSquared >= limitSquared;
     }
-    return b->mUnk_138;
+    return object->mUnk_138;
 }
 
-void *func_020e03f8(void) {
-    void *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
+void *CreateKoopaBlockKindData(void) {
+    void *kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
 
-    *(Unk020e03f8 *) p = *(const Unk020e03f8 *) data_021588a8;
-    return p;
+    *(Unk020e03f8 *) kindData = *(const Unk020e03f8 *) data_021588a8;
+    return kindData;
 }
 
-void *func_020e039c(void) {
-    void *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
+void *CreateKoopaBlockDrawList(void) {
+    void *drawList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
 
-    data_0217b784 = p;
-    *(Unk020e039c *) p = *(const Unk020e039c *) data_0215887c;
+    data_0217b784 = drawList;
+    *(Unk020e039c *) drawList = *(const Unk020e039c *) data_0215887c;
     func_020d49d8(&data_0217b784);
     return data_0217b784;
 }
 
-void *func_020e0340(void) {
-    void *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
+void *CreateKoopaBlockUpdateList(void) {
+    void *updateList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
 
-    data_0217b780 = p;
-    *(Unk020e0340 *) p = *(const Unk020e0340 *) data_02158854;
+    data_0217b780 = updateList;
+    *(Unk020e0340 *) updateList = *(const Unk020e0340 *) data_02158854;
     func_020e6f50(&data_0217b780);
     return data_0217b780;
 }
 
-void func_020e01f0(void *a0, Unk020e005c *a1) {
-    Unk020e0144 *b = &a1->mUnk_144;
+void UpdateKoopaBlock(void *a0, Unk020e005c *koopaBlock) {
+    Unk020e0144 *follower = &koopaBlock->mUnk_144;
 
-    if (a1->mUnk_16c != 0) {
-        Unk0210b7a8 buf;
-        s32 k;
+    if (koopaBlock->mUnk_16c != 0) {
+        Unk0210b7a8 soundRequest;
+        s32 falloffIndex;
 
-        a1->mUnk_16c--;
-        a1->mUnk_010.x = 0;
-        a1->mUnk_010.y = 0;
-        a1->mUnk_010.z = 0;
-        if (a1->mUnk_16c != 0) {
+        koopaBlock->mUnk_16c--;
+        koopaBlock->mUnk_010.x = 0;
+        koopaBlock->mUnk_010.y = 0;
+        koopaBlock->mUnk_010.z = 0;
+        if (koopaBlock->mUnk_16c != 0) {
             return;
         }
-        if ((a1->mDistanceSquaredAndFlags & 4) != 0) {
+        if ((koopaBlock->mDistanceSquaredAndFlags & 4) != 0) {
             return;
         }
-        k = a1->mFarDistanceSquared == gSoundFalloffs[2].mUnk_20
-                ? 2
-                : (a1->mFarDistanceSquared == gSoundFalloffs[3].mUnk_20 ? 3 : 4);
-        buf.mUnk_00 = 0x17e;
-        buf.mUnk_04 = &a1->mPos;
-        buf.mUnk_08 = k;
-        buf.mUnk_0c = GetHorizontalCameraDistanceSquared(&a1->mPos);
-        func_0210b7a8(&buf);
+        falloffIndex = koopaBlock->mFarDistanceSquared == gSoundFalloffs[2].mUnk_20
+                           ? 2
+                           : (koopaBlock->mFarDistanceSquared == gSoundFalloffs[3].mUnk_20 ? 3 : 4);
+        soundRequest.mUnk_00 = 0x17e;
+        soundRequest.mUnk_04 = &koopaBlock->mPos;
+        soundRequest.mUnk_08 = falloffIndex;
+        soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(&koopaBlock->mPos);
+        func_0210b7a8(&soundRequest);
         return;
     }
-    if (func_020d8cc8(b) != FALSE) {
-        if (a1->mStateMachine.mState == 2) {
-            a1->mStateMachine.mNextState = 0;
-            a1->mStateMachine.mNextStateRequested = 1;
+    if (func_020d8cc8(follower) != FALSE) {
+        if (koopaBlock->mStateMachine.mState == 2) {
+            koopaBlock->mStateMachine.mNextState = 0;
+            koopaBlock->mStateMachine.mNextStateRequested = 1;
         }
-        a1->mUnk_16c = b->mUnk_1c->mUnk_0e;
+        koopaBlock->mUnk_16c = follower->mUnk_1c->mUnk_0e;
     }
-    a1->mUnk_0e8 = a1->mPos;
-    GetGroupFollowerLinearPosition(b, &a1->mPos);
-    AdvanceStateMachine(&a1->mStateMachine);
-    VEC_Subtract(&a1->mPos, &a1->mUnk_0e8, &a1->mUnk_010);
-    VEC_MultAdd(-a1->mUnk_104, &a1->mUnk_034, &a1->mPos, &a1->mUnk_0f4);
+    koopaBlock->mUnk_0e8 = koopaBlock->mPos;
+    GetGroupFollowerLinearPosition(follower, &koopaBlock->mPos);
+    AdvanceStateMachine(&koopaBlock->mStateMachine);
+    VEC_Subtract(&koopaBlock->mPos, &koopaBlock->mUnk_0e8, &koopaBlock->mUnk_010);
+    VEC_MultAdd(-koopaBlock->mUnk_104, &koopaBlock->mUnk_034, &koopaBlock->mPos, &koopaBlock->mUnk_0f4);
 }
 
-u32 func_020e01ec(u32 p0) {
-    return p0;
+u32 func_020e01ec(u32 value) {
+    return value;
 }
 
-void func_020e012c(Unk020e005c *a) {
-    Unk020e0144 *b = &a->mUnk_144;
-    s32 v = func_020d8cac(b);
-    s32 w = (u16) (((s64) v << 18) >> 12);
-    s16 t = gPairsByAngle[(w >> 4) * 2];
-    s32 p = ((s64) t * a->mUnk_168) >> 12;
+void UpdateKoopaBlockState0(Unk020e005c *koopaBlock) {
+    Unk020e0144 *follower = &koopaBlock->mUnk_144;
+    s32 progress = func_020d8cac(follower);
+    s32 angle = (u16) (((s64) progress << 18) >> 12);
+    s16 sine = gPairsByAngle[(angle >> 4) * 2];
+    s32 speed = ((s64) sine * koopaBlock->mUnk_168) >> 12;
     s32 m;
 
-    b->mUnk_04 = p > 0x200 ? p : 0x200;
-    m = b->mUnk_00->mUnk_00[b->mUnk_0c].mUnk_34;
-    if (p <= 0x200) {
-        p = 0x200;
+    follower->mUnk_04 = speed > 0x200 ? speed : 0x200;
+    m = follower->mUnk_00->mUnk_00[follower->mUnk_0c].mUnk_34;
+    if (speed <= 0x200) {
+        speed = 0x200;
     }
-    b->mUnk_10 = ((s64) p * m) >> 12;
-    if (func_020d8cac(b) >= 0x100) {
-        a->mStateMachine.mNextState = 1;
-        a->mStateMachine.mNextStateRequested = 1;
+    follower->mUnk_10 = ((s64) speed * m) >> 12;
+    if (func_020d8cac(follower) >= 0x100) {
+        koopaBlock->mStateMachine.mNextState = 1;
+        koopaBlock->mStateMachine.mNextStateRequested = 1;
     }
 }
 
-void func_020e00f8(Unk020e005c *a) {
-    s32 v = a->mUnk_168;
+void EnterKoopaBlockState1(Unk020e005c *koopaBlock) {
+    s32 speed = koopaBlock->mUnk_168;
 
-    a->mUnk_144.mUnk_04 = v;
-    a->mUnk_144.mUnk_10 = ((s64) v * a->mUnk_144.mUnk_00->mUnk_00[a->mUnk_144.mUnk_0c].mUnk_34) >> 12;
+    koopaBlock->mUnk_144.mUnk_04 = speed;
+    koopaBlock->mUnk_144.mUnk_10 =
+        ((s64) speed * koopaBlock->mUnk_144.mUnk_00->mUnk_00[koopaBlock->mUnk_144.mUnk_0c].mUnk_34) >> 12;
 }
 
-void func_020e005c(Unk020e005c *a) {
-    Unk020e0144 *b = &a->mUnk_144;
+void UpdateKoopaBlockState1(Unk020e005c *koopaBlock) {
+    Unk020e0144 *follower = &koopaBlock->mUnk_144;
 
-    if (b->mUnk_20->mUnk_0e == 0) {
-        Unk020e0144_00 *d = b->mUnk_00;
-        BOOL c;
-        BOOL f = FALSE;
+    if (follower->mUnk_20->mUnk_0e == 0) {
+        Unk020e0144_00 *path = follower->mUnk_00;
+        BOOL onEndSegment;
+        BOOL onEndSegmentOfOpenPath = FALSE;
 
-        if (d->mUnk_08 == 0) {
-            if (b->mUnk_18 != 0) {
-                c = b->mUnk_0c == d->mUnk_04 - 1;
+        if (path->mUnk_08 == 0) {
+            if (follower->mUnk_18 != 0) {
+                onEndSegment = follower->mUnk_0c == path->mUnk_04 - 1;
             } else {
-                c = b->mUnk_0c == 0;
+                onEndSegment = follower->mUnk_0c == 0;
             }
-            if (c) {
-                f = TRUE;
+            if (onEndSegment) {
+                onEndSegmentOfOpenPath = TRUE;
             }
         }
-        if (f == FALSE) {
+        if (onEndSegmentOfOpenPath == FALSE) {
             return;
         }
     }
-    if (func_020d8cac(b) >= 0xf00) {
-        a->mStateMachine.mNextState = 2;
-        a->mStateMachine.mNextStateRequested = 1;
+    if (func_020d8cac(follower) >= 0xf00) {
+        koopaBlock->mStateMachine.mNextState = 2;
+        koopaBlock->mStateMachine.mNextStateRequested = 1;
     }
 }
 
-u32 func_020e0058(u32 p0) {
-    return p0;
+u32 func_020e0058(u32 value) {
+    return value;
 }
