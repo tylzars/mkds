@@ -6,19 +6,19 @@
 
 #pragma optimize_for_size on
 
-void func_020302f0(u32 a, u32 b, u32 c, u32 d) {
-    reg_G2S_DB_WIN0H = ((a << 8) & 0xff00) | (c & 0xff);
-    reg_G2S_DB_WIN0V = ((b << 8) & 0xff00) | (d & 0xff);
+void func_020302f0(u32 startX, u32 startY, u32 endX, u32 endY) {
+    reg_G2S_DB_WIN0H = ((startX << 8) & 0xff00) | (endX & 0xff);
+    reg_G2S_DB_WIN0V = ((startY << 8) & 0xff00) | (endY & 0xff);
 }
 
 #pragma thumb on
 
-void func_020302a0(void) {
-    MultiSelectNS *o;
+void WriteMultiSelectNSRegisters(void) {
+    MultiSelectNS *multiSelectNS;
 
     func_020303a8(0x16);
-    o = gMultiSelectNS;
-    if (o->mOffset != 0) {
+    multiSelectNS = gMultiSelectNS;
+    if (multiSelectNS->mOffset != 0) {
         func_0203038c(1);
         func_02030364(0x1f, 1);
         func_0203033c(7, 1);

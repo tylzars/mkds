@@ -33,7 +33,7 @@ void func_020309d8(void) {
     o = gMultiSelectNS;
     n = func_02030a18(o->mBncl) + func_02030a10(o->mBnll);
     for (i = 0; i < n; i++) {
-        o->mUnk_18[i].mOffsetY = gMultiSelectNS->mOffset;
+        o->mCellTable[i].mOffsetY = gMultiSelectNS->mOffset;
     }
 }
 
@@ -63,14 +63,14 @@ void RefreshMultiSelectNS(s32 a) {
             v = z1;
         }
         q = data_02153d20[i];
-        o->mUnk_18[q[0]].mVisible = v;
+        o->mCellTable[q[0]].mVisible = v;
         if (v == 0) {
             w = 1;
         } else {
             w = z2;
         }
-        o->mUnk_18[q[1]].mVisible = w;
-        func_02124100(q[2], t[v], o->mBnll, o->mUnk_18, o->mBncl);
+        o->mCellTable[q[1]].mVisible = w;
+        func_02124100(q[2], t[v], o->mBnll, o->mCellTable, o->mBncl);
     }
 }
 
@@ -100,7 +100,7 @@ void InitMultiSelectNS(void *a, void *b, void *c) {
     func_0203091c(gMultiSelectNS, 0x40);
     gMultiSelectNS->mHeap = h;
     gMultiSelectNS->mUnk_1c = b;
-    gMultiSelectNS->mUnk_20 = c;
+    gMultiSelectNS->mOamList = c;
     gMultiSelectNS->mBannerMessages = FindSceneFile(data_0216362c);
     gMultiSelectNS->mOffset = -0xc0;
     n = GX_GetSizeOfSubOBJ();
@@ -111,13 +111,14 @@ void InitMultiSelectNS(void *a, void *b, void *c) {
     o->mBncl = FindSceneFile(gMultiSelectNSSBnclName);
     o->mBnbl = FindSceneFile(gMultiSelectNSSBnblName);
     o->mBnll = FindSceneFile(gMultiSelectNSSBnllName);
-    InitLayoutTable(gMultiSelectNS->mHeap, o->mBncl, o->mBnll, &o->mUnk_18);
+    InitLayoutTable(gMultiSelectNS->mHeap, o->mBncl, o->mBnll, &o->mCellTable);
     for (i = 0; i < 2; i++) {
         q = &data_02153d2c[i];
         x = q->mUnk_00;
         n -= func_021243ac(gMultiSelectNS->mHeap, x, o->mBnll, q->mUnk_02, q->mUnk_04, q->mUnk_06, o->mNcer, o->mBncl,
-                           o->mUnk_18, n);
-        func_0212426c(1, x, o->mBnll, GetBmgEntry(gMultiSelectNS->mBannerMessages, q->mUnk_08), o->mBncl, o->mUnk_18);
+                           o->mCellTable, n);
+        func_0212426c(1, x, o->mBnll, GetBmgEntry(gMultiSelectNS->mBannerMessages, q->mUnk_08), o->mBncl,
+                      o->mCellTable);
     }
     CallQueueAppend(0x23, 0, o->mNcgr->mData, o->mNcgr->mDataSize);
     CallQueueAppend(0x1e, 0, o->mNclr->mData, o->mNclr->mDataSize);

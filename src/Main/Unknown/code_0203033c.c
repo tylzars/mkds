@@ -37,15 +37,15 @@ u32 func_02030700(u32 p0) {
     return (*OFFSET_PTR(const u16, p0, 0));
 }
 
-u32 func_020306e0(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_020306e0(u32 slotIndex) {
+    u32 value0 = slotIndex;
     u32 value1;
-    u32 value2;
-    u32 value12;
-    value2 = (u32) &data_02175628;
+    u32 slotsAddress;
+    u32 calleeAddress;
+    slotsAddress = (u32) &data_02175628;
     value1 = 0x5cu;
-    value1 = (value0) * (value1) + (value2);
-    value12 = (u32) &func_02030700;
+    value1 = (value0) * (value1) + (slotsAddress);
+    calleeAddress = (u32) &func_02030700;
     value0 = (value1) + (0x48u);
     value0 = func_02030700(value0);
     return value0;
@@ -55,46 +55,46 @@ u32 func_020306d8(u32 p0) {
     return (*OFFSET_PTR(const u16, p0, 2));
 }
 
-u32 func_020306b8(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_020306b8(u32 slotIndex) {
+    u32 value0 = slotIndex;
     u32 value1;
-    u32 value2;
-    u32 value12;
-    value2 = (u32) &data_02175628;
+    u32 slotsAddress;
+    u32 calleeAddress;
+    slotsAddress = (u32) &data_02175628;
     value1 = 0x5cu;
-    value1 = (value0) * (value1) + (value2);
-    value12 = (u32) &func_020306d8;
+    value1 = (value0) * (value1) + (slotsAddress);
+    calleeAddress = (u32) &func_020306d8;
     value0 = (value1) + (0x48u);
     value0 = func_020306d8(value0);
     return value0;
 }
 
-u16 func_020306a4(InputSlot *a, u32 b) {
-    return a->mUnk_00 & b;
+u16 func_020306a4(InputSlot *slot, u32 mask) {
+    return slot->mUnk_00 & mask;
 }
 
-u32 func_02030688(u32 a, u32 b) {
-    return func_020306a4(&data_02175628[a], b);
+u32 func_02030688(u32 slotIndex, u32 mask) {
+    return func_020306a4(&data_02175628[slotIndex], mask);
 }
 
-void func_02030654(u32 a) {
+void func_02030654(u32 index) {
     NNS_SndArcSetCurrent((NNSSndArc *) (((u32) (&data_0217c868))));
-    func_0203063c(a, 0);
+    func_0203063c(index, 0);
     NNS_SndArcSetCurrent((NNSSndArc *) (((u32) (&data_0217d0a0))));
 }
 
-void func_0203063c(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2;
+void func_0203063c(u32 index, u32 seqArcNo) {
+    u32 value0 = index;
+    u32 value1 = seqArcNo;
+    u32 indexCopy;
     u32 value12;
-    value2 = value0;
+    indexCopy = value0;
     value0 = (u32) &data_0217d068;
-    value0 = NNS_SndArcPlayerStartSeqArc((const void *) value0, value1, value2);
+    value0 = NNS_SndArcPlayerStartSeqArc((const void *) value0, value1, indexCopy);
 }
 
-void func_0203062c(u32 arg0) {
-    u32 value0 = arg0;
+void func_0203062c(u32 index) {
+    u32 value0 = index;
     u32 value1;
     u32 value12;
     value1 = 0u;
@@ -104,19 +104,19 @@ void func_0203062c(u32 arg0) {
 #pragma thumb on
 
 s32 AdvanceMultiSelectNS(void) {
-    MultiSelectNS *o;
-    s32 r;
-    s32 a;
+    MultiSelectNS *multiSelectNS;
+    s32 result;
+    s32 touchInReturnRect;
     s32 b;
-    s32 c;
-    u16 i;
+    s32 pairY;
+    u16 slotIndex;
 
-    r = -1;
-    i = func_020435bc();
-    o = gMultiSelectNS;
-    switch (o->mState) {
+    result = -1;
+    slotIndex = func_020435bc();
+    multiSelectNS = gMultiSelectNS;
+    switch (multiSelectNS->mState) {
         case 0:
-            o->mStateFrames++;
+            multiSelectNS->mStateFrames++;
             if (gMultiSelectNS->mStateFrames < 10) {
                 gMultiSelectNS->mOffset = InterpolateS16(1, -0xc0, 0, gMultiSelectNS->mStateFrames, 10);
             } else {
@@ -127,29 +127,29 @@ s32 AdvanceMultiSelectNS(void) {
             func_020309d8();
             break;
         case 1:
-            a = 0;
+            touchInReturnRect = 0;
             b = -1;
-            if (func_02030708(i) != 0) {
-                b = func_020306e0(i);
-                c = func_020306b8(i);
-                a = IsSelectReturnState2NoState3Or4RequestAndInRect(b, c);
-                b = FindRectContainingPoint(b, c, o->mBnbl);
+            if (func_02030708(slotIndex) != 0) {
+                b = func_020306e0(slotIndex);
+                pairY = func_020306b8(slotIndex);
+                touchInReturnRect = IsSelectReturnState2NoState3Or4RequestAndInRect(b, pairY);
+                b = FindRectContainingPoint(b, pairY, multiSelectNS->mBnbl);
             }
-            if (func_02030688(i, PAD_KEY_A) != 0) {
+            if (func_02030688(slotIndex, PAD_KEY_A) != 0) {
                 func_0204aa28(gMultiSelectNS->mIndex == 1 ? 1 : 0);
-                gMultiSelectNS->mUnk_2c = 2;
+                gMultiSelectNS->mNextCallbacksIndex = 2;
                 gMultiSelectNS->mState = 2;
                 RefreshMultiSelectNS(0);
                 func_02030654(4);
-            } else if (func_02030688(i, PAD_KEY_B) != 0 || a != 0) {
-                gMultiSelectNS->mUnk_2c = 0;
+            } else if (func_02030688(slotIndex, PAD_KEY_B) != 0 || touchInReturnRect != 0) {
+                gMultiSelectNS->mNextCallbacksIndex = 0;
                 gMultiSelectNS->mState = 3;
                 RequestSelectReturnState3WithSound(0);
-            } else if (func_02030688(i, PAD_KEY_UP) != 0 && gMultiSelectNS->mIndex > 0) {
+            } else if (func_02030688(slotIndex, PAD_KEY_UP) != 0 && gMultiSelectNS->mIndex > 0) {
                 gMultiSelectNS->mIndex--;
                 RefreshMultiSelectNS(1);
                 func_0203062c(0);
-            } else if (func_02030688(i, PAD_KEY_DOWN) != 0 && gMultiSelectNS->mIndex < 1) {
+            } else if (func_02030688(slotIndex, PAD_KEY_DOWN) != 0 && gMultiSelectNS->mIndex < 1) {
                 gMultiSelectNS->mIndex++;
                 RefreshMultiSelectNS(1);
                 func_0203062c(0);
@@ -159,18 +159,18 @@ s32 AdvanceMultiSelectNS(void) {
                 func_02030654(4);
                 gMultiSelectNS->mIndex = 0;
                 func_0204aa28(0);
-                gMultiSelectNS->mUnk_2c = 2;
+                gMultiSelectNS->mNextCallbacksIndex = 2;
             } else if (b == 1) {
                 gMultiSelectNS->mState = 2;
                 RefreshMultiSelectNS(gMultiSelectNS->mIndex != 1 ? 1 : 0);
                 func_02030654(4);
                 gMultiSelectNS->mIndex = 1;
                 func_0204aa28(1);
-                gMultiSelectNS->mUnk_2c = 2;
+                gMultiSelectNS->mNextCallbacksIndex = 2;
             }
             break;
         case 2:
-            o->mStateFrames++;
+            multiSelectNS->mStateFrames++;
             if (gMultiSelectNS->mStateFrames >= 5) {
                 gMultiSelectNS->mStateFrames = 0;
                 gMultiSelectNS->mState = 3;
@@ -178,7 +178,7 @@ s32 AdvanceMultiSelectNS(void) {
             }
             break;
         case 3:
-            o->mStateFrames++;
+            multiSelectNS->mStateFrames++;
             if (gMultiSelectNS->mStateFrames < 10) {
                 gMultiSelectNS->mOffset = InterpolateS16(1, 0, -0xc0, gMultiSelectNS->mStateFrames, 10);
             } else {
@@ -188,13 +188,14 @@ s32 AdvanceMultiSelectNS(void) {
             func_020309d8();
             break;
         case 4:
-            r = o->mUnk_2c;
+            result = multiSelectNS->mNextCallbacksIndex;
             break;
     }
     if (gMultiSelectNS->mState != 4) {
-        DrawLayoutTable(o->mBncl, o->mNcer, o->mBnll, gMultiSelectNS->mUnk_20, o->mUnk_18);
+        DrawLayoutTable(multiSelectNS->mBncl, multiSelectNS->mNcer, multiSelectNS->mBnll, gMultiSelectNS->mOamList,
+                        multiSelectNS->mCellTable);
     }
-    return r;
+    return result;
 }
 
 #pragma thumb off
@@ -209,64 +210,64 @@ void ReleaseMultiSelectNS(void) {
 
 #pragma thumb off
 
-u32 func_020303a8(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    value2 = 0x4001000u;
-    value1 = *(const u32 *) ((value2) + (0));
-    value1 = (value1) & ~(0x1f00u);
-    value0 = (value1) | ((value0 << 8));
-    *(u32 *) ((value2) + (0)) = value0;
+u32 func_020303a8(u32 bits) {
+    u32 value0 = bits;
+    u32 maskedRegister;
+    u32 registerAddress;
+    registerAddress = 0x4001000u;
+    maskedRegister = *(const u32 *) ((registerAddress) + (0));
+    maskedRegister = (maskedRegister) & ~(0x1f00u);
+    value0 = (maskedRegister) | ((value0 << 8));
+    *(u32 *) ((registerAddress) + (0)) = value0;
     return value0;
 }
 
-u32 func_0203038c(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    value2 = 0x4001000u;
-    value1 = *(const u32 *) ((value2) + (0));
-    value1 = (value1) & ~(0xe000u);
-    value0 = (value1) | ((value0 << 13));
-    *(u32 *) ((value2) + (0)) = value0;
+u32 func_0203038c(u32 bits) {
+    u32 value0 = bits;
+    u32 maskedRegister;
+    u32 registerAddress;
+    registerAddress = 0x4001000u;
+    maskedRegister = *(const u32 *) ((registerAddress) + (0));
+    maskedRegister = (maskedRegister) & ~(0xe000u);
+    value0 = (maskedRegister) | ((value0 << 13));
+    *(u32 *) ((registerAddress) + (0)) = value0;
     return value0;
 }
 
-u32 func_02030364(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2;
-    u32 compareLeft0;
-    u32 compareRight0;
-    value2 = 0x4001048u;
-    compareLeft0 = value1;
-    compareRight0 = 0u;
-    value1 = *(const u16 *) ((value2) + (0));
+u32 func_02030364(u32 lowBits, u32 extraBitFlag) {
+    u32 value0 = lowBits;
+    u32 value1 = extraBitFlag;
+    u32 registerAddress;
+    u32 flagCopy;
+    u32 zero;
+    registerAddress = 0x4001048u;
+    flagCopy = value1;
+    zero = 0u;
+    value1 = *(const u16 *) ((registerAddress) + (0));
     value1 = (value1) & ~(0x3fu);
     value1 = (value1) | (value0);
     value0 = 0x4001048u;
-    if (compareLeft0 != compareRight0) {
+    if (flagCopy != zero) {
         value1 = (value1) | (0x20u);
     }
     *(u16 *) ((value0) + (0)) = value1;
     return value0;
 }
 
-u32 func_0203033c(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2;
-    u32 compareLeft0;
-    u32 compareRight0;
-    value2 = 0x400104au;
-    compareLeft0 = value1;
-    compareRight0 = 0u;
-    value1 = *(const u16 *) ((value2) + (0));
+u32 func_0203033c(u32 lowBits, u32 extraBitFlag) {
+    u32 value0 = lowBits;
+    u32 value1 = extraBitFlag;
+    u32 registerAddress;
+    u32 flagCopy;
+    u32 zero;
+    registerAddress = 0x400104au;
+    flagCopy = value1;
+    zero = 0u;
+    value1 = *(const u16 *) ((registerAddress) + (0));
     value1 = (value1) & ~(0x3fu);
     value1 = (value1) | (value0);
     value0 = 0x400104au;
-    if (compareLeft0 != compareRight0) {
+    if (flagCopy != zero) {
         value1 = (value1) | (0x20u);
     }
     *(u16 *) ((value0) + (0)) = value1;

@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void func_020302a0(void);
-void func_020302f0(u32 a, u32 b, u32 c, u32 d);
+void WriteMultiSelectNSRegisters(void);
+void func_020302f0(u32 startX, u32 startY, u32 endX, u32 endY);

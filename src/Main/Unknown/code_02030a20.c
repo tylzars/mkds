@@ -94,7 +94,7 @@ s32 func_02032000(void) {
 
 void func_02031f5c(void) {
     Unk02174e58_24 *q;
-    Unk02153c1c *t;
+    LabelMessageRow *t;
     u16 v1[12];
     s32 i;
 
@@ -104,12 +104,12 @@ void func_02031f5c(void) {
         MIi_CpuClear16(v1[0], &v1[1], 0x16);
         if (func_0204fcec(i, &v1[1]) != 0) {
             v1[11] = 0;
-            func_0212426c(1, t->mUnk_00, q->mUnk_14, &v1[1], q->mUnk_0c, q->mUnk_18);
+            func_0212426c(1, t->mLabelIndex, q->mUnk_14, &v1[1], q->mUnk_0c, q->mUnk_18);
             if (gMultiSelectMember->mUnk_e0[i].mUnk_00 != 2) {
                 gMultiSelectMember->mUnk_e0[i].mUnk_00 = 1;
             }
         } else {
-            ClearAndQueueLabelLayoutText(1, t->mUnk_00, q->mUnk_14, q->mUnk_0c, q->mUnk_18);
+            ClearAndQueueLabelLayoutText(1, t->mLabelIndex, q->mUnk_14, q->mUnk_0c, q->mUnk_18);
             gMultiSelectMember->mUnk_e0[i].mUnk_00 = 0;
         }
     }
@@ -117,7 +117,7 @@ void func_02031f5c(void) {
 
 void func_02031e80(void) {
     Unk02174e58_24 *q;
-    Unk02153c1c *t;
+    LabelMessageRow *t;
     u16 v1[12];
     s32 n;
     s32 i;
@@ -130,11 +130,11 @@ void func_02031e80(void) {
         if (&data_0217aa00->mUnk_045c[(u16) i] != NULL) {
             MIi_CpuCopy16(&data_0217aa00->mUnk_045c[(u16) i], &v1[1], 0x14);
             if (v1[1] != 0) {
-                func_0212426c(1, t->mUnk_00, q->mUnk_14, &v1[1], q->mUnk_0c, q->mUnk_18);
+                func_0212426c(1, t->mLabelIndex, q->mUnk_14, &v1[1], q->mUnk_0c, q->mUnk_18);
                 gMultiSelectMember->mUnk_e0[i].mUnk_00 = 2;
                 n++;
             } else {
-                ClearAndQueueLabelLayoutText(1, t->mUnk_00, q->mUnk_14, q->mUnk_0c, q->mUnk_18);
+                ClearAndQueueLabelLayoutText(1, t->mLabelIndex, q->mUnk_14, q->mUnk_0c, q->mUnk_18);
                 gMultiSelectMember->mUnk_e0[i].mUnk_00 = 0;
             }
         }
@@ -453,8 +453,8 @@ void InitMultiSelectMember(void *a, void *b, void *c) {
     u32 r;
     void *h;
     volatile u32 z;
-    Unk02153c1c *t;
-    Unk02153c1c *g;
+    LabelMessageRow *t;
+    LabelMessageRow *g;
 
     h = CreateFrmHeapFromMaxFree(a);
     gMultiSelectMember = HeapAlloc(h, 0x154);
@@ -476,7 +476,7 @@ void InitMultiSelectMember(void *a, void *b, void *c) {
     g = t;
     for (; i < 2; i++) {
         v -= func_02025a00(0, gMultiSelectMember->mHeap, p, t, v);
-        func_0212426c(0, g->mUnk_00, p->mUnk_14, GetBmgEntry(gMultiSelectMember->mBannerMessages, g->mUnk_08),
+        func_0212426c(0, g->mLabelIndex, p->mUnk_14, GetBmgEntry(gMultiSelectMember->mBannerMessages, g->mMessageIndex),
                       p->mUnk_0c, p->mUnk_18);
         t++;
         g++;
@@ -515,9 +515,9 @@ void func_0203147c(void *a, void *b, void *c) {
     q = &gMultiSelectMember->mUnk_24[1];
     MIi_CpuCopy16(data_0217aa08->mUnk_00->mUnk_0c, v1, 0x14);
     v1[10] = 0;
-    func_0212426c(1, data_usa_02153d7c[0].mUnk_00, q->mUnk_14, v1, q->mUnk_0c, q->mUnk_18);
+    func_0212426c(1, data_usa_02153d7c[0].mLabelIndex, q->mUnk_14, v1, q->mUnk_0c, q->mUnk_18);
     func_0212426c(1, data_usa_02153dbc[16], q->mUnk_14,
-                  GetBmgEntry(gMultiSelectMember->mBannerMessages, data_usa_02153d7c[8].mUnk_08), q->mUnk_0c,
+                  GetBmgEntry(gMultiSelectMember->mBannerMessages, data_usa_02153d7c[8].mMessageIndex), q->mUnk_0c,
                   q->mUnk_18);
     data_021759d0->mUnk_20 = 1;
     func_02126638(GetBmgEntry(gMultiSelectMember->mBannerMessages, 9), 0, 0, 1, 0, 0, 0);
@@ -547,7 +547,7 @@ void func_02031280(void *a, void *b, void *c) {
     MIi_CpuClear16(v1[0], &v1[1], 0x16);
     if (gMultiSelectMember->mUnk_84 == 0 && func_0204ff14(func_0202f14c()->mUnk_00, &v1[1]) != 0) {
         v1[11] = 0;
-        func_0212426c(1, data_usa_02153d7c[0].mUnk_00, q->mUnk_14, &v1[1], q->mUnk_0c, q->mUnk_18);
+        func_0212426c(1, data_usa_02153d7c[0].mLabelIndex, q->mUnk_14, &v1[1], q->mUnk_0c, q->mUnk_18);
         gMultiSelectMember->mUnk_80 = TRUE;
     }
     q->mUnk_18[0x11].mVisible = 0;
@@ -830,7 +830,7 @@ s32 func_02030b18(Unk02030b18 *a) {
         MIi_CpuClear16(v3[0], &v3[1], 0x16);
         if (func_0204ff14(func_0202f14c()->mUnk_00, &v3[1]) != 0) {
             v3[11] = 0;
-            func_0212426c(1, data_usa_02153d7c[0].mUnk_00, p->mUnk_14, &v3[1], p->mUnk_0c, p->mUnk_18);
+            func_0212426c(1, data_usa_02153d7c[0].mLabelIndex, p->mUnk_14, &v3[1], p->mUnk_0c, p->mUnk_18);
             gMultiSelectMember->mUnk_80 = TRUE;
         }
     }

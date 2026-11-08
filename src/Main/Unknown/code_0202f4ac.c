@@ -14,10 +14,10 @@ void func_0202f51c(void *dest, u32 size) {
     func_0202f530(dest, 0, size);
 }
 
-void func_0202f4e0(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
-    SetBg1Record(a->mMainBgRecords, b, c, d, e, f, g, h);
+void func_0202f4e0(Unk02180774 *displaySettings, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
+    SetBg1Record(displaySettings->mMainBgRecords, b, c, d, e, f, g, h);
 }
 
-void func_0202f4ac(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    SetBg3RecordParams(a->mSubBgRecords, b, c, d, e, f, g);
+void func_0202f4ac(Unk02180774 *displaySettings, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
+    SetBg3RecordParams(displaySettings->mSubBgRecords, b, c, d, e, f, g);
 }

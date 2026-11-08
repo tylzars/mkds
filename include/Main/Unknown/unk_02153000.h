@@ -3,20 +3,20 @@
 #include "types.h"
 #include "code_02022aa8.h"
 
-// 12-byte entries of the table at data_02153c1c.
-typedef struct Unk02153c1c {
-    /* 00 */ s16 mUnk_00;
-    /* 02 */ s16 mUnk_02;
-    /* 04 */ s16 mUnk_04;
-    /* 06 */ s16 mUnk_06;
-    /* 08 */ s32 mUnk_08;
-} Unk02153c1c;
+// 12-byte entries of the table at gMemberGroupLabelMessageRows.
+typedef struct LabelMessageRow {
+    /* 00 */ s16 mLabelIndex;
+    /* 02 */ s16 mWidth;
+    /* 04 */ s16 mHeight;
+    /* 06 */ s16 mCellIndex;
+    /* 08 */ s32 mMessageIndex;
+} LabelMessageRow;
 
-// 0x32-byte entries of the table at data_02153c58.
-typedef struct Unk02153c58 {
-    /* 00 */ u16 mUnk_00[0x18];
-    /* 30 */ u16 mUnk_30;
-} Unk02153c58;
+// 0x32-byte entries of the table at gMemberRowCellIndices.
+typedef struct MemberRowCellIndices {
+    /* 00 */ u16 mCellIndices[0x18];
+    /* 30 */ u16 mLabelIndex;
+} MemberRowCellIndices;
 
 // 8-byte entries of the table at data_usa_02153554.
 typedef struct Unk02153554 {
@@ -43,15 +43,15 @@ typedef struct Unk021534bc {
     /* 02 */ s16 mUnk_02;
 } Unk021534bc;
 
-extern Unk02153c1c data_02153c1c[];
+extern LabelMessageRow gMemberGroupLabelMessageRows[];
 extern Unk02153554 data_usa_02153554[];
 extern Unk021534bc data_021534bc[];
 extern Unk021534bc data_021534dc[];
 extern Unk021534bc data_02153500[];
 extern Unk021534bc data_02153528[];
 extern Unk021535b4 data_021535b4[];
-extern Unk02153c58 data_02153c58[];
-extern u16 data_02153c04[][3];
+extern MemberRowCellIndices gMemberRowCellIndices[];
+extern u16 gMemberRowRectIndices[][3];
 
 // Rows of nine words; each name starts at one word of the first row.
 extern const char *data_02153f80[][9];
@@ -107,9 +107,9 @@ extern s16 data_02154034[][4];
 extern s16 data_0215404c[][4];
 
 // Tables of 12-byte entries (data_usa_02153d7c is the third entry of data_usa_02153d64) and of u16 pairs.
-extern Unk02153c1c data_usa_02153d64[];
-extern Unk02153c1c data_usa_02153d7c[];
-extern Unk02153c1c data_usa_02153d88[];
+extern LabelMessageRow data_usa_02153d64[];
+extern LabelMessageRow data_usa_02153d7c[];
+extern LabelMessageRow data_usa_02153d88[];
 extern u16 data_usa_02153d44[][2];
 extern u16 data_usa_02153d46[][2];
 extern u16 data_usa_02153d54[];
