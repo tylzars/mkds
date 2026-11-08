@@ -8,8 +8,8 @@
 
 typedef struct MapObject MapObject;
 
-// Object of 0x34 bytes at 0xe8 of the object KartAi starts: func_02089a24 writes the words at 0x28 and 0x2c and
-// the halfword at 0x30.
+// Object of 0x34 bytes at 0xe8 of the object KartAi starts: PickBattleKartAiRaceStart writes the words at 0x28 and 0x2c
+// and the halfword at 0x30.
 typedef struct KartAiRaceSpeedLimit {
     /* 00 */ s32 mBaseSpeedLimit;
     /* 04 */ s32 mSpeedLimit;
@@ -38,9 +38,9 @@ typedef struct KartAiSpeedLimit {
 } KartAiSpeedLimit;
 
 // One per Kart: follows the kart (mKart), steers it and requests its bits and items.
-// Object of 0x158 bytes (FindKartAiTargetShine to func_02089a24 take it first): the Kart it follows at 0x00, a
-// LinkCursor at 0x28, vectors at 0x44, 0x50, 0x60 and 0xdc, a KartAiRaceSpeedLimit at 0xe8, a KartAiItemUse at 0x11c, a
-// KartAiSpeedLimit at 0x140 and a word at 0x154.
+// Object of 0x158 bytes (FindKartAiTargetShine to PickBattleKartAiRaceStart take it first): the Kart it follows at
+// 0x00, a LinkCursor at 0x28, vectors at 0x44, 0x50, 0x60 and 0xdc, a KartAiRaceSpeedLimit at 0xe8, a KartAiItemUse at
+// 0x11c, a KartAiSpeedLimit at 0x140 and a word at 0x154.
 typedef struct KartAi {
     /* 00 */ Kart *mKart;
     /* 04 */ u16 mIndex;
@@ -94,18 +94,18 @@ typedef struct KartAi {
     /* 154 */ s32 mUnk_154;
 } KartAi;
 
-void AdvanceBattleKartAiSpeedLimit(KartAiSpeedLimit *a, KartAi *b);
-void SetBattleKartAiTurnSpeedLimit(KartAiSpeedLimit *a, KartAi *b, s32 c);
-void func_02089a24(KartAi *a, KartAiRaceSpeedLimit *b);
+void AdvanceBattleKartAiSpeedLimit(KartAiSpeedLimit *kartAiSpeedLimit, KartAi *kartAi);
+void SetBattleKartAiTurnSpeedLimit(KartAiSpeedLimit *kartAiSpeedLimit, KartAi *kartAi, s32 speedLimit);
+void PickBattleKartAiRaceStart(KartAi *kartAi, KartAiRaceSpeedLimit *raceSpeedLimit);
 void SetupBattleKartAiParams(void);
-void ResetBattleKartAi(KartAi *p);
-void SetupBattleKartAi(KartAi *p, Kart *q);
-void ResetBattleKartAiAtPointLink(KartAi *p, PointLink *a);
-void AdvanceBattleKartAi(KartAi *p);
-void func_02089494(KartAi *p);
-void AdvanceBattleKartAiSideOffset(KartAi *p);
-void AdvanceBattleKartAiTargetKart(KartAi *p);
-void func_02088d34(KartAi *p);
-void PickKartAiBalloonCountGoal(KartAi *p);
-void AdvanceBattleKartAiTargetShine(KartAi *p);
-BOOL FindKartAiTargetShine(KartAi *p, s32 a, s32 b);
+void ResetBattleKartAi(KartAi *kartAi);
+void SetupBattleKartAi(KartAi *kartAi, Kart *kart);
+void ResetBattleKartAiAtPointLink(KartAi *kartAi, PointLink *pointLink);
+void AdvanceBattleKartAi(KartAi *kartAi);
+void func_02089494(KartAi *kartAi);
+void AdvanceBattleKartAiSideOffset(KartAi *kartAi);
+void AdvanceBattleKartAiTargetKart(KartAi *kartAi);
+void func_02088d34(KartAi *kartAi);
+void PickKartAiBalloonCountGoal(KartAi *kartAi);
+void AdvanceBattleKartAiTargetShine(KartAi *kartAi);
+BOOL FindKartAiTargetShine(KartAi *kartAi, s32 distanceSquaredLimit, s32 yDifferenceLimit);

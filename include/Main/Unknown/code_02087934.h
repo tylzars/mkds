@@ -4,9 +4,9 @@
 
 typedef struct ModelAnimation ModelAnimation;
 
-void func_02087934(u32 a);
-void func_020879e8(s32 a, s32 b);
-void func_02087ab0(s32 a, s32 b);
-void func_02087b78(ModelAnimation *a);
-void func_02087b9c(ModelAnimation *a);
-void func_02087c9c(ModelAnimation *a, s32 b, u16 c);
+void func_02087934(u32 color);
+void func_020879e8(s32 texWidthFixed, s32 texHeightFixed);
+void func_02087ab0(s32 texWidthFixed, s32 texHeightFixed);
+void AdvanceModelAnimationFrame(ModelAnimation *modelAnimation);
+void func_02087b9c(ModelAnimation *modelAnimation);
+void ResetModelAnimationWithLoopFlag(ModelAnimation *modelAnimation, s32 frameCountFixed, u16 loopFlag);

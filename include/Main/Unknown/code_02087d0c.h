@@ -50,16 +50,16 @@ typedef struct Unk020882fc {
 
 extern u32 gAnmObjSizeRequired;
 
-s32 GetModelAnimationFrameCountFixed(void *a);
-void AdvanceModelAnimationBlend(ModelAnimation *p);
-void AdvanceModelAnimation(void *a);
-void StartModelAnimationBlend(void *a, u16 b);
-void SetModelAnimation(void *a, s32 b);
-void InitModelAnimationEntries(void *a, void *b, void *c);
-void InitModelAnimationEntry(void *a, s32 b, void *c, u32 d, void *e);
-void InitModelAnimation(u32 a, void *b, void *c, u32 d, void *e, void *f);
-unsigned int func_020882fc(Unk020882fc *p0);
-unsigned int func_02088308(Unk020882fc *p0);
-unsigned int func_02088314(Unk020882fc *p0);
-unsigned int func_02088320(Unk020882fc *p0);
-unsigned int func_0208832c(Unk020882fc *p0);
+s32 GetModelAnimationFrameCountFixed(void *animation);
+void AdvanceModelAnimationBlend(ModelAnimation *modelAnimation);
+void AdvanceModelAnimation(void *animation);
+void StartModelAnimationBlend(void *entryIndex, u16 animation);
+void SetModelAnimation(void *entryIndex, s32 animation);
+void InitModelAnimationEntries(void *animation, void *anmFile, void *heap);
+void InitModelAnimationEntry(void *animation, s32 entryIndex, void *anmResource, u32 loopFlag, void *heap);
+void InitModelAnimation(u32 kind, void *animation, void *renderObject, u32 anmObjCount, void *heap, void *f);
+unsigned int func_020882fc(Unk020882fc *anmObj);
+unsigned int func_02088308(Unk020882fc *anmObj);
+unsigned int func_02088314(Unk020882fc *anmObj);
+unsigned int func_02088320(Unk020882fc *anmObj);
+unsigned int func_0208832c(Unk020882fc *anmObj);

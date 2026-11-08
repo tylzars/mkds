@@ -469,7 +469,7 @@ void AdvanceKartKiller(Kart *kart) {
             }
         }
     }
-    func_02087b78((ModelAnimation *) &kart->mKartModelsEntry->mUnk_098);
+    AdvanceModelAnimationFrame((ModelAnimation *) &kart->mKartModelsEntry->mUnk_098);
     if (effectState->mKillerEnding != FALSE) {
         kart->mRadiusFactor -= 0x52;
         if (kart->mRadiusFactor > 0x1000) {

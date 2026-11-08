@@ -10,187 +10,193 @@
 #include "code_02013740.h"
 #include "code_02013bdc.h"
 
-u32 func_0208832c(Unk020882fc *p0) {
-    return p0->mUnk_08->mFrameCount;
+u32 func_0208832c(Unk020882fc *anmObj) {
+    return anmObj->mUnk_08->mFrameCount;
 }
 
-u32 func_02088320(Unk020882fc *p0) {
-    return p0->mUnk_08->mFrameCount;
+u32 func_02088320(Unk020882fc *anmObj) {
+    return anmObj->mUnk_08->mFrameCount;
 }
 
-u32 func_02088314(Unk020882fc *p0) {
-    return p0->mUnk_08->mFrameCount;
+u32 func_02088314(Unk020882fc *anmObj) {
+    return anmObj->mUnk_08->mFrameCount;
 }
 
-u32 func_02088308(Unk020882fc *p0) {
-    return p0->mUnk_08->mFrameCount;
+u32 func_02088308(Unk020882fc *anmObj) {
+    return anmObj->mUnk_08->mFrameCount;
 }
 
-u32 func_020882fc(Unk020882fc *p0) {
-    return p0->mUnk_08->mFrameCount;
+u32 func_020882fc(Unk020882fc *anmObj) {
+    return anmObj->mUnk_08->mFrameCount;
 }
 
-void InitModelAnimation(u32 a, void *b, void *c, u32 d, void *e, void *f) {
-    ModelAnimation *p = b;
-    NNSG3dRenderObj *q = c;
+void InitModelAnimation(u32 kind, void *animation, void *renderObject, u32 anmObjCount, void *heap, void *f) {
+    ModelAnimation *modelAnimation = animation;
+    NNSG3dRenderObj *renderObj = renderObject;
     u16 i;
 
-    if (d != 0) {
+    if (anmObjCount != 0) {
         i = 0;
-        if (e != NULL) {
-            p->mAnmObjs = HeapAlloc(e, d * 4);
-            p->mLoopFlags = HeapAlloc(e, d * 4);
-            for (; i < d; i++) {
-                p->mAnmObjs[i] = NULL;
-                p->mLoopFlags[i] = 0;
+        if (heap != NULL) {
+            modelAnimation->mAnmObjs = HeapAlloc(heap, anmObjCount * 4);
+            modelAnimation->mLoopFlags = HeapAlloc(heap, anmObjCount * 4);
+            for (; i < anmObjCount; i++) {
+                modelAnimation->mAnmObjs[i] = NULL;
+                modelAnimation->mLoopFlags[i] = 0;
             }
         }
     }
-    ResetModelAnimationLooping(p, 0);
-    q->mUnk_58 = 0;
-    p->mRenderObj = q;
-    p->mAnmObjCount = d;
-    p->mCurrentIndex = 0;
-    p->mKind = a;
-    p->mBlending = FALSE;
-    p->mBlendRatioStep = 0x19a;
-    p->mPreviousAnmObj = NULL;
+    ResetModelAnimationLooping(modelAnimation, 0);
+    renderObj->mUnk_58 = 0;
+    modelAnimation->mRenderObj = renderObj;
+    modelAnimation->mAnmObjCount = anmObjCount;
+    modelAnimation->mCurrentIndex = 0;
+    modelAnimation->mKind = kind;
+    modelAnimation->mBlending = FALSE;
+    modelAnimation->mBlendRatioStep = 0x19a;
+    modelAnimation->mPreviousAnmObj = NULL;
 }
 
-void InitModelAnimationEntry(void *a, s32 b, void *c, u32 d, void *e) {
-    ModelAnimation *p = a;
-    NNSG3dAnmObj *x;
+void InitModelAnimationEntry(void *animation, s32 entryIndex, void *anmResource, u32 loopFlag, void *heap) {
+    ModelAnimation *modelAnimation = animation;
+    NNSG3dAnmObj *anmObj;
 
-    if (e == NULL) {
-        x = p->mAnmObjs[b];
-        p->mLoopFlags[b] = d;
+    if (heap == NULL) {
+        anmObj = modelAnimation->mAnmObjs[entryIndex];
+        modelAnimation->mLoopFlags[entryIndex] = loopFlag;
     } else {
-        gAnmObjSizeRequired = NNS_G3dAnmObjCalcSizeRequired(c, p->mRenderObj->mResMdl);
-        x = HeapAlloc(e, gAnmObjSizeRequired);
-        p->mAnmObjs[b] = x;
-        p->mLoopFlags[b] = d;
+        gAnmObjSizeRequired = NNS_G3dAnmObjCalcSizeRequired(anmResource, modelAnimation->mRenderObj->mResMdl);
+        anmObj = HeapAlloc(heap, gAnmObjSizeRequired);
+        modelAnimation->mAnmObjs[entryIndex] = anmObj;
+        modelAnimation->mLoopFlags[entryIndex] = loopFlag;
     }
-    NNS_G3dAnmObjInit(x, c, p->mRenderObj->mResMdl, (void *) p->mRenderObj->mUnk_68);
+    NNS_G3dAnmObjInit(anmObj, anmResource, modelAnimation->mRenderObj->mResMdl,
+                      (void *) modelAnimation->mRenderObj->mUnk_68);
 }
 
-void InitModelAnimationEntries(void *a, void *b, void *c) {
-    ModelAnimation *p = a;
-    void *v = NULL;
+void InitModelAnimationEntries(void *animation, void *anmFile, void *heap) {
+    ModelAnimation *modelAnimation = animation;
+    void *anmResource = NULL;
     u8 i = 0;
-    NNSG3dAnmObj *x;
+    NNSG3dAnmObj *anmObj;
 
-    for (i = 0; i < p->mAnmObjCount; i++) {
-        switch (p->mKind) {
+    for (i = 0; i < modelAnimation->mAnmObjCount; i++) {
+        switch (modelAnimation->mKind) {
             case MODEL_ANIMATION_KIND_JOINT:
-                v = NNS_G3dGetJntAnmByIdx(NNS_G3dGetJntAnmSet(b), i);
+                anmResource = NNS_G3dGetJntAnmByIdx(NNS_G3dGetJntAnmSet(anmFile), i);
                 break;
             case MODEL_ANIMATION_KIND_TEX_PAT:
-                v = NNS_G3dGetTexPatAnmByIdx(NNS_G3dGetTexPatAnmSet(b), i);
+                anmResource = NNS_G3dGetTexPatAnmByIdx(NNS_G3dGetTexPatAnmSet(anmFile), i);
                 break;
             case MODEL_ANIMATION_KIND_TEX_SRT:
-                v = NNS_G3dGetTexSRTAnmByIdx(NNS_G3dGetTexSRTAnmSet(b), i);
+                anmResource = NNS_G3dGetTexSRTAnmByIdx(NNS_G3dGetTexSRTAnmSet(anmFile), i);
                 break;
             case MODEL_ANIMATION_KIND_VIS:
-                v = NNS_G3dGetVisAnmByIdx(NNS_G3dGetVisAnmSet(b), i);
+                anmResource = NNS_G3dGetVisAnmByIdx(NNS_G3dGetVisAnmSet(anmFile), i);
                 break;
             case MODEL_ANIMATION_KIND_MAT_C:
-                v = NNS_G3dGetMatCAnmByIdx(NNS_G3dGetMatCAnmSet(b), i);
+                anmResource = NNS_G3dGetMatCAnmByIdx(NNS_G3dGetMatCAnmSet(anmFile), i);
                 break;
         }
-        if (c != NULL) {
-            gAnmObjSizeRequired = NNS_G3dAnmObjCalcSizeRequired(v, p->mRenderObj->mResMdl);
-            x = HeapAlloc(c, gAnmObjSizeRequired);
-            p->mAnmObjs[i] = x;
-            p->mLoopFlags[i] = 0;
+        if (heap != NULL) {
+            gAnmObjSizeRequired = NNS_G3dAnmObjCalcSizeRequired(anmResource, modelAnimation->mRenderObj->mResMdl);
+            anmObj = HeapAlloc(heap, gAnmObjSizeRequired);
+            modelAnimation->mAnmObjs[i] = anmObj;
+            modelAnimation->mLoopFlags[i] = 0;
         } else {
-            x = p->mAnmObjs[i];
-            p->mLoopFlags[i] = 0;
+            anmObj = modelAnimation->mAnmObjs[i];
+            modelAnimation->mLoopFlags[i] = 0;
         }
-        NNS_G3dAnmObjInit(x, v, p->mRenderObj->mResMdl, (void *) p->mRenderObj->mUnk_68);
+        NNS_G3dAnmObjInit(anmObj, anmResource, modelAnimation->mRenderObj->mResMdl,
+                          (void *) modelAnimation->mRenderObj->mUnk_68);
     }
 }
 
-void SetModelAnimation(void *b, s32 a) {
-    ModelAnimation *p = b;
-    s32 v;
+void SetModelAnimation(void *animation, s32 entryIndex) {
+    ModelAnimation *modelAnimation = animation;
+    s32 frameCountFixed;
 
-    if (p->mAnmObjs[a] == NULL) {
+    if (modelAnimation->mAnmObjs[entryIndex] == NULL) {
         return;
     }
-    p->mBlending = FALSE;
-    if (p->mPreviousAnmObj != NULL) {
-        NNS_G3dRenderObjRemoveAnmObj(p->mRenderObj, p->mPreviousAnmObj);
-        p->mPreviousAnmObj = NULL;
+    modelAnimation->mBlending = FALSE;
+    if (modelAnimation->mPreviousAnmObj != NULL) {
+        NNS_G3dRenderObjRemoveAnmObj(modelAnimation->mRenderObj, modelAnimation->mPreviousAnmObj);
+        modelAnimation->mPreviousAnmObj = NULL;
     }
-    NNS_G3dRenderObjRemoveAnmObj(p->mRenderObj, p->mAnmObjs[p->mCurrentIndex]);
-    p->mCurrentIndex = a;
-    NNS_G3dRenderObjAddAnmObj(p->mRenderObj, p->mAnmObjs[p->mCurrentIndex]);
-    p->mAnmObjs[p->mCurrentIndex]->mRatio = 0x1000;
-    v = gAnmFrameCountGetters[p->mKind](p->mAnmObjs[p->mCurrentIndex]) << 12;
-    func_02087c9c(p, v, p->mLoopFlags[p->mCurrentIndex]);
+    NNS_G3dRenderObjRemoveAnmObj(modelAnimation->mRenderObj, modelAnimation->mAnmObjs[modelAnimation->mCurrentIndex]);
+    modelAnimation->mCurrentIndex = entryIndex;
+    NNS_G3dRenderObjAddAnmObj(modelAnimation->mRenderObj, modelAnimation->mAnmObjs[modelAnimation->mCurrentIndex]);
+    modelAnimation->mAnmObjs[modelAnimation->mCurrentIndex]->mRatio = 0x1000;
+    frameCountFixed =
+        gAnmFrameCountGetters[modelAnimation->mKind](modelAnimation->mAnmObjs[modelAnimation->mCurrentIndex]) << 12;
+    ResetModelAnimationWithLoopFlag(modelAnimation, frameCountFixed,
+                                    modelAnimation->mLoopFlags[modelAnimation->mCurrentIndex]);
 }
 
 // Switches to entry a by fading from the current one; does nothing when a is already playing.
-void StartModelAnimationBlend(void *b, u16 a) {
-    ModelAnimation *p = b;
-    s32 v;
+void StartModelAnimationBlend(void *animation, u16 entryIndex) {
+    ModelAnimation *modelAnimation = animation;
+    s32 frameCountFixed;
 
-    if (p->mAnmObjs[a] == NULL) {
+    if (modelAnimation->mAnmObjs[entryIndex] == NULL) {
         return;
     }
-    if (p->mCurrentIndex == a) {
+    if (modelAnimation->mCurrentIndex == entryIndex) {
         return;
     }
-    p->mBlending = TRUE;
-    if (p->mPreviousAnmObj != NULL) {
-        NNS_G3dRenderObjRemoveAnmObj(p->mRenderObj, p->mPreviousAnmObj);
-        p->mPreviousAnmObj = NULL;
+    modelAnimation->mBlending = TRUE;
+    if (modelAnimation->mPreviousAnmObj != NULL) {
+        NNS_G3dRenderObjRemoveAnmObj(modelAnimation->mRenderObj, modelAnimation->mPreviousAnmObj);
+        modelAnimation->mPreviousAnmObj = NULL;
     }
-    p->mPreviousAnmObj = p->mAnmObjs[p->mCurrentIndex];
-    p->mPreviousAnmObj->mRatio = 0x1000;
-    p->mCurrentIndex = a;
-    NNS_G3dRenderObjAddAnmObj(p->mRenderObj, p->mAnmObjs[p->mCurrentIndex]);
-    p->mAnmObjs[p->mCurrentIndex]->mRatio = 0;
-    v = gAnmFrameCountGetters[p->mKind](p->mAnmObjs[p->mCurrentIndex]) << 12;
-    func_02087c9c(p, v, p->mLoopFlags[p->mCurrentIndex]);
+    modelAnimation->mPreviousAnmObj = modelAnimation->mAnmObjs[modelAnimation->mCurrentIndex];
+    modelAnimation->mPreviousAnmObj->mRatio = 0x1000;
+    modelAnimation->mCurrentIndex = entryIndex;
+    NNS_G3dRenderObjAddAnmObj(modelAnimation->mRenderObj, modelAnimation->mAnmObjs[modelAnimation->mCurrentIndex]);
+    modelAnimation->mAnmObjs[modelAnimation->mCurrentIndex]->mRatio = 0;
+    frameCountFixed =
+        gAnmFrameCountGetters[modelAnimation->mKind](modelAnimation->mAnmObjs[modelAnimation->mCurrentIndex]) << 12;
+    ResetModelAnimationWithLoopFlag(modelAnimation, frameCountFixed,
+                                    modelAnimation->mLoopFlags[modelAnimation->mCurrentIndex]);
 }
 
-void AdvanceModelAnimation(void *a) {
-    ModelAnimation *p = a;
+void AdvanceModelAnimation(void *animation) {
+    ModelAnimation *modelAnimation = animation;
 
-    if (p->mBlending != FALSE) {
-        p->mAnmObjs[p->mCurrentIndex]->mRatio += p->mBlendRatioStep;
-        p->mPreviousAnmObj->mRatio -= p->mBlendRatioStep;
-        if (p->mAnmObjs[p->mCurrentIndex]->mRatio >= 0x1000) {
-            p->mBlending = FALSE;
-            p->mAnmObjs[p->mCurrentIndex]->mRatio = 0x1000;
-            NNS_G3dRenderObjRemoveAnmObj(p->mRenderObj, p->mPreviousAnmObj);
-            p->mPreviousAnmObj = NULL;
+    if (modelAnimation->mBlending != FALSE) {
+        modelAnimation->mAnmObjs[modelAnimation->mCurrentIndex]->mRatio += modelAnimation->mBlendRatioStep;
+        modelAnimation->mPreviousAnmObj->mRatio -= modelAnimation->mBlendRatioStep;
+        if (modelAnimation->mAnmObjs[modelAnimation->mCurrentIndex]->mRatio >= 0x1000) {
+            modelAnimation->mBlending = FALSE;
+            modelAnimation->mAnmObjs[modelAnimation->mCurrentIndex]->mRatio = 0x1000;
+            NNS_G3dRenderObjRemoveAnmObj(modelAnimation->mRenderObj, modelAnimation->mPreviousAnmObj);
+            modelAnimation->mPreviousAnmObj = NULL;
         }
     }
-    func_02087b78(p);
-    p->mAnmObjs[p->mCurrentIndex]->mFrame = p->mFrameIndex;
+    AdvanceModelAnimationFrame(modelAnimation);
+    modelAnimation->mAnmObjs[modelAnimation->mCurrentIndex]->mFrame = modelAnimation->mFrameIndex;
 }
 
 // Moves only the blend; the caller sets the frame.
-void AdvanceModelAnimationBlend(ModelAnimation *p) {
-    if (p->mBlending == FALSE) {
+void AdvanceModelAnimationBlend(ModelAnimation *modelAnimation) {
+    if (modelAnimation->mBlending == FALSE) {
         return;
     }
-    p->mAnmObjs[p->mCurrentIndex]->mRatio += p->mBlendRatioStep;
-    p->mPreviousAnmObj->mRatio -= p->mBlendRatioStep;
-    if (p->mAnmObjs[p->mCurrentIndex]->mRatio >= 0x1000) {
-        p->mBlending = FALSE;
-        p->mAnmObjs[p->mCurrentIndex]->mRatio = 0x1000;
-        NNS_G3dRenderObjRemoveAnmObj(p->mRenderObj, p->mPreviousAnmObj);
-        p->mPreviousAnmObj = NULL;
+    modelAnimation->mAnmObjs[modelAnimation->mCurrentIndex]->mRatio += modelAnimation->mBlendRatioStep;
+    modelAnimation->mPreviousAnmObj->mRatio -= modelAnimation->mBlendRatioStep;
+    if (modelAnimation->mAnmObjs[modelAnimation->mCurrentIndex]->mRatio >= 0x1000) {
+        modelAnimation->mBlending = FALSE;
+        modelAnimation->mAnmObjs[modelAnimation->mCurrentIndex]->mRatio = 0x1000;
+        NNS_G3dRenderObjRemoveAnmObj(modelAnimation->mRenderObj, modelAnimation->mPreviousAnmObj);
+        modelAnimation->mPreviousAnmObj = NULL;
     }
 }
 
 // Frame count of the playing entry in 20.12 fixed point.
-s32 GetModelAnimationFrameCountFixed(void *a) {
-    ModelAnimation *p = a;
-    enum { K0 } k = p->mKind;
+s32 GetModelAnimationFrameCountFixed(void *animation) {
+    ModelAnimation *modelAnimation = animation;
+    enum { K0 } kind = modelAnimation->mKind;
 
-    return gAnmFrameCountGetters[k](p->mAnmObjs[p->mCurrentIndex]) << 12;
+    return gAnmFrameCountGetters[kind](modelAnimation->mAnmObjs[modelAnimation->mCurrentIndex]) << 12;
 }
