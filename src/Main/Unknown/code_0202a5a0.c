@@ -30,7 +30,7 @@ void func_0202a658(void *a) {
     func_020ae6d4(data_02174e24, data_02174e24->mUnk_404);
     data_02174e24->mUnk_808 = gRaceSetup->mMode;
     if (data_02174e24->mUnk_808 == 0) {
-        func_02029dcc(a, data_02174e24, data_02174e24->mUnk_404);
+        InitResultsGp(a, data_02174e24, data_02174e24->mUnk_404);
     } else {
         InitResultsBattle(a, (s32) data_02174e24, (s32) data_02174e24->mUnk_404);
     }
@@ -53,7 +53,7 @@ void func_0202a604(u32 a) {
     if (v1 == 0) {
         func_020ae6ac(data_02174e24, data_02174e24->mUnk_404);
         if (data_02174e24->mUnk_808 == 0) {
-            func_02029aa0((Unk02029aa0 *) a);
+            AdvanceResultsGp((Unk02029aa0 *) a);
         } else {
             AdvanceResultsBattle((Unk02032ac4 *) a);
         }

@@ -451,7 +451,7 @@ u32 GetSelectCupGridCupEnabled(u32 a) {
                     r = 1;
                     break;
                 default:
-                    if (func_0202967c() != 0) {
+                    if (GetMirrorMode() != 0) {
                         r = func_02056dec(data_0215c8bc[a]);
                     } else {
                         r = func_02056dec(data_0215c95c[a][data_0215c7f0[GetEngineIndex()]]);
@@ -493,7 +493,7 @@ u32 GetSelectCupGridCupEnabled(u32 a) {
                     r = 1;
                     break;
                 default:
-                    if (func_0202967c() != 0) {
+                    if (GetMirrorMode() != 0) {
                         r = func_0205fbb8(data_0215c8bc[a]);
                     } else {
                         r = func_0205fbb8(data_0215c95c[a][data_0215c7f0[GetEngineIndex()]]);

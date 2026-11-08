@@ -162,7 +162,7 @@ void func_0202dec8(void) {
 void func_0202de00(Unk02174e14 *a, s16 (*b)[4], void *c, s32 d, s32 e, s32 f, Unk0202de00_g *g) {
     u16 s[10];
     u16 t[11];
-    Unk02174e14_00 *h;
+    CellFileSet *h;
     h = &a->mUnk_038;
     func_0212426c(0, b[0][0], a->mUnk_000.mLabelLayout, GetBmgEntry(a->mUnk_058, GetCourseMessageIndex(f)),
                   a->mUnk_000.mCellLayout, a->mUnk_000.mCellTable);

@@ -122,7 +122,7 @@ u32 func_020270d0(void) {
 #pragma thumb on
 
 void func_02027084(void) {
-    Unk02174e14_00 *sParts = &gSelectCharacter->mUnk_01c;
+    CellFileSet *sParts = &gSelectCharacter->mUnk_01c;
     s32 i;
     s32 elementCount;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
@@ -140,14 +140,14 @@ void func_02027084(void) {
 void InitSelectCharacter(void *parentHeap, s32 mode, void *mainOam, void *subOam) {
     void *heap;
     Unk02174e14 *selectCharacter;
-    Unk02174e14_00 *sParts;
+    CellFileSet *sParts;
     Unk021534bc *positions;
     s32 i;
     s32 tableIndex;
     s32 modeValue;
     BOOL f;
-    Unk02174e14_00 titleParts;
-    Unk02174e14_00 w;
+    CellFileSet titleParts;
+    CellFileSet w;
 
     heap = CreateFrmHeapFromMaxFree(parentHeap);
     gSelectCharacter = HeapAlloc(heap, 0x12c);
@@ -211,7 +211,7 @@ void InitSelectCharacter(void *parentHeap, s32 mode, void *mainOam, void *subOam
                     .mEntryIndex;
             break;
         case 2:
-            gSelectCharacter->mEntryIndex = func_020295e4();
+            gSelectCharacter->mEntryIndex = GetRaceSetupCopyEntryIndex();
             break;
     }
     selectCharacter = gSelectCharacter;
@@ -396,7 +396,7 @@ static inline s32 func_02026120_inline_2(u16 inputSlot) {
 int AdvanceSelectCharacter(void) {
     int result;
     Unk02174e14 *selectCharacter;
-    Unk02174e14_00 *sParts;
+    CellFileSet *sParts;
     s32 previousTableIndex;
     Unk02174e14 *selectCharacterReload;
     u16 inputSlot;

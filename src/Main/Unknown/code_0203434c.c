@@ -78,8 +78,8 @@ static inline s32 func_02034370_inline_2(void) {
 }
 
 s32 func_02034370(Unk02034370 *a) {
-    Unk02174e14_00 *q;
-    Unk02174e14_00 *t;
+    CellFileSet *q;
+    CellFileSet *t;
     s32 o;
     u16 k;
     s32 r;

@@ -8,7 +8,7 @@
 void LocateCellFileSet(void *fileSetPointer, const char *charsName, const char *cellsName, const char *paletteName,
                        const char *cellLayoutName, const char *labelLayoutName, const char *rectsName,
                        void *(*findFile)(const char *) ) {
-    Unk02174e14_00 *fileSet = fileSetPointer;
+    CellFileSet *fileSet = fileSetPointer;
     if (charsName) {
         LocateNcgr2((Ncgr **) &fileSet->mChars, findFile(charsName));
     }
@@ -32,7 +32,7 @@ void LocateCellFileSet(void *fileSetPointer, const char *charsName, const char *
 void LoadCellFileSet(void *fileSetPointer, const char *charsName, const char *cellsName, const char *paletteName,
                      const char *cellLayoutName, const char *labelLayoutName, const char *rectsName,
                      void *(*findFile)(const char *) ) {
-    Unk02174e14_00 *fileSet = fileSetPointer;
+    CellFileSet *fileSet = fileSetPointer;
     if (charsName) {
         LoadNcgrData2((Ncgr **) &fileSet->mChars, findFile(charsName));
     }
@@ -54,7 +54,7 @@ void LoadCellFileSet(void *fileSetPointer, const char *charsName, const char *ce
 }
 
 void func_02025a50(u32 a, void *heap, void *fileSetPointer) {
-    Unk02174e14_00 *fileSet = fileSetPointer;
+    CellFileSet *fileSet = fileSetPointer;
     u32 r;
     InitLayoutTable(heap, fileSet->mCellLayout, fileSet->mLabelLayout, &fileSet->mCellTable);
     if (a == 0) {
@@ -70,7 +70,7 @@ void func_02025a50(u32 a, void *heap, void *fileSetPointer) {
 
 s32 func_02025a00(u32 a, void *heap, void *fileSetPointer, void *entryPointer, s32 e) {
     Unk02153918 *entry = entryPointer;
-    Unk02174e14_00 *fileSet = fileSetPointer;
+    CellFileSet *fileSet = fileSetPointer;
     s32 result;
     result = func_021243ac(heap, entry->mUnk_00, fileSet->mLabelLayout, entry->mUnk_02, entry->mUnk_04, entry->mUnk_06,
                            fileSet->mCells, fileSet->mCellLayout, fileSet->mCellTable, e);
@@ -79,7 +79,7 @@ s32 func_02025a00(u32 a, void *heap, void *fileSetPointer, void *entryPointer, s
 }
 
 void func_02025954(u32 a, void *fileSetPointer, u32 index) {
-    Unk02174e60_00 *fileSet = fileSetPointer;
+    ScreenMapFileSet *fileSet = fileSetPointer;
     u32 charsCode;
     u32 screenMapCode;
     u32 paletteCode;
@@ -131,7 +131,7 @@ void func_02025954(u32 a, void *fileSetPointer, u32 index) {
 
 void LocateScreenMapFileSet(void *fileSetPointer, const char *charsName, const char *paletteName,
                             const char *screenMapName, s32 index, void *(*findFile)(const char *) ) {
-    Unk02174e60_00 *fileSet = fileSetPointer;
+    ScreenMapFileSet *fileSet = fileSetPointer;
     if (charsName) {
         LocateNcgr(&fileSet->mChars[index], findFile(charsName));
     }
@@ -151,7 +151,7 @@ void func_020258d4(u32 a, void *fileSetPointer, const char *charsName, const cha
 
 void LoadScreenMapFileSet(void *fileSetPointer, const char *charsName, const char *paletteName,
                           const char *screenMapName, s32 index, void *(*findFile)(const char *) ) {
-    Unk02174e60_00 *fileSet = fileSetPointer;
+    ScreenMapFileSet *fileSet = fileSetPointer;
     if (charsName) {
         LoadNcgrData(&fileSet->mChars[index], findFile(charsName));
     }

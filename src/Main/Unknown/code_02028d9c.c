@@ -17,7 +17,7 @@ void *func_02028f08(s32 index, Unk0201ea30 *cellLayout) {
 
 #pragma thumb on
 
-void SetKartMenuParamElementOffset(s32 elementIndex, s32 endCellIndex, s32 paramValue, Unk02174e14_00 *parts) {
+void SetKartMenuParamElementOffset(s32 elementIndex, s32 endCellIndex, s32 paramValue, CellFileSet *parts) {
     Unk0201ea84 *startCell = func_02028f08(elementIndex, parts->mCellLayout);
     Unk0201ea84 *endCell = func_02028f08(endCellIndex, parts->mCellLayout);
     parts->mCellTable[elementIndex].mUnk_04 = (100 - paramValue) * (endCell->mUnk_00_0 - startCell->mUnk_00_0) / 100;
@@ -29,12 +29,12 @@ void SetKartMenuParamElementOffset(s32 elementIndex, s32 endCellIndex, s32 param
 
 void RefreshKartMenuParamElements(void) {
     int result;
-    Unk02174e14_00 *parts;
+    CellFileSet *parts;
     short *params;
     result = func_020280dc();
     if (result == 0) {
         params = ComputeKartMenuParams(gSelectKart->mKartIndex, gSelectKart->mCharacterIndex);
-        parts = (Unk02174e14_00 *) &gSelectKart->mSelectKartSParts;
+        parts = (CellFileSet *) &gSelectKart->mSelectKartSParts;
         SetKartMenuParamElementOffset(10, 0x10, *params, parts);
         SetKartMenuParamElementOffset(9, 0xf, params[1], parts);
         SetKartMenuParamElementOffset(8, 0xe, params[2], parts);

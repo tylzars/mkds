@@ -85,10 +85,10 @@ static inline Unk0217aa1c_144 *func_02032f94_inline_3(void) {
 
 void InitResultsBattle(void *a, s32 b, s32 c) {
     Unk02180774 *r;
-    Unk02174e14_00 *s;
-    Unk02174e14_00 *q;
+    CellFileSet *s;
+    CellFileSet *q;
     ResultsBattle *p;
-    Unk02174e60_00 *t;
+    ScreenMapFileSet *t;
     Unk0201ea30 *u;
     u32 n;
     s32 j;
@@ -301,8 +301,8 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
 #pragma thumb on
 
 void AdvanceResultsBattle(Unk02032ac4 *a) {
-    Unk02174e14_00 *s;
-    Unk02174e14_00 *t;
+    CellFileSet *s;
+    CellFileSet *t;
     Unk02175628Index v1;
     s32 x;
     s32 j;

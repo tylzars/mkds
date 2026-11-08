@@ -60,7 +60,7 @@ void func_020b3cd8(void) {
     s32 m;
     s32 v;
     BOOL f;
-    Unk0217aa1c_00 *q;
+    KartCourseResult *q;
 
     if (d->mMode == MODE_TIME_ATTACK) {
         return;
@@ -79,7 +79,7 @@ void func_020b3cd8(void) {
             g = f != FALSE ? 1 : 0;
             k = GetLowByte(i);
             m = GetCourseIndexInCup();
-            v = gCupRecords->mUnk_000[m][GetLowByte(k)].mUnk_05;
+            v = gCupRecords->mUnk_000[m][GetLowByte(k)].mWinCount;
             a[i] = (v << 4) + (g << 3) + 8 - GetKartRank(i);
         } else {
             f = FALSE;
@@ -92,7 +92,7 @@ void func_020b3cd8(void) {
             k = GetLowByte(i);
             m = GetCourseIndexInCup();
             q = &gCupRecords->mUnk_000[m][GetLowByte(k)];
-            v = q->mUnk_00;
+            v = q->mTotalPoints;
             a[i] = (v << 4) + (g << 3) + 8 - GetKartRank(i);
         }
     }

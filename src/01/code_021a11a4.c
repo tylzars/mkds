@@ -156,10 +156,10 @@ void func_ov001_021a1bf8(void) {
 void func_ov001_021a1bb8(void) {
     if (gSelectEngine->mIndex == 3) {
         SetEngineIndex(data_ov001_021a6f90[2]);
-        func_020295b0();
+        SetMirrorMode();
     } else {
         SetEngineIndex(data_ov001_021a6f90[gSelectEngine->mIndex]);
-        func_020295a0();
+        ClearMirrorMode();
     }
     SetCupIndex(0);
 }
@@ -294,7 +294,7 @@ void InitSelectEngine(void *a, void *b, void *c) {
     gSelectEngine->mUnk_44 = b;
     gSelectEngine->mUnk_48 = c;
     gSelectEngine->mResult = 0;
-    if (func_0202967c() != 0) {
+    if (GetMirrorMode() != 0) {
         gSelectEngine->mIndex = 3;
     } else {
         gSelectEngine->mIndex = data_ov001_021a6f74[GetEngineIndex()];

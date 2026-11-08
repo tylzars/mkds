@@ -6,10 +6,10 @@
 
 // Object behind gWiFiVSCourseSelect, 0x158 bytes (InitWiFiVSCourseSelect allocates it).
 typedef struct WiFiVSCourseSelect {
-    /* 000 */ Unk02174e60_00 mWiFiVSCourseSelectMBAndSBParts[2];
+    /* 000 */ ScreenMapFileSet mWiFiVSCourseSelectMBAndSBParts[2];
     // mWiFiVSCourseSelectMParts and mWiFiVSCourseSelectSParts are also walked as a two-element array from the M one.
-    /* 048 */ Unk02174e14_00 mWiFiVSCourseSelectMParts;
-    /* 064 */ Unk02174e14_00 mWiFiVSCourseSelectSParts;
+    /* 048 */ CellFileSet mWiFiVSCourseSelectMParts;
+    /* 064 */ CellFileSet mWiFiVSCourseSelectSParts;
     /* 080 */ void *mUnk_080[2];
     /* 088 */ struct Bmg *mCommonMessages;
     /* 08c */ struct Bmg *mWiFiMessages;

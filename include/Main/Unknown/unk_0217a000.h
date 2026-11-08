@@ -1615,16 +1615,16 @@ typedef struct Unk0217aa18 {
 
 extern Unk0217aa18 *data_0217aa18;
 // 0xa-byte elements of the rows (eight each) of the table at member 0 of CupRecords.
-typedef struct Unk0217aa1c_00 {
-    /* 00 */ u16 mUnk_00;
+typedef struct KartCourseResult {
+    /* 00 */ u16 mTotalPoints;
     /* 02 */ u8 mUnk_02;
     /* 03 */ u8 mUnk_03;
     /* 04 */ u8 mUnk_04;
-    /* 05 */ u8 mUnk_05;
+    /* 05 */ u8 mWinCount;
     /* 06 */ u16 mUnk_06;
     /* 08 */ u8 mUnk_08;
     /* 09 */ u8 mUnk_09;
-} Unk0217aa1c_00;
+} KartCourseResult;
 
 // 4-byte object, two of which make an element of the table at member 0x144 of CupRecords.
 typedef struct Unk0217aa1c_144_00 {
@@ -1645,7 +1645,7 @@ typedef struct Unk0217aa1c_144 {
 
 // The kart results for each course of a cup, and the team results.
 typedef struct CupRecords {
-    /* 000 */ Unk0217aa1c_00 mUnk_000[4][8];
+    /* 000 */ KartCourseResult mUnk_000[4][8];
     /* 140 */ s32 mUnk_140;
     /* 144 */ Unk0217aa1c_144 mUnk_144[4];
     /* 164 */ union {

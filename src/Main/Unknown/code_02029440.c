@@ -7,16 +7,16 @@ u32 GetCourseId(void) {
     return (gRaceSetupCopy->mCourseId);
 }
 
-u32 GetCharacterIndex(u16 p0) {
-    return (gRaceSetupCopy->mEntries[p0].mCharacterIndex);
+u32 GetCharacterIndex(u16 entryIndex) {
+    return (gRaceSetupCopy->mEntries[entryIndex].mCharacterIndex);
 }
 
-u32 GetKartIndex(u16 p0) {
-    return (gRaceSetupCopy->mEntries[p0].mKartIndex);
+u32 GetKartIndex(u16 entryIndex) {
+    return (gRaceSetupCopy->mEntries[entryIndex].mKartIndex);
 }
 
-u32 GetPlayerKind(u16 p0) {
-    return (gRaceSetupCopy->mEntries[p0].mPlayerKind);
+u32 GetPlayerKind(u16 entryIndex) {
+    return (gRaceSetupCopy->mEntries[entryIndex].mPlayerKind);
 }
 
 u32 GetEngineIndex(void) {
@@ -27,7 +27,7 @@ u32 GetCupIndex(void) {
     return (gRaceSetupCopy->mCupIndex);
 }
 
-u32 func_0202967c(void) {
+u32 GetMirrorMode(void) {
     return (gRaceSetupCopy->mMirrorMode);
 }
 
@@ -39,7 +39,7 @@ u32 GetCourseListMode(void) {
     return (gRaceSetupCopy->mCourseListMode);
 }
 
-u32 func_0202964c(void) {
+u32 GetRaceSetupCopyCourseCount(void) {
     return (gRaceSetupCopy->mCourseCount);
 }
 
@@ -51,8 +51,8 @@ u32 GetUseTeams(void) {
     return (gRaceSetupCopy->mUseTeams);
 }
 
-u32 GetTeamIndex(u16 p0) {
-    return (gRaceSetupCopy->mEntries[p0].mTeamIndex);
+u32 GetTeamIndex(u16 entryIndex) {
+    return (gRaceSetupCopy->mEntries[entryIndex].mTeamIndex);
 }
 
 u32 GetMissionTableRow(void) {
@@ -63,48 +63,48 @@ u32 GetMissionTableColumn(void) {
     return (gRaceSetupCopy->mMissionTableColumn);
 }
 
-u32 func_020295e4(void) {
+u32 GetRaceSetupCopyEntryIndex(void) {
     return (gRaceSetupCopy->mEntryIndex);
 }
 
-u32 func_020295d0(void) {
-    return (gRaceSetupCopy->mUnk_10d);
+u32 GetSessionKartCount(void) {
+    return (gRaceSetupCopy->mSessionKartCount);
 }
 
-void SetEngineIndex(u32 p0) {
-    gRaceSetupCopy->mEngineIndex = p0;
+void SetEngineIndex(u32 engineIndex) {
+    gRaceSetupCopy->mEngineIndex = engineIndex;
 }
 
-void func_020295b0(void) {
+void SetMirrorMode(void) {
     gRaceSetupCopy->mMirrorMode = 1;
 }
 
-void func_020295a0(void) {
+void ClearMirrorMode(void) {
     gRaceSetupCopy->mMirrorMode = 0;
 }
 
-void SetCupIndex(u32 p0) {
-    gRaceSetupCopy->mCupIndex = p0;
+void SetCupIndex(u32 cupIndex) {
+    gRaceSetupCopy->mCupIndex = cupIndex;
 }
 
-void SetCourseId(u32 p0) {
-    gRaceSetupCopy->mCourseId = p0;
+void SetCourseId(u32 courseId) {
+    gRaceSetupCopy->mCourseId = courseId;
 }
 
-void SetCpuDifficulty(u32 p0) {
-    gRaceSetupCopy->mCpuDifficulty = p0;
+void SetCpuDifficulty(u32 cpuDifficulty) {
+    gRaceSetupCopy->mCpuDifficulty = cpuDifficulty;
 }
 
-void SetCourseListMode(u32 p0) {
-    gRaceSetupCopy->mCourseListMode = p0;
+void SetCourseListMode(u32 courseListMode) {
+    gRaceSetupCopy->mCourseListMode = courseListMode;
 }
 
-void func_02029550(u16 p0) {
-    gRaceSetupCopy->mCourseCount = p0;
+void SetRaceSetupCopyCourseCount(u16 courseCount) {
+    gRaceSetupCopy->mCourseCount = courseCount;
 }
 
-void SetRuleKind(u32 p0) {
-    gRaceSetupCopy->mRuleKind = p0;
+void SetRuleKind(u32 ruleKind) {
+    gRaceSetupCopy->mRuleKind = ruleKind;
 }
 
 void SetUseTeams(void) {
@@ -119,28 +119,28 @@ void ClearUseTeams(void) {
 
 #pragma thumb on
 
-void SetTeamIndex(u16 a, u32 b) {
-    gRaceSetupCopy->mEntries[a].mTeamIndex = b;
+void SetTeamIndex(u16 entryIndex, u32 teamIndex) {
+    gRaceSetupCopy->mEntries[entryIndex].mTeamIndex = teamIndex;
 }
 
-void SetCharacterIndex(u16 a, u32 b) {
-    gRaceSetupCopy->mEntries[a].mCharacterIndex = b;
+void SetCharacterIndex(u16 entryIndex, u32 characterIndex) {
+    gRaceSetupCopy->mEntries[entryIndex].mCharacterIndex = characterIndex;
 }
 
-void SetKartIndex(u16 a, u32 b) {
-    gRaceSetupCopy->mEntries[a].mKartIndex = b;
+void SetKartIndex(u16 entryIndex, u32 kartIndex) {
+    gRaceSetupCopy->mEntries[entryIndex].mKartIndex = kartIndex;
 }
 
-void SetPlayerKind(u16 a, u32 b) {
-    gRaceSetupCopy->mEntries[a].mPlayerKind = b;
+void SetPlayerKind(u16 entryIndex, u32 playerKind) {
+    gRaceSetupCopy->mEntries[entryIndex].mPlayerKind = playerKind;
 }
 
-void func_020294c0(u16 a, u32 b) {
-    gRaceSetupCopy->mEntries[a].mUnk_10 = b;
+void func_020294c0(u16 entryIndex, u32 b) {
+    gRaceSetupCopy->mEntries[entryIndex].mUnk_10 = b;
 }
 
-void func_020294ac(u16 a, u32 b) {
-    gRaceSetupCopy->mEntries[a].mUnk_14 = b;
+void func_020294ac(u16 entryIndex, u32 b) {
+    gRaceSetupCopy->mEntries[entryIndex].mUnk_14 = b;
 }
 
 #pragma thumb off
@@ -151,24 +151,24 @@ void func_0202949c(u32 p0) {
     gRaceSetupCopy->mUnk_e0 = p0;
 }
 
-void SetMissionTableRow(u32 p0) {
-    gRaceSetupCopy->mMissionTableRow = (u8) p0;
+void SetMissionTableRow(u32 missionTableRow) {
+    gRaceSetupCopy->mMissionTableRow = (u8) missionTableRow;
 }
 
-void SetMissionTableColumn(u32 p0) {
-    gRaceSetupCopy->mMissionTableColumn = (u8) p0;
+void SetMissionTableColumn(u32 missionTableColumn) {
+    gRaceSetupCopy->mMissionTableColumn = (u8) missionTableColumn;
 }
 
-void SetMissionFileRowIndex(u32 p0) {
-    gRaceSetupCopy->mMissionFileRowIndex = p0;
+void SetMissionFileRowIndex(u32 missionFileRowIndex) {
+    gRaceSetupCopy->mMissionFileRowIndex = missionFileRowIndex;
 }
 
-void func_02029454(u32 p0) {
-    gRaceSetupCopy->mEntryIndex = p0;
+void SetRaceSetupCopyEntryIndex(u32 entryIndex) {
+    gRaceSetupCopy->mEntryIndex = entryIndex;
 }
 
-void func_02029440(u32 p0) {
-    gRaceSetupCopy->mUnk_10d = p0;
+void SetSessionKartCount(u32 sessionKartCount) {
+    gRaceSetupCopy->mSessionKartCount = sessionKartCount;
 }
 
 #pragma thumb off

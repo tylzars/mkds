@@ -22,7 +22,7 @@ static inline void func_020338f8_inline(void *p, s32 n) {
 #pragma thumb on
 
 void func_02033c80(s32 a) {
-    Unk02174e14_00 *t;
+    CellFileSet *t;
     s32 r;
     BOOL b;
     BOOL c;
@@ -88,7 +88,7 @@ void func_02033c80(s32 a) {
 }
 
 void func_02033b80(s32 a) {
-    Unk02174e14_00 *t;
+    CellFileSet *t;
     s32 r;
     s32 q;
     s32 n;
@@ -119,8 +119,8 @@ void func_02033b80(s32 a) {
 }
 
 void func_02033ab8(s32 a, s32 b, s32 c, s32 d) {
-    Unk02174e14_00 *q;
-    Unk02174e14_00 *s;
+    CellFileSet *q;
+    CellFileSet *s;
     s32 r;
     Nclr *u;
     u8 *p;
@@ -155,7 +155,7 @@ void func_02033ab8(s32 a, s32 b, s32 c, s32 d) {
 void func_02033a0c(void *a) {
     s32 j;
     u32 r;
-    Unk02174e14_00 *t;
+    CellFileSet *t;
     u8 *p;
     u16 w[11];
 
@@ -179,7 +179,7 @@ void func_02033a0c(void *a) {
 }
 
 void func_020338f8(void *a) {
-    Unk02174e14_00 *t;
+    CellFileSet *t;
     s32 n;
     s32 j;
     s32 m;
@@ -226,7 +226,7 @@ void func_020338f8(void *a) {
 }
 
 void func_02033840(void *a) {
-    Unk02174e14_00 *t;
+    CellFileSet *t;
     s32 c;
     s32 d;
     BOOL e;
@@ -256,7 +256,7 @@ void func_02033840(void *a) {
 
 void func_020336ec(void *a) {
     ResultsBattle *o;
-    Unk02174e14_00 *t;
+    CellFileSet *t;
     s32 x;
     s32 c;
     s32 d;

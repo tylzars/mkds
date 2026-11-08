@@ -56,10 +56,10 @@ void func_0203b4c8(TimeRecord *a) {
     for (i = 0; i < 4; i++) {
         func_0203b598(a, &data_0217b488->mUnk_98[i], a);
     }
-    a->mCharacterIndex = data_0217b488->mUnk_90;
+    a->mCharacterIndex = data_0217b488->mCharacterIndex;
     a->mKartIndex = data_0217b488->mUnk_94;
     a->mUnk_1b = 0;
-    a->mCupRank = data_usa_02154064[data_0217b488->mUnk_7c];
+    a->mCupRank = data_usa_02154064[data_0217b488->mCupRankIndex];
     a->mUnk_1d = data_0217b488->mUnk_a8;
     a->mUnk_1e = data_0217b488->mUnk_80;
     a->mFilled = 1;
@@ -103,7 +103,7 @@ s32 func_0203b324(void) {
     BOOL r = FALSE;
     s32 v;
     Unk0217b488 *p = data_0217b488;
-    switch (p->mUnk_88) {
+    switch (p->mEngineIndex) {
         case 0:
             v = r;
             break;
@@ -111,13 +111,13 @@ s32 func_0203b324(void) {
             v = 1;
             break;
         case 2:
-            v = (p->mUnk_8c != 0) ? 3 : 2;
+            v = (p->mMirrorMode != 0) ? 3 : 2;
             break;
     }
-    GetGrandPrixRecord(p->mUnk_84, v, &a);
+    GetGrandPrixRecord(p->mCupIndex, v, &a);
     func_0203b4c8(&b);
     if (func_0203b3d8(&a, &b) != FALSE) {
-        SetGrandPrixRecord(data_0217b488->mUnk_84, v, &b);
+        SetGrandPrixRecord(data_0217b488->mCupIndex, v, &b);
         func_0205641c();
         r = TRUE;
     }

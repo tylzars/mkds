@@ -449,14 +449,14 @@ static inline u16 func_0205ef70_inline(u16 a) {
     s32 b;
     s32 c;
     s32 d;
-    Unk0217aa1c_00 *p;
+    KartCourseResult *p;
 
     b = GetLowByte(a);
     c = GetCourseIndexInCup();
     d = GetLowByte(b);
     p = &gCupRecords->mUnk_000[c][0];
     p += d;
-    return p->mUnk_00;
+    return p->mTotalPoints;
 }
 
 void func_0205ef70(void) {

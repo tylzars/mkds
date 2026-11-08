@@ -182,7 +182,7 @@ void SetupSelectCupGridIndex(void) {
         gSelectCupGrid->mSelectCupMTable[data_0215c7c8[i]].mUnk_00 = 0;
     }
     if (gSelectCupGrid->mMode == 0) {
-        if (func_0202967c() != 0) {
+        if (GetMirrorMode() != 0) {
             v = 3;
         } else {
             v = data_0215c7f0[GetEngineIndex()];

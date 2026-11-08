@@ -99,7 +99,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
             gSelectKart->mEntryIndex = GetOwnEntryIndex();
             break;
         case 2:
-            gSelectKart->mEntryIndex = func_020295e4();
+            gSelectKart->mEntryIndex = GetRaceSetupCopyEntryIndex();
             break;
     }
     if (func_020280dc() == 0) {

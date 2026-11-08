@@ -21,7 +21,7 @@ void func_020c1060(void) {
     u32 p;
     u32 r;
     u32 w;
-    Unk0217aa1c_00 *s;
+    KartCourseResult *s;
     s32 v;
     BOOL x0;
     s32 x1;
@@ -50,7 +50,7 @@ void func_020c1060(void) {
                 c = v != 0 ? 1 : x1;
                 p = GetLowByte(i);
                 r = GetCourseIndexInCup();
-                w = gCupRecords->mUnk_000[r][GetLowByte(p)].mUnk_05;
+                w = gCupRecords->mUnk_000[r][GetLowByte(p)].mWinCount;
                 a[i] = w * 16 + c * 8 + 8 - GetKartRank(i);
             } else {
                 v = x2;
@@ -62,12 +62,12 @@ void func_020c1060(void) {
                 p = GetLowByte(i);
                 r = GetCourseIndexInCup();
                 s = &gCupRecords->mUnk_000[r][GetLowByte(p)];
-                w = s->mUnk_00;
+                w = s->mTotalPoints;
                 a[i] = w * 16 + c * 8 + 8 - GetKartRank(i);
                 p = GetLowByte(i);
                 r = GetCourseIndexInCup();
                 s = &gCupRecords->mUnk_000[r][GetLowByte(p)];
-                gRaceGoalS->mShownNumbers[i] = s->mUnk_00;
+                gRaceGoalS->mShownNumbers[i] = s->mTotalPoints;
             }
         }
     }

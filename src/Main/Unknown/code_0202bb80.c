@@ -124,7 +124,7 @@ static inline s32 func_0202bb80_inline(s32 i) {
 
 void func_0202c960(void) {
     Unk02174e3c *p = data_02174e3c;
-    Unk02174e14_00 *q = &p->mUnk_000;
+    CellFileSet *q = &p->mUnk_000;
     s32 i;
     s32 n = q->mCellLayout->mUnk_06;
     s32 c;
@@ -196,7 +196,7 @@ void PrintEntryName(s32 a, u16 *b) {
 void func_0202c65c(void *a, void *b) {
     void *h = CreateFrmHeapFromMaxFree(a);
     s32 r;
-    Unk02174e14_00 *q;
+    CellFileSet *q;
     s32 i;
     data_02174e3c = HeapAlloc(h, 0x258);
     MemFillWordsByBlock_inline(data_02174e3c, 0x258);
@@ -244,8 +244,8 @@ void func_0202c65c(void *a, void *b) {
 
 void func_0202c0d4(s32 a, s32 b) {
     Unk02174e3c *p = data_02174e3c;
-    Unk02174e14_00 *q = &p->mUnk_000;
-    Unk02174e14_00 *r = &p->mUnk_01c;
+    CellFileSet *q = &p->mUnk_000;
+    CellFileSet *r = &p->mUnk_01c;
     s32 n;
     s32 i;
     s32 j;
@@ -304,8 +304,8 @@ void func_0202c0d4(s32 a, s32 b) {
                 }
                 break;
             case 2:
-                data_02174e3c->mPlayerCount = func_020295d0();
-                data_02174e3c->mUnk_044 = func_020295e4();
+                data_02174e3c->mPlayerCount = GetSessionKartCount();
+                data_02174e3c->mUnk_044 = GetRaceSetupCopyEntryIndex();
                 for (i = 0; i < (n = data_02174e3c->mPlayerCount); i++) {
                     v2 = 0;
                     MIi_CpuClear16(v2, data_02174e3c->mUnk_04c[i].mName, 0x16);
@@ -385,7 +385,7 @@ void func_0202c0d4(s32 a, s32 b) {
 }
 
 void func_0202bb80(void) {
-    Unk02174e14_00 *q = &data_02174e3c->mUnk_000;
+    CellFileSet *q = &data_02174e3c->mUnk_000;
     Unk02174e3c *t;
     s32 i;
     s32 a;

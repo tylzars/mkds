@@ -69,7 +69,7 @@
 void func_0202d868(s32 a, s32 b, s32 c, s32 d) {
     Unk0202de00_g t;
     s16 s[10];
-    Unk02174e14_00 *p;
+    CellFileSet *p;
     s32 i;
     s32 j;
     s32 k;
@@ -125,7 +125,7 @@ void func_0202d82c(void) {
 
 void func_0202d720(void) {
     u16 s[6];
-    Unk02174e14_00 *p;
+    CellFileSet *p;
     s32 n;
     p = &gTimeAttackGhostSend->mUnk_050[1];
     func_0212426c(1, 0xe, p->mLabelLayout, GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, 0x56), p->mCellLayout,
@@ -211,8 +211,8 @@ void func_0202d5c0(void) {
 }
 
 void func_0202d554(void) {
-    Unk02174e14_00 *p;
-    Unk02174e14_00 *q;
+    CellFileSet *p;
+    CellFileSet *q;
     s32 n;
     s32 m;
     s32 i;
@@ -235,8 +235,8 @@ void InitTimeAttackGhostSend(void *a, void *b, void *c) {
     s32 j;
     s32 k;
     Unk02124b1c *u;
-    Unk02174e14_00 *p;
-    Unk02174e14_00 *q;
+    CellFileSet *p;
+    CellFileSet *q;
     void *h;
     s32 i;
     s32 n;
@@ -324,7 +324,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
     s32 x;
     u16 t;
     Unk021759d4 *d;
-    Unk02174e14_00 *q;
+    CellFileSet *q;
     s32 i;
     e = func_020435bc();
     c = 0;

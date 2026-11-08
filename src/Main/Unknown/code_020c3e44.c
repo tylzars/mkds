@@ -112,7 +112,7 @@ void UpdateRaceGoalM(void) {
     s32 frame;
     u16 followedKartIndex;
     s32 *updateFramesPointer;
-    Unk0217aa1c_00 *record;
+    KartCourseResult *record;
 
     frame = gRaceGoalM->mUpdateFrames;
     followedKartIndex = GetFollowedKartOrEntryIndex();
@@ -138,7 +138,7 @@ void UpdateRaceGoalM(void) {
             kartIndex = GetLowByte(GetFollowedKartOrEntryIndex());
             a = GetCourseIndexInCup();
             record = &gCupRecords->mUnk_000[a][GetLowByte(kartIndex)];
-            a = record->mUnk_00;
+            a = record->mTotalPoints;
             gRaceGoalM->mPointsGained = a - GetKartPreviousTotalPoints(GetFollowedKartOrEntryIndex());
             if (frame > 0x14) {
                 gRaceGoalM->mUnk_00 = 1;

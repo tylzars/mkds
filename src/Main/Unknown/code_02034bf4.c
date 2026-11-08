@@ -30,7 +30,7 @@
 
 void func_02035114(void) {
     Unk02174e64 *p;
-    Unk02174e14_00 *s;
+    CellFileSet *s;
     s32 i;
 
     p = data_02174e64;
@@ -62,7 +62,7 @@ void func_02035114(void) {
 }
 
 void func_02035060(void) {
-    Unk02174e14_00 *s;
+    CellFileSet *s;
     s32 m;
     s32 i;
     s16 c;
@@ -85,8 +85,8 @@ void func_02035060(void) {
 }
 
 void func_02034fec(void) {
-    Unk02174e14_00 *s;
-    Unk02174e14_00 *t;
+    CellFileSet *s;
+    CellFileSet *t;
     s32 n;
     s32 m;
     s32 i;
@@ -108,7 +108,7 @@ void func_02034fec(void) {
 void func_02034f60(void) {
     Unk02174e64_9c *e;
     s32 i;
-    Unk02174e14_00 *s;
+    CellFileSet *s;
     s32 n;
     BOOL v;
 
@@ -131,7 +131,7 @@ void func_02034f60(void) {
 
 void func_02034ef0(void) {
     s32 i;
-    Unk02174e14_00 *s;
+    CellFileSet *s;
     s32 v;
     s32 w;
 
@@ -174,7 +174,7 @@ BOOL func_02034e68(Unk02174e64_9c_00 *a, Unk02174e64_9c_00 *b) {
 
 void func_02034bf4(void *a, void *b, void *c) {
     void *h;
-    Unk02174e14_00 *s;
+    CellFileSet *s;
     u32 n;
     s32 i;
     s32 j;

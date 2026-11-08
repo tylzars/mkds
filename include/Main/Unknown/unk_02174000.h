@@ -14,7 +14,7 @@
 
 // One entry of mEntries: character, kart, team and player kind; mUnk_10 is passed on as SetNextRaceEntry's sixth
 // argument. 0x18-byte elements of the table at member 0 of RaceSetupCopy.
-typedef struct Unk02029930_00 {
+typedef struct RaceSetupCopyEntry {
     /* 00 */ s32 mCharacterIndex;
     /* 04 */ s32 mKartIndex;
     /* 08 */ s32 mPlayerKind;
@@ -22,13 +22,13 @@ typedef struct Unk02029930_00 {
     /* 10 */ s32 mUnk_10;
     // 1 where the entry's kart index is stored, 0 where the entry is cleared and on copy-in.
     /* 14 */ s32 mUnk_14;
-} Unk02029930_00;
+} RaceSetupCopyEntry;
 
 // Copy of the race setup that the screens edit: filled from the current half of gRaceSetup (or from the Wi-Fi
 // session), written to the next half by func_020cc744 or func_020297bc. Object behind gRaceSetupCopy, returned by
 // GetRaceSetupCopy.
 typedef struct RaceSetupCopy {
-    /* 00 */ Unk02029930_00 mEntries[8];
+    /* 00 */ RaceSetupCopyEntry mEntries[8];
     /* c0 */ s32 mCpuDifficulty;
     /* c4 */ s32 mKartCount;
     // A MODE_* value of unk_021759c0.h: copied from the current mode (3 for most modes in a Wi-Fi race), set by the
@@ -55,7 +55,7 @@ typedef struct RaceSetupCopy {
     /* 106 */ u8 mUnk_106[2];
     /* 108 */ s32 mUnk_108;
     /* 10c */ u8 mEntryIndex;
-    /* 10d */ u8 mUnk_10d;
+    /* 10d */ u8 mSessionKartCount;
 } RaceSetupCopy;
 
 extern RaceSetupCopy *gRaceSetupCopy;
@@ -114,7 +114,7 @@ extern HeapCall gRootHeapCall;
 
 // 0x1c-byte part of Unk02174e14, at 0x00, 0x1c and 0x38; InitSelectCharacter has two on the stack, one filled by
 // func_02025b84. ResultsBattle has four from 0x48.
-typedef struct Unk02174e14_00 {
+typedef struct CellFileSet {
     /* 00 */ struct Unk0212463c_c *mChars;
     /* 04 */ struct Unk0212463c_d *mPalette;
     /* 08 */ struct Unk02021dc8 *mCells;
@@ -122,14 +122,14 @@ typedef struct Unk02174e14_00 {
     /* 10 */ struct Unk0201ea30 *mRects;
     /* 14 */ Unk0201ea30 *mLabelLayout;
     /* 18 */ Unk02124b1c *mCellTable;
-} Unk02174e14_00;
+} CellFileSet;
 
 // Object behind data_02174e3c.
 // Object behind gSelectCharacter.
 typedef struct Unk02174e14 {
-    /* 000 */ Unk02174e14_00 mUnk_000;
-    /* 01c */ Unk02174e14_00 mUnk_01c;
-    /* 038 */ Unk02174e14_00 mUnk_038;
+    /* 000 */ CellFileSet mUnk_000;
+    /* 01c */ CellFileSet mUnk_01c;
+    /* 038 */ CellFileSet mUnk_038;
     /* 054 */ void *mMainOam;
     /* 058 */ void *mUnk_058;
     /* 05c */ void *mHeap;
@@ -157,8 +157,8 @@ extern Unk02174e14 *gSelectCharacter;
 
 // Object behind data_02174e3c, 0x258 bytes (func_0202c65c allocates it).
 typedef struct Unk02174e3c {
-    /* 000 */ Unk02174e14_00 mUnk_000;
-    /* 01c */ Unk02174e14_00 mUnk_01c;
+    /* 000 */ CellFileSet mUnk_000;
+    /* 01c */ CellFileSet mUnk_01c;
     /* 038 */ void *mUnk_038;
     /* 03c */ void *mHeap;
     /* 040 */ s32 mTimer;
@@ -181,11 +181,11 @@ typedef struct Unk02174e3c {
 extern Unk02174e3c *data_02174e3c;
 
 // 0x24-byte part of ResultsBattle, at 0x00 and 0x24, filled by LoadScreenMapFileSet.
-typedef struct Unk02174e60_00 {
+typedef struct ScreenMapFileSet {
     /* 00 */ Ncgr *mChars[4];
     /* 10 */ Nclr *mPalette;
     /* 14 */ Nscr *mScreenMaps[4];
-} Unk02174e60_00;
+} ScreenMapFileSet;
 
 // 0xc-byte entries from 0xe4 of ResultsBattle.
 typedef struct Unk02174e60_e4 {
@@ -196,8 +196,8 @@ typedef struct Unk02174e60_e4 {
 
 // 0x154 bytes.
 typedef struct ResultsBattle {
-    /* 000 */ Unk02174e60_00 mUnk_000[2];
-    /* 048 */ Unk02174e14_00 mUnk_048[4];
+    /* 000 */ ScreenMapFileSet mUnk_000[2];
+    /* 048 */ CellFileSet mUnk_048[4];
     /* 0b8 */ s32 mUnk_0b8[2];
     /* 0c0 */ Nclr *mUnk_0c0;
     /* 0c4 */ Nclr *mUnk_0c4;
@@ -240,7 +240,7 @@ typedef struct Unk02174e64_9c {
 typedef struct Unk02174e64 {
     /* 000 */ u8 mUnk_000[0x24];
     /* 024 */ void *mUnk_024[2];
-    /* 02c */ Unk02174e14_00 mUnk_02c[2];
+    /* 02c */ CellFileSet mUnk_02c[2];
     /* 064 */ u8 mUnk_064[0x1c];
     /* 080 */ s32 mUnk_080;
     /* 084 */ Bmg *mCommonMessages;
@@ -272,7 +272,7 @@ typedef struct TimeAttackGhostSend {
     /* 000 */ u8 mUnk_000[0x24];
     /* 024 */ Unk02174e40_24 mUnk_024;
     /* 048 */ void *mUnk_048[2];
-    /* 050 */ Unk02174e14_00 mUnk_050[3];
+    /* 050 */ CellFileSet mUnk_050[3];
     /* 0a4 */ s32 mUnk_0a4;
     /* 0a8 */ Bmg *mCommonMessages;
     /* 0ac */ Bmg *mGhostMessages;
@@ -360,7 +360,7 @@ typedef struct Unk02174e68 {
     /* 00 */ u8 mUnk_00[0x20];
     /* 20 */ u8 *mUnk_20;
     /* 24 */ void *mUnk_24[2];
-    /* 2c */ Unk02174e14_00 mUnk_2c[2];
+    /* 2c */ CellFileSet mUnk_2c[2];
     /* 64 */ u8 mUnk_64[0x1c];
     /* 80 */ s32 mSelectedIndex;
     /* 84 */ Bmg *mCommonMessages;

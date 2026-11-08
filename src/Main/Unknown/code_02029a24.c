@@ -10,22 +10,22 @@
 
 #pragma thumb on
 
-void CreateRaceSetupCopy(void *a) {
-    u32 v1;
-    v1 = ((u32) HeapAlloc(a, (0x00000110u)));
-    *(u32 *) &gRaceSetupCopy = v1;
+void CreateRaceSetupCopy(void *heap) {
+    u32 setupCopyAddress;
+    setupCopyAddress = ((u32) HeapAlloc(heap, (0x00000110u)));
+    *(u32 *) &gRaceSetupCopy = setupCopyAddress;
     ResetRaceSetupCopy();
 }
 
 #pragma thumb off
 
-void func_02029a4c(void *a, u32 b, u32 c) {
-    volatile u32 v = b;
-    MIi_CpuClearFast(v, a, c);
+void func_02029a4c(void *destination, u32 value, u32 size) {
+    volatile u32 valueCopy = value;
+    MIi_CpuClearFast(valueCopy, destination, size);
 }
 
-void func_02029a38(void *a, u32 b) {
-    func_02029a4c(a, 0, b);
+void func_02029a38(void *destination, u32 size) {
+    func_02029a4c(destination, 0, size);
 }
 
 u32 func_02029a24(void) {

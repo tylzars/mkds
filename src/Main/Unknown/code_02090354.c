@@ -450,16 +450,16 @@ s32 func_020909cc(void) {
     BOOL f;
     r = 0;
     p = data_0217b488;
-    m = p->mUnk_88;
-    n = p->mUnk_84;
-    if (p->mUnk_8c != 0) {
+    m = p->mEngineIndex;
+    n = p->mCupIndex;
+    if (p->mMirrorMode != 0) {
         m = 3;
     }
     c = FALSE;
     f = func_02090940_inline();
     if (f != FALSE) {
         if (n == 3 || n == 7) {
-            if (data_0217b488->mUnk_7c == 0) {
+            if (data_0217b488->mCupRankIndex == 0) {
                 c = TRUE;
             }
         }
@@ -480,7 +480,7 @@ s32 func_020909cc(void) {
                 f = FALSE;
             }
             if (f != FALSE) {
-                if (data_0217b488->mUnk_7c <= 2) {
+                if (data_0217b488->mCupRankIndex <= 2) {
                     c = TRUE;
                 }
             }

@@ -93,9 +93,9 @@ typedef struct WiFiVSMatching {
 
 // 0xc-byte element of the array at member 0x20 of Unk0217b488.
 typedef struct Unk0217b488_20 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
+    /* 00 */ s32 mCharacterIndex;
+    /* 04 */ s32 mKartIndex;
+    /* 08 */ s32 mPlayerKind;
 } Unk0217b488_20;
 
 // Object behind data_0217b488, 0x130 bytes (func_020cefa0 allocates it).
@@ -118,12 +118,12 @@ typedef struct Unk0217b488 {
     /* 070 */ s32 mUnk_70;
     /* 074 */ s32 mUnk_74;
     /* 078 */ s32 mUnk_78;
-    /* 07c */ s32 mUnk_7c;
+    /* 07c */ s32 mCupRankIndex;
     /* 080 */ s32 mUnk_80;
-    /* 084 */ s32 mUnk_84;
-    /* 088 */ s32 mUnk_88;
-    /* 08c */ s32 mUnk_8c;
-    /* 090 */ s32 mUnk_90;
+    /* 084 */ s32 mCupIndex;
+    /* 088 */ s32 mEngineIndex;
+    /* 08c */ s32 mMirrorMode;
+    /* 090 */ s32 mCharacterIndex;
     /* 094 */ s32 mUnk_94;
     /* 098 */ Unk0217aa1c_144_00 mUnk_98[4];
     /* 0a8 */ u16 mUnk_a8;

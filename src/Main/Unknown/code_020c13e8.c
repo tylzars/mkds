@@ -113,7 +113,7 @@ void func_020c1bc0(void) {
     s32 target;
     u32 kartIndex;
     u32 courseIndex;
-    Unk0217aa1c_00 *record;
+    KartCourseResult *record;
     Unk02175628Index inputSlot;
 
     frame = gRaceGoalS->mUpdateFrames++;
@@ -123,12 +123,12 @@ void func_020c1bc0(void) {
             if (gRaceSetup->mRuleKind == 1 || gRaceSetup->mMode == MODE_BATTLE) {
                 kartIndex = GetLowByte(i);
                 courseIndex = GetCourseIndexInCup();
-                target = gCupRecords->mUnk_000[courseIndex][GetLowByte(kartIndex)].mUnk_05;
+                target = gCupRecords->mUnk_000[courseIndex][GetLowByte(kartIndex)].mWinCount;
             } else {
                 kartIndex = GetLowByte(i);
                 courseIndex = GetCourseIndexInCup();
                 record = &gCupRecords->mUnk_000[courseIndex][GetLowByte(kartIndex)];
-                target = record->mUnk_00;
+                target = record->mTotalPoints;
             }
             if (gRaceGoalS->mShownNumbers[i] < target) {
                 if (gRaceGoalS->mShownNumbers[i] < 0x3e8) {
@@ -162,7 +162,7 @@ void func_020c195c(void) {
     u16 i;
     u32 kartIndex;
     u32 courseIndex;
-    Unk0217aa1c_00 *record;
+    KartCourseResult *record;
     Unk02175628Index inputSlot;
 
     frame = gRaceGoalS->mUpdateFrames++;
@@ -171,12 +171,12 @@ void func_020c195c(void) {
             if (gRaceSetup->mRuleKind == 1 || gRaceSetup->mMode == MODE_BATTLE) {
                 kartIndex = GetLowByte(i);
                 courseIndex = GetCourseIndexInCup();
-                gRaceGoalS->mShownNumbers[i] = gCupRecords->mUnk_000[courseIndex][GetLowByte(kartIndex)].mUnk_05;
+                gRaceGoalS->mShownNumbers[i] = gCupRecords->mUnk_000[courseIndex][GetLowByte(kartIndex)].mWinCount;
             } else {
                 kartIndex = GetLowByte(i);
                 courseIndex = GetCourseIndexInCup();
                 record = &gCupRecords->mUnk_000[courseIndex][GetLowByte(kartIndex)];
-                gRaceGoalS->mShownNumbers[i] = record->mUnk_00;
+                gRaceGoalS->mShownNumbers[i] = record->mTotalPoints;
             }
         }
     } else {

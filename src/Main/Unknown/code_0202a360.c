@@ -8,104 +8,104 @@
 
 #pragma thumb on
 
-static inline Unk0217aa1c_144_00 *func_0202a360_inline(s32 j) {
-    return &gCupRecords->mUnk_144[GetCourseIndexInCup()].mUnk_00[j];
+static inline Unk0217aa1c_144_00 *func_0202a360_inline(s32 teamIndex) {
+    return &gCupRecords->mUnk_144[GetCourseIndexInCup()].mUnk_00[teamIndex];
 }
 
 u32 func_0202a360(void) {
-    RaceSetup *d;
-    s32 n;
-    s32 v;
-    s32 a[8];
-    s32 b;
+    RaceSetup *raceSetup;
+    s32 kartCount;
+    s32 ownEntryIndex;
+    s32 scores[8];
+    s32 unused;
     s32 i;
-    s32 m;
-    s32 e;
-    s32 x;
-    s32 y;
-    s32 r4;
-    s32 r5;
-    s32 r6;
-    s32 w;
-    Unk0217aa1c_00 *p;
+    s32 maxScore;
+    s32 allEqual;
+    s32 kartIndex;
+    s32 courseIndex;
+    s32 team0Score;
+    s32 team1Score;
+    s32 ownTeamIndex;
+    s32 ownIndex;
+    KartCourseResult *record;
 
-    d = gRaceSetup;
-    n = d->mKartCount;
-    if (d->mMode == MODE_GRAND_PRIX) {
-        if (data_0217b488->mUnk_7c < 3) {
+    raceSetup = gRaceSetup;
+    kartCount = raceSetup->mKartCount;
+    if (raceSetup->mMode == MODE_GRAND_PRIX) {
+        if (data_0217b488->mCupRankIndex < 3) {
             return 0;
         }
         return 1;
     }
     switch (data_021759d0->mUnk_20) {
         case 0:
-            v = 0;
+            ownEntryIndex = 0;
             break;
         case 1:
         case 2:
             if (data_0217aa00->mUnk_0000 == 2) {
-                w = data_0217aa00->mOwnIndex;
+                ownIndex = data_0217aa00->mOwnIndex;
             } else {
-                w = 0;
+                ownIndex = 0;
             }
-            v = data_0217aa00->mUnk_1e52[(u16) w].mEntryIndex;
+            ownEntryIndex = data_0217aa00->mUnk_1e52[(u16) ownIndex].mEntryIndex;
             break;
         case 3:
-            v = (u16) GetPackedIndex(func_ov000_0219bb50());
+            ownEntryIndex = (u16) GetPackedIndex(func_ov000_0219bb50());
             break;
     }
     if (gRaceSetup->mUseTeams != 0) {
-        r6 = gRaceSetup->mCurrentEntries[v].mPlayer.mTeamIndex;
+        ownTeamIndex = gRaceSetup->mCurrentEntries[ownEntryIndex].mPlayer.mTeamIndex;
         switch (gRaceSetup->mRuleKind) {
             case 1:
-                r4 = func_0202a360_inline(0)->mUnk_02;
-                r5 = func_0202a360_inline(1)->mUnk_02;
+                team0Score = func_0202a360_inline(0)->mUnk_02;
+                team1Score = func_0202a360_inline(1)->mUnk_02;
                 break;
             case 2:
-                r4 = func_0202a360_inline(0)->mUnk_00;
-                r5 = func_0202a360_inline(1)->mUnk_00;
+                team0Score = func_0202a360_inline(0)->mUnk_00;
+                team1Score = func_0202a360_inline(1)->mUnk_00;
                 break;
         }
-        if (r4 == r5) {
+        if (team0Score == team1Score) {
             return 7;
         }
-        if (r4 > r5) {
-            if (r6 == 0) {
+        if (team0Score > team1Score) {
+            if (ownTeamIndex == 0) {
                 return 5;
             }
             return 6;
         }
-        if (r6 == 1) {
+        if (ownTeamIndex == 1) {
             return 5;
         }
         return 6;
     }
     i = 0;
-    m = -1;
-    e = 1;
-    for (; i < n; i++) {
+    maxScore = -1;
+    allEqual = 1;
+    for (; i < kartCount; i++) {
         if (data_021759d0->mUnk_20 == 3 || gRaceSetup->mRuleKind == 2) {
-            x = GetLowByte((u16) i);
-            y = GetCourseIndexInCup();
-            p = &gCupRecords->mUnk_000[y][GetLowByte(x)];
-            a[i] = p->mUnk_00;
+            kartIndex = GetLowByte((u16) i);
+            courseIndex = GetCourseIndexInCup();
+            record = &gCupRecords->mUnk_000[courseIndex][GetLowByte(kartIndex)];
+            scores[i] = record->mTotalPoints;
         } else {
-            x = GetLowByte((u16) i);
-            y = GetCourseIndexInCup();
-            p = &gCupRecords->mUnk_000[y][GetLowByte(x)];
-            a[i] = p->mUnk_05;
+            kartIndex = GetLowByte((u16) i);
+            courseIndex = GetCourseIndexInCup();
+            record = &gCupRecords->mUnk_000[courseIndex][GetLowByte(kartIndex)];
+            scores[i] = record->mWinCount;
         }
-        if (m < a[i]) {
-            m = a[i];
+        if (maxScore < scores[i]) {
+            maxScore = scores[i];
         }
     }
-    for (i = 1; i < n; i++) {
-        e = e & (a[0] == a[i]);
+    for (i = 1; i < kartCount; i++) {
+        allEqual = allEqual & (scores[0] == scores[i]);
     }
-    if (e != 0) {
+    if (allEqual != 0) {
         return 4;
     }
-    if (m == a[v]) {
+    if (maxScore == scores[ownEntryIndex]) {
         return 2;
     }
     return 3;

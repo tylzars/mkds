@@ -944,20 +944,20 @@ void WriteSelectRaceRuleToRaceSetupCopy(void) {
     }
     if (gSelectRaceRule->mRowValues[0] == 3) {
         SetEngineIndex(data_0215cd18[2]);
-        func_020295b0();
+        SetMirrorMode();
     } else {
         SetEngineIndex(data_0215cd18[gSelectRaceRule->mRowValues[0]]);
-        func_020295a0();
+        ClearMirrorMode();
     }
     SetCpuDifficulty(data_0215cd28[gSelectRaceRule->mRowValues[1]]);
     SetCourseListMode(data_0215cce4[gSelectRaceRule->mRowValues[2]]);
     SetRuleKind(data_0215ccf0[gSelectRaceRule->mRowValues[3]]);
     switch (gSelectRaceRule->mRowValues[3]) {
         case SELECT_RACE_RULE_WIN:
-            func_02029550(gSelectRaceRule->mWinCount);
+            SetRaceSetupCopyCourseCount(gSelectRaceRule->mWinCount);
             break;
         case SELECT_RACE_RULE_RACE:
-            func_02029550(gSelectRaceRule->mRaceCount);
+            SetRaceSetupCopyCourseCount(gSelectRaceRule->mRaceCount);
             break;
     }
     if (gSelectRaceRule->mRowValues[4] == 0) {
@@ -1134,12 +1134,12 @@ void ReadRaceSetupCopyIntoSelectRaceRule(void) {
     if (GetPreviousMenuScreenNumber() == 8 || GetPreviousMenuScreenNumber() == 9 ||
         GetPreviousMenuScreenNumber() == 0xf) {
         ClearUseTeams();
-        func_020295a0();
+        ClearMirrorMode();
         SetEngineIndex(0);
         SetCpuDifficulty(0);
         SetCourseListMode(0);
         SetRuleKind(0);
-        func_02029550(0);
+        SetRaceSetupCopyCourseCount(0);
     }
     if (GetUseTeams() != 0) {
         switch (gSelectRaceRule->mMode) {
@@ -1170,7 +1170,7 @@ void ReadRaceSetupCopyIntoSelectRaceRule(void) {
     while (a != gSelectRaceRule->mRowValues[4]) {
         MoveSelectRaceRuleValueNext(0);
     }
-    if (func_0202967c() != 0) {
+    if (GetMirrorMode() != 0) {
         b = 3;
     } else {
         b = data_0215ccfc[GetEngineIndex()];
@@ -1207,10 +1207,10 @@ void ReadRaceSetupCopyIntoSelectRaceRule(void) {
     }
     switch (gSelectRaceRule->mRowValues[3]) {
         case SELECT_RACE_RULE_WIN:
-            func_0211d910(func_0202964c());
+            func_0211d910(GetRaceSetupCopyCourseCount());
             break;
         case SELECT_RACE_RULE_RACE:
-            func_0211d844(func_0202964c());
+            func_0211d844(GetRaceSetupCopyCourseCount());
             break;
     }
     gSelectRaceRule->mRow = 0;

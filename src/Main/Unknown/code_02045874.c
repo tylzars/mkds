@@ -305,18 +305,18 @@ BOOL func_02045bd4(void) {
     u8 b;
     u32 c;
     s32 n;
-    Unk0217aa1c_00 *e;
+    KartCourseResult *e;
     t = gRaceSetup->mEntryIndex;
-    data_0217b488->mUnk_7c = GetKartCupRank((u16) t) - 1;
+    data_0217b488->mCupRankIndex = GetKartCupRank((u16) t) - 1;
     data_0217b488->mUnk_80 = func_0205d190();
-    data_0217b488->mUnk_90 = gRaceSetup->mCurrentEntries[(u8) t].mCharacterIndex;
-    data_0217b488->mUnk_84 = gRaceSetup->mCupIndex;
-    data_0217b488->mUnk_88 = gRaceSetup->mEngineIndex;
-    data_0217b488->mUnk_8c = gRaceSetup->mMirrorMode;
+    data_0217b488->mCharacterIndex = gRaceSetup->mCurrentEntries[(u8) t].mCharacterIndex;
+    data_0217b488->mCupIndex = gRaceSetup->mCupIndex;
+    data_0217b488->mEngineIndex = gRaceSetup->mEngineIndex;
+    data_0217b488->mMirrorMode = gRaceSetup->mMirrorMode;
     c = GetLowByte((u8) t);
     b = GetCourseIndexInCup();
     e = &gCupRecords->mUnk_000[b][GetLowByte(c)];
-    data_0217b488->mUnk_a8 = e->mUnk_00;
+    data_0217b488->mUnk_a8 = e->mTotalPoints;
     data_0217b488->mUnk_94 = gRaceSetup->mCurrentEntries[(u8) t].mKartIndex;
     for (i = 0; i < 4; i++) {
         Unk0217aa1c_144_00 d;

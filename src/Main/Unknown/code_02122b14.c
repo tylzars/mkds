@@ -57,8 +57,8 @@ void SetupWiFiSession(u32 mode) {
             gWiFiSession->mPlayerRecords[ownIndex].mSeed = OS_GetTick();
             PackWiFiSessionIndices();
             gWiFiSession->mStep = 0;
-            func_02029454((u8) gWiFiSession->mPackedIndices[func_ov000_0219bb50()]);
-            func_02029440(gWiFiSession->mStartKartCount);
+            SetRaceSetupCopyEntryIndex((u8) gWiFiSession->mPackedIndices[func_ov000_0219bb50()]);
+            SetSessionKartCount(gWiFiSession->mStartKartCount);
             break;
         case 1:
             PackWiFiSessionIndices();
@@ -68,8 +68,8 @@ void SetupWiFiSession(u32 mode) {
                     gWiFiSession->mKartCount++;
                 }
             }
-            func_02029454((u8) gWiFiSession->mPackedIndices[func_ov000_0219bb50()]);
-            func_02029440(gWiFiSession->mKartCount);
+            SetRaceSetupCopyEntryIndex((u8) gWiFiSession->mPackedIndices[func_ov000_0219bb50()]);
+            SetSessionKartCount(gWiFiSession->mKartCount);
             break;
         case 2:
             for (i = 0; i < gWiFiSession->mStartKartCount; i++) {
@@ -92,8 +92,8 @@ void SetupWiFiSession(u32 mode) {
                     gWiFiSession->mKartCount++;
                 }
             }
-            func_02029454((u8) gWiFiSession->mPackedIndices[func_ov000_0219bb50()]);
-            func_02029440(gWiFiSession->mKartCount);
+            SetRaceSetupCopyEntryIndex((u8) gWiFiSession->mPackedIndices[func_ov000_0219bb50()]);
+            SetSessionKartCount(gWiFiSession->mKartCount);
             break;
         case 3:
             for (i = 0; i < gWiFiSession->mStartKartCount; i++) {
@@ -399,8 +399,8 @@ void AdvanceWiFiSessionStep4(void) {
     gWiFiSession->mStep = 5;
     gWiFiSession->mStepFrames = 0;
     ownIndex = func_ov000_0219bb50();
-    func_02029454((u8) gWiFiSession->mPackedIndices[ownIndex]);
-    func_02029440(gWiFiSession->mKartCount);
+    SetRaceSetupCopyEntryIndex((u8) gWiFiSession->mPackedIndices[ownIndex]);
+    SetSessionKartCount(gWiFiSession->mKartCount);
 }
 
 void AdvanceWiFiSessionStep5(void) {

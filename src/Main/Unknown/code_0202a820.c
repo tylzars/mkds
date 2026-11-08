@@ -39,7 +39,7 @@
 #pragma thumb on
 
 void func_0202b554(s32 a, s32 b) {
-    Unk02174e14_00 *p;
+    CellFileSet *p;
     s32 t;
     s32 o;
 
@@ -60,7 +60,7 @@ void func_0202b554(s32 a, s32 b) {
 }
 
 void func_0202b4bc(s32 a, s32 b, s32 c, s32 d) {
-    Unk02174e14_00 *p;
+    CellFileSet *p;
     void *h;
     s32 i;
     s32 k;
@@ -86,7 +86,7 @@ void func_0202b4bc(s32 a, s32 b, s32 c, s32 d) {
 }
 
 void func_0202b3f4(void) {
-    Unk02174e14_00 *p;
+    CellFileSet *p;
     s32 n;
     s32 i;
 
@@ -103,7 +103,7 @@ void func_0202b3f4(void) {
 }
 
 void func_0202b2bc(void) {
-    Unk02174e14_00 *p;
+    CellFileSet *p;
     u16 n;
     s32 i;
     s32 a;
@@ -133,7 +133,7 @@ void func_0202b2bc(void) {
 }
 
 void func_0202b264(void) {
-    Unk02174e14_00 *p;
+    CellFileSet *p;
     s32 n;
     s32 i;
 
@@ -148,7 +148,7 @@ void func_0202b264(void) {
 
 void func_0202b100(void) {
     s32 i;
-    Unk02174e14_00 *p;
+    CellFileSet *p;
     s32 n;
     s32 v;
     void *h;
@@ -185,7 +185,7 @@ void func_0202b100(void) {
 
 void func_0202afe4(void) {
     s32 v;
-    Unk02174e14_00 *p;
+    CellFileSet *p;
     Unk0201ea30 *b;
     void *a;
 
@@ -252,8 +252,8 @@ s32 func_0202af60(void) {
 
 void InitWiFiVSCourseSelect(void *param_1, void *param_2, void *param_3) {
     void *h;
-    Unk02174e14_00 *p;
-    Unk02174e14_00 *t;
+    CellFileSet *p;
+    CellFileSet *t;
     Unk020f41c4_B *l;
     u32 a;
     u32 s;
@@ -280,8 +280,8 @@ void InitWiFiVSCourseSelect(void *param_1, void *param_2, void *param_3) {
     l->mUnk_00 = s;
     l->mUnk_08 = 0x5d588b656c078965;
     l->mUnk_10 = 0x269ec3;
-    gWiFiVSCourseSelect->mUnk_0b8 = func_020295d0();
-    gWiFiVSCourseSelect->mUnk_0b4 = func_020295e4();
+    gWiFiVSCourseSelect->mUnk_0b8 = GetSessionKartCount();
+    gWiFiVSCourseSelect->mUnk_0b4 = GetRaceSetupCopyEntryIndex();
     gWiFiVSCourseSelect->mTimer = 0x4b0;
     gWiFiVSCourseSelect->mUnk_154 = -0xc0;
     for (i = 0; i < 4; i++) {
@@ -351,7 +351,7 @@ void InitWiFiVSCourseSelect(void *param_1, void *param_2, void *param_3) {
 
 s32 AdvanceWiFiVSCourseSelect(void) {
     WiFiVSCourseSelect *d;
-    Unk02174e14_00 *p;
+    CellFileSet *p;
     s32 r = 0;
     s32 i;
     s32 v;

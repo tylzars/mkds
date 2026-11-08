@@ -2,11 +2,11 @@
 
 #include "types.h"
 
-typedef struct Unk02174e14_00 Unk02174e14_00;
+typedef struct CellFileSet CellFileSet;
 typedef struct Unk02174e3c Unk02174e3c;
 
 // 6-byte elements of the table behind data_usa_02174e0c: three indices into the arrays at member 0x18 of
-// Unk02174e14_00.
+// CellFileSet.
 typedef struct Unk02174e0c {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u16 mUnk_02;

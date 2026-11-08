@@ -67,7 +67,7 @@
 #pragma thumb on
 
 void func_02035c50(s32 a, s32 b, s32 c, s32 d) {
-    Unk02174e14_00 *s;
+    CellFileSet *s;
     s32 i;
     s32 v;
     s32 e;
@@ -147,8 +147,8 @@ void SetupGhostNameSubTextTwoButtons(void) {
 }
 
 void func_02035b0c(void) {
-    Unk02174e14_00 *s;
-    Unk02174e14_00 *t;
+    CellFileSet *s;
+    CellFileSet *t;
     s32 n;
     s32 m;
     s32 i;
@@ -189,7 +189,7 @@ void PrintSelectedGhostRecord(void) {
 
 void func_020357dc(void *a, void *b, void *c) {
     void *h;
-    Unk02174e14_00 *s;
+    CellFileSet *s;
     s32 i;
     u32 n;
     s32 j;
@@ -276,7 +276,7 @@ s32 func_0203551c(u16 *a) {
     u16 k;
     u16 w;
     void *e;
-    Unk02174e14_00 *t;
+    CellFileSet *t;
     void *h;
 
     r = K0;
@@ -519,7 +519,7 @@ void MoveSelectedGhostDown(s32 a) {
 }
 
 void func_02035228(s32 a) {
-    Unk02174e14_00 *q;
+    CellFileSet *q;
     s32 m;
     s32 w;
     s32 v;

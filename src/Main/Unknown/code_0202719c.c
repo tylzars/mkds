@@ -424,7 +424,7 @@ void StartSelectCharacterReturn(void) {
 void func_0202734c(s32 value) {
     Unk02174e14 *selectCharacter;
     s32 i;
-    Unk02174e14_00 *sParts;
+    CellFileSet *sParts;
 
     selectCharacter = gSelectCharacter;
     sParts = &selectCharacter->mUnk_01c;
@@ -442,7 +442,7 @@ void func_0202734c(s32 value) {
 
 void func_020272ec(void) {
     s32 i;
-    Unk02174e14_00 *sParts;
+    CellFileSet *sParts;
     Unk02153554 *tableRow;
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
@@ -484,7 +484,7 @@ void func_0202728c(s16 value) {
 
 void func_0202721c(void) {
     Unk02174e14 *selectCharacter;
-    Unk02174e14_00 *nameParts;
+    CellFileSet *nameParts;
 
     selectCharacter = gSelectCharacter;
     if (selectCharacter->mUnk_128 == FALSE) {
@@ -500,7 +500,7 @@ void func_0202721c(void) {
 
 void func_020271e8(void) {
     Unk02174e14 *selectCharacter;
-    Unk02174e14_00 *sParts;
+    CellFileSet *sParts;
     s32 tableIndex;
 
     selectCharacter = gSelectCharacter;
@@ -512,7 +512,7 @@ void func_020271e8(void) {
 
 void func_0202719c(void) {
     Unk02174e14 *selectCharacter;
-    Unk02174e14_00 *sParts;
+    CellFileSet *sParts;
     Unk02153554 *tableRow;
 
     selectCharacter = gSelectCharacter;

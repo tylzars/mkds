@@ -70,7 +70,7 @@ void func_02032a20(void) {
 
 void func_020329dc(s32 a) {
     s32 i;
-    Unk02174e14_00 *p;
+    CellFileSet *p;
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         p = &gSelectGame->mUnk_00[1];
@@ -82,7 +82,7 @@ void func_020329dc(s32 a) {
 
 void func_020329a0(void) {
     s32 i;
-    Unk02174e14_00 *p;
+    CellFileSet *p;
 
     p = &gSelectGame->mUnk_00[1];
     for (i = 0; i < gSelectGame->mTableCount; i++) {
@@ -91,7 +91,7 @@ void func_020329a0(void) {
 }
 
 void func_02032940(void) {
-    Unk02174e14_00 *p;
+    CellFileSet *p;
     s32 i;
     s32 n;
     s32 m;
@@ -115,7 +115,7 @@ void func_02032940(void) {
 void func_020328f8(s32 a) {
     BOOL v;
     s32 i;
-    Unk02174e14_00 *p;
+    CellFileSet *p;
 
     p = &gSelectGame->mUnk_00[1];
     for (i = 0; i < gSelectGame->mTableCount; i++) {
@@ -130,7 +130,7 @@ void func_020328f8(s32 a) {
 
 void func_020328c8(s32 a) {
     s32 i;
-    Unk02174e14_00 *p;
+    CellFileSet *p;
 
     p = &gSelectGame->mUnk_00[1];
     for (i = 0; i < p->mCellLayout->mUnk_06; i++) {
@@ -141,7 +141,7 @@ void func_020328c8(s32 a) {
 void InitSelectGame(void *a, s32 b, void *c, void *d) {
     void *h;
     SelectGame *o;
-    Unk02174e14_00 *q;
+    CellFileSet *q;
     u8 v1[0x28];
     u32 k;
     s32 i;
@@ -239,7 +239,7 @@ s32 AdvanceSelectGame(void) {
     s32 a;
     Unk02175628Index v1;
     SelectGame *o;
-    Unk02174e14_00 *q;
+    CellFileSet *q;
     s32 b;
     s32 c;
     s32 d;
