@@ -343,7 +343,7 @@ u8 MarkOrthoQuadCellsAndGetOverlap(s32 column, s32 row) {
     return overlap;
 }
 
-void SetupOrthoQuad(s32 index, Unk021035ac_Pair startPair, s32 overlap) {
+void SetupOrthoQuad(s32 index, HalfwordPair startPair, s32 overlap) {
     RaceProgress *raceProgress;
     RandomState64 *random;
     OrthoQuad *quad;
@@ -388,9 +388,9 @@ void SetupOrthoQuad(s32 index, Unk021035ac_Pair startPair, s32 overlap) {
         velocityX = velocities[i][0];
         velocities[i][0] = (s * velocityX - c * velocityY) >> 12;
         velocities[i][1] = (c * velocityX + s * velocityY) >> 12;
-        *(Unk021035ac_Pair *) quad->mCorners[(u32) i] = startPair;
+        *(HalfwordPair *) quad->mCorners[(u32) i] = startPair;
     }
-    *(Unk021035ac_Pair *) quad->mStartPair = startPair;
+    *(HalfwordPair *) quad->mStartPair = startPair;
     quad->mUpdateFunction = AdvanceOrthoQuadDelayAndStartSound;
     quad->mPickedCornerIndex = -1;
     quad->mVelocityMode = 0;
@@ -398,7 +398,7 @@ void SetupOrthoQuad(s32 index, Unk021035ac_Pair startPair, s32 overlap) {
 
 // Local entry only: places up to count quads at random cells; the cream effect does not restart while quads show.
 void StartOrthoQuads(s32 kartIndex, s32 count, s32 useCreamEffect) {
-    Unk021035ac_Pair startPair;
+    HalfwordPair startPair;
     s32 i;
     s32 placedCount;
     s32 m;

@@ -24,6 +24,6 @@ typedef struct LinkCursor {
 
 #include "Main/Unknown/code_02080b1c.h"
 
-void SetupPointLinkCursor(Unk02080b1c *cursor, u32 kartIndex, Unk02080b1c_00 *link);
+void SetupPointLinkCursor(PointLinkCursor *cursor, u32 kartIndex, Unk02080b1c_00 *link);
 void AdvanceBattlePointLinkCursorTo(LinkCursor *p, PointLink *a);
 s32 func_020800a0(LinkCursor *p);

@@ -1431,7 +1431,7 @@ s32 func_ov000_0218b8e4(SbServerList *a) {
     }
 }
 
-void func_ov000_0218b780(SbServerList *a, s32 b, SbServer *c, Unk0218b668 *d) {
+void func_ov000_0218b780(SbServerList *a, s32 b, SbServer *c, MatchingServerList *d) {
     switch (b) {
         case 0:
             d->mUnk_630(d, 0, c, d->mUnk_634);
@@ -1482,7 +1482,7 @@ void func_ov000_0218b780(SbServerList *a, s32 b, SbServer *c, Unk0218b668 *d) {
     }
 }
 
-void func_ov000_0218b708(void *a, s32 b, SbServer *c, Unk0218b668 *d) {
+void func_ov000_0218b708(void *a, s32 b, SbServer *c, MatchingServerList *d) {
     switch (b) {
         case 1:
             d->mUnk_630(d, 2, c, d->mUnk_634);
@@ -1499,9 +1499,9 @@ void func_ov000_0218b708(void *a, s32 b, SbServer *c, Unk0218b668 *d) {
     }
 }
 
-Unk0218b668 *func_ov000_0218b668(const char *a, const char *b, const char *c, u32 d, u32 e, u32 f, s32 g, UnkFunc *h,
-                                 u32 l) {
-    Unk0218b668 *p;
+MatchingServerList *func_ov000_0218b668(const char *a, const char *b, const char *c, u32 d, u32 e, u32 f, s32 g,
+                                        UnkFunc *h, u32 l) {
+    MatchingServerList *p;
     if (g == 0 && data_ov000_021b4d28 != 1) {
         return NULL;
     }
@@ -1517,13 +1517,13 @@ Unk0218b668 *func_ov000_0218b668(const char *a, const char *b, const char *c, u3
     return p;
 }
 
-void func_ov000_0218b64c(Unk0218b668 *p) {
+void func_ov000_0218b64c(MatchingServerList *p) {
     func_ov000_0218c958(&p->mUnk_04c);
     func_ov000_0218acb0(p);
     func_ov000_021a3668(p);
 }
 
-s32 func_ov000_0218b590(Unk0218b668 *a, s32 b, u32 c, u8 *d, s32 e, const char *f, u32 g, u32 h) {
+s32 func_ov000_0218b590(MatchingServerList *a, s32 b, u32 c, u8 *d, s32 e, const char *f, u32 g, u32 h) {
     char v1[256] = {0};
     s32 n;
     s32 i;
@@ -1551,7 +1551,7 @@ s32 func_ov000_0218b590(Unk0218b668 *a, s32 b, u32 c, u8 *d, s32 e, const char *
     return r;
 }
 
-u32 func_ov000_0218b570(Unk0218b668 *p0, u32 p1, u32 p2, u8 *p3, u32 p4, u32 p5, u32 p6) {
+u32 func_ov000_0218b570(MatchingServerList *p0, u32 p1, u32 p2, u8 *p3, u32 p4, u32 p5, u32 p6) {
     u32 v2 = p4;
     u32 v4 = p5;
     u32 v8 = p6;
@@ -1559,17 +1559,17 @@ u32 func_ov000_0218b570(Unk0218b668 *p0, u32 p1, u32 p2, u8 *p3, u32 p4, u32 p5,
     return v10;
 }
 
-s32 func_ov000_0218b530(Unk0218b668 *a, u32 b, s32 c, u8 *d, s32 e) {
+s32 func_ov000_0218b530(MatchingServerList *a, u32 b, s32 c, u8 *d, s32 e) {
     u32 f = func_ov000_0218e374(b);
     return func_ov000_0218ba88(&a->mUnk_04c, f, ((c >> 8) & 0xff) | ((c << 8) & 0xff00), d, e);
 }
 
-s32 func_ov000_0218b4f8(Unk0218b668 *a, u32 b, s32 c, u32 d) {
+s32 func_ov000_0218b4f8(MatchingServerList *a, u32 b, s32 c, u32 d) {
     u32 e = func_ov000_0218e374(b);
     return func_ov000_0218ba10(&a->mUnk_04c, e, ((c >> 8) & 0xff) | ((c << 8) & 0xff00), d);
 }
 
-void func_ov000_0218b4d4(struct Unk0218b668 *p, s32 a) {
+void func_ov000_0218b4d4(struct MatchingServerList *p, s32 a) {
     s32 b;
     b = func_ov000_0218d300(&p->mUnk_04c, a);
     if (b != -1) {
@@ -1577,22 +1577,22 @@ void func_ov000_0218b4d4(struct Unk0218b668 *p, s32 a) {
     }
 }
 
-s32 func_ov000_0218b4bc(struct Unk0218b668 *p) {
+s32 func_ov000_0218b4bc(struct MatchingServerList *p) {
     func_ov000_0218a950(p);
     return func_ov000_0218b8e4(&p->mUnk_04c);
 }
 
-void func_ov000_0218b4a4(struct Unk0218b668 *p) {
+void func_ov000_0218b4a4(struct MatchingServerList *p) {
     func_ov000_0218c980(&p->mUnk_04c);
     func_ov000_0218acd8(p);
 }
 
-void func_ov000_0218b48c(struct Unk0218b668 *p) {
+void func_ov000_0218b48c(struct MatchingServerList *p) {
     func_ov000_0218b4a4(p);
     func_ov000_0218d1a0(&p->mUnk_04c);
 }
 
-u32 func_ov000_0218b480(Unk0218b668 *arg0, u32 arg1) {
+u32 func_ov000_0218b480(MatchingServerList *arg0, u32 arg1) {
     u32 value0 = (u32) arg0;
     u32 value1 = arg1;
     u32 value3;
@@ -1602,7 +1602,7 @@ u32 func_ov000_0218b480(Unk0218b668 *arg0, u32 arg1) {
     return value0;
 }
 
-u32 func_ov000_0218b474(Unk0218b668 *arg0) {
+u32 func_ov000_0218b474(MatchingServerList *arg0) {
     u32 value0 = (u32) arg0;
     u32 value3;
     value0 = (value0) + 76u;
@@ -1611,11 +1611,11 @@ u32 func_ov000_0218b474(Unk0218b668 *arg0) {
     return value0;
 }
 
-void func_ov000_0218b464(Unk0218b668 *p0, u32 p1, const char *p2, u32 p3) {
+void func_ov000_0218b464(MatchingServerList *p0, u32 p1, const char *p2, u32 p3) {
     func_ov000_0218d374(&p0->mUnk_04c, p1, p2, p3);
 }
 
-u32 func_ov000_0218b458(Unk0218b668 *a) {
+u32 func_ov000_0218b458(MatchingServerList *a) {
     return a->mUnk_04c.mUnk_4a0;
 }
 

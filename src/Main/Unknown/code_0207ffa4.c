@@ -158,7 +158,7 @@ s16 func_02080cc0(LinkCursor *p) {
     return *(s16 *) p->mLink->mUnk_20;
 }
 
-s32 IsWithinPointLinkDistance(Unk02080b1c *p, Vec3 *a) {
+s32 IsWithinPointLinkDistance(PointLinkCursor *p, Vec3 *a) {
     Vec3 v;
     s32 d;
     BOOL r;
@@ -174,7 +174,7 @@ s32 IsWithinPointLinkDistance(Unk02080b1c *p, Vec3 *a) {
     return r;
 }
 
-s32 IsPastPointLink(Unk02080b1c *p, Vec3 *a) {
+s32 IsPastPointLink(PointLinkCursor *p, Vec3 *a) {
     Vec3 v;
     BOOL r;
     Vec3 *w = p->mLink->mUnk_18;
@@ -189,7 +189,7 @@ s32 IsPastPointLink(Unk02080b1c *p, Vec3 *a) {
     return r;
 }
 
-void AdvancePointLinkCursor(Unk02080b1c *p) {
+void AdvancePointLinkCursor(PointLinkCursor *p) {
     u16 i = 0;
     u16 n;
     u32 v;
@@ -509,7 +509,7 @@ void AdvanceBattlePointLinkCursorTo(LinkCursor *p, PointLink *a) {
     }
 }
 
-void SetupPointLinkCursor(Unk02080b1c *cursor, u32 kartIndex, Unk02080b1c_00 *link) {
+void SetupPointLinkCursor(PointLinkCursor *cursor, u32 kartIndex, Unk02080b1c_00 *link) {
     cursor->mDirection = data_021557ec;
     cursor->mPreviousLink = link;
     cursor->mLink = cursor->mPreviousLink->mUnk_00[0];

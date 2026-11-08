@@ -9,7 +9,7 @@ typedef union {
         /* 00 */ s16 mUnk_00;
         /* 02 */ s16 mUnk_02;
     } mHalf;
-} Unk021035ac_Pair;
+} HalfwordPair;
 
 // One of the four quads: corner pairs, their velocities, the start pair, the update function, a mode and a timer.
 typedef struct OrthoQuad OrthoQuad;

@@ -178,7 +178,7 @@ typedef struct Unk0217d384_1d00 {
 } Unk0217d384_1d00;
 
 // 0x244-byte elements of the table at member 0x21c of WiFiSession.
-typedef struct Unk0217d384_021c {
+typedef struct WiFiPlayerRecord {
     /* 000 */ s32 mKind;
     /* 004 */ s32 mSize;
     /* 008 */ u8 mFromIndex;
@@ -198,7 +198,7 @@ typedef struct Unk0217d384_021c {
     /* 238 */ s32 mUnk_238;
     /* 23c */ s32 mUnk_23c;
     /* 240 */ s32 mSeed;
-} Unk0217d384_021c;
+} WiFiPlayerRecord;
 
 // 8-byte object at member 0x18e0 of WiFiSession.
 typedef struct Unk0217d384_18e0 {
@@ -229,7 +229,7 @@ typedef struct WiFiSession {
     /* 001c */ u8 mUnk_001c[4][0x80];
     // One 0x244-byte record per index: a 12-byte message header, then the player's name (0x14 bytes) and emblem
     // (0x200), elo, region and seed. The own element is sent (kind 1), the others are received into.
-    /* 021c */ Unk0217d384_021c mPlayerRecords[4];
+    /* 021c */ WiFiPlayerRecord mPlayerRecords[4];
     /* 0b2c */ u8 mConnection[0xdb4];
     /* 18e0 */ Unk0217d384_18e0 mUnk_18e0;
     /* 18e8 */ s32 mStartStatus;

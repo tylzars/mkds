@@ -66,7 +66,7 @@ static inline s32 func_0207f554_inline(u32 a, u32 b) {
     return r;
 }
 
-void AdvanceAwardPointLinkCursor(Unk02080b1c *p) {
+void AdvanceAwardPointLinkCursor(PointLinkCursor *p) {
     u32 i = 0;
     Kart *a = GetKart(p->mKartIndex);
     s32 t;
@@ -84,13 +84,13 @@ void AdvanceAwardPointLinkCursor(Unk02080b1c *p) {
     Vec3NormalizeAndGetLengthUnchecked(&p->mDirection, &p->mDirection);
 }
 
-s32 func_0207fe70(Unk02080b1c *p) {
+s32 func_0207fe70(PointLinkCursor *p) {
     s32 a = p->mLink->mUnk_20->mUnk_02 << 12;
 
     return ((s64) a * 0x29 + 0x800) >> 12;
 }
 
-void AdvanceStaffRollPointLinkCursor(Unk02080b1c *p) {
+void AdvanceStaffRollPointLinkCursor(PointLinkCursor *p) {
     Kart *a = GetKart(p->mKartIndex);
     u16 i;
     s32 t;
@@ -275,15 +275,15 @@ void func_0207f6f0(KartAi *p, LinkCursor *q, Kart *r, PointLink *s, Vec3 *a, Vec
         }
         p->mTurnAngleDegrees = GetAbsoluteValue(g);
     }
-    h = IsPastPointLink((Unk02080b1c *) q, a);
+    h = IsPastPointLink((PointLinkCursor *) q, a);
     if (h == 0 && (r->mUnk_48 & 0x40000000) == 0) {
-        h = IsWithinPointLinkDistance((Unk02080b1c *) q, a);
+        h = IsWithinPointLinkDistance((PointLinkCursor *) q, a);
     }
     if (h == 0) {
         return;
     }
     func_0207f05c(p);
-    data_usa_0217ae3c((Unk02080b1c *) q);
+    data_usa_0217ae3c((PointLinkCursor *) q);
     data_usa_0217ae44(p, q, r);
     q->mRequestedLink = NULL;
     q->mUnk_18 = FALSE;

@@ -5,12 +5,12 @@
 struct WLMenuScene;
 
 // Table of four functions that member 0x80c of WLMenuScene points to.
-typedef struct Unk02174e4c_80c {
+typedef struct WLMenuCallbacks {
     /* 00 */ void (*mUnk_00)(void *a, struct WLMenuScene *b, void *c);
     /* 04 */ s32 (*mUnk_04)(void *a);
     /* 08 */ void (*mUnk_08)(void);
     /* 0c */ void (*mUnk_0c)(void);
-} Unk02174e4c_80c;
+} WLMenuCallbacks;
 
 // 0x16-byte entries from 4 of Unk02174e4c_818.
 typedef struct Unk02174e4c_818_04 {
@@ -29,7 +29,7 @@ typedef struct WLMenuScene {
     /* 000 */ u8 mMainOam[0x404];
     /* 404 */ u8 mSubOam[0x404];
     /* 808 */ void *mHeap;
-    /* 80c */ Unk02174e4c_80c *mCurrentCallbacks;
+    /* 80c */ WLMenuCallbacks *mCurrentCallbacks;
     /* 810 */ s32 mRequestedCallbacksIndex;
     /* 814 */ s32 mCurrentCallbacksIndex;
     /* 818 */ Unk02174e4c_818 mUnk_818;

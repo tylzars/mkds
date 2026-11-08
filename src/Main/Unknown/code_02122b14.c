@@ -235,7 +235,7 @@ void AdvanceWiFiSessionStep0(void) {
     u8 fromIndex;
     u8 ownIndex;
     u32 toBit;
-    Unk0217d384_021c *ownPlayerRecord;
+    WiFiPlayerRecord *ownPlayerRecord;
     WiFiSessionMessageHeader header;
     UpdateWiFiSessionStepTimeout(0x1c20);
     toIndex = func_021216a8();
@@ -279,7 +279,7 @@ void AdvanceWiFiSessionStep1(void) {
     u32 toBit;
     u32 seedSum;
     WiFiSession *session;
-    Unk0217d384_021c *ownPlayerRecord;
+    WiFiPlayerRecord *ownPlayerRecord;
     RandomState64 *generator;
     WiFiSessionMessageHeader header;
     UpdateWiFiSessionStepTimeout(0x1c20);

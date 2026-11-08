@@ -38,7 +38,7 @@ void SbServerSetValue(SbServer *e, const char *key, const char *value);
 typedef struct SbServerList SbServerList;
 
 typedef struct SbServer SbServer;
-typedef struct Unk0218b668 Unk0218b668;
+typedef struct MatchingServerList MatchingServerList;
 typedef struct SbServerList SbServerList;
 
 // Object func_ov000_0218ba88 builds.
@@ -75,7 +75,7 @@ typedef struct Unk0218ce14 {
 void SbServerListInit(SbServerList *slist, const char *a, const char *b, const char *c, u32 d, s32 e, UnkFunc *callback,
                       void *g);
 
-unsigned int func_ov000_0218b570(Unk0218b668 *p0, unsigned int p1, unsigned int p2, u8 *p3, unsigned int p4,
+unsigned int func_ov000_0218b570(MatchingServerList *p0, unsigned int p1, unsigned int p2, u8 *p3, unsigned int p4,
                                  unsigned int p5, unsigned int p6);
 
 #include "00/unk_021b4000.h"
@@ -83,7 +83,7 @@ unsigned int func_ov000_0218b570(Unk0218b668 *p0, unsigned int p1, unsigned int 
 
 // Object of 0x638 bytes func_ov000_0218b668 allocates. func_ov000_0218acb0 passes 0x20 to func_ov000_0218e53c and
 // the addresses of 0x14 and 0x08 to func_ov000_0218ae5c.
-typedef struct Unk0218b668 {
+typedef struct MatchingServerList {
     /* 000 */ Unk0218a9bc mUnk_000;
     /* 04c */ SbServerList mUnk_04c;
     /* 620 */ u32 mUnk_620;
@@ -93,9 +93,9 @@ typedef struct Unk0218b668 {
     /* 62e */ u8 mUnk_62e[2];
     /* 630 */ UnkFunc *mUnk_630;
     /* 634 */ u32 mUnk_634;
-} Unk0218b668;
+} MatchingServerList;
 
-struct Unk0218b668;
+struct MatchingServerList;
 
 // Declared here until the code that defines them is decompiled.
 
@@ -143,22 +143,22 @@ struct Hashtable *func_ov000_0218b3f4(struct SbServerList *p);
 void func_ov000_0218b434(u32 arg0);
 s32 func_ov000_0218b440(const char *const *first, const char *const *second);
 u32 func_ov000_0218b44c(HashtableNameEntry *entry, u32 modulus);
-u32 func_ov000_0218b458(Unk0218b668 *a);
-void func_ov000_0218b464(Unk0218b668 *p0, unsigned int p1, const char *p2, unsigned int p3);
-u32 func_ov000_0218b474(Unk0218b668 *arg0);
-u32 func_ov000_0218b480(Unk0218b668 *arg0, u32 arg1);
-void func_ov000_0218b48c(struct Unk0218b668 *p);
-void func_ov000_0218b4a4(struct Unk0218b668 *p);
-s32 func_ov000_0218b4bc(struct Unk0218b668 *p);
-void func_ov000_0218b4d4(struct Unk0218b668 *p, s32 a);
-s32 func_ov000_0218b4f8(Unk0218b668 *a, u32 b, s32 c, u32 d);
-s32 func_ov000_0218b530(Unk0218b668 *a, u32 b, s32 c, u8 *d, s32 e);
-s32 func_ov000_0218b590(Unk0218b668 *a, s32 b, u32 c, u8 *d, s32 e, const char *f, u32 g, u32 h);
-void func_ov000_0218b64c(Unk0218b668 *p);
-Unk0218b668 *func_ov000_0218b668(const char *a, const char *b, const char *c, u32 d, u32 e, u32 f, s32 g, UnkFunc *h,
-                                 u32 l);
-void func_ov000_0218b708(void *a, s32 b, SbServer *c, Unk0218b668 *d);
-void func_ov000_0218b780(SbServerList *a, s32 b, SbServer *c, Unk0218b668 *d);
+u32 func_ov000_0218b458(MatchingServerList *a);
+void func_ov000_0218b464(MatchingServerList *p0, unsigned int p1, const char *p2, unsigned int p3);
+u32 func_ov000_0218b474(MatchingServerList *arg0);
+u32 func_ov000_0218b480(MatchingServerList *arg0, u32 arg1);
+void func_ov000_0218b48c(struct MatchingServerList *p);
+void func_ov000_0218b4a4(struct MatchingServerList *p);
+s32 func_ov000_0218b4bc(struct MatchingServerList *p);
+void func_ov000_0218b4d4(struct MatchingServerList *p, s32 a);
+s32 func_ov000_0218b4f8(MatchingServerList *a, u32 b, s32 c, u32 d);
+s32 func_ov000_0218b530(MatchingServerList *a, u32 b, s32 c, u8 *d, s32 e);
+s32 func_ov000_0218b590(MatchingServerList *a, s32 b, u32 c, u8 *d, s32 e, const char *f, u32 g, u32 h);
+void func_ov000_0218b64c(MatchingServerList *p);
+MatchingServerList *func_ov000_0218b668(const char *a, const char *b, const char *c, u32 d, u32 e, u32 f, s32 g,
+                                        UnkFunc *h, u32 l);
+void func_ov000_0218b708(void *a, s32 b, SbServer *c, MatchingServerList *d);
+void func_ov000_0218b780(SbServerList *a, s32 b, SbServer *c, MatchingServerList *d);
 s32 func_ov000_0218b8e4(SbServerList *a);
 s32 func_ov000_0218b928(SbServerList *a);
 s32 func_ov000_0218ba10(SbServerList *a, u32 b, u16 c, u32 d);

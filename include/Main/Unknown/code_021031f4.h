@@ -31,7 +31,7 @@ void CreateOrthoQuadCreamEffect(const char *fileName);
 void StopOrthoQuads(int idx);
 void StartOrthoQuadsGesoSumi(u32 kartIndex, u32 count);
 void StartOrthoQuads(s32 idx, s32 count, s32 flag);
-void SetupOrthoQuad(s32 idx, Unk021035ac_Pair startPair, s32 overlap);
+void SetupOrthoQuad(s32 idx, HalfwordPair startPair, s32 overlap);
 u8 MarkOrthoQuadCellsAndGetOverlap(s32 column, s32 row);
 void DrawOrthoQuads(void);
 void DrawOrthoQuadsWithModel(OrthoQuadModel *model);

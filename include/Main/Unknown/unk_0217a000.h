@@ -1443,12 +1443,12 @@ typedef struct KartEffects {
 extern KartEffects *gKartEffects;
 extern struct KartAiItemUseEntry *data_0217ae34;
 extern struct KartAiItemUseEntry *data_0217ae38;
-struct Unk02080b1c;
+struct PointLinkCursor;
 struct KartAi;
 struct LinkCursor;
 struct Kart;
 extern const s32 *data_usa_0217ae38;
-extern void (*data_usa_0217ae3c)(struct Unk02080b1c *p);
+extern void (*data_usa_0217ae3c)(struct PointLinkCursor *p);
 extern const s32 *data_usa_0217ae40;
 extern void (*data_usa_0217ae44)(struct KartAi *p, struct LinkCursor *q, struct Kart *r);
 extern const s32 *data_usa_0217ae48;

@@ -14,10 +14,10 @@ typedef struct EntryCellIndices {
 } EntryCellIndices;
 
 // 8-byte elements of the table behind gEntryLabelTextRows.
-typedef struct Unk02174e14_8 {
+typedef struct EntryLabelTextRow {
     /* 00 */ s16 mUnk_00;
     /* 02 */ u8 mUnk_02[6];
-} Unk02174e14_8;
+} EntryLabelTextRow;
 
 // What the first member of PlayerEntryList points to.
 typedef struct Unk02174e3c_00 {
@@ -34,8 +34,8 @@ extern u16 gDownloadCharacterCellIndices[];
 extern u16 gNormalCharacterCellIndices[];
 extern EntryCellIndices gNormalEntryCellIndices[];
 extern EntryCellIndices gDownloadEntryCellIndices[];
-extern Unk02174e14_8 gNormalEntryLabelTextRows[];
-extern Unk02174e14_8 gDownloadEntryLabelTextRows[];
+extern EntryLabelTextRow gNormalEntryLabelTextRows[];
+extern EntryLabelTextRow gDownloadEntryLabelTextRows[];
 extern const char data_usa_02162904[];
 extern const char data_usa_0216292c[];
 extern const char data_usa_02162954[];
@@ -64,7 +64,7 @@ extern const char gSelectMenuEtcTitleMBnclName[];
 extern const char data_usa_02162c58[];
 extern EntryCellIndices *gEntryCellIndices;
 extern u16 *gCharacterCellIndices;
-extern Unk02174e14_8 *gEntryLabelTextRows;
+extern EntryLabelTextRow *gEntryLabelTextRows;
 extern u16 *gTimerDigitCellIndices;
 
 void AdvancePlayerEntryList(void);

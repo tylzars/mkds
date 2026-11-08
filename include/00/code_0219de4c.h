@@ -32,7 +32,7 @@ typedef struct WiFiMatching {
     // Address each participant's commands are sent to; mParticipantCommandPorts holds the matching ports.
     /* 024 */ u32 mParticipantCommandAddresses[32];
     /* 0a4 */ u16 mParticipantCommandPorts[32];
-    /* 0e4 */ struct Unk0218b668 *mServerList;
+    /* 0e4 */ struct MatchingServerList *mServerList;
     /* 0e8 */ u32 mUnk_e8;
     /* 0ec */ u64 mUnk_ec;
     // GP profile id of each participant by position; the connection finds its own position by comparing

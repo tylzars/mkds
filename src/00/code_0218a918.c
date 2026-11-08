@@ -13,7 +13,7 @@ void func_ov000_0218a98c(Unk0218a9bc *a) {
     }
 }
 
-void func_ov000_0218a950(Unk0218b668 *a) {
+void func_ov000_0218a950(MatchingServerList *a) {
     if (a->mUnk_000.mUnk_08.mUnk_08 != 0) {
         func_ov000_0218aa14(&a->mUnk_000, 0);
         func_ov000_0218a9bc(&a->mUnk_000);
@@ -35,7 +35,7 @@ void func_ov000_0218a93c(Unk0218a9bc *a, u8 b) {
     }
 }
 
-void func_ov000_0218a918(Unk0218b668 *a, SbServer *b) {
+void func_ov000_0218a918(MatchingServerList *a, SbServer *b) {
     int v1;
     v1 = func_ov000_0218ae68(&a->mUnk_000.mUnk_08, b);
     if (v1 == 0) {

@@ -98,7 +98,7 @@ typedef struct WiFiSelectHeapHolder {
 extern WiFiSelectHeapHolder *gWiFiSelectCharacterState;
 extern WiFiSelectHeapHolder *gWiFiSelectKartState;
 
-// Object behind data_ov000_021b4d24; the 0x5d8 bytes at offset 0x4c of a Unk0218b668.
+// Object behind data_ov000_021b4d24; the 0x5d8 bytes at offset 0x4c of a MatchingServerList.
 typedef struct SbServerList {
     /* 000 */ s32 mState;
     /* 004 */ struct Darray *mUnk_004;

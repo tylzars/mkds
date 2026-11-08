@@ -10,7 +10,7 @@ typedef struct Unk02080b1c_20 {
     /* 06 */ s16 mUnk_06;
 } Unk02080b1c_20;
 
-// Entries reached through Unk02080b1c: a table of pointers to further entries at 0x00 (the count is the halfword at
+// Entries reached through PointLinkCursor: a table of pointers to further entries at 0x00 (the count is the halfword at
 // 0x24), a vector pointer at 0x18, a word at 0x1c and an Unk02080b1c_20 pointer at 0x20.
 typedef struct Unk02080b1c_00 {
     /* 00 */ struct Unk02080b1c_00 *mUnk_00[6];
@@ -21,7 +21,7 @@ typedef struct Unk02080b1c_00 {
     /* 26 */ u8 mUnk_26[2];
 } Unk02080b1c_00;
 
-typedef struct Unk02080b1c {
+typedef struct PointLinkCursor {
     /* 00 */ Unk02080b1c_00 *mLink;
     /* 04 */ Unk02080b1c_00 *mPreviousLink;
     /* 08 */ Vec3 mDirection;
@@ -29,18 +29,18 @@ typedef struct Unk02080b1c {
     /* 18 */ s32 mUnk_18;
     /* 1c */ u16 mKartIndex;
     /* 1e */ u8 mUnk_1e;
-} Unk02080b1c;
+} PointLinkCursor;
 
-// Object of 0x2a bytes: an Unk02080b1c at 0x00, a word at 0x20, the halfword at 0x24 given to GetKart and
+// Object of 0x2a bytes: an PointLinkCursor at 0x00, a word at 0x20, the halfword at 0x24 given to GetKart and
 // halfwords at 0x26 and 0x28.
 typedef struct KartKillerCursor {
-    /* 00 */ Unk02080b1c mPointLinkCursor;
+    /* 00 */ PointLinkCursor mPointLinkCursor;
     /* 20 */ s32 mAngleToLinkDegrees;
     /* 24 */ u16 mKillerKartIndex;
     /* 26 */ s16 mUnk_26;
     /* 28 */ s16 mUnk_28;
 } KartKillerCursor;
 
-void AdvancePointLinkCursor(Unk02080b1c *p);
-s32 IsPastPointLink(Unk02080b1c *p, Vec3 *a);
-s32 IsWithinPointLinkDistance(Unk02080b1c *p, Vec3 *a);
+void AdvancePointLinkCursor(PointLinkCursor *p);
+s32 IsPastPointLink(PointLinkCursor *p, Vec3 *a);
+s32 IsWithinPointLinkDistance(PointLinkCursor *p, Vec3 *a);

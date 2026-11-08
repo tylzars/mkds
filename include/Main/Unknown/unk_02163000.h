@@ -28,7 +28,7 @@ extern const char gTimeAttackGhostGetMNscrName[];
 extern const char gTimeAttackGhostGetSNscrName[];
 extern const char data_02163220[];
 extern const char data_02163240[];
-extern struct Unk02174e4c_80c *gWLMenuCallbacks[];
+extern struct WLMenuCallbacks *gWLMenuCallbacks[];
 extern const char data_02163280[];
 extern const char data_021632a0[];
 extern const char data_021632c0[];

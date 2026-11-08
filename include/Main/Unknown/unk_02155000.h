@@ -40,14 +40,14 @@ extern Vec3 gVec3UnitY;
 extern Vec3 data_02155ebc;
 
 // 12-byte entries; BuildEmblemNsbtxPath reads the string pointer at 0x00.
-typedef struct Unk02155cf4 {
+typedef struct CharacterName {
     /* 00 */ const char *mUnk_00;
     /* 04 */ u8 mUnk_04[8];
-} Unk02155cf4;
+} CharacterName;
 
-extern const Unk02155cf4 gCharacterEmblemNames[];
-extern const Unk02155cf4 gCharacterPNames[];
-extern const Unk02155cf4 gCharacterENames[];
+extern const CharacterName gCharacterEmblemNames[];
+extern const CharacterName gCharacterPNames[];
+extern const CharacterName gCharacterENames[];
 
 // 8-byte entries; BuildKartShadowNsbmdPath and BuildKartNsbtxPath read the string pointer at 0x00.
 typedef struct Unk02155d88 {

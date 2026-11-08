@@ -2951,7 +2951,7 @@ u32 ReportMatchingConnectResult(u32 result) {
     return result;
 }
 
-void WiFiMatchingServerListCallback(Unk0218b668 *list, s32 event, s32 c) {
+void WiFiMatchingServerListCallback(MatchingServerList *list, s32 event, s32 c) {
     s32 d;
     u32 e;
     WiFiMatching *f;

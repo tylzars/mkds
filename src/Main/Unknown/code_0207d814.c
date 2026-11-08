@@ -485,7 +485,7 @@ void func_0207d814(struct Unk02089a24 *a, struct KartAi *b) {
         return;
     }
     if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
-        t = func_0207fe70((Unk02080b1c *) &b->mUnk_08.mUnk_00);
+        t = func_0207fe70((PointLinkCursor *) &b->mUnk_08.mUnk_00);
         b->mKart->mForwardSpeed = ((s64) b->mKart->mPhysicalParam->mBaseSpeedLimit * t + 0x800) >> 12;
         b->mKart->mSpeedLimitGoal = b->mKart->mForwardSpeed;
         b->mKart->mSpeedLimit = b->mKart->mSpeedLimitGoal;

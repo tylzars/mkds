@@ -98,7 +98,7 @@ void InitWLMenuScene(void *heap) {
 
 void AdvanceWLMenuScene(void *a) {
     s32 callbacksIndex = gWLMenuScene->mRequestedCallbacksIndex;
-    Unk02174e4c_80c *previousCallbacks;
+    WLMenuCallbacks *previousCallbacks;
 
     if (gWLMenuScene->mCurrentCallbacksIndex != callbacksIndex) {
         previousCallbacks = gWLMenuScene->mCurrentCallbacks;

@@ -39,10 +39,10 @@ typedef struct Unk020072c0_buf {
 } Unk020072c0_buf;
 
 // 0x14 bytes at 0x1d2c of an entry of Unk0216fdac: three words, then four halfwords.
-typedef struct Unk0200806c_b {
+typedef struct ChunkTable {
     /* 00 */ u32 mUnk_00[3];
     /* 0c */ u16 mUnk_0c[4];
-} Unk0200806c_b;
+} ChunkTable;
 
 // 0x10-byte entry of Unk020082b4.
 typedef struct Unk020082b4_0c {
@@ -80,7 +80,7 @@ void func_02007ec4(ScanBlock *record, u16 b, u16 c, u32 d, u32 e);
 u32 func_02007f38(u32 rangeIndex, u32 address, u32 size);
 u32 func_02007ff0(u32 rangeIndex, u32 address, u32 size);
 BOOL func_0200806c(Unk020072c0_buf *result, void *b, u16 chunk, void *d);
-u32 func_020080e8(Unk0200806c_b *chunkTable, Unk020082b4 *record);
+u32 func_020080e8(ChunkTable *chunkTable, Unk020082b4 *record);
 void func_02008188(Unk02008188 *source, u32 *kindWord, Unk020082b4_0c *range, u32 *nextAddress);
 void func_020082b4(Unk020082b4 *record, Unk02008188 *source);
 u32 func_02008310(void *rangeTable, Unk02008188 *source);

@@ -45,7 +45,7 @@ u32 func_02008310(void *rangeTable, Unk02008188 *source) {
     record = (Unk020082b4 *) (data_0216fdac->mUnk_1788 + entryOffset);
     func_020082b4(record, source);
     MI_CpuCopy8((u8 *) rangeTable + 0x1c, record->mUnk_c4, 0x20);
-    if (func_020080e8((Unk0200806c_b *) (data_0216fdac->mUnk_1d2c + entryOffset), record) == 0) {
+    if (func_020080e8((ChunkTable *) (data_0216fdac->mUnk_1d2c + entryOffset), record) == 0) {
         OS_RestoreInterrupts(savedInterrupts);
         return 0;
     }
@@ -156,7 +156,7 @@ static inline struct Unk0216fdac *func_0200806c_inline(void) {
     return data_0216fdac;
 }
 
-u32 func_020080e8(Unk0200806c_b *chunkTable, Unk020082b4 *record) {
+u32 func_020080e8(ChunkTable *chunkTable, Unk020082b4 *record) {
     u32 offset;
     u16 nextChunk;
     u8 i;
@@ -191,7 +191,7 @@ BOOL func_0200806c(Unk020072c0_buf *result, void *b, u16 chunk, void *d) {
     u32 offset;
     Unk020082b4 *record;
     Unk020082b4_0c *range;
-    Unk0200806c_b *chunkTable;
+    ChunkTable *chunkTable;
     s8 i;
     chunkTable = b;
     record = d;
