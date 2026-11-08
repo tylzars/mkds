@@ -16,7 +16,7 @@ typedef struct PosStripPoint {
 typedef struct PosStrip {
     /* 00 */ u8 mUnk_00[8];
     /* 08 */ NNSFndList mPoints;
-    /* 14 */ u32 mFollowedPos;
+    /* 14 */ const Vec3 *mFollowedPos;
     /* 18 */ u32 mStopped;
     /* 1c */ u32 mHeight;
     /* 20 */ s32 mKartIndex;
@@ -36,11 +36,11 @@ typedef struct KartAiItemUse KartAiItemUse;
 
 struct KartAi;
 
-void StopPosStrip(unsigned int strip);
+void StopPosStrip(PosStrip *strip);
 PosStrip *StartAwardKartPosStrip(s32 kartIndex);
-s32 StartPosStrip(u32 followedPos);
+PosStrip *StartPosStrip(const Vec3 *followedPos);
 void SetPosStripPointFromKart(PosStripPoint *posStripPoint, PosStrip *posStrip);
-void SetPosStripPointFromPos(u32 stripPoint, u32 strip);
+void SetPosStripPointFromPos(PosStripPoint *stripPoint, PosStrip *strip);
 void DrawPosStrips(const MtxFx43 *matrix);
 void UpdatePosStrips(void);
 void InitPosStrips(void *heap);

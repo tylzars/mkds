@@ -62,7 +62,7 @@ typedef struct ItemKouraW {
     /* 264 */ s32 mUnk_264;
     /* 268 */ u16 mDrawOffsetAngle;
     /* 26a */ u8 mUnk_26a[2];
-    /* 26c */ s32 mPosStrip;
+    /* 26c */ struct PosStrip *mPosStrip;
     /* 270 */ s32 mSoundId;
     /* 274 */ u16 mRank;
     /* 276 */ u16 mRankKartIndex;

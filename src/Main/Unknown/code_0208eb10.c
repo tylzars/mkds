@@ -545,25 +545,14 @@ void DrawPosStrips(const MtxFx43 *matrix) {
     } while (strip != NULL);
 }
 
-void SetPosStripPointFromPos(u32 stripPoint, u32 strip) {
-    u32 stripPointCopy = stripPoint;
-    u32 value1 = strip;
-    u32 stripHeight;
-    u32 followedPos;
-    followedPos = *(const u32 *) ((value1) + (20));
-    stripHeight = *(const u32 *) ((value1) + (28));
-    value1 = 0u;
-    *(u32 *) ((stripPointCopy) + (8)) = stripHeight;
-    *(u16 *) ((stripPointCopy) + (12)) = value1;
-    value1 = *(const u32 *) ((followedPos) + (0));
-    value1 = ((s32) value1 >> 4);
-    *(u32 *) ((stripPointCopy) + (16)) = value1;
-    value1 = *(const u32 *) ((followedPos) + (4));
-    value1 = ((s32) value1 >> 4);
-    *(u32 *) ((stripPointCopy) + (20)) = value1;
-    value1 = *(const u32 *) ((followedPos) + (8));
-    value1 = ((s32) value1 >> 4);
-    *(u32 *) ((stripPointCopy) + (24)) = value1;
+void SetPosStripPointFromPos(PosStripPoint *stripPoint, PosStrip *strip) {
+    const Vec3 *followedPos = strip->mFollowedPos;
+    s32 stripHeight = strip->mHeight;
+    stripPoint->mHeight = stripHeight;
+    stripPoint->mSinceAddedFrames = 0;
+    stripPoint->mPos.x = followedPos->x >> 4;
+    stripPoint->mPos.y = followedPos->y >> 4;
+    stripPoint->mPos.z = followedPos->z >> 4;
 }
 
 void SetPosStripPointFromKart(PosStripPoint *posStripPoint, PosStrip *posStrip) {
@@ -603,7 +592,7 @@ void SetPosStripPointFromKart(PosStripPoint *posStripPoint, PosStrip *posStrip) 
 }
 
 // Starts a strip that follows the position a points to; returns the strip, or 0 when none is free.
-s32 StartPosStrip(u32 followedPos) {
+PosStrip *StartPosStrip(const Vec3 *followedPos) {
     PosStrip *strip;
     strip = NNS_FndGetNthListObject(&gPosStrips->mLists[1], 0);
     if (strip != NULL) {
@@ -613,7 +602,7 @@ s32 StartPosStrip(u32 followedPos) {
         NNS_FndRemoveListObject(&gPosStrips->mLists[1], strip);
         NNS_FndAppendListObject(&gPosStrips->mLists[0], strip);
     }
-    return (s32) strip;
+    return strip;
 }
 
 // Award scene only: starts a strip that follows kart a.
@@ -630,7 +619,7 @@ PosStrip *StartAwardKartPosStrip(s32 kartIndex) {
             kart = GetKart(kartIndex);
             kartModelsEntry = kart->mKartModelsEntry;
             kartOffset = ((Vec3 *) &kartModelsEntry->mKartOffsetData->mUnk_44)[kartModelsEntry->mCharacterIndex];
-            strip->mFollowedPos = (u32) &kart->mPos;
+            strip->mFollowedPos = &kart->mPos;
             strip->mStopped = 0;
             strip->mHeight = 0x400;
             strip->mKartIndex = kartIndex;
@@ -650,6 +639,6 @@ PosStrip *StartAwardKartPosStrip(s32 kartIndex) {
 }
 
 // Adds no more points to the strip; it goes back to the pool once its points have gone.
-void StopPosStrip(u32 strip) {
-    *OFFSET_PTR(u32, strip, 24) = 0x1u;
+void StopPosStrip(PosStrip *strip) {
+    strip->mStopped = 1;
 }

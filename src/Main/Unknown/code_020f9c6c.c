@@ -109,7 +109,7 @@ void ResetItemKouraW(ItemKouraW *item) {
     item->mRank = 1;
     item->mRankKartIndex = gRaceProgress->mKartAtRank[0];
     item->mUnk_278 = 0;
-    item->mPosStrip = 0;
+    item->mPosStrip = NULL;
     item->mSoundId = 0xdc;
     item->mKartMask = 0;
     item->mHitSpinsKart = 0;
@@ -308,7 +308,7 @@ void UpdateItemKouraWState1(ItemKouraW *item) {
     Kart *kart;
 
     if (item->mStateFrames == 8) {
-        item->mPosStrip = StartPosStrip((u32) item->mUnk_000.mUnk_d0);
+        item->mPosStrip = StartPosStrip(item->mUnk_000.mUnk_d0);
     }
     AdvanceLinkFollowingItem((LinkFollowingItemObject *) item, item->mUnk_27c, 0x21, item->mRankKartIndex, 1);
     if (!(item->mUnk_000.mFlags & 1)) {
@@ -469,9 +469,9 @@ void EnterItemKouraWState4(ItemKouraW *item) {
     item->mUnk_264 = 0x5000;
     item->mUnk_288 = 0x3e8;
     VEC_Subtract(&item->mUnk_238, &item->mUnk_298, &item->mUnk_28c);
-    if (item->mPosStrip != 0) {
+    if (item->mPosStrip != NULL) {
         StopPosStrip(item->mPosStrip);
-        item->mPosStrip = 0;
+        item->mPosStrip = NULL;
     }
     if (item->mUnk_000.mFlags & 0x8000000) {
         func_020fe71c(5, item->mKartItems->mKartIndex, item->mUnk_000.mId);
