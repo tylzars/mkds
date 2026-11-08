@@ -21,7 +21,7 @@
 
 void func_020641f0(Kart *a) {
     KartModelsEntry *b;
-    Unk0206bcb0_590_08 *c;
+    KartModelAnimationView *c;
     Vec3 m;
     MtxFx43 d;
     MtxFx43 e;

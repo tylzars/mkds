@@ -20,7 +20,7 @@ typedef struct Unk0206bcb0_590_20 {
 // The object behind the word at 0x590 of a Kart from its first byte:
 // the halfword at 0x40.
 // The object behind the word at 0x08 of a KartModelsEntry: the halfword at 0x1a.
-typedef struct Unk0206bcb0_590_08 {
+typedef struct KartModelAnimationView {
     /* 00 */ u8 mUnk_00[2];
     /* 02 */ u16 mUnk_02;
     /* 04 */ u8 mUnk_04[8];
@@ -29,7 +29,7 @@ typedef struct Unk0206bcb0_590_08 {
     /* 18 */ u16 mUnk_18;
     /* 1a */ u16 mUnk_1a;
     /* 1c */ s32 **mUnk_1c;
-} Unk0206bcb0_590_08;
+} KartModelAnimationView;
 
 // The object behind the word at 0x54 of a KartModelsEntry.
 typedef struct Unk0206bcb0_590_54 {
@@ -91,8 +91,8 @@ struct Nsbmd;
 typedef struct KartModelsEntry {
     /* 000 */ s32 mUnk_000;
     /* 004 */ s32 mUnk_004;
-    /* 008 */ Unk0206bcb0_590_08 *mCharacterAnimation;
-    /* 00c */ Unk0206bcb0_590_08 *mFaceAnimation;
+    /* 008 */ KartModelAnimationView *mCharacterAnimation;
+    /* 00c */ KartModelAnimationView *mFaceAnimation;
     /* 10 */ Nsbmd *mModels[3];
     /* 01c */ ShadowModel *mUnk_01c;
     /* 020 */ Unk0206bcb0_590_20 *mUnk_020;

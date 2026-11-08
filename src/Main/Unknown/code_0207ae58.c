@@ -45,10 +45,10 @@ void AdvanceKartCharacterAnimation(Kart *a) {
     s32 b;
     KartModelsEntry *q;
     CharacterAnimationState *p;
-    Unk0206bcb0_590_08 *r;
+    KartModelAnimationView *r;
     s32 c;
     u32 v;
-    Unk0206bcb0_590_08 *s;
+    KartModelAnimationView *s;
 
     q = a->mKartModelsEntry;
     p = (CharacterAnimationState *) &q->mTurnFrameOffset;
@@ -105,7 +105,7 @@ void AdvanceKartCharacterAnimation(Kart *a) {
 }
 
 void SetCharacterFaceFrameIndex(struct KartModelsEntry *a, s32 b) {
-    Unk0206bcb0_590_08 *p = a->mFaceAnimation;
+    KartModelAnimationView *p = a->mFaceAnimation;
 
     p->mUnk_0c = data_usa_021551a4[b];
     *p->mUnk_1c[p->mUnk_1a] = p->mUnk_0c;
@@ -237,7 +237,7 @@ void func_0207b354(Kart *p) {
 void func_0207b284(Kart *p) {
     KartModelsEntry *q = p->mKartModelsEntry;
     Nsbmd *r = q->mModels[0];
-    Unk0206bcb0_590_08 *s = q->mFaceAnimation;
+    KartModelAnimationView *s = q->mFaceAnimation;
     NNSG3dResMdl *t = r->mResMdl;
 
     NNS_G3dMdlSetMdlPolygonModeAll(t, 2);
@@ -263,7 +263,7 @@ void func_0207b284(Kart *p) {
 void func_0207b1a8(Kart *p) {
     KartModelsEntry *q = p->mKartModelsEntry;
     Nsbmd *r = q->mModels[0];
-    Unk0206bcb0_590_08 *s = q->mFaceAnimation;
+    KartModelAnimationView *s = q->mFaceAnimation;
     NNSG3dResMdl *t = r->mResMdl;
     Nsbmd *u;
     NNSG3dResMdl *w;
@@ -324,7 +324,7 @@ void func_0207b0d0(Kart *p) {
 // Plays animation a once, then goes on to animation b.
 void StartKartCharacterAnimationOnce(Kart *p, s32 a, s32 b) {
     KartModelsEntry *q = p->mKartModelsEntry;
-    Unk0206bcb0_590_08 *s;
+    KartModelAnimationView *s;
     CharacterAnimationState *r = (CharacterAnimationState *) &q->mTurnFrameOffset;
 
     s = q->mCharacterAnimation;

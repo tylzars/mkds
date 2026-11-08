@@ -211,7 +211,7 @@ void SetKartPrevCollisionCenterFromPrevPos(Kart *a) {
 void InitKart(Kart *a, void (**b)(Kart *)) {
     u32 c;
     u16 i;
-    Unk0206bcb0_590_08 *d;
+    KartModelAnimationView *d;
 
     GetHeap(GetCurrentHeapCall());
     c = gRaceSetup->mCurrentEntries[a->mIndex].mPlayer.mKind == PLAYER_KIND_PEER;

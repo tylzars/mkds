@@ -6,7 +6,7 @@
 #include "Main/Unknown/code_020d2000.h"
 #include "Main/Unknown/code_020df85c.h"
 
-void EnterMkdEfBubbleState1(Unk020df85c *bubble) {
+void EnterMkdEfBubbleState1(MapObjectFlagsView *bubble) {
     bubble->mUnk_02 |= data_0215877c;
     bubble->mUnk_02 |= data_02158780;
 }

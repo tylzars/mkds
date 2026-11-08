@@ -141,7 +141,7 @@ void DrawKart(Kart *a) {
 
 s32 func_02063b70(Kart *a) {
     KartModelsEntry *b;
-    Unk0206bcb0_590_08 *c;
+    KartModelAnimationView *c;
     BOOL d;
     s32 e;
     s32 f;
