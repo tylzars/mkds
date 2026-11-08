@@ -18,24 +18,24 @@ typedef struct CellLayoutEntry {
 } CellLayoutEntry;
 
 // 0x24 bytes at member 0x20 of LabelCanvas (func_02125808 takes its address).
-typedef struct Unk021243ac_20 {
-    /* 00 */ struct LabelCanvas *mUnk_00;
-    /* 04 */ struct Unk02022aa8 *mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
+typedef struct LabelTextCanvas {
+    /* 00 */ struct LabelCanvas *mCharCanvas;
+    /* 04 */ struct Unk02022aa8 *mFont;
+    /* 08 */ s32 mCharSpacing;
+    /* 0c */ s32 mLineSpacing;
     /* 10 */ void *mUnk_10;
     /* 14 */ s32 mUnk_14;
     /* 18 */ s32 mUnk_18;
     /* 1c */ s32 mUnk_1c;
     /* 20 */ s32 mUnk_20;
-} Unk021243ac_20;
+} LabelTextCanvas;
 
 // Object of 0x48 bytes allocated by InitLabelCanvas.
 typedef struct LabelCanvas {
     /* 00 */ u8 mUnk_00[0x18];
     /* 18 */ void (*mUnk_18)(struct LabelCanvas *a, s32 b);
     /* 1c */ u8 mUnk_1c[0x4];
-    /* 20 */ Unk021243ac_20 mUnk_20;
+    /* 20 */ LabelTextCanvas mUnk_20;
     /* 44 */ Unk020224e0_c *mUnk_44;
 } LabelCanvas;
 

@@ -2,9 +2,11 @@
 
 #include "types.h"
 
-void SetupTxtSystemSubTextButtonEx(void *a, void *b, u32 c, u32 d, u32 e, u32 f);
-void SetupTxtSystemSubTextTwoButtons(void *a, void *b, void *c, s32 d);
-void SetupTxtSystemSubTextTwoButtonsEx(void *a, void *b, void *c, u32 d, u32 e, u32 f, u32 g, u32 h);
+void SetupTxtSystemSubTextButtonEx(void *text, void *buttonText, u32 mainBlendPlanes, u32 subBlendPlanes,
+                                   u32 openFromIndex, u32 closeToIndex);
+void SetupTxtSystemSubTextTwoButtons(void *text, void *buttonText, void *secondButtonText, s32 selectedIndex);
+void SetupTxtSystemSubTextTwoButtonsEx(void *text, void *buttonText, void *secondButtonText, u32 selectedIndex,
+                                       u32 mainBlendPlanes, u32 subBlendPlanes, u32 openFromIndex, u32 closeToIndex);
 void RequestTxtSystemClose(void);
 s32 IsTxtSystemState2NoCloseRequest(void);
 s32 IsTxtSystemState0NoOpenRequest(void);

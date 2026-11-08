@@ -7,10 +7,10 @@
 #pragma thumb on
 
 void func_02125928(void) {
-    if (data_0217d3ec->mUnk_00 != FALSE) {
+    if (data_0217d3ec->mUseTxtSystem != FALSE) {
         AdvanceTxtSystem();
     }
-    if (data_0217d3ec->mUnk_04 != FALSE) {
+    if (data_0217d3ec->mUseSelectChoises != FALSE) {
         AdvanceSelectChoises();
     }
     if (data_0217d3ec->mUnk_08 != FALSE) {
@@ -19,10 +19,10 @@ void func_02125928(void) {
 }
 
 void func_021258f0(void) {
-    if (data_0217d3ec->mUnk_00 != FALSE) {
+    if (data_0217d3ec->mUseTxtSystem != FALSE) {
         WriteTxtSystemRegisters();
     }
-    if (data_0217d3ec->mUnk_04 != FALSE) {
+    if (data_0217d3ec->mUseSelectChoises != FALSE) {
         WriteSelectChoisesRegisters();
     }
     if (data_0217d3ec->mUnk_08 != FALSE) {

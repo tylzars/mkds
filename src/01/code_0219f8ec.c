@@ -117,9 +117,9 @@ void func_ov001_021a0e34(void) {
 }
 
 void func_ov001_021a0e08(s32 a, u16 *b) {
-    func_02124fac(GetMissionTableRow(), b);
+    FormatAsciiNumber(GetMissionTableRow(), b);
     b[1] = 0x2d;
-    func_02124fac(a + 1, b + 2);
+    FormatAsciiNumber(a + 1, b + 2);
     b[3] = 0;
 }
 

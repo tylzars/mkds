@@ -367,8 +367,8 @@ void func_ov000_02180d94(void) {
         }
         v1 = 0;
         MIi_CpuClear16(v1, v3, 0x14);
-        func_02124fac(data_ov000_021b4c68->mErrorCode, v3);
-        func_0212513c(v3, GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x30), v4, 0x258);
+        FormatAsciiNumber(data_ov000_021b4c68->mErrorCode, v3);
+        FormatMessageWithText(v3, GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x30), v4, 0x258);
         data_ov000_021b4c68->mNextState = 9;
         func_021266e4(v4);
         RequestSelectReturnState1();

@@ -10,4 +10,4 @@ void SetKeyboardTextFromFriendKey(void);
 void SetKeyboardTextFromName(void);
 void func_0212a448(void);
 void CopyKeyboardTextAsBytes(void);
-void InitKeyboard(void *a, s32 b);
+void InitKeyboard(void *heap, s32 mode);

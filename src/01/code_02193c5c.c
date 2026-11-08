@@ -126,7 +126,7 @@ void SetupRecordGpxValues(s32 a) {
     func_02124224(1, data_ov001_021a6614[a], gRecordGpx->mRecordGpxSBnll, buf, gRecordGpx->mRecordGpxSBncl,
                   gRecordGpx->mRecordGpxSTable, 7);
     y = (u16) func_02060390(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
-    func_02124fac(y, buf);
+    FormatAsciiNumber(y, buf);
     gRecordGpx->mRecordGpxSTable[count + data_ov001_021a662c[a]].mVisible = 1;
     func_02124248(1, data_ov001_021a662c[a], gRecordGpx->mRecordGpxSBnll, buf, gRecordGpx->mRecordGpxSBncl,
                   gRecordGpx->mRecordGpxSTable, 7);

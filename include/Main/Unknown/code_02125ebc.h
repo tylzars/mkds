@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void SetTxtSystemOpenSoundId(unsigned int p0);
+void SetTxtSystemOpenSoundId(unsigned int soundId);

@@ -17,47 +17,47 @@ const char *gBackScreenMNclrNames[2] = {"back_screen_m_b_00.nclr", "back_screen_
 #pragma thumb on
 
 void LoadTxtSystemAndSelectChoisesAndSelectReturnData(void) {
-    LoadedPartPointer p;
+    LoadedPartPointer loadedPartPointer;
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        LoadNcgrData(&p.mNcgr, FindSceneFile("txt_system_b_00.ncgr"));
-        LoadNscrData(&p.mNscr, FindSceneFile("txt_system_bg_00.nscr"));
-        LoadNclrData(&p.mNclr, FindSceneFile("txt_system_b_00.nclr"));
+        LoadNcgrData(&loadedPartPointer.mNcgr, FindSceneFile("txt_system_b_00.ncgr"));
+        LoadNscrData(&loadedPartPointer.mNscr, FindSceneFile("txt_system_bg_00.nscr"));
+        LoadNclrData(&loadedPartPointer.mNclr, FindSceneFile("txt_system_b_00.nclr"));
     } else {
-        LoadNcgrData(&p.mNcgr, FindFileInLoadedArchives("txt_system_b_00.ncgr"));
-        LoadNcgrData(&p.mNcgr, FindFileInLoadedArchives("txt_system_b_01.ncgr"));
-        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("txt_system_bg_00.nscr"));
-        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("txt_system_bg_00_2.nscr"));
-        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("txt_system_bg_01.nscr"));
-        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("txt_system_bg_01_2.nscr"));
-        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("txt_system_bg_02.nscr"));
-        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("txt_system_bg_02_2.nscr"));
-        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("txt_system_bg_02_3.nscr"));
-        LoadNclrData(&p.mNclr, FindFileInLoadedArchives("txt_system_b_00.nclr"));
-        LoadNcgrData(&p.mNcgr, FindFileInLoadedArchives("select_choises_s_b.ncgr"));
-        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("select_choises_s_bg.nscr"));
-        LoadNclrData(&p.mNclr, FindFileInLoadedArchives("select_choises_s_b.nclr"));
-        LoadNcgrData(&p.mNcgr, FindFileInLoadedArchives("select_return_s_b_00.ncgr"));
-        LoadNscrData(&p.mNscr, FindFileInLoadedArchives("select_return_s_bg_00.nscr"));
-        LoadNclrData(&p.mNclr, FindFileInLoadedArchives("select_return_s_b_00.nclr"));
+        LoadNcgrData(&loadedPartPointer.mNcgr, FindFileInLoadedArchives("txt_system_b_00.ncgr"));
+        LoadNcgrData(&loadedPartPointer.mNcgr, FindFileInLoadedArchives("txt_system_b_01.ncgr"));
+        LoadNscrData(&loadedPartPointer.mNscr, FindFileInLoadedArchives("txt_system_bg_00.nscr"));
+        LoadNscrData(&loadedPartPointer.mNscr, FindFileInLoadedArchives("txt_system_bg_00_2.nscr"));
+        LoadNscrData(&loadedPartPointer.mNscr, FindFileInLoadedArchives("txt_system_bg_01.nscr"));
+        LoadNscrData(&loadedPartPointer.mNscr, FindFileInLoadedArchives("txt_system_bg_01_2.nscr"));
+        LoadNscrData(&loadedPartPointer.mNscr, FindFileInLoadedArchives("txt_system_bg_02.nscr"));
+        LoadNscrData(&loadedPartPointer.mNscr, FindFileInLoadedArchives("txt_system_bg_02_2.nscr"));
+        LoadNscrData(&loadedPartPointer.mNscr, FindFileInLoadedArchives("txt_system_bg_02_3.nscr"));
+        LoadNclrData(&loadedPartPointer.mNclr, FindFileInLoadedArchives("txt_system_b_00.nclr"));
+        LoadNcgrData(&loadedPartPointer.mNcgr, FindFileInLoadedArchives("select_choises_s_b.ncgr"));
+        LoadNscrData(&loadedPartPointer.mNscr, FindFileInLoadedArchives("select_choises_s_bg.nscr"));
+        LoadNclrData(&loadedPartPointer.mNclr, FindFileInLoadedArchives("select_choises_s_b.nclr"));
+        LoadNcgrData(&loadedPartPointer.mNcgr, FindFileInLoadedArchives("select_return_s_b_00.ncgr"));
+        LoadNscrData(&loadedPartPointer.mNscr, FindFileInLoadedArchives("select_return_s_bg_00.nscr"));
+        LoadNclrData(&loadedPartPointer.mNclr, FindFileInLoadedArchives("select_return_s_b_00.nclr"));
     }
 }
 
 void func_02125ba4(void) {
-    u32 v;
-    u32 w;
+    u32 mainDisplayBits;
+    u32 subDisplayBits;
 
-    v = (reg_GX_DISPCNT & 0x1f00) >> 8;
-    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | ((v | 8) << 8);
+    mainDisplayBits = (reg_GX_DISPCNT & 0x1f00) >> 8;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | ((mainDisplayBits | 8) << 8);
     reg_G2_BG3CNT = (reg_G2_BG3CNT & ~3) | 3;
     reg_G2_BG3CNT = (reg_G2_BG3CNT & 0x43) | 0x1d18;
-    w = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
-    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | ((w | 2) << 8);
+    subDisplayBits = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | ((subDisplayBits | 2) << 8);
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 0xd00;
 }
 
-s32 func_02125960(s32 a) {
+s32 LoadBackScreen(s32 subCharOffset) {
     s32 i;
     s32 nclrSOffset;
     s32 nclrSSize;
@@ -111,16 +111,17 @@ s32 func_02125960(s32 a) {
     CallQueueAppend(7, 0, ncgrM->mData, ncgrM->mDataSize);
     CallQueueAppend(0xb, 0, nscrM->mData, nscrM->mDataSize);
     CallQueueAppend(0xf, nclrMOffset, OFFSET_PTR(void, nclrM->mData, nclrMOffset), nclrMSize);
-    a -= ncgrS->mDataSize;
-    CallQueueAppend(0x15, a, ncgrS->mData, ncgrS->mDataSize);
+    subCharOffset -= ncgrS->mDataSize;
+    CallQueueAppend(0x15, subCharOffset, ncgrS->mData, ncgrS->mDataSize);
     for (i = 0; i < 0x20; i++) {
         for (j = 0; j < 0x20; j++) {
-            *(data_0217d3ec->mBackScreenSNscrCopy + i * 0x20 + j) = (a >> 5) + *((u16 *) nscrS->mData + i * 0x20 + j);
+            *(data_0217d3ec->mBackScreenSNscrCopy + i * 0x20 + j) =
+                (subCharOffset >> 5) + *((u16 *) nscrS->mData + i * 0x20 + j);
         }
     }
     CallQueueAppend(0x19, 0, data_0217d3ec->mBackScreenSNscrCopy, nscrS->mDataSize);
     CallQueueAppend(0x1f, nclrSOffset, OFFSET_PTR(void, nclrS->mData, nclrSOffset), nclrSSize);
-    return a;
+    return subCharOffset;
 }
 
 #pragma thumb off

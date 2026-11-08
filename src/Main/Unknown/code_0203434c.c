@@ -299,8 +299,8 @@ s32 func_02034370(Unk02034370 *sceneNumbers) {
                 message = GetBmgEntry(data_02174e64->mGhostMessages, 0x55);
                 buttonText = GetBmgEntry(data_02174e64->mCommonMessages, 0);
                 secondButtonText = GetBmgEntry(data_02174e64->mCommonMessages, 1);
-                func_0212513c(GetBmgEntry(data_02174e64->mGhostMessages, courseMessageIndex), message, formattedText,
-                              0x100);
+                FormatMessageWithText(GetBmgEntry(data_02174e64->mGhostMessages, courseMessageIndex), message,
+                                      formattedText, 0x100);
                 SetTxtSystemSoundId(0, -1);
                 SetupTxtSystemSubTextTwoButtonsEx(formattedText, buttonText, secondButtonText, 1, 0, 1, 1, 0);
                 data_02174e64->mState = 9;

@@ -4,6 +4,6 @@
 
 void AdvanceSelectReturnState1(void);
 void AdvanceSelectReturnState0(void);
-void SetSelectReturnPaletteBits(s32 a);
-s32 LoadSelectReturn(s32 a);
+void SetSelectReturnPaletteBits(s32 paletteKind);
+s32 LoadSelectReturn(s32 subCharOffset);
 void InitSelectReturnDisplay(void);

@@ -4,8 +4,8 @@
 
 void SetSelectReturnDisplayBitOn(void);
 
-void SetSelectChoisesSoundId(int a, u32 b);
+void SetSelectChoisesSoundId(int choiceIndex, u32 soundId);
 unsigned int GetSelectChoisesDone(void);
 s32 GetSelectChoisesIndex(void);
 u32 ClearSelectChoisesUseCharBuffers(void);
-void SetSelectReturnSoundId(u32 arg0);
+void SetSelectReturnSoundId(u32 soundId);

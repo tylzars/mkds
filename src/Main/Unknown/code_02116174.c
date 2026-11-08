@@ -180,22 +180,22 @@ void PrintRecordVSEraseShownRecord(void) {
                     }
                 }
             }
-            func_02124fac(counts[1][0], text);
+            FormatAsciiNumber(counts[1][0], text);
             func_02124248(0, data_0215c530[1][0], gRecordVSErase->mRecordVSMBnll, text, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
-            func_02124fac(counts[1][1], text);
+            FormatAsciiNumber(counts[1][1], text);
             func_02124248(0, data_0215c530[1][1], gRecordVSErase->mRecordVSMBnll, text, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
-            func_02124fac(counts[1][2], text);
+            FormatAsciiNumber(counts[1][2], text);
             func_02124248(0, data_0215c530[1][2], gRecordVSErase->mRecordVSMBnll, text, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
-            func_02124fac(counts[2][0], text);
+            FormatAsciiNumber(counts[2][0], text);
             func_02124248(0, data_0215c530[2][0], gRecordVSErase->mRecordVSMBnll, text, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
-            func_02124fac(counts[2][1], text);
+            FormatAsciiNumber(counts[2][1], text);
             func_02124248(0, data_0215c530[2][1], gRecordVSErase->mRecordVSMBnll, text, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
-            func_02124fac(counts[2][2], text);
+            FormatAsciiNumber(counts[2][2], text);
             func_02124248(0, data_0215c530[2][2], gRecordVSErase->mRecordVSMBnll, text, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
             GetRecordDate(firstRecordIndex + gRecordVSErase->mShownIndex, &date);
@@ -214,7 +214,7 @@ void PrintRecordVSEraseShownRecord(void) {
                           gRecordVSErase->mRecordVSMTransientTable);
             z = FALSE;
             for (i = 0; i < 12; i++) {
-                func_02124fac(friendKeyText[i] - 0x30, text);
+                FormatAsciiNumber(friendKeyText[i] - 0x30, text);
                 func_0212426c(z, data_0215c584[i], gRecordVSErase->mRecordVSMTransientBnll, text,
                               gRecordVSErase->mRecordVSMTransientBncl, gRecordVSErase->mRecordVSMTransientTable);
             }

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void SetupTxtSystemMainTextButton(void *p0, void *p1);
+void SetupTxtSystemMainTextButton(void *text, void *buttonText);

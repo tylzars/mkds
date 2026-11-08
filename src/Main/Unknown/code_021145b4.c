@@ -178,7 +178,7 @@ void RequestRecordVSEraseState8(void) {
     gRecordVSErase->mStateFrames = 0;
     firstRecordIndex = GetRecordVSEraseFirstRecordIndex();
     CopyRecordText(firstRecordIndex + gRecordVSErase->mIndex, recordName, 0x20);
-    func_0212513c(recordName, GetBmgEntry(gRecordVSErase->mRecordMessages, 5), messageText, 0x200);
+    FormatMessageWithText(recordName, GetBmgEntry(gRecordVSErase->mRecordMessages, 5), messageText, 0x200);
     SetupTxtSystemSubTextTwoButtonsEx(messageText, GetBmgEntry(gRecordVSErase->mCommonMessages, 0),
                                       GetBmgEntry(gRecordVSErase->mCommonMessages, 1), 1, 0, 1, 1, 1);
 }

@@ -17,34 +17,34 @@
 #pragma thumb on
 
 void func_02125de0(void *heap, Unk02125de0Arg *config) {
-    Unk021274ec txtConfig;
+    TxtSystemArgs txtConfig;
 
     data_0217d3ec = HeapAlloc(heap, 0x814);
-    data_0217d3ec->mUnk_810 = 0x5800;
-    data_0217d3ec->mUnk_00 = FALSE;
-    data_0217d3ec->mUnk_04 = FALSE;
+    data_0217d3ec->mSubCharOffset = 0x5800;
+    data_0217d3ec->mUseTxtSystem = FALSE;
+    data_0217d3ec->mUseSelectChoises = FALSE;
     data_0217d3ec->mUnk_08 = FALSE;
     if (config->mUnk_00 != FALSE) {
-        txtConfig.mUnk_00 = (u32) config->mUnk_04;
-        txtConfig.mUnk_04 = config->mUnk_08;
-        txtConfig.mUnk_08 = config->mUnk_0c;
-        txtConfig.mUnk_0c = config->mUnk_10;
-        txtConfig.mUnk_10 = data_0217d3ec->mUnk_810;
-        data_0217d3ec->mUnk_00 = TRUE;
-        data_0217d3ec->mUnk_810 = InitTxtSystem(heap, &txtConfig);
+        txtConfig.mFont = (u32) config->mUnk_04;
+        txtConfig.mUseCanvas1 = config->mUnk_08;
+        txtConfig.mUseCanvas2 = config->mUnk_0c;
+        txtConfig.mUseCanvas3 = config->mUnk_10;
+        txtConfig.mSubCharOffset = data_0217d3ec->mSubCharOffset;
+        data_0217d3ec->mUseTxtSystem = TRUE;
+        data_0217d3ec->mSubCharOffset = InitTxtSystem(heap, &txtConfig);
     }
     if (config->mUnk_14 != FALSE) {
-        data_0217d3ec->mUnk_04 = TRUE;
-        data_0217d3ec->mUnk_810 = InitSelectChoises(heap, config->mUnk_18, data_0217d3ec->mUnk_810);
+        data_0217d3ec->mUseSelectChoises = TRUE;
+        data_0217d3ec->mSubCharOffset = InitSelectChoises(heap, config->mUnk_18, data_0217d3ec->mSubCharOffset);
     }
     if (config->mUnk_1c != FALSE) {
         data_0217d3ec->mUnk_08 = TRUE;
-        data_0217d3ec->mUnk_810 = InitSelectReturn(heap, data_0217d3ec->mUnk_810);
+        data_0217d3ec->mSubCharOffset = InitSelectReturn(heap, data_0217d3ec->mSubCharOffset);
     }
     if (config->mUnk_20 != FALSE) {
         data_0217d3ec->mBackScreenKind = config->mUnk_24;
         func_02125ba4();
-        data_0217d3ec->mUnk_810 = func_02125960(data_0217d3ec->mUnk_810);
+        data_0217d3ec->mSubCharOffset = LoadBackScreen(data_0217d3ec->mSubCharOffset);
     }
 }
 
@@ -53,10 +53,10 @@ void func_02125de0(void *heap, Unk02125de0Arg *config) {
 #pragma thumb on
 
 void func_02125da0(void) {
-    if (data_0217d3ec->mUnk_00 != FALSE) {
+    if (data_0217d3ec->mUseTxtSystem != FALSE) {
         ClearTxtSystemPointer();
     }
-    if (data_0217d3ec->mUnk_04 != FALSE) {
+    if (data_0217d3ec->mUseSelectChoises != FALSE) {
         ClearSelectChoisesPointer();
     }
     if (data_0217d3ec->mUnk_08 != FALSE) {

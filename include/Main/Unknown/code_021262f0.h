@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void SetupTxtSystemSubText(void *a);
+void SetupTxtSystemSubText(void *text);

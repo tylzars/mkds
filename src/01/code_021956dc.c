@@ -394,7 +394,7 @@ void func_ov001_02196ecc(void) {
     MIi_CpuClear16(buf[0], &buf[1], 0x200);
     p = gRecordTAtt;
     a = GetBmgEntry(p->mGhostMessages, data_ov001_021a6980[p->mIndex]);
-    func_0212513c(a, GetBmgEntry(p->mRecordMessages, 10), &buf[1], 0x200);
+    FormatMessageWithText(a, GetBmgEntry(p->mRecordMessages, 10), &buf[1], 0x200);
     a = GetBmgEntry(gRecordTAtt->mCommonMessages, 0);
     b = GetBmgEntry(gRecordTAtt->mCommonMessages, 1);
     SetupTxtSystemSubTextTwoButtonsEx(&buf[1], a, b, 1, 0, 1, 1, 1);

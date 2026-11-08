@@ -327,10 +327,10 @@ s32 InitLabelCanvas(void *heap, s32 labelIndex, Unk0201ea30 *labelLayout, s32 wi
     sb = labelEntry->mUnk_05;
     sa = labelEntry->mUnk_04;
     font = func_020b403c(labelEntry->mUnk_06_12);
-    canvas->mUnk_20.mUnk_00 = canvas;
-    canvas->mUnk_20.mUnk_04 = font;
-    canvas->mUnk_20.mUnk_08 = sa;
-    canvas->mUnk_20.mUnk_0c = sb;
+    canvas->mUnk_20.mCharCanvas = canvas;
+    canvas->mUnk_20.mFont = font;
+    canvas->mUnk_20.mCharSpacing = sa;
+    canvas->mUnk_20.mLineSpacing = sb;
     canvas->mUnk_20.mUnk_1c = width;
     canvas->mUnk_20.mUnk_20 = height;
     m = 0;

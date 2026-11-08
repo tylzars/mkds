@@ -139,7 +139,7 @@ void SetAndPrintSelectRaceRuleWinCount(s16 count) {
         func_02124248(1, 8, gSelectRaceRule->mBnll, text, gSelectRaceRule->mBncl, gSelectRaceRule->mTable, 0xb);
     } else {
         func_02124f4c(gSelectRaceRule->mWinCount, numberText);
-        func_0212513c(numberText, GetBmgEntry(gSelectRaceRule->mRuleMessages, 0x16), text, 0x80);
+        FormatMessageWithText(numberText, GetBmgEntry(gSelectRaceRule->mRuleMessages, 0x16), text, 0x80);
         func_0212426c(1, 0xa, gSelectRaceRule->mBnll, text, gSelectRaceRule->mBncl, gSelectRaceRule->mTable);
     }
 }
@@ -164,7 +164,7 @@ void SetAndPrintSelectRaceRuleRaceCount(s16 count) {
         func_02124248(1, 8, gSelectRaceRule->mBnll, text, gSelectRaceRule->mBncl, gSelectRaceRule->mTable, 0xb);
     } else {
         func_02124f4c(gSelectRaceRule->mRaceCount, numberText);
-        func_0212513c(numberText, GetBmgEntry(gSelectRaceRule->mRuleMessages, 0x17), text, 0x80);
+        FormatMessageWithText(numberText, GetBmgEntry(gSelectRaceRule->mRuleMessages, 0x17), text, 0x80);
         func_0212426c(1, 0xa, gSelectRaceRule->mBnll, text, gSelectRaceRule->mBncl, gSelectRaceRule->mTable);
     }
 }

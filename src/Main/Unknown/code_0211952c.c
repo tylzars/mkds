@@ -169,9 +169,10 @@ void RequestSelectCupCourseState5(void) {
             StartSelectChoises(GetBmgEntry(selectCupCourse->mCommonMessages, 4),
                                GetBmgEntry(selectCupCourse->mCommonMessages, 2), 0);
             if (*(vu16 *) 0x027ffc40 == 2) {
-                func_0212513c(GetBmgEntry(gSelectCupCourse->mGhostMessages,
-                                          data_0215cb3c[data_0215cadc[GetCupIndex()]][gSelectCupCourse->mIndex]),
-                              GetBmgEntry(gSelectCupCourse->mCommonMessages, 0x8b), messageText, 0x200);
+                FormatMessageWithText(
+                    GetBmgEntry(gSelectCupCourse->mGhostMessages,
+                                data_0215cb3c[data_0215cadc[GetCupIndex()]][gSelectCupCourse->mIndex]),
+                    GetBmgEntry(gSelectCupCourse->mCommonMessages, 0x8b), messageText, 0x200);
                 SetTxtSystemOpenSoundId(0x23);
                 func_021266e4(messageText);
             }

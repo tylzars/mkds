@@ -18,89 +18,97 @@
 
 #pragma thumb on
 
-void func_0212586c(Unk021243ac_20 *a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, s32 h, void *i, s32 j, s8 k, s32 l) {
-    s32 v2c;
-    s32 v30;
-    s32 v34[20];
-    u16 buf[500];
+void DrawTextInRect(LabelTextCanvas *textCanvas, s32 left, s32 top, s32 width, s32 height, s32 color, s32 alignFlags,
+                    s32 lineAlign, void *text, s32 fixedDigitsOnly, s8 fixedAdvance, s32 l) {
+    s32 maxWidth;
+    s32 textHeight;
+    s32 lineWidths[20];
+    u16 expandedText[500];
 
-    func_021253f8(a, &v2c, v34, &v30, i, buf, j, (s32) k);
-    func_021251c4(a, v2c, v34, v30, b, c, d, e, f, g, h, buf, j, k, l);
+    func_021253f8(textCanvas, &maxWidth, lineWidths, &textHeight, text, expandedText, fixedDigitsOnly,
+                  (s32) fixedAdvance);
+    DrawTextLines(textCanvas, maxWidth, lineWidths, textHeight, left, top, width, height, color, alignFlags, lineAlign,
+                  expandedText, fixedDigitsOnly, fixedAdvance, l);
 }
 
-void func_0212583c(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, void *i) {
-    func_0212586c(a, b, c, d, e, f, g, h, i, 0, -1, 0);
+void func_0212583c(void *textCanvas, u32 left, u32 top, u32 width, u32 height, u32 color, u32 alignFlags, u32 lineAlign,
+                   void *text) {
+    DrawTextInRect(textCanvas, left, top, width, height, color, alignFlags, lineAlign, text, 0, -1, 0);
 }
 
-void func_02125808(Unk021243ac_20 *a, s32 b, s32 c, s32 d, s32 e, u32 f, u32 g, u32 h, void *i, s32 j, s8 k) {
-    func_0212586c(a, b, c, d, e, f, g, h, i, j, k, 0);
+void func_02125808(LabelTextCanvas *textCanvas, s32 left, s32 top, s32 width, s32 height, u32 color, u32 alignFlags,
+                   u32 lineAlign, void *text, s32 fixedDigitsOnly, s8 fixedAdvance) {
+    DrawTextInRect(textCanvas, left, top, width, height, color, alignFlags, lineAlign, text, fixedDigitsOnly,
+                   fixedAdvance, 0);
 }
 
-void func_021257d8(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, void *i) {
-    func_0212586c(a, b, c, d, e, f, g, h, i, 0, -1, 1);
+void func_021257d8(void *textCanvas, u32 left, u32 top, u32 width, u32 height, u32 color, u32 alignFlags, u32 lineAlign,
+                   void *text) {
+    DrawTextInRect(textCanvas, left, top, width, height, color, alignFlags, lineAlign, text, 0, -1, 1);
 }
 
-void func_021253f8(Unk021243ac_20 *a, s32 *b, s32 *c, s32 *d, void *e, u16 *f, s32 g, s32 h) {
-    s32 v0c;
-    s32 v10;
-    s32 v14;
-    s32 v18;
+void func_021253f8(LabelTextCanvas *textCanvas, s32 *maxWidth, s32 *lineWidths, s32 *textHeight, void *text,
+                   u16 *expandedText, s32 fixedDigitsOnly, s32 fixedAdvance) {
+    s32 lineHeight;
+    s32 charSpacing;
+    s32 lineIndex;
+    s32 tagSize;
     s32 n1;
     s32 n2;
-    s32 v24;
+    s32 fixedAdvanceWithSpacing;
     s32 i2;
     s32 i1;
-    u8 *v30;
+    u8 *readPointer;
     u16 buf1[10];
     u16 buf2[10];
-    Unk02022aa8 *r5;
-    u16 v1;
-    s32 t2;
+    Unk02022aa8 *font;
+    u16 charCode;
+    s32 variant;
     s32 r7;
-    u32 u;
+    u32 glyphIndex;
     u16 ch;
-    NNSG2dCharWidths *p;
-    s32 *w;
-    u16 *q;
+    NNSG2dCharWidths *charWidths;
+    s32 *lineWidthPointer;
+    u16 *writePointer;
 
-    v14 = 0;
-    v10 = a->mUnk_08;
-    r5 = a->mUnk_04;
-    v0c = a->mUnk_0c + r5->mUnk_00->mUnk_01;
-    v30 = e;
-    q = f;
-    *b = ~v14;
-    *c = v14;
-    *d = r5->mUnk_00->mUnk_01;
-    v1 = r5->mUnk_04(&v30);
-    if (v1 != 0) {
-        w = c;
-        v24 = h + v10;
+    lineIndex = 0;
+    charSpacing = textCanvas->mCharSpacing;
+    font = textCanvas->mFont;
+    lineHeight = textCanvas->mLineSpacing + font->mUnk_00->mUnk_01;
+    readPointer = text;
+    writePointer = expandedText;
+    *maxWidth = ~lineIndex;
+    *lineWidths = lineIndex;
+    *textHeight = font->mUnk_00->mUnk_01;
+    charCode = font->mUnk_04(&readPointer);
+    if (charCode != 0) {
+        lineWidthPointer = lineWidths;
+        fixedAdvanceWithSpacing = fixedAdvance + charSpacing;
         do {
-            if (v1 == 0x1a) {
-                v18 = ((Unk021253f8 *) v30)->mUnk_00;
-                t2 = ((Unk021253f8 *) v30)->mUnk_02;
-                switch (((Unk021253f8 *) v30)->mUnk_01) {
+            if (charCode == 0x1a) {
+                tagSize = ((TextTag *) readPointer)->mSize;
+                variant = ((TextTag *) readPointer)->mVariant;
+                switch (((TextTag *) readPointer)->mKind) {
                     case 0:
                         break;
                     case 1:
-                        switch (t2) {
+                        switch (variant) {
                             case 0:
                                 for (r7 = 0; r7 < 10; r7++) {
                                     ch = ((u16 *) data_0217aa08->mUnk_00->mUnk_0c)[r7];
                                     if (ch == 0) {
                                         r7 = 10;
                                     } else {
-                                        *q++ = ch;
-                                        if (h == -1 || (g != 0 && !func_021253f8_inline(ch))) {
-                                            u = NNS_G2dFontFindGlyphIndex(r5, ch);
-                                            if (u == 0xffff) {
-                                                u = r5->mUnk_00->mUnk_02;
+                                        *writePointer++ = ch;
+                                        if (fixedAdvance == -1 || (fixedDigitsOnly != 0 && !func_021253f8_inline(ch))) {
+                                            glyphIndex = NNS_G2dFontFindGlyphIndex(font, ch);
+                                            if (glyphIndex == 0xffff) {
+                                                glyphIndex = font->mUnk_00->mUnk_02;
                                             }
-                                            p = NNS_G2dFontGetCharWidthsFromIndex(r5, u);
-                                            *w += p->mCharWidth + v10;
+                                            charWidths = NNS_G2dFontGetCharWidthsFromIndex(font, glyphIndex);
+                                            *lineWidthPointer += charWidths->mCharWidth + charSpacing;
                                         } else {
-                                            *w += v24;
+                                            *lineWidthPointer += fixedAdvanceWithSpacing;
                                         }
                                     }
                                 }
@@ -108,16 +116,17 @@ void func_021253f8(Unk021243ac_20 *a, s32 *b, s32 *c, s32 *d, void *e, u16 *f, s
                             case 1:
                                 n1 = func_020adc7c((u16 *) data_0217aa08->mUnk_00->mUnk_0c, buf1);
                                 for (i1 = 0; i1 < n1; i1++) {
-                                    *q++ = buf1[i1];
-                                    if (h == -1 || (g != 0 && !func_021253f8_inline(buf1[i1]))) {
-                                        u = NNS_G2dFontFindGlyphIndex(r5, buf1[i1]);
-                                        if (u == 0xffff) {
-                                            u = r5->mUnk_00->mUnk_02;
+                                    *writePointer++ = buf1[i1];
+                                    if (fixedAdvance == -1 ||
+                                        (fixedDigitsOnly != 0 && !func_021253f8_inline(buf1[i1]))) {
+                                        glyphIndex = NNS_G2dFontFindGlyphIndex(font, buf1[i1]);
+                                        if (glyphIndex == 0xffff) {
+                                            glyphIndex = font->mUnk_00->mUnk_02;
                                         }
-                                        p = NNS_G2dFontGetCharWidthsFromIndex(r5, u);
-                                        *w += p->mCharWidth + v10;
+                                        charWidths = NNS_G2dFontGetCharWidthsFromIndex(font, glyphIndex);
+                                        *lineWidthPointer += charWidths->mCharWidth + charSpacing;
                                     } else {
-                                        *w += v24;
+                                        *lineWidthPointer += fixedAdvanceWithSpacing;
                                     }
                                 }
                             case 10:
@@ -126,16 +135,16 @@ void func_021253f8(Unk021243ac_20 *a, s32 *b, s32 *c, s32 *d, void *e, u16 *f, s
                                     if (ch == 0) {
                                         r7 = 10;
                                     } else {
-                                        *q++ = ch;
-                                        if (h == -1 || (g != 0 && !func_021253f8_inline(ch))) {
-                                            u = NNS_G2dFontFindGlyphIndex(r5, ch);
-                                            if (u == 0xffff) {
-                                                u = r5->mUnk_00->mUnk_02;
+                                        *writePointer++ = ch;
+                                        if (fixedAdvance == -1 || (fixedDigitsOnly != 0 && !func_021253f8_inline(ch))) {
+                                            glyphIndex = NNS_G2dFontFindGlyphIndex(font, ch);
+                                            if (glyphIndex == 0xffff) {
+                                                glyphIndex = font->mUnk_00->mUnk_02;
                                             }
-                                            p = NNS_G2dFontGetCharWidthsFromIndex(r5, u);
-                                            *w += p->mCharWidth + v10;
+                                            charWidths = NNS_G2dFontGetCharWidthsFromIndex(font, glyphIndex);
+                                            *lineWidthPointer += charWidths->mCharWidth + charSpacing;
                                         } else {
-                                            *w += v24;
+                                            *lineWidthPointer += fixedAdvanceWithSpacing;
                                         }
                                     }
                                 }
@@ -143,271 +152,275 @@ void func_021253f8(Unk021243ac_20 *a, s32 *b, s32 *c, s32 *d, void *e, u16 *f, s
                             case 11:
                                 n2 = func_020adc7c((u16 *) data_021759d0->mUnk_2a, buf2);
                                 for (i2 = 0; i2 < n2; i2++) {
-                                    *q++ = buf2[i2];
-                                    if (h == -1 || (g != 0 && !func_021253f8_inline(buf2[i2]))) {
-                                        u = NNS_G2dFontFindGlyphIndex(r5, buf2[i2]);
-                                        if (u == 0xffff) {
-                                            u = r5->mUnk_00->mUnk_02;
+                                    *writePointer++ = buf2[i2];
+                                    if (fixedAdvance == -1 ||
+                                        (fixedDigitsOnly != 0 && !func_021253f8_inline(buf2[i2]))) {
+                                        glyphIndex = NNS_G2dFontFindGlyphIndex(font, buf2[i2]);
+                                        if (glyphIndex == 0xffff) {
+                                            glyphIndex = font->mUnk_00->mUnk_02;
                                         }
-                                        p = NNS_G2dFontGetCharWidthsFromIndex(r5, u);
-                                        *w += p->mCharWidth + v10;
+                                        charWidths = NNS_G2dFontGetCharWidthsFromIndex(font, glyphIndex);
+                                        *lineWidthPointer += charWidths->mCharWidth + charSpacing;
                                     } else {
-                                        *w += v24;
+                                        *lineWidthPointer += fixedAdvanceWithSpacing;
                                     }
                                 }
                                 break;
                         }
                         break;
                     case 0xff:
-                        if (t2 == 0) {
-                            MI_CpuCopy8(v30 - 2, q, v18);
-                            q += v18 >> 1;
+                        if (variant == 0) {
+                            MI_CpuCopy8(readPointer - 2, writePointer, tagSize);
+                            writePointer += tagSize >> 1;
                         }
                         break;
                 }
-                v30 = v30 + v18 - 2;
+                readPointer = readPointer + tagSize - 2;
             } else {
-                *q++ = v1;
-                if (v1 == 0xa) {
-                    *d += v0c;
-                    if (*b < *w) {
-                        *b = *w;
+                *writePointer++ = charCode;
+                if (charCode == 0xa) {
+                    *textHeight += lineHeight;
+                    if (*maxWidth < *lineWidthPointer) {
+                        *maxWidth = *lineWidthPointer;
                     }
-                    w++;
-                    v14++;
-                    *w = 0;
+                    lineWidthPointer++;
+                    lineIndex++;
+                    *lineWidthPointer = 0;
                 } else {
-                    r7 = v10;
-                    if (*(u16 *) v30 == 0 || *(u16 *) v30 == 0xa) {
+                    r7 = charSpacing;
+                    if (*(u16 *) readPointer == 0 || *(u16 *) readPointer == 0xa) {
                         r7 = 0;
                     }
-                    if (h == -1 || (g != 0 && !func_021253f8_inline(v1))) {
-                        u = NNS_G2dFontFindGlyphIndex(r5, v1);
-                        if (u == 0xffff) {
-                            u = r5->mUnk_00->mUnk_02;
+                    if (fixedAdvance == -1 || (fixedDigitsOnly != 0 && !func_021253f8_inline(charCode))) {
+                        glyphIndex = NNS_G2dFontFindGlyphIndex(font, charCode);
+                        if (glyphIndex == 0xffff) {
+                            glyphIndex = font->mUnk_00->mUnk_02;
                         }
-                        p = NNS_G2dFontGetCharWidthsFromIndex(r5, u);
-                        *w += p->mCharWidth + r7;
+                        charWidths = NNS_G2dFontGetCharWidthsFromIndex(font, glyphIndex);
+                        *lineWidthPointer += charWidths->mCharWidth + r7;
                     } else {
-                        *w += h + r7;
+                        *lineWidthPointer += fixedAdvance + r7;
                     }
                 }
             }
-        } while ((v1 = r5->mUnk_04(&v30)) != 0);
+        } while ((charCode = font->mUnk_04(&readPointer)) != 0);
     }
-    *q = 0;
-    if (*b < c[v14]) {
-        *b = c[v14];
+    *writePointer = 0;
+    if (*maxWidth < lineWidths[lineIndex]) {
+        *maxWidth = lineWidths[lineIndex];
     }
 }
 
-s32 func_021253ac(u32 a, s32 b, s32 c, s32 d, s32 e) {
-    s32 r;
+s32 GetTextLineOffset(u32 alignFlags, s32 lineAlign, s32 rectWidth, s32 textWidth, s32 lineWidth) {
+    s32 offset;
 
-    r = 0;
-    if (a & 0x400) {
-        r += (c - d) >> 1;
-    } else if (a & 0x800) {
-        r += c - d;
+    offset = 0;
+    if (alignFlags & 0x400) {
+        offset += (rectWidth - textWidth) >> 1;
+    } else if (alignFlags & 0x800) {
+        offset += rectWidth - textWidth;
     }
-    if (b == 1) {
-        r += (d - e) >> 1;
-    } else if (b == 2) {
-        r += d - e;
+    if (lineAlign == 1) {
+        offset += (textWidth - lineWidth) >> 1;
+    } else if (lineAlign == 2) {
+        offset += textWidth - lineWidth;
     }
-    return r;
+    return offset;
 }
 
-void func_021251c4(Unk021243ac_20 *a, s32 b, s32 *c, s32 d, s32 e, s32 f, s32 g, s32 h, s32 i, u32 j, s32 k, void *l,
-                   s32 m, s32 n, s32 o) {
+void DrawTextLines(LabelTextCanvas *textCanvas, s32 textWidth, s32 *lineWidths, s32 textHeight, s32 left, s32 top,
+                   s32 width, s32 height, s32 color, u32 alignFlags, s32 lineAlign, void *text, s32 fixedDigitsOnly,
+                   s32 fixedAdvance, s32 o) {
     s32 x;
     s32 y;
-    s32 v10;
-    s32 v14;
-    Unk02022aa8 *v18;
-    s32 v1c;
-    s32 v20;
-    NNSG2dCharWidths *v24;
-    u16 ch;
-    u8 t0;
-    u16 t2;
-    u8 t1;
-    u8 t4;
-    u32 u;
-    u8 *v28;
+    s32 lineAdvance;
+    s32 charSpacing;
+    Unk02022aa8 *font;
+    s32 bottom;
+    s32 right;
+    NNSG2dCharWidths *charWidths;
+    u16 charCode;
+    u8 tagSize;
+    u16 variant;
+    u8 kind;
+    u8 colorValue;
+    u32 glyphIndex;
+    u8 *readPointer;
 
-    x = e;
-    y = f;
-    v14 = a->mUnk_08;
-    v18 = a->mUnk_04;
-    v10 = a->mUnk_0c + v18->mUnk_00->mUnk_01;
-    v28 = l;
-    x += func_021253ac(j, k, g, b, *c);
+    x = left;
+    y = top;
+    charSpacing = textCanvas->mCharSpacing;
+    font = textCanvas->mFont;
+    lineAdvance = textCanvas->mLineSpacing + font->mUnk_00->mUnk_01;
+    readPointer = text;
+    x += GetTextLineOffset(alignFlags, lineAlign, width, textWidth, *lineWidths);
     if (x < 0) {
         return;
     }
-    if (j & 0x80) {
-        y += (h - d) >> 1;
-    } else if (j & 0x100) {
-        y += h - d;
+    if (alignFlags & 0x80) {
+        y += (height - textHeight) >> 1;
+    } else if (alignFlags & 0x100) {
+        y += height - textHeight;
     }
     if (y < 0) {
         return;
     }
-    ch = v18->mUnk_04(&v28);
-    if (ch == 0) {
+    charCode = font->mUnk_04(&readPointer);
+    if (charCode == 0) {
         return;
     }
-    v1c = f + h;
-    v20 = e + g;
+    bottom = top + height;
+    right = left + width;
     do {
-        if (ch == 0x1a) {
-            t0 = ((Unk021253f8 *) v28)->mUnk_00;
-            t2 = ((Unk021253f8 *) v28)->mUnk_02;
-            t1 = ((Unk021253f8 *) v28)->mUnk_01;
-            if (t1 == 0xff && t2 == 0) {
-                t4 = ((Unk021253f8 *) v28)->mUnk_04;
+        if (charCode == 0x1a) {
+            tagSize = ((TextTag *) readPointer)->mSize;
+            variant = ((TextTag *) readPointer)->mVariant;
+            kind = ((TextTag *) readPointer)->mKind;
+            if (kind == 0xff && variant == 0) {
+                colorValue = ((TextTag *) readPointer)->mUnk_04;
                 if (o != 0) {
-                    if (t4 == 0) {
-                        i = 2;
+                    if (colorValue == 0) {
+                        color = 2;
                     } else {
-                        i = t4 * 2 + 1;
+                        color = colorValue * 2 + 1;
                     }
                 } else {
-                    i = t4 * 2 + 1;
+                    color = colorValue * 2 + 1;
                 }
             }
-            v28 = v28 + t0 - 2;
-        } else if (ch == 0xa) {
-            y += v10;
-            c++;
-            if (y >= v1c) {
+            readPointer = readPointer + tagSize - 2;
+        } else if (charCode == 0xa) {
+            y += lineAdvance;
+            lineWidths++;
+            if (y >= bottom) {
                 return;
             }
-            x = e + func_021253ac(j, k, g, b, *c);
+            x = left + GetTextLineOffset(alignFlags, lineAlign, width, textWidth, *lineWidths);
             if (x < 0) {
                 return;
             }
         } else {
-            if (n == -1 || (m != 0 && !func_021253f8_inline(ch))) {
-                x += NNS_G2dCharCanvasDrawChar((Unk02023374 *) a->mUnk_00, a->mUnk_04, x, y, i, ch);
+            if (fixedAdvance == -1 || (fixedDigitsOnly != 0 && !func_021253f8_inline(charCode))) {
+                x += NNS_G2dCharCanvasDrawChar((Unk02023374 *) textCanvas->mCharCanvas, textCanvas->mFont, x, y, color,
+                                               charCode);
             } else {
-                u = NNS_G2dFontFindGlyphIndex(v18, ch);
-                if (u == 0xffff) {
-                    u = v18->mUnk_00->mUnk_02;
+                glyphIndex = NNS_G2dFontFindGlyphIndex(font, charCode);
+                if (glyphIndex == 0xffff) {
+                    glyphIndex = font->mUnk_00->mUnk_02;
                 }
-                v24 = NNS_G2dFontGetCharWidthsFromIndex(v18, u);
-                x += (n - v24->mCharWidth) >> 1;
-                NNS_G2dCharCanvasDrawChar((Unk02023374 *) a->mUnk_00, a->mUnk_04, x, y, i, ch);
-                x += n - ((n - v24->mCharWidth) >> 1);
+                charWidths = NNS_G2dFontGetCharWidthsFromIndex(font, glyphIndex);
+                x += (fixedAdvance - charWidths->mCharWidth) >> 1;
+                NNS_G2dCharCanvasDrawChar((Unk02023374 *) textCanvas->mCharCanvas, textCanvas->mFont, x, y, color,
+                                          charCode);
+                x += fixedAdvance - ((fixedAdvance - charWidths->mCharWidth) >> 1);
             }
-            if (x > v20) {
+            if (x > right) {
                 return;
             }
-            x += v14;
+            x += charSpacing;
         }
-    } while ((ch = v18->mUnk_04(&v28)) != 0);
+    } while ((charCode = font->mUnk_04(&readPointer)) != 0);
 }
 
-void func_0212513c(u16 *a, u16 *b, u16 *c, u32 d) {
-    s32 n;
-    s32 k;
-    u16 *q;
-    u16 v;
+void FormatMessageWithText(u16 *insertText, u16 *message, u16 *formattedText, u32 d) {
+    s32 length;
+    s32 tagSize;
+    u16 *writePointer;
+    u16 halfword;
 
-    n = 0;
-    while (*b != 0x1a || ((Unk0212513c *) b)->mUnk_03 != 1 || ((Unk0212513c *) b)->mUnk_04 != 0xff) {
-        c[n] = *b;
-        n++;
-        b++;
+    length = 0;
+    while (*message != 0x1a || ((Unk0212513c *) message)->mUnk_03 != 1 || ((Unk0212513c *) message)->mUnk_04 != 0xff) {
+        formattedText[length] = *message;
+        length++;
+        message++;
     }
-    b += ((Unk0212513c *) b)->mUnk_02 >> 1;
-    if (*a != 0) {
-        q = c + n;
+    message += ((Unk0212513c *) message)->mUnk_02 >> 1;
+    if (*insertText != 0) {
+        writePointer = formattedText + length;
         do {
-            *q++ = ((Unk0212513c *) a)->mUnk_00;
-            n++;
-            a++;
-        } while (*a != 0);
+            *writePointer++ = ((Unk0212513c *) insertText)->mUnk_00;
+            length++;
+            insertText++;
+        } while (*insertText != 0);
     }
-    while ((v = *b) != 0) {
-        if (v == 0x1a) {
-            k = ((Unk0212513c *) b)->mUnk_02;
-            MIi_CpuCopy16(b, c + n, k);
-            b += k >> 1;
-            n += k >> 1;
+    while ((halfword = *message) != 0) {
+        if (halfword == 0x1a) {
+            tagSize = ((Unk0212513c *) message)->mUnk_02;
+            MIi_CpuCopy16(message, formattedText + length, tagSize);
+            message += tagSize >> 1;
+            length += tagSize >> 1;
         } else {
-            c[n] = v;
-            n++;
-            b++;
+            formattedText[length] = halfword;
+            length++;
+            message++;
         }
     }
-    c[n] = 0;
+    formattedText[length] = 0;
 }
 
-void *func_021250b0(void *a) {
-    DisplaySettingsDesc t = {1, 0x12, 0x18, 1, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 4, 0x100, 0, 0, 8, 0};
-    Unk02180774 *p;
+void *func_021250b0(void *heap) {
+    DisplaySettingsDesc desc = {1, 0x12, 0x18, 1, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 4, 0x100, 0, 0, 8, 0};
+    Unk02180774 *displaySettings;
 
-    p = CreateDisplaySettings(a, &t);
-    SetBg1Record(p->mMainBgRecords, 0, 0, 0, 0, 0x12, 2, 0);
-    SetBg3RecordParams(p->mSubBgRecords, 1, 0, 0, 0, 0x10, 4);
-    InitDisplayFromSettings(p);
+    displaySettings = CreateDisplaySettings(heap, &desc);
+    SetBg1Record(displaySettings->mMainBgRecords, 0, 0, 0, 0, 0x12, 2, 0);
+    SetBg3RecordParams(displaySettings->mSubBgRecords, 1, 0, 0, 0, 0x10, 4);
+    InitDisplayFromSettings(displaySettings);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;
-    return p;
+    return displaySettings;
 }
 
-void *func_02125028(void *a) {
-    DisplaySettingsDesc t = {1, 0x13, 0x18, 1, 0, 1, 0, 4, 0x60, 0, 0, 3, 0x10, 0, 0x80, 0x100, 0, 0, 8, 0};
-    Unk02180774 *p;
+void *func_02125028(void *heap) {
+    DisplaySettingsDesc desc = {1, 0x13, 0x18, 1, 0, 1, 0, 4, 0x60, 0, 0, 3, 0x10, 0, 0x80, 0x100, 0, 0, 8, 0};
+    Unk02180774 *displaySettings;
 
-    p = CreateDisplaySettings(a, &t);
-    SetBg1Record(p->mMainBgRecords, 0, 0, 0, 0, 0x12, 2, 0);
-    SetBg3RecordParams(p->mSubBgRecords, 1, 0, 0, 0, 0xf, 0);
-    InitDisplayFromSettings(p);
+    displaySettings = CreateDisplaySettings(heap, &desc);
+    SetBg1Record(displaySettings->mMainBgRecords, 0, 0, 0, 0, 0x12, 2, 0);
+    SetBg3RecordParams(displaySettings->mSubBgRecords, 1, 0, 0, 0, 0xf, 0);
+    InitDisplayFromSettings(displaySettings);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;
-    return p;
+    return displaySettings;
 }
 
-s32 func_02125004(u32 a) {
+s32 CountDecimalDigits(u32 a) {
     s32 i;
-    s32 n;
+    s32 digitCount;
 
-    n = 1;
+    digitCount = 1;
     for (i = 0; i < 10; i++) {
         a = a / 10;
         if (a == 0) {
             break;
         }
-        n++;
+        digitCount++;
     }
-    return n;
+    return digitCount;
 }
 
-s32 func_02124fac(u32 a, u16 *b) {
-    s32 n;
+s32 FormatAsciiNumber(u32 a, u16 *buffer) {
+    s32 digitCount;
     s32 i;
-    n = func_02125004(a);
-    for (i = 0; i < n; i++) {
-        *(b + n - i - 1) = (u16) (a % 10) + 0x30;
+    digitCount = CountDecimalDigits(a);
+    for (i = 0; i < digitCount; i++) {
+        *(buffer + digitCount - i - 1) = (u16) (a % 10) + 0x30;
         a = a / 10;
     }
-    b[n] = 0;
-    return n;
+    buffer[digitCount] = 0;
+    return digitCount;
 }
 
-s32 func_02124f4c(u32 a, u16 *b) {
-    s32 n;
+s32 func_02124f4c(u32 a, u16 *buffer) {
+    s32 digitCount;
     s32 i;
-    n = func_02125004(a);
-    for (i = 0; i < n; i++) {
-        *(b + n - i - 1) = (u16) (a % 10) + 0xff10;
+    digitCount = CountDecimalDigits(a);
+    for (i = 0; i < digitCount; i++) {
+        *(buffer + digitCount - i - 1) = (u16) (a % 10) + 0xff10;
         a = a / 10;
     }
-    b[n] = 0;
-    return n;
+    buffer[digitCount] = 0;
+    return digitCount;
 }
 
 #pragma thumb off

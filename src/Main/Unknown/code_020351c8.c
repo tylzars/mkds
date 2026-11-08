@@ -144,7 +144,7 @@ void SetupGhostNameSubTextTwoButtons(void) {
     GetListedGhostName(data_02174e68->mSelectedIndex + GetCourseGhostCount(), ghostName);
     MIi_CpuCopy16(ghostName, nameText, 0x14);
     nameText[10] = 0;
-    func_0212513c(nameText, formatText, formattedText, 0x100);
+    FormatMessageWithText(nameText, formatText, formattedText, 0x100);
     SetTxtSystemSoundId(0, -1);
     SetupTxtSystemSubTextTwoButtonsEx(formattedText, firstButtonText, secondButtonText, 1, 0, 1, 1, 0);
 }

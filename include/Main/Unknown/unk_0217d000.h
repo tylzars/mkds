@@ -481,12 +481,12 @@ typedef struct RecordList {
 
 // Object behind data_0217d3ec: 0x814 bytes allocated by func_02125de0.
 typedef struct Unk0217d3ec {
-    /* 000 */ BOOL mUnk_00;
-    /* 004 */ BOOL mUnk_04;
+    /* 000 */ BOOL mUseTxtSystem;
+    /* 004 */ BOOL mUseSelectChoises;
     /* 008 */ BOOL mUnk_08;
     /* 00c */ s32 mBackScreenKind;
     /* 010 */ u16 mBackScreenSNscrCopy[0x400];
-    /* 810 */ s32 mUnk_810;
+    /* 810 */ s32 mSubCharOffset;
 } Unk0217d3ec;
 
 // Objects of 0x20 bytes set up by NNS_G2dCharCanvasInitForBG; the word at 0x18 is called with the object and a value.
@@ -510,7 +510,7 @@ typedef struct TxtSystem {
     /* 0004 */ u32 mNextState;
     /* 0008 */ u32 mPrevState;
     /* 000c */ s32 mStateFrames;
-    /* 0010 */ s32 mUnk_10;
+    /* 0010 */ s32 mAnimFrameIndexFrames;
     /* 0014 */ s32 mAnimFrameIndex;
     /* 0018 */ u32 mAnimVisible[2];
     /* 0020 */ u32 mAnimRequested[2];
@@ -521,9 +521,9 @@ typedef struct TxtSystem {
     /* 0038 */ u32 mCloseRequested;
     /* 003c */ u32 mOpenFromIndex;
     /* 0040 */ u32 mCloseToIndex;
-    /* 0044 */ u32 mUnk_44;
-    /* 0048 */ u32 mUnk_48;
-    /* 004c */ u32 mUnk_4c;
+    /* 0044 */ u32 mUseCanvas1;
+    /* 0048 */ u32 mUseCanvas2;
+    /* 004c */ u32 mUseCanvas3;
     /* 0050 */ u32 mEnabled;
     /* 0054 */ u16 mMainScreenBuffer[0x800];
     /* 1054 */ u16 mSubScreenBuffer[0x800];
@@ -665,7 +665,7 @@ typedef struct Keyboard {
     /* a4 */ Unk0201ea30 *mBnbls[2];
     /* ac */ void *mBnlls[2];
     /* b4 */ struct Nscr *mNscrs[2]; /* [0] flame02, [1] flame01 */
-    /* bc */ void *mUnk_bc;
+    /* bc */ void *mDisplaySettings;
     // Messages of common.bmg.
     /* c0 */ struct Bmg *mCommonMessages;
 } Keyboard;

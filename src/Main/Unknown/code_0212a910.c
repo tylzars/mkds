@@ -185,8 +185,8 @@ void func_0212ae2c(void) {
     u16 a[11];
     a[0] = 0;
     MIi_CpuClear16(a[0], &a[1], 0x14);
-    func_02124fac(func_021205f4(), &a[1]);
-    func_0212513c(&a[1], data_0217d408->mUnk_0008, data_0217d408->mUnk_1444, 0x600);
+    FormatAsciiNumber(func_021205f4(), &a[1]);
+    FormatMessageWithText(&a[1], data_0217d408->mUnk_0008, data_0217d408->mUnk_1444, 0x600);
     data_0217d408->mUnk_0008 = data_0217d408->mUnk_1444;
 }
 

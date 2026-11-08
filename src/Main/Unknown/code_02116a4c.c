@@ -19,7 +19,7 @@ s16 LookupIndexChangeOffset(s32 step, s32 row) {
 void FormatNumberByVariant(s32 number, u16 *text, s32 variant) {
     switch (variant) {
         case 0:
-            func_02124fac(number, text);
+            FormatAsciiNumber(number, text);
             break;
         case 1:
             func_02124f4c(number, text);
@@ -98,10 +98,10 @@ void func_02116b80(void *time, void *text) {
 
 void FormatTwoDigitNumber(u32 number, u16 *text) {
     if (number >= 10) {
-        func_02124fac(number, text);
+        FormatAsciiNumber(number, text);
     } else {
-        func_02124fac(0, text);
-        func_02124fac(number, text + 1);
+        FormatAsciiNumber(0, text);
+        FormatAsciiNumber(number, text + 1);
     }
 }
 

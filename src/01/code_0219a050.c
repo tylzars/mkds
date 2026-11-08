@@ -307,7 +307,7 @@ void InitRecordTopMenu(void *heap) {
             if (scores[i][j] > 9999) {
                 scores[i][j] = 9999;
             }
-            func_02124fac(scores[i][j], buf);
+            FormatAsciiNumber(scores[i][j], buf);
             func_02124248(0, data_ov001_021a6ae4[i][j], gRecordTopMenu->mRecordTopMenuMBnll, buf,
                           gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMTable, 6);
         }

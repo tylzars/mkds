@@ -196,7 +196,7 @@ void func_0202d5f8(s32 messageIndex, s32 withButton) {
     message = GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, messageIndex);
     MIi_CpuCopy16(gTimeAttackGhostSend->mUnk_0b8, name, 0x14);
     name[10] = 0;
-    func_0212513c(name, message, text, 0x100);
+    FormatMessageWithText(name, message, text, 0x100);
     if (withButton != 0) {
         SetupTxtSystemSubTextButton(text, GetBmgEntry(gTimeAttackGhostSend->mCommonMessages, 4));
     } else {

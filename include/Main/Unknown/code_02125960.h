@@ -11,4 +11,4 @@ extern const char *gBackScreenMNclrNames[2];
 
 void LoadTxtSystemAndSelectChoisesAndSelectReturnData(void);
 void func_02125ba4(void);
-s32 func_02125960(s32 a);
+s32 LoadBackScreen(s32 subCharOffset);

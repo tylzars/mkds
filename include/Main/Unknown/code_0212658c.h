@@ -2,5 +2,7 @@
 
 #include "types.h"
 
-void func_02126638(void *a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g);
-void func_0212658c(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g);
+void func_02126638(void *text, s32 mainBlendPlanes, s32 subBlendPlanes, s32 openFromIndex, s32 closeToIndex,
+                   s32 mainAnim, s32 subAnim);
+void func_0212658c(void *text, u32 mainBlendPlanes, u32 subBlendPlanes, u32 openFromIndex, u32 closeToIndex,
+                   u32 mainAnim, u32 subAnim);

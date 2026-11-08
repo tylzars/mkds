@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void SetTxtSystemBgOffsetRequested(int a, int b);
+void SetTxtSystemBgOffsetRequested(int mainOffset, int subOffset);

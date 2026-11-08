@@ -411,22 +411,22 @@ void PrintRecordVSShownRecord(void) {
                     }
                 }
             }
-            func_02124fac(counts[1][0], buf);
+            FormatAsciiNumber(counts[1][0], buf);
             func_02124248(0, gRecordVSGridLabelIndices[1][0], gRecordVS->mRecordVSMBnll, buf, gRecordVS->mRecordVSMBncl,
                           gRecordVS->mRecordVSMTable, 6);
-            func_02124fac(counts[1][1], buf);
+            FormatAsciiNumber(counts[1][1], buf);
             func_02124248(0, gRecordVSGridLabelIndices[1][1], gRecordVS->mRecordVSMBnll, buf, gRecordVS->mRecordVSMBncl,
                           gRecordVS->mRecordVSMTable, 6);
-            func_02124fac(counts[1][2], buf);
+            FormatAsciiNumber(counts[1][2], buf);
             func_02124248(0, gRecordVSGridLabelIndices[1][2], gRecordVS->mRecordVSMBnll, buf, gRecordVS->mRecordVSMBncl,
                           gRecordVS->mRecordVSMTable, 6);
-            func_02124fac(counts[2][0], buf);
+            FormatAsciiNumber(counts[2][0], buf);
             func_02124248(0, gRecordVSGridLabelIndices[2][0], gRecordVS->mRecordVSMBnll, buf, gRecordVS->mRecordVSMBncl,
                           gRecordVS->mRecordVSMTable, 6);
-            func_02124fac(counts[2][1], buf);
+            FormatAsciiNumber(counts[2][1], buf);
             func_02124248(0, gRecordVSGridLabelIndices[2][1], gRecordVS->mRecordVSMBnll, buf, gRecordVS->mRecordVSMBncl,
                           gRecordVS->mRecordVSMTable, 6);
-            func_02124fac(counts[2][2], buf);
+            FormatAsciiNumber(counts[2][2], buf);
             func_02124248(0, gRecordVSGridLabelIndices[2][2], gRecordVS->mRecordVSMBnll, buf, gRecordVS->mRecordVSMBncl,
                           gRecordVS->mRecordVSMTable, 6);
             GetRecordDate(firstIndex + gRecordVS->mShownIndex, &date);
@@ -443,7 +443,7 @@ void PrintRecordVSShownRecord(void) {
             func_0212426c(0, 0, gRecordVS->mRecordVSMTransientBnll, buf, gRecordVS->mRecordVSMTransientBncl,
                           gRecordVS->mRecordVSMTransientTable);
             for (i = 0; i < 12; i++) {
-                func_02124fac(friendKey[i] - 0x30, buf);
+                FormatAsciiNumber(friendKey[i] - 0x30, buf);
                 func_0212426c(0, gRecordVSFriendKeyLabelIndices[i], gRecordVS->mRecordVSMTransientBnll, buf,
                               gRecordVS->mRecordVSMTransientBncl, gRecordVS->mRecordVSMTransientTable);
             }

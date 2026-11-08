@@ -363,8 +363,8 @@ void AdvanceWiFiVSMatchingState1(void) {
             if (val > 9999) {
                 val = 9999;
             }
-            func_02124fac(func_0212025c(gWiFiVSMatching->mOtherIndices[i]), buf2);
-            func_02124fac(val, buf3);
+            FormatAsciiNumber(func_0212025c(gWiFiVSMatching->mOtherIndices[i]), buf2);
+            FormatAsciiNumber(val, buf3);
             func_0212426c(1, data_ov000_021b0670[i][0], gWiFiVSMatching->mWiFiVSMatchingBnll, buf2,
                           gWiFiVSMatching->mWiFiVSMatchingBncl, gWiFiVSMatching->mWiFiVSMatchingTable);
             func_0212426c(1, data_ov000_021b0670[i][1], gWiFiVSMatching->mWiFiVSMatchingBnll, buf3,
