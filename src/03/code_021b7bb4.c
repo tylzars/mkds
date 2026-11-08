@@ -8,6 +8,7 @@
 #include "code_0214d93c.h"
 #include "00/code_021ad734.h"
 #include "03/code_021b94b8.h"
+#include "03/code_021bb03c.h"
 #include "00/code_021a8aa8.h"
 #include "00/unk_021b6000.h"
 #include "03/unk_021d7000.h"
@@ -830,13 +831,13 @@ void FillPacketHeader(void *buffer, s32 kind, s32 payloadLength, s32 flags, s8 p
 }
 
 s32 SendPacket(void *packet, s32 length, u32 target, s32 descriptor) {
-    Unk021b7cec address;
+    SocketAddress address;
     FillBytes(&address, 0, 8);
     address.mUnk_01 = 2;
-    address.mUnk_02 = func_ov003_021b7c94(0x5790);
-    address.mUnk_04 = SwapBytes32(gRequestState.mDestinationAddress);
+    address.mPort = func_ov003_021b7c94(0x5790);
+    address.mAddress = SwapBytes32(gRequestState.mDestinationAddress);
     if (target == 0xff || gRequestState.mAddressApplied == 0) {
-        address.mUnk_04 = -1;
+        address.mAddress = -1;
     }
     return func_ov003_021b7d04(descriptor, packet, length, 0, &address, 8);
 }
@@ -1041,9 +1042,9 @@ void func_ov003_021b7e58(u32 a, u32 pointer) {
 }
 
 s32 func_ov003_021b7df4(u32 address, u32 mask, u32 c) {
-    data_ov003_021d6810.mUnk_10 = SwapBytes32(address);
-    data_ov003_021d6810.mUnk_14 = SwapBytes32(mask);
-    data_ov003_021d6810.mUnk_18 = SwapBytes32(c);
+    data_ov003_021d6810.mUnk_10[0] = SwapBytes32(address);
+    data_ov003_021d6810.mUnk_10[1] = SwapBytes32(mask);
+    data_ov003_021d6810.mUnk_10[2] = SwapBytes32(c);
     if (func_ov000_021a8c94(&data_ov003_021d6810) < 0) {
         return -1;
     }
@@ -1083,8 +1084,8 @@ void FillBytes(void *destination, s32 fillValue, u32 size) {
     MI_CpuFill8(destinationCopy, byteValue, sizeCopy);
 }
 
-s32 func_ov003_021b7d68(s32 descriptor, void *buffer, s32 length, s32 v4, Unk021b7cec *address, s32 *addressLength) {
-    address->mUnk_00 = *addressLength;
+s32 func_ov003_021b7d68(s32 descriptor, void *buffer, s32 length, s32 v4, SocketAddress *address, s32 *addressLength) {
+    address->mLength = *addressLength;
     return func_ov000_021a90a0(descriptor, buffer, length, v4, address);
 }
 
@@ -1098,8 +1099,8 @@ s32 func_ov003_021b7d1c(s32 v1, Unk021b7ba0 *set, void *v3, void *v4, WaitTimeou
     return func_ov000_021a8b20(&setCopy, 1, ticks);
 }
 
-s32 func_ov003_021b7d04(s32 descriptor, void *buffer, s32 length, s32 d, Unk021b7cec *address, u32 addressLength) {
-    address->mUnk_00 = addressLength;
+s32 func_ov003_021b7d04(s32 descriptor, void *buffer, s32 length, s32 d, SocketAddress *address, u32 addressLength) {
+    address->mLength = addressLength;
     return func_ov000_021a9018(descriptor, buffer, length, d, address);
 }
 
@@ -1111,8 +1112,8 @@ s32 func_ov003_021b7cf8(s32 domain, s32 type, s32 protocol) {
     return func_ov000_021a918c(domain, type, protocol);
 }
 
-s32 func_ov003_021b7cec(s32 descriptor, Unk021b7cec *address, u32 addressLength) {
-    address->mUnk_00 = addressLength;
+s32 func_ov003_021b7cec(s32 descriptor, SocketAddress *address, u32 addressLength) {
+    address->mLength = addressLength;
     return func_ov000_021a916c(descriptor, address);
 }
 

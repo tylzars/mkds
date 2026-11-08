@@ -6,15 +6,11 @@ static inline u16 SwapBytes16_inline(u16 value) {
     return ((value >> 8) & 0xff) | ((value << 8) & 0xff00);
 }
 
-typedef struct Unk021d6810 {
-    /* 00 */ u8 pad_00[0x10];
-    /* 10 */ u32 mUnk_10;
-    /* 14 */ u32 mUnk_14;
-    /* 18 */ u32 mUnk_18;
-} Unk021d6810;
+typedef struct Unk021a8c94 Unk021a8c94;
 
 #include "03/code_021b94b8.h"
 
+typedef struct SocketAddress SocketAddress;
 typedef struct PacketTag PacketTag;
 typedef struct Unk021b86e4 Unk021b86e4;
 
@@ -129,7 +125,7 @@ typedef struct ParsedRecordView {
 
 extern u8 gItemTypesToFind[];
 extern s32 gReportedState;
-extern Unk021d6810 data_ov003_021d6810;
+extern Unk021a8c94 data_ov003_021d6810;
 extern s8 gMelcoString[];
 extern u8 gEssidAossString[];
 extern s32 gFlagBit4OfKind1010Packet;
@@ -152,12 +148,12 @@ u32 func_ov003_021b7c5c(u32 input);
 u16 func_ov003_021b7c94(u16 value);
 u32 SwapBytes32(u32 input);
 s32 func_ov003_021b7ce4(s32 descriptor);
-s32 func_ov003_021b7cec(s32 id, Unk021b7cec *addr, u32 length);
+s32 func_ov003_021b7cec(s32 id, SocketAddress *addr, u32 length);
 s32 func_ov003_021b7cf8(s32 domain, s32 type, s32 protocol);
 s32 func_ov003_021b7d00(s32 id, s32 arg1, s32 arg2, void *value, s32 length);
-s32 func_ov003_021b7d04(s32 descriptor, void *buffer, s32 length, s32 d, Unk021b7cec *address, u32 addressLength);
+s32 func_ov003_021b7d04(s32 descriptor, void *buffer, s32 length, s32 d, SocketAddress *address, u32 addressLength);
 s32 func_ov003_021b7d1c(s32 count, Unk021b7ba0 *set, void *arg2, void *arg3, WaitTimeout *arg4);
-s32 func_ov003_021b7d68(s32 id, void *buffer, s32 length, s32 flags, Unk021b7cec *out, s32 *outLength);
+s32 func_ov003_021b7d68(s32 id, void *buffer, s32 length, s32 flags, SocketAddress *out, s32 *outLength);
 void FillBytes(void *destination, s32 fillValue, u32 size);
 void CopyBytes(void *destination, const void *source, u32 size);
 s32 CompareBytes(const u8 *left, const u8 *right, s32 count);

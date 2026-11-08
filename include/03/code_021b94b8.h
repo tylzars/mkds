@@ -12,7 +12,7 @@
 #include "code_0200e77c.h"
 
 typedef struct ValueRecordsRequest {
-    /* 000 */ u16 mWantedRecordMask;
+    /* 000 */ u16 mWantedRecordMask; // input mask; on return, the wanted records that were found
     /* 002 */ u8 mItemType;
     /* 003 */ u8 pad_003;
     /* 004 */ u16 mItemLength;
@@ -39,20 +39,7 @@ typedef struct RequestState {
     /* 1a */ u8 pad_1a[2];
 } RequestState;
 
-typedef struct Unk021ba778Src {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ u8 mUnk_04[6];
-    /* 0a */ u16 mUnk_0a;
-    /* 0c */ u8 mUnk_0c[0x20];
-    /* 2c */ u16 mUnk_2c;
-    /* 2e */ u16 mUnk_2e;
-    /* 30 */ u16 mUnk_30;
-    /* 32 */ u16 mUnk_32;
-    /* 34 */ u16 mUnk_34;
-    /* 36 */ u16 mUnk_36;
-    /* 38 */ u8 pad_38[0x88];
-} Unk021ba778Src;
+typedef struct RawEntry RawEntry;
 
 typedef struct EssidEntry {
     /* 00 */ u32 mEssidLength;
@@ -62,7 +49,7 @@ typedef struct EssidEntry {
     /* 30 */ u8 mUnk_30[6];
     /* 36 */ u8 pad_36[2];
     /* 38 */ u32 mCodeCount;
-    /* 3c */ u8 mCodes[0x10];
+    /* 3c */ u8 mCodes[0x10]; // bit 0x80 set when the record's second bit list has the same bit
     /* 4c */ u32 mUnk_4c;
     /* 50 */ u32 mUnk_50;
 } EssidEntry;
@@ -123,7 +110,7 @@ typedef struct Unk021b86e4 {
 
 typedef struct PacketBuffer {
     /* 00 */ s32 mDescriptor;
-    /* 04 */ u32 mReceivedLength;
+    /* 04 */ u32 mReceivedLength; // stored byte-swapped; never read
     /* 08 */ u8 pad_08[4];
     /* 0c */ u8 mBytes[0x5ec];
 } PacketBuffer;
@@ -143,7 +130,7 @@ extern void (*data_ov003_021d8a18)(void *);
 extern void *gMessageQueueSlots[4];
 extern OSMessageQueue gMessageQueue;
 extern MelcoBlock data_ov003_021d8a4c;
-extern Unk021ba778Src data_ov003_021d8ac0;
+extern RawEntry data_ov003_021d8ac0;
 
 void SetErrorCode(s32 code);
 void InitRequestState(ValueRecordsRequest *req);
@@ -162,9 +149,9 @@ s32 func_ov003_021ba560(void);
 s32 func_ov003_021ba61c(void *(*alloc)(u32), void (*release)(void *));
 s32 func_ov003_021ba70c(void *msg);
 s32 func_ov003_021ba720(void *msg);
-void FillEssidEntryListFromRecord(EssidEntryList *list, Unk021ba778Src *src, s32 count);
-void SetRecordEssidFromRequest(EssidMelcoRequest *request, Unk021ba778Src *rec);
-void ConvertRecordToEssidEntry(Unk021ba778Src *src, EssidEntry *dst);
+void FillEssidEntryListFromRecord(EssidEntryList *list, RawEntry *src, s32 count);
+void SetRecordEssidFromRequest(EssidMelcoRequest *request, RawEntry *rec);
+void ConvertRecordToEssidEntry(RawEntry *src, EssidEntry *dst);
 
 #include "03/code_021b7000.h"
 #include "03/unk_021d8000.h"

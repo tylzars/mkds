@@ -212,7 +212,7 @@ BOOL func_ov003_021bac0c(void) {
     return TRUE;
 }
 
-s32 func_ov003_021babc0(Unk021ba778Src *records, s32 maxCount) {
+s32 func_ov003_021babc0(RawEntry *records, s32 maxCount) {
     s32 count;
     s32 i;
     func_ov000_021a67dc(1);
@@ -315,7 +315,7 @@ BOOL func_ov003_021ba9c0(void) {
     return FALSE;
 }
 
-BOOL func_ov003_021ba910(Unk021ba778Src *record, MelcoBlock *melcoBlock, u32 flags) {
+BOOL func_ov003_021ba910(RawEntry *record, MelcoBlock *melcoBlock, u32 flags) {
     u32 enabled = OS_DisableInterrupts();
     data_ov003_021d8b8c = flags;
     if (melcoBlock != NULL) {

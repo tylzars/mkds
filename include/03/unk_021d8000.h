@@ -48,12 +48,18 @@ typedef struct Kind5Item20a {
 
 // Entry of the list at gRawEntries, 0xc0 bytes.
 typedef struct RawEntry {
-    /* 00 */ u8 mUnk_00[4];
+    /* 00 */ u16 mUnk_00;
+    /* 02 */ u16 mUnk_02;
     /* 04 */ MacAddress mAddress;
     /* 0a */ u16 mSsidLength;
     /* 0c */ u8 mSsid[0x20];
     /* 2c */ u16 mFlags;
-    /* 2e */ u8 mUnk_2e[0x92];
+    /* 2e */ u16 mUnk_2e;
+    /* 30 */ u16 mUnk_30;
+    /* 32 */ u16 mUnk_32;
+    /* 34 */ u16 mUnk_34;
+    /* 36 */ u16 mUnk_36;
+    /* 38 */ u8 pad_38[0x88];
 } RawEntry;
 
 // Objects whose layout isn't known yet.

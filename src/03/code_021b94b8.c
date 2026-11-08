@@ -3,6 +3,7 @@
 #include "03/unk_021d8000.h"
 #include "Main/Unknown/code_02133000.h"
 #include "03/code_021b7bb4.h"
+#include "03/code_021bb03c.h"
 #include "code_0200fc8c.h"
 #include "code_0214d018.h"
 #include "00/code_021a669c.h"
@@ -12,14 +13,14 @@ MaskCodeEntry gMaskCodeTable[12] = {
     {0x0040, 0x18, 0}, {0x0080, 0x24, 0}, {0x0100, 0x30, 0}, {0x0200, 0x48, 0}, {0x0400, 0x60, 0}, {0x0800, 0x6c, 0},
 };
 
-void ConvertRecordToEssidEntry(Unk021ba778Src *src, EssidEntry *dst) {
+void ConvertRecordToEssidEntry(RawEntry *src, EssidEntry *dst) {
     int i;
     int count;
     int mode;
-    dst->mEssidLength = src->mUnk_0a;
-    MIi_CpuCopy16(src->mUnk_0c, dst->mEssid, 0x20);
+    dst->mEssidLength = src->mSsidLength;
+    MIi_CpuCopy16(src->mSsid, dst->mEssid, 0x20);
     dst->mUnk_24 = src->mUnk_36;
-    MIi_CpuCopy16(src->mUnk_04, dst->mUnk_30, 6);
+    MIi_CpuCopy16(&src->mAddress, dst->mUnk_30, 6);
     count = 0;
     for (i = 0; i < 12; i++) {
         if (src->mUnk_30 & gMaskCodeTable[i].mMask) {
@@ -32,7 +33,7 @@ void ConvertRecordToEssidEntry(Unk021ba778Src *src, EssidEntry *dst) {
     }
     dst->mCodeCount = count;
     dst->mUnk_4c = src->mUnk_32;
-    mode = src->mUnk_2c & 3;
+    mode = src->mFlags & 3;
     if (mode == 1) {
         dst->mUnk_50 = 1;
     } else if (mode == 2) {
@@ -42,14 +43,14 @@ void ConvertRecordToEssidEntry(Unk021ba778Src *src, EssidEntry *dst) {
     }
 }
 
-void SetRecordEssidFromRequest(EssidMelcoRequest *request, Unk021ba778Src *rec) {
+void SetRecordEssidFromRequest(EssidMelcoRequest *request, RawEntry *rec) {
     vu16 zero = 0;
-    MIi_CpuClear16(zero, rec->mUnk_0c, 0x20);
-    rec->mUnk_0a = request->mEssidLength;
-    MI_CpuCopy8(request->mEssid, rec->mUnk_0c, rec->mUnk_0a);
+    MIi_CpuClear16(zero, rec->mSsid, 0x20);
+    rec->mSsidLength = request->mEssidLength;
+    MI_CpuCopy8(request->mEssid, rec->mSsid, rec->mSsidLength);
 }
 
-void FillEssidEntryListFromRecord(EssidEntryList *list, Unk021ba778Src *src, s32 count) {
+void FillEssidEntryListFromRecord(EssidEntryList *list, RawEntry *src, s32 count) {
     list->mCount = count;
     ConvertRecordToEssidEntry(src, list->mEntries);
 }
@@ -175,8 +176,8 @@ s32 ScanEssidEntries(EssidEntryList **out) {
     BOOL running = TRUE;
     s32 count = 0;
     s32 waits = 0;
-    Unk021ba778Src *scan;
-    Unk021ba778Src *buffer;
+    RawEntry *scan;
+    RawEntry *buffer;
     EssidEntryList *list;
     void *msg;
     OSAlarm timer;
@@ -358,6 +359,7 @@ void func_ov003_021ba1a8(u32 msec) {
 }
 
 int func_ov003_021ba18c(int state) {
+    // nothing in the game sets this pointer
     if (data_ov003_021d8a10 != NULL) {
         data_ov003_021d8a10(state);
     }
@@ -423,12 +425,12 @@ s32 func_ov003_021b9570(ValueRecordsRequest *req) {
     u8 code;
     s16 cnt;
     s16 delay;
-    Unk021b7cec src2;
+    SocketAddress src2;
     s32 srcLen;
     s32 received;
     Unk021b7ba0 set;
     WaitTimeout wait;
-    Unk021b7cec info;
+    SocketAddress info;
     PacketTag list[3];
     EssidMelcoRequest request;
     Unk021b86e4 buf;
@@ -556,8 +558,8 @@ s32 func_ov003_021b9570(ValueRecordsRequest *req) {
     }
     FillBytes(&info, 0, 8);
     info.mUnk_01 = 2;
-    info.mUnk_04 = SwapBytes32(0xc0a80b65);
-    info.mUnk_02 = func_ov003_021b7c94(0x5790);
+    info.mAddress = SwapBytes32(0xc0a80b65);
+    info.mPort = func_ov003_021b7c94(0x5790);
     if (func_ov003_021b7cec(gSocketDescriptor, &info, 8) < 0) {
         req->mResultCode = 0xf;
         ReleaseEssidEntryLists();
@@ -673,8 +675,8 @@ s32 func_ov003_021b9570(ValueRecordsRequest *req) {
                 }
                 FillBytes(&info, 0, 8);
                 info.mUnk_01 = 2;
-                info.mUnk_04 = SwapBytes32(addr);
-                info.mUnk_02 = func_ov003_021b7c94(0x5790);
+                info.mAddress = SwapBytes32(addr);
+                info.mPort = func_ov003_021b7c94(0x5790);
                 if (func_ov003_021b7cec(gSocketDescriptor, &info, 8) < 0) {
                     req->mResultCode = 0xf;
                     ReleaseEssidEntryLists();
@@ -814,8 +816,8 @@ s32 func_ov003_021b9570(ValueRecordsRequest *req) {
                 }
                 FillBytes(&info, 0, 8);
                 info.mUnk_01 = 2;
-                info.mUnk_04 = SwapBytes32(addr);
-                info.mUnk_02 = func_ov003_021b7c94(0x5790);
+                info.mAddress = SwapBytes32(addr);
+                info.mPort = func_ov003_021b7c94(0x5790);
                 if (func_ov003_021b7cec(gSocketDescriptor, &info, 8) < 0) {
                     req->mResultCode = 0xf;
                     ReleaseEssidEntryLists();
