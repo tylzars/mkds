@@ -321,7 +321,7 @@ void UpdateRaceHudSubScreenHanachanCells(void) {
         if (ComputeRaceHudSubScreenPosition(position, &gRaceHudSubScreenHanachanCells->mCells[cellCount].mDrawPos, unk,
                                             1, 1)) {
             gRaceHudSubScreenHanachanCells->mCells[cellCount].mCell =
-                GetRaceSNcerEntry(func_ov001_0218c790((Unk02188950 *) object) >= 2 ? 0xc6 : 0xc5);
+                GetRaceSNcerEntry(GetMapObjectNsbtpFrameIndex((Unk02188950 *) object) >= 2 ? 0xc6 : 0xc5);
             gRaceHudSubScreenHanachanCells->mCells[cellCount].mUnk_0c = func_020b4e70(position) ? 2 : 3;
             gRaceHudSubScreenHanachanCells->mCells[cellCount].mUnk_0e = object->mFlags & 0x20;
             gRaceHudSubScreenHanachanCells->mCells[cellCount].mUnk_10 = object->mAngle;

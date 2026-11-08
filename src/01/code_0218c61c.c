@@ -9,10 +9,10 @@
 #include "Main/Unknown/code_0209b000.h"
 #include "Main/Unknown/code_02110000.h"
 
-void func_ov001_0218c62c(Unk02188950 *a) {
-    StartMapObjectSound(&a->mUnk_000, 0x223);
+void func_ov001_0218c62c(Unk02188950 *mapObject) {
+    StartMapObjectSound(&mapObject->mUnk_000, 0x223);
 }
 
-void func_ov001_0218c61c(Unk02188950 *a) {
-    StartMapObjectSound(&a->mUnk_000, 0x223);
+void func_ov001_0218c61c(Unk02188950 *mapObject) {
+    StartMapObjectSound(&mapObject->mUnk_000, 0x223);
 }

@@ -2,50 +2,52 @@
 #include "01/code_02188950.h"
 #include "code_02133048.h"
 
-void func_ov001_0218c728(Unk02188950 *a) {
-    s32 *v1;
-    MissionRunPrm *v2;
-    v2 = a->mPrm;
-    SetCollisionOffsetAndExtent(a, v2->mUnk_008, v2->mUnk_00c, v2->mUnk_214);
-    SetShadowOffsetYAndScale(a, 0, a->mPrm->mUnk_00c);
-    v1 = &a->mShadowScaleTargetX;
-    *v1 = 0x00011800u;
-    a->mShadowScaleX = *v1;
-    v1 = &a->mShadowScaleTargetZ;
-    *v1 = 0x0000c000u;
-    a->mShadowScaleZ = *v1;
+void SetKurikingCollisionAndShadow(Unk02188950 *mapObject) {
+    s32 *shadowScaleTarget;
+    MissionRunPrm *prm;
+    prm = mapObject->mPrm;
+    SetCollisionOffsetAndExtent(mapObject, prm->mUnk_008, prm->mUnk_00c, prm->mUnk_214);
+    SetShadowOffsetYAndScale(mapObject, 0, mapObject->mPrm->mUnk_00c);
+    shadowScaleTarget = &mapObject->mShadowScaleTargetX;
+    *shadowScaleTarget = 0x00011800u;
+    mapObject->mShadowScaleX = *shadowScaleTarget;
+    shadowScaleTarget = &mapObject->mShadowScaleTargetZ;
+    *shadowScaleTarget = 0x0000c000u;
+    mapObject->mShadowScaleZ = *shadowScaleTarget;
 }
 
-void func_ov001_0218c6b4(Unk02188950 *a) {
-    u32 v1;
-    u32 v2;
-    int v3;
-    MissionRunPrm *v4;
-    int v5;
-    v4 = a->mPrm;
-    v3 = v4->mUnk_00c;
-    v5 = v4->mUnk_008;
-    v1 = _s32_div_f(v5, 0x14);
-    v2 = _s32_div_f(v3, 0x14);
-    SetCollisionOffsetAndExtentTarget(a, v5 << 1, v1, v3 << 1, v4->mUnk_214 << 1, v2);
-    SetShadowOffsetYAndScaleTarget(a, 0, 0, 0, 0x00000e00u);
-    a->mShadowScaleTargetX = 0x00023000u;
-    a->mShadowScaleTargetZ = 0x00018000u;
+void SetDoubledCollisionAndShadowTargets(Unk02188950 *mapObject) {
+    u32 offsetPerCall;
+    u32 extentPerCall;
+    int extentXZ;
+    MissionRunPrm *prm;
+    int offsetY;
+    prm = mapObject->mPrm;
+    extentXZ = prm->mUnk_00c;
+    offsetY = prm->mUnk_008;
+    offsetPerCall = _s32_div_f(offsetY, 0x14);
+    extentPerCall = _s32_div_f(extentXZ, 0x14);
+    SetCollisionOffsetAndExtentTarget(mapObject, offsetY << 1, offsetPerCall, extentXZ << 1, prm->mUnk_214 << 1,
+                                      extentPerCall);
+    SetShadowOffsetYAndScaleTarget(mapObject, 0, 0, 0, 0x00000e00u);
+    mapObject->mShadowScaleTargetX = 0x00023000u;
+    mapObject->mShadowScaleTargetZ = 0x00018000u;
 }
 
-void func_ov001_0218c63c(Unk02188950 *a) {
-    u32 v1;
-    u32 v2;
-    int v3;
-    MissionRunPrm *v4;
-    int v5;
-    v4 = a->mPrm;
-    v3 = v4->mUnk_00c;
-    v5 = v4->mUnk_008;
-    v1 = _s32_div_f(v5, 0x14);
-    v2 = _s32_div_f(v3, 0x14);
-    SetCollisionOffsetAndExtentTarget(a, v5 * 3, v1, v3 * 3, v4->mUnk_214 * 3, v2);
-    SetShadowOffsetYAndScaleTarget(a, 0, 0, 0, 0x00000e00u);
-    a->mShadowScaleTargetX = 0x00034800u;
-    a->mShadowScaleTargetZ = 0x00024000u;
+void SetTripledCollisionAndShadowTargets(Unk02188950 *mapObject) {
+    u32 offsetPerCall;
+    u32 extentPerCall;
+    int extentXZ;
+    MissionRunPrm *prm;
+    int offsetY;
+    prm = mapObject->mPrm;
+    extentXZ = prm->mUnk_00c;
+    offsetY = prm->mUnk_008;
+    offsetPerCall = _s32_div_f(offsetY, 0x14);
+    extentPerCall = _s32_div_f(extentXZ, 0x14);
+    SetCollisionOffsetAndExtentTarget(mapObject, offsetY * 3, offsetPerCall, extentXZ * 3, prm->mUnk_214 * 3,
+                                      extentPerCall);
+    SetShadowOffsetYAndScaleTarget(mapObject, 0, 0, 0, 0x00000e00u);
+    mapObject->mShadowScaleTargetX = 0x00034800u;
+    mapObject->mShadowScaleTargetZ = 0x00024000u;
 }

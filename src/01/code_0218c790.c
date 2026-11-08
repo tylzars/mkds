@@ -13,6 +13,6 @@
 #include "Main/Unknown/code_02110000.h"
 #include "Main/Unknown/code_0209bef0.h"
 
-u32 func_ov001_0218c790(Unk02188950 *a) {
-    return GetMapObjectModelNsbtpFrameIndex(a->mNsbmd);
+u32 GetMapObjectNsbtpFrameIndex(Unk02188950 *mapObject) {
+    return GetMapObjectModelNsbtpFrameIndex(mapObject->mNsbmd);
 }

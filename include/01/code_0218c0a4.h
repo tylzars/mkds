@@ -4,7 +4,7 @@
 
 typedef struct Unk02188950 Unk02188950;
 
-void func_ov001_0218c0a4(Unk02188950 *a);
-void func_ov001_0218c354(Unk02188950 *a);
-void func_ov001_0218c3ac(Unk02188950 *a);
-void func_ov001_0218c490(Unk02188950 *a);
+void ThrowBombsAndKinoko(Unk02188950 *mapObject);
+void func_ov001_0218c354(Unk02188950 *mapObject);
+void func_ov001_0218c3ac(Unk02188950 *mapObject);
+void func_ov001_0218c490(Unk02188950 *mapObject);

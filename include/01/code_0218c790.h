@@ -4,4 +4,4 @@
 
 typedef struct Unk02188950 Unk02188950;
 
-u32 func_ov001_0218c790(Unk02188950 *a);
+u32 GetMapObjectNsbtpFrameIndex(Unk02188950 *mapObject);
