@@ -19,7 +19,7 @@ void AdvanceKartToKeyedPlacement(Kart *kart);
 void func_02070f8c(Kart *kart);
 void ResetKartMotionState(Kart *kart, s32 b);
 void StartKartModelScaleAnimation(Kart *kart, s32 a);
-void func_020713a0(Kart *kart);
+void AdvanceKartHeadingSwing(Kart *kart);
 void func_02071568(Kart *kart);
 void AdvanceKartModelScaleAnimation(Kart *kart);
 void func_02071894(Kart *kart);

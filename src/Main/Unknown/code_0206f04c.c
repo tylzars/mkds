@@ -239,7 +239,7 @@ void AdvanceKartRaceStartBoost(Kart *kart) {
     } else {
         kart->mUnk_4d4 = ((s64) kart->mUnk_4d4 * 0xf5c) >> 12;
     }
-    if (!(kart->mUnk_4c & 0x20000000)) {
+    if (!(kart->mUnk_4c & KART_4C_HEADING_SWING)) {
         if (GetRaceStartSequenceFrames() - 0xaf > 0) {
             kart->mUnk_44 |= 0x1000000;
         }
@@ -247,8 +247,8 @@ void AdvanceKartRaceStartBoost(Kart *kart) {
     if (GetRaceStartSequenceFrames() - 0xaf == 0) {
         if (kart->mUnk_7c & 2) {
             if (func_0208c180(kart->mAi) != 0) {
-                if (!(kart->mUnk_4c & 0x20000000)) {
-                    kart->mUnk_4c |= 0x20000000;
+                if (!(kart->mUnk_4c & KART_4C_HEADING_SWING)) {
+                    kart->mUnk_4c |= KART_4C_HEADING_SWING;
                     kart->mRaceStartFrameCount = 0x78;
                     func_02068a64(kart, 1, 1);
                     g = data_usa_02165608;
@@ -285,8 +285,8 @@ void AdvanceKartRaceStartBoost(Kart *kart) {
         } else if (kart->mUnk_48 & 2) {
             c = kart->mUnk_4d4;
             if (c > 0xf34) {
-                if (!(kart->mUnk_4c & 0x20000000)) {
-                    kart->mUnk_4c |= 0x20000000;
+                if (!(kart->mUnk_4c & KART_4C_HEADING_SWING)) {
+                    kart->mUnk_4c |= KART_4C_HEADING_SWING;
                     kart->mRaceStartFrameCount = 0x78;
                     func_02068a64(kart, 1, 1);
                     h = data_usa_02165608;
@@ -331,7 +331,7 @@ void AdvanceKartRaceStartBoost(Kart *kart) {
             }
         }
         kart->mUnk_230 = func_01ffb0cc;
-        if (!(kart->mUnk_4c & 0x20000000)) {
+        if (!(kart->mUnk_4c & KART_4C_HEADING_SWING)) {
             kart->mUnk_44 |= 0x1000000;
         }
     }

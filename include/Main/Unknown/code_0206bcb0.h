@@ -185,6 +185,8 @@ typedef struct Unk0206bcb0_A {
 // Bits of Kart.mUnk_4c.
 // Set while the Kart is small from the Thunder item (StartKartThunderShrink sets it, AdvanceKartThunderShrink clears
 // it).
+// Set while mHeadingAngleOffset swings (AdvanceKartRaceStartBoost sets it, AdvanceKartHeadingSwing clears it).
+#define KART_4C_HEADING_SWING 0x20000000
 #define KART_4C_THUNDER_SHRINK 0x80
 // Bits of Kart.mUnk_48.
 // The Kart steers left in this step (from the input bits or the CPU); func_01ffca50 clears both turn bits.
@@ -506,11 +508,11 @@ typedef struct Kart {
     /* 4d8 */ s16 mUnk_4d8;
     /* 4da */ s16 mUnk_4da;
     /* 4dc */ s16 mLandingTimer;
-    // Angle added to mHeadingAngle when the orientation is built, never to mHeadingAngle itself; func_020713a0 swings
-    // it back and forth and sets it to 0 at the end.
+    // Angle added to mHeadingAngle when the orientation is built, never to mHeadingAngle itself;
+    // AdvanceKartHeadingSwing swings it back and forth and sets it to 0 at the end.
     /* 4de */ s16 mHeadingAngleOffset;
-    // Angle added to mHeadingAngleOffset each step by func_020713a0; changed by 0x3c per call toward the swing
-    // direction and clamped to 0x17c, later 0xd2; 0 at reset.
+    // Angle added to mHeadingAngleOffset each step by AdvanceKartHeadingSwing; changed by 0x3c per call toward the
+    // swing direction and clamped to 0x17c, later 0xd2; 0 at reset.
     /* 4e0 */ s16 mHeadingAngleOffsetPerFrame;
     /* 4e2 */ s16 mHeadingAngleOffsetDirection;
     /* 4e4 */ u16 mHeadingAngleOffsetCount;

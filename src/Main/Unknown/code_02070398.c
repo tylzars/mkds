@@ -1007,7 +1007,7 @@ void func_02071568(Kart *kart) {
     kart->mUnk_4f0.z = kart->mUnk_4f0.z + (s32) (((s64) kart->mUnk_4f0.z * s) >> 12);
 }
 
-void func_020713a0(Kart *kart) {
+void AdvanceKartHeadingSwing(Kart *kart) {
     s32 offset;
 
     if (kart->mHeadingAngleOffsetCount <= 2) {
@@ -1042,7 +1042,7 @@ void func_020713a0(Kart *kart) {
         if ((offset > 0 && kart->mHeadingAngleOffsetDirection > 0) ||
             (offset < 0 && kart->mHeadingAngleOffsetDirection < 0)) {
             kart->mHeadingAngleOffset = 0;
-            kart->mUnk_4c &= ~0x20000000;
+            kart->mUnk_4c &= ~KART_4C_HEADING_SWING;
             func_02068a64(kart, 0, 1);
             kart->mUnk_44 |= 0x1000000;
         }

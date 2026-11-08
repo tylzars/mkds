@@ -646,15 +646,15 @@ void func_01ffba68(Kart *p) {
             }
         }
     }
-    if (p->mUnk_4c & 0x20000000) {
-        func_020713a0(p);
+    if (p->mUnk_4c & KART_4C_HEADING_SWING) {
+        AdvanceKartHeadingSwing(p);
     }
     f = p->mUnk_48;
     if (f & 0x10000000) {
         p->mForwardSpeed += 0x1000;
     } else if (p->mUnk_44 & KART_44_ON_GROUND) {
         g = p->mUnk_4c;
-        if (!(g & 0x20000000)) {
+        if (!(g & KART_4C_HEADING_SWING)) {
             if (f & 0x80) {
                 p->mForwardSpeed = ((s64) p->mForwardSpeed * 0xfae) >> 12;
             } else if (f & 0x26) {

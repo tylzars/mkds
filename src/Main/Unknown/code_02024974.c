@@ -159,7 +159,7 @@ void func_02024a88(Kart *kart) {
         h = kart->mUnk_4d4;
         if (h > 0xcd && gRaceSetup->mCurrentEntries[kart->mIndex].mPlayer.mKind != PLAYER_KIND_CPU) {
             if (f != 0) {
-                if ((kart->mUnk_4c & 0x20000000) != 0) {
+                if ((kart->mUnk_4c & KART_4C_HEADING_SWING) != 0) {
                     i = 0;
                 } else {
                     i = ((s64) h * 0x580000 + 0x800) >> 12;

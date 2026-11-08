@@ -127,7 +127,7 @@ void UpdateChaseCamera(Camera *camera, Kart *kart) {
     if (camera->mUnk_258 == FALSE) {
         camera->mPrevPos = camera->mPos;
     }
-    if (kart->mUnk_4c & 0x20000000) {
+    if (kart->mUnk_4c & KART_4C_HEADING_SWING) {
         forward = camera->mSavedKartForward;
         func_02076528_inline(&forward, camera->mFollowDirectionSign);
     } else {

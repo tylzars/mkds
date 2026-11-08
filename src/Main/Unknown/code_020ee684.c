@@ -621,7 +621,7 @@ BOOL func_020f0154(KartItems *kartItems) {
     if (kart->mState != KART_STATE_NORMAL) {
         return FALSE;
     }
-    if ((kart->mUnk_4c & 0x20000000) != 0) {
+    if ((kart->mUnk_4c & KART_4C_HEADING_SWING) != 0) {
         return FALSE;
     }
     if (kartItems->mItemInUse.mObjectKind != 0xf) {
