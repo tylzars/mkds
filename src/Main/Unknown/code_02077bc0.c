@@ -1607,7 +1607,7 @@ void AdvanceKartModelMenu(s32 param_1) {
     KartModelMenuSlot *e;
     q = &gKartModelMenu->mView;
     gKartModelMenu->mMirrorMode = param_1;
-    func_02077b3c();
+    QueueKartModelMenuLoad();
     AdvanceKartModelMenuBg0Offset();
     if (gKartModelMenu->mShownSlotIndex >= 0) {
         e = &gKartModelMenu->mSlots[gKartModelMenu->mShownSlotIndex];
@@ -1629,7 +1629,7 @@ void AdvanceKartModelMenu(s32 param_1) {
             QueueKartEmblemTexture(gKartModelMenu->mEmblemData, gKartModelMenu->mEmblemPalette);
         }
     }
-    func_02077b1c();
+    ClearKartModelMenuRequests();
 }
 
 void func_020783c8(void) {
@@ -1752,8 +1752,8 @@ void AdvanceKartModelMenuInput(void) {
     }
     q->mUnk_1a = q->mUnk_18;
     func_02110aac(v, a);
-    func_02077b3c();
-    func_02077b1c();
+    QueueKartModelMenuLoad();
+    ClearKartModelMenuRequests();
 }
 
 void DrawKartModelMenu(void) {

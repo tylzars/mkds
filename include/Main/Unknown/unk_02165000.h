@@ -77,9 +77,9 @@ extern const char gKartModelSlashPrefix[];
 
 extern s16 gSceneNumbers[];
 extern const SceneCallbacks data_021653c0;
-extern u16 data_0216569c;
+extern u16 gDefaultHalfFovAngle;
 extern u16 data_usa_021656a0;
-extern s32 data_usa_021656b4;
+extern s32 gCourseWobbleAmplitude;
 extern s32 data_usa_021656c0;
 extern Vec3 data_02165530;
 extern s32 data_02165948;

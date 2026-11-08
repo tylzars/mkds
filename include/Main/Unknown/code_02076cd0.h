@@ -24,10 +24,10 @@ typedef struct Unk02077750 {
 // Declared here until the code that defines them is decompiled.
 extern const char data_usa_02165714[];
 
-void UpdateCameraView(Camera *p);
-void UpdateCameraViewWithWorldUp(Camera *p);
-void RefreshCameraProjection(Camera *p);
-void SetupCamera(Camera *p);
+void UpdateCameraView(Camera *camera);
+void UpdateCameraViewWithWorldUp(Camera *camera);
+void RefreshCameraProjection(Camera *camera);
+void SetupCamera(Camera *camera);
 // Allocates gFirstChainCamera (0x270 bytes), sets gSecondChainCamera to NULL, runs SetupCamera, sets mKind 2, starts it
 // at CourseMap.mFirstChainStartEntry and sets up its mPosCurve when the entry has a group. With no entry it sets
 // gRaceProgress->mUnk_4d0 to 1 and returns. InitRace calls it when gRaceSetup->mUnk_00c is 4.
@@ -37,15 +37,15 @@ void CreateFirstChainCamera(void);
 // a group. With no first entry it sets gRaceProgress->mUnk_4d0 to 1 and returns. InitRace calls it when
 // gRaceSetup->mUnk_00c is 3 or 5.
 void CreateChainCameraPair(void);
-void func_02077750(Unk02077750 *a, CourseMapCamera *b);
-void func_020777ac(u32 a);
+void func_02077750(Unk02077750 *a, CourseMapCamera *courseMapCamera);
+void CreateEntryCamera(u32 followedKartIndex);
 // Allocates the chase camera (gChaseCamera), sets it up behind the selected Kart (SetupCameraBehindKart), keeps that
 // Kart's forward vector in mSavedKartForward and refreshes the projection.
 void CreateChaseCamera(void);
 void func_02077998(void);
 void LoadEmblemSBNclr(void *a);
-u16 func_02077a4c(void);
+u16 GetKartListCount(void);
 u16 func_02077a5c(void);
-u32 func_02077a70(s32 *a, u32 b);
-void func_02077b1c(void);
-void func_02077b3c(void);
+BOOL func_02077a70(s32 *characterIndex, u32 kartIndex);
+void ClearKartModelMenuRequests(void);
+void QueueKartModelMenuLoad(void);

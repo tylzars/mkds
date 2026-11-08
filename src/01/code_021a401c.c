@@ -15,7 +15,7 @@ void func_ov001_021a401c(void) {
     int b;
 
     a = func_02077a5c();
-    b = func_02077a4c();
+    b = GetKartListCount();
     AdvanceKartModelMenuInput();
     if (b >= 10) {
         func_ov001_02185018(GetLldEntry(gEmblem->mEmblemMLld, 4), 0);

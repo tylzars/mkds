@@ -148,7 +148,7 @@ void InitRace(void) {
     InitKartAiShared();
     InitKarts(gRaceSetup->mKartCount);
     CreateChaseCamera();
-    func_020777ac(gRaceSetup->mFollowedKartIndex);
+    CreateEntryCamera(gRaceSetup->mFollowedKartIndex);
     if (gRace->mUseChainCameras != 0) {
         if (gRace->mUseFirstChainCamera != 0) {
             CreateFirstChainCamera();
@@ -157,7 +157,7 @@ void InitRace(void) {
         }
     }
     gRaceChaseCamera = GetChaseCamera();
-    gRaceEntryCamera = func_02074898();
+    gRaceEntryCamera = GetEntryCamera();
     gCurrentCamera = gRaceChaseCamera;
     gCurrentViewMatrix = &gRaceChaseCamera->mViewMatrix;
     RefreshCameraProjection(gRaceChaseCamera);

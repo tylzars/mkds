@@ -1067,7 +1067,7 @@ typedef struct Camera {
     // mHalfFovAngleGoal; entry cameras set the pair mHalfFovPairFirst / mHalfFovPairSecond (sin and cos of the angle)
     // directly.
     /* 060 */ s32 mHalfFovAngle;
-    // Default data_0216569c (0x157c, about 30 degrees).
+    // Default gDefaultHalfFovAngle (0x157c, about 30 degrees).
     /* 064 */ s32 mHalfFovAngleGoal;
     // First and second element of the pair gPairsByAngle holds for mHalfFovAngle; mFrustumTop = mNear * first / second.
     /* 068 */ s16 mHalfFovPairFirst;
@@ -1672,7 +1672,7 @@ extern Camera *gSecondChainCamera;
 // two chain cameras its view is the one used on even frames of gRace->mUpdateFrames.
 extern Camera *gFirstChainCamera;
 extern void *data_usa_0217aa68;
-extern s32 data_usa_0217ac7c;
-extern s32 data_usa_0217ac90;
-extern s32 data_usa_0217ac78;
-extern u16 data_usa_0217ac70;
+extern s32 gFollowHeight;
+extern s32 gDefaultFollowDistance;
+extern s32 gDefaultLookAtHeight;
+extern u16 gKind7EntryCount;
