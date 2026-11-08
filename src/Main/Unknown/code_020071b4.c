@@ -21,7 +21,7 @@ u32 func_020072c0(void) {
     DataRange *range;
     u8 *v9;
     u32 v10;
-    Unk02007478 *loadJob;
+    DataRangeLoadJob *loadJob;
     Unk0216fdac *v12;
     Unk0216fdac *v13;
     v12 = data_0216fdac;
@@ -61,7 +61,7 @@ u32 func_020072c0(void) {
     childEntry = OFFSET_PTR(Unk0216fdac, work, work->mUnk_1525 * 0x5d4);
     rangeTable = childEntry->mUnk_1d54;
     if (CopyFromDataRanges(rangeTable, v10, v9, v2.mUnk_04) == 0) {
-        loadJob = (Unk02007478 *) data_0216fdac->mUnk_7ce0;
+        loadJob = (DataRangeLoadJob *) data_0216fdac->mUnk_7ce0;
         if (IsWorkerTaskInUse(&loadJob->mUnk_00) == 0) {
             if (rangeTable->mUnk_00 != 0) {
                 range = rangeTable->mUnk_30;

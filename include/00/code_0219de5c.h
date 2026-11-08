@@ -6,6 +6,6 @@
 
 u32 func_ov000_0219de5c(u32 kind);
 s32 func_ov000_0219de64(void);
-void AddMatchingKeyIds(s32 event, Unk021a3fc8 *keyIds, void *c);
+void AddMatchingKeyIds(s32 event, MatchingKeyIds *keyIds, void *c);
 void func_ov000_0219ded8(void);
 void func_ov000_0219dedc(void);

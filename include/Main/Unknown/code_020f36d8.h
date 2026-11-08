@@ -52,7 +52,7 @@ typedef struct {
 
 // Four positions and pointers to them.
 typedef struct {
-    /* 00 */ Unk020d849c mUnk_00;
+    /* 00 */ SegmentProgress mUnk_00;
     /* 60 */ s32 mUnk_60;
     /* 64 */ Vec3 *mUnk_64[4];
     /* 74 */ Vec3 mUnk_74[4];

@@ -91,12 +91,12 @@ extern Unk021884e4 *data_ov000_021b4d10;
 extern struct Hashtable *data_ov000_021b4d18;
 extern struct SbServer *data_ov000_021b4d1c;
 // Objects behind gWiFiSelectCharacterState and gWiFiSelectKartState.
-typedef struct Unk021b4c78 {
+typedef struct WiFiSelectHeapHolder {
     /* 0 */ void *mHeap;
-} Unk021b4c78;
+} WiFiSelectHeapHolder;
 
-extern Unk021b4c78 *gWiFiSelectCharacterState;
-extern Unk021b4c78 *gWiFiSelectKartState;
+extern WiFiSelectHeapHolder *gWiFiSelectCharacterState;
+extern WiFiSelectHeapHolder *gWiFiSelectKartState;
 
 // Object behind data_ov000_021b4d24; the 0x5d8 bytes at offset 0x4c of a Unk0218b668.
 typedef struct SbServerList {

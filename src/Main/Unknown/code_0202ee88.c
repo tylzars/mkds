@@ -21,7 +21,7 @@
 
 #pragma optimize_for_size on
 
-u32 func_0202efe8(Unk02175628_48 *a) {
+u32 func_0202efe8(InputSlotPair *a) {
     u32 r;
     if (func_0202f028(a) != 0 || func_0202f020(a) != 0) {
         r = 1;
@@ -32,7 +32,7 @@ u32 func_0202efe8(Unk02175628_48 *a) {
 }
 
 u32 func_0202efc8(u32 a) {
-    return func_0202efe8((Unk02175628_48 *) &data_02175628[a].mPairX);
+    return func_0202efe8((InputSlotPair *) &data_02175628[a].mPairX);
 }
 
 #pragma thumb on

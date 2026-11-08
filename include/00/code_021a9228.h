@@ -75,7 +75,7 @@ typedef struct Unk021aa880 {
 
 typedef struct HttpsState HttpsState;
 
-typedef struct Unk021aaf38 Unk021aaf38;
+typedef struct AuthorityRecord AuthorityRecord;
 typedef struct HttpsState HttpsState;
 
 typedef struct HttpsState HttpsState;
@@ -134,7 +134,7 @@ void ParseAndCheckItemListMessage(HttpsState *a, u8 *b);
 BOOL CompareTextWithWildcard(const s8 *text, const s8 *pattern);
 s32 GetTextLengthUpToDot(const s8 *text);
 u32 ComputeParsedItemCheckFlags(HttpsState *a);
-u32 CheckTransformedBytesHoldPaddedDigest(HttpsState *a, Unk021aaf38 *b);
+u32 CheckTransformedBytesHoldPaddedDigest(HttpsState *a, AuthorityRecord *b);
 BOOL ParseTaggedItem(HttpsState *a, u8 **b, s32 depth, s32 index, s32 mode);
 u32 ParseDateText(const u8 *digits, u32 tag);
 void AppendCommaSeparatedText(s8 *dest, const s8 *source, s32 count);

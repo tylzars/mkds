@@ -13,11 +13,11 @@
 #include "Main/Unknown/code_0214d000.h"
 
 // Object QueueWorkerTask runs LoadDataRange on: the member at 0x10 is the entry of DataRangeTable that is read.
-typedef struct Unk02007478 {
+typedef struct DataRangeLoadJob {
     /* 00 */ WorkerTask mUnk_00;
     /* 10 */ DataRange *mDataRange;
     /* 14 */ DataRangeTable *mDataRangeTable;
-} Unk02007478;
+} DataRangeLoadJob;
 
 // Six bytes handed to WriteParentMessage.
 typedef struct Unk020074d8_msg {
@@ -29,5 +29,5 @@ typedef struct Unk020074d8_msg {
 
 extern u8 data_usa_02161784;
 
-void LoadDataRange(Unk02007478 *job);
+void LoadDataRange(DataRangeLoadJob *job);
 u32 func_020074d8(void);

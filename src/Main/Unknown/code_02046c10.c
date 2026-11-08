@@ -90,7 +90,7 @@ void func_02046d7c(void) {
     }
 }
 
-void func_02046ca8(Unk02175628_48 *a, s32 b, s32 c) {
+void func_02046ca8(InputSlotPair *a, s32 b, s32 c) {
     TPData d;
     u32 e;
     s32 f;

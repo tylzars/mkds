@@ -304,7 +304,7 @@ void InitRock(RockObject *rock, struct CourseMapRow *courseRow) {
 
 #pragma thumb on
 // Turns the stored offsets of the loaded collision file into pointers.
-void LoadCourseCollisionData(Unk0217b614 *collision, Unk0217b614 *file) {
+void LoadCourseCollisionData(CourseCollision *collision, CourseCollision *file) {
     *collision = *file;
     collision->mUnk_00 = OFFSET_PTR(Vec3, file, (u32) collision->mUnk_00);
     collision->mUnk_04 = OFFSET_PTR(UnkVec16, file, (u32) collision->mUnk_04);

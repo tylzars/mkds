@@ -200,11 +200,11 @@ typedef struct Unk0217d384_021c {
 } Unk0217d384_021c;
 
 // 0x18-byte object at member 0x1954 of WiFiSession: three 64-bit values (x = x * [8] + [0x10] in TallyPickedCourse).
-typedef struct Unk0217d384_1954 {
+typedef struct RandomState64 {
     /* 00 */ u64 mValue;
     /* 08 */ u64 mMultiplier;
     /* 10 */ u64 mIncrement;
-} Unk0217d384_1954;
+} RandomState64;
 
 // 8-byte object at member 0x18e0 of WiFiSession.
 typedef struct Unk0217d384_18e0 {
@@ -245,7 +245,7 @@ typedef struct WiFiSession {
     /* 194e */ u8 mUnk_194e;
     /* 194f */ u8 mUnk_194f;
     /* 1950 */ s32 mStep;
-    /* 1954 */ Unk0217d384_1954 mUnk_1954;
+    /* 1954 */ RandomState64 mUnk_1954;
     /* 196c */ u8 mUnk_196c[0x14];
     // Calls of the step function in the current step; zeroed by every normal step change and by the timeout
     // (changes to step 11 that are not timeouts leave it as is).

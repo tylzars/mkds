@@ -469,7 +469,7 @@ static inline void func_0210fb88_inline(NNSSndSeqPlayer **p, s32 v, s32 k, s32 t
     }
 }
 
-void func_0210fb88(Unk0217d244 *a, NNSSndSeqPlayer **b) {
+void func_0210fb88(SeqPlayerControl *a, NNSSndSeqPlayer **b) {
     u32 i;
     s32 j;
     s32 k;

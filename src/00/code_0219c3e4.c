@@ -212,7 +212,7 @@ void StartWiFiLoginGpConnect(char *a, char *b, void (*c)(), s32 d) {
 // records the start time and issues the request; UpdateWiFiLoginRequest polls the reply. Called by func_ov000_0219ca84
 // and by the profile check func_ov000_0219c400, which restarts the request.
 void StartWiFiLoginRequest(void (*a)(), void *b) {
-    Unk02186560 s;
+    AuthCreateParams s;
     void *h;
     u64 t;
     MI_CpuFill8(&s, 0, 0x2c);
@@ -248,7 +248,7 @@ void StartWiFiLoginRequest(void (*a)(), void *b) {
 // accepts the saved record) or StartWiFiLoginGpConnect with state 3; while the request runs, reports error 2 after 10
 // s, otherwise closes it and issues it again.
 void UpdateWiFiLoginRequest(void) {
-    Unk02186560 s;
+    AuthCreateParams s;
     Unk0218635c x;
     Unk0218635c y;
     if (DWC_Auth_GetError() == 0x14) {

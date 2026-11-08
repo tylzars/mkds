@@ -25,11 +25,11 @@ typedef struct Unk0217b340 {
 } Unk0217b340;
 
 // Section of LocateBmgSections whose first word is 0x44415431 (data_0217b364): bytes from 8.
-typedef struct Unk0217b344 {
+typedef struct BmgBodySection {
     /* 00 */ u32 mTag;
     /* 04 */ u32 mNextOffset;
     /* 08 */ u8 mBody[1];
-} Unk0217b344;
+} BmgBodySection;
 
 void LocateBmgSections(Bmg *bmg);
 void *GetBmgEntry(Bmg *bmg, s32 index);

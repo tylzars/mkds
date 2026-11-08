@@ -18,10 +18,10 @@ typedef struct Unk021a72a4 {
 } Unk021a72a4;
 
 // Start address and size of a part of an Unk021a6fa8 or of its blocks, set by func_ov000_021a71a4.
-typedef struct Unk021a71a4 {
+typedef struct SizedBuffer {
     /* 00 */ s32 mSize;
     /* 04 */ u8 *mStart;
-} Unk021a71a4;
+} SizedBuffer;
 
 // Shared start of the two blocks func_ov000_021a71c0 sets up behind an Unk021a6fa8.
 typedef struct Unk021a7154 {
@@ -46,7 +46,7 @@ typedef struct Unk021a71c0 {
 
 typedef struct Unk021a722a {
     /* 000 */ Unk021a7154 mUnk_00;
-    /* 0f8 */ Unk021a71a4 mUnk_f8;
+    /* 0f8 */ SizedBuffer mUnk_f8;
     /* 100 */ u16 mUnk_100;
     /* 102 */ u16 mUnk_102;
     /* 104 */ s32 mUnk_104;
@@ -66,11 +66,11 @@ typedef struct Unk021a6fa8 {
     /* 1c */ u32 mUnk_1c;
     /* 20 */ u32 mUnk_20;
     /* 24 */ u8 mUnk_24[0x18];
-    /* 3c */ Unk021a71a4 mReceiveBuffer;
+    /* 3c */ SizedBuffer mReceiveBuffer;
     /* 44 */ s32 mReceiveBufferLength;
-    /* 48 */ Unk021a71a4 mSendBuffer;
-    /* 50 */ Unk021a71a4 mUnk_50;
-    /* 58 */ Unk021a71a4 mUnk_58;
+    /* 48 */ SizedBuffer mSendBuffer;
+    /* 50 */ SizedBuffer mUnk_50;
+    /* 58 */ SizedBuffer mUnk_58;
     /* 60 */ u8 mUnk_60[4];
     /* 64 */ Unk021a71c0 *mReceiveBlock;
     /* 68 */ Unk021a722a *mSendBlock;

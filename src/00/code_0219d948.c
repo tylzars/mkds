@@ -16,7 +16,7 @@
 
 u8 func_ov000_0219d9ec(void *a, u8 *b, u8 *c, char *d) {
     char e[4];
-    Unk0218ec44 f;
+    GpBuddyStatus f;
     if (func_ov000_0219d094(a, &f) != 0) {
         if (f.mUnk_004 == 6) {
             if (b != NULL) {

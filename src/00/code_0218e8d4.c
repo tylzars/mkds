@@ -188,7 +188,7 @@ s32 GpGetBuddyCount(GpConnection *object, s32 *output) {
     return 0;
 }
 
-u32 GpGetBuddyStatus(GpConnection *a, s32 b, Unk0218ec44 *c) {
+u32 GpGetBuddyStatus(GpConnection *a, s32 b, GpBuddyStatus *c) {
     GpiConnection *o;
     GpiProfile *e;
     GpiBuddyStatus *n;

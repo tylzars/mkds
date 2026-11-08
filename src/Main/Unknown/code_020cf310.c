@@ -74,7 +74,7 @@ void func_020cfca4(void) {
     data_0217b490->mUnk_00 = 0;
 }
 
-void UpdateRaceHudSubScreenBgPalette(Unk020cf340 *palette) {
+void UpdateRaceHudSubScreenBgPalette(RaceHudSubScreenBgPalette *palette) {
     s32 i;
     s32 j;
     s32 shift;

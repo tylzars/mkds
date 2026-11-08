@@ -29,7 +29,7 @@
 #include "code_0214a390.h"
 #include "code_0214b824.h"
 
-void LoadBg1FromSceneFiles(Unk02001d30 *files, s32 mainScreen, const char *paletteFileName, const char *charsFileName,
+void LoadBg1FromSceneFiles(Bg1Files *files, s32 mainScreen, const char *paletteFileName, const char *charsFileName,
                            const char *screenMapFileName) {
     LoadNclrData(&files->mPalette, FindSceneFile(paletteFileName));
     DC_StoreRange(files->mPalette->mData, files->mPalette->mDataSize);

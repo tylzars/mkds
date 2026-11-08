@@ -211,25 +211,25 @@ void FindMissionTableCell(u32 value, u8 *outRow, u8 *outColumn) {
 
 #pragma thumb off
 
-u32 func_020ae338(Unk02175628_48 *p0) {
+u32 func_020ae338(InputSlotPair *p0) {
     return p0->mHasPair;
 }
 
-u32 func_020ae308(Unk02175628_48 *a) {
+u32 func_020ae308(InputSlotPair *a) {
     if (func_020ae338(a) == 0 && a->mNoPairCount < 5) {
         return 1;
     }
     return 0;
 }
 
-u32 IsPairNew(Unk02175628_48 *a) {
+u32 IsPairNew(InputSlotPair *a) {
     if (a->mPrevHasPair == 0 && a->mHasPair != 0) {
         return 1;
     }
     return 0;
 }
 
-u32 func_020ae2b0(Unk02175628_48 *a) {
+u32 func_020ae2b0(InputSlotPair *a) {
     if (func_020ae308(a) == 0 && IsPairNew(a) != 0) {
         return 1;
     }
@@ -237,7 +237,7 @@ u32 func_020ae2b0(Unk02175628_48 *a) {
 }
 
 u32 IsSlotPairNew(u32 a) {
-    return func_020ae2b0((Unk02175628_48 *) &data_02175628[a].mPairX);
+    return func_020ae2b0((InputSlotPair *) &data_02175628[a].mPairX);
 }
 
 #pragma thumb on

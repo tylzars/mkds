@@ -6,7 +6,7 @@ typedef struct Unk02180728 Unk02180728;
 
 typedef void PixelSetFunc(u16 *a, s32 b, s32 c, s32 d);
 
-typedef struct Unk02175628_48 Unk02175628_48;
+typedef struct InputSlotPair InputSlotPair;
 
 // The bounds of a rectangle, passed by value to IsNewPairInRect.
 typedef struct PairRect {
@@ -16,7 +16,7 @@ typedef struct PairRect {
     /* 06 */ u16 mMaxY;
 } PairRect;
 
-typedef struct Unk02175628_48 Unk02175628_48;
+typedef struct InputSlotPair InputSlotPair;
 
 void FindMissionTableCell(u32 value, u8 *outRow, u8 *outColumn);
 
@@ -35,10 +35,10 @@ u32 func_020ae114(u32 a);
 u32 func_020ae15c(u32 arg0);
 u32 IsNewPairInRect(u32 a, PairRect b);
 u32 IsSlotPairNew(u32 a);
-u32 func_020ae2b0(Unk02175628_48 *a);
-u32 IsPairNew(Unk02175628_48 *a);
-u32 func_020ae308(Unk02175628_48 *a);
-unsigned int func_020ae338(Unk02175628_48 *p0);
+u32 func_020ae2b0(InputSlotPair *a);
+u32 IsPairNew(InputSlotPair *a);
+u32 func_020ae308(InputSlotPair *a);
+unsigned int func_020ae338(InputSlotPair *p0);
 u32 GetCupCourseId(s32 a, s32 b);
 u32 func_020ae3b4(u32 a);
 u16 GetRepeatBits(u32 a, u32 b);

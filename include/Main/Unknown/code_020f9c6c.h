@@ -22,7 +22,7 @@ typedef struct CourseMapRow {
 } CourseMapRow;
 
 #include "Main/Unknown/code_020f36d8.h"
-#include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
+#include "Main/Unknown/code_0210b000.h" // SoundDistanceSquaredChange
 
 // Object GetViewTransposeMatrix returns: a vector at 0x18.
 typedef struct Unk020e6b38 {
@@ -86,7 +86,7 @@ typedef struct ItemKouraW {
     /* 2f8 */ u16 mNextState;
     /* 2fa */ u16 mNextStateRequested;
     /* 2fc */ s32 mUnk_2fc;
-    /* 300 */ Unk0210b7ec mUnk_300;
+    /* 300 */ SoundDistanceSquaredChange mUnk_300;
     /* 310 */ u8 mUnk_310[0xc];
 } ItemKouraW;
 

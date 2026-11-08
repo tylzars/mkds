@@ -1735,7 +1735,7 @@ u32 func_ov000_0219fbec(s32 a, s32 b) {
     char g[8];
     s32 q;
     char x[12];
-    Unk0218ec44 h;
+    GpBuddyStatus h;
     WiFiMatching *p;
     s32 n;
     u32 r;
@@ -3153,7 +3153,7 @@ void func_ov000_0219dedc(void) {}
 
 void func_ov000_0219ded8(void) {}
 
-void AddMatchingKeyIds(s32 event, Unk021a3fc8 *keyIds, void *c) {
+void AddMatchingKeyIds(s32 event, MatchingKeyIds *keyIds, void *c) {
     s32 i;
     u8 *d;
     switch (event) {

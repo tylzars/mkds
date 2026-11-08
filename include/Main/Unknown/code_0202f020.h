@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk02175628_48 Unk02175628_48;
+typedef struct InputSlotPair InputSlotPair;
 
-unsigned int func_0202f020(Unk02175628_48 *pair);
+unsigned int func_0202f020(InputSlotPair *pair);

@@ -22,7 +22,7 @@ void LocateBmgSections(Bmg *bmg) {
                 data_0217b360 = (Unk0217b340 *) section;
                 break;
             case 0x44415431:
-                data_0217b364 = (Unk0217b344 *) section;
+                data_0217b364 = (BmgBodySection *) section;
                 break;
         }
     }

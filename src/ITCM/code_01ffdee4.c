@@ -44,7 +44,7 @@ BOOL func_01ffdee4(void *a, void *b, Vec3 *c, int r, u16 fl, short e, void *f, v
     Vec3 vt;
     Vec3 n[4];
     Vec3 ud;
-    Unk0217b614 *kp;
+    CourseCollision *kp;
     u32 x;
     u32 y;
     u32 z;

@@ -136,7 +136,7 @@ void StepDataSharing(void) {
 }
 
 BOOL func_0205373c(void) {
-    Unk0217aa00_15bc *q;
+    DataSharing *q;
     BOOL v1;
     u16 i;
     u16 j;

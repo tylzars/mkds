@@ -79,7 +79,7 @@ typedef struct InputSlot {
 } InputSlot;
 
 // The 0x14 bytes at 0x48 of an element of data_02175628 (the same bytes as its mUnk_48 to mUnk_5b).
-typedef struct Unk02175628_48 {
+typedef struct InputSlotPair {
     /* 00 */ u16 mPairX;
     /* 02 */ u16 mPairY;
     /* 04 */ u16 mHasPair;
@@ -90,7 +90,7 @@ typedef struct Unk02175628_48 {
     /* 0e */ u16 mPrevValidity;
     /* 10 */ u16 mNoPairCount;
     /* 12 */ u8 mUnk_12[0x2];
-} Unk02175628_48;
+} InputSlotPair;
 
 extern InputSlot data_0217562c[];
 

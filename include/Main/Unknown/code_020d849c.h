@@ -15,15 +15,15 @@ typedef struct Unk020d84e4 {
 } Unk020d84e4;
 
 // An Unk020e0144_00_0 (func_020d80e4 and func_020d91dc), then three words.
-typedef struct Unk020d849c {
+typedef struct SegmentProgress {
     /* 00 */ Unk020e0144_00_0 mUnk_00;
     /* 54 */ s32 mUnk_54;
     /* 58 */ s32 mUnk_58;
     /* 5c */ s32 mUnk_5c;
-} Unk020d849c;
+} SegmentProgress;
 
 void ReverseGroupFollower(Unk020e0144 *follower);
 void func_020d859c(Unk020d84e4 *p, u16 entryValue, s32 entryIndex);
 s32 func_020d84e4(Unk020d84e4 *p);
-void SetSegmentProgressRate(Unk020d849c *segmentProgress, s32 a);
-BOOL AdvanceSegmentProgress(Unk020d849c *segmentProgress);
+void SetSegmentProgressRate(SegmentProgress *segmentProgress, s32 a);
+BOOL AdvanceSegmentProgress(SegmentProgress *segmentProgress);

@@ -95,7 +95,7 @@ void MoveSelectKartPrev(void) {
 
 #pragma thumb off
 
-u32 func_02029210(Unk02175628_48 *pair) {
+u32 func_02029210(InputSlotPair *pair) {
     u32 result;
 
     if (func_020287ec(pair) != 0 || func_0202881c(pair) != 0) {
@@ -107,5 +107,5 @@ u32 func_02029210(Unk02175628_48 *pair) {
 }
 
 u32 func_020291f0(u32 slot) {
-    return func_02029210((Unk02175628_48 *) &data_02175628[slot].mPairX);
+    return func_02029210((InputSlotPair *) &data_02175628[slot].mPairX);
 }

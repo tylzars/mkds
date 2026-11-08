@@ -30,7 +30,7 @@ typedef struct Wanwan {
     /* f4 */ s32 mUnk_f4;
     /* f8 */ s32 mUnk_f8;
     /* fc */ s32 mUnk_fc;
-    /* 100 */ Unk020d849c mUnk_100;
+    /* 100 */ SegmentProgress mUnk_100;
     /* 160 */ Vec3 *mUnk_160[4];
     /* 170 */ Vec3 mUnk_170[4];
     /* 1a0 */ Unk020d84e4 mUnk_1a0;

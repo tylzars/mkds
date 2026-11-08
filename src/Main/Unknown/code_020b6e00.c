@@ -387,7 +387,7 @@ void func_020b8624(void) {
     }
 }
 
-struct Unk0217b3c4 **func_020b8610(void) {
+struct RaceNcerNclrNcgrTables **func_020b8610(void) {
     data_0217b3c4 = NULL;
     return &data_0217b3c4;
 }

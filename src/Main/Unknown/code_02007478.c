@@ -53,7 +53,7 @@ u32 func_020074d8(void) {
     return FlushAndSendMPData(0xea, childMask, *(u32 *) &data_0216fdac);
 }
 
-void LoadDataRange(Unk02007478 *job) {
+void LoadDataRange(DataRangeLoadJob *job) {
     DataRange *range;
     DataRangeTable *table;
     FSFile file;

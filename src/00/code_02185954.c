@@ -242,7 +242,7 @@ void func_ov000_02186628(const void *a) {
     data_ov000_021b1040.mUnk_00 = a;
 }
 
-s32 DWC_Auth_Create(Unk02186560 *a, Http *b) {
+s32 DWC_Auth_Create(AuthCreateParams *a, Http *b) {
     void *c;
     if (gAuth != NULL) {
         return 2;

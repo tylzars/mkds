@@ -7,8 +7,8 @@ typedef struct Unk0219a604Value {
     /* 04 */ u16 mUnk_04;
 } Unk0219a604Value;
 
-typedef struct Unk0219a604 {
+typedef struct Gt2ConnectionEntry {
     /* 00 */ Unk0219a604Value *mValue;
-} Unk0219a604;
+} Gt2ConnectionEntry;
 
-u32 func_ov000_0219a604(const Unk0219a604 *object, u32 modulus);
+u32 func_ov000_0219a604(const Gt2ConnectionEntry *object, u32 modulus);

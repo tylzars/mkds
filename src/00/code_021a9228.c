@@ -383,7 +383,7 @@ BOOL ParseTaggedItem(HttpsState *a, u8 **b, s32 depth, s32 index, s32 mode) {
 
 // Returns 0 when the bytes, run through the two values of the authority record, start 00 01, a run of 0xff, 00, 30 and
 // end with mRangeDigest, else 2.
-u32 CheckTransformedBytesHoldPaddedDigest(HttpsState *a, Unk021aaf38 *b) {
+u32 CheckTransformedBytesHoldPaddedDigest(HttpsState *a, AuthorityRecord *b) {
     s32 n;
     u16 *c;
     u16 *d;
@@ -481,7 +481,7 @@ u32 ComputeParsedItemCheckFlags(HttpsState *a) {
         f |= 1;
         return f;
     }
-    f |= CheckTransformedBytesHoldPaddedDigest(a, (Unk021aaf38 *) r);
+    f |= CheckTransformedBytesHoldPaddedDigest(a, (AuthorityRecord *) r);
     return f;
 }
 
@@ -1254,7 +1254,7 @@ void MixBytesIntoRandomState(void *bytes, u32 n) {
 
 u8 SendKind2Record(Unk021a998c *a) {
     HttpsState *c = a->mHttpsState;
-    Unk021a998c_0c_7f4 *d = c->mItemList;
+    ItemList *d = c->mItemList;
     s32 e;
     u32 f;
     u8 *g;

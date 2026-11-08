@@ -150,7 +150,7 @@ typedef struct Unk0217d070 {
 } Unk0217d070;
 
 // Object at data_0217d084 (0x1c bytes); SetupSoundMode stores its second argument at 0x00.
-typedef struct Unk0217d084 {
+typedef struct SoundModeHolder {
     /* 00 */ Unk0217d070 *mScenePlayers;
     /* 04 */ u32 mMode;
     /* 08 */ u32 mSavedMode;
@@ -158,7 +158,7 @@ typedef struct Unk0217d084 {
     /* 10 */ u32 mUnk_10;
     /* 14 */ u32 mUnk_14;
     /* 18 */ NNSSndSeqPlayer **mUnk_18;
-} Unk0217d084;
+} SoundModeHolder;
 
 // Object at data_0217d32c (0x10 bytes); mUnk_08 points to a row of six words.
 typedef struct Unk0217d32c {
@@ -413,14 +413,14 @@ typedef struct Unk0217d380 {
 } Unk0217d380;
 
 // Object at data_0217d244 (0x10 bytes).
-typedef struct Unk0217d244 {
+typedef struct SeqPlayerControl {
     // 0: normal; 1: volume target 0; 2: volume target full.
     /* 00 */ s32 mVolumeOverride;
     /* 04 */ s32 mPitchAngle;
     // Bit 2 is set while the selected Kart is small from the Thunder item.
     /* 08 */ s32 mFlags;
     /* 0c */ u32 mKartNear;
-} Unk0217d244;
+} SeqPlayerControl;
 
 // Object at gSeqQueue.
 typedef struct SeqQueue {
@@ -749,7 +749,7 @@ extern s32 data_0217d1f4;
 extern s32 data_0217d20c;
 extern s32 data_0217d21c;
 extern u32 gAnySeqVariableEnabled;
-extern Unk0217d244 data_0217d244;
+extern SeqPlayerControl data_0217d244;
 extern struct RecordScene *gRecordScene;
 extern RecordVSErase *gRecordVSErase;
 extern Wait *gWait;
@@ -811,7 +811,7 @@ extern NNSSndHeap *data_0217d130;
 extern Unk0217d070 data_0217d070;
 // The member at 0x0c of data_0217d070, addressed through a pool word of its own.
 extern NNSSndSeqPlayer *data_0217d07c;
-extern Unk0217d084 data_0217d084;
+extern SoundModeHolder data_0217d084;
 extern struct NNSSndArc data_0217d0a0;
 extern Unk0217d32c data_0217d32c;
 extern RecordVS *gRecordVS;

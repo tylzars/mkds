@@ -69,7 +69,7 @@ static inline s32 func_02054754_inline(Unk0217aa00_15c8 *e) {
     return r;
 }
 
-static inline s32 func_02054754_inline2(Unk0217aa00_15bc *q, Unk0217aa00_15c8 *e) {
+static inline s32 func_02054754_inline2(DataSharing *q, Unk0217aa00_15c8 *e) {
     u8 mask = data_0217aa00->mUnk_0044.mChildMask;
     u8 i;
     BOOL ok = FALSE;
@@ -296,7 +296,7 @@ s32 AdvanceBlockReceive(void) {
 // Polled until it returns TRUE.
 BOOL FinishDataSharingSync(void) {
     BOOL r;
-    Unk0217aa00_15bc *q;
+    DataSharing *q;
 
     r = FALSE;
     q = &data_0217aa00->mUnk_15bc_view;
@@ -421,7 +421,7 @@ void func_02054330(void) {
     data_0217aa00->mUnk_0456_0 = 0;
 }
 
-void ResetDataSharing(Unk0217aa00_15bc *a) {
+void ResetDataSharing(DataSharing *a) {
     Unk0217aa00_1e4c *q;
     s32 i;
     s32 j;

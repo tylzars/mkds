@@ -25,7 +25,7 @@ u32 SetupSndArcFromFile(NNSSndArc *arc, const u8 *filePath, NNSSndHeap *heap, u3
     return 1;
 }
 
-void ClearSndFileIdList(Unk0217d178 *fileIdList) {
+void ClearSndFileIdList(SndFileIdList *fileIdList) {
     s32 i;
 
     for (i = 0; i < 16; i++) {
@@ -34,7 +34,7 @@ void ClearSndFileIdList(Unk0217d178 *fileIdList) {
     fileIdList->mCount = 0;
 }
 
-void ClearSndFileAddresses(Unk0217d178 *fileIdList) {
+void ClearSndFileAddresses(SndFileIdList *fileIdList) {
     s32 i;
 
     for (i = 0; i < fileIdList->mCount; i++) {

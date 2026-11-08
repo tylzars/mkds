@@ -490,7 +490,7 @@ typedef struct Unk0217aa00_ac {
     /* 390 */ u8 mUnk_390[0x20];
 } Unk0217aa00_ac;
 
-// 8-byte entries behind member 0xc of Unk0217aa00_15bc.
+// 8-byte entries behind member 0xc of DataSharing.
 typedef struct Unk0217aa00_15c8 {
     /* 00 */ union {
         u8 mUnk_00[6];
@@ -507,7 +507,7 @@ typedef struct Unk0217aa00_15c8 {
 } Unk0217aa00_15c8;
 
 // Members 0x15bc to 0x1607 of Unk0217aa00 as one object.
-typedef struct Unk0217aa00_15bc {
+typedef struct DataSharing {
     /* 00 */ WMDataSharingInfo *mUnk_00;
     /* 04 */ WMDataSet *mUnk_04;
     /* 08 */ void *mUnk_08;
@@ -522,7 +522,7 @@ typedef struct Unk0217aa00_15bc {
     /* 3c */ u16 mUnk_3c[7];
     /* 4a */ u8 mUnk_4a;
     /* 4b */ u8 mUnk_4b[1];
-} Unk0217aa00_15bc;
+} DataSharing;
 
 // 8-byte entries from 0x1e4c of Unk0217aa00.
 typedef struct Unk0217aa00_1e4c_00 {
@@ -665,7 +665,7 @@ typedef struct Unk0217aa00 {
             /* 1606 */ u8 mUnk_1606;
             /* 1607 */ u8 mUnk_1607[0x1];
         };
-        Unk0217aa00_15bc mUnk_15bc_view;
+        DataSharing mUnk_15bc_view;
     };
     /* 1608 */ Unk0217aa00_1608 mUnk_1608;
     /* 1624 */ void *mChunkBuffer;

@@ -79,7 +79,7 @@ void InitRock(RockObject *rock, struct CourseMapRow *courseRow);
 void CreateNsbmdAndShadowNsbmd(void *a, const char *name, const char *shadowName);
 void CreateRock(void *a);
 void CreateRock2(void *a);
-void LoadCourseCollisionData(Unk0217b614 *collision, Unk0217b614 *file);
+void LoadCourseCollisionData(CourseCollision *collision, CourseCollision *file);
 void InitCourseCollision(void);
 void func_020d5aa0(void *hitListPtr, u32 b, Unk020e04b0 *link, Vec3 *d, Vec3 *e);
 BOOL func_020d5a68(void *hitListPtr, u32 b, Unk020e04b0 *link);

@@ -1,11 +1,11 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_0217a000.h" // Unk0217aa00_15bc
+#include "Main/Unknown/unk_0217a000.h" // DataSharing
 
 void func_02053e74(void);
 void ResetConnectionData(void);
-void ResetDataSharing(Unk0217aa00_15bc *a);
+void ResetDataSharing(DataSharing *a);
 void func_02054330(void);
 void InitConnectionBuffers(void *a);
 void InitConnection(void *a);

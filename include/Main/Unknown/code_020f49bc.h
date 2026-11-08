@@ -23,7 +23,7 @@ typedef struct ItemKouraR {
     /* 23c */ Unk020e005c_080 mStateMachine;
     /* 250 */ s32 mUnk_250;
     /* 254 */ s32 mThrowForward;
-    /* 258 */ Unk0210b7ec mUnk_258;
+    /* 258 */ SoundDistanceSquaredChange mUnk_258;
     /* 268 */ u8 mUnk_268[0xc];
 } ItemKouraR;
 
@@ -37,7 +37,7 @@ typedef struct ItemBanana {
 typedef struct ItemKouraG {
     /* 000 */ Unk020f1d70 mUnk_000;
     /* 168 */ s32 mUnk_168;
-    /* 16c */ Unk0210b7ec mUnk_16c;
+    /* 16c */ SoundDistanceSquaredChange mUnk_16c;
     /* 17c */ u8 mUnk_17c[0xc];
 } ItemKouraG;
 
@@ -45,7 +45,7 @@ typedef struct ItemKouraG {
 #include "Main/Unknown/code_020ee684.h"
 #include "Main/Unknown/code_020f1d70.h"
 #include "Main/Unknown/code_020e005c.h"
-#include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
+#include "Main/Unknown/code_0210b000.h" // SoundDistanceSquaredChange
 
 void StartNextHeldItemObject(HeldItem *a);
 void InitHeldItem(HeldItem *a, KartItems *b);

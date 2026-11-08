@@ -16,7 +16,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_0212d214.h"
 #include "Main/Unknown/code_0210bcf4.h"
-#include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
+#include "Main/Unknown/code_0210b000.h" // SoundDistanceSquaredChange
 #include "Main/Unknown/code_02080b1c.h" // KartKillerCursor
 
 typedef struct UnkVec16 {
@@ -556,7 +556,7 @@ typedef struct Kart {
     /* 50c */ Vec4 *mUnk_50c;
     /* 510 */ Vec3 *mUnk_510;
     /* 514 */ Unk0206bcb0_514 *mUnk_514;
-    /* 518 */ Unk0210b7ec mUnk_518;
+    /* 518 */ SoundDistanceSquaredChange mUnk_518;
     /* 528 */ u8 mUnk_528[0xc];
     /* 534 */ Vec3 *mUnk_534;
     /* 538 */ Unk0206ceb4 mUnk_538;

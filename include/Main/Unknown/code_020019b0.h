@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk02001d30 Unk02001d30;
+typedef struct Bg1Files Bg1Files;
 
 // Object whose halfword at 0x04 UpdateLogoScene clears.
 typedef struct Unk02001a74 {
@@ -24,5 +24,5 @@ void UpdateLogoScene(Unk02001a74 *sceneNumbers);
 void WriteLogoSceneRegisters(void);
 void ApplySavedSoundMode(void);
 void InitLogoScene(void *heap);
-void LoadBg1FromSceneFiles(Unk02001d30 *files, s32 mainScreen, const char *paletteFileName, const char *charsFileName,
+void LoadBg1FromSceneFiles(Bg1Files *files, s32 mainScreen, const char *paletteFileName, const char *charsFileName,
                            const char *screenMapFileName);

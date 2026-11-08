@@ -96,7 +96,7 @@ void TallyPickedCourse(void) {
     u8 b[0x37] = {0};
     u8 j;
     WiFiSession *d;
-    Unk0217d384_1954 *r;
+    RandomState64 *r;
     u32 v;
     u32 w;
 

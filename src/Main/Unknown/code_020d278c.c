@@ -111,7 +111,7 @@ void CreateMapObjectSoundSourceFalloff2(MapObject *mapObject) {
     }
 }
 
-Unk0210b7ec *func_020d286c(MapObject *mapObject) {
+SoundDistanceSquaredChange *func_020d286c(MapObject *mapObject) {
     mapObject->mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x60);
     InitSoundSource(&mapObject->mSound->mSoundSource, 2, &mapObject->mPos);
     mapObject->mFarDistanceSquared = gSoundFalloffs[2].mUnk_20;

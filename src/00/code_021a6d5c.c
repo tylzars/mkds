@@ -1741,7 +1741,7 @@ u8 *func_ov000_021a71c0(Unk021a6fa8 *d, Unk021b49b8 *e) {
     return a;
 }
 
-u8 *func_ov000_021a71a4(u8 *a, Unk021a71a4 *b, s32 c) {
+u8 *func_ov000_021a71a4(u8 *a, SizedBuffer *b, s32 c) {
     u8 *v1;
     v1 = a;
     if (c == 0) {

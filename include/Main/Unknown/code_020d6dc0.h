@@ -4,7 +4,7 @@
 #include "code_02012b30.h" // MtxFx43
 
 typedef struct Unk020d84e4 Unk020d84e4;
-typedef struct Unk020d849c Unk020d849c;
+typedef struct SegmentProgress SegmentProgress;
 
 struct CourseMapRow;
 
@@ -14,8 +14,8 @@ typedef struct Quaternion {
 } Quaternion;
 
 void func_020d7d4c(Unk020d84e4 *m, struct CourseMapRow *courseRow, s32 speed, s32 d);
-void func_020d7d18(Unk020d849c *segmentProgress, s32 a, Vec3 **points, s32 rate);
-BOOL func_020d7c84(Unk020d849c *segmentProgress, s32 a, Vec3 **points);
+void func_020d7d18(SegmentProgress *segmentProgress, s32 a, Vec3 **points, s32 rate);
+BOOL func_020d7c84(SegmentProgress *segmentProgress, s32 a, Vec3 **points);
 // Stores in gViewYawQuaternion the rotation about Y by the angle of the matrix a.
 void SetViewYawQuaternion(MtxFx43 *viewMatrix);
 void QuaternionFromYAxisToVec3(Vec3 *p, void *output);

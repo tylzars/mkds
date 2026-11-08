@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk0217d084 Unk0217d084;
+typedef struct SoundModeHolder SoundModeHolder;
 
-void RestoreSavedSoundMode(Unk0217d084 *modeHolder);
+void RestoreSavedSoundMode(SoundModeHolder *modeHolder);

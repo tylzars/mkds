@@ -85,13 +85,13 @@ u32 InitHttpBuffer(Http *a, HttpBuffer *b, int c);
 
 // Written into DWCAuth at 0x1cc; mUnk_24 and mUnk_28 allocate and release the 0x13e0 bytes of the object and the
 // buffers.
-typedef struct Unk02186560 {
+typedef struct AuthCreateParams {
     /* 00 */ char mIngamesn[0x15];
     /* 15 */ char mGsbrcd[0xc];
     /* 21 */ u8 pad_21[3];
     /* 24 */ void *(*mAlloc)(const void *, u32);
     /* 28 */ void (*mFree)(const void *, void *, u32);
-} Unk02186560;
+} AuthCreateParams;
 
 // 0x13e0 bytes, held in gAuth; the stack of its thread is the last 0x1000 bytes.
 typedef struct DWCAuth {
@@ -105,7 +105,7 @@ typedef struct DWCAuth {
     /* 17f */ char mChallenge[9];
     /* 188 */ char mCookie[0x41];
     /* 1c9 */ u8 pad_1c9[3];
-    /* 1cc */ Unk02186560 mUnk_1cc;
+    /* 1cc */ AuthCreateParams mUnk_1cc;
     /* 1f8 */ DWCHttpLabelValue mHttpLabelvalue[0x20];
     /* 2f8 */ Http *mHttp;
     /* 2fc */ OSThread mThread;
@@ -144,7 +144,7 @@ void DWC_Auth_Join(void);
 void DWC_Auth_Destroy(void);
 void DWC_Auth_Abort(void);
 void DWCi_Auth_StartThread(void);
-s32 DWC_Auth_Create(Unk02186560 *a, Http *b);
+s32 DWC_Auth_Create(AuthCreateParams *a, Http *b);
 void func_ov000_02186628(const void *a);
 BOOL DWC_Http_GetRawResult(DWCHttpLabelValue *a, s32 b, const char *c, char *d, s32 e);
 s32 DWC_Http_GetBase64DecodedResult(DWCHttpLabelValue *a, s32 b, const char *c, char *d, s32 e);

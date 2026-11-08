@@ -27,16 +27,16 @@ typedef struct Unk0210e524 {
 
 // Object data_0217d178: 16 words from 0x00 and a signed number at 0x40; LoadSndDataFromFile and func_0210ed20 add a
 // word to it, ClearSndFileAddresses walks it and ClearSndFileIdList resets it.
-typedef struct Unk0217d178 {
+typedef struct SndFileIdList {
     /* 00 */ u32 mFileIds[16];
     /* 40 */ s32 mCount;
-} Unk0217d178;
+} SndFileIdList;
 
 // data_0217d134 has the same layout and goes through the same functions.
-typedef Unk0217d178 Unk0217d134;
+typedef SndFileIdList Unk0217d134;
 
 extern Unk0217d134 data_0217d134;
-extern Unk0217d178 data_0217d178;
+extern SndFileIdList data_0217d178;
 
 extern const SoundSet data_0215c380;
 extern const SoundSet data_0215c38c;

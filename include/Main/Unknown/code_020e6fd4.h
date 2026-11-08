@@ -4,7 +4,7 @@
 #include "code_0212d214.h"
 #include "Main/Unknown/code_0210bcf4.h"
 #include "Main/Unknown/code_020e005c.h" // Unk020e005c_080
-#include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
+#include "Main/Unknown/code_0210b000.h" // SoundDistanceSquaredChange
 
 struct MapObject;
 struct CourseMapRow;
@@ -13,7 +13,7 @@ struct CourseMapRow;
 typedef struct Unk020e71a0_94 {
     // Sound source of the map object (the sounds started on it).
     /* 00 */ SoundSource mSoundSource;
-    /* 44 */ Unk0210b7ec mUnk_44;
+    /* 44 */ SoundDistanceSquaredChange mUnk_44;
     /* 54 */ u8 mUnk_54[0xc];
 } Unk020e71a0_94;
 
@@ -90,7 +90,7 @@ typedef struct MapObject {
     // state and the frames spent in the state.
     /* 80 */ Unk020e005c_080 mStateMachine;
     // The sound object of the map object, tested against NULL before use: a SoundSource at 0 (so the pointer also
-    // serves as the source) and, in the 0x60-byte variant, an Unk0210b7ec behind it.
+    // serves as the source) and, in the 0x60-byte variant, an SoundDistanceSquaredChange behind it.
     /* 94 */ Unk020e71a0_94 *mSound;
     /* 98 */ MapObjectKindData *mKindData;
     /* 9c */ struct CourseMapRow *mCourseMapRow;

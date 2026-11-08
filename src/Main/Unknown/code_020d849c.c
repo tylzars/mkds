@@ -42,14 +42,14 @@ s32 func_020d84e4(Unk020d84e4 *p) {
     return crossedEnd;
 }
 
-void SetSegmentProgressRate(Unk020d849c *segmentProgress, s32 a) {
+void SetSegmentProgressRate(SegmentProgress *segmentProgress, s32 a) {
     s32 t = segmentProgress->mUnk_00.mUnk_34;
     segmentProgress->mUnk_54 = a;
     a = t != 0 ? (s32) (((s64) a * t) >> 12) : 0x1000000;
     segmentProgress->mUnk_58 = a;
 }
 
-BOOL AdvanceSegmentProgress(Unk020d849c *segmentProgress) {
+BOOL AdvanceSegmentProgress(SegmentProgress *segmentProgress) {
     segmentProgress->mUnk_5c = segmentProgress->mUnk_5c + segmentProgress->mUnk_58;
     return segmentProgress->mUnk_5c >= 0x1000000;
 }

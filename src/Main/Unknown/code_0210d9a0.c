@@ -6,7 +6,7 @@
 
 // Switches to sound mode b (0 to 5): 0, 1, 3 and 4 stop the sounds, 5 fades them out and keeps the old mode, 1 and 2
 // fade back in from 5.
-void SetSoundMode(Unk0217d084 *modeHolder, u32 newMode) {
+void SetSoundMode(SoundModeHolder *modeHolder, u32 newMode) {
     u32 fadeSteps;
 
     fadeSteps = GetSoundFadeSteps();

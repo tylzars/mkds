@@ -4,7 +4,7 @@
 #include "Main/Unknown/code_0210bcf4.h"
 #include "Main/Unknown/unk_0217c000.h"
 
-void AdvanceSoundDistanceSquaredChange(Unk0210b7ec *tracker, u32 distanceSquared) {
+void AdvanceSoundDistanceSquaredChange(SoundDistanceSquaredChange *tracker, u32 distanceSquared) {
     s32 a;
     s32 oldChange;
 

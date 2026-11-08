@@ -46,7 +46,7 @@ void InitStemSets(void *a) {
     p->mEnabled = FALSE;
 }
 
-void InitNsbmdNsbcaNsbmaNsbtp(void *a, StemSet *b, const Unk02155ee8 *c, u16 d) {
+void InitNsbmdNsbcaNsbmaNsbtp(void *a, StemSet *b, const StemSetParams *c, u16 d) {
     char s[0x80];
     void *n;
     u16 i;

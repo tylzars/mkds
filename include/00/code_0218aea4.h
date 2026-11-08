@@ -6,9 +6,9 @@ typedef struct SbServerList SbServerList;
 typedef struct SbServer SbServer;
 typedef struct Unk0218ae68 Unk0218ae68;
 
-typedef struct Unk0218afac {
+typedef struct HashtableNameEntry {
     /* 00 */ const s8 *mName;
-} Unk0218afac;
+} HashtableNameEntry;
 
 typedef struct SbServer SbServer;
 
@@ -122,7 +122,7 @@ void func_ov000_0218af24(SbServer *a, s32 b);
 SbServer *func_ov000_0218af28(SbServerList *a, u32 b, u16 c);
 u32 func_ov000_0218af9c(SbServer *a);
 s32 func_ov000_0218afa0(const char *const *first, const char *const *second);
-u32 func_ov000_0218afac(Unk0218afac *entry, u32 modulus);
+u32 func_ov000_0218afac(HashtableNameEntry *entry, u32 modulus);
 void func_ov000_0218afb8(u32 *a);
 u32 func_ov000_0218afd4(const s8 *name, u32 modulus);
 void func_ov000_0218b010(SbServer *e, s8 *buf, s32 n);
@@ -142,7 +142,7 @@ void func_ov000_0218b3c8(void *a);
 struct Hashtable *func_ov000_0218b3f4(struct SbServerList *p);
 void func_ov000_0218b434(u32 arg0);
 s32 func_ov000_0218b440(const char *const *first, const char *const *second);
-u32 func_ov000_0218b44c(Unk0218afac *entry, u32 modulus);
+u32 func_ov000_0218b44c(HashtableNameEntry *entry, u32 modulus);
 u32 func_ov000_0218b458(Unk0218b668 *a);
 void func_ov000_0218b464(Unk0218b668 *p0, unsigned int p1, const char *p2, unsigned int p3);
 u32 func_ov000_0218b474(Unk0218b668 *arg0);

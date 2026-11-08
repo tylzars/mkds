@@ -8,19 +8,19 @@ typedef struct HttpsEntry HttpsEntry;
 typedef struct Unk021aa880 Unk021aa880;
 
 // A name and two byte strings: the rows of the table behind mAuthorities, and the copy an item fills (mItemRecord).
-typedef struct Unk021aaf38 {
+typedef struct AuthorityRecord {
     /* 00 */ u32 mName;
     /* 04 */ s32 mFirstLength;
     /* 08 */ u8 *mFirstBytes;
     /* 0c */ u32 mSecondLength;
     /* 10 */ u8 *mSecondBytes;
-} Unk021aaf38;
+} AuthorityRecord;
 
 // Length and pointer of the item list a reply sends (mItemList).
-typedef struct Unk021a998c_0c_7f4 {
+typedef struct ItemList {
     /* 0 */ u32 mLength;
     /* 4 */ u8 *mBytes;
-} Unk021a998c_0c_7f4;
+} ItemList;
 
 struct HttpsState;
 typedef u32 (*Unk021a998c_Func)(u32 a, struct HttpsState *b, s32 c);
@@ -61,7 +61,7 @@ typedef struct HttpsState {
     /* 438 */ u8 *mDigestEnd;
     /* 43c */ u8 mRangeDigest[0x14];
     /* 450 */ s32 mRangeDigestLength;
-    /* 454 */ Unk021aaf38 mItemRecord;
+    /* 454 */ AuthorityRecord mItemRecord;
     /* 468 */ u8 mFirstValue[0x100];
     /* 568 */ u32 mFirstValueLength;
     /* 56c */ u8 mSecondValue[8];
@@ -85,7 +85,7 @@ typedef struct HttpsState {
     /* 7e8 */ u32 mAuthorities;
     /* 7ec */ u32 mAuthorityCount;
     /* 7f0 */ Unk021aa880 *mUnk_7f0;
-    /* 7f4 */ Unk021a998c_0c_7f4 *mItemList;
+    /* 7f4 */ ItemList *mItemList;
     /* 7f8 */ u8 *mReceivedBlock;
     /* 7fc */ u32 mReceivedBlockEnd;
     /* 800 */ u32 mReceivedBlockOffset;

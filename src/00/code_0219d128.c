@@ -176,7 +176,7 @@ u32 func_ov000_0219d6c4(GpConnection *a, u32 *b, u32 c) {
 
 // GP callback slot 2 (status): looks up the list entry and calls mBuddyStatusCallback.
 void WiFiGpBuddyStatusCallback(struct GpConnection *a, s32 *b) {
-    Unk0218ec44 c;
+    GpBuddyStatus c;
     u32 d;
     WiFiBuddySync *e;
     if (gWiFiBuddySync->mBuddyStatusCallback != NULL) {
@@ -246,7 +246,7 @@ u32 func_ov000_0219d558(s32 a, void *b, void *c) {
 }
 
 void func_ov000_0219d504(s32 a) {
-    Unk0218ec44 b;
+    GpBuddyStatus b;
     if (gWiFiBuddySync->mBuddyChangedCallback != NULL && gWiFiBuddySync->mState != 1) {
         ((void (*)(s32, void *)) gWiFiBuddySync->mBuddyChangedCallback)(a, gWiFiBuddySync->mBuddyChangedCallbackArg);
     }
@@ -284,7 +284,7 @@ void func_ov000_0219d2e8(DWCAccFriendData *a, s32 b) {
     s32 d;
     s32 i;
     char e[0x18];
-    Unk0218ec44 f;
+    GpBuddyStatus f;
     s32 g;
     if (gWiFiBuddySync->mUnk_1e == 0) {
         ReportBuddySyncGpResult(GpGetBuddyCount(gWiFiBuddySync->mGpConnection, &c));

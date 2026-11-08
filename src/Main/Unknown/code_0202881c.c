@@ -12,6 +12,6 @@ void func_02028824(u8 a) {
     }
 }
 
-u32 func_0202881c(Unk02175628_48 *a) {
+u32 func_0202881c(InputSlotPair *a) {
     return a->mHasPair;
 }

@@ -34,6 +34,6 @@ Unk021a7064 *func_ov000_021a7088(s32 a);
 s32 func_ov000_021a70b0(void);
 s32 func_ov000_021a70ec(s32 e);
 u8 *func_ov000_021a7154(u8 *b, Unk021a7154 *c, Unk021a72a4 *d);
-u8 *func_ov000_021a71a4(u8 *a, Unk021a71a4 *b, s32 c);
+u8 *func_ov000_021a71a4(u8 *a, SizedBuffer *b, s32 c);
 u8 *func_ov000_021a71c0(Unk021a6fa8 *d, Unk021b49b8 *e);
 int func_ov000_021a72a4(Unk021a72a4 *a);

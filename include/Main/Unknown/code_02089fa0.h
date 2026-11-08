@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_020846c0.h" // Nsbmd
 #include "Main/Unknown/code_02087d0c.h" // ModelAnimation
-#include "Main/Unknown/unk_02155000.h" // Unk02155ee8
+#include "Main/Unknown/unk_02155000.h" // StemSetParams
 
 // 0x14 bytes: a table of 0x6c-byte objects at 0x00, three tables of 0x38-byte objects at 0x04, 0x08 and 0x0c, and the
 // number of entries of the first table at 0x10.
@@ -17,5 +17,5 @@ void DrawStemSets(void);
 void UpdateStemSets(void);
 void StartStemSet(s32 a);
 void InitStemSetArray(void *a);
-void InitNsbmdNsbcaNsbmaNsbtp(void *a, StemSet *b, const Unk02155ee8 *c, u16 d);
+void InitNsbmdNsbcaNsbmaNsbtp(void *a, StemSet *b, const StemSetParams *c, u16 d);
 void InitStemSets(void *a);

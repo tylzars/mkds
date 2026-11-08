@@ -4,7 +4,7 @@
 
 #pragma optimize_for_size on
 
-u32 func_020287ec(Unk02175628_48 *pair) {
+u32 func_020287ec(InputSlotPair *pair) {
     if (func_0202881c(pair) == 0) {
         if (pair->mNoPairCount < 5) {
             return 1;
@@ -13,14 +13,14 @@ u32 func_020287ec(Unk02175628_48 *pair) {
     return 0;
 }
 
-u32 func_020287c8(Unk02175628_48 *pair) {
+u32 func_020287c8(InputSlotPair *pair) {
     if (pair->mPrevHasPair == 0 && pair->mHasPair != 0) {
         return 1;
     }
     return 0;
 }
 
-u32 func_02028794(Unk02175628_48 *pair) {
+u32 func_02028794(InputSlotPair *pair) {
     if (func_020287ec(pair) == 0) {
         if (func_020287c8(pair) != 0) {
             return 1;
@@ -30,5 +30,5 @@ u32 func_02028794(Unk02175628_48 *pair) {
 }
 
 u32 func_02028774(u32 slot) {
-    return func_02028794((Unk02175628_48 *) &data_02175628[slot].mPairX);
+    return func_02028794((InputSlotPair *) &data_02175628[slot].mPairX);
 }

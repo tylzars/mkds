@@ -8,7 +8,7 @@
 #include "Main/Unknown/code_020e5d0c.h"
 #include "Main/Unknown/code_020e516c.h"
 #include "Main/Unknown/code_020e6b58.h"
-#include "ITCM/code_01ffdee4.h" // Unk0217b614
+#include "ITCM/code_01ffdee4.h" // CourseCollision
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 #include "Main/Unknown/code_0209bc74.h" // MapObjectModel
@@ -642,8 +642,8 @@ typedef struct RaceHud {
 extern RaceHud *gRaceHud;
 struct ChoisesS;
 extern struct ChoisesS *gChoisesS;
-struct Unk0217b3c4;
-extern struct Unk0217b3c4 *data_0217b3c4;
+struct RaceNcerNclrNcgrTables;
+extern struct RaceNcerNclrNcgrTables *data_0217b3c4;
 // 8-byte elements at the start of Unk0217b3d8.
 typedef struct Unk0217b3d8_00 {
     /* 00 */ s32 mUnk_00;
@@ -955,11 +955,11 @@ typedef struct KeyboardCanvas {
 
 extern KeyboardCanvas gKeyboardCanvas;
 struct Unk0217b340;
-struct Unk0217b344;
+struct BmgBodySection;
 struct Nclr;
 struct Unk02021dc8;
 extern struct Unk0217b340 *data_0217b360;
-extern struct Unk0217b344 *data_0217b364;
+extern struct BmgBodySection *data_0217b364;
 extern struct Nclr *gPlayerCharacterNclr[2];
 extern struct Nclr *gPlayerCharacterLNclr;
 extern struct Ncgr *gPlayerCharacterNcgr[2];
@@ -1118,7 +1118,7 @@ extern Vec3 gJgKind3Offset;
 extern Vec3 gJgKind2Offset;
 extern void *data_0217b5d0[16];
 extern s32 data_0217b610;
-extern Unk0217b614 gCourseCollision;
+extern CourseCollision gCourseCollision;
 extern u32 data_0217bbe8;
 extern Vec3 gJgMatrixAxis2;
 extern Vec3 data_0217badc;

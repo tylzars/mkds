@@ -59,21 +59,21 @@ extern const Unk02155d88 gKartNames[];
 extern const Unk02155d88 gKartShadowNames[];
 
 // 12-byte entry: four bytes and two string pointers.
-typedef struct Unk02155ee8 {
+typedef struct StemSetParams {
     /* 00 */ u8 mNsbmdCount;
     /* 01 */ u8 mNsbcaCount;
     /* 02 */ u8 mNsbmaCount;
     // The nsbtp files are loaded only when mNsbmdCount is 1 and this is above 1.
     /* 03 */ u8 mNsbtpCount;
     /* 04 */ const char *mStems[2];
-} Unk02155ee8;
+} StemSetParams;
 
-extern const Unk02155ee8 gCountStartStems[3];
-extern const Unk02155ee8 gGoalStems;
-extern const Unk02155ee8 gWinStems;
-extern const Unk02155ee8 gLoseStems;
-extern const Unk02155ee8 gCompleteStems;
-extern const Unk02155ee8 gFailedStems;
+extern const StemSetParams gCountStartStems[3];
+extern const StemSetParams gGoalStems;
+extern const StemSetParams gWinStems;
+extern const StemSetParams gLoseStems;
+extern const StemSetParams gCompleteStems;
+extern const StemSetParams gFailedStems;
 extern Vec3 data_02155a3c;
 extern const u32 data_02155a54;
 extern const u16 data_02155a74[12];

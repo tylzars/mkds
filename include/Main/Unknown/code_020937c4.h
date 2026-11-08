@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_020e6fd4.h" // MapObject, MapObjectList
 #include "Main/Unknown/code_0206bcb0.h" // Kart
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
-#include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
+#include "Main/Unknown/code_0210b000.h" // SoundDistanceSquaredChange
 
 // Object of StartNsKiller2: after the shared part, a counter at 0xa0 and a word at 0xa4. A prefix view of the
 // kind 0x1a2 (NsKiller2) pool objects.
@@ -21,7 +21,7 @@ typedef struct NsKiller2 {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
-    /* a8 */ Unk0210b7ec *mUnk_a8;
+    /* a8 */ SoundDistanceSquaredChange *mUnk_a8;
 } NsKiller2;
 
 // Object of kind 0x1a1 (NsKiller1), creates 20 NsKiller2 in its Init: after the shared part, a counter at 0xa0, a state

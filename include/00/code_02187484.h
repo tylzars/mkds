@@ -56,7 +56,7 @@ extern char gParsePairValue[];
 extern char gHtmlPairName[];
 extern char gReturncdPairName2[];
 extern Unk021b4cb4 data_ov000_021b4cb4;
-extern Unk02186560 data_ov000_021b4cd4;
+extern AuthCreateParams data_ov000_021b4cd4;
 
 u32 func_ov000_02187484(void);
 void DWCi_Netcheck_SetError(u32 a);

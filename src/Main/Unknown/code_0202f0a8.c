@@ -20,14 +20,14 @@ void func_0202f120(s32 a, s32 b, s32 c, s32 d) {
 
 #pragma thumb off
 
-u32 func_0202f0fc(Unk02175628_48 *a) {
+u32 func_0202f0fc(InputSlotPair *a) {
     if (a->mPrevHasPair == 0 && a->mHasPair != 0) {
         return 1;
     }
     return 0;
 }
 
-u32 func_0202f0c8(Unk02175628_48 *a) {
+u32 func_0202f0c8(InputSlotPair *a) {
     u32 r = 0;
     if (func_0202f028(a) == 0 && func_0202f0fc(a) != 0) {
         r = 1;
@@ -36,5 +36,5 @@ u32 func_0202f0c8(Unk02175628_48 *a) {
 }
 
 u32 func_0202f0a8(u32 a) {
-    return func_0202f0c8((Unk02175628_48 *) &data_02175628[a].mPairX);
+    return func_0202f0c8((InputSlotPair *) &data_02175628[a].mPairX);
 }

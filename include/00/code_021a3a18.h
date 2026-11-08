@@ -71,14 +71,14 @@ typedef struct Unk021a46d4 {
 typedef struct Unk021a4a08 Unk021a4a08;
 
 // List of values and their count; filled by the callback at mUnk_094 of an Unk021a4a08.
-typedef struct Unk021a3fc8 {
+typedef struct MatchingKeyIds {
     /* 000 */ u8 mUnk_000[0x100];
     /* 100 */ s32 mUnk_100;
-} Unk021a3fc8;
+} MatchingKeyIds;
 
 typedef void (*Unk021a4a08Func88)(u8 a, Unk021a471c *b, void *c);
 typedef void (*Unk021a4a08Func8c)(u8 a, s32 b, Unk021a471c *c, void *d);
-typedef void (*Unk021a4a08Func94)(s32 a, Unk021a3fc8 *b, void *c);
+typedef void (*Unk021a4a08Func94)(s32 a, MatchingKeyIds *b, void *c);
 typedef s32 (*Unk021a4a08Func98)(s32 a, void *b);
 typedef void (*Unk021a4a08Func9c)(s32 a, const u8 *b, void *c);
 typedef void (*Unk021a4a08Funca8)(u32 a, u16 b, void *c);
@@ -146,7 +146,7 @@ BOOL func_ov000_021a4654(const char *a, u32 b, Unk021a4654 *c, Unk021a8f84 **d);
 void func_ov000_021a46d4(void);
 void func_ov000_021a471c(Unk021a471c *a, const char *b);
 void func_ov000_021a4760(Unk021a471c *a, s32 b);
-void func_ov000_021a4784(Unk021a3fc8 *a, int b);
+void func_ov000_021a4784(MatchingKeyIds *a, int b);
 void func_ov000_021a47ac(Unk021a4a08 *a);
 void func_ov000_021a4818(Unk021a4a08 *a);
 void func_ov000_021a4868(Unk021a4a08 *a);

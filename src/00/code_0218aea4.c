@@ -1619,7 +1619,7 @@ u32 func_ov000_0218b458(Unk0218b668 *a) {
     return a->mUnk_04c.mUnk_4a0;
 }
 
-u32 func_ov000_0218b44c(Unk0218afac *entry, u32 modulus) {
+u32 func_ov000_0218b44c(HashtableNameEntry *entry, u32 modulus) {
     return func_ov000_0218afd4(entry->mName, modulus);
 }
 
@@ -1920,7 +1920,7 @@ void func_ov000_0218afb8(u32 *a) {
     func_ov000_0218d0e4(0, a[1]);
 }
 
-u32 func_ov000_0218afac(Unk0218afac *entry, u32 modulus) {
+u32 func_ov000_0218afac(HashtableNameEntry *entry, u32 modulus) {
     return func_ov000_0218afd4(entry->mName, modulus);
 }
 

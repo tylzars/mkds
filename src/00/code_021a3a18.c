@@ -199,7 +199,7 @@ void func_ov000_021a47ac(Unk021a4a08 *a) {
     }
 }
 
-void func_ov000_021a4784(Unk021a3fc8 *a, int b) {
+void func_ov000_021a4784(MatchingKeyIds *a, int b) {
     int v1;
     v1 = a->mUnk_100;
     if (((v1 < 0xfe) && (1 <= b)) && (b <= 254)) {
@@ -436,7 +436,7 @@ void func_ov000_021a438c(Unk021a4a08 *a, const char *b) {
 }
 
 void func_ov000_021a41dc(Unk021a4a08 *a, Unk021a471c *b, s32 c, s32 d, const u8 *e) {
-    Unk021a3fc8 f;
+    MatchingKeyIds f;
     u16 g;
     u16 h;
     s32 i;
@@ -577,7 +577,7 @@ void func_ov000_021a412c(Unk021a4a08 *a, Unk021a471c *b, const u8 *c, s32 d) {
 
 void func_ov000_021a3fc8(Unk021a4a08 *a, Unk021a471c *b, s32 c) {
     char e[0x80];
-    Unk021a3fc8 d;
+    MatchingKeyIds d;
     s32 f;
     s32 g;
     s32 h;

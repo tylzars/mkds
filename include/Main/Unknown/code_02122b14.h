@@ -3,14 +3,14 @@
 #include "types.h"
 
 // 0xc-byte object built on the stack by AdvanceWiFiSessionStep1.
-typedef struct Unk02123384 {
+typedef struct WiFiSessionMessageHeader {
     /* 00 */ s32 mKind;
     /* 04 */ s32 mSize;
     /* 08 */ u8 mFromIndex;
     /* 09 */ u8 mToIndex;
     // The sender's mKartMask; written, not read through this struct.
     /* 0a */ u8 mKartMask;
-} Unk02123384;
+} WiFiSessionMessageHeader;
 
 void CombineKartRemoveMask(void);
 void AdvanceWiFiSessionStep9(void);

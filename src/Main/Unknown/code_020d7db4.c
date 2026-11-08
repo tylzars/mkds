@@ -28,7 +28,7 @@
 #pragma thumb off
 
 void func_020d8460(void *m, Vec3 *v) {
-    Unk020d849c *p = m;
+    SegmentProgress *p = m;
     func_020d91dc(&p->mUnk_00, p->mUnk_5c, v);
 }
 

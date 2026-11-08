@@ -12,7 +12,7 @@ void func_020d8488(Unk020f3fa8 *arg0, Vec3 *output) {
     func_020d9480(value0, value1, value2);
 }
 
-void func_020d8474(Unk020d849c *segmentProgress, Vec3 *output) {
+void func_020d8474(SegmentProgress *segmentProgress, Vec3 *output) {
     u32 value0 = (u32) segmentProgress;
     u32 value1 = (u32) output;
     u32 value2;

@@ -59,7 +59,7 @@ static inline void func_02043c14_inline(void) {
         p->mUnk_44 = 0;
         p->mBitMask = 0x2fff;
         ResetKeyRecording((KeyRecording *) &p->mUnk_28);
-        ResetInputSlotPair((Unk02175628_48 *) &p->mPairX);
+        ResetInputSlotPair((InputSlotPair *) &p->mPairX);
     }
     data_02175628[8].mSourceKind = 5;
     data_02175628[9].mSourceKind = 6;
@@ -449,7 +449,7 @@ void func_02043648(void) {
         if (q == FALSE) {
             func_02039530(t, p);
         }
-        func_02046ca8((Unk02175628_48 *) &p->mPairX, n, o);
+        func_02046ca8((InputSlotPair *) &p->mPairX, n, o);
     }
 }
 

@@ -12,7 +12,7 @@
 
 #pragma opt_rebuildconditionals off
 
-u32 func_ov000_0219d094(void *a, Unk0218ec44 *b) {
+u32 func_ov000_0219d094(void *a, GpBuddyStatus *b) {
     s32 c;
     s32 d = 0;
     if (gWiFiBuddySync == NULL || IsWiFiLoginDone() == 0) {

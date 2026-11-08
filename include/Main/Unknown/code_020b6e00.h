@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// Object behind member 0x04 of the elements of the tables of Unk0217b3c4: a halfword at 0x04.
+// Object behind member 0x04 of the elements of the tables of RaceNcerNclrNcgrTables: a halfword at 0x04.
 typedef struct Unk020b6e00 {
     /* 00 */ u8 mUnk_00[4];
     /* 04 */ u16 mUnk_04;

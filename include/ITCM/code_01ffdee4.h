@@ -16,7 +16,7 @@ typedef struct Unk0217b614_08 {
 
 // Object at gCourseCollision (0x3c bytes): three tables, a tree of word offsets, three words, three masks and three
 // shift counts.
-typedef struct Unk0217b614 {
+typedef struct CourseCollision {
     /* 00 */ Vec3 *mUnk_00;
     /* 04 */ UnkVec16 *mUnk_04;
     /* 08 */ Unk0217b614_08 *mUnk_08;
@@ -32,7 +32,7 @@ typedef struct Unk0217b614 {
     /* 30 */ u32 mUnk_30;
     /* 34 */ u32 mUnk_34;
     /* 38 */ u8 mUnk_38[4];
-} Unk0217b614;
+} CourseCollision;
 
 BOOL func_01ffdee4(void *param_1, void *param_2, Vec3 *param_3, int param_4, u16 param_5, short param_6, void *param_7,
                    void *param_8, void *param_9, u32 *param_10, u32 *param_11, int *param_12, u16 *param_13,
