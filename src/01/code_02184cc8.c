@@ -10,42 +10,42 @@
 #include "Main/Unknown/code_020ae000.h"
 #include "Main/Unknown/code_020e6000.h"
 
-void func_ov001_02184d9c(Unk02188950 *a) {
-    if (func_ov001_0218820c(a) != 0) {
-        Vec3 sp = {0, 0, 0};
+void func_ov001_02184d9c(Unk02188950 *mapObject) {
+    if (func_ov001_0218820c(mapObject) != 0) {
+        Vec3 velocity = {0, 0, 0};
 
-        sp.y = a->mPrm->mUnk_1f4;
-        func_ov001_02187218(a, 5, NULL);
-        func_ov001_02188d64(a, a->mPrm->mUnk_1ec, a->mPrm->mUnk_1f0);
-        SetVelocity(a, &sp);
-        func_ov001_02188db8(a, func_ov001_02184d9c);
+        velocity.y = mapObject->mPrm->mUnk_1f4;
+        func_ov001_02187218(mapObject, 5, NULL);
+        func_ov001_02188d64(mapObject, mapObject->mPrm->mUnk_1ec, mapObject->mPrm->mUnk_1f0);
+        SetVelocity(mapObject, &velocity);
+        func_ov001_02188db8(mapObject, func_ov001_02184d9c);
     } else {
-        func_ov001_02187218(a, 0, NULL);
+        func_ov001_02187218(mapObject, 0, NULL);
     }
 }
 
-void func_ov001_02184d70(Unk02188950 *a) {
-    func_ov001_02188218(a, (u16) a->mPrm->mUnk_1f8);
-    func_ov001_02188c90(a);
-    func_ov001_02184d9c(a);
+void func_ov001_02184d70(Unk02188950 *mapObject) {
+    func_ov001_02188218(mapObject, (u16) mapObject->mPrm->mUnk_1f8);
+    func_ov001_02188c90(mapObject);
+    func_ov001_02184d9c(mapObject);
 }
 
-void func_ov001_02184cf4(Unk02188950 *a) {
-    if (func_ov001_0218820c(a) != 0) {
-        Vec3 sp = {0, 0, 0};
+void func_ov001_02184cf4(Unk02188950 *mapObject) {
+    if (func_ov001_0218820c(mapObject) != 0) {
+        Vec3 velocity = {0, 0, 0};
 
-        sp.y = a->mPrm->mUnk_124;
-        func_ov001_02187218(a, 5, NULL);
-        func_ov001_02188d64(a, a->mPrm->mUnk_11c, a->mPrm->mUnk_120);
-        SetVelocity(a, &sp);
-        func_ov001_02188db8(a, func_ov001_02184cf4);
+        velocity.y = mapObject->mPrm->mUnk_124;
+        func_ov001_02187218(mapObject, 5, NULL);
+        func_ov001_02188d64(mapObject, mapObject->mPrm->mUnk_11c, mapObject->mPrm->mUnk_120);
+        SetVelocity(mapObject, &velocity);
+        func_ov001_02188db8(mapObject, func_ov001_02184cf4);
     } else {
-        func_ov001_02187218(a, 0, NULL);
+        func_ov001_02187218(mapObject, 0, NULL);
     }
 }
 
-void func_ov001_02184cc8(Unk02188950 *a) {
-    func_ov001_02188218(a, (u16) a->mPrm->mUnk_128);
-    func_ov001_02188c90(a);
-    func_ov001_02184cf4(a);
+void func_ov001_02184cc8(Unk02188950 *mapObject) {
+    func_ov001_02188218(mapObject, (u16) mapObject->mPrm->mUnk_128);
+    func_ov001_02188c90(mapObject);
+    func_ov001_02184cf4(mapObject);
 }

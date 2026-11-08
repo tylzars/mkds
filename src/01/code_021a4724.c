@@ -113,9 +113,9 @@ void func_ov001_021a4b28(void) {
     SetEmblemChoisesShownAndReset(1);
     gEmblem->mUnk_1090 = 10;
     gEmblem->mUnk_1098 = 14;
-    func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 1), -3);
-    func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 2), -3);
-    func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 3), -3);
+    func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 1), -3);
+    func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 2), -3);
+    func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 3), -3);
 }
 
 void func_ov001_021a4aac(void) {
@@ -123,9 +123,9 @@ void func_ov001_021a4aac(void) {
     gEmblem->mUnk_1090 = 0;
     gEmblem->mUnk_1098 = 15;
     gEmblem->mUnk_10b0 = FALSE;
-    func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 1), -1);
-    func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 2), -1);
-    func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 3), -1);
+    func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 1), -1);
+    func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 2), -1);
+    func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 3), -1);
 }
 
 void func_ov001_021a4a10(void) {
@@ -133,10 +133,10 @@ void func_ov001_021a4a10(void) {
     gEmblem->mUnk_1098 = 2;
     gEmblem->mUnk_10a0 = 0;
     gEmblem->mUnk_10a4 = 32;
-    func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemTemplateSLld, 1), 0);
-    func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 1), -3);
-    func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 2), -3);
-    func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 3), -3);
+    func_ov001_02185018(GetLldEntry(gEmblem->mEmblemTemplateSLld, 1), 0);
+    func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 1), -3);
+    func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 2), -3);
+    func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 3), -3);
 }
 
 void func_ov001_021a499c(void) {
@@ -148,7 +148,7 @@ void func_ov001_021a499c(void) {
         gEmblem->mUnk_1098 = 3;
         gEmblem->mUnk_10b0 = FALSE;
     }
-    gEmblem->mEmblemTemplateSLld->mUnk_14 = gEmblem->mUnk_10a0 - 0xc0;
+    gEmblem->mEmblemTemplateSLld->mOffsetY = gEmblem->mUnk_10a0 - 0xc0;
 }
 
 void func_ov001_021a4914(void) {
@@ -156,9 +156,9 @@ void func_ov001_021a4914(void) {
     gEmblem->mUnk_1098 = 6;
     gEmblem->mUnk_10a0 = 0xc0;
     gEmblem->mUnk_10a4 = -0x20;
-    func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 1), -1);
-    func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 2), -1);
-    func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 3), -1);
+    func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 1), -1);
+    func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 2), -1);
+    func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 3), -1);
 }
 
 void func_ov001_021a48a4(void) {
@@ -170,7 +170,7 @@ void func_ov001_021a48a4(void) {
         gEmblem->mUnk_1098 = 7;
         gEmblem->mUnk_10b0 = FALSE;
     }
-    gEmblem->mEmblemTemplateSLld->mUnk_14 = gEmblem->mUnk_10a0 - 0xc0;
+    gEmblem->mEmblemTemplateSLld->mOffsetY = gEmblem->mUnk_10a0 - 0xc0;
 }
 
 void func_ov001_021a4878(void) {

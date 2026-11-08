@@ -38,8 +38,8 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                 case 0x28:
                 case 0x29:
                     if (b) {
-                        func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 9), 0);
-                        func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 10), 0x1000);
+                        SetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 9), 0);
+                        SetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 10), 0x1000);
                         gEmblem->mUnk_1080 = a - 0x1b;
                         func_ov001_021a63c0(gEmblem->mUnk_1080 + 1);
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1f1);
@@ -57,7 +57,7 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                     return;
                 case 0x2a:
                     if (b) {
-                        func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 10), 0x1000);
+                        SetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 10), 0x1000);
                     }
                     func_ov001_021a59cc((gEmblem->mEmblemSLld), a);
                     if (b) {

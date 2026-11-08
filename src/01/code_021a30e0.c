@@ -35,12 +35,12 @@ void func_ov001_021a30e0(void) {
     if (GetEmblemInputPressed()) {
         y = GetEmblemInputY();
         x = GetEmblemInputX();
-        i = func_ov001_021850b4(gEmblem->mEmblemSLld, 0, x, y);
+        i = FindLldEntryAtPoint(gEmblem->mEmblemSLld, 0, x, y);
         while (i >= 0) {
             func_ov001_021a41c8(i, 1);
             y = GetEmblemInputY();
             x = GetEmblemInputX();
-            i = func_ov001_021850b4(gEmblem->mEmblemSLld, i + 1, x, y);
+            i = FindLldEntryAtPoint(gEmblem->mEmblemSLld, i + 1, x, y);
         }
     }
 
@@ -53,10 +53,10 @@ void func_ov001_021a30e0(void) {
     } else if (func_ov001_02192a14(0x800)) {
         func_ov001_021a41c8(0x2a, 0);
     } else {
-        entry8 = func_ov001_02185160(gEmblem->mEmblemSLld, 8);
-        func_ov001_02185160(gEmblem->mEmblemSLld, data_ov001_021a6fe8[gEmblem->mUnk_107c]);
-        entry9 = func_ov001_02185160(gEmblem->mEmblemSLld, 9);
-        func_ov001_02185160(gEmblem->mEmblemSLld, data_ov001_021a7058[gEmblem->mUnk_1080]);
+        entry8 = GetLldEntry(gEmblem->mEmblemSLld, 8);
+        GetLldEntry(gEmblem->mEmblemSLld, data_ov001_021a6fe8[gEmblem->mUnk_107c]);
+        entry9 = GetLldEntry(gEmblem->mEmblemSLld, 9);
+        GetLldEntry(gEmblem->mEmblemSLld, data_ov001_021a7058[gEmblem->mUnk_1080]);
         dx = 0;
         dy = 0;
         dz = 0;
@@ -69,16 +69,16 @@ void func_ov001_021a30e0(void) {
 
         switch (gEmblem->mUnk_1094) {
             case 0:
-                func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xb), -5);
-                func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xc), 0);
-                func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xd), -5);
+                func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0xb), -5);
+                func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0xc), 0);
+                func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0xd), -5);
                 if (dz > 0) {
                     gEmblem->mUnk_1094 = 2;
                     gEmblem->mUnk_1080 = func_ov001_021a63b4() - 1;
-                    func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 9), 0x1000);
-                    func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 10), 0);
-                    func_ov001_021850a4(func_ov001_02185160(gEmblem->mEmblemSLld, 9), NULL);
-                    func_ov001_021850a4(func_ov001_02185160(gEmblem->mEmblemSLld, 10), NULL);
+                    SetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 9), 0x1000);
+                    SetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 10), 0);
+                    func_ov001_021850a4(GetLldEntry(gEmblem->mEmblemSLld, 9), NULL);
+                    func_ov001_021850a4(GetLldEntry(gEmblem->mEmblemSLld, 10), NULL);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1ee);
                 } else if (dz < 0) {
                     gEmblem->mUnk_1094 = 1;
@@ -96,22 +96,22 @@ void func_ov001_021a30e0(void) {
                             gEmblem->mUnk_107c = data_ov001_021a6fc8[func_ov001_021a639c()];
                             break;
                     }
-                    func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 8), 0x1000);
-                    func_ov001_021850a4(func_ov001_02185160(gEmblem->mEmblemSLld, 8), NULL);
+                    SetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 8), 0x1000);
+                    func_ov001_021850a4(GetLldEntry(gEmblem->mEmblemSLld, 8), NULL);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1ee);
                 }
                 break;
             case 1:
-                func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xb), 0);
-                func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xc), -5);
-                func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xd), -5);
+                func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0xb), 0);
+                func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0xc), -5);
+                func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0xd), -5);
                 if (dz < 0) {
                     gEmblem->mUnk_1094 = 2;
                     gEmblem->mUnk_1080 = func_ov001_021a63b4() - 1;
-                    func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 9), 0x1000);
-                    func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 10), 0);
-                    func_ov001_021850a4(func_ov001_02185160(gEmblem->mEmblemSLld, 9), NULL);
-                    func_ov001_021850a4(func_ov001_02185160(gEmblem->mEmblemSLld, 10), NULL);
+                    SetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 9), 0x1000);
+                    SetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 10), 0);
+                    func_ov001_021850a4(GetLldEntry(gEmblem->mEmblemSLld, 9), NULL);
+                    func_ov001_021850a4(GetLldEntry(gEmblem->mEmblemSLld, 10), NULL);
                     func_ov001_02185018(entry8, -5);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1ee);
                 } else if (dz > 0) {
@@ -126,9 +126,9 @@ void func_ov001_021a30e0(void) {
                     prev = gEmblem->mUnk_107c;
                     gEmblem->mUnk_107c = data_ov001_021a710c[dy + 1][prev];
                     gEmblem->mUnk_107c = data_ov001_021a719c[dx + 1][gEmblem->mUnk_107c];
-                    entry = func_ov001_02185160(gEmblem->mEmblemSLld, data_ov001_021a6fe8[gEmblem->mUnk_107c]);
+                    entry = GetLldEntry(gEmblem->mEmblemSLld, data_ov001_021a6fe8[gEmblem->mUnk_107c]);
                     func_ov001_02185018(entry8, 0);
-                    func_ov001_02184fd8(entry8, func_ov001_02184fc8(entry), func_ov001_02184fb8(entry));
+                    SetLldEntryPos(entry8, GetLldEntryX(entry), GetLldEntryY(entry));
                     if (gEmblem->mUnk_107c != prev) {
                         StartSoundOncePerFrame(0x1ef);
                     }
@@ -136,9 +136,9 @@ void func_ov001_021a30e0(void) {
                 func_ov001_021a5f70(0, GetEmblemInputX(), GetEmblemInputY(), 0, 0, 0);
                 break;
             case 2:
-                func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xb), -5);
-                func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xc), -5);
-                func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xd), 0);
+                func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0xb), -5);
+                func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0xc), -5);
+                func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0xd), 0);
                 if (dz > 0) {
                     gEmblem->mUnk_1094 = 1;
                     switch (func_ov001_021a639c()) {
@@ -155,17 +155,17 @@ void func_ov001_021a30e0(void) {
                             gEmblem->mUnk_107c = data_ov001_021a6fb8[func_ov001_021a639c()];
                             break;
                     }
-                    func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 8), 0x1000);
-                    func_ov001_021850a4(func_ov001_02185160(gEmblem->mEmblemSLld, 8), NULL);
-                    func_ov001_02184fb4(entry9, 0);
-                    func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 10), 0x1000);
+                    SetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 8), 0x1000);
+                    func_ov001_021850a4(GetLldEntry(gEmblem->mEmblemSLld, 8), NULL);
+                    SetLldEntryScale(entry9, 0);
+                    SetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 10), 0x1000);
                     gEmblem->mUnk_1080 = func_ov001_021a63b4() - 1;
                     func_ov001_02185018(entry9, -5);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1ee);
                 } else if (dz < 0) {
                     gEmblem->mUnk_1094 = 3;
-                    func_ov001_02184fb4(entry9, 0);
-                    func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 10), 0x1000);
+                    SetLldEntryScale(entry9, 0);
+                    SetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 10), 0x1000);
                     gEmblem->mUnk_1080 = func_ov001_021a63b4() - 1;
                     func_ov001_02185018(entry9, -5);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1ee);
@@ -175,7 +175,7 @@ void func_ov001_021a30e0(void) {
                     prev = gEmblem->mUnk_1080;
                     gEmblem->mUnk_1080 = data_ov001_021a722c[dy + 1][prev];
                     gEmblem->mUnk_1080 = data_ov001_021a72ec[dx + 1][gEmblem->mUnk_1080];
-                    func_ov001_02185160(gEmblem->mEmblemSLld, data_ov001_021a7058[gEmblem->mUnk_1080]);
+                    GetLldEntry(gEmblem->mEmblemSLld, data_ov001_021a7058[gEmblem->mUnk_1080]);
                     if (gEmblem->mUnk_1080 < 0xf) {
                         func_ov001_02185018(entry9, 0);
                     } else {
@@ -191,29 +191,29 @@ void func_ov001_021a30e0(void) {
     }
 
     if (GetEmblemInputPressed() && IsEmblemPointInGrid(GetEmblemInputX(), GetEmblemInputY())) {
-        func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xb), -5);
-        func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xc), 0);
-        func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xd), -5);
+        func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0xb), -5);
+        func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0xc), 0);
+        func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0xd), -5);
         gEmblem->mUnk_1080 = func_ov001_021a63b4() - 1;
-        if (func_ov001_02184fb0(func_ov001_02185160(gEmblem->mEmblemSLld, 9)) == 0x1000) {
-            func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 9), 0);
-            func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 10), 0x1000);
+        if (GetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 9)) == 0x1000) {
+            SetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 9), 0);
+            SetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 10), 0x1000);
         }
-        if (func_ov001_02184fb0(func_ov001_02185160(gEmblem->mEmblemSLld, 8)) == 0x1000) {
-            func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 8), 0);
+        if (GetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 8)) == 0x1000) {
+            SetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 8), 0);
         }
         gEmblem->mUnk_1094 = 0;
     } else if (gEmblem->mUnk_1094 == 3) {
-        func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xb), -5);
-        func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xc), 0);
-        func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xd), -5);
+        func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0xb), -5);
+        func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0xc), 0);
+        func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0xd), -5);
         gEmblem->mUnk_1080 = func_ov001_021a63b4() - 1;
-        if (func_ov001_02184fb0(func_ov001_02185160(gEmblem->mEmblemSLld, 9)) == 0x1000) {
-            func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 9), 0);
-            func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 10), 0x1000);
+        if (GetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 9)) == 0x1000) {
+            SetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 9), 0);
+            SetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 10), 0x1000);
         }
-        if (func_ov001_02184fb0(func_ov001_02185160(gEmblem->mEmblemSLld, 8)) == 0x1000) {
-            func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 8), 0);
+        if (GetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 8)) == 0x1000) {
+            SetLldEntryScale(GetLldEntry(gEmblem->mEmblemSLld, 8), 0);
         }
         if (!GetEmblemInputDown() && !func_ov001_02192a04(1) && !func_ov001_02192a04(2)) {
             gEmblem->mUnk_1094 = 0;
@@ -260,35 +260,35 @@ void func_ov001_021a30e0(void) {
         func_ov001_021a5f70(0, GetEmblemInputX(), GetEmblemInputY(), 0, 0, 0);
     }
 
-    func_ov001_02184fd8(func_ov001_02185160(gEmblem->mEmblemSLld, 0), func_ov001_021a633c(), func_ov001_021a6328());
-    func_ov001_02184fd8(func_ov001_02185160(gEmblem->mEmblemSLld, 1), func_ov001_021a633c(), func_ov001_021a6328());
-    func_ov001_02184fd8(func_ov001_02185160(gEmblem->mEmblemSLld, 2), func_ov001_021a633c(), func_ov001_021a6328());
-    func_ov001_02184fd8(func_ov001_02185160(gEmblem->mEmblemSLld, 3), func_ov001_021a633c(), func_ov001_021a6328());
+    SetLldEntryPos(GetLldEntry(gEmblem->mEmblemSLld, 0), func_ov001_021a633c(), func_ov001_021a6328());
+    SetLldEntryPos(GetLldEntry(gEmblem->mEmblemSLld, 1), func_ov001_021a633c(), func_ov001_021a6328());
+    SetLldEntryPos(GetLldEntry(gEmblem->mEmblemSLld, 2), func_ov001_021a633c(), func_ov001_021a6328());
+    SetLldEntryPos(GetLldEntry(gEmblem->mEmblemSLld, 3), func_ov001_021a633c(), func_ov001_021a6328());
 
     if (gEmblem->mUnk_1094 == 0 && GetEmblemInputDown() && IsEmblemPointInGrid(GetEmblemInputX(), GetEmblemInputY())) {
-        func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0), -5);
+        func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0), -5);
         gEmblem->mUnk_1088 = -1;
     } else if (gEmblem->mUnk_1094 == 0 && GetEmblemInputDown() &&
-               func_ov001_02184ff8(func_ov001_02185160(gEmblem->mEmblemSLld, 0)) == -5) {
-        func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0), -5);
+               GetLldEntryFrameIndex(GetLldEntry(gEmblem->mEmblemSLld, 0)) == -5) {
+        func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0), -5);
         gEmblem->mUnk_1088 = -1;
     } else {
         gEmblem->mUnk_1088 = func_ov001_021a637c();
         if (flag) {
-            func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0), 3);
+            func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0), 3);
         } else {
             switch (func_ov001_021a639c()) {
                 case 0:
-                    func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0), 0);
+                    func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0), 0);
                     break;
                 case 2:
-                    func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0), 1);
+                    func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0), 1);
                     break;
                 case 1:
-                    func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0), 2);
+                    func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0), 2);
                     break;
                 case 3:
-                    func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0), 3);
+                    func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0), 3);
                     break;
             }
         }
@@ -296,41 +296,39 @@ void func_ov001_021a30e0(void) {
 
     switch (gEmblem->mUnk_1088) {
         case 0:
-            func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 1), -4);
-            func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 2), -5);
-            func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 3), -5);
+            func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 1), -4);
+            func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 2), -5);
+            func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 3), -5);
             break;
         case 1:
-            func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 1), -5);
-            func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 2), -4);
-            func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 3), -5);
+            func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 1), -5);
+            func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 2), -4);
+            func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 3), -5);
             break;
         case 2:
-            func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 1), -5);
-            func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 2), -5);
-            func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 3), -4);
+            func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 1), -5);
+            func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 2), -5);
+            func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 3), -4);
             break;
     }
 
-    entry = func_ov001_02185160(gEmblem->mEmblemSLld, data_ov001_021a7058[gEmblem->mUnk_1080]);
-    func_ov001_02184fd8(func_ov001_02185160(gEmblem->mEmblemSLld, 9), func_ov001_02184fc8(entry),
-                        func_ov001_02184fb8(entry));
-    func_ov001_02184fd8(func_ov001_02185160(gEmblem->mEmblemSLld, 10), func_ov001_02184fc8(entry),
-                        func_ov001_02184fb8(entry));
+    entry = GetLldEntry(gEmblem->mEmblemSLld, data_ov001_021a7058[gEmblem->mUnk_1080]);
+    SetLldEntryPos(GetLldEntry(gEmblem->mEmblemSLld, 9), GetLldEntryX(entry), GetLldEntryY(entry));
+    SetLldEntryPos(GetLldEntry(gEmblem->mEmblemSLld, 10), GetLldEntryX(entry), GetLldEntryY(entry));
 
     if (gEmblem->mUnk_1080 < 0xf) {
-        func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 4), -5);
-        func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 5), -5);
-        func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 6), -5);
-        func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 7), -5);
+        func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 4), -5);
+        func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 5), -5);
+        func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 6), -5);
+        func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 7), -5);
     } else {
-        func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 4), 0);
-        func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 5), 0);
-        func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 6), 0);
-        func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 7), 0);
+        func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 4), 0);
+        func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 5), 0);
+        func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 6), 0);
+        func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 7), 0);
     }
 
-    if (IsEmblemGridChanged() && func_ov001_02184ff8(func_ov001_02185160(gEmblem->mEmblemSLld, 0x17)) == 2) {
-        func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0x17), 0);
+    if (IsEmblemGridChanged() && GetLldEntryFrameIndex(GetLldEntry(gEmblem->mEmblemSLld, 0x17)) == 2) {
+        func_ov001_02185018(GetLldEntry(gEmblem->mEmblemSLld, 0x17), 0);
     }
 }

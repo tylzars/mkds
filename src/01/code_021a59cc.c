@@ -277,30 +277,30 @@ s32 func_ov001_021a5f70(s32 down, s32 x, s32 y, s32 d, s32 dx, s32 dy) {
     return result;
 }
 
-BOOL func_ov001_021a5ef4(Unk021a5a58 *entry) {
+BOOL func_ov001_021a5ef4(LldEntry *entry) {
     if (entry->mUnk_10 <= 0) {
-        func_ov001_02184fb4(entry, 0x1000);
+        SetLldEntryScale(entry, 0x1000);
     }
     entry->mUnk_10++;
     if (entry->mUnk_10 <= 5) {
         func_ov001_02185018(entry, 0);
-        func_ov001_02184fb4(entry, func_ov001_02184fb0(entry) - 0x19a);
-        if (func_ov001_02184fb0(entry) <= 0) {
-            func_ov001_02184fb4(entry, 0);
+        SetLldEntryScale(entry, GetLldEntryScale(entry) - 0x19a);
+        if (GetLldEntryScale(entry) <= 0) {
+            SetLldEntryScale(entry, 0);
             return TRUE;
         }
         return FALSE;
     }
     if (entry->mUnk_10 <= 10) {
-        func_ov001_02184fb4(entry, 0);
+        SetLldEntryScale(entry, 0);
         return FALSE;
     }
     return TRUE;
 }
 
-BOOL func_ov001_021a5e60(Unk021a5a58 *entry) {
+BOOL func_ov001_021a5e60(LldEntry *entry) {
     if (entry->mUnk_10 <= 0) {
-        func_ov001_02184fb4(entry, 0);
+        SetLldEntryScale(entry, 0);
     }
     entry->mUnk_10++;
     if (entry->mUnk_10 <= 5) {
@@ -308,13 +308,13 @@ BOOL func_ov001_021a5e60(Unk021a5a58 *entry) {
     }
     if (entry->mUnk_10 <= 10) {
         func_ov001_02185018(entry, 0);
-        func_ov001_02184fb4(entry, func_ov001_02184fb0(entry) + 0x19a);
-        if (func_ov001_02184fb0(entry) >= 0x1000) {
-            func_ov001_02184fb4(entry, 0x1000);
+        SetLldEntryScale(entry, GetLldEntryScale(entry) + 0x19a);
+        if (GetLldEntryScale(entry) >= 0x1000) {
+            SetLldEntryScale(entry, 0x1000);
         }
         return FALSE;
     }
-    func_ov001_02184fb4(entry, 0x1000);
+    SetLldEntryScale(entry, 0x1000);
     if (gEmblem->mUnk_108c != NULL) {
         gEmblem->mUnk_108c();
         gEmblem->mUnk_108c = NULL;
@@ -323,34 +323,34 @@ BOOL func_ov001_021a5e60(Unk021a5a58 *entry) {
 }
 
 void func_ov001_021a5df0(void *obj, s32 index) {
-    void *a = func_ov001_02185160(obj, index);
-    void *b = func_ov001_02185160(obj, 9);
-    void *c = func_ov001_02185160(obj, 10);
+    void *a = GetLldEntry(obj, index);
+    void *b = GetLldEntry(obj, 9);
+    void *c = GetLldEntry(obj, 10);
 
-    func_ov001_02184fd8(b, func_ov001_02184fc8(a), func_ov001_02184fb8(a));
-    func_ov001_02184fd8(c, func_ov001_02184fc8(a), func_ov001_02184fb8(a));
-    func_ov001_021850a4(b, (s32(*)(Unk021a5a58 *)) func_ov001_021a5ef4);
-    func_ov001_021850a4(c, (s32(*)(Unk021a5a58 *)) func_ov001_021a5e60);
+    SetLldEntryPos(b, GetLldEntryX(a), GetLldEntryY(a));
+    SetLldEntryPos(c, GetLldEntryX(a), GetLldEntryY(a));
+    func_ov001_021850a4(b, (s32(*)(LldEntry *)) func_ov001_021a5ef4);
+    func_ov001_021850a4(c, (s32(*)(LldEntry *)) func_ov001_021a5e60);
 }
 
-BOOL func_ov001_021a5d18(Unk021a5a58 *entry) {
+BOOL func_ov001_021a5d18(LldEntry *entry) {
     if (entry->mUnk_10 <= 0) {
-        func_ov001_02184fb4(entry, 0x1000);
+        SetLldEntryScale(entry, 0x1000);
     }
     entry->mUnk_10++;
     if (entry->mUnk_10 <= 5) {
         func_ov001_02185018(entry, 1);
-        func_ov001_02184fb4(entry, func_ov001_02184fb0(entry) - 0x19a);
-        if (func_ov001_02184fb0(entry) <= 0) {
-            func_ov001_02184fb4(entry, 0);
+        SetLldEntryScale(entry, GetLldEntryScale(entry) - 0x19a);
+        if (GetLldEntryScale(entry) <= 0) {
+            SetLldEntryScale(entry, 0);
         }
         return FALSE;
     }
     if (entry->mUnk_10 <= 10) {
         func_ov001_02185018(entry, 1);
-        func_ov001_02184fb4(entry, func_ov001_02184fb0(entry) + 0x19a);
-        if (func_ov001_02184fb0(entry) >= 0x1000) {
-            func_ov001_02184fb4(entry, 0x1000);
+        SetLldEntryScale(entry, GetLldEntryScale(entry) + 0x19a);
+        if (GetLldEntryScale(entry) >= 0x1000) {
+            SetLldEntryScale(entry, 0x1000);
         }
         return FALSE;
     }
@@ -369,27 +369,27 @@ BOOL func_ov001_021a5d18(Unk021a5a58 *entry) {
 }
 
 void func_ov001_021a5d00(void *obj, s32 index) {
-    func_ov001_021850a4(func_ov001_02185160(obj, index), (s32(*)(Unk021a5a58 *)) func_ov001_021a5d18);
+    func_ov001_021850a4(GetLldEntry(obj, index), (s32(*)(LldEntry *)) func_ov001_021a5d18);
 }
 
-BOOL func_ov001_021a5c40(Unk021a5a58 *entry) {
+BOOL func_ov001_021a5c40(LldEntry *entry) {
     if (entry->mUnk_10 <= 0) {
-        func_ov001_02184fb4(entry, 0x1000);
+        SetLldEntryScale(entry, 0x1000);
     }
     entry->mUnk_10++;
     if (entry->mUnk_10 <= 5) {
         func_ov001_02185018(entry, 1);
-        func_ov001_02184fb4(entry, func_ov001_02184fb0(entry) - 0x19a);
-        if (func_ov001_02184fb0(entry) <= 0) {
-            func_ov001_02184fb4(entry, 0);
+        SetLldEntryScale(entry, GetLldEntryScale(entry) - 0x19a);
+        if (GetLldEntryScale(entry) <= 0) {
+            SetLldEntryScale(entry, 0);
         }
         return FALSE;
     }
     if (entry->mUnk_10 <= 10) {
         func_ov001_02185018(entry, 1);
-        func_ov001_02184fb4(entry, func_ov001_02184fb0(entry) + 0x19a);
-        if (func_ov001_02184fb0(entry) >= 0x1000) {
-            func_ov001_02184fb4(entry, 0x1000);
+        SetLldEntryScale(entry, GetLldEntryScale(entry) + 0x19a);
+        if (GetLldEntryScale(entry) >= 0x1000) {
+            SetLldEntryScale(entry, 0x1000);
         }
         return FALSE;
     }
@@ -402,27 +402,27 @@ BOOL func_ov001_021a5c40(Unk021a5a58 *entry) {
 }
 
 void func_ov001_021a5c28(void *obj, s32 index) {
-    func_ov001_021850a4(func_ov001_02185160(obj, index), (s32(*)(Unk021a5a58 *)) func_ov001_021a5c40);
+    func_ov001_021850a4(GetLldEntry(obj, index), (s32(*)(LldEntry *)) func_ov001_021a5c40);
 }
 
-BOOL func_ov001_021a5b70(Unk021a5a58 *entry) {
+BOOL func_ov001_021a5b70(LldEntry *entry) {
     if (entry->mUnk_10 <= 0) {
-        func_ov001_02184fb4(entry, 0x1000);
+        SetLldEntryScale(entry, 0x1000);
     }
     entry->mUnk_10++;
     if (entry->mUnk_10 <= 5) {
         func_ov001_02185018(entry, 0);
-        func_ov001_02184fb4(entry, func_ov001_02184fb0(entry) - 0x19a);
-        if (func_ov001_02184fb0(entry) <= 0) {
-            func_ov001_02184fb4(entry, 0);
+        SetLldEntryScale(entry, GetLldEntryScale(entry) - 0x19a);
+        if (GetLldEntryScale(entry) <= 0) {
+            SetLldEntryScale(entry, 0);
         }
         return FALSE;
     }
     if (entry->mUnk_10 <= 10) {
         func_ov001_02185018(entry, 1);
-        func_ov001_02184fb4(entry, func_ov001_02184fb0(entry) + 0x19a);
-        if (func_ov001_02184fb0(entry) >= 0x1000) {
-            func_ov001_02184fb4(entry, 0x1000);
+        SetLldEntryScale(entry, GetLldEntryScale(entry) + 0x19a);
+        if (GetLldEntryScale(entry) >= 0x1000) {
+            SetLldEntryScale(entry, 0x1000);
         }
         return FALSE;
     }
@@ -434,11 +434,11 @@ BOOL func_ov001_021a5b70(Unk021a5a58 *entry) {
 }
 
 void func_ov001_021a5b4c(void *obj, s32 index) {
-    Unk021a5a58 *entry = func_ov001_02185160(obj, index);
+    LldEntry *entry = GetLldEntry(obj, index);
 
     func_ov001_021850a4(entry, NULL);
     func_ov001_02185018(entry, 0);
-    entry->mUnk_18 = 0x1000;
+    entry->mScale = 0x1000;
 }
 
 void func_ov001_021a5ab0(void *obj, s32 index) {
@@ -450,12 +450,12 @@ void func_ov001_021a5ab0(void *obj, s32 index) {
     func_ov001_021a5b4c(gEmblem->mEmblemSLld, 19);
     func_ov001_021a5b4c(gEmblem->mEmblemSLld, 20);
     func_ov001_021a5b4c(gEmblem->mEmblemSLld, 21);
-    func_ov001_021850a4(func_ov001_02185160(obj, index), (s32(*)(Unk021a5a58 *)) func_ov001_021a5b70);
+    func_ov001_021850a4(GetLldEntry(obj, index), (s32(*)(LldEntry *)) func_ov001_021a5b70);
 }
 
-BOOL func_ov001_021a5a58(Unk021a5a58 *entry) {
+BOOL func_ov001_021a5a58(LldEntry *entry) {
     if (entry->mUnk_10 <= 0) {
-        func_ov001_02184fb4(entry, 0x1000);
+        SetLldEntryScale(entry, 0x1000);
     }
     entry->mUnk_10++;
     if (entry->mUnk_10 <= 10) {
@@ -470,19 +470,19 @@ BOOL func_ov001_021a5a58(Unk021a5a58 *entry) {
 }
 
 void func_ov001_021a5a40(void *obj, s32 index) {
-    func_ov001_021850a4(func_ov001_02185160(obj, index), (s32(*)(Unk021a5a58 *)) func_ov001_021a5a58);
+    func_ov001_021850a4(GetLldEntry(obj, index), (s32(*)(LldEntry *)) func_ov001_021a5a58);
 }
 
 void func_ov001_021a59cc(void *obj, s32 index) {
-    void *a = func_ov001_02185160(obj, index);
-    void *b = func_ov001_02185160(obj, 24);
+    void *a = GetLldEntry(obj, index);
+    void *b = GetLldEntry(obj, 24);
 
-    if (func_ov001_02184ff8(b) >= 0) {
-        func_ov001_021850a4(a, (s32(*)(Unk021a5a58 *)) func_ov001_021a5d18);
+    if (GetLldEntryFrameIndex(b) >= 0) {
+        func_ov001_021850a4(a, (s32(*)(LldEntry *)) func_ov001_021a5d18);
         func_ov001_02185018(b, -5);
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 505);
     } else {
-        func_ov001_021850a4(a, (s32(*)(Unk021a5a58 *)) func_ov001_021a5d18);
+        func_ov001_021850a4(a, (s32(*)(LldEntry *)) func_ov001_021a5d18);
         func_ov001_02185018(b, 0);
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 506);
     }

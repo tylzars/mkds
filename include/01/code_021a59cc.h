@@ -11,7 +11,7 @@ typedef struct Unk021a5a58_2c_2c {
     /* 08 */ s16 mUnk_08[4];
 } Unk021a5a58_2c_2c;
 
-// Object at Unk021a5a58.mUnk_2c.
+// Object at LldEntry.mUnk_2c.
 typedef struct Unk021a5a58_2c {
     /* 00 */ u8 mUnk_00[0x8];
     /* 08 */ BOOL mUnk_08;
@@ -23,37 +23,37 @@ typedef struct Unk021a5a58_2c {
 } Unk021a5a58_2c;
 
 // Object that the per-entry update callbacks around func_ov001_021a5a58 work on.
-typedef struct Unk021a5a58 {
-    /* 00 */ u16 mUnk_00;
+typedef struct LldEntry {
+    /* 00 */ u16 mAnimIndex;
     /* 02 */ u8 mUnk_02[0x2];
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ BOOL mUnk_0c;
+    /* 04 */ s32 mPosX;
+    /* 08 */ s32 mPosY;
+    /* 0c */ BOOL mShown;
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
-    /* 18 */ s32 mUnk_18;
-    /* 1c */ s32 mUnk_1c;
-    /* 20 */ s32 mUnk_20;
-    /* 24 */ s32 mUnk_24;
-    /* 28 */ s32 mUnk_28;
+    /* 18 */ s32 mScale;
+    /* 1c */ s32 mBoundsLeft;
+    /* 20 */ s32 mBoundsRight;
+    /* 24 */ s32 mBoundsTop;
+    /* 28 */ s32 mBoundsBottom;
     /* 2c */ Unk02022030 mUnk_2c;
-    /* 80 */ struct Unk021ca41c_085c *mUnk_80;
-    /* 84 */ s32 (*mUnk_84)(struct Unk021a5a58 *);
-} Unk021a5a58;
+    /* 80 */ struct Lld *mLld;
+    /* 84 */ s32 (*mCallback)(struct LldEntry *);
+} LldEntry;
 
 void func_ov001_021a59cc(void *obj, s32 index);
 void func_ov001_021a5a40(void *obj, s32 index);
-BOOL func_ov001_021a5a58(Unk021a5a58 *entry);
+BOOL func_ov001_021a5a58(LldEntry *entry);
 void func_ov001_021a5ab0(void *obj, s32 index);
 void func_ov001_021a5b4c(void *obj, s32 index);
-BOOL func_ov001_021a5b70(Unk021a5a58 *entry);
+BOOL func_ov001_021a5b70(LldEntry *entry);
 void func_ov001_021a5c28(void *obj, s32 index);
-BOOL func_ov001_021a5c40(Unk021a5a58 *entry);
+BOOL func_ov001_021a5c40(LldEntry *entry);
 void func_ov001_021a5d00(void *obj, s32 index);
-BOOL func_ov001_021a5d18(Unk021a5a58 *entry);
+BOOL func_ov001_021a5d18(LldEntry *entry);
 void func_ov001_021a5df0(void *obj, s32 index);
-BOOL func_ov001_021a5e60(Unk021a5a58 *entry);
-BOOL func_ov001_021a5ef4(Unk021a5a58 *entry);
+BOOL func_ov001_021a5e60(LldEntry *entry);
+BOOL func_ov001_021a5ef4(LldEntry *entry);
 s32 func_ov001_021a5f70(s32 down, s32 x, s32 y, s32 d, s32 dx, s32 dy);
 void func_ov001_021a6238(s32 originX, s32 originY, s32 side, s32 scrSide, s32 tableCount);
 BOOL func_ov001_021a6278(void);

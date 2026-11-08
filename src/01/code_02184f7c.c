@@ -27,31 +27,31 @@
 #include "code_020220f0.h"
 #include "code_02147cd8.h"
 
-Unk021ca41c_085c *func_ov001_021852f8(const char *a, void *b, void *c) {
+Lld *CreateLld(const char *fileName, void *cells, void *cellAnims) {
     s16 *box;
-    Unk021a5a58 *entry;
+    LldEntry *entry;
     s32 i;
-    Unk021ca41c_085c *list;
-    Unk021852f8 *data;
-    Unk021852f8_02 *rec;
+    Lld *list;
+    LldData *data;
+    LldRecord *rec;
     Unk021a5a58_2c_2c *cell;
 
     list = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x18);
-    data = FindSceneFile((a));
-    list->mUnk_00 = data->mUnk_00;
-    list->mUnk_04 = HeapAlloc(GetHeap(GetCurrentHeapCall()), list->mUnk_00 * 0x88);
-    list->mUnk_08 = b;
-    list->mUnk_0c = c;
-    rec = data->mUnk_02;
-    for (i = 0; i < list->mUnk_00; i++) {
-        entry = &list->mUnk_04[i];
-        entry->mUnk_80 = list;
-        entry->mUnk_00 = rec[i].mUnk_00;
-        entry->mUnk_04 = rec[i].mUnk_02 > 0 ? 0.5f + (rec[i].mUnk_02 << 12) : (rec[i].mUnk_02 << 12) - 0.5f;
-        entry->mUnk_08 = rec[i].mUnk_04 > 0 ? 0.5f + (rec[i].mUnk_04 << 12) : (rec[i].mUnk_04 << 12) - 0.5f;
-        entry->mUnk_18 = 0x1000;
-        entry->mUnk_0c = rec[i].mUnk_06 != 0;
-        NNS_G2dInitCellAnimation(&entry->mUnk_2c, NNS_G2dGetAnimSequenceByIdx(c, rec[i].mUnk_00), b);
+    data = FindSceneFile((fileName));
+    list->mEntryCount = data->mEntryCount;
+    list->mEntries = HeapAlloc(GetHeap(GetCurrentHeapCall()), list->mEntryCount * 0x88);
+    list->mCells = cells;
+    list->mCellAnims = cellAnims;
+    rec = data->mRecords;
+    for (i = 0; i < list->mEntryCount; i++) {
+        entry = &list->mEntries[i];
+        entry->mLld = list;
+        entry->mAnimIndex = rec[i].mUnk_00;
+        entry->mPosX = rec[i].mUnk_02 > 0 ? 0.5f + (rec[i].mUnk_02 << 12) : (rec[i].mUnk_02 << 12) - 0.5f;
+        entry->mPosY = rec[i].mUnk_04 > 0 ? 0.5f + (rec[i].mUnk_04 << 12) : (rec[i].mUnk_04 << 12) - 0.5f;
+        entry->mScale = 0x1000;
+        entry->mShown = rec[i].mUnk_06 != 0;
+        NNS_G2dInitCellAnimation(&entry->mUnk_2c, NNS_G2dGetAnimSequenceByIdx(cellAnims, rec[i].mUnk_00), cells);
         if (rec[i].mUnk_06 > 1) {
             entry->mUnk_2c.mUnk_08 = TRUE;
         } else {
@@ -60,161 +60,162 @@ Unk021ca41c_085c *func_ov001_021852f8(const char *a, void *b, void *c) {
         cell = (Unk021a5a58_2c_2c *) entry->mUnk_2c.mUnk_2c;
         if ((cell->mUnk_02 >> 11) & 1) {
             box = cell->mUnk_08;
-            entry->mUnk_1c = box[2] << 12;
-            entry->mUnk_24 = box[3] << 12;
-            entry->mUnk_20 = box[0] << 12;
-            entry->mUnk_28 = box[1] << 12;
+            entry->mBoundsLeft = box[2] << 12;
+            entry->mBoundsTop = box[3] << 12;
+            entry->mBoundsRight = box[0] << 12;
+            entry->mBoundsBottom = box[1] << 12;
         }
     }
     return list;
 }
 
-void func_ov001_0218516c(Unk021ca41c_085c *a, Unk0218516c *b) {
+void AdvanceLld(Lld *lld, Unk0218516c *oamBuffer) {
     s32 i;
-    Unk021a5a58 *entry;
-    Unk02022030 *sub;
-    s32 x;
-    s32 y;
+    LldEntry *entry;
+    Unk02022030 *cellAnim;
+    s32 screenX;
+    s32 screenY;
     s32 pos_a[2];
     s32 pos_b[2];
     Unk021a5a58_2c_2c *cell;
 
-    for (i = 0; i < a->mUnk_00; i++) {
-        entry = &a->mUnk_04[i];
-        sub = &entry->mUnk_2c;
-        if (entry->mUnk_84 != NULL) {
-            if (entry->mUnk_84(entry) != 0) {
-                entry->mUnk_84 = NULL;
+    for (i = 0; i < lld->mEntryCount; i++) {
+        entry = &lld->mEntries[i];
+        cellAnim = &entry->mUnk_2c;
+        if (entry->mCallback != NULL) {
+            if (entry->mCallback(entry) != 0) {
+                entry->mCallback = NULL;
             }
         }
-        if (entry->mUnk_0c != FALSE && entry->mUnk_18 > 0) {
-            x = (entry->mUnk_04 >> 12) + a->mUnk_10;
-            y = (entry->mUnk_08 >> 12) + a->mUnk_14;
-            if (x >= -64 && x <= 0x140 && y >= -48 && y <= 0xf0) {
-                if (entry->mUnk_18 != 0x1000) {
-                    u16 idx = func_020ae5c4(b);
+        if (entry->mShown != FALSE && entry->mScale > 0) {
+            screenX = (entry->mPosX >> 12) + lld->mOffsetX;
+            screenY = (entry->mPosY >> 12) + lld->mOffsetY;
+            if (screenX >= -64 && screenX <= 0x140 && screenY >= -48 && screenY <= 0xf0) {
+                if (entry->mScale != 0x1000) {
+                    u16 idx = func_020ae5c4(oamBuffer);
                     s32 mtx[4] = {0, 0, 0, 0};
 
-                    mtx[0] = FX_Div(0x1000, entry->mUnk_18);
-                    mtx[3] = FX_Div(0x1000, entry->mUnk_18);
-                    ((Unk0218516c_000 *) b->mUnk_000)[idx].mUnk_06 = mtx[0] >> 4;
-                    ((Unk0218516c_000 *) b->mUnk_000)[idx].mUnk_0e = mtx[1] >> 4;
-                    ((Unk0218516c_000 *) b->mUnk_000)[idx].mUnk_16 = mtx[2] >> 4;
-                    ((Unk0218516c_000 *) b->mUnk_000)[idx].mUnk_1e = mtx[3] >> 4;
-                    mtx[0] = entry->mUnk_18;
-                    mtx[3] = entry->mUnk_18;
+                    mtx[0] = FX_Div(0x1000, entry->mScale);
+                    mtx[3] = FX_Div(0x1000, entry->mScale);
+                    ((Unk0218516c_000 *) oamBuffer->mUnk_000)[idx].mUnk_06 = mtx[0] >> 4;
+                    ((Unk0218516c_000 *) oamBuffer->mUnk_000)[idx].mUnk_0e = mtx[1] >> 4;
+                    ((Unk0218516c_000 *) oamBuffer->mUnk_000)[idx].mUnk_16 = mtx[2] >> 4;
+                    ((Unk0218516c_000 *) oamBuffer->mUnk_000)[idx].mUnk_1e = mtx[3] >> 4;
+                    mtx[0] = entry->mScale;
+                    mtx[3] = entry->mScale;
                     cell = (Unk021a5a58_2c_2c *) entry->mUnk_2c.mUnk_2c;
-                    pos_a[0] = x << 12;
-                    pos_a[1] = y << 12;
-                    b->mUnk_400 +=
-                        NNS_G2dMakeCellToOams((GXOamAttr *) &b->mUnk_000[b->mUnk_400 * 8], 0x80 - b->mUnk_400,
-                                              (Unk020224e0_c *) cell, mtx, pos_a, idx, 1);
+                    pos_a[0] = screenX << 12;
+                    pos_a[1] = screenY << 12;
+                    oamBuffer->mUnk_400 +=
+                        NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000[oamBuffer->mUnk_400 * 8],
+                                              0x80 - oamBuffer->mUnk_400, (Unk020224e0_c *) cell, mtx, pos_a, idx, 1);
                 } else {
                     cell = (Unk021a5a58_2c_2c *) entry->mUnk_2c.mUnk_2c;
-                    pos_b[0] = x << 12;
-                    pos_b[1] = y << 12;
-                    b->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &b->mUnk_000[b->mUnk_400 * 8],
-                                                         0x80 - b->mUnk_400, (Unk020224e0_c *) cell, NULL, pos_b, 0, 0);
+                    pos_b[0] = screenX << 12;
+                    pos_b[1] = screenY << 12;
+                    oamBuffer->mUnk_400 +=
+                        NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000[oamBuffer->mUnk_400 * 8],
+                                              0x80 - oamBuffer->mUnk_400, (Unk020224e0_c *) cell, NULL, pos_b, 0, 0);
                 }
             }
         }
-        if (sub->mUnk_08 != FALSE) {
+        if (cellAnim->mUnk_08 != FALSE) {
             NNS_G2dSetCellAnimationSpeed(&entry->mUnk_2c, 0x1000);
             NNS_G2dTickCellAnimation(&entry->mUnk_2c, 0x1000);
         }
     }
 }
 
-Unk021a5a58 *func_ov001_02185160(Unk021ca41c_085c *a, s32 b) {
-    return &a->mUnk_04[b];
+LldEntry *GetLldEntry(Lld *lld, s32 index) {
+    return &lld->mEntries[index];
 }
 
-s32 func_ov001_021850b4(Unk021ca41c_085c *a, s32 b, s32 c, s32 d) {
+s32 FindLldEntryAtPoint(Lld *lld, s32 startIndex, s32 pointX, s32 pointY) {
     s32 fx;
     s32 fy;
     u16 count;
-    Unk021a5a58 *entry;
+    LldEntry *entry;
 
-    fx = c > 0 ? 0.5f + (c << 12) : (c << 12) - 0.5f;
-    fy = d > 0 ? 0.5f + (d << 12) : (d << 12) - 0.5f;
-    count = a->mUnk_00;
-    for (; b < count; b++) {
-        entry = &a->mUnk_04[b];
-        if (fx > entry->mUnk_04 + entry->mUnk_1c && fx < entry->mUnk_04 + entry->mUnk_20 &&
-            fy > entry->mUnk_08 + entry->mUnk_24 && fy < entry->mUnk_08 + entry->mUnk_28) {
-            return b;
+    fx = pointX > 0 ? 0.5f + (pointX << 12) : (pointX << 12) - 0.5f;
+    fy = pointY > 0 ? 0.5f + (pointY << 12) : (pointY << 12) - 0.5f;
+    count = lld->mEntryCount;
+    for (; startIndex < count; startIndex++) {
+        entry = &lld->mEntries[startIndex];
+        if (fx > entry->mPosX + entry->mBoundsLeft && fx < entry->mPosX + entry->mBoundsRight &&
+            fy > entry->mPosY + entry->mBoundsTop && fy < entry->mPosY + entry->mBoundsBottom) {
+            return startIndex;
         }
     }
     return -1;
 }
 
-void func_ov001_021850a4(Unk021a5a58 *a, s32 (*b)(Unk021a5a58 *)) {
-    a->mUnk_84 = b;
-    a->mUnk_10 = 0;
-    a->mUnk_14 = 0;
+void func_ov001_021850a4(LldEntry *entry, s32 (*callback)(LldEntry *)) {
+    entry->mCallback = callback;
+    entry->mUnk_10 = 0;
+    entry->mUnk_14 = 0;
 }
 
-void func_ov001_02185018(Unk021a5a58 *a, s32 b) {
-    Unk02022030 *sub = &a->mUnk_2c;
+void func_ov001_02185018(LldEntry *entry, s32 frameOrCommand) {
+    Unk02022030 *cellAnim = &entry->mUnk_2c;
 
-    if (b == -1) {
-        sub->mUnk_14 = 2;
-        a->mUnk_2c.mUnk_08 = TRUE;
-    } else if (b == -2) {
-        NNS_G2dResetAnimCtrlState(sub);
-        sub->mUnk_14 = 1;
-        a->mUnk_2c.mUnk_08 = TRUE;
-    } else if (b == -3) {
-        a->mUnk_2c.mUnk_08 = FALSE;
-    } else if (b == -4) {
-        a->mUnk_0c = TRUE;
-    } else if (b == -5) {
-        a->mUnk_0c = FALSE;
-    } else if (b >= 0) {
-        a->mUnk_0c = TRUE;
-        NNS_G2dSetCellAnimationCurrentFrame(sub, b);
+    if (frameOrCommand == -1) {
+        cellAnim->mUnk_14 = 2;
+        entry->mUnk_2c.mUnk_08 = TRUE;
+    } else if (frameOrCommand == -2) {
+        NNS_G2dResetAnimCtrlState(cellAnim);
+        cellAnim->mUnk_14 = 1;
+        entry->mUnk_2c.mUnk_08 = TRUE;
+    } else if (frameOrCommand == -3) {
+        entry->mUnk_2c.mUnk_08 = FALSE;
+    } else if (frameOrCommand == -4) {
+        entry->mShown = TRUE;
+    } else if (frameOrCommand == -5) {
+        entry->mShown = FALSE;
+    } else if (frameOrCommand >= 0) {
+        entry->mShown = TRUE;
+        NNS_G2dSetCellAnimationCurrentFrame(cellAnim, frameOrCommand);
     }
 }
 
-s32 func_ov001_02184ff8(Unk021a5a58 *a) {
-    if (a->mUnk_0c != FALSE) {
-        return NNS_G2dGetAnimCtrlCurrentFrame(&a->mUnk_2c);
+s32 GetLldEntryFrameIndex(LldEntry *entry) {
+    if (entry->mShown != FALSE) {
+        return NNS_G2dGetAnimCtrlCurrentFrame(&entry->mUnk_2c);
     }
     return -5;
 }
 
-void func_ov001_02184fd8(Unk021a5a58 *a, s32 b, s32 c) {
-    a->mUnk_04 = (b - a->mUnk_80->mUnk_10) << 12;
-    a->mUnk_08 = (c - a->mUnk_80->mUnk_14) << 12;
+void SetLldEntryPos(LldEntry *entry, s32 screenX, s32 screenY) {
+    entry->mPosX = (screenX - entry->mLld->mOffsetX) << 12;
+    entry->mPosY = (screenY - entry->mLld->mOffsetY) << 12;
 }
 
-s32 func_ov001_02184fc8(Unk021a5a58 *a) {
-    return (a->mUnk_04 >> 12) + a->mUnk_80->mUnk_10;
+s32 GetLldEntryX(LldEntry *entry) {
+    return (entry->mPosX >> 12) + entry->mLld->mOffsetX;
 }
 
-s32 func_ov001_02184fb8(Unk021a5a58 *a) {
-    return (a->mUnk_08 >> 12) + a->mUnk_80->mUnk_14;
+s32 GetLldEntryY(LldEntry *entry) {
+    return (entry->mPosY >> 12) + entry->mLld->mOffsetY;
 }
 
-void func_ov001_02184fb4(Unk021a5a58 *a, s32 b) {
-    a->mUnk_18 = b;
+void SetLldEntryScale(LldEntry *entry, s32 scale) {
+    entry->mScale = scale;
 }
 
-s32 func_ov001_02184fb0(Unk021a5a58 *a) {
-    return a->mUnk_18;
+s32 GetLldEntryScale(LldEntry *entry) {
+    return entry->mScale;
 }
 
-void func_ov001_02184f9c(Unk021a5a58 *a, s32 b, s32 c, s32 d, s32 e) {
-    a->mUnk_1c = b << 12;
-    a->mUnk_24 = c << 12;
-    a->mUnk_20 = d << 12;
-    a->mUnk_28 = e << 12;
+void SetLldEntryBounds(LldEntry *entry, s32 left, s32 top, s32 right, s32 bottom) {
+    entry->mBoundsLeft = left << 12;
+    entry->mBoundsTop = top << 12;
+    entry->mBoundsRight = right << 12;
+    entry->mBoundsBottom = bottom << 12;
 }
 
-void func_ov001_02184f8c(Unk02188950 *a) {
-    StartMapObjectSound(&a->mUnk_000, 0x210);
+void func_ov001_02184f8c(Unk02188950 *mapObject) {
+    StartMapObjectSound(&mapObject->mUnk_000, 0x210);
 }
 
-void func_ov001_02184f7c(Unk02188950 *a) {
-    StartMapObjectSound(&a->mUnk_000, 0x210);
+void func_ov001_02184f7c(Unk02188950 *mapObject) {
+    StartMapObjectSound(&mapObject->mUnk_000, 0x210);
 }

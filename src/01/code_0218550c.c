@@ -26,8 +26,8 @@
 
 #pragma thumb off
 
-void func_ov001_02185778(int a) {
-    if (a != 0) {
+void func_ov001_02185778(int enable) {
+    if (enable != 0) {
         reg_G2_BG1CNT |= 0x40;
     } else {
         reg_G2_BG1CNT &= ~0x40;
@@ -40,7 +40,7 @@ void func_ov001_02185740(u32 a, u32 b, u32 c, u32 d, u32 e) {
 
 #pragma thumb on
 
-void func_ov001_021856ec(void) {
+void WriteSelectGhostScreenRegisters(void) {
     if (func_020cccc0() != 0) {
         func_ov001_021856a8(0x19);
         GX_SetGraphicsMode(1, 0, 0);
@@ -54,7 +54,7 @@ void func_ov001_021856ec(void) {
     WriteSelectGhostRegisters();
 }
 
-void func_ov001_021856c0(void) {
+void UpdateSelectGhost(void) {
     switch (AdvanceSelectGhost()) {
         case 1:
             SwitchMenuScreen(29, 0x1f);
@@ -67,12 +67,12 @@ void func_ov001_021856c0(void) {
 
 #pragma thumb off
 
-void func_ov001_021856a8(u32 a) {
-    reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | (a << 8);
+void func_ov001_021856a8(u32 bits) {
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | (bits << 8);
 }
 
-void func_ov001_0218568c(u32 a) {
-    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | (a << 8);
+void func_ov001_0218568c(u32 bits) {
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | (bits << 8);
 }
 
 #pragma thumb on
@@ -87,7 +87,7 @@ void func_ov001_02185658(void) {
     WriteSelectCupMBgOffsets();
 }
 
-void func_ov001_0218562c(void) {
+void UpdateSelectCupM(void) {
     switch (AdvanceSelectCupM()) {
         case 1:
             SwitchMenuScreen(25, 0x1f);
@@ -108,7 +108,7 @@ void func_ov001_021855f8(void) {
     WriteSelectEngineBg0Offset();
 }
 
-void func_ov001_021855cc(void) {
+void UpdateSelectEngine(void) {
     switch (AdvanceSelectEngine()) {
         case 1:
             SwitchMenuScreen(5, 0x1f);
@@ -119,7 +119,7 @@ void func_ov001_021855cc(void) {
     }
 }
 
-void func_ov001_02185598(void) {
+void WriteSelectCharacterScreenRegisters(void) {
     if (func_020cccc0() != 0) {
         func_ov001_021854f4(0xb);
         GX_SetGraphicsMode(1, 0, 1);
@@ -129,7 +129,7 @@ void func_ov001_02185598(void) {
     WriteSelectCharacterRegisters();
 }
 
-void func_ov001_0218556c(void) {
+void UpdateSelectCharacter(void) {
     switch (AdvanceSelectCharacter()) {
         case 1:
             SwitchMenuScreen(6, 0x1f);
@@ -140,7 +140,7 @@ void func_ov001_0218556c(void) {
     }
 }
 
-void func_ov001_02185538(void) {
+void WriteSelectKartScreenRegisters(void) {
     if (func_020cccc0() != 0) {
         func_ov001_021854f4(9);
         GX_SetGraphicsMode(1, 0, 1);
@@ -150,7 +150,7 @@ void func_ov001_02185538(void) {
     WriteSelectKartRegisters();
 }
 
-void func_ov001_0218550c(void) {
+void UpdateSelectKart(void) {
     switch (AdvanceSelectKart()) {
         case 1:
             SwitchMenuScreen(7, 0x1f);

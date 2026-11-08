@@ -3,12 +3,12 @@
 
 #pragma thumb off
 
-void func_ov001_02185490(u32 a) {
-    data_0217b488->mUnk_08 = a;
+void func_ov001_02185490(u32 value) {
+    data_0217b488->mUnk_08 = value;
 }
 
-void func_ov001_0218547c(u32 a) {
-    data_0217b488->mUnk_04 = a;
+void func_ov001_0218547c(u32 value) {
+    data_0217b488->mUnk_04 = value;
 }
 
 #pragma thumb on
