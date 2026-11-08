@@ -88,7 +88,7 @@ void func_ov003_021c5034(void) {
 
 void func_ov003_021c500c(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
-    func_ov003_021d2784(0, 0x15);
+    CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c4fe8);
 }
 
@@ -115,7 +115,7 @@ void func_ov003_021c4fb0(void) {
 
 void func_ov003_021c4f80(void) {
     int v1;
-    v1 = func_ov003_021d2b04(2);
+    v1 = AreKeysPressed(2);
     if (v1 != 0) {
         SetButtonResultIfNone(0);
         return;
@@ -170,9 +170,9 @@ void func_ov003_021c4e14(void) {
         func_ov003_021d2168(0);
         if (data_ov003_021da1d8 == 0) {
             func_ov003_021bf410();
-            func_ov003_021d272c(1, 1);
+            ClearDispcntBits(1, 1);
         }
-        func_ov003_021d272c(0, 0x15);
+        ClearDispcntBits(0, 0x15);
         if (data_ov003_021da1d8 == 0) {
             func_ov003_021c2120(0, 1);
             SetUpdateFunction(SetupOptMenu);

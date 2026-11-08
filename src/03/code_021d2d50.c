@@ -9,25 +9,25 @@
 #include "registers.h"
 
 void func_ov003_021d2dfc(void) {
-    u16 a;
+    u16 previousIme;
 
-    data_ov003_021da2ec = reg_OS_IE;
+    gSavedIrqMask = reg_OS_IE;
     OS_SetIrqMask(0x40018);
     OS_EnableIrqMask(1);
-    data_ov003_021da2e8 = OS_GetIrqFunction(1);
+    gSavedIrqFunction = OS_GetIrqFunction(1);
     OS_SetIrqFunction(1, func_ov003_021d2da4);
-    a = reg_OS_IME;
+    previousIme = reg_OS_IME;
     reg_OS_IME = 1;
     OS_EnableInterrupts();
 }
 
 void func_ov003_021d2dcc(void) {
-    u16 a;
+    u16 previousIme;
 
-    a = reg_OS_IME;
+    previousIme = reg_OS_IME;
     reg_OS_IME = 0;
-    OS_SetIrqMask(data_ov003_021da2ec);
-    OS_SetIrqFunction(1, data_ov003_021da2e8);
+    OS_SetIrqMask(gSavedIrqMask);
+    OS_SetIrqFunction(1, gSavedIrqFunction);
 }
 
 void func_ov003_021d2da4(void) {
@@ -35,18 +35,18 @@ void func_ov003_021d2da4(void) {
     *OFFSET_PTR(u32, &data_027e0000, 0x3ff8) |= 1;
 }
 
-void func_ov003_021d2d50(void) {
-    TPCalibrateParam a;
+void InitKeyTouchInput(void) {
+    TPCalibrateParam calibration;
 
-    data_ov003_021da2d4 = func_ov003_021d283c(0x3a, 4);
-    if (TP_GetUserInfo(&a) == 0) {
+    gKeyTouchInput = AllocZeroedExpHeapBlock(0x3a, 4);
+    if (TP_GetUserInfo(&calibration) == 0) {
         OS_Terminate();
     }
-    TP_SetCalibrateParam(&a);
-    TP_RequestAutoSamplingStartAsync(0, 4, data_ov003_021da2d4->mUnk_00, 5);
+    TP_SetCalibrateParam(&calibration);
+    TP_RequestAutoSamplingStartAsync(0, 4, gKeyTouchInput->mTouchSamples, 5);
     TP_WaitBusy(2);
     if (TP_CheckError(2) != 0) {
         OS_Terminate();
     }
-    func_ov003_021d2d14();
+    UpdateKeyTouchInput();
 }

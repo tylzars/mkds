@@ -33,7 +33,7 @@ void ReleaseSlideButtons(u32 task) {
         }
     }
     func_ov003_021d197c(data_ov003_021da108->mUnk_08);
-    func_ov003_021d2808(&data_ov003_021da108);
+    FreeExpHeapBlockAndClearPointer(&data_ov003_021da108);
 }
 
 void AdvanceButtonReset(u32 task) {
@@ -71,7 +71,7 @@ void func_ov003_021beef8(int index) {
     Unk021da104_04 *innerObject;
     u32 c;
 
-    object = func_ov003_021d283c(0xc, 4);
+    object = AllocZeroedExpHeapBlock(0xc, 4);
     data_ov003_021da104 = object;
     object->mUnk_08 = index;
     data_ov003_021da104->mUnk_04 = func_ov003_021d1c18(0, 0x47);
@@ -89,7 +89,7 @@ void func_ov003_021beef8(int index) {
 void func_ov003_021beecc(void) {
     func_ov003_021d34c0(1, data_ov003_021da104->mUnk_00);
     func_ov003_021d2f00((u32 *) data_ov003_021da104->mUnk_04);
-    func_ov003_021d2808(&data_ov003_021da104);
+    FreeExpHeapBlockAndClearPointer(&data_ov003_021da104);
 }
 
 void func_ov003_021bee24(void) {

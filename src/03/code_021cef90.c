@@ -58,7 +58,7 @@ void func_ov003_021cefc0(u32 a, s32 b, s32 c, u32 d, u32 e) {
 
     v1 = data_ov003_021d7864;
     v = GetMessageEntryAndWriteDigit(gMessages, a, d, e);
-    data_ov003_021da284 = func_ov003_021d283c(0x20, 4);
+    data_ov003_021da284 = AllocZeroedExpHeapBlock(0x20, 4);
     data_ov003_021da284->mUnk_1c = b;
     data_ov003_021da284->mUnk_1b = -2;
     data_ov003_021da284->mUnk_1e = c;
@@ -76,10 +76,10 @@ void func_ov003_021cefc0(u32 a, s32 b, s32 c, u32 d, u32 e) {
     func_ov003_021d2070(data_ov003_021da284->mUnk_10, 0, 0, data_ov003_021d6768[b][0], data_ov003_021d6768[b][1], 2,
                         GetLanguageTextFlags(), v);
     func_ov003_021d1ffc(data_ov003_021da284->mUnk_10, 0x100, 0, data_ov003_021da284->mUnk_04, 0);
-    func_ov003_021d254c(0, 0, 0x1f, 0);
-    func_ov003_021d254c(0, 1, 0x1f, v1.mUnk_00[data_ov003_021da284->mUnk_1c]);
-    func_ov003_021d254c(0, 3, 0x1f, 1);
-    func_ov003_021d2658(0, 1, data_ov003_021d6728);
+    WriteWinInOutBits(0, 0, 0x1f, 0);
+    WriteWinInOutBits(0, 1, 0x1f, v1.mUnk_00[data_ov003_021da284->mUnk_1c]);
+    WriteWinInOutBits(0, 3, 0x1f, 1);
+    WriteWinRect(0, 1, data_ov003_021d6728);
     func_ov003_021cec50(0xc0);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffff1fff) | 0x6000;
     if (c != 0) {

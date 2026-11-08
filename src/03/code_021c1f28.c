@@ -6,7 +6,7 @@ u32 func_ov003_021c1f28(u32 size) {
     u32 alignment;
     u32 value3;
     alignment = 32u;
-    value3 = (u32) &func_ov003_021d285c;
-    value0 = (u32) func_ov003_021d285c(value0, alignment);
+    value3 = (u32) &AllocExpHeapBlock;
+    value0 = (u32) AllocExpHeapBlock(value0, alignment);
     return value0;
 }

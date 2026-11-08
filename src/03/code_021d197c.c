@@ -23,7 +23,7 @@ Unk021d1770 *func_ov003_021d1be4(u32 b, u32 c, s32 d) {
 void func_ov003_021d1b3c(void) {
     s32 i;
 
-    data_ov003_021da2b4 = func_ov003_021d283c(0x450, 4);
+    data_ov003_021da2b4 = AllocZeroedExpHeapBlock(0x450, 4);
     for (i = 0; i < 2; i++) {
         data_ov003_021da2b4[i].mUnk_224 = func_ov003_021d1d60(0x20, &data_ov003_021da2b4[i], 0x10);
         data_ov003_021da2b4[i].mUnk_220 = func_ov003_021d2ecc();
@@ -41,7 +41,7 @@ void func_ov003_021d1af0(void) {
         func_ov003_021d2eb8(data_ov003_021da2b4[i].mUnk_220);
         func_ov003_021d1d4c(data_ov003_021da2b4[i].mUnk_224);
     }
-    func_ov003_021d2808(&data_ov003_021da2b4);
+    FreeExpHeapBlockAndClearPointer(&data_ov003_021da2b4);
 }
 
 Unk021d1770 *func_ov003_021d19e0(u32 f, s32 g, s32 h) {
@@ -61,7 +61,7 @@ Unk021d1770 *func_ov003_021d19e0(u32 f, s32 g, s32 h) {
                 e = c->mUnk_08 + c->mUnk_0c;
                 if (e + g <= d->mUnk_08) {
                     a->mUnk_08 = e;
-                    func_ov003_021d2e68((u32) d, (u32) a);
+                    AddNodeBefore((u32) d, (u32) a);
                     break;
                 }
                 c = d;
@@ -78,7 +78,7 @@ Unk021d1770 *func_ov003_021d19e0(u32 f, s32 g, s32 h) {
                 e = c->mUnk_08 - g;
                 if (e >= d->mUnk_08 + d->mUnk_0c) {
                     a->mUnk_08 = e;
-                    func_ov003_021d2e68((u32) c, (u32) a);
+                    AddNodeBefore((u32) c, (u32) a);
                     break;
                 }
                 c = d;
@@ -101,7 +101,7 @@ void func_ov003_021d197c(Unk021d1770 *b) {
     for (i = 0; i < b->mUnk_0c; i++, a++) {
         a->mUnk_00 = (a->mUnk_00 & 0xc1fffcff) | 0x200;
     }
-    func_ov003_021d2e90((u32) b);
+    RemoveNodeFromList((u32) b);
     if (b >= (Unk021d1770 *) &data_ov003_021da2b4[1]) {
         k = 1;
     }

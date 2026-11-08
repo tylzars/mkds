@@ -15,7 +15,7 @@
 void func_ov003_021c1fc8(void) {
     Unk021c1fc8 requestItem;
     ValueRecordsRequest *request;
-    gValueRecordsRequest = func_ov003_021d283c(0x26c, 4);
+    gValueRecordsRequest = AllocZeroedExpHeapBlock(0x26c, 4);
     gValueRecordsRequestSucceeded[0] = 0;
     requestItem.mUnk_00 = 0;
     MIi_CpuClear16(requestItem.mUnk_00, &requestItem.mItemType, 0x104);
@@ -42,7 +42,7 @@ void func_ov003_021c1f84(int succeeded) {
         ((*(u8 *) &gValueRecordsRequestSucceeded) == 1)) {
         func_ov003_021cd4e8((s32) &gValueRecordsRequest->mUnk_117);
     }
-    func_ov003_021d2808(&gValueRecordsRequest);
+    FreeExpHeapBlockAndClearPointer(&gValueRecordsRequest);
 }
 
 u32 func_ov003_021c1f34(void) {

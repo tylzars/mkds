@@ -11,7 +11,7 @@
 
 void func_ov003_021d2f78(void) {
     func_ov003_021d34c0(1, data_ov003_021da2f0->mUnk_808);
-    func_ov003_021d2808(&data_ov003_021da2f0);
+    FreeExpHeapBlockAndClearPointer(&data_ov003_021da2f0);
 }
 
 u8 *func_ov003_021d2f44(int a, u8 *b) {
@@ -38,7 +38,7 @@ Unk021d1770_08 *func_ov003_021d2eec(int a, int b) {
 }
 
 void *func_ov003_021d2ecc(void) {
-    u32 v4 = ((u32) func_ov003_021d285c(0x10u, 0x4u));
+    u32 v4 = ((u32) AllocExpHeapBlock(0x10u, 0x4u));
     u32 v7;
     u32 v8;
     *(u32 *) ((v4) + (0)) = 0x0u;

@@ -7,13 +7,13 @@
 #include "code_0214a390.h"
 
 void func_ov003_021d1f98(void) {
-    data_ov003_021da2c0 = func_ov003_021d283c(0x18, 4);
+    data_ov003_021da2c0 = AllocZeroedExpHeapBlock(0x18, 4);
     G2x_SetBlendBrightness_(&reg_G2_BLDCNT, 0x3f, 0x10);
     G2x_SetBlendBrightness_(&reg_G2S_DB_BLDCNT, 0x3f, 0x10);
 }
 
 void func_ov003_021d1f88(void) {
-    func_ov003_021d2808(&data_ov003_021da2c0);
+    FreeExpHeapBlockAndClearPointer(&data_ov003_021da2c0);
 }
 
 u8 func_ov003_021d1f70(int a) {

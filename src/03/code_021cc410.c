@@ -108,7 +108,7 @@ void LoadUsbFilesAndSetBgCnt(void) {
 
 void func_ov003_021cc790(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
-    func_ov003_021d2784(0, 0x15);
+    CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021cc76c);
 }
 
@@ -136,7 +136,7 @@ void UpdateUsb(void) {
 
 void func_ov003_021cc700(void) {
     int v1;
-    v1 = func_ov003_021d2b04(2);
+    v1 = AreKeysPressed(2);
     if (v1 != 0) {
         SetButtonResultIfNone(0);
         return;
@@ -184,9 +184,9 @@ void func_ov003_021cc5a8(void) {
         func_ov003_021d2168(0);
         if (data_ov003_021da258 == 2 || data_ov003_021da258 == 3) {
             func_ov003_021bf410();
-            func_ov003_021d272c(1, 1);
+            ClearDispcntBits(1, 1);
         }
-        func_ov003_021d272c(0, 0x15);
+        ClearDispcntBits(0, 0x15);
         if (data_ov003_021da258 == 2) {
             func_ov003_021c2120(2, 1);
             SetUpdateFunction(CreateAp);

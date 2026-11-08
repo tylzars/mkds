@@ -48,7 +48,7 @@ void CreateEditAddr(void) {
     b[2] = data_ov003_021d7300[2];
     b[3] = data_ov003_021d7300[3];
     b[4] = data_ov003_021d7300[4];
-    gEditAddr = func_ov003_021d283c(0x18, 4);
+    gEditAddr = AllocZeroedExpHeapBlock(0x18, 4);
     func_ov003_021c20dc(&c, NULL);
     a.mUnk_00[c](gEditAddr->mText);
     d = gEditAddr;
@@ -129,8 +129,8 @@ void LoadEditAddrFilesAndSetBgCnt(void) {
 void func_ov003_021c7678(void) {
     func_ov003_021d1ee0(2, 1, 1, 8);
     func_ov003_021d1ee0(2, 0, 0x15, 8);
-    func_ov003_021d2784(1, 1);
-    func_ov003_021d2784(0, 0x15);
+    CombineDispcntBits(1, 1);
+    CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c7614);
 }
 
@@ -337,8 +337,8 @@ void func_ov003_021c722c(void) {
     func_ov003_021d2f00((u32 *) (u32) (gEditAddr->mUnk_04));
     func_ov003_021d2168(0);
     LoadFileToVram(&gYbObjMainNclName3, &GX_LoadOBJPltt);
-    func_ov003_021d272c(1, 1);
-    func_ov003_021d272c(0, 0x15);
+    ClearDispcntBits(1, 1);
+    ClearDispcntBits(0, 0x15);
     func_ov003_021c20dc(v1, NULL);
     if (3 <= v1[0]) {
         v1[0] = v1[0] + 1;
@@ -346,7 +346,7 @@ void func_ov003_021c722c(void) {
     func_ov003_021c2120(2, 1);
     func_ov003_021c20f8(0, v1[0] + 3);
     SetUpdateFunction(CreateJb3List);
-    func_ov003_021d2808(&gEditAddr);
+    FreeExpHeapBlockAndClearPointer(&gEditAddr);
 }
 
 void PrintEditAddrText(void) {

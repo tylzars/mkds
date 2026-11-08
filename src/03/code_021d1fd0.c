@@ -28,7 +28,7 @@
 #include "registers.h"
 
 void func_ov003_021d2490(void) {
-    Unk021d1fd0 *a = func_ov003_021d285c(0x798, 4);
+    Unk021d1fd0 *a = AllocExpHeapBlock(0x798, 4);
     u32 *b;
     s32 i;
 
@@ -47,7 +47,7 @@ void func_ov003_021d244c(void) {
         func_ov003_021d1490(data_ov003_021da2c4->mUnk_78c[i]);
     }
     func_ov003_021d1d4c(data_ov003_021da2c4->mUnk_788);
-    func_ov003_021d2808(&data_ov003_021da2c4);
+    FreeExpHeapBlockAndClearPointer(&data_ov003_021da2c4);
 }
 
 Unk021d23b0 *func_ov003_021d23b0(u32 a, u16 b, u16 c, s32 d, u32 *e, s32 f) {
@@ -90,7 +90,7 @@ Unk021d2188 *func_ov003_021d2288(u32 g, u32 h) {
     u32 e;
     u8 *f;
 
-    a->mUnk_30 = func_ov003_021d285c((c * b) << 5, 0x20);
+    a->mUnk_30 = AllocExpHeapBlock((c * b) << 5, 0x20);
     if (g == 1) {
         d = &reg_G2S_DB_BG0CNT;
         *d &= ~0x40;
@@ -152,7 +152,7 @@ void func_ov003_021d2188(Unk021d2188 *d) {
         b = 0;
         MIi_CpuClear16(b, c, (data_ov003_021d67e0[2] * data_ov003_021d67e0[3]) << 5);
     }
-    func_ov003_021d2808(&d->mUnk_30);
+    FreeExpHeapBlockAndClearPointer(&d->mUnk_30);
 }
 
 void func_ov003_021d2168(u32 index) {

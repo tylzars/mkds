@@ -1,138 +1,138 @@
 #include "03/code_021d254c.h"
 #include "registers.h"
 
-void func_ov003_021d2784(int c, u32 d) {
-    vu32 *a;
-    u32 b;
+void CombineDispcntBits(int screen, u32 bits) {
+    vu32 *dispcnt;
+    u32 currentBits;
 
-    if (c == 1) {
-        a = &reg_GXS_DB_DISPCNT;
-        b = (*a & 0x1f00) >> 8;
-        *a = (*a & 0xffffe0ff) | ((d | b) << 8);
+    if (screen == 1) {
+        dispcnt = &reg_GXS_DB_DISPCNT;
+        currentBits = (*dispcnt & 0x1f00) >> 8;
+        *dispcnt = (*dispcnt & 0xffffe0ff) | ((bits | currentBits) << 8);
     } else {
-        a = &reg_GX_DISPCNT;
-        b = (*a & 0x1f00) >> 8;
-        *a = (*a & 0xffffe0ff) | ((d | b) << 8);
+        dispcnt = &reg_GX_DISPCNT;
+        currentBits = (*dispcnt & 0x1f00) >> 8;
+        *dispcnt = (*dispcnt & 0xffffe0ff) | ((bits | currentBits) << 8);
     }
 }
 
-void func_ov003_021d272c(int c, u32 d) {
-    vu32 *a;
-    u32 b;
+void ClearDispcntBits(int screen, u32 bits) {
+    vu32 *dispcnt;
+    u32 currentBits;
 
-    if (c == 1) {
-        a = &reg_GXS_DB_DISPCNT;
-        b = (*a & 0x1f00) >> 8;
-        *a = (*a & 0xffffe0ff) | ((~d & b) << 8);
+    if (screen == 1) {
+        dispcnt = &reg_GXS_DB_DISPCNT;
+        currentBits = (*dispcnt & 0x1f00) >> 8;
+        *dispcnt = (*dispcnt & 0xffffe0ff) | ((~bits & currentBits) << 8);
     } else {
-        a = &reg_GX_DISPCNT;
-        b = (*a & 0x1f00) >> 8;
-        *a = (*a & 0xffffe0ff) | ((~d & b) << 8);
+        dispcnt = &reg_GX_DISPCNT;
+        currentBits = (*dispcnt & 0x1f00) >> 8;
+        *dispcnt = (*dispcnt & 0xffffe0ff) | ((~bits & currentBits) << 8);
     }
 }
 
-void func_ov003_021d2658(int a, int b, u16 *c) {
-    u16 d;
-    u16 e;
-    u16 f;
+void WriteWinRect(int screen, int window, u16 *rect) {
+    u16 bottom;
+    u16 top;
+    u16 left;
 
-    if (a == 1) {
-        if (b == 0) {
-            d = c[3];
-            e = c[1];
-            f = c[0];
-            reg_G2S_DB_WIN0H = ((f << 8) & 0xff00) | (c[2] & 0xff);
-            reg_G2S_DB_WIN0V = ((e << 8) & 0xff00) | (d & 0xff);
+    if (screen == 1) {
+        if (window == 0) {
+            bottom = rect[3];
+            top = rect[1];
+            left = rect[0];
+            reg_G2S_DB_WIN0H = ((left << 8) & 0xff00) | (rect[2] & 0xff);
+            reg_G2S_DB_WIN0V = ((top << 8) & 0xff00) | (bottom & 0xff);
         } else {
-            d = c[3];
-            e = c[1];
-            f = c[0];
-            *(u16 *) 0x4001042 = ((f << 8) & 0xff00) | (c[2] & 0xff);
-            *(u16 *) 0x4001046 = ((e << 8) & 0xff00) | (d & 0xff);
+            bottom = rect[3];
+            top = rect[1];
+            left = rect[0];
+            *(u16 *) 0x4001042 = ((left << 8) & 0xff00) | (rect[2] & 0xff);
+            *(u16 *) 0x4001046 = ((top << 8) & 0xff00) | (bottom & 0xff);
         }
     } else {
-        if (b == 0) {
-            d = c[3];
-            e = c[1];
-            f = c[0];
-            reg_G2_WIN0H = ((f << 8) & 0xff00) | (c[2] & 0xff);
-            reg_G2_WIN0V = ((e << 8) & 0xff00) | (d & 0xff);
+        if (window == 0) {
+            bottom = rect[3];
+            top = rect[1];
+            left = rect[0];
+            reg_G2_WIN0H = ((left << 8) & 0xff00) | (rect[2] & 0xff);
+            reg_G2_WIN0V = ((top << 8) & 0xff00) | (bottom & 0xff);
         } else {
-            d = c[3];
-            e = c[1];
-            f = c[0];
-            reg_G2_WIN1H = ((f << 8) & 0xff00) | (c[2] & 0xff);
-            reg_G2_WIN1V = ((e << 8) & 0xff00) | (d & 0xff);
+            bottom = rect[3];
+            top = rect[1];
+            left = rect[0];
+            reg_G2_WIN1H = ((left << 8) & 0xff00) | (rect[2] & 0xff);
+            reg_G2_WIN1V = ((top << 8) & 0xff00) | (bottom & 0xff);
         }
     }
 }
 
-void func_ov003_021d254c(int a, int b, u32 c, int d) {
-    u32 e;
+void WriteWinInOutBits(int screen, int selector, u32 bits, int extraBitFlag) {
+    u32 registerValue;
 
-    switch (b) {
+    switch (selector) {
         case 0:
-            if (a == 1) {
-                e = reg_G2S_DB_WININ;
-                e = (e & ~0x3f) | c;
-                if (d != 0) {
-                    e |= 0x20;
+            if (screen == 1) {
+                registerValue = reg_G2S_DB_WININ;
+                registerValue = (registerValue & ~0x3f) | bits;
+                if (extraBitFlag != 0) {
+                    registerValue |= 0x20;
                 }
-                reg_G2S_DB_WININ = e;
+                reg_G2S_DB_WININ = registerValue;
             } else {
-                e = reg_G2_WININ;
-                e = (e & ~0x3f) | c;
-                if (d != 0) {
-                    e |= 0x20;
+                registerValue = reg_G2_WININ;
+                registerValue = (registerValue & ~0x3f) | bits;
+                if (extraBitFlag != 0) {
+                    registerValue |= 0x20;
                 }
-                reg_G2_WININ = e;
+                reg_G2_WININ = registerValue;
             }
             break;
         case 1:
-            if (a == 1) {
-                e = (reg_G2S_DB_WININ & 0xffffc0ff) | (c << 8);
-                if (d != 0) {
-                    e |= 0x2000;
+            if (screen == 1) {
+                registerValue = (reg_G2S_DB_WININ & 0xffffc0ff) | (bits << 8);
+                if (extraBitFlag != 0) {
+                    registerValue |= 0x2000;
                 }
-                reg_G2S_DB_WININ = e;
+                reg_G2S_DB_WININ = registerValue;
             } else {
-                e = (reg_G2_WININ & 0xffffc0ff) | (c << 8);
-                if (d != 0) {
-                    e |= 0x2000;
+                registerValue = (reg_G2_WININ & 0xffffc0ff) | (bits << 8);
+                if (extraBitFlag != 0) {
+                    registerValue |= 0x2000;
                 }
-                reg_G2_WININ = e;
+                reg_G2_WININ = registerValue;
             }
             break;
         case 2:
-            if (a == 1) {
-                e = (reg_G2S_DB_WINOUT & 0xffffc0ff) | (c << 8);
-                if (d != 0) {
-                    e |= 0x2000;
+            if (screen == 1) {
+                registerValue = (reg_G2S_DB_WINOUT & 0xffffc0ff) | (bits << 8);
+                if (extraBitFlag != 0) {
+                    registerValue |= 0x2000;
                 }
-                reg_G2S_DB_WINOUT = e;
+                reg_G2S_DB_WINOUT = registerValue;
             } else {
-                e = (reg_G2_WINOUT & 0xffffc0ff) | (c << 8);
-                if (d != 0) {
-                    e |= 0x2000;
+                registerValue = (reg_G2_WINOUT & 0xffffc0ff) | (bits << 8);
+                if (extraBitFlag != 0) {
+                    registerValue |= 0x2000;
                 }
-                reg_G2_WINOUT = e;
+                reg_G2_WINOUT = registerValue;
             }
             break;
         case 3:
-            if (a == 1) {
-                e = reg_G2S_DB_WINOUT;
-                e = (e & ~0x3f) | c;
-                if (d != 0) {
-                    e |= 0x20;
+            if (screen == 1) {
+                registerValue = reg_G2S_DB_WINOUT;
+                registerValue = (registerValue & ~0x3f) | bits;
+                if (extraBitFlag != 0) {
+                    registerValue |= 0x20;
                 }
-                reg_G2S_DB_WINOUT = e;
+                reg_G2S_DB_WINOUT = registerValue;
             } else {
-                e = reg_G2_WINOUT;
-                e = (e & ~0x3f) | c;
-                if (d != 0) {
-                    e |= 0x20;
+                registerValue = reg_G2_WINOUT;
+                registerValue = (registerValue & ~0x3f) | bits;
+                if (extraBitFlag != 0) {
+                    registerValue |= 0x20;
                 }
-                reg_G2_WINOUT = e;
+                reg_G2_WINOUT = registerValue;
             }
             break;
     }

@@ -11,12 +11,12 @@
 #include "03/code_021d1d60.h"
 
 void InitMessagesPool(void) {
-    gMessagesPool = func_ov003_021d285c(sizeof(MessagesPool), 4);
+    gMessagesPool = AllocExpHeapBlock(sizeof(MessagesPool), 4);
     gMessagesPool->mFreeList = func_ov003_021d1d60(8, gMessagesPool, 12);
 }
 
 void FreeMessagesPool(void) {
-    func_ov003_021d2808(&gMessagesPool);
+    FreeExpHeapBlockAndClearPointer(&gMessagesPool);
 }
 
 MessageFile *LoadMessages(void *path) {

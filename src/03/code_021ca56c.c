@@ -105,8 +105,8 @@ void func_ov003_021ca864(void) {
 void func_ov003_021ca828(void) {
     func_ov003_021d1ee0(2, 1, 1, 8);
     func_ov003_021d1ee0(2, 0, 0x15, 8);
-    func_ov003_021d2784(1, 1);
-    func_ov003_021d2784(0, 0x15);
+    CombineDispcntBits(1, 1);
+    CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021ca7f8);
 }
 
@@ -170,7 +170,7 @@ void func_ov003_021ca6f4(void) {
 
 void func_ov003_021ca6d4(void) {
     int v1;
-    v1 = func_ov003_021d2b04(2);
+    v1 = AreKeysPressed(2);
     if (v1 != 0) {
         StopSoundSeq();
         SetButtonResultIfNone((u8) 0);
@@ -216,8 +216,8 @@ void func_ov003_021ca5b0(void) {
         func_ov003_021beecc();
         func_ov003_021d2168(0);
         func_ov003_021bf410();
-        func_ov003_021d272c(1, 1);
-        func_ov003_021d272c(0, 0x15);
+        ClearDispcntBits(1, 1);
+        ClearDispcntBits(0, 0x15);
         if ((*(u8 *) &data_ov003_021da228) != 1) {
             func_ov003_021cd27c();
             func_ov003_021cd790(func_ov003_021cdb6c()->mUnk_f4);

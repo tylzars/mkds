@@ -42,8 +42,8 @@ void func_ov003_021cb3d8(void) {
         ReleaseSelectionObjectSlots();
         func_ov003_021bf410();
         func_ov003_021d1490(gYbBgStep21Ncl);
-        func_ov003_021d272c(1, 1);
-        func_ov003_021d272c(0, 0x14);
+        ClearDispcntBits(1, 1);
+        ClearDispcntBits(0, 0x14);
         if (data_ov003_021da240[0] == 0) {
             func_ov003_021c2120(2, 0);
             SetUpdateFunction(CreateAp);
@@ -99,7 +99,7 @@ void func_ov003_021cb2e0(void) {
 }
 
 void CreateAp(void) {
-    Ap *a = func_ov003_021d283c(0x20, 4);
+    Ap *a = AllocZeroedExpHeapBlock(0x20, 4);
     gAp = a;
     a->mUnk_1d = 0;
     LoadApFilesAndSetBgCnt();
@@ -118,7 +118,7 @@ void LoadApFilesAndSetBgCnt(void) {
     LoadFileToVram(gJbBgStep1NclName3, GX_LoadBGPltt);
     LoadFileToVram(gJb2ApNscName, GX_LoadBG2Scr);
     gAp->mYbBgStep11Ncl = func_ov003_021d14b8(BuildFilePathWithLanguage((u8 *) &a), NULL, 4);
-    func_ov003_021d2784(1, 0x10);
+    CombineDispcntBits(1, 0x10);
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 3;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
     reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 3;

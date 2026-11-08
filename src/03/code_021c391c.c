@@ -92,8 +92,8 @@ void LoadOptMenuFilesAndSetBgCnt(void) {
 void func_ov003_021c3c88(void) {
     func_ov003_021d1ee0(2, 1, 1, 8);
     func_ov003_021d1ee0(2, 0, 0x14, 8);
-    func_ov003_021d2784(1, 1);
-    func_ov003_021d2784(0, 0x14);
+    CombineDispcntBits(1, 1);
+    CombineDispcntBits(0, 0x14);
     SetUpdateFunction(func_ov003_021c3c58);
 }
 
@@ -122,7 +122,7 @@ void UpdateOptMenu(void) {
 void UpdateOptMenuInput(void) {
     u32 i;
     for (i = 0; i < 3; i++) {
-        if (func_ov003_021d2a34(&gOptMenuRects[i]) != 0) {
+        if (IsTouchPressedInRect(&gOptMenuRects[i]) != 0) {
             SetButtonResultIfNone(1);
             gOptMenuSelectedIndex = i;
             PlaceSelectionCorners(
@@ -131,13 +131,13 @@ void UpdateOptMenuInput(void) {
             return;
         }
     }
-    if (func_ov003_021d2b04(1) != 0) {
+    if (AreKeysPressed(1) != 0) {
         SetButtonResultIfNone(1);
-    } else if (func_ov003_021d2b04(2) != 0) {
+    } else if (AreKeysPressed(2) != 0) {
         SetButtonResultIfNone(0);
-    } else if (func_ov003_021d2ae8(0x40) != 0) {
+    } else if (AreKeysPressedOrRepeated(0x40) != 0) {
         MoveOptMenuSelection(1);
-    } else if (func_ov003_021d2ae8(0x80) != 0) {
+    } else if (AreKeysPressedOrRepeated(0x80) != 0) {
         MoveOptMenuSelection(3);
     }
 }
@@ -192,8 +192,8 @@ void func_ov003_021c39a4(void) {
         ReleaseSelectionObjectSlots();
         func_ov003_021bf410();
         func_ov003_021d1490(gYbBgOption1Ncl);
-        func_ov003_021d272c(1, 1);
-        func_ov003_021d272c(0, 0x14);
+        ClearDispcntBits(1, 1);
+        ClearDispcntBits(0, 0x14);
         if (data_ov003_021da1b0[0] == 0) {
             func_ov003_021c2120(0, 0);
             SetUpdateFunction(SetupJb2Menu);

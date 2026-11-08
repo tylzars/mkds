@@ -15,7 +15,7 @@
 
 void CreateSoundData(void) {
     u32 a;
-    gSoundData = func_ov003_021d285c(0x9c, 4);
+    gSoundData = AllocExpHeapBlock(0x9c, 4);
     gSoundData->mFileData = func_ov003_021d14b8(gSoundDataSdatName, &a, 0x20);
     NNS_SndInit();
     NNS_SndArcInitOnMemory(&gSoundData->mArc, gSoundData->mFileData);
@@ -26,7 +26,7 @@ void CreateSoundData(void) {
 
 void func_ov003_021cdc28(void) {
     func_ov003_021d34c8(0, gSoundData->mTask);
-    func_ov003_021d2808(&gSoundData);
+    FreeExpHeapBlockAndClearPointer(&gSoundData);
 }
 
 void StartSoundSeq(u32 index) {

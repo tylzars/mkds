@@ -2,7 +2,7 @@
 #include "03/code_021d27d8.h"
 
 Unk021d1d88 *func_ov003_021d1d88(u32 count) {
-    Unk021d1d88 *list = func_ov003_021d285c((count + 1) * 4 + 8, 4);
+    Unk021d1d88 *list = AllocExpHeapBlock((count + 1) * 4 + 8, 4);
 
     list->mUnk_00 = count + 1;
     list->mUnk_02 = 0;

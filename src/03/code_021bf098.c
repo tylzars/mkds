@@ -22,7 +22,7 @@ void CreateSlideButtons(u32 kind) {
     u8 *imageCursor;
 
     buttonCount = data_ov003_021d5ecc[kind];
-    data_ov003_021da108 = func_ov003_021d283c(0x1c, 4);
+    data_ov003_021da108 = AllocZeroedExpHeapBlock(0x1c, 4);
     data_ov003_021da108->mButtonResult = -2;
     data_ov003_021da108->mKind = kind;
     i = 0;
@@ -131,9 +131,10 @@ void AdvanceButtonTouch(void) {
             return;
         }
         for (i = 0; i < buttonCount; i++) {
-            func_ov003_021d250c(&data_ov003_021d5ed4[(data_ov003_021d5eec + data_ov003_021da108->mKind * 2)[i] * 2],
-                                data_ov003_021d5ec8, &rect);
-            if (func_ov003_021d2a34(&rect) != 0) {
+            ComputeRectFromOriginAndSize(
+                &data_ov003_021d5ed4[(data_ov003_021d5eec + data_ov003_021da108->mKind * 2)[i] * 2],
+                data_ov003_021d5ec8, &rect);
+            if (IsTouchPressedInRect(&rect) != 0) {
                 if (data_ov003_021da108->mResetTask != 0) {
                     break;
                 }

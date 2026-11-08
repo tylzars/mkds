@@ -18,7 +18,7 @@
 void func_ov003_021d31b0(void) {
     s32 i;
 
-    data_ov003_021da2f4 = func_ov003_021d283c(0x340, 4);
+    data_ov003_021da2f4 = AllocZeroedExpHeapBlock(0x340, 4);
     for (i = 0; i < 2; i++) {
         data_ov003_021da2f4[i].mUnk_19c = func_ov003_021d1d60(0x20, &data_ov003_021da2f4[i], 0xc);
         data_ov003_021da2f4[i].mUnk_198 = func_ov003_021d2ecc();
@@ -51,7 +51,7 @@ Unk021d309c *func_ov003_021d309c(u32 a, s32 b, s32 c, u32 *d) {
                 h = f->mUnk_08 + f->mUnk_0a;
                 if (h + l <= g->mUnk_08) {
                     e->mUnk_08 = h;
-                    func_ov003_021d2e68((u32) g, (u32) e);
+                    AddNodeBefore((u32) g, (u32) e);
                     break;
                 }
                 f = g;
@@ -69,7 +69,7 @@ Unk021d309c *func_ov003_021d309c(u32 a, s32 b, s32 c, u32 *d) {
                 h = f->mUnk_08 - l;
                 if (h >= g->mUnk_08 + g->mUnk_0a) {
                     e->mUnk_08 = h;
-                    func_ov003_021d2e68((u32) f, (u32) e);
+                    AddNodeBefore((u32) f, (u32) e);
                     break;
                 }
                 f = g;
@@ -88,7 +88,7 @@ void func_ov003_021d305c(u32 c) {
     Unk021d31b0 *a;
     s32 b = 0;
 
-    func_ov003_021d2e90(c);
+    RemoveNodeFromList(c);
     a = data_ov003_021da2f4;
     if (c >= (u32) a + 0x1a0) {
         b = 1;
@@ -97,7 +97,7 @@ void func_ov003_021d305c(u32 c) {
 }
 
 void func_ov003_021d2fdc(void) {
-    Unk021d2fa0 *a = func_ov003_021d285c(0x80c, 4);
+    Unk021d2fa0 *a = AllocExpHeapBlock(0x80c, 4);
     vu32 b;
     s32 i;
 

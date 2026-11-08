@@ -35,19 +35,19 @@ static inline void func_ov003_021bfbd0_inline(Unk021bf920 *object, u32 *x, u32 *
 
 void func_ov003_021c0318(void) {
     s32 cursorKeyIndex;
-    if (func_ov003_021d2ae8(0x20) != 0) {
+    if (AreKeysPressedOrRepeated(0x20) != 0) {
         MoveEditKeyboardCursor(0);
     }
-    if (func_ov003_021d2ae8(0x40) != 0) {
+    if (AreKeysPressedOrRepeated(0x40) != 0) {
         MoveEditKeyboardCursor(1);
     }
-    if (func_ov003_021d2ae8(0x10) != 0) {
+    if (AreKeysPressedOrRepeated(0x10) != 0) {
         MoveEditKeyboardCursor(2);
     }
-    if (func_ov003_021d2ae8(0x80) != 0) {
+    if (AreKeysPressedOrRepeated(0x80) != 0) {
         MoveEditKeyboardCursor(3);
     }
-    if (func_ov003_021d2b04(1) != 0) {
+    if (AreKeysPressed(1) != 0) {
         cursorKeyIndex = gEditKeyboard->mCursorKeyIndex;
         if (cursorKeyIndex < 0x2f) {
             if (gEditKeyboard->mAddCharEnabled == 0) {
@@ -89,7 +89,7 @@ void func_ov003_021c0318(void) {
         }
         gEditKeyboard->mInput = data_ov003_021d5f6c[cursorKeyIndex - 0x33];
     }
-    if (func_ov003_021d2ae8(2) != 0) {
+    if (AreKeysPressedOrRepeated(2) != 0) {
         if (gEditKeyboard->mRemoveCharEnabled == 0) {
             if (gEditKeyboard->mRemoveDisabledSoundPlayed != 0) {
                 return;
@@ -99,13 +99,13 @@ void func_ov003_021c0318(void) {
             return;
         }
         gEditKeyboard->mInput = 0x80;
-    } else if (func_ov003_021d2acc(2) != 0) {
+    } else if (AreKeysReleased(2) != 0) {
         gEditKeyboard->mRemoveDisabledSoundPlayed = 0;
     }
-    if (func_ov003_021d2b04(0x400) != 0) {
+    if (AreKeysPressed(0x400) != 0) {
         ToggleEditKeyboardPage2();
     }
-    if (func_ov003_021d2b04(0x800) != 0) {
+    if (AreKeysPressed(0x800) != 0) {
         ToggleEditKeyboardPage1();
     }
 }
@@ -433,12 +433,12 @@ void ReleaseEditKeyboard(u32 task) {
     for (i = 0; i < 0x2f; i++) {
         func_ov003_021d2f00((u32 *) gEditKeyboard->mKeys[i]);
     }
-    func_ov003_021d2808(&gEditKeyboard);
+    FreeExpHeapBlockAndClearPointer(&gEditKeyboard);
 }
 
 void CreateLinkLevel(int row) {
     if (gLinkLevel == NULL) {
-        gLinkLevel = func_ov003_021d285c(0xc, 4);
+        gLinkLevel = AllocExpHeapBlock(0xc, 4);
         gLinkLevel->mUnk_08 = row;
         gLinkLevel->mUnk_00 = func_ov003_021d1c18(0, data_ov003_021d5f58[row][0]);
         gLinkLevel->mUnk_00->mUnk_00 = ((data_ov003_021d5f54[0] & 0x1ff) << 16) |
@@ -452,7 +452,7 @@ void ReleaseLinkLevel(void) {
     if (gLinkLevel != NULL) {
         func_ov003_021d34c0(0, gLinkLevel->mTask);
         func_ov003_021d2f00((u32 *) gLinkLevel->mUnk_00);
-        func_ov003_021d2808(&gLinkLevel);
+        FreeExpHeapBlockAndClearPointer(&gLinkLevel);
     }
 }
 
@@ -474,7 +474,7 @@ void UpdateLinkLevel(void) {
 }
 
 void InitHlScr(void) {
-    gHlScr = func_ov003_021d285c(0xc0, 4);
+    gHlScr = AllocExpHeapBlock(0xc0, 4);
     LoadFileToVram(gJbBgHlNcgName, GX_LoadBG1Char);
     switch (GetMode()) {
         case 0:

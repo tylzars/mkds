@@ -34,7 +34,7 @@ void func_ov003_021c2a28(void) {
 }
 
 void StartExchangeWithStatusRecord(void) {
-    gExchangeStatusRecord = func_ov003_021d283c(0xc, -4);
+    gExchangeStatusRecord = AllocZeroedExpHeapBlock(0xc, -4);
     if (StartExchange(0xf, 0x40, StoreExchangeStatus, func_ov003_021c28f8, func_ov003_021c28f0, 0x800) != 1) {
         OS_Terminate();
     }
@@ -45,7 +45,7 @@ void StopExchangeWithStatusRecord(void) {
     if (StopExchange() != 1) {
         OS_Terminate();
     }
-    func_ov003_021d2808(&gExchangeStatusRecord);
+    FreeExpHeapBlockAndClearPointer(&gExchangeStatusRecord);
 }
 
 u32 func_ov003_021c2938(void) {

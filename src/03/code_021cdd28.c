@@ -132,7 +132,7 @@ void func_ov003_021cdd48(TaskEntry *a) {
         for (i = 0; i < 5; i++) {
             func_ov003_021d197c(data_ov003_021da27c->mUnk_00[i]);
         }
-        func_ov003_021d2808(&data_ov003_021da27c);
+        FreeExpHeapBlockAndClearPointer(&data_ov003_021da27c);
     }
 }
 

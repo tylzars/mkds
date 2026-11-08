@@ -29,7 +29,7 @@ void func_ov003_021d1654(void) {
     u32 e;
     u32 f;
 
-    data_ov003_021da2b0 = func_ov003_021d283c(0xe8, 4);
+    data_ov003_021da2b0 = AllocZeroedExpHeapBlock(0xe8, 4);
     FS_InitFile(&a);
     if (FS_OpenFile(&a, data_ov003_021d7be0) == 0) {
         OS_Terminate();
@@ -49,7 +49,7 @@ void func_ov003_021d1654(void) {
         OS_Terminate();
     }
     f = FS_LoadArchiveTables(&data_ov003_021da2b0->mUnk_88, 0, 0);
-    data_ov003_021da2b0->mUnk_00 = func_ov003_021d285c(f, 4);
+    data_ov003_021da2b0->mUnk_00 = AllocExpHeapBlock(f, 4);
     FS_LoadArchiveTables(&data_ov003_021da2b0->mUnk_88, (u32) data_ov003_021da2b0->mUnk_00, f);
     data_ov003_021da2b0->mUnk_84 = func_ov003_021d1d60(0x20, data_ov003_021da2b0->mUnk_04, 4);
     OS_SPrintf(d, data_ov003_021d7bf8, data_ov003_021d67d8);
@@ -63,9 +63,9 @@ void func_ov003_021d15f4(void) {
     FS_ReleaseArchiveName(&data_ov003_021da2b0->mUnk_88);
     OS_ReleaseLockID(data_ov003_021da2b0->mUnk_e4);
     data_ov003_021da2b0->mUnk_e4 = 0;
-    func_ov003_021d2808(data_ov003_021da2b0);
+    FreeExpHeapBlockAndClearPointer(data_ov003_021da2b0);
     data_ov003_021da2b0->mUnk_00 = NULL;
-    func_ov003_021d2808(&data_ov003_021da2b0);
+    FreeExpHeapBlockAndClearPointer(&data_ov003_021da2b0);
 }
 
 s32 func_ov003_021d15a4(FSFile *a, u32 b) {
@@ -116,7 +116,7 @@ void *func_ov003_021d14b8(const u8 *f, u32 *g, s32 h) {
     } else {
         e = h;
     }
-    b = func_ov003_021d285c(c, e);
+    b = AllocExpHeapBlock(c, e);
     FS_ReadFile(&a, b, c);
     FS_CloseFile(&a);
     if (e > 0) {
@@ -127,16 +127,16 @@ void *func_ov003_021d14b8(const u8 *f, u32 *g, s32 h) {
         *g = c;
     }
     {
-        void *d = func_ov003_021d285c(c, h);
+        void *d = AllocExpHeapBlock(c, h);
 
         MI_UncompressLZ8(b, d);
-        func_ov003_021d2808(&b);
+        FreeExpHeapBlockAndClearPointer(&b);
         return d;
     }
 }
 
 void func_ov003_021d1490(void *a, ...) {
-    func_ov003_021d2808(&a);
+    FreeExpHeapBlockAndClearPointer(&a);
     func_ov003_021d1d0c(data_ov003_021da2b0->mUnk_84, a);
 }
 

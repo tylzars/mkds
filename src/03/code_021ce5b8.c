@@ -20,7 +20,7 @@ u32 func_ov003_021ce920(void (*a)(u32)) {
     Unk0200fddc s;
     u64 t;
 
-    data_ov003_021da280 = func_ov003_021d283c(0x1ba0, 0x20);
+    data_ov003_021da280 = AllocZeroedExpHeapBlock(0x1ba0, 0x20);
     data_ov003_021da280->mUnk_1370 = a;
     d = data_ov003_021da280;
     t = OS_GetTick();
@@ -43,7 +43,7 @@ u32 func_ov003_021ce920(void (*a)(u32)) {
             return 1;
         }
     }
-    func_ov003_021d2808(&data_ov003_021da280);
+    FreeExpHeapBlockAndClearPointer(&data_ov003_021da280);
     return 0;
 }
 
@@ -79,7 +79,7 @@ u32 func_ov003_021ce848(void) {
     d = data_ov003_021da280;
     while (*(vu8 *) &d->mUnk_1b80 != 2) {
     }
-    func_ov003_021d2808(&data_ov003_021da280);
+    FreeExpHeapBlockAndClearPointer(&data_ov003_021da280);
     return 1;
 }
 

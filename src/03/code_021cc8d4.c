@@ -11,7 +11,7 @@
 #include "code_0214d018.h"
 
 void func_ov003_021cca30(const void *b) {
-    Unk021da25c *a = func_ov003_021d283c(0x608, 4);
+    Unk021da25c *a = AllocZeroedExpHeapBlock(0x608, 4);
     data_ov003_021da25c = a;
     MIi_CpuCopyFast(b, a->mUnk_004, 0x600);
     data_ov003_021da25c->mUnk_000 = func_ov003_021d3544(1, func_ov003_021cc97c, NULL, 0x78);
@@ -19,7 +19,7 @@ void func_ov003_021cca30(const void *b) {
 
 void func_ov003_021cca10(void) {
     func_ov003_021d34c0(1, data_ov003_021da25c->mUnk_000);
-    func_ov003_021d2808(&data_ov003_021da25c);
+    FreeExpHeapBlockAndClearPointer(&data_ov003_021da25c);
 }
 
 void func_ov003_021cc9fc(void) {

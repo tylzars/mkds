@@ -11,17 +11,17 @@ typedef struct Rect {
 } Rect;
 
 typedef struct KeyTouchInput {
-    /* 00 */ TPData mUnk_00[5];
-    /* 28 */ u16 mUnk_28;
-    /* 2a */ u16 mUnk_2a;
-    /* 2c */ u16 mUnk_2c;
-    /* 2e */ u16 mUnk_2e;
-    /* 30 */ u16 mUnk_30;
-    /* 32 */ u16 mUnk_32;
-    /* 34 */ u16 mUnk_34;
-    /* 36 */ u16 mUnk_36;
+    /* 00 */ TPData mTouchSamples[5];
+    /* 28 */ u16 mTouchX;
+    /* 2a */ u16 mTouchY;
+    /* 2c */ u16 mPrevTouchX;
+    /* 2e */ u16 mPrevTouchY;
+    /* 30 */ u16 mKeysDown;
+    /* 32 */ u16 mKeysPressed;
+    /* 34 */ u16 mKeysPressedOrRepeated;
+    /* 36 */ u16 mKeysReleased;
     /* 38 */ union {
-        u8 mUnk_38;
+        u8 mTouchFlags;
         struct {
             u8 mBit_0 : 1;
             u8 mBit_1 : 1;

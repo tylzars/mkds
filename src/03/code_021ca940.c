@@ -46,8 +46,8 @@
 void func_ov003_021cb0e0(void) {
     func_ov003_021d1ee0(2, 1, 1, 8);
     func_ov003_021d1ee0(2, 0, 0x14, 8);
-    func_ov003_021d2784(1, 1);
-    func_ov003_021d2784(0, 0x14);
+    CombineDispcntBits(1, 1);
+    CombineDispcntBits(0, 0x14);
     SetUpdateFunction(func_ov003_021cb0b0);
 }
 
@@ -81,7 +81,7 @@ void UpdateApInput(void) {
     v2 = 0;
     v4 = gApRects;
     do {
-        v1 = func_ov003_021d2a34((const Rect *) v4);
+        v1 = IsTouchPressedInRect((const Rect *) v4);
         if (v1 != 0) {
             SetButtonResultIfNone((u8) 1);
             *(u8 *) &gApSelectedIndex = (s8) v2;
@@ -91,32 +91,32 @@ void UpdateApInput(void) {
         v4 = v4 + 8;
         v2 = v2 + 1;
     } while (v2 < 7);
-    v3 = func_ov003_021d2b04(1);
+    v3 = AreKeysPressed(1);
     if (v3 != 0) {
         SetButtonResultIfNone((u8) 1);
         return;
     }
-    v3 = func_ov003_021d2b04(2);
+    v3 = AreKeysPressed(2);
     if (v3 != 0) {
         SetButtonResultIfNone((u8) 0);
         return;
     }
-    v3 = func_ov003_021d2ae8(0x40);
+    v3 = AreKeysPressedOrRepeated(0x40);
     if (v3 != 0) {
         MoveApSelection(1);
         return;
     }
-    v3 = func_ov003_021d2ae8(0x80);
+    v3 = AreKeysPressedOrRepeated(0x80);
     if (v3 != 0) {
         MoveApSelection(3);
         return;
     }
-    v3 = func_ov003_021d2ae8(0x20);
+    v3 = AreKeysPressedOrRepeated(0x20);
     if (v3 != 0) {
         MoveApSelection(0);
         return;
     }
-    v3 = func_ov003_021d2ae8(0x10);
+    v3 = AreKeysPressedOrRepeated(0x10);
     if (v3 != 0) {
         MoveApSelection(2);
     }
@@ -209,8 +209,8 @@ void func_ov003_021cacfc(void) {
         func_ov003_021bf410();
         func_ov003_021d1490(gAp->mYbBgStep11Ncl);
         LoadFileToVram(gYbObjMainNclName5, GX_LoadOBJPltt);
-        func_ov003_021d272c(1, 1);
-        func_ov003_021d272c(0, 0x14);
+        ClearDispcntBits(1, 1);
+        ClearDispcntBits(0, 0x14);
         if (gAp->mUnk_1d == 2) {
             func_ov003_021c2120(0, 0);
             SetUpdateFunction(SetupJb2Menu);
@@ -234,7 +234,7 @@ void func_ov003_021cacfc(void) {
                     break;
             }
         }
-        func_ov003_021d2808(&gAp);
+        FreeExpHeapBlockAndClearPointer(&gAp);
     }
 }
 

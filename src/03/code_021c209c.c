@@ -43,10 +43,10 @@ s32 func_ov003_021c2494(void *memoryBlock, s32 languageIndex, u32 modeAndFlags) 
     CreateSoundData();
     SetUpdateFunction(func_ov003_021c2b28);
     do {
-        func_ov003_021d2d14();
+        UpdateKeyTouchInput();
         gUpdateFunction();
         func_ov003_021d3558(0);
-        func_ov003_021d28e0();
+        UpdateLcdPower();
         func_ov003_021d3278();
         VBlankIntrWait();
     } while (data_ov003_021da170[0] == 0);
@@ -92,15 +92,15 @@ void func_ov003_021c2398(void) {
     GX_DispOff();
     reg_GXS_DB_DISPCNT &= 0xfffeffff;
     func_ov003_021d3408();
-    func_ov003_021d28b0(data_ov003_021da174);
+    CreateExpHeapOverBuffer(data_ov003_021da174);
     func_ov003_021d2dfc();
     func_ov003_021d35f4();
     func_ov003_021d1654();
-    func_ov003_021d2d50();
+    InitKeyTouchInput();
     func_ov003_021d1f98();
-    work = func_ov003_021d285c(0x700, 0x20);
+    work = AllocExpHeapBlock(0x700, 0x20);
     DWC_BM_Init(work);
-    func_ov003_021d2808(&work);
+    FreeExpHeapBlockAndClearPointer(&work);
 }
 
 void func_ov003_021c2188(void) {
@@ -162,7 +162,7 @@ void func_ov003_021c2138(void) {
     GX_DispOff();
     *((u32 *) 0x04001000u) = *((u32 *) 0x04001000u) & (0xfffeffffu);
     func_ov003_021d326c();
-    func_ov003_021d2d28();
+    ReleaseKeyTouchInput();
     func_ov003_021d2dcc();
     func_ov003_021cdc28();
     func_ov003_021d1af0();
@@ -171,7 +171,7 @@ void func_ov003_021c2138(void) {
     func_ov003_021d1f88();
     func_ov003_021d15f4();
     func_ov003_021d35c0();
-    func_ov003_021d2894();
+    ReleaseExpHeap();
     func_ov003_021d332c();
 }
 

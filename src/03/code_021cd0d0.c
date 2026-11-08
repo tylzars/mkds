@@ -13,7 +13,7 @@
 
 void func_ov003_021cd2a4(void) {
     if (data_ov003_021da26c == NULL) {
-        data_ov003_021da26c = func_ov003_021d283c(0x1e60, 32);
+        data_ov003_021da26c = AllocZeroedExpHeapBlock(0x1e60, 32);
     }
 }
 
@@ -21,7 +21,7 @@ void func_ov003_021cd27c(void) {
     if (data_ov003_021da26c != NULL) {
         while (WM_GetAllowedChannel() != 0x8000) {
         }
-        func_ov003_021d2808(&data_ov003_021da26c);
+        FreeExpHeapBlockAndClearPointer(&data_ov003_021da26c);
     }
 }
 

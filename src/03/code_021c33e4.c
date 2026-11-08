@@ -8,7 +8,7 @@
 
 void func_ov003_021c3490(void) {
     int v1;
-    v1 = func_ov003_021d2b04(1);
+    v1 = AreKeysPressed(1);
     if (v1 != 0) {
         SetButtonResultIfNone((u8) 0);
     }

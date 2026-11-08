@@ -65,7 +65,7 @@ void CreateJb3List(void) {
     int i;
     Jb3List *p;
     b = func_ov003_021cdb6c();
-    p = func_ov003_021d283c(0x48, 4);
+    p = AllocZeroedExpHeapBlock(0x48, 4);
     gJb3List = p;
     p->mUnk_43 = b->mUnk_f6;
     gJb3List->mReturnId = 0xc;
@@ -140,8 +140,8 @@ void func_ov003_021c94c8(void) {
 void func_ov003_021c948c(void) {
     func_ov003_021d1ee0(2, 1, 1, 8);
     func_ov003_021d1ee0(2, 0, 0x1d, 8);
-    func_ov003_021d2784(1, 1);
-    func_ov003_021d2784(0, 0x1d);
+    CombineDispcntBits(1, 1);
+    CombineDispcntBits(0, 0x1d);
     SetUpdateFunction(func_ov003_021c9464);
 }
 
@@ -168,17 +168,17 @@ void UpdateJb3ListInput(void) {
     if (UpdateJb3ListHit() != 0) {
         return;
     }
-    if (func_ov003_021d2b04(1) != 0) {
+    if (AreKeysPressed(1) != 0) {
         func_ov003_021c90dc(gJb3ListSelectedId);
         return;
     }
-    if (func_ov003_021d2b04(2) != 0) {
+    if (AreKeysPressed(2) != 0) {
         StartSoundSeq(7);
         gJb3List->mUnk_40 = 0xd;
         SetUpdateFunction(func_ov003_021c8e80);
         return;
     }
-    if (func_ov003_021d2ae8(0x200) != 0) {
+    if (AreKeysPressedOrRepeated(0x200) != 0) {
         if (gJb3ListScrollY == 0x91) {
             if (gJb3List->mUnk_47 != 0) {
                 return;
@@ -191,11 +191,11 @@ void UpdateJb3ListInput(void) {
         gJb3List->mScrollTask = func_ov003_021d3544(0, AdvanceJb3ListScrollYIncrease, NULL, 0x78);
         return;
     }
-    if (func_ov003_021d2acc(0x200) != 0) {
+    if (AreKeysReleased(0x200) != 0) {
         gJb3List->mUnk_47 = 0;
         return;
     }
-    if (func_ov003_021d2ae8(0x100) != 0) {
+    if (AreKeysPressedOrRepeated(0x100) != 0) {
         if (gJb3ListScrollY == 0) {
             if (gJb3List->mUnk_47 != 0) {
                 return;
@@ -208,31 +208,31 @@ void UpdateJb3ListInput(void) {
         gJb3List->mScrollTask = func_ov003_021d3544(0, AdvanceJb3ListScrollYDecrease, NULL, 0x78);
         return;
     }
-    if (func_ov003_021d2acc(0x100) != 0) {
+    if (AreKeysReleased(0x100) != 0) {
         gJb3List->mUnk_47 = 0;
         return;
     }
-    if (func_ov003_021d2ae8(0x40) != 0) {
+    if (AreKeysPressedOrRepeated(0x40) != 0) {
         MoveJb3ListSelection(1);
         return;
     }
-    if (func_ov003_021d2acc(0x40) != 0) {
+    if (AreKeysReleased(0x40) != 0) {
         gJb3List->mUnk_47 = 0;
         return;
     }
-    if (func_ov003_021d2ae8(0x80) != 0) {
+    if (AreKeysPressedOrRepeated(0x80) != 0) {
         MoveJb3ListSelection(3);
         return;
     }
-    if (func_ov003_021d2acc(0x80) != 0) {
+    if (AreKeysReleased(0x80) != 0) {
         gJb3List->mUnk_47 = 0;
         return;
     }
-    if (func_ov003_021d2ae8(0x20) != 0) {
+    if (AreKeysPressedOrRepeated(0x20) != 0) {
         MoveJb3ListSelection(0);
         return;
     }
-    if (func_ov003_021d2ae8(0x10) != 0) {
+    if (AreKeysPressedOrRepeated(0x10) != 0) {
         MoveJb3ListSelection(2);
     }
 }
@@ -456,8 +456,8 @@ void func_ov003_021c8c14(void) {
         func_ov003_021d1490(gJb3List->mYbBgStep2NclFiles[i]);
     }
     LoadFileToVram(gYbObjMainNclName4, GX_LoadOBJPltt);
-    func_ov003_021d272c(1, 1);
-    func_ov003_021d272c(0, 0x1d);
+    ClearDispcntBits(1, 1);
+    ClearDispcntBits(0, 0x1d);
     reg_G2_BG0OFS = 0;
     reg_G2_BG2OFS = 0;
     reg_G2_BG2CNT = (reg_G2_BG2CNT & 0x43) | 0xe10;
@@ -513,7 +513,7 @@ void func_ov003_021c8c14(void) {
             }
             break;
     }
-    func_ov003_021d2808(&gJb3List);
+    FreeExpHeapBlockAndClearPointer(&gJb3List);
 }
 
 void RefreshJb3List(void) {
@@ -834,7 +834,7 @@ u32 GetJb3ListHitId(void) {
     s32 d;
     s32 e;
     Rect *f;
-    if (func_ov003_021d2a34(&data_ov003_021d67e8) == 0) {
+    if (IsTouchPressedInRect(&data_ov003_021d67e8) == 0) {
         return 0xe;
     }
     c = FX_DivS32(gJb3ListScrollY, 0x1d);
@@ -842,7 +842,7 @@ u32 GetJb3ListHitId(void) {
     a = gJb3ListCellRect;
     for (d = 0; d < 4; d++, c++, a.mUnk_02 += 0x1d) {
         if (c != 2 && c != 6) {
-            if (func_ov003_021d2970(b) != 0) {
+            if (IsTouchPressedInOriginSizeRect(b) != 0) {
                 return gJb3ListIdByEntryIndex[c];
             }
         }
@@ -853,12 +853,12 @@ u32 GetJb3ListHitId(void) {
             a = data_ov003_021d644c;
             d = d * 0x1d;
             a.mUnk_02 = a.mUnk_02 + d;
-            if (func_ov003_021d2970(&a) != 0) {
+            if (IsTouchPressedInOriginSizeRect(&a) != 0) {
                 return 2;
             }
             a = data_ov003_021d6444;
             a.mUnk_02 = a.mUnk_02 + d;
-            if (func_ov003_021d2970(&a) != 0) {
+            if (IsTouchPressedInOriginSizeRect(&a) != 0) {
                 return 3;
             }
             break;
@@ -870,12 +870,12 @@ u32 GetJb3ListHitId(void) {
             a = data_ov003_021d644c;
             d = d * 0x1d;
             a.mUnk_02 = a.mUnk_02 + d;
-            if (func_ov003_021d2970(&a) != 0) {
+            if (IsTouchPressedInOriginSizeRect(&a) != 0) {
                 return 7;
             }
             a = data_ov003_021d6444;
             a.mUnk_02 = a.mUnk_02 + d;
-            if (func_ov003_021d2970(&a) != 0) {
+            if (IsTouchPressedInOriginSizeRect(&a) != 0) {
                 return 8;
             }
             break;
@@ -884,7 +884,7 @@ u32 GetJb3ListHitId(void) {
     d = 0;
     f = gJb3ListFixedRects;
     for (; d < 3; d++) {
-        if (func_ov003_021d2a34(f) != 0) {
+        if (IsTouchPressedInRect(f) != 0) {
             return d + 0xb;
         }
         f++;

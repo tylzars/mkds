@@ -8,12 +8,12 @@
 #include "03/unk_021da000.h"
 
 void InitSelectionObjects(void) {
-    gSelectionObjects = func_ov003_021d283c(0x10, 4);
+    gSelectionObjects = AllocZeroedExpHeapBlock(0x10, 4);
 }
 
 void ReleaseSelectionObjects(void) {
     ReleaseSelectionObjectSlots();
-    func_ov003_021d2808(&gSelectionObjects);
+    FreeExpHeapBlockAndClearPointer(&gSelectionObjects);
 }
 
 void PlaceSelectionPair(u32 pairIndex, u32 leftX, u32 rightX, u32 yPos) {

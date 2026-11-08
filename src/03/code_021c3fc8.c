@@ -14,7 +14,7 @@
 
 void func_ov003_021c4130(void) {
     int v1;
-    v1 = func_ov003_021d2b04(1);
+    v1 = AreKeysPressed(1);
     if (v1 != 0) {
         SetButtonResultIfNone((u8) 0);
     }
@@ -114,6 +114,6 @@ void func_ov003_021c3ff0(void) {
 
 void func_ov003_021c3fc8(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
-    func_ov003_021d2784(0, 0x15);
+    CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c3fa0);
 }

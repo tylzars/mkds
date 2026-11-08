@@ -92,7 +92,7 @@ void func_ov003_021c9f70(void) {
 
 void func_ov003_021c9f48(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
-    func_ov003_021d2784(0, 0x15);
+    CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c9f24);
 }
 
@@ -124,7 +124,7 @@ void func_ov003_021c9ee0(void) {
 
 void func_ov003_021c9eb0(void) {
     int v1;
-    v1 = func_ov003_021d2b04(2);
+    v1 = AreKeysPressed(2);
     if (v1 != 0) {
         SetButtonResultIfNone(0);
         return;
@@ -175,7 +175,7 @@ void func_ov003_021c9d94(void) {
         func_ov003_021d2168(0);
         if (data_ov003_021da21c == 0) {
             func_ov003_021bf410();
-            func_ov003_021d272c(1, 1);
+            ClearDispcntBits(1, 1);
         }
         StopExchangeWithStatusRecord();
         if (data_ov003_021da21c == 0) {

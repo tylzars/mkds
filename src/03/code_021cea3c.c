@@ -70,18 +70,18 @@ void func_ov003_021cedbc(void) {
     Rect v1;
 
     for (i = 0; i < data_ov003_021d6720[data_ov003_021da284->mUnk_1c]; i++) {
-        func_ov003_021d250c(
+        ComputeRectFromOriginAndSize(
             data_ov003_021d67b0[data_ov003_021da284->mUnk_1c][data_ov003_021d6730[data_ov003_021da284->mUnk_1c][i]],
             data_ov003_021d6754[data_ov003_021da284->mUnk_1c], &v1);
-        if (func_ov003_021d2a34(&v1) != 0) {
+        if (IsTouchPressedInRect(&v1) != 0) {
             data_ov003_021da284->mUnk_1b = i;
             break;
         }
     }
-    if (func_ov003_021d2b04(1) != 0) {
+    if (AreKeysPressed(1) != 0) {
         data_ov003_021da284->mUnk_1b = data_ov003_021d673c[data_ov003_021da284->mUnk_1c][0];
     }
-    if (func_ov003_021d2b04(2) != 0) {
+    if (AreKeysPressed(2) != 0) {
         data_ov003_021da284->mUnk_1b = data_ov003_021d673c[data_ov003_021da284->mUnk_1c][1];
     }
     for (j = 0; j < data_ov003_021d6720[data_ov003_021da284->mUnk_1c]; j++) {
@@ -136,8 +136,8 @@ void func_ov003_021cec50(s32 a) {
     if (x > 0xc0) {
         x = 0xc0;
     }
-    func_ov003_021d2530(data_ov003_021d6780[m][0], y, data_ov003_021d6780[m][0] + data_ov003_021d6798[m][0], x, v1);
-    func_ov003_021d2658(0, 0, v1);
+    SetRectCorners(data_ov003_021d6780[m][0], y, data_ov003_021d6780[m][0] + data_ov003_021d6798[m][0], x, v1);
+    WriteWinRect(0, 0, v1);
 }
 
 void func_ov003_021cec00(Unk021d1770 *a, s32 b) {
@@ -213,5 +213,5 @@ void func_ov003_021cea3c(u32 a) {
     }
     func_ov003_021d2388(data_ov003_021da284->mUnk_10);
     func_ov003_021d34c8(1, a);
-    func_ov003_021d2808(&data_ov003_021da284);
+    FreeExpHeapBlockAndClearPointer(&data_ov003_021da284);
 }

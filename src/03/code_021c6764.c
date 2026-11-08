@@ -45,7 +45,7 @@ void CreateEdit(void) {
     s32 c;
     a[0] = data_ov003_021d7278[0];
     a[1] = data_ov003_021d7278[1];
-    gEdit = func_ov003_021d283c(0x2c, 4);
+    gEdit = AllocZeroedExpHeapBlock(0x2c, 4);
     func_ov003_021c20dc(&b, &c);
     if (b == 0) {
         func_ov003_021cd948((u8 *) gEdit + 8);
@@ -126,8 +126,8 @@ void LoadEditFilesAndSetBgCnt(void) {
 void func_ov003_021c6d68(void) {
     func_ov003_021d1ee0(2, 1, 1, 8);
     func_ov003_021d1ee0(2, 0, 0x15, 8);
-    func_ov003_021d2784(1, 1);
-    func_ov003_021d2784(0, 0x15);
+    CombineDispcntBits(1, 1);
+    CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c6d0c);
 }
 
@@ -256,8 +256,8 @@ void func_ov003_021c6a18(void) {
     func_ov003_021d2f00((u32 *) (u32) gEdit->mUnk_04);
     func_ov003_021d2168(0);
     LoadFileToVram(&gYbObjMainNclName2, &GX_LoadOBJPltt);
-    func_ov003_021d272c(1, 1);
-    func_ov003_021d272c(0, 0x15);
+    ClearDispcntBits(1, 1);
+    ClearDispcntBits(0, 0x15);
     func_ov003_021c20dc(&v1, v2);
     if (v2[0] == 0) {
         func_ov003_021c2120(2, 1);
@@ -272,7 +272,7 @@ void func_ov003_021c6a18(void) {
         func_ov003_021c20f8(0, 1);
         SetUpdateFunction(func_ov003_021cbf60);
     }
-    func_ov003_021d2808(&gEdit);
+    FreeExpHeapBlockAndClearPointer(&gEdit);
 }
 
 void PrintEditText(void) {

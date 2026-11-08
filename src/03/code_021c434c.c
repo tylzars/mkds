@@ -7,7 +7,7 @@
 
 void func_ov003_021c437c(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
-    func_ov003_021d2784(0, 0x15);
+    CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c434c);
 }
 

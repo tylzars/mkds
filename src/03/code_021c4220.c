@@ -12,7 +12,7 @@
 
 void func_ov003_021c42f4(void) {
     int v1;
-    v1 = func_ov003_021d2b04(1);
+    v1 = AreKeysPressed(1);
     if (v1 != 0) {
         SetButtonResultIfNone((u8) 0);
     }
@@ -50,7 +50,7 @@ void func_ov003_021c4240(void) {
     v1 = func_ov003_021d1f70(0);
     if ((v1 == 0) && (v1 = func_ov003_021bf2f0(), v1 != 0)) {
         func_ov003_021d2168(0);
-        func_ov003_021d272c(0, 0x15);
+        ClearDispcntBits(0, 0x15);
         func_ov003_021c2120(0, 1);
         SetUpdateFunction(func_ov003_021c5098);
     }

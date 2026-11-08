@@ -54,7 +54,7 @@
 
 void CreateApList(void) {
     s32 a;
-    gApList = func_ov003_021d283c(0x5c, 4);
+    gApList = AllocZeroedExpHeapBlock(0x5c, 4);
     func_ov003_021c20dc(&a, NULL);
     if (a == 0) {
         gApListSelectedRow = 0;
@@ -143,8 +143,8 @@ void func_ov003_021c6400(void) {
 void func_ov003_021c63c4(void) {
     func_ov003_021d1ee0(2, 1, 1, 8);
     func_ov003_021d1ee0(2, 0, 0x1d, 8);
-    func_ov003_021d2784(1, 1);
-    func_ov003_021d2784(0, 0x1d);
+    CombineDispcntBits(1, 1);
+    CombineDispcntBits(0, 0x1d);
     SetUpdateFunction(func_ov003_021c6394);
 }
 
@@ -179,12 +179,12 @@ void func_ov003_021c6184(void) {
     if (gApList->mUnk_57 != 0) {
         return;
     }
-    if (func_ov003_021d2a34(&data_ov003_021d67e8) != 0) {
+    if (IsTouchPressedInRect(&data_ov003_021d67e8) != 0) {
         i = 0;
         gApList->mHitRow = -1;
         p = gApListRowRects;
         do {
-            if (func_ov003_021d2a34(p) != 0) {
+            if (IsTouchPressedInRect(p) != 0) {
                 if (i < 4) {
                     gApList->mHitRow = i;
                     break;
@@ -198,11 +198,11 @@ void func_ov003_021c6184(void) {
             i++;
         } while ((u32) i < 5);
     }
-    if (func_ov003_021d299c(&data_ov003_021d67e8) != 0) {
+    if (IsTouchReleasedInRect(&data_ov003_021d67e8) != 0) {
         i = 0;
         p = gApListRowRects;
         do {
-            if (func_ov003_021d299c(p) != 0) {
+            if (IsTouchReleasedInRect(p) != 0) {
                 if (gApList->mHitRow != i) {
                     break;
                 }
@@ -219,44 +219,44 @@ void func_ov003_021c6184(void) {
             i++;
         } while (i < 4);
     }
-    if (func_ov003_021d2b04(1) != 0) {
+    if (AreKeysPressed(1) != 0) {
         SetButtonResultIfNone(1);
         func_ov003_021cce38();
         return;
     }
-    if (func_ov003_021d2b04(2) != 0) {
+    if (AreKeysPressed(2) != 0) {
         SetButtonResultIfNone(0);
         return;
     }
-    if (func_ov003_021d2ae8(0x200) != 0) {
+    if (AreKeysPressedOrRepeated(0x200) != 0) {
         StartApListScrollYIncrease();
         return;
     }
-    if (func_ov003_021d2acc(0x200) != 0) {
+    if (AreKeysReleased(0x200) != 0) {
         gApList->mUnk_59 = 0;
         return;
     }
-    if (func_ov003_021d2ae8(0x100) != 0) {
+    if (AreKeysPressedOrRepeated(0x100) != 0) {
         StartApListScrollYDecrease();
         return;
     }
-    if (func_ov003_021d2acc(0x100) != 0) {
+    if (AreKeysReleased(0x100) != 0) {
         gApList->mUnk_59 = 0;
         return;
     }
-    if (func_ov003_021d2ae8(0x40) != 0) {
+    if (AreKeysPressedOrRepeated(0x40) != 0) {
         MoveApListSelectedRow(1);
         return;
     }
-    if (func_ov003_021d2acc(0x40) != 0) {
+    if (AreKeysReleased(0x40) != 0) {
         gApList->mUnk_59 = 0;
         return;
     }
-    if (func_ov003_021d2ae8(0x80) != 0) {
+    if (AreKeysPressedOrRepeated(0x80) != 0) {
         MoveApListSelectedRow(3);
         return;
     }
-    if (func_ov003_021d2acc(0x80) != 0) {
+    if (AreKeysReleased(0x80) != 0) {
         gApList->mUnk_59 = 0;
     }
 }
@@ -410,8 +410,8 @@ void func_ov003_021c5cdc(void) {
     func_ov003_021cca10();
     func_ov003_021d1490(gApList->mXb4ApListBackNsc);
     func_ov003_021d1490(gApList->mYbBgStep31Ncl);
-    func_ov003_021d272c(1, 1);
-    func_ov003_021d272c(0, 0x1d);
+    ClearDispcntBits(1, 1);
+    ClearDispcntBits(0, 0x1d);
     reg_G2_BG0OFS = 0;
     reg_G2_BG2OFS = 0;
     s = gApList;
@@ -437,7 +437,7 @@ void func_ov003_021c5cdc(void) {
             SetUpdateFunction(func_ov003_021cbf60);
         }
     }
-    func_ov003_021d2808(&gApList);
+    FreeExpHeapBlockAndClearPointer(&gApList);
 }
 
 void RefreshApList(void) {

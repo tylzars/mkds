@@ -18,12 +18,12 @@ void func_ov003_021d35f4(void) {
     s32 i;
     u8 *b;
 
-    data_ov003_021da32c = func_ov003_021d285c(0x78, 4);
+    data_ov003_021da32c = AllocExpHeapBlock(0x78, 4);
     i = 0;
     b = data_ov003_021d67f0;
     do {
         data_ov003_021da32c[i].mUnk_34 = *b;
-        data_ov003_021da32c[i].mUnk_38 = func_ov003_021d285c(*b * 0x14, 4);
+        data_ov003_021da32c[i].mUnk_38 = AllocExpHeapBlock(*b * 0x14, 4);
         data_ov003_021da32c[i].mUnk_00 = func_ov003_021d1d60(*b, data_ov003_021da32c[i].mUnk_38, 0x14);
         data_ov003_021da32c[i].mResource = func_ov003_021d1d88(*b);
         data_ov003_021da32c[i].mUnk_08 = func_ov003_021d2ecc();
@@ -44,7 +44,7 @@ void func_ov003_021d35c0(void) {
         func_ov003_021d1d4c(data_ov003_021da32c[v1].mUnk_00);
         v1 = v1 + 1;
     } while (2 > v1);
-    func_ov003_021d2808(&data_ov003_021da32c);
+    FreeExpHeapBlockAndClearPointer(&data_ov003_021da32c);
 }
 
 void func_ov003_021d3558(int a) {
@@ -90,7 +90,7 @@ TaskEntry *func_ov003_021d34e4(u32 a, void (*b)(TaskEntry *a, u32 b), u32 c, u32
     g = data_ov003_021da32c[a].mUnk_0c.mUnk_04;
     while (1) {
         if (d < g->mUnk_10) {
-            func_ov003_021d2e68((u32) g, (u32) f);
+            AddNodeBefore((u32) g, (u32) f);
             break;
         }
         g = g->mUnk_04;
@@ -116,8 +116,8 @@ void func_ov003_021d34c0(u32 arg0, u32 arg1) {
 
 void func_ov003_021d3488(int a, int b) {
     if (*OFFSET_PTR(u8, b, 0x11) != 0) {
-        func_ov003_021d2808(OFFSET_PTR(s32, b, 0xc));
+        FreeExpHeapBlockAndClearPointer(OFFSET_PTR(s32, b, 0xc));
     }
-    func_ov003_021d2e90(b);
+    RemoveNodeFromList(b);
     func_ov003_021d1d0c(data_ov003_021da32c[a].mUnk_00, (void *) b);
 }

@@ -129,11 +129,11 @@ void func_ov003_021cbaa0(void) {
 void func_ov003_021cba54(void) {
     int v1[1];
     func_ov003_021d1ee0(2, 0, 0x15, 8);
-    func_ov003_021d2784(0, 0x15);
+    CombineDispcntBits(0, 0x15);
     func_ov003_021c20dc(NULL, v1);
     if (v1[0] == 0) {
         func_ov003_021d1ee0(2, 1, 1, 8);
-        func_ov003_021d2784(1, 1);
+        CombineDispcntBits(1, 1);
     }
     SetUpdateFunction(func_ov003_021cba2c);
 }
@@ -176,7 +176,7 @@ void func_ov003_021cb948(void) {
         MI_CpuCopy8(func_0215109c(), a->mUnk_000[1].mUnk_f0, 0xe);
         func_ov003_021beecc();
         func_ov003_021d2168(0);
-        func_ov003_021d272c(0, 0x15);
+        ClearDispcntBits(0, 0x15);
         if (data_ov003_021da248 == 0) {
             func_ov003_021c2120(0, 1);
             SetUpdateFunction(SetupJb4Error);
@@ -210,11 +210,11 @@ u32 func_ov003_021cb8e4(u32 arg0, u32 arg1) {
     u32 value3;
     value0 = (value1) + (0u);
     value1 = 32u;
-    value3 = (u32) &func_ov003_021d285c;
-    value0 = (u32) func_ov003_021d285c(value0, value1);
+    value3 = (u32) &AllocExpHeapBlock;
+    value0 = (u32) AllocExpHeapBlock(value0, value1);
     return value0;
 }
 
 void func_ov003_021cb8d8(void *unused, void *block) {
-    func_ov003_021d27d8(block);
+    FreeExpHeapBlock(block);
 }

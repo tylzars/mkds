@@ -1,21 +1,21 @@
 #include "03/code_021d250c.h"
 #include "03/types_021d299c.h"
 
-void func_ov003_021d2544(u16 a, u16 b, u16 *c) {
-    *c = a;
-    c[1] = b;
+void SetPosition(u16 positionX, u16 positionY, u16 *output) {
+    *output = positionX;
+    output[1] = positionY;
 }
 
-void func_ov003_021d2530(s32 a, s32 b, s32 c, s32 d, u16 *e) {
-    *e = a;
-    e[1] = b;
-    e[2] = c;
-    e[3] = d;
+void SetRectCorners(s32 left, s32 top, s32 right, s32 bottom, u16 *corners) {
+    *corners = left;
+    corners[1] = top;
+    corners[2] = right;
+    corners[3] = bottom;
 }
 
-void func_ov003_021d250c(u16 *a, u16 *b, Rect *c) {
-    c->mUnk_00 = *a;
-    c->mUnk_02 = a[1];
-    c->mUnk_04 = *a + *b;
-    c->mUnk_06 = a[1] + b[1];
+void ComputeRectFromOriginAndSize(u16 *origin, u16 *size, Rect *rect) {
+    rect->mUnk_00 = *origin;
+    rect->mUnk_02 = origin[1];
+    rect->mUnk_04 = *origin + *size;
+    rect->mUnk_06 = origin[1] + size[1];
 }

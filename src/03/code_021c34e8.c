@@ -15,7 +15,7 @@
 
 void UpdateJb5InfoInput(void) {
     int v1;
-    v1 = func_ov003_021d2b04(2);
+    v1 = AreKeysPressed(2);
     if (v1 != 0) {
         SetButtonResultIfNone((u8) 0);
     }
@@ -55,8 +55,8 @@ void func_ov003_021c35bc(void) {
     if (((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) && (v1 = func_ov003_021bf2f0(), v1 != 0)) {
         func_ov003_021d2168(0);
         func_ov003_021bf410();
-        func_ov003_021d272c(1, 1);
-        func_ov003_021d272c(0, 0x15);
+        ClearDispcntBits(1, 1);
+        ClearDispcntBits(0, 0x15);
         func_ov003_021c2120(0, 1);
         SetUpdateFunction(SetupOptMenu);
     }
@@ -118,7 +118,7 @@ void func_ov003_021c3534(void) {
 
 void func_ov003_021c350c(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
-    func_ov003_021d2784(0, 0x15);
+    CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c34e8);
 }
 

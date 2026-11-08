@@ -42,7 +42,7 @@ void func_ov003_021ccd18(void) {
                             StartSoundSeq(0x16);
                             SetSoundSeqVolume(0);
                             data_ov003_021da268->mUnk_1d = 1;
-                            func_ov003_021d2940(data_ov003_021da268->mUnk_14);
+                            GetTouchPoint(data_ov003_021da268->mUnk_14);
                             data_ov003_021da268->mUnk_18 = data_ov003_021da268->mOffset;
                             data_ov003_021da268->mUnk_1c = 1;
                         }
@@ -85,8 +85,8 @@ void func_ov003_021ccc90(void) {
     u16 a[2];
     s32 b;
     s32 c;
-    if (func_ov003_021d2a80(&data_ov003_021d67e8) != 0) {
-        func_ov003_021d2940(a);
+    if (IsTouchDownInRect(&data_ov003_021d67e8) != 0) {
+        GetTouchPoint(a);
         if (a[0] >= data_ov003_021da268->mX - 0x1e) {
             b = data_ov003_021da268->mUnk_18 + (a[1] - data_ov003_021da268->mUnk_14[1]);
             if (b < 0) {
@@ -149,7 +149,7 @@ void func_ov003_021ccbbc(void) {
     u32 b;
     s32 c;
     s32 d;
-    func_ov003_021d2940(a);
+    GetTouchPoint(a);
     b = data_ov003_021d6630[data_ov003_021da268->mUnk_1b];
     c = a[1] - data_ov003_021da268->mY - (b >> 1);
     if (c < 0) {
@@ -169,21 +169,21 @@ int func_ov003_021ccb50(void) {
     int v2;
     u8 v3[8];
     func_ov003_021cca9c(1, (void *) v3);
-    v1 = func_ov003_021d29e8((const Rect *) (u16 *) (void *) v3);
+    v1 = IsTouchPressedOrRepeatedInRect((const Rect *) (u16 *) (void *) v3);
     if (v1 != 0) {
         return 1;
     }
     v1 = 2;
     do {
         func_ov003_021cca9c(v1, (void *) v3);
-        v2 = func_ov003_021d29e8((const Rect *) (u16 *) (void *) v3);
+        v2 = IsTouchPressedOrRepeatedInRect((const Rect *) (u16 *) (void *) v3);
         if (v2 != 0) {
             return v1;
         }
         v1 = v1 + 1;
     } while (v1 <= 3);
     func_ov003_021cca9c(4, (void *) v3);
-    v1 = func_ov003_021d2a34((const Rect *) (u16 *) ((u16 *) (void *) v3));
+    v1 = IsTouchPressedInRect((const Rect *) (u16 *) ((u16 *) (void *) v3));
     if (v1 != 0) {
         return 4;
     }
@@ -197,7 +197,7 @@ int func_ov003_021ccb1c(int a) {
     v2 = 2;
     do {
         func_ov003_021cca9c(v2, (void *) v3);
-        v1 = func_ov003_021d2a80((const Rect *) (u16 *) (void *) v3);
+        v1 = IsTouchDownInRect((const Rect *) (u16 *) (void *) v3);
         if (v1 != 0) {
             return v2;
         }

@@ -20,4 +20,4 @@ void func_ov003_021cef28(TaskEntry *a);
 u32 func_ov003_021cef6c(void);
 int func_ov003_021cef80(void);
 // K&R on purpose: a caller passes a u8 array where the definition takes a u16 *.
-void func_ov003_021d2658();
+void WriteWinRect();

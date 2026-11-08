@@ -69,8 +69,8 @@ void func_ov003_021c5458(void) {
 void func_ov003_021c541c(void) {
     func_ov003_021d1ee0(2, 1, 1, 8);
     func_ov003_021d1ee0(2, 0, 0x15, 8);
-    func_ov003_021d2784(1, 1);
-    func_ov003_021d2784(0, 0x15);
+    CombineDispcntBits(1, 1);
+    CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c53ec);
 }
 
@@ -117,7 +117,7 @@ void func_ov003_021c5324(void) {
 
 void func_ov003_021c52f4(void) {
     int v1;
-    v1 = func_ov003_021d2b20(2);
+    v1 = AreKeysDown(2);
     if (v1 != 0) {
         SetButtonResultIfNone((u8) 0);
         return;
@@ -171,9 +171,9 @@ void func_ov003_021c51bc(void) {
         func_ov003_021d2168(0);
         if (data_ov003_021da1dc == 0) {
             func_ov003_021bf410();
-            func_ov003_021d272c(1, 1);
+            ClearDispcntBits(1, 1);
         }
-        func_ov003_021d272c(0, 0x15);
+        ClearDispcntBits(0, 0x15);
         if (data_ov003_021da1dc == 0) {
             func_ov003_021c2120(2, 1);
             SetUpdateFunction(SetupWay);
@@ -185,7 +185,7 @@ void func_ov003_021c51bc(void) {
 }
 
 void func_ov003_021c51a0(void) {
-    func_ov003_021d2d14();
+    UpdateKeyTouchInput();
     func_ov003_021d3558(0);
     func_ov003_021c52f4();
     func_ov003_021c52d0();

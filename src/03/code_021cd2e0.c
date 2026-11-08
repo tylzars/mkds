@@ -22,14 +22,14 @@
 
 void func_ov003_021cdb90(void) {
     Unk021cd5e0 *v1;
-    v1 = func_ov003_021d285c(0x6f8, 0x20);
+    v1 = AllocExpHeapBlock(0x6f8, 0x20);
     data_ov003_021da270 = v1;
     Crc16InitTable(&v1->mUnk_400.mUnk_f8, 0xa001);
     ReadNvramEntries(data_ov003_021da270);
 }
 
 void func_ov003_021cdb80(void) {
-    func_ov003_021d2808(&data_ov003_021da270);
+    FreeExpHeapBlockAndClearPointer(&data_ov003_021da270);
 }
 
 Unk021cd5e0_400 *func_ov003_021cdb6c(void) {
@@ -427,9 +427,9 @@ void func_ov003_021cd338(s32 param_1) {
                 Crc16(&data_ov003_021da270->mUnk_400.mUnk_f8, data_ov003_021da270->mUnk_000[i].mUnk_00.mUnk_00, 0xfe);
         }
     }
-    e = func_ov003_021d285c(0x100, 0x20);
+    e = AllocExpHeapBlock(0x100, 0x20);
     WriteFlaggedNvramEntries((s32) data_ov003_021da270, d, e);
-    func_ov003_021d2808(&e);
+    FreeExpHeapBlockAndClearPointer(&e);
 }
 
 void func_ov003_021cd2e0(const char *v1, u8 *v2) {

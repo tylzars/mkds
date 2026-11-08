@@ -69,8 +69,8 @@ void LoadWayFilesAndSetBgCnt(void) {
 void func_ov003_021cb71c(void) {
     func_ov003_021d1ee0(2, 1, 1, 8);
     func_ov003_021d1ee0(2, 0, 0x14, 8);
-    func_ov003_021d2784(1, 1);
-    func_ov003_021d2784(0, 0x14);
+    CombineDispcntBits(1, 1);
+    CombineDispcntBits(0, 0x14);
     SetUpdateFunction(func_ov003_021cb6ec);
 }
 
@@ -99,7 +99,7 @@ void UpdateWay(void) {
 void UpdateWayInput(void) {
     u32 i;
     for (i = 0; i < 4; i++) {
-        if (func_ov003_021d2a34(&gWayRects[func_ov003_021c20a8(1)][i]) != 0) {
+        if (IsTouchPressedInRect(&gWayRects[func_ov003_021c20a8(1)][i]) != 0) {
             SetButtonResultIfNone(1);
             gWaySelectedIndex = i;
             PlaceSelectionCorners(data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_00,
@@ -109,17 +109,17 @@ void UpdateWayInput(void) {
             return;
         }
     }
-    if (func_ov003_021d2b04(1) != 0) {
+    if (AreKeysPressed(1) != 0) {
         SetButtonResultIfNone(1);
-    } else if (func_ov003_021d2b04(2) != 0) {
+    } else if (AreKeysPressed(2) != 0) {
         SetButtonResultIfNone(0);
-    } else if (func_ov003_021d2ae8(0x40) != 0) {
+    } else if (AreKeysPressedOrRepeated(0x40) != 0) {
         MoveWaySelection(1);
-    } else if (func_ov003_021d2ae8(0x80) != 0) {
+    } else if (AreKeysPressedOrRepeated(0x80) != 0) {
         MoveWaySelection(3);
-    } else if (func_ov003_021d2ae8(0x20) != 0) {
+    } else if (AreKeysPressedOrRepeated(0x20) != 0) {
         MoveWaySelection(0);
-    } else if (func_ov003_021d2ae8(0x10) != 0) {
+    } else if (AreKeysPressedOrRepeated(0x10) != 0) {
         MoveWaySelection(2);
     }
 }

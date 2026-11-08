@@ -31,7 +31,7 @@ void func_ov003_021c3ef0(void) {
         ReleaseLinkLevel();
         func_ov003_021beecc();
         func_ov003_021d2168(0);
-        func_ov003_021d272c(0, 0x15);
+        ClearDispcntBits(0, 0x15);
         func_ov003_021c2120(0, 1);
         if ((*(u8 *) &data_ov003_021da1bc) == 0) {
             SetUpdateFunction(func_ov003_021c4aa4);

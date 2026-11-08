@@ -16,7 +16,7 @@
 #include "03/unk_021d67d8.h"
 
 void ReleaseHlScr(void) {
-    func_ov003_021d2808(&gHlScr);
+    FreeExpHeapBlockAndClearPointer(&gHlScr);
 }
 
 void LoadHlScr(int b) {

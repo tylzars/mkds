@@ -98,7 +98,7 @@ void LoadJb5MoveFileAndSetBgCnt(void) {
 
 void func_ov003_021c4cb0(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
-    func_ov003_021d2784(0, 0x15);
+    CombineDispcntBits(0, 0x15);
     SetUpdateFunction(func_ov003_021c4c84);
 }
 
@@ -170,10 +170,10 @@ void func_ov003_021c4ae0(void) {
     int v1;
     if (((data_ov003_021da1d0 == 0) && (data_ov003_021da1d4 != 0)) || (v1 = func_ov003_021c27e4(), v1 != 0)) {
         func_ov003_021d2168(0);
-        func_ov003_021d272c(0, 0x15);
+        ClearDispcntBits(0, 0x15);
         if (data_ov003_021da1d4 == 0) {
             func_ov003_021bf410();
-            func_ov003_021d272c(1, 1);
+            ClearDispcntBits(1, 1);
         }
         func_ov003_021c2120(0, 1);
         if (data_ov003_021da1d0 != 0) {
@@ -181,7 +181,7 @@ void func_ov003_021c4ae0(void) {
             return;
         }
         if (data_ov003_021da1d4 == 0) {
-            func_ov003_021d272c(1, 1);
+            ClearDispcntBits(1, 1);
             SetUpdateFunction(SetupOptMenu);
             return;
         }

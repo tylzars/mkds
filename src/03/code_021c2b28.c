@@ -50,7 +50,7 @@ void func_ov003_021c2b28(void) {
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
     reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 3;
     reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 3;
-    func_ov003_021d2784(1, 2);
-    func_ov003_021d2784(0, 2);
+    CombineDispcntBits(1, 2);
+    CombineDispcntBits(0, 2);
     SetUpdateFunction(func_ov003_021c2afc);
 }

@@ -17,7 +17,7 @@
 
 void func_ov003_021c2840(u32 callback) {
     Unk021d6e24 b;
-    data_ov003_021da194 = func_ov003_021d285c(0x1e2a4, 0x20);
+    data_ov003_021da194 = AllocExpHeapBlock(0x1e2a4, 0x20);
     data_ov003_021da194->mCallback = (void (*)(s32)) callback;
     data_ov003_021da194->mUnk_1e2a0 = 0;
     data_ov003_021da194->mUnk_1e2a1 = 0;
@@ -146,7 +146,7 @@ void func_ov003_021c25e0(u32 task) {
             break;
         case 34:
             func_ov003_021d34c8(0, task);
-            func_ov003_021d2808(&data_ov003_021da194);
+            FreeExpHeapBlockAndClearPointer(&data_ov003_021da194);
             break;
     }
 }

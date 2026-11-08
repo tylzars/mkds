@@ -55,7 +55,7 @@ void func_ov003_021ce4d4(u32 a) {
 
 void func_ov003_021ce408(u32 a) {
     s32 i;
-    data_ov003_021da27c = func_ov003_021d283c(0x1c, 4);
+    data_ov003_021da27c = AllocZeroedExpHeapBlock(0x1c, 4);
     for (i = 0; i < 5; i++) {
         data_ov003_021da27c->mUnk_00[i] = func_ov003_021d1be4(1, data_ov003_021d6688[a][i], 1);
         func_ov003_021d1790(data_ov003_021da27c->mUnk_00[i], -1, 0);
