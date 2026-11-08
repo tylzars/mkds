@@ -464,7 +464,7 @@ void InitPosStrips(void *a) {
     }
     m = gPosStripPointsPerStrip * n;
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-        a = data_0217aa10->mUnk_a4;
+        a = data_0217aa10->mExpHeap;
     }
     gPosStrips = HeapAlloc(a, 0x38);
     e = HeapAlloc(a, n * 0x30);

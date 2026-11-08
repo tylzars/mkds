@@ -13,10 +13,10 @@
 
 #pragma opt_rebuildconditionals off
 
-s32 RunResultScene(SceneNumbers *a) {
-    SceneCallbacks b = gResultSceneCallbacks;
+s32 RunResultScene(SceneNumbers *sceneNumbers) {
+    SceneCallbacks resultSceneCallbacks = gResultSceneCallbacks;
 
-    RunScene(a, &b);
+    RunScene(sceneNumbers, &resultSceneCallbacks);
     return 0;
 }
 
@@ -35,45 +35,45 @@ static inline void func_02059878_inline2(u16 v) {
     p->mNextStateRequested = 1;
 }
 
-u32 func_02059b28(u32 a) {
-    u32 n;
-    u8 *p;
-    u32 r;
-    u32 i;
+u32 IsAllMPChunksReceived(u32 slot) {
+    u32 chunkCount;
+    u8 *receivedFlags;
+    u32 allReceived;
+    u32 chunkIndex;
 
-    p = data_0217aa00->mChunkReceivedFlags[a];
-    r = 1;
+    receivedFlags = data_0217aa00->mChunkReceivedFlags[slot];
+    allReceived = 1;
     if (func_02059878_inline() == 1) {
-        n = 0x12;
+        chunkCount = 0x12;
     } else {
-        n = 2;
+        chunkCount = 2;
     }
-    for (i = 0; i < n; i++) {
-        if (p[i] == 0) {
-            r = 0;
+    for (chunkIndex = 0; chunkIndex < chunkCount; chunkIndex++) {
+        if (receivedFlags[chunkIndex] == 0) {
+            allReceived = 0;
             break;
         }
     }
-    return r;
+    return allReceived;
 }
 
-void func_02059954(u8 *a) {
-    u32 i;
-    Unk0217aa00_45c *e;
-    u32 f;
-    u32 v1;
-    u16 v;
-    u8 m;
+void ProcessMPChunk(u8 *chunk) {
+    u32 playerIndex;
+    Unk0217aa00_45c *entry;
+    u32 finished;
+    u32 byteOffset;
+    u16 ownIndex;
+    u8 playerBit;
 
-    i = a[0];
-    e = &data_0217aa00->mUnk_045c[i];
-    f = 0;
+    playerIndex = chunk[0];
+    entry = &data_0217aa00->mUnk_045c[playerIndex];
+    finished = 0;
     if (func_02059878_inline() == 1) {
-        v1 = a[1] << 5;
+        byteOffset = chunk[1] << 5;
     } else {
-        v1 = a[1] * 0x168;
+        byteOffset = chunk[1] * 0x168;
     }
-    switch (a[1]) {
+    switch (chunk[1]) {
         case 0xff:
             if (func_02059878_inline() == 2) {
                 func_02059878_inline2(9);
@@ -81,12 +81,12 @@ void func_02059954(u8 *a) {
             break;
         case 0xfe:
             if (func_02059878_inline() == 2) {
-                data_0217aa00->mUnk_043a = *(u16 *) (a + 2);
+                data_0217aa00->mUnk_043a = *(u16 *) (chunk + 2);
             }
             break;
         case 0xfd:
             if (func_02059878_inline() == 1) {
-                data_0217aa00->mUnk_162a |= 1 << i;
+                data_0217aa00->mUnk_162a |= 1 << playerIndex;
                 if (data_0217aa00->mUnk_0044.mChildMask ==
                     (data_0217aa00->mUnk_0044.mChildMask & data_0217aa00->mUnk_162a)) {
                     func_02059878_inline2(10);
@@ -94,29 +94,29 @@ void func_02059954(u8 *a) {
             }
             break;
         case 0xfc:
-            data_0217aa00->mUnk_045c[i].mUnk_214 = 0;
-            f = 1;
+            data_0217aa00->mUnk_045c[playerIndex].mUnk_214 = 0;
+            finished = 1;
             break;
         default:
-            MI_CpuCopy8(a + 4, e->mUnk_000 + v1, *(u16 *) (a + 2));
-            data_0217aa00->mChunkReceivedFlags[a[0]][a[1]] = 1;
-            if (func_02059b28(a[0]) != 0) {
-                f = 1;
+            MI_CpuCopy8(chunk + 4, entry->mUnk_000 + byteOffset, *(u16 *) (chunk + 2));
+            data_0217aa00->mChunkReceivedFlags[chunk[0]][chunk[1]] = 1;
+            if (IsAllMPChunksReceived(chunk[0]) != 0) {
+                finished = 1;
             }
             break;
     }
-    if (f != 0) {
-        m = 1U << a[0];
+    if (finished != 0) {
+        playerBit = 1U << chunk[0];
         if (func_02059878_inline() == 1) {
-            if (QueueMPChunk(0xff, NULL, 0, 0, m) != FALSE) {
-                data_0217aa00->mUnk_162a |= 1 << a[0];
+            if (QueueMPChunk(0xff, NULL, 0, 0, playerBit) != FALSE) {
+                data_0217aa00->mUnk_162a |= 1 << chunk[0];
                 return;
             }
         } else {
-            data_0217aa00->mUnk_162a |= 1 << a[0];
+            data_0217aa00->mUnk_162a |= 1 << chunk[0];
             if (data_0217aa00->mUnk_043a == (data_0217aa00->mUnk_043a & data_0217aa00->mUnk_162a)) {
-                v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
-                if (QueueMPChunk(0xfd, NULL, 0, v, 1) != FALSE) {
+                ownIndex = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
+                if (QueueMPChunk(0xfd, NULL, 0, ownIndex, 1) != FALSE) {
                     func_02059878_inline2(10);
                 }
             }
@@ -132,7 +132,7 @@ void func_02059920(Unk02059920 *a) {
             case 9:
                 break;
             case 0x15:
-                func_02059954(a->mUnk_0c);
+                ProcessMPChunk(a->mUnk_0c);
                 break;
         }
     }

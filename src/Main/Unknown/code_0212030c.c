@@ -125,7 +125,7 @@ void UpdateWiFiSession(void) {
     if (gWiFiSession == NULL) {
         return;
     }
-    if (data_0217aa10->mUnk_00 != 0) {
+    if (data_0217aa10->mCurrentOverlay != 0) {
         return;
     }
     UpdateWiFiConnection();

@@ -54,7 +54,7 @@ void func_0208b934(void *a) {
         d = gRaceSetup;
         if (d->mMode == MODE_MISSION_RUN) {
             *(u32 *) &data_0217b050 = (u32) GetSPLManagerForEffectId;
-            c = data_0217aa10->mUnk_a4;
+            c = data_0217aa10->mExpHeap;
             e = 0x96;
         }
         if (d->mCourseId == COURSE_ID_AWARD) {

@@ -20,10 +20,10 @@ static inline u32 func_02058b38_inline(void) {
     return data_0217aa00->mUnk_0000;
 }
 
-static inline void func_02058b74_inline(u16 v) {
-    MPStateMachine *p = &data_0217aa00->mUnk_1608;
-    p->mNextState = v;
-    p->mNextStateRequested = 1;
+static inline void func_02058b74_inline(u16 nextState) {
+    MPStateMachine *stateMachine = &data_0217aa00->mUnk_1608;
+    stateMachine->mNextState = nextState;
+    stateMachine->mNextStateRequested = 1;
 }
 
 static inline s32 func_02058cac_inline2(void) {
@@ -52,10 +52,10 @@ static inline s32 func_02058cac_inline4(void) {
 
 #pragma thumb on
 
-s32 func_02058dc0(void (*a)(void)) {
-    BOOL r;
+s32 func_02058dc0(void (*callback)(void)) {
+    BOOL done;
 
-    r = FALSE;
+    done = FALSE;
     switch (data_0217aa00->mUnk_1e34) {
         case 0:
             if (data_0217aa00->mUnk_0454 & 1) {
@@ -72,7 +72,7 @@ s32 func_02058dc0(void (*a)(void)) {
         case 7:
             QueueMPDataHalfword(5, 0xff);
             data_0217aa00->mUnk_1e44 |= 2;
-            data_0217aa00->mUnk_1d54 = r;
+            data_0217aa00->mUnk_1d54 = done;
             data_0217aa00->mUnk_1e34 = 1;
             break;
         case 6:
@@ -83,7 +83,7 @@ s32 func_02058dc0(void (*a)(void)) {
             break;
         case 2:
             if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-                func_02057df0(a);
+                func_02057df0(callback);
                 data_0217aa0c->mUnk_f8 = 1;
             }
             data_0217aa00->mUnk_1e34 = 3;
@@ -105,23 +105,23 @@ s32 func_02058dc0(void (*a)(void)) {
             break;
         case 1:
             if (data_0217aa00->mUnk_1e44 & 2) {
-                r = TRUE;
+                done = TRUE;
             }
             break;
     }
-    return r;
+    return done;
 }
 
 s32 func_02058cac(void) {
-    BOOL r;
-    u16 v;
+    BOOL finished;
+    u16 ownIndex;
 
-    r = FALSE;
+    finished = FALSE;
     if (!func_02058cac_inline2()) {
         return 1;
     }
-    v = ((const ConnectionWork *) data_0217aa00)->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
-    if (v == 0xffff && func_02058b38_inline() == 2) {
+    ownIndex = ((const ConnectionWork *) data_0217aa00)->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
+    if (ownIndex == 0xffff && func_02058b38_inline() == 2) {
         if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
             func_02050e60(0);
             return 3;
@@ -135,16 +135,16 @@ s32 func_02058cac(void) {
         }
     }
     if (data_0217aa00->mUnk_1608.mState == 0xf) {
-        r = TRUE;
+        finished = TRUE;
     }
-    return r;
+    return finished;
 }
 
 void func_02058c74(void) {
-    u16 v;
+    u16 ownIndex;
 
-    v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
-    FillPlayerRecord(&data_0217aa00->mUnk_045c[v]);
+    ownIndex = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
+    FillPlayerRecord(&data_0217aa00->mUnk_045c[ownIndex]);
 }
 
 void func_02058c10(void) {

@@ -671,10 +671,10 @@ void InitArchiveBuffers(NNSiFndHeapHead *a, NNSiFndHeapHead *courseBufferHeap, N
 }
 
 void func_020474e4(void) {
-    InitArchiveBuffer(data_0217aa10->mUnk_a0, 0xb, 0xaa, 0, 0);
-    InitArchiveBuffer(data_0217aa10->mUnk_a0, 0xc, 0x6e, 0, 0);
-    InitArchiveBuffer(data_0217aa10->mUnk_a0, 9, 0x1e, 0, 0);
-    InitArchiveBuffer(data_0217aa10->mUnk_a0, 10, 0x1e, 0, 0);
+    InitArchiveBuffer(data_0217aa10->mFrmHeap, 0xb, 0xaa, 0, 0);
+    InitArchiveBuffer(data_0217aa10->mFrmHeap, 0xc, 0x6e, 0, 0);
+    InitArchiveBuffer(data_0217aa10->mFrmHeap, 9, 0x1e, 0, 0);
+    InitArchiveBuffer(data_0217aa10->mFrmHeap, 10, 0x1e, 0, 0);
 }
 
 #pragma thumb off

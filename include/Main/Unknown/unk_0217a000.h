@@ -779,30 +779,30 @@ typedef struct Unk0217aa0c {
 } Unk0217aa0c;
 
 extern Unk0217aa0c *data_0217aa0c;
-// 0xc-byte entries from 0x08 of Unk0217aa10.
-typedef struct Unk0217aa10_08 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ u32 mUnk_04;
-    /* 08 */ u32 mUnk_08;
-} Unk0217aa10_08;
+// 0xc-byte entries from 0x08 of OverlayLoader.
+typedef struct OverlayLoaderEntry {
+    /* 00 */ s32 mOverlayId;
+    /* 04 */ u32 mStart;
+    /* 08 */ u32 mEnd;
+} OverlayLoaderEntry;
 
 struct NNSiFndHeapHead;
 
 // Object behind data_0217aa10; UpdateWiFiSession reads the word at 0. The objects at 0x2c and 0x58 are passed to
 // FS_StartOverlay and FS_InitFile, the pointer at 0xa4 to NNS_FndDestroyExpHeap.
-typedef struct Unk0217aa10 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ Unk0217aa10_08 mUnk_08[3];
-    /* 2c */ FSOverlayInfo mUnk_2c;
-    /* 58 */ FSFile mUnk_58;
-    /* a0 */ struct NNSiFndHeapHead *mUnk_a0;
-    /* a4 */ void *mUnk_a4;
-    /* a8 */ u32 mUnk_a8;
-    /* ac */ u32 mUnk_ac;
-} Unk0217aa10;
+typedef struct OverlayLoader {
+    /* 00 */ s32 mCurrentOverlay;
+    /* 04 */ s32 mLoadState;
+    /* 08 */ OverlayLoaderEntry mEntries[3];
+    /* 2c */ FSOverlayInfo mInfo;
+    /* 58 */ FSFile mFile;
+    /* a0 */ struct NNSiFndHeapHead *mFrmHeap;
+    /* a4 */ void *mExpHeap;
+    /* a8 */ u32 mLowestStart;
+    /* ac */ u32 mHighestEnd;
+} OverlayLoader;
 
-extern Unk0217aa10 *data_0217aa10;
+extern OverlayLoader *data_0217aa10;
 // 0x38-byte entries from 0x14 of Unk0217aa14.
 typedef struct Unk0217aa14_014 {
     /* 00 */ u8 mUnk_00[4];

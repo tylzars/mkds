@@ -348,7 +348,7 @@ void InitMapObjects(void) {
         if (row->mKind == 0) {
             break;
         }
-        if (data_0217aa10->mUnk_00 != 1 && IsInOverlayRange(descriptor) != 0) {
+        if (data_0217aa10->mCurrentOverlay != 1 && IsInOverlayRange(descriptor) != 0) {
             break;
         }
         if (descriptor != NULL) {

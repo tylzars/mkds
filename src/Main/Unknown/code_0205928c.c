@@ -25,22 +25,22 @@
 
 #pragma thumb on
 
-void InitMPChunkBuffers(void *a) {
-    int v1;
+void InitMPChunkBuffers(void *heap) {
+    int slot;
     int v2;
     void *v3;
     int *v4;
-    v3 = HeapAllocAligned(a, (0x0000016cu), 0x20);
+    v3 = HeapAllocAligned(heap, (0x0000016cu), 0x20);
     v4 = (s32 *) &data_0217aa00;
     data_0217aa00->mChunkBuffer = v3;
-    v1 = 0;
+    slot = 0;
     v2 = 0;
     do {
-        v3 = HeapAlloc(a, 0x12);
-        data_0217aa00->mChunkReceivedFlags[v1] = v3;
+        v3 = HeapAlloc(heap, 0x12);
+        data_0217aa00->mChunkReceivedFlags[slot] = v3;
         v2 = v2 + 4;
-        v1 = v1 + 1;
-    } while (v1 < 8);
+        slot = slot + 1;
+    } while (slot < 8);
 }
 
 #pragma thumb off
@@ -78,43 +78,44 @@ static inline s32 func_0205955c_inline4(void) {
     return r;
 }
 
-void func_020597d0(const void *a, s32 b, s32 c, s32 d) {
+void func_020597d0(const void *data, s32 b, s32 playerIndex, s32 d) {
     s32 v;
-    s32 m;
+    s32 playerBit;
 
     v = data_0217aa00->mUnk_0004;
     if (v != 11) {
-        func_020559ec(a, c, d);
+        func_020559ec(data, playerIndex, d);
         return;
     }
-    m = 1 << c;
-    if (!(data_0217aa00->mUnk_164c & m)) {
-        MI_CpuCopy8(a, &data_0217aa00->mUnk_045c[c], 0x14);
-        data_0217aa00->mUnk_164c |= m;
+    playerBit = 1 << playerIndex;
+    if (!(data_0217aa00->mUnk_164c & playerBit)) {
+        MI_CpuCopy8(data, &data_0217aa00->mUnk_045c[playerIndex], 0x14);
+        data_0217aa00->mUnk_164c |= playerBit;
     }
 }
 
 s32 IsAllMPChildSharedDataCopied(void) {
-    s32 r;
-    u16 i;
-    u8 m;
+    s32 allCopied;
+    u16 childIndex;
+    u8 childMask;
 
-    r = 1;
-    i = r;
-    m = data_0217aa00->mUnk_0044.mChildMask;
-    for (; i < 8; i++) {
-        if ((m & (r << i)) && data_0217aa00->mUnk_15bc_view.mSharedDataCopied[i] == 0) {
-            r = 0;
+    allCopied = 1;
+    childIndex = allCopied;
+    childMask = data_0217aa00->mUnk_0044.mChildMask;
+    for (; childIndex < 8; childIndex++) {
+        if ((childMask & (allCopied << childIndex)) &&
+            data_0217aa00->mUnk_15bc_view.mSharedDataCopied[childIndex] == 0) {
+            allCopied = 0;
             break;
         }
     }
-    return r;
+    return allCopied;
 }
 
 s32 func_02059700(void) {
-    BOOL r;
+    BOOL done;
 
-    r = FALSE;
+    done = FALSE;
     switch (data_0217aa00->mUnk_1e34) {
         case 0:
             data_0217aa00->mUnk_1e34 = 6;
@@ -127,21 +128,21 @@ s32 func_02059700(void) {
             break;
         case 7:
             if (QueueMPDataHalfword(5, 0xff) != FALSE) {
-                data_0217aa00->mUnk_1d54 = r;
+                data_0217aa00->mUnk_1d54 = done;
                 data_0217aa00->mUnk_1e34 = 1;
             }
             break;
         case 1:
-            r = TRUE;
+            done = TRUE;
             break;
     }
-    return r;
+    return done;
 }
 
 s32 func_020595e8(s32 a, void *b, void *c) {
-    BOOL r;
+    BOOL done;
 
-    r = FALSE;
+    done = FALSE;
     switch (data_0217aa00->mUnk_1e34) {
         case 0:
             if (data_0217aa00->mUnk_0454 & 1) {
@@ -186,11 +187,11 @@ s32 func_020595e8(s32 a, void *b, void *c) {
             break;
         case 1:
             if (data_0217aa00->mUnk_1e44 & 2) {
-                r = TRUE;
+                done = TRUE;
             }
             break;
     }
-    return r;
+    return done;
 }
 
 u32 func_0205955c(void) {
@@ -212,15 +213,15 @@ u32 func_0205955c(void) {
 #pragma thumb on
 
 // Asks for state 16 with the next race's course and mode.
-void RequestMPState16(void *a, void *b) {
-    MPStateMachine *part;
+void RequestMPState16(void *courseId, void *mode) {
+    MPStateMachine *stateMachine;
     data_0217aa00->mUnk_1e34 = 0;
     data_0217aa00->mUnk_1e44 &= ~2;
-    part = &data_0217aa00->mUnk_1608;
-    part->mNextState = 0x10;
-    part->mNextStateRequested = 1;
-    data_0217aa00->mCourseId = a;
-    data_0217aa00->mMode = b;
+    stateMachine = &data_0217aa00->mUnk_1608;
+    stateMachine->mNextState = 0x10;
+    stateMachine->mNextStateRequested = 1;
+    data_0217aa00->mCourseId = courseId;
+    data_0217aa00->mMode = mode;
 }
 
 #pragma thumb off
@@ -259,23 +260,23 @@ static inline s32 func_020593dc_inline4(void) {
 }
 
 void RequestMPState18(void) {
-    MPStateMachine *p;
+    MPStateMachine *stateMachine;
 
     data_0217aa00->mUnk_1e34 = 0;
     data_0217aa00->mUnk_1e44 &= ~2;
-    p = &data_0217aa00->mUnk_1608;
-    p->mNextState = 0x12;
-    p->mNextStateRequested = 1;
+    stateMachine = &data_0217aa00->mUnk_1608;
+    stateMachine->mNextState = 0x12;
+    stateMachine->mNextStateRequested = 1;
 }
 
 void RequestMPState21(void) {
-    MPStateMachine *p;
+    MPStateMachine *stateMachine;
 
     data_0217aa00->mUnk_1e34 = 0;
     data_0217aa00->mUnk_1e44 &= ~2;
-    p = &data_0217aa00->mUnk_1608;
-    p->mNextState = 0x15;
-    p->mNextStateRequested = 1;
+    stateMachine = &data_0217aa00->mUnk_1608;
+    stateMachine->mNextState = 0x15;
+    stateMachine->mNextStateRequested = 1;
 }
 
 u32 func_020593dc(void) {
@@ -312,13 +313,13 @@ void EnterMPState16(void) {
 }
 
 void UpdateMPState16(void) {
-    int v1;
-    MPStateMachine *v2;
-    v1 = func_020593dc();
-    if (v1 == 1) {
-        v2 = &data_0217aa00->mUnk_1608;
-        v2->mNextState = 0x11;
-        v2->mNextStateRequested = 1;
+    int result;
+    MPStateMachine *stateMachine;
+    result = func_020593dc();
+    if (result == 1) {
+        stateMachine = &data_0217aa00->mUnk_1608;
+        stateMachine->mNextState = 0x11;
+        stateMachine->mNextStateRequested = 1;
     }
 }
 
@@ -327,13 +328,13 @@ void UpdateMPState16(void) {
 #pragma thumb on
 
 void func_0205933c(void) {
-    u32 a;
+    u32 loaded;
 
-    a = LoadCourseSoundSet((u32) data_0217aa00->mMode, (u32) data_0217aa00->mCourseId);
+    loaded = LoadCourseSoundSet((u32) data_0217aa00->mMode, (u32) data_0217aa00->mCourseId);
     if (*(u16 *) 0x027ffc40 == 2) {
         func_02043f28(0);
     }
-    if (a == 0) {
+    if (loaded == 0) {
         data_0217aa00->mUnk_164f = 1;
     }
 }
@@ -349,13 +350,13 @@ void func_02059304(void) {
 #pragma thumb on
 
 void UpdateMPState17(void) {
-    int v1;
-    MPStateMachine *v2;
-    v1 = func_02058dc0(func_0205933c);
-    if (v1 == 1) {
-        v2 = &data_0217aa00->mUnk_1608;
-        v2->mNextState = 0x14;
-        v2->mNextStateRequested = 1;
+    int result;
+    MPStateMachine *stateMachine;
+    result = func_02058dc0(func_0205933c);
+    if (result == 1) {
+        stateMachine = &data_0217aa00->mUnk_1608;
+        stateMachine->mNextState = 0x14;
+        stateMachine->mNextStateRequested = 1;
     }
 }
 
@@ -372,11 +373,11 @@ void EnterMPState20(void) {
 }
 
 void UpdateMPState20(void) {
-    MPStateMachine *v1;
+    MPStateMachine *stateMachine;
     if (data_0217aa00->mRequestPending == 0) {
-        v1 = &data_0217aa00->mUnk_1608;
-        v1->mNextState = 0xf;
-        v1->mNextStateRequested = 1;
+        stateMachine = &data_0217aa00->mUnk_1608;
+        stateMachine->mNextState = 0xf;
+        stateMachine->mNextStateRequested = 1;
     }
 }
 

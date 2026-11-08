@@ -106,7 +106,7 @@ void InitModelEffects(void *heap) {
     ModelEffectKind *y;
 
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-        heap = data_0217aa10->mUnk_a4;
+        heap = data_0217aa10->mExpHeap;
     }
     gModelEffects = HeapAlloc(heap, 0x60);
     NNS_FndInitList(&gModelEffects->mActiveList, 0);
