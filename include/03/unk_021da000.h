@@ -49,14 +49,14 @@ typedef struct Unk021bf920 {
     /* 04 */ u16 mUnk_04;
 } Unk021bf920;
 
-// Object behind data_ov003_021da158.
-typedef struct Unk021da158 {
+// Object behind gLinkLevel.
+typedef struct LinkLevel {
     /* 00 */ Unk021bf920 *mUnk_00;
     /* 04 */ u32 mTask;
     /* 08 */ s8 mUnk_08;
-} Unk021da158;
+} LinkLevel;
 
-extern Unk021da158 *data_ov003_021da158;
+extern LinkLevel *gLinkLevel;
 
 // The on-screen keys of the Edit screen.
 typedef struct EditKeyboard {

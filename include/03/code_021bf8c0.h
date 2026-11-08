@@ -4,9 +4,9 @@
 #include "03/code_021d3488.h"
 
 void InitHlScr(void);
-void func_ov003_021bf920(void);
-void func_ov003_021bf9b8(void);
-void func_ov003_021bf9e8(int row);
+void UpdateLinkLevel(void);
+void ReleaseLinkLevel(void);
+void CreateLinkLevel(int row);
 void ReleaseEditKeyboard(u32 task);
 void AdvanceEditKeyboardSlideOutRow0(Unk021d34e0 *task);
 void AdvanceEditKeyboardSlideOutRow1(Unk021d34e0 *task);

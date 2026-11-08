@@ -60,7 +60,7 @@ void func_ov003_021c4054(void) {
     func_ov003_021c3ff0();
     PrintMessage(0x60);
     func_ov003_021beef8(0);
-    func_ov003_021bf9e8(1);
+    CreateLinkLevel(1);
     StartSoundSeq(0xb);
     func_ov003_021c212c(func_ov003_021c3fc8);
 }

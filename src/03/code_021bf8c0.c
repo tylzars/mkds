@@ -436,28 +436,27 @@ void ReleaseEditKeyboard(u32 task) {
     func_ov003_021d2808(&gEditKeyboard);
 }
 
-void func_ov003_021bf9e8(int row) {
-    if (data_ov003_021da158 == NULL) {
-        data_ov003_021da158 = func_ov003_021d285c(0xc, 4);
-        data_ov003_021da158->mUnk_08 = row;
-        data_ov003_021da158->mUnk_00 = func_ov003_021d1c18(0, data_ov003_021d5f58[row][0]);
-        data_ov003_021da158->mUnk_00->mUnk_00 =
-            ((data_ov003_021d5f54[0] & 0x1ff) << 16) |
-            ((data_ov003_021da158->mUnk_00->mUnk_00 & 0xfe00ff00) | (data_ov003_021d5f54[1] & 0xff));
-        data_ov003_021da158->mUnk_00->mUnk_04 = (data_ov003_021da158->mUnk_00->mUnk_04 & 0xfffff3ff) | 0x800;
-        data_ov003_021da158->mTask = func_ov003_021d3544(0, func_ov003_021bf920, NULL, 0x78);
+void CreateLinkLevel(int row) {
+    if (gLinkLevel == NULL) {
+        gLinkLevel = func_ov003_021d285c(0xc, 4);
+        gLinkLevel->mUnk_08 = row;
+        gLinkLevel->mUnk_00 = func_ov003_021d1c18(0, data_ov003_021d5f58[row][0]);
+        gLinkLevel->mUnk_00->mUnk_00 = ((data_ov003_021d5f54[0] & 0x1ff) << 16) |
+                                       ((gLinkLevel->mUnk_00->mUnk_00 & 0xfe00ff00) | (data_ov003_021d5f54[1] & 0xff));
+        gLinkLevel->mUnk_00->mUnk_04 = (gLinkLevel->mUnk_00->mUnk_04 & 0xfffff3ff) | 0x800;
+        gLinkLevel->mTask = func_ov003_021d3544(0, UpdateLinkLevel, NULL, 0x78);
     }
 }
 
-void func_ov003_021bf9b8(void) {
-    if (data_ov003_021da158 != NULL) {
-        func_ov003_021d34c0(0, data_ov003_021da158->mTask);
-        func_ov003_021d2f00((u32 *) data_ov003_021da158->mUnk_00);
-        func_ov003_021d2808(&data_ov003_021da158);
+void ReleaseLinkLevel(void) {
+    if (gLinkLevel != NULL) {
+        func_ov003_021d34c0(0, gLinkLevel->mTask);
+        func_ov003_021d2f00((u32 *) gLinkLevel->mUnk_00);
+        func_ov003_021d2808(&gLinkLevel);
     }
 }
 
-void func_ov003_021bf920(void) {
+void UpdateLinkLevel(void) {
     u32 linkLevel;
     u16 savedIme;
     linkLevel = 0;
@@ -468,12 +467,10 @@ void func_ov003_021bf920(void) {
     }
     reg_OS_IME;
     reg_OS_IME = savedIme;
-    func_ov003_021d1c3c(0, data_ov003_021d5f58[data_ov003_021da158->mUnk_08][linkLevel],
-                        (u8 *) data_ov003_021da158->mUnk_00);
-    data_ov003_021da158->mUnk_00->mUnk_00 =
-        ((data_ov003_021d5f54[0] & 0x1ff) << 16) |
-        ((data_ov003_021da158->mUnk_00->mUnk_00 & 0xfe00ff00) | (data_ov003_021d5f54[1] & 0xff));
-    data_ov003_021da158->mUnk_00->mUnk_04 = (data_ov003_021da158->mUnk_00->mUnk_04 & 0xfffff3ff) | 0x800;
+    func_ov003_021d1c3c(0, data_ov003_021d5f58[gLinkLevel->mUnk_08][linkLevel], (u8 *) gLinkLevel->mUnk_00);
+    gLinkLevel->mUnk_00->mUnk_00 = ((data_ov003_021d5f54[0] & 0x1ff) << 16) |
+                                   ((gLinkLevel->mUnk_00->mUnk_00 & 0xfe00ff00) | (data_ov003_021d5f54[1] & 0xff));
+    gLinkLevel->mUnk_00->mUnk_04 = (gLinkLevel->mUnk_00->mUnk_04 & 0xfffff3ff) | 0x800;
 }
 
 void InitHlScr(void) {

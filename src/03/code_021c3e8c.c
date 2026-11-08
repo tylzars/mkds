@@ -28,7 +28,7 @@ void func_ov003_021c3ef0(void) {
     int v1;
     v1 = func_ov003_021d1f70(0);
     if ((v1 == 0) && (v1 = func_ov003_021c27e4(), v1 != 0)) {
-        func_ov003_021bf9b8();
+        ReleaseLinkLevel();
         func_ov003_021beecc();
         func_ov003_021d2168(0);
         func_ov003_021d272c(0, 0x15);

@@ -195,9 +195,9 @@ LoadHlSetScr kind:function(thumb,size=0x18) addr:0x021bf814
 LoadHlScr kind:function(thumb,size=0x44) addr:0x021bf82c
 ReleaseHlScr kind:function(thumb,size=0x10) addr:0x021bf870
 InitHlScr kind:function(thumb,size=0x60) addr:0x021bf880
-func_ov003_021bf920 kind:function(thumb,size=0x98) addr:0x021bf8e0
-func_ov003_021bf9b8 kind:function(thumb,size=0x30) addr:0x021bf978
-func_ov003_021bf9e8 kind:function(thumb,size=0x98) addr:0x021bf9a8
+UpdateLinkLevel kind:function(thumb,size=0x98) addr:0x021bf8e0
+ReleaseLinkLevel kind:function(thumb,size=0x30) addr:0x021bf978
+CreateLinkLevel kind:function(thumb,size=0x98) addr:0x021bf9a8
 ReleaseEditKeyboard kind:function(thumb,size=0xa8) addr:0x021bfa40
 AdvanceEditKeyboardSlideOutRow0 kind:function(thumb,size=0x54) addr:0x021bfae8
 AdvanceEditKeyboardSlideOutRow1 kind:function(thumb,size=0x54) addr:0x021bfb3c
@@ -1600,7 +1600,7 @@ data_ov003_021da10c kind:bss addr:0x021da0cc
 data_ov003_021da110 kind:bss addr:0x021da0d0
 gSelectionObjects kind:bss addr:0x021da110
 gHlScr kind:bss addr:0x021da114
-data_ov003_021da158 kind:bss addr:0x021da118
+gLinkLevel kind:bss addr:0x021da118
 gEditKeyboard kind:bss addr:0x021da11c
 data_ov003_021da160 kind:bss addr:0x021da120
 data_ov003_021da164 kind:bss addr:0x021da124

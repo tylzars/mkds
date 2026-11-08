@@ -48,7 +48,7 @@ void func_ov003_021cbb98(void) {
     PrintMessage(0x76);
     func_ov003_021beef8(0);
     func_ov003_021cbaa0();
-    func_ov003_021bf9e8(0);
+    CreateLinkLevel(0);
     StartSoundSeq(0xc);
     func_ov003_021c212c(func_ov003_021cba54);
 }
@@ -190,7 +190,7 @@ void func_ov003_021cb948(void) {
 void func_ov003_021cb8f0(u32 b) {
     s32 a = func_ov000_021887cc();
     if (a != 0) {
-        func_ov003_021bf9b8();
+        ReleaseLinkLevel();
         StopSoundSeq();
         if (a > 0) {
             data_ov003_021da248 = 1;
