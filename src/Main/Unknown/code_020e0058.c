@@ -111,7 +111,7 @@ void *CreateKoopaBlockUpdateList(void) {
 
     data_0217b780 = updateList;
     *(Unk020e0340 *) updateList = *(const Unk020e0340 *) data_02158854;
-    func_020e6f50(&data_0217b780);
+    SetUpdateListSlot(&data_0217b780);
     return data_0217b780;
 }
 

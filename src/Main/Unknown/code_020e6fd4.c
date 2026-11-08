@@ -49,22 +49,22 @@
 
 void func_020e7a40(void) {
     u32 value0;
-    u32 value1;
-    u32 compareLeft0;
-    u32 compareRight0;
+    u32 requestedState;
+    u32 raceKind;
+    u32 staffRollKind;
     value0 = gRaceSetup->mRaceKind;
-    compareLeft0 = value0;
-    compareRight0 = 6u;
-    if (compareLeft0 == compareRight0) {
+    raceKind = value0;
+    staffRollKind = 6u;
+    if (raceKind == staffRollKind) {
     }
-    if (compareLeft0 == compareRight0) {
+    if (raceKind == staffRollKind) {
     }
-    if (compareLeft0 == compareRight0) {
+    if (raceKind == staffRollKind) {
         return;
     }
     value0 = (u32) &gJgStateMachine;
-    value1 = 4u;
-    SetStateMachineState((void *) value0, value1);
+    requestedState = 4u;
+    SetStateMachineState((void *) value0, requestedState);
 }
 
 #pragma thumb off
@@ -84,11 +84,11 @@ void func_020e79c4(void) {
 
 #pragma thumb on
 void func_020e7760(void) {
-    Kart *q;
-    Vec3 *v;
+    Kart *kart;
+    Vec3 *point;
     s32 i;
-    Vec3 *s;
-    BOOL a;
+    Vec3 *sourcePoint;
+    BOOL flag;
 
     if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         return;
@@ -102,9 +102,9 @@ void func_020e7760(void) {
         return;
     }
     gJgKartIndex = gRaceSetup->mEntryIndex;
-    q = GetKart(gJgKartIndex);
-    gJgKart = q;
-    data_0217b8c0 = &q->mKartModelsEntry->mUnk_040;
+    kart = GetKart(gJgKartIndex);
+    gJgKart = kart;
+    data_0217b8c0 = &kart->mKartModelsEntry->mUnk_040;
     gJgTargetPos.x = 0;
     gJgTargetPos.y = 0;
     gJgTargetPos.z = 0;
@@ -125,14 +125,14 @@ void func_020e7760(void) {
     data_0217b8cc = 0;
     data_0217b8ec = 0;
     gJgEasedPos = gJgPos;
-    a = TRUE;
-    data_0217b8f0 = a;
-    data_0217b8bc = a;
+    flag = TRUE;
+    data_0217b8f0 = flag;
+    data_0217b8bc = flag;
     data_0217b894 = 0;
     if (gCourseMap->mSettings->mUnk_04 != 0) {
-        a = FALSE;
+        flag = FALSE;
     }
-    data_0217b8f8 = a;
+    data_0217b8f8 = flag;
     gJgKind = 4;
     gJgHighestLap = 1;
     gJgFinalLap = GetLapCount();
@@ -140,30 +140,30 @@ void func_020e7760(void) {
     gJgPoints[0].x = 0;
     gJgPoints[0].y = 0;
     gJgPoints[0].z = 0;
-    s = data_02159440;
+    sourcePoint = data_02159440;
     for (i = 0; i < 7; i++) {
-        v = &gJgPoints[i + 1];
-        *v = *s;
+        point = &gJgPoints[i + 1];
+        *point = *sourcePoint;
         if (data_0217b8f8 != 0) {
-            v->x = -v->x;
-            v->y = -v->y;
-            v->z = -v->z;
+            point->x = -point->x;
+            point->y = -point->y;
+            point->z = -point->z;
         }
-        s++;
+        sourcePoint++;
     }
     switch (gRaceSetup->mMode) {
         case MODE_BATTLE:
             gJgLapAndReverseEnabled = 0;
             break;
         case MODE_MISSION_RUN: {
-            BOOL b;
+            BOOL enabled;
 
-            b = FALSE;
+            enabled = FALSE;
             if ((u8) (gRaceSetup->mMissionKind + 0xfe) <= 8 &&
                 (0x115 & (1 << (u8) (gRaceSetup->mMissionKind + 0xfe))) != 0) {
-                b = TRUE;
+                enabled = TRUE;
             }
-            gJgLapAndReverseEnabled = b;
+            gJgLapAndReverseEnabled = enabled;
             break;
         }
         default:
@@ -190,17 +190,17 @@ void func_020e7760(void) {
 }
 
 void func_020e7460(void) {
-    s32 x;
+    s32 angle;
     s32 j;
     s32 i;
-    void *h;
-    Unk0216c324 *s;
-    JgKindRow *q;
-    void *p;
+    void *heap;
+    Unk0216c324 *sourceRow;
+    JgKindRow *kindRow;
+    void *file;
     s32 n;
-    s32 k;
+    s32 angleIndex;
 
-    h = GetHeap(GetCurrentHeapCall());
+    heap = GetHeap(GetCurrentHeapCall());
     if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         return;
     }
@@ -210,49 +210,53 @@ void func_020e7460(void) {
     func_020e64b8(&gJgCloud, FindSceneFile(data_0216c394), NULL, 0);
     func_020e6ab8(&gJgCloud);
     gJgCloud.mUnk_14 |= 0xc0;
-    data_0217b8a4 = HeapAlloc(h, 0x78);
-    data_0217b8a8 = HeapAlloc(h, 0x78);
-    data_0217b8a0 = HeapAlloc(h, 0x78);
-    data_0217b8e0 = HeapAlloc(h, 0x78);
-    data_0217b904 = HeapAlloc(h, 0x78);
-    for (i = 0, x = 0; i < 0x3c; i++) {
-        data_0217b8a4[i] = (u16) (((s64) gPairsByAngle[(x >> 4) * 2] * 0x4c) >> 12);
-        k = (u16) (((u64) (s64) gPairsByAngle[((u16) (x + 0xa218) >> 4) * 2] * 0xb60b60b60b + 0x80000000000) >> 44) >>
+    data_0217b8a4 = HeapAlloc(heap, 0x78);
+    data_0217b8a8 = HeapAlloc(heap, 0x78);
+    data_0217b8a0 = HeapAlloc(heap, 0x78);
+    data_0217b8e0 = HeapAlloc(heap, 0x78);
+    data_0217b904 = HeapAlloc(heap, 0x78);
+    for (i = 0, angle = 0; i < 0x3c; i++) {
+        data_0217b8a4[i] = (u16) (((s64) gPairsByAngle[(angle >> 4) * 2] * 0x4c) >> 12);
+        angleIndex =
+            (u16) (((u64) (s64) gPairsByAngle[((u16) (angle + 0xa218) >> 4) * 2] * 0xb60b60b60b + 0x80000000000) >>
+                   44) >>
             4;
-        data_0217b8a8[i] = gPairsByAngle[k * 2];
-        data_0217b8a0[i] = gPairsByAngle[k * 2 + 1];
-        data_0217b8e0[i] = (u32) (((s64) gPairsByAngle[((u16) (x + 0x1554) >> 4) * 2] * 0x19a) >> 12) + 0xe66;
-        data_0217b904[i] = (u32) (((s64) gPairsByAngle[((u16) (x + 0xbbb0) >> 4) * 2] * 0x19a) >> 12) + 0x119a;
-        x += 0x444;
+        data_0217b8a8[i] = gPairsByAngle[angleIndex * 2];
+        data_0217b8a0[i] = gPairsByAngle[angleIndex * 2 + 1];
+        data_0217b8e0[i] = (u32) (((s64) gPairsByAngle[((u16) (angle + 0x1554) >> 4) * 2] * 0x19a) >> 12) + 0xe66;
+        data_0217b904[i] = (u32) (((s64) gPairsByAngle[((u16) (angle + 0xbbb0) >> 4) * 2] * 0x19a) >> 12) + 0x119a;
+        angle += 0x444;
     }
     gJgTableIndex = 0;
     n = 2;
-    for (j = n, s = data_0216c324, q = data_0217bb08; j < 4; j++) {
-        if (s->mUnk_00 != NULL) {
-            q->mModel = HeapAlloc(h, 0x6c);
-            p = FindSceneFile(s->mUnk_00);
-            InitNsbmd(q->mModel, p);
-            func_02084968(q->mModel, 0x3f, n, 0x294a);
-            SetNsbmdCullModeAll(q->mModel, 3);
+    for (j = n, sourceRow = data_0216c324, kindRow = data_0217bb08; j < 4; j++) {
+        if (sourceRow->mUnk_00 != NULL) {
+            kindRow->mModel = HeapAlloc(heap, 0x6c);
+            file = FindSceneFile(sourceRow->mUnk_00);
+            InitNsbmd(kindRow->mModel, file);
+            func_02084968(kindRow->mModel, 0x3f, n, 0x294a);
+            SetNsbmdCullModeAll(kindRow->mModel, 3);
         } else {
-            q->mModel = NULL;
+            kindRow->mModel = NULL;
         }
-        if (s->mUnk_04 != NULL) {
-            q->mNsbcaAnimation = HeapAlloc(h, 0x38);
-            func_020ea514(0, q->mModel, q->mNsbcaAnimation, p, FindSceneFile(s->mUnk_04));
-            func_02087cfc(q->mNsbcaAnimation, 0, 1);
+        if (sourceRow->mUnk_04 != NULL) {
+            kindRow->mNsbcaAnimation = HeapAlloc(heap, 0x38);
+            InitModelAnimationWithEntries(0, kindRow->mModel, kindRow->mNsbcaAnimation, file,
+                                          FindSceneFile(sourceRow->mUnk_04));
+            func_02087cfc(kindRow->mNsbcaAnimation, 0, 1);
         } else {
-            q->mNsbcaAnimation = NULL;
+            kindRow->mNsbcaAnimation = NULL;
         }
-        if (s->mUnk_08 != NULL) {
-            q->mNsbmaAnimation = HeapAlloc(h, 0x38);
-            func_020ea514(4, q->mModel, q->mNsbmaAnimation, p, FindSceneFile(s->mUnk_08));
-            func_02087cfc(q->mNsbmaAnimation, 0, 1);
+        if (sourceRow->mUnk_08 != NULL) {
+            kindRow->mNsbmaAnimation = HeapAlloc(heap, 0x38);
+            InitModelAnimationWithEntries(4, kindRow->mModel, kindRow->mNsbmaAnimation, file,
+                                          FindSceneFile(sourceRow->mUnk_08));
+            func_02087cfc(kindRow->mNsbmaAnimation, 0, 1);
         } else {
-            q->mNsbmaAnimation = NULL;
+            kindRow->mNsbmaAnimation = NULL;
         }
-        s++;
-        q++;
+        sourceRow++;
+        kindRow++;
     }
     func_020e6488((Unk020e6488 **) gJgKindRowLapModels, FindSceneFile(data_0216c3a4), FindSceneFile(data_0216c3b4), 0);
     func_020e6ab8(gJgKindRows[0].mLapModel);
@@ -264,29 +268,29 @@ void func_020e7460(void) {
 #pragma thumb off
 
 Unk020e7410 *func_020e7410(void) {
-    Unk020e7410 *p;
+    Unk020e7410 *kindData;
 
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
-    *p = *(Unk020e7410 *) data_02159370;
-    return p;
+    kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
+    *kindData = *(Unk020e7410 *) data_02159370;
+    return kindData;
 }
 
 MapObjectList *func_020e73b4(void) {
-    MapObjectList *p;
+    MapObjectList *list;
 
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
-    data_0217b864 = p;
-    *p = *(MapObjectList *) data_02159348;
-    func_020e6f50(&data_0217b864);
+    list = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
+    data_0217b864 = list;
+    *list = *(MapObjectList *) data_02159348;
+    SetUpdateListSlot(&data_0217b864);
     return data_0217b864;
 }
 
-Vec3 *func_020e73a0(u32 arg0) {
-    return (*(Vec3 ***) data_0217b86c)[arg0];
+Vec3 *GetMapObjectPositionByTableIndex(u32 index) {
+    return (*(Vec3 ***) gMapObjectPositionByTableIndex)[index];
 }
 
-u16 func_020e7388(int arg0) {
-    u32 value0 = arg0;
+u16 func_020e7388(int index) {
+    u32 value0 = index;
     u32 value1;
     value1 = (u32) &data_0217b868;
     value0 = (value0 << 1);
@@ -297,112 +301,112 @@ u16 func_020e7388(int arg0) {
 
 #pragma thumb on
 void func_020e730c(void) {
-    Unk020e730c *e;
-    s32 n;
+    Unk020e730c *object;
+    s32 objectCount;
     s32 i;
 
-    n = ((MapObjectList *) data_0217b864)->mMapObjectCount;
-    *(void **) data_0217b86c = HeapAlloc(GetHeap(GetCurrentHeapCall()), n * 4);
-    data_0217b868 = HeapAlloc(GetHeap(GetCurrentHeapCall()), n * 2);
+    objectCount = ((MapObjectList *) data_0217b864)->mMapObjectCount;
+    *(void **) gMapObjectPositionByTableIndex = HeapAlloc(GetHeap(GetCurrentHeapCall()), objectCount * 4);
+    data_0217b868 = HeapAlloc(GetHeap(GetCurrentHeapCall()), objectCount * 2);
     for (i = 0; i < ((MapObjectList *) data_0217b864)->mMapObjectCount; i++) {
-        s32 k;
+        s32 tableIndex;
 
-        e = ((MapObjectList *) data_0217b864)->mMapObjects[i];
-        k = e->mUnk_a0;
-        (*(Vec3 ***) data_0217b86c)[k] = &e->mUnk_00.mPos;
-        data_0217b868[k] = e->mUnk_a2;
+        object = ((MapObjectList *) data_0217b864)->mMapObjects[i];
+        tableIndex = object->mTableIndex;
+        (*(Vec3 ***) gMapObjectPositionByTableIndex)[tableIndex] = &object->mUnk_00.mPos;
+        data_0217b868[tableIndex] = object->mEntryValue;
     }
 }
 
-void func_020e72cc(Unk020e730c *p, struct CourseMapRow *q) {
-    p->mUnk_a0 = q->mUnk_28;
+void func_020e72cc(Unk020e730c *object, struct CourseMapRow *courseRow) {
+    object->mTableIndex = courseRow->mUnk_28;
     switch (gRaceSetup->mEngineIndex) {
         case 0:
-            p->mUnk_a2 = q->mUnk_2a;
+            object->mEntryValue = courseRow->mUnk_2a;
             break;
         case 1:
-            p->mUnk_a2 = q->mUnk_2c;
+            object->mEntryValue = courseRow->mUnk_2c;
             break;
         case 2:
-            p->mUnk_a2 = q->mUnk_2e;
+            object->mEntryValue = courseRow->mUnk_2e;
             break;
     }
 }
 #pragma thumb off
 
-void func_020e71a0(MapObject *p) {
-    Unk020e71a0_94 *q;
-    BOOL a;
-    BOOL b;
+void func_020e71a0(MapObject *object) {
+    Unk020e71a0_94 *sound;
+    BOOL resultIsFalse;
+    BOOL hasSoundBit0;
 
-    q = p->mSound;
-    if ((p->mFlags & 2) == 0) {
-        q->mSoundSource.mDistanceSquared = p->mDistanceSquaredAndFlags & ~0xc000001f;
-        a = (func_020d4ddc(p) == FALSE);
-        b = (q->mSoundSource.mUnk_34 & 1) != 0;
-        if (a != FALSE) {
-            if (b != FALSE) {
+    sound = object->mSound;
+    if ((object->mFlags & 2) == 0) {
+        sound->mSoundSource.mDistanceSquared = object->mDistanceSquaredAndFlags & ~0xc000001f;
+        resultIsFalse = (func_020d4ddc(object) == FALSE);
+        hasSoundBit0 = (sound->mSoundSource.mUnk_34 & 1) != 0;
+        if (resultIsFalse != FALSE) {
+            if (hasSoundBit0 != FALSE) {
                 goto ret;
             }
             goto call;
         }
     ret:
-        if (a != FALSE) {
+        if (resultIsFalse != FALSE) {
             return;
         }
-        if (b == FALSE) {
+        if (hasSoundBit0 == FALSE) {
             return;
         }
     call:
-        SetSoundSourceFlagBit(&q->mSoundSource, 2, 1);
+        SetSoundSourceFlagBit(&sound->mSoundSource, 2, 1);
     } else {
-        s32 v;
+        s32 distanceSquared;
 
-        v = GetHorizontalCameraDistanceSquared(&p->mPos);
-        q->mSoundSource.mDistanceSquared = v;
-        if (func_020d4d60(p, v) != FALSE) {
-            p->mDistanceSquaredAndFlags |= data_02159310;
-            if ((q->mSoundSource.mUnk_34 & 1) != 0) {
-                SetSoundSourceFlagBit(&q->mSoundSource, 2, 1);
+        distanceSquared = GetHorizontalCameraDistanceSquared(&object->mPos);
+        sound->mSoundSource.mDistanceSquared = distanceSquared;
+        if (func_020d4d60(object, distanceSquared) != FALSE) {
+            object->mDistanceSquaredAndFlags |= data_02159310;
+            if ((sound->mSoundSource.mUnk_34 & 1) != 0) {
+                SetSoundSourceFlagBit(&sound->mSoundSource, 2, 1);
             }
-        } else if ((q->mSoundSource.mUnk_34 & 1) == 0) {
-            SetSoundSourceFlagBit(&q->mSoundSource, 2, 1);
+        } else if ((sound->mSoundSource.mUnk_34 & 1) == 0) {
+            SetSoundSourceFlagBit(&sound->mSoundSource, 2, 1);
         }
     }
 }
 
-void UpdateMapObjectList(MapObjectList *p) {
-    MapObject *e;
-    Vec3 t;
-    void (*cb)(void *p, MapObject *e);
-    s32 n;
-    void **arr;
+void UpdateMapObjectList(MapObjectList *list) {
+    MapObject *object;
+    Vec3 previousPos;
+    void (*callback)(void *list, MapObject *object);
+    s32 count;
+    void **objects;
 
-    cb = p->mForEachObject;
-    n = p->mMapObjectCount;
-    arr = p->mMapObjects;
-    if (cb == NULL) {
+    callback = list->mForEachObject;
+    count = list->mMapObjectCount;
+    objects = list->mMapObjects;
+    if (callback == NULL) {
         s32 i;
 
-        for (i = 0; i < n; i++) {
-            e = arr[i];
-            if (e->mSound != NULL) {
-                func_020e71a0(e);
+        for (i = 0; i < count; i++) {
+            object = objects[i];
+            if (object->mSound != NULL) {
+                func_020e71a0(object);
             }
         };
         return;
     }
-    if (p->mUnk_18 == 2) {
+    if (list->mUnk_18 == 2) {
         s32 i;
 
-        for (i = 0; i < n; i++) {
-            e = arr[i];
-            if ((e->mFlags & 4) == 0) {
-                t = e->mPos;
-                cb(p, e);
-                VEC_Subtract(&e->mPos, &t, &e->mUnk_10);
-                if (e->mSound != NULL) {
-                    func_020e71a0(e);
+        for (i = 0; i < count; i++) {
+            object = objects[i];
+            if ((object->mFlags & 4) == 0) {
+                previousPos = object->mPos;
+                callback(list, object);
+                VEC_Subtract(&object->mPos, &previousPos, &object->mUnk_10);
+                if (object->mSound != NULL) {
+                    func_020e71a0(object);
                 }
             }
         };
@@ -411,38 +415,38 @@ void UpdateMapObjectList(MapObjectList *p) {
     {
         s32 i;
 
-        for (i = 0; i < n; i++) {
-            e = arr[i];
-            if ((e->mFlags & 4) == 0) {
-                cb(p, e);
-                if (e->mSound != NULL) {
-                    func_020e71a0(e);
+        for (i = 0; i < count; i++) {
+            object = objects[i];
+            if ((object->mFlags & 4) == 0) {
+                callback(list, object);
+                if (object->mSound != NULL) {
+                    func_020e71a0(object);
                 }
             }
         }
     }
 }
 
-void func_020e6fd4(MapObjectList *p) {
-    MapObject *e;
-    u8 buf[2];
+void func_020e6fd4(MapObjectList *list) {
+    MapObject *object;
+    u8 callbackArgs[2];
     s32 i;
-    s32 n;
-    void **arr;
-    s32 (*cb)(MapObject *, void *, void *, void *);
+    s32 count;
+    void **objects;
+    s32 (*callback)(MapObject *, void *, void *, void *);
 
-    n = p->mMapObjectCount;
-    cb = p->mUnk_1c;
-    arr = p->mMapObjects;
-    buf[0] = p->mUnk_20;
-    buf[1] = 0;
-    if (cb == NULL) {
+    count = list->mMapObjectCount;
+    callback = list->mUnk_1c;
+    objects = list->mMapObjects;
+    callbackArgs[0] = list->mUnk_20;
+    callbackArgs[1] = 0;
+    if (callback == NULL) {
         return;
     }
-    for (i = 0; i < n; i++) {
-        e = arr[i];
-        if ((e->mFlags & 0x88) == 0) {
-            cb(e, NULL, &buf[0], &buf[1]);
+    for (i = 0; i < count; i++) {
+        object = objects[i];
+        if ((object->mFlags & 0x88) == 0) {
+            callback(object, NULL, &callbackArgs[0], &callbackArgs[1]);
         }
     }
 }

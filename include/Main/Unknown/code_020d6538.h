@@ -30,8 +30,8 @@ typedef struct RockDrawList {
     /* 2c */ RockShadowMatrix mUnk_2c;
 } RockDrawList;
 
-// 0x28-byte object that CreateRockUpdateList allocates and fills from a table; func_020e6f50 stores the address of its
-// pointer at 0x24.
+// 0x28-byte object that CreateRockUpdateList allocates and fills from a table; SetUpdateListSlot stores the address of
+// its pointer at 0x24.
 typedef struct RockUpdateList {
     /* 00 */ u8 mUnk_00[0x24];
     /* 24 */ struct RockUpdateList **mUnk_24;

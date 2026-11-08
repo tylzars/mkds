@@ -99,8 +99,8 @@ typedef struct MapObject {
 // Object of func_020e72cc and func_020e730c: two u16s after the shared part.
 typedef struct Unk020e730c {
     /* 00 */ MapObject mUnk_00;
-    /* a0 */ u16 mUnk_a0;
-    /* a2 */ u16 mUnk_a2;
+    /* a0 */ u16 mTableIndex;
+    /* a2 */ u16 mEntryValue;
 } Unk020e730c;
 
 // Objects drawn or updated together: mInit runs once when the lists are set up, mBeforeObjects and mAfterObjects run
@@ -152,12 +152,12 @@ extern JgKindRow gJgKindRows[];
 extern JgKindRow gJgKindRowLapModels[];
 extern JgKindRow data_0217bb08[];
 
-void func_020e6fd4(MapObjectList *p);
-void UpdateMapObjectList(MapObjectList *p);
-void func_020e71a0(MapObject *p);
-void func_020e72cc(Unk020e730c *p, struct CourseMapRow *q);
+void func_020e6fd4(MapObjectList *list);
+void UpdateMapObjectList(MapObjectList *list);
+void func_020e71a0(MapObject *object);
+void func_020e72cc(Unk020e730c *object, struct CourseMapRow *courseRow);
 void func_020e730c(void);
-u16 func_020e7388(int arg0);
+u16 func_020e7388(int index);
 MapObjectList *func_020e73b4(void);
 Unk020e7410 *func_020e7410(void);
 void func_020e7460(void);

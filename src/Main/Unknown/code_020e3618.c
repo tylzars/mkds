@@ -118,7 +118,7 @@ void *CreateChoropuUpdateList(void) {
     updateList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     data_0217b7b4 = updateList;
     *(Unk020e0340 *) updateList = *(const Unk020e0340 *) data_02158bbc;
-    func_020e6f50(&data_0217b7b4);
+    SetUpdateListSlot(&data_0217b7b4);
     return data_0217b7b4;
 }
 
@@ -131,7 +131,7 @@ void DrawChoropu(s32 a, Unk020e1e98 *choropu, s32 c, u16 alpha) {
 
     switch (choropu->mUnk_000.mStateMachine.mState) {
         case 4:
-            gChoropu->mUnk_18 = 1;
+            gChoropu->mFrameIndex = 1;
             matrix = SetViewTransposeMatrixPos(&choropu->mUnk_000.mPos);
             func_020e67c4(gChoropu, matrix, &choropu->mUnk_000.mScale, 0, alpha);
             break;
@@ -139,12 +139,12 @@ void DrawChoropu(s32 a, Unk020e1e98 *choropu, s32 c, u16 alpha) {
             break;
         case 6:
         case 7:
-            gChoropu->mUnk_18 = 1;
+            gChoropu->mFrameIndex = 1;
             matrix = SetViewTransposeMatrixPos(&choropu->mUnk_000.mPos);
             func_020e66e4(gChoropu, matrix, choropu->mUnk_0b4.mUnk_04, &choropu->mUnk_000.mScale, 0, alpha);
             break;
         default:
-            gChoropu->mUnk_18 = 0;
+            gChoropu->mFrameIndex = 0;
             matrix = SetViewTransposeMatrixPos(&choropu->mUnk_000.mPos);
             func_020e67c4(gChoropu, matrix, &choropu->mUnk_000.mScale, 0, alpha);
     }

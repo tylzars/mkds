@@ -4,4 +4,4 @@
 
 typedef struct MapObjectList MapObjectList;
 
-u32 InitMapObjectUpdateList(MapObjectList *arg0);
+u32 InitMapObjectUpdateList(MapObjectList *list);

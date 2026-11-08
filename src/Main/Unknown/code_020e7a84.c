@@ -57,11 +57,11 @@
 
 #pragma thumb on
 
-void CreateModelAnimation(u32 param_1, void *param_2, void **param_3, void *param_4, void *param_5) {
-    *param_3 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x38);
-    InitModelAnimation(param_1, *param_3, param_2, 1, GetHeap(GetCurrentHeapCall()), param_4);
-    InitModelAnimationEntries(*param_3, param_5, GetHeap(GetCurrentHeapCall()));
-    SetModelAnimation(*param_3, 0);
+void CreateModelAnimation(u32 animationKind, void *model, void **animationSlot, void *nsbmdFile, void *animationFile) {
+    *animationSlot = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x38);
+    InitModelAnimation(animationKind, *animationSlot, model, 1, GetHeap(GetCurrentHeapCall()), nsbmdFile);
+    InitModelAnimationEntries(*animationSlot, animationFile, GetHeap(GetCurrentHeapCall()));
+    SetModelAnimation(*animationSlot, 0);
 }
 
 #pragma thumb off
@@ -88,20 +88,20 @@ void InitJgOffsets(void) {
     gJgKind4Offset.y += gJgOffsetY;
 }
 
-static inline s32 AdvanceJgPointsAndSetTarget_inline(s32 a, s32 b, s32 t) {
-    s32 d = b - a;
-    return a + (s32) (((s64) d * t) >> 12);
+static inline s32 AdvanceJgPointsAndSetTarget_inline(s32 start, s32 end, s32 fraction) {
+    s32 d = end - start;
+    return start + (s32) (((s64) d * fraction) >> 12);
 }
 
 // Moves gJgPointPointers along gJgPoints, advances gJgAngle and stores gJgTargetPos.
-void AdvanceJgPointsAndSetTarget(Vec3 *param_1, const Vec3 *param_2, const Vec3 *param_3) {
-    Vec3 v;
-    Vec3 w;
+void AdvanceJgPointsAndSetTarget(Vec3 *offset, const Vec3 *endScale, const Vec3 *startScale) {
+    Vec3 pathPoint;
+    Vec3 shifted;
     s32 i;
-    s32 c;
-    s32 s;
-    s32 a;
-    s32 b;
+    s32 anglePair0;
+    s32 anglePair1;
+    s32 lerpedY;
+    s32 lerpedX;
 
     if (AdvanceSegmentProgress(&data_0217bb88.mUnk_00) != FALSE) {
         do {
@@ -113,20 +113,20 @@ void AdvanceJgPointsAndSetTarget(Vec3 *param_1, const Vec3 *param_2, const Vec3 
             }
         } while (func_020d7c84(&data_0217bb88.mUnk_00, 0, gJgPointPointers) != FALSE);
     }
-    func_020d8488(&data_0217bb88, &v);
+    func_020d8488(&data_0217bb88, &pathPoint);
     gJgAngle += 0x64;
     i = gJgAngle >> 4;
-    c = gPairsByAngle[i * 2];
-    s = gPairsByAngle[i * 2 + 1];
-    b = AdvanceJgPointsAndSetTarget_inline(param_3->x, param_2->x, (s + 0x1000) >> 2);
-    a = AdvanceJgPointsAndSetTarget_inline(param_3->y, param_2->y, (c + 0x1000) >> 2);
-    v.x = ((s64) v.x * b) >> 12;
-    v.y = ((s64) v.y * a) >> 12;
-    v.z = 0;
-    VEC_Add(&v, param_1, &v);
-    w = v;
-    w.x += data_0217b88c;
-    MTX_MultVec43(&w, &gJgMatrix, &gJgTargetPos);
+    anglePair0 = gPairsByAngle[i * 2];
+    anglePair1 = gPairsByAngle[i * 2 + 1];
+    lerpedX = AdvanceJgPointsAndSetTarget_inline(startScale->x, endScale->x, (anglePair1 + 0x1000) >> 2);
+    lerpedY = AdvanceJgPointsAndSetTarget_inline(startScale->y, endScale->y, (anglePair0 + 0x1000) >> 2);
+    pathPoint.x = ((s64) pathPoint.x * lerpedX) >> 12;
+    pathPoint.y = ((s64) pathPoint.y * lerpedY) >> 12;
+    pathPoint.z = 0;
+    VEC_Add(&pathPoint, offset, &pathPoint);
+    shifted = pathPoint;
+    shifted.x += data_0217b88c;
+    MTX_MultVec43(&shifted, &gJgMatrix, &gJgTargetPos);
 }
 
 // Runs the position, matrix and state machine; in state 0 it starts the next state from mStatus, lap and mFlags.
@@ -146,13 +146,13 @@ void UpdateJg(void) {
             gJgTableIndex = 0;
         }
         if (gJgKind != 4) {
-            JgKindRow *p = &gJgKindRows[gJgKind];
+            JgKindRow *kindRow = &gJgKindRows[gJgKind];
             if (gJgKind != 0 && gJgKind != 1) {
-                if (p->mNsbcaAnimation != NULL) {
-                    AdvanceModelAnimation(p->mNsbcaAnimation);
+                if (kindRow->mNsbcaAnimation != NULL) {
+                    AdvanceModelAnimation(kindRow->mNsbcaAnimation);
                 }
-                if (p->mNsbmaAnimation != NULL) {
-                    AdvanceModelAnimation(p->mNsbmaAnimation);
+                if (kindRow->mNsbmaAnimation != NULL) {
+                    AdvanceModelAnimation(kindRow->mNsbmaAnimation);
                 }
             }
         }
@@ -172,14 +172,14 @@ void UpdateJg(void) {
     }
     if (gRaceSetup->mMode != MODE_MISSION_RUN && gRaceProgress->mUnk_000[gJgKartIndex].mStatus == 1 &&
         (gJgKart->mUnk_48 & 0x800) == 0) {
-        Vec3 v;
-        gJgMain.mUnk_18 = 2;
+        Vec3 targetOffset;
+        gJgMain.mFrameIndex = 2;
         gJgKartPos = gJgKart->mPos;
         gJgKartPos.y -= gJgKart->mHopHeight;
         ComputeJgMatrixAndInverse();
-        v = gJgKind3Offset;
-        v.x += data_0217b88c;
-        MTX_MultVec43(&v, &gJgMatrix, &gJgTargetPos);
+        targetOffset = gJgKind3Offset;
+        targetOffset.x += data_0217b88c;
+        MTX_MultVec43(&targetOffset, &gJgMatrix, &gJgTargetPos);
         gJgKind = 3;
         if (func_0203c5e4() == 0) {
             if ((u32) gJgKind <= 1) {
@@ -196,14 +196,14 @@ void UpdateJg(void) {
     if (gJgLapAndReverseEnabled != 0) {
         lap = GetKartHighestLap(gJgKartIndex);
         if (gJgHighestLap < (u32) lap) {
-            Vec3 v;
+            Vec3 targetOffset;
             gJgHighestLap = lap;
             gJgKartPos = gJgKart->mPos;
             gJgKartPos.y -= gJgKart->mHopHeight;
             ComputeJgMatrixAndInverse();
-            v = gJgLapOffset;
-            v.x += data_0217b88c;
-            MTX_MultVec43(&v, &gJgMatrix, &gJgTargetPos);
+            targetOffset = gJgLapOffset;
+            targetOffset.x += data_0217b88c;
+            MTX_MultVec43(&targetOffset, &gJgMatrix, &gJgTargetPos);
             if (gJgHighestLap == gJgFinalLap) {
                 gJgKind = 1;
                 if (func_0203c5e4() == 0) {
@@ -249,14 +249,14 @@ void UpdateJg(void) {
 
 // Draws the cloud, gJgMain and the model gJgKind selects; counts gJgAlpha up to 0x1f while visible.
 void DrawJg(void) {
-    s32 a, b, c, d, e, f, g, h;
-    s32 m[9];
-    Vec3 v0, v1, v2, v3, v4, v5, v6;
-    BOOL n;
-    s32 x;
-    s32 y;
-    Unk020e9810 *p5;
-    Unk020e6488 *p4;
+    s32 commandArg1, commandArg2, commandArg3, commandArg4, commandArg5, commandArg6, commandArg7, commandArg8;
+    s32 rotation[9];
+    Vec3 smallScale, tableOffset, baseScale, tableScale, mainOffset, mirrorScale1, mirrorScale2;
+    BOOL sentOpening;
+    s32 tableScaleX;
+    s32 tableScaleY;
+    Unk020e9810 *kindModel;
+    Unk020e6488 *lapModel;
 
     if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         return;
@@ -267,17 +267,17 @@ void DrawJg(void) {
     if (gJgVisible == 0) {
         goto reset;
     }
-    n = FALSE;
-    p5 = NULL;
-    p4 = NULL;
+    sentOpening = FALSE;
+    kindModel = NULL;
+    lapModel = NULL;
     switch (gJgKind) {
         case 2:
         case 3:
-            p5 = gJgKindRows[gJgKind].mModel;
+            kindModel = gJgKindRows[gJgKind].mModel;
             break;
         case 0:
         case 1:
-            p4 = gJgKindRowLapModels[gJgKind].mModel;
+            lapModel = gJgKindRowLapModels[gJgKind].mModel;
             break;
     }
     func_0208ab4c(data_0217b8c0);
@@ -289,89 +289,89 @@ void DrawJg(void) {
     gJgMain.mUnk_14 |= gJgAlpha << 16;
     gJgCloud.mUnk_14 &= ~0x1f0000;
     gJgCloud.mUnk_14 |= gJgAlpha << 16;
-    if (p5 != NULL) {
-        NNS_G3dMdlSetMdlAlphaAll(p5->mUnk_04, gJgAlpha);
+    if (kindModel != NULL) {
+        NNS_G3dMdlSetMdlAlphaAll(kindModel->mUnk_04, gJgAlpha);
     }
-    if (p4 != NULL) {
-        p4->mUnk_14 &= ~0x1f0000;
-        p4->mUnk_14 |= gJgAlpha << 16;
+    if (lapModel != NULL) {
+        lapModel->mUnk_14 &= ~0x1f0000;
+        lapModel->mUnk_14 |= gJgAlpha << 16;
     }
     if (data_0217b900 != 0) {
-        a = 0;
-        func_01ff9048(0x10, &a, 1);
+        commandArg1 = 0;
+        func_01ff9048(0x10, &commandArg1, 1);
         func_01ff9048(0x11, NULL, 0);
-        v0.x = 0x19a;
-        v0.y = 0x19a;
-        v0.z = 0x19a;
-        func_01ff9048(0x1b, &v0, 3);
-        b = 2;
-        func_01ff9048(0x10, &b, 1);
-        n = TRUE;
+        smallScale.x = 0x19a;
+        smallScale.y = 0x19a;
+        smallScale.z = 0x19a;
+        func_01ff9048(0x1b, &smallScale, 3);
+        commandArg2 = 2;
+        func_01ff9048(0x10, &commandArg2, 1);
+        sentOpening = TRUE;
     }
-    c = 0x1e;
-    func_01ff9048(0x14, &c, 1);
+    commandArg3 = 0x1e;
+    func_01ff9048(0x14, &commandArg3, 1);
     func_01ff9048(0x19, SetViewTransposeMatrixPos(&gJgEasedPos), 0xc);
-    v1.y = data_0217b8a4[gJgTableIndex];
-    v1.x = 0;
-    v1.z = 0;
-    func_01ff9048(0x1c, &v1, 3);
-    v2.x = data_0217b8f8 != 0 ? 0x1666 : -0x1666;
-    v2.y = 0x1666;
-    v2.z = 0x1666;
-    func_01ff9048(0x1b, &v2, 3);
+    tableOffset.y = data_0217b8a4[gJgTableIndex];
+    tableOffset.x = 0;
+    tableOffset.z = 0;
+    func_01ff9048(0x1c, &tableOffset, 3);
+    baseScale.x = data_0217b8f8 != 0 ? 0x1666 : -0x1666;
+    baseScale.y = 0x1666;
+    baseScale.z = 0x1666;
+    func_01ff9048(0x1b, &baseScale, 3);
     func_01ff9048(0x11, NULL, 0);
-    x = data_0217b904[gJgTableIndex];
-    y = data_0217b8e0[gJgTableIndex];
-    v3.x = x;
-    v3.y = y;
-    v3.z = 0;
-    func_01ff9048(0x1b, &v3, 3);
+    tableScaleX = data_0217b904[gJgTableIndex];
+    tableScaleY = data_0217b8e0[gJgTableIndex];
+    tableScale.x = tableScaleX;
+    tableScale.y = tableScaleY;
+    tableScale.z = 0;
+    func_01ff9048(0x1b, &tableScale, 3);
     func_020e6a18(&gJgCloud);
     func_020e6854(&gJgCloud, NULL, 0, 0x1f);
-    d = 1;
-    func_01ff9048(0x12, &d, 1);
-    v4.x = 0;
-    v4.y = 0;
-    v4.z = 0xa4;
-    func_01ff9048(0x1c, &v4, 3);
-    MTX_RotZ33_(m, data_0217b8a8[gJgTableIndex], data_0217b8a0[gJgTableIndex]);
-    func_01ff9048(0x1a, m, 9);
+    commandArg4 = 1;
+    func_01ff9048(0x12, &commandArg4, 1);
+    mainOffset.x = 0;
+    mainOffset.y = 0;
+    mainOffset.z = 0xa4;
+    func_01ff9048(0x1c, &mainOffset, 3);
+    MTX_RotZ33_(rotation, data_0217b8a8[gJgTableIndex], data_0217b8a0[gJgTableIndex]);
+    func_01ff9048(0x1a, rotation, 9);
     func_020e6a18(&gJgMain);
     func_020e6854(&gJgMain, NULL, 0, 0x1f);
-    if (p5 != NULL) {
+    if (kindModel != NULL) {
         if (gJgKind == 3) {
-            e = 0;
-            func_01ff9048(0x12, &e, 1);
-            func_01ff8cf0(p5);
+            commandArg5 = 0;
+            func_01ff9048(0x12, &commandArg5, 1);
+            func_01ff8cf0(kindModel);
         } else {
             func_01ff9048(0x1c, &data_021593c8, 3);
             if (data_0217b8f8 == 0) {
-                v5.x = -0x1000;
-                v5.y = 0x1000;
-                v5.z = 0x1000;
-                func_01ff9048(0x1b, &v5, 3);
+                mirrorScale1.x = -0x1000;
+                mirrorScale1.y = 0x1000;
+                mirrorScale1.z = 0x1000;
+                func_01ff9048(0x1b, &mirrorScale1, 3);
             }
-            func_01ff8cf0(p5);
+            func_01ff8cf0(kindModel);
         }
     }
-    if (p4 != NULL) {
+    if (lapModel != NULL) {
         func_01ff9048(0x1c, &data_021593c8, 3);
         if (data_0217b8f8 == 0) {
-            v6.x = -0x1000;
-            v6.y = 0x1000;
-            v6.z = 0x1000;
-            func_01ff9048(0x1b, &v6, 3);
+            mirrorScale2.x = -0x1000;
+            mirrorScale2.y = 0x1000;
+            mirrorScale2.z = 0x1000;
+            func_01ff9048(0x1b, &mirrorScale2, 3);
         }
-        func_020e6a18(p4);
-        func_020e6854(p4, NULL, 0, 0x1f);
+        func_020e6a18(lapModel);
+        func_020e6854(lapModel, NULL, 0, 0x1f);
     }
-    if (n != FALSE) {
-        f = 0;
-        func_01ff9048(0x10, &f, 1);
-        g = 1;
-        func_01ff9048(0x12, &g, 1);
-        h = 2;
-        func_01ff9048(0x10, &h, 1);
+    if (sentOpening != FALSE) {
+        commandArg6 = 0;
+        func_01ff9048(0x10, &commandArg6, 1);
+        commandArg7 = 1;
+        func_01ff9048(0x12, &commandArg7, 1);
+        commandArg8 = 2;
+        func_01ff9048(0x10, &commandArg8, 1);
     }
     goto done;
 reset:
@@ -381,9 +381,9 @@ done:;
 
 // Rebuilds gJgMatrix at gJgKartPos and its inverse; first keeps the previous inverse and the position change.
 void ComputeJgMatrixAndInverse(void) {
-    s32 r;
-    s64 sq;
-    Vec3 *v;
+    s32 normalizedLength;
+    s64 lengthSquared;
+    Vec3 *turnedForward;
 
     gJgPreviousInverseMatrix = gJgInverseMatrix;
     VEC_Subtract(&gJgKartPos, &gJgMatrix.mUnk_00[3], &data_0217b9b4);
@@ -392,21 +392,22 @@ void ComputeJgMatrixAndInverse(void) {
     gJgMatrix.mUnk_00[1] = data_02159494;
 
     if (func_0203c5e4() != 0) {
-        v = &gJgKart->mTurnedForward;
-        gJgMatrix.mUnk_00[2].x = -v->x;
-        gJgMatrix.mUnk_00[2].y = -v->y;
-        gJgMatrix.mUnk_00[2].z = -v->z;
+        turnedForward = &gJgKart->mTurnedForward;
+        gJgMatrix.mUnk_00[2].x = -turnedForward->x;
+        gJgMatrix.mUnk_00[2].y = -turnedForward->y;
+        gJgMatrix.mUnk_00[2].z = -turnedForward->z;
     } else {
         gJgMatrix.mUnk_00[2] = ((MtxFx43 *) GetViewTransposeMatrix())->mUnk_00[2];
     }
     Vec3CrossUnrounded(&gJgMatrix.mUnk_00[1], &gJgMatrix.mUnk_00[2], &gJgMatrix.mUnk_00[2]);
-    sq = (s64) gJgMatrix.mUnk_00[2].x * gJgMatrix.mUnk_00[2].x + (s64) gJgMatrix.mUnk_00[2].y * gJgMatrix.mUnk_00[2].y +
-         (s64) gJgMatrix.mUnk_00[2].z * gJgMatrix.mUnk_00[2].z;
-    r = 0;
-    if (sq >= 0x10) {
-        r = Vec3NormalizeAndGetLengthUnchecked(&gJgMatrix.mUnk_00[2], &gJgMatrix.mUnk_00[2]);
+    lengthSquared = (s64) gJgMatrix.mUnk_00[2].x * gJgMatrix.mUnk_00[2].x +
+                    (s64) gJgMatrix.mUnk_00[2].y * gJgMatrix.mUnk_00[2].y +
+                    (s64) gJgMatrix.mUnk_00[2].z * gJgMatrix.mUnk_00[2].z;
+    normalizedLength = 0;
+    if (lengthSquared >= 0x10) {
+        normalizedLength = Vec3NormalizeAndGetLengthUnchecked(&gJgMatrix.mUnk_00[2], &gJgMatrix.mUnk_00[2]);
     }
-    if (r != 0) {
+    if (normalizedLength != 0) {
         gJgMatrix.mUnk_00[0] = gJgMatrix.mUnk_00[2];
     }
     Vec3CrossUnrounded(&gJgMatrix.mUnk_00[0], &gJgMatrix.mUnk_00[1], &gJgMatrix.mUnk_00[2]);
@@ -417,23 +418,23 @@ void ComputeJgMatrixAndInverse(void) {
     gJgInverseMatrix.mUnk_00[3].z = -gJgInverseMatrix.mUnk_00[3].z;
 }
 
-static inline void UpdateJgPosition_inline(Vec3 *o, const Vec3 *a, const Vec3 *b) {
-    o->x = a->x < b->x ? a->x : b->x;
-    o->y = a->y < b->y ? a->y : b->y;
-    o->z = a->z < b->z ? a->z : b->z;
+static inline void UpdateJgPosition_inline(Vec3 *result, const Vec3 *first, const Vec3 *second) {
+    result->x = first->x < second->x ? first->x : second->x;
+    result->y = first->y < second->y ? first->y : second->y;
+    result->z = first->z < second->z ? first->z : second->z;
 }
 
-static inline void UpdateJgPosition_inline_2(Vec3 *o, const Vec3 *a, const Vec3 *b) {
-    o->x = a->x > b->x ? a->x : b->x;
-    o->y = a->y > b->y ? a->y : b->y;
-    o->z = a->z > b->z ? a->z : b->z;
+static inline void UpdateJgPosition_inline_2(Vec3 *result, const Vec3 *first, const Vec3 *second) {
+    result->x = first->x > second->x ? first->x : second->x;
+    result->y = first->y > second->y ? first->y : second->y;
+    result->z = first->z > second->z ? first->z : second->z;
 }
 
 // Steers gJgPos toward gJgTargetPos (damped, pushed out of map objects and the course); snaps in state 4 or hidden.
 void UpdateJgPosition(void) {
-    s64 sq;
-    s32 dz;
-    s32 dx;
+    s64 distanceSquared;
+    s32 deltaZ;
+    s32 deltaX;
 
     if (gJgStateMachine.mState == 4 || gJgVisible == 0) {
         data_0217b90c = gJgTargetPos;
@@ -457,42 +458,42 @@ void UpdateJgPosition(void) {
         data_0217b8bc = 1;
         data_0217b894 = 0;
     } else {
-        void *p;
+        void *previousPos;
         Vec3 t;
         Vec3 u;
         Vec3 v;
         s32 i;
         BOOL pushed = FALSE;
-        Vec3 lo, hi;
-        s32 d;
+        Vec3 pushMin, pushMax;
+        s32 halfOffset;
         s32 w;
-        s32 lim;
-        s32 n;
+        s32 limitX;
+        s32 limitZ;
 
-        lo = (Vec3){0, 0, 0};
-        hi = (Vec3){0, 0, 0};
+        pushMin = (Vec3){0, 0, 0};
+        pushMax = (Vec3){0, 0, 0};
         if (gJgStateMachine.mState == 6 || gJgStateMachine.mState == 2) {
-            p = NULL;
+            previousPos = NULL;
         } else {
-            p = &data_0217b918;
+            previousPos = &data_0217b918;
         }
         data_0217b918 = data_0217b93c;
         if (data_0217b8f8 != 0) {
-            d = -gJgOffsetX >> 1;
-            t.x = ((s64) gJgMatrix.mUnk_00[0].x * d) >> 12;
-            t.y = ((s64) gJgMatrix.mUnk_00[0].y * d) >> 12;
-            t.z = ((s64) gJgMatrix.mUnk_00[0].z * d) >> 12;
+            halfOffset = -gJgOffsetX >> 1;
+            t.x = ((s64) gJgMatrix.mUnk_00[0].x * halfOffset) >> 12;
+            t.y = ((s64) gJgMatrix.mUnk_00[0].y * halfOffset) >> 12;
+            t.z = ((s64) gJgMatrix.mUnk_00[0].z * halfOffset) >> 12;
         } else {
-            d = gJgOffsetX >> 1;
-            t.x = ((s64) gJgMatrix.mUnk_00[0].x * d) >> 12;
-            t.y = ((s64) gJgMatrix.mUnk_00[0].y * d) >> 12;
-            t.z = ((s64) gJgMatrix.mUnk_00[0].z * d) >> 12;
+            halfOffset = gJgOffsetX >> 1;
+            t.x = ((s64) gJgMatrix.mUnk_00[0].x * halfOffset) >> 12;
+            t.y = ((s64) gJgMatrix.mUnk_00[0].y * halfOffset) >> 12;
+            t.z = ((s64) gJgMatrix.mUnk_00[0].z * halfOffset) >> 12;
         }
         VEC_Add(&gJgPos, &t, &data_0217b93c);
-        d = -gJgOffsetY >> 1;
-        t.x = ((s64) gJgMatrix.mUnk_00[1].x * d) >> 12;
-        t.y = ((s64) gJgMatrix.mUnk_00[1].y * d) >> 12;
-        t.z = ((s64) gJgMatrix.mUnk_00[1].z * d) >> 12;
+        halfOffset = -gJgOffsetY >> 1;
+        t.x = ((s64) gJgMatrix.mUnk_00[1].x * halfOffset) >> 12;
+        t.y = ((s64) gJgMatrix.mUnk_00[1].y * halfOffset) >> 12;
+        t.z = ((s64) gJgMatrix.mUnk_00[1].z * halfOffset) >> 12;
         VEC_Add(&data_0217b93c, &t, &data_0217b93c);
         data_0217b8fc = 0;
         if (data_0217b900 == 0) {
@@ -502,15 +503,15 @@ void UpdateJgPosition(void) {
                     MapObject *q = gFoundCollisionSlotObjects[i];
 
                     if ((q->mFlags & 0x40) == 0 && IsSphereHittingMapObject(&data_0217b93c, 0x12000, q, &t) != FALSE) {
-                        UpdateJgPosition_inline(&lo, &t, &lo);
-                        UpdateJgPosition_inline_2(&hi, &t, &hi);
+                        UpdateJgPosition_inline(&pushMin, &t, &pushMin);
+                        UpdateJgPosition_inline_2(&pushMax, &t, &pushMax);
                         pushed = TRUE;
                     }
                 }
-                if (func_01ffdee4(&data_0217b93c, p, 0, 0x12000, 4, -1, &t, NULL, NULL, &data_0217b8fc, NULL, NULL,
-                                  NULL, NULL) != 0) {
-                    UpdateJgPosition_inline(&lo, &t, &lo);
-                    UpdateJgPosition_inline_2(&hi, &t, &hi);
+                if (func_01ffdee4(&data_0217b93c, previousPos, 0, 0x12000, 4, -1, &t, NULL, NULL, &data_0217b8fc, NULL,
+                                  NULL, NULL, NULL) != 0) {
+                    UpdateJgPosition_inline(&pushMin, &t, &pushMin);
+                    UpdateJgPosition_inline_2(&pushMax, &t, &pushMax);
                     pushed = TRUE;
                 }
             }
@@ -519,8 +520,8 @@ void UpdateJgPosition(void) {
             if ((data_0217b8fc & 0x80000) == 0) {
                 data_0217b894 = 0;
             }
-            t = lo;
-            VEC_Add(&t, &hi, &t);
+            t = pushMin;
+            VEC_Add(&t, &pushMax, &t);
             if (t.y < 0 && gJgStateMachine.mState == 5) {
                 t.y = 0;
             }
@@ -598,17 +599,17 @@ void UpdateJgPosition(void) {
             gJgVelocity.x -= v.x;
             gJgVelocity.z -= v.z;
             if (data_0217b8f0 != 0 || data_0217b8bc != 0) {
-                lim = data_0217b894 != 0 ? 0x1000 : 0x800;
-                if (gJgVelocity.x > lim) {
-                    gJgVelocity.x = lim;
-                } else if (gJgVelocity.x < -lim) {
-                    gJgVelocity.x = -lim;
+                limitX = data_0217b894 != 0 ? 0x1000 : 0x800;
+                if (gJgVelocity.x > limitX) {
+                    gJgVelocity.x = limitX;
+                } else if (gJgVelocity.x < -limitX) {
+                    gJgVelocity.x = -limitX;
                 }
-                n = data_0217b894 != 0 ? 0x2000 : 0x1000;
-                if (gJgVelocity.z > n) {
-                    gJgVelocity.z = n;
-                } else if (gJgVelocity.z < -n) {
-                    gJgVelocity.z = -n;
+                limitZ = data_0217b894 != 0 ? 0x2000 : 0x1000;
+                if (gJgVelocity.z > limitZ) {
+                    gJgVelocity.z = limitZ;
+                } else if (gJgVelocity.z < -limitZ) {
+                    gJgVelocity.z = -limitZ;
                 }
             }
             gJgVelocity.x += v.x;
@@ -626,47 +627,47 @@ void UpdateJgPosition(void) {
         return;
     }
     data_0217b8f0 = (ComputeTwoPlaneViewTest(&gJgPos, 0x12000, 0x708000, 0x5f592e1, 0x1f) & 3) == 0 ? 1 : 0;
-    dx = gJgPos.x - gJgMatrix.mUnk_00[3].x;
-    dz = gJgPos.z - gJgMatrix.mUnk_00[3].z;
-    sq = (s64) dx * dx + (s64) dz * dz;
-    data_0217b8bc = sq < 0x57e4000000LL ? 1 : 0;
+    deltaX = gJgPos.x - gJgMatrix.mUnk_00[3].x;
+    deltaZ = gJgPos.z - gJgMatrix.mUnk_00[3].z;
+    distanceSquared = (s64) deltaX * deltaX + (s64) deltaZ * deltaZ;
+    data_0217b8bc = distanceSquared < 0x57e4000000LL ? 1 : 0;
     if (data_0217b8bc != 0) {
         data_0217b8f4 = 0;
         return;
     }
-    data_0217b8f4 = sq >= 0x3d090000000LL ? 1 : 0;
+    data_0217b8f4 = distanceSquared >= 0x3d090000000LL ? 1 : 0;
 }
 
 u32 EnterJgState0(void) {
-    u32 value0;
-    u32 value1;
-    u32 value2;
-    u32 value3;
-    u32 value4;
-    u32 value12;
-    u32 value14;
-    value12 = (u32) &gJgKind;
-    value4 = 4u;
-    value3 = (u32) &gJgVisible;
-    value14 = 0u;
-    value2 = (u32) &data_0217b8c4;
-    value1 = (u32) &data_0217b900;
-    value0 = (u32) &data_0217b8ac;
-    *(u32 *) ((value12) + (0)) = value4;
-    *(u32 *) ((value3) + (0)) = value14;
-    *(u32 *) ((value2) + (0)) = value14;
-    *(u32 *) ((value1) + (0)) = value14;
-    *(u32 *) ((value0) + (0)) = value14;
-    return value0;
+    u32 secondFlagAddress;
+    u32 flagAddress;
+    u32 counterAddress;
+    u32 visibleAddress;
+    u32 initialKind;
+    u32 kindAddress;
+    u32 zero;
+    kindAddress = (u32) &gJgKind;
+    initialKind = 4u;
+    visibleAddress = (u32) &gJgVisible;
+    zero = 0u;
+    counterAddress = (u32) &data_0217b8c4;
+    flagAddress = (u32) &data_0217b900;
+    secondFlagAddress = (u32) &data_0217b8ac;
+    *(u32 *) ((kindAddress) + (0)) = initialKind;
+    *(u32 *) ((visibleAddress) + (0)) = zero;
+    *(u32 *) ((counterAddress) + (0)) = zero;
+    *(u32 *) ((flagAddress) + (0)) = zero;
+    *(u32 *) ((secondFlagAddress) + (0)) = zero;
+    return secondFlagAddress;
 }
 
-u32 func_020e8a74(u32 p0) {
-    return p0;
+u32 func_020e8a74(u32 value) {
+    return value;
 }
 
 void EnterJgState1(void) {
-    Unk020e6514 *p;
-    s32 t;
+    Unk020e6514 *animation;
+    s32 rotatedZ;
 
     // Written through a cast: a plain store changes the test below.
     *(s32 *) &gJgKind = 2;
@@ -676,15 +677,15 @@ void EnterJgState1(void) {
     data_0217b8ac = 0;
     gJgTableIndex = 0;
     if (gJgKind != 4) {
-        p = gJgKindRowNsbcaAnimations[gJgKind].mUnk_00;
-        if (p != NULL) {
-            p->mUnk_00c = 0;
-            p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
+        animation = gJgKindRowNsbcaAnimations[gJgKind].mUnk_00;
+        if (animation != NULL) {
+            animation->mUnk_00c = 0;
+            animation->mUnk_1c[animation->mUnk_1a]->mFrame = animation->mUnk_00c;
         }
-        p = gJgKindRowNsbmaAnimations[gJgKind].mUnk_00;
-        if (p != NULL) {
-            p->mUnk_00c = 0;
-            p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
+        animation = gJgKindRowNsbmaAnimations[gJgKind].mUnk_00;
+        if (animation != NULL) {
+            animation->mUnk_00c = 0;
+            animation->mUnk_1c[animation->mUnk_1a]->mFrame = animation->mUnk_00c;
         }
     }
     gJgPointPointers[0] = &gJgPoint7;
@@ -693,12 +694,12 @@ void EnterJgState1(void) {
     gJgPointPointers[3] = &gJgPoint2;
     func_020d7d18(&data_0217bb88.mUnk_00, 0, gJgPointPointers, 0x1ec);
     gJgAngle = 0;
-    t = (s32) (((s64) gJgKind2Offset.z * data_0215f4b4[1]) >> 12) -
-        (s32) (((s64) gJgKind2Offset.x * data_0215f4b4[0]) >> 12);
+    rotatedZ = (s32) (((s64) gJgKind2Offset.z * data_0215f4b4[1]) >> 12) -
+               (s32) (((s64) gJgKind2Offset.x * data_0215f4b4[0]) >> 12);
     data_0217b8b4 = 0x8000;
-    gJgTargetPos.z = t;
-    if (t > 0) {
-        gJgTargetPos.z = t * 3;
+    gJgTargetPos.z = rotatedZ;
+    if (rotatedZ > 0) {
+        gJgTargetPos.z = rotatedZ * 3;
     }
     gJgTargetPos.x = (s32) (((s64) gJgKind2Offset.z * data_0215f4b4[0]) >> 12) +
                      (s32) (((s64) gJgKind2Offset.x * data_0215f4b4[1]) >> 12);
@@ -728,31 +729,32 @@ void EnterJgState1(void) {
 
 void UpdateJgState1(void) {
     Unk020e6514 *animation;
-    s32 n;
+    s32 angle;
     u32 frame;
-    s32 i;
-    s32 s;
-    s32 c;
-    s32 t;
-    NNSSndSeqPlayer **player;
-    s32 b;
-    enum { K0 } d;
+    s32 pairIndex;
+    s32 anglePair0;
+    s32 anglePair1;
+    s32 rotatedZ;
+    NNSSndSeqPlayer **seqPlayer;
+    s32 scaledZ;
+    enum { K0 } frameFixed;
 
     animation = gJgKindRowNsbmaAnimations[gJgKind].mUnk_00;
-    d = animation->mUnk_00c;
-    n = data_0217b8b4;
-    frame = ((u32) d << 4) >> 16;
-    if (n > 0 && n < 0x10000) {
-        i = (n >> 4) << 1;
-        s = gPairsByAngle[i];
-        c = gPairsByAngle[i + 1];
-        b = ((s64) gJgKind2Offset.z * c) >> 12;
-        t = b - (s32) (((s64) gJgKind2Offset.x * s) >> 12);
-        gJgTargetPos.z = t;
-        if (t > 0) {
-            gJgTargetPos.z = t * 3;
+    frameFixed = animation->mUnk_00c;
+    angle = data_0217b8b4;
+    frame = ((u32) frameFixed << 4) >> 16;
+    if (angle > 0 && angle < 0x10000) {
+        pairIndex = (angle >> 4) << 1;
+        anglePair0 = gPairsByAngle[pairIndex];
+        anglePair1 = gPairsByAngle[pairIndex + 1];
+        scaledZ = ((s64) gJgKind2Offset.z * anglePair1) >> 12;
+        rotatedZ = scaledZ - (s32) (((s64) gJgKind2Offset.x * anglePair0) >> 12);
+        gJgTargetPos.z = rotatedZ;
+        if (rotatedZ > 0) {
+            gJgTargetPos.z = rotatedZ * 3;
         }
-        gJgTargetPos.x = (s32) (((s64) gJgKind2Offset.z * s) >> 12) + (s32) (((s64) gJgKind2Offset.x * c) >> 12);
+        gJgTargetPos.x =
+            (s32) (((s64) gJgKind2Offset.z * anglePair0) >> 12) + (s32) (((s64) gJgKind2Offset.x * anglePair1) >> 12);
         gJgTargetPos.y = gJgKind2Offset.y;
         MTX_MultVec43(&gJgTargetPos, &gJgMatrix, &gJgTargetPos);
         if (data_0217b8f8 != 0) {
@@ -770,10 +772,10 @@ void UpdateJgState1(void) {
         }
     }
     if (frame == 0xa || frame == 0x28) {
-        player = GetSndHandleSlot(4);
+        seqPlayer = GetSndHandleSlot(4);
         data_0217b9dc.mUnk_0c = GetHorizontalCameraDistanceSquared(&gJgPos);
-        NNS_SndPlayerStopSeq(player, 0);
-        func_0210b760(&data_0217b9dc, player);
+        NNS_SndPlayerStopSeq(seqPlayer, 0);
+        func_0210b760(&data_0217b9dc, seqPlayer);
     }
     if (IsKartEnded(gJgKartIndex) != 0 || (gJgKart->mUnk_48 & 0x800) != 0) {
         SetStateMachineState(&gJgStateMachine, 5);
@@ -794,23 +796,23 @@ void UpdateJgState1(void) {
 }
 
 void EnterJgState2(void) {
-    Vec3 v;
+    Vec3 targetOffset;
 
     if (gJgHighestLap != gJgFinalLap) {
-        gJgKindRows[0].mLapModel->mUnk_18 = gJgHighestLap - 2;
+        gJgKindRows[0].mLapModel->mFrameIndex = gJgHighestLap - 2;
     }
     data_0217b8b4 = 0;
-    v = gJgLapOffset;
-    v.x += data_0217b88c;
-    MTX_MultVec43(&v, &gJgMatrix, &gJgTargetPos);
+    targetOffset = gJgLapOffset;
+    targetOffset.x += data_0217b88c;
+    MTX_MultVec43(&targetOffset, &gJgMatrix, &gJgTargetPos);
 }
 
 void UpdateJgState2(void) {
-    Vec3 v;
+    Vec3 targetOffset;
 
-    v = gJgLapOffset;
-    v.x += data_0217b88c;
-    MTX_MultVec43(&v, &gJgMatrix, &gJgTargetPos);
+    targetOffset = gJgLapOffset;
+    targetOffset.x += data_0217b88c;
+    MTX_MultVec43(&targetOffset, &gJgMatrix, &gJgTargetPos);
     if (++data_0217b8b4 > gJgState2FrameCount || (gJgKart->mUnk_48 & 0x800) != 0) {
         SetStateMachineState(&gJgStateMachine, 5);
     }
@@ -835,8 +837,8 @@ void UpdateJgState3(void) {
 }
 
 void EnterJgState4(void) {
-    Unk020e6514 *p;
-    NNSSndSeqPlayer **player;
+    Unk020e6514 *animation;
+    NNSSndSeqPlayer **seqPlayer;
     MtxFx43 *matrix;
 
     data_0217b8c4 = 0;
@@ -848,18 +850,18 @@ void EnterJgState4(void) {
     data_0217b8ac = 0;
     gJgTableIndex = 0;
     if (gJgKind != 4) {
-        p = gJgKindRowNsbcaAnimations[gJgKind].mUnk_00;
-        if (p != NULL) {
-            p->mUnk_00c = 0;
-            p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
+        animation = gJgKindRowNsbcaAnimations[gJgKind].mUnk_00;
+        if (animation != NULL) {
+            animation->mUnk_00c = 0;
+            animation->mUnk_1c[animation->mUnk_1a]->mFrame = animation->mUnk_00c;
         }
-        p = gJgKindRowNsbmaAnimations[gJgKind].mUnk_00;
-        if (p != NULL) {
-            p->mUnk_00c = 0;
-            p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
+        animation = gJgKindRowNsbmaAnimations[gJgKind].mUnk_00;
+        if (animation != NULL) {
+            animation->mUnk_00c = 0;
+            animation->mUnk_1c[animation->mUnk_1a]->mFrame = animation->mUnk_00c;
         }
     }
-    gJgMain.mUnk_18 = 1;
+    gJgMain.mFrameIndex = 1;
     data_0217b8b4 = 0;
     if (func_0203c5e4() != 0) {
         matrix = func_020e6b48();
@@ -889,20 +891,20 @@ void EnterJgState4(void) {
     data_0217b8bc = 1;
     data_0217b894 = 0;
     NNS_SndPlayerStopSeq(GetSndHandleSlot(4), 1);
-    player = GetSndHandleSlot(4);
+    seqPlayer = GetSndHandleSlot(4);
     if ((data_0217c780 & 1) == 0) {
         return;
     }
     if (data_0217d084.mUnk_0c == 0) {
         return;
     }
-    if (*player != NULL) {
-        NNS_SndPlayerStopSeq(player, 0);
+    if (*seqPlayer != NULL) {
+        NNS_SndPlayerStopSeq(seqPlayer, 0);
     }
-    if (*player != NULL) {
-        NNS_SndPlayerStopSeq(player, 0);
+    if (*seqPlayer != NULL) {
+        NNS_SndPlayerStopSeq(seqPlayer, 0);
     }
-    NNS_SndArcPlayerStartSeqArc(player, 0, 0x102);
+    NNS_SndArcPlayerStartSeqArc(seqPlayer, 0, 0x102);
 }
 
 void UpdateJgState4(void) {
@@ -911,7 +913,7 @@ void UpdateJgState4(void) {
     if (data_0217b8b4 == 0) {
         gJgKartPos = gJgKart->mPos;
     } else if (--data_0217b8b4 <= 0) {
-        gJgMain.mUnk_18 = 0;
+        gJgMain.mFrameIndex = 0;
         SetStateMachineState(&gJgStateMachine, 5);
     }
     if (func_0203c5e4() != 0) {
@@ -924,28 +926,28 @@ void UpdateJgState4(void) {
 }
 
 void EnterJgState5(void) {
-    s32 a;
+    s32 initialSpeed;
 
     gJgVisible = 1;
     MTX_MultVec43(&gJgTargetPos, &gJgPreviousInverseMatrix, &data_0217b984);
     data_0217b89c = 0;
-    a = 0;
+    initialSpeed = 0;
     if ((gJgKart->mUnk_48 & 1) == 0) {
-        a = 0xffffbccd;
+        initialSpeed = 0xffffbccd;
     }
-    data_0217b8d8 = a;
+    data_0217b8d8 = initialSpeed;
 }
 
 void UpdateJgState5(void) {
-    s32 a;
+    s32 acceleration;
 
     MTX_MultVec43(&data_0217b984, &gJgMatrix, &gJgTargetPos);
     if ((gJgKart->mUnk_48 & 1) != 0) {
-        a = 0x2000;
+        acceleration = 0x2000;
     } else {
-        a = 0x800;
+        acceleration = 0x800;
     }
-    data_0217b8d8 += a;
+    data_0217b8d8 += acceleration;
     data_0217b89c += data_0217b8d8;
     gJgTargetPos.y += data_0217b89c;
     if (data_0217b89c <= 0x5dc000) {
@@ -959,39 +961,39 @@ void UpdateJgState5(void) {
 }
 
 void EnterJgState6(void) {
-    Unk020e6514 *p;
-    s32 b;
-    s32 a;
+    Unk020e6514 *animation;
+    s32 step;
+    s32 heightOffset;
     s32 i;
-    s32 t;
+    s32 clampedStep;
 
     gJgVisible = 1;
     gJgTableIndex = 0;
     if (gJgKind != 4) {
-        p = gJgKindRowNsbcaAnimations[gJgKind].mUnk_00;
-        if (p != NULL) {
-            p->mUnk_00c = 0;
-            p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
+        animation = gJgKindRowNsbcaAnimations[gJgKind].mUnk_00;
+        if (animation != NULL) {
+            animation->mUnk_00c = 0;
+            animation->mUnk_1c[animation->mUnk_1a]->mFrame = animation->mUnk_00c;
         }
-        p = gJgKindRowNsbmaAnimations[gJgKind].mUnk_00;
-        if (p != NULL) {
-            p->mUnk_00c = 0;
-            p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
+        animation = gJgKindRowNsbmaAnimations[gJgKind].mUnk_00;
+        if (animation != NULL) {
+            animation->mUnk_00c = 0;
+            animation->mUnk_1c[animation->mUnk_1a]->mFrame = animation->mUnk_00c;
         }
     }
     MTX_MultVec43(&gJgTargetPos, &gJgPreviousInverseMatrix, &data_0217b96c);
-    for (i = 0, b = 0, a = 0; i < 0x1e; i++) {
-        t = (b > -0x3000) ? -0x3000 : b;
-        a -= t;
-        b += 0x19a;
+    for (i = 0, step = 0, heightOffset = 0; i < 0x1e; i++) {
+        clampedStep = (step > -0x3000) ? -0x3000 : step;
+        heightOffset -= clampedStep;
+        step += 0x19a;
     }
-    gJgTargetPos.y += a;
+    gJgTargetPos.y += heightOffset;
     data_0217b90c = gJgTargetPos;
     data_0217b918 = data_0217b90c;
     data_0217b93c = data_0217b918;
-    data_0217b898 = a;
+    data_0217b898 = heightOffset;
     data_0217b99c = data_0217b93c;
-    data_0217b8d0 = b;
+    data_0217b8d0 = step;
     gJgPos = data_0217b99c;
     data_0217b9b4.x = 0;
     data_0217b9b4.y = 0;
@@ -1012,19 +1014,19 @@ void EnterJgState6(void) {
 
 // Lowers the target from above; when the height reaches 0 it picks state 2 (kinds 0, 1), 3 (kind 3) or 5.
 void UpdateJgState6(void) {
-    s32 a;
-    s32 b;
+    s32 clampedStep;
+    s32 heightOffset;
 
     MTX_MultVec43(&data_0217b96c, &gJgMatrix, &gJgTargetPos);
     data_0217b8d0 -= 0x19a;
-    a = data_0217b8d0;
-    if (a > -0x3000) {
-        a = -0x3000;
+    clampedStep = data_0217b8d0;
+    if (clampedStep > -0x3000) {
+        clampedStep = -0x3000;
     }
-    b = data_0217b898 + a;
-    data_0217b898 = b;
-    gJgTargetPos.y += b;
-    if (b <= 0) {
+    heightOffset = data_0217b898 + clampedStep;
+    data_0217b898 = heightOffset;
+    gJgTargetPos.y += heightOffset;
+    if (heightOffset <= 0) {
         switch (gJgKind) {
             case 0:
             case 1:

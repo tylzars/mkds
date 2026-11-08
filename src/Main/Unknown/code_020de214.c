@@ -38,7 +38,7 @@ Unk020de334 *CreateWanwanChainDrawList(void) {
 Unk020de2d8 *CreateWanwanChainUpdateList(void) {
     data_0217b6e0 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     *data_0217b6e0 = data_0215840c;
-    func_020e6f50(&data_0217b6e0);
+    SetUpdateListSlot(&data_0217b6e0);
     return data_0217b6e0;
 }
 

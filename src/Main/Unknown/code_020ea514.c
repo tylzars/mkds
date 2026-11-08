@@ -7,13 +7,14 @@
 
 #pragma thumb on
 
-void func_020ea514(u32 a, void *b, void *c, void *d, void *e) {
+void InitModelAnimationWithEntries(u32 animationKind, void *model, void *animation, void *nsbmdFile,
+                                   void *animationFile) {
     void *heap;
 
     heap = GetHeap(GetCurrentHeapCall());
-    InitModelAnimation(a, c, b, 1, heap, d);
-    InitModelAnimationEntries(c, e, GetHeap(GetCurrentHeapCall()));
-    SetModelAnimation(c, 0);
+    InitModelAnimation(animationKind, animation, model, 1, heap, nsbmdFile);
+    InitModelAnimationEntries(animation, animationFile, GetHeap(GetCurrentHeapCall()));
+    SetModelAnimation(animation, 0);
 }
 
 #pragma thumb off

@@ -75,7 +75,7 @@ Unk020dbe74 *CreateDossunUpdateList(void) {
     p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     data_0217b690 = p;
     *p = data_02158238;
-    func_020e6f50(&data_0217b690);
+    SetUpdateListSlot(&data_0217b690);
     return data_0217b690;
 }
 
@@ -435,7 +435,7 @@ Unk020db1b0 *CreateKuriboUpdateList(void) {
     p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     data_0217b684 = p;
     *p = data_02158164;
-    func_020e6f50(&data_0217b684);
+    SetUpdateListSlot(&data_0217b684);
     return data_0217b684;
 }
 
@@ -461,10 +461,10 @@ void DrawKuribo(void *a, Kuribo *p, void *c, u16 d) {
     p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
     if (p->mUnk_f0 < 0x14) {
-        gKuribo->mUnk_18 = p->mUnk_f0;
+        gKuribo->mFrameIndex = p->mUnk_f0;
     } else {
         s.x = -s.x;
-        gKuribo->mUnk_18 = p->mUnk_f0 - 0x14;
+        gKuribo->mFrameIndex = p->mUnk_f0 - 0x14;
     }
     e = p->mUnk_100;
     q = gKuribo;

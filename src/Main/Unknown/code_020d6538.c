@@ -557,7 +557,7 @@ RockUpdateList *CreateRockUpdateList(void) {
     RockUpdateList *updateList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     data_0217b654 = updateList;
     *updateList = data_021569fc;
-    func_020e6f50(&data_0217b654);
+    SetUpdateListSlot(&data_0217b654);
     return data_0217b654;
 }
 

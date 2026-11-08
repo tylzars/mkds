@@ -115,7 +115,7 @@ void *func_020e2d5c(void) {
 
     data_0217b7a4 = updateList;
     *updateList = data_02158a54;
-    func_020e6f50(&data_0217b7a4);
+    SetUpdateListSlot(&data_0217b7a4);
     return data_0217b7a4;
 }
 

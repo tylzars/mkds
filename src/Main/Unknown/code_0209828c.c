@@ -396,6 +396,6 @@ void *func_020982d4(void) {
 
 void *func_0209828c(void) {
     data_usa_0217b0dc = CreateMapObjectUpdateList(InitPakkunObjects, UpdatePakkun, NULL);
-    func_020e6f50(&data_usa_0217b0dc);
+    SetUpdateListSlot(&data_usa_0217b0dc);
     return data_usa_0217b0dc;
 }

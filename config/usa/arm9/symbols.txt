@@ -5353,7 +5353,7 @@ SetViewTransposeMatrixPos kind:function(arm,size=0x3c) addr:0x020e6cf8
 func_020e6d34 kind:function(arm,size=0x54) addr:0x020e6d34
 func_020e6d88 kind:function(arm,size=0x68) addr:0x020e6d88
 SetViewMatrices kind:function(arm,size=0x160) addr:0x020e6df0
-func_020e6f50 kind:function(thumb,size=0x6) addr:0x020e6f50
+SetUpdateListSlot kind:function(thumb,size=0x6) addr:0x020e6f50
 AddMapObjectToUpdateList kind:function(thumb,size=0x44) addr:0x020e6f58
 InitMapObjectUpdateList kind:function(thumb,size=0x28) addr:0x020e6f9c
 AddToMapObjectListCount kind:function(thumb,size=0x8) addr:0x020e6fc4
@@ -5364,7 +5364,7 @@ func_020e71a0 kind:function(arm,size=0x12c) addr:0x020e71a0
 func_020e72cc kind:function(thumb,size=0x40) addr:0x020e72cc
 func_020e730c kind:function(thumb,size=0x7c) addr:0x020e730c
 func_020e7388 kind:function(arm,size=0x18) addr:0x020e7388
-func_020e73a0 kind:function(arm,size=0x14) addr:0x020e73a0
+GetMapObjectPositionByTableIndex kind:function(arm,size=0x14) addr:0x020e73a0
 func_020e73b4 kind:function(arm,size=0x5c) addr:0x020e73b4
 func_020e7410 kind:function(arm,size=0x50) addr:0x020e7410
 func_020e7460 kind:function(thumb,size=0x300) addr:0x020e7460
@@ -5393,11 +5393,11 @@ UpdateJg kind:function(arm,size=0x4c4) addr:0x020e9d10
 AdvanceJgPointsAndSetTarget kind:function(arm,size=0x1a8) addr:0x020ea1d4
 InitJgOffsets kind:function(arm,size=0x140) addr:0x020ea37c
 CreateModelAnimation kind:function(thumb,size=0x56) addr:0x020ea4bc
-func_020ea514 kind:function(thumb,size=0x46) addr:0x020ea514
+InitModelAnimationWithEntries kind:function(thumb,size=0x46) addr:0x020ea514
 CreateShadowModel kind:function(thumb,size=0x2a) addr:0x020ea55c
 CreateNsbmd kind:function(thumb,size=0x28) addr:0x020ea588
 func_020ea5b0 kind:function(arm,size=0x68) addr:0x020ea5b0
-func_020ea618 kind:function(arm,size=0x58) addr:0x020ea618
+DrawShadowModelWithMaxAlpha kind:function(arm,size=0x58) addr:0x020ea618
 func_020ea670 kind:function(arm,size=0xd0) addr:0x020ea670
 DrawNsbmd1Mat1ShpWithMaxAlpha kind:function(arm,size=0x8c) addr:0x020ea740
 DrawNsbmdWithMaxAlpha kind:function(arm,size=0x80) addr:0x020ea7cc
@@ -11768,7 +11768,7 @@ data_0217b85c kind:bss addr:0x0217b83c
 data_0217b860 kind:bss addr:0x0217b840
 data_0217b864 kind:bss addr:0x0217b844
 data_0217b868 kind:bss addr:0x0217b848
-data_0217b86c kind:bss addr:0x0217b84c
+gMapObjectPositionByTableIndex kind:bss addr:0x0217b84c
 data_0217b870 kind:bss addr:0x0217b850
 gJgAlpha kind:bss addr:0x0217b854
 gJgAngle kind:bss addr:0x0217b858

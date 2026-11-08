@@ -43,7 +43,7 @@ Unk020fffa8 *func_020fffa8(void) {
     p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     data_0217c624 = p;
     *p = data_0215a12c;
-    func_020e6f50(&data_0217c624);
+    SetUpdateListSlot(&data_0217c624);
     return data_0217c624;
 }
 

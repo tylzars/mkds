@@ -133,7 +133,7 @@ Unk020de334 *CreateEarthenPipeDrawList(void) {
 Unk020de2d8 *CreateEarthenPipeUpdateList(void) {
     data_0217b6ec = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     *data_0217b6ec = data_021584d4;
-    func_020e6f50(&data_0217b6ec);
+    SetUpdateListSlot(&data_0217b6ec);
     return data_0217b6ec;
 }
 

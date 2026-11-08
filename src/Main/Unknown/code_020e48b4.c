@@ -73,7 +73,7 @@ PukupukuUpdateList *CreatePukupukuUpdateList(void) {
     updateList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     gPukupukuUpdateList = updateList;
     *updateList = *(PukupukuUpdateList *) data_02158ff0;
-    func_020e6f50(&gPukupukuUpdateList);
+    SetUpdateListSlot(&gPukupukuUpdateList);
     return gPukupukuUpdateList;
 }
 

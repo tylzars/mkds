@@ -26,7 +26,8 @@ void CreateMkdEfBubble(void) {
     CreateNsbmd(&gMkdEfBubble, nsbmd, NULL);
     func_02084968(gMkdEfBubble, 0x3f, 2, 0x294a);
     gMkdEfBubbleNsbta = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x38);
-    func_020ea514(1, gMkdEfBubble, gMkdEfBubbleNsbta, nsbmd, FindCourseMapObjFile("mkd_ef_bubble.nsbta"));
+    InitModelAnimationWithEntries(1, gMkdEfBubble, gMkdEfBubbleNsbta, nsbmd,
+                                  FindCourseMapObjFile("mkd_ef_bubble.nsbta"));
     func_02087cfc(gMkdEfBubbleNsbta, 0, 1);
 }
 
@@ -57,7 +58,7 @@ Unk020de390 *func_020df678(void) {
 Unk020de2d8 *func_020df61c(void) {
     data_0217b758 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     *data_0217b758 = data_021586d8;
-    func_020e6f50(&data_0217b758);
+    SetUpdateListSlot(&data_0217b758);
     return data_0217b758;
 }
 

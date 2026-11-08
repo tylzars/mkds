@@ -33,7 +33,7 @@ void CreateMapObjectModelNsbcaAnimation(MapObjectModel *a, const char *b) {
 
     x = FindCourseMapObjFile(b);
     a->mAnimations[0] = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x38);
-    func_020ea514(0, a->mAnimatedModel, a->mAnimations[0], a->mNsbmdFile, x);
+    InitModelAnimationWithEntries(0, a->mAnimatedModel, a->mAnimations[0], a->mNsbmdFile, x);
 }
 #pragma thumb off
 
@@ -43,7 +43,7 @@ void CreateMapObjectModelNsbtaAnimation(MapObjectModel *a, const char *b) {
 
     x = FindCourseMapObjFile(b);
     a->mAnimations[3] = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x38);
-    func_020ea514(1, a->mAnimatedModel, a->mAnimations[3], a->mNsbmdFile, x);
+    InitModelAnimationWithEntries(1, a->mAnimatedModel, a->mAnimations[3], a->mNsbmdFile, x);
 }
 #pragma thumb off
 
@@ -53,7 +53,7 @@ void CreateMapObjectModelNsbtpAnimation(MapObjectModel *a, const char *b) {
 
     x = FindCourseMapObjFile(b);
     a->mAnimations[1] = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x38);
-    func_020ea514(2, a->mAnimatedModel, a->mAnimations[1], a->mNsbmdFile, x);
+    InitModelAnimationWithEntries(2, a->mAnimatedModel, a->mAnimations[1], a->mNsbmdFile, x);
 }
 #pragma thumb off
 

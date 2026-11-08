@@ -64,8 +64,8 @@ typedef struct Unk020e6488 {
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s32 mUnk_10;
     /* 14 */ u32 mUnk_14;
-    /* 18 */ u16 mUnk_18;
-    /* 1a */ u16 mUnk_1a;
+    /* 18 */ u16 mFrameIndex;
+    /* 1a */ u16 mFrameCount;
     /* 1c */ u32 *mUnk_1c;
     /* 20 */ u32 *mUnk_20;
     /* 24 */ void *mUnk_24;

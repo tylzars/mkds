@@ -56,11 +56,11 @@ void func_020e6514(Unk020e52bc *model, Unk020e6514 *animation, Unk020e6488 *reco
     record->mUnk_0c = d->mUnk_004;
     record->mUnk_10 = d->mUnk_008;
     record->mUnk_14 = d->mUnk_00c & 0xfffffff0;
-    record->mUnk_18 = 0;
+    record->mFrameIndex = 0;
     if (animation != NULL) {
         x.mUnk_00 = d->mUnk_014;
         frameCount = GetModelAnimationFrameCountFixed(animation) >> 12;
-        record->mUnk_1a = frameCount;
+        record->mFrameCount = frameCount;
         t = GetHeap(GetCurrentHeapCall());
         record->mUnk_1c = HeapAlloc(t, frameCount * 4);
         t = GetHeap(GetCurrentHeapCall());
@@ -81,7 +81,7 @@ void func_020e6514(Unk020e52bc *model, Unk020e6514 *animation, Unk020e6488 *reco
             } while (frame < frameCount);
         }
     } else {
-        record->mUnk_1a = 1;
+        record->mFrameCount = 1;
         record->mUnk_1c = HeapAlloc(GetHeap(GetCurrentHeapCall()), 4);
         record->mUnk_20 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 4);
         record->mUnk_1c[0] = d->mUnk_014;
@@ -94,7 +94,7 @@ void func_020e64b8(Unk020e6488 *record, void *nsbmdFile, void *nsbtpFile, s32 c)
     InitNsbmd(record->mUnk_24, nsbmdFile);
     if (nsbtpFile != NULL) {
         record->mUnk_28 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x38);
-        func_020ea514(2, record->mUnk_24, record->mUnk_28, nsbmdFile, nsbtpFile);
+        InitModelAnimationWithEntries(2, record->mUnk_24, record->mUnk_28, nsbmdFile, nsbtpFile);
     } else {
         record->mUnk_28 = NULL;
     }
@@ -129,7 +129,7 @@ Unk020e59e4 *CreatePendulumUpdateList(void) {
     updateList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     data_0217b834 = updateList;
     *updateList = data_0215927c;
-    func_020e6f50(&data_0217b834);
+    SetUpdateListSlot(&data_0217b834);
     return data_0217b834;
 }
 

@@ -59,7 +59,7 @@ void DrawMapObjectModel(Unk02100094 *a, void *b, void *d) {
     if (o->mShadowModel == NULL) {
         return;
     }
-    func_020ea618(o->mShadowModel, c->mAlpha);
+    DrawShadowModelWithMaxAlpha(o->mShadowModel, c->mAlpha);
 }
 
 // Like DrawMapObjectModel but passes the object's position to the model draw, which lowers the alpha of an object whose
@@ -84,7 +84,7 @@ void DrawMapObjectModelWithPos(u32 a, MapObjectModel *b, MapObject *c) {
     if (o->mShadowModel == NULL) {
         return;
     }
-    func_020ea618(o->mShadowModel, c->mAlpha);
+    DrawShadowModelWithMaxAlpha(o->mShadowModel, c->mAlpha);
 }
 
 void DrawMapObjectModel1Mat1Shp(void *a, void *b, void *c) {
@@ -251,7 +251,7 @@ void SetMapObjectModelNsbtpFrameIndex(void *a, u16 b) {
     ModelAnimation *p;
 
     if (o->mNsbmdModel != NULL) {
-        o->mNsbmdModel->mUnk_18 = b;
+        o->mNsbmdModel->mFrameIndex = b;
         return;
     }
     if (o->mAnimatedModel == NULL) {
@@ -266,7 +266,7 @@ u16 GetMapObjectModelNsbtpFrameCount(void *a) {
     MapObjectModel *o = a;
 
     if (o->mNsbmdModel != NULL) {
-        return o->mNsbmdModel->mUnk_1a;
+        return o->mNsbmdModel->mFrameCount;
     }
     if (o->mAnimatedModel == NULL) {
         return 0;

@@ -343,7 +343,7 @@ void func_0206f824(Kart *p, Vec3 *a, s32 b) {
     Vec3 f;
     Vec3 g;
 
-    c = func_020e73a0((u16) p->mUnk_4d8);
+    c = GetMapObjectPositionByTableIndex((u16) p->mUnk_4d8);
     d = func_020e7388((u16) p->mUnk_4d8) * 150;
     e = 0x333;
     if (p->mUnk_7c & 2) {

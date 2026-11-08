@@ -148,7 +148,7 @@ Unk020de334 *CreateMkdEfBubbleDrawList(void) {
 Unk020dfc44 *CreateMkdEfBubbleUpdateList(void) {
     data_0217b76c = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     *data_0217b76c = data_02158784;
-    func_020e6f50(&data_0217b76c);
+    SetUpdateListSlot(&data_0217b76c);
     data_0217b76c->mUnk_28 = FX_Div(0x4000000, 0x1333);
     return data_0217b76c;
 }

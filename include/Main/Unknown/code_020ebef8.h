@@ -47,5 +47,5 @@ typedef struct Unk020ec194 {
     /* 0c8 */ u16 mUnk_0c8;
 } Unk020ec194;
 
-void StartWoodbox1ItemObject(Woodbox1 *c, Vec3 *d);
-void EnterWoodbox1State0(Unk020ec194 *a);
+void StartWoodbox1ItemObject(Woodbox1 *woodbox, Vec3 *velocity);
+void EnterWoodbox1State0(Unk020ec194 *woodbox);

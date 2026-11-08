@@ -1111,7 +1111,7 @@ void DrawItemTeresa(ItemTeresa *p, s32 c, Unk020e6488 *q) {
         r->mUnk_14 = r->mUnk_14 | ((u16) n << 16);
         func_020e6a18(r);
         i = 0;
-        r->mUnk_18 = 0;
+        r->mFrameIndex = 0;
         while (i < b2) {
             func_01ff9048(0x1c, &data_0215a190[b2 == 2 ? 1 - i : i + 1], 3);
             t = AllocPolygonIdWrapping();

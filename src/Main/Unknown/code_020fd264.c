@@ -388,9 +388,9 @@ void DrawItemBomb(ItemBomb *e, Vec3 *a, Unk020e6488 *b) {
     }
     if (e->mState != 2) {
         if (e->mUnk_174 != 0 && e->mUnk_174 < 6) {
-            b->mUnk_18 = 1;
+            b->mFrameIndex = 1;
         } else {
-            b->mUnk_18 = 0;
+            b->mFrameIndex = 0;
         }
         func_020ed5c0(&e->mUnk_000.mItemObject, b, a);
         return;

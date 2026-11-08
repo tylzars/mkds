@@ -44,7 +44,7 @@
 
 void DrawObPakkunSf(u32 a, Unk020e43a8 *obPakkunSf, u32 c, u16 alpha) {
     MtxFx43 *matrix;
-    gObPakkunSf->mUnk_18 = ((*(u16 *) &obPakkunSf->mUnk_a0.mUnk_18.x & 0x10) >> 4);
+    gObPakkunSf->mFrameIndex = ((*(u16 *) &obPakkunSf->mUnk_a0.mUnk_18.x & 0x10) >> 4);
     if (obPakkunSf->mUnk_00.mStateMachine.mState == 0) {
         matrix = func_020e6cbc(&obPakkunSf->mUnk_00.mPos);
         func_020e67c4(gObPakkunSf, matrix, &obPakkunSf->mUnk_00.mScale, 0, alpha);
@@ -135,7 +135,7 @@ Unk020e59e4 *CreateSecondHandUpdateList(void) {
     updateList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     data_0217b81c = updateList;
     *updateList = *(Unk020e59e4 *) data_021590ec;
-    func_020e6f50(&data_0217b81c);
+    SetUpdateListSlot(&data_0217b81c);
     return data_0217b81c;
 }
 

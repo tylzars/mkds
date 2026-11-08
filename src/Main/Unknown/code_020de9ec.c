@@ -87,7 +87,7 @@ Unk020de334 *func_020df294(void) {
 Unk020de2d8 *CreateItemBoxUpdateList(void) {
     data_0217b718 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     *data_0217b718 = data_021585a8;
-    func_020e6f50(&data_0217b718);
+    SetUpdateListSlot(&data_0217b718);
     return data_0217b718;
 }
 
