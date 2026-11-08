@@ -281,7 +281,7 @@ void func_020533a0(void) {
             }
         }
         if (d != FALSE) {
-            func_0204bcec();
+            StopRomArchive();
             data_0217aa00->mUnk_0454 &= ~0x100;
         }
         data_0217aa00->mRequestPending = 0;
@@ -310,7 +310,7 @@ void func_020533a0(void) {
             c = FALSE;
         }
         if (c != FALSE) {
-            func_0204bcec();
+            StopRomArchive();
             data_0217aa00->mUnk_0454 &= ~0x100;
         }
         data_0217aa00->mRequestPending = 0;
@@ -471,7 +471,7 @@ void func_02052ecc(void) {
     }
     if (d != FALSE) {
         v1 = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
-        func_0204bf48(v1 == 1 ? 1 : 0, 4, 0x154, func_02052e64, func_02052fa4, 0);
+        StartRomArchive(v1 == 1 ? 1 : 0, 4, 0x154, func_02052e64, func_02052fa4, 0);
     }
     data_0217aa00->mRequestPending = 0;
     ResetPendingFiles();
@@ -479,7 +479,7 @@ void func_02052ecc(void) {
 
 void func_02052e64(s32 a) {
     if (data_0217aa00->mUnk_000c == 0x24) {
-        if (func_0204bcdc() == 2) {
+        if (GetRomArchiveState() == 2) {
             data_0217aa00->mRequestPending = 0;
             ResetPendingFiles();
         }
@@ -533,7 +533,7 @@ void func_02052cf4(void) {
         }
     }
     if (d != FALSE) {
-        func_0204bcec();
+        StopRomArchive();
         data_0217aa00->mUnk_0454 &= ~0x100;
     }
     data_0217aa00->mRequestPending = 0;

@@ -698,7 +698,7 @@ typedef struct Unk0217aa00 {
             /* 1697 */ u8 mUnk_1697;
             /* 1698 */ u8 mUnk_1698;
             /* 1699 */ u8 mUnk_1699;
-            /* 169a */ s8 mUnk_169a;
+            /* 169a */ s8 mScanEntryIndex;
             /* 169b */ u8 mUnk_169b[0x1];
             /* 169c */ s32 mUnk_169c;
         };

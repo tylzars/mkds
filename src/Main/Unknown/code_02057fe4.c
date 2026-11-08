@@ -141,7 +141,7 @@ void UpdateMPState1(void) {
         }
     }
     if (b != FALSE) {
-        if (func_0204bcdc() == 2) {
+        if (GetRomArchiveState() == 2) {
             func_0204f8a0(data_0217aa00->mUnk_0457);
         } else {
             r = FALSE;

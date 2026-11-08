@@ -17,23 +17,23 @@
 
 void func_0204bb34(void *a) {
     FSArchive *o;
-    Unk02175ec0 *g;
+    RomArchiveTransfer *g;
     Unk021762e0 *b;
     s32 i;
-    Unk0204c090 *r;
+    RomArchiveFileNode *r;
     u32 s;
     u32 s2;
     s32 v1;
     u8 *q;
     o = FS_FindArchive(data_usa_021651d0, 3);
-    g = &data_02175ec0;
+    g = &gRomArchiveTransfer;
     while (1) {
         s = OS_DisableInterrupts();
         b = (Unk021762e0 *) &data_usa_021762e0;
         r = b->mUnk_46c8;
         if (r == NULL) {
             do {
-                if (g->mUnk_000c == 0) {
+                if (g->mState == 0) {
                     OS_RestoreInterrupts(s);
                     return;
                 }
@@ -42,14 +42,14 @@ void func_0204bb34(void *a) {
             } while (r == NULL);
         }
         OS_RestoreInterrupts(s);
-        if (r->mUnk_080 == 1) {
-            FS_OpenFileDirect(&r->mUnk_038, o, r->mUnk_090, r->mUnk_090 + r->mUnk_094, r->mUnk_08c);
+        if (r->mState == 1) {
+            FS_OpenFileDirect(&r->mFile, o, r->mFileStart, r->mFileStart + r->mFileLength, r->mBlockId);
             i = 0;
             v1 = 0;
-            q = r->mUnk_0c0[0];
+            q = r->mBuffers[0];
             for (; i < 2; i++) {
-                r->mUnk_0a4[i] = v1;
-                FS_ReadFile(&r->mUnk_038, q, 0x400);
+                r->mBufferOffsets[i] = v1;
+                FS_ReadFile(&r->mFile, q, 0x400);
                 v1 += 0x400;
                 q += 0x400;
             }
@@ -60,9 +60,9 @@ void func_0204bb34(void *a) {
             func_0204d18c(&data_usa_021762e0, r, 1);
             OS_RestoreInterrupts(s2);
         } else {
-            FS_CloseFile(&r->mUnk_038);
+            FS_CloseFile(&r->mFile);
             s2 = OS_DisableInterrupts();
-            func_0204d0bc(&data_usa_021762e0, r);
+            FreeRomArchiveNode(&data_usa_021762e0, r);
             OS_RestoreInterrupts(s2);
         }
     }

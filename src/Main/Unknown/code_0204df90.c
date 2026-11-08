@@ -179,7 +179,7 @@ void SetupScanConnect(void) {
     b.mUnk_01 = 10;
     b.mUnk_00_4 = 9;
     MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, b.mUnk_02, 0x14);
-    data_0217aa00->mUnk_169a = -1;
+    data_0217aa00->mScanEntryIndex = -1;
     InitScanConnectWork(data_0217aa00->mUnk_165c, &b);
     SetScanConnectStateCallback(ScanConnectStateCallback);
     data_0217aa00->mRequestPending = 0;

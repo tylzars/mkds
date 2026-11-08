@@ -15,7 +15,7 @@
 #pragma thumb on
 
 s32 func_0204dd24(u16 a) {
-    s32 r = 0;
+    s32 result = 0;
     Unk0217aa00 *g = data_0217aa00;
 
     switch (g->mUnk_000c) {
@@ -40,14 +40,14 @@ s32 func_0204dd24(u16 a) {
             g->mRequestPending = 0;
             break;
         case 30: {
-            s32 v;
+            s32 scanEntryIndex;
             g->mUnk_1692 = g->mUnk_1692 + 1;
             if (data_0217aa00->mUnk_1692 > 0x4b0) {
                 func_02050e60(5);
             } else {
-                v = FindScanEntryIndex(a);
-                if (v != -1) {
-                    data_0217aa00->mUnk_169a = v;
+                scanEntryIndex = FindScanEntryIndex(a);
+                if (scanEntryIndex != -1) {
+                    data_0217aa00->mScanEntryIndex = scanEntryIndex;
                     StartRequestEndScan();
                 }
             }
@@ -74,21 +74,21 @@ s32 func_0204dd24(u16 a) {
             StartRequestEndScan();
             break;
         case 33:
-            if (g->mUnk_169a == -1) {
+            if (g->mScanEntryIndex == -1) {
                 func_0204e03c(a);
             } else {
-                func_0204e03c((u16) g->mUnk_169a);
+                func_0204e03c((u16) g->mScanEntryIndex);
             }
             break;
         case 34:
             if (g->mUnk_169c != 0) {
-                if (g->mUnk_169a == -1) {
+                if (g->mScanEntryIndex == -1) {
                     func_0204dfe0(a);
                 } else {
-                    func_0204dfe0((u16) g->mUnk_169a);
+                    func_0204dfe0((u16) g->mScanEntryIndex);
                 }
             } else {
-                r = 2;
+                result = 2;
             }
             break;
         case 35:
@@ -123,49 +123,49 @@ s32 func_0204dd24(u16 a) {
         case 11:
             g->mUnk_0004 = 6;
             func_02059878();
-            r = 1;
+            result = 1;
             break;
     }
-    return r;
+    return result;
 }
 
-u8 func_0204dcf0(u8 a) {
-    u8 r = a & 1;
+u8 CompactMaskBits(u8 mask) {
+    u8 packed = mask & 1;
     u32 i = 1;
-    u32 n = 1;
+    u32 nextBit = 1;
 
     for (; i < 8; i++) {
-        if (((1 << i) & a) != 0) {
-            r = r | (1 << n);
-            n++;
+        if (((1 << i) & mask) != 0) {
+            packed = packed | (1 << nextBit);
+            nextBit++;
         }
     }
-    return r;
+    return packed;
 }
 
 s32 func_0204dc8c(void) {
-    BOOL r = FALSE;
+    BOOL result = FALSE;
     Unk0217aa00 *g = data_0217aa00;
     u32 a = g->mUnk_1695;
-    u8 b = g->mUnk_0044.mChildMask;
+    u8 childMask = g->mUnk_0044.mChildMask;
 
-    if (a == (a & b)) {
-        r = TRUE;
+    if (a == (a & childMask)) {
+        result = TRUE;
     } else if (g->mUnk_1692 > 0x708) {
-        if (b == 0) {
+        if (childMask == 0) {
             func_02050e60(5);
         } else {
-            data_0217aa00->mUnk_1695 = func_0204dcf0(b);
-            r = TRUE;
+            data_0217aa00->mUnk_1695 = CompactMaskBits(childMask);
+            result = TRUE;
         }
     } else {
         g->mUnk_1692 = g->mUnk_1692 + 1;
     }
-    return r;
+    return result;
 }
 
 s32 func_0204db6c(void) {
-    BOOL r = FALSE;
+    BOOL result = FALSE;
     switch (data_0217aa00->mUnk_0004) {
         case 2:
             data_0217aa00->mUnk_0004 = 5;
@@ -209,7 +209,7 @@ s32 func_0204db6c(void) {
             StartParent(NULL);
             break;
         case 6:
-            data_0217aa00->mUnk_1695 = func_0204dcf0(data_0217aa00->mUnk_1695);
+            data_0217aa00->mUnk_1695 = CompactMaskBits(data_0217aa00->mUnk_1695);
             data_0217aa00->mUnk_1692 = 0;
             StartMP();
             break;
@@ -217,16 +217,16 @@ s32 func_0204db6c(void) {
         case 15:
             if (func_0204dc8c() != 0) {
                 func_02059878();
-                r = TRUE;
+                result = TRUE;
             }
             break;
     }
-    return r;
+    return result;
 }
 
 #pragma thumb off
 
-s32 func_0204db48(FSArchive *a, void *b, u32 c, u32 d) {
-    MI_CpuCopy8((const void *) c, b, d);
+s32 func_0204db48(FSArchive *archive, void *dst, u32 src, u32 length) {
+    MI_CpuCopy8((const void *) src, dst, length);
     return 0;
 }

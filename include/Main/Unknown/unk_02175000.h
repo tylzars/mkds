@@ -306,7 +306,8 @@ extern Unk021755e4 data_usa_021755e4;
 // at 0x00 and byte pairs from 0x04; its size is 0xdcc bytes.
 extern KeyRecording data_02175650[];
 
-// Entry of the table at 0x440 of data_02175ec0: a four-bit part in the low bits of the first word, then two words.
+// Entry of the table at 0x440 of gRomArchiveTransfer: a four-bit part in the low bits of the first word, then two
+// words.
 typedef struct Unk02175ec0_440 {
     /* 00 */ u32 mUnk_00_0 : 4;
     /* 00 */ u32 mUnk_00_4 : 28;
@@ -314,21 +315,21 @@ typedef struct Unk02175ec0_440 {
     /* 08 */ u8 *mUnk_08;
 } Unk02175ec0_440;
 
-// Nine bytes that func_0204d28c builds on the stack and passes to RequestSendBytes: two four-bit parts, a 24-bit part,
-// a word and a byte.
-typedef struct Unk02175ec0_msg {
-    /* 00 */ u32 mUnk_00_0 : 4;
-    /* 00 */ u32 mUnk_00_4 : 4;
+// Nine bytes that SendRomArchiveMessage builds on the stack and passes to RequestSendBytes: two four-bit parts, a
+// 24-bit part, a word and a byte.
+typedef struct RomArchiveMessage {
+    /* 00 */ u32 mKind : 4;
+    /* 00 */ u32 mPacketSizeHigh : 4;
     /* 00 */ u32 mUnk_00_8 : 24;
     /* 04 */ s32 mUnk_04;
-    /* 08 */ u8 mUnk_08;
-} Unk02175ec0_msg;
+    /* 08 */ u8 mPacketSizeLow;
+} RomArchiveMessage;
 
-struct Unk0204c090;
+struct RomArchiveFileNode;
 struct FSFile;
 
-// Part of data_02175ec0 from 0x440: the table, then nine words at 0x46cc.
-typedef struct Unk02175ec0_440s {
+// Part of gRomArchiveTransfer from 0x440: the table, then nine words at 0x46cc.
+typedef struct RomArchiveParentView {
     /* 0000 */ Unk02175ec0_440 mUnk_0000[32];
     /* 0180 */ u8 mUnk_0180[0x97c];
     /* 0afc */ void *mUnk_0afc;
@@ -336,41 +337,41 @@ typedef struct Unk02175ec0_440s {
     /* 0b04 */ u32 mUnk_0b04;
     /* 0b08 */ s32 mUnk_0b08;
     /* 0b0c */ u8 mUnk_0b0c[0x3bb4];
-    /* 46c0 */ struct Unk0204c090 *mUnk_46c0;
-    /* 46c4 */ struct Unk0204c090 *mUnk_46c4;
-    /* 46c8 */ struct Unk0204c090 *mUnk_46c8;
+    /* 46c0 */ struct RomArchiveFileNode *mFreeHead;
+    /* 46c4 */ struct RomArchiveFileNode *mActiveHead;
+    /* 46c8 */ struct RomArchiveFileNode *mPendingHead;
     /* 46cc */ s32 mUnk_46cc;
     /* 46d0 */ s32 mUnk_46d0;
-    /* 46d4 */ BOOL mUnk_46d4;
+    /* 46d4 */ BOOL mMessageSendPending;
     /* 46d8 */ s32 mUnk_46d8;
     /* 46dc */ s32 mUnk_46dc;
     /* 46e0 */ BOOL mUnk_46e0;
     /* 46e4 */ s32 mUnk_46e4;
     /* 46e8 */ s32 mUnk_46e8;
     /* 46ec */ s32 mUnk_46ec;
-} Unk02175ec0_440s;
+} RomArchiveParentView;
 
-// Object at data_02175ec0.
-typedef struct Unk02175ec0 {
-    /* 0000 */ u32 mUnk_0000;
+// Object at gRomArchiveTransfer.
+typedef struct RomArchiveTransfer {
+    /* 0000 */ u32 mIsParent;
     /* 0004 */ BOOL mUnk_0004;
-    /* 0008 */ BOOL mUnk_0008;
-    /* 000c */ s32 mUnk_000c;
-    /* 0010 */ void (*mUnk_0010)(s32 a);
-    /* 0014 */ void *(*mUnk_0014)(s32 a, u32 b, void *c);
-    /* 0018 */ s32 mUnk_0018;
-    /* 001c */ struct FSFile *mUnk_001c;
-    /* 0020 */ void *mUnk_0020;
-    /* 0024 */ s32 mUnk_0024;
-    /* 0028 */ s32 mUnk_0028;
-    /* 002c */ s32 mUnk_002c;
-    /* 0030 */ u16 mUnk_0030;
+    /* 0008 */ BOOL mSendPending;
+    /* 000c */ s32 mState;
+    /* 0010 */ void (*mStateCallback)(s32 a);
+    /* 0014 */ void *(*mAllocFunc)(s32 a, u32 b, void *c);
+    /* 0018 */ s32 mAllocFuncArg;
+    /* 001c */ struct FSFile *mPendingFile;
+    /* 0020 */ void *mArchiveBlock;
+    /* 0024 */ s32 mArchiveBlockSize;
+    /* 0028 */ s32 mParentPacketSize;
+    /* 002c */ s32 mChildPacketSize;
+    /* 0030 */ u16 mPort;
     /* 0032 */ u8 mUnk_0032[0xe];
-    /* 0040 */ u8 mUnk_0040[0x400];
-    /* 0440 */ Unk02175ec0_440s mUnk_0440;
-} Unk02175ec0;
+    /* 0040 */ u8 mPacketBuffer[0x400];
+    /* 0440 */ RomArchiveParentView mUnk_0440;
+} RomArchiveTransfer;
 
-extern Unk02175ec0 data_02175ec0;
+extern RomArchiveTransfer gRomArchiveTransfer;
 extern void (*gFrameCallback)(s32);
-extern s32 data_usa_02175e84;
+extern s32 gRomArchiveStarted;
 extern s32 data_usa_02175e80;

@@ -236,7 +236,7 @@ void End(void) {
         p->mUnk_000c = 0x26;
         data_0217aa00->mRequestPending = 1;
         if (func_02050ec0_inline() != 0) {
-            func_0204bcec();
+            StopRomArchive();
             data_0217aa00->mUnk_0454 &= ~0x100;
         }
         data_0217aa00->mRequestPending = 0;
