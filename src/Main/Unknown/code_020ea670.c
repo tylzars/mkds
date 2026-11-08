@@ -773,7 +773,7 @@ void func_020ea94c(Vec3 *velocity, Vec3 *surfaceNormal, s32 tangentScale, s32 bo
     }
 }
 
-void DrawNsbmdWithMatrixAndMaxAlpha(Unk020ea670 *model, void *matrix, void *scale, s32 maxAlpha) {
+void DrawNsbmdWithMatrixAndMaxAlpha(Nsbmd *model, void *matrix, void *scale, s32 maxAlpha) {
     void *resMdl;
     s32 modelAlpha;
     s32 polygonId;
@@ -792,14 +792,14 @@ void DrawNsbmdWithMatrixAndMaxAlpha(Unk020ea670 *model, void *matrix, void *scal
     }
 }
 
-void DrawShadowWithMaxAlpha(Unk020ea868 *shadow, void *matrix, Vec3 *scale, u32 maxAlpha) {
+void DrawShadowWithMaxAlpha(ShadowModel *shadow, void *matrix, Vec3 *scale, u32 maxAlpha) {
     u16 savedAlpha;
 
-    savedAlpha = shadow->mUnk_06e;
+    savedAlpha = shadow->mAlpha;
     if (maxAlpha < savedAlpha) {
-        shadow->mUnk_06e = maxAlpha;
+        shadow->mAlpha = maxAlpha;
         DrawShadowWithMatrix(shadow, matrix, scale);
-        shadow->mUnk_06e = savedAlpha;
+        shadow->mAlpha = savedAlpha;
     } else {
         DrawShadowWithMatrix(shadow, matrix, scale);
     }
@@ -809,7 +809,7 @@ void func_020ea84c(void) {
     func_01ff9048(0x29, &data_0217bbe8, 1);
 }
 
-void DrawNsbmdWithMaxAlpha(Unk020ea670 *model, s32 maxAlpha) {
+void DrawNsbmdWithMaxAlpha(Nsbmd *model, s32 maxAlpha) {
     void *resMdl;
     s32 modelAlpha;
     s32 savedAlpha;
@@ -829,7 +829,7 @@ void DrawNsbmdWithMaxAlpha(Unk020ea670 *model, s32 maxAlpha) {
     data_0216c3d4 = -1;
 }
 
-void DrawNsbmd1Mat1ShpWithMaxAlpha(Unk020ea670 *model, s32 maxAlpha) {
+void DrawNsbmd1Mat1ShpWithMaxAlpha(Nsbmd *model, s32 maxAlpha) {
     void *resMdl;
     s32 modelAlpha;
     s32 savedAlpha;
@@ -849,7 +849,7 @@ void DrawNsbmd1Mat1ShpWithMaxAlpha(Unk020ea670 *model, s32 maxAlpha) {
     data_0216c3d4 = -1;
 }
 
-void func_020ea670(Unk020ea670 *model, s32 maxAlpha) {
+void func_020ea670(Nsbmd *model, s32 maxAlpha) {
     void *resMdl;
     u8 *modelData;
     s32 modelAlpha;

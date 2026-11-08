@@ -143,8 +143,8 @@ s32 func_0206105c(const void *a) {
 }
 
 s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
-    Unk0203b0a0 h;
-    Unk0203b0a0 j;
+    DateBytes h;
+    DateBytes j;
     BuddyRecord k;
     s32 g[3];
     s32 m;
@@ -190,14 +190,14 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
     }
     q = -1;
     if (m == -1) {
-        h.mUnk_00 = 100;
-        h.mUnk_01 = 12;
-        h.mUnk_02 = 31;
+        h.mYear = 100;
+        h.mMonth = 12;
+        h.mDay = 31;
         for (i = 0; i < 60; i = (s8) (i + 1)) {
             func_0205ee14((u8) i, &k);
-            j.mUnk_00 = k.mYear;
-            j.mUnk_01 = k.mMonth;
-            j.mUnk_02 = k.mDay;
+            j.mYear = k.mYear;
+            j.mMonth = k.mMonth;
+            j.mDay = k.mDay;
             if (k.mFilled == 1 && k.mFlagged == 0 && IsDateEarlier(&j, &h) != FALSE) {
                 h = j;
                 q = i;

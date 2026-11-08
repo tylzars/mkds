@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk02100094 Unk02100094;
+typedef struct MapObjectList MapObjectList;
 
-void *func_02100084(Unk02100094 *list);
-void **func_0210008c(Unk02100094 *list);
+void *func_02100084(MapObjectList *list);
+void **func_0210008c(MapObjectList *list);

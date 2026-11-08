@@ -94,8 +94,6 @@ typedef struct Unk0209d3fc {
     /* dc */ u32 mState;
 } Unk0209d3fc;
 
-#include "Main/Unknown/code_02100094.h" // Unk02100094
-
 extern u32 data_usa_021565d0;
 extern u16 data_usa_021565d4;
 extern const char data_usa_02167328[];
@@ -111,21 +109,21 @@ void CreateBoundDrawList(void);
 void CreateBerryKindData(void);
 void CreateCreamKindData(void);
 void CreateBoundKindData(void);
-void UpdateBoundAndCreamAndBerry(Unk02100094 *a, Bound *p);
+void UpdateBoundAndCreamAndBerry(MapObjectList *a, Bound *p);
 s32 func_0209c4bc(s32 a, s32 b);
 s16 func_0209c4d8(s32 a);
-void InitBoundAndCreamAndBerryObjects(Unk02100094 *a);
-void DrawBerry(Unk02100094 *a, Bound *p);
-void DrawCream(Unk02100094 *a, Bound *p);
+void InitBoundAndCreamAndBerryObjects(MapObjectList *a);
+void DrawBerry(MapObjectList *a, Bound *p);
+void DrawCream(MapObjectList *a, Bound *p);
 void CreateBerry(void *a); /* also loads cream_effect.nsbmd */
 void CreateCream(void *a); /* also loads cream_effect.nsbmd */
-void DrawBound(Unk02100094 *a, Bound *p);
+void DrawBound(MapObjectList *a, Bound *p);
 BOOL func_0209c8b0(Bound *p, Vec3 *a, s32 b, Vec3 *c);
 u8 CollideItemObjectWithBound(Bound *p, void *a, u8 *b, u8 *c);
 s32 CollideKartWithBound(Bound *p, Kart *k, u8 *b, u8 *c);
 void InitBound(Bound *p);
 void CreateSunUpdateList(void);
 void CreateSunDrawList(void);
-void UpdateSun(Unk02100094 *a, Sun *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void InitSunObjects(Unk02100094 *a);
+void UpdateSun(MapObjectList *a, Sun *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void InitSunObjects(MapObjectList *a);
 void DrawSun(void *a, Unk0209d3fc *b);

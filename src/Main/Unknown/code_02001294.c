@@ -11,7 +11,7 @@
 
 void UpdateLogoState1(void) {
     s32 v1;
-    Unk021a99c0_18 *stateMachine;
+    StateMachine *stateMachine;
     s32 v3;
     LogoScene *scene;
     if (data_0217aa08->mUnk_28 == 0) {
@@ -64,7 +64,7 @@ void EnterLogoState2(void) {
 }
 
 void UpdateLogoState2(void) {
-    Unk021a99c0_18 *stateMachine;
+    StateMachine *stateMachine;
     if (GetTxtSystemDone() != 0) {
         RequestTxtSystemClose();
         return;
@@ -87,7 +87,7 @@ void EnterLogoState3(void) {
 
 void UpdateLogoState3(void) {
     s32 v1;
-    Unk021a99c0_18 *stateMachine;
+    StateMachine *stateMachine;
     gLogoScene->mSubTextFrames = gLogoScene->mSubTextFrames + 1;
     if (IsTxtSystemState2AfterState1() != 0) {
         StartSoundOncePerFrame(34);
@@ -122,7 +122,7 @@ void EnterLogoState4(void) {
 }
 
 void UpdateLogoState4(void) {
-    Unk021a99c0_18 *stateMachine;
+    StateMachine *stateMachine;
     if (GetTxtSystemDone() != 0) {
         SetTxtSystemOpenSoundId(35);
         RequestTxtSystemClose();
@@ -149,7 +149,7 @@ void EnterLogoState5(void) {
 }
 
 void UpdateLogoState5(void) {
-    Unk021a99c0_18 *stateMachine;
+    StateMachine *stateMachine;
     if (GetTxtSystemDone() != 0) {
         RequestTxtSystemClose();
         return;
@@ -182,7 +182,7 @@ void EnterLogoState6(void) {
 void UpdateLogoState6(void) {
     LogoScene *scene;
     s32 v2;
-    Unk021a99c0_18 *stateMachine;
+    StateMachine *stateMachine;
     gLogoScene->mSubTextFrames = gLogoScene->mSubTextFrames + 1;
     scene = gLogoScene;
     if (scene->mUnk_2c_0 != 0) {
@@ -235,7 +235,7 @@ void EnterLogoState7(void) {
 }
 
 void func_02001294(void) {
-    Unk021a99c0_18 *stateMachine;
+    StateMachine *stateMachine;
     if (GetTxtSystemDone() != 0) {
         SetTxtSystemOpenSoundId(35);
         RequestTxtSystemClose();

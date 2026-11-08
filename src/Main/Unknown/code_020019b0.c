@@ -133,7 +133,7 @@ void EnterLogoState0(void) {
 
 void UpdateLogoState0(void) {
     s32 slotIndex;
-    Unk021a99c0_18 *stateMachine;
+    StateMachine *stateMachine;
     gLogoScene->mState0Frames = gLogoScene->mState0Frames + 1;
     if (gLogoScene->mState0Frames > 120) {
         stateMachine = &gLogoScene->mStateMachine;

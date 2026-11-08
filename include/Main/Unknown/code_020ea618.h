@@ -3,6 +3,6 @@
 #include "types.h"
 #include "Main/Unknown/code_0207a000.h"
 
-typedef struct Unk0209bc74_14 Unk0209bc74_14;
+typedef struct ShadowModel ShadowModel;
 
-void DrawShadowModelWithMaxAlpha(Unk0209bc74_14 *model, int maxAlpha);
+void DrawShadowModelWithMaxAlpha(ShadowModel *model, int maxAlpha);

@@ -52,12 +52,12 @@ s16 func_020adc64(s32 a) {
     return data_02156868[a];
 }
 
-BOOL func_020adc24(Unk020adc24 *a, Unk020adc24 *b) {
+BOOL func_020adc24(MinuteSecondMillisecondTime *a, MinuteSecondMillisecondTime *b) {
     s32 x;
     s32 y;
 
-    x = a->mUnk_00 + (a->mUnk_03 * 1000 + a->mUnk_02 * 60000);
-    y = b->mUnk_00 + (b->mUnk_03 * 1000 + b->mUnk_02 * 60000);
+    x = a->mMillisecond + (a->mSecond * 1000 + a->mMinute * 60000);
+    y = b->mMillisecond + (b->mSecond * 1000 + b->mMinute * 60000);
     if (x < y) {
         return TRUE;
     }

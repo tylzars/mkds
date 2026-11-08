@@ -38,7 +38,7 @@ void func_0209bbd0(void *a, void *b) {
     func_020e6a18(o->mNsbmdModel);
 }
 
-void DrawMapObjectModel(Unk02100094 *a, void *b, void *d) {
+void DrawMapObjectModel(MapObjectList *a, void *b, void *d) {
     MapObjectModel *o = b;
     MapObject *c = d;
 
@@ -122,7 +122,7 @@ void SetMapObjectModelAlpha(void *a, u16 b) {
         NNS_G3dMdlSetMdlAlphaAll(o->mAnimatedModel->mResMdl, b);
     }
     if (o->mShadowModel != NULL) {
-        o->mShadowModel->mUnk_6e = b;
+        o->mShadowModel->mAlpha = b;
     }
 }
 
@@ -140,7 +140,7 @@ void SetMapObjectModelPolygonId(void *a, u32 b) {
         NNS_G3dMdlSetMdlPolygonIDAll(o->mAnimatedModel->mResMdl, b);
     }
     if (o->mShadowModel != NULL) {
-        o->mShadowModel->mUnk_6c = b;
+        o->mShadowModel->mPolygonId = b;
     }
 }
 

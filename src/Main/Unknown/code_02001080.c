@@ -44,7 +44,7 @@ UnkFunc *gLogoStateTable[24] = {
 #pragma section MAIN_TEXT end
 
 void UpdateLogoState8(void) {
-    Unk021a99c0_18 *stateMachine;
+    StateMachine *stateMachine;
     if (data_usa_02174e54 == 3) {
         stateMachine = &gLogoScene->mStateMachine;
         stateMachine->mNextState = 9;
@@ -63,7 +63,7 @@ void EnterLogoState9(void) {
 }
 
 void UpdateLogoState9(void) {
-    Unk021a99c0_18 *stateMachine;
+    StateMachine *stateMachine;
     if (GetTxtSystemDone() != 0) {
         RequestTxtSystemClose();
         return;
@@ -83,7 +83,7 @@ void EnterLogoState10(void) {
 }
 
 void UpdateLogoState10(void) {
-    Unk021a99c0_18 *stateMachine;
+    StateMachine *stateMachine;
     if (GetTxtSystemDone() != 0) {
         RequestTxtSystemClose();
         return;

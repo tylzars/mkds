@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "Main/Unknown/code_020467d0.h" // StateMachine
 
 typedef struct Bmg Bmg;
 typedef struct Ncgr Ncgr;
@@ -14,19 +15,11 @@ typedef struct Bg1Files {
     /* 08 */ Nscr *mScreenMap;
 } Bg1Files;
 
-// The part of LogoScene from 0x18: a halfword at 0x0e and the halfwords at 0x10 and 0x12.
-typedef struct Unk021a99c0_18 {
-    /* 00 */ u8 mUnk_00[0xe];
-    /* 0e */ u16 mState;
-    /* 10 */ u16 mNextState;
-    /* 12 */ u16 mNextStateRequested;
-} Unk021a99c0_18;
-
 // Object behind gLogoScene.
 typedef struct LogoScene {
     /* 00 */ Bg1Files mMainBg;
     /* 0c */ Bg1Files mSubBg;
-    /* 18 */ Unk021a99c0_18 mStateMachine;
+    /* 18 */ StateMachine mStateMachine;
     /* 2c */ union {
         s32 mUnk_2c;
         struct {

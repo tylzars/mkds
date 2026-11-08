@@ -509,7 +509,7 @@ void UpdateMapObjects(void) {
     }
 }
 
-void DrawMapObjects(Unk020d4418 *view) {
+void DrawMapObjects(Camera *view) {
     s32 i;
     s32 firstPassCount;
     MapObjectList **lists;
@@ -518,7 +518,7 @@ void DrawMapObjects(Unk020d4418 *view) {
     s32 secondPassCount;
     s32 j;
 
-    viewMatrix = &view->mUnk_30;
+    viewMatrix = &view->mViewMatrix;
     func_020d4d44(viewMatrix);
     if (gCourseWater != NULL) {
         DrawWater(gCourseWater, viewMatrix);
@@ -553,10 +553,10 @@ void DrawMapObjects(Unk020d4418 *view) {
     }
 }
 
-void func_020d4418(Unk020d4418 *view) {
+void func_020d4418(Camera *view) {
     MtxFx43 *viewMatrix;
 
-    viewMatrix = &view->mUnk_30;
+    viewMatrix = &view->mViewMatrix;
     if (gMapObjects->mHasKoopaBlock != 0) {
         DrawAllKoopaBlocks(viewMatrix);
     }

@@ -197,18 +197,18 @@ void func_0203b0f8(void *heap) {
     ResetRaceSetup();
 }
 
-BOOL IsDateEarlier(const Unk0203b0a0 *firstDate, const Unk0203b0a0 *secondDate) {
-    if (firstDate->mUnk_00 < secondDate->mUnk_00) {
+BOOL IsDateEarlier(const DateBytes *firstDate, const DateBytes *secondDate) {
+    if (firstDate->mYear < secondDate->mYear) {
         return TRUE;
     }
-    if (firstDate->mUnk_00 > secondDate->mUnk_00) {
+    if (firstDate->mYear > secondDate->mYear) {
         return FALSE;
     }
-    if (firstDate->mUnk_01 < secondDate->mUnk_01) {
+    if (firstDate->mMonth < secondDate->mMonth) {
         return TRUE;
     }
-    if (firstDate->mUnk_01 > secondDate->mUnk_01) {
+    if (firstDate->mMonth > secondDate->mMonth) {
         return FALSE;
     }
-    return firstDate->mUnk_02 < secondDate->mUnk_02;
+    return firstDate->mDay < secondDate->mDay;
 }

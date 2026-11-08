@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "00/code_02181f98.h"
+#include "Main/Unknown/code_021114cc.h" // RecordScreenCallbacks
 
 // Object behind gOptionTopMenu.
 typedef struct OptionTopMenu {
@@ -29,11 +30,6 @@ typedef struct OptionTopMenu {
     /* 38 */ struct Bmg *mOptionMessages;
     /* 3c */ struct Bmg *mCommonMessages;
 } OptionTopMenu;
-
-// Five callbacks handed over as one block.
-typedef struct Unk021a8294 {
-    /* 00 */ void (*mUnk_00[5])(void);
-} Unk021a8294;
 
 // Object behind RecordGpx.mPlayerCharacterMONclr.
 typedef struct Unk021a9bd8_40 {
@@ -115,8 +111,8 @@ extern const u16 data_ov001_021a6654[4];
 extern const u16 data_ov001_021a665c[4];
 extern const u16 data_ov001_021a666c[4];
 // Objects whose layout isn't known yet.
-extern const Unk021a8294 gRecordGpxCallbacks;
-extern const Unk021a8294 gRecordTAttCallbacks;
+extern const RecordScreenCallbacks gRecordGpxCallbacks;
+extern const RecordScreenCallbacks gRecordTAttCallbacks;
 
 void RegisterRecordGpxCallbacks(void);
 void func_ov001_02193c84(void);

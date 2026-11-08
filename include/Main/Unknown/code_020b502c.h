@@ -197,9 +197,6 @@ typedef struct {
     /* 0c */ s32 mUnk_0c;
 } Unk02175620_54_10;
 
-// 0x4c-byte entries of the table at CourseMap.mCameras.
-typedef CourseMapCamera Unk02175620_7c;
-
 // 0x14-byte entries of the table at CourseMap.mBattleRoutes.
 typedef struct {
     /* 00 */ u16 mUnk_00;
@@ -302,7 +299,7 @@ typedef struct CourseMap {
     /* 74 */ CourseMapShape *mShapes;
     /* 78 */ u16 mShapeCount;
     /* 7a */ u8 mUnk_7a[0x2];
-    /* 7c */ Unk02175620_7c *mCameras;
+    /* 7c */ CourseMapCamera *mCameras;
     /* 80 */ u16 mCameraCount;
     /* 82 */ u8 mUnk_82[0x2];
     // Battle point records (0x18 bytes: position, a value, 8 bytes), stored here instead of mRacePoints when the course
@@ -354,12 +351,12 @@ typedef struct CourseMap {
     // Address one past the last element of mBattlePointLinks.
     /* c0 */ PointLink *mBattlePointLinksEnd;
     // The first entry whose mChainStart is 1.
-    /* c4 */ Unk02175620_7c *mFirstChainStartEntry;
-    /* c8 */ Unk02175620_7c *mSecondChainStartEntry;
-    /* cc */ Unk02175620_7c *mFirstKind6Entry;
-    /* d0 */ Unk02175620_7c *mFirstKind7EntryInMode2;
+    /* c4 */ CourseMapCamera *mFirstChainStartEntry;
+    /* c8 */ CourseMapCamera *mSecondChainStartEntry;
+    /* cc */ CourseMapCamera *mFirstKind6Entry;
+    /* d0 */ CourseMapCamera *mFirstKind7EntryInMode2;
     // The first entry of mKind 8, set only when the mode is 4; the loader does not set it to NULL first.
-    /* d4 */ Unk02175620_7c *mFirstKind8EntryInMode4;
+    /* d4 */ CourseMapCamera *mFirstKind8EntryInMode4;
     /* d8 */ struct Unk02175620_d8 *mKind3ShapeLists[8];
     /* f8 */ u16 *mRespawnIndexBySlot;
     // Record index of mKeyedPlacements for each key, one halfword per record (BuildCourseMapKeyedPlacementIndexByKey).

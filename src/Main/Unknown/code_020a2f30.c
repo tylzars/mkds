@@ -8,7 +8,7 @@
 #include "Main/Unknown/code_020a3948.h"
 #include "Main/Unknown/code_0209bef0.h"
 #include "Main/Unknown/code_0209b000.h"
-#include "Main/Unknown/code_02100094.h"
+#include "Main/Unknown/code_020e6fd4.h"
 #include "Main/Unknown/code_021000d0.h"
 #include "Main/Unknown/code_020d22c0.h"
 #include "Main/Unknown/unk_0217a000.h"
@@ -416,14 +416,14 @@ void *func_020a3114(void) {
 
 void func_020a305c(void) {
     s32 i;
-    Unk02100094 *v1;
+    MapObjectList *v1;
     Balloon *e;
 
     v1 = func_02100138(MAP_OBJECT_KIND_BALLOON);
     if (v1 == NULL) {
         return;
     }
-    for (i = 0; i < v1->mUnk_04 && (e = v1->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < v1->mMapObjectCount && (e = v1->mMapObjects[i]) != NULL; i++) {
         if (e->mKartIndex >= 0) {
             e->mKartIndex = (u16) gRaceSetup->mEntryIndex;
             e->mScaleFactor = 0x1000;

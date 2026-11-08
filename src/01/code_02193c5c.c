@@ -781,7 +781,7 @@ void func_ov001_02193c84(void) {
 }
 
 void RegisterRecordGpxCallbacks(void) {
-    Unk021a8294 local = gRecordGpxCallbacks;
+    RecordScreenCallbacks local = gRecordGpxCallbacks;
 
     SetRecordScreenCallbacks(&local);
 }

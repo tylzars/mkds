@@ -2,8 +2,9 @@
 
 #include "types.h"
 #include "Main/Unknown/code_020e5d0c.h" // NsbmdModel
-#include "Main/Unknown/code_020ea670.h" // Unk020ea670
+#include "Main/Unknown/code_020ea670.h" // Nsbmd
 #include "Main/Unknown/code_02087d0c.h" // ModelAnimation
+#include "Main/Unknown/code_0207adf8.h" // ShadowModel
 
 // The draw group (MapObjectList), not the bundle: the creators' first argument; they store 1 or 2 at 0x18.
 typedef struct Unk0209bc74_a {
@@ -19,13 +20,6 @@ typedef struct Unk0209bc74_00 {
     /* 08 */ s32 mUnk_08;
 } Unk0209bc74_00;
 
-// Object at 0x14 of MapObjectModel (0x74 bytes): two halfwords at 0x6c and 0x6e.
-typedef struct Unk0209bc74_14 {
-    /* 00 */ u8 mUnk_00[0x6c];
-    /* 6c */ u16 mUnk_6c;
-    /* 6e */ u16 mUnk_6e;
-} Unk0209bc74_14;
-
 // The model bundle of one map object kind: one per kind (the global g<Stem> that Create<Stem> stores), shared by every
 // object of the kind; 0x2c bytes, the allocation size. A creator builds exactly one of mNsbmdModel / mAnimatedModel /
 // mShadowModel and leaves the others 0; the draw tests each. Overlay 1 reaches the same bytes through Unk0219b250.
@@ -38,10 +32,10 @@ typedef struct MapObjectModel {
     /* 0c */ NsbmdModel *mNsbmdModel;
     // The 0x6c model instance of CreateMapObjectModelAnimated; the animation objects attach to this model. A bundle
     // made this way may attach none (NsKiller1, Berry, Cream).
-    /* 10 */ Unk020ea670 *mAnimatedModel;
+    /* 10 */ Nsbmd *mAnimatedModel;
     // The 0x74 shadow model object (the type the kart, killer item and jg shadows use) built from an .nsbmd shadow file
     // by CreateMapObjectModelShadow; Unk02188950.mShadowNsbmd points at a bundle that holds one.
-    /* 14 */ Unk0209bc74_14 *mShadowModel;
+    /* 14 */ ShadowModel *mShadowModel;
     // The .nsbmd file as FindCourseMapObjFile returned it (pointer into the archive), used by the animation creators;
     // 0 unless the Animated creator ran (overlay 1: the file LoadMissionRunFile read).
     /* 18 */ void *mNsbmdFile;

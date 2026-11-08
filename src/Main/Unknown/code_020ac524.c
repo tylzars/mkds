@@ -184,7 +184,7 @@ void CreateParkedMapObjects(u32 a, s32 b, void *c) {
 // Returns the first map object in the update list of kind a that has the parked bit 0x100, or NULL if there is none;
 // changes nothing.
 void *FindParkedMapObject(s32 a) {
-    Unk02100094 *v1;
+    MapObjectList *v1;
     void **v2;
     s32 n;
     s32 i;

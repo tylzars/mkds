@@ -117,14 +117,14 @@ static inline u32 CollideKartWithBound_inline(RandomState64 *b) {
     return b->mValue >> 32;
 }
 
-void InitSunObjects(Unk02100094 *a) {
+void InitSunObjects(MapObjectList *a) {
     s32 i;
     Sun *p;
 
     if (a == NULL) {
         return;
     }
-    for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < a->mMapObjectCount && (p = a->mMapObjects[i]) != NULL; i++) {
         if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
             p->mTimer = (u16) p->mUnk_000.mCourseMapRow->mUnk_28;
         } else if (gRaceSetup->mMode == 5) {
@@ -163,7 +163,7 @@ static inline BOOL UpdateSun_inline_b(Sun *p) {
     return FALSE;
 }
 
-void UpdateSun(Unk02100094 *a, Sun *p) {
+void UpdateSun(MapObjectList *a, Sun *p) {
     Vec3 v;
     Vec3 w;
     s32 t;
@@ -425,7 +425,7 @@ void CreateBound(void *a) {
     CreateMapObjectModelNsbtpAnimation(gBound, gBoundNsbtpName);
 }
 
-void DrawBound(Unk02100094 *a, Bound *p) {
+void DrawBound(MapObjectList *a, Bound *p) {
     s32 v[4];
     s32 x;
     s32 y;
@@ -459,7 +459,7 @@ void CreateBerry(void *a) {
     CreateOrthoQuadCreamEffect(gCreamEffectNsbmdName);
 }
 
-void DrawCream(Unk02100094 *a, Bound *p) {
+void DrawCream(MapObjectList *a, Bound *p) {
     s32 v[4];
     s32 x;
     s32 y;
@@ -482,7 +482,7 @@ void DrawCream(Unk02100094 *a, Bound *p) {
     DrawMapObjectModel(a, gCream, p);
 }
 
-void DrawBerry(Unk02100094 *a, Bound *p) {
+void DrawBerry(MapObjectList *a, Bound *p) {
     s32 v[4];
     s32 x;
     s32 y;
@@ -505,14 +505,14 @@ void DrawBerry(Unk02100094 *a, Bound *p) {
     DrawMapObjectModel(a, gBerry, p);
 }
 
-void InitBoundAndCreamAndBerryObjects(Unk02100094 *a) {
+void InitBoundAndCreamAndBerryObjects(MapObjectList *a) {
     s32 i;
     Bound *p;
 
     if (a == NULL) {
         return;
     }
-    for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < a->mMapObjectCount && (p = a->mMapObjects[i]) != NULL; i++) {
         if (p->mUnk_000.mCourseMapRow->mUnk_26 >= 0) {
             InitGroupFollower(&p->mUnk_0f8, p->mUnk_000.mCourseMapRow, 0);
             p->mUnk_0f8.mSpeed = 0x3000;
@@ -532,7 +532,7 @@ s32 func_0209c4bc(s32 a, s32 b) {
     return ((s64) a * b + 0x800) >> 12;
 }
 
-void UpdateBoundAndCreamAndBerry(Unk02100094 *a, Bound *p) {
+void UpdateBoundAndCreamAndBerry(MapObjectList *a, Bound *p) {
     u16 v;
     s32 t;
     s32 i;

@@ -150,8 +150,8 @@ void InitSelectGame(void *parentHeap, s32 mode, void *mainOam, void *subOam) {
     s32 j;
     s32 hiddenLabelStart;
     s32 hiddenLabelCount;
-    Unk02153e20 *canvasRow;
-    Unk02153e20 *printRow;
+    LabelMessageRow *canvasRow;
+    LabelMessageRow *printRow;
 
     heap = CreateFrmHeapFromMaxFree(parentHeap);
     gSelectGame = HeapAlloc(heap, 0x6c);
@@ -196,8 +196,8 @@ void InitSelectGame(void *parentHeap, s32 mode, void *mainOam, void *subOam) {
             printRow = canvasRow;
             do {
                 mainObjSizeLeft -= func_02025a00(0, gSelectGame->mHeap, selectGame, canvasRow, mainObjSizeLeft);
-                func_0212426c(0, printRow->mUnk_00, selectGame->mCellFileSets[0].mLabelLayout,
-                              GetBmgEntry(gSelectGame->mMenuMessages, printRow->mUnk_08),
+                func_0212426c(0, printRow->mLabelIndex, selectGame->mCellFileSets[0].mLabelLayout,
+                              GetBmgEntry(gSelectGame->mMenuMessages, printRow->mMessageIndex),
                               selectGame->mCellFileSets[0].mCellLayout, selectGame->mCellFileSets[0].mCellTable);
                 canvasRow++;
                 printRow++;

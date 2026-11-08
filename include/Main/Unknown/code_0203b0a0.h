@@ -3,15 +3,9 @@
 #include "types.h"
 #include "00/code_02181f98.h"
 #include "Main/Unknown/code_02056b30.h"
+#include "Main/Unknown/code_02116a4c.h"
 
-// 0x03-byte argument of IsDateEarlier.
-typedef struct Unk0203b0a0 {
-    /* 00 */ u8 mUnk_00;
-    /* 01 */ u8 mUnk_01;
-    /* 02 */ u8 mUnk_02;
-} Unk0203b0a0;
-
-BOOL IsDateEarlier(const Unk0203b0a0 *firstDate, const Unk0203b0a0 *secondDate);
+BOOL IsDateEarlier(const DateBytes *firstDate, const DateBytes *secondDate);
 void func_0203b0f8(void *heap);
 void func_0203b194(void *heap);
 void func_0203b1c8(void *heap);

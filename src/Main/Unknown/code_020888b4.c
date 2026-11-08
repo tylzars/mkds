@@ -619,7 +619,7 @@ void AdvanceBattleKartAiTargetShine(KartAi *p) {
 
 // Picks a Shine16 object within the given x/z and y ranges as the CPU kart's target; TRUE if one was found.
 BOOL FindKartAiTargetShine(KartAi *p, s32 a, s32 b) {
-    Unk02100094 *l;
+    MapObjectList *l;
     s16 i;
     s32 n;
     s16 c;

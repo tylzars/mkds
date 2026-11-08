@@ -524,7 +524,7 @@ void DrawRaceHudSubScreenKarts(Unk020c06c4 *oamBuffer) {
 }
 
 BOOL CreateRaceHudSubScreenSecondHand(void) {
-    Unk02100094 *kindEntry;
+    MapObjectList *kindEntry;
     s32 objectCount;
 
     kindEntry = func_021000d0(MAP_OBJECT_KIND_SECOND_HAND);

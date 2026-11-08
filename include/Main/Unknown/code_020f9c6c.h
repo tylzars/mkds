@@ -98,7 +98,7 @@ typedef struct ItemKouraW ItemKouraW;
 #include "Main/Unknown/code_020ea670.h"
 #include "Main/Unknown/code_0206bcb0.h"
 
-extern Unk020ea670 *gKouraW;
+extern Nsbmd *gKouraW;
 
 void func_020f9c6c(ItemObject *item);
 void CreateItemObjectCollisionSlot(void *objectParam);

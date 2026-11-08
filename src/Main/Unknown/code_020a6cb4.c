@@ -30,7 +30,7 @@ void func_020a7148(MapObject *a) {
     ParkMapObject(a);
 }
 
-BOOL func_020a6f94(Unk02100094 *a) {
+BOOL func_020a6f94(MapObjectList *a) {
     s32 i;
     s32 v1;
     Unk020a6cb4 *e;
@@ -44,7 +44,7 @@ BOOL func_020a6f94(Unk02100094 *a) {
 
     v1 = 0;
     if (a != NULL) {
-        for (i = 0; i < a->mUnk_04 && (e = a->mUnk_00[i]) != NULL; i++) {
+        for (i = 0; i < a->mMapObjectCount && (e = a->mMapObjects[i]) != NULL; i++) {
             f = FALSE;
             if (e->mUnk_a0 == FALSE) {
                 if (e->mUnk_a4 == FALSE) {
@@ -77,7 +77,7 @@ BOOL func_020a6f94(Unk02100094 *a) {
         }
         k = v2;
         if (a != NULL) {
-            for (i = 0; i < a->mUnk_04 && (e = a->mUnk_00[i]) != NULL; i++) {
+            for (i = 0; i < a->mMapObjectCount && (e = a->mMapObjects[i]) != NULL; i++) {
                 if (e->mUnk_a0 == FALSE && e->mUnk_a4 == FALSE) {
                     if (k-- == 0) {
                         StartShine16(&e->mUnk_00.mPos, i, 1);
@@ -91,7 +91,7 @@ BOOL func_020a6f94(Unk02100094 *a) {
     return FALSE;
 }
 
-void func_020a6e70(Unk02100094 *a) {
+void func_020a6e70(MapObjectList *a) {
     s32 i;
     s32 n;
     s32 j;
@@ -118,7 +118,7 @@ void func_020a6e70(Unk02100094 *a) {
     if (a == NULL) {
         return;
     }
-    for (j = 0; j < a->mUnk_04 && (e = a->mUnk_00[j]) != NULL; j++) {
+    for (j = 0; j < a->mMapObjectCount && (e = a->mMapObjects[j]) != NULL; j++) {
         e->mUnk_a4 = TRUE;
         if (e->mUnk_00.mCourseMapRow->mUnk_28 != 0) {
             n = gRaceSetup->mKartCount;
@@ -131,7 +131,7 @@ void func_020a6e70(Unk02100094 *a) {
     }
 }
 
-void func_020a6d8c(Unk02100094 *a, Unk020a6cb4 *b) {
+void func_020a6d8c(MapObjectList *a, Unk020a6cb4 *b) {
     s32 n;
     s32 v;
 
@@ -168,7 +168,7 @@ void *func_020a6d20(void) {
 }
 
 void func_020a6cb4(s32 a) {
-    Unk02100094 *v1;
+    MapObjectList *v1;
     Unk020a6cb4 *e;
     s32 i;
 
@@ -176,7 +176,7 @@ void func_020a6cb4(s32 a) {
     if (v1 == NULL) {
         return;
     }
-    for (i = 0; i < v1->mUnk_04 && (e = v1->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < v1->mMapObjectCount && (e = v1->mMapObjects[i]) != NULL; i++) {
         if (i == a) {
             e->mUnk_a0 = FALSE;
             e->mUnk_a4 = TRUE;

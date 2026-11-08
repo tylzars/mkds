@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/unk_02174000.h"
+#include "Main/Unknown/unk_02153000.h" // LabelMessageRow
 
 // 6-byte entries of mTable (data_02153de8 and data_02153df4).
 typedef struct SelectGameRow {
@@ -37,19 +38,12 @@ typedef struct Unk02153e08 {
     /* 08 */ const char *mUnk_08;
 } Unk02153e08;
 
-// 12-byte entries of the table gSelectGameLabelMessageRows.
-typedef struct Unk02153e20 {
-    /* 00 */ s16 mUnk_00;
-    /* 02 */ u8 mUnk_02[6];
-    /* 08 */ s32 mUnk_08;
-} Unk02153e20;
-
 extern SelectGameRow data_02153de8[];
 extern SelectGameRow data_02153df4[];
 extern Unk02153e08 data_02153e08[];
 extern Unk02153e08 data_02153e0c[];
 extern Unk02153e08 data_02153e10[];
-extern Unk02153e20 gSelectGameLabelMessageRows[];
+extern LabelMessageRow gSelectGameLabelMessageRows[];
 
 extern const char gSelectGameMBNcgrName[];
 extern const char gSelectGameMNceNcgrName[];

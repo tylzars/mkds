@@ -173,7 +173,7 @@ typedef struct Unk020e3ef4 {
     /* 134 */ s32 mUnk_134;
     /* 138 */ s32 mUnk_138;
     /* 13c */ u8 mUnk_13c[0x4];
-    /* 140 */ struct Unk020ea670 *mModel;
+    /* 140 */ struct Nsbmd *mModel;
     /* 144 */ u16 mUnk_144;
     /* 146 */ u16 mUnk_146;
     /* 148 */ u16 mUnk_148;

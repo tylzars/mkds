@@ -5,7 +5,7 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
-typedef struct Unk02100094 Unk02100094;
+typedef struct MapObjectList MapObjectList;
 
 u16 GetMapObjectModelNsbtpFrameCount(void *a);
 void SetMapObjectModelNsbtpFrameIndex(void *a, u16 b);
@@ -23,6 +23,6 @@ void SetMapObjectModelAlpha(void *a, u16 b);
 void func_0209ba08(void *a, u32 b);
 void DrawMapObjectModel1Mat1Shp(void *a, void *b, void *c);
 void DrawMapObjectModelWithPos(u32 a, MapObjectModel *b, MapObject *c);
-void DrawMapObjectModel(Unk02100094 *a, void *b, void *d);
+void DrawMapObjectModel(MapObjectList *a, void *b, void *d);
 void func_0209bbd0(void *a, void *b);
 void *UnparkFirstParkedMapObject(void *b);

@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk02100094 Unk02100094;
+typedef struct MapObjectList MapObjectList;
 
-unsigned int GetMapObjectListCount(Unk02100094 *list);
+unsigned int GetMapObjectListCount(MapObjectList *list);

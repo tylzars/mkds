@@ -1237,7 +1237,7 @@ void func_ov001_02195704(void) {
 }
 
 void RegisterRecordTAttCallbacks(void) {
-    Unk021a8294 a = gRecordTAttCallbacks;
+    RecordScreenCallbacks a = gRecordTAttCallbacks;
 
     SetRecordScreenCallbacks(&a);
 }

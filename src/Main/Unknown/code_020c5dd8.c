@@ -345,8 +345,8 @@ BOOL func_020c6428(s32 store) {
 }
 
 void func_020c610c(void) {
-    Unk020adc24 setupTime;
-    Unk020adc24 finishTime;
+    MinuteSecondMillisecondTime setupTime;
+    MinuteSecondMillisecondTime finishTime;
     u8 minute;
     u8 second;
     u16 millisecond;
@@ -386,8 +386,8 @@ void func_020c610c(void) {
                     hasSetupTime = FALSE;
                 }
                 if (hasSetupTime != FALSE) {
-                    GetKartFinishTime((u16) gRaceSetup->mEntryIndex, &finishTime.mUnk_02, &finishTime.mUnk_03,
-                                      &finishTime.mUnk_00);
+                    GetKartFinishTime((u16) gRaceSetup->mEntryIndex, &finishTime.mMinute, &finishTime.mSecond,
+                                      &finishTime.mMillisecond);
                     if (func_020adc24(&finishTime, &setupTime) != FALSE) {
                         r = TRUE;
                     }
@@ -437,8 +437,8 @@ void func_020c610c(void) {
 }
 
 void func_020c5f7c(void) {
-    Unk020adc24 setupTime;
-    Unk020adc24 finishTime;
+    MinuteSecondMillisecondTime setupTime;
+    MinuteSecondMillisecondTime finishTime;
     BOOL r;
     BOOL hasSetupTime;
     s32 waiting;
@@ -460,8 +460,8 @@ void func_020c5f7c(void) {
             hasSetupTime = FALSE;
         }
         if (hasSetupTime != FALSE) {
-            GetKartFinishTime((u16) gRaceSetup->mEntryIndex, &finishTime.mUnk_02, &finishTime.mUnk_03,
-                              &finishTime.mUnk_00);
+            GetKartFinishTime((u16) gRaceSetup->mEntryIndex, &finishTime.mMinute, &finishTime.mSecond,
+                              &finishTime.mMillisecond);
             if (func_020adc24(&finishTime, &setupTime) != FALSE) {
                 r = TRUE;
             }

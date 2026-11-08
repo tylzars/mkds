@@ -750,7 +750,7 @@ s32 LoadCourseMapShapesData(void *section, ...) {
 
 s32 LoadCourseMapCamerasData(void *section, ...) {
     u16 i;
-    Unk02175620_7c *e;
+    CourseMapCamera *e;
 
     gCourseMap->mCameraCount = ReadCourseMapSectionCount(&section);
     if (gCourseMap->mCameraCount == 0) {
