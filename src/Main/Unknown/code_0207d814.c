@@ -147,7 +147,7 @@ void InitKartAiTables(void) {
     data_usa_0217ae34 = data_usa_02165910[d];
 }
 
-u32 SetupRaceKartAiSpeedLimit(struct Unk02089a24 *arg0, struct KartAi *arg1) {
+u32 SetupRaceKartAiSpeedLimit(struct KartAiRaceSpeedLimit *arg0, struct KartAi *arg1) {
     u32 value0 = (u32) arg0;
     u32 value1 = (u32) arg1;
     u32 value2;
@@ -176,7 +176,7 @@ u32 SetupRaceKartAiSpeedLimit(struct Unk02089a24 *arg0, struct KartAi *arg1) {
     return value0;
 }
 
-void ResetRaceKartAiSpeedLimit(struct Unk02089a24 *p0, struct KartAi *p1) {
+void ResetRaceKartAiSpeedLimit(struct KartAiRaceSpeedLimit *p0, struct KartAi *p1) {
     p0->mSpeedLimit = (u32) (((u32) p0->mBaseSpeedLimit));
     p0->mUnk_08 = 0x0u;
     p0->mTurnSpeedLimit = 0x0u;
@@ -186,7 +186,7 @@ void ResetRaceKartAiSpeedLimit(struct Unk02089a24 *p0, struct KartAi *p1) {
 }
 
 // Rolls the race start of a CPU kart: a race start boost with its choice, or the flag in mUnk_28.
-void PickKartAiRaceStart(struct Unk02089a24 *a, struct KartAi *b) {
+void PickKartAiRaceStart(struct KartAiRaceSpeedLimit *a, struct KartAi *b) {
     BOOL f = FALSE;
     s32 v;
     BOOL r6;
@@ -233,7 +233,7 @@ void PickKartAiRaceStart(struct Unk02089a24 *a, struct KartAi *b) {
 }
 
 // Every eighth frame, on this kart's turn, recomputes the CPU speed limit; every call sets the kart's limit from it.
-void AdvanceRaceKartAiSpeedLimit(struct Unk02089a24 *a, struct KartAi *b) {
+void AdvanceRaceKartAiSpeedLimit(struct KartAiRaceSpeedLimit *a, struct KartAi *b) {
     BOOL f;
     s32 v;
     s32 t;
@@ -302,7 +302,7 @@ void AdvanceRaceKartAiSpeedLimit(struct Unk02089a24 *a, struct KartAi *b) {
     }
 }
 
-void func_0207d9f0(struct Unk02089a24 *a, struct KartAi *b, s32 c) {
+void func_0207d9f0(struct KartAiRaceSpeedLimit *a, struct KartAi *b, s32 c) {
     s32 n = a->mRank;
     u16 m = b->mIndex;
     u16 i;
@@ -339,7 +339,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct KartAi *b, s32 c) {
                         d = GetKartIndexAtRank(i);
                         if (d >= 0) {
                             KartAi *u = GetKart(d)->mAi;
-                            Unk02089a24 *s = &u->mUnk_e8;
+                            KartAiRaceSpeedLimit *s = &u->mUnk_e8;
 
                             if (u->mUnk_154 != 0) {
                                 if (s->mUnk_1c == 2) {
@@ -469,7 +469,7 @@ u16 PickKartAiRaceStartBoost(s32 a) {
     return p[i];
 }
 
-void func_0207d814(struct Unk02089a24 *a, struct KartAi *b) {
+void func_0207d814(struct KartAiRaceSpeedLimit *a, struct KartAi *b) {
     s32 t;
 
     a->mBaseSpeedLimit = b->mKart->mPhysicalParam->mBaseSpeedLimit;

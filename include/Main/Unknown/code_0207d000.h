@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-struct Unk02089a24;
+struct KartAiRaceSpeedLimit;
 struct KartAi;

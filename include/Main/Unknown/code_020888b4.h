@@ -15,7 +15,7 @@ typedef struct Unk020888b4_d0 {
 
 // Object of 0x34 bytes at 0xe8 of the object KartAi starts: func_02089a24 writes the words at 0x28 and 0x2c and
 // the halfword at 0x30.
-typedef struct Unk02089a24 {
+typedef struct KartAiRaceSpeedLimit {
     /* 00 */ s32 mBaseSpeedLimit;
     /* 04 */ s32 mSpeedLimit;
     /* 08 */ s32 mUnk_08;
@@ -30,7 +30,7 @@ typedef struct Unk02089a24 {
     /* 2c */ s32 mBoostsAtRaceStart;
     /* 30 */ u16 mRaceStartBoostChoice;
     /* 32 */ u8 mUnk_32[2];
-} Unk02089a24;
+} KartAiRaceSpeedLimit;
 
 // Object at 0x140 of the object KartAi starts: AdvanceBattleKartAiSpeedLimit and SetBattleKartAiTurnSpeedLimit write
 // the words at 0x04, 0x0c and 0x10.
@@ -44,7 +44,7 @@ typedef struct KartAiSpeedLimit {
 
 // One per Kart: follows the kart (mKart), steers it and requests its bits and items.
 // Object of 0x158 bytes (FindKartAiTargetShine to func_02089a24 take it first): the Kart it follows at 0x00, a
-// LinkCursor at 0x28, vectors at 0x44, 0x50, 0x60 and 0xdc, a Unk02089a24 at 0xe8, a KartAiItemUse at 0x11c, a
+// LinkCursor at 0x28, vectors at 0x44, 0x50, 0x60 and 0xdc, a KartAiRaceSpeedLimit at 0xe8, a KartAiItemUse at 0x11c, a
 // KartAiSpeedLimit at 0x140 and a word at 0x154.
 typedef struct KartAi {
     /* 00 */ Kart *mKart;
@@ -54,7 +54,7 @@ typedef struct KartAi {
     /* 28 */ LinkCursor mBattleLinkCursor;
     /* 44 */ Vec3 mLinkPosWithSideOffset;
     /* 50 */ Vec3 mTargetKartPos;
-// Points at the position the CPU kart heads to: mLinkPosWithSideOffset, mTargetKartPos or mTargetShinePos.
+    // Points at the position the CPU kart heads to: mLinkPosWithSideOffset, mTargetKartPos or mTargetShinePos.
     /* 5c */ Vec3 *mHeadingPos;
     /* 60 */ Vec3 mSideOffset;
     /* 6c */ u16 mUnk_6c;
@@ -93,7 +93,7 @@ typedef struct KartAi {
     /* d6 */ u8 mUnk_d6[2];
     /* d8 */ s32 mEntryForwardDot;
     /* dc */ Vec3 mTargetShinePos;
-    /* e8 */ Unk02089a24 mUnk_e8;
+    /* e8 */ KartAiRaceSpeedLimit mUnk_e8;
     /* 11c */ KartAiItemUse mItemUse;
     /* 140 */ KartAiSpeedLimit mAiSpeedLimit;
     /* 154 */ s32 mUnk_154;
@@ -101,7 +101,7 @@ typedef struct KartAi {
 
 void AdvanceBattleKartAiSpeedLimit(KartAiSpeedLimit *a, KartAi *b);
 void SetBattleKartAiTurnSpeedLimit(KartAiSpeedLimit *a, KartAi *b, s32 c);
-void func_02089a24(KartAi *a, Unk02089a24 *b);
+void func_02089a24(KartAi *a, KartAiRaceSpeedLimit *b);
 void SetupBattleKartAiParams(void);
 void ResetBattleKartAi(KartAi *p);
 void SetupBattleKartAi(KartAi *p, Kart *q);

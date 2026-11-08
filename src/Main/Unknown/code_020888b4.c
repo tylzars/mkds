@@ -109,7 +109,7 @@ void SetBattleKartAiTurnSpeedLimit(KartAiSpeedLimit *a, KartAi *b, s32 c) {
     }
 }
 
-void func_02089a24(KartAi *a, Unk02089a24 *b) {
+void func_02089a24(KartAi *a, KartAiRaceSpeedLimit *b) {
     BOOL c = FALSE;
     s32 v;
     s32 t;

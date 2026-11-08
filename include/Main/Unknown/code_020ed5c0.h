@@ -77,10 +77,10 @@ typedef struct KartModelColorBlend {
 // Words and halfwords from 0x24 of a KartModelsEntry.
 typedef struct CharacterAnimationState {
     /* 00 */ s32 mTurnFrameOffset;
-    /* 04 */ BOOL mUnk_04;
+    /* 04 */ BOOL mAnimationChangeTimerSet;
     /* 08 */ s32 mMiddleFrame;
     /* 0c */ u8 mUnk_0c[4];
-    /* 10 */ s16 mUnk_10;
+    /* 10 */ s16 mAnimationChangeTimer;
     /* 12 */ u8 mUnk_12[2];
     /* 14 */ BOOL mNextAnimationPending;
     /* 18 */ s16 mNextAnimationIndex;
@@ -107,14 +107,14 @@ typedef struct KartModelsEntry {
     /* 058 */ s32 mUnk_058;
     /* 05c */ s32 mUnk_05c;
     /* 060 */ BOOL mUnk_060;
-    /* 064 */ BOOL mUnk_064;
+    /* 064 */ BOOL mStarModelsSet;
     /* 068 */ u16 mVariant;
     /* 06a */ KartModelColorBlend mColorBlend;
     /* 096 */ u8 mUnk_096[2];
     /* 098 */ u8 mUnk_098[0xc];
     /* 0a4 */ s32 mUnk_0a4;
     /* 0a8 */ u8 mUnk_0a8[4];
-    /* 0ac */ BOOL mUnk_0ac;
+    /* 0ac */ BOOL mFaceAnimationRemoved;
     /* 0b0 */ s32 mUnk_0b0;
 } KartModelsEntry;
 

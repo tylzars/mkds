@@ -304,7 +304,7 @@ void func_02072930(Kart *kart) {
     }
     if (kart->mUnk_4c & 0x40) {
         kart->mUnk_4c &= ~0x40;
-        func_0207b1a8(kart);
+        StopKartStarModels(kart);
         kart->mItemEffect = 0;
         StopKartStarEffects(kart->mIndex);
         func_02068a64(kart, 0, 1);
@@ -444,7 +444,7 @@ void ResetKart(Kart *kart) {
     Vec3 zeroVector;
     u16 i;
 
-    func_0207b8c4(kart->mKartModelsEntry);
+    ClearCharacterTurnAndNextAnimation(kart->mKartModelsEntry);
     kart->mUnk_44 = 0;
     kart->mUnk_48 = 0;
     kart->mUnk_4c = 0;
@@ -1285,7 +1285,7 @@ void AdvanceKartToKeyedPlacement(Kart *kart) {
         itemEffectState->mUnk_06++;
         if (itemEffectState->mUnk_06 > KART_TERESA_MAX_FRAMES) {
             kart->mUnk_4c &= ~0x40;
-            func_0207b1a8(kart);
+            StopKartStarModels(kart);
             kart->mItemEffect = 0;
             StopKartStarEffects(kart->mIndex);
             func_02068a64(kart, 0, 1);

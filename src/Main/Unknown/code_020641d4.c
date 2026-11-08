@@ -120,7 +120,7 @@ void func_020641f0(Kart *kart) {
     if (characterAnimation != NULL && characterAnimation->mUnk_18 != 0) {
         AdvanceKartCharacterAnimation(kart);
         if (IsKartEnded(kart->mIndex) != 0) {
-            func_0207b354(kart);
+            AdvanceKartAnimationChangeTimer(kart);
         }
         characterAnimation = kart->mKartModelsEntry->mCharacterAnimation;
         *characterAnimation->mUnk_1c[characterAnimation->mUnk_1a] = characterAnimation->mUnk_0c;

@@ -5,8 +5,8 @@
 struct KartAiItemUse;
 struct KartAi;
 
-// Entry of the tables at gBattleItemInUseEntries, data_0217ae34 and data_0217ae38, 0xc bytes: a function called with
-// the KartAiItemUse and the KartAi at 0x00 and halfwords at 0x08 and 0x0a.
+// Entry of the tables at gBattleItemInUseEntries, gCurrentItemInUseEntries and gCurrentHeldItemEntries, 0xc bytes: a
+// function called with the KartAiItemUse and the KartAi at 0x00 and halfwords at 0x08 and 0x0a.
 typedef struct KartAiItemUseEntry {
     /* 00 */ void (*mHandler)(struct KartAiItemUse *a, struct KartAi *b);
 // 0: item bits only; 1: then the bit 0x40 (ITEM_THROW_FORWARD_BIT); 2: then the bit 0x80.
@@ -15,8 +15,8 @@ typedef struct KartAiItemUseEntry {
     /* 0a */ u16 mTimerRandomLimit;
 } KartAiItemUseEntry;
 
-// Object of 0x24 bytes at 0x11c of the object KartAi starts: pointers to entries of the tables at data_0217ae38
-// (0x04) and gBattleItemInUseEntries or data_0217ae34 (0x08).
+// Object of 0x24 bytes at 0x11c of the object KartAi starts: pointers to entries of the tables at
+// gCurrentHeldItemEntries (0x04) and gBattleItemInUseEntries or gCurrentItemInUseEntries (0x08).
 typedef struct KartAiItemUse {
     /* 00 */ s16 mHeldItemTimer;
     /* 02 */ s16 mItemInUseTimer;

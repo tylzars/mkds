@@ -1439,8 +1439,8 @@ typedef struct KartEffects {
 
 // Per-Kart effect records, allocated for every Kart by InitKartEffects and indexed by Kart.mIndex.
 extern KartEffects *gKartEffects;
-extern struct KartAiItemUseEntry *data_0217ae34;
-extern struct KartAiItemUseEntry *data_0217ae38;
+extern struct KartAiItemUseEntry *gCurrentItemInUseEntries;
+extern struct KartAiItemUseEntry *gCurrentHeldItemEntries;
 struct PointLinkCursor;
 struct KartAi;
 struct LinkCursor;

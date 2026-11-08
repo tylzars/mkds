@@ -29,521 +29,532 @@
 #include "Main/Unknown/code_0203c5f8.h"
 #include "Main/Unknown/code_0203c8dc.h"
 
-void func_0207d6a4(struct Unk02089a24 *a, struct KartAi *b) {
-    s32 m;
-    s32 t;
-    s32 v;
+void func_0207d6a4(struct KartAiRaceSpeedLimit *raceSpeedLimit, struct KartAi *kartAi) {
+    s32 turnSpeedLimit;
+    s32 turnAngle;
+    s32 limit;
     s32 x;
 
-    if (GetRaceUpdateFramesMod8() == b->mIndex) {
-        a->mUnk_08 = 0;
-        v = b->mKart->mSpeedLimitGoal;
-        if (v > 0xa000) {
-            v = 0xa000;
+    if (GetRaceUpdateFramesMod8() == kartAi->mIndex) {
+        raceSpeedLimit->mUnk_08 = 0;
+        limit = kartAi->mKart->mSpeedLimitGoal;
+        if (limit > 0xa000) {
+            limit = 0xa000;
         }
-        a->mTurnSpeedLimit = v;
-        t = b->mTurnAngleDegrees;
-        if (t > 0x5000) {
-            x = ((s64) (t - 0x5000) * 0x5b) >> 12;
+        raceSpeedLimit->mTurnSpeedLimit = limit;
+        turnAngle = kartAi->mTurnAngleDegrees;
+        if (turnAngle > 0x5000) {
+            x = ((s64) (turnAngle - 0x5000) * 0x5b) >> 12;
             if (x > 0x1000) {
                 x = 0x1000;
             }
             x = ((s64) x * 0x668) >> 12;
-            a->mTurnSpeedLimit = ((s64) (0x1000 - x) * 0xa000) >> 12;
+            raceSpeedLimit->mTurnSpeedLimit = ((s64) (0x1000 - x) * 0xa000) >> 12;
         }
-        m = a->mTurnSpeedLimit;
-        if (m < v) {
-            v = m;
+        turnSpeedLimit = raceSpeedLimit->mTurnSpeedLimit;
+        if (turnSpeedLimit < limit) {
+            limit = turnSpeedLimit;
         }
-        if (v > 0xa000) {
-            v = 0xa000;
+        if (limit > 0xa000) {
+            limit = 0xa000;
         }
-        a->mSpeedLimit = v;
+        raceSpeedLimit->mSpeedLimit = limit;
     }
-    if (b->mKart->mState != KART_STATE_NORMAL) {
+    if (kartAi->mKart->mState != KART_STATE_NORMAL) {
         return;
     }
-    if ((b->mKart->mUnk_48 & 0x10000020) != 0) {
+    if ((kartAi->mKart->mUnk_48 & 0x10000020) != 0) {
         return;
     }
-    x = func_0207fe70((PointLinkCursor *) &b->mUnk_08.mUnk_00);
-    b->mKart->mSpeedLimitGoal = ((s64) a->mSpeedLimit * x + 0x800) >> 12;
+    x = func_0207fe70((PointLinkCursor *) &kartAi->mUnk_08.mUnk_00);
+    kartAi->mKart->mSpeedLimitGoal = ((s64) raceSpeedLimit->mSpeedLimit * x + 0x800) >> 12;
 }
 
-void func_0207d5b8(KartAiItemUse *a, struct KartAi *b) {
-    BOOL t;
-    Unk0217aebc_128 *r;
-    u16 n;
-    u32 v;
+void func_0207d5b8(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    BOOL timerRanOut;
+    Unk0217aebc_128 *random;
+    u16 randomLimit;
+    u32 randomPart;
 
-    t = FALSE;
-    a->mHeldItemTimer--;
-    if (a->mHeldItemTimer <= 0) {
-        a->mHeldItemTimer = 0;
-        t = TRUE;
+    timerRanOut = FALSE;
+    itemUse->mHeldItemTimer--;
+    if (itemUse->mHeldItemTimer <= 0) {
+        itemUse->mHeldItemTimer = 0;
+        timerRanOut = TRUE;
     }
-    if (t == FALSE) {
+    if (timerRanOut == FALSE) {
         return;
     }
-    RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-    a->mItemBitsEveryCall = 0;
-    if (a->mItemInUseEntry == NULL) {
+    RequestBits(kartAi->mKart->mEntryIndex, ITEM_BITS);
+    itemUse->mItemBitsEveryCall = 0;
+    if (itemUse->mItemInUseEntry == NULL) {
         return;
     }
-    n = a->mItemInUseEntry->mTimerRandomLimit;
-    r = GetKartAiRandom();
-    if (n == 0) {
-        v = 0;
+    randomLimit = itemUse->mItemInUseEntry->mTimerRandomLimit;
+    random = GetKartAiRandom();
+    if (randomLimit == 0) {
+        randomPart = 0;
     } else {
-        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+        random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+        randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                        : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
     }
-    a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
+    itemUse->mItemInUseTimer = itemUse->mItemInUseEntry->mTimerBase + (u16) randomPart;
 }
 
-void UseItemAfterHeld(KartAiItemUse *a, struct KartAi *b) {
-    BOOL t;
-    Unk0217aebc_128 *r;
-    u16 n;
-    u32 v;
+void UseItemAfterHeld(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    BOOL timerRanOut;
+    Unk0217aebc_128 *random;
+    u16 randomLimit;
+    u32 randomPart;
 
-    t = FALSE;
-    a->mHeldItemTimer--;
-    if (a->mHeldItemTimer <= 0) {
-        a->mHeldItemTimer = 0;
-        t = TRUE;
+    timerRanOut = FALSE;
+    itemUse->mHeldItemTimer--;
+    if (itemUse->mHeldItemTimer <= 0) {
+        itemUse->mHeldItemTimer = 0;
+        timerRanOut = TRUE;
     }
-    if (t == FALSE) {
+    if (timerRanOut == FALSE) {
         return;
     }
-    RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-    a->mItemBitsEveryCall = 0;
-    if (a->mItemInUseEntry == NULL) {
+    RequestBits(kartAi->mKart->mEntryIndex, ITEM_BITS);
+    itemUse->mItemBitsEveryCall = 0;
+    if (itemUse->mItemInUseEntry == NULL) {
         return;
     }
-    n = a->mItemInUseEntry->mTimerRandomLimit;
-    r = GetKartAiRandom();
-    if (n == 0) {
-        v = 0;
+    randomLimit = itemUse->mItemInUseEntry->mTimerRandomLimit;
+    random = GetKartAiRandom();
+    if (randomLimit == 0) {
+        randomPart = 0;
     } else {
-        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+        random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+        randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                        : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
     }
-    a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
+    itemUse->mItemInUseTimer = itemUse->mItemInUseEntry->mTimerBase + (u16) randomPart;
 }
-void func_0207d474(KartAiItemUse *a, struct KartAi *b) {
-    RaceSetup *d;
-    u16 n;
+void func_0207d474(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    RaceSetup *raceSetup;
+    u16 kartIndex;
 
-    d = gRaceSetup;
-    n = b->mIndex;
-    if ((d->mCurrentEntries[n].mPlayer.mUnk_14 & 1) != 0) {
-        if (a->mRandomValue <= 0xc00) {
-            a->mItemBitsEveryCall = 1;
+    raceSetup = gRaceSetup;
+    kartIndex = kartAi->mIndex;
+    if ((raceSetup->mCurrentEntries[kartIndex].mPlayer.mUnk_14 & 1) != 0) {
+        if (itemUse->mRandomValue <= 0xc00) {
+            itemUse->mItemBitsEveryCall = 1;
             return;
         }
     }
-    UseItemByTargetOrRankAfterHeld(a, b);
+    UseItemByTargetOrRankAfterHeld(itemUse, kartAi);
 }
-void func_0207d3ec(KartAiItemUse *a, struct KartAi *b) {
-    RaceSetup *d;
-    u16 n;
+void func_0207d3ec(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    RaceSetup *raceSetup;
+    u16 kartIndex;
 
-    d = gRaceSetup;
-    n = b->mIndex;
-    if ((d->mCurrentEntries[n].mPlayer.mUnk_14 & 1) != 0) {
-        if (a->mRandomValue <= 0x400) {
-            a->mItemBitsEveryCall = 1;
+    raceSetup = gRaceSetup;
+    kartIndex = kartAi->mIndex;
+    if ((raceSetup->mCurrentEntries[kartIndex].mPlayer.mUnk_14 & 1) != 0) {
+        if (itemUse->mRandomValue <= 0x400) {
+            itemUse->mItemBitsEveryCall = 1;
             return;
         }
     }
     {
-        BOOL t;
+        BOOL timerRanOut;
 
-        t = FALSE;
-        a->mHeldItemTimer--;
-        if (a->mHeldItemTimer <= 0) {
-            a->mHeldItemTimer = 0;
-            t = TRUE;
+        timerRanOut = FALSE;
+        itemUse->mHeldItemTimer--;
+        if (itemUse->mHeldItemTimer <= 0) {
+            itemUse->mHeldItemTimer = 0;
+            timerRanOut = TRUE;
         }
-        if (t == FALSE) {
+        if (timerRanOut == FALSE) {
             return;
         }
     }
-    RequestItemBitsByKartRank(a, b);
+    RequestItemBitsByKartRank(itemUse, kartAi);
 }
 
-void UseItemByTargetOrRankAfterHeld(KartAiItemUse *a, struct KartAi *b) {
-    BOOL t;
+void UseItemByTargetOrRankAfterHeld(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    BOOL timerRanOut;
 
-    t = FALSE;
-    a->mHeldItemTimer--;
-    if (a->mHeldItemTimer <= 0) {
-        a->mHeldItemTimer = 0;
-        t = TRUE;
+    timerRanOut = FALSE;
+    itemUse->mHeldItemTimer--;
+    if (itemUse->mHeldItemTimer <= 0) {
+        itemUse->mHeldItemTimer = 0;
+        timerRanOut = TRUE;
     }
-    if (t == FALSE) {
+    if (timerRanOut == FALSE) {
         return;
     }
-    UseItemByTargetOrRank(a, b);
+    UseItemByTargetOrRank(itemUse, kartAi);
 }
 
-void UseItemByRankAfterHeld(KartAiItemUse *a, struct KartAi *b) {
-    BOOL t;
+void UseItemByRankAfterHeld(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    BOOL timerRanOut;
 
-    t = FALSE;
-    a->mHeldItemTimer--;
-    if (a->mHeldItemTimer <= 0) {
-        a->mHeldItemTimer = 0;
-        t = TRUE;
+    timerRanOut = FALSE;
+    itemUse->mHeldItemTimer--;
+    if (itemUse->mHeldItemTimer <= 0) {
+        itemUse->mHeldItemTimer = 0;
+        timerRanOut = TRUE;
     }
-    if (t == FALSE) {
+    if (timerRanOut == FALSE) {
         return;
     }
-    RequestItemBitsByKartRank(a, b);
+    RequestItemBitsByKartRank(itemUse, kartAi);
 }
-void UseItemByTargetOrRank(KartAiItemUse *a, struct KartAi *b) {
-    Unk0217aebc_128 *r;
-    u16 n;
-    u32 v;
+void UseItemByTargetOrRank(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    Unk0217aebc_128 *random;
+    u16 randomLimit;
+    u32 randomPart;
 
-    if (IsTargetKartSet(b) != FALSE) {
-        if (GetTargetAhead(b) != 0) {
-            RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-            a->mThrowForwardPending = 1;
-            a->mThrowForwardTimer = 2;
-            a->mItemBitsEveryCall = 0;
-            if (a->mItemInUseEntry == NULL) {
+    if (IsTargetKartSet(kartAi) != FALSE) {
+        if (GetTargetAhead(kartAi) != 0) {
+            RequestBits(kartAi->mKart->mEntryIndex, ITEM_BITS);
+            itemUse->mThrowForwardPending = 1;
+            itemUse->mThrowForwardTimer = 2;
+            itemUse->mItemBitsEveryCall = 0;
+            if (itemUse->mItemInUseEntry == NULL) {
                 return;
             }
-            n = a->mItemInUseEntry->mTimerRandomLimit;
-            r = GetKartAiRandom();
-            if (n == 0) {
-                v = 0;
+            randomLimit = itemUse->mItemInUseEntry->mTimerRandomLimit;
+            random = GetKartAiRandom();
+            if (randomLimit == 0) {
+                randomPart = 0;
             } else {
-                r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-                v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+                random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+                randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                                : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
             }
-            a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
+            itemUse->mItemInUseTimer = itemUse->mItemInUseEntry->mTimerBase + (u16) randomPart;
             return;
         } else {
-            RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-            a->mThrowBehindPending = 1;
-            a->mThrowBehindTimer = 2;
-            a->mItemBitsEveryCall = 0;
-            if (a->mItemInUseEntry == NULL) {
+            RequestBits(kartAi->mKart->mEntryIndex, ITEM_BITS);
+            itemUse->mThrowBehindPending = 1;
+            itemUse->mThrowBehindTimer = 2;
+            itemUse->mItemBitsEveryCall = 0;
+            if (itemUse->mItemInUseEntry == NULL) {
                 return;
             }
-            n = a->mItemInUseEntry->mTimerRandomLimit;
-            r = GetKartAiRandom();
-            if (n == 0) {
-                v = 0;
+            randomLimit = itemUse->mItemInUseEntry->mTimerRandomLimit;
+            random = GetKartAiRandom();
+            if (randomLimit == 0) {
+                randomPart = 0;
             } else {
-                r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-                v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+                random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+                randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                                : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
             }
-            a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
+            itemUse->mItemInUseTimer = itemUse->mItemInUseEntry->mTimerBase + (u16) randomPart;
             return;
         }
     } else {
-        RequestItemBitsByKartRank(a, b);
+        RequestItemBitsByKartRank(itemUse, kartAi);
     }
 }
 // First place sends the bit 0x80, last place ITEM_THROW_FORWARD_BIT, the places between follow mThenBitKind.
-void RequestItemBitsByKartRank(KartAiItemUse *a, struct KartAi *b) {
-    Unk0217aebc_128 *r;
+void RequestItemBitsByKartRank(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    Unk0217aebc_128 *random;
     s32 rank;
-    u16 n;
-    u32 v;
+    u16 randomLimit;
+    u32 randomPart;
 
-    rank = GetKartRank(b->mIndex);
+    rank = GetKartRank(kartAi->mIndex);
     if (rank == 1) {
-        RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-        a->mThrowBehindPending = 1;
-        a->mThrowBehindTimer = 2;
-        a->mItemBitsEveryCall = 0;
-        if (a->mItemInUseEntry == NULL) {
+        RequestBits(kartAi->mKart->mEntryIndex, ITEM_BITS);
+        itemUse->mThrowBehindPending = 1;
+        itemUse->mThrowBehindTimer = 2;
+        itemUse->mItemBitsEveryCall = 0;
+        if (itemUse->mItemInUseEntry == NULL) {
             return;
         }
-        n = a->mItemInUseEntry->mTimerRandomLimit;
-        r = GetKartAiRandom();
-        if (n == 0) {
-            v = 0;
+        randomLimit = itemUse->mItemInUseEntry->mTimerRandomLimit;
+        random = GetKartAiRandom();
+        if (randomLimit == 0) {
+            randomPart = 0;
         } else {
-            r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-            v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+            random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+            randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                            : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
         }
-        a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
+        itemUse->mItemInUseTimer = itemUse->mItemInUseEntry->mTimerBase + (u16) randomPart;
         return;
     } else if ((u32) rank >= 2 && rank <= gRaceSetup->mKartCount - 1) {
-        switch (a->mHeldItemEntry->mThenBitKind) {
+        switch (itemUse->mHeldItemEntry->mThenBitKind) {
             case 0:
-                RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-                a->mItemBitsEveryCall = 0;
-                if (a->mItemInUseEntry == NULL) {
+                RequestBits(kartAi->mKart->mEntryIndex, ITEM_BITS);
+                itemUse->mItemBitsEveryCall = 0;
+                if (itemUse->mItemInUseEntry == NULL) {
                     return;
                 }
-                n = a->mItemInUseEntry->mTimerRandomLimit;
-                r = GetKartAiRandom();
-                if (n == 0) {
-                    v = 0;
+                randomLimit = itemUse->mItemInUseEntry->mTimerRandomLimit;
+                random = GetKartAiRandom();
+                if (randomLimit == 0) {
+                    randomPart = 0;
                 } else {
-                    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-                    v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+                    random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+                    randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                                    : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
                 }
-                a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
+                itemUse->mItemInUseTimer = itemUse->mItemInUseEntry->mTimerBase + (u16) randomPart;
                 return;
             case 1:
-                RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-                a->mThrowForwardPending = 1;
-                a->mThrowForwardTimer = 2;
-                a->mItemBitsEveryCall = 0;
-                if (a->mItemInUseEntry == NULL) {
+                RequestBits(kartAi->mKart->mEntryIndex, ITEM_BITS);
+                itemUse->mThrowForwardPending = 1;
+                itemUse->mThrowForwardTimer = 2;
+                itemUse->mItemBitsEveryCall = 0;
+                if (itemUse->mItemInUseEntry == NULL) {
                     return;
                 }
-                n = a->mItemInUseEntry->mTimerRandomLimit;
-                r = GetKartAiRandom();
-                if (n == 0) {
-                    v = 0;
+                randomLimit = itemUse->mItemInUseEntry->mTimerRandomLimit;
+                random = GetKartAiRandom();
+                if (randomLimit == 0) {
+                    randomPart = 0;
                 } else {
-                    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-                    v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+                    random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+                    randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                                    : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
                 }
-                a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
+                itemUse->mItemInUseTimer = itemUse->mItemInUseEntry->mTimerBase + (u16) randomPart;
                 return;
             case 2:
-                RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-                a->mThrowBehindPending = 1;
-                a->mThrowBehindTimer = 2;
-                a->mItemBitsEveryCall = 0;
-                if (a->mItemInUseEntry == NULL) {
+                RequestBits(kartAi->mKart->mEntryIndex, ITEM_BITS);
+                itemUse->mThrowBehindPending = 1;
+                itemUse->mThrowBehindTimer = 2;
+                itemUse->mItemBitsEveryCall = 0;
+                if (itemUse->mItemInUseEntry == NULL) {
                     return;
                 }
-                n = a->mItemInUseEntry->mTimerRandomLimit;
-                r = GetKartAiRandom();
-                if (n == 0) {
-                    v = 0;
+                randomLimit = itemUse->mItemInUseEntry->mTimerRandomLimit;
+                random = GetKartAiRandom();
+                if (randomLimit == 0) {
+                    randomPart = 0;
                 } else {
-                    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-                    v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+                    random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+                    randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                                    : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
                 }
-                a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
+                itemUse->mItemInUseTimer = itemUse->mItemInUseEntry->mTimerBase + (u16) randomPart;
                 return;
             default:
                 return;
         }
     } else {
-        RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-        a->mThrowForwardPending = 1;
-        a->mThrowForwardTimer = 2;
-        a->mItemBitsEveryCall = 0;
-        if (a->mItemInUseEntry == NULL) {
+        RequestBits(kartAi->mKart->mEntryIndex, ITEM_BITS);
+        itemUse->mThrowForwardPending = 1;
+        itemUse->mThrowForwardTimer = 2;
+        itemUse->mItemBitsEveryCall = 0;
+        if (itemUse->mItemInUseEntry == NULL) {
             return;
         }
-        n = a->mItemInUseEntry->mTimerRandomLimit;
-        r = GetKartAiRandom();
-        if (n == 0) {
-            v = 0;
+        randomLimit = itemUse->mItemInUseEntry->mTimerRandomLimit;
+        random = GetKartAiRandom();
+        if (randomLimit == 0) {
+            randomPart = 0;
         } else {
-            r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-            v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+            random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+            randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                            : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
         }
-        a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
+        itemUse->mItemInUseTimer = itemUse->mItemInUseEntry->mTimerBase + (u16) randomPart;
         return;
     }
 }
 
-void UseItemAfterHeldIfTurnUnder20(KartAiItemUse *a, struct KartAi *b) {
-    BOOL t;
-    Unk0217aebc_128 *r;
-    u16 n;
-    u32 v;
+void UseItemAfterHeldIfTurnUnder20(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    BOOL timerRanOut;
+    Unk0217aebc_128 *random;
+    u16 randomLimit;
+    u32 randomPart;
 
-    t = FALSE;
-    a->mHeldItemTimer--;
-    if (a->mHeldItemTimer <= 0) {
-        a->mHeldItemTimer = 0;
-        t = TRUE;
+    timerRanOut = FALSE;
+    itemUse->mHeldItemTimer--;
+    if (itemUse->mHeldItemTimer <= 0) {
+        itemUse->mHeldItemTimer = 0;
+        timerRanOut = TRUE;
     }
-    if (t == FALSE) {
+    if (timerRanOut == FALSE) {
         return;
     }
-    if (b->mTurnAngleDegrees >= 0x14000) {
+    if (kartAi->mTurnAngleDegrees >= 0x14000) {
         return;
     }
-    RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-    a->mItemBitsEveryCall = 0;
-    if (a->mItemInUseEntry == NULL) {
+    RequestBits(kartAi->mKart->mEntryIndex, ITEM_BITS);
+    itemUse->mItemBitsEveryCall = 0;
+    if (itemUse->mItemInUseEntry == NULL) {
         return;
     }
-    n = a->mItemInUseEntry->mTimerRandomLimit;
-    r = GetKartAiRandom();
-    if (n == 0) {
-        v = 0;
+    randomLimit = itemUse->mItemInUseEntry->mTimerRandomLimit;
+    random = GetKartAiRandom();
+    if (randomLimit == 0) {
+        randomPart = 0;
     } else {
-        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+        random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+        randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                        : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
     }
-    a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
+    itemUse->mItemInUseTimer = itemUse->mItemInUseEntry->mTimerBase + (u16) randomPart;
 }
 
-void func_0207cb74(KartAiItemUse *a, struct KartAi *b) {
-    BOOL t;
-    Unk0217aebc_128 *r;
-    u16 n;
-    u32 v;
+void func_0207cb74(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    BOOL timerRanOut;
+    Unk0217aebc_128 *random;
+    u16 randomLimit;
+    u32 randomPart;
 
-    t = FALSE;
-    a->mHeldItemTimer--;
-    if (a->mHeldItemTimer <= 0) {
-        a->mHeldItemTimer = 0;
-        t = TRUE;
+    timerRanOut = FALSE;
+    itemUse->mHeldItemTimer--;
+    if (itemUse->mHeldItemTimer <= 0) {
+        itemUse->mHeldItemTimer = 0;
+        timerRanOut = TRUE;
     }
-    if (t == FALSE) {
+    if (timerRanOut == FALSE) {
         return;
     }
-    if (b->mTurnAngleDegrees >= 0x14000) {
+    if (kartAi->mTurnAngleDegrees >= 0x14000) {
         return;
     }
-    RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-    a->mItemBitsEveryCall = 0;
-    if (a->mHeldItemEntry == NULL) {
+    RequestBits(kartAi->mKart->mEntryIndex, ITEM_BITS);
+    itemUse->mItemBitsEveryCall = 0;
+    if (itemUse->mHeldItemEntry == NULL) {
         return;
     }
-    n = a->mHeldItemEntry->mTimerRandomLimit;
-    r = GetKartAiRandom();
-    if (n == 0) {
-        v = 0;
+    randomLimit = itemUse->mHeldItemEntry->mTimerRandomLimit;
+    random = GetKartAiRandom();
+    if (randomLimit == 0) {
+        randomPart = 0;
     } else {
-        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+        random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+        randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                        : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
     }
-    a->mHeldItemTimer = a->mHeldItemEntry->mTimerBase + (u16) v;
+    itemUse->mHeldItemTimer = itemUse->mHeldItemEntry->mTimerBase + (u16) randomPart;
 }
 
-u32 func_0207cb70(u32 p0) {
-    return p0;
+u32 func_0207cb70(u32 value) {
+    return value;
 // Calls one of two handlers, by whether the item in use is the circling kind.
 }
 
-void func_0207cb0c(KartAiItemUse *a, struct KartAi *b) {
-    if (gKartItems[b->mIndex].mItemInUse.mUseKind == ITEM_USE_KIND_CIRCLE) {
-        data_0217ae48(a, b);
+void UseItemAfterInUseByCircleKind(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    if (gKartItems[kartAi->mIndex].mItemInUse.mUseKind == ITEM_USE_KIND_CIRCLE) {
+        data_0217ae48(itemUse, kartAi);
     } else {
-        data_0217ae44(a, b);
+        data_0217ae44(itemUse, kartAi);
     }
 // Calls one of two handlers, by whether the item in use is the trail kind.
 }
 
-void func_0207caa8(KartAiItemUse *a, struct KartAi *b) {
-    if (gKartItems[b->mIndex].mItemInUse.mUseKind == ITEM_USE_KIND_TRAIL) {
-        data_0217ae3c(a, b);
+void UseItemAfterInUseByTrailKind(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    if (gKartItems[kartAi->mIndex].mItemInUse.mUseKind == ITEM_USE_KIND_TRAIL) {
+        data_0217ae3c(itemUse, kartAi);
     } else {
-        data_0217ae40(a, b);
+        data_0217ae40(itemUse, kartAi);
     }
 }
 
-void UseItemByTargetOrRankAfterInUse(KartAiItemUse *a, struct KartAi *b) {
-    BOOL r;
+void UseItemByTargetOrRankAfterInUse(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    BOOL timerRanOut;
 
-    r = FALSE;
-    a->mItemInUseTimer--;
-    if (a->mItemInUseTimer <= 0) {
-        a->mItemInUseTimer = 0;
-        r = TRUE;
+    timerRanOut = FALSE;
+    itemUse->mItemInUseTimer--;
+    if (itemUse->mItemInUseTimer <= 0) {
+        itemUse->mItemInUseTimer = 0;
+        timerRanOut = TRUE;
     }
-    if (r == FALSE) {
+    if (timerRanOut == FALSE) {
         return;
     }
-    UseItemByTargetOrRank(a, b);
+    UseItemByTargetOrRank(itemUse, kartAi);
 }
 
-void UseItemByRankAfterInUse(KartAiItemUse *a, struct KartAi *b) {
-    BOOL r;
+void UseItemByRankAfterInUse(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    BOOL timerRanOut;
 
-    r = FALSE;
-    a->mItemInUseTimer--;
-    if (a->mItemInUseTimer <= 0) {
-        a->mItemInUseTimer = 0;
-        r = TRUE;
+    timerRanOut = FALSE;
+    itemUse->mItemInUseTimer--;
+    if (itemUse->mItemInUseTimer <= 0) {
+        itemUse->mItemInUseTimer = 0;
+        timerRanOut = TRUE;
     }
-    if (r == FALSE) {
+    if (timerRanOut == FALSE) {
         return;
     }
-    RequestItemBitsByKartRank(a, b);
+    RequestItemBitsByKartRank(itemUse, kartAi);
 }
 
-void func_0207c978(KartAiItemUse *a, struct KartAi *b) {
-    KartItems *e;
-    s32 t;
-    BOOL r;
+void func_0207c978(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    KartItems *kartItems;
+    s32 heldItemIndex;
+    BOOL timerRanOut;
 
-    e = &gKartItems[b->mIndex];
-    t = e->mHeldItem.mItemInfoIndex;
-    if (a->mItemBitsEveryCall != 0) {
-        if (t != 0x13) {
-            a->mUnk_0c = 1;
+    kartItems = &gKartItems[kartAi->mIndex];
+    heldItemIndex = kartItems->mHeldItem.mItemInfoIndex;
+    if (itemUse->mItemBitsEveryCall != 0) {
+        if (heldItemIndex != 0x13) {
+            itemUse->mUnk_0c = 1;
         }
-        if (a->mUnk_0c == 0) {
+        if (itemUse->mUnk_0c == 0) {
             return;
         }
-        r = FALSE;
-        a->mItemInUseTimer--;
-        if (a->mItemInUseTimer <= 0) {
-            a->mItemInUseTimer = 0;
-            r = TRUE;
+        timerRanOut = FALSE;
+        itemUse->mItemInUseTimer--;
+        if (itemUse->mItemInUseTimer <= 0) {
+            itemUse->mItemInUseTimer = 0;
+            timerRanOut = TRUE;
         }
-        if (r == FALSE) {
+        if (timerRanOut == FALSE) {
             return;
         }
-        UseItemByTargetOrRank(a, b);
+        UseItemByTargetOrRank(itemUse, kartAi);
     } else {
-        UseItemByTargetOrRank(a, b);
+        UseItemByTargetOrRank(itemUse, kartAi);
     }
 }
 
-void func_0207c8d8(KartAiItemUse *a, struct KartAi *b) {
-    KartItems *e;
-    s32 t;
-    BOOL r;
+void func_0207c8d8(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    KartItems *kartItems;
+    s32 heldItemIndex;
+    BOOL timerRanOut;
 
-    e = &gKartItems[b->mIndex];
-    t = e->mHeldItem.mItemInfoIndex;
-    if (a->mItemBitsEveryCall != 0) {
-        if (t != 0x13) {
-            a->mUnk_0c = 1;
+    kartItems = &gKartItems[kartAi->mIndex];
+    heldItemIndex = kartItems->mHeldItem.mItemInfoIndex;
+    if (itemUse->mItemBitsEveryCall != 0) {
+        if (heldItemIndex != 0x13) {
+            itemUse->mUnk_0c = 1;
         }
-        if (a->mUnk_0c == 0) {
+        if (itemUse->mUnk_0c == 0) {
             return;
         }
-        r = FALSE;
-        a->mItemInUseTimer--;
-        if (a->mItemInUseTimer <= 0) {
-            a->mItemInUseTimer = 0;
-            r = TRUE;
+        timerRanOut = FALSE;
+        itemUse->mItemInUseTimer--;
+        if (itemUse->mItemInUseTimer <= 0) {
+            itemUse->mItemInUseTimer = 0;
+            timerRanOut = TRUE;
         }
-        if (r == FALSE) {
+        if (timerRanOut == FALSE) {
             return;
         }
-        RequestItemBitsByKartRank(a, b);
+        RequestItemBitsByKartRank(itemUse, kartAi);
     } else {
-        RequestItemBitsByKartRank(a, b);
+        RequestItemBitsByKartRank(itemUse, kartAi);
     }
 }
 
-void func_0207c78c(void) {
+void SetupRaceItemEntries(void) {
     switch (gRaceSetup->mCpuDifficulty) {
         case CPU_DIFFICULTY_EASY:
-            data_0217ae38 = data_usa_021554a4;
-            data_0217ae34 = data_usa_0215524c;
+            gCurrentHeldItemEntries = gRaceEasyHeldItemEntries;
+            gCurrentItemInUseEntries = gRaceItemInUseEntries;
             data_0217ae48 = UseItemByRankAfterInUse;
             data_0217ae44 = func_0207c8d8;
             data_0217ae3c = UseItemByRankAfterInUse;
             data_0217ae40 = func_0207c8d8;
             break;
         case CPU_DIFFICULTY_NORMAL:
-            data_0217ae38 = data_usa_021552f4;
-            data_0217ae34 = data_usa_0215524c;
+            gCurrentHeldItemEntries = gRaceNormalHeldItemEntries;
+            gCurrentItemInUseEntries = gRaceItemInUseEntries;
             data_0217ae48 = UseItemByRankAfterInUse;
             data_0217ae44 = func_0207c8d8;
             data_0217ae3c = UseItemByRankAfterInUse;
@@ -551,8 +562,8 @@ void func_0207c78c(void) {
             break;
         case CPU_DIFFICULTY_HARD:
         default:
-            data_0217ae38 = data_usa_021553cc;
-            data_0217ae34 = data_usa_0215524c;
+            gCurrentHeldItemEntries = gRaceHardHeldItemEntries;
+            gCurrentItemInUseEntries = gRaceItemInUseEntries;
             data_0217ae48 = UseItemByTargetOrRankAfterInUse;
             data_0217ae44 = func_0207c978;
             data_0217ae3c = UseItemByTargetOrRankAfterInUse;
@@ -562,361 +573,381 @@ void func_0207c78c(void) {
 }
 
 // Also stops the every-call request of the item bits.
-void UseItemAndResetHeldTimer(KartAiItemUse *a, struct KartAi *b) {
-    Unk0217aebc_128 *r;
-    u16 n;
-    u32 v;
+void UseItemAndResetHeldTimer(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    Unk0217aebc_128 *random;
+    u16 randomLimit;
+    u32 randomPart;
 
-    RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-    a->mItemBitsEveryCall = 0;
-    if (a->mHeldItemEntry == NULL) {
+    RequestBits(kartAi->mKart->mEntryIndex, ITEM_BITS);
+    itemUse->mItemBitsEveryCall = 0;
+    if (itemUse->mHeldItemEntry == NULL) {
         return;
     }
-    n = a->mHeldItemEntry->mTimerRandomLimit;
-    r = GetKartAiRandom();
-    if (n == 0) {
-        v = 0;
+    randomLimit = itemUse->mHeldItemEntry->mTimerRandomLimit;
+    random = GetKartAiRandom();
+    if (randomLimit == 0) {
+        randomPart = 0;
     } else {
-        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+        random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+        randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                        : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
     }
-    a->mHeldItemTimer = a->mHeldItemEntry->mTimerBase + (u16) v;
+    itemUse->mHeldItemTimer = itemUse->mHeldItemEntry->mTimerBase + (u16) randomPart;
 }
 
 // Also stops the every-call request of the item bits.
-void UseItemAndResetInUseTimer(KartAiItemUse *a, struct KartAi *b) {
-    Unk0217aebc_128 *r;
-    u16 n;
-    u32 v;
+void UseItemAndResetInUseTimer(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    Unk0217aebc_128 *random;
+    u16 randomLimit;
+    u32 randomPart;
 
-    RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-    a->mItemBitsEveryCall = 0;
-    if (a->mItemInUseEntry == NULL) {
+    RequestBits(kartAi->mKart->mEntryIndex, ITEM_BITS);
+    itemUse->mItemBitsEveryCall = 0;
+    if (itemUse->mItemInUseEntry == NULL) {
         return;
     }
-    n = a->mItemInUseEntry->mTimerRandomLimit;
-    r = GetKartAiRandom();
-    if (n == 0) {
-        v = 0;
+    randomLimit = itemUse->mItemInUseEntry->mTimerRandomLimit;
+    random = GetKartAiRandom();
+    if (randomLimit == 0) {
+        randomPart = 0;
     } else {
-        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+        random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+        randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                        : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
     }
-    a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
+    itemUse->mItemInUseTimer = itemUse->mItemInUseEntry->mTimerBase + (u16) randomPart;
 }
 
 // Also stops the every-call request of the item bits.
-void UseItemForwardAndResetInUseTimer(KartAiItemUse *a, struct KartAi *b) {
-    Unk0217aebc_128 *r;
-    u16 n;
-    u32 v;
+void UseItemForwardAndResetInUseTimer(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    Unk0217aebc_128 *random;
+    u16 randomLimit;
+    u32 randomPart;
 
-    RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-    a->mThrowForwardPending = 1;
-    a->mThrowForwardTimer = 2;
-    a->mItemBitsEveryCall = 0;
-    if (a->mItemInUseEntry == NULL) {
+    RequestBits(kartAi->mKart->mEntryIndex, ITEM_BITS);
+    itemUse->mThrowForwardPending = 1;
+    itemUse->mThrowForwardTimer = 2;
+    itemUse->mItemBitsEveryCall = 0;
+    if (itemUse->mItemInUseEntry == NULL) {
         return;
     }
-    n = a->mItemInUseEntry->mTimerRandomLimit;
-    r = GetKartAiRandom();
-    if (n == 0) {
-        v = 0;
+    randomLimit = itemUse->mItemInUseEntry->mTimerRandomLimit;
+    random = GetKartAiRandom();
+    if (randomLimit == 0) {
+        randomPart = 0;
     } else {
-        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+        random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+        randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                        : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
     }
-    a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
+    itemUse->mItemInUseTimer = itemUse->mItemInUseEntry->mTimerBase + (u16) randomPart;
 }
 
 // Also stops the every-call request of the item bits.
-void UseItemBehindAndResetInUseTimer(KartAiItemUse *a, struct KartAi *b) {
-    Unk0217aebc_128 *r;
-    u16 n;
-    u32 v;
+void UseItemBehindAndResetInUseTimer(KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    Unk0217aebc_128 *random;
+    u16 randomLimit;
+    u32 randomPart;
 
-    RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
-    a->mThrowBehindPending = 1;
-    a->mThrowBehindTimer = 2;
-    a->mItemBitsEveryCall = 0;
-    if (a->mItemInUseEntry == NULL) {
+    RequestBits(kartAi->mKart->mEntryIndex, ITEM_BITS);
+    itemUse->mThrowBehindPending = 1;
+    itemUse->mThrowBehindTimer = 2;
+    itemUse->mItemBitsEveryCall = 0;
+    if (itemUse->mItemInUseEntry == NULL) {
         return;
     }
-    n = a->mItemInUseEntry->mTimerRandomLimit;
-    r = GetKartAiRandom();
-    if (n == 0) {
-        v = 0;
+    randomLimit = itemUse->mItemInUseEntry->mTimerRandomLimit;
+    random = GetKartAiRandom();
+    if (randomLimit == 0) {
+        randomPart = 0;
     } else {
-        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+        random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+        randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                        : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
     }
-    a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
+    itemUse->mItemInUseTimer = itemUse->mItemInUseEntry->mTimerBase + (u16) randomPart;
 }
 
-void func_0207c448(KartAiItemUse *p0) {
-    p0->mHeldItemTimer = 0x0u;
-    p0->mItemInUseTimer = 0x0u;
-    p0->mHeldItemEntry = NULL;
-    p0->mItemInUseEntry = NULL;
-    p0->mUnk_0c = 0x0u;
-    p0->mItemBitsEveryCall = 0x0u;
-    p0->mThrowForwardPending = 0x0u;
-    p0->mThrowBehindPending = 0x0u;
-    p0->mThrowForwardTimer = 0x0u;
-    p0->mThrowBehindTimer = 0x0u;
-    p0->mRandomValue = 0x0u;
+void ClearKartAiItemUse(KartAiItemUse *itemUse) {
+    itemUse->mHeldItemTimer = 0x0u;
+    itemUse->mItemInUseTimer = 0x0u;
+    itemUse->mHeldItemEntry = NULL;
+    itemUse->mItemInUseEntry = NULL;
+    itemUse->mUnk_0c = 0x0u;
+    itemUse->mItemBitsEveryCall = 0x0u;
+    itemUse->mThrowForwardPending = 0x0u;
+    itemUse->mThrowBehindPending = 0x0u;
+    itemUse->mThrowForwardTimer = 0x0u;
+    itemUse->mThrowBehindTimer = 0x0u;
+    itemUse->mRandomValue = 0x0u;
 }
 
 // On the call whose kart index matches the race frame count mod 8, runs the entry function or sends ITEM_BITS; on
 // the other calls sends the pending bit 0x40 (ITEM_THROW_FORWARD_BIT) or 0x80.
-void AdvanceItemBitRequests(struct KartAiItemUse *a, struct KartAi *b) {
-    u16 v1;
-    KartItems *e;
+void AdvanceItemBitRequests(struct KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    u16 kartIndex;
+    KartItems *kartItems;
 
-    if (func_01ffc67c(b->mKart) != FALSE) {
+    if (func_01ffc67c(kartAi->mKart) != FALSE) {
         return;
     }
-    v1 = b->mIndex;
-    if (v1 == GetRaceUpdateFramesMod8()) {
-        e = &gKartItems[v1];
-        if (e->mItemInUse.mObjectKind != 0xf && a->mItemInUseEntry != NULL) {
-            a->mItemInUseEntry->mHandler(a, b);
-        } else if ((a->mHeldItemEntry != 0) & (e->mHeldItem.mItemInfoIndex != 0x13)) {
-            a->mHeldItemEntry->mHandler(a, b);
+    kartIndex = kartAi->mIndex;
+    if (kartIndex == GetRaceUpdateFramesMod8()) {
+        kartItems = &gKartItems[kartIndex];
+        if (kartItems->mItemInUse.mObjectKind != 0xf && itemUse->mItemInUseEntry != NULL) {
+            itemUse->mItemInUseEntry->mHandler(itemUse, kartAi);
+        } else if ((itemUse->mHeldItemEntry != 0) & (kartItems->mHeldItem.mItemInfoIndex != 0x13)) {
+            itemUse->mHeldItemEntry->mHandler(itemUse, kartAi);
         } else {
-            RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
+            RequestBits(kartAi->mKart->mEntryIndex, ITEM_BITS);
         }
-    } else if (a->mThrowForwardPending != 0) {
-        RequestBits(b->mKart->mEntryIndex, ITEM_THROW_FORWARD_BIT);
-        a->mThrowForwardTimer--;
-        if (a->mThrowForwardTimer <= 0) {
-            a->mThrowForwardPending = 0;
+    } else if (itemUse->mThrowForwardPending != 0) {
+        RequestBits(kartAi->mKart->mEntryIndex, ITEM_THROW_FORWARD_BIT);
+        itemUse->mThrowForwardTimer--;
+        if (itemUse->mThrowForwardTimer <= 0) {
+            itemUse->mThrowForwardPending = 0;
         }
-    } else if (a->mThrowBehindPending != 0) {
-        RequestBits(b->mKart->mEntryIndex, PAD_KEY_DOWN);
-        a->mThrowBehindTimer--;
-        if (a->mThrowBehindTimer <= 0) {
-            a->mThrowBehindPending = 0;
+    } else if (itemUse->mThrowBehindPending != 0) {
+        RequestBits(kartAi->mKart->mEntryIndex, PAD_KEY_DOWN);
+        itemUse->mThrowBehindTimer--;
+        if (itemUse->mThrowBehindTimer <= 0) {
+            itemUse->mThrowBehindPending = 0;
         }
     }
-    if (a->mItemBitsEveryCall != 0) {
-        RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
+    if (itemUse->mItemBitsEveryCall != 0) {
+        RequestBits(kartAi->mKart->mEntryIndex, ITEM_BITS);
     }
 }
 
-void func_0207c270(struct KartAiItemUse *a, struct KartAi *b) {
-    if (IsKartEnded(b->mIndex) != 0) {
+void AdvanceRaceItemBitRequests(struct KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    if (IsKartEnded(kartAi->mIndex) != 0) {
         return;
     }
-    if (gKartItems[b->mIndex].mHeldItem.mItemInfoIndex == 0xe) {
-        if (*(u16 *) &b->mUnk_08.mUnk_00.mLink->mUnk_24 > 1) {
+    if (gKartItems[kartAi->mIndex].mHeldItem.mItemInfoIndex == 0xe) {
+        if (*(u16 *) &kartAi->mUnk_08.mUnk_00.mLink->mUnk_24 > 1) {
             return;
         }
     }
-    AdvanceItemBitRequests(a, b);
+    AdvanceItemBitRequests(itemUse, kartAi);
 }
 
-void SetupHeldItemEntry(struct KartAiItemUse *a, struct KartAi *b) {
-    Unk0217aebc_128 *r;
-    u16 n;
-    u32 v;
-    enum { K0 } k;
+void SetupHeldItemEntry(struct KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    Unk0217aebc_128 *random;
+    u16 randomLimit;
+    u32 randomPart;
+    enum { K0 } heldItemIndex;
 
-    k = gKartItems[b->mIndex].mHeldItem.mItemInfoIndex;
-    a->mHeldItemEntry = &data_0217ae38[k];
-    r = GetKartAiRandom();
-    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-    a->mRandomValue = (s16) (u16) (r->mValue >> 52);
-    if (a->mHeldItemEntry == NULL) {
+    heldItemIndex = gKartItems[kartAi->mIndex].mHeldItem.mItemInfoIndex;
+    itemUse->mHeldItemEntry = &gCurrentHeldItemEntries[heldItemIndex];
+    random = GetKartAiRandom();
+    random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+    itemUse->mRandomValue = (s16) (u16) (random->mValue >> 52);
+    if (itemUse->mHeldItemEntry == NULL) {
         return;
     }
-    n = a->mHeldItemEntry->mTimerRandomLimit;
-    r = GetKartAiRandom();
-    if (n == 0) {
-        v = 0;
+    randomLimit = itemUse->mHeldItemEntry->mTimerRandomLimit;
+    random = GetKartAiRandom();
+    if (randomLimit == 0) {
+        randomPart = 0;
     } else {
-        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+        random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+        randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                        : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
     }
-    a->mHeldItemTimer = a->mHeldItemEntry->mTimerBase + (u16) v;
+    itemUse->mHeldItemTimer = itemUse->mHeldItemEntry->mTimerBase + (u16) randomPart;
 }
 
-void ResetHeldItemTimer(struct KartAiItemUse *a) {
-    Unk0217aebc_128 *r;
-    u16 n;
-    u32 v;
+void ResetHeldItemTimer(struct KartAiItemUse *itemUse) {
+    Unk0217aebc_128 *random;
+    u16 randomLimit;
+    u32 randomPart;
 
-    if (a->mHeldItemEntry == NULL) {
+    if (itemUse->mHeldItemEntry == NULL) {
         return;
     }
-    n = a->mHeldItemEntry->mTimerRandomLimit;
-    r = GetKartAiRandom();
-    if (n == 0) {
-        v = 0;
+    randomLimit = itemUse->mHeldItemEntry->mTimerRandomLimit;
+    random = GetKartAiRandom();
+    if (randomLimit == 0) {
+        randomPart = 0;
     } else {
-        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+        random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+        randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                        : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
     }
-    a->mHeldItemTimer = a->mHeldItemEntry->mTimerBase + (u16) v;
+    itemUse->mHeldItemTimer = itemUse->mHeldItemEntry->mTimerBase + (u16) randomPart;
 }
 
 // Counts the held-item timer down; returns TRUE once it has run out.
-s32 DecrementHeldItemTimer(struct KartAiItemUse *a) {
-    BOOL r = FALSE;
+s32 DecrementHeldItemTimer(struct KartAiItemUse *itemUse) {
+    BOOL timerRanOut = FALSE;
 
-    a->mHeldItemTimer--;
-    if (a->mHeldItemTimer <= 0) {
-        a->mHeldItemTimer = 0;
-        r = TRUE;
+    itemUse->mHeldItemTimer--;
+    if (itemUse->mHeldItemTimer <= 0) {
+        itemUse->mHeldItemTimer = 0;
+        timerRanOut = TRUE;
     }
-    return r;
+    return timerRanOut;
 }
 
-void ResetItemInUseTimer(struct KartAiItemUse *a, struct KartAiItemUseEntry *b) {
-    Unk0217aebc_128 *r;
-    u16 n;
-    u32 v;
+void ResetItemInUseTimer(struct KartAiItemUse *itemUse, struct KartAiItemUseEntry *unusedEntry) {
+    Unk0217aebc_128 *random;
+    u16 randomLimit;
+    u32 randomPart;
 
-    if (a->mItemInUseEntry == NULL) {
+    if (itemUse->mItemInUseEntry == NULL) {
         return;
     }
-    n = a->mItemInUseEntry->mTimerRandomLimit;
-    r = GetKartAiRandom();
-    if (n == 0) {
-        v = 0;
+    randomLimit = itemUse->mItemInUseEntry->mTimerRandomLimit;
+    random = GetKartAiRandom();
+    if (randomLimit == 0) {
+        randomPart = 0;
     } else {
-        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+        random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+        randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                        : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
     }
-    a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
+    itemUse->mItemInUseTimer = itemUse->mItemInUseEntry->mTimerBase + (u16) randomPart;
 }
 
 // Counts the item-in-use timer down; returns TRUE once it has run out.
-s32 DecrementItemInUseTimer(struct KartAiItemUse *a) {
-    BOOL r = FALSE;
+s32 DecrementItemInUseTimer(struct KartAiItemUse *itemUse) {
+    BOOL timerRanOut = FALSE;
 
-    a->mItemInUseTimer--;
-    if (a->mItemInUseTimer <= 0) {
-        a->mItemInUseTimer = 0;
-        r = TRUE;
+    itemUse->mItemInUseTimer--;
+    if (itemUse->mItemInUseTimer <= 0) {
+        itemUse->mItemInUseTimer = 0;
+        timerRanOut = TRUE;
     }
-    return r;
+    return timerRanOut;
 }
 
-void SetupItemInUseEntry(struct KartAiItemUse *a, struct KartAi *b) {
-    Unk0217aebc_128 *r;
-    u16 n;
-    u32 v;
-    enum { K0 } k;
+void SetupItemInUseEntry(struct KartAiItemUse *itemUse, struct KartAi *kartAi) {
+    Unk0217aebc_128 *random;
+    u16 randomLimit;
+    u32 randomPart;
+    enum { K0 } objectKind;
 
-    k = gKartItems[b->mIndex].mItemInUse.mObjectKind;
-    a->mItemInUseEntry = &data_0217ae34[k];
-    a->mUnk_0c = 0;
-    if (a->mItemInUseEntry == NULL) {
+    objectKind = gKartItems[kartAi->mIndex].mItemInUse.mObjectKind;
+    itemUse->mItemInUseEntry = &gCurrentItemInUseEntries[objectKind];
+    itemUse->mUnk_0c = 0;
+    if (itemUse->mItemInUseEntry == NULL) {
         return;
     }
-    n = a->mItemInUseEntry->mTimerRandomLimit;
-    r = GetKartAiRandom();
-    if (n == 0) {
-        v = 0;
+    randomLimit = itemUse->mItemInUseEntry->mTimerRandomLimit;
+    random = GetKartAiRandom();
+    if (randomLimit == 0) {
+        randomPart = 0;
     } else {
-        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+        random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+        randomPart = (randomLimit == 0) ? (u32) (random->mValue >> 32)
+                                        : (u32) (((random->mValue >> 32) * (u32) randomLimit) >> 32);
     }
-    a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
+    itemUse->mItemInUseTimer = itemUse->mItemInUseEntry->mTimerBase + (u16) randomPart;
 }
 
-void SetupPosCurve(PosCurve *a, struct CourseMapCamera *b) {
-    CourseMapEntryGroup *e = &gCourseMap->mEntryGroups[b->mEntryGroupIndex];
+void SetupPosCurve(PosCurve *posCurve, struct CourseMapCamera *mapCamera) {
+    CourseMapEntryGroup *entryGroup = &gCourseMap->mEntryGroups[mapCamera->mEntryGroupIndex];
     u16 i;
 
-    a->mParam = 0;
-    a->mUnk_34 = 0;
-    a->mUnk_38 = 0;
-    if (e->mEntryCount < 4) {
+    posCurve->mParam = 0;
+    posCurve->mUnk_34 = 0;
+    posCurve->mUnk_38 = 0;
+    if (entryGroup->mEntryCount < 4) {
         return;
     }
     for (i = 0; i < 4; i++) {
-        a->mPoints[i] = GetCourseMapGroupEntry(b->mEntryGroupIndex, i)->mPos;
-        a->mUnk_34 = i;
+        posCurve->mPoints[i] = GetCourseMapGroupEntry(mapCamera->mEntryGroupIndex, i)->mPos;
+        posCurve->mUnk_34 = i;
     }
 }
 
-void func_0207bd6c(PosCurve *a, struct CourseMapCamera *b) {
-    s16 j;
+void func_0207bd6c(PosCurve *posCurve, struct CourseMapCamera *mapCamera) {
+    s16 entryIndex;
     s16 i;
-    CourseMapEntryGroup *e = &gCourseMap->mEntryGroups[b->mEntryGroupIndex];
+    CourseMapEntryGroup *entryGroup = &gCourseMap->mEntryGroups[mapCamera->mEntryGroupIndex];
 
-    a->mParam = 0;
-    a->mUnk_34 = 0;
-    a->mUnk_38 = 0;
-    if (e->mEntryCount < 4) {
+    posCurve->mParam = 0;
+    posCurve->mUnk_34 = 0;
+    posCurve->mUnk_38 = 0;
+    if (entryGroup->mEntryCount < 4) {
         return;
     }
-    a->mUnk_38 = e->mEntryCount - 1;
-    a->mUnk_34 = 2;
-    j = 2;
+    posCurve->mUnk_38 = entryGroup->mEntryCount - 1;
+    posCurve->mUnk_34 = 2;
+    entryIndex = 2;
     for (i = 0; i < 3; i++) {
-        a->mPoints[(u16) i] = GetCourseMapGroupEntry(b->mEntryGroupIndex, j)->mPos;
-        j--;
+        posCurve->mPoints[(u16) i] = GetCourseMapGroupEntry(mapCamera->mEntryGroupIndex, entryIndex)->mPos;
+        entryIndex--;
     }
-    a->mPoints[3] = GetCourseMapGroupEntry(b->mEntryGroupIndex, e->mEntryCount - 1)->mPos;
+    posCurve->mPoints[3] = GetCourseMapGroupEntry(mapCamera->mEntryGroupIndex, entryGroup->mEntryCount - 1)->mPos;
 }
 
-void UpdatePosCurve(Vec3 *a, PosCurve *b, struct CourseMapCamera *c, s32 d) {
-    CourseMapEntryGroup *e;
-    CourseMapGroupEntry *f;
+void UpdatePosCurve(Vec3 *point, PosCurve *posCurve, struct CourseMapCamera *mapCamera, s32 paramStep) {
+    CourseMapEntryGroup *entryGroup;
+    CourseMapGroupEntry *groupEntry;
     u16 i;
 
-    e = &gCourseMap->mEntryGroups[c->mEntryGroupIndex];
-    b->mParam += d;
-    if (b->mParam > 0x1000) {
-        b->mUnk_34++;
-        if (b->mUnk_34 >= e->mEntryCount) {
-            b->mUnk_34 = e->mEntryCount;
-            b->mParam = 0x1000;
+    entryGroup = &gCourseMap->mEntryGroups[mapCamera->mEntryGroupIndex];
+    posCurve->mParam += paramStep;
+    if (posCurve->mParam > 0x1000) {
+        posCurve->mUnk_34++;
+        if (posCurve->mUnk_34 >= entryGroup->mEntryCount) {
+            posCurve->mUnk_34 = entryGroup->mEntryCount;
+            posCurve->mParam = 0x1000;
         } else {
-            f = GetCourseMapGroupEntry(c->mEntryGroupIndex, b->mUnk_34);
+            groupEntry = GetCourseMapGroupEntry(mapCamera->mEntryGroupIndex, posCurve->mUnk_34);
             for (i = 0; i < 3; i++) {
-                b->mPoints[i] = b->mPoints[i + 1];
+                posCurve->mPoints[i] = posCurve->mPoints[i + 1];
             }
-            b->mPoints[3] = f->mPos;
-            b->mParam -= 0x1000;
+            posCurve->mPoints[3] = groupEntry->mPos;
+            posCurve->mParam -= 0x1000;
         }
     }
-    ComputePosCurvePoint(a, b);
+    ComputePosCurvePoint(point, posCurve);
 }
 
-void ComputePosCurvePoint(Vec3 *a, PosCurve *b) {
-    s32 t;
-    s32 t2;
-    s32 t3;
-    s32 u;
-    s32 c0;
-    s32 c1;
-    s32 c2;
-    s32 c3;
-    Vec3 *v[4];
+void ComputePosCurvePoint(Vec3 *point, PosCurve *posCurve) {
+    s32 param;
+    s32 paramSquared;
+    s32 paramCubed;
+    s32 paramRemaining;
+    s32 weight0;
+    s32 weight1;
+    s32 weight2;
+    s32 weight3;
+    Vec3 *controlPoints[4];
     s32 i;
 
-    t = b->mParam;
-    u = 0x1000 - t;
-    t2 = ((s64) t * t + 0x800) >> 12;
-    t3 = ((s64) t2 * t + 0x800) >> 12;
-    c0 = ((s64) (s32) (((s64) u * 0x2ab + 0x800) >> 12) * (s32) (((s64) u * u + 0x800) >> 12) + 0x800) >> 12;
-    c1 = ((s64) ((s32) (((s64) t3 * 0x3000 + 0x800) >> 12) - (s32) (((s64) 0x6000 * t2 + 0x800) >> 12) + 0x4000) *
-              0x2ab +
-          0x800) >>
-         12;
-    c2 = ((s64) ((s32) (((s64) (t + (t2 - t3)) * 0x3000 + 0x800) >> 12) + 0x1000) * 0x2ab + 0x800) >> 12;
-    c3 = ((s64) t3 * 0x2ab + 0x800) >> 12;
+    param = posCurve->mParam;
+    paramRemaining = 0x1000 - param;
+    paramSquared = ((s64) param * param + 0x800) >> 12;
+    paramCubed = ((s64) paramSquared * param + 0x800) >> 12;
+    weight0 = ((s64) (s32) (((s64) paramRemaining * 0x2ab + 0x800) >> 12) *
+                   (s32) (((s64) paramRemaining * paramRemaining + 0x800) >> 12) +
+               0x800) >>
+              12;
+    weight1 = ((s64) ((s32) (((s64) paramCubed * 0x3000 + 0x800) >> 12) -
+                      (s32) (((s64) 0x6000 * paramSquared + 0x800) >> 12) + 0x4000) *
+                   0x2ab +
+               0x800) >>
+              12;
+    weight2 = ((s64) ((s32) (((s64) (param + (paramSquared - paramCubed)) * 0x3000 + 0x800) >> 12) + 0x1000) * 0x2ab +
+               0x800) >>
+              12;
+    weight3 = ((s64) paramCubed * 0x2ab + 0x800) >> 12;
     for (i = 0; i < 4; i++) {
-        v[i] = &b->mPoints[i];
+        controlPoints[i] = &posCurve->mPoints[i];
     }
-    a->x = (s32) (((s64) v[0]->x * c0 + 0x800) >> 12) + (s32) (((s64) v[1]->x * c1 + 0x800) >> 12) +
-           (s32) (((s64) v[2]->x * c2 + 0x800) >> 12) + (s32) (((s64) v[3]->x * c3 + 0x800) >> 12);
-    a->y = (s32) (((s64) v[0]->y * c0 + 0x800) >> 12) + (s32) (((s64) v[1]->y * c1 + 0x800) >> 12) +
-           (s32) (((s64) v[2]->y * c2 + 0x800) >> 12) + (s32) (((s64) v[3]->y * c3 + 0x800) >> 12);
-    a->z = (s32) (((s64) v[0]->z * c0 + 0x800) >> 12) + (s32) (((s64) v[1]->z * c1 + 0x800) >> 12) +
-           (s32) (((s64) v[2]->z * c2 + 0x800) >> 12) + (s32) (((s64) v[3]->z * c3 + 0x800) >> 12);
+    point->x = (s32) (((s64) controlPoints[0]->x * weight0 + 0x800) >> 12) +
+               (s32) (((s64) controlPoints[1]->x * weight1 + 0x800) >> 12) +
+               (s32) (((s64) controlPoints[2]->x * weight2 + 0x800) >> 12) +
+               (s32) (((s64) controlPoints[3]->x * weight3 + 0x800) >> 12);
+    point->y = (s32) (((s64) controlPoints[0]->y * weight0 + 0x800) >> 12) +
+               (s32) (((s64) controlPoints[1]->y * weight1 + 0x800) >> 12) +
+               (s32) (((s64) controlPoints[2]->y * weight2 + 0x800) >> 12) +
+               (s32) (((s64) controlPoints[3]->y * weight3 + 0x800) >> 12);
+    point->z = (s32) (((s64) controlPoints[0]->z * weight0 + 0x800) >> 12) +
+               (s32) (((s64) controlPoints[1]->z * weight1 + 0x800) >> 12) +
+               (s32) (((s64) controlPoints[2]->z * weight2 + 0x800) >> 12) +
+               (s32) (((s64) controlPoints[3]->z * weight3 + 0x800) >> 12);
 }

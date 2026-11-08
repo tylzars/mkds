@@ -123,7 +123,7 @@ void InitKartAiShared(void) {
     InitKartAiNonCpuCounts();
     func_0207fba0();
     InitKartAiTables();
-    func_0207c78c();
+    SetupRaceItemEntries();
     if (gRaceSetup->mMode == MODE_BATTLE) {
         SetupBattleKartAiParams();
         SetupBattleItemEntries();

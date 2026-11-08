@@ -3,5 +3,5 @@
 
 void func_02090348(KartAiItemUse *itemUse) {
     u32 value12;
-    func_0207c448(itemUse);
+    ClearKartAiItemUse(itemUse);
 }

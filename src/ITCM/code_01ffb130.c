@@ -94,7 +94,7 @@ void func_01ffb130(Kart *p) {
         q->mUnk_06++;
         if (q->mUnk_06 > 0x1c2) {
             p->mUnk_4c &= ~0x40;
-            func_0207b1a8(p);
+            StopKartStarModels(p);
             p->mItemEffect = 0;
             StopKartStarEffects(p->mIndex);
             func_02068a64(p, 0, 1);

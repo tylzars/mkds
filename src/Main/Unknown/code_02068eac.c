@@ -246,7 +246,7 @@ void StartKartStar(Kart *kart) {
     effectState->mUnk_06 = 0;
     kart->mUnk_4c |= 0x40;
     kart->mItemEffect = 1;
-    func_0207b284(kart);
+    StartKartStarModels(kart);
     StartKartStarEffects(kart->mIndex);
     if ((kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
         StartKartStarSeq();
@@ -270,7 +270,7 @@ void StartKartTeresa(Kart *kart) {
     effectState->mTeresaFrames = 0;
     if (kart->mUnk_4c & 0x10000040) {
         kart->mUnk_4c &= ~0x40;
-        func_0207b1a8(kart);
+        StopKartStarModels(kart);
         kart->mItemEffect = 0;
         StopKartStarEffects(kart->mIndex);
         func_02068a64(kart, 0, 1);
@@ -412,7 +412,7 @@ void StartKartKiller(Kart *kart) {
     SkipOrthoQuadsHoldAndSetVelocities(kart->mIndex);
     if (kart->mUnk_4c & 0x40) {
         kart->mUnk_4c &= ~0x40;
-        func_0207b1a8(kart);
+        StopKartStarModels(kart);
         kart->mItemEffect = 0;
         StopKartStarEffects(kart->mIndex);
         func_02068a64(kart, 0, 1);

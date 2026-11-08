@@ -341,7 +341,7 @@ void func_02066fe0(Kart *kart) {
     ReleaseKartStarEffects(kart->mIndex);
     if ((kart->mUnk_4c & 0x40) != 0) {
         kart->mUnk_4c = kart->mUnk_4c & ~0x40;
-        func_0207b1a8(kart);
+        StopKartStarModels(kart);
         kart->mItemEffect = 0;
         StopKartStarEffects(kart->mIndex);
         func_02068a64(kart, 0, 1);

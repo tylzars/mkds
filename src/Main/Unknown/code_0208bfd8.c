@@ -17,20 +17,20 @@ void SetupKartAiForRace(KartAi *kartAi, s32 kartIndex) {
     kartAi->mUnk_154 = (gRaceSetup->mCurrentEntries[kartIndex].mPlayer.mUnk_14 & 1) != 0;
     SetupRaceKartAi(kartAi, kart, kartAi->mUnk_154);
     SetupRaceKartAiSpeedLimit(&kartAi->mUnk_e8, kartAi);
-    func_0207c448(&kartAi->mItemUse);
+    ClearKartAiItemUse(&kartAi->mItemUse);
     PickKartAiRaceStart(&kartAi->mUnk_e8, kartAi);
 }
 
 void ResetKartAiForRace(KartAi *kartAi) {
     ResetRaceKartAiAtPointLink(kartAi);
     ResetRaceKartAiSpeedLimit(&kartAi->mUnk_e8, kartAi);
-    func_0207c448(&kartAi->mItemUse);
+    ClearKartAiItemUse(&kartAi->mItemUse);
 }
 
 void AdvanceKartAiForRace(KartAi *kartAi) {
     AdvanceRaceKartAi(kartAi);
     AdvanceRaceKartAiSpeedLimit(&kartAi->mUnk_e8, kartAi);
-    func_0207c270(&kartAi->mItemUse, kartAi);
+    AdvanceRaceItemBitRequests(&kartAi->mItemUse, kartAi);
 }
 
 void RequestKartAiPointLink(KartAi *kartAi) {
