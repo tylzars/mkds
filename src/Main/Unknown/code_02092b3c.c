@@ -31,29 +31,29 @@ void func_02093190(u32 arg0) {
 }
 
 static inline u32 func_02092b5c_inline(u32 n) {
-    RandomState64 *b;
+    RandomState64 *mapObjectRandom;
 
-    b = GetMapObjectRandom();
-    b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
-    return ((b->mValue >> 32) * n) >> 32;
+    mapObjectRandom = GetMapObjectRandom();
+    mapObjectRandom->mValue = mapObjectRandom->mMultiplier * mapObjectRandom->mValue + mapObjectRandom->mIncrement;
+    return ((mapObjectRandom->mValue >> 32) * n) >> 32;
 }
 
 static inline u16 func_02092b5c_inline_2(u32 n) {
-    RandomState64 *b;
+    RandomState64 *mapObjectRandom;
 
-    b = GetMapObjectRandom();
-    b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
-    return (u32) (((b->mValue >> 32) * n) >> 32);
+    mapObjectRandom = GetMapObjectRandom();
+    mapObjectRandom->mValue = mapObjectRandom->mMultiplier * mapObjectRandom->mValue + mapObjectRandom->mIncrement;
+    return (u32) (((mapObjectRandom->mValue >> 32) * n) >> 32);
 }
 
-void func_020930c8(MapObjectList *a) {
+void func_020930c8(MapObjectList *mapObjectList) {
     s32 i;
     Unk020919e8 *p;
 
-    if (a == NULL) {
+    if (mapObjectList == NULL) {
         return;
     }
-    for (i = 0; i < a->mMapObjectCount && (p = a->mMapObjects[i]) != NULL; i++) {
+    for (i = 0; i < mapObjectList->mMapObjectCount && (p = mapObjectList->mMapObjects[i]) != NULL; i++) {
         if (p->mUnk_00.mFlags & 0x800) {
             p->mUnk_a4 = (u16) (func_02092b5c_inline_2(25) + 200);
         }
@@ -73,7 +73,7 @@ static inline BOOL func_02092b5c_inline_3(Unk020919e8 *p, s32 k) {
     s32 i;
     BOOL f;
     s32 d;
-    Kart *o;
+    Kart *kart;
 
     for (i = 0; i < gRaceSetup->mKartCount; i++) {
         f = FALSE;
@@ -84,11 +84,11 @@ static inline BOOL func_02092b5c_inline_3(Unk020919e8 *p, s32 k) {
         if (f == FALSE && i != gRaceSetup->mEntryIndex) {
             continue;
         }
-        o = GetKart((u16) i);
-        if (func_02092b5c_inline_4(&o->mPos, &p->mUnk_00.mPos) >= 0x15f900000000LL) {
+        kart = GetKart((u16) i);
+        if (func_02092b5c_inline_4(&kart->mPos, &p->mUnk_00.mPos) >= 0x15f900000000LL) {
             continue;
         }
-        d = FX_Atan2Idx(o->mPos.x - p->mUnk_00.mPos.x, o->mPos.z - p->mUnk_00.mPos.z) - k;
+        d = FX_Atan2Idx(kart->mPos.x - p->mUnk_00.mPos.x, kart->mPos.z - p->mUnk_00.mPos.z) - k;
         if (d < -0x1f40) {
             continue;
         }
@@ -105,25 +105,25 @@ static inline void func_02092b5c_inline_5(Vec3 *v, s32 x, s32 y, s32 z) {
     v->z = z - 0x28000 + func_02092b5c_inline(0x50000);
 }
 
-s16 func_020930b0(s32 a) {
-    return gPairsByAngle[(a >> 4) * 2];
+s16 func_020930b0(s32 angle) {
+    return gPairsByAngle[(angle >> 4) * 2];
 }
 
 s32 func_020930a0(s32 a, s32 b) {
     return ((s64) a * b) >> 12;
 }
 
-s16 func_02093080(s32 a) {
-    return gPairsByAngle[(a >> 4) * 2 + 1];
+s16 func_02093080(s32 angle) {
+    return gPairsByAngle[(angle >> 4) * 2 + 1];
 }
 
 void func_02092b5c(void *a, Unk020919e8 *p) {
     s32 i;
-    s32 r;
+    s32 horizontalSpeed;
     u16 k;
     s32 n;
-    Vec3 v3;
-    Vec3 v4;
+    Vec3 basabasaPos;
+    Vec3 basabasaVelocity;
 
     switch (p->mUnk_ac) {
         case 0:
@@ -150,17 +150,17 @@ void func_02092b5c(void *a, Unk020919e8 *p) {
     }
     if (p->mUnk_a0 == 0x14) {
         for (i = 0; i < 2; i++) {
-            func_02092b5c_inline_5(&v3, p->mUnk_00.mPos.x, p->mUnk_00.mPos.y + 0x23000, p->mUnk_00.mPos.z);
+            func_02092b5c_inline_5(&basabasaPos, p->mUnk_00.mPos.x, p->mUnk_00.mPos.y + 0x23000, p->mUnk_00.mPos.z);
             k = p->mUnk_00.mAngle;
-            r = NextRandomBelow(GetMapObjectRandom(), 0x1000) + 0x2000;
+            horizontalSpeed = NextRandomBelow(GetMapObjectRandom(), 0x1000) + 0x2000;
             k = k - 0xbb8 + func_02046524(GetMapObjectRandom(), 0x1770);
-            v4.x = func_020930a0(r, func_020930b0(k));
-            v4.y = NextRandomBelow(GetMapObjectRandom(), 0x400) - 0xa00;
-            v4.z = func_020930a0(r, func_02093080(k));
+            basabasaVelocity.x = func_020930a0(horizontalSpeed, func_020930b0(k));
+            basabasaVelocity.y = NextRandomBelow(GetMapObjectRandom(), 0x400) - 0xa00;
+            basabasaVelocity.z = func_020930a0(horizontalSpeed, func_02093080(k));
             if (i == 0 && p->mUnk_a8 == 0) {
-                StartBasabasa(0x8c, &v3, &v4, 0xf, 1, i == 0 ? 2 : 0);
+                StartBasabasa(0x8c, &basabasaPos, &basabasaVelocity, 0xf, 1, i == 0 ? 2 : 0);
             } else {
-                StartBasabasa(0x8c, &v3, &v4, 0xf, 0, i == 0 ? 2 : 0);
+                StartBasabasa(0x8c, &basabasaPos, &basabasaVelocity, 0xf, 0, i == 0 ? 2 : 0);
             }
         }
         p->mUnk_a8 += 1;

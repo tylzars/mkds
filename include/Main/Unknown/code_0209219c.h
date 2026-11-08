@@ -8,19 +8,19 @@
 // up to 0xd4.
 typedef struct Basabasa {
     /* 00 */ MapObject mUnk_00;
-    /* a0 */ Vec3 mUnk_a0;
-    /* ac */ u16 mUnk_ac;
+    /* a0 */ Vec3 mVelocity;
+    /* ac */ u16 mNsbtpFrameIndex;
     /* ae */ u8 mUnk_ae[2];
-    /* b0 */ s32 mUnk_b0;
-    /* b4 */ s32 mUnk_b4;
-    /* b8 */ s32 mUnk_b8;
-    /* bc */ s32 mUnk_bc;
+    /* b0 */ s32 mDelayTimer;
+    /* b4 */ s32 mState0Timer;
+    /* b8 */ s32 mState2Timer;
+    /* bc */ s32 mSoundRequested;
     /* c0 */ u16 mUnk_c0;
     /* c2 */ u8 mUnk_c2[2];
     /* c4 */ s32 mUnk_c4;
     /* c8 */ s32 mUnk_c8;
-    /* cc */ s32 mUnk_cc;
-    /* d0 */ u8 mUnk_d0;
+    /* cc */ s32 mRotateZNegated;
+    /* d0 */ u8 mHitKartMask;
     /* d1 */ u8 mUnk_d1[3];
     /* State number of this kind's own per-frame switch in UpdateBasabasa; this object does not use
        MapObject.mUnk_80's state machine */
@@ -29,7 +29,7 @@ typedef struct Basabasa {
 
 typedef struct Basabasa Basabasa;
 
-// Object func_0209297c reads: a halfword at 0x74 and a vector at 0x80.
+// Object CollideKartWithBasabasa reads: a halfword at 0x74 and a vector at 0x80.
 typedef struct Unk0209297c {
     /* 00 */ u8 mUnk_00[0x74];
     /* 74 */ u16 mUnk_74;
@@ -39,14 +39,15 @@ typedef struct Unk0209297c {
 
 void CreateBasabasa(void *a);
 
-void StartBasabasa(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f);
+void StartBasabasa(u32 state2TimerBase, const Vec3 *startPos, const Vec3 *velocity, u32 state0TimerBase,
+                   s32 soundRequested, u16 f);
 void CreateBasabasaUpdateList(void);
 void CreateBasabasaDrawList(void);
 void CreateBasabasaKindData(void);
-void UpdateBasabasa(void *a, Basabasa *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void DrawBasabasa(void *a, Basabasa *b);
+void UpdateBasabasa(void *a, Basabasa *basabasa); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void DrawBasabasa(void *a, Basabasa *basabasa);
 void SetupDrawBasabasa(void *a);
-u8 func_0209297c(Basabasa *a, Unk0209297c *b, void *c, u8 *d);
+u8 CollideKartWithBasabasa(Basabasa *basabasa, Unk0209297c *kart, void *c, u8 *d);
 /* creates the pooled object hidden (parks it with ParkMapObject); the spawner later takes it with
  * UnparkFirstParkedMapObject */
-void InitBasabasa(MapObject *arg0);
+void InitBasabasa(MapObject *mapObject);

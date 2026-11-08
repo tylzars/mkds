@@ -23,8 +23,8 @@
 #include "code_02146cbc.h"
 #include "code_02147cd8.h"
 
-void InitBasabasa(MapObject *arg0) {
-    MapObject *value0 = arg0;
+void InitBasabasa(MapObject *mapObject) {
+    MapObject *value0 = mapObject;
     MapObject *value4;
     value4 = value0;
     ParkMapObject(value0);
@@ -32,37 +32,39 @@ void InitBasabasa(MapObject *arg0) {
     CreateMapObjectSoundSourceFalloff2(value0);
 }
 
-u8 func_0209297c(Basabasa *a, Unk0209297c *b, void *c, u8 *d) {
+u8 CollideKartWithBasabasa(Basabasa *basabasa, Unk0209297c *kart, void *c, u8 *d) {
     Vec3 u;
-    Vec3 t;
+    Vec3 offsetToKart;
     s32 k;
     s32 x;
     s32 z;
     u8 r;
-    u8 m;
-    s64 q;
+    u8 kartBit;
+    s64 lengthSquared;
 
-    m = 1 << b->mUnk_74;
+    kartBit = 1 << kart->mUnk_74;
     r = *d;
-    if ((a->mUnk_d0 & m) == 0) {
-        VEC_Subtract(&b->mUnk_80, &a->mUnk_00.mPos, &t);
-        k = ((s64) a->mUnk_00.mMatrix.mUnk_00[2].x * t.x + (s64) a->mUnk_00.mMatrix.mUnk_00[2].z * t.z) >> 12;
-        x = t.x - (s32) (((s64) a->mUnk_00.mMatrix.mUnk_00[2].x * k) >> 12);
-        z = t.z - (s32) (((s64) a->mUnk_00.mMatrix.mUnk_00[2].z * k) >> 12);
-        q = (s64) x * x + (s64) u.y * u.y + (s64) z * z;
+    if ((basabasa->mHitKartMask & kartBit) == 0) {
+        VEC_Subtract(&kart->mUnk_80, &basabasa->mUnk_00.mPos, &offsetToKart);
+        k = ((s64) basabasa->mUnk_00.mMatrix.mUnk_00[2].x * offsetToKart.x +
+             (s64) basabasa->mUnk_00.mMatrix.mUnk_00[2].z * offsetToKart.z) >>
+            12;
+        x = offsetToKart.x - (s32) (((s64) basabasa->mUnk_00.mMatrix.mUnk_00[2].x * k) >> 12);
+        z = offsetToKart.z - (s32) (((s64) basabasa->mUnk_00.mMatrix.mUnk_00[2].z * k) >> 12);
+        lengthSquared = (s64) x * x + (s64) u.y * u.y + (s64) z * z;
         u.x = x;
         u.z = z;
-        if (q < 0x10) {
-            a->mUnk_00.mUnk_10.x = ((s64) a->mUnk_00.mMatrix.mUnk_00[2].x * 0x1333) >> 12;
-            a->mUnk_00.mUnk_10.y = ((s64) a->mUnk_00.mMatrix.mUnk_00[2].y * 0x1333) >> 12;
-            a->mUnk_00.mUnk_10.z = ((s64) a->mUnk_00.mMatrix.mUnk_00[2].z * 0x1333) >> 12;
+        if (lengthSquared < 0x10) {
+            basabasa->mUnk_00.mUnk_10.x = ((s64) basabasa->mUnk_00.mMatrix.mUnk_00[2].x * 0x1333) >> 12;
+            basabasa->mUnk_00.mUnk_10.y = ((s64) basabasa->mUnk_00.mMatrix.mUnk_00[2].y * 0x1333) >> 12;
+            basabasa->mUnk_00.mUnk_10.z = ((s64) basabasa->mUnk_00.mMatrix.mUnk_00[2].z * 0x1333) >> 12;
         } else {
             Vec3NormalizeAndGetLengthUnchecked(&u, &u);
-            a->mUnk_00.mUnk_10.x = ((s64) u.x * 0x1333) >> 12;
-            a->mUnk_00.mUnk_10.y = ((s64) u.y * 0x1333) >> 12;
-            a->mUnk_00.mUnk_10.z = ((s64) u.z * 0x1333) >> 12;
+            basabasa->mUnk_00.mUnk_10.x = ((s64) u.x * 0x1333) >> 12;
+            basabasa->mUnk_00.mUnk_10.y = ((s64) u.y * 0x1333) >> 12;
+            basabasa->mUnk_00.mUnk_10.z = ((s64) u.z * 0x1333) >> 12;
         }
-        a->mUnk_d0 |= m;
+        basabasa->mHitKartMask |= kartBit;
     }
     return r;
 }
@@ -76,119 +78,122 @@ void SetupDrawBasabasa(void *a) {
     func_0209bbd0(a, gBasabasa);
 }
 
-void DrawBasabasa(void *a, Basabasa *b) {
+void DrawBasabasa(void *a, Basabasa *basabasa) {
     s32 s;
-    s32 m[9];
-    s32 d;
+    s32 rotationMatrix[9];
+    s32 drawAngle;
 
-    d = 0x1fe0 - b->mUnk_c4;
+    drawAngle = 0x1fe0 - basabasa->mUnk_c4;
     s = 0x1e;
     func_01ff9048(0x14, &s, 1);
-    func_01ff9048(0x19, SetViewTransposeMatrixPos(&b->mUnk_00.mPos), 0xc);
-    if (b->mUnk_cc != 0) {
-        MTX_RotZ33_(m, gPairsByAngle[((u16) -d >> 4) * 2], gPairsByAngle[((u16) -d >> 4) * 2 + 1]);
+    func_01ff9048(0x19, SetViewTransposeMatrixPos(&basabasa->mUnk_00.mPos), 0xc);
+    if (basabasa->mRotateZNegated != 0) {
+        MTX_RotZ33_(rotationMatrix, gPairsByAngle[((u16) -drawAngle >> 4) * 2],
+                    gPairsByAngle[((u16) -drawAngle >> 4) * 2 + 1]);
     } else {
-        MTX_RotZ33_(m, gPairsByAngle[((u16) d >> 4) * 2], gPairsByAngle[((u16) d >> 4) * 2 + 1]);
+        MTX_RotZ33_(rotationMatrix, gPairsByAngle[((u16) drawAngle >> 4) * 2],
+                    gPairsByAngle[((u16) drawAngle >> 4) * 2 + 1]);
     }
-    func_01ff9048(0x1a, m, 9);
-    func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
-    SetMapObjectModelNsbtpFrameIndex(gBasabasa, b->mUnk_ac);
-    DrawMapObjectModel(a, gBasabasa, b);
+    func_01ff9048(0x1a, rotationMatrix, 9);
+    func_01ff9048(0x1b, &basabasa->mUnk_00.mScale, 3);
+    SetMapObjectModelNsbtpFrameIndex(gBasabasa, basabasa->mNsbtpFrameIndex);
+    DrawMapObjectModel(a, gBasabasa, basabasa);
 }
 
-void UpdateBasabasa(void *a, Basabasa *b) {
-    s32 v;
+void UpdateBasabasa(void *a, Basabasa *basabasa) {
+    s32 nextFrameIndex;
 
-    b->mUnk_c4 += b->mUnk_c8;
-    b->mUnk_c8 += 0x3c;
-    if (b->mUnk_c4 == 0) {
-        b->mUnk_c4 += b->mUnk_c8;
-        b->mUnk_c8 += 0x3c;
-    } else if (b->mUnk_c4 >= 0x1fe0) {
-        b->mUnk_c8 = 0x3c - b->mUnk_c8;
-        b->mUnk_cc = b->mUnk_cc == 0;
+    basabasa->mUnk_c4 += basabasa->mUnk_c8;
+    basabasa->mUnk_c8 += 0x3c;
+    if (basabasa->mUnk_c4 == 0) {
+        basabasa->mUnk_c4 += basabasa->mUnk_c8;
+        basabasa->mUnk_c8 += 0x3c;
+    } else if (basabasa->mUnk_c4 >= 0x1fe0) {
+        basabasa->mUnk_c8 = 0x3c - basabasa->mUnk_c8;
+        basabasa->mRotateZNegated = basabasa->mRotateZNegated == 0;
     }
-    switch (b->mState) {
+    switch (basabasa->mState) {
         case 0:
-            if (b->mUnk_b0-- > 0) {
+            if (basabasa->mDelayTimer-- > 0) {
                 break;
             }
-            b->mUnk_00.mFlags &= ~1;
-            b->mUnk_00.mFlags &= ~2;
-            b->mUnk_00.mFlags &= ~8;
-            b->mUnk_00.mAlpha = 0x1f;
-            b->mUnk_a0.x += (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[2].x * 0x19a) >> 12);
-            b->mUnk_a0.y += -0x19a;
-            b->mUnk_a0.z += (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[2].z * 0x19a) >> 12);
-            VEC_Add(&b->mUnk_00.mPos, &b->mUnk_a0, &b->mUnk_00.mPos);
-            if (b->mUnk_b4-- <= 0) {
-                b->mState = 1;
+            basabasa->mUnk_00.mFlags &= ~1;
+            basabasa->mUnk_00.mFlags &= ~2;
+            basabasa->mUnk_00.mFlags &= ~8;
+            basabasa->mUnk_00.mAlpha = 0x1f;
+            basabasa->mVelocity.x += (s32) (((s64) basabasa->mUnk_00.mMatrix.mUnk_00[2].x * 0x19a) >> 12);
+            basabasa->mVelocity.y += -0x19a;
+            basabasa->mVelocity.z += (s32) (((s64) basabasa->mUnk_00.mMatrix.mUnk_00[2].z * 0x19a) >> 12);
+            VEC_Add(&basabasa->mUnk_00.mPos, &basabasa->mVelocity, &basabasa->mUnk_00.mPos);
+            if (basabasa->mState0Timer-- <= 0) {
+                basabasa->mState = 1;
             }
             break;
         case 1:
-            b->mUnk_a0.x += (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[2].x * 0x19a) >> 12);
-            b->mUnk_a0.y += 0x19a;
-            b->mUnk_a0.z += (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[2].z * 0x19a) >> 12);
-            VEC_Add(&b->mUnk_00.mPos, &b->mUnk_a0, &b->mUnk_00.mPos);
-            if (b->mUnk_a0.y > 0) {
-                b->mUnk_a0.y = 0;
-                b->mState = 2;
+            basabasa->mVelocity.x += (s32) (((s64) basabasa->mUnk_00.mMatrix.mUnk_00[2].x * 0x19a) >> 12);
+            basabasa->mVelocity.y += 0x19a;
+            basabasa->mVelocity.z += (s32) (((s64) basabasa->mUnk_00.mMatrix.mUnk_00[2].z * 0x19a) >> 12);
+            VEC_Add(&basabasa->mUnk_00.mPos, &basabasa->mVelocity, &basabasa->mUnk_00.mPos);
+            if (basabasa->mVelocity.y > 0) {
+                basabasa->mVelocity.y = 0;
+                basabasa->mState = 2;
             }
             break;
         case 2:
-            VEC_Add(&b->mUnk_00.mPos, &b->mUnk_a0, &b->mUnk_00.mPos);
-            if (b->mUnk_b8-- <= 0) {
-                b->mState = 3;
+            VEC_Add(&basabasa->mUnk_00.mPos, &basabasa->mVelocity, &basabasa->mUnk_00.mPos);
+            if (basabasa->mState2Timer-- <= 0) {
+                basabasa->mState = 3;
             }
             break;
         case 3:
-            b->mUnk_a0.x -= (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[2].x * 0xcd) >> 12);
-            b->mUnk_a0.y += 0x1000;
-            b->mUnk_a0.z -= (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[2].z * 0xcd) >> 12);
-            VEC_Add(&b->mUnk_00.mPos, &b->mUnk_a0, &b->mUnk_00.mPos);
-            if (b->mUnk_00.mPos.y >= 0x1b8000) {
-                ParkMapObject(&b->mUnk_00);
+            basabasa->mVelocity.x -= (s32) (((s64) basabasa->mUnk_00.mMatrix.mUnk_00[2].x * 0xcd) >> 12);
+            basabasa->mVelocity.y += 0x1000;
+            basabasa->mVelocity.z -= (s32) (((s64) basabasa->mUnk_00.mMatrix.mUnk_00[2].z * 0xcd) >> 12);
+            VEC_Add(&basabasa->mUnk_00.mPos, &basabasa->mVelocity, &basabasa->mUnk_00.mPos);
+            if (basabasa->mUnk_00.mPos.y >= 0x1b8000) {
+                ParkMapObject(&basabasa->mUnk_00);
             }
             break;
     }
-    if (b->mUnk_b0 > 0) {
+    if (basabasa->mDelayTimer > 0) {
         return;
     }
-    v = b->mUnk_ac + 1;
-    if (v >= GetMapObjectModelNsbtpFrameCount(gBasabasa)) {
-        v = 0;
+    nextFrameIndex = basabasa->mNsbtpFrameIndex + 1;
+    if (nextFrameIndex >= GetMapObjectModelNsbtpFrameCount(gBasabasa)) {
+        nextFrameIndex = 0;
     }
-    b->mUnk_ac = v;
-    if (b->mUnk_bc == 0) {
+    basabasa->mNsbtpFrameIndex = nextFrameIndex;
+    if (basabasa->mSoundRequested == 0) {
         return;
     }
-    StartMapObjectSoundWhileRequested(&b->mUnk_00, 0x165);
+    StartMapObjectSoundWhileRequested(&basabasa->mUnk_00, 0x165);
 }
 
 void CreateBasabasaKindData(void) {
-    CreateMapObjectKindData(&func_0209297c, NULL, NULL, 1, 0);
+    CreateMapObjectKindData(&CollideKartWithBasabasa, NULL, NULL, 1, 0);
 }
 
-static inline u16 func_0209219c_inline(u32 n) {
-    RandomState64 *b;
+static inline u16 func_0209219c_inline(u32 limit) {
+    RandomState64 *mapObjectRandom;
     u32 m;
     u32 r;
 
-    if (n == 0x10000) {
-        b = GetMapObjectRandom();
-        b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
-        return ((b->mValue >> 32) * 0x10000) >> 32;
+    if (limit == 0x10000) {
+        mapObjectRandom = GetMapObjectRandom();
+        mapObjectRandom->mValue = mapObjectRandom->mMultiplier * mapObjectRandom->mValue + mapObjectRandom->mIncrement;
+        return ((mapObjectRandom->mValue >> 32) * 0x10000) >> 32;
     } else {
-        b = GetMapObjectRandom();
-        m = (u16) n;
+        mapObjectRandom = GetMapObjectRandom();
+        m = (u16) limit;
         if (m == 0) {
             r = 0;
         } else {
-            b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
+            mapObjectRandom->mValue =
+                mapObjectRandom->mMultiplier * mapObjectRandom->mValue + mapObjectRandom->mIncrement;
             if (m == 0) {
-                r = b->mValue >> 32;
+                r = mapObjectRandom->mValue >> 32;
             } else {
-                r = ((b->mValue >> 32) * m) >> 32;
+                r = ((mapObjectRandom->mValue >> 32) * m) >> 32;
             }
         }
     }
@@ -203,32 +208,33 @@ void CreateBasabasaUpdateList(void) {
     CreateMapObjectUpdateList(NULL, UpdateBasabasa, NULL);
 }
 
-void StartBasabasa(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {
-    Basabasa *p;
-    RandomState64 *r;
+void StartBasabasa(u32 state2TimerBase, const Vec3 *startPos, const Vec3 *velocity, u32 state0TimerBase,
+                   s32 soundRequested, u16 f) {
+    Basabasa *basabasa;
+    RandomState64 *mapObjectRandom;
     u32 n;
     u16 w;
 
-    p = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_BASABASA));
-    if (p == NULL) {
+    basabasa = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_BASABASA));
+    if (basabasa == NULL) {
         return;
     }
-    p->mUnk_00.mFlags |= data_usa_02156460;
-    p->mUnk_00.mFlags |= data_usa_02156464;
-    p->mUnk_00.mFlags |= data_usa_02156468;
-    p->mUnk_bc = e;
-    p->mUnk_c0 = f;
-    r = GetMapObjectRandom();
-    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-    p->mUnk_b0 = (u16) (((r->mValue >> 32) * 30) >> 32);
-    n = (d << 12) >> 16;
+    basabasa->mUnk_00.mFlags |= data_usa_02156460;
+    basabasa->mUnk_00.mFlags |= data_usa_02156464;
+    basabasa->mUnk_00.mFlags |= data_usa_02156468;
+    basabasa->mSoundRequested = soundRequested;
+    basabasa->mUnk_c0 = f;
+    mapObjectRandom = GetMapObjectRandom();
+    mapObjectRandom->mValue = mapObjectRandom->mMultiplier * mapObjectRandom->mValue + mapObjectRandom->mIncrement;
+    basabasa->mDelayTimer = (u16) (((mapObjectRandom->mValue >> 32) * 30) >> 32);
+    n = (state0TimerBase << 12) >> 16;
     w = func_0209219c_inline(n);
-    p->mUnk_b4 = d + w;
-    n = (a << 12) >> 16;
+    basabasa->mState0Timer = state0TimerBase + w;
+    n = (state2TimerBase << 12) >> 16;
     w = func_0209219c_inline(n);
-    p->mUnk_b8 = a + w;
-    p->mUnk_00.mPos = *b;
-    p->mUnk_a0 = *c;
-    p->mState = 0;
-    p->mUnk_d0 = 0;
+    basabasa->mState2Timer = state2TimerBase + w;
+    basabasa->mUnk_00.mPos = *startPos;
+    basabasa->mVelocity = *velocity;
+    basabasa->mState = 0;
+    basabasa->mHitKartMask = 0;
 }

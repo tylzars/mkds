@@ -15,17 +15,17 @@ typedef struct Unk020919e8 {
     /* ac */ s32 mUnk_ac;
 } Unk020919e8;
 
-void func_020918a8(void);
+void CreateCowDrawList(void);
 void DrawCow(void *a, Unk020919e8 *b);
 void SetupDrawCow(void *a);
 void CreateCow(void *a);
-void func_020919a8(void);
-void func_020919c8(void);
+void CreateKanoke64UpdateList(void);
+void CreateKanoke64DrawList(void);
 void UpdateKanoke64(void *a, Unk020919e8 *p); /* Unk020919e8 is shared with Cow and kind 0x1a0 */
-s16 func_02091f24(s32 a);
+s16 func_02091f24(s32 angle);
 s32 func_02091f44(s32 a, s32 b);
-s16 func_02091f54(s32 a);
-u32 NextRandomBelow(RandomState64 *a, u32 b);
-void InitKanoke64Objects(MapObjectList *a);
+s16 func_02091f54(s32 angle);
+u32 NextRandomBelow(RandomState64 *randomState64, u32 limit);
+void InitKanoke64Objects(MapObjectList *mapObjectList);
 void DrawKanoke64(void *a, Unk020919e8 *p);
 void CreateKanoke64(void *a);

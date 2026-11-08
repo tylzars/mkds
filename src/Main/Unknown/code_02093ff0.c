@@ -43,42 +43,42 @@ void SetupDrawTeresa(void *a) {
     func_0209bbd0(a, gTeresa);
 }
 
-void DrawTeresa(void *a, Teresa *b) {
+void DrawTeresa(void *a, Teresa *teresa) {
     s32 w;
     s32 v[3];
 
-    if (b->mUnk_ac == 0) {
+    if (teresa->mModelAlpha == 0) {
         return;
     }
     GetKart((u16) gRaceSetup->mEntryIndex);
     SetMapObjectModelPolygonId(gTeresa, AllocPolygonIdWrapping());
-    SetMapObjectModelNsbtpFrameIndex(gTeresa, b->mUnk_ae);
-    SetMapObjectModelAlpha(gTeresa, b->mUnk_ac);
+    SetMapObjectModelNsbtpFrameIndex(gTeresa, teresa->mNsbtpFrameIndex);
+    SetMapObjectModelAlpha(gTeresa, teresa->mModelAlpha);
     SetMapObjectModelFogEnabled(gTeresa, IsFadeFogActive());
-    SetMapObjectModelMirror(gTeresa, b->mUnk_b0, 0);
+    SetMapObjectModelMirror(gTeresa, teresa->mMirror, 0);
     w = 0x1e;
     func_01ff9048(0x14, &w, 1);
-    func_01ff9048(0x19, SetViewTransposeMatrixPos(&b->mUnk_00.mPos), 0xc);
+    func_01ff9048(0x19, SetViewTransposeMatrixPos(&teresa->mUnk_00.mPos), 0xc);
     if (GetCurrentCameraKind() == 2) {
         v[0] = 0x2000;
         v[1] = 0x2000;
         v[2] = 0x2000;
         func_01ff9048(0x1b, v, 3);
     }
-    func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
-    DrawMapObjectModel(a, gTeresa, b);
+    func_01ff9048(0x1b, &teresa->mUnk_00.mScale, 3);
+    DrawMapObjectModel(a, gTeresa, teresa);
 }
 
-static inline void func_02094768_inline(Teresa *o) {
-    o->mUnk_fc = o->mUnk_fc + o->mUnk_100;
-    if (o->mUnk_fc >= o->mUnk_108) {
-        o->mUnk_100 = -o->mUnk_100;
-        o->mUnk_fc = o->mUnk_108 * 2 - o->mUnk_fc;
-    } else if (o->mUnk_fc <= o->mUnk_104) {
-        o->mUnk_100 = -o->mUnk_100;
-        o->mUnk_fc = o->mUnk_104 * 2 - o->mUnk_fc;
+static inline void func_02094768_inline(Teresa *teresa) {
+    teresa->mAlphaFixed12 = teresa->mAlphaFixed12 + teresa->mAlphaFixed12PerFrame;
+    if (teresa->mAlphaFixed12 >= teresa->mAlphaFixed12Max) {
+        teresa->mAlphaFixed12PerFrame = -teresa->mAlphaFixed12PerFrame;
+        teresa->mAlphaFixed12 = teresa->mAlphaFixed12Max * 2 - teresa->mAlphaFixed12;
+    } else if (teresa->mAlphaFixed12 <= teresa->mAlphaFixed12Min) {
+        teresa->mAlphaFixed12PerFrame = -teresa->mAlphaFixed12PerFrame;
+        teresa->mAlphaFixed12 = teresa->mAlphaFixed12Min * 2 - teresa->mAlphaFixed12;
     }
-    o->mUnk_ac = o->mUnk_fc >> 12;
+    teresa->mModelAlpha = teresa->mAlphaFixed12 >> 12;
 }
 
 static inline void func_02094768_inline_2(s32 *p, s32 *q) {
@@ -99,98 +99,103 @@ static inline void func_02094768_inline_2(s32 *p, s32 *q) {
 }
 
 // Gives each Teresa two values from its place in the list: bit 0 and bit 1 of its index.
-void InitTeresaObjects(Unk020946b8 *a) {
+void InitTeresaObjects(Unk020946b8 *mapObjectList) {
     s32 i;
-    Teresa *o;
+    Teresa *teresa;
 
-    if (a == NULL) {
+    if (mapObjectList == NULL) {
         return;
     }
-    for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != NULL; i++) {
-        o->mUnk_ae = i & 1;
-        o->mUnk_b0 = (i / 2) & 1;
+    for (i = 0; i < mapObjectList->mUnk_04 && (teresa = mapObjectList->mUnk_00[i]) != NULL; i++) {
+        teresa->mNsbtpFrameIndex = i & 1;
+        teresa->mMirror = (i / 2) & 1;
     }
 }
 
-s16 func_02094c0c(s32 a) {
-    return gPairsByAngle[(a >> 4) * 2];
+s16 func_02094c0c(s32 angle) {
+    return gPairsByAngle[(angle >> 4) * 2];
 }
 
 s32 func_02094bf0(s32 a, s32 b) {
     return ((s64) a * b + 0x800) >> 12;
 }
 
-s16 func_02094bd0(s32 a) {
-    return gPairsByAngle[(a >> 4) * 2 + 1];
+s16 func_02094bd0(s32 angle) {
+    return gPairsByAngle[(angle >> 4) * 2 + 1];
 }
 
-void UpdateTeresa(void *a, Teresa *o) {
+void UpdateTeresa(void *a, Teresa *teresa) {
     s32 t;
     s32 x;
-    s32 y;
-    u16 w;
+    s32 anglePairSecond;
+    u16 angleWobbleValue;
     s32 n;
-    s32 m;
-    Kart *g;
+    s32 yWobbleValue;
+    Kart *kart;
 
-    switch (o->mState) {
+    switch (teresa->mState) {
         case 1:
-            t = o->mUnk_b4;
-            o->mUnk_b4 = t - 1;
+            t = teresa->mState1Timer;
+            teresa->mState1Timer = t - 1;
             if (t <= 0) {
-                o->mUnk_b4 = 0;
-                func_02094768_inline(o);
-                if (o->mUnk_fc >= 0x2000) {
-                    o->mState = 0;
+                teresa->mState1Timer = 0;
+                func_02094768_inline(teresa);
+                if (teresa->mAlphaFixed12 >= 0x2000) {
+                    teresa->mState = 0;
                 }
             }
             break;
         case 0:
-            t = o->mUnk_b8;
-            o->mUnk_b8 = t - 1;
+            t = teresa->mState0Timer;
+            teresa->mState0Timer = t - 1;
             if (t <= 0) {
-                o->mUnk_b8 = 0;
-                o->mUnk_fc = o->mUnk_fc - 0x1000;
-                if (o->mUnk_fc > 0) {
-                    o->mUnk_ac = o->mUnk_fc >> 12;
+                teresa->mState0Timer = 0;
+                teresa->mAlphaFixed12 = teresa->mAlphaFixed12 - 0x1000;
+                if (teresa->mAlphaFixed12 > 0) {
+                    teresa->mModelAlpha = teresa->mAlphaFixed12 >> 12;
                 } else {
-                    o->mUnk_ac = 0;
-                    ParkMapObject(&o->mUnk_00);
+                    teresa->mModelAlpha = 0;
+                    ParkMapObject(&teresa->mUnk_00);
                     gUnparkedTeresaCount--;
                 }
             } else {
-                func_02094768_inline(o);
+                func_02094768_inline(teresa);
             }
             break;
     }
-    if (o->mUnk_b8 <= 0) {
+    if (teresa->mState0Timer <= 0) {
         return;
     }
-    o->mUnk_bc.mUnk_00 = o->mUnk_bc.mUnk_00 + o->mUnk_bc.mUnk_18;
-    x = func_02094bf0(o->mUnk_bc.mUnk_10, func_02094c0c(o->mUnk_bc.mUnk_00));
-    o->mUnk_bc.mUnk_08 = o->mUnk_bc.mUnk_0c + x - o->mUnk_bc.mUnk_04;
-    o->mUnk_bc.mUnk_04 = o->mUnk_bc.mUnk_04 + o->mUnk_bc.mUnk_08;
-    func_02094768_inline_2(&o->mUnk_bc.mUnk_10, &o->mUnk_bc.mUnk_14);
-    func_02094768_inline_2(&o->mUnk_bc.mUnk_18, &o->mUnk_bc.mUnk_1c);
-    w = o->mUnk_bc.mUnk_04;
-    o->mUnk_dc.mUnk_00 = o->mUnk_dc.mUnk_00 + o->mUnk_dc.mUnk_18;
-    y = func_02094bd0(o->mUnk_dc.mUnk_00);
-    x = func_02094bf0(o->mUnk_dc.mUnk_10 / 2, 0x1000 - y);
-    o->mUnk_dc.mUnk_08 = o->mUnk_dc.mUnk_0c + x - o->mUnk_dc.mUnk_04;
-    o->mUnk_dc.mUnk_04 = o->mUnk_dc.mUnk_04 + o->mUnk_dc.mUnk_08;
-    func_02094768_inline_2(&o->mUnk_dc.mUnk_10, &o->mUnk_dc.mUnk_14);
-    func_02094768_inline_2(&o->mUnk_dc.mUnk_18, &o->mUnk_dc.mUnk_1c);
-    m = o->mUnk_dc.mUnk_04;
-    n = o->mUnk_10c;
+    teresa->mAngleWobble.mAngle = teresa->mAngleWobble.mAngle + teresa->mAngleWobble.mAnglePerFrame;
+    x = func_02094bf0(teresa->mAngleWobble.mAmplitude, func_02094c0c(teresa->mAngleWobble.mAngle));
+    teresa->mAngleWobble.mUnk_08 = teresa->mAngleWobble.mMid + x - teresa->mAngleWobble.mValue;
+    teresa->mAngleWobble.mValue = teresa->mAngleWobble.mValue + teresa->mAngleWobble.mUnk_08;
+    func_02094768_inline_2(&teresa->mAngleWobble.mAmplitude, &teresa->mAngleWobble.mAmplitudePerFrame);
+    func_02094768_inline_2(&teresa->mAngleWobble.mAnglePerFrame, &teresa->mAngleWobble.mUnk_1c);
+    angleWobbleValue = teresa->mAngleWobble.mValue;
+    teresa->mYWobble.mAngle = teresa->mYWobble.mAngle + teresa->mYWobble.mAnglePerFrame;
+    anglePairSecond = func_02094bd0(teresa->mYWobble.mAngle);
+    x = func_02094bf0(teresa->mYWobble.mAmplitude / 2, 0x1000 - anglePairSecond);
+    teresa->mYWobble.mUnk_08 = teresa->mYWobble.mMid + x - teresa->mYWobble.mValue;
+    teresa->mYWobble.mValue = teresa->mYWobble.mValue + teresa->mYWobble.mUnk_08;
+    func_02094768_inline_2(&teresa->mYWobble.mAmplitude, &teresa->mYWobble.mAmplitudePerFrame);
+    func_02094768_inline_2(&teresa->mYWobble.mAnglePerFrame, &teresa->mYWobble.mUnk_1c);
+    yWobbleValue = teresa->mYWobble.mValue;
+    n = teresa->mUnk_10c;
     if (GetCurrentCameraKind() == 2) {
-        o->mUnk_00.mPos.x = o->mUnk_a0.x + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2 + 1]) >> 12);
-        o->mUnk_00.mPos.y = o->mUnk_a0.y + m;
-        o->mUnk_00.mPos.z = o->mUnk_a0.z + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2]) >> 12);
+        teresa->mUnk_00.mPos.x =
+            teresa->mStartPos.x + (s32) (((s64) n * gPairsByAngle[(angleWobbleValue >> 4) * 2 + 1]) >> 12);
+        teresa->mUnk_00.mPos.y = teresa->mStartPos.y + yWobbleValue;
+        teresa->mUnk_00.mPos.z =
+            teresa->mStartPos.z + (s32) (((s64) n * gPairsByAngle[(angleWobbleValue >> 4) * 2]) >> 12);
     } else {
-        g = GetKart((u16) gRaceSetup->mEntryIndex);
-        o->mUnk_00.mPos.x = g->mPos.x + (o->mUnk_a0.x + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2 + 1]) >> 12));
-        o->mUnk_00.mPos.y = o->mUnk_a0.y + m;
-        o->mUnk_00.mPos.z = g->mPos.z + (o->mUnk_a0.z + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2]) >> 12));
+        kart = GetKart((u16) gRaceSetup->mEntryIndex);
+        teresa->mUnk_00.mPos.x =
+            kart->mPos.x +
+            (teresa->mStartPos.x + (s32) (((s64) n * gPairsByAngle[(angleWobbleValue >> 4) * 2 + 1]) >> 12));
+        teresa->mUnk_00.mPos.y = teresa->mStartPos.y + yWobbleValue;
+        teresa->mUnk_00.mPos.z =
+            kart->mPos.z + (teresa->mStartPos.z + (s32) (((s64) n * gPairsByAngle[(angleWobbleValue >> 4) * 2]) >> 12));
     }
 }
 
@@ -203,42 +208,43 @@ void CreateTeresaUpdateList(void) {
 }
 
 void ClearTeresaTimers(void) {
-    Unk020946b8 *l;
-    Teresa *o;
+    Unk020946b8 *mapObjectList;
+    Teresa *teresa;
     s32 i;
 
-    l = func_02100138(MAP_OBJECT_KIND_TERESA);
-    if (l == NULL) {
+    mapObjectList = func_02100138(MAP_OBJECT_KIND_TERESA);
+    if (mapObjectList == NULL) {
         return;
     }
-    for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != NULL; i++) {
-        o->mUnk_b4 = 0;
-        o->mUnk_b8 = 0;
+    for (i = 0; i < mapObjectList->mUnk_04 && (teresa = mapObjectList->mUnk_00[i]) != NULL; i++) {
+        teresa->mState1Timer = 0;
+        teresa->mState0Timer = 0;
     }
 }
 
-static inline u32 func_02094000_inline(RandomState64 *b, u32 n) {
-    b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
-    if (n == 0) {
-        return b->mValue >> 32;
+static inline u32 func_02094000_inline(RandomState64 *randomState64, u32 limit) {
+    randomState64->mValue = randomState64->mMultiplier * randomState64->mValue + randomState64->mIncrement;
+    if (limit == 0) {
+        return randomState64->mValue >> 32;
     }
-    return ((b->mValue >> 32) * n) >> 32;
+    return ((randomState64->mValue >> 32) * limit) >> 32;
 }
 
-static inline void func_02094000_inline_2(Unk02094000_bc *p, u16 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
-    p->mUnk_00 = a;
-    p->mUnk_0c = b;
-    p->mUnk_10 = c;
-    p->mUnk_14 = d;
-    p->mUnk_18 = e;
-    p->mUnk_1c = f;
+static inline void func_02094000_inline_2(TeresaWobble *teresaWobble, u16 angle, s32 mid, s32 amplitude,
+                                          s32 amplitudePerFrame, s32 anglePerFrame, s32 f) {
+    teresaWobble->mAngle = angle;
+    teresaWobble->mMid = mid;
+    teresaWobble->mAmplitude = amplitude;
+    teresaWobble->mAmplitudePerFrame = amplitudePerFrame;
+    teresaWobble->mAnglePerFrame = anglePerFrame;
+    teresaWobble->mUnk_1c = f;
 }
 
-void StartTeresa(Vec3 *a) {
-    Teresa *o;
-    Camera *g;
-    s32 p;
-    s32 q;
+void StartTeresa(Vec3 *startPos) {
+    Teresa *teresa;
+    Camera *chaseCamera;
+    s32 alphaFixed12Max;
+    s32 alphaFixed12PerFrame;
     s32 e;
     s16 c;
     u16 b;
@@ -246,46 +252,47 @@ void StartTeresa(Vec3 *a) {
     s32 d;
     s32 f;
 
-    o = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_TERESA));
-    if (o == NULL) {
+    teresa = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_TERESA));
+    if (teresa == NULL) {
         return;
     }
-    o->mUnk_ac = 0;
-    o->mUnk_a0 = *a;
+    teresa->mModelAlpha = 0;
+    teresa->mStartPos = *startPos;
     if (GetCurrentCameraKind() == 0) {
-        g = GetChaseCamera();
+        chaseCamera = GetChaseCamera();
         e = func_02094000_inline(&gRaceProgress->mLocalRandom, 0x30);
         c = (u16) (func_02094000_inline(&gRaceProgress->mLocalRandom, 0) >> 20);
         b = func_02094000_inline(&gRaceProgress->mLocalRandom, 0x5555);
-        k = FX_Atan2Idx(g->mLookAt.z - g->mPos.z, g->mLookAt.x - g->mPos.x) + b - 0x2aaa;
-        func_02094000_inline_2(&o->mUnk_bc, func_02094000_inline(&gRaceProgress->mLocalRandom, 0x10000), k, c + 0x1000,
-                               0, e + 0x60, 0);
+        k = FX_Atan2Idx(chaseCamera->mLookAt.z - chaseCamera->mPos.z, chaseCamera->mLookAt.x - chaseCamera->mPos.x) +
+            b - 0x2aaa;
+        func_02094000_inline_2(&teresa->mAngleWobble, func_02094000_inline(&gRaceProgress->mLocalRandom, 0x10000), k,
+                               c + 0x1000, 0, e + 0x60, 0);
     } else {
         e = func_02094000_inline(&gRaceProgress->mLocalRandom, 0x30);
         c = (u16) (func_02094000_inline(&gRaceProgress->mLocalRandom, 0) >> 20);
-        func_02094000_inline_2(&o->mUnk_bc, func_02094000_inline(&gRaceProgress->mLocalRandom, 0x10000),
+        func_02094000_inline_2(&teresa->mAngleWobble, func_02094000_inline(&gRaceProgress->mLocalRandom, 0x10000),
                                (u16) func_02094000_inline(&gRaceProgress->mLocalRandom, 0x10000), c + 0x1000, 0,
                                e + 0x60, 0);
     }
     d = func_02094000_inline(&gRaceProgress->mLocalRandom, 0x80);
     f = func_02094000_inline(&gRaceProgress->mLocalRandom, 0xa000);
-    func_02094000_inline_2(&o->mUnk_dc, 0, func_02094000_inline(&gRaceProgress->mLocalRandom, 0x19000) + 0x19000,
+    func_02094000_inline_2(&teresa->mYWobble, 0, func_02094000_inline(&gRaceProgress->mLocalRandom, 0x19000) + 0x19000,
                            f + 0xa000, 0, d + 0x100, 0);
-    o->mUnk_10c = func_02094000_inline(&gRaceProgress->mLocalRandom, 0x3c000) + 0x3c000;
-    p = func_02094000_inline(&gRaceProgress->mLocalRandom, 0xc000) + 0xe000;
-    q = func_02094000_inline(&gRaceProgress->mLocalRandom, 0x200) + 0x400;
-    o->mUnk_fc = 0;
-    o->mUnk_100 = q;
-    o->mUnk_104 = 0x2000;
-    o->mUnk_108 = p;
+    teresa->mUnk_10c = func_02094000_inline(&gRaceProgress->mLocalRandom, 0x3c000) + 0x3c000;
+    alphaFixed12Max = func_02094000_inline(&gRaceProgress->mLocalRandom, 0xc000) + 0xe000;
+    alphaFixed12PerFrame = func_02094000_inline(&gRaceProgress->mLocalRandom, 0x200) + 0x400;
+    teresa->mAlphaFixed12 = 0;
+    teresa->mAlphaFixed12PerFrame = alphaFixed12PerFrame;
+    teresa->mAlphaFixed12Min = 0x2000;
+    teresa->mAlphaFixed12Max = alphaFixed12Max;
     if (GetCurrentCameraKind() == 2) {
-        o->mUnk_b4 = 0;
-        o->mUnk_b8 = 0xffff;
-        o->mState = 0;
+        teresa->mState1Timer = 0;
+        teresa->mState0Timer = 0xffff;
+        teresa->mState = 0;
     } else {
-        o->mUnk_b4 = (u16) func_02094000_inline(&gRaceProgress->mLocalRandom, 0x4b);
-        o->mUnk_b8 = (u16) func_02094000_inline(&gRaceProgress->mLocalRandom, 0x96) + 0x12c;
-        o->mState = 1;
+        teresa->mState1Timer = (u16) func_02094000_inline(&gRaceProgress->mLocalRandom, 0x4b);
+        teresa->mState0Timer = (u16) func_02094000_inline(&gRaceProgress->mLocalRandom, 0x96) + 0x12c;
+        teresa->mState = 1;
     }
     gUnparkedTeresaCount++;
 }

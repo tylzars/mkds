@@ -27,19 +27,19 @@
 #include "Main/Unknown/code_02077bc0.h"
 
 static inline u32 func_020919e8_inline(u32 n) {
-    RandomState64 *b;
+    RandomState64 *mapObjectRandom;
 
-    b = GetMapObjectRandom();
-    b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
-    return ((b->mValue >> 32) * n) >> 32;
+    mapObjectRandom = GetMapObjectRandom();
+    mapObjectRandom->mValue = mapObjectRandom->mMultiplier * mapObjectRandom->mValue + mapObjectRandom->mIncrement;
+    return ((mapObjectRandom->mValue >> 32) * n) >> 32;
 }
 
 static inline u16 func_020919e8_inline_2(u32 n) {
-    RandomState64 *b;
+    RandomState64 *mapObjectRandom;
 
-    b = GetMapObjectRandom();
-    b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
-    return (u32) (((b->mValue >> 32) * n) >> 32);
+    mapObjectRandom = GetMapObjectRandom();
+    mapObjectRandom->mValue = mapObjectRandom->mMultiplier * mapObjectRandom->mValue + mapObjectRandom->mIncrement;
+    return (u32) (((mapObjectRandom->mValue >> 32) * n) >> 32);
 }
 
 static inline void func_020919e8_inline_3(Unk020919e8 *p, s32 n) {
@@ -82,14 +82,14 @@ void DrawKanoke64(void *a, Unk020919e8 *p) {
     DrawMapObjectModel(a, gKanoke64, p);
 }
 
-void InitKanoke64Objects(MapObjectList *a) {
+void InitKanoke64Objects(MapObjectList *mapObjectList) {
     s32 i;
     Unk020919e8 *p;
 
-    if (a == NULL) {
+    if (mapObjectList == NULL) {
         return;
     }
-    for (i = 0; i < a->mMapObjectCount && (p = a->mMapObjects[i]) != NULL; i++) {
+    for (i = 0; i < mapObjectList->mMapObjectCount && (p = mapObjectList->mMapObjects[i]) != NULL; i++) {
         if (p->mUnk_00.mFlags & 0x800) {
             p->mUnk_a4 = (u16) (func_020919e8_inline_2(25) + 200);
         }
@@ -97,19 +97,19 @@ void InitKanoke64Objects(MapObjectList *a) {
 }
 
 // Returns a random value below b (0 when b is 0), advancing the generator a.
-u32 NextRandomBelow(RandomState64 *a, u32 b) {
-    if (b == 0) {
+u32 NextRandomBelow(RandomState64 *randomState64, u32 limit) {
+    if (limit == 0) {
         return 0;
     }
-    a->mValue = a->mMultiplier * a->mValue + a->mIncrement;
-    if (b == 0) {
-        return a->mValue >> 32;
+    randomState64->mValue = randomState64->mMultiplier * randomState64->mValue + randomState64->mIncrement;
+    if (limit == 0) {
+        return randomState64->mValue >> 32;
     }
-    return ((a->mValue >> 32) * b) >> 32;
+    return ((randomState64->mValue >> 32) * limit) >> 32;
 }
 
-s16 func_02091f54(s32 a) {
-    return gPairsByAngle[(a >> 4) * 2];
+s16 func_02091f54(s32 angle) {
+    return gPairsByAngle[(angle >> 4) * 2];
 }
 
 s32 func_02091f44(s32 a, s32 b) {
@@ -129,7 +129,7 @@ static inline BOOL func_020919e8_inline_4(Unk020919e8 *p, s32 k) {
     s32 i;
     BOOL f;
     s32 d;
-    Kart *o;
+    Kart *kart;
 
     for (i = 0; i < gRaceSetup->mKartCount; i++) {
         f = FALSE;
@@ -140,11 +140,11 @@ static inline BOOL func_020919e8_inline_4(Unk020919e8 *p, s32 k) {
         if (f == FALSE && i != gRaceSetup->mEntryIndex) {
             continue;
         }
-        o = GetKart((u16) i);
-        if (func_020919e8_inline_5(&o->mPos, &p->mUnk_00.mPos) >= 0x225510000000LL) {
+        kart = GetKart((u16) i);
+        if (func_020919e8_inline_5(&kart->mPos, &p->mUnk_00.mPos) >= 0x225510000000LL) {
             continue;
         }
-        d = FX_Atan2Idx(o->mPos.x - p->mUnk_00.mPos.x, o->mPos.z - p->mUnk_00.mPos.z) - k;
+        d = FX_Atan2Idx(kart->mPos.x - p->mUnk_00.mPos.x, kart->mPos.z - p->mUnk_00.mPos.z) - k;
         if (d < -0x1f40) {
             continue;
         }
@@ -162,17 +162,17 @@ static inline void func_020919e8_inline_6(Vec3 *v, s32 x, s32 y, s32 z) {
     v->z = z - 0x28000 + func_020919e8_inline(0x50000);
 }
 
-s16 func_02091f24(s32 a) {
-    return gPairsByAngle[(a >> 4) * 2 + 1];
+s16 func_02091f24(s32 angle) {
+    return gPairsByAngle[(angle >> 4) * 2 + 1];
 }
 
 void UpdateKanoke64(void *a, Unk020919e8 *p) {
     s32 i;
-    s32 r;
+    s32 horizontalSpeed;
     u16 k;
-    s32 n;
-    Vec3 v3;
-    Vec3 v4;
+    s32 nextFrameIndex;
+    Vec3 basabasaPos;
+    Vec3 basabasaVelocity;
 
     switch (p->mUnk_ac) {
         case 0:
@@ -199,17 +199,17 @@ void UpdateKanoke64(void *a, Unk020919e8 *p) {
     }
     if (p->mUnk_a0 == 10) {
         for (i = 0; i < 3; i++) {
-            func_020919e8_inline_6(&v3, p->mUnk_00.mPos.x, p->mUnk_00.mPos.y + 0x19000, p->mUnk_00.mPos.z);
+            func_020919e8_inline_6(&basabasaPos, p->mUnk_00.mPos.x, p->mUnk_00.mPos.y + 0x19000, p->mUnk_00.mPos.z);
             k = p->mUnk_00.mAngle;
-            r = NextRandomBelow(GetMapObjectRandom(), 0x1000) + 0x800;
+            horizontalSpeed = NextRandomBelow(GetMapObjectRandom(), 0x1000) + 0x800;
             k = k - 0x3e8 + func_02046524(GetMapObjectRandom(), 0x7d0);
-            v4.x = func_02091f44(r, func_02091f54(k));
-            v4.y = NextRandomBelow(GetMapObjectRandom(), 0x400) + 0x2200;
-            v4.z = func_02091f44(r, func_02091f24(k));
+            basabasaVelocity.x = func_02091f44(horizontalSpeed, func_02091f54(k));
+            basabasaVelocity.y = NextRandomBelow(GetMapObjectRandom(), 0x400) + 0x2200;
+            basabasaVelocity.z = func_02091f44(horizontalSpeed, func_02091f24(k));
             if (i == 0 && p->mUnk_a8 == 0) {
-                StartBasabasa(0x50, &v3, &v4, 0x28, 1, i == 0 ? 3 : 0);
+                StartBasabasa(0x50, &basabasaPos, &basabasaVelocity, 0x28, 1, i == 0 ? 3 : 0);
             } else {
-                StartBasabasa(0x50, &v3, &v4, 0x28, 0, i == 0 ? 3 : 0);
+                StartBasabasa(0x50, &basabasaPos, &basabasaVelocity, 0x28, 0, i == 0 ? 3 : 0);
             }
         }
         p->mUnk_a8 += 1;
@@ -217,11 +217,11 @@ void UpdateKanoke64(void *a, Unk020919e8 *p) {
             p->mUnk_a8 = 0;
         }
     }
-    n = p->mUnk_a0 + 1;
-    if (n >= GetMapObjectModelNsbcaFrameCount(gKanoke64)) {
-        n = 0;
+    nextFrameIndex = p->mUnk_a0 + 1;
+    if (nextFrameIndex >= GetMapObjectModelNsbcaFrameCount(gKanoke64)) {
+        nextFrameIndex = 0;
     }
-    p->mUnk_a0 = n;
+    p->mUnk_a0 = nextFrameIndex;
     if (p->mUnk_a0 == 0) {
         if (p->mUnk_a4-- <= 0) {
             p->mUnk_a8 = 0;
@@ -237,11 +237,11 @@ void UpdateKanoke64(void *a, Unk020919e8 *p) {
     func_020919e8_inline_3(p, 0x188);
 }
 
-void func_020919c8(void) {
+void CreateKanoke64DrawList(void) {
     CreateMapObjectDrawList1(CreateKanoke64, DrawKanoke64, NULL);
 }
 
-void func_020919a8(void) {
+void CreateKanoke64UpdateList(void) {
     CreateMapObjectUpdateList(InitKanoke64Objects, UpdateKanoke64, NULL);
 }
 
@@ -265,6 +265,6 @@ void DrawCow(void *a, Unk020919e8 *b) {
     DrawMapObjectModel(a, gCow, b);
 }
 
-void func_020918a8(void) {
+void CreateCowDrawList(void) {
     CreateMapObjectDrawList2(CreateCow, DrawCow, SetupDrawCow);
 }

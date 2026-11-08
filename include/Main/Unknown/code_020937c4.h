@@ -19,37 +19,37 @@ typedef struct Unk020937c4 {
 // object at 0xa8.
 typedef struct NsKiller2 {
     /* 00 */ MapObject mUnk_00;
-    /* a0 */ s32 mUnk_a0;
-    /* a4 */ s32 mUnk_a4;
-    /* a8 */ SoundDistanceSquaredChange *mUnk_a8;
+    /* a0 */ s32 mParkTimer;
+    /* a4 */ s32 mMode;
+    /* a8 */ SoundDistanceSquaredChange *mSoundDistanceSquaredChange;
 } NsKiller2;
 
 // Object of kind 0x1a1 (NsKiller1), creates 20 NsKiller2 in its Init: after the shared part, a counter at 0xa0, a state
 // at 0xa8 and an GroupFollower at 0xac.
 typedef struct NsKiller1 {
     /* 00 */ MapObject mUnk_00;
-    /* a0 */ s32 mUnk_a0;
+    /* a0 */ s32 mStateTimer;
     /* a4 */ u8 mUnk_a4[4];
     /* State number of this kind's own per-frame switch in UpdateNsKiller1; this object does not use
        MapObject.mUnk_80's state machine */
     /* a8 */ s32 mState;
-    /* ac */ GroupFollower mUnk_ac;
+    /* ac */ GroupFollower mFollower;
 } NsKiller1;
 
-void StartNsKiller2(Vec3 *a, Vec3 *b, u16 c);
-void func_02093884(void);
-void func_020938a0(void);
-void func_020938c0(void);
-void UpdateNsKiller2(void *a, NsKiller2 *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void DrawNsKiller2(void *a, NsKiller2 *p);
+void StartNsKiller2(Vec3 *startPos, Vec3 *b, u16 angle);
+void CreateNsKiller2UpdateList(void);
+void CreateNsKiller2DrawList(void);
+void CreateNsKiller2KindData(void);
+void UpdateNsKiller2(void *a, NsKiller2 *nsKiller2); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void DrawNsKiller2(void *a, NsKiller2 *nsKiller2);
 void CreateNsKiller2AndNsKiller2S(void *a);
-u8 func_02093b7c(NsKiller2 *a, Kart *b, u8 *c, u8 *d);
+u8 CollideKartWithNsKiller2(NsKiller2 *nsKiller2, Kart *kart, u8 *c, u8 *d);
 /* creates the pooled object hidden (parks it with ParkMapObject); the spawner later takes it with
  * UnparkFirstParkedMapObject */
-void InitNsKiller2(NsKiller2 *p);
-void func_02093cb4(void);
-void func_02093cd4(void);
-void UpdateNsKiller1(void *a, NsKiller1 *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void InitNsKiller1Objects(MapObjectList *p);
-void DrawNsKiller1(void *a, NsKiller1 *p);
+void InitNsKiller2(NsKiller2 *nsKiller2);
+void CreateNsKiller1UpdateList(void);
+void CreateNsKiller1DrawList(void);
+void UpdateNsKiller1(void *a, NsKiller1 *nsKiller1); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void InitNsKiller1Objects(MapObjectList *mapObjectList);
+void DrawNsKiller1(void *a, NsKiller1 *nsKiller1);
 void CreateNsKiller1(void *a);
