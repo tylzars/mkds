@@ -23,9 +23,9 @@ void func_ov001_0218f900(Unk02188950 *a) {
     func_ov001_02188d1c(a, a->mPrm->mUnk_1ac, a->mPrm->mUnk_1b0);
     func_ov001_02188cec(a, 0);
     func_ov001_02188c90(a);
-    func_ov001_021875c0(a, 0, 0, 0, 0x41b, 0);
-    func_ov001_021875c0(a, 0, 0, 0, 0x41c, 0);
-    func_ov001_021875c0(a, 0, 0, 0, 0x41d, 0);
+    StartEffectAtOffset(a, 0, 0, 0, 0x41b, 0);
+    StartEffectAtOffset(a, 0, 0, 0, 0x41c, 0);
+    StartEffectAtOffset(a, 0, 0, 0, 0x41d, 0);
     StartMapObjectSound(&a->mUnk_000, 0x22e);
     a->mUnk_000.mFlags &= ~1;
 }

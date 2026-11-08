@@ -10,5 +10,5 @@ void func_ov001_0218ad68(Unk02188950 *a) {
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
     func_ov001_02188e24(a, a->mPrm->mUnk_1f0, &func_ov001_0218add0);
-    a->mUnk_2c0 = FALSE;
+    a->mGravityEnabled = FALSE;
 }

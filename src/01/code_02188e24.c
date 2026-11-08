@@ -15,7 +15,7 @@ void func_ov001_02188e48(Unk02188950 *a, s32 b, void (*c)(Unk02188950 *), s32 d,
 
 void func_ov001_02188e24(Unk02188950 *a, s32 b, void (*c)(Unk02188950 *)) {
     a->mUnk_1f0 = b;
-    a->mUnk_0b0 = 0;
+    a->mStateFrames = 0;
     if (c == NULL) {
         c = func_ov001_02188e88;
     }

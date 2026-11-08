@@ -158,7 +158,7 @@ extern const char *gMissionRunBossIconSNcgrName;
 extern const char *gMissionRunBossIconSBnclName;
 extern const char *gMissionRunBossIconSONclrName;
 extern TestScene *gTestScene;
-extern u16 data_ov001_021a9ba0;
+extern u16 gShadowScaleToggle;
 extern SelectBattleStage *gSelectBattleStage;
 // One pair of halfwords of the object behind gOptionEmbremSelect.
 typedef struct Unk021a9bfc_18 {

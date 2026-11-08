@@ -95,14 +95,14 @@ s32 func_ov001_0218b850(Unk02188950 *a) {
     int v1;
     v1 = GetMapObjectModelNsbcaFrameIndex(a->mNsbmd);
     if (v1 == 0x4d) {
-        func_ov001_02187af4(a);
-        func_ov001_02187518(a, (0xfffff99au), 0, (0xfffff99au), (0x0000042bu), 0);
+        ReleaseEffects(a);
+        StartEffectAtRowHeight(a, (0xfffff99au), 0, (0xfffff99au), (0x0000042bu), 0);
         StartMapObjectSound(&a->mUnk_000, (0x0000021eu));
     } else {
         v1 = GetMapObjectModelNsbcaFrameIndex(a->mNsbmd);
         if (v1 == 0x68) {
-            func_ov001_02187af4(a);
-            func_ov001_02187518(a, (0xfffff99au), 0, (0xfffff99au), (0x0000042cu), 0);
+            ReleaseEffects(a);
+            StartEffectAtRowHeight(a, (0xfffff99au), 0, (0xfffff99au), (0x0000042cu), 0);
             StartMapObjectSound(&a->mUnk_000, (0x0000021fu));
         }
     }
@@ -209,9 +209,9 @@ void UpdateKuriking(u32 a, Unk02188950 *b) {
                     func_ov001_02188200(b, func_ov001_0218b6f8);
                 }
             }
-            func_ov001_02187e78(b);
-            if (b->mUnk_14c == 0) {
-                func_ov001_02187e48(b, 3);
+            IncrementEntryIndex(b);
+            if (b->mEntryIndex == 0) {
+                IncrementEntryGroupIndex(b, 3);
             }
         }
         if (func_ov001_021871f8(b, 2)) {
@@ -226,7 +226,7 @@ void UpdateKuriking(u32 a, Unk02188950 *b) {
         }
         b->mUnk_2b8 = 1;
     }
-    func_ov001_021864ac(a, b);
+    AdvanceMissionRunMapObject(a, b);
     func_ov001_0219b1fc(b->mNsbmd);
     var = b->mUnk_134 + 1;
     if (var >= func_ov001_02188220(b) * 30) {
@@ -250,8 +250,8 @@ void InitKuriking(Unk0218d87c *a) {
             if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 AddMissionRunMapObject(obj);
             }
-            func_ov001_021870e4(a, obj, ("kuriking.nsbmd"), ("kuriking.nsbca"), ("kuriking.prm"));
-            func_ov001_021870b0(a, obj, ("sh_circle.nsbmd"));
+            InitMissionRunMapObject(a, obj, ("kuriking.nsbmd"), ("kuriking.nsbca"), ("kuriking.prm"));
+            LoadMissionRunMapObjectShadow(a, obj, ("sh_circle.nsbmd"));
             LoadMapObjectModelNsbtaAnimation(obj->mNsbmd, "kuriking.nsbta");
             LoadMapObjectModelNsbtpAnimation(obj->mNsbmd, "kuriking.nsbtp");
             LoadMapObjectModelNsbmaAnimation(obj->mNsbmd, "kuriking.nsbma");
@@ -262,19 +262,19 @@ void InitKuriking(Unk0218d87c *a) {
 }
 
 void DrawKuriking(void *a, Unk02188950 *b) {
-    func_ov001_02186368(a, b);
-    func_ov001_021861f4(a, b, 0);
+    DrawMissionRunMapObject(a, b);
+    DrawMissionRunMapObjectShadow(a, b, 0);
 }
 
 void func_ov001_0218b310(void) {
-    void *v7 = &func_ov001_02185fb0;
-    void *v8 = &func_ov001_02185f04;
-    void *v9 = &func_ov001_021860cc;
+    void *v7 = &CollideKartWithMissionRunMapObject;
+    void *v8 = &CollideItemWithMissionRunMapObject;
+    void *v9 = &ComputeSphereHitOnMissionRunMapObject;
     void *v11 = func_ov001_0219b510(v7, v8, v9, 0x2u, 0x1u, 0x0u, 0x0u);
 }
 
 void *func_ov001_0218b2f4(void) {
-    return CreateMapObjectDrawList1(InitKuriking, DrawKuriking, func_ov001_02187098);
+    return CreateMapObjectDrawList1(InitKuriking, DrawKuriking, ToggleShadowScale);
 }
 
 void *func_ov001_0218b2dc(void) {

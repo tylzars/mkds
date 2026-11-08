@@ -35,17 +35,17 @@ void func_ov001_0218883c(Unk02188950 *a, int b, u32 c, u32 d, u32 e) {
 
 void func_ov001_0218875c(Unk02188950 *a, s32 b, s32 c, s32 d) {
     if (d == 0) {
-        a->mUnk_234 = 0;
+        a->mCollisionShape = 0;
     } else {
-        a->mUnk_234 = 2;
+        a->mCollisionShape = 2;
     }
     a->mOffset.x = a->mUnk_250 = 0;
     a->mOffset.y = a->mUnk_254 = b;
     a->mOffset.z = a->mUnk_258 = 0;
     a->mUnk_274 = 0;
-    a->mUnk_25c.x = a->mUnk_268 = c;
-    a->mUnk_25c.y = a->mUnk_26c = d;
-    a->mUnk_25c.z = a->mUnk_270 = c;
+    a->mCollisionExtent.x = a->mUnk_268 = c;
+    a->mCollisionExtent.y = a->mUnk_26c = d;
+    a->mCollisionExtent.z = a->mUnk_270 = c;
     a->mUnk_278 = 0;
     a->mPosWithOffset.x = a->mUnk_000.mPos.x + a->mOffset.x;
     a->mPosWithOffset.y = a->mUnk_000.mPos.y + a->mOffset.y;
@@ -54,9 +54,9 @@ void func_ov001_0218875c(Unk02188950 *a, s32 b, s32 c, s32 d) {
 
 void func_ov001_021886f8(Unk02188950 *a, u32 b, u32 c, u32 d, int e, u32 f) {
     if (e == 0) {
-        a->mUnk_234 = 0;
+        a->mCollisionShape = 0;
     } else {
-        a->mUnk_234 = 2;
+        a->mCollisionShape = 2;
     }
     a->mUnk_250 = 0;
     a->mUnk_254 = b;
@@ -118,7 +118,7 @@ void func_ov001_021884f0(Unk02188950 *a, int b, int c, int d, u32 e, u32 f, u32 
     int *v3;
     int *v4;
     int *v5;
-    a->mUnk_234 = 1;
+    a->mCollisionShape = 1;
     if ((a->mUnk_000.mFlags & (0x00000400u)) != 0) {
         b = -b;
     }
@@ -137,13 +137,13 @@ void func_ov001_021884f0(Unk02188950 *a, int b, int c, int d, u32 e, u32 f, u32 
     a->mUnk_274 = 0;
     v5 = &a->mUnk_268;
     *v5 = e;
-    a->mUnk_25c.x = *v5;
+    a->mCollisionExtent.x = *v5;
     v5 = &a->mUnk_26c;
     *v5 = f;
-    a->mUnk_25c.y = *v5;
+    a->mCollisionExtent.y = *v5;
     v5 = &a->mUnk_270;
     *v5 = g;
-    a->mUnk_25c.z = *v5;
+    a->mCollisionExtent.z = *v5;
     a->mUnk_278 = 0;
     a->mPosWithOffset.x = a->mUnk_000.mPos.x + *v1;
     a->mPosWithOffset.y = a->mUnk_000.mPos.y + *v2;
@@ -151,7 +151,7 @@ void func_ov001_021884f0(Unk02188950 *a, int b, int c, int d, u32 e, u32 f, u32 
 }
 
 void func_ov001_02188484(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, u32 l) {
-    a->mUnk_234 = 1;
+    a->mCollisionShape = 1;
     if ((a->mUnk_000.mFlags & (0x00000400u)) != 0) {
         b = -b;
     }

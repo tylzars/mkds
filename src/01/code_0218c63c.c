@@ -4,7 +4,7 @@
 
 void func_ov001_0218c728(Unk02188950 *a) {
     s32 *v1;
-    Unk02188950_a0 *v2;
+    MissionRunPrm *v2;
     v2 = a->mPrm;
     func_ov001_0218875c(a, v2->mUnk_008, v2->mUnk_00c, v2->mUnk_214);
     func_ov001_021888a4(a, 0, a->mPrm->mUnk_00c);
@@ -20,7 +20,7 @@ void func_ov001_0218c6b4(Unk02188950 *a) {
     u32 v1;
     u32 v2;
     int v3;
-    Unk02188950_a0 *v4;
+    MissionRunPrm *v4;
     int v5;
     v4 = a->mPrm;
     v3 = v4->mUnk_00c;
@@ -37,7 +37,7 @@ void func_ov001_0218c63c(Unk02188950 *a) {
     u32 v1;
     u32 v2;
     int v3;
-    Unk02188950_a0 *v4;
+    MissionRunPrm *v4;
     int v5;
     v4 = a->mPrm;
     v3 = v4->mUnk_00c;

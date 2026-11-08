@@ -49,12 +49,12 @@ void func_ov001_0218a30c(Unk02188950 *a) {
     Unk021a7c08 local;
 
     func_ov001_02187218(a, 8, NULL);
-    func_ov001_02187af4(a);
-    func_ov001_021875c0(a, 0, 0x2000, 0, 0x421, 0);
-    func_ov001_021875c0(a, 0, 0x2000, 0, 0x40c, 0);
-    func_ov001_021875c0(a, 0, 0x2000, 0, 0x40e, 0);
-    func_ov001_021875c0(a, 0, 0x2000, 0, 0x40d, 0);
-    func_ov001_021875c0(a, 0, 0x2000, 0, 0x40f, 0);
+    ReleaseEffects(a);
+    StartEffectAtOffset(a, 0, 0x2000, 0, 0x421, 0);
+    StartEffectAtOffset(a, 0, 0x2000, 0, 0x40c, 0);
+    StartEffectAtOffset(a, 0, 0x2000, 0, 0x40e, 0);
+    StartEffectAtOffset(a, 0, 0x2000, 0, 0x40d, 0);
+    StartEffectAtOffset(a, 0, 0x2000, 0, 0x40f, 0);
     local = data_ov001_021a7ad0;
     local.mUnk_04 = &a->mUnk_000.mPos;
     local.mUnk_0c = GetHorizontalCameraDistanceSquared(&a->mUnk_000.mPos);
@@ -167,7 +167,7 @@ void UpdateBombKing(u32 a, Unk02188950 *b) {
             func_ov001_0218a60c(b);
         }
     }
-    func_ov001_021864ac(a, b);
+    AdvanceMissionRunMapObject(a, b);
 }
 
 void func_ov001_0218a034(Unk02188950 *a) {
@@ -195,7 +195,7 @@ void func_ov001_02189ed8(Unk02188950 *a, Kart *b) {
     Vec3 v;
     s64 scale;
 
-    if (func_ov001_02187c4c(a) != 0) {
+    if (IsItemBombStored(a) != 0) {
         func_ov001_02187bfc(a, NULL, 0);
     }
     a->mUnk_2e0 = 2;
@@ -218,7 +218,7 @@ void func_ov001_02189ed8(Unk02188950 *a, Kart *b) {
 }
 void InitBombKing(Unk0218d87c *a) {
     Unk02188950 *obj;
-    Unk02188950_a0 *a0;
+    MissionRunPrm *a0;
     int i;
 
     if (a != NULL) {
@@ -226,8 +226,8 @@ void InitBombKing(Unk0218d87c *a) {
             if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 AddMissionRunMapObject(obj);
             }
-            func_ov001_021870e4(a, obj, data_ov001_021a7b14, data_ov001_021a7b24, data_ov001_021a7b34);
-            func_ov001_021870b0(a, obj, data_ov001_021a7b44);
+            InitMissionRunMapObject(a, obj, data_ov001_021a7b14, data_ov001_021a7b24, data_ov001_021a7b34);
+            LoadMissionRunMapObjectShadow(a, obj, data_ov001_021a7b44);
             a0 = obj->mPrm;
             func_ov001_0218875c(obj, a0->mUnk_008, a0->mUnk_00c, a0->mUnk_20c);
             func_ov001_021888a4(obj, 0, 0x23000);
@@ -237,20 +237,20 @@ void InitBombKing(Unk0218d87c *a) {
 }
 
 void func_ov001_02189e0c(void *a, Unk02188950 *b) {
-    func_ov001_02186368(a, b);
-    func_ov001_021861f4(a, b, 0);
+    DrawMissionRunMapObject(a, b);
+    DrawMissionRunMapObjectShadow(a, b, 0);
 }
 
 void func_ov001_02189dd8(void) {
     u32 v4 = 0x23eu;
-    void *v8 = &func_ov001_02185fb0;
-    void *v9 = &func_ov001_02185f04;
-    void *v10 = &func_ov001_021860cc;
+    void *v8 = &CollideKartWithMissionRunMapObject;
+    void *v9 = &CollideItemWithMissionRunMapObject;
+    void *v10 = &ComputeSphereHitOnMissionRunMapObject;
     void *v12 = func_ov001_0219b510(v8, v9, v10, 0x2u, 0x1u, v4, 0x0u);
 }
 
 void *func_ov001_02189dbc(void) {
-    return CreateMapObjectDrawList1(InitBombKing, func_ov001_02189e0c, func_ov001_02187098);
+    return CreateMapObjectDrawList1(InitBombKing, func_ov001_02189e0c, ToggleShadowScale);
 }
 
 void *func_ov001_02189da4(void) {

@@ -12,17 +12,17 @@
 #include "Main/Unknown/code_020fd264.h"
 #include "Main/Unknown/code_02147000.h"
 
-void func_ov001_02187c88(Unk02188950 *a, s32 b, const Vec3 *c) {
-    a->mUnk_2e4 = b;
-    a->mUnk_2f4 = *c;
-    a->mNsbmd->mAnimatedModel->mUnk_2c = a;
-    NNS_G3dRenderObjSetCallBack((void *) a->mNsbmd->mAnimatedModel, (NNSG3dSbcCallBackFunc) func_ov001_02187d14, 0, 6,
-                                3);
+void func_ov001_02187c88(Unk02188950 *mapObject, s32 b, const Vec3 *offset) {
+    mapObject->mUnk_2e4 = b;
+    mapObject->mUnk_2f4 = *offset;
+    mapObject->mNsbmd->mAnimatedModel->mUnk_2c = mapObject;
+    NNS_G3dRenderObjSetCallBack((void *) mapObject->mNsbmd->mAnimatedModel, (NNSG3dSbcCallBackFunc) func_ov001_02187d14,
+                                0, 6, 3);
 }
 
-void func_ov001_02187c60(Unk02188950 *a, void *b) {
-    if (a->mUnk_300 != NULL) {
-        ReleaseItemBomb(&a->mUnk_300);
+void ReleaseAndSetItemBomb(Unk02188950 *mapObject, void *itemBomb) {
+    if (mapObject->mItemBomb != NULL) {
+        ReleaseItemBomb(&mapObject->mItemBomb);
     }
-    a->mUnk_300 = b;
+    mapObject->mItemBomb = itemBomb;
 }

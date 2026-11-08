@@ -38,7 +38,7 @@ s32 func_ov001_02181528(void) {
     } else {
         mapObject = NULL;
     }
-    return mapObject->mUnk_168;
+    return mapObject->mAlphaLimit;
 }
 
 #pragma thumb off

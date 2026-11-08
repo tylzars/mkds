@@ -5,11 +5,11 @@
 #include "Main/Unknown/code_020fd7f0.h"
 
 void func_ov001_02188200(Unk02188950 *a, UnkFunc *b) {
-    a->mUnk_2d4 = b;
+    a->mKartCollisionCallback = b;
 }
 
 void func_ov001_021881f4(Unk02188950 *a, UnkFunc *b) {
-    a->mUnk_2dc = b;
+    a->mItemCollisionCallback = b;
 }
 
 BOOL func_ov001_021881a8(Unk02188950 *a, Vec3 *b, s32 c, s32 d) {

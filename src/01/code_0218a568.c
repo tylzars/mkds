@@ -31,7 +31,7 @@ void func_ov001_0218aba0(Unk02188950 *a) {
 }
 
 void func_ov001_0218ab04(Unk02188950 *a) {
-    func_ov001_02187e78(a);
+    IncrementEntryIndex(a);
     func_ov001_02187218(a, 3, NULL);
     func_ov001_02188d64(a, a->mPrm->mUnk_17c, a->mPrm->mUnk_180);
     func_ov001_02188c48(a, a->mPrm->mUnk_18c, a->mPrm->mUnk_190);
@@ -52,13 +52,13 @@ void func_ov001_0218aaac(Unk02188950 *a) {
 void func_ov001_0218aa34(Unk02188950 *a) {
     void *b;
 
-    if (func_ov001_02187c4c(a) == 0) {
+    if (IsItemBombStored(a) == 0) {
         b = StartItemBomb();
         if (b != NULL) {
-            func_ov001_02187c60(a, (b));
+            ReleaseAndSetItemBomb(a, (b));
         }
     }
-    if (func_ov001_02187c4c(a) != 0) {
+    if (IsItemBombStored(a) != 0) {
         func_ov001_02187218(a, 3, NULL);
         func_ov001_02188d30(a, a->mPrm->mUnk_0d4, a->mPrm->mUnk_0d8, 0);
         func_ov001_02188cec(a, 0);
@@ -86,7 +86,7 @@ void func_ov001_0218a970(Unk02188950 *b) {
 }
 
 void func_ov001_0218a910(Unk02188950 *a) {
-    if (func_ov001_02187c4c(a) != 0) {
+    if (IsItemBombStored(a) != 0) {
         func_ov001_02187218(a, 3, NULL);
         func_ov001_02188d30(a, a->mPrm->mUnk_0d4, a->mPrm->mUnk_0d8, 0);
         func_ov001_02188cec(a, 0);
@@ -104,7 +104,7 @@ void func_ov001_0218a828(Unk02188950 *b) {
         kart = func_ov001_02188104(b, b->mPrm->mUnk_0c0, b->mPrm->mUnk_0c4);
         if (kart != NULL) {
             func_020fd754(bomb);
-            func_ov001_02187c60(b, bomb);
+            ReleaseAndSetItemBomb(b, bomb);
             func_ov001_02187218(b, 3, NULL);
             func_ov001_02188d64(b, b->mPrm->mUnk_0ec, b->mPrm->mUnk_0f0);
             func_ov001_02188c48(b, b->mPrm->mUnk_0f8, b->mPrm->mUnk_0f8);
@@ -114,7 +114,7 @@ void func_ov001_0218a828(Unk02188950 *b) {
             func_ov001_0218b278(b);
         } else {
             func_020fd754(bomb);
-            func_ov001_02187c60(b, bomb);
+            ReleaseAndSetItemBomb(b, bomb);
             func_ov001_0218a910(b);
         }
     }
@@ -169,9 +169,9 @@ void func_ov001_0218a6b0(Unk02188950 *c) {
 }
 
 void func_ov001_0218a60c(Unk02188950 *b) {
-    Unk02188950_a0 *a;
+    MissionRunPrm *a;
 
-    func_ov001_02187e78(b);
+    IncrementEntryIndex(b);
     func_ov001_02187218(b, 2, NULL);
     func_ov001_02188d64(b, b->mPrm->mUnk_084, b->mPrm->mUnk_088);
     func_ov001_02188c48(b, b->mPrm->mUnk_090, b->mPrm->mUnk_090);
@@ -184,11 +184,11 @@ void func_ov001_0218a60c(Unk02188950 *b) {
 }
 
 int func_ov001_0218a590(Unk02188950 *a) {
-    if ((a->mUnk_2c8 & 0x1e34ef) != 0) {
+    if ((a->mCollisionBits & 0x1e34ef) != 0) {
         if (a->mVelocity.y > 0x3333) {
-            func_ov001_02187af4(a);
-            func_ov001_02187518(a, 0, 0, 0, 0x411, 0);
-            func_ov001_02187518(a, 0, 0, 0, 0x412, 0);
+            ReleaseEffects(a);
+            StartEffectAtRowHeight(a, 0, 0, 0, 0x411, 0);
+            StartEffectAtRowHeight(a, 0, 0, 0, 0x412, 0);
         }
         if (a->mVelocity.y > 0) {
             StartMapObjectSound(&a->mUnk_000, 0x23b);
@@ -198,7 +198,7 @@ int func_ov001_0218a590(Unk02188950 *a) {
 }
 
 int func_ov001_0218a568(Unk02188950 *a) {
-    if ((a->mUnk_2c8 & 0x1e34ef) != 0) {
+    if ((a->mCollisionBits & 0x1e34ef) != 0) {
         a->mUnk_158 = func_ov001_0218a590;
     }
     return 0;

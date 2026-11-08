@@ -108,9 +108,9 @@ void func_ov001_0218dabc(Unk02188950 *a) {
 }
 
 void func_ov001_0218da1c(Unk02188950 *a) {
-    func_ov001_02187af4(a);
-    func_ov001_021875c0(a, 0, a->mOffset.y >> 4, 0, 0x427, 0xf);
-    func_ov001_021875c0(a, 0, a->mOffset.y >> 4, 0, 0x426, 0xf);
+    ReleaseEffects(a);
+    StartEffectAtOffset(a, 0, a->mOffset.y >> 4, 0, 0x427, 0xf);
+    StartEffectAtOffset(a, 0, a->mOffset.y >> 4, 0, 0x426, 0xf);
     StartMapObjectSound(&a->mUnk_000, 0x24d);
     func_ov001_02188230(a);
     if (func_ov001_02188220(a) == 2) {
@@ -180,7 +180,7 @@ void func_ov001_0218d87c(Unk02188950 *a, int b) {
 }
 
 void func_ov001_0218d824(Unk02188950 *b, int c) {
-    Unk02188950_a0 *a;
+    MissionRunPrm *a;
 
     a = b->mPrm;
     func_ov001_02188cd8(b, (a->mUnk_090 * c / 100), a->mUnk_094);
@@ -232,9 +232,9 @@ int func_ov001_0218d520(Unk02188950 *a) {
         }
         func_ov001_0218d824(a, r4);
         func_ov001_0218d87c(a, r4);
-        func_ov001_02187e78(a);
-        if (a->mUnk_14c == 0) {
-            func_ov001_02187e48(a, 4);
+        IncrementEntryIndex(a);
+        if (a->mEntryIndex == 0) {
+            IncrementEntryGroupIndex(a, 4);
         }
     }
     if (a->mUnk_0a8 > 0) {
@@ -244,7 +244,7 @@ int func_ov001_0218d520(Unk02188950 *a) {
         if (func_ov001_02188220(a) == 2) {
             a->mUnk_140 = a->mUnk_140 + 1 >= 6 ? 0 : a->mUnk_140 + 1;
             if (a->mUnk_140 == 0) {
-                func_ov001_021875c0(a, 0, 0, 0, 0x3f9, 0x1c);
+                StartEffectAtOffset(a, 0, 0, 0, 0x3f9, 0x1c);
             }
             a->mUnk_144 = a->mUnk_144 + 1 >= 0x12 ? 0 : a->mUnk_144 + 1;
             if (a->mUnk_144 == 0) {
@@ -253,7 +253,7 @@ int func_ov001_0218d520(Unk02188950 *a) {
         } else if (func_ov001_02188220(a) == 1) {
             a->mUnk_140 = a->mUnk_140 + 1 >= 0x12 ? 0 : a->mUnk_140 + 1;
             if (a->mUnk_140 == 0) {
-                func_ov001_021875c0(a, 0, 0, 0, 0x3f8, 0x1c);
+                StartEffectAtOffset(a, 0, 0, 0, 0x3f8, 0x1c);
                 StartMapObjectSound(&a->mUnk_000, 0x24e);
             }
         }

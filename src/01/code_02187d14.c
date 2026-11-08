@@ -19,66 +19,66 @@
 #include "Main/Unknown/code_020fd000.h"
 #include "Main/Unknown/code_021000d0.h"
 
-void func_ov001_02187e48(Unk02188950 *a, s32 b) {
-    s32 v;
-    s32 n;
+void IncrementEntryGroupIndex(Unk02188950 *mapObject, s32 groupSpan) {
+    s32 firstGroupIndex;
+    s32 nextGroupIndex;
 
-    v = a->mUnk_000.mCourseMapRow->mUnk_26;
-    n = a->mUnk_148 + 1;
-    if (n >= v + b) {
-        n = v;
+    firstGroupIndex = mapObject->mUnk_000.mCourseMapRow->mUnk_26;
+    nextGroupIndex = mapObject->mEntryGroupIndex + 1;
+    if (nextGroupIndex >= firstGroupIndex + groupSpan) {
+        nextGroupIndex = firstGroupIndex;
     }
-    a->mUnk_148 = (u16) n;
-    a->mUnk_14c = 0;
+    mapObject->mEntryGroupIndex = (u16) nextGroupIndex;
+    mapObject->mEntryIndex = 0;
 }
 
-void *func_ov001_02187e00(u16 a) {
-    ItemBox *p;
+void *StartItemBombWithParkedItemBox(u16 a) {
+    ItemBox *parkedMapObject;
 
-    p = FindParkedMapObject(0xc9);
-    if (p != NULL) {
-        func_020de9ec(p);
-        p->mUnk_0f2 = a;
-        p->mUnk_0f4 = a;
-        p->mUnk_0ac = 1;
-        return StartItemBombWithMapObject(p, 0xa000);
-    }
-    return NULL;
-}
-
-void *func_ov001_02187dd4(void) {
-    void *p;
-
-    p = FindParkedMapObject(MAP_OBJECT_KIND_KURIBO);
-    if (p != NULL) {
-        func_020da628(p);
-        return StartItemBombWithMapObject(p, 0);
+    parkedMapObject = FindParkedMapObject(0xc9);
+    if (parkedMapObject != NULL) {
+        func_020de9ec(parkedMapObject);
+        parkedMapObject->mUnk_0f2 = a;
+        parkedMapObject->mUnk_0f4 = a;
+        parkedMapObject->mUnk_0ac = 1;
+        return StartItemBombWithMapObject(parkedMapObject, 0xa000);
     }
     return NULL;
 }
 
-void func_ov001_02187d14(Unk02187d14 *c) {
-    MtxFx43 a;
-    MtxFx43 b;
-    Vec3 v;
-    Unk02188950 *p;
-    Camera *q;
+void *StartItemBombWithParkedKuribo(void) {
+    void *parkedMapObject;
 
-    p = c->mUnk_04->mUnk_2c;
-    if (c->mUnk_00->mUnk_01 == p->mUnk_2e4) {
-        q = GetCurrentCamera();
-        NNS_G3dGetCurrentMtx(&a, NULL);
-        MTX_Inverse43(&q->mViewMatrix, &b);
-        MTX_Concat43(&a, &b, &a);
-        p->mUnk_2e8.x = a.mUnk_00[3].x << 4;
-        p->mUnk_2e8.y = a.mUnk_00[3].y << 4;
-        p->mUnk_2e8.z = a.mUnk_00[3].z << 4;
-        if (p->mUnk_300 != NULL) {
-            v = p->mUnk_2e8;
-            VEC_MultAdd(p->mUnk_2f4.x, &a.mUnk_00[0], &v, &v);
-            VEC_MultAdd(p->mUnk_2f4.y, &a.mUnk_00[1], &v, &v);
-            VEC_MultAdd(p->mUnk_2f4.z, &a.mUnk_00[2], &v, &v);
-            func_020fd684(p->mUnk_300, &a.mUnk_00[0], &v);
+    parkedMapObject = FindParkedMapObject(MAP_OBJECT_KIND_KURIBO);
+    if (parkedMapObject != NULL) {
+        func_020da628(parkedMapObject);
+        return StartItemBombWithMapObject(parkedMapObject, 0);
+    }
+    return NULL;
+}
+
+void func_ov001_02187d14(Unk02187d14 *renderState) {
+    MtxFx43 currentMatrix;
+    MtxFx43 inverseViewMatrix;
+    Vec3 bombPosition;
+    Unk02188950 *mapObject;
+    Camera *currentCamera;
+
+    mapObject = renderState->mUnk_04->mUnk_2c;
+    if (renderState->mUnk_00->mUnk_01 == mapObject->mUnk_2e4) {
+        currentCamera = GetCurrentCamera();
+        NNS_G3dGetCurrentMtx(&currentMatrix, NULL);
+        MTX_Inverse43(&currentCamera->mViewMatrix, &inverseViewMatrix);
+        MTX_Concat43(&currentMatrix, &inverseViewMatrix, &currentMatrix);
+        mapObject->mUnk_2e8.x = currentMatrix.mUnk_00[3].x << 4;
+        mapObject->mUnk_2e8.y = currentMatrix.mUnk_00[3].y << 4;
+        mapObject->mUnk_2e8.z = currentMatrix.mUnk_00[3].z << 4;
+        if (mapObject->mItemBomb != NULL) {
+            bombPosition = mapObject->mUnk_2e8;
+            VEC_MultAdd(mapObject->mUnk_2f4.x, &currentMatrix.mUnk_00[0], &bombPosition, &bombPosition);
+            VEC_MultAdd(mapObject->mUnk_2f4.y, &currentMatrix.mUnk_00[1], &bombPosition, &bombPosition);
+            VEC_MultAdd(mapObject->mUnk_2f4.z, &currentMatrix.mUnk_00[2], &bombPosition, &bombPosition);
+            func_020fd684(mapObject->mItemBomb, &currentMatrix.mUnk_00[0], &bombPosition);
         }
     }
 }

@@ -13,7 +13,7 @@
 void func_ov001_0218b1d8(Unk02188950 *a) {
     Vec3 vec;
 
-    if (func_ov001_02187c4c(a)) {
+    if (IsItemBombStored(a)) {
         vec.x = (((s64) a->mPrm->mUnk_134 * gPairsByAngle[((u16) a->mMoveAngle >> 4) * 2]) >> 12);
         vec.y = a->mPrm->mUnk_138;
         vec.z = (((s64) a->mPrm->mUnk_134 * gPairsByAngle[((u16) a->mMoveAngle >> 4) * 2 + 1]) >> 12);
@@ -46,11 +46,11 @@ void func_ov001_0218b034(Unk02188950 *a) {
             pos.z = a->mUnk_000.mPos.z + (s32) (((s64) a->mPrm->mUnk_154 * gPairsByAngle[idx + 1]) >> 12);
         }
         if (i == 0) {
-            func_ov001_02187b94(StartItemBomb(), &pos, &vel, a->mPrm->mUnk_15c);
+            ThrowItemBombFromPosition(StartItemBomb(), &pos, &vel, a->mPrm->mUnk_15c);
         } else {
-            func_ov001_02187b94(func_ov001_02187e00(9), &pos, &vel, a->mPrm->mUnk_160);
+            ThrowItemBombFromPosition(StartItemBombWithParkedItemBox(9), &pos, &vel, a->mPrm->mUnk_160);
         }
     }
-    func_ov001_02187518(a, 0x2000, 0, 0x3ae, 0x410, 0);
+    StartEffectAtRowHeight(a, 0x2000, 0, 0x3ae, 0x410, 0);
     StartMapObjectSound(&a->mUnk_000, 0x236);
 }

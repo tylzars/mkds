@@ -59,40 +59,44 @@ typedef struct Unk02185fb0_1 {
     /* 88 */ s32 mUnk_88;
 } Unk02185fb0_1;
 
-void func_ov001_021870e4(void *a, Unk02188950 *b, const char *c, const char *d, const char *e);
-void func_ov001_021872e0(Unk02188950 *a, int b, int c, int d, int e, int f, int g, int h, u32 l);
+void InitMissionRunMapObject(void *mapObjectList, Unk02188950 *mapObject, const char *nsbmdName, const char *nsbcaName,
+                             const char *prmName);
+void func_ov001_021872e0(Unk02188950 *mapObject, int offsetX, int offsetY, int offsetZ, int emitterParamX,
+                         int emitterParamY, int emitterParamZ, int effectId, u32 timer);
 
-void func_ov001_02187614(Unk02188950 *a, s32 b, s32 c, s32 d, s32 e, u32 f, s32 g);
+void StartEffectInSlot(Unk02188950 *mapObject, s32 effectIndex, s32 offsetX, s32 offsetY, s32 offsetZ, u32 effectId,
+                       s32 timer);
 
 #include "01/code_02188950.h"
 #include "Main/Unknown/code_0206bcb0.h"
 #include "01/code_02187000.h"
 
-void *func_ov001_02185ef4(void);
-s32 func_ov001_02185f04(Unk02188950 *a, Unk02185f04_1 *b, u8 *c, u8 *d);
-s32 func_ov001_02185fb0(Unk02188950 *a, Unk02185fb0_1 *b, u8 *c, u8 *d);
-s32 func_ov001_021860cc(Unk02188950 *a, Vec3 *b, s32 c, Vec3 *d);
-void func_ov001_021861f4(void *d, Unk02188950 *e, s32 f);
-void func_ov001_02186368(void *a, Unk02188950 *b);
-void func_ov001_021864ac(u32 a, Unk02188950 *b);
-u16 func_ov001_02186fb4(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e);
-u16 func_ov001_02187024(Vec3 *a, Vec3 *b, s32 c, s32 d);
-int func_ov001_02187074(int a, int b, int c);
-void func_ov001_02187098(void);
-void func_ov001_021870b0(void *a, Unk02188950 *b, const char *c);
-BOOL func_ov001_021871d0(Unk02188950 *a);
-u32 func_ov001_021871f8(Unk02188950 *a, int b);
-void func_ov001_0218720c(Unk02188950 *a);
-void func_ov001_02187218(Unk02188950 *a, int b, s32 (*c)(Unk02188950 *));
+void *CreateEmptyMapObjectUpdateList(void);
+s32 CollideItemWithMissionRunMapObject(Unk02188950 *mapObject, Unk02185f04_1 *itemObject, u8 *c, u8 *d);
+s32 CollideKartWithMissionRunMapObject(Unk02188950 *mapObject, Unk02185fb0_1 *kart, u8 *c, u8 *d);
+s32 ComputeSphereHitOnMissionRunMapObject(Unk02188950 *mapObject, Vec3 *sphereCenter, s32 sphereRadius,
+                                          Vec3 *overlapOffset);
+void DrawMissionRunMapObjectShadow(void *mapObjectList, Unk02188950 *mapObject, s32 invertDepth);
+void DrawMissionRunMapObject(void *mapObjectList, Unk02188950 *mapObject);
+void AdvanceMissionRunMapObject(u32 a, Unk02188950 *mapObject);
+u16 StepAngleSidewaysToPoint(Vec3 *targetPoint, Vec3 *origin, s32 signedMaxStep, s32 angleOffset, s32 angle);
+u16 StepAngleTowardDirection(Vec3 *target, Vec3 *origin, s32 maxStep, s32 angle);
+int StepIntTowardTarget(int target, int step, int current);
+void ToggleShadowScale(void);
+void LoadMissionRunMapObjectShadow(void *mapObjectList, Unk02188950 *mapObject, const char *shadowNsbmdName);
+BOOL func_ov001_021871d0(Unk02188950 *mapObject);
+u32 func_ov001_021871f8(Unk02188950 *mapObject, int b);
+void DisableMissionRunMapObjectGravity(Unk02188950 *mapObject);
+void func_ov001_02187218(Unk02188950 *mapObject, int b, s32 (*nextFunc)(Unk02188950 *));
 void func_ov001_0218742c(Unk0206c1ac *a, const UnkVec16 *b);
-void func_ov001_02187444(Unk02188950 *a, u32 b, int c);
-void func_ov001_021874c4(Unk02188950 *a, u32 b, u32 c, u32 d, u32 e, u32 f);
-void func_ov001_02187518(Unk02188950 *a, u32 b, u32 c, u32 d, u32 e, u32 f);
-void func_ov001_0218756c(Unk02188950 *a, u32 b, u32 c, u32 d, u32 e, u32 f);
-void func_ov001_021875c0(Unk02188950 *a, u32 b, u32 c, u32 d, u32 e, u32 f);
-void func_ov001_02187684(Unk02188950 *a, int b, Vec3 *c);
-void func_ov001_02187af4(Unk02188950 *a);
-void func_ov001_02187b2c(void *a, Vec3 *b, Vec3 *c, s32 d);
-void func_ov001_02187b94(void *a, Vec3 *b, Vec3 *c, s32 d);
+void StartModelEffectAtWaterHeight(Unk02188950 *mapObject, u32 modelEffectKind, int timer);
+void StartEffectAtWaterHeight(Unk02188950 *mapObject, u32 offsetX, u32 offsetY, u32 offsetZ, u32 effectId, u32 timer);
+void StartEffectAtRowHeight(Unk02188950 *mapObject, u32 offsetX, u32 offsetY, u32 offsetZ, u32 effectId, u32 timer);
+void StartEffectAtScaledOffset(Unk02188950 *mapObject, u32 offsetX, u32 offsetY, u32 offsetZ, u32 effectId, u32 timer);
+void StartEffectAtOffset(Unk02188950 *mapObject, u32 offsetX, u32 offsetY, u32 offsetZ, u32 effectId, u32 timer);
+void ComputeEffectPosition(Unk02188950 *mapObject, int effectIndex, Vec3 *position);
+void ReleaseEffects(Unk02188950 *mapObject);
+void ThrowItemKinokoFromPosition(void *kinoko, Vec3 *position, Vec3 *velocity, s32 timer);
+void ThrowItemBombFromPosition(void *bomb, Vec3 *position, Vec3 *velocity, s32 timer);
 
 #include "01/code_0219b540.h"

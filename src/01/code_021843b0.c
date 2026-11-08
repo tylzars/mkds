@@ -76,8 +76,8 @@ void func_ov001_02184874(Unk02188950 *donketu, Kart *kart) {
                     StartEffect(0x3e9, &effectPosition);
                     StartEffect(0x3e8, &effectPosition);
                     StartEffect(0x3ea, &effectPosition);
-                    func_ov001_02187518(donketu, 0x99a, 0, 0x75c, 0x3f3, 0);
-                    func_ov001_02187518(donketu, -0x99a, 0, 0x75c, 0x3f3, 0);
+                    StartEffectAtRowHeight(donketu, 0x99a, 0, 0x75c, 0x3f3, 0);
+                    StartEffectAtRowHeight(donketu, -0x99a, 0, 0x75c, 0x3f3, 0);
                 } else if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_KING_ICE_DONKETU) {
                     donketu->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
                     StopSound(&donketu->mUnk_000.mSound->mSoundSource, 0x245);
@@ -85,8 +85,8 @@ void func_ov001_02184874(Unk02188950 *donketu, Kart *kart) {
                     StartEffect(0x3fa, &effectPosition);
                     StartEffect(0x3fb, &effectPosition);
                     StartEffect(0x3fc, &effectPosition);
-                    func_ov001_02187518(donketu, -0x11ec, 0, 0x1800, 0x445, 0);
-                    func_ov001_02187518(donketu, 0x11ec, 0, 0x1800, 0x445, 0);
+                    StartEffectAtRowHeight(donketu, -0x11ec, 0, 0x1800, 0x445, 0);
+                    StartEffectAtRowHeight(donketu, 0x11ec, 0, 0x1800, 0x445, 0);
                 }
             }
         }
@@ -152,8 +152,8 @@ void func_ov001_021843b0(Unk02188950 *donketu, Kart *kart) {
                 StartEffect(0x3e9, &effectPosition);
                 StartEffect(0x3e8, &effectPosition);
                 StartEffect(0x3ea, &effectPosition);
-                func_ov001_02187518(donketu, 0x99a, 0, 0x75c, 0x3f3, 0);
-                func_ov001_02187518(donketu, -0x99a, 0, 0x75c, 0x3f3, 0);
+                StartEffectAtRowHeight(donketu, 0x99a, 0, 0x75c, 0x3f3, 0);
+                StartEffectAtRowHeight(donketu, -0x99a, 0, 0x75c, 0x3f3, 0);
             } else if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_KING_ICE_DONKETU) {
                 donketu->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
                 StopSound(&donketu->mUnk_000.mSound->mSoundSource, 0x245);
@@ -161,8 +161,8 @@ void func_ov001_021843b0(Unk02188950 *donketu, Kart *kart) {
                 StartEffect(0x3fa, &effectPosition);
                 StartEffect(0x3fb, &effectPosition);
                 StartEffect(0x3fc, &effectPosition);
-                func_ov001_02187518(donketu, -0x11ec, 0, 0x1800, 0x445, 0);
-                func_ov001_02187518(donketu, 0x11ec, 0, 0x1800, 0x445, 0);
+                StartEffectAtRowHeight(donketu, -0x11ec, 0, 0x1800, 0x445, 0);
+                StartEffectAtRowHeight(donketu, 0x11ec, 0, 0x1800, 0x445, 0);
             }
             donketu->mUnk_000.mUnk_10.x =
                 ((s64) donketu->mPrm->mUnk_1b8 * gPairsByAngle[((u16) donketu->mMoveAngle >> 4) * 2]) >> 12;

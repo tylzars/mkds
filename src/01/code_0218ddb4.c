@@ -72,9 +72,9 @@ void func_ov001_0218f850(Unk02188950 *a) {
     func_ov001_02188d1c(a, a->mPrm->mUnk_1a0, a->mPrm->mUnk_1a4);
     func_ov001_02188cec(a, 0);
     func_ov001_02188c90(a);
-    func_ov001_021875c0(a, 0, 0, 0, 0x41e, 0);
-    func_ov001_021875c0(a, 0, 0, 0, 0x41f, 0);
-    func_ov001_021875c0(a, 0, 0, 0, 0x420, 0);
+    StartEffectAtOffset(a, 0, 0, 0, 0x41e, 0);
+    StartEffectAtOffset(a, 0, 0, 0, 0x41f, 0);
+    StartEffectAtOffset(a, 0, 0, 0, 0x420, 0);
     StartMapObjectSound(&a->mUnk_000, 0x22d);
     a->mUnk_000.mFlags = a->mUnk_000.mFlags | data_ov001_021a65bc;
 }
@@ -379,7 +379,7 @@ void func_ov001_0218ead0(Unk02188950 *a) {
     func_ov001_0218f850(a);
     func_ov001_02188e24(a, a->mPrm->mUnk_1a8, func_ov001_0218eb94);
     func_ov001_02182a3c(0);
-    func_ov001_02187e48(a, a->mPrm->mUnk_140);
+    IncrementEntryGroupIndex(a, a->mPrm->mUnk_140);
     v1 = a->mUnk_0a8;
     if (v1 == 1) {
         v2 = 2;
@@ -396,9 +396,9 @@ void func_ov001_0218ead0(Unk02188950 *a) {
     }
     data_0217d20c = 3;
     a->mUnk_270 = a->mPrm->mUnk_00c;
-    a->mUnk_25c.z = a->mUnk_270;
-    a->mUnk_268 = a->mUnk_25c.z;
-    a->mUnk_25c.x = a->mUnk_268;
+    a->mCollisionExtent.z = a->mUnk_270;
+    a->mUnk_268 = a->mCollisionExtent.z;
+    a->mCollisionExtent.x = a->mUnk_268;
 }
 
 u32 func_ov001_0218ea98(Unk02188950 *a) {
@@ -421,9 +421,9 @@ void func_ov001_0218e92c(Unk02188950 *p) {
     func_ov001_02188c90(p);
     func_ov001_02188cec(p, 0);
     func_ov001_02188e24(p, p->mPrm->mUnk_194, func_ov001_0218ead0);
-    func_ov001_021875c0(p, 0, 0, 0, 0x431, 0);
-    func_ov001_021875c0(p, 0, 0, 0, 0x430, 0);
-    func_ov001_021875c0(p, 0, 0, 0, 0x432, 0);
+    StartEffectAtOffset(p, 0, 0, 0, 0x431, 0);
+    StartEffectAtOffset(p, 0, 0, 0, 0x430, 0);
+    StartEffectAtOffset(p, 0, 0, 0, 0x432, 0);
     if (data_0217d20c != 4) {
         data_0217d21c = data_0217d20c;
     }
@@ -433,7 +433,7 @@ void func_ov001_0218e92c(Unk02188950 *p) {
     func_ov001_02182a3c(p->mPrm->mUnk_18c < (gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunBossCount() : 0)
                             ? p->mPrm->mUnk_18c
                             : (gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunBossCount() : 0));
-    p->mUnk_25c.x = p->mUnk_268 = p->mUnk_25c.z = p->mUnk_270 = p->mPrm->mUnk_00c / 2;
+    p->mCollisionExtent.x = p->mUnk_268 = p->mCollisionExtent.z = p->mUnk_270 = p->mPrm->mUnk_00c / 2;
 }
 
 void func_ov001_0218e8d8(Unk02188950 *a) {
@@ -518,7 +518,7 @@ void func_ov001_0218e690(Unk02188950 *p) {
 }
 
 s32 func_ov001_0218e650(Unk02188950 *a) {
-    if (a->mUnk_0b0 == 50) {
+    if (a->mStateFrames == 50) {
         Unk021a7c08 local = {0x22f, 0, 0xe, 0};
         local.mUnk_04 = &a->mUnk_000.mPos;
         local.mUnk_0c = GetHorizontalCameraDistanceSquared(&a->mUnk_000.mPos);
@@ -529,7 +529,7 @@ s32 func_ov001_0218e650(Unk02188950 *a) {
 
 void func_ov001_0218e5c4(Unk02188950 *a) {
     a->mUnk_000.mPos.y += a->mPrm->mUnk_080;
-    a->mUnk_168 = a->mUnk_16c = 0x1f000;
+    a->mAlphaLimit = a->mUnk_16c = 0x1f000;
     a->mUnk_170 = 0;
     func_ov001_02187218(a, 8, func_ov001_0218e650);
     func_ov001_02188d64(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
@@ -572,8 +572,8 @@ void func_ov001_0218e508(Unk02188950 *a) {
 void func_ov001_0218e4ac(Unk02188950 *a) {
     a->mUnk_000.mPos.y += a->mPrm->mUnk_080;
     a->mUnk_16c = 0;
-    a->mUnk_168 = a->mUnk_16c;
-    a->mUnk_168 = 0;
+    a->mAlphaLimit = a->mUnk_16c;
+    a->mAlphaLimit = 0;
     func_ov001_02187218(a, 8, NULL);
     func_ov001_02188d64(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
     func_ov001_02188e24(a, a->mPrm->mUnk_03c, func_ov001_0218e508);
@@ -596,7 +596,7 @@ void func_ov001_0218e38c(Unk02188950 *a, Kart *b) {
     func_ov001_0218e860(a);
     a->mUnk_0a8 = 0;
     StartMapObjectSound(&a->mUnk_000, 0x22c);
-    a->mUnk_25c.x = a->mUnk_268 = a->mUnk_25c.z = a->mUnk_270 = a->mPrm->mUnk_00c;
+    a->mCollisionExtent.x = a->mUnk_268 = a->mCollisionExtent.z = a->mUnk_270 = a->mPrm->mUnk_00c;
 }
 
 void func_ov001_0218e344(Unk02188950 *a) {
@@ -632,7 +632,7 @@ void func_ov001_0218e298(Unk02188950 *a, Kart *b) {
 void InitKingTeresaObjects(Unk0218d87c *a) {
     s32 i;
     Unk02188950 *obj;
-    Unk02188950_a0 *a0;
+    MissionRunPrm *a0;
 
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (obj = a->mUnk_00[i]) != NULL; i++) {
@@ -676,7 +676,7 @@ void UpdateKingTeresa(u32 a, Unk02188950 *b) {
             }
             if (func_ov001_021871f8(b, 3) != 0) {
                 if (func_ov001_021881a8(b, &func_ov001_02187fc0(b)->mPos, b->mPrm->mUnk_138, 0) != 0) {
-                    func_ov001_02187e78(b);
+                    IncrementEntryIndex(b);
                 }
                 func_ov001_02188200(b, func_ov001_0218e344);
                 b->mUnk_000.mFlags &= ~0x40;
@@ -729,21 +729,21 @@ void UpdateKingTeresa(u32 a, Unk02188950 *b) {
             StartMapObjectSoundWhileRequested(&b->mUnk_000, 0x22b);
         }
     }
-    func_ov001_021864ac(a, b);
+    AdvanceMissionRunMapObject(a, b);
 }
 
 void InitKingTeresa(Unk0218d87c *a) {
     int i;
     Unk02188950 *p;
-    Unk02188950_a0 *a0;
+    MissionRunPrm *a0;
 
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
             if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 AddMissionRunMapObject(p);
             }
-            func_ov001_021870e4(a, p, data_ov001_021a7da0, data_ov001_021a7db4, data_ov001_021a7dc8);
-            func_ov001_021870b0(a, p, data_ov001_021a7dd8);
+            InitMissionRunMapObject(a, p, data_ov001_021a7da0, data_ov001_021a7db4, data_ov001_021a7dc8);
+            LoadMissionRunMapObjectShadow(a, p, data_ov001_021a7dd8);
             a0 = p->mPrm;
             func_ov001_0218875c(p, a0->mUnk_008, a0->mUnk_00c, a0->mUnk_240);
             func_ov001_021888a4(p, 0, 0x19000);
@@ -756,23 +756,23 @@ void InitKingTeresa(Unk0218d87c *a) {
 }
 
 void DrawKingTeresa(void *a, Unk02188950 *b) {
-    func_ov001_02186368(a, b);
+    DrawMissionRunMapObject(a, b);
     if (b->mUnk_0a8 == 0) {
-        func_ov001_021861f4(a, b, 0);
+        DrawMissionRunMapObjectShadow(a, b, 0);
         return;
     }
-    func_ov001_021861f4(a, b, 1);
+    DrawMissionRunMapObjectShadow(a, b, 1);
 }
 
 void func_ov001_0218dde8(void) {
-    void *v6 = &func_ov001_02185fb0;
-    void *v7 = &func_ov001_02185f04;
-    void *v8 = &func_ov001_021860cc;
+    void *v6 = &CollideKartWithMissionRunMapObject;
+    void *v7 = &CollideItemWithMissionRunMapObject;
+    void *v8 = &ComputeSphereHitOnMissionRunMapObject;
     void *v10 = func_ov001_0219b510(v6, v7, v8, 0x2u, 0x0u, 0x0u, 0x0u);
 }
 
 void *func_ov001_0218ddcc(void) {
-    return CreateMapObjectDrawList1(InitKingTeresa, DrawKingTeresa, func_ov001_02187098);
+    return CreateMapObjectDrawList1(InitKingTeresa, DrawKingTeresa, ToggleShadowScale);
 }
 
 void *func_ov001_0218ddb4(void) {

@@ -5,15 +5,15 @@
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // Object behind func_ov001_02188c90 and the per-state functions around func_ov001_021900ac.
-typedef struct Unk02188950_a0 {
+typedef struct MissionRunPrm {
     /* 000 */ s32 mUnk_000;
-    /* 004 */ s32 mUnk_004;
+    /* 004 */ s32 mScale;
     /* 008 */ s32 mUnk_008;
     /* 00c */ s32 mUnk_00c;
     /* 010 */ s32 mUnk_010;
     /* 014 */ s32 mUnk_014;
     /* 018 */ s32 mUnk_018;
-    /* 01c */ s32 mUnk_01c;
+    /* 01c */ s32 mGravity;
     /* 020 */ s32 mUnk_020;
     /* 024 */ s32 mUnk_024;
     /* 028 */ s32 mUnk_028;
@@ -182,14 +182,14 @@ typedef struct Unk02188950_a0 {
     /* 2c4 */ u32 mUnk_2c4;
     /* 2c8 */ s32 mUnk_2c8;
     /* 2cc */ s32 mUnk_2cc;
-} Unk02188950_a0;
+} MissionRunPrm;
 
-typedef struct Unk02188950_bc {
+typedef struct MissionRunMapObjectEffect {
     /* 00 */ s32 mKind;
     /* 04 */ s32 mTimer;
     /* 08 */ Vec3 mOffset;
-    /* 14 */ void *mUnk_14;
-} Unk02188950_bc;
+    /* 14 */ void *mEffect;
+} MissionRunMapObjectEffect;
 
 // Object behind Unk02188950.mUnk_300.
 typedef struct Unk02188950_300 {
@@ -200,28 +200,28 @@ typedef struct Unk02188950_300 {
 // Layout provisional: functions on objects that share this prefix use different types at 0xa0 and 0xa8.
 typedef struct Unk02188950 {
     /* 000 */ MapObject mUnk_000;
-    /* 0a0 */ Unk02188950_a0 *mPrm;
+    /* 0a0 */ MissionRunPrm *mPrm;
     /* 0a4 */ struct Unk0218dabc *mUnk_0a4;
     /* 0a8 */ s32 mUnk_0a8;
     /* 0ac */ s32 mUnk_0ac;
-    /* 0b0 */ s32 mUnk_0b0;
+    /* 0b0 */ s32 mStateFrames;
     /* 0b4 */ s32 mUnk_0b4;
     /* 0b8 */ s32 mUnk_0b8;
-    /* 0bc */ Unk02188950_bc mUnk_0bc[5];
+    /* 0bc */ MissionRunMapObjectEffect mEffects[5];
     /* 134 */ s32 mUnk_134;
     /* 138 */ s32 mUnk_138;
     /* 13c */ s32 mUnk_13c;
     /* 140 */ s32 mUnk_140;
     /* 144 */ s32 mUnk_144;
-    /* 148 */ s32 mUnk_148;
-    /* 14c */ s32 mUnk_14c;
+    /* 148 */ s32 mEntryGroupIndex;
+    /* 14c */ s32 mEntryIndex;
     /* 150 */ s32 mUnk_150;
     /* 154 */ s32 mUnk_154;
     /* 158 */ s32 (*mUnk_158)(struct Unk02188950 *);
     /* 15c */ s32 (*mUnk_15c)(struct Unk02188950 *);
     /* 160 */ s32 mUnk_160;
     /* 164 */ s32 mUnk_164;
-    /* 168 */ s32 mUnk_168;
+    /* 168 */ s32 mAlphaLimit;
     /* 16c */ s32 mUnk_16c;
     /* 170 */ s32 mUnk_170;
     /* 174 */ s32 mSpeed;
@@ -262,13 +262,13 @@ typedef struct Unk02188950 {
     /* 228 */ UnkFunc *mUnk_228;
     /* 22c */ UnkFunc *mUnk_22c;
     /* 230 */ UnkFunc *mUnk_230;
-    /* 234 */ s32 mUnk_234;
+    /* 234 */ s32 mCollisionShape;
     /* 238 */ Vec3 mPosWithOffset;
     /* 244 */ Vec3 mOffset;
     /* 250 */ s32 mUnk_250;
     /* 254 */ s32 mUnk_254;
     /* 258 */ s32 mUnk_258;
-    /* 25c */ Vec3 mUnk_25c;
+    /* 25c */ Vec3 mCollisionExtent;
     /* 268 */ s32 mUnk_268;
     /* 26c */ s32 mUnk_26c;
     /* 270 */ s32 mUnk_270;
@@ -290,20 +290,20 @@ typedef struct Unk02188950 {
     /* 2b0 */ s32 mUnk_2b0;
     /* 2b4 */ s32 mUnk_2b4;
     /* 2b8 */ s32 mUnk_2b8;
-    /* 2bc */ BOOL mUnk_2bc;
-    /* 2c0 */ BOOL mUnk_2c0;
+    /* 2bc */ BOOL mBounceEnabled;
+    /* 2c0 */ BOOL mGravityEnabled;
     /* 2c4 */ BOOL mUnk_2c4;
-    /* 2c8 */ u32 mUnk_2c8;
+    /* 2c8 */ u32 mCollisionBits;
     /* 2cc */ u8 mUnk_2cc[0x4];
     /* 2d0 */ s32 mTimer;
-    /* 2d4 */ UnkFunc *mUnk_2d4;
+    /* 2d4 */ UnkFunc *mKartCollisionCallback;
     /* 2d8 */ s32 mUnk_2d8;
-    /* 2dc */ UnkFunc *mUnk_2dc;
+    /* 2dc */ UnkFunc *mItemCollisionCallback;
     /* 2e0 */ s32 mUnk_2e0;
     /* 2e4 */ s32 mUnk_2e4;
     /* 2e8 */ Vec3 mUnk_2e8;
     /* 2f4 */ Vec3 mUnk_2f4;
-    /* 300 */ void *mUnk_300;
+    /* 300 */ void *mItemBomb;
     /* 304 */ struct Unk0219b250 *mNsbmd;
     /* 308 */ void *mShadowNsbmd;
 } Unk02188950;

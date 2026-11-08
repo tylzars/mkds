@@ -25,7 +25,7 @@ typedef struct Unk02187d14 {
     /* 04 */ Unk0219b250_10 *mUnk_04;
 } Unk02187d14;
 
-void func_ov001_02187d14(Unk02187d14 *c);
-void *func_ov001_02187dd4(void);
-void *func_ov001_02187e00(u16 a);
-void func_ov001_02187e48(Unk02188950 *a, s32 b);
+void func_ov001_02187d14(Unk02187d14 *renderState);
+void *StartItemBombWithParkedKuribo(void);
+void *StartItemBombWithParkedItemBox(u16 a);
+void IncrementEntryGroupIndex(Unk02188950 *mapObject, s32 groupSpan);

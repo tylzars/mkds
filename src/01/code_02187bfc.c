@@ -11,21 +11,21 @@
 #include "Main/Unknown/code_020fd264.h"
 #include "Main/Unknown/code_02147000.h"
 
-void func_ov001_02187bfc(Unk02188950 *a, Vec3 *b, s32 c) {
-    Vec3 zero;
-    s32 *z;
+void func_ov001_02187bfc(Unk02188950 *mapObject, Vec3 *velocity, s32 timer) {
+    Vec3 zeroVelocity;
+    s32 *zeroWords;
 
-    if (a->mUnk_300 != NULL) {
-        if (((Unk02188950_300 *) a->mUnk_300)->mUnk_54 < 0x64000) {
-            ReleaseItemBomb(&a->mUnk_300);
-        } else if (b != NULL) {
-            func_020fd540(&a->mUnk_300, b, c);
+    if (mapObject->mItemBomb != NULL) {
+        if (((Unk02188950_300 *) mapObject->mItemBomb)->mUnk_54 < 0x64000) {
+            ReleaseItemBomb(&mapObject->mItemBomb);
+        } else if (velocity != NULL) {
+            func_020fd540(&mapObject->mItemBomb, velocity, timer);
         } else {
-            z = (s32 *) &zero;
-            z[0] = 0;
-            z[1] = 0;
-            z[2] = 0;
-            func_020fd540(&a->mUnk_300, &zero, c);
+            zeroWords = (s32 *) &zeroVelocity;
+            zeroWords[0] = 0;
+            zeroWords[1] = 0;
+            zeroWords[2] = 0;
+            func_020fd540(&mapObject->mItemBomb, &zeroVelocity, timer);
         }
     }
 }

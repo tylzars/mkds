@@ -64,11 +64,11 @@ void func_ov001_02183ff4(Unk02188950 *donketu) {
     func_ov001_02188c90(donketu);
     func_ov001_02188cec(donketu, 0);
     SetVelocity(donketu, &velocity);
-    func_ov001_0218720c(donketu);
+    DisableMissionRunMapObjectGravity(donketu);
     func_ov001_02188e24(donketu, donketu->mPrm->mUnk_20c, func_ov001_02184160);
-    func_ov001_021874c4(donketu, 0, 0, 0, 0x423, 0);
-    func_ov001_021874c4(donketu, 0, 0, 0, 0x425, 0);
-    func_ov001_02187444(donketu, 4, 0);
+    StartEffectAtWaterHeight(donketu, 0, 0, 0, 0x423, 0);
+    StartEffectAtWaterHeight(donketu, 0, 0, 0, 0x425, 0);
+    StartModelEffectAtWaterHeight(donketu, 4, 0);
     StartMapObjectSound(&donketu->mUnk_000, 0x244);
     donketu->mUnk_000.mFlags |= data_ov001_021a6578;
 }
@@ -79,15 +79,15 @@ void func_ov001_02183f0c(Unk02188950 *donketu) {
     func_ov001_02187218(donketu, 8, NULL);
     func_ov001_02188d64(donketu, donketu->mPrm->mUnk_070, donketu->mPrm->mUnk_074);
     SetVelocity(donketu, &velocity);
-    func_ov001_0218720c(donketu);
+    DisableMissionRunMapObjectGravity(donketu);
     func_ov001_02188c90(donketu);
     func_ov001_02188cec(donketu, 0);
     if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_BOSS_DONKETU) {
-        func_ov001_021874c4(donketu, 0, 0, 0, 0x423, 0);
-        func_ov001_021874c4(donketu, 0, 0, 0, 0x425, 0);
+        StartEffectAtWaterHeight(donketu, 0, 0, 0, 0x423, 0);
+        StartEffectAtWaterHeight(donketu, 0, 0, 0, 0x425, 0);
     } else if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_KING_ICE_DONKETU) {
-        func_ov001_021874c4(donketu, 0, 0, 0, 0x423, 0);
-        func_ov001_021874c4(donketu, 0, 0, 0, 0x425, 0);
+        StartEffectAtWaterHeight(donketu, 0, 0, 0, 0x423, 0);
+        StartEffectAtWaterHeight(donketu, 0, 0, 0, 0x425, 0);
     }
     {
         Unk021a78d8 soundRequest = {0x212, 0, 0xc, 0};
@@ -223,7 +223,7 @@ void func_ov001_021839ac(Unk02188950 *donketu) {
 }
 
 void func_ov001_02183894(Unk02188950 *donketu) {
-    Unk02188950_a0 *prm;
+    MissionRunPrm *prm;
 
     prm = donketu->mPrm;
     if (func_ov001_021881a8(donketu, &func_ov001_02187fc0(donketu)->mPos, prm->mUnk_0ac, prm->mUnk_0b0)) {
@@ -234,7 +234,7 @@ void func_ov001_02183894(Unk02188950 *donketu) {
         func_ov001_02188cd8(donketu, donketu->mPrm->mUnk_0c0, donketu->mPrm->mUnk_0c0);
         func_ov001_02188e24(donketu, donketu->mPrm->mUnk_0c8, NULL);
     } else {
-        func_ov001_02187e78(donketu);
+        IncrementEntryIndex(donketu);
         func_ov001_02187218(donketu, 1, NULL);
         func_ov001_02188d64(donketu, donketu->mPrm->mUnk_09c, donketu->mPrm->mUnk_0a0);
         func_ov001_02188c48(donketu, donketu->mPrm->mUnk_0a8, donketu->mPrm->mUnk_0a8);
@@ -266,7 +266,7 @@ int func_ov001_02183780(Unk02188950 *donketu) {
     if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_KING_ICE_DONKETU) {
         if (GetMapObjectModelNsbcaFrameIndex(donketu->mNsbmd) == 2 ||
             GetMapObjectModelNsbcaFrameIndex(donketu->mNsbmd) == 3) {
-            func_ov001_02187af4(donketu);
+            ReleaseEffects(donketu);
             func_ov001_021872e0(donketu, 0x1000, 0, 0, 0, 0x666, -0x1000, 0x428, 0);
             func_ov001_021872e0(donketu, 0x1000, 0, 0, 0, 0x666, -0x1000, 0x429, 0);
             func_ov001_021872e0(donketu, 0x1000, 0, 0, 0, 0x800, -0x1000, 0x42a, 0);
@@ -282,7 +282,7 @@ int func_ov001_02183780(Unk02188950 *donketu) {
 int func_ov001_02183690(Unk02188950 *donketu) {
     if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_KING_ICE_DONKETU) {
         if (GetMapObjectModelNsbcaFrameIndex(donketu->mNsbmd) == 2) {
-            func_ov001_02187af4(donketu);
+            ReleaseEffects(donketu);
             func_ov001_021872e0(donketu, 0x1000, 0, 0, 0, 0x666, -0x1000, 0x428, 0);
             func_ov001_021872e0(donketu, 0x1000, 0, 0, 0, 0x666, -0x1000, 0x429, 0);
             func_ov001_021872e0(donketu, 0x1000, 0, 0, 0, 0x800, -0x1000, 0x42a, 0);
@@ -291,8 +291,8 @@ int func_ov001_02183690(Unk02188950 *donketu) {
     } else if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_BOSS_DONKETU) {
         if (GetMapObjectModelNsbcaFrameIndex(donketu->mNsbmd) == 0x2b ||
             GetMapObjectModelNsbcaFrameIndex(donketu->mNsbmd) == 0x48) {
-            func_ov001_02187af4(donketu);
-            func_ov001_02187518(donketu, 0, 0, 0, 0x410, 0);
+            ReleaseEffects(donketu);
+            StartEffectAtRowHeight(donketu, 0, 0, 0, 0x410, 0);
         }
     }
     return 0;
@@ -302,7 +302,7 @@ s32 func_ov001_021835e0(Unk02188950 *donketu) {
     int nsbcaFrameIndex;
     if ((donketu->mUnk_000.mKind == 0x000001f6u) &&
         (nsbcaFrameIndex = GetMapObjectModelNsbcaFrameIndex(donketu->mNsbmd), nsbcaFrameIndex == 2)) {
-        func_ov001_02187af4(donketu);
+        ReleaseEffects(donketu);
         func_ov001_021872e0(donketu, 0x00001000u, 0, 0, 0, 0x00000666u, 0xfffff000u, 0x00000428u, 0);
         func_ov001_021872e0(donketu, 0x00001000u, 0, 0, 0, 0x00000666u, 0xfffff000u, 0x00000429u, 0);
         func_ov001_021872e0(donketu, 0x00001000u, 0, 0, 0, 0x00000800u, 0xfffff000u, 0x0000042au, 0);
@@ -364,7 +364,7 @@ void InitDonketuObjects(Unk0218fa78 *list) {
 }
 
 void UpdateDonketu(u32 b, Unk02188950 *donketu) {
-    Unk02188950_a0 *prm;
+    MissionRunPrm *prm;
     Kart *kart;
 
     if (gRaceSetup->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) {
@@ -412,7 +412,7 @@ void UpdateDonketu(u32 b, Unk02188950 *donketu) {
             func_ov001_02183894(donketu);
         }
     }
-    func_ov001_021864ac(b, donketu);
+    AdvanceMissionRunMapObject(b, donketu);
 }
 
 void func_ov001_02183294(Unk02188950 *donketu) {
@@ -430,8 +430,8 @@ void InitBossDonketu(Unk0218fa78 *list) {
             if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 AddMissionRunMapObject(donketu);
             }
-            func_ov001_021870e4(list, donketu, gBossDonketuNsbmdName, gBossDonketuNsbcaName, gBossDonketuPrmName);
-            func_ov001_021870b0(list, donketu, data_ov001_021a79e4);
+            InitMissionRunMapObject(list, donketu, gBossDonketuNsbmdName, gBossDonketuNsbcaName, gBossDonketuPrmName);
+            LoadMissionRunMapObjectShadow(list, donketu, data_ov001_021a79e4);
             func_ov001_0218875c(donketu, donketu->mPrm->mUnk_008, donketu->mPrm->mUnk_00c, 0);
             func_ov001_021888a4(donketu, 0, 0x11000);
             func_ov001_02188200(donketu, func_ov001_02184874);
@@ -449,9 +449,9 @@ void InitKingIceDonketu(Unk0218fa78 *list) {
             if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 AddMissionRunMapObject(donketu);
             }
-            func_ov001_021870e4(list, donketu, gKingIceDonketuNsbmdName, gKingIceDonketuNsbcaName,
-                                gKingIceDonketuPrmName);
-            func_ov001_021870b0(list, donketu, data_ov001_021a7998);
+            InitMissionRunMapObject(list, donketu, gKingIceDonketuNsbmdName, gKingIceDonketuNsbcaName,
+                                    gKingIceDonketuPrmName);
+            LoadMissionRunMapObjectShadow(list, donketu, data_ov001_021a7998);
             func_ov001_0218875c(donketu, donketu->mPrm->mUnk_008, donketu->mPrm->mUnk_00c, 0);
             func_ov001_021888a4(donketu, 0, 0x21000);
             func_ov001_02188200(donketu, func_ov001_02184874);
@@ -460,24 +460,24 @@ void InitKingIceDonketu(Unk0218fa78 *list) {
 }
 
 void func_ov001_02183138(void *a, Unk02188950 *donketu) {
-    func_ov001_02186368(a, donketu);
-    func_ov001_021861f4(a, donketu, 0);
+    DrawMissionRunMapObject(a, donketu);
+    DrawMissionRunMapObjectShadow(a, donketu, 0);
 }
 
 void func_ov001_02183104(void) {
     u32 v4 = 0x23eu;
-    void *v8 = &func_ov001_02185fb0;
-    void *v9 = &func_ov001_02185f04;
-    void *v10 = &func_ov001_021860cc;
+    void *v8 = &CollideKartWithMissionRunMapObject;
+    void *v9 = &CollideItemWithMissionRunMapObject;
+    void *v10 = &ComputeSphereHitOnMissionRunMapObject;
     void *v12 = func_ov001_0219b510(v8, v9, v10, 0x2u, 0x1u, v4, 0x0u);
 }
 
 void *CreateBossDonketuDrawList(void) {
-    return CreateMapObjectDrawList1(InitBossDonketu, func_ov001_02183138, func_ov001_02187098);
+    return CreateMapObjectDrawList1(InitBossDonketu, func_ov001_02183138, ToggleShadowScale);
 }
 
 void *CreateKingIceDonketuDrawList(void) {
-    return CreateMapObjectDrawList1(InitKingIceDonketu, func_ov001_02183138, func_ov001_02187098);
+    return CreateMapObjectDrawList1(InitKingIceDonketu, func_ov001_02183138, ToggleShadowScale);
 }
 
 void *CreateDonketuUpdateList(void) {

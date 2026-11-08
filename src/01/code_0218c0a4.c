@@ -71,7 +71,7 @@ void func_ov001_0218c354(Unk02188950 *a) {
 }
 
 void func_ov001_0218c0a4(Unk02188950 *a) {
-    Unk02188950_a0 *a0;
+    MissionRunPrm *a0;
     RandomState64 *r;
     u32 n1;
     u32 n2;
@@ -145,9 +145,9 @@ void func_ov001_0218c0a4(Unk02188950 *a) {
         vel.y = a->mPrm->mUnk_19c;
         vel.z = ((s64) a->mPrm->mUnk_1a0 * gPairsByAngle[((u16) angle >> 4) * 2 + 1]) >> 12;
         if (i == sel) {
-            func_ov001_02187b2c(StartItemKinokoOrZero(), &pos, &vel, a->mPrm->mUnk_1ac);
+            ThrowItemKinokoFromPosition(StartItemKinokoOrZero(), &pos, &vel, a->mPrm->mUnk_1ac);
         } else {
-            func_ov001_02187b94(func_ov001_02187dd4(), &pos, &vel, a->mPrm->mUnk_1b0);
+            ThrowItemBombFromPosition(StartItemBombWithParkedKuribo(), &pos, &vel, a->mPrm->mUnk_1b0);
         }
         angle += a->mPrm->mUnk_1a4;
         StartEffect(0x3f7, &pos);

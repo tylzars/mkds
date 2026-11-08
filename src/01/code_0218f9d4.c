@@ -100,7 +100,7 @@ void func_ov001_02192794(Unk02188950 *a) {
 void func_ov001_02192694(void) {
     Vec3 pos;
     Unk02188950 *obj;
-    Unk02188950_a0 *a0;
+    MissionRunPrm *a0;
     Kart *other;
     int idx;
     u16 ang;
@@ -229,8 +229,8 @@ void func_ov001_021920dc(Unk02188950 *a) {
     func_ov001_02188d64(a, a->mPrm->mUnk_254, a->mPrm->mUnk_258);
     func_ov001_02188c0c(a, a->mPrm->mUnk_2c8, 0x270f000);
     func_ov001_02188cd8(a, a->mPrm->mUnk_2cc, 0x270f000);
-    func_ov001_021875c0(a, 0, 0x44cd, 0x400, 0x42d, 0);
-    func_ov001_021875c0(a, 0, 0x44cd, 0x400, 0x42e, 0);
+    StartEffectAtOffset(a, 0, 0x44cd, 0x400, 0x42d, 0);
+    StartEffectAtOffset(a, 0, 0x44cd, 0x400, 0x42e, 0);
 }
 
 void func_ov001_02192080(Unk02188950 *a) {
@@ -245,8 +245,8 @@ void func_ov001_02191fe8(Unk02188950 *a) {
     func_ov001_02188d64(a, a->mPrm->mUnk_294, a->mPrm->mUnk_298);
     func_ov001_02188c0c(a, a->mPrm->mUnk_2c8, 0x270f000);
     func_ov001_02188cd8(a, a->mPrm->mUnk_2cc, 0x270f000);
-    func_ov001_021875c0(a, 0, 0x44cd, 0x400, 0x42d, 0);
-    func_ov001_021875c0(a, 0, 0x44cd, 0x400, 0x42e, 0);
+    StartEffectAtOffset(a, 0, 0x44cd, 0x400, 0x42d, 0);
+    StartEffectAtOffset(a, 0, 0x44cd, 0x400, 0x42e, 0);
 }
 
 void func_ov001_02191f70(Unk02188950 *a) {
@@ -264,8 +264,8 @@ void func_ov001_02191ecc(Unk02188950 *a) {
     func_ov001_02188c0c(a, a->mPrm->mUnk_2c8, 0x270f000);
     func_ov001_02188cd8(a, a->mPrm->mUnk_2cc, 0x270f000);
     func_ov001_02192358(a);
-    func_ov001_021875c0(a, 0, 0x44cd, 0x2000, 0x42d, 0);
-    func_ov001_021875c0(a, 0, 0x44cd, 0x2000, 0x42e, 0);
+    StartEffectAtOffset(a, 0, 0x44cd, 0x2000, 0x42d, 0);
+    StartEffectAtOffset(a, 0, 0x44cd, 0x2000, 0x42e, 0);
 }
 
 void func_ov001_02191e90(Unk02188950 *a) {
@@ -280,8 +280,8 @@ void func_ov001_02191e1c(Unk02188950 *a) {
     func_ov001_02188d64(a, a->mPrm->mUnk_294, a->mPrm->mUnk_298);
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
-    func_ov001_021875c0(a, 0, 0x000044cdu, 0x00000400u, 0x0000042du, 0);
-    func_ov001_021875c0(a, 0, 0x000044cdu, 0x00000400u, 0x0000042eu, 0);
+    StartEffectAtOffset(a, 0, 0x000044cdu, 0x00000400u, 0x0000042du, 0);
+    StartEffectAtOffset(a, 0, 0x000044cdu, 0x00000400u, 0x0000042eu, 0);
 }
 
 void func_ov001_02191de0(Unk02188950 *a) {
@@ -290,7 +290,7 @@ void func_ov001_02191de0(Unk02188950 *a) {
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
     SetVelocity(a, &v);
-    a->mUnk_2c0 = TRUE;
+    a->mGravityEnabled = TRUE;
 }
 
 u32 func_ov001_02191dc8(Unk02188950 *a) {
@@ -306,10 +306,10 @@ void func_ov001_02191cf4(Unk02188950 *a) {
     SetVelocity(a, &v);
     func_ov001_02188c0c(a, a->mPrm->mUnk_2c8, 0x270f000);
     func_ov001_02188cd8(a, a->mPrm->mUnk_2cc, 0x270f000);
-    func_ov001_021875c0(a, 0, 0x44cd, 0x400, 0x42d, 0);
-    func_ov001_021875c0(a, 0, 0x44cd, 0x400, 0x42e, 0);
+    StartEffectAtOffset(a, 0, 0x44cd, 0x400, 0x42d, 0);
+    StartEffectAtOffset(a, 0, 0x44cd, 0x400, 0x42e, 0);
     func_ov001_02188db8(a, func_ov001_02191de0);
-    a->mUnk_2c0 = FALSE;
+    a->mGravityEnabled = FALSE;
 }
 
 void func_ov001_02191c14(Unk02188950 *a) {
@@ -321,9 +321,9 @@ void func_ov001_02191c14(Unk02188950 *a) {
     func_ov001_02188c0c(a, a->mPrm->mUnk_2c8, 0x270f000);
     func_ov001_02188cd8(a, a->mPrm->mUnk_2cc, 0x270f000);
     func_ov001_02188e24(a, a->mPrm->mUnk_2a8, func_ov001_02191cf4);
-    func_ov001_021875c0(a, 0, 0x44cd, 0x400, 0x42d, 0);
-    func_ov001_021875c0(a, 0, 0x44cd, 0x400, 0x42e, 0);
-    a->mUnk_2c0 = FALSE;
+    StartEffectAtOffset(a, 0, 0x44cd, 0x400, 0x42d, 0);
+    StartEffectAtOffset(a, 0, 0x44cd, 0x400, 0x42e, 0);
+    a->mGravityEnabled = FALSE;
 }
 
 void func_ov001_02191bc0(Unk02188950 *a) {
@@ -341,8 +341,8 @@ void func_ov001_02191b40(Unk02188950 *a) {
     func_ov001_02188cec(a, 0);
     func_ov001_02188c90(a);
     func_ov001_02192358(a);
-    func_ov001_021875c0(a, 0, 0x000044cdu, 0x00002000u, 0x0000042du, 0);
-    func_ov001_021875c0(a, 0, 0x000044cdu, 0x00002000u, 0x0000042eu, 0);
+    StartEffectAtOffset(a, 0, 0x000044cdu, 0x00002000u, 0x0000042du, 0);
+    StartEffectAtOffset(a, 0, 0x000044cdu, 0x00002000u, 0x0000042eu, 0);
 }
 
 void func_ov001_02191adc(Unk02188950 *a) {
@@ -364,7 +364,7 @@ void func_ov001_02191a3c(Unk02188950 *a) {
     func_ov001_02188b78(a, a->mPrm->mUnk_1b4, a->mPrm->mUnk_1b8);
     func_ov001_02188cd8(a, a->mPrm->mUnk_1ac, a->mPrm->mUnk_1b0);
     func_ov001_02188db8(a, func_ov001_02191adc);
-    a->mUnk_2c0 = TRUE;
+    a->mGravityEnabled = TRUE;
 }
 
 void func_ov001_02191980(Unk02188950 *a) {
@@ -376,7 +376,7 @@ void func_ov001_02191980(Unk02188950 *a) {
     SetVelocity(a, &v);
     func_ov001_02188de0(a, a->mPrm->mUnk_19c, 0, &a->mMoveAnglePoint, func_ov001_02191a3c);
     func_ov001_02188e24(a, a->mPrm->mUnk_0ec, func_ov001_02191a3c);
-    a->mUnk_2c0 = FALSE;
+    a->mGravityEnabled = FALSE;
 }
 
 void func_ov001_021918c8(Unk02188950 *a) {
@@ -396,7 +396,7 @@ int func_ov001_02191888(Unk02188950 *a) {
     if (a->mSpeed > 0) {
         StartMapObjectSoundWhileRequested(&a->mUnk_000, 0x219);
     } else {
-        func_ov001_02187af4(a);
+        ReleaseEffects(a);
         func_ov001_02188200(a, func_ov001_02192878);
         a->mUnk_158 = NULL;
     }
@@ -414,7 +414,7 @@ void func_ov001_021917d0(Unk02188950 *a) {
     func_ov001_02188d64(a, a->mPrm->mUnk_148, a->mPrm->mUnk_14c);
     func_ov001_02188cd8(a, a->mPrm->mUnk_150, a->mPrm->mUnk_154);
     func_ov001_02188e24(a, a->mPrm->mUnk_160, func_ov001_021918c8);
-    func_ov001_021875c0(a, 0x1000, 0, 0x2000, 0x433, 0);
+    StartEffectAtOffset(a, 0x1000, 0, 0x2000, 0x433, 0);
 }
 
 void func_ov001_021916e0(Unk02188950 *a) {
@@ -432,7 +432,7 @@ void func_ov001_021916e0(Unk02188950 *a) {
     func_ov001_021889c8(a);
     func_ov001_02188e24(a, a->mPrm->mUnk_140, func_ov001_021917d0);
     func_ov001_02188200(a, func_ov001_021927c0);
-    func_ov001_021875c0(a, 0x1000, 0, 0x2000, 0x433, 0);
+    StartEffectAtOffset(a, 0x1000, 0, 0x2000, 0x433, 0);
 }
 
 void func_ov001_02191618(Unk02188950 *a) {
@@ -446,8 +446,8 @@ void func_ov001_02191618(Unk02188950 *a) {
     SetVelocity(a, &local);
     func_ov001_02188200(a, func_ov001_02192878);
     StartCameraWobbleAtDistance(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
-    func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x414, 0);
-    func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x415, 0);
+    StartEffectAtRowHeight(a, 0x1000, 0, 0x2000, 0x414, 0);
+    StartEffectAtRowHeight(a, 0x1000, 0, 0x2000, 0x415, 0);
     StartMapObjectSound(&a->mUnk_000, 0x218);
 }
 
@@ -462,8 +462,8 @@ void func_ov001_02191550(Unk02188950 *a) {
     SetVelocity(a, &local);
     func_ov001_02188200(a, func_ov001_02192878);
     StartCameraWobbleAtDistance(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
-    func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x414, 0);
-    func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x415, 0);
+    StartEffectAtRowHeight(a, 0x1000, 0, 0x2000, 0x414, 0);
+    StartEffectAtRowHeight(a, 0x1000, 0, 0x2000, 0x415, 0);
     StartMapObjectSound(&a->mUnk_000, 0x218);
 }
 
@@ -484,7 +484,7 @@ void func_ov001_02191488(Unk02188950 *a) {
     } else {
         func_ov001_02188db8(a, func_ov001_02191550);
     }
-    a->mUnk_2c0 = TRUE;
+    a->mGravityEnabled = TRUE;
     func_ov001_02188200(a, func_ov001_02192794);
 }
 
@@ -497,7 +497,7 @@ void func_ov001_021913b8(Unk02188950 *a) {
     Kart *kart = GetKart((u16) gRaceSetup->mEntryIndex);
     Vec3 local = {0, 0, 0};
 
-    func_ov001_02187e78(a);
+    IncrementEntryIndex(a);
     func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *)) func_ov001_02191470);
     func_ov001_02188d64(a, a->mPrm->mUnk_0d0, a->mPrm->mUnk_0d4);
     SetVelocity(a, &local);
@@ -505,7 +505,7 @@ void func_ov001_021913b8(Unk02188950 *a) {
     func_ov001_02188cd8(a, a->mPrm->mUnk_0d8, a->mPrm->mUnk_0dc);
     func_ov001_02188de0(a, a->mPrm->mUnk_0e8, 0, &kart->mPos, func_ov001_02191488);
     func_ov001_02188e24(a, a->mPrm->mUnk_0ec, func_ov001_02191488);
-    a->mUnk_2c0 = FALSE;
+    a->mGravityEnabled = FALSE;
 }
 
 void func_ov001_02191318(Unk02188950 *a) {
@@ -533,8 +533,8 @@ void func_ov001_02191258(Unk02188950 *a) {
     SetVelocity(a, &local);
     func_ov001_02188200(a, func_ov001_02192878);
     StartCameraWobbleAtDistance(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
-    func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x414, 0);
-    func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x415, 0);
+    StartEffectAtRowHeight(a, 0x1000, 0, 0x2000, 0x414, 0);
+    StartEffectAtRowHeight(a, 0x1000, 0, 0x2000, 0x415, 0);
     StartMapObjectSound(&a->mUnk_000, 0x218);
 }
 
@@ -566,7 +566,7 @@ void func_ov001_02191130(Unk02188950 *a) {
 }
 
 s32 func_ov001_021910fc(Unk02188950 *a) {
-    if ((a->mUnk_2c8 & 0x001e34ef) != 0) {
+    if ((a->mCollisionBits & 0x001e34ef) != 0) {
         StartMapObjectSound(&a->mUnk_000, 0x218);
         a->mUnk_158 = NULL;
     }
@@ -574,7 +574,7 @@ s32 func_ov001_021910fc(Unk02188950 *a) {
 }
 
 s32 func_ov001_021910d4(Unk02188950 *a) {
-    if (a->mUnk_2c8 & 0x1e34ef) {
+    if (a->mCollisionBits & 0x1e34ef) {
         a->mUnk_158 = (s32(*)(Unk02188950 *)) func_ov001_021910fc;
     }
     return 0;
@@ -585,7 +585,7 @@ void func_ov001_02191064(Unk02188950 *a) {
     func_ov001_02188d30(a, a->mPrm->mUnk_21c, a->mPrm->mUnk_220, func_ov001_02191130);
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
-    a->mUnk_2c0 = TRUE;
+    a->mGravityEnabled = TRUE;
     func_ov001_0219226c(a);
     func_ov001_02188200(a, func_ov001_02192878);
     StartMapObjectSound(&a->mUnk_000, 0x00000216u);
@@ -601,7 +601,7 @@ void func_ov001_02190fc4(Unk02188950 *a) {
     func_ov001_02188d30(a, a->mPrm->mUnk_23c, a->mPrm->mUnk_240, (UnkFunc *) &func_ov001_02191034);
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
-    a->mUnk_2c0 = TRUE;
+    a->mGravityEnabled = TRUE;
     func_ov001_0219226c(a);
     func_ov001_02188200(a, func_ov001_02192878);
     StartMapObjectSound(&a->mUnk_000, 0x00000216u);
@@ -609,12 +609,12 @@ void func_ov001_02190fc4(Unk02188950 *a) {
 
 void func_ov001_02190ee0(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
-    func_ov001_02187af4(a);
-    func_ov001_021875c0(a, 0, 0x1000, 0xffffdccd, 0x3ef, 0);
-    func_ov001_021875c0(a, 0, 0x1000, 0xffffdccd, 0x3ee, 0);
-    func_ov001_021875c0(a, 0, 0x1000, 0xffffdccd, 0x3f0, 0);
-    func_ov001_021875c0(a, 0, 0x1000, 0xffffdccd, 0x3f1, 0);
-    func_ov001_021875c0(a, 0, 0x1000, 0xffffdccd, 0x3f2, 0);
+    ReleaseEffects(a);
+    StartEffectAtOffset(a, 0, 0x1000, 0xffffdccd, 0x3ef, 0);
+    StartEffectAtOffset(a, 0, 0x1000, 0xffffdccd, 0x3ee, 0);
+    StartEffectAtOffset(a, 0, 0x1000, 0xffffdccd, 0x3f0, 0);
+    StartEffectAtOffset(a, 0, 0x1000, 0xffffdccd, 0x3f1, 0);
+    StartEffectAtOffset(a, 0, 0x1000, 0xffffdccd, 0x3f2, 0);
     {
         Unk02190ee0 local = data_ov001_021a7de8;
 
@@ -646,8 +646,8 @@ void func_ov001_02190df8(Unk02188950 *a) {
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
     func_ov001_02192358(a);
-    func_ov001_021875c0(a, 0, 0x000044cdu, 0x00002000u, 0x0000042du, 0);
-    func_ov001_021875c0(a, 0, 0x000044cdu, 0x00002000u, 0x0000042eu, 0);
+    StartEffectAtOffset(a, 0, 0x000044cdu, 0x00002000u, 0x0000042du, 0);
+    StartEffectAtOffset(a, 0, 0x000044cdu, 0x00002000u, 0x0000042eu, 0);
 }
 
 void func_ov001_02190df0(void) {
@@ -1146,15 +1146,15 @@ void func_ov001_0219006c(Unk02188950 *a) {
 }
 
 void func_ov001_02190030(Unk02188950 *a) {
-    func_ov001_02187518(a, 0x00002ccdu, 0, 0, 0x00000411u, 0);
-    func_ov001_02187518(a, 0x00002ccdu, 0, 0, 0x00000412u, 0);
+    StartEffectAtRowHeight(a, 0x00002ccdu, 0, 0, 0x00000411u, 0);
+    StartEffectAtRowHeight(a, 0x00002ccdu, 0, 0, 0x00000412u, 0);
 }
 
 void func_ov001_0218ffd4(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
     func_ov001_02188d64(a, a->mPrm->mUnk_064, a->mPrm->mUnk_068);
-    func_ov001_021875c0(a, 0, 0x000044cdu, 0x00000400u, 0x0000042du, 0);
-    func_ov001_021875c0(a, 0, 0x000044cdu, 0x00000400u, 0x0000042eu, 0);
+    StartEffectAtOffset(a, 0, 0x000044cdu, 0x00000400u, 0x0000042du, 0);
+    StartEffectAtOffset(a, 0, 0x000044cdu, 0x00000400u, 0x0000042eu, 0);
 }
 
 void func_ov001_0218ff98(Unk02188950 *a) {
@@ -1179,7 +1179,7 @@ void func_ov001_0218ff34(Unk02188950 *a) {
 void func_ov001_0218fef8(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
     func_ov001_02188d64(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
-    func_ov001_0218720c(a);
+    DisableMissionRunMapObjectGravity(a);
     func_ov001_02188e24(a, a->mPrm->mUnk_03c, &func_ov001_0218ff34);
 }
 
@@ -1236,7 +1236,7 @@ void func_ov001_0218fcc4(Unk0218fa78 *a) {
     if (a != NULL) {
         zero = 0;
         for (i = 0; i < a->mUnk_04 && (obj = a->mUnk_00[i]) != NULL; i++) {
-            func_ov001_021870e4((void *) zero, obj, (const char *) zero, (const char *) zero, data_ov001_021a7eb0);
+            InitMissionRunMapObject((void *) zero, obj, (const char *) zero, (const char *) zero, data_ov001_021a7eb0);
             if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 AddMissionRunMapObject(obj);
             }
@@ -1257,7 +1257,7 @@ void func_ov001_0218fc4c(u32 a, Unk02188950 *b) {
             func_ov001_0219081c(b);
         }
     }
-    func_ov001_021864ac(a, b);
+    AdvanceMissionRunMapObject(a, b);
 }
 
 void InitIwanteObjects(Unk0218fa78 *a) {
@@ -1303,7 +1303,7 @@ void UpdateIwante(u32 a, Unk02188950 *b) {
         b->mUnk_134 = value;
     }
     SetMapObjectModelNsbtpFrameIndex(b->mNsbmd, b->mUnk_134);
-    func_ov001_021864ac(a, b);
+    AdvanceMissionRunMapObject(a, b);
 }
 
 // Iwante: the two stone hands of Mission Run.
@@ -1316,10 +1316,10 @@ void InitIwante(Unk0218fa78 *a) {
             if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 AddMissionRunMapObject(obj);
             }
-            func_ov001_021870e4(a, obj, gIwanteLNsbmdName, gIwanteLNsbcaName, gIwanteLPrmName);
-            func_ov001_021870b0(a, obj, gShIwanteNsbmdName);
+            InitMissionRunMapObject(a, obj, gIwanteLNsbmdName, gIwanteLNsbcaName, gIwanteLPrmName);
+            LoadMissionRunMapObjectShadow(a, obj, gShIwanteNsbmdName);
             LoadMapObjectModelNsbtpAnimation(obj->mNsbmd, gIwanteLNsbtpName);
-            obj->mUnk_234 = 1;
+            obj->mCollisionShape = 1;
             if (i == 0) {
                 obj->mUnk_000.mFlags |= data_ov001_021a65c0;
             } else if (i == 1) {
@@ -1330,21 +1330,21 @@ void InitIwante(Unk0218fa78 *a) {
 }
 
 void func_ov001_0218fa58(void *a, Unk02188950 *b) {
-    func_ov001_02186368(a, b);
-    func_ov001_021861f4(a, b, 0);
+    DrawMissionRunMapObject(a, b);
+    DrawMissionRunMapObjectShadow(a, b, 0);
 }
 
 void func_ov001_0218fa20(void) {
     u32 v4 = 0x21au;
     u32 v6 = 0x216u;
-    void *v8 = &func_ov001_02185fb0;
-    void *v9 = &func_ov001_02185f04;
-    void *v10 = &func_ov001_021860cc;
+    void *v8 = &CollideKartWithMissionRunMapObject;
+    void *v9 = &CollideItemWithMissionRunMapObject;
+    void *v10 = &ComputeSphereHitOnMissionRunMapObject;
     void *v12 = func_ov001_0219b510(v8, v9, v10, 0x2u, 0x1u, v4, v6);
 }
 
 void *func_ov001_0218fa04(void) {
-    return CreateMapObjectDrawList1(InitIwante, func_ov001_0218fa58, func_ov001_02187098);
+    return CreateMapObjectDrawList1(InitIwante, func_ov001_0218fa58, ToggleShadowScale);
 }
 
 void *func_ov001_0218f9ec(void) {

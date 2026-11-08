@@ -9,7 +9,7 @@
 
 void func_ov001_0218bfc8(Unk02188950 *a) {
     CourseMapGroupEntry *v1;
-    Unk02188950_a0 *v2;
+    MissionRunPrm *v2;
     func_ov001_02187218(a, 2, &func_ov001_0218c584);
     func_ov001_02188d64(a, a->mPrm->mUnk_15c, a->mPrm->mUnk_160);
     func_ov001_0219b1c4(a->mNsbmd, a->mPrm->mUnk_164, a->mPrm->mUnk_160, 0);

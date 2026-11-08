@@ -3,7 +3,7 @@
 #include "types.h"
 #include "01/code_02188950.h"
 
-typedef struct Unk02188950_a0 Unk02188950_a0;
+typedef struct MissionRunPrm MissionRunPrm;
 typedef struct Unk02188950 Unk02188950;
 typedef struct Unk0218d87c Unk0218d87c;
 
@@ -16,7 +16,7 @@ void func_ov001_0218c830(void);
 void func_ov001_0218c85c(void *a, Unk02188950 *b);
 void func_ov001_0218c87c(Unk0218d87c *d);
 void InitHanachan(Unk0218d87c *a);
-void func_ov001_0218cbdc(Unk02188950 *a, Unk02188950_a0 *b);
+void func_ov001_0218cbdc(Unk02188950 *a, MissionRunPrm *b);
 void func_ov001_0218cd80(Unk02188950 *a);
 void func_ov001_0218cdb8(Unk02188950 *e);
 void func_ov001_0218ce30(u32 a, Unk02188950 *b);

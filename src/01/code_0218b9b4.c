@@ -130,10 +130,10 @@ void func_ov001_0218ba48(Unk02188950 *a) {
     SetMapObjectModelNsbtpFrameIndex(a->mNsbmd, func_ov001_02188220(a));
     if (func_ov001_02188220(a) == 0) {
         func_ov001_0218c6b4(a);
-        func_ov001_0218756c(a, 0, 0x1800, 0, 0x419, 0);
+        StartEffectAtScaledOffset(a, 0, 0x1800, 0, 0x419, 0);
     } else if (func_ov001_02188220(a) == 1) {
         func_ov001_0218c63c(a);
-        func_ov001_0218756c(a, 0, 0x1800, 0, 0x41a, 0);
+        StartEffectAtScaledOffset(a, 0, 0x1800, 0, 0x41a, 0);
     }
 }
 

@@ -29,7 +29,7 @@ void func_ov001_0218aef4(Unk02188950 *a) {
         pos.x = a->mUnk_000.mPos.x + (s32) (((s64) a->mPrm->mUnk_1e4 * gPairsByAngle[idx]) >> 12);
         pos.y = a->mUnk_000.mPos.y;
         pos.z = a->mUnk_000.mPos.z + (s32) (((s64) a->mPrm->mUnk_1e4 * gPairsByAngle[idx + 1]) >> 12);
-        func_ov001_02187b94(StartItemBomb(), &pos, &vel, a->mPrm->mUnk_1e8);
+        ThrowItemBombFromPosition(StartItemBomb(), &pos, &vel, a->mPrm->mUnk_1e8);
     }
     {
         Vec3 pos2;
@@ -37,7 +37,7 @@ void func_ov001_0218aef4(Unk02188950 *a) {
         pos2.x = a->mUnk_000.mPos.x;
         pos2.y = a->mUnk_000.mPos.y;
         pos2.z = a->mUnk_000.mPos.z;
-        func_ov001_02187b94(func_ov001_02187e00(9), &pos2, &vel2, a->mPrm->mUnk_1ec);
+        ThrowItemBombFromPosition(StartItemBombWithParkedItemBox(9), &pos2, &vel2, a->mPrm->mUnk_1ec);
     }
     func_ov001_02188cec(a, 0);
 }
@@ -47,8 +47,8 @@ void func_ov001_0218ae60(Unk02188950 *a) {
     func_ov001_02188d30(a, a->mPrm->mUnk_200, a->mPrm->mUnk_204, NULL);
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
-    func_ov001_02187518(a, 0, 0, 0, 0x411, 0);
-    func_ov001_02187518(a, 0, 0, 0, 0x412, 0);
+    StartEffectAtRowHeight(a, 0, 0, 0, 0x411, 0);
+    StartEffectAtRowHeight(a, 0, 0, 0, 0x412, 0);
     StartCameraWobbleAtDistance(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
     a->mUnk_000.mFlags &= ~0x20;
     func_ov001_02188200(a, NULL);
@@ -64,7 +64,7 @@ void func_ov001_0218add0(Unk02188950 *a) {
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
     func_ov001_02188db8(a, func_ov001_0218ae60);
-    a->mUnk_2c0 = TRUE;
+    a->mGravityEnabled = TRUE;
     StartMapObjectSound(&a->mUnk_000, 0x23a);
     func_ov001_02188200(a, func_ov001_0218b2b8);
 }

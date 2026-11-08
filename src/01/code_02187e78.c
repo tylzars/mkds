@@ -12,14 +12,14 @@
 #include "Main/Unknown/code_0207a880.h"
 #include "Main/Unknown/code_020b502c.h"
 
-void func_ov001_02187e78(Unk02188950 *a) {
-    int v1;
+void IncrementEntryIndex(Unk02188950 *mapObject) {
+    int nextEntryIndex;
 
-    if (a->mUnk_148 < gCourseMap->mEntryGroupCount) {
-        v1 = a->mUnk_14c + 1;
-        if (v1 >= gCourseMap->mEntryGroups[(u16) a->mUnk_148].mEntryCount) {
-            v1 = 0;
+    if (mapObject->mEntryGroupIndex < gCourseMap->mEntryGroupCount) {
+        nextEntryIndex = mapObject->mEntryIndex + 1;
+        if (nextEntryIndex >= gCourseMap->mEntryGroups[(u16) mapObject->mEntryGroupIndex].mEntryCount) {
+            nextEntryIndex = 0;
         }
-        a->mUnk_14c = v1;
+        mapObject->mEntryIndex = nextEntryIndex;
     }
 }
