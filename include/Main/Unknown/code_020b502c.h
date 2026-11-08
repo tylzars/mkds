@@ -189,7 +189,7 @@ typedef struct {
     /* 0c */ s32 mUnk_0c;
     /* 10 */ u8 mUnk_10;
     /* 11 */ u8 mUnk_11[3];
-} Unk02175620_54;
+} CourseMapItemPoint;
 
 // 0x10-byte entries of the same table (used while CourseMap.mVersion is below 0x21).
 typedef struct {
@@ -203,7 +203,7 @@ typedef struct {
     /* 02 */ u16 mUnk_02;
     /* 04 */ u8 mUnk_04[8];
     /* 0c */ u8 mUnk_0c[8];
-} Unk02175620_8c;
+} CourseMapBattleRoute;
 
 // 8-byte entries of the table at CourseMap.mEntryGroupTable.
 typedef struct {
@@ -275,7 +275,7 @@ typedef struct CourseMap {
     /* 52 */ u8 mUnk_52[0x2];
     // Item point records (0x14 bytes, 0x10 before format version 0x21): a position and values; mItemPointLinks is built
     // from them.
-    /* 54 */ Unk02175620_54 *mItemPoints;
+    /* 54 */ CourseMapItemPoint *mItemPoints;
     // Number of mItemPoints, and of mItemPointLinks.
     /* 58 */ u16 mItemPointCount;
     /* 5a */ u8 mUnk_5a[0x2];
@@ -310,7 +310,7 @@ typedef struct CourseMap {
     /* 8a */ u8 mUnk_8a[2];
     // Battle routes over mBattlePoints (first point, count, two lists of up to eight connecting routes, one for each
     // end of the route).
-    /* 8c */ Unk02175620_8c *mBattleRoutes;
+    /* 8c */ CourseMapBattleRoute *mBattleRoutes;
     // Number of mBattleRoutes; see mRaceRouteCount for the course test.
     /* 90 */ u16 mBattleRouteCount;
     /* 92 */ u8 mUnk_92[2];

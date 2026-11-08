@@ -272,7 +272,7 @@ typedef struct Unk0217aa00_24_50_0e {
     /* 36 */ Unk0217aa00_24_50_0e_36 mUnk_36;
 } Unk0217aa00_24_50_0e;
 
-// 0x70 bytes at 0x50 of Unk0217aa00_24; the word at 0x38 of Unk0217aa00_44 points to one.
+// 0x70 bytes at 0x50 of ScanBlockView; the word at 0x38 of Unk0217aa00_44 points to one.
 typedef struct Unk0217aa00_24_50 {
     union {
         struct {
@@ -301,7 +301,7 @@ typedef struct Unk0217aa00_24_50 {
 } Unk0217aa00_24_50;
 
 // 0xc0 bytes behind member 0x24 of Unk0217aa00; the first 0xc0 bytes of each Unk0217aa00_0ac have the same layout.
-typedef struct Unk0217aa00_24 {
+typedef struct ScanBlockView {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u8 mUnk_02[0x3a];
     /* 3c */ u16 mUnk_3c;
@@ -312,7 +312,7 @@ typedef struct Unk0217aa00_24 {
     /* 4b */ u8 mUnk_4b;
     /* 4c */ u8 mUnk_4c[4];
     /* 50 */ Unk0217aa00_24_50 mUnk_50;
-} Unk0217aa00_24;
+} ScanBlockView;
 
 // Object behind member 0x15c4 of Unk0217aa00.
 typedef struct Unk0217aa00_15c4 {
@@ -588,7 +588,7 @@ typedef struct Unk0217aa00 {
     /* 0018 */ Unk02143c30 *mParentParameter;
     /* 001c */ Unk02143a78 *mUnk_001c;
     /* 0020 */ Unk021438f0 *mUnk_0020;
-    /* 0024 */ Unk0217aa00_24 *mUnk_0024;
+    /* 0024 */ ScanBlockView *mUnk_0024;
     /* 0028 */ void *mUnk_0028;
     /* 002c */ void *mUnk_002c;
     /* 0030 */ s32 mUnk_0030;

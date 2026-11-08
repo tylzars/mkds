@@ -12,7 +12,7 @@
 u32 func_0200b15c(u32 entryIndex, ScanBlock *scanBlock, u16 c, u16 d, u32 e, u32 f) {
     u32 bit8;
     u32 bit4;
-    if (func_0200b1b0(entryIndex, (struct Unk0217aa00_24 *) scanBlock) == 0) {
+    if (func_0200b1b0(entryIndex, (struct ScanBlockView *) scanBlock) == 0) {
         return 0;
     }
     scanBlock->mUnk_3c = 0x10;

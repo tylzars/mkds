@@ -8,13 +8,13 @@ typedef struct Vec3 Vec3;
 typedef struct SceneNumbers SceneNumbers;
 
 // Object func_0203bf04 reads: the first 0x30 bytes and the 0xdcc bytes from 0x30.
-typedef struct Unk0203bf04_a {
+typedef struct GhostRecordView {
     /* 000 */ u8 mUnk_000[0x30];
     /* 030 */ u8 mUnk_030[0xdcc];
-} Unk0203bf04_a;
+} GhostRecordView;
 
 // Object func_0203bf04 fills: a word at 0x08, two bits at 0x2f, 0x200 bytes at 0x30 and 0xdcc bytes from 0x230.
-typedef struct Unk0203bf04_b {
+typedef struct SlotGhostBufferView {
     /* 000 */ u8 mUnk_000[0x8];
     /* 008 */ u32 mUnk_008;
     /* 00c */ u8 mUnk_00c[0x23];
@@ -26,13 +26,13 @@ typedef struct Unk0203bf04_b {
     };
     /* 030 */ u8 mUnk_030[0x200];
     /* 230 */ u8 mUnk_230[0xdcc];
-} Unk0203bf04_b;
+} SlotGhostBufferView;
 
 void SetGivenKart(u8 *rawPicks, u32 entryIndex, u32 kartIndex);
 void SetGivenCharacter(u8 *rawPicks, u32 entryIndex, u32 characterIndex);
 void InitCharacterKartPicks(u8 *rawPicks);
 u8 *func_0203bedc(void *heap);
-void func_0203bf04(Unk0203bf04_a *courseGhost, Unk0203bf04_b *slotGhost);
+void func_0203bf04(GhostRecordView *courseGhost, SlotGhostBufferView *slotGhost);
 void GetClockTimeOrZero(RTCTime *time);
 void GetClockDateOrDefault(s32 *date);
 // Scene function of gSceneFuncs[0] (scene 'Title' in gSceneNames): copies the callbacks and calls

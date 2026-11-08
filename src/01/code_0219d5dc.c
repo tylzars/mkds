@@ -442,7 +442,7 @@ void func_ov001_0219d600(void) {
 }
 
 void RegisterOptionEmbremSelectCallbacks(void) {
-    Unk021a8cd0 local = gOptionEmbremSelectCallbacks;
+    OptionStateCallbackTable local = gOptionEmbremSelectCallbacks;
 
     SetOptionStateCallbacks(local.mUnk_00);
 }

@@ -475,7 +475,7 @@ void SendRomArchivePacket(void) {
     transfer->mUnk_0004 = gRomArchiveTransfer.mSendPending == FALSE;
 }
 
-void RomArchivePortCallback(Unk0204cc94 *message) {
+void RomArchivePortCallback(RomArchivePortMessage *message) {
     RomArchiveTransfer *transfer;
     RomArchiveParentView *view;
     s32 isParent;

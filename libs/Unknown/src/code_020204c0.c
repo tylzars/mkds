@@ -4,7 +4,7 @@
 #include "Main/Unknown/code_0200e000.h"
 #include "Main/Unknown/code_0214d000.h"
 
-s32 func_020204c0(Unk0217aa00_24 *a) {
+s32 func_020204c0(ScanBlockView *a) {
     // volatile only so that v1[0] is read again for the second compare, as in the original
     volatile u16 v1[4];
 

@@ -5,7 +5,7 @@
 
 #pragma thumb on
 
-u32 func_0200b1b0(u32 index, struct Unk0217aa00_24 *destination) {
+u32 func_0200b1b0(u32 index, struct ScanBlockView *destination) {
     u32 savedInterrupts;
     EntryRecord *entry;
     if (16 <= index) {

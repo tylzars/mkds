@@ -54,7 +54,7 @@ typedef struct Unk021ba778Src {
     /* 38 */ u8 pad_38[0x88];
 } Unk021ba778Src;
 
-typedef struct Unk021ba778Dst {
+typedef struct EssidEntry {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u8 mUnk_04[0x20];
     /* 24 */ u32 mUnk_24;
@@ -65,11 +65,11 @@ typedef struct Unk021ba778Dst {
     /* 3c */ u8 mUnk_3c[0x10];
     /* 4c */ u32 mUnk_4c;
     /* 50 */ u32 mUnk_50;
-} Unk021ba778Dst;
+} EssidEntry;
 
 typedef struct EssidEntryList {
     /* 00 */ s32 mUnk_00;
-    /* 04 */ Unk021ba778Dst mUnk_04[1];
+    /* 04 */ EssidEntry mUnk_04[1];
 } EssidEntryList;
 
 /* Search request handed to func_ov003_021ba1b0. */
@@ -164,7 +164,7 @@ s32 func_ov003_021ba70c(void *msg);
 s32 func_ov003_021ba720(void *msg);
 void func_ov003_021ba734(EssidEntryList *list, Unk021ba778Src *src, s32 count);
 void func_ov003_021ba744(EssidMelcoRequest *request, Unk021ba778Src *rec);
-void func_ov003_021ba778(Unk021ba778Src *src, Unk021ba778Dst *dst);
+void func_ov003_021ba778(Unk021ba778Src *src, EssidEntry *dst);
 
 #include "03/code_021b7000.h"
 #include "03/unk_021d8000.h"

@@ -3,9 +3,9 @@
 #include "types.h"
 
 // Four callbacks handed over as one block.
-typedef struct Unk021a8cd0 {
+typedef struct OptionStateCallbackTable {
     /* 00 */ UnkFunc *mUnk_00[4];
-} Unk021a8cd0;
+} OptionStateCallbackTable;
 
 #include "01/code_02192000.h"
 #include "Main/Unknown/code_0214a000.h"
@@ -33,7 +33,7 @@ typedef struct Unk021a8cd0 {
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_02047104.h"
 
-extern const Unk021a8cd0 gOptionEmbremSelectCallbacks;
+extern const OptionStateCallbackTable gOptionEmbremSelectCallbacks;
 
 void RegisterOptionEmbremSelectCallbacks(void);
 void func_ov001_0219d600(void);

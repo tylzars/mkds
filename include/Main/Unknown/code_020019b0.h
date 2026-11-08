@@ -5,10 +5,10 @@
 typedef struct Bg1Files Bg1Files;
 
 // Object whose halfword at 0x04 UpdateLogoScene clears.
-typedef struct Unk02001a74 {
+typedef struct SceneNumbersView {
     /* 00 */ u8 mUnk_00[4];
     /* 04 */ u16 mNextScene;
-} Unk02001a74;
+} SceneNumbersView;
 
 extern const char data_usa_ov001_021a768c[];
 extern const char data_usa_ov001_021a76a8[];
@@ -20,7 +20,7 @@ extern const char data_usa_ov001_021a7720[];
 
 void UpdateLogoState0(void);
 void EnterLogoState0(void);
-void UpdateLogoScene(Unk02001a74 *sceneNumbers);
+void UpdateLogoScene(SceneNumbersView *sceneNumbers);
 void WriteLogoSceneRegisters(void);
 void ApplySavedSoundMode(void);
 void InitLogoScene(void *heap);

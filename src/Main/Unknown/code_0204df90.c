@@ -214,7 +214,7 @@ void func_0204e474(void) {
 s32 FindScanEntryIndex(u32 entryIndex) {
     s32 result;
     u16 index;
-    Unk0217aa00_24 scanBlock;
+    ScanBlockView scanBlock;
     result = -1;
     if (data_0217aa00->mUnk_000c == 0x1e) {
         for (index = 0; index < 16; index++) {

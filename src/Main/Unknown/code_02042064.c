@@ -155,13 +155,13 @@ CourseMapEntryGroupTableRow *GetCourseMapEntryGroupTableRow(u32 groupIndex) {
 
 #pragma thumb on
 void BuildCourseMapItemRouteLinks(ItemPointLink *previousLink, CourseMapRoute *route, u16 pointIndex) {
-    Unk02175620_54 *itemPoint;
+    CourseMapItemPoint *itemPoint;
     ItemPointLink *link;
     s32 nextRoute;
     s32 k;
 
     if (gCourseMap->mVersion < 0x21) {
-        itemPoint = (Unk02175620_54 *) ((Unk02175620_54_10 *) gCourseMap->mItemPoints + pointIndex);
+        itemPoint = (CourseMapItemPoint *) ((Unk02175620_54_10 *) gCourseMap->mItemPoints + pointIndex);
     } else {
         itemPoint = gCourseMap->mItemPoints + pointIndex;
     }
@@ -328,8 +328,8 @@ void BuildCourseMapRacePointLinks(void *heap) {
 
 void BuildCourseMapBattlePointLinks(void *heap) {
     CourseMap *courseMap;
-    Unk02175620_8c *route;
-    Unk02175620_8c *t;
+    CourseMapBattleRoute *route;
+    CourseMapBattleRoute *t;
     PointLink **q;
     s32 i;
     PointLink *link;

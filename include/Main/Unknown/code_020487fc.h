@@ -6,7 +6,7 @@
 // The three scene numbers of gSceneNumbers: +0 the previous scene (declared u8[2];
 // read by the scenes' init functions as `*a` / `a[0]` and by UpdateEmblemScene), mScene the scene
 // being run, mNextScene the scene to run next (-1 = none yet). No typed global holds this
-// object, and other typedefs view the same object: Unk0203a0dc, Unk0204a598, Unk02111324,
+// object, and other typedefs view the same object: Unk0203a0dc, EmblemSceneNumbersView, Unk02111324,
 // Unk0218052c; several scene functions take it as s16 * or void *.
 typedef struct SceneNumbers {
     /* 00 */ u8 mUnk_00[0x2];

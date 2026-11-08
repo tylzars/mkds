@@ -12,7 +12,7 @@ Unk021d687c data_ov003_021d687c[12] = {
     {0x0040, 0x18, 0}, {0x0080, 0x24, 0}, {0x0100, 0x30, 0}, {0x0200, 0x48, 0}, {0x0400, 0x60, 0}, {0x0800, 0x6c, 0},
 };
 
-void func_ov003_021ba778(Unk021ba778Src *src, Unk021ba778Dst *dst) {
+void func_ov003_021ba778(Unk021ba778Src *src, EssidEntry *dst) {
     int i;
     int count;
     int mode;

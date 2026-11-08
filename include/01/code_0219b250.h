@@ -4,7 +4,7 @@
 #include "code_02012b30.h"
 
 // Object at Unk0219b250.mNsbcaAnimation and mNsbtpAnimation (a 0x38-byte allocation).
-typedef struct Unk0219b250_Item {
+typedef struct ModelAnimationView {
     /* 00 */ u8 mUnk_00[2];
     /* 02 */ u16 mUnk_02;
     /* 04 */ u8 mUnk_04[4];
@@ -13,7 +13,7 @@ typedef struct Unk0219b250_Item {
     /* 10 */ u8 mUnk_10[0xa];
     /* 1a */ u16 mUnk_1a;
     /* 1c */ s32 **mUnk_1c;
-} Unk0219b250_Item;
+} ModelAnimationView;
 
 // Object at Unk0219b250.mAnimatedModel (a 0x6c-byte allocation).
 typedef struct Unk0219b250_10 {
@@ -37,9 +37,9 @@ typedef struct Unk0219b250 {
     // Overlay view of MapObjectModel.mNsbmdFile.
     /* 18 */ void *mNsbmdFile;
     // Overlay view of MapObjectModel.mAnimations[0].
-    /* 1c */ Unk0219b250_Item *mNsbcaAnimation;
+    /* 1c */ ModelAnimationView *mNsbcaAnimation;
     // Overlay view of MapObjectModel.mAnimations[1].
-    /* 20 */ Unk0219b250_Item *mNsbtpAnimation;
+    /* 20 */ ModelAnimationView *mNsbtpAnimation;
     // Overlay view of MapObjectModel.mAnimations[2].
     /* 24 */ void *mNsbmaAnimation;
     // Overlay view of MapObjectModel.mAnimations[3].

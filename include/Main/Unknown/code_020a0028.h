@@ -27,13 +27,13 @@ typedef struct Airship {
 } Airship;
 
 // Array of object pointers: pointer to the array and the number of entries (InitAirshipObjects).
-typedef struct Unk020a0064 {
+typedef struct AirshipObjectList {
     /* 00 */ Airship **mUnk_00;
     /* 04 */ u16 mUnk_04;
-} Unk020a0064;
+} AirshipObjectList;
 
 void CreateAirship(void *a);
 void DrawAirship(void *a, Airship *airship);
-void InitAirshipObjects(Unk020a0064 *list);
+void InitAirshipObjects(AirshipObjectList *list);
 s32 func_020a0044(s32 angle);
 s32 func_020a0028(s32 multiplicand, s32 multiplier);

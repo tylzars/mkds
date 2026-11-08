@@ -121,7 +121,7 @@ void func_0204a5e8(void) {
     func_ov001_021a23c0();
 }
 
-void UpdateEmblemScene(Unk0204a598 *sceneNumbers) {
+void UpdateEmblemScene(EmblemSceneNumbersView *sceneNumbers) {
     s32 r;
 
     r = func_ov001_021a23c8();

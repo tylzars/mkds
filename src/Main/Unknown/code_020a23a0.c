@@ -114,7 +114,7 @@ void func_020a269c(s32 a, u32 b) {
     void *v3;
     float f;
     s32 x;
-    Unk0219b250_Item *s;
+    ModelAnimationView *s;
 
     data_0217b200 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x124);
     data_0217b200->mUnk_002 = b;

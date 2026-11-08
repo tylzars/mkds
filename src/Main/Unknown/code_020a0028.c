@@ -40,7 +40,7 @@ void DrawAirship(void *a, Airship *airship) {
     DrawMapObjectModel(a, gAirship, airship);
 }
 
-void InitAirshipObjects(Unk020a0064 *list) {
+void InitAirshipObjects(AirshipObjectList *list) {
     s32 i;
     Airship *airship;
     BOOL z;

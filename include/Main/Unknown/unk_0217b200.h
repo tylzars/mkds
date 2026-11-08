@@ -24,7 +24,7 @@ typedef struct Unk0217b200 {
     /* 004 */ u16 mUnk_004;
     /* 008 */ Unk0217b200_08 mUnk_008;
     /* 028 */ u8 mUnk_028[0x6c];
-    /* 094 */ Unk0219b250_Item mUnk_094;
+    /* 094 */ ModelAnimationView mUnk_094;
     /* 0b4 */ u8 mUnk_0b4[0x18];
     /* 0cc */ MtxFx43 mUnk_0cc;
     /* 0fc */ s16 mUnk_0fc;

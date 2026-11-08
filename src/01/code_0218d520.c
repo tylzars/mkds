@@ -138,7 +138,7 @@ void func_ov001_0218d9cc(Unk02188950 *a) {
 void func_ov001_0218d950(Unk02188950 *a) {
     s32 prod;
     float f;
-    Unk0219b250_Item *s;
+    ModelAnimationView *s;
 
     func_ov001_02187218(a, 1, NULL);
     func_ov001_02188d64(a, a->mPrm->mUnk_088, a->mPrm->mUnk_08c);

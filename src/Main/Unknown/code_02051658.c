@@ -89,7 +89,7 @@ void StartScan(s32 a, s32 (*b)(), s32 (*c)()) {
     }
 }
 
-void func_020525a8(Unk0217aa00_0ac *a, Unk0217aa00_24 *b, Unk0217aa00_42c *c, Unk0217aa00_24_50 *d, u8 e) {
+void func_020525a8(Unk0217aa00_0ac *a, ScanBlockView *b, Unk0217aa00_42c *c, Unk0217aa00_24_50 *d, u8 e) {
     s32 n0;
     u8 n1;
     s32 k;
@@ -139,7 +139,7 @@ void func_020525a8(Unk0217aa00_0ac *a, Unk0217aa00_24 *b, Unk0217aa00_42c *c, Un
     }
 }
 
-void func_02052288(Unk0217aa00_24 *a, Unk0217aa00_42c *b, Unk0217aa00_24_50 *c) {
+void func_02052288(ScanBlockView *a, Unk0217aa00_42c *b, Unk0217aa00_24_50 *c) {
     Unk0217aa00_24_50_0e_36 *x;
     s32 i;
     s32 n;
@@ -233,7 +233,7 @@ void func_02052288(Unk0217aa00_24 *a, Unk0217aa00_42c *b, Unk0217aa00_24_50 *c) 
 }
 
 void StartScanCallback(Unk021425e8 *a) {
-    Unk0217aa00_24 v1;
+    ScanBlockView v1;
     Unk0217aa00_42c m;
     s32 i;
     Unk0217aa00 *p;
@@ -349,7 +349,7 @@ void EndScanCallback(Unk021425e8 *a) {
     func_020533a0();
 }
 
-void StartConnect(Unk0217aa00_24 *a, void *b, s32 (*c)(), s32 (*d)(), s32 (*e)()) {
+void StartConnect(ScanBlockView *a, void *b, s32 (*c)(), s32 (*d)(), s32 (*e)()) {
     u8 v1[0x18];
 
     MI_CpuFill8(v1, 0, 0x18);

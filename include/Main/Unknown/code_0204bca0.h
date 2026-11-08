@@ -71,14 +71,14 @@ typedef struct Unk0204c320 {
 } Unk0204c320;
 
 // Object that RomArchivePortCallback receives.
-typedef struct Unk0204cc94 {
+typedef struct RomArchivePortMessage {
     /* 00 */ u8 mUnk_00[4];
     /* 04 */ u16 mUnk_04;
     /* 06 */ u8 mUnk_06[6];
     /* 0c */ const u8 *mUnk_0c;
     /* 10 */ u16 mUnk_10;
     /* 12 */ u16 mUnk_12;
-} Unk0204cc94;
+} RomArchivePortMessage;
 
 typedef struct FSFile FSFile;
 
@@ -105,7 +105,7 @@ void InitRomArchive(u32 port, void (*stateCallback)(s32 port),
                     void *(*allocFunc)(s32 port, u32 stateCallback, void *allocFunc), u32 allocFuncArg);
 void RomArchiveChildCallback(Unk0204c320 *record);
 void RomArchiveParentCallback(Unk0204c320 *record);
-void RomArchivePortCallback(Unk0204cc94 *message);
+void RomArchivePortCallback(RomArchivePortMessage *message);
 void SendRomArchivePacket(void);
 void RequestRomArchiveBytes(FSFile *file);
 void FreeRomArchiveNode(RomArchiveParentView *view, RomArchiveFileNode *node);
