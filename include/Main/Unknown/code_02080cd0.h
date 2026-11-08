@@ -11,7 +11,7 @@ typedef struct Unk02080d34 {
     /* 1e */ u8 mUnk_1e;
 } Unk02080d34;
 
-void ResetPointLinkCursor(LinkCursor *p, Unk02175620_bc *a);
+void ResetPointLinkCursor(LinkCursor *p, PointLink *a);
 void InitRacePointLinkCursor(Unk02080d34 *p, u16 kartIndex);
 s32 IsPastBattlePointLink(LinkCursor *p, Vec3 *a);
 s32 IsWithinBattlePointLinkDistance(LinkCursor *p, Vec3 *a);

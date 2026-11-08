@@ -632,7 +632,7 @@ void AdvanceMissionRunMSselState2(void) {
 
 void AdvanceMissionRunMSselState3(void) {
     u32 result = -1;
-    Unk02175628Index slot = UNK_02175628_INDEX_8;
+    InputSlotIndex slot = UNK_02175628_INDEX_8;
     BOOL flag_b;
     BOOL flag_a;
     u16 value;

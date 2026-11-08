@@ -137,7 +137,7 @@ void AdvanceOptionTopMenuState2(void) {
 }
 
 void AdvanceOptionTopMenuState3(void) {
-    Unk02175628Index idx = UNK_02175628_INDEX_8;
+    InputSlotIndex idx = UNK_02175628_INDEX_8;
     u32 result = -1;
     BOOL b = FALSE;
     BOOL a = FALSE;

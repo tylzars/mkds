@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk020e6488 Unk020e6488;
+typedef struct NsbmdModel NsbmdModel;
 
-Unk020e6488 *GetItemModel(u32 kind);
+NsbmdModel *GetItemModel(u32 kind);

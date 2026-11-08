@@ -220,7 +220,7 @@ void AdvanceTimeAttackTopMenuState3(void) {
     BOOL flag2 = FALSE;
     u32 sel = -1;
     s32 dir = 3;
-    Unk02175628Index i = UNK_02175628_INDEX_8;
+    InputSlotIndex i = UNK_02175628_INDEX_8;
     BOOL flag1 = FALSE;
     InputSlot *e;
     s32 bits;

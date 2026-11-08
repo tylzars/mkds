@@ -90,7 +90,7 @@ void SlideInRaceGoalS(void) {
 void func_020c1de4(void) {
     s32 frame;
     u16 keyABits;
-    Unk02175628Index inputSlot;
+    InputSlotIndex inputSlot;
 
     frame = gRaceGoalS->mUpdateFrames++;
     if (frame >= 0x5a) {
@@ -114,7 +114,7 @@ void func_020c1bc0(void) {
     u32 kartIndex;
     u32 courseIndex;
     KartCourseResult *record;
-    Unk02175628Index inputSlot;
+    InputSlotIndex inputSlot;
 
     frame = gRaceGoalS->mUpdateFrames++;
     if (frame % 5 == 0) {
@@ -163,7 +163,7 @@ void func_020c195c(void) {
     u32 kartIndex;
     u32 courseIndex;
     KartCourseResult *record;
-    Unk02175628Index inputSlot;
+    InputSlotIndex inputSlot;
 
     frame = gRaceGoalS->mUpdateFrames++;
     if (frame < 0x5a) {
@@ -212,7 +212,7 @@ void func_020c1728(void) {
     s32 hiddenRows;
     u16 keyABits;
     u16 j;
-    Unk02175628Index inputSlot;
+    InputSlotIndex inputSlot;
 
     frame = gRaceGoalS->mUpdateFrames++;
     if (frame < 0x2d) {
@@ -270,7 +270,7 @@ void func_020c155c(void) {
     s32 frame;
     s32 hiddenRows;
     u16 keyABits;
-    Unk02175628Index inputSlot;
+    InputSlotIndex inputSlot;
 
     frame = gRaceGoalS->mUpdateFrames++;
     hiddenRows = gRaceGoalS->mHiddenRowCount;

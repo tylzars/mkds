@@ -138,7 +138,7 @@ typedef struct CupMark {
 } CupMark;
 
 // Object at data_0217d070 (0x14 bytes); func_0210d740 fills it. data_0217d07c names its member 0x0c.
-typedef struct Unk0217d070 {
+typedef struct ScenePlayers {
     /* 00 */ s32 mUnk_00;
     /* 04 */ void *mUnk_04;
     /* 08 */ u8 mUnk_08;
@@ -147,11 +147,11 @@ typedef struct Unk0217d070 {
     /* 0b */ u8 mUnk_0b;
     /* 0c */ NNSSndSeqPlayer *mUnk_0c;
     /* 10 */ NNSSndSeqPlayer *mUnk_10;
-} Unk0217d070;
+} ScenePlayers;
 
 // Object at data_0217d084 (0x1c bytes); SetupSoundMode stores its second argument at 0x00.
 typedef struct SoundModeHolder {
-    /* 00 */ Unk0217d070 *mScenePlayers;
+    /* 00 */ ScenePlayers *mScenePlayers;
     /* 04 */ u32 mMode;
     /* 08 */ u32 mSavedMode;
     /* 0c */ u32 mUnk_0c;
@@ -808,7 +808,7 @@ extern PaletteBlend *gPaletteBlend;
 extern struct NNSSndStrmThread *data_0217df04;
 extern u8 data_0217df08[];
 extern NNSSndHeap *data_0217d130;
-extern Unk0217d070 data_0217d070;
+extern ScenePlayers data_0217d070;
 // The member at 0x0c of data_0217d070, addressed through a pool word of its own.
 extern NNSSndSeqPlayer *data_0217d07c;
 extern SoundModeHolder data_0217d084;

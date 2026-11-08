@@ -32,7 +32,7 @@ void func_020e54e4(void *shadowData, void *wordPointer, u32 unused, u32 alpha) {
     u32 word;
     u32 b;
     u32 threeWords[3];
-    Unk020e516c *shadow = shadowData;
+    ShadowMatrix *shadow = shadowData;
 
     b = 0x1e;
     func_01ff9048(0x14, &b, 1);
@@ -53,7 +53,7 @@ void func_020e54e4(void *shadowData, void *wordPointer, u32 unused, u32 alpha) {
     func_01ff9144(&data_0217b818->mUnk_000[data_0217b818->mUnk_008], data_0217b818->mUnk_00c);
 }
 
-void func_020e53ac(Unk020e516c *shadow, void *wordPointer, u32 unused, u32 alpha) {
+void func_020e53ac(ShadowMatrix *shadow, void *wordPointer, u32 unused, u32 alpha) {
     u32 x;
     u32 word;
     u32 b;
@@ -120,7 +120,7 @@ s32 RefreshShadowMatrix(void *shadow, Vec3 *position, s32 scale, u32 alphaCap) {
     Vec3 raisedPosition;
     s32 scaleTenth;
     BOOL hit;
-    Unk020e516c *shadowCopy = shadow;
+    ShadowMatrix *shadowCopy = shadow;
 
     raisedPosition = *position;
     hit = FALSE;

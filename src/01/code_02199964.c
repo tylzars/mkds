@@ -129,7 +129,7 @@ void AdvanceOptionHensyuMenuState3(void) {
     u16 v;
     s32 oldv;
     OptionHensyuMenu *p;
-    Unk02175628Index i;
+    InputSlotIndex i;
 
     i = UNK_02175628_INDEX_8;
     r = -1;

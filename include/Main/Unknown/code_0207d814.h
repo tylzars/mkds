@@ -13,7 +13,7 @@ struct KartAi;
 
 struct KartAi;
 struct Kart;
-struct Unk02175620_bc;
+struct PointLink;
 
 void func_0207d814(struct Unk02089a24 *a, struct KartAi *b);
 u16 PickKartAiRaceStartBoost(s32 a);
@@ -26,5 +26,5 @@ void InitKartAiTables(void);
 void AdvanceStaffRollKartAi(struct KartAi *p);
 void SetupStaffRollKartAi(struct KartAi *p, struct Kart *q, s32 a);
 void AdvanceAwardMissionRunKartAi(struct KartAi *p);
-void ResetAwardMissionRunKartAi(struct KartAi *p, struct Unk02175620_bc *a);
+void ResetAwardMissionRunKartAi(struct KartAi *p, struct PointLink *a);
 void SetupAwardMissionRunKartAi(struct KartAi *p, struct Kart *q, s32 a);

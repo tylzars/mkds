@@ -26,7 +26,7 @@ typedef struct Unk02153554 {
     /* 06 */ s16 mRectEntryId;
 } Unk02153554;
 
-// 8-byte entries at 0x90 of Unk02174e14, filled from data_021535b4.
+// 8-byte entries at 0x90 of SelectCharacter, filled from data_021535b4.
 typedef struct Unk021535b4 {
     /* 00 */ s32 mCharacterIndex;
     /* 04 */ s32 mUnk_04;
@@ -115,7 +115,7 @@ extern u16 data_usa_02153d46[][2];
 extern u16 gMultiSelectMemberCountCellIndices[];
 extern s16 data_usa_02153dbc[];
 
-// Tables of four u16, written to mUnk_084 of Unk02174e14.
+// Tables of four u16, written to mUnk_084 of SelectCharacter.
 extern u16 data_usa_02153614[4];
 extern u16 data_usa_0215361c[4];
 extern u16 data_usa_02153624[4];

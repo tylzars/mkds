@@ -276,7 +276,7 @@ void func_ov003_021c6a18(void) {
 }
 
 void PrintEditText(void) {
-    Unk021d299c b = {0, 0, 0, 0};
+    Rect b = {0, 0, 0, 0};
     u16 c[2];
     int k;
     int i;

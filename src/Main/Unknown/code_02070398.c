@@ -130,7 +130,7 @@ void ResetKartToRespawnPoint(Kart *p) {
     Vec3 c;
     Vec3 d;
     s32 m[9];
-    Unk02175620_bc *r;
+    PointLink *r;
     s32 x;
     s32 y;
     s32 i;
@@ -233,7 +233,7 @@ s32 AdvanceKartRespawnWait(Kart *p, s32 *a) {
     return r;
 }
 
-void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c) {
+void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, PointLink *c) {
     Unk0206bcb0_514 *q;
     Vec3 v;
 
@@ -768,7 +768,7 @@ void InitKartSound(Kart *p) {
 }
 
 void func_020719d0(Kart *p) {
-    Unk02024eec *q;
+    KartSound *q;
     Unk02024eec_40 t;
     s32 i;
     s32 k;
@@ -782,7 +782,7 @@ void func_020719d0(Kart *p) {
     s32 g;
 
     p->mUnk_450.mUnk_00 = 0xa5;
-    q = (Unk02024eec *) &p->mUnk_450;
+    q = (KartSound *) &p->mUnk_450;
     q->mUnk_04 = 0x64;
     q->mUnk_08 = -1;
     q->mUnk_0c = 0;

@@ -263,14 +263,14 @@ void *FindCourseMapKind4ShapeRacePointLink(Vec3 *a) {
     return r;
 }
 
-Unk02175620_bc *FindCourseMapKind4ShapeBattlePointLink(Vec3 *a) {
+PointLink *FindCourseMapKind4ShapeBattlePointLink(Vec3 *a) {
     u16 i;
     CourseMapShape *p;
     Vec3 v;
     s32 x;
     s32 y;
     s32 z;
-    Unk02175620_bc *r = NULL;
+    PointLink *r = NULL;
     s32 t;
 
     if (gCourseMap->mKind4ShapeCount == 0) {
@@ -398,7 +398,7 @@ void *GetCourseMapRespawnRacePointLink(u32 a, Vec3 *b, Vec3 *c) {
     return (u8 *) gCourseMap->mRacePointLinks + i * 0x28;
 }
 
-Unk02175620_bc *GetCourseMapRespawnBattlePointLink(u32 a, Vec3 *b, Vec3 *c) {
+PointLink *GetCourseMapRespawnBattlePointLink(u32 a, Vec3 *b, Vec3 *c) {
     CourseMapRespawn *e;
     s32 i;
 

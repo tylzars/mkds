@@ -233,7 +233,7 @@ void SetupBattleKartAi(KartAi *p, Kart *q) {
     }
 }
 
-void ResetBattleKartAiAtPointLink(KartAi *p, Unk02175620_bc *a) {
+void ResetBattleKartAiAtPointLink(KartAi *p, PointLink *a) {
     ResetBattlePointLinkCursorTo(&p->mBattleLinkCursor, a);
     p->mLinkPosWithSideOffset = *p->mBattleLinkCursor.mLink->mUnk_20;
     ResetBattleKartAi(p);
@@ -258,7 +258,7 @@ void AdvanceBattleKartAi(KartAi *p) {
 void func_02089494(KartAi *p) {
     LinkCursor *s;
     Kart *q;
-    Unk02175620_bc *e;
+    PointLink *e;
     Vec3 *g;
     Vec3 *f;
     Vec3 v;

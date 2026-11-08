@@ -7,7 +7,7 @@ typedef struct Kart Kart;
 typedef struct Kart Kart;
 
 typedef struct Kart Kart;
-typedef struct Unk02175620_bc Unk02175620_bc;
+typedef struct PointLink PointLink;
 
 #include "Main/Unknown/code_0206bcb0.h"
 
@@ -41,7 +41,7 @@ void InitKartPhysicalParams(Kart *p);
 // placement, creates its collision objects if it has none and sets bit 0x80 of mUnk_7c while clearing 0x60.
 void ResetKartToStartPlacement(Kart *p);
 void func_02072930(Kart *p);
-void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c);
+void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, PointLink *c);
 s32 AdvanceKartRespawnWait(Kart *p, s32 *a);
 // Slot 6 of Kart.mSlotFunctions: puts the Kart back on the course at the respawn place of Kart.mRespawnSlot (chosen
 // first when -1; in battle the course hands out its next respawn slot), starts the respawn effect and counts the

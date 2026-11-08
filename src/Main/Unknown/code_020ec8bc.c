@@ -41,8 +41,8 @@ void *FindItemFile(u8 *fileName) {
     return FindMainRaceOrMainEffectFile(buf);
 }
 
-Unk020e6488 *CreateItemModel(u8 *modelName, u8 *animationName, u8 *textureName) {
-    Unk020e6488 *model;
+NsbmdModel *CreateItemModel(u8 *modelName, u8 *animationName, u8 *textureName) {
+    NsbmdModel *model;
     void *modelFile;
     void *animationFile;
 

@@ -237,7 +237,7 @@ void InitSelectGame(void *parentHeap, s32 mode, void *mainOam, void *subOam) {
 
 s32 AdvanceSelectGame(void) {
     s32 a;
-    Unk02175628Index slotIndex;
+    InputSlotIndex slotIndex;
     SelectGame *selectGame;
     CellFileSet *subFileSet;
     s32 previousSelectedIndex;

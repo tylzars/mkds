@@ -147,8 +147,8 @@ void DrawWoodbox1(void *a, Unk020e43a8 *woodbox, void *c, u32 maxAlpha) {
     shadowPos.y = woodbox->mUnk_0b4 - (s32) (((s64) woodbox->mUnk_0bc * woodbox->mUnk_cc) >> 12) -
                   (s32) (((s64) woodbox->mUnk_0c4 * woodbox->mUnk_d4) >> 12);
     VEC_MultAdd(-woodbox->mUnk_00.mExtent.x, (const Vec3 *) &woodbox->mUnk_0bc, &shadowPos, &shadowPos);
-    SetShadowPositionRaised((Unk020e516c *) &woodbox->mUnk_114, &shadowPos);
-    func_020e53ac((Unk020e516c *) &woodbox->mUnk_114, &t, 0, maxAlpha);
+    SetShadowPositionRaised((ShadowMatrix *) &woodbox->mUnk_114, &shadowPos);
+    func_020e53ac((ShadowMatrix *) &woodbox->mUnk_114, &t, 0, maxAlpha);
 }
 
 void AdvanceWoodbox1(u32 unused, u32 woodbox) {

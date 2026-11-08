@@ -5,7 +5,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 
 void func_020e6a74(void);
-void func_020e6ab8(Unk020e6488 *model);
+void func_020e6ab8(NsbmdModel *model);
 Vec3 *GetViewTransposeMatrixAxis2(void);
 Vec3 *func_020e6b28(void);
 void *GetViewTransposeMatrix(void);

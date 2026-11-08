@@ -631,9 +631,9 @@ u32 ClearOrthoQuadCreamEffectPointer(void) {
 void CreateOrthoQuadCreamEffect(const char *fileName) {
     u32 model;
 
-    func_020e6488((Unk020e6488 **) &model, FindCourseMapObjFile(fileName), 0, 0);
-    func_020e6ab8((Unk020e6488 *) model);
-    SetupOrthoQuadModel(&gOrthoQuadCreamEffect, (Unk020e6488 *) model);
+    func_020e6488((NsbmdModel **) &model, FindCourseMapObjFile(fileName), 0, 0);
+    func_020e6ab8((NsbmdModel *) model);
+    SetupOrthoQuadModel(&gOrthoQuadCreamEffect, (NsbmdModel *) model);
 }
 
 void StartOrthoQuadsCreamEffect(u32 kartIndex, u32 count) {
@@ -642,7 +642,7 @@ void StartOrthoQuadsCreamEffect(u32 kartIndex, u32 count) {
 
 #pragma thumb on
 void InitOrthoQuads(void) {
-    Unk020e6488 *model;
+    NsbmdModel *model;
     s32 i;
 
     gOrthoQuads = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0xd0);
@@ -662,7 +662,7 @@ void InitOrthoQuads(void) {
     reg_G3_MTX_POP = 1;
 }
 
-void SetupOrthoQuadModel(OrthoQuadModel *quadModel, Unk020e6488 *model) {
+void SetupOrthoQuadModel(OrthoQuadModel *quadModel, NsbmdModel *model) {
     u32 teximageParam;
 
     quadModel->mModel = model;

@@ -172,7 +172,7 @@ typedef struct ItemInUse {
     /* 18c */ u16 mCircleSlots[3];
 } ItemInUse;
 
-void DrawItemObjectModel(ItemObject *object, Unk020e6488 *model, Vec3 *viewAxis);
+void DrawItemObjectModel(ItemObject *object, NsbmdModel *model, Vec3 *viewAxis);
 void DrawItemPoolWithCallback(ItemPool *pool, void *callbackArg, void (*drawCallback)(void *, void *, void *));
 void DrawItemPoolModels(ItemPool *pool, Vec3 *viewAxis);
 void *BuildItemObjectMatrix(ItemObject *object, Vec3 *viewAxis);

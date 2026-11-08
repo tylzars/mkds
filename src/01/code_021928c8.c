@@ -31,7 +31,7 @@ void CreateEmblemInput(void) {
 }
 
 void AdvanceEmblemInput(void) {
-    Unk02175628Index idx;
+    InputSlotIndex idx;
     BOOL f1;
     int f0;
     u16 v;

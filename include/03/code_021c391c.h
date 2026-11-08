@@ -3,7 +3,7 @@
 #include "types.h"
 
 typedef struct Unk021da104_04 Unk021da104_04;
-typedef struct Unk021d299c Unk021d299c;
+typedef struct Rect Rect;
 
 typedef struct Unk021d70f8 {
     /* 00 */ u8 mUnk_00[0x16];
@@ -15,7 +15,7 @@ typedef struct Unk021d7110 {
 
 extern u8 data_ov003_021d6348[];
 extern u16 data_ov003_021d634c[];
-extern Unk021d299c gOptMenuRects[];
+extern Rect gOptMenuRects[];
 extern u16 data_ov003_021d6368[];
 extern u16 data_ov003_021d636a[];
 extern u16 data_ov003_021d636c[];

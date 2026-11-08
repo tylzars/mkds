@@ -20,7 +20,7 @@ s32 ShouldKartAiTargetKart(u32 a, u32 b);
 BOOL func_0207f600(s32 a);
 void func_0207f630(KartAi *p, LinkCursor *q, Kart *r);
 void func_0207f668(KartAi *p, LinkCursor *q, Kart *r);
-void func_0207f6f0(KartAi *p, LinkCursor *q, Kart *r, Unk02175620_bc *s, Vec3 *a, Vec3 *b);
+void func_0207f6f0(KartAi *p, LinkCursor *q, Kart *r, PointLink *s, Vec3 *a, Vec3 *b);
 void AdvanceRaceKartAi(KartAi *p);
 void ResetRaceKartAiAtPointLink(KartAi *p);
 void ResetKartAi(KartAi *p, s32 a);

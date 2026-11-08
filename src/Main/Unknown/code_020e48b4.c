@@ -82,7 +82,7 @@ void SetupDrawPukupuku(void) {
 }
 
 void DrawPukupuku(u32 a, Unk020e43a8 *pukupuku, u32 b, u16 alpha) {
-    Unk020e6488 *model;
+    NsbmdModel *model;
     s32 mirrored;
     u32 v;
 
@@ -127,8 +127,8 @@ void DrawPukupukuShadow(u32 a, Unk020e43a8 *pukupuku, u32 b, u32 alpha) {
     shadowParams.mUnk_00 = 0x1000 - (shadowParams.mUnk_00 >> 6);
     shadowParams.mUnk_04 = pukupuku->mUnk_00.mPos;
     shadowParams.mUnk_04.y = pukupuku->mUnk_f4.z + pukupuku->mUnk_100;
-    SetShadowPositionRaised((Unk020e516c *) &pukupuku->mUnk_c8, &shadowParams.mUnk_04);
-    func_020e54e4((Unk020e516c *) &pukupuku->mUnk_c8, &shadowParams, 0, alpha);
+    SetShadowPositionRaised((ShadowMatrix *) &pukupuku->mUnk_c8, &shadowParams.mUnk_04);
+    func_020e54e4((ShadowMatrix *) &pukupuku->mUnk_c8, &shadowParams, 0, alpha);
 }
 
 void func_020e4df8(u32 arg0, u32 arg1) {
@@ -297,7 +297,7 @@ s32 CollideItemObjectWithPukupuku(Unk020e43a8 *pukupuku, void *itemObject, u8 *b
 void CreatePukupuku(void) {
     void *nsbmdFile;
     nsbmdFile = FindCourseMapObjFile(gPukupukuNsbmdName);
-    func_020e6488((Unk020e6488 **) (((u32 *) &gPukupuku)), nsbmdFile, 0, 0);
+    func_020e6488((NsbmdModel **) (((u32 *) &gPukupuku)), nsbmdFile, 0, 0);
     func_020e6ab8(gPukupuku);
 }
 

@@ -51,7 +51,7 @@ void CallKartAiSetup(KartAi *kartAi, s32 kartIndex) {
     gKartAiSetupCallback(kartAi, kartIndex);
 }
 
-void CallKartAiReset(KartAi *kartAi, Unk02175620_bc *link) {
+void CallKartAiReset(KartAi *kartAi, PointLink *link) {
     gKartAiResetCallback(kartAi, link);
 }
 

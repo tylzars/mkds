@@ -3,14 +3,14 @@
 #include "types.h"
 #include "Main/Unknown/unk_021759c0.h" // MinuteSecondMillisecondTime
 
-typedef struct Unk02174e14 Unk02174e14;
+typedef struct SelectCharacter SelectCharacter;
 
 unsigned int GetSlotGhostCount(void);
 unsigned int GetCourseGhostCount(void);
 unsigned int GetGhostCount(void);
 unsigned int GetSlotGhostBuffer(void);
 void *GetCourseGhostBuffer(void);
-void PrintGhostRecordInfo(Unk02174e14 *fileSets, s16 (*labelRows)[4], void *name, s32 characterIndex, s32 kartIndex,
+void PrintGhostRecordInfo(SelectCharacter *fileSets, s16 (*labelRows)[4], void *name, s32 characterIndex, s32 kartIndex,
                           s32 courseId, MinuteSecondMillisecondTime *time);
 void func_0202dec8(void);
 void ReleaseGhostScene(void);

@@ -151,7 +151,7 @@ void AdvanceItemGesso(ItemGesso *p) {
     VEC_Add(&camera->mPos, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
 }
 
-void DrawItemGesso(ItemGesso *p, s32 param_2, Unk020e6488 *t) {
+void DrawItemGesso(ItemGesso *p, s32 param_2, NsbmdModel *t) {
     Vec3 scale;
     MtxFx43 matrix;
     s32 scaleFactor;

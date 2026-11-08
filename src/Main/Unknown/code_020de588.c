@@ -21,7 +21,7 @@ void CreateBoxAndQuestion(void) {
     s32 cosine;
     s32 sine;
     u32 angleIndex;
-    Unk020e6488 *p;
+    NsbmdModel *p;
 
     func_020e6488(&gBox, FindMainRaceOrMainEffectMapObjFile("box.nsbmd"), 0, 0);
     func_020e6488(&gQuestion, FindMainRaceOrMainEffectMapObjFile("question.nsbmd"), 0, 0);

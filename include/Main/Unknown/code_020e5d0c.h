@@ -57,7 +57,7 @@ typedef struct PendulumObject {
 } PendulumObject;
 
 // Allocated by func_020e6488 and CreateItemModel, filled in by func_020e6514, 0x2c bytes.
-typedef struct Unk020e6488 {
+typedef struct NsbmdModel {
     /* 00 */ u8 *mUnk_00;
     /* 04 */ u32 mUnk_04;
     /* 08 */ u32 mUnk_08;
@@ -70,11 +70,11 @@ typedef struct Unk020e6488 {
     /* 20 */ u32 *mUnk_20;
     /* 24 */ void *mUnk_24;
     /* 28 */ void *mUnk_28;
-} Unk020e6488;
+} NsbmdModel;
 
-extern Unk020e6488 gJgCloud;
+extern NsbmdModel gJgCloud;
 
-extern Unk020e6488 gJgMain;
+extern NsbmdModel gJgMain;
 
 // Second argument of func_020e6514, allocated as 0x38 bytes by func_020e64b8.
 typedef struct Unk020e6514 {
@@ -106,6 +106,6 @@ void DrawPendulum(u32 param_1, PendulumObject *pendulum, u32 param_3, u32 alpha)
 Unk020e59e4 *CreatePendulumUpdateList(void);
 Unk020e5a40 *CreatePendulumDrawList(void);
 Unk020e5a9c *CreatePendulumKindData(void);
-void func_020e6488(Unk020e6488 **recordSlot, void *nsbmdFile, void *nsbtpFile, u32 param_4);
-void func_020e64b8(Unk020e6488 *record, void *nsbmdFile, void *nsbtpFile, s32 c);
-void func_020e6514(Unk020e52bc *model, Unk020e6514 *animation, Unk020e6488 *record);
+void func_020e6488(NsbmdModel **recordSlot, void *nsbmdFile, void *nsbtpFile, u32 param_4);
+void func_020e64b8(NsbmdModel *record, void *nsbmdFile, void *nsbtpFile, s32 c);
+void func_020e6514(Unk020e52bc *model, Unk020e6514 *animation, NsbmdModel *record);

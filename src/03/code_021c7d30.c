@@ -828,12 +828,12 @@ void RefreshJb3ListRowPositions(void) {
 }
 
 u32 GetJb3ListHitId(void) {
-    Unk021d299c a;
-    Unk021d299c *b;
+    Rect a;
+    Rect *b;
     s32 c;
     s32 d;
     s32 e;
-    Unk021d299c *f;
+    Rect *f;
     if (func_ov003_021d2a34(&data_ov003_021d67e8) == 0) {
         return 0xe;
     }
@@ -974,7 +974,7 @@ void WriteJb3ListBgOffset(void) {
 
 void func_ov003_021c81b8(void) {
     Unk021d73d0 a;
-    Unk021d299c b;
+    Rect b;
     s32 d;
     a = data_ov003_021d73d0;
     d = a.mUnk_00[gJb3ListSelectedId];

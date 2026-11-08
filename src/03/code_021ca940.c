@@ -81,7 +81,7 @@ void UpdateApInput(void) {
     v2 = 0;
     v4 = gApRects;
     do {
-        v1 = func_ov003_021d2a34((const Unk021d299c *) v4);
+        v1 = func_ov003_021d2a34((const Rect *) v4);
         if (v1 != 0) {
             func_ov003_021bf31c((u8) 1);
             *(u8 *) &gApSelectedIndex = (s8) v2;

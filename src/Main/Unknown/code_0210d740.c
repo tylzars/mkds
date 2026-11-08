@@ -71,7 +71,7 @@ void func_0210d7ac(void) {
     NNS_SndMain();
 }
 
-void func_0210d740(Unk0217d070 *scenePlayers, SceneSoundState *sceneSoundState, u32 c, Unk021073ec d) {
+void func_0210d740(ScenePlayers *scenePlayers, SceneSoundState *sceneSoundState, u32 c, Unk021073ec d) {
     SetupSoundMode(&data_0217d084, scenePlayers, 0);
     *(Unk021073ec *) &scenePlayers->mUnk_09 = d;
     scenePlayers->mUnk_04 = sceneSoundState;

@@ -637,7 +637,7 @@ void AdvanceSelectChoisesState1(void) {
     s32 hit;
     u16 x;
     u16 y;
-    Unk02175628Index v;
+    InputSlotIndex v;
     u16 w;
 
     v = UNK_02175628_INDEX_8;

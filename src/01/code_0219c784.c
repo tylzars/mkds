@@ -225,7 +225,7 @@ void AdvanceSelectBattleStageState1(void) {
 }
 
 void AdvanceSelectBattleStageState2(void) {
-    Unk02175628Index idx = UNK_02175628_INDEX_8;
+    InputSlotIndex idx = UNK_02175628_INDEX_8;
     s32 res = -1;
     s32 sel = -4;
     BOOL b = FALSE;

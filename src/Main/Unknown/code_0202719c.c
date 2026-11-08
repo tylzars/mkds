@@ -15,7 +15,7 @@
 #pragma thumb on
 
 void func_02027be0(void) {
-    Unk02174e14 *selectCharacter;
+    SelectCharacter *selectCharacter;
 
     selectCharacter = gSelectCharacter;
     switch (selectCharacter->mUnk_060) {
@@ -99,7 +99,7 @@ void func_02027be0(void) {
 }
 
 void func_02027a58(void) {
-    Unk02174e14 *selectCharacter;
+    SelectCharacter *selectCharacter;
 
     selectCharacter = gSelectCharacter;
     switch (selectCharacter->mUnk_060) {
@@ -161,7 +161,7 @@ void func_02027a58(void) {
 }
 
 void func_02027850(void) {
-    Unk02174e14 *selectCharacter;
+    SelectCharacter *selectCharacter;
 
     selectCharacter = gSelectCharacter;
     switch (selectCharacter->mUnk_060) {
@@ -243,7 +243,7 @@ void func_02027850(void) {
 }
 
 void func_02027648(void) {
-    Unk02174e14 *selectCharacter;
+    SelectCharacter *selectCharacter;
 
     selectCharacter = gSelectCharacter;
     switch (selectCharacter->mUnk_060) {
@@ -324,7 +324,7 @@ void func_02027648(void) {
 }
 
 void func_02027448(void) {
-    Unk02174e14 *selectCharacter;
+    SelectCharacter *selectCharacter;
 
     selectCharacter = gSelectCharacter;
     switch (selectCharacter->mUnk_060) {
@@ -422,7 +422,7 @@ void StartSelectCharacterReturn(void) {
 }
 
 void func_0202734c(s32 value) {
-    Unk02174e14 *selectCharacter;
+    SelectCharacter *selectCharacter;
     s32 i;
     CellFileSet *sParts;
 
@@ -459,7 +459,7 @@ void func_020272ec(void) {
 }
 
 void func_020272c0(s16 firstValue, s16 secondValue) {
-    Unk02174e14 *selectCharacter;
+    SelectCharacter *selectCharacter;
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         selectCharacter = gSelectCharacter;
@@ -471,7 +471,7 @@ void func_020272c0(s16 firstValue, s16 secondValue) {
 }
 
 void func_0202728c(s16 value) {
-    Unk02174e14 *selectCharacter;
+    SelectCharacter *selectCharacter;
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         selectCharacter = gSelectCharacter;
@@ -483,7 +483,7 @@ void func_0202728c(s16 value) {
 }
 
 void func_0202721c(void) {
-    Unk02174e14 *selectCharacter;
+    SelectCharacter *selectCharacter;
     CellFileSet *nameParts;
 
     selectCharacter = gSelectCharacter;
@@ -499,7 +499,7 @@ void func_0202721c(void) {
 }
 
 void func_020271e8(void) {
-    Unk02174e14 *selectCharacter;
+    SelectCharacter *selectCharacter;
     CellFileSet *sParts;
     s32 tableIndex;
 
@@ -511,7 +511,7 @@ void func_020271e8(void) {
 }
 
 void func_0202719c(void) {
-    Unk02174e14 *selectCharacter;
+    SelectCharacter *selectCharacter;
     CellFileSet *sParts;
     Unk02153554 *tableRow;
 

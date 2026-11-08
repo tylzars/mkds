@@ -22,7 +22,7 @@ typedef struct MkdEfBubbleObject {
     /* a8 */ u16 mUnk_a8;
     /* aa */ u8 mUnk_aa[2];
     /* ac */ s32 mUnk_ac;
-    /* b0 */ Unk020e516c mUnk_b0;
+    /* b0 */ ShadowMatrix mUnk_b0;
     /* e4 */ u8 mUnk_e4;
     /* e5 */ u8 mUnk_e5[3];
     /* e8 */ Unk020df6c8_e8 *mUnk_e8;

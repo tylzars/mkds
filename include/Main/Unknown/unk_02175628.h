@@ -17,7 +17,7 @@
 // The four direction keys together.
 #define PAD_KEY_DIRECTIONS 0xf0
 // Slot of data_02175628 that the code addresses through a constant.
-typedef enum Unk02175628Index { UNK_02175628_INDEX_8 = 8 } Unk02175628Index;
+typedef enum InputSlotIndex { UNK_02175628_INDEX_8 = 8 } InputSlotIndex;
 
 typedef struct Unk02175650_buf {
     /* 000 */ u32 mUnk_00;

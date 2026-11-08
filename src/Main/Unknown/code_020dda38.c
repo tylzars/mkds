@@ -181,7 +181,7 @@ void UpdateWanwanChainPoints(WanwanChain *chain, Vec3 *endPoint, Vec3 *unused) {
     }
 }
 
-void DrawWanwanChainLinks(WanwanChain *chain, Unk020e6488 *model, s32 unused, u16 e) {
+void DrawWanwanChainLinks(WanwanChain *chain, NsbmdModel *model, s32 unused, u16 e) {
     s32 pointIndex;
     u32 polygonId;
 
@@ -194,7 +194,7 @@ void DrawWanwanChainLinks(WanwanChain *chain, Unk020e6488 *model, s32 unused, u1
     }
 }
 
-void DrawWanwanChainKui(WanwanChain *chain, Unk020e6488 *model, Vec3 *position, s32 unused, u16 e) {
+void DrawWanwanChainKui(WanwanChain *chain, NsbmdModel *model, Vec3 *position, s32 unused, u16 e) {
     u32 polygonId;
 
     func_020e6a18(model);

@@ -376,7 +376,7 @@ void func_ov000_02180d94(void) {
 }
 
 void func_ov000_02180cdc(void) {
-    Unk02175628Index i = UNK_02175628_INDEX_8;
+    InputSlotIndex i = UNK_02175628_INDEX_8;
     s32 a;
     BOOL b;
     u32 v;

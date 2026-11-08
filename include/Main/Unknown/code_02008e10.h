@@ -6,8 +6,8 @@
 #include "Main/Unknown/code_020091e0.h"
 
 void UpdateEntryFromScan(u8 *scanBlock, u32 entryIndex, u32 c);
-void UpdateEntryTimers(Unk02008f00Func callback, u32 b);
-void func_02008ff0(u32 entryIndex, Unk02008f00Func callback);
-s32 FindOrAddEntry(const u8 *scanBlock, Unk02008f00Func callback);
+void UpdateEntryTimers(EntryCallbackFunc callback, u32 b);
+void func_02008ff0(u32 entryIndex, EntryCallbackFunc callback);
+s32 FindOrAddEntry(const u8 *scanBlock, EntryCallbackFunc callback);
 
 // Declared here until the code that defines it is decompiled.

@@ -7,7 +7,7 @@
 #include "Main/Unknown/code_02084000.h"
 #include "Main/Unknown/code_020e6000.h"
 
-void func_020ea5b0(Unk020e6488 *model, u32 maxAlpha, Vec3 *position) {
+void func_020ea5b0(NsbmdModel *model, u32 maxAlpha, Vec3 *position) {
     Vec3 shiftedPosition;
 
     if (position != NULL) {

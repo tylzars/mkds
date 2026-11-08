@@ -260,7 +260,7 @@ void AdvanceWiFiVSMatchingState0(void) {
 }
 
 void AdvanceWiFiVSMatchingState1(void) {
-    Unk02175628Index idx = UNK_02175628_INDEX_8;
+    InputSlotIndex idx = UNK_02175628_INDEX_8;
     BOOL a;
     BOOL b;
     u16 v;
@@ -564,7 +564,7 @@ void AdvanceWiFiVSMatchingState9(void) {
     BOOL a;
     BOOL b;
     u16 v;
-    Unk02175628Index idx = UNK_02175628_INDEX_8;
+    InputSlotIndex idx = UNK_02175628_INDEX_8;
 
     if (IsTxtSystemState0NoOpenRequest() != 0) {
         func_02126638(GetBmgEntry(gWiFiVSMatching->mWiFiMessages, 13), 0, 0, 1, 0, 0, 0);

@@ -33,7 +33,7 @@
 
 #pragma thumb on
 
-void func_020e6514(Unk020e52bc *model, Unk020e6514 *animation, Unk020e6488 *record) {
+void func_020e6514(Unk020e52bc *model, Unk020e6514 *animation, NsbmdModel *record) {
     Unk020e52bc_4 *a;
     Unk020e52bc_8 *b;
     Unk020e52bc_c *c;
@@ -89,7 +89,7 @@ void func_020e6514(Unk020e52bc *model, Unk020e6514 *animation, Unk020e6488 *reco
     }
 }
 
-void func_020e64b8(Unk020e6488 *record, void *nsbmdFile, void *nsbtpFile, s32 c) {
+void func_020e64b8(NsbmdModel *record, void *nsbmdFile, void *nsbtpFile, s32 c) {
     record->mUnk_24 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x6c);
     InitNsbmd(record->mUnk_24, nsbmdFile);
     if (nsbtpFile != NULL) {
@@ -101,7 +101,7 @@ void func_020e64b8(Unk020e6488 *record, void *nsbmdFile, void *nsbtpFile, s32 c)
     func_020e6514(record->mUnk_24, record->mUnk_28, record);
 }
 
-void func_020e6488(Unk020e6488 **recordSlot, void *nsbmdFile, void *nsbtpFile, u32 param_4) {
+void func_020e6488(NsbmdModel **recordSlot, void *nsbmdFile, void *nsbtpFile, u32 param_4) {
     *recordSlot = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     func_020e64b8(*recordSlot, nsbmdFile, nsbtpFile, param_4);
 }

@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk020e516c Unk020e516c;
+typedef struct ShadowMatrix ShadowMatrix;
 
-void SetShadowPositionXZ(Unk020e516c *shadow, Vec3 *position);
+void SetShadowPositionXZ(ShadowMatrix *shadow, Vec3 *position);

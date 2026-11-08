@@ -13,7 +13,7 @@ void func_ov003_021d2530(s32 a, s32 b, s32 c, s32 d, u16 *e) {
     e[3] = d;
 }
 
-void func_ov003_021d250c(u16 *a, u16 *b, Unk021d299c *c) {
+void func_ov003_021d250c(u16 *a, u16 *b, Rect *c) {
     c->mUnk_00 = *a;
     c->mUnk_02 = a[1];
     c->mUnk_04 = *a + *b;

@@ -133,7 +133,7 @@ void AdvanceOptionEmbremSelectState2(void) {
 }
 
 void AdvanceOptionEmbremSelectState3(void) {
-    Unk02175628Index index = UNK_02175628_INDEX_8;
+    InputSlotIndex index = UNK_02175628_INDEX_8;
     s32 result = -1;
     BOOL cond2 = FALSE;
     BOOL cond1 = FALSE;

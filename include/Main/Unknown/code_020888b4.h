@@ -105,7 +105,7 @@ void func_02089a24(KartAi *a, Unk02089a24 *b);
 void SetupBattleKartAiParams(void);
 void ResetBattleKartAi(KartAi *p);
 void SetupBattleKartAi(KartAi *p, Kart *q);
-void ResetBattleKartAiAtPointLink(KartAi *p, Unk02175620_bc *a);
+void ResetBattleKartAiAtPointLink(KartAi *p, PointLink *a);
 void AdvanceBattleKartAi(KartAi *p);
 void func_02089494(KartAi *p);
 void AdvanceBattleKartAiSideOffset(KartAi *p);

@@ -144,7 +144,7 @@ void InitRacePointLinkCursor(Unk02080d34 *p, u16 kartIndex) {
     p->mUnk_1e = 0;
 }
 
-void ResetPointLinkCursor(LinkCursor *p, Unk02175620_bc *a) {
+void ResetPointLinkCursor(LinkCursor *p, PointLink *a) {
     p->mLink = a;
     p->mPreviousLink = p->mLink->mUnk_0c;
     p->mRequestedLink = NULL;
@@ -214,7 +214,7 @@ void AdvancePointLinkCursor(Unk02080b1c *p) {
     Vec3NormalizeAndGetLengthUnchecked(&p->mDirection, &p->mDirection);
 }
 
-void AdvancePointLinkCursorTo(LinkCursor *p, Unk02175620_bc *a) {
+void AdvancePointLinkCursorTo(LinkCursor *p, PointLink *a) {
     p->mPreviousLink = p->mLink;
     p->mLink = a;
     VEC_Subtract(p->mLink->mUnk_18, p->mPreviousLink->mUnk_18, &p->mDirection);
@@ -229,14 +229,14 @@ void func_02080ac0(LinkCursor *p) {
 }
 
 void ResetBattlePointLinkCursorNear(LinkCursor *p, Vec3 *a, Vec3 *b, u16 c) {
-    Unk02175620_bc *r = NULL;
+    PointLink *r = NULL;
     u16 i;
     u16 j;
     s32 k;
     s32 m;
     s32 d;
-    Unk02175620_bc *v1 = gCourseMap->mFirstBattlePointLink;
-    Unk02175620_bc *v2[3] = {0, 0, 0};
+    PointLink *v1 = gCourseMap->mFirstBattlePointLink;
+    PointLink *v2[3] = {0, 0, 0};
     s32 v3[3];
     Vec3 v;
     Vec3 w;
@@ -276,7 +276,7 @@ void ResetBattlePointLinkCursorNear(LinkCursor *p, Vec3 *a, Vec3 *b, u16 c) {
     p->mUnk_18 = FALSE;
 }
 
-void ResetBattlePointLinkCursorTo(LinkCursor *p, Unk02175620_bc *a) {
+void ResetBattlePointLinkCursorTo(LinkCursor *p, PointLink *a) {
     p->mPreviousLink = a;
     p->mLink = p->mPreviousLink;
     p->mDirection = data_021557ec;
@@ -286,22 +286,22 @@ void ResetBattlePointLinkCursorTo(LinkCursor *p, Unk02175620_bc *a) {
 
 void AdvanceBattlePointLinkCursor(LinkCursor *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s32 e) {
     s32 m2;
-    Unk02175620_bc *r;
+    PointLink *r;
     s32 m1;
-    Unk02175620_bc *v1 = p->mLink;
+    PointLink *v1 = p->mLink;
     u16 n2 = 0;
-    Unk02175620_bc *v2[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+    PointLink *v2[8] = {0, 0, 0, 0, 0, 0, 0, 0};
     u16 n1;
     s32 m0;
     Kart *o;
-    Unk02175620_bc *q;
+    PointLink *q;
     s32 u;
     u16 n;
     u16 l;
     u16 h;
     u32 v32;
     BOOL v3;
-    Unk02175620_bc *f;
+    PointLink *f;
     u16 n0;
     s32 t;
     u16 i;
@@ -323,7 +323,7 @@ void AdvanceBattlePointLinkCursor(LinkCursor *p, Vec3 *a, Vec3 *b, u16 c, Unk020
     if (p->mLink->mUnk_2c == 1) {
         r = p->mLink->mUnk_00[0];
     } else {
-        Unk02175620_bc *v4[2] = {0, 0};
+        PointLink *v4[2] = {0, 0};
 
         n = 0;
         n1 = 0;
@@ -425,7 +425,7 @@ void AdvanceBattlePointLinkCursor(LinkCursor *p, Vec3 *a, Vec3 *b, u16 c, Unk020
                 v2[0] = v4[l];
                 n = 1;
             } else {
-                for (i = 0; i < ((const Unk02175620_bc *) p->mLink)->mUnk_2c; i++) {
+                for (i = 0; i < ((const PointLink *) p->mLink)->mUnk_2c; i++) {
                     if (p->mPreviousLink != ((const LinkCursor *) p)->mLink->mUnk_00[i] &&
                         (p->mLink->mUnk_2e & (1 << (u8) i))) {
                         s = data_021557ec;
@@ -497,7 +497,7 @@ s32 func_020800a0(LinkCursor *p) {
     return r;
 }
 
-void AdvanceBattlePointLinkCursorTo(LinkCursor *p, Unk02175620_bc *a) {
+void AdvanceBattlePointLinkCursorTo(LinkCursor *p, PointLink *a) {
     p->mPreviousLink = p->mLink;
     p->mLink = a;
     p->mDirection = data_021557ec;

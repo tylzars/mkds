@@ -254,7 +254,7 @@ void AdvanceOptionSelectMenuState2(void) {
     BOOL hasB;
     BOOL hasA;
     s32 i;
-    Unk02175628Index idx;
+    InputSlotIndex idx;
     u16 v;
 
     p = gOptionSelectMenu;

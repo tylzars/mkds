@@ -454,7 +454,7 @@ void AdvanceKeyboardState1(void) {
 }
 
 void AdvanceKeyboardState2(void) {
-    Unk02175628Index i = UNK_02175628_INDEX_8;
+    InputSlotIndex i = UNK_02175628_INDEX_8;
     Keyboard *p;
     Unk0217d400_2c *q;
     void *w;
@@ -630,7 +630,7 @@ void AdvanceKeyboardState6(void) {
 }
 
 void AdvanceKeyboardState7(void) {
-    Unk02175628Index i = UNK_02175628_INDEX_8;
+    InputSlotIndex i = UNK_02175628_INDEX_8;
     Keyboard *p;
     Unk0217d400_2c *q;
     void *w;

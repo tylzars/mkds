@@ -24,7 +24,7 @@ extern OrthoQuadModel gOrthoQuadCreamEffect;
 extern OrthoQuadModel gOrthoQuadGesoSumi;
 
 void func_021031f4(ItemGesso *gesso);
-void SetupOrthoQuadModel(OrthoQuadModel *quadModel, Unk020e6488 *model);
+void SetupOrthoQuadModel(OrthoQuadModel *quadModel, NsbmdModel *model);
 void InitOrthoQuads(void);
 void StartOrthoQuadsCreamEffect(u32 kartIndex, u32 count);
 void CreateOrthoQuadCreamEffect(const char *fileName);

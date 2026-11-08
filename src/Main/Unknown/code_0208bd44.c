@@ -63,7 +63,7 @@ void func_0208be00(KartAi *p, s32 a) {
     }
 }
 
-void func_0208bde0(KartAi *p, Unk02175620_bc *a) {
+void func_0208bde0(KartAi *p, PointLink *a) {
     ResetAwardMissionRunKartAi(p, a);
     ResetAwardMissionRunKartAiSpeedLimit(&p->mUnk_e8, p);
 }

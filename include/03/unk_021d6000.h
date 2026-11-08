@@ -3,7 +3,7 @@
 #include "types.h"
 #include "03/types_021d299c.h"
 
-typedef struct Unk021d299c Unk021d299c;
+typedef struct Rect Rect;
 
 // Seven bytes moved as one value.
 typedef struct Bytes7 {
@@ -28,9 +28,9 @@ typedef struct Unk021d66d0 {
 
 // Objects whose layout isn't known yet.
 extern s8 data_ov003_021d6434[];
-extern Unk021d299c gJb3ListCellRect;
-extern Unk021d299c data_ov003_021d6444;
-extern Unk021d299c data_ov003_021d644c;
+extern Rect gJb3ListCellRect;
+extern Rect data_ov003_021d6444;
+extern Rect data_ov003_021d644c;
 extern u8 gJb3ListIdByEntryIndex[];
 extern const u8 data_ov003_021d6478[][3];
 extern u8 gJb3ListEntryIndexById[];
@@ -39,11 +39,11 @@ extern u8 data_ov003_021d64e4[];
 extern s8 data_ov003_021d64e8[];
 extern Unk021d64f0 data_ov003_021d64f0[];
 extern u8 gApRects[];
-extern Unk021d299c data_ov003_021d6540[];
+extern Rect data_ov003_021d6540[];
 extern s8 data_ov003_021d6578[];
 extern s8 gWayMoveTargets[][4][4];
-extern Unk021d299c gWayRects[][4];
-extern Unk021d299c data_ov003_021d65e0[][4];
+extern Rect gWayRects[][4];
+extern Rect data_ov003_021d65e0[][4];
 extern u8 data_ov003_021d6620[];
 extern u8 data_ov003_021d6630[];
 extern u8 data_ov003_021d6638[];
@@ -92,7 +92,7 @@ extern u16 data_ov003_021d629c[];
 extern u16 data_ov003_021d629e[];
 extern s8 data_ov003_021d62d4[];
 extern u8 data_ov003_021d630c[];
-extern Unk021d299c data_ov003_021d67e8;
+extern Rect data_ov003_021d67e8;
 extern u16 *data_ov003_021d6be8[3];
 extern u8 data_ov003_021d6dc0[];
 extern u8 data_ov003_021d6dc8[];

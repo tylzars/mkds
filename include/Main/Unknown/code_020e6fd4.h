@@ -10,12 +10,12 @@ struct MapObject;
 struct CourseMapRow;
 
 // Object behind MapObject.mUnk_94, passed to SetSoundSourceFlagBit (which reads its halfword at 0x34).
-typedef struct Unk020e71a0_94 {
+typedef struct MapObjectSound {
     // Sound source of the map object (the sounds started on it).
     /* 00 */ SoundSource mSoundSource;
     /* 44 */ SoundDistanceSquaredChange mUnk_44;
     /* 54 */ u8 mUnk_54[0xc];
-} Unk020e71a0_94;
+} MapObjectSound;
 
 // Object behind MapObject.mKindData; kinds whose rows point at the same record share it.
 typedef struct MapObjectKindData {
@@ -91,7 +91,7 @@ typedef struct MapObject {
     /* 80 */ Unk020e005c_080 mStateMachine;
     // The sound object of the map object, tested against NULL before use: a SoundSource at 0 (so the pointer also
     // serves as the source) and, in the 0x60-byte variant, an SoundDistanceSquaredChange behind it.
-    /* 94 */ Unk020e71a0_94 *mSound;
+    /* 94 */ MapObjectSound *mSound;
     /* 98 */ MapObjectKindData *mKindData;
     /* 9c */ struct CourseMapRow *mCourseMapRow;
 } MapObject;
@@ -119,7 +119,7 @@ typedef struct MapObjectList {
     /* 24 */ void **mUnk_24;
 } MapObjectList;
 
-typedef struct Unk020e6488 Unk020e6488;
+typedef struct NsbmdModel NsbmdModel;
 typedef struct MapObjectList MapObjectList;
 typedef struct Unk0210b7a8 Unk0210b7a8;
 
@@ -141,7 +141,7 @@ typedef struct JgKindRow {
     /* 00 */ void *mModel;
     /* 04 */ void *mNsbcaAnimation;
     /* 08 */ void *mNsbmaAnimation;
-    /* 0c */ Unk020e6488 *mLapModel;
+    /* 0c */ NsbmdModel *mLapModel;
 } JgKindRow;
 
 extern Unk0216c324 data_0216c324[];

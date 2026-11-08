@@ -3,7 +3,7 @@
 #include "types.h"
 #include "03/types_021d299c.h"
 
-typedef struct Unk021d299c Unk021d299c;
+typedef struct Rect Rect;
 
 // Table of bytes func_ov003_021c81b8 reads.
 typedef struct Unk021d73d0 {
@@ -12,8 +12,8 @@ typedef struct Unk021d73d0 {
 
 extern u8 data_ov003_021d6430[];
 extern u8 data_ov003_021d6460[];
-extern Unk021d299c gJb3ListFixedRects[];
-extern Unk021d299c data_ov003_021d64b4[];
+extern Rect gJb3ListFixedRects[];
+extern Rect data_ov003_021d64b4[];
 extern u8 gJb3ListTimerIds[];
 extern Unk021d73d0 data_ov003_021d73d0;
 

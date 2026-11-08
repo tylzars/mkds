@@ -307,7 +307,7 @@ void InitResultsBattle(void *heap, s32 b, s32 c) {
 void AdvanceResultsBattle(Unk02032ac4 *sceneNumbers) {
     CellFileSet *mainCellFileSet;
     CellFileSet *subCellFileSet;
-    Unk02175628Index inputSlotIndex;
+    InputSlotIndex inputSlotIndex;
     s32 shownTimer;
     s32 cellCount;
     void *tensCellLayout;

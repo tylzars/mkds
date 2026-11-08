@@ -5,4 +5,4 @@
 
 void func_02080ac0(LinkCursor *p);
 void ResetBattlePointLinkCursorNear(LinkCursor *p, Vec3 *a, Vec3 *b, u16 c);
-void ResetBattlePointLinkCursorTo(LinkCursor *p, Unk02175620_bc *a);
+void ResetBattlePointLinkCursorTo(LinkCursor *p, PointLink *a);

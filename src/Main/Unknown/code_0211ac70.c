@@ -1724,7 +1724,7 @@ void AdvanceSelectRaceRuleState3(void) {
     u32 hitRectIndex;
     BOOL newPair;
     BOOL noPairForFewCalls;
-    Unk02175628Index i;
+    InputSlotIndex i;
     u32 row;
     u16 hasPair;
     hitRectIndex = -1;

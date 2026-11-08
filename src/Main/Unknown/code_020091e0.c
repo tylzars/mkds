@@ -313,7 +313,7 @@ void ClearEntryTable(void) {
     gEntryTable->mUnk_0c = 1;
 }
 
-u32 AddScanResult(Unk02008f00Func callback, u32 b, ScanBlock *scanBlock) {
+u32 AddScanResult(EntryCallbackFunc callback, u32 b, ScanBlock *scanBlock) {
     s32 entryIndex;
     if (func_020091fc(scanBlock) == 0) {
         return 0;

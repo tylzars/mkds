@@ -2,9 +2,9 @@
 
 #include "types.h"
 
-typedef struct Unk021d299c Unk021d299c;
+typedef struct Rect Rect;
 
-extern Unk021d299c data_ov003_021d6380;
+extern Rect data_ov003_021d6380;
 extern u8 data_ov003_021da1d0;
 
 void func_ov003_021c4ad4(void);

@@ -29,12 +29,12 @@ void func_0210ba78(void *mapSound, s32 baseSoundId) {
     *(u32 *) data_0217ccac = *(u32 *) (u32) data_0217ccac + 0xa;
 }
 
-void func_0210ba38(struct Unk020e71a0_94 *mapSound, s32 soundId) {
+void func_0210ba38(struct MapObjectSound *mapSound, s32 soundId) {
     AddSoundRequest(&data_0217d29c, mapSound->mSoundSource.mDistanceSquared + 0x15f90,
                     (void (*)(void *, int)) func_0210bad4, mapSound, soundId);
 }
 
-void func_0210b98c(struct Unk020e71a0_94 *mapSound, s32 soundId) {
+void func_0210b98c(struct MapObjectSound *mapSound, s32 soundId) {
     s32 distanceOffset;
 
     distanceOffset = 0;
@@ -92,7 +92,7 @@ int func_0210b8bc(void *soundSource, s32 fixedValue) {
     return (s32) StartSound(soundSource, 0x1ce, ((clampedValue * 2) + 0x3c) & 0xff, clampedValue - 0xa);
 }
 
-void func_0210b874(struct Unk020e71a0_94 *mapSound, s32 fixedValue) {
+void func_0210b874(struct MapObjectSound *mapSound, s32 fixedValue) {
     s32 pitchAndModSpeed;
     NNSSndSeqPlayer **handle;
 

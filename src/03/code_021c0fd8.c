@@ -185,7 +185,7 @@ void func_ov003_021c1a44(void) {
 }
 
 void func_ov003_021c1908(void) {
-    Unk021d299c a;
+    Rect a;
     u16 *q;
     int j;
     int i;
@@ -229,7 +229,7 @@ void func_ov003_021c1908(void) {
 }
 
 void func_ov003_021c17d4(void) {
-    Unk021d299c a;
+    Rect a;
     u16 *q;
     int j;
     int i;
@@ -277,7 +277,7 @@ void func_ov003_021c17d4(void) {
 }
 
 void func_ov003_021c1680(void) {
-    Unk021d299c a;
+    Rect a;
     u16 *q;
     int j;
     int i;

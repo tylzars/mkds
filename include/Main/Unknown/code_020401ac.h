@@ -22,4 +22,4 @@ void ComputeGrandPrixScoreTerms(RaceProgressScoreTerms *a, s32 b);
 BOOL func_02040bc0(void);
 s64 ComputeDotOfPairsRoundedS64(const UnkPair020b502c *a, const UnkPair020b502c *b);
 s32 ComputeDotOfPairsRounded(const UnkPair020b502c *a, const UnkPair020b502c *b);
-Unk02175620_bc *GetKeyedPlacementBattlePointLink(u32 a);
+PointLink *GetKeyedPlacementBattlePointLink(u32 a);

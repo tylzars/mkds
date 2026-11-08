@@ -256,7 +256,7 @@ void DrawJg(void) {
     s32 tableScaleX;
     s32 tableScaleY;
     Unk020e9810 *kindModel;
-    Unk020e6488 *lapModel;
+    NsbmdModel *lapModel;
 
     if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         return;

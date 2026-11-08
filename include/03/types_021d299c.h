@@ -3,12 +3,12 @@
 #include "types.h"
 #include "tp.h"
 
-typedef struct Unk021d299c {
+typedef struct Rect {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u16 mUnk_02;
     /* 04 */ u16 mUnk_04;
     /* 06 */ u16 mUnk_06;
-} Unk021d299c;
+} Rect;
 
 typedef struct KeyTouchInput {
     /* 00 */ TPData mUnk_00[5];

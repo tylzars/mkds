@@ -67,7 +67,7 @@ void func_ov003_021cee98(u32 a) {
 void func_ov003_021cedbc(void) {
     s32 i;
     s32 j;
-    Unk021d299c v1;
+    Rect v1;
 
     for (i = 0; i < data_ov003_021d6720[data_ov003_021da284->mUnk_1c]; i++) {
         func_ov003_021d250c(

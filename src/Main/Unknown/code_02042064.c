@@ -328,10 +328,10 @@ void BuildCourseMapBattlePointLinks(void *a) {
     CourseMap *g;
     Unk02175620_8c *r;
     Unk02175620_8c *t;
-    Unk02175620_bc **q;
+    PointLink **q;
     s32 i;
-    Unk02175620_bc *e;
-    Unk02175620_bc *d;
+    PointLink *e;
+    PointLink *d;
     s32 j;
     s32 k;
     u16 m;

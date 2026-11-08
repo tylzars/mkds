@@ -1070,7 +1070,7 @@ void func_021003e8(ItemTeresa *teresa, u32 sel, s32 value) {
     }
 }
 
-void DrawItemTeresa(ItemTeresa *teresa, s32 c, Unk020e6488 *model) {
+void DrawItemTeresa(ItemTeresa *teresa, s32 c, NsbmdModel *model) {
     s32 a;
     s32 itemModelAlpha;
     s32 b;
@@ -1080,7 +1080,7 @@ void DrawItemTeresa(ItemTeresa *teresa, s32 c, Unk020e6488 *model) {
     s32 scaleX;
     s32 scaleY;
     s32 scaleZ;
-    Unk020e6488 *itemModel;
+    NsbmdModel *itemModel;
     s32 index;
     s32 itemCount;
 

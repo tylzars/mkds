@@ -1649,7 +1649,7 @@ void AdvanceKartModelMenuInput(void) {
     s32 d;
     s32 w;
     u16 k;
-    Unk02175628Index v1;
+    InputSlotIndex v1;
     s32 v = 2;
     KartModelMenuFiles *p;
 

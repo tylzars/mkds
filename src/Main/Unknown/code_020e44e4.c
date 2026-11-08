@@ -34,7 +34,7 @@ void InitPukupuku(Unk020e43a8 *pukupuku, Vec3 *position) {
     InitPushedMotion(pukupuku, pukupuku->mUnk_00.mPos.y - 0x1e000, 0x400, 0x400, 0x4000, 0x1800);
     pukupuku->mUnk_00.mStateMachine.mNextState = 0;
     pukupuku->mUnk_00.mStateMachine.mNextStateRequested = 1;
-    RefreshShadowMatrix((Unk020e516c *) &pukupuku->mUnk_c8, position,
+    RefreshShadowMatrix((ShadowMatrix *) &pukupuku->mUnk_c8, position,
                         ((s64) pukupuku->mUnk_00.mScale.x * 0x12000) >> 12, 0xd);
     pukupuku->mUnk_f4.z = position->y;
     {

@@ -634,7 +634,7 @@ void AdvanceSelectCupGridState2(void) {
 #pragma thumb on
 
 void AdvanceSelectCupGridState3(void) {
-    Unk02175628Index inputIndex;
+    InputSlotIndex inputIndex;
     s32 touchedRectIndex;
     s32 neighborIndex;
     s32 touchedCupIndex;

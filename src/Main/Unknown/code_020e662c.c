@@ -168,7 +168,7 @@ Vec3 *GetViewTransposeMatrixAxis2(void) {
     return &gViewTransposeMatrix->mUnk_00[2];
 }
 
-void func_020e6ab8(Unk020e6488 *model) {
+void func_020e6ab8(NsbmdModel *model) {
     model->mUnk_10 = (u32) ((((model->mUnk_10)) & (0x8000ffffu)));
     model->mUnk_10 = (u32) ((((model->mUnk_10)) | (0x294a0000u)));
     model->mUnk_14 = (model->mUnk_14 & ~(0x3f000000u));
@@ -184,7 +184,7 @@ void func_020e6a74(void) {
     func_01ff9048(0x13, (void *) ((u32) commandArg), 1);
 }
 
-void func_020e6a18(Unk020e6488 *model) {
+void func_020e6a18(NsbmdModel *model) {
     if (model->mFrameCount == 1) {
         func_01ff9048(0x2b, model->mUnk_20, 1);
         func_01ff9048(0x2a, model->mUnk_1c, 1);
@@ -203,7 +203,7 @@ s32 func_020e69bc(Vec3 *position) {
     return -(viewMatrix->mUnk_00[3].z + (s32) (zDot >> 12)) >> 9;
 }
 
-void func_020e6854(Unk020e6488 *model, Vec3 *position, s32 usePosition, u32 maxAlpha) {
+void func_020e6854(NsbmdModel *model, Vec3 *position, s32 usePosition, u32 maxAlpha) {
     u32 scale[3];
     u32 attributes;
     u32 currentAlpha;
@@ -251,7 +251,7 @@ void func_020e6854(Unk020e6488 *model, Vec3 *position, s32 usePosition, u32 maxA
     func_01ff9144(model->mUnk_00, model->mUnk_04);
 }
 
-void func_020e67c4(Unk020e6488 *model, MtxFx43 *matrix, Vec3 *scale, s32 usePosition, u16 maxAlpha) {
+void func_020e67c4(NsbmdModel *model, MtxFx43 *matrix, Vec3 *scale, s32 usePosition, u16 maxAlpha) {
     u32 commandArg;
     Vec3 scaleCopy;
     s32 scaleX;
@@ -273,7 +273,7 @@ void func_020e67c4(Unk020e6488 *model, MtxFx43 *matrix, Vec3 *scale, s32 usePosi
     func_020e6854(model, &matrix->mUnk_00[3], usePosition, maxAlpha);
 }
 
-void func_020e66e4(Unk020e6488 *model, MtxFx43 *matrix, s32 angle, Vec3 *scale, s32 usePosition, u16 maxAlpha) {
+void func_020e66e4(NsbmdModel *model, MtxFx43 *matrix, s32 angle, Vec3 *scale, s32 usePosition, u16 maxAlpha) {
     u32 commandArg;
     Vec3 scaleCopy;
     s32 angleIndex;

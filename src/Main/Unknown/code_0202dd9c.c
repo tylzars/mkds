@@ -159,7 +159,7 @@ void func_0202dec8(void) {
 
 #pragma thumb on
 
-void PrintGhostRecordInfo(Unk02174e14 *fileSets, s16 (*labelRows)[4], void *name, s32 characterIndex, s32 kartIndex,
+void PrintGhostRecordInfo(SelectCharacter *fileSets, s16 (*labelRows)[4], void *name, s32 characterIndex, s32 kartIndex,
                           s32 courseId, MinuteSecondMillisecondTime *time) {
     u16 timeText[10];
     u16 terminatedName[11];

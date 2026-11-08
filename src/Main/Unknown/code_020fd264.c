@@ -383,7 +383,7 @@ void InitItemBombFromData(ItemBomb *bomb) {
     StartSound(&bomb->mUnk_000.mItemObject.mSoundSource, 0xda, 0x7f, 0);
 }
 
-void DrawItemBomb(ItemBomb *bomb, Vec3 *a, Unk020e6488 *model) {
+void DrawItemBomb(ItemBomb *bomb, Vec3 *a, NsbmdModel *model) {
     if (bomb->mVisible == FALSE) {
         return;
     }

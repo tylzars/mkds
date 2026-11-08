@@ -12,7 +12,7 @@
 #include "code_0200f5ac.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-Unk02175620_bc *GetKeyedPlacementBattlePointLink(u32 a) {
+PointLink *GetKeyedPlacementBattlePointLink(u32 a) {
     return &gCourseMap
                 ->mBattlePointLinks[gCourseMap->mKeyedPlacements[gCourseMap->mKeyedPlacementIndexByKey[a]].mUnk_18];
 }

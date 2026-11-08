@@ -65,5 +65,5 @@ void CreateItemTeresaFrameScaleTable(void);
 void ComputeItemGessoFrameCount(void);
 void InitItemGessoFromData(ItemGesso *gesso);
 void CopyItemGessoData(void *data, ItemGesso *gesso, void *toData);
-void DrawItemGesso(ItemGesso *p, s32 param_2, Unk020e6488 *t);
+void DrawItemGesso(ItemGesso *p, s32 param_2, NsbmdModel *t);
 void AdvanceItemGesso(ItemGesso *p);

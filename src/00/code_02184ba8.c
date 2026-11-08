@@ -137,7 +137,7 @@ void AdvanceWiFiAikotobaState2(void) {
 }
 
 void AdvanceWiFiAikotobaState3(void) {
-    Unk02175628Index i = UNK_02175628_INDEX_8;
+    InputSlotIndex i = UNK_02175628_INDEX_8;
     u32 a = -1;
     BOOL b;
     BOOL c;

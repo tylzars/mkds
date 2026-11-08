@@ -5,7 +5,7 @@
 
 typedef struct Unk021da104_04 Unk021da104_04;
 typedef struct Unk021d2188 Unk021d2188;
-typedef struct Unk021d299c Unk021d299c;
+typedef struct Rect Rect;
 
 // 0x5c bytes.
 typedef struct ApList {
@@ -34,7 +34,7 @@ typedef struct ApList {
 
 extern const u8 data_ov003_021d6388[];
 extern const u8 data_ov003_021d638c[];
-extern Unk021d299c gApListRowRects[];
+extern Rect gApListRowRects[];
 extern u16 data_ov003_021d63b8[];
 extern u16 data_ov003_021d63ba[];
 extern u16 data_ov003_021d63bc[];

@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk0217d070 Unk0217d070;
+typedef struct ScenePlayers ScenePlayers;
 
-void func_0210d73c(Unk0217d070 *p0);
+void func_0210d73c(ScenePlayers *p0);

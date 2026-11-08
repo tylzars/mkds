@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020e5d0c.h" // Unk020e6488
+#include "Main/Unknown/code_020e5d0c.h" // NsbmdModel
 #include "Main/Unknown/code_020ea670.h" // Unk020ea670
 #include "Main/Unknown/code_02087d0c.h" // ModelAnimation
 
@@ -33,9 +33,9 @@ typedef struct MapObjectModel {
     // Three words (1.0 = 0x1000 each) set by the creators and sent to the geometry engine as the scale command (0x1b)
     // by both draw functions; afterwards only the mirror setter writes them (it flips the sign of x and y).
     /* 00 */ Unk0209bc74_00 mScale;
-    // Unk020e6488 built from an .nsbmd (and an optional .nsbtp) by CreateMapObjectModelNsbmd / NsbmdNsbtp; 0 in the
+    // NsbmdModel built from an .nsbmd (and an optional .nsbtp) by CreateMapObjectModelNsbmd / NsbmdNsbtp; 0 in the
     // other bundles. The other models are built from an .nsbmd too.
-    /* 0c */ Unk020e6488 *mNsbmdModel;
+    /* 0c */ NsbmdModel *mNsbmdModel;
     // The 0x6c model instance of CreateMapObjectModelAnimated; the animation objects attach to this model. A bundle
     // made this way may attach none (NsKiller1, Berry, Cream).
     /* 10 */ Unk020ea670 *mAnimatedModel;

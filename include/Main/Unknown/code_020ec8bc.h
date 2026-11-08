@@ -30,5 +30,5 @@ void InitLinkFollowingItemFromInUse(LinkFollowingItemObject *follower, ItemInUse
                                     u16 targetKartIndex, s32 h);
 void CreateItemModels(void);
 void *CreateItemNsbmd(u8 *modelName, u8 *textureName);
-Unk020e6488 *CreateItemModel(u8 *modelName, u8 *animationName, u8 *textureName);
+NsbmdModel *CreateItemModel(u8 *modelName, u8 *animationName, u8 *textureName);
 void *FindItemFile(u8 *fileName);

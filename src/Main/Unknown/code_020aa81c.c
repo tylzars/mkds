@@ -245,7 +245,7 @@ void InitKeyboardTextEntry(s32 a, s32 b, s32 c) {
 
 void AdvanceKeyboardTextEntry(void) {
     s32 i;
-    Unk02175628Index v1;
+    InputSlotIndex v1;
     KeyboardTextEntry *q;
     u16 v;
 

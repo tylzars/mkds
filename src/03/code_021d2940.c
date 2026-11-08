@@ -124,7 +124,7 @@ u32 func_ov003_021d2acc(u32 a) {
     return 0;
 }
 
-u32 func_ov003_021d2a80(const Unk021d299c *v1) {
+u32 func_ov003_021d2a80(const Rect *v1) {
     KeyTouchInput *v2 = data_ov003_021da2d4;
     if (v2->mBits.mBit_0 == 0) {
         return 0;
@@ -144,7 +144,7 @@ u32 func_ov003_021d2a80(const Unk021d299c *v1) {
     return 0;
 }
 
-u32 func_ov003_021d2a34(const Unk021d299c *rect) {
+u32 func_ov003_021d2a34(const Rect *rect) {
     KeyTouchInput *input = data_ov003_021da2d4;
     if ((((u32) input->mUnk_38 << 30) >> 31) == 0) {
         return 0;
@@ -164,7 +164,7 @@ u32 func_ov003_021d2a34(const Unk021d299c *rect) {
     return 0;
 }
 
-u32 func_ov003_021d29e8(const Unk021d299c *rect) {
+u32 func_ov003_021d29e8(const Rect *rect) {
     KeyTouchInput *input = data_ov003_021da2d4;
     if ((((u32) input->mUnk_38 << 29) >> 31) == 0) {
         return 0;
@@ -184,7 +184,7 @@ u32 func_ov003_021d29e8(const Unk021d299c *rect) {
     return 0;
 }
 
-u32 func_ov003_021d299c(const Unk021d299c *rect) {
+u32 func_ov003_021d299c(const Rect *rect) {
     KeyTouchInput *input = data_ov003_021da2d4;
     if ((((u32) input->mUnk_38 << 28) >> 31) == 0) {
         return 0;
@@ -204,8 +204,8 @@ u32 func_ov003_021d299c(const Unk021d299c *rect) {
     return 0;
 }
 
-u32 func_ov003_021d2970(const Unk021d299c *input) {
-    Unk021d299c rect;
+u32 func_ov003_021d2970(const Rect *input) {
+    Rect rect;
     rect.mUnk_00 = input->mUnk_00;
     rect.mUnk_02 = input->mUnk_02;
     rect.mUnk_04 = input->mUnk_00 + input->mUnk_04;

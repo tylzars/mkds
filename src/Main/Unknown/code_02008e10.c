@@ -3,7 +3,7 @@
 
 #pragma thumb on
 
-s32 FindOrAddEntry(const u8 *scanBlock, Unk02008f00Func callback) {
+s32 FindOrAddEntry(const u8 *scanBlock, EntryCallbackFunc callback) {
     s32 i;
     EntryTable *entryTable;
     EntryRecord *entry;
@@ -43,7 +43,7 @@ s32 FindOrAddEntry(const u8 *scanBlock, Unk02008f00Func callback) {
     return -1;
 }
 
-void func_02008ff0(u32 entryIndex, Unk02008f00Func callback) {
+void func_02008ff0(u32 entryIndex, EntryCallbackFunc callback) {
     EntryRecord *entry;
     u32 entryBit;
     entry = &gEntryTable->mEntries[entryIndex];
@@ -69,7 +69,7 @@ void func_02008ff0(u32 entryIndex, Unk02008f00Func callback) {
     }
 }
 
-void UpdateEntryTimers(Unk02008f00Func callback, u32 b) {
+void UpdateEntryTimers(EntryCallbackFunc callback, u32 b) {
     u32 stopFollowing;
     s32 i;
     u32 entryOffset;

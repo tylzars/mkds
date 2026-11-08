@@ -33,7 +33,7 @@ typedef struct ItemBox {
     /* 0ac */ s32 mUnk_0ac;
     /* 0b0 */ s16 mUnk_0b0;
     /* 0b2 */ u8 mUnk_0b2[2];
-    /* 0b4 */ Unk020e516c mUnk_0b4;
+    /* 0b4 */ ShadowMatrix mUnk_0b4;
     /* 0e8 */ s32 mUnk_0e8;
     /* 0ec */ s32 mUnk_0ec;
     /* 0f0 */ u16 mPolygonId;

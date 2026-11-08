@@ -98,7 +98,7 @@ void DrawMapObjectModel1Mat1Shp(void *a, void *b, void *c) {
 
 void func_0209ba08(void *a, u32 b) {
     MapObjectModel *o = a;
-    Unk020e6488 *m = o->mNsbmdModel;
+    NsbmdModel *m = o->mNsbmdModel;
 
     if (m != NULL) {
         m->mUnk_14 &= ~0xf;
@@ -112,7 +112,7 @@ void func_0209ba08(void *a, u32 b) {
 
 void SetMapObjectModelAlpha(void *a, u16 b) {
     MapObjectModel *o = a;
-    Unk020e6488 *m = o->mNsbmdModel;
+    NsbmdModel *m = o->mNsbmdModel;
 
     if (m != NULL) {
         m->mUnk_14 &= ~0x1f0000;
@@ -130,7 +130,7 @@ void SetMapObjectModelAlpha(void *a, u16 b) {
 // The draw may replace this polygon id.
 void SetMapObjectModelPolygonId(void *a, u32 b) {
     MapObjectModel *o = a;
-    Unk020e6488 *m = o->mNsbmdModel;
+    NsbmdModel *m = o->mNsbmdModel;
 
     if (m != NULL) {
         m->mUnk_14 &= ~0x3f000000;
@@ -155,7 +155,7 @@ void func_0209b904(void *a, u32 b, u16 c) {
 
 void SetMapObjectModelFogEnabled(void *a, u32 b) {
     MapObjectModel *o = a;
-    Unk020e6488 *m = o->mNsbmdModel;
+    NsbmdModel *m = o->mNsbmdModel;
 
     if (m != NULL) {
         if (b != 0) {
@@ -172,7 +172,7 @@ void SetMapObjectModelFogEnabled(void *a, u32 b) {
 
 void SetMapObjectModelMirror(void *a, s32 b, s32 c) {
     MapObjectModel *o = a;
-    Unk020e6488 *m;
+    NsbmdModel *m;
     s32 k;
 
     if (o->mNsbmdModel != NULL) {

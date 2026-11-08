@@ -276,7 +276,7 @@ void CreateKuribo(void) {
     void *nsbtpFile;
     nsbmdFile = FindCourseMapObjFile(gKuriboNsbmdName);
     nsbtpFile = FindCourseMapObjFile(gKuriboNsbtpName);
-    func_020e6488((Unk020e6488 **) (((u32 *) &gKuribo)), nsbmdFile, nsbtpFile, 0);
+    func_020e6488((NsbmdModel **) (((u32 *) &gKuribo)), nsbmdFile, nsbtpFile, 0);
     func_020e6ab8(gKuribo);
 }
 

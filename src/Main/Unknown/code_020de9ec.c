@@ -97,7 +97,7 @@ void SetupDrawBox(void) {
 
 void DrawBox(void *unused0, ItemBox *itemBox, void *unused1, u16 d) {
     MtxFx43 matrix;
-    Unk020e6488 *model;
+    NsbmdModel *model;
     Vec3 *position;
     s32 cosine;
     s32 sine;
@@ -162,10 +162,10 @@ void DrawQuestion(void *unused0, ItemBox *itemBox, void *unused1, u16 d) {
     s32 cosine;
     s32 negatedSine;
     QuestionRotation *rotation;
-    Unk020e6488 *p;
+    NsbmdModel *p;
     Vec3 *position;
     s32 x;
-    Unk020e6488 *p2;
+    NsbmdModel *p2;
     u16 polygonId;
 
     itemBox->mPolygonId = AllocPolygonIdWrapping();

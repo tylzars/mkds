@@ -400,7 +400,7 @@ void AdvanceRecordTopMenuState3(void) {
 }
 
 void AdvanceRecordTopMenuState4(void) {
-    Unk02175628Index i;
+    InputSlotIndex i;
     u16 flags;
     BOOL b;
     s32 sel;
@@ -561,7 +561,7 @@ void AdvanceRecordTopMenuState8(void) {
 }
 
 void AdvanceRecordTopMenuState9(void) {
-    Unk02175628Index i = UNK_02175628_INDEX_8;
+    InputSlotIndex i = UNK_02175628_INDEX_8;
     u16 flags;
     BOOL b;
     BOOL a;

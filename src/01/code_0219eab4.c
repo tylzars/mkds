@@ -384,7 +384,7 @@ void AdvanceMissionRunLVselState2(void) {
 
 void AdvanceMissionRunLVselState3(void) {
     u32 sel = -1;
-    Unk02175628Index i = UNK_02175628_INDEX_8;
+    InputSlotIndex i = UNK_02175628_INDEX_8;
     BOOL f2;
     BOOL f1;
     s16 n;

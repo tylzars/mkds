@@ -117,7 +117,7 @@ typedef struct PlayerEntryRow {
 
 extern HeapCall gRootHeapCall;
 
-// 0x1c-byte part of Unk02174e14, at 0x00, 0x1c and 0x38; InitSelectCharacter has two on the stack, one filled by
+// 0x1c-byte part of SelectCharacter, at 0x00, 0x1c and 0x38; InitSelectCharacter has two on the stack, one filled by
 // func_02025b84. ResultsBattle has four from 0x48.
 typedef struct CellFileSet {
     /* 00 */ struct Unk0212463c_c *mChars;
@@ -131,7 +131,7 @@ typedef struct CellFileSet {
 
 // Object behind gPlayerEntryList.
 // Object behind gSelectCharacter.
-typedef struct Unk02174e14 {
+typedef struct SelectCharacter {
     /* 000 */ CellFileSet mUnk_000;
     /* 01c */ CellFileSet mUnk_01c;
     /* 038 */ CellFileSet mUnk_038;
@@ -156,9 +156,9 @@ typedef struct Unk02174e14 {
     /* 0f4 */ s32 mKartIndex;
     /* f8 */ Interpolation mInterpolations[3];
     /* 128 */ BOOL mUnk_128;
-} Unk02174e14;
+} SelectCharacter;
 
-extern Unk02174e14 *gSelectCharacter;
+extern SelectCharacter *gSelectCharacter;
 
 // Object behind gPlayerEntryList, 0x258 bytes (InitPlayerEntryList allocates it).
 typedef struct PlayerEntryList {

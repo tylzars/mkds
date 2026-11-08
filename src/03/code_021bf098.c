@@ -118,7 +118,7 @@ void func_ov003_021bf1d8(Unk021d34e0 *b) {
 }
 
 void func_ov003_021bf0d8(void) {
-    Unk021d299c a;
+    Rect a;
     s32 n;
     s32 i;
     u32 b;

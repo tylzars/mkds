@@ -392,7 +392,7 @@ void AdvanceSelectEngineState3(void) {
 
 void AdvanceSelectEngineState4(void) {
     u32 r5 = -1;
-    Unk02175628Index idx = UNK_02175628_INDEX_8;
+    InputSlotIndex idx = UNK_02175628_INDEX_8;
     BOOL b1;
     s32 a1;
     BOOL b2;

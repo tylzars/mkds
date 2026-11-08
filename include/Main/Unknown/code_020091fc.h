@@ -97,7 +97,7 @@ extern u8 data_0216fce0[0xc0];
 extern Unk0216fc1c data_0216fd30[1];
 
 u32 func_020091fc(ScanBlock *scanBlock);
-u32 AddScanResult(Unk02008f00Func callback, u32 b, ScanBlock *scanBlock);
+u32 AddScanResult(EntryCallbackFunc callback, u32 b, ScanBlock *scanBlock);
 void func_020092d0(u32 ggid, u16 tgid, u32 attr);
 void func_02009494(void);
 void func_020094b8(u32 ggid, u16 tgid, u32 attr);

@@ -142,7 +142,7 @@ void AdvanceWiFiTopMenuState2(void) {
 }
 
 void AdvanceWiFiTopMenuState3(void) {
-    Unk02175628Index i = UNK_02175628_INDEX_8;
+    InputSlotIndex i = UNK_02175628_INDEX_8;
     BOOL v1 = FALSE;
     u32 v2 = -1;
     BOOL v3 = FALSE;
@@ -330,7 +330,7 @@ void AdvanceWiFiTopMenuState7(void) {
 }
 
 void AdvanceWiFiTopMenuState8(void) {
-    Unk02175628Index i = UNK_02175628_INDEX_8;
+    InputSlotIndex i = UNK_02175628_INDEX_8;
     s32 a;
     BOOL b;
     u32 v;

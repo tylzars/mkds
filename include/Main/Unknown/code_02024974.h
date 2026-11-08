@@ -5,7 +5,7 @@
 typedef struct Kart Kart;
 typedef struct SoundSource SoundSource;
 
-// Ten words at 0x40 of an Unk02024eec, built on the stack by func_020719d0.
+// Ten words at 0x40 of an KartSound, built on the stack by func_020719d0.
 typedef struct Unk02024eec_40 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
@@ -20,7 +20,7 @@ typedef struct Unk02024eec_40 {
 } Unk02024eec_40;
 
 // The bytes from 0x450 of an Kart, which func_02024a88 and func_02024eec read and write.
-typedef struct Unk02024eec {
+typedef struct KartSound {
     /* 00 */ s32 mUnk_00;
     /* 04 */ u8 mUnk_04;
     /* 05 */ u8 mUnk_05[3];
@@ -54,18 +54,18 @@ typedef struct Unk02024eec {
         Unk02024eec_40 mUnk_40_m;
     };
     /* 68 */ s32 mUnk_68;
-} Unk02024eec;
+} KartSound;
 
 typedef struct Kart Kart;
-typedef struct Unk02024eec Unk02024eec;
+typedef struct KartSound KartSound;
 
 s32 func_02024974(s32 a, s32 b, u32 c, u32 d);
 void func_020249b8(Kart *kart, s32 b, s32 c);
 void func_02024a28(SoundSource *soundSource, u16 soundId, s32 b, s32 c);
 void func_02024a88(Kart *kart);
-s32 func_02024eec(Unk02024eec *soundRecord, s32 b, s32 c);
-void func_02024fc0(Kart *kart, Unk02024eec *soundRecord);
-void func_02024fe8(Kart *kart, Unk02024eec *soundRecord);
-void func_02025030(Kart *kart, Unk02024eec *soundRecord);
-void func_0202506c(Kart *kart, Unk02024eec *soundRecord);
+s32 func_02024eec(KartSound *soundRecord, s32 b, s32 c);
+void func_02024fc0(Kart *kart, KartSound *soundRecord);
+void func_02024fe8(Kart *kart, KartSound *soundRecord);
+void func_02025030(Kart *kart, KartSound *soundRecord);
+void func_0202506c(Kart *kart, KartSound *soundRecord);
 u32 func_020250a8(void);

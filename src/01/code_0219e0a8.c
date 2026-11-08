@@ -205,7 +205,7 @@ void AdvanceEndingSceneState4(void) {
 }
 
 void AdvanceEndingSceneState5(void) {
-    Unk02175628Index idx = UNK_02175628_INDEX_8;
+    InputSlotIndex idx = UNK_02175628_INDEX_8;
     u16 flags;
     BOOL a;
     BOOL b;

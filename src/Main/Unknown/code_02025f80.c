@@ -139,7 +139,7 @@ void func_02027084(void) {
 
 void InitSelectCharacter(void *parentHeap, s32 mode, void *mainOam, void *subOam) {
     void *heap;
-    Unk02174e14 *selectCharacter;
+    SelectCharacter *selectCharacter;
     CellFileSet *sParts;
     Unk021534bc *positions;
     s32 i;
@@ -395,10 +395,10 @@ static inline s32 func_02026120_inline_2(u16 inputSlot) {
 
 int AdvanceSelectCharacter(void) {
     int result;
-    Unk02174e14 *selectCharacter;
+    SelectCharacter *selectCharacter;
     CellFileSet *sParts;
     s32 previousTableIndex;
-    Unk02174e14 *selectCharacterReload;
+    SelectCharacter *selectCharacterReload;
     u16 inputSlot;
     s32 nextState;
     s32 tableIndex;

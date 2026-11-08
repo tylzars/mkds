@@ -11,7 +11,7 @@ void SetupKartAiForBattle(KartAi *kartAi, s32 kartIndex) {
     func_02089a24(kartAi, &kartAi->mUnk_e8);
 }
 
-void ResetKartAiForBattle(KartAi *kartAi, Unk02175620_bc *link) {
+void ResetKartAiForBattle(KartAi *kartAi, PointLink *link) {
     ResetBattleKartAiAtPointLink(kartAi, link);
     SetupBattleKartAiSpeedLimit(&kartAi->mAiSpeedLimit, kartAi);
     func_02090348(&kartAi->mItemUse);

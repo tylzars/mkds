@@ -46,7 +46,7 @@
 #include "registers.h"
 
 #pragma thumb on
-static inline s32 func_02119340_inline(Unk02175628Index inputIndex) {
+static inline s32 func_02119340_inline(InputSlotIndex inputIndex) {
     BOOL g;
     BOOL f;
     u16 v;
@@ -65,7 +65,7 @@ static inline s32 func_02119340_inline(Unk02175628Index inputIndex) {
 
 void AdvanceSelectCupCourseState3(void) {
     s32 touchedRectIndex;
-    Unk02175628Index inputIndex;
+    InputSlotIndex inputIndex;
     s16 courseIndex;
 
     touchedRectIndex = -1;

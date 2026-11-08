@@ -258,10 +258,10 @@ void func_020e7460(void) {
         sourceRow++;
         kindRow++;
     }
-    func_020e6488((Unk020e6488 **) gJgKindRowLapModels, FindSceneFile(data_0216c3a4), FindSceneFile(data_0216c3b4), 0);
+    func_020e6488((NsbmdModel **) gJgKindRowLapModels, FindSceneFile(data_0216c3a4), FindSceneFile(data_0216c3b4), 0);
     func_020e6ab8(gJgKindRows[0].mLapModel);
     gJgKindRows[0].mLapModel->mUnk_14 |= 0xc0;
-    func_020e6488((Unk020e6488 **) data_0217bb04, FindSceneFile(data_0216c3c4), 0, 0);
+    func_020e6488((NsbmdModel **) data_0217bb04, FindSceneFile(data_0216c3c4), 0, 0);
     func_020e6ab8(gJgKindRows[1].mLapModel);
     gJgKindRows[1].mLapModel->mUnk_14 |= 0xc0;
 }
@@ -335,7 +335,7 @@ void func_020e72cc(Unk020e730c *object, struct CourseMapRow *courseRow) {
 #pragma thumb off
 
 void func_020e71a0(MapObject *object) {
-    Unk020e71a0_94 *sound;
+    MapObjectSound *sound;
     BOOL resultIsFalse;
     BOOL hasSoundBit0;
 

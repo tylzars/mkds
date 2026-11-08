@@ -431,7 +431,7 @@ void *BuildItemObjectMatrix(ItemObject *object, Vec3 *viewAxis) {
 void DrawItemPoolModels(ItemPool *pool, Vec3 *viewAxis) {
     s16 d8;
     s32 i;
-    Unk020e6488 *model;
+    NsbmdModel *model;
     s32 takenCount;
     s32 activeCount;
     ItemObject *object;
@@ -511,7 +511,7 @@ void DrawItemPoolWithCallback(ItemPool *pool, void *callbackArg, void (*drawCall
     }
 }
 
-void DrawItemObjectModel(ItemObject *object, Unk020e6488 *model, Vec3 *viewAxis) {
+void DrawItemObjectModel(ItemObject *object, NsbmdModel *model, Vec3 *viewAxis) {
     s16 d;
     void *matrix;
 

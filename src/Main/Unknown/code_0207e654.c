@@ -206,7 +206,7 @@ void ResetKartAi(KartAi *p, s32 a) {
 }
 
 void ResetRaceKartAiAtPointLink(KartAi *p) {
-    Unk02175620_bc *a;
+    PointLink *a;
 
     ResetPointLinkCursor(&p->mUnk_08.mUnk_00, a);
     ResetKartAi(p, 1);
@@ -218,7 +218,7 @@ void AdvanceRaceKartAi(KartAi *p) {
     Vec3 *t;
     LinkCursor *q;
     Kart *a;
-    Unk02175620_bc *s;
+    PointLink *s;
 
     func_0207e668(p);
     q = &p->mUnk_08.mUnk_00;
@@ -240,7 +240,7 @@ void AdvanceRaceKartAi(KartAi *p) {
     PickKartAiTargetKart(p);
 }
 
-void func_0207f6f0(KartAi *p, LinkCursor *q, Kart *r, Unk02175620_bc *s, Vec3 *a, Vec3 *b) {
+void func_0207f6f0(KartAi *p, LinkCursor *q, Kart *r, PointLink *s, Vec3 *a, Vec3 *b) {
     Vec3 v;
     Vec3 w;
     Vec3 *c;

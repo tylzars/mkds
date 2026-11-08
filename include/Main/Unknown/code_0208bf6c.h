@@ -7,5 +7,5 @@
 #include "Main/Unknown/code_02090000.h"
 #include "Main/Unknown/code_020f36d8.h"
 
-void ResetKartAiForBattle(KartAi *kartAi, Unk02175620_bc *link);
+void ResetKartAiForBattle(KartAi *kartAi, PointLink *link);
 void SetupKartAiForBattle(KartAi *kartAi, s32 kartIndex);

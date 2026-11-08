@@ -83,9 +83,9 @@ typedef struct {
 } Unk02175620_84;
 
 // 0x30-byte entries of the table at CourseMap.mUnk_bc (ResetBattlePointLinkCursorNear searches it).
-typedef struct Unk02175620_bc {
-    /* 00 */ struct Unk02175620_bc *mUnk_00[3];
-    /* 0c */ struct Unk02175620_bc *mUnk_0c;
+typedef struct PointLink {
+    /* 00 */ struct PointLink *mUnk_00[3];
+    /* 0c */ struct PointLink *mUnk_0c;
     /* 10 */ u8 mUnk_10[8];
     /* 18 */ Vec3 *mUnk_18;
     /* 1c */ s32 mUnk_1c;
@@ -95,7 +95,7 @@ typedef struct Unk02175620_bc {
     /* 2c */ u16 mUnk_2c;
     /* 2e */ u8 mUnk_2e;
     /* 2f */ u8 mUnk_2f;
-} Unk02175620_bc;
+} PointLink;
 
 struct CourseMapRow;
 
@@ -335,7 +335,7 @@ typedef struct CourseMap {
     // GetCourseMapRespawnRacePointLink and the kart follower set-up (InitRacePointLinkCursor).
     /* a0 */ Unk02175620_a0 *mRacePointLinks;
     // Link of the first point of mRaceRoutes[0].
-    /* a4 */ Unk02175620_bc *mRaceRoute0FirstLink;
+    /* a4 */ PointLink *mRaceRoute0FirstLink;
     // Link of the last point of the route before mRaceRoutes[0].
     /* a8 */ s32 mRaceRoute0PreviousLastLink;
     // One 0x28-byte link per item point (up to three next and three previous links, a pointer to the point, two
@@ -348,11 +348,11 @@ typedef struct CourseMap {
     // One 0x30-byte link per battle point (up to eight neighbour links, a pointer to the point, two values, a link
     // count and a bit mask), built from mBattlePoints and mBattleRoutes; read by
     // FindCourseMapKind4ShapeBattlePointLink, GetCourseMapRespawnBattlePointLink and GetKeyedPlacementBattlePointLink.
-    /* b8 */ Unk02175620_bc *mBattlePointLinks;
+    /* b8 */ PointLink *mBattlePointLinks;
     // Address of the first element of mBattlePointLinks.
-    /* bc */ Unk02175620_bc *mFirstBattlePointLink;
+    /* bc */ PointLink *mFirstBattlePointLink;
     // Address one past the last element of mBattlePointLinks.
-    /* c0 */ Unk02175620_bc *mBattlePointLinksEnd;
+    /* c0 */ PointLink *mBattlePointLinksEnd;
     // The first entry whose mChainStart is 1.
     /* c4 */ Unk02175620_7c *mFirstChainStartEntry;
     /* c8 */ Unk02175620_7c *mSecondChainStartEntry;

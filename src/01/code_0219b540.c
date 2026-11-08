@@ -463,7 +463,7 @@ void AdvanceSelectGhostState2(void) {
     BOOL a;
     BOOL d;
     BOOL c;
-    Unk02175628Index idx;
+    InputSlotIndex idx;
 
     r = -1;
     AdvanceSelectGhostOffsetTimers();

@@ -71,7 +71,7 @@ typedef struct Unk0216fc1c {
     /* 68 */ u8 mUnk_68[8];
 } Unk0216fc1c;
 
-typedef void (*Unk02008f00Func)(u32 a, void *b, u32 c);
+typedef void (*EntryCallbackFunc)(u32 a, void *b, u32 c);
 
 extern EntryTable *gEntryTable;
 extern Unk0216fc1c *gReceivedGameInfo;

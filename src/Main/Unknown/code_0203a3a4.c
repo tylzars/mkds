@@ -47,7 +47,7 @@
 #include "registers.h"
 
 static inline u32 func_0203a908_inline(void) {
-    Unk02175628Index slotIndex = UNK_02175628_INDEX_8;
+    InputSlotIndex slotIndex = UNK_02175628_INDEX_8;
     u32 result = 1;
     u32 briefNoPair = 0;
     u16 hasPair = data_02175628[slotIndex].mHasPair;
@@ -254,7 +254,7 @@ u32 ShouldEndAwardRace(u32 sceneFrames) {
         return 0;
     }
     if (func_0203a9ec_inline() != 0) {
-        Unk02175628Index slotIndex = UNK_02175628_INDEX_8;
+        InputSlotIndex slotIndex = UNK_02175628_INDEX_8;
         if ((u16) (data_02175628[slotIndex].mUnk_00 & PAD_KEY_A) != 0) {
             return 1;
         }
@@ -277,7 +277,7 @@ u32 ShouldEndStaffRoll(u32 sceneFrames) {
     }
     result = 0;
     if (func_02056dec(flagIndex) != 0 && sceneFrames > 0xb4) {
-        Unk02175628Index slotIndex = UNK_02175628_INDEX_8;
+        InputSlotIndex slotIndex = UNK_02175628_INDEX_8;
         if ((u16) (data_02175628[slotIndex].mBits & 0xc0f) != 0 || func_0203a908_inline() != 0) {
             result = 1;
         }

@@ -187,7 +187,7 @@ void PrintSelectedGhostRecord(void) {
     characterIndex = GetListedGhostCharacterIndex(listIndex);
     kartIndex = GetListedGhostKartIndex(listIndex);
     courseId = GetListedGhostCourseId(listIndex);
-    PrintGhostRecordInfo((Unk02174e14 *) &data_02174e68->mCellFileSets[0], data_0215404c, nameText, characterIndex,
+    PrintGhostRecordInfo((SelectCharacter *) &data_02174e68->mCellFileSets[0], data_0215404c, nameText, characterIndex,
                          kartIndex, courseId, (MinuteSecondMillisecondTime *) &time);
 }
 

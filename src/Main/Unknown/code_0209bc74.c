@@ -78,7 +78,7 @@ void *CreateMapObjectModelShadow(void *a, const char *b) {
 void *CreateMapObjectModelNsbmd(void *a, const char *b) {
     MapObjectModel *o;
     void *x;
-    Unk020e6488 *m;
+    NsbmdModel *m;
 
     o = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     x = FindCourseMapObjFile(b);
@@ -104,7 +104,7 @@ void *CreateMapObjectModelNsbmdNsbtp(void *a, const char *b, const char *c) {
     MapObjectModel *o;
     void *x;
     void *y;
-    Unk020e6488 *m;
+    NsbmdModel *m;
 
     o = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     x = FindCourseMapObjFile(b);

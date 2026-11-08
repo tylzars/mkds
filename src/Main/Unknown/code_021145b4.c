@@ -412,7 +412,7 @@ void AdvanceRecordVSEraseState4(void) {
     s32 firstRecordIndex;
     s32 v;
     u32 w;
-    Unk02175628Index i;
+    InputSlotIndex i;
     BOOL n;
 
     v = -1;

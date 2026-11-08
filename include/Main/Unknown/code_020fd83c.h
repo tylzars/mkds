@@ -35,7 +35,7 @@ typedef struct ItemBomb {
 
 void func_020fd83c(ItemBomb *bomb);
 int RequestItemBombState2(ItemBomb *bomb);
-void DrawItemBomb(ItemBomb *bomb, Vec3 *a, Unk020e6488 *model);
+void DrawItemBomb(ItemBomb *bomb, Vec3 *a, NsbmdModel *model);
 void InitItemBombFromData(ItemBomb *bomb);
 void *func_020fda50(void *cursor, ItemBomb *bomb, void *toData);
 void AdvanceItemBomb(ItemBomb *bomb);

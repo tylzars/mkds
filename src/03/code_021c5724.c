@@ -172,7 +172,7 @@ void UpdateApList(void) {
 
 void func_ov003_021c6184(void) {
     int i;
-    Unk021d299c *p;
+    Rect *p;
     if (gApList->mScrollTask != 0) {
         return;
     }

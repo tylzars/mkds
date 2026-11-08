@@ -170,7 +170,7 @@ void PrintSelectedGhostSendRecord(void) {
     terminatedName[10] = 0;
     characterIndex = GetListedGhostCharacterIndex(gTimeAttackGhostSend->mSelectedIndex);
     kartIndex = GetListedGhostKartIndex(gTimeAttackGhostSend->mSelectedIndex);
-    PrintGhostRecordInfo((Unk02174e14 *) gTimeAttackGhostSend->mUnk_050, gTimeAttackGhostSendMLabelTextRows,
+    PrintGhostRecordInfo((SelectCharacter *) gTimeAttackGhostSend->mUnk_050, gTimeAttackGhostSendMLabelTextRows,
                          terminatedName, characterIndex, kartIndex,
                          GetListedGhostCourseId(gTimeAttackGhostSend->mSelectedIndex), &recordTime);
 }

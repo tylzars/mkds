@@ -24,7 +24,7 @@ s32 IsKartInCourseMapKind3ShapeList(s32 a, u32 b);
 struct ItemPointLink *GetCourseMapRespawnItemPointLink(u32 a);
 // Looks up the respawn spot of slot a: writes its position to b and its rotation angles to c (a default position and
 // angles when there is none) and returns its element of mBattlePointLinks (mPointIndex), NULL for -1.
-Unk02175620_bc *GetCourseMapRespawnBattlePointLink(u32 a, Vec3 *b, Vec3 *c);
+PointLink *GetCourseMapRespawnBattlePointLink(u32 a, Vec3 *b, Vec3 *c);
 // Looks up the respawn spot of slot a: writes its position to b and its rotation angles to c (a default position and
 // angles when there is none) and returns its element of mRacePointLinks (mPointIndex), NULL for -1.
 void *GetCourseMapRespawnRacePointLink(u32 a, Vec3 *b, Vec3 *c);
@@ -33,7 +33,7 @@ u16 GetCourseMapRespawnSlot(u32 a);
 s32 GetCourseMapCameraIndexAtPos(Vec3 *a);
 // Returns the element of mBattlePointLinks given by mPointIndex of the first mKind 4 shape that contains position a, or
 // NULL; NULL at once when the course has no kind 4 shapes.
-Unk02175620_bc *FindCourseMapKind4ShapeBattlePointLink(Vec3 *a);
+PointLink *FindCourseMapKind4ShapeBattlePointLink(Vec3 *a);
 // Returns the element of mRacePointLinks given by mPointIndex of the first mKind 4 shape that contains position a, or
 // NULL; NULL at once when the course has no kind 4 shapes.
 void *FindCourseMapKind4ShapeRacePointLink(Vec3 *a);

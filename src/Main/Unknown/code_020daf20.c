@@ -454,7 +454,7 @@ void DrawKuribo(void *unused0, Kuribo *kuribo, void *unused1, u16 d) {
     Vec3 scale;
     Quaternion orientation;
     u16 e;
-    Unk020e6488 *model;
+    NsbmdModel *model;
     if (kuribo->mUnk_cc.mGroupIndex == 0xffff) {
         func_020d7938(&kuribo->mUnk_a4, &gViewYawQuaternion, &orientation);
         Matrix3x3FromQuaternion(&kuribo->mUnk_00.mMatrix, &orientation);

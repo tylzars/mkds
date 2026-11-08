@@ -182,7 +182,7 @@ void func_ov003_021c0a24(void) {
 }
 
 void func_ov003_021c08d0(void) {
-    Unk021d299c a;
+    Rect a;
     s32 i;
     s32 j;
     if (func_ov003_021d2a34(&data_ov003_021d67e8) == 0) {
@@ -225,7 +225,7 @@ void func_ov003_021c08d0(void) {
 }
 
 void func_ov003_021c06e0(void) {
-    Unk021d299c a;
+    Rect a;
     s32 i;
     u16(*q)[2];
     u16(*p)[2];
@@ -317,7 +317,7 @@ void func_ov003_021c0680(void) {
 }
 
 void func_ov003_021c0528(void) {
-    Unk021d299c a;
+    Rect a;
     s32 i;
     s32 j;
 

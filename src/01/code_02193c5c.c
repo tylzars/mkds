@@ -518,7 +518,7 @@ void AdvanceRecordGpxState1(void) {
 void AdvanceRecordGpxState2(void) {
     s32 a = -1;
     s32 b = -1;
-    Unk02175628Index idx = UNK_02175628_INDEX_8;
+    InputSlotIndex idx = UNK_02175628_INDEX_8;
     BOOL x1, y1, x2, y2, x3, y3;
 
     AdvanceRecordGpxOffsetTimers();

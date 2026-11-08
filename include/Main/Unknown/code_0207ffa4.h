@@ -11,19 +11,19 @@
 #include "Main/Unknown/code_020b47d8.h"
 #include "Main/Unknown/code_020b6a18.h"
 #include "Main/Unknown/code_0207a880.h"
-#include "Main/Unknown/code_020b502c.h" // Unk02175620_bc
+#include "Main/Unknown/code_020b502c.h" // PointLink
 
 // A position on point links: the current link, the previous link and the direction from one to the other.
 typedef struct LinkCursor {
-    /* 00 */ Unk02175620_bc *mLink;
-    /* 04 */ Unk02175620_bc *mPreviousLink;
+    /* 00 */ PointLink *mLink;
+    /* 04 */ PointLink *mPreviousLink;
     /* 08 */ Vec3 mDirection;
-    /* 14 */ Unk02175620_bc *mRequestedLink;
+    /* 14 */ PointLink *mRequestedLink;
     /* 18 */ BOOL mUnk_18;
 } LinkCursor;
 
 #include "Main/Unknown/code_02080b1c.h"
 
 void SetupPointLinkCursor(Unk02080b1c *cursor, u32 kartIndex, Unk02080b1c_00 *link);
-void AdvanceBattlePointLinkCursorTo(LinkCursor *p, Unk02175620_bc *a);
+void AdvanceBattlePointLinkCursorTo(LinkCursor *p, PointLink *a);
 s32 func_020800a0(LinkCursor *p);

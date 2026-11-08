@@ -48,7 +48,7 @@ void SetupAwardMissionRunKartAi(struct KartAi *p, struct Kart *q, s32 a) {
     p->mUnk_cc = 1;
 }
 
-void ResetAwardMissionRunKartAi(struct KartAi *p, struct Unk02175620_bc *a) {
+void ResetAwardMissionRunKartAi(struct KartAi *p, struct PointLink *a) {
     ResetPointLinkCursor(&p->mUnk_08.mUnk_00, a);
     ResetKartAi(p, 1);
     ResetKartAi(p, 1);
@@ -60,7 +60,7 @@ void AdvanceAwardMissionRunKartAi(struct KartAi *p) {
     LinkCursor *s;
     Kart *q;
     Vec3 *t;
-    Unk02175620_bc *r;
+    PointLink *r;
 
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         func_0207e668(p);
@@ -101,7 +101,7 @@ void AdvanceStaffRollKartAi(struct KartAi *p) {
     LinkCursor *s = &p->mUnk_08.mUnk_00;
     Kart *q = p->mKart;
     Vec3 *t;
-    Unk02175620_bc *r;
+    PointLink *r;
 
     if (p->mUnk_90 == 2) {
         t = &q->mTurnedForward;

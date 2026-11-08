@@ -157,7 +157,7 @@ void AdvanceRecordVSState3(void) {
 void AdvanceRecordVSState4(void) {
     s32 a;
     s32 b;
-    Unk02175628Index inputSlotIndex;
+    InputSlotIndex inputSlotIndex;
     BOOL g;
     BOOL f;
     u16 x;

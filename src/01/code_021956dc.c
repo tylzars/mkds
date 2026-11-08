@@ -492,7 +492,7 @@ void func_ov001_02196cd0(void) {
 }
 
 BOOL func_ov001_02196c4c(void) {
-    Unk02175628Index idx = UNK_02175628_INDEX_8;
+    InputSlotIndex idx = UNK_02175628_INDEX_8;
     u16 m;
 
     m = data_02175628[idx].mUnk_00;
@@ -648,7 +648,7 @@ void AdvanceRecordTAttState1(void) {
 void AdvanceRecordTAttState2(void) {
     s32 a = -1;
     s32 b = -1;
-    Unk02175628Index idx = UNK_02175628_INDEX_8;
+    InputSlotIndex idx = UNK_02175628_INDEX_8;
     BOOL x;
     BOOL y;
     u16 v;
@@ -1082,7 +1082,7 @@ void AdvanceRecordTAttState14(void) {
 }
 
 void AdvanceRecordTAttState15(void) {
-    Unk02175628Index i;
+    InputSlotIndex i;
     u16 f;
     BOOL b;
 
