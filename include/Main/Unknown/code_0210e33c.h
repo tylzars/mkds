@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "Main/Unknown/unk_02153000.h" // SoundRow
 
 // Three words, at 0, 4 and 8: LoadSoundSet, IsSoundSetLoaded and ReleaseSoundSet take one by value.
 typedef struct SoundSet {
@@ -15,15 +16,6 @@ typedef struct LoadedSoundSet {
     /* 00 */ SoundSet mSoundSet;
     /* 0c */ u32 mHeapState;
 } LoadedSoundSet;
-
-// Four bytes at 0 to 3: GetCourseSoundRowIndex writes one, and LoadCourseSoundSet and LoadSceneSoundSet read the bytes
-// at 1, 2 and 3.
-typedef struct Unk0210e524 {
-    /* 00 */ u8 mUnk_00;
-    /* 01 */ u8 mUnk_01;
-    /* 02 */ u8 mUnk_02;
-    /* 03 */ u8 mUnk_03;
-} Unk0210e524;
 
 // Object data_0217d178: 16 words from 0x00 and a signed number at 0x40; LoadSndDataFromFile and func_0210ed20 add a
 // word to it, ClearSndFileAddresses walks it and ClearSndFileIdList resets it.
@@ -46,7 +38,7 @@ u32 func_0210ed20(u32 groupId, u32 moveWaveArcs);
 u32 LoadSoundSetIfChanged(SoundSet soundSet, u32 loadExtras);
 void func_0210e920(void);
 void func_0210e8f8(u32 moveWaveArcs);
-void LoadSceneSoundSet(Unk0210e524 soundRow, u32 loadExtras);
+void LoadSceneSoundSet(SoundRow soundRow, u32 loadExtras);
 u32 LoadSndDataFromFile(void);
 u32 LoadCourseSoundSet(u32 a, u32 b);
 u32 func_0210e524(void);

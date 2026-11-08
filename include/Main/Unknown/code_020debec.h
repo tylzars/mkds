@@ -5,11 +5,11 @@
 #include "Main/Unknown/code_020de214.h"
 
 void func_020df3f8(void);
-Unk020de390 *CreateItemBoxKindData(void);
+MapObjectKindData *CreateItemBoxKindData(void);
 MapObjectDrawList *CreateBoxDrawList(void);
 MapObjectDrawList *CreateQuestionDrawList(void);
 MapObjectDrawList *func_020df294(void);
-Unk020de2d8 *CreateItemBoxUpdateList(void);
+MapObjectList *CreateItemBoxUpdateList(void);
 void SetupDrawBox(void);
 void DrawBox(void *unused0, ItemBox *itemBox, void *unused1, u16 d);
 void SetupDrawQuestion(void);

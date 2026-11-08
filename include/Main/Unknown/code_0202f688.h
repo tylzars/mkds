@@ -45,11 +45,7 @@ typedef struct MultiSelectMemberGroup {
     /* a4 */ void *mHeap;
 } MultiSelectMemberGroup;
 
-// Argument of AdvanceMultiSelectMemberGroup: a halfword at 4.
-typedef struct Unk0202f764 {
-    /* 00 */ u8 mUnk_00[4];
-    /* 04 */ u16 mUnk_04;
-} Unk0202f764;
+typedef struct SceneNumbersView SceneNumbersView;
 
 #include "Main/Unknown/code_020b4000.h" // Ncgr, Nclr
 
@@ -75,7 +71,7 @@ typedef struct MultiSelectNS {
 
 void WriteMultiSelectMemberGroupRegisters(void);
 void ReleaseMultiSelectMemberGroup(void);
-s32 AdvanceMultiSelectMemberGroup(Unk0202f764 *sceneNumbers);
+s32 AdvanceMultiSelectMemberGroup(SceneNumbersView *sceneNumbers);
 void InitMultiSelectMemberGroup(void *parentHeap, void *scene, void *oamList);
 void func_0202fd2c(void);
 void RefreshMultiSelectMemberGroup(s32 showSelected);

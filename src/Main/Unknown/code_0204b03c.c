@@ -41,8 +41,8 @@ void func_0204b344(s32 errorCode) {
             f = FALSE;
     }
     gBackupAccess->mUnk_00 = 4;
-    gBackupAccess->mErrorCode = (void *) errorCode;
-    switch ((s32) gBackupAccess->mErrorCode) {
+    gBackupAccess->mErrorCode = errorCode;
+    switch (gBackupAccess->mErrorCode) {
         case 0:
             break;
         case 1:

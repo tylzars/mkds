@@ -152,7 +152,7 @@ void UpdateSecondHand(u32 a, Unk020e43a8 *secondHand) {
     Matrix3x3FromQuaternion(&secondHand->mUnk_00.mMatrix, &secondHand->mUnk_a0);
 }
 
-void EnterSecondHandState0(Unk020e5950 *secondHand) {
+void EnterSecondHandState0(Unk020e58b8 *secondHand) {
     secondHand->mUnk_c8 = 0x0u;
 }
 

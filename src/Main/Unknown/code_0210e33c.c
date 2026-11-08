@@ -263,12 +263,12 @@ void func_0210e8f8(u32 moveWaveArcs) {
     SaveSndHeapState(GetLoadedSoundSet());
 }
 
-void LoadSceneSoundSet(Unk0210e524 soundRow, u32 loadExtras) {
+void LoadSceneSoundSet(SoundRow soundRow, u32 loadExtras) {
     SoundSet soundSet;
 
-    soundSet.mSeqId = soundRow.mUnk_01;
-    soundSet.mUnk_04 = soundRow.mUnk_02;
-    soundSet.mUnk_08 = soundRow.mUnk_03;
+    soundSet.mSeqId = soundRow.mUnk_00[1];
+    soundSet.mUnk_04 = soundRow.mUnk_00[2];
+    soundSet.mUnk_08 = soundRow.mUnk_00[3];
     LoadSoundSetIfChanged(soundSet, loadExtras);
     if (func_02105504() == 0) {
         return;
@@ -342,15 +342,15 @@ u32 LoadSndDataFromFile(void) {
 }
 
 u32 LoadCourseSoundSet(u32 a, u32 b) {
-    Unk0210e524 row, rowCopy;
+    SoundRow row, rowCopy;
     SoundSet soundSet;
     u32 loaded;
 
     GetCourseSoundRowIndex(b, &row);
     rowCopy = row;
-    soundSet.mSeqId = rowCopy.mUnk_01;
-    soundSet.mUnk_04 = rowCopy.mUnk_02;
-    soundSet.mUnk_08 = rowCopy.mUnk_03;
+    soundSet.mSeqId = rowCopy.mUnk_00[1];
+    soundSet.mUnk_04 = rowCopy.mUnk_00[2];
+    soundSet.mUnk_08 = rowCopy.mUnk_00[3];
     NNS_SndArcSetCurrent(&data_0217d0a0);
     loaded = LoadSoundSetIfChanged(soundSet, 1) != 0;
     if (loaded != 0) {

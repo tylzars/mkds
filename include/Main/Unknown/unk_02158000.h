@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "Main/Unknown/code_020e6fd4.h" // MapObjectList, MapObjectKindData
 
 extern Vec3 data_0215807c;
 extern Vec3 data_02158088;
@@ -13,21 +14,10 @@ extern Vec3 data_021581f8;
 extern struct Unk020dbe74 data_02158238;
 extern struct Unk020dbed0 data_02158260;
 extern struct Unk020dbf2c data_0215828c;
-// Object of 0x28 bytes made by CreateWanwanChainUpdateList and the other factories that copy a template from
-// 0x02158xxx.
-typedef struct Unk020de2d8 {
-    /* 00 */ u32 mUnk_00[10];
-} Unk020de2d8;
-
 // Object of 0x2c bytes made by CreateWanwanChainDrawList and the other factories that copy a template from 0x02158xxx.
 typedef struct MapObjectDrawList {
     /* 00 */ u32 mUnk_00[11];
 } MapObjectDrawList;
-
-// Object of 0x40 bytes made by CreateWanwanChainKindData and the other factories that copy a template from 0x02158xxx.
-typedef struct Unk020de390 {
-    /* 00 */ u32 mUnk_00[16];
-} Unk020de390;
 
 // Object of 0x2c bytes made by CreateMkdEfBubbleUpdateList; a word at 0x28.
 typedef struct Unk020dfc44 {
@@ -35,29 +25,29 @@ typedef struct Unk020dfc44 {
     /* 28 */ s32 mUnk_28;
 } Unk020dfc44;
 
-extern Unk020de2d8 data_0215840c;
+extern MapObjectList data_0215840c;
 extern MapObjectDrawList data_02158434;
-extern Unk020de390 data_02158460;
-extern Unk020de2d8 data_021584d4;
+extern MapObjectKindData data_02158460;
+extern MapObjectList data_021584d4;
 extern MapObjectDrawList data_021584fc;
-extern Unk020de390 data_02158528;
+extern MapObjectKindData data_02158528;
 extern u16 data_02158568;
 extern u32 data_0215856c;
 extern u16 data_021585a4;
-extern Unk020de2d8 data_021585a8;
+extern MapObjectList data_021585a8;
 extern MapObjectDrawList data_021585d0;
 extern MapObjectDrawList data_021585fc;
 extern MapObjectDrawList data_02158628;
-extern Unk020de390 data_02158654;
+extern MapObjectKindData data_02158654;
 extern u8 data_02158694[];
 extern u16 data_021586d4;
-extern Unk020de2d8 data_021586d8;
-extern Unk020de390 data_02158700;
+extern MapObjectList data_021586d8;
+extern MapObjectKindData data_02158700;
 extern u16 data_02158740;
 extern u32 data_02158778;
 extern Unk020dfc44 data_02158784;
 extern MapObjectDrawList data_021587b0;
-extern Unk020de390 data_021587dc;
+extern MapObjectKindData data_021587dc;
 extern u16 data_0215881c;
 
 extern const u32 data_02158094[];

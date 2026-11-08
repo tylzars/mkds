@@ -363,7 +363,7 @@ BOOL IsKartKeysStartStatus2(void) {
 }
 
 void func_02121190(u32 kartType, s32 b, s32 c) {
-    Unk0217d384_08 *stateMachine;
+    StateMachine *stateMachine;
 
     func_ov000_0219bbfc();
     MI_CpuFill8(&gWiFiSession->mKeys[0], 0, 0x18);
@@ -617,7 +617,7 @@ void ResetWiFiSession(void) {
 
 u32 func_02120644(void) {
     WiFiSession *session;
-    Unk0217d384_08 *stateMachine;
+    StateMachine *stateMachine;
     s32 v;
 
     session = gWiFiSession;

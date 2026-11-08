@@ -49,7 +49,7 @@ typedef struct ItemBox {
 
 void CreateBoxAndQuestion(void);
 void InitItemBox(ItemBox *itemBox, Unk020de6a8_1 *row);
-Unk020de390 *CreateEarthenPipeKindData(void);
+MapObjectKindData *CreateEarthenPipeKindData(void);
 MapObjectDrawList *CreateEarthenPipeDrawList(void);
-Unk020de2d8 *CreateEarthenPipeUpdateList(void);
+MapObjectList *CreateEarthenPipeUpdateList(void);
 void SetupDrawEarthenPipe(void);

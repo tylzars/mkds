@@ -65,7 +65,7 @@ typedef struct RecordTAtt {
 // Object behind gBackupAccess.
 typedef struct BackupAccess {
     /* 00 */ s32 mUnk_00;
-    /* 04 */ void *mErrorCode;
+    /* 04 */ s32 mErrorCode;
     /* 08 */ s32 mLockId;
     /* 0c */ s32 mBackupEnabled;
     /* 10 */ s32 mCommandRunning;

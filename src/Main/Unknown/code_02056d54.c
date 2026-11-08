@@ -30,8 +30,8 @@ void ReadBackupFirstBlockAndRecords(void) {
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (gBackupAccess->mErrorCode != NULL) {
-        if ((s32) gBackupAccess->mErrorCode == 4) {
+    if (gBackupAccess->mErrorCode != 0) {
+        if (gBackupAccess->mErrorCode == 4) {
             data_0217aa08->mFailedBlockBits = 0xffff;
             data_0217aa08->mReadStatus = 4;
             ClearBackupBusy();
@@ -43,35 +43,35 @@ void ReadBackupFirstBlockAndRecords(void) {
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (gBackupAccess->mErrorCode != NULL) {
+    if (gBackupAccess->mErrorCode != 0) {
         failedBlockBits |= 2;
     }
     ReadBackupGrandPrixRecordBlock(data_0217aa08->mGrandPrixRecordBlock);
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (gBackupAccess->mErrorCode != NULL) {
+    if (gBackupAccess->mErrorCode != 0) {
         failedBlockBits |= 4;
     }
     ReadBackupCourseTimeRecordBlock(data_0217aa08->mCourseTimeRecordBlock);
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (gBackupAccess->mErrorCode != NULL) {
+    if (gBackupAccess->mErrorCode != 0) {
         failedBlockBits |= 8;
     }
     ReadBackupMissionRecordBlock(data_0217aa08->mMissionRecordBlock);
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (gBackupAccess->mErrorCode != NULL) {
+    if (gBackupAccess->mErrorCode != 0) {
         failedBlockBits |= 0x10;
     }
     ReadBackupBuddyRecordBlock(data_0217aa08->mBuddyRecordBlock);
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (gBackupAccess->mErrorCode != NULL) {
+    if (gBackupAccess->mErrorCode != 0) {
         failedBlockBits |= 0x20;
     }
     if (data_0217aa08->mReadStatus == 0) {

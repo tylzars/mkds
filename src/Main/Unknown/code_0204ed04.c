@@ -7,6 +7,7 @@
 #include "Main/Unknown/unk_02165000.h"
 #include "Main/Unknown/unk_0217a000.h"
 #include "code_0200eddc.h"
+#include "code_02142eac.h"
 #include "code_0214d018.h"
 
 #pragma thumb on
@@ -74,10 +75,10 @@ void func_0204ed84(void) {
     }
 }
 
-void PacketPortCallback(Unk0204ed04 *result) {
+void PacketPortCallback(Unk021425e8 *result) {
     u8 packet[0x192];
     u32 v;
-    if (result->mUnk_02 == 0 && result->mUnk_0c != NULL && result->mUnk_10 <= 0x192) {
+    if (result->mResultCode == 0 && result->mUnk_0c != NULL && result->mUnk_10 <= 0x192) {
         DC_InvalidateRange(result->mUnk_0c, result->mUnk_10);
         MI_CpuCopy8(result->mUnk_0c, packet, result->mUnk_10);
         if (result->mUnk_04 == 7) {

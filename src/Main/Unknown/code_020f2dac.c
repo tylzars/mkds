@@ -173,7 +173,7 @@ static inline u32 TakeHeldItemObjects_inline(RandomState64 *generator, u32 range
 // Takes the held objects from their pool and gives each a starting velocity.
 void TakeHeldItemObjects(HeldItem *rec) {
     Kart *owner = rec->mKartItems->mKart;
-    Unk020f41c4_C *halves = OFFSET_PTR(Unk020f41c4_C, owner->mKartModelsEntry, 0x40);
+    CourseColorBlend *halves = OFFSET_PTR(CourseColorBlend, owner->mKartModelsEntry, 0x40);
     Vec3 *dir = &owner->mUnk_168;
     Vec3 *axis = &owner->mUnk_150;
     s32 i;

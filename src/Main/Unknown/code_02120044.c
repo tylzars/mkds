@@ -147,7 +147,7 @@ void EnterWiFiSessionState1(void) {
 }
 
 void UpdateWiFiSessionState1(void) {
-    Unk0217d384_08 *stateMachine;
+    StateMachine *stateMachine;
 
     if (UpdateWiFiSessionLogin() == 0) {
         return;
@@ -162,7 +162,7 @@ void EnterWiFiSessionState3(void) {
 }
 
 void UpdateWiFiSessionState3(void) {
-    Unk0217d384_08 *stateMachine;
+    StateMachine *stateMachine;
 
     if (IsKartKeysStartStatus3() == FALSE) {
         return;

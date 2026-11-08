@@ -115,7 +115,7 @@ void InitBackupAccess(void) {
     CARD_IdentifyBackup(0x1202);
     UnlockBackup();
     gBackupAccess->mUnk_00 = 0;
-    gBackupAccess->mErrorCode = NULL;
+    gBackupAccess->mErrorCode = 0;
     gBackupAccess->mLockId = -3;
     gBackupAccess->mCommandRunning = 0;
     gBackupAccess->mCopyPass = 0;
@@ -260,7 +260,7 @@ u32 StartBackupRead(u32 address, u32 *destination, u32 byteCount, void (*callbac
     if (TryLockBackup() == 0) {
         return 0;
     }
-    gBackupAccess->mErrorCode = NULL;
+    gBackupAccess->mErrorCode = 0;
     gBackupAccess->mCommandRunning = 1;
     gBackupAccess->mUnk_00 = 3;
     gBackupAccess->mReadAddress = address;

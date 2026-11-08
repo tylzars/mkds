@@ -174,7 +174,7 @@ void InitRaceScene(void) {
                 }
             }
             if (sessionHeapCreated != FALSE) {
-                Unk0217d384_08 *p;
+                StateMachine *p;
                 session->mUnk_1f38 = TRUE;
                 p = &gWiFiSession->mUnk_0008;
                 p->mNextState = 5;
@@ -202,7 +202,7 @@ void func_0203aacc(void) {
             }
         }
         if (sessionHeapCreated != FALSE) {
-            Unk0217d384_08 *p;
+            StateMachine *p;
             session->mUnk_1f38 = FALSE;
             p = &gWiFiSession->mUnk_0008;
             p->mNextState = 4;

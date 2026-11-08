@@ -53,9 +53,9 @@ void AdvanceResultsByMode(u32 sceneNumbers) {
     if (result == 0) {
         func_020ae6ac(gResultScene, gResultScene->mSubOam);
         if (gResultScene->mMode == 0) {
-            AdvanceResultsGp((Unk02029aa0 *) sceneNumbers);
+            AdvanceResultsGp((SceneNumbersView *) sceneNumbers);
         } else {
-            AdvanceResultsBattle((Unk02032ac4 *) sceneNumbers);
+            AdvanceResultsBattle((SceneNumbersView *) sceneNumbers);
         }
         func_020ae630(gResultScene, gResultScene->mSubOam);
         AdvanceLinkLevelIcons();

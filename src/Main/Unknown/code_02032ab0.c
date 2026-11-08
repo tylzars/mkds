@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_02032ab0.h"
+#include "Main/Unknown/code_020019b0.h" // SceneNumbersView
 #include "Main/Unknown/code_0202578c.h"
 
 #include "00/code_021832d8.h"
@@ -304,7 +305,7 @@ void InitResultsBattle(void *heap, s32 b, s32 c) {
 
 #pragma thumb on
 
-void AdvanceResultsBattle(Unk02032ac4 *sceneNumbers) {
+void AdvanceResultsBattle(SceneNumbersView *sceneNumbers) {
     CellFileSet *mainCellFileSet;
     CellFileSet *subCellFileSet;
     InputSlotIndex inputSlotIndex;
@@ -372,7 +373,7 @@ void AdvanceResultsBattle(Unk02032ac4 *sceneNumbers) {
                     if ((u16) (data_02175628[func_020435bc()].mPressedBits & PAD_KEY_A) != 0) {
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
                         if (sceneNumbers != NULL) {
-                            sceneNumbers->mUnk_04 = 1;
+                            sceneNumbers->mNextScene = 1;
                         }
                         gResultsBattle->mState = 7;
                     }
@@ -410,12 +411,12 @@ void AdvanceResultsBattle(Unk02032ac4 *sceneNumbers) {
                                     data_0217b488->mUnk_74 = 3;
                                     data_0217b488->mUnk_08 = 4;
                                     if (sceneNumbers != NULL) {
-                                        sceneNumbers->mUnk_04 = 6;
+                                        sceneNumbers->mNextScene = 6;
                                     }
                                 } else {
                                     data_0217b488->mUnk_08 = 4;
                                     if (sceneNumbers != NULL) {
-                                        sceneNumbers->mUnk_04 = 1;
+                                        sceneNumbers->mNextScene = 1;
                                     }
                                 }
                                 gResultsBattle->mState = 7;
@@ -442,7 +443,7 @@ void AdvanceResultsBattle(Unk02032ac4 *sceneNumbers) {
                                 func_02121dec(0);
                                 data_0217b488->mUnk_1c = 1;
                                 if (sceneNumbers != NULL) {
-                                    sceneNumbers->mUnk_04 = 0xc;
+                                    sceneNumbers->mNextScene = 0xc;
                                 }
                                 gResultsBattle->mState = 7;
                                 break;
@@ -466,7 +467,7 @@ void AdvanceResultsBattle(Unk02032ac4 *sceneNumbers) {
                         break;
                 }
                 if (sceneNumbers != NULL) {
-                    sceneNumbers->mUnk_04 = 0xc;
+                    sceneNumbers->mNextScene = 0xc;
                 }
                 gResultsBattle->mState = 7;
             }
@@ -474,7 +475,7 @@ void AdvanceResultsBattle(Unk02032ac4 *sceneNumbers) {
         case 6:
             if (func_02054f58() == 1) {
                 if (sceneNumbers != NULL) {
-                    sceneNumbers->mUnk_04 = 0;
+                    sceneNumbers->mNextScene = 0;
                 }
                 gResultsBattle->mState = 7;
             }

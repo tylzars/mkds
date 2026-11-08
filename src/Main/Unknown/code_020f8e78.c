@@ -136,7 +136,7 @@ void func_020f8e78(void *itemParam) {
     item->mUnk_dc = ((s64) item->mScale.y * kindInfo->mUnk_64) >> 12;
     item->mRadius = ((s64) item->mScale.y * kindRadius) >> 12;
     SetCollisionSlotRadius(item->mCollisionSlotIndex, item->mRadius + 0xa000);
-    InitCourseColorBlend(item->mColorBlend.mUnk_00, 1);
+    InitCourseColorBlend(&item->mColorBlend, 1);
     item->mUnk_90 = NULL;
     item->mNormal = data_02159ca0;
     item->mCollisionBits = 0;

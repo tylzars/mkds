@@ -4,6 +4,7 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_02042044.h"
+#include "Main/Unknown/code_020846c0.h" // Nsbmd
 #include "code_02012b30.h" // MtxFx43
 #include "Main/Unknown/code_020d8cac.h"
 #include "Main/Unknown/code_020b1dbc.h"
@@ -47,13 +48,6 @@ typedef struct Unk020da384 {
     /* 10 */ u8 mUnk_10[0x56];
     /* 66 */ u16 mUnk_66;
 } Unk020da384;
-
-// Object of 0x6c bytes at 0x68 and 0xd4 of Water; the word at 0x04 points to a table object.
-typedef struct Unk020d9cf4_68 {
-    /* 00 */ u8 mUnk_00[4];
-    /* 04 */ NNSG3dResMdl *mUnk_04;
-    /* 08 */ u8 mUnk_08[0x64];
-} Unk020d9cf4_68;
 
 // The course water: two models (the files ..._waterA and ..._waterC, Yoshi has no A) circling a map object's x/z while
 // the surface height swings between two heights the creator gives; 0x180 bytes, built by the five Create...Water
@@ -134,8 +128,8 @@ typedef struct Water {
     /* 60 */ void *mModelAFile;
     // Pointer FindCourseMapObjFile returned for ..._waterC.nsbmd; never NULL in the five creators.
     /* 64 */ void *mModelCFile;
-    /* 68 */ Unk020d9cf4_68 mModelA;
-    /* d4 */ Unk020d9cf4_68 mModelC;
+    /* 68 */ Nsbmd mModelA;
+    /* d4 */ Nsbmd mModelC;
     /* 140 */ MtxFx43 mDrawMatrix;
     /* 170 */ s32 mUnk_170;
     // The file MapObj/water_efct.nsbmd as FindCourseFile returned it (a pointer to the whole file, not a built model

@@ -34,7 +34,7 @@
 #include "Main/Unknown/code_020d8cac.h"
 #include "Main/Unknown/code_020daf0c.h"
 
-void EnterKuriboState0(Unk020daf0c *kuribo) {
+void EnterKuriboState0(Kuribo *kuribo) {
     kuribo->mUnk_c4 = 0x1000u;
     kuribo->mUnk_c8 = 0x0u;
 }
@@ -56,7 +56,7 @@ void UpdateKuriboState0(Kuribo *kuribo) {
     }
 }
 
-void EnterKuriboState1(Unk020dade8 *kuribo) {
+void EnterKuriboState1(Kuribo *kuribo) {
     kuribo->mUnk_c4 = 0x1000u;
     kuribo->mUnk_c8 = 0x0u;
 }

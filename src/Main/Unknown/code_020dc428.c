@@ -40,12 +40,12 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-Unk020dd7a8 *gWanwanUpdateList = 0;
+MapObjectList *gWanwanUpdateList = 0;
 Unk020dd804 *gWanwanDrawList = 0;
 
 const Unk020dd860 data_02158388 = {func_020dd230, func_020dd1f4, 1, 0x1b000, {0}, 1, 1, 0x12e, {0}};
 const Unk020dd804 data_0215835c = {{0}, CreateWanwanAndRockShadow, {0}, func_020dd6c8, {0}, 1, {0}, 0};
-const Unk020dd7a8 data_02158334 = {{0}, UpdateWanwan, {0}, 0};
+const MapObjectList data_02158334 = {NULL, 0, {0}, NULL, NULL, UpdateWanwan, NULL, 0, NULL, 0, NULL};
 
 Unk020dd860 *CreateWanwanKindData(void) {
     Unk020dd860 *kindData;
@@ -65,8 +65,8 @@ Unk020dd804 *CreateWanwanDrawList(void) {
     return gWanwanDrawList;
 }
 
-Unk020dd7a8 *CreateWanwanUpdateList(void) {
-    Unk020dd7a8 *updateList;
+MapObjectList *CreateWanwanUpdateList(void) {
+    MapObjectList *updateList;
 
     updateList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     gWanwanUpdateList = updateList;

@@ -299,7 +299,7 @@ void UpdateRaceProgressKart(Vec3 *position, RaceProgressKart *kart) {
 }
 
 void UpdateRaceProgressKarts(void) {
-    Unk02040d24 t;
+    Unk0217b498_0c t;
     s32 progressByKart[8];
     s32 progressByRank[8];
     s32 lapByRank[8];
@@ -311,7 +311,7 @@ void UpdateRaceProgressKarts(void) {
     RaceProgressKart *kart;
     BOOL f;
     RaceProgress *raceProgress;
-    Unk02040d24 *checkpointDirection;
+    Unk0217b498_0c *checkpointDirection;
     u16 m;
     s32 finishedCount;
     s32 notRemovedCount;

@@ -49,7 +49,7 @@ u32 func_021205e8(void) {
 
 #pragma thumb on
 void InitWiFiSession(void *heap) {
-    Unk0217d384_08 *stateMachine;
+    StateMachine *stateMachine;
 
     gWiFiSession = HeapAllocAligned(heap, 0x1f58, 0x20);
     InitStateMachine(&gWiFiSession->mUnk_0008, data_0216e21c, 8, NULL);
@@ -69,7 +69,7 @@ void CreateWiFiSessionHeap(void *heap) {
 
 // Destroys the heap and frees its buffer (mHeap is left set), clears mHeapCreated and requests state 0.
 void DeleteWiFiSessionHeap(void) {
-    Unk0217d384_08 *stateMachine;
+    StateMachine *stateMachine;
 
     if (gWiFiSession->mHeap != NULL) {
         NNS_FndDestroyExpHeap(gWiFiSession->mHeap);
@@ -83,7 +83,7 @@ void DeleteWiFiSessionHeap(void) {
 #pragma thumb off
 
 void func_021204d0(void) {
-    Unk0217d384_08 *stateMachine;
+    StateMachine *stateMachine;
 
     ResetWiFiSession();
     gWiFiSession->mUnk_1f34 = TRUE;

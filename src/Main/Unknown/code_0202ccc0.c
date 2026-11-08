@@ -416,7 +416,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *advanceArg) {
             } else {
                 i = 0;
             }
-            if (i == 0 && d->mErrorCode == NULL) {
+            if (i == 0 && d->mErrorCode == 0) {
                 if (IsSlotGhostIndex(gTimeAttackGhostSend->mSelectedIndex) == 0) {
                     func_0203bf04(GetCourseGhostBuffer(), (void *) GetSlotGhostBuffer());
                 }

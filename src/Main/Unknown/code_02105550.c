@@ -1,5 +1,6 @@
 #include "Main/Unknown/code_02105550.h"
 #include "Main/Unknown/code_0202511c.h"
+#include "Main/Unknown/unk_02153000.h"
 #include "Main/Unknown/code_02044618.h"
 #include "Main/Unknown/code_0204984c.h"
 
@@ -463,7 +464,7 @@ void InitSceneSounds(s32 e) {
     BOOL b;
     u32 d;
     NNSSndHeap *p;
-    Unk0210e524 buf;
+    SoundRow buf;
     Unk021073ec s;
 
     if (*(vu16 *) 0x027ffc40 == 2 && GetCurrentSceneNumber() == 6) {
@@ -722,8 +723,8 @@ void InitSceneSounds(s32 e) {
             break;
     }
     s.mUnk_00 = 0xff;
-    s.mUnk_01 = buf.mUnk_00;
-    s.mUnk_02 = buf.mUnk_01;
+    s.mUnk_01 = buf.mUnk_00[0];
+    s.mUnk_02 = buf.mUnk_00[1];
     func_021103c0();
     InitSceneSoundState(c & 0xff, s, &gSceneSoundState);
     InitSoundFalloffsAndPlayingSounds();

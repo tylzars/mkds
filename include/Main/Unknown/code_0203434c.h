@@ -2,11 +2,7 @@
 
 #include "types.h"
 
-// Argument of func_02034370: it sets the halfword at 0x04.
-typedef struct Unk02034370 {
-    /* 00 */ u8 mUnk_00[4];
-    /* 04 */ u16 mUnk_04;
-} Unk02034370;
+typedef struct SceneNumbersView SceneNumbersView;
 
 // What GetSlotGhostBuffer returns points to one: func_02034370 sets bit 0 of the word at 0x08.
 typedef struct Unk0202ddd8 {
@@ -16,4 +12,4 @@ typedef struct Unk0202ddd8 {
 } Unk0202ddd8;
 
 void func_0203434c(void);
-s32 func_02034370(Unk02034370 *sceneNumbers);
+s32 func_02034370(SceneNumbersView *sceneNumbers);

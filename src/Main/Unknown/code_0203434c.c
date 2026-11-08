@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_0203434c.h"
+#include "Main/Unknown/code_020019b0.h" // SceneNumbersView
 #include "Main/Unknown/code_0202d990.h"
 #include "Main/Unknown/code_02034bf4.h"
 #include "Main/Unknown/code_020351c8.h"
@@ -77,7 +78,7 @@ static inline s32 func_02034370_inline_2(void) {
     return 1;
 }
 
-s32 func_02034370(Unk02034370 *sceneNumbers) {
+s32 func_02034370(SceneNumbersView *sceneNumbers) {
     CellFileSet *subCellFileSet;
     CellFileSet *cellFileSet;
     s32 previousSelectedIndex;
@@ -287,7 +288,7 @@ s32 func_02034370(Unk02034370 *sceneNumbers) {
                 func_0204f804();
                 data_0217b488->mUnk_08 = 5;
                 if (sceneNumbers != NULL) {
-                    sceneNumbers->mUnk_04 = 1;
+                    sceneNumbers->mNextScene = 1;
                 }
                 data_02174e64->mState = 16;
             }
@@ -371,7 +372,7 @@ s32 func_02034370(Unk02034370 *sceneNumbers) {
             if (GetTxtSystemDone() != 0) {
                 data_0217b488->mUnk_08 = 5;
                 if (sceneNumbers != NULL) {
-                    sceneNumbers->mUnk_04 = 1;
+                    sceneNumbers->mNextScene = 1;
                 }
                 data_02174e64->mState = 16;
             }

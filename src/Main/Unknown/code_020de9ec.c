@@ -55,8 +55,8 @@ void func_020df3f8(void) {
 }
 #pragma thumb off
 
-Unk020de390 *CreateItemBoxKindData(void) {
-    Unk020de390 *kindData;
+MapObjectKindData *CreateItemBoxKindData(void) {
+    MapObjectKindData *kindData;
 
     kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     *kindData = data_02158654;
@@ -84,7 +84,7 @@ MapObjectDrawList *func_020df294(void) {
     return data_0217b714;
 }
 
-Unk020de2d8 *CreateItemBoxUpdateList(void) {
+MapObjectList *CreateItemBoxUpdateList(void) {
     gItemBoxUpdateList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     *gItemBoxUpdateList = data_021585a8;
     SetUpdateListSlot(&gItemBoxUpdateList);

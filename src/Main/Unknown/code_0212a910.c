@@ -377,7 +377,7 @@ void AdvanceLinkLevelIcons(void) {
         slotValue = gLinkLevelIcons->mIconKind[i];
         if (gLinkLevelIcons->mCycleFrames < 0x69 || slotValue <= 1) {
             MIi_CpuCopy16(&gLinkLevelIcons->mOamRecords[i],
-                          &gLinkLevelIcons->mOamList->mUnk_00[gLinkLevelIcons->mOamList->mUnk_400], 6);
+                          &((GXOamAttr *) gLinkLevelIcons->mOamList->mUnk_000)[gLinkLevelIcons->mOamList->mUnk_400], 6);
             gLinkLevelIcons->mOamList->mUnk_400++;
         }
     }

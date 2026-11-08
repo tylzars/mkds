@@ -81,7 +81,7 @@ void ResetItemObject(ItemObject *item, s32 kind) {
         item->mFlags |= 0x8000000;
     }
     item->mUnk_78 |= data_02159cac;
-    InitCourseColorBlend(item->mColorBlend.mUnk_00, 1);
+    InitCourseColorBlend(&item->mColorBlend, 1);
     item->mUnk_90 = NULL;
     if (reset != NULL) {
         reset(item);
@@ -121,9 +121,9 @@ void func_020f98a0(ItemObject *itemParam, Vec3 *prevPos, Vec3 *normal, u16 *colo
     ItemObject *item = itemParam;
     item->mPrevPos = *prevPos;
     if (colorBlend != NULL) {
-        item->mColorBlend = *(Unk020f41c4_C *) colorBlend;
+        item->mColorBlend = *(CourseColorBlend *) colorBlend;
     } else {
-        InitCourseColorBlend(item->mColorBlend.mUnk_00, 1);
+        InitCourseColorBlend(&item->mColorBlend, 1);
     }
     item->mNormal = *normal;
     item->mUnk_116 = param_5 != 0 ? 0 : 5;

@@ -2,10 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk020dade8 {
-    /* 00 */ u8 mUnk_00[0xc4];
-    /* c4 */ s32 mUnk_c4;
-    /* c8 */ s32 mUnk_c8;
-} Unk020dade8;
+typedef struct Kuribo Kuribo;
 
-void EnterKuriboState1(Unk020dade8 *kuribo);
+void EnterKuriboState1(Kuribo *kuribo);

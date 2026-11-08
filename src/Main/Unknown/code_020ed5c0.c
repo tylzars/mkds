@@ -451,7 +451,7 @@ void DrawItemPoolModels(ItemPool *pool, Vec3 *viewAxis) {
         if ((object->mFlags & 0x1000) != 0) {
             func_0208ab4c(object->mUnk_90);
         } else {
-            func_0208ab4c(object->mColorBlend.mUnk_00);
+            func_0208ab4c(&object->mColorBlend.mColor);
         }
         if ((d8 = object->mAlpha) != 0x1f) {
             model->mUnk_14 &= ~0x1f0000;
@@ -505,7 +505,7 @@ void DrawItemPoolWithCallback(ItemPool *pool, void *callbackArg, void (*drawCall
         if ((object->mFlags & 0x1000) != 0) {
             func_0208ab4c(object->mUnk_90);
         } else {
-            func_0208ab4c(object->mColorBlend.mUnk_00);
+            func_0208ab4c(&object->mColorBlend.mColor);
         }
         drawCallback(object, callbackArg, gItemModels[pool->mKind]);
     }

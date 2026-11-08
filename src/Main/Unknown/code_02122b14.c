@@ -369,7 +369,7 @@ void AdvanceWiFiSessionStep4(void) {
     u8 fromIndex;
     u8 ownIndex;
     Unk0217d384_1d00 *ownRecord;
-    Unk0217d384_08 *stateMachine;
+    StateMachine *stateMachine;
     UpdateWiFiSessionStepTimeout(0x1c20);
     toIndex = func_021216a8();
     if (toIndex < gWiFiSession->mStartKartCount) {

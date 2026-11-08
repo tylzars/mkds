@@ -18,6 +18,7 @@ void AdvanceWiFiVSSetting(void);
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_02077bc0.h"
 #include "Main/Unknown/code_02124094.h" // LayoutTableEntry
+#include "Main/Unknown/code_020467d0.h" // StateMachine
 
 // Allocated by InitWiFiVSSetting and held in gWiFiVSSetting.
 typedef struct WiFiVSSetting {
@@ -137,17 +138,6 @@ typedef struct Unk0217b488 {
     /* 12c */ s32 mIndicesShuffled;
 } Unk0217b488;
 
-// Object at member 0x8 of WiFiSession.
-typedef struct Unk0217d384_08 {
-    /* 00 */ void *mUnk_00;
-    /* 04 */ s32 mStateFrames;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ u8 mUnk_0c[0x2];
-    /* 0e */ u16 mState;
-    /* 10 */ u16 mNextState;
-    /* 12 */ u16 mNextStateRequested;
-} Unk0217d384_08;
-
 // 0xc-byte elements of the table at member 0x19f0 of WiFiSession.
 typedef struct Unk0217d384_19f0 {
     /* 00 */ u8 mUnk_00[0xc];
@@ -225,7 +215,7 @@ typedef struct KartKey {
 typedef struct WiFiSession {
     /* 0000 */ void *mHeap;
     /* 0004 */ void *mHeapBuffer;
-    /* 0008 */ Unk0217d384_08 mUnk_0008;
+    /* 0008 */ StateMachine mUnk_0008;
     /* 001c */ u8 mUnk_001c[4][0x80];
     // One 0x244-byte record per index: a 12-byte message header, then the player's name (0x14 bytes) and emblem
     // (0x200), elo, region and seed. The own element is sent (kind 1), the others are received into.

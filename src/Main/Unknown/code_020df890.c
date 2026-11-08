@@ -131,8 +131,8 @@ void InitKoopaBlock(Unk020e005c *koopaBlock, CourseMapRow *courseRow) {
 }
 #pragma thumb off
 
-Unk020de390 *CreateMkdEfBubbleKindData(void) {
-    Unk020de390 *kindData;
+MapObjectKindData *CreateMkdEfBubbleKindData(void) {
+    MapObjectKindData *kindData;
 
     kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     *kindData = data_021587dc;

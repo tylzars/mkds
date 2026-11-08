@@ -497,7 +497,7 @@ void func_020fd684(void *object, Vec3 *d, Vec3 *f) {
     b = f;
     if (bomb->mPooledMapObject == NULL) {
         bomb->mVisible = TRUE;
-        SetCourseColorBlendColor(bomb->mUnk_000.mItemObject.mColorBlend.mUnk_00, 1);
+        SetCourseColorBlendColor(&bomb->mUnk_000.mItemObject.mColorBlend, 1);
     }
     if (a != NULL) {
         bomb->mUnk_000.mItemObject.mNormal = *a;

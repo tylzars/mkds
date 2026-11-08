@@ -47,15 +47,15 @@ void InitMkdEfBubble(MkdEfBubbleObject *bubble, CourseMapRow *row) {
 }
 #pragma thumb off
 
-Unk020de390 *CreateGroupItemBoxKindData(void) {
-    Unk020de390 *kindData;
+MapObjectKindData *CreateGroupItemBoxKindData(void) {
+    MapObjectKindData *kindData;
 
     kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     *kindData = data_02158700;
     return kindData;
 }
 
-Unk020de2d8 *CreateGroupItemBoxUpdateList(void) {
+MapObjectList *CreateGroupItemBoxUpdateList(void) {
     gGroupItemBoxUpdateList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     *gGroupItemBoxUpdateList = data_021586d8;
     SetUpdateListSlot(&gGroupItemBoxUpdateList);

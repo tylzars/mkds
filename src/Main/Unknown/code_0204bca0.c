@@ -25,11 +25,6 @@
 #include "Main/Unknown/code_0204db48.h"
 #include "Main/Unknown/unk_02165000.h"
 
-typedef struct Unk0204d610_t {
-    u8 *mUnk_00;
-    u32 mUnk_04;
-} Unk0204d610_t;
-
 typedef struct RomTableHeader {
     u8 mUnk_00[0x40];
     u32 mFntOffset;
@@ -63,7 +58,7 @@ s32 RomArchiveChildProc(FSFile *file, u32 command) {
 void CreateRomArchiveBlock(FSFile *file, s32 appendOverlays) {
     RomTableHeader fileHeader;
     FSFile romFile;
-    Unk0204d610_t tables[4];
+    Unk02005704 tables[4];
     u32 paddedSizes[4];
     u32 *tablePointers[4];
     u32 *block;
@@ -103,13 +98,13 @@ void CreateRomArchiveBlock(FSFile *file, s32 appendOverlays) {
         FS_SeekFile(file, i, 0);
     }
     if (appendOverlayEntries == 0) {
-        tables[0] = *(Unk0204d610_t *) &header->mFatOffset;
-        tables[1] = *(Unk0204d610_t *) &header->mFntOffset;
-        tables[2] = *(Unk0204d610_t *) &header->mOverlayTable0Offset;
-        tables[3] = *(Unk0204d610_t *) &header->mOverlayTable1Offset;
+        tables[0] = *(Unk02005704 *) &header->mFatOffset;
+        tables[1] = *(Unk02005704 *) &header->mFntOffset;
+        tables[2] = *(Unk02005704 *) &header->mOverlayTable0Offset;
+        tables[3] = *(Unk02005704 *) &header->mOverlayTable1Offset;
     } else {
-        tables[0] = *(Unk0204d610_t *) 0x027ffe48;
-        tables[1] = *(Unk0204d610_t *) 0x027ffe40;
+        tables[0] = *(Unk02005704 *) 0x027ffe48;
+        tables[1] = *(Unk02005704 *) 0x027ffe40;
         positionOffset = 0;
         tables[2].mUnk_00 = (u8 *) (header->mOverlayTable0Offset + imageOffset);
         tables[2].mUnk_04 = header->mOverlayTable0Size;
@@ -183,7 +178,7 @@ void CreateRomArchiveBlock(FSFile *file, s32 appendOverlays) {
 }
 
 u32 ReloadRomArchiveFromBlock(u32 *block) {
-    Unk0204d610_t tables[4];
+    Unk02005704 tables[4];
     u32 positionOffset;
     FSArchive *archive;
     s32 i;

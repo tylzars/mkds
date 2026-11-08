@@ -137,7 +137,7 @@ void func_020442d0(u32 courseId) {
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (gBackupAccess->mErrorCode != NULL) {
+    if (gBackupAccess->mErrorCode != 0) {
         data_0217aa08->mGhostRecords[0]->mFilled = 0;
     }
 }
@@ -154,7 +154,7 @@ void func_0204419c(u32 courseId, u32 b) {
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (gBackupAccess->mErrorCode != NULL) {
+    if (gBackupAccess->mErrorCode != 0) {
         data_0217aa08->mGhostRecords[0]->mFilled = 0;
     }
     ReadSlotGhostRecord(b);
@@ -162,7 +162,7 @@ void func_0204419c(u32 courseId, u32 b) {
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (gBackupAccess->mErrorCode != NULL) {
+    if (gBackupAccess->mErrorCode != 0) {
         data_0217aa08->mGhostRecords[1]->mFilled = 0;
     }
 }
@@ -183,7 +183,7 @@ void func_02044060(u32 courseId) {
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (gBackupAccess->mErrorCode != NULL) {
+    if (gBackupAccess->mErrorCode != 0) {
         data_0217aa08->mGhostRecords[0]->mFilled = 0;
     }
     if (TryFormatGhostPath(courseId, path, 0x80) != FALSE) {
@@ -205,7 +205,7 @@ void func_02043fb0(u32 courseId) {
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (gBackupAccess->mErrorCode != NULL) {
+    if (gBackupAccess->mErrorCode != 0) {
         data_0217aa08->mGhostRecords[0]->mFilled = 0;
     }
 }

@@ -7,7 +7,7 @@
 #include "00/code_021a2ccc.h"
 
 void func_02122ab0(void) {
-    Unk0217d384_08 *stateMachine;
+    StateMachine *stateMachine;
     gWiFiSession->mUnk_19ad = 0;
     stateMachine = &gWiFiSession->mUnk_0008;
     stateMachine->mNextState = 2;

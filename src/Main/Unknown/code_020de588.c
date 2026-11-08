@@ -115,8 +115,8 @@ void InitItemBox(ItemBox *itemBox, Unk020de6a8_1 *row) {
 }
 #pragma thumb off
 
-Unk020de390 *CreateEarthenPipeKindData(void) {
-    Unk020de390 *kindData;
+MapObjectKindData *CreateEarthenPipeKindData(void) {
+    MapObjectKindData *kindData;
 
     kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     *kindData = data_02158528;
@@ -130,7 +130,7 @@ MapObjectDrawList *CreateEarthenPipeDrawList(void) {
     return gEarthenPipeDrawList;
 }
 
-Unk020de2d8 *CreateEarthenPipeUpdateList(void) {
+MapObjectList *CreateEarthenPipeUpdateList(void) {
     gEarthenPipeUpdateList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     *gEarthenPipeUpdateList = data_021584d4;
     SetUpdateListSlot(&gEarthenPipeUpdateList);

@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_0202f688.h"
+#include "Main/Unknown/code_020019b0.h" // SceneNumbersView
 #include "Main/Unknown/code_020302a0.h"
 
 #include "Main/Unknown/unk_02174000.h"
@@ -334,7 +335,7 @@ void InitMultiSelectMemberGroup(void *parentHeap, void *scene, void *oamList) {
     FrmHeapShrinkInParent(gMultiSelectMemberGroup->mHeap);
 }
 
-s32 AdvanceMultiSelectMemberGroup(Unk0202f764 *sceneNumbers) {
+s32 AdvanceMultiSelectMemberGroup(SceneNumbersView *sceneNumbers) {
     Unk02174e50_24 *cellFileSet;
     s32 result;
     u16 slotIndex;
@@ -423,7 +424,7 @@ s32 AdvanceMultiSelectMemberGroup(Unk0202f764 *sceneNumbers) {
                 }
             } else if ((u16) (v & PAD_KEY_B) != 0 || touchInReturnRect != 0) {
                 if (sceneNumbers != NULL) {
-                    sceneNumbers->mUnk_04 = 0;
+                    sceneNumbers->mNextScene = 0;
                 }
                 gMultiSelectMemberGroup->mState = 3;
                 RequestSelectReturnState3WithSound(1);

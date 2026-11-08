@@ -55,7 +55,7 @@ void func_0211fe44(void) {
 }
 
 void RequestWiFiSessionLogin(void) {
-    Unk0217d384_08 *stateMachine;
+    StateMachine *stateMachine;
 
     stateMachine = &gWiFiSession->mUnk_0008;
     stateMachine->mNextState = 1;
@@ -67,7 +67,7 @@ void func_0211fe18(void) {
 }
 
 u32 func_0211fda8(void) {
-    Unk0217d384_08 *stateMachine;
+    StateMachine *stateMachine;
 
     if (gWiFiSession->mUnk_0008.mState == 0) {
         return 1;
@@ -94,7 +94,7 @@ s32 GetWiFiSessionLoginResult(void) {
 }
 
 void func_0211fd28(void) {
-    Unk0217d384_08 *stateMachine;
+    StateMachine *stateMachine;
 
     ReleaseWiFiConnection();
     func_ov000_021a37dc();

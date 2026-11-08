@@ -66,11 +66,11 @@ s32 RunKeyboardScene(void *sceneNumbers) {
 
 #pragma thumb on
 
-Unk0217d3fc_00 *GetKeyboardFirstBuffer(void) {
+OamList *GetKeyboardFirstBuffer(void) {
     return &data_0217d3fc->mUnk_00;
 }
 
-Unk0217d3fc_00 *GetKeyboardSecondBuffer(void) {
+OamList *GetKeyboardSecondBuffer(void) {
     return &data_0217d3fc->mUnk_404;
 }
 

@@ -33,7 +33,7 @@ void UpdateLogoState1(void) {
             stateMachine = &gLogoScene->mStateMachine;
             stateMachine->mNextState = 2;
             stateMachine->mNextStateRequested = 1;
-        } else if ((u32) gBackupAccess->mErrorCode == 4) {
+        } else if (gBackupAccess->mErrorCode == 4) {
             gLogoScene->mUnk_2c_1 = 0;
             stateMachine = &gLogoScene->mStateMachine;
             stateMachine->mNextState = 6;

@@ -20,8 +20,8 @@ void InitEarthenPipe(Unk020e43a8 *pipe) {
 }
 #pragma thumb off
 
-Unk020de390 *CreateWanwanChainKindData(void) {
-    Unk020de390 *kindData;
+MapObjectKindData *CreateWanwanChainKindData(void) {
+    MapObjectKindData *kindData;
 
     kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     *kindData = data_02158460;
@@ -35,7 +35,7 @@ MapObjectDrawList *CreateWanwanChainDrawList(void) {
     return data_0217b6dc;
 }
 
-Unk020de2d8 *CreateWanwanChainUpdateList(void) {
+MapObjectList *CreateWanwanChainUpdateList(void) {
     data_0217b6e0 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
     *data_0217b6e0 = data_0215840c;
     SetUpdateListSlot(&data_0217b6e0);

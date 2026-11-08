@@ -278,33 +278,33 @@ void InitWaterModels(Water *water) {
     if (water->mModelAFile != NULL) {
         InitNsbmd(&water->mModelA, water->mModelAFile);
         materialIndex = 0;
-        modelResMdl = water->mModelA.mUnk_04;
+        modelResMdl = water->mModelA.mResMdl;
         for (; materialIndex < modelResMdl->mInfo.mNumMat; materialIndex++) {
             NNS_G3dMdlSetMdlEmi(modelResMdl, materialIndex, 0x294a);
         }
         materialIndex = 0;
-        modelResMdl = water->mModelA.mUnk_04;
+        modelResMdl = water->mModelA.mResMdl;
         for (; materialIndex < modelResMdl->mInfo.mNumMat; materialIndex++) {
             NNS_G3dMdlSetMdlPolygonID(modelResMdl, materialIndex, 1);
         }
     }
     InitNsbmd(&water->mModelC, water->mModelCFile);
     materialIndex = 0;
-    modelResMdl = water->mModelC.mUnk_04;
+    modelResMdl = water->mModelC.mResMdl;
     for (; materialIndex < modelResMdl->mInfo.mNumMat; materialIndex++) {
         NNS_G3dMdlSetMdlEmi(modelResMdl, materialIndex, 0x294a);
     }
     materialIndex = 0;
-    modelResMdl = water->mModelC.mUnk_04;
+    modelResMdl = water->mModelC.mResMdl;
     for (; materialIndex < modelResMdl->mInfo.mNumMat; materialIndex++) {
         NNS_G3dMdlSetMdlPolygonID(modelResMdl, materialIndex, 2);
     }
-    modelCResMdl = water->mModelC.mUnk_04;
+    modelCResMdl = water->mModelC.mResMdl;
     alphaMaterialIndex = NNS_G3dGetResDictIdxByName((u8 *) modelCResMdl + modelCResMdl->mOfsMat + 4, data_02158094);
     if (water->mModelAFile != NULL) {
         modelAAlpha = water->mModelAAlpha;
         materialIndex = 0;
-        modelResMdl = water->mModelA.mUnk_04;
+        modelResMdl = water->mModelA.mResMdl;
         for (; materialIndex < modelResMdl->mInfo.mNumMat; materialIndex++) {
             NNS_G3dMdlSetMdlAlpha(modelResMdl, materialIndex, modelAAlpha);
         }

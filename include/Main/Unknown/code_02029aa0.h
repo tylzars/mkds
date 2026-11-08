@@ -10,10 +10,7 @@
 #include "Main/Unknown/unk_02154000.h"
 #include "Main/Unknown/unk_02174000.h"
 
-typedef struct Unk02029aa0 {
-    /* 00 */ u8 pad_00[4];
-    /* 04 */ u16 mNextScene;
-} Unk02029aa0;
+typedef struct SceneNumbersView SceneNumbersView;
 
 // Object behind gResultsGp, allocated by InitResultsGp.
 typedef struct ResultsGp {
@@ -60,5 +57,5 @@ extern u16 data_usa_02153888[];
 extern u32 data_usa_02153898[][4];
 extern Unk02153918 data_usa_02153918[];
 
-void AdvanceResultsGp(Unk02029aa0 *sceneNumbers);
+void AdvanceResultsGp(SceneNumbersView *sceneNumbers);
 void InitResultsGp(void *heap, void *firstOamList, void *secondOamList);

@@ -87,7 +87,7 @@ void LoadWiFiMenuSceneData(void) {
 
 void InitWiFiStates(void *heap, s32 b) {
     Unk02125de0Arg c;
-    Unk0217d384_08 *q;
+    StateMachine *q;
     gWiFiStates = HeapAlloc(heap, 0x3c);
     gWiFiStates->mHeap = heap;
     gWiFiStates->mUnk_14 = 0;

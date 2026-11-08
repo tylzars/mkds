@@ -132,9 +132,6 @@ typedef struct CourseMapRespawn {
     /* 1e */ u8 mUnk_1e[2];
 } CourseMapRespawn;
 
-// The same two words as UnkPair020b502c.
-typedef Unk0217b498_0c Unk02040d24;
-
 // 0x24-byte entries of CourseMap.mCheckpoints: a gate across the course: two x/z end points (0x00..0x0c), a 2-D
 // direction at 0x10, a word at 0x18 that is summed along the routes (ComputeCourseMapRouteCheckpointSum), neighbour
 // links at 0x1c and 0x1e, mNumber, mRespawnSlot, a flag byte at 0x23. The race progress code tests the kart's x/z
@@ -156,7 +153,7 @@ typedef struct CourseMapCheckpoint {
     // X and z of the direction the course runs through this checkpoint (scale 0x1000): the lap progress measures along
     // it, and a kart whose forward vector has a dot product with it below -1394 gets the 0x4 bit of
     // RaceProgressKart.mFlags (facing against the checkpoint).
-    /* 10 */ Unk02040d24 mDirection;
+    /* 10 */ Unk0217b498_0c mDirection;
     /* 18 */ s32 mUnk_18;
     /* 1c */ s16 mUnk_1c;
     /* 1e */ s16 mUnk_1e;

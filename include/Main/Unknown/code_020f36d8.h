@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_020b1dbc.h"
+#include "Main/Unknown/code_0208ab98.h" // CourseColorBlend
 #include "Main/Unknown/code_0207b960.h"
 #include "Main/Unknown/code_020b4e5c.h"
 #include "Main/Unknown/code_02039860.h"
@@ -40,11 +41,6 @@ typedef struct ItemPointLinkRef {
     /* 04 */ s32 mNextLinksUsed;
 } ItemPointLinkRef;
 
-// Nine halfwords moved together.
-typedef struct {
-    /* 00 */ u16 mUnk_00[9];
-} Unk020f41c4_C;
-
 // Four positions and pointers to them.
 typedef struct {
     /* 00 */ SegmentProgress mUnk_00;
@@ -75,7 +71,7 @@ typedef struct ItemObject {
     /* 74 */ u32 mFlags;
     /* 78 */ u16 mUnk_78;
     /* 7a */ u16 mUnk_7a;
-    /* 7c */ Unk020f41c4_C mColorBlend;
+    /* 7c */ CourseColorBlend mColorBlend;
     /* 08e */ u8 mUnk_08e[2];
     /* 090 */ u16 *mUnk_90;
     /* 094 */ MtxFx43 mUnk_94;
