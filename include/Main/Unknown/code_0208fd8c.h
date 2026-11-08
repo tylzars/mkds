@@ -36,8 +36,8 @@ typedef struct KartAiItemUse {
     /* 20 */ s32 mRandomValue;
 } KartAiItemUse;
 
-void SetupBattleItemInUseEntry(KartAiItemUse *a, struct KartAi *b);
-void func_0208fdcc(KartAiItemUse *a, struct KartAi *b);
-void func_0208fe1c(KartAiItemUse *a, struct KartAi *b);
-void func_0208fe58(KartAiItemUse *a, struct KartAi *b);
-void func_0208fefc(KartAiItemUse *a, struct KartAi *b);
+void SetupBattleItemInUseEntry(KartAiItemUse *itemUse, struct KartAi *kartAi);
+void func_0208fdcc(KartAiItemUse *itemUse, struct KartAi *kartAi);
+void func_0208fe1c(KartAiItemUse *itemUse, struct KartAi *kartAi);
+void func_0208fe58(KartAiItemUse *itemUse, struct KartAi *kartAi);
+void func_0208fefc(KartAiItemUse *itemUse, struct KartAi *kartAi);

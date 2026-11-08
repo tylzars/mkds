@@ -246,12 +246,12 @@ typedef struct PosStrips {
 } PosStrips;
 
 extern PosStrips *gPosStrips;
-extern UnkFunc *data_0217b090;
-extern UnkFunc *data_0217b094;
-extern UnkFunc *data_0217b098;
-extern UnkFunc *data_0217b0a0;
-extern UnkFunc *data_0217b0a8;
-extern UnkFunc *data_0217b0ac;
+extern UnkFunc *gUseItemCircleKindCallback;
+extern UnkFunc *gUseItemNotCircleKindCallback;
+extern UnkFunc *gThrowItemNotCircleKindCallback;
+extern UnkFunc *gThrowItemCircleKindCallback;
+extern UnkFunc *gThrowItemNotTrailKindCallback;
+extern UnkFunc *gThrowItemTrailKindCallback;
 extern KartAiItemUseEntry *gBattleHeldItemEntries;
 extern s32 *gStaffGhostTime;
 extern void *gSmanBottom;

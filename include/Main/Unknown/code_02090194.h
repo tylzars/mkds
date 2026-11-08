@@ -7,4 +7,4 @@ typedef struct Unk02090194 {
     /* 10 */ u32 mUnk_10;
 } Unk02090194;
 
-void func_02090194(Unk02090194 *p0);
+void func_02090194(Unk02090194 *itemUse);

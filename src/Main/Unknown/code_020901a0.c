@@ -4,55 +4,55 @@
 #include "Main/Unknown/unk_027e0000.h"
 #include "Main/Unknown/unk_0217b000.h"
 
-void func_0209033c(KartAiItemUse *a, KartAi *b) {
-    AdvanceItemBitRequests(a, b);
+void AdvanceBattleItemBitRequests(KartAiItemUse *itemUse, KartAi *kartAi) {
+    AdvanceItemBitRequests(itemUse, kartAi);
 }
 
-void SetupBattleHeldItemEntry(KartAiItemUse *a, KartAi *b) {
-    enum { K0 } i;
+void SetupBattleHeldItemEntry(KartAiItemUse *itemUse, KartAi *kartAi) {
+    enum { K0 } heldItemIndex;
 
-    i = *(s32 *) &gKartItems[b->mIndex].mHeldItem;
-    a->mHeldItemEntry = gBattleHeldItemEntries + i;
-    ResetHeldItemTimer(a);
+    heldItemIndex = *(s32 *) &gKartItems[kartAi->mIndex].mHeldItem;
+    itemUse->mHeldItemEntry = gBattleHeldItemEntries + heldItemIndex;
+    ResetHeldItemTimer(itemUse);
 }
 
-void UseItemWhenHasTarget(KartAiItemUse *a, KartAi *b) {
-    if (b->mTargetKart == NULL) {
+void UseItemWhenHasTarget(KartAiItemUse *itemUse, KartAi *kartAi) {
+    if (kartAi->mTargetKart == NULL) {
         return;
     }
-    UseItemAndResetInUseTimer(a, b);
+    UseItemAndResetInUseTimer(itemUse, kartAi);
 }
 
-void UseItemAfterHeldOrOnTarget(KartAiItemUse *a, KartAi *b) {
-    if (DecrementHeldItemTimer(a) == 0 && b->mTargetKart == NULL) {
+void UseItemAfterHeldOrOnTarget(KartAiItemUse *itemUse, KartAi *kartAi) {
+    if (DecrementHeldItemTimer(itemUse) == 0 && kartAi->mTargetKart == NULL) {
         return;
     }
-    UseItemAndResetInUseTimer(a, b);
+    UseItemAndResetInUseTimer(itemUse, kartAi);
 }
 
-void func_0209024c(KartAiItemUse *a, KartAi *b) {
-    if (DecrementHeldItemTimer(a) == 0) {
+void func_0209024c(KartAiItemUse *itemUse, KartAi *kartAi) {
+    if (DecrementHeldItemTimer(itemUse) == 0) {
         return;
     }
-    UseItemAndResetInUseTimer(a, b);
+    UseItemAndResetInUseTimer(itemUse, kartAi);
 }
 
-void func_020901f0(KartAiItemUse *a, KartAi *b) {
-    if (DecrementHeldItemTimer(a) == 0 && b->mTargetKart == NULL) {
+void func_020901f0(KartAiItemUse *itemUse, KartAi *kartAi) {
+    if (DecrementHeldItemTimer(itemUse) == 0 && kartAi->mTargetKart == NULL) {
         return;
     }
-    if (b->mTurnAngleDegrees >= 0xa000) {
+    if (kartAi->mTurnAngleDegrees >= 0xa000) {
         return;
     }
-    UseItemAndResetInUseTimer(a, b);
+    UseItemAndResetInUseTimer(itemUse, kartAi);
 }
 
-void UseItemAfterHeldIfTurnUnder10(KartAiItemUse *a, KartAi *b) {
-    if (DecrementHeldItemTimer(a) == 0) {
+void UseItemAfterHeldIfTurnUnder10(KartAiItemUse *itemUse, KartAi *kartAi) {
+    if (DecrementHeldItemTimer(itemUse) == 0) {
         return;
     }
-    if (b->mTurnAngleDegrees >= 0xa000) {
+    if (kartAi->mTurnAngleDegrees >= 0xa000) {
         return;
     }
-    UseItemAndResetInUseTimer(a, b);
+    UseItemAndResetInUseTimer(itemUse, kartAi);
 }

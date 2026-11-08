@@ -14,7 +14,7 @@
 void AdvanceKartAiForBattle(KartAi *kartAi) {
     AdvanceBattleKartAi(kartAi);
     AdvanceBattleKartAiSpeedLimit(&kartAi->mAiSpeedLimit, kartAi);
-    func_0209033c(&kartAi->mItemUse, kartAi);
+    AdvanceBattleItemBitRequests(&kartAi->mItemUse, kartAi);
 }
 
 void RequestBattleKartAiPointLink(KartAi *kartAi) {

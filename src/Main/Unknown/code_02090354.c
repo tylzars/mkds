@@ -44,81 +44,81 @@
 #include "Main/Unknown/code_0207e654.h"
 
 void CreateSmanTop(void *a) {
-    void *p;
-    p = CreateMapObjectModelNsbmd(a, gSmanTopNsbmdName);
-    gSmanTop = p;
-    SetMapObjectModelPolygonId(p, 0x3f);
+    void *mapObjectModelNsbmd;
+    mapObjectModelNsbmd = CreateMapObjectModelNsbmd(a, gSmanTopNsbmdName);
+    gSmanTop = mapObjectModelNsbmd;
+    SetMapObjectModelPolygonId(mapObjectModelNsbmd, 0x3f);
 }
 
 void SetupDrawSmanTop(void *a) {
     func_0209bbd0(a, gSmanTop);
 }
 
-void DrawSmanTop(void *a, Sman *sman) {
+void DrawSmanTop(void *mapObjectList, Sman *sman) {
     s32 c;
     s32 matrix[9];
-    s32 s[3];
+    s32 topOffset[3];
     c = 0x1e;
     func_01ff9048(0x14, &c, 1);
-    func_01ff9048(0x19, func_020e6cbc(&sman->mUnk_00.mPos), 0xc);
-    s[1] = sman->mTopHeight >> 4;
-    s[0] = 0;
-    s[2] = 0;
-    func_01ff9048(0x1c, s, 3);
-    func_01ff9048(0x1b, &sman->mUnk_00.mScale, 3);
+    func_01ff9048(0x19, func_020e6cbc(&sman->mMapObject.mPos), 0xc);
+    topOffset[1] = sman->mTopHeight >> 4;
+    topOffset[0] = 0;
+    topOffset[2] = 0;
+    func_01ff9048(0x1c, topOffset, 3);
+    func_01ff9048(0x1b, &sman->mMapObject.mScale, 3);
     MTX_RotZ33_(matrix, gPairsByAngle[((u16) sman->mAngleZ >> 4) * 2],
                 gPairsByAngle[((u16) sman->mAngleZ >> 4) * 2 + 1]);
     func_01ff9048(0x1a, matrix, 9);
-    DrawMapObjectModel(a, gSmanTop, sman);
+    DrawMapObjectModel(mapObjectList, gSmanTop, sman);
 }
 
 void CreateSmanBottom(void *a) {
-    void *p;
-    p = CreateMapObjectModelNsbmd(a, gSmanBottomNsbmdName);
-    gSmanBottom = p;
-    SetMapObjectModelPolygonId(p, 0x3f);
+    void *mapObjectModelNsbmd;
+    mapObjectModelNsbmd = CreateMapObjectModelNsbmd(a, gSmanBottomNsbmdName);
+    gSmanBottom = mapObjectModelNsbmd;
+    SetMapObjectModelPolygonId(mapObjectModelNsbmd, 0x3f);
 }
 
 void SetupDrawSmanBottom(void *a) {
     func_0209bbd0(a, gSmanBottom);
 }
 
-void DrawSmanBottom(void *a, Sman *sman) {
+void DrawSmanBottom(void *mapObjectList, Sman *sman) {
     s32 c;
-    s32 d[3];
-    s32 v;
+    s32 scale[3];
+    s32 bottomScale;
     c = 0x1e;
     func_01ff9048(0x14, &c, 1);
-    func_01ff9048(0x19, func_020e6cbc(&sman->mUnk_00.mPos), 0xc);
-    func_01ff9048(0x1b, &sman->mUnk_00.mScale, 3);
-    v = sman->mBottomScale;
-    d[0] = v;
-    d[1] = v;
-    d[2] = v;
-    func_01ff9048(0x1b, d, 3);
-    DrawMapObjectModel(a, gSmanBottom, sman);
+    func_01ff9048(0x19, func_020e6cbc(&sman->mMapObject.mPos), 0xc);
+    func_01ff9048(0x1b, &sman->mMapObject.mScale, 3);
+    bottomScale = sman->mBottomScale;
+    scale[0] = bottomScale;
+    scale[1] = bottomScale;
+    scale[2] = bottomScale;
+    func_01ff9048(0x1b, scale, 3);
+    DrawMapObjectModel(mapObjectList, gSmanBottom, sman);
 }
 
-void InitSmanObjects(SmanList *a) {
-    s32 i;
-    Sman *p;
-    if (a == NULL) {
+void InitSmanObjects(SmanList *smanList) {
+    s32 index;
+    Sman *sman;
+    if (smanList == NULL) {
         return;
     }
-    i = 0;
-    while (i < a->mSmanCount && (p = a->mSmans[i]) != NULL) {
-        p->mTopRiseProgress = 0x1000;
-        p->mBottomScale = 0x1000;
-        i++;
-        p->mTopStartHeight = ((s64) p->mUnk_00.mScale.y * 0xf333) >> 12;
-        p->mTopLowHeight = ((s64) p->mUnk_00.mScale.y * 0x2000) >> 12;
-        p->mTopHeight = p->mTopStartHeight;
+    index = 0;
+    while (index < smanList->mSmanCount && (sman = smanList->mSmans[index]) != NULL) {
+        sman->mTopRiseProgress = 0x1000;
+        sman->mBottomScale = 0x1000;
+        index++;
+        sman->mTopStartHeight = ((s64) sman->mMapObject.mScale.y * 0xf333) >> 12;
+        sman->mTopLowHeight = ((s64) sman->mMapObject.mScale.y * 0x2000) >> 12;
+        sman->mTopHeight = sman->mTopStartHeight;
     }
 }
 
 void UpdateSman(void *a, Sman *sman) {
-    Unk0210b7a8 s;
-    s32 t;
+    Unk0210b7a8 soundRequest;
+    s32 falloffIndex;
     switch (sman->mState) {
         case 0:
             sman->mAngleZEnabled = 1;
@@ -129,28 +129,28 @@ void UpdateSman(void *a, Sman *sman) {
             if (sman->mTopHeightPerFrame < -0x6000) {
                 sman->mTopHeightPerFrame = -0x6000;
             }
-            if (sman->mUnk_00.mCourseMapRow->mUnk_28 > 0) {
+            if (sman->mMapObject.mCourseMapRow->mUnk_28 > 0) {
                 if (sman->mTopHeight < 0) {
-                    ParkMapObject(&sman->mUnk_00);
+                    ParkMapObject(&sman->mMapObject);
                 }
             } else if (sman->mTopHeight < sman->mTopLowHeight) {
                 sman->mTopHeight = sman->mTopLowHeight;
                 sman->mTopHeightPerFrame = 0;
                 sman->mState = 2;
-                t = 2;
-                if ((sman->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
-                    if (sman->mUnk_00.mFarDistanceSquared != gSoundFalloffs[2].mUnk_20) {
-                        if (sman->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
-                            t = 3;
+                falloffIndex = 2;
+                if ((sman->mMapObject.mDistanceSquaredAndFlags & 4) == 0) {
+                    if (sman->mMapObject.mFarDistanceSquared != gSoundFalloffs[2].mUnk_20) {
+                        if (sman->mMapObject.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
+                            falloffIndex = 3;
                         } else {
-                            t = 4;
+                            falloffIndex = 4;
                         }
                     }
-                    s.mSoundId = 0x162;
-                    s.mPositionSource = &sman->mUnk_00.mPos;
-                    s.mUnk_08 = t;
-                    s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&sman->mUnk_00.mPos);
-                    func_0210b7a8(&s);
+                    soundRequest.mSoundId = 0x162;
+                    soundRequest.mPositionSource = &sman->mMapObject.mPos;
+                    soundRequest.mUnk_08 = falloffIndex;
+                    soundRequest.mDistanceSquared = GetHorizontalCameraDistanceSquared(&sman->mMapObject.mPos);
+                    func_0210b7a8(&soundRequest);
                 }
             }
             sman->mAngleZEnabled = 0;
@@ -178,7 +178,7 @@ void UpdateSman(void *a, Sman *sman) {
                 if (sman->mBottomScale >= 0x1000) {
                     sman->mStateFrames = 0;
                     sman->mBottomScale = 0x1000;
-                    sman->mUnk_00.mFlags = sman->mUnk_00.mFlags & ~1;
+                    sman->mMapObject.mFlags = sman->mMapObject.mFlags & ~1;
                     sman->mState = 0;
                 }
             }
@@ -210,17 +210,17 @@ void CreateSmanKindData(void) {
 }
 
 static inline BOOL func_02090940_inline(void) {
-    BOOL r;
-    enum { K0 } i;
-    enum { L0 } j;
-    for (i = 0; i < 8; i++) {
-        for (j = 0; j < 4; j++) {
-            if (IsGrandPrixRecordFilled(i, j) != 0 && GetGrandPrixRecordCupRank(i, j) == 0) {
-                r = TRUE;
+    BOOL isFilledTopRank;
+    enum { K0 } cup;
+    enum { L0 } engineClass;
+    for (cup = 0; cup < 8; cup++) {
+        for (engineClass = 0; engineClass < 4; engineClass++) {
+            if (IsGrandPrixRecordFilled(cup, engineClass) != 0 && GetGrandPrixRecordCupRank(cup, engineClass) == 0) {
+                isFilledTopRank = TRUE;
             } else {
-                r = FALSE;
+                isFilledTopRank = FALSE;
             }
-            if (r == FALSE) {
+            if (isFilledTopRank == FALSE) {
                 return FALSE;
             }
         }
@@ -240,25 +240,25 @@ void *CreateSmanUpdateList(void) {
     return CreateMapObjectUpdateList(InitSmanObjects, UpdateSman, NULL);
 }
 
-static inline BOOL func_02090cf8_inline(s32 a, s32 b) {
-    if (IsGrandPrixRecordFilled(a, b) != 0 && GetGrandPrixRecordCupRank(a, b) == 0) {
+static inline BOOL func_02090cf8_inline(s32 cup, s32 engineClass) {
+    if (IsGrandPrixRecordFilled(cup, engineClass) != 0 && GetGrandPrixRecordCupRank(cup, engineClass) == 0) {
         return TRUE;
     }
     return FALSE;
 }
 
 u32 func_020911a8(void) {
-    u32 r;
-    r = 0;
+    u32 setFlagBits;
+    setFlagBits = 0;
     if (GetCurrentSceneNumber() == 10) {
-        r = func_02090ff4();
+        setFlagBits = func_02090ff4();
         func_02056d40();
         WaitThreadFunctionsDone();
         if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }
-    return r;
+    return setFlagBits;
 }
 
 u32 func_0209119c(void) {
@@ -266,12 +266,12 @@ u32 func_0209119c(void) {
 }
 
 u32 func_02090ff4(void) {
-    u32 r;
+    u32 setFlagBits;
     u32 q;
     BOOL t;
-    r = 0;
-    r = r | func_02090cf8();
-    r = r | func_02090b24();
+    setFlagBits = 0;
+    setFlagBits = setFlagBits | func_02090cf8();
+    setFlagBits = setFlagBits | func_02090b24();
     q = 0;
     t = FALSE;
     if (func_02056d98() < 2) {
@@ -285,21 +285,21 @@ u32 func_02090ff4(void) {
     }
     t = FALSE;
     if (func_02056d98() < 3) {
-        BOOL f;
+        BOOL isFilledTopRank;
         if (IsGrandPrixRecordFilled(3, 2) != 0 && GetGrandPrixRecordCupRank(3, 2) == 0) {
-            f = TRUE;
+            isFilledTopRank = TRUE;
         } else {
-            f = FALSE;
+            isFilledTopRank = FALSE;
         }
-        if (f != FALSE) {
+        if (isFilledTopRank != FALSE) {
             goto l1;
         }
         if (IsGrandPrixRecordFilled(7, 2) != 0 && GetGrandPrixRecordCupRank(7, 2) == 0) {
-            f = TRUE;
+            isFilledTopRank = TRUE;
         } else {
-            f = FALSE;
+            isFilledTopRank = FALSE;
         }
-        if (f != FALSE) {
+        if (isFilledTopRank != FALSE) {
         l1:
             func_02056d54(3);
             t = TRUE;
@@ -320,54 +320,54 @@ u32 func_02090ff4(void) {
     if (t != FALSE) {
         q = 0x800;
     }
-    return r | q;
+    return setFlagBits | q;
 }
 
 u32 func_02090cf8(void) {
-    enum { K0 } i;
-    u32 r;
+    enum { K0 } engineClass;
+    u32 setFlagBits;
     u32 q;
-    u32 t;
+    u32 newBit;
     s32 j4;
     s32 j8;
     s32 j12;
-    r = 0;
-    for (i = 0; i < 4; i++) {
-        t = 0;
-        if (IsBackupFlagSet(i) == 0) {
-            if (func_02090cf8_inline(0, i) != FALSE && func_02090cf8_inline(1, i) != FALSE) {
-                SetBackupFlag(i);
-                t = 1;
+    setFlagBits = 0;
+    for (engineClass = 0; engineClass < 4; engineClass++) {
+        newBit = 0;
+        if (IsBackupFlagSet(engineClass) == 0) {
+            if (func_02090cf8_inline(0, engineClass) != FALSE && func_02090cf8_inline(1, engineClass) != FALSE) {
+                SetBackupFlag(engineClass);
+                newBit = 1;
             }
         }
-        r = r | t;
-        t = 0;
-        j4 = i + 4;
+        setFlagBits = setFlagBits | newBit;
+        newBit = 0;
+        j4 = engineClass + 4;
         if (IsBackupFlagSet(j4) == 0) {
-            if (func_02090cf8_inline(2, i) != FALSE) {
+            if (func_02090cf8_inline(2, engineClass) != FALSE) {
                 SetBackupFlag(j4);
-                t = 2;
+                newBit = 2;
             }
         }
-        r = r | t;
-        t = 0;
-        j8 = i + 8;
+        setFlagBits = setFlagBits | newBit;
+        newBit = 0;
+        j8 = engineClass + 8;
         if (IsBackupFlagSet(j8) == 0) {
-            if (func_02090cf8_inline(4, i) != FALSE && func_02090cf8_inline(5, i) != FALSE) {
+            if (func_02090cf8_inline(4, engineClass) != FALSE && func_02090cf8_inline(5, engineClass) != FALSE) {
                 SetBackupFlag(j8);
-                t = 4;
+                newBit = 4;
             }
         }
-        r = r | t;
-        t = 0;
-        j12 = i + 12;
+        setFlagBits = setFlagBits | newBit;
+        newBit = 0;
+        j12 = engineClass + 12;
         if (IsBackupFlagSet(j12) == 0) {
-            if (func_02090cf8_inline(6, i) != FALSE) {
+            if (func_02090cf8_inline(6, engineClass) != FALSE) {
                 SetBackupFlag(j12);
-                t = 8;
+                newBit = 8;
             }
         }
-        r = r | t;
+        setFlagBits = setFlagBits | newBit;
     }
     q = 0;
     if (IsBackupFlagSet(0x10) == 0) {
@@ -376,13 +376,13 @@ u32 func_02090cf8(void) {
             q = 0x10;
         }
     }
-    return r | q;
+    return setFlagBits | q;
 }
 
 u32 func_02090b24(void) {
-    u32 r;
+    u32 setFlagBits;
     BOOL t;
-    r = 0;
+    setFlagBits = 0;
     t = FALSE;
     if (IsBackupFlagSet(0x14) == 0) {
         if ((IsGrandPrixRecordFilled(3, 0) != 0 && GetGrandPrixRecordCupRank(3, 0) == 0) ? 1 : 0) {
@@ -391,7 +391,7 @@ u32 func_02090b24(void) {
         }
     }
     if (t != FALSE) {
-        r = r | 0x20;
+        setFlagBits = setFlagBits | 0x20;
     }
     t = FALSE;
     if (IsBackupFlagSet(0x15) == 0) {
@@ -401,7 +401,7 @@ u32 func_02090b24(void) {
         }
     }
     if (t != FALSE) {
-        r = r | 0x40;
+        setFlagBits = setFlagBits | 0x40;
     }
     t = FALSE;
     if (IsBackupFlagSet(0x16) == 0) {
@@ -411,49 +411,49 @@ u32 func_02090b24(void) {
         }
     }
     if (t != FALSE) {
-        r = r | 0x80;
+        setFlagBits = setFlagBits | 0x80;
     }
     t = FALSE;
     if (IsBackupFlagSet(0x17) == 0) {
-        BOOL f;
+        BOOL isFilledTopRank;
         if (IsGrandPrixRecordFilled(3, 3) != 0 && GetGrandPrixRecordCupRank(3, 3) == 0) {
-            f = TRUE;
+            isFilledTopRank = TRUE;
         } else {
-            f = FALSE;
+            isFilledTopRank = FALSE;
         }
-        if (f != FALSE) {
+        if (isFilledTopRank != FALSE) {
             goto l1;
         }
         if (IsGrandPrixRecordFilled(7, 3) != 0 && GetGrandPrixRecordCupRank(7, 3) == 0) {
-            f = TRUE;
+            isFilledTopRank = TRUE;
         } else {
-            f = FALSE;
+            isFilledTopRank = FALSE;
         }
-        if (f != FALSE) {
+        if (isFilledTopRank != FALSE) {
         l1:
             SetBackupFlag(0x17);
             t = TRUE;
         }
     }
     if (t != FALSE) {
-        r = r | 0x100;
+        setFlagBits = setFlagBits | 0x100;
     }
-    return r;
+    return setFlagBits;
 }
 
 s32 func_020909cc(void) {
     Unk0217b488 *p;
-    s32 r;
+    s32 result;
     s32 n;
-    s32 m;
+    s32 engineClass;
     BOOL c;
     BOOL f;
-    r = 0;
+    result = 0;
     p = data_0217b488;
-    m = p->mEngineIndex;
+    engineClass = p->mEngineIndex;
     n = p->mCupIndex;
     if (p->mMirrorMode != 0) {
-        m = 3;
+        engineClass = 3;
     }
     c = FALSE;
     f = func_02090940_inline();
@@ -465,7 +465,7 @@ s32 func_020909cc(void) {
         }
     }
     if (c != FALSE) {
-        r = 2;
+        result = 2;
     } else {
         c = FALSE;
         if (n == 3 || n == 7) {
@@ -474,7 +474,7 @@ s32 func_020909cc(void) {
             } else {
                 n = 7;
             }
-            if (IsGrandPrixRecordFilled(n, m) != 0 && GetGrandPrixRecordCupRank(n, m) <= 2) {
+            if (IsGrandPrixRecordFilled(n, engineClass) != 0 && GetGrandPrixRecordCupRank(n, engineClass) <= 2) {
                 f = TRUE;
             } else {
                 f = FALSE;
@@ -486,142 +486,143 @@ s32 func_020909cc(void) {
             }
         }
         if (c != FALSE) {
-            r = 1;
+            result = 1;
         }
     }
-    return r;
+    return result;
 }
 
 BOOL IsAllGrandPrixRecordsTopRank(void) {
     return func_02090940_inline();
 }
 
-void LoadStaffGhostTime(void *a) {
-    LoadFileIntoHeap(gStaffGhostTimeBinName, a, (void **) &gStaffGhostTime);
+void LoadStaffGhostTime(void *heap) {
+    LoadFileIntoHeap(gStaffGhostTimeBinName, heap, (void **) &gStaffGhostTime);
 }
 
 // TRUE when the time is smaller than entry a - 1 of the staff ghost times.
-BOOL IsTimeLessThanStaffGhostTime(u32 a, void *c) {
-    MinuteSecondMillisecondTime *b = c;
-    return b->mSecond * 1000 + b->mMinute * 60000 + b->mMillisecond < gStaffGhostTime[a - 1];
+BOOL IsTimeLessThanStaffGhostTime(u32 entryNumber, void *timeArg) {
+    MinuteSecondMillisecondTime *time = timeArg;
+    return time->mSecond * 1000 + time->mMinute * 60000 + time->mMillisecond < gStaffGhostTime[entryNumber - 1];
 }
 
-void SetupKartKillerCursor(KartKillerCursor *a, u32 b) {
-    Kart *p;
-    p = GetKart(b);
-    a->mKillerKartIndex = b;
-    SetupPointLinkCursor(&a->mPointLinkCursor, b, (Unk02080b1c_00 *) gKartItems[b].mUnk_1f0.mLink);
-    a->mUnk_26 = 0;
-    a->mUnk_28 = 0;
-    p->mTurnAngle = 0;
-    EndKartDrift(p);
+void SetupKartKillerCursor(KartKillerCursor *kartKillerCursor, u32 kartIndex) {
+    Kart *kart;
+    kart = GetKart(kartIndex);
+    kartKillerCursor->mKillerKartIndex = kartIndex;
+    SetupPointLinkCursor(&kartKillerCursor->mPointLinkCursor, kartIndex,
+                         (Unk02080b1c_00 *) gKartItems[kartIndex].mUnk_1f0.mLink);
+    kartKillerCursor->mUnk_26 = 0;
+    kartKillerCursor->mUnk_28 = 0;
+    kart->mTurnAngle = 0;
+    EndKartDrift(kart);
 }
 
-void ResetKartKillerCursorTo(KartKillerCursor *a, Unk02080b1c_00 *b) {
-    if (b == a->mPointLinkCursor.mPreviousLink) {
+void ResetKartKillerCursorTo(KartKillerCursor *kartKillerCursor, Unk02080b1c_00 *link) {
+    if (link == kartKillerCursor->mPointLinkCursor.mPreviousLink) {
         return;
     }
-    SetupPointLinkCursor(&a->mPointLinkCursor, a->mKillerKartIndex, b);
+    SetupPointLinkCursor(&kartKillerCursor->mPointLinkCursor, kartKillerCursor->mKillerKartIndex, link);
 }
 
-s32 func_0209081c(KartKillerCursor *a) {
-    AdvanceKartKillerAlongPointLinks(a);
-    return func_020905a8(a);
+s32 func_0209081c(KartKillerCursor *kartKillerCursor) {
+    AdvanceKartKillerAlongPointLinks(kartKillerCursor);
+    return func_020905a8(kartKillerCursor);
 }
 
 // Holds the kart at a fixed speed, steers it toward the point link ahead, and moves the cursor on once the kart is past
 // that link or close to it.
-void AdvanceKartKillerAlongPointLinks(KartKillerCursor *a) {
-    Kart *p;
-    Vec3 v;
-    s32 r;
-    p = GetKart(a->mKillerKartIndex);
-    v = p->mPos;
-    a->mAngleToLinkDegrees =
-        ComputeAngleToPositionDegrees(a->mPointLinkCursor.mLink->mUnk_18, &v, &p->mUnk_12c, &p->mUnk_138);
-    if ((p->mUnk_48 & 0x40000000) != 0 && p->mSurfaceVariant == 1) {
-        r = IsPastPointLink(&a->mPointLinkCursor, &v);
+void AdvanceKartKillerAlongPointLinks(KartKillerCursor *kartKillerCursor) {
+    Kart *kart;
+    Vec3 position;
+    s32 isPastOrNearLink;
+    kart = GetKart(kartKillerCursor->mKillerKartIndex);
+    position = kart->mPos;
+    kartKillerCursor->mAngleToLinkDegrees = ComputeAngleToPositionDegrees(
+        kartKillerCursor->mPointLinkCursor.mLink->mUnk_18, &position, &kart->mUnk_12c, &kart->mUnk_138);
+    if ((kart->mUnk_48 & 0x40000000) != 0 && kart->mSurfaceVariant == 1) {
+        isPastOrNearLink = IsPastPointLink(&kartKillerCursor->mPointLinkCursor, &position);
     } else {
-        r = IsPastPointLink(&a->mPointLinkCursor, &v);
-        if (r == 0) {
-            r = IsWithinPointLinkDistance(&a->mPointLinkCursor, &v);
+        isPastOrNearLink = IsPastPointLink(&kartKillerCursor->mPointLinkCursor, &position);
+        if (isPastOrNearLink == 0) {
+            isPastOrNearLink = IsWithinPointLinkDistance(&kartKillerCursor->mPointLinkCursor, &position);
         }
     }
-    p->mForwardSpeed = 0xa800;
-    p->mSpeedLimitGoal = p->mForwardSpeed;
-    p->mSpeedLimit = p->mSpeedLimitGoal;
-    if (r != 0) {
-        AdvancePointLinkCursorToFirstNext((u32) a);
+    kart->mForwardSpeed = 0xa800;
+    kart->mSpeedLimitGoal = kart->mForwardSpeed;
+    kart->mSpeedLimit = kart->mSpeedLimitGoal;
+    if (isPastOrNearLink != 0) {
+        AdvancePointLinkCursorToFirstNext((u32) kartKillerCursor);
     } else {
-        TurnKartKillerTowardPointLink(a);
+        TurnKartKillerTowardPointLink(kartKillerCursor);
     }
 }
 
 // Turns the kart toward the point link ahead; the left and right keys first nudge the heading.
-void TurnKartKillerTowardPointLink(KartKillerCursor *a) {
-    Kart *p;
-    s32 v;
-    s32 s;
-    u16 m;
-    u16 w;
-    s32 d;
-    s32 e;
-    s32 b;
-    p = GetKart(a->mKillerKartIndex);
-    v = a->mAngleToLinkDegrees;
-    if ((p->mUnk_44 & KART_44_ON_GROUND) != 0) {
-        s = 0x19a;
+void TurnKartKillerTowardPointLink(KartKillerCursor *kartKillerCursor) {
+    Kart *kart;
+    s32 angleToLinkDegrees;
+    s32 turnFactor;
+    u16 padBits;
+    u16 targetHeadingAngle;
+    s32 angleDifference;
+    s32 angleDifferenceAbs;
+    s32 entryIndex;
+    kart = GetKart(kartKillerCursor->mKillerKartIndex);
+    angleToLinkDegrees = kartKillerCursor->mAngleToLinkDegrees;
+    if ((kart->mUnk_44 & KART_44_ON_GROUND) != 0) {
+        turnFactor = 0x19a;
     } else {
-        s = 0x52;
+        turnFactor = 0x52;
     }
-    w = p->mHeadingAngle + (s16) (((s64) v * 0xb6 + 0x800) >> 12);
-    b = *(volatile s32 *) &p->mEntryIndex;
-    m = data_0217562a[b].mBits;
-    if ((u16) (m & PAD_KEY_LEFT) != 0) {
-        p->mHeadingAngle = p->mHeadingAngle + 0xa0;
-    } else if ((u16) (m & PAD_KEY_RIGHT) != 0) {
-        p->mHeadingAngle = p->mHeadingAngle - 0xa0;
+    targetHeadingAngle = kart->mHeadingAngle + (s16) (((s64) angleToLinkDegrees * 0xb6 + 0x800) >> 12);
+    entryIndex = *(volatile s32 *) &kart->mEntryIndex;
+    padBits = data_0217562a[entryIndex].mBits;
+    if ((u16) (padBits & PAD_KEY_LEFT) != 0) {
+        kart->mHeadingAngle = kart->mHeadingAngle + 0xa0;
+    } else if ((u16) (padBits & PAD_KEY_RIGHT) != 0) {
+        kart->mHeadingAngle = kart->mHeadingAngle - 0xa0;
     }
-    d = w - p->mHeadingAngle;
-    e = d;
-    e = (e < 0) ? -e : e;
-    if (e > 0x7fff) {
-        if (d > 0) {
-            d = -(0xffff - d);
+    angleDifference = targetHeadingAngle - kart->mHeadingAngle;
+    angleDifferenceAbs = angleDifference;
+    angleDifferenceAbs = (angleDifferenceAbs < 0) ? -angleDifferenceAbs : angleDifferenceAbs;
+    if (angleDifferenceAbs > 0x7fff) {
+        if (angleDifference > 0) {
+            angleDifference = -(0xffff - angleDifference);
         } else {
-            d = d + 0xffff;
+            angleDifference = angleDifference + 0xffff;
         }
     }
-    p->mHeadingAngle = p->mHeadingAngle + (s32) (((s64) d * s) >> 12);
+    kart->mHeadingAngle = kart->mHeadingAngle + (s32) (((s64) angleDifference * turnFactor) >> 12);
 }
 
-s32 func_020905a8(KartKillerCursor *a) {
-    BOOL r;
-    BOOL t;
-    Kart *p;
-    r = FALSE;
-    t = FALSE;
-    a->mUnk_28 = a->mUnk_28 - 1;
-    if (a->mUnk_28 <= 0) {
-        a->mUnk_28 = 0;
+s32 func_020905a8(KartKillerCursor *kartKillerCursor) {
+    BOOL limitReached;
+    BOOL isCounting;
+    Kart *kart;
+    limitReached = FALSE;
+    isCounting = FALSE;
+    kartKillerCursor->mUnk_28 = kartKillerCursor->mUnk_28 - 1;
+    if (kartKillerCursor->mUnk_28 <= 0) {
+        kartKillerCursor->mUnk_28 = 0;
     } else {
-        t = TRUE;
+        isCounting = TRUE;
     }
-    p = GetKart(a->mKillerKartIndex);
-    if ((p->mUnk_44 & 0xc0) != 0) {
-        t = TRUE;
-        a->mUnk_28 = 5;
+    kart = GetKart(kartKillerCursor->mKillerKartIndex);
+    if ((kart->mUnk_44 & 0xc0) != 0) {
+        isCounting = TRUE;
+        kartKillerCursor->mUnk_28 = 5;
     }
-    if (t != FALSE) {
-        a->mUnk_26 = a->mUnk_26 + 1;
-        if (a->mUnk_26 >= 0x78) {
-            a->mUnk_26 = 0;
-            r = TRUE;
+    if (isCounting != FALSE) {
+        kartKillerCursor->mUnk_26 = kartKillerCursor->mUnk_26 + 1;
+        if (kartKillerCursor->mUnk_26 >= 0x78) {
+            kartKillerCursor->mUnk_26 = 0;
+            limitReached = TRUE;
         }
-    } else if (a->mUnk_28 <= 0) {
-        a->mUnk_26 = 0;
+    } else if (kartKillerCursor->mUnk_28 <= 0) {
+        kartKillerCursor->mUnk_26 = 0;
     }
-    return r;
+    return limitReached;
 }
 
 // Stores one of three sets of battle item entry tables and callbacks; any value other than 1 or 2 takes the third set.
@@ -630,42 +631,42 @@ void SetupBattleItemEntries(void) {
         case CPU_DIFFICULTY_EASY:
             gBattleHeldItemEntries = data_021561d0;
             gBattleItemInUseEntries = data_02155fd8;
-            data_0217b0a0 = func_0208fafc;
-            data_0217b090 = UseItemAfterInUse;
-            data_0217b098 = func_0208f9ac;
-            data_0217b094 = func_0208f6d4;
-            data_0217b0ac = func_0208f4e8;
-            data_0217b0a8 = UseItemBehindAfterInUseOrNearTarget;
+            gThrowItemCircleKindCallback = func_0208fafc;
+            gUseItemCircleKindCallback = UseItemAfterInUse;
+            gThrowItemNotCircleKindCallback = func_0208f9ac;
+            gUseItemNotCircleKindCallback = func_0208f6d4;
+            gThrowItemTrailKindCallback = func_0208f4e8;
+            gThrowItemNotTrailKindCallback = UseItemBehindAfterInUseOrNearTarget;
             return;
         case CPU_DIFFICULTY_NORMAL:
             gBattleHeldItemEntries = data_021562a8;
             gBattleItemInUseEntries = data_02156128;
-            data_0217b0a0 = func_0208fba0;
-            data_0217b090 = func_0208f810;
-            data_0217b098 = func_0208f9ac;
-            data_0217b094 = func_0208f6d4;
-            data_0217b0ac = func_0208f4e8;
-            data_0217b0a8 = UseItemBehindAfterInUseOrNearTarget;
+            gThrowItemCircleKindCallback = func_0208fba0;
+            gUseItemCircleKindCallback = func_0208f810;
+            gThrowItemNotCircleKindCallback = func_0208f9ac;
+            gUseItemNotCircleKindCallback = func_0208f6d4;
+            gThrowItemTrailKindCallback = func_0208f4e8;
+            gThrowItemNotTrailKindCallback = UseItemBehindAfterInUseOrNearTarget;
             return;
         case CPU_DIFFICULTY_HARD:
             gBattleHeldItemEntries = data_02156380;
             gBattleItemInUseEntries = data_02156080;
-            data_0217b0a0 = ThrowItemAtNearTarget;
-            data_0217b090 = func_0208f8ac;
-            data_0217b098 = func_0208fa50;
-            data_0217b094 = func_0208f754;
-            data_0217b0ac = func_0208f5c4;
-            data_0217b0a8 = func_0208f434;
+            gThrowItemCircleKindCallback = ThrowItemAtNearTarget;
+            gUseItemCircleKindCallback = func_0208f8ac;
+            gThrowItemNotCircleKindCallback = func_0208fa50;
+            gUseItemNotCircleKindCallback = func_0208f754;
+            gThrowItemTrailKindCallback = func_0208f5c4;
+            gThrowItemNotTrailKindCallback = func_0208f434;
             return;
         default:
             gBattleHeldItemEntries = data_02156380;
             gBattleItemInUseEntries = data_02156080;
-            data_0217b0a0 = ThrowItemAtNearTarget;
-            data_0217b090 = func_0208f8ac;
-            data_0217b098 = func_0208fa50;
-            data_0217b094 = func_0208f754;
-            data_0217b0ac = func_0208f5c4;
-            data_0217b0a8 = func_0208f434;
+            gThrowItemCircleKindCallback = ThrowItemAtNearTarget;
+            gUseItemCircleKindCallback = func_0208f8ac;
+            gThrowItemNotCircleKindCallback = func_0208fa50;
+            gUseItemNotCircleKindCallback = func_0208f754;
+            gThrowItemTrailKindCallback = func_0208f5c4;
+            gThrowItemNotTrailKindCallback = func_0208f434;
             return;
     }
 }
