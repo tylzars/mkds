@@ -3,13 +3,6 @@
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Kart
 
-// Object returned by CreateMapObjectKindData: the words at 0x38 and 0x3c are set by CreateShine16KindData.
-typedef struct Unk0209bfa8 {
-    /* 00 */ u8 mUnk_00[0x38];
-    /* 38 */ s32 mUnk_38;
-    /* 3c */ s32 mUnk_3c;
-} Unk0209bfa8;
-
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 

@@ -30,6 +30,7 @@
 #include "Main/Unknown/unk_02175000.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217b200.h"
+#include "Main/Unknown/code_02093ff0.h"
 #include "code_021471bc.h"
 
 void func_020a29cc(void) {
@@ -37,7 +38,7 @@ void func_020a29cc(void) {
     s32 y;
     s32 v;
     Trophy *trophy;
-    Unk0217b200_08 *wobble;
+    TeresaWobble *wobble;
 
     G2x_SetBlendAlpha_(&reg_G2_BLDCNT, 1, 0x1f, 0x10, 0x10);
     NNS_G3dGlbLightVector(0, gTrophy->mLight0X, gTrophy->mLight0Y, gTrophy->mLight0Z);
@@ -74,12 +75,12 @@ void func_020a29cc(void) {
         gTrophy->mRotateYAngle = -GetSceneFadeToClearFrameCount() * 0x6d;
         v = -GetSceneFadeToClearFrameCount() * 0x36;
         trophy = gTrophy;
-        trophy->mRotateZWobble.mUnk_00 = v;
+        trophy->mRotateZWobble.mAngle = v;
         wobble = &trophy->mRotateZWobble;
-        wobble->mUnk_0c = 0;
-        wobble->mUnk_10 = 0xaab;
-        wobble->mUnk_14 = 0;
-        wobble->mUnk_18 = 0x36;
+        wobble->mMid = 0;
+        wobble->mAmplitude = 0xaab;
+        wobble->mAmplitudePerFrame = 0;
+        wobble->mAnglePerFrame = 0x36;
         wobble->mUnk_1c = 0;
         MTX_Identity43_(&gTrophy->mEffectMatrix);
         if (gTrophy->mRankIndex == 0) {
@@ -180,7 +181,7 @@ s32 func_020a2668(s32 a, s32 b) {
 
 void AdvanceTrophy(void) {
     Trophy *trophy;
-    Unk0217b200_08 *wobble;
+    TeresaWobble *wobble;
     s32 v;
 
     if (gTrophy->mRankIndex >= 3) {
@@ -190,35 +191,35 @@ void AdvanceTrophy(void) {
     gTrophy->mRotateYAngle += 0x6d;
     trophy = gTrophy;
     wobble = &trophy->mRotateZWobble;
-    trophy->mRotateZWobble.mUnk_00 += wobble->mUnk_18;
-    wobble->mUnk_08 = wobble->mUnk_0c + func_020a2668(wobble->mUnk_10, func_020a2684(trophy->mRotateZWobble.mUnk_00)) -
-                      wobble->mUnk_04;
-    wobble->mUnk_04 += wobble->mUnk_08;
-    if (wobble->mUnk_10 > 0) {
-        v = wobble->mUnk_10 + wobble->mUnk_14;
+    trophy->mRotateZWobble.mAngle += wobble->mAnglePerFrame;
+    wobble->mUnk_08 =
+        wobble->mMid + func_020a2668(wobble->mAmplitude, func_020a2684(trophy->mRotateZWobble.mAngle)) - wobble->mValue;
+    wobble->mValue += wobble->mUnk_08;
+    if (wobble->mAmplitude > 0) {
+        v = wobble->mAmplitude + wobble->mAmplitudePerFrame;
         if (v <= 0) {
             v = 0;
         }
-        wobble->mUnk_10 = v;
-    } else if (wobble->mUnk_10 < 0) {
-        v = wobble->mUnk_10 + wobble->mUnk_14;
+        wobble->mAmplitude = v;
+    } else if (wobble->mAmplitude < 0) {
+        v = wobble->mAmplitude + wobble->mAmplitudePerFrame;
         if (v >= 0) {
             v = 0;
         }
-        wobble->mUnk_10 = v;
+        wobble->mAmplitude = v;
     }
-    if (wobble->mUnk_18 > 0) {
-        v = wobble->mUnk_18 + wobble->mUnk_1c;
+    if (wobble->mAnglePerFrame > 0) {
+        v = wobble->mAnglePerFrame + wobble->mUnk_1c;
         if (v <= 0) {
             v = 0;
         }
-        wobble->mUnk_18 = v;
-    } else if (wobble->mUnk_18 < 0) {
-        v = wobble->mUnk_18 + wobble->mUnk_1c;
+        wobble->mAnglePerFrame = v;
+    } else if (wobble->mAnglePerFrame < 0) {
+        v = wobble->mAnglePerFrame + wobble->mUnk_1c;
         if (v >= 0) {
             v = 0;
         }
-        wobble->mUnk_18 = v;
+        wobble->mAnglePerFrame = v;
     }
 }
 
@@ -245,7 +246,7 @@ void DrawTrophy(void) {
     translation[1] = -0xcd;
     translation[2] = -0x2000;
     func_01ff9048(0x1c, translation, 3);
-    rotateZAngle = gTrophy->mRotateZWobble.mUnk_04;
+    rotateZAngle = gTrophy->mRotateZWobble.mValue;
     MTX_RotX33_(rotateXMatrix, data_0215d6b4[0x76], data_0215d6b4[0x77]);
     MTX_RotY33_(rotateYMatrix, gPairsByAngle[(gTrophy->mRotateYAngle >> 4) * 2],
                 gPairsByAngle[(gTrophy->mRotateYAngle >> 4) * 2 + 1]);

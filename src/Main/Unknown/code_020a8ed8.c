@@ -57,7 +57,7 @@ void DrawIronBallShadow(void *a, IronBall *ironBall, u32 c, u32 d) {
     func_020e53ac(&ironBall->mShadowMatrix, NULL, c, d);
 }
 
-void InitIronBallObjects(Unk020a9a5c *mapObjectList) {
+void InitIronBallObjects(MapObjectList *mapObjectList) {
     s32 i;
     IronBall *ironBall;
     u32 z0;
@@ -326,7 +326,7 @@ void UpdateIronBall(void *a, IronBall *ironBall) {
 }
 
 void CreateIronBallKindData(void) {
-    Unk020a9224 *mapObjectKindData;
+    MapObjectKindData *mapObjectKindData;
 
     mapObjectKindData = CreateMapObjectKindData(CollideKartWithIronBall, NULL, NULL, 1, 1);
     mapObjectKindData->mUnk_38 = 0x190000;

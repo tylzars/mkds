@@ -4,8 +4,9 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
-// 0x20-byte wobble of Teresa at 0xbc and 0xdc (written by StartTeresa) and of Crab at 0xb0 and 0xd0. For Teresa,
-// mAmplitudePerFrame and mUnk_1c are always 0 in this build; Crab's body wobble sets mAmplitudePerFrame.
+// 0x20-byte wobble of Teresa at 0xbc and 0xdc (written by StartTeresa), of Crab at 0xb0 and 0xd0 and of the trophy
+// at 0x08. For Teresa and the trophy, mAmplitudePerFrame and mUnk_1c are always 0 in this build; Crab's body wobble
+// sets mAmplitudePerFrame.
 typedef struct TeresaWobble {
     /* 00 */ u16 mAngle;
     /* 02 */ u8 mUnk_02[2];

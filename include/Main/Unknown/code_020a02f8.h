@@ -9,6 +9,7 @@ typedef struct Unk020a0318 {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mDistanceVolumeFixed12;
+    // Radius in whole units; the inner half-radius test uses w / 2 without the << 12.
     /* a8 */ s32 mRadius;
     /* ac */ s32 mCenterX;
     /* b0 */ s32 mCenterY;

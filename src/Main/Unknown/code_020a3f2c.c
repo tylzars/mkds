@@ -545,7 +545,7 @@ void UpdateShine16(void *a, Shine16 *p) {
 }
 
 void CreateShine16KindData(void) {
-    Unk0209bfa8 *p;
+    MapObjectKindData *p;
 
     p = CreateMapObjectKindData(CollideKartWithShine16, NULL, NULL, 1, 0);
     p->mUnk_38 = 0x190000;

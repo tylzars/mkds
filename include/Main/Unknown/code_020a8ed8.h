@@ -27,22 +27,6 @@ typedef struct IronBall {
     /* 130 */ s32 mState;
 } IronBall;
 
-// Array of object pointers: pointer to the array and the number of entries (InitIronBallObjects).
-typedef struct Unk020a9a5c {
-    /* 00 */ IronBall **mMapObjects;
-    /* 04 */ u16 mMapObjectCount;
-} Unk020a9a5c;
-
-// Object returned by CreateMapObjectKindData, with words at 0x38, 0x3c and 0xc0 (CreateIronBallKindData,
-// CollideKartWithIronBall).
-typedef struct Unk020a9224 {
-    /* 00 */ u8 mUnk_00[0x38];
-    /* 38 */ s32 mUnk_38;
-    /* 3c */ s32 mUnk_3c;
-    /* 40 */ u8 mUnk_40[0x80];
-    /* c0 */ s32 mUnk_c0;
-} Unk020a9224;
-
 #include "Main/Unknown/code_020a826c.h" // Unk020a826c_a0
 
 void func_020a8ed8(Unk020a826c_a0 *soundPart, Vec3 *position);
@@ -51,6 +35,6 @@ void *CreateIronBallDrawList(void);
 void *CreateIronBallShadowDrawList(void);
 void CreateIronBallKindData(void);
 void UpdateIronBall(void *a, IronBall *ironBall); /* kind 0x1b0 only */
-void InitIronBallObjects(Unk020a9a5c *mapObjectList);
+void InitIronBallObjects(MapObjectList *mapObjectList);
 void DrawIronBallShadow(void *a, IronBall *ironBall, u32 c, u32 d);
 unsigned int func_020a9cd0(unsigned int p0);

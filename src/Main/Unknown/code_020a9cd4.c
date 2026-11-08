@@ -59,12 +59,12 @@ void InitIronBall(IronBall *ironBall) {
     ironBall->mUnk_128 = DecimalNonZeroDigitsToBitMask(ironBall->mUnk_000.mCourseMapRow->mUnk_34);
 }
 
-u32 CollideKartWithIronBall(Unk020a9224 *ironBall, void *kart, u8 *b, u8 *c) {
+u32 CollideKartWithIronBall(IronBall *ironBall, void *kart, u8 *b, u8 *c) {
     u32 x = *b;
     u32 y = *c;
 
     if (x == 1) {
-        ironBall->mUnk_c0 = 0xa000;
+        ironBall->mHeightSpeed = 0xa000;
         return 0;
     }
     return (u8) y;
