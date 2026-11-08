@@ -647,7 +647,7 @@ void UpdateRaceTaPositions(void) {
     if (IsRaceStartSequenceDone() == 0) {
         return;
     }
-    if ((u16) (data_02175628[func_020435bc()].mUnk_00 & 4) != 0) {
+    if ((u16) (data_02175628[func_020435bc()].mPressedBits & 4) != 0) {
         gRaceTaPositions->mVisible = gRaceTaPositions->mVisible == 0 ? 1 : 0;
     }
     for (i = 0; i < gRaceSetup->mKartCount; i = (u16) (i + 1)) {

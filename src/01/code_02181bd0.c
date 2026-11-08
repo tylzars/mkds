@@ -158,7 +158,7 @@ void func_ov001_02182bdc(void) {
 
 void func_ov001_02182bbc(u32 amount) {
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-        func_ov001_02181660(amount);
+        AddMissionRunPendingBossTransfer(amount);
     }
 }
 
@@ -311,10 +311,10 @@ void func_ov001_021827a4(void) {
         func_ov001_021816a8(func_ov001_02182e84);
     }
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-        func_ov001_0218169c(func_ov001_02182d30);
+        SetMissionRunDropCallback(func_ov001_02182d30);
     }
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-        func_ov001_02181690(func_ov001_02182bdc);
+        SetMissionRunBossTransferCallback(func_ov001_02182bdc);
     }
 }
 
@@ -600,7 +600,7 @@ void UpdateCoin(void *a, Coin *coin) {
                 coin->mModelAlpha = 0;
                 coin->mUnk_000.mFlags |= data_ov001_021a6574;
                 if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-                    func_ov001_02181630(1);
+                    AddMissionRunBossCount(1);
                 }
             } else {
                 coin->mUnk_000.mPos.x = coin->mUnk_000.mCourseMapRow->mUnk_00.x;

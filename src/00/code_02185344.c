@@ -131,7 +131,7 @@ void AdvanceWiFiAikotobaCheckState1(void) {
     BOOL b;
     u16 c;
 
-    if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_B) == 0) {
+    if ((u16) (data_02175628[i].mPressedBits & PAD_KEY_B) == 0) {
         a = FALSE;
         b = FALSE;
         c = data_02175628[i].mHasPair;

@@ -4,7 +4,7 @@
 #include "Main/Unknown/unk_02175000.h"
 
 void func_020394cc(void) {
-    data_021755dc.mUnk_00 = 0;
+    data_021755dc.mPressedBits = 0;
     data_021755dc.mBits = 0;
     data_021755dc.mClearedBits = 0;
     data_021755dc.mRepeatBits = 0;
@@ -21,7 +21,7 @@ void func_020394cc(void) {
 }
 
 void func_02039478(void) {
-    data_021755dc.mUnk_00 = 0;
+    data_021755dc.mPressedBits = 0;
     data_021755dc.mBits = 0;
     data_021755dc.mClearedBits = 0;
     data_021755dc.mRepeatBits = 0;

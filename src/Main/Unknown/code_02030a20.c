@@ -712,20 +712,20 @@ s32 func_02030ea4(Unk02030b18 *sceneNumbers) {
             rectIndex = -1;
             pairIsNew = 0;
             pairRecentlyGone = 0;
-            hasPair = data_02175674[slotIndex].mUnk_00;
-            if (hasPair == 0 && data_02175680[slotIndex].mUnk_00 < 5) {
+            hasPair = data_02175674[slotIndex].mPressedBits;
+            if (hasPair == 0 && data_02175680[slotIndex].mPressedBits < 5) {
                 pairRecentlyGone = 1;
             }
-            if (pairRecentlyGone == 0 && data_0217567c[slotIndex].mUnk_00 == 0 && hasPair != 0) {
+            if (pairRecentlyGone == 0 && data_0217567c[slotIndex].mPressedBits == 0 && hasPair != 0) {
                 pairIsNew = 1;
             }
             if (pairIsNew != 0) {
-                x = data_02175670[slotIndex].mUnk_00;
-                pairY = data_02175672[slotIndex].mUnk_00;
+                x = data_02175670[slotIndex].mPressedBits;
+                pairY = data_02175672[slotIndex].mPressedBits;
                 touchInReturnRect = IsSelectReturnState2NoState3Or4RequestAndInRect(x, pairY);
                 rectIndex = RectTableFindContaining(subFileSet->mUnk_10, x, pairY);
             }
-            if ((u16) (data_02175628[slotIndex].mUnk_00 & PAD_KEY_A) != 0 || rectIndex == 0) {
+            if ((u16) (data_02175628[slotIndex].mPressedBits & PAD_KEY_A) != 0 || rectIndex == 0) {
                 if (gMultiSelectMember->mChildCount > 0 && gMultiSelectMember->mInterpolations[3].mState == 1) {
                     func_02031b30(0);
                     RequestSelectReturnState4();
@@ -739,7 +739,7 @@ s32 func_02030ea4(Unk02030b18 *sceneNumbers) {
                     break;
                 }
             }
-            if ((u16) (data_02175628[slotIndex].mUnk_00 & PAD_KEY_B) != 0 || touchInReturnRect != 0) {
+            if ((u16) (data_02175628[slotIndex].mPressedBits & PAD_KEY_B) != 0 || touchInReturnRect != 0) {
                 gMultiSelectMember->mUnk_6c = 1;
                 gMultiSelectMember->mState = 3;
                 gMultiSelectMember->mUnk_7c = TRUE;
@@ -864,16 +864,16 @@ s32 func_02030b18(Unk02030b18 *sceneNumbers) {
         case 1:
             pairIsNew = 0;
             pairRecentlyGone = 0;
-            hasPair = data_02175674[slotIndex].mUnk_00;
-            if (hasPair == 0 && data_02175680[slotIndex].mUnk_00 < 5) {
+            hasPair = data_02175674[slotIndex].mPressedBits;
+            if (hasPair == 0 && data_02175680[slotIndex].mPressedBits < 5) {
                 pairRecentlyGone = 1;
             }
-            if (pairRecentlyGone == 0 && data_0217567c[slotIndex].mUnk_00 == 0 && hasPair != 0) {
+            if (pairRecentlyGone == 0 && data_0217567c[slotIndex].mPressedBits == 0 && hasPair != 0) {
                 pairIsNew = 1;
             }
             if (pairIsNew != 0) {
-                touchInReturnRect = IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[slotIndex].mUnk_00,
-                                                                                    data_02175672[slotIndex].mUnk_00);
+                touchInReturnRect = IsSelectReturnState2NoState3Or4RequestAndInRect(
+                    data_02175670[slotIndex].mPressedBits, data_02175672[slotIndex].mPressedBits);
             }
             y = gMultiSelectMember->mUnk_90;
             if (y == 0) {
@@ -908,7 +908,7 @@ s32 func_02030b18(Unk02030b18 *sceneNumbers) {
                 }
                 gMultiSelectMember->mState = 7;
             } else if (y == 0) {
-                if ((u16) (data_02175628[slotIndex].mUnk_00 & PAD_KEY_B) != 0 || touchInReturnRect != 0) {
+                if ((u16) (data_02175628[slotIndex].mPressedBits & PAD_KEY_B) != 0 || touchInReturnRect != 0) {
                     gMultiSelectMember->mUnk_6c = 0;
                     gMultiSelectMember->mState = 3;
                     gMultiSelectMember->mUnk_7c = TRUE;

@@ -49,7 +49,7 @@
 #pragma optimize_for_size on
 
 u16 func_02028710(InputSlot *a, u32 b) {
-    return a->mUnk_00 & b;
+    return a->mPressedBits & b;
 }
 
 u16 func_020286f4(u32 a, u32 b) {

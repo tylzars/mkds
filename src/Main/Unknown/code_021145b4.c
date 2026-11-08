@@ -421,16 +421,16 @@ void AdvanceRecordVSEraseState4(void) {
     AdvanceRecordVSEraseOffsetTimers();
     AdvanceRecordVSEraseIndexChange();
     firstRecordIndex = GetRecordVSEraseFirstRecordIndex();
-    n = (data_02175674[i].mUnk_00 == 0 && data_02175680[i].mUnk_00 < 5) || data_02175674[i].mUnk_00 != 0;
+    n = (data_02175674[i].mPressedBits == 0 && data_02175680[i].mPressedBits < 5) || data_02175674[i].mPressedBits != 0;
     if (n) {
-        v = RectTableFindContaining(gRecordVSErase->mRecordVSSEraseBnbl, data_02175670[i].mUnk_00,
-                                    data_02175672[i].mUnk_00);
+        v = RectTableFindContaining(gRecordVSErase->mRecordVSSEraseBnbl, data_02175670[i].mPressedBits,
+                                    data_02175672[i].mPressedBits);
     }
-    n = !(data_02175674[i].mUnk_00 == 0 && data_02175680[i].mUnk_00 < 5) &&
-        (data_0217567c[i].mUnk_00 == 0 && data_02175674[i].mUnk_00 != 0);
+    n = !(data_02175674[i].mPressedBits == 0 && data_02175680[i].mPressedBits < 5) &&
+        (data_0217567c[i].mPressedBits == 0 && data_02175674[i].mPressedBits != 0);
     if (n) {
-        w = RectTableFindContaining(gRecordVSErase->mRecordVSSEraseBnbl, data_02175670[i].mUnk_00,
-                                    data_02175672[i].mUnk_00);
+        w = RectTableFindContaining(gRecordVSErase->mRecordVSSEraseBnbl, data_02175670[i].mPressedBits,
+                                    data_02175672[i].mPressedBits);
     }
     if (v != 5) {
         gRecordVSErase->mUnk_98 = FALSE;
@@ -438,11 +438,11 @@ void AdvanceRecordVSEraseState4(void) {
     if (v != 6) {
         gRecordVSErase->mUnk_9c = FALSE;
     }
-    if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_B) != 0 ||
-        ((n = !(data_02175674[i].mUnk_00 == 0 && data_02175680[i].mUnk_00 < 5) &&
-              (data_0217567c[i].mUnk_00 == 0 && data_02175674[i].mUnk_00 != 0)) &&
-         IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) !=
-             FALSE)) {
+    if ((u16) (data_02175628[i].mPressedBits & PAD_KEY_B) != 0 ||
+        ((n = !(data_02175674[i].mPressedBits == 0 && data_02175680[i].mPressedBits < 5) &&
+              (data_0217567c[i].mPressedBits == 0 && data_02175674[i].mPressedBits != 0)) &&
+         IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mPressedBits,
+                                                         data_02175672[i].mPressedBits) != FALSE)) {
         if (IsRecordVSEraseIndexChangeRunning() != 0) {
             return;
         }
@@ -500,7 +500,7 @@ void AdvanceRecordVSEraseState4(void) {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
     } else {
-        if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_A) != 0) {
+        if ((u16) (data_02175628[i].mPressedBits & PAD_KEY_A) != 0) {
             if (IsRecordFlagged(firstRecordIndex + gRecordVSErase->mIndex) == 0) {
                 if (IsRecordVSEraseIndexChangeRunning() == 0) {
                     RequestRecordVSEraseState7();

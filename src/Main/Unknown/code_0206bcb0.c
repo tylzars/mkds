@@ -269,7 +269,7 @@ recheck:
         return;
     }
     k = p->mEntryIndex;
-    if (!(u16) (data_02175628[k].mUnk_00 & PAD_KEY_R)) {
+    if (!(u16) (data_02175628[k].mPressedBits & PAD_KEY_R)) {
         if (!(p->mUnk_44 & 0x20000000)) {
             return;
         }

@@ -151,27 +151,27 @@ void AdvanceWiFiTopMenuState3(void) {
     BOOL v6;
     s32 v7;
 
-    if (data_02175674[i].mUnk_00 == 0 && data_02175680[i].mUnk_00 < 5) {
+    if (data_02175674[i].mPressedBits == 0 && data_02175680[i].mPressedBits < 5) {
         v3 = TRUE;
     }
-    if (v3 == FALSE && data_0217567c[i].mUnk_00 == 0 && data_02175674[i].mUnk_00 != 0) {
+    if (v3 == FALSE && data_0217567c[i].mPressedBits == 0 && data_02175674[i].mPressedBits != 0) {
         v1 = TRUE;
     }
     if (v1 != FALSE) {
-        v2 =
-            RectTableFindContaining(gWiFiTopMenu->mWiFiTopMenuBnbl, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
+        v2 = RectTableFindContaining(gWiFiTopMenu->mWiFiTopMenuBnbl, data_02175670[i].mPressedBits,
+                                     data_02175672[i].mPressedBits);
     }
-    v5 = data_02175628[i].mUnk_00 & PAD_KEY_B;
+    v5 = data_02175628[i].mPressedBits & PAD_KEY_B;
     if ((u16) v5 == 0) {
         v7 = v6 = FALSE;
-        if (data_02175674[i].mUnk_00 == 0 && data_02175680[i].mUnk_00 < 5) {
+        if (data_02175674[i].mPressedBits == 0 && data_02175680[i].mPressedBits < 5) {
             v7 = 1;
         }
-        if (v7 == 0 && data_0217567c[i].mUnk_00 == 0 && data_02175674[i].mUnk_00 != 0) {
+        if (v7 == 0 && data_0217567c[i].mPressedBits == 0 && data_02175674[i].mPressedBits != 0) {
             v6 = TRUE;
         }
-        if (v6 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00,
-                                                                           data_02175672[i].mUnk_00) == FALSE) {
+        if (v6 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mPressedBits,
+                                                                           data_02175672[i].mPressedBits) == FALSE) {
             goto next;
         }
     }
@@ -182,7 +182,7 @@ void AdvanceWiFiTopMenuState3(void) {
     }
     return;
 next:
-    v5 = data_02175628[i].mUnk_00 & PAD_KEY_A;
+    v5 = data_02175628[i].mPressedBits & PAD_KEY_A;
     if ((u16) v5 != 0 || v2 <= 2) {
         v4 = gWiFiTopMenu->mIndex;
         if ((u16) v5 == 0) {
@@ -338,7 +338,7 @@ void AdvanceWiFiTopMenuState8(void) {
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
     }
     if (IsTxtSystemState2NoCloseRequest() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
-        if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_B) == 0) {
+        if ((u16) (data_02175628[i].mPressedBits & PAD_KEY_B) == 0) {
             a = b = FALSE;
             v = data_02175628[i].mHasPair;
             if (v == 0 && data_02175628[i].mNoPairCount < 5) {

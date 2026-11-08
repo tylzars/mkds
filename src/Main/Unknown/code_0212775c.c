@@ -627,12 +627,12 @@ static inline BOOL func_02127a84_inline(u16 pointX, u16 pointY, u8 minX, u8 maxX
 static inline s32 func_02127a84_inline2(u32 inputSlotIndex) {
     BOOL r = FALSE;
     BOOL s = FALSE;
-    u16 c = data_02175674[inputSlotIndex].mUnk_00;
+    u16 c = data_02175674[inputSlotIndex].mPressedBits;
 
-    if (c == 0 && data_02175680[inputSlotIndex].mUnk_00 < 5) {
+    if (c == 0 && data_02175680[inputSlotIndex].mPressedBits < 5) {
         s = TRUE;
     }
-    if (s == FALSE && data_0217567c[inputSlotIndex].mUnk_00 == 0 && c != 0) {
+    if (s == FALSE && data_0217567c[inputSlotIndex].mPressedBits == 0 && c != 0) {
         r = TRUE;
     }
     return r;
@@ -646,8 +646,8 @@ void AdvanceSelectChoisesState1(void) {
     u16 keys;
 
     inputSlotIndex = UNK_02175628_INDEX_8;
-    touchX = data_02175670[inputSlotIndex].mUnk_00;
-    touchY = data_02175672[inputSlotIndex].mUnk_00;
+    touchX = data_02175670[inputSlotIndex].mPressedBits;
+    touchY = data_02175672[inputSlotIndex].mPressedBits;
     if (gSelectChoises->mState0Requested != 0) {
         gSelectChoises->mNextState = 0;
         gSelectChoises->mState0Requested = 0;
@@ -664,7 +664,7 @@ void AdvanceSelectChoisesState1(void) {
             hit = 1;
         }
     }
-    keys = data_02175628[inputSlotIndex].mUnk_00;
+    keys = data_02175628[inputSlotIndex].mPressedBits;
     if ((u16) (keys & PAD_KEY_A) != 0 || hit != -1) {
         if (hit == -1 || gSelectChoises->mIndex == hit) {
             func_02127d28();

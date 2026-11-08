@@ -146,7 +146,7 @@ void AdvanceOptionHensyuMenuState3(void) {
         r = RectTableFindContaining(gOptionHensyuMenu->mOptionHensyuMenuSBnbl, data_02175628[i].mPairX,
                                     data_02175628[i].mPairY);
     }
-    if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_B) == 0) {
+    if ((u16) (data_02175628[i].mPressedBits & PAD_KEY_B) == 0) {
         b = FALSE;
         a = FALSE;
         v = data_02175628[i].mHasPair;
@@ -167,10 +167,10 @@ void AdvanceOptionHensyuMenuState3(void) {
         RequestSelectReturnState3WithSound(0);
         return;
     }
-    if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_A) != 0 || r <= 1) {
+    if ((u16) (data_02175628[i].mPressedBits & PAD_KEY_A) != 0 || r <= 1) {
         p = gOptionHensyuMenu;
         oldv = p->mIndex;
-        if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_A) == 0) {
+        if ((u16) (data_02175628[i].mPressedBits & PAD_KEY_A) == 0) {
             switch (r) {
                 case 0:
                     p->mIndex = 0;

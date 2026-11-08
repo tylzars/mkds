@@ -8,7 +8,7 @@ void UpdateInputSlot(u32 keys, InputSlot *slot) {
     if (slot->mUnk_20 != 0) {
         WriteKeyBitsToStream(keys);
     }
-    slot->mUnk_00 = keys & (keys ^ slot->mBits);
+    slot->mPressedBits = keys & (keys ^ slot->mBits);
     slot->mClearedBits = (keys ^ 0xffff) & (keys ^ slot->mBits);
     slot->mBits = keys;
     slot->mRepeatBits = 0;
@@ -46,7 +46,7 @@ void UpdateInputSlot(u32 keys, InputSlot *slot) {
     }
     maskedBits = slot->mBits & 0x30c;
     if (slot->mUnk_14 != 0 && maskedBits == 0x30c) {
-        if (slot->mUnk_00 & 0x30c) {
+        if (slot->mPressedBits & 0x30c) {
             slot->mHoldStartTick = OS_GetTick();
             slot->mHoldLong = 0;
             return;

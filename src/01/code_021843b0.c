@@ -30,6 +30,7 @@
 #include "Main/Unknown/code_02109000.h"
 #include "Main/Unknown/code_02109054.h"
 #include "Main/Unknown/code_020d275c.h"
+#include "Main/Unknown/code_021000d0.h"
 
 void func_ov001_02184874(Unk02188950 *donketu, Kart *kart) {
     s32 scale;
@@ -68,7 +69,7 @@ void func_ov001_02184874(Unk02188950 *donketu, Kart *kart) {
                     Vec3NormalizeAndGetLengthUnchecked(&effectPosition, &effectPosition);
                 }
                 VEC_MultAdd(kart->mRadius, &effectPosition, &kart->mCollisionCenter, &effectPosition);
-                if (donketu->mUnk_000.mKind == 0x1f5) {
+                if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_BOSS_DONKETU) {
                     donketu->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
                     StopSound(&donketu->mUnk_000.mSound->mSoundSource, 0x214);
                     StartMapObjectSound(&donketu->mUnk_000, 0x211);
@@ -77,7 +78,7 @@ void func_ov001_02184874(Unk02188950 *donketu, Kart *kart) {
                     StartEffect(0x3ea, &effectPosition);
                     func_ov001_02187518(donketu, 0x99a, 0, 0x75c, 0x3f3, 0);
                     func_ov001_02187518(donketu, -0x99a, 0, 0x75c, 0x3f3, 0);
-                } else if (donketu->mUnk_000.mKind == 0x1f6) {
+                } else if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_KING_ICE_DONKETU) {
                     donketu->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
                     StopSound(&donketu->mUnk_000.mSound->mSoundSource, 0x245);
                     StartMapObjectSound(&donketu->mUnk_000, 0x23f);
@@ -144,7 +145,7 @@ void func_ov001_021843b0(Unk02188950 *donketu, Kart *kart) {
                 Vec3NormalizeAndGetLengthUnchecked(&effectPosition, &effectPosition);
             }
             VEC_MultAdd(kart->mRadius, &effectPosition, &kart->mCollisionCenter, &effectPosition);
-            if (donketu->mUnk_000.mKind == 0x1f5) {
+            if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_BOSS_DONKETU) {
                 donketu->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
                 StopSound(&donketu->mUnk_000.mSound->mSoundSource, 0x214);
                 StartMapObjectSound(&donketu->mUnk_000, 0x211);
@@ -153,7 +154,7 @@ void func_ov001_021843b0(Unk02188950 *donketu, Kart *kart) {
                 StartEffect(0x3ea, &effectPosition);
                 func_ov001_02187518(donketu, 0x99a, 0, 0x75c, 0x3f3, 0);
                 func_ov001_02187518(donketu, -0x99a, 0, 0x75c, 0x3f3, 0);
-            } else if (donketu->mUnk_000.mKind == 0x1f6) {
+            } else if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_KING_ICE_DONKETU) {
                 donketu->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
                 StopSound(&donketu->mUnk_000.mSound->mSoundSource, 0x245);
                 StartMapObjectSound(&donketu->mUnk_000, 0x23f);

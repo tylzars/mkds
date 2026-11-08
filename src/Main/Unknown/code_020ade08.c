@@ -130,7 +130,7 @@ s16 func_020ae488(s32 a) {
 #pragma thumb off
 
 u16 func_020ae474(InputSlot *a, u32 b) {
-    return a->mUnk_00 & b;
+    return a->mPressedBits & b;
 }
 
 u16 GetNewBits(u32 a, u32 b) {

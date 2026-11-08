@@ -655,7 +655,7 @@ void AdvanceMissionRunMSselState3(void) {
         result = RectTableFindContaining(gMissionRunMSsel->mMissionRunMSselSBnbl, data_02175628[slot].mPairX,
                                          data_02175628[slot].mPairY);
     }
-    if ((u16) (data_02175628[slot].mUnk_00 & PAD_KEY_B) == 0) {
+    if ((u16) (data_02175628[slot].mPressedBits & PAD_KEY_B) == 0) {
         flag_b = FALSE;
         flag_a = FALSE;
         value = data_02175628[slot].mHasPair;
@@ -691,7 +691,7 @@ skip:
         func_ov001_021a0488();
         return;
     }
-    if ((u16) (data_02175628[slot].mUnk_00 & PAD_KEY_A) != 0) {
+    if ((u16) (data_02175628[slot].mPressedBits & PAD_KEY_A) != 0) {
         gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mIndex] = 5;
         func_ov001_021a0488();
         return;

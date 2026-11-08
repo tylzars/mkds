@@ -21,7 +21,7 @@ u32 func_020acef4(void) {
 }
 
 u16 func_020acee0(InputSlot *slot, u32 mask) {
-    return slot->mUnk_00 & mask;
+    return slot->mPressedBits & mask;
 }
 
 u16 func_020acec4(u32 slotIndex, u32 mask) {

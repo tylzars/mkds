@@ -550,7 +550,7 @@ void AdvanceRecordGpxState2(void) {
     if (a != 1) {
         gRecordGpx->mUnk_8c = FALSE;
     }
-    if ((u16) (data_02175628[idx].mUnk_00 & PAD_KEY_B) == 0) {
+    if ((u16) (data_02175628[idx].mPressedBits & PAD_KEY_B) == 0) {
         x3 = FALSE;
         y3 = FALSE;
         if (data_02175628[idx].mHasPair == 0 && data_02175628[idx].mNoPairCount < 5) {

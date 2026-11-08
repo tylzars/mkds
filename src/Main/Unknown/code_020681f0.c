@@ -422,7 +422,7 @@ void AdvanceKartDriftCharge(Kart *a) {
             return;
         }
         k = a->mEntryIndex;
-        e = data_02175628[k].mUnk_00;
+        e = data_02175628[k].mPressedBits;
         if ((u16) (e & PAD_KEY_LEFT) != 0) {
             c = &a->mLeftTurnCount;
             if (a->mAwayTurnCounter == c) {

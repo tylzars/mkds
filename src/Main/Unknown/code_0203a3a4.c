@@ -255,7 +255,7 @@ u32 ShouldEndAwardRace(u32 sceneFrames) {
     }
     if (func_0203a9ec_inline() != 0) {
         InputSlotIndex slotIndex = UNK_02175628_INDEX_8;
-        if ((u16) (data_02175628[slotIndex].mUnk_00 & PAD_KEY_A) != 0) {
+        if ((u16) (data_02175628[slotIndex].mPressedBits & PAD_KEY_A) != 0) {
             return 1;
         }
     }

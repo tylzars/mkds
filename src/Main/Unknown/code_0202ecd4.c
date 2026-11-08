@@ -50,7 +50,7 @@ void AdvanceScrollListRightColumnTimer(void) {
 #pragma thumb off
 
 u16 func_0202ecf0(InputSlot *slot, u32 mask) {
-    return slot->mUnk_00 & mask;
+    return slot->mPressedBits & mask;
 }
 
 u16 func_0202ecd4(u32 slotIndex, u32 mask) {

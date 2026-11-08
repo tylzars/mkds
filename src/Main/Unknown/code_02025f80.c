@@ -378,7 +378,7 @@ void InitSelectCharacter(void *parentHeap, s32 mode, void *mainOam, void *subOam
 
 static inline s32 func_02026120_inline(u16 inputSlot) {
     BOOL result = FALSE;
-    if (data_02175674[inputSlot].mUnk_00 == 0 && data_02175680[inputSlot].mUnk_00 < 5) {
+    if (data_02175674[inputSlot].mPressedBits == 0 && data_02175680[inputSlot].mPressedBits < 5) {
         result = TRUE;
     }
     return result;
@@ -386,8 +386,8 @@ static inline s32 func_02026120_inline(u16 inputSlot) {
 
 static inline s32 func_02026120_inline_2(u16 inputSlot) {
     BOOL result = FALSE;
-    if (func_02026120_inline(inputSlot) == 0 && data_0217567c[inputSlot].mUnk_00 == 0 &&
-        data_02175674[inputSlot].mUnk_00 != 0) {
+    if (func_02026120_inline(inputSlot) == 0 && data_0217567c[inputSlot].mPressedBits == 0 &&
+        data_02175674[inputSlot].mPressedBits != 0) {
         result = TRUE;
     }
     return result;
@@ -463,8 +463,8 @@ int AdvanceSelectCharacter(void) {
         case 3:
             previousTableIndex = selectCharacter->mUnk_060;
             if (func_02026120_inline_2(inputSlot) != 0) {
-                pointX = data_02175670[inputSlot].mUnk_00;
-                pointY = data_02175672[inputSlot].mUnk_00;
+                pointX = data_02175670[inputSlot].mPressedBits;
+                pointY = data_02175672[inputSlot].mPressedBits;
                 rectEntryId = RectTableFindContaining(sParts->mRects, pointX, pointY);
                 if (rectEntryId >= 0) {
                     for (tableIndex = 0; tableIndex < gSelectCharacter->mUnk_07c; tableIndex++) {
@@ -501,7 +501,7 @@ int AdvanceSelectCharacter(void) {
                         break;
                 }
             } else {
-                keyBits = data_02175628[inputSlot].mUnk_00;
+                keyBits = data_02175628[inputSlot].mPressedBits;
                 if ((u16) (keyBits & PAD_KEY_A) != 0) {
                     gSelectCharacter->mUnk_068 = 0;
                     gSelectCharacter->mUnk_06c = 5;

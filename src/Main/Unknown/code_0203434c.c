@@ -177,16 +177,16 @@ s32 func_02034370(Unk02034370 *sceneNumbers) {
                     func_02035114();
                     pairIsNew = FALSE;
                     pairRecentlyGone = FALSE;
-                    hasPair = data_02175674[slotIndex].mUnk_00;
-                    if (hasPair == 0 && data_02175680[slotIndex].mUnk_00 < 5) {
+                    hasPair = data_02175674[slotIndex].mPressedBits;
+                    if (hasPair == 0 && data_02175680[slotIndex].mPressedBits < 5) {
                         pairRecentlyGone = TRUE;
                     }
-                    if (pairRecentlyGone == FALSE && data_0217567c[slotIndex].mUnk_00 == 0 && hasPair != 0) {
+                    if (pairRecentlyGone == FALSE && data_0217567c[slotIndex].mPressedBits == 0 && hasPair != 0) {
                         pairIsNew = TRUE;
                     }
                     if (pairIsNew != FALSE) {
-                        pairX = data_02175670[slotIndex].mUnk_00;
-                        pairY = data_02175672[slotIndex].mUnk_00;
+                        pairX = data_02175670[slotIndex].mPressedBits;
+                        pairY = data_02175672[slotIndex].mPressedBits;
                         touchInReturnRect = IsSelectReturnState2NoState3Or4RequestAndInRect(pairX, pairY);
                         rectIndex = RectTableFindContaining(subCellFileSet->mRects, pairX, pairY);
                     }
@@ -199,7 +199,7 @@ s32 func_02034370(Unk02034370 *sceneNumbers) {
                         data_02174e64->mUnk_18c = TRUE;
                         data_02174e64->mStateFrames = 0;
                         data_02174e64->mState = 3;
-                    } else if ((u16) (data_02175628[slotIndex].mUnk_00 & PAD_KEY_A) != 0 &&
+                    } else if ((u16) (data_02175628[slotIndex].mPressedBits & PAD_KEY_A) != 0 &&
                                data_02174e64->mSelectedIndex >= 0) {
                         SetupGhostSubTextTwoButtons();
                         func_02035228(0);
@@ -208,7 +208,8 @@ s32 func_02034370(Unk02034370 *sceneNumbers) {
                         data_02174e64->mUnk_18c = TRUE;
                         data_02174e64->mStateFrames = 0;
                         data_02174e64->mState = 3;
-                    } else if ((u16) (data_02175628[slotIndex].mUnk_00 & PAD_KEY_B) != 0 || touchInReturnRect != 0) {
+                    } else if ((u16) (data_02175628[slotIndex].mPressedBits & PAD_KEY_B) != 0 ||
+                               touchInReturnRect != 0) {
                         data_02174e64->mState = 12;
                         RequestSelectReturnState3WithSound(0);
                     } else if (GetNewOrRepeatBits(slotIndex, PAD_KEY_UP)) {

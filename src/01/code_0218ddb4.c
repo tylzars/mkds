@@ -430,9 +430,9 @@ void func_ov001_0218e92c(Unk02188950 *p) {
     data_0217d20c = 4;
     func_ov001_02188200(p, func_ov001_0218e38c);
     p->mUnk_000.mFlags |= data_ov001_021a65b0;
-    func_ov001_02182a3c(p->mPrm->mUnk_18c < (gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181800() : 0)
+    func_ov001_02182a3c(p->mPrm->mUnk_18c < (gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunBossCount() : 0)
                             ? p->mPrm->mUnk_18c
-                            : (gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181800() : 0));
+                            : (gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunBossCount() : 0));
     p->mUnk_25c.x = p->mUnk_268 = p->mUnk_25c.z = p->mUnk_270 = p->mPrm->mUnk_00c / 2;
 }
 

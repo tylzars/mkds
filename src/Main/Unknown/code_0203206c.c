@@ -291,7 +291,7 @@ s32 AdvanceSelectGame(void) {
                 touchInReturnRect = IsSelectReturnState2NoState3Or4RequestAndInRect(d, pairY);
                 d = RectTableFindContaining(subFileSet->mRects, d, pairY);
             }
-            if ((u16) (data_02175628[slotIndex].mUnk_00 & PAD_KEY_A) != 0) {
+            if ((u16) (data_02175628[slotIndex].mPressedBits & PAD_KEY_A) != 0) {
                 SetSelectGameSelectedRowVisible(0);
                 func_02032a20();
             } else if (d >= 0) {
@@ -303,7 +303,7 @@ s32 AdvanceSelectGame(void) {
                         break;
                     }
                 }
-            } else if ((u16) (data_02175628[slotIndex].mUnk_00 & PAD_KEY_B) != 0 || touchInReturnRect != 0) {
+            } else if ((u16) (data_02175628[slotIndex].mPressedBits & PAD_KEY_B) != 0 || touchInReturnRect != 0) {
                 if (gSelectGame->mMode == 0) {
                     gSelectGame->mResult = 2;
                     gSelectGame->mState = 9;

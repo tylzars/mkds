@@ -250,20 +250,20 @@ void AdvanceResultsGp(Unk02029aa0 *sceneNumbers) {
             if (frames >= frameLimit) {
                 void *commonMessage;
                 u32 messageMask;
-                if (!(u16) (data_02175628[inputSlotIndex].mUnk_00 & PAD_KEY_A)) {
+                if (!(u16) (data_02175628[inputSlotIndex].mPressedBits & PAD_KEY_A)) {
                     BOOL y;
                     BOOL x;
                     u16 z;
                     y = FALSE;
                     x = FALSE;
-                    z = data_02175674[inputSlotIndex].mUnk_00;
+                    z = data_02175674[inputSlotIndex].mPressedBits;
                     if (z == 0) {
-                        if (data_02175680[inputSlotIndex].mUnk_00 < 5) {
+                        if (data_02175680[inputSlotIndex].mPressedBits < 5) {
                             x = TRUE;
                         }
                     }
                     if (x == FALSE) {
-                        if (data_0217567c[inputSlotIndex].mUnk_00 == 0) {
+                        if (data_0217567c[inputSlotIndex].mPressedBits == 0) {
                             if (z != 0) {
                                 y = TRUE;
                             }

@@ -402,7 +402,7 @@ void AdvanceMissionRunLVselState3(void) {
         sel = RectTableFindContaining(gMissionRunLVsel->mMissionRunLVselS7Or6Bnbl, data_02175628[i].mPairX,
                                       data_02175628[i].mPairY);
     }
-    if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_B) == 0) {
+    if ((u16) (data_02175628[i].mPressedBits & PAD_KEY_B) == 0) {
         BOOL g2 = FALSE;
         BOOL g1 = FALSE;
         if (data_02175628[i].mHasPair == 0 && data_02175628[i].mNoPairCount < 5) {
@@ -434,7 +434,7 @@ next:
         }
         return;
     }
-    if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_A) != 0) {
+    if ((u16) (data_02175628[i].mPressedBits & PAD_KEY_A) != 0) {
         gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mIndex] = 5;
         func_ov001_0219f1f4();
         return;

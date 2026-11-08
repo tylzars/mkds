@@ -290,16 +290,16 @@ s32 func_0203551c(u16 *sceneNumbers) {
     AdvanceInterpolation(&data_02174e68->mUnk_90);
     pairIsNew = FALSE;
     pairRecentlyGone = FALSE;
-    hasPair = data_02175674[slotIndex].mUnk_00;
-    if (hasPair == 0 && data_02175680[slotIndex].mUnk_00 < 5) {
+    hasPair = data_02175674[slotIndex].mPressedBits;
+    if (hasPair == 0 && data_02175680[slotIndex].mPressedBits < 5) {
         pairRecentlyGone = TRUE;
     }
-    if (pairRecentlyGone == FALSE && data_0217567c[slotIndex].mUnk_00 == 0 && hasPair != 0) {
+    if (pairRecentlyGone == FALSE && data_0217567c[slotIndex].mPressedBits == 0 && hasPair != 0) {
         pairIsNew = TRUE;
     }
     if (pairIsNew != FALSE) {
-        touchInReturnRect = IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[slotIndex].mUnk_00,
-                                                                            data_02175672[slotIndex].mUnk_00);
+        touchInReturnRect = IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[slotIndex].mPressedBits,
+                                                                            data_02175672[slotIndex].mPressedBits);
     }
     object = data_02174e68;
     switch (object->mState) {
@@ -327,7 +327,7 @@ s32 func_0203551c(u16 *sceneNumbers) {
                 SetupGhostNameSubTextTwoButtons();
                 RequestSelectReturnState4();
                 data_02174e68->mState = 2;
-            } else if ((u16) (data_02175628[slotIndex].mUnk_00 & PAD_KEY_B) != 0 || touchInReturnRect != 0) {
+            } else if ((u16) (data_02175628[slotIndex].mPressedBits & PAD_KEY_B) != 0 || touchInReturnRect != 0) {
                 message = GetBmgEntry(data_02174e68->mGhostMessages, 0x54);
                 buttonText = GetBmgEntry(data_02174e68->mCommonMessages, 4);
                 SetTxtSystemSoundId(0, 5);

@@ -381,7 +381,7 @@ void func_ov000_02180cdc(void) {
     BOOL b;
     u32 v;
     if (IsTxtSystemState2NoCloseRequest() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
-        if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_B) == 0) {
+        if ((u16) (data_02175628[i].mPressedBits & PAD_KEY_B) == 0) {
             a = b = FALSE;
             v = data_02175628[i].mHasPair;
             if (v == 0 && data_02175628[i].mNoPairCount < 5) {

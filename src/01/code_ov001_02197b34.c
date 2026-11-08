@@ -238,7 +238,7 @@ void AdvanceTimeAttackTopMenuState3(void) {
                                       data_02175628[i].mPairY);
     }
     e = &data_02175628[i];
-    bits = e->mUnk_00 & PAD_KEY_B;
+    bits = e->mPressedBits & PAD_KEY_B;
     if ((u16) bits == 0) {
         flag3 = flag4 = FALSE;
         if (data_02175628[i].mHasPair == 0 && data_02175628[i].mNoPairCount < 5) {
@@ -258,7 +258,7 @@ void AdvanceTimeAttackTopMenuState3(void) {
     RequestSelectReturnState3WithSound(0);
     return;
 next:
-    bits = e->mUnk_00 & PAD_KEY_A;
+    bits = e->mPressedBits & PAD_KEY_A;
     if ((u16) bits != 0 || sel <= 2) {
         if ((u16) bits == 0) {
             func_ov001_02198264(gTimeAttackTopMenu->mIndex);

@@ -1657,7 +1657,7 @@ void AdvanceKartModelMenuInput(void) {
     if (gThreadFunctionQueue->mRunRequested == 0 && p->mLoadRequested == FALSE) {
         w = ~a;
         v1 = UNK_02175628_INDEX_8;
-        k = data_02175628[v1].mUnk_00;
+        k = data_02175628[v1].mPressedBits;
         if ((u16) (k & PAD_KEY_R) != 0) {
             d = a;
             do {

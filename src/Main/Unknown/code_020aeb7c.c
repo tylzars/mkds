@@ -81,10 +81,10 @@ void func_020aeb7c(void) {
                 }
                 if (b != FALSE) {
                     d = TRUE;
-                    if ((u16) (data_0217562c[func_020435bc()].mUnk_00 & 0x800) == 0) {
+                    if ((u16) (data_0217562c[func_020435bc()].mPressedBits & 0x800) == 0) {
                         e = FALSE;
                         if (func_020b2e98() == 0) {
-                            if (data_02175680[func_020435bc()].mUnk_00 == 5) {
+                            if (data_02175680[func_020435bc()].mPressedBits == 5) {
                                 e = TRUE;
                             }
                         } else {
@@ -136,10 +136,10 @@ void func_020aeb7c(void) {
                 }
                 if (b != FALSE) {
                     d = TRUE;
-                    if ((u16) (data_0217562c[func_020435bc()].mUnk_00 & 0x800) == 0) {
+                    if ((u16) (data_0217562c[func_020435bc()].mPressedBits & 0x800) == 0) {
                         e = FALSE;
                         if (func_020b2e98() == 0) {
-                            if (data_02175680[func_020435bc()].mUnk_00 == 5) {
+                            if (data_02175680[func_020435bc()].mPressedBits == 5) {
                                 e = TRUE;
                             }
                         } else {
@@ -212,10 +212,10 @@ void func_020aeb7c(void) {
                 }
                 if (b != FALSE) {
                     d = TRUE;
-                    if ((u16) (data_0217562c[func_020435bc()].mUnk_00 & 0x800) == 0) {
+                    if ((u16) (data_0217562c[func_020435bc()].mPressedBits & 0x800) == 0) {
                         e = FALSE;
                         if (func_020b2e98() == 0) {
-                            if (data_02175680[func_020435bc()].mUnk_00 == 5) {
+                            if (data_02175680[func_020435bc()].mPressedBits == 5) {
                                 e = TRUE;
                             }
                         } else {
@@ -282,10 +282,10 @@ void func_020aeb7c(void) {
                     }
                     if (b != FALSE) {
                         d = TRUE;
-                        if ((u16) (data_0217562c[func_020435bc()].mUnk_00 & 0x800) == 0) {
+                        if ((u16) (data_0217562c[func_020435bc()].mPressedBits & 0x800) == 0) {
                             e = FALSE;
                             if (func_020b2e98() == 0) {
-                                if (data_02175680[func_020435bc()].mUnk_00 == 5) {
+                                if (data_02175680[func_020435bc()].mPressedBits == 5) {
                                     e = TRUE;
                                 }
                             } else {
@@ -329,10 +329,10 @@ void func_020aeb7c(void) {
                 }
                 if (b != FALSE) {
                     d = TRUE;
-                    if ((u16) (data_0217562c[func_020435bc()].mUnk_00 & 0x800) == 0) {
+                    if ((u16) (data_0217562c[func_020435bc()].mPressedBits & 0x800) == 0) {
                         e = FALSE;
                         if (func_020b2e98() == 0) {
-                            if (data_02175680[func_020435bc()].mUnk_00 == 5) {
+                            if (data_02175680[func_020435bc()].mPressedBits == 5) {
                                 e = TRUE;
                             }
                         } else {
@@ -387,7 +387,7 @@ void func_020aeb7c(void) {
                     gRaceHud->mUnk_84c = 1;
                 }
             }
-            if ((u16) (data_0217562c[func_020435bc()].mUnk_00 & 0x800) != 0) {
+            if ((u16) (data_0217562c[func_020435bc()].mPressedBits & 0x800) != 0) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x19);
             }
             gRaceHud->mSubScreenEnabled = FALSE;

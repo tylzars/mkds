@@ -14,7 +14,7 @@ u32 func_020b2b54(void) {
 }
 
 u16 func_020b2b40(InputSlot *slot, u32 mask) {
-    return slot->mUnk_00 & mask;
+    return slot->mPressedBits & mask;
 }
 
 u16 func_020b2b24(s32 slotIndex, u32 mask) {

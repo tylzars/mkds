@@ -70,7 +70,7 @@ u32 func_020306b8(u32 slotIndex) {
 }
 
 u16 func_020306a4(InputSlot *slot, u32 mask) {
-    return slot->mUnk_00 & mask;
+    return slot->mPressedBits & mask;
 }
 
 u32 func_02030688(u32 slotIndex, u32 mask) {

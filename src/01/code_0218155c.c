@@ -160,25 +160,25 @@ void UpdateMissionRunData(void) {
         if (missionKind == 1 || missionKind == 5) {
             if (GetRaceUpdateFramesMod8() == 0) {
                 missionRunData = gMissionRunData;
-                if (missionRunData->mUnk_0c != 0) {
-                    missionRunData->mUnk_0c -= 1;
+                if (missionRunData->mPendingBossTransfer != 0) {
+                    missionRunData->mPendingBossTransfer -= 1;
                     missionRunData = gMissionRunData;
                     if (missionRunData->mCount != 0) {
                         missionRunData->mCount -= 1;
-                        gMissionRunData->mUnk_06 += 1;
+                        gMissionRunData->mBossCount += 1;
                     }
-                    if (gMissionRunData->mUnk_20 != NULL) {
-                        gMissionRunData->mUnk_20();
+                    if (gMissionRunData->mBossTransferCallback != NULL) {
+                        gMissionRunData->mBossTransferCallback();
                     }
                     gMissionRunData->mTimer = 0;
-                } else if (missionRunData->mUnk_0a != 0) {
-                    missionRunData->mUnk_0a -= 1;
+                } else if (missionRunData->mPendingDrop != 0) {
+                    missionRunData->mPendingDrop -= 1;
                     missionRunData = gMissionRunData;
                     if (missionRunData->mCount != 0) {
                         missionRunData->mCount -= 1;
                     }
-                    if (gMissionRunData->mUnk_1c != NULL) {
-                        gMissionRunData->mUnk_1c();
+                    if (gMissionRunData->mDropCallback != NULL) {
+                        gMissionRunData->mDropCallback();
                     }
                     gMissionRunData->mTimer = 0;
                 } else if (missionRunData->mPendingCountUp != 0) {
@@ -230,8 +230,8 @@ u32 GetMissionRunCountLimit(void) {
     return countLimit;
 }
 
-s32 func_ov001_02181800(void) {
-    return (gMissionRunData->mUnk_06);
+s32 GetMissionRunBossCount(void) {
+    return (gMissionRunData->mBossCount);
 }
 
 void func_ov001_021817e0(void) {
@@ -258,7 +258,7 @@ void func_ov001_0218175c(s32 b) {
 
 void func_ov001_0218173c(void) {
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-        func_ov001_02181678(5);
+        AddMissionRunPendingDrop(5);
     }
 }
 
@@ -294,36 +294,36 @@ void func_ov001_021816a8(UnkFunc *callback) {
     gMissionRunData->mCountUpCallback = callback;
 }
 
-void func_ov001_0218169c(UnkFunc *callback) {
-    gMissionRunData->mUnk_1c = callback;
+void SetMissionRunDropCallback(UnkFunc *callback) {
+    gMissionRunData->mDropCallback = callback;
 }
 
-void func_ov001_02181690(UnkFunc *callback) {
-    gMissionRunData->mUnk_20 = callback;
+void SetMissionRunBossTransferCallback(UnkFunc *callback) {
+    gMissionRunData->mBossTransferCallback = callback;
 }
 
-void func_ov001_02181678(u32 amount) {
+void AddMissionRunPendingDrop(u32 amount) {
     MissionRunData *missionRunData = gMissionRunData;
     u16 count = missionRunData->mCount;
     if (amount >= count) {
         amount = count;
     }
-    missionRunData->mUnk_0a += amount;
+    missionRunData->mPendingDrop += amount;
 }
 
-void func_ov001_02181660(u16 amount) {
+void AddMissionRunPendingBossTransfer(u16 amount) {
     MissionRunData *missionRunData = gMissionRunData;
     u16 count = missionRunData->mCount;
     if (amount >= count) {
         amount = count;
     }
-    missionRunData->mUnk_0c += amount;
+    missionRunData->mPendingBossTransfer += amount;
 }
 
-void func_ov001_02181630(short amount) {
-    gMissionRunData->mUnk_06 += amount;
-    if (gMissionRunData->mUnk_06 > GetMissionRunCountLimit()) {
-        gMissionRunData->mUnk_06 = GetMissionRunCountLimit();
+void AddMissionRunBossCount(short amount) {
+    gMissionRunData->mBossCount += amount;
+    if (gMissionRunData->mBossCount > GetMissionRunCountLimit()) {
+        gMissionRunData->mBossCount = GetMissionRunCountLimit();
     }
 }
 
@@ -349,11 +349,11 @@ void func_ov001_021815d0(s32 stepCount) {
 void func_ov001_0218155c(s32 stepCount) {
     s32 i;
 
-    if ((u32) stepCount >= gMissionRunData->mUnk_06) {
-        stepCount = gMissionRunData->mUnk_06;
+    if ((u32) stepCount >= gMissionRunData->mBossCount) {
+        stepCount = gMissionRunData->mBossCount;
     }
     for (i = 0; i < stepCount; i++) {
-        gMissionRunData->mUnk_06--;
+        gMissionRunData->mBossCount--;
         if (++gMissionRunData->mPendingCountUp > GetMissionRunCountLimit()) {
             gMissionRunData->mPendingCountUp = GetMissionRunCountLimit();
             return;

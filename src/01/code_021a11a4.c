@@ -416,7 +416,7 @@ void AdvanceSelectEngineState4(void) {
         r5 = RectTableFindContaining(gSelectEngine->mSelectEngineAOrBSBnbl, data_02175628[idx].mPairX,
                                      data_02175628[idx].mPairY);
     }
-    if ((u16) (data_02175628[idx].mUnk_00 & PAD_KEY_B) == 0) {
+    if ((u16) (data_02175628[idx].mPressedBits & PAD_KEY_B) == 0) {
         a2 = b2 = FALSE;
         w = data_02175628[idx].mHasPair;
         if (w == 0 && data_02175628[idx].mNoPairCount < 5) {
@@ -448,7 +448,7 @@ next:
         func_ov001_021a1978();
         return;
     }
-    if ((u16) (data_02175628[idx].mUnk_00 & PAD_KEY_A) != 0) {
+    if ((u16) (data_02175628[idx].mPressedBits & PAD_KEY_A) != 0) {
         gSelectEngine->mUnk_38 = FALSE;
         func_ov001_021a1978();
         return;

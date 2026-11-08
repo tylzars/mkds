@@ -254,28 +254,28 @@ void AdvanceWiFiVSSettingState4(void) {
     InputSlot *e;
     u32 messageIndex;
 
-    if (data_02175674[i].mUnk_00 == 0 && data_02175680[i].mUnk_00 < 5) {
+    if (data_02175674[i].mPressedBits == 0 && data_02175680[i].mPressedBits < 5) {
         v5 = TRUE;
     }
-    if (v5 == FALSE && data_0217567c[i].mUnk_00 == 0 && data_02175674[i].mUnk_00 != 0) {
+    if (v5 == FALSE && data_0217567c[i].mPressedBits == 0 && data_02175674[i].mPressedBits != 0) {
         v3 = TRUE;
     }
     if (v3 != FALSE) {
-        v4 = RectTableFindContaining(gWiFiVSSetting->mWiFiVSSettingBnbl, data_02175670[i].mUnk_00,
-                                     data_02175672[i].mUnk_00);
+        v4 = RectTableFindContaining(gWiFiVSSetting->mWiFiVSSettingBnbl, data_02175670[i].mPressedBits,
+                                     data_02175672[i].mPressedBits);
     }
     e = &data_02175628[i];
-    v8 = e->mUnk_00 & PAD_KEY_B;
+    v8 = e->mPressedBits & PAD_KEY_B;
     if ((u16) v8 == 0) {
         v7 = v6 = FALSE;
-        if (data_02175674[i].mUnk_00 == 0 && data_02175680[i].mUnk_00 < 5) {
+        if (data_02175674[i].mPressedBits == 0 && data_02175680[i].mPressedBits < 5) {
             v7 = 1;
         }
-        if (v7 == 0 && data_0217567c[i].mUnk_00 == 0 && data_02175674[i].mUnk_00 != 0) {
+        if (v7 == 0 && data_0217567c[i].mPressedBits == 0 && data_02175674[i].mPressedBits != 0) {
             v6 = TRUE;
         }
-        if (v6 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00,
-                                                                           data_02175672[i].mUnk_00) == FALSE) {
+        if (v6 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mPressedBits,
+                                                                           data_02175672[i].mPressedBits) == FALSE) {
             goto next;
         }
     }
@@ -286,7 +286,7 @@ void AdvanceWiFiVSSettingState4(void) {
     RequestTxtSystemClose();
     goto end;
 next:
-    v8 = e->mUnk_00 & PAD_KEY_A;
+    v8 = e->mPressedBits & PAD_KEY_A;
     if (((u16) v8 != 0 && gWiFiVSSetting->mRow == 2) || v4 == 2) {
         gWiFiVSSetting->mNextState = 5;
         if (gWiFiVSSetting->mRow == 2) {
@@ -323,7 +323,7 @@ next:
         }
         StartSoundOncePerFrame(0);
     } else if (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0 ||
-               (gWiFiVSSetting->mRow == 1 && (u16) (e->mUnk_00 & PAD_KEY_A) != 0)) {
+               (gWiFiVSSetting->mRow == 1 && (u16) (e->mPressedBits & PAD_KEY_A) != 0)) {
         gWiFiVSSetting->mRow = gWiFiVSSetting->mRow + 1;
         if (gWiFiVSSetting->mRow > 2) {
             gWiFiVSSetting->mRow = 0;
@@ -469,21 +469,21 @@ void AdvanceWiFiVSSettingState7(void) {
         return;
     }
     if (IsTxtSystemState2NoCloseRequest() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
-        if ((u16) (data_02175628[v1].mUnk_00 & PAD_KEY_B) == 0) {
+        if ((u16) (data_02175628[v1].mPressedBits & PAD_KEY_B) == 0) {
             a = FALSE;
             b = FALSE;
-            v = data_02175674[v1].mUnk_00;
-            if (v == 0 && data_02175680[v1].mUnk_00 < 5) {
+            v = data_02175674[v1].mPressedBits;
+            if (v == 0 && data_02175680[v1].mPressedBits < 5) {
                 b = TRUE;
             }
-            if (b == FALSE && data_0217567c[v1].mUnk_00 == 0 && v != 0) {
+            if (b == FALSE && data_0217567c[v1].mPressedBits == 0 && v != 0) {
                 a = TRUE;
             }
             if (a == FALSE) {
                 return;
             }
-            if (IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[v1].mUnk_00, data_02175672[v1].mUnk_00) ==
-                FALSE) {
+            if (IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[v1].mPressedBits,
+                                                                data_02175672[v1].mPressedBits) == FALSE) {
                 return;
             }
         }
@@ -508,21 +508,21 @@ void AdvanceWiFiVSSettingState8(void) {
         return;
     }
     if (IsTxtSystemState2NoCloseRequest() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
-        if ((u16) (data_02175628[v1].mUnk_00 & PAD_KEY_B) == 0) {
+        if ((u16) (data_02175628[v1].mPressedBits & PAD_KEY_B) == 0) {
             a = FALSE;
             b = FALSE;
-            v = data_02175674[v1].mUnk_00;
-            if (v == 0 && data_02175680[v1].mUnk_00 < 5) {
+            v = data_02175674[v1].mPressedBits;
+            if (v == 0 && data_02175680[v1].mPressedBits < 5) {
                 b = TRUE;
             }
-            if (b == FALSE && data_0217567c[v1].mUnk_00 == 0 && v != 0) {
+            if (b == FALSE && data_0217567c[v1].mPressedBits == 0 && v != 0) {
                 a = TRUE;
             }
             if (a == FALSE) {
                 return;
             }
-            if (IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[v1].mUnk_00, data_02175672[v1].mUnk_00) ==
-                FALSE) {
+            if (IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[v1].mPressedBits,
+                                                                data_02175672[v1].mPressedBits) == FALSE) {
                 return;
             }
         }

@@ -12,7 +12,7 @@ u32 GetEmblemChoisesInputSlot(void) {
 }
 
 u16 func_020ca9c8(InputSlot *slot, u32 mask) {
-    return slot->mUnk_00 & mask;
+    return slot->mPressedBits & mask;
 }
 
 u16 func_020ca9ac(u32 slotIndex, u32 mask) {

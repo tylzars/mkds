@@ -495,7 +495,7 @@ BOOL func_ov001_02196c4c(void) {
     InputSlotIndex idx = UNK_02175628_INDEX_8;
     u16 m;
 
-    m = data_02175628[idx].mUnk_00;
+    m = data_02175628[idx].mPressedBits;
     if (m != 0) {
         if (data_ov001_021a681c[0] == (data_ov001_021a681c[0] | m)) {
             gRecordTAtt->mUnk_80 = 1;
@@ -686,7 +686,7 @@ void AdvanceRecordTAttState2(void) {
     if (a != 1) {
         gRecordTAtt->mUnk_8c = FALSE;
     }
-    if ((u16) (data_02175628[idx].mUnk_00 & PAD_KEY_B) == 0) {
+    if ((u16) (data_02175628[idx].mPressedBits & PAD_KEY_B) == 0) {
         x = FALSE;
         y = FALSE;
         v = data_02175628[idx].mHasPair;
@@ -706,7 +706,7 @@ void AdvanceRecordTAttState2(void) {
     RequestSelectReturnState3WithSound(0);
     goto done;
 other:
-    if (b == 2 || (u16) (data_02175628[idx].mUnk_00 & PAD_KEY_X) != 0) {
+    if (b == 2 || (u16) (data_02175628[idx].mPressedBits & PAD_KEY_X) != 0) {
         func_ov001_02196f80();
     } else if ((a == 0 && gRecordTAtt->mUnk_88 != FALSE) || (b == 0 && gRecordTAtt->mUnk_88 == FALSE) ||
                (u16) (data_02175628[idx].mBits & PAD_KEY_LEFT) != 0) {
@@ -1087,7 +1087,7 @@ void AdvanceRecordTAttState15(void) {
     BOOL b;
 
     i = UNK_02175628_INDEX_8;
-    f = data_02175628[i].mUnk_00 & PAD_KEY_B;
+    f = data_02175628[i].mPressedBits & PAD_KEY_B;
     if (f == 0) {
         f = 0;
         b = FALSE;

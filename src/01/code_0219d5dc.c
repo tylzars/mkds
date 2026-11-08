@@ -151,7 +151,7 @@ void AdvanceOptionEmbremSelectState3(void) {
         result = RectTableFindContaining(gOptionEmbremSelect->mOptionEmbremSelectSBnbl, data_02175628[index].mPairX,
                                          data_02175628[index].mPairY);
     }
-    flags = data_02175628[index].mUnk_00 & PAD_KEY_B;
+    flags = data_02175628[index].mPressedBits & PAD_KEY_B;
     if (flags != 0) {
         goto next;
     }
@@ -181,7 +181,7 @@ void AdvanceOptionEmbremSelectState3(void) {
         }
         func_02056d40();
     } else {
-        flags = data_02175628[index].mUnk_00 & PAD_KEY_A;
+        flags = data_02175628[index].mPressedBits & PAD_KEY_A;
         if ((flags != 0 && gOptionEmbremSelect->mUnk_08 == 0) || result == 0) {
             if (gOptionEmbremSelect->mUnk_08 == 0) {
                 gOptionEmbremSelect->mUnk_24 = FALSE;

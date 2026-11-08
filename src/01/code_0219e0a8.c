@@ -214,7 +214,7 @@ void AdvanceEndingSceneState5(void) {
     gEndingScene->mUnk_008++;
     if (gEndingScene->mUnk_008 > gEndingSceneStateTable[gEndingScene->mState]) {
         gEndingScene->mUnk_008 = gEndingSceneStateTable[gEndingScene->mState];
-        flags = data_02175628[idx].mUnk_00 & 0xc0f;
+        flags = data_02175628[idx].mPressedBits & 0xc0f;
         if (flags == 0) {
             a = FALSE;
             b = FALSE;

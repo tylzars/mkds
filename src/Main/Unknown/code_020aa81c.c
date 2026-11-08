@@ -253,7 +253,7 @@ void AdvanceKeyboardTextEntry(void) {
     PollKeyboard();
     GetKeyboardKeyValue();
     v1 = UNK_02175628_INDEX_8;
-    if ((u16) (data_02175628[v1].mUnk_00 & 8) != 0) {
+    if ((u16) (data_02175628[v1].mPressedBits & 8) != 0) {
         if (GetKeyboardCursorValueWrapper() != 1) {
             MoveKeyboardCursorToValueWrapper(1);
         }

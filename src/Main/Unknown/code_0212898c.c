@@ -465,16 +465,16 @@ void AdvanceKeyboardState2(void) {
     f = FALSE;
     touchedRectIndex = -1;
     g = FALSE;
-    c = data_02175674[inputSlotIndex].mUnk_00;
-    if (c == 0 && data_02175680[inputSlotIndex].mUnk_00 < 5) {
+    c = data_02175674[inputSlotIndex].mPressedBits;
+    if (c == 0 && data_02175680[inputSlotIndex].mPressedBits < 5) {
         g = TRUE;
     }
-    if (g == FALSE && data_0217567c[inputSlotIndex].mUnk_00 == 0 && c != 0) {
+    if (g == FALSE && data_0217567c[inputSlotIndex].mPressedBits == 0 && c != 0) {
         f = TRUE;
     }
     if (f != FALSE) {
-        touchedRectIndex = RectTableFindContaining(gKeyboard->mBnbls[0], data_02175670[inputSlotIndex].mUnk_00,
-                                                   data_02175672[inputSlotIndex].mUnk_00);
+        touchedRectIndex = RectTableFindContaining(gKeyboard->mBnbls[0], data_02175670[inputSlotIndex].mPressedBits,
+                                                   data_02175672[inputSlotIndex].mPressedBits);
     }
     keyboard = gKeyboard;
     textRecord = &keyboard->mUnk_2c[keyboard->mKind];
@@ -482,7 +482,7 @@ void AdvanceKeyboardState2(void) {
     MIi_CpuCopy16(text, textRecord, 0x18);
     UpdateKeyboardFriendKeyButtons();
     if (touchedRectIndex == 1 ||
-        (GetKeyboardCursorValueWrapper() == 1 && (u16) (data_02175628[inputSlotIndex].mUnk_00 & PAD_KEY_A) != 0)) {
+        (GetKeyboardCursorValueWrapper() == 1 && (u16) (data_02175628[inputSlotIndex].mPressedBits & PAD_KEY_A) != 0)) {
         keyboard = gKeyboard;
         if (keyboard->mButtonEnabled[0] != 0) {
             keyboard->mNextState = 3;
@@ -495,7 +495,7 @@ void AdvanceKeyboardState2(void) {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
         }
     } else if (touchedRectIndex == 0 || (GetKeyboardCursorValueWrapper() == 2 &&
-                                         (u16) (data_02175628[inputSlotIndex].mUnk_00 & PAD_KEY_A) != 0)) {
+                                         (u16) (data_02175628[inputSlotIndex].mPressedBits & PAD_KEY_A) != 0)) {
         gKeyboard->mNextState = 3;
         gKeyboard->mUnk_2c[2].mUnk_10 = 0;
         RequestTxtSystemClose();
@@ -645,16 +645,16 @@ void AdvanceKeyboardState7(void) {
     f = FALSE;
     touchedRectIndex = -1;
     g = FALSE;
-    c = data_02175674[inputSlotIndex].mUnk_00;
-    if (c == 0 && data_02175680[inputSlotIndex].mUnk_00 < 5) {
+    c = data_02175674[inputSlotIndex].mPressedBits;
+    if (c == 0 && data_02175680[inputSlotIndex].mPressedBits < 5) {
         g = TRUE;
     }
-    if (g == FALSE && data_0217567c[inputSlotIndex].mUnk_00 == 0 && c != 0) {
+    if (g == FALSE && data_0217567c[inputSlotIndex].mPressedBits == 0 && c != 0) {
         f = TRUE;
     }
     if (f != FALSE) {
-        touchedRectIndex = RectTableFindContaining(gKeyboard->mBnbls[1], data_02175670[inputSlotIndex].mUnk_00,
-                                                   data_02175672[inputSlotIndex].mUnk_00);
+        touchedRectIndex = RectTableFindContaining(gKeyboard->mBnbls[1], data_02175670[inputSlotIndex].mPressedBits,
+                                                   data_02175672[inputSlotIndex].mPressedBits);
     }
     keyboard = gKeyboard;
     textRecord = &keyboard->mUnk_2c[keyboard->mKind];
@@ -662,7 +662,7 @@ void AdvanceKeyboardState7(void) {
     MIi_CpuCopy16(text, textRecord, 0x18);
     UpdateKeyboardNameButtons();
     if (touchedRectIndex == 5 ||
-        (GetKeyboardCursorValueWrapper() == 1 && (u16) (data_02175628[inputSlotIndex].mUnk_00 & PAD_KEY_A) != 0)) {
+        (GetKeyboardCursorValueWrapper() == 1 && (u16) (data_02175628[inputSlotIndex].mPressedBits & PAD_KEY_A) != 0)) {
         keyboard = gKeyboard;
         if (keyboard->mButtonEnabled[0] != 0) {
             keyboard->mNextState = 8;
@@ -675,7 +675,7 @@ void AdvanceKeyboardState7(void) {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
         }
     } else if (touchedRectIndex == 6 || (GetKeyboardCursorValueWrapper() == 2 &&
-                                         (u16) (data_02175628[inputSlotIndex].mUnk_00 & PAD_KEY_A) != 0)) {
+                                         (u16) (data_02175628[inputSlotIndex].mPressedBits & PAD_KEY_A) != 0)) {
         keyboard = gKeyboard;
         if (keyboard->mButtonEnabled[1] != 0) {
             keyboard->mNextState = 8;
@@ -687,7 +687,7 @@ void AdvanceKeyboardState7(void) {
         } else {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
         }
-    } else if ((u16) (data_02175628[inputSlotIndex].mUnk_00 & PAD_KEY_Y) != 0) {
+    } else if ((u16) (data_02175628[inputSlotIndex].mPressedBits & PAD_KEY_Y) != 0) {
         if (data_021759d0->mUnk_00 == 0) {
             gKeyboard->mLayout = data_0215d11c[gKeyboard->mLayout];
         } else {

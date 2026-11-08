@@ -215,7 +215,7 @@ u32 func_ov001_021805ec(void) {
 }
 
 u16 func_ov001_021805d8(InputSlot *inputSlot, u32 mask) {
-    return inputSlot->mUnk_00 & mask;
+    return inputSlot->mPressedBits & mask;
 }
 
 u32 func_ov001_021805bc(u32 slotIndex, u32 mask) {

@@ -60,18 +60,18 @@ typedef struct OptionStates {
 typedef struct MissionRunData {
     /* 00 */ s32 mSinceHitCallbackFrames;
     /* 04 */ u16 mCount;
-    /* 06 */ u16 mUnk_06;
+    /* 06 */ u16 mBossCount;
     /* 08 */ u16 mPendingCountUp;
-    /* 0a */ u16 mUnk_0a;
-    /* 0c */ u16 mUnk_0c;
+    /* 0a */ u16 mPendingDrop;
+    /* 0c */ u16 mPendingBossTransfer;
     /* 0e */ u16 mTimer;
     /* 10 */ u16 mUnk_10;
     /* 12 */ u16 mUnk_12;
     /* 14 */ u16 mUnk_14;
     /* 16 */ u16 mUnk_16;
     /* 18 */ UnkFunc *mCountUpCallback;
-    /* 1c */ UnkFunc *mUnk_1c;
-    /* 20 */ UnkFunc *mUnk_20;
+    /* 1c */ UnkFunc *mDropCallback;
+    /* 20 */ UnkFunc *mBossTransferCallback;
     /* 24 */ UnkFunc *mTimerEndCallback;
     /* 28 */ Vec3 mKartPos;
     /* 34 */ Vec3 mPrevKartPos;

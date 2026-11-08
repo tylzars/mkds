@@ -1734,39 +1734,39 @@ void AdvanceSelectRaceRuleState3(void) {
     newPair = FALSE;
     noPairForFewCalls = FALSE;
     p = &data_02175674[i];
-    hasPair = data_02175674[i].mUnk_00;
-    if (hasPair == 0 && data_02175680[i].mUnk_00 < 5) {
+    hasPair = data_02175674[i].mPressedBits;
+    if (hasPair == 0 && data_02175680[i].mPressedBits < 5) {
         noPairForFewCalls = TRUE;
     }
-    if (noPairForFewCalls == FALSE && data_0217567c[i].mUnk_00 == 0 && hasPair != 0) {
+    if (noPairForFewCalls == FALSE && data_0217567c[i].mPressedBits == 0 && hasPair != 0) {
         newPair = TRUE;
     }
     if (newPair != FALSE) {
         r = &data_02175672[i];
         q = &data_02175670[i];
-        hitRectIndex =
-            RectTableFindContaining(gSelectRaceRule->mBnbl, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
+        hitRectIndex = RectTableFindContaining(gSelectRaceRule->mBnbl, data_02175670[i].mPressedBits,
+                                               data_02175672[i].mPressedBits);
         if (hitRectIndex != 0x13) {
-            hitRectIndex =
-                RectTableFindContaining(gSelectRaceRule->mBnbl, q->mUnk_00, r->mUnk_00 - gSelectRaceRule->mOffsetY);
+            hitRectIndex = RectTableFindContaining(gSelectRaceRule->mBnbl, q->mPressedBits,
+                                                   r->mPressedBits - gSelectRaceRule->mOffsetY);
             if (hitRectIndex == 0x13) {
                 hitRectIndex = -1;
             }
         }
     }
     r = &data_02175628[i];
-    if ((u16) (r->mUnk_00 & PAD_KEY_B) == 0) {
+    if ((u16) (r->mPressedBits & PAD_KEY_B) == 0) {
         newPair = FALSE;
         noPairForFewCalls = FALSE;
-        hasPair = p->mUnk_00;
-        if (hasPair == 0 && data_02175680[i].mUnk_00 < 5) {
+        hasPair = p->mPressedBits;
+        if (hasPair == 0 && data_02175680[i].mPressedBits < 5) {
             noPairForFewCalls = TRUE;
         }
-        if (noPairForFewCalls == FALSE && data_0217567c[i].mUnk_00 == 0 && hasPair != 0) {
+        if (noPairForFewCalls == FALSE && data_0217567c[i].mPressedBits == 0 && hasPair != 0) {
             newPair = TRUE;
         }
-        if (newPair == FALSE ||
-            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) == 0) {
+        if (newPair == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mPressedBits,
+                                                                                data_02175672[i].mPressedBits) == 0) {
             goto chain;
         }
     }
@@ -1809,7 +1809,7 @@ chain:
             gSelectRaceRule->mOnButton = 0;
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
-    } else if ((u16) (r->mUnk_00 & PAD_KEY_A) != 0) {
+    } else if ((u16) (r->mPressedBits & PAD_KEY_A) != 0) {
         if (gSelectRaceRule->mOnButton != 0) {
             RequestSelectRaceRuleState4();
             gSelectRaceRule->mUnk_84 = 0;

@@ -3,7 +3,7 @@
 
 #pragma optimize_for_size on
 u16 func_020cb210(InputSlot *slot, u32 mask) {
-    return slot->mUnk_00 & mask;
+    return slot->mPressedBits & mask;
 }
 
 u16 func_020cb1f4(u32 slotIndex, u32 mask) {

@@ -397,7 +397,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *advanceArg) {
                     func_02108c1c();
                     gTimeAttackGhostSend->mState = 4;
                 } else {
-                    keyB = data_02175628[slotIndex].mUnk_00 & PAD_KEY_B;
+                    keyB = data_02175628[slotIndex].mPressedBits & PAD_KEY_B;
                     if (keyB != 0 || returnTouched != 0) {
                         data_0217b488->mUnk_08 = 5;
                         if (advanceArg != NULL) {
@@ -437,7 +437,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *advanceArg) {
             }
             break;
         case 6:
-            keyB = data_02175628[slotIndex].mUnk_00 & PAD_KEY_B;
+            keyB = data_02175628[slotIndex].mPressedBits & PAD_KEY_B;
             if (keyB != 0 || returnTouched != 0) {
                 RequestSelectReturnState3WithSound(0);
                 SetSelectReturnSoundId(0xf);

@@ -2,7 +2,7 @@
 #include "Main/Unknown/unk_02175628.h"
 
 void ResetInputSlot(InputSlot *slot) {
-    slot->mUnk_00 = 0x0u;
+    slot->mPressedBits = 0x0u;
     slot->mBits = 0x0u;
     slot->mClearedBits = 0x0u;
     slot->mRepeatBits = 0x0u;
@@ -19,7 +19,7 @@ void ResetInputSlot(InputSlot *slot) {
 }
 
 void ClearInputSlotBitsAndRepeat(InputSlot *slot) {
-    slot->mUnk_00 = 0x0u;
+    slot->mPressedBits = 0x0u;
     slot->mBits = 0x0u;
     slot->mClearedBits = 0x0u;
     slot->mRepeatBits = 0x0u;

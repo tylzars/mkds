@@ -273,7 +273,7 @@ void AdvanceOptionSelectMenuState2(void) {
     if (hasB != FALSE) {
         r5 = RectTableFindContaining(p->mOptionSelectMenuSBnbl, data_02175628[idx].mPairX, data_02175628[idx].mPairY);
     }
-    if ((u16) (data_02175628[idx].mUnk_00 & PAD_KEY_B) != 0) {
+    if ((u16) (data_02175628[idx].mPressedBits & PAD_KEY_B) != 0) {
         goto L1;
     } else {
         BOOL c = FALSE;
@@ -297,7 +297,7 @@ void AdvanceOptionSelectMenuState2(void) {
             goto end;
         }
     }
-    if (((u16) (data_02175628[idx].mUnk_00 & PAD_KEY_A) != 0 && gOptionSelectMenu->mIndex == 2) || r5 == 2) {
+    if (((u16) (data_02175628[idx].mPressedBits & PAD_KEY_A) != 0 && gOptionSelectMenu->mIndex == 2) || r5 == 2) {
         SetSoundModeFromOptionRow();
         if (gOptionSelectMenu->mRowValues[1] == 0) {
             data_0217aa08->mFirstBlock->mUnk_31 &= ~0x10;
@@ -329,7 +329,7 @@ void AdvanceOptionSelectMenuState2(void) {
         }
         StartSoundOncePerFrame(0);
     } else if (GetNewOrRepeatBits(8, PAD_KEY_DOWN) != 0 ||
-               (gOptionSelectMenu->mIndex != 2 && (u16) (data_02175628[idx].mUnk_00 & PAD_KEY_A) != 0)) {
+               (gOptionSelectMenu->mIndex != 2 && (u16) (data_02175628[idx].mPressedBits & PAD_KEY_A) != 0)) {
         gOptionSelectMenu->mIndex++;
         if (gOptionSelectMenu->mIndex > 2) {
             gOptionSelectMenu->mIndex = 0;

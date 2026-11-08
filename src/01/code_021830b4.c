@@ -17,6 +17,7 @@
 #include "Main/Unknown/code_020f9c6c.h"
 #include "Main/Unknown/code_02109110.h"
 #include "Main/Unknown/code_0210b000.h"
+#include "Main/Unknown/code_021000d0.h"
 
 void func_ov001_021841e0(Unk02188950 *donketu) {
     Vec3 velocity = {0, 0, 0};
@@ -81,10 +82,10 @@ void func_ov001_02183f0c(Unk02188950 *donketu) {
     func_ov001_0218720c(donketu);
     func_ov001_02188c90(donketu);
     func_ov001_02188cec(donketu, 0);
-    if (donketu->mUnk_000.mKind == 0x1f5) {
+    if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_BOSS_DONKETU) {
         func_ov001_021874c4(donketu, 0, 0, 0, 0x423, 0);
         func_ov001_021874c4(donketu, 0, 0, 0, 0x425, 0);
-    } else if (donketu->mUnk_000.mKind == 0x1f6) {
+    } else if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_KING_ICE_DONKETU) {
         func_ov001_021874c4(donketu, 0, 0, 0, 0x423, 0);
         func_ov001_021874c4(donketu, 0, 0, 0, 0x425, 0);
     }
@@ -192,9 +193,9 @@ void func_ov001_02183ad8(Unk02188950 *donketu) {
     SetAnglePointAndMoveAnglePoint(donketu, &kart->mPos);
     func_ov001_02188cec(donketu, donketu->mPrm->mUnk_0d4);
     func_ov001_02188de0(donketu, 0, donketu->mPrm->mUnk_0e4, &kart->mPos, func_ov001_02183c08);
-    if (donketu->mUnk_000.mKind == 0x1f5) {
+    if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_BOSS_DONKETU) {
         StartMapObjectSound(&donketu->mUnk_000, 0x214);
-    } else if (donketu->mUnk_000.mKind == 0x1f6) {
+    } else if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_KING_ICE_DONKETU) {
         StartMapObjectSound(&donketu->mUnk_000, 0x245);
     }
     func_ov001_02184e6c(donketu);
@@ -262,7 +263,7 @@ void func_ov001_02183848(void) {
 }
 
 int func_ov001_02183780(Unk02188950 *donketu) {
-    if (donketu->mUnk_000.mKind == 0x1f6) {
+    if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_KING_ICE_DONKETU) {
         if (GetMapObjectModelNsbcaFrameIndex(donketu->mNsbmd) == 2 ||
             GetMapObjectModelNsbcaFrameIndex(donketu->mNsbmd) == 3) {
             func_ov001_02187af4(donketu);
@@ -279,7 +280,7 @@ int func_ov001_02183780(Unk02188950 *donketu) {
 }
 
 int func_ov001_02183690(Unk02188950 *donketu) {
-    if (donketu->mUnk_000.mKind == 0x1f6) {
+    if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_KING_ICE_DONKETU) {
         if (GetMapObjectModelNsbcaFrameIndex(donketu->mNsbmd) == 2) {
             func_ov001_02187af4(donketu);
             func_ov001_021872e0(donketu, 0x1000, 0, 0, 0, 0x666, -0x1000, 0x428, 0);
@@ -287,7 +288,7 @@ int func_ov001_02183690(Unk02188950 *donketu) {
             func_ov001_021872e0(donketu, 0x1000, 0, 0, 0, 0x800, -0x1000, 0x42a, 0);
             StartMapObjectSound(&donketu->mUnk_000, 0x240);
         }
-    } else if (donketu->mUnk_000.mKind == 0x1f5) {
+    } else if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_BOSS_DONKETU) {
         if (GetMapObjectModelNsbcaFrameIndex(donketu->mNsbmd) == 0x2b ||
             GetMapObjectModelNsbcaFrameIndex(donketu->mNsbmd) == 0x48) {
             func_ov001_02187af4(donketu);
@@ -317,7 +318,7 @@ void func_ov001_021835b8(Unk02188950 *donketu) {
 
 void func_ov001_0218355c(Unk02188950 *donketu) {
     func_ov001_02187218(donketu, 8, &func_ov001_02183690);
-    if (donketu->mUnk_000.mKind == 0x1f6) {
+    if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_KING_ICE_DONKETU) {
         func_ov001_02188d64(donketu, donketu->mPrm->mUnk_058, donketu->mPrm->mUnk_05c);
         func_ov001_02188e24(donketu, donketu->mPrm->mUnk_060, &func_ov001_021835b8);
         return;

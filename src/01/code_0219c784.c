@@ -251,7 +251,7 @@ void AdvanceSelectBattleStageState2(void) {
             sel = i;
         }
     }
-    if ((u16) (data_02175628[idx].mUnk_00 & PAD_KEY_B) == 0) {
+    if ((u16) (data_02175628[idx].mPressedBits & PAD_KEY_B) == 0) {
         b = FALSE;
         a = FALSE;
         x = data_02175628[idx].mHasPair;
@@ -283,9 +283,9 @@ void AdvanceSelectBattleStageState2(void) {
     gSelectBattleStage->mUnk_2c = TRUE;
     return;
 next:
-    if ((u16) (data_02175628[idx].mUnk_00 & PAD_KEY_A) != 0 || sel != -4) {
+    if ((u16) (data_02175628[idx].mPressedBits & PAD_KEY_A) != 0 || sel != -4) {
         prev = gSelectBattleStage->mIndex;
-        if ((u16) (data_02175628[idx].mUnk_00 & PAD_KEY_A) == 0) {
+        if ((u16) (data_02175628[idx].mPressedBits & PAD_KEY_A) == 0) {
             gSelectBattleStage->mIndex = sel;
         }
         if (gSelectBattleStage->mIndex == prev) {

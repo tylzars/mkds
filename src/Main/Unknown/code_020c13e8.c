@@ -98,7 +98,7 @@ void func_020c1de4(void) {
         gRaceGoalS->mUpdateFrames = 0;
     }
     inputSlot = UNK_02175628_INDEX_8;
-    keyABits = data_02175628[inputSlot].mUnk_00 & PAD_KEY_A;
+    keyABits = data_02175628[inputSlot].mPressedBits & PAD_KEY_A;
     if (keyABits != 0 && frame >= 0x2d) {
         gRaceGoalS->mUpdate = func_020c1bc0;
         gRaceGoalS->mUpdateFrames = 0;
@@ -149,7 +149,7 @@ void func_020c1bc0(void) {
         }
     }
     inputSlot = UNK_02175628_INDEX_8;
-    keyABits = data_02175628[inputSlot].mUnk_00 & PAD_KEY_A;
+    keyABits = data_02175628[inputSlot].mPressedBits & PAD_KEY_A;
     if (keyABits != 0 && frame >= 0x2d) {
         gRaceGoalS->mUpdate = func_020c195c;
         gRaceGoalS->mUpdateFrames = 0;
@@ -192,7 +192,7 @@ void func_020c195c(void) {
         }
     }
     inputSlot = UNK_02175628_INDEX_8;
-    keyABits = data_02175628[inputSlot].mUnk_00 & PAD_KEY_A;
+    keyABits = data_02175628[inputSlot].mPressedBits & PAD_KEY_A;
     if (keyABits != 0 && frame >= 0x2d) {
         if (gRaceSetup->mUseTeams != 0) {
             gRaceGoalS->mUpdate = func_020c0fd0;
@@ -254,7 +254,7 @@ void func_020c1728(void) {
         gRaceGoalS->mUpdateFrames = 0;
     }
     inputSlot = UNK_02175628_INDEX_8;
-    keyABits = data_02175628[inputSlot].mUnk_00 & PAD_KEY_A;
+    keyABits = data_02175628[inputSlot].mPressedBits & PAD_KEY_A;
     if (keyABits != 0 && frame >= 0x2d) {
         for (j = 0; j < (u32) gRaceSetup->mKartCount; j++) {
             gRaceGoalS->mRowVisible[j] = 0;
@@ -310,7 +310,7 @@ void func_020c155c(void) {
         gRaceGoalS->mUpdateFrames = 0;
     }
     inputSlot = UNK_02175628_INDEX_8;
-    keyABits = data_02175628[inputSlot].mUnk_00 & PAD_KEY_A;
+    keyABits = data_02175628[inputSlot].mPressedBits & PAD_KEY_A;
     if (keyABits != 0 && frame >= 0x2d) {
         gRaceGoalS->mUpdate = func_020c13e8;
         gRaceGoalS->mUpdateFrames = 0;

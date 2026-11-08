@@ -53,11 +53,11 @@ static inline s32 func_02119340_inline(InputSlotIndex inputIndex) {
 
     g = FALSE;
     f = FALSE;
-    v = data_02175674[inputIndex].mUnk_00;
-    if (v == 0 && data_02175680[inputIndex].mUnk_00 < 5) {
+    v = data_02175674[inputIndex].mPressedBits;
+    if (v == 0 && data_02175680[inputIndex].mPressedBits < 5) {
         f = TRUE;
     }
-    if (f == FALSE && data_0217567c[inputIndex].mUnk_00 == 0 && v != 0) {
+    if (f == FALSE && data_0217567c[inputIndex].mPressedBits == 0 && v != 0) {
         g = TRUE;
     }
     return g;
@@ -72,13 +72,14 @@ void AdvanceSelectCupCourseState3(void) {
     inputIndex = UNK_02175628_INDEX_8;
     AdvanceSelectCupCourseIndexChange();
     if (func_02119340_inline(inputIndex) != 0) {
-        touchedRectIndex = RectTableFindContaining(gSelectCupCourse->mSelectCupMBnbl, data_02175670[inputIndex].mUnk_00,
-                                                   data_02175672[inputIndex].mUnk_00 + 0x20);
+        touchedRectIndex =
+            RectTableFindContaining(gSelectCupCourse->mSelectCupMBnbl, data_02175670[inputIndex].mPressedBits,
+                                    data_02175672[inputIndex].mPressedBits + 0x20);
     }
-    if ((u16) (data_02175628[inputIndex].mUnk_00 & PAD_KEY_B) != 0 ||
+    if ((u16) (data_02175628[inputIndex].mPressedBits & PAD_KEY_B) != 0 ||
         (func_02119340_inline(inputIndex) != 0 &&
-         IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[inputIndex].mUnk_00,
-                                                         data_02175672[inputIndex].mUnk_00) != FALSE)) {
+         IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[inputIndex].mPressedBits,
+                                                         data_02175672[inputIndex].mPressedBits) != FALSE)) {
         if (IsSelectCupCourseIndexChangeRunning() == 0) {
             if (*(vu16 *) 0x027ffc40 == 2) {
                 SetSelectReturnSoundId(-1);
@@ -104,7 +105,7 @@ void AdvanceSelectCupCourseState3(void) {
         RequestSelectCupCourseState4();
         return;
     }
-    if ((u16) (data_02175628[inputIndex].mUnk_00 & PAD_KEY_A) != 0) {
+    if ((u16) (data_02175628[inputIndex].mPressedBits & PAD_KEY_A) != 0) {
         RequestSelectCupCourseState4();
         gSelectCupCourse->mUnk_54 = FALSE;
         return;

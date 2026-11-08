@@ -24,11 +24,11 @@ typedef struct BalloonList {
 
 void func_ov001_0218155c(s32 stepCount);
 void func_ov001_021815d0(s32 stepCount);
-void func_ov001_02181630(short param_1);
-void func_ov001_02181660(u16 amount);
-void func_ov001_02181678(u32 amount);
-void func_ov001_02181690(UnkFunc *callback);
-void func_ov001_0218169c(UnkFunc *callback);
+void AddMissionRunBossCount(short param_1);
+void AddMissionRunPendingBossTransfer(u16 amount);
+void AddMissionRunPendingDrop(u32 amount);
+void SetMissionRunBossTransferCallback(UnkFunc *callback);
+void SetMissionRunDropCallback(UnkFunc *callback);
 void func_ov001_021816a8(UnkFunc *callback);
 BOOL func_ov001_021816b4(void);
 void func_ov001_021816fc(void);
@@ -36,7 +36,7 @@ void func_ov001_0218171c(void);
 void func_ov001_0218173c(void);
 void func_ov001_0218175c(s32 b);
 void func_ov001_021817e0(void);
-s32 func_ov001_02181800(void);
+s32 GetMissionRunBossCount(void);
 u32 GetMissionRunCountLimit(void);
 unsigned int GetMissionRunCount(void);
 void SetMissionRunTimer(unsigned int timer);

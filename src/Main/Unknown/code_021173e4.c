@@ -651,35 +651,36 @@ void AdvanceSelectCupGridState3(void) {
     b = 0;
     a = 0;
     p = &data_02175674[inputIndex];
-    x = data_02175674[inputIndex].mUnk_00;
-    if (x == 0 && data_02175680[inputIndex].mUnk_00 < 5) {
+    x = data_02175674[inputIndex].mPressedBits;
+    if (x == 0 && data_02175680[inputIndex].mPressedBits < 5) {
         a = 1;
     }
-    if (a == 0 && data_0217567c[inputIndex].mUnk_00 == 0 && x != 0) {
+    if (a == 0 && data_0217567c[inputIndex].mPressedBits == 0 && x != 0) {
         b = 1;
     }
     if (b != 0) {
-        touchedRectIndex = RectTableFindContaining(gSelectCupGrid->mSelectCupSBnbl, data_02175670[inputIndex].mUnk_00,
-                                                   data_02175672[inputIndex].mUnk_00);
+        touchedRectIndex =
+            RectTableFindContaining(gSelectCupGrid->mSelectCupSBnbl, data_02175670[inputIndex].mPressedBits,
+                                    data_02175672[inputIndex].mPressedBits);
     }
     q = &data_02175628[inputIndex];
-    if ((u16) (data_02175628[inputIndex].mUnk_00 & PAD_KEY_B) != 0) {
+    if ((u16) (data_02175628[inputIndex].mPressedBits & PAD_KEY_B) != 0) {
         goto L1;
     }
     b = 0;
     a = 0;
-    x = p->mUnk_00;
-    if (x == 0 && data_02175680[inputIndex].mUnk_00 < 5) {
+    x = p->mPressedBits;
+    if (x == 0 && data_02175680[inputIndex].mPressedBits < 5) {
         a = 1;
     }
-    if (a == 0 && data_0217567c[inputIndex].mUnk_00 == 0 && x != 0) {
+    if (a == 0 && data_0217567c[inputIndex].mPressedBits == 0 && x != 0) {
         b = 1;
     }
     if (b == 0) {
         goto L2;
     }
-    if (IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[inputIndex].mUnk_00,
-                                                        data_02175672[inputIndex].mUnk_00) == FALSE) {
+    if (IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[inputIndex].mPressedBits,
+                                                        data_02175672[inputIndex].mPressedBits) == FALSE) {
         goto L2;
     }
 L1:
@@ -734,7 +735,7 @@ L2:
         RequestSelectCupGridState4();
         return;
     }
-    if ((u16) (q->mUnk_00 & PAD_KEY_A) != 0) {
+    if ((u16) (q->mPressedBits & PAD_KEY_A) != 0) {
         RequestSelectCupGridState4();
         gSelectCupGrid->mUnk_68 = FALSE;
         return;

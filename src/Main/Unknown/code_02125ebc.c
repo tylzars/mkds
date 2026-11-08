@@ -417,10 +417,11 @@ static inline s32 func_02126a00_inline2(u32 inputSlotIndex) {
     BOOL r = FALSE;
     BOOL s = FALSE;
 
-    if (data_02175674[inputSlotIndex].mUnk_00 == 0 && data_02175680[inputSlotIndex].mUnk_00 < 5) {
+    if (data_02175674[inputSlotIndex].mPressedBits == 0 && data_02175680[inputSlotIndex].mPressedBits < 5) {
         s = TRUE;
     }
-    if (s == FALSE && data_0217567c[inputSlotIndex].mUnk_00 == 0 && data_02175674[inputSlotIndex].mUnk_00 != 0) {
+    if (s == FALSE && data_0217567c[inputSlotIndex].mPressedBits == 0 &&
+        data_02175674[inputSlotIndex].mPressedBits != 0) {
         r = TRUE;
     }
     return r;
@@ -445,9 +446,9 @@ void AdvanceTxtSystemState2(void) {
             inputSlotIndex = func_020435bc();
             break;
     }
-    touchX = data_02175670[inputSlotIndex].mUnk_00;
+    touchX = data_02175670[inputSlotIndex].mPressedBits;
     txtSystem = gTxtSystem;
-    offsetTouchY = txtSystem->mBgOffset[1] + data_02175672[inputSlotIndex].mUnk_00;
+    offsetTouchY = txtSystem->mBgOffset[1] + data_02175672[inputSlotIndex].mPressedBits;
     if (offsetTouchY < 0) {
         offsetTouchY = 0xff;
     }
@@ -478,7 +479,7 @@ void AdvanceTxtSystemState2(void) {
             }
         }
     }
-    keys = data_02175628[inputSlotIndex].mUnk_00;
+    keys = data_02175628[inputSlotIndex].mPressedBits;
     if ((u16) (keys & PAD_KEY_A) == 0) {
         if (func_02126a00_inline2(inputSlotIndex) == 0 || buttonCount != 1 ||
             func_02126a00_inline(touchX, clampedTouchY, gTxtSystemHitRects[4].mUnk_00, gTxtSystemHitRects[4].mUnk_01,

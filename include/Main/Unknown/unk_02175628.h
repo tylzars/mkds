@@ -37,7 +37,7 @@ typedef struct KeyRecording {
 
 // One 0x5c-byte element of the array at data_02175628.
 typedef struct InputSlot {
-    /* 00 */ u16 mUnk_00;
+    /* 00 */ u16 mPressedBits;
     /* 02 */ u16 mBits;
     /* 04 */ u16 mClearedBits;
     // The masked bits on the calls where the repeat fires: the first call of a hold (state 0 -> 1), then after

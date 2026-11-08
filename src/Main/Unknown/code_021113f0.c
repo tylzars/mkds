@@ -172,29 +172,29 @@ void AdvanceRecordVSState4(void) {
     g = TRUE;
     f = FALSE;
     touchSlot = &data_02175674[inputSlotIndex];
-    x = data_02175674[inputSlotIndex].mUnk_00;
-    if (x == 0 && data_02175680[inputSlotIndex].mUnk_00 < 5) {
+    x = data_02175674[inputSlotIndex].mPressedBits;
+    if (x == 0 && data_02175680[inputSlotIndex].mPressedBits < 5) {
         f = TRUE;
     }
     if (f == FALSE && x == 0) {
         g = FALSE;
     }
     if (g != FALSE) {
-        a = RectTableFindContaining(gRecordVS->mRecordVSSBnbl, data_02175670[inputSlotIndex].mUnk_00,
-                                    data_02175672[inputSlotIndex].mUnk_00);
+        a = RectTableFindContaining(gRecordVS->mRecordVSSBnbl, data_02175670[inputSlotIndex].mPressedBits,
+                                    data_02175672[inputSlotIndex].mPressedBits);
     }
     g = FALSE;
     f = FALSE;
-    x = touchSlot->mUnk_00;
-    if (x == 0 && data_02175680[inputSlotIndex].mUnk_00 < 5) {
+    x = touchSlot->mPressedBits;
+    if (x == 0 && data_02175680[inputSlotIndex].mPressedBits < 5) {
         f = TRUE;
     }
-    if (f == FALSE && data_0217567c[inputSlotIndex].mUnk_00 == 0 && x != 0) {
+    if (f == FALSE && data_0217567c[inputSlotIndex].mPressedBits == 0 && x != 0) {
         g = TRUE;
     }
     if (g != FALSE) {
-        b = RectTableFindContaining(gRecordVS->mRecordVSSBnbl, data_02175670[inputSlotIndex].mUnk_00,
-                                    data_02175672[inputSlotIndex].mUnk_00);
+        b = RectTableFindContaining(gRecordVS->mRecordVSSBnbl, data_02175670[inputSlotIndex].mPressedBits,
+                                    data_02175672[inputSlotIndex].mPressedBits);
     }
     if (a != 10) {
         gRecordVS->mUnk_88 = FALSE;
@@ -203,18 +203,19 @@ void AdvanceRecordVSState4(void) {
         gRecordVS->mUnk_8c = FALSE;
     }
     keySlot = &data_02175628[inputSlotIndex];
-    if ((u16) (data_02175628[inputSlotIndex].mUnk_00 & PAD_KEY_B) == 0) {
+    if ((u16) (data_02175628[inputSlotIndex].mPressedBits & PAD_KEY_B) == 0) {
         g = FALSE;
         f = FALSE;
-        x = touchSlot->mUnk_00;
-        if (x == 0 && data_02175680[inputSlotIndex].mUnk_00 < 5) {
+        x = touchSlot->mPressedBits;
+        if (x == 0 && data_02175680[inputSlotIndex].mPressedBits < 5) {
             f = TRUE;
         }
-        if (f == FALSE && data_0217567c[inputSlotIndex].mUnk_00 == 0 && x != 0) {
+        if (f == FALSE && data_0217567c[inputSlotIndex].mPressedBits == 0 && x != 0) {
             g = TRUE;
         }
-        if (g == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(
-                              data_02175670[inputSlotIndex].mUnk_00, data_02175672[inputSlotIndex].mUnk_00) == FALSE) {
+        if (g == FALSE ||
+            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[inputSlotIndex].mPressedBits,
+                                                            data_02175672[inputSlotIndex].mPressedBits) == FALSE) {
             goto l1;
         }
     }
@@ -283,12 +284,12 @@ l1:
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         return;
     }
-    if (b == 12 || (u16) (keySlot->mUnk_00 & PAD_KEY_X) != 0) {
+    if (b == 12 || (u16) (keySlot->mPressedBits & PAD_KEY_X) != 0) {
         RequestRecordVSState9();
         gRecordVS->mUnk_90 = 4;
         return;
     }
-    if ((u16) (keySlot->mUnk_00 & PAD_KEY_A) != 0) {
+    if ((u16) (keySlot->mPressedBits & PAD_KEY_A) != 0) {
         ToggleRecordVSRowFlag(gRecordVS->mIndex);
         return;
     }

@@ -155,7 +155,7 @@ void AdvanceOptionTopMenuState3(void) {
         result = RectTableFindContaining(gOptionTopMenu->mOptionTopMenuSBnbl, data_02175628[idx].mPairX,
                                          data_02175628[idx].mPairY);
     }
-    flagA = data_02175628[idx].mUnk_00 & PAD_KEY_B;
+    flagA = data_02175628[idx].mPressedBits & PAD_KEY_B;
     if (flagA == 0) {
         BOOL b2 = FALSE;
         BOOL a2 = FALSE;
@@ -176,7 +176,7 @@ void AdvanceOptionTopMenuState3(void) {
         RequestSelectReturnState3WithSound(1);
         return;
     }
-    flagB = data_02175628[idx].mUnk_00 & PAD_KEY_A;
+    flagB = data_02175628[idx].mPressedBits & PAD_KEY_A;
     if ((u16) flagB != 0 || result <= 2) {
         old = gOptionTopMenu->mIndex;
         if ((u16) flagB == 0) {

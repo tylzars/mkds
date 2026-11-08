@@ -401,7 +401,7 @@ s32 AdvanceMultiSelectMemberGroup(Unk0202f764 *sceneNumbers) {
                 touchInReturnRect = IsSelectReturnState2NoState3Or4RequestAndInRect(pairX, pairY);
                 rectIndex = RectTableFindContaining(cellFileSet->mUnk_10, pairX, pairY);
             }
-            v = data_02175628[slotIndex].mUnk_00;
+            v = data_02175628[slotIndex].mPressedBits;
             if ((u16) (v & PAD_KEY_A) != 0) {
                 if (func_0203023c() != 0) {
                     gMultiSelectMemberGroup->mUnk_88 = TRUE;

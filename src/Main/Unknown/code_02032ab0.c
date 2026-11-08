@@ -369,7 +369,7 @@ void AdvanceResultsBattle(Unk02032ac4 *sceneNumbers) {
         case 3:
             switch (gResultsBattle->mMode) {
                 case 0:
-                    if ((u16) (data_02175628[func_020435bc()].mUnk_00 & PAD_KEY_A) != 0) {
+                    if ((u16) (data_02175628[func_020435bc()].mPressedBits & PAD_KEY_A) != 0) {
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
                         if (sceneNumbers != NULL) {
                             sceneNumbers->mUnk_04 = 1;
@@ -380,7 +380,7 @@ void AdvanceResultsBattle(Unk02032ac4 *sceneNumbers) {
                 case 1:
                 case 2:
                     inputSlotIndex = UNK_02175628_INDEX_8;
-                    if ((u16) (data_02175628[inputSlotIndex].mUnk_00 & PAD_KEY_A) != 0) {
+                    if ((u16) (data_02175628[inputSlotIndex].mPressedBits & PAD_KEY_A) != 0) {
                         StartResultsBattleChoices();
                         gResultsBattle->mState = 4;
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
@@ -390,7 +390,7 @@ void AdvanceResultsBattle(Unk02032ac4 *sceneNumbers) {
                     if (IsResultsBattleTimerRunOut() != 0) {
                         func_02121dec(1);
                         gResultsBattle->mState = 5;
-                    } else if ((u16) (data_02175628[func_020435bc()].mUnk_00 & PAD_KEY_A) != 0 ||
+                    } else if ((u16) (data_02175628[func_020435bc()].mPressedBits & PAD_KEY_A) != 0 ||
                                func_02033dd0() != 0) {
                         StartResultsBattleChoices();
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
