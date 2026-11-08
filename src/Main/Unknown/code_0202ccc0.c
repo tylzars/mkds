@@ -75,16 +75,16 @@ void func_0202d868(s32 a, s32 b, s32 c, s32 d) {
     s32 k;
     p = &gTimeAttackGhostSend->mUnk_050[1];
     if (a == 1) {
-        func_0212426c(1, b, p->mUnk_14,
-                      GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, func_02025d74(func_0202db04(c))), p->mUnk_0c,
-                      p->mUnk_18);
+        func_0212426c(1, b, p->mLabelLayout,
+                      GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, func_02025d74(func_0202db04(c))),
+                      p->mCellLayout, p->mCellTable);
         func_0202dcf4(c, &t);
-        func_02025cd0(s, t.mUnk_02, t.mUnk_03, t.mUnk_00);
-        func_02124224(1, b + 7, p->mUnk_14, s, p->mUnk_0c, p->mUnk_18, 7);
+        WriteMinuteSecondMillisecondText(s, t.mUnk_02, t.mUnk_03, t.mUnk_00);
+        func_02124224(1, b + 7, p->mLabelLayout, s, p->mCellLayout, p->mCellTable, 7);
         j = func_0202dd80(c) == 0;
-        p->mUnk_18[b].mUnk_00 = j;
+        p->mCellTable[b].mUnk_00 = j;
         k = j == 0;
-        p->mUnk_18[b + 7].mUnk_00 = k;
+        p->mCellTable[b + 7].mUnk_00 = k;
     } else if (a == 0) {
         for (i = 0; i < 7; i++) {
             j = i + 7;
@@ -93,15 +93,15 @@ void func_0202d868(s32 a, s32 b, s32 c, s32 d) {
             } else {
                 k = 0xf;
             }
-            func_02124100(i, k, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
-            func_02124100(j, k, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
+            func_02124100(i, k, p->mLabelLayout, p->mCellTable, p->mCellLayout);
+            func_02124100(j, k, p->mLabelLayout, p->mCellTable, p->mCellLayout);
         }
     } else if (a == 2) {
         if (c >= 0 && c < (s32) func_0202ddc4()) {
             j = func_0202dd80(c) == 0;
-            p->mUnk_18[b].mUnk_00 = j;
+            p->mCellTable[b].mUnk_00 = j;
             k = j == 0;
-            p->mUnk_18[b + 7].mUnk_00 = k;
+            p->mCellTable[b + 7].mUnk_00 = k;
         }
     }
 }
@@ -128,8 +128,10 @@ void func_0202d720(void) {
     Unk02174e14_00 *p;
     s32 n;
     p = &gTimeAttackGhostSend->mUnk_050[1];
-    func_0212426c(1, 0xe, p->mUnk_14, GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, 0x56), p->mUnk_0c, p->mUnk_18);
-    func_0212426c(1, 0xf, p->mUnk_14, GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, 0x57), p->mUnk_0c, p->mUnk_18);
+    func_0212426c(1, 0xe, p->mLabelLayout, GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, 0x56), p->mCellLayout,
+                  p->mCellTable);
+    func_0212426c(1, 0xf, p->mLabelLayout, GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, 0x57), p->mCellLayout,
+                  p->mCellTable);
     n = func_0202ddb0();
     if (n < 10) {
         s[0] = ' ';
@@ -141,7 +143,7 @@ void func_0202d720(void) {
     s[3] = '3';
     s[4] = '2';
     s[5] = 0;
-    func_02124224(1, 0x10, p->mUnk_14, s, p->mUnk_0c, p->mUnk_18, 6);
+    func_02124224(1, 0x10, p->mLabelLayout, s, p->mCellLayout, p->mCellTable, 6);
     n = func_0202dd9c();
     if (n < 10) {
         s[0] = ' ';
@@ -153,7 +155,7 @@ void func_0202d720(void) {
     s[3] = '1';
     s[4] = '0';
     s[5] = 0;
-    func_02124224(1, 0x11, p->mUnk_14, s, p->mUnk_0c, p->mUnk_18, 6);
+    func_02124224(1, 0x11, p->mLabelLayout, s, p->mCellLayout, p->mCellTable, 6);
 }
 
 void func_0202d6a0(void) {
@@ -217,14 +219,14 @@ void func_0202d554(void) {
     s16 k;
     p = &gTimeAttackGhostSend->mUnk_050[0];
     q = &gTimeAttackGhostSend->mUnk_050[1];
-    n = p->mUnk_0c->mUnk_06 + p->mUnk_14->mUnk_06;
-    m = q->mUnk_0c->mUnk_06 + q->mUnk_14->mUnk_06;
+    n = p->mCellLayout->mUnk_06 + p->mLabelLayout->mUnk_06;
+    m = q->mCellLayout->mUnk_06 + q->mLabelLayout->mUnk_06;
     k = func_02025ebc(&gTimeAttackGhostSend->mUnk_0cc);
     for (i = 0; i < n; i++) {
-        p->mUnk_18[i].mUnk_06 = -k;
+        p->mCellTable[i].mUnk_06 = -k;
     }
     for (i = 0; i < m; i++) {
-        q->mUnk_18[i].mUnk_06 = k;
+        q->mCellTable[i].mUnk_06 = k;
     }
 }
 
@@ -253,10 +255,10 @@ void InitTimeAttackGhostSend(void *a, void *b, void *c) {
                   gTimeAttackGhostSendMNscrName, 0, FindSceneFile);
     p = &gTimeAttackGhostSend->mUnk_050[0];
     n = GX_GetSizeOfOBJ();
-    func_02025b20(p, gTimeAttackGhostSendMNcgrName, gTimeAttackGhostSendMNcerName, gTimeAttackGhostSendMONclrName,
-                  gTimeAttackGhostSendMBnclName, gTimeAttackGhostSendMBnllName, NULL, FindSceneFile);
+    LocateCellFileSet(p, gTimeAttackGhostSendMNcgrName, gTimeAttackGhostSendMNcerName, gTimeAttackGhostSendMONclrName,
+                      gTimeAttackGhostSendMBnclName, gTimeAttackGhostSendMBnllName, NULL, FindSceneFile);
     func_02025a50(0, gTimeAttackGhostSend->mHeap, p);
-    for (i = 0; i < p->mUnk_14->mUnk_06; i++) {
+    for (i = 0; i < p->mLabelLayout->mUnk_06; i++) {
         n -= func_02025a00(0, gTimeAttackGhostSend->mHeap, p, data_usa_02153bec[i], n);
     }
     func_020258d4(1, &gTimeAttackGhostSend->mUnk_024, gTimeAttackGhostSendSBNcgrName, gTimeAttackGhostSendSBNclrName,
@@ -264,12 +266,12 @@ void InitTimeAttackGhostSend(void *a, void *b, void *c) {
     q = &gTimeAttackGhostSend->mUnk_050[1];
     n = GX_GetSizeOfSubOBJ();
     m = 0;
-    func_02025b20(q, gTimeAttackGhostSendSNcgrName, gTimeAttackGhostSendSNcerName, gTimeAttackGhostSendSONclrName,
-                  gTimeAttackGhostSendSBnclName, gTimeAttackGhostSendSBnllName, gTimeAttackGhostSendSBnblName,
-                  FindSceneFile);
+    LocateCellFileSet(q, gTimeAttackGhostSendSNcgrName, gTimeAttackGhostSendSNcerName, gTimeAttackGhostSendSONclrName,
+                      gTimeAttackGhostSendSBnclName, gTimeAttackGhostSendSBnllName, gTimeAttackGhostSendSBnblName,
+                      FindSceneFile);
     func_02025a50(1, gTimeAttackGhostSend->mHeap, q);
-    w = q->mUnk_0c->mUnk_06;
-    for (i = 0; i < q->mUnk_14->mUnk_06; i++) {
+    w = q->mCellLayout->mUnk_06;
+    for (i = 0; i < q->mLabelLayout->mUnk_06; i++) {
         if (data_usa_02162c74[i][3] < 0) {
             data_usa_02162c74[i][3] = w + m++;
         }
@@ -277,33 +279,33 @@ void InitTimeAttackGhostSend(void *a, void *b, void *c) {
     }
     func_0202d720();
     for (i = 0; i < 0xf; i++) {
-        func_021249a8(i, 3, q->mUnk_08, q->mUnk_0c);
+        func_021249a8(i, 3, q->mCells, q->mCellLayout);
     }
     for (i = 0; i < 0xe; i++) {
-        func_02124094(i, 2, q->mUnk_14, q->mUnk_18, q->mUnk_0c);
+        func_02124094(i, 2, q->mLabelLayout, q->mCellTable, q->mCellLayout);
     }
     for (i = 0; i < 0xe; i++) {
         j = data_usa_02162c74[i][3];
         k = data_usa_02162c74[i][0];
-        u = q->mUnk_18;
-        func_02025c1c(j, &u[j], q->mUnk_0c);
-        func_02025bf0(k, u + w + k, q->mUnk_14);
+        u = q->mCellTable;
+        func_02025c1c(j, &u[j], q->mCellLayout);
+        func_02025bf0(k, u + w + k, q->mLabelLayout);
     }
-    func_02025c1c(0xe, (u8 *) q->mUnk_18 + 0x380, q->mUnk_0c);
+    func_02025c1c(0xe, (u8 *) q->mCellTable + 0x380, q->mCellLayout);
     if (func_0202ddc4() != 0) {
         Unk02174e40_24 *s = &gTimeAttackGhostSend->mUnk_024;
         r[0] = 0;
         r[1] = 7;
         r[2] = w;
         r[3] = w + 7;
-        func_0202e530(gTimeAttackGhostSend->mHeap, 4, r, 0xe, 0xf, 0x7c, q->mUnk_18, q->mUnk_10, s->mUnk_20 + 0xc, 0, 1,
-                      2, func_0202ddc4(), func_0202d868);
+        func_0202e530(gTimeAttackGhostSend->mHeap, 4, r, 0xe, 0xf, 0x7c, q->mCellTable, q->mRects, s->mUnk_20 + 0xc, 0,
+                      1, 2, func_0202ddc4(), func_0202d868);
     } else {
         for (i = 0; i < w; i++) {
-            q->mUnk_18[i].mUnk_00 = 0;
+            q->mCellTable[i].mUnk_00 = 0;
         }
         for (i = 0; i < 0xe; i++) {
-            q->mUnk_18[w + i].mUnk_00 = 0;
+            q->mCellTable[w + i].mUnk_00 = 0;
         }
     }
     func_02025b84(0, &gTimeAttackGhostSend->mUnk_050[2]);
@@ -505,7 +507,8 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
     func_02054aa0();
     for (i = 0; i < 2; i++) {
         q = gTimeAttackGhostSend->mUnk_050;
-        DrawLayoutTable(q[i].mUnk_0c, q[i].mUnk_08, q[i].mUnk_14, gTimeAttackGhostSend->mUnk_048[i], q[i].mUnk_18);
+        DrawLayoutTable(q[i].mCellLayout, q[i].mCells, q[i].mLabelLayout, gTimeAttackGhostSend->mUnk_048[i],
+                        q[i].mCellTable);
     }
     return -1;
 }

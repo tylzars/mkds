@@ -123,14 +123,15 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
         g = gSelectKart;
         if (g->mUnk_104 == FALSE) {
             p = &g->mSelectCharacterGpMParts;
-            func_02025b20(p, gSelectCharacterGpMNcgrName2, gSelectCharacterGpMNcerName2, gSelectCharacterGpMONclrName2,
-                          gSelectCharacterGpMBnclName2, NULL, NULL, FindFileInLoadedArchives);
+            LocateCellFileSet(p, gSelectCharacterGpMNcgrName2, gSelectCharacterGpMNcerName2,
+                              gSelectCharacterGpMONclrName2, gSelectCharacterGpMBnclName2, NULL, NULL,
+                              FindFileInLoadedArchives);
             func_02025a50(0, gSelectKart->mHeap, p);
-            func_02025b20(&e, gSelectCharacterGpTitleMNcgrName2, gSelectCharacterGpTitleMNcerName2, NULL,
-                          gSelectCharacterGpTitleMBnclName2, NULL, NULL, FindFileInLoadedArchives);
+            LocateCellFileSet(&e, gSelectCharacterGpTitleMNcgrName2, gSelectCharacterGpTitleMNcerName2, NULL,
+                              gSelectCharacterGpTitleMBnclName2, NULL, NULL, FindFileInLoadedArchives);
             func_02124748(1, e.mUnk_08, e.mUnk_00, e.mUnk_0c, 0, 0, p->mUnk_08, p->mUnk_0c);
-            func_02025b20(&f, gSelectCharacterGpNameMNcgrName2, gSelectCharacterGpNameMNcerName2, NULL,
-                          gSelectCharacterGpNameMBnclName2, NULL, NULL, FindFileInLoadedArchives);
+            LocateCellFileSet(&f, gSelectCharacterGpNameMNcgrName2, gSelectCharacterGpNameMNcerName2, NULL,
+                              gSelectCharacterGpNameMBnclName2, NULL, NULL, FindFileInLoadedArchives);
             func_02124748(data_usa_021537dc[gSelectKart->mCharacterIndex], f.mUnk_08, f.mUnk_00, f.mUnk_0c, 0, 2,
                           p->mUnk_08, p->mUnk_0c);
             func_02124748(data_usa_021537dc[gSelectKart->mCharacterIndex], f.mUnk_08, f.mUnk_00, f.mUnk_0c, 0, 1,
@@ -144,8 +145,8 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     if (func_020280dc() == 0) {
         n = GX_GetSizeOfSubOBJ();
         p = &gSelectKart->mSelectKartSParts;
-        func_02025b20(p, gSelectKartSNcgrName, gSelectKartSNcerName, gSelectKartSONclrName, gSelectKartSBnclName,
-                      gSelectKartSBnllName, gSelectKartSBnblName, FindFileInLoadedArchives);
+        LocateCellFileSet(p, gSelectKartSNcgrName, gSelectKartSNcerName, gSelectKartSONclrName, gSelectKartSBnclName,
+                          gSelectKartSBnllName, gSelectKartSBnblName, FindFileInLoadedArchives);
         func_02025a50(1, gSelectKart->mHeap, p);
         for (i = 0; i < 9; i++) {
             n -= func_02025a00(1, gSelectKart->mHeap, p, &data_usa_021537f4[i], n);

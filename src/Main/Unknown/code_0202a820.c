@@ -46,16 +46,16 @@ void func_0202b554(s32 a, s32 b) {
     t = b / 10 % 10;
     o = b % 10;
     p = &data_02174e3c->mUnk_000;
-    p->mUnk_18[0x3c].mUnk_00 = a >= 10 ? 1 : 0;
-    func_02025c48(0x3c, a / 10 % 10 + 0x41, p->mUnk_0c);
-    func_02025c48(0x3d, a % 10 + 0x41, p->mUnk_0c);
+    p->mCellTable[0x3c].mUnk_00 = a >= 10 ? 1 : 0;
+    func_02025c48(0x3c, a / 10 % 10 + 0x41, p->mCellLayout);
+    func_02025c48(0x3d, a % 10 + 0x41, p->mCellLayout);
     if (b >= 10) {
         t += 0x4b;
-        func_02025c48(0x3f, t, p->mUnk_0c);
-        func_02025c48(0x40, o + 0x4b, p->mUnk_0c);
+        func_02025c48(0x3f, t, p->mCellLayout);
+        func_02025c48(0x40, o + 0x4b, p->mCellLayout);
     } else {
-        p->mUnk_18[0x40].mUnk_00 = 0;
-        func_02025c48(0x3f, o + 0x4b, p->mUnk_0c);
+        p->mCellTable[0x40].mUnk_00 = 0;
+        func_02025c48(0x3f, o + 0x4b, p->mCellLayout);
     }
 }
 
@@ -72,7 +72,7 @@ void func_0202b4bc(s32 a, s32 b, s32 c, s32 d) {
         } else {
             h = GetBmgEntry(gWiFiVSCourseSelect->mWiFiMessages, func_02025d5c(data_usa_02153a4c[c - 1]));
         }
-        func_0212426c(1, b, p->mUnk_14, h, p->mUnk_0c, p->mUnk_18);
+        func_0212426c(1, b, p->mLabelLayout, h, p->mCellLayout, p->mCellTable);
     } else if (a == 0) {
         for (i = 0; i < 7; i++) {
             if (i == d) {
@@ -80,7 +80,7 @@ void func_0202b4bc(s32 a, s32 b, s32 c, s32 d) {
             } else {
                 k = 0xf;
             }
-            func_02124100(i, k, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
+            func_02124100(i, k, p->mLabelLayout, p->mCellTable, p->mCellLayout);
         }
     }
 }
@@ -91,13 +91,13 @@ void func_0202b3f4(void) {
     s32 i;
 
     p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
-    n = p->mUnk_0c->mUnk_06;
+    n = p->mCellLayout->mUnk_06;
     for (i = 0; i < gWiFiVSCourseSelect->mUnk_0b8; i++) {
-        p->mUnk_18[data_usa_021539f4[i].mUnk_06].mUnk_06 = InterpolateS16(
-            1, 0, 0x60 - (((s16 *) func_0201ea30(p->mUnk_0c, data_usa_021539f4[i].mUnk_06))[1] << 20 >> 20),
+        p->mCellTable[data_usa_021539f4[i].mUnk_06].mUnk_06 = InterpolateS16(
+            1, 0, 0x60 - (((s16 *) func_0201ea30(p->mCellLayout, data_usa_021539f4[i].mUnk_06))[1] << 20 >> 20),
             (*(struct WiFiVSCourseSelect **) &gWiFiVSCourseSelect)->mStateFrames, 0x3c);
-        p->mUnk_18[n + data_usa_021539f4[i].mUnk_00].mUnk_06 = InterpolateS16(
-            1, 0, 0x60 - (((s16 *) func_0201ea58(p->mUnk_14, data_usa_021539f4[i].mUnk_00))[1] << 20 >> 20),
+        p->mCellTable[n + data_usa_021539f4[i].mUnk_00].mUnk_06 = InterpolateS16(
+            1, 0, 0x60 - (((s16 *) func_0201ea58(p->mLabelLayout, data_usa_021539f4[i].mUnk_00))[1] << 20 >> 20),
             (*(struct WiFiVSCourseSelect **) &gWiFiVSCourseSelect)->mStateFrames, 0x3c);
     }
 }
@@ -110,20 +110,20 @@ void func_0202b2bc(void) {
     u16 *h;
 
     p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
-    n = p->mUnk_0c->mUnk_06;
+    n = p->mCellLayout->mUnk_06;
     a = GetWiFiSessionCourseId();
     h = GetBmgEntry(gWiFiVSCourseSelect->mCommonMessages, GetCourseMessageIndex(a));
     for (i = 0; i < 4; i++) {
-        p->mUnk_18[data_usa_021539f4[i].mUnk_06].mUnk_00 = 0;
-        p->mUnk_18[n + data_usa_021539f4[i].mUnk_00].mUnk_00 = p->mUnk_18[data_usa_021539f4[i].mUnk_06].mUnk_00;
-        p->mUnk_18[data_usa_021539f4[i].mUnk_06].mUnk_04 = 0;
-        p->mUnk_18[n + data_usa_021539f4[i].mUnk_00].mUnk_04 = p->mUnk_18[data_usa_021539f4[i].mUnk_06].mUnk_04;
+        p->mCellTable[data_usa_021539f4[i].mUnk_06].mUnk_00 = 0;
+        p->mCellTable[n + data_usa_021539f4[i].mUnk_00].mUnk_00 = p->mCellTable[data_usa_021539f4[i].mUnk_06].mUnk_00;
+        p->mCellTable[data_usa_021539f4[i].mUnk_06].mUnk_04 = 0;
+        p->mCellTable[n + data_usa_021539f4[i].mUnk_00].mUnk_04 = p->mCellTable[data_usa_021539f4[i].mUnk_06].mUnk_04;
         func_02025f14(&gWiFiVSCourseSelect->mUnk_0fc[i], 1);
     }
-    p->mUnk_18[4].mUnk_00 = 1;
-    p->mUnk_18[data_usa_021539f4[0].mUnk_00 + n].mUnk_00 = p->mUnk_18[4].mUnk_00;
-    p->mUnk_18[data_usa_021539f4[0].mUnk_00 + n].mUnk_06 += 2;
-    func_0212426c(0, data_usa_021539f4[0].mUnk_00, p->mUnk_14, h, p->mUnk_0c, p->mUnk_18);
+    p->mCellTable[4].mUnk_00 = 1;
+    p->mCellTable[data_usa_021539f4[0].mUnk_00 + n].mUnk_00 = p->mCellTable[4].mUnk_00;
+    p->mCellTable[data_usa_021539f4[0].mUnk_00 + n].mUnk_06 += 2;
+    func_0212426c(0, data_usa_021539f4[0].mUnk_00, p->mLabelLayout, h, p->mCellLayout, p->mCellTable);
     gWiFiVSCourseSelect->mUnk_144 = a;
     gWiFiVSCourseSelect->mUnk_148 = GetCourseMessageIndex(a);
     gWiFiVSCourseSelect->mUnk_14c[0] = h[0];
@@ -138,11 +138,11 @@ void func_0202b264(void) {
     s32 i;
 
     p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectSParts;
-    n = p->mUnk_0c->mUnk_06 + p->mUnk_14->mUnk_06;
+    n = p->mCellLayout->mUnk_06 + p->mLabelLayout->mUnk_06;
     func_02025edc(&gWiFiVSCourseSelect->mUnk_0cc[0]);
     gWiFiVSCourseSelect->mUnk_154 = func_02025ebc(&gWiFiVSCourseSelect->mUnk_0cc[0]);
     for (i = 0; i < n; i++) {
-        p->mUnk_18[i].mUnk_06 = gWiFiVSCourseSelect->mUnk_154;
+        p->mCellTable[i].mUnk_06 = gWiFiVSCourseSelect->mUnk_154;
     }
 }
 
@@ -154,7 +154,7 @@ void func_0202b100(void) {
     void *h;
 
     p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
-    n = p->mUnk_0c->mUnk_06;
+    n = p->mCellLayout->mUnk_06;
     for (i = 0; i < gWiFiVSCourseSelect->mUnk_0b8; i++) {
         func_02025edc(&gWiFiVSCourseSelect->mUnk_0fc[i]);
         if (GetIndexOfPackedIndex(i) >= 0) {
@@ -168,7 +168,7 @@ void func_0202b100(void) {
             case 2:
                 if (v != 0 && v != gWiFiVSCourseSelect->mUnk_0bc[i]) {
                     h = GetBmgEntry(gWiFiVSCourseSelect->mCommonMessages, GetCourseMessageIndex(v));
-                    func_0212426c(0, data_usa_021539f4[i].mUnk_00, p->mUnk_14, h, p->mUnk_0c, p->mUnk_18);
+                    func_0212426c(0, data_usa_021539f4[i].mUnk_00, p->mLabelLayout, h, p->mCellLayout, p->mCellTable);
                     gWiFiVSCourseSelect->mUnk_0bc[i] = v;
                     func_02025f14(&gWiFiVSCourseSelect->mUnk_0fc[i], 0);
                     if (gWiFiVSCourseSelect->mUnk_0b4 != i) {
@@ -177,8 +177,8 @@ void func_0202b100(void) {
                 }
                 break;
         }
-        p->mUnk_18[n + data_usa_021539f4[i].mUnk_00].mUnk_04 = func_02025ebc(&gWiFiVSCourseSelect->mUnk_0fc[i]);
-        p->mUnk_18[data_usa_021539d8[i]].mUnk_04 = p->mUnk_18[n + data_usa_021539f4[i].mUnk_00].mUnk_04;
+        p->mCellTable[n + data_usa_021539f4[i].mUnk_00].mUnk_04 = func_02025ebc(&gWiFiVSCourseSelect->mUnk_0fc[i]);
+        p->mCellTable[data_usa_021539d8[i]].mUnk_04 = p->mCellTable[n + data_usa_021539f4[i].mUnk_00].mUnk_04;
     }
 }
 
@@ -191,8 +191,8 @@ void func_0202afe4(void) {
     v = 0;
     p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
     func_02025edc(&gWiFiVSCourseSelect->mUnk_0cc[2]);
-    p->mUnk_18[16].mUnk_04 = func_02025ebc(&gWiFiVSCourseSelect->mUnk_0cc[2]);
-    p->mUnk_18[15].mUnk_04 = p->mUnk_18[16].mUnk_04;
+    p->mCellTable[16].mUnk_04 = func_02025ebc(&gWiFiVSCourseSelect->mUnk_0cc[2]);
+    p->mCellTable[15].mUnk_04 = p->mCellTable[16].mUnk_04;
     switch (gWiFiVSCourseSelect->mState) {
         case 0:
         case 1:
@@ -200,19 +200,19 @@ void func_0202afe4(void) {
             if (gWiFiVSCourseSelect->mTimer != 0) {
                 gWiFiVSCourseSelect->mTimer--;
                 v = (gWiFiVSCourseSelect->mTimer + 0x3c) / 0x3c;
-                p->mUnk_18[15].mUnk_00 = v >= 10 ? 1 : 0;
+                p->mCellTable[15].mUnk_00 = v >= 10 ? 1 : 0;
                 if (gWiFiVSCourseSelect->mTimer == 0) {
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x51);
                 } else if ((gWiFiVSCourseSelect->mTimer + 0x3c) % 0x3c == 0 && v <= 4) {
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x50);
                 }
             }
-            b = p->mUnk_0c;
-            a = p->mUnk_08;
-            func_02124748(data_usa_021539e0[v / 10 % 10], a, p->mUnk_00, b, 0, 0xf, a, b);
-            b = p->mUnk_0c;
-            a = p->mUnk_08;
-            func_02124748(data_usa_021539e0[v % 10], a, p->mUnk_00, b, 0, 0x10, a, b);
+            b = p->mCellLayout;
+            a = p->mCells;
+            func_02124748(data_usa_021539e0[v / 10 % 10], a, p->mChars, b, 0, 0xf, a, b);
+            b = p->mCellLayout;
+            a = p->mCells;
+            func_02124748(data_usa_021539e0[v % 10], a, p->mChars, b, 0, 0x10, a, b);
             break;
     }
 }
@@ -295,55 +295,55 @@ void InitWiFiVSCourseSelect(void *param_1, void *param_2, void *param_3) {
                   gWiFiVSCourseSelectMNscrName, 0, FindSceneFile);
     p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
     k = GX_GetSizeOfOBJ();
-    func_02025b20(p, gWiFiVSCourseSelectMNcgrName, gWiFiVSCourseSelectMNcerName, gWiFiVSCourseSelectMONclrName,
-                  gWiFiVSCourseSelectMBnclName, gWiFiVSCourseSelectMBnllName, NULL, FindSceneFile);
+    LocateCellFileSet(p, gWiFiVSCourseSelectMNcgrName, gWiFiVSCourseSelectMNcerName, gWiFiVSCourseSelectMONclrName,
+                      gWiFiVSCourseSelectMBnclName, gWiFiVSCourseSelectMBnllName, NULL, FindSceneFile);
     func_02025a50(0, gWiFiVSCourseSelect->mHeap, p);
-    n = p->mUnk_0c->mUnk_06;
+    n = p->mCellLayout->mUnk_06;
     for (i = 0; i < n; i++) {
-        func_021249a8(i, 1, p->mUnk_08, p->mUnk_0c);
+        func_021249a8(i, 1, p->mCells, p->mCellLayout);
     }
-    for (i = 0; i < p->mUnk_14->mUnk_06; i++) {
+    for (i = 0; i < p->mLabelLayout->mUnk_06; i++) {
         k -= func_02025a00(0, gWiFiVSCourseSelect->mHeap, p, &data_usa_021539f4[i], k);
     }
     for (i = gWiFiVSCourseSelect->mUnk_0b8; i < 4; i++) {
-        p->mUnk_18[data_usa_021539d8[i]].mUnk_00 = 0;
-        p->mUnk_18[n + data_usa_021539f4[i].mUnk_00].mUnk_00 = 0;
+        p->mCellTable[data_usa_021539d8[i]].mUnk_00 = 0;
+        p->mCellTable[n + data_usa_021539f4[i].mUnk_00].mUnk_00 = 0;
     }
     for (i = 0; i < n; i++) {
-        func_021249a8(i, 2, p->mUnk_08, p->mUnk_0c);
+        func_021249a8(i, 2, p->mCells, p->mCellLayout);
     }
-    p->mUnk_18[4].mUnk_06 = 0x60 - (((s16 *) func_0201ea30(p->mUnk_0c, 4))[1] << 20 >> 20);
-    p->mUnk_18[4].mUnk_00 = 0;
+    p->mCellTable[4].mUnk_06 = 0x60 - (((s16 *) func_0201ea30(p->mCellLayout, 4))[1] << 20 >> 20);
+    p->mCellTable[4].mUnk_00 = 0;
     func_020258d4(1, &gWiFiVSCourseSelect->mWiFiVSCourseSelectMBAndSBParts[1], gWiFiVSCourseSelectSBNcgrName,
                   gWiFiVSCourseSelectSBNclrName, gWiFiVSCourseSelectSNscrName, 3, FindSceneFile);
     t = &gWiFiVSCourseSelect->mWiFiVSCourseSelectSParts;
     k = GX_GetSizeOfSubOBJ();
-    func_02025b20(t, gWiFiVSCourseSelectSNcgrName, gWiFiVSCourseSelectSNcerName, gWiFiVSCourseSelectSONclrName,
-                  gWiFiVSCourseSelectSBnclName, gWiFiVSCourseSelectSBnllName, gWiFiVSCourseSelectSBnblName,
-                  FindSceneFile);
+    LocateCellFileSet(t, gWiFiVSCourseSelectSNcgrName, gWiFiVSCourseSelectSNcerName, gWiFiVSCourseSelectSONclrName,
+                      gWiFiVSCourseSelectSBnclName, gWiFiVSCourseSelectSBnllName, gWiFiVSCourseSelectSBnblName,
+                      FindSceneFile);
     func_02025a50(1, gWiFiVSCourseSelect->mHeap, t);
-    m = t->mUnk_0c->mUnk_06;
+    m = t->mCellLayout->mUnk_06;
     for (j = 0; j < m; j++) {
-        func_021249a8(j, 1, t->mUnk_08, t->mUnk_0c);
+        func_021249a8(j, 1, t->mCells, t->mCellLayout);
     }
-    for (j = 0; j < t->mUnk_14->mUnk_06; j++) {
+    for (j = 0; j < t->mLabelLayout->mUnk_06; j++) {
         k -= func_02025a00(1, gWiFiVSCourseSelect->mHeap, t, &data_usa_02153a14[j], k);
     }
     for (j = 0; j < m; j++) {
-        func_021249a8(j, 2, t->mUnk_08, t->mUnk_0c);
+        func_021249a8(j, 2, t->mCells, t->mCellLayout);
     }
     for (i = 0; i < 7; i++) {
         n = data_usa_02153a14[i].mUnk_06;
         q = data_usa_02153a14[i].mUnk_00;
-        e = t->mUnk_18;
-        func_02025c1c(n, e + n, t->mUnk_0c);
-        func_02025bf0(q, e + q + m, t->mUnk_14);
+        e = t->mCellTable;
+        func_02025c1c(n, e + n, t->mCellLayout);
+        func_02025bf0(q, e + q + m, t->mLabelLayout);
     }
-    func_02025c1c(7, t->mUnk_18 + 7, t->mUnk_0c);
+    func_02025c1c(7, t->mCellTable + 7, t->mCellLayout);
     w[0] = 0;
     w[1] = m;
-    func_0202e530(gWiFiVSCourseSelect->mHeap, 2, w, 7, 8, 0x7c, t->mUnk_18, t->mUnk_10,
-                  (u8 *) gWiFiVSCourseSelect->mWiFiVSCourseSelectMBAndSBParts[1].mUnk_14[3] + 0xc, 5, 6, 0, 0x15,
+    func_0202e530(gWiFiVSCourseSelect->mHeap, 2, w, 7, 8, 0x7c, t->mCellTable, t->mRects,
+                  (u8 *) gWiFiVSCourseSelect->mWiFiVSCourseSelectMBAndSBParts[1].mScreenMaps[3] + 0xc, 5, 6, 0, 0x15,
                   func_0202b4bc);
     FrmHeapShrinkInParent(gWiFiVSCourseSelect->mHeap);
 }
@@ -435,7 +435,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
     for (i = 0; i < 2; i++) {
         d = gWiFiVSCourseSelect;
         p = &d->mWiFiVSCourseSelectMParts;
-        DrawLayoutTable(p[i].mUnk_0c, p[i].mUnk_08, p[i].mUnk_14, d->mUnk_080[i], p[i].mUnk_18);
+        DrawLayoutTable(p[i].mCellLayout, p[i].mCells, p[i].mLabelLayout, d->mUnk_080[i], p[i].mCellTable);
     }
     return r;
 }

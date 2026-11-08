@@ -346,7 +346,7 @@ u32 LoadCourseSoundSet(u32 a, u32 b) {
     SoundSet v;
     u32 x;
 
-    func_0202553c(b, &c);
+    GetCourseSoundRowIndex(b, &c);
     d = c;
     v.mSeqId = d.mUnk_01;
     v.mUnk_04 = d.mUnk_02;
@@ -360,10 +360,10 @@ u32 LoadCourseSoundSet(u32 a, u32 b) {
 }
 
 u32 func_0210e524(void) {
-    Unk0215316c b, c;
+    SoundRow b, c;
     SoundSet v;
 
-    b = func_0202577c(0x29);
+    b = GetSoundRow(0x29);
     b.mUnk_00[1] = func_0211127c();
     c = b;
     v.mSeqId = c.mUnk_00[1];

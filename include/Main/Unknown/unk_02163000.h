@@ -65,7 +65,7 @@ extern const char gMultiSelectNSSBnclName[];
 extern const char gMultiSelectNSSBnblName[];
 extern const char gMultiSelectNSSBnllName[];
 
-// Strings passed to FindSceneFile, FindFileInLoadedArchives, func_02025b20 and func_020258d4.
+// Strings passed to FindSceneFile, FindFileInLoadedArchives, LocateCellFileSet and func_020258d4.
 extern char data_usa_021636f4[];
 extern char data_usa_02163700[];
 extern char gMultiSelectMemberMNcgrName2[];

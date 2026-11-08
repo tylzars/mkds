@@ -39,14 +39,14 @@ void func_02035114(void) {
         for (i = 0; i < 4; i++) {
             if (p->mUnk_09c[i].mUnk_28 != FALSE) {
                 p->mUnk_080 = i;
-                s->mUnk_18[4].mUnk_00 = 1;
-                func_02025c6c(4, data_02164254[i][3], s->mUnk_0c);
+                s->mCellTable[4].mUnk_00 = 1;
+                func_02025c6c(4, data_02164254[i][3], s->mCellLayout);
                 return;
             }
         }
     } else {
         if (p->mUnk_190 == 0) {
-            s->mUnk_18[4].mUnk_00 = 0;
+            s->mCellTable[4].mUnk_00 = 0;
             data_02174e64->mUnk_080 = -1;
             return;
         }
@@ -69,17 +69,17 @@ void func_02035060(void) {
     s16 v;
 
     s = &data_02174e64->mUnk_02c[1];
-    m = s->mUnk_0c->mUnk_06;
+    m = s->mCellLayout->mUnk_06;
     for (i = 0; i < 4; i++) {
         func_02025edc(&data_02174e64->mUnk_09c[i].mUnk_2c);
         c = func_02025ebc(&data_02174e64->mUnk_09c[i].mUnk_2c);
-        s->mUnk_18[m + data_02164254[i + 4][0]].mUnk_04 = c;
-        v = s->mUnk_18[m + ((const s16(*)[4]) data_02164254)[i + 4][0]].mUnk_04;
-        s->mUnk_18[m + data_02164254[i][0]].mUnk_04 = v;
-        v = s->mUnk_18[m + data_02164254[i][0]].mUnk_04;
-        s->mUnk_18[data_02164254[i][3]].mUnk_04 = v;
+        s->mCellTable[m + data_02164254[i + 4][0]].mUnk_04 = c;
+        v = s->mCellTable[m + ((const s16(*)[4]) data_02164254)[i + 4][0]].mUnk_04;
+        s->mCellTable[m + data_02164254[i][0]].mUnk_04 = v;
+        v = s->mCellTable[m + data_02164254[i][0]].mUnk_04;
+        s->mCellTable[data_02164254[i][3]].mUnk_04 = v;
         if (data_02174e64->mUnk_080 == i) {
-            s->mUnk_18[4].mUnk_04 = c;
+            s->mCellTable[4].mUnk_04 = c;
         }
     }
 }
@@ -94,14 +94,14 @@ void func_02034fec(void) {
 
     s = &data_02174e64->mUnk_02c[0];
     t = &data_02174e64->mUnk_02c[1];
-    n = s->mUnk_0c->mUnk_06 + s->mUnk_14->mUnk_06;
-    m = t->mUnk_0c->mUnk_06 + t->mUnk_14->mUnk_06;
+    n = s->mCellLayout->mUnk_06 + s->mLabelLayout->mUnk_06;
+    m = t->mCellLayout->mUnk_06 + t->mLabelLayout->mUnk_06;
     c = func_02025ebc(&data_02174e64->mUnk_194);
     for (i = 0; i < n; i++) {
-        s->mUnk_18[i].mUnk_06 = -c;
+        s->mCellTable[i].mUnk_06 = -c;
     }
     for (i = 0; i < m; i++) {
-        t->mUnk_18[i].mUnk_06 = c;
+        t->mCellTable[i].mUnk_06 = c;
     }
 }
 
@@ -114,14 +114,14 @@ void func_02034f60(void) {
 
     s = &data_02174e64->mUnk_02c[0];
     e = &data_02174e64->mUnk_09c[data_02174e64->mUnk_080];
-    n = s->mUnk_0c->mUnk_06 + s->mUnk_14->mUnk_06;
+    n = s->mCellLayout->mUnk_06 + s->mLabelLayout->mUnk_06;
     for (i = 0; i < n; i++) {
         if (data_02174e64->mUnk_080 >= 0) {
             v = TRUE;
         } else {
             v = FALSE;
         }
-        s->mUnk_18[i].mUnk_00 = v;
+        s->mCellTable[i].mUnk_00 = v;
     }
     if (data_02174e64->mUnk_080 >= 0) {
         func_0202de00((Unk02174e14 *) &data_02174e64->mUnk_02c[0], data_02154034, e, e->mUnk_00.mUnk_18[0],
@@ -143,11 +143,11 @@ void func_02034ef0(void) {
         } else {
             v = 15;
         }
-        func_02124100(w, v, s->mUnk_14, s->mUnk_18, s->mUnk_0c);
-        func_02124100(i, v, s->mUnk_14, s->mUnk_18, s->mUnk_0c);
+        func_02124100(w, v, s->mLabelLayout, s->mCellTable, s->mCellLayout);
+        func_02124100(i, v, s->mLabelLayout, s->mCellTable, s->mCellLayout);
     }
     if (data_02174e64->mUnk_080 >= 0) {
-        func_02025c6c(4, data_02164254[data_02174e64->mUnk_080][3], s->mUnk_0c);
+        func_02025c6c(4, data_02164254[data_02174e64->mUnk_080][3], s->mCellLayout);
     }
 }
 
@@ -199,32 +199,32 @@ void func_02034bf4(void *a, void *b, void *c) {
     func_020258d4(0, data_02174e64, data_021642ac, data_021642cc, data_021642ec, 0, FindSceneFile);
     s = &data_02174e64->mUnk_02c[0];
     n = GX_GetSizeOfOBJ();
-    func_02025b20(s, data_02164308, data_02164328, data_02164348, gTimeAttackGhostGetMBnclName,
-                  gTimeAttackGhostGetMBnllName, NULL, FindSceneFile);
+    LocateCellFileSet(s, data_02164308, data_02164328, data_02164348, gTimeAttackGhostGetMBnclName,
+                      gTimeAttackGhostGetMBnllName, NULL, FindSceneFile);
     z = FALSE;
     func_02025a50(0, data_02174e64->mHeap, s);
     i = 0;
-    if (i < s->mUnk_14->mUnk_06) {
+    if (i < s->mLabelLayout->mUnk_06) {
         t = (s16 *) data_02154034;
         do {
             n -= func_02025a00(z, data_02174e64->mHeap, s, t, n);
             t += 4;
             i++;
-        } while (i < s->mUnk_14->mUnk_06);
+        } while (i < s->mLabelLayout->mUnk_06);
     }
-    j = s->mUnk_0c->mUnk_06 + s->mUnk_14->mUnk_06;
+    j = s->mCellLayout->mUnk_06 + s->mLabelLayout->mUnk_06;
     for (i = 0; i < j; i++) {
-        s->mUnk_18[i].mUnk_00 = 0;
+        s->mCellTable[i].mUnk_00 = 0;
     }
     s = &data_02174e64->mUnk_02c[1];
     n = GX_GetSizeOfSubOBJ();
     k = 0;
-    func_02025b20(s, data_021643a0, data_021643c0, data_021643e0, gTimeAttackGhostGetSSelBnclName,
-                  gTimeAttackGhostGetSSelBnllName, gTimeAttackGhostGetSSelBnblName, FindSceneFile);
+    LocateCellFileSet(s, data_021643a0, data_021643c0, data_021643e0, gTimeAttackGhostGetSSelBnclName,
+                      gTimeAttackGhostGetSSelBnllName, gTimeAttackGhostGetSSelBnblName, FindSceneFile);
     func_02025a50(1, data_02174e64->mHeap, s);
-    m = s->mUnk_0c->mUnk_06;
+    m = s->mCellLayout->mUnk_06;
     i = 0;
-    if (i < s->mUnk_14->mUnk_06) {
+    if (i < s->mLabelLayout->mUnk_06) {
         t = (s16 *) data_02164254;
         do {
             if (t[3] < 0) {
@@ -233,12 +233,12 @@ void func_02034bf4(void *a, void *b, void *c) {
             n -= func_02025a00(1, data_02174e64->mHeap, s, data_02164254[i], n);
             t += 4;
             i++;
-        } while (i < s->mUnk_14->mUnk_06);
+        } while (i < s->mLabelLayout->mUnk_06);
     }
     for (j = 0; j < m; j++) {
-        func_021249a8(j, 3, s->mUnk_08, s->mUnk_0c);
+        func_021249a8(j, 3, s->mCells, s->mCellLayout);
     }
-    s->mUnk_18[4].mUnk_00 = 0;
+    s->mCellTable[4].mUnk_00 = 0;
     func_02025b84(0, &data_02174e64->mUnk_064);
     func_02025f80(&data_02174e64->mUnk_194, 3, 10, -0xc0, 0);
     SetSelectReturnSoundId(0xf);

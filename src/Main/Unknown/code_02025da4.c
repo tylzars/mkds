@@ -3,26 +3,26 @@
 #include "Main/Unknown/code_0205ee14.h"
 
 #pragma thumb on
-s32 func_02025da4(KartAppear *a, u32 b, s32 c) {
-    s32 n = 1;
-    s32 i;
-    s32 j;
-    u32 d;
-    j = FindKartTableIndex(func_02025e60(b));
-    i = j;
+s32 func_02025da4(KartAppear *appear, u32 characterIndex, s32 kartIndex) {
+    s32 position = 1;
+    s32 tableIndex;
+    s32 startIndex;
+    u32 tableKartIndex;
+    startIndex = FindKartTableIndex(func_02025e60(characterIndex));
+    tableIndex = startIndex;
     do {
-        d = GetKartIndexAtTableIndex(i);
-        if (func_0205fd2c(a, b, d) != 0) {
-            if (d == c) {
+        tableKartIndex = GetKartIndexAtTableIndex(tableIndex);
+        if (func_0205fd2c(appear, characterIndex, tableKartIndex) != 0) {
+            if (tableKartIndex == kartIndex) {
                 break;
             }
-            n++;
+            position++;
         }
-        i++;
-        if (i >= 0x24) {
-            i = 0;
+        tableIndex++;
+        if (tableIndex >= 0x24) {
+            tableIndex = 0;
         }
-    } while (i != j);
-    return n;
+    } while (tableIndex != startIndex);
+    return position;
 }
 #pragma thumb off

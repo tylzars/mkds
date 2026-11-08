@@ -164,17 +164,17 @@ void func_0202de00(Unk02174e14 *a, s16 (*b)[4], void *c, s32 d, s32 e, s32 f, Un
     u16 t[11];
     Unk02174e14_00 *h;
     h = &a->mUnk_038;
-    func_0212426c(0, b[0][0], a->mUnk_000.mUnk_14, GetBmgEntry(a->mUnk_058, GetCourseMessageIndex(f)),
-                  a->mUnk_000.mUnk_0c, a->mUnk_000.mUnk_18);
-    func_02025cd0((s16 *) s, g->mUnk_02, g->mUnk_03, g->mUnk_00);
-    func_02124224(0, b[1][0], a->mUnk_000.mUnk_14, s, a->mUnk_000.mUnk_0c, a->mUnk_000.mUnk_18, 7);
+    func_0212426c(0, b[0][0], a->mUnk_000.mLabelLayout, GetBmgEntry(a->mUnk_058, GetCourseMessageIndex(f)),
+                  a->mUnk_000.mCellLayout, a->mUnk_000.mCellTable);
+    WriteMinuteSecondMillisecondText((s16 *) s, g->mUnk_02, g->mUnk_03, g->mUnk_00);
+    func_02124224(0, b[1][0], a->mUnk_000.mLabelLayout, s, a->mUnk_000.mCellLayout, a->mUnk_000.mCellTable, 7);
     MIi_CpuCopy16(c, t, 0x14);
     t[10] = 0;
-    func_0212426c(0, b[2][0], a->mUnk_000.mUnk_14, t, a->mUnk_000.mUnk_0c, a->mUnk_000.mUnk_18);
-    func_0212463c(d, h->mUnk_08, a->mUnk_038.mUnk_00, h->mUnk_04, h->mUnk_0c, 0, b[0][3], a->mUnk_000.mUnk_08,
-                  a->mUnk_000.mUnk_0c);
-    QueueKartIcon(e, a->mUnk_000.mUnk_08, a->mUnk_000.mUnk_0c, b[1][3],
-                  func_02124a68(b[1][3], a->mUnk_000.mUnk_08, a->mUnk_000.mUnk_0c), 0);
+    func_0212426c(0, b[2][0], a->mUnk_000.mLabelLayout, t, a->mUnk_000.mCellLayout, a->mUnk_000.mCellTable);
+    func_0212463c(d, h->mCells, a->mUnk_038.mChars, h->mPalette, h->mCellLayout, 0, b[0][3], a->mUnk_000.mCells,
+                  a->mUnk_000.mCellLayout);
+    QueueKartIcon(e, a->mUnk_000.mCells, a->mUnk_000.mCellLayout, b[1][3],
+                  func_02124a68(b[1][3], a->mUnk_000.mCells, a->mUnk_000.mCellLayout), 0);
 }
 
 #pragma thumb off

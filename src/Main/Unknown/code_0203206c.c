@@ -75,7 +75,7 @@ void func_020329dc(s32 a) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         p = &gSelectGame->mUnk_00[1];
         for (i = 0; i < gSelectGame->mTableCount; i++) {
-            p->mUnk_18[gSelectGame->mTable[i].mUnk_02].mUnk_00 = a;
+            p->mCellTable[gSelectGame->mTable[i].mUnk_02].mUnk_00 = a;
         }
     }
 }
@@ -86,7 +86,7 @@ void func_020329a0(void) {
 
     p = &gSelectGame->mUnk_00[1];
     for (i = 0; i < gSelectGame->mTableCount; i++) {
-        p->mUnk_18[gSelectGame->mTable[i].mUnk_00].mUnk_04 = gSelectGame->mUnk_5c;
+        p->mCellTable[gSelectGame->mTable[i].mUnk_00].mUnk_04 = gSelectGame->mUnk_5c;
     }
 }
 
@@ -99,16 +99,16 @@ void func_02032940(void) {
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         o = gSelectGame;
-        n = o->mUnk_00[0].mUnk_0c->mUnk_06;
-        m = o->mUnk_00[0].mUnk_14->mUnk_06;
+        n = o->mUnk_00[0].mCellLayout->mUnk_06;
+        m = o->mUnk_00[0].mLabelLayout->mUnk_06;
         for (i = 0; i < m; i++) {
-            o->mUnk_00[0].mUnk_18[i + n].mUnk_06 = gSelectGame->mUnk_60;
+            o->mUnk_00[0].mCellTable[i + n].mUnk_06 = gSelectGame->mUnk_60;
         }
     }
     p = &gSelectGame->mUnk_00[1];
-    m = p->mUnk_0c->mUnk_06;
+    m = p->mCellLayout->mUnk_06;
     for (i = 0; i < m; i++) {
-        p->mUnk_18[i].mUnk_04 = gSelectGame->mUnk_5c;
+        p->mCellTable[i].mUnk_04 = gSelectGame->mUnk_5c;
     }
 }
 
@@ -124,7 +124,7 @@ void func_020328f8(s32 a) {
         } else {
             v = FALSE;
         }
-        p->mUnk_18[gSelectGame->mTable[i].mUnk_00].mUnk_00 = v;
+        p->mCellTable[gSelectGame->mTable[i].mUnk_00].mUnk_00 = v;
     }
 }
 
@@ -133,8 +133,8 @@ void func_020328c8(s32 a) {
     Unk02174e14_00 *p;
 
     p = &gSelectGame->mUnk_00[1];
-    for (i = 0; i < p->mUnk_0c->mUnk_06; i++) {
-        p->mUnk_18[i].mUnk_00 = a;
+    for (i = 0; i < p->mCellLayout->mUnk_06; i++) {
+        p->mCellTable[i].mUnk_00 = a;
     }
 }
 
@@ -185,19 +185,20 @@ void InitSelectGame(void *a, s32 b, void *c, void *d) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         k = GX_GetSizeOfOBJ();
         o = gSelectGame;
-        func_02025b20(o, gSelectGameMNceNcgrName2, gSelectGameMNceNcerName2, gSelectGameMONclrName2,
-                      gSelectGameMBnclName, gSelectGameMBnllName, NULL, FindSceneFile);
+        LocateCellFileSet(o, gSelectGameMNceNcgrName2, gSelectGameMNceNcerName2, gSelectGameMONclrName2,
+                          gSelectGameMBnclName, gSelectGameMBnllName, NULL, FindSceneFile);
         func_02025a50(0, gSelectGame->mHeap, o);
-        n = o->mUnk_00[0].mUnk_0c->mUnk_06;
-        m = o->mUnk_00[0].mUnk_14->mUnk_06;
+        n = o->mUnk_00[0].mCellLayout->mUnk_06;
+        m = o->mUnk_00[0].mLabelLayout->mUnk_06;
         i = 0;
         if (m > 0) {
             t = data_02153e20;
             g = t;
             do {
                 k -= func_02025a00(0, gSelectGame->mHeap, o, t, k);
-                func_0212426c(0, g->mUnk_00, o->mUnk_00[0].mUnk_14, GetBmgEntry(gSelectGame->mMenuMessages, g->mUnk_08),
-                              o->mUnk_00[0].mUnk_0c, o->mUnk_00[0].mUnk_18);
+                func_0212426c(0, g->mUnk_00, o->mUnk_00[0].mLabelLayout,
+                              GetBmgEntry(gSelectGame->mMenuMessages, g->mUnk_08), o->mUnk_00[0].mCellLayout,
+                              o->mUnk_00[0].mCellTable);
                 t++;
                 g++;
                 i++;
@@ -211,13 +212,13 @@ void InitSelectGame(void *a, s32 b, void *c, void *d) {
             e = 4;
         }
         for (j = s; j < s + e; j++) {
-            o->mUnk_00[0].mUnk_18[j + n].mUnk_00 = 0;
+            o->mUnk_00[0].mCellTable[j + n].mUnk_00 = 0;
         }
     }
     q = &gSelectGame->mUnk_00[1];
-    func_02025b20(q, gSelectGameSNceNcgrName2, gSelectGameSNceNcerName2, gSelectGameSONclrName2,
-                  data_02153e08[gSelectGame->mMode].mUnk_00, NULL, data_02153e0c[gSelectGame->mMode].mUnk_00,
-                  FindSceneFile);
+    LocateCellFileSet(q, gSelectGameSNceNcgrName2, gSelectGameSNceNcerName2, gSelectGameSONclrName2,
+                      data_02153e08[gSelectGame->mMode].mUnk_00, NULL, data_02153e0c[gSelectGame->mMode].mUnk_00,
+                      FindSceneFile);
     func_02025a50(1, gSelectGame->mHeap, q);
     func_020328c8(0);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
@@ -288,7 +289,7 @@ s32 AdvanceSelectGame(void) {
                 d = data_02175628[v1].mPairX;
                 g = data_02175628[v1].mPairY;
                 c = IsSelectReturnState2NoState3Or4RequestAndInRect(d, g);
-                d = RectTableFindContaining(q->mUnk_10, d, g);
+                d = RectTableFindContaining(q->mRects, d, g);
             }
             if ((u16) (data_02175628[v1].mUnk_00 & PAD_KEY_A) != 0) {
                 func_020328f8(0);
@@ -398,10 +399,10 @@ s32 AdvanceSelectGame(void) {
     }
     if (gSelectGame->mState != 10) {
         if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-            DrawLayoutTable(o->mUnk_00[0].mUnk_0c, o->mUnk_00[0].mUnk_08, o->mUnk_00[0].mUnk_14, gSelectGame->mUnk_38,
-                            o->mUnk_00[0].mUnk_18);
+            DrawLayoutTable(o->mUnk_00[0].mCellLayout, o->mUnk_00[0].mCells, o->mUnk_00[0].mLabelLayout,
+                            gSelectGame->mUnk_38, o->mUnk_00[0].mCellTable);
         }
-        DrawLayoutTable(q->mUnk_0c, q->mUnk_08, q->mUnk_14, gSelectGame->mUnk_3c, q->mUnk_18);
+        DrawLayoutTable(q->mCellLayout, q->mCells, q->mLabelLayout, gSelectGame->mUnk_3c, q->mCellTable);
     }
     return a;
 }

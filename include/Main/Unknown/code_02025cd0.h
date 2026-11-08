@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02025cd0(short *a, u32 b, u32 c, u32 d);
+void WriteMinuteSecondMillisecondText(short *text, u32 minute, u32 second, u32 millisecond);

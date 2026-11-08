@@ -115,13 +115,13 @@ extern HeapCall gRootHeapCall;
 // 0x1c-byte part of Unk02174e14, at 0x00, 0x1c and 0x38; InitSelectCharacter has two on the stack, one filled by
 // func_02025b84. ResultsBattle has four from 0x48.
 typedef struct Unk02174e14_00 {
-    /* 00 */ struct Unk0212463c_c *mUnk_00;
-    /* 04 */ struct Unk0212463c_d *mUnk_04;
-    /* 08 */ struct Unk02021dc8 *mUnk_08;
-    /* 0c */ Unk0201ea30 *mUnk_0c;
-    /* 10 */ struct Unk0201ea30 *mUnk_10;
-    /* 14 */ Unk0201ea30 *mUnk_14;
-    /* 18 */ Unk02124b1c *mUnk_18;
+    /* 00 */ struct Unk0212463c_c *mChars;
+    /* 04 */ struct Unk0212463c_d *mPalette;
+    /* 08 */ struct Unk02021dc8 *mCells;
+    /* 0c */ Unk0201ea30 *mCellLayout;
+    /* 10 */ struct Unk0201ea30 *mRects;
+    /* 14 */ Unk0201ea30 *mLabelLayout;
+    /* 18 */ Unk02124b1c *mCellTable;
 } Unk02174e14_00;
 
 // Object behind data_02174e3c.
@@ -180,11 +180,11 @@ typedef struct Unk02174e3c {
 
 extern Unk02174e3c *data_02174e3c;
 
-// 0x24-byte part of ResultsBattle, at 0x00 and 0x24, filled by func_02025884.
+// 0x24-byte part of ResultsBattle, at 0x00 and 0x24, filled by LoadScreenMapFileSet.
 typedef struct Unk02174e60_00 {
-    /* 00 */ Ncgr *mUnk_00[4];
-    /* 10 */ Nclr *mUnk_10;
-    /* 14 */ Nscr *mUnk_14[4];
+    /* 00 */ Ncgr *mChars[4];
+    /* 10 */ Nclr *mPalette;
+    /* 14 */ Nscr *mScreenMaps[4];
 } Unk02174e60_00;
 
 // 0xc-byte entries from 0xe4 of ResultsBattle.

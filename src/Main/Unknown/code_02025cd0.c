@@ -2,17 +2,17 @@
 
 #pragma thumb on
 
-void func_02025cd0(short *a, u32 b, u32 c, u32 d) {
-    a[0] = (b / 10) % 10 + '0';
-    a[1] = b % 10 + '0';
-    a[2] = ':';
-    a[3] = (c / 10) % 10 + '0';
-    a[4] = c % 10 + '0';
-    a[5] = ':';
-    a[6] = (d / 100) % 10 + '0';
-    a[7] = (d / 10) % 10 + '0';
-    a[8] = d % 10 + '0';
-    a[9] = 0;
+void WriteMinuteSecondMillisecondText(short *text, u32 minute, u32 second, u32 millisecond) {
+    text[0] = (minute / 10) % 10 + '0';
+    text[1] = minute % 10 + '0';
+    text[2] = ':';
+    text[3] = (second / 10) % 10 + '0';
+    text[4] = second % 10 + '0';
+    text[5] = ':';
+    text[6] = (millisecond / 100) % 10 + '0';
+    text[7] = (millisecond / 10) % 10 + '0';
+    text[8] = millisecond % 10 + '0';
+    text[9] = 0;
 }
 
 #pragma thumb off

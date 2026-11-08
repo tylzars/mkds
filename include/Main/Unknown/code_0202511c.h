@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-typedef struct Unk0215316c Unk0215316c;
+typedef struct SoundRow SoundRow;
 
-u32 func_0202511c(s32 a, void *b);
-u32 func_0202553c(u32 a, void *b);
-Unk0215316c func_0202577c(u32 arg0);
+u32 GetSceneSoundRowIndex(s32 sceneNumber, void *output);
+u32 GetCourseSoundRowIndex(u32 courseId, void *output);
+SoundRow GetSoundRow(u32 rowIndex);

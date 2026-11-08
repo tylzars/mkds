@@ -102,25 +102,25 @@ void func_02029dcc(void *a, void *b, void *c) {
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(a, &s);
     func_02025854(0, &t1, data_usa_02162150, data_usa_02162164, data_usa_02162178, 1, FindSceneFile);
-    LoadNscrData(&t1.mUnk_14[3], FindSceneFile(data_usa_0216218c));
-    CallQueueAppend(0xb, 0, &t1.mUnk_14[3]->mData, t1.mUnk_14[3]->mDataSize);
+    LoadNscrData(&t1.mScreenMaps[3], FindSceneFile(data_usa_0216218c));
+    CallQueueAppend(0xb, 0, &t1.mScreenMaps[3]->mData, t1.mScreenMaps[3]->mDataSize);
     n = GX_GetSizeOfOBJ();
     q = &data_usa_02174e00->mUnk_00[0];
-    func_02025abc(q, data_usa_021621a0, data_usa_021621b8, data_usa_021621d0, data_usa_021621e4, data_usa_021621f8,
-                  NULL, FindSceneFile);
+    LoadCellFileSet(q, data_usa_021621a0, data_usa_021621b8, data_usa_021621d0, data_usa_021621e4, data_usa_021621f8,
+                    NULL, FindSceneFile);
     func_02025a50(0, a, q);
     MIi_CpuCopy16(&data_0217aa08->mUnk_00->mUnk_0c, v2, 0x14);
     v2[10] = 0;
-    func_021243ac(a, 0, q->mUnk_14, 0x82, 0xd, 0x14, q->mUnk_08, q->mUnk_0c, q->mUnk_18, n);
-    func_0212426c(0, 0, q->mUnk_14, v2, q->mUnk_0c, q->mUnk_18);
-    func_02124094(0, 1, q->mUnk_14, q->mUnk_18, q->mUnk_0c);
+    func_021243ac(a, 0, q->mLabelLayout, 0x82, 0xd, 0x14, q->mCells, q->mCellLayout, q->mCellTable, n);
+    func_0212426c(0, 0, q->mLabelLayout, v2, q->mCellLayout, q->mCellTable);
+    func_02124094(0, 1, q->mLabelLayout, q->mCellTable, q->mCellLayout);
     for (i = 0; i < 8; i++) {
         if (i == data_usa_02174e00->mUnk_48) {
             f = 1;
         } else {
             f = 0;
         }
-        q->mUnk_18[data_usa_02153878[i]].mUnk_00 = f;
+        q->mCellTable[data_usa_02153878[i]].mUnk_00 = f;
     }
     for (i = 0; i < 8; i++) {
         if (i == data_usa_02174e00->mUnk_44) {
@@ -128,26 +128,26 @@ void func_02029dcc(void *a, void *b, void *c) {
         } else {
             f = 0;
         }
-        q->mUnk_18[data_usa_02153888[i]].mUnk_00 = f;
+        q->mCellTable[data_usa_02153888[i]].mUnk_00 = f;
     }
     if (data_usa_02174e00->mUnk_48 >= 3) {
         f = 1;
     } else {
         f = 0;
     }
-    q->mUnk_18[3].mUnk_00 = f;
-    q->mUnk_18[2].mUnk_00 = q->mUnk_18[3].mUnk_00;
-    q->mUnk_18[1].mUnk_00 = (q->mUnk_18[2].mUnk_00 == 0) ? 1 : 0;
-    q->mUnk_18[0].mUnk_00 = q->mUnk_18[1].mUnk_00;
+    q->mCellTable[3].mUnk_00 = f;
+    q->mCellTable[2].mUnk_00 = q->mCellTable[3].mUnk_00;
+    q->mCellTable[1].mUnk_00 = (q->mCellTable[2].mUnk_00 == 0) ? 1 : 0;
+    q->mCellTable[0].mUnk_00 = q->mCellTable[1].mUnk_00;
     u = data_0217b488->mUnk_90;
     q = &data_usa_02174e00->mUnk_00[0];
     func_02025b84(1, &w3);
-    func_0212463c(u, w3.mUnk_08, w3.mUnk_00, w3.mUnk_04, w3.mUnk_0c, 0, 0x14, q->mUnk_08, q->mUnk_0c);
+    func_0212463c(u, w3.mCells, w3.mChars, w3.mPalette, w3.mCellLayout, 0, 0x14, q->mCells, q->mCellLayout);
     func_02025854(1, &t2, data_usa_0216220c, data_usa_02162220, data_usa_02162234, 3, FindSceneFile);
     m = GX_GetSizeOfSubOBJ();
     r = &data_usa_02174e00->mUnk_00[1];
-    func_02025abc(r, data_usa_02162248, data_usa_02162260, data_usa_02162278, data_usa_0216228c, data_usa_021622a0,
-                  NULL, FindSceneFile);
+    LoadCellFileSet(r, data_usa_02162248, data_usa_02162260, data_usa_02162278, data_usa_0216228c, data_usa_021622a0,
+                    NULL, FindSceneFile);
     func_02025a50(1, a, r);
     j = 0;
     p = data_usa_02153918;
@@ -157,13 +157,13 @@ void func_02029dcc(void *a, void *b, void *c) {
     }
     v = GetBmgEntry(data_usa_02174e00->mUnk_4c, data_usa_02153860[data_0217b488->mUnk_88]);
     for (j = 0; j < 2; j++) {
-        func_0212426c(1, data_usa_02153918[k].mUnk_00, r->mUnk_14, v, r->mUnk_0c, r->mUnk_18);
+        func_0212426c(1, data_usa_02153918[k].mUnk_00, r->mLabelLayout, v, r->mCellLayout, r->mCellTable);
         k++;
     }
     if (data_0217b488->mUnk_8c != 0) {
         v = GetBmgEntry(data_usa_02174e00->mUnk_4c, 0x71);
         for (j = 0; j < 2; j++) {
-            func_0212426c(1, data_usa_02153918[k].mUnk_00, r->mUnk_14, v, r->mUnk_0c, r->mUnk_18);
+            func_0212426c(1, data_usa_02153918[k].mUnk_00, r->mLabelLayout, v, r->mCellLayout, r->mCellTable);
             k++;
         }
     } else {
@@ -172,19 +172,19 @@ void func_02029dcc(void *a, void *b, void *c) {
     for (e = 0; e < 4; e++) {
         v = GetBmgEntry(data_usa_02174e00->mUnk_4c,
                         GetCourseMessageIndex(data_usa_02153898[data_usa_02174e00->mUnk_40][e]));
-        func_0212426c(1, data_usa_02153918[k].mUnk_00, r->mUnk_14, v, r->mUnk_0c, r->mUnk_18);
+        func_0212426c(1, data_usa_02153918[k].mUnk_00, r->mLabelLayout, v, r->mCellLayout, r->mCellTable);
         k++;
     }
     for (j = 0; j < 4; j++) {
         func_0202a340(v1, j);
-        func_02124224(1, data_usa_02153918[k].mUnk_00, r->mUnk_14, v1, r->mUnk_0c, r->mUnk_18, 7);
-        func_02124224(1, data_usa_02153918[k + 4].mUnk_00, r->mUnk_14, v1, r->mUnk_0c, r->mUnk_18, 7);
+        func_02124224(1, data_usa_02153918[k].mUnk_00, r->mLabelLayout, v1, r->mCellLayout, r->mCellTable, 7);
+        func_02124224(1, data_usa_02153918[k + 4].mUnk_00, r->mLabelLayout, v1, r->mCellLayout, r->mCellTable, 7);
         k++;
     }
     r = &data_usa_02174e00->mUnk_00[1];
-    func_02025abc(&w4, data_usa_021622b4, data_usa_021622cc, NULL, data_usa_021622e4, NULL, NULL, FindSceneFile);
-    func_02124748(data_usa_02153868[data_usa_02174e00->mUnk_40], w4.mUnk_08, w4.mUnk_00, w4.mUnk_0c, 1, 0, r->mUnk_08,
-                  r->mUnk_0c);
+    LoadCellFileSet(&w4, data_usa_021622b4, data_usa_021622cc, NULL, data_usa_021622e4, NULL, NULL, FindSceneFile);
+    func_02124748(data_usa_02153868[data_usa_02174e00->mUnk_40], w4.mCells, w4.mChars, w4.mCellLayout, 1, 0, r->mCells,
+                  r->mCellLayout);
     func_020629a4();
     func_020a269c(data_usa_02174e00->mUnk_40, (u16) data_usa_02174e00->mUnk_48);
     i = -1;
@@ -218,9 +218,9 @@ void func_02029aa0(Unk02029aa0 *a) {
     v1 = func_020435bc();
     v = NULL;
     for (i = 0; i < 2; i++) {
-        DrawLayoutTable(data_usa_02174e00->mUnk_00[i].mUnk_0c, data_usa_02174e00->mUnk_00[i].mUnk_08,
-                        data_usa_02174e00->mUnk_00[i].mUnk_14, data_usa_02174e00->mUnk_38[i],
-                        data_usa_02174e00->mUnk_00[i].mUnk_18);
+        DrawLayoutTable(data_usa_02174e00->mUnk_00[i].mCellLayout, data_usa_02174e00->mUnk_00[i].mCells,
+                        data_usa_02174e00->mUnk_00[i].mLabelLayout, data_usa_02174e00->mUnk_38[i],
+                        data_usa_02174e00->mUnk_00[i].mCellTable);
     }
     if (data_usa_02174e00->mUnk_48 < 3) {
         func_020a2558();

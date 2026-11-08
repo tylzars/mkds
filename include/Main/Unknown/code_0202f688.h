@@ -5,7 +5,8 @@
 #include "code_0201ea58.h" // Unk0201ea30
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c
 
-// Seven words at 0x24 of MultiSelectMemberGroup, passed by address to func_02025b20, func_02025a50 and func_02025a00.
+// Seven words at 0x24 of MultiSelectMemberGroup, passed by address to LocateCellFileSet, func_02025a50 and
+// func_02025a00.
 typedef struct Unk02174e50_24 {
     /* 00 */ void *mUnk_00;
     /* 04 */ s32 mUnk_04;

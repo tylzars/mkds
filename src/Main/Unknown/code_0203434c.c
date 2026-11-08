@@ -151,9 +151,11 @@ s32 func_02034370(Unk02034370 *a) {
                                 func_02034e68(&data_02174e64->mUnk_09c[i].mUnk_00, &s) != FALSE) {
                                 v = func_02025d74(s.mUnk_18[2]);
                                 s.mUnk_00[10] = 0;
-                                func_0212426c(1, data_02164254[i][0], q->mUnk_14, &s, q->mUnk_0c, q->mUnk_18);
-                                func_0212426c(1, data_02164254[j][0], q->mUnk_14,
-                                              GetBmgEntry(data_02174e64->mGhostMessages, v), q->mUnk_0c, q->mUnk_18);
+                                func_0212426c(1, data_02164254[i][0], q->mLabelLayout, &s, q->mCellLayout,
+                                              q->mCellTable);
+                                func_0212426c(1, data_02164254[j][0], q->mLabelLayout,
+                                              GetBmgEntry(data_02174e64->mGhostMessages, v), q->mCellLayout,
+                                              q->mCellTable);
                                 MIi_CpuCopyFast(&s, &data_02174e64->mUnk_09c[i].mUnk_00, 0x28);
                                 data_02174e64->mUnk_09c[i].mUnk_28 = TRUE;
                                 func_02025f14(&data_02174e64->mUnk_09c[i].mUnk_2c, 0);
@@ -183,7 +185,7 @@ s32 func_02034370(Unk02034370 *a) {
                         x = data_02175670[k].mUnk_00;
                         y = data_02175672[k].mUnk_00;
                         z = IsSelectReturnState2NoState3Or4RequestAndInRect(x, y);
-                        m = RectTableFindContaining(q->mUnk_10, x, y);
+                        m = RectTableFindContaining(q->mRects, x, y);
                     }
                     if (m >= 0 && data_02174e64->mUnk_09c[m].mUnk_28 != FALSE) {
                         SetupGhostSubTextTwoButtons();
@@ -379,7 +381,7 @@ s32 func_02034370(Unk02034370 *a) {
     func_02054aa0();
     for (i = 0; i < 2; i++) {
         t = &data_02174e64->mUnk_02c[i];
-        DrawLayoutTable(t->mUnk_0c, t->mUnk_08, t->mUnk_14, data_02174e64->mUnk_024[i], t->mUnk_18);
+        DrawLayoutTable(t->mCellLayout, t->mCells, t->mLabelLayout, data_02174e64->mUnk_024[i], t->mCellTable);
     }
     return r;
 }

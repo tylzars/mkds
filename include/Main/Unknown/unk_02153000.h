@@ -32,10 +32,10 @@ typedef struct Unk021535b4 {
     /* 04 */ s32 mUnk_04;
 } Unk021535b4;
 
-// 4-byte entries of the table at data_0215316c.
-typedef struct Unk0215316c {
+// 4-byte entries of the table at gSoundRowTable.
+typedef struct SoundRow {
     /* 00 */ u8 mUnk_00[4];
-} Unk0215316c;
+} SoundRow;
 
 // 4-byte entries of the tables at data_021534bc, data_021534dc, data_02153500 and data_02153528.
 typedef struct Unk021534bc {
@@ -64,7 +64,7 @@ extern const char *data_02153f98[][9];
 extern const char *data_02153f9c[][9];
 extern const char *data_02153fa0[][9];
 extern u16 data_02153f00[][4];
-extern Unk0215316c data_0215316c[];
+extern SoundRow gSoundRowTable[];
 
 // Objects whose layout isn't known yet.
 extern u8 gCourseMessageIndexTable[];

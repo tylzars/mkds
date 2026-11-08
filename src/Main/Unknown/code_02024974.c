@@ -26,88 +26,91 @@
 #include "code_02147cd8.h"
 
 u32 func_020250a8(void) {
-    u32 value0;
-    u32 value1;
+    u32 quotient;
+    u32 divisor;
 
-    value1 = *(const u32 *) &data_02161ae4;
-    value0 = FX_Div(0x1000, value1);
-    value1 = *(const u32 *) &data_02161ae0;
-    data_02174e10 = value0;
-    value0 = FX_Div(0x1000, value1);
-    value1 = *(const u32 *) &data_02161adc;
-    data_02174e0c = value0;
-    value0 = FX_Div(0x1000, value1);
-    data_02174e08 = value0;
-    return value0;
+    divisor = *(const u32 *) &data_02161ae4;
+    quotient = FX_Div(0x1000, divisor);
+    divisor = *(const u32 *) &data_02161ae0;
+    data_02174e10 = quotient;
+    quotient = FX_Div(0x1000, divisor);
+    divisor = *(const u32 *) &data_02161adc;
+    data_02174e0c = quotient;
+    quotient = FX_Div(0x1000, divisor);
+    data_02174e08 = quotient;
+    return quotient;
 }
 
-void func_0202506c(Kart *a, Unk02024eec *b) {
-    PlayingSound *p;
+void func_0202506c(Kart *kart, Unk02024eec *soundRecord) {
+    PlayingSound *playingSound;
 
-    p = StartSoundWhileRequested(&a->mSoundSource, b->mUnk_00, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
-    if (p != NULL) {
-        p->mUnk_19 |= 0x80;
+    playingSound = StartSoundWhileRequested(&kart->mSoundSource, soundRecord->mUnk_00, soundRecord->mUnk_04,
+                                            (soundRecord->mUnk_08 << 4) >> 16);
+    if (playingSound != NULL) {
+        playingSound->mUnk_19 |= 0x80;
     }
 }
 
-void func_02025030(Kart *a, Unk02024eec *b) {
-    PlayingSound *p;
+void func_02025030(Kart *kart, Unk02024eec *soundRecord) {
+    PlayingSound *playingSound;
 
-    p = StartSoundWhileRequested(&a->mSoundSource, b->mUnk_58, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
-    if (p != NULL) {
-        p->mUnk_19 |= 0x80;
+    playingSound = StartSoundWhileRequested(&kart->mSoundSource, soundRecord->mUnk_58, soundRecord->mUnk_04,
+                                            (soundRecord->mUnk_08 << 4) >> 16);
+    if (playingSound != NULL) {
+        playingSound->mUnk_19 |= 0x80;
     }
 }
 
-void func_02024fe8(Kart *a, Unk02024eec *b) {
-    u32 v;
+void func_02024fe8(Kart *kart, Unk02024eec *soundRecord) {
+    u32 soundId;
 
-    v = GetSurfaceSoundId(3, a->mSurfaceKind, a->mSurfaceVariant);
-    StartSoundWhileRequested(&a->mSoundSource, v, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
+    soundId = GetSurfaceSoundId(3, kart->mSurfaceKind, kart->mSurfaceVariant);
+    StartSoundWhileRequested(&kart->mSoundSource, soundId, soundRecord->mUnk_04, (soundRecord->mUnk_08 << 4) >> 16);
 }
 
-void func_02024fc0(Kart *a, Unk02024eec *b) {
-    s32 v;
+void func_02024fc0(Kart *kart, Unk02024eec *soundRecord) {
+    s32 clampedValue;
 
-    v = b->mUnk_08;
-    if (v > 0x440000) {
-        v = 0x440000;
+    clampedValue = soundRecord->mUnk_08;
+    if (clampedValue > 0x440000) {
+        clampedValue = 0x440000;
     }
-    StartSoundWhileRequested(&a->mSoundSource, b->mUnk_5c, b->mUnk_04, (v << 4) >> 16);
+    StartSoundWhileRequested(&kart->mSoundSource, soundRecord->mUnk_5c, soundRecord->mUnk_04,
+                             (clampedValue << 4) >> 16);
 }
 
-s32 func_02024eec(Unk02024eec *a, s32 b, s32 c) {
-    s32 d;
-    s32 e;
-    s32 f;
-    s32 g;
-    s32 h;
+s32 func_02024eec(Unk02024eec *soundRecord, s32 b, s32 c) {
+    s32 currentValue;
+    s32 previousTarget;
+    s32 step;
+    s32 targetHighBits;
+    s32 factor;
 
-    d = a->mUnk_08;
-    e = a->mUnk_0c;
-    f = a->mUnk_10;
-    if (d == -1) {
+    currentValue = soundRecord->mUnk_08;
+    previousTarget = soundRecord->mUnk_0c;
+    step = soundRecord->mUnk_10;
+    if (currentValue == -1) {
         b = 0;
-        f = b;
-        a->mUnk_0c = b;
+        step = b;
+        soundRecord->mUnk_0c = b;
     } else {
-        g = b & 0x7fff0000;
-        if ((d & 0x7fff0000) == g) {
-            a->mUnk_0c = b;
-            f = 0;
-        } else if ((e & 0x7fff0000) != g) {
-            a->mUnk_0c = b;
-            if (b < d) {
-                h = data_02174e0c;
+        targetHighBits = b & 0x7fff0000;
+        if ((currentValue & 0x7fff0000) == targetHighBits) {
+            soundRecord->mUnk_0c = b;
+            step = 0;
+        } else if ((previousTarget & 0x7fff0000) != targetHighBits) {
+            soundRecord->mUnk_0c = b;
+            if (b < currentValue) {
+                factor = data_02174e0c;
             } else if (c != 0) {
-                h = data_02174e08;
+                factor = data_02174e08;
             } else {
-                h = data_02174e10;
+                factor = data_02174e10;
             }
-            f = ((s64) h * (b - d) + 0x800) >> 12;
-            b = f + d;
-        } else if (f != 0) {
-            b = f + d;
+            step = ((s64) factor * (b - currentValue) + 0x800) >> 12;
+            b = step + currentValue;
+        } else if (step != 0) {
+            b = step + currentValue;
         }
     }
     if (b > 0x880000) {
@@ -116,140 +119,144 @@ s32 func_02024eec(Unk02024eec *a, s32 b, s32 c) {
     if (b < 0) {
         b = 0;
     }
-    a->mUnk_10 = f;
+    soundRecord->mUnk_10 = step;
     return b;
 }
 
-void func_02024a88(Kart *a) {
-    Unk02024eec *q;
+void func_02024a88(Kart *kart) {
+    Unk02024eec *soundRecord;
     s32 f;
     s32 g;
     s32 h;
     s32 i;
-    s32 j;
-    s32 k;
-    s32 l;
-    s32 m;
+    s32 baseSpeedLimit;
+    s32 velocityLength;
+    s32 aboveSpeedLimit;
+    s32 kartFlags;
 
-    q = (Unk02024eec *) &a->mUnk_450;
-    m = a->mUnk_48;
-    f = (m & 2) != 0 ? 1 : 0;
-    g = (m & 4) != 0 ? 1 : 0;
-    if ((a->mUnk_4c & 0x10000000) != 0) {
-        q->mUnk_08 = 0x6c0000;
-        q->mUnk_0c = 0x6c0000;
-        q->mUnk_10 = 0;
+    soundRecord = (Unk02024eec *) &kart->mUnk_450;
+    kartFlags = kart->mUnk_48;
+    f = (kartFlags & 2) != 0 ? 1 : 0;
+    g = (kartFlags & 4) != 0 ? 1 : 0;
+    if ((kart->mUnk_4c & 0x10000000) != 0) {
+        soundRecord->mUnk_08 = 0x6c0000;
+        soundRecord->mUnk_0c = 0x6c0000;
+        soundRecord->mUnk_10 = 0;
         if (f != 0) {
-            q->mUnk_00 = q->mUnk_60;
+            soundRecord->mUnk_00 = soundRecord->mUnk_60;
         } else {
-            q->mUnk_00 = q->mUnk_50;
+            soundRecord->mUnk_00 = soundRecord->mUnk_50;
         }
-        q->mUnk_14 = f;
-        q->mUnk_04 = 0x46;
-        StartSoundWhileRequested(&a->mSoundSource, 0xfc, 0x7f, 0);
+        soundRecord->mUnk_14 = f;
+        soundRecord->mUnk_04 = 0x46;
+        StartSoundWhileRequested(&kart->mSoundSource, 0xfc, 0x7f, 0);
         return;
     }
     if ((s32) GetRaceUpdateFrames() < 5) {
         return;
     }
     if (gSceneSoundState.mRaceState == 0) {
-        h = a->mUnk_4d4;
-        if (h > 0xcd && gRaceSetup->mCurrentEntries[a->mIndex].mPlayer.mKind != PLAYER_KIND_CPU) {
+        h = kart->mUnk_4d4;
+        if (h > 0xcd && gRaceSetup->mCurrentEntries[kart->mIndex].mPlayer.mKind != PLAYER_KIND_CPU) {
             if (f != 0) {
-                if ((a->mUnk_4c & 0x20000000) != 0) {
+                if ((kart->mUnk_4c & 0x20000000) != 0) {
                     i = 0;
                 } else {
                     i = ((s64) h * 0x580000 + 0x800) >> 12;
                 }
-                g = func_02024eec((Unk02024eec *) &a->mUnk_450, i, 0);
-                q->mUnk_04 = 0x7f;
-                q->mUnk_00 = q->mUnk_44;
-                func_0210ddf4(&data_0217d274, func_02086080(a->mIndex), (void (*)(void *, int)) func_02024fc0, a,
-                              (s32) q);
+                g = func_02024eec((Unk02024eec *) &kart->mUnk_450, i, 0);
+                soundRecord->mUnk_04 = 0x7f;
+                soundRecord->mUnk_00 = soundRecord->mUnk_44;
+                func_0210ddf4(&data_0217d274, func_02086080(kart->mIndex), (void (*)(void *, int)) func_02024fc0, kart,
+                              (s32) soundRecord);
             } else {
                 i = ((s64) h * 0x480000 + 0x800) >> 12;
-                g = func_02024eec((Unk02024eec *) &a->mUnk_450, i, 0);
-                q->mUnk_04 = 0x46;
-                q->mUnk_00 = q->mUnk_44;
-                func_0210ddf4(&data_0217d274, func_02086080(a->mIndex), (void (*)(void *, int)) func_02024fc0, a,
-                              (s32) q);
+                g = func_02024eec((Unk02024eec *) &kart->mUnk_450, i, 0);
+                soundRecord->mUnk_04 = 0x46;
+                soundRecord->mUnk_00 = soundRecord->mUnk_44;
+                func_0210ddf4(&data_0217d274, func_02086080(kart->mIndex), (void (*)(void *, int)) func_02024fc0, kart,
+                              (s32) soundRecord);
             }
         } else {
-            q->mUnk_0c = 0;
-            q->mUnk_10 = 0;
-            q->mUnk_04 = 0x3c;
-            func_0210ddf4(&data_0217d274, func_02086080(a->mIndex), (void (*)(void *, int)) func_02025030, a, (s32) q);
+            soundRecord->mUnk_0c = 0;
+            soundRecord->mUnk_10 = 0;
+            soundRecord->mUnk_04 = 0x3c;
+            func_0210ddf4(&data_0217d274, func_02086080(kart->mIndex), (void (*)(void *, int)) func_02025030, kart,
+                          (s32) soundRecord);
             g = -1;
         }
-        q->mUnk_08 = g;
-        q->mUnk_14 = f;
+        soundRecord->mUnk_08 = g;
+        soundRecord->mUnk_14 = f;
         return;
     }
-    j = a->mPhysicalParam->mBaseSpeedLimit;
-    k = a->mVelocityLength;
-    h = k - j;
-    l = h > 0 ? 1 : 0;
-    if (g != 0 && a->mForwardSpeed > 0 && (a->mUnk_44 & KART_44_ON_GROUND) != 0) {
-        g = ((s64) q->mUnk_24 * k + 0x800) >> 12;
+    baseSpeedLimit = kart->mPhysicalParam->mBaseSpeedLimit;
+    velocityLength = kart->mVelocityLength;
+    h = velocityLength - baseSpeedLimit;
+    aboveSpeedLimit = h > 0 ? 1 : 0;
+    if (g != 0 && kart->mForwardSpeed > 0 && (kart->mUnk_44 & KART_44_ON_GROUND) != 0) {
+        g = ((s64) soundRecord->mUnk_24 * velocityLength + 0x800) >> 12;
         if (g > 0x280000) {
             g = 0x280000;
         }
-        q->mUnk_04 = data_02153158[(a->mVelocityLengthRatio >> 8) & 0xff];
-        func_0210ddf4(&data_0217d274, func_02086080(a->mIndex), (void (*)(void *, int)) func_02024fe8, a, (s32) q);
-    } else if (f != 0 || (g != 0 && a->mForwardSpeed < 0)) {
-        if (l != 0) {
-            i = (s32) (((s64) h * q->mUnk_18 + 0x800) >> 12) + 0x580000;
+        soundRecord->mUnk_04 = data_02153158[(kart->mVelocityLengthRatio >> 8) & 0xff];
+        func_0210ddf4(&data_0217d274, func_02086080(kart->mIndex), (void (*)(void *, int)) func_02024fe8, kart,
+                      (s32) soundRecord);
+    } else if (f != 0 || (g != 0 && kart->mForwardSpeed < 0)) {
+        if (aboveSpeedLimit != 0) {
+            i = (s32) (((s64) h * soundRecord->mUnk_18 + 0x800) >> 12) + 0x580000;
         } else {
-            i = ((s64) q->mUnk_1c * k + 0x800) >> 12;
+            i = ((s64) soundRecord->mUnk_1c * velocityLength + 0x800) >> 12;
         }
-        g = func_02024eec((Unk02024eec *) &a->mUnk_450, i, l);
-        q->mUnk_04 = 0x7f;
-        if (q->mUnk_14 == 0) {
-            q->mUnk_00 = a->mVelocityLengthRatio < 0x333 ? q->mUnk_64 : q->mUnk_60;
+        g = func_02024eec((Unk02024eec *) &kart->mUnk_450, i, aboveSpeedLimit);
+        soundRecord->mUnk_04 = 0x7f;
+        if (soundRecord->mUnk_14 == 0) {
+            soundRecord->mUnk_00 = kart->mVelocityLengthRatio < 0x333 ? soundRecord->mUnk_64 : soundRecord->mUnk_60;
         }
-        func_0210ddf4(&data_0217d274, func_02086080(a->mIndex), (void (*)(void *, int)) func_0202506c, a, (s32) q);
+        func_0210ddf4(&data_0217d274, func_02086080(kart->mIndex), (void (*)(void *, int)) func_0202506c, kart,
+                      (s32) soundRecord);
     } else {
-        if (l != 0) {
-            i = (s32) (((s64) h * q->mUnk_18 + 0x800) >> 12) + 0x480000;
+        if (aboveSpeedLimit != 0) {
+            i = (s32) (((s64) h * soundRecord->mUnk_18 + 0x800) >> 12) + 0x480000;
         } else {
-            i = ((s64) q->mUnk_20 * k + 0x800) >> 12;
+            i = ((s64) soundRecord->mUnk_20 * velocityLength + 0x800) >> 12;
         }
-        g = func_02024eec((Unk02024eec *) &a->mUnk_450, i, l);
-        q->mUnk_04 = 0x32;
-        if (a->mVelocityLengthRatio < 0x19a) {
-            q->mUnk_00 = q->mUnk_58;
-        } else if (a->mVelocityLengthRatio < 0x4cd) {
-            q->mUnk_00 = q->mUnk_54;
+        g = func_02024eec((Unk02024eec *) &kart->mUnk_450, i, aboveSpeedLimit);
+        soundRecord->mUnk_04 = 0x32;
+        if (kart->mVelocityLengthRatio < 0x19a) {
+            soundRecord->mUnk_00 = soundRecord->mUnk_58;
+        } else if (kart->mVelocityLengthRatio < 0x4cd) {
+            soundRecord->mUnk_00 = soundRecord->mUnk_54;
         } else {
-            q->mUnk_00 = q->mUnk_50;
+            soundRecord->mUnk_00 = soundRecord->mUnk_50;
         }
-        func_0210ddf4(&data_0217d274, func_02086080(a->mIndex), (void (*)(void *, int)) func_0202506c, a, (s32) q);
+        func_0210ddf4(&data_0217d274, func_02086080(kart->mIndex), (void (*)(void *, int)) func_0202506c, kart,
+                      (s32) soundRecord);
     }
-    q->mUnk_08 = g;
-    q->mUnk_14 = f;
+    soundRecord->mUnk_08 = g;
+    soundRecord->mUnk_14 = f;
 }
 
-void func_02024a28(SoundSource *p, u16 a, s32 b, s32 c) {
+void func_02024a28(SoundSource *soundSource, u16 soundId, s32 b, s32 c) {
     u8 t;
-    u8 v;
+    u8 volume;
 
     if (c == 2) {
         t = (b << 7) >> 12;
-        v = t + 0x14;
-        if (v > 0x7f) {
-            v = 0x7f;
-        } else if (v < 0x32) {
-            v = 0x32;
+        volume = t + 0x14;
+        if (volume > 0x7f) {
+            volume = 0x7f;
+        } else if (volume < 0x32) {
+            volume = 0x32;
         }
     } else {
-        v = 0x7f;
+        volume = 0x7f;
     }
-    StartSoundEx(p, 0, a, v, 0);
+    StartSoundEx(soundSource, 0, soundId, volume, 0);
 }
 
-void func_020249b8(Kart *a, s32 b, s32 c) {
+void func_020249b8(Kart *kart, s32 b, s32 c) {
     s32 d;
-    u8 e;
+    u8 volume;
 
     if (b <= 0) {
         return;
@@ -258,14 +265,14 @@ void func_020249b8(Kart *a, s32 b, s32 c) {
         return;
     }
     d = (b << 14) >> 16;
-    e = (b << 7) >> 12;
+    volume = (b << 7) >> 12;
     if (d > 0x400) {
         d = 0x400;
     }
-    if (e > 0x7f) {
-        e = 0x7f;
+    if (volume > 0x7f) {
+        volume = 0x7f;
     }
-    StartSoundWhileRequested(&a->mSoundSource, c > 0 ? 0x150 : 0x151, e, d);
+    StartSoundWhileRequested(&kart->mSoundSource, c > 0 ? 0x150 : 0x151, volume, d);
 }
 
 s32 func_02024974(s32 a, s32 b, u32 c, u32 d) {

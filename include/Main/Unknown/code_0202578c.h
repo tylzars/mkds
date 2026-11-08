@@ -12,14 +12,20 @@ typedef struct Unk02153918 {
 } Unk02153918;
 
 u32 func_0202578c(u32 a);
-void func_02025854(u32 a, void *b, const char *c, const char *d, const char *e, s32 f, void *(*g)(const char *) );
-void func_02025884(void *a, const char *b, const char *c, const char *d, s32 e, void *(*f)(const char *) );
-void func_020258d4(u32 a, void *b, const char *c, const char *d, const char *e, s32 f, void *(*g)(const char *) );
-void func_02025904(void *a, const char *b, const char *c, const char *d, s32 e, void *(*f)(const char *) );
-void func_02025954(u32 a, void *b, u32 c);
-s32 func_02025a00(u32 a, void *b, void *c, void *d, s32 e);
-void func_02025a50(u32 a, void *b, void *c);
-void func_02025abc(void *a, const char *b, const char *c, const char *d, const char *e, const char *f, const char *g,
-                   void *(*h)(const char *) );
-void func_02025b20(void *a, const char *b, const char *c, const char *d, const char *e, const char *f, const char *g,
-                   void *(*h)(const char *) );
+void func_02025854(u32 a, void *fileSetPointer, const char *charsName, const char *paletteName,
+                   const char *screenMapName, s32 index, void *(*findFile)(const char *) );
+void LoadScreenMapFileSet(void *fileSetPointer, const char *charsName, const char *paletteName,
+                          const char *screenMapName, s32 index, void *(*findFile)(const char *) );
+void func_020258d4(u32 a, void *fileSetPointer, const char *charsName, const char *paletteName,
+                   const char *screenMapName, s32 index, void *(*findFile)(const char *) );
+void LocateScreenMapFileSet(void *fileSetPointer, const char *charsName, const char *paletteName,
+                            const char *screenMapName, s32 index, void *(*findFile)(const char *) );
+void func_02025954(u32 a, void *fileSetPointer, u32 index);
+s32 func_02025a00(u32 a, void *heap, void *fileSetPointer, void *entryPointer, s32 e);
+void func_02025a50(u32 a, void *heap, void *fileSetPointer);
+void LoadCellFileSet(void *fileSetPointer, const char *charsName, const char *cellsName, const char *paletteName,
+                     const char *cellLayoutName, const char *labelLayoutName, const char *rectsName,
+                     void *(*findFile)(const char *) );
+void LocateCellFileSet(void *fileSetPointer, const char *charsName, const char *cellsName, const char *paletteName,
+                       const char *cellLayoutName, const char *labelLayoutName, const char *rectsName,
+                       void *(*findFile)(const char *) );

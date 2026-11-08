@@ -306,9 +306,9 @@ void InitMultiSelectMemberGroup(void *a, void *b, void *c) {
                   gMultiSelectMemberSGroupNscrName2, 3, FindSceneFile);
     v2 = GX_GetSizeOfSubOBJ();
     q = &gMultiSelectMemberGroup->mGroupSParts;
-    func_02025b20(q, gMultiSelectMemberGroupSNcgrName2, gMultiSelectMemberGroupSNcerName2,
-                  gMultiSelectMemberGroupSONclrName2, gMultiSelectMemberSGroupBnclName,
-                  gMultiSelectMemberSGroupBnllName, gMultiSelectMemberSGroupBnblName, FindSceneFile);
+    LocateCellFileSet(q, gMultiSelectMemberGroupSNcgrName2, gMultiSelectMemberGroupSNcerName2,
+                      gMultiSelectMemberGroupSONclrName2, gMultiSelectMemberSGroupBnclName,
+                      gMultiSelectMemberSGroupBnllName, gMultiSelectMemberSGroupBnblName, FindSceneFile);
     func_02025a50(1, gMultiSelectMemberGroup->mHeap, q);
     for (i = 0, v3 = data_02153c1c; i < 5; v3++, i++) {
         v2 -= func_02025a00(1, gMultiSelectMemberGroup->mHeap, q, v3, v2);

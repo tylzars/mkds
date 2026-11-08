@@ -430,11 +430,11 @@ void func_0202734c(s32 a) {
     p = &g->mUnk_01c;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         for (i = 0; i < gSelectCharacter->mUnk_07c; i++) {
-            p->mUnk_18[data_usa_02153554[i].mUnk_04].mUnk_00 = a;
-            p->mUnk_18[data_usa_02153554[i].mUnk_02].mUnk_00 = p->mUnk_18[data_usa_02153554[i].mUnk_04].mUnk_00;
-            p->mUnk_18[data_usa_02153554[i].mUnk_00].mUnk_00 = p->mUnk_18[data_usa_02153554[i].mUnk_02].mUnk_00;
+            p->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_00 = a;
+            p->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_00 = p->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_00;
+            p->mCellTable[data_usa_02153554[i].mUnk_00].mUnk_00 = p->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_00;
         }
-        p->mUnk_18[25].mUnk_00 = a;
+        p->mCellTable[25].mUnk_00 = a;
     }
 }
 
@@ -445,12 +445,12 @@ void func_020272ec(void) {
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         p = &gSelectCharacter->mUnk_01c;
-        p->mUnk_18[24].mUnk_00 = 0;
-        p->mUnk_18[25].mUnk_00 = 1;
+        p->mCellTable[24].mUnk_00 = 0;
+        p->mCellTable[25].mUnk_00 = 1;
         t = data_usa_02153554;
         for (i = 0; i < 12; i++) {
-            p->mUnk_18[t->mUnk_02].mUnk_04 = 0;
-            p->mUnk_18[t->mUnk_02].mUnk_06 = 0;
+            p->mCellTable[t->mUnk_02].mUnk_04 = 0;
+            p->mCellTable[t->mUnk_02].mUnk_06 = 0;
             t++;
         }
     }
@@ -462,8 +462,8 @@ void func_020272c0(s16 a, s16 b) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         g = gSelectCharacter;
         if (g->mUnk_128 == FALSE) {
-            g->mUnk_000.mUnk_18[0].mUnk_06 = a;
-            g->mUnk_000.mUnk_18[3].mUnk_06 = b;
+            g->mUnk_000.mCellTable[0].mUnk_06 = a;
+            g->mUnk_000.mCellTable[3].mUnk_06 = b;
         }
     }
 }
@@ -474,8 +474,8 @@ void func_0202728c(s16 a) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         g = gSelectCharacter;
         if (g->mUnk_128 == FALSE) {
-            g->mUnk_000.mUnk_18[1].mUnk_04 = a;
-            g->mUnk_000.mUnk_18[2].mUnk_04 = g->mUnk_000.mUnk_18[1].mUnk_04;
+            g->mUnk_000.mCellTable[1].mUnk_04 = a;
+            g->mUnk_000.mCellTable[2].mUnk_04 = g->mUnk_000.mCellTable[1].mUnk_04;
         }
     }
 }
@@ -487,10 +487,10 @@ void func_0202721c(void) {
     g = gSelectCharacter;
     if (g->mUnk_128 == FALSE) {
         p = &g->mUnk_038;
-        func_02124748(*(s16 *) &g->mUnk_090[g->mUnk_060].mUnk_04, p->mUnk_08, g->mUnk_038.mUnk_00, p->mUnk_0c, 0, 2,
-                      g->mUnk_000.mUnk_08, g->mUnk_000.mUnk_0c);
-        func_02124748(*(s16 *) &gSelectCharacter->mUnk_090[gSelectCharacter->mUnk_060].mUnk_04, p->mUnk_08,
-                      g->mUnk_038.mUnk_00, p->mUnk_0c, 0, 1, g->mUnk_000.mUnk_08, g->mUnk_000.mUnk_0c);
+        func_02124748(*(s16 *) &g->mUnk_090[g->mUnk_060].mUnk_04, p->mCells, g->mUnk_038.mChars, p->mCellLayout, 0, 2,
+                      g->mUnk_000.mCells, g->mUnk_000.mCellLayout);
+        func_02124748(*(s16 *) &gSelectCharacter->mUnk_090[gSelectCharacter->mUnk_060].mUnk_04, p->mCells,
+                      g->mUnk_038.mChars, p->mCellLayout, 0, 1, g->mUnk_000.mCells, g->mUnk_000.mCellLayout);
     }
 }
 
@@ -502,8 +502,8 @@ void func_020271e8(void) {
     g = gSelectCharacter;
     p = &g->mUnk_01c;
     i = g->mUnk_060;
-    func_02025c6c(0x18, data_usa_02153554[i].mUnk_00, p->mUnk_0c);
-    func_02025c6c(0x19, data_usa_02153554[i].mUnk_00, p->mUnk_0c);
+    func_02025c6c(0x18, data_usa_02153554[i].mUnk_00, p->mCellLayout);
+    func_02025c6c(0x19, data_usa_02153554[i].mUnk_00, p->mCellLayout);
 }
 
 void func_0202719c(void) {
@@ -514,10 +514,10 @@ void func_0202719c(void) {
     g = gSelectCharacter;
     p = &g->mUnk_01c;
     t = &data_usa_02153554[g->mUnk_060];
-    p->mUnk_18[24].mUnk_00 = 1;
-    p->mUnk_18[25].mUnk_00 = 0;
-    p->mUnk_18[t->mUnk_02].mUnk_04 = 1;
-    p->mUnk_18[t->mUnk_02].mUnk_06 = 1;
+    p->mCellTable[24].mUnk_00 = 1;
+    p->mCellTable[25].mUnk_00 = 0;
+    p->mCellTable[t->mUnk_02].mUnk_04 = 1;
+    p->mCellTable[t->mUnk_02].mUnk_06 = 1;
 }
 
 #pragma thumb off

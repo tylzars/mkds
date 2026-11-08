@@ -16,8 +16,8 @@ typedef struct LoadedSoundSet {
     /* 0c */ u32 mHeapState;
 } LoadedSoundSet;
 
-// Four bytes at 0 to 3: func_0202553c writes one, and LoadCourseSoundSet and LoadSceneSoundSet read the bytes at 1, 2
-// and 3.
+// Four bytes at 0 to 3: GetCourseSoundRowIndex writes one, and LoadCourseSoundSet and LoadSceneSoundSet read the bytes
+// at 1, 2 and 3.
 typedef struct Unk0210e524 {
     /* 00 */ u8 mUnk_00;
     /* 01 */ u8 mUnk_01;

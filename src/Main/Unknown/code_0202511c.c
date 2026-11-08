@@ -6,111 +6,111 @@
 #include "Main/Unknown/unk_02153000.h"
 #include "Main/Unknown/unk_021759c0.h"
 
-Unk0215316c func_0202577c(u32 arg0) {
-    return data_0215316c[arg0];
+SoundRow GetSoundRow(u32 rowIndex) {
+    return gSoundRowTable[rowIndex];
 }
 
-u32 func_0202553c(u32 a, void *c) {
-    Unk0215316c *b = c;
-    u32 r;
+u32 GetCourseSoundRowIndex(u32 courseId, void *outputPointer) {
+    SoundRow *output = outputPointer;
+    u32 rowIndex;
 
-    r = 0x36;
-    switch (a) {
+    rowIndex = 0x36;
+    switch (courseId) {
         case COURSE_ID_CROSS:
-            r = 7;
+            rowIndex = 7;
             break;
         case COURSE_ID_MARIO:
-            r = 34;
+            rowIndex = 34;
             break;
         case COURSE_ID_OLD_LUIGI_GC:
-            r = 8;
+            rowIndex = 8;
             break;
         case COURSE_ID_OLD_YOSHI_GC:
-            r = 9;
+            rowIndex = 9;
             break;
         case COURSE_ID_BEACH:
-            r = 10;
+            rowIndex = 10;
             break;
         case COURSE_ID_BANK:
-            r = 11;
+            rowIndex = 11;
             break;
         case COURSE_ID_OLD_BABY_GC:
-            r = 12;
+            rowIndex = 12;
             break;
         case COURSE_ID_OLD_MOMO_64:
-            r = 13;
+            rowIndex = 13;
             break;
         case COURSE_ID_OLD_FRAPPE_64:
-            r = 14;
+            rowIndex = 14;
             break;
         case COURSE_ID_TOWN:
-            r = 15;
+            rowIndex = 15;
             break;
         case COURSE_ID_AIRSHIP:
-            r = 16;
+            rowIndex = 16;
             break;
         case COURSE_ID_STADIUM:
-            r = 17;
+            rowIndex = 17;
             break;
         case COURSE_ID_PINBALL:
-            r = 32;
+            rowIndex = 32;
             break;
         case COURSE_ID_OLD_KINOKO_GC:
-            r = 18;
+            rowIndex = 18;
             break;
         case COURSE_ID_GARDEN:
-            r = 19;
+            rowIndex = 19;
             break;
         case COURSE_ID_MANSION:
-            r = 20;
+            rowIndex = 20;
             break;
         case COURSE_ID_OLD_MARIO_SFC:
-            r = 21;
+            rowIndex = 21;
             break;
         case COURSE_ID_OLD_NOKO_SFC:
-            r = 22;
+            rowIndex = 22;
             break;
         case COURSE_ID_OLD_DONUT_SFC:
-            r = 23;
+            rowIndex = 23;
             break;
         case COURSE_ID_OLD_CHOCO_SFC:
-            r = 24;
+            rowIndex = 24;
             break;
         case COURSE_ID_OLD_PEACH_AGB:
-            r = 25;
+            rowIndex = 25;
             break;
         case COURSE_ID_OLD_LUIGI_AGB:
-            r = 26;
+            rowIndex = 26;
             break;
         case COURSE_ID_RIDGE:
-            r = 27;
+            rowIndex = 27;
             break;
         case COURSE_ID_OLD_HYUDORO_64:
-            r = 29;
+            rowIndex = 29;
             break;
         case COURSE_ID_OLD_CHOCO_64:
-            r = 28;
+            rowIndex = 28;
             break;
         case COURSE_ID_SNOW:
-            r = 30;
+            rowIndex = 30;
             break;
         case COURSE_ID_DESERT:
-            r = 31;
+            rowIndex = 31;
             break;
         case COURSE_ID_CLOCK:
-            r = 33;
+            rowIndex = 33;
             break;
         case COURSE_ID_KOOPA:
-            r = 37;
+            rowIndex = 37;
             break;
         case COURSE_ID_RAINBOW:
-            r = 35;
+            rowIndex = 35;
             break;
         case COURSE_ID_OLD_KOOPA_AGB:
-            r = 36;
+            rowIndex = 36;
             break;
         case COURSE_ID_OLD_SKY_AGB:
-            r = 38;
+            rowIndex = 38;
             break;
         case COURSE_ID_MINI_BLOCK:
         case COURSE_ID_MINI_BLOCK_64:
@@ -119,58 +119,58 @@ u32 func_0202553c(u32 a, void *c) {
         case COURSE_ID_MINI_STAGE2:
         case COURSE_ID_MINI_STAGE3:
         case COURSE_ID_MINI_STAGE4:
-            r = 39;
+            rowIndex = 39;
             break;
         case COURSE_ID_MR_STAGE1:
         case COURSE_ID_MR_STAGE2:
         case COURSE_ID_MR_STAGE3:
         case COURSE_ID_MR_STAGE4:
-            r = 40;
+            rowIndex = 40;
             break;
         case COURSE_ID_AWARD:
-            r = 42;
+            rowIndex = 42;
             break;
         case COURSE_ID_STAFFROLL:
-            r = 51;
+            rowIndex = 51;
             break;
     }
-    if (b != NULL) {
-        *b = data_0215316c[r];
+    if (output != NULL) {
+        *output = gSoundRowTable[rowIndex];
     }
-    return r;
+    return rowIndex;
 }
 
-u32 func_0202511c(s32 a, void *c) {
-    Unk0215316c *b = c;
-    enum { K0 } r;
-    BOOL f;
-    s32 q;
+u32 GetSceneSoundRowIndex(s32 sceneNumber, void *outputPointer) {
+    SoundRow *output = outputPointer;
+    enum { K0 } rowIndex;
+    BOOL rowWritten;
+    s32 raceMode;
     BOOL s;
     BOOL t;
-    Unk0215316c v1;
-    Unk021759c0_28 *p;
+    SoundRow courseRow;
+    Unk021759c0_28 *mission;
 
-    r = 0x36;
-    f = FALSE;
-    switch (a) {
+    rowIndex = 0x36;
+    rowWritten = FALSE;
+    switch (sceneNumber) {
         case 2:
             switch (gRaceSetup->mRaceKind) {
                 case RACE_KIND_NORMAL:
                 case 2:
-                    q = gRaceSetup->mMode;
-                    r = func_0202553c(gRaceSetup->mCourseId, b);
-                    f = TRUE;
-                    if (q == MODE_MISSION_RUN) {
-                        p = &gRaceSetup->mUnk_28_view;
+                    raceMode = gRaceSetup->mMode;
+                    rowIndex = GetCourseSoundRowIndex(gRaceSetup->mCourseId, output);
+                    rowWritten = TRUE;
+                    if (raceMode == MODE_MISSION_RUN) {
+                        mission = &gRaceSetup->mUnk_28_view;
                         s = FALSE;
-                        if (p->mMissionTableValue == 4) {
-                            b->mUnk_00[1] = 0x2a;
+                        if (mission->mMissionTableValue == 4) {
+                            output->mUnk_00[1] = 0x2a;
                             s = TRUE;
                         }
                         if (s == FALSE) {
-                            switch (p->mMissionKind) {
+                            switch (mission->mMissionKind) {
                                 case 1:
-                                    b->mUnk_00[1] = 0x2c;
+                                    output->mUnk_00[1] = 0x2c;
                                     break;
                                 case 2:
                                 case 3:
@@ -179,22 +179,22 @@ u32 func_0202511c(s32 a, void *c) {
                             }
                         }
                         t = TRUE;
-                        switch (p->mMissionTableValue) {
+                        switch (mission->mMissionTableValue) {
                             case 9:
                             case 10:
-                                b->mUnk_00[2] = 0x25;
+                                output->mUnk_00[2] = 0x25;
                                 break;
                             case 0x32:
-                                b->mUnk_00[2] = 0x26;
+                                output->mUnk_00[2] = 0x26;
                                 break;
                             case 0x15:
-                                b->mUnk_00[2] = 0x27;
+                                output->mUnk_00[2] = 0x27;
                                 break;
                             case 0x33:
-                                b->mUnk_00[2] = 0x28;
+                                output->mUnk_00[2] = 0x28;
                                 break;
                             case 0x11:
-                                b->mUnk_00[2] = 0x29;
+                                output->mUnk_00[2] = 0x29;
                                 break;
                             case 0x31:
                                 break;
@@ -203,106 +203,106 @@ u32 func_0202511c(s32 a, void *c) {
                                 break;
                         }
                         if (t != FALSE) {
-                            b->mUnk_00[3] = 0x22;
+                            output->mUnk_00[3] = 0x22;
                         }
                     }
                     break;
                 case RACE_KIND_AWARD:
-                    r = 0x2a;
+                    rowIndex = 0x2a;
                     break;
                 case RACE_KIND_DEMO:
-                    r = 0x33;
+                    rowIndex = 0x33;
                     break;
                 case RACE_KIND_START_GP:
                     switch (gRaceSetup->mCourseId) {
                         case COURSE_ID_OLD_LUIGI_GC:
                         case COURSE_ID_CROSS:
                         case COURSE_ID_MARIO:
-                            r = 2;
+                            rowIndex = 2;
                             break;
                         case COURSE_ID_STADIUM:
-                            r = 3;
+                            rowIndex = 3;
                             break;
                         case COURSE_ID_PINBALL:
-                            r = 4;
+                            rowIndex = 4;
                             break;
                         default:
-                            r = 1;
+                            rowIndex = 1;
                             break;
                     }
                     if (func_021054d0() != 0) {
-                        r = 6;
+                        rowIndex = 6;
                     } else {
-                        *b = data_0215316c[r];
-                        f = TRUE;
-                        func_0202553c(gRaceSetup->mCourseId, &v1);
-                        b->mUnk_00[2] = v1.mUnk_00[2];
+                        *output = gSoundRowTable[rowIndex];
+                        rowWritten = TRUE;
+                        GetCourseSoundRowIndex(gRaceSetup->mCourseId, &courseRow);
+                        output->mUnk_00[2] = courseRow.mUnk_00[2];
                     }
                     break;
                 case 4:
-                    r = 5;
+                    rowIndex = 5;
                     break;
                 case RACE_KIND_STAFF_ROLL:
-                    r = 0x33;
+                    rowIndex = 0x33;
                     break;
             }
             break;
         case 12:
-            r = 0x2d;
+            rowIndex = 0x2d;
             break;
         case 4:
-            r = 0x33;
+            rowIndex = 0x33;
             break;
         case 5:
-            r = 0x33;
+            rowIndex = 0x33;
             break;
         case 6:
             if (*(u16 *) 0x027ffc40 == 2) {
-                r = 0x33;
+                rowIndex = 0x33;
             } else {
-                r = 0x2e;
+                rowIndex = 0x2e;
             }
             break;
         case 1:
-            r = 0x32;
+            rowIndex = 0x32;
             break;
         case 10:
-            r = 0x29;
-            *b = data_0215316c[r];
-            f = TRUE;
-            b->mUnk_00[1] = func_0211127c();
+            rowIndex = 0x29;
+            *output = gSoundRowTable[rowIndex];
+            rowWritten = TRUE;
+            output->mUnk_00[1] = func_0211127c();
             break;
         case 8:
-            r = 0x2f;
+            rowIndex = 0x2f;
             break;
         case 13:
-            r = 0x2e;
+            rowIndex = 0x2e;
             break;
         case 9:
-            r = 0x31;
+            rowIndex = 0x31;
             break;
         case 0:
-            r = 0x33;
+            rowIndex = 0x33;
             break;
         case 3:
         case 7:
         case 11:
         case 14:
-            r = 0x30;
-            *b = data_0215316c[r];
-            f = TRUE;
+            rowIndex = 0x30;
+            *output = gSoundRowTable[rowIndex];
+            rowWritten = TRUE;
             if (data_0217d060 != NULL) {
-                b->mUnk_00[1] = 0xff;
-                b->mUnk_00[2] = 0xff;
-                b->mUnk_00[3] = 0xff;
+                output->mUnk_00[1] = 0xff;
+                output->mUnk_00[2] = 0xff;
+                output->mUnk_00[3] = 0xff;
             }
             break;
         case 15:
-            r = 0x33;
+            rowIndex = 0x33;
             break;
     }
-    if (f == FALSE && b != NULL) {
-        *b = data_0215316c[r];
+    if (rowWritten == FALSE && output != NULL) {
+        *output = gSoundRowTable[rowIndex];
     }
-    return r;
+    return rowIndex;
 }

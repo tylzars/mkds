@@ -468,8 +468,8 @@ void InitMultiSelectMember(void *a, void *b, void *c) {
     gMultiSelectMember->mUnk_6c = -1;
     v = GX_GetSizeOfOBJ();
     p = &gMultiSelectMember->mUnk_24[0];
-    func_02025b20(p, gMultiSelectMemberMNcgrName2, gMultiSelectMemberMNcerName2, gMultiSelectMemberMONclrName2,
-                  gMultiSelectMemberMBnclName, gMultiSelectMemberMBnllName, NULL, FindSceneFile);
+    LocateCellFileSet(p, gMultiSelectMemberMNcgrName2, gMultiSelectMemberMNcerName2, gMultiSelectMemberMONclrName2,
+                      gMultiSelectMemberMBnclName, gMultiSelectMemberMBnllName, NULL, FindSceneFile);
     func_02025a50(0, gMultiSelectMember->mHeap, p);
     i = 0;
     t = data_usa_02153d64;
@@ -486,9 +486,9 @@ void InitMultiSelectMember(void *a, void *b, void *c) {
                   gMultiSelectMemberSRegisterNscrName2, 3, FindSceneFile);
     r = GX_GetSizeOfSubOBJ();
     q = &gMultiSelectMember->mUnk_24[1];
-    func_02025b20(q, gMultiSelectMemberRegisterSNcgrName2, gMultiSelectMemberRegisterSNcerName2,
-                  gMultiSelectMemberRegisterSONclrName2, gMultiSelectMemberSRegisterBnclName,
-                  gMultiSelectMemberSRegisterBnllName, gMultiSelectMemberSRegisterBnblName, FindSceneFile);
+    LocateCellFileSet(q, gMultiSelectMemberRegisterSNcgrName2, gMultiSelectMemberRegisterSNcerName2,
+                      gMultiSelectMemberRegisterSONclrName2, gMultiSelectMemberSRegisterBnclName,
+                      gMultiSelectMemberSRegisterBnllName, gMultiSelectMemberSRegisterBnblName, FindSceneFile);
     func_02025a50(1, gMultiSelectMember->mHeap, q);
     for (i = 0; i < 9; i++) {
         r -= func_02025a00(1, gMultiSelectMember->mHeap, q, &data_usa_02153d7c[i], r);

@@ -3,22 +3,22 @@
 
 #pragma thumb on
 
-int func_02025df4(KartAppear *a, u32 b) {
-    int v1;
-    int v2;
-    int v3;
-    u32 v4;
-    v1 = 0;
-    v2 = 0;
+int func_02025df4(KartAppear *appear, u32 characterIndex) {
+    int count;
+    int tableIndex;
+    int testResult;
+    u32 kartIndex;
+    count = 0;
+    tableIndex = 0;
     do {
-        v4 = GetKartIndexAtTableIndex(v2);
-        v3 = func_0205fd2c(a, b, v4);
-        if (v3 != 0) {
-            v1 = v1 + 1;
+        kartIndex = GetKartIndexAtTableIndex(tableIndex);
+        testResult = func_0205fd2c(appear, characterIndex, kartIndex);
+        if (testResult != 0) {
+            count = count + 1;
         }
-        v2 = v2 + 1;
-    } while (v2 < 0x24);
-    return v1;
+        tableIndex = tableIndex + 1;
+    } while (tableIndex < 0x24);
+    return count;
 }
 
 #pragma thumb off

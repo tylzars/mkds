@@ -189,17 +189,17 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
     gResultsBattle->mUnk_0c0 = func_020b4024(1);
     gResultsBattle->mUnk_0c4 = func_020b4024(0);
     t = &gResultsBattle->mUnk_000[0];
-    func_02025884(t, data_02153f80[gResultsBattle->mUnk_0dc][0], data_02153f84[gResultsBattle->mUnk_0dc][0],
-                  data_02153f8c[gResultsBattle->mUnk_0dc][0], 3, FindSceneFile);
-    LoadNscrData(&t->mUnk_14[2], FindSceneFile(data_02153f88[gResultsBattle->mUnk_0dc][0]));
-    GX_LoadBG3Char(t->mUnk_00[3]->mData, 0, t->mUnk_00[3]->mDataSize);
-    GX_LoadBGPltt(t->mUnk_10->mData, 0, 0x140);
-    GX_LoadBG2Scr(t->mUnk_14[2]->mData, 0, t->mUnk_14[2]->mDataSize);
-    GX_LoadBG3Scr(t->mUnk_14[3]->mData, 0, t->mUnk_14[3]->mDataSize);
+    LoadScreenMapFileSet(t, data_02153f80[gResultsBattle->mUnk_0dc][0], data_02153f84[gResultsBattle->mUnk_0dc][0],
+                         data_02153f8c[gResultsBattle->mUnk_0dc][0], 3, FindSceneFile);
+    LoadNscrData(&t->mScreenMaps[2], FindSceneFile(data_02153f88[gResultsBattle->mUnk_0dc][0]));
+    GX_LoadBG3Char(t->mChars[3]->mData, 0, t->mChars[3]->mDataSize);
+    GX_LoadBGPltt(t->mPalette->mData, 0, 0x140);
+    GX_LoadBG2Scr(t->mScreenMaps[2]->mData, 0, t->mScreenMaps[2]->mDataSize);
+    GX_LoadBG3Scr(t->mScreenMaps[3]->mData, 0, t->mScreenMaps[3]->mDataSize);
     s = &gResultsBattle->mUnk_048[0];
-    func_02025abc(s, data_02153f90[gResultsBattle->mUnk_0dc][0], data_02153f94[gResultsBattle->mUnk_0dc][0],
-                  data_02153f98[gResultsBattle->mUnk_0dc][0], data_02153f9c[gResultsBattle->mUnk_0dc][0],
-                  data_02153fa0[gResultsBattle->mUnk_0dc][0], NULL, FindSceneFile);
+    LoadCellFileSet(s, data_02153f90[gResultsBattle->mUnk_0dc][0], data_02153f94[gResultsBattle->mUnk_0dc][0],
+                    data_02153f98[gResultsBattle->mUnk_0dc][0], data_02153f9c[gResultsBattle->mUnk_0dc][0],
+                    data_02153fa0[gResultsBattle->mUnk_0dc][0], NULL, FindSceneFile);
     func_02025a50(0, a, s);
     switch (gResultsBattle->mUnk_0dc) {
         case 0:
@@ -216,28 +216,29 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
             func_020336ec(a);
             break;
     }
-    u = s->mUnk_0c;
+    u = s->mCellLayout;
     for (i = 0; i < u->mUnk_06; i++) {
-        func_0201ea30(s->mUnk_0c, i);
+        func_0201ea30(s->mCellLayout, i);
     }
     t = &gResultsBattle->mUnk_000[1];
-    func_02025884(t, gResultsBattleSBNcgrName, gResultsBattleSBNclrName, gResultsBattleSBgNscrName, 3, FindSceneFile);
-    GXS_LoadBG3Char(t->mUnk_00[3]->mData, 0, t->mUnk_00[3]->mDataSize);
-    GXS_LoadBGPltt(t->mUnk_10->mData, 0, 0x140);
-    GXS_LoadBG3Scr(t->mUnk_14[3]->mData, 0, t->mUnk_14[3]->mDataSize);
+    LoadScreenMapFileSet(t, gResultsBattleSBNcgrName, gResultsBattleSBNclrName, gResultsBattleSBgNscrName, 3,
+                         FindSceneFile);
+    GXS_LoadBG3Char(t->mChars[3]->mData, 0, t->mChars[3]->mDataSize);
+    GXS_LoadBGPltt(t->mPalette->mData, 0, 0x140);
+    GXS_LoadBG3Scr(t->mScreenMaps[3]->mData, 0, t->mScreenMaps[3]->mDataSize);
     n = GX_GetSizeOfSubOBJ();
     p = gResultsBattle;
     q = &p->mUnk_048[1];
-    func_02025abc(q, gResultsBattleSNcgrName, gResultsBattleSNcerName, gResultsBattleSONclrName,
-                  gResultsBattleSBnclName, gResultsBattleSBnllName, NULL, FindSceneFile);
-    InitLayoutTable(a, q->mUnk_0c, q->mUnk_14, &q->mUnk_18);
-    GXS_LoadOBJ(((Ncgr *) p->mUnk_048[1].mUnk_00)->mData, 0, ((Ncgr *) p->mUnk_048[1].mUnk_00)->mDataSize);
-    GXS_LoadOBJPltt(((Nclr *) q->mUnk_04)->mData, 0, ((Nclr *) q->mUnk_04)->mDataSize);
-    for (i = 0; i < q->mUnk_14->mUnk_06; i++) {
+    LoadCellFileSet(q, gResultsBattleSNcgrName, gResultsBattleSNcerName, gResultsBattleSONclrName,
+                    gResultsBattleSBnclName, gResultsBattleSBnllName, NULL, FindSceneFile);
+    InitLayoutTable(a, q->mCellLayout, q->mLabelLayout, &q->mCellTable);
+    GXS_LoadOBJ(((Ncgr *) p->mUnk_048[1].mChars)->mData, 0, ((Ncgr *) p->mUnk_048[1].mChars)->mDataSize);
+    GXS_LoadOBJPltt(((Nclr *) q->mPalette)->mData, 0, ((Nclr *) q->mPalette)->mDataSize);
+    for (i = 0; i < q->mLabelLayout->mUnk_06; i++) {
         n -= func_02025a00(1, a, q, data_02153f00[i], n);
     }
-    for (i = 0; i < q->mUnk_0c->mUnk_06; i++) {
-        func_021249a8(i, 2, q->mUnk_08, q->mUnk_0c);
+    for (i = 0; i < q->mCellLayout->mUnk_06; i++) {
+        func_021249a8(i, 2, q->mCells, q->mCellLayout);
     }
     for (i = 0; i < 8; i++) {
         f[i] = 0;
@@ -250,7 +251,7 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
             func_02033ab8(1, m, e + 0x30, 1);
             func_02032f94_inline(w, 0x16);
             CopyKartEntryName(m, w, 0);
-            func_0212426c(1, e, q->mUnk_14, w, q->mUnk_0c, q->mUnk_18);
+            func_0212426c(1, e, q->mLabelLayout, w, q->mCellLayout, q->mCellTable);
             func_02033b80(m);
             func_02033c80(m);
             f[e] = 1;
@@ -258,15 +259,15 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
     }
     for (i = 0; i < 8; i++) {
         if (f[i] == 0) {
-            q->mUnk_18[i + 0x48].mUnk_00 = 0;
-            q->mUnk_18[i + 0x30].mUnk_00 = q->mUnk_18[i + 0x48].mUnk_00;
-            q->mUnk_18[i + 0x38].mUnk_00 = q->mUnk_18[i + 0x30].mUnk_00;
-            q->mUnk_18[i + 0x28].mUnk_00 = q->mUnk_18[i + 0x38].mUnk_00;
-            q->mUnk_18[i + 0x20].mUnk_00 = q->mUnk_18[i + 0x28].mUnk_00;
-            q->mUnk_18[i + 0x18].mUnk_00 = q->mUnk_18[i + 0x20].mUnk_00;
-            q->mUnk_18[i + 0x10].mUnk_00 = q->mUnk_18[i + 0x18].mUnk_00;
-            q->mUnk_18[i + 0x08].mUnk_00 = q->mUnk_18[i + 0x10].mUnk_00;
-            q->mUnk_18[i].mUnk_00 = q->mUnk_18[i + 0x08].mUnk_00;
+            q->mCellTable[i + 0x48].mUnk_00 = 0;
+            q->mCellTable[i + 0x30].mUnk_00 = q->mCellTable[i + 0x48].mUnk_00;
+            q->mCellTable[i + 0x38].mUnk_00 = q->mCellTable[i + 0x30].mUnk_00;
+            q->mCellTable[i + 0x28].mUnk_00 = q->mCellTable[i + 0x38].mUnk_00;
+            q->mCellTable[i + 0x20].mUnk_00 = q->mCellTable[i + 0x28].mUnk_00;
+            q->mCellTable[i + 0x18].mUnk_00 = q->mCellTable[i + 0x20].mUnk_00;
+            q->mCellTable[i + 0x10].mUnk_00 = q->mCellTable[i + 0x18].mUnk_00;
+            q->mCellTable[i + 0x08].mUnk_00 = q->mCellTable[i + 0x10].mUnk_00;
+            q->mCellTable[i].mUnk_00 = q->mCellTable[i + 0x08].mUnk_00;
         }
     }
     switch (gResultsBattle->mUnk_0dc) {
@@ -317,7 +318,7 @@ void AdvanceResultsBattle(Unk02032ac4 *a) {
         if (gResultsBattle->mTimer != 0) {
             gResultsBattle->mTimer = gResultsBattle->mTimer - 1;
             x = (gResultsBattle->mTimer + 0x3c) / 0x3c;
-            s->mUnk_18[gResultsBattle->mUnk_0ce].mUnk_00 = x >= 10 ? 1 : 0;
+            s->mCellTable[gResultsBattle->mUnk_0ce].mUnk_00 = x >= 10 ? 1 : 0;
             if (gResultsBattle->mTimer == 0) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x51);
             } else if ((gResultsBattle->mTimer + 0x3c) % 0x3c == 0 && x <= 4) {
@@ -326,15 +327,15 @@ void AdvanceResultsBattle(Unk02032ac4 *a) {
         } else {
             x = 0;
         }
-        m = s->mUnk_0c;
-        n = s->mUnk_08;
-        func_02124748(gResultsBattle->mUnk_0cc + (x / 10) % 10, n, s->mUnk_00, m, 0, gResultsBattle->mUnk_0ce, n, m);
-        m2 = s->mUnk_0c;
-        n2 = s->mUnk_08;
-        func_02124748(gResultsBattle->mUnk_0cc + x % 10, n2, s->mUnk_00, m2, 0, gResultsBattle->mUnk_0ce + 1, n2, m2);
+        m = s->mCellLayout;
+        n = s->mCells;
+        func_02124748(gResultsBattle->mUnk_0cc + (x / 10) % 10, n, s->mChars, m, 0, gResultsBattle->mUnk_0ce, n, m);
+        m2 = s->mCellLayout;
+        n2 = s->mCells;
+        func_02124748(gResultsBattle->mUnk_0cc + x % 10, n2, s->mChars, m2, 0, gResultsBattle->mUnk_0ce + 1, n2, m2);
     } else {
-        s->mUnk_18[gResultsBattle->mUnk_0ce + 1].mUnk_00 = 0;
-        s->mUnk_18[gResultsBattle->mUnk_0ce].mUnk_00 = s->mUnk_18[gResultsBattle->mUnk_0ce + 1].mUnk_00;
+        s->mCellTable[gResultsBattle->mUnk_0ce + 1].mUnk_00 = 0;
+        s->mCellTable[gResultsBattle->mUnk_0ce].mUnk_00 = s->mCellTable[gResultsBattle->mUnk_0ce + 1].mUnk_00;
     }
     switch (gResultsBattle->mUnk_150) {
         case 0:
@@ -474,18 +475,18 @@ void AdvanceResultsBattle(Unk02032ac4 *a) {
     func_020a2558();
     func_020a23cc();
     for (i = 0; i < 2; i++) {
-        DrawLayoutTable(gResultsBattle->mUnk_048[i].mUnk_0c, gResultsBattle->mUnk_048[i].mUnk_08,
-                        gResultsBattle->mUnk_048[i].mUnk_14, (void *) gResultsBattle->mUnk_0b8[i],
-                        gResultsBattle->mUnk_048[i].mUnk_18);
+        DrawLayoutTable(gResultsBattle->mUnk_048[i].mCellLayout, gResultsBattle->mUnk_048[i].mCells,
+                        gResultsBattle->mUnk_048[i].mLabelLayout, (void *) gResultsBattle->mUnk_0b8[i],
+                        gResultsBattle->mUnk_048[i].mCellTable);
     }
-    j = t->mUnk_0c->mUnk_06;
+    j = t->mCellLayout->mUnk_06;
     for (i = 0; i < 8; i++) {
-        t->mUnk_18[i + j].mUnk_06 = t->mUnk_18[i + j].mUnk_06 + 1;
-        func_02124100(i, 0xe, t->mUnk_14, t->mUnk_18, t->mUnk_0c);
-        DrawLayoutTableEntry(i + j, t->mUnk_0c, t->mUnk_08, t->mUnk_14, (void *) gResultsBattle->mUnk_0b8[1],
-                             t->mUnk_18);
-        func_02124100(i, 0xf, t->mUnk_14, t->mUnk_18, t->mUnk_0c);
-        t->mUnk_18[i + j].mUnk_06 = t->mUnk_18[i + j].mUnk_06 - 1;
+        t->mCellTable[i + j].mUnk_06 = t->mCellTable[i + j].mUnk_06 + 1;
+        func_02124100(i, 0xe, t->mLabelLayout, t->mCellTable, t->mCellLayout);
+        DrawLayoutTableEntry(i + j, t->mCellLayout, t->mCells, t->mLabelLayout, (void *) gResultsBattle->mUnk_0b8[1],
+                             t->mCellTable);
+        func_02124100(i, 0xf, t->mLabelLayout, t->mCellTable, t->mCellLayout);
+        t->mCellTable[i + j].mUnk_06 = t->mCellTable[i + j].mUnk_06 - 1;
     }
     func_02125928();
 }

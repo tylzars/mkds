@@ -5,168 +5,174 @@
 
 #pragma thumb on
 
-void func_02025b20(void *a, const char *b, const char *c, const char *d, const char *e, const char *f, const char *g,
-                   void *(*h)(const char *) ) {
-    Unk02174e14_00 *p = a;
-    if (b) {
-        LocateNcgr2((Ncgr **) &p->mUnk_00, h(b));
+void LocateCellFileSet(void *fileSetPointer, const char *charsName, const char *cellsName, const char *paletteName,
+                       const char *cellLayoutName, const char *labelLayoutName, const char *rectsName,
+                       void *(*findFile)(const char *) ) {
+    Unk02174e14_00 *fileSet = fileSetPointer;
+    if (charsName) {
+        LocateNcgr2((Ncgr **) &fileSet->mChars, findFile(charsName));
     }
-    if (c) {
-        LocateNcer((Unk02021dc8 **) &p->mUnk_08, h(c));
+    if (cellsName) {
+        LocateNcer((Unk02021dc8 **) &fileSet->mCells, findFile(cellsName));
     }
-    if (d) {
-        LocateNclr((Nclr **) &p->mUnk_04, h(d));
+    if (paletteName) {
+        LocateNclr((Nclr **) &fileSet->mPalette, findFile(paletteName));
     }
-    if (e) {
-        p->mUnk_0c = h(e);
+    if (cellLayoutName) {
+        fileSet->mCellLayout = findFile(cellLayoutName);
     }
-    if (f) {
-        p->mUnk_14 = h(f);
+    if (labelLayoutName) {
+        fileSet->mLabelLayout = findFile(labelLayoutName);
     }
-    if (g) {
-        p->mUnk_10 = h(g);
-    }
-}
-
-void func_02025abc(void *a, const char *b, const char *c, const char *d, const char *e, const char *f, const char *g,
-                   void *(*h)(const char *) ) {
-    Unk02174e14_00 *p = a;
-    if (b) {
-        LoadNcgrData2((Ncgr **) &p->mUnk_00, h(b));
-    }
-    if (c) {
-        LoadNcerData((Unk02021dc8 **) &p->mUnk_08, h(c));
-    }
-    if (d) {
-        LoadNclrData((Nclr **) &p->mUnk_04, h(d));
-    }
-    if (e) {
-        p->mUnk_0c = h(e);
-    }
-    if (f) {
-        p->mUnk_14 = h(f);
-    }
-    if (g) {
-        p->mUnk_10 = h(g);
+    if (rectsName) {
+        fileSet->mRects = findFile(rectsName);
     }
 }
 
-void func_02025a50(u32 a, void *b, void *c) {
-    Unk02174e14_00 *p = c;
+void LoadCellFileSet(void *fileSetPointer, const char *charsName, const char *cellsName, const char *paletteName,
+                     const char *cellLayoutName, const char *labelLayoutName, const char *rectsName,
+                     void *(*findFile)(const char *) ) {
+    Unk02174e14_00 *fileSet = fileSetPointer;
+    if (charsName) {
+        LoadNcgrData2((Ncgr **) &fileSet->mChars, findFile(charsName));
+    }
+    if (cellsName) {
+        LoadNcerData((Unk02021dc8 **) &fileSet->mCells, findFile(cellsName));
+    }
+    if (paletteName) {
+        LoadNclrData((Nclr **) &fileSet->mPalette, findFile(paletteName));
+    }
+    if (cellLayoutName) {
+        fileSet->mCellLayout = findFile(cellLayoutName);
+    }
+    if (labelLayoutName) {
+        fileSet->mLabelLayout = findFile(labelLayoutName);
+    }
+    if (rectsName) {
+        fileSet->mRects = findFile(rectsName);
+    }
+}
+
+void func_02025a50(u32 a, void *heap, void *fileSetPointer) {
+    Unk02174e14_00 *fileSet = fileSetPointer;
     u32 r;
-    InitLayoutTable(b, p->mUnk_0c, p->mUnk_14, &p->mUnk_18);
+    InitLayoutTable(heap, fileSet->mCellLayout, fileSet->mLabelLayout, &fileSet->mCellTable);
     if (a == 0) {
         r = 0x13;
-        CallQueueAppend(0xe, 0, ((Nclr *) p->mUnk_04)->mData, 0x1a0);
-        CallQueueAppend(0xe, 0x1c0, (u8 *) ((Nclr *) p->mUnk_04)->mData + 0x1c0, 0x40);
+        CallQueueAppend(0xe, 0, ((Nclr *) fileSet->mPalette)->mData, 0x1a0);
+        CallQueueAppend(0xe, 0x1c0, (u8 *) ((Nclr *) fileSet->mPalette)->mData + 0x1c0, 0x40);
     } else {
         r = 0x23;
-        CallQueueAppend(0x1e, 0, ((Nclr *) p->mUnk_04)->mData, ((Nclr *) p->mUnk_04)->mDataSize);
+        CallQueueAppend(0x1e, 0, ((Nclr *) fileSet->mPalette)->mData, ((Nclr *) fileSet->mPalette)->mDataSize);
     }
-    CallQueueAppend(r, 0, ((Ncgr *) p->mUnk_00)->mData, ((Ncgr *) p->mUnk_00)->mDataSize);
+    CallQueueAppend(r, 0, ((Ncgr *) fileSet->mChars)->mData, ((Ncgr *) fileSet->mChars)->mDataSize);
 }
 
-s32 func_02025a00(u32 a, void *b, void *c, void *d, s32 e) {
-    Unk02153918 *q = d;
-    Unk02174e14_00 *p = c;
-    s32 r;
-    r = func_021243ac(b, q->mUnk_00, p->mUnk_14, q->mUnk_02, q->mUnk_04, q->mUnk_06, p->mUnk_08, p->mUnk_0c, p->mUnk_18,
-                      e);
-    ClearAndQueueLabelLayoutText(a, q->mUnk_00, p->mUnk_14, p->mUnk_0c, p->mUnk_18);
-    return r;
+s32 func_02025a00(u32 a, void *heap, void *fileSetPointer, void *entryPointer, s32 e) {
+    Unk02153918 *entry = entryPointer;
+    Unk02174e14_00 *fileSet = fileSetPointer;
+    s32 result;
+    result = func_021243ac(heap, entry->mUnk_00, fileSet->mLabelLayout, entry->mUnk_02, entry->mUnk_04, entry->mUnk_06,
+                           fileSet->mCells, fileSet->mCellLayout, fileSet->mCellTable, e);
+    ClearAndQueueLabelLayoutText(a, entry->mUnk_00, fileSet->mLabelLayout, fileSet->mCellLayout, fileSet->mCellTable);
+    return result;
 }
 
-void func_02025954(u32 a, void *b, u32 c) {
-    Unk02174e60_00 *p = b;
-    u32 r0;
-    u32 r5;
-    u32 r7;
+void func_02025954(u32 a, void *fileSetPointer, u32 index) {
+    Unk02174e60_00 *fileSet = fileSetPointer;
+    u32 charsCode;
+    u32 screenMapCode;
+    u32 paletteCode;
     if (a == 0) {
-        r7 = 0xf;
-        switch (c) {
+        paletteCode = 0xf;
+        switch (index) {
             case 0:
-                r0 = 4;
-                r5 = 8;
+                charsCode = 4;
+                screenMapCode = 8;
                 break;
             case 1:
-                r0 = 5;
-                r5 = 9;
+                charsCode = 5;
+                screenMapCode = 9;
                 break;
             case 2:
-                r0 = 6;
-                r5 = 10;
+                charsCode = 6;
+                screenMapCode = 10;
                 break;
             case 3:
-                r0 = 7;
-                r5 = 11;
+                charsCode = 7;
+                screenMapCode = 11;
                 break;
         }
     } else {
-        r7 = 0x1f;
-        switch (c) {
+        paletteCode = 0x1f;
+        switch (index) {
             case 0:
-                r0 = 0x14;
-                r5 = 0x18;
+                charsCode = 0x14;
+                screenMapCode = 0x18;
                 break;
             case 1:
-                r0 = 0x15;
-                r5 = 0x19;
+                charsCode = 0x15;
+                screenMapCode = 0x19;
                 break;
             case 2:
-                r0 = 0x16;
-                r5 = 0x1a;
+                charsCode = 0x16;
+                screenMapCode = 0x1a;
                 break;
             case 3:
-                r0 = 0x17;
-                r5 = 0x1b;
+                charsCode = 0x17;
+                screenMapCode = 0x1b;
                 break;
         }
     }
-    CallQueueAppend(r0, 0, p->mUnk_00[c]->mData, p->mUnk_00[c]->mDataSize);
-    CallQueueAppend(r7, 0, p->mUnk_10->mData, 0x140);
-    CallQueueAppend(r5, 0, &p->mUnk_14[c]->mData, p->mUnk_14[c]->mDataSize);
+    CallQueueAppend(charsCode, 0, fileSet->mChars[index]->mData, fileSet->mChars[index]->mDataSize);
+    CallQueueAppend(paletteCode, 0, fileSet->mPalette->mData, 0x140);
+    CallQueueAppend(screenMapCode, 0, &fileSet->mScreenMaps[index]->mData, fileSet->mScreenMaps[index]->mDataSize);
 }
 
-void func_02025904(void *a, const char *b, const char *c, const char *d, s32 e, void *(*f)(const char *) ) {
-    Unk02174e60_00 *p = a;
-    if (b) {
-        LocateNcgr(&p->mUnk_00[e], f(b));
+void LocateScreenMapFileSet(void *fileSetPointer, const char *charsName, const char *paletteName,
+                            const char *screenMapName, s32 index, void *(*findFile)(const char *) ) {
+    Unk02174e60_00 *fileSet = fileSetPointer;
+    if (charsName) {
+        LocateNcgr(&fileSet->mChars[index], findFile(charsName));
     }
-    if (c) {
-        LocateNclr(&p->mUnk_10, f(c));
+    if (paletteName) {
+        LocateNclr(&fileSet->mPalette, findFile(paletteName));
     }
-    if (d) {
-        LocateNscr(&p->mUnk_14[e], f(d));
-    }
-}
-
-void func_020258d4(u32 a, void *b, const char *c, const char *d, const char *e, s32 f, void *(*g)(const char *) ) {
-    func_02025904(b, c, d, e, f, g);
-    func_02025954(a, b, f);
-}
-
-void func_02025884(void *a, const char *b, const char *c, const char *d, s32 e, void *(*f)(const char *) ) {
-    Unk02174e60_00 *p = a;
-    if (b) {
-        LoadNcgrData(&p->mUnk_00[e], f(b));
-    }
-    if (c) {
-        LoadNclrData(&p->mUnk_10, f(c));
-    }
-    if (d) {
-        LoadNscrData(&p->mUnk_14[e], f(d));
+    if (screenMapName) {
+        LocateNscr(&fileSet->mScreenMaps[index], findFile(screenMapName));
     }
 }
 
-void func_02025854(u32 a, void *b, const char *c, const char *d, const char *e, s32 f, void *(*g)(const char *) ) {
-    func_02025884(b, c, d, e, f, g);
-    func_02025954(a, b, f);
+void func_020258d4(u32 a, void *fileSetPointer, const char *charsName, const char *paletteName,
+                   const char *screenMapName, s32 index, void *(*findFile)(const char *) ) {
+    LocateScreenMapFileSet(fileSetPointer, charsName, paletteName, screenMapName, index, findFile);
+    func_02025954(a, fileSetPointer, index);
+}
+
+void LoadScreenMapFileSet(void *fileSetPointer, const char *charsName, const char *paletteName,
+                          const char *screenMapName, s32 index, void *(*findFile)(const char *) ) {
+    Unk02174e60_00 *fileSet = fileSetPointer;
+    if (charsName) {
+        LoadNcgrData(&fileSet->mChars[index], findFile(charsName));
+    }
+    if (paletteName) {
+        LoadNclrData(&fileSet->mPalette, findFile(paletteName));
+    }
+    if (screenMapName) {
+        LoadNscrData(&fileSet->mScreenMaps[index], findFile(screenMapName));
+    }
+}
+
+void func_02025854(u32 a, void *fileSetPointer, const char *charsName, const char *paletteName,
+                   const char *screenMapName, s32 index, void *(*findFile)(const char *) ) {
+    LoadScreenMapFileSet(fileSetPointer, charsName, paletteName, screenMapName, index, findFile);
+    func_02025954(a, fileSetPointer, index);
 }
 
 #pragma thumb off
 
 u32 func_0202578c(u32 a) {
-    u32 r = 3;
+    u32 result = 3;
     switch (a) {
         case 0:
         case 3:
@@ -181,7 +187,7 @@ u32 func_0202578c(u32 a) {
         case 30:
         case 33:
         case 36:
-            r = 0;
+            result = 0;
             break;
         case 2:
         case 8:
@@ -192,7 +198,7 @@ u32 func_0202578c(u32 a) {
         case 25:
         case 28:
         case 31:
-            r = 0;
+            result = 0;
             break;
         case 1:
         case 7:
@@ -203,7 +209,7 @@ u32 func_0202578c(u32 a) {
         case 32:
         case 34:
         case 35:
-            r = 1;
+            result = 1;
             break;
         case 4:
         case 5:
@@ -211,8 +217,8 @@ u32 func_0202578c(u32 a) {
         case 11:
         case 16:
         case 17:
-            r = 2;
+            result = 2;
             break;
     }
-    return r;
+    return result;
 }

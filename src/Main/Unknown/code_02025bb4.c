@@ -10,39 +10,39 @@ void func_02025c94(int id, int x, int y, Unk0201ea30 *graphics) {
     entry[1] = (entry[1] & 0xfffff000U) | (y & 0xfff);
 }
 
-void func_02025c6c(u32 a, u32 b, Unk0201ea30 *c) {
-    u16 *v1;
-    u16 *v2;
-    v1 = func_0201ea30(c, a);
-    v2 = func_0201ea30(c, b);
-    *v1 = *v2;
-    v1[1] = v2[1];
+void func_02025c6c(u32 destinationId, u32 sourceId, Unk0201ea30 *cellLayout) {
+    u16 *destinationEntry;
+    u16 *sourceEntry;
+    destinationEntry = func_0201ea30(cellLayout, destinationId);
+    sourceEntry = func_0201ea30(cellLayout, sourceId);
+    *destinationEntry = *sourceEntry;
+    destinationEntry[1] = sourceEntry[1];
 }
 
-void func_02025c48(u32 a, u32 b, Unk0201ea30 *c) {
-    int v1;
-    int v2;
-    v1 = (s32) func_0201ea30(c, a);
-    v2 = (s32) func_0201ea30(c, b);
-    *(u32 *) (v1 + 4) = *(u32 *) (v2 + 4);
+void func_02025c48(u32 destinationId, u32 sourceId, Unk0201ea30 *cellLayout) {
+    int destinationEntry;
+    int sourceEntry;
+    destinationEntry = (s32) func_0201ea30(cellLayout, destinationId);
+    sourceEntry = (s32) func_0201ea30(cellLayout, sourceId);
+    *(u32 *) (destinationEntry + 4) = *(u32 *) (sourceEntry + 4);
 }
 
-void func_02025c1c(u32 a, void *b, Unk0201ea30 *c) {
-    Unk02025bb4Entry *d = b;
-    short *v1;
-    v1 = func_0201ea30(c, a);
-    d->mUnk_08 = 1;
-    d->mUnk_0c = ((*v1 << 0x14) >> 0x14);
-    d->mUnk_0e = ((v1[1] << 0x14) >> 0x14);
+void func_02025c1c(u32 entryId, void *outputPointer, Unk0201ea30 *cellLayout) {
+    Unk02025bb4Entry *output = outputPointer;
+    short *layoutEntry;
+    layoutEntry = func_0201ea30(cellLayout, entryId);
+    output->mUnk_08 = 1;
+    output->mUnk_0c = ((*layoutEntry << 0x14) >> 0x14);
+    output->mUnk_0e = ((layoutEntry[1] << 0x14) >> 0x14);
 }
 
-void func_02025bf0(u32 a, void *b, Unk0201ea30 *c) {
-    Unk02025bb4Entry *d = b;
-    short *v1;
-    v1 = func_0201ea58(c, a);
-    d->mUnk_08 = 1;
-    d->mUnk_0c = ((*v1 << 0x14) >> 0x14);
-    d->mUnk_0e = ((v1[1] << 0x14) >> 0x14);
+void func_02025bf0(u32 entryId, void *outputPointer, Unk0201ea30 *labelLayout) {
+    Unk02025bb4Entry *output = outputPointer;
+    short *layoutEntry;
+    layoutEntry = func_0201ea58(labelLayout, entryId);
+    output->mUnk_08 = 1;
+    output->mUnk_0c = ((*layoutEntry << 0x14) >> 0x14);
+    output->mUnk_0e = ((layoutEntry[1] << 0x14) >> 0x14);
 }
 
 void RectTableSetEntryXY(int id, int x, int y, Unk0201ea30 *graphics) {

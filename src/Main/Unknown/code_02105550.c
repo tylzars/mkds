@@ -503,7 +503,7 @@ void InitSceneSounds(s32 e) {
         v = 0x7f;
     }
     data_0216cb28 = v;
-    c = func_0202511c(a, &buf);
+    c = GetSceneSoundRowIndex(a, &buf);
     if (data_0217d060 == NULL) {
         ResetSeqVariableReadings();
         SetSeqVariableEnabled(0, 0);
