@@ -24,8 +24,8 @@ void InitObjCharRanges(void) {
         gObjCharRanges[i].mList = CreateNodeList();
         gObjCharRanges[i].mListStart.mStart = 0x300;
         gObjCharRanges[i].mListEnd.mStart = 0x400;
-        func_ov003_021d2e50(gObjCharRanges[i].mList, &gObjCharRanges[i].mListStart);
-        func_ov003_021d2e5c(gObjCharRanges[i].mList, &gObjCharRanges[i].mListEnd);
+        AddNodeToListFront(gObjCharRanges[i].mList, &gObjCharRanges[i].mListStart);
+        AddNodeToListBack(gObjCharRanges[i].mList, &gObjCharRanges[i].mListEnd);
     }
 }
 

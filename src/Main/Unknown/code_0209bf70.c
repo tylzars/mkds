@@ -231,7 +231,7 @@ void UpdateSun(MapObjectList *mapObjectList, Sun *sun) {
             direction.x = gPairsByAngle[(sun->mUnk_0a4 >> 4) * 2];
             direction.y = 0;
             direction.z = gPairsByAngle[(sun->mUnk_0a4 >> 4) * 2 + 1];
-            func_0209d694(&position, &direction);
+            StartSunFireball(&position, &direction);
             sun->mUnk_0a0 += 1;
             if (sun->mUnk_0a0 >= 2) {
                 sun->mUnk_0a0 = 0;

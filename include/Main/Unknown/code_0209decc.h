@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_0209decc(unsigned int mapObject);
+void InitSunFireball(unsigned int mapObject);

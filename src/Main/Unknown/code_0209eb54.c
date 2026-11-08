@@ -44,6 +44,7 @@ void DrawPicture(void *a, Picture *b) {
     }
 }
 
+// mState stays 0: nothing in the code sets state 1.
 void UpdatePicture(void *a, Picture *b) {
     Unk0210b7a8 s1;
     Unk0210b7a8 s2;

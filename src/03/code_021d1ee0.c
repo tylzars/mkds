@@ -6,6 +6,7 @@
 #include "code_0214a348.h"
 #include "code_0214a390.h"
 
+// Fade kinds: 0 from black, 1 to black, 2 from white, 3 to white.
 u32 StartBlendBrightnessFade(s32 kind, s32 screen, u32 plane, u16 frameCount) {
     s8 startLevels[4] = {-0x10, 0x00, 0x10, 0x00};
     BlendBrightnessFadeSlot *slot;

@@ -29,8 +29,8 @@ void InitOamRanges(void) {
         gOamRanges[i].mUnk_220 = CreateNodeList();
         gOamRanges[i].mListStart.mEntries = GetOamBufferEntry(i, 0x40);
         gOamRanges[i].mListEnd.mEntries = GetOamBufferEntry(i, 0x7f) + 1;
-        func_ov003_021d2e50(gOamRanges[i].mUnk_220, &gOamRanges[i].mListStart);
-        func_ov003_021d2e5c(gOamRanges[i].mUnk_220, &gOamRanges[i].mListEnd);
+        AddNodeToListFront(gOamRanges[i].mUnk_220, &gOamRanges[i].mListStart);
+        AddNodeToListBack(gOamRanges[i].mUnk_220, &gOamRanges[i].mListEnd);
     }
 }
 

@@ -29,8 +29,8 @@ void InitTasks(void) {
         gTaskLists[i].mList = CreateNodeList();
         gTaskLists[i].mListStart.mPriority = 0;
         gTaskLists[i].mListEnd.mPriority = 0xff;
-        func_ov003_021d2e50(gTaskLists[i].mList, &gTaskLists[i].mListStart);
-        func_ov003_021d2e5c(gTaskLists[i].mList, &gTaskLists[i].mListEnd);
+        AddNodeToListFront(gTaskLists[i].mList, &gTaskLists[i].mListStart);
+        AddNodeToListBack(gTaskLists[i].mList, &gTaskLists[i].mListEnd);
         countPtr++;
         i++;
     } while (i < 2);
