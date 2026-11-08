@@ -31,11 +31,11 @@ typedef struct Shine16 {
     /* b0 */ s32 mNsbtpFrameIndex;
     /* b4 */ s32 mUnk_b4;
     /* b8 */ s32 mMirror;
-    /* bc */ s32 mUnk_bc;
+    /* bc */ s32 mNsbtpFramesSinceMirror;
     // Set to 0x19 when a kart takes the shine (a second pickup is refused while it is above 0), counted down while the
     // shine follows the kart; at 0 the shine shrinks away. 0 at spawn.
     /* c0 */ s32 mPickupTimer;
-    /* c4 */ s32 mUnk_c4;
+    /* c4 */ s32 mSpawnObjectIndex;
     // Index of the kart the shine follows in states 2 and 3: the kart that took it, or the kart it was released from.
     /* c8 */ u16 mKartIndex;
     /* ca */ u16 mUnk_ca;

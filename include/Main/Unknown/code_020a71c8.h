@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-void func_020a71c8(void);
-void func_020a7270(u16 a);
-BOOL func_020a72c8(u16 a, u16 b);
-void *func_020a7338(void);
-void *func_020a7358(void);
+void ShineEndCallback(void);
+void ShineKartEliminatedCallback(u16 a);
+BOOL ShineKartHitCallback(u16 a, u16 b);
+void *CreateSanboUpdateList(void);
+void *CreateSanboDrawList(void);

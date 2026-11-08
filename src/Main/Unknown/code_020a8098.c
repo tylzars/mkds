@@ -9,27 +9,27 @@ void *func_020a824c(void) {
     return CreateMapObjectUpdateList(func_020a8a6c, func_020a826c, NULL);
 }
 
-void func_020a8098(Sanbo *p) {
+void StartSanboLaunch(Sanbo *p) {
     s32 i;
     RandomState64 *r;
     u16 v1;
     u16 v2;
 
-    for (i = 0; i < p->mUnk_1d0; i++) {
+    for (i = 0; i < p->mPieceCount; i++) {
         r = GetMapObjectRandom();
         r->mValue = (s64) r->mMultiplier * (s64) r->mValue + r->mIncrement;
         v1 = ((u64) (u32) (r->mValue >> 32) * 0x10000) >> 32;
-        p->mUnk_0b0[i].mUnk_00.x = p->mUnk_000.mPos.x;
-        p->mUnk_0b0[i].mUnk_00.y = p->mUnk_000.mPos.y + i * 0x14000;
-        p->mUnk_0b0[i].mUnk_00.z = p->mUnk_000.mPos.z;
-        p->mUnk_0b0[i].mUnk_0c.x = ((s64) gPairsByAngle[(v1 >> 4) * 2] * 0x2000) >> 12;
-        p->mUnk_0b0[i].mUnk_0c.y = 0x4000;
-        p->mUnk_0b0[i].mUnk_0c.z = ((s64) gPairsByAngle[(v1 >> 4) * 2 + 1] * 0x2000) >> 12;
+        p->mPieces[i].mPos.x = p->mUnk_000.mPos.x;
+        p->mPieces[i].mPos.y = p->mUnk_000.mPos.y + i * 0x14000;
+        p->mPieces[i].mPos.z = p->mUnk_000.mPos.z;
+        p->mPieces[i].mVelocity.x = ((s64) gPairsByAngle[(v1 >> 4) * 2] * 0x2000) >> 12;
+        p->mPieces[i].mVelocity.y = 0x4000;
+        p->mPieces[i].mVelocity.z = ((s64) gPairsByAngle[(v1 >> 4) * 2 + 1] * 0x2000) >> 12;
         r = GetMapObjectRandom();
         r->mValue = (s64) r->mMultiplier * (s64) r->mValue + r->mIncrement;
         v2 = ((u64) (u32) (r->mValue >> 32) * 2) >> 32;
-        p->mUnk_0b0[i].mUnk_40 = (v2 != 0 ? 1 : -1) * 0xaab;
+        p->mPieces[i].mRotateZAnglePerFrame = (v2 != 0 ? 1 : -1) * 0xaab;
     }
-    p->mUnk_0a8 = 300;
+    p->mState2Timer = 300;
     p->mState = 2;
 }

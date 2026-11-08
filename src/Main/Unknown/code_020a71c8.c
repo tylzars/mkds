@@ -48,49 +48,49 @@ void InitSanbo(u32 arg0) {
     InitGroupFollower((GroupFollower *) value0, (CourseMapRow *) value1, value2);
 }
 
-u8 func_020a7fc4(Sanbo *p, Kart *a, u8 *b, u8 *c) {
+u8 CollideKartWithSanbo(Sanbo *p, Kart *a, u8 *b, u8 *c) {
     Unk0210b7a8 s;
     u32 d;
 
     d = *c;
     if (*b == 1) {
-        func_020a8098(p);
+        StartSanboLaunch(p);
         p->mUnk_000.mFlags = p->mUnk_000.mFlags | data_021567e4;
         p->mUnk_000.mFlags = p->mUnk_000.mFlags | data_021567e8;
         StartSoundIfKartStarOrKiller(&p->mUnk_000, a);
     } else {
-        if (p->mUnk_0a4 == 0) {
+        if (p->mFastWobbleTimer == 0) {
             s.mSoundId = 0x193;
             s.mPositionSource = &p->mUnk_000.mPos;
             s.mUnk_08 = 2;
             s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&p->mUnk_000.mPos);
             func_0210b7a8(&s);
-            p->mUnk_0ac = 0x14;
+            p->mSoundTimer = 0x14;
         }
-        p->mUnk_0a4 = 0x3c;
+        p->mFastWobbleTimer = 0x3c;
     }
     return d;
 }
 
-u8 func_020a7f18(Sanbo *p, Kart *a, u8 *b, u8 *c) {
+u8 CollideItemObjectWithSanbo(Sanbo *p, ItemObject *a, u8 *b, u8 *c) {
     Unk0210b7a8 s;
     u32 d;
 
     d = *c;
     if (*b == 1) {
-        func_020a8098(p);
+        StartSanboLaunch(p);
         p->mUnk_000.mFlags = p->mUnk_000.mFlags | data_021567e4;
         p->mUnk_000.mFlags = p->mUnk_000.mFlags | data_021567e8;
     } else {
-        if (p->mUnk_0a4 == 0) {
+        if (p->mFastWobbleTimer == 0) {
             s.mSoundId = 0x193;
             s.mPositionSource = &p->mUnk_000.mPos;
             s.mUnk_08 = 2;
             s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&p->mUnk_000.mPos);
             func_0210b7a8(&s);
-            p->mUnk_0ac = 0x14;
+            p->mSoundTimer = 0x14;
         }
-        p->mUnk_0a4 = 0x3c;
+        p->mFastWobbleTimer = 0x3c;
     }
     return d;
 }
@@ -132,9 +132,9 @@ void DrawSanbo(void *a, Sanbo *p) {
             f0[1] = 0xa00;
             f0[2] = 0;
             func_01ff9048(0x1c, f0, 3);
-            for (i = 0; i < p->mUnk_1d0; i++) {
-                if (p->mUnk_0b0[i].mUnk_3c != 0) {
-                    k = ((u16) p->mUnk_0b0[i].mUnk_3c >> 4) * 2;
+            for (i = 0; i < p->mPieceCount; i++) {
+                if (p->mPieces[i].mRotateZAngle != 0) {
+                    k = ((u16) p->mPieces[i].mRotateZAngle >> 4) * 2;
                     MTX_RotZ33_(m0, gPairsByAngle[k], gPairsByAngle[k + 1]);
                     func_01ff9048(0x1a, m0, 9);
                 }
@@ -154,20 +154,20 @@ void DrawSanbo(void *a, Sanbo *p) {
             }
             break;
         case 2:
-            for (i = 0; i < p->mUnk_1d0; i++) {
+            for (i = 0; i < p->mPieceCount; i++) {
                 w1 = 0x1e;
                 func_01ff9048(0x14, &w1, 1);
                 f2[0] = 0;
                 f2[1] = 0xa00;
                 f2[2] = 0;
                 func_01ff9048(0x1c, f2, 3);
-                func_01ff9048(0x19, SetViewTransposeMatrixPos(&p->mUnk_0b0[i].mUnk_00), 12);
-                if ((p->mUnk_000.mFlags & 0x12) == 0 && p->mUnk_0b0[i].mUnk_3c != 0) {
-                    k = ((u16) p->mUnk_0b0[i].mUnk_3c >> 4) * 2;
+                func_01ff9048(0x19, SetViewTransposeMatrixPos(&p->mPieces[i].mPos), 12);
+                if ((p->mUnk_000.mFlags & 0x12) == 0 && p->mPieces[i].mRotateZAngle != 0) {
+                    k = ((u16) p->mPieces[i].mRotateZAngle >> 4) * 2;
                     MTX_RotZ33_(m1, gPairsByAngle[k], gPairsByAngle[k + 1]);
                     func_01ff9048(0x1a, m1, 9);
                 }
-                t = p->mUnk_0b0[i].mUnk_18;
+                t = p->mPieces[i].mDrawScale;
                 if (t < 0x1000) {
                     g2[0] = t;
                     g2[1] = t;
@@ -184,7 +184,7 @@ void DrawSanbo(void *a, Sanbo *p) {
             }
             break;
         case 3:
-            for (i = 0; i < p->mUnk_1d0; i++) {
+            for (i = 0; i < p->mPieceCount; i++) {
                 w2 = 0x1e;
                 func_01ff9048(0x14, &w2, 1);
                 func_01ff9048(0x19, SetViewTransposeMatrixPos(&p->mUnk_000.mPos), 12);
@@ -192,7 +192,7 @@ void DrawSanbo(void *a, Sanbo *p) {
                 f3[0] = 0;
                 f3[1] = (i * 0x14000 + 0xa000) >> 4;
                 func_01ff9048(0x1c, f3, 3);
-                t = p->mUnk_0b0[i].mUnk_18;
+                t = p->mPieces[i].mDrawScale;
                 if (t < 0x1000) {
                     g3[0] = t;
                     g3[1] = t;
@@ -220,18 +220,18 @@ void InitSanboObjects(MapObjectList *l) {
         return;
     }
     for (i = 0; i < l->mMapObjectCount && (o = l->mMapObjects[i]) != NULL; i++) {
-        o->mUnk_1d4 = (o->mUnk_000.mCourseMapRow->mUnk_28 << 12) / 100;
-        o->mUnk_1d0 = 4;
-        for (j = 0; j < o->mUnk_1d0; j++) {
-            o->mUnk_0b0[j].mUnk_1c = 0;
-            o->mUnk_0b0[j].mUnk_28 = 0;
-            o->mUnk_0b0[j].mUnk_2c = 0x71c;
-            o->mUnk_0b0[j].mUnk_30 = 0;
-            o->mUnk_0b0[j].mUnk_34 = 0x2d8;
-            o->mUnk_0b0[j].mUnk_38 = 0;
-            o->mUnk_0b0[j].mUnk_18 = 0x1000;
-            o->mUnk_0b0[j].mUnk_3c = 0;
-            o->mUnk_0b0[j].mUnk_44 = j * 0x14;
+        o->mPathSpeed = (o->mUnk_000.mCourseMapRow->mUnk_28 << 12) / 100;
+        o->mPieceCount = 4;
+        for (j = 0; j < o->mPieceCount; j++) {
+            o->mPieces[j].mWobbleAngle = 0;
+            o->mPieces[j].mWobbleMid = 0;
+            o->mPieces[j].mWobbleAmplitude = 0x71c;
+            o->mPieces[j].mWobbleAmplitudePerFrame = 0;
+            o->mPieces[j].mWobbleAnglePerFrame = 0x2d8;
+            o->mPieces[j].mUnk_38 = 0;
+            o->mPieces[j].mDrawScale = 0x1000;
+            o->mPieces[j].mRotateZAngle = 0;
+            o->mPieces[j].mWobbleDelayTimer = j * 0x14;
         }
     }
 }
@@ -253,24 +253,24 @@ void UpdateSanbo(void *a, Sanbo *p) {
     s32 t;
     s32 v;
 
-    if (p->mUnk_0a0-- <= 0) {
-        t = p->mUnk_1d4;
-        p->mUnk_1d8.mSpeed = t;
-        p->mUnk_1d8.mProgressStep =
-            (s64) t * p->mUnk_1d8.mPath->mSegments[p->mUnk_1d8.mSegmentIndex].mInverseProgressLength >> 12;
-        if (AdvanceGroupFollower(&p->mUnk_1d8) != FALSE) {
-            p->mUnk_0a0 = (u16) p->mUnk_1d8.mFromEntry->mUnk_0e;
+    if (p->mPathWaitTimer-- <= 0) {
+        t = p->mPathSpeed;
+        p->mFollower.mSpeed = t;
+        p->mFollower.mProgressStep =
+            (s64) t * p->mFollower.mPath->mSegments[p->mFollower.mSegmentIndex].mInverseProgressLength >> 12;
+        if (AdvanceGroupFollower(&p->mFollower) != FALSE) {
+            p->mPathWaitTimer = (u16) p->mFollower.mFromEntry->mUnk_0e;
         } else {
-            p->mUnk_0a0 = 0;
+            p->mPathWaitTimer = 0;
         }
-        if (p->mUnk_1d8.mPath->mWraps != 0) {
-            GetGroupFollowerCurvePosStep(&p->mUnk_1d8, &p->mUnk_000.mPos, &p->mUnk_000.mUnk_10);
+        if (p->mFollower.mPath->mWraps != 0) {
+            GetGroupFollowerCurvePosStep(&p->mFollower, &p->mUnk_000.mPos, &p->mUnk_000.mUnk_10);
         } else {
-            GetGroupFollowerLinearPosStep(&p->mUnk_1d8, &p->mUnk_000.mPos, &p->mUnk_000.mUnk_10);
+            GetGroupFollowerLinearPosStep(&p->mFollower, &p->mUnk_000.mPos, &p->mUnk_000.mUnk_10);
         }
     } else {
-        p->mUnk_1d8.mSpeed = 0;
-        p->mUnk_1d8.mProgressStep = 0;
+        p->mFollower.mSpeed = 0;
+        p->mFollower.mProgressStep = 0;
         p->mUnk_000.mUnk_10.x = 0;
         p->mUnk_000.mUnk_10.y = 0;
         p->mUnk_000.mUnk_10.z = 0;
@@ -280,65 +280,65 @@ void UpdateSanbo(void *a, Sanbo *p) {
             if ((p->mUnk_000.mFlags & 0x12) != 0) {
                 return;
             }
-            for (i = 0; i < p->mUnk_1d0; i++) {
-                if (p->mUnk_0a4 > 0) {
-                    p->mUnk_0b0[i].mUnk_34 = 0xb61;
-                } else if (p->mUnk_0b0[i].mUnk_34 > 0x38e) {
-                    p->mUnk_0b0[i].mUnk_34 = p->mUnk_0b0[i].mUnk_34 - 0xb6;
+            for (i = 0; i < p->mPieceCount; i++) {
+                if (p->mFastWobbleTimer > 0) {
+                    p->mPieces[i].mWobbleAnglePerFrame = 0xb61;
+                } else if (p->mPieces[i].mWobbleAnglePerFrame > 0x38e) {
+                    p->mPieces[i].mWobbleAnglePerFrame = p->mPieces[i].mWobbleAnglePerFrame - 0xb6;
                 } else {
-                    p->mUnk_0b0[i].mUnk_34 = 0x2d8;
+                    p->mPieces[i].mWobbleAnglePerFrame = 0x2d8;
                 }
-                if (p->mUnk_0b0[i].mUnk_44-- <= 0) {
-                    p->mUnk_0b0[i].mUnk_44 = 0;
-                    p->mUnk_0b0[i].mUnk_1c = p->mUnk_0b0[i].mUnk_1c + p->mUnk_0b0[i].mUnk_34;
-                    p->mUnk_0b0[i].mUnk_24 =
-                        p->mUnk_0b0[i].mUnk_28 +
-                        func_020a7894(p->mUnk_0b0[i].mUnk_2c, func_020a78b0(p->mUnk_0b0[i].mUnk_1c)) -
-                        p->mUnk_0b0[i].mUnk_20;
-                    p->mUnk_0b0[i].mUnk_20 = p->mUnk_0b0[i].mUnk_20 + p->mUnk_0b0[i].mUnk_24;
-                    t = p->mUnk_0b0[i].mUnk_2c;
+                if (p->mPieces[i].mWobbleDelayTimer-- <= 0) {
+                    p->mPieces[i].mWobbleDelayTimer = 0;
+                    p->mPieces[i].mWobbleAngle = p->mPieces[i].mWobbleAngle + p->mPieces[i].mWobbleAnglePerFrame;
+                    p->mPieces[i].mUnk_24 =
+                        p->mPieces[i].mWobbleMid +
+                        func_020a7894(p->mPieces[i].mWobbleAmplitude, func_020a78b0(p->mPieces[i].mWobbleAngle)) -
+                        p->mPieces[i].mWobbleValue;
+                    p->mPieces[i].mWobbleValue = p->mPieces[i].mWobbleValue + p->mPieces[i].mUnk_24;
+                    t = p->mPieces[i].mWobbleAmplitude;
                     if (t > 0) {
-                        v = t + p->mUnk_0b0[i].mUnk_30;
+                        v = t + p->mPieces[i].mWobbleAmplitudePerFrame;
                         if (v <= 0) {
                             v = 0;
                         }
-                        p->mUnk_0b0[i].mUnk_2c = v;
+                        p->mPieces[i].mWobbleAmplitude = v;
                     } else if (t < 0) {
-                        v = t + p->mUnk_0b0[i].mUnk_30;
+                        v = t + p->mPieces[i].mWobbleAmplitudePerFrame;
                         if (v >= 0) {
                             v = 0;
                         }
-                        p->mUnk_0b0[i].mUnk_2c = v;
+                        p->mPieces[i].mWobbleAmplitude = v;
                     }
-                    t = p->mUnk_0b0[i].mUnk_34;
+                    t = p->mPieces[i].mWobbleAnglePerFrame;
                     if (t > 0) {
-                        v = t + p->mUnk_0b0[i].mUnk_38;
+                        v = t + p->mPieces[i].mUnk_38;
                         if (v <= 0) {
                             v = 0;
                         }
-                        p->mUnk_0b0[i].mUnk_34 = v;
+                        p->mPieces[i].mWobbleAnglePerFrame = v;
                     } else if (t < 0) {
-                        v = t + p->mUnk_0b0[i].mUnk_38;
+                        v = t + p->mPieces[i].mUnk_38;
                         if (v >= 0) {
                             v = 0;
                         }
-                        p->mUnk_0b0[i].mUnk_34 = v;
+                        p->mPieces[i].mWobbleAnglePerFrame = v;
                     }
-                    p->mUnk_0b0[i].mUnk_3c = (u16) p->mUnk_0b0[i].mUnk_20;
+                    p->mPieces[i].mRotateZAngle = (u16) p->mPieces[i].mWobbleValue;
                 }
             }
-            if (p->mUnk_0a4 <= 0) {
+            if (p->mFastWobbleTimer <= 0) {
                 return;
             }
-            p->mUnk_0a4 = p->mUnk_0a4 - 1;
-            if (p->mUnk_0ac > 0) {
-                p->mUnk_0ac = p->mUnk_0ac - 1;
+            p->mFastWobbleTimer = p->mFastWobbleTimer - 1;
+            if (p->mSoundTimer > 0) {
+                p->mSoundTimer = p->mSoundTimer - 1;
                 return;
             }
-            if (p->mUnk_0b0[0].mUnk_1c <= 0x8000) {
+            if (p->mPieces[0].mWobbleAngle <= 0x8000) {
                 return;
             }
-            if (p->mUnk_0b0[0].mUnk_1c >= 0xc000) {
+            if (p->mPieces[0].mWobbleAngle >= 0xc000) {
                 return;
             }
             s.mSoundId = 0x194;
@@ -346,67 +346,67 @@ void UpdateSanbo(void *a, Sanbo *p) {
             s.mUnk_08 = 2;
             s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&p->mUnk_000.mPos);
             func_0210b7a8(&s);
-            p->mUnk_0ac = 0x14;
+            p->mSoundTimer = 0x14;
             break;
         case 2:
-            for (j = 0; j < p->mUnk_1d0; j++) {
-                if (p->mUnk_0b0[j].mUnk_00.y > 0) {
-                    p->mUnk_0b0[j].mUnk_00.x = p->mUnk_0b0[j].mUnk_00.x + p->mUnk_0b0[j].mUnk_0c.x;
-                    p->mUnk_0b0[j].mUnk_00.y = p->mUnk_0b0[j].mUnk_00.y + p->mUnk_0b0[j].mUnk_0c.y;
-                    p->mUnk_0b0[j].mUnk_00.z = p->mUnk_0b0[j].mUnk_00.z + p->mUnk_0b0[j].mUnk_0c.z;
-                    p->mUnk_0b0[j].mUnk_0c.y = p->mUnk_0b0[j].mUnk_0c.y - 0x400;
+            for (j = 0; j < p->mPieceCount; j++) {
+                if (p->mPieces[j].mPos.y > 0) {
+                    p->mPieces[j].mPos.x = p->mPieces[j].mPos.x + p->mPieces[j].mVelocity.x;
+                    p->mPieces[j].mPos.y = p->mPieces[j].mPos.y + p->mPieces[j].mVelocity.y;
+                    p->mPieces[j].mPos.z = p->mPieces[j].mPos.z + p->mPieces[j].mVelocity.z;
+                    p->mPieces[j].mVelocity.y = p->mPieces[j].mVelocity.y - 0x400;
                 }
             }
             if ((p->mUnk_000.mFlags & 0x12) == 0) {
-                for (m = 0; m < p->mUnk_1d0; m++) {
-                    p->mUnk_0b0[m].mUnk_3c = p->mUnk_0b0[m].mUnk_3c + p->mUnk_0b0[m].mUnk_40;
+                for (m = 0; m < p->mPieceCount; m++) {
+                    p->mPieces[m].mRotateZAngle = p->mPieces[m].mRotateZAngle + p->mPieces[m].mRotateZAnglePerFrame;
                 }
             }
             if (p->mUnk_000.mCourseMapRow->mUnk_2a != 0) {
                 return;
             }
-            if (p->mUnk_0a8-- > 0) {
+            if (p->mState2Timer-- > 0) {
                 return;
             }
-            for (k = 0; k < p->mUnk_1d0; k++) {
-                p->mUnk_0b0[k].mUnk_1c = 0;
-                p->mUnk_0b0[k].mUnk_18 = 0;
-                p->mUnk_0b0[k].mUnk_3c = 0;
-                p->mUnk_0b0[k].mUnk_44 = k * 0x14;
+            for (k = 0; k < p->mPieceCount; k++) {
+                p->mPieces[k].mWobbleAngle = 0;
+                p->mPieces[k].mDrawScale = 0;
+                p->mPieces[k].mRotateZAngle = 0;
+                p->mPieces[k].mWobbleDelayTimer = k * 0x14;
             }
-            p->mUnk_1d0 = 1;
+            p->mPieceCount = 1;
             p->mState = 3;
             p->mUnk_000.mFlags = p->mUnk_000.mFlags & ~1;
             p->mUnk_000.mFlags = p->mUnk_000.mFlags & ~8;
             break;
         case 3:
-            p->mUnk_0b0[p->mUnk_1d0 - 1].mUnk_18 = p->mUnk_0b0[p->mUnk_1d0 - 1].mUnk_18 + 0xcd;
-            if (p->mUnk_0b0[p->mUnk_1d0 - 1].mUnk_18 < 0x1000) {
+            p->mPieces[p->mPieceCount - 1].mDrawScale = p->mPieces[p->mPieceCount - 1].mDrawScale + 0xcd;
+            if (p->mPieces[p->mPieceCount - 1].mDrawScale < 0x1000) {
                 return;
             }
-            p->mUnk_0b0[p->mUnk_1d0 - 1].mUnk_18 = 0x1000;
-            p->mUnk_1d0 = p->mUnk_1d0 + 1;
-            if (p->mUnk_1d0 > 4) {
-                p->mUnk_1d0 = 4;
+            p->mPieces[p->mPieceCount - 1].mDrawScale = 0x1000;
+            p->mPieceCount = p->mPieceCount + 1;
+            if (p->mPieceCount > 4) {
+                p->mPieceCount = 4;
                 p->mState = 0;
             }
             break;
     }
 }
 
-void func_020a737c(void) {
-    CreateMapObjectKindData(&func_020a7fc4, &func_020a7f18, NULL, 1, 1);
+void CreateSanboKindData(void) {
+    CreateMapObjectKindData(&CollideKartWithSanbo, &CollideItemObjectWithSanbo, NULL, 1, 1);
 }
 
-void *func_020a7358(void) {
+void *CreateSanboDrawList(void) {
     return CreateMapObjectDrawList2(CreateSanboHAndSanboB, DrawSanbo, func_020a7eb0);
 }
 
-void *func_020a7338(void) {
+void *CreateSanboUpdateList(void) {
     return CreateMapObjectUpdateList(InitSanboObjects, UpdateSanbo, NULL);
 }
 
-BOOL func_020a72c8(u16 a, u16 b) {
+BOOL ShineKartHitCallback(u16 a, u16 b) {
     if (GetBalloonOrShineCount(a) != 0) {
         AddBalloonOrShineCountAndMoveRank(a, -1);
         if (b >= 8) {
@@ -418,7 +418,7 @@ BOOL func_020a72c8(u16 a, u16 b) {
     return FALSE;
 }
 
-void func_020a7270(u16 a) {
+void ShineKartEliminatedCallback(u16 a) {
     if (GetBalloonOrShineCount(a) == 0) {
         return;
     }
@@ -426,7 +426,7 @@ void func_020a7270(u16 a) {
     StartShine16FromKart(GetKart(a), GetKart(a));
 }
 
-void func_020a71c8(void) {
+void ShineEndCallback(void) {
     s32 i;
     MapObject *o;
     MapObjectList *l;

@@ -18,19 +18,19 @@
 #include "Main/Unknown/code_0209bf70.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_020a7148(MapObject *a) {
+void InitShineBattleObjects(MapObject *a) {
     if (CountMapObjectsOfKind(MAP_OBJECT_KIND_SHINE16) == 0) {
         CreateParkedMapObjects(MAP_OBJECT_KIND_SHINE16, 0x14, a);
         CreateParkedMapObjects(MAP_OBJECT_KIND_SHINE_BALLOON, gRaceSetup->mKartCount, a);
-        SetStandingsKartHitCallback(func_020a72c8);
-        SetStandingsKartEliminatedCallback(func_020a7270);
-        SetStandingsEndCallback(func_020a71c8);
+        SetStandingsKartHitCallback(ShineKartHitCallback);
+        SetStandingsKartEliminatedCallback(ShineKartEliminatedCallback);
+        SetStandingsEndCallback(ShineEndCallback);
         return;
     }
     ParkMapObject(a);
 }
 
-BOOL func_020a6f94(MapObjectList *a) {
+BOOL TryStartShine16AtRandomObject(MapObjectList *a) {
     s32 i;
     s32 v1;
     Unk020a6cb4 *e;
@@ -46,7 +46,7 @@ BOOL func_020a6f94(MapObjectList *a) {
     if (a != NULL) {
         for (i = 0; i < a->mMapObjectCount && (e = a->mMapObjects[i]) != NULL; i++) {
             f = FALSE;
-            if (e->mUnk_a0 == FALSE) {
+            if (e->mHasShine == FALSE) {
                 if (e->mUnk_a4 == FALSE) {
                     f = TRUE;
                 }
@@ -78,10 +78,10 @@ BOOL func_020a6f94(MapObjectList *a) {
         k = v2;
         if (a != NULL) {
             for (i = 0; i < a->mMapObjectCount && (e = a->mMapObjects[i]) != NULL; i++) {
-                if (e->mUnk_a0 == FALSE && e->mUnk_a4 == FALSE) {
+                if (e->mHasShine == FALSE && e->mUnk_a4 == FALSE) {
                     if (k-- == 0) {
                         StartShine16(&e->mUnk_00.mPos, i, 1);
-                        e->mUnk_a0 = TRUE;
+                        e->mHasShine = TRUE;
                         return TRUE;
                     }
                 }
@@ -125,7 +125,7 @@ void func_020a6e70(MapObjectList *a) {
             v = GetShineCount();
             if (v + GetTotalBalloonOrShineCount() < n + 1) {
                 StartShine16(&e->mUnk_00.mPos, j, GetRaceUseChainCameras());
-                e->mUnk_a0 = TRUE;
+                e->mHasShine = TRUE;
             }
         }
     }
@@ -143,27 +143,27 @@ void func_020a6d8c(MapObjectList *a, Unk020a6cb4 *b) {
     if (v + GetTotalBalloonOrShineCount() >= n + 1) {
         return;
     }
-    b->mUnk_a8 += 1;
-    if (b->mUnk_a8 <= 0x5a) {
+    b->mShineStartFrames += 1;
+    if (b->mShineStartFrames <= 0x5a) {
         return;
     }
-    b->mUnk_a8 = 0;
+    b->mShineStartFrames = 0;
     while (GetShineCount() < 3 &&
            (n = gRaceSetup->mKartCount, v = GetShineCount(), v + GetTotalBalloonOrShineCount() < n + 1)) {
-        if (func_020a6f94(a) == FALSE) {
+        if (TryStartShine16AtRandomObject(a) == FALSE) {
             return;
         }
     }
 }
 
-s32 func_020a6d40(void) {
+s32 CreateShineBattleKindData(void) {
     if (gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mBattleKind == BATTLE_KIND_SHINE) {
         return CreateEmptyMapObjectKindData();
     }
     return 0;
 }
 
-void *func_020a6d20(void) {
+void *CreateShineBattleUpdateList(void) {
     return CreateMapObjectUpdateList(func_020a6e70, func_020a6d8c, NULL);
 }
 
@@ -178,7 +178,7 @@ void func_020a6cb4(s32 a) {
     }
     for (i = 0; i < v1->mMapObjectCount && (e = v1->mMapObjects[i]) != NULL; i++) {
         if (i == a) {
-            e->mUnk_a0 = FALSE;
+            e->mHasShine = FALSE;
             e->mUnk_a4 = TRUE;
         } else {
             e->mUnk_a4 = FALSE;

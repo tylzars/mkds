@@ -358,25 +358,25 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
             v = FX_Atan2Idx(r->mPos.x - b->x, r->mPos.z - b->z);
             if (v >= 0 && v <= 0xaaab) {
                 n = ((u16) v >> 4) << 1;
-                a->mUnk_10.x = b->x + (s32) (((s64) gPairsByAngle[n] * 0x5dc000) >> 12);
-                a->mUnk_10.y = b->y;
-                a->mUnk_10.z = b->z + (s32) (((s64) gPairsByAngle[n + 1] * 0x5dc000) >> 12);
+                a->mSourcePos.x = b->x + (s32) (((s64) gPairsByAngle[n] * 0x5dc000) >> 12);
+                a->mSourcePos.y = b->y;
+                a->mSourcePos.z = b->z + (s32) (((s64) gPairsByAngle[n + 1] * 0x5dc000) >> 12);
                 a->mUnk_20 = FALSE;
             } else if (r->mPos.z > b->z && r->mPos.y < b->y - 0x32000) {
-                a->mUnk_10.x = b->x + (s32) (((s64) gPairsByAngle[0] * 0x5dc000) >> 12);
-                a->mUnk_10.y = b->y;
-                a->mUnk_10.z = b->z + (s32) (((s64) gPairsByAngle[1] * 0x5dc000) >> 12);
-                v = a->mUnk_10.x - k;
+                a->mSourcePos.x = b->x + (s32) (((s64) gPairsByAngle[0] * 0x5dc000) >> 12);
+                a->mSourcePos.y = b->y;
+                a->mSourcePos.z = b->z + (s32) (((s64) gPairsByAngle[1] * 0x5dc000) >> 12);
+                v = a->mSourcePos.x - k;
                 n = r->mPos.x;
                 if (n <= v) {
                     n = v;
                 }
-                a->mUnk_10.x = n;
+                a->mSourcePos.x = n;
                 a->mUnk_20 = TRUE;
             } else {
-                a->mUnk_10.x = b->x + (s32) (((s64) data_0215feb4[0x54] * 0x5dc000) >> 12);
-                a->mUnk_10.y = b->y;
-                a->mUnk_10.z = b->z + (s32) (((s64) data_0215feb4[0x55] * 0x5dc000) >> 12);
+                a->mSourcePos.x = b->x + (s32) (((s64) data_0215feb4[0x54] * 0x5dc000) >> 12);
+                a->mSourcePos.y = b->y;
+                a->mSourcePos.z = b->z + (s32) (((s64) data_0215feb4[0x55] * 0x5dc000) >> 12);
                 a->mUnk_20 = FALSE;
             }
             break;
@@ -393,9 +393,9 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
                     x = r->mPos.x;
                 }
             }
-            a->mUnk_10.x = x;
-            a->mUnk_10.y = b->y;
-            a->mUnk_10.z = b->z;
+            a->mSourcePos.x = x;
+            a->mSourcePos.y = b->y;
+            a->mSourcePos.z = b->z;
             if (r->mPos.x < b->x) {
                 a->mUnk_20 = TRUE;
             } else {

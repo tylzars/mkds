@@ -11,8 +11,8 @@
 // or 2 (func_020a826c); func_020a8ed8 writes the vector at 0x10 and the word at 0x20.
 typedef struct Unk020a826c_a0 {
     /* 00 */ Unk0210b7a8 mUnk_00;
-    /* 10 */ Vec3 mUnk_10;
-    /* 1c */ NNSSndSeqPlayer **mUnk_1c;
+    /* 10 */ Vec3 mSourcePos;
+    /* 1c */ NNSSndSeqPlayer **mSndHandleSlot;
     /* 20 */ BOOL mUnk_20;
     /* 24 */ s32 mUnk_24;
 } Unk020a826c_a0;
@@ -23,7 +23,7 @@ typedef struct Unk020a826c {
     /* 000 */ MapObject mUnk_000;
     /* 0a0 */ Unk020a826c_a0 mUnk_0a0;
     /* 0c8 */ Unk020a826c_a0 mUnk_0c8;
-    /* 0f0 */ s32 mUnk_0f0;
+    /* 0f0 */ s32 mState;
 } Unk020a826c;
 
 void func_020a826c(void *a, Unk020a826c *p);

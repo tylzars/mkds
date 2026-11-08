@@ -35,13 +35,13 @@ static inline void func_020a826c_inline(Unk020a826c_a0 *q) {
     } else {
         v = 0;
     }
-    q->mUnk_00.mDistanceSquared = GetHorizontalCameraDistanceSquared(&q->mUnk_10);
+    q->mUnk_00.mDistanceSquared = GetHorizontalCameraDistanceSquared(&q->mSourcePos);
     if (q->mUnk_00.mDistanceSquared < v) {
         q->mUnk_24 = q->mUnk_24 == 0 ? 1 : 2;
         if (GetRaceUseChainCameras() != 0) {
-            func_0210b734(&q->mUnk_00, q->mUnk_1c);
+            func_0210b734(&q->mUnk_00, q->mSndHandleSlot);
         } else {
-            func_0210b760(&q->mUnk_00, q->mUnk_1c);
+            func_0210b760(&q->mUnk_00, q->mSndHandleSlot);
         }
     } else {
         q->mUnk_24 = 0;
@@ -51,13 +51,13 @@ static inline void func_020a826c_inline(Unk020a826c_a0 *q) {
 void func_020a826c(void *a, Unk020a826c *p) {
     s32 v;
 
-    switch (p->mUnk_0f0) {
+    switch (p->mState) {
         case 1:
             if (IsRaceStarted() == 1) {
                 v = p->mUnk_0c8.mUnk_00.mSoundId;
-                NNS_SndPlayerStopSeq(p->mUnk_0a0.mUnk_1c, 0);
+                NNS_SndPlayerStopSeq(p->mUnk_0a0.mSndHandleSlot, 0);
                 p->mUnk_0a0.mUnk_00.mSoundId = v;
-                p->mUnk_0f0 = 2;
+                p->mState = 2;
             }
             func_020a826c_inline(&p->mUnk_0a0);
             break;
@@ -66,9 +66,9 @@ void func_020a826c(void *a, Unk020a826c *p) {
             if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL && IsKartOnLastLap(gRaceSetup->mEntryIndex) != FALSE &&
                 p->mUnk_0a0.mUnk_24 == 0 && p->mUnk_0a0.mUnk_20 != FALSE) {
                 v = func_02110c40();
-                NNS_SndPlayerStopSeq(p->mUnk_0a0.mUnk_1c, 0);
+                NNS_SndPlayerStopSeq(p->mUnk_0a0.mSndHandleSlot, 0);
                 p->mUnk_0a0.mUnk_00.mSoundId = v;
-                p->mUnk_0f0 = 3;
+                p->mState = 3;
             }
             func_020a826c_inline(&p->mUnk_0a0);
             break;
@@ -78,9 +78,9 @@ void func_020a826c(void *a, Unk020a826c *p) {
                 ParkMapObject(&p->mUnk_000);
             } else if (p->mUnk_0a0.mUnk_20 == FALSE) {
                 v = p->mUnk_0c8.mUnk_00.mSoundId;
-                NNS_SndPlayerStopSeq(p->mUnk_0a0.mUnk_1c, 0);
+                NNS_SndPlayerStopSeq(p->mUnk_0a0.mSndHandleSlot, 0);
                 p->mUnk_0a0.mUnk_00.mSoundId = v;
-                p->mUnk_0f0 = 2;
+                p->mState = 2;
             }
             func_020a826c_inline(&p->mUnk_0a0);
             break;

@@ -2,7 +2,8 @@
 
 #include "types.h"
 #include "Main/Unknown/code_020a7000.h"
+#include "Main/Unknown/code_020f36d8.h"
 
 void CreateSanboHAndSanboB(void *a);
-u8 func_020a7f18(Sanbo *p, Kart *a, u8 *b, u8 *c);
-u8 func_020a7fc4(Sanbo *p, Kart *a, u8 *b, u8 *c);
+u8 CollideItemObjectWithSanbo(Sanbo *p, ItemObject *a, u8 *b, u8 *c);
+u8 CollideKartWithSanbo(Sanbo *p, Kart *a, u8 *b, u8 *c);

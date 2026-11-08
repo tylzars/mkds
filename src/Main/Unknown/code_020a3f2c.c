@@ -239,9 +239,9 @@ void UpdateShine16(void *a, Shine16 *p) {
                 if (p->mNsbtpFrameIndex >= GetMapObjectModelNsbtpFrameCount(gShine16)) {
                     p->mNsbtpFrameIndex -= GetMapObjectModelNsbtpFrameCount(gShine16);
                 }
-                p->mUnk_bc++;
-                if (p->mUnk_bc >= 8) {
-                    p->mUnk_bc -= 8;
+                p->mNsbtpFramesSinceMirror++;
+                if (p->mNsbtpFramesSinceMirror >= 8) {
+                    p->mNsbtpFramesSinceMirror -= 8;
                     p->mMirror = p->mMirror == 0;
                 }
             }
@@ -270,9 +270,9 @@ void UpdateShine16(void *a, Shine16 *p) {
                 if (p->mNsbtpFrameIndex >= GetMapObjectModelNsbtpFrameCount(gShine16)) {
                     p->mNsbtpFrameIndex -= GetMapObjectModelNsbtpFrameCount(gShine16);
                 }
-                p->mUnk_bc++;
-                if (p->mUnk_bc >= 8) {
-                    p->mUnk_bc -= 8;
+                p->mNsbtpFramesSinceMirror++;
+                if (p->mNsbtpFramesSinceMirror >= 8) {
+                    p->mNsbtpFramesSinceMirror -= 8;
                     p->mMirror = p->mMirror == 0;
                 }
             }
@@ -290,9 +290,9 @@ void UpdateShine16(void *a, Shine16 *p) {
                 if (p->mNsbtpFrameIndex >= GetMapObjectModelNsbtpFrameCount(gShine16)) {
                     p->mNsbtpFrameIndex -= GetMapObjectModelNsbtpFrameCount(gShine16);
                 }
-                p->mUnk_bc++;
-                if (p->mUnk_bc >= 8) {
-                    p->mUnk_bc -= 8;
+                p->mNsbtpFramesSinceMirror++;
+                if (p->mNsbtpFramesSinceMirror >= 8) {
+                    p->mNsbtpFramesSinceMirror -= 8;
                     p->mMirror = p->mMirror == 0;
                 }
             }
@@ -303,10 +303,10 @@ void UpdateShine16(void *a, Shine16 *p) {
             p->mDrawScale = 0;
             ParkMapObject(&p->mUnk_00);
             AddShineCount(-1);
-            if (p->mUnk_c4 < 0) {
+            if (p->mSpawnObjectIndex < 0) {
                 return;
             }
-            func_020a6cb4(p->mUnk_c4);
+            func_020a6cb4(p->mSpawnObjectIndex);
             return;
         case 2:
             p->mUnk_b4 += 4;
@@ -316,9 +316,9 @@ void UpdateShine16(void *a, Shine16 *p) {
                 if (p->mNsbtpFrameIndex >= GetMapObjectModelNsbtpFrameCount(gShine16)) {
                     p->mNsbtpFrameIndex -= GetMapObjectModelNsbtpFrameCount(gShine16);
                 }
-                p->mUnk_bc++;
-                if (p->mUnk_bc >= 8) {
-                    p->mUnk_bc -= 8;
+                p->mNsbtpFramesSinceMirror++;
+                if (p->mNsbtpFramesSinceMirror >= 8) {
+                    p->mNsbtpFramesSinceMirror -= 8;
                     p->mMirror = p->mMirror == 0;
                 }
             }
@@ -334,8 +334,8 @@ void UpdateShine16(void *a, Shine16 *p) {
                     p->mDrawScale = 0;
                     ParkMapObject(&p->mUnk_00);
                     AddShineCount(-1);
-                    if (p->mUnk_c4 >= 0) {
-                        func_020a6cb4(p->mUnk_c4);
+                    if (p->mSpawnObjectIndex >= 0) {
+                        func_020a6cb4(p->mSpawnObjectIndex);
                     }
                 }
                 if (p->mDrawScale <= 0) {
@@ -365,9 +365,9 @@ void UpdateShine16(void *a, Shine16 *p) {
                 if (p->mNsbtpFrameIndex >= GetMapObjectModelNsbtpFrameCount(gShine16)) {
                     p->mNsbtpFrameIndex -= GetMapObjectModelNsbtpFrameCount(gShine16);
                 }
-                p->mUnk_bc++;
-                if (p->mUnk_bc >= 8) {
-                    p->mUnk_bc -= 8;
+                p->mNsbtpFramesSinceMirror++;
+                if (p->mNsbtpFramesSinceMirror >= 8) {
+                    p->mNsbtpFramesSinceMirror -= 8;
                     p->mMirror = p->mMirror == 0;
                 }
             }
@@ -443,9 +443,9 @@ void UpdateShine16(void *a, Shine16 *p) {
                 if (p->mNsbtpFrameIndex >= GetMapObjectModelNsbtpFrameCount(gShine16)) {
                     p->mNsbtpFrameIndex -= GetMapObjectModelNsbtpFrameCount(gShine16);
                 }
-                p->mUnk_bc++;
-                if (p->mUnk_bc >= 8) {
-                    p->mUnk_bc -= 8;
+                p->mNsbtpFramesSinceMirror++;
+                if (p->mNsbtpFramesSinceMirror >= 8) {
+                    p->mNsbtpFramesSinceMirror -= 8;
                     p->mMirror = p->mMirror == 0;
                 }
             }
@@ -469,9 +469,9 @@ void UpdateShine16(void *a, Shine16 *p) {
                 if (p->mNsbtpFrameIndex >= GetMapObjectModelNsbtpFrameCount(gShine16)) {
                     p->mNsbtpFrameIndex -= GetMapObjectModelNsbtpFrameCount(gShine16);
                 }
-                p->mUnk_bc++;
-                if (p->mUnk_bc >= 8) {
-                    p->mUnk_bc -= 8;
+                p->mNsbtpFramesSinceMirror++;
+                if (p->mNsbtpFramesSinceMirror >= 8) {
+                    p->mNsbtpFramesSinceMirror -= 8;
                     p->mMirror = p->mMirror == 0;
                 }
             }
@@ -612,7 +612,7 @@ void StartShine16(Vec3 *a, s32 b, s32 c) {
     }
     p->mDrawScale = 0;
     p->mPickupTimer = 0;
-    p->mUnk_c4 = b;
+    p->mSpawnObjectIndex = b;
     p->mUnk_00.mFlags &= ~1;
     p->mUnk_00.mFlags &= ~0x20;
     AddShineCount(1);
@@ -651,7 +651,7 @@ void StartShine16FromKart(Kart *a, Kart *b) {
         p->mUnk_d8 = 0x9c400;
     }
     p->mUnk_dc = 0;
-    p->mUnk_c4 = -1;
+    p->mSpawnObjectIndex = -1;
     AddShineCount(1);
     r = a->mIndex == gRaceSetup->mEntryIndex ? 1 : 0;
     c = GetHighestBalloonOrShineCount();
