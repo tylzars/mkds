@@ -62,15 +62,16 @@ BOOL func_02095f38(Unk0217b498_00 *a);
 void *CreateCoverPooHoleUpdateList(void);
 void *CreateCoverPooHoleDrawList(void);
 void CreateCoverPooHoleKindData(void);
-void UpdateCoverPooHole(void *a, CoverPooHole *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void UpdateCoverPooHole(void *a,
+                        CoverPooHole *coverPooHole); /* skipped for objects with mFlags & 4 (parked pool objects) */
 s32 func_020968c0(s32 a, s32 b);
 s32 func_020968dc(s32 a);
-void InitCoverPooHoleObjects(Unk020968f4 *p);
-void DrawCoverPooHole(void *a, CoverPooHole *p);
+void InitCoverPooHoleObjects(Unk020968f4 *mapObjectList);
+void DrawCoverPooHole(void *a, CoverPooHole *coverPooHole);
 void CreateCoverPooHole(void *a);
-BOOL TryGetCoverPooHolePushOut(CoverPooHole *p, const Vec3 *a, s32 b, Vec3 *c);
-u32 CollideItemObjectWithCoverPooHole(CoverPooHole *p, Kart *a, u8 *b, u8 *c);
-u32 CollideKartWithCoverPooHole(CoverPooHole *p, Kart *a, u8 *b, u8 *c);
+BOOL TryGetCoverPooHolePushOut(CoverPooHole *coverPooHole, const Vec3 *position, s32 radius, Vec3 *pushOut);
+u32 CollideItemObjectWithCoverPooHole(CoverPooHole *coverPooHole, Kart *a, u8 *b, u8 *c);
+u32 CollideKartWithCoverPooHole(CoverPooHole *coverPooHole, Kart *kart, u8 *b, u8 *c);
 /* sets flag 0x200 through the prefix type Unk02097520, whose mUnk_02 is MapObject.mFlags */
-void InitCoverPooHole(Unk02097520 *p0);
+void InitCoverPooHole(Unk02097520 *mapObject);
 u32 func_0209753c(u32 a);

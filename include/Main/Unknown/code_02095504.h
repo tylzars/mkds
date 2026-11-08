@@ -10,7 +10,7 @@
 // Object of kind 0x13c (Bakubaku): after the shared part, a counter at 0xa0, a vector at 0xa4 and a state at 0xb0.
 typedef struct Bakubaku {
     /* 00 */ MapObject mUnk_00;
-    /* a0 */ s32 mUnk_a0;
+    /* a0 */ s32 mState4Timer;
     /* a4 */ Vec3 mUnk_a4;
     /* State number of this kind's own per-frame switch in UpdateBakubaku; this object does not use
        MapObject.mUnk_80's state machine; also read by the draw (state 2 = drawn) */
@@ -21,13 +21,13 @@ typedef struct Bakubaku {
 // 0xb0, an GroupFollower at 0xb4, a state at 0xd8 and an ShadowMatrix at 0xdc.
 typedef struct MoveTree {
     /* 00 */ MapObject mUnk_00;
-    /* a0 */ s32 mUnk_a0;
+    /* a0 */ s32 mState0Timer;
     /* a4 */ s32 mUnk_a4;
     /* a8 */ s32 mUnk_a8;
     /* ac */ u16 mNsbcaFrameIndex;
     /* ae */ u8 mUnk_ae[2];
-    /* b0 */ s32 mUnk_b0;
-    /* b4 */ GroupFollower mUnk_b4;
+    /* b0 */ s32 mNsbcaFrameStep;
+    /* b4 */ GroupFollower mFollower;
     /* State number of this kind's own per-frame switch in UpdateMoveTree; this object does not use
        MapObject.mUnk_80's state machine */
     /* d8 */ u32 mState;
@@ -36,15 +36,15 @@ typedef struct MoveTree {
 
 void CreateBakubakuUpdateList(void);
 void CreateBakubakuDrawList(void);
-void UpdateBakubaku(void *a, Bakubaku *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void InitBakubakuObjects(MapObjectList *p);
-void DrawBakubaku(void *a, Bakubaku *p);
+void UpdateBakubaku(void *a, Bakubaku *bakubaku); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void InitBakubakuObjects(MapObjectList *mapObjectList);
+void DrawBakubaku(void *a, Bakubaku *bakubaku);
 void CreateBakubakuAndBakuShadow(void *a);
 void CreateMoveTreeUpdateList(void);
 void CreateMoveTreeDrawList(void);
 void CreateMoveTreeKindData(void);
-void UpdateMoveTree(void *a, MoveTree *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void InitMoveTreeObjects(MapObjectList *p);
-void DrawMoveTree(void *a, MoveTree *p, u32 c, u32 d);
+void UpdateMoveTree(void *a, MoveTree *moveTree); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void InitMoveTreeObjects(MapObjectList *mapObjectList);
+void DrawMoveTree(void *a, MoveTree *moveTree, u32 c, u32 d);
 void CreateMoveTree(void *a);
-u8 func_02095efc(MoveTree *a, Kart *b, u8 *c, u8 *d);
+u8 CollideKartWithMoveTree(MoveTree *moveTree, Kart *kart, u8 *c, u8 *d);

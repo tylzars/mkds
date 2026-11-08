@@ -41,7 +41,7 @@ void *func_02099004(void) {
     return CreateMapObjectUpdateList(NULL, func_0209905c, NULL);
 }
 
-void func_02098f18(GroupFollower *a, s32 b) {
+void func_02098f18(GroupFollower *groupFollower, s32 b) {
     Unk0209905c *p;
     p = UnparkFirstParkedMapObject(func_02100138(0x1ab));
     if (p == NULL) {
@@ -52,8 +52,8 @@ void func_02098f18(GroupFollower *a, s32 b) {
     p->mUnk_00.mFlags = p->mUnk_00.mFlags & ~2;
     p->mUnk_00.mFlags = p->mUnk_00.mFlags & ~8;
     p->mUnk_00.mAlpha = 0x1f;
-    p->mUnk_a0.mGroupIndex = a->mGroupIndex;
-    p->mUnk_a0.mPath = a->mPath;
+    p->mUnk_a0.mGroupIndex = groupFollower->mGroupIndex;
+    p->mUnk_a0.mPath = groupFollower->mPath;
     SetupGroupFollowerAtEntry(&p->mUnk_a0, 0, 1);
     p->mUnk_a0.mSpeed = 0x7800;
     p->mUnk_a0.mProgressStep =
@@ -64,53 +64,53 @@ void func_02098f18(GroupFollower *a, s32 b) {
     p->mUnk_d0 = StartEffect(0x33, &p->mUnk_00.mPos);
 }
 
-void InitPakkun(Pakkun *p) {
+void InitPakkun(Pakkun *pakkun) {
     s32 v;
     s32 d;
-    Vec3 a;
-    Vec3 b;
+    Vec3 position;
+    Vec3 step;
     s32 i;
-    p->mUnk_1d8 =
-        (u32) (((s64) p->mUnk_000.mCourseMapRow->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 32 << 4) >> 16;
-    p->mUnk_1e4 = TRUE;
-    p->mUnk_1e8 = 0x1000;
-    p->mUnk_1ec = 0;
-    p->mUnk_1f0 = 0x1000;
-    p->mUnk_1f4 = 0;
-    p->mUnk_1f8 = 0x46000;
+    pakkun->mUnk_1d8 =
+        (u32) (((s64) pakkun->mUnk_000.mCourseMapRow->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 32 << 4) >> 16;
+    pakkun->mUnk_1e4 = TRUE;
+    pakkun->mUnk_1e8 = 0x1000;
+    pakkun->mUnk_1ec = 0;
+    pakkun->mUnk_1f0 = 0x1000;
+    pakkun->mUnk_1f4 = 0;
+    pakkun->mUnk_1f8 = 0x46000;
     for (i = 0; i < 7; i++) {
-        p->mUnk_0b8[i].mGroupIndex = 0xffff;
+        pakkun->mFollowers[i].mGroupIndex = 0xffff;
     }
     for (i = 0; i < 7; i++) {
         if (i == 0) {
-            v = p->mUnk_000.mCourseMapRow->mUnk_28;
+            v = pakkun->mUnk_000.mCourseMapRow->mUnk_28;
         } else if (i == 1) {
-            v = p->mUnk_000.mCourseMapRow->mUnk_2a;
+            v = pakkun->mUnk_000.mCourseMapRow->mUnk_2a;
         } else if (i == 2) {
-            v = p->mUnk_000.mCourseMapRow->mUnk_2c;
+            v = pakkun->mUnk_000.mCourseMapRow->mUnk_2c;
         } else if (i == 3) {
-            v = p->mUnk_000.mCourseMapRow->mUnk_2e;
+            v = pakkun->mUnk_000.mCourseMapRow->mUnk_2e;
         } else if (i == 4) {
-            v = p->mUnk_000.mCourseMapRow->mUnk_30;
+            v = pakkun->mUnk_000.mCourseMapRow->mUnk_30;
         } else if (i == 5) {
-            v = p->mUnk_000.mCourseMapRow->mUnk_32;
+            v = pakkun->mUnk_000.mCourseMapRow->mUnk_32;
         } else {
-            v = p->mUnk_000.mCourseMapRow->mUnk_34;
+            v = pakkun->mUnk_000.mCourseMapRow->mUnk_34;
         }
         if (v >= 0) {
-            InitGroupFollowerForGroup(&p->mUnk_0b8[p->mUnk_1ba], v, 100);
-            GetGroupFollowerLinearPosStep(&p->mUnk_0b8[p->mUnk_1ba], &a, &b);
-            d = FX_Atan2Idx(b.x, b.z) - p->mUnk_1d8;
+            InitGroupFollowerForGroup(&pakkun->mFollowers[pakkun->mFollowerCount], v, 100);
+            GetGroupFollowerLinearPosStep(&pakkun->mFollowers[pakkun->mFollowerCount], &position, &step);
+            d = FX_Atan2Idx(step.x, step.z) - pakkun->mUnk_1d8;
             if (d > 0x8000) {
                 d -= 0x10000;
             }
-            p->mUnk_1bc[p->mUnk_1ba] = d;
-            p->mUnk_1fc = p->mUnk_000.mPos.y - a.y;
-            p->mUnk_1ba++;
+            pakkun->mUnk_1bc[pakkun->mFollowerCount] = d;
+            pakkun->mUnk_1fc = pakkun->mUnk_000.mPos.y - position.y;
+            pakkun->mFollowerCount++;
         }
     }
-    p->mUnk_0a0 = AllocPolygonId();
-    CreateParkedMapObjects(0x1ab, 0x14, p);
+    pakkun->mPolygonId = AllocPolygonId();
+    CreateParkedMapObjects(0x1ab, 0x14, pakkun);
 }
 
 void CreatePakkunMouth(void *a) {
@@ -120,30 +120,32 @@ void CreatePakkunMouth(void *a) {
 }
 
 static inline u32 func_020983c4_inline(u32 n) {
-    RandomState64 *r;
+    RandomState64 *mapObjectRandom;
     u32 t;
     u32 m;
     if (n == 0x10000) {
-        r = GetMapObjectRandom();
-        r->mValue = r->mIncrement + (s64) r->mMultiplier * (s64) r->mValue;
-        return (u16) ((r->mValue >> 32) * 0x10000 >> 32);
+        mapObjectRandom = GetMapObjectRandom();
+        mapObjectRandom->mValue =
+            mapObjectRandom->mIncrement + (s64) mapObjectRandom->mMultiplier * (s64) mapObjectRandom->mValue;
+        return (u16) ((mapObjectRandom->mValue >> 32) * 0x10000 >> 32);
     }
-    r = GetMapObjectRandom();
+    mapObjectRandom = GetMapObjectRandom();
     m = (u16) n;
     if (m == 0) {
         t = 0;
     } else {
-        r->mValue = r->mIncrement + (s64) r->mMultiplier * (s64) r->mValue;
+        mapObjectRandom->mValue =
+            mapObjectRandom->mIncrement + (s64) mapObjectRandom->mMultiplier * (s64) mapObjectRandom->mValue;
         if (m == 0) {
-            t = r->mValue >> 32;
+            t = mapObjectRandom->mValue >> 32;
         } else {
-            t = ((r->mValue >> 32) * m) >> 32;
+            t = ((mapObjectRandom->mValue >> 32) * m) >> 32;
         }
     }
     return (u16) t;
 }
 
-void DrawPakkunMouth(void *a, Pakkun *p) {
+void DrawPakkunMouth(void *a, Pakkun *pakkun) {
     s32 w;
     s32 m[9];
     s32 n[9];
@@ -152,31 +154,33 @@ void DrawPakkunMouth(void *a, Pakkun *p) {
     s32 t;
     w = 0x1e;
     func_01ff9048(0x14, &w, 1);
-    p->mUnk_000.mMatrix.mUnk_00[3].x = p->mUnk_000.mPos.x >> 4;
-    p->mUnk_000.mMatrix.mUnk_00[3].y = p->mUnk_000.mPos.y >> 4;
-    p->mUnk_000.mMatrix.mUnk_00[3].z = p->mUnk_000.mPos.z >> 4;
-    func_01ff9048(0x19, &p->mUnk_000.mMatrix, 12);
-    f[1] = p->mUnk_1f8 >> 4;
+    pakkun->mUnk_000.mMatrix.mUnk_00[3].x = pakkun->mUnk_000.mPos.x >> 4;
+    pakkun->mUnk_000.mMatrix.mUnk_00[3].y = pakkun->mUnk_000.mPos.y >> 4;
+    pakkun->mUnk_000.mMatrix.mUnk_00[3].z = pakkun->mUnk_000.mPos.z >> 4;
+    func_01ff9048(0x19, &pakkun->mUnk_000.mMatrix, 12);
+    f[1] = pakkun->mUnk_1f8 >> 4;
     f[0] = 0;
     f[2] = 0;
     func_01ff9048(0x1c, f, 3);
-    if (p->mUnk_1dc != 0) {
-        MTX_RotY33_(m, gPairsByAngle[((u16) p->mUnk_1dc >> 4) * 2], gPairsByAngle[((u16) p->mUnk_1dc >> 4) * 2 + 1]);
+    if (pakkun->mUnk_1dc != 0) {
+        MTX_RotY33_(m, gPairsByAngle[((u16) pakkun->mUnk_1dc >> 4) * 2],
+                    gPairsByAngle[((u16) pakkun->mUnk_1dc >> 4) * 2 + 1]);
         func_01ff9048(0x1a, m, 9);
     }
-    if (p->mUnk_1e0 != 0) {
-        MTX_RotX33_(n, gPairsByAngle[((u16) p->mUnk_1e0 >> 4) * 2], gPairsByAngle[((u16) p->mUnk_1e0 >> 4) * 2 + 1]);
+    if (pakkun->mUnk_1e0 != 0) {
+        MTX_RotX33_(n, gPairsByAngle[((u16) pakkun->mUnk_1e0 >> 4) * 2],
+                    gPairsByAngle[((u16) pakkun->mUnk_1e0 >> 4) * 2 + 1]);
         func_01ff9048(0x1a, n, 9);
     }
-    t = p->mUnk_1f0;
+    t = pakkun->mUnk_1f0;
     g[0] = t;
     g[1] = t;
     g[2] = t;
     func_01ff9048(0x1b, g, 3);
-    func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
-    SetMapObjectModelPolygonId(gPakkunMouth, p->mUnk_0a0);
-    SetMapObjectModelNsbcaFrameIndex(gPakkunMouth, p->mUnk_0a4 >> 12);
-    DrawMapObjectModel(a, gPakkunMouth, p);
+    func_01ff9048(0x1b, &pakkun->mUnk_000.mScale, 3);
+    SetMapObjectModelPolygonId(gPakkunMouth, pakkun->mPolygonId);
+    SetMapObjectModelNsbcaFrameIndex(gPakkunMouth, pakkun->mUnk_0a4 >> 12);
+    DrawMapObjectModel(a, gPakkunMouth, pakkun);
 }
 
 void CreatePakkunZHead(void *a) {
@@ -188,25 +192,25 @@ void SetupDrawPakkunZHead(void *a) {
     func_0209bbd0(a, gPakkunZHead);
 }
 
-void DrawPakkunZHead(void *a, Pakkun *p) {
+void DrawPakkunZHead(void *a, Pakkun *pakkun) {
     s32 w;
-    Vec3 v;
+    Vec3 position;
     s32 f[3];
     s32 t;
-    v.x = p->mUnk_000.mPos.x;
-    v.y = p->mUnk_000.mPos.y + p->mUnk_1f8;
-    v.z = p->mUnk_000.mPos.z;
+    position.x = pakkun->mUnk_000.mPos.x;
+    position.y = pakkun->mUnk_000.mPos.y + pakkun->mUnk_1f8;
+    position.z = pakkun->mUnk_000.mPos.z;
     w = 0x1e;
     func_01ff9048(0x14, &w, 1);
-    func_01ff9048(0x19, SetViewTransposeMatrixPos(&v), 12);
-    t = p->mUnk_1f0;
+    func_01ff9048(0x19, SetViewTransposeMatrixPos(&position), 12);
+    t = pakkun->mUnk_1f0;
     f[0] = t;
     f[1] = t;
     f[2] = t;
     func_01ff9048(0x1b, f, 3);
-    func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
-    SetMapObjectModelPolygonId(gPakkunZHead, p->mUnk_0a0);
-    DrawMapObjectModel(a, gPakkunZHead, p);
+    func_01ff9048(0x1b, &pakkun->mUnk_000.mScale, 3);
+    SetMapObjectModelPolygonId(gPakkunZHead, pakkun->mPolygonId);
+    DrawMapObjectModel(a, gPakkunZHead, pakkun);
 }
 
 void CreatePakkunBody(void *a) {
@@ -219,184 +223,184 @@ void SetupDrawPakkunBody(void *a) {
     func_0209bbd0(a, gPakkunBody);
 }
 
-void DrawPakkunBody(void *a, Pakkun *p) {
+void DrawPakkunBody(void *a, Pakkun *pakkun) {
     s32 w;
     s32 v[3];
     s32 d;
     s32 y;
     s32 x;
-    x = p->mUnk_1e8;
-    y = p->mUnk_1f0;
+    x = pakkun->mUnk_1e8;
+    y = pakkun->mUnk_1f0;
     d = 0x3000 - x - y;
     w = 0x1e;
     func_01ff9048(0x14, &w, 1);
-    func_01ff9048(0x19, func_020e6cbc(&p->mUnk_000.mPos), 12);
+    func_01ff9048(0x19, func_020e6cbc(&pakkun->mUnk_000.mPos), 12);
     v[0] = d;
     v[1] = x + y - 0x1000;
     v[2] = d;
     func_01ff9048(0x1b, v, 3);
-    func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
-    DrawMapObjectModel(a, gPakkunBody, p);
+    func_01ff9048(0x1b, &pakkun->mUnk_000.mScale, 3);
+    DrawMapObjectModel(a, gPakkunBody, pakkun);
 }
 
 void InitPakkunObjects(void) {
     s32 i;
-    Pakkun *o;
+    Pakkun *pakkun;
     float f;
-    if (data_usa_0217b0dc == NULL) {
+    if (gPakkunUpdateList == NULL) {
         return;
     }
-    for (i = 0; i < data_usa_0217b0dc->mMapObjectCount && (o = data_usa_0217b0dc->mMapObjects[i]) != NULL; i++) {
+    for (i = 0; i < gPakkunUpdateList->mMapObjectCount && (pakkun = gPakkunUpdateList->mMapObjects[i]) != NULL; i++) {
         if (GetMapObjectModelNsbcaFrameCount(gPakkunMouth) - 1 > 0) {
             f = 0.5f + ((GetMapObjectModelNsbcaFrameCount(gPakkunMouth) - 1) << 12);
         } else {
             f = ((GetMapObjectModelNsbcaFrameCount(gPakkunMouth) - 1) << 12) - 0.5f;
         }
-        o->mUnk_0a4 = 0;
-        o->mUnk_0a8 = 0x1000;
-        o->mUnk_0ac = 0;
-        o->mUnk_0b0 = f;
-        o->mUnk_1e0 = -0xa4;
+        pakkun->mUnk_0a4 = 0;
+        pakkun->mUnk_0a8 = 0x1000;
+        pakkun->mUnk_0ac = 0;
+        pakkun->mUnk_0b0 = f;
+        pakkun->mUnk_1e0 = -0xa4;
     }
 }
 
-void UpdatePakkun(void *a, Pakkun *p) {
+void UpdatePakkun(void *a, Pakkun *pakkun) {
     BOOL f;
     s32 t;
     s32 x;
     s32 y;
     Unk0210b7a8 s;
-    switch (p->mState) {
+    switch (pakkun->mState) {
         case 0:
-            p->mUnk_1b8 += func_020983c4_inline((u16) (p->mUnk_1ba - 1)) + 1;
-            if (p->mUnk_1b8 >= p->mUnk_1ba) {
-                p->mUnk_1b8 -= p->mUnk_1ba;
+            pakkun->mFollowerIndex += func_020983c4_inline((u16) (pakkun->mFollowerCount - 1)) + 1;
+            if (pakkun->mFollowerIndex >= pakkun->mFollowerCount) {
+                pakkun->mFollowerIndex -= pakkun->mFollowerCount;
             }
-            p->mState = 1;
+            pakkun->mState = 1;
         case 1:
             f = FALSE;
-            if (p->mUnk_1dc < p->mUnk_1bc[p->mUnk_1b8]) {
-                p->mUnk_1dc = p->mUnk_1dc + 0x6d;
-                if (p->mUnk_1dc >= p->mUnk_1bc[p->mUnk_1b8]) {
+            if (pakkun->mUnk_1dc < pakkun->mUnk_1bc[pakkun->mFollowerIndex]) {
+                pakkun->mUnk_1dc = pakkun->mUnk_1dc + 0x6d;
+                if (pakkun->mUnk_1dc >= pakkun->mUnk_1bc[pakkun->mFollowerIndex]) {
                     f = TRUE;
                 }
             } else {
-                p->mUnk_1dc = p->mUnk_1dc - 0x6d;
-                if (p->mUnk_1dc <= p->mUnk_1bc[p->mUnk_1b8]) {
+                pakkun->mUnk_1dc = pakkun->mUnk_1dc - 0x6d;
+                if (pakkun->mUnk_1dc <= pakkun->mUnk_1bc[pakkun->mFollowerIndex]) {
                     f = TRUE;
                 }
             }
             if (f != FALSE) {
                 if (func_020983c4_inline(2) == 0) {
-                    p->mState = 2;
+                    pakkun->mState = 2;
                 } else {
-                    p->mState = 0;
+                    pakkun->mState = 0;
                 }
             }
             break;
         case 2:
-            if (p->mUnk_1ec >= -4 && p->mUnk_1ec <= 4) {
-                p->mTimer = 0x1e;
-                p->mState = 3;
+            if (pakkun->mUnk_1ec >= -4 && pakkun->mUnk_1ec <= 4) {
+                pakkun->mTimer = 0x1e;
+                pakkun->mState = 3;
             }
             break;
         case 3:
-            if (p->mTimer-- <= 0) {
-                p->mTimer = 0;
-                if (p->mUnk_1e8 >= 0xffc) {
-                    p->mUnk_1e8 = 0x1000;
-                    p->mUnk_1e4 = FALSE;
-                    p->mUnk_1f4 = 0x7b;
-                    p->mState = 4;
+            if (pakkun->mTimer-- <= 0) {
+                pakkun->mTimer = 0;
+                if (pakkun->mUnk_1e8 >= 0xffc) {
+                    pakkun->mUnk_1e8 = 0x1000;
+                    pakkun->mUnk_1e4 = FALSE;
+                    pakkun->mUnk_1f4 = 0x7b;
+                    pakkun->mState = 4;
                 }
             } else {
-                p->mUnk_1e0 = p->mUnk_1e0 + 0xa4;
+                pakkun->mUnk_1e0 = pakkun->mUnk_1e0 + 0xa4;
             }
             break;
         case 4:
-            p->mUnk_1f0 = p->mUnk_1f0 + p->mUnk_1f4;
-            p->mUnk_1f4 = p->mUnk_1f4 - 8;
-            if (p->mUnk_1f4 <= 0) {
-                if (p->mUnk_1f0 <= 0x119a) {
-                    p->mState = 5;
+            pakkun->mUnk_1f0 = pakkun->mUnk_1f0 + pakkun->mUnk_1f4;
+            pakkun->mUnk_1f4 = pakkun->mUnk_1f4 - 8;
+            if (pakkun->mUnk_1f4 <= 0) {
+                if (pakkun->mUnk_1f0 <= 0x119a) {
+                    pakkun->mState = 5;
                 }
             }
             break;
         case 5:
-            p->mUnk_1f0 = p->mUnk_1f0 + p->mUnk_1f4;
-            p->mUnk_1f4 = p->mUnk_1f4 - 8;
-            if (p->mUnk_1f0 <= 0x1000) {
-                p->mUnk_1f0 = 0x1000;
-                p->mUnk_1e4 = TRUE;
+            pakkun->mUnk_1f0 = pakkun->mUnk_1f0 + pakkun->mUnk_1f4;
+            pakkun->mUnk_1f4 = pakkun->mUnk_1f4 - 8;
+            if (pakkun->mUnk_1f0 <= 0x1000) {
+                pakkun->mUnk_1f0 = 0x1000;
+                pakkun->mUnk_1e4 = TRUE;
             }
-            p->mUnk_0a4 = p->mUnk_0a4 + p->mUnk_0a8;
-            if (p->mUnk_0a4 >= p->mUnk_0b0) {
-                p->mUnk_0a4 = p->mUnk_0ac;
+            pakkun->mUnk_0a4 = pakkun->mUnk_0a4 + pakkun->mUnk_0a8;
+            if (pakkun->mUnk_0a4 >= pakkun->mUnk_0b0) {
+                pakkun->mUnk_0a4 = pakkun->mUnk_0ac;
             }
-            if ((p->mUnk_0a4 >> 12) == 10) {
-                func_02098f18(&p->mUnk_0b8[p->mUnk_1b8], p->mUnk_1fc + 0x46000);
-                if ((p->mUnk_000.mDistanceSquaredAndFlags & 4) == 0) {
-                    if (p->mUnk_000.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
+            if ((pakkun->mUnk_0a4 >> 12) == 10) {
+                func_02098f18(&pakkun->mFollowers[pakkun->mFollowerIndex], pakkun->mUnk_1fc + 0x46000);
+                if ((pakkun->mUnk_000.mDistanceSquaredAndFlags & 4) == 0) {
+                    if (pakkun->mUnk_000.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                         t = 2;
-                    } else if (p->mUnk_000.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
+                    } else if (pakkun->mUnk_000.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                         t = 3;
                     } else {
                         t = 4;
                     }
                     s.mSoundId = 0x171;
-                    s.mPositionSource = &p->mUnk_000.mPos;
+                    s.mPositionSource = &pakkun->mUnk_000.mPos;
                     s.mUnk_08 = t;
-                    s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&p->mUnk_000.mPos);
+                    s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&pakkun->mUnk_000.mPos);
                     func_0210b7a8(&s);
                 }
-            } else if (p->mUnk_0a4 == 0) {
-                p->mTimer = 0x1e;
-                p->mState = 6;
+            } else if (pakkun->mUnk_0a4 == 0) {
+                pakkun->mTimer = 0x1e;
+                pakkun->mState = 6;
             }
             break;
         case 6:
-            if (p->mTimer-- <= 0) {
-                p->mTimer = 0;
-                p->mState = 0;
+            if (pakkun->mTimer-- <= 0) {
+                pakkun->mTimer = 0;
+                pakkun->mState = 0;
             } else {
-                p->mUnk_1e0 = p->mUnk_1e0 - 0xa4;
+                pakkun->mUnk_1e0 = pakkun->mUnk_1e0 - 0xa4;
             }
             break;
     }
-    if (p->mUnk_1e4 != FALSE) {
-        p->mUnk_1e8 = p->mUnk_1e8 + p->mUnk_1ec;
-        p->mUnk_1ec = p->mUnk_1ec + 4;
-        if (p->mUnk_1e8 >= 0x1000) {
-            p->mUnk_1ec = -0x52;
+    if (pakkun->mUnk_1e4 != FALSE) {
+        pakkun->mUnk_1e8 = pakkun->mUnk_1e8 + pakkun->mUnk_1ec;
+        pakkun->mUnk_1ec = pakkun->mUnk_1ec + 4;
+        if (pakkun->mUnk_1e8 >= 0x1000) {
+            pakkun->mUnk_1ec = -0x52;
         }
     }
-    x = ((s64) (p->mUnk_1e8 + p->mUnk_1f0 - 0x1000) * 0x2f000) >> 12;
-    y = ((s64) p->mUnk_1f0 * 0x17000) >> 12;
-    p->mUnk_1f8 = x + y;
+    x = ((s64) (pakkun->mUnk_1e8 + pakkun->mUnk_1f0 - 0x1000) * 0x2f000) >> 12;
+    y = ((s64) pakkun->mUnk_1f0 * 0x17000) >> 12;
+    pakkun->mUnk_1f8 = x + y;
 }
 
-void *func_02098374(void) {
-    data_usa_0217b0f4 = CreateMapObjectDrawList1(CreatePakkunMouth, DrawPakkunMouth, NULL);
-    data_usa_0217b0f4->mUnk_1c = TRUE;
-    func_020d49d8(&data_usa_0217b0f4);
-    return data_usa_0217b0f4;
+void *CreatePakkunMouthDrawList(void) {
+    gPakkunMouthDrawList = CreateMapObjectDrawList1(CreatePakkunMouth, DrawPakkunMouth, NULL);
+    gPakkunMouthDrawList->mUnk_1c = TRUE;
+    func_020d49d8(&gPakkunMouthDrawList);
+    return gPakkunMouthDrawList;
 }
 
-void *func_02098328(void) {
-    data_usa_0217b0e8 = CreateMapObjectDrawList2(CreatePakkunBody, DrawPakkunBody, SetupDrawPakkunBody);
-    func_020d49d8(&data_usa_0217b0e8);
-    return data_usa_0217b0e8;
+void *CreatePakkunBodyDrawList(void) {
+    gPakkunBodyDrawList = CreateMapObjectDrawList2(CreatePakkunBody, DrawPakkunBody, SetupDrawPakkunBody);
+    func_020d49d8(&gPakkunBodyDrawList);
+    return gPakkunBodyDrawList;
 }
 
-void *func_020982d4(void) {
-    data_usa_0217b0f0 = CreateMapObjectDrawList2(CreatePakkunZHead, DrawPakkunZHead, SetupDrawPakkunZHead);
-    data_usa_0217b0f0->mUnk_1c = TRUE;
-    func_020d49d8(&data_usa_0217b0f0);
-    return data_usa_0217b0f0;
+void *CreatePakkunZHeadDrawList(void) {
+    gPakkunZHeadDrawList = CreateMapObjectDrawList2(CreatePakkunZHead, DrawPakkunZHead, SetupDrawPakkunZHead);
+    gPakkunZHeadDrawList->mUnk_1c = TRUE;
+    func_020d49d8(&gPakkunZHeadDrawList);
+    return gPakkunZHeadDrawList;
 }
 
-void *func_0209828c(void) {
-    data_usa_0217b0dc = CreateMapObjectUpdateList(InitPakkunObjects, UpdatePakkun, NULL);
-    SetUpdateListSlot(&data_usa_0217b0dc);
-    return data_usa_0217b0dc;
+void *CreatePakkunUpdateList(void) {
+    gPakkunUpdateList = CreateMapObjectUpdateList(InitPakkunObjects, UpdatePakkun, NULL);
+    SetUpdateListSlot(&gPakkunUpdateList);
+    return gPakkunUpdateList;
 }

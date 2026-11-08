@@ -11,17 +11,17 @@
 // seven GroupFollower from 0xb8, then a count and an index at 0x1b8 and 0x1ba and seven values at 0x1bc.
 typedef struct Pakkun {
     /* 000 */ MapObject mUnk_000;
-    /* 0a0 */ u16 mUnk_0a0;
+    /* 0a0 */ u16 mPolygonId;
     /* 0a2 */ u8 mUnk_0a2[2];
     /* 0a4 */ s32 mUnk_0a4;
     /* 0a8 */ s32 mUnk_0a8;
     /* 0ac */ s32 mUnk_0ac;
     /* 0b0 */ s32 mUnk_0b0;
     /* 0b4 */ s32 mState;
-    /* 0b8 */ GroupFollower mUnk_0b8[7];
+    /* 0b8 */ GroupFollower mFollowers[7];
     /* 1b4 */ s32 mTimer;
-    /* 1b8 */ u16 mUnk_1b8;
-    /* 1ba */ u16 mUnk_1ba;
+    /* 1b8 */ u16 mFollowerIndex;
+    /* 1ba */ u16 mFollowerCount;
     /* 1bc */ s32 mUnk_1bc[7];
     /* 1d8 */ s32 mUnk_1d8;
     /* 1dc */ s32 mUnk_1dc;
@@ -41,28 +41,28 @@ typedef struct Unk020982d4 {
     /* 1c */ BOOL mUnk_1c;
 } Unk020982d4;
 
-extern MapObjectList *data_usa_0217b0dc;
+extern MapObjectList *gPakkunUpdateList;
 extern MapObjectModel *gPakkunMouth;
 extern void *gPakkunZHead;
-extern void *data_usa_0217b0e8;
+extern void *gPakkunBodyDrawList;
 extern void *gPakkunBody;
-extern Unk020982d4 *data_usa_0217b0f0;
-extern Unk020982d4 *data_usa_0217b0f4;
+extern Unk020982d4 *gPakkunZHeadDrawList;
+extern Unk020982d4 *gPakkunMouthDrawList;
 
-void *func_0209828c(void);
-void *func_020982d4(void);
-void *func_02098328(void);
-void *func_02098374(void);
-void UpdatePakkun(void *a, Pakkun *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void *CreatePakkunUpdateList(void);
+void *CreatePakkunZHeadDrawList(void);
+void *CreatePakkunBodyDrawList(void);
+void *CreatePakkunMouthDrawList(void);
+void UpdatePakkun(void *a, Pakkun *pakkun); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void InitPakkunObjects(void);
-void DrawPakkunBody(void *a, Pakkun *p);
+void DrawPakkunBody(void *a, Pakkun *pakkun);
 void SetupDrawPakkunBody(void *a);
 void CreatePakkunBody(void *a);
-void DrawPakkunZHead(void *a, Pakkun *p);
+void DrawPakkunZHead(void *a, Pakkun *pakkun);
 void SetupDrawPakkunZHead(void *a);
 void CreatePakkunZHead(void *a);
-void DrawPakkunMouth(void *a, Pakkun *p);
+void DrawPakkunMouth(void *a, Pakkun *pakkun);
 void CreatePakkunMouth(void *a);
-void InitPakkun(Pakkun *p);
-void func_02098f18(GroupFollower *a, s32 b);
+void InitPakkun(Pakkun *pakkun);
+void func_02098f18(GroupFollower *groupFollower, s32 b);
 void *func_02099004(void);

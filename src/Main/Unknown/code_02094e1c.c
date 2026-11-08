@@ -17,8 +17,8 @@
 #include "Main/Unknown/code_02077bc0.h"
 #include "Main/Unknown/code_021000d0.h"
 
-void func_020954e4(u32 arg0) {
-    u32 value0 = arg0;
+void func_020954e4(u32 mapObject) {
+    u32 value0 = mapObject;
     u32 value1;
     u32 value2;
     value2 = value0;
@@ -28,79 +28,79 @@ void func_020954e4(u32 arg0) {
     CreateParkedMapObjects(value0, value1, (void *) value2);
 }
 
-static inline u32 func_02095228_inline(RandomState64 *b, u32 n) {
-    b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
+static inline u32 func_02095228_inline(RandomState64 *randomState64, u32 n) {
+    randomState64->mValue = randomState64->mMultiplier * randomState64->mValue + randomState64->mIncrement;
     if (n == 0) {
-        return b->mValue >> 32;
+        return randomState64->mValue >> 32;
     }
-    return ((b->mValue >> 32) * n) >> 32;
+    return ((randomState64->mValue >> 32) * n) >> 32;
 }
 
 static inline u16 func_020952dc_inline(u32 n) {
-    RandomState64 *r;
+    RandomState64 *randomState64;
     u32 t;
     u32 m;
     if (n == 0x10000) {
-        r = &gRaceProgress->mLocalRandom;
-        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-        return (r->mValue >> 32) * 0x10000 >> 32;
+        randomState64 = &gRaceProgress->mLocalRandom;
+        randomState64->mValue = randomState64->mMultiplier * randomState64->mValue + randomState64->mIncrement;
+        return (randomState64->mValue >> 32) * 0x10000 >> 32;
     }
-    r = &gRaceProgress->mLocalRandom;
+    randomState64 = &gRaceProgress->mLocalRandom;
     m = (u16) n;
     if (m == 0) {
         t = 0;
     } else {
-        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        randomState64->mValue = randomState64->mMultiplier * randomState64->mValue + randomState64->mIncrement;
         if (m == 0) {
-            t = r->mValue >> 32;
+            t = randomState64->mValue >> 32;
         } else {
-            t = ((r->mValue >> 32) * m) >> 32;
+            t = ((randomState64->mValue >> 32) * m) >> 32;
         }
     }
     return t;
 }
 
-void func_020952dc(Unk02094e8c *a, s32 b, s32 c, s32 d, s32 e) {
+void func_020952dc(Unk02094e8c *a, s32 teresaCountLimit, s32 spawnCount, s32 distanceLimit, s32 timerLimit) {
     s32 i;
     s32 k;
     s32 x;
     s32 y;
     s32 z;
     float f;
-    u32 r;
-    u16 q;
-    Vec3 v;
+    u32 distance;
+    u16 angle;
+    Vec3 position;
 
-    if (GetUnparkedTeresaCount() < b) {
+    if (GetUnparkedTeresaCount() < teresaCountLimit) {
         k = i = 0;
-        for (; i < c; i++) {
-            if (d > 0) {
-                f = 0.5f + (d << 12);
+        for (; i < spawnCount; i++) {
+            if (distanceLimit > 0) {
+                f = 0.5f + (distanceLimit << 12);
             } else {
-                f = (d << 12) - 0.5f;
+                f = (distanceLimit << 12) - 0.5f;
             }
             z = 0;
             y = a->mUnk_00.mPos.y;
             x = 0;
-            r = NextRandomBelow(GetRaceLocalRandom(), (s32) f);
-            q = func_020951b4(GetRaceLocalRandom());
-            v.x = x + func_0209518c(r, func_0209519c(q));
-            v.y = y + NextRandomBelow(GetRaceLocalRandom(), k);
-            v.z = z + func_0209518c(r, func_0209516c(q));
-            StartTeresa(&v);
+            distance = NextRandomBelow(GetRaceLocalRandom(), (s32) f);
+            angle = func_020951b4(GetRaceLocalRandom());
+            position.x = x + func_0209518c(distance, func_0209519c(angle));
+            position.y = y + NextRandomBelow(GetRaceLocalRandom(), k);
+            position.z = z + func_0209518c(distance, func_0209516c(angle));
+            StartTeresa(&position);
         }
-        a->mUnk_a8 = func_020952dc_inline((u16) e);
+        a->mUnk_a8 = func_020952dc_inline((u16) timerLimit);
     }
 }
 
-void func_02095228(Unk02095228 *a) {
+void func_02095228(Unk02095228 *mapObjectList) {
     s32 i;
     Unk02094e8c *o;
 
-    if (a == NULL) {
+    if (mapObjectList == NULL) {
         return;
     }
-    for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < mapObjectList->mUnk_04 && (o = mapObjectList->mUnk_00[i]) != NULL; i++) {
         o->mUnk_a0 = (u16) func_02095228_inline(&gRaceProgress->mLocalRandom, 0xf);
     }
 }
@@ -109,9 +109,9 @@ RandomState64 *GetRaceLocalRandom(void) {
     return &gRaceProgress->mLocalRandom;
 }
 
-u16 func_020951b4(RandomState64 *a) {
-    a->mValue = a->mMultiplier * a->mValue + a->mIncrement;
-    return ((a->mValue >> 32) * 0x10000) >> 32;
+u16 func_020951b4(RandomState64 *randomState64) {
+    randomState64->mValue = randomState64->mMultiplier * randomState64->mValue + randomState64->mIncrement;
+    return ((randomState64->mValue >> 32) * 0x10000) >> 32;
 }
 
 s16 func_0209519c(s32 a) {
@@ -130,31 +130,31 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
     s32 t;
     s32 c;
     s32 e;
-    s32 v1;
-    s32 v2;
+    s32 deltaX;
+    s32 deltaZ;
     s32 i;
     BOOL k;
     s32 x;
     s32 y;
     s32 z;
     float f;
-    u32 r;
-    u16 q;
-    Kart *g;
-    Vec3 v;
-    Vec3 *q2;
+    u32 distance;
+    u16 angle;
+    Kart *kart;
+    Vec3 position;
+    Vec3 *kartPos;
 
     t = o->mUnk_a0;
     o->mUnk_a0 = t - 1;
     if (t <= 0) {
         o->mUnk_a0 = 0xf;
         c = o->mUnk_00.mCourseMapRow->mUnk_28;
-        g = GetKart((u16) gRaceSetup->mEntryIndex);
+        kart = GetKart((u16) gRaceSetup->mEntryIndex);
         e = c << 12;
-        q2 = &g->mPos;
-        v1 = q2->x - o->mUnk_00.mPos.x;
-        v2 = q2->z - o->mUnk_00.mPos.z;
-        if ((s64) v1 * v1 + (s64) v2 * v2 < (s64) e * e) {
+        kartPos = &kart->mPos;
+        deltaX = kartPos->x - o->mUnk_00.mPos.x;
+        deltaZ = kartPos->z - o->mUnk_00.mPos.z;
+        if ((s64) deltaX * deltaX + (s64) deltaZ * deltaZ < (s64) e * e) {
             o->mUnk_a4 = TRUE;
         } else {
             o->mUnk_a4 = FALSE;
@@ -173,12 +173,12 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
                     z = o->mUnk_00.mPos.z;
                     y = o->mUnk_00.mPos.y;
                     x = o->mUnk_00.mPos.x;
-                    r = NextRandomBelow(GetRaceLocalRandom(), (s32) f);
-                    q = func_020951b4(GetRaceLocalRandom());
-                    v.x = x + func_0209518c(r, func_0209519c(q));
-                    v.y = y + NextRandomBelow(GetRaceLocalRandom(), k);
-                    v.z = z + func_0209518c(r, func_0209516c(q));
-                    StartTeresa(&v);
+                    distance = NextRandomBelow(GetRaceLocalRandom(), (s32) f);
+                    angle = func_020951b4(GetRaceLocalRandom());
+                    position.x = x + func_0209518c(distance, func_0209519c(angle));
+                    position.y = y + NextRandomBelow(GetRaceLocalRandom(), k);
+                    position.z = z + func_0209518c(distance, func_0209516c(angle));
+                    StartTeresa(&position);
                 }
             }
             o->mUnk_ac = 1;
@@ -220,10 +220,10 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
 }
 
 u32 func_02094e3c(void) {
-    s32 m;
+    s32 mode;
 
-    m = gRaceSetup->mMode;
-    if (m == MODE_VS || m == 5) {
+    mode = gRaceSetup->mMode;
+    if (mode == MODE_VS || mode == 5) {
         if (GetCurrentCameraKind() == 0) {
             return 0;
         }
