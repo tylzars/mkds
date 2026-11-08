@@ -106,8 +106,8 @@ void func_ov003_021c3c58(void) {
 }
 
 void func_ov003_021c3c34(void) {
-    if (func_ov003_021bf334() != -2) {
-        func_ov003_021bf2e0();
+    if (GetButtonResult() != -2) {
+        EnableButtonTouch();
         func_ov003_021c212c(UpdateOptMenu);
     }
 }
@@ -122,7 +122,7 @@ void UpdateOptMenuInput(void) {
     u32 i;
     for (i = 0; i < 3; i++) {
         if (func_ov003_021d2a34(&gOptMenuRects[i]) != 0) {
-            func_ov003_021bf31c(1);
+            SetButtonResultIfNone(1);
             gOptMenuSelectedIndex = i;
             func_ov003_021bf6c8(
                 data_ov003_021d6368[gOptMenuSelectedIndex * 4], data_ov003_021d636c[gOptMenuSelectedIndex * 4],
@@ -131,9 +131,9 @@ void UpdateOptMenuInput(void) {
         }
     }
     if (func_ov003_021d2b04(1) != 0) {
-        func_ov003_021bf31c(1);
+        SetButtonResultIfNone(1);
     } else if (func_ov003_021d2b04(2) != 0) {
-        func_ov003_021bf31c(0);
+        SetButtonResultIfNone(0);
     } else if (func_ov003_021d2ae8(0x40) != 0) {
         MoveOptMenuSelection(1);
     } else if (func_ov003_021d2ae8(0x80) != 0) {
@@ -145,7 +145,7 @@ void func_ov003_021c3b5c(void) {}
 
 void func_ov003_021c3ae4(void) {
     DWCWiFiInfo a;
-    switch (func_ov003_021bf334()) {
+    switch (GetButtonResult()) {
         case 0:
             StartSoundSeq(7);
             break;
@@ -153,7 +153,7 @@ void func_ov003_021c3ae4(void) {
             DWCi_BM_GetWiFiInfo(&a);
             if (gOptMenuSelectedIndex != 0 && a.mAttestedUserId == 0) {
                 StartSoundSeq(9);
-                func_ov003_021bf310(-1);
+                SetButtonResult(-1);
                 return;
             }
             StartSoundSeq(6);
@@ -167,7 +167,7 @@ void func_ov003_021c3ae4(void) {
 }
 
 void func_ov003_021c3ac4(void) {
-    func_ov003_021bf2d0();
+    DisableButtonTouch();
     func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c3a7c);
 }
@@ -177,7 +177,7 @@ void func_ov003_021c3a7c(void) {
     v1 = func_ov003_021d1f70(1);
     if (v1 == 0) {
         if ((*(u8 *) &data_ov003_021da1b0) != 0) {
-            func_ov003_021bf344();
+            StartSlideButtonsOut();
         }
         func_ov003_021d1ee0(3, 1, 1, 8);
         func_ov003_021d1ee0(3, 0, 0x14, 8);

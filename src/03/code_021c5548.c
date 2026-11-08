@@ -41,7 +41,7 @@ void func_ov003_021c56d8(void) {
     int v1;
     v1 = func_ov003_021cef6c();
     if (v1 == 0) {
-        func_ov003_021bf2e0();
+        EnableButtonTouch();
         func_ov003_021cce48();
         func_ov003_021c212c(UpdateApList);
     }

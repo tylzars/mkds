@@ -82,7 +82,7 @@ void func_ov003_021c53ec(void) {
 }
 
 void func_ov003_021c53b4(void) {
-    if (func_ov003_021bf334() != -2) {
+    if (GetButtonResult() != -2) {
         data_ov003_021da1e4 = func_ov003_021d3544(1, func_ov003_021c51a0, NULL, 0x78);
         func_ov003_021c212c(func_ov003_021c5324);
     }
@@ -107,7 +107,7 @@ void func_ov003_021c5324(void) {
             StopSoundSeq();
             func_ov003_021cefc0(0x40, 1, 1, -1, 0);
             StartSoundSeq(9);
-            func_ov003_021bf2d0();
+            DisableButtonTouch();
             func_ov003_021d34c0(1, data_ov003_021da1e4);
             data_ov003_021da1e4 = 0;
             func_ov003_021c212c(func_ov003_021c5178);
@@ -119,12 +119,12 @@ void func_ov003_021c52f4(void) {
     int v1;
     v1 = func_ov003_021d2b20(2);
     if (v1 != 0) {
-        func_ov003_021bf31c((u8) 0);
+        SetButtonResultIfNone((u8) 0);
         return;
     }
     v1 = func_ov003_021c5528();
     if (v1 != 0) {
-        func_ov003_021bf31c((u8) 0);
+        SetButtonResultIfNone((u8) 0);
     }
 }
 
@@ -132,15 +132,15 @@ void func_ov003_021c52f0(void) {}
 
 void func_ov003_021c52d0(void) {
     int v1;
-    v1 = func_ov003_021bf334();
+    v1 = GetButtonResult();
     if (v1 == 0) {
-        func_ov003_021bf2d0();
+        DisableButtonTouch();
         func_ov003_021c212c(func_ov003_021c50f8);
     }
 }
 
 void func_ov003_021c52a0(void) {
-    func_ov003_021bf2d0();
+    DisableButtonTouch();
     if (data_ov003_021da1e4 != 0) {
         func_ov003_021d34c0(1, data_ov003_021da1e4);
     }
@@ -152,7 +152,7 @@ void func_ov003_021c5258(void) {
     int v1;
     v1 = func_ov003_021d1f70(1);
     if (v1 == 0) {
-        func_ov003_021bf344();
+        StartSlideButtonsOut();
         if (data_ov003_021da1dc == 0) {
             func_ov003_021d1ee0(3, 1, 1, 8);
         }

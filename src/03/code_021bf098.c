@@ -16,148 +16,149 @@
 #include "03/unk_021da000.h"
 #include "03/code_021d27d8.h"
 
-void func_ov003_021bf364(u32 c) {
-    s32 n;
+void CreateSlideButtons(u32 kind) {
+    s32 buttonCount;
     s32 i;
-    u8 *a;
+    u8 *imageCursor;
 
-    n = data_ov003_021d5ecc[c];
+    buttonCount = data_ov003_021d5ecc[kind];
     data_ov003_021da108 = func_ov003_021d283c(0x1c, 4);
-    data_ov003_021da108->mUnk_16 = -2;
-    data_ov003_021da108->mUnk_17 = c;
+    data_ov003_021da108->mButtonResult = -2;
+    data_ov003_021da108->mKind = kind;
     i = 0;
-    if (n > 0) {
-        a = data_ov003_021d5edc + c * 2;
+    if (buttonCount > 0) {
+        imageCursor = data_ov003_021d5edc + kind * 2;
         do {
-            data_ov003_021da108->mUnk_00[i] = func_ov003_021d1be4(0, *a, 1);
-            func_ov003_021d1790(data_ov003_021da108->mUnk_00[i], -1, 1);
-            a++;
+            data_ov003_021da108->mButtons[i] = func_ov003_021d1be4(0, *imageCursor, 1);
+            func_ov003_021d1790(data_ov003_021da108->mButtons[i], -1, 1);
+            imageCursor++;
             i++;
-        } while (i < n);
+        } while (i < buttonCount);
     }
     data_ov003_021da108->mUnk_08 = func_ov003_021d1be4(0, 1, 1);
     func_ov003_021d1790(data_ov003_021da108->mUnk_08, -1, 1);
-    func_ov003_021bf258(0xc0);
-    data_ov003_021da108->mUnk_0c = (Unk021d34e0 *) func_ov003_021d3544(0, func_ov003_021bf20c, NULL, 0x78);
+    SetSlideButtonsY(0xc0);
+    data_ov003_021da108->mStepTask = (Unk021d34e0 *) func_ov003_021d3544(0, AdvanceSlideButtonsIn, NULL, 0x78);
 }
 
-void func_ov003_021bf344(void) {
-    data_ov003_021da108->mUnk_19 = 1;
-    func_ov003_021d34e0(data_ov003_021da108->mUnk_0c, func_ov003_021bf098);
+void StartSlideButtonsOut(void) {
+    data_ov003_021da108->mSlidingOut = 1;
+    func_ov003_021d34e0(data_ov003_021da108->mStepTask, AdvanceSlideButtonsOut);
 }
 
-int func_ov003_021bf334(void) {
-    return data_ov003_021da108->mUnk_16;
+int GetButtonResult(void) {
+    return data_ov003_021da108->mButtonResult;
 }
 
-void func_ov003_021bf31c(s32 value) {
-    Unk021da108 *state = data_ov003_021da108;
-    if (state->mUnk_16 == -1) {
-        state->mUnk_16 = value;
+void SetButtonResultIfNone(s32 result) {
+    SlideButtons *slideButtons = data_ov003_021da108;
+    if (slideButtons->mButtonResult == -1) {
+        slideButtons->mButtonResult = result;
     }
 }
 
-void func_ov003_021bf310(s8 a) {
-    data_ov003_021da108->mUnk_16 = a;
+void SetButtonResult(s8 result) {
+    data_ov003_021da108->mButtonResult = result;
 }
 
-u32 func_ov003_021bf2f0(void) {
+BOOL func_ov003_021bf2f0(void) {
     if (data_ov003_021da108 == NULL) {
         return 1;
     }
-    if (data_ov003_021da108->mUnk_19 == 0) {
+    if (data_ov003_021da108->mSlidingOut == 0) {
         return 1;
     }
     return 0;
 }
 
-void func_ov003_021bf2e0(void) {
-    data_ov003_021da108->mUnk_18 = 0;
+void EnableButtonTouch(void) {
+    data_ov003_021da108->mTouchDisabled = 0;
 }
 
-void func_ov003_021bf2d0(void) {
-    data_ov003_021da108->mUnk_18 = 1;
+void DisableButtonTouch(void) {
+    data_ov003_021da108->mTouchDisabled = 1;
 }
 
-void func_ov003_021bf258(s32 b) {
-    s32 n;
+void SetSlideButtonsY(s32 yPosition) {
+    s32 buttonCount;
     s32 i;
-    s32 a;
+    s32 buttonY;
 
-    n = data_ov003_021d5ecc[data_ov003_021da108->mUnk_17];
-    a = b + data_ov003_021d5ed4[1] - data_ov003_021d5ec4[1];
-    func_ov003_021d17d4(data_ov003_021da108->mUnk_08, -1, data_ov003_021d5ec4[0], b);
-    for (i = 0; i < n; i++) {
-        func_ov003_021d17d4(data_ov003_021da108->mUnk_00[i], -1,
-                            data_ov003_021d5ed4[(data_ov003_021d5eec + data_ov003_021da108->mUnk_17 * 2)[i] * 2], a);
+    buttonCount = data_ov003_021d5ecc[data_ov003_021da108->mKind];
+    buttonY = yPosition + data_ov003_021d5ed4[1] - data_ov003_021d5ec4[1];
+    func_ov003_021d17d4(data_ov003_021da108->mUnk_08, -1, data_ov003_021d5ec4[0], yPosition);
+    for (i = 0; i < buttonCount; i++) {
+        func_ov003_021d17d4(data_ov003_021da108->mButtons[i], -1,
+                            data_ov003_021d5ed4[(data_ov003_021d5eec + data_ov003_021da108->mKind * 2)[i] * 2],
+                            buttonY);
     }
 }
 
-void func_ov003_021bf20c(Unk021d34e0 *c) {
+void AdvanceSlideButtonsIn(Unk021d34e0 *task) {
     u32 a;
-    s32 b;
+    s32 yPosition;
 
-    func_ov003_021d1770(data_ov003_021da108->mUnk_08, 0, &a, &b);
-    b = b - 4;
-    func_ov003_021bf258(b);
-    if (b <= data_ov003_021d5ec4[1]) {
-        func_ov003_021bf258(data_ov003_021d5ec4[1]);
-        func_ov003_021d34e0(c, func_ov003_021bf1d8);
+    func_ov003_021d1770(data_ov003_021da108->mUnk_08, 0, &a, &yPosition);
+    yPosition = yPosition - 4;
+    SetSlideButtonsY(yPosition);
+    if (yPosition <= data_ov003_021d5ec4[1]) {
+        SetSlideButtonsY(data_ov003_021d5ec4[1]);
+        func_ov003_021d34e0(task, AdvanceSlideButtonsWait);
     }
 }
 
-void func_ov003_021bf1d8(Unk021d34e0 *b) {
+void AdvanceSlideButtonsWait(Unk021d34e0 *task) {
     u32 a = 0;
 
-    data_ov003_021da108->mUnk_16 = -1;
-    data_ov003_021da108->mUnk_14 = data_ov003_021da108->mUnk_14 + 1;
-    if (data_ov003_021da108->mUnk_14 >= 4) {
-        data_ov003_021da108->mUnk_14 = a;
-        func_ov003_021d34e0(b, func_ov003_021bf0d8);
+    data_ov003_021da108->mButtonResult = -1;
+    data_ov003_021da108->mStepFrames = data_ov003_021da108->mStepFrames + 1;
+    if (data_ov003_021da108->mStepFrames >= 4) {
+        data_ov003_021da108->mStepFrames = a;
+        func_ov003_021d34e0(task, AdvanceButtonTouch);
     }
 }
 
-void func_ov003_021bf0d8(void) {
-    Rect a;
-    s32 n;
+void AdvanceButtonTouch(void) {
+    Rect rect;
+    s32 buttonCount;
     s32 i;
-    u32 b;
-    u32 c;
+    u32 positionIndex;
+    u32 touchedImage;
 
-    n = data_ov003_021d5ecc[data_ov003_021da108->mUnk_17];
-    if (data_ov003_021da108->mUnk_18 == 0) {
-        if (data_ov003_021da108->mUnk_16 != -1) {
+    buttonCount = data_ov003_021d5ecc[data_ov003_021da108->mKind];
+    if (data_ov003_021da108->mTouchDisabled == 0) {
+        if (data_ov003_021da108->mButtonResult != -1) {
             return;
         }
-        for (i = 0; i < n; i++) {
-            func_ov003_021d250c(&data_ov003_021d5ed4[(data_ov003_021d5eec + data_ov003_021da108->mUnk_17 * 2)[i] * 2],
-                                data_ov003_021d5ec8, &a);
-            if (func_ov003_021d2a34(&a) != 0) {
-                if (data_ov003_021da108->mUnk_10 != 0) {
+        for (i = 0; i < buttonCount; i++) {
+            func_ov003_021d250c(&data_ov003_021d5ed4[(data_ov003_021d5eec + data_ov003_021da108->mKind * 2)[i] * 2],
+                                data_ov003_021d5ec8, &rect);
+            if (func_ov003_021d2a34(&rect) != 0) {
+                if (data_ov003_021da108->mResetTask != 0) {
                     break;
                 }
-                c = (data_ov003_021d5edc + data_ov003_021da108->mUnk_17 * 2)[i] + 1;
-                func_ov003_021d1c3c(0, c, func_ov003_021d1974(data_ov003_021da108->mUnk_00[i], 0));
-                b = (data_ov003_021d5eec + data_ov003_021da108->mUnk_17 * 2)[i];
-                func_ov003_021d17d4(data_ov003_021da108->mUnk_00[i], -1, data_ov003_021d5ed4[b * 2],
-                                    data_ov003_021d5ed6[b * 2]);
-                func_ov003_021d1790(data_ov003_021da108->mUnk_00[i], -1, 1);
-                data_ov003_021da108->mUnk_10 = func_ov003_021d3544(0, func_ov003_021befa4, NULL, 0x6e);
-                data_ov003_021da108->mUnk_16 = i;
+                touchedImage = (data_ov003_021d5edc + data_ov003_021da108->mKind * 2)[i] + 1;
+                func_ov003_021d1c3c(0, touchedImage, func_ov003_021d1974(data_ov003_021da108->mButtons[i], 0));
+                positionIndex = (data_ov003_021d5eec + data_ov003_021da108->mKind * 2)[i];
+                func_ov003_021d17d4(data_ov003_021da108->mButtons[i], -1, data_ov003_021d5ed4[positionIndex * 2],
+                                    data_ov003_021d5ed6[positionIndex * 2]);
+                func_ov003_021d1790(data_ov003_021da108->mButtons[i], -1, 1);
+                data_ov003_021da108->mResetTask = func_ov003_021d3544(0, AdvanceButtonReset, NULL, 0x6e);
+                data_ov003_021da108->mButtonResult = i;
                 return;
             }
         }
     }
-    data_ov003_021da108->mUnk_16 = -1;
+    data_ov003_021da108->mButtonResult = -1;
 }
 
-void func_ov003_021bf098(Unk021d34e0 *a) {
+void AdvanceSlideButtonsOut(Unk021d34e0 *task) {
     u32 stackValue;
-    int v1;
-    func_ov003_021d1770(data_ov003_021da108->mUnk_08, 0, &stackValue, &v1);
-    v1 = v1 + 4;
-    func_ov003_021bf258(v1);
-    if (192 <= v1) {
-        func_ov003_021d34e0(a, func_ov003_021bf048);
+    int yPosition;
+    func_ov003_021d1770(data_ov003_021da108->mUnk_08, 0, &stackValue, &yPosition);
+    yPosition = yPosition + 4;
+    SetSlideButtonsY(yPosition);
+    if (192 <= yPosition) {
+        func_ov003_021d34e0(task, ReleaseSlideButtons);
     }
 }

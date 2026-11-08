@@ -58,7 +58,7 @@ void func_ov003_021bf5c8(u32 a) {
     int v1[2];
     func_ov003_021c2104(NULL, v1);
     if (v1[0] == 1) {
-        func_ov003_021bf364(a);
+        CreateSlideButtons(a);
     }
 }
 

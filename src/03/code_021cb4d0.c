@@ -84,8 +84,8 @@ void func_ov003_021cb6ec(void) {
 }
 
 void func_ov003_021cb6c8(void) {
-    if (func_ov003_021bf334() != -2) {
-        func_ov003_021bf2e0();
+    if (GetButtonResult() != -2) {
+        EnableButtonTouch();
         func_ov003_021c212c(UpdateWay);
     }
 }
@@ -100,7 +100,7 @@ void UpdateWayInput(void) {
     u32 i;
     for (i = 0; i < 4; i++) {
         if (func_ov003_021d2a34(&gWayRects[func_ov003_021c20a8(1)][i]) != 0) {
-            func_ov003_021bf31c(1);
+            SetButtonResultIfNone(1);
             gWaySelectedIndex = i;
             func_ov003_021bf6c8(data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_00,
                                 data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_04,
@@ -110,9 +110,9 @@ void UpdateWayInput(void) {
         }
     }
     if (func_ov003_021d2b04(1) != 0) {
-        func_ov003_021bf31c(1);
+        SetButtonResultIfNone(1);
     } else if (func_ov003_021d2b04(2) != 0) {
-        func_ov003_021bf31c(0);
+        SetButtonResultIfNone(0);
     } else if (func_ov003_021d2ae8(0x40) != 0) {
         MoveWaySelection(1);
     } else if (func_ov003_021d2ae8(0x80) != 0) {
@@ -127,7 +127,7 @@ void UpdateWayInput(void) {
 void func_ov003_021cb57c(void) {}
 
 void func_ov003_021cb538(void) {
-    switch (func_ov003_021bf334()) {
+    switch (GetButtonResult()) {
         case 0:
             StartSoundSeq(7);
             break;
@@ -143,7 +143,7 @@ void func_ov003_021cb538(void) {
 }
 
 void func_ov003_021cb518(void) {
-    func_ov003_021bf2d0();
+    DisableButtonTouch();
     func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021cb4d0);
 }
@@ -153,7 +153,7 @@ void func_ov003_021cb4d0(void) {
     v1 = func_ov003_021d1f70(1);
     if (v1 == 0) {
         if ((*(u8 *) &data_ov003_021da240) != 0) {
-            func_ov003_021bf344();
+            StartSlideButtonsOut();
         }
         func_ov003_021d1ee0(3, 1, 1, 8);
         func_ov003_021d1ee0(3, 0, 0x14, 8);

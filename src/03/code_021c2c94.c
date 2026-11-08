@@ -70,8 +70,8 @@ void func_ov003_021c2f68(void) {
 }
 
 void func_ov003_021c2f44(void) {
-    if (func_ov003_021bf334() != -2) {
-        func_ov003_021bf2e0();
+    if (GetButtonResult() != -2) {
+        EnableButtonTouch();
         func_ov003_021c212c(UpdateJb2Menu);
     }
 }
@@ -86,7 +86,7 @@ void UpdateJb2MenuInput(void) {
     u32 i;
     for (i = 0; i < 2; i++) {
         if (func_ov003_021d2a34(&gJb2MenuRects[i]) != 0) {
-            func_ov003_021bf31c(1);
+            SetButtonResultIfNone(1);
             gJb2MenuSelectedIndex = i;
             func_ov003_021bf6c8(
                 data_ov003_021d6328[gJb2MenuSelectedIndex * 4], data_ov003_021d632c[gJb2MenuSelectedIndex * 4],
@@ -95,9 +95,9 @@ void UpdateJb2MenuInput(void) {
         }
     }
     if (func_ov003_021d2b04(1) != 0) {
-        func_ov003_021bf31c(1);
+        SetButtonResultIfNone(1);
     } else if (func_ov003_021d2b04(2) != 0) {
-        func_ov003_021bf31c(0);
+        SetButtonResultIfNone(0);
     } else if (func_ov003_021d2ae8(0x40) != 0) {
         MoveJb2MenuSelection(1);
     } else if (func_ov003_021d2ae8(0x80) != 0) {
@@ -112,7 +112,7 @@ void UpdateJb2MenuInput(void) {
 void func_ov003_021c2e3c(void) {}
 
 void func_ov003_021c2df4(void) {
-    switch (func_ov003_021bf334()) {
+    switch (GetButtonResult()) {
         case 0:
             StartSoundSeq(7);
             func_ov003_021c212c(func_ov003_021c2a74);
@@ -126,7 +126,7 @@ void func_ov003_021c2df4(void) {
 }
 
 void func_ov003_021c2dd4(void) {
-    func_ov003_021bf2d0();
+    DisableButtonTouch();
     func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c2d9c);
 }

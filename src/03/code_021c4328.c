@@ -5,8 +5,8 @@
 #include "03/code_021c4310.h"
 
 void func_ov003_021c4328(void) {
-    if (func_ov003_021bf334() != -2) {
-        func_ov003_021bf2e0();
+    if (GetButtonResult() != -2) {
+        EnableButtonTouch();
         func_ov003_021c212c(func_ov003_021c4310);
     }
 }

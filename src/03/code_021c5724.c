@@ -158,8 +158,8 @@ void func_ov003_021c6394(void) {
 }
 
 void func_ov003_021c6370(void) {
-    if (func_ov003_021bf334() != -2) {
-        func_ov003_021bf2e0();
+    if (GetButtonResult() != -2) {
+        EnableButtonTouch();
         func_ov003_021c212c(UpdateApList);
     }
 }
@@ -189,7 +189,7 @@ void func_ov003_021c6184(void) {
                     gApList->mHitRow = i;
                     break;
                 }
-                func_ov003_021bf31c(1);
+                SetButtonResultIfNone(1);
                 gApListSelectedRow = i;
                 func_ov003_021c590c();
                 return;
@@ -210,7 +210,7 @@ void func_ov003_021c6184(void) {
                     StartSoundSeq(9);
                     break;
                 }
-                func_ov003_021bf31c(1);
+                SetButtonResultIfNone(1);
                 gApListSelectedRow = i;
                 func_ov003_021c590c();
                 return;
@@ -220,12 +220,12 @@ void func_ov003_021c6184(void) {
         } while (i < 4);
     }
     if (func_ov003_021d2b04(1) != 0) {
-        func_ov003_021bf31c(1);
+        SetButtonResultIfNone(1);
         func_ov003_021cce38();
         return;
     }
     if (func_ov003_021d2b04(2) != 0) {
-        func_ov003_021bf31c(0);
+        SetButtonResultIfNone(0);
         return;
     }
     if (func_ov003_021d2ae8(0x200) != 0) {
@@ -274,7 +274,7 @@ void func_ov003_021c5f9c(void) {
     switch (func_ov003_021cce60()) {
         case 1:
             gApList->mUnk_57 = 1;
-            func_ov003_021bf2d0();
+            DisableButtonTouch();
             break;
         case 2:
             if (gApList->mScrollTimer == 0) {
@@ -286,7 +286,7 @@ void func_ov003_021c5f9c(void) {
             break;
         case 3:
             gApList->mUnk_57 = 0;
-            func_ov003_021bf2e0();
+            EnableButtonTouch();
             *(u16 *) &gApListScrollY = FX_DivS32(gApList->mScrollYMax * func_ov003_021cce6c(), gApList->mUnk_53);
             StartSoundSeq(0x13);
             RefreshApList();
@@ -332,7 +332,7 @@ void func_ov003_021c5f9c(void) {
 void func_ov003_021c5ec4(void) {
     int b;
     if (gApList->mScrollTask == 0 && gApList->mUnk_57 == 0) {
-        switch (func_ov003_021bf334()) {
+        switch (GetButtonResult()) {
             case 0:
                 StartSoundSeq(7);
                 break;
@@ -346,7 +346,7 @@ void func_ov003_021c5ec4(void) {
                     if ((gApList->mEntries + b * 0x2a)[0x28] == 2) {
                         StartSoundSeq(9);
                         func_ov003_021cce38();
-                        func_ov003_021bf2d0();
+                        DisableButtonTouch();
                         func_ov003_021cefc0(0x42, 1, 1, -1, 0);
                         func_ov003_021c212c(func_ov003_021c56fc);
                         return;
@@ -364,7 +364,7 @@ void func_ov003_021c5ec4(void) {
 }
 
 void func_ov003_021c5ea4(void) {
-    func_ov003_021bf2d0();
+    DisableButtonTouch();
     func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c5e54);
 }
@@ -372,9 +372,9 @@ void func_ov003_021c5ea4(void) {
 void func_ov003_021c5e54(void) {
     if (func_ov003_021d1f70(1) == 0) {
         if (gApList->mUnk_54 != 0) {
-            func_ov003_021bf344();
+            StartSlideButtonsOut();
         } else {
-            func_ov003_021bf2d0();
+            DisableButtonTouch();
         }
         func_ov003_021d1ee0(3, 1, 1, 8);
         func_ov003_021d1ee0(3, 0, 0x1d, 8);

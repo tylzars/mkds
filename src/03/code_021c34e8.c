@@ -17,7 +17,7 @@ void UpdateJb5InfoInput(void) {
     int v1;
     v1 = func_ov003_021d2b04(2);
     if (v1 != 0) {
-        func_ov003_021bf31c((u8) 0);
+        SetButtonResultIfNone((u8) 0);
     }
 }
 
@@ -25,7 +25,7 @@ void func_ov003_021c3690(void) {}
 
 void func_ov003_021c366c(void) {
     int v1;
-    v1 = func_ov003_021bf334();
+    v1 = GetButtonResult();
     if (v1 == 0) {
         StartSoundSeq(7);
         func_ov003_021c212c(func_ov003_021c364c);
@@ -33,7 +33,7 @@ void func_ov003_021c366c(void) {
 }
 
 void func_ov003_021c364c(void) {
-    func_ov003_021bf2d0();
+    DisableButtonTouch();
     func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c3610);
 }
@@ -42,7 +42,7 @@ void func_ov003_021c3610(void) {
     int v1;
     v1 = func_ov003_021d1f70(1);
     if (v1 == 0) {
-        func_ov003_021bf344();
+        StartSlideButtonsOut();
         func_ov003_021d1ee0(3, 1, 1, 8);
         func_ov003_021d1ee0(3, 0, 0x15, 8);
         func_ov003_021c212c(func_ov003_021c35bc);

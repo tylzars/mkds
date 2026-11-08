@@ -32,7 +32,7 @@ u32 func_ov003_021be604(void) {
     return data_ov003_021d8bfc;
 }
 
-u32 CallAllocFunctionWithMutex(u32 a, s32 size) {
+u32 CallAllocFunctionWithMutex(u32 unused, s32 size) {
     u32 result;
     if (size > 0) {
         OS_LockMutex(&gAllocMutex);
@@ -43,7 +43,7 @@ u32 CallAllocFunctionWithMutex(u32 a, s32 size) {
     return 0;
 }
 
-void CallFreeFunctionWithMutex(u32 a, s32 block, s32 size) {
+void CallFreeFunctionWithMutex(u32 unused, s32 block, s32 size) {
     if (block != 0 && size > 0) {
         OS_LockMutex(&gAllocMutex);
         gFreeFunction(block);
@@ -82,7 +82,7 @@ u32 DequeueEvent(void) {
     return event;
 }
 
-void EnqueueEventEx(u32 event, u32 v2) {
+void EnqueueEventEx(u32 event, u32 unused) {
     s32 readIndex = gEventReadIndex;
     s32 writeIndex = gEventWriteIndex;
     s32 nextIndex = writeIndex + 1;
@@ -104,69 +104,69 @@ void EnqueueEvent(u32 value) {
     EnqueueEventEx(value, 0);
 }
 
-s32 func_ov003_021be418(u32 param_0) {
-    u32 a = 1;
-    s32 b;
-    u32 c;
-    u32 d;
-    u32 e;
-    u32 f;
-    enum { K0 } g;
-    u32 h;
+s32 func_ov003_021be418(u32 entryCount) {
+    u32 waiting = 1;
+    s32 result;
+    u32 event;
+    u32 alignedBuffer;
+    u32 entriesSize;
+    u32 bufferSize;
+    enum { K0 } alignMask;
+    u32 bufferEnd;
 
-    gEntryCountMax = param_0;
+    gEntryCountMax = entryCount;
     ClearEventQueue();
-    e = param_0 * 0xd0;
-    gAllocatedBuffer = (void *) gAllocFunction(e + 0x24d0 + param_0 * 0xc0);
+    entriesSize = entryCount * 0xd0;
+    gAllocatedBuffer = (void *) gAllocFunction(entriesSize + 0x24d0 + entryCount * 0xc0);
     if (gAllocatedBuffer == NULL) {
         return -1;
     }
-    g = 0x1f;
-    d = ((u32) gAllocatedBuffer + g) & ~0x1f;
-    gAlignedBuffer = (void *) d;
-    f = e + 0x2490;
-    h = d + f;
-    gRawEntries = (RawEntry *) ((h + g) & ~0x1f);
-    if (func_ov003_021be610(EnqueueEventEx, (void *) d, f) == 0) {
+    alignMask = 0x1f;
+    alignedBuffer = ((u32) gAllocatedBuffer + alignMask) & ~0x1f;
+    gAlignedBuffer = (void *) alignedBuffer;
+    bufferSize = entriesSize + 0x2490;
+    bufferEnd = alignedBuffer + bufferSize;
+    gRawEntries = (RawEntry *) ((bufferEnd + alignMask) & ~0x1f);
+    if (func_ov003_021be610(EnqueueEventEx, (void *) alignedBuffer, bufferSize) == 0) {
         return -2;
     }
     do {
         OS_Sleep(10);
-        while ((c = DequeueEvent()) != 0) {
-            if (c == 4 || c == 5) {
-            } else if (c == 6) {
-                a = 0;
-                b = 1;
+        while ((event = DequeueEvent()) != 0) {
+            if (event == 4 || event == 5) {
+            } else if (event == 6) {
+                waiting = 0;
+                result = 1;
             } else {
-                a = 0;
-                b = -2;
+                waiting = 0;
+                result = -2;
             }
         }
-    } while (a != 0);
-    return b;
+    } while (waiting != 0);
+    return result;
 }
 
 u32 func_ov003_021be3b8(void) {
-    u32 a = 1;
-    u32 b;
+    u32 waiting = 1;
+    u32 event;
 
     if (func_ov003_021be7b8() != 0) {
         do {
             OS_Sleep(10);
-            while ((b = DequeueEvent()) != 0) {
-                switch (b) {
+            while ((event = DequeueEvent()) != 0) {
+                switch (event) {
                     case 4:
                     case 5:
                         break;
                     case 20:
-                        a = 0;
+                        waiting = 0;
                         break;
                     default:
-                        a = 0;
+                        waiting = 0;
                         break;
                 }
             }
-        } while (a != 0);
+        } while (waiting != 0);
     }
     if (gAllocatedBuffer != NULL) {
         gFreeFunction(gAllocatedBuffer);
@@ -176,45 +176,45 @@ u32 func_ov003_021be3b8(void) {
 }
 
 s32 func_ov003_021be264(void) {
-    OSAlarm v1;
-    RawEntry *p0;
-    s32 a = 1;
-    s32 b = -2;
+    OSAlarm alarm;
+    RawEntry *entry;
+    s32 waiting = 1;
+    s32 result = -2;
     BOOL c;
-    s32 d;
+    s32 event;
 
-    p0 = gRawEntries + gSelectedEntryIndex;
-    if (p0 == NULL) {
+    entry = gRawEntries + gSelectedEntryIndex;
+    if (entry == NULL) {
         return 0;
     }
-    if (func_ov003_021be708(p0, NULL, 0x30000) == 0) {
+    if (func_ov003_021be708(entry, NULL, 0x30000) == 0) {
         return -2;
     }
-    OS_CreateAlarm(&v1);
-    OS_SetAlarm(&v1, 0x3fec42, (void (*)(void *)) EnqueueEvent, (void *) 0x12);
+    OS_CreateAlarm(&alarm);
+    OS_SetAlarm(&alarm, 0x3fec42, (void (*)(void *)) EnqueueEvent, (void *) 0x12);
     c = FALSE;
     do {
         if (GetTickMilliseconds() >= gTimeoutAtMs) {
-            b = -3;
+            result = -3;
             break;
         }
         if (gStopRequested != 0) {
-            b = -8;
+            result = -8;
             break;
         }
         OS_Sleep(10);
-        while ((d = DequeueEvent()) != 0) {
-            switch (d) {
+        while ((event = DequeueEvent()) != 0) {
+            switch (event) {
                 case 12:
-                    a = c;
-                    b = 1;
+                    waiting = c;
+                    result = 1;
                     break;
                 case 13:
                     if (gStopRequested != 0) {
-                        a = c;
-                        b = -8;
-                    } else if (func_ov003_021be708(p0, NULL, 0x30000) == 0) {
-                        return b;
+                        waiting = c;
+                        result = -8;
+                    } else if (func_ov003_021be708(entry, NULL, 0x30000) == 0) {
+                        return result;
                     }
                     break;
                 case 4:
@@ -223,47 +223,47 @@ s32 func_ov003_021be264(void) {
                 case 19:
                     break;
                 default:
-                    a = c;
+                    waiting = c;
                     break;
             }
         }
-    } while (a != 0);
-    OS_CancelAlarm(&v1);
+    } while (waiting != 0);
+    OS_CancelAlarm(&alarm);
     while (DequeueEvent() != 0) {
     }
-    if (b > 0) {
+    if (result > 0) {
         data_ov003_021d8bf0 = 1;
         if (func_ov000_021a8c94(data_ov003_021d691c) < 0) {
-            b = -2;
+            result = -2;
         } else {
             data_ov003_021d8bf4 = 1;
         }
     }
-    return b;
+    return result;
 }
 
 void func_ov003_021be1fc(void) {
-    BOOL a;
-    u32 b;
-    a = TRUE;
+    BOOL waiting;
+    u32 event;
+    waiting = TRUE;
     if (data_ov003_021d8bf0 != 0) {
         if (func_ov003_021be820() != 0) {
             do {
                 OS_Sleep(10);
-                while ((b = DequeueEvent()) != 0) {
-                    switch (b) {
+                while ((event = DequeueEvent()) != 0) {
+                    switch (event) {
                         case 4:
                         case 5:
                             break;
                         case 0xe:
-                            a = FALSE;
+                            waiting = FALSE;
                             break;
                         default:
-                            a = FALSE;
+                            waiting = FALSE;
                             break;
                     }
                 }
-            } while (a != FALSE);
+            } while (waiting != FALSE);
         }
         data_ov003_021d8bf0 = 0;
     }
@@ -527,7 +527,7 @@ end:
     return a;
 }
 
-s32 SendBytesToAddress(s32 descriptor, const SocketAddress *address, const u8 *param_2, const void *data, u32 size) {
+s32 SendBytesToAddress(s32 descriptor, const SocketAddress *address, const u8 *unused, const void *data, u32 size) {
     s32 result;
     result = func_ov000_021a9018(descriptor, data, size, 0, address);
     if (result < 0) {
@@ -758,7 +758,7 @@ u32 GetMacAddress(void *address) {
 
 // Stores this machine's address, then writes the higher then the lower of it and the entry's address, then four fixed
 // bytes, as the 16-byte key.
-s32 StoreMacAddressAndBuildKey(u8 *key, void *b) {
+s32 StoreMacAddressAndBuildKey(u8 *key, void *unused) {
     u8 peerAddress[6];
     u8 ownAddress[6];
     u8 ownText[0x20];
@@ -790,7 +790,7 @@ s32 ParseExchangePacketKind5Items(u8 *body) {
     u32 type;
     s32 length;
     u8 *value;
-    u8 *l;
+    u8 *slot0x204;
     cursor = body + 8;
     found = FALSE;
     end = cursor + SwapBytes16_inline(*(u16 *) body);
@@ -806,30 +806,42 @@ s32 ParseExchangePacketKind5Items(u8 *body) {
                 gKind5Record.mItem202Value = SwapBytes16_inline(*(u16 *) value);
                 break;
             case 0x203: {
-                s32 g;
-                s32 h;
-                u8 *i;
-                g = SwapBytes16_inline(*(u16 *) value);
-                h = 0;
-                i = (u8 *) gKind5Words;
-                for (; h < 4; h++) {
-                    *OFFSET_PTR(u32, i, 0x15c) = g;
-                    i += 0x28;
+                s32 value0x203;
+                s32 index0x203;
+                u8 *slot0x203;
+                value0x203 = SwapBytes16_inline(*(u16 *) value);
+                index0x203 = 0;
+                slot0x203 = (u8 *) gKind5Words;
+                for (; index0x203 < 4; index0x203++) {
+                    *OFFSET_PTR(u32, slot0x203, 0x15c) = value0x203;
+                    slot0x203 += 0x28;
                 }
                 break;
             }
             case 0x204: {
-                u32 g;
-                s32 h;
-                g = SwapBytes16_inline(*(u16 *) value);
-                h = 0;
-                l = (u8 *) gKind5Words;
-                for (; h < 4; h++) {
-                    *OFFSET_PTR(u32, l, 0x160) = g;
-                    l += 0x28;
+                u32 value0x204;
+                s32 index0x203;
+                value0x204 = SwapBytes16_inline(*(u16 *) value);
+                index0x203 = 0;
+                slot0x204 = (u8 *) gKind5Words;
+                for (; index0x203 < 4; index0x203++) {
+                    *OFFSET_PTR(u32, slot0x204, 0x160) = value0x204;
+                    slot0x204 += 0x28;
                 }
                 break;
             }
+                {
+                    u32 value0x203;
+                    s32 index0x204;
+                    value0x203 = SwapBytes16_inline(*(u16 *) value);
+                    index0x204 = 0;
+                    slot0x204 = (u8 *) gKind5Words;
+                    for (; index0x204 < 4; index0x204++) {
+                        *OFFSET_PTR(u32, slot0x204, 0x160) = value0x203;
+                        slot0x204 += 0x28;
+                    }
+                    break;
+                }
             case 0x205:
                 gKind5Record.mItem205Value = SwapBytes16_inline(*(u16 *) value);
                 break;
@@ -839,11 +851,11 @@ s32 ParseExchangePacketKind5Items(u8 *body) {
             case 0x209:
                 memset(gKind5Values + (type - 0x206) * 0x28, 0, 0x20);
                 if (gKind5Record.mStoreValuesAsHex == 1) {
-                    u8 *k;
-                    s32 j;
-                    k = gKind5Values + (type - 0x206) * 0x28;
-                    for (j = 0; j < length; j++) {
-                        k += FormatByteAsHex(k, *value++);
+                    u8 *hexCursor;
+                    s32 byteIndex;
+                    hexCursor = gKind5Values + (type - 0x206) * 0x28;
+                    for (byteIndex = 0; byteIndex < length; byteIndex++) {
+                        hexCursor += FormatByteAsHex(hexCursor, *value++);
                     }
                 } else {
                     memcpy(gKind5Values + (type - 0x206) * 0x28, value, length);
@@ -910,13 +922,13 @@ BOOL ParseHexText(u8 *output, const s8 *text, s32 length) {
 // Builds gExchangeResult from the Kind5 data; returns 1, or -7 for a value text of the wrong length, a zero item 0x205
 // value or an unknown item 0x202 value.
 s32 FillExchangeResultFromKind5Data(void) {
-    s32 a;
-    s32 b;
-    char c[0x21];
-    char *d;
-    u8 *e;
-    u8 *f;
-    a = 1;
+    s32 result;
+    s32 valueIndex;
+    char valueBuffer[0x21];
+    char *valueText;
+    u8 *valueSource;
+    u8 *resultBytes;
+    result = 1;
     strcpy(gExchangeResult.mText, gKind5Record.mText);
     switch (gKind5Record.mItem202Value) {
         case 0:
@@ -924,50 +936,50 @@ s32 FillExchangeResultFromKind5Data(void) {
             break;
         case 1:
             if (gKind5Record.mItem205Value == 0) {
-                a = -7;
+                result = -7;
                 break;
             }
             gExchangeResult.mUnk_24 = gKind5Record.mItem205Value;
-            b = 0;
-            d = c;
-            e = gKind5Values;
-            f = gExchangeResult.mValueBytes[0];
-            for (; b < 4; b++) {
-                memcpy(d, e, 0x20);
-                c[0x20] = 0;
-                switch (strlen(d)) {
+            valueIndex = 0;
+            valueText = valueBuffer;
+            valueSource = gKind5Values;
+            resultBytes = gExchangeResult.mValueBytes[0];
+            for (; valueIndex < 4; valueIndex++) {
+                memcpy(valueText, valueSource, 0x20);
+                valueBuffer[0x20] = 0;
+                switch (strlen(valueText)) {
                     case 0:
                         break;
                     case 5:
                         gExchangeResult.mKind = 1;
-                        *(Bytes5 *) f = *(Bytes5 *) d;
+                        *(Bytes5 *) resultBytes = *(Bytes5 *) valueText;
                         break;
                     case 10:
                         gExchangeResult.mKind = 1;
-                        ParseHexText(f, (s8 *) d, 10);
+                        ParseHexText(resultBytes, (s8 *) valueText, 10);
                         break;
                     case 13:
                         gExchangeResult.mKind = 2;
-                        *(Bytes13 *) f = *(Bytes13 *) d;
+                        *(Bytes13 *) resultBytes = *(Bytes13 *) valueText;
                         break;
                     case 26:
                         gExchangeResult.mKind = 2;
-                        ParseHexText(f, (s8 *) d, 26);
+                        ParseHexText(resultBytes, (s8 *) valueText, 26);
                         break;
                     case 16:
                         gExchangeResult.mKind = 3;
-                        *(Bytes16 *) f = *(Bytes16 *) d;
+                        *(Bytes16 *) resultBytes = *(Bytes16 *) valueText;
                         break;
                     case 32:
                         gExchangeResult.mKind = 3;
-                        ParseHexText(f, (s8 *) d, 32);
+                        ParseHexText(resultBytes, (s8 *) valueText, 32);
                         break;
                     default:
-                        a = -7;
+                        result = -7;
                         break;
                 }
-                e += 0x28;
-                f += 0x20;
+                valueSource += 0x28;
+                resultBytes += 0x20;
             }
             break;
         case 2:
@@ -979,10 +991,10 @@ s32 FillExchangeResultFromKind5Data(void) {
             __memcpy(&gExchangeResult.mItem20aWords, &gKind5Item20a.mBytes, sizeof(gExchangeResult.mItem20aWords));
             break;
         default:
-            a = -7;
+            result = -7;
             break;
     }
-    return a;
+    return result;
 }
 
 // Steps 1 to 10: find an entry, connect, open a socket, then trade packets of kind 1 to 6; returns 1 or a negative
@@ -990,7 +1002,7 @@ s32 FillExchangeResultFromKind5Data(void) {
 s32 RunExchange(void) {
     u32 stamp;
     s32 descriptor;
-    s32 a;
+    s32 result;
     s32 retryCount;
     BOOL done;
     u8 *value;
@@ -1000,7 +1012,7 @@ s32 RunExchange(void) {
     s32 itemLength;
     u32 now;
     descriptor = 0;
-    a = -5;
+    result = -5;
     stamp = 0;
     retryCount = 0;
     done = FALSE;
@@ -1009,8 +1021,8 @@ s32 RunExchange(void) {
         OS_Sleep(500);
         switch (gExchangeState) {
             case 1:
-                a = SearchEntriesAndStoreEntryWithNewlyClearedBit4();
-                if (a != 1) {
+                result = SearchEntriesAndStoreEntryWithNewlyClearedBit4();
+                if (result != 1) {
                     done = TRUE;
                 } else {
                     gExchangeStatus = 3;
@@ -1019,8 +1031,8 @@ s32 RunExchange(void) {
                 }
                 break;
             case 2:
-                a = func_ov003_021be264();
-                if (a != 1) {
+                result = func_ov003_021be264();
+                if (result != 1) {
                     done = TRUE;
                 } else {
                     gExchangeState = 3;
@@ -1029,7 +1041,7 @@ s32 RunExchange(void) {
             case 3:
                 descriptor = func_ov000_021a918c(2, 2, 0);
                 if (descriptor < 0) {
-                    a = -2;
+                    result = -2;
                     done = TRUE;
                     break;
                 }
@@ -1038,9 +1050,9 @@ s32 RunExchange(void) {
                 bindAddress.mUnk_01 = 2;
                 bindAddress.mPort = 0x1e6;
                 bindAddress.mAddress = 0;
-                a = func_ov000_021a916c(descriptor, &bindAddress);
-                if (a < 0) {
-                    a = -2;
+                result = func_ov000_021a916c(descriptor, &bindAddress);
+                if (result < 0) {
+                    result = -2;
                     done = TRUE;
                 } else {
                     gExchangeState = 4;
@@ -1049,7 +1061,7 @@ s32 RunExchange(void) {
             case 4:
                 if (GetTickMilliseconds() >= gTimeoutAtMs) {
                     func_ov000_021a9008(descriptor);
-                    a = -3;
+                    result = -3;
                     done = TRUE;
                     break;
                 }
@@ -1073,7 +1085,7 @@ s32 RunExchange(void) {
             case 6:
                 if (GetTickMilliseconds() >= gTimeoutAtMs) {
                     func_ov000_021a9008(descriptor);
-                    a = -4;
+                    result = -4;
                     done = TRUE;
                     break;
                 }
@@ -1121,7 +1133,7 @@ s32 RunExchange(void) {
                     retryCount++;
                     if (retryCount >= 10) {
                         func_ov000_021a9008(descriptor);
-                        a = -2;
+                        result = -2;
                         done = TRUE;
                     } else {
                         gExchangeState = 7;
@@ -1147,7 +1159,7 @@ s32 RunExchange(void) {
                     retryCount++;
                     if (retryCount >= 10) {
                         done = TRUE;
-                        a = FillExchangeResultFromKind5Data();
+                        result = FillExchangeResultFromKind5Data();
                     } else {
                         gExchangeState = 9;
                     }
@@ -1159,9 +1171,9 @@ s32 RunExchange(void) {
         func_ov000_021a9008(descriptor);
     }
     if (gStopRequested != 0) {
-        a = -8;
+        result = -8;
     }
-    return a;
+    return result;
 }
 
 void RunExchangeThread(void) {
@@ -1183,360 +1195,368 @@ typedef struct Unk021bccd0_block {
     /* 0 */ u8 mUnk_00[8];
 } Unk021bccd0_block;
 
-BOOL func_ov003_021bccd0(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int param_5) {
-    u8 a[16];
-    u64 b;
-    u32 c[80];
-    u32 d[2];
-    int i;
-    int h;
-    int f;
-    int g;
-    u64 t;
-    u8 *p;
-    u8 *q;
-    enum { K0 } k;
+BOOL func_ov003_021bccd0(u8 *output, u8 *input, u32 inputLength, u8 *key, int keyLength) {
+    u8 workBuffer[16];
+    u64 counterBytes;
+    u32 keyWords[80];
+    u32 fixedBytes[2];
+    int blockIndex;
+    int pass;
+    int blockCount;
+    int lastGroup;
+    u64 counter;
+    u8 *cursor;
+    u8 *source;
+    enum { K0 } bytesLeft;
 
-    d[0] = 0xa6a6a6a6;
-    d[1] = 0xa6a6a6a6;
-    if ((param_3 & 7) != 0 || (param_5 & 7) != 0) {
+    fixedBytes[0] = 0xa6a6a6a6;
+    fixedBytes[1] = 0xa6a6a6a6;
+    if ((inputLength & 7) != 0 || (keyLength & 7) != 0) {
         return FALSE;
     }
-    f = param_3 >> 3;
-    if (f < 2) {
+    blockCount = inputLength >> 3;
+    if (blockCount < 2) {
         return FALSE;
     }
-    g = ExpandKey(c, param_4, param_5 << 3);
-    memcpy(param_1 + 8, param_2, param_3);
-    p = a;
-    q = (u8 *) d;
-    k = 8;
+    lastGroup = ExpandKey(keyWords, key, keyLength << 3);
+    memcpy(output + 8, input, inputLength);
+    cursor = workBuffer;
+    source = (u8 *) fixedBytes;
+    bytesLeft = 8;
     do {
-        *p++ = *q++;
-    } while (--k != 0);
-    for (h = 0; h < 6; h++) {
-        for (i = 1; i <= f; i++) {
-            p = param_1 + (u32) i * 8;
-            *(Unk021bccd0_block *) (a + 8) = *(Unk021bccd0_block *) p;
-            func_ov003_021bc1c4(c, g, a, a);
-            t = (s64) f * (s32) h + (s32) i;
-            b = (((t & 0x00000000000000ffULL) << 56) | ((t & 0x000000000000ff00ULL) << 40) |
-                 ((t & 0x0000000000ff0000ULL) << 24) | ((t & 0x00000000ff000000ULL) << 8) |
-                 ((t & 0x000000ff00000000ULL) >> 8) | ((t & 0x0000ff0000000000ULL) >> 24) |
-                 ((t & 0x00ff000000000000ULL) >> 40) | ((t & 0xff00000000000000ULL) >> 56));
-            XorEightBytes(a, (u8 *) &b, a);
-            *(Unk021bccd0_block *) p = *(Unk021bccd0_block *) (a + 8);
+        *cursor++ = *source++;
+    } while (--bytesLeft != 0);
+    for (pass = 0; pass < 6; pass++) {
+        for (blockIndex = 1; blockIndex <= blockCount; blockIndex++) {
+            cursor = output + (u32) blockIndex * 8;
+            *(Unk021bccd0_block *) (workBuffer + 8) = *(Unk021bccd0_block *) cursor;
+            func_ov003_021bc1c4(keyWords, lastGroup, workBuffer, workBuffer);
+            counter = (s64) blockCount * (s32) pass + (s32) blockIndex;
+            counterBytes = (((counter & 0x00000000000000ffULL) << 56) | ((counter & 0x000000000000ff00ULL) << 40) |
+                            ((counter & 0x0000000000ff0000ULL) << 24) | ((counter & 0x00000000ff000000ULL) << 8) |
+                            ((counter & 0x000000ff00000000ULL) >> 8) | ((counter & 0x0000ff0000000000ULL) >> 24) |
+                            ((counter & 0x00ff000000000000ULL) >> 40) | ((counter & 0xff00000000000000ULL) >> 56));
+            XorEightBytes(workBuffer, (u8 *) &counterBytes, workBuffer);
+            *(Unk021bccd0_block *) cursor = *(Unk021bccd0_block *) (workBuffer + 8);
         }
     }
-    *(Unk021bccd0_block *) param_1 = *(Unk021bccd0_block *) a;
+    *(Unk021bccd0_block *) output = *(Unk021bccd0_block *) workBuffer;
     return TRUE;
 }
 
-BOOL func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int param_5) {
-    u8 a[16];
-    u64 b;
-    u32 c[80];
-    u32 d[2];
-    int i;
-    int h;
-    int f;
-    int g;
-    BOOL e;
-    u64 t;
-    u8 *p;
-    u8 *q;
-    enum { K0 } k;
+BOOL func_ov003_021bcadc(u8 *output, u8 *input, u32 inputLength, u8 *key, int keyLength) {
+    u8 workBuffer[16];
+    u64 counterBytes;
+    u32 keyWords[80];
+    u32 fixedBytes[2];
+    int blockIndex;
+    int pass;
+    int blockCount;
+    int lastGroup;
+    BOOL valid;
+    u64 counter;
+    u8 *cursor;
+    u8 *copyCursor;
+    enum { K0 } bytesLeft;
 
-    e = TRUE;
-    d[0] = 0xa6a6a6a6;
-    d[1] = 0xa6a6a6a6;
-    if ((param_3 & 7) != 0 || (param_5 & 7) != 0) {
+    valid = TRUE;
+    fixedBytes[0] = 0xa6a6a6a6;
+    fixedBytes[1] = 0xa6a6a6a6;
+    if ((inputLength & 7) != 0 || (keyLength & 7) != 0) {
         return FALSE;
     }
-    f = (param_3 - 1) >> 3;
-    if (f < 2) {
+    blockCount = (inputLength - 1) >> 3;
+    if (blockCount < 2) {
         return FALSE;
     }
-    g = ExpandKeyReversedWithTables(c, param_4, param_5 << 3);
-    p = a;
-    q = param_2;
-    k = 8;
+    lastGroup = ExpandKeyReversedWithTables(keyWords, key, keyLength << 3);
+    cursor = workBuffer;
+    copyCursor = input;
+    bytesLeft = 8;
     do {
-        *p++ = *q++;
-    } while (--k != 0);
-    memcpy(param_1, param_2 + 8, param_3 - 1);
-    for (h = 5; h >= 0; h--) {
-        for (i = f; i > 0; i--) {
-            t = (s64) f * (s32) h + (s32) i;
-            b = (((t & 0x00000000000000ffULL) << 56) | ((t & 0x000000000000ff00ULL) << 40) |
-                 ((t & 0x0000000000ff0000ULL) << 24) | ((t & 0x00000000ff000000ULL) << 8) |
-                 ((t & 0x000000ff00000000ULL) >> 8) | ((t & 0x0000ff0000000000ULL) >> 24) |
-                 ((t & 0x00ff000000000000ULL) >> 40) | ((t & 0xff00000000000000ULL) >> 56));
-            XorEightBytes(a, (u8 *) &b, a);
-            p = param_1 + (i - 1) * 8;
+        *cursor++ = *copyCursor++;
+    } while (--bytesLeft != 0);
+    memcpy(output, input + 8, inputLength - 1);
+    for (pass = 5; pass >= 0; pass--) {
+        for (blockIndex = blockCount; blockIndex > 0; blockIndex--) {
+            counter = (s64) blockCount * (s32) pass + (s32) blockIndex;
+            counterBytes = (((counter & 0x00000000000000ffULL) << 56) | ((counter & 0x000000000000ff00ULL) << 40) |
+                            ((counter & 0x0000000000ff0000ULL) << 24) | ((counter & 0x00000000ff000000ULL) << 8) |
+                            ((counter & 0x000000ff00000000ULL) >> 8) | ((counter & 0x0000ff0000000000ULL) >> 24) |
+                            ((counter & 0x00ff000000000000ULL) >> 40) | ((counter & 0xff00000000000000ULL) >> 56));
+            XorEightBytes(workBuffer, (u8 *) &counterBytes, workBuffer);
+            cursor = output + (blockIndex - 1) * 8;
             {
-                u8 *r = p;
-                q = a + 8;
-                k = 8;
+                u8 *r = cursor;
+                copyCursor = workBuffer + 8;
+                bytesLeft = 8;
                 do {
-                    *q++ = *r++;
-                } while (--k != 0);
+                    *copyCursor++ = *r++;
+                } while (--bytesLeft != 0);
             }
-            func_ov003_021bbd9c(c, g, a, a);
+            func_ov003_021bbd9c(keyWords, lastGroup, workBuffer, workBuffer);
             {
-                u8 *r = a + 8;
-                k = 8;
+                u8 *r = workBuffer + 8;
+                bytesLeft = 8;
                 do {
-                    *p++ = *r++;
-                } while (--k != 0);
+                    *cursor++ = *r++;
+                } while (--bytesLeft != 0);
             }
         }
     }
-    if (memcmp((u8 *) d, a, 8) != 0) {
-        e = FALSE;
+    if (memcmp((u8 *) fixedBytes, workBuffer, 8) != 0) {
+        valid = FALSE;
     }
-    return e;
+    return valid;
 }
 
-void XorEightBytes(u8 *a, u8 *b, u8 *c) {
-    *c = *a ^ *b;
-    c[1] = a[1] ^ b[1];
-    c[2] = a[2] ^ b[2];
-    c[3] = a[3] ^ b[3];
-    c[4] = a[4] ^ b[4];
-    c[5] = a[5] ^ b[5];
-    c[6] = a[6] ^ b[6];
-    c[7] = a[7] ^ b[7];
+void XorEightBytes(u8 *first, u8 *second, u8 *output) {
+    *output = *first ^ *second;
+    output[1] = first[1] ^ second[1];
+    output[2] = first[2] ^ second[2];
+    output[3] = first[3] ^ second[3];
+    output[4] = first[4] ^ second[4];
+    output[5] = first[5] ^ second[5];
+    output[6] = first[6] ^ second[6];
+    output[7] = first[7] ^ second[7];
 }
 
 // Expands the key into 4 * (n + 1) words and returns n: 10, 12 or 14 for 128, 192 or 256 bits.
-int ExpandKey(u32 *a, u8 *b, int c) {
+int ExpandKey(u32 *words, u8 *key, int keyBits) {
     int i = 0;
-    u32 v1;
+    u32 lastWord;
 
-    a[0] = (b[0] << 24) ^ (b[1] << 16) ^ (b[2] << 8) ^ b[3];
-    a[1] = (b[4] << 24) ^ (b[5] << 16) ^ (b[6] << 8) ^ b[7];
-    a[2] = (b[8] << 24) ^ (b[9] << 16) ^ (b[10] << 8) ^ b[11];
-    a[3] = (b[12] << 24) ^ (b[13] << 16) ^ (b[14] << 8) ^ b[15];
-    if (c == 128) {
+    words[0] = (key[0] << 24) ^ (key[1] << 16) ^ (key[2] << 8) ^ key[3];
+    words[1] = (key[4] << 24) ^ (key[5] << 16) ^ (key[6] << 8) ^ key[7];
+    words[2] = (key[8] << 24) ^ (key[9] << 16) ^ (key[10] << 8) ^ key[11];
+    words[3] = (key[12] << 24) ^ (key[13] << 16) ^ (key[14] << 8) ^ key[15];
+    if (keyBits == 128) {
         for (;;) {
-            v1 = a[3];
-            a[4] = a[0] ^ (data_ov003_021d52bc[(v1 >> 16) & 0xff] & 0xff000000) ^
-                   (data_ov003_021d52bc[(v1 >> 8) & 0xff] & 0x00ff0000) ^
-                   (data_ov003_021d52bc[v1 & 0xff] & 0x0000ff00) ^ (data_ov003_021d52bc[v1 >> 24] & 0x000000ff) ^
-                   data_ov003_021d3694[i];
-            a[5] = a[1] ^ a[4];
-            a[6] = a[2] ^ a[5];
-            a[7] = a[3] ^ a[6];
+            lastWord = words[3];
+            words[4] = words[0] ^ (data_ov003_021d52bc[(lastWord >> 16) & 0xff] & 0xff000000) ^
+                       (data_ov003_021d52bc[(lastWord >> 8) & 0xff] & 0x00ff0000) ^
+                       (data_ov003_021d52bc[lastWord & 0xff] & 0x0000ff00) ^
+                       (data_ov003_021d52bc[lastWord >> 24] & 0x000000ff) ^ data_ov003_021d3694[i];
+            words[5] = words[1] ^ words[4];
+            words[6] = words[2] ^ words[5];
+            words[7] = words[3] ^ words[6];
             if (++i == 10) {
                 return 10;
             }
-            a += 4;
+            words += 4;
         }
     }
-    a[4] = (b[16] << 24) ^ (b[17] << 16) ^ (b[18] << 8) ^ b[19];
-    a[5] = (b[20] << 24) ^ (b[21] << 16) ^ (b[22] << 8) ^ b[23];
-    if (c == 192) {
+    words[4] = (key[16] << 24) ^ (key[17] << 16) ^ (key[18] << 8) ^ key[19];
+    words[5] = (key[20] << 24) ^ (key[21] << 16) ^ (key[22] << 8) ^ key[23];
+    if (keyBits == 192) {
         for (;;) {
-            v1 = a[5];
-            a[6] = a[0] ^ (data_ov003_021d52bc[(v1 >> 16) & 0xff] & 0xff000000) ^
-                   (data_ov003_021d52bc[(v1 >> 8) & 0xff] & 0x00ff0000) ^
-                   (data_ov003_021d52bc[v1 & 0xff] & 0x0000ff00) ^ (data_ov003_021d52bc[v1 >> 24] & 0x000000ff) ^
-                   data_ov003_021d3694[i];
-            a[7] = a[1] ^ a[6];
-            a[8] = a[2] ^ a[7];
-            a[9] = a[3] ^ a[8];
+            lastWord = words[5];
+            words[6] = words[0] ^ (data_ov003_021d52bc[(lastWord >> 16) & 0xff] & 0xff000000) ^
+                       (data_ov003_021d52bc[(lastWord >> 8) & 0xff] & 0x00ff0000) ^
+                       (data_ov003_021d52bc[lastWord & 0xff] & 0x0000ff00) ^
+                       (data_ov003_021d52bc[lastWord >> 24] & 0x000000ff) ^ data_ov003_021d3694[i];
+            words[7] = words[1] ^ words[6];
+            words[8] = words[2] ^ words[7];
+            words[9] = words[3] ^ words[8];
             if (++i == 8) {
                 return 12;
             }
-            a[10] = a[4] ^ a[9];
-            a[11] = a[5] ^ a[10];
-            a += 6;
+            words[10] = words[4] ^ words[9];
+            words[11] = words[5] ^ words[10];
+            words += 6;
         }
     }
-    a[6] = (b[24] << 24) ^ (b[25] << 16) ^ (b[26] << 8) ^ b[27];
-    a[7] = (b[28] << 24) ^ (b[29] << 16) ^ (b[30] << 8) ^ b[31];
-    if (c == 256) {
+    words[6] = (key[24] << 24) ^ (key[25] << 16) ^ (key[26] << 8) ^ key[27];
+    words[7] = (key[28] << 24) ^ (key[29] << 16) ^ (key[30] << 8) ^ key[31];
+    if (keyBits == 256) {
         for (;;) {
-            v1 = a[7];
-            a[8] = a[0] ^ (data_ov003_021d52bc[(v1 >> 16) & 0xff] & 0xff000000) ^
-                   (data_ov003_021d52bc[(v1 >> 8) & 0xff] & 0x00ff0000) ^
-                   (data_ov003_021d52bc[v1 & 0xff] & 0x0000ff00) ^ (data_ov003_021d52bc[v1 >> 24] & 0x000000ff) ^
-                   data_ov003_021d3694[i];
-            a[9] = a[1] ^ a[8];
-            a[10] = a[2] ^ a[9];
-            a[11] = a[3] ^ a[10];
+            lastWord = words[7];
+            words[8] = words[0] ^ (data_ov003_021d52bc[(lastWord >> 16) & 0xff] & 0xff000000) ^
+                       (data_ov003_021d52bc[(lastWord >> 8) & 0xff] & 0x00ff0000) ^
+                       (data_ov003_021d52bc[lastWord & 0xff] & 0x0000ff00) ^
+                       (data_ov003_021d52bc[lastWord >> 24] & 0x000000ff) ^ data_ov003_021d3694[i];
+            words[9] = words[1] ^ words[8];
+            words[10] = words[2] ^ words[9];
+            words[11] = words[3] ^ words[10];
             if (++i == 7) {
                 return 14;
             }
-            v1 = a[11];
-            a[12] = a[4] ^ (data_ov003_021d52bc[v1 >> 24] & 0xff000000) ^
-                    (data_ov003_021d52bc[(v1 >> 16) & 0xff] & 0x00ff0000) ^
-                    (data_ov003_021d52bc[(v1 >> 8) & 0xff] & 0x0000ff00) ^
-                    (data_ov003_021d52bc[v1 & 0xff] & 0x000000ff);
-            a[13] = a[5] ^ a[12];
-            a[14] = a[6] ^ a[13];
-            a[15] = a[7] ^ a[14];
-            a += 8;
+            lastWord = words[11];
+            words[12] = words[4] ^ (data_ov003_021d52bc[lastWord >> 24] & 0xff000000) ^
+                        (data_ov003_021d52bc[(lastWord >> 16) & 0xff] & 0x00ff0000) ^
+                        (data_ov003_021d52bc[(lastWord >> 8) & 0xff] & 0x0000ff00) ^
+                        (data_ov003_021d52bc[lastWord & 0xff] & 0x000000ff);
+            words[13] = words[5] ^ words[12];
+            words[14] = words[6] ^ words[13];
+            words[15] = words[7] ^ words[14];
+            words += 8;
         }
     }
     return i;
 }
 
 // Expands the key, reverses the order of its four-word groups and passes the inner ones through tables.
-int ExpandKeyReversedWithTables(u32 *a, u8 *b, int c) {
-    int i, j, r;
-    u32 v1;
+int ExpandKeyReversedWithTables(u32 *words, u8 *key, int keyBits) {
+    int i, highIndex, lastGroup;
+    u32 swapWord;
 
-    r = ExpandKey(a, b, c);
-    for (i = 0, j = 4 * r; i < j; i += 4, j -= 4) {
-        v1 = a[i];
-        a[i] = a[j];
-        a[j] = v1;
-        v1 = a[i + 1];
-        a[i + 1] = a[j + 1];
-        a[j + 1] = v1;
-        v1 = a[i + 2];
-        a[i + 2] = a[j + 2];
-        a[j + 2] = v1;
-        v1 = a[i + 3];
-        a[i + 3] = a[j + 3];
-        a[j + 3] = v1;
+    lastGroup = ExpandKey(words, key, keyBits);
+    for (i = 0, highIndex = 4 * lastGroup; i < highIndex; i += 4, highIndex -= 4) {
+        swapWord = words[i];
+        words[i] = words[highIndex];
+        words[highIndex] = swapWord;
+        swapWord = words[i + 1];
+        words[i + 1] = words[highIndex + 1];
+        words[highIndex + 1] = swapWord;
+        swapWord = words[i + 2];
+        words[i + 2] = words[highIndex + 2];
+        words[highIndex + 2] = swapWord;
+        swapWord = words[i + 3];
+        words[i + 3] = words[highIndex + 3];
+        words[highIndex + 3] = swapWord;
     }
-    for (i = 1; i < r; i++) {
-        a += 4;
-        a[0] = data_ov003_021d56bc[data_ov003_021d52bc[a[0] >> 24] & 0xff] ^
-               data_ov003_021d5abc[data_ov003_021d52bc[(a[0] >> 16) & 0xff] & 0xff] ^
-               data_ov003_021d36bc[data_ov003_021d52bc[(a[0] >> 8) & 0xff] & 0xff] ^
-               data_ov003_021d3abc[data_ov003_021d52bc[a[0] & 0xff] & 0xff];
-        a[1] = data_ov003_021d56bc[data_ov003_021d52bc[a[1] >> 24] & 0xff] ^
-               data_ov003_021d5abc[data_ov003_021d52bc[(a[1] >> 16) & 0xff] & 0xff] ^
-               data_ov003_021d36bc[data_ov003_021d52bc[(a[1] >> 8) & 0xff] & 0xff] ^
-               data_ov003_021d3abc[data_ov003_021d52bc[a[1] & 0xff] & 0xff];
-        a[2] = data_ov003_021d56bc[data_ov003_021d52bc[a[2] >> 24] & 0xff] ^
-               data_ov003_021d5abc[data_ov003_021d52bc[(a[2] >> 16) & 0xff] & 0xff] ^
-               data_ov003_021d36bc[data_ov003_021d52bc[(a[2] >> 8) & 0xff] & 0xff] ^
-               data_ov003_021d3abc[data_ov003_021d52bc[a[2] & 0xff] & 0xff];
-        a[3] = data_ov003_021d56bc[data_ov003_021d52bc[a[3] >> 24] & 0xff] ^
-               data_ov003_021d5abc[data_ov003_021d52bc[(a[3] >> 16) & 0xff] & 0xff] ^
-               data_ov003_021d36bc[data_ov003_021d52bc[(a[3] >> 8) & 0xff] & 0xff] ^
-               data_ov003_021d3abc[data_ov003_021d52bc[a[3] & 0xff] & 0xff];
+    for (i = 1; i < lastGroup; i++) {
+        words += 4;
+        words[0] = data_ov003_021d56bc[data_ov003_021d52bc[words[0] >> 24] & 0xff] ^
+                   data_ov003_021d5abc[data_ov003_021d52bc[(words[0] >> 16) & 0xff] & 0xff] ^
+                   data_ov003_021d36bc[data_ov003_021d52bc[(words[0] >> 8) & 0xff] & 0xff] ^
+                   data_ov003_021d3abc[data_ov003_021d52bc[words[0] & 0xff] & 0xff];
+        words[1] = data_ov003_021d56bc[data_ov003_021d52bc[words[1] >> 24] & 0xff] ^
+                   data_ov003_021d5abc[data_ov003_021d52bc[(words[1] >> 16) & 0xff] & 0xff] ^
+                   data_ov003_021d36bc[data_ov003_021d52bc[(words[1] >> 8) & 0xff] & 0xff] ^
+                   data_ov003_021d3abc[data_ov003_021d52bc[words[1] & 0xff] & 0xff];
+        words[2] = data_ov003_021d56bc[data_ov003_021d52bc[words[2] >> 24] & 0xff] ^
+                   data_ov003_021d5abc[data_ov003_021d52bc[(words[2] >> 16) & 0xff] & 0xff] ^
+                   data_ov003_021d36bc[data_ov003_021d52bc[(words[2] >> 8) & 0xff] & 0xff] ^
+                   data_ov003_021d3abc[data_ov003_021d52bc[words[2] & 0xff] & 0xff];
+        words[3] = data_ov003_021d56bc[data_ov003_021d52bc[words[3] >> 24] & 0xff] ^
+                   data_ov003_021d5abc[data_ov003_021d52bc[(words[3] >> 16) & 0xff] & 0xff] ^
+                   data_ov003_021d36bc[data_ov003_021d52bc[(words[3] >> 8) & 0xff] & 0xff] ^
+                   data_ov003_021d3abc[data_ov003_021d52bc[words[3] & 0xff] & 0xff];
     }
-    return r;
+    return lastGroup;
 }
 
-void func_ov003_021bc1c4(u32 *a, int b, u8 *c, u8 *d) {
+void func_ov003_021bc1c4(u32 *keyWords, int lastGroup, u8 *input, u8 *output) {
     u32 s0, s1, s2, s3, t0, t1, t2, t3;
-    int r;
+    int passesLeft;
 
-    s0 = ((c[0] << 24) ^ (c[1] << 16) ^ (c[2] << 8) ^ c[3]) ^ a[0];
-    s1 = ((c[4] << 24) ^ (c[5] << 16) ^ (c[6] << 8) ^ c[7]) ^ a[1];
-    s2 = ((c[8] << 24) ^ (c[9] << 16) ^ (c[10] << 8) ^ c[11]) ^ a[2];
-    s3 = ((c[12] << 24) ^ (c[13] << 16) ^ (c[14] << 8) ^ c[15]) ^ a[3];
-    r = b >> 1;
+    s0 = ((input[0] << 24) ^ (input[1] << 16) ^ (input[2] << 8) ^ input[3]) ^ keyWords[0];
+    s1 = ((input[4] << 24) ^ (input[5] << 16) ^ (input[6] << 8) ^ input[7]) ^ keyWords[1];
+    s2 = ((input[8] << 24) ^ (input[9] << 16) ^ (input[10] << 8) ^ input[11]) ^ keyWords[2];
+    s3 = ((input[12] << 24) ^ (input[13] << 16) ^ (input[14] << 8) ^ input[15]) ^ keyWords[3];
+    passesLeft = lastGroup >> 1;
     for (;;) {
         t0 = data_ov003_021d42bc[s0 >> 24] ^ data_ov003_021d46bc[(s1 >> 16) & 0xff] ^
-             data_ov003_021d4abc[(s2 >> 8) & 0xff] ^ data_ov003_021d4ebc[s3 & 0xff] ^ a[4];
+             data_ov003_021d4abc[(s2 >> 8) & 0xff] ^ data_ov003_021d4ebc[s3 & 0xff] ^ keyWords[4];
         t1 = data_ov003_021d42bc[s1 >> 24] ^ data_ov003_021d46bc[(s2 >> 16) & 0xff] ^
-             data_ov003_021d4abc[(s3 >> 8) & 0xff] ^ data_ov003_021d4ebc[s0 & 0xff] ^ a[5];
+             data_ov003_021d4abc[(s3 >> 8) & 0xff] ^ data_ov003_021d4ebc[s0 & 0xff] ^ keyWords[5];
         t2 = data_ov003_021d42bc[s2 >> 24] ^ data_ov003_021d46bc[(s3 >> 16) & 0xff] ^
-             data_ov003_021d4abc[(s0 >> 8) & 0xff] ^ data_ov003_021d4ebc[s1 & 0xff] ^ a[6];
+             data_ov003_021d4abc[(s0 >> 8) & 0xff] ^ data_ov003_021d4ebc[s1 & 0xff] ^ keyWords[6];
         t3 = data_ov003_021d42bc[s3 >> 24] ^ data_ov003_021d46bc[(s0 >> 16) & 0xff] ^
-             data_ov003_021d4abc[(s1 >> 8) & 0xff] ^ data_ov003_021d4ebc[s2 & 0xff] ^ a[7];
-        a += 8;
-        if (--r == 0) {
+             data_ov003_021d4abc[(s1 >> 8) & 0xff] ^ data_ov003_021d4ebc[s2 & 0xff] ^ keyWords[7];
+        keyWords += 8;
+        if (--passesLeft == 0) {
             break;
         }
         s0 = data_ov003_021d42bc[t0 >> 24] ^ data_ov003_021d46bc[(t1 >> 16) & 0xff] ^
-             data_ov003_021d4abc[(t2 >> 8) & 0xff] ^ data_ov003_021d4ebc[t3 & 0xff] ^ a[0];
+             data_ov003_021d4abc[(t2 >> 8) & 0xff] ^ data_ov003_021d4ebc[t3 & 0xff] ^ keyWords[0];
         s1 = data_ov003_021d42bc[t1 >> 24] ^ data_ov003_021d46bc[(t2 >> 16) & 0xff] ^
-             data_ov003_021d4abc[(t3 >> 8) & 0xff] ^ data_ov003_021d4ebc[t0 & 0xff] ^ a[1];
+             data_ov003_021d4abc[(t3 >> 8) & 0xff] ^ data_ov003_021d4ebc[t0 & 0xff] ^ keyWords[1];
         s2 = data_ov003_021d42bc[t2 >> 24] ^ data_ov003_021d46bc[(t3 >> 16) & 0xff] ^
-             data_ov003_021d4abc[(t0 >> 8) & 0xff] ^ data_ov003_021d4ebc[t1 & 0xff] ^ a[2];
+             data_ov003_021d4abc[(t0 >> 8) & 0xff] ^ data_ov003_021d4ebc[t1 & 0xff] ^ keyWords[2];
         s3 = data_ov003_021d42bc[t3 >> 24] ^ data_ov003_021d46bc[(t0 >> 16) & 0xff] ^
-             data_ov003_021d4abc[(t1 >> 8) & 0xff] ^ data_ov003_021d4ebc[t2 & 0xff] ^ a[3];
+             data_ov003_021d4abc[(t1 >> 8) & 0xff] ^ data_ov003_021d4ebc[t2 & 0xff] ^ keyWords[3];
     }
     s0 = (data_ov003_021d52bc[t0 >> 24] & 0xff000000) ^ (data_ov003_021d52bc[(t1 >> 16) & 0xff] & 0x00ff0000) ^
-         (data_ov003_021d52bc[(t2 >> 8) & 0xff] & 0x0000ff00) ^ (data_ov003_021d52bc[t3 & 0xff] & 0x000000ff) ^ a[0];
-    d[0] = s0 >> 24;
-    d[1] = s0 >> 16;
-    d[2] = s0 >> 8;
-    d[3] = s0;
+         (data_ov003_021d52bc[(t2 >> 8) & 0xff] & 0x0000ff00) ^ (data_ov003_021d52bc[t3 & 0xff] & 0x000000ff) ^
+         keyWords[0];
+    output[0] = s0 >> 24;
+    output[1] = s0 >> 16;
+    output[2] = s0 >> 8;
+    output[3] = s0;
     s1 = (data_ov003_021d52bc[t1 >> 24] & 0xff000000) ^ (data_ov003_021d52bc[(t2 >> 16) & 0xff] & 0x00ff0000) ^
-         (data_ov003_021d52bc[(t3 >> 8) & 0xff] & 0x0000ff00) ^ (data_ov003_021d52bc[t0 & 0xff] & 0x000000ff) ^ a[1];
-    d[4] = s1 >> 24;
-    d[5] = s1 >> 16;
-    d[6] = s1 >> 8;
-    d[7] = s1;
+         (data_ov003_021d52bc[(t3 >> 8) & 0xff] & 0x0000ff00) ^ (data_ov003_021d52bc[t0 & 0xff] & 0x000000ff) ^
+         keyWords[1];
+    output[4] = s1 >> 24;
+    output[5] = s1 >> 16;
+    output[6] = s1 >> 8;
+    output[7] = s1;
     s2 = (data_ov003_021d52bc[t2 >> 24] & 0xff000000) ^ (data_ov003_021d52bc[(t3 >> 16) & 0xff] & 0x00ff0000) ^
-         (data_ov003_021d52bc[(t0 >> 8) & 0xff] & 0x0000ff00) ^ (data_ov003_021d52bc[t1 & 0xff] & 0x000000ff) ^ a[2];
-    d[8] = s2 >> 24;
-    d[9] = s2 >> 16;
-    d[10] = s2 >> 8;
-    d[11] = s2;
+         (data_ov003_021d52bc[(t0 >> 8) & 0xff] & 0x0000ff00) ^ (data_ov003_021d52bc[t1 & 0xff] & 0x000000ff) ^
+         keyWords[2];
+    output[8] = s2 >> 24;
+    output[9] = s2 >> 16;
+    output[10] = s2 >> 8;
+    output[11] = s2;
     s3 = (data_ov003_021d52bc[t3 >> 24] & 0xff000000) ^ (data_ov003_021d52bc[(t0 >> 16) & 0xff] & 0x00ff0000) ^
-         (data_ov003_021d52bc[(t1 >> 8) & 0xff] & 0x0000ff00) ^ (data_ov003_021d52bc[t2 & 0xff] & 0x000000ff) ^ a[3];
-    d[12] = s3 >> 24;
-    d[13] = s3 >> 16;
-    d[14] = s3 >> 8;
-    d[15] = s3;
+         (data_ov003_021d52bc[(t1 >> 8) & 0xff] & 0x0000ff00) ^ (data_ov003_021d52bc[t2 & 0xff] & 0x000000ff) ^
+         keyWords[3];
+    output[12] = s3 >> 24;
+    output[13] = s3 >> 16;
+    output[14] = s3 >> 8;
+    output[15] = s3;
 }
 
-void func_ov003_021bbd9c(u32 *a, int b, u8 *c, u8 *d) {
+void func_ov003_021bbd9c(u32 *keyWords, int lastGroup, u8 *input, u8 *output) {
     u32 s0, s1, s2, s3, t0, t1, t2, t3;
-    int r;
+    int passesLeft;
 
-    s0 = ((c[0] << 24) ^ (c[1] << 16) ^ (c[2] << 8) ^ c[3]) ^ a[0];
-    s1 = ((c[4] << 24) ^ (c[5] << 16) ^ (c[6] << 8) ^ c[7]) ^ a[1];
-    s2 = ((c[8] << 24) ^ (c[9] << 16) ^ (c[10] << 8) ^ c[11]) ^ a[2];
-    s3 = ((c[12] << 24) ^ (c[13] << 16) ^ (c[14] << 8) ^ c[15]) ^ a[3];
-    r = b >> 1;
+    s0 = ((input[0] << 24) ^ (input[1] << 16) ^ (input[2] << 8) ^ input[3]) ^ keyWords[0];
+    s1 = ((input[4] << 24) ^ (input[5] << 16) ^ (input[6] << 8) ^ input[7]) ^ keyWords[1];
+    s2 = ((input[8] << 24) ^ (input[9] << 16) ^ (input[10] << 8) ^ input[11]) ^ keyWords[2];
+    s3 = ((input[12] << 24) ^ (input[13] << 16) ^ (input[14] << 8) ^ input[15]) ^ keyWords[3];
+    passesLeft = lastGroup >> 1;
     for (;;) {
         t0 = data_ov003_021d56bc[s0 >> 24] ^ data_ov003_021d5abc[(s3 >> 16) & 0xff] ^
-             data_ov003_021d36bc[(s2 >> 8) & 0xff] ^ data_ov003_021d3abc[s1 & 0xff] ^ a[4];
+             data_ov003_021d36bc[(s2 >> 8) & 0xff] ^ data_ov003_021d3abc[s1 & 0xff] ^ keyWords[4];
         t1 = data_ov003_021d56bc[s1 >> 24] ^ data_ov003_021d5abc[(s0 >> 16) & 0xff] ^
-             data_ov003_021d36bc[(s3 >> 8) & 0xff] ^ data_ov003_021d3abc[s2 & 0xff] ^ a[5];
+             data_ov003_021d36bc[(s3 >> 8) & 0xff] ^ data_ov003_021d3abc[s2 & 0xff] ^ keyWords[5];
         t2 = data_ov003_021d56bc[s2 >> 24] ^ data_ov003_021d5abc[(s1 >> 16) & 0xff] ^
-             data_ov003_021d36bc[(s0 >> 8) & 0xff] ^ data_ov003_021d3abc[s3 & 0xff] ^ a[6];
+             data_ov003_021d36bc[(s0 >> 8) & 0xff] ^ data_ov003_021d3abc[s3 & 0xff] ^ keyWords[6];
         t3 = data_ov003_021d56bc[s3 >> 24] ^ data_ov003_021d5abc[(s2 >> 16) & 0xff] ^
-             data_ov003_021d36bc[(s1 >> 8) & 0xff] ^ data_ov003_021d3abc[s0 & 0xff] ^ a[7];
-        a += 8;
-        if (--r == 0) {
+             data_ov003_021d36bc[(s1 >> 8) & 0xff] ^ data_ov003_021d3abc[s0 & 0xff] ^ keyWords[7];
+        keyWords += 8;
+        if (--passesLeft == 0) {
             break;
         }
         s0 = data_ov003_021d56bc[t0 >> 24] ^ data_ov003_021d5abc[(t3 >> 16) & 0xff] ^
-             data_ov003_021d36bc[(t2 >> 8) & 0xff] ^ data_ov003_021d3abc[t1 & 0xff] ^ a[0];
+             data_ov003_021d36bc[(t2 >> 8) & 0xff] ^ data_ov003_021d3abc[t1 & 0xff] ^ keyWords[0];
         s1 = data_ov003_021d56bc[t1 >> 24] ^ data_ov003_021d5abc[(t0 >> 16) & 0xff] ^
-             data_ov003_021d36bc[(t3 >> 8) & 0xff] ^ data_ov003_021d3abc[t2 & 0xff] ^ a[1];
+             data_ov003_021d36bc[(t3 >> 8) & 0xff] ^ data_ov003_021d3abc[t2 & 0xff] ^ keyWords[1];
         s2 = data_ov003_021d56bc[t2 >> 24] ^ data_ov003_021d5abc[(t1 >> 16) & 0xff] ^
-             data_ov003_021d36bc[(t0 >> 8) & 0xff] ^ data_ov003_021d3abc[t3 & 0xff] ^ a[2];
+             data_ov003_021d36bc[(t0 >> 8) & 0xff] ^ data_ov003_021d3abc[t3 & 0xff] ^ keyWords[2];
         s3 = data_ov003_021d56bc[t3 >> 24] ^ data_ov003_021d5abc[(t2 >> 16) & 0xff] ^
-             data_ov003_021d36bc[(t1 >> 8) & 0xff] ^ data_ov003_021d3abc[t0 & 0xff] ^ a[3];
+             data_ov003_021d36bc[(t1 >> 8) & 0xff] ^ data_ov003_021d3abc[t0 & 0xff] ^ keyWords[3];
     }
     s0 = (data_ov003_021d3ebc[t0 >> 24] & 0xff000000) ^ (data_ov003_021d3ebc[(t3 >> 16) & 0xff] & 0x00ff0000) ^
-         (data_ov003_021d3ebc[(t2 >> 8) & 0xff] & 0x0000ff00) ^ (data_ov003_021d3ebc[t1 & 0xff] & 0x000000ff) ^ a[0];
-    d[0] = s0 >> 24;
-    d[1] = s0 >> 16;
-    d[2] = s0 >> 8;
-    d[3] = s0;
+         (data_ov003_021d3ebc[(t2 >> 8) & 0xff] & 0x0000ff00) ^ (data_ov003_021d3ebc[t1 & 0xff] & 0x000000ff) ^
+         keyWords[0];
+    output[0] = s0 >> 24;
+    output[1] = s0 >> 16;
+    output[2] = s0 >> 8;
+    output[3] = s0;
     s1 = (data_ov003_021d3ebc[t1 >> 24] & 0xff000000) ^ (data_ov003_021d3ebc[(t0 >> 16) & 0xff] & 0x00ff0000) ^
-         (data_ov003_021d3ebc[(t3 >> 8) & 0xff] & 0x0000ff00) ^ (data_ov003_021d3ebc[t2 & 0xff] & 0x000000ff) ^ a[1];
-    d[4] = s1 >> 24;
-    d[5] = s1 >> 16;
-    d[6] = s1 >> 8;
-    d[7] = s1;
+         (data_ov003_021d3ebc[(t3 >> 8) & 0xff] & 0x0000ff00) ^ (data_ov003_021d3ebc[t2 & 0xff] & 0x000000ff) ^
+         keyWords[1];
+    output[4] = s1 >> 24;
+    output[5] = s1 >> 16;
+    output[6] = s1 >> 8;
+    output[7] = s1;
     s2 = (data_ov003_021d3ebc[t2 >> 24] & 0xff000000) ^ (data_ov003_021d3ebc[(t1 >> 16) & 0xff] & 0x00ff0000) ^
-         (data_ov003_021d3ebc[(t0 >> 8) & 0xff] & 0x0000ff00) ^ (data_ov003_021d3ebc[t3 & 0xff] & 0x000000ff) ^ a[2];
-    d[8] = s2 >> 24;
-    d[9] = s2 >> 16;
-    d[10] = s2 >> 8;
-    d[11] = s2;
+         (data_ov003_021d3ebc[(t0 >> 8) & 0xff] & 0x0000ff00) ^ (data_ov003_021d3ebc[t3 & 0xff] & 0x000000ff) ^
+         keyWords[2];
+    output[8] = s2 >> 24;
+    output[9] = s2 >> 16;
+    output[10] = s2 >> 8;
+    output[11] = s2;
     s3 = (data_ov003_021d3ebc[t3 >> 24] & 0xff000000) ^ (data_ov003_021d3ebc[(t2 >> 16) & 0xff] & 0x00ff0000) ^
-         (data_ov003_021d3ebc[(t1 >> 8) & 0xff] & 0x0000ff00) ^ (data_ov003_021d3ebc[t0 & 0xff] & 0x000000ff) ^ a[3];
-    d[12] = s3 >> 24;
-    d[13] = s3 >> 16;
-    d[14] = s3 >> 8;
-    d[15] = s3;
+         (data_ov003_021d3ebc[(t1 >> 8) & 0xff] & 0x0000ff00) ^ (data_ov003_021d3ebc[t0 & 0xff] & 0x000000ff) ^
+         keyWords[3];
+    output[12] = s3 >> 24;
+    output[13] = s3 >> 16;
+    output[14] = s3 >> 8;
+    output[15] = s3;
 }
 
 void ResetHashContext(HashContext *context) {
@@ -1816,19 +1836,19 @@ void CopyBytesToWordsLittleEndian(u32 *output, const u8 *input, u32 size) {
 }
 
 void CopyBytesWithLoop(void *destination, const void *source, u32 count) {
-    u8 *d = destination;
-    const u8 *e = source;
+    u8 *destinationBytes = destination;
+    const u8 *sourceBytes = source;
     u32 i;
     for (i = 0; i < count; i++) {
-        d[i] = e[i];
+        destinationBytes[i] = sourceBytes[i];
     }
 }
 
 void FillBytesWithLoop(void *buffer, s32 value, u32 count) {
-    s8 *p = buffer;
+    s8 *cursor = buffer;
     u32 i = 0;
     for (i = 0; i < count; i++) {
-        *p++ = value;
+        *cursor++ = value;
     }
 }
 
@@ -1852,28 +1872,28 @@ void *CallAllocFunctionAndClear(s32 count, s32 size) {
     return block;
 }
 
-void CallFreeFunction(void *p0) {
-    u32 v2 = ((u32) (&gFreeFunction));
-    u32 v3 = (*(u32 *) ((v2) + (0)));
-    u32 v4 = ((u32(*)(void *))(v3))(p0);
+void CallFreeFunction(void *block) {
+    u32 functionSlot = ((u32) (&gFreeFunction));
+    u32 freeFunction = (*(u32 *) ((functionSlot) + (0)));
+    u32 result = ((u32(*)(void *))(freeFunction))(block);
 }
 
 s32 FormatByteAsHex(u8 *output, s8 value) {
     u8 *cursor = output;
     u8 byte = value;
     s32 i;
-    s32 d;
-    s32 e;
-    d = (byte & 0xf0) >> 4;
+    s32 digit;
+    s32 lowDigit;
+    digit = (byte & 0xf0) >> 4;
     i = 0;
-    e = byte & 0xf;
+    lowDigit = byte & 0xf;
     for (; i < 2; i++) {
-        if (d <= 9) {
-            *cursor++ = d + 0x30;
+        if (digit <= 9) {
+            *cursor++ = digit + 0x30;
         } else {
-            *cursor++ = d + 0x37;
+            *cursor++ = digit + 0x37;
         }
-        d = e;
+        digit = lowDigit;
     }
     *cursor = 0;
     return cursor - output;
@@ -1978,8 +1998,8 @@ u32 GetExchangeStatus(u32 *output) {
     return 1;
 }
 
-u32 CopyExchangeResult(ExchangeResult *a) {
-    memcpy(((u32 *) (u32) a), &gExchangeResult, 0xe8);
+u32 CopyExchangeResult(ExchangeResult *output) {
+    memcpy(((u32 *) (u32) output), &gExchangeResult, 0xe8);
     return 1;
 }
 

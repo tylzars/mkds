@@ -107,9 +107,9 @@ void func_ov003_021c9f24(void) {
 
 void func_ov003_021c9f00(void) {
     int v1;
-    v1 = func_ov003_021bf334();
+    v1 = GetButtonResult();
     if (v1 != -2) {
-        func_ov003_021bf2e0();
+        EnableButtonTouch();
         func_ov003_021c212c(func_ov003_021c9ee0);
     }
 }
@@ -126,12 +126,12 @@ void func_ov003_021c9eb0(void) {
     int v1;
     v1 = func_ov003_021d2b04(2);
     if (v1 != 0) {
-        func_ov003_021bf31c(0);
+        SetButtonResultIfNone(0);
         return;
     }
     v1 = func_ov003_021ca008();
     if (v1 != 0) {
-        func_ov003_021bf31c(0);
+        SetButtonResultIfNone(0);
     }
 }
 
@@ -139,7 +139,7 @@ void func_ov003_021c9eac(void) {}
 
 void func_ov003_021c9e84(void) {
     int v1;
-    v1 = func_ov003_021bf334();
+    v1 = GetButtonResult();
     if (v1 == 0) {
         StopSoundSeq();
         StartSoundSeq(7);
@@ -148,7 +148,7 @@ void func_ov003_021c9e84(void) {
 }
 
 void func_ov003_021c9e64(void) {
-    func_ov003_021bf2d0();
+    DisableButtonTouch();
     func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c9e1c);
 }
@@ -157,7 +157,7 @@ void func_ov003_021c9e1c(void) {
     int v1;
     v1 = func_ov003_021d1f70(1);
     if (v1 == 0) {
-        func_ov003_021bf344();
+        StartSlideButtonsOut();
         if (data_ov003_021da21c == 0) {
             func_ov003_021d1ee0(3, 1, 1, 8);
         }
@@ -201,7 +201,7 @@ void func_ov003_021c9cf4(void) {
             StopSoundSeq();
             StartSoundSeq(9);
             func_ov003_021cefc0(0x41, 1, 1, -1, 0);
-            func_ov003_021bf2d0();
+            DisableButtonTouch();
             func_ov003_021c212c(func_ov003_021c9ccc);
             break;
         case 5:
@@ -209,7 +209,7 @@ void func_ov003_021c9cf4(void) {
             StopSoundSeq();
             StartSoundSeq(0x12);
             func_ov003_021cefc0(0x42, 1, 1, -1, 0);
-            func_ov003_021bf2d0();
+            DisableButtonTouch();
             func_ov003_021c212c(func_ov003_021c9ccc);
             break;
     }

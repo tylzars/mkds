@@ -10,7 +10,7 @@ void func_ov003_021c3490(void) {
     int v1;
     v1 = func_ov003_021d2b04(1);
     if (v1 != 0) {
-        func_ov003_021bf31c((u8) 0);
+        SetButtonResultIfNone((u8) 0);
     }
 }
 
@@ -18,7 +18,7 @@ void func_ov003_021c348c(void) {}
 
 void func_ov003_021c3468(void) {
     int v1;
-    v1 = func_ov003_021bf334();
+    v1 = GetButtonResult();
     if (v1 == 0) {
         StartSoundSeq(6);
         func_ov003_021c212c(func_ov003_021c3448);
@@ -26,7 +26,7 @@ void func_ov003_021c3468(void) {
 }
 
 void func_ov003_021c3448(void) {
-    func_ov003_021bf2d0();
+    DisableButtonTouch();
     func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c3410);
 }
