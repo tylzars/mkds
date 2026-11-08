@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_02056b30.h"
 
-typedef struct Unk020c06c4 Unk020c06c4;
+typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
 // Time-attack record handling of the race (mode 1 only), one record behind gRaceNewRecordTa (0xe8 bytes, allocated by
 // InitRaceNewRecordTa, set NULL by ClearRaceNewRecordTaPointer): mUnk_00 is the function it runs every frame
@@ -34,9 +34,9 @@ s32 func_020c70a0(void);
 void InitRaceNewRecordTa(void);
 void ClearRaceNewRecordTaPointer(void);
 void UpdateRaceNewRecordTa(void);
-void DrawRaceNewRecordTaTime(Unk020c06c4 *oamBuffer, s32 x, s32 y, TimeRecord *record);
-void DrawRaceNewRecordTaRow(Unk020c06c4 *oamBuffer, s32 b, s32 x, s32 y);
-void DrawRaceNewRecordTa(Unk020c06c4 *oamBuffer);
+void DrawRaceNewRecordTaTime(RaceHudOamBuffer *oamBuffer, s32 x, s32 y, TimeRecord *record);
+void DrawRaceNewRecordTaRow(RaceHudOamBuffer *oamBuffer, s32 b, s32 x, s32 y);
+void DrawRaceNewRecordTa(RaceHudOamBuffer *oamBuffer);
 BOOL func_020c657c(s32 store);
 BOOL func_020c6428(s32 store);
 void func_020c610c(void);

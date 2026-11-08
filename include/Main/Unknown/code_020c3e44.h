@@ -6,4 +6,4 @@
 #include "Main/Unknown/code_020c476c.h"
 
 void UpdateRaceTaPositions(void);
-void DrawRaceTaPositions(Unk020c06c4 *oamBuffer);
+void DrawRaceTaPositions(RaceHudOamBuffer *oamBuffer);

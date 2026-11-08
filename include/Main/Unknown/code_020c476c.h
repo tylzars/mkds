@@ -10,7 +10,7 @@ typedef struct RaceStartGp {
     /* 04 */ Nclr *mRaceStartGpMONclr;
     /* 08 */ Ncgr *mRaceStartGpMONcgr;
     /* 0c */ Unk020224e0_c *mRaceStartGpMNcerEntries[3];
-    /* 18 */ Unk020c06c4 mMainOam;
+    /* 18 */ RaceHudOamBuffer mMainOam;
 } RaceStartGp;
 
 void InitRaceStartGp(void);
@@ -24,6 +24,6 @@ void HideRaceTaKartPositions(s32 kartIndex);
 void DrawRaceStartGp(void);
 u16 UpdateRaceStartGp(void);
 void UploadRaceStartGpOam(void);
-void DrawRaceLinkLevel(Unk020c06c4 *oamBuffer);
+void DrawRaceLinkLevel(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceLinkLevel(void);
 u32 ClearRaceLinkLevelPointer(void);

@@ -97,6 +97,6 @@ void UpdateRaceHudSubScreenBombKouraWCells(void) {
     gRaceHudSubScreenBombKouraWCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenBombKouraWCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenBombKouraWCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCellsScaled(oamBuffer, gRaceHudSubScreenBombKouraWCells, 0);
 }

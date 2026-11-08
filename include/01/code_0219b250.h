@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "code_02012b30.h"
+#include "code_02010c84.h"
 
 // Object at Unk0219b250.mNsbcaAnimation and mNsbtpAnimation (a 0x38-byte allocation).
 typedef struct ModelAnimationView {
@@ -15,14 +16,6 @@ typedef struct ModelAnimationView {
     /* 1c */ s32 **mUnk_1c;
 } ModelAnimationView;
 
-// Object at Unk0219b250.mAnimatedModel (a 0x6c-byte allocation).
-typedef struct Unk0219b250_10 {
-    /* 00 */ u8 mUnk_00[0x4];
-    /* 04 */ NNSG3dResMdl *mResMdl;
-    /* 08 */ u8 mUnk_08[0x24];
-    /* 2c */ struct Unk02188950 *mUnk_2c;
-} Unk0219b250_10;
-
 // Object behind Unk02188950.mNsbmd: the 0x2c-byte allocation made by LoadMapObjectModelAnimated and
 // LoadMapObjectModelShadow.
 typedef struct Unk0219b250 {
@@ -31,7 +24,7 @@ typedef struct Unk0219b250 {
     // Not accessed through this view.
     /* 0c */ void *mNsbmdModel;
     // Overlay view of MapObjectModel.mAnimatedModel.
-    /* 10 */ Unk0219b250_10 *mAnimatedModel;
+    /* 10 */ NNSG3dRenderObj *mAnimatedModel;
     // Overlay view of MapObjectModel.mShadowModel.
     /* 14 */ void *mShadowModel;
     // Overlay view of MapObjectModel.mNsbmdFile.

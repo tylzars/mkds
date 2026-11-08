@@ -57,7 +57,7 @@ void UpdateRaceHudSubScreenRainStarCells(void) {
     gRaceHudSubScreenRainStarCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenRainStarCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenRainStarCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenRainStarCells, 1);
 }
 
@@ -104,7 +104,7 @@ void UpdateRaceHudSubScreenBasabasaCells(void) {
     gRaceHudSubScreenBasabasaCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenBasabasaCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenBasabasaCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenBasabasaCells, 0);
 }
 
@@ -146,7 +146,7 @@ void UpdateRaceHudSubScreenMkdEfBubbleCells(void) {
     gRaceHudSubScreenMkdEfBubbleCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenMkdEfBubbleCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenMkdEfBubbleCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenMkdEfBubbleCells, 0);
 }
 
@@ -182,7 +182,7 @@ void UpdateRaceHudSubScreenBoundCells(void) {
     gRaceHudSubScreenBoundCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenBoundCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenBoundCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCellsScaled(oamBuffer, gRaceHudSubScreenBoundCells, 1);
 }
 
@@ -228,7 +228,7 @@ void UpdateRaceHudSubScreenMkdEfBurnerCells(void) {
     gRaceHudSubScreenMkdEfBurnerCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenMkdEfBurnerCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenMkdEfBurnerCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCellsScaled(oamBuffer, gRaceHudSubScreenMkdEfBurnerCells, 0);
 }
 
@@ -265,7 +265,7 @@ void UpdateRaceHudSubScreenSunFireballCells(void) {
     gRaceHudSubScreenSunFireballCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenSunFireballCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenSunFireballCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenSunFireballCells, 0);
 }
 
@@ -302,7 +302,7 @@ void UpdateRaceHudSubScreenIronBallCells(void) {
     gRaceHudSubScreenIronBallCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenIronBallCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenIronBallCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenIronBallCells, 0);
 }
 
@@ -338,7 +338,7 @@ void UpdateRaceHudSubScreenKuriboCells(void) {
     gRaceHudSubScreenKuriboCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenKuriboCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenKuriboCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenKuriboCells, 0);
 }
 
@@ -378,7 +378,7 @@ void UpdateRaceHudSubScreenObPakkunSfCells(void) {
     gRaceHudSubScreenObPakkunSfCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenObPakkunSfCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenObPakkunSfCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenObPakkunSfCells, 0);
 }
 
@@ -420,7 +420,7 @@ void UpdateRaceHudSubScreenCoverPooHoleCells(void) {
     gRaceHudSubScreenCoverPooHoleCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenCoverPooHoleCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenCoverPooHoleCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenCoverPooHoleCells, 0);
 }
 
@@ -457,7 +457,7 @@ void UpdateRaceHudSubScreenRock2Cells(void) {
     gRaceHudSubScreenRock2Cells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenRock2Cells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenRock2Cells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenRock2Cells, 1);
 }
 
@@ -496,7 +496,7 @@ void UpdateRaceHudSubScreenSanboCells(void) {
     gRaceHudSubScreenSanboCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenSanboCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenSanboCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenSanboCells, 0);
 }
 
@@ -533,7 +533,7 @@ void UpdateRaceHudSubScreenRockCells(void) {
     gRaceHudSubScreenRockCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenRockCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenRockCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenRockCells, 1);
 }
 
@@ -572,7 +572,7 @@ void UpdateRaceHudSubScreenWoodbox1Cells(void) {
     gRaceHudSubScreenWoodbox1Cells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenWoodbox1Cells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenWoodbox1Cells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenWoodbox1Cells, 0);
 }
 
@@ -610,7 +610,7 @@ void UpdateRaceHudSubScreenFlipperCells(void) {
     gRaceHudSubScreenFlipperCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenFlipperCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenFlipperCells(RaceHudOamBuffer *oamBuffer) {
     s32 i;
     s32 c;
     u16 d;
@@ -645,22 +645,22 @@ void DrawRaceHudSubScreenFlipperCells(Unk020c06c4 *oamBuffer) {
                 }
             }
             matrixIndex = AllocOamMatrixIndex(oamBuffer);
-            oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_06 = matrix[0] >> 4;
-            oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_0e = matrix[1] >> 4;
-            oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_16 = matrix[2] >> 4;
-            oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_1e = matrix[3] >> 4;
-            oamIndex = oamBuffer->mUnk_400;
+            oamBuffer->mMatrices[matrixIndex].mUnk_06 = matrix[0] >> 4;
+            oamBuffer->mMatrices[matrixIndex].mUnk_0e = matrix[1] >> 4;
+            oamBuffer->mMatrices[matrixIndex].mUnk_16 = matrix[2] >> 4;
+            oamBuffer->mMatrices[matrixIndex].mUnk_1e = matrix[3] >> 4;
+            oamIndex = oamBuffer->mOamCount;
             cell = &gRaceHudSubScreenFlipperCells->mCells[i];
             drawX = cell->mDrawPos.mUnk_00;
             ncerEntry = cell->mCell;
             drawY = cell->mDrawPos.mUnk_04;
             position[0] = drawX << 12;
             position[1] = drawY << 12;
-            oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex],
-                                                         0x80 - oamIndex, ncerEntry, matrix, position, matrixIndex, 1);
-            for (; oamIndex < oamBuffer->mUnk_400; oamIndex++) {
+            oamBuffer->mOamCount += NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamIndex], 0x80 - oamIndex, ncerEntry,
+                                                          matrix, position, matrixIndex, 1);
+            for (; oamIndex < oamBuffer->mOamCount; oamIndex++) {
                 if (h != -1) {
-                    oamBuffer->mUnk_000.mUnk_00[oamIndex].mUnk_0e = h;
+                    oamBuffer->mOamBits[oamIndex].mUnk_0e = h;
                 }
             }
         }
@@ -699,7 +699,7 @@ void UpdateRaceHudSubScreenNsKiller2Cells(void) {
     gRaceHudSubScreenNsKiller2Cells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenNsKiller2Cells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenNsKiller2Cells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenNsKiller2Cells, 1);
 }
 
@@ -737,6 +737,6 @@ void UpdateRaceHudSubScreenPendulumCells(void) {
     gRaceHudSubScreenPendulumCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenPendulumCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenPendulumCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenPendulumCells, 1);
 }

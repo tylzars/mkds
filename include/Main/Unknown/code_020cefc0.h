@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk020c06c4 Unk020c06c4;
+typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
-void DrawRaceHudSubScreenBombKouraWCells(Unk020c06c4 *oamBuffer);
+void DrawRaceHudSubScreenBombKouraWCells(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceHudSubScreenBombKouraWCells(void);

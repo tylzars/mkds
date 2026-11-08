@@ -132,7 +132,7 @@ void ClearRaceHudSubScreenCells(RaceHudSubScreenCells **cellsPointerAddress) {
     *cellsPointerAddress = NULL;
 }
 
-void DrawRaceHudSubScreenCells(Unk020c06c4 *oamBuffer, RaceHudSubScreenCells *cells, s32 useRotation) {
+void DrawRaceHudSubScreenCells(RaceHudOamBuffer *oamBuffer, RaceHudSubScreenCells *cells, s32 useRotation) {
     s32 i;
     s32 l;
     u16 angle;
@@ -142,7 +142,7 @@ void DrawRaceHudSubScreenCells(Unk020c06c4 *oamBuffer, RaceHudSubScreenCells *ce
     s32 p;
     s32 q;
     s32 oamIndex;
-    Unk020c06c4_08 *oam;
+    RaceHudOamBits *oam;
     RaceHudSubScreenCell *cell;
     s32 screenX;
     s32 screenY;
@@ -164,23 +164,23 @@ void DrawRaceHudSubScreenCells(Unk020c06c4 *oamBuffer, RaceHudSubScreenCells *ce
                     Matrix2x2Rotation(rotationMatrix, (u16) (angle + (0x8000 - cells->mCells[i].mUnk_10)));
                 }
                 matrixIndex = AllocOamMatrixIndex(oamBuffer);
-                oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_06 = rotationMatrix[0] >> 4;
-                oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_0e = rotationMatrix[1] >> 4;
-                oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_16 = rotationMatrix[2] >> 4;
-                oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_1e = rotationMatrix[3] >> 4;
+                oamBuffer->mMatrices[matrixIndex].mUnk_06 = rotationMatrix[0] >> 4;
+                oamBuffer->mMatrices[matrixIndex].mUnk_0e = rotationMatrix[1] >> 4;
+                oamBuffer->mMatrices[matrixIndex].mUnk_16 = rotationMatrix[2] >> 4;
+                oamBuffer->mMatrices[matrixIndex].mUnk_1e = rotationMatrix[3] >> 4;
             }
             cell = &cells->mCells[i];
             screenX = cell->mDrawPos.mUnk_00;
             cellData = cell->mCell;
             screenY = cell->mDrawPos.mUnk_04;
-            oamIndex = oamBuffer->mUnk_400;
+            oamIndex = oamBuffer->mOamCount;
             drawPosition[0] = screenX << 12;
             drawPosition[1] = screenY << 12;
-            oamBuffer->mUnk_400 +=
-                NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex, cellData,
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamIndex], 0x80 - oamIndex, cellData,
                                       useRotation != 0 ? rotationMatrix : 0, drawPosition, matrixIndex, 1);
-            oam = &oamBuffer->mUnk_000.mUnk_00[oamIndex];
-            for (; oamIndex < oamBuffer->mUnk_400; oamIndex++, oam++) {
+            oam = &oamBuffer->mOamBits[oamIndex];
+            for (; oamIndex < oamBuffer->mOamCount; oamIndex++, oam++) {
                 if ((q != 0 ? 1 : -1) != -1) {
                     oam->mUnk_0a = q != 0 ? 1 : -1;
                 }
@@ -192,7 +192,7 @@ void DrawRaceHudSubScreenCells(Unk020c06c4 *oamBuffer, RaceHudSubScreenCells *ce
     }
 }
 
-void DrawRaceHudSubScreenCellsScaled(Unk020c06c4 *oamBuffer, RaceHudSubScreenCells *cells, s32 useRotation) {
+void DrawRaceHudSubScreenCellsScaled(RaceHudOamBuffer *oamBuffer, RaceHudSubScreenCells *cells, s32 useRotation) {
     s32 i;
     s32 l;
     u16 angle;
@@ -202,7 +202,7 @@ void DrawRaceHudSubScreenCellsScaled(Unk020c06c4 *oamBuffer, RaceHudSubScreenCel
     s32 q;
     s32 oamIndex;
     u16 matrixIndex;
-    Unk020c06c4_08 *oam;
+    RaceHudOamBits *oam;
     RaceHudSubScreenCell *cell;
     s32 screenX;
     s32 screenY;
@@ -228,22 +228,21 @@ void DrawRaceHudSubScreenCellsScaled(Unk020c06c4 *oamBuffer, RaceHudSubScreenCel
                 Matrix2x2ReciprocalScale(matrix, cells->mUnk_0c[i].mUnk_00);
             }
             matrixIndex = AllocOamMatrixIndex(oamBuffer);
-            oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_06 = matrix[0] >> 4;
-            oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_0e = matrix[1] >> 4;
-            oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_16 = matrix[2] >> 4;
-            oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_1e = matrix[3] >> 4;
+            oamBuffer->mMatrices[matrixIndex].mUnk_06 = matrix[0] >> 4;
+            oamBuffer->mMatrices[matrixIndex].mUnk_0e = matrix[1] >> 4;
+            oamBuffer->mMatrices[matrixIndex].mUnk_16 = matrix[2] >> 4;
+            oamBuffer->mMatrices[matrixIndex].mUnk_1e = matrix[3] >> 4;
             cell = &cells->mCells[i];
             screenX = cell->mDrawPos.mUnk_00;
             cellData = cell->mCell;
             screenY = cell->mDrawPos.mUnk_04;
-            oamIndex = oamBuffer->mUnk_400;
+            oamIndex = oamBuffer->mOamCount;
             drawPosition[0] = screenX << 12;
             drawPosition[1] = screenY << 12;
-            oamBuffer->mUnk_400 +=
-                NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex, cellData,
-                                      matrix, drawPosition, matrixIndex, 1);
-            oam = &oamBuffer->mUnk_000.mUnk_00[oamIndex];
-            for (; oamIndex < oamBuffer->mUnk_400; oamIndex++, oam++) {
+            oamBuffer->mOamCount += NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamIndex], 0x80 - oamIndex, cellData,
+                                                          matrix, drawPosition, matrixIndex, 1);
+            oam = &oamBuffer->mOamBits[oamIndex];
+            for (; oamIndex < oamBuffer->mOamCount; oamIndex++, oam++) {
                 if ((q != 0 ? 1 : -1) != -1) {
                     oam->mUnk_0a = q != 0 ? 1 : -1;
                 }

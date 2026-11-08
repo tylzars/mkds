@@ -2,76 +2,76 @@
 
 #include "types.h"
 
-typedef struct Unk020c06c4 Unk020c06c4;
+typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
-typedef struct Unk020c06c4 Unk020c06c4;
+typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
-typedef struct Unk020c06c4 Unk020c06c4;
+typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
-typedef struct Unk020c06c4 Unk020c06c4;
+typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
-typedef struct Unk020c06c4 Unk020c06c4;
+typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
-typedef struct Unk020c06c4 Unk020c06c4;
+typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
-typedef struct Unk020c06c4 Unk020c06c4;
+typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
-typedef struct Unk020c06c4 Unk020c06c4;
+typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
-typedef struct Unk020c06c4 Unk020c06c4;
+typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
-typedef struct Unk020c06c4 Unk020c06c4;
+typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
-typedef struct Unk020c06c4 Unk020c06c4;
+typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
 s32 CreateRaceHudSubScreenItemBoxCells(void);
-void DrawRaceHudSubScreenEarthenPipeCells(Unk020c06c4 *oamBuffer);
+void DrawRaceHudSubScreenEarthenPipeCells(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceHudSubScreenEarthenPipeCells(void);
 void ClearRaceHudSubScreenEarthenPipeCells(void);
 s32 CreateRaceHudSubScreenEarthenPipeCells(void);
-void DrawRaceHudSubScreenWanwanCells(Unk020c06c4 *oamBuffer);
+void DrawRaceHudSubScreenWanwanCells(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceHudSubScreenWanwanCells(void);
 void ClearRaceHudSubScreenWanwanCells(void);
 BOOL CreateRaceHudSubScreenWanwanCells(void);
-void DrawRaceHudSubScreenDossunCells(Unk020c06c4 *oamBuffer);
+void DrawRaceHudSubScreenDossunCells(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceHudSubScreenDossunCells(void);
 void ClearRaceHudSubScreenDossunCells(void);
 s32 CreateRaceHudSubScreenDossunCells(void);
-void DrawRaceHudSubScreenSmanCells(Unk020c06c4 *oamBuffer);
+void DrawRaceHudSubScreenSmanCells(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceHudSubScreenSmanCells(void);
 void ClearRaceHudSubScreenSmanCells(void);
 s32 CreateRaceHudSubScreenSmanCells(void);
-void DrawRaceHudSubScreenMoveTreeCells(Unk020c06c4 *oamBuffer);
+void DrawRaceHudSubScreenMoveTreeCells(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceHudSubScreenMoveTreeCells(void);
 void ClearRaceHudSubScreenMoveTreeCells(void);
 s32 CreateRaceHudSubScreenMoveTreeCells(void);
-void DrawRaceHudSubScreenPukupukuCells(Unk020c06c4 *oamBuffer);
+void DrawRaceHudSubScreenPukupukuCells(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceHudSubScreenPukupukuCells(void);
 void ClearRaceHudSubScreenPukupukuCells(void);
 s32 CreateRaceHudSubScreenPukupukuCells(void);
-void DrawRaceHudSubScreenChoropuCells(Unk020c06c4 *oamBuffer);
+void DrawRaceHudSubScreenChoropuCells(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceHudSubScreenChoropuCells(void);
 void ClearRaceHudSubScreenChoropuCells(void);
 s32 CreateRaceHudSubScreenChoropuCells(void);
-void DrawRaceHudSubScreenKoopaBlockCells(Unk020c06c4 *oamBuffer);
+void DrawRaceHudSubScreenKoopaBlockCells(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceHudSubScreenKoopaBlockCells(void);
 void ClearRaceHudSubScreenKoopaBlockCells(void);
 s32 CreateRaceHudSubScreenKoopaBlockCells(void);
-void DrawRaceHudSubScreenCarCells(Unk020c06c4 *oamBuffer);
+void DrawRaceHudSubScreenCarCells(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceHudSubScreenCarCells(void);
 void ClearRaceHudSubScreenCarCells(void);
 BOOL CreateRaceHudSubScreenCarCells(void);
-void DrawRaceHudSubScreenSecondHand(Unk020c06c4 *oamBuffer);
+void DrawRaceHudSubScreenSecondHand(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceHudSubScreenSecondHand(void);
 u32 ClearRaceHudSubScreenSecondHandPointer(void);
 BOOL CreateRaceHudSubScreenSecondHand(void);
-void DrawRaceHudSubScreenKarts(Unk020c06c4 *oamBuffer);
+void DrawRaceHudSubScreenKarts(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceHudSubScreenKarts(void);
 void ClearRaceHudSubScreenKarts(void);
 s32 CreateRaceHudSubScreenKarts(void);
-void DrawRaceHudSubScreenItemCells(Unk020c06c4 *oamBuffer);
+void DrawRaceHudSubScreenItemCells(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceHudSubScreenItemCells(void);
 void ClearRaceHudSubScreenItemCells(void);
 s32 CreateRaceHudSubScreenItemCells(void);
-void DrawRaceHudSubScreenCrabCells(Unk020c06c4 *oamBuffer);
+void DrawRaceHudSubScreenCrabCells(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceHudSubScreenCrabCells(void);

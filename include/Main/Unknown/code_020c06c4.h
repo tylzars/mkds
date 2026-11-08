@@ -1,22 +1,22 @@
 #pragma once
 
 #include "types.h"
+#include "code_02022030.h"
 
 typedef struct RaceHudSubScreenCells RaceHudSubScreenCells;
 
-// 8-byte elements of the first table of Unk020c06c4: two words, each with a two-bit part at bit 10.
-typedef struct Unk020c06c4_08 {
+// Second view of an OAM entry: two words, each with a two-bit part at bit 10.
+typedef struct RaceHudOamBits {
     /* 0 */ u32 mUnk_00 : 10;
     /* 0 */ u32 mUnk_0a : 2;
     /* 0 */ u32 mUnk_0c : 20;
     /* 4 */ u32 mUnk_04 : 10;
     /* 4 */ u32 mUnk_0e : 2;
     /* 4 */ u32 mUnk_10 : 20;
-} Unk020c06c4_08;
+} RaceHudOamBits;
 
-// 0x20-byte elements of the first table of Unk020c06c4 (the same bytes as eight-byte elements): a halfword at each of
-// 0x06, 0x0e, 0x16 and 0x1e.
-typedef struct Unk020c06c4_20 {
+// Rotation matrix view of four OAM entries (0x20 bytes): a halfword at each of 0x06, 0x0e, 0x16 and 0x1e.
+typedef struct RaceHudOamMatrix {
     /* 00 */ u8 mUnk_00[6];
     /* 06 */ s16 mUnk_06;
     /* 08 */ u8 mUnk_08[6];
@@ -25,19 +25,17 @@ typedef struct Unk020c06c4_20 {
     /* 16 */ s16 mUnk_16;
     /* 18 */ u8 mUnk_18[6];
     /* 1e */ s16 mUnk_1e;
-} Unk020c06c4_20;
+} RaceHudOamMatrix;
 
-// The first 0x400 bytes of Unk020c06c4.
-typedef union Unk020c06c4_000 {
-    Unk020c06c4_08 mUnk_00[0x80];
-    Unk020c06c4_20 mUnk_20[0x20];
-} Unk020c06c4_000;
+// Argument of the race HUD draw functions: 0x80 elements of 8 bytes, then a halfword.
+typedef struct RaceHudOamBuffer {
+    union {
+        /* 000 */ GXOamAttr mOams[0x80];
+        /* 000 */ RaceHudOamBits mOamBits[0x80];
+        /* 000 */ RaceHudOamMatrix mMatrices[0x20];
+    };
+    /* 400 */ u16 mOamCount;
+} RaceHudOamBuffer;
 
-// Object of 0x402 bytes: a table of 0x400 bytes and a halfword at 0x400.
-typedef struct Unk020c06c4 {
-    /* 000 */ Unk020c06c4_000 mUnk_000;
-    /* 400 */ u16 mUnk_400;
-} Unk020c06c4;
-
-void DrawRaceHudSubScreenCells(Unk020c06c4 *oamBuffer, RaceHudSubScreenCells *cells, s32 useRotation);
-void DrawRaceHudSubScreenCellsScaled(Unk020c06c4 *oamBuffer, RaceHudSubScreenCells *cells, s32 useRotation);
+void DrawRaceHudSubScreenCells(RaceHudOamBuffer *oamBuffer, RaceHudSubScreenCells *cells, s32 useRotation);
+void DrawRaceHudSubScreenCellsScaled(RaceHudOamBuffer *oamBuffer, RaceHudSubScreenCells *cells, s32 useRotation);

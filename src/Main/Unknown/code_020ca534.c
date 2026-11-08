@@ -41,7 +41,7 @@ void UpdateRaceHudSubScreenShine16Cells(void) {
     gRaceHudSubScreenShine16Cells->mCellCount = n;
 }
 
-void DrawRaceHudSubScreenShine16Cells(Unk020c06c4 *a) {
+void DrawRaceHudSubScreenShine16Cells(RaceHudOamBuffer *a) {
     DrawRaceHudSubScreenCells(a, gRaceHudSubScreenShine16Cells, 0);
 }
 

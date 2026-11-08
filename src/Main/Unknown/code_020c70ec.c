@@ -49,7 +49,7 @@ void UpdateRaceHudSubScreenItemBoxCells(void) {
     gRaceHudSubScreenItemBoxCells->mCellCount = n;
 }
 
-void DrawRaceHudSubScreenItemBoxCells(Unk020c06c4 *a) {
+void DrawRaceHudSubScreenItemBoxCells(RaceHudOamBuffer *a) {
     DrawRaceHudSubScreenCells(a, gRaceHudSubScreenItemBoxCells, 0);
 }
 

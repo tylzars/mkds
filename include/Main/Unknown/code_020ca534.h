@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-typedef struct Unk020c06c4 Unk020c06c4;
+typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
 void UpdateRaceHudSubScreenShine16Cells(void);
-void DrawRaceHudSubScreenShine16Cells(Unk020c06c4 *a);
+void DrawRaceHudSubScreenShine16Cells(RaceHudOamBuffer *a);
 s32 CreateRaceHudSubScreenCrabCells(void);

@@ -351,6 +351,6 @@ void UpdateRaceHudSubScreenCreamCells(void) {
     gRaceHudSubScreenCreamCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenCreamCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenCreamCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCellsScaled(oamBuffer, gRaceHudSubScreenCreamCells, 1);
 }

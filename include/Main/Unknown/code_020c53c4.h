@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk020c06c4 Unk020c06c4;
+typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
 // Object behind gRaceGoalM, 0x1c bytes allocated by InitRaceGoalM.
 typedef struct RaceGoalM {
@@ -17,7 +17,7 @@ typedef struct RaceGoalM {
 } RaceGoalM;
 
 void InitRaceLinkLevel(void);
-void DrawRaceGoalMMissionRun(Unk020c06c4 *oamBuffer);
-void DrawRaceGoalMGrandPrix(Unk020c06c4 *oamBuffer);
-void DrawRaceGoalM(Unk020c06c4 *oamBuffer);
+void DrawRaceGoalMMissionRun(RaceHudOamBuffer *oamBuffer);
+void DrawRaceGoalMGrandPrix(RaceHudOamBuffer *oamBuffer);
+void DrawRaceGoalM(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceGoalM(void);

@@ -73,7 +73,7 @@ void UpdateRaceHudSubScreenCrabCells(void) {
     gRaceHudSubScreenCrabCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenCrabCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenCrabCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenCrabCells, 0);
 }
 
@@ -177,7 +177,7 @@ void UpdateRaceHudSubScreenItemCells(void) {
     gRaceHudSubScreenItemCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenItemCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenItemCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenItemCells, 0);
 }
 
@@ -365,18 +365,18 @@ void UpdateRaceHudSubScreenKarts(void) {
     SortIndicesByKey(gRaceHudSubScreenKarts->mUnk_130, sortKeys, gRaceSetup->mKartCount);
 }
 
-static inline void func_020c8dbc_inline(Unk020c06c4 *oamBuffer, Unk020224e0_c *cell, s32 *matrix, s32 x, s32 y, u16 v,
-                                        s32 s, s32 g) {
+static inline void func_020c8dbc_inline(RaceHudOamBuffer *oamBuffer, Unk020224e0_c *cell, s32 *matrix, s32 x, s32 y,
+                                        u16 v, s32 s, s32 g) {
     s32 position[2];
     s32 oamIndex;
-    Unk020c06c4_08 *oam;
+    RaceHudOamBits *oam;
 
-    oamIndex = oamBuffer->mUnk_400;
+    oamIndex = oamBuffer->mOamCount;
     position[0] = x << 12;
     position[1] = y << 12;
-    oam = &oamBuffer->mUnk_000.mUnk_00[oamIndex];
-    oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) oam, 0x80 - oamIndex, cell, matrix, position, v, 1);
-    for (; oamIndex < oamBuffer->mUnk_400; oamIndex++) {
+    oam = &oamBuffer->mOamBits[oamIndex];
+    oamBuffer->mOamCount += NNS_G2dMakeCellToOams((GXOamAttr *) oam, 0x80 - oamIndex, cell, matrix, position, v, 1);
+    for (; oamIndex < oamBuffer->mOamCount; oamIndex++) {
         if (s != -1) {
             oam->mUnk_0a = s;
         }
@@ -387,18 +387,18 @@ static inline void func_020c8dbc_inline(Unk020c06c4 *oamBuffer, Unk020224e0_c *c
     }
 }
 
-static inline void func_020c8dbc_inline2(Unk020c06c4 *oamBuffer, Unk020224e0_c *cell, s32 x, s32 y) {
+static inline void func_020c8dbc_inline2(RaceHudOamBuffer *oamBuffer, Unk020224e0_c *cell, s32 x, s32 y) {
     s32 position[2];
     s32 oamIndex;
 
     position[0] = x << 12;
     position[1] = y << 12;
-    oamIndex = oamBuffer->mUnk_400;
-    oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex,
-                                                 cell, NULL, position, 0, 1);
+    oamIndex = oamBuffer->mOamCount;
+    oamBuffer->mOamCount +=
+        NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamIndex], 0x80 - oamIndex, cell, NULL, position, 0, 1);
 }
 
-static inline void func_020c8dbc_inline3(Unk020c06c4 *oamBuffer, s32 kartIndex, s32 frame) {
+static inline void func_020c8dbc_inline3(RaceHudOamBuffer *oamBuffer, s32 kartIndex, s32 frame) {
     s32 j;
     s32 angleIndex;
     s32 offsetX;
@@ -415,7 +415,7 @@ static inline void func_020c8dbc_inline3(Unk020c06c4 *oamBuffer, s32 kartIndex, 
     }
 }
 
-void DrawRaceHudSubScreenKarts(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenKarts(RaceHudOamBuffer *oamBuffer) {
     s32 kartIndex;
     s32 f;
     Unk020224e0_c *cell;
@@ -452,10 +452,10 @@ void DrawRaceHudSubScreenKarts(Unk020c06c4 *oamBuffer) {
                             func_020c8dbc_inline(
                                 oamBuffer, cell, rotationMatrix, gRaceHudSubScreenKarts->mUnk_060[kartIndex].mUnk_00,
                                 gRaceHudSubScreenKarts->mUnk_060[kartIndex].mUnk_04, rotationSlot, f != 0 ? 1 : -1, -1);
-                            oamBuffer->mUnk_000.mUnk_20[rotationSlot].mUnk_06 = rotationMatrix[0] >> 4;
-                            oamBuffer->mUnk_000.mUnk_20[rotationSlot].mUnk_0e = rotationMatrix[1] >> 4;
-                            oamBuffer->mUnk_000.mUnk_20[rotationSlot].mUnk_16 = rotationMatrix[2] >> 4;
-                            oamBuffer->mUnk_000.mUnk_20[rotationSlot].mUnk_1e = rotationMatrix[3] >> 4;
+                            oamBuffer->mMatrices[rotationSlot].mUnk_06 = rotationMatrix[0] >> 4;
+                            oamBuffer->mMatrices[rotationSlot].mUnk_0e = rotationMatrix[1] >> 4;
+                            oamBuffer->mMatrices[rotationSlot].mUnk_16 = rotationMatrix[2] >> 4;
+                            oamBuffer->mMatrices[rotationSlot].mUnk_1e = rotationMatrix[3] >> 4;
                         } else {
                             if (GetKartItemEffect((u16) kartIndex) == 3) {
                                 cell = GetRaceSNcerEntry(0x10);
@@ -501,10 +501,10 @@ void DrawRaceHudSubScreenKarts(Unk020c06c4 *oamBuffer) {
                                 cell = GetRaceSNcerEntry(kartIndex);
                             }
                             func_020c8dbc_inline(oamBuffer, cell, r1, screenX, screenY, n, b != 0 ? 1 : -1, g);
-                            oamBuffer->mUnk_000.mUnk_20[n].mUnk_06 = r1[0] >> 4;
-                            oamBuffer->mUnk_000.mUnk_20[n].mUnk_0e = r1[1] >> 4;
-                            oamBuffer->mUnk_000.mUnk_20[n].mUnk_16 = r1[2] >> 4;
-                            oamBuffer->mUnk_000.mUnk_20[n].mUnk_1e = r1[3] >> 4;
+                            oamBuffer->mMatrices[n].mUnk_06 = r1[0] >> 4;
+                            oamBuffer->mMatrices[n].mUnk_0e = r1[1] >> 4;
+                            oamBuffer->mMatrices[n].mUnk_16 = r1[2] >> 4;
+                            oamBuffer->mMatrices[n].mUnk_1e = r1[3] >> 4;
                         } else {
                             if (GetKartItemEffect((u16) kartIndex) == 3) {
                                 cell = GetRaceSNcerEntry(0x10);
@@ -581,7 +581,7 @@ void UpdateRaceHudSubScreenSecondHand(void) {
     }
 }
 
-void DrawRaceHudSubScreenSecondHand(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenSecondHand(RaceHudOamBuffer *oamBuffer) {
     Unk020224e0_c *cell;
     s32 rotationMatrix[4];
     u32 a;
@@ -640,9 +640,9 @@ void DrawRaceHudSubScreenSecondHand(Unk020c06c4 *oamBuffer) {
             cell = GetRaceSNcerEntry(156);
             endPosition0[0] = screenX0 << 12;
             endPosition0[1] = screenY0 << 12;
-            oamBuffer->mUnk_400 +=
-                NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamBuffer->mUnk_400],
-                                      0x80 - oamBuffer->mUnk_400, cell, rotationMatrix, endPosition0, rotationSlot0, 1);
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell,
+                                      rotationMatrix, endPosition0, rotationSlot0, 1);
         }
         trailDeltaX0 =
             gRaceHudSubScreenSecondHand->mDrawPositions[0].mUnk_00 - gRaceHudSubScreenSecondHand->mUnk_2c[0].mUnk_00;
@@ -655,9 +655,9 @@ void DrawRaceHudSubScreenSecondHand(Unk020c06c4 *oamBuffer) {
                 cell = GetRaceSNcerEntry(155);
                 middlePosition0[0] = screenX0 << 12;
                 middlePosition0[1] = screenY0 << 12;
-                oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams(
-                    (GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamBuffer->mUnk_400], 0x80 - oamBuffer->mUnk_400, cell,
-                    rotationMatrix, middlePosition0, rotationSlot0, 1);
+                oamBuffer->mOamCount +=
+                    NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell,
+                                          rotationMatrix, middlePosition0, rotationSlot0, 1);
             }
             trailSumX0 += trailDeltaX0;
             trailSumY0 += trailDeltaY0;
@@ -668,14 +668,14 @@ void DrawRaceHudSubScreenSecondHand(Unk020c06c4 *oamBuffer) {
             cell = GetRaceSNcerEntry(154);
             drawPosition0[0] = screenX0 << 12;
             drawPosition0[1] = screenY0 << 12;
-            oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams(
-                (GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamBuffer->mUnk_400], 0x80 - oamBuffer->mUnk_400, cell,
-                rotationMatrix, drawPosition0, rotationSlot0, 1);
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell,
+                                      rotationMatrix, drawPosition0, rotationSlot0, 1);
         }
-        oamBuffer->mUnk_000.mUnk_20[rotationSlot0].mUnk_06 = rotationMatrix[0] >> 4;
-        oamBuffer->mUnk_000.mUnk_20[rotationSlot0].mUnk_0e = rotationMatrix[1] >> 4;
-        oamBuffer->mUnk_000.mUnk_20[rotationSlot0].mUnk_16 = rotationMatrix[2] >> 4;
-        oamBuffer->mUnk_000.mUnk_20[rotationSlot0].mUnk_1e = rotationMatrix[3] >> 4;
+        oamBuffer->mMatrices[rotationSlot0].mUnk_06 = rotationMatrix[0] >> 4;
+        oamBuffer->mMatrices[rotationSlot0].mUnk_0e = rotationMatrix[1] >> 4;
+        oamBuffer->mMatrices[rotationSlot0].mUnk_16 = rotationMatrix[2] >> 4;
+        oamBuffer->mMatrices[rotationSlot0].mUnk_1e = rotationMatrix[3] >> 4;
     }
     if (gRaceHudSubScreenSecondHand->mObjectCount == 3 && a == 0) {
         if (gRaceSetup->mMirrorMode != 0) {
@@ -691,9 +691,9 @@ void DrawRaceHudSubScreenSecondHand(Unk020c06c4 *oamBuffer) {
             cell = GetRaceSNcerEntry(156);
             endPosition2[0] = screenX2 << 12;
             endPosition2[1] = screenY2 << 12;
-            oamBuffer->mUnk_400 +=
-                NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamBuffer->mUnk_400],
-                                      0x80 - oamBuffer->mUnk_400, cell, rotationMatrix, endPosition2, rotationSlot2, 1);
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell,
+                                      rotationMatrix, endPosition2, rotationSlot2, 1);
         }
         trailDeltaX2 =
             gRaceHudSubScreenSecondHand->mDrawPositions[2].mUnk_00 - gRaceHudSubScreenSecondHand->mUnk_2c[2].mUnk_00;
@@ -706,9 +706,9 @@ void DrawRaceHudSubScreenSecondHand(Unk020c06c4 *oamBuffer) {
                 cell = GetRaceSNcerEntry(155);
                 middlePosition2[0] = screenX2 << 12;
                 middlePosition2[1] = screenY2 << 12;
-                oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams(
-                    (GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamBuffer->mUnk_400], 0x80 - oamBuffer->mUnk_400, cell,
-                    rotationMatrix, middlePosition2, rotationSlot2, 1);
+                oamBuffer->mOamCount +=
+                    NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell,
+                                          rotationMatrix, middlePosition2, rotationSlot2, 1);
             }
             trailSumX2 += trailDeltaX2;
             trailSumY2 += trailDeltaY2;
@@ -719,14 +719,14 @@ void DrawRaceHudSubScreenSecondHand(Unk020c06c4 *oamBuffer) {
             cell = GetRaceSNcerEntry(154);
             drawPosition2[0] = screenX2 << 12;
             drawPosition2[1] = screenY2 << 12;
-            oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams(
-                (GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamBuffer->mUnk_400], 0x80 - oamBuffer->mUnk_400, cell,
-                rotationMatrix, drawPosition2, rotationSlot2, 1);
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell,
+                                      rotationMatrix, drawPosition2, rotationSlot2, 1);
         }
-        oamBuffer->mUnk_000.mUnk_20[rotationSlot2].mUnk_06 = rotationMatrix[0] >> 4;
-        oamBuffer->mUnk_000.mUnk_20[rotationSlot2].mUnk_0e = rotationMatrix[1] >> 4;
-        oamBuffer->mUnk_000.mUnk_20[rotationSlot2].mUnk_16 = rotationMatrix[2] >> 4;
-        oamBuffer->mUnk_000.mUnk_20[rotationSlot2].mUnk_1e = rotationMatrix[3] >> 4;
+        oamBuffer->mMatrices[rotationSlot2].mUnk_06 = rotationMatrix[0] >> 4;
+        oamBuffer->mMatrices[rotationSlot2].mUnk_0e = rotationMatrix[1] >> 4;
+        oamBuffer->mMatrices[rotationSlot2].mUnk_16 = rotationMatrix[2] >> 4;
+        oamBuffer->mMatrices[rotationSlot2].mUnk_1e = rotationMatrix[3] >> 4;
     }
     if (gRaceSetup->mMirrorMode != 0) {
         angle1 = gRaceHudSubScreenSecondHand->mAngles[1] - GetSubScreenAngleAndClearScrollTimer();
@@ -741,9 +741,9 @@ void DrawRaceHudSubScreenSecondHand(Unk020c06c4 *oamBuffer) {
         cell = GetRaceSNcerEntry(159);
         endPosition1[0] = screenX1 << 12;
         endPosition1[1] = screenY1 << 12;
-        oamBuffer->mUnk_400 +=
-            NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamBuffer->mUnk_400],
-                                  0x80 - oamBuffer->mUnk_400, cell, rotationMatrix, endPosition1, rotationSlot1, 1);
+        oamBuffer->mOamCount +=
+            NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell,
+                                  rotationMatrix, endPosition1, rotationSlot1, 1);
     }
     trailDeltaX1 =
         gRaceHudSubScreenSecondHand->mDrawPositions[1].mUnk_00 - gRaceHudSubScreenSecondHand->mUnk_2c[1].mUnk_00;
@@ -756,9 +756,9 @@ void DrawRaceHudSubScreenSecondHand(Unk020c06c4 *oamBuffer) {
             cell = GetRaceSNcerEntry(158);
             middlePosition1[0] = screenX1 << 12;
             middlePosition1[1] = screenY1 << 12;
-            oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams(
-                (GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamBuffer->mUnk_400], 0x80 - oamBuffer->mUnk_400, cell,
-                rotationMatrix, middlePosition1, rotationSlot1, 1);
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell,
+                                      rotationMatrix, middlePosition1, rotationSlot1, 1);
         }
         trailSumX1 += trailDeltaX1;
         trailSumY1 += trailDeltaY1;
@@ -769,14 +769,14 @@ void DrawRaceHudSubScreenSecondHand(Unk020c06c4 *oamBuffer) {
         cell = GetRaceSNcerEntry(157);
         drawPosition1[0] = screenX1 << 12;
         drawPosition1[1] = screenY1 << 12;
-        oamBuffer->mUnk_400 +=
-            NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamBuffer->mUnk_400],
-                                  0x80 - oamBuffer->mUnk_400, cell, rotationMatrix, drawPosition1, rotationSlot1, 1);
+        oamBuffer->mOamCount +=
+            NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell,
+                                  rotationMatrix, drawPosition1, rotationSlot1, 1);
     }
-    oamBuffer->mUnk_000.mUnk_20[rotationSlot1].mUnk_06 = rotationMatrix[0] >> 4;
-    oamBuffer->mUnk_000.mUnk_20[rotationSlot1].mUnk_0e = rotationMatrix[1] >> 4;
-    oamBuffer->mUnk_000.mUnk_20[rotationSlot1].mUnk_16 = rotationMatrix[2] >> 4;
-    oamBuffer->mUnk_000.mUnk_20[rotationSlot1].mUnk_1e = rotationMatrix[3] >> 4;
+    oamBuffer->mMatrices[rotationSlot1].mUnk_06 = rotationMatrix[0] >> 4;
+    oamBuffer->mMatrices[rotationSlot1].mUnk_0e = rotationMatrix[1] >> 4;
+    oamBuffer->mMatrices[rotationSlot1].mUnk_16 = rotationMatrix[2] >> 4;
+    oamBuffer->mMatrices[rotationSlot1].mUnk_1e = rotationMatrix[3] >> 4;
 }
 
 BOOL CreateRaceHudSubScreenCarCells(void) {
@@ -835,7 +835,7 @@ void UpdateRaceHudSubScreenCarCells(void) {
     gRaceHudSubScreenCarCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenCarCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenCarCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenCarCells, 1);
 }
 
@@ -866,7 +866,7 @@ void UpdateRaceHudSubScreenKoopaBlockCells(void) {
     gRaceHudSubScreenKoopaBlockCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenKoopaBlockCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenKoopaBlockCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenKoopaBlockCells, 0);
 }
 
@@ -916,7 +916,7 @@ void UpdateRaceHudSubScreenChoropuCells(void) {
     gRaceHudSubScreenChoropuCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenChoropuCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenChoropuCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenChoropuCells, 0);
 }
 
@@ -952,7 +952,7 @@ void UpdateRaceHudSubScreenPukupukuCells(void) {
     gRaceHudSubScreenPukupukuCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenPukupukuCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenPukupukuCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenPukupukuCells, 0);
 }
 
@@ -983,7 +983,7 @@ void UpdateRaceHudSubScreenMoveTreeCells(void) {
     gRaceHudSubScreenMoveTreeCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenMoveTreeCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenMoveTreeCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenMoveTreeCells, 0);
 }
 
@@ -1019,7 +1019,7 @@ void UpdateRaceHudSubScreenSmanCells(void) {
     gRaceHudSubScreenSmanCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenSmanCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenSmanCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenSmanCells, 0);
 }
 
@@ -1060,7 +1060,7 @@ void UpdateRaceHudSubScreenDossunCells(void) {
     gRaceHudSubScreenDossunCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenDossunCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenDossunCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenDossunCells, 0);
 }
 
@@ -1101,7 +1101,7 @@ void UpdateRaceHudSubScreenWanwanCells(void) {
     gRaceHudSubScreenWanwanCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenWanwanCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenWanwanCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenWanwanCells, 0);
 }
 
@@ -1140,7 +1140,7 @@ void UpdateRaceHudSubScreenEarthenPipeCells(void) {
     gRaceHudSubScreenEarthenPipeCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenEarthenPipeCells(Unk020c06c4 *oamBuffer) {
+void DrawRaceHudSubScreenEarthenPipeCells(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenEarthenPipeCells, 0);
 }
 

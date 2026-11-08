@@ -64,13 +64,13 @@ void func_020ae824(void) {
         DrawRaceLapAndTimeDifference((RaceHudOamBuffer *) gRaceHud->mMainOam);
         DrawRaceMNumberPair((RaceHudOamBuffer *) gRaceHud->mMainOam);
         DrawRaceGoalTimes((RaceHudOamBuffer *) gRaceHud->mMainOam);
-        DrawRaceLinkLevel((Unk020c06c4 *) gRaceHud->mMainOam);
+        DrawRaceLinkLevel((RaceHudOamBuffer *) gRaceHud->mMainOam);
         DrawRaceModeCount((RaceHudOamBuffer *) gRaceHud->mMainOam);
-        DrawRaceGoalM((Unk020c06c4 *) gRaceHud->mMainOam);
+        DrawRaceGoalM((RaceHudOamBuffer *) gRaceHud->mMainOam);
     } else {
         DrawRaceGoalTimes((RaceHudOamBuffer *) gRaceHud->mMainOam);
-        DrawRaceLinkLevel((Unk020c06c4 *) gRaceHud->mMainOam);
-        DrawRaceGoalM((Unk020c06c4 *) gRaceHud->mMainOam);
+        DrawRaceLinkLevel((RaceHudOamBuffer *) gRaceHud->mMainOam);
+        DrawRaceGoalM((RaceHudOamBuffer *) gRaceHud->mMainOam);
     }
     DC_FlushRange(gRaceHud->mMainOam, 0x400);
     MI_DmaFill32(3, gRaceHud->mMainOam + gRaceHud->mMainOamCount * 8, 0xc0, (0x80 - gRaceHud->mMainOamCount) << 3);
@@ -91,14 +91,14 @@ void func_020ae824(void) {
         case 2:
         case 3:
             DrawRaceHudSubScreenCellGroups(gRaceHud->mSubOam);
-            DrawRaceTaPositions((Unk020c06c4 *) gRaceHud->mSubOam);
+            DrawRaceTaPositions((RaceHudOamBuffer *) gRaceHud->mSubOam);
             break;
         case 4:
         case 5:
-            DrawRaceGoalS((Unk020c06c4 *) gRaceHud->mSubOam);
+            DrawRaceGoalS((RaceHudOamBuffer *) gRaceHud->mSubOam);
             break;
         case 6:
-            DrawRaceNewRecordTa((Unk020c06c4 *) gRaceHud->mSubOam);
+            DrawRaceNewRecordTa((RaceHudOamBuffer *) gRaceHud->mSubOam);
             break;
     }
 }

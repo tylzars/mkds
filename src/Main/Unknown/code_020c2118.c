@@ -1,7 +1,7 @@
 #include "Main/Unknown/code_020c2118.h"
 #include "Main/Unknown/code_020c214c.h"
 
-void DrawRaceGoalS(Unk020c06c4 *oamBuffer) {
+void DrawRaceGoalS(RaceHudOamBuffer *oamBuffer) {
     int state;
     state = GetRaceHudSubScreenState();
     if (state != 5) {

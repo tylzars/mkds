@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk020c06c4 Unk020c06c4;
+typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
-void func_020ced10(Unk020c06c4 *oamBuffer);
+void func_020ced10(RaceHudOamBuffer *oamBuffer);
 void func_020ced2c(void);

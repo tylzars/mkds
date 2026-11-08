@@ -47,6 +47,6 @@ void func_020ced2c(void) {
     data_0217b484->mCellCount = cellCount;
 }
 
-void func_020ced10(Unk020c06c4 *oamBuffer) {
+void func_020ced10(RaceHudOamBuffer *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, data_0217b484, 0);
 }

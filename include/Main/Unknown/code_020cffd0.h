@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk020c06c4 Unk020c06c4;
+#include "Main/Unknown/code_020c06c4.h"
 
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_02022030.h"
@@ -17,13 +17,7 @@ typedef struct RaceGoalTimes {
     /* ac */ s32 mCellIndexAdd;
 } RaceGoalTimes;
 
-// Argument of DrawRaceGoalTimeDigits and DrawRaceGoalTimes: 0x80 elements of 8 bytes, then a halfword.
-typedef struct RaceHudOamBuffer {
-    /* 000 */ GXOamAttr mOams[0x80];
-    /* 400 */ u16 mOamCount;
-} RaceHudOamBuffer;
-
-void DrawRaceHudSubScreenCreamCells(Unk020c06c4 *oamBuffer);
+void DrawRaceHudSubScreenCreamCells(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceHudSubScreenCreamCells(void);
 s32 CreateRaceHudSubScreenCreamCells(void);
 void DrawRaceHudSubScreenBerryCells(void *oamBuffer);
