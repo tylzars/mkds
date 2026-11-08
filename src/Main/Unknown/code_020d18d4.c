@@ -23,7 +23,7 @@ void DrawRaceMNumberPair(RaceHudOamBuffer *param_1) {
     if (a >= 0xb4) {
         return;
     }
-    if (gRaceSetup->mMode != 5 && (gRaceSetup->mMode != MODE_VS || gRaceSetup->mUnk_1c != 2)) {
+    if (gRaceSetup->mMode != 5 && (gRaceSetup->mMode != MODE_VS || gRaceSetup->mRuleKind != 2)) {
         return;
     }
     func_020d1de8(param_1, a);

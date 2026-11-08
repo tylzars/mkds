@@ -9,10 +9,10 @@
 void UpdateVsSelectCupM(void) {
     switch (AdvanceSelectCupM()) {
         case 1:
-            func_020ccc74(0xd, 0x1f);
+            SwitchMenuScreen(0xd, 0x1f);
             break;
         case 2:
-            func_020ccc74(0xb, 0x1f);
+            SwitchMenuScreen(0xb, 0x1f);
             break;
     }
 }

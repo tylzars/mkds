@@ -57,10 +57,10 @@ void func_ov001_021856ec(void) {
 void func_ov001_021856c0(void) {
     switch (AdvanceSelectGhost()) {
         case 1:
-            func_020ccc74(29, 0x1f);
+            SwitchMenuScreen(29, 0x1f);
             break;
         case 2:
-            func_020ccc74(25, 0x1f);
+            SwitchMenuScreen(25, 0x1f);
             break;
     }
 }
@@ -90,10 +90,10 @@ void func_ov001_02185658(void) {
 void func_ov001_0218562c(void) {
     switch (AdvanceSelectCupM()) {
         case 1:
-            func_020ccc74(25, 0x1f);
+            SwitchMenuScreen(25, 0x1f);
             break;
         case 2:
-            func_020ccc74(23, 0x1f);
+            SwitchMenuScreen(23, 0x1f);
             break;
     }
 }
@@ -111,10 +111,10 @@ void func_ov001_021855f8(void) {
 void func_ov001_021855cc(void) {
     switch (AdvanceSelectEngine()) {
         case 1:
-            func_020ccc74(5, 0x1f);
+            SwitchMenuScreen(5, 0x1f);
             break;
         case 2:
-            func_020ccc74(0, 0x1f);
+            SwitchMenuScreen(0, 0x1f);
             break;
     }
 }
@@ -132,10 +132,10 @@ void func_ov001_02185598(void) {
 void func_ov001_0218556c(void) {
     switch (AdvanceSelectCharacter()) {
         case 1:
-            func_020ccc74(6, 0x1f);
+            SwitchMenuScreen(6, 0x1f);
             break;
         case 2:
-            func_020ccc74(SCREEN_SELECT_ENGINE, 0x1f);
+            SwitchMenuScreen(SCREEN_SELECT_ENGINE, 0x1f);
             break;
     }
 }
@@ -153,10 +153,10 @@ void func_ov001_02185538(void) {
 void func_ov001_0218550c(void) {
     switch (AdvanceSelectKart()) {
         case 1:
-            func_020ccc74(7, 0x1f);
+            SwitchMenuScreen(7, 0x1f);
             break;
         case 2:
-            func_020ccc74(5, 0x1f);
+            SwitchMenuScreen(5, 0x1f);
             break;
     }
 }

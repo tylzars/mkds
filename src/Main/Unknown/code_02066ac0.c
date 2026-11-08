@@ -325,7 +325,7 @@ void func_02066fe0(Kart *a) {
                         a->mUnk_7c = a->mUnk_7c | 8;
                     }
                 }
-            } else if (p->mUnk_1c == 1 && gRaceProgress->mUnk_000[a->mIndex].mStatus != 1) {
+            } else if (p->mRuleKind == 1 && gRaceProgress->mUnk_000[a->mIndex].mStatus != 1) {
                 a->mUnk_7c = a->mUnk_7c | 0x200000;
             } else if (p->mMode == MODE_MISSION_RUN) {
                 a->mUnk_7c = a->mUnk_7c | 0x200000;
@@ -363,7 +363,7 @@ void func_02066fe0(Kart *a) {
         SetRaceUpdateFramesAtEntryEnd();
         p = gRaceSetup;
         if (p->mMode != MODE_GRAND_PRIX && p->mMode != MODE_TIME_ATTACK &&
-            ((p->mUnk_1c == 1 && gRaceProgress->mUnk_000[a->mIndex].mStatus != 1) ||
+            ((p->mRuleKind == 1 && gRaceProgress->mUnk_000[a->mIndex].mStatus != 1) ||
              ((i = p->mKartCount) > 1 && (c = GetKartRank(a->mIndex), c == i)))) {
             DisableEntryCameraUpdate();
         } else {

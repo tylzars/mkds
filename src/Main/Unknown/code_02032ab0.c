@@ -156,7 +156,7 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
     if (gRaceSetup->mUseTeams != 0) {
         j = 0;
         k = 0;
-        switch (gRaceSetup->mUnk_1c) {
+        switch (gRaceSetup->mRuleKind) {
             case 1:
                 j = func_02032f94_inline_2(0)->mUnk_02;
                 k = func_02032f94_inline_2(1)->mUnk_02;

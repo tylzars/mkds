@@ -178,25 +178,25 @@ void InitMenu(void) {
     func_0212abdc(func_020cb99c(), data_0217b43c->mMainOam);
     switch (func_020cc120()) {
         case 0:
-            func_020ccc74(0, 0x1f);
+            SwitchMenuScreen(0, 0x1f);
             func_020cc10c(1);
             break;
         case 1:
             CopyCurrentToRaceSetupCopy();
             switch (GetRaceSetupCopy()->mMode) {
                 case 0:
-                    func_020ccc74(5, 0x1f);
+                    SwitchMenuScreen(5, 0x1f);
                     func_020cbabc(0);
                     func_020cc10c(1);
                     break;
                 case 3:
-                    func_020ccc74(8, 0x1f);
+                    SwitchMenuScreen(8, 0x1f);
                     break;
                 case 2:
-                    func_020ccc74(0xf, 0x1f);
+                    SwitchMenuScreen(0xf, 0x1f);
                     break;
                 case 1:
-                    func_020ccc74(0x15, 0x1f);
+                    SwitchMenuScreen(0x15, 0x1f);
                     func_020cbabc(0);
                     func_020cc10c(1);
                     break;
@@ -206,13 +206,13 @@ void InitMenu(void) {
             CopyCurrentToRaceSetupCopy();
             switch (GetRaceSetupCopy()->mMode) {
                 case 3:
-                    func_020ccc74(0xb, 0x1f);
+                    SwitchMenuScreen(0xb, 0x1f);
                     break;
                 case 2:
-                    func_020ccc74(SCREEN_SELECT_BATTLE_STAGE, 0x1f);
+                    SwitchMenuScreen(SCREEN_SELECT_BATTLE_STAGE, 0x1f);
                     break;
                 case 1:
-                    func_020ccc74(0x17, 0x1f);
+                    SwitchMenuScreen(0x17, 0x1f);
                     func_020cbabc(0);
                     func_020cc10c(1);
                     break;
@@ -221,20 +221,20 @@ void InitMenu(void) {
         case 3:
             CopyCurrentToRaceSetupCopy();
             if (func_020cc0f8() != 0 || func_020cc0e4() != 0) {
-                func_020ccc74(SCREEN_MISSION_RUN_LVSEL, 0x1f);
+                SwitchMenuScreen(SCREEN_MISSION_RUN_LVSEL, 0x1f);
             } else {
-                func_020ccc74(SCREEN_MISSION_RUN_MSSEL, 0x1f);
+                SwitchMenuScreen(SCREEN_MISSION_RUN_MSSEL, 0x1f);
             }
             func_020cbabc(0);
             func_020cc10c(1);
             break;
         case 4:
-            func_020ccc74(0xe, 0x1f);
+            SwitchMenuScreen(0xe, 0x1f);
             break;
         case 5:
             CopyCurrentToRaceSetupCopy();
             GetRaceSetupCopy()->mMode = 1;
-            func_020ccc74(SCREEN_TIME_ATTACK_TOP_MENU, 0x1f);
+            SwitchMenuScreen(SCREEN_TIME_ATTACK_TOP_MENU, 0x1f);
             func_020cbabc(0);
             func_020cc10c(1);
             break;

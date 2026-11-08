@@ -9,10 +9,10 @@ void UpdateBattleSelectCharacter(void) {
     switch (AdvanceSelectCharacter()) {
         case 1:
         case 3:
-            func_020ccc74(0x10, 0x1f);
+            SwitchMenuScreen(0x10, 0x1f);
             break;
         case 2:
-            func_020ccc74(0xe, 0x1f);
+            SwitchMenuScreen(0xe, 0x1f);
             break;
     }
 }

@@ -31,7 +31,7 @@ void UpdateSinglePlaySelectMenuScreen2(void) {
         for (i = 0; i <= 14; i++) {
             subCells[i].mUnk_04 = 0xf0;
         }
-        func_020ccc74(GetNextMenuScreenNumber(), 0x1f);
+        SwitchMenuScreen(GetNextMenuScreenNumber(), 0x1f);
     }
     DrawSinglePlaySelectCells();
 }

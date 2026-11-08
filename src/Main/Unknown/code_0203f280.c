@@ -2,7 +2,7 @@
 #include "Main/Unknown/code_020f36d8.h"
 
 u32 func_0203f2a0(void) {
-    return (gRaceSetup->mUnk_1c);
+    return (gRaceSetup->mRuleKind);
 }
 
 u16 GetLeadingKart(void) {

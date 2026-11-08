@@ -41,7 +41,7 @@ void func_020c1060(void) {
     x3 = 0;
     {
         for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-            if (gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE) {
+            if (gRaceSetup->mRuleKind == 1 || gRaceSetup->mMode == MODE_BATTLE) {
                 v = x0;
                 if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind <= 3 &&
                     ((1 << gRaceSetup->mCurrentEntries[i].mPlayer.mKind) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER)) {
@@ -149,7 +149,7 @@ void func_020c0dd8(void) {
     s32 a;
     s32 b;
 
-    if (gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mRuleKind == 1 || gRaceSetup->mMode == MODE_BATTLE) {
         if (gRaceSetup->mUseTeams != 0) {
             a = func_020c0dd8_inline(0)->mUnk_02;
             b = func_020c0dd8_inline(1)->mUnk_02;

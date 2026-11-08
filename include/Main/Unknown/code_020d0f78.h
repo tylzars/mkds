@@ -18,7 +18,7 @@ typedef struct Unk0217b4a4 {
     /* 1038 */ u8 mCupPictureNscrFile[0x824];
 } Unk0217b4a4;
 
-void func_020d10fc(void);
+void ClearCupPicturePointer(void);
 void LoadCupPictureNclr(void);
 void LoadCupPictureNcgr(void);
 void LoadCupPictureNscr(void);

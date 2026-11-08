@@ -11,13 +11,13 @@ void UpdateVsSelectRaceRule(void) {
         case 1:
             if (GetRaceSetupCopy()->mCourseListMode == 2) {
                 GetRaceSetupCopy()->mCourseId = COURSE_ID_CROSS;
-                func_020ccc74(0x1d, 0x1f);
+                SwitchMenuScreen(0x1d, 0x1f);
             } else {
-                func_020ccc74(0xb, 0x1f);
+                SwitchMenuScreen(0xb, 0x1f);
             }
             break;
         case 2:
-            func_020ccc74(9, 0x1f);
+            SwitchMenuScreen(9, 0x1f);
             break;
     }
 }

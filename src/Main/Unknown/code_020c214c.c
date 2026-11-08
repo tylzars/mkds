@@ -210,7 +210,7 @@ void InitRaceGoalS(void) {
     gRaceGoalS->mUnk_00b4 = 0;
     gRaceGoalS->mOffsetX = -0x100;
     for (j = 0; j < gRaceSetup->mKartCount; j = (u16) (j + 1)) {
-        if (gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE) {
+        if (gRaceSetup->mRuleKind == 1 || gRaceSetup->mMode == MODE_BATTLE) {
             playerKind = gRaceSetup->mCurrentEntries[j].mPlayer.mKind;
             k = playerKind == PLAYER_KIND_HUMAN || playerKind == PLAYER_KIND_GHOST || playerKind == PLAYER_KIND_PEER
                     ? 1
@@ -393,7 +393,7 @@ void DrawRaceGoalSKarts(Unk020c06c4 *oamBuffer) {
             oamBuffer->mUnk_400 +=
                 NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamBuffer->mUnk_400],
                                       0x80 - oamBuffer->mUnk_400, cell, NULL, onesPosition, 0, 1);
-            if (!(gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE)) {
+            if (!(gRaceSetup->mRuleKind == 1 || gRaceSetup->mMode == MODE_BATTLE)) {
                 cellIndex = func_020b4b98(number) != FALSE ? 0x1a : 0x1b;
                 cell = GetRaceGoalSNcerEntry(cellIndex);
                 cell1aOr1bPosition[0] = (offsetX + 0xd1) << 12;
@@ -411,7 +411,7 @@ void DrawRaceGoalSKarts(Unk020c06c4 *oamBuffer) {
                     NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamBuffer->mUnk_400],
                                           0x80 - oamBuffer->mUnk_400, cell, NULL, teamPosition, 0, 1);
             }
-            if (!(gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE || gRaceSetup->mCourseNumber == 1)) {
+            if (!(gRaceSetup->mRuleKind == 1 || gRaceSetup->mMode == MODE_BATTLE || gRaceSetup->mCourseNumber == 1)) {
                 if (gRaceGoalS->mUpdate == func_020c155c || gRaceGoalS->mUpdate == func_020c13e8 ||
                     gRaceGoalS->mUpdate == func_020c13d0) {
                     cell = GetRaceGoalSNcerEntry(gRaceGoalS->mRankComparison[kartIndex] + 0x1c);
@@ -577,7 +577,7 @@ void DrawRaceGoalSTeams(Unk020c06c4 *oamBuffer) {
     }
     for (i = 0; i < 2; i++) {
         f = TRUE;
-        if (!(gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE)) {
+        if (!(gRaceSetup->mRuleKind == 1 || gRaceSetup->mMode == MODE_BATTLE)) {
             f = FALSE;
         }
         if (f != FALSE) {

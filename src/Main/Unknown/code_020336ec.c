@@ -97,7 +97,7 @@ void func_02033b80(s32 a) {
     t = &gResultsBattle->mUnk_048[1];
     r = gResultsBattle->mUnk_0e4[a].mUnk_08;
     q = gResultsBattle->mUnk_0e4[a].mUnk_04;
-    if (gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUseTeams != 0 && gRaceSetup->mUnk_1c == 1) {
+    if (gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUseTeams != 0 && gRaceSetup->mRuleKind == 1) {
         t->mUnk_18[r + 0x38].mUnk_00 = 0;
         t->mUnk_18[r + 0x48].mUnk_00 = 0;
         return;
@@ -142,7 +142,7 @@ void func_02033ab8(s32 a, s32 b, s32 c, s32 d) {
             u = gResultsBattle->mUnk_0c4;
         }
         v = func_02124a68(c, s->mUnk_08, s->mUnk_0c);
-        e = data_0217b488->mUnk_10c[b];
+        e = data_0217b488->mShuffledIndices[b];
         p = e * 0x20 + (u8 *) u->mData;
         if (a == 0) {
             CallQueueAppend(0xe, v << 5, p, 0x20);

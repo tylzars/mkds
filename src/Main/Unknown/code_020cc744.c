@@ -19,8 +19,8 @@
 #pragma thumb on
 #pragma optimize_for_size on
 void func_020cc744(void) {
-    u16 i;
-    u8 b[2];
+    u16 rowIndex;
+    u8 tableRowColumn[2];
 
     if (func_020cc120() != 2) {
         if (GetRaceSetupCopy()->mMode == 0) {
@@ -42,10 +42,10 @@ void func_020cc744(void) {
         }
         switch (GetRaceSetupCopy()->mMode) {
             case 0:
-                func_020ccbb8();
+                SetNextGrandPrixEntries();
                 break;
             case 1:
-                func_020ccb78();
+                SetNextTimeAttackEntries();
                 break;
             case 2:
             case 3:
@@ -77,9 +77,10 @@ void func_020cc744(void) {
         SetNextRuleKind(GetRaceSetupCopy()->mRuleKind);
         SetNextCourseListMode(GetRaceSetupCopy()->mCourseListMode);
         if (GetRaceSetupCopy()->mMode == 4 && func_020cbad0() == 0) {
-            i = GetRaceSetupCopy()->mMissionFileRowIndex;
-            FindMissionTableCell(GetRaceSetupCopy()->mMissionFileRows[i].mMissionTableValue, &b[0], &b[1]);
-            func_02044380(&GetRaceSetupCopy()->mMissionFileRows[i], b[0], b[1]);
+            rowIndex = GetRaceSetupCopy()->mMissionFileRowIndex;
+            FindMissionTableCell(GetRaceSetupCopy()->mMissionFileRows[rowIndex].mMissionTableValue, &tableRowColumn[0],
+                                 &tableRowColumn[1]);
+            func_02044380(&GetRaceSetupCopy()->mMissionFileRows[rowIndex], tableRowColumn[0], tableRowColumn[1]);
         }
     } else {
         SetNextCupIndex(GetRaceSetupCopy()->mCupIndex);

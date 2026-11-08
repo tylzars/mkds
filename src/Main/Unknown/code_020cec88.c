@@ -11,18 +11,18 @@ void UpdateSelectGame(void) {
         case 1:
             switch (GetRaceSetupCopy()->mMode) {
                 case 3:
-                    func_020ccc74(8, 0x1f);
+                    SwitchMenuScreen(8, 0x1f);
                     break;
                 case 2:
-                    func_020ccc74(0xf, 0x1f);
+                    SwitchMenuScreen(0xf, 0x1f);
                     break;
             }
             break;
         case 2:
-            func_020ccc74(0, 0x1f);
+            SwitchMenuScreen(0, 0x1f);
             break;
         case 3:
-            func_020ccc74(0x1b, 0x1f);
+            SwitchMenuScreen(0x1b, 0x1f);
             break;
     }
 }

@@ -56,7 +56,7 @@ u32 func_0202a360(void) {
     }
     if (gRaceSetup->mUseTeams != 0) {
         r6 = gRaceSetup->mCurrentEntries[v].mPlayer.mTeamIndex;
-        switch (gRaceSetup->mUnk_1c) {
+        switch (gRaceSetup->mRuleKind) {
             case 1:
                 r4 = func_0202a360_inline(0)->mUnk_02;
                 r5 = func_0202a360_inline(1)->mUnk_02;
@@ -84,7 +84,7 @@ u32 func_0202a360(void) {
     m = -1;
     e = 1;
     for (; i < n; i++) {
-        if (data_021759d0->mUnk_20 == 3 || gRaceSetup->mUnk_1c == 2) {
+        if (data_021759d0->mUnk_20 == 3 || gRaceSetup->mRuleKind == 2) {
             x = GetLowByte((u16) i);
             y = GetCourseIndexInCup();
             p = &gCupRecords->mUnk_000[y][GetLowByte(x)];

@@ -626,7 +626,7 @@ s32 func_020905a8(KartKillerCursor *a) {
 
 // Stores one of three sets of battle item entry tables and callbacks; any value other than 1 or 2 takes the third set.
 void SetupBattleItemEntries(void) {
-    switch (gRaceSetup->mUnk_014) {
+    switch (gRaceSetup->mCpuDifficulty) {
         case CPU_DIFFICULTY_EASY:
             gBattleHeldItemEntries = data_021561d0;
             gBattleItemInUseEntries = data_02155fd8;

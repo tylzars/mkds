@@ -105,8 +105,8 @@ void func_020b41e8(u16 *a, s32 b, u16 *c, s32 d, s32 e) {
     o2 = func_020b4018(1);
     k = o1->mData;
     if (n == 12) {
-        m = data_0217b488->mUnk_10c[(u16) (gRaceSetup->mRaceKind == RACE_KIND_DEMO ? gRaceSetup->mFollowedKartIndex
-                                                                                   : gRaceSetup->mEntryIndex)];
+        m = data_0217b488->mShuffledIndices[(
+            u16) (gRaceSetup->mRaceKind == RACE_KIND_DEMO ? gRaceSetup->mFollowedKartIndex : gRaceSetup->mEntryIndex)];
     } else {
         m = n;
     }

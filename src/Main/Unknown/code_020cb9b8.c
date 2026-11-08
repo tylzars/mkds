@@ -20,7 +20,7 @@ void ReleaseMenu(void) {
         ReleasePreviousMenuScreen();
     }
     if (func_020cbad0() == 0) {
-        func_020d10fc();
+        ClearCupPicturePointer();
         func_0211e474();
     }
     func_02125da0();

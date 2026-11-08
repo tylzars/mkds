@@ -12,7 +12,7 @@ void SetNextRaceEntriesFromRaceSetupCopy(void) {
 
     for (i = 0; i < 8; i++) {
         if (GetRaceSetupCopy()->mCpuDifficulty == 0 && GetRaceSetupCopy()->mEntries[i].mPlayerKind == 1) {
-            func_020ccb48(i);
+            SetNextRaceEntryNone(i);
         } else {
             teamIndex = GetRaceSetupCopy()->mUseTeams != 0 ? GetRaceSetupCopy()->mEntries[i].mTeamIndex : -1;
             SetNextRaceEntry(i, GetRaceSetupCopy()->mEntries[i].mCharacterIndex,

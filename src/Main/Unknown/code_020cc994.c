@@ -1,52 +1,52 @@
 #include "Main/Unknown/code_020cc994.h"
 #include "00/code_02181f98.h"
 
-void SetNextCpuDifficulty(u32 p0) {
-    gRaceSetup->mNextHeader.mUnk_14 = p0;
+void SetNextCpuDifficulty(u32 cpuDifficulty) {
+    gRaceSetup->mNextHeader.mCpuDifficulty = cpuDifficulty;
 }
 
-void SetNextMode(u32 p0) {
-    gRaceSetup->mNextHeader.mMode = p0;
+void SetNextMode(u32 mode) {
+    gRaceSetup->mNextHeader.mMode = mode;
 }
 
-void SetNextCupIndex(u32 p0) {
-    gRaceSetup->mNextHeader.mCupIndex = p0;
+void SetNextCupIndex(u32 cupIndex) {
+    gRaceSetup->mNextHeader.mCupIndex = cupIndex;
 }
 
-void SetNextCourseId(u32 p0) {
-    gRaceSetup->mNextHeader.mCourseId = p0;
+void SetNextCourseId(u32 courseId) {
+    gRaceSetup->mNextHeader.mCourseId = courseId;
 }
 
-void SetNextEngineIndex(u32 p0) {
-    gRaceSetup->mNextHeader.mEngineIndex = p0;
+void SetNextEngineIndex(u32 engineIndex) {
+    gRaceSetup->mNextHeader.mEngineIndex = engineIndex;
 }
 
-void SetNextMirrorMode(u32 p0) {
-    gRaceSetup->mNextHeader.mMirrorMode = (u8) p0;
+void SetNextMirrorMode(u32 mirrorMode) {
+    gRaceSetup->mNextHeader.mMirrorMode = (u8) mirrorMode;
 }
 
 void func_020cca24(u32 p0) {
     gRaceSetup->mNextHeader.mUnk_24 = p0;
 }
 
-void SetNextBattleKind(u32 p0) {
-    gRaceSetup->mNextHeader.mBattleKind = p0;
+void SetNextBattleKind(u32 battleKind) {
+    gRaceSetup->mNextHeader.mBattleKind = battleKind;
 }
 
-void SetNextUseTeams(u32 p0) {
-    gRaceSetup->mNextHeader.mUseTeams = p0;
+void SetNextUseTeams(u32 useTeams) {
+    gRaceSetup->mNextHeader.mUseTeams = useTeams;
 }
 
-void SetCourseCount(u32 p0) {
-    gRaceSetup->mCourseCount = p0;
+void SetCourseCount(u32 courseCount) {
+    gRaceSetup->mCourseCount = courseCount;
 }
 
-void SetNextRuleKind(u32 p0) {
-    gRaceSetup->mNextHeader.mUnk_1c = p0;
+void SetNextRuleKind(u32 ruleKind) {
+    gRaceSetup->mNextHeader.mRuleKind = ruleKind;
 }
 
-void SetNextCourseListMode(u32 p0) {
-    gRaceSetup->mNextHeader.mCourseListMode = p0;
+void SetNextCourseListMode(u32 courseListMode) {
+    gRaceSetup->mNextHeader.mCourseListMode = courseListMode;
 }
 
 void func_020cc9a8(u32 p0) {

@@ -7,7 +7,7 @@
 
 #pragma optimize_for_size on
 #pragma thumb on
-void func_020ceb20(void) {
+void WriteBattleStageScreenRegisters(void) {
     if (func_020cccc0() != 0) {
         GxDispCntBits8To12Write2(0x1e);
         GX_SetGraphicsMode(1, 0, 0);

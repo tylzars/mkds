@@ -69,7 +69,7 @@ void func_020b3cd8(void) {
         return;
     }
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-        if (gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE) {
+        if (gRaceSetup->mRuleKind == 1 || gRaceSetup->mMode == MODE_BATTLE) {
             f = FALSE;
             if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind <= 3) {
                 if ((1 << gRaceSetup->mCurrentEntries[i].mPlayer.mKind) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) {
@@ -130,7 +130,7 @@ void func_020b3b58(void) {
     if (d->mUseTeams == 0) {
         return;
     }
-    if (d->mUnk_1c == 1 || d->mMode == MODE_BATTLE) {
+    if (d->mRuleKind == 1 || d->mMode == MODE_BATTLE) {
         a = func_020b3b58_inline(0)->mUnk_02;
     } else {
         q = &gCupRecords->mUnk_144[GetCourseIndexInCup()].mUnk_00[0];
@@ -138,7 +138,7 @@ void func_020b3b58(void) {
     }
     d = gRaceSetup;
     c = TRUE;
-    if (d->mUnk_1c != 1 && d->mMode != MODE_BATTLE) {
+    if (d->mRuleKind != 1 && d->mMode != MODE_BATTLE) {
         c = FALSE;
     }
     if (c) {
@@ -218,7 +218,7 @@ void func_020b3728(void) {
                     break;
                 case MODE_VS:
                 case 5:
-                    if (d->mUnk_1c != 1) {
+                    if (d->mRuleKind != 1) {
                         if (gRaceProgress->mUnk_000[GetFollowedKartOrEntryIndex()].mStatus == 1) {
                             SetStemSet(3);
                         }
@@ -262,7 +262,7 @@ void func_020b3728(void) {
             d = gRaceSetup;
             switch (d->mMode) {
                 case MODE_VS:
-                    if (d->mUnk_1c == 1) {
+                    if (d->mRuleKind == 1) {
                         SetStemSet((GetKart(d->mEntryIndex)->mUnk_7c & 0x2000000) ? 4 : 5);
                     }
                     break;

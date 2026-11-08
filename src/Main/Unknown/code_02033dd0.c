@@ -146,7 +146,7 @@ void func_02033e6c(void) {
     s32 n;
 
     for (k = 0; k < gResultsBattle->mUnk_0d8; k++) {
-        if (gResultsBattle->mMode == 3 || gRaceSetup->mUnk_1c == 2) {
+        if (gResultsBattle->mMode == 3 || gRaceSetup->mRuleKind == 2) {
             gResultsBattle->mUnk_0e4[k].mUnk_04 = func_02033e6c_inline(GetLowByte(k))->mUnk_00;
         } else {
             gResultsBattle->mUnk_0e4[k].mUnk_04 = func_02033e6c_inline(GetLowByte(k))->mUnk_05;
@@ -162,7 +162,7 @@ void func_02033e6c(void) {
         gResultsBattle->mUnk_0e4[j].mUnk_00 = n;
     }
     if (gRaceSetup->mUseTeams != 0) {
-        if (gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUnk_1c == 1) {
+        if (gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mRuleKind == 1) {
             func_02034188();
         } else {
             func_02034024();

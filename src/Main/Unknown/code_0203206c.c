@@ -410,7 +410,7 @@ void ReleaseSelectGame(void) {
     if (gSelectGame->mMode == 1) {
         func_0202b604();
         if (data_021759d0->mUnk_1c_2 != 0) {
-            func_020cee5c();
+            FillShuffledIndices();
         }
     }
     HeapDestroy(gSelectGame->mHeap);

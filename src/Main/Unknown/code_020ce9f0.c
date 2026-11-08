@@ -8,13 +8,13 @@
 void UpdateVsSelectCharacter(void) {
     switch (AdvanceSelectCharacter()) {
         case 1:
-            func_020ccc74(9, 0x1f);
+            SwitchMenuScreen(9, 0x1f);
             break;
         case 2:
-            func_020ccc74(0, 0x1f);
+            SwitchMenuScreen(0, 0x1f);
             break;
         case 3:
-            func_020ccc74(0xa, 0x1f);
+            SwitchMenuScreen(0xa, 0x1f);
             break;
     }
 }

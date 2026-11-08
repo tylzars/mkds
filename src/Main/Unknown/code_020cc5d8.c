@@ -5,8 +5,8 @@
 #include "Main/Unknown/code_020cc6f0.h"
 #include "Main/Unknown/unk_021759c0.h"
 
-u32 GetCurrentCharacterIndex(u32 arg0) {
-    u32 value0 = arg0;
+u32 GetCurrentCharacterIndex(u32 entryIndex) {
+    u32 value0 = entryIndex;
     u32 value1;
     u32 value2;
     value2 = (u32) &gRaceSetup;
@@ -17,8 +17,8 @@ u32 GetCurrentCharacterIndex(u32 arg0) {
     return value0;
 }
 
-u32 GetCurrentKartIndex(u32 arg0) {
-    u32 value0 = arg0;
+u32 GetCurrentKartIndex(u32 entryIndex) {
+    u32 value0 = entryIndex;
     u32 value1;
     u32 value2;
     value2 = (u32) &gRaceSetup;
@@ -29,8 +29,8 @@ u32 GetCurrentKartIndex(u32 arg0) {
     return value0;
 }
 
-u32 GetCurrentPlayerKind(u32 arg0) {
-    u32 value0 = arg0;
+u32 GetCurrentPlayerKind(u32 entryIndex) {
+    u32 value0 = entryIndex;
     u32 value1;
     u32 value2;
     value2 = (u32) &gRaceSetup;
@@ -45,8 +45,8 @@ u32 GetCurrentUseTeams(void) {
     return (gRaceSetup->mUseTeams);
 }
 
-u32 GetCurrentTeamIndex(u32 arg0) {
-    u32 value0 = arg0;
+u32 GetCurrentTeamIndex(u32 entryIndex) {
+    u32 value0 = entryIndex;
     u32 value1;
     u32 value2;
     value2 = (u32) &gRaceSetup;
@@ -57,8 +57,8 @@ u32 GetCurrentTeamIndex(u32 arg0) {
     return value0;
 }
 
-u32 func_020cc6a4(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_020cc6a4(u32 entryIndex) {
+    u32 value0 = entryIndex;
     u32 value1;
     u32 value2;
     value2 = (u32) &gRaceSetup;
@@ -74,7 +74,7 @@ u32 GetCurrentCupIndex(void) {
 }
 
 u32 GetCurrentCpuDifficulty(void) {
-    return (gRaceSetup->mUnk_014);
+    return (gRaceSetup->mCpuDifficulty);
 }
 
 u32 GetCurrentKartCount(void) {
@@ -106,5 +106,5 @@ u32 GetCurrentCourseCount(void) {
 }
 
 u32 GetCurrentRuleKind(void) {
-    return (gRaceSetup->mUnk_1c);
+    return (gRaceSetup->mRuleKind);
 }

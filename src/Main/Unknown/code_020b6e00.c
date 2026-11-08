@@ -658,7 +658,7 @@ void func_020b7fd8(s32 a, s32 *b, s32 *c) {
             *c = 10;
             break;
         case 12:
-            t = data_0217b488->mUnk_10c[a];
+            t = data_0217b488->mShuffledIndices[a];
             *b = t % 4 + 12;
             if (t < 4) {
                 *c = 5;

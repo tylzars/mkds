@@ -115,11 +115,11 @@ void SetNextDemoRace(u8 *a) {
     gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_DEMO;
     gRaceSetup->mNextHeader.mEngineIndex = 2;
     gRaceSetup->mNextHeader.mUseTeams = 0;
-    gRaceSetup->mNextHeader.mUnk_1c = 0;
+    gRaceSetup->mNextHeader.mRuleKind = 0;
     gRaceSetup->mNextHeader.mCourseListMode = 0;
     gRaceSetup->mNextHeader.mMirrorMode = 0;
     gRaceSetup->mNextHeader.mLapCount = -1;
-    gRaceSetup->mNextHeader.mUnk_14 = 2;
+    gRaceSetup->mNextHeader.mCpuDifficulty = 2;
     r.mUnk_00 = _ll_mul(r.mUnk_08, r.mUnk_00) + r.mUnk_10;
     d = (u64) (u32) (r.mUnk_00 >> 32) * 4 >> 32;
     c = func_0203b8e4(&r);

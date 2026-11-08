@@ -532,7 +532,7 @@ void func_0207c8d8(KartAiItemUse *a, struct KartAi *b) {
 }
 
 void func_0207c78c(void) {
-    switch (gRaceSetup->mUnk_014) {
+    switch (gRaceSetup->mCpuDifficulty) {
         case CPU_DIFFICULTY_EASY:
             data_0217ae38 = data_usa_021554a4;
             data_0217ae34 = data_usa_0215524c;

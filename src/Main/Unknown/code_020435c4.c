@@ -109,7 +109,7 @@ void func_02044380(Unk02029930_f8 *a, u32 b, u32 c) {
     gRaceSetup->mNextHeader.mCourseId = a->mCourseId;
     gRaceSetup->mNextHeader.mMirrorMode = (a->mUnk_1c & 0x10) != 0 ? 1 : 0;
     gRaceSetup->mNextHeader.mUseTeams = 0;
-    gRaceSetup->mNextHeader.mUnk_1c = 0;
+    gRaceSetup->mNextHeader.mRuleKind = 0;
     gRaceSetup->mNextHeader.mCourseListMode = 0;
     gRaceSetup->mNextHeader.mBattleKind = 0;
     gRaceSetup->mCourseCount = 0;
@@ -117,10 +117,10 @@ void func_02044380(Unk02029930_f8 *a, u32 b, u32 c) {
     SetNextRaceEntry(0, a->mCharacterIndex0, a->mKartIndex0, PLAYER_KIND_HUMAN, -1, 3);
     if (a->mCharacterIndex1 != 0xff && a->mKartIndex1 != 0xff) {
         SetNextRaceEntry(1, a->mCharacterIndex1, a->mKartIndex1, PLAYER_KIND_CPU, -1, 3);
-        gRaceSetup->mNextHeader.mUnk_14 = 2;
+        gRaceSetup->mNextHeader.mCpuDifficulty = 2;
     } else {
         SetNextRaceEntry(1, -1, -1, PLAYER_KIND_NONE, -1, 3);
-        gRaceSetup->mNextHeader.mUnk_14 = 0;
+        gRaceSetup->mNextHeader.mCpuDifficulty = 0;
     }
     for (i = 2; i < 8; i++) {
         SetNextRaceEntry(i, -1, -1, PLAYER_KIND_NONE, -1, 3);

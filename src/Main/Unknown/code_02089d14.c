@@ -139,7 +139,7 @@ void InitStemSetArray(void *a) {
             InitNsbmdNsbcaNsbmaNsbtp(a, gStemSets->mSets[i], &gCountStartStems[(u32) i], i);
         }
     }
-    if (gRaceSetup->mMode == MODE_BATTLE || gRaceSetup->mUnk_1c == 1) {
+    if (gRaceSetup->mMode == MODE_BATTLE || gRaceSetup->mRuleKind == 1) {
         gStemSets->mSets[4] = HeapAlloc(a, 0x14);
         InitNsbmdNsbcaNsbmaNsbtp(a, gStemSets->mSets[4], &gWinStems, 4);
         gStemSets->mSets[5] = HeapAlloc(a, 0x14);

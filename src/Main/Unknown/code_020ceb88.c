@@ -7,7 +7,7 @@
 
 #pragma optimize_for_size on
 #pragma thumb on
-void func_020ceb88(void) {
+void UpdateBattleSelectRaceRule(void) {
     switch (AdvanceSelectRaceRule()) {
         case 1:
             if (func_020cebe4() != 0) {
@@ -15,13 +15,13 @@ void func_020ceb88(void) {
             }
             if (GetRaceSetupCopy()->mCourseListMode == 2) {
                 GetRaceSetupCopy()->mCourseId = COURSE_ID_MINI_STAGE1;
-                func_020ccc74(0x1d, 0x1f);
+                SwitchMenuScreen(0x1d, 0x1f);
             } else {
-                func_020ccc74(SCREEN_SELECT_BATTLE_STAGE, 0x1f);
+                SwitchMenuScreen(SCREEN_SELECT_BATTLE_STAGE, 0x1f);
             }
             break;
         case 2:
-            func_020ccc74(0xf, 0x1f);
+            SwitchMenuScreen(0xf, 0x1f);
             break;
     }
 }

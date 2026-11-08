@@ -33,7 +33,7 @@ void UpdateSinglePlaySelectMenuScreen0(void) {
         for (i = 0; i <= 14; i++) {
             subCells[i].mUnk_04 = 0;
         }
-        func_020ccc74(1, 0x1f);
+        SwitchMenuScreen(1, 0x1f);
         SetSelectReturnSoundId(0xf);
         data_0217b43c->mUnk_934 = FALSE;
     }

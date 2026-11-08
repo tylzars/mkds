@@ -28,11 +28,11 @@ void UpdateSinglePlaySelectInput(s32 a) {
     if (a != 0) {
         v = func_020cb224();
         if (func_020cb1f4(v, PAD_KEY_A)) {
-            func_020ccc74(3, 0x1f);
+            SwitchMenuScreen(3, 0x1f);
             func_020cb1cc(5);
             data_0217b43c->mUnk_934 = TRUE;
         } else if (func_020cb1f4(v, PAD_KEY_B)) {
-            func_020ccc74(2, 0x1b);
+            SwitchMenuScreen(2, 0x1b);
             RequestSelectReturnState3WithSound(1);
         } else if (GetNewOrRepeatBits(v, PAD_KEY_UP)) {
             menu = data_0217b43c;
@@ -53,10 +53,10 @@ void UpdateSinglePlaySelectInput(s32 a) {
                     menu->mUnk_934 = TRUE;
                 }
                 data_0217b43c->mSinglePlaySelectModeIndex = touchedIndex;
-                func_020ccc74(3, 0x1f);
+                SwitchMenuScreen(3, 0x1f);
                 func_020cb1cc(5);
             } else if (IsSelectReturnState2NoState3Or4RequestAndInRect(pairX, v)) {
-                func_020ccc74(2, 0x1b);
+                SwitchMenuScreen(2, 0x1b);
                 RequestSelectReturnState3WithSound(1);
             }
         }

@@ -117,7 +117,7 @@ void func_0202cb2c(s32 a) {
 #pragma thumb off
 
 static inline s32 func_0202bb80_inline(s32 i) {
-    return data_0217b488->mUnk_10c[i];
+    return data_0217b488->mShuffledIndices[i];
 }
 
 #pragma thumb on

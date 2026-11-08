@@ -92,7 +92,7 @@ void CreateItemSlotTables(void) {
             p = ComputeItemSlotTableDataEnd(p);
             p = ComputeItemSlotTableDataEnd(p);
             p = LoadItemSlotTableData(&data_0217bc74, p);
-            if (gRaceSetup->mUnk_014 == 0) {
+            if (gRaceSetup->mCpuDifficulty == 0) {
                 func_020f80c0(&data_0217bc6c, gRaceSetup->mKartCount);
                 func_020f80c0(&data_0217bc64, gRaceSetup->mKartCount);
             }
@@ -105,7 +105,7 @@ void CreateItemSlotTables(void) {
             p = LoadItemSlotTableData(&data_0217bc6c, p);
             p = LoadItemSlotTableData(&data_0217bc64, p);
             p = LoadItemSlotTableData(&data_0217bc74, p);
-            if (gRaceSetup->mUnk_014 == 0) {
+            if (gRaceSetup->mCpuDifficulty == 0) {
                 func_020f80c0(&data_0217bc6c, gRaceSetup->mKartCount);
                 func_020f80c0(&data_0217bc64, gRaceSetup->mKartCount);
             }

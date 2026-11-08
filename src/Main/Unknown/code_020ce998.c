@@ -8,10 +8,10 @@
 void UpdateVsSelectKart(void) {
     switch (AdvanceSelectKart()) {
         case 1:
-            func_020ccc74(0xa, 0x1f);
+            SwitchMenuScreen(0xa, 0x1f);
             break;
         case 2:
-            func_020ccc74(8, 0x1f);
+            SwitchMenuScreen(8, 0x1f);
             break;
     }
 }

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020ccb48(u32 a);
+void SetNextRaceEntryNone(u32 entryIndex);

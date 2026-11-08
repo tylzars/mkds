@@ -8,10 +8,10 @@
 void UpdateVsSelectCupCourse(void) {
     switch (AdvanceSelectCupCourse()) {
         case 1:
-            func_020ccc74(0x1d, 0x1f);
+            SwitchMenuScreen(0x1d, 0x1f);
             break;
         case 2:
-            func_020ccc74(0xc, 0x1f);
+            SwitchMenuScreen(0xc, 0x1f);
             break;
     }
 }

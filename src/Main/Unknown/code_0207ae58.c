@@ -151,7 +151,7 @@ void StartKartWinOrLoseAnimation(Kart *a) {
     if (m == MODE_MISSION_RUN) {
         return;
     }
-    if (m != MODE_BATTLE && gRaceSetup->mUnk_1c == 1) {
+    if (m != MODE_BATTLE && gRaceSetup->mRuleKind == 1) {
         b = gRaceProgress->mKartAtRank[0];
         if (gRaceSetup->mUseTeams != 0) {
             if (func_0207b44c_inline(b) != func_0207b44c_inline(a->mIndex)) {

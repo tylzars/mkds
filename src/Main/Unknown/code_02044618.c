@@ -53,9 +53,9 @@ void ResetRaceSetup(void) {
     gRaceSetup->mNextHeader.mMode = MODE_GRAND_PRIX;
     gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_NORMAL;
     gRaceSetup->mNextHeader.mEngineIndex = 0;
-    gRaceSetup->mNextHeader.mUnk_14 = 0;
+    gRaceSetup->mNextHeader.mCpuDifficulty = 0;
     gRaceSetup->mNextHeader.mBattleKind = 0;
-    gRaceSetup->mNextHeader.mUnk_1c = 0;
+    gRaceSetup->mNextHeader.mRuleKind = 0;
     gRaceSetup->mNextHeader.mCourseListMode = 0;
     gRaceSetup->mNextHeader.mUnk_24 = 0;
     MI_CpuFill8(&gRaceSetup->mNextHeader.mMissionFileRow, 0, 0x2c);

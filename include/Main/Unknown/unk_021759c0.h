@@ -135,9 +135,9 @@ typedef struct RaceSetupHeader {
     /* 08 */ s32 mMode;
     /* 0c */ s32 mRaceKind;
     /* 10 */ s32 mEngineIndex;
-    /* 14 */ s32 mUnk_14;
+    /* 14 */ s32 mCpuDifficulty;
     /* 18 */ s32 mBattleKind;
-    /* 1c */ s32 mUnk_1c;
+    /* 1c */ s32 mRuleKind;
     /* 20 */ s32 mCourseListMode;
     /* 24 */ s32 mUnk_24;
     /* 28 */ Unk02029930_f8 mMissionFileRow;
@@ -180,10 +180,10 @@ typedef struct RaceSetup {
 // The values 2 and 4 are not named.
     /* 00c */ u32 mRaceKind;
     /* 010 */ s32 mEngineIndex;
-    /* 014 */ s32 mUnk_014;
+    /* 014 */ s32 mCpuDifficulty;
 // Which battle this is (BattleKind): the end handling, the timer and the item tables differ.
     /* 018 */ s32 mBattleKind;
-    /* 01c */ s32 mUnk_1c;
+    /* 01c */ s32 mRuleKind;
     /* 020 */ s32 mCourseListMode;
     /* 024 */ u8 mUnk_024[0x4];
     union {

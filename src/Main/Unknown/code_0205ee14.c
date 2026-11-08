@@ -267,7 +267,7 @@ void func_0205f700(void) {
             if (c == gRaceSetup->mCurrentEntries[i].mPlayer.mTeamIndex) {
                 t = 2;
             } else {
-                switch (gRaceSetup->mUnk_1c) {
+                switch (gRaceSetup->mRuleKind) {
                     case 0:
                     case 2:
                         t = func_0205f700_inline(i, a);

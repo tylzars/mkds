@@ -23,18 +23,18 @@ typedef struct RaceHudOamBuffer {
     /* 400 */ u16 mOamCount;
 } RaceHudOamBuffer;
 
-void DrawRaceHudSubScreenCreamCells(Unk020c06c4 *a);
+void DrawRaceHudSubScreenCreamCells(Unk020c06c4 *oamBuffer);
 void UpdateRaceHudSubScreenCreamCells(void);
 s32 CreateRaceHudSubScreenCreamCells(void);
-void DrawRaceHudSubScreenBerryCells(void *a);
+void DrawRaceHudSubScreenBerryCells(void *oamBuffer);
 void UpdateRaceHudSubScreenBerryCells(void);
 void ClearRaceHudSubScreenBerryCells(void);
 s32 CreateRaceHudSubScreenBerryCells(void);
-void DrawRaceGoalTimeDigits(RaceHudOamBuffer *a, s32 b, s32 d, TimeDigits *e, s32 f);
-void DrawRaceGoalTimes(RaceHudOamBuffer *a);
+void DrawRaceGoalTimeDigits(RaceHudOamBuffer *oamBuffer, s32 originX, s32 originY, TimeDigits *digits, s32 cellOffset);
+void DrawRaceGoalTimes(RaceHudOamBuffer *oamBuffer);
 void UpdateRaceGoalTimes(void);
 u32 ClearRaceGoalTimesPointer(void);
 void InitRaceGoalTimes(void);
-void DrawRaceHudSubScreenFireball2Cells(void *a);
+void DrawRaceHudSubScreenFireball2Cells(void *oamBuffer);
 void UpdateRaceHudSubScreenFireball2Cells(void);
 void ClearRaceHudSubScreenFireball2Cells(void);

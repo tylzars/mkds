@@ -12,12 +12,12 @@
 #include "Main/Unknown/unk_02174000.h"
 
 #pragma thumb on
-void func_020ccbb8(void) {
+void SetNextGrandPrixEntries(void) {
     u8 i;
     s32 a;
     s32 b;
-    u32 x;
-    u32 y;
+    u32 characterIndex;
+    u32 kartIndex;
 
     a = func_020ae3b4(7) + 1;
     b = func_020ae3b4(6) + 1;
@@ -30,30 +30,31 @@ void func_020ccbb8(void) {
     SetNextRaceEntry(0, GetRaceSetupCopy()->mEntries[0].mCharacterIndex, GetRaceSetupCopy()->mEntries[0].mKartIndex, 0,
                      -1, 3);
     for (i = 1; i < 8; i++) {
-        func_0203be48(data_0217b43c->mUnk_954, i, &x, &y);
-        SetNextRaceEntry(i, x, y, 1, -1, i == a ? 0 : i == b ? 1 : 3);
+        func_0203be48(data_0217b43c->mUnk_954, i, &characterIndex, &kartIndex);
+        SetNextRaceEntry(i, characterIndex, kartIndex, 1, -1, i == a ? 0 : i == b ? 1 : 3);
     }
 }
 #pragma thumb off
 
 #pragma thumb on
 
-void func_020ccb78(void) {
-    u8 v1;
-    RaceSetupCopy *v2;
-    RaceSetupCopy *v3;
-    v2 = GetRaceSetupCopy();
-    v3 = GetRaceSetupCopy();
-    SetNextRaceEntry(0, v2->mEntries[0].mCharacterIndex, v3->mEntries[0].mKartIndex, 0, 0xffffffff, 3);
-    v1 = 1;
+void SetNextTimeAttackEntries(void) {
+    u8 entryIndex;
+    RaceSetupCopy *setupCopy;
+    RaceSetupCopy *setupCopyForKart;
+    setupCopy = GetRaceSetupCopy();
+    setupCopyForKart = GetRaceSetupCopy();
+    SetNextRaceEntry(0, setupCopy->mEntries[0].mCharacterIndex, setupCopyForKart->mEntries[0].mKartIndex, 0, 0xffffffff,
+                     3);
+    entryIndex = 1;
     do {
-        func_020ccb48(v1);
-        v1 = v1 + 1;
-    } while (v1 < 8);
+        SetNextRaceEntryNone(entryIndex);
+        entryIndex = entryIndex + 1;
+    } while (entryIndex < 8);
 }
 
 #pragma thumb off
 
-void func_020ccb48(u32 a) {
-    SetNextRaceEntry(a, 0xffffffff, 0xffffffff, 4, 0xffffffff, 3);
+void SetNextRaceEntryNone(u32 entryIndex) {
+    SetNextRaceEntry(entryIndex, 0xffffffff, 0xffffffff, 4, 0xffffffff, 3);
 }

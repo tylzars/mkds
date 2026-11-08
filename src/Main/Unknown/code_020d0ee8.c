@@ -20,24 +20,24 @@ u32 func_020d0f60(void) {
 }
 
 #pragma thumb on
-u32 TrySetCupPictureIndexAndQueueLoads(int a) {
-    u32 r;
+u32 TrySetCupPictureIndexAndQueueLoads(int cupPictureIndex) {
+    u32 result;
 
-    r = 1;
-    if (data_0216aeac[a * 2] == 0) {
-        r = 0;
+    result = 1;
+    if (data_0216aeac[cupPictureIndex * 2] == 0) {
+        result = 0;
     } else if (func_020d0ec4() != FALSE) {
-        if (gCupPicture->mCupPictureIndex != a) {
-            gCupPicture->mCupPictureIndex = a;
+        if (gCupPicture->mCupPictureIndex != cupPictureIndex) {
+            gCupPicture->mCupPictureIndex = cupPictureIndex;
             func_02057df0(LoadCupPictureNclr);
             func_02057df0(LoadCupPictureNcgr);
             func_02057df0(LoadCupPictureNscr);
             func_020d0f60();
         }
     } else {
-        r = 0;
+        result = 0;
     }
-    return r;
+    return result;
 }
 #pragma thumb off
 

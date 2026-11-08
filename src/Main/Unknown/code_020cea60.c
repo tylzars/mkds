@@ -21,18 +21,18 @@ void UpdateSelectBattleStage(void) {
         case 4:
         case 5:
             GetRaceSetupCopy()->mCourseId = courseIds[result];
-            func_020ccc74(0x1d, 0x1f);
+            SwitchMenuScreen(0x1d, 0x1f);
             break;
         case -3:
-            func_020ccc74(0x10, 0x1f);
+            SwitchMenuScreen(0x10, 0x1f);
             break;
         case -2:
-            func_020ccc74(0xe, 0x1f);
+            SwitchMenuScreen(0xe, 0x1f);
             func_020ceb0c(0);
             func_020ceaf8(1);
             break;
         case -1:
-            func_020ccc74(0x1b, 0x1f);
+            SwitchMenuScreen(0x1b, 0x1f);
             func_020ceb0c(0);
             func_020ceaf8(1);
             break;

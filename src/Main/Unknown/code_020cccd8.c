@@ -35,29 +35,30 @@ void ClearRaceHudSubScreenRainStarCells(void) {
 
 void UpdateRaceHudSubScreenRainStarCells(void) {
     s32 i;
-    s32 a;
+    s32 cellCount;
     u32 n;
-    Unk0217b498_00 *e;
-    Vec3 *v;
+    Unk0217b498_00 *object;
+    Vec3 *position;
 
-    a = 0;
+    cellCount = 0;
     n = func_020c0db0();
     for (i = 0; i < gRaceHudSubScreenRainStarCells->mObjectCount; i++) {
-        e = gRaceHudSubScreenRainStarCells->mObjects[i];
-        v = &e->mPos;
-        if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenRainStarCells->mCells[a].mDrawPos, n, 1, 1) != FALSE) {
-            gRaceHudSubScreenRainStarCells->mCells[a].mCell = GetRaceSNcerEntry(0xb3);
-            gRaceHudSubScreenRainStarCells->mCells[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
-            gRaceHudSubScreenRainStarCells->mCells[a].mUnk_0e = 0;
-            gRaceHudSubScreenRainStarCells->mCells[a].mUnk_10 = e->mAngle;
-            a++;
+        object = gRaceHudSubScreenRainStarCells->mObjects[i];
+        position = &object->mPos;
+        if (ComputeRaceHudSubScreenPosition(position, &gRaceHudSubScreenRainStarCells->mCells[cellCount].mDrawPos, n, 1,
+                                            1) != FALSE) {
+            gRaceHudSubScreenRainStarCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0xb3);
+            gRaceHudSubScreenRainStarCells->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+            gRaceHudSubScreenRainStarCells->mCells[cellCount].mUnk_0e = 0;
+            gRaceHudSubScreenRainStarCells->mCells[cellCount].mUnk_10 = object->mAngle;
+            cellCount++;
         }
     }
-    gRaceHudSubScreenRainStarCells->mCellCount = a;
+    gRaceHudSubScreenRainStarCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenRainStarCells(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenRainStarCells, 1);
+void DrawRaceHudSubScreenRainStarCells(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenRainStarCells, 1);
 }
 
 s32 CreateRaceHudSubScreenBasabasaCells(void) {
@@ -70,40 +71,40 @@ void ClearRaceHudSubScreenBasabasaCells(void) {
 
 void UpdateRaceHudSubScreenBasabasaCells(void) {
     s32 i;
-    s32 a;
+    s32 cellCount;
     u32 n;
     u32 m;
-    Unk0217b498_00 *e;
-    Vec3 *v;
-    void *w;
+    Unk0217b498_00 *object;
+    Vec3 *position;
+    void *cell;
 
-    a = 0;
+    cellCount = 0;
     n = func_020c0db0();
     for (i = 0; i < gRaceHudSubScreenBasabasaCells->mObjectCount; i++) {
-        e = gRaceHudSubScreenBasabasaCells->mObjects[i];
-        if ((e->mFlags & 1) == 0) {
-            m = func_02092194(e);
+        object = gRaceHudSubScreenBasabasaCells->mObjects[i];
+        if ((object->mFlags & 1) == 0) {
+            m = func_02092194(object);
             if (m != 0) {
-                v = &e->mPos;
-                if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenBasabasaCells->mCells[a].mDrawPos, n, 1, 1) !=
-                    FALSE) {
+                position = &object->mPos;
+                if (ComputeRaceHudSubScreenPosition(
+                        position, &gRaceHudSubScreenBasabasaCells->mCells[cellCount].mDrawPos, n, 1, 1) != FALSE) {
                     if (m == 2) {
-                        w = GetRaceSNcerEntry(0xb5);
+                        cell = GetRaceSNcerEntry(0xb5);
                     } else {
-                        w = GetRaceSNcerEntry(0xb4);
+                        cell = GetRaceSNcerEntry(0xb4);
                     }
-                    gRaceHudSubScreenBasabasaCells->mCells[a].mCell = w;
-                    gRaceHudSubScreenBasabasaCells->mCells[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
-                    a++;
+                    gRaceHudSubScreenBasabasaCells->mCells[cellCount].mCell = cell;
+                    gRaceHudSubScreenBasabasaCells->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+                    cellCount++;
                 }
             }
         }
     }
-    gRaceHudSubScreenBasabasaCells->mCellCount = a;
+    gRaceHudSubScreenBasabasaCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenBasabasaCells(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenBasabasaCells, 0);
+void DrawRaceHudSubScreenBasabasaCells(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenBasabasaCells, 0);
 }
 
 s32 CreateRaceHudSubScreenMkdEfBubbleCells(void) {
@@ -116,35 +117,35 @@ void ClearRaceHudSubScreenMkdEfBubbleCells(void) {
 
 void UpdateRaceHudSubScreenMkdEfBubbleCells(void) {
     s32 i;
-    s32 a;
+    s32 cellCount;
     u32 n;
-    Unk0217b498_00 *e;
+    Unk0217b498_00 *object;
     s32 d;
-    Vec3 *v;
+    Vec3 *position;
 
-    a = 0;
+    cellCount = 0;
     n = func_020c0db0();
     for (i = 0; i < gRaceHudSubScreenMkdEfBubbleCells->mObjectCount; i++) {
         if (IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenMkdEfBubbleCells->mUnk_0c[i]) != FALSE) {
-            e = gRaceHudSubScreenMkdEfBubbleCells->mObjects[i];
-            d = e->mPos.y - e->mUnk_ac;
+            object = gRaceHudSubScreenMkdEfBubbleCells->mObjects[i];
+            d = object->mPos.y - object->mUnk_ac;
             if (d >= 0) {
-                v = &e->mPos;
-                if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenMkdEfBubbleCells->mCells[a].mDrawPos, n, 0,
-                                                    1) != FALSE) {
-                    gRaceHudSubScreenMkdEfBubbleCells->mCells[a].mDrawPos.mUnk_04 -= d >> 14;
-                    gRaceHudSubScreenMkdEfBubbleCells->mCells[a].mCell = GetRaceSNcerEntry(0xb1);
-                    gRaceHudSubScreenMkdEfBubbleCells->mCells[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
-                    a++;
+                position = &object->mPos;
+                if (ComputeRaceHudSubScreenPosition(
+                        position, &gRaceHudSubScreenMkdEfBubbleCells->mCells[cellCount].mDrawPos, n, 0, 1) != FALSE) {
+                    gRaceHudSubScreenMkdEfBubbleCells->mCells[cellCount].mDrawPos.mUnk_04 -= d >> 14;
+                    gRaceHudSubScreenMkdEfBubbleCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0xb1);
+                    gRaceHudSubScreenMkdEfBubbleCells->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+                    cellCount++;
                 }
             }
         }
     }
-    gRaceHudSubScreenMkdEfBubbleCells->mCellCount = a;
+    gRaceHudSubScreenMkdEfBubbleCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenMkdEfBubbleCells(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenMkdEfBubbleCells, 0);
+void DrawRaceHudSubScreenMkdEfBubbleCells(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenMkdEfBubbleCells, 0);
 }
 
 s32 CreateRaceHudSubScreenBoundCells(void) {
@@ -157,29 +158,30 @@ void ClearRaceHudSubScreenBoundCells(void) {
 
 void UpdateRaceHudSubScreenBoundCells(void) {
     s32 i;
-    s32 a;
+    s32 cellCount;
     u32 n;
-    Unk0217b498_00 *e;
-    Vec3 *v;
+    Unk0217b498_00 *object;
+    Vec3 *position;
 
-    a = 0;
+    cellCount = 0;
     n = func_020c0db0();
     for (i = 0; i < gRaceHudSubScreenBoundCells->mObjectCount; i++) {
-        e = gRaceHudSubScreenBoundCells->mObjects[i];
-        v = &e->mPos;
-        if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenBoundCells->mCells[a].mDrawPos, n, 1, 1) != FALSE) {
-            gRaceHudSubScreenBoundCells->mCells[a].mCell = GetRaceSNcerEntry(0x91);
-            gRaceHudSubScreenBoundCells->mCells[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
-            gRaceHudSubScreenBoundCells->mCells[a].mUnk_10 = e->mAngle;
-            gRaceHudSubScreenBoundCells->mUnk_0c[a].mUnk_00 = e->mScaleX / 6;
-            a++;
+        object = gRaceHudSubScreenBoundCells->mObjects[i];
+        position = &object->mPos;
+        if (ComputeRaceHudSubScreenPosition(position, &gRaceHudSubScreenBoundCells->mCells[cellCount].mDrawPos, n, 1,
+                                            1) != FALSE) {
+            gRaceHudSubScreenBoundCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0x91);
+            gRaceHudSubScreenBoundCells->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+            gRaceHudSubScreenBoundCells->mCells[cellCount].mUnk_10 = object->mAngle;
+            gRaceHudSubScreenBoundCells->mUnk_0c[cellCount].mUnk_00 = object->mScaleX / 6;
+            cellCount++;
         }
     }
-    gRaceHudSubScreenBoundCells->mCellCount = a;
+    gRaceHudSubScreenBoundCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenBoundCells(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCellsScaled(a, gRaceHudSubScreenBoundCells, 1);
+void DrawRaceHudSubScreenBoundCells(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCellsScaled(oamBuffer, gRaceHudSubScreenBoundCells, 1);
 }
 
 s32 CreateRaceHudSubScreenMkdEfBurnerCells(void) {
@@ -192,39 +194,39 @@ void ClearRaceHudSubScreenMkdEfBurnerCells(void) {
 
 void UpdateRaceHudSubScreenMkdEfBurnerCells(void) {
     s32 i;
-    s32 a;
-    s32 b;
+    s32 cellCount;
+    s32 inFirstHalf;
     u32 n;
-    Unk0217b498_00 *e;
-    Vec3 *v;
+    Unk0217b498_00 *object;
+    Vec3 *position;
 
-    a = 0;
+    cellCount = 0;
     n = func_020c0db0();
     gRaceHudSubScreenMkdEfBurnerCells->mUnk_0c[0].mUnk_04++;
     if (gRaceHudSubScreenMkdEfBurnerCells->mUnk_0c[0].mUnk_04 < 0 ||
         gRaceHudSubScreenMkdEfBurnerCells->mUnk_0c[0].mUnk_04 >= 8) {
         gRaceHudSubScreenMkdEfBurnerCells->mUnk_0c[0].mUnk_04 = 0;
     }
-    b = gRaceHudSubScreenMkdEfBurnerCells->mUnk_0c[0].mUnk_04 < 4 ? 1 : 0;
+    inFirstHalf = gRaceHudSubScreenMkdEfBurnerCells->mUnk_0c[0].mUnk_04 < 4 ? 1 : 0;
     for (i = 0; i < gRaceHudSubScreenMkdEfBurnerCells->mObjectCount; i++) {
-        e = gRaceHudSubScreenMkdEfBurnerCells->mObjects[i];
-        if ((e->mFlags & 1) == 0 && func_020931ac(e) != 0) {
-            v = &e->mPos;
-            if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenMkdEfBurnerCells->mCells[a].mDrawPos, n, 0, 0) !=
-                FALSE) {
-                gRaceHudSubScreenMkdEfBurnerCells->mCells[a].mCell =
+        object = gRaceHudSubScreenMkdEfBurnerCells->mObjects[i];
+        if ((object->mFlags & 1) == 0 && func_020931ac(object) != 0) {
+            position = &object->mPos;
+            if (ComputeRaceHudSubScreenPosition(
+                    position, &gRaceHudSubScreenMkdEfBurnerCells->mCells[cellCount].mDrawPos, n, 0, 0) != FALSE) {
+                gRaceHudSubScreenMkdEfBurnerCells->mCells[cellCount].mCell =
                     GetRaceSNcerEntry(gRaceSetup->mCourseId == COURSE_ID_AIRSHIP ? 0xae : 0xb2);
-                gRaceHudSubScreenMkdEfBurnerCells->mCells[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
-                gRaceHudSubScreenMkdEfBurnerCells->mUnk_0c[a].mUnk_00 = b != 0 ? 0x1000 : 0xccd;
-                a++;
+                gRaceHudSubScreenMkdEfBurnerCells->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+                gRaceHudSubScreenMkdEfBurnerCells->mUnk_0c[cellCount].mUnk_00 = inFirstHalf != 0 ? 0x1000 : 0xccd;
+                cellCount++;
             }
         }
     }
-    gRaceHudSubScreenMkdEfBurnerCells->mCellCount = a;
+    gRaceHudSubScreenMkdEfBurnerCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenMkdEfBurnerCells(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCellsScaled(a, gRaceHudSubScreenMkdEfBurnerCells, 0);
+void DrawRaceHudSubScreenMkdEfBurnerCells(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCellsScaled(oamBuffer, gRaceHudSubScreenMkdEfBurnerCells, 0);
 }
 
 s32 func_020cdf18(void) {
@@ -237,29 +239,30 @@ void func_020cdf04(void) {
 
 void func_020cde18(void) {
     s32 i;
-    s32 a;
+    s32 cellCount;
     u32 n;
-    Unk0217b498_00 *e;
-    Vec3 *v;
+    Unk0217b498_00 *object;
+    Vec3 *position;
 
-    a = 0;
+    cellCount = 0;
     n = func_020c0db0();
     for (i = 0; i < data_0217b46c->mObjectCount; i++) {
-        e = data_0217b46c->mObjects[i];
-        if ((e->mFlags & 1) == 0) {
-            v = &e->mPos;
-            if (ComputeRaceHudSubScreenPosition(v, &data_0217b46c->mCells[a].mDrawPos, n, 1, 1) != FALSE) {
-                data_0217b46c->mCells[a].mCell = GetRaceSNcerEntry(0x8d);
-                data_0217b46c->mCells[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
-                a++;
+        object = data_0217b46c->mObjects[i];
+        if ((object->mFlags & 1) == 0) {
+            position = &object->mPos;
+            if (ComputeRaceHudSubScreenPosition(position, &data_0217b46c->mCells[cellCount].mDrawPos, n, 1, 1) !=
+                FALSE) {
+                data_0217b46c->mCells[cellCount].mCell = GetRaceSNcerEntry(0x8d);
+                data_0217b46c->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+                cellCount++;
             }
         }
     }
-    data_0217b46c->mCellCount = a;
+    data_0217b46c->mCellCount = cellCount;
 }
 
-void func_020cddfc(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, data_0217b46c, 0);
+void func_020cddfc(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, data_0217b46c, 0);
 }
 
 s32 CreateRaceHudSubScreenIronBallCells(void) {
@@ -272,31 +275,31 @@ void ClearRaceHudSubScreenIronBallCells(void) {
 
 void UpdateRaceHudSubScreenIronBallCells(void) {
     s32 i;
-    s32 a;
+    s32 cellCount;
     u32 n;
-    Unk0217b498_00 *e;
-    Vec3 *v;
+    Unk0217b498_00 *object;
+    Vec3 *position;
 
-    a = 0;
+    cellCount = 0;
     n = func_020c0db0();
     for (i = 0; i < gRaceHudSubScreenIronBallCells->mObjectCount; i++) {
-        e = gRaceHudSubScreenIronBallCells->mObjects[i];
-        if ((e->mFlags & 2) == 0) {
-            v = &e->mPos;
-            if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenIronBallCells->mCells[a].mDrawPos, n, 1, 1) !=
-                FALSE) {
-                gRaceHudSubScreenIronBallCells->mCells[a].mCell = GetRaceSNcerEntry(0x92);
-                gRaceHudSubScreenIronBallCells->mCells[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
-                gRaceHudSubScreenIronBallCells->mCells[a].mUnk_0e = e->mFlags & 0x20;
-                a++;
+        object = gRaceHudSubScreenIronBallCells->mObjects[i];
+        if ((object->mFlags & 2) == 0) {
+            position = &object->mPos;
+            if (ComputeRaceHudSubScreenPosition(position, &gRaceHudSubScreenIronBallCells->mCells[cellCount].mDrawPos,
+                                                n, 1, 1) != FALSE) {
+                gRaceHudSubScreenIronBallCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0x92);
+                gRaceHudSubScreenIronBallCells->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+                gRaceHudSubScreenIronBallCells->mCells[cellCount].mUnk_0e = object->mFlags & 0x20;
+                cellCount++;
             }
         }
     }
-    gRaceHudSubScreenIronBallCells->mCellCount = a;
+    gRaceHudSubScreenIronBallCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenIronBallCells(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenIronBallCells, 0);
+void DrawRaceHudSubScreenIronBallCells(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenIronBallCells, 0);
 }
 
 s32 CreateRaceHudSubScreenKuriboCells(void) {
@@ -309,30 +312,30 @@ void ClearRaceHudSubScreenKuriboCells(void) {
 
 void UpdateRaceHudSubScreenKuriboCells(void) {
     s32 i;
-    s32 a;
+    s32 cellCount;
     u32 n;
-    Unk0217b498_00 *e;
-    Vec3 *v;
+    Unk0217b498_00 *object;
+    Vec3 *position;
 
-    a = 0;
+    cellCount = 0;
     n = func_020c0db0();
     for (i = 0; i < gRaceHudSubScreenKuriboCells->mObjectCount; i++) {
-        e = gRaceHudSubScreenKuriboCells->mObjects[i];
-        v = &e->mPos;
-        if ((e->mFlags & 2) == 0) {
-            if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenKuriboCells->mCells[a].mDrawPos, n, 0, 1) !=
-                FALSE) {
-                gRaceHudSubScreenKuriboCells->mCells[a].mCell = GetRaceSNcerEntry(0xa3);
-                gRaceHudSubScreenKuriboCells->mCells[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
-                a++;
+        object = gRaceHudSubScreenKuriboCells->mObjects[i];
+        position = &object->mPos;
+        if ((object->mFlags & 2) == 0) {
+            if (ComputeRaceHudSubScreenPosition(position, &gRaceHudSubScreenKuriboCells->mCells[cellCount].mDrawPos, n,
+                                                0, 1) != FALSE) {
+                gRaceHudSubScreenKuriboCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0xa3);
+                gRaceHudSubScreenKuriboCells->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+                cellCount++;
             }
         }
     }
-    gRaceHudSubScreenKuriboCells->mCellCount = a;
+    gRaceHudSubScreenKuriboCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenKuriboCells(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenKuriboCells, 0);
+void DrawRaceHudSubScreenKuriboCells(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenKuriboCells, 0);
 }
 
 s32 CreateRaceHudSubScreenObPakkunSfCells(void) {
@@ -345,33 +348,33 @@ void ClearRaceHudSubScreenObPakkunSfCells(void) {
 
 void UpdateRaceHudSubScreenObPakkunSfCells(void) {
     s32 i;
-    s32 a;
+    s32 cellCount;
     u32 n;
-    Unk0217b498_00 *e;
-    Vec3 *v;
+    Unk0217b498_00 *object;
+    Vec3 *position;
 
-    a = 0;
+    cellCount = 0;
     n = func_020c0db0();
     for (i = 0; i < gRaceHudSubScreenObPakkunSfCells->mObjectCount; i++) {
         if (IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenObPakkunSfCells->mUnk_0c[i]) != FALSE) {
-            e = gRaceHudSubScreenObPakkunSfCells->mObjects[i];
-            if ((e->mFlags & 1) == 0) {
-                v = &e->mPos;
-                if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenObPakkunSfCells->mCells[a].mDrawPos, n, 0,
-                                                    0) != FALSE) {
-                    gRaceHudSubScreenObPakkunSfCells->mCells[a].mCell =
-                        GetRaceSNcerEntry(((e->mUnk_b8 & 0x10) >> 4) != 0 ? 0xa2 : 0xa1);
-                    gRaceHudSubScreenObPakkunSfCells->mCells[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
-                    a++;
+            object = gRaceHudSubScreenObPakkunSfCells->mObjects[i];
+            if ((object->mFlags & 1) == 0) {
+                position = &object->mPos;
+                if (ComputeRaceHudSubScreenPosition(
+                        position, &gRaceHudSubScreenObPakkunSfCells->mCells[cellCount].mDrawPos, n, 0, 0) != FALSE) {
+                    gRaceHudSubScreenObPakkunSfCells->mCells[cellCount].mCell =
+                        GetRaceSNcerEntry(((object->mUnk_b8 & 0x10) >> 4) != 0 ? 0xa2 : 0xa1);
+                    gRaceHudSubScreenObPakkunSfCells->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+                    cellCount++;
                 }
             }
         }
     }
-    gRaceHudSubScreenObPakkunSfCells->mCellCount = a;
+    gRaceHudSubScreenObPakkunSfCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenObPakkunSfCells(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenObPakkunSfCells, 0);
+void DrawRaceHudSubScreenObPakkunSfCells(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenObPakkunSfCells, 0);
 }
 
 s32 CreateRaceHudSubScreenCoverPooHoleCells(void) {
@@ -384,34 +387,36 @@ void ClearRaceHudSubScreenCoverPooHoleCells(void) {
 
 void UpdateRaceHudSubScreenCoverPooHoleCells(void) {
     s32 i;
-    s32 a;
+    s32 cellCount;
     u32 n;
-    Unk0217b498_00 *e;
-    Vec3 *v;
+    Unk0217b498_00 *object;
+    Vec3 *position;
 
-    a = 0;
+    cellCount = 0;
     n = func_020c0db0();
     for (i = 0; i < gRaceHudSubScreenCoverPooHoleCells->mObjectCount; i++) {
         if (IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenCoverPooHoleCells->mUnk_0c[i]) != FALSE) {
-            e = gRaceHudSubScreenCoverPooHoleCells->mObjects[i];
-            if ((e->mFlags & 1) == 0) {
-                v = &e->mPos;
-                if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenCoverPooHoleCells->mCells[a].mDrawPos, n, 0,
-                                                    0) != FALSE) {
-                    gRaceHudSubScreenCoverPooHoleCells->mCells[a].mDrawPos.mUnk_04 -= func_02095f30(e) >> 14;
-                    gRaceHudSubScreenCoverPooHoleCells->mCells[a].mCell =
-                        GetRaceSNcerEntry(func_02095f38(e) != FALSE ? 0xab : 0xaa);
-                    gRaceHudSubScreenCoverPooHoleCells->mCells[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
-                    a++;
+            object = gRaceHudSubScreenCoverPooHoleCells->mObjects[i];
+            if ((object->mFlags & 1) == 0) {
+                position = &object->mPos;
+                if (ComputeRaceHudSubScreenPosition(
+                        position, &gRaceHudSubScreenCoverPooHoleCells->mCells[cellCount].mDrawPos, n, 0, 0) != FALSE) {
+                    gRaceHudSubScreenCoverPooHoleCells->mCells[cellCount].mDrawPos.mUnk_04 -=
+                        func_02095f30(object) >> 14;
+                    gRaceHudSubScreenCoverPooHoleCells->mCells[cellCount].mCell =
+                        GetRaceSNcerEntry(func_02095f38(object) != FALSE ? 0xab : 0xaa);
+                    gRaceHudSubScreenCoverPooHoleCells->mCells[cellCount].mUnk_0c =
+                        func_020b4e70(position) != 0 ? 2 : 3;
+                    cellCount++;
                 }
             }
         }
     }
-    gRaceHudSubScreenCoverPooHoleCells->mCellCount = a;
+    gRaceHudSubScreenCoverPooHoleCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenCoverPooHoleCells(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenCoverPooHoleCells, 0);
+void DrawRaceHudSubScreenCoverPooHoleCells(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenCoverPooHoleCells, 0);
 }
 
 s32 CreateRaceHudSubScreenRock2Cells(void) {
@@ -424,31 +429,31 @@ void ClearRaceHudSubScreenRock2Cells(void) {
 
 void UpdateRaceHudSubScreenRock2Cells(void) {
     s32 i;
-    s32 a;
+    s32 cellCount;
     u32 n;
-    Unk0217b498_00 *e;
-    Vec3 *v;
+    Unk0217b498_00 *object;
+    Vec3 *position;
 
-    a = 0;
+    cellCount = 0;
     n = func_020c0db0();
     for (i = 0; i < gRaceHudSubScreenRock2Cells->mObjectCount; i++) {
-        e = gRaceHudSubScreenRock2Cells->mObjects[i];
-        if ((e->mFlags & 2) == 0) {
-            v = &e->mPos;
-            if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenRock2Cells->mCells[a].mDrawPos, n, 1, 1) !=
-                FALSE) {
-                gRaceHudSubScreenRock2Cells->mCells[a].mCell = GetRaceSNcerEntry(0x8f);
-                gRaceHudSubScreenRock2Cells->mCells[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
-                gRaceHudSubScreenRock2Cells->mCells[a].mUnk_10 += 0x400;
-                a++;
+        object = gRaceHudSubScreenRock2Cells->mObjects[i];
+        if ((object->mFlags & 2) == 0) {
+            position = &object->mPos;
+            if (ComputeRaceHudSubScreenPosition(position, &gRaceHudSubScreenRock2Cells->mCells[cellCount].mDrawPos, n,
+                                                1, 1) != FALSE) {
+                gRaceHudSubScreenRock2Cells->mCells[cellCount].mCell = GetRaceSNcerEntry(0x8f);
+                gRaceHudSubScreenRock2Cells->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+                gRaceHudSubScreenRock2Cells->mCells[cellCount].mUnk_10 += 0x400;
+                cellCount++;
             }
         }
     }
-    gRaceHudSubScreenRock2Cells->mCellCount = a;
+    gRaceHudSubScreenRock2Cells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenRock2Cells(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenRock2Cells, 1);
+void DrawRaceHudSubScreenRock2Cells(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenRock2Cells, 1);
 }
 
 s32 CreateRaceHudSubScreenSanboCells(void) {
@@ -461,32 +466,32 @@ void ClearRaceHudSubScreenSanboCells(void) {
 
 void UpdateRaceHudSubScreenSanboCells(void) {
     s32 i;
-    s32 a;
+    s32 cellCount;
     u32 n;
-    Unk0217b498_00 *e;
-    Vec3 *v;
+    Unk0217b498_00 *object;
+    Vec3 *position;
 
-    a = 0;
+    cellCount = 0;
     n = func_020c0db0();
     for (i = 0; i < gRaceHudSubScreenSanboCells->mObjectCount; i++) {
         if (IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenSanboCells->mUnk_0c[i]) != FALSE) {
-            e = gRaceHudSubScreenSanboCells->mObjects[i];
-            if ((e->mFlags & 1) == 0) {
-                v = &e->mPos;
-                if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenSanboCells->mCells[a].mDrawPos, n, 0, 0) !=
-                    FALSE) {
-                    gRaceHudSubScreenSanboCells->mCells[a].mCell = GetRaceSNcerEntry(0x8e);
-                    gRaceHudSubScreenSanboCells->mCells[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
-                    a++;
+            object = gRaceHudSubScreenSanboCells->mObjects[i];
+            if ((object->mFlags & 1) == 0) {
+                position = &object->mPos;
+                if (ComputeRaceHudSubScreenPosition(position, &gRaceHudSubScreenSanboCells->mCells[cellCount].mDrawPos,
+                                                    n, 0, 0) != FALSE) {
+                    gRaceHudSubScreenSanboCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0x8e);
+                    gRaceHudSubScreenSanboCells->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+                    cellCount++;
                 }
             }
         }
     }
-    gRaceHudSubScreenSanboCells->mCellCount = a;
+    gRaceHudSubScreenSanboCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenSanboCells(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenSanboCells, 0);
+void DrawRaceHudSubScreenSanboCells(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenSanboCells, 0);
 }
 
 s32 CreateRaceHudSubScreenRockCells(void) {
@@ -499,30 +504,31 @@ void ClearRaceHudSubScreenRockCells(void) {
 
 void UpdateRaceHudSubScreenRockCells(void) {
     s32 i;
-    s32 a;
+    s32 cellCount;
     u32 n;
-    Unk0217b498_00 *e;
-    Vec3 *v;
+    Unk0217b498_00 *object;
+    Vec3 *position;
 
-    a = 0;
+    cellCount = 0;
     n = func_020c0db0();
     for (i = 0; i < gRaceHudSubScreenRockCells->mObjectCount; i++) {
-        e = gRaceHudSubScreenRockCells->mObjects[i];
-        if ((e->mFlags & 2) == 0) {
-            v = &e->mPos;
-            if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenRockCells->mCells[a].mDrawPos, n, 1, 1) != FALSE) {
-                gRaceHudSubScreenRockCells->mCells[a].mCell = GetRaceSNcerEntry(0x99);
-                gRaceHudSubScreenRockCells->mCells[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
-                gRaceHudSubScreenRockCells->mCells[a].mUnk_10 += 0x400;
-                a++;
+        object = gRaceHudSubScreenRockCells->mObjects[i];
+        if ((object->mFlags & 2) == 0) {
+            position = &object->mPos;
+            if (ComputeRaceHudSubScreenPosition(position, &gRaceHudSubScreenRockCells->mCells[cellCount].mDrawPos, n, 1,
+                                                1) != FALSE) {
+                gRaceHudSubScreenRockCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0x99);
+                gRaceHudSubScreenRockCells->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+                gRaceHudSubScreenRockCells->mCells[cellCount].mUnk_10 += 0x400;
+                cellCount++;
             }
         }
     }
-    gRaceHudSubScreenRockCells->mCellCount = a;
+    gRaceHudSubScreenRockCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenRockCells(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenRockCells, 1);
+void DrawRaceHudSubScreenRockCells(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenRockCells, 1);
 }
 
 s32 CreateRaceHudSubScreenWoodbox1Cells(void) {
@@ -535,32 +541,32 @@ void ClearRaceHudSubScreenWoodbox1Cells(void) {
 
 void UpdateRaceHudSubScreenWoodbox1Cells(void) {
     s32 i;
-    s32 a;
+    s32 cellCount;
     u32 n;
-    Unk0217b498_00 *e;
-    Vec3 *v;
+    Unk0217b498_00 *object;
+    Vec3 *position;
 
-    a = 0;
+    cellCount = 0;
     n = func_020c0db0();
     for (i = 0; i < gRaceHudSubScreenWoodbox1Cells->mObjectCount; i++) {
         if (IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenWoodbox1Cells->mUnk_0c[i]) != FALSE) {
-            e = gRaceHudSubScreenWoodbox1Cells->mObjects[i];
-            if ((e->mFlags & 1) == 0) {
-                v = &e->mPos;
-                if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenWoodbox1Cells->mCells[a].mDrawPos, n, 0, 0) !=
-                    FALSE) {
-                    gRaceHudSubScreenWoodbox1Cells->mCells[a].mCell = GetRaceSNcerEntry(0x5c);
-                    gRaceHudSubScreenWoodbox1Cells->mCells[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
-                    a++;
+            object = gRaceHudSubScreenWoodbox1Cells->mObjects[i];
+            if ((object->mFlags & 1) == 0) {
+                position = &object->mPos;
+                if (ComputeRaceHudSubScreenPosition(
+                        position, &gRaceHudSubScreenWoodbox1Cells->mCells[cellCount].mDrawPos, n, 0, 0) != FALSE) {
+                    gRaceHudSubScreenWoodbox1Cells->mCells[cellCount].mCell = GetRaceSNcerEntry(0x5c);
+                    gRaceHudSubScreenWoodbox1Cells->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+                    cellCount++;
                 }
             }
         }
     }
-    gRaceHudSubScreenWoodbox1Cells->mCellCount = a;
+    gRaceHudSubScreenWoodbox1Cells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenWoodbox1Cells(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenWoodbox1Cells, 0);
+void DrawRaceHudSubScreenWoodbox1Cells(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenWoodbox1Cells, 0);
 }
 
 s32 CreateRaceHudSubScreenFlipperCells(void) {
@@ -573,43 +579,43 @@ void ClearRaceHudSubScreenFlipperCells(void) {
 
 void UpdateRaceHudSubScreenFlipperCells(void) {
     s32 i;
-    s32 a;
+    s32 cellCount;
     u32 n;
-    Unk0217b498_00 *e;
-    Vec3 *v;
+    Unk0217b498_00 *object;
+    Vec3 *position;
 
-    a = 0;
+    cellCount = 0;
     n = func_020c0db0();
     for (i = 0; i < gRaceHudSubScreenFlipperCells->mObjectCount; i++) {
-        e = gRaceHudSubScreenFlipperCells->mObjects[i];
-        if ((e->mFlags & 2) == 0) {
-            v = &e->mPos;
-            if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenFlipperCells->mCells[a].mDrawPos, n, 1, 1) !=
-                FALSE) {
-                gRaceHudSubScreenFlipperCells->mCells[a].mCell = GetRaceSNcerEntry(0x90);
-                gRaceHudSubScreenFlipperCells->mCells[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
-                gRaceHudSubScreenFlipperCells->mCells[a].mUnk_0e = e->mFlags & 0x400;
-                gRaceHudSubScreenFlipperCells->mCells[a].mUnk_10 = e->mAngle;
-                a++;
+        object = gRaceHudSubScreenFlipperCells->mObjects[i];
+        if ((object->mFlags & 2) == 0) {
+            position = &object->mPos;
+            if (ComputeRaceHudSubScreenPosition(position, &gRaceHudSubScreenFlipperCells->mCells[cellCount].mDrawPos, n,
+                                                1, 1) != FALSE) {
+                gRaceHudSubScreenFlipperCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0x90);
+                gRaceHudSubScreenFlipperCells->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+                gRaceHudSubScreenFlipperCells->mCells[cellCount].mUnk_0e = object->mFlags & 0x400;
+                gRaceHudSubScreenFlipperCells->mCells[cellCount].mUnk_10 = object->mAngle;
+                cellCount++;
             }
         }
     }
-    gRaceHudSubScreenFlipperCells->mCellCount = a;
+    gRaceHudSubScreenFlipperCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenFlipperCells(Unk020c06c4 *a) {
+void DrawRaceHudSubScreenFlipperCells(Unk020c06c4 *oamBuffer) {
     s32 i;
     s32 c;
     u16 d;
     u16 h;
-    s32 w;
-    u16 k;
-    RaceHudSubScreenCell *x;
-    s32 v1[4];
-    s32 z[2];
-    s32 x0;
-    struct Unk020224e0_c *x8;
-    s32 x4;
+    s32 oamIndex;
+    u16 matrixIndex;
+    RaceHudSubScreenCell *cell;
+    s32 matrix[4];
+    s32 position[2];
+    s32 drawX;
+    struct Unk020224e0_c *ncerEntry;
+    s32 drawY;
 
     c = func_020c0dc4();
     d = func_020b6368();
@@ -618,33 +624,34 @@ void DrawRaceHudSubScreenFlipperCells(Unk020c06c4 *a) {
         if (c <= h) {
             if (gRaceHudSubScreenFlipperCells->mCells[i].mUnk_0e != 0) {
                 if (gRaceSetup->mMirrorMode != 0) {
-                    func_020b4c74(v1, (u16) (d + (gRaceHudSubScreenFlipperCells->mCells[i].mUnk_10 + 0x4000)));
+                    func_020b4c74(matrix, (u16) (d + (gRaceHudSubScreenFlipperCells->mCells[i].mUnk_10 + 0x4000)));
                 } else {
-                    func_020b4c74(v1, (u16) (0x4000 - gRaceHudSubScreenFlipperCells->mCells[i].mUnk_10 - d));
+                    func_020b4c74(matrix, (u16) (0x4000 - gRaceHudSubScreenFlipperCells->mCells[i].mUnk_10 - d));
                 }
             } else {
                 if (gRaceSetup->mMirrorMode != 0) {
-                    Matrix2x2Rotation(v1, (u16) (gRaceHudSubScreenFlipperCells->mCells[i].mUnk_10 + 0x4000 - d));
+                    Matrix2x2Rotation(matrix, (u16) (gRaceHudSubScreenFlipperCells->mCells[i].mUnk_10 + 0x4000 - d));
                 } else {
-                    Matrix2x2Rotation(v1, (u16) (d + (0x4000 - gRaceHudSubScreenFlipperCells->mCells[i].mUnk_10)));
+                    Matrix2x2Rotation(matrix, (u16) (d + (0x4000 - gRaceHudSubScreenFlipperCells->mCells[i].mUnk_10)));
                 }
             }
-            k = func_020ae5c4(a);
-            a->mUnk_000.mUnk_20[k].mUnk_06 = v1[0] >> 4;
-            a->mUnk_000.mUnk_20[k].mUnk_0e = v1[1] >> 4;
-            a->mUnk_000.mUnk_20[k].mUnk_16 = v1[2] >> 4;
-            a->mUnk_000.mUnk_20[k].mUnk_1e = v1[3] >> 4;
-            w = a->mUnk_400;
-            x = &gRaceHudSubScreenFlipperCells->mCells[i];
-            x0 = x->mDrawPos.mUnk_00;
-            x8 = x->mCell;
-            x4 = x->mDrawPos.mUnk_04;
-            z[0] = x0 << 12;
-            z[1] = x4 << 12;
-            a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[w], 0x80 - w, x8, v1, z, k, 1);
-            for (; w < a->mUnk_400; w++) {
+            matrixIndex = func_020ae5c4(oamBuffer);
+            oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_06 = matrix[0] >> 4;
+            oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_0e = matrix[1] >> 4;
+            oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_16 = matrix[2] >> 4;
+            oamBuffer->mUnk_000.mUnk_20[matrixIndex].mUnk_1e = matrix[3] >> 4;
+            oamIndex = oamBuffer->mUnk_400;
+            cell = &gRaceHudSubScreenFlipperCells->mCells[i];
+            drawX = cell->mDrawPos.mUnk_00;
+            ncerEntry = cell->mCell;
+            drawY = cell->mDrawPos.mUnk_04;
+            position[0] = drawX << 12;
+            position[1] = drawY << 12;
+            oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex],
+                                                         0x80 - oamIndex, ncerEntry, matrix, position, matrixIndex, 1);
+            for (; oamIndex < oamBuffer->mUnk_400; oamIndex++) {
                 if (h != -1) {
-                    a->mUnk_000.mUnk_00[w].mUnk_0e = h;
+                    oamBuffer->mUnk_000.mUnk_00[oamIndex].mUnk_0e = h;
                 }
             }
         }
@@ -661,30 +668,30 @@ void ClearRaceHudSubScreenNsKiller2Cells(void) {
 
 void UpdateRaceHudSubScreenNsKiller2Cells(void) {
     s32 i;
-    s32 a;
+    s32 cellCount;
     u32 n;
-    Unk0217b498_00 *e;
+    Unk0217b498_00 *object;
 
-    a = 0;
+    cellCount = 0;
     n = func_020c0db0();
     for (i = 0; i < gRaceHudSubScreenNsKiller2Cells->mObjectCount; i++) {
-        e = gRaceHudSubScreenNsKiller2Cells->mObjects[i];
-        if ((e->mFlags & 1) == 0 && (e->mFlags & 2) == 0) {
-            if (ComputeRaceHudSubScreenPosition(&e->mPos, &gRaceHudSubScreenNsKiller2Cells->mCells[a].mDrawPos, n, 1,
-                                                1) != FALSE) {
-                gRaceHudSubScreenNsKiller2Cells->mCells[a].mCell = GetRaceSNcerEntry(0xad);
-                gRaceHudSubScreenNsKiller2Cells->mCells[a].mUnk_0c = 3;
-                gRaceHudSubScreenNsKiller2Cells->mCells[a].mUnk_0e = 0;
-                gRaceHudSubScreenNsKiller2Cells->mCells[a].mUnk_10 = e->mAngle;
-                a++;
+        object = gRaceHudSubScreenNsKiller2Cells->mObjects[i];
+        if ((object->mFlags & 1) == 0 && (object->mFlags & 2) == 0) {
+            if (ComputeRaceHudSubScreenPosition(
+                    &object->mPos, &gRaceHudSubScreenNsKiller2Cells->mCells[cellCount].mDrawPos, n, 1, 1) != FALSE) {
+                gRaceHudSubScreenNsKiller2Cells->mCells[cellCount].mCell = GetRaceSNcerEntry(0xad);
+                gRaceHudSubScreenNsKiller2Cells->mCells[cellCount].mUnk_0c = 3;
+                gRaceHudSubScreenNsKiller2Cells->mCells[cellCount].mUnk_0e = 0;
+                gRaceHudSubScreenNsKiller2Cells->mCells[cellCount].mUnk_10 = object->mAngle;
+                cellCount++;
             }
         }
     }
-    gRaceHudSubScreenNsKiller2Cells->mCellCount = a;
+    gRaceHudSubScreenNsKiller2Cells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenNsKiller2Cells(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenNsKiller2Cells, 1);
+void DrawRaceHudSubScreenNsKiller2Cells(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenNsKiller2Cells, 1);
 }
 
 s32 CreateRaceHudSubScreenPendulumCells(void) {
@@ -697,30 +704,30 @@ void ClearRaceHudSubScreenPendulumCells(void) {
 
 void UpdateRaceHudSubScreenPendulumCells(void) {
     s32 i;
-    s32 a;
+    s32 cellCount;
     u32 n;
-    Unk0217b498_00 *e;
-    Vec3 *v;
+    Unk0217b498_00 *object;
+    Vec3 *position;
 
-    a = 0;
+    cellCount = 0;
     n = func_020c0db0();
     for (i = 0; i < gRaceHudSubScreenPendulumCells->mObjectCount; i++) {
-        e = gRaceHudSubScreenPendulumCells->mObjects[i];
-        if ((e->mFlags & 2) == 0) {
-            v = &e->mPos;
-            if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenPendulumCells->mCells[a].mDrawPos, n, 1, 1) !=
-                FALSE) {
-                gRaceHudSubScreenPendulumCells->mCells[a].mCell = GetRaceSNcerEntry(0xa0);
-                gRaceHudSubScreenPendulumCells->mCells[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
-                gRaceHudSubScreenPendulumCells->mCells[a].mUnk_0e = 0;
-                gRaceHudSubScreenPendulumCells->mCells[a].mUnk_10 = e->mAngle;
-                a++;
+        object = gRaceHudSubScreenPendulumCells->mObjects[i];
+        if ((object->mFlags & 2) == 0) {
+            position = &object->mPos;
+            if (ComputeRaceHudSubScreenPosition(position, &gRaceHudSubScreenPendulumCells->mCells[cellCount].mDrawPos,
+                                                n, 1, 1) != FALSE) {
+                gRaceHudSubScreenPendulumCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0xa0);
+                gRaceHudSubScreenPendulumCells->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+                gRaceHudSubScreenPendulumCells->mCells[cellCount].mUnk_0e = 0;
+                gRaceHudSubScreenPendulumCells->mCells[cellCount].mUnk_10 = object->mAngle;
+                cellCount++;
             }
         }
     }
-    gRaceHudSubScreenPendulumCells->mCellCount = a;
+    gRaceHudSubScreenPendulumCells->mCellCount = cellCount;
 }
 
-void DrawRaceHudSubScreenPendulumCells(Unk020c06c4 *a) {
-    DrawRaceHudSubScreenCells(a, gRaceHudSubScreenPendulumCells, 1);
+void DrawRaceHudSubScreenPendulumCells(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenPendulumCells, 1);
 }

@@ -203,7 +203,7 @@ void CreateTitleScene(void) {
     gTitleScene->mUnk_8b8 = func_0203bedc(func_020ada10());
     func_020acab8(0);
     func_0204aa28(0);
-    func_020cee28();
+    ClearShuffledIndices();
     func_020ad85c(1);
     func_020ad848(0);
     func_020ad834(0);

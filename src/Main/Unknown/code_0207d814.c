@@ -458,7 +458,7 @@ u16 PickKartAiRaceStartBoost(s32 a) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         i = (u16) (((r->mUnk_00 >> 32) * 3) >> 32);
     }
-    switch (gRaceSetup->mUnk_014) {
+    switch (gRaceSetup->mCpuDifficulty) {
         case CPU_DIFFICULTY_EASY:
             p = &v[0];
             break;

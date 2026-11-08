@@ -7,7 +7,7 @@ u32 func_020c3db4(void) {
     RaceSetup *setup = gRaceSetup;
 
     if (setup->mMode == MODE_VS || setup->mMode == 5 || setup->mMode == MODE_BATTLE) {
-        if (setup->mUnk_1c != 0) {
+        if (setup->mRuleKind != 0) {
             return v;
         }
     }

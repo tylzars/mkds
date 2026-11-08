@@ -10,7 +10,7 @@ RaceSetupCopy *GetRaceSetupCopy(void) {
 #pragma thumb off
 
 void func_0202991c(u32 p0) {
-    gRaceSetup->mNextHeader.mUnk_14 = p0;
+    gRaceSetup->mNextHeader.mCpuDifficulty = p0;
 }
 
 void func_02029908(u32 p0) {
@@ -34,7 +34,7 @@ void func_020298b8(u32 p0) {
 }
 
 void func_020298a4(u32 p0) {
-    gRaceSetup->mNextHeader.mUnk_1c = p0;
+    gRaceSetup->mNextHeader.mRuleKind = p0;
 }
 
 void func_02029890(u32 p0) {

@@ -132,8 +132,8 @@ typedef struct Unk0217b488 {
     /* 0cc */ s32 mUnk_cc[8];
     /* 0ec */ s32 mUnk_ec[4];
     /* 0fc */ u8 mUnk_fc[0x10];
-    /* 10c */ volatile s32 mUnk_10c[8];
-    /* 12c */ s32 mUnk_12c;
+    /* 10c */ volatile s32 mShuffledIndices[8];
+    /* 12c */ s32 mIndicesShuffled;
 } Unk0217b488;
 
 // Object at member 0x8 of WiFiSession.

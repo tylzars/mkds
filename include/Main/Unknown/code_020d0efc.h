@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 TrySetCupPictureIndexAndQueueLoads(int a);
+u32 TrySetCupPictureIndexAndQueueLoads(int cupPictureIndex);

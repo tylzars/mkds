@@ -48,7 +48,7 @@ void func_020c1ef8(void) {
     zero = 0;
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         gRaceGoalS->mRowKartIndex[i] = i;
-        if (gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE) {
+        if (gRaceSetup->mRuleKind == 1 || gRaceSetup->mMode == MODE_BATTLE) {
             isHumanGhostOrPeer = falseValue;
             if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind <= 3 &&
                 ((1 << gRaceSetup->mCurrentEntries[i].mPlayer.mKind) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER)) {
@@ -120,7 +120,7 @@ void func_020c1bc0(void) {
     if (frame % 5 == 0) {
         allReached = TRUE;
         for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-            if (gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE) {
+            if (gRaceSetup->mRuleKind == 1 || gRaceSetup->mMode == MODE_BATTLE) {
                 kartIndex = GetLowByte(i);
                 courseIndex = GetCourseIndexInCup();
                 target = gCupRecords->mUnk_000[courseIndex][GetLowByte(kartIndex)].mUnk_05;
@@ -141,7 +141,7 @@ void func_020c1bc0(void) {
             gRaceGoalS->mUpdate = func_020c195c;
             gRaceGoalS->mUpdateFrames = 0;
             gRaceGoalS->mUpdateFrames = 0;
-            if (gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE) {
+            if (gRaceSetup->mRuleKind == 1 || gRaceSetup->mMode == MODE_BATTLE) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x29);
             }
         } else {
@@ -168,7 +168,7 @@ void func_020c195c(void) {
     frame = gRaceGoalS->mUpdateFrames++;
     if (frame < 0x5a) {
         for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-            if (gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE) {
+            if (gRaceSetup->mRuleKind == 1 || gRaceSetup->mMode == MODE_BATTLE) {
                 kartIndex = GetLowByte(i);
                 courseIndex = GetCourseIndexInCup();
                 gRaceGoalS->mShownNumbers[i] = gCupRecords->mUnk_000[courseIndex][GetLowByte(kartIndex)].mUnk_05;
@@ -334,7 +334,7 @@ void func_020c13e8(void) {
             gRaceGoalS->mRowVisible[i] = 1;
         }
     } else {
-        if (gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE) {
+        if (gRaceSetup->mRuleKind == 1 || gRaceSetup->mMode == MODE_BATTLE) {
             if (gRaceSetup->mUseTeams != 0) {
                 a = func_020c13e8_inline(0)->mUnk_02;
                 teamOneValue = func_020c13e8_inline(1)->mUnk_02;

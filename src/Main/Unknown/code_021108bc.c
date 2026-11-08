@@ -105,7 +105,7 @@ s32 func_02110e58(void) {
             a = b;
             break;
         case MODE_VS:
-            if (p->mUnk_1c == 1) {
+            if (p->mRuleKind == 1) {
                 a = (data_0217d32c.mUnk_0c == 0) ? 0 : 2;
             } else {
                 switch (data_0217d32c.mUnk_0c) {

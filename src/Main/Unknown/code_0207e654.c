@@ -351,7 +351,7 @@ void PickKartAiTargetKart(KartAi *p) {
     if (a != GetRaceUpdateFramesMod8()) {
         return;
     }
-    if (gRaceSetup->mUnk_014 != CPU_DIFFICULTY_HARD) {
+    if (gRaceSetup->mCpuDifficulty != CPU_DIFFICULTY_HARD) {
         return;
     }
     a = GetKartRank(a);

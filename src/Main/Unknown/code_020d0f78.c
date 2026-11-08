@@ -8,49 +8,51 @@
 #pragma opt_propagation off
 
 #pragma thumb on
-void func_020d10fc(void) {
+void ClearCupPicturePointer(void) {
     gCupPicture = NULL;
 }
 
 void LoadCupPictureNclr(void) {
     char buf[0x100];
-    s32 i;
-    s32 a;
-    s32 b;
+    s32 pictureIndex;
+    s32 nitroOrRetro;
+    s32 pictureNumber;
 
-    i = gCupPicture->mCupPictureIndex;
-    a = data_0216aea8[i * 2];
-    b = data_0216aeac[i * 2];
-    snprintf(buf, 0x100, "%s%s%02d%s", gCupPicturePrefix, a == 0 ? gCupPictureNitro : gCupPictureRetro, b, "_m_b.NCLR");
+    pictureIndex = gCupPicture->mCupPictureIndex;
+    nitroOrRetro = data_0216aea8[pictureIndex * 2];
+    pictureNumber = data_0216aeac[pictureIndex * 2];
+    snprintf(buf, 0x100, "%s%s%02d%s", gCupPicturePrefix, nitroOrRetro == 0 ? gCupPictureNitro : gCupPictureRetro,
+             pictureNumber, "_m_b.NCLR");
     ReadWholeFile(buf, gCupPicture->mCupPictureNclrFile, 0x228);
     LoadNclrData(&gCupPicture->mCupPictureNclr, gCupPicture->mCupPictureNclrFile);
 }
 
 void LoadCupPictureNcgr(void) {
     char buf[0x100];
-    s32 i;
-    s32 a;
-    s32 b;
+    s32 pictureIndex;
+    s32 nitroOrRetro;
+    s32 pictureNumber;
 
-    i = gCupPicture->mCupPictureIndex;
-    a = data_0216aea8[i * 2];
-    b = data_0216aeac[i * 2];
-    snprintf(buf, 0x100, "%s%s%02d%s", gCupPicturePrefix, a == 0 ? gCupPictureNitro : gCupPictureRetro, b, "_m_b.NCGR");
+    pictureIndex = gCupPicture->mCupPictureIndex;
+    nitroOrRetro = data_0216aea8[pictureIndex * 2];
+    pictureNumber = data_0216aeac[pictureIndex * 2];
+    snprintf(buf, 0x100, "%s%s%02d%s", gCupPicturePrefix, nitroOrRetro == 0 ? gCupPictureNitro : gCupPictureRetro,
+             pictureNumber, "_m_b.NCGR");
     ReadWholeFile(buf, gCupPicture->mCupPictureNcgrFile, 0xe00);
     LoadNcgrData(&gCupPicture->mCupPictureNcgr, gCupPicture->mCupPictureNcgrFile);
 }
 
 void LoadCupPictureNscr(void) {
     char buf[0x100];
-    s32 i;
-    s32 a;
-    s32 b;
+    s32 pictureIndex;
+    s32 nitroOrRetro;
+    s32 pictureNumber;
 
-    i = gCupPicture->mCupPictureIndex;
-    a = data_0216aea8[i * 2];
-    b = data_0216aeac[i * 2];
-    snprintf(buf, 0x100, "%s%s%02d%s", gCupPicturePrefix, a == 0 ? gCupPictureNitro : gCupPictureRetro, b,
-             "_m_picture.NSCR");
+    pictureIndex = gCupPicture->mCupPictureIndex;
+    nitroOrRetro = data_0216aea8[pictureIndex * 2];
+    pictureNumber = data_0216aeac[pictureIndex * 2];
+    snprintf(buf, 0x100, "%s%s%02d%s", gCupPicturePrefix, nitroOrRetro == 0 ? gCupPictureNitro : gCupPictureRetro,
+             pictureNumber, "_m_picture.NSCR");
     ReadWholeFile(buf, gCupPicture->mCupPictureNscrFile, 0x824);
     LoadNscrData(&gCupPicture->mCupPictureNscr, gCupPicture->mCupPictureNscrFile);
 }

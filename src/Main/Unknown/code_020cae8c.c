@@ -17,7 +17,7 @@ void func_020cae8c(void) {
     framesSinceSwitch = GetFramesSinceMenuScreenSwitch();
     data_0217b43c->mUnk_938 = func_020ae488(framesSinceSwitch);
     if (framesSinceSwitch >= 10) {
-        func_020ccc74(2, nextScreenAndModeTable[data_0217b43c->mSinglePlaySelectModeIndex][0]);
+        SwitchMenuScreen(2, nextScreenAndModeTable[data_0217b43c->mSinglePlaySelectModeIndex][0]);
         ResetRaceSetupCopy();
         GetRaceSetupCopy()->mMode = nextScreenAndModeTable[data_0217b43c->mSinglePlaySelectModeIndex][1];
     }

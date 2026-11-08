@@ -10,43 +10,43 @@
 #pragma optimize_for_size on
 
 #pragma thumb on
-void func_020cee5c(void) {
-    s32 a[8];
-    s32 n;
+void FillShuffledIndices(void) {
+    s32 remaining[8];
+    s32 remainingCount;
     s32 i;
-    s32 j;
+    s32 pickIndex;
     s32 k;
-    Unk020f41c4_B *p;
+    Unk020f41c4_B *random;
 
-    n = 8;
-    if (data_0217b488->mUnk_12c == 0) {
+    remainingCount = 8;
+    if (data_0217b488->mIndicesShuffled == 0) {
         if (func_020cef08() == 1 || func_020cef08() == 2) {
-            p = func_020ceeec();
+            random = func_020ceeec();
             for (i = 0; i < 8; i++) {
-                a[i] = i;
+                remaining[i] = i;
             }
             for (i = 0; i < 8; i++) {
-                j = (func_020951b4(p) >> 8) % n;
-                data_0217b488->mUnk_10c[i] = a[j];
-                n--;
-                for (k = j; k < n; k++) {
-                    a[k] = a[k + 1];
+                pickIndex = (func_020951b4(random) >> 8) % remainingCount;
+                data_0217b488->mShuffledIndices[i] = remaining[pickIndex];
+                remainingCount--;
+                for (k = pickIndex; k < remainingCount; k++) {
+                    remaining[k] = remaining[k + 1];
                 }
             }
-            data_0217b488->mUnk_12c = 1;
+            data_0217b488->mIndicesShuffled = 1;
         }
     }
 }
 
-void func_020cee28(void) {
+void ClearShuffledIndices(void) {
     s32 i;
     BOOL v;
 
     v = FALSE;
     for (i = 0; i < 8; i++) {
-        data_0217b488->mUnk_10c[i] = v;
+        data_0217b488->mShuffledIndices[i] = v;
     }
-    data_0217b488->mUnk_12c = v;
+    data_0217b488->mIndicesShuffled = v;
 }
 #pragma thumb off
 
