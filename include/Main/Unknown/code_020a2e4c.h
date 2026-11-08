@@ -5,8 +5,8 @@
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // Object of kind 0x6c (Balloon, the battle balloons), also held by the kind 0x69 controller (UpdateKartBalloons,
-// code_020a3fa8.h) and by src/01/code_0218155c.c. Object of the list func_02100138(0x6c), set up by func_020a2fe4: the
-// shared MapObject part, then the value passed to func_020a2fe4 at 0xa8, two Vec3s at 0xb0 and 0xbc, words up to 0xe4,
+// code_020a3fa8.h) and by src/01/code_0218155c.c. Object of the list func_02100138(0x6c), set up by StartBalloon: the
+// shared MapObject part, then the value passed to StartBalloon at 0xa8, two Vec3s at 0xb0 and 0xbc, words up to 0xe4,
 // a Vec3 at 0xe8 and words up to 0xfc; the pointer array at 0xf8 has the count at 0xf4.
 typedef struct Balloon {
     /* 00 */ MapObject mUnk_00;
@@ -34,8 +34,8 @@ typedef struct Balloon {
     /* d8 */ s32 mUnk_d8;
     /* dc */ s32 mUnk_dc;
     /* e0 */ s32 mUnk_e0;
-    /* e4 */ s32 mUnk_e4;
-    /* e8 */ Vec3 mUnk_e8;
+    /* e4 */ s32 mDrawScale;
+    /* e8 */ Vec3 mDrawPos;
     // Number of balloons this object draws: 1 for the local kart's balloons (each draws itself), the kart's count for
     // the first balloon of another kart's list, 0 for its other balloons.
     /* f4 */ s32 mDrawCount;

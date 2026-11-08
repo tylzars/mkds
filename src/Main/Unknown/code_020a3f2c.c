@@ -1034,7 +1034,7 @@ void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
                 if (func_020a2264(i) <= 0 && func_020a223c(i) <= 0) {
                     break;
                 }
-                o = func_020a2fe4(e->mBalloonNsbtpFrameIndex, &v);
+                o = StartBalloon(e->mBalloonNsbtpFrameIndex, &v);
                 if (o == NULL) {
                     break;
                 }
@@ -1051,7 +1051,7 @@ void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
                 }
                 if (GetBalloonsLeftToMake(i) != 0 && GetBalloonOrShineCount(i) < 3) {
                     if (e->mRemainingSpawnCount > 0) {
-                        o = func_020a2fe4(e->mBalloonNsbtpFrameIndex, &v);
+                        o = StartBalloon(e->mBalloonNsbtpFrameIndex, &v);
                         if (o != NULL) {
                             e->mBalloons[GetBalloonOrShineCount(i)] = o;
                             func_020a2f9c(o, i, 0x266);

@@ -50,74 +50,74 @@
 #include "Main/Unknown/code_0203ca38.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void SetStandingsKartBalloons(KartBalloons *p0) {
-    gStandings->mKartBalloons = p0;
+void SetStandingsKartBalloons(KartBalloons *kartBalloons) {
+    gStandings->mKartBalloons = kartBalloons;
 }
 
 KartBalloons *GetStandingsKartBalloons(void) {
     return gStandings->mKartBalloons;
 }
 
-void SetStandingsKartHitByKartCallback(s32 (*p0)(s32, s32)) {
-    gStandings->mKartHitByKartCallback = p0;
+void SetStandingsKartHitByKartCallback(s32 (*callback)(s32, s32)) {
+    gStandings->mKartHitByKartCallback = callback;
 }
 
-void SetStandingsKartsHitEachOtherCallback(void (*p0)(s32, s32)) {
-    gStandings->mKartsHitEachOtherCallback = p0;
+void SetStandingsKartsHitEachOtherCallback(void (*callback)(s32, s32)) {
+    gStandings->mKartsHitEachOtherCallback = callback;
 }
 
-void SetStandingsKartHitCallback(s32 (*p0)(u16 a, u16 b)) {
-    gStandings->mKartHitCallback = p0;
+void SetStandingsKartHitCallback(s32 (*callback)(u16 a, u16 b)) {
+    gStandings->mKartHitCallback = callback;
 }
 
 // Stores the kart-eliminated callback.
-void SetStandingsKartEliminatedCallback(void (*p0)(u16 a)) {
-    gStandings->mKartEliminatedCallback = p0;
+void SetStandingsKartEliminatedCallback(void (*callback)(u16 a)) {
+    gStandings->mKartEliminatedCallback = callback;
 }
 
 // Stores the end callback.
-void SetStandingsEndCallback(void (*a)(void)) {
-    gStandings->mEndCallback = a;
+void SetStandingsEndCallback(void (*callback)(void)) {
+    gStandings->mEndCallback = callback;
 }
 
-void SetStandingsKartOffsetCallback(void (*p0)(s32, s32)) {
-    gStandings->mKartOffsetCallback = p0;
+void SetStandingsKartOffsetCallback(void (*callback)(s32, s32)) {
+    gStandings->mKartOffsetCallback = callback;
 }
 
-void func_020a22ac(u16 a) {
+void func_020a22ac(u16 kartIndex) {
     if (IsRaceStarted() != 1) {
         return;
     }
-    if (func_01ffc67c(GetKart(a)) != FALSE) {
+    if (func_01ffc67c(GetKart(kartIndex)) != FALSE) {
         return;
     }
-    gStandings->mKarts[a].mUnk_64 = 10;
+    gStandings->mKarts[kartIndex].mUnk_64 = 10;
 }
 
-void func_020a228c(int a) {
-    gStandings->mKarts[a].mUnk_64 = 0xffffffff;
+void func_020a228c(int kartIndex) {
+    gStandings->mKarts[kartIndex].mUnk_64 = 0xffffffff;
 }
 
-s32 func_020a2264(u16 a) {
+s32 func_020a2264(u16 kartIndex) {
     if (gStandings->mWinnerTeamId >= 0) {
         return -1;
     }
-    return gStandings->mKarts[a].mUnk_64;
+    return gStandings->mKarts[kartIndex].mUnk_64;
 }
 
-s32 func_020a223c(u16 a) {
+s32 func_020a223c(u16 kartIndex) {
     if (gStandings->mWinnerTeamId >= 0) {
         return -1;
     }
-    return gStandings->mKarts[a].mUnk_68;
+    return gStandings->mKarts[kartIndex].mUnk_68;
 }
 
-void SetKartInflatingBalloon(u16 arg0, u32 arg1) {
-    gStandings->mKarts[arg0].mInflatingBalloon = arg1;
+void SetKartInflatingBalloon(u16 kartIndex, u32 inflating) {
+    gStandings->mKarts[kartIndex].mInflatingBalloon = inflating;
 }
 
-u32 IsKartInflatingBalloon(u16 arg0) {
-    return gStandings->mKarts[arg0].mInflatingBalloon;
+u32 IsKartInflatingBalloon(u16 kartIndex) {
+    return gStandings->mKarts[kartIndex].mInflatingBalloon;
 }
 
 void CallStandingsKartOffsetCallback(s32 a, s32 b) {
@@ -129,11 +129,11 @@ void CallStandingsKartOffsetCallback(s32 a, s32 b) {
     }
 }
 
-s32 CallKartCollisionCallbacks(s32 a, s32 b) {
-    Kart *v1;
-    Kart *v2;
-    KartStanding *v3;
-    KartStanding *v4;
+s32 CallKartCollisionCallbacks(s32 firstKartIndex, s32 secondKartIndex) {
+    Kart *firstKart;
+    Kart *secondKart;
+    KartStanding *firstStanding;
+    KartStanding *secondStanding;
     BOOL f5;
     s32 f4;
     BOOL f11;
@@ -142,76 +142,76 @@ s32 CallKartCollisionCallbacks(s32 a, s32 b) {
     if (gStandings->mWinnerTeamId >= 0) {
         return 0;
     }
-    v1 = GetKart(a);
-    v2 = GetKart(b);
-    v4 = &gStandings->mKarts[b];
-    v3 = &gStandings->mKarts[a];
+    firstKart = GetKart(firstKartIndex);
+    secondKart = GetKart(secondKartIndex);
+    secondStanding = &gStandings->mKarts[secondKartIndex];
+    firstStanding = &gStandings->mKarts[firstKartIndex];
     f5 = FALSE;
-    if (v4->mUnk_24[a] == 0) {
-        if ((v1->mUnk_48 & 0x100000) != 0) {
+    if (secondStanding->mUnk_24[firstKartIndex] == 0) {
+        if ((firstKart->mUnk_48 & 0x100000) != 0) {
             f5 = TRUE;
         }
     }
     f4 = 0;
-    if (v3->mUnk_24[b] == 0) {
-        if ((v2->mUnk_48 & 0x100000) != 0) {
+    if (firstStanding->mUnk_24[secondKartIndex] == 0) {
+        if ((secondKart->mUnk_48 & 0x100000) != 0) {
             f4 = 1;
         }
     }
     f11 = TRUE;
-    if ((v1->mUnk_4c & 0x400000) == 0) {
-        if (GetKartItemEffect(a) != 1) {
+    if ((firstKart->mUnk_4c & 0x400000) == 0) {
+        if (GetKartItemEffect(firstKartIndex) != 1) {
             f11 = FALSE;
         }
     }
     t = TRUE;
-    if ((v2->mUnk_4c & 0x400000) == 0) {
-        if (GetKartItemEffect(b) != 1) {
+    if ((secondKart->mUnk_4c & 0x400000) == 0) {
+        if (GetKartItemEffect(secondKartIndex) != 1) {
             t = FALSE;
         }
     }
     if (f4 != 0) {
-        v3->mUnk_24[b] = 1;
+        firstStanding->mUnk_24[secondKartIndex] = 1;
     }
     if (f5 != FALSE) {
-        v4->mUnk_24[a] = 1;
+        secondStanding->mUnk_24[firstKartIndex] = 1;
     }
     if (f11 == FALSE && t == FALSE && f5 != FALSE && f4 != 0) {
         if (gStandings->mKartsHitEachOtherCallback != NULL) {
-            gStandings->mKartsHitEachOtherCallback(a, b);
+            gStandings->mKartsHitEachOtherCallback(firstKartIndex, secondKartIndex);
             return 1;
         }
     } else if (f11 == FALSE && f4 != 0) {
         f4 = 0;
-        if (GetKartItemEffect(b) == 1) {
-            v3->mUnk_20 = TRUE;
+        if (GetKartItemEffect(secondKartIndex) == 1) {
+            firstStanding->mUnk_20 = TRUE;
             if (gStandings->mKartHitByKartCallback != NULL) {
-                f4 = gStandings->mKartHitByKartCallback(a, b);
-                if ((v1->mUnk_4c & 0x400000) == 0) {
-                    func_0206c17c(v1);
+                f4 = gStandings->mKartHitByKartCallback(firstKartIndex, secondKartIndex);
+                if ((firstKart->mUnk_4c & 0x400000) == 0) {
+                    func_0206c17c(firstKart);
                 }
             }
         } else if (gStandings->mKartHitByKartCallback != NULL) {
-            f4 = gStandings->mKartHitByKartCallback(a, b);
-            if ((v1->mUnk_4c & 0x400000) == 0) {
-                func_0206c17c(v1);
+            f4 = gStandings->mKartHitByKartCallback(firstKartIndex, secondKartIndex);
+            if ((firstKart->mUnk_4c & 0x400000) == 0) {
+                func_0206c17c(firstKart);
             }
         }
         return f4;
     } else if (t == FALSE && f5 != FALSE) {
         f4 = 0;
-        if (GetKartItemEffect(a) == 1) {
-            v4->mUnk_20 = TRUE;
+        if (GetKartItemEffect(firstKartIndex) == 1) {
+            secondStanding->mUnk_20 = TRUE;
             if (gStandings->mKartHitByKartCallback != NULL) {
-                f4 = gStandings->mKartHitByKartCallback(b, a);
-                if ((v2->mUnk_4c & 0x400000) == 0) {
-                    func_0206c17c(v2);
+                f4 = gStandings->mKartHitByKartCallback(secondKartIndex, firstKartIndex);
+                if ((secondKart->mUnk_4c & 0x400000) == 0) {
+                    func_0206c17c(secondKart);
                 }
             }
         } else if (gStandings->mKartHitByKartCallback != NULL) {
-            f4 = gStandings->mKartHitByKartCallback(b, a);
-            if ((v2->mUnk_4c & 0x400000) == 0) {
-                func_0206c17c(v2);
+            f4 = gStandings->mKartHitByKartCallback(secondKartIndex, firstKartIndex);
+            if ((secondKart->mUnk_4c & 0x400000) == 0) {
+                func_0206c17c(secondKart);
             }
         }
         return f4;
@@ -219,278 +219,280 @@ s32 CallKartCollisionCallbacks(s32 a, s32 b) {
     return 0;
 }
 
-void SetKartHitByKartIndexFromItem(s32 a, ItemObject *p) {
+void SetKartHitByKartIndexFromItem(s32 kartIndex, ItemObject *itemObject) {
     u16 v;
 
     if (gStandings->mWinnerTeamId >= 0) {
         return;
     }
-    if (GetKart(a)->mState == KART_STATE_NORMAL) {
+    if (GetKart(kartIndex)->mState == KART_STATE_NORMAL) {
         return;
     }
-    if (p->mKind != 0 && p->mKind != 1 && p->mKind != 9) {
+    if (itemObject->mKind != 0 && itemObject->mKind != 1 && itemObject->mKind != 9) {
         return;
     }
-    v = p->mUnk_78;
+    v = itemObject->mUnk_78;
     if ((v & 0x8000) != 0) {
         return;
     }
-    gStandings->mKarts[a].mHitByKartIndex = v & ~0xff00;
+    gStandings->mKarts[kartIndex].mHitByKartIndex = v & ~0xff00;
 }
 
-u32 func_020a1e3c(u32 p0) {
-    return p0;
+u32 func_020a1e3c(u32 value) {
+    return value;
 }
 
-void func_020a1ddc(s32 a) {
+void func_020a1ddc(s32 kartIndex) {
     s32 i;
-    s32 n;
+    s32 kartCount;
 
-    n = gRaceSetup->mKartCount;
-    for (i = 0; i < n; i++) {
-        gStandings->mKarts[i].mUnk_24[a] = 0;
+    kartCount = gRaceSetup->mKartCount;
+    for (i = 0; i < kartCount; i++) {
+        gStandings->mKarts[i].mUnk_24[kartIndex] = 0;
     }
 }
 
-static inline u16 func_020a1790_inline(Standings *d, s32 i) {
+static inline u16 func_020a1790_inline(Standings *standings, s32 rankIndex) {
     s32 j;
 
     for (j = 0; j < 8; j++) {
-        if ((u16) i == d->mKarts[j].mRankIndex) {
+        if ((u16) rankIndex == standings->mKarts[j].mRankIndex) {
             return j;
         }
     }
     return 0;
 }
 
-u16 GetBattleItemRank(s32 a) {
-    s32 v;
+u16 GetBattleItemRank(s32 kartIndex) {
+    s32 rank;
     s32 i;
-    s32 v1;
+    s32 highestCount;
 
     if (gRaceSetup->mMode == MODE_BATTLE) {
         if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
-            v = 3 - gStandings->mKarts[a].mBalloonOrShineCount;
-            v += 1;
+            rank = 3 - gStandings->mKarts[kartIndex].mBalloonOrShineCount;
+            rank += 1;
         } else if (gRaceSetup->mBattleKind == BATTLE_KIND_SHINE) {
-            v1 = 1;
+            highestCount = 1;
             for (i = 0; i < gRaceSetup->mKartCount; i++) {
-                if (gStandings->mKarts[i].mBalloonOrShineCount > v1) {
-                    v1 = gStandings->mKarts[i].mBalloonOrShineCount;
+                if (gStandings->mKarts[i].mBalloonOrShineCount > highestCount) {
+                    highestCount = gStandings->mKarts[i].mBalloonOrShineCount;
                 }
             }
-            v = (v1 + 1 - gStandings->mKarts[a].mBalloonOrShineCount) / 2 + 1;
+            rank = (highestCount + 1 - gStandings->mKarts[kartIndex].mBalloonOrShineCount) / 2 + 1;
         } else {
-            v = a;
+            rank = kartIndex;
         }
     } else {
-        v = 3 - gStandings->mKarts[a].mBalloonOrShineCount;
-        v += 1;
+        rank = 3 - gStandings->mKarts[kartIndex].mBalloonOrShineCount;
+        rank += 1;
     }
-    if (v < 1) {
-        v = 1;
-    } else if (v > 3) {
-        v = 3;
+    if (rank < 1) {
+        rank = 1;
+    } else if (rank > 3) {
+        rank = 3;
     }
-    return v;
+    return rank;
 }
 
-void MoveKartTowardFirstRank(u16 a) {
+void MoveKartTowardFirstRank(u16 kartIndex) {
     s32 i;
     s32 j;
-    s32 n;
-    s32 v;
-    KartStanding *e0;
-    u16 r1;
-    u16 r0;
-    KartStanding *e1;
+    s32 kartCount;
+    s32 count;
+    KartStanding *ownStanding;
+    u16 otherRankIndex;
+    u16 ownRankIndex;
+    KartStanding *otherStanding;
 
-    for (i = gStandings->mKarts[a].mRankIndex - 1; i >= 0; i--) {
-        e1 = &gStandings->mKarts[func_020a1790_inline(gStandings, i)];
-        r1 = e1->mRankIndex;
-        r0 = gStandings->mKarts[a].mRankIndex;
-        e0 = &gStandings->mKarts[a];
-        if (r0 > r1) {
-            if (e0->mBalloonOrShineCount > e1->mBalloonOrShineCount ||
-                (e0->mEliminationStatus == 0 && e1->mEliminationStatus != 0)) {
-                e1->mRankIndex = r0;
-                gStandings->mKarts[a].mRankIndex = r1;
+    for (i = gStandings->mKarts[kartIndex].mRankIndex - 1; i >= 0; i--) {
+        otherStanding = &gStandings->mKarts[func_020a1790_inline(gStandings, i)];
+        otherRankIndex = otherStanding->mRankIndex;
+        ownRankIndex = gStandings->mKarts[kartIndex].mRankIndex;
+        ownStanding = &gStandings->mKarts[kartIndex];
+        if (ownRankIndex > otherRankIndex) {
+            if (ownStanding->mBalloonOrShineCount > otherStanding->mBalloonOrShineCount ||
+                (ownStanding->mEliminationStatus == 0 && otherStanding->mEliminationStatus != 0)) {
+                otherStanding->mRankIndex = ownRankIndex;
+                gStandings->mKarts[kartIndex].mRankIndex = otherRankIndex;
             }
         }
     }
-    n = gRaceSetup->mKartCount;
+    kartCount = gRaceSetup->mKartCount;
     gStandings->mLowestBalloonOrShineCount = 0xffff;
     gStandings->mHighestBalloonOrShineCount = 0;
-    for (j = 0; j < n; j++) {
-        v = gStandings->mKarts[j].mBalloonOrShineCount;
-        gStandings->mLowestBalloonOrShineCount =
-            (v < gStandings->mLowestBalloonOrShineCount && v >= 0) ? v : gStandings->mLowestBalloonOrShineCount;
-        v = gStandings->mKarts[j].mBalloonOrShineCount;
+    for (j = 0; j < kartCount; j++) {
+        count = gStandings->mKarts[j].mBalloonOrShineCount;
+        gStandings->mLowestBalloonOrShineCount = (count < gStandings->mLowestBalloonOrShineCount && count >= 0)
+                                                     ? count
+                                                     : gStandings->mLowestBalloonOrShineCount;
+        count = gStandings->mKarts[j].mBalloonOrShineCount;
         gStandings->mHighestBalloonOrShineCount =
-            (v > gStandings->mHighestBalloonOrShineCount) ? v : gStandings->mHighestBalloonOrShineCount;
+            (count > gStandings->mHighestBalloonOrShineCount) ? count : gStandings->mHighestBalloonOrShineCount;
     }
 }
 
-void MoveKartTowardLastRank(u16 a) {
+void MoveKartTowardLastRank(u16 kartIndex) {
     s32 i;
     s32 j;
-    s32 n;
-    s32 v;
-    KartStanding *e0;
-    u16 r1;
-    u16 r0;
-    KartStanding *e1;
+    s32 kartCount;
+    s32 count;
+    KartStanding *ownStanding;
+    u16 otherRankIndex;
+    u16 ownRankIndex;
+    KartStanding *otherStanding;
 
-    for (i = gStandings->mKarts[a].mRankIndex + 1; i < 8; i++) {
-        e1 = &gStandings->mKarts[func_020a1790_inline(gStandings, i)];
-        r1 = e1->mRankIndex;
-        r0 = gStandings->mKarts[a].mRankIndex;
-        e0 = &gStandings->mKarts[a];
-        if (r0 < r1) {
-            if (e0->mBalloonOrShineCount < e1->mBalloonOrShineCount ||
-                (e0->mEliminationStatus != 0 && e1->mEliminationStatus == 0)) {
-                e1->mRankIndex = r0;
-                gStandings->mKarts[a].mRankIndex = r1;
+    for (i = gStandings->mKarts[kartIndex].mRankIndex + 1; i < 8; i++) {
+        otherStanding = &gStandings->mKarts[func_020a1790_inline(gStandings, i)];
+        otherRankIndex = otherStanding->mRankIndex;
+        ownRankIndex = gStandings->mKarts[kartIndex].mRankIndex;
+        ownStanding = &gStandings->mKarts[kartIndex];
+        if (ownRankIndex < otherRankIndex) {
+            if (ownStanding->mBalloonOrShineCount < otherStanding->mBalloonOrShineCount ||
+                (ownStanding->mEliminationStatus != 0 && otherStanding->mEliminationStatus == 0)) {
+                otherStanding->mRankIndex = ownRankIndex;
+                gStandings->mKarts[kartIndex].mRankIndex = otherRankIndex;
             }
         }
     }
-    n = gRaceSetup->mKartCount;
+    kartCount = gRaceSetup->mKartCount;
     gStandings->mLowestBalloonOrShineCount = 0xffff;
     gStandings->mHighestBalloonOrShineCount = 0;
-    for (j = 0; j < n; j++) {
-        v = gStandings->mKarts[j].mBalloonOrShineCount;
-        gStandings->mLowestBalloonOrShineCount =
-            (v < gStandings->mLowestBalloonOrShineCount && v >= 0) ? v : gStandings->mLowestBalloonOrShineCount;
-        v = gStandings->mKarts[j].mBalloonOrShineCount;
+    for (j = 0; j < kartCount; j++) {
+        count = gStandings->mKarts[j].mBalloonOrShineCount;
+        gStandings->mLowestBalloonOrShineCount = (count < gStandings->mLowestBalloonOrShineCount && count >= 0)
+                                                     ? count
+                                                     : gStandings->mLowestBalloonOrShineCount;
+        count = gStandings->mKarts[j].mBalloonOrShineCount;
         gStandings->mHighestBalloonOrShineCount =
-            (v > gStandings->mHighestBalloonOrShineCount) ? v : gStandings->mHighestBalloonOrShineCount;
+            (count > gStandings->mHighestBalloonOrShineCount) ? count : gStandings->mHighestBalloonOrShineCount;
     }
 }
 
 // Takes one kart out of play: runs the kart-eliminated callback, sets its status to 1, in mode 2 sets its count to -1,
 // re-sorts the ranks and starts the mode's out handling of the kart (mode 2: a kart handler call; mode 4: two bits in
 // the kart's words).
-void EliminateKart(u16 a) {
-    Kart *c;
+void EliminateKart(u16 kartIndex) {
+    Kart *kart;
 
     if (gStandings->mKartEliminatedCallback != NULL) {
-        gStandings->mKartEliminatedCallback(a);
+        gStandings->mKartEliminatedCallback(kartIndex);
     }
-    gStandings->mKarts[a].mEliminationStatus = 1;
+    gStandings->mKarts[kartIndex].mEliminationStatus = 1;
     if (gRaceSetup->mMode == MODE_BATTLE) {
-        gStandings->mKarts[a].mBalloonOrShineCount = -1;
-        gStandings->mKarts[a].mBalloonsLeftToMake = 0;
+        gStandings->mKarts[kartIndex].mBalloonOrShineCount = -1;
+        gStandings->mKarts[kartIndex].mBalloonsLeftToMake = 0;
     }
-    if ((u32) a >= gRaceSetup->mKartCount) {
+    if ((u32) kartIndex >= gRaceSetup->mKartCount) {
         return;
     }
-    MoveKartTowardLastRank(a);
+    MoveKartTowardLastRank(kartIndex);
     if (gRaceSetup->mMode == MODE_BATTLE) {
-        func_02068b5c(GetKart(a));
+        func_02068b5c(GetKart(kartIndex));
     } else if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-        c = GetKart(a);
-        c->mUnk_48 |= 0x2000;
-        c->mUnk_7c |= 8;
+        kart = GetKart(kartIndex);
+        kart->mUnk_48 |= 0x2000;
+        kart->mUnk_7c |= 8;
     }
 }
 
 void SetWinnerIfOneTeamLeft(void) {
-    s32 n;
-    s32 v;
+    s32 kartCount;
+    s32 teamId;
     s32 i;
     s32 j;
-    s32 v1;
+    s32 entryIndex;
     s32 k;
-    u16 x;
-    Standings *d;
-    KartStanding *e;
-    Kart *c;
+    u16 firstRankKartIndex;
+    Standings *standings;
+    KartStanding *kartStanding;
+    Kart *kart;
 
-    n = gRaceSetup->mKartCount;
-    d = gStandings;
+    kartCount = gRaceSetup->mKartCount;
+    standings = gStandings;
     for (k = 0; k < 8; k++) {
-        if (d->mKarts[k].mRankIndex == 0) {
-            x = k;
+        if (standings->mKarts[k].mRankIndex == 0) {
+            firstRankKartIndex = k;
             goto found;
         }
     }
-    x = 0;
+    firstRankKartIndex = 0;
 found:
-    v = d->mKarts[x].mTeamId;
-    e = d->mKarts;
-    for (j = 0; j < 8; j++, e++) {
-        if (e->mEliminationStatus == 0) {
-            if (v != e->mTeamId) {
+    teamId = standings->mKarts[firstRankKartIndex].mTeamId;
+    kartStanding = standings->mKarts;
+    for (j = 0; j < 8; j++, kartStanding++) {
+        if (kartStanding->mEliminationStatus == 0) {
+            if (teamId != kartStanding->mTeamId) {
                 return;
             }
         }
     }
-    for (i = 0; i < n; i++) {
-        c = GetKart((u16) i);
-        c->mUnk_48 |= 0x2000;
-        c->mUnk_7c |= 8;
+    for (i = 0; i < kartCount; i++) {
+        kart = GetKart((u16) i);
+        kart->mUnk_48 |= 0x2000;
+        kart->mUnk_7c |= 8;
     }
-    gStandings->mWinnerTeamId = v;
+    gStandings->mWinnerTeamId = teamId;
     if (gRaceSetup->mMode == MODE_BATTLE) {
         if (gRaceSetup->mBattleKind == BATTLE_KIND_SHINE) {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x4a);
         }
         gStandings->mEndTimer = 0x5a;
     } else if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-        v1 = gRaceSetup->mEntryIndex;
-        if (gStandings->mWinnerTeamId == v1) {
-            FinishMissionRunKartWithEndKind0(v1);
+        entryIndex = gRaceSetup->mEntryIndex;
+        if (gStandings->mWinnerTeamId == entryIndex) {
+            FinishMissionRunKartWithEndKind0(entryIndex);
         } else {
-            FinishRaceProgressKartWithEndKind4(v1);
+            FinishRaceProgressKartWithEndKind4(entryIndex);
         }
         gStandings->mEndTimer = 0;
     }
 }
 
-void CallKartHitCallbackForSelf(u16 a) {
-    KartStanding *e;
+void CallKartHitCallbackForSelf(u16 kartIndex) {
+    KartStanding *kartStanding;
 
-    e = &gStandings->mKarts[a];
-    e->mUnk_1c = -2;
-    e->mUnk_18 = -2;
-    e->mHitByKartIndex = a;
-    gStandings->mKartHitCallback(a, a);
+    kartStanding = &gStandings->mKarts[kartIndex];
+    kartStanding->mUnk_1c = -2;
+    kartStanding->mUnk_18 = -2;
+    kartStanding->mHitByKartIndex = kartIndex;
+    gStandings->mKartHitCallback(kartIndex, kartIndex);
 }
 
-void ClearStandingEliminationStatus(int a) {
-    gStandings->mKarts[a].mEliminationStatus = 0;
+void ClearStandingEliminationStatus(int kartIndex) {
+    gStandings->mKarts[kartIndex].mEliminationStatus = 0;
 }
 
-static inline u16 func_020a12b8_inline(s32 i) {
+static inline u16 func_020a12b8_inline(s32 rankIndex) {
     s32 j;
 
     for (j = 0; j < 8; j++) {
-        if ((u16) i == gStandings->mKarts[j].mRankIndex) {
+        if ((u16) rankIndex == gStandings->mKarts[j].mRankIndex) {
             return j;
         }
     }
     return 0;
 }
 
-void EliminateKartAndCheckWinner(u16 a) {
+void EliminateKartAndCheckWinner(u16 kartIndex) {
     if (gStandings->mWinnerTeamId >= 0) {
         return;
     }
-    if (gStandings->mKarts[a].mEliminationStatus != 0) {
+    if (gStandings->mKarts[kartIndex].mEliminationStatus != 0) {
         return;
     }
-    EliminateKart(a);
+    EliminateKart(kartIndex);
     SetWinnerIfOneTeamLeft();
 }
 
 u16 func_020a1520(void) {
-    NNSSndSeqPlayer **h;
+    NNSSndSeqPlayer **seqPlayerHandle;
     s32 v;
-    u16 k;
+    u16 kartIndex;
     s32 i;
     s32 m;
-    s32 n;
-    s32 a;
+    s32 kartCount;
+    s32 lowestCount;
 
     if (gStandings->mWinnerTeamId >= 0) {
         return 0;
@@ -501,14 +503,14 @@ u16 func_020a1520(void) {
     }
     gStandings->mUnk_3a4 = v;
     gStandings->mUnk_3a2 = data_021565f0[gStandings->mUnk_3a4];
-    a = gStandings->mLowestBalloonOrShineCount;
-    if (a != gStandings->mHighestBalloonOrShineCount) {
-        n = gRaceSetup->mKartCount;
-        for (m = 0; m <= a; m++) {
-            for (i = n - 1; i >= 0; i--) {
-                k = func_020a12b8_inline(i);
-                if (m == gStandings->mKarts[k].mBalloonOrShineCount) {
-                    EliminateKart(k);
+    lowestCount = gStandings->mLowestBalloonOrShineCount;
+    if (lowestCount != gStandings->mHighestBalloonOrShineCount) {
+        kartCount = gRaceSetup->mKartCount;
+        for (m = 0; m <= lowestCount; m++) {
+            for (i = kartCount - 1; i >= 0; i--) {
+                kartIndex = func_020a12b8_inline(i);
+                if (m == gStandings->mKarts[kartIndex].mBalloonOrShineCount) {
+                    EliminateKart(kartIndex);
                 }
             }
             SetWinnerIfOneTeamLeft();
@@ -518,72 +520,72 @@ u16 func_020a1520(void) {
         }
     }
     if (data_0217c780 & 1) {
-        h = TakeSoundHandleEntry(func_02108ea0(0));
+        seqPlayerHandle = TakeSoundHandleEntry(func_02108ea0(0));
         if (data_0217d084.mUnk_0c != 0) {
-            if (h[0] != NULL) {
-                NNS_SndPlayerStopSeq(h, 0);
+            if (seqPlayerHandle[0] != NULL) {
+                NNS_SndPlayerStopSeq(seqPlayerHandle, 0);
             }
-            if (h[0] != NULL) {
-                NNS_SndPlayerStopSeq(h, 0);
+            if (seqPlayerHandle[0] != NULL) {
+                NNS_SndPlayerStopSeq(seqPlayerHandle, 0);
             }
-            NNS_SndArcPlayerStartSeqArc(h, 0, 0x4b);
+            NNS_SndArcPlayerStartSeqArc(seqPlayerHandle, 0, 0x4b);
         }
     }
     return gStandings->mUnk_3a2;
 }
 
 void EliminateKartsUntilWinnerDecided(void) {
-    s32 n;
+    s32 kartCount;
     s32 i;
-    u16 k;
-    s32 m;
-    u16 s;
-    RandomState64 *r;
+    u16 kartIndex;
+    s32 randomKartIndex;
+    u16 randomLimit;
+    RandomState64 *randomState;
 
     if (gStandings->mWinnerTeamId >= 0) {
         return;
     }
     if (gRaceSetup->mMode == MODE_BATTLE) {
-        n = gRaceSetup->mKartCount;
+        kartCount = gRaceSetup->mKartCount;
         if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
             if (gStandings->mWinnerTeamId >= 0) {
                 return;
             }
-            s = n;
+            randomLimit = kartCount;
             do {
-                r = &gRaceProgress->mRandom;
-                if ((u16) n == 0) {
-                    m = 0;
+                randomState = &gRaceProgress->mRandom;
+                if ((u16) kartCount == 0) {
+                    randomKartIndex = 0;
                 } else {
-                    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-                    if (s == 0) {
-                        m = (u32) (r->mValue >> 32);
+                    randomState->mValue = randomState->mMultiplier * randomState->mValue + randomState->mIncrement;
+                    if (randomLimit == 0) {
+                        randomKartIndex = (u32) (randomState->mValue >> 32);
                     } else {
-                        m = (u32) (((u64) (u32) (r->mValue >> 32) * (u64) s) >> 32);
+                        randomKartIndex = (u32) (((u64) (u32) (randomState->mValue >> 32) * (u64) randomLimit) >> 32);
                     }
                 }
-                k = m;
-                if (gStandings->mKarts[k].mEliminationStatus == 0) {
-                    EliminateKartAndCheckWinner(k);
-                    gStandings->mKarts[k].mEliminationStatus = 2;
+                kartIndex = randomKartIndex;
+                if (gStandings->mKarts[kartIndex].mEliminationStatus == 0) {
+                    EliminateKartAndCheckWinner(kartIndex);
+                    gStandings->mKarts[kartIndex].mEliminationStatus = 2;
                 }
             } while (gStandings->mWinnerTeamId < 0);
         } else if (gRaceSetup->mBattleKind == BATTLE_KIND_SHINE) {
-            for (i = n - 1; i >= 0; i--) {
+            for (i = kartCount - 1; i >= 0; i--) {
                 if (gStandings->mWinnerTeamId < 0) {
-                    k = func_020a12b8_inline(i);
-                    if (gStandings->mKarts[k].mEliminationStatus == 0) {
-                        EliminateKartAndCheckWinner(k);
-                        gStandings->mKarts[k].mEliminationStatus = 2;
+                    kartIndex = func_020a12b8_inline(i);
+                    if (gStandings->mKarts[kartIndex].mEliminationStatus == 0) {
+                        EliminateKartAndCheckWinner(kartIndex);
+                        gStandings->mKarts[kartIndex].mEliminationStatus = 2;
                     }
                 }
             }
         }
     } else if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         for (i = 7; i >= 0; i--) {
-            k = func_020a12b8_inline(i);
-            if (k != gRaceSetup->mEntryIndex && gStandings->mWinnerTeamId < 0) {
-                EliminateKartAndCheckWinner(k);
+            kartIndex = func_020a12b8_inline(i);
+            if (kartIndex != gRaceSetup->mEntryIndex && gStandings->mWinnerTeamId < 0) {
+                EliminateKartAndCheckWinner(kartIndex);
             }
         }
     }
@@ -609,8 +611,8 @@ BOOL IsWinnerDecided(void) {
 }
 
 // Returns the kart's mRankIndex.
-u16 GetKartStandingRankIndex(int arg0) {
-    return gStandings->mKarts[arg0].mRankIndex;
+u16 GetKartStandingRankIndex(int kartIndex) {
+    return gStandings->mKarts[kartIndex].mRankIndex;
 }
 
 // Returns mShineCount.
@@ -619,28 +621,28 @@ u32 GetShineCount(void) {
 }
 
 // Adds its argument to mShineCount (+1 when a shine is placed, -1 when one is finished).
-void AddShineCount(short a) {
-    Standings *v1;
-    v1 = gStandings;
-    v1->mShineCount = v1->mShineCount + a;
+void AddShineCount(short amount) {
+    Standings *standings;
+    standings = gStandings;
+    standings->mShineCount = standings->mShineCount + amount;
 }
 
 u16 GetTotalBalloonOrShineCount(void) {
     s32 i;
-    s32 v1;
-    s32 n;
-    s32 v;
+    s32 total;
+    s32 kartCount;
+    s32 count;
 
-    v1 = 0;
-    n = gRaceSetup->mKartCount;
-    for (i = 0; i < n; i++) {
-        v = gStandings->mKarts[(u16) i].mBalloonOrShineCount;
-        if (v <= 0) {
-            v = 0;
+    total = 0;
+    kartCount = gRaceSetup->mKartCount;
+    for (i = 0; i < kartCount; i++) {
+        count = gStandings->mKarts[(u16) i].mBalloonOrShineCount;
+        if (count <= 0) {
+            count = 0;
         }
-        v1 += (u16) v;
+        total += (u16) count;
     }
-    return v1;
+    return total;
 }
 
 u16 GetHighestBalloonOrShineCount(void) {
@@ -648,89 +650,89 @@ u16 GetHighestBalloonOrShineCount(void) {
 }
 
 // Returns the kart's count, 0 when it is negative.
-u16 GetBalloonOrShineCount(u16 a) {
-    s32 v;
+u16 GetBalloonOrShineCount(u16 kartIndex) {
+    s32 count;
 
-    v = gStandings->mKarts[a].mBalloonOrShineCount;
-    if (v <= 0) {
-        v = 0;
+    count = gStandings->mKarts[kartIndex].mBalloonOrShineCount;
+    if (count <= 0) {
+        count = 0;
     }
-    return v;
+    return count;
 }
 
-void AddBalloonOrShineCountAndMoveRank(u16 a, s32 b) {
-    gStandings->mKarts[a].mBalloonOrShineCount += b;
-    if (b > 0) {
-        MoveKartTowardFirstRank(a);
-    } else if (b < 0) {
-        MoveKartTowardLastRank(a);
+void AddBalloonOrShineCountAndMoveRank(u16 kartIndex, s32 amount) {
+    gStandings->mKarts[kartIndex].mBalloonOrShineCount += amount;
+    if (amount > 0) {
+        MoveKartTowardFirstRank(kartIndex);
+    } else if (amount < 0) {
+        MoveKartTowardLastRank(kartIndex);
     }
 }
 
-u16 GetBalloonsLeftToMake(u16 arg0) {
-    return gStandings->mKarts[arg0].mBalloonsLeftToMake;
+u16 GetBalloonsLeftToMake(u16 kartIndex) {
+    return gStandings->mKarts[kartIndex].mBalloonsLeftToMake;
 }
 
-void AddBalloonsLeftToMake(u16 a, s32 b) {
-    gStandings->mKarts[a].mBalloonsLeftToMake += b;
+void AddBalloonsLeftToMake(u16 kartIndex, s32 amount) {
+    gStandings->mKarts[kartIndex].mBalloonsLeftToMake += amount;
 }
 
 // TRUE when the kart's elimination status is not 0.
-BOOL IsKartEliminated(int a) {
-    if (gStandings->mKarts[a].mEliminationStatus != 0) {
+BOOL IsKartEliminated(int kartIndex) {
+    if (gStandings->mKarts[kartIndex].mEliminationStatus != 0) {
         return TRUE;
     }
     return FALSE;
 }
 
-s32 func_020a1048(u16 a) {
-    Standings *d;
-    BOOL r;
-    s32 v;
+BOOL func_020a1048(u16 kartIndex) {
+    Standings *standings;
+    BOOL result;
+    s32 count;
 
-    d = gStandings;
-    r = FALSE;
-    v = d->mKarts[a].mBalloonOrShineCount;
-    if (d->mLowestBalloonOrShineCount == v) {
-        if (d->mHighestBalloonOrShineCount != v) {
-            r = TRUE;
+    standings = gStandings;
+    result = FALSE;
+    count = standings->mKarts[kartIndex].mBalloonOrShineCount;
+    if (standings->mLowestBalloonOrShineCount == count) {
+        if (standings->mHighestBalloonOrShineCount != count) {
+            result = TRUE;
         }
     }
-    return r;
+    return result;
 }
 
-s32 IsKartOnWinningTeamAtEnd(s32 a) {
-    KartStanding *e;
-    BOOL r;
+BOOL IsKartOnWinningTeamAtEnd(s32 kartIndex) {
+    KartStanding *kartStanding;
+    BOOL result;
 
-    e = &gStandings->mKarts[a];
-    r = FALSE;
-    if (gStandings->mWinnerTeamId == e->mTeamId) {
+    kartStanding = &gStandings->mKarts[kartIndex];
+    result = FALSE;
+    if (gStandings->mWinnerTeamId == kartStanding->mTeamId) {
         if (gStandings->mEndTimer < 0) {
-            r = TRUE;
+            result = TRUE;
         }
     }
-    return r;
+    return result;
 }
 
 // Returns the address of the kart's saved position (mKarts[i].mPos), not its rank.
-Vec3 *GetKartStandingPos(int arg0) {
-    return &gStandings->mKarts[arg0].mPos;
+Vec3 *GetKartStandingPos(int kartIndex) {
+    return &gStandings->mKarts[kartIndex].mPos;
 }
 
 CourseMapPoint *MoveToRandomForwardBattlePoint(void) {
-    RandomState64 *a;
-    u16 v;
-    s32 w;
+    RandomState64 *randomState;
+    u16 pointStep;
+    s32 pointIndex;
 
-    a = &gRaceProgress->mRandom;
-    a->mValue = a->mMultiplier * a->mValue + a->mIncrement;
-    v = (u16) (((u64) (u32) (a->mValue >> 32) * 5) >> 32) + 1;
-    w = gStandings->mUnk_3b8 + v;
-    if (w >= gCourseMap->mBattlePointCount) {
-        w = 0;
+    randomState = &gRaceProgress->mRandom;
+    randomState->mValue = randomState->mMultiplier * randomState->mValue + randomState->mIncrement;
+    pointStep = (u16) (((u64) (u32) (randomState->mValue >> 32) * 5) >> 32) + 1;
+    pointIndex = gStandings->mUnk_3b8 + pointStep;
+    if (pointIndex >= gCourseMap->mBattlePointCount) {
+        pointIndex = 0;
     }
-    gStandings->mUnk_3b8 = w;
+    gStandings->mUnk_3b8 = pointIndex;
     return &gCourseMap->mBattlePoints[gStandings->mUnk_3b8];
 }
 
@@ -738,35 +740,35 @@ CourseMapPoint *MoveToRandomForwardBattlePoint(void) {
 // then the unused slots) and sets the winner to -1. Called from InitRace in modes 2 and 4.
 void InitStandings(void) {
     s32 i;
-    KartStanding *e;
+    KartStanding *kartStanding;
 
     gStandings = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x3c0);
     for (i = 0; i < 8; i++) {
-        e = &gStandings->mKarts[i];
-        e->mUnk_1c = -2;
-        e->mUnk_18 = -2;
-        e->mHitByKartIndex = i;
-        e->mRankIndex = i;
+        kartStanding = &gStandings->mKarts[i];
+        kartStanding->mUnk_1c = -2;
+        kartStanding->mUnk_18 = -2;
+        kartStanding->mHitByKartIndex = i;
+        kartStanding->mRankIndex = i;
         if (i < gRaceSetup->mKartCount) {
             switch (gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mTeamIndex) {
                 case 0:
-                    e->mTeamId = 1;
+                    kartStanding->mTeamId = 1;
                     break;
                 case 1:
-                    e->mTeamId = 3;
+                    kartStanding->mTeamId = 3;
                     break;
                 default:
-                    e->mTeamId = i;
+                    kartStanding->mTeamId = i;
                     break;
             }
-            e->mEliminationStatus = 0;
-            e->mBalloonOrShineCount = 0;
-            e->mBalloonsLeftToMake = 0;
+            kartStanding->mEliminationStatus = 0;
+            kartStanding->mBalloonOrShineCount = 0;
+            kartStanding->mBalloonsLeftToMake = 0;
         } else {
-            e->mEliminationStatus = 2;
-            e->mBalloonOrShineCount = -1;
-            e->mBalloonsLeftToMake = 0;
-            e->mTeamId = gRaceSetup->mKartCount;
+            kartStanding->mEliminationStatus = 2;
+            kartStanding->mBalloonOrShineCount = -1;
+            kartStanding->mBalloonsLeftToMake = 0;
+            kartStanding->mTeamId = gRaceSetup->mKartCount;
         }
     }
     gStandings->mWinnerTeamId = -1;
@@ -780,16 +782,16 @@ void FinishStandings(void) {
 }
 
 void UpdateStandings(void) {
-    Kart *o;
+    Kart *kart;
     BOOL a;
     BOOL b;
     s32 v;
     u32 f;
     s32 i;
-    s32 n;
-    KartStanding *e = gStandings->mKarts;
+    s32 kartCount;
+    KartStanding *kartStanding = gStandings->mKarts;
 
-    n = gRaceSetup->mKartCount;
+    kartCount = gRaceSetup->mKartCount;
     if (gStandings->mWinnerTeamId >= 0) {
         if (gStandings->mEndTimer > 0) {
             gStandings->mEndTimer = gStandings->mEndTimer - 1;
@@ -800,7 +802,7 @@ void UpdateStandings(void) {
                 }
             }
         }
-        for (i = 0; i < n; i++) {
+        for (i = 0; i < kartCount; i++) {
             if (gStandings->mKarts[i].mEliminationStatus == 1) {
                 if (i != gRaceSetup->mEntryIndex) {
                     func_02068a00(GetKart((u16) i));
@@ -810,240 +812,241 @@ void UpdateStandings(void) {
         }
         return;
     }
-    for (i = n - 1; i >= 0; i--) {
-        e = &gStandings->mKarts[i];
-        if (e->mEliminationStatus == 1) {
+    for (i = kartCount - 1; i >= 0; i--) {
+        kartStanding = &gStandings->mKarts[i];
+        if (kartStanding->mEliminationStatus == 1) {
             func_02068a00(GetKart((u16) i));
             gStandings->mKarts[i].mEliminationStatus = 2;
-        } else if (gStandings->mWinnerTeamId < 0 && e->mBalloonOrShineCount > 0) {
-            o = GetKart((u16) i);
-            e = &gStandings->mKarts[i];
-            v = e->mUnk_64 - 1;
+        } else if (gStandings->mWinnerTeamId < 0 && kartStanding->mBalloonOrShineCount > 0) {
+            kart = GetKart((u16) i);
+            kartStanding = &gStandings->mKarts[i];
+            v = kartStanding->mUnk_64 - 1;
             if (v <= 0) {
                 v = 0;
             }
-            e->mUnk_64 = v;
+            kartStanding->mUnk_64 = v;
             gStandings->mKarts[i].mUnk_68 = -(gStandings->mKarts[i].mUnk_68 <= 0);
-            if (func_01ffc67c(o) != FALSE ||
-                (u16) (data_02175628[o->mEntryIndex].mBits & (PAD_KEY_A | PAD_KEY_B)) != 0) {
+            if (func_01ffc67c(kart) != FALSE ||
+                (u16) (data_02175628[kart->mEntryIndex].mBits & (PAD_KEY_A | PAD_KEY_B)) != 0) {
                 gStandings->mKarts[i].mUnk_68 = -1;
                 gStandings->mKarts[i].mUnk_64 = -1;
             } else if (IsRaceStarted() == 1) {
-                if ((u16) (data_02175628[(u32) o->mEntryIndex].mBits & 4) != 0) {
+                if ((u16) (data_02175628[(u32) kart->mEntryIndex].mBits & 4) != 0) {
                     gStandings->mKarts[i].mUnk_68 = 1;
-                } else if (data_02175628[o->mEntryIndex].mUnk_5a != 0) {
+                } else if (data_02175628[kart->mEntryIndex].mUnk_5a != 0) {
                     gStandings->mKarts[i].mUnk_64 = 10;
                 }
             }
             if (gStandings->mKartHitCallback != NULL) {
                 b = TRUE;
-                f = o->mUnk_48;
+                f = kart->mUnk_48;
                 a = (f & 0x200) != 0;
-                if (o->mState == KART_STATE_NORMAL && (f & 0x4000000) == 0) {
+                if (kart->mState == KART_STATE_NORMAL && (f & 0x4000000) == 0) {
                     b = FALSE;
                 }
-                if (e->mUnk_04 == FALSE && a != FALSE && (o->mUnk_4c & 0x400000) == 0) {
-                    e->mUnk_04 = TRUE;
-                    e->mUnk_00 = FALSE;
-                    e->mUnk_18 = -2;
-                    e->mHitByKartIndex = i;
-                    e->mUnk_20 = FALSE;
-                    if (e->mBalloonOrShineCount <= 1) {
+                if (kartStanding->mUnk_04 == FALSE && a != FALSE && (kart->mUnk_4c & 0x400000) == 0) {
+                    kartStanding->mUnk_04 = TRUE;
+                    kartStanding->mUnk_00 = FALSE;
+                    kartStanding->mUnk_18 = -2;
+                    kartStanding->mHitByKartIndex = i;
+                    kartStanding->mUnk_20 = FALSE;
+                    if (kartStanding->mBalloonOrShineCount <= 1) {
                         if ((gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) ||
                             gRaceSetup->mMode == MODE_MISSION_RUN) {
-                            o->mUnk_7c |= 0x20000000;
-                            o->mUnk_48 &= ~0x2000000;
+                            kart->mUnk_7c |= 0x20000000;
+                            kart->mUnk_48 &= ~0x2000000;
                         }
                     }
-                } else if (e->mUnk_04 == TRUE && (o->mUnk_44 & 0x10000) != 0) {
-                    e->mUnk_04 = FALSE;
-                    e->mUnk_1c = 0;
-                    if ((o->mUnk_4c & 0x400000) == 0) {
-                        func_0206c17c(o);
+                } else if (kartStanding->mUnk_04 == TRUE && (kart->mUnk_44 & 0x10000) != 0) {
+                    kartStanding->mUnk_04 = FALSE;
+                    kartStanding->mUnk_1c = 0;
+                    if ((kart->mUnk_4c & 0x400000) == 0) {
+                        func_0206c17c(kart);
                     }
                 }
-                if (e->mUnk_1c == 0) {
-                    e->mUnk_1c = -2;
+                if (kartStanding->mUnk_1c == 0) {
+                    kartStanding->mUnk_1c = -2;
                     gStandings->mKartHitCallback(i, 8);
-                    e->mHitByKartIndex = i;
-                } else if (e->mUnk_1c >= 0) {
-                    e->mUnk_1c = e->mUnk_1c + 1;
+                    kartStanding->mHitByKartIndex = i;
+                } else if (kartStanding->mUnk_1c >= 0) {
+                    kartStanding->mUnk_1c = kartStanding->mUnk_1c + 1;
                 }
-                if (e->mUnk_00 == FALSE && b != FALSE && (o->mUnk_4c & 0x400000) == 0) {
-                    e->mUnk_00 = TRUE;
-                    if (e->mBalloonOrShineCount <= 1) {
+                if (kartStanding->mUnk_00 == FALSE && b != FALSE && (kart->mUnk_4c & 0x400000) == 0) {
+                    kartStanding->mUnk_00 = TRUE;
+                    if (kartStanding->mBalloonOrShineCount <= 1) {
                         if ((gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) ||
                             gRaceSetup->mMode == MODE_MISSION_RUN) {
-                            o->mUnk_7c |= 0x20000000;
+                            kart->mUnk_7c |= 0x20000000;
                         }
                     }
-                } else if (e->mUnk_00 == TRUE && b == FALSE && (o->mUnk_48 & 0x6052840) == 0) {
-                    e->mUnk_00 = FALSE;
-                    if (e->mUnk_20 == FALSE) {
-                        e->mUnk_18 = 0;
-                        if ((o->mUnk_4c & 0x400000) == 0) {
-                            func_0206c17c(o);
+                } else if (kartStanding->mUnk_00 == TRUE && b == FALSE && (kart->mUnk_48 & 0x6052840) == 0) {
+                    kartStanding->mUnk_00 = FALSE;
+                    if (kartStanding->mUnk_20 == FALSE) {
+                        kartStanding->mUnk_18 = 0;
+                        if ((kart->mUnk_4c & 0x400000) == 0) {
+                            func_0206c17c(kart);
                         }
                     } else {
-                        e->mUnk_20 = FALSE;
+                        kartStanding->mUnk_20 = FALSE;
                     }
                 }
-                if (e->mUnk_18 == 0) {
-                    e->mUnk_18 = -2;
-                    gStandings->mKartHitCallback(i, e->mHitByKartIndex);
-                    e->mHitByKartIndex = i;
-                } else if (e->mUnk_18 >= 0) {
-                    e->mUnk_18 = e->mUnk_18 + 1;
+                if (kartStanding->mUnk_18 == 0) {
+                    kartStanding->mUnk_18 = -2;
+                    gStandings->mKartHitCallback(i, kartStanding->mHitByKartIndex);
+                    kartStanding->mHitByKartIndex = i;
+                } else if (kartStanding->mUnk_18 >= 0) {
+                    kartStanding->mUnk_18 = kartStanding->mUnk_18 + 1;
                 }
             }
-            e->mPos = o->mPos;
+            kartStanding->mPos = kart->mPos;
         }
     }
 }
 
-void func_020a089c(Unk020a0318 *p) {
-    s32 v;
+void func_020a089c(Unk020a0318 *mapObject) {
+    s32 courseId;
 
-    v = gRaceSetup->mCourseId;
-    if (v == COURSE_ID_MANSION) {
-        p->mUnk_bc = 0x121;
-    } else if (v == COURSE_ID_BEACH) {
-        p->mUnk_bc = 0x111;
-        p->mUnk_be = 0x10a;
+    courseId = gRaceSetup->mCourseId;
+    if (courseId == COURSE_ID_MANSION) {
+        mapObject->mSoundId = 0x121;
+    } else if (courseId == COURSE_ID_BEACH) {
+        mapObject->mSoundId = 0x111;
+        mapObject->mSecondSoundId = 0x10a;
     } else {
-        p->mUnk_bc = 0x20d;
+        mapObject->mSoundId = 0x20d;
     }
 }
 
-void func_020a066c(Unk020a066c *p) {
+void func_020a066c(MapObjectList *mapObjectList) {
     s32 i;
-    Unk020a0318 *o;
-    RandomState64 *a;
+    Unk020a0318 *mapObject;
+    RandomState64 *randomState;
 
-    if (p == NULL) {
+    if (mapObjectList == NULL) {
         return;
     }
-    for (i = 0; i < p->mUnk_04 && (o = p->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < mapObjectList->mMapObjectCount && (mapObject = mapObjectList->mMapObjects[i]) != NULL; i++) {
         if (gRaceSetup->mCourseId == COURSE_ID_MANSION) {
-            o->mUnk_a8 = 0xa28;
-            o->mUnk_ac = o->mUnk_00.mPos.x + 0x73a000;
-            o->mUnk_b0 = o->mUnk_00.mPos.y;
-            o->mUnk_b4 = o->mUnk_00.mPos.z - 0x1400000;
-            o->mUnk_b8 = TRUE;
+            mapObject->mRadius = 0xa28;
+            mapObject->mCenterX = mapObject->mUnk_00.mPos.x + 0x73a000;
+            mapObject->mCenterY = mapObject->mUnk_00.mPos.y;
+            mapObject->mCenterZ = mapObject->mUnk_00.mPos.z - 0x1400000;
+            mapObject->mDistanceLevelInverted = TRUE;
         } else if (gRaceSetup->mCourseId == COURSE_ID_BEACH) {
-            o->mUnk_a8 = 0x546;
-            o->mUnk_ac = o->mUnk_00.mPos.x + 0x28a000;
-            o->mUnk_b0 = o->mUnk_00.mPos.y;
-            o->mUnk_b4 = o->mUnk_00.mPos.z - 0x32000;
-            o->mUnk_b8 = FALSE;
+            mapObject->mRadius = 0x546;
+            mapObject->mCenterX = mapObject->mUnk_00.mPos.x + 0x28a000;
+            mapObject->mCenterY = mapObject->mUnk_00.mPos.y;
+            mapObject->mCenterZ = mapObject->mUnk_00.mPos.z - 0x32000;
+            mapObject->mDistanceLevelInverted = FALSE;
         } else {
-            o->mUnk_a8 = 0xa28;
-            o->mUnk_ac = o->mUnk_00.mPos.x;
-            o->mUnk_b0 = o->mUnk_00.mPos.y;
-            o->mUnk_b4 = o->mUnk_00.mPos.z;
-            o->mUnk_b8 = FALSE;
+            mapObject->mRadius = 0xa28;
+            mapObject->mCenterX = mapObject->mUnk_00.mPos.x;
+            mapObject->mCenterY = mapObject->mUnk_00.mPos.y;
+            mapObject->mCenterZ = mapObject->mUnk_00.mPos.z;
+            mapObject->mDistanceLevelInverted = FALSE;
         }
-        a = &gRaceProgress->mLocalRandom;
-        a->mValue = a->mMultiplier * a->mValue + a->mIncrement;
-        o->mUnk_c8 = (u16) (((u64) (u32) (a->mValue >> 32) * 0x3c) >> 32) + 0x258;
-        o->mUnk_a4 = 0x7f000;
-        a = &gRaceProgress->mLocalRandom;
-        a->mValue = a->mMultiplier * a->mValue + a->mIncrement;
-        o->mUnk_c0 = (u16) (((u64) (u32) (a->mValue >> 32) * 0xf) >> 32);
+        randomState = &gRaceProgress->mLocalRandom;
+        randomState->mValue = randomState->mMultiplier * randomState->mValue + randomState->mIncrement;
+        mapObject->mSoundTimer = (u16) (((u64) (u32) (randomState->mValue >> 32) * 0x3c) >> 32) + 0x258;
+        mapObject->mDistanceVolumeFixed12 = 0x7f000;
+        randomState = &gRaceProgress->mLocalRandom;
+        randomState->mValue = randomState->mMultiplier * randomState->mValue + randomState->mIncrement;
+        mapObject->mDistanceLevelTimer = (u16) (((u64) (u32) (randomState->mValue >> 32) * 0xf) >> 32);
     }
 }
 
-void func_020a0318(void *a, Unk020a0318 *p) {
-    Kart *o;
-    NNSSndSeqPlayer **h;
-    RandomState64 *r;
-    Unk0210b7a8 s1;
-    Unk0210b7a8 s2;
+void func_020a0318(void *mapObjectList, Unk020a0318 *mapObject) {
+    Kart *kart;
+    NNSSndSeqPlayer **sndHandleSlot;
+    RandomState64 *randomState;
+    Unk0210b7a8 slot8Request;
+    Unk0210b7a8 slot9Request;
     s32 v;
-    s32 x;
-    s32 w;
-    s32 z;
-    s32 y;
-    s64 d;
+    s32 halfRadius;
+    s32 radius;
+    s32 deltaZ;
+    s32 deltaX;
+    s64 distanceSquared;
 
-    if (p->mUnk_c0-- <= 0) {
-        p->mUnk_c0 = 0xf;
-        w = p->mUnk_a8;
-        x = w / 2;
-        o = GetKart((u16) gRaceSetup->mEntryIndex);
-        y = o->mPos.x - p->mUnk_ac;
-        z = o->mPos.z - p->mUnk_b4;
-        d = (s64) y * y + (s64) z * z;
-        if (d < (s64) x * x) {
+    if (mapObject->mDistanceLevelTimer-- <= 0) {
+        mapObject->mDistanceLevelTimer = 0xf;
+        radius = mapObject->mRadius;
+        halfRadius = radius / 2;
+        kart = GetKart((u16) gRaceSetup->mEntryIndex);
+        deltaX = kart->mPos.x - mapObject->mCenterX;
+        deltaZ = kart->mPos.z - mapObject->mCenterZ;
+        distanceSquared = (s64) deltaX * deltaX + (s64) deltaZ * deltaZ;
+        if (distanceSquared < (s64) halfRadius * halfRadius) {
             v = 2;
-        } else if (d < (s64) (w << 12) * (w << 12)) {
+        } else if (distanceSquared < (s64) (radius << 12) * (radius << 12)) {
             v = 1;
         } else {
             v = 0;
         }
-        p->mUnk_c4 = v;
-        if (p->mUnk_b8 != FALSE) {
-            p->mUnk_c4 = p->mUnk_c4 == 0;
+        mapObject->mDistanceLevel = v;
+        if (mapObject->mDistanceLevelInverted != FALSE) {
+            mapObject->mDistanceLevel = mapObject->mDistanceLevel == 0;
         }
     }
-    if (p->mUnk_c4 > 1) {
-        p->mUnk_a4 = 0x7f001;
-    } else if (p->mUnk_c4 > 0) {
-        p->mUnk_a4 = p->mUnk_a4 + 0x4000;
-        if (p->mUnk_a4 > 0x7f000) {
-            p->mUnk_a4 = 0x7f000;
+    if (mapObject->mDistanceLevel > 1) {
+        mapObject->mDistanceVolumeFixed12 = 0x7f001;
+    } else if (mapObject->mDistanceLevel > 0) {
+        mapObject->mDistanceVolumeFixed12 = mapObject->mDistanceVolumeFixed12 + 0x4000;
+        if (mapObject->mDistanceVolumeFixed12 > 0x7f000) {
+            mapObject->mDistanceVolumeFixed12 = 0x7f000;
         }
     } else {
-        p->mUnk_a4 = p->mUnk_a4 - 0x4000;
-        if (p->mUnk_a4 < 0) {
-            p->mUnk_a4 = 0;
+        mapObject->mDistanceVolumeFixed12 = mapObject->mDistanceVolumeFixed12 - 0x4000;
+        if (mapObject->mDistanceVolumeFixed12 < 0) {
+            mapObject->mDistanceVolumeFixed12 = 0;
         }
     }
-    if (p->mUnk_bc != 0) {
-        if (p->mUnk_c4 != 0) {
+    if (mapObject->mSoundId != 0) {
+        if (mapObject->mDistanceLevel != 0) {
             if (*GetSndHandleSlot(8) != NULL) {
-                o = GetKart((u16) gRaceSetup->mEntryIndex);
-                p->mUnk_a0 = p->mUnk_a0 - (s32) (((s64) o->mVelocityLengthRatio * 0x1000) >> 12);
-                if (p->mUnk_a0 < 0xc000) {
-                    p->mUnk_a0 = 0xc000;
+                kart = GetKart((u16) gRaceSetup->mEntryIndex);
+                mapObject->mUnk_a0 = mapObject->mUnk_a0 - (s32) (((s64) kart->mVelocityLengthRatio * 0x1000) >> 12);
+                if (mapObject->mUnk_a0 < 0xc000) {
+                    mapObject->mUnk_a0 = 0xc000;
                 }
-            } else if (p->mUnk_c8-- <= 0) {
-                h = GetSndHandleSlot(8);
-                s1.mSoundId = p->mUnk_bc;
-                s1.mPositionSource = NULL;
-                s1.mUnk_08 = 4;
-                s1.mDistanceSquared = GetHorizontalCameraDistanceSquared(NULL);
-                func_0210b760(&s1, h);
-                r = &gRaceProgress->mLocalRandom;
-                r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-                p->mUnk_c8 = (u16) (((u64) (u32) (r->mValue >> 32) * 0x3c) >> 32) + 0x78;
-                p->mUnk_a0 = 0x7f000;
+            } else if (mapObject->mSoundTimer-- <= 0) {
+                sndHandleSlot = GetSndHandleSlot(8);
+                slot8Request.mSoundId = mapObject->mSoundId;
+                slot8Request.mPositionSource = NULL;
+                slot8Request.mUnk_08 = 4;
+                slot8Request.mDistanceSquared = GetHorizontalCameraDistanceSquared(NULL);
+                func_0210b760(&slot8Request, sndHandleSlot);
+                randomState = &gRaceProgress->mLocalRandom;
+                randomState->mValue = randomState->mMultiplier * randomState->mValue + randomState->mIncrement;
+                mapObject->mSoundTimer = (u16) (((u64) (u32) (randomState->mValue >> 32) * 0x3c) >> 32) + 0x78;
+                mapObject->mUnk_a0 = 0x7f000;
             }
-        } else if (p->mUnk_c8 > 0) {
-            p->mUnk_c8 = p->mUnk_c8 - 1;
+        } else if (mapObject->mSoundTimer > 0) {
+            mapObject->mSoundTimer = mapObject->mSoundTimer - 1;
         }
         if (*GetSndHandleSlot(8) != NULL) {
-            v = p->mUnk_a4 < p->mUnk_a0 ? p->mUnk_a4 : p->mUnk_a0;
+            v = mapObject->mDistanceVolumeFixed12 < mapObject->mUnk_a0 ? mapObject->mDistanceVolumeFixed12
+                                                                       : mapObject->mUnk_a0;
             SetSndHandleTrackVolume(GetSndHandleSlot(8), v >> 12);
         }
     }
-    if (p->mUnk_be == 0) {
+    if (mapObject->mSecondSoundId == 0) {
         return;
     }
-    if (p->mUnk_c4 != 0) {
+    if (mapObject->mDistanceLevel != 0) {
         if (*GetSndHandleSlot(9) == NULL) {
-            h = GetSndHandleSlot(9);
-            s2.mSoundId = p->mUnk_be;
-            s2.mPositionSource = NULL;
-            s2.mUnk_08 = 4;
-            s2.mDistanceSquared = GetHorizontalCameraDistanceSquared(NULL);
-            func_0210b760(&s2, h);
+            sndHandleSlot = GetSndHandleSlot(9);
+            slot9Request.mSoundId = mapObject->mSecondSoundId;
+            slot9Request.mPositionSource = NULL;
+            slot9Request.mUnk_08 = 4;
+            slot9Request.mDistanceSquared = GetHorizontalCameraDistanceSquared(NULL);
+            func_0210b760(&slot9Request, sndHandleSlot);
         }
     }
     if (*GetSndHandleSlot(9) == NULL) {
         return;
     }
-    SetSndHandleTrackVolume(GetSndHandleSlot(9), p->mUnk_a4 >> 12);
+    SetSndHandleTrackVolume(GetSndHandleSlot(9), mapObject->mDistanceVolumeFixed12 >> 12);
 }
 
 void *func_020a02f8(void) {

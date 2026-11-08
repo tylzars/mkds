@@ -8,23 +8,23 @@
 typedef struct Unk020a0318 {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
-    /* a4 */ s32 mUnk_a4;
-    /* a8 */ s32 mUnk_a8;
-    /* ac */ s32 mUnk_ac;
-    /* b0 */ s32 mUnk_b0;
-    /* b4 */ s32 mUnk_b4;
-    /* b8 */ BOOL mUnk_b8;
-    /* bc */ u16 mUnk_bc;
-    /* be */ u16 mUnk_be;
-    /* c0 */ s32 mUnk_c0;
-    /* c4 */ s32 mUnk_c4;
-    /* c8 */ s32 mUnk_c8;
+    /* a4 */ s32 mDistanceVolumeFixed12;
+    /* a8 */ s32 mRadius;
+    /* ac */ s32 mCenterX;
+    /* b0 */ s32 mCenterY;
+    /* b4 */ s32 mCenterZ;
+    /* b8 */ BOOL mDistanceLevelInverted;
+    /* bc */ u16 mSoundId;
+    /* be */ u16 mSecondSoundId;
+    /* c0 */ s32 mDistanceLevelTimer;
+    /* c4 */ s32 mDistanceLevel;
+    /* c8 */ s32 mSoundTimer;
 } Unk020a0318;
 
 // Array of object pointers: pointer to the array and the number of entries (func_020a066c).
 typedef struct Unk020a066c {
-    /* 00 */ Unk020a0318 **mUnk_00;
-    /* 04 */ u16 mUnk_04;
+    /* 00 */ Unk020a0318 **mMapObjects;
+    /* 04 */ u16 mMapObjectCount;
 } Unk020a066c;
 
 #include "Main/Unknown/code_020b1dbc.h"
@@ -40,9 +40,9 @@ typedef struct Unk020a066c {
 #include "Main/Unknown/code_020b502c.h" // CourseMapPoint
 
 void *func_020a02f8(void);
-void func_020a0318(void *a, Unk020a0318 *p);
-void func_020a066c(Unk020a066c *p);
-void func_020a089c(Unk020a0318 *p);
+void func_020a0318(void *mapObjectList, Unk020a0318 *mapObject);
+void func_020a066c(MapObjectList *mapObjectList);
+void func_020a089c(Unk020a0318 *mapObject);
 // Steps Standings once per UpdateRace call in battle and mission run: the end timer and end callback, the hand- over of
 // eliminated karts, the hit tracking, and the copy of each kart's position.
 void UpdateStandings(void);
@@ -51,12 +51,12 @@ void UpdateStandings(void);
 void FinishStandings(void);
 void InitStandings(void);
 CourseMapPoint *MoveToRandomForwardBattlePoint(void);
-Vec3 *GetKartStandingPos(int arg0);
-void CallKartHitCallbackForSelf(u16 a);
+Vec3 *GetKartStandingPos(int kartIndex);
+void CallKartHitCallbackForSelf(u16 kartIndex);
 void SetWinnerIfOneTeamLeft(void);
-void EliminateKart(u16 a);
-void MoveKartTowardLastRank(u16 a);
-void MoveKartTowardFirstRank(u16 a);
-u16 GetBattleItemRank(s32 a);
-void func_020a1ddc(s32 a);
-unsigned int func_020a1e3c(unsigned int p0);
+void EliminateKart(u16 kartIndex);
+void MoveKartTowardLastRank(u16 kartIndex);
+void MoveKartTowardFirstRank(u16 kartIndex);
+u16 GetBattleItemRank(s32 kartIndex);
+void func_020a1ddc(s32 kartIndex);
+unsigned int func_020a1e3c(unsigned int value);

@@ -36,12 +36,12 @@ void func_020a29cc(void) {
     s32 x;
     s32 y;
     s32 v;
-    Unk0217b200 *d;
-    Unk0217b200_08 *p;
+    Trophy *trophy;
+    Unk0217b200_08 *wobble;
 
     G2x_SetBlendAlpha_(&reg_G2_BLDCNT, 1, 0x1f, 0x10, 0x10);
-    NNS_G3dGlbLightVector(0, data_0217b200->mUnk_0fc, data_0217b200->mUnk_100, data_0217b200->mUnk_104);
-    NNS_G3dGlbLightVector(1, data_0217b200->mUnk_0fe, data_0217b200->mUnk_102, data_0217b200->mUnk_106);
+    NNS_G3dGlbLightVector(0, gTrophy->mLight0X, gTrophy->mLight0Y, gTrophy->mLight0Z);
+    NNS_G3dGlbLightVector(1, gTrophy->mLight1X, gTrophy->mLight1Y, gTrophy->mLight1Z);
     NNS_G3dGlbLightColor(0, 0x7fff);
     NNS_G3dGlbLightColor(1, 0x7fff);
     x = ((s64) FX_Div(data_0215d6b4[0x54], data_0215d6b4[0x55]) * 0x19a) >> 12;
@@ -68,207 +68,203 @@ void func_020a29cc(void) {
         SetG3xSwapBits(gDisplaySettings, 1, 1);
         data_0217029c.mPrmViewPort = 0xbfff0000;
         NNS_G3dGlbFlushP();
-        if (data_0217b200->mUnk_002 >= 3) {
+        if (gTrophy->mRankIndex >= 3) {
             return;
         }
-        data_0217b200->mUnk_004 = -GetSceneFadeToClearFrameCount() * 0x6d;
+        gTrophy->mRotateYAngle = -GetSceneFadeToClearFrameCount() * 0x6d;
         v = -GetSceneFadeToClearFrameCount() * 0x36;
-        d = data_0217b200;
-        d->mUnk_008.mUnk_00 = v;
-        p = &d->mUnk_008;
-        p->mUnk_0c = 0;
-        p->mUnk_10 = 0xaab;
-        p->mUnk_14 = 0;
-        p->mUnk_18 = 0x36;
-        p->mUnk_1c = 0;
-        MTX_Identity43_(&data_0217b200->mUnk_0cc);
-        if (data_0217b200->mUnk_002 == 0) {
-            data_0217b200->mUnk_118->mUnk_5c = data_0217b200->mUnk_114;
-            data_0217b200->mUnk_118->mUnk_28.x =
-                data_0217b200->mUnk_108.x + data_0217b200->mUnk_118->mUnk_20->mUnk_00->mUnk_04.x;
-            data_0217b200->mUnk_118->mUnk_28.y =
-                data_0217b200->mUnk_108.y + data_0217b200->mUnk_118->mUnk_20->mUnk_00->mUnk_04.y;
-            data_0217b200->mUnk_118->mUnk_28.z =
-                data_0217b200->mUnk_108.z + data_0217b200->mUnk_118->mUnk_20->mUnk_00->mUnk_04.z;
-            data_0217b200->mUnk_11c->mUnk_28.x = data_0217b200->mUnk_11c->mUnk_20->mUnk_00->mUnk_04.x;
-            data_0217b200->mUnk_11c->mUnk_28.y = data_0217b200->mUnk_11c->mUnk_20->mUnk_00->mUnk_04.y - 0xcd;
-            data_0217b200->mUnk_11c->mUnk_28.z = data_0217b200->mUnk_11c->mUnk_20->mUnk_00->mUnk_04.z - 0x21ec;
-            data_0217b200->mUnk_120->mUnk_28.x = data_0217b200->mUnk_120->mUnk_20->mUnk_00->mUnk_04.x;
-            data_0217b200->mUnk_120->mUnk_28.y = data_0217b200->mUnk_120->mUnk_20->mUnk_00->mUnk_04.y - 0xcd;
-            data_0217b200->mUnk_120->mUnk_28.z = data_0217b200->mUnk_120->mUnk_20->mUnk_00->mUnk_04.z - 0x21ec;
-        } else if (data_0217b200->mUnk_002 == 1) {
-            data_0217b200->mUnk_118->mUnk_5c = data_0217b200->mUnk_114;
-            data_0217b200->mUnk_118->mUnk_28.x =
-                data_0217b200->mUnk_108.x + data_0217b200->mUnk_118->mUnk_20->mUnk_00->mUnk_04.x;
-            data_0217b200->mUnk_118->mUnk_28.y =
-                data_0217b200->mUnk_108.y + data_0217b200->mUnk_118->mUnk_20->mUnk_00->mUnk_04.y;
-            data_0217b200->mUnk_118->mUnk_28.z =
-                data_0217b200->mUnk_108.z + data_0217b200->mUnk_118->mUnk_20->mUnk_00->mUnk_04.z;
+        trophy = gTrophy;
+        trophy->mRotateZWobble.mUnk_00 = v;
+        wobble = &trophy->mRotateZWobble;
+        wobble->mUnk_0c = 0;
+        wobble->mUnk_10 = 0xaab;
+        wobble->mUnk_14 = 0;
+        wobble->mUnk_18 = 0x36;
+        wobble->mUnk_1c = 0;
+        MTX_Identity43_(&gTrophy->mEffectMatrix);
+        if (gTrophy->mRankIndex == 0) {
+            gTrophy->mEffect0->mUnk_5c = gTrophy->mUnk_114;
+            gTrophy->mEffect0->mUnk_28.x = gTrophy->mEffectOffset.x + gTrophy->mEffect0->mUnk_20->mUnk_00->mUnk_04.x;
+            gTrophy->mEffect0->mUnk_28.y = gTrophy->mEffectOffset.y + gTrophy->mEffect0->mUnk_20->mUnk_00->mUnk_04.y;
+            gTrophy->mEffect0->mUnk_28.z = gTrophy->mEffectOffset.z + gTrophy->mEffect0->mUnk_20->mUnk_00->mUnk_04.z;
+            gTrophy->mEffect4->mUnk_28.x = gTrophy->mEffect4->mUnk_20->mUnk_00->mUnk_04.x;
+            gTrophy->mEffect4->mUnk_28.y = gTrophy->mEffect4->mUnk_20->mUnk_00->mUnk_04.y - 0xcd;
+            gTrophy->mEffect4->mUnk_28.z = gTrophy->mEffect4->mUnk_20->mUnk_00->mUnk_04.z - 0x21ec;
+            gTrophy->mEffect5->mUnk_28.x = gTrophy->mEffect5->mUnk_20->mUnk_00->mUnk_04.x;
+            gTrophy->mEffect5->mUnk_28.y = gTrophy->mEffect5->mUnk_20->mUnk_00->mUnk_04.y - 0xcd;
+            gTrophy->mEffect5->mUnk_28.z = gTrophy->mEffect5->mUnk_20->mUnk_00->mUnk_04.z - 0x21ec;
+        } else if (gTrophy->mRankIndex == 1) {
+            gTrophy->mEffect0->mUnk_5c = gTrophy->mUnk_114;
+            gTrophy->mEffect0->mUnk_28.x = gTrophy->mEffectOffset.x + gTrophy->mEffect0->mUnk_20->mUnk_00->mUnk_04.x;
+            gTrophy->mEffect0->mUnk_28.y = gTrophy->mEffectOffset.y + gTrophy->mEffect0->mUnk_20->mUnk_00->mUnk_04.y;
+            gTrophy->mEffect0->mUnk_28.z = gTrophy->mEffectOffset.z + gTrophy->mEffect0->mUnk_20->mUnk_00->mUnk_04.z;
         }
     }
 }
 
-void func_020a269c(s32 a, u32 b) {
-    void *v1;
-    void *v2;
-    void *v3;
+void InitTrophy(s32 modelIndex, u32 rankIndex) {
+    void *modelFile;
+    void *animationFile;
+    void *heap;
     float f;
     s32 x;
-    ModelAnimationView *s;
+    ModelAnimationView *modelAnimation;
 
-    data_0217b200 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x124);
-    data_0217b200->mUnk_002 = b;
-    data_0217b200->mUnk_000 = a;
-    if (a < 9 && b < 3) {
-        v1 = FindSceneFile(data_021677fc[a]);
-        v2 = FindSceneFile(data_02167820[a]);
-        data_0217b200->mUnk_0fc = data_02156640[a];
-        data_0217b200->mUnk_100 = data_02156654[a];
-        data_0217b200->mUnk_104 = data_02156668[a];
-        data_0217b200->mUnk_0fe = data_0215667c[a];
-        data_0217b200->mUnk_102 = data_02156690[a];
-        data_0217b200->mUnk_106 = data_021566a4[a];
-        data_0217b200->mUnk_108.x = 0;
-        data_0217b200->mUnk_108.y = data_021566dc[a];
-        data_0217b200->mUnk_108.z = -0x2000;
-        data_0217b200->mUnk_114 = data_021566b8[a];
-        InitNsbmd(&data_0217b200->mUnk_028, v1);
-        SetNsbmdLightEnableFlagAll(&data_0217b200->mUnk_028, 3);
+    gTrophy = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x124);
+    gTrophy->mRankIndex = rankIndex;
+    gTrophy->mModelIndex = modelIndex;
+    if (modelIndex < 9 && rankIndex < 3) {
+        modelFile = FindSceneFile(data_021677fc[modelIndex]);
+        animationFile = FindSceneFile(data_02167820[modelIndex]);
+        gTrophy->mLight0X = data_02156640[modelIndex];
+        gTrophy->mLight0Y = data_02156654[modelIndex];
+        gTrophy->mLight0Z = data_02156668[modelIndex];
+        gTrophy->mLight1X = data_0215667c[modelIndex];
+        gTrophy->mLight1Y = data_02156690[modelIndex];
+        gTrophy->mLight1Z = data_021566a4[modelIndex];
+        gTrophy->mEffectOffset.x = 0;
+        gTrophy->mEffectOffset.y = data_021566dc[modelIndex];
+        gTrophy->mEffectOffset.z = -0x2000;
+        gTrophy->mUnk_114 = data_021566b8[modelIndex];
+        InitNsbmd(&gTrophy->mModel, modelFile);
+        SetNsbmdLightEnableFlagAll(&gTrophy->mModel, 3);
         if (gRaceSetup->mMirrorMode != 0) {
-            SetNsbmdCullModeAll(&data_0217b200->mUnk_028, 1);
+            SetNsbmdCullModeAll(&gTrophy->mModel, 1);
         } else {
-            SetNsbmdCullModeAll(&data_0217b200->mUnk_028, 2);
+            SetNsbmdCullModeAll(&gTrophy->mModel, 2);
         }
-        v3 = GetHeap(GetCurrentHeapCall());
-        InitModelAnimation(2, &data_0217b200->mUnk_094, &data_0217b200->mUnk_028, 1, v3, v1);
-        InitModelAnimationEntries(&data_0217b200->mUnk_094, v2, GetHeap(GetCurrentHeapCall()));
-        SetModelAnimation(&data_0217b200->mUnk_094, 0);
-        x = data_0217b200->mUnk_002;
+        heap = GetHeap(GetCurrentHeapCall());
+        InitModelAnimation(2, &gTrophy->mModelAnimation, &gTrophy->mModel, 1, heap, modelFile);
+        InitModelAnimationEntries(&gTrophy->mModelAnimation, animationFile, GetHeap(GetCurrentHeapCall()));
+        SetModelAnimation(&gTrophy->mModelAnimation, 0);
+        x = gTrophy->mRankIndex;
         if (x != 0) {
             f = 0.5f + (x << 12);
         } else {
             f = (x << 12) - 0.5f;
         }
-        s = &data_0217b200->mUnk_094;
-        s->mUnk_0c = f;
-        *s->mUnk_1c[s->mUnk_1a] = s->mUnk_0c;
+        modelAnimation = &gTrophy->mModelAnimation;
+        modelAnimation->mUnk_0c = f;
+        *modelAnimation->mUnk_1c[modelAnimation->mUnk_1a] = modelAnimation->mUnk_0c;
         InitEffects(GetHeap(GetCurrentHeapCall()));
-        if (b == 0) {
+        if (rankIndex == 0) {
             Vec3 w0 = {0, 0, 0};
 
-            data_0217b200->mUnk_118 = StartEffect(0, &w0);
+            gTrophy->mEffect0 = StartEffect(0, &w0);
             {
                 Vec3 w1 = {0, 0, 0};
 
-                data_0217b200->mUnk_11c = StartEffect(4, &w1);
+                gTrophy->mEffect4 = StartEffect(4, &w1);
                 {
                     Vec3 w2 = {0, 0, 0};
 
-                    data_0217b200->mUnk_120 = StartEffect(5, &w2);
+                    gTrophy->mEffect5 = StartEffect(5, &w2);
                 }
             }
-        } else if (b == 1) {
+        } else if (rankIndex == 1) {
             Vec3 w3 = {0, 0, 0};
 
-            data_0217b200->mUnk_118 = StartEffect(0, &w3);
+            gTrophy->mEffect0 = StartEffect(0, &w3);
         }
     }
     func_020a29cc();
 }
 
-s16 func_020a2684(s32 a) {
-    return gPairsByAngle[(a >> 4) * 2];
+s16 func_020a2684(s32 angle) {
+    return gPairsByAngle[(angle >> 4) * 2];
 }
 
 s32 func_020a2668(s32 a, s32 b) {
     return ((s64) a * b + 0x800) >> 12;
 }
 
-void func_020a2558(void) {
-    Unk0217b200 *d;
-    Unk0217b200_08 *p;
+void AdvanceTrophy(void) {
+    Trophy *trophy;
+    Unk0217b200_08 *wobble;
     s32 v;
 
-    if (data_0217b200->mUnk_002 >= 3) {
+    if (gTrophy->mRankIndex >= 3) {
         return;
     }
     UpdateEffects();
-    data_0217b200->mUnk_004 += 0x6d;
-    d = data_0217b200;
-    p = &d->mUnk_008;
-    d->mUnk_008.mUnk_00 += p->mUnk_18;
-    p->mUnk_08 = p->mUnk_0c + func_020a2668(p->mUnk_10, func_020a2684(d->mUnk_008.mUnk_00)) - p->mUnk_04;
-    p->mUnk_04 += p->mUnk_08;
-    if (p->mUnk_10 > 0) {
-        v = p->mUnk_10 + p->mUnk_14;
+    gTrophy->mRotateYAngle += 0x6d;
+    trophy = gTrophy;
+    wobble = &trophy->mRotateZWobble;
+    trophy->mRotateZWobble.mUnk_00 += wobble->mUnk_18;
+    wobble->mUnk_08 = wobble->mUnk_0c + func_020a2668(wobble->mUnk_10, func_020a2684(trophy->mRotateZWobble.mUnk_00)) -
+                      wobble->mUnk_04;
+    wobble->mUnk_04 += wobble->mUnk_08;
+    if (wobble->mUnk_10 > 0) {
+        v = wobble->mUnk_10 + wobble->mUnk_14;
         if (v <= 0) {
             v = 0;
         }
-        p->mUnk_10 = v;
-    } else if (p->mUnk_10 < 0) {
-        v = p->mUnk_10 + p->mUnk_14;
+        wobble->mUnk_10 = v;
+    } else if (wobble->mUnk_10 < 0) {
+        v = wobble->mUnk_10 + wobble->mUnk_14;
         if (v >= 0) {
             v = 0;
         }
-        p->mUnk_10 = v;
+        wobble->mUnk_10 = v;
     }
-    if (p->mUnk_18 > 0) {
-        v = p->mUnk_18 + p->mUnk_1c;
+    if (wobble->mUnk_18 > 0) {
+        v = wobble->mUnk_18 + wobble->mUnk_1c;
         if (v <= 0) {
             v = 0;
         }
-        p->mUnk_18 = v;
-    } else if (p->mUnk_18 < 0) {
-        v = p->mUnk_18 + p->mUnk_1c;
+        wobble->mUnk_18 = v;
+    } else if (wobble->mUnk_18 < 0) {
+        v = wobble->mUnk_18 + wobble->mUnk_1c;
         if (v >= 0) {
             v = 0;
         }
-        p->mUnk_18 = v;
+        wobble->mUnk_18 = v;
     }
 }
 
-void func_020a23cc(void) {
-    s32 m1[9];
-    s32 m2[9];
-    s32 m3[9];
-    s32 v1[3];
-    s32 v2[3];
+void DrawTrophy(void) {
+    s32 rotateXMatrix[9];
+    s32 rotateYMatrix[9];
+    s32 rotateZMatrix[9];
+    s32 scale[3];
+    s32 translation[3];
     s32 v3[3];
-    u16 v4;
+    u16 rotateZAngle;
 
-    if (data_0217b200->mUnk_002 >= 3) {
+    if (gTrophy->mRankIndex >= 3) {
         return;
     }
-    DrawEffects(&data_0217b200->mUnk_0cc);
+    DrawEffects(&gTrophy->mEffectMatrix);
     NNS_G3dGlbFlushP();
     func_01ff9048(0x15, NULL, 0);
-    v1[0] = 0x1000;
-    v1[1] = 0x1000;
-    v1[2] = 0x1000;
-    func_01ff9048(0x1b, v1, 3);
-    v2[0] = 0;
-    v2[1] = -0xcd;
-    v2[2] = -0x2000;
-    func_01ff9048(0x1c, v2, 3);
-    v4 = data_0217b200->mUnk_008.mUnk_04;
-    MTX_RotX33_(m1, data_0215d6b4[0x76], data_0215d6b4[0x77]);
-    MTX_RotY33_(m2, gPairsByAngle[(data_0217b200->mUnk_004 >> 4) * 2],
-                gPairsByAngle[(data_0217b200->mUnk_004 >> 4) * 2 + 1]);
-    MTX_RotZ33_(m3, gPairsByAngle[(v4 >> 4) * 2], gPairsByAngle[(v4 >> 4) * 2 + 1]);
-    func_01ff9048(0x1a, m1, 9);
-    func_01ff9048(0x1a, m2, 9);
-    func_01ff9048(0x1a, m3, 9);
+    scale[0] = 0x1000;
+    scale[1] = 0x1000;
+    scale[2] = 0x1000;
+    func_01ff9048(0x1b, scale, 3);
+    translation[0] = 0;
+    translation[1] = -0xcd;
+    translation[2] = -0x2000;
+    func_01ff9048(0x1c, translation, 3);
+    rotateZAngle = gTrophy->mRotateZWobble.mUnk_04;
+    MTX_RotX33_(rotateXMatrix, data_0215d6b4[0x76], data_0215d6b4[0x77]);
+    MTX_RotY33_(rotateYMatrix, gPairsByAngle[(gTrophy->mRotateYAngle >> 4) * 2],
+                gPairsByAngle[(gTrophy->mRotateYAngle >> 4) * 2 + 1]);
+    MTX_RotZ33_(rotateZMatrix, gPairsByAngle[(rotateZAngle >> 4) * 2], gPairsByAngle[(rotateZAngle >> 4) * 2 + 1]);
+    func_01ff9048(0x1a, rotateXMatrix, 9);
+    func_01ff9048(0x1a, rotateYMatrix, 9);
+    func_01ff9048(0x1a, rotateZMatrix, 9);
     v3[0] = 0;
     v3[1] = 0;
     v3[2] = 0;
     func_01ff9048(0x1c, v3, 3);
-    DrawNsbmd(&data_0217b200->mUnk_028);
+    DrawNsbmd(&gTrophy->mModel);
     func_01ff9234();
 }
 
-s32 func_020a23a0(Kart *a) {
-    KartModelsEntry *p;
+s32 func_020a23a0(Kart *kart) {
+    KartModelsEntry *kartModelsEntry;
 
-    p = a->mKartModelsEntry;
-    return data_02156600[p->mCharacterIndex] + p->mKartOffsetData->mUnk_48[p->mCharacterIndex].x;
+    kartModelsEntry = kart->mKartModelsEntry;
+    return data_02156600[kartModelsEntry->mCharacterIndex] +
+           kartModelsEntry->mKartOffsetData->mUnk_48[kartModelsEntry->mCharacterIndex].x;
 }

@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-void AddShineCount(short a);
+void AddShineCount(short amount);
 unsigned int GetShineCount(void);
-u16 GetKartStandingRankIndex(int arg0);
+u16 GetKartStandingRankIndex(int kartIndex);

@@ -298,7 +298,7 @@ void InitResultsBattle(void *heap, s32 b, s32 c) {
             k = 7;
             break;
     }
-    func_020a269c(8, (u16) k);
+    InitTrophy(8, (u16) k);
 }
 
 #pragma thumb off
@@ -481,8 +481,8 @@ void AdvanceResultsBattle(SceneNumbersView *sceneNumbers) {
             }
             break;
     }
-    func_020a2558();
-    func_020a23cc();
+    AdvanceTrophy();
+    DrawTrophy();
     for (i = 0; i < 2; i++) {
         DrawLayoutTable(gResultsBattle->mCellFileSets[i].mCellLayout, gResultsBattle->mCellFileSets[i].mCells,
                         gResultsBattle->mCellFileSets[i].mLabelLayout, (void *) gResultsBattle->mUnk_0b8[i],

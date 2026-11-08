@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u16 GetBalloonsLeftToMake(u16 arg0);
+u16 GetBalloonsLeftToMake(u16 kartIndex);

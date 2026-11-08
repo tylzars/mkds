@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void SetKartInflatingBalloon(u16 arg0, u32 arg1);
+void SetKartInflatingBalloon(u16 kartIndex, u32 inflating);

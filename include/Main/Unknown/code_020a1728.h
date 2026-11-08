@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void ClearStandingEliminationStatus(int a);
+void ClearStandingEliminationStatus(int kartIndex);

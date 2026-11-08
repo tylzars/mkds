@@ -5,7 +5,7 @@
 #include "code_0201c528.h" // Unk0201ca6c
 #include "01/code_0219b250.h"
 
-// The 0x20 bytes at 0x08 of the object behind data_0217b200.
+// The 0x20 bytes at 0x08 of the object behind gTrophy.
 typedef struct Unk0217b200_08 {
     /* 00 */ u16 mUnk_00;
     /* 04 */ s32 mUnk_04;
@@ -17,27 +17,27 @@ typedef struct Unk0217b200_08 {
     /* 1c */ s32 mUnk_1c;
 } Unk0217b200_08;
 
-// Object behind data_0217b200 (a 0x124-byte allocation).
-typedef struct Unk0217b200 {
-    /* 000 */ u16 mUnk_000;
-    /* 002 */ u16 mUnk_002;
-    /* 004 */ u16 mUnk_004;
-    /* 008 */ Unk0217b200_08 mUnk_008;
-    /* 028 */ u8 mUnk_028[0x6c];
-    /* 094 */ ModelAnimationView mUnk_094;
+// Object behind gTrophy (a 0x124-byte allocation).
+typedef struct Trophy {
+    /* 000 */ u16 mModelIndex;
+    /* 002 */ u16 mRankIndex;
+    /* 004 */ u16 mRotateYAngle;
+    /* 008 */ Unk0217b200_08 mRotateZWobble;
+    /* 028 */ u8 mModel[0x6c];
+    /* 094 */ ModelAnimationView mModelAnimation;
     /* 0b4 */ u8 mUnk_0b4[0x18];
-    /* 0cc */ MtxFx43 mUnk_0cc;
-    /* 0fc */ s16 mUnk_0fc;
-    /* 0fe */ s16 mUnk_0fe;
-    /* 100 */ s16 mUnk_100;
-    /* 102 */ s16 mUnk_102;
-    /* 104 */ s16 mUnk_104;
-    /* 106 */ s16 mUnk_106;
-    /* 108 */ Vec3 mUnk_108;
+    /* 0cc */ MtxFx43 mEffectMatrix;
+    /* 0fc */ s16 mLight0X;
+    /* 0fe */ s16 mLight1X;
+    /* 100 */ s16 mLight0Y;
+    /* 102 */ s16 mLight1Y;
+    /* 104 */ s16 mLight0Z;
+    /* 106 */ s16 mLight1Z;
+    /* 108 */ Vec3 mEffectOffset;
     /* 114 */ s32 mUnk_114;
-    /* 118 */ Unk0201ca6c *mUnk_118;
-    /* 11c */ Unk0201ca6c *mUnk_11c;
-    /* 120 */ Unk0201ca6c *mUnk_120;
-} Unk0217b200;
+    /* 118 */ Unk0201ca6c *mEffect0;
+    /* 11c */ Unk0201ca6c *mEffect4;
+    /* 120 */ Unk0201ca6c *mEffect5;
+} Trophy;
 
-extern Unk0217b200 *data_0217b200;
+extern Trophy *gTrophy;

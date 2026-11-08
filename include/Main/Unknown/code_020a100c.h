@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-s32 func_020a1048(u16 a);
-BOOL IsKartEliminated(int a);
-void AddBalloonsLeftToMake(u16 a, s32 b);
+BOOL func_020a1048(u16 kartIndex);
+BOOL IsKartEliminated(int kartIndex);
+void AddBalloonsLeftToMake(u16 kartIndex, s32 amount);
 // TRUE when the kart's mTeamId equals Standings.mWinnerTeamId and mEndTimer is below 0, the end being reached.
-s32 IsKartOnWinningTeamAtEnd(s32 a);
+BOOL IsKartOnWinningTeamAtEnd(s32 kartIndex);

@@ -9,6 +9,6 @@ typedef struct Unk020a3eb8 {
     /* 1c */ s32 mUnk_1c;
 } Unk020a3eb8;
 
-void DrawBalloon(void *p, Balloon *a);
-void SetupDrawBalloon(void *p);
+void DrawBalloon(void *mapObjectList, Balloon *balloon);
+void SetupDrawBalloon(void *mapObjectList);
 void CreateBalloon(Unk020a3eb8 *a); /* also sets word +0x1c of the group record to 1 */

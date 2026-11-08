@@ -199,7 +199,7 @@ void InitResultsGp(void *heap, void *firstOamList, void *secondOamList) {
     QueueCellChars(data_usa_02153868[gResultsGp->mCupIndex], cupNameFileSet.mCells, cupNameFileSet.mChars,
                    cupNameFileSet.mCellLayout, 1, 0, subFileSet->mCells, subFileSet->mCellLayout);
     func_020629a4();
-    func_020a269c(gResultsGp->mCupIndex, (u16) gResultsGp->mCupRankIndex);
+    InitTrophy(gResultsGp->mCupIndex, (u16) gResultsGp->mCupRankIndex);
     i = -1;
     switch (gResultsGp->mUnk_44) {
         case 5:
@@ -238,8 +238,8 @@ void AdvanceResultsGp(SceneNumbersView *sceneNumbers) {
                         gResultsGp->mCellFileSets[i].mCellTable);
     }
     if (gResultsGp->mCupRankIndex < 3) {
-        func_020a2558();
-        func_020a23cc();
+        AdvanceTrophy();
+        DrawTrophy();
     }
     switch (gResultsGp->mState) {
         case 0: {

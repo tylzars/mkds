@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020a228c(int a);
+void func_020a228c(int kartIndex);

@@ -35,13 +35,13 @@
 #include "Main/Unknown/code_020a3f18.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void InitBalloon(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
+void InitBalloon(u32 balloon) {
+    u32 balloonAddress = balloon;
+    u32 noKartIndex;
     u32 value12;
-    value1 = ~(0u);
-    *(u32 *) ((value0) + (164)) = value1;
-    ParkMapObject((void *) value0);
+    noKartIndex = ~(0u);
+    *(u32 *) ((balloonAddress) + (164)) = noKartIndex;
+    ParkMapObject((void *) balloonAddress);
 }
 
 void CreateBalloon(Unk020a3eb8 *a) {
@@ -52,26 +52,26 @@ void CreateBalloon(Unk020a3eb8 *a) {
     a->mUnk_1c = 1;
 }
 
-void SetupDrawBalloon(void *p) {
-    Camera *g;
+void SetupDrawBalloon(void *mapObjectList) {
+    Camera *currentCamera;
 
-    g = GetCurrentCamera();
-    data_0217b214.x = g->mPos.x >> 1;
-    data_0217b214.y = g->mPos.y >> 1;
-    data_0217b214.z = g->mPos.z >> 1;
-    data_0217b208.x = g->mPos.x >> 3;
-    data_0217b208.y = g->mPos.y >> 3;
-    data_0217b208.z = g->mPos.z >> 3;
-    func_0209bbd0(p, gBalloon);
+    currentCamera = GetCurrentCamera();
+    data_0217b214.x = currentCamera->mPos.x >> 1;
+    data_0217b214.y = currentCamera->mPos.y >> 1;
+    data_0217b214.z = currentCamera->mPos.z >> 1;
+    data_0217b208.x = currentCamera->mPos.x >> 3;
+    data_0217b208.y = currentCamera->mPos.y >> 3;
+    data_0217b208.z = currentCamera->mPos.z >> 3;
+    func_0209bbd0(mapObjectList, gBalloon);
 }
 
-void DrawBalloon(void *p, Balloon *a) {
+void DrawBalloon(void *mapObjectList, Balloon *balloon) {
     s32 j;
-    s32 n;
+    s32 drawCount;
     s32 i;
     s32 k;
-    s32 u;
-    u32 m;
+    s32 drawScale;
+    u32 distanceSquared;
     s32 t;
     s32 w0;
     s32 w1;
@@ -83,44 +83,44 @@ void DrawBalloon(void *p, Balloon *a) {
     s32 f1[3];
     s32 g1[3];
     s32 h[3];
-    Balloon *e;
+    Balloon *listBalloon;
 
-    if (a->mKartIndex >= 0) {
-        if (GetKart(a->mKartIndex)->mVisible == 0) {
+    if (balloon->mKartIndex >= 0) {
+        if (GetKart(balloon->mKartIndex)->mVisible == 0) {
             return;
         }
     }
-    n = a->mDrawCount;
-    if (n == 1 && a->mDrawList == NULL) {
-        m = a->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f;
-        if (m < 0x2710) {
-            a->mUnk_e8.x = data_0217b214.x + (a->mUnk_00.mPos.x >> 1);
-            a->mUnk_e8.y = data_0217b214.y + (a->mUnk_00.mPos.y >> 1);
-            a->mUnk_e8.z = data_0217b214.z + (a->mUnk_00.mPos.z >> 1);
-            a->mUnk_e4 = 0x800;
-        } else if (m < 0x9c40) {
-            a->mUnk_e8.x = data_0217b208.x + a->mUnk_00.mPos.x - (a->mUnk_00.mPos.x >> 3);
-            a->mUnk_e8.y = data_0217b208.y + a->mUnk_00.mPos.y - (a->mUnk_00.mPos.y >> 3);
-            a->mUnk_e8.z = data_0217b208.z + a->mUnk_00.mPos.z - (a->mUnk_00.mPos.z >> 3);
-            a->mUnk_e4 = 0xe00;
+    drawCount = balloon->mDrawCount;
+    if (drawCount == 1 && balloon->mDrawList == NULL) {
+        distanceSquared = balloon->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f;
+        if (distanceSquared < 0x2710) {
+            balloon->mDrawPos.x = data_0217b214.x + (balloon->mUnk_00.mPos.x >> 1);
+            balloon->mDrawPos.y = data_0217b214.y + (balloon->mUnk_00.mPos.y >> 1);
+            balloon->mDrawPos.z = data_0217b214.z + (balloon->mUnk_00.mPos.z >> 1);
+            balloon->mDrawScale = 0x800;
+        } else if (distanceSquared < 0x9c40) {
+            balloon->mDrawPos.x = data_0217b208.x + balloon->mUnk_00.mPos.x - (balloon->mUnk_00.mPos.x >> 3);
+            balloon->mDrawPos.y = data_0217b208.y + balloon->mUnk_00.mPos.y - (balloon->mUnk_00.mPos.y >> 3);
+            balloon->mDrawPos.z = data_0217b208.z + balloon->mUnk_00.mPos.z - (balloon->mUnk_00.mPos.z >> 3);
+            balloon->mDrawScale = 0xe00;
         } else {
-            a->mUnk_e8 = a->mUnk_00.mPos;
-            a->mUnk_e4 = 0x1000;
+            balloon->mDrawPos = balloon->mUnk_00.mPos;
+            balloon->mDrawScale = 0x1000;
         }
         w0 = 0x1e;
         func_01ff9048(0x14, &w0, 1);
-        func_01ff9048(0x19, SetViewTransposeMatrixPos(&a->mUnk_e8), 12);
-        if (a->mUnk_00.mAngle != 0) {
-            i = (a->mUnk_00.mAngle >> 4) * 2;
+        func_01ff9048(0x19, SetViewTransposeMatrixPos(&balloon->mDrawPos), 12);
+        if (balloon->mUnk_00.mAngle != 0) {
+            i = (balloon->mUnk_00.mAngle >> 4) * 2;
             MTX_RotZ33_(m0, gPairsByAngle[i + 1], gPairsByAngle[i]);
             func_01ff9048(0x1a, m0, 9);
         }
-        u = a->mUnk_e4;
-        f0[0] = u;
-        f0[1] = u;
-        f0[2] = u;
+        drawScale = balloon->mDrawScale;
+        f0[0] = drawScale;
+        f0[1] = drawScale;
+        f0[2] = drawScale;
         func_01ff9048(0x1b, f0, 3);
-        t = a->mScaleFactor + a->mUnk_d8;
+        t = balloon->mScaleFactor + balloon->mUnk_d8;
         if (t != 0x1000) {
             g0[0] = t;
             g0[1] = t;
@@ -128,40 +128,40 @@ void DrawBalloon(void *p, Balloon *a) {
             func_01ff9048(0x1b, g0, 3);
         }
         SetMapObjectModelPolygonId(gBalloon, AllocPolygonIdWrapping());
-        SetMapObjectModelNsbtpFrameIndex(gBalloon, a->mNsbtpFrameIndex);
-        DrawMapObjectModel(p, gBalloon, a);
-    } else if (n > 0) {
-        m = a->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f;
-        if (m < 0x2710) {
-            a->mUnk_e8.x = data_0217b214.x + (a->mTargetPos.x >> 1);
-            a->mUnk_e8.y = data_0217b214.y + (a->mTargetPos.y >> 1);
-            a->mUnk_e8.z = data_0217b214.z + (a->mTargetPos.z >> 1);
-            a->mUnk_e4 = 0x800;
-        } else if (m < 0x9c40) {
-            a->mUnk_e8.x = data_0217b208.x + a->mTargetPos.x - (a->mTargetPos.x >> 3);
-            a->mUnk_e8.y = data_0217b208.y + a->mTargetPos.y - (a->mTargetPos.y >> 3);
-            a->mUnk_e8.z = data_0217b208.z + a->mTargetPos.z - (a->mTargetPos.z >> 3);
-            a->mUnk_e4 = 0xe00;
+        SetMapObjectModelNsbtpFrameIndex(gBalloon, balloon->mNsbtpFrameIndex);
+        DrawMapObjectModel(mapObjectList, gBalloon, balloon);
+    } else if (drawCount > 0) {
+        distanceSquared = balloon->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f;
+        if (distanceSquared < 0x2710) {
+            balloon->mDrawPos.x = data_0217b214.x + (balloon->mTargetPos.x >> 1);
+            balloon->mDrawPos.y = data_0217b214.y + (balloon->mTargetPos.y >> 1);
+            balloon->mDrawPos.z = data_0217b214.z + (balloon->mTargetPos.z >> 1);
+            balloon->mDrawScale = 0x800;
+        } else if (distanceSquared < 0x9c40) {
+            balloon->mDrawPos.x = data_0217b208.x + balloon->mTargetPos.x - (balloon->mTargetPos.x >> 3);
+            balloon->mDrawPos.y = data_0217b208.y + balloon->mTargetPos.y - (balloon->mTargetPos.y >> 3);
+            balloon->mDrawPos.z = data_0217b208.z + balloon->mTargetPos.z - (balloon->mTargetPos.z >> 3);
+            balloon->mDrawScale = 0xe00;
         } else {
-            a->mUnk_e8 = a->mTargetPos;
-            a->mUnk_e4 = 0x1000;
+            balloon->mDrawPos = balloon->mTargetPos;
+            balloon->mDrawScale = 0x1000;
         }
         w1 = 0x1e;
         func_01ff9048(0x14, &w1, 1);
-        func_01ff9048(0x19, func_020e6cbc(&a->mUnk_e8), 12);
-        u = a->mUnk_e4;
-        f1[0] = u;
-        f1[1] = u;
-        f1[2] = u;
+        func_01ff9048(0x19, func_020e6cbc(&balloon->mDrawPos), 12);
+        drawScale = balloon->mDrawScale;
+        f1[0] = drawScale;
+        f1[1] = drawScale;
+        f1[2] = drawScale;
         func_01ff9048(0x1b, f1, 3);
-        for (j = 0; j < n; j++) {
-            i = data_02156720[n - 1][j];
-            e = a->mDrawList[i];
+        for (j = 0; j < drawCount; j++) {
+            i = data_02156720[drawCount - 1][j];
+            listBalloon = balloon->mDrawList[i];
             func_01ff9048(0x11, NULL, 0);
-            k = data_02156700[n - 1][i];
+            k = data_02156700[drawCount - 1][i];
             MTX_RotZ33_(m1, gPairsByAngle[(k >> 4) * 2 + 1], gPairsByAngle[(k >> 4) * 2]);
             func_01ff9048(0x1a, m1, 9);
-            t = e->mScaleFactor;
+            t = listBalloon->mScaleFactor;
             if (t != 0x1000) {
                 g1[0] = t;
                 g1[1] = t;
@@ -173,20 +173,20 @@ void DrawBalloon(void *p, Balloon *a) {
             h[2] = 0;
             func_01ff9048(0x1c, h, 3);
             SetMapObjectModelPolygonId(gBalloon, AllocPolygonIdWrapping());
-            SetMapObjectModelNsbtpFrameIndex(gBalloon, e->mNsbtpFrameIndex);
-            DrawMapObjectModel(p, gBalloon, a);
+            SetMapObjectModelNsbtpFrameIndex(gBalloon, listBalloon->mNsbtpFrameIndex);
+            DrawMapObjectModel(mapObjectList, gBalloon, balloon);
             w2 = 1;
             func_01ff9048(0x12, &w2, 1);
         }
     }
 }
 
-void func_020a392c(Unk0201ca6c *a, Balloon *b) {
-    a->mUnk_72 = func_0208606c(b->mNsbtpFrameIndex);
+void func_020a392c(Unk0201ca6c *effect, Balloon *balloon) {
+    effect->mUnk_72 = func_0208606c(balloon->mNsbtpFrameIndex);
 }
 
-void func_020a36a8(Balloon *a) {
-    Kart *p;
+void func_020a36a8(Balloon *balloon) {
+    Kart *kart;
     Vec3 *q;
     Vec3 v;
     s32 s;
@@ -199,36 +199,36 @@ void func_020a36a8(Balloon *a) {
     s32 v6;
     s32 v7;
 
-    if (a->mKartIndex < 0) {
-        a->mUnk_00.mUnk_10.y = a->mUnk_00.mUnk_10.y + 0x1800;
+    if (balloon->mKartIndex < 0) {
+        balloon->mUnk_00.mUnk_10.y = balloon->mUnk_00.mUnk_10.y + 0x1800;
     } else {
-        p = GetKart((u16) a->mKartIndex);
-        q = &p->mUnk_12c;
-        a->mUnk_00.mUnk_10.x = a->mUnk_00.mUnk_10.x + (q->x + (q->x >> 1));
-        a->mUnk_00.mUnk_10.y = a->mUnk_00.mUnk_10.y + (q->y + (q->y >> 1));
-        a->mUnk_00.mUnk_10.z = a->mUnk_00.mUnk_10.z + (q->z + (q->z >> 1));
+        kart = GetKart((u16) balloon->mKartIndex);
+        q = &kart->mUnk_12c;
+        balloon->mUnk_00.mUnk_10.x = balloon->mUnk_00.mUnk_10.x + (q->x + (q->x >> 1));
+        balloon->mUnk_00.mUnk_10.y = balloon->mUnk_00.mUnk_10.y + (q->y + (q->y >> 1));
+        balloon->mUnk_00.mUnk_10.z = balloon->mUnk_00.mUnk_10.z + (q->z + (q->z >> 1));
     }
-    v1 = (a->mUnk_00.mPos.x + a->mUnk_00.mUnk_10.x) - (a->mTargetPos.x + a->mTargetVelocity.x);
-    v3 = (a->mUnk_00.mPos.z + a->mUnk_00.mUnk_10.z) - (a->mTargetPos.z + a->mTargetVelocity.z);
-    t = ((s64) 0xa000 * (a->mScaleFactor + a->mUnk_d8)) >> 12;
+    v1 = (balloon->mUnk_00.mPos.x + balloon->mUnk_00.mUnk_10.x) - (balloon->mTargetPos.x + balloon->mTargetVelocity.x);
+    v3 = (balloon->mUnk_00.mPos.z + balloon->mUnk_00.mUnk_10.z) - (balloon->mTargetPos.z + balloon->mTargetVelocity.z);
+    t = ((s64) 0xa000 * (balloon->mScaleFactor + balloon->mUnk_d8)) >> 12;
     v6 = v3 < 0 ? -v3 : v3;
     v4 = v1 < 0 ? -v1 : v1;
     v7 = v4 / 2 + v6 / 2;
     if (v7 <= t) {
-        a->mUnk_e0 = 1;
-    } else if (a->mUnk_e0 != 0) {
+        balloon->mUnk_e0 = 1;
+    } else if (balloon->mUnk_e0 != 0) {
         if (v7 > t) {
             s = FX_Div(v7 - t, v7);
             v.x = ((s64) v1 * s) >> 12;
             v.y = 0;
             v.z = ((s64) v3 * s) >> 12;
-            VEC_Subtract(&a->mUnk_00.mPos, &v, &a->mUnk_00.mPos);
+            VEC_Subtract(&balloon->mUnk_00.mPos, &v, &balloon->mUnk_00.mPos);
         }
     }
-    v1 = (a->mUnk_00.mPos.x + a->mUnk_00.mUnk_10.x) - (a->mTargetPos.x + a->mTargetVelocity.x);
-    v2 = (a->mUnk_00.mPos.y + a->mUnk_00.mUnk_10.y) - (a->mTargetPos.y + a->mTargetVelocity.y);
-    v3 = (a->mUnk_00.mPos.z + a->mUnk_00.mUnk_10.z) - (a->mTargetPos.z + a->mTargetVelocity.z);
-    t = (a->mScaleFactor + a->mUnk_d8) << 4;
+    v1 = (balloon->mUnk_00.mPos.x + balloon->mUnk_00.mUnk_10.x) - (balloon->mTargetPos.x + balloon->mTargetVelocity.x);
+    v2 = (balloon->mUnk_00.mPos.y + balloon->mUnk_00.mUnk_10.y) - (balloon->mTargetPos.y + balloon->mTargetVelocity.y);
+    v3 = (balloon->mUnk_00.mPos.z + balloon->mUnk_00.mUnk_10.z) - (balloon->mTargetPos.z + balloon->mTargetVelocity.z);
+    t = (balloon->mScaleFactor + balloon->mUnk_d8) << 4;
     v5 = v2 < 0 ? -v2 : v2;
     v4 = v1 < 0 ? -v1 : v1;
     v6 = v3 < 0 ? -v3 : v3;
@@ -238,28 +238,28 @@ void func_020a36a8(Balloon *a) {
         v.x = ((s64) v1 * s) >> 12;
         v.y = ((s64) v2 * s) >> 12;
         v.z = ((s64) v3 * s) >> 12;
-        if (a->mKartIndex >= 0) {
-            VEC_Subtract(&a->mUnk_00.mUnk_10, &v, &a->mUnk_00.mUnk_10);
+        if (balloon->mKartIndex >= 0) {
+            VEC_Subtract(&balloon->mUnk_00.mUnk_10, &v, &balloon->mUnk_00.mUnk_10);
         } else {
-            VEC_Add(&a->mTargetVelocity, &v, &a->mTargetVelocity);
+            VEC_Add(&balloon->mTargetVelocity, &v, &balloon->mTargetVelocity);
         }
     }
-    VEC_Add(&a->mUnk_00.mPos, &a->mUnk_00.mUnk_10, &a->mUnk_00.mPos);
-    VEC_Add(&a->mTargetPos, &a->mTargetVelocity, &a->mTargetPos);
+    VEC_Add(&balloon->mUnk_00.mPos, &balloon->mUnk_00.mUnk_10, &balloon->mUnk_00.mPos);
+    VEC_Add(&balloon->mTargetPos, &balloon->mTargetVelocity, &balloon->mTargetPos);
 }
 
-u32 func_020a369c(Balloon *p) {
-    return p->mUnk_00.mFlags & 0x12;
+u32 func_020a369c(Balloon *balloon) {
+    return balloon->mUnk_00.mFlags & 0x12;
 }
 
-u32 func_020a3690(Balloon *p) {
-    return p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001fu;
+u32 GetBalloonDistanceSquared(Balloon *balloon) {
+    return balloon->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001fu;
 }
 
-void func_020a35b0(Balloon *a) {
-    Camera *g;
+void UpdateBalloonAngle(Balloon *balloon) {
+    Camera *currentCamera;
     Vec3 v;
-    u16 v1;
+    u16 cameraAngle;
     s32 i;
     s32 s;
     s32 c;
@@ -268,221 +268,221 @@ void func_020a35b0(Balloon *a) {
     s32 u;
     s32 w;
 
-    g = GetCurrentCamera();
-    v1 = FX_Atan2Idx(g->mForward.x, g->mForward.z) - 0x4000;
-    VEC_Subtract(&a->mUnk_00.mPos, &g->mPos, &v);
-    i = (v1 >> 4) * 2;
+    currentCamera = GetCurrentCamera();
+    cameraAngle = FX_Atan2Idx(currentCamera->mForward.x, currentCamera->mForward.z) - 0x4000;
+    VEC_Subtract(&balloon->mUnk_00.mPos, &currentCamera->mPos, &v);
+    i = (cameraAngle >> 4) * 2;
     s = gPairsByAngle[i];
     c = gPairsByAngle[i + 1];
     x = ((s64) v.z * c) >> 12;
     y = ((s64) v.x * s) >> 12;
     u = v.y;
-    VEC_Subtract(&a->mTargetPos, &g->mPos, &v);
+    VEC_Subtract(&balloon->mTargetPos, &currentCamera->mPos, &v);
     w = (s32) (((s64) v.x * s) >> 12) + (s32) (((s64) v.z * c) >> 12);
-    a->mUnk_00.mAngle = FX_Atan2Idx(u - v.y, -(y + x - w));
+    balloon->mUnk_00.mAngle = FX_Atan2Idx(u - v.y, -(y + x - w));
 }
 
-void UpdateBalloon(void *p, Balloon *a) {
-    Kart *o;
+void UpdateBalloon(void *mapObjectList, Balloon *balloon) {
+    Kart *kart;
 
-    if (a->mKartIndex >= 0) {
-        switch (a->mState) {
+    if (balloon->mKartIndex >= 0) {
+        switch (balloon->mState) {
             case 0:
-                a->mUnk_d8 = a->mUnk_d8 + a->mUnk_dc;
-                if (a->mUnk_d8 >= 0) {
-                    if (a->mUnk_dc < 0) {
-                        a->mUnk_dc = -50;
+                balloon->mUnk_d8 = balloon->mUnk_d8 + balloon->mUnk_dc;
+                if (balloon->mUnk_d8 >= 0) {
+                    if (balloon->mUnk_dc < 0) {
+                        balloon->mUnk_dc = -50;
                     } else {
-                        a->mUnk_dc = a->mUnk_dc - 10;
+                        balloon->mUnk_dc = balloon->mUnk_dc - 10;
                     }
                 } else {
-                    if (a->mUnk_dc >= 0) {
-                        a->mUnk_dc = 50;
+                    if (balloon->mUnk_dc >= 0) {
+                        balloon->mUnk_dc = 50;
                     } else {
-                        a->mUnk_dc = a->mUnk_dc + 10;
+                        balloon->mUnk_dc = balloon->mUnk_dc + 10;
                     }
                 }
-                if (a->mKartIndex == gRaceSetup->mEntryIndex) {
+                if (balloon->mKartIndex == gRaceSetup->mEntryIndex) {
                     if (IsRaceStarted() == 1) {
-                        o = GetKart((u16) a->mKartIndex);
-                        func_020249b8(o, a->mScaleFactor + a->mUnk_d8, a->mUnk_d4);
+                        kart = GetKart((u16) balloon->mKartIndex);
+                        func_020249b8(kart, balloon->mScaleFactor + balloon->mUnk_d8, balloon->mUnk_d4);
                     }
                 }
-                if (a->mDrawCount == 1 && a->mDrawList == NULL) {
-                    func_020a36a8(a);
-                    if (func_020a369c(a) != 0) {
+                if (balloon->mDrawCount == 1 && balloon->mDrawList == NULL) {
+                    func_020a36a8(balloon);
+                    if (func_020a369c(balloon) != 0) {
                         return;
                     }
-                    if (func_020a3690(a) >= 0x9c40) {
+                    if (GetBalloonDistanceSquared(balloon) >= 0x9c40) {
                         return;
                     }
-                    func_020a35b0(a);
+                    UpdateBalloonAngle(balloon);
                 } else {
-                    a->mUnk_00.mPos.x = a->mTargetPos.x;
-                    a->mUnk_00.mPos.y = a->mTargetPos.y + 0xf666;
-                    a->mUnk_00.mPos.z = a->mTargetPos.z;
+                    balloon->mUnk_00.mPos.x = balloon->mTargetPos.x;
+                    balloon->mUnk_00.mPos.y = balloon->mTargetPos.y + 0xf666;
+                    balloon->mUnk_00.mPos.z = balloon->mTargetPos.z;
                 }
                 break;
             case 1:
-                a->mUnk_d8 = 0;
-                a->mScaleFactor = a->mScaleFactor + a->mUnk_d4;
-                if (a->mScaleFactor >= 0x1000) {
-                    a->mUnk_d4 = a->mUnk_d4 - 200;
+                balloon->mUnk_d8 = 0;
+                balloon->mScaleFactor = balloon->mScaleFactor + balloon->mUnk_d4;
+                if (balloon->mScaleFactor >= 0x1000) {
+                    balloon->mUnk_d4 = balloon->mUnk_d4 - 200;
                 }
-                if (a->mUnk_d4 < 0) {
-                    if (a->mScaleFactor <= 0x1000) {
-                        a->mScaleFactor = 0x1000;
-                        a->mState = 2;
+                if (balloon->mUnk_d4 < 0) {
+                    if (balloon->mScaleFactor <= 0x1000) {
+                        balloon->mScaleFactor = 0x1000;
+                        balloon->mState = 2;
                     }
                 }
-                if (a->mDrawCount == 1 && a->mDrawList == NULL) {
-                    func_020a36a8(a);
-                    if (func_020a369c(a) != 0) {
+                if (balloon->mDrawCount == 1 && balloon->mDrawList == NULL) {
+                    func_020a36a8(balloon);
+                    if (func_020a369c(balloon) != 0) {
                         return;
                     }
-                    if (func_020a3690(a) >= 0x9c40) {
+                    if (GetBalloonDistanceSquared(balloon) >= 0x9c40) {
                         return;
                     }
-                    func_020a35b0(a);
+                    UpdateBalloonAngle(balloon);
                 } else {
-                    a->mUnk_00.mPos.x = a->mTargetPos.x;
-                    a->mUnk_00.mPos.y = a->mTargetPos.y + 0xf666;
-                    a->mUnk_00.mPos.z = a->mTargetPos.z;
+                    balloon->mUnk_00.mPos.x = balloon->mTargetPos.x;
+                    balloon->mUnk_00.mPos.y = balloon->mTargetPos.y + 0xf666;
+                    balloon->mUnk_00.mPos.z = balloon->mTargetPos.z;
                 }
                 break;
             case 2:
-                a->mUnk_d8 = 0;
-                a->mScaleFactor = 0x1000;
-                if (a->mDrawCount == 1 && a->mDrawList == NULL) {
-                    func_020a36a8(a);
-                    if (func_020a369c(a) != 0) {
+                balloon->mUnk_d8 = 0;
+                balloon->mScaleFactor = 0x1000;
+                if (balloon->mDrawCount == 1 && balloon->mDrawList == NULL) {
+                    func_020a36a8(balloon);
+                    if (func_020a369c(balloon) != 0) {
                         return;
                     }
-                    if (func_020a3690(a) >= 0x9c40) {
+                    if (GetBalloonDistanceSquared(balloon) >= 0x9c40) {
                         return;
                     }
-                    func_020a35b0(a);
+                    UpdateBalloonAngle(balloon);
                 } else {
-                    a->mUnk_00.mPos.x = a->mTargetPos.x;
-                    a->mUnk_00.mPos.y = a->mTargetPos.y + 0xf666;
-                    a->mUnk_00.mPos.z = a->mTargetPos.z;
+                    balloon->mUnk_00.mPos.x = balloon->mTargetPos.x;
+                    balloon->mUnk_00.mPos.y = balloon->mTargetPos.y + 0xf666;
+                    balloon->mUnk_00.mPos.z = balloon->mTargetPos.z;
                 }
                 break;
             default:
                 return;
         }
     } else {
-        a->mUnk_d8 = 0;
-        a->mScaleFactor = 0x1000;
-        if (a->mNoKartTimer-- <= 0) {
-            StartEffectWithCallback(0x5b, &a->mUnk_00.mPos, a, func_020a392c);
-            StartEffectWithCallback(0x5c, &a->mUnk_00.mPos, a, func_020a392c);
-            StartEffectWithCallback(0x5d, &a->mUnk_00.mPos, a, func_020a392c);
-            func_0210b8f4(&a->mUnk_00.mPos, GetHorizontalCameraDistanceSquared(&a->mUnk_00.mPos));
-            ParkMapObject(&a->mUnk_00);
+        balloon->mUnk_d8 = 0;
+        balloon->mScaleFactor = 0x1000;
+        if (balloon->mNoKartTimer-- <= 0) {
+            StartEffectWithCallback(0x5b, &balloon->mUnk_00.mPos, balloon, func_020a392c);
+            StartEffectWithCallback(0x5c, &balloon->mUnk_00.mPos, balloon, func_020a392c);
+            StartEffectWithCallback(0x5d, &balloon->mUnk_00.mPos, balloon, func_020a392c);
+            func_0210b8f4(&balloon->mUnk_00.mPos, GetHorizontalCameraDistanceSquared(&balloon->mUnk_00.mPos));
+            ParkMapObject(&balloon->mUnk_00);
         } else {
-            a->mUnk_c8 = a->mUnk_c8 + a->mUnk_cc;
-            if (a->mUnk_c8 >= 0) {
-                if (a->mUnk_cc < 0) {
-                    a->mUnk_cc = -0x640;
+            balloon->mUnk_c8 = balloon->mUnk_c8 + balloon->mUnk_cc;
+            if (balloon->mUnk_c8 >= 0) {
+                if (balloon->mUnk_cc < 0) {
+                    balloon->mUnk_cc = -0x640;
                 } else {
-                    a->mUnk_cc = a->mUnk_cc - 200;
+                    balloon->mUnk_cc = balloon->mUnk_cc - 200;
                 }
             } else {
-                if (a->mUnk_cc >= 0) {
-                    a->mUnk_cc = 0x640;
+                if (balloon->mUnk_cc >= 0) {
+                    balloon->mUnk_cc = 0x640;
                 } else {
-                    a->mUnk_cc = a->mUnk_cc + 200;
+                    balloon->mUnk_cc = balloon->mUnk_cc + 200;
                 }
             }
         }
-        a->mUnk_00.mAngle = a->mUnk_c8 + 0x4000;
-        a->mUnk_00.mUnk_10.y = a->mUnk_00.mUnk_10.y + 0x59a;
-        a->mTargetVelocity.y = a->mTargetVelocity.y - 0x2000;
-        a->mUnk_00.mUnk_10.x = ((s64) a->mUnk_00.mUnk_10.x * 0xc00) >> 12;
-        a->mUnk_00.mUnk_10.y = ((s64) a->mUnk_00.mUnk_10.y * 0xc00) >> 12;
-        a->mUnk_00.mUnk_10.z = ((s64) a->mUnk_00.mUnk_10.z * 0xc00) >> 12;
-        VEC_Add(&a->mUnk_00.mPos, &a->mUnk_00.mUnk_10, &a->mUnk_00.mPos);
-        VEC_Add(&a->mTargetPos, &a->mTargetVelocity, &a->mTargetPos);
+        balloon->mUnk_00.mAngle = balloon->mUnk_c8 + 0x4000;
+        balloon->mUnk_00.mUnk_10.y = balloon->mUnk_00.mUnk_10.y + 0x59a;
+        balloon->mTargetVelocity.y = balloon->mTargetVelocity.y - 0x2000;
+        balloon->mUnk_00.mUnk_10.x = ((s64) balloon->mUnk_00.mUnk_10.x * 0xc00) >> 12;
+        balloon->mUnk_00.mUnk_10.y = ((s64) balloon->mUnk_00.mUnk_10.y * 0xc00) >> 12;
+        balloon->mUnk_00.mUnk_10.z = ((s64) balloon->mUnk_00.mUnk_10.z * 0xc00) >> 12;
+        VEC_Add(&balloon->mUnk_00.mPos, &balloon->mUnk_00.mUnk_10, &balloon->mUnk_00.mPos);
+        VEC_Add(&balloon->mTargetPos, &balloon->mTargetVelocity, &balloon->mTargetPos);
     }
 }
 
-void *func_020a3130(void) {
+void *CreateBalloonDrawList(void) {
     return CreateMapObjectDrawList2(CreateBalloon, DrawBalloon, SetupDrawBalloon);
 }
 
-void *func_020a3114(void) {
+void *CreateBalloonUpdateList(void) {
     return CreateMapObjectUpdateList(NULL, UpdateBalloon, NULL);
 }
 
 void func_020a305c(void) {
     s32 i;
-    MapObjectList *v1;
-    Balloon *e;
+    MapObjectList *mapObjectList;
+    Balloon *balloon;
 
-    v1 = func_02100138(MAP_OBJECT_KIND_BALLOON);
-    if (v1 == NULL) {
+    mapObjectList = func_02100138(MAP_OBJECT_KIND_BALLOON);
+    if (mapObjectList == NULL) {
         return;
     }
-    for (i = 0; i < v1->mMapObjectCount && (e = v1->mMapObjects[i]) != NULL; i++) {
-        if (e->mKartIndex >= 0) {
-            e->mKartIndex = (u16) gRaceSetup->mEntryIndex;
-            e->mScaleFactor = 0x1000;
-            e->mUnk_d4 = 0;
-            e->mUnk_d8 = 0;
-            e->mUnk_dc = 0;
-            e->mState = 2;
-        } else if ((e->mUnk_00.mFlags & 0x100) == 0) {
-            ParkMapObject(&e->mUnk_00);
+    for (i = 0; i < mapObjectList->mMapObjectCount && (balloon = mapObjectList->mMapObjects[i]) != NULL; i++) {
+        if (balloon->mKartIndex >= 0) {
+            balloon->mKartIndex = (u16) gRaceSetup->mEntryIndex;
+            balloon->mScaleFactor = 0x1000;
+            balloon->mUnk_d4 = 0;
+            balloon->mUnk_d8 = 0;
+            balloon->mUnk_dc = 0;
+            balloon->mState = 2;
+        } else if ((balloon->mUnk_00.mFlags & 0x100) == 0) {
+            ParkMapObject(&balloon->mUnk_00);
         }
     }
 }
 
-Balloon *func_020a2fe4(u16 a, Vec3 *b) {
-    Balloon *o;
+Balloon *StartBalloon(u16 nsbtpFrameIndex, Vec3 *targetPos) {
+    Balloon *balloon;
 
-    o = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_BALLOON));
-    if (o == NULL) {
+    balloon = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_BALLOON));
+    if (balloon == NULL) {
         return NULL;
     }
-    o->mTargetPos = *b;
-    o->mUnk_00.mPos = o->mTargetPos;
-    o->mScaleFactor = 0;
-    o->mUnk_d4 = 0;
-    o->mUnk_d8 = 0;
-    o->mUnk_dc = 0;
-    o->mUnk_e0 = 0;
-    o->mNsbtpFrameIndex = a;
-    o->mState = 0;
-    return o;
+    balloon->mTargetPos = *targetPos;
+    balloon->mUnk_00.mPos = balloon->mTargetPos;
+    balloon->mScaleFactor = 0;
+    balloon->mUnk_d4 = 0;
+    balloon->mUnk_d8 = 0;
+    balloon->mUnk_dc = 0;
+    balloon->mUnk_e0 = 0;
+    balloon->mNsbtpFrameIndex = nsbtpFrameIndex;
+    balloon->mState = 0;
+    return balloon;
 }
 
-void func_020a2f9c(Balloon *a, u16 b, s32 c) {
-    a->mKartIndex = b;
-    a->mUnk_d4 = c;
-    a->mScaleFactor = a->mScaleFactor + a->mUnk_d4;
-    a->mUnk_d8 = 0;
-    a->mUnk_dc = 0;
-    a->mState = 0;
-    if (a->mScaleFactor >= 0x1000) {
-        a->mUnk_d8 = 0;
-        a->mUnk_d4 = 0x258;
-        a->mState = 1;
+void func_020a2f9c(Balloon *balloon, u16 kartIndex, s32 scaleStep) {
+    balloon->mKartIndex = kartIndex;
+    balloon->mUnk_d4 = scaleStep;
+    balloon->mScaleFactor = balloon->mScaleFactor + balloon->mUnk_d4;
+    balloon->mUnk_d8 = 0;
+    balloon->mUnk_dc = 0;
+    balloon->mState = 0;
+    if (balloon->mScaleFactor >= 0x1000) {
+        balloon->mUnk_d8 = 0;
+        balloon->mUnk_d4 = 0x258;
+        balloon->mState = 1;
     }
 }
 
-void func_020a2f30(Balloon *a, u16 b, s32 c) {
-    a->mKartIndex = b;
-    a->mUnk_d4 = -c;
-    a->mScaleFactor = a->mScaleFactor + a->mUnk_d4;
-    a->mState = 0;
-    if (a->mScaleFactor > 0) {
+void func_020a2f30(Balloon *balloon, u16 kartIndex, s32 scaleStep) {
+    balloon->mKartIndex = kartIndex;
+    balloon->mUnk_d4 = -scaleStep;
+    balloon->mScaleFactor = balloon->mScaleFactor + balloon->mUnk_d4;
+    balloon->mState = 0;
+    if (balloon->mScaleFactor > 0) {
         return;
     }
-    a->mUnk_d8 = 0;
-    a->mScaleFactor = 0;
-    a->mKartIndex = -1;
-    a->mDrawCount = 1;
-    a->mDrawList = NULL;
-    ParkMapObject(&a->mUnk_00);
+    balloon->mUnk_d8 = 0;
+    balloon->mScaleFactor = 0;
+    balloon->mKartIndex = -1;
+    balloon->mDrawCount = 1;
+    balloon->mDrawList = NULL;
+    ParkMapObject(&balloon->mUnk_00);
 }
