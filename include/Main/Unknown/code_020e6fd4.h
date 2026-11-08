@@ -39,7 +39,7 @@ typedef struct MapObjectKindData {
 
 // Element object up to 0xa0, which every kind shares: UpdateMapObjectList and func_020e71a0 read 0x78 and 0x94 of every
 // object, DoesItemObjectRespondToMapObject reads 0x00, 0x02 and 0x98. InitKuribo and InitDram pass the Unk020e005c_080
-// at 0x80 to func_02046be8. From 0xa0 on, the objects of func_020e72cc (Unk020e730c), InitDram (Dram), func_020ff97c
+// at 0x80 to InitStateMachine. From 0xa0 on, the objects of func_020e72cc (Unk020e730c), InitDram (Dram), func_020ff97c
 // (Unk020ff97c) and AdvancePooledMapObject (PooledMapObject) use the bytes in different ways.
 typedef struct MapObject {
     /* 00 */ u16 mKind;

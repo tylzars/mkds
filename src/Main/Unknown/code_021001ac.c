@@ -63,7 +63,7 @@ void ResetItemTeresa(Unk021025d8 *teresa) {
     stateTable = (UnkFunc *const *) gItemTeresaStateTable;
     teresa->mUnk_15c = 0;
     teresa->mUnk_160 = 0xe;
-    func_02046be8(teresa->mUnk_12c, stateTable, 7, teresa);
+    InitStateMachine(teresa->mUnk_12c, stateTable, 7, teresa);
     teresa->mUnk_140 = 8;
     teresa->mUnk_144 = 0;
     FreeItemObjectCollisionSlot((s32) teresa);

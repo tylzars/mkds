@@ -324,13 +324,13 @@ void AdvanceResultsGp(Unk02029aa0 *sceneNumbers) {
                             }
                             break;
                         case 1:
-                            func_02045a2c(0);
+                            SetupStaffRollRace(0);
                             if (sceneNumbers != NULL) {
                                 sceneNumbers->mNextScene = 2;
                             }
                             break;
                         case 2:
-                            func_02045a2c(1);
+                            SetupStaffRollRace(1);
                             if (sceneNumbers != NULL) {
                                 sceneNumbers->mNextScene = 2;
                             }

@@ -41,7 +41,7 @@ static inline void func_02043a34_inline(void) {
     } else {
         data_02175624->mUnk_02 = ((*(vu16 *) 0x4000130 | *(vu16 *) 0x027fffa8) ^ 0x2fff) & 0x2fff;
     }
-    func_02046d7c();
+    UpdateTouchMicInput();
 }
 
 static inline void func_02043c14_inline(void) {
@@ -95,8 +95,8 @@ void func_0204451c(u32 a) {
     if (f < 2) {
         q->mUnk_3d5[f] = a;
     }
-    gRaceSetup->mNextEntries[a].mPlayer.mNumber = gRaceSetup->mUnk_3e1;
-    gRaceSetup->mUnk_3e1 = gRaceSetup->mUnk_3e1 + 1;
+    gRaceSetup->mNextEntries[a].mPlayer.mNumber = gRaceSetup->mNextCpuNumber;
+    gRaceSetup->mNextCpuNumber = gRaceSetup->mNextCpuNumber + 1;
 }
 
 void func_02044380(Unk02029930_f8 *a, u32 b, u32 c) {
@@ -260,7 +260,7 @@ void func_02043b48(void) {
         SetInputSlotRepeat(p, 0xff3, 0x1e, 0xa);
         p++;
     }
-    func_02047054();
+    StartTouchAutoSampling();
     func_02043648();
     q = data_02175628;
     for (j = 0; j < 10; j++) {
@@ -274,7 +274,7 @@ void func_02043b48(void) {
 }
 
 void func_02043b3c(void) {
-    func_02046f54();
+    StopTouchAutoSampling();
 }
 
 void func_02043b04(void) {
@@ -340,10 +340,10 @@ void func_02043648(void) {
     u16 w;
 
     x = data_02175624->mUnk_02;
-    y = func_02046c10();
+    y = GetPackedTouchPoint();
     a = x;
     b = y;
-    k = gTouchMicInput->mUnk_30_3;
+    k = gTouchMicInput->mMicOverThreshold;
     if (func_02043648_inline(data_0217aa00) != 0) {
         a = func_0204ffe8(GetParticipantIndex(data_02175624->mUnk_08));
         b = *(u16 *) &data_0217aa00->mUnk_15bc_view.mUnk_0c[GetParticipantIndex(data_02175624->mUnk_08)].mUnk_00[2];

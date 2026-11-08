@@ -124,8 +124,8 @@ void StepDataSharing(void) {
             p->mUnk_06_0 &= ~1;
         }
     }
-    p->mUnk_06_7 = gTouchMicInput->mUnk_30_3;
-    p->mUnk_02 = func_02046c10();
+    p->mUnk_06_7 = gTouchMicInput->mMicOverThreshold;
+    p->mUnk_02 = GetPackedTouchPoint();
     r = WM_StepDataSharing(data_0217aa00->mUnk_15bc, p, data_0217aa00->mUnk_15c0);
     if (r == 0) {
         if (data_0217aa00->mUnk_0004 == 8) {

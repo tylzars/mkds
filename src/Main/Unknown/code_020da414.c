@@ -45,7 +45,7 @@ void InitKuribo(Kuribo *kuribo, CourseMapRow *row) {
         kuribo->mUnk_a0 = startEntry->mPos.y;
         kuribo->mUnk_f8 = row->mUnk_28 * 0xb4 / 100;
         kuribo->mUnk_fc = row->mUnk_2a == 0;
-        func_02046be8(&kuribo->mUnk_00.mStateMachine, data_0216be68, 6, kuribo);
+        InitStateMachine(&kuribo->mUnk_00.mStateMachine, data_0216be68, 6, kuribo);
         SetupGroupFollowerAtEntry(&kuribo->mUnk_cc, kuribo->mUnk_00.mCourseMapRow->mUnk_2e, 1);
         GetGroupFollowerCurveXz(&kuribo->mUnk_cc, &kuribo->mUnk_00.mPos);
         kuribo->mUnk_00.mPos.y = kuribo->mUnk_a0;
@@ -70,7 +70,7 @@ void InitKuribo(Kuribo *kuribo, CourseMapRow *row) {
         kuribo->mUnk_cc.mGroupIndex = 0xffff;
         kuribo->mUnk_a0 = 0;
         kuribo->mUnk_fc = 0;
-        func_02046be8(&kuribo->mUnk_00.mStateMachine, data_0216be68, 6, kuribo);
+        InitStateMachine(&kuribo->mUnk_00.mStateMachine, data_0216be68, 6, kuribo);
         kuribo->mUnk_f8 = 0x1000;
         {
             Quaternion identityA = {0, 0, 0, 0x1000};

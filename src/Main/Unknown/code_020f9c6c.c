@@ -104,7 +104,7 @@ void func_020fcb30(ItemKouraW *item) {
 }
 
 void ResetItemKouraW(ItemKouraW *item) {
-    func_02046be8(&item->mUnk_2e8, (UnkFunc *const *) gItemKouraWStateTable, 8, item);
+    InitStateMachine(&item->mUnk_2e8, (UnkFunc *const *) gItemKouraWStateTable, 8, item);
     MTX_Identity43_((MtxFx43 *) item->mUnk_2b4);
     item->mRank = 1;
     item->mRankKartIndex = gRaceProgress->mKartAtRank[0];
@@ -804,7 +804,7 @@ void DrawItemKouraW(ItemKouraW *item, s32 param_2, s32 param_3) {
 // Asks for state 7 unless the object is already in it; returns 1.
 s32 RequestItemKouraWState7(ItemKouraW *item) {
     if (item->mState != 7) {
-        func_02046be8(&item->mUnk_2e8, (UnkFunc *const *) gItemKouraWStateTable, 8, item);
+        InitStateMachine(&item->mUnk_2e8, (UnkFunc *const *) gItemKouraWStateTable, 8, item);
         item->mNextState = 7;
         item->mNextStateRequested = 1;
         if ((item->mUnk_000.mFlags & 0x180000) == 0) {

@@ -14,19 +14,19 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/code_02090354.h"
 
-static inline u32 func_02046524_inline(RandomState64 *a, u32 b) {
-    u64 r;
-    if (b == 0) {
-        r = 0;
+static inline u32 func_02046524_inline(RandomState64 *randomState64, u32 limit) {
+    u64 result;
+    if (limit == 0) {
+        result = 0;
     } else {
-        a->mValue = a->mMultiplier * a->mValue + a->mIncrement;
-        if (b == 0) {
-            r = a->mValue >> 32;
+        randomState64->mValue = randomState64->mMultiplier * randomState64->mValue + randomState64->mIncrement;
+        if (limit == 0) {
+            result = randomState64->mValue >> 32;
         } else {
-            r = ((a->mValue >> 32) * b) >> 32;
+            result = ((randomState64->mValue >> 32) * limit) >> 32;
         }
     }
-    return (u16) r;
+    return (u16) result;
 }
 
 BOOL func_02046648(s32 a) {
@@ -65,11 +65,11 @@ BOOL func_02046648(s32 a) {
     return FALSE;
 }
 
-void func_02046594(void) {
-    u8 k;
+void AssignCpuNumbers(void) {
+    u8 nextCpuNumber;
     BOOL f;
     u8 i;
-    k = 1;
+    nextCpuNumber = 1;
     f = FALSE;
     switch (gRaceSetup->mNextHeader.mMode) {
         case MODE_GRAND_PRIX:
@@ -81,31 +81,31 @@ void func_02046594(void) {
     }
     for (i = 0; i < 8; i++) {
         if (f == FALSE && gRaceSetup->mNextEntries[i].mPlayer.mKind == PLAYER_KIND_CPU) {
-            gRaceSetup->mNextEntries[i].mPlayer.mNumber = k;
-            k = k + 1;
+            gRaceSetup->mNextEntries[i].mPlayer.mNumber = nextCpuNumber;
+            nextCpuNumber = nextCpuNumber + 1;
         } else {
             gRaceSetup->mNextEntries[i].mPlayer.mNumber = -1;
         }
     }
-    gRaceSetup->mUnk_3e1 = k;
+    gRaceSetup->mNextCpuNumber = nextCpuNumber;
 }
 
-u32 func_02046524(RandomState64 *a, u32 b) {
-    u64 r;
-    if (b == 0) {
-        r = 0;
+u32 func_02046524(RandomState64 *randomState64, u32 limit) {
+    u64 result;
+    if (limit == 0) {
+        result = 0;
     } else {
-        a->mValue = a->mMultiplier * a->mValue + a->mIncrement;
-        if (b == 0) {
-            r = a->mValue >> 32;
+        randomState64->mValue = randomState64->mMultiplier * randomState64->mValue + randomState64->mIncrement;
+        if (limit == 0) {
+            result = randomState64->mValue >> 32;
         } else {
-            r = ((a->mValue >> 32) * b) >> 32;
+            result = ((randomState64->mValue >> 32) * limit) >> 32;
         }
     }
-    return (u16) r;
+    return (u16) result;
 }
 
-void func_02046024(s32 a) {
+void BuildCourseList(s32 isVersus) {
     s32 f;
     u32 m;
     const u32 *t;
@@ -115,7 +115,7 @@ void func_02046024(s32 a) {
     ResetCupRecords();
     gRaceSetup->mCourseListIndex = 0;
     gRaceSetup->mNextHeader.mCourseNumber = 1;
-    if (a != 0) {
+    if (isVersus != 0) {
         gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_NORMAL;
     } else if (data_021759d0->mUnk_1c_2) {
         gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_NORMAL;
@@ -133,7 +133,7 @@ void func_02046024(s32 a) {
     }
     switch (gRaceSetup->mNextHeader.mCourseListMode) {
         case 1:
-            if (a != 0) {
+            if (isVersus != 0) {
                 u8 p;
                 u8 q;
                 u32 n;
@@ -189,7 +189,7 @@ void func_02046024(s32 a) {
                 return;
             }
         case 2:
-            if (a != 0) {
+            if (isVersus != 0) {
                 RandomState64 *g;
                 u32 n;
                 s32 k;
@@ -257,8 +257,8 @@ void func_02046024(s32 a) {
 
 void func_02045ed0(void) {
     u8 i;
-    u8 r;
-    func_02046594();
+    u8 humanIndex;
+    AssignCpuNumbers();
     switch (gRaceSetup->mNextHeader.mMode) {
         case MODE_GRAND_PRIX:
             ResetCupRecords();
@@ -268,23 +268,23 @@ void func_02045ed0(void) {
                 gCupCourseIdTable[gRaceSetup->mNextHeader.mCupIndex][gRaceSetup->mNextHeader.mCourseNumber - 1];
             break;
         case MODE_VS:
-            func_02046024(1);
+            BuildCourseList(1);
             break;
         case MODE_BATTLE:
-            func_02046024(0);
+            BuildCourseList(0);
             break;
         case 5:
-            r = 0xff;
+            humanIndex = 0xff;
             ResetCupRecords();
             gRaceSetup->mNextHeader.mCourseNumber = 1;
             gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_NORMAL;
             for (i = 0; i < 4; i++) {
                 if (gRaceSetup->mNextEntries[i].mPlayer.mKind == PLAYER_KIND_HUMAN) {
-                    r = i;
+                    humanIndex = i;
                     break;
                 }
             }
-            gRaceSetup->mNextHeader.mFollowedKartIndex = r;
+            gRaceSetup->mNextHeader.mFollowedKartIndex = humanIndex;
             break;
         case MODE_MISSION_RUN:
             ResetCupRecords();
@@ -299,29 +299,29 @@ void func_02045ed0(void) {
 }
 
 BOOL func_02045bd4(void) {
-    s8 t;
+    s8 entryIndex;
     u8 i;
     s8 j;
-    u8 b;
-    u32 c;
-    s32 n;
-    KartCourseResult *e;
-    t = gRaceSetup->mEntryIndex;
-    data_0217b488->mCupRankIndex = GetKartCupRank((u16) t) - 1;
+    u8 courseIndexInCup;
+    u32 lowByte;
+    s32 rankIndex;
+    KartCourseResult *courseResult;
+    entryIndex = gRaceSetup->mEntryIndex;
+    data_0217b488->mCupRankIndex = GetKartCupRank((u16) entryIndex) - 1;
     data_0217b488->mUnk_80 = func_0205d190();
-    data_0217b488->mCharacterIndex = gRaceSetup->mCurrentEntries[(u8) t].mCharacterIndex;
+    data_0217b488->mCharacterIndex = gRaceSetup->mCurrentEntries[(u8) entryIndex].mCharacterIndex;
     data_0217b488->mCupIndex = gRaceSetup->mCupIndex;
     data_0217b488->mEngineIndex = gRaceSetup->mEngineIndex;
     data_0217b488->mMirrorMode = gRaceSetup->mMirrorMode;
-    c = GetLowByte((u8) t);
-    b = GetCourseIndexInCup();
-    e = &gCupRecords->mUnk_000[b][GetLowByte(c)];
-    data_0217b488->mTotalPoints = e->mTotalPoints;
-    data_0217b488->mKartIndex = gRaceSetup->mCurrentEntries[(u8) t].mKartIndex;
+    lowByte = GetLowByte((u8) entryIndex);
+    courseIndexInCup = GetCourseIndexInCup();
+    courseResult = &gCupRecords->mUnk_000[courseIndexInCup][GetLowByte(lowByte)];
+    data_0217b488->mTotalPoints = courseResult->mTotalPoints;
+    data_0217b488->mKartIndex = gRaceSetup->mCurrentEntries[(u8) entryIndex].mKartIndex;
     for (i = 0; i < 4; i++) {
-        Unk0217aa1c_144_00 d;
-        GetKartCourseFinishTime(&d, (u16) gRaceSetup->mEntryIndex, i);
-        data_0217b488->mCourseTimes[i] = d;
+        Unk0217aa1c_144_00 finishTime;
+        GetKartCourseFinishTime(&finishTime, (u16) gRaceSetup->mEntryIndex, i);
+        data_0217b488->mCourseTimes[i] = finishTime;
     }
     if ((u32) GetKartCupRank((u16) gRaceSetup->mEntryIndex) > 3) {
         return FALSE;
@@ -341,20 +341,20 @@ BOOL func_02045bd4(void) {
         SetNextRaceEntry(i, i, i * 3, PLAYER_KIND_NONE, -1, 3);
     }
     for (i = 0; i < 8; i++) {
-        n = GetKartCupRank(i) - 1;
-        data_0217b488->mUnk_cc[n] = gRaceSetup->mCurrentEntries[i].mKartIndex;
-        data_0217b488->mUnk_ac[n] = gRaceSetup->mCurrentEntries[i].mCharacterIndex;
+        rankIndex = GetKartCupRank(i) - 1;
+        data_0217b488->mUnk_cc[rankIndex] = gRaceSetup->mCurrentEntries[i].mKartIndex;
+        data_0217b488->mUnk_ac[rankIndex] = gRaceSetup->mCurrentEntries[i].mCharacterIndex;
     }
     gRaceSetup->mNextHeader.mFollowedKartIndex = GetKartCupRank((u16) gRaceSetup->mEntryIndex) - 1;
     return TRUE;
 }
 
-void func_02045a2c(s32 a) {
+void SetupStaffRollRace(s32 useTrueStaffRoll) {
     u8 i;
     s8 j;
-    s32 x;
-    s32 y;
-    if (a != 0) {
+    s32 characterIndex;
+    s32 kartIndex;
+    if (useTrueStaffRoll != 0) {
         gRaceSetup->mNextHeader.mCourseId = COURSE_ID_STAFFROLLTRUE;
     } else {
         gRaceSetup->mNextHeader.mCourseId = COURSE_ID_STAFFROLL;
@@ -372,41 +372,41 @@ void func_02045a2c(s32 a) {
             if ((gRaceSetup->mMode == MODE_MISSION_RUN ? gRaceSetup->mMissionTableRow : -1) == 6 &&
                 (gRaceSetup->mMode == MODE_MISSION_RUN ? gRaceSetup->mMissionTableColumn : -1) == 9) {
                 if (i == 0) {
-                    x = 7;
-                    y = 0x15;
+                    characterIndex = 7;
+                    kartIndex = 0x15;
                 } else if (i == 7) {
-                    x = 0;
-                    y = x;
+                    characterIndex = 0;
+                    kartIndex = characterIndex;
                 } else {
-                    x = i;
-                    y = i * 3;
+                    characterIndex = i;
+                    kartIndex = i * 3;
                 }
             } else {
-                x = i;
-                y = i * 3;
+                characterIndex = i;
+                kartIndex = i * 3;
             }
         } else if (gRaceSetup->mMode == MODE_GRAND_PRIX) {
             if (func_020909cc() != 2) {
-                x = i;
-                y = i * 3;
+                characterIndex = i;
+                kartIndex = i * 3;
             } else {
-                x = data_0217b488->mUnk_ac[i];
-                y = data_0217b488->mUnk_cc[i];
+                characterIndex = data_0217b488->mUnk_ac[i];
+                kartIndex = data_0217b488->mUnk_cc[i];
             }
         } else {
-            x = i;
-            y = i * 3;
+            characterIndex = i;
+            kartIndex = i * 3;
         }
-        SetNextRaceEntry(i, x, y, PLAYER_KIND_CPU, -1, 3);
+        SetNextRaceEntry(i, characterIndex, kartIndex, PLAYER_KIND_CPU, -1, 3);
     }
 }
 
-s32 func_02045920(void) {
-    BOOL r;
+s32 AdvanceToNextCourse(void) {
+    BOOL result;
     s32 i;
     s32 v;
     s32 x;
-    r = TRUE;
+    result = TRUE;
     gRaceSetup->mNextHeader.mCourseNumber++;
     if (gRaceSetup->mUnk_3d4 > 1) {
         for (i = 0; i < gRaceSetup->mKartCount; i++) {
@@ -424,7 +424,7 @@ s32 func_02045920(void) {
     }
     switch (gRaceSetup->mCourseListMode) {
         case 0:
-            r = FALSE;
+            result = FALSE;
             break;
         case 1:
         case 2:
@@ -435,11 +435,11 @@ s32 func_02045920(void) {
             gRaceSetup->mNextHeader.mCourseId = gRaceSetup->mCourseList[gRaceSetup->mCourseListIndex];
             break;
     }
-    return r;
+    return result;
 }
 
 s32 func_02045914(void) {
-    return func_02045920();
+    return AdvanceToNextCourse();
 }
 
 s32 func_020458cc(void) {
@@ -448,7 +448,7 @@ s32 func_020458cc(void) {
     } else {
         gRaceSetup->mNextHeader.mRaceKind = 4;
     }
-    return func_02045920();
+    return AdvanceToNextCourse();
 }
 
 BOOL func_02045874(void) {

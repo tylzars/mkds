@@ -33,7 +33,7 @@ void CreateDram(void) {
 }
 
 void InitDram(Dram *dram, struct CourseMapRow *courseRow) {
-    func_02046be8(&dram->mUnk_00.mStateMachine, (UnkFunc *const *) data_0216c740, 6, dram);
+    InitStateMachine(&dram->mUnk_00.mStateMachine, (UnkFunc *const *) data_0216c740, 6, dram);
     dram->mUnk_b4[0] = courseRow->mUnk_28 * 0x80 / 100;
     dram->mUnk_b4[2] = courseRow->mUnk_30 * 0x80 / 100;
     dram->mUnk_b4[1] = (dram->mUnk_b4[0] + dram->mUnk_b4[2]) / 2;

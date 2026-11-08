@@ -13,7 +13,7 @@ void InitPushedObjectStates(Unk020e43a8 *object) {
     owner = objectAddress;
     value0 = (objectAddress) + (0x80u);
     stateCount = 3u;
-    func_02046be8((void *) value0, (UnkFunc *const *) stateTable, stateCount, (void *) owner);
+    InitStateMachine((void *) value0, (UnkFunc *const *) stateTable, stateCount, (void *) owner);
     value0 = 0u;
     *(u16 *) ((objectAddress) + (144)) = value0;
     value0 = 1u;

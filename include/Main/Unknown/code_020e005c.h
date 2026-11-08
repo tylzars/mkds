@@ -33,13 +33,13 @@ typedef struct GroupFollower {
     /* 20 */ struct CourseMapGroupEntry *mToEntry;
 } GroupFollower;
 
-// Sub-object at 0x80 of Unk020e005c and MapObject: func_02046be8 stores its second, fourth and third arguments at
+// Sub-object at 0x80 of Unk020e005c and MapObject: InitStateMachine stores its second, fourth and third arguments at
 // 0x00, 0x08 and 0x0c and zeroes 0x04, 0x0e and 0x10.
 typedef struct Unk020e005c_080 {
-    /* 00 */ UnkFunc *const *mUnk_00;
+    /* 00 */ UnkFunc *const *mStateTable;
     /* 04 */ u32 mStateFrames;
-    /* 08 */ void *mUnk_08;
-    /* 0c */ u16 mUnk_0c;
+    /* 08 */ void *mObject;
+    /* 0c */ u16 mStateCount;
     /* 0e */ u16 mState;
     /* 10 */ u16 mNextState;
     /* 12 */ u16 mNextStateRequested;

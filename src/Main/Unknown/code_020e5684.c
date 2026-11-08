@@ -242,7 +242,7 @@ void CreateSecondHand(void) {
 
 void InitSecondHand(Unk020e43a8 *secondHand, Unk020e5684 *courseRow) {
     secondHand->mUnk_00.mExtent.y = ((s64) secondHand->mUnk_00.mScale.x * 0x4b000) >> 12;
-    func_02046be8(&secondHand->mUnk_00.mStateMachine, (UnkFunc *const *) data_0216c240, 4, secondHand);
+    InitStateMachine(&secondHand->mUnk_00.mStateMachine, (UnkFunc *const *) data_0216c240, 4, secondHand);
     QuaternionFromVec3Degrees(&courseRow->mUnk_0c, (u32 *) &secondHand->mUnk_a0.mUnk_00);
     *(Quaternion *) &secondHand->mUnk_a0.mUnk_0c.y = *(Quaternion *) &secondHand->mUnk_a0.mUnk_00;
     *(s16 *) &secondHand->mUnk_a0.mUnk_18.z = courseRow->mUnk_2c;

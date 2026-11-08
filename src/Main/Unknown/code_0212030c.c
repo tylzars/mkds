@@ -52,7 +52,7 @@ void InitWiFiSession(void *heap) {
     Unk0217d384_08 *stateMachine;
 
     gWiFiSession = HeapAllocAligned(heap, 0x1f58, 0x20);
-    func_02046be8(&gWiFiSession->mUnk_0008, data_0216e21c, 8, NULL);
+    InitStateMachine(&gWiFiSession->mUnk_0008, data_0216e21c, 8, NULL);
     stateMachine = &gWiFiSession->mUnk_0008;
     stateMachine->mNextState = 0;
     stateMachine->mNextStateRequested = 1;

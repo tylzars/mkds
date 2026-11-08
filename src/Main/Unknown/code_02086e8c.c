@@ -85,7 +85,7 @@ void func_020875b4(void) {
         data_0217aed0->mUnk_020 = gRaceSetup->mKartCount - 1;
         for (i = 0; (u32) i < gRaceSetup->mKartCount; i++) {
             if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind == PLAYER_KIND_GHOST &&
-                gRaceSetup->mCurrentEntries[i].mPlayer.mUnk_10 == 0) {
+                gRaceSetup->mCurrentEntries[i].mPlayer.mGhostRecordIndex == 0) {
                 data_0217aed0->mUnk_020 = data_0217aed0->mUnk_020 - 1;
             }
         }
@@ -126,7 +126,7 @@ void func_020875b4(void) {
             if (f == FALSE) {
                 if (i != gRaceSetup->mEntryIndex) {
                     if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind != PLAYER_KIND_GHOST ||
-                        gRaceSetup->mCurrentEntries[i].mPlayer.mUnk_10 != 0) {
+                        gRaceSetup->mCurrentEntries[i].mPlayer.mGhostRecordIndex != 0) {
                         t = TRUE;
                     }
                 }

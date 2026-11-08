@@ -19,12 +19,12 @@ typedef enum { PLAYER_KIND_HUMAN, PLAYER_KIND_CPU, PLAYER_KIND_GHOST, PLAYER_KIN
 // Bit set of the kinds 0, 2 and 3 (human, ghost, peer): the entries the mask tests pick out.
 #define PLAYER_KIND_MASK_HUMAN_GHOST_PEER 0xd
 // The 0x28 bytes from 0x08 of each KartEntry entry (code keeps pointers to them).
-typedef struct Unk021759c0_70 {
+typedef struct KartEntryPlayer {
     /* 00 */ u32 mKind;
     /* 04 */ s32 mTeamIndex;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mIndex;
-    /* 10 */ s32 mUnk_10;
+    /* 10 */ s32 mGhostRecordIndex;
     /* 14 */ u16 mUnk_14;
 // Running number among the kind-1 entries; -1 when the entry has none.
     /* 16 */ s8 mNumber;
@@ -36,14 +36,14 @@ typedef struct Unk021759c0_70 {
     /* 25 */ u8 mUnk_25;
     /* 26 */ u8 mUnk_26;
     /* 27 */ u8 mUnk_27;
-} Unk021759c0_70;
+} KartEntryPlayer;
 
 // 0x30-byte entries at 0x68 and 0x250 of the object behind gRaceSetup.
 typedef struct KartEntry {
     /* 00 */ s32 mCharacterIndex;
     /* 04 */ s32 mKartIndex;
     // The 0x28-byte record of the entry's player: kind, team, index, name, emblem.
-    /* 08 */ Unk021759c0_70 mPlayer;
+    /* 08 */ KartEntryPlayer mPlayer;
 } KartEntry;
 
 // Values of the mMode member of RaceSetup and of RaceSetupHeader (the other values stay literals). The member is set
@@ -139,7 +139,7 @@ typedef struct RaceSetupHeader {
     /* 18 */ s32 mBattleKind;
     /* 1c */ s32 mRuleKind;
     /* 20 */ s32 mCourseListMode;
-    /* 24 */ s32 mUnk_24;
+    /* 24 */ s32 mGhostRecordIndex;
     /* 28 */ Unk02029930_f8 mMissionFileRow;
     /* 54 */ s8 mMissionTableRow;
     /* 55 */ s8 mMissionTableColumn;
@@ -234,11 +234,11 @@ typedef struct RaceSetup {
     /* 3da */ u8 mUnk_3da[0x2];
     /* 3dc */ u8 *mCourseList;
     /* 3e0 */ u8 mCourseListIndex;
-    /* 3e1 */ u8 mUnk_3e1;
-    /* 3e2 */ u16 mUnk_3e2;
-    /* 3e4 */ u8 mUnk_3e4;
-    /* 3e5 */ u8 mUnk_3e5;
-    /* 3e6 */ s8 mUnk_3e6;
+    /* 3e1 */ u8 mNextCpuNumber;
+    /* 3e2 */ u16 mFirstGhostRecordMillisecond;
+    /* 3e4 */ u8 mFirstGhostRecordMinute;
+    /* 3e5 */ u8 mFirstGhostRecordSecond;
+    /* 3e6 */ s8 mFirstGhostRecordFilled;
     /* 3e7 */ u8 mUnk_3e7[0x1];
     /* 3e8 */ MinuteSecondMillisecondTime mGhostTime;
     /* 3ec */ MinuteSecondMillisecondTime mGhostLapTimes[5];
@@ -253,10 +253,10 @@ typedef struct TouchMicInput {
     /* 30 */ union {
         u32 mUnk_30;
         struct {
-            s32 mUnk_30_0 : 1;
-            s32 mUnk_30_1 : 1;
+            s32 mTouchAutoSampling : 1;
+            s32 mMicAutoSampling : 1;
             s32 mUnk_30_2 : 1;
-            s32 mUnk_30_3 : 1;
+            s32 mMicOverThreshold : 1;
         };
     };
     /* 34 */ u8 mUnk_34[0x8];

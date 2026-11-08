@@ -379,8 +379,8 @@ void func_020c610c(void) {
         } else {
             r = FALSE;
             if (func_020ba620() != 0) {
-                if (gRaceSetup->mMode == MODE_TIME_ATTACK && gRaceSetup->mUnk_3e6 == 1) {
-                    MI_CpuCopy8(&gRaceSetup->mUnk_3e2, &setupTime, 4);
+                if (gRaceSetup->mMode == MODE_TIME_ATTACK && gRaceSetup->mFirstGhostRecordFilled == 1) {
+                    MI_CpuCopy8(&gRaceSetup->mFirstGhostRecordMillisecond, &setupTime, 4);
                     hasSetupTime = TRUE;
                 } else {
                     hasSetupTime = FALSE;
@@ -453,8 +453,8 @@ void func_020c5f7c(void) {
     }
     r = FALSE;
     if (func_020ba620() != 0) {
-        if (gRaceSetup->mMode == MODE_TIME_ATTACK && gRaceSetup->mUnk_3e6 == 1) {
-            MI_CpuCopy8(&gRaceSetup->mUnk_3e2, &setupTime, 4);
+        if (gRaceSetup->mMode == MODE_TIME_ATTACK && gRaceSetup->mFirstGhostRecordFilled == 1) {
+            MI_CpuCopy8(&gRaceSetup->mFirstGhostRecordMillisecond, &setupTime, 4);
             hasSetupTime = TRUE;
         } else {
             hasSetupTime = FALSE;

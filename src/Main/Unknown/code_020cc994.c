@@ -26,7 +26,7 @@ void SetNextMirrorMode(u32 mirrorMode) {
 }
 
 void func_020cca24(u32 p0) {
-    gRaceSetup->mNextHeader.mUnk_24 = p0;
+    gRaceSetup->mNextHeader.mGhostRecordIndex = p0;
 }
 
 void SetNextBattleKind(u32 battleKind) {

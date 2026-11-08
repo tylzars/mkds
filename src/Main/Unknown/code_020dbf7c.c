@@ -104,7 +104,7 @@ void func_020dc1d8(Wanwan *wanwan, CourseMapRow *row) {
     wanwan->mChainObject = (Unk020dc474_1d8 *) CreateMapObjectFromObject(&wanwan->mUnk_00, 0x197);
     wanwan->mUnk_ac = wanwan->mCenterPos.y;
     wanwan->mCenterPos.y = wanwan->mCenterPos.y + wanwan->mUnk_f0;
-    func_02046be8(&wanwan->mUnk_00.mStateMachine, data_0216befc, 6, wanwan);
+    InitStateMachine(&wanwan->mUnk_00.mStateMachine, data_0216befc, 6, wanwan);
     SetStateMachineState(&wanwan->mUnk_00.mStateMachine, 0);
     wanwan->mUnk_200 = wanwan->mUnk_00.mMatrix.mUnk_00[2];
     ResetWanwan(wanwan);
@@ -122,7 +122,7 @@ void func_020dc11c(Wanwan *wanwan, CourseMapRow *row) {
     wanwan->mUnk_b0 = row->mUnk_2a;
     wanwan->mUnk_ac = wanwan->mCenterPos.y;
     wanwan->mCenterPos.y = wanwan->mCenterPos.y + wanwan->mUnk_f0;
-    func_02046be8(&wanwan->mUnk_00.mStateMachine, data_0216befc, 6, wanwan);
+    InitStateMachine(&wanwan->mUnk_00.mStateMachine, data_0216befc, 6, wanwan);
     SetStateMachineState(&wanwan->mUnk_00.mStateMachine, 5);
     func_020d7d4c(&wanwan->mFollower, row, data_02158908, row->mUnk_28);
     ResetWanwan(wanwan);

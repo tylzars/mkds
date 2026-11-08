@@ -147,7 +147,7 @@ void func_020e410c(Unk020e1dc0 *list) {
 }
 
 void func_020e3ef4(Unk020e3ef4 *object, struct CourseMapRow *courseRow, Unk020e1e98_154 *kindInfo) {
-    func_02046be8(&object->mUnk_000.mStateMachine, (UnkFunc *const *) data_0216c168, 4, object);
+    InitStateMachine(&object->mUnk_000.mStateMachine, (UnkFunc *const *) data_0216c168, 4, object);
     object->mUnk_0e8 = object->mUnk_000.mPos;
     object->mUnk_0a0 = *(Unk020e38a0_28 *) &object->mUnk_000.mMatrix;
     object->mUnk_0c4 = *(Unk020e38a0_28 *) &object->mUnk_000.mMatrix;

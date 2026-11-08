@@ -19,16 +19,16 @@ typedef struct StateMachine {
     /* 12 */ u16 mNextStateRequested;
 } StateMachine;
 
-s32 FindCupIndexOfCourse(s32 a);
-u32 GetCupCourseIdAtIndex(s32 a);
+s32 FindCupIndexOfCourse(s32 courseId);
+u32 GetCupCourseIdAtIndex(s32 courseIndex);
 s32 FindCupCourseIndex();
-void SetNextRaceEntry(int a, u32 b, u32 c, int d, u32 e, int f);
-void RefreshRaceSetupKartCounts(s32 a);
-void func_02046a3c(void *a);
+void SetNextRaceEntry(int entryIndex, u32 characterIndex, u32 kartIndex, int playerKind, u32 teamIndex, int f);
+void RefreshRaceSetupKartCounts(s32 entryCount);
+void func_02046a3c(void *heap);
 s32 func_02046a88(void *a);
-unsigned int func_02046ad0(unsigned int p0);
-unsigned int func_02046ad4(unsigned int p0);
+unsigned int func_02046ad0(unsigned int value);
+unsigned int func_02046ad4(unsigned int value);
 void func_02046ad8(void);
 void func_02046ae4(void);
-void AdvanceStateMachine(void *b);
-void SetStateMachineState(void *b, u16 c);
+void AdvanceStateMachine(void *rawStateMachine);
+void SetStateMachineState(void *rawStateMachine, u16 state);

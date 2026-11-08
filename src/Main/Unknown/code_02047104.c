@@ -808,10 +808,10 @@ void InitTouchPanelAndSetCalibration(void) {
 
 void InitTouchMicInput(void *a) {
     gTouchMicInput = HeapAlloc(a, 0x40);
-    gTouchMicInput->mUnk_30_0 = 0;
-    gTouchMicInput->mUnk_30_1 = 0;
+    gTouchMicInput->mTouchAutoSampling = 0;
+    gTouchMicInput->mMicAutoSampling = 0;
     gTouchMicInput->mUnk_30_2 = 0;
-    gTouchMicInput->mUnk_30_3 = 0;
+    gTouchMicInput->mMicOverThreshold = 0;
     gTouchMicInput->mMicBuffer = NULL;
     InitMicAndAmp();
 }

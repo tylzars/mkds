@@ -153,7 +153,7 @@ void func_0205cd24(void *a) {
             data_0217aa14->mUnk_104[m].mUnk_86_1 = 0;
         }
     }
-    func_02046be8(data_0217aa14, data_02165388, 6, NULL);
+    InitStateMachine(data_0217aa14, data_02165388, 6, NULL);
 }
 
 void func_0205ccec(void) {

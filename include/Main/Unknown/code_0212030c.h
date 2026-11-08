@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// Seven pairs of functions passed to func_02046be8 by InitWiFiSession.
+// Seven pairs of functions passed to InitStateMachine by InitWiFiSession.
 extern UnkFunc *data_0216e21c[14];
 
 u32 func_021205e8(void);

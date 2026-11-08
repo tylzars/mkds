@@ -183,7 +183,7 @@ void InitRaceScene(void) {
         }
     } else {
         if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
-            func_02046fb4(GetHeap(GetCurrentHeapCall()));
+            StartMicInput(GetHeap(GetCurrentHeapCall()));
         }
     }
 }
@@ -230,7 +230,7 @@ void func_0203aacc(void) {
             }
         }
     }
-    func_02046ee4();
+    StopMicInput();
     ClearChoisesSPointer();
     func_02062004();
     func_020af86c();
@@ -300,7 +300,7 @@ void SetNextSceneFromPickedValue(Unk0203a0dc *sceneNumbers, u32 pickedValue) {
     nextScene = -1;
     switch (pickedValue) {
         case 10:
-            func_02045a2c(0);
+            SetupStaffRollRace(0);
             nextScene = 2;
             break;
         case 9:

@@ -135,7 +135,7 @@ void InitKartAiNonCpuCounts(void) {
     u16 k;
     BOOL f;
     BOOL g;
-    Unk021759c0_70 *e;
+    KartEntryPlayer *e;
     j = 0;
     gKartAiShared->mNonCpuKartCount = j;
     for (k = 0; k < 2; k++) {

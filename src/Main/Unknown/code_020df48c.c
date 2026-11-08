@@ -32,7 +32,7 @@ void CreateMkdEfBubble(void) {
 }
 
 void InitMkdEfBubble(MkdEfBubbleObject *bubble, CourseMapRow *row) {
-    func_02046be8(&bubble->mUnk_00.mStateMachine, data_0216bfc0, 2, bubble);
+    InitStateMachine(&bubble->mUnk_00.mStateMachine, data_0216bfc0, 2, bubble);
     bubble->mUnk_a0 = row->mUnk_28;
     bubble->mUnk_ac = bubble->mUnk_00.mPos.y;
     bubble->mUnk_a4 = bubble->mUnk_00.mPos.y - 0x10000;

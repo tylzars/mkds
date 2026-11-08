@@ -61,7 +61,7 @@
 void ResetItemBomb(ItemBomb *bomb) {
     u32 initialDistanceSquared;
     MTX_Identity43_((MtxFx43 *) bomb->mUnk_13c);
-    func_02046be8(bomb->mUnk_184, (UnkFunc *const *) &gItemBombStateTable, 4, bomb);
+    InitStateMachine(bomb->mUnk_184, (UnkFunc *const *) &gItemBombStateTable, 4, bomb);
     SetStateMachineState(bomb->mUnk_184, 0);
     bomb->mTimer = 300;
     bomb->mUnk_174 = 0;
@@ -373,7 +373,7 @@ void *func_020fda50(void *cursor, ItemBomb *bomb, void *toData) {
 void InitItemBombFromData(ItemBomb *bomb) {
     func_020f8e78(bomb);
     StartItemObjectBouncing(&bomb->mUnk_000, bomb->mUnk_130 != 0 ? 3 : 2);
-    func_02046be8(&bomb->mUnk_184, (UnkFunc *const *) gItemBombStateTable, 4, bomb);
+    InitStateMachine(&bomb->mUnk_184, (UnkFunc *const *) gItemBombStateTable, 4, bomb);
     if (!(bomb->mUnk_000.mItemObject.mFlags & 0x10000000)) {
         return;
     }
@@ -404,7 +404,7 @@ void DrawItemBomb(ItemBomb *bomb, Vec3 *a, NsbmdModel *model) {
 
 int RequestItemBombState2(ItemBomb *bomb) {
     if (bomb->mState != 2) {
-        func_02046be8(&bomb->mUnk_184, (UnkFunc *const *) gItemBombStateTable, 4, bomb);
+        InitStateMachine(&bomb->mUnk_184, (UnkFunc *const *) gItemBombStateTable, 4, bomb);
         bomb->mNextState = 2;
         bomb->mNextStateRequested = 1;
         if ((bomb->mUnk_000.mItemObject.mFlags & 0x180000) == 0) {
@@ -421,7 +421,7 @@ void func_020fd83c(ItemBomb *bomb) {
     if (bomb->mUnk_000.mItemObject.mFlags & 0x80000) {
         return;
     }
-    func_02046be8(&bomb->mUnk_184, (UnkFunc *const *) gItemBombStateTable, 4, bomb);
+    InitStateMachine(&bomb->mUnk_184, (UnkFunc *const *) gItemBombStateTable, 4, bomb);
     if ((bomb->mUnk_000.mItemObject.mFlags & 0x180000) == 0) {
         bomb->mUnk_000.mItemObject.mAdvance = (void (*)(ItemObject *)) AdvanceItemBomb;
     }
@@ -532,7 +532,7 @@ void func_020fd540(void **bombSlot, Vec3 *v, s32 timerStart) {
         bomb->mVisible = TRUE;
     }
     func_020f9114(bomb);
-    func_02046be8(&bomb->mUnk_184, (UnkFunc *const *) gItemBombStateTable, 4, bomb);
+    InitStateMachine(&bomb->mUnk_184, (UnkFunc *const *) gItemBombStateTable, 4, bomb);
     SetStateMachineState(&bomb->mUnk_184, 0);
     bomb->mTimer = 0x12c;
     bomb->mUnk_174 = 0;

@@ -142,7 +142,7 @@ void func_02059878(void) {
     Unk0217aa00 *p;
     u32 v;
 
-    func_02046be8(&data_0217aa00->mUnk_1608, gMPStateTable, 0x17, NULL);
+    InitStateMachine(&data_0217aa00->mUnk_1608, gMPStateTable, 0x17, NULL);
     data_0217aa00->mUnk_164e = 0;
     data_0217aa00->mUnk_1608.mUnk_14 = 0;
     data_0217aa00->mUnk_1608.mUnk_1a = 0;

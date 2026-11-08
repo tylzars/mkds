@@ -464,7 +464,7 @@ void InitWoodbox1(Woodbox1 *woodbox, Unk020eb498 *courseRow) {
     woodbox->mUnk_10c = 0x1555;
     woodbox->mItemRowHandle = courseRow->mUnk_028;
     woodbox->mItemChancePercent = courseRow->mUnk_02a;
-    func_02046be8(&woodbox->mUnk_000.mStateMachine, (UnkFunc *const *) gWoodbox1StateTable, 4, woodbox);
+    InitStateMachine(&woodbox->mUnk_000.mStateMachine, (UnkFunc *const *) gWoodbox1StateTable, 4, woodbox);
     woodbox->mUnk_000.mStateMachine.mNextState = 0;
     woodbox->mUnk_000.mStateMachine.mNextStateRequested = 1;
     RefreshShadowMatrix(&woodbox->mUnk_114, &courseRow->mUnk_000, ((s64) woodbox->mUnk_000.mScale.x * 0x19000) >> 12,
