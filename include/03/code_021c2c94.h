@@ -14,10 +14,10 @@ typedef struct Unk021d6fd4 {
 } Unk021d6fd4;
 
 extern Rect gJb2MenuRects[];
-extern u16 data_ov003_021d6328[];
-extern u16 data_ov003_021d632a[];
-extern u16 data_ov003_021d632c[];
-extern u16 data_ov003_021d632e[];
+extern u16 gJb2MenuSelectionLeft[];
+extern u16 gJb2MenuSelectionTop[];
+extern u16 gJb2MenuSelectionRight[];
+extern u16 gJb2MenuSelectionBottom[];
 extern Unk021d6fd0 data_ov003_021d6fd0;
 extern Unk021d6fd4 gYbBgStep11NclName;
 extern u8 gJbBgStep1NcgName2[];
@@ -28,7 +28,7 @@ extern void *gYbBgStep11Ncl;
 
 // Not decompiled yet.
 void func_ov003_021c2c94(void);
-void MoveJb2MenuSelection(s32 a);
+void MoveJb2MenuSelection(s32 direction);
 void func_ov003_021c2d18(void);
 void func_ov003_021c2d9c(void);
 void func_ov003_021c2dd4(void);

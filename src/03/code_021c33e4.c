@@ -17,9 +17,9 @@ void func_ov003_021c3490(void) {
 void func_ov003_021c348c(void) {}
 
 void func_ov003_021c3468(void) {
-    int v1;
-    v1 = GetButtonResult();
-    if (v1 == 0) {
+    int buttonResult;
+    buttonResult = GetButtonResult();
+    if (buttonResult == 0) {
         StartSoundSeq(6);
         func_ov003_021c212c(func_ov003_021c3448);
     }

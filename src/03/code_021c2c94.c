@@ -35,18 +35,18 @@ void SetupJb2Menu(void) {
     func_ov003_021bf43c(0x7a, -1, 0);
     func_ov003_021cdcf0(4);
     PlaceSelectionCorners(
-        data_ov003_021d6328[gJb2MenuSelectedIndex * 4], data_ov003_021d632c[gJb2MenuSelectedIndex * 4],
-        data_ov003_021d632a[gJb2MenuSelectedIndex * 4], data_ov003_021d632e[gJb2MenuSelectedIndex * 4]);
+        gJb2MenuSelectionLeft[gJb2MenuSelectedIndex * 4], gJb2MenuSelectionRight[gJb2MenuSelectedIndex * 4],
+        gJb2MenuSelectionTop[gJb2MenuSelectedIndex * 4], gJb2MenuSelectionBottom[gJb2MenuSelectedIndex * 4]);
     func_ov003_021c212c(func_ov003_021c2f98);
 }
 
 void LoadJb2MenuFilesAndSetBgCnt(void) {
-    Unk021d6fd4 a;
-    a = gYbBgStep11NclName;
+    Unk021d6fd4 ybBgStep11NclName;
+    ybBgStep11NclName = gYbBgStep11NclName;
     LoadFileToVram(gJbBgStep1NcgName2, GX_LoadBG2Char);
     LoadFileToVram(gJbBgStep1NclName2, GX_LoadBGPltt);
     LoadFileToVram(gJb2MenuNscName, GX_LoadBG2Scr);
-    gYbBgStep11Ncl = func_ov003_021d14b8(BuildFilePathWithLanguage(a.mUnk_00), NULL, 4);
+    gYbBgStep11Ncl = func_ov003_021d14b8(BuildFilePathWithLanguage(ybBgStep11NclName.mUnk_00), NULL, 4);
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 3;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
     reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 3;
@@ -90,8 +90,8 @@ void UpdateJb2MenuInput(void) {
             SetButtonResultIfNone(1);
             gJb2MenuSelectedIndex = i;
             PlaceSelectionCorners(
-                data_ov003_021d6328[gJb2MenuSelectedIndex * 4], data_ov003_021d632c[gJb2MenuSelectedIndex * 4],
-                data_ov003_021d632a[gJb2MenuSelectedIndex * 4], data_ov003_021d632e[gJb2MenuSelectedIndex * 4]);
+                gJb2MenuSelectionLeft[gJb2MenuSelectedIndex * 4], gJb2MenuSelectionRight[gJb2MenuSelectedIndex * 4],
+                gJb2MenuSelectionTop[gJb2MenuSelectedIndex * 4], gJb2MenuSelectionBottom[gJb2MenuSelectedIndex * 4]);
             return;
         }
     }
@@ -162,20 +162,20 @@ void func_ov003_021c2d18(void) {
     }
 }
 
-void MoveJb2MenuSelection(s32 a) {
-    if (a != 1 && a != 3) {
+void MoveJb2MenuSelection(s32 direction) {
+    if (direction != 1 && direction != 3) {
         gJb2MenuSelectedIndex ^= 1;
         StartSoundSeq(8);
         PlaceSelectionCorners(
-            data_ov003_021d6328[gJb2MenuSelectedIndex * 4], data_ov003_021d632c[gJb2MenuSelectedIndex * 4],
-            data_ov003_021d632a[gJb2MenuSelectedIndex * 4], data_ov003_021d632e[gJb2MenuSelectedIndex * 4]);
+            gJb2MenuSelectionLeft[gJb2MenuSelectedIndex * 4], gJb2MenuSelectionRight[gJb2MenuSelectedIndex * 4],
+            gJb2MenuSelectionTop[gJb2MenuSelectedIndex * 4], gJb2MenuSelectionBottom[gJb2MenuSelectedIndex * 4]);
     }
 }
 
 void func_ov003_021c2c94(void) {
     Unk021d6fd0 a;
-    u8 b;
+    u8 tableByte;
     a = data_ov003_021d6fd0;
-    b = a.mUnk_00[gJb2MenuSelectedIndex];
-    func_ov003_021cc948(gYbBgStep11Ncl, b, b);
+    tableByte = a.mUnk_00[gJb2MenuSelectedIndex];
+    func_ov003_021cc948(gYbBgStep11Ncl, tableByte, tableByte);
 }
