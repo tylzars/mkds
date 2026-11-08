@@ -10,8 +10,8 @@
 void DWCi_SetBuddyFriendData(DWCAccFriendData *frienddata) {
     u32 flags;
     if (DWCi_Acc_GetFlag_DataType(frienddata) == 3) {
-        flags = func_02152a6c(frienddata) | 4;
-        func_02152a04(frienddata, flags);
+        flags = GetFriendDataFlags(frienddata) | 4;
+        SetFriendDataFlags(frienddata, flags);
     }
 }
 

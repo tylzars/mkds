@@ -23,71 +23,78 @@
 #pragma thumb on
 void InitPaletteBlend(void *heap, Nclr *nclr, u32 paletteIndex) {
     s32 i;
-    s32 v;
+    s32 color;
     gPaletteBlend = HeapAlloc(heap, 0x90);
     gPaletteBlend->mCycleFrames = 0;
     gPaletteBlend->mStopped = FALSE;
     gPaletteBlend->mPaletteIndex = paletteIndex;
     gPaletteBlend->mFirstBlend = TRUE;
-    MI_CpuCopy8(nclr->mData + paletteIndex * 0x10, gPaletteBlend->mUnk_0a, 0x20);
+    MI_CpuCopy8(nclr->mData + paletteIndex * 0x10, gPaletteBlend->mPalette, 0x20);
     for (i = 0; i < 4; i++) {
-        v = gPaletteBlend->mUnk_14[i];
-        gPaletteBlend->mBlendFrom[i].mUnk_00 = v & 0x1f;
-        gPaletteBlend->mBlendFrom[i].mUnk_04 = (v & 0x3e0) >> 5;
-        gPaletteBlend->mBlendFrom[i].mUnk_08 = (v & 0x7c00) >> 10;
+        color = gPaletteBlend->mFromColors[i];
+        gPaletteBlend->mBlendFrom[i].mBits0To4 = color & 0x1f;
+        gPaletteBlend->mBlendFrom[i].mBits5To9 = (color & 0x3e0) >> 5;
+        gPaletteBlend->mBlendFrom[i].mBits10To14 = (color & 0x7c00) >> 10;
     }
     for (i = 0; i < 4; i++) {
-        v = gPaletteBlend->mUnk_1c[i];
-        gPaletteBlend->mBlendTo[i].mUnk_00 = v & 0x1f;
-        gPaletteBlend->mBlendTo[i].mUnk_04 = (v & 0x3e0) >> 5;
-        gPaletteBlend->mBlendTo[i].mUnk_08 = (v & 0x7c00) >> 10;
+        color = gPaletteBlend->mToColors[i];
+        gPaletteBlend->mBlendTo[i].mBits0To4 = color & 0x1f;
+        gPaletteBlend->mBlendTo[i].mBits5To9 = (color & 0x3e0) >> 5;
+        gPaletteBlend->mBlendTo[i].mBits10To14 = (color & 0x7c00) >> 10;
     }
 }
 #pragma thumb off
 
 #pragma thumb on
-void func_0212b91c(void) {
-    u32 value0;
-    u32 value1;
-    value1 = 0u;
-    value0 = (u32) &gPaletteBlend;
-    *(u32 *) ((value0) + 0u) = value1;
+void ClearPaletteBlendPointer(void) {
+    u32 address;
+    u32 zero;
+    zero = 0u;
+    address = (u32) &gPaletteBlend;
+    *(u32 *) ((address) + 0u) = zero;
 }
 #pragma thumb off
 
 #pragma thumb on
 void BlendPaletteColors(s32 weight) {
     s32 i;
-    PaletteBlend *p;
+    PaletteBlend *paletteBlend;
     for (i = 0; i < 4; i++) {
-        p = gPaletteBlend;
-        (&p->mUnk_0a[1])[i] =
-            ((((0x1000 - weight) * p->mBlendFrom[i].mUnk_08 + weight * p->mBlendTo[i].mUnk_08) >> 12) << 10) |
-            ((((0x1000 - weight) * p->mBlendFrom[i].mUnk_00 + weight * p->mBlendTo[i].mUnk_00) >> 12) |
-             ((((0x1000 - weight) * p->mBlendFrom[i].mUnk_04 + weight * p->mBlendTo[i].mUnk_04) >> 12) << 5));
+        paletteBlend = gPaletteBlend;
+        (&paletteBlend->mPalette[1])[i] = ((((0x1000 - weight) * paletteBlend->mBlendFrom[i].mBits10To14 +
+                                             weight * paletteBlend->mBlendTo[i].mBits10To14) >>
+                                            12)
+                                           << 10) |
+                                          ((((0x1000 - weight) * paletteBlend->mBlendFrom[i].mBits0To4 +
+                                             weight * paletteBlend->mBlendTo[i].mBits0To4) >>
+                                            12) |
+                                           ((((0x1000 - weight) * paletteBlend->mBlendFrom[i].mBits5To9 +
+                                              weight * paletteBlend->mBlendTo[i].mBits5To9) >>
+                                             12)
+                                            << 5));
     }
     if (gPaletteBlend->mFirstBlend == FALSE) {
-        CallQueueAppend(0x1e, gPaletteBlend->mPaletteIndex << 5, gPaletteBlend->mUnk_0a, 0x20);
+        CallQueueAppend(0x1e, gPaletteBlend->mPaletteIndex << 5, gPaletteBlend->mPalette, 0x20);
     } else {
         gPaletteBlend->mFirstBlend = FALSE;
     }
 }
 
 void AdvancePaletteBlend(void) {
-    s32 a;
+    s32 cycleFrames;
     if (gPaletteBlend->mStopped == FALSE) {
         gPaletteBlend->mCycleFrames++;
         if (gPaletteBlend->mCycleFrames >= 0x5a) {
             gPaletteBlend->mCycleFrames = 0;
         }
     }
-    a = gPaletteBlend->mCycleFrames;
-    if (a < 0x1e) {
-        BlendPaletteColors(((0x1e - a) << 12) / 0x1e);
-    } else if (a < 0x3c) {
+    cycleFrames = gPaletteBlend->mCycleFrames;
+    if (cycleFrames < 0x1e) {
+        BlendPaletteColors(((0x1e - cycleFrames) << 12) / 0x1e);
+    } else if (cycleFrames < 0x3c) {
         BlendPaletteColors(0);
     } else {
-        BlendPaletteColors(((a - 0x3c) << 12) / 0x1e);
+        BlendPaletteColors(((cycleFrames - 0x3c) << 12) / 0x1e);
     }
 }
 
@@ -107,11 +114,11 @@ void StartPaletteBlend(void) {
 
 void InitStaffRollText(void *heap) {
     s32 i;
-    s32 v;
-    Nclr *p;
-    StaffRollText *d;
-    TextCanvas *q;
-    void *t;
+    s32 charSpacing;
+    Nclr *nclr;
+    StaffRollText *staffRollText;
+    TextCanvas *textCanvas;
+    void *font;
     gStaffRollText = HeapAlloc(heap, 0x85c);
     gStaffRollText->mHeap = heap;
     gStaffRollText->mState = 0;
@@ -121,7 +128,7 @@ void InitStaffRollText(void *heap) {
     gStaffRollText->mNextReadScrollY = 0;
     gStaffRollText->mScrollYRemaining = -1;
     gStaffRollText->mScrollYPerFrame = 0x70a;
-    gStaffRollText->mUnk_01c = 1;
+    gStaffRollText->mCharSpacing = 1;
     gStaffRollText->mUnk_850 = 1;
     gStaffRollText->mUnk_854 = 0x240;
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x100;
@@ -131,44 +138,44 @@ void InitStaffRollText(void *heap) {
     for (i = 0; i < 0x400; i++) {
         ((u16 *) G2S_GetBG0ScrPtr())[i] = i | 0xf000;
     }
-    LoadNclrData(&p, FindSceneFile(gEndingStaffRollB00NclrName));
-    CallQueueAppend(0x1f, 0x1e0, p->mData + 0xf0, 0x20);
-    NNS_G2dCharCanvasInitForBG(gStaffRollText->mUnk_020, gStaffRollText->mUnk_050, 0x20, 2, 4);
-    v = gStaffRollText->mUnk_01c;
-    t = func_020b403c(2);
-    d = gStaffRollText;
-    q = &d->mUnk_040;
-    d->mUnk_040.mCharCanvas = d->mUnk_020;
-    q->mFont = t;
-    q->mCharSpacing = v;
-    q->mLineSpacing = 0;
-    MI_CpuFill8(gStaffRollText->mUnk_050, 0, 0x800);
+    LoadNclrData(&nclr, FindSceneFile(gEndingStaffRollB00NclrName));
+    CallQueueAppend(0x1f, 0x1e0, nclr->mData + 0xf0, 0x20);
+    NNS_G2dCharCanvasInitForBG(gStaffRollText->mCharCanvas, gStaffRollText->mCharBuffer, 0x20, 2, 4);
+    charSpacing = gStaffRollText->mCharSpacing;
+    font = func_020b403c(2);
+    staffRollText = gStaffRollText;
+    textCanvas = &staffRollText->mTextCanvas;
+    staffRollText->mTextCanvas.mCharCanvas = staffRollText->mCharCanvas;
+    textCanvas->mFont = font;
+    textCanvas->mCharSpacing = charSpacing;
+    textCanvas->mLineSpacing = 0;
+    MI_CpuFill8(gStaffRollText->mCharBuffer, 0, 0x800);
     gStaffRollText->mTextPosition = GetBmgEntry(FindSceneFile(gStaffRollBmgName), 0);
 }
 
-u32 func_0212b5d8(void) {
-    u32 value0;
-    u32 value1;
-    value0 = (u32) &gStaffRollText;
-    value1 = 0u;
-    *(u32 *) ((value0) + (0)) = value1;
-    return value0;
+u32 ClearStaffRollTextPointer(void) {
+    u32 address;
+    u32 zero;
+    address = (u32) &gStaffRollText;
+    zero = 0u;
+    *(u32 *) ((address) + (0)) = zero;
+    return address;
 }
 
 void AdvanceStaffRollTextState1(void) {
-    s32 e;
+    s32 tagSize;
     s32 c;
-    s32 i;
-    u8 *r;
-    StaffRollText *p;
-    u16 buf[100];
+    s32 charCount;
+    u8 *textPosition;
+    StaffRollText *staffRollText;
+    u16 lineText[100];
     s32 v;
-    BOOL n;
-    s32 f;
-    s32 x;
-    u32 w;
+    BOOL lineDone;
+    s32 variant;
+    s32 argument;
+    u32 character;
     s32 a;
-    Unk0217d40c_18 *q;
+    StaffRollTag *tag;
     gStaffRollText->mScrollYFixed += gStaffRollText->mScrollYPerFrame;
     a = (gStaffRollText->mScrollYFixed >> 12) - 8;
     if (a < 0) {
@@ -176,38 +183,38 @@ void AdvanceStaffRollTextState1(void) {
     }
     a = a % 256;
     MemFillWordsByBlock_inline((void *) (G2S_GetBG0CharPtr() + ((a >> 3) << 10)), 0x400);
-    p = gStaffRollText;
-    if (p->mScrollYRemaining > 0) {
-        p->mScrollYRemaining -= p->mScrollYPerFrame;
+    staffRollText = gStaffRollText;
+    if (staffRollText->mScrollYRemaining > 0) {
+        staffRollText->mScrollYRemaining -= staffRollText->mScrollYPerFrame;
         if (gStaffRollText->mScrollYRemaining <= 0) {
             gStaffRollText->mNextState = 2;
         }
         return;
     }
-    if (p->mScrollYFixed <= p->mNextReadScrollY) {
+    if (staffRollText->mScrollYFixed <= staffRollText->mNextReadScrollY) {
         return;
     }
-    i = 0;
-    n = FALSE;
-    MI_CpuFill8(buf, 0, 0xc8);
+    charCount = 0;
+    lineDone = FALSE;
+    MI_CpuFill8(lineText, 0, 0xc8);
     do {
-        p = gStaffRollText;
-        r = p->mTextPosition;
-        q = (Unk0217d40c_18 *) r;
-        w = q->mUnk_00;
-        if (w == 0x1a) {
-            c = q->mUnk_03;
-            e = q->mUnk_02;
-            f = q->mUnk_04;
+        staffRollText = gStaffRollText;
+        textPosition = staffRollText->mTextPosition;
+        tag = (StaffRollTag *) textPosition;
+        character = tag->mCharacter;
+        if (character == 0x1a) {
+            c = tag->mKind;
+            tagSize = tag->mSize;
+            variant = tag->mVariant;
             if (c == 1) {
-                x = 0;
-                if (f != 0x63) {
-                    x = q->mUnk_06;
+                argument = 0;
+                if (variant != 0x63) {
+                    argument = tag->mArgument;
                 }
-                switch (f) {
+                switch (variant) {
                     case 0:
-                        p->mUnk_854 = 0x40;
-                        switch (x) {
+                        staffRollText->mUnk_854 = 0x40;
+                        switch (argument) {
                             case 0:
                                 gStaffRollText->mUnk_854 |= 0x200;
                                 break;
@@ -220,57 +227,58 @@ void AdvanceStaffRollTextState1(void) {
                         }
                         break;
                     case 1:
-                        n = TRUE;
-                        p->mNextReadScrollY += x << 16;
+                        lineDone = TRUE;
+                        staffRollText->mNextReadScrollY += argument << 16;
                         break;
                     case 2:
-                        p->mUnk_850 = x * 2 + 1;
+                        staffRollText->mUnk_850 = argument * 2 + 1;
                         break;
                     case 3:
-                        p->mUnk_01c = x;
+                        staffRollText->mCharSpacing = argument;
                         break;
                     case 4:
-                        p->mScrollYPerFrame = (x << 12) / 100;
+                        staffRollText->mScrollYPerFrame = (argument << 12) / 100;
                         break;
                     case 5:
                         break;
                     case 0x63:
-                        n = TRUE;
-                        p->mScrollYRemaining = 0xd0000;
+                        lineDone = TRUE;
+                        staffRollText->mScrollYRemaining = 0xd0000;
                         break;
                 }
             }
-            gStaffRollText->mTextPosition += e;
-        } else if (w == 0xa) {
-            n = TRUE;
-            p->mNextReadScrollY += 0x10000;
+            gStaffRollText->mTextPosition += tagSize;
+        } else if (character == 0xa) {
+            lineDone = TRUE;
+            staffRollText->mNextReadScrollY += 0x10000;
             gStaffRollText->mTextPosition += 2;
-        } else if (w == 0) {
-            p->mTextPosition = r + 2;
+        } else if (character == 0) {
+            staffRollText->mTextPosition = textPosition + 2;
         } else {
-            buf[i] = w;
-            i++;
-            p->mTextPosition += 2;
+            lineText[charCount] = character;
+            charCount++;
+            staffRollText->mTextPosition += 2;
         }
-    } while (n == FALSE);
-    MI_CpuFill8(gStaffRollText->mUnk_050, 0, 0x800);
+    } while (lineDone == FALSE);
+    MI_CpuFill8(gStaffRollText->mCharBuffer, 0, 0x800);
     v = gStaffRollText->mUnk_850;
     c = 0;
     if (v == 3) {
         c = 2;
     }
-    NNSi_G2dTextCanvasDrawTextRect(&gStaffRollText->mUnk_040, 8, c, 0xf0, 0x10, v, gStaffRollText->mUnk_854, buf);
-    p = gStaffRollText;
-    a = (((p->mScrollYFixed >> 12) % 256) + 0xc0) >> 3;
+    NNSi_G2dTextCanvasDrawTextRect(&gStaffRollText->mTextCanvas, 8, c, 0xf0, 0x10, v, gStaffRollText->mUnk_854,
+                                   lineText);
+    staffRollText = gStaffRollText;
+    a = (((staffRollText->mScrollYFixed >> 12) % 256) + 0xc0) >> 3;
     a = a << 3;
     if (a >= 0x100) {
         a -= 0x100;
     }
     if (a + 0x10 > 0x100) {
-        CallQueueAppend(0x14, a << 7, p->mUnk_050, (0x100 - a) << 7);
-        CallQueueAppend(0x14, 0, &gStaffRollText->mUnk_050[a << 7], (a - 0xf0) << 7);
+        CallQueueAppend(0x14, a << 7, staffRollText->mCharBuffer, (0x100 - a) << 7);
+        CallQueueAppend(0x14, 0, &gStaffRollText->mCharBuffer[a << 7], (a - 0xf0) << 7);
     } else {
-        CallQueueAppend(0x14, a << 7, p->mUnk_050, 0x800);
+        CallQueueAppend(0x14, a << 7, staffRollText->mCharBuffer, 0x800);
     }
 }
 
@@ -287,17 +295,17 @@ void AdvanceStaffRollText(void) {
     }
 }
 
-void func_0212b1c0(void) {
+void SetStaffRollScrollAndDrainQueue(void) {
     reg_G2S_DB_BG0OFS = (((gStaffRollText->mScrollYFixed >> 12) % 256) << 16) & 0x1ff0000;
     CallQueueDrain();
 }
 
 u32 StartStaffRollText(void) {
-    u32 value0;
-    u32 value1;
-    value0 = (u32) &gStaffRollText;
-    value1 = 1u;
-    value0 = *(const u32 *) ((value0) + (0));
-    *(u32 *) ((value0) + (4)) = value1;
-    return value0;
+    u32 address;
+    u32 one;
+    address = (u32) &gStaffRollText;
+    one = 1u;
+    address = *(const u32 *) ((address) + (0));
+    *(u32 *) ((address) + (4)) = one;
+    return address;
 }

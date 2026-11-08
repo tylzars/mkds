@@ -123,7 +123,7 @@ void InitWiFiVSSetting(void *heap) {
     }
     gWiFiVSSetting->mIndexDecrementTimer = 0;
     gWiFiVSSetting->mIndexIncrementTimer = 0;
-    func_0212a910(1, 1);
+    SetLinkLevelIconEnabled(1, 1);
     SetSelectReturnSoundId(0xe);
 }
 
@@ -134,7 +134,7 @@ void func_ov000_02182f88(void) {
     a &= ~8;
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | (a << 8);
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0xf00;
-    func_0212b91c();
+    ClearPaletteBlendPointer();
     gWiFiVSSetting = NULL;
 }
 

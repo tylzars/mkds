@@ -224,7 +224,7 @@ void func_0204a1a8(void *arg) {
         hasDisplaySettings = FALSE;
         OS_SleepThread(&gSceneRunState->mThreadQueue);
         gSceneRunState->mNextScene = 0;
-        func_0212b144();
+        ResetMessageScreen();
         if (gDisplaySettings != NULL) {
             hasDisplaySettings = TRUE;
         }
@@ -234,7 +234,7 @@ void func_0204a1a8(void *arg) {
         if (func_0204984c_inline6()) {
             sessionHeapCreated = TRUE;
         }
-        func_0212ad28(gSceneRunState->mUnk_118, gSceneRunState->mUnk_11c);
+        OpenMessageScreen(gSceneRunState->mUnk_118, gSceneRunState->mUnk_11c);
         StopAllSeqPlayers();
         if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
             func_02108d00();
@@ -268,7 +268,7 @@ void func_0204a1a8(void *arg) {
                 PrepareDisplayFrame();
             }
             ReadKeysIntoInputSlot();
-            d = func_0212b0b8();
+            d = UpdateMessageScreen();
             UpdateSounds();
             VBlankIntrWait();
             if (hasDisplaySettings != FALSE) {
@@ -297,12 +297,12 @@ void func_02049f60(void) {
     sessionHeapCreated = FALSE;
     hasDisplaySettings = FALSE;
     gSceneRunState->mNextScene = 0;
-    func_0212b144();
+    ResetMessageScreen();
     if (gDisplaySettings != NULL) {
         hasDisplaySettings = TRUE;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        func_0212ad28(gSceneRunState->mUnk_118, gSceneRunState->mUnk_11c);
+        OpenMessageScreen(gSceneRunState->mUnk_118, gSceneRunState->mUnk_11c);
     }
     func_02039478();
     ReadKeysIntoInputSlot();
@@ -311,7 +311,7 @@ void func_02049f60(void) {
         sessionHeapCreated = TRUE;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_0212ad28(gSceneRunState->mUnk_118, gSceneRunState->mUnk_11c);
+        OpenMessageScreen(gSceneRunState->mUnk_118, gSceneRunState->mUnk_11c);
     }
     StopAllSeqPlayers();
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
@@ -349,7 +349,7 @@ void func_02049f60(void) {
         if (f != 0 && ((*(vu16 *) 0x027fffa8 & 0x8000) >> 15)) {
             PM_GoSleepMode(12, 0, 0);
         }
-        g = func_0212b0b8();
+        g = UpdateMessageScreen();
         UpdateSounds();
         VBlankIntrWait();
         if (hasDisplaySettings != FALSE) {

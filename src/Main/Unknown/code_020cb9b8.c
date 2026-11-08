@@ -24,7 +24,7 @@ void ReleaseMenu(void) {
         ClearGhostRecordSetPointer();
     }
     func_02125da0();
-    func_0212abd0();
+    ClearLinkLevelIconsPointer();
     ClearPicksHolderPointer();
     ReleaseAllResFiles();
     func_020cbabc(0);

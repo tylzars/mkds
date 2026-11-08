@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02151708(u32 arg0);
+void WritePackedWiFiInfo(u32 packedWiFiInfo);

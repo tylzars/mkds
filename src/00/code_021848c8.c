@@ -28,7 +28,7 @@ void InitWiFiSelectCharacterState(void *a) {
     b = func_ov000_021804f4();
     c = func_ov000_021804e0();
     InitSelectCharacter(a, 2, b, c);
-    func_0212a910(1, 1);
+    SetLinkLevelIconEnabled(1, 1);
     data_0217b488->mUnk_6c = FALSE;
     for (i = 0; i < 4; i++) {
         data_0217b488->mUnk_5c[i] = 0;

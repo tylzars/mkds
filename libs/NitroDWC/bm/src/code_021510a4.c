@@ -330,18 +330,18 @@ u8 *DWCi_BACKUPlConvWifiInfo(const DWCWiFiInfo *info) {
     u32 byte5;
     u32 byte10;
     notAttestedId = info->mNotAttestedId;
-    MI_CpuCopy8(info, data_021804a0, 5);
+    MI_CpuCopy8(info, gPackedWiFiInfo, 5);
     byte5 = ((u32) (info->mAttestedUserId >> 32) >> 8) & 7;
     byte5 |= ((u32) notAttestedId & 0x1f) << 3;
-    data_021804a0[5] = byte5;
+    gPackedWiFiInfo[5] = byte5;
     notAttestedId >>= 5;
-    MI_CpuCopy8(&notAttestedId, data_021804a0 + 6, 4);
+    MI_CpuCopy8(&notAttestedId, gPackedWiFiInfo + 6, 4);
     byte10 = (u32) (notAttestedId >> 32) & 0x3f;
     byte10 |= (info->mPass & 3) << 6;
-    data_021804a0[10] = byte10;
-    data_021804a0[11] = info->mPass >> 2;
-    MI_CpuCopy8(&info->mRandomHistory, data_021804a0 + 12, 2);
-    return data_021804a0;
+    gPackedWiFiInfo[10] = byte10;
+    gPackedWiFiInfo[11] = info->mPass >> 2;
+    MI_CpuCopy8(&info->mRandomHistory, gPackedWiFiInfo + 12, 2);
+    return gPackedWiFiInfo;
 }
 
 #pragma thumb off

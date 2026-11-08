@@ -64,7 +64,7 @@ void InitWLMenuScene(void *heap) {
         LoadTxtSystemAndSelectChoisesAndSelectReturnData();
         func_02125de0(heap, &v1);
     }
-    func_0212abdc(heap, gWLMenuScene);
+    InitLinkLevelIcons(heap, gWLMenuScene);
     switch (func_0202f498()) {
         case 0:
             gWLMenuScene->mRequestedCallbacksIndex = func_0202f19c() != 0 ? 4 : 0;
@@ -112,7 +112,7 @@ void AdvanceWLMenuScene(void *a) {
         if (callbacksIndex != -1) {
             gWLMenuScene->mRequestedCallbacksIndex = callbacksIndex;
         }
-        func_0212a920();
+        AdvanceLinkLevelIcons();
         func_020ae630(gWLMenuScene, gWLMenuScene->mSubOam);
     }
     if (func_0202f19c() == 0) {
@@ -131,7 +131,7 @@ void ReleaseWLMenuScene(void) {
     if (v1 == 0) {
         func_02125da0();
     }
-    func_0212abd0();
+    ClearLinkLevelIconsPointer();
 }
 
 #pragma thumb off

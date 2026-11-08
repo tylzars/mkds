@@ -93,7 +93,7 @@ void InitWiFiStates(void *heap, s32 b) {
     gWiFiStates->mUnk_14 = 0;
     CreateRaceSetupCopy(heap);
     gWiFiStates->mUnk_2c = func_02125028(heap);
-    func_0212abdc(heap, func_ov000_021804f4());
+    InitLinkLevelIcons(heap, func_ov000_021804f4());
     c.mUnk_00 = TRUE;
     c.mUnk_04 = func_020b403c(1);
     c.mUnk_08 = 0;
@@ -190,7 +190,7 @@ void ReleaseWiFiStates(void) {
     }
     ClearWiFiStateCallbacks();
     ReleasePlayerEntryList();
-    func_0212abd0();
+    ClearLinkLevelIconsPointer();
     func_02125da0();
     gWiFiStates = NULL;
 }
@@ -244,7 +244,7 @@ void AdvanceWiFiStates(void) {
         }
     }
     func_02125928();
-    func_0212a920();
+    AdvanceLinkLevelIcons();
     gWiFiStates->mUnk_14++;
     if (gWiFiStates->mUnk_14 > 0) {
         gWiFiStates->mUnk_14 = 0;

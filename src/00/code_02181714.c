@@ -73,7 +73,7 @@ void InitWiFiTopMenu(void *heap) {
             gWiFiTopMenu->mWiFiTopMenuTable[data_ov000_021b05d8[j][k]].mOffsetX = 0xdc;
         }
     }
-    func_0212a910(1, 0);
+    SetLinkLevelIconEnabled(1, 0);
     SetSelectReturnSoundId(0xf);
     func_0204f7f4();
 }

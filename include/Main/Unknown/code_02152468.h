@@ -4,4 +4,4 @@
 
 typedef struct DWCAccFriendData DWCAccFriendData;
 
-void func_02152468(DWCAccFriendData *a, u32 b);
+void InitFriendDataFromGsProfileId(DWCAccFriendData *friendData, u32 gsProfileId);

@@ -15,7 +15,7 @@ u32 DWC_Init(u8 *work) {
     func_02000b44(0x2000b88);
     result = DWC_BM_Init(work);
     if (DWC_Auth_CheckWiFiIDNeedCreate() != 0) {
-        func_02151f88((u32) work);
+        WriteNewWiFiInfoToNvram((u32) work);
         created = 1;
     }
     if (result < 0) {

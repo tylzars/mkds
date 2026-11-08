@@ -484,7 +484,7 @@ s32 func_ov000_02185ef4(void) {
                 gAuth->mUnk_008 = 0x4e8c;
                 return 2;
             }
-            if (func_02151f88(((u32) c + 0x1f) & ~0x1f) != 1) {
+            if (WriteNewWiFiInfoToNvram(((u32) c + 0x1f) & ~0x1f) != 1) {
                 gAuth->mUnk_1cc.mFree(b, c, 0);
                 gAuth->mUnk_008 = 0x4e8c;
                 return 0xe;

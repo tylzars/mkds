@@ -408,7 +408,7 @@ void ReleaseSelectGhost(void) {
     if (gSelectGhost->mResult == 1) {
         reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | 0x1800;
     }
-    func_0212b91c();
+    ClearPaletteBlendPointer();
     ClearSelectCupNameMPointer();
     ClearCupMarkPointer();
     ClearKartIconPointer();

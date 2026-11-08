@@ -8,47 +8,47 @@
 
 #pragma thumb on
 
-u32 func_02151830(u16 *a) {
-    int v1;
-    v1 = readNvram(0x20, 0x20, a);
-    if (v1 == 0) {
+u32 ReadNvramEntriesOffset(u16 *buffer) {
+    int readResult;
+    readResult = readNvram(0x20, 0x20, buffer);
+    if (readResult == 0) {
         return 0;
     }
-    *(s32 *) &data_0218049c = *a * 8 - 0x400;
+    *(s32 *) &gNvramEntriesOffset = *buffer * 8 - 0x400;
     return 1;
 }
 
-u32 func_02151804(void *a) {
-    int v1;
-    v1 = readNvram((*(u32 *) &data_0218049c), (0x00000400u), a);
-    if (v1 != 0) {
+u32 ReadNvramEntries(void *buffer) {
+    int readResult;
+    readResult = readNvram((*(u32 *) &gNvramEntriesOffset), (0x00000400u), buffer);
+    if (readResult != 0) {
         return 1;
     }
     return 0;
 }
 
-u32 WriteFlaggedNvramEntries(int a, int *b, void *c) {
-    int v1;
+u32 WriteFlaggedNvramEntries(int data, int *flags, void *verifyBuffer) {
+    int verifyResult;
     int v2;
-    int v3;
-    int *v4;
-    int v5;
+    int address;
+    int *flagPointer;
+    int entryIndex;
     v2 = 0x100;
-    v3 = *(s32 *) &data_0218049c;
-    v5 = 0;
-    v4 = b;
+    address = *(s32 *) &gNvramEntriesOffset;
+    entryIndex = 0;
+    flagPointer = flags;
     do {
-        if (*v4 != 0) {
+        if (*flagPointer != 0) {
             do {
-                writeNvram(v3, v2, (void *) a);
-                v1 = verify((const u8 *) a, v3, v2, c);
-            } while (v1 == 0);
+                writeNvram(address, v2, (void *) data);
+                verifyResult = verify((const u8 *) data, address, v2, verifyBuffer);
+            } while (verifyResult == 0);
         }
-        v4 = v4 + 1;
-        a = a + v2;
-        v5 = v5 + 1;
-        v3 = v3 + v2;
-    } while (v5 < 4);
+        flagPointer = flagPointer + 1;
+        data = data + v2;
+        entryIndex = entryIndex + 1;
+        address = address + v2;
+    } while (entryIndex < 4);
     v2 = writeDisable();
     if (v2 != 0) {
         return 1;
@@ -56,28 +56,28 @@ u32 WriteFlaggedNvramEntries(int a, int *b, void *c) {
     return 0;
 }
 
-u32 WriteNvramEntriesWithCrc16(int a) {
-    int v1;
-    int v2;
-    int v3;
+u32 WriteNvramEntriesWithCrc16(int data) {
+    int entryIndex;
+    int address;
+    int entry;
     int v4;
-    int v5;
-    u16 v6;
+    int verifyResult;
+    u16 crc;
     v4 = 0x100;
-    v2 = *(s32 *) &data_0218049c;
-    v1 = 0;
-    v3 = a;
+    address = *(s32 *) &gNvramEntriesOffset;
+    entryIndex = 0;
+    entry = data;
     do {
-        v6 = Crc16((const u16 *) (a + 0x500), (const u8 *) v3, 0xfe);
-        *(u16 *) (v3 + 0xfe) = v6;
+        crc = Crc16((const u16 *) (data + 0x500), (const u8 *) entry, 0xfe);
+        *(u16 *) (entry + 0xfe) = crc;
         do {
-            writeNvram(v2, v4, (void *) v3);
-            v5 = verify((const u8 *) v3, v2, v4, (const u8 *) (a + 0x400));
-        } while (v5 == 0);
-        v3 = v3 + v4;
-        v1 = v1 + 1;
-        v2 = v2 + v4;
-    } while (v1 < 4);
+            writeNvram(address, v4, (void *) entry);
+            verifyResult = verify((const u8 *) entry, address, v4, (const u8 *) (data + 0x400));
+        } while (verifyResult == 0);
+        entry = entry + v4;
+        entryIndex = entryIndex + 1;
+        address = address + v4;
+    } while (entryIndex < 4);
     v4 = writeDisable();
     if (v4 != 0) {
         return 1;
@@ -88,13 +88,13 @@ u32 WriteNvramEntriesWithCrc16(int a) {
 #pragma thumb off
 
 #pragma thumb on
-void func_02151708(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
+void WritePackedWiFiInfo(u32 packedWiFiInfo) {
+    u32 source = packedWiFiInfo;
+    u32 destination;
+    u32 size;
     u32 value3;
-    value1 = (u32) &data_021804a0;
-    value2 = 14u;
-    MI_CpuCopy8((const void *) value0, (void *) value1, value2);
+    destination = (u32) &gPackedWiFiInfo;
+    size = 14u;
+    MI_CpuCopy8((const void *) source, (void *) destination, size);
 }
 #pragma thumb off

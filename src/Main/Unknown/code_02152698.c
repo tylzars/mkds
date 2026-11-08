@@ -5,8 +5,8 @@
 u32 func_02152698(const void *friendData) {
     u32 result;
     u32 value3;
-    value3 = (u32) &func_021526a0;
-    result = func_021526a0(friendData);
+    value3 = (u32) &IsFriendDataTypeNonZero;
+    result = IsFriendDataTypeNonZero(friendData);
     return result;
 }
 #pragma thumb off

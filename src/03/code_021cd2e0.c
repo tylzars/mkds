@@ -25,7 +25,7 @@ void func_ov003_021cdb90(void) {
     v1 = func_ov003_021d285c(0x6f8, 0x20);
     data_ov003_021da270 = v1;
     Crc16InitTable(&v1->mUnk_400.mUnk_f8, 0xa001);
-    func_02151804(data_ov003_021da270);
+    ReadNvramEntries(data_ov003_021da270);
 }
 
 void func_ov003_021cdb80(void) {

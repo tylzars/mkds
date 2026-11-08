@@ -77,7 +77,7 @@ int DWC_GetGsProfileId(const DWCAccUserData *userdata, const DWCAccFriendData *f
             }
             return 0;
         case 3:
-            return func_02152ab0(frienddata);
+            return GetFriendDataGsProfileId(frienddata);
         case 1:
             return -1;
         default:

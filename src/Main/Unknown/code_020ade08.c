@@ -441,8 +441,8 @@ void RenderKartEntryName(u32 a) {
     s32 j;
 
     t = func_020b403c(0);
-    s = func_0212b090();
-    func_0212b09c();
+    s = GetMessageScreenCharBuffer();
+    ClearMessageScreenChars();
     for (i = 0; i < 0x100; i++) {
         s[i] = 0;
     }
@@ -455,7 +455,7 @@ void RenderKartEntryName(u32 a) {
         }
     }
     DrawTextOnCanvas(&q, 0x20, 8, 1, 0x412, r);
-    DC_FlushRange(func_0212b090(), 0x200);
+    DC_FlushRange(GetMessageScreenCharBuffer(), 0x200);
 }
 
 void SetPixel2Bit(u16 *a, s32 b, s32 c, s32 d) {

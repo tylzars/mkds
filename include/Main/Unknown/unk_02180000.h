@@ -3,8 +3,8 @@
 #include "types.h"
 
 // Objects whose layout isn't known yet.
-extern u8 data_0218049c[];
-extern u8 data_021804a0[];
+extern u8 gNvramEntriesOffset[];
+extern u8 gPackedWiFiInfo[];
 
 // Defined by the linker script.
 extern u8 OV000_TEXT_START[];

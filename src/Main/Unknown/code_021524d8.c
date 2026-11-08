@@ -5,10 +5,10 @@
 
 #pragma thumb on
 
-void func_021524d8(void *a, u32 b, u32 c) {
-    MI_CpuFill8(a, 0, 0xc);
-    DWCi_Acc_SetFriendKey(a, b, c);
-    func_021529e0(a, 2);
+void InitFriendDataFromFriendKey(void *friendData, u32 friendKeyLow, u32 friendKeyHigh) {
+    MI_CpuFill8(friendData, 0, 0xc);
+    DWCi_Acc_SetFriendKey(friendData, friendKeyLow, friendKeyHigh);
+    SetFriendDataType(friendData, 2);
 }
 
 #pragma thumb off

@@ -4,7 +4,7 @@
 #pragma thumb on
 
 BOOL DWCi_Acc_IsAuthentic(const DWCAccUserData *userdata) {
-    return func_021526c8(&userdata->mAuthentic);
+    return IsFriendDataLoginId(&userdata->mAuthentic);
 }
 
 #pragma thumb off

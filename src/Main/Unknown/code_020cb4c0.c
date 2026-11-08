@@ -52,7 +52,7 @@ void UpdateMenuScreen(u32 a) {
             }
         }
         func_02125928();
-        func_0212a920();
+        AdvanceLinkLevelIcons();
         if (AreBrightnessFadesClear() != 0) {
             func_020cb600(&data_0217b43c->mFramesSinceScreenSwitch);
         }

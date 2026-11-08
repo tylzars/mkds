@@ -4,15 +4,15 @@
 
 #pragma thumb on
 
-u32 func_02151f88(u32 a) {
-    int v1;
-    u8 v2[24];
-    v1 = DWCi_AUTH_GetNewWiFiInfo((DWCWiFiInfo *) v2);
-    if (v1 == 0) {
+u32 WriteNewWiFiInfoToNvram(u32 work) {
+    int result;
+    u8 wifiInfo[24];
+    result = DWCi_AUTH_GetNewWiFiInfo((DWCWiFiInfo *) wifiInfo);
+    if (result == 0) {
         return 0;
     }
-    v1 = DWCi_BM_SetWiFiInfo((DWCWiFiInfo *) v2, (u8 *) a);
-    if (v1 != 0) {
+    result = DWCi_BM_SetWiFiInfo((DWCWiFiInfo *) wifiInfo, (u8 *) work);
+    if (result != 0) {
         return 1;
     }
     return 0;

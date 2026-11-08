@@ -43,7 +43,7 @@ void ReleaseSelectKart(void) {
     }
     result = func_020280dc();
     if (result == 0) {
-        func_0212b91c();
+        ClearPaletteBlendPointer();
     } else {
         func_0211f498();
     }

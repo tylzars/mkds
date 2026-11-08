@@ -3,8 +3,8 @@
 
 #pragma thumb on
 
-u32 func_02152ab0(const DWCAccFriendData *a) {
-    return a->mUnk_04;
+u32 GetFriendDataGsProfileId(const DWCAccFriendData *friendData) {
+    return friendData->mUnk_04;
 }
 
 #pragma thumb off

@@ -19,7 +19,7 @@ s64 func_02152244(const u32 *date, const u32 *time) {
     if (day == -1) {
         return -1;
     }
-    sec = func_0215228c(time);
+    sec = ComputeSecondsOfDay(time);
     return (s64) sec + (s64) day * 0x15180;
 }
 

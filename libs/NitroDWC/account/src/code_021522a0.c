@@ -23,14 +23,14 @@ BOOL DWC_IsEqualFriendData(const DWCAccFriendData *frienddata1, const DWCAccFrie
         return 0;
     }
     if (type == 3) {
-        if (func_02152ab0(frienddata1) == func_02152ab0(frienddata2)) {
+        if (GetFriendDataGsProfileId(frienddata1) == GetFriendDataGsProfileId(frienddata2)) {
             return 1;
         }
         return 0;
     }
     if (type == 1) {
         if (DWCi_Acc_GetUserId(frienddata1) == DWCi_Acc_GetUserId(frienddata2) &&
-            func_02152ac4(frienddata1) == func_02152ac4(frienddata2)) {
+            GetFriendDataPlayerId(frienddata1) == GetFriendDataPlayerId(frienddata2)) {
             return 1;
         }
         return 0;

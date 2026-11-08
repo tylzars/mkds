@@ -3,10 +3,10 @@
 
 #pragma thumb on
 
-u32 func_021526c8(const DWCAccFriendData *a) {
-    int v1;
-    v1 = DWCi_Acc_GetFlag_DataType(a);
-    if (v1 == 1) {
+u32 IsFriendDataLoginId(const DWCAccFriendData *friendData) {
+    int dataType;
+    dataType = DWCi_Acc_GetFlag_DataType(friendData);
+    if (dataType == 1) {
         return 1;
     }
     return 0;

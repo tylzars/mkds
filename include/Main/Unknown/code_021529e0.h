@@ -4,4 +4,4 @@
 
 typedef struct DWCAccFriendData DWCAccFriendData;
 
-void func_021529e0(DWCAccFriendData *a, u32 b);
+void SetFriendDataType(DWCAccFriendData *friendData, u32 dataType);

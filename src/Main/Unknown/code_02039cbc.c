@@ -61,7 +61,7 @@ void func_02039cbc(void) {
     InitOverlayTable(backHeap);
     func_020cefa0(backHeap);
     func_020471b0(backHeap);
-    func_0212b158(backHeap);
+    InitMessageScreen(backHeap);
     func_02057ed4();
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         InitArchiveBuffers(firstFrontHeap, secondFrontHeap, thirdFrontHeap);

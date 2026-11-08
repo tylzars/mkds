@@ -222,7 +222,7 @@ void StartWiFiLoginRequest(void (*a)(), void *b) {
         DWCi_Acc_LoginIdToUserName(&gWiFiLogin->mUnk_20->mAuthentic, gWiFiLogin->mUnk_20->mGamecode,
                                    gWiFiLogin->mUnk_24c);
     } else {
-        if (func_021526c8(&gWiFiLogin->mUnk_40) == 0) {
+        if (IsFriendDataLoginId(&gWiFiLogin->mUnk_40) == 0) {
             if (DWCi_Acc_CheckConsoleUserId(&gWiFiLogin->mUnk_20->mPseudo) != 0) {
                 gWiFiLogin->mUnk_40 = gWiFiLogin->mUnk_20->mPseudo;
             } else {

@@ -182,7 +182,7 @@ void InitKeyboard(void *heap, s32 mode) {
     gKeyboard = HeapAlloc(heap, 0xc4);
     gKeyboard->mHeap = heap;
     gKeyboard->mDisplaySettings = func_021250b0(heap);
-    func_0212abdc(heap, GetKeyboardFirstBuffer());
+    InitLinkLevelIcons(heap, GetKeyboardFirstBuffer());
     config.mUnk_00 = 1;
     config.mUnk_04 = func_020b403c(1);
     config.mUnk_08 = 0;
@@ -260,7 +260,7 @@ void InitKeyboard(void *heap, s32 mode) {
         zero = 0;
         MIi_CpuClear16(zero, &gKeyboard->mUnk_2c[i], 0x18);
     }
-    func_0212a724();
+    InitKeyboardLabelCanvases();
     PrintKeyboardButtonTexts();
     func_0212a4f4();
     WriteKeyboardObjectOffsets();
@@ -270,7 +270,7 @@ void InitKeyboard(void *heap, s32 mode) {
 #pragma thumb on
 
 void ReleaseKeyboard(void) {
-    func_0212abd0();
+    ClearLinkLevelIconsPointer();
     func_02125da0();
     *(u32 *) &gKeyboard = 0;
 }
@@ -1036,7 +1036,7 @@ void ShowKeyboardLayoutObject(void) {
 void AdvanceKeyboard(void) {
     s32 i;
     Keyboard *keyboard;
-    func_0212a920();
+    AdvanceLinkLevelIcons();
     func_02125928();
     gKeyboard->mState = gKeyboard->mNextState;
     if (gKeyboard->mTextEntryEnabled != FALSE) {

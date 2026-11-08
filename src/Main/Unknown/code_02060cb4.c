@@ -98,7 +98,7 @@ s32 func_02061104(const void *a) {
     if (d == DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mUnk_00->mUnk_4c)) {
         return 1;
     }
-    func_021524d8(b, d, d >> 32);
+    InitFriendDataFromFriendKey(b, d, d >> 32);
     f = (u8 *) data_0217aa08->mBuddyRecordBlock + 0x874;
     e = -1;
     for (i = 0; i < 60; i++) {
@@ -236,6 +236,6 @@ s32 func_02060cb4(const void *a, void *b) {
     u64 d;
 
     d = DWC_StringToFriendKey(a);
-    func_021524d8(c, d, d >> 32);
+    InitFriendDataFromFriendKey(c, d, d >> 32);
     return func_02060d1c((u8 *) data_0217aa08->mBuddyRecordBlock + 0x874, b, c, 1, 0, 1);
 }

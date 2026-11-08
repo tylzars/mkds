@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_021526a0(const void *a);
+u32 IsFriendDataTypeNonZero(const void *friendData);

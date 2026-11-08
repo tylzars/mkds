@@ -34,7 +34,7 @@ void InitResultsByMode(void *heap) {
     } else {
         InitResultsBattle(heap, (s32) gResultScene, (s32) gResultScene->mSubOam);
     }
-    func_0212abdc(heap, gResultScene);
+    InitLinkLevelIcons(heap, gResultScene);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;
     G2x_SetBlendAlpha_(&reg_G2_BLDCNT, 1, 0x3f, 8, 8);
@@ -58,7 +58,7 @@ void AdvanceResultsByMode(u32 sceneNumbers) {
             AdvanceResultsBattle((Unk02032ac4 *) sceneNumbers);
         }
         func_020ae630(gResultScene, gResultScene->mSubOam);
-        func_0212a920();
+        AdvanceLinkLevelIcons();
     }
 }
 
@@ -68,7 +68,7 @@ void func_0202a5d8(void) {
     } else {
         func_02032ab0();
     }
-    func_0212abd0();
+    ClearLinkLevelIconsPointer();
 }
 
 void func_0202a5a0(void) {

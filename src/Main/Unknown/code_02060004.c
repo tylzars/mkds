@@ -233,7 +233,7 @@ s32 GetBuddyFriendKeyText(u8 a, void *b) {
     d = FALSE;
     func_0205ee14(a, &c);
     e = (u8 *) data_0217aa08->mBuddyRecordBlock + 0x874 + a * 12;
-    if (c.mFilled == 1 && c.mNotYetBuddy == 1 && func_021526a0(e) != 0) {
+    if (c.mFilled == 1 && c.mNotYetBuddy == 1 && IsFriendDataTypeNonZero(e) != 0) {
         g = TRUE;
     } else {
         g = FALSE;

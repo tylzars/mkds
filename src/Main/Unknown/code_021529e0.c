@@ -3,14 +3,14 @@
 #include "Main/Unknown/code_02152a6c.h"
 
 #pragma thumb on
-void func_021529e0(DWCAccFriendData *a, u32 b) {
-    u32 c;
+void SetFriendDataType(DWCAccFriendData *friendData, u32 dataType) {
+    u32 flags;
     u32 d;
-    c = func_02152a6c(a);
+    flags = GetFriendDataFlags(friendData);
     d = 3;
-    c = c & ~d;
-    d = c;
-    d = d | b;
-    func_02152a04(a, d);
+    flags = flags & ~d;
+    d = flags;
+    d = d | dataType;
+    SetFriendDataFlags(friendData, d);
 }
 #pragma thumb off

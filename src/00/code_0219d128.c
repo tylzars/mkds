@@ -293,7 +293,7 @@ void func_ov000_0219d2e8(DWCAccFriendData *a, s32 b) {
             for (i = 0; i < b; i++) {
                 if (f.mUnk_000 == GetBuddyEntryProfileId(i)) {
                     if (DWC_IsBuddyFriendData((DWCAccFriendData *) a + i) == 0) {
-                        func_02152468(&a[i], f.mUnk_000);
+                        InitFriendDataFromGsProfileId(&a[i], f.mUnk_000);
                         DWCi_SetBuddyFriendData(&a[i]);
                         gWiFiBuddySync->mBuddiesChanged = 1;
                     }
@@ -386,8 +386,8 @@ s32 func_ov000_0219d14c(DWCAccFriendData *a, s32 b, s32 c) {
                     r = &a[j];
                     do {
                         if (k == GetBuddyEntryProfileId(j)) {
-                            if (func_02152a1c(p) == 2 && func_02152a1c(r) == 3) {
-                                func_02152468(q, k);
+                            if (GetFriendDataType(p) == 2 && GetFriendDataType(r) == 3) {
+                                InitFriendDataFromGsProfileId(q, k);
                             }
                             if (DWC_IsBuddyFriendData(r) != 0) {
                                 DWCi_SetBuddyFriendData(q);

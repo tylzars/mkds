@@ -2,7 +2,7 @@
 #include "code_02152490.h"
 
 #pragma thumb on
-u32 func_02152a6c(const DWCAccFriendData *a) {
-    return (a->mUnk_00 >> 11) & 0x1fffff;
+u32 GetFriendDataFlags(const DWCAccFriendData *friendData) {
+    return (friendData->mUnk_00 >> 11) & 0x1fffff;
 }
 #pragma thumb off

@@ -50,7 +50,7 @@ void DWCi_Acc_LoginIdToUserName(const DWCAccFriendData *loginid, u32 gamecode, c
     char playerid[0x15];
 
     DWCi_Acc_U64ToString32(DWCi_Acc_GetUserId(loginid), 0x2b, userid);
-    DWCi_Acc_U64ToString32(func_02152ac4(loginid), 0x20, playerid);
+    DWCi_Acc_U64ToString32(GetFriendDataPlayerId(loginid), 0x20, playerid);
     OS_SNPrintf(username, 0x15, data_0216f2a0, userid, (u8) (gamecode >> 24), (u8) (gamecode >> 16),
                 (u8) (gamecode >> 8), (u8) gamecode, playerid);
 }
@@ -63,7 +63,7 @@ void DWCi_Acc_CreateUserData(DWCAccUserData *userdata, u32 gamecode) {
     userdata->mGsProfileId = 0;
     userdata->mGamecode = gamecode;
     DWCi_Acc_CreateTempLoginId(&userdata->mPseudo);
-    func_021529e0(&userdata->mAuthentic, 0);
+    SetFriendDataType(&userdata->mAuthentic, 0);
     Crc32InitTable(crcTable, 0xedb88320);
     userdata->mCrc32 = Crc32(crcTable, userdata, 0x3c);
     userdata->mFlag |= 1;
@@ -83,7 +83,7 @@ void DWCi_Acc_CreateTempLoginId(DWCAccFriendData *loginid) {
     }
     rand = tick * 0x5d588b656c078965ull + 0x269ec3;
     DWCi_Acc_SetPlayerId(loginid, rand >> 32);
-    func_021529e0(loginid, 1);
+    SetFriendDataType(loginid, 1);
 }
 
 BOOL DWCi_Acc_CheckConsoleUserId(const DWCAccFriendData *loginid) {

@@ -32,7 +32,7 @@ void func_ov000_0219ce48(GpConnection *a, Unk0219c400 *b, u32 c) {
     s32 i;
     s32 k;
     s32 n;
-    if (b->mUnk_00 == 0 && b->mUnk_04 != 0 && func_02152a1c(&gWiFiBuddySync->mBuddies[c]) != 0) {
+    if (b->mUnk_00 == 0 && b->mUnk_04 != 0 && GetFriendDataType(&gWiFiBuddySync->mBuddies[c]) != 0) {
         if (gWiFiBuddySync->mState == 1) {
             gWiFiBuddySync->mBuddiesChanged = 1;
             for (i = 0; i < b->mUnk_04; i++) {
@@ -49,7 +49,7 @@ void func_ov000_0219ce48(GpConnection *a, Unk0219c400 *b, u32 c) {
                 if (n == ~k) {
                     AddBuddy(b->mUnk_0c[i].mUnk_00);
                 } else {
-                    func_02152468(&gWiFiBuddySync->mBuddies[c], b->mUnk_0c[0].mUnk_00);
+                    InitFriendDataFromGsProfileId(&gWiFiBuddySync->mBuddies[c], b->mUnk_0c[0].mUnk_00);
                     DWCi_SetBuddyFriendData(&gWiFiBuddySync->mBuddies[c]);
                     func_ov000_0219d504(c);
                     gWiFiBuddySync->mSyncIndex++;
@@ -68,7 +68,7 @@ void func_ov000_0219ce48(GpConnection *a, Unk0219c400 *b, u32 c) {
             if (ReportBuddySyncGpResult(b->mUnk_00) != 0) {
                 return;
             }
-        } else if (gWiFiBuddySync->mState == 1 || func_02152a1c(&gWiFiBuddySync->mBuddies[c]) == 0) {
+        } else if (gWiFiBuddySync->mState == 1 || GetFriendDataType(&gWiFiBuddySync->mBuddies[c]) == 0) {
             gWiFiBuddySync->mSyncIndex++;
             gWiFiBuddySync->mUnk_1e = 1;
         }
@@ -84,15 +84,15 @@ void func_ov000_0219cd74(GpConnection *a, Unk0219c400 *b, u32 c) {
     f = FALSE;
     i = 0;
     for (; i < gWiFiBuddySync->mBuddyEntryCount; i++) {
-        if (func_02152a1c(&gWiFiBuddySync->mBuddies[i]) == 1) {
+        if (GetFriendDataType(&gWiFiBuddySync->mBuddies[i]) == 1) {
             DWC_LoginIdToUserName(func_ov000_0219c9c4(), &gWiFiBuddySync->mBuddies[i], s);
             if (strcmp(s, (const char *) b->mUnk_8e) == 0) {
                 func_ov000_0218ee1c(h, b->mUnk_04);
-                func_02152468(&gWiFiBuddySync->mBuddies[i], b->mUnk_04);
+                InitFriendDataFromGsProfileId(&gWiFiBuddySync->mBuddies[i], b->mUnk_04);
                 f = TRUE;
             }
-        } else if (func_02152a1c(&gWiFiBuddySync->mBuddies[i]) == 3 ||
-                   func_02152a1c(&gWiFiBuddySync->mBuddies[i]) == 2) {
+        } else if (GetFriendDataType(&gWiFiBuddySync->mBuddies[i]) == 3 ||
+                   GetFriendDataType(&gWiFiBuddySync->mBuddies[i]) == 2) {
             t = b->mUnk_04;
             if (t == DWC_GetGsProfileId(func_ov000_0219c9c4(), &gWiFiBuddySync->mBuddies[i])) {
                 func_ov000_0218ee1c(h, t);
@@ -115,18 +115,18 @@ void func_ov000_0219cc94(GpConnection *a, Unk0219c400 *b, u32 c) {
     f = FALSE;
     i = 0;
     for (; i < gWiFiBuddySync->mBuddyEntryCount; i++) {
-        if (func_02152a1c(&gWiFiBuddySync->mBuddies[i]) == 1) {
+        if (GetFriendDataType(&gWiFiBuddySync->mBuddies[i]) == 1) {
             DWC_LoginIdToUserName(func_ov000_0219c9c4(), &gWiFiBuddySync->mBuddies[i], s);
             if (strcmp(s, (const char *) b->mUnk_8e) == 0) {
-                func_02152468(&gWiFiBuddySync->mBuddies[i], b->mUnk_04);
+                InitFriendDataFromGsProfileId(&gWiFiBuddySync->mBuddies[i], b->mUnk_04);
                 DWCi_SetBuddyFriendData(&gWiFiBuddySync->mBuddies[i]);
                 f = TRUE;
             }
-        } else if (func_02152a1c(&gWiFiBuddySync->mBuddies[i]) == 3 ||
-                   func_02152a1c(&gWiFiBuddySync->mBuddies[i]) == 2) {
+        } else if (GetFriendDataType(&gWiFiBuddySync->mBuddies[i]) == 3 ||
+                   GetFriendDataType(&gWiFiBuddySync->mBuddies[i]) == 2) {
             t = b->mUnk_04;
             if (t == DWC_GetGsProfileId(func_ov000_0219c9c4(), &gWiFiBuddySync->mBuddies[i])) {
-                func_02152468(&gWiFiBuddySync->mBuddies[i], t);
+                InitFriendDataFromGsProfileId(&gWiFiBuddySync->mBuddies[i], t);
                 DWCi_SetBuddyFriendData(&gWiFiBuddySync->mBuddies[i]);
                 f = TRUE;
             }

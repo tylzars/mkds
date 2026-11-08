@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-unsigned int func_0215228c(const void *values);
+unsigned int ComputeSecondsOfDay(const void *values);

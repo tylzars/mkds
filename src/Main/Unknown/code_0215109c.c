@@ -4,7 +4,7 @@
 #pragma thumb on
 
 u8 *func_0215109c(void) {
-    return data_021804a0;
+    return gPackedWiFiInfo;
 }
 
 #pragma thumb off

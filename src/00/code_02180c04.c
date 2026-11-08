@@ -40,7 +40,7 @@ void func_ov000_021816b0(void *heap) {
     data_ov000_021b4c68->mWiFiMessages = FindSceneFile("wifi.bmg");
     data_ov000_021b4c68->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     func_ov000_021816a0();
-    func_0212a910(1, 1);
+    SetLinkLevelIconEnabled(1, 1);
     SetSelectReturnSoundId(0xe);
     func_0204f804();
 }

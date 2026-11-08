@@ -67,7 +67,7 @@ void InitGhostScene(void *heap) {
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(heap, &arg);
     SetTxtSystemMode(1);
-    func_0212abdc(heap, gGhostScene);
+    InitLinkLevelIcons(heap, gGhostScene);
     CreateKartIcon(heap);
     for (i = 0; i < 0x20; i++) {
         gGhostScene->mCupCourseIndices[i] = -1;
@@ -137,14 +137,14 @@ void AdvanceGhostScene(s32 sceneNumbers) {
         func_020ae630(gGhostScene, gGhostScene->mSubOam);
     }
     func_02125928();
-    func_0212a920();
+    AdvanceLinkLevelIcons();
 }
 
 void ReleaseGhostScene(void) {
     reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
     reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffff1fff;
     func_02125da0();
-    func_0212abd0();
+    ClearLinkLevelIconsPointer();
     ClearKartIconPointer();
     func_0204f7f4();
 }

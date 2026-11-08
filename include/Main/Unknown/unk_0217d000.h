@@ -15,11 +15,11 @@
 typedef struct OSMessageQueue OSMessageQueue;
 
 // Three words derived from a halfword.
-typedef struct Unk0217d410_2c {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-} Unk0217d410_2c;
+typedef struct PaletteColorFields {
+    /* 00 */ s32 mBits0To4;
+    /* 04 */ s32 mBits5To9;
+    /* 08 */ s32 mBits10To14;
+} PaletteColorFields;
 
 // 0x90 bytes.
 typedef struct PaletteBlend {
@@ -27,13 +27,13 @@ typedef struct PaletteBlend {
     /* 04 */ BOOL mStopped;
     /* 08 */ u8 mPaletteIndex;
     /* 09 */ u8 mUnk_09;
-    /* 0a */ u16 mUnk_0a[5];
-    /* 14 */ u16 mUnk_14[4];
-    /* 1c */ u16 mUnk_1c[4];
+    /* 0a */ u16 mPalette[5];
+    /* 14 */ u16 mFromColors[4];
+    /* 1c */ u16 mToColors[4];
     /* 24 */ u16 mUnk_24[3];
     /* 2a */ u8 mUnk_2a[2];
-    /* 2c */ Unk0217d410_2c mBlendFrom[4];
-    /* 5c */ Unk0217d410_2c mBlendTo[4];
+    /* 2c */ PaletteColorFields mBlendFrom[4];
+    /* 5c */ PaletteColorFields mBlendTo[4];
     /* 8c */ BOOL mFirstBlend;
 } PaletteBlend;
 
@@ -587,8 +587,8 @@ typedef struct SelectReturn {
     /* 824 */ s32 mSoundId;
 } SelectReturn;
 
-// Records of 8 bytes: 0x80 of them start an Unk0217d3fc_00, and two are at member 0x10c of Unk0217d404
-// (func_0212a920 copies 6 bytes of a record into one of those).
+// Records of 8 bytes: 0x80 of them start an Unk0217d3fc_00, and two are at member 0x10c of LinkLevelIcons
+// (AdvanceLinkLevelIcons copies 6 bytes of a record into one of those).
 typedef struct Unk0217d3fc_00_00 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u16 mUnk_04;
@@ -665,51 +665,51 @@ typedef struct Keyboard {
 } Keyboard;
 
 // Elements of 0x20 bytes at member 0x14 of Ncgr.
-typedef struct Unk0217d404_bc {
+typedef struct CharTile {
     /* 00 */ u8 mUnk_00[0x20];
-} Unk0217d404_bc;
+} CharTile;
 
 typedef struct Unk0217d404_28 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
 } Unk0217d404_28;
 
-// Object behind data_0217d404: 0x11c bytes allocated by func_0212abdc.
-typedef struct Unk0217d404 {
-    /* 000 */ s32 mUnk_000[5];
-    /* 014 */ s32 mUnk_014[2];
-    /* 01c */ s32 mUnk_01c[2];
-    /* 024 */ s32 mUnk_024;
+// Object behind gLinkLevelIcons: 0x11c bytes allocated by InitLinkLevelIcons.
+typedef struct LinkLevelIcons {
+    /* 000 */ s32 mIconEnabled[5];
+    /* 014 */ s32 mIconKind[2];
+    /* 01c */ s32 mIconLevel[2];
+    /* 024 */ s32 mCycleFrames;
     /* 028 */ Unk0217d404_28 mUnk_028[2];
-    /* 038 */ Unk0217d3fc_00 *mUnk_038;
+    /* 038 */ Unk0217d3fc_00 *mOamList;
     /* 03c */ u8 mUnk_03c[0x20];
     /* 05c */ u8 mUnk_05c[0x60];
-    /* 0bc */ Unk0217d404_bc *mUnk_0bc[5][4];
-    /* 10c */ Unk0217d3fc_00_00 mUnk_10c[2];
-} Unk0217d404;
+    /* 0bc */ CharTile *mIconChars[5][4];
+    /* 10c */ Unk0217d3fc_00_00 mOamRecords[2];
+} LinkLevelIcons;
 
-// Object behind data_0217d408: 0x1a44 bytes allocated by func_0212b158; the 0x20 bytes at 0x14 are set up by
+// Object behind gMessageScreen: 0x1a44 bytes allocated by InitMessageScreen; the 0x20 bytes at 0x14 are set up by
 // NNS_G2dCharCanvasInitForBG.
-typedef struct Unk0217d408 {
-    /* 0000 */ s32 mUnk_0000;
-    /* 0004 */ s32 mUnk_0004;
-    /* 0008 */ void *mUnk_0008;
-    /* 000c */ BOOL mUnk_000c;
-    /* 0010 */ s32 mUnk_0010;
-    /* 0014 */ u8 mUnk_0014[0x20];
-    /* 0034 */ TextCanvas mUnk_0034;
-    /* 0044 */ u16 mUnk_0044[0xa00];
-    /* 1444 */ u16 mUnk_1444[0x300];
-} Unk0217d408;
+typedef struct MessageScreen {
+    /* 0000 */ s32 mKind;
+    /* 0004 */ s32 mInputEnabled;
+    /* 0008 */ void *mText;
+    /* 000c */ BOOL mOpen;
+    /* 0010 */ s32 mResult;
+    /* 0014 */ u8 mCharCanvas[0x20];
+    /* 0034 */ TextCanvas mTextCanvas;
+    /* 0044 */ u16 mCharBuffer[0xa00];
+    /* 1444 */ u16 mScreenMap[0x300];
+} MessageScreen;
 
 // Records of 8 bytes in the stream at member 0x18 of StaffRollText.
-typedef struct Unk0217d40c_18 {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u8 mUnk_02;
-    /* 03 */ u8 mUnk_03;
-    /* 04 */ u16 mUnk_04;
-    /* 06 */ u16 mUnk_06;
-} Unk0217d40c_18;
+typedef struct StaffRollTag {
+    /* 00 */ u16 mCharacter;
+    /* 02 */ u8 mSize;
+    /* 03 */ u8 mKind;
+    /* 04 */ u16 mVariant;
+    /* 06 */ u16 mArgument;
+} StaffRollTag;
 
 // 0x85c bytes; the 0x20 bytes at 0x20 are set up by NNS_G2dCharCanvasInitForBG.
 typedef struct StaffRollText {
@@ -720,11 +720,11 @@ typedef struct StaffRollText {
     /* 010 */ s32 mNextReadScrollY;
     /* 014 */ s32 mScrollYRemaining;
     /* 018 */ u8 *mTextPosition;
-    /* 01c */ s8 mUnk_01c;
+    /* 01c */ s8 mCharSpacing;
     /* 01d */ u8 mUnk_01d[3];
-    /* 020 */ u8 mUnk_020[0x20];
-    /* 040 */ TextCanvas mUnk_040;
-    /* 050 */ u8 mUnk_050[0x800];
+    /* 020 */ u8 mCharCanvas[0x20];
+    /* 040 */ TextCanvas mTextCanvas;
+    /* 050 */ u8 mCharBuffer[0x800];
     /* 850 */ s8 mUnk_850;
     /* 851 */ u8 mUnk_851[3];
     /* 854 */ s32 mUnk_854;
@@ -763,7 +763,7 @@ extern SelectChoises *gSelectChoises;
 extern SelectReturn *gSelectReturn;
 extern Unk0217d3fc *data_0217d3fc;
 extern Keyboard *gKeyboard;
-extern Unk0217d408 *data_0217d408;
+extern MessageScreen *gMessageScreen;
 extern u32 data_0217d1f0;
 extern s32 gLapProgressSoundGaps[];
 extern s32 data_0217d320;
@@ -797,7 +797,7 @@ extern SeqQueue gSeqQueue;
 extern s32 data_0217d2dc[];
 extern void *gRecordMainOam;
 extern void *gRecordSubOam;
-extern Unk0217d404 *data_0217d404;
+extern LinkLevelIcons *gLinkLevelIcons;
 extern PaletteBlend *gPaletteBlend;
 extern struct NNSSndStrmThread *data_0217df04;
 extern u8 data_0217df08[];

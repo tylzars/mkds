@@ -780,7 +780,7 @@ void InitRecordSceneObject(void *heap, s16 previousScene) {
     gRecordScene->mPageIndex = 0;
     gRecordScene->mIndex = 0;
     func_021250b0(heap);
-    func_0212abdc(heap, GetRecordMainOam());
+    InitLinkLevelIcons(heap, GetRecordMainOam());
     v.mUnk_00 = TRUE;
     v.mUnk_04 = func_020b403c(1);
     v.mUnk_08 = 0;
@@ -821,7 +821,7 @@ void ReleaseRecordSceneObject(void) {
     ClearRecordListPointer();
     gRecordScene->mScreenCallbacks.mRelease();
     func_02111a98();
-    func_0212abd0();
+    ClearLinkLevelIconsPointer();
     func_02125da0();
     *&gRecordScene = NULL;
 }
@@ -865,7 +865,7 @@ void AdvanceRecordScene(void) {
     }
     gRecordScene->mScreenCallbacks.mAdvance();
     func_02125928();
-    func_0212a920();
+    AdvanceLinkLevelIcons();
 }
 
 #pragma thumb off

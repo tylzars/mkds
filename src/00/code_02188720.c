@@ -261,7 +261,7 @@ u32 func_ov000_02188868(Unk02188868 *p) {
     y->mUnk_08 = 0;
     q->mUnk_d0c_0 = p->mUnk_0a;
     q->mUnk_d0c_4 = p->mUnk_0b;
-    func_021519a8(q);
+    ReadNvramFirstThreeEntries(q);
     r = func_ov000_021a6470(data_ov000_021b4d04, 0x2300);
     if (r == 1 || r >= 4) {
         func_ov000_021885ec();

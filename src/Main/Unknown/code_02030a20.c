@@ -957,7 +957,7 @@ s32 func_02030b18(Unk02030b18 *sceneNumbers) {
 
 void ReleaseMultiSelectMember(void) {
     SetTxtSystemBgOffsetRequested(0, 0);
-    func_0212b91c();
+    ClearPaletteBlendPointer();
     HeapDestroy(gMultiSelectMember->mHeap);
     *&gMultiSelectMember = NULL;
 }

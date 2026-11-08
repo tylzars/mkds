@@ -7,7 +7,7 @@
 void func_020adddc(u32 a, void *b, u32 c, u32 d) {
     u16 *v1;
     RenderKartEntryName(a);
-    v1 = func_0212b090();
+    v1 = GetMessageScreenCharBuffer();
     PlotNibblePixels(v1, b, c, d, SetPixel2Bit);
 }
 

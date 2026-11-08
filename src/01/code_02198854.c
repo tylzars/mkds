@@ -137,7 +137,7 @@ void ReleaseOptionSelectMenu(void) {
     ApplyOptionSelectMenuSound();
     v = (reg_GX_DISPCNT & 0x1f00) >> 8;
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | ((v & ~2) << 8);
-    func_0212b91c();
+    ClearPaletteBlendPointer();
     gOptionSelectMenu = NULL;
 }
 

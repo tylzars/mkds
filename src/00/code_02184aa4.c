@@ -27,7 +27,7 @@ void InitWiFiVSCourseSelectState(u32 a) {
     v2 = func_ov000_021804f4();
     v3 = func_ov000_021804e0();
     InitWiFiVSCourseSelect((void *) a, v2, v3);
-    func_0212a910(1, 1);
+    SetLinkLevelIconEnabled(1, 1);
 }
 
 void ReleaseWiFiVSCourseSelectState(void) {

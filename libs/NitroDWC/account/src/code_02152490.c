@@ -11,7 +11,7 @@ void DWC_CreateExchangeToken(const DWCAccUserData *userdata, DWCAccFriendData *t
     MI_CpuFill8(token, 0, 12);
     if (DWCi_Acc_IsAuthentic(userdata) != 0) {
         DWCi_Acc_SetGsProfileId(token, userdata->mGsProfileId);
-        func_021529e0(token, 3);
+        SetFriendDataType(token, 3);
     } else {
         *token = userdata->mPseudo;
     }

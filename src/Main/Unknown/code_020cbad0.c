@@ -175,7 +175,7 @@ void InitMenu(void) {
     if (func_020cae54() == 2) {
         ClearSelectReturnDisplayBitOn();
     }
-    func_0212abdc(func_020cb99c(), data_0217b43c->mMainOam);
+    InitLinkLevelIcons(func_020cb99c(), data_0217b43c->mMainOam);
     switch (func_020cc120()) {
         case 0:
             SwitchMenuScreen(0, 0x1f);

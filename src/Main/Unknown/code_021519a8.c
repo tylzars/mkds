@@ -4,10 +4,10 @@
 
 #pragma thumb on
 
-u32 func_021519a8(void *a) {
-    int v1;
-    v1 = readNvram((*(u32 *) &data_0218049c), (0x00000300u), a);
-    if (v1 != 0) {
+u32 ReadNvramFirstThreeEntries(void *buffer) {
+    int readResult;
+    readResult = readNvram((*(u32 *) &gNvramEntriesOffset), (0x00000300u), buffer);
+    if (readResult != 0) {
         return 1;
     }
     return 0;

@@ -8,21 +8,21 @@
 #pragma thumb on
 
 void DWCi_BM_GetWiFiInfo(DWCWiFiInfo *info) {
-    MI_CpuCopy8(data_021804a0, info, 6);
+    MI_CpuCopy8(gPackedWiFiInfo, info, 6);
     info->mAttestedUserId &= ~0xfffff80000000000ULL;
-    MI_CpuCopy8(data_021804a0 + 5, &info->mNotAttestedId, 6);
+    MI_CpuCopy8(gPackedWiFiInfo + 5, &info->mNotAttestedId, 6);
     info->mNotAttestedId >>= 3;
     info->mNotAttestedId &= ~0xfffff80000000000ULL;
-    MI_CpuCopy8(data_021804a0 + 10, &info->mPass, 2);
+    MI_CpuCopy8(gPackedWiFiInfo + 10, &info->mPass, 2);
     info->mPass = info->mPass >> 6;
     info->mPass &= 0x3ff;
-    MI_CpuCopy8(data_021804a0 + 12, &info->mRandomHistory, 2);
+    MI_CpuCopy8(gPackedWiFiInfo + 12, &info->mRandomHistory, 2);
 }
 
 BOOL DWCi_BM_SetWiFiInfo(const DWCWiFiInfo *info, u8 *work) {
     u32 address;
     s32 page;
-    address = *(u32 *) data_0218049c;
+    address = *(u32 *) gNvramEntriesOffset;
     DWCi_BACKUPlConvWifiInfo(info);
     Crc16InitTable(OFFSET_PTR(u16, work, 0x200), 0xa001);
     for (page = 0; page < 2;) {
@@ -30,7 +30,7 @@ BOOL DWCi_BM_SetWiFiInfo(const DWCWiFiInfo *info, u8 *work) {
             OS_Terminate();
             return 0;
         }
-        MI_CpuCopy8(data_021804a0, work + 0xf0, 0xe);
+        MI_CpuCopy8(gPackedWiFiInfo, work + 0xf0, 0xe);
         *OFFSET_PTR(u16, work, 0xfe) = Crc16(OFFSET_PTR(u16, work, 0x200), work, 0xfe);
         do {
             writeNvram(address, 0x100, work);

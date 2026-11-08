@@ -41,90 +41,90 @@
 #include "gx.h"
 
 #pragma thumb on
-void func_0212b158(void *heap) {
-    Unk0217d408 *object;
+void InitMessageScreen(void *heap) {
+    MessageScreen *messageScreen;
     TextCanvas *textCanvas;
-    object = HeapAlloc(heap, 0x1a44);
-    data_0217d408 = object;
-    NNS_G2dCharCanvasInitForBG(object->mUnk_0014, object->mUnk_0044, 0x20, 5, 4);
-    object = data_0217d408;
-    textCanvas = &object->mUnk_0034;
-    object->mUnk_0034.mCharCanvas = object->mUnk_0014;
+    messageScreen = HeapAlloc(heap, 0x1a44);
+    gMessageScreen = messageScreen;
+    NNS_G2dCharCanvasInitForBG(messageScreen->mCharCanvas, messageScreen->mCharBuffer, 0x20, 5, 4);
+    messageScreen = gMessageScreen;
+    textCanvas = &messageScreen->mTextCanvas;
+    messageScreen->mTextCanvas.mCharCanvas = messageScreen->mCharCanvas;
     textCanvas->mFont = NULL;
     textCanvas->mCharSpacing = 1;
     textCanvas->mLineSpacing = 2;
-    func_0212b144();
+    ResetMessageScreen();
 }
 
-void func_0212b144(void) {
-    data_0217d408->mUnk_000c = FALSE;
-    data_0217d408->mUnk_0010 = -1;
+void ResetMessageScreen(void) {
+    gMessageScreen->mOpen = FALSE;
+    gMessageScreen->mResult = -1;
 }
 
-s32 func_0212b0b8(void) {
-    Unk0217d408 *object;
-    if (data_0217d408->mUnk_000c == FALSE) {
+s32 UpdateMessageScreen(void) {
+    MessageScreen *messageScreen;
+    if (gMessageScreen->mOpen == FALSE) {
         return -1;
     }
     GXx_SetMasterBrightness_(&reg_GX_MASTER_BRIGHT, 0);
     GXx_SetMasterBrightness_(&reg_GXS_DB_MASTER_BRIGHT, 0);
     if ((u16) (data_021755dc.mUnk_00 & PAD_KEY_A) != 0) {
-        object = data_0217d408;
-        if (object->mUnk_0004 != 0) {
-            if ((u32) (object->mUnk_0000 - 4) <= 1) {
+        messageScreen = gMessageScreen;
+        if (messageScreen->mInputEnabled != 0) {
+            if ((u32) (messageScreen->mKind - 4) <= 1) {
                 data_0217b488->mUnk_58 = TRUE;
-                data_0217d408->mUnk_0010 = 1;
-            } else if (object->mUnk_0000 == 6) {
+                gMessageScreen->mResult = 1;
+            } else if (messageScreen->mKind == 6) {
                 data_0217b488->mUnk_1c = 1;
-                data_0217d408->mUnk_0010 = 1;
+                gMessageScreen->mResult = 1;
                 func_02120610();
             } else {
-                object->mUnk_0010 = 0;
+                messageScreen->mResult = 0;
             }
         }
     }
-    return data_0217d408->mUnk_0010;
+    return gMessageScreen->mResult;
 }
 #pragma thumb off
 
 #pragma thumb on
-void func_0212b09c(void) {
-    u32 value0;
+void ClearMessageScreenChars(void) {
+    u32 address;
     u32 fillValue;
     u32 size;
     u32 value3;
-    value0 = (u32) &data_0217d408;
-    value0 = *(const u32 *) ((value0) + 0u);
-    value0 = (value0) + 68u;
+    address = (u32) &gMessageScreen;
+    address = *(const u32 *) ((address) + 0u);
+    address = (address) + 68u;
     fillValue = 0u;
     size = 0x1400u;
-    MI_CpuFill8((void *) value0, fillValue, size);
+    MI_CpuFill8((void *) address, fillValue, size);
 }
 #pragma thumb off
 
 #pragma thumb on
 
-void *func_0212b090(void) {
-    return data_0217d408->mUnk_0044;
+void *GetMessageScreenCharBuffer(void) {
+    return gMessageScreen->mCharBuffer;
 }
 
 #pragma thumb off
 
 #pragma thumb on
-void func_0212b064(void) {
+void ClearMessageScreenMap(void) {
     volatile u16 zero;
     zero = 0;
-    MIi_CpuClear16(zero, data_0217d408->mUnk_1444, 0x600);
+    MIi_CpuClear16(zero, gMessageScreen->mScreenMap, 0x600);
 }
 
-void *func_0212afac(void) {
+void *GetMessageScreenText(void) {
     void *messages;
     s32 kind;
     messages = NULL;
     if (*(vu16 *) 0x27ffc40 != 2) {
         messages = FindFileInLoadedArchives(data_0216ea6c);
     }
-    kind = data_0217d408->mUnk_0000;
+    kind = gMessageScreen->mKind;
     if (kind == 4) {
         return GetBmgEntry(messages, 0x86);
     }
@@ -152,21 +152,21 @@ void *func_0212afac(void) {
     return NULL;
 }
 
-void func_0212ae80(void) {
+void PrintMessageScreenText(void) {
     s32 i;
-    func_0212b09c();
+    ClearMessageScreenChars();
     if (*(vu16 *) 0x27ffc40 == 2) {
-        data_0217d408->mUnk_0034.mFont = &func_020d1630()->mUnk_14;
+        gMessageScreen->mTextCanvas.mFont = &func_020d1630()->mUnk_14;
     } else {
-        data_0217d408->mUnk_0034.mFont = func_020b403c(0);
+        gMessageScreen->mTextCanvas.mFont = func_020b403c(0);
     }
-    NNSi_G2dTextCanvasDrawText(&data_0217d408->mUnk_0034, 0x80, 0x14, 0xe, 0x412, data_0217d408->mUnk_0008);
-    func_0212b064();
+    NNSi_G2dTextCanvasDrawText(&gMessageScreen->mTextCanvas, 0x80, 0x14, 0xe, 0x412, gMessageScreen->mText);
+    ClearMessageScreenMap();
     for (i = 0; i < 0x300; i++) {
         if (i >= 0x120 && i < 0x1c0) {
-            data_0217d408->mUnk_1444[i] = (i - 0x120) | 0xf000;
+            gMessageScreen->mScreenMap[i] = (i - 0x120) | 0xf000;
         } else {
-            data_0217d408->mUnk_1444[i] = 0xf09f;
+            gMessageScreen->mScreenMap[i] = 0xf09f;
         }
     }
     *(vu16 *) 0x50001fc = 0xffff;
@@ -175,10 +175,10 @@ void func_0212ae80(void) {
     reg_G2_BG1CNT = reg_G2_BG1CNT & ~3;
     reg_G2_BG1CNT = reg_G2_BG1CNT & ~0x40;
     reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0x400;
-    DC_FlushRange(data_0217d408->mUnk_0044, 0x1400);
-    DC_FlushRange(data_0217d408->mUnk_1444, 0x600);
-    GX_LoadBG1Char(data_0217d408->mUnk_0044, 0, 0x1400);
-    GX_LoadBG1Scr(data_0217d408->mUnk_1444, 0, 0x600);
+    DC_FlushRange(gMessageScreen->mCharBuffer, 0x1400);
+    DC_FlushRange(gMessageScreen->mScreenMap, 0x600);
+    GX_LoadBG1Char(gMessageScreen->mCharBuffer, 0, 0x1400);
+    GX_LoadBG1Scr(gMessageScreen->mScreenMap, 0, 0x600);
 }
 
 void func_0212ae2c(void) {
@@ -186,21 +186,21 @@ void func_0212ae2c(void) {
     a[0] = 0;
     MIi_CpuClear16(a[0], &a[1], 0x14);
     FormatAsciiNumber(func_021205f4(), &a[1]);
-    FormatMessageWithText(&a[1], data_0217d408->mUnk_0008, data_0217d408->mUnk_1444, 0x600);
-    data_0217d408->mUnk_0008 = data_0217d408->mUnk_1444;
+    FormatMessageWithText(&a[1], gMessageScreen->mText, gMessageScreen->mScreenMap, 0x600);
+    gMessageScreen->mText = gMessageScreen->mScreenMap;
 }
 
-void func_0212ad28(s32 messageKind, s32 b) {
-    u32 t;
-    if (data_0217d408->mUnk_000c == FALSE && messageKind != -1) {
-        data_0217d408->mUnk_000c = TRUE;
-        data_0217d408->mUnk_0004 = b;
-        data_0217d408->mUnk_0000 = messageKind;
-        data_0217d408->mUnk_0008 = func_0212afac();
-        if (data_0217d408->mUnk_0000 == 4) {
+void OpenMessageScreen(s32 messageKind, s32 inputEnabled) {
+    u32 bits8To12;
+    if (gMessageScreen->mOpen == FALSE && messageKind != -1) {
+        gMessageScreen->mOpen = TRUE;
+        gMessageScreen->mInputEnabled = inputEnabled;
+        gMessageScreen->mKind = messageKind;
+        gMessageScreen->mText = GetMessageScreenText();
+        if (gMessageScreen->mKind == 4) {
             func_0212ae2c();
         }
-        func_0212ae80();
+        PrintMessageScreenText();
         if (GetCurrentSceneNumber() == 2) {
             if (GetRaceHudStepHasRun() == 0) {
                 reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x200;
@@ -208,9 +208,9 @@ void func_0212ad28(s32 messageKind, s32 b) {
                 *(vu16 *) 0x5000400 = 0;
                 reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
             } else {
-                t = (reg_GX_DISPCNT & 0x1f00) >> 8;
-                t |= 2;
-                reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (t << 8);
+                bits8To12 = (reg_GX_DISPCNT & 0x1f00) >> 8;
+                bits8To12 |= 2;
+                reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (bits8To12 << 8);
             }
             G2x_SetBlendBrightnessExt_(&reg_G2_BLDCNT, 0x1d, 0, 8, 8, -11);
         } else {
@@ -224,71 +224,71 @@ void func_0212ad28(s32 messageKind, s32 b) {
     }
 }
 
-void func_0212abdc(void *heap, void *oamList) {
+void InitLinkLevelIcons(void *heap, void *oamList) {
     s32 i;
-    Unk0217d404 *object;
+    LinkLevelIcons *linkLevelIcons;
     Unk0217d3fc_00_00 *oam;
-    data_0217d404 = HeapAlloc(heap, 0x11c);
-    data_0217d404->mUnk_038 = oamList;
-    MI_CpuFill8(data_0217d404->mUnk_03c, 0, 0x20);
-    data_0217d404->mUnk_024 = 0;
+    gLinkLevelIcons = HeapAlloc(heap, 0x11c);
+    gLinkLevelIcons->mOamList = oamList;
+    MI_CpuFill8(gLinkLevelIcons->mUnk_03c, 0, 0x20);
+    gLinkLevelIcons->mCycleFrames = 0;
     for (i = 0; i < 5; i++) {
-        data_0217d404->mUnk_000[i] = 0;
+        gLinkLevelIcons->mIconEnabled[i] = 0;
     }
     switch (GetCurrentSceneNumber()) {
         case 1:
             if ((u32) (data_021759d0->mUnk_20 - 1) <= 1) {
-                data_0217d404->mUnk_000[0] = 1;
+                gLinkLevelIcons->mIconEnabled[0] = 1;
             }
             break;
         case 6:
         case 13:
-            data_0217d404->mUnk_000[0] = 1;
+            gLinkLevelIcons->mIconEnabled[0] = 1;
             break;
         case 12:
-            data_0217d404->mUnk_000[4] = 1;
+            gLinkLevelIcons->mIconEnabled[4] = 1;
             break;
         case 10:
             if (data_021759d0->mUnk_20 == 3) {
-                data_0217d404->mUnk_000[1] = 1;
-                data_0217d404->mUnk_000[4] = 1;
+                gLinkLevelIcons->mIconEnabled[1] = 1;
+                gLinkLevelIcons->mIconEnabled[4] = 1;
             } else if ((u32) (data_021759d0->mUnk_20 - 1) <= 1) {
-                data_0217d404->mUnk_000[0] = 1;
+                gLinkLevelIcons->mIconEnabled[0] = 1;
             }
             break;
         case 8:
             if (data_021759d0->mUnk_20 == 3) {
-                data_0217d404->mUnk_000[1] = 1;
-                data_0217d404->mUnk_000[4] = 1;
+                gLinkLevelIcons->mIconEnabled[1] = 1;
+                gLinkLevelIcons->mIconEnabled[4] = 1;
             }
             break;
     }
     for (i = 0; i < 2; i++) {
-        data_0217d404->mUnk_014[i] = -1;
+        gLinkLevelIcons->mIconKind[i] = -1;
     }
-    func_0212aaa4();
+    SetupLinkLevelIcons();
     for (i = 0; i < 2; i++) {
-        object = data_0217d404;
-        oam = &object->mUnk_10c[i];
-        oam->mUnk_00 =
-            ((object->mUnk_028[i].mUnk_00 & 0x1ff) << 16) | ((object->mUnk_028[i].mUnk_04 & 0xff) | 0x40000000);
+        linkLevelIcons = gLinkLevelIcons;
+        oam = &linkLevelIcons->mOamRecords[i];
+        oam->mUnk_00 = ((linkLevelIcons->mUnk_028[i].mUnk_00 & 0x1ff) << 16) |
+                       ((linkLevelIcons->mUnk_028[i].mUnk_04 & 0xff) | 0x40000000);
         oam->mUnk_04 = (0x400 - (i + 1) * 4) | 0xd000;
     }
 }
 #pragma thumb off
 
 #pragma thumb on
-void func_0212abd0(void) {
+void ClearLinkLevelIconsPointer(void) {
     u32 address;
     u32 zero;
     zero = 0u;
-    address = (u32) &data_0217d404;
+    address = (u32) &gLinkLevelIcons;
     *(u32 *) ((address) + 0u) = zero;
 }
 #pragma thumb off
 
 #pragma thumb on
-void func_0212aaa4(void) {
+void SetupLinkLevelIcons(void) {
     s32 i;
     Ncgr *chars;
     Unk02021dc8 *cells;
@@ -306,44 +306,44 @@ void func_0212aaa4(void) {
     palette = loadedFiles->mUnk_10;
     for (i = 0; i < 5; i++) {
         for (j = 0; j < data_0215d168[i]; j++) {
-            data_0217d404->mUnk_0bc[i][j] =
-                (Unk0217d404_bc *) chars->mData + GetCellCharIndex(data_0215d170[i][j], cells, a);
+            gLinkLevelIcons->mIconChars[i][j] =
+                (CharTile *) chars->mData + GetCellCharIndex(data_0215d170[i][j], cells, a);
         }
     }
     for (i = 0; i < 2; i++) {
         cellEntry = func_0201ea30(cellLayout, data_0215d164[i]);
-        data_0217d404->mUnk_028[i].mUnk_00 = func_0201ebe8(cellEntry->mUnk_00_0, 0x10);
-        data_0217d404->mUnk_028[i].mUnk_04 = func_0201eba0(cellEntry->mUnk_00_2, 0x10);
+        gLinkLevelIcons->mUnk_028[i].mUnk_00 = func_0201ebe8(cellEntry->mUnk_00_0, 0x10);
+        gLinkLevelIcons->mUnk_028[i].mUnk_04 = func_0201eba0(cellEntry->mUnk_00_2, 0x10);
     }
     for (i = 0; i < 2; i++) {
-        CallQueueAppend(0x13, (0x400 - (i + 1) * 4) << 5, data_0217d404->mUnk_03c, 0x80);
+        CallQueueAppend(0x13, (0x400 - (i + 1) * 4) << 5, gLinkLevelIcons->mUnk_03c, 0x80);
     }
     CallQueueAppend(0xe, 0x1a0, palette->mData + 0xd0, 0x20);
 }
 
-void func_0212a99c(void) {
+void UpdateLinkLevelIconTiles(void) {
     s32 slotCount;
     s32 i;
     s32 linkLevel;
     BOOL flag;
     slotCount = 0;
     for (i = 0; i < 2; i++) {
-        data_0217d404->mUnk_014[i] = -1;
-        data_0217d404->mUnk_01c[i] = 0;
+        gLinkLevelIcons->mIconKind[i] = -1;
+        gLinkLevelIcons->mIconLevel[i] = 0;
     }
-    if (data_0217d404->mUnk_000[1] != 0) {
-        data_0217d404->mUnk_014[0] = 1;
-        data_0217d404->mUnk_01c[0] = func_021205e8();
+    if (gLinkLevelIcons->mIconEnabled[1] != 0) {
+        gLinkLevelIcons->mIconKind[0] = 1;
+        gLinkLevelIcons->mIconLevel[0] = func_021205e8();
         slotCount = 1;
     }
-    if (data_0217d404->mUnk_000[0] != 0) {
-        data_0217d404->mUnk_014[slotCount] = 0;
+    if (gLinkLevelIcons->mIconEnabled[0] != 0) {
+        gLinkLevelIcons->mIconKind[slotCount] = 0;
         linkLevel = 0;
         if (data_0217aa00->mUnk_0004 != 0) {
             linkLevel = WM_GetLinkLevel();
         }
-        data_0217d404->mUnk_01c[slotCount] = linkLevel;
-    } else if (data_0217d404->mUnk_000[4] != 0) {
+        gLinkLevelIcons->mIconLevel[slotCount] = linkLevel;
+    } else if (gLinkLevelIcons->mIconEnabled[4] != 0) {
         flag = FALSE;
         if (!data_0217aa08->mUnk_00->mLocateFriendOff) {
             if (func_021213f4() != FALSE) {
@@ -351,46 +351,47 @@ void func_0212a99c(void) {
             }
         }
         if (flag != FALSE) {
-            data_0217d404->mUnk_014[slotCount] = 4;
+            gLinkLevelIcons->mIconKind[slotCount] = 4;
         }
     }
     for (i = 0; i < 2; i++) {
-        if (data_0217d404->mUnk_014[i] == -1) {
-            CallQueueAppend(0x13, (0x400 - (i + 1) * 4) << 5, data_0217d404->mUnk_03c, 0x80);
+        if (gLinkLevelIcons->mIconKind[i] == -1) {
+            CallQueueAppend(0x13, (0x400 - (i + 1) * 4) << 5, gLinkLevelIcons->mUnk_03c, 0x80);
         } else {
             CallQueueAppend(0x13, (0x400 - (i + 1) * 4) << 5,
-                            data_0217d404->mUnk_0bc[data_0217d404->mUnk_014[i]][data_0217d404->mUnk_01c[i]], 0x80);
+                            gLinkLevelIcons->mIconChars[gLinkLevelIcons->mIconKind[i]][gLinkLevelIcons->mIconLevel[i]],
+                            0x80);
         }
     }
 }
 
-void func_0212a920(void) {
+void AdvanceLinkLevelIcons(void) {
     s32 i;
     u32 slotValue;
-    data_0217d404->mUnk_024++;
-    if (data_0217d404->mUnk_024 > 0x78) {
-        data_0217d404->mUnk_024 = 0;
+    gLinkLevelIcons->mCycleFrames++;
+    if (gLinkLevelIcons->mCycleFrames > 0x78) {
+        gLinkLevelIcons->mCycleFrames = 0;
     }
-    func_0212a99c();
+    UpdateLinkLevelIconTiles();
     for (i = 0; i < 2; i++) {
-        slotValue = data_0217d404->mUnk_014[i];
-        if (data_0217d404->mUnk_024 < 0x69 || slotValue <= 1) {
-            MIi_CpuCopy16(&data_0217d404->mUnk_10c[i],
-                          &data_0217d404->mUnk_038->mUnk_00[data_0217d404->mUnk_038->mUnk_400], 6);
-            data_0217d404->mUnk_038->mUnk_400++;
+        slotValue = gLinkLevelIcons->mIconKind[i];
+        if (gLinkLevelIcons->mCycleFrames < 0x69 || slotValue <= 1) {
+            MIi_CpuCopy16(&gLinkLevelIcons->mOamRecords[i],
+                          &gLinkLevelIcons->mOamList->mUnk_00[gLinkLevelIcons->mOamList->mUnk_400], 6);
+            gLinkLevelIcons->mOamList->mUnk_400++;
         }
     }
 }
 #pragma thumb off
 
 #pragma thumb on
-void func_0212a910(u32 index, u32 value) {
+void SetLinkLevelIconEnabled(u32 index, u32 enabled) {
     u32 value0 = index;
-    u32 storedValue = value;
-    u32 value2;
-    value2 = (u32) &data_0217d404;
-    value2 = *(const u32 *) ((value2) + 0u);
+    u32 storedValue = enabled;
+    u32 address;
+    address = (u32) &gLinkLevelIcons;
+    address = *(const u32 *) ((address) + 0u);
     value0 = (value0 << 2);
-    *(u32 *) ((value2) + (value0)) = storedValue;
+    *(u32 *) ((address) + (value0)) = storedValue;
 }
 #pragma thumb off

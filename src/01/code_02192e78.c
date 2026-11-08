@@ -78,7 +78,7 @@ void InitOptionStates(void *heap, s16 a) {
     gOptionStates->mHeap = heap;
     gOptionStates->mUnk_28 = func_021250b0(heap);
     func_ov001_021930ac();
-    func_0212abdc(heap, GetOptionFirstBuffer());
+    InitLinkLevelIcons(heap, GetOptionFirstBuffer());
     arg.mUnk_00 = TRUE;
     arg.mUnk_04 = func_020b403c(1);
     arg.mUnk_08 = 0;
@@ -126,7 +126,7 @@ void func_ov001_02192f8c(void) {
         gOptionStates->mCallbacks.mRelease();
     }
     ClearOptionStateCallbacks();
-    func_0212abd0();
+    ClearLinkLevelIconsPointer();
     func_02125da0();
     gOptionStates = NULL;
 }
@@ -162,7 +162,7 @@ void AdvanceOptionStates(void) {
         }
     }
     func_02125928();
-    func_0212a920();
+    AdvanceLinkLevelIcons();
 }
 
 void func_ov001_02192ec4(void) {

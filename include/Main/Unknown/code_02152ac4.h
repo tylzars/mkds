@@ -4,4 +4,4 @@
 
 typedef struct DWCAccFriendData DWCAccFriendData;
 
-u32 func_02152ac4(const DWCAccFriendData *a);
+u32 GetFriendDataPlayerId(const DWCAccFriendData *friendData);

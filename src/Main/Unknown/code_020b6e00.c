@@ -597,8 +597,8 @@ void func_020b80a8(void) {
     u16 t[22];
 
     p = func_020b403c(0);
-    a = func_0212b090();
-    func_0212b09c();
+    a = GetMessageScreenCharBuffer();
+    ClearMessageScreenChars();
     NNS_G2dCharCanvasInitForBG(v1, a, 0x20, 4, 4);
     o.mCharCanvas = v1;
     o.mCharSpacing = 1;
@@ -839,9 +839,9 @@ void func_020b6e00(u16 *a, void *b) {
     for (k = 0; k < (s32) gRaceSetup->mKartCount; k++) {
         s32 t[8][2] = {{16, 8}, {16, 10}, {11, 12}, {18, 12}, {25, 12}, {11, 14}, {18, 14}, {25, 14}};
 
-        func_020b46d0(func_0212b090(), (k % 4) << 3, ((u32) k >> 2) << 1, 7, 2, b, t[k][0], t[k][1]);
+        func_020b46d0(GetMessageScreenCharBuffer(), (k % 4) << 3, ((u32) k >> 2) << 1, 7, 2, b, t[k][0], t[k][1]);
     }
-    func_0212b09c();
+    ClearMessageScreenChars();
     LoadNcgrData2(&o, FindSceneFileWrapper("race_transfer_map_s_o.NCGR"));
     p = o->mData;
     if (gRaceSetup->mMode == MODE_BATTLE) {

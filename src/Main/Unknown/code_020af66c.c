@@ -147,7 +147,7 @@ void func_020b0b8c(void) {
     if (v == RACE_KIND_STAFF_ROLL) {
         *(vu16 *) 0x05000000 = 0;
         func_020d159c();
-        func_0212b1c0();
+        SetStaffRollScrollAndDrainQueue();
         return;
     }
     if (gRaceHud->mEnabled == FALSE) {
@@ -706,7 +706,7 @@ void func_020af86c(void) {
         return;
     }
     if (v == RACE_KIND_STAFF_ROLL) {
-        func_0212b5d8();
+        ClearStaffRollTextPointer();
         ClearEndingStaffRollPointer();
         return;
     }

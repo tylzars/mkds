@@ -9,4 +9,4 @@ void StopPaletteBlend(void);
 void ResetPaletteBlendCycle(void);
 void AdvancePaletteBlend(void);
 void BlendPaletteColors(s32 weight);
-void func_0212b91c(void);
+void ClearPaletteBlendPointer(void);
