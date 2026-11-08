@@ -56,7 +56,7 @@ void func_ov001_02184874(Unk02188950 *donketu, Kart *kart) {
                 StartAnimationNoEndCallback(donketu, donketu->mPrm->mUnk_1d4, donketu->mPrm->mUnk_1d8);
                 func_ov001_02188a8c(donketu, donketu->mPrm->mUnk_1e4, 0x270f000);
                 SetVelocity(donketu, &velocityWhenBoosted);
-                func_ov001_02188dcc(donketu, func_ov001_02184d70);
+                SetStoppedCallback(donketu, func_ov001_02184d70);
                 SetSpeedAndClearTarget(donketu, 0);
             }
             {
@@ -110,7 +110,7 @@ void func_ov001_02184874(Unk02188950 *donketu, Kart *kart) {
             StartAnimationNoEndCallback(donketu, donketu->mPrm->mUnk_1bc, donketu->mPrm->mUnk_1c0);
             func_ov001_02188a8c(donketu, donketu->mPrm->mUnk_1cc, 0x270f000);
             SetVelocity(donketu, &velocityWhenNotBoosted);
-            func_ov001_02188dcc(donketu, NULL);
+            SetStoppedCallback(donketu, NULL);
             SetSpeedAndClearTarget(donketu, 0);
         }
     }
@@ -135,7 +135,7 @@ void func_ov001_021843b0(Unk02188950 *donketu, Kart *kart) {
                 StartAnimationNoEndCallback(donketu, donketu->mPrm->mUnk_1a0, donketu->mPrm->mUnk_1a4);
                 func_ov001_02188a8c(donketu, donketu->mPrm->mUnk_1b0, 0x270f000);
                 SetVelocity(donketu, &velocityWhenBoosted);
-                func_ov001_02188dcc(donketu, func_ov001_02184d70);
+                SetStoppedCallback(donketu, func_ov001_02184d70);
                 SetSpeedAndClearTarget(donketu, 0);
             }
             VEC_Subtract(&donketu->mUnk_000.mPos, &kart->mCollisionCenter, &effectPosition);
@@ -184,7 +184,7 @@ void func_ov001_021843b0(Unk02188950 *donketu, Kart *kart) {
             StartAnimationNoEndCallback(donketu, donketu->mPrm->mUnk_184, donketu->mPrm->mUnk_188);
             func_ov001_02188a8c(donketu, donketu->mPrm->mUnk_194, 0x270f000);
             SetVelocity(donketu, &velocityWhenNotBoosted);
-            func_ov001_02188dcc(donketu, func_ov001_02184cc8);
+            SetStoppedCallback(donketu, func_ov001_02184cc8);
             SetSpeedAndClearTarget(donketu, 0);
         }
         donketu->mUnk_000.mUnk_10.x =

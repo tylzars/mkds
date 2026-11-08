@@ -68,7 +68,7 @@ void func_ov001_0218a30c(Unk02188950 *a) {
 void func_ov001_0218a2dc(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
-    func_ov001_02188e24(a, 0x3c, &func_ov001_0218a30c);
+    StartStateFrameCountCallback(a, 0x3c, &func_ov001_0218a30c);
 }
 
 void func_ov001_0218a2d4(void) {
@@ -92,26 +92,26 @@ void func_ov001_0218a290(Unk02188950 *a) {
 void func_ov001_0218a250(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
     StartAnimationWithEndCallback(a, a->mPrm->mUnk_058, a->mPrm->mUnk_05c, (UnkFunc *) &func_ov001_0218a290);
-    func_ov001_02188e74(a, ((u32) a->mPrm->mUnk_148), func_ov001_0218b034);
+    SetAnimationFrameCallback(a, ((u32) a->mPrm->mUnk_148), func_ov001_0218b034);
 }
 
 void func_ov001_0218a20c(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_04c, a->mPrm->mUnk_050);
-    func_ov001_02188e24(a, a->mPrm->mUnk_054, &func_ov001_0218a250);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_054, &func_ov001_0218a250);
     StartMapObjectSound(&a->mUnk_000, 0x00000235u);
 }
 
 void func_ov001_0218a1d0(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_040, a->mPrm->mUnk_044);
-    func_ov001_02188e74(a, a->mPrm->mUnk_148, func_ov001_0218affc);
+    SetAnimationFrameCallback(a, a->mPrm->mUnk_148, func_ov001_0218affc);
 }
 
 void func_ov001_0218a19c(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
-    func_ov001_02188e24(a, a->mPrm->mUnk_03c, &func_ov001_0218a1d0);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_03c, &func_ov001_0218a1d0);
 }
 
 void InitBombKingObjects(Unk0218d87c *a) {

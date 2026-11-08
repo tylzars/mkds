@@ -13,7 +13,7 @@ void func_ov001_0218a52c(Unk02188950 *a) {
 void func_ov001_0218a4d0(Unk02188950 *a) {
     func_ov001_02187218(a, 7, &func_ov001_0218a568);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_164, a->mPrm->mUnk_168);
-    func_ov001_02188dcc(a, &func_ov001_0218a52c);
+    SetStoppedCallback(a, &func_ov001_0218a52c);
     SetSpeedAndClearTarget(a, 0);
     a->mBounceEnabled = TRUE;
     SetItemCollisionCallback(a, (UnkFunc *) &func_ov001_02189fe0);
@@ -28,7 +28,7 @@ void func_ov001_0218a4a0(Unk02188950 *a) {
 void func_ov001_0218a444(Unk02188950 *a) {
     func_ov001_02187218(a, 7, &func_ov001_0218a568);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_164, a->mPrm->mUnk_168);
-    func_ov001_02188dcc(a, &func_ov001_0218a4a0);
+    SetStoppedCallback(a, &func_ov001_0218a4a0);
     SetSpeedAndClearTarget(a, 0);
     a->mBounceEnabled = TRUE;
     SetItemCollisionCallback(a, (UnkFunc *) &func_ov001_02189fe0);

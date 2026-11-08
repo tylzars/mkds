@@ -8,7 +8,7 @@
 void func_ov001_0218d4c8(Unk02188950 *a) {
     u32 v1;
     func_ov001_02187218(a, 1, &func_ov001_0218d520);
-    func_ov001_02188dcc(a, 0);
+    SetStoppedCallback(a, 0);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_088, a->mPrm->mUnk_08c);
     v1 = func_ov001_02187f38(a);
     func_ov001_0218d824(a, v1);

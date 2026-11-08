@@ -801,12 +801,14 @@ void InitRaceHudSubScreenCellGroups(void) {
             gRaceHudSubScreenCellGroups->mDrawFunctions[n] = gRaceHudSubScreenCellGroupFunctions[i].mDraw;
         }
     }
-    if (func_ov001_02189290()) {
+    if (CreateRaceHudSubScreenKingIceDonketuCells()) {
         s32 n;
         s32 i;
 
         n = gRaceHudSubScreenCellGroups->mGroupCount++;
-        for (i = 0; gRaceHudSubScreenCellGroupFunctions[i].mCreate != func_ov001_02189290 && i < 49; i++) {
+        for (i = 0;
+             gRaceHudSubScreenCellGroupFunctions[i].mCreate != CreateRaceHudSubScreenKingIceDonketuCells && i < 49;
+             i++) {
         }
         if (i < 49) {
             gRaceHudSubScreenCellGroups->mClearFunctions[n] = gRaceHudSubScreenCellGroupFunctions[i].mClear;

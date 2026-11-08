@@ -63,7 +63,7 @@ void func_ov001_0218add0(Unk02188950 *a) {
     SetVelocity(a, &vec);
     func_ov001_02188c90(a);
     SetSpeedAndClearTarget(a, 0);
-    func_ov001_02188db8(a, func_ov001_0218ae60);
+    SetCourseCollisionCallback(a, func_ov001_0218ae60);
     a->mGravityEnabled = TRUE;
     StartMapObjectSound(&a->mUnk_000, 0x23a);
     SetKartCollisionCallback(a, func_ov001_0218b2b8);

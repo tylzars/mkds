@@ -46,7 +46,7 @@ void func_ov001_0218bee4(Unk02188950 *a) {
     func_ov001_02188a30(a, 0, a->mPrm->mUnk_154, a->mPrm->mUnk_148, a->mPrm->mUnk_14c);
     SetAnglePoint(a, &unk->mPos);
     SetMoveAnglePoint(a, &GetCurrentGroupEntry(a)->mPos);
-    func_ov001_02188e74(a, a->mPrm->mUnk_190, func_ov001_0218c0a4);
+    SetAnimationFrameCallback(a, a->mPrm->mUnk_190, func_ov001_0218c0a4);
 }
 
 void func_ov001_0218bde8(Unk02188950 *a) {
@@ -60,7 +60,7 @@ void func_ov001_0218bde8(Unk02188950 *a) {
     func_ov001_02188a30(a, a->mPrm->mUnk_150, a->mPrm->mUnk_154, a->mPrm->mUnk_148, a->mPrm->mUnk_14c);
     SetAnglePoint(a, &unk->mPos);
     SetMoveAnglePoint(a, &GetCurrentGroupEntry(a)->mPos);
-    func_ov001_02188e24(a, a->mPrm->mUnk_158, func_ov001_0218bee4);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_158, func_ov001_0218bee4);
     a->mUnk_138 = func_ov001_02187f7c(a);
     func_ov001_0218c5fc(a);
 }
@@ -84,7 +84,7 @@ void func_ov001_0218bcc4(Unk02188950 *a) {
     SetVelocity(a, &local);
     func_ov001_02188c90(a);
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_1ec, a->mPrm->mUnk_1f0);
-    func_ov001_02188db8(a, func_ov001_0218bd80);
+    SetCourseCollisionCallback(a, func_ov001_0218bd80);
     StartMapObjectSound(&a->mUnk_000, 0x226);
     a->mUnk_000.mFlags |= data_ov001_021a65a8;
 }
@@ -104,7 +104,7 @@ void func_ov001_0218bbac(Unk02188950 *a) {
     func_ov001_02188c48(a, a->mPrm->mUnk_1c8, a->mPrm->mUnk_1cc);
     SetAnglePointAndMoveAnglePoint(a, &a->mUnk_000.mCourseMapRow->mUnk_00);
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_1c0, a->mPrm->mUnk_1c4);
-    func_ov001_02188e24(a, a->mPrm->mUnk_1d0, func_ov001_0218bc60);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_1d0, func_ov001_0218bc60);
     func_ov001_0218c5fc(a);
 }
 
@@ -124,7 +124,7 @@ void func_ov001_0218ba48(Unk02188950 *a) {
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_0e8, a->mPrm->mUnk_0ec);
     func_ov001_02188c48(a, a->mPrm->mUnk_0f0, a->mPrm->mUnk_0f4);
     SetAnglePointAndMoveAnglePoint(a, &GetCurrentGroupEntry(a)->mPos);
-    func_ov001_02188e24(a, a->mPrm->mUnk_100, func_ov001_0218c354);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_100, func_ov001_0218c354);
     SetScaleTargetAndPerCall(a, (a->mUnk_000.mScale.x + a->mPrm->mUnk_0f8), a->mPrm->mUnk_0fc);
     SetSpeedAndClearTarget(a, 0);
     SetMapObjectModelNsbtpFrameIndex(a->mNsbmd, func_ov001_02188220(a));

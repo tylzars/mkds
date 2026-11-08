@@ -40,7 +40,7 @@ void func_ov001_0218d3ec(Unk02188950 *a) {
         x = func_ov001_02187f38(a);
     }
     func_ov001_02187218(a, 1, func_ov001_0218d520);
-    func_ov001_02188dcc(a, NULL);
+    SetStoppedCallback(a, NULL);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_088, a->mPrm->mUnk_08c);
     func_ov001_0218d824(a, x);
     func_ov001_0218d87c(a, x);

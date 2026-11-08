@@ -147,7 +147,7 @@ void func_ov001_0218f57c(Unk02188950 *a) {
     func_ov001_02188bc4(a, a->mPrm->mUnk_20c, a->mPrm->mUnk_210);
     SetAnglePointAndMoveAnglePoint(a, &p->mPos);
     func_ov001_021889c8(a);
-    func_ov001_02188e24(a, a->mPrm->mUnk_214, NULL);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_214, NULL);
     SetKartCollisionCallback(a, func_ov001_0218f9a8);
 }
 
@@ -169,7 +169,7 @@ void func_ov001_0218f454(Unk02188950 *a) {
     func_ov001_02188c48(a, a->mPrm->mUnk_1e8, a->mPrm->mUnk_1ec);
     SetAnglePointAndMoveAnglePoint(a, &p->mPos);
     func_ov001_021889c8(a);
-    func_ov001_02188e24(a, a->mPrm->mUnk_1f0, func_ov001_0218f51c);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_1f0, func_ov001_0218f51c);
     SetKartCollisionCallback(a, func_ov001_0218f9a8);
     StartMapObjectSound(&a->mUnk_000, 0x229);
 }
@@ -211,7 +211,7 @@ void func_ov001_0218f2a8(Unk02188950 *a) {
     SetAlphaLimitTargetAndPerCall(a, a->mPrm->mUnk_0f4, a->mPrm->mUnk_0f8);
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_0fc, a->mPrm->mUnk_100);
     func_ov001_02188c48(a, a->mPrm->mUnk_104, a->mPrm->mUnk_108);
-    func_ov001_02188de0(a, a->mPrm->mUnk_218, 0, &v, (UnkFunc *) func_ov001_0218f454);
+    SetPointInRangeCallback(a, a->mPrm->mUnk_218, 0, &v, (UnkFunc *) func_ov001_0218f454);
     if (data_0217d20c != 2) {
         data_0217d21c = data_0217d20c;
     }
@@ -245,7 +245,7 @@ void func_ov001_0218f16c(Unk02188950 *a) {
     SetAlphaLimitTargetAndPerCall(a, a->mPrm->mUnk_0cc, a->mPrm->mUnk_0d0);
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_0d4, a->mPrm->mUnk_0d8);
     func_ov001_02188c48(a, a->mPrm->mUnk_0dc, a->mPrm->mUnk_0e0);
-    func_ov001_02188de0(a, a->mPrm->mUnk_0e4, 0, &v, (UnkFunc *) func_ov001_0218f2a8);
+    SetPointInRangeCallback(a, a->mPrm->mUnk_0e4, 0, &v, (UnkFunc *) func_ov001_0218f2a8);
     if (data_0217d20c != 1) {
         data_0217d21c = data_0217d20c;
     }
@@ -323,7 +323,7 @@ void func_ov001_0218edc8(Unk02188950 *a) {
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_154, a->mPrm->mUnk_158);
     func_ov001_02188c48(a, a->mPrm->mUnk_15c, a->mPrm->mUnk_160);
     SetAnglePointAndMoveAnglePoint(a, &p->mPos);
-    func_ov001_02188e24(a, a->mPrm->mUnk_164, NULL);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_164, NULL);
 }
 
 u32 func_ov001_0218edb8(void) {
@@ -347,7 +347,7 @@ void func_ov001_0218ec40(Unk02188950 *a) {
         func_ov001_02188c48(a, a->mPrm->mUnk_238, a->mPrm->mUnk_23c);
     }
     SetAnglePointAndMoveAnglePoint(a, &GetCurrentGroupEntry(a)->mPos);
-    func_ov001_02188de0(a, a->mPrm->mUnk_138, a->mPrm->mUnk_13c, &GetCurrentGroupEntry(a)->mPos, NULL);
+    SetPointInRangeCallback(a, a->mPrm->mUnk_138, a->mPrm->mUnk_13c, &GetCurrentGroupEntry(a)->mPos, NULL);
     if (data_0217d20c != 5) {
         data_0217d21c = data_0217d20c;
     }
@@ -364,7 +364,7 @@ void func_ov001_0218eb94(Unk02188950 *a) {
     a->mUnk_000.mPos.z = (&GetCurrentGroupEntry(a)->mPos)->z;
     func_ov001_02187218(a, 5, (s32(*)(Unk02188950 *)) func_ov001_0218edb8);
     func_ov001_0218f900(a);
-    func_ov001_02188e24(a, a->mPrm->mUnk_1b4, NULL);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_1b4, NULL);
     if (data_0217d20c != 5) {
         data_0217d21c = data_0217d20c;
     }
@@ -377,7 +377,7 @@ void func_ov001_0218ead0(Unk02188950 *a) {
 
     func_ov001_02187218(a, 5, (s32(*)(Unk02188950 *)) func_ov001_0218edb8);
     func_ov001_0218f850(a);
-    func_ov001_02188e24(a, a->mPrm->mUnk_1a8, func_ov001_0218eb94);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_1a8, func_ov001_0218eb94);
     func_ov001_02182a3c(0);
     IncrementEntryGroupIndex(a, a->mPrm->mUnk_140);
     v1 = a->mUnk_0a8;
@@ -420,7 +420,7 @@ void func_ov001_0218e92c(Unk02188950 *p) {
     SetAlphaLimitTargetAndPerCall(p, p->mPrm->mUnk_178, p->mPrm->mUnk_17c);
     func_ov001_02188c90(p);
     SetSpeedAndClearTarget(p, 0);
-    func_ov001_02188e24(p, p->mPrm->mUnk_194, func_ov001_0218ead0);
+    StartStateFrameCountCallback(p, p->mPrm->mUnk_194, func_ov001_0218ead0);
     StartEffectAtOffset(p, 0, 0, 0, 0x431, 0);
     StartEffectAtOffset(p, 0, 0, 0, 0x430, 0);
     StartEffectAtOffset(p, 0, 0, 0, 0x432, 0);
@@ -456,7 +456,7 @@ void func_ov001_0218e8b0(Unk02188950 *a) {
 void func_ov001_0218e860(Unk02188950 *a) {
     func_ov001_02187218(a, 5, (s32(*)(Unk02188950 *)) func_ov001_0218f688);
     func_ov001_0218f850(a);
-    func_ov001_02188e24(a, a->mPrm->mUnk_1a8, func_ov001_0218e8b0);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_1a8, func_ov001_0218e8b0);
     if (data_0217d20c != 3) {
         data_0217d21c = data_0217d20c;
     }
@@ -485,7 +485,7 @@ void func_ov001_0218e7b0(Unk02188950 *a) {
 void func_ov001_0218e760(Unk02188950 *p) {
     func_ov001_02187218(p, 5, func_ov001_0218f688);
     func_ov001_0218f850(p);
-    func_ov001_02188e24(p, p->mPrm->mUnk_1a8, func_ov001_0218e7b0);
+    StartStateFrameCountCallback(p, p->mPrm->mUnk_1a8, func_ov001_0218e7b0);
     if (data_0217d20c != 3) {
         data_0217d21c = data_0217d20c;
     }
@@ -534,7 +534,7 @@ void func_ov001_0218e5c4(Unk02188950 *a) {
     a->mAlphaLimitPerCall = 0;
     func_ov001_02187218(a, 8, func_ov001_0218e650);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
-    func_ov001_02188e24(a, 0x3c, func_ov001_0218e690);
+    StartStateFrameCountCallback(a, 0x3c, func_ov001_0218e690);
     if (data_0217d20c != 7) {
         data_0217d21c = data_0217d20c;
     }
@@ -562,7 +562,7 @@ void func_ov001_0218e520(Unk02188950 *a) {
     a->mUnk_000.mPos.y += a->mPrm->mUnk_080;
     func_ov001_02187218(a, 8, NULL);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_04c, a->mPrm->mUnk_050);
-    func_ov001_02188e24(a, a->mPrm->mUnk_054, func_ov001_0218e564);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_054, func_ov001_0218e564);
 }
 
 void func_ov001_0218e508(Unk02188950 *a) {
@@ -577,7 +577,7 @@ void func_ov001_0218e4ac(Unk02188950 *a) {
     a->mAlphaLimit = 0;
     func_ov001_02187218(a, 8, NULL);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
-    func_ov001_02188e24(a, a->mPrm->mUnk_03c, func_ov001_0218e508);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_03c, func_ov001_0218e508);
 }
 
 void func_ov001_0218e474(Unk02188950 *a) {

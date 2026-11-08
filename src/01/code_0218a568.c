@@ -26,7 +26,7 @@ void func_ov001_0218aba0(Unk02188950 *a) {
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_198, a->mPrm->mUnk_19c);
     func_ov001_02188c90(a);
     SetSpeedAndClearTarget(a, 0);
-    func_ov001_02188e24(a, a->mPrm->mUnk_1a0, &func_ov001_0218ac04);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_1a0, &func_ov001_0218ac04);
     StartMapObjectSound(&a->mUnk_000, 0x238);
 }
 
@@ -37,7 +37,7 @@ void func_ov001_0218ab04(Unk02188950 *a) {
     func_ov001_02188c48(a, a->mPrm->mUnk_18c, a->mPrm->mUnk_190);
     SetAnglePointAndMoveAnglePoint(a, &GetCurrentGroupEntry(a)->mPos);
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_184, a->mPrm->mUnk_188);
-    func_ov001_02188e24(a, a->mPrm->mUnk_194, &func_ov001_0218aba0);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_194, &func_ov001_0218aba0);
     func_ov001_0218b278(a);
 }
 
@@ -46,7 +46,7 @@ void func_ov001_0218aaac(Unk02188950 *a) {
     StartAnimationWithEndCallback(a, a->mPrm->mUnk_140, a->mPrm->mUnk_144, NULL);
     func_ov001_02188c90(a);
     SetSpeedAndClearTarget(a, 0);
-    func_ov001_02188e74(a, a->mPrm->mUnk_148, func_ov001_0218b034);
+    SetAnimationFrameCallback(a, a->mPrm->mUnk_148, func_ov001_0218b034);
 }
 
 void func_ov001_0218aa34(Unk02188950 *a) {
@@ -62,7 +62,7 @@ void func_ov001_0218aa34(Unk02188950 *a) {
         func_ov001_02187218(a, 3, NULL);
         StartAnimationWithEndCallback(a, a->mPrm->mUnk_0d4, a->mPrm->mUnk_0d8, 0);
         SetSpeedAndClearTarget(a, 0);
-        func_ov001_02188e74(a, a->mPrm->mUnk_0dc, func_ov001_0218b1d8);
+        SetAnimationFrameCallback(a, a->mPrm->mUnk_0dc, func_ov001_0218b1d8);
     }
     StartMapObjectSound(&a->mUnk_000, 0x23c);
 }
@@ -77,8 +77,8 @@ void func_ov001_0218a970(Unk02188950 *b) {
         func_ov001_02188c48(b, b->mPrm->mUnk_0bc, b->mPrm->mUnk_0bc);
         SetAnglePointAndMoveAnglePoint(b, &kart->mPos);
         SetSpeedAndClearTarget(b, b->mPrm->mUnk_0b8);
-        func_ov001_02188de0(b, b->mPrm->mUnk_0cc, b->mPrm->mUnk_0d0, &kart->mPos, &func_ov001_0218aa34);
-        func_ov001_02188e24(b, b->mPrm->mUnk_0c8, 0);
+        SetPointInRangeCallback(b, b->mPrm->mUnk_0cc, b->mPrm->mUnk_0d0, &kart->mPos, &func_ov001_0218aa34);
+        StartStateFrameCountCallback(b, b->mPrm->mUnk_0c8, 0);
         func_ov001_0218b278(b);
     } else {
         func_ov001_02188e88(b);
@@ -90,7 +90,7 @@ void func_ov001_0218a910(Unk02188950 *a) {
         func_ov001_02187218(a, 3, NULL);
         StartAnimationWithEndCallback(a, a->mPrm->mUnk_0d4, a->mPrm->mUnk_0d8, 0);
         SetSpeedAndClearTarget(a, 0);
-        func_ov001_02188e74(a, a->mPrm->mUnk_0dc, func_ov001_0218b1d8);
+        SetAnimationFrameCallback(a, a->mPrm->mUnk_0dc, func_ov001_0218b1d8);
         StartMapObjectSound(&a->mUnk_000, 0x23c);
     }
 }
@@ -110,7 +110,7 @@ void func_ov001_0218a828(Unk02188950 *b) {
             func_ov001_02188c48(b, b->mPrm->mUnk_0f8, b->mPrm->mUnk_0f8);
             SetAnglePointAndMoveAnglePoint(b, &kart->mPos);
             SetSpeedAndClearTarget(b, b->mPrm->mUnk_0f4);
-            func_ov001_02188de0(b, b->mPrm->mUnk_0cc, b->mPrm->mUnk_0d0, &kart->mPos, &func_ov001_0218a910);
+            SetPointInRangeCallback(b, b->mPrm->mUnk_0cc, b->mPrm->mUnk_0d0, &kart->mPos, &func_ov001_0218a910);
             func_ov001_0218b278(b);
         } else {
             func_020fd754(bomb);
@@ -130,9 +130,9 @@ void func_ov001_0218a75c(Unk02188950 *b) {
         func_ov001_02188c48(b, b->mPrm->mUnk_110, b->mPrm->mUnk_110);
         SetAnglePointAndMoveAnglePoint(b, &bomb->mUnk_000.mItemObject.mPos);
         SetSpeedAndClearTarget(b, b->mPrm->mUnk_10c);
-        func_ov001_02188de0(b, b->mPrm->mUnk_11c, b->mPrm->mUnk_120, &bomb->mUnk_000.mItemObject.mPos,
-                            &func_ov001_0218a828);
-        func_ov001_02188e24(b, b->mPrm->mUnk_124, 0);
+        SetPointInRangeCallback(b, b->mPrm->mUnk_11c, b->mPrm->mUnk_120, &bomb->mUnk_000.mItemObject.mPos,
+                                &func_ov001_0218a828);
+        StartStateFrameCountCallback(b, b->mPrm->mUnk_124, 0);
         func_ov001_0218b278(b);
     }
 }
@@ -177,9 +177,9 @@ void func_ov001_0218a60c(Unk02188950 *b) {
     func_ov001_02188c48(b, b->mPrm->mUnk_090, b->mPrm->mUnk_090);
     SetAnglePointAndMoveAnglePoint(b, &GetCurrentGroupEntry(b)->mPos);
     SetSpeedAndClearTarget(b, b->mPrm->mUnk_08c);
-    func_ov001_02188e24(b, b->mPrm->mUnk_09c, &func_ov001_0218a6b0);
+    StartStateFrameCountCallback(b, b->mPrm->mUnk_09c, &func_ov001_0218a6b0);
     a = b->mPrm;
-    func_ov001_02188de0(b, a->mUnk_094, a->mUnk_098, &GetCurrentGroupEntry(b)->mPos, &func_ov001_0218aaac);
+    SetPointInRangeCallback(b, a->mUnk_094, a->mUnk_098, &GetCurrentGroupEntry(b)->mPos, &func_ov001_0218aaac);
     func_ov001_0218b278(b);
 }
 

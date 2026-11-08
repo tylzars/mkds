@@ -13,8 +13,8 @@ void SetItemCollisionCallback(Unk02188950 *mapObject, UnkFunc *itemCollisionCall
 }
 
 BOOL IsPointInRange(Unk02188950 *mapObject, Vec3 *point, s32 radius, s32 halfAngle) {
-    if ((radius != 0 || halfAngle != 0) && (radius == 0 || func_ov001_02188f04(mapObject, point, radius) != 0) &&
-        (halfAngle == 0 || func_ov001_02188eac(mapObject, mapObject->mMoveAngle, point, halfAngle) != 0)) {
+    if ((radius != 0 || halfAngle != 0) && (radius == 0 || IsWithinXzDistanceOfPoint(mapObject, point, radius) != 0) &&
+        (halfAngle == 0 || IsDirectionToPointWithinAngle(mapObject, mapObject->mMoveAngle, point, halfAngle) != 0)) {
         return TRUE;
     }
     return FALSE;

@@ -129,7 +129,7 @@ void func_ov001_0218d9cc(Unk02188950 *a) {
     list = func_02100138(0x1fe);
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && (q = list->mUnk_00[i]) != NULL; i++) {
-            func_ov001_02188e24(q, (q->mUnk_0a8 * 15), (UnkFunc *) func_ov001_0218da1c);
+            StartStateFrameCountCallback(q, (q->mUnk_0a8 * 15), (UnkFunc *) func_ov001_0218da1c);
         }
     }
     func_ov001_0218da1c(a);

@@ -20,45 +20,47 @@
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_020c0000.h"
 #include "code_02147cd8.h"
+#include "Main/Unknown/code_021000d0.h"
 
-RaceHudSubScreenCells *data_ov001_021a9ba8;
+RaceHudSubScreenCells *gRaceHudSubScreenKingIceDonketuCells;
 RaceHudSubScreenCells *data_ov001_021a9ba4;
 
 #pragma thumb off
 
-s32 func_ov001_02189290(void) {
-    return CreateRaceHudSubScreenCells(&data_ov001_021a9ba8, 0x1f6);
+s32 CreateRaceHudSubScreenKingIceDonketuCells(void) {
+    return CreateRaceHudSubScreenCells(&gRaceHudSubScreenKingIceDonketuCells, MAP_OBJECT_KIND_KING_ICE_DONKETU);
 }
 
-void func_ov001_0218927c(void) {
-    ClearRaceHudSubScreenCells(&data_ov001_021a9ba8);
+void ClearRaceHudSubScreenKingIceDonketuCells(void) {
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenKingIceDonketuCells);
 }
 
-void func_ov001_02189160(void) {
+void UpdateRaceHudSubScreenKingIceDonketuCells(void) {
     s32 i;
-    s32 n = 0;
+    s32 cellCount = 0;
     u32 v = func_020c0db0();
-    Unk0217b498_00 *el;
+    Unk0217b498_00 *object;
     Vec3 *pos;
 
-    for (i = 0; i < data_ov001_021a9ba8->mObjectCount; i++) {
-        el = data_ov001_021a9ba8->mObjects[i];
-        if (!(el->mFlags & 1)) {
-            pos = &el->mPos;
-            if (ComputeRaceHudSubScreenPosition(pos, &data_ov001_021a9ba8->mCells[n].mDrawPos, v, 1, 1) != FALSE) {
-                data_ov001_021a9ba8->mCells[n].mCell = GetRaceSNcerEntry(0xc5);
-                data_ov001_021a9ba8->mCells[n].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
-                data_ov001_021a9ba8->mCells[n].mUnk_0e = el->mFlags & 0x20;
-                data_ov001_021a9ba8->mCells[n].mUnk_10 = el->mAngle;
-                n++;
+    for (i = 0; i < gRaceHudSubScreenKingIceDonketuCells->mObjectCount; i++) {
+        object = gRaceHudSubScreenKingIceDonketuCells->mObjects[i];
+        if (!(object->mFlags & 1)) {
+            pos = &object->mPos;
+            if (ComputeRaceHudSubScreenPosition(pos, &gRaceHudSubScreenKingIceDonketuCells->mCells[cellCount].mDrawPos,
+                                                v, 1, 1) != FALSE) {
+                gRaceHudSubScreenKingIceDonketuCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0xc5);
+                gRaceHudSubScreenKingIceDonketuCells->mCells[cellCount].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
+                gRaceHudSubScreenKingIceDonketuCells->mCells[cellCount].mUnk_0e = object->mFlags & 0x20;
+                gRaceHudSubScreenKingIceDonketuCells->mCells[cellCount].mUnk_10 = object->mAngle;
+                cellCount++;
             }
         }
     }
-    data_ov001_021a9ba8->mCellCount = n;
+    gRaceHudSubScreenKingIceDonketuCells->mCellCount = cellCount;
 }
 
-void func_ov001_02189144(void *a) {
-    DrawRaceHudSubScreenCells(a, data_ov001_021a9ba8, 0);
+void DrawRaceHudSubScreenKingIceDonketuCells(void *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenKingIceDonketuCells, 0);
 }
 
 s32 func_ov001_02189128(void) {
@@ -71,55 +73,56 @@ void func_ov001_02189114(void) {
 
 void func_ov001_02188ff8(void) {
     s32 i;
-    s32 n = 0;
+    s32 cellCount = 0;
     u32 v = func_020c0db0();
-    Unk0217b498_00 *el;
+    Unk0217b498_00 *object;
     Vec3 *pos;
 
     for (i = 0; i < data_ov001_021a9ba4->mObjectCount; i++) {
-        el = data_ov001_021a9ba4->mObjects[i];
-        if (!(el->mFlags & 1)) {
-            pos = &el->mPos;
-            if (ComputeRaceHudSubScreenPosition(pos, &data_ov001_021a9ba4->mCells[n].mDrawPos, v, 1, 1) != FALSE) {
-                data_ov001_021a9ba4->mCells[n].mCell = GetRaceSNcerEntry(0xc5);
-                data_ov001_021a9ba4->mCells[n].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
-                data_ov001_021a9ba4->mCells[n].mUnk_0e = el->mFlags & 0x20;
-                data_ov001_021a9ba4->mCells[n].mUnk_10 = el->mAngle;
-                n++;
+        object = data_ov001_021a9ba4->mObjects[i];
+        if (!(object->mFlags & 1)) {
+            pos = &object->mPos;
+            if (ComputeRaceHudSubScreenPosition(pos, &data_ov001_021a9ba4->mCells[cellCount].mDrawPos, v, 1, 1) !=
+                FALSE) {
+                data_ov001_021a9ba4->mCells[cellCount].mCell = GetRaceSNcerEntry(0xc5);
+                data_ov001_021a9ba4->mCells[cellCount].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
+                data_ov001_021a9ba4->mCells[cellCount].mUnk_0e = object->mFlags & 0x20;
+                data_ov001_021a9ba4->mCells[cellCount].mUnk_10 = object->mAngle;
+                cellCount++;
             }
         }
     }
-    data_ov001_021a9ba4->mCellCount = n;
+    data_ov001_021a9ba4->mCellCount = cellCount;
 }
 
-void func_ov001_02188fdc(void *a) {
-    DrawRaceHudSubScreenCells(a, data_ov001_021a9ba4, 0);
+void func_ov001_02188fdc(void *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, data_ov001_021a9ba4, 0);
 }
 
 #pragma thumb on
 
-u32 func_ov001_02188f04(Unk02188950 *a, Vec3 *b, s32 c) {
-    Vec3 local;
+BOOL IsWithinXzDistanceOfPoint(Unk02188950 *mapObject, Vec3 *point, s32 radius) {
+    Vec3 unusedOffset;
     s32 dx;
     s32 dz;
-    float f1;
-    float f2;
+    float radiusAsFloat;
+    float radiusAsFloatCopy;
 
-    if (b != NULL) {
-        VEC_Subtract(b, &a->mUnk_000.mPos, &local);
-        dx = a->mUnk_000.mPos.x - b->x;
-        dz = a->mUnk_000.mPos.z - b->z;
-        if (c > 0) {
-            f1 = 0.5f + (c << 12);
+    if (point != NULL) {
+        VEC_Subtract(point, &mapObject->mUnk_000.mPos, &unusedOffset);
+        dx = mapObject->mUnk_000.mPos.x - point->x;
+        dz = mapObject->mUnk_000.mPos.z - point->z;
+        if (radius > 0) {
+            radiusAsFloat = 0.5f + (radius << 12);
         } else {
-            f1 = (c << 12) - 0.5f;
+            radiusAsFloat = (radius << 12) - 0.5f;
         }
-        if (c > 0) {
-            f2 = 0.5f + (c << 12);
+        if (radius > 0) {
+            radiusAsFloatCopy = 0.5f + (radius << 12);
         } else {
-            f2 = (c << 12) - 0.5f;
+            radiusAsFloatCopy = (radius << 12) - 0.5f;
         }
-        if ((s64) dx * dx + (s64) dz * dz < (s64) (s32) f2 * (s32) f1) {
+        if ((s64) dx * dx + (s64) dz * dz < (s64) (s32) radiusAsFloatCopy * (s32) radiusAsFloat) {
             return 1;
         }
         return 0;
@@ -127,15 +130,16 @@ u32 func_ov001_02188f04(Unk02188950 *a, Vec3 *b, s32 c) {
     return 0;
 }
 
-u32 func_ov001_02188eac(Unk02188950 *a, s32 b, Vec3 *c, s32 d) {
-    s32 v;
+BOOL IsDirectionToPointWithinAngle(Unk02188950 *mapObject, s32 angle, Vec3 *point, s32 halfAngle) {
+    s32 angleDifference;
 
-    if (c != NULL) {
-        v = (u16) (FX_Atan2Idx(c->x - a->mUnk_000.mPos.x, c->z - a->mUnk_000.mPos.z) - b);
-        if (v > 0x8000) {
-            v -= 0x10000;
+    if (point != NULL) {
+        angleDifference =
+            (u16) (FX_Atan2Idx(point->x - mapObject->mUnk_000.mPos.x, point->z - mapObject->mUnk_000.mPos.z) - angle);
+        if (angleDifference > 0x8000) {
+            angleDifference -= 0x10000;
         }
-        if (-d <= v && v <= d) {
+        if (-halfAngle <= angleDifference && angleDifference <= halfAngle) {
             return 1;
         }
         return 0;
@@ -143,15 +147,15 @@ u32 func_ov001_02188eac(Unk02188950 *a, s32 b, Vec3 *c, s32 d) {
     return 0;
 }
 
-void func_ov001_02188e94(Unk02188950 *a, void (**b)()) {
-    void (*fn)() = *b;
+void ClearAndRunCallback(Unk02188950 *mapObject, void (**callbackSlot)()) {
+    void (*callback)() = *callbackSlot;
 
-    *b = NULL;
-    if (fn != NULL) {
-        fn(a, b, 0);
+    *callbackSlot = NULL;
+    if (callback != NULL) {
+        callback(mapObject, callbackSlot, 0);
     }
 }
 
-void func_ov001_02188e88(Unk02188950 *a) {
-    func_ov001_02187218(a, 0, (s32(*)(Unk02188950 *))(0));
+void func_ov001_02188e88(Unk02188950 *mapObject) {
+    func_ov001_02187218(mapObject, 0, (s32(*)(Unk02188950 *))(0));
 }

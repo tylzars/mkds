@@ -122,7 +122,7 @@ void func_ov001_0218d214(Unk02188950 *a) {
 void func_ov001_0218d1e0(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_04c, a->mPrm->mUnk_050);
-    func_ov001_02188e24(a, a->mPrm->mUnk_054, &func_ov001_0218d214);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_054, &func_ov001_0218d214);
 }
 
 void func_ov001_0218d1bc(Unk02188950 *a) {
@@ -133,7 +133,7 @@ void func_ov001_0218d1bc(Unk02188950 *a) {
 void func_ov001_0218d188(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
-    func_ov001_02188e24(a, a->mPrm->mUnk_03c, &func_ov001_0218d1bc);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_03c, &func_ov001_0218d1bc);
 }
 
 s32 func_ov001_0218d16c(Unk02188950 *a) {
@@ -174,7 +174,7 @@ void func_ov001_0218d0a8(Unk02188950 *a) {
 void func_ov001_0218d074(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_04c, a->mPrm->mUnk_050);
-    func_ov001_02188e24(a, a->mPrm->mUnk_054, &func_ov001_0218d0a8);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_054, &func_ov001_0218d0a8);
 }
 
 void func_ov001_0218d050(Unk02188950 *a) {
@@ -185,13 +185,13 @@ void func_ov001_0218d050(Unk02188950 *a) {
 void func_ov001_0218d01c(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
-    func_ov001_02188e24(a, a->mPrm->mUnk_03c, &func_ov001_0218d050);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_03c, &func_ov001_0218d050);
 }
 
 void func_ov001_0218cfe8(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_064, a->mPrm->mUnk_068);
-    func_ov001_02188e24(a, a->mPrm->mUnk_054, &func_ov001_0218d0a8);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_054, &func_ov001_0218d0a8);
 }
 
 void InitHanachanObjects(Unk0218d87c *a) {

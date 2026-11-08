@@ -28,7 +28,7 @@ void func_ov001_021841e0(Unk02188950 *donketu) {
     SetVelocity(donketu, &velocity);
     func_ov001_02188c90(donketu);
     SetSpeedTargetAndPerCall(donketu, donketu->mPrm->mUnk_230, donketu->mPrm->mUnk_234);
-    func_ov001_02188db8(donketu, func_ov001_021842ec);
+    SetCourseCollisionCallback(donketu, func_ov001_021842ec);
     donketu->mUnk_000.mFlags |= data_ov001_021a6578;
 }
 
@@ -41,7 +41,7 @@ void func_ov001_02184160(Unk02188950 *donketu) {
     SetAnglePointAndMoveAnglePoint(donketu, (Vec3 *) donketu->mUnk_000.mCourseMapRow);
     v1 = donketu->mPrm->mUnk_218;
     SetSpeedTargetAndPerCall(donketu, v1, v1);
-    func_ov001_02188e24(donketu, donketu->mPrm->mUnk_220, &func_ov001_021841e0);
+    StartStateFrameCountCallback(donketu, donketu->mPrm->mUnk_220, &func_ov001_021841e0);
 }
 
 void func_ov001_02183ff4(Unk02188950 *donketu) {
@@ -65,7 +65,7 @@ void func_ov001_02183ff4(Unk02188950 *donketu) {
     SetSpeedAndClearTarget(donketu, 0);
     SetVelocity(donketu, &velocity);
     DisableMissionRunMapObjectGravity(donketu);
-    func_ov001_02188e24(donketu, donketu->mPrm->mUnk_20c, func_ov001_02184160);
+    StartStateFrameCountCallback(donketu, donketu->mPrm->mUnk_20c, func_ov001_02184160);
     StartEffectAtWaterHeight(donketu, 0, 0, 0, 0x423, 0);
     StartEffectAtWaterHeight(donketu, 0, 0, 0, 0x425, 0);
     StartModelEffectAtWaterHeight(donketu, 4, 0);
@@ -118,13 +118,13 @@ void func_ov001_02183e40(Unk02188950 *donketu) {
     StartAnimationNoEndCallback(donketu, donketu->mPrm->mUnk_14c, donketu->mPrm->mUnk_150);
     func_ov001_02188a8c(donketu, donketu->mPrm->mUnk_158, donketu->mPrm->mUnk_158);
     SetVelocity(donketu, &velocity);
-    func_ov001_02188db8(donketu, func_ov001_02183ed4);
+    SetCourseCollisionCallback(donketu, func_ov001_02183ed4);
 }
 
 void func_ov001_02183dec(Unk02188950 *donketu) {
     func_ov001_02187218(donketu, 5, NULL);
     StartAnimationWithEndCallback(donketu, donketu->mPrm->mUnk_12c, donketu->mPrm->mUnk_130, NULL);
-    func_ov001_02188e24(donketu, donketu->mPrm->mUnk_134, &func_ov001_02183e40);
+    StartStateFrameCountCallback(donketu, donketu->mPrm->mUnk_134, &func_ov001_02183e40);
     SetSpeedAndClearTarget(donketu, 0);
 }
 
@@ -147,7 +147,7 @@ void func_ov001_02183cc8(Unk02188950 *donketu) {
     SetAnglePointAndMoveAnglePoint(donketu, &kart->mPos);
     func_ov001_021889c8(donketu);
     SetSpeedTargetAndPerCall(donketu, 0, donketu->mPrm->mUnk_114);
-    func_ov001_02188dcc(donketu, func_ov001_02184cc8);
+    SetStoppedCallback(donketu, func_ov001_02184cc8);
     SetKartCollisionCallback(donketu, func_ov001_021843b0);
     if (donketu->mSpeed < donketu->mPrm->mUnk_114) {
         SetKartCollisionCallback(donketu, func_ov001_02184874);
@@ -160,7 +160,7 @@ void func_ov001_02183c54(Unk02188950 *donketu) {
     StartAnimationNoEndCallback(donketu, donketu->mPrm->mUnk_0f4, donketu->mPrm->mUnk_0f8);
     func_ov001_02188c90(donketu);
     SetSpeedTargetAndPerCall(donketu, donketu->mPrm->mUnk_0fc, donketu->mPrm->mUnk_100);
-    func_ov001_02188e24(donketu, donketu->mPrm->mUnk_104, &func_ov001_02183cc8);
+    StartStateFrameCountCallback(donketu, donketu->mPrm->mUnk_104, &func_ov001_02183cc8);
     SetKartCollisionCallback(donketu, func_ov001_021843b0);
     func_ov001_02184e18((u16 *) donketu);
 }
@@ -169,7 +169,7 @@ void func_ov001_02183c08(Unk02188950 *donketu) {
     func_ov001_02187218(donketu, 2, NULL);
     StartAnimationNoEndCallback(donketu, donketu->mPrm->mUnk_0e8, donketu->mPrm->mUnk_0ec);
     func_ov001_02188c90(donketu);
-    func_ov001_02188e24(donketu, donketu->mPrm->mUnk_0f0, &func_ov001_02183c54);
+    StartStateFrameCountCallback(donketu, donketu->mPrm->mUnk_0f0, &func_ov001_02183c54);
     func_ov001_02184e6c(donketu);
 }
 
@@ -178,7 +178,7 @@ void func_ov001_02183b9c(Unk02188950 *donketu) {
     StartAnimationNoEndCallback(donketu, donketu->mPrm->mUnk_080, donketu->mPrm->mUnk_084);
     func_ov001_02188c90(donketu);
     SetSpeedTargetAndPerCall(donketu, donketu->mPrm->mUnk_088, donketu->mPrm->mUnk_08c);
-    func_ov001_02188e24(donketu, donketu->mPrm->mUnk_090, &func_ov001_02183cc8);
+    StartStateFrameCountCallback(donketu, donketu->mPrm->mUnk_090, &func_ov001_02183cc8);
     SetKartCollisionCallback(donketu, func_ov001_021843b0);
     func_ov001_02184e18((u16 *) donketu);
 }
@@ -192,7 +192,7 @@ void func_ov001_02183ad8(Unk02188950 *donketu) {
     func_ov001_02188c48(donketu, donketu->mPrm->mUnk_0d8, donketu->mPrm->mUnk_0d8);
     SetAnglePointAndMoveAnglePoint(donketu, &kart->mPos);
     SetSpeedAndClearTarget(donketu, donketu->mPrm->mUnk_0d4);
-    func_ov001_02188de0(donketu, 0, donketu->mPrm->mUnk_0e4, &kart->mPos, func_ov001_02183c08);
+    SetPointInRangeCallback(donketu, 0, donketu->mPrm->mUnk_0e4, &kart->mPos, func_ov001_02183c08);
     if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_BOSS_DONKETU) {
         StartMapObjectSound(&donketu->mUnk_000, 0x214);
     } else if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_KING_ICE_DONKETU) {
@@ -208,7 +208,7 @@ void func_ov001_021839ac(Unk02188950 *donketu) {
         func_ov001_02188c48(donketu, donketu->mPrm->mUnk_178, 0x270f000);
         SetAnglePointAndMoveAnglePoint(donketu, &donketu->mUnk_000.mCourseMapRow->mUnk_00);
         SetSpeedTargetAndPerCall(donketu, donketu->mPrm->mUnk_174, donketu->mPrm->mUnk_170);
-        func_ov001_02188e24(donketu, donketu->mPrm->mUnk_17c, NULL);
+        StartStateFrameCountCallback(donketu, donketu->mPrm->mUnk_17c, NULL);
         SetKartCollisionCallback(donketu, func_ov001_02184874);
     } else {
         func_ov001_02187218(donketu, 3, NULL);
@@ -216,7 +216,7 @@ void func_ov001_021839ac(Unk02188950 *donketu) {
         func_ov001_02188c48(donketu, donketu->mPrm->mUnk_178, 0x270f000);
         SetAnglePointAndMoveAnglePoint(donketu, &donketu->mUnk_000.mCourseMapRow->mUnk_00);
         SetSpeedTargetAndPerCall(donketu, -donketu->mPrm->mUnk_174, donketu->mPrm->mUnk_170);
-        func_ov001_02188e24(donketu, donketu->mPrm->mUnk_17c, NULL);
+        StartStateFrameCountCallback(donketu, donketu->mPrm->mUnk_17c, NULL);
         SetKartCollisionCallback(donketu, func_ov001_02184874);
     }
     func_ov001_02184e6c(donketu);
@@ -232,7 +232,7 @@ void func_ov001_02183894(Unk02188950 *donketu) {
         func_ov001_02188b2c(donketu, donketu->mPrm->mUnk_0c4, donketu->mPrm->mUnk_0c4, 0);
         SetAnglePointAndMoveAnglePoint(donketu, &GetCurrentGroupEntry(donketu)->mPos);
         SetSpeedTargetAndPerCall(donketu, donketu->mPrm->mUnk_0c0, donketu->mPrm->mUnk_0c0);
-        func_ov001_02188e24(donketu, donketu->mPrm->mUnk_0c8, NULL);
+        StartStateFrameCountCallback(donketu, donketu->mPrm->mUnk_0c8, NULL);
     } else {
         IncrementEntryIndex(donketu);
         func_ov001_02187218(donketu, 1, NULL);
@@ -241,7 +241,7 @@ void func_ov001_02183894(Unk02188950 *donketu) {
         SetAnglePointAndMoveAnglePoint(donketu, &GetCurrentGroupEntry(donketu)->mPos);
         SetSpeedTargetAndPerCall(donketu, donketu->mPrm->mUnk_0a4, donketu->mPrm->mUnk_0a4);
         prm = donketu->mPrm;
-        func_ov001_02188de0(donketu, prm->mUnk_0ac, prm->mUnk_0b0, &GetCurrentGroupEntry(donketu)->mPos, NULL);
+        SetPointInRangeCallback(donketu, prm->mUnk_0ac, prm->mUnk_0b0, &GetCurrentGroupEntry(donketu)->mPos, NULL);
     }
     func_ov001_02184e6c(donketu);
 }
@@ -320,7 +320,7 @@ void func_ov001_0218355c(Unk02188950 *donketu) {
     func_ov001_02187218(donketu, 8, &func_ov001_02183690);
     if (donketu->mUnk_000.mKind == MAP_OBJECT_KIND_KING_ICE_DONKETU) {
         StartAnimationNoEndCallback(donketu, donketu->mPrm->mUnk_058, donketu->mPrm->mUnk_05c);
-        func_ov001_02188e24(donketu, donketu->mPrm->mUnk_060, &func_ov001_021835b8);
+        StartStateFrameCountCallback(donketu, donketu->mPrm->mUnk_060, &func_ov001_021835b8);
         return;
     }
     StartAnimationWithEndCallback(donketu, donketu->mPrm->mUnk_058, donketu->mPrm->mUnk_05c, &func_ov001_021835b8);
@@ -329,7 +329,7 @@ void func_ov001_0218355c(Unk02188950 *donketu) {
 void func_ov001_02183524(Unk02188950 *donketu) {
     func_ov001_02187218(donketu, 8, func_ov001_021835e0);
     StartAnimationNoEndCallback(donketu, donketu->mPrm->mUnk_04c, donketu->mPrm->mUnk_050);
-    func_ov001_02188e24(donketu, donketu->mPrm->mUnk_054, &func_ov001_0218355c);
+    StartStateFrameCountCallback(donketu, donketu->mPrm->mUnk_054, &func_ov001_0218355c);
 }
 
 void func_ov001_021834fc(Unk02188950 *donketu) {
@@ -340,7 +340,7 @@ void func_ov001_021834fc(Unk02188950 *donketu) {
 void func_ov001_021834c4(Unk02188950 *donketu) {
     func_ov001_02187218(donketu, 8, func_ov001_021835e0);
     StartAnimationNoEndCallback(donketu, donketu->mPrm->mUnk_034, donketu->mPrm->mUnk_038);
-    func_ov001_02188e24(donketu, donketu->mPrm->mUnk_03c, &func_ov001_021834fc);
+    StartStateFrameCountCallback(donketu, donketu->mPrm->mUnk_03c, &func_ov001_021834fc);
 }
 
 void InitDonketuObjects(Unk0218fa78 *list) {

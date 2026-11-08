@@ -6,7 +6,7 @@
 
 void func_ov001_02188d8c(Unk02188950 *mapObject, Vec3 *point) {
     if (point != NULL) {
-        mapObject->mUnk_200 = *point;
+        mapObject->mPoint = *point;
     }
 }
 

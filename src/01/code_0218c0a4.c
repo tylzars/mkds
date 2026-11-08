@@ -42,7 +42,7 @@ void func_ov001_0218c490(Unk02188950 *a) {
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_110, a->mPrm->mUnk_114);
     func_ov001_02188c48(a, a->mPrm->mUnk_118, a->mPrm->mUnk_11c);
     SetAnglePointAndMoveAnglePoint(a, &p->mPos);
-    func_ov001_02188e24(a, a->mPrm->mUnk_12c, NULL);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_12c, NULL);
     func_ov001_0218c5fc(a);
 }
 
@@ -58,8 +58,8 @@ void func_ov001_0218c3ac(Unk02188950 *a) {
         func_ov001_02188c48(a, a->mPrm->mUnk_0d4, a->mPrm->mUnk_0d8);
     }
     SetAnglePointAndMoveAnglePoint(a, &GetCurrentGroupEntry(a)->mPos);
-    func_ov001_02188e24(a, a->mPrm->mUnk_0b8, NULL);
-    func_ov001_02188de0(a, a->mPrm->mUnk_0b4, 0, &GetCurrentGroupEntry(a)->mPos, NULL);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_0b8, NULL);
+    SetPointInRangeCallback(a, a->mPrm->mUnk_0b4, 0, &GetCurrentGroupEntry(a)->mPos, NULL);
 }
 
 void func_ov001_0218c354(Unk02188950 *a) {

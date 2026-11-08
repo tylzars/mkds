@@ -9,6 +9,6 @@ void func_ov001_0218ad68(Unk02188950 *a) {
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_1dc, a->mPrm->mUnk_1e0);
     func_ov001_02188c90(a);
     SetSpeedAndClearTarget(a, 0);
-    func_ov001_02188e24(a, a->mPrm->mUnk_1f0, &func_ov001_0218add0);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_1f0, &func_ov001_0218add0);
     a->mGravityEnabled = FALSE;
 }

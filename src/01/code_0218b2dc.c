@@ -75,7 +75,7 @@ void func_ov001_0218b928(Unk02188950 *a) {
 void func_ov001_0218b8f8(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
-    func_ov001_02188e24(a, 0x3c, &func_ov001_0218b928);
+    StartStateFrameCountCallback(a, 0x3c, &func_ov001_0218b928);
 }
 
 void func_ov001_0218b8f0(void) {
@@ -122,7 +122,7 @@ void func_ov001_0218b7fc(Unk02188950 *a) {
 void func_ov001_0218b7c8(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_04c, a->mPrm->mUnk_050);
-    func_ov001_02188e24(a, a->mPrm->mUnk_054, &func_ov001_0218b7fc);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_054, &func_ov001_0218b7fc);
 }
 
 void func_ov001_0218b7a4(Unk02188950 *a) {
@@ -133,7 +133,7 @@ void func_ov001_0218b7a4(Unk02188950 *a) {
 void func_ov001_0218b770(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
-    func_ov001_02188e24(a, a->mPrm->mUnk_03c, &func_ov001_0218b7a4);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_03c, &func_ov001_0218b7a4);
 }
 
 void func_ov001_0218b72c(Unk02188950 *a) {

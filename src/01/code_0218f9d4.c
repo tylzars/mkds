@@ -309,7 +309,7 @@ void func_ov001_02191cf4(Unk02188950 *a) {
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_2cc, 0x270f000);
     StartEffectAtOffset(a, 0, 0x44cd, 0x400, 0x42d, 0);
     StartEffectAtOffset(a, 0, 0x44cd, 0x400, 0x42e, 0);
-    func_ov001_02188db8(a, func_ov001_02191de0);
+    SetCourseCollisionCallback(a, func_ov001_02191de0);
     a->mGravityEnabled = FALSE;
 }
 
@@ -321,7 +321,7 @@ void func_ov001_02191c14(Unk02188950 *a) {
     SetVelocity(a, &v);
     func_ov001_02188c0c(a, a->mPrm->mUnk_2c8, 0x270f000);
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_2cc, 0x270f000);
-    func_ov001_02188e24(a, a->mPrm->mUnk_2a8, func_ov001_02191cf4);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_2a8, func_ov001_02191cf4);
     StartEffectAtOffset(a, 0, 0x44cd, 0x400, 0x42d, 0);
     StartEffectAtOffset(a, 0, 0x44cd, 0x400, 0x42e, 0);
     a->mGravityEnabled = FALSE;
@@ -353,7 +353,7 @@ void func_ov001_02191adc(Unk02188950 *a) {
     func_ov001_02188c90(a);
     SetSpeedAndClearTarget(a, 0);
     SetVelocity(a, &v);
-    func_ov001_02188e24(a, a->mPrm->mUnk_1c8, NULL);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_1c8, NULL);
 }
 
 void func_ov001_02191a3c(Unk02188950 *a) {
@@ -364,7 +364,7 @@ void func_ov001_02191a3c(Unk02188950 *a) {
     SetVelocity(a, &v);
     func_ov001_02188b78(a, a->mPrm->mUnk_1b4, a->mPrm->mUnk_1b8);
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_1ac, a->mPrm->mUnk_1b0);
-    func_ov001_02188db8(a, func_ov001_02191adc);
+    SetCourseCollisionCallback(a, func_ov001_02191adc);
     a->mGravityEnabled = TRUE;
 }
 
@@ -375,8 +375,8 @@ void func_ov001_02191980(Unk02188950 *a) {
     func_ov001_02188b78(a, a->mPrm->mUnk_194, a->mPrm->mUnk_198);
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_18c, a->mPrm->mUnk_190);
     SetVelocity(a, &v);
-    func_ov001_02188de0(a, a->mPrm->mUnk_19c, 0, &a->mMoveAnglePoint, func_ov001_02191a3c);
-    func_ov001_02188e24(a, a->mPrm->mUnk_0ec, func_ov001_02191a3c);
+    SetPointInRangeCallback(a, a->mPrm->mUnk_19c, 0, &a->mMoveAnglePoint, func_ov001_02191a3c);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_0ec, func_ov001_02191a3c);
     a->mGravityEnabled = FALSE;
 }
 
@@ -390,7 +390,7 @@ void func_ov001_021918c8(Unk02188950 *a) {
     func_ov001_02188b78(a, a->mPrm->mUnk_174, a->mPrm->mUnk_178);
     SetAnglePointAndMoveAnglePoint(a, &a->mMoveAnglePoint);
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_16c, a->mPrm->mUnk_170);
-    func_ov001_02188e24(a, a->mPrm->mUnk_180, func_ov001_02191980);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_180, func_ov001_02191980);
 }
 
 int func_ov001_02191888(Unk02188950 *a) {
@@ -414,7 +414,7 @@ void func_ov001_021917d0(Unk02188950 *a) {
     func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *)) func_ov001_02191888);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_148, a->mPrm->mUnk_14c);
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_150, a->mPrm->mUnk_154);
-    func_ov001_02188e24(a, a->mPrm->mUnk_160, func_ov001_021918c8);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_160, func_ov001_021918c8);
     StartEffectAtOffset(a, 0x1000, 0, 0x2000, 0x433, 0);
 }
 
@@ -431,7 +431,7 @@ void func_ov001_021916e0(Unk02188950 *a) {
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_128, a->mPrm->mUnk_12c);
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_130, a->mPrm->mUnk_134);
     func_ov001_021889c8(a);
-    func_ov001_02188e24(a, a->mPrm->mUnk_140, func_ov001_021917d0);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_140, func_ov001_021917d0);
     SetKartCollisionCallback(a, func_ov001_021927c0);
     StartEffectAtOffset(a, 0x1000, 0, 0x2000, 0x433, 0);
 }
@@ -441,7 +441,7 @@ void func_ov001_02191618(Unk02188950 *a) {
 
     func_ov001_02187218(a, 3, NULL);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_118, a->mPrm->mUnk_11c);
-    func_ov001_02188e24(a, a->mPrm->mUnk_120, func_ov001_021916e0);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_120, func_ov001_021916e0);
     func_ov001_02188c90(a);
     SetSpeedAndClearTarget(a, 0);
     SetVelocity(a, &local);
@@ -457,7 +457,7 @@ void func_ov001_02191550(Unk02188950 *a) {
 
     func_ov001_02187218(a, 3, NULL);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_10c, a->mPrm->mUnk_110);
-    func_ov001_02188e24(a, a->mPrm->mUnk_114, func_ov001_021918c8);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_114, func_ov001_021918c8);
     func_ov001_02188c90(a);
     SetSpeedAndClearTarget(a, 0);
     SetVelocity(a, &local);
@@ -481,9 +481,9 @@ void func_ov001_02191488(Unk02188950 *a) {
                                 ? GetMissionRunMapObject(
                                       (u16) ((gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181b54() : 0) + 2))
                                 : 0) >= 1) {
-        func_ov001_02188db8(a, func_ov001_02191618);
+        SetCourseCollisionCallback(a, func_ov001_02191618);
     } else {
-        func_ov001_02188db8(a, func_ov001_02191550);
+        SetCourseCollisionCallback(a, func_ov001_02191550);
     }
     a->mGravityEnabled = TRUE;
     SetKartCollisionCallback(a, func_ov001_02192794);
@@ -504,8 +504,8 @@ void func_ov001_021913b8(Unk02188950 *a) {
     SetVelocity(a, &local);
     func_ov001_02188c90(a);
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_0d8, a->mPrm->mUnk_0dc);
-    func_ov001_02188de0(a, a->mPrm->mUnk_0e8, 0, &kart->mPos, func_ov001_02191488);
-    func_ov001_02188e24(a, a->mPrm->mUnk_0ec, func_ov001_02191488);
+    SetPointInRangeCallback(a, a->mPrm->mUnk_0e8, 0, &kart->mPos, func_ov001_02191488);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_0ec, func_ov001_02191488);
     a->mGravityEnabled = FALSE;
 }
 
@@ -520,7 +520,7 @@ void func_ov001_02191318(Unk02188950 *a) {
     func_ov001_02188c90(a);
     SetAnglePointAndMoveAnglePoint(a, &kart->mPos);
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_094, a->mPrm->mUnk_098);
-    func_ov001_02188e24(a, a->mPrm->mUnk_0a8, func_ov001_021913b8);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_0a8, func_ov001_021913b8);
 }
 
 void func_ov001_02191258(Unk02188950 *a) {
@@ -528,7 +528,7 @@ void func_ov001_02191258(Unk02188950 *a) {
 
     func_ov001_02187218(a, 3, NULL);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_210, a->mPrm->mUnk_214);
-    func_ov001_02188e24(a, a->mPrm->mUnk_218, NULL);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_218, NULL);
     func_ov001_02188c90(a);
     SetSpeedAndClearTarget(a, 0);
     SetVelocity(a, &local);
@@ -550,7 +550,7 @@ void func_ov001_021911a8(Unk02188950 *a) {
     func_ov001_02188c90(a);
     SetAnglePointAndMoveAnglePoint(a, &kart->mPos);
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_1d4, a->mPrm->mUnk_1d8);
-    func_ov001_02188db8(a, func_ov001_02191258);
+    SetCourseCollisionCallback(a, func_ov001_02191258);
     SetKartCollisionCallback(a, func_ov001_02192794);
 }
 
@@ -631,7 +631,7 @@ void func_ov001_02190ee0(Unk02188950 *a) {
 void func_ov001_02190eb0(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
-    func_ov001_02188e24(a, 0x3c, &func_ov001_02190ee0);
+    StartStateFrameCountCallback(a, 0x3c, &func_ov001_02190ee0);
 }
 
 void func_ov001_02190df8(Unk02188950 *a) {
@@ -1168,20 +1168,20 @@ void func_ov001_0218ff98(Unk02188950 *a) {
 void func_ov001_0218ff64(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_04c, a->mPrm->mUnk_050);
-    func_ov001_02188e24(a, a->mPrm->mUnk_054, &func_ov001_0218ff98);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_054, &func_ov001_0218ff98);
 }
 
 void func_ov001_0218ff34(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_040, a->mPrm->mUnk_044);
-    func_ov001_02188db8(a, func_ov001_02190030);
+    SetCourseCollisionCallback(a, func_ov001_02190030);
 }
 
 void func_ov001_0218fef8(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
     DisableMissionRunMapObjectGravity(a);
-    func_ov001_02188e24(a, a->mPrm->mUnk_03c, &func_ov001_0218ff34);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_03c, &func_ov001_0218ff34);
 }
 
 void func_ov001_0218fee0(Unk02188950 *a) {

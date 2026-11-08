@@ -1,23 +1,23 @@
 #include "01/code_02188da4.h"
 #include "01/code_02188e88.h"
 
-void func_ov001_02188dcc(Unk02188950 *a, UnkFunc *b) {
-    if (b == NULL) {
-        b = (UnkFunc *) func_ov001_02188e88;
+void SetStoppedCallback(Unk02188950 *mapObject, UnkFunc *callback) {
+    if (callback == NULL) {
+        callback = (UnkFunc *) func_ov001_02188e88;
     }
-    a->mUnk_228 = b;
+    mapObject->mStoppedCallback = callback;
 }
 
-void func_ov001_02188db8(Unk02188950 *a, void (*b)(Unk02188950 *)) {
-    if (b == NULL) {
-        b = (UnkFunc *) func_ov001_02188e88;
+void SetCourseCollisionCallback(Unk02188950 *mapObject, void (*callback)(Unk02188950 *)) {
+    if (callback == NULL) {
+        callback = (UnkFunc *) func_ov001_02188e88;
     }
-    a->mUnk_22c = b;
+    mapObject->mCourseCollisionCallback = callback;
 }
 
-void func_ov001_02188da4(Unk02188950 *a, UnkFunc *b) {
-    if (b == NULL) {
-        b = (UnkFunc *) func_ov001_02188e88;
+void func_ov001_02188da4(Unk02188950 *mapObject, UnkFunc *callback) {
+    if (callback == NULL) {
+        callback = (UnkFunc *) func_ov001_02188e88;
     }
-    a->mUnk_230 = b;
+    mapObject->mUnk_230 = callback;
 }

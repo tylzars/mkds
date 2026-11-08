@@ -25,7 +25,7 @@ void func_ov001_0218acb4(Unk02188950 *a) {
     SetAnglePointAndMoveAnglePoint(a, &GetCurrentGroupEntry(a)->mPos);
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_1c8, a->mPrm->mUnk_1cc);
     SetVelocity(a, &v);
-    func_ov001_02188e24(a, a->mPrm->mUnk_1d8, func_ov001_0218ad68);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_1d8, func_ov001_0218ad68);
     a->mGravityEnabled = FALSE;
 }
 
@@ -37,8 +37,8 @@ void func_ov001_0218ac04(Unk02188950 *a) {
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_1a8, a->mPrm->mUnk_1ac);
     SetVelocity(a, &v);
     SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_1b0, a->mPrm->mUnk_1b4);
-    func_ov001_02188db8(a, func_ov001_0218ae60);
-    func_ov001_02188e24(a, a->mPrm->mUnk_1bc, func_ov001_0218acb4);
+    SetCourseCollisionCallback(a, func_ov001_0218ae60);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_1bc, func_ov001_0218acb4);
     StartMapObjectSound(&a->mUnk_000, 0x239);
     a->mUnk_000.mFlags |= data_ov001_021a6594;
 }

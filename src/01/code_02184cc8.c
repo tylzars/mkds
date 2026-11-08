@@ -18,7 +18,7 @@ void func_ov001_02184d9c(Unk02188950 *mapObject) {
         func_ov001_02187218(mapObject, 5, NULL);
         StartAnimationNoEndCallback(mapObject, mapObject->mPrm->mUnk_1ec, mapObject->mPrm->mUnk_1f0);
         SetVelocity(mapObject, &velocity);
-        func_ov001_02188db8(mapObject, func_ov001_02184d9c);
+        SetCourseCollisionCallback(mapObject, func_ov001_02184d9c);
     } else {
         func_ov001_02187218(mapObject, 0, NULL);
     }
@@ -38,7 +38,7 @@ void func_ov001_02184cf4(Unk02188950 *mapObject) {
         func_ov001_02187218(mapObject, 5, NULL);
         StartAnimationNoEndCallback(mapObject, mapObject->mPrm->mUnk_11c, mapObject->mPrm->mUnk_120);
         SetVelocity(mapObject, &velocity);
-        func_ov001_02188db8(mapObject, func_ov001_02184cf4);
+        SetCourseCollisionCallback(mapObject, func_ov001_02184cf4);
     } else {
         func_ov001_02187218(mapObject, 0, NULL);
     }

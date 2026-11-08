@@ -3,17 +3,18 @@
 #include "01/unk_021a9000.h"
 #include "Main/Unknown/code_020a3000.h"
 
-void func_ov001_02188de0(Unk02188950 *a, s32 b, s32 c, Vec3 *d, UnkFunc *e) {
-    UnkFunc *cb;
+void SetPointInRangeCallback(Unk02188950 *mapObject, s32 pointRadius, s32 pointHalfAngle, Vec3 *point,
+                             UnkFunc *callback) {
+    UnkFunc *storedCallback;
 
-    a->mUnk_1f8 = b;
-    a->mUnk_1fc = c;
-    if (d != NULL) {
-        a->mUnk_200 = *d;
+    mapObject->mPointRadius = pointRadius;
+    mapObject->mPointHalfAngle = pointHalfAngle;
+    if (point != NULL) {
+        mapObject->mPoint = *point;
     }
-    cb = e;
-    if (cb == NULL) {
-        cb = func_ov001_02188e88;
+    storedCallback = callback;
+    if (storedCallback == NULL) {
+        storedCallback = func_ov001_02188e88;
     }
-    a->mUnk_20c = cb;
+    mapObject->mPointInRangeCallback = storedCallback;
 }

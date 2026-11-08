@@ -20,6 +20,6 @@ void func_ov001_0218bfc8(Unk02188950 *a) {
     SetAnglePoint(a, &v1->mPos);
     v1 = GetCurrentGroupEntry(a);
     SetMoveAnglePoint(a, &v1->mPos);
-    func_ov001_02188e24(a, a->mPrm->mUnk_180, &func_ov001_0218c354);
+    StartStateFrameCountCallback(a, a->mPrm->mUnk_180, &func_ov001_0218c354);
     func_ov001_0218c5fc(a);
 }

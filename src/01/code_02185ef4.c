@@ -353,19 +353,19 @@ void func_ov001_02187218(Unk02188950 *mapObject, int b, s32 (*nextFunc)(Unk02188
     mapObject->mBounceEnabled = FALSE;
     mapObject->mGravityEnabled = TRUE;
     if (mapObject->mUnk_2c4 == FALSE) {
-        mapObject->mUnk_1d8 = 0;
+        mapObject->mAnimationFrameCallbackFrameIndex = 0;
         mapObject->mAnimationEndCallback = NULL;
-        mapObject->mUnk_1dc = NULL;
+        mapObject->mAnimationFrameCallback = NULL;
         mapObject->mUnk_1e0 = 0;
         mapObject->mUnk_1e4 = NULL;
         mapObject->mUnk_1e8 = 0;
         mapObject->mUnk_1ec = NULL;
-        mapObject->mUnk_1f0 = 0;
-        mapObject->mUnk_1f4 = NULL;
-        mapObject->mUnk_20c = NULL;
+        mapObject->mStateFrameCount = 0;
+        mapObject->mStateFrameCountCallback = NULL;
+        mapObject->mPointInRangeCallback = NULL;
         mapObject->mUnk_224 = NULL;
-        mapObject->mUnk_228 = NULL;
-        mapObject->mUnk_22c = NULL;
+        mapObject->mStoppedCallback = NULL;
+        mapObject->mCourseCollisionCallback = NULL;
         ReleaseEffects(mapObject);
     }
 }
@@ -768,12 +768,14 @@ void AdvanceMissionRunMapObject(u32 a, Unk02188950 *mapObject) {
         previousFrame = GetMapObjectModelNsbcaFrameIndex(mapObject->mNsbmd);
         func_ov001_0219b250(mapObject->mNsbmd);
         currentFrame = GetMapObjectModelNsbcaFrameIndex(mapObject->mNsbmd);
-        if (mapObject->mUnk_1d8 != 0) {
-            if (previousFrame < mapObject->mUnk_1d8 && mapObject->mUnk_1d8 <= currentFrame) {
-                func_ov001_02188e94(mapObject, &mapObject->mUnk_1dc);
+        if (mapObject->mAnimationFrameCallbackFrameIndex != 0) {
+            if (previousFrame < mapObject->mAnimationFrameCallbackFrameIndex &&
+                mapObject->mAnimationFrameCallbackFrameIndex <= currentFrame) {
+                ClearAndRunCallback(mapObject, &mapObject->mAnimationFrameCallback);
             } else if (currentFrame < (u32) previousFrame &&
-                       (mapObject->mUnk_1d8 <= currentFrame || previousFrame < mapObject->mUnk_1d8)) {
-                func_ov001_02188e94(mapObject, &mapObject->mUnk_1dc);
+                       (mapObject->mAnimationFrameCallbackFrameIndex <= currentFrame ||
+                        previousFrame < mapObject->mAnimationFrameCallbackFrameIndex)) {
+                ClearAndRunCallback(mapObject, &mapObject->mAnimationFrameCallback);
             }
         }
         if (mapObject->mUnk_1e0 != 0) {
@@ -793,32 +795,34 @@ void AdvanceMissionRunMapObject(u32 a, Unk02188950 *mapObject) {
             }
         }
         if (!func_ov001_0219b240(mapObject->mNsbmd)) {
-            func_ov001_02188e94(mapObject, &mapObject->mAnimationEndCallback);
+            ClearAndRunCallback(mapObject, &mapObject->mAnimationEndCallback);
         }
     }
 
     mapObject->mStateFrames++;
-    if (mapObject->mUnk_1f0 != 0 && mapObject->mStateFrames == mapObject->mUnk_1f0) {
-        mapObject->mUnk_1f0 = 0;
+    if (mapObject->mStateFrameCount != 0 && mapObject->mStateFrames == mapObject->mStateFrameCount) {
+        mapObject->mStateFrameCount = 0;
         mapObject->mStateFrames = 0;
-        func_ov001_02188e94(mapObject, &mapObject->mUnk_1f4);
+        ClearAndRunCallback(mapObject, &mapObject->mStateFrameCountCallback);
     }
-    if (mapObject->mUnk_20c != NULL &&
-        IsPointInRange(mapObject, &mapObject->mUnk_200, mapObject->mUnk_1f8, mapObject->mUnk_1fc)) {
-        func_ov001_02188e94(mapObject, &mapObject->mUnk_20c);
+    if (mapObject->mPointInRangeCallback != NULL &&
+        IsPointInRange(mapObject, &mapObject->mPoint, mapObject->mPointRadius, mapObject->mPointHalfAngle)) {
+        ClearAndRunCallback(mapObject, &mapObject->mPointInRangeCallback);
     }
     if (mapObject->mUnk_224 != NULL &&
         !IsPointInRange(mapObject, &mapObject->mUnk_218, mapObject->mUnk_210, mapObject->mUnk_214)) {
-        func_ov001_02188e94(mapObject, &mapObject->mUnk_224);
+        ClearAndRunCallback(mapObject, &mapObject->mUnk_224);
     }
-    if (mapObject->mUnk_228 != NULL && mapObject->mVelocity.y == 0 && -mapObject->mPrm->mUnk_018 < mapObject->mSpeed &&
-        mapObject->mPrm->mUnk_018 > mapObject->mSpeed && -mapObject->mPrm->mUnk_018 < mapObject->mVelocity.x &&
-        mapObject->mPrm->mUnk_018 > mapObject->mVelocity.x && -mapObject->mPrm->mUnk_018 < mapObject->mVelocity.z &&
-        mapObject->mPrm->mUnk_018 > mapObject->mVelocity.z && (mapObject->mCollisionBits & 0x1e34ef)) {
-        func_ov001_02188e94(mapObject, &mapObject->mUnk_228);
+    if (mapObject->mStoppedCallback != NULL && mapObject->mVelocity.y == 0 &&
+        -mapObject->mPrm->mUnk_018 < mapObject->mSpeed && mapObject->mPrm->mUnk_018 > mapObject->mSpeed &&
+        -mapObject->mPrm->mUnk_018 < mapObject->mVelocity.x && mapObject->mPrm->mUnk_018 > mapObject->mVelocity.x &&
+        -mapObject->mPrm->mUnk_018 < mapObject->mVelocity.z && mapObject->mPrm->mUnk_018 > mapObject->mVelocity.z &&
+        (mapObject->mCollisionBits & 0x1e34ef)) {
+        ClearAndRunCallback(mapObject, &mapObject->mStoppedCallback);
     }
-    if (mapObject->mUnk_22c != NULL && mapObject->mVelocity.y <= 0 && (mapObject->mCollisionBits & 0x1e34ef)) {
-        func_ov001_02188e94(mapObject, &mapObject->mUnk_22c);
+    if (mapObject->mCourseCollisionCallback != NULL && mapObject->mVelocity.y <= 0 &&
+        (mapObject->mCollisionBits & 0x1e34ef)) {
+        ClearAndRunCallback(mapObject, &mapObject->mCourseCollisionCallback);
     }
 
     for (effectIndex = 0; effectIndex < 5; effectIndex++) {
