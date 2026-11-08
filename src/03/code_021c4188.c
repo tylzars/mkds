@@ -12,9 +12,9 @@ void func_ov003_021c41ac(void) {
 }
 
 void func_ov003_021c4188(void) {
-    int v1;
-    v1 = IsBlendBrightnessFadeSlotBusy(0);
-    if (v1 == 0) {
+    int fadeSlotBusy;
+    fadeSlotBusy = IsBlendBrightnessFadeSlotBusy(0);
+    if (fadeSlotBusy == 0) {
         func_ov003_021bf5c8(5);
         SetUpdateFunction(func_ov003_021c4164);
     }

@@ -11,9 +11,9 @@
 #include "03/code_021d2940.h"
 
 void func_ov003_021c42f4(void) {
-    int v1;
-    v1 = AreKeysPressed(1);
-    if (v1 != 0) {
+    int allKeysPressed;
+    allKeysPressed = AreKeysPressed(1);
+    if (allKeysPressed != 0) {
         SetButtonResultIfNone((u8) 0);
     }
 }
@@ -21,9 +21,9 @@ void func_ov003_021c42f4(void) {
 void func_ov003_021c42f0(void) {}
 
 void func_ov003_021c42cc(void) {
-    int v1;
-    v1 = GetButtonResult();
-    if (v1 == 0) {
+    int buttonResult;
+    buttonResult = GetButtonResult();
+    if (buttonResult == 0) {
         StartSoundSeq(6);
         SetUpdateFunction(func_ov003_021c42ac);
     }
@@ -36,9 +36,9 @@ void func_ov003_021c42ac(void) {
 }
 
 void func_ov003_021c427c(void) {
-    int v1;
-    v1 = IsBlendBrightnessFadeSlotBusy(1);
-    if (v1 == 0) {
+    int fadeSlotBusy;
+    fadeSlotBusy = IsBlendBrightnessFadeSlotBusy(1);
+    if (fadeSlotBusy == 0) {
         StartSlideButtonsOut();
         StartBlendBrightnessFade(3, 0, 0x15, 8);
         SetUpdateFunction(func_ov003_021c4240);
