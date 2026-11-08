@@ -66,7 +66,7 @@ typedef struct EditKeyboard {
     /* 0fc */ Unk021d1770 *mRow4Keys[2];
     /* 104 */ void *mUnk_104[4];
     /* 114 */ Unk021d1770 *mCursor;
-    /* 118 */ Unk021d34e0 *mStepTask;
+    /* 118 */ TaskEntry *mStepTask;
     /* 11c */ u8 mInput;
     /* 11d */ u8 mPage;
     /* 11e */ s8 mPressedKeyIndex;

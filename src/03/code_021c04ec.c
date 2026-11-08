@@ -72,7 +72,7 @@ void CreateEditKeyboard(void) {
     gEditKeyboard->mCursor = func_ov003_021d1be4(0, 0x40, 1);
     func_ov003_021d18f0(gEditKeyboard->mCursor, -1, 0x200, 0);
     func_ov003_021d1790(gEditKeyboard->mCursor, -1, 2);
-    gEditKeyboard->mStepTask = (void *) func_ov003_021d3544(0, AdvanceEditKeyboardSlideInRow0, NULL, 0x78);
+    gEditKeyboard->mStepTask = (TaskEntry *) func_ov003_021d3544(0, AdvanceEditKeyboardSlideInRow0, NULL, 0x78);
     SetEditKeyboardRowY(gEditKeyboard->mPage, 0, 0xc0);
 }
 
@@ -105,7 +105,7 @@ static inline void func_ov003_021c0ab0_inline(Unk021bf920 *object, u32 *x, u32 *
     *y = object->mUnk_00 & 0xff;
 }
 
-void AdvanceEditKeyboardSlideInRow0(Unk021d34e0 *task) {
+void AdvanceEditKeyboardSlideInRow0(TaskEntry *task) {
     s32 xPos;
     s32 y;
     func_ov003_021c0ab0_inline(gEditKeyboard->mKeys[0], (u32 *) &xPos, (u32 *) &y);
@@ -119,7 +119,7 @@ void AdvanceEditKeyboardSlideInRow0(Unk021d34e0 *task) {
     func_ov003_021d34e0(task, AdvanceEditKeyboardSlideInRow1);
 }
 
-void AdvanceEditKeyboardSlideInRow1(Unk021d34e0 *task) {
+void AdvanceEditKeyboardSlideInRow1(TaskEntry *task) {
     s32 xPos;
     s32 y;
     func_ov003_021c0ab0_inline(gEditKeyboard->mKeys[12], (u32 *) &xPos, (u32 *) &y);
@@ -133,7 +133,7 @@ void AdvanceEditKeyboardSlideInRow1(Unk021d34e0 *task) {
     func_ov003_021d34e0(task, AdvanceEditKeyboardSlideInRow2);
 }
 
-void AdvanceEditKeyboardSlideInRow2(Unk021d34e0 *task) {
+void AdvanceEditKeyboardSlideInRow2(TaskEntry *task) {
     s32 xPos;
     s32 y;
     func_ov003_021c0ab0_inline(gEditKeyboard->mKeys[24], (u32 *) &xPos, (u32 *) &y);
@@ -147,7 +147,7 @@ void AdvanceEditKeyboardSlideInRow2(Unk021d34e0 *task) {
     func_ov003_021d34e0(task, AdvanceEditKeyboardSlideInRow3);
 }
 
-void AdvanceEditKeyboardSlideInRow3(Unk021d34e0 *task) {
+void AdvanceEditKeyboardSlideInRow3(TaskEntry *task) {
     s32 xPos;
     s32 yPos;
     func_ov003_021c0ab0_inline(gEditKeyboard->mKeys[36], (u32 *) &xPos, (u32 *) &yPos);
@@ -161,7 +161,7 @@ void AdvanceEditKeyboardSlideInRow3(Unk021d34e0 *task) {
     func_ov003_021d34e0(task, AdvanceEditKeyboardSlideInRow4);
 }
 
-void AdvanceEditKeyboardSlideInRow4(Unk021d34e0 *task) {
+void AdvanceEditKeyboardSlideInRow4(TaskEntry *task) {
     u32 x;
     s32 y;
     func_ov003_021d1770(gEditKeyboard->mRow4Keys[0], 0, &x, &y);

@@ -357,7 +357,7 @@ void MoveEditKeyboardCursor(int direction) {
     StartSoundSeq(8);
 }
 
-void AdvanceEditKeyboardSlideOutRow4(Unk021d34e0 *task) {
+void AdvanceEditKeyboardSlideOutRow4(TaskEntry *task) {
     s32 xPos;
     s32 yPos;
     func_ov003_021bfbd0_inline(func_ov003_021d1974(gEditKeyboard->mRow4Keys[0], 0), (u32 *) &xPos, (u32 *) &yPos);
@@ -368,7 +368,7 @@ void AdvanceEditKeyboardSlideOutRow4(Unk021d34e0 *task) {
     }
 }
 
-void AdvanceEditKeyboardSlideOutRow3(Unk021d34e0 *task) {
+void AdvanceEditKeyboardSlideOutRow3(TaskEntry *task) {
     s32 xPos;
     s32 y;
     func_ov003_021bfbd0_inline(gEditKeyboard->mKeys[36], (u32 *) &xPos, (u32 *) &y);
@@ -379,7 +379,7 @@ void AdvanceEditKeyboardSlideOutRow3(Unk021d34e0 *task) {
     }
 }
 
-void AdvanceEditKeyboardSlideOutRow2(Unk021d34e0 *task) {
+void AdvanceEditKeyboardSlideOutRow2(TaskEntry *task) {
     s32 xPos;
     s32 yPos;
     func_ov003_021bfbd0_inline(gEditKeyboard->mKeys[24], (u32 *) &xPos, (u32 *) &yPos);
@@ -390,7 +390,7 @@ void AdvanceEditKeyboardSlideOutRow2(Unk021d34e0 *task) {
     }
 }
 
-void AdvanceEditKeyboardSlideOutRow1(Unk021d34e0 *task) {
+void AdvanceEditKeyboardSlideOutRow1(TaskEntry *task) {
     s32 x;
     s32 y;
     func_ov003_021bfbd0_inline(gEditKeyboard->mKeys[12], (u32 *) &x, (u32 *) &y);
@@ -401,7 +401,7 @@ void AdvanceEditKeyboardSlideOutRow1(Unk021d34e0 *task) {
     }
 }
 
-void AdvanceEditKeyboardSlideOutRow0(Unk021d34e0 *task) {
+void AdvanceEditKeyboardSlideOutRow0(TaskEntry *task) {
     s32 xPos;
     s32 y;
     func_ov003_021bfbd0_inline(gEditKeyboard->mKeys[0], (u32 *) &xPos, (u32 *) &y);

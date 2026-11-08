@@ -37,7 +37,7 @@ u32 func_ov003_021cef6c(void) {
     return 0;
 }
 
-void func_ov003_021cef28(Unk021d34e0 *a) {
+void func_ov003_021cef28(TaskEntry *a) {
     data_ov003_021da284->mUnk_1a--;
     G2x_ChangeBlendBrightness_(&reg_G2_BLDCNT, data_ov003_021da284->mUnk_1a);
     if (data_ov003_021da284->mUnk_1a <= -12) {
@@ -169,14 +169,14 @@ void func_ov003_021ceb80(s32 a) {
     func_ov003_021d1790(data_ov003_021da284->mUnk_08[a], -1, 0);
 }
 
-void func_ov003_021ceb54(Unk021d34e0 *a) {
+void func_ov003_021ceb54(TaskEntry *a) {
     data_ov003_021da284->mUnk_1d++;
     if (data_ov003_021da284->mUnk_1d >= 8) {
         func_ov003_021d34e0(a, func_ov003_021ceaf8);
     }
 }
 
-void func_ov003_021ceaf8(Unk021d34e0 *a) {
+void func_ov003_021ceaf8(TaskEntry *a) {
     u32 w;
     s32 h;
 
@@ -192,7 +192,7 @@ void func_ov003_021ceaf8(Unk021d34e0 *a) {
     }
 }
 
-void func_ov003_021ceab8(Unk021d34e0 *a) {
+void func_ov003_021ceab8(TaskEntry *a) {
     data_ov003_021da284->mUnk_1a++;
     G2x_ChangeBlendBrightness_(&reg_G2_BLDCNT, data_ov003_021da284->mUnk_1a);
     if (data_ov003_021da284->mUnk_1a >= 0) {

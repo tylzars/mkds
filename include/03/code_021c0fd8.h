@@ -4,7 +4,7 @@
 
 typedef struct Unk021bf920 Unk021bf920;
 typedef struct Unk021d1770 Unk021d1770;
-typedef struct Unk021d34e0 Unk021d34e0;
+typedef struct TaskEntry TaskEntry;
 
 // Object behind data_ov003_021da160.
 typedef struct Unk021da160 {
@@ -14,7 +14,7 @@ typedef struct Unk021da160 {
     /* 40 */ Unk021d1770 *mUnk_40[2];
     /* 48 */ Unk021d1770 *mUnk_48[4];
     /* 58 */ struct Unk021d1770 *mUnk_58;
-    /* 5c */ Unk021d34e0 *mUnk_5c;
+    /* 5c */ TaskEntry *mUnk_5c;
     /* 60 */ u8 mUnk_60;
     /* 61 */ s8 mUnk_61;
     /* 62 */ s8 mUnk_62;
@@ -32,14 +32,12 @@ typedef struct Unk021c1364_05 {
     /* 0 */ u8 mUnk_00[5];
 } Unk021c1364_05;
 
-typedef struct Unk021d34e0 Unk021d34e0;
-
 void func_ov003_021c0fd8(u32 a);
-void func_ov003_021c105c(Unk021d34e0 *param_1);
-void func_ov003_021c10a8(Unk021d34e0 *param_1);
-void func_ov003_021c10f4(Unk021d34e0 *param_1);
-void func_ov003_021c1140(Unk021d34e0 *param_1);
-void func_ov003_021c118c(Unk021d34e0 *param_1);
+void func_ov003_021c105c(TaskEntry *param_1);
+void func_ov003_021c10a8(TaskEntry *param_1);
+void func_ov003_021c10f4(TaskEntry *param_1);
+void func_ov003_021c1140(TaskEntry *param_1);
+void func_ov003_021c118c(TaskEntry *param_1);
 void func_ov003_021c11dc(u32 param_1);
 void func_ov003_021c1268(void);
 void func_ov003_021c12cc(int param_1, int param_2);
@@ -50,11 +48,11 @@ void func_ov003_021c1680(void);
 void func_ov003_021c17d4(void);
 void func_ov003_021c1908(void);
 void func_ov003_021c1a44(void);
-void func_ov003_021c1a60(Unk021d34e0 *param_1);
-void func_ov003_021c1abc(Unk021d34e0 *param_1);
-void func_ov003_021c1b24(Unk021d34e0 *param_1);
-void func_ov003_021c1b8c(Unk021d34e0 *param_1);
-void func_ov003_021c1bf4(Unk021d34e0 *param_1);
+void func_ov003_021c1a60(TaskEntry *param_1);
+void func_ov003_021c1abc(TaskEntry *param_1);
+void func_ov003_021c1b24(TaskEntry *param_1);
+void func_ov003_021c1b8c(TaskEntry *param_1);
+void func_ov003_021c1bf4(TaskEntry *param_1);
 u32 func_ov003_021c1c5c(void);
 void func_ov003_021c1c70(u8 a);
 void func_ov003_021c1c80(u8 a);

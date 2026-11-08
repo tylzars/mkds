@@ -38,7 +38,7 @@ void CreateSlideButtons(u32 kind) {
     data_ov003_021da108->mUnk_08 = func_ov003_021d1be4(0, 1, 1);
     func_ov003_021d1790(data_ov003_021da108->mUnk_08, -1, 1);
     SetSlideButtonsY(0xc0);
-    data_ov003_021da108->mStepTask = (Unk021d34e0 *) func_ov003_021d3544(0, AdvanceSlideButtonsIn, NULL, 0x78);
+    data_ov003_021da108->mStepTask = (TaskEntry *) func_ov003_021d3544(0, AdvanceSlideButtonsIn, NULL, 0x78);
 }
 
 void StartSlideButtonsOut(void) {
@@ -94,7 +94,7 @@ void SetSlideButtonsY(s32 yPosition) {
     }
 }
 
-void AdvanceSlideButtonsIn(Unk021d34e0 *task) {
+void AdvanceSlideButtonsIn(TaskEntry *task) {
     u32 a;
     s32 yPosition;
 
@@ -107,7 +107,7 @@ void AdvanceSlideButtonsIn(Unk021d34e0 *task) {
     }
 }
 
-void AdvanceSlideButtonsWait(Unk021d34e0 *task) {
+void AdvanceSlideButtonsWait(TaskEntry *task) {
     u32 a = 0;
 
     data_ov003_021da108->mButtonResult = -1;
@@ -152,7 +152,7 @@ void AdvanceButtonTouch(void) {
     data_ov003_021da108->mButtonResult = -1;
 }
 
-void AdvanceSlideButtonsOut(Unk021d34e0 *task) {
+void AdvanceSlideButtonsOut(TaskEntry *task) {
     u32 stackValue;
     int yPosition;
     func_ov003_021d1770(data_ov003_021da108->mUnk_08, 0, &stackValue, &yPosition);

@@ -99,7 +99,7 @@ TaskEntry *func_ov003_021d34e4(u32 a, void (*b)(TaskEntry *a, u32 b), u32 c, u32
     return f;
 }
 
-void func_ov003_021d34e0(Unk021d34e0 *a, UnkFunc *b) {
+void func_ov003_021d34e0(TaskEntry *a, UnkFunc *b) {
     a->mUnk_08 = b;
 }
 

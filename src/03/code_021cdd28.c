@@ -42,7 +42,7 @@ u32 func_ov003_021ce00c(void) {
     return 0;
 }
 
-void func_ov003_021cdf98(Unk021d34e0 *a) {
+void func_ov003_021cdf98(TaskEntry *a) {
     s32 i;
     s32 w;
     s32 h;
@@ -61,7 +61,7 @@ void func_ov003_021cdf98(Unk021d34e0 *a) {
     func_ov003_021d34e0(a, func_ov003_021cdf00);
 }
 
-void func_ov003_021cdf00(Unk021d34e0 *a) {
+void func_ov003_021cdf00(TaskEntry *a) {
     s32 i;
     s32 w;
     s32 h;
@@ -80,7 +80,7 @@ void func_ov003_021cdf00(Unk021d34e0 *a) {
     func_ov003_021d34e0(a, func_ov003_021cde68);
 }
 
-void func_ov003_021cde68(Unk021d34e0 *a) {
+void func_ov003_021cde68(TaskEntry *a) {
     s32 i;
     s32 w;
     s32 h;
@@ -99,7 +99,7 @@ void func_ov003_021cde68(Unk021d34e0 *a) {
     func_ov003_021d34e0(a, func_ov003_021cddd0);
 }
 
-void func_ov003_021cddd0(Unk021d34e0 *a) {
+void func_ov003_021cddd0(TaskEntry *a) {
     s32 i;
     s32 w;
     s32 h;
@@ -118,7 +118,7 @@ void func_ov003_021cddd0(Unk021d34e0 *a) {
     func_ov003_021d34e0(a, func_ov003_021cdd48);
 }
 
-void func_ov003_021cdd48(Unk021d34e0 *a) {
+void func_ov003_021cdd48(TaskEntry *a) {
     s32 i;
     s32 w;
     s32 h;

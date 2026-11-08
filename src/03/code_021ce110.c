@@ -67,7 +67,7 @@ void func_ov003_021ce408(u32 a) {
     StartSoundSeq(0xd);
 }
 
-void func_ov003_021ce370(Unk021d34e0 *a) {
+void func_ov003_021ce370(TaskEntry *a) {
     s32 i;
     s32 w;
     s32 h;
@@ -86,7 +86,7 @@ void func_ov003_021ce370(Unk021d34e0 *a) {
     func_ov003_021d34e0(a, func_ov003_021ce2d0);
 }
 
-void func_ov003_021ce2d0(Unk021d34e0 *a) {
+void func_ov003_021ce2d0(TaskEntry *a) {
     s32 i;
     s32 w;
     s32 h;
@@ -105,7 +105,7 @@ void func_ov003_021ce2d0(Unk021d34e0 *a) {
     func_ov003_021d34e0(a, func_ov003_021ce230);
 }
 
-void func_ov003_021ce230(Unk021d34e0 *a) {
+void func_ov003_021ce230(TaskEntry *a) {
     s32 i;
     s32 w;
     s32 h;
@@ -124,7 +124,7 @@ void func_ov003_021ce230(Unk021d34e0 *a) {
     func_ov003_021d34e0(a, func_ov003_021ce190);
 }
 
-void func_ov003_021ce190(Unk021d34e0 *a) {
+void func_ov003_021ce190(TaskEntry *a) {
     s32 i;
     s32 w;
     s32 h;
@@ -143,7 +143,7 @@ void func_ov003_021ce190(Unk021d34e0 *a) {
     func_ov003_021d34e0(a, func_ov003_021ce110);
 }
 
-void func_ov003_021ce110(Unk021d34e0 *a) {
+void func_ov003_021ce110(TaskEntry *a) {
     s32 i;
     s32 w;
     s32 h;
