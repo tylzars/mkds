@@ -2970,8 +2970,8 @@ func_0207f05c kind:function(arm,size=0x288) addr:0x0207f05c
 PickKartAiTargetKart kind:function(arm,size=0x270) addr:0x0207f2e4
 ShouldKartAiTargetKart kind:function(arm,size=0xac) addr:0x0207f554
 func_0207f600 kind:function(arm,size=0x30) addr:0x0207f600
-func_0207f630 kind:function(arm,size=0x38) addr:0x0207f630
-func_0207f668 kind:function(arm,size=0x88) addr:0x0207f668
+SetKartAiLinkPosAndClearSideOffset kind:function(arm,size=0x38) addr:0x0207f630
+SetKartAiLinkPosAndAddSideOffset kind:function(arm,size=0x88) addr:0x0207f668
 func_0207f6f0 kind:function(arm,size=0x208) addr:0x0207f6f0
 AdvanceRaceKartAi kind:function(arm,size=0xb0) addr:0x0207f8f8
 ResetRaceKartAiAtPointLink kind:function(arm,size=0x24) addr:0x0207f9a8
@@ -2979,7 +2979,7 @@ ResetKartAi kind:function(arm,size=0xa8) addr:0x0207f9cc
 SetupRaceKartAi kind:function(arm,size=0x12c) addr:0x0207fa74
 func_0207fba0 kind:function(arm,size=0x188) addr:0x0207fba0
 AdvanceStaffRollPointLinkCursor kind:function(arm,size=0x148) addr:0x0207fd28
-func_0207fe70 kind:function(arm,size=0x50) addr:0x0207fe70
+GetPointLinkSpeedRatio kind:function(arm,size=0x50) addr:0x0207fe70
 AdvanceAwardPointLinkCursor kind:function(arm,size=0x9c) addr:0x0207fec0
 AdvancePointLinkCursorToFirstNext kind:function(arm,size=0x48) addr:0x0207ff5c
 SetupPointLinkCursor kind:function(arm,size=0x78) addr:0x0207ffa4
@@ -11366,13 +11366,13 @@ data_0217ae40 kind:bss addr:0x0217ae20
 data_0217ae44 kind:bss addr:0x0217ae24
 data_0217ae48 kind:bss addr:0x0217ae28
 data_usa_0217ae2c kind:bss addr:0x0217ae2c
-data_usa_0217ae30 kind:bss addr:0x0217ae30
+gKartAiRaceStartBoostRandomLimits kind:bss addr:0x0217ae30
 data_usa_0217ae34 kind:bss addr:0x0217ae34
 data_usa_0217ae38 kind:bss addr:0x0217ae38
-data_usa_0217ae3c kind:bss addr:0x0217ae3c
+gAdvanceKartAiPointLinkCursor kind:bss addr:0x0217ae3c
 data_usa_0217ae40 kind:bss addr:0x0217ae40
-data_usa_0217ae44 kind:bss addr:0x0217ae44
-data_usa_0217ae48 kind:bss addr:0x0217ae48
+gSetKartAiLinkPos kind:bss addr:0x0217ae44
+gKartAiDriftChargeRandomLimits kind:bss addr:0x0217ae48
 data_0217ae6c kind:bss addr:0x0217ae4c
 data_0217ae70 kind:bss addr:0x0217ae50
 data_0217ae74 kind:bss addr:0x0217ae54

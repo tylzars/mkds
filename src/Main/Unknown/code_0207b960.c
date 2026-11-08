@@ -36,7 +36,7 @@ void func_0207d6a4(struct KartAiRaceSpeedLimit *raceSpeedLimit, struct KartAi *k
     s32 x;
 
     if (GetRaceUpdateFramesMod8() == kartAi->mIndex) {
-        raceSpeedLimit->mUnk_08 = 0;
+        raceSpeedLimit->mSpeedLimitAddition = 0;
         limit = kartAi->mKart->mSpeedLimitGoal;
         if (limit > 0xa000) {
             limit = 0xa000;
@@ -66,7 +66,7 @@ void func_0207d6a4(struct KartAiRaceSpeedLimit *raceSpeedLimit, struct KartAi *k
     if ((kartAi->mKart->mUnk_48 & 0x10000020) != 0) {
         return;
     }
-    x = func_0207fe70((PointLinkCursor *) &kartAi->mUnk_08.mUnk_00);
+    x = GetPointLinkSpeedRatio((PointLinkCursor *) &kartAi->mUnk_08.mUnk_00);
     kartAi->mKart->mSpeedLimitGoal = ((s64) raceSpeedLimit->mSpeedLimit * x + 0x800) >> 12;
 }
 

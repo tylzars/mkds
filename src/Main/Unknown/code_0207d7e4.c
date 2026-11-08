@@ -3,10 +3,10 @@
 
 void ResetAwardMissionRunKartAiSpeedLimit(struct KartAiRaceSpeedLimit *p0, struct KartAi *kartAi) {
     p0->mSpeedLimit = (u32) (((u32) p0->mBaseSpeedLimit));
-    p0->mUnk_08 = 0x0u;
+    p0->mSpeedLimitAddition = 0x0u;
     p0->mTurnSpeedLimit = 0x0u;
-    p0->mUnk_10 = (u32) (((u32) p0->mBaseSpeedLimit));
+    p0->mSpeedLimitBeforeTurn = (u32) (((u32) p0->mBaseSpeedLimit));
     p0->mRank = (u32) ((~(0x0u)));
-    p0->mUnk_18 = 0x0u;
-    p0->mUnk_10 = 0x0u;
+    p0->mSpeedLimitReduced = 0x0u;
+    p0->mSpeedLimitBeforeTurn = 0x0u;
 }

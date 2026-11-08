@@ -18,11 +18,11 @@ typedef struct Unk020888b4_d0 {
 typedef struct KartAiRaceSpeedLimit {
     /* 00 */ s32 mBaseSpeedLimit;
     /* 04 */ s32 mSpeedLimit;
-    /* 08 */ s32 mUnk_08;
+    /* 08 */ s32 mSpeedLimitAddition;
     /* 0c */ s32 mTurnSpeedLimit;
-    /* 10 */ s32 mUnk_10;
+    /* 10 */ s32 mSpeedLimitBeforeTurn;
     /* 14 */ s32 mRank;
-    /* 18 */ s32 mUnk_18;
+    /* 18 */ s32 mSpeedLimitReduced;
     /* 1c */ s32 mUnk_1c;
     /* 20 */ s32 mUnk_20;
     /* 24 */ s32 mUnk_24;
@@ -70,7 +70,7 @@ typedef struct KartAi {
     /* 88 */ s32 mUnk_88;
     /* 8c */ s32 mDriftChargeRandomLimit;
     /* 90 */ s32 mUnk_90;
-    /* 94 */ s32 mUnk_94;
+    /* 94 */ s32 mTurnSide;
     /* 98 */ s32 mUnk_98;
     /* 9c */ s32 mMinVelocityLength;
     /* a0 */ BOOL mUnk_a0;
