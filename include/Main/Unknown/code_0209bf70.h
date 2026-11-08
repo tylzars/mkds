@@ -25,7 +25,7 @@ typedef struct Bound {
     /* 000 */ MapObject mUnk_000;
     /* 0a0 */ u16 mNsbtpFrameIndex;
     /* 0a2 */ u8 mUnk_0a2[2];
-    /* 0a4 */ s32 mUnk_0a4;
+    /* 0a4 */ s32 mSphereHit;
     /* 0a8 */ u8 mUnk_0a8[0xc];
     /* 0b4 */ s32 mInitialScaleX;
     /* 0b8 */ u16 mWobbleXAngle;
@@ -98,9 +98,11 @@ extern u32 data_usa_021565d0;
 extern u16 data_usa_021565d4;
 extern const char data_usa_02167328[];
 
-Unk0209bf70 *func_0209bf70(void *a, void *b, void *c, u32 d, u16 e, u16 f);
+Unk0209bf70 *func_0209bf70(void *collideKartCallback, void *collideItemObjectCallback, void *sphereHitCallback, u32 d,
+                           u16 e, u16 f);
 u32 CreateEmptyMapObjectKindData(void);
-void *CreateMapObjectKindData(void *param_1, void *param_2, void *param_3, u32 param_4, u16 param_5);
+void *CreateMapObjectKindData(void *collideKartCallback, void *collideItemObjectCallback, void *sphereHitCallback,
+                              u32 param_4, u16 param_5);
 BOOL StartBoundWobble(s32 a);
 void CreateBoundUpdateList(void);
 void CreateBerryDrawList(void);
@@ -109,21 +111,21 @@ void CreateBoundDrawList(void);
 void CreateBerryKindData(void);
 void CreateCreamKindData(void);
 void CreateBoundKindData(void);
-void UpdateBoundAndCreamAndBerry(MapObjectList *a, Bound *p);
+void UpdateBoundAndCreamAndBerry(MapObjectList *mapObjectList, Bound *bound);
 s32 func_0209c4bc(s32 a, s32 b);
 s16 func_0209c4d8(s32 a);
-void InitBoundAndCreamAndBerryObjects(MapObjectList *a);
-void DrawBerry(MapObjectList *a, Bound *p);
-void DrawCream(MapObjectList *a, Bound *p);
+void InitBoundAndCreamAndBerryObjects(MapObjectList *mapObjectList);
+void DrawBerry(MapObjectList *mapObjectList, Bound *bound);
+void DrawCream(MapObjectList *mapObjectList, Bound *bound);
 void CreateBerry(void *a); /* also loads cream_effect.nsbmd */
 void CreateCream(void *a); /* also loads cream_effect.nsbmd */
-void DrawBound(MapObjectList *a, Bound *p);
-BOOL func_0209c8b0(Bound *p, Vec3 *a, s32 b, Vec3 *c);
-u8 CollideItemObjectWithBound(Bound *p, void *a, u8 *b, u8 *c);
-s32 CollideKartWithBound(Bound *p, Kart *k, u8 *b, u8 *c);
-void InitBound(Bound *p);
+void DrawBound(MapObjectList *mapObjectList, Bound *bound);
+BOOL ComputeSphereHitOnBound(Bound *bound, Vec3 *sphereCenter, s32 sphereRadius, Vec3 *pushOut);
+u8 CollideItemObjectWithBound(Bound *bound, void *a, u8 *b, u8 *c);
+s32 CollideKartWithBound(Bound *bound, Kart *kart, u8 *b, u8 *c);
+void InitBound(Bound *bound);
 void CreateSunUpdateList(void);
 void CreateSunDrawList(void);
-void UpdateSun(MapObjectList *a, Sun *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void InitSunObjects(MapObjectList *a);
+void UpdateSun(MapObjectList *mapObjectList, Sun *sun); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void InitSunObjects(MapObjectList *mapObjectList);
 void DrawSun(void *a, Unk0209d3fc *b);

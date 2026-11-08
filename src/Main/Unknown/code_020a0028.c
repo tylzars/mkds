@@ -23,7 +23,7 @@ void DrawAirship(void *a, Airship *airship) {
 
     v = 0x1e;
     func_01ff9048(0x14, &v, 1);
-    w.y = (airship->mUnk_a0 + airship->mUnk_ac) >> 4;
+    w.y = (airship->mUnk_a0 + airship->mWobbleOffset) >> 4;
     w.x = 0;
     w.z = 0;
     func_01ff9048(0x1c, &w, 3);
@@ -60,11 +60,11 @@ void InitAirshipObjects(AirshipObjectList *list) {
         airship->mUnk_a0 = airship->mUnk_00.mPos.y;
         GetGroupFollowerCurvePosStep(&airship->mUnk_c8, &airship->mUnk_00.mPos, &airship->mUnk_00.mUnk_10);
         airship->mUnk_a0 = airship->mUnk_a0 - airship->mUnk_00.mPos.y;
-        airship->mUnk_a8 = 0;
-        airship->mUnk_b4 = 0;
-        airship->mUnk_b8 = 0x50000;
-        airship->mUnk_bc = 0;
-        airship->mUnk_c0 = 0xb6;
+        airship->mWobbleAngle = 0;
+        airship->mWobbleMid = 0;
+        airship->mWobbleAmplitude = 0x50000;
+        airship->mWobbleAmplitudePerFrame = 0;
+        airship->mWobbleAnglePerFrame = 0xb6;
         airship->mUnk_c4 = 0;
         if (airship->mUnk_00.mCourseMapRow->mUnk_2a != 0) {
             airship->mState = 0;

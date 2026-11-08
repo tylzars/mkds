@@ -19,13 +19,13 @@ typedef struct Unk0209d694_bc {
 // halfword at 0xb4, a state at 0xb8 and two objects at 0xbc and 0xc0.
 typedef struct Unk0209d694 {
     /* 00 */ MapObject mUnk_00;
-    /* a0 */ u16 mUnk_a0;
+    /* a0 */ u16 mTimer;
     /* a2 */ u8 mUnk_a2[2];
-    /* a4 */ s32 mUnk_a4;
-    /* a8 */ Vec3 mUnk_a8;
+    /* a4 */ s32 mState0Timer;
+    /* a8 */ Vec3 mStartPos;
     /* b4 */ u16 mUnk_b4;
     /* b6 */ u8 mUnk_b6[2];
-    /* b8 */ u32 mUnk_b8;
+    /* b8 */ u32 mState;
     /* bc */ Unk0209d694_bc *mUnk_bc;
     /* c0 */ Unk0209d694_bc *mUnk_c0;
 } Unk0209d694;

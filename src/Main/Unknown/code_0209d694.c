@@ -23,29 +23,29 @@
 #include "Main/Unknown/unk_02156000.h"
 #include "Main/Unknown/code_0209decc.h"
 
-void func_0209decc(u32 p0) {
-    u32 v1 = ((u32) (&data_021565e4));
-    u32 v3 = (*(u16 *) ((p0) + (2)));
-    u32 v4 = (*(u16 *) ((v1) + (0)));
-    u32 v5 = ((v3) | (v4));
+void func_0209decc(u32 mapObject) {
+    u32 flagBitsAddress = ((u32) (&data_021565e4));
+    u32 flags = (*(u16 *) ((mapObject) + (2)));
+    u32 flagBits = (*(u16 *) ((flagBitsAddress) + (0)));
+    u32 newFlags = ((flags) | (flagBits));
     u32 v7;
     u32 v9;
-    *(u16 *) ((p0) + (2)) = v5;
-    ParkMapObject((void *) p0);
-    CreateMapObjectSoundSourceFalloff2((MapObject *) p0);
+    *(u16 *) ((mapObject) + (2)) = newFlags;
+    ParkMapObject((void *) mapObject);
+    CreateMapObjectSoundSourceFalloff2((MapObject *) mapObject);
 }
 
-u8 func_0209ddec(Unk0209d694 *a, Kart *b, u8 *c, u8 *d) {
+u8 func_0209ddec(Unk0209d694 *a, Kart *kart, u8 *c, u8 *d) {
     u8 x;
     u32 v;
 
     x = *c;
     v = *d;
-    if (x == 1 && a->mUnk_b8 <= 1) {
+    if (x == 1 && a->mState <= 1) {
         a->mUnk_00.mFlags |= data_usa_021565d8;
         a->mUnk_00.mFlags |= data_usa_021565dc;
-        a->mUnk_b8 = 2;
-        a->mUnk_a0 = 0x168;
+        a->mState = 2;
+        a->mTimer = 0x168;
         a->mUnk_00.mUnk_10.x = 0;
         a->mUnk_00.mUnk_10.y = 0x3000;
         a->mUnk_00.mUnk_10.z = 0;
@@ -53,25 +53,25 @@ u8 func_0209ddec(Unk0209d694 *a, Kart *b, u8 *c, u8 *d) {
         a->mUnk_c0->mUnk_70 = 0x23;
         a->mUnk_bc->mUnk_80 = 5;
         a->mUnk_c0->mUnk_80 = 5;
-        if (b->mItemEffect == 1 || b->mItemEffect == 3) {
+        if (kart->mItemEffect == 1 || kart->mItemEffect == 3) {
             a->mUnk_00.mDistanceSquaredAndFlags |= data_usa_021565e0;
         }
-        StartSoundIfKartStarOrKiller(&a->mUnk_00, b);
+        StartSoundIfKartStarOrKiller(&a->mUnk_00, kart);
     }
     return v;
 }
 
-u8 func_0209dd44(Unk0209d694 *a, Kart *b, u8 *c, u8 *d) {
+u8 func_0209dd44(Unk0209d694 *a, Kart *kart, u8 *c, u8 *d) {
     u8 x;
     u32 v;
 
     x = *c;
     v = *d;
-    if (x == 1 && a->mUnk_b8 <= 1) {
+    if (x == 1 && a->mState <= 1) {
         a->mUnk_00.mFlags |= data_usa_021565d8;
         a->mUnk_00.mFlags |= data_usa_021565dc;
-        a->mUnk_b8 = 2;
-        a->mUnk_a0 = 0x168;
+        a->mState = 2;
+        a->mTimer = 0x168;
         a->mUnk_00.mUnk_10.x = 0;
         a->mUnk_00.mUnk_10.y = 0x3000;
         a->mUnk_00.mUnk_10.z = 0;
@@ -87,9 +87,9 @@ u32 func_0209dd40(u32 p0) {
     return p0;
 }
 
-static inline u32 func_0209d84c_inline(RandomState64 *b) {
-    b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
-    return b->mValue >> 32;
+static inline u32 func_0209d84c_inline(RandomState64 *randomState64) {
+    randomState64->mValue = randomState64->mMultiplier * randomState64->mValue + randomState64->mIncrement;
+    return randomState64->mValue >> 32;
 }
 
 void func_0209d84c(void *a, Unk0209d694 *p) {
@@ -100,10 +100,10 @@ void func_0209d84c(void *a, Unk0209d694 *p) {
     s32 k;
     s32 r;
 
-    switch (p->mUnk_b8) {
+    switch (p->mState) {
         case 0:
-            if (p->mUnk_a4-- <= 0) {
-                p->mUnk_b8 = 1;
+            if (p->mState0Timer-- <= 0) {
+                p->mState = 1;
                 s.mSoundId = 0x195;
                 s.mPositionSource = &p->mUnk_00.mPos;
                 s.mUnk_08 = 2;
@@ -112,20 +112,20 @@ void func_0209d84c(void *a, Unk0209d694 *p) {
             }
             break;
         case 1:
-            if (p->mUnk_a0-- != 0) {
+            if (p->mTimer-- != 0) {
                 t = p->mUnk_00.mUnk_10.y - 0x19a;
                 if (t <= -0x8000) {
                     t = -0x8000;
                 }
                 p->mUnk_00.mUnk_10.y = t;
                 VEC_Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
-                if (p->mUnk_a0 > 0x78 && p->mUnk_00.mUnk_10.y < 0) {
+                if (p->mTimer > 0x78 && p->mUnk_00.mUnk_10.y < 0) {
                     if (func_01ffdee4(&p->mUnk_00.mPos, NULL, 0, p->mUnk_00.mExtent.x, 8, -2, &v, NULL, NULL, &f, NULL,
                                       NULL, NULL, NULL) != 0 &&
                         (f & 0x3f77ef) != 0) {
                         VEC_Add(&p->mUnk_00.mPos, &v, &p->mUnk_00.mPos);
-                        t = p->mUnk_00.mPos.x - p->mUnk_a8.x;
-                        k = p->mUnk_00.mPos.z - p->mUnk_a8.z;
+                        t = p->mUnk_00.mPos.x - p->mStartPos.x;
+                        k = p->mUnk_00.mPos.z - p->mStartPos.z;
                         if ((s64) t * t + (s64) k * k < 0x2710000000LL) {
                             r = (u16) (((u64) func_0209d84c_inline(GetMapObjectRandom()) * 0x10000) >> 32);
                             k = (r >> 4) * 2;
@@ -136,8 +136,8 @@ void func_0209d84c(void *a, Unk0209d694 *p) {
                             p->mUnk_00.mUnk_10.z = -p->mUnk_00.mUnk_10.z;
                         }
                         p->mUnk_00.mUnk_10.y = 0x2c00;
-                        p->mUnk_a4 += 0x3c;
-                        p->mUnk_b8 = 0;
+                        p->mState0Timer += 0x3c;
+                        p->mState = 0;
                         p->mUnk_bc->mUnk_70 = 0x2a;
                         p->mUnk_c0->mUnk_70 = 0x2a;
                         p->mUnk_bc->mUnk_80 = 6;
@@ -163,11 +163,11 @@ void func_0209d84c(void *a, Unk0209d694 *p) {
             p->mUnk_00.mPos.y = p->mUnk_00.mPos.y + p->mUnk_00.mUnk_10.y;
             if (p->mUnk_00.mUnk_10.y < 0) {
                 p->mUnk_b4 = ((u64) func_0209d84c_inline(GetMapObjectRandom()) * 0x10000) >> 32;
-                p->mUnk_b8 = 3;
+                p->mState = 3;
             }
             break;
         case 3:
-            if (p->mUnk_a0-- != 0) {
+            if (p->mTimer-- != 0) {
                 t = p->mUnk_00.mUnk_10.y - 0xcd;
                 if (t <= -0x2000) {
                     t = -0x2000;
@@ -227,15 +227,15 @@ void func_0209d694(Vec3 *a, Vec3 *b) {
     if (p == NULL) {
         return;
     }
-    p->mUnk_a0 = 0x1c2;
-    p->mUnk_a8 = *a;
-    p->mUnk_00.mPos = p->mUnk_a8;
+    p->mTimer = 0x1c2;
+    p->mStartPos = *a;
+    p->mUnk_00.mPos = p->mStartPos;
     p->mUnk_00.mMatrix.mUnk_00[2] = *b;
     p->mUnk_00.mUnk_10.x = ((s64) b->x * 0x2000) >> 12;
     p->mUnk_00.mUnk_10.y = ((s64) b->y * 0x2000) >> 12;
     p->mUnk_00.mUnk_10.z = ((s64) b->z * 0x2000) >> 12;
-    p->mUnk_a4 = 0;
-    p->mUnk_b8 = 0;
+    p->mState0Timer = 0;
+    p->mState = 0;
     p->mUnk_bc = StartEffect(0x35, &p->mUnk_00.mPos);
     p->mUnk_c0 = StartEffect(0x34, &p->mUnk_00.mPos);
     p->mUnk_bc->mUnk_70 = 0x15;

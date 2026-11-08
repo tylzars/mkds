@@ -11,14 +11,14 @@ typedef struct Airship {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
-    /* a8 */ s16 mUnk_a8;
+    /* a8 */ s16 mWobbleAngle;
     /* aa */ u8 mUnk_aa[2];
-    /* ac */ s32 mUnk_ac;
+    /* ac */ s32 mWobbleOffset;
     /* b0 */ s32 mUnk_b0;
-    /* b4 */ s32 mUnk_b4;
-    /* b8 */ s32 mUnk_b8;
-    /* bc */ u32 mUnk_bc;
-    /* c0 */ s32 mUnk_c0;
+    /* b4 */ s32 mWobbleMid;
+    /* b8 */ s32 mWobbleAmplitude;
+    /* bc */ u32 mWobbleAmplitudePerFrame;
+    /* c0 */ s32 mWobbleAnglePerFrame;
     /* c4 */ s32 mUnk_c4;
     /* c8 */ GroupFollower mUnk_c8;
     /* State number of this kind's own per-frame switch in UpdateAirship; this object does not use

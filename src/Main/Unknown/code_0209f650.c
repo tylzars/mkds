@@ -23,74 +23,78 @@
 u16 FX_Atan2Idx(s32 a, s32 b);
 
 static inline u16 func_0209f800_inline(u32 n) {
-    RandomState64 *b;
+    RandomState64 *mapObjectRandom;
     u32 m;
     u32 r;
 
     if (n == 0x10000) {
-        b = GetMapObjectRandom();
-        b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
-        return ((b->mValue >> 32) * 0x10000) >> 32;
+        mapObjectRandom = GetMapObjectRandom();
+        mapObjectRandom->mValue = mapObjectRandom->mMultiplier * mapObjectRandom->mValue + mapObjectRandom->mIncrement;
+        return ((mapObjectRandom->mValue >> 32) * 0x10000) >> 32;
     } else {
-        b = GetMapObjectRandom();
+        mapObjectRandom = GetMapObjectRandom();
         m = (u16) n;
         if (m == 0) {
             r = 0;
         } else {
-            b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
+            mapObjectRandom->mValue =
+                mapObjectRandom->mMultiplier * mapObjectRandom->mValue + mapObjectRandom->mIncrement;
             if (m == 0) {
-                r = b->mValue >> 32;
+                r = mapObjectRandom->mValue >> 32;
             } else {
-                r = ((b->mValue >> 32) * m) >> 32;
+                r = ((mapObjectRandom->mValue >> 32) * m) >> 32;
             }
         }
     }
     return r;
 }
 
-static inline void func_0209f6d8_inline(TownMonte *p) {
-    p->mUnk_a4 += p->mUnk_a8;
-    p->mUnk_a8 += 0x4000;
-    if (p->mUnk_a4 == 0) {
-        p->mUnk_a4 += p->mUnk_a8;
-        p->mUnk_a8 += 0x4000;
-    } else if (p->mUnk_a4 >= 0x16c000) {
-        p->mUnk_a8 = 0x4000 - p->mUnk_a8;
-        p->mUnk_ac = p->mUnk_ac == 0 ? 1 : 0;
+static inline void func_0209f6d8_inline(TownMonte *townMonte) {
+    townMonte->mUnk_a4 += townMonte->mUnk_a8;
+    townMonte->mUnk_a8 += 0x4000;
+    if (townMonte->mUnk_a4 == 0) {
+        townMonte->mUnk_a4 += townMonte->mUnk_a8;
+        townMonte->mUnk_a8 += 0x4000;
+    } else if (townMonte->mUnk_a4 >= 0x16c000) {
+        townMonte->mUnk_a8 = 0x4000 - townMonte->mUnk_a8;
+        townMonte->mMirror = townMonte->mMirror == 0 ? 1 : 0;
     }
 }
 
-static inline void func_0209fdb4_inline(Airship *p) {
+static inline void func_0209fdb4_inline(Airship *airship) {
     s32 t;
 
-    p->mUnk_a8 = (u16) p->mUnk_a8 + p->mUnk_c0;
-    p->mUnk_b0 = p->mUnk_b4 + func_020a0028(p->mUnk_b8 / 2, 0x1000 - func_020a0044((u16) p->mUnk_a8)) - p->mUnk_ac;
-    p->mUnk_ac += p->mUnk_b0;
-    if (p->mUnk_b8 > 0) {
-        t = p->mUnk_b8 + p->mUnk_bc;
+    airship->mWobbleAngle = (u16) airship->mWobbleAngle + airship->mWobbleAnglePerFrame;
+    airship->mUnk_b0 =
+        airship->mWobbleMid +
+        func_020a0028(airship->mWobbleAmplitude / 2, 0x1000 - func_020a0044((u16) airship->mWobbleAngle)) -
+        airship->mWobbleOffset;
+    airship->mWobbleOffset += airship->mUnk_b0;
+    if (airship->mWobbleAmplitude > 0) {
+        t = airship->mWobbleAmplitude + airship->mWobbleAmplitudePerFrame;
         if (t <= 0) {
             t = 0;
         }
-        p->mUnk_b8 = t;
-    } else if (p->mUnk_b8 < 0) {
-        t = p->mUnk_b8 + p->mUnk_bc;
+        airship->mWobbleAmplitude = t;
+    } else if (airship->mWobbleAmplitude < 0) {
+        t = airship->mWobbleAmplitude + airship->mWobbleAmplitudePerFrame;
         if (t >= 0) {
             t = 0;
         }
-        p->mUnk_b8 = t;
+        airship->mWobbleAmplitude = t;
     }
-    if (p->mUnk_c0 > 0) {
-        t = p->mUnk_c0 + p->mUnk_c4;
+    if (airship->mWobbleAnglePerFrame > 0) {
+        t = airship->mWobbleAnglePerFrame + airship->mUnk_c4;
         if (t <= 0) {
             t = 0;
         }
-        p->mUnk_c0 = t;
-    } else if (p->mUnk_c0 < 0) {
-        t = p->mUnk_c0 + p->mUnk_c4;
+        airship->mWobbleAnglePerFrame = t;
+    } else if (airship->mWobbleAnglePerFrame < 0) {
+        t = airship->mWobbleAnglePerFrame + airship->mUnk_c4;
         if (t >= 0) {
             t = 0;
         }
-        p->mUnk_c0 = t;
+        airship->mWobbleAnglePerFrame = t;
     }
 }
 
@@ -105,28 +109,28 @@ static inline BOOL func_0209fdb4_inline_b(void) {
     return FALSE;
 }
 
-void UpdateAirship(void *a, Airship *p) {
-    switch (p->mState) {
+void UpdateAirship(void *a, Airship *airship) {
+    switch (airship->mState) {
         case 0:
             if (func_0209fdb4_inline_b() != FALSE) {
-                p->mState = 1;
+                airship->mState = 1;
             }
             break;
         case 1:
-            p->mUnk_a0 += 0x1000;
-            if (p->mUnk_a0 >= 0) {
-                p->mUnk_a0 = 0;
-                p->mState = 2;
+            airship->mUnk_a0 += 0x1000;
+            if (airship->mUnk_a0 >= 0) {
+                airship->mUnk_a0 = 0;
+                airship->mState = 2;
             }
-            func_0209fdb4_inline(p);
+            func_0209fdb4_inline(airship);
             break;
         case 2:
-            AdvanceGroupFollower(&p->mUnk_c8);
-            GetGroupFollowerCurvePosStep(&p->mUnk_c8, &p->mUnk_00.mPos, &p->mUnk_00.mUnk_10);
-            func_0209fdb4_inline(p);
+            AdvanceGroupFollower(&airship->mUnk_c8);
+            GetGroupFollowerCurvePosStep(&airship->mUnk_c8, &airship->mUnk_00.mPos, &airship->mUnk_00.mUnk_10);
+            func_0209fdb4_inline(airship);
             break;
     }
-    p->mUnk_00.mAngle = FX_Atan2Idx(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z);
+    airship->mUnk_00.mAngle = FX_Atan2Idx(airship->mUnk_00.mUnk_10.x, airship->mUnk_00.mUnk_10.z);
 }
 
 void *CreateAirshipDrawList(void) {
@@ -137,10 +141,10 @@ void *CreateAirshipUpdateList(void) {
     return CreateMapObjectUpdateList(InitAirshipObjects, UpdateAirship, NULL);
 }
 
-void func_0209fc78(MapObject *p) {
+void func_0209fc78(MapObject *mapObject) {
     s32 i;
 
-    i = p->mCourseMapRow->mUnk_28;
+    i = mapObject->mCourseMapRow->mUnk_28;
     if (data_usa_0217b18c[i] == NULL) {
         data_usa_0217b18c[i] = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
         *data_usa_0217b18c[i] = *data_usa_0217b18c[0];
@@ -159,7 +163,7 @@ void func_0209fc78(MapObject *p) {
             data_usa_0217b18c[i]->mUnk_24 = func_0210bafc(0, 8, i);
             break;
     }
-    p->mKindData = data_usa_0217b18c[i];
+    mapObject->mKindData = data_usa_0217b18c[i];
 }
 
 void func_0209fc38(void) {
@@ -175,96 +179,97 @@ void func_0209fc2c(void) {
     func_020e6c0c();
 }
 
-void CreateTownMonte(MapObjectModel *a) {
-    a->mShadowModel = (void *) func_0209fc2c;
-    SetMapObjectModelPolygonId(gTownMonte = CreateMapObjectModelNsbmdNsbtp(a, gTownMonteNsbmdName, gTownMonteNsbtpName),
-                               0x3f);
+void CreateTownMonte(MapObjectModel *mapObjectModel) {
+    mapObjectModel->mShadowModel = (void *) func_0209fc2c;
+    SetMapObjectModelPolygonId(
+        gTownMonte = CreateMapObjectModelNsbmdNsbtp(mapObjectModel, gTownMonteNsbmdName, gTownMonteNsbtpName), 0x3f);
 }
 
-void DrawTownMonte(void *a, TownMonte *p) {
+void DrawTownMonte(void *a, TownMonte *townMonte) {
     s32 v;
     s32 d;
     MtxFx43 *h;
 
-    d = (0x16c000 - p->mUnk_a4) >> 12;
+    d = (0x16c000 - townMonte->mUnk_a4) >> 12;
     v = 0x1e;
     func_01ff9048(0x14, &v, 1);
-    if (p->mUnk_ac != 0) {
-        h = func_020e6c3c(&p->mUnk_00.mPos, -d, d);
+    if (townMonte->mMirror != 0) {
+        h = func_020e6c3c(&townMonte->mUnk_00.mPos, -d, d);
         func_01ff9048(0x19, h, 0xc);
     } else {
-        h = func_020e6c3c(&p->mUnk_00.mPos, d, d);
+        h = func_020e6c3c(&townMonte->mUnk_00.mPos, d, d);
         func_01ff9048(0x19, h, 0xc);
     }
-    func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
-    SetMapObjectModelNsbtpFrameIndex(gTownMonte, p->mNsbtpFrameIndex);
+    func_01ff9048(0x1b, &townMonte->mUnk_00.mScale, 3);
+    SetMapObjectModelNsbtpFrameIndex(gTownMonte, townMonte->mNsbtpFrameIndex);
     func_0209bbd0(a, gTownMonte);
-    DrawMapObjectModel(a, gTownMonte, p);
+    DrawMapObjectModel(a, gTownMonte, townMonte);
 }
 
 void InitTownMonteObjects(Unk0209f800 *a) {
-    TownMonte *p;
-    RandomState64 *r;
+    TownMonte *townMonte;
+    RandomState64 *mapObjectRandom;
     s32 i;
     s32 j;
-    u32 n;
+    u32 nsbtpFrameCount;
     u16 m;
 
     if (a == NULL) {
         return;
     }
-    for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
-        p->mUnk_a4 = 0;
-        p->mUnk_a8 = 0;
-        n = GetMapObjectModelNsbtpFrameCount(gTownMonte);
-        p->mNsbtpFrameIndex = func_0209f800_inline(n);
-        r = GetMapObjectRandom();
-        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-        m = ((r->mValue >> 32) * 0x1a) >> 32;
+    for (i = 0; i < a->mUnk_04 && (townMonte = a->mUnk_00[i]) != NULL; i++) {
+        townMonte->mUnk_a4 = 0;
+        townMonte->mUnk_a8 = 0;
+        nsbtpFrameCount = GetMapObjectModelNsbtpFrameCount(gTownMonte);
+        townMonte->mNsbtpFrameIndex = func_0209f800_inline(nsbtpFrameCount);
+        mapObjectRandom = GetMapObjectRandom();
+        mapObjectRandom->mValue = mapObjectRandom->mMultiplier * mapObjectRandom->mValue + mapObjectRandom->mIncrement;
+        m = ((mapObjectRandom->mValue >> 32) * 0x1a) >> 32;
         for (j = 0; j < m; j++) {
-            func_0209f6d8_inline(p);
+            func_0209f6d8_inline(townMonte);
         }
-        if (p->mUnk_00.mCourseMapRow->mUnk_28 != 0) {
-            if (p->mNsbtpFrameIndex == 0) {
-                p->mUnk_a2 = 0x1a7;
-            } else if (p->mNsbtpFrameIndex == 1) {
-                p->mUnk_a2 = 0x1a8;
-            } else if (p->mNsbtpFrameIndex == 2) {
-                r = GetMapObjectRandom();
-                r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-                p->mUnk_a2 = (u16) (((r->mValue >> 32) * 2) >> 32) != 0 ? 0x1a7 : 0x1a8;
+        if (townMonte->mUnk_00.mCourseMapRow->mUnk_28 != 0) {
+            if (townMonte->mNsbtpFrameIndex == 0) {
+                townMonte->mSoundId = 0x1a7;
+            } else if (townMonte->mNsbtpFrameIndex == 1) {
+                townMonte->mSoundId = 0x1a8;
+            } else if (townMonte->mNsbtpFrameIndex == 2) {
+                mapObjectRandom = GetMapObjectRandom();
+                mapObjectRandom->mValue =
+                    mapObjectRandom->mMultiplier * mapObjectRandom->mValue + mapObjectRandom->mIncrement;
+                townMonte->mSoundId = (u16) (((mapObjectRandom->mValue >> 32) * 2) >> 32) != 0 ? 0x1a7 : 0x1a8;
             }
         }
     }
 }
 
-void UpdateTownMonte(void *a, TownMonte *p) {
+void UpdateTownMonte(void *a, TownMonte *townMonte) {
     Unk0210b7a8 s;
     s32 t;
     u16 w;
 
-    func_0209f6d8_inline(p);
-    if (p->mUnk_a2 == 0) {
+    func_0209f6d8_inline(townMonte);
+    if (townMonte->mSoundId == 0) {
         return;
     }
-    if (p->mUnk_00.mCourseMapRow->mUnk_28 != GetSeqVariableSinceChangeFrames(0)) {
+    if (townMonte->mUnk_00.mCourseMapRow->mUnk_28 != GetSeqVariableSinceChangeFrames(0)) {
         return;
     }
-    w = p->mUnk_a2;
-    if (p->mUnk_00.mDistanceSquaredAndFlags & 4) {
+    w = townMonte->mSoundId;
+    if (townMonte->mUnk_00.mDistanceSquaredAndFlags & 4) {
         return;
     }
-    if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
+    if (townMonte->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
         t = 2;
-    } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
+    } else if (townMonte->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
         t = 3;
     } else {
         t = 4;
     }
     s.mSoundId = w;
-    s.mPositionSource = &p->mUnk_00.mPos;
+    s.mPositionSource = &townMonte->mUnk_00.mPos;
     s.mUnk_08 = t;
-    s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
+    s.mDistanceSquared = GetHorizontalCameraDistanceSquared(&townMonte->mUnk_00.mPos);
     func_0210b7a8(&s);
 }
 

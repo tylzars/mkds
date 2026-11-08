@@ -13,10 +13,10 @@ typedef struct TownMonte {
 // Frame of the .nsbtp animation chosen at random by InitTownMonteObjects; frames 0 and 1 also set mUnk_a2 to 0x1a7
 // and 0x1a8.
     /* a0 */ u16 mNsbtpFrameIndex;
-    /* a2 */ u16 mUnk_a2;
+    /* a2 */ u16 mSoundId;
     /* a4 */ s32 mUnk_a4;
     /* a8 */ s32 mUnk_a8;
-    /* ac */ s32 mUnk_ac;
+    /* ac */ s32 mMirror;
 } TownMonte;
 
 // Array of object pointers: pointer to the array and the number of entries (InitTownMonteObjects).
@@ -35,15 +35,15 @@ extern MapObjectKindData *data_usa_0217b18c[19];
 void CreateChandelier(void *a);
 void *CreateTownMonteUpdateList(void);
 void *CreateTownMonteDrawList(void);
-void UpdateTownMonte(void *a, TownMonte *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void UpdateTownMonte(void *a, TownMonte *townMonte); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void InitTownMonteObjects(Unk0209f800 *a);
-void DrawTownMonte(void *a, TownMonte *p);
+void DrawTownMonte(void *a, TownMonte *townMonte);
 // The parameter is the draw group (typed MapObjectModel here); its +0x14 is the callback that runs after the group's
 // draw.
-void CreateTownMonte(MapObjectModel *a); /* also stores the hook func_0209fc2c in the record's +0x14 */
+void CreateTownMonte(MapObjectModel *mapObjectModel); /* also stores the hook func_0209fc2c in the record's +0x14 */
 void func_0209fc2c(void);
 void func_0209fc38(void);
-void func_0209fc78(MapObject *p);
+void func_0209fc78(MapObject *mapObject);
 void *CreateAirshipUpdateList(void);
 void *CreateAirshipDrawList(void);
-void UpdateAirship(void *a, Airship *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void UpdateAirship(void *a, Airship *airship); /* skipped for objects with mFlags & 4 (parked pool objects) */

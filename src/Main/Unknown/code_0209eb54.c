@@ -32,13 +32,13 @@ void DrawPicture(void *a, Unk0209ec80 *b) {
     b->mUnk_00.mMatrix.mUnk_00[3].z = b->mUnk_00.mPos.z >> 4;
     func_01ff9048(0x19, &b->mUnk_00.mMatrix, 0xc);
     func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
-    switch (b->mUnk_a4) {
+    switch (b->mPictureIndex) {
         case 0:
-            SetMapObjectModelNsbcaFrameIndex(gPicture1, b->mUnk_a0);
+            SetMapObjectModelNsbcaFrameIndex(gPicture1, b->mNsbcaFrameIndex);
             DrawMapObjectModel(a, gPicture1, b);
             break;
         case 1:
-            SetMapObjectModelNsbcaFrameIndex(gPicture2, b->mUnk_a0);
+            SetMapObjectModelNsbcaFrameIndex(gPicture2, b->mNsbcaFrameIndex);
             DrawMapObjectModel(a, gPicture2, b);
             break;
     }
@@ -49,25 +49,25 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
     Unk0210b7a8 s2;
     Unk0210b7a8 s3;
     Unk0210b7a8 s4;
-    RandomState64 *r;
-    s32 n;
+    RandomState64 *randomState64;
+    s32 nextFrameIndex;
     s32 t;
 
-    switch (b->mUnk_ac) {
+    switch (b->mState) {
         case 1:
-            if (b->mUnk_a8-- <= 0) {
-                b->mUnk_ac = 2;
+            if (b->mState1Timer-- <= 0) {
+                b->mState = 2;
             }
             break;
         case 2:
-            if (b->mUnk_a4 == 0) {
-                n = b->mUnk_a0 + 1;
-                if (n >= GetMapObjectModelNsbcaFrameCount(gPicture1)) {
-                    n = 0;
+            if (b->mPictureIndex == 0) {
+                nextFrameIndex = b->mNsbcaFrameIndex + 1;
+                if (nextFrameIndex >= GetMapObjectModelNsbcaFrameCount(gPicture1)) {
+                    nextFrameIndex = 0;
                 }
-                b->mUnk_a0 = n;
-                if (b->mUnk_a0 == 0 || b->mUnk_a0 == 0xf || b->mUnk_a0 == 0x1f || b->mUnk_a0 == 0x37 ||
-                    b->mUnk_a0 == 0x51) {
+                b->mNsbcaFrameIndex = nextFrameIndex;
+                if (b->mNsbcaFrameIndex == 0 || b->mNsbcaFrameIndex == 0xf || b->mNsbcaFrameIndex == 0x1f ||
+                    b->mNsbcaFrameIndex == 0x37 || b->mNsbcaFrameIndex == 0x51) {
                     if (func_020d4ddc(&b->mUnk_00) == FALSE) {
                         if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                             t = 2;
@@ -82,7 +82,8 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                         s1.mDistanceSquared = GetHorizontalCameraDistanceSquared(&b->mUnk_00.mPos);
                         func_0210b7a8(&s1);
                     }
-                } else if (b->mUnk_a0 == 8 || b->mUnk_a0 == 0x14 || b->mUnk_a0 == 0x2c || b->mUnk_a0 == 0x44) {
+                } else if (b->mNsbcaFrameIndex == 8 || b->mNsbcaFrameIndex == 0x14 || b->mNsbcaFrameIndex == 0x2c ||
+                           b->mNsbcaFrameIndex == 0x44) {
                     if (func_020d4ddc(&b->mUnk_00) == FALSE) {
                         if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                             t = 2;
@@ -97,7 +98,7 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                         s2.mDistanceSquared = GetHorizontalCameraDistanceSquared(&b->mUnk_00.mPos);
                         func_0210b7a8(&s2);
                     }
-                } else if (b->mUnk_a0 == 0x78) {
+                } else if (b->mNsbcaFrameIndex == 0x78) {
                     if (func_020d4ddc(&b->mUnk_00) == FALSE) {
                         if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                             t = 2;
@@ -113,13 +114,13 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                         func_0210b7a8(&s3);
                     }
                 }
-            } else if (b->mUnk_a4 == 1) {
-                n = b->mUnk_a0 + 1;
-                if (n >= GetMapObjectModelNsbcaFrameCount(gPicture2)) {
-                    n = 0;
+            } else if (b->mPictureIndex == 1) {
+                nextFrameIndex = b->mNsbcaFrameIndex + 1;
+                if (nextFrameIndex >= GetMapObjectModelNsbcaFrameCount(gPicture2)) {
+                    nextFrameIndex = 0;
                 }
-                b->mUnk_a0 = n;
-                if (b->mUnk_a0 == 0) {
+                b->mNsbcaFrameIndex = nextFrameIndex;
+                if (b->mNsbcaFrameIndex == 0) {
                     if (func_020d4ddc(&b->mUnk_00) == FALSE) {
                         if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                             t = 2;
@@ -136,22 +137,22 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                     }
                 }
             }
-            if (b->mUnk_a0 != 0) {
+            if (b->mNsbcaFrameIndex != 0) {
                 return;
             }
-            r = &gRaceProgress->mLocalRandom;
-            r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-            b->mUnk_a8 = (u16) (((r->mValue >> 32) * 0x78) >> 32) + 0x3c;
-            b->mUnk_ac = 1;
+            randomState64 = &gRaceProgress->mLocalRandom;
+            randomState64->mValue = randomState64->mMultiplier * randomState64->mValue + randomState64->mIncrement;
+            b->mState1Timer = (u16) (((randomState64->mValue >> 32) * 0x78) >> 32) + 0x3c;
+            b->mState = 1;
             break;
     }
 }
 
-void *func_0209ec60(void) {
+void *CreatePictureDrawList(void) {
     return CreateMapObjectDrawList1(CreatePicture1AndPicture2, DrawPicture, NULL);
 }
 
-void *func_0209ec44(void) {
+void *CreatePictureUpdateList(void) {
     return CreateMapObjectUpdateList(NULL, UpdatePicture, NULL);
 }
 
