@@ -113,7 +113,7 @@ void func_02089a24(KartAi *a, KartAiRaceSpeedLimit *b) {
     BOOL c = FALSE;
     s32 v;
     s32 t;
-    Unk0217aebc_128 *r;
+    RandomState64 *r;
 
     b->mUnk_28 = 0;
     b->mBoostsAtRaceStart = 0;
@@ -204,7 +204,7 @@ void ResetBattleKartAi(KartAi *p) {
 
 void SetupBattleKartAi(KartAi *p, Kart *q) {
     Unk02165ff0 *t;
-    Unk0217aebc_128 *r;
+    RandomState64 *r;
     s16 j;
     s32 v;
     s16 k;
@@ -327,7 +327,7 @@ void func_02089494(KartAi *p) {
 
 void AdvanceBattleKartAiSideOffset(KartAi *p) {
     Vec3 z = gVec3UnitY;
-    Unk0217aebc_128 *r;
+    RandomState64 *r;
     s32 a;
     s32 t;
     s32 u;
@@ -529,7 +529,7 @@ void func_02088d34(KartAi *p) {
 
 void PickKartAiBalloonCountGoal(KartAi *p) {
     s32 *t = data_0217b030->mUnk_0c;
-    Unk0217aebc_128 *r;
+    RandomState64 *r;
     s16 j;
     s32 v;
     s16 k = 0;

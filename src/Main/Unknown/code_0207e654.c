@@ -156,7 +156,7 @@ void func_0207fba0(void) {
 
 void SetupRaceKartAi(KartAi *p, Kart *q, s32 a) {
     s32 v;
-    Unk0217aebc_128 *r;
+    RandomState64 *r;
 
     p->mKart = q;
     p->mIndex = q->mIndex;
@@ -397,7 +397,7 @@ void func_0207f05c(KartAi *p) {
     BOOL j;
     s32 k;
     s32 m;
-    Unk0217aebc_128 *r;
+    RandomState64 *r;
     s32 v;
 
     if (p->mUnk_90 == 0 && i >= 1 && i <= 4) {
@@ -566,7 +566,7 @@ void func_0207ebfc(KartAi *p) {
     p->mUnk_98++;
     b = FALSE;
     if (p->mUnk_98 == 0x28 && p->mUnk_a0 != FALSE) {
-        Unk0217aebc_128 *r = GetKartAiRandom();
+        RandomState64 *r = GetKartAiRandom();
         r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
         if ((s16) (u16) (r->mValue >> 52) <= p->mDriftChargeRandomLimit) {
             b = TRUE;
@@ -620,7 +620,7 @@ void AdvanceKartAiSideOffset(KartAi *p) {
     Vec3CrossUnrounded(&p->mUnk_08.mUnk_00.mDirection, &v, &p->mSideOffset);
     p->mUnk_6c++;
     if (p->mUnk_6c > p->mUnk_6e) {
-        Unk0217aebc_128 *r;
+        RandomState64 *r;
         s32 t;
         s32 u;
 

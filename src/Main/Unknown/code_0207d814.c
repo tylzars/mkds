@@ -193,7 +193,7 @@ void PickKartAiRaceStart(struct KartAiRaceSpeedLimit *a, struct KartAi *b) {
     s32 r5;
     s32 r4;
     s32 t;
-    Unk0217aebc_128 *r;
+    RandomState64 *r;
     KartAi *u;
 
     v = gRaceSetup->mCurrentEntries[b->mIndex].mPlayer.mKind;
@@ -439,7 +439,7 @@ u16 PickKartAiRaceStartBoost(s32 a) {
     u16 v[9];
     u16 *p;
     s32 i;
-    Unk0217aebc_128 *r;
+    RandomState64 *r;
 
     v[0] = data_usa_021658f8[0];
     v[1] = data_usa_021658f8[1];

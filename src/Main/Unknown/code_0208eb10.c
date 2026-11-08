@@ -36,7 +36,7 @@ void func_02090194(Unk02090194 *p0) {
 }
 
 void func_02090088(KartAiItemUse *a, KartAi *b) {
-    Unk0217aebc_128 *r;
+    RandomState64 *r;
     s32 v;
 
     if (DecrementHeldItemTimer(a) != 0) {
@@ -64,7 +64,7 @@ void func_02090088(KartAiItemUse *a, KartAi *b) {
 }
 
 void func_0208ffe4(KartAiItemUse *a, KartAi *b) {
-    Unk0217aebc_128 *r;
+    RandomState64 *r;
     s32 v;
 
     if (DecrementHeldItemTimer(a) == 0) {
@@ -85,7 +85,7 @@ void SetItemBitsEveryCall(Unk0208ffd8 *p0) {
 }
 
 void func_0208fefc(KartAiItemUse *a, struct KartAi *b) {
-    Unk0217aebc_128 *r;
+    RandomState64 *r;
     s32 v;
 
     if (DecrementHeldItemTimer(a) != 0) {
@@ -109,7 +109,7 @@ void func_0208fefc(KartAiItemUse *a, struct KartAi *b) {
 }
 
 void func_0208fe58(KartAiItemUse *a, struct KartAi *b) {
-    Unk0217aebc_128 *r;
+    RandomState64 *r;
     s32 v;
 
     if (DecrementHeldItemTimer(a) == 0) {
@@ -178,7 +178,7 @@ void ThrowItemAtNearTarget(KartAiItemUse *a, struct KartAi *b) {
 }
 
 void func_0208fba0(KartAiItemUse *a, struct KartAi *b) {
-    Unk0217aebc_128 *r;
+    RandomState64 *r;
     s32 v;
 
     if (DecrementItemInUseTimer(a) != 0) {
@@ -206,7 +206,7 @@ void func_0208fba0(KartAiItemUse *a, struct KartAi *b) {
 }
 
 void func_0208fafc(KartAiItemUse *a, struct KartAi *b) {
-    Unk0217aebc_128 *r;
+    RandomState64 *r;
     s32 v;
 
     if (DecrementItemInUseTimer(a) == 0) {
@@ -241,7 +241,7 @@ void func_0208fa50(KartAiItemUse *a, struct KartAi *b) {
 }
 
 void func_0208f9ac(KartAiItemUse *a, struct KartAi *b) {
-    Unk0217aebc_128 *r;
+    RandomState64 *r;
     s32 v;
 
     if (DecrementItemInUseTimer(a) == 0) {
@@ -373,7 +373,7 @@ void func_0208f5c4(KartAiItemUse *a, struct KartAi *b) {
 }
 
 void func_0208f4e8(KartAiItemUse *a, struct KartAi *b) {
-    Unk0217aebc_128 *r;
+    RandomState64 *r;
     s32 v;
 
     if (DecrementItemInUseTimer(a) != 0) {

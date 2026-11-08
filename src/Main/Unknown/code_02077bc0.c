@@ -1955,7 +1955,7 @@ void AdvanceKartModelMenuLoad(void) {
     KartModelMenuFiles *loadFiles;
     KartModelMenuSlot *loadSlot;
     KartModelMenuSlot *shownSlot;
-    Unk0217ad08_058_08 *animation;
+    KartModelAnimationView *animation;
 
     G2Bg0OfsWrite(gKartModelMenu->mView.mBg0Offset);
     if (gThreadFunctionQueue->mRunRequested == 0) {

@@ -1275,14 +1275,7 @@ typedef struct KartModels {
 
 extern KartModels *gKartModels;
 
-// Object behind member 0x08 of an KartModelMenuSlot (0x38 bytes); only the words below are read.
-typedef struct Unk0217ad08_058_08 {
-    /* 00 */ u8 mUnk_00[0xc];
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ u8 mUnk_10[0xa];
-    /* 1a */ u16 mUnk_1a;
-    /* 1c */ s32 **mUnk_1c;
-} Unk0217ad08_058_08;
+typedef struct KartModelAnimationView KartModelAnimationView;
 
 // Object behind member 0x20 of an KartModelMenuSlot: a word at 0x10 and rows of three words from 0x14 and from 0x44.
 typedef struct Unk0217ad08_058_20 {
@@ -1297,7 +1290,7 @@ typedef struct Unk0217ad08_058_20 {
 typedef struct KartModelMenuSlot {
     /* 00 */ s32 mCharacterIndex;
     /* 04 */ s32 mKartIndex;
-    /* 08 */ Unk0217ad08_058_08 *mCharacterAnimation;
+    /* 08 */ KartModelAnimationView *mCharacterAnimation;
     /* 0c */ u8 mUnk_0c[4];
     /* 10 */ struct Nsbmd *mCharacterNsbmd;
     /* 14 */ struct Nsbmd *mKartNsbmd;
@@ -1467,9 +1460,6 @@ extern s32 gOtherKartOddCount;
 extern struct Unk0201ca6c **data_0217ae94;
 extern s32 gOtherKartFullPairCount;
 
-// Three doublewords (a random generator): the first is replaced by the first times the second plus the third.
-typedef RandomState64 Unk0217aebc_128;
-
 // Entry of the eight 0xc-byte entries at 0xb0 of KartAiShared: a word, then the links of a list.
 typedef struct KartAiTableIndexEntry {
     /* 00 */ s32 mTableIndex;
@@ -1503,7 +1493,7 @@ typedef struct KartAiShared {
     /* 124 */ s16 mUnk_124;
     /* 126 */ u8 mUnk_126[2];
     // The race's random generator, or the per-console one in time attack.
-    /* 128 */ Unk0217aebc_128 *mRandom;
+    /* 128 */ RandomState64 *mRandom;
     /* 12c */ NNSFndList mTableIndexList;
     /* 138 */ s32 mUnk_138;
     /* 13c */ s16 mNonCpuKartCount;

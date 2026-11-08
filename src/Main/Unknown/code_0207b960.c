@@ -72,7 +72,7 @@ void func_0207d6a4(struct KartAiRaceSpeedLimit *raceSpeedLimit, struct KartAi *k
 
 void func_0207d5b8(KartAiItemUse *itemUse, struct KartAi *kartAi) {
     BOOL timerRanOut;
-    Unk0217aebc_128 *random;
+    RandomState64 *random;
     u16 randomLimit;
     u32 randomPart;
 
@@ -104,7 +104,7 @@ void func_0207d5b8(KartAiItemUse *itemUse, struct KartAi *kartAi) {
 
 void UseItemAfterHeld(KartAiItemUse *itemUse, struct KartAi *kartAi) {
     BOOL timerRanOut;
-    Unk0217aebc_128 *random;
+    RandomState64 *random;
     u16 randomLimit;
     u32 randomPart;
 
@@ -205,7 +205,7 @@ void UseItemByRankAfterHeld(KartAiItemUse *itemUse, struct KartAi *kartAi) {
     RequestItemBitsByKartRank(itemUse, kartAi);
 }
 void UseItemByTargetOrRank(KartAiItemUse *itemUse, struct KartAi *kartAi) {
-    Unk0217aebc_128 *random;
+    RandomState64 *random;
     u16 randomLimit;
     u32 randomPart;
 
@@ -255,7 +255,7 @@ void UseItemByTargetOrRank(KartAiItemUse *itemUse, struct KartAi *kartAi) {
 }
 // First place sends the bit 0x80, last place ITEM_THROW_FORWARD_BIT, the places between follow mThenBitKind.
 void RequestItemBitsByKartRank(KartAiItemUse *itemUse, struct KartAi *kartAi) {
-    Unk0217aebc_128 *random;
+    RandomState64 *random;
     s32 rank;
     u16 randomLimit;
     u32 randomPart;
@@ -364,7 +364,7 @@ void RequestItemBitsByKartRank(KartAiItemUse *itemUse, struct KartAi *kartAi) {
 
 void UseItemAfterHeldIfTurnUnder20(KartAiItemUse *itemUse, struct KartAi *kartAi) {
     BOOL timerRanOut;
-    Unk0217aebc_128 *random;
+    RandomState64 *random;
     u16 randomLimit;
     u32 randomPart;
 
@@ -399,7 +399,7 @@ void UseItemAfterHeldIfTurnUnder20(KartAiItemUse *itemUse, struct KartAi *kartAi
 
 void func_0207cb74(KartAiItemUse *itemUse, struct KartAi *kartAi) {
     BOOL timerRanOut;
-    Unk0217aebc_128 *random;
+    RandomState64 *random;
     u16 randomLimit;
     u32 randomPart;
 
@@ -574,7 +574,7 @@ void SetupRaceItemEntries(void) {
 
 // Also stops the every-call request of the item bits.
 void UseItemAndResetHeldTimer(KartAiItemUse *itemUse, struct KartAi *kartAi) {
-    Unk0217aebc_128 *random;
+    RandomState64 *random;
     u16 randomLimit;
     u32 randomPart;
 
@@ -597,7 +597,7 @@ void UseItemAndResetHeldTimer(KartAiItemUse *itemUse, struct KartAi *kartAi) {
 
 // Also stops the every-call request of the item bits.
 void UseItemAndResetInUseTimer(KartAiItemUse *itemUse, struct KartAi *kartAi) {
-    Unk0217aebc_128 *random;
+    RandomState64 *random;
     u16 randomLimit;
     u32 randomPart;
 
@@ -620,7 +620,7 @@ void UseItemAndResetInUseTimer(KartAiItemUse *itemUse, struct KartAi *kartAi) {
 
 // Also stops the every-call request of the item bits.
 void UseItemForwardAndResetInUseTimer(KartAiItemUse *itemUse, struct KartAi *kartAi) {
-    Unk0217aebc_128 *random;
+    RandomState64 *random;
     u16 randomLimit;
     u32 randomPart;
 
@@ -645,7 +645,7 @@ void UseItemForwardAndResetInUseTimer(KartAiItemUse *itemUse, struct KartAi *kar
 
 // Also stops the every-call request of the item bits.
 void UseItemBehindAndResetInUseTimer(KartAiItemUse *itemUse, struct KartAi *kartAi) {
-    Unk0217aebc_128 *random;
+    RandomState64 *random;
     u16 randomLimit;
     u32 randomPart;
 
@@ -732,7 +732,7 @@ void AdvanceRaceItemBitRequests(struct KartAiItemUse *itemUse, struct KartAi *ka
 }
 
 void SetupHeldItemEntry(struct KartAiItemUse *itemUse, struct KartAi *kartAi) {
-    Unk0217aebc_128 *random;
+    RandomState64 *random;
     u16 randomLimit;
     u32 randomPart;
     enum { K0 } heldItemIndex;
@@ -758,7 +758,7 @@ void SetupHeldItemEntry(struct KartAiItemUse *itemUse, struct KartAi *kartAi) {
 }
 
 void ResetHeldItemTimer(struct KartAiItemUse *itemUse) {
-    Unk0217aebc_128 *random;
+    RandomState64 *random;
     u16 randomLimit;
     u32 randomPart;
 
@@ -790,7 +790,7 @@ s32 DecrementHeldItemTimer(struct KartAiItemUse *itemUse) {
 }
 
 void ResetItemInUseTimer(struct KartAiItemUse *itemUse, struct KartAiItemUseEntry *unusedEntry) {
-    Unk0217aebc_128 *random;
+    RandomState64 *random;
     u16 randomLimit;
     u32 randomPart;
 
@@ -822,7 +822,7 @@ s32 DecrementItemInUseTimer(struct KartAiItemUse *itemUse) {
 }
 
 void SetupItemInUseEntry(struct KartAiItemUse *itemUse, struct KartAi *kartAi) {
-    Unk0217aebc_128 *random;
+    RandomState64 *random;
     u16 randomLimit;
     u32 randomPart;
     enum { K0 } objectKind;

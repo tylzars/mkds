@@ -290,7 +290,7 @@ s32 PickKartAiTableIndex(u16 a, u32 *b) {
     u16 y;
     KartAiShared *d;
     RaceSetup *p;
-    Unk0217aebc_128 *c;
+    RandomState64 *c;
     KartAiTableIndexEntry *e;
     v1 = FALSE;
     r = -1;
@@ -582,6 +582,6 @@ u32 func_02085390(void) {
     return (gKartAiShared->mUnk_120);
 }
 
-Unk0217aebc_128 *GetKartAiRandom(void) {
+RandomState64 *GetKartAiRandom(void) {
     return gKartAiShared->mRandom;
 }

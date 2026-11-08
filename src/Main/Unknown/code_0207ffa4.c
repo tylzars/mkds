@@ -193,7 +193,7 @@ void AdvancePointLinkCursor(PointLinkCursor *p) {
     u16 i = 0;
     u16 n;
     u32 v;
-    Unk0217aebc_128 *q;
+    RandomState64 *q;
 
     if (!(GetKart(p->mKartIndex)->mUnk_4c & 0x10000000)) {
         n = p->mLink->mUnk_24;
@@ -306,7 +306,7 @@ void AdvanceBattlePointLinkCursor(LinkCursor *p, Vec3 *a, Vec3 *b, u16 c, Unk020
     s32 t;
     u16 i;
     u8 j;
-    Unk0217aebc_128 *g;
+    RandomState64 *g;
     u16 k;
     Vec3 v;
     Vec3 w;
