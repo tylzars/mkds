@@ -1460,13 +1460,13 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
     switch (gSelectRaceRule->mMode) {
         case 0:
         case 1:
-            SetupPlayerEntryList(0, 2);
+            SetupPlayerEntryList(0, PLAYER_ENTRY_LIST_RACE_RULE);
             break;
         case 2:
         case 3:
         case 4:
         case 5:
-            SetupPlayerEntryList(1, 2);
+            SetupPlayerEntryList(1, PLAYER_ENTRY_LIST_RACE_RULE);
             break;
     }
     ReadRaceSetupCopyIntoSelectRaceRule();

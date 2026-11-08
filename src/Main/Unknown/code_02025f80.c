@@ -198,7 +198,7 @@ void InitSelectCharacter(void *parentHeap, s32 mode, void *mainOam, void *subOam
                 modeValue = 2;
                 break;
         }
-        SetupPlayerEntryList(modeValue, 0);
+        SetupPlayerEntryList(modeValue, PLAYER_ENTRY_LIST_CHARACTER);
     }
     selectCharacter = gSelectCharacter;
     switch (selectCharacter->mUnk_080) {

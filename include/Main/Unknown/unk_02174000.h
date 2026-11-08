@@ -12,6 +12,11 @@
 #include "Main/Unknown/code_0205ee14.h" // KartAppear
 #include "code_02022a90.h" // NNSG2dCellTransferState
 
+// Screen kinds of the player entry list (SetupPlayerEntryList's second argument, PlayerEntryList.mScreenKind).
+#define PLAYER_ENTRY_LIST_CHARACTER 0
+#define PLAYER_ENTRY_LIST_KART 1
+#define PLAYER_ENTRY_LIST_RACE_RULE 2
+
 // One entry of mEntries: character, kart, team and player kind; mUnk_10 is passed on as SetNextRaceEntry's sixth
 // argument. 0x18-byte elements of the table at member 0 of RaceSetupCopy.
 typedef struct RaceSetupCopyEntry {
@@ -175,7 +180,7 @@ typedef struct PlayerEntryList {
     /* 20c */ BOOL mUnk_20c;
     /* 210 */ Interpolation mInterpolations[4];
     /* 250 */ s32 mMode;
-    /* 254 */ s32 mScreenKind;
+    /* 254 */ s32 mScreenKind; // PLAYER_ENTRY_LIST_CHARACTER / _KART / _RACE_RULE
 } PlayerEntryList;
 
 extern PlayerEntryList *gPlayerEntryList;

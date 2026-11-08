@@ -31,6 +31,7 @@
 #include "code_02148950.h"
 #include "Main/Unknown/unk_02161000.h"
 #include "Main/Unknown/code_02025f80.h"
+#include "Main/Unknown/unk_02174000.h"
 
 #pragma optimize_for_size on
 
@@ -89,7 +90,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
                 m = 2;
                 break;
         }
-        SetupPlayerEntryList(m, 1);
+        SetupPlayerEntryList(m, PLAYER_ENTRY_LIST_KART);
     }
     switch (gSelectKart->mMode) {
         case 0:

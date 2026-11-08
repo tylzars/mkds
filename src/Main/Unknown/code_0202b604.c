@@ -30,7 +30,7 @@ void WritePlayerEntryListRegisters(void) {
     s16 interpolatedValue;
 
     interpolatedValue = GetInterpolatedValue(&gPlayerEntryList->mInterpolations[2]);
-    if (gPlayerEntryList->mScreenKind == 2) {
+    if (gPlayerEntryList->mScreenKind == PLAYER_ENTRY_LIST_RACE_RULE) {
         b = FALSE;
         displayBits |= 2;
         reg_G2_BG0OFS = interpolatedValue & 0x1ff;
@@ -45,7 +45,7 @@ void WritePlayerEntryListRegisters(void) {
     }
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (displayBits << 8);
     GX_SetGraphicsMode(1, 0, b);
-    if (gPlayerEntryList->mScreenKind == 2) {
+    if (gPlayerEntryList->mScreenKind == PLAYER_ENTRY_LIST_RACE_RULE) {
         reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffff1fff) | 0x6000;
         reg_G2_WININ = (u32) ((reg_G2_WININ & ~0x3f) | 0x1d) | 0x20;
         reg_G2_WININ = (u32) ((reg_G2_WININ & 0xffffc0ff) | 0x1e00) | 0x2000;

@@ -335,7 +335,7 @@ void SetupPlayerEntryList(s32 mode, s32 screenKind) {
                 break;
         }
     }
-    if (gPlayerEntryList->mScreenKind == 2) {
+    if (gPlayerEntryList->mScreenKind == PLAYER_ENTRY_LIST_RACE_RULE) {
         for (i = 0; i < 8; i++) {
             fileSet->mCellTable[gEntryCellIndices[i].mKartCellIndex].mVisible = 0;
         }
@@ -359,7 +359,7 @@ void SetupPlayerEntryList(s32 mode, s32 screenKind) {
             func_020258d4(0, screenMapFileSet, data_usa_02162a54, data_usa_02162a70, data_usa_02162a8c, 1,
                           FindFileInLoadedArchives);
         }
-    } else if (gPlayerEntryList->mScreenKind == 1) {
+    } else if (gPlayerEntryList->mScreenKind == PLAYER_ENTRY_LIST_KART) {
         func_02025f14(&gPlayerEntryList->mInterpolations[3], 0);
     }
     if (gPlayerEntryList->mUnk_20c != FALSE) {
@@ -386,7 +386,7 @@ void SetupPlayerEntryList(s32 mode, s32 screenKind) {
     SetupInterpolation(&gPlayerEntryList->mInterpolations[2], 3, 10, 0x60, 0);
     gPlayerEntryList->mUseTeams = 0;
     n = 0;
-    if (gPlayerEntryList->mScreenKind != 2 && gPlayerEntryList->mMode != 0) {
+    if (gPlayerEntryList->mScreenKind != PLAYER_ENTRY_LIST_RACE_RULE && gPlayerEntryList->mMode != 0) {
         n = 1;
     }
     gPlayerEntryList->mTimerEnabled = n;
@@ -432,7 +432,7 @@ void AdvancePlayerEntryList(void) {
         func_02025c48(d, gTimerDigitCellIndices[c % 10], fileSet->mCellLayout);
     }
     entryList = gPlayerEntryList;
-    if (entryList->mScreenKind != 2) {
+    if (entryList->mScreenKind != PLAYER_ENTRY_LIST_RACE_RULE) {
         switch (entryList->mMode) {
             case 0: {
                 s32 a;
