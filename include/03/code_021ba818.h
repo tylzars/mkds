@@ -22,12 +22,12 @@ extern Unk02188de4 *data_ov003_021d8ba4;
 extern u8 data_ov003_021d8ba8[6];
 extern u8 data_ov003_021d8bb0[0x20];
 
-BOOL func_ov003_021ba818(Unk021ba818Func *a, u8 *b, s32 c);
-BOOL func_ov003_021ba910(Unk021ba778Src *a, Unk021d8a4c *b, u32 c);
+BOOL func_ov003_021ba818(Unk021ba818Func *callback, u8 *buffer, s32 size);
+BOOL func_ov003_021ba910(Unk021ba778Src *record, MelcoBlock *melcoBlock, u32 flags);
 BOOL func_ov003_021ba9c0(void);
 BOOL func_ov003_021baa28(void);
 BOOL func_ov003_021baa68(void);
-BOOL func_ov003_021baaac(const u8 *a, const u8 *b, s32 c, u32 d);
-s32 func_ov003_021babc0(Unk021ba778Src *a, s32 b);
+BOOL func_ov003_021baaac(const u8 *addressBytes, const u8 *essidBytes, s32 essidLength, u32 d);
+s32 func_ov003_021babc0(Unk021ba778Src *records, s32 maxCount);
 BOOL func_ov003_021bac0c(void);
-void func_ov003_021bac90(s16 *a);
+void func_ov003_021bac90(s16 *event);

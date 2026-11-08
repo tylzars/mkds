@@ -7,30 +7,30 @@
 #include "code_0214d018.h"
 #include "00/code_021a669c.h"
 
-Unk021d687c data_ov003_021d687c[12] = {
+MaskCodeEntry gMaskCodeTable[12] = {
     {0x0001, 0x02, 0}, {0x0002, 0x04, 0}, {0x0004, 0x0b, 0}, {0x0008, 0x0c, 0}, {0x0010, 0x12, 0}, {0x0020, 0x16, 0},
     {0x0040, 0x18, 0}, {0x0080, 0x24, 0}, {0x0100, 0x30, 0}, {0x0200, 0x48, 0}, {0x0400, 0x60, 0}, {0x0800, 0x6c, 0},
 };
 
-void func_ov003_021ba778(Unk021ba778Src *src, EssidEntry *dst) {
+void ConvertRecordToEssidEntry(Unk021ba778Src *src, EssidEntry *dst) {
     int i;
     int count;
     int mode;
-    dst->mUnk_00 = src->mUnk_0a;
-    MIi_CpuCopy16(src->mUnk_0c, dst->mUnk_04, 0x20);
+    dst->mEssidLength = src->mUnk_0a;
+    MIi_CpuCopy16(src->mUnk_0c, dst->mEssid, 0x20);
     dst->mUnk_24 = src->mUnk_36;
     MIi_CpuCopy16(src->mUnk_04, dst->mUnk_30, 6);
     count = 0;
     for (i = 0; i < 12; i++) {
-        if (src->mUnk_30 & data_ov003_021d687c[i].mUnk_00) {
-            dst->mUnk_3c[count] = data_ov003_021d687c[i].mUnk_02;
-            if (src->mUnk_2e & data_ov003_021d687c[i].mUnk_00) {
-                dst->mUnk_3c[count] |= 0x80;
+        if (src->mUnk_30 & gMaskCodeTable[i].mMask) {
+            dst->mCodes[count] = gMaskCodeTable[i].mCode;
+            if (src->mUnk_2e & gMaskCodeTable[i].mMask) {
+                dst->mCodes[count] |= 0x80;
             }
             count++;
         }
     }
-    dst->mUnk_38 = count;
+    dst->mCodeCount = count;
     dst->mUnk_4c = src->mUnk_32;
     mode = src->mUnk_2c & 3;
     if (mode == 1) {
@@ -42,24 +42,24 @@ void func_ov003_021ba778(Unk021ba778Src *src, EssidEntry *dst) {
     }
 }
 
-void func_ov003_021ba744(EssidMelcoRequest *request, Unk021ba778Src *rec) {
+void SetRecordEssidFromRequest(EssidMelcoRequest *request, Unk021ba778Src *rec) {
     vu16 zero = 0;
     MIi_CpuClear16(zero, rec->mUnk_0c, 0x20);
-    rec->mUnk_0a = request->mUnk_00;
-    MI_CpuCopy8(request->mUnk_04, rec->mUnk_0c, rec->mUnk_0a);
+    rec->mUnk_0a = request->mEssidLength;
+    MI_CpuCopy8(request->mEssid, rec->mUnk_0c, rec->mUnk_0a);
 }
 
-void func_ov003_021ba734(EssidEntryList *list, Unk021ba778Src *src, s32 count) {
-    list->mUnk_00 = count;
-    func_ov003_021ba778(src, list->mUnk_04);
+void FillEssidEntryListFromRecord(EssidEntryList *list, Unk021ba778Src *src, s32 count) {
+    list->mCount = count;
+    ConvertRecordToEssidEntry(src, list->mEntries);
 }
 
 s32 func_ov003_021ba720(void *msg) {
-    return OS_SendMessage(&data_ov003_021d8a2c, msg, 0);
+    return OS_SendMessage(&gMessageQueue, msg, 0);
 }
 
 s32 func_ov003_021ba70c(void *msg) {
-    return OS_SendMessage(&data_ov003_021d8a2c, msg, 0);
+    return OS_SendMessage(&gMessageQueue, msg, 0);
 }
 
 s32 func_ov003_021ba61c(void *(*alloc)(u32), void (*release)(void *)) {
@@ -67,7 +67,7 @@ s32 func_ov003_021ba61c(void *(*alloc)(u32), void (*release)(void *)) {
     void *msg;
     void *buffer;
     u32 enabled;
-    OS_InitMessageQueue(&data_ov003_021d8a2c, data_ov003_021d8a1c, 4);
+    OS_InitMessageQueue(&gMessageQueue, gMessageQueueSlots, 4);
     if (alloc == NULL || release == NULL) {
         return -1;
     }
@@ -85,7 +85,7 @@ s32 func_ov003_021ba61c(void *(*alloc)(u32), void (*release)(void *)) {
     }
     if (running != FALSE) {
         do {
-            OS_ReceiveMessage(&data_ov003_021d8a2c, &msg, 1);
+            OS_ReceiveMessage(&gMessageQueue, &msg, 1);
             switch ((u32) msg) {
                 case 4:
                 case 5:
@@ -122,7 +122,7 @@ s32 func_ov003_021ba560(void) {
         return -1;
     }
     do {
-        OS_ReceiveMessage(&data_ov003_021d8a2c, &msg, 1);
+        OS_ReceiveMessage(&gMessageQueue, &msg, 1);
         switch ((u32) msg) {
             case 4:
             case 5:
@@ -158,7 +158,7 @@ s32 func_ov003_021ba524(void) {
     if (func_ov003_021baa28() != FALSE) {
         done = FALSE;
         do {
-            OS_ReceiveMessage(&data_ov003_021d8a2c, &msg, 1);
+            OS_ReceiveMessage(&gMessageQueue, &msg, 1);
             /* waits for one entry; the loop flag is a placeholder */
             if ((u32) msg == 0xe) {
                 result = 0;
@@ -169,7 +169,7 @@ s32 func_ov003_021ba524(void) {
     return result;
 }
 
-s32 func_ov003_021ba394(EssidEntryList **out) {
+s32 ScanEssidEntries(EssidEntryList **out) {
     BOOL found = FALSE;
     s32 result = -1;
     BOOL running = TRUE;
@@ -193,7 +193,7 @@ s32 func_ov003_021ba394(EssidEntryList **out) {
         OS_CreateAlarm(&timer);
         OS_SetAlarm(&timer, 0x3fec42, (void (*)(void *)) func_ov003_021ba70c, (void *) 0x13);
         do {
-            OS_ReceiveMessage(&data_ov003_021d8a2c, &msg, 1);
+            OS_ReceiveMessage(&gMessageQueue, &msg, 1);
             switch ((u32) msg) {
                 case 0x13:
                     if (found == FALSE) {
@@ -246,21 +246,21 @@ s32 func_ov003_021ba394(EssidEntryList **out) {
             }
         }
         *out = list;
-        list->mUnk_00 = count;
+        list->mCount = count;
         for (i = 0; i < count; i++) {
-            func_ov003_021ba778(scan, &list->mUnk_04[i]);
+            ConvertRecordToEssidEntry(scan, &list->mEntries[i]);
             scan++;
         }
     cleanup:
         OS_CancelAlarm(&timer);
-        while (OS_ReceiveMessage(&data_ov003_021d8a2c, &msg, 0) == 1) {
+        while (OS_ReceiveMessage(&gMessageQueue, &msg, 0) == 1) {
         }
     }
     data_ov003_021d8a18(buffer);
     return result;
 }
 
-s32 func_ov003_021ba1b0(EssidMelcoRequest *request, EssidEntryList *out) {
+s32 RunEssidMelcoRequest(EssidMelcoRequest *request, EssidEntryList *out) {
     BOOL running = TRUE;
     s32 result;
     s32 retries;
@@ -276,25 +276,25 @@ s32 func_ov003_021ba1b0(EssidMelcoRequest *request, EssidEntryList *out) {
         flags = 0xc0000;
     }
     MI_CpuFill8(&data_ov003_021d8a4c, 0, 0x60);
-    if (request->mUnk_28 == 5) {
-        data_ov003_021d8a4c.mUnk_00 = 1;
-    } else if (request->mUnk_28 == 0xd) {
-        data_ov003_021d8a4c.mUnk_00 = 2;
-    } else if (request->mUnk_28 == 0x10) {
-        data_ov003_021d8a4c.mUnk_00 = 3;
+    if (request->mMelcoLength == 5) {
+        data_ov003_021d8a4c.mLengthKind = 1;
+    } else if (request->mMelcoLength == 0xd) {
+        data_ov003_021d8a4c.mLengthKind = 2;
+    } else if (request->mMelcoLength == 0x10) {
+        data_ov003_021d8a4c.mLengthKind = 3;
     } else {
         return -1;
     }
     data_ov003_021d8a4c.mUnk_01 = 0;
-    MI_CpuCopy8(request->mUnk_2c, data_ov003_021d8a4c.mUnk_02, request->mUnk_28);
+    MI_CpuCopy8(request->mMelcoBytes, data_ov003_021d8a4c.mMelcoBytes, request->mMelcoLength);
     func_ov000_021a6894();
-    if (func_ov003_021baaac(NULL, request->mUnk_04, request->mUnk_00, 0x30bffe) != 0) {
+    if (func_ov003_021baaac(NULL, request->mEssid, request->mEssidLength, 0x30bffe) != 0) {
         retries = 0;
         OS_CreateAlarm(&timer);
         OS_SetAlarm(&timer, 0x3fec42, (void (*)(void *)) func_ov003_021ba70c, (void *) 0x12);
         flags |= 0x30000;
         do {
-            OS_ReceiveMessage(&data_ov003_021d8a2c, &msg, 1);
+            OS_ReceiveMessage(&gMessageQueue, &msg, 1);
             switch ((u32) msg) {
                 case 0x12:
                     if (done == FALSE) {
@@ -307,7 +307,7 @@ s32 func_ov003_021ba1b0(EssidMelcoRequest *request, EssidEntryList *out) {
                         if (func_ov003_021babc0(&data_ov003_021d8ac0, 1) != 1) {
                             running = FALSE;
                         } else {
-                            func_ov003_021ba744(request, &data_ov003_021d8ac0);
+                            SetRecordEssidFromRequest(request, &data_ov003_021d8ac0);
                             if (func_ov003_021ba910(&data_ov003_021d8ac0, &data_ov003_021d8a4c, flags) == FALSE) {
                                 running = FALSE;
                             } else {
@@ -317,7 +317,7 @@ s32 func_ov003_021ba1b0(EssidMelcoRequest *request, EssidEntryList *out) {
                     }
                     break;
                 case 0xa:
-                    func_ov003_021ba744(request, &data_ov003_021d8ac0);
+                    SetRecordEssidFromRequest(request, &data_ov003_021d8ac0);
                     if (func_ov003_021ba910(&data_ov003_021d8ac0, &data_ov003_021d8a4c, flags) == FALSE) {
                         running = FALSE;
                     }
@@ -346,10 +346,10 @@ s32 func_ov003_021ba1b0(EssidMelcoRequest *request, EssidEntryList *out) {
             }
         } while (running != FALSE);
         OS_CancelAlarm(&timer);
-        while (OS_ReceiveMessage(&data_ov003_021d8a2c, &msg, 0) == 1) {
+        while (OS_ReceiveMessage(&gMessageQueue, &msg, 0) == 1) {
         }
     }
-    func_ov003_021ba734(out, &data_ov003_021d8ac0, result == 0 ? 1 : 0);
+    FillEssidEntryListFromRecord(out, &data_ov003_021d8ac0, result == 0 ? 1 : 0);
     return result;
 }
 
@@ -372,12 +372,13 @@ void func_ov003_021ba164(void *ptr) {
     data_ov003_021d8a18(ptr);
 }
 
-s32 func_ov003_021ba05c(Unk021b94c4 *req) {
+s32 func_ov003_021ba05c(ValueRecordsRequest *req) {
     s32 status;
     s32 ret;
-    if (req->mUnk_106 == 0 || req->mUnk_106 < -1 || req->mUnk_108 < -1 || req->mUnk_10a == 0 || req->mUnk_10a < -1 ||
-        req->mUnk_10c < -1 || req->mUnk_10e < -1 || req->mUnk_004 == 0 || req->mUnk_004 > 0x100 ||
-        req->mUnk_006[req->mUnk_004 - 1] != 0) {
+    if (req->mScanRetryLimit == 0 || req->mScanRetryLimit < -1 || req->mScanRetryDelayMs < -1 ||
+        req->mSendAttemptLimit == 0 || req->mSendAttemptLimit < -1 || req->mSendAttemptDelayMs < -1 ||
+        req->mReceiveTimeoutMs < -1 || req->mItemLength == 0 || req->mItemLength > 0x100 ||
+        req->mItemBytes[req->mItemLength - 1] != 0) {
         status = -1;
     } else {
         status = 0;
@@ -386,27 +387,27 @@ s32 func_ov003_021ba05c(Unk021b94c4 *req) {
         status = -1;
     }
     if (status == -1) {
-        req->mUnk_116 = 0xf;
-        func_ov003_021b9518();
+        req->mResultCode = 0xf;
+        ReleaseEssidEntryLists();
         return -1;
     }
-    data_ov003_021d7c54 = func_ov003_021ba178(0x5f8);
-    if (data_ov003_021d7c54 == NULL) {
-        req->mUnk_116 = 0xf;
-        func_ov003_021b9518();
+    gRequestPacketBuffer = func_ov003_021ba178(0x5f8);
+    if (gRequestPacketBuffer == NULL) {
+        req->mResultCode = 0xf;
+        ReleaseEssidEntryLists();
         return -1;
     }
     ReportStateChange(-1);
     ret = func_ov003_021b9570(req);
-    func_ov003_021ba164(data_ov003_021d7c54);
-    func_ov003_021b9518();
-    if (data_ov003_021d6804 != -1) {
-        func_ov003_021b7ce4(data_ov003_021d6804);
+    func_ov003_021ba164(gRequestPacketBuffer);
+    ReleaseEssidEntryLists();
+    if (gSocketDescriptor != -1) {
+        func_ov003_021b7ce4(gSocketDescriptor);
     }
     return ret;
 }
 
-s32 func_ov003_021b9570(Unk021b94c4 *req) {
+s32 func_ov003_021b9570(ValueRecordsRequest *req) {
     s16 timeout;
     s32 mode;
     s32 state;
@@ -414,8 +415,8 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
     PacketBuffer *buffer;
     s32 scanResult;
     s32 result;
-    Unk021d6808 scan = data_ov003_021d6808;
-    Unk021d6808 limits = {0, 0};
+    RetryLimit scan = data_ov003_021d6808;
+    RetryLimit limits = {0, 0};
     s32 value = 1;
     s32 attempts;
     s32 ret;
@@ -426,7 +427,7 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
     s32 srcLen;
     s32 received;
     Unk021b7ba0 set;
-    Unk021b7d1c wait;
+    WaitTimeout wait;
     Unk021b7cec info;
     PacketTag list[3];
     EssidMelcoRequest request;
@@ -436,59 +437,59 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
     attempts = mode;
     addr = mode;
     FillBytes(list, 0, sizeof(list));
-    scan.mUnk_00 = req->mUnk_106;
-    if (scan.mUnk_00 == -1) {
-        scan.mUnk_00 = 10;
+    scan.mCount = req->mScanRetryLimit;
+    if (scan.mCount == -1) {
+        scan.mCount = 10;
     }
-    limits.mUnk_00 = req->mUnk_10a;
-    if (limits.mUnk_00 == -1) {
-        limits.mUnk_00 = 10;
+    limits.mCount = req->mSendAttemptLimit;
+    if (limits.mCount == -1) {
+        limits.mCount = 10;
     }
-    scan.mUnk_02 = req->mUnk_108;
-    if (scan.mUnk_02 == -1) {
-        scan.mUnk_02 = 100;
+    scan.mDelayMs = req->mScanRetryDelayMs;
+    if (scan.mDelayMs == -1) {
+        scan.mDelayMs = 100;
     }
-    limits.mUnk_02 = req->mUnk_10c;
-    if (limits.mUnk_02 == -1) {
-        limits.mUnk_02 = 100;
+    limits.mDelayMs = req->mSendAttemptDelayMs;
+    if (limits.mDelayMs == -1) {
+        limits.mDelayMs = 100;
     }
-    timeout = req->mUnk_10e;
+    timeout = req->mReceiveTimeoutMs;
     if (timeout == -1) {
         timeout = 2000;
     }
-    func_ov003_021b94c4(req);
-    if ((data_ov003_021d7c6c.mUnk_08 & 1) != 1) {
-        func_ov003_021b94b8(0x13);
-        req->mUnk_116 = 0xf;
-        func_ov003_021b9518();
+    InitRequestState(req);
+    if ((gRequestState.mWantedRecordMask & 1) != 1) {
+        SetErrorCode(0x13);
+        req->mResultCode = 0xf;
+        ReleaseEssidEntryLists();
         return -1;
     }
 
     cnt = 0;
     ReportStateChange(0);
-    delay = scan.mUnk_02;
+    delay = scan.mDelayMs;
     while (1) {
-        if (data_ov003_021d7c44 != NULL) {
-            func_ov003_021ba164(data_ov003_021d7c44);
-            data_ov003_021d7c44 = NULL;
+        if (gScannedEssidList != NULL) {
+            func_ov003_021ba164(gScannedEssidList);
+            gScannedEssidList = NULL;
         }
-        if (func_ov003_021ba394(&data_ov003_021d7c44) == -1) {
-            req->mUnk_116 = 0xf;
-            func_ov003_021b9518();
+        if (ScanEssidEntries(&gScannedEssidList) == -1) {
+            req->mResultCode = 0xf;
+            ReleaseEssidEntryLists();
             return -1;
         }
-        result = CheckSingleEssidAossEntry(data_ov003_021d7c44);
+        result = CheckSingleEssidAossEntry(gScannedEssidList);
         if (result == 4) {
-            req->mUnk_116 = 2;
-            func_ov003_021b9518();
+            req->mResultCode = 2;
+            ReleaseEssidEntryLists();
             return -1;
         }
         if (result == 0) {
             break;
         }
-        if (cnt >= scan.mUnk_00) {
-            req->mUnk_116 = 1;
-            func_ov003_021b9518();
+        if (cnt >= scan.mCount) {
+            req->mResultCode = 1;
+            ReleaseEssidEntryLists();
             return -1;
         }
         func_ov003_021ba1a8(delay);
@@ -498,221 +499,221 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
     ReportStateChange(1);
     FillBytes(&request, 0, 0x3c);
     if (FillEssidAossAndMelcoRequest(&request) != 0) {
-        req->mUnk_116 = 0xf;
-        func_ov003_021b9518();
+        req->mResultCode = 0xf;
+        ReleaseEssidEntryLists();
         return -1;
     }
-    data_ov003_021d7c4c = func_ov003_021ba178(0x58);
-    if (data_ov003_021d7c4c == NULL) {
-        req->mUnk_116 = 0xf;
-        func_ov003_021b9518();
+    gRequestedEssidList = func_ov003_021ba178(0x58);
+    if (gRequestedEssidList == NULL) {
+        req->mResultCode = 0xf;
+        ReleaseEssidEntryLists();
         return -1;
     }
-    FillBytes(data_ov003_021d7c4c, 0, 0x58);
+    FillBytes(gRequestedEssidList, 0, 0x58);
     cnt = 0;
-    if (scan.mUnk_00 > 0) {
+    if (scan.mCount > 0) {
         do {
-            result = func_ov003_021ba1b0(&request, data_ov003_021d7c4c);
+            result = RunEssidMelcoRequest(&request, gRequestedEssidList);
             if (result == -1) {
-                req->mUnk_116 = 0xf;
-                func_ov003_021b9518();
+                req->mResultCode = 0xf;
+                ReleaseEssidEntryLists();
                 return -1;
             }
             if (result == 0) {
                 /* repeated test of result, kept as a placeholder */
-                if (result != 0 || data_ov003_021d7c4c->mUnk_00 == 1) {
+                if (result != 0 || gRequestedEssidList->mCount == 1) {
                     break;
                 }
             }
             func_ov003_021ba1a8(delay);
             cnt++;
-        } while (cnt < scan.mUnk_00);
+        } while (cnt < scan.mCount);
     }
-    if (cnt == scan.mUnk_00) {
-        req->mUnk_116 = 0xf;
-        func_ov003_021b9518();
+    if (cnt == scan.mCount) {
+        req->mResultCode = 0xf;
+        ReleaseEssidEntryLists();
         return -1;
     }
     if (func_ov003_021b7df4(0xc0a80b65, 0xffffff00, 0xc0a80b65) != 0) {
-        func_ov003_021b94b8(0xc);
-        req->mUnk_116 = 0xf;
-        func_ov003_021b9518();
+        SetErrorCode(0xc);
+        req->mResultCode = 0xf;
+        ReleaseEssidEntryLists();
         return -1;
     }
-    func_ov003_021b9518();
-    FillPacketTags(3, list, req->mUnk_110);
-    data_ov003_021d6804 = func_ov003_021b7cf8(2, 2, 0);
-    if (data_ov003_021d6804 < 0) {
-        req->mUnk_116 = 0xf;
-        func_ov003_021b9518();
+    ReleaseEssidEntryLists();
+    FillPacketTags(3, list, req->mMacAddress);
+    gSocketDescriptor = func_ov003_021b7cf8(2, 2, 0);
+    if (gSocketDescriptor < 0) {
+        req->mResultCode = 0xf;
+        ReleaseEssidEntryLists();
         return -1;
     }
-    if (func_ov003_021b7d00(data_ov003_021d6804, 0xffff, 1, &value, 4) < 0) {
-        func_ov003_021b94b8(0xb);
-        req->mUnk_116 = 0xf;
-        func_ov003_021b9518();
+    if (func_ov003_021b7d00(gSocketDescriptor, 0xffff, 1, &value, 4) < 0) {
+        SetErrorCode(0xb);
+        req->mResultCode = 0xf;
+        ReleaseEssidEntryLists();
         return -1;
     }
     FillBytes(&info, 0, 8);
     info.mUnk_01 = 2;
     info.mUnk_04 = SwapBytes32(0xc0a80b65);
     info.mUnk_02 = func_ov003_021b7c94(0x5790);
-    if (func_ov003_021b7cec(data_ov003_021d6804, &info, 8) < 0) {
-        req->mUnk_116 = 0xf;
-        func_ov003_021b9518();
+    if (func_ov003_021b7cec(gSocketDescriptor, &info, 8) < 0) {
+        req->mResultCode = 0xf;
+        ReleaseEssidEntryLists();
         return -1;
     }
 
     while (1) {
-        buffer = data_ov003_021d7c54;
+        buffer = gRequestPacketBuffer;
         FillBytes(&buf, 0, 0x14);
         buf.mUnk_10 = 0xc0a80b65;
         buf.mUnk_00 = 0xc0a80b01;
         while (1) {
-            if (mode == 1 && data_ov003_021d7c6c.mUnk_18 != 1) {
-                if (data_ov003_021d6804 != -1) {
-                    func_ov003_021b7ce4(data_ov003_021d6804);
+            if (mode == 1 && gRequestState.mAddressApplied != 1) {
+                if (gSocketDescriptor != -1) {
+                    func_ov003_021b7ce4(gSocketDescriptor);
                 }
-                data_ov003_021d6804 = -1;
+                gSocketDescriptor = -1;
                 if (func_ov003_021b7dc8() != 0) {
-                    req->mUnk_116 = 0xf;
-                    func_ov003_021b9518();
+                    req->mResultCode = 0xf;
+                    ReleaseEssidEntryLists();
                     return -1;
                 }
-                if (data_ov003_021d7c44 != NULL) {
-                    func_ov003_021ba164(data_ov003_021d7c44);
-                    data_ov003_021d7c44 = NULL;
+                if (gScannedEssidList != NULL) {
+                    func_ov003_021ba164(gScannedEssidList);
+                    gScannedEssidList = NULL;
                 }
-                data_ov003_021d7c44 = func_ov003_021ba178(0x58);
-                if (data_ov003_021d7c44 == NULL) {
-                    req->mUnk_116 = 0xf;
-                    func_ov003_021b9518();
+                gScannedEssidList = func_ov003_021ba178(0x58);
+                if (gScannedEssidList == NULL) {
+                    req->mResultCode = 0xf;
+                    ReleaseEssidEntryLists();
                     return -1;
                 }
                 while (1) {
-                    scanResult = func_ov003_021ba394(&data_ov003_021d7c44);
+                    scanResult = ScanEssidEntries(&gScannedEssidList);
                     if (scanResult == -1) {
-                        req->mUnk_116 = 0xf;
-                        func_ov003_021b9518();
+                        req->mResultCode = 0xf;
+                        ReleaseEssidEntryLists();
                         return -1;
                     }
-                    result = CheckSingleEssidAossEntry(data_ov003_021d7c44);
+                    result = CheckSingleEssidAossEntry(gScannedEssidList);
                     if (result == 4) {
-                        req->mUnk_116 = 2;
-                        func_ov003_021b9518();
+                        req->mResultCode = 2;
+                        ReleaseEssidEntryLists();
                         return -1;
                     }
                     if (result == 0) {
                         break;
                     }
-                    if (cnt >= scan.mUnk_00) {
-                        req->mUnk_116 = 1;
-                        func_ov003_021b9518();
+                    if (cnt >= scan.mCount) {
+                        req->mResultCode = 1;
+                        ReleaseEssidEntryLists();
                         return -1;
                     }
                     func_ov003_021ba1a8(delay);
                     cnt++;
                 }
                 if (scanResult == -1) {
-                    req->mUnk_116 = 0xf;
-                    func_ov003_021b9518();
+                    req->mResultCode = 0xf;
+                    ReleaseEssidEntryLists();
                     return -1;
                 }
-                data_ov003_021d7c4c = func_ov003_021ba178(0x58);
-                if (data_ov003_021d7c4c == NULL) {
-                    req->mUnk_116 = 0xf;
-                    func_ov003_021b9518();
+                gRequestedEssidList = func_ov003_021ba178(0x58);
+                if (gRequestedEssidList == NULL) {
+                    req->mResultCode = 0xf;
+                    ReleaseEssidEntryLists();
                     return -1;
                 }
-                FillBytes(data_ov003_021d7c4c, 0, 0x58);
+                FillBytes(gRequestedEssidList, 0, 0x58);
                 cnt = 0;
-                if (scan.mUnk_00 > 0) {
+                if (scan.mCount > 0) {
                     do {
-                        result = func_ov003_021ba1b0(&request, data_ov003_021d7c4c);
+                        result = RunEssidMelcoRequest(&request, gRequestedEssidList);
                         if (result == -1) {
-                            req->mUnk_116 = 0xf;
-                            func_ov003_021b9518();
+                            req->mResultCode = 0xf;
+                            ReleaseEssidEntryLists();
                             return -1;
                         }
                         if (result == 0) {
                             /* repeated test of result, kept as a placeholder */
-                            if (result != 0 || data_ov003_021d7c4c->mUnk_00 == 1) {
+                            if (result != 0 || gRequestedEssidList->mCount == 1) {
                                 break;
                             }
                         }
                         func_ov003_021ba1a8(delay);
                         cnt++;
-                    } while (cnt < scan.mUnk_00);
+                    } while (cnt < scan.mCount);
                 }
-                if (cnt == scan.mUnk_00) {
-                    req->mUnk_116 = 0xf;
-                    func_ov003_021b9518();
+                if (cnt == scan.mCount) {
+                    req->mResultCode = 0xf;
+                    ReleaseEssidEntryLists();
                     return -1;
                 }
-                addr = func_ov003_021b9550(data_ov003_021d7c6c.mUnk_10, data_ov003_021d7c6c.mUnk_14);
-                if (func_ov003_021b7df4(addr, data_ov003_021d7c6c.mUnk_14, addr) != 0) {
-                    func_ov003_021b94b8(0xc);
-                    req->mUnk_116 = 0xf;
-                    func_ov003_021b9518();
+                addr = GetNextAddressInMask(gRequestState.mDestinationAddress, gRequestState.mAddressMask);
+                if (func_ov003_021b7df4(addr, gRequestState.mAddressMask, addr) != 0) {
+                    SetErrorCode(0xc);
+                    req->mResultCode = 0xf;
+                    ReleaseEssidEntryLists();
                     return -1;
                 }
-                data_ov003_021d7c6c.mUnk_18 = 1;
-                func_ov003_021b9518();
-                data_ov003_021d6804 = func_ov003_021b7cf8(2, 2, 0);
-                if (data_ov003_021d6804 < 0) {
-                    req->mUnk_116 = 0xf;
-                    func_ov003_021b9518();
+                gRequestState.mAddressApplied = 1;
+                ReleaseEssidEntryLists();
+                gSocketDescriptor = func_ov003_021b7cf8(2, 2, 0);
+                if (gSocketDescriptor < 0) {
+                    req->mResultCode = 0xf;
+                    ReleaseEssidEntryLists();
                     return -1;
                 }
-                if (func_ov003_021b7d00(data_ov003_021d6804, 0xffff, 1, &value, 4) < 0) {
-                    func_ov003_021b94b8(0xb);
-                    req->mUnk_116 = 0xf;
-                    func_ov003_021b9518();
+                if (func_ov003_021b7d00(gSocketDescriptor, 0xffff, 1, &value, 4) < 0) {
+                    SetErrorCode(0xb);
+                    req->mResultCode = 0xf;
+                    ReleaseEssidEntryLists();
                     return -1;
                 }
                 FillBytes(&info, 0, 8);
                 info.mUnk_01 = 2;
                 info.mUnk_04 = SwapBytes32(addr);
                 info.mUnk_02 = func_ov003_021b7c94(0x5790);
-                if (func_ov003_021b7cec(data_ov003_021d6804, &info, 8) < 0) {
-                    req->mUnk_116 = 0xf;
-                    func_ov003_021b9518();
+                if (func_ov003_021b7cec(gSocketDescriptor, &info, 8) < 0) {
+                    req->mResultCode = 0xf;
+                    ReleaseEssidEntryLists();
                     return -1;
                 }
             }
-            if (ReportStateAndSendPacketForMode(mode, &buf, list, data_ov003_021d6804) == -1) {
-                func_ov003_021b94b8(mode + 0x1000);
-                req->mUnk_116 = 0xf;
-                func_ov003_021b9518();
+            if (ReportStateAndSendPacketForMode(mode, &buf, list, gSocketDescriptor) == -1) {
+                SetErrorCode(mode + 0x1000);
+                req->mResultCode = 0xf;
+                ReleaseEssidEntryLists();
                 return -1;
             }
             FillBytes(buffer, 0, 0x5f8);
             func_ov003_021b7ba8(&set);
-            func_ov003_021b7ba0(data_ov003_021d6804, &set);
-            wait.mUnk_00 = timeout / 1000;
+            func_ov003_021b7ba0(gSocketDescriptor, &set);
+            wait.mSeconds = timeout / 1000;
             wait.mUnk_04 = timeout % 1000 * 1000;
-            if (func_ov003_021b7d1c(data_ov003_021d6804 + 1, &set, NULL, NULL, &wait) > 0) {
+            if (func_ov003_021b7d1c(gSocketDescriptor + 1, &set, NULL, NULL, &wait) > 0) {
                 break;
             }
             attempts++;
-            if (attempts > limits.mUnk_00) {
+            if (attempts > limits.mCount) {
                 if (mode == 0) {
-                    func_ov003_021b94b8(0xf);
+                    SetErrorCode(0xf);
                 } else if (mode == 1) {
-                    func_ov003_021b94b8(0x10);
+                    SetErrorCode(0x10);
                 } else {
-                    func_ov003_021b94b8(0x11);
+                    SetErrorCode(0x11);
                 }
                 ret = -1;
                 goto cleanup;
             }
-            func_ov003_021ba1a8(limits.mUnk_02);
+            func_ov003_021ba1a8(limits.mDelayMs);
         }
         srcLen = 8;
-        received = func_ov003_021b7d68(data_ov003_021d6804, buffer->mUnk_0c, 0x5dc, 0, &src2, &srcLen);
-        buffer->mUnk_00 = data_ov003_021d6804;
-        buffer->mUnk_04 = SwapBytes16(received);
-        state = AdvanceStepByKind(mode, buffer, &attempts, list, data_ov003_021d6804);
+        received = func_ov003_021b7d68(gSocketDescriptor, buffer->mBytes, 0x5dc, 0, &src2, &srcLen);
+        buffer->mDescriptor = gSocketDescriptor;
+        buffer->mReceivedLength = SwapBytes16(received);
+        state = AdvanceStepByKind(mode, buffer, &attempts, list, gSocketDescriptor);
         if (state == 0x64) {
             ret = 0;
             goto cleanup;
@@ -723,101 +724,101 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
         }
         if (mode != state) {
             if (state == 2) {
-                if (data_ov003_021d6804 != -1) {
-                    func_ov003_021b7ce4(data_ov003_021d6804);
+                if (gSocketDescriptor != -1) {
+                    func_ov003_021b7ce4(gSocketDescriptor);
                 }
-                data_ov003_021d6804 = -1;
+                gSocketDescriptor = -1;
                 if (func_ov003_021b7dc8() != 0) {
-                    req->mUnk_116 = 0xf;
-                    func_ov003_021b9518();
+                    req->mResultCode = 0xf;
+                    ReleaseEssidEntryLists();
                     return -1;
                 }
                 cnt = 0;
                 ReportStateChange(4);
                 while (1) {
-                    if (data_ov003_021d7c44 != NULL) {
-                        func_ov003_021ba164(data_ov003_021d7c44);
-                        data_ov003_021d7c44 = NULL;
+                    if (gScannedEssidList != NULL) {
+                        func_ov003_021ba164(gScannedEssidList);
+                        gScannedEssidList = NULL;
                     }
-                    if (func_ov003_021ba394(&data_ov003_021d7c44) == -1) {
-                        req->mUnk_116 = 0xf;
-                        func_ov003_021b9518();
+                    if (ScanEssidEntries(&gScannedEssidList) == -1) {
+                        req->mResultCode = 0xf;
+                        ReleaseEssidEntryLists();
                         return -1;
                     }
-                    result = CheckSingleEssidAossEntry(data_ov003_021d7c44);
+                    result = CheckSingleEssidAossEntry(gScannedEssidList);
                     if (result == 4) {
-                        req->mUnk_116 = 2;
-                        func_ov003_021b9518();
+                        req->mResultCode = 2;
+                        ReleaseEssidEntryLists();
                         return -1;
                     }
                     if (result == 0) {
                         break;
                     }
-                    if (cnt >= scan.mUnk_00) {
-                        req->mUnk_116 = 1;
-                        func_ov003_021b9518();
+                    if (cnt >= scan.mCount) {
+                        req->mResultCode = 1;
+                        ReleaseEssidEntryLists();
                         return -1;
                     }
                     func_ov003_021ba1a8(delay);
                     cnt++;
                 }
-                data_ov003_021d7c4c = func_ov003_021ba178(0x58);
-                if (data_ov003_021d7c4c == NULL) {
-                    req->mUnk_116 = 0xf;
-                    func_ov003_021b9518();
+                gRequestedEssidList = func_ov003_021ba178(0x58);
+                if (gRequestedEssidList == NULL) {
+                    req->mResultCode = 0xf;
+                    ReleaseEssidEntryLists();
                     return -1;
                 }
-                FillBytes(data_ov003_021d7c4c, 0, 0x58);
+                FillBytes(gRequestedEssidList, 0, 0x58);
                 cnt = 0;
-                if (scan.mUnk_00 > 0) {
+                if (scan.mCount > 0) {
                     do {
-                        result = func_ov003_021ba1b0(&request, data_ov003_021d7c4c);
+                        result = RunEssidMelcoRequest(&request, gRequestedEssidList);
                         if (result == -1) {
-                            req->mUnk_116 = 0xf;
-                            func_ov003_021b9518();
+                            req->mResultCode = 0xf;
+                            ReleaseEssidEntryLists();
                             return -1;
                         }
                         if (result == 0) {
                             /* repeated test of result, kept as a placeholder */
-                            if (result != 0 || data_ov003_021d7c4c->mUnk_00 == 1) {
+                            if (result != 0 || gRequestedEssidList->mCount == 1) {
                                 break;
                             }
                         }
                         func_ov003_021ba1a8(delay);
                         cnt++;
-                    } while (cnt < scan.mUnk_00);
+                    } while (cnt < scan.mCount);
                 }
-                if (cnt == scan.mUnk_00) {
-                    req->mUnk_116 = 0xf;
-                    func_ov003_021b9518();
+                if (cnt == scan.mCount) {
+                    req->mResultCode = 0xf;
+                    ReleaseEssidEntryLists();
                     return -1;
                 }
-                if (func_ov003_021b7df4(addr, data_ov003_021d7c6c.mUnk_14, addr) != 0) {
-                    func_ov003_021b94b8(0xc);
-                    req->mUnk_116 = 0xf;
-                    func_ov003_021b9518();
+                if (func_ov003_021b7df4(addr, gRequestState.mAddressMask, addr) != 0) {
+                    SetErrorCode(0xc);
+                    req->mResultCode = 0xf;
+                    ReleaseEssidEntryLists();
                     return -1;
                 }
-                func_ov003_021b9518();
-                data_ov003_021d6804 = func_ov003_021b7cf8(2, 2, 0);
-                if (data_ov003_021d6804 < 0) {
-                    req->mUnk_116 = 0xf;
-                    func_ov003_021b9518();
+                ReleaseEssidEntryLists();
+                gSocketDescriptor = func_ov003_021b7cf8(2, 2, 0);
+                if (gSocketDescriptor < 0) {
+                    req->mResultCode = 0xf;
+                    ReleaseEssidEntryLists();
                     return -1;
                 }
-                if (func_ov003_021b7d00(data_ov003_021d6804, 0xffff, 1, &value, 4) < 0) {
-                    func_ov003_021b94b8(0xb);
-                    req->mUnk_116 = 0xf;
-                    func_ov003_021b9518();
+                if (func_ov003_021b7d00(gSocketDescriptor, 0xffff, 1, &value, 4) < 0) {
+                    SetErrorCode(0xb);
+                    req->mResultCode = 0xf;
+                    ReleaseEssidEntryLists();
                     return -1;
                 }
                 FillBytes(&info, 0, 8);
                 info.mUnk_01 = 2;
                 info.mUnk_04 = SwapBytes32(addr);
                 info.mUnk_02 = func_ov003_021b7c94(0x5790);
-                if (func_ov003_021b7cec(data_ov003_021d6804, &info, 8) < 0) {
-                    req->mUnk_116 = 0xf;
-                    func_ov003_021b9518();
+                if (func_ov003_021b7cec(gSocketDescriptor, &info, 8) < 0) {
+                    req->mResultCode = 0xf;
+                    ReleaseEssidEntryLists();
                     return -1;
                 }
             }
@@ -825,33 +826,33 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
             continue;
         }
         mode = state;
-        if (attempts > limits.mUnk_00) {
+        if (attempts > limits.mCount) {
             if (state == 0) {
-                func_ov003_021b94b8(0xf);
+                SetErrorCode(0xf);
             } else if (state == 1) {
-                func_ov003_021b94b8(0x10);
+                SetErrorCode(0x10);
             } else {
-                func_ov003_021b94b8(0x11);
+                SetErrorCode(0x11);
             }
             ret = -1;
             goto cleanup;
         }
-        func_ov003_021ba1a8(limits.mUnk_02);
+        func_ov003_021ba1a8(limits.mDelayMs);
         continue;
     }
 
 cleanup:
-    if (data_ov003_021d6804 != -1) {
-        func_ov003_021b7ce4(data_ov003_021d6804);
+    if (gSocketDescriptor != -1) {
+        func_ov003_021b7ce4(gSocketDescriptor);
     }
-    data_ov003_021d6804 = -1;
+    gSocketDescriptor = -1;
     if (func_ov003_021b7dc8() != 0) {
-        req->mUnk_116 = 0xf;
-        func_ov003_021b9518();
+        req->mResultCode = 0xf;
+        ReleaseEssidEntryLists();
         return -1;
     }
     if (ret != 0) {
-        switch (func_ov003_021b94ac()) {
+        switch (GetErrorCode()) {
             case 0xf:
                 code = 3;
                 break;
@@ -871,19 +872,19 @@ cleanup:
                 code = 0xf;
                 break;
         }
-        req->mUnk_116 = code;
-        func_ov003_021b9518();
+        req->mResultCode = code;
+        ReleaseEssidEntryLists();
         return -1;
     }
     if (CheckAndCopyValueRecordsToRequest(req) != 0) {
-        req->mUnk_116 = 6;
-        func_ov003_021b9518();
+        req->mResultCode = 6;
+        ReleaseEssidEntryLists();
         return -1;
     }
     return 0;
 }
 
-u32 func_ov003_021b9550(u32 addr, u32 mask) {
+u32 GetNextAddressInMask(u32 addr, u32 mask) {
     u32 base = addr & mask;
     u32 next = (addr & ~mask) + 1;
     if ((base | next) < (base | ~mask)) {
@@ -892,30 +893,30 @@ u32 func_ov003_021b9550(u32 addr, u32 mask) {
     return base | 1;
 }
 
-void func_ov003_021b9518(void) {
-    if (data_ov003_021d7c4c != NULL) {
-        func_ov003_021ba164(data_ov003_021d7c4c);
-        data_ov003_021d7c4c = NULL;
+void ReleaseEssidEntryLists(void) {
+    if (gRequestedEssidList != NULL) {
+        func_ov003_021ba164(gRequestedEssidList);
+        gRequestedEssidList = NULL;
     }
-    if (data_ov003_021d7c44 != NULL) {
-        func_ov003_021ba164(data_ov003_021d7c44);
-        data_ov003_021d7c44 = NULL;
+    if (gScannedEssidList != NULL) {
+        func_ov003_021ba164(gScannedEssidList);
+        gScannedEssidList = NULL;
     }
 }
 
-void func_ov003_021b94c4(Unk021b94c4 *req) {
-    FillBytes(data_ov003_021d7c58, 0, 8);
-    data_ov003_021d7c50 = 1;
-    FillBytes(&data_ov003_021d7c6c, 0, 0x1c);
-    data_ov003_021d7c6c.mUnk_00 = req->mUnk_006;
-    data_ov003_021d7c6c.mUnk_04 = req->mUnk_004;
-    data_ov003_021d7c6c.mUnk_08 = req->mUnk_000 & 0xf;
-    data_ov003_021d7c6c.mUnk_19 = req->mUnk_002;
-    data_ov003_021d7c6c.mUnk_0c = 0;
-    data_ov003_021d7c6c.mUnk_10 = 0xc0a80b01;
-    data_ov003_021d7c6c.mUnk_18 = 0;
+void InitRequestState(ValueRecordsRequest *req) {
+    FillBytes(gSavedTagBytes, 0, 8);
+    gErrorCode = 1;
+    FillBytes(&gRequestState, 0, 0x1c);
+    gRequestState.mItemBytes = req->mItemBytes;
+    gRequestState.mItemLength = req->mItemLength;
+    gRequestState.mWantedRecordMask = req->mWantedRecordMask & 0xf;
+    gRequestState.mItemType = req->mItemType;
+    gRequestState.mFoundRecordMask = 0;
+    gRequestState.mDestinationAddress = 0xc0a80b01;
+    gRequestState.mAddressApplied = 0;
 }
 
-void func_ov003_021b94b8(s32 code) {
-    data_ov003_021d7c50 = code;
+void SetErrorCode(s32 code) {
+    gErrorCode = code;
 }

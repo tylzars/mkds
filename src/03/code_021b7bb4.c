@@ -13,68 +13,70 @@
 #include "03/unk_021d7000.h"
 #include "00/code_021a6d5c.h"
 
-s32 func_ov003_021b94ac(void) {
-    u32 value0;
-    value0 = (u32) &data_ov003_021d7c50;
-    value0 = *(const u32 *) ((value0) + 0u);
-    return value0;
+s32 GetErrorCode(void) {
+    u32 errorCode;
+    errorCode = (u32) &gErrorCode;
+    errorCode = *(const u32 *) ((errorCode) + 0u);
+    return errorCode;
 }
 
-s32 CheckAndCopyValueRecordsToRequest(Unk021b94c4 *a) {
-    u8 *p = (u8 *) a + 0x117;
-    ParsedRecordView *b = &gParsedFourValueRecord0;
-    ParsedRecordView *c = &gParsedFourValueRecord1;
-    ParsedRecordView *d = &gParsedSingleValueRecord0;
-    ParsedRecordView *e = &gParsedSingleValueRecord1;
-    if (p == NULL) {
+s32 CheckAndCopyValueRecordsToRequest(ValueRecordsRequest *request) {
+    u8 *recordBytes = (u8 *) request + 0x117;
+    ParsedRecordView *fourValueRecord0 = &gParsedFourValueRecord0;
+    ParsedRecordView *fourValueRecord1 = &gParsedFourValueRecord1;
+    ParsedRecordView *singleValueRecord0 = &gParsedSingleValueRecord0;
+    ParsedRecordView *singleValueRecord1 = &gParsedSingleValueRecord1;
+    if (recordBytes == NULL) {
         return -1;
     }
-    a->mUnk_000 = data_ov003_021d7c6c.mUnk_08 & data_ov003_021d7c6c.mUnk_0c;
-    FillBytes(p, 0, 0x154);
-    if (a->mUnk_000 & 1) {
-        CopyBytes(p, b->mValue0, b->mValueLength);
-        CopyBytes(p + 6, b->mValue1, b->mValueLength);
-        CopyBytes(p + 0xc, b->mValue2, b->mValueLength);
-        CopyBytes(p + 0x12, b->mValue3, b->mValueLength);
-        if (CheckBytesInRange0x20To0x7f(b->mString, GetStringLength(b->mString)) != 0) {
+    request->mWantedRecordMask = gRequestState.mWantedRecordMask & gRequestState.mFoundRecordMask;
+    FillBytes(recordBytes, 0, 0x154);
+    if (request->mWantedRecordMask & 1) {
+        CopyBytes(recordBytes, fourValueRecord0->mValue0, fourValueRecord0->mValueLength);
+        CopyBytes(recordBytes + 6, fourValueRecord0->mValue1, fourValueRecord0->mValueLength);
+        CopyBytes(recordBytes + 0xc, fourValueRecord0->mValue2, fourValueRecord0->mValueLength);
+        CopyBytes(recordBytes + 0x12, fourValueRecord0->mValue3, fourValueRecord0->mValueLength);
+        if (CheckBytesInRange0x20To0x7f(fourValueRecord0->mString, GetStringLength(fourValueRecord0->mString)) != 0) {
             goto fail;
         }
-        CopyBytes(p + 0x18, b->mString, GetStringLength(b->mString));
+        CopyBytes(recordBytes + 0x18, fourValueRecord0->mString, GetStringLength(fourValueRecord0->mString));
     }
-    if (a->mUnk_000 & 2) {
-        CopyBytes(p + 0x39, c->mValue0, c->mValueLength);
-        CopyBytes(p + 0x47, c->mValue1, c->mValueLength);
-        CopyBytes(p + 0x55, c->mValue2, c->mValueLength);
-        CopyBytes(p + 0x63, c->mValue3, c->mValueLength);
-        if (CheckBytesInRange0x20To0x7f(c->mString, GetStringLength(c->mString)) != 0) {
+    if (request->mWantedRecordMask & 2) {
+        CopyBytes(recordBytes + 0x39, fourValueRecord1->mValue0, fourValueRecord1->mValueLength);
+        CopyBytes(recordBytes + 0x47, fourValueRecord1->mValue1, fourValueRecord1->mValueLength);
+        CopyBytes(recordBytes + 0x55, fourValueRecord1->mValue2, fourValueRecord1->mValueLength);
+        CopyBytes(recordBytes + 0x63, fourValueRecord1->mValue3, fourValueRecord1->mValueLength);
+        if (CheckBytesInRange0x20To0x7f(fourValueRecord1->mString, GetStringLength(fourValueRecord1->mString)) != 0) {
             goto fail;
         }
-        CopyBytes(p + 0x71, c->mString, GetStringLength(c->mString));
+        CopyBytes(recordBytes + 0x71, fourValueRecord1->mString, GetStringLength(fourValueRecord1->mString));
     }
-    if (a->mUnk_000 & 4) {
-        if (CheckBytesInRange0x20To0x7f(d->mValue0, d->mValueLength - 1) != 0) {
+    if (request->mWantedRecordMask & 4) {
+        if (CheckBytesInRange0x20To0x7f(singleValueRecord0->mValue0, singleValueRecord0->mValueLength - 1) != 0) {
             goto fail;
         }
-        CopyBytes(p + 0x92, d->mValue0, d->mValueLength);
-        if (CheckBytesInRange0x20To0x7f(d->mString, GetStringLength(d->mString)) != 0) {
+        CopyBytes(recordBytes + 0x92, singleValueRecord0->mValue0, singleValueRecord0->mValueLength);
+        if (CheckBytesInRange0x20To0x7f(singleValueRecord0->mString, GetStringLength(singleValueRecord0->mString)) !=
+            0) {
             goto fail;
         }
-        CopyBytes(p + 0xd2, d->mString, GetStringLength(d->mString));
+        CopyBytes(recordBytes + 0xd2, singleValueRecord0->mString, GetStringLength(singleValueRecord0->mString));
     }
-    if (a->mUnk_000 & 8) {
-        if (CheckBytesInRange0x20To0x7f(e->mValue0, e->mValueLength - 1) != 0) {
+    if (request->mWantedRecordMask & 8) {
+        if (CheckBytesInRange0x20To0x7f(singleValueRecord1->mValue0, singleValueRecord1->mValueLength - 1) != 0) {
             goto fail;
         }
-        CopyBytes(p + 0xf3, e->mValue0, e->mValueLength);
-        if (CheckBytesInRange0x20To0x7f(e->mString, GetStringLength(e->mString)) != 0) {
+        CopyBytes(recordBytes + 0xf3, singleValueRecord1->mValue0, singleValueRecord1->mValueLength);
+        if (CheckBytesInRange0x20To0x7f(singleValueRecord1->mString, GetStringLength(singleValueRecord1->mString)) !=
+            0) {
             goto fail;
         }
-        CopyBytes(p + 0x133, e->mString, GetStringLength(e->mString));
+        CopyBytes(recordBytes + 0x133, singleValueRecord1->mString, GetStringLength(singleValueRecord1->mString));
     }
-    a->mUnk_116 = 0;
+    request->mResultCode = 0;
     return 0;
 fail:
-    FillBytes(p, 0, 0x154);
+    FillBytes(recordBytes, 0, 0x154);
     return -1;
 }
 
@@ -98,285 +100,287 @@ typedef struct PacketHeaderPrefix {
 } PacketHeaderPrefix;
 
 // Returns 0 when exactly one entry with bit 0 of mUnk_50 holds the gEssidAossString bytes, 4 for several, 5 for none.
-s32 CheckSingleEssidAossEntry(EssidEntryList *a) {
-    s32 m;
-    s32 r;
+s32 CheckSingleEssidAossEntry(EssidEntryList *entryList) {
+    s32 count;
+    s32 result;
     s32 i;
-    s32 n;
-    r = 0;
-    n = 0;
-    m = a->mUnk_00;
-    if (m == 0) {
+    s32 matchCount;
+    result = 0;
+    matchCount = 0;
+    count = entryList->mCount;
+    if (count == 0) {
         return 5;
     }
-    if ((u32) m > 0x40) {
-        m = 0x40;
+    if ((u32) count > 0x40) {
+        count = 0x40;
     }
-    for (i = 0; i < m; i++) {
-        if (a->mUnk_04[i].mUnk_50 & 1) {
-            if (a->mUnk_04[i].mUnk_00 == GetStringLength(gEssidAossString)) {
-                if (CompareBytes(a->mUnk_04[i].mUnk_04, gEssidAossString, GetStringLength(gEssidAossString)) == 0) {
-                    n++;
+    for (i = 0; i < count; i++) {
+        if (entryList->mEntries[i].mUnk_50 & 1) {
+            if (entryList->mEntries[i].mEssidLength == GetStringLength(gEssidAossString)) {
+                if (CompareBytes(entryList->mEntries[i].mEssid, gEssidAossString, GetStringLength(gEssidAossString)) ==
+                    0) {
+                    matchCount++;
                 }
             }
         }
     }
-    if (n > 1) {
-        r = 4;
+    if (matchCount > 1) {
+        result = 4;
     }
-    if (n == 0) {
-        r = 5;
+    if (matchCount == 0) {
+        result = 5;
     }
-    return r;
+    return result;
 }
 
-s32 FillEssidAossAndMelcoRequest(EssidMelcoRequest *a) {
-    a->mUnk_00 = GetStringLength(gEssidAossString);
-    CopyBytes(a->mUnk_04, gEssidAossString, a->mUnk_00);
-    a->mUnk_24 = TRUE;
-    a->mUnk_28 = GetStringLength(gMelcoString);
-    if ((u32) a->mUnk_28 > 0xd) {
+s32 FillEssidAossAndMelcoRequest(EssidMelcoRequest *request) {
+    request->mEssidLength = GetStringLength(gEssidAossString);
+    CopyBytes(request->mEssid, gEssidAossString, request->mEssidLength);
+    request->mUnk_24 = TRUE;
+    request->mMelcoLength = GetStringLength(gMelcoString);
+    if ((u32) request->mMelcoLength > 0xd) {
         return -1;
     }
-    CopyBytes(a->mUnk_2c, gMelcoString, a->mUnk_28);
+    CopyBytes(request->mMelcoBytes, gMelcoString, request->mMelcoLength);
     return 0;
 }
 
-void FillPacketTags(s32 a, PacketTag *b, const u8 *c) {
+void FillPacketTags(s32 count, PacketTag *tags, const u8 *tagBytes) {
     s32 i;
-    for (i = 0; i < a; i++) {
-        CopyBytes(b, c, 6);
-        b->mUnk_06 = NextRandomValue();
-        b->mUnk_06 = func_ov003_021b7c94(b->mUnk_06);
-        b++;
+    for (i = 0; i < count; i++) {
+        CopyBytes(tags, tagBytes, 6);
+        tags->mSequence = NextRandomValue();
+        tags->mSequence = func_ov003_021b7c94(tags->mSequence);
+        tags++;
     }
 }
 
-s32 ReportStateChange(s32 a) {
-    BOOL r = FALSE;
-    if (a == -1) {
-        gReportedState = a;
-        return r;
+s32 ReportStateChange(s32 state) {
+    BOOL result = FALSE;
+    if (state == -1) {
+        gReportedState = state;
+        return result;
     }
-    if (gReportedState != a) {
-        gReportedState = a;
-        return func_ov003_021ba18c(a);
+    if (gReportedState != state) {
+        gReportedState = state;
+        return func_ov003_021ba18c(state);
     }
-    return r;
+    return result;
 }
 
-s32 AdvanceStepByKind(s32 a, PacketBuffer *b, s32 *c, PacketTag *d, s32 e) {
-    PacketHeaderPrefix *p = (PacketHeaderPrefix *) b->mUnk_0c;
-    u32 v;
-    if (SwapBytes16(p->mUnk_00) < 1) {
-        *c = *c + 1;
-        return a;
+s32 AdvanceStepByKind(s32 mode, PacketBuffer *buffer, s32 *attempts, PacketTag *list, s32 descriptor) {
+    PacketHeaderPrefix *header = (PacketHeaderPrefix *) buffer->mBytes;
+    u32 kind;
+    if (SwapBytes16(header->mUnk_00) < 1) {
+        *attempts = *attempts + 1;
+        return mode;
     }
-    if (p->mUnk_0f != 0x11) {
-        *c = *c + 1;
-        return a;
+    if (header->mUnk_0f != 0x11) {
+        *attempts = *attempts + 1;
+        return mode;
     }
-    if (CheckPacketAndXorPayload((Packet *) b->mUnk_0c) > 0) {
-        *c = *c + 1;
-        return a;
+    if (CheckPacketAndXorPayload((Packet *) buffer->mBytes) > 0) {
+        *attempts = *attempts + 1;
+        return mode;
     }
-    v = SwapBytes16(p->mKind);
-    switch (v) {
+    kind = SwapBytes16(header->mKind);
+    switch (kind) {
         case 0x1010:
-            a = AdvanceStepForKind1010(a, b, c, d);
+            mode = AdvanceStepForKind1010(mode, buffer, attempts, list);
             break;
         case 0x2010:
-            a = AdvanceStepForKind2010(a, b, c, d);
+            mode = AdvanceStepForKind2010(mode, buffer, attempts, list);
             break;
         case 0x3010:
-            a = AdvanceStepForKind3010(a, b, c, d);
+            mode = AdvanceStepForKind3010(mode, buffer, attempts, list);
             break;
     }
-    return a;
+    return mode;
 }
 
-s32 AdvanceStepForKind1010(s32 v1, PacketBuffer *v2, s32 *v3, PacketTag *v4) {
-    Packet *a;
-    Unk021b7cec *b;
-    u32 *p;
-    s32 c;
-    if (v1 != 0) {
-        (*v3)++;
-        return v1;
+s32 AdvanceStepForKind1010(s32 mode, PacketBuffer *buffer, s32 *attempts, PacketTag *list) {
+    Packet *packet;
+    Unk021b7cec *payload;
+    u32 *valuePointer;
+    s32 result;
+    if (mode != 0) {
+        (*attempts)++;
+        return mode;
     }
-    a = (Packet *) v2->mUnk_0c;
-    b = (Unk021b7cec *) &v2->mUnk_0c[0x18];
-    c = XorSwapAndCheckTag(&v4[0], &a->mTag);
-    if (c < 0) {
-        (*v3)++;
-        return v1;
+    packet = (Packet *) buffer->mBytes;
+    payload = (Unk021b7cec *) &buffer->mBytes[0x18];
+    result = XorSwapAndCheckTag(&list[0], &packet->mTag);
+    if (result < 0) {
+        (*attempts)++;
+        return mode;
     }
-    if (SwapBytes16(b->mUnk_02) == 0) {
-        (*v3)++;
-        return v1;
+    if (SwapBytes16(payload->mUnk_02) == 0) {
+        (*attempts)++;
+        return mode;
     }
-    if (b->mUnk_00 == 7) {
-        p = &b->mUnk_04;
-        if (func_ov003_021b7c5c(b->mUnk_04) == -2) {
-            func_ov003_021b94b8(0x14);
-        } else if (func_ov003_021b7c5c(*p) == -3) {
-            func_ov003_021b94b8(0x15);
+    if (payload->mUnk_00 == 7) {
+        valuePointer = &payload->mUnk_04;
+        if (func_ov003_021b7c5c(payload->mUnk_04) == -2) {
+            SetErrorCode(0x14);
+        } else if (func_ov003_021b7c5c(*valuePointer) == -3) {
+            SetErrorCode(0x15);
         } else {
-            func_ov003_021b94b8(0x18);
+            SetErrorCode(0x18);
         }
         return -1;
     }
-    if (b->mUnk_00 != 1) {
-        (*v3)++;
-        return v1;
+    if (payload->mUnk_00 != 1) {
+        (*attempts)++;
+        return mode;
     }
-    c = ParseItemChain((PacketItem *) &b->mUnk_04, gItemSlots);
-    if (c < 0) {
-        if (c == -2) {
-            func_ov003_021b94b8(0x16);
+    result = ParseItemChain((PacketItem *) &payload->mUnk_04, gItemSlots);
+    if (result < 0) {
+        if (result == -2) {
+            SetErrorCode(0x16);
             return -1;
         }
-        (*v3)++;
-        return v1;
+        (*attempts)++;
+        return mode;
     }
-    gFlagBit4OfKind1010Packet = IsBit4Set(SwapBytes16(a->mFlags));
-    *v3 = 0;
+    gFlagBit4OfKind1010Packet = IsBit4Set(SwapBytes16(packet->mFlags));
+    *attempts = 0;
     return 1;
 }
 
-s32 AdvanceStepForKind2010(s32 v1, PacketBuffer *v2, s32 *v3, PacketTag *v4) {
-    Packet *a;
-    Unk021b7cec *b;
-    s32 c;
-    if (v1 != 1) {
-        (*v3)++;
-        return v1;
+s32 AdvanceStepForKind2010(s32 mode, PacketBuffer *buffer, s32 *attempts, PacketTag *list) {
+    Packet *packet;
+    Unk021b7cec *payload;
+    s32 result;
+    if (mode != 1) {
+        (*attempts)++;
+        return mode;
     }
-    a = (Packet *) v2->mUnk_0c;
-    b = (Unk021b7cec *) &v2->mUnk_0c[0x18];
-    c = XorSwapAndCheckTag(&v4[1], &a->mTag);
-    if (c < 0) {
-        (*v3)++;
-        return v1;
+    packet = (Packet *) buffer->mBytes;
+    payload = (Unk021b7cec *) &buffer->mBytes[0x18];
+    result = XorSwapAndCheckTag(&list[1], &packet->mTag);
+    if (result < 0) {
+        (*attempts)++;
+        return mode;
     }
-    if (SwapBytes16(b->mUnk_02) == 0) {
-        (*v3)++;
-        return v1;
+    if (SwapBytes16(payload->mUnk_02) == 0) {
+        (*attempts)++;
+        return mode;
     }
-    if (b->mUnk_00 == 7) {
-        if (func_ov003_021b7c5c(b->mUnk_04) == -2) {
-            func_ov003_021b94b8(0x14);
-        } else if (func_ov003_021b7c5c(b->mUnk_04) == -3) {
-            func_ov003_021b94b8(0x15);
+    if (payload->mUnk_00 == 7) {
+        if (func_ov003_021b7c5c(payload->mUnk_04) == -2) {
+            SetErrorCode(0x14);
+        } else if (func_ov003_021b7c5c(payload->mUnk_04) == -3) {
+            SetErrorCode(0x15);
         } else {
-            func_ov003_021b94b8(0x18);
+            SetErrorCode(0x18);
         }
         return -1;
     }
     FillBytes(gParsedItems, 0, 0x6a0);
-    c = FindItemAndParseSubItems(0, (PacketItem *) b, SwapBytes16(a->mPayloadLength), gParsedItems, gItemSlots);
-    if (c < 0) {
-        (*v3)++;
-        return v1;
+    result = FindItemAndParseSubItems(0, (PacketItem *) payload, SwapBytes16(packet->mPayloadLength), gParsedItems,
+                                      gItemSlots);
+    if (result < 0) {
+        (*attempts)++;
+        return mode;
     }
-    if ((data_ov003_021d7c6c.mUnk_0c & data_ov003_021d7c6c.mUnk_08) == 0) {
-        return v1;
+    if ((gRequestState.mFoundRecordMask & gRequestState.mWantedRecordMask) == 0) {
+        return mode;
     }
-    *v3 = 0;
+    *attempts = 0;
     return 2;
 }
 
-s32 AdvanceStepForKind3010(s32 v1, PacketBuffer *v2, s32 *v3, PacketTag *v4) {
-    Packet *a;
-    Unk021b7cec *b;
-    s32 c;
-    if (v1 != 2) {
-        (*v3)++;
-        return v1;
+s32 AdvanceStepForKind3010(s32 mode, PacketBuffer *buffer, s32 *attempts, PacketTag *list) {
+    Packet *packet;
+    Unk021b7cec *payload;
+    s32 result;
+    if (mode != 2) {
+        (*attempts)++;
+        return mode;
     }
-    a = (Packet *) v2->mUnk_0c;
-    b = (Unk021b7cec *) &v2->mUnk_0c[0x18];
-    c = XorSwapAndCheckTag(&v4[2], &a->mTag);
-    if (c < 0) {
-        (*v3)++;
-        return v1;
+    packet = (Packet *) buffer->mBytes;
+    payload = (Unk021b7cec *) &buffer->mBytes[0x18];
+    result = XorSwapAndCheckTag(&list[2], &packet->mTag);
+    if (result < 0) {
+        (*attempts)++;
+        return mode;
     }
-    if (b->mUnk_00 != 7) {
-        (*v3)++;
-        return v1;
+    if (payload->mUnk_00 != 7) {
+        (*attempts)++;
+        return mode;
     }
-    if (SwapBytes16(b->mUnk_02) == 0) {
-        (*v3)++;
-        return v1;
+    if (SwapBytes16(payload->mUnk_02) == 0) {
+        (*attempts)++;
+        return mode;
     }
-    if (func_ov003_021b7c5c(b->mUnk_04) == 0) {
+    if (func_ov003_021b7c5c(payload->mUnk_04) == 0) {
         return 0x64;
     }
-    if (func_ov003_021b7c5c(b->mUnk_04) == -2) {
-        func_ov003_021b94b8(0x14);
+    if (func_ov003_021b7c5c(payload->mUnk_04) == -2) {
+        SetErrorCode(0x14);
         return -1;
     }
-    if (func_ov003_021b7c5c(b->mUnk_04) == -3) {
-        func_ov003_021b94b8(0x15);
+    if (func_ov003_021b7c5c(payload->mUnk_04) == -3) {
+        SetErrorCode(0x15);
         return -1;
     }
-    func_ov003_021b94b8(0x18);
+    SetErrorCode(0x18);
     return -1;
 }
 
 // Checks the tag against the saved bytes; when mFlags & 0xf is set, xors the payload back in place.
-s32 CheckPacketAndXorPayload(Packet *a) {
+s32 CheckPacketAndXorPayload(Packet *packet) {
     PayloadRecord *payload;
     u8 tag[8];
-    s32 d;
+    s32 result;
     u32 length;
     u8 *copy;
-    payload = (PayloadRecord *) a->mPayload;
-    CopyBytes(tag, &a->mTag, 8);
-    d = XorAndSwapBytesWithKey(tag, 8, gMelcoString, GetStringLength(gMelcoString));
-    if (d == -1) {
-        func_ov003_021b94b8(2);
+    payload = (PayloadRecord *) packet->mPayload;
+    CopyBytes(tag, &packet->mTag, 8);
+    result = XorAndSwapBytesWithKey(tag, 8, gMelcoString, GetStringLength(gMelcoString));
+    if (result == -1) {
+        SetErrorCode(2);
         return -100;
     }
-    d = CheckTagAgainstSavedBytesOrKind1000(SwapBytes16(a->mKind), tag);
-    if (d != 0) {
-        return d;
+    result = CheckTagAgainstSavedBytesOrKind1000(SwapBytes16(packet->mKind), tag);
+    if (result != 0) {
+        return result;
     }
-    if (SwapBytes16(a->mKind) == 0x1000) {
-        CopyBytes(data_ov003_021d7c58, tag, 8);
+    if (SwapBytes16(packet->mKind) == 0x1000) {
+        CopyBytes(gSavedTagBytes, tag, 8);
     }
-    if ((SwapBytes16(a->mFlags) & 0xf) == 0) {
+    if ((SwapBytes16(packet->mFlags) & 0xf) == 0) {
         return 0;
     }
     length = SwapBytes16(payload->mLength);
     copy = func_ov003_021ba178(length);
     if (copy == NULL) {
-        func_ov003_021b94b8(2);
+        SetErrorCode(2);
         return 100;
     }
-    if (XorBytesWithKeyStreamAndCheckCrc(payload->mBytes, copy, length, a->mPayloadCrc, payload->mKeyPrefix,
-                                         data_ov003_021d7c58, 8) < 0) {
+    if (XorBytesWithKeyStreamAndCheckCrc(payload->mBytes, copy, length, packet->mPayloadCrc, payload->mKeyPrefix,
+                                         gSavedTagBytes, 8) < 0) {
         func_ov003_021ba164(copy);
-        if (func_ov003_021b94ac() == 2) {
+        if (GetErrorCode() == 2) {
             return 100;
         }
         return 200;
     }
     CopyBytes(payload, copy, length);
-    a->mPayloadLength = func_ov003_021b7c94(length);
+    packet->mPayloadLength = func_ov003_021b7c94(length);
     func_ov003_021ba164(copy);
     return 0;
 }
 
-s32 CheckTagAgainstSavedBytesOrKind1000(s32 a, const u8 *b) {
-    s32 c;
+s32 CheckTagAgainstSavedBytesOrKind1000(s32 kind, const u8 *tag) {
+    s32 result;
     s32 i;
     BOOL found;
     u8 *cursor;
-    c = 0;
+    result = 0;
     found = FALSE;
     i = 0;
-    cursor = data_ov003_021d7c58;
+    cursor = gSavedTagBytes;
     do {
         if (*cursor != 0) {
             found = TRUE;
@@ -386,66 +390,66 @@ s32 CheckTagAgainstSavedBytesOrKind1000(s32 a, const u8 *b) {
         i++;
     } while (i < 6);
     if (found != FALSE) {
-        if (CompareBytes(data_ov003_021d7c58, b, 6) != 0) {
-            c = 1;
+        if (CompareBytes(gSavedTagBytes, tag, 6) != 0) {
+            result = 1;
         }
-    } else if (a != 0x1000) {
-        c = 2;
+    } else if (kind != 0x1000) {
+        result = 2;
     }
-    return c;
+    return result;
 }
 
-s32 XorSwapAndCheckTag(PacketTag *a, PacketTag *b) {
-    s32 c;
-    c = 0;
-    XorAndSwapBytesWithKey(b->mUnk_00, 8, gMelcoString, GetStringLength(gMelcoString));
-    if (CompareBytes(a->mUnk_00, b->mUnk_00, 6) != 0) {
-        c = -1;
-    } else if (SwapBytes16(a->mUnk_06) + 1 != SwapBytes16(b->mUnk_06)) {
-        c = -2;
+s32 XorSwapAndCheckTag(PacketTag *expectedTag, PacketTag *incomingTag) {
+    s32 result;
+    result = 0;
+    XorAndSwapBytesWithKey(incomingTag->mBytes, 8, gMelcoString, GetStringLength(gMelcoString));
+    if (CompareBytes(expectedTag->mBytes, incomingTag->mBytes, 6) != 0) {
+        result = -1;
+    } else if (SwapBytes16(expectedTag->mSequence) + 1 != SwapBytes16(incomingTag->mSequence)) {
+        result = -2;
     }
-    return c;
+    return result;
 }
 
-s32 ParseItemChain(PacketItem *a, u8 *b) {
-    PacketItem *c;
-    s32 d;
-    s32 e;
-    FillBytes(b, 0, 0x104);
-    c = a;
+s32 ParseItemChain(PacketItem *firstItem, u8 *slots) {
+    PacketItem *item;
+    s32 length;
+    s32 value;
+    FillBytes(slots, 0, 0x104);
+    item = firstItem;
     while (1) {
-        d = SwapBytes16(c->mLength);
-        if (d <= 0) {
+        length = SwapBytes16(item->mLength);
+        if (length <= 0) {
             return -1;
         }
-        switch (c->mType) {
+        switch (item->mType) {
             case 0:
-                CopyBytes(b, c->mValue, d);
+                CopyBytes(slots, item->mValue, length);
                 break;
             case 1:
-                CopyBytes(b + 0x80, c->mValue, d);
+                CopyBytes(slots + 0x80, item->mValue, length);
                 break;
             case 2:
-                CopyBytes(b + 0x100, c->mValue, d);
+                CopyBytes(slots + 0x100, item->mValue, length);
                 break;
             case 3:
             case 4:
-                e = SwapBytes16(c->mValue[0]);
-                if (e <= 0) {
+                value = SwapBytes16(item->mValue[0]);
+                if (value <= 0) {
                     return -2;
                 }
                 break;
             case 5:
-                data_ov003_021d7c6c.mUnk_10 = func_ov003_021b7c5c(ReadLittleEndianValue(c->mValue, d));
+                gRequestState.mDestinationAddress = func_ov003_021b7c5c(ReadLittleEndianValue(item->mValue, length));
                 break;
             case 6:
-                data_ov003_021d7c6c.mUnk_14 = func_ov003_021b7c5c(ReadLittleEndianValue(c->mValue, d));
+                gRequestState.mAddressMask = func_ov003_021b7c5c(ReadLittleEndianValue(item->mValue, length));
                 break;
             default:
                 return -1;
         }
-        if (c->mNextOffset != 0) {
-            c = OFFSET_PTR(PacketItem, a, SwapBytes16(c->mNextOffset));
+        if (item->mNextOffset != 0) {
+            item = OFFSET_PTR(PacketItem, firstItem, SwapBytes16(item->mNextOffset));
             continue;
         }
         return 0;
@@ -462,17 +466,17 @@ u32 ReadLittleEndianValue(const u8 *bytes, s32 count) {
     return value;
 }
 
-s32 ParseFourValueItems(PacketItem *a, FourValueRecord *b) {
-    PacketItem *c = OFFSET_PTR(PacketItem, a, 6);
-    u32 d;
+s32 ParseFourValueItems(PacketItem *container, FourValueRecord *record) {
+    PacketItem *item = OFFSET_PTR(PacketItem, container, 6);
+    u32 length;
     while (1) {
-        d = SwapBytes16(c->mLength);
-        switch (c->mType) {
+        length = SwapBytes16(item->mLength);
+        switch (item->mType) {
             case 0x10:
             case 0x11:
             case 0x12:
             case 0x13:
-                if (d > 5) {
+                if (length > 5) {
                     return -1;
                 }
                 break;
@@ -480,178 +484,178 @@ s32 ParseFourValueItems(PacketItem *a, FourValueRecord *b) {
             case 0x21:
             case 0x22:
             case 0x23:
-                if (d > 0xd) {
+                if (length > 0xd) {
                     return -1;
                 }
                 break;
             case 0x15:
             case 0x25:
-                if (d > 0x21) {
+                if (length > 0x21) {
                     return -1;
                 }
                 break;
         }
-        switch (c->mType) {
+        switch (item->mType) {
             case 0x10:
             case 0x20:
-                CopyBytes(b->mValue0, c->mValue, d);
-                b->mValueLength = d;
+                CopyBytes(record->mValue0, item->mValue, length);
+                record->mValueLength = length;
                 break;
             case 0x11:
             case 0x21:
-                CopyBytes(b->mValue1, c->mValue, d);
-                b->mValueLength = d;
+                CopyBytes(record->mValue1, item->mValue, length);
+                record->mValueLength = length;
                 break;
             case 0x12:
             case 0x22:
-                CopyBytes(b->mValue2, c->mValue, d);
-                b->mValueLength = d;
+                CopyBytes(record->mValue2, item->mValue, length);
+                record->mValueLength = length;
                 break;
             case 0x13:
             case 0x23:
-                CopyBytes(b->mValue3, c->mValue, d);
-                b->mValueLength = d;
+                CopyBytes(record->mValue3, item->mValue, length);
+                record->mValueLength = length;
                 break;
             case 0x15:
             case 0x25:
-                if (d != 0 && c->mValue[d - 1] != 0) {
+                if (length != 0 && item->mValue[length - 1] != 0) {
                     return -1;
                 }
-                CopyBytes(b->mString, c->mValue, d);
+                CopyBytes(record->mString, item->mValue, length);
                 break;
             default:
                 return -1;
         }
-        if (c->mNextOffset != 0) {
-            c = (PacketItem *) ((u8 *) a + 6 + SwapBytes16(c->mNextOffset));
+        if (item->mNextOffset != 0) {
+            item = (PacketItem *) ((u8 *) container + 6 + SwapBytes16(item->mNextOffset));
             continue;
         }
         return 0;
     }
 }
 
-s32 ParseSingleValueItems(PacketItem *a, SingleValueRecord *b) {
-    PacketItem *c = OFFSET_PTR(PacketItem, a, 6);
-    u32 d;
+s32 ParseSingleValueItems(PacketItem *container, SingleValueRecord *record) {
+    PacketItem *item = OFFSET_PTR(PacketItem, container, 6);
+    u32 length;
     while (1) {
-        d = SwapBytes16(c->mLength);
-        switch (c->mType) {
+        length = SwapBytes16(item->mLength);
+        switch (item->mType) {
             case 0x30:
             case 0x40:
-                if (d > 0x40) {
+                if (length > 0x40) {
                     return -1;
                 }
                 break;
             case 0x35:
             case 0x45:
-                if (d > 0x21) {
+                if (length > 0x21) {
                     return -1;
                 }
                 break;
         }
-        switch (c->mType) {
+        switch (item->mType) {
             case 0x30:
             case 0x40:
-                CopyBytes(b->mValue, c->mValue, d);
-                b->mValueLength = d;
+                CopyBytes(record->mValue, item->mValue, length);
+                record->mValueLength = length;
                 break;
             case 0x35:
             case 0x45:
-                if (d != 0 && c->mValue[d - 1] != 0) {
+                if (length != 0 && item->mValue[length - 1] != 0) {
                     return -1;
                 }
-                CopyBytes(b->mString, c->mValue, d);
+                CopyBytes(record->mString, item->mValue, length);
                 break;
             default:
                 return -1;
         }
-        if (c->mNextOffset != 0) {
-            c = (PacketItem *) ((u8 *) a + 6 + SwapBytes16(c->mNextOffset));
+        if (item->mNextOffset != 0) {
+            item = (PacketItem *) ((u8 *) container + 6 + SwapBytes16(item->mNextOffset));
             continue;
         }
         return 0;
     }
 }
 
-s32 CopyFirstItemValueIfType0x70(PacketItem *a, u8 *b) {
-    PacketItem *c = OFFSET_PTR(PacketItem, a, 6);
-    s32 d;
-    d = SwapBytes16(c->mLength);
-    if (d <= 0) {
+s32 CopyFirstItemValueIfType0x70(PacketItem *container, u8 *output) {
+    PacketItem *item = OFFSET_PTR(PacketItem, container, 6);
+    s32 length;
+    length = SwapBytes16(item->mLength);
+    if (length <= 0) {
         return -1;
     }
-    if (c->mType != 0x70) {
+    if (item->mType != 0x70) {
         return -1;
     }
-    CopyBytes(b, c->mValue, d);
+    CopyBytes(output, item->mValue, length);
     return 0;
 }
 
 // Skips to the top-level item of type gItemTypesToFind[a], then stores its sub-items by type.
-s32 FindItemAndParseSubItems(s32 a, PacketItem *b, s32 c, ParsedItems *d, u8 *e) {
-    u32 f;
-    s32 g;
-    u32 h;
-    u8 *i;
-    ParsedItems *j;
-    u8 *k;
-    s32 l;
-    PacketItem *m;
-    f = 0;
-    if (c <= 0) {
+s32 FindItemAndParseSubItems(s32 index, PacketItem *item, s32 remaining, ParsedItems *parsedItems, u8 *slots) {
+    u32 foundMask;
+    s32 itemSize;
+    u32 subRemaining;
+    u8 *typePointer;
+    ParsedItems *parsed;
+    u8 *slotBytes;
+    s32 result;
+    PacketItem *matchedItem;
+    foundMask = 0;
+    if (remaining <= 0) {
         return -2;
     }
-    i = gItemTypesToFind + a;
+    typePointer = gItemTypesToFind + index;
     for (;;) {
-        m = b;
-        if (b->mType == *i) {
+        matchedItem = item;
+        if (item->mType == *typePointer) {
             break;
         }
-        g = SwapBytes16(b->mLength) + 4;
-        b = OFFSET_PTR(PacketItem, b, g);
-        c -= g;
-        if (c <= 0) {
+        itemSize = SwapBytes16(item->mLength) + 4;
+        item = OFFSET_PTR(PacketItem, item, itemSize);
+        remaining -= itemSize;
+        if (remaining <= 0) {
             return -4;
         }
     }
-    b = OFFSET_PTR(PacketItem, b, 4);
-    h = SwapBytes16(m->mLength);
-    j = d + a;
-    k = e + (a + 3) * 0x80;
-    l = -3;
+    item = OFFSET_PTR(PacketItem, item, 4);
+    subRemaining = SwapBytes16(matchedItem->mLength);
+    parsed = parsedItems + index;
+    slotBytes = slots + (index + 3) * 0x80;
+    result = -3;
     do {
-        switch (b->mType) {
+        switch (item->mType) {
             case 3:
-                l = ParseFourValueItems(b, &j->mFourValueRecord0);
-                f |= 1;
+                result = ParseFourValueItems(item, &parsed->mFourValueRecord0);
+                foundMask |= 1;
                 break;
             case 4:
-                l = ParseFourValueItems(b, &j->mFourValueRecord1);
-                f |= 2;
+                result = ParseFourValueItems(item, &parsed->mFourValueRecord1);
+                foundMask |= 2;
                 break;
             case 5:
-                l = ParseSingleValueItems(b, &j->mSingleValueRecord0);
-                f |= 4;
+                result = ParseSingleValueItems(item, &parsed->mSingleValueRecord0);
+                foundMask |= 4;
                 break;
             case 6:
-                l = ParseSingleValueItems(b, &j->mSingleValueRecord1);
-                f |= 8;
+                result = ParseSingleValueItems(item, &parsed->mSingleValueRecord1);
+                foundMask |= 8;
                 break;
             case 10:
-                l = CopyFirstItemValueIfType0x70(b, k);
+                result = CopyFirstItemValueIfType0x70(item, slotBytes);
                 break;
             default:
-                l = -3;
+                result = -3;
                 break;
         }
-        if (l != 0) {
-            return l;
+        if (result != 0) {
+            return result;
         }
-        g = SwapBytes16(b->mLength) + 4;
-        b = OFFSET_PTR(PacketItem, b, g);
-        h -= g;
-    } while ((s32) h > 0);
-    data_ov003_021d7c6c.mUnk_0c |= f;
+        itemSize = SwapBytes16(item->mLength) + 4;
+        item = OFFSET_PTR(PacketItem, item, itemSize);
+        subRemaining -= itemSize;
+    } while ((s32) subRemaining > 0);
+    gRequestState.mFoundRecordMask |= foundMask;
     return 0;
 }
 
@@ -664,211 +668,214 @@ s32 IsBit4Set(u32 value) {
 }
 
 // Reports state 2, 3 or 5 and sends the packet of kind 0x1000, 0x2000 or 0x3000 for mode 0, 1 or 2.
-s32 ReportStateAndSendPacketForMode(s32 v1, Unk021b86e4 *v2, PacketTag *v3, s32 v4) {
-    switch (v1) {
+s32 ReportStateAndSendPacketForMode(s32 mode, Unk021b86e4 *buf, PacketTag *list, s32 descriptor) {
+    switch (mode) {
         case 0:
             ReportStateChange(2);
-            return SendPacketKind1000(v2, v3, v4);
+            return SendPacketKind1000(buf, list, descriptor);
         case 1:
             ReportStateChange(3);
-            return SendPacketKind2000(v2, v3, v4);
+            return SendPacketKind2000(buf, list, descriptor);
         case 2:
             ReportStateChange(5);
-            return SendPacketKind3000(v2, v3, v4);
+            return SendPacketKind3000(buf, list, descriptor);
     }
     return -1;
 }
 
-s32 SendPacketKind1000(Unk021b86e4 *a, PacketTag *b, s32 c) {
-    PacketFieldValues d;
-    PacketBuffer *e;
-    ItemContainer *f;
-    u8 *g;
-    d.mPayloadCrc = 0;
-    d.mPayloadLength = 0;
-    d.mFlags = 0;
-    e = data_ov003_021d7c54;
-    FillBytes(e, 0, 0x5dc);
-    f = func_ov003_021ba178(0x210);
-    if (f == NULL) {
-        func_ov003_021b94b8(2);
+s32 SendPacketKind1000(Unk021b86e4 *buf, PacketTag *list, s32 descriptor) {
+    PacketFieldValues fields;
+    PacketBuffer *packetBuffer;
+    ItemContainer *container;
+    u8 *payloadRecord;
+    fields.mPayloadCrc = 0;
+    fields.mPayloadLength = 0;
+    fields.mFlags = 0;
+    packetBuffer = gRequestPacketBuffer;
+    FillBytes(packetBuffer, 0, 0x5dc);
+    container = func_ov003_021ba178(0x210);
+    if (container == NULL) {
+        SetErrorCode(2);
         return -1;
     }
-    FillBytes(f, 0, 0x210);
-    g = &e->mUnk_0c[12];
-    CopyBytes(data_ov003_021d7c58, b, 8);
-    CopyBytes(d.mTag, data_ov003_021d7c58, 8);
-    d.mPayloadLength = BuildTwoItemChain(f->mItems);
-    if (d.mPayloadLength < 0) {
-        func_ov003_021b94b8(3);
-        if (f != NULL) {
-            func_ov003_021ba164(f);
+    FillBytes(container, 0, 0x210);
+    payloadRecord = &packetBuffer->mBytes[12];
+    CopyBytes(gSavedTagBytes, list, 8);
+    CopyBytes(fields.mTag, gSavedTagBytes, 8);
+    fields.mPayloadLength = BuildTwoItemChain(container->mItems);
+    if (fields.mPayloadLength < 0) {
+        SetErrorCode(3);
+        if (container != NULL) {
+            func_ov003_021ba164(container);
         }
         return -1;
     }
-    f->mUnk_00 = 0;
-    f->mLength = func_ov003_021b7c94(d.mPayloadLength);
-    d.mPayloadLength += 4;
-    FillPayloadRecord(0, g, f, &d.mPayloadLength, &d.mFlags, &d.mPayloadCrc);
-    d.mFlags |= 0x10;
-    if (XorAndSwapBytesWithKey(d.mTag, 8, gMelcoString, 6) != 0) {
-        func_ov003_021b94b8(2);
-        if (f != NULL) {
-            func_ov003_021ba164(f);
+    container->mUnk_00 = 0;
+    container->mLength = func_ov003_021b7c94(fields.mPayloadLength);
+    fields.mPayloadLength += 4;
+    FillPayloadRecord(0, payloadRecord, container, &fields.mPayloadLength, &fields.mFlags, &fields.mPayloadCrc);
+    fields.mFlags |= 0x10;
+    if (XorAndSwapBytesWithKey(fields.mTag, 8, gMelcoString, 6) != 0) {
+        SetErrorCode(2);
+        if (container != NULL) {
+            func_ov003_021ba164(container);
         }
         return -1;
     }
-    FillPacketHeader(e, 0x1000, d.mPayloadLength, d.mFlags, d.mPayloadCrc, 0x11, d.mTag);
-    d.mPayloadLength += 0x18;
-    SendPacket(e, d.mPayloadLength, 0xff, c);
-    if (f != NULL) {
-        func_ov003_021ba164(f);
+    FillPacketHeader(packetBuffer, 0x1000, fields.mPayloadLength, fields.mFlags, fields.mPayloadCrc, 0x11, fields.mTag);
+    fields.mPayloadLength += 0x18;
+    SendPacket(packetBuffer, fields.mPayloadLength, 0xff, descriptor);
+    if (container != NULL) {
+        func_ov003_021ba164(container);
     }
     return 0;
 }
 
-s32 SendPacketKind2000(Unk021b86e4 *a, PacketTag *b, s32 c) {
-    s8 d;
-    s16 g;
-    s16 h;
-    u8 k[8];
-    Unk021b7cec e;
-    PacketBuffer *f;
-    d = 0;
-    g = 0;
-    h = 0;
-    f = data_ov003_021d7c54;
-    FillBytes(&e, 0, 8);
-    FillBytes(f, 0, 0x5dc);
-    e.mUnk_00 = 2;
-    e.mUnk_01 = 0;
-    e.mUnk_02 = func_ov003_021b7c94(4);
-    e.mUnk_04 = data_ov003_021d7c6c.mUnk_08;
-    e.mUnk_04 = SwapBytes32(e.mUnk_04);
-    g = 8;
-    FillPayloadRecord(gFlagBit4OfKind1010Packet, &f->mUnk_0c[12], &e, &g, &h, &d);
-    CopyBytes(k, &b[1], 8);
-    if (XorAndSwapBytesWithKey(k, 8, gMelcoString, 6) != 0) {
-        func_ov003_021b94b8(2);
+s32 SendPacketKind2000(Unk021b86e4 *buf, PacketTag *list, s32 descriptor) {
+    s8 payloadCrc;
+    s16 payloadLength;
+    s16 flags;
+    u8 tagBytes[8];
+    Unk021b7cec item;
+    PacketBuffer *packetBuffer;
+    payloadCrc = 0;
+    payloadLength = 0;
+    flags = 0;
+    packetBuffer = gRequestPacketBuffer;
+    FillBytes(&item, 0, 8);
+    FillBytes(packetBuffer, 0, 0x5dc);
+    item.mUnk_00 = 2;
+    item.mUnk_01 = 0;
+    item.mUnk_02 = func_ov003_021b7c94(4);
+    item.mUnk_04 = gRequestState.mWantedRecordMask;
+    item.mUnk_04 = SwapBytes32(item.mUnk_04);
+    payloadLength = 8;
+    FillPayloadRecord(gFlagBit4OfKind1010Packet, &packetBuffer->mBytes[12], &item, &payloadLength, &flags, &payloadCrc);
+    CopyBytes(tagBytes, &list[1], 8);
+    if (XorAndSwapBytesWithKey(tagBytes, 8, gMelcoString, 6) != 0) {
+        SetErrorCode(2);
         return -1;
     }
-    FillPacketHeader(f, 0x2000, g, h, d, 0x11, k);
-    g += 0x18;
-    SendPacket(f, g, 0, c);
+    FillPacketHeader(packetBuffer, 0x2000, payloadLength, flags, payloadCrc, 0x11, tagBytes);
+    payloadLength += 0x18;
+    SendPacket(packetBuffer, payloadLength, 0, descriptor);
     return 0;
 }
 
-s32 SendPacketKind3000(Unk021b86e4 *a, PacketTag *b, s32 c) {
-    PacketBuffer *d;
-    u8 e[8];
-    d = data_ov003_021d7c54;
-    FillBytes(d, 0, 0x5dc);
-    CopyBytes(e, &b[2], 8);
-    XorAndSwapBytesWithKey(e, 8, gMelcoString, GetStringLength(gMelcoString));
-    FillPacketHeader(d, 0x3000, 0, 0, 0, 0x11, e);
-    SendPacket(d, 0x18, 0, c);
+s32 SendPacketKind3000(Unk021b86e4 *buf, PacketTag *list, s32 descriptor) {
+    PacketBuffer *packetBuffer;
+    u8 tagBytes[8];
+    packetBuffer = gRequestPacketBuffer;
+    FillBytes(packetBuffer, 0, 0x5dc);
+    CopyBytes(tagBytes, &list[2], 8);
+    XorAndSwapBytesWithKey(tagBytes, 8, gMelcoString, GetStringLength(gMelcoString));
+    FillPacketHeader(packetBuffer, 0x3000, 0, 0, 0, 0x11, tagBytes);
+    SendPacket(packetBuffer, 0x18, 0, descriptor);
     return 0;
 }
 
-s16 BuildTwoItemChain(void *a) {
-    OutgoingPacketItem *b = a;
-    OutgoingPacketItem *c;
-    s16 d;
-    s16 e;
-    s16 f;
-    u32 g;
-    f = 0;
-    b->mType = data_ov003_021d7c6c.mUnk_19;
-    b->mUnk_01 = 1;
-    d = data_ov003_021d7c6c.mUnk_04;
-    CopyBytes(b->mValue, data_ov003_021d7c6c.mUnk_00, d);
-    b->mLength = func_ov003_021b7c94(d);
-    d += 6;
-    e = (d + 1) / 2 * 2;
-    b->mNextOffset = func_ov003_021b7c94(e);
-    f += e;
-    c = OFFSET_PTR(OutgoingPacketItem, b, e);
-    ((u8 *) b)[e] = 0x60;
-    c->mUnk_01 = 0;
-    c->mNextOffset = func_ov003_021b7c94(0);
-    g = SwapBytes32(0xe);
-    CopyBytes(c->mValue, &g, 4);
-    c->mLength = func_ov003_021b7c94(4);
-    f += 0xa;
-    return f;
+s16 BuildTwoItemChain(void *buffer) {
+    OutgoingPacketItem *firstItem = buffer;
+    OutgoingPacketItem *secondItem;
+    s16 firstLength;
+    s16 firstSize;
+    s16 totalSize;
+    u32 value;
+    totalSize = 0;
+    firstItem->mType = gRequestState.mItemType;
+    firstItem->mUnk_01 = 1;
+    firstLength = gRequestState.mItemLength;
+    CopyBytes(firstItem->mValue, gRequestState.mItemBytes, firstLength);
+    firstItem->mLength = func_ov003_021b7c94(firstLength);
+    firstLength += 6;
+    firstSize = (firstLength + 1) / 2 * 2;
+    firstItem->mNextOffset = func_ov003_021b7c94(firstSize);
+    totalSize += firstSize;
+    secondItem = OFFSET_PTR(OutgoingPacketItem, firstItem, firstSize);
+    ((u8 *) firstItem)[firstSize] = 0x60;
+    secondItem->mUnk_01 = 0;
+    secondItem->mNextOffset = func_ov003_021b7c94(0);
+    value = SwapBytes32(0xe);
+    CopyBytes(secondItem->mValue, &value, 4);
+    secondItem->mLength = func_ov003_021b7c94(4);
+    totalSize += 0xa;
+    return totalSize;
 }
 
-void FillPayloadRecord(s32 a, void *b, const void *c, s16 *d, s16 *e, s8 *f) {
-    PayloadRecord *g = b;
-    if (a == 1) {
-        *e = 1;
-        XorBytesWithRandomKeyStreamAndComputeCrc(c, g->mBytes, *d, f, g->mKeyPrefix, data_ov003_021d7c58, 8);
-        g->mLength = func_ov003_021b7c94(*d);
-        *d += 4;
+void FillPayloadRecord(s32 useKeyStream, void *destination, const void *source, s16 *length, s16 *flags, s8 *crc) {
+    PayloadRecord *record = destination;
+    if (useKeyStream == 1) {
+        *flags = 1;
+        XorBytesWithRandomKeyStreamAndComputeCrc(source, record->mBytes, *length, crc, record->mKeyPrefix,
+                                                 gSavedTagBytes, 8);
+        record->mLength = func_ov003_021b7c94(*length);
+        *length += 4;
     } else {
-        CopyBytes(g, c, *d);
+        CopyBytes(record, source, *length);
     }
 }
 
-void FillPacketHeader(void *p, s32 b, s32 c, s32 d, s8 e, s8 f, const u8 *g) {
-    PacketHeader *h = p;
-    h->mUnk_00 = func_ov003_021b7c94(1);
-    h->mUnk_02 = 0;
-    h->mUnk_04 = 0;
-    h->mKind = func_ov003_021b7c94(b);
-    h->mUnk_08 = 0;
-    h->mPayloadLength = func_ov003_021b7c94(c);
-    h->mFlags = func_ov003_021b7c94(d);
-    h->mPayloadCrc = e;
-    h->mUnk_0f = f;
-    CopyBytes(h->mTag, g, 8);
+void FillPacketHeader(void *buffer, s32 kind, s32 payloadLength, s32 flags, s8 payloadCrc, s8 f, const u8 *tagBytes) {
+    PacketHeader *header = buffer;
+    header->mUnk_00 = func_ov003_021b7c94(1);
+    header->mUnk_02 = 0;
+    header->mUnk_04 = 0;
+    header->mKind = func_ov003_021b7c94(kind);
+    header->mUnk_08 = 0;
+    header->mPayloadLength = func_ov003_021b7c94(payloadLength);
+    header->mFlags = func_ov003_021b7c94(flags);
+    header->mPayloadCrc = payloadCrc;
+    header->mUnk_0f = f;
+    CopyBytes(header->mTag, tagBytes, 8);
 }
 
-s32 SendPacket(void *a, s32 b, u32 c, s32 d) {
-    Unk021b7cec t;
-    FillBytes(&t, 0, 8);
-    t.mUnk_01 = 2;
-    t.mUnk_02 = func_ov003_021b7c94(0x5790);
-    t.mUnk_04 = SwapBytes32(data_ov003_021d7c6c.mUnk_10);
-    if (c == 0xff || data_ov003_021d7c6c.mUnk_18 == 0) {
-        t.mUnk_04 = -1;
+s32 SendPacket(void *packet, s32 length, u32 target, s32 descriptor) {
+    Unk021b7cec address;
+    FillBytes(&address, 0, 8);
+    address.mUnk_01 = 2;
+    address.mUnk_02 = func_ov003_021b7c94(0x5790);
+    address.mUnk_04 = SwapBytes32(gRequestState.mDestinationAddress);
+    if (target == 0xff || gRequestState.mAddressApplied == 0) {
+        address.mUnk_04 = -1;
     }
-    return func_ov003_021b7d04(d, a, b, 0, &t, 8);
+    return func_ov003_021b7d04(descriptor, packet, length, 0, &address, 8);
 }
 
-s32 XorBytesWithRandomKeyStreamAndComputeCrc(const u8 *a, u8 *b, s32 c, s8 *d, u8 *e, const u8 *f, s32 g) {
+s32 XorBytesWithRandomKeyStreamAndComputeCrc(const u8 *src, u8 *dst, s32 length, s8 *crc, u8 *keyPrefix,
+                                             const u8 *keyTail, s32 keyTailLength) {
     u16 random;
     KeyStreamState state;
-    *d = ComputeCrcLowByte(a, c);
-    state.mTable = func_ov003_021ba178(c);
+    *crc = ComputeCrcLowByte(src, length);
+    state.mTable = func_ov003_021ba178(length);
     if (state.mTable == NULL) {
         return -1;
     }
     random = NextRandomValue();
-    CopyBytes(e, &random, 2);
-    CopyBytes(gKeyStreamKeyPrefix, e, 2);
-    CopyBytes(gKeyStreamKeyTail, f, g);
-    InitKeyStream(&state, gKeyStreamKeyPrefix, g + 2, c);
-    XorWithKeyStream(&state, b, a, c);
+    CopyBytes(keyPrefix, &random, 2);
+    CopyBytes(gKeyStreamKeyPrefix, keyPrefix, 2);
+    CopyBytes(gKeyStreamKeyTail, keyTail, keyTailLength);
+    InitKeyStream(&state, gKeyStreamKeyPrefix, keyTailLength + 2, length);
+    XorWithKeyStream(&state, dst, src, length);
     func_ov003_021ba164(state.mTable);
     return 0;
 }
 
-s32 XorBytesWithKeyStreamAndCheckCrc(const u8 *a, u8 *b, s32 c, u32 d, const u8 *e, const u8 *f, s32 g) {
+s32 XorBytesWithKeyStreamAndCheckCrc(const u8 *src, u8 *dst, s32 length, u32 expectedCrc, const u8 *keyPrefix,
+                                     const u8 *keyTail, s32 keyTailLength) {
     KeyStreamState state;
     u8 crc;
-    state.mTable = func_ov003_021ba178(c);
+    state.mTable = func_ov003_021ba178(length);
     if (state.mTable == NULL) {
-        func_ov003_021b94b8(2);
+        SetErrorCode(2);
         return -1;
     }
-    CopyBytes(gKeyStreamKeyPrefix, e, 2);
-    CopyBytes(gKeyStreamKeyTail, f, g);
-    InitKeyStream(&state, gKeyStreamKeyPrefix, g + 2, c);
-    XorWithKeyStream(&state, b, a, c);
-    crc = ComputeCrcLowByte(b, c);
-    if (crc != d) {
-        func_ov003_021b94b8(0x12);
+    CopyBytes(gKeyStreamKeyPrefix, keyPrefix, 2);
+    CopyBytes(gKeyStreamKeyTail, keyTail, keyTailLength);
+    InitKeyStream(&state, gKeyStreamKeyPrefix, keyTailLength + 2, length);
+    XorWithKeyStream(&state, dst, src, length);
+    crc = ComputeCrcLowByte(dst, length);
+    if (crc != expectedCrc) {
+        SetErrorCode(0x12);
         func_ov003_021ba164(state.mTable);
         return -1;
     }
@@ -877,129 +884,129 @@ s32 XorBytesWithKeyStreamAndCheckCrc(const u8 *a, u8 *b, s32 c, u32 d, const u8 
 }
 
 // Fills the table with 0..n-1, then permutes it using the key bytes.
-void InitKeyStream(KeyStreamState *p, const u8 *key, u32 keyLength, u32 n) {
-    u8 *s;
+void InitKeyStream(KeyStreamState *state, const u8 *key, u32 keyLength, u32 count) {
+    u8 *table;
     u32 i;
-    u32 j;
-    u32 k;
-    u8 a;
-    u8 t;
-    s = p->mTable;
-    p->mSwapIndex = 0;
-    p->mIndex = p->mSwapIndex;
-    p->mTableCount = n;
-    for (i = 0; i < n; i++) {
-        s[i] = i;
+    u32 swapIndex;
+    u32 keyIndex;
+    u8 current;
+    u8 swapped;
+    table = state->mTable;
+    state->mSwapIndex = 0;
+    state->mIndex = state->mSwapIndex;
+    state->mTableCount = count;
+    for (i = 0; i < count; i++) {
+        table[i] = i;
     }
-    j = 0;
-    k = 0;
-    for (i = 0; i < n; i++) {
-        a = s[i];
-        j = (j + key[k] + a) % p->mTableCount;
-        t = s[j];
-        s[j] = a;
-        s[i] = t;
-        k++;
-        if (k >= keyLength) {
-            k = 0;
+    swapIndex = 0;
+    keyIndex = 0;
+    for (i = 0; i < count; i++) {
+        current = table[i];
+        swapIndex = (swapIndex + key[keyIndex] + current) % state->mTableCount;
+        swapped = table[swapIndex];
+        table[swapIndex] = current;
+        table[i] = swapped;
+        keyIndex++;
+        if (keyIndex >= keyLength) {
+            keyIndex = 0;
         }
     }
 }
 
-void XorWithKeyStream(KeyStreamState *p, u8 *dst, const u8 *src, u32 n) {
+void XorWithKeyStream(KeyStreamState *state, u8 *dst, const u8 *src, u32 count) {
     u32 i;
-    u8 a;
-    for (i = 0; i < n; i++) {
-        a = NextKeyStreamByte(p);
-        dst[i] = a ^ src[i];
+    u8 keyByte;
+    for (i = 0; i < count; i++) {
+        keyByte = NextKeyStreamByte(state);
+        dst[i] = keyByte ^ src[i];
     }
 }
 
-u32 NextKeyStreamByte(KeyStreamState *p) {
-    u8 *s;
-    u32 n;
-    u8 i;
-    u8 j;
-    u8 a;
-    u8 b;
-    s = p->mTable;
-    n = p->mTableCount;
-    i = (p->mIndex + 1) % n;
-    a = s[i];
-    j = (a + p->mSwapIndex) % n;
-    b = s[j];
-    p->mIndex = i;
-    p->mSwapIndex = j;
-    s[j] = a;
-    s[i] = b;
-    return s[(a + b) % p->mTableCount];
+u32 NextKeyStreamByte(KeyStreamState *state) {
+    u8 *table;
+    u32 count;
+    u8 index;
+    u8 swapIndex;
+    u8 first;
+    u8 second;
+    table = state->mTable;
+    count = state->mTableCount;
+    index = (state->mIndex + 1) % count;
+    first = table[index];
+    swapIndex = (first + state->mSwapIndex) % count;
+    second = table[swapIndex];
+    state->mIndex = index;
+    state->mSwapIndex = swapIndex;
+    table[swapIndex] = first;
+    table[index] = second;
+    return table[(first + second) % state->mTableCount];
 }
 
-u8 ComputeCrcLowByte(const u8 *p0, s32 p1) {
-    return ComputeCrc(~0, p0, p1, 0, (u32 *) data_ov003_021d7f6c) ^ ~0;
+u8 ComputeCrcLowByte(const u8 *bytes, s32 count) {
+    return ComputeCrc(~0, bytes, count, 0, (u32 *) data_ov003_021d7f6c) ^ ~0;
 }
 
-u32 ComputeCrc(u32 a, const u8 *b, s32 c, s32 d, u32 *e) {
+u32 ComputeCrc(u32 crc, const u8 *bytes, s32 count, s32 tableBuilt, u32 *table) {
     s32 i;
-    if (d == 0) {
-        InitCrcTable(d, e);
+    if (tableBuilt == 0) {
+        InitCrcTable(tableBuilt, table);
     }
-    for (i = 0; i < c; i++) {
-        a = (a >> 8) ^ e[(a ^ b[i]) & 0xff];
+    for (i = 0; i < count; i++) {
+        crc = (crc >> 8) ^ table[(crc ^ bytes[i]) & 0xff];
     }
-    return a;
+    return crc;
 }
 
-void InitCrcTable(s32 a, u32 *b) {
-    u32 c;
+void InitCrcTable(s32 a, u32 *table) {
+    u32 value;
     s32 i;
     s32 j;
     for (i = 0; i < 0x100; i++) {
-        c = i;
+        value = i;
         for (j = 0; j < 8; j++) {
-            if (c & 1) {
-                c = (c >> 1) ^ 0xedb88320;
+            if (value & 1) {
+                value = (value >> 1) ^ 0xedb88320;
             } else {
-                c = c >> 1;
+                value = value >> 1;
             }
         }
-        *b++ = c;
+        *table++ = value;
     }
 }
 
 // Two passes of xor-ing the second half with key bytes and swapping the halves.
-s32 XorAndSwapBytesWithKey(u8 *a, s32 b, const s8 *c, s32 d) {
-    s8 *e;
-    u8 *f;
+s32 XorAndSwapBytesWithKey(u8 *buffer, s32 size, const s8 *key, s32 keyLength) {
+    s8 *keyHalf;
+    u8 *scratch;
     s32 i;
-    e = func_ov003_021ba178(b / 2);
-    if (e == NULL) {
+    keyHalf = func_ov003_021ba178(size / 2);
+    if (keyHalf == NULL) {
         return -1;
     }
-    f = func_ov003_021ba178(b);
-    if (f == NULL) {
-        func_ov003_021ba164(e);
+    scratch = func_ov003_021ba178(size);
+    if (scratch == NULL) {
+        func_ov003_021ba164(keyHalf);
         return -1;
     }
     for (i = 0; i < 2; i++) {
-        FillIndexXorKeyBytes(i, e, b, c, d);
-        XorSecondHalf(e, a, b);
-        SwapBufferHalves(a, b, f);
+        FillIndexXorKeyBytes(i, keyHalf, size, key, keyLength);
+        XorSecondHalf(keyHalf, buffer, size);
+        SwapBufferHalves(buffer, size, scratch);
     }
-    func_ov003_021ba164(e);
-    func_ov003_021ba164(f);
+    func_ov003_021ba164(keyHalf);
+    func_ov003_021ba164(scratch);
     return 0;
 }
 
-void FillIndexXorKeyBytes(s32 a, s8 *b, s32 c, const s8 *d, s32 e) {
-    s32 f = c / 2;
-    s32 g = a % e;
+void FillIndexXorKeyBytes(s32 round, s8 *output, s32 size, const s8 *key, s32 keyLength) {
+    s32 half = size / 2;
+    s32 keyIndex = round % keyLength;
     s32 i;
-    for (i = 0; i < f; i++) {
-        b[i] = i;
-        b[i] ^= d[g++];
-        if (g >= e) {
-            g = 0;
+    for (i = 0; i < half; i++) {
+        output[i] = i;
+        output[i] ^= key[keyIndex++];
+        if (keyIndex >= keyLength) {
+            keyIndex = 0;
         }
     }
 }
@@ -1012,30 +1019,30 @@ void XorSecondHalf(const s8 *key, u8 *buffer, s32 size) {
     }
 }
 
-void SwapBufferHalves(u8 *a, u32 b, u8 *c) {
-    int v1;
-    v1 = _s32_div_f(b, 2);
-    CopyBytes(c, (a + v1), v1);
-    CopyBytes((c + v1), a, v1);
-    CopyBytes(a, c, b);
+void SwapBufferHalves(u8 *buffer, u32 size, u8 *scratch) {
+    int half;
+    half = _s32_div_f(size, 2);
+    CopyBytes(scratch, (buffer + half), half);
+    CopyBytes((scratch + half), buffer, half);
+    CopyBytes(buffer, scratch, size);
 }
 
-u32 func_ov003_021b7e70(u32 a, int b) {
-    u32 v1;
-    if (0 < b) {
-        v1 = (*(UnkWordFunc *) (*(u32 *) &data_ov003_021d8a0c))(b);
-        return v1;
+u32 func_ov003_021b7e70(u32 a, int size) {
+    u32 memory;
+    if (0 < size) {
+        memory = (*(UnkWordFunc *) (*(u32 *) &data_ov003_021d8a0c))(size);
+        return memory;
     }
     return 0;
 }
 
-void func_ov003_021b7e58(u32 a, u32 b) {
-    (*(UnkFunc *) (*(u32 *) &data_ov003_021d8a18))(b);
+void func_ov003_021b7e58(u32 a, u32 pointer) {
+    (*(UnkFunc *) (*(u32 *) &data_ov003_021d8a18))(pointer);
 }
 
-s32 func_ov003_021b7df4(u32 a, u32 b, u32 c) {
-    data_ov003_021d6810.mUnk_10 = SwapBytes32(a);
-    data_ov003_021d6810.mUnk_14 = SwapBytes32(b);
+s32 func_ov003_021b7df4(u32 address, u32 mask, u32 c) {
+    data_ov003_021d6810.mUnk_10 = SwapBytes32(address);
+    data_ov003_021d6810.mUnk_14 = SwapBytes32(mask);
     data_ov003_021d6810.mUnk_18 = SwapBytes32(c);
     if (func_ov000_021a8c94(&data_ov003_021d6810) < 0) {
         return -1;
@@ -1062,38 +1069,38 @@ s32 CompareBytes(const u8 *left, const u8 *right, s32 count) {
     return difference;
 }
 
-void CopyBytes(void *arg0, const void *arg1, u32 arg2) {
-    MI_CpuCopy8(arg1, arg0, arg2);
+void CopyBytes(void *destination, const void *source, u32 size) {
+    MI_CpuCopy8(source, destination, size);
 }
 
-void FillBytes(void *arg0, s32 arg1, u32 arg2) {
-    void *value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
+void FillBytes(void *destination, s32 fillValue, u32 size) {
+    void *destinationCopy = destination;
+    u32 byteValue = fillValue;
+    u32 sizeCopy = size;
     u32 value3;
-    value1 = (value1 << 24);
-    value1 = (value1 >> 24);
-    MI_CpuFill8(value0, value1, value2);
+    byteValue = (byteValue << 24);
+    byteValue = (byteValue >> 24);
+    MI_CpuFill8(destinationCopy, byteValue, sizeCopy);
 }
 
-s32 func_ov003_021b7d68(s32 v1, void *v2, s32 v3, s32 v4, Unk021b7cec *v5, s32 *v6) {
-    v5->mUnk_00 = *v6;
-    return func_ov000_021a90a0(v1, v2, v3, v4, v5);
+s32 func_ov003_021b7d68(s32 descriptor, void *buffer, s32 length, s32 v4, Unk021b7cec *address, s32 *addressLength) {
+    address->mUnk_00 = *addressLength;
+    return func_ov000_021a90a0(descriptor, buffer, length, v4, address);
 }
 
-s32 func_ov003_021b7d1c(s32 v1, Unk021b7ba0 *v2, void *v3, void *v4, Unk021b7d1c *v5) {
-    Unk021b7ba0 t;
-    s64 s;
-    s = 0;
-    t = *v2;
-    s += v5->mUnk_00 * 0x1ff6210 / 0x40;
-    s += v5->mUnk_04 * 0x1ff6210 / 0x40;
-    return func_ov000_021a8b20(&t, 1, s);
+s32 func_ov003_021b7d1c(s32 v1, Unk021b7ba0 *set, void *v3, void *v4, WaitTimeout *timeout) {
+    Unk021b7ba0 setCopy;
+    s64 ticks;
+    ticks = 0;
+    setCopy = *set;
+    ticks += timeout->mSeconds * 0x1ff6210 / 0x40;
+    ticks += timeout->mUnk_04 * 0x1ff6210 / 0x40;
+    return func_ov000_021a8b20(&setCopy, 1, ticks);
 }
 
-s32 func_ov003_021b7d04(s32 a, void *b, s32 c, s32 d, Unk021b7cec *e, u32 f) {
-    e->mUnk_00 = f;
-    return func_ov000_021a9018(a, b, c, d, e);
+s32 func_ov003_021b7d04(s32 descriptor, void *buffer, s32 length, s32 d, Unk021b7cec *address, u32 addressLength) {
+    address->mUnk_00 = addressLength;
+    return func_ov000_021a9018(descriptor, buffer, length, d, address);
 }
 
 s32 func_ov003_021b7d00(s32 id, s32 arg1, s32 arg2, void *value, s32 length) {
@@ -1104,17 +1111,17 @@ s32 func_ov003_021b7cf8(s32 domain, s32 type, s32 protocol) {
     return func_ov000_021a918c(domain, type, protocol);
 }
 
-s32 func_ov003_021b7cec(s32 v1, Unk021b7cec *v2, u32 v3) {
-    v2->mUnk_00 = v3;
-    return func_ov000_021a916c(v1, v2);
+s32 func_ov003_021b7cec(s32 descriptor, Unk021b7cec *address, u32 addressLength) {
+    address->mUnk_00 = addressLength;
+    return func_ov000_021a916c(descriptor, address);
 }
 
 s32 func_ov003_021b7ce4(s32 descriptor) {
     return func_ov000_021a9008(descriptor);
 }
 
-u32 SwapBytes32(u32 arg0) {
-    u32 value0 = arg0;
+u32 SwapBytes32(u32 input) {
+    u32 value0 = input;
     u32 value1;
     u32 value2;
     u32 value3;
@@ -1142,8 +1149,8 @@ u16 func_ov003_021b7c94(u16 value) {
     return ((value >> 8) & 0xff) | ((value << 8) & 0xff00);
 }
 
-u32 func_ov003_021b7c5c(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_ov003_021b7c5c(u32 input) {
+    u32 value0 = input;
     u32 value1;
     u32 value2;
     u32 value3;
@@ -1171,13 +1178,13 @@ u16 SwapBytes16(u16 value) {
     return ((value >> 8) & 0xff) | ((value << 8) & 0xff00);
 }
 
-int GetStringLength(const void *a) {
-    const s8 *p = a;
-    int i = 0;
-    while (p[i] != 0) {
-        i++;
+int GetStringLength(const void *string) {
+    const s8 *chars = string;
+    int length = 0;
+    while (chars[length] != 0) {
+        length++;
     }
-    return i;
+    return length;
 }
 
 // Multiply-add generator, seeded from the clock on the first call; returns a value below 0x7fff.
