@@ -46,7 +46,7 @@
 #include "Main/Unknown/code_02062ed8.h"
 
 void func_020651fc(Kart *kart) {
-    Unk0206bcb0_514 *b;
+    ParticipantKartRecordState *b;
     s32 tableIndex;
     u32 f;
 
@@ -100,7 +100,7 @@ void func_020651fc(Kart *kart) {
 }
 
 void func_02064f50(Kart *kart) {
-    Unk0206bcb0_514 *b;
+    ParticipantKartRecordState *b;
     s32 c;
     Vec3 groundNormal;
     Vec3 e;
@@ -161,7 +161,7 @@ void func_02064f50(Kart *kart) {
 }
 
 void func_02064d60(Kart *kart, Vec3 *groundNormal) {
-    Unk0206bcb0_514 *c;
+    ParticipantKartRecordState *c;
     Vec4 hopTiltQuaternion;
     s32 headingDifference;
     s32 f;

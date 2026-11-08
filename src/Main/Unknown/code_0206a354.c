@@ -434,7 +434,7 @@ void StartKartState4(Kart *p, const Vec3 *a, s32 b) {
         p->mUnk_514->mUnk_2c ^= 0x20;
     }
     if (p->mUnk_7c & 0x200) {
-        p->mUnk_514->mUnk_98 = *a;
+        p->mUnk_514->mPushDirection = *a;
         p->mUnk_514->mUnk_a4 = 4;
     }
 }
@@ -542,7 +542,7 @@ s32 StartKartState5(Kart *p, const Vec3 *a, s32 b) {
             p->mUnk_514->mUnk_2c ^= 0x40;
         }
         if (p->mUnk_7c & 0x200) {
-            p->mUnk_514->mUnk_98 = *a;
+            p->mUnk_514->mPushDirection = *a;
             p->mUnk_514->mUnk_a4 = 5;
         }
     }
@@ -598,7 +598,7 @@ void AdvanceKartState5(Kart *p) {
 }
 
 void StartKartThunderShrink(Kart *p) {
-    Unk0206ceb4 *q = &p->mUnk_538;
+    KartItemEffectState *q = &p->mUnk_538;
 
     if (p->mUnk_4c & 0x10000040) {
         return;
@@ -632,7 +632,7 @@ void StartKartThunderShrink(Kart *p) {
 }
 
 void AdvanceKartThunderShrink(Kart *p) {
-    Unk0206ceb4 *q = &p->mUnk_538;
+    KartItemEffectState *q = &p->mUnk_538;
 
     if (q->mUnk_02 <= 0) {
         if (q->mUnk_04 == 0) {

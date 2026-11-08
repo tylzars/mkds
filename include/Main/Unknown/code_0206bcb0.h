@@ -118,7 +118,7 @@ extern SoundRequestQueue data_0217d29c;
 #define KART_KILLER_MAX_FRAMES 0x1e0
 // Frames after which the Teresa effect ends (7.5 seconds).
 #define KART_TERESA_MAX_FRAMES 0x1c2
-typedef struct Unk0206ceb4 {
+typedef struct KartItemEffectState {
     /* 00 */ s16 mUnk_00;
     /* 02 */ s16 mUnk_02;
     /* 04 */ s16 mUnk_04;
@@ -142,9 +142,9 @@ typedef struct Unk0206ceb4 {
     /* 28 */ s16 mKillerEndRank;
     /* 2a */ u8 mUnk_2a[2];
     /* 2c */ KartKillerCursor mKillerCursor;
-} Unk0206ceb4;
+} KartItemEffectState;
 
-typedef struct Unk0206bcb0_514 {
+typedef struct ParticipantKartRecordState {
     /* 00 */ Vec3 mUnk_00;
     /* 0c */ u16 mUnk_0c;
     /* 0e */ u16 mUnk_0e;
@@ -154,25 +154,25 @@ typedef struct Unk0206bcb0_514 {
     /* 24 */ s32 mUnk_24;
     /* 28 */ s32 mUnk_28;
     /* 2c */ u32 mUnk_2c;
-    /* 30 */ u32 mUnk_30;
+    /* 30 */ u32 mAppliedFlags;
     /* 34 */ Vec3 mUnk_34;
-    /* 40 */ s16 mUnk_40;
+    /* 40 */ s16 mTargetTurnAngle;
     /* 42 */ u8 mUnk_42[2];
     /* 44 */ u32 mUnk_44;
     /* 48 */ u32 mUnk_48;
     /* 4c */ Vec4 mUnk_4c;
-    /* 5c */ s16 mUnk_5c;
+    /* 5c */ s16 mEasedTurnAngle;
     /* 5e */ u8 mUnk_5e[2];
     /* 60 */ s32 mUnk_60;
     /* 64 */ s32 mUnk_64;
     /* 68 */ u8 mUnk_68[0x18];
-    /* 80 */ NNSFndList mUnk_80;
-    /* 8c */ NNSFndList mUnk_8c;
-    /* 98 */ Vec3 mUnk_98;
+    /* 80 */ NNSFndList mPendingRecords;
+    /* 8c */ NNSFndList mFreeRecords;
+    /* 98 */ Vec3 mPushDirection;
     /* a4 */ s32 mUnk_a4;
     /* a8 */ Vec3 mUnk_a8;
     /* b4 */ u16 mUnk_b4;
-} Unk0206bcb0_514;
+} ParticipantKartRecordState;
 
 typedef struct Unk0206c5e4_208 {
     /* 0 */ BOOL mUnk_00;
@@ -555,11 +555,11 @@ typedef struct Kart {
     /* 508 */ Vec3 *mPosSource;
     /* 50c */ Vec4 *mUnk_50c;
     /* 510 */ Vec3 *mUnk_510;
-    /* 514 */ Unk0206bcb0_514 *mUnk_514;
+    /* 514 */ ParticipantKartRecordState *mUnk_514;
     /* 518 */ SoundDistanceSquaredChange mUnk_518;
     /* 528 */ u8 mUnk_528[0xc];
     /* 534 */ Vec3 *mUnk_534;
-    /* 538 */ Unk0206ceb4 mUnk_538;
+    /* 538 */ KartItemEffectState mUnk_538;
     /* 590 */ struct KartModelsEntry *mKartModelsEntry;
     /* 594 */ s32 mWobbleAmplitude;
     /* 598 */ s16 mWobbleDirection;

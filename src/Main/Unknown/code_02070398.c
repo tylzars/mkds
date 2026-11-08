@@ -234,7 +234,7 @@ s32 AdvanceKartRespawnWait(Kart *p, s32 *a) {
 }
 
 void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, PointLink *c) {
-    Unk0206bcb0_514 *q;
+    ParticipantKartRecordState *q;
     Vec3 v;
 
     func_02072930(p);
@@ -608,7 +608,7 @@ void ResetKart(Kart *p) {
 }
 
 void func_02071fb8(Kart *p, void *a) {
-    Unk0206bcb0_514 *q;
+    ParticipantKartRecordState *q;
     Vec3 v;
     u16 i;
     u8 *b;
@@ -625,29 +625,29 @@ void func_02071fb8(Kart *p, void *a) {
     q->mUnk_20 = 0;
     q->mUnk_24 = 0;
     q->mUnk_28 = 0;
-    q->mUnk_30 = 0;
-    q->mUnk_2c = q->mUnk_30;
+    q->mAppliedFlags = 0;
+    q->mUnk_2c = q->mAppliedFlags;
     v = data_02154f94;
     q->mUnk_34 = v;
     q->mUnk_44 = 0;
     q->mUnk_48 = 0;
-    q->mUnk_40 = 0;
-    q->mUnk_5c = 0;
+    q->mTargetTurnAngle = 0;
+    q->mEasedTurnAngle = 0;
     q->mUnk_60 = 0;
     q->mUnk_64 = 0;
-    q->mUnk_98 = v;
+    q->mPushDirection = v;
     q->mUnk_a8 = v;
     q->mUnk_b4 = 0;
-    NNS_FndInitList(&q->mUnk_80, 0);
-    NNS_FndInitList(&q->mUnk_8c, 0);
+    NNS_FndInitList(&q->mPendingRecords, 0);
+    NNS_FndInitList(&q->mFreeRecords, 0);
     b = HeapAlloc(a, 0x438);
     for (i = 0; i < 0x1e; i++) {
-        NNS_FndAppendListObject(&q->mUnk_8c, b + i * 0x24);
+        NNS_FndAppendListObject(&q->mFreeRecords, b + i * 0x24);
     }
 }
 
 void func_02071f44(Kart *p) {
-    Unk0206bcb0_514 *q;
+    ParticipantKartRecordState *q;
 
     if (!(p->mUnk_7c & 0x400)) {
         return;
@@ -686,7 +686,7 @@ void func_02071e28(Kart *p) {
     }
 }
 
-void func_02071ddc(Unk0206ceb4 *p0) {
+void func_02071ddc(KartItemEffectState *p0) {
     p0->mUnk_00 = 0;
     p0->mUnk_02 = 0;
     p0->mUnk_04 = 0;
@@ -1187,7 +1187,7 @@ static inline s32 func_020708a4_inline(Vec3 *v, Vec3 *n) {
 }
 
 void AdvanceKartToKeyedPlacement(Kart *p) {
-    Unk0206ceb4 *s;
+    KartItemEffectState *s;
     u16 i;
     s32 d;
     s32 k;
@@ -1230,7 +1230,7 @@ void AdvanceKartToKeyedPlacement(Kart *p) {
         }
     }
     if (p->mUnk_4c & 0x8000000) {
-        func_02069134(p);
+        AdvanceKartGesso(p);
     }
     w = p->mUnk_4c;
     if (w & 0x10000000) {

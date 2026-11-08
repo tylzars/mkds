@@ -74,7 +74,7 @@ void func_020637c4(Kart *kart) {
 }
 
 void func_020636f8(Kart *kart) {
-    Unk0206bcb0_514 *b;
+    ParticipantKartRecordState *b;
     Unk0217aa14_754_04 *recordBase;
     Unk020636f8_B *record;
 
@@ -87,8 +87,9 @@ void func_020636f8(Kart *kart) {
     record->mUnk_06 = kart->mForwardSpeed >> 2;
     record->mUnk_0a = kart->mHeadingAngle;
     record->mUnk_10 = kart->mUnk_44;
-    record->mUnk_10 = record->mUnk_10 | (((b->mUnk_98.x >> 6) & 0xff) << 24 | ((b->mUnk_98.y >> 6) & 0xff) << 16 |
-                                         ((b->mUnk_98.z >> 6) & 0xff) << 8);
+    record->mUnk_10 =
+        record->mUnk_10 | (((b->mPushDirection.x >> 6) & 0xff) << 24 | ((b->mPushDirection.y >> 6) & 0xff) << 16 |
+                           ((b->mPushDirection.z >> 6) & 0xff) << 8);
     record->mUnk_14 = kart->mUnk_48;
     record->mUnk_0c = b->mUnk_2c;
     record->mUnk_08 = kart->mTurnAngle;

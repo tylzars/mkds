@@ -14,7 +14,7 @@
 void AdvanceKartBoost(s32 *out, Kart *p) {
     int id;
     u32 flags;
-    Unk0206ceb4 *q;
+    KartItemEffectState *q;
     u16 a;
     u16 b;
     u16 c;

@@ -309,7 +309,7 @@ void StartItemThunder(ItemInUse *itemInUse, HeldItem *heldItem) {
             NNS_SndArcPlayerStartSeqArc(seqPlayer, 0, 0xde);
         }
     }
-    func_02069e10(heldItem->mKartItems->mKart);
+    StartKartThunder(heldItem->mKartItems->mKart);
     func_020d3cc8();
     func_020f82e8(0);
     RemoveHeldItemObjects(heldItem, 1);
@@ -907,7 +907,7 @@ void InitItemBananaFromData(ItemBanana *banana) {
 // Item hook of the mushroom: starts the kart boost, uses up one held object, marks the use,
 // and makes the event call when the mode is 5.
 void StartItemKinokoBoost(ItemInUse *itemInUse, HeldItem *heldItem) {
-    func_02069db8(heldItem->mKartItems->mKart);
+    StartKartKinokoBoost(heldItem->mKartItems->mKart);
     RemoveHeldItemObjects(heldItem, 1);
     itemInUse->mKartItems->mUnk_204 = TRUE;
     if (gRaceSetup->mMode != 5) {

@@ -30,7 +30,7 @@ void func_020719a8(u32 arg0, u32 arg1);
 PlayingSound *func_020719bc(SoundSource *p, u32 a);
 void func_020719d0(Kart *p);
 void InitKartSound(Kart *p);
-void func_02071ddc(Unk0206ceb4 *p0);
+void func_02071ddc(KartItemEffectState *p0);
 void func_02071e28(Kart *p);
 void func_02071f44(Kart *p);
 void func_02071fb8(Kart *p, void *a);

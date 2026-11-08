@@ -60,7 +60,7 @@ void AdvanceItemGesso(ItemGesso *p) {
             if (kartAtIndex->mUnk_48 & 0x10000) {
                 continue;
             }
-            func_0206924c(kartAtIndex, p->mOrthoQuadCounts[i]);
+            StartKartGesso(kartAtIndex, p->mOrthoQuadCounts[i]);
             func_020f8e3c((u32) kartAtIndex, 0xf0);
         }
     }

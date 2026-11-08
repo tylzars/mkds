@@ -5,29 +5,29 @@
 #include "Main/Unknown/code_0207a6b0.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_020680e0(Kart *a, const Vec3 *b) {
+void func_020680e0(Kart *kart, const Vec3 *direction) {
     s32 c;
     BOOL d;
     s32 e;
-    BOOL f;
-    u32 g;
-    s32 h;
+    BOOL started;
+    u32 kartBits;
+    s32 state;
 
-    g = a->mUnk_4c;
-    if ((g & 0x400000) != 0) {
+    kartBits = kart->mUnk_4c;
+    if ((kartBits & 0x400000) != 0) {
         c = 0;
-    } else if ((a->mUnk_7c & 0x200) != 0) {
-        if (a->mState == KART_STATE_NORMAL && (a->mUnk_48 & 0x1800) == 0 && (g & 0x10000040) == 0) {
+    } else if ((kart->mUnk_7c & 0x200) != 0) {
+        if (kart->mState == KART_STATE_NORMAL && (kart->mUnk_48 & 0x1800) == 0 && (kartBits & 0x10000040) == 0) {
             c = 1;
         } else {
             c = 0;
         }
     } else {
         d = TRUE;
-        if ((g & 0x10000040) == 0 && (a->mUnk_48 & 0x1800) == 0) {
+        if ((kartBits & 0x10000040) == 0 && (kart->mUnk_48 & 0x1800) == 0) {
             e = 0;
-            h = a->mState;
-            if (h != KART_STATE_NORMAL && h != KART_STATE_1 && h != KART_STATE_SPIN) {
+            state = kart->mState;
+            if (state != KART_STATE_NORMAL && state != KART_STATE_1 && state != KART_STATE_SPIN) {
                 e = d;
             }
             if (e == 0) {
@@ -37,53 +37,53 @@ void func_020680e0(Kart *a, const Vec3 *b) {
         c = d == FALSE ? 1 : 0;
     }
     if (c != 0) {
-        StartKartState4(a, b, 0);
-        f = TRUE;
+        StartKartState4(kart, direction, 0);
+        started = TRUE;
     } else {
-        f = FALSE;
+        started = FALSE;
     }
-    if (f == FALSE) {
+    if (started == FALSE) {
         return;
     }
-    if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
+    if ((kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
         GetEntryKartCounters()->mUnk_14++;
     }
-    a->mUnk_48 |= 0x20000;
+    kart->mUnk_48 |= 0x20000;
 }
 
-void func_02068094(Kart *a, s32 b, Unk0206b020 *c) {
-    if (TryStartKartState4(a, c) == FALSE) {
+void func_02068094(Kart *kart, s32 b, Unk0206b020 *mapObject) {
+    if (TryStartKartState4(kart, mapObject) == FALSE) {
         return;
     }
-    if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
+    if ((kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
         GetEntryKartCounters()->mUnk_14++;
     }
-    a->mUnk_48 |= 0x20000;
+    kart->mUnk_48 |= 0x20000;
 }
 
-void func_02067f94(Kart *a, const Vec3 *b) {
+void func_02067f94(Kart *kart, const Vec3 *direction) {
     s32 c;
     BOOL d;
     s32 e;
-    BOOL f;
-    u32 g;
-    s32 h;
+    BOOL started;
+    u32 kartBits;
+    s32 state;
 
-    g = a->mUnk_4c;
-    if ((g & 0x400000) != 0) {
+    kartBits = kart->mUnk_4c;
+    if ((kartBits & 0x400000) != 0) {
         c = 0;
-    } else if ((a->mUnk_7c & 0x200) != 0) {
-        if (a->mState == KART_STATE_NORMAL && (a->mUnk_48 & 0x1800) == 0 && (g & 0x10000040) == 0) {
+    } else if ((kart->mUnk_7c & 0x200) != 0) {
+        if (kart->mState == KART_STATE_NORMAL && (kart->mUnk_48 & 0x1800) == 0 && (kartBits & 0x10000040) == 0) {
             c = 1;
         } else {
             c = 0;
         }
     } else {
         d = TRUE;
-        if ((g & 0x10000040) == 0 && (a->mUnk_48 & 0x1800) == 0) {
+        if ((kartBits & 0x10000040) == 0 && (kart->mUnk_48 & 0x1800) == 0) {
             e = 0;
-            h = a->mState;
-            if (h != KART_STATE_NORMAL && h != KART_STATE_1 && h != KART_STATE_SPIN) {
+            state = kart->mState;
+            if (state != KART_STATE_NORMAL && state != KART_STATE_1 && state != KART_STATE_SPIN) {
                 e = d;
             }
             if (e == 0) {
@@ -93,16 +93,16 @@ void func_02067f94(Kart *a, const Vec3 *b) {
         c = d == FALSE ? 1 : 0;
     }
     if (c != 0) {
-        StartKartState5(a, b, 0);
-        f = TRUE;
+        StartKartState5(kart, direction, 0);
+        started = TRUE;
     } else {
-        f = FALSE;
+        started = FALSE;
     }
-    if (f == FALSE) {
+    if (started == FALSE) {
         return;
     }
-    if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
+    if ((kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
         GetEntryKartCounters()->mUnk_14++;
     }
-    a->mUnk_48 |= 0x20000;
+    kart->mUnk_48 |= 0x20000;
 }

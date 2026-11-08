@@ -47,14 +47,14 @@ void func_01ffb130(Kart *p) {
     MtxFx33 m2;
     Vec3 v3;
     Vec3 v4;
-    Unk0206ceb4 *q;
+    KartItemEffectState *q;
     s32 d;
     s32 f;
     u32 w;
 
     b = p->mUnk_3f8;
     if (p->mUnk_4c & 0x8000000) {
-        func_02069134(p);
+        AdvanceKartGesso(p);
     }
     w = p->mUnk_4c;
     if (w & 0x10000000) {
