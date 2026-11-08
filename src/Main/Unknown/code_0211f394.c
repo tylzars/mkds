@@ -20,82 +20,83 @@
 
 #pragma thumb on
 
-void func_0211f61c(void) {
-    void *v1;
-    Ncgr *v2;
-    Nclr *v3[1];
-    v2 = NULL;
-    v3[0] = NULL;
-    v1 = FindSceneFile(data_0216e128);
-    LocateNcer(&data_0217d380->mNcer, v1);
-    v1 = FindSceneFile(data_0216e134);
-    LocateNcgr2(&v2, v1);
-    v1 = FindSceneFile(data_0216e130);
-    LocateNclr(v3, v1);
-    v1 = FindSceneFile(data_0216e124);
-    data_0217d380->mBncl = v1;
-    v1 = FindSceneFile(data_0216e12c);
-    data_0217d380->mBnll = v1;
-    CallQueueAppend(0x23, 0, v2->mData, v2->mDataSize);
-    CallQueueAppend(0x1e, 0, v3[0]->mData, v3[0]->mDataSize);
+void LocateAndQueueSelectRaceRuleWait(void) {
+    void *sceneFile;
+    Ncgr *cellChars;
+    Nclr *cellPalette[1];
+    cellChars = NULL;
+    cellPalette[0] = NULL;
+    sceneFile = FindSceneFile(data_0216e128);
+    LocateNcer(&gSelectRaceRuleWait->mNcer, sceneFile);
+    sceneFile = FindSceneFile(data_0216e134);
+    LocateNcgr2(&cellChars, sceneFile);
+    sceneFile = FindSceneFile(data_0216e130);
+    LocateNclr(cellPalette, sceneFile);
+    sceneFile = FindSceneFile(data_0216e124);
+    gSelectRaceRuleWait->mBncl = sceneFile;
+    sceneFile = FindSceneFile(data_0216e12c);
+    gSelectRaceRuleWait->mBnll = sceneFile;
+    CallQueueAppend(0x23, 0, cellChars->mData, cellChars->mDataSize);
+    CallQueueAppend(0x1e, 0, cellPalette[0]->mData, cellPalette[0]->mDataSize);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_0211f5e4(void) {
-    u16 a;
+void RequestSelectRaceRuleWaitState0(void) {
+    u16 cellEntryCount;
 
-    data_0217d380->mNextState = 0;
-    data_0217d380->mStateFrames = 0;
-    a = data_0217d380->mBncl->mUnk_06;
-    data_0217d380->mTable[0x2a].mOffsetY = 0xc0;
-    data_0217d380->mTable[a + 0xe].mOffsetY = 0xc0;
+    gSelectRaceRuleWait->mNextState = 0;
+    gSelectRaceRuleWait->mStateFrames = 0;
+    cellEntryCount = gSelectRaceRuleWait->mBncl->mUnk_06;
+    gSelectRaceRuleWait->mTable[0x2a].mOffsetY = 0xc0;
+    gSelectRaceRuleWait->mTable[cellEntryCount + 0xe].mOffsetY = 0xc0;
 }
 
-void func_0211f5d0(void) {
-    data_0217d380->mNextState = 1;
-    data_0217d380->mStateFrames = 0;
+void RequestSelectRaceRuleWaitState1(void) {
+    gSelectRaceRuleWait->mNextState = 1;
+    gSelectRaceRuleWait->mStateFrames = 0;
 }
 
-void func_0211f598(void) {
-    u16 a;
+void RequestSelectRaceRuleWaitState2(void) {
+    u16 cellEntryCount;
 
-    data_0217d380->mNextState = 2;
-    data_0217d380->mStateFrames = 0;
-    a = data_0217d380->mBncl->mUnk_06;
-    data_0217d380->mTable[0x2a].mOffsetY = 0;
-    data_0217d380->mTable[a + 0xe].mOffsetY = 0;
+    gSelectRaceRuleWait->mNextState = 2;
+    gSelectRaceRuleWait->mStateFrames = 0;
+    cellEntryCount = gSelectRaceRuleWait->mBncl->mUnk_06;
+    gSelectRaceRuleWait->mTable[0x2a].mOffsetY = 0;
+    gSelectRaceRuleWait->mTable[cellEntryCount + 0xe].mOffsetY = 0;
 }
 
-void func_0211f4b0(void *a, void *b) {
-    Unk0217d380 *p;
+void InitSelectRaceRuleWait(void *heap, void *oamList) {
+    SelectRaceRuleWait *selectRaceRuleWait;
     s32 i;
-    u16 n;
-    u32 v;
+    u16 cellEntryCount;
+    u32 subObjSize;
 
-    data_0217d380 = HeapAlloc(a, 0x28);
-    data_0217d380->mState = 1;
-    data_0217d380->mUnk_18 = b;
-    func_0211f61c();
-    InitLayoutTable(a, data_0217d380->mBncl, data_0217d380->mBnll, &data_0217d380->mTable);
-    data_0217d380->mCommonMessages = FindFileInLoadedArchives("common.bmg");
-    v = GX_GetSizeOfSubOBJ();
-    func_021243ac(a, 0xe, data_0217d380->mBnll, 0xc8, 0xd, 0, data_0217d380->mNcer, data_0217d380->mBncl,
-                  data_0217d380->mTable, v);
-    p = data_0217d380;
-    func_0212426c(1, 0xe, data_0217d380->mBnll, GetBmgEntry(p->mCommonMessages, 0x79), p->mBncl, p->mTable);
+    gSelectRaceRuleWait = HeapAlloc(heap, 0x28);
+    gSelectRaceRuleWait->mState = 1;
+    gSelectRaceRuleWait->mOamList = oamList;
+    LocateAndQueueSelectRaceRuleWait();
+    InitLayoutTable(heap, gSelectRaceRuleWait->mBncl, gSelectRaceRuleWait->mBnll, &gSelectRaceRuleWait->mTable);
+    gSelectRaceRuleWait->mCommonMessages = FindFileInLoadedArchives("common.bmg");
+    subObjSize = GX_GetSizeOfSubOBJ();
+    func_021243ac(heap, 0xe, gSelectRaceRuleWait->mBnll, 0xc8, 0xd, 0, gSelectRaceRuleWait->mNcer,
+                  gSelectRaceRuleWait->mBncl, gSelectRaceRuleWait->mTable, subObjSize);
+    selectRaceRuleWait = gSelectRaceRuleWait;
+    func_0212426c(1, 0xe, gSelectRaceRuleWait->mBnll, GetBmgEntry(selectRaceRuleWait->mCommonMessages, 0x79),
+                  selectRaceRuleWait->mBncl, selectRaceRuleWait->mTable);
     i = 0;
-    n = data_0217d380->mBncl->mUnk_06;
-    for (; i < n; i++) {
-        data_0217d380->mTable[i].mVisible = 0;
+    cellEntryCount = gSelectRaceRuleWait->mBncl->mUnk_06;
+    for (; i < cellEntryCount; i++) {
+        gSelectRaceRuleWait->mTable[i].mVisible = 0;
     }
-    data_0217d380->mTable[0x2a].mVisible = 1;
-    CreateWait(a, data_0217d380->mNcer, data_0217d380->mBncl, 0x2a, 0xe, 1);
-    func_0211f5e4();
-    func_0211f5d0();
-    func_0211f39c();
+    gSelectRaceRuleWait->mTable[0x2a].mVisible = 1;
+    CreateWait(heap, gSelectRaceRuleWait->mNcer, gSelectRaceRuleWait->mBncl, 0x2a, 0xe, 1);
+    RequestSelectRaceRuleWaitState0();
+    RequestSelectRaceRuleWaitState1();
+    AdvanceSelectRaceRuleWait();
 }
 
 #pragma thumb off
@@ -104,60 +105,60 @@ void func_0211f4b0(void *a, void *b) {
 
 void func_0211f498(void) {
     ClearWaitPointer();
-    *(u32 *) &data_0217d380 = 0;
+    *(u32 *) &gSelectRaceRuleWait = 0;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_0211f440(void) {
-    u16 a;
-    s16 v;
+void AdvanceSelectRaceRuleWaitState0(void) {
+    u16 cellEntryCount;
+    s16 offsetY;
 
-    a = data_0217d380->mBncl->mUnk_06;
-    data_0217d380->mStateFrames++;
-    v = InterpolateS16(1, 0xc0, 0, data_0217d380->mStateFrames, 10);
-    data_0217d380->mTable[0x2a].mOffsetY = v;
-    data_0217d380->mTable[a + 0xe].mOffsetY = v;
-    if (data_0217d380->mStateFrames >= 10) {
-        func_0211f5d0();
+    cellEntryCount = gSelectRaceRuleWait->mBncl->mUnk_06;
+    gSelectRaceRuleWait->mStateFrames++;
+    offsetY = InterpolateS16(1, 0xc0, 0, gSelectRaceRuleWait->mStateFrames, 10);
+    gSelectRaceRuleWait->mTable[0x2a].mOffsetY = offsetY;
+    gSelectRaceRuleWait->mTable[cellEntryCount + 0xe].mOffsetY = offsetY;
+    if (gSelectRaceRuleWait->mStateFrames >= 10) {
+        RequestSelectRaceRuleWaitState1();
     }
 }
 
-void func_0211f3e8(void) {
-    u16 a;
-    s16 v;
+void AdvanceSelectRaceRuleWaitState2(void) {
+    u16 cellEntryCount;
+    s16 offsetY;
 
-    a = data_0217d380->mBncl->mUnk_06;
-    data_0217d380->mStateFrames++;
-    v = InterpolateS16(1, 0, 0xc0, data_0217d380->mStateFrames, 10);
-    data_0217d380->mTable[0x2a].mOffsetY = v;
-    data_0217d380->mTable[a + 0xe].mOffsetY = v;
-    if (data_0217d380->mStateFrames >= 10) {
-        func_0211f5d0();
+    cellEntryCount = gSelectRaceRuleWait->mBncl->mUnk_06;
+    gSelectRaceRuleWait->mStateFrames++;
+    offsetY = InterpolateS16(1, 0, 0xc0, gSelectRaceRuleWait->mStateFrames, 10);
+    gSelectRaceRuleWait->mTable[0x2a].mOffsetY = offsetY;
+    gSelectRaceRuleWait->mTable[cellEntryCount + 0xe].mOffsetY = offsetY;
+    if (gSelectRaceRuleWait->mStateFrames >= 10) {
+        RequestSelectRaceRuleWaitState1();
     }
 }
 
-void func_0211f39c(void) {
-    data_0217d380->mState = data_0217d380->mNextState;
-    switch (data_0217d380->mState) {
+void AdvanceSelectRaceRuleWait(void) {
+    gSelectRaceRuleWait->mState = gSelectRaceRuleWait->mNextState;
+    switch (gSelectRaceRuleWait->mState) {
         case 0:
-            func_0211f440();
+            AdvanceSelectRaceRuleWaitState0();
             break;
         case 1:
             break;
         case 2:
-            func_0211f3e8();
+            AdvanceSelectRaceRuleWaitState2();
             break;
     }
     AdvanceWait();
-    DrawLayoutTable(data_0217d380->mBncl, data_0217d380->mNcer, data_0217d380->mBnll, data_0217d380->mUnk_18,
-                    data_0217d380->mTable);
+    DrawLayoutTable(gSelectRaceRuleWait->mBncl, gSelectRaceRuleWait->mNcer, gSelectRaceRuleWait->mBnll,
+                    gSelectRaceRuleWait->mOamList, gSelectRaceRuleWait->mTable);
 }
 
 void func_0211f394(void) {
-    func_0211f5e4();
+    RequestSelectRaceRuleWaitState0();
 }
 
 #pragma thumb off

@@ -13,41 +13,41 @@
 #pragma thumb on
 
 void LoadTrophyIconData(void) {
-    void *v1;
-    Ncgr *v2;
-    Unk02021dc8 *v3;
-    Nclr *v4[1];
-    v2 = NULL;
-    v3 = NULL;
-    v4[0] = NULL;
-    v1 = FindSceneFile(gTrophyIconNcgrName);
-    LoadNcgrData(&v2, v1);
-    v1 = FindSceneFile(gTrophyIconNcerName);
-    LoadNcerData(&v3, v1);
-    v1 = FindSceneFile(gTrophyIconNclrName);
-    LoadNclrData(v4, v1);
+    void *sceneFile;
+    Ncgr *chars;
+    Unk02021dc8 *cells;
+    Nclr *palette[1];
+    chars = NULL;
+    cells = NULL;
+    palette[0] = NULL;
+    sceneFile = FindSceneFile(gTrophyIconNcgrName);
+    LoadNcgrData(&chars, sceneFile);
+    sceneFile = FindSceneFile(gTrophyIconNcerName);
+    LoadNcerData(&cells, sceneFile);
+    sceneFile = FindSceneFile(gTrophyIconNclrName);
+    LoadNclrData(palette, sceneFile);
 }
 
-void CreateTrophyIcon(void *a) {
-    int v1;
-    void *v2;
-    v1 = ((u32) HeapAlloc(a, 0x10));
-    *(s32 *) &gTrophyIcon = v1;
-    v2 = FindSceneFile(gTrophyIconNcgrName);
-    LocateNcgr2(&gTrophyIcon->mNcgr, v2);
-    v2 = FindSceneFile(gTrophyIconNcerName);
-    LocateNcer(&gTrophyIcon->mNcer, v2);
-    v2 = FindSceneFile(gTrophyIconNclrName);
-    LocateNclr(&gTrophyIcon->mNclr, v2);
-    v2 = FindSceneFile(gTrophyIconBnclName);
-    gTrophyIcon->mBncl = v2;
+void CreateTrophyIcon(void *heap) {
+    int allocation;
+    void *sceneFile;
+    allocation = ((u32) HeapAlloc(heap, 0x10));
+    *(s32 *) &gTrophyIcon = allocation;
+    sceneFile = FindSceneFile(gTrophyIconNcgrName);
+    LocateNcgr2(&gTrophyIcon->mNcgr, sceneFile);
+    sceneFile = FindSceneFile(gTrophyIconNcerName);
+    LocateNcer(&gTrophyIcon->mNcer, sceneFile);
+    sceneFile = FindSceneFile(gTrophyIconNclrName);
+    LocateNclr(&gTrophyIcon->mNclr, sceneFile);
+    sceneFile = FindSceneFile(gTrophyIconBnclName);
+    gTrophyIcon->mBncl = sceneFile;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_0211f2ac(void) {
+void ClearTrophyIconPointer(void) {
     gTrophyIcon = NULL;
 }
 
@@ -55,16 +55,18 @@ void func_0211f2ac(void) {
 
 #pragma thumb on
 
-void QueueTrophyIcon(int a, int b, void *c, void *d, u32 e, u16 f, int g) {
+void QueueTrophyIcon(int iconIndex, int paletteIndex, void *cells, void *cellLayout, u32 e, u16 paletteSlot, int g) {
     u32 v1;
-    TrophyIcon *v2;
+    TrophyIcon *trophyIcon;
     v1 = 0xe;
     if ((g != 0) && (g == 1)) {
         v1 = 0x1e;
     }
-    v2 = gTrophyIcon;
-    func_02124748(gTrophyIconBnclIndices[a], v2->mNcer, v2->mNcgr, v2->mBncl, g, e, c, d);
-    CallQueueAppend(v1, f << 5, (u8 *) gTrophyIcon->mNclr->mData + gTrophyIconNclrStarts[b] * 0x20, 0x20);
+    trophyIcon = gTrophyIcon;
+    func_02124748(gTrophyIconBnclIndices[iconIndex], trophyIcon->mNcer, trophyIcon->mNcgr, trophyIcon->mBncl, g, e,
+                  cells, cellLayout);
+    CallQueueAppend(v1, paletteSlot << 5, (u8 *) gTrophyIcon->mNclr->mData + gTrophyIconNclrStarts[paletteIndex] * 0x20,
+                    0x20);
 }
 
 void func_0211f240(void) {}

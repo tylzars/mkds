@@ -457,7 +457,7 @@ void func_ov001_021946d0(void) {
     u32 v;
 
     ClearKartIconPointer();
-    func_0211df38();
+    ClearCupMarkPointer();
     gRecordGpx = NULL;
     v = (reg_GX_DISPCNT & 0x1f00) >> 8;
     v &= ~0x11;

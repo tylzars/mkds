@@ -517,7 +517,7 @@ void InitSelectCupGrid(void *heap, void *mainOam, void *subOam, s32 mode) {
         CreateCommonCupMark(gSelectCupGrid->mHeap);
         CreateTrophyIcon(gSelectCupGrid->mHeap);
     } else {
-        func_0211f4b0(gSelectCupGrid->mHeap, gSelectCupGrid->mSubOam);
+        InitSelectRaceRuleWait(gSelectCupGrid->mHeap, gSelectCupGrid->mSubOam);
         if (GetPreviousMenuScreenNumber() != 0xc) {
             func_0211f394();
         } else {
@@ -538,9 +538,9 @@ void ReleaseSelectCupGrid(void) {
         reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x1800;
     }
     if (*(vu16 *) 0x027ffc40 != 2) {
-        func_0211de34();
-        func_0211df38();
-        func_0211f2ac();
+        ClearSelectCupNameMPointer();
+        ClearCupMarkPointer();
+        ClearTrophyIconPointer();
     } else {
         func_0211f498();
     }
@@ -1029,7 +1029,7 @@ s32 AdvanceSelectCupGrid(void) {
         DrawLayoutTable(gSelectCupGrid->mSelectCupSBncl, gSelectCupGrid->mSelectCupSNcer, NULL, gSelectCupGrid->mSubOam,
                         gSelectCupGrid->mSelectCupSTable);
     } else {
-        func_0211f39c();
+        AdvanceSelectRaceRuleWait();
     }
     if (gSelectCupGrid->mState == 0xb && gSelectCupGrid->mStateFrames >= 0xa) {
         return gSelectCupGrid->mResult;

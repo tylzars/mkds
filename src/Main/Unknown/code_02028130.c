@@ -256,7 +256,7 @@ int AdvanceSelectKart(void) {
             DrawLayoutTable(p->mUnk_0c, p->mUnk_08, p->mUnk_14, d->mUnk_084, p->mUnk_18);
         }
     } else {
-        func_0211f39c();
+        AdvanceSelectRaceRuleWait();
     }
     switch (r) {
         case 1:

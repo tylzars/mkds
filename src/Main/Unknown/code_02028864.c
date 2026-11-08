@@ -166,7 +166,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
         p->mUnk_18[2].mVisible = 0;
         p->mUnk_18[3].mVisible = p->mUnk_18[2].mVisible;
     } else {
-        func_0211f4b0(gSelectKart->mHeap, gSelectKart->mUnk_084);
+        InitSelectRaceRuleWait(gSelectKart->mHeap, gSelectKart->mUnk_084);
         func_0211f394();
     }
     RefreshKartMenuParamElements();

@@ -232,7 +232,7 @@ void RefreshSelectGhostForIndex(void) {
     gSelectGhost->mSelectGhostSTable[n + y].mVisible = 1;
     x = gSelectGhostSBnllIndices[2];
     gSelectGhost->mSelectGhostSTable[n + x].mVisible = 1;
-    r = data_ov001_021a6b88[func_0211e274(data_ov001_021a6b78[gSelectGhost->mIndex])];
+    r = data_ov001_021a6b88[GetGhostRecordSetCharacterIndex(data_ov001_021a6b78[gSelectGhost->mIndex])];
     func_02124748(r, gSelectGhost->mPlayerCharacterMNcer, gSelectGhost->mPlayerCharacterMNcgr,
                   gSelectGhost->mPlayerCharacterMBncl, 1, a, gSelectGhost->mSelectGhostSONcer,
                   gSelectGhost->mSelectGhostSBncl);
@@ -240,13 +240,13 @@ void RefreshSelectGhostForIndex(void) {
     CallQueueAppend(
         0x1e, 0x100,
         blk + (func_02124a68(r, gSelectGhost->mPlayerCharacterMNcer, gSelectGhost->mPlayerCharacterMBncl) << 5), 0x20);
-    k = func_0211e1f0(data_ov001_021a6b78[gSelectGhost->mIndex]);
+    k = GetGhostRecordSetKartIndex(data_ov001_021a6b78[gSelectGhost->mIndex]);
     QueueKartIcon(k, gSelectGhost->mSelectGhostSONcer, gSelectGhost->mSelectGhostSBncl, b, 9, 1);
-    func_0211e38c(data_ov001_021a6b78[gSelectGhost->mIndex], buf14);
+    GetGhostRecordSetTime(data_ov001_021a6b78[gSelectGhost->mIndex], buf14);
     func_02116b80(buf14, buf18);
     func_02124224(1, y, gSelectGhost->mSelectGhostSBnll, buf18, gSelectGhost->mSelectGhostSBncl,
                   gSelectGhost->mSelectGhostSTable, 9);
-    func_0211e2f8(data_ov001_021a6b78[gSelectGhost->mIndex], buf18);
+    GetGhostRecordSetName(data_ov001_021a6b78[gSelectGhost->mIndex], buf18);
     func_0212426c(1, x, gSelectGhost->mSelectGhostSBnll, buf18, gSelectGhost->mSelectGhostSBncl,
                   gSelectGhost->mSelectGhostSTable);
 }
@@ -408,8 +408,8 @@ void ReleaseSelectGhost(void) {
         reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | 0x1800;
     }
     func_0212b91c();
-    func_0211de34();
-    func_0211df38();
+    ClearSelectCupNameMPointer();
+    ClearCupMarkPointer();
     ClearKartIconPointer();
     HeapDestroy(gSelectGhost->mHeap);
     gSelectGhost = NULL;

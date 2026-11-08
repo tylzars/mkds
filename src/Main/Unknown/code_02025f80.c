@@ -256,7 +256,7 @@ void InitSelectCharacter(void *parentHeap, s32 mode, void *mainOam, void *subOam
         sParts->mCellTable[25].mUnk_34 = 0;
         sParts->mCellTable[24].mUnk_34 = sParts->mCellTable[25].mUnk_34;
     } else if (GetRaceSetupCopy()->mMode == 2) {
-        func_0211f4b0(gSelectCharacter->mHeap, gSelectCharacter->mUnk_058);
+        InitSelectRaceRuleWait(gSelectCharacter->mHeap, gSelectCharacter->mUnk_058);
         func_0211f394();
     }
     gSelectCharacter->mUnk_07c = 8;
@@ -685,7 +685,7 @@ int AdvanceSelectCharacter(void) {
         func_02124bf0(sParts->mCellLayout, sParts->mCells, NULL, gSelectCharacter->mUnk_058, sParts->mCellTable);
         func_020ae5d4(gSelectCharacter->mUnk_058);
     } else if (GetRaceSetupCopy()->mMode == 2) {
-        func_0211f39c();
+        AdvanceSelectRaceRuleWait();
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         DrawKartModelMenu();

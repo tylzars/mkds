@@ -145,7 +145,7 @@ void AdvanceSelectCupCourseState4(void) {
                     RequestSelectCupCourseState5();
                     return;
                 }
-                func_02119e50();
+                SetCourseIdFromSelectCupCourse();
                 gSelectCupCourse->mResult = 1;
                 RequestSelectCupCourseState8();
                 return;
@@ -206,7 +206,7 @@ void AdvanceSelectCupCourseState7(void) {
                 choiceIndex = GetSelectChoisesIndex();
                 switch (choiceIndex) {
                     case 0:
-                        func_02119e50();
+                        SetCourseIdFromSelectCupCourse();
                         gSelectCupCourse->mResult = 1;
                         RequestSelectCupCourseState8();
                         break;
@@ -224,7 +224,7 @@ void AdvanceSelectCupCourseState7(void) {
                     choiceIndex = GetSelectChoisesIndex();
                     switch (choiceIndex) {
                         case 0:
-                            func_02119e50();
+                            SetCourseIdFromSelectCupCourse();
                             gSelectCupCourse->mResult = 1;
                             RequestSelectCupCourseState8();
                             if (*(vu16 *) 0x027ffc40 == 2) {
@@ -336,7 +336,7 @@ s32 AdvanceSelectCupCourse(void) {
             AdvanceSelectCupCourseState8();
             break;
     }
-    func_0211a07c();
+    AdvanceSelectCupCourseHighlight();
     if (*(vu16 *) 0x027ffc40 != 2) {
         if (gSelectCupCourse->mCupPicturePending != FALSE && func_020d0ec4() != FALSE) {
             screenMap = GetCupPictureNscrData();
@@ -354,7 +354,7 @@ s32 AdvanceSelectCupCourse(void) {
                         gSelectCupCourse->mSelectCupMBnll, gSelectCupCourse->mSubOam,
                         gSelectCupCourse->mSelectCupMTable);
     } else {
-        func_0211f39c();
+        AdvanceSelectRaceRuleWait();
     }
     if (gSelectCupCourse->mState == 8 && gSelectCupCourse->mStateFrames >= 10) {
         return gSelectCupCourse->mResult;

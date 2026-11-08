@@ -63,7 +63,7 @@ void AdvanceSelectCupCourseIndexChange(void) {
     if (IsSelectCupCourseIndexChangeRunning() != 0) {
         if (gSelectCupCourse->mIndexChangeTimer == 7) {
             gSelectCupCourse->mShownIndex = gSelectCupCourse->mIndex;
-            func_02119e88();
+            RefreshSelectCupCourseForIndex();
         } else if (*(vu16 *) 0x027ffc40 != 2) {
             taOrVsCellCount = gSelectCupCourse->mSelectCupCourseTaOrVsMBncl->mUnk_06;
             offsetY = LookupIndexChangeOffset(7 - gSelectCupCourse->mIndexChangeTimer, 1);
@@ -248,7 +248,7 @@ void InitSelectCupCourse(void *parentHeap, void *mainOam, void *subOam, s32 mode
     gSelectCupCourse->mMainOam = mainOam;
     gSelectCupCourse->mSubOam = subOam;
     gSelectCupCourse->mResult = 0;
-    func_0211a3bc();
+    LocateAndQueueSelectCupCourse();
     gSelectCupCourse->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     if (*(vu16 *) 0x027ffc40 != 2) {
         InitLayoutTable(gSelectCupCourse->mHeap, gSelectCupCourse->mSelectCupCourseTaOrVsMBncl,
@@ -290,11 +290,11 @@ void InitSelectCupCourse(void *parentHeap, void *mainOam, void *subOam, s32 mode
         CreateCommonCupMark(gSelectCupCourse->mHeap);
     } else {
         gSelectCupCourse->mGhostMessages = FindSceneFile("ghost.bmg");
-        func_0211f4b0(gSelectCupCourse->mHeap, gSelectCupCourse->mSubOam);
+        InitSelectRaceRuleWait(gSelectCupCourse->mHeap, gSelectCupCourse->mSubOam);
         func_0211f380();
     }
-    func_0211a100();
-    func_02119e88();
+    SetupSelectCupCourseObjects();
+    RefreshSelectCupCourseForIndex();
     RequestSelectCupCourseState0();
     FrmHeapShrinkInParent(gSelectCupCourse->mHeap);
 }
@@ -310,8 +310,8 @@ void ReleaseSelectCupCourse(void) {
         }
     }
     if (*(vu16 *) 0x027ffc40 != 2) {
-        func_0211de34();
-        func_0211df38();
+        ClearSelectCupNameMPointer();
+        ClearCupMarkPointer();
     } else {
         func_0211f498();
     }

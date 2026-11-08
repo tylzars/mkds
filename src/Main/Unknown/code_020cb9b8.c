@@ -21,7 +21,7 @@ void ReleaseMenu(void) {
     }
     if (func_020cbad0() == 0) {
         ClearCupPicturePointer();
-        func_0211e474();
+        ClearGhostRecordSetPointer();
     }
     func_02125da0();
     func_0212abd0();

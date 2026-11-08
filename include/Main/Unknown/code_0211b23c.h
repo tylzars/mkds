@@ -3,7 +3,7 @@
 #include "types.h"
 
 void ReleaseSelectRaceRule(void);
-void InitSelectRaceRule(void *a, s32 b, void *c, s32 d);
+void InitSelectRaceRule(void *parentHeap, s32 b, void *oamList, s32 mode);
 void RequestSelectRaceRuleState8(void);
 void RequestSelectRaceRuleState7(void);
 void RequestSelectRaceRuleState6(void);
@@ -20,16 +20,16 @@ void func_0211c0cc(void);
 void func_0211c14c(void);
 void WriteSelectRaceRuleToRaceSetupCopy(void);
 void func_0211c5ac(void);
-void func_0211c810(u16 a, u32 b);
+void func_0211c810(u16 entryIndex, u32 value);
 void AdvanceSelectRaceRuleRowObjects(void);
 void DecrementSelectRaceRuleCourseCount(void);
 void IncrementSelectRaceRuleCourseCount(void);
-void MoveSelectRaceRuleValuePrevious(s32 a);
-void MoveSelectRaceRuleValueNext(s32 a);
-s32 func_0211cdec(void);
-BOOL func_0211ce24(void);
+void MoveSelectRaceRuleValuePrevious(s32 playSound);
+void MoveSelectRaceRuleValueNext(s32 playSound);
+s32 IsSelectRaceRuleTeamsValid(void);
+BOOL DoesSelectRaceRuleHumanCountMatch(void);
 BOOL IsSelectRaceRuleValueAllowed(void);
 void func_0211cfd0(void);
 void func_0211d09c(void);
-void ChangeSelectRaceRulePlayerTeam(u16 a, u32 b);
-BOOL PickSelectRaceRuleCpuEntry(u16 *a);
+void ChangeSelectRaceRulePlayerTeam(u16 entryIndex, u32 teamIndex);
+BOOL PickSelectRaceRuleCpuEntry(u16 *entryOut);

@@ -4,6 +4,6 @@
 #pragma thumb on
 void func_0211f378(void) {
     u32 unused;
-    func_0211f598();
+    RequestSelectRaceRuleWaitState2();
 }
 #pragma thumb off

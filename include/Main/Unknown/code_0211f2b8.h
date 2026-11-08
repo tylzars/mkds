@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void CreateTrophyIcon(void *a);
+void CreateTrophyIcon(void *heap);
 void LoadTrophyIconData(void);

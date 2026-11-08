@@ -67,28 +67,28 @@
 #pragma thumb on
 
 // Copies the rectangle of row b; which table is read depends on the mode's screen file.
-void LookupSelectRaceRuleNscrRect(SelectRaceRuleNscrRect *a, s32 b) {
-    SelectRaceRuleNscrRect v;
+void LookupSelectRaceRuleNscrRect(SelectRaceRuleNscrRect *outRect, s32 row) {
+    SelectRaceRuleNscrRect rect;
 
     if (gSelectRaceRule->mMode == 3) {
-        v = gSelectRaceRuleMultiSimpleNscrRects[b];
+        rect = gSelectRaceRuleMultiSimpleNscrRects[row];
     } else {
-        v = gSelectRaceRuleSMenuNscrRects[b];
+        rect = gSelectRaceRuleSMenuNscrRects[row];
     }
-    *a = v;
+    *outRect = rect;
 }
 
 void AdvanceSelectRaceRuleHighlight(void) {
-    SelectRaceRuleNscrRect buf;
+    SelectRaceRuleNscrRect nscrRect;
     s32 i;
 
     for (i = 0; i < 5; i++) {
         if (gSelectRaceRule->mOnButton == 0 && gSelectRaceRule->mRow == i) {
-            func_02124100(data_0215cd4c[i].mUnk_00[0], 1, gSelectRaceRule->mBnll, gSelectRaceRule->mTable,
-                          gSelectRaceRule->mBncl);
+            func_02124100(gSelectRaceRuleRowEntries[i].mEntryIndices[0], 1, gSelectRaceRule->mBnll,
+                          gSelectRaceRule->mTable, gSelectRaceRule->mBncl);
         } else {
-            func_02124100(data_0215cd4c[i].mUnk_00[0], 0, gSelectRaceRule->mBnll, gSelectRaceRule->mTable,
-                          gSelectRaceRule->mBncl);
+            func_02124100(gSelectRaceRuleRowEntries[i].mEntryIndices[0], 0, gSelectRaceRule->mBnll,
+                          gSelectRaceRule->mTable, gSelectRaceRule->mBncl);
         }
     }
     if (data_021759d0->mUnk_20 != 2) {
@@ -107,94 +107,94 @@ void AdvanceSelectRaceRuleHighlight(void) {
         return;
     }
     for (i = 0; i < 5; i++) {
-        LookupSelectRaceRuleNscrRect(&buf, i);
-        func_020b44a4(gSelectRaceRule->mNscr->mData, buf.mFirstColumn, buf.mFirstRow, buf.mColumnCount, buf.mRowCount,
-                      buf.mTopBits);
+        LookupSelectRaceRuleNscrRect(&nscrRect, i);
+        func_020b44a4(gSelectRaceRule->mNscr->mData, nscrRect.mFirstColumn, nscrRect.mFirstRow, nscrRect.mColumnCount,
+                      nscrRect.mRowCount, nscrRect.mTopBits);
     }
     if (gSelectRaceRule->mOnButton == 0) {
-        LookupSelectRaceRuleNscrRect(&buf, gSelectRaceRule->mRow);
-        func_020b44a4(gSelectRaceRule->mNscr->mData, buf.mFirstColumn, buf.mFirstRow, buf.mColumnCount, buf.mRowCount,
-                      buf.mHighlightedTopBits);
+        LookupSelectRaceRuleNscrRect(&nscrRect, gSelectRaceRule->mRow);
+        func_020b44a4(gSelectRaceRule->mNscr->mData, nscrRect.mFirstColumn, nscrRect.mFirstRow, nscrRect.mColumnCount,
+                      nscrRect.mRowCount, nscrRect.mHighlightedTopBits);
     }
     CallQueueAppend(0x1b, 0, gSelectRaceRule->mNscr->mData, 0x600);
 }
 
 // Stores the count, kept from 1 to 10, and draws it.
-void func_0211d910(s16 a) {
-    u16 buf[0x40];
-    u16 buf2[0x40];
+void SetAndPrintSelectRaceRuleWinCount(s16 count) {
+    u16 numberText[0x40];
+    u16 text[0x40];
 
-    if (a < 1) {
-        a = 1;
+    if (count < 1) {
+        count = 1;
     }
-    if (a > 0xa) {
-        a = 0xa;
+    if (count > 0xa) {
+        count = 0xa;
     }
-    gSelectRaceRule->mWinCount = a;
-    func_02124f4c(gSelectRaceRule->mWinCount, buf2);
+    gSelectRaceRule->mWinCount = count;
+    func_02124f4c(gSelectRaceRule->mWinCount, text);
     if (data_021759d0->mUnk_20 != 2) {
         func_0212426c(1, 9, gSelectRaceRule->mBnll,
                       GetBmgEntry(gSelectRaceRule->mRuleMessages, data_0216dc0c[3][SELECT_RACE_RULE_WIN]),
                       gSelectRaceRule->mBncl, gSelectRaceRule->mTable);
-        func_02124248(1, 8, gSelectRaceRule->mBnll, buf2, gSelectRaceRule->mBncl, gSelectRaceRule->mTable, 0xb);
+        func_02124248(1, 8, gSelectRaceRule->mBnll, text, gSelectRaceRule->mBncl, gSelectRaceRule->mTable, 0xb);
     } else {
-        func_02124f4c(gSelectRaceRule->mWinCount, buf);
-        func_0212513c(buf, GetBmgEntry(gSelectRaceRule->mRuleMessages, 0x16), buf2, 0x80);
-        func_0212426c(1, 0xa, gSelectRaceRule->mBnll, buf2, gSelectRaceRule->mBncl, gSelectRaceRule->mTable);
+        func_02124f4c(gSelectRaceRule->mWinCount, numberText);
+        func_0212513c(numberText, GetBmgEntry(gSelectRaceRule->mRuleMessages, 0x16), text, 0x80);
+        func_0212426c(1, 0xa, gSelectRaceRule->mBnll, text, gSelectRaceRule->mBncl, gSelectRaceRule->mTable);
     }
 }
 
 // Stores the count, kept from 1 to 0x20, and draws it.
-void func_0211d844(s16 a) {
-    u16 buf[0x40];
-    u16 buf2[0x40];
+void SetAndPrintSelectRaceRuleRaceCount(s16 count) {
+    u16 numberText[0x40];
+    u16 text[0x40];
 
-    if (a < 1) {
-        a = 1;
+    if (count < 1) {
+        count = 1;
     }
-    if (a > 0x20) {
-        a = 0x20;
+    if (count > 0x20) {
+        count = 0x20;
     }
-    gSelectRaceRule->mRaceCount = a;
-    func_02124f4c(gSelectRaceRule->mRaceCount, buf2);
+    gSelectRaceRule->mRaceCount = count;
+    func_02124f4c(gSelectRaceRule->mRaceCount, text);
     if (data_021759d0->mUnk_20 != 2) {
         func_0212426c(1, 9, gSelectRaceRule->mBnll,
                       GetBmgEntry(gSelectRaceRule->mRuleMessages, data_0216dc0c[3][SELECT_RACE_RULE_RACE]),
                       gSelectRaceRule->mBncl, gSelectRaceRule->mTable);
-        func_02124248(1, 8, gSelectRaceRule->mBnll, buf2, gSelectRaceRule->mBncl, gSelectRaceRule->mTable, 0xb);
+        func_02124248(1, 8, gSelectRaceRule->mBnll, text, gSelectRaceRule->mBncl, gSelectRaceRule->mTable, 0xb);
     } else {
-        func_02124f4c(gSelectRaceRule->mRaceCount, buf);
-        func_0212513c(buf, GetBmgEntry(gSelectRaceRule->mRuleMessages, 0x17), buf2, 0x80);
-        func_0212426c(1, 0xa, gSelectRaceRule->mBnll, buf2, gSelectRaceRule->mBncl, gSelectRaceRule->mTable);
+        func_02124f4c(gSelectRaceRule->mRaceCount, numberText);
+        func_0212513c(numberText, GetBmgEntry(gSelectRaceRule->mRuleMessages, 0x17), text, 0x80);
+        func_0212426c(1, 0xa, gSelectRaceRule->mBnll, text, gSelectRaceRule->mBncl, gSelectRaceRule->mTable);
     }
 }
 
-void func_0211d66c(void) {
-    u16 h = gSelectRaceRule->mBncl->mUnk_06;
+void AdvanceSelectRaceRuleValueObjects(void) {
+    u16 cellEntryCount = gSelectRaceRule->mBncl->mUnk_06;
 
     if (data_021759d0->mUnk_20 != 2) {
         switch (gSelectRaceRule->mRowValues[3]) {
             case SELECT_RACE_RULE_WIN:
             case SELECT_RACE_RULE_RACE:
-                gSelectRaceRule->mTable[h + 9].mVisible = 1;
-                gSelectRaceRule->mTable[h + 10].mVisible = 0;
-                gSelectRaceRule->mTable[h + 8].mVisible = 1;
+                gSelectRaceRule->mTable[cellEntryCount + 9].mVisible = 1;
+                gSelectRaceRule->mTable[cellEntryCount + 10].mVisible = 0;
+                gSelectRaceRule->mTable[cellEntryCount + 8].mVisible = 1;
                 break;
             case SELECT_RACE_RULE_FREE:
-                gSelectRaceRule->mTable[h + 9].mVisible = 0;
-                gSelectRaceRule->mTable[h + 10].mVisible = 1;
-                gSelectRaceRule->mTable[h + 8].mVisible = 0;
+                gSelectRaceRule->mTable[cellEntryCount + 9].mVisible = 0;
+                gSelectRaceRule->mTable[cellEntryCount + 10].mVisible = 1;
+                gSelectRaceRule->mTable[cellEntryCount + 8].mVisible = 0;
                 break;
         }
         switch (gSelectRaceRule->mRowValues[4]) {
             case 0:
             case 1:
-                gSelectRaceRule->mTable[h + 11].mVisible = 1;
-                gSelectRaceRule->mTable[h + 12].mVisible = 0;
+                gSelectRaceRule->mTable[cellEntryCount + 11].mVisible = 1;
+                gSelectRaceRule->mTable[cellEntryCount + 12].mVisible = 0;
                 break;
             case 2:
-                gSelectRaceRule->mTable[h + 11].mVisible = 0;
-                gSelectRaceRule->mTable[h + 12].mVisible = 1;
+                gSelectRaceRule->mTable[cellEntryCount + 11].mVisible = 0;
+                gSelectRaceRule->mTable[cellEntryCount + 12].mVisible = 1;
                 break;
         }
     } else {
@@ -202,15 +202,15 @@ void func_0211d66c(void) {
         gSelectRaceRule->mTable[0x1f].mVisible = 0;
         switch (gSelectRaceRule->mRowValues[3]) {
             case SELECT_RACE_RULE_WIN:
-                gSelectRaceRule->mTable[h + 10].mVisible = 1;
-                func_0211d910(gSelectRaceRule->mWinCount);
+                gSelectRaceRule->mTable[cellEntryCount + 10].mVisible = 1;
+                SetAndPrintSelectRaceRuleWinCount(gSelectRaceRule->mWinCount);
                 break;
             case SELECT_RACE_RULE_RACE:
-                gSelectRaceRule->mTable[h + 10].mVisible = 1;
-                func_0211d844(gSelectRaceRule->mRaceCount);
+                gSelectRaceRule->mTable[cellEntryCount + 10].mVisible = 1;
+                SetAndPrintSelectRaceRuleRaceCount(gSelectRaceRule->mRaceCount);
                 break;
             case SELECT_RACE_RULE_FREE:
-                gSelectRaceRule->mTable[h + 10].mVisible = 1;
+                gSelectRaceRule->mTable[cellEntryCount + 10].mVisible = 1;
                 func_0212426c(1, 0xa, gSelectRaceRule->mBnll,
                               GetBmgEntry(gSelectRaceRule->mRuleMessages, data_0216dc0c[3][SELECT_RACE_RULE_FREE]),
                               gSelectRaceRule->mBncl, gSelectRaceRule->mTable);
@@ -219,18 +219,18 @@ void func_0211d66c(void) {
         switch (gSelectRaceRule->mRowValues[4]) {
             case 0:
             case 1:
-                gSelectRaceRule->mTable[h + 11].mVisible = 1;
-                gSelectRaceRule->mTable[h + 12].mVisible = 0;
+                gSelectRaceRule->mTable[cellEntryCount + 11].mVisible = 1;
+                gSelectRaceRule->mTable[cellEntryCount + 12].mVisible = 0;
                 break;
             case 2:
-                gSelectRaceRule->mTable[h + 11].mVisible = 0;
-                gSelectRaceRule->mTable[h + 12].mVisible = 1;
+                gSelectRaceRule->mTable[cellEntryCount + 11].mVisible = 0;
+                gSelectRaceRule->mTable[cellEntryCount + 12].mVisible = 1;
                 break;
         }
     }
     if (gSelectRaceRule->mMode == 3) {
-        gSelectRaceRule->mTable[h + data_0215cd4c[0].mUnk_00[1]].mVisible = 0;
-        gSelectRaceRule->mTable[h + data_0215cd4c[2].mUnk_00[1]].mVisible = 0;
+        gSelectRaceRule->mTable[cellEntryCount + gSelectRaceRuleRowEntries[0].mEntryIndices[1]].mVisible = 0;
+        gSelectRaceRule->mTable[cellEntryCount + gSelectRaceRuleRowEntries[2].mEntryIndices[1]].mVisible = 0;
     }
 }
 
@@ -243,12 +243,12 @@ u16 GetSelectRaceRuleHumanCount(void) {
 #pragma thumb on
 
 u16 GetSelectRaceRuleCpuCount(void) {
-    SelectRaceRule *v1;
-    v1 = gSelectRaceRule;
-    if (v1->mRowValues[1] == 0) {
+    SelectRaceRule *selectRaceRule;
+    selectRaceRule = gSelectRaceRule;
+    if (selectRaceRule->mRowValues[1] == 0) {
         return 0;
     }
-    return v1->mUnk_b0[0] + v1->mUnk_b0[1];
+    return selectRaceRule->mUnk_b0[0] + selectRaceRule->mUnk_b0[1];
 }
 
 #pragma thumb off
@@ -259,13 +259,14 @@ u16 GetSelectRaceRuleCpuCount(void) {
 // skipped.
 void MoveSelectRaceRuleRowNext(void) {
     u32 a = 1;
-    u16 h = gSelectRaceRule->mBncl->mUnk_06;
+    u16 cellEntryCount = gSelectRaceRule->mBncl->mUnk_06;
     Unk027ffc40 *v;
 
     if (gSelectRaceRule->mOnButton != 0) {
         gSelectRaceRule->mRow = 0;
         gSelectRaceRule->mOnButton = 0;
-        if (gSelectRaceRule->mTable[h + data_0215cd4c[gSelectRaceRule->mRow].mUnk_00[0]].mVisible == 0 ||
+        if (gSelectRaceRule->mTable[cellEntryCount + gSelectRaceRuleRowEntries[gSelectRaceRule->mRow].mEntryIndices[0]]
+                    .mVisible == 0 ||
             (GetSelectRaceRuleHumanCount() == 8 && gSelectRaceRule->mRow == 1)) {
             a = 0;
             MoveSelectRaceRuleRowNext();
@@ -279,7 +280,9 @@ void MoveSelectRaceRuleRowNext(void) {
             if (v->mUnk_00 != 2) {
                 ResetPaletteBlendCycle();
             }
-        } else if (gSelectRaceRule->mTable[h + data_0215cd4c[gSelectRaceRule->mRow].mUnk_00[0]].mVisible == 0 ||
+        } else if (gSelectRaceRule
+                           ->mTable[cellEntryCount + gSelectRaceRuleRowEntries[gSelectRaceRule->mRow].mEntryIndices[0]]
+                           .mVisible == 0 ||
                    (GetSelectRaceRuleHumanCount() == 8 && gSelectRaceRule->mRow == 1)) {
             a = 0;
             MoveSelectRaceRuleRowNext();
@@ -294,13 +297,14 @@ void MoveSelectRaceRuleRowNext(void) {
 // skipped.
 void MoveSelectRaceRuleRowPrevious(void) {
     u32 a = 1;
-    u16 h = gSelectRaceRule->mBncl->mUnk_06;
+    u16 cellEntryCount = gSelectRaceRule->mBncl->mUnk_06;
     Unk027ffc40 *v;
 
     if (gSelectRaceRule->mOnButton != 0) {
         gSelectRaceRule->mRow = 4;
         gSelectRaceRule->mOnButton = 0;
-        if (gSelectRaceRule->mTable[h + data_0215cd4c[gSelectRaceRule->mRow].mUnk_00[0]].mVisible == 0 ||
+        if (gSelectRaceRule->mTable[cellEntryCount + gSelectRaceRuleRowEntries[gSelectRaceRule->mRow].mEntryIndices[0]]
+                    .mVisible == 0 ||
             (GetSelectRaceRuleHumanCount() == 8 && gSelectRaceRule->mRow == 1)) {
             a = 0;
             MoveSelectRaceRuleRowPrevious();
@@ -314,7 +318,9 @@ void MoveSelectRaceRuleRowPrevious(void) {
             if (v->mUnk_00 != 2) {
                 ResetPaletteBlendCycle();
             }
-        } else if (gSelectRaceRule->mTable[h + data_0215cd4c[gSelectRaceRule->mRow].mUnk_00[0]].mVisible == 0 ||
+        } else if (gSelectRaceRule
+                           ->mTable[cellEntryCount + gSelectRaceRuleRowEntries[gSelectRaceRule->mRow].mEntryIndices[0]]
+                           .mVisible == 0 ||
                    (GetSelectRaceRuleHumanCount() == 8 && gSelectRaceRule->mRow == 1)) {
             a = 0;
             MoveSelectRaceRuleRowPrevious();
@@ -329,17 +335,17 @@ void MoveSelectRaceRuleRowPrevious(void) {
 
 #pragma thumb on
 
-u16 GetSelectRaceRuleTeamPlayerCount(s32 a) {
-    SelectRaceRule *p;
-    p = gSelectRaceRule;
-    if (p->mRowValues[1] == 0) {
-        return p->mTeamHumanCounts[a];
+u16 GetSelectRaceRuleTeamPlayerCount(s32 team) {
+    SelectRaceRule *selectRaceRule;
+    selectRaceRule = gSelectRaceRule;
+    if (selectRaceRule->mRowValues[1] == 0) {
+        return selectRaceRule->mTeamHumanCounts[team];
     }
-    return p->mTeamHumanCounts[a] + p->mUnk_b0[a];
+    return selectRaceRule->mTeamHumanCounts[team] + selectRaceRule->mUnk_b0[team];
 }
 
-u32 IsPlayerTeamPlayerCountNotOne(s32 a) {
-    if (GetSelectRaceRuleTeamPlayerCount(gSelectRaceRule->mPlayerTeamIndices[a]) != 1) {
+u32 IsPlayerTeamPlayerCountNotOne(s32 entryIndex) {
+    if (GetSelectRaceRuleTeamPlayerCount(gSelectRaceRule->mPlayerTeamIndices[entryIndex]) != 1) {
         return 1;
     }
     return 0;
@@ -349,19 +355,19 @@ u32 IsPlayerTeamPlayerCountNotOne(s32 a) {
 
 #pragma thumb on
 
-void SetSelectRaceRulePlayerTeam(u16 a, u32 b) {
-    gSelectRaceRule->mPlayerTeamIndices[a] = b;
-    SetEntryTeamIndex(a, data_0215cca4[b]);
+void SetSelectRaceRulePlayerTeam(u16 entryIndex, u32 team) {
+    gSelectRaceRule->mPlayerTeamIndices[entryIndex] = team;
+    SetEntryTeamIndex(entryIndex, data_0215cca4[team]);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-u32 IsSelectRaceRuleEntryHuman(u16 a) {
-    u32 v1;
-    v1 = GetSelectRaceRuleHumanCount();
-    if (v1 > a) {
+u32 IsSelectRaceRuleEntryHuman(u16 entryIndex) {
+    u32 humanCount;
+    humanCount = GetSelectRaceRuleHumanCount();
+    if (humanCount > entryIndex) {
         return 1;
     }
     return 0;
@@ -371,18 +377,18 @@ u32 IsSelectRaceRuleEntryHuman(u16 a) {
 
 #pragma thumb on
 
-u32 GetOtherTeamIndex(u32 a) {
-    u32 v = 2;
+u32 GetOtherTeamIndex(u32 team) {
+    u32 otherTeam = 2;
 
-    switch (a) {
+    switch (team) {
         case 0:
-            v = 1;
+            otherTeam = 1;
             break;
         case 1:
-            v = 0;
+            otherTeam = 0;
             break;
     }
-    return v;
+    return otherTeam;
 }
 
 #pragma thumb off
@@ -391,17 +397,17 @@ u32 GetOtherTeamIndex(u32 a) {
 
 // Returns the team with more players, or 2 when they are equal or row 1 is 0.
 u32 GetLargerTeamIndex(void) {
-    u32 a;
-    u32 b;
+    u32 team0PlayerCount;
+    u32 team1PlayerCount;
     if (gSelectRaceRule->mRowValues[1] != 0) {
-        a = GetSelectRaceRuleTeamPlayerCount(0);
-        b = GetSelectRaceRuleTeamPlayerCount(1);
-        if (a > b) {
+        team0PlayerCount = GetSelectRaceRuleTeamPlayerCount(0);
+        team1PlayerCount = GetSelectRaceRuleTeamPlayerCount(1);
+        if (team0PlayerCount > team1PlayerCount) {
             return 0;
         }
-        a = GetSelectRaceRuleTeamPlayerCount(0);
-        b = GetSelectRaceRuleTeamPlayerCount(1);
-        if (a < b) {
+        team0PlayerCount = GetSelectRaceRuleTeamPlayerCount(0);
+        team1PlayerCount = GetSelectRaceRuleTeamPlayerCount(1);
+        if (team0PlayerCount < team1PlayerCount) {
             return 1;
         }
     }
@@ -413,68 +419,70 @@ u32 GetLargerTeamIndex(void) {
 #pragma thumb on
 
 // Picks a random CPU entry; FALSE when there are none.
-BOOL PickSelectRaceRuleCpuEntry(u16 *a) {
-    RandomState64 *p;
-    u32 n;
-    u32 c;
+BOOL PickSelectRaceRuleCpuEntry(u16 *entryOut) {
+    RandomState64 *randomState;
+    u32 cpuCount;
+    u32 humanCount;
     if (GetSelectRaceRuleCpuCount() == 0) {
-        *a = 8;
+        *entryOut = 8;
         return FALSE;
     }
     switch (gSelectRaceRule->mMode) {
         case 0:
         case 1:
-            c = GetSelectRaceRuleHumanCount();
-            *a = c + func_020ae3b4(GetSelectRaceRuleCpuCount());
+            humanCount = GetSelectRaceRuleHumanCount();
+            *entryOut = humanCount + func_020ae3b4(GetSelectRaceRuleCpuCount());
             break;
         case 2:
         case 3:
         case 4:
         case 5:
-            p = &data_0217aa00->mUnk_1ee8;
-            n = GetSelectRaceRuleCpuCount();
-            p->mValue = p->mIncrement + (u64) ((s64) p->mMultiplier * (s64) p->mValue);
-            *a = GetSelectRaceRuleHumanCount() +
-                 (n == 0 ? (u32) (p->mValue >> 32) : (u32) (((s64) (u32) (p->mValue >> 32) * (s64) n) >> 32));
+            randomState = &data_0217aa00->mUnk_1ee8;
+            cpuCount = GetSelectRaceRuleCpuCount();
+            randomState->mValue =
+                randomState->mIncrement + (u64) ((s64) randomState->mMultiplier * (s64) randomState->mValue);
+            *entryOut = GetSelectRaceRuleHumanCount() +
+                        (cpuCount == 0 ? (u32) (randomState->mValue >> 32)
+                                       : (u32) (((s64) (u32) (randomState->mValue >> 32) * (s64) cpuCount) >> 32));
             break;
     }
     return TRUE;
 }
 
 // Moves a player to a team unless it is alone in its team, then moves another player to even the teams.
-void ChangeSelectRaceRulePlayerTeam(u16 a, u32 b) {
-    u16 c;
-    u16 v;
-    c = 8;
-    if (b == gSelectRaceRule->mPlayerTeamIndices[a]) {
+void ChangeSelectRaceRulePlayerTeam(u16 entryIndex, u32 teamIndex) {
+    u16 cpuEntry;
+    u16 ownIndex;
+    cpuEntry = 8;
+    if (teamIndex == gSelectRaceRule->mPlayerTeamIndices[entryIndex]) {
         return;
     }
-    if (IsPlayerTeamPlayerCountNotOne(a) == 0) {
-        v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
-        if (a == data_0217aa00->mUnk_1e52[v].mEntryIndex) {
+    if (IsPlayerTeamPlayerCountNotOne(entryIndex) == 0) {
+        ownIndex = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
+        if (entryIndex == data_0217aa00->mUnk_1e52[ownIndex].mEntryIndex) {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
         }
         return;
     }
-    SetSelectRaceRulePlayerTeam(a, b);
-    if (IsSelectRaceRuleEntryHuman(a) != 0) {
-        gSelectRaceRule->mTeamHumanCounts[b]++;
-        gSelectRaceRule->mTeamHumanCounts[GetOtherTeamIndex(b)]--;
+    SetSelectRaceRulePlayerTeam(entryIndex, teamIndex);
+    if (IsSelectRaceRuleEntryHuman(entryIndex) != 0) {
+        gSelectRaceRule->mTeamHumanCounts[teamIndex]++;
+        gSelectRaceRule->mTeamHumanCounts[GetOtherTeamIndex(teamIndex)]--;
     } else {
-        gSelectRaceRule->mUnk_b0[b]++;
-        gSelectRaceRule->mUnk_b0[GetOtherTeamIndex(b)]--;
+        gSelectRaceRule->mUnk_b0[teamIndex]++;
+        gSelectRaceRule->mUnk_b0[GetOtherTeamIndex(teamIndex)]--;
     }
-    b = GetLargerTeamIndex();
-    if (b != 2 && gSelectRaceRule->mUnk_b0[b] != 0) {
-        PickSelectRaceRuleCpuEntry(&c);
-        while (b != gSelectRaceRule->mPlayerTeamIndices[c]) {
-            PickSelectRaceRuleCpuEntry(&c);
+    teamIndex = GetLargerTeamIndex();
+    if (teamIndex != 2 && gSelectRaceRule->mUnk_b0[teamIndex] != 0) {
+        PickSelectRaceRuleCpuEntry(&cpuEntry);
+        while (teamIndex != gSelectRaceRule->mPlayerTeamIndices[cpuEntry]) {
+            PickSelectRaceRuleCpuEntry(&cpuEntry);
         }
-        ChangeSelectRaceRulePlayerTeam(c, GetOtherTeamIndex(b));
+        ChangeSelectRaceRulePlayerTeam(cpuEntry, GetOtherTeamIndex(teamIndex));
     }
-    v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
-    if (a == data_0217aa00->mUnk_1e52[v].mEntryIndex) {
-        switch (gSelectRaceRule->mPlayerTeamIndices[a]) {
+    ownIndex = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
+    if (entryIndex == data_0217aa00->mUnk_1e52[ownIndex].mEntryIndex) {
+        switch (gSelectRaceRule->mPlayerTeamIndices[entryIndex]) {
             case 0:
                 gSelectRaceRule->mUnk_50[1][0] = 6;
                 break;
@@ -487,42 +495,43 @@ void ChangeSelectRaceRulePlayerTeam(u16 a, u32 b) {
 }
 
 void func_0211d09c(void) {
-    s32 a;
+    s32 team;
     s32 i;
-    u16 n;
-    RandomState64 *p;
-    a = 2;
-    n = GetSelectRaceRuleHumanCount();
+    u16 humanCount;
+    RandomState64 *randomState;
+    team = 2;
+    humanCount = GetSelectRaceRuleHumanCount();
     gSelectRaceRule->mTeamHumanCounts[0] = 0;
     gSelectRaceRule->mTeamHumanCounts[1] = 0;
-    for (i = 0; i < n; i++) {
+    for (i = 0; i < humanCount; i++) {
         switch (gSelectRaceRule->mMode) {
             case 0:
             case 1:
-                a = func_020ae3b4(2);
+                team = func_020ae3b4(2);
                 break;
             case 2:
             case 3:
             case 4:
             case 5:
-                p = &data_0217aa00->mUnk_1ee8;
-                p->mValue = p->mIncrement + (u64) ((s64) p->mMultiplier * (s64) p->mValue);
-                a = ((u64) (u32) (p->mValue >> 32) * 2) >> 32;
+                randomState = &data_0217aa00->mUnk_1ee8;
+                randomState->mValue =
+                    randomState->mIncrement + (u64) ((s64) randomState->mMultiplier * (s64) randomState->mValue);
+                team = ((u64) (u32) (randomState->mValue >> 32) * 2) >> 32;
                 break;
         }
-        if (n / 2 <= gSelectRaceRule->mTeamHumanCounts[a]) {
-            a = GetOtherTeamIndex(a);
+        if (humanCount / 2 <= gSelectRaceRule->mTeamHumanCounts[team]) {
+            team = GetOtherTeamIndex(team);
         }
-        SetSelectRaceRulePlayerTeam(i, a);
-        gSelectRaceRule->mTeamHumanCounts[a]++;
+        SetSelectRaceRulePlayerTeam(i, team);
+        gSelectRaceRule->mTeamHumanCounts[team]++;
     }
 }
 
 void func_0211cfd0(void) {
-    s32 a;
+    s32 team;
     s32 i;
-    RandomState64 *p;
-    a = 2;
+    RandomState64 *randomState;
+    team = 2;
     GetSelectRaceRuleHumanCount();
     gSelectRaceRule->mUnk_b0[0] = 0;
     gSelectRaceRule->mUnk_b0[1] = 0;
@@ -530,76 +539,77 @@ void func_0211cfd0(void) {
         switch (gSelectRaceRule->mMode) {
             case 0:
             case 1:
-                a = func_020ae3b4(2);
+                team = func_020ae3b4(2);
                 break;
             case 2:
             case 3:
             case 4:
             case 5:
-                p = &data_0217aa00->mUnk_1ee8;
-                p->mValue = p->mIncrement + (u64) ((s64) p->mMultiplier * (s64) p->mValue);
-                a = ((u64) (u32) (p->mValue >> 32) * 2) >> 32;
+                randomState = &data_0217aa00->mUnk_1ee8;
+                randomState->mValue =
+                    randomState->mIncrement + (u64) ((s64) randomState->mMultiplier * (s64) randomState->mValue);
+                team = ((u64) (u32) (randomState->mValue >> 32) * 2) >> 32;
                 break;
         }
-        if (GetSelectRaceRuleTeamPlayerCount(a) >= 4) {
-            a = GetOtherTeamIndex(a);
+        if (GetSelectRaceRuleTeamPlayerCount(team) >= 4) {
+            team = GetOtherTeamIndex(team);
         }
-        SetSelectRaceRulePlayerTeam(i, a);
-        gSelectRaceRule->mUnk_b0[a]++;
+        SetSelectRaceRulePlayerTeam(i, team);
+        gSelectRaceRule->mUnk_b0[team]++;
     }
 }
 
 // FALSE for a value of the highlighted row that the current mode does not offer.
 BOOL IsSelectRaceRuleValueAllowed(void) {
-    SelectRaceRule *p;
-    p = gSelectRaceRule;
-    if (p->mRow == 0 && p->mRowValues[0] == 3 && func_0205fbb8(0x10) == 0) {
+    SelectRaceRule *selectRaceRule;
+    selectRaceRule = gSelectRaceRule;
+    if (selectRaceRule->mRow == 0 && selectRaceRule->mRowValues[0] == 3 && func_0205fbb8(0x10) == 0) {
         return FALSE;
     }
-    p = gSelectRaceRule;
-    switch (p->mMode) {
+    selectRaceRule = gSelectRaceRule;
+    switch (selectRaceRule->mMode) {
         case 0:
-            if (p->mRow == 1 && p->mRowValues[1] == 0) {
+            if (selectRaceRule->mRow == 1 && selectRaceRule->mRowValues[1] == 0) {
                 return FALSE;
             }
-            if (p->mRow == 4 && p->mRowValues[4] == 2) {
+            if (selectRaceRule->mRow == 4 && selectRaceRule->mRowValues[4] == 2) {
                 return FALSE;
             }
             break;
         case 1:
-            if (p->mRow == 1 && p->mRowValues[1] == 0) {
+            if (selectRaceRule->mRow == 1 && selectRaceRule->mRowValues[1] == 0) {
                 return FALSE;
             }
-            if (p->mRow == 3 && p->mRowValues[3] == SELECT_RACE_RULE_RACE) {
+            if (selectRaceRule->mRow == 3 && selectRaceRule->mRowValues[3] == SELECT_RACE_RULE_RACE) {
                 return FALSE;
             }
-            if (p->mRow == 4 && p->mRowValues[4] == 2) {
+            if (selectRaceRule->mRow == 4 && selectRaceRule->mRowValues[4] == 2) {
                 return FALSE;
             }
             break;
         case 2:
-            if (p->mRow == 4 && p->mRowValues[4] == 1) {
+            if (selectRaceRule->mRow == 4 && selectRaceRule->mRowValues[4] == 1) {
                 return FALSE;
             }
             break;
         case 3:
-            if (p->mRow == 3 && p->mRowValues[3] == SELECT_RACE_RULE_RACE) {
+            if (selectRaceRule->mRow == 3 && selectRaceRule->mRowValues[3] == SELECT_RACE_RULE_RACE) {
                 return FALSE;
             }
-            if (p->mRow == 4 && p->mRowValues[4] == 1) {
+            if (selectRaceRule->mRow == 4 && selectRaceRule->mRowValues[4] == 1) {
                 return FALSE;
             }
             break;
         case 4:
-            if (p->mRow == 4 && p->mRowValues[4] == 1) {
+            if (selectRaceRule->mRow == 4 && selectRaceRule->mRowValues[4] == 1) {
                 return FALSE;
             }
             break;
         case 5:
-            if (p->mRow == 3 && p->mRowValues[3] == SELECT_RACE_RULE_RACE) {
+            if (selectRaceRule->mRow == 3 && selectRaceRule->mRowValues[3] == SELECT_RACE_RULE_RACE) {
                 return FALSE;
             }
-            if (p->mRow == 4 && p->mRowValues[4] == 1) {
+            if (selectRaceRule->mRow == 4 && selectRaceRule->mRowValues[4] == 1) {
                 return FALSE;
             }
             break;
@@ -607,9 +617,9 @@ BOOL IsSelectRaceRuleValueAllowed(void) {
     return TRUE;
 }
 
-BOOL func_0211ce24(void) {
-    BOOL a;
-    u8 b;
+BOOL DoesSelectRaceRuleHumanCountMatch(void) {
+    BOOL usesMask;
+    u8 participantCount;
     switch (gSelectRaceRule->mMode) {
         case 0:
         case 1:
@@ -621,12 +631,12 @@ BOOL func_0211ce24(void) {
         case 3:
         case 4:
         case 5:
-            a = TRUE;
+            usesMask = TRUE;
             if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
-                a = FALSE;
+                usesMask = FALSE;
             }
-            b = a != FALSE ? CountSetBits(data_0217aa00->mParticipantMask) : 0;
-            if (b == GetSelectRaceRuleHumanCount()) {
+            participantCount = usesMask != FALSE ? CountSetBits(data_0217aa00->mParticipantMask) : 0;
+            if (participantCount == GetSelectRaceRuleHumanCount()) {
                 return TRUE;
             }
             break;
@@ -634,26 +644,26 @@ BOOL func_0211ce24(void) {
     return FALSE;
 }
 
-s32 func_0211cdec(void) {
-    BOOL a;
-    a = TRUE;
+s32 IsSelectRaceRuleTeamsValid(void) {
+    BOOL valid;
+    valid = TRUE;
     if (GetSelectRaceRuleTeamPlayerCount(0) == 0) {
-        a = FALSE;
+        valid = FALSE;
     }
     if (GetSelectRaceRuleTeamPlayerCount(1) == 0) {
-        a = FALSE;
+        valid = FALSE;
     }
     if (GetLargerTeamIndex() != 2) {
-        a = FALSE;
+        valid = FALSE;
     }
-    if (func_0211ce24() == FALSE) {
-        a = FALSE;
+    if (DoesSelectRaceRuleHumanCountMatch() == FALSE) {
+        valid = FALSE;
     }
-    return a;
+    return valid;
 }
 
-void MoveSelectRaceRuleValueNext(s32 a) {
-    SelectRaceRule *p;
+void MoveSelectRaceRuleValueNext(s32 playSound) {
+    SelectRaceRule *selectRaceRule;
     s32 i;
     gSelectRaceRule->mRowValues[gSelectRaceRule->mRow]++;
     if (data_0215ccc0[gSelectRaceRule->mRow] <= gSelectRaceRule->mRowValues[gSelectRaceRule->mRow]) {
@@ -662,18 +672,20 @@ void MoveSelectRaceRuleValueNext(s32 a) {
     if (IsSelectRaceRuleValueAllowed() == FALSE) {
         MoveSelectRaceRuleValueNext(0);
     }
-    p = gSelectRaceRule;
-    if (p->mRow != 3) {
-        func_0212426c(1, data_0215cd4e[p->mRow * 2], p->mBnll,
-                      GetBmgEntry(p->mRuleMessages, data_0216dc0c[p->mRow][p->mRowValues[p->mRow]]), p->mBncl,
-                      p->mTable);
+    selectRaceRule = gSelectRaceRule;
+    if (selectRaceRule->mRow != 3) {
+        func_0212426c(
+            1, data_0215cd4e[selectRaceRule->mRow * 2], selectRaceRule->mBnll,
+            GetBmgEntry(selectRaceRule->mRuleMessages,
+                        data_0216dc0c[selectRaceRule->mRow][selectRaceRule->mRowValues[selectRaceRule->mRow]]),
+            selectRaceRule->mBncl, selectRaceRule->mTable);
     } else {
-        switch (p->mRowValues[3]) {
+        switch (selectRaceRule->mRowValues[3]) {
             case SELECT_RACE_RULE_WIN:
-                func_0211d910(p->mWinCount);
+                SetAndPrintSelectRaceRuleWinCount(selectRaceRule->mWinCount);
                 break;
             case SELECT_RACE_RULE_RACE:
-                func_0211d844(p->mRaceCount);
+                SetAndPrintSelectRaceRuleRaceCount(selectRaceRule->mRaceCount);
                 break;
         }
         for (i = 0; i < 2; i++) {
@@ -687,25 +699,25 @@ void MoveSelectRaceRuleValueNext(s32 a) {
     }
     if (gSelectRaceRule->mRow == 1) {
         if (gSelectRaceRule->mRowValues[1] == 0) {
-            if (func_0211cdec() == 0) {
+            if (IsSelectRaceRuleTeamsValid() == 0) {
                 func_0211d09c();
             }
             func_0202b618(0);
         } else {
-            if (func_0211cdec() == 0) {
+            if (IsSelectRaceRuleTeamsValid() == 0) {
                 func_0211cfd0();
             }
             func_0202b618(1);
         }
     }
     gSelectRaceRule->mRowChangeTimers[gSelectRaceRule->mRow][1] = 6;
-    if (a != 0) {
+    if (playSound != 0) {
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 1);
     }
 }
 
-void MoveSelectRaceRuleValuePrevious(s32 a) {
-    SelectRaceRule *p;
+void MoveSelectRaceRuleValuePrevious(s32 playSound) {
+    SelectRaceRule *selectRaceRule;
     s32 i;
     gSelectRaceRule->mRowValues[gSelectRaceRule->mRow]--;
     if (gSelectRaceRule->mRowValues[gSelectRaceRule->mRow] < 0) {
@@ -714,18 +726,20 @@ void MoveSelectRaceRuleValuePrevious(s32 a) {
     if (IsSelectRaceRuleValueAllowed() == FALSE) {
         MoveSelectRaceRuleValuePrevious(0);
     }
-    p = gSelectRaceRule;
-    if (p->mRow != 3) {
-        func_0212426c(1, data_0215cd4e[p->mRow * 2], p->mBnll,
-                      GetBmgEntry(p->mRuleMessages, data_0216dc0c[p->mRow][p->mRowValues[p->mRow]]), p->mBncl,
-                      p->mTable);
+    selectRaceRule = gSelectRaceRule;
+    if (selectRaceRule->mRow != 3) {
+        func_0212426c(
+            1, data_0215cd4e[selectRaceRule->mRow * 2], selectRaceRule->mBnll,
+            GetBmgEntry(selectRaceRule->mRuleMessages,
+                        data_0216dc0c[selectRaceRule->mRow][selectRaceRule->mRowValues[selectRaceRule->mRow]]),
+            selectRaceRule->mBncl, selectRaceRule->mTable);
     } else {
-        switch (p->mRowValues[3]) {
+        switch (selectRaceRule->mRowValues[3]) {
             case SELECT_RACE_RULE_WIN:
-                func_0211d910(p->mWinCount);
+                SetAndPrintSelectRaceRuleWinCount(selectRaceRule->mWinCount);
                 break;
             case SELECT_RACE_RULE_RACE:
-                func_0211d844(p->mRaceCount);
+                SetAndPrintSelectRaceRuleRaceCount(selectRaceRule->mRaceCount);
                 break;
         }
         for (i = 0; i < 2; i++) {
@@ -739,66 +753,66 @@ void MoveSelectRaceRuleValuePrevious(s32 a) {
     }
     if (gSelectRaceRule->mRow == 1) {
         if (gSelectRaceRule->mRowValues[1] == 0) {
-            if (func_0211cdec() == 0) {
+            if (IsSelectRaceRuleTeamsValid() == 0) {
                 func_0211d09c();
             }
             func_0202b618(0);
         } else {
-            if (func_0211cdec() == 0) {
+            if (IsSelectRaceRuleTeamsValid() == 0) {
                 func_0211cfd0();
             }
             func_0202b618(1);
         }
     }
     gSelectRaceRule->mRowChangeTimers[gSelectRaceRule->mRow][0] = 6;
-    if (a != 0) {
+    if (playSound != 0) {
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 1);
     }
 }
 
 void IncrementSelectRaceRuleCourseCount(void) {
-    BOOL a;
-    SelectRaceRule *p;
-    a = FALSE;
-    p = gSelectRaceRule;
-    if (p->mRow == 3) {
-        switch (p->mRowValues[3]) {
+    BOOL changed;
+    SelectRaceRule *selectRaceRule;
+    changed = FALSE;
+    selectRaceRule = gSelectRaceRule;
+    if (selectRaceRule->mRow == 3) {
+        switch (selectRaceRule->mRowValues[3]) {
             case SELECT_RACE_RULE_WIN:
-                func_0211d910(p->mWinCount + 1);
+                SetAndPrintSelectRaceRuleWinCount(selectRaceRule->mWinCount + 1);
                 gSelectRaceRule->mUnk_50[0][1] = 6;
-                a = TRUE;
+                changed = TRUE;
                 break;
             case SELECT_RACE_RULE_RACE:
-                func_0211d844(p->mRaceCount + 1);
+                SetAndPrintSelectRaceRuleRaceCount(selectRaceRule->mRaceCount + 1);
                 gSelectRaceRule->mUnk_50[0][1] = 6;
-                a = TRUE;
+                changed = TRUE;
                 break;
         }
-        if (a != FALSE) {
+        if (changed != FALSE) {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x17);
         }
     }
 }
 
 void DecrementSelectRaceRuleCourseCount(void) {
-    BOOL a;
-    SelectRaceRule *p;
-    a = FALSE;
-    p = gSelectRaceRule;
-    if (p->mRow == 3) {
-        switch (p->mRowValues[3]) {
+    BOOL changed;
+    SelectRaceRule *selectRaceRule;
+    changed = FALSE;
+    selectRaceRule = gSelectRaceRule;
+    if (selectRaceRule->mRow == 3) {
+        switch (selectRaceRule->mRowValues[3]) {
             case SELECT_RACE_RULE_WIN:
-                func_0211d910(p->mWinCount - 1);
+                SetAndPrintSelectRaceRuleWinCount(selectRaceRule->mWinCount - 1);
                 gSelectRaceRule->mUnk_50[0][0] = 6;
-                a = TRUE;
+                changed = TRUE;
                 break;
             case SELECT_RACE_RULE_RACE:
-                func_0211d844(p->mRaceCount - 1);
+                SetAndPrintSelectRaceRuleRaceCount(selectRaceRule->mRaceCount - 1);
                 gSelectRaceRule->mUnk_50[0][0] = 6;
-                a = TRUE;
+                changed = TRUE;
                 break;
         }
-        if (a != FALSE) {
+        if (changed != FALSE) {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x17);
         }
     }
@@ -859,69 +873,69 @@ void AdvanceSelectRaceRuleRowObjects(void) {
     }
 }
 
-void func_0211c810(u16 a, u32 b) {
-    func_020294c0(a, b);
+void func_0211c810(u16 entryIndex, u32 value) {
+    func_020294c0(entryIndex, value);
 }
 
 void func_0211c5ac(void) {
-    u16 a[2];
+    u16 cpuEntries[2];
     s32 i;
-    u16 v;
-    SelectRaceRule *p;
-    a[0] = 8;
-    a[1] = 8;
+    u16 cpuEntry;
+    SelectRaceRule *selectRaceRule;
+    cpuEntries[0] = 8;
+    cpuEntries[1] = 8;
     for (i = 0; i < 8; i++) {
         func_0211c810(i, 3);
     }
     if (GetSelectRaceRuleCpuCount() != 0) {
-        p = gSelectRaceRule;
-        if (p->mRowValues[4] == 0) {
-            PickSelectRaceRuleCpuEntry(&a[0]);
-            func_0211c810(a[0], 0);
+        selectRaceRule = gSelectRaceRule;
+        if (selectRaceRule->mRowValues[4] == 0) {
+            PickSelectRaceRuleCpuEntry(&cpuEntries[0]);
+            func_0211c810(cpuEntries[0], 0);
             if (GetSelectRaceRuleCpuCount() > 1) {
-                PickSelectRaceRuleCpuEntry(&a[1]);
-                while (a[0] == a[1]) {
-                    PickSelectRaceRuleCpuEntry(&a[1]);
+                PickSelectRaceRuleCpuEntry(&cpuEntries[1]);
+                while (cpuEntries[0] == cpuEntries[1]) {
+                    PickSelectRaceRuleCpuEntry(&cpuEntries[1]);
                 }
-                func_0211c810(a[1], 1);
+                func_0211c810(cpuEntries[1], 1);
             }
-        } else if (p->mUnk_b0[GetOtherTeamIndex(p->mPlayerTeamIndices[0])] != 0) {
-            PickSelectRaceRuleCpuEntry(&a[0]);
-            v = a[0];
-            while (gSelectRaceRule->mPlayerTeamIndices[v] !=
+        } else if (selectRaceRule->mUnk_b0[GetOtherTeamIndex(selectRaceRule->mPlayerTeamIndices[0])] != 0) {
+            PickSelectRaceRuleCpuEntry(&cpuEntries[0]);
+            cpuEntry = cpuEntries[0];
+            while (gSelectRaceRule->mPlayerTeamIndices[cpuEntry] !=
                    GetOtherTeamIndex(gSelectRaceRule->mPlayerTeamIndices[0])) {
-                PickSelectRaceRuleCpuEntry(&a[0]);
-                v = a[0];
+                PickSelectRaceRuleCpuEntry(&cpuEntries[0]);
+                cpuEntry = cpuEntries[0];
             }
-            func_0211c810(v, 0);
+            func_0211c810(cpuEntry, 0);
             if (gSelectRaceRule->mUnk_b0[gSelectRaceRule->mPlayerTeamIndices[0]] != 0) {
-                PickSelectRaceRuleCpuEntry(&a[1]);
-                while (gSelectRaceRule->mPlayerTeamIndices[0] != gSelectRaceRule->mPlayerTeamIndices[a[1]]) {
-                    PickSelectRaceRuleCpuEntry(&a[1]);
+                PickSelectRaceRuleCpuEntry(&cpuEntries[1]);
+                while (gSelectRaceRule->mPlayerTeamIndices[0] != gSelectRaceRule->mPlayerTeamIndices[cpuEntries[1]]) {
+                    PickSelectRaceRuleCpuEntry(&cpuEntries[1]);
                 }
-                func_0211c810(a[1], 1);
+                func_0211c810(cpuEntries[1], 1);
             } else if (gSelectRaceRule->mUnk_b0[GetOtherTeamIndex(gSelectRaceRule->mPlayerTeamIndices[0])] > 1) {
-                PickSelectRaceRuleCpuEntry(&a[1]);
-                while (gSelectRaceRule->mPlayerTeamIndices[a[1]] !=
+                PickSelectRaceRuleCpuEntry(&cpuEntries[1]);
+                while (gSelectRaceRule->mPlayerTeamIndices[cpuEntries[1]] !=
                            GetOtherTeamIndex(gSelectRaceRule->mPlayerTeamIndices[0]) ||
-                       a[0] == a[1]) {
-                    PickSelectRaceRuleCpuEntry(&a[1]);
+                       cpuEntries[0] == cpuEntries[1]) {
+                    PickSelectRaceRuleCpuEntry(&cpuEntries[1]);
                 }
-                func_0211c810(a[1], 1);
+                func_0211c810(cpuEntries[1], 1);
             }
         } else if (gSelectRaceRule->mUnk_b0[gSelectRaceRule->mPlayerTeamIndices[0]] != 0) {
-            PickSelectRaceRuleCpuEntry(&a[0]);
-            while (gSelectRaceRule->mPlayerTeamIndices[0] != gSelectRaceRule->mPlayerTeamIndices[a[0]]) {
-                PickSelectRaceRuleCpuEntry(&a[0]);
+            PickSelectRaceRuleCpuEntry(&cpuEntries[0]);
+            while (gSelectRaceRule->mPlayerTeamIndices[0] != gSelectRaceRule->mPlayerTeamIndices[cpuEntries[0]]) {
+                PickSelectRaceRuleCpuEntry(&cpuEntries[0]);
             }
-            func_0211c810(a[0], 0);
+            func_0211c810(cpuEntries[0], 0);
             if (gSelectRaceRule->mUnk_b0[gSelectRaceRule->mPlayerTeamIndices[0]] > 1) {
-                PickSelectRaceRuleCpuEntry(&a[1]);
-                while (gSelectRaceRule->mPlayerTeamIndices[0] != gSelectRaceRule->mPlayerTeamIndices[a[1]] ||
-                       a[0] == a[1]) {
-                    PickSelectRaceRuleCpuEntry(&a[1]);
+                PickSelectRaceRuleCpuEntry(&cpuEntries[1]);
+                while (gSelectRaceRule->mPlayerTeamIndices[0] != gSelectRaceRule->mPlayerTeamIndices[cpuEntries[1]] ||
+                       cpuEntries[0] == cpuEntries[1]) {
+                    PickSelectRaceRuleCpuEntry(&cpuEntries[1]);
                 }
-                func_0211c810(a[1], 1);
+                func_0211c810(cpuEntries[1], 1);
             }
         }
     }
@@ -970,7 +984,7 @@ void WriteSelectRaceRuleToRaceSetupCopy(void) {
 
 void func_0211c14c(void) {
     s32 j;
-    u16 v;
+    u16 ownIndex;
     if (data_021759d0->mUnk_20 != 2) {
         if (gSelectRaceRule->mRowValues[3] != SELECT_RACE_RULE_FREE) {
             if (gSelectRaceRule->mRow == 3 && gSelectRaceRule->mOnButton == 0) {
@@ -998,8 +1012,8 @@ void func_0211c14c(void) {
         if (gSelectRaceRule->mRowValues[4] == 2) {
             for (j = 0; j < 2; j++) {
                 if (gSelectRaceRule->mRow == 4 && gSelectRaceRule->mOnButton == 0) {
-                    v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
-                    if (IsPlayerTeamPlayerCountNotOne(data_0217aa00->mUnk_1e52[v].mEntryIndex) != 0) {
+                    ownIndex = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
+                    if (IsPlayerTeamPlayerCountNotOne(data_0217aa00->mUnk_1e52[ownIndex].mEntryIndex) != 0) {
                         gSelectRaceRule->mTable[data_0215cc6c[j]].mVisible = 1;
                         gSelectRaceRule->mTable[data_0215cc70[j]].mVisible = 0;
                     } else {
@@ -1032,8 +1046,8 @@ void func_0211c14c(void) {
         }
         if (gSelectRaceRule->mRowValues[4] == 2) {
             for (j = 0; j < 2; j++) {
-                v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
-                if (IsPlayerTeamPlayerCountNotOne(data_0217aa00->mUnk_1e52[v].mEntryIndex) != 0) {
+                ownIndex = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
+                if (IsPlayerTeamPlayerCountNotOne(data_0217aa00->mUnk_1e52[ownIndex].mEntryIndex) != 0) {
                     gSelectRaceRule->mTable[data_0215cc6c[j]].mVisible = 1;
                     gSelectRaceRule->mTable[data_0215cc70[j]].mVisible = 0;
                 } else {
@@ -1058,46 +1072,49 @@ void func_0211c14c(void) {
 }
 
 void func_0211c0cc(void) {
-    SelectRaceRule *p;
+    SelectRaceRule *selectRaceRule;
     if (data_021759d0->mUnk_20 == 2) {
         gSelectRaceRule->mTable[gSelectRaceRule->mBncl->mUnk_06 + 14].mVisible = 1;
-        p = gSelectRaceRule;
-        if (p->mRowValues[4] == 2) {
-            func_0212426c(1, 0xe, gSelectRaceRule->mBnll, GetBmgEntry(p->mRuleMessages, 0x15), p->mBncl, p->mTable);
+        selectRaceRule = gSelectRaceRule;
+        if (selectRaceRule->mRowValues[4] == 2) {
+            func_0212426c(1, 0xe, gSelectRaceRule->mBnll, GetBmgEntry(selectRaceRule->mRuleMessages, 0x15),
+                          selectRaceRule->mBncl, selectRaceRule->mTable);
         } else {
-            func_0212426c(1, 0xe, gSelectRaceRule->mBnll, GetBmgEntry(p->mRuleMessages, 0x14), p->mBncl, p->mTable);
+            func_0212426c(1, 0xe, gSelectRaceRule->mBnll, GetBmgEntry(selectRaceRule->mRuleMessages, 0x14),
+                          selectRaceRule->mBncl, selectRaceRule->mTable);
         }
     }
 }
 
 void AdvanceSelectRaceRuleTeamInput(void) {
     s32 i;
-    s32 a;
-    BOOL c;
-    BOOL b;
-    u32 n;
-    InputSlot *p;
-    u16 y;
+    s32 hitRectIndex;
+    BOOL newPair;
+    BOOL noPairForFewCalls;
+    u32 slotIndex;
+    InputSlot *inputSlot;
+    u16 hasPair;
     if (gSelectRaceRule->mRowValues[4] == 2) {
         for (i = 0; i < 8; i++) {
-            n = data_0215cdec[i];
-            a = -1;
-            c = FALSE;
-            b = FALSE;
-            p = &data_02175628[n];
-            y = p->mHasPair;
-            if (y == 0 && p->mNoPairCount < 5) {
-                b = TRUE;
+            slotIndex = data_0215cdec[i];
+            hitRectIndex = -1;
+            newPair = FALSE;
+            noPairForFewCalls = FALSE;
+            inputSlot = &data_02175628[slotIndex];
+            hasPair = inputSlot->mHasPair;
+            if (hasPair == 0 && inputSlot->mNoPairCount < 5) {
+                noPairForFewCalls = TRUE;
             }
-            if (b == FALSE && p->mPrevHasPair == 0 && y != 0) {
-                c = TRUE;
+            if (noPairForFewCalls == FALSE && inputSlot->mPrevHasPair == 0 && hasPair != 0) {
+                newPair = TRUE;
             }
-            if (c != FALSE) {
-                a = RectTableFindContaining(gSelectRaceRule->mBnbl, p->mPairX, p->mPairY - gSelectRaceRule->mOffsetY);
+            if (newPair != FALSE) {
+                hitRectIndex = RectTableFindContaining(gSelectRaceRule->mBnbl, inputSlot->mPairX,
+                                                       inputSlot->mPairY - gSelectRaceRule->mOffsetY);
             }
-            if (GetNewOrRepeatBits(n, PAD_KEY_L) != 0 || a == 0x11) {
+            if (GetNewOrRepeatBits(slotIndex, PAD_KEY_L) != 0 || hitRectIndex == 0x11) {
                 if (i == 0) {
-                    if (a == 0x11) {
+                    if (hitRectIndex == 0x11) {
                         gSelectRaceRule->mRow = 4;
                         gSelectRaceRule->mOnButton = 0;
                     }
@@ -1107,9 +1124,9 @@ void AdvanceSelectRaceRuleTeamInput(void) {
                 } else {
                     ChangeSelectRaceRulePlayerTeam(i, 0);
                 }
-            } else if (GetNewOrRepeatBits(n, PAD_KEY_R) != 0 || a == 0x12) {
+            } else if (GetNewOrRepeatBits(slotIndex, PAD_KEY_R) != 0 || hitRectIndex == 0x12) {
                 if (i == 0) {
-                    if (a == 0x12) {
+                    if (hitRectIndex == 0x12) {
                         gSelectRaceRule->mRow = 4;
                         gSelectRaceRule->mOnButton = 0;
                     }
@@ -1127,10 +1144,10 @@ void AdvanceSelectRaceRuleTeamInput(void) {
 // Sets every row to the race setup copy's value and rebuilds the teams from its entries; first clears the copy when
 // GetPreviousMenuScreenNumber() returns 8, 9 or 0xf.
 void ReadRaceSetupCopyIntoSelectRaceRule(void) {
-    s32 a;
+    s32 teamValue;
     s32 i;
-    u32 b;
-    a = 3;
+    u32 value;
+    teamValue = 3;
     if (GetPreviousMenuScreenNumber() == 8 || GetPreviousMenuScreenNumber() == 9 ||
         GetPreviousMenuScreenNumber() == 0xf) {
         ClearUseTeams();
@@ -1145,80 +1162,80 @@ void ReadRaceSetupCopyIntoSelectRaceRule(void) {
         switch (gSelectRaceRule->mMode) {
             case 0:
             case 1:
-                a = 1;
+                teamValue = 1;
                 break;
             case 2:
             case 3:
             case 4:
             case 5:
-                a = 2;
+                teamValue = 2;
                 break;
         }
         for (i = 0; i < 8; i++) {
-            b = data_0215cc9c[GetTeamIndex(i)];
-            SetSelectRaceRulePlayerTeam(i, b);
+            value = data_0215cc9c[GetTeamIndex(i)];
+            SetSelectRaceRulePlayerTeam(i, value);
             if (GetPlayerKind(i) == PLAYER_KIND_HUMAN) {
-                gSelectRaceRule->mTeamHumanCounts[b]++;
+                gSelectRaceRule->mTeamHumanCounts[value]++;
             } else {
-                gSelectRaceRule->mUnk_b0[b]++;
+                gSelectRaceRule->mUnk_b0[value]++;
             }
         }
     } else {
-        a = 0;
+        teamValue = 0;
     }
     gSelectRaceRule->mRow = 4;
-    while (a != gSelectRaceRule->mRowValues[4]) {
+    while (teamValue != gSelectRaceRule->mRowValues[4]) {
         MoveSelectRaceRuleValueNext(0);
     }
     if (GetMirrorMode() != 0) {
-        b = 3;
+        value = 3;
     } else {
-        b = data_0215ccfc[GetEngineIndex()];
+        value = data_0215ccfc[GetEngineIndex()];
     }
-    a = 0;
+    teamValue = 0;
     gSelectRaceRule->mRow = 0;
-    while (b != gSelectRaceRule->mRowValues[0]) {
+    while (value != gSelectRaceRule->mRowValues[0]) {
         MoveSelectRaceRuleValueNext(0);
     }
-    b = data_0215cd08[GetCpuDifficulty()];
+    value = data_0215cd08[GetCpuDifficulty()];
     gSelectRaceRule->mRow = 1;
-    while (b != gSelectRaceRule->mRowValues[1]) {
+    while (value != gSelectRaceRule->mRowValues[1]) {
         MoveSelectRaceRuleValueNext(0);
     }
     switch (gSelectRaceRule->mMode) {
         case 0:
         case 1:
-            if (b == 0 && gSelectRaceRule->mRowValues[1] != 2) {
+            if (value == 0 && gSelectRaceRule->mRowValues[1] != 2) {
                 do {
                     MoveSelectRaceRuleValueNext(0);
                 } while (gSelectRaceRule->mRowValues[1] != 2);
             }
             break;
     }
-    b = data_0215cccc[GetCourseListMode()];
+    value = data_0215cccc[GetCourseListMode()];
     gSelectRaceRule->mRow = 2;
-    while (b != gSelectRaceRule->mRowValues[2]) {
+    while (value != gSelectRaceRule->mRowValues[2]) {
         MoveSelectRaceRuleValueNext(0);
     }
-    b = data_0215ccd8[GetRuleKind()];
+    value = data_0215ccd8[GetRuleKind()];
     gSelectRaceRule->mRow = 3;
-    while (b != gSelectRaceRule->mRowValues[3]) {
+    while (value != gSelectRaceRule->mRowValues[3]) {
         MoveSelectRaceRuleValueNext(0);
     }
     switch (gSelectRaceRule->mRowValues[3]) {
         case SELECT_RACE_RULE_WIN:
-            func_0211d910(GetRaceSetupCopyCourseCount());
+            SetAndPrintSelectRaceRuleWinCount(GetRaceSetupCopyCourseCount());
             break;
         case SELECT_RACE_RULE_RACE:
-            func_0211d844(GetRaceSetupCopyCourseCount());
+            SetAndPrintSelectRaceRuleRaceCount(GetRaceSetupCopyCourseCount());
             break;
     }
     gSelectRaceRule->mRow = 0;
 }
 
 void SetSelectRaceRuleHumanCount(void) {
-    BOOL a;
-    u8 b;
+    BOOL usesMask;
+    u8 participantCount;
     switch (gSelectRaceRule->mMode) {
         case 0:
         case 1:
@@ -1228,12 +1245,12 @@ void SetSelectRaceRuleHumanCount(void) {
         case 3:
         case 4:
         case 5:
-            a = TRUE;
+            usesMask = TRUE;
             if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
-                a = FALSE;
+                usesMask = FALSE;
             }
-            b = a != FALSE ? CountSetBits(data_0217aa00->mParticipantMask) : 0;
-            gSelectRaceRule->mTeamHumanCounts[0] = b;
+            participantCount = usesMask != FALSE ? CountSetBits(data_0217aa00->mParticipantMask) : 0;
+            gSelectRaceRule->mTeamHumanCounts[0] = participantCount;
             break;
     }
 }
@@ -1259,7 +1276,8 @@ void ResetSelectRaceRulePositions(void) {
             gSelectRaceRule->mTable[data_0215cdc4[i][j]].mOffsetY = gSelectRaceRule->mOffsetY - 0xc0;
         }
         for (j = 0; j < 2; j++) {
-            gSelectRaceRule->mTable[c + data_0215cd4c[i].mUnk_00[j]].mOffsetY = gSelectRaceRule->mOffsetY - 0xc0;
+            gSelectRaceRule->mTable[c + gSelectRaceRuleRowEntries[i].mEntryIndices[j]].mOffsetY =
+                gSelectRaceRule->mOffsetY - 0xc0;
         }
     }
     gSelectRaceRule->mTable[c + 10].mOffsetY = gSelectRaceRule->mOffsetY - 0xc0;
@@ -1321,11 +1339,11 @@ void RequestSelectRaceRuleState4(void) {
 }
 
 void RequestSelectRaceRuleState5(void) {
-    void *a;
+    void *message;
     gSelectRaceRule->mNextState = 5;
     gSelectRaceRule->mStateFrames = 0;
-    a = GetBmgEntry(gSelectRaceRule->mCommonMessages, 4);
-    StartSelectChoises(a, GetBmgEntry(gSelectRaceRule->mCommonMessages, 2), 0);
+    message = GetBmgEntry(gSelectRaceRule->mCommonMessages, 4);
+    StartSelectChoises(message, GetBmgEntry(gSelectRaceRule->mCommonMessages, 2), 0);
 }
 
 // Requests state 6: stores mNextState = 6 and zeroes mStateFrames; the next AdvanceSelectRaceRule call copies it to
@@ -1348,18 +1366,18 @@ void RequestSelectRaceRuleState8(void) {
     gSelectRaceRule->mStateFrames = 0;
 }
 
-void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
-    void *h;
+void InitSelectRaceRule(void *parentHeap, s32 b, void *oamList, s32 mode) {
+    void *heap;
     s32 i;
     s32 j;
-    s32 n;
-    s32 e;
-    SelectRaceRule *p;
+    s32 cellEntryCount;
+    s32 remainingSubObjSize;
+    SelectRaceRule *selectRaceRule;
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x8200;
-    h = CreateFrmHeapFromMaxFree(a);
-    gSelectRaceRule = HeapAlloc(h, 0xbc);
-    gSelectRaceRule->mHeap = h;
-    gSelectRaceRule->mMode = d;
+    heap = CreateFrmHeapFromMaxFree(parentHeap);
+    gSelectRaceRule = HeapAlloc(heap, 0xbc);
+    gSelectRaceRule->mHeap = heap;
+    gSelectRaceRule->mMode = mode;
     gSelectRaceRule->mState = 0;
     gSelectRaceRule->mRow = 0;
     gSelectRaceRule->mPrevRow = 4;
@@ -1369,7 +1387,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
     gSelectRaceRule->mUnk_84 = 1;
     gSelectRaceRule->mWinCount = 0;
     gSelectRaceRule->mRaceCount = 0;
-    gSelectRaceRule->mUnk_b4 = c;
+    gSelectRaceRule->mOamList = oamList;
     gSelectRaceRule->mResult = 0;
     for (i = 0; i < 2; i++) {
         gSelectRaceRule->mTeamHumanCounts[i] = 0;
@@ -1389,58 +1407,76 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
     InitLayoutTable(gSelectRaceRule->mHeap, gSelectRaceRule->mBncl, gSelectRaceRule->mBnll, &gSelectRaceRule->mTable);
     gSelectRaceRule->mCommonMessages = FindFileInLoadedArchives(data_0216de38);
     gSelectRaceRule->mRuleMessages = FindSceneFile(data_0216de44);
-    n = gSelectRaceRule->mBncl->mUnk_06;
-    e = GX_GetSizeOfSubOBJ();
+    cellEntryCount = gSelectRaceRule->mBncl->mUnk_06;
+    remainingSubObjSize = GX_GetSizeOfSubOBJ();
     for (i = 0; i < 5; i++) {
         for (j = 0; j < 2; j++) {
             if (!(i == 3 && j == 1)) {
-                e -= func_021243ac(gSelectRaceRule->mHeap, data_0215cd4c[i].mUnk_00[j], gSelectRaceRule->mBnll,
-                                   data_0215cd60[i][j], data_0215cd74[i].h[j], i * 2 + j, gSelectRaceRule->mNcer,
-                                   gSelectRaceRule->mBncl, gSelectRaceRule->mTable, e);
+                remainingSubObjSize -= func_021243ac(
+                    gSelectRaceRule->mHeap, gSelectRaceRuleRowEntries[i].mEntryIndices[j], gSelectRaceRule->mBnll,
+                    data_0215cd60[i][j], data_0215cd74[i].h[j], i * 2 + j, gSelectRaceRule->mNcer,
+                    gSelectRaceRule->mBncl, gSelectRaceRule->mTable, remainingSubObjSize);
             }
         }
-        p = gSelectRaceRule;
-        func_0212426c(1, data_0215cd4c[i].mUnk_00[0], gSelectRaceRule->mBnll,
-                      GetBmgEntry(p->mRuleMessages, data_0215ccb4[i]), p->mBncl, p->mTable);
+        selectRaceRule = gSelectRaceRule;
+        func_0212426c(1, gSelectRaceRuleRowEntries[i].mEntryIndices[0], gSelectRaceRule->mBnll,
+                      GetBmgEntry(selectRaceRule->mRuleMessages, data_0215ccb4[i]), selectRaceRule->mBncl,
+                      selectRaceRule->mTable);
         if (i != 3) {
-            p = gSelectRaceRule;
-            func_0212426c(1, data_0215cd4c[i].mUnk_00[1], gSelectRaceRule->mBnll,
-                          GetBmgEntry(p->mRuleMessages, data_0216dc0c[i][p->mRowValues[i]]), p->mBncl, p->mTable);
+            selectRaceRule = gSelectRaceRule;
+            func_0212426c(1, gSelectRaceRuleRowEntries[i].mEntryIndices[1], gSelectRaceRule->mBnll,
+                          GetBmgEntry(selectRaceRule->mRuleMessages, data_0216dc0c[i][selectRaceRule->mRowValues[i]]),
+                          selectRaceRule->mBncl, selectRaceRule->mTable);
         }
     }
     if (data_021759d0->mUnk_20 != 2) {
-        p = gSelectRaceRule;
-        e -= func_021243ac(p->mHeap, 9, p->mBnll, 0x96, 0xf, n + 3, p->mNcer, p->mBncl, p->mTable, e);
-        p = gSelectRaceRule;
-        e -= func_021243ac(p->mHeap, 0xa, p->mBnll, 0xc8, 0xf, n + 9, p->mNcer, p->mBncl, p->mTable, e);
-        p = gSelectRaceRule;
+        selectRaceRule = gSelectRaceRule;
+        remainingSubObjSize -=
+            func_021243ac(selectRaceRule->mHeap, 9, selectRaceRule->mBnll, 0x96, 0xf, cellEntryCount + 3,
+                          selectRaceRule->mNcer, selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
+        selectRaceRule = gSelectRaceRule;
+        remainingSubObjSize -=
+            func_021243ac(selectRaceRule->mHeap, 0xa, selectRaceRule->mBnll, 0xc8, 0xf, cellEntryCount + 9,
+                          selectRaceRule->mNcer, selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
+        selectRaceRule = gSelectRaceRule;
         func_0212426c(1, 0xa, gSelectRaceRule->mBnll,
-                      GetBmgEntry(p->mRuleMessages, data_0216dc0c[3][SELECT_RACE_RULE_FREE]), p->mBncl, p->mTable);
+                      GetBmgEntry(selectRaceRule->mRuleMessages, data_0216dc0c[3][SELECT_RACE_RULE_FREE]),
+                      selectRaceRule->mBncl, selectRaceRule->mTable);
     } else {
-        p = gSelectRaceRule;
-        e -= func_021243ac(p->mHeap, 0xa, p->mBnll, 0xc8, 0xf, n + 3, p->mNcer, p->mBncl, p->mTable, e);
-        p = gSelectRaceRule;
+        selectRaceRule = gSelectRaceRule;
+        remainingSubObjSize -=
+            func_021243ac(selectRaceRule->mHeap, 0xa, selectRaceRule->mBnll, 0xc8, 0xf, cellEntryCount + 3,
+                          selectRaceRule->mNcer, selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
+        selectRaceRule = gSelectRaceRule;
         func_0212426c(1, 0xa, gSelectRaceRule->mBnll,
-                      GetBmgEntry(p->mRuleMessages, data_0216dc0c[3][SELECT_RACE_RULE_FREE]), p->mBncl, p->mTable);
+                      GetBmgEntry(selectRaceRule->mRuleMessages, data_0216dc0c[3][SELECT_RACE_RULE_FREE]),
+                      selectRaceRule->mBncl, selectRaceRule->mTable);
     }
-    p = gSelectRaceRule;
-    e -= func_021243ac(p->mHeap, 0xc, p->mBnll, 0x37, 0xf, n + 0xb, p->mNcer, p->mBncl, p->mTable, e);
-    p = gSelectRaceRule;
-    func_0212426c(1, 0xc, gSelectRaceRule->mBnll, GetBmgEntry(p->mRuleMessages, data_0216dc0c[4][2]), p->mBncl,
-                  p->mTable);
+    selectRaceRule = gSelectRaceRule;
+    remainingSubObjSize -=
+        func_021243ac(selectRaceRule->mHeap, 0xc, selectRaceRule->mBnll, 0x37, 0xf, cellEntryCount + 0xb,
+                      selectRaceRule->mNcer, selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
+    selectRaceRule = gSelectRaceRule;
+    func_0212426c(1, 0xc, gSelectRaceRule->mBnll, GetBmgEntry(selectRaceRule->mRuleMessages, data_0216dc0c[4][2]),
+                  selectRaceRule->mBncl, selectRaceRule->mTable);
     if (data_021759d0->mUnk_20 != 2) {
-        p = gSelectRaceRule;
-        e -= func_021243ac(p->mHeap, 0xd, p->mBnll, 0x32, 0xd, 0x29, p->mNcer, p->mBncl, p->mTable, e);
-        p = gSelectRaceRule;
-        func_0212426c(1, 0xd, gSelectRaceRule->mBnll, GetBmgEntry(p->mCommonMessages, 4), p->mBncl, p->mTable);
-        p = gSelectRaceRule;
-        func_021243ac(p->mHeap, 8, p->mBnll, 0x15, 0xf, 0x1f, p->mNcer, p->mBncl, p->mTable, e);
+        selectRaceRule = gSelectRaceRule;
+        remainingSubObjSize -=
+            func_021243ac(selectRaceRule->mHeap, 0xd, selectRaceRule->mBnll, 0x32, 0xd, 0x29, selectRaceRule->mNcer,
+                          selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
+        selectRaceRule = gSelectRaceRule;
+        func_0212426c(1, 0xd, gSelectRaceRule->mBnll, GetBmgEntry(selectRaceRule->mCommonMessages, 4),
+                      selectRaceRule->mBncl, selectRaceRule->mTable);
+        selectRaceRule = gSelectRaceRule;
+        func_021243ac(selectRaceRule->mHeap, 8, selectRaceRule->mBnll, 0x15, 0xf, 0x1f, selectRaceRule->mNcer,
+                      selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
     } else {
-        p = gSelectRaceRule;
-        func_021243ac(p->mHeap, 0xe, p->mBnll, 0xc8, 0xd, 0x2a, p->mNcer, p->mBncl, p->mTable, e);
+        selectRaceRule = gSelectRaceRule;
+        func_021243ac(selectRaceRule->mHeap, 0xe, selectRaceRule->mBnll, 0xc8, 0xd, 0x2a, selectRaceRule->mNcer,
+                      selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
     }
-    func_0211d910(0);
-    func_0211d844(0);
+    SetAndPrintSelectRaceRuleWinCount(0);
+    SetAndPrintSelectRaceRuleRaceCount(0);
     switch (gSelectRaceRule->mMode) {
         case 2:
         case 4:
@@ -1470,22 +1506,22 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
             break;
     }
     ReadRaceSetupCopyIntoSelectRaceRule();
-    if (func_0211cdec() == 0) {
+    if (IsSelectRaceRuleTeamsValid() == 0) {
         SetSelectRaceRuleHumanCount();
         func_0211d09c();
         func_0211cfd0();
     }
-    p = gSelectRaceRule;
-    switch (p->mMode) {
+    selectRaceRule = gSelectRaceRule;
+    switch (selectRaceRule->mMode) {
         case 0:
-            p->mRow = 1;
+            selectRaceRule->mRow = 1;
             if (gSelectRaceRule->mRowValues[1] == 0) {
                 MoveSelectRaceRuleValueNext(0);
             }
             gSelectRaceRule->mRow = 0;
             break;
         case 1:
-            p->mOffsetY = -0x1c;
+            selectRaceRule->mOffsetY = -0x1c;
             gSelectRaceRule->mRow = 1;
             if (gSelectRaceRule->mRowValues[1] == 0) {
                 MoveSelectRaceRuleValueNext(0);
@@ -1497,14 +1533,14 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
             gSelectRaceRule->mRow = 1;
             break;
         case 2:
-            p->mOffsetY = -0x1c;
+            selectRaceRule->mOffsetY = -0x1c;
             gSelectRaceRule->mRow = 1;
             if (GetSelectRaceRuleHumanCount() == 8) {
                 gSelectRaceRule->mRow = 2;
             }
             break;
         case 3:
-            p->mRow = 3;
+            selectRaceRule->mRow = 3;
             if (gSelectRaceRule->mRowValues[3] == SELECT_RACE_RULE_RACE) {
                 MoveSelectRaceRuleValuePrevious(0);
             }
@@ -1514,7 +1550,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
             }
             break;
         case 5:
-            p->mOffsetY = -0x1c;
+            selectRaceRule->mOffsetY = -0x1c;
             gSelectRaceRule->mRow = 3;
             if (gSelectRaceRule->mRowValues[3] == SELECT_RACE_RULE_RACE) {
                 MoveSelectRaceRuleValuePrevious(0);
@@ -1527,16 +1563,16 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
     }
     switch (gSelectRaceRule->mMode) {
         case 1:
-            gSelectRaceRule->mTable[n + data_0215cd4c[0].mUnk_00[0]].mVisible = 0;
+            gSelectRaceRule->mTable[cellEntryCount + gSelectRaceRuleRowEntries[0].mEntryIndices[0]].mVisible = 0;
             break;
         case 2:
-            gSelectRaceRule->mTable[n + data_0215cd4c[0].mUnk_00[0]].mVisible = 0;
+            gSelectRaceRule->mTable[cellEntryCount + gSelectRaceRuleRowEntries[0].mEntryIndices[0]].mVisible = 0;
             break;
         case 3:
-            gSelectRaceRule->mTable[n + data_0215cd4c[0].mUnk_00[0]].mVisible = 0;
-            gSelectRaceRule->mTable[n + data_0215cd4c[2].mUnk_00[0]].mVisible = 0;
-            gSelectRaceRule->mTable[n + data_0215cd4c[0].mUnk_00[1]].mVisible = 0;
-            gSelectRaceRule->mTable[n + data_0215cd4c[2].mUnk_00[1]].mVisible = 0;
+            gSelectRaceRule->mTable[cellEntryCount + gSelectRaceRuleRowEntries[0].mEntryIndices[0]].mVisible = 0;
+            gSelectRaceRule->mTable[cellEntryCount + gSelectRaceRuleRowEntries[2].mEntryIndices[0]].mVisible = 0;
+            gSelectRaceRule->mTable[cellEntryCount + gSelectRaceRuleRowEntries[0].mEntryIndices[1]].mVisible = 0;
+            gSelectRaceRule->mTable[cellEntryCount + gSelectRaceRuleRowEntries[2].mEntryIndices[1]].mVisible = 0;
             for (j = 0; j < 2; j++) {
                 gSelectRaceRule->mTable[data_0215cd88[0][j]].mVisible = 0;
                 gSelectRaceRule->mTable[data_0215cd88[2][j]].mVisible = 0;
@@ -1547,7 +1583,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
             }
             break;
         case 5:
-            gSelectRaceRule->mTable[n + data_0215cd4c[0].mUnk_00[0]].mVisible = 0;
+            gSelectRaceRule->mTable[cellEntryCount + gSelectRaceRuleRowEntries[0].mEntryIndices[0]].mVisible = 0;
             break;
     }
     if (GetSelectRaceRuleHumanCount() == 8 && gSelectRaceRule->mRowValues[1] != 0) {
@@ -1556,8 +1592,8 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
         } while (gSelectRaceRule->mRowValues[1] != 0);
     }
     ResetSelectRaceRulePositions();
-    p = gSelectRaceRule;
-    CreateWait(p->mHeap, p->mNcer, p->mBncl, 0x2a, 0xe, 1);
+    selectRaceRule = gSelectRaceRule;
+    CreateWait(selectRaceRule->mHeap, selectRaceRule->mNcer, selectRaceRule->mBncl, 0x2a, 0xe, 1);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         InitPaletteBlend(gSelectRaceRule->mHeap, gSelectRaceRule->mNclr, 9);
     }
@@ -1566,18 +1602,18 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
 }
 
 void ReleaseSelectRaceRule(void) {
-    SelectRaceRule *p;
-    u32 a;
-    u32 b;
-    p = gSelectRaceRule;
-    if (p->mResult == 1 && (p->mMode == 3 || p->mRowValues[2] == 1)) {
-        a = ((reg_GX_DISPCNT) & 0x1f00) >> 8;
-        a &= ~3;
-        (reg_GX_DISPCNT) = ((reg_GX_DISPCNT) & 0xffffe0ff) | (a << 8);
+    SelectRaceRule *selectRaceRule;
+    u32 dispcntBits8To12;
+    u32 bg2Control;
+    selectRaceRule = gSelectRaceRule;
+    if (selectRaceRule->mResult == 1 && (selectRaceRule->mMode == 3 || selectRaceRule->mRowValues[2] == 1)) {
+        dispcntBits8To12 = ((reg_GX_DISPCNT) & 0x1f00) >> 8;
+        dispcntBits8To12 &= ~3;
+        (reg_GX_DISPCNT) = ((reg_GX_DISPCNT) & 0xffffe0ff) | (dispcntBits8To12 << 8);
     }
-    b = (reg_G2_BG2CNT);
-    b &= ~3;
-    (reg_G2_BG2CNT) = b;
+    bg2Control = (reg_G2_BG2CNT);
+    bg2Control &= ~3;
+    (reg_G2_BG2CNT) = bg2Control;
     (reg_G2_BG2CNT) = ((reg_G2_BG2CNT) & 0x43) | 0x9e10;
     ClearWaitPointer();
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
@@ -1592,9 +1628,9 @@ void ReleaseSelectRaceRule(void) {
 #pragma thumb on
 
 void AdvanceSelectRaceRuleState0(void) {
-    int v1;
-    v1 = AreBrightnessFadesClear();
-    if (v1 != 0) {
+    int fadesClear;
+    fadesClear = AreBrightnessFadesClear();
+    if (fadesClear != 0) {
         RequestSelectRaceRuleState1();
     }
 }
@@ -1604,45 +1640,45 @@ void AdvanceSelectRaceRuleState0(void) {
 #pragma thumb on
 
 void AdvanceSelectRaceRuleState1(void) {
-    SelectRaceRule *p;
+    SelectRaceRule *selectRaceRule;
     s32 i;
-    s16 b;
+    s16 rowsOffsetY;
     s32 j;
     s32 c;
     AdvanceSelectRaceRuleRowObjects();
     func_0211c14c();
     gSelectRaceRule->mStateFrames++;
-    p = gSelectRaceRule;
-    c = InterpolateS16(1, -192, 0, p->mStateFrames, 10);
-    b = p->mOffsetY + c;
-    p->mBg3Offset = b;
+    selectRaceRule = gSelectRaceRule;
+    c = InterpolateS16(1, -192, 0, selectRaceRule->mStateFrames, 10);
+    rowsOffsetY = selectRaceRule->mOffsetY + c;
+    selectRaceRule->mBg3Offset = rowsOffsetY;
     c = gSelectRaceRule->mBncl->mUnk_06;
     for (i = 0; i < 5; i++) {
         for (j = 0; j < 2; j++) {
-            gSelectRaceRule->mTable[data_0215cd88[i][j]].mOffsetY = b;
-            gSelectRaceRule->mTable[data_0215cdb0[i][j]].mOffsetY = b;
-            gSelectRaceRule->mTable[data_0215cdc4[i][j]].mOffsetY = b;
+            gSelectRaceRule->mTable[data_0215cd88[i][j]].mOffsetY = rowsOffsetY;
+            gSelectRaceRule->mTable[data_0215cdb0[i][j]].mOffsetY = rowsOffsetY;
+            gSelectRaceRule->mTable[data_0215cdc4[i][j]].mOffsetY = rowsOffsetY;
         }
         for (j = 0; j < 2; j++) {
-            gSelectRaceRule->mTable[c + data_0215cd4c[i].mUnk_00[j]].mOffsetY = b;
+            gSelectRaceRule->mTable[c + gSelectRaceRuleRowEntries[i].mEntryIndices[j]].mOffsetY = rowsOffsetY;
         }
     }
-    gSelectRaceRule->mTable[c + 10].mOffsetY = b;
-    gSelectRaceRule->mTable[c + 12].mOffsetY = b;
-    gSelectRaceRule->mTable[34].mOffsetY = b;
-    gSelectRaceRule->mTable[37].mOffsetY = b;
-    gSelectRaceRule->mTable[35].mOffsetY = b;
-    gSelectRaceRule->mTable[38].mOffsetY = b;
+    gSelectRaceRule->mTable[c + 10].mOffsetY = rowsOffsetY;
+    gSelectRaceRule->mTable[c + 12].mOffsetY = rowsOffsetY;
+    gSelectRaceRule->mTable[34].mOffsetY = rowsOffsetY;
+    gSelectRaceRule->mTable[37].mOffsetY = rowsOffsetY;
+    gSelectRaceRule->mTable[35].mOffsetY = rowsOffsetY;
+    gSelectRaceRule->mTable[38].mOffsetY = rowsOffsetY;
     for (i = 0; i < 2; i++) {
         for (j = 0; j < 2; j++) {
-            gSelectRaceRule->mTable[data_0215ccac[i][j]].mOffsetY = b;
+            gSelectRaceRule->mTable[data_0215ccac[i][j]].mOffsetY = rowsOffsetY;
         }
     }
     if (data_021759d0->mUnk_20 != 2) {
         c += 8;
-        gSelectRaceRule->mTable[c].mOffsetY = b;
-        gSelectRaceRule->mTable[30].mOffsetY = b;
-        gSelectRaceRule->mTable[31].mOffsetY = b;
+        gSelectRaceRule->mTable[c].mOffsetY = rowsOffsetY;
+        gSelectRaceRule->mTable[30].mOffsetY = rowsOffsetY;
+        gSelectRaceRule->mTable[31].mOffsetY = rowsOffsetY;
     }
     if (gSelectRaceRule->mStateFrames >= 10) {
         RequestSelectRaceRuleState2();
@@ -1650,20 +1686,20 @@ void AdvanceSelectRaceRuleState1(void) {
 }
 
 void AdvanceSelectRaceRuleState2(void) {
-    s16 a;
-    s32 b;
+    s16 returnOffsetY;
+    s32 cellEntryCount;
     AdvanceSelectRaceRuleRowObjects();
     func_0211c14c();
     gSelectRaceRule->mStateFrames++;
-    a = -LookupSelectReturnState1Bg2Offset(gSelectRaceRule->mStateFrames);
-    b = gSelectRaceRule->mBncl->mUnk_06;
+    returnOffsetY = -LookupSelectReturnState1Bg2Offset(gSelectRaceRule->mStateFrames);
+    cellEntryCount = gSelectRaceRule->mBncl->mUnk_06;
     if (data_021759d0->mUnk_20 != 2) {
-        gSelectRaceRule->mTable[0x28].mOffsetY = a;
-        gSelectRaceRule->mTable[0x29].mOffsetY = a;
-        gSelectRaceRule->mTable[b + 13].mOffsetY = a;
+        gSelectRaceRule->mTable[0x28].mOffsetY = returnOffsetY;
+        gSelectRaceRule->mTable[0x29].mOffsetY = returnOffsetY;
+        gSelectRaceRule->mTable[cellEntryCount + 13].mOffsetY = returnOffsetY;
     } else {
-        gSelectRaceRule->mTable[0x2a].mOffsetY = a;
-        gSelectRaceRule->mTable[b + 14].mOffsetY = a;
+        gSelectRaceRule->mTable[0x2a].mOffsetY = returnOffsetY;
+        gSelectRaceRule->mTable[cellEntryCount + 14].mOffsetY = returnOffsetY;
     }
     switch (gSelectRaceRule->mMode) {
         case 0:
@@ -1685,49 +1721,51 @@ void AdvanceSelectRaceRuleState3(void) {
     InputSlot *p;
     InputSlot *q;
     InputSlot *r;
-    u32 a;
-    BOOL c;
-    BOOL b;
+    u32 hitRectIndex;
+    BOOL newPair;
+    BOOL noPairForFewCalls;
     Unk02175628Index i;
-    u32 d;
-    u16 x;
-    a = -1;
+    u32 row;
+    u16 hasPair;
+    hitRectIndex = -1;
     i = UNK_02175628_INDEX_8;
     AdvanceSelectRaceRuleRowObjects();
     func_0211c14c();
-    c = FALSE;
-    b = FALSE;
+    newPair = FALSE;
+    noPairForFewCalls = FALSE;
     p = &data_02175674[i];
-    x = data_02175674[i].mUnk_00;
-    if (x == 0 && data_02175680[i].mUnk_00 < 5) {
-        b = TRUE;
+    hasPair = data_02175674[i].mUnk_00;
+    if (hasPair == 0 && data_02175680[i].mUnk_00 < 5) {
+        noPairForFewCalls = TRUE;
     }
-    if (b == FALSE && data_0217567c[i].mUnk_00 == 0 && x != 0) {
-        c = TRUE;
+    if (noPairForFewCalls == FALSE && data_0217567c[i].mUnk_00 == 0 && hasPair != 0) {
+        newPair = TRUE;
     }
-    if (c != FALSE) {
+    if (newPair != FALSE) {
         r = &data_02175672[i];
         q = &data_02175670[i];
-        a = RectTableFindContaining(gSelectRaceRule->mBnbl, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
-        if (a != 0x13) {
-            a = RectTableFindContaining(gSelectRaceRule->mBnbl, q->mUnk_00, r->mUnk_00 - gSelectRaceRule->mOffsetY);
-            if (a == 0x13) {
-                a = -1;
+        hitRectIndex =
+            RectTableFindContaining(gSelectRaceRule->mBnbl, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
+        if (hitRectIndex != 0x13) {
+            hitRectIndex =
+                RectTableFindContaining(gSelectRaceRule->mBnbl, q->mUnk_00, r->mUnk_00 - gSelectRaceRule->mOffsetY);
+            if (hitRectIndex == 0x13) {
+                hitRectIndex = -1;
             }
         }
     }
     r = &data_02175628[i];
     if ((u16) (r->mUnk_00 & PAD_KEY_B) == 0) {
-        c = FALSE;
-        b = FALSE;
-        x = p->mUnk_00;
-        if (x == 0 && data_02175680[i].mUnk_00 < 5) {
-            b = TRUE;
+        newPair = FALSE;
+        noPairForFewCalls = FALSE;
+        hasPair = p->mUnk_00;
+        if (hasPair == 0 && data_02175680[i].mUnk_00 < 5) {
+            noPairForFewCalls = TRUE;
         }
-        if (b == FALSE && data_0217567c[i].mUnk_00 == 0 && x != 0) {
-            c = TRUE;
+        if (noPairForFewCalls == FALSE && data_0217567c[i].mUnk_00 == 0 && hasPair != 0) {
+            newPair = TRUE;
         }
-        if (c == FALSE ||
+        if (newPair == FALSE ||
             IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) == 0) {
             goto chain;
         }
@@ -1744,30 +1782,30 @@ void AdvanceSelectRaceRuleState3(void) {
     }
     goto end;
 chain:
-    if (a <= 4) {
-        d = data_0215cdd8[a];
-        if (GetSelectRaceRuleHumanCount() != 8 || d != 1) {
-            gSelectRaceRule->mRow = d;
+    if (hitRectIndex <= 4) {
+        row = data_0215cdd8[hitRectIndex];
+        if (GetSelectRaceRuleHumanCount() != 8 || row != 1) {
+            gSelectRaceRule->mRow = row;
             gSelectRaceRule->mOnButton = 0;
             MoveSelectRaceRuleValuePrevious(1);
         }
-    } else if (a - 5 <= 4) {
-        d = data_0215cd24[a];
-        if (GetSelectRaceRuleHumanCount() != 8 || d != 1) {
-            gSelectRaceRule->mRow = d;
+    } else if (hitRectIndex - 5 <= 4) {
+        row = data_0215cd24[hitRectIndex];
+        if (GetSelectRaceRuleHumanCount() != 8 || row != 1) {
+            gSelectRaceRule->mRow = row;
             gSelectRaceRule->mOnButton = 0;
             MoveSelectRaceRuleValueNext(1);
         }
-    } else if (a == 0x13) {
+    } else if (hitRectIndex == 0x13) {
         if (gSelectRaceRule->mOnButton != 0) {
             gSelectRaceRule->mUnk_84 = 0;
         }
         gSelectRaceRule->mOnButton = 1;
         RequestSelectRaceRuleState4();
-    } else if (a - 10 <= 4) {
-        d = data_0215cd74[a].mUnk_00;
-        if (GetSelectRaceRuleHumanCount() != 8 || d != 1) {
-            gSelectRaceRule->mRow = d;
+    } else if (hitRectIndex - 10 <= 4) {
+        row = data_0215cd74[hitRectIndex].mUnk_00;
+        if (GetSelectRaceRuleHumanCount() != 8 || row != 1) {
+            gSelectRaceRule->mRow = row;
             gSelectRaceRule->mOnButton = 0;
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
@@ -1778,13 +1816,13 @@ chain:
         } else {
             MoveSelectRaceRuleRowNext();
         }
-    } else if (a == 0xf) {
+    } else if (hitRectIndex == 0xf) {
         if (gSelectRaceRule->mRowValues[3] != SELECT_RACE_RULE_FREE) {
             gSelectRaceRule->mRow = 3;
             gSelectRaceRule->mOnButton = 0;
             DecrementSelectRaceRuleCourseCount();
         }
-    } else if (a == 0x10) {
+    } else if (hitRectIndex == 0x10) {
         if (gSelectRaceRule->mRowValues[3] != SELECT_RACE_RULE_FREE) {
             gSelectRaceRule->mRow = 3;
             gSelectRaceRule->mOnButton = 0;
@@ -1836,9 +1874,9 @@ void AdvanceSelectRaceRuleState4(void) {
 #pragma thumb on
 
 void AdvanceSelectRaceRuleState5(void) {
-    int v1;
-    v1 = IsSelectChoisesState1NoState0Request();
-    if (v1 != 0) {
+    int state1WithoutRequest;
+    state1WithoutRequest = IsSelectChoisesState1NoState0Request();
+    if (state1WithoutRequest != 0) {
         RequestSelectRaceRuleState6();
     }
 }

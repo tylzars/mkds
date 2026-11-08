@@ -17,8 +17,8 @@ extern SelectRaceRuleNscrRect gSelectRaceRuleMultiSimpleNscrRects[];
 
 void AdvanceSelectRaceRuleState5(void);
 u16 GetSelectRaceRuleHumanCount(void);
-void func_0211d66c(void);
-void func_0211d844(s16 a);
-void func_0211d910(s16 a);
+void AdvanceSelectRaceRuleValueObjects(void);
+void SetAndPrintSelectRaceRuleRaceCount(s16 count);
+void SetAndPrintSelectRaceRuleWinCount(s16 count);
 void AdvanceSelectRaceRuleHighlight(void);
-void LookupSelectRaceRuleNscrRect(SelectRaceRuleNscrRect *a, s32 b);
+void LookupSelectRaceRuleNscrRect(SelectRaceRuleNscrRect *outRect, s32 row);

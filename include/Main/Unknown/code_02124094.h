@@ -41,7 +41,7 @@ typedef struct Unk021243ac {
 
 // 0x40-byte element of the tables InitLayoutTable allocates and InitLayoutTableEntries sets up: behind
 // WiFiVSMatching.mUnk_10d4, members 0x14, 0x24 and 0x3c of RecordVSErase, and the tables of the objects behind
-// gRecordVS to data_0217d380 and of several overlay globals.
+// gRecordVS to gSelectRaceRuleWait and of several overlay globals.
 typedef struct LayoutTableEntry {
     /* 00 */ s32 mVisible;
     /* 04 */ s16 mOffsetX;

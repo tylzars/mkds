@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_0211de34(void);
+void ClearSelectCupNameMPointer(void);

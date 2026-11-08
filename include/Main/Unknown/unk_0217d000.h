@@ -309,11 +309,11 @@ typedef struct SelectCupCourse {
     /* 52 */ u8 mUnk_52[2];
     /* 54 */ BOOL mUnk_54;
     // Counts 7 down to 0 after mIndex changed: AdvanceSelectCupCourseIndexChange sets 7 when mIndex differs from
-    // mShownIndex, rebuilds the page through func_02119e88 at 7 and moves the objects while it runs;
+    // mShownIndex, rebuilds the page through RefreshSelectCupCourseForIndex at 7 and moves the objects while it runs;
     // IsSelectCupCourseIndexChangeRunning tells whether it is non-zero.
     /* 58 */ s32 mIndexChangeTimer;
-    // mIndex the page was last built for: AdvanceSelectCupCourseIndexChange copies mIndex here when func_02119e88
-    // rebuilds the page, and starts mIndexChangeTimer when mIndex differs from it.
+    // mIndex the page was last built for: AdvanceSelectCupCourseIndexChange copies mIndex here when
+    // RefreshSelectCupCourseForIndex rebuilds the page, and starts mIndexChangeTimer when mIndex differs from it.
     /* 5c */ s16 mShownIndex;
     /* 5e */ u8 mUnk_5e[2];
     // Set when the cup picture was asked for; the step queues its data once it is ready.
@@ -385,7 +385,7 @@ typedef struct SelectRaceRule {
     // Per team: how many of the entries after the first ones are in it; counted into a team's size only while row 1 is
     // not 0.
     /* b0 */ u16 mUnk_b0[2];
-    /* b4 */ void *mUnk_b4;
+    /* b4 */ void *mOamList;
     // Result AdvanceSelectRaceRule returns in state 8 once the state has run 10 calls: 1 or 2; 0 until set.
     /* b8 */ vu32 mResult;
 } SelectRaceRule;
@@ -398,19 +398,19 @@ typedef struct TrophyIcon {
     /* 0c */ void *mBncl;
 } TrophyIcon;
 
-// Object behind data_0217d380 (0x28 bytes), allocated by func_0211f4b0.
-typedef struct Unk0217d380 {
+// Object behind gSelectRaceRuleWait (0x28 bytes), allocated by InitSelectRaceRuleWait.
+typedef struct SelectRaceRuleWait {
     /* 00 */ struct Unk02021dc8 *mNcer;
     /* 04 */ Unk0201ea30 *mBncl;
     /* 08 */ u8 mUnk_08[0x4];
     /* 0c */ struct Unk0201ea30 *mBnll;
     /* 10 */ LayoutTableEntry *mTable;
     /* 14 */ void *mCommonMessages;
-    /* 18 */ void *mUnk_18;
+    /* 18 */ void *mOamList;
     /* 1c */ s32 mState;
     /* 20 */ s32 mNextState;
     /* 24 */ s32 mStateFrames;
-} Unk0217d380;
+} SelectRaceRuleWait;
 
 // Object at data_0217d244 (0x10 bytes).
 typedef struct SeqPlayerControl {
@@ -432,14 +432,14 @@ typedef struct SeqQueue {
     /* 78 */ s32 mNextStartTimer;
 } SeqQueue;
 
-// Object behind data_0217d374, allocated by func_0211e480.
-typedef struct Unk0217d374 {
-    /* 00 */ u8 *mUnk_00;
-    /* 04 */ u8 *mUnk_04;
-    /* 08 */ u8 *mUnk_08;
-    /* 0c */ u32 mUnk_0c;
-    /* 10 */ s16 mUnk_10;
-} Unk0217d374;
+// Object behind gGhostRecordSet, allocated by InitGhostRecordSet.
+typedef struct GhostRecordSet {
+    /* 00 */ u8 *mCourseGhostRecords;
+    /* 04 */ u8 *mSlotGhostRecords;
+    /* 08 */ u8 *mGhostFileRecords;
+    /* 0c */ u32 mCourseId;
+    /* 10 */ s16 mSlotIndex;
+} GhostRecordSet;
 
 typedef struct SelectCupM {
     /* 00 */ struct Unk02021dc8 *mMainNcer;
@@ -758,10 +758,10 @@ extern KartIcon *gKartIcon;
 extern SelectRaceRule *gSelectRaceRule;
 extern SelectCupNameM *gSelectCupNameM;
 extern CupMark *gCupMark;
-extern Unk0217d374 *data_0217d374;
+extern GhostRecordSet *gGhostRecordSet;
 extern SelectCupM *gSelectCupM;
 extern TrophyIcon *gTrophyIcon;
-extern Unk0217d380 *data_0217d380;
+extern SelectRaceRuleWait *gSelectRaceRuleWait;
 extern char gKartFilterString[0x64];
 extern Unk0217d3ec *data_0217d3ec;
 extern TxtSystem *gTxtSystem;

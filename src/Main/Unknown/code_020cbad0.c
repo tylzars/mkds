@@ -101,7 +101,7 @@ void InitMenu(void) {
     }
     SetHeapGroupId(5);
     if (func_020cbad0() == 0) {
-        func_0211e480(func_020cb99c());
+        InitGhostRecordSet(func_020cb99c());
         InitCupPicture();
         LoadNclrData(&data_0217b43c->mSinglePlaySelectModeMONclr,
                      FindSceneFileWrapper("common/single_play_select_mode_m_o.NCLR"));
@@ -156,10 +156,10 @@ void InitMenu(void) {
         LoadSelectEngineData();
         LoadSelectCupGridData();
         func_0211f240();
-        func_0211a6bc();
+        LoadSelectCupCourseData();
     }
     LoadSelectGameData();
-    func_0211dd44();
+    LoadSelectRaceRuleAndWaitData();
     config.mUnk_00 = func_020cbad0();
     config.mUnk_04 = func_020b403c(1);
     config.mUnk_08 = 0;

@@ -278,7 +278,7 @@ void InitSelectCupM(void *a, void *b, void *c) {
         }
         CreateSelectCupNameM(gSelectCupM->mHeap);
     } else {
-        func_0211f4b0(gSelectCupM->mHeap, gSelectCupM->mUnk_4c);
+        InitSelectRaceRuleWait(gSelectCupM->mHeap, gSelectCupM->mUnk_4c);
         func_0211f380();
     }
     InitSelectCupMCellsAndRequestCupPicture();
@@ -292,7 +292,7 @@ void InitSelectCupM(void *a, void *b, void *c) {
 
 void ReleaseSelectCupM(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_0211de34();
+        ClearSelectCupNameMPointer();
     } else {
         func_0211f498();
     }
@@ -427,7 +427,7 @@ s32 AdvanceSelectCupM(void) {
         DrawLayoutTable(gSelectCupM->mSubBncl, gSelectCupM->mSubNcer, gSelectCupM->mSubBnll, gSelectCupM->mUnk_4c,
                         gSelectCupM->mSubTable);
     } else {
-        func_0211f39c();
+        AdvanceSelectRaceRuleWait();
     }
     if (gSelectCupM->mState == 0 && gSelectCupM->mStateFrames > 0xa) {
         return 1;

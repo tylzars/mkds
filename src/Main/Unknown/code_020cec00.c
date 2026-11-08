@@ -13,7 +13,7 @@ void WriteBattleSelectRaceRuleRegisters(void) {
         GxsDispCntBits8To12Write2(0x1f);
         GXS_SetGraphicsMode(0);
     }
-    func_0211a794();
+    WriteSelectRaceRuleRegisters();
 }
 
 #pragma thumb off

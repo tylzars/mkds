@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 IsSelectRaceRuleEntryHuman(u16 a);
+u32 IsSelectRaceRuleEntryHuman(u16 entryIndex);

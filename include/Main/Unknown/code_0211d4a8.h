@@ -2,11 +2,11 @@
 
 #include "types.h"
 
-typedef struct Unk0215cd4c {
-    /* 00 */ u16 mUnk_00[2];
-} Unk0215cd4c;
+typedef struct SelectRaceRuleRowEntries {
+    /* 00 */ u16 mEntryIndices[2];
+} SelectRaceRuleRowEntries;
 
-extern Unk0215cd4c data_0215cd4c[];
+extern SelectRaceRuleRowEntries gSelectRaceRuleRowEntries[];
 
 // Fixed-address object read by MoveSelectRaceRuleRowPrevious and MoveSelectRaceRuleRowNext.
 typedef struct Unk027ffc40 {

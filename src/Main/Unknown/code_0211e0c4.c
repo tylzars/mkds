@@ -26,156 +26,161 @@
 
 #pragma thumb on
 
-void func_0211e480(void *a) {
-    data_0217d374 = HeapAlloc(a, 0x14);
-    data_0217d374->mUnk_00 = (u8 *) CreateCourseGhostRecords((u32) a);
-    func_02061540(data_0217d374->mUnk_00);
+void InitGhostRecordSet(void *heap) {
+    gGhostRecordSet = HeapAlloc(heap, 0x14);
+    gGhostRecordSet->mCourseGhostRecords = (u8 *) CreateCourseGhostRecords((u32) heap);
+    func_02061540(gGhostRecordSet->mCourseGhostRecords);
     func_02057d9c();
-    data_0217d374->mUnk_04 = (u8 *) func_0206152c((u32) a);
-    func_02061428(data_0217d374->mUnk_04);
+    gGhostRecordSet->mSlotGhostRecords = (u8 *) func_0206152c((u32) heap);
+    func_02061428(gGhostRecordSet->mSlotGhostRecords);
     func_02057d9c();
-    data_0217d374->mUnk_08 = (u8 *) CreateGhostFileRecords((u32) a);
-    func_02061358(data_0217d374->mUnk_08);
+    gGhostRecordSet->mGhostFileRecords = (u8 *) CreateGhostFileRecords((u32) heap);
+    func_02061358(gGhostRecordSet->mGhostFileRecords);
     func_02057d9c();
-    LoadStaffGhostTime(a);
+    LoadStaffGhostTime(heap);
 }
 
-void func_0211e474(void) {
-    data_0217d374 = NULL;
+void ClearGhostRecordSetPointer(void) {
+    gGhostRecordSet = NULL;
 }
 
-void func_0211e418(u32 a) {
+void SetupGhostRecordSetForCourse(u32 courseId) {
     s32 i;
 
-    data_0217d374->mUnk_0c = a;
-    data_0217d374->mUnk_10 = -1;
+    gGhostRecordSet->mCourseId = courseId;
+    gGhostRecordSet->mSlotIndex = -1;
     for (i = 0; i < 0xa; i++) {
-        if (IsGhostRecordFilled(data_0217d374->mUnk_04 + (u8) i * 0x230) != FALSE &&
-            GetGhostRecordCourseId(data_0217d374->mUnk_04 + (u8) i * 0x230) == a) {
-            data_0217d374->mUnk_10 = i;
+        if (IsGhostRecordFilled(gGhostRecordSet->mSlotGhostRecords + (u8) i * 0x230) != FALSE &&
+            GetGhostRecordCourseId(gGhostRecordSet->mSlotGhostRecords + (u8) i * 0x230) == courseId) {
+            gGhostRecordSet->mSlotIndex = i;
             return;
         }
     }
 }
 
-void func_0211e38c(u32 a, void *b) {
-    u8 *p;
+void GetGhostRecordSetTime(u32 kind, void *time) {
+    u8 *records;
 
-    switch (a) {
+    switch (kind) {
         case 0:
-            p = data_0217d374->mUnk_00;
-            GetGhostRecordTime(p + FindCupCourseIndex(data_0217d374->mUnk_0c) * 0x30, b);
+            records = gGhostRecordSet->mCourseGhostRecords;
+            GetGhostRecordTime(records + FindCupCourseIndex(gGhostRecordSet->mCourseId) * 0x30, time);
             break;
         case 1:
-            GetGhostRecordTime(data_0217d374->mUnk_04 + (u8) data_0217d374->mUnk_10 * 0x230, b);
+            GetGhostRecordTime(gGhostRecordSet->mSlotGhostRecords + (u8) gGhostRecordSet->mSlotIndex * 0x230, time);
             break;
         case 2:
-            p = data_0217d374->mUnk_08;
-            GetGhostRecordTime(p + FindCupCourseIndex(data_0217d374->mUnk_0c) * 0x230, b);
+            records = gGhostRecordSet->mGhostFileRecords;
+            GetGhostRecordTime(records + FindCupCourseIndex(gGhostRecordSet->mCourseId) * 0x230, time);
             break;
         case 4:
             break;
     }
 }
 
-void func_0211e2f8(u32 a, void *b) {
-    u8 *p;
-    u8 buf[0x14];
+void GetGhostRecordSetName(u32 kind, void *name) {
+    u8 *records;
+    u8 ghostName[0x14];
 
-    switch (a) {
+    switch (kind) {
         case 0:
-            p = data_0217d374->mUnk_00;
-            GetGhostRecordName(p + FindCupCourseIndex(data_0217d374->mUnk_0c) * 0x30, buf);
+            records = gGhostRecordSet->mCourseGhostRecords;
+            GetGhostRecordName(records + FindCupCourseIndex(gGhostRecordSet->mCourseId) * 0x30, ghostName);
             break;
         case 1:
-            GetGhostRecordName(data_0217d374->mUnk_04 + (u8) data_0217d374->mUnk_10 * 0x230, buf);
+            GetGhostRecordName(gGhostRecordSet->mSlotGhostRecords + (u8) gGhostRecordSet->mSlotIndex * 0x230,
+                               ghostName);
             break;
         case 2:
-            p = data_0217d374->mUnk_08;
-            GetGhostRecordName(p + FindCupCourseIndex(data_0217d374->mUnk_0c) * 0x230, buf);
+            records = gGhostRecordSet->mGhostFileRecords;
+            GetGhostRecordName(records + FindCupCourseIndex(gGhostRecordSet->mCourseId) * 0x230, ghostName);
             break;
         case 4:
             break;
     }
-    MI_CpuFill8(b, 0, 0x20);
-    MIi_CpuCopy16(buf, b, 0x14);
+    MI_CpuFill8(name, 0, 0x20);
+    MIi_CpuCopy16(ghostName, name, 0x14);
 }
 
-s32 func_0211e274(u32 a) {
-    u8 *p;
-    s32 r = -1;
+s32 GetGhostRecordSetCharacterIndex(u32 kind) {
+    u8 *records;
+    s32 characterIndex = -1;
 
-    switch (a) {
+    switch (kind) {
         case 4:
-            r = -1;
+            characterIndex = -1;
             break;
         case 0:
-            p = data_0217d374->mUnk_00;
-            r = GetGhostRecordCharacterIndex(p + FindCupCourseIndex(data_0217d374->mUnk_0c) * 0x30);
+            records = gGhostRecordSet->mCourseGhostRecords;
+            characterIndex =
+                GetGhostRecordCharacterIndex(records + FindCupCourseIndex(gGhostRecordSet->mCourseId) * 0x30);
             break;
         case 1:
-            r = GetGhostRecordCharacterIndex(data_0217d374->mUnk_04 + (u8) data_0217d374->mUnk_10 * 0x230);
+            characterIndex = GetGhostRecordCharacterIndex(gGhostRecordSet->mSlotGhostRecords +
+                                                          (u8) gGhostRecordSet->mSlotIndex * 0x230);
             break;
         case 2:
-            p = data_0217d374->mUnk_08;
-            r = GetGhostRecordCharacterIndex(p + FindCupCourseIndex(data_0217d374->mUnk_0c) * 0x230);
+            records = gGhostRecordSet->mGhostFileRecords;
+            characterIndex =
+                GetGhostRecordCharacterIndex(records + FindCupCourseIndex(gGhostRecordSet->mCourseId) * 0x230);
             break;
     }
-    return r;
+    return characterIndex;
 }
 
-s32 func_0211e1f0(u32 a) {
-    u8 *p;
-    s32 r = -1;
+s32 GetGhostRecordSetKartIndex(u32 kind) {
+    u8 *records;
+    s32 kartIndex = -1;
 
-    switch (a) {
+    switch (kind) {
         case 4:
-            r = -1;
+            kartIndex = -1;
             break;
         case 0:
-            p = data_0217d374->mUnk_00;
-            r = GetGhostRecordKartIndex(p + FindCupCourseIndex(data_0217d374->mUnk_0c) * 0x30);
+            records = gGhostRecordSet->mCourseGhostRecords;
+            kartIndex = GetGhostRecordKartIndex(records + FindCupCourseIndex(gGhostRecordSet->mCourseId) * 0x30);
             break;
         case 1:
-            r = GetGhostRecordKartIndex(data_0217d374->mUnk_04 + (u8) data_0217d374->mUnk_10 * 0x230);
+            kartIndex =
+                GetGhostRecordKartIndex(gGhostRecordSet->mSlotGhostRecords + (u8) gGhostRecordSet->mSlotIndex * 0x230);
             break;
         case 2:
-            p = data_0217d374->mUnk_08;
-            r = GetGhostRecordKartIndex(p + FindCupCourseIndex(data_0217d374->mUnk_0c) * 0x230);
+            records = gGhostRecordSet->mGhostFileRecords;
+            kartIndex = GetGhostRecordKartIndex(records + FindCupCourseIndex(gGhostRecordSet->mCourseId) * 0x230);
             break;
     }
-    return r;
+    return kartIndex;
 }
 
-s32 func_0211e160(u32 a) {
-    s32 r = 0;
-    u8 *p;
+s32 func_0211e160(u32 kind) {
+    s32 result = 0;
+    u8 *records;
 
-    switch (a) {
+    switch (kind) {
         case 4:
-            r = 1;
+            result = 1;
             break;
         case 0:
-            p = data_0217d374->mUnk_00;
-            r = IsGhostRecordFilled(p + FindCupCourseIndex(data_0217d374->mUnk_0c) * 0x30);
+            records = gGhostRecordSet->mCourseGhostRecords;
+            result = IsGhostRecordFilled(records + FindCupCourseIndex(gGhostRecordSet->mCourseId) * 0x30);
             break;
         case 1:
-            if (data_0217d374->mUnk_10 != -1) {
-                r = 1;
+            if (gGhostRecordSet->mSlotIndex != -1) {
+                result = 1;
             }
             break;
         case 2:
-            if (IsTimeRecordFilled(data_0217d374->mUnk_0c, 0) != FALSE) {
-                u32 buf;
+            if (IsTimeRecordFilled(gGhostRecordSet->mCourseId, 0) != FALSE) {
+                u32 time;
 
-                GetTimeRecordTime(data_0217d374->mUnk_0c, 0, &buf);
-                r = IsTimeLessThanStaffGhostTime(data_0217d374->mUnk_0c, &buf);
+                GetTimeRecordTime(gGhostRecordSet->mCourseId, 0, &time);
+                result = IsTimeLessThanStaffGhostTime(gGhostRecordSet->mCourseId, &time);
             } else {
-                r = 0;
+                result = 0;
             }
             break;
     }
-    return r;
+    return result;
 }
 
 BOOL func_0211e130(void) {
@@ -190,19 +195,19 @@ BOOL func_0211e130(void) {
     return FALSE;
 }
 
-void func_0211e0c4(u32 a) {
-    switch (a) {
+void func_0211e0c4(u32 kind) {
+    switch (kind) {
         case 4:
-            func_02043fb0(data_0217d374->mUnk_0c);
+            func_02043fb0(gGhostRecordSet->mCourseId);
             break;
         case 0:
-            func_020442d0(data_0217d374->mUnk_0c);
+            func_020442d0(gGhostRecordSet->mCourseId);
             break;
         case 1:
-            func_0204419c(data_0217d374->mUnk_0c, (u8) data_0217d374->mUnk_10);
+            func_0204419c(gGhostRecordSet->mCourseId, (u8) gGhostRecordSet->mSlotIndex);
             break;
         case 2:
-            func_02044060(data_0217d374->mUnk_0c);
+            func_02044060(gGhostRecordSet->mCourseId);
             break;
     }
 }
