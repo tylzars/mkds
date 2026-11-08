@@ -52,7 +52,7 @@ void FillGrandPrixRecord(TimeRecord *record) {
     record->mMinute = 0;
     record->mSecond = 0;
     record->mMillisecond = 0;
-    MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, record->mName, 0x14);
+    MI_CpuCopy8(data_0217aa08->mUnk_00->mPlayerName, record->mName, 0x14);
     for (courseIndex = 0; courseIndex < 4; courseIndex++) {
         SumTimes(record, &data_0217b488->mCourseTimes[courseIndex], record);
     }
@@ -118,7 +118,7 @@ BOOL TrySetGrandPrixRecord(void) {
     FillGrandPrixRecord(&newRecord);
     if (ShouldSetGrandPrixRecord(&storedRecord, &newRecord) != FALSE) {
         SetGrandPrixRecord(data_0217b488->mCupIndex, engineClass, &newRecord);
-        func_0205641c();
+        WriteBackupGrandPrixRecords();
         stored = TRUE;
     }
     return stored;
@@ -139,7 +139,7 @@ u32 TrySetMissionRecord(void) {
     if (t != 0) {
         return 0;
     }
-    func_020569dc((u16) missionRow, (u16) missionColumn, &storedRecord);
+    GetMissionRecord((u16) missionRow, (u16) missionColumn, &storedRecord);
     newRecord.mFilled = 1;
     newRecord.mValue = func_0205d140();
     if (storedRecord.mFilled == 0) {
@@ -148,8 +148,8 @@ u32 TrySetMissionRecord(void) {
         shouldStore = storedRecord.mValue < newRecord.mValue;
     }
     if (shouldStore != FALSE) {
-        func_02056a04((u16) missionRow, (u16) missionColumn, &newRecord);
-        func_020563d8();
+        SetMissionRecord((u16) missionRow, (u16) missionColumn, &newRecord);
+        WriteBackupMissionRecords();
         stored = 1;
     }
     return stored;

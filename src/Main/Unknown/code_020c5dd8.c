@@ -67,7 +67,7 @@ void InitRaceNewRecordTa(void) {
     gRaceNewRecordTa->mBestLapNumber = 0;
     gRaceNewRecordTa->mUnk_18 = 0;
     for (i = 0; i < 6; i++) {
-        func_02056bc0(gRaceSetup->mCourseId, i, &gRaceNewRecordTa->mRecords[i]);
+        GetCourseTimeRecord(gRaceSetup->mCourseId, i, &gRaceNewRecordTa->mRecords[i]);
     }
     gRaceNewRecordTa->mUnk_18 = 0;
     gRaceNewRecordTa->mUnk_dc = 0;
@@ -283,7 +283,7 @@ found:
     if (store != 0) {
         for (j = 4; j > recordIndex; j--) {
             gRaceNewRecordTa->mRecords[j] = gRaceNewRecordTa->mRecords[j - 1];
-            func_02056c6c(gRaceSetup->mCourseId, j, &gRaceNewRecordTa->mRecords[j]);
+            SetCourseTimeRecord(gRaceSetup->mCourseId, j, &gRaceNewRecordTa->mRecords[j]);
         }
         copiedMillisecond = millisecond;
         copiedSecond = second;
@@ -297,7 +297,7 @@ found:
         slot->mFilled = 1;
         slot->mCharacterIndex = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mCharacterIndex;
         slot->mKartIndex = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mKartIndex;
-        func_02056c6c(gRaceSetup->mCourseId, recordIndex, slot);
+        SetCourseTimeRecord(gRaceSetup->mCourseId, recordIndex, slot);
         if (recordIndex != 5) {
             gRaceNewRecordTa->mFinishRecordIndex = recordIndex;
         }
@@ -339,7 +339,7 @@ BOOL func_020c6428(s32 store) {
         record->mFilled = 1;
         record->mCharacterIndex = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mCharacterIndex;
         record->mKartIndex = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mKartIndex;
-        func_02056c6c(gRaceSetup->mCourseId, TIME_RECORD_BEST_LAP, record);
+        SetCourseTimeRecord(gRaceSetup->mCourseId, TIME_RECORD_BEST_LAP, record);
     }
     return TRUE;
 }
@@ -373,7 +373,7 @@ void func_020c610c(void) {
         gRaceNewRecordTa->mBestLapIsRecord = func_020c6428(1);
         if (gRaceNewRecordTa->mFinishTimeIsRecord != 0 || gRaceNewRecordTa->mBestLapIsRecord != 0) {
             gRaceNewRecordTa->mUnk_18 = 1;
-            func_02056408();
+            WriteBackupCourseTimeRecords();
             gRaceNewRecordTa->mUpdate = func_020c5f7c;
             gRaceNewRecordTa->mUpdateFrames = 0;
         } else {
@@ -397,7 +397,7 @@ void func_020c610c(void) {
             }
             if (r != FALSE) {
                 gRaceNewRecordTa->mUnk_18 = 1;
-                func_02056750(gRaceSetup->mCourseId, gRaceSetup->mEntryIndex);
+                FillAndWriteCourseGhostRecord(gRaceSetup->mCourseId, gRaceSetup->mEntryIndex);
                 gRaceNewRecordTa->mUpdate = func_020c5f08;
                 gRaceNewRecordTa->mUpdateFrames = 0;
             } else {
@@ -471,7 +471,7 @@ void func_020c5f7c(void) {
     }
     if (r != FALSE) {
         gRaceNewRecordTa->mUnk_18 = 1;
-        func_02056750(gRaceSetup->mCourseId, gRaceSetup->mEntryIndex);
+        FillAndWriteCourseGhostRecord(gRaceSetup->mCourseId, gRaceSetup->mEntryIndex);
         gRaceNewRecordTa->mUpdate = func_020c5f08;
         gRaceNewRecordTa->mUpdateFrames = 0;
     } else {

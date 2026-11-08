@@ -916,7 +916,7 @@ void func_ov001_021a2cf0(void) {
         case 1:
             SetEmblemChoisesShownAndReset(0);
             JoinNibbleTilesIntoBytes(GetEmblemGridCells(), gEmblem->mUnk_087c, GetEmblemGridSide());
-            func_020569a8(gEmblem->mUnk_087c);
+            SetEmblemRecordAndWriteBackup(gEmblem->mUnk_087c);
             gEmblem->mUnk_1090 = 0xb;
             gEmblem->mUnk_1098 = 1;
             break;

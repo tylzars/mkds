@@ -8,7 +8,7 @@ typedef struct Unk020c06c4 Unk020c06c4;
 // Time-attack record handling of the race (mode 1 only), one record behind gRaceNewRecordTa (0xe8 bytes, allocated by
 // InitRaceNewRecordTa, set NULL by ClearRaceNewRecordTaPointer): mUnk_00 is the function it runs every frame
 // (UpdateRaceNewRecordTa), which compares the finished run with the course's saved records, inserts and saves a new one
-// (func_02056c6c) and slides in and draws the new-record page (DrawRaceNewRecordTa).
+// (SetCourseTimeRecord) and slides in and draws the new-record page (DrawRaceNewRecordTa).
 typedef struct RaceNewRecordTa {
     /* 00 */ void (*mUpdate)(void);
     /* 04 */ s32 mUpdateFrames;
@@ -18,9 +18,9 @@ typedef struct RaceNewRecordTa {
     /* 14 */ u16 mBestLapNumber;
     /* 16 */ u8 mUnk_16[2];
     /* 18 */ s32 mUnk_18;
-    // The course's six time records, copied from the save by InitRaceNewRecordTa (func_02056bc0): slots 0..4 are the
-    // ranked list (an insert shifts them down and writes through func_02056c6c), slot 5 is a further record shown in a
-    // sixth row: the best lap time.
+    // The course's six time records, copied from the save by InitRaceNewRecordTa (GetCourseTimeRecord): slots 0..4 are
+    // the ranked list (an insert shifts them down and writes through SetCourseTimeRecord), slot 5 is a further record
+    // shown in a sixth row: the best lap time.
     /* 1c */ TimeRecord mRecords[6];
     /* dc */ s32 mUnk_dc;
     // X of the whole page: -0x100 at allocation, eased to 0 over 0x14 frames by SlideInRaceNewRecordTa, added to every

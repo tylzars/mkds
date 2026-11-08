@@ -24,13 +24,13 @@ typedef enum { SOUND_MODE_SURROUND, SOUND_MODE_STEREO, SOUND_MODE_HEADPHONES } S
 // What data_0217aa08 points to.
 typedef struct Unk0217aa08_00 {
     /* 00 */ u8 mUnk_00[0xc];
-    /* 0c */ u8 mUnk_0c[0x14];
+    /* 0c */ u8 mPlayerName[0x14];
     /* 20 */ u8 mUnk_20[2];
     /* 22 */ u8 mUnk_22;
     /* 23 */ u8 mUnk_23;
-    /* 24 */ u16 mUnk_24;
-    /* 26 */ u8 mUnk_26[0x4];
-    /* 2a */ u8 mUnk_2a[0x2];
+    /* 24 */ u16 mElo;
+    /* 26 */ u8 mCourseGhostBits[0x4];
+    /* 2a */ u8 mSlotGhostBits[0x2];
     /* 2c */ u8 mUnk_2c[0x5];
     /* 31 */ union {
         u8 mUnk_31;
@@ -44,7 +44,7 @@ typedef struct Unk0217aa08_00 {
     };
     /* 32 */ u8 mUnk_32[0x2];
     /* 34 */ u32 mUnk_34[6];
-    /* 4c */ u8 mUnk_4c[0x4];
+    /* 4c */ u8 mUserData[0x4];
     /* 50 */ s32 mUnk_50;
     /* 54 */ s32 mUnk_54;
     /* 58 */ s32 mUnk_58;
@@ -219,7 +219,7 @@ typedef struct Unk0217aa08 {
     /* 08 */ GrandPrixRecordBlock *mGrandPrixRecordBlock;
     /* 0c */ CourseTimeRecordBlock *mCourseTimeRecordBlock;
     /* 10 */ MissionRecordBlock *mMissionRecordBlock;
-    /* 14 */ GhostRecord *mUnk_14[3];
+    /* 14 */ GhostRecord *mGhostRecords[3];
     /* 20 */ BuddyRecordBlock *mBuddyRecordBlock;
     /* 24 */ Unk0217aa08_24 *mUnk_24;
     /* 28 */ u8 mUnk_28;
@@ -1553,18 +1553,18 @@ extern const char *gKartModelPathPrefix;
 extern char gKartModelPathBuffer[];
 
 // Entries of the 0x400-byte buffer behind member 0x04 of DispCap.
-typedef struct Unk0217aa04_04 {
+typedef struct DispCapOamEntry {
     /* 00 */ u32 mUnk_00;
     /* 04 */ union {
         u32 mUnk_04;
         u16 mUnk_04_h;
     };
-} Unk0217aa04_04;
+} DispCapOamEntry;
 
 // Object behind gDispCap.
 typedef struct DispCap {
     /* 00 */ s32 mMode;
-    /* 04 */ Unk0217aa04_04 *mOamBuffer;
+    /* 04 */ DispCapOamEntry *mOamBuffer;
     /* 08 */ u16 mFlags;
     /* 0a */ u8 mBlendMin;
     /* 0b */ u8 mUnk_0b[0x1];

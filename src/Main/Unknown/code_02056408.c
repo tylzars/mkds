@@ -4,15 +4,15 @@
 
 #pragma thumb on
 
-void func_02056430(void) {
+void WriteBackupEmblem(void) {
     WriteBackupEmblemRecord(data_0217aa08->mEmblemRecord);
 }
 
-void func_0205641c(void) {
+void WriteBackupGrandPrixRecords(void) {
     WriteBackupGrandPrixRecordBlock(data_0217aa08->mGrandPrixRecordBlock);
 }
 
-void func_02056408(void) {
+void WriteBackupCourseTimeRecords(void) {
     WriteBackupCourseTimeRecordBlock(data_0217aa08->mCourseTimeRecordBlock);
 }
 

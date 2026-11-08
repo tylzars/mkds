@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020563d8(void);
+void WriteBackupMissionRecords(void);

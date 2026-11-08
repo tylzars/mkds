@@ -154,7 +154,7 @@ void SetCurrentEntryPlayer(s32 entryIndex) {
     *b3 = data_021759d0->mUnk_00;
     *b4 = 0;
     if (entryIndex == gRaceSetup->mEntryIndex) {
-        *nameSlot = &data_0217aa08->mUnk_00->mUnk_0c;
+        *nameSlot = &data_0217aa08->mUnk_00->mPlayerName;
         *emblemDataSlot = &data_0217aa08->mEmblemRecord->mEmblemData;
         *b2 = g != FALSE ? 1 : 0;
         *b3 = data_021759d0->mUnk_00;
@@ -187,24 +187,24 @@ void SetCurrentEntryPlayer(s32 entryIndex) {
         case PLAYER_KIND_GHOST:
             switch (gRaceSetup->mCurrentEntries[entryIndex].mPlayer.mGhostRecordIndex) {
                 case 0:
-                    *nameSlot = &data_0217aa08->mUnk_14[0]->mName;
+                    *nameSlot = &data_0217aa08->mGhostRecords[0]->mName;
                     *emblemDataSlot = &data_0217aa08->mEmblemRecord->mEmblemData;
                     *b2 = g != FALSE ? 1 : 0;
-                    *b3 = data_0217aa08->mUnk_14[0]->mUnk_08_2;
+                    *b3 = data_0217aa08->mGhostRecords[0]->mUnk_08_2;
                     *b4 = 0;
                     break;
                 case 1:
-                    *nameSlot = &data_0217aa08->mUnk_14[1]->mName;
-                    *emblemDataSlot = &data_0217aa08->mUnk_14[1]->mUnk_30;
-                    *b2 = data_0217aa08->mUnk_14[1]->mUnk_08_1;
-                    *b3 = data_0217aa08->mUnk_14[1]->mUnk_08_2;
-                    *b4 = data_0217aa08->mUnk_14[1]->mUnk_2f_0;
+                    *nameSlot = &data_0217aa08->mGhostRecords[1]->mName;
+                    *emblemDataSlot = &data_0217aa08->mGhostRecords[1]->mUnk_30;
+                    *b2 = data_0217aa08->mGhostRecords[1]->mUnk_08_1;
+                    *b3 = data_0217aa08->mGhostRecords[1]->mUnk_08_2;
+                    *b4 = data_0217aa08->mGhostRecords[1]->mUnk_2f_0;
                     break;
                 case 2:
-                    *nameSlot = &data_0217aa08->mUnk_14[2]->mName;
-                    *emblemDataSlot = &data_0217aa08->mUnk_14[2]->mUnk_30;
+                    *nameSlot = &data_0217aa08->mGhostRecords[2]->mName;
+                    *emblemDataSlot = &data_0217aa08->mGhostRecords[2]->mUnk_30;
                     *b2 = 1;
-                    *b3 = data_0217aa08->mUnk_14[2]->mUnk_08_2;
+                    *b3 = data_0217aa08->mGhostRecords[2]->mUnk_08_2;
                     *b4 = 1;
                     break;
             }
@@ -251,15 +251,15 @@ BOOL func_02044e9c(s32 courseId, s32 entryIndex) {
     if (gRaceSetup->mNextHeader.mRaceKind == 2) {
         return TRUE;
     }
-    ghostRecord = data_0217aa08->mUnk_14[0];
+    ghostRecord = data_0217aa08->mGhostRecords[0];
     if (ghostRecord->mFilled == 1) {
         SetNextRaceEntry(entryIndex, ghostRecord->mCharacterIndex, ghostRecord->mKartIndex, PLAYER_KIND_GHOST, -1, 3);
         gRaceSetup->mNextEntries[entryIndex].mPlayer.mGhostRecordIndex = result;
         MI_CpuCopy8(ghostRecord->mUnk_30, data_02175650[entryIndex].mBuffer, 0xdcc);
         result = TRUE;
-        func_02056574(0, &gRaceSetup->mGhostTime);
+        GetGhostFinishTimeByIndex(0, &gRaceSetup->mGhostTime);
         for (i = 1; i <= 5; i++) {
-            func_020565ac(0, i, &gRaceSetup->mGhostLapTimes[i - 1]);
+            GetGhostLapTimeByIndex(0, i, &gRaceSetup->mGhostLapTimes[i - 1]);
         }
     }
     return result;
@@ -273,15 +273,15 @@ s32 func_02044d4c(s32 courseId, s32 entryIndex) {
     if (gRaceSetup->mNextHeader.mRaceKind == 2) {
         return 1;
     }
-    ghostRecord = data_0217aa08->mUnk_14[1];
+    ghostRecord = data_0217aa08->mGhostRecords[1];
     filled = ghostRecord->mFilled == 1 ? 1 : 0;
     if (filled != 0) {
         SetNextRaceEntry(entryIndex, ghostRecord->mCharacterIndex, ghostRecord->mKartIndex, PLAYER_KIND_GHOST, -1, 3);
         gRaceSetup->mNextEntries[entryIndex].mPlayer.mGhostRecordIndex = 1;
         MI_CpuCopy8(&ghostRecord->mUnk_30[0x200], data_02175650[entryIndex].mBuffer, 0xdcc);
-        func_02056574(1, &gRaceSetup->mGhostTime);
+        GetGhostFinishTimeByIndex(1, &gRaceSetup->mGhostTime);
         for (i = 1; i <= 5; i++) {
-            func_020565ac(1, i, &gRaceSetup->mGhostLapTimes[i - 1]);
+            GetGhostLapTimeByIndex(1, i, &gRaceSetup->mGhostLapTimes[i - 1]);
         }
     } else {
         SetNextRaceEntry(entryIndex, 0, 0, PLAYER_KIND_NONE, -1, 3);
@@ -296,14 +296,14 @@ BOOL func_02044bf8(s32 courseId, s32 entryIndex) {
     if (gRaceSetup->mNextHeader.mRaceKind == 2) {
         return TRUE;
     }
-    ghostRecord = data_0217aa08->mUnk_14[2];
+    ghostRecord = data_0217aa08->mGhostRecords[2];
     if (ghostRecord != NULL && ghostRecord->mFilled == 1) {
         SetNextRaceEntry(entryIndex, ghostRecord->mCharacterIndex, ghostRecord->mKartIndex, PLAYER_KIND_GHOST, -1, 3);
         gRaceSetup->mNextEntries[entryIndex].mPlayer.mGhostRecordIndex = 2;
         MI_CpuCopy8(&ghostRecord->mUnk_30[0x200], data_02175650[entryIndex].mBuffer, 0xdcc);
-        func_020565e4(ghostRecord, &gRaceSetup->mGhostTime);
+        GetGhostFinishTime(ghostRecord, &gRaceSetup->mGhostTime);
         for (i = 1; i <= 5; i++) {
-            func_0205660c(ghostRecord, i, &gRaceSetup->mGhostLapTimes[i - 1]);
+            GetGhostLapTime(ghostRecord, i, &gRaceSetup->mGhostLapTimes[i - 1]);
         }
         return TRUE;
     }
@@ -332,7 +332,7 @@ void SetCurrentRaceFromNext(void) {
             break;
         case MODE_TIME_ATTACK:
             n = 1;
-            ghostRecord = data_0217aa08->mUnk_14[0];
+            ghostRecord = data_0217aa08->mGhostRecords[0];
             if (ghostRecord->mFilled == 1) {
                 gRaceSetup->mFirstGhostRecordFilled = 1;
                 gRaceSetup->mFirstGhostRecordMinute = ghostRecord->mMinute;

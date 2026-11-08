@@ -6,20 +6,20 @@
 
 #pragma thumb on
 
-void func_02056aa4(PackedGrandPrixRecord *a, TimeRecord *b) {
-    if (a->mFilled != 0) {
-        MI_CpuCopy8(a->mName, b->mName, 0x14);
-        b->mCharacterIndex = a->mCharacterIndex;
-        b->mKartIndex = a->mUnk_00_b[1];
-        b->mMinute = a->mMinute;
-        b->mSecond = a->mSecond;
-        b->mMillisecond = a->mMillisecond;
-        b->mUnk_1e = a->mUnk_00_b[3];
-        b->mTotalPoints = a->mUnk_00_b[2];
-        b->mCupRank = a->mUnk_04_b[0];
-        b->mFilled = 1;
+void UnpackGrandPrixRecord(PackedGrandPrixRecord *packedGrandPrixRecord, TimeRecord *timeRecord) {
+    if (packedGrandPrixRecord->mFilled != 0) {
+        MI_CpuCopy8(packedGrandPrixRecord->mName, timeRecord->mName, 0x14);
+        timeRecord->mCharacterIndex = packedGrandPrixRecord->mCharacterIndex;
+        timeRecord->mKartIndex = packedGrandPrixRecord->mUnk_00_b[1];
+        timeRecord->mMinute = packedGrandPrixRecord->mMinute;
+        timeRecord->mSecond = packedGrandPrixRecord->mSecond;
+        timeRecord->mMillisecond = packedGrandPrixRecord->mMillisecond;
+        timeRecord->mUnk_1e = packedGrandPrixRecord->mUnk_00_b[3];
+        timeRecord->mTotalPoints = packedGrandPrixRecord->mUnk_00_b[2];
+        timeRecord->mCupRank = packedGrandPrixRecord->mUnk_04_b[0];
+        timeRecord->mFilled = 1;
     } else {
-        b->mFilled = 0;
+        timeRecord->mFilled = 0;
     }
 }
 

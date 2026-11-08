@@ -5,7 +5,7 @@
 #pragma thumb on
 
 void SetGrandPrixRecord(int cup, int engineClass, TimeRecord *record) {
-    func_02056b30(&data_0217aa08->mGrandPrixRecordBlock->mRecords[engineClass][cup], record);
+    PackGrandPrixRecord(&data_0217aa08->mGrandPrixRecordBlock->mRecords[engineClass][cup], record);
 }
 
 #pragma thumb off

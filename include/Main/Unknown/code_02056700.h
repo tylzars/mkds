@@ -11,16 +11,16 @@ typedef struct UnpackedMissionRecord {
 } UnpackedMissionRecord;
 
 // Two bytes and a halfword that GetKartFinishTime and GetKartLapTime fill.
-typedef struct Unk02056750_c {
-    /* 00 */ u8 mUnk_00;
-    /* 01 */ u8 mUnk_01;
-    /* 02 */ u16 mUnk_02;
-} Unk02056750_c;
+typedef struct KartTime {
+    /* 00 */ u8 mMinute;
+    /* 01 */ u8 mSecond;
+    /* 02 */ u16 mMillisecond;
+} KartTime;
 
-void func_02056700(u32 a);
-void func_02056750(s32 a, u16 b);
-void func_020569a8(void *a);
-s32 func_020569dc(s32 a, s32 b, UnpackedMissionRecord *c);
-void func_02056a04(s32 a, s32 b, UnpackedMissionRecord *c);
-void func_02056a2c(MissionRecord *a, UnpackedMissionRecord *b);
-void func_02056a4c(MissionRecord *a, UnpackedMissionRecord *b);
+void ReadCourseGhostRecord(u32 courseId);
+void FillAndWriteCourseGhostRecord(s32 courseId, u16 entryIndex);
+void SetEmblemRecordAndWriteBackup(void *emblemData);
+s32 GetMissionRecord(s32 row, s32 column, UnpackedMissionRecord *unpackedMissionRecord);
+void SetMissionRecord(s32 row, s32 column, UnpackedMissionRecord *unpackedMissionRecord);
+void UnpackMissionRecord(MissionRecord *missionRecord, UnpackedMissionRecord *unpackedMissionRecord);
+void PackMissionRecord(MissionRecord *missionRecord, UnpackedMissionRecord *unpackedMissionRecord);

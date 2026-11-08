@@ -4,4 +4,4 @@
 
 typedef struct TimeRecord TimeRecord;
 
-void func_02056c6c(u32 a, int b, TimeRecord *c);
+void SetCourseTimeRecord(u32 courseId, int recordIndex, TimeRecord *timeRecord);

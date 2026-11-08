@@ -409,7 +409,7 @@ void RegisterKartKeysAndStart(void) {
 
     func_02120610();
     MI_CpuFill8(gWiFiSession->mPlayerRecords, 0, 0x910);
-    func_02056464((Unk0217aa00_45c *) &gWiFiSession->mPlayerRecords[0].mName);
+    FillPlayerRecord((Unk0217aa00_45c *) &gWiFiSession->mPlayerRecords[0].mName);
     gWiFiSession->mKeys[0].mValue = gWiFiSession->mPlayerRecords[0].mRegion;
     gWiFiSession->mKeys[3].mValue = gWiFiSession->mPlayerRecords[0].mElo;
     __memcpy(gWiFiSession->mKeys[2].mName, "kart_filter", 12);
@@ -572,7 +572,7 @@ void KartKeysStartCallback(u32 a, s32 b) {
             i++;
         }
         MI_CpuFill8(session->mPlayerRecords, 0, 0x910);
-        func_02056464((Unk0217aa00_45c *) &gWiFiSession->mPlayerRecords[func_ov000_0219bb50()].mName);
+        FillPlayerRecord((Unk0217aa00_45c *) &gWiFiSession->mPlayerRecords[func_ov000_0219bb50()].mName);
         SetupWiFiSession(0);
         gWiFiSession->mStartStatus = 3;
     } else {

@@ -5,11 +5,11 @@
 
 #pragma thumb on
 
-void func_02056c6c(u32 a, int b, TimeRecord *c) {
-    int v1;
-    v1 = FindCupCourseIndex(a);
-    if (v1 != -1) {
-        func_02056cac(&data_0217aa08->mCourseTimeRecordBlock->mRecords[b][v1], c);
+void SetCourseTimeRecord(u32 courseId, int recordIndex, TimeRecord *timeRecord) {
+    int cupCourseIndex;
+    cupCourseIndex = FindCupCourseIndex(courseId);
+    if (cupCourseIndex != -1) {
+        PackCourseTimeRecord(&data_0217aa08->mCourseTimeRecordBlock->mRecords[recordIndex][cupCourseIndex], timeRecord);
     }
 }
 

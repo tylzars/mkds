@@ -14,81 +14,81 @@
 
 #pragma thumb on
 
-void func_02056670(u32 a) {
-    GhostRecord *p;
+void ReadSlotGhostRecord(u32 slotIndex) {
+    GhostRecord *ghostRecord;
 
-    p = data_0217aa08->mUnk_14[1];
-    if (func_020573c8(a) == 0) {
-        p->mFilled = 0;
+    ghostRecord = data_0217aa08->mGhostRecords[1];
+    if (func_020573c8(slotIndex) == 0) {
+        ghostRecord->mFilled = 0;
     } else {
-        func_020578fc(a, p);
+        func_020578fc(slotIndex, ghostRecord);
     }
 }
 
-s32 func_0205660c(GhostRecord *a, s32 b, MinuteSecondMillisecondTime *c) {
-    u8 i;
-    u32 v;
+s32 GetGhostLapTime(GhostRecord *ghostRecord, s32 lapNumber, MinuteSecondMillisecondTime *lapTime) {
+    u8 byteOffset;
+    u32 packedTime;
 
-    i = (b - 1) * 3;
-    v = 0;
-    if (a->mFilled == 0) {
-        return v;
+    byteOffset = (lapNumber - 1) * 3;
+    packedTime = 0;
+    if (ghostRecord->mFilled == 0) {
+        return packedTime;
     }
-    v |= a->mLapTimes[i] << 16;
-    v |= a->mLapTimes[i + 1] << 8;
-    v |= a->mLapTimes[i + 2];
-    c->mMinute = (v >> 17) & 0x7f;
-    c->mSecond = (v >> 10) & 0x7f;
-    c->mMillisecond = v & 0x3ff;
+    packedTime |= ghostRecord->mLapTimes[byteOffset] << 16;
+    packedTime |= ghostRecord->mLapTimes[byteOffset + 1] << 8;
+    packedTime |= ghostRecord->mLapTimes[byteOffset + 2];
+    lapTime->mMinute = (packedTime >> 17) & 0x7f;
+    lapTime->mSecond = (packedTime >> 10) & 0x7f;
+    lapTime->mMillisecond = packedTime & 0x3ff;
     return 1;
 }
 
-BOOL func_020565e4(GhostRecord *a, MinuteSecondMillisecondTime *b) {
-    if (a->mFilled == 0) {
+BOOL GetGhostFinishTime(GhostRecord *ghostRecord, MinuteSecondMillisecondTime *finishTime) {
+    if (ghostRecord->mFilled == 0) {
         return FALSE;
     }
-    b->mMinute = a->mMinute;
-    b->mSecond = a->mSecond;
-    b->mMillisecond = a->mMillisecond;
+    finishTime->mMinute = ghostRecord->mMinute;
+    finishTime->mSecond = ghostRecord->mSecond;
+    finishTime->mMillisecond = ghostRecord->mMillisecond;
     return TRUE;
 }
 
-s32 func_020565ac(s32 a, s32 b, MinuteSecondMillisecondTime *c) {
-    s32 r;
+s32 GetGhostLapTimeByIndex(s32 ghostRecordIndex, s32 lapNumber, MinuteSecondMillisecondTime *lapTime) {
+    s32 result;
 
-    r = 0;
-    switch (a) {
+    result = 0;
+    switch (ghostRecordIndex) {
         case 0:
-            r = func_0205660c(data_0217aa08->mUnk_14[0], b, c);
+            result = GetGhostLapTime(data_0217aa08->mGhostRecords[0], lapNumber, lapTime);
             break;
         case 1:
-            r = func_0205660c(data_0217aa08->mUnk_14[1], b, c);
+            result = GetGhostLapTime(data_0217aa08->mGhostRecords[1], lapNumber, lapTime);
             break;
         case 2:
             break;
     }
-    return r;
+    return result;
 }
 
-s32 func_02056574(s32 a, MinuteSecondMillisecondTime *b) {
-    s32 r;
+s32 GetGhostFinishTimeByIndex(s32 ghostRecordIndex, MinuteSecondMillisecondTime *finishTime) {
+    s32 result;
 
-    r = 0;
-    switch (a) {
+    result = 0;
+    switch (ghostRecordIndex) {
         case 0:
-            r = func_020565e4(data_0217aa08->mUnk_14[0], b);
+            result = GetGhostFinishTime(data_0217aa08->mGhostRecords[0], finishTime);
             break;
         case 1:
-            r = func_020565e4(data_0217aa08->mUnk_14[1], b);
+            result = GetGhostFinishTime(data_0217aa08->mGhostRecords[1], finishTime);
             break;
         case 2:
             break;
     }
-    return r;
+    return result;
 }
 
-void func_02056464(Unk0217aa00_45c *a) {
-    MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, a->mUnk_000, 0x14);
+void FillPlayerRecord(Unk0217aa00_45c *a) {
+    MI_CpuCopy8(data_0217aa08->mUnk_00->mPlayerName, a->mUnk_000, 0x14);
     if (data_0217aa08->mEmblemRecord->mFilled != 0 && data_0217aa08->mUnk_00->mUnk_31_3 == 0) {
         a->mUnk_214 = 1;
         MI_CpuCopy8(data_0217aa08->mEmblemRecord->mEmblemData, &a->mUnk_014, 0x200);
@@ -99,12 +99,13 @@ void func_02056464(Unk0217aa00_45c *a) {
     MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_20, a->mBits, 4);
     a->mUnk_228_0 = data_021759d0->mUnk_00;
     a->mUnk_228_4 = data_021759d0->mLanguageIndex;
-    a->mUnk_216 = data_0217aa08->mUnk_00->mUnk_24;
+    a->mUnk_216 = data_0217aa08->mUnk_00->mElo;
     a->mUnk_229 = func_02056208();
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         MI_CpuFill8(&a->mUnk_218, 0, 0xc);
     } else {
-        DWC_CreateExchangeToken((DWCAccUserData *) data_0217aa08->mUnk_00->mUnk_4c, (DWCAccFriendData *) &a->mUnk_218);
+        DWC_CreateExchangeToken((DWCAccUserData *) data_0217aa08->mUnk_00->mUserData,
+                                (DWCAccFriendData *) &a->mUnk_218);
     }
 }
 

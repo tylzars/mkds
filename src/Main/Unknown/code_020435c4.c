@@ -129,41 +129,41 @@ void func_02044380(MissionFileRow *missionFileRow, u32 tableRow, u32 tableColumn
 }
 
 void func_020442d0(u32 courseId) {
-    data_0217aa08->mUnk_14[1]->mFilled = 0;
-    data_0217aa08->mUnk_14[2]->mFilled = 0;
-    data_0217aa08->mUnk_14[0]->mFilled = 0;
-    func_02056700(courseId);
+    data_0217aa08->mGhostRecords[1]->mFilled = 0;
+    data_0217aa08->mGhostRecords[2]->mFilled = 0;
+    data_0217aa08->mGhostRecords[0]->mFilled = 0;
+    ReadCourseGhostRecord(courseId);
     func_02057d9c();
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     if (gBackupAccess->mErrorCode != NULL) {
-        data_0217aa08->mUnk_14[0]->mFilled = 0;
+        data_0217aa08->mGhostRecords[0]->mFilled = 0;
     }
 }
 
 void func_0204419c(u32 courseId, u32 b) {
-    data_0217aa08->mUnk_14[1]->mFilled = 0;
-    data_0217aa08->mUnk_14[2]->mFilled = 0;
-    data_0217aa08->mUnk_14[0]->mFilled = 0;
-    data_0217aa08->mUnk_14[1]->mFilled = 0;
-    data_0217aa08->mUnk_14[2]->mFilled = 0;
-    data_0217aa08->mUnk_14[0]->mFilled = 0;
-    func_02056700(courseId);
+    data_0217aa08->mGhostRecords[1]->mFilled = 0;
+    data_0217aa08->mGhostRecords[2]->mFilled = 0;
+    data_0217aa08->mGhostRecords[0]->mFilled = 0;
+    data_0217aa08->mGhostRecords[1]->mFilled = 0;
+    data_0217aa08->mGhostRecords[2]->mFilled = 0;
+    data_0217aa08->mGhostRecords[0]->mFilled = 0;
+    ReadCourseGhostRecord(courseId);
     func_02057d9c();
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     if (gBackupAccess->mErrorCode != NULL) {
-        data_0217aa08->mUnk_14[0]->mFilled = 0;
+        data_0217aa08->mGhostRecords[0]->mFilled = 0;
     }
-    func_02056670(b);
+    ReadSlotGhostRecord(b);
     func_02057d9c();
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     if (gBackupAccess->mErrorCode != NULL) {
-        data_0217aa08->mUnk_14[1]->mFilled = 0;
+        data_0217aa08->mGhostRecords[1]->mFilled = 0;
     }
 }
 
@@ -172,19 +172,19 @@ void func_02044060(u32 courseId) {
     char path[0x80];
 
     ghostRecord = NULL;
-    data_0217aa08->mUnk_14[1]->mFilled = 0;
-    data_0217aa08->mUnk_14[2]->mFilled = 0;
-    data_0217aa08->mUnk_14[0]->mFilled = 0;
-    data_0217aa08->mUnk_14[1]->mFilled = 0;
-    data_0217aa08->mUnk_14[2]->mFilled = 0;
-    data_0217aa08->mUnk_14[0]->mFilled = 0;
-    func_02056700(courseId);
+    data_0217aa08->mGhostRecords[1]->mFilled = 0;
+    data_0217aa08->mGhostRecords[2]->mFilled = 0;
+    data_0217aa08->mGhostRecords[0]->mFilled = 0;
+    data_0217aa08->mGhostRecords[1]->mFilled = 0;
+    data_0217aa08->mGhostRecords[2]->mFilled = 0;
+    data_0217aa08->mGhostRecords[0]->mFilled = 0;
+    ReadCourseGhostRecord(courseId);
     func_02057d9c();
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     if (gBackupAccess->mErrorCode != NULL) {
-        data_0217aa08->mUnk_14[0]->mFilled = 0;
+        data_0217aa08->mGhostRecords[0]->mFilled = 0;
     }
     if (TryFormatGhostPath(courseId, path, 0x80) != FALSE) {
         ghostRecord = LoadGhostRecordFile(path);
@@ -197,16 +197,16 @@ void func_02044060(u32 courseId) {
 }
 
 void func_02043fb0(u32 courseId) {
-    data_0217aa08->mUnk_14[1]->mFilled = 0;
-    data_0217aa08->mUnk_14[2]->mFilled = 0;
-    data_0217aa08->mUnk_14[0]->mFilled = 0;
-    func_02056700(courseId);
+    data_0217aa08->mGhostRecords[1]->mFilled = 0;
+    data_0217aa08->mGhostRecords[2]->mFilled = 0;
+    data_0217aa08->mGhostRecords[0]->mFilled = 0;
+    ReadCourseGhostRecord(courseId);
     func_02057d9c();
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     if (gBackupAccess->mErrorCode != NULL) {
-        data_0217aa08->mUnk_14[0]->mFilled = 0;
+        data_0217aa08->mGhostRecords[0]->mFilled = 0;
     }
 }
 

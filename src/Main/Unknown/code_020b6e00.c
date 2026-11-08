@@ -672,7 +672,7 @@ void func_020b7fd8(s32 a, s32 *b, s32 *c) {
 void func_020b7ee8(s32 a, s32 *b, s32 *c) {
     TimeRecord t;
 
-    func_02056bc0(gRaceSetup->mCourseId, a, &t);
+    GetCourseTimeRecord(gRaceSetup->mCourseId, a, &t);
     if (t.mFilled != 0) {
         *b = t.mCharacterIndex;
     } else {

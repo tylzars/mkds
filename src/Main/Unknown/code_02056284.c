@@ -6,9 +6,9 @@
 
 GhostRecord *LoadGhostRecordFile(const char *path) {
     int result;
-    result = ReadWholeFile(path, data_0217aa08->mUnk_14[2], (0x00001000u));
+    result = ReadWholeFile(path, data_0217aa08->mGhostRecords[2], (0x00001000u));
     if (result != 0) {
-        return data_0217aa08->mUnk_14[2];
+        return data_0217aa08->mGhostRecords[2];
     }
     return NULL;
 }

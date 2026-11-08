@@ -312,7 +312,7 @@ s32 func_02034370(Unk02034370 *sceneNumbers) {
             } else {
                 data_02174e64->mGhostSlot = FindUnfilledGhostSlot();
                 ((Unk0202ddd8 *) GetSlotGhostBuffer())->mUnk_08_0 = 1;
-                func_020566a8((u8) data_02174e64->mGhostSlot, GetSlotGhostBuffer());
+                WriteSlotGhostRecord((u8) data_02174e64->mGhostSlot, GetSlotGhostBuffer());
                 NNS_SndArcSetCurrent(&data_0217c868);
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 10);
                 NNS_SndArcSetCurrent(&data_0217d0a0);
@@ -331,7 +331,7 @@ s32 func_02034370(Unk02034370 *sceneNumbers) {
                     data_02174e64->mGhostSlot = FindSlotGhostForCourse(
                         data_02174e64->mGhostInfoEntries[data_02174e64->mSelectedIndex].mInfo.mUnk_18[2]);
                     ((Unk0202ddd8 *) GetSlotGhostBuffer())->mUnk_08_0 = 1;
-                    func_020566a8((u8) data_02174e64->mGhostSlot, GetSlotGhostBuffer());
+                    WriteSlotGhostRecord((u8) data_02174e64->mGhostSlot, GetSlotGhostBuffer());
                     data_02174e64->mState = 11;
                 } else {
                     data_02174e64->mState = 10;

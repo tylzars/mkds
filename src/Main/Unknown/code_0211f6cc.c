@@ -113,7 +113,7 @@ void SetupWiFiSessionLogin(void) {
     MI_CpuFill8(&gWiFiSession->mUserData, 0, 0x350);
     MI_CpuFill8(&gWiFiSession->mConnection, 0, 0xe24);
     if (func_02061290() != 0) {
-        MI_CpuCopy8(&data_0217aa08->mUnk_00->mUnk_4c, &gWiFiSession->mUserData, 0x40);
+        MI_CpuCopy8(&data_0217aa08->mUnk_00->mUserData, &gWiFiSession->mUserData, 0x40);
     } else {
         DWC_CreateUserData((DWCAccUserData *) &gWiFiSession->mUserData, 0x414d434a);
     }
@@ -191,7 +191,7 @@ void WiFiSessionLoginCallback(s32 result) {
     if (result == 0) {
         if (DWCi_Acc_IsDirty((DWCAccUserData *) &gWiFiSession->mUserData) != 0) {
             DWCi_Acc_ClearDirty((DWCAccUserData *) &gWiFiSession->mUserData);
-            MI_CpuCopy8(&gWiFiSession->mUserData, &data_0217aa08->mUnk_00->mUnk_4c, 0x40);
+            MI_CpuCopy8(&gWiFiSession->mUserData, &data_0217aa08->mUnk_00->mUserData, 0x40);
             func_02056d40();
         }
         gWiFiSession->mLogin.mStep = 3;

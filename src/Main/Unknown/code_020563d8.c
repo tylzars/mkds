@@ -4,7 +4,7 @@
 
 #pragma thumb on
 
-void func_020563d8(void) {
+void WriteBackupMissionRecords(void) {
     WriteBackupMissionRecordBlock(data_0217aa08->mMissionRecordBlock);
 }
 

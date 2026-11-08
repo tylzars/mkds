@@ -21,117 +21,118 @@
 
 #pragma thumb on
 
-void func_02056a4c(MissionRecord *a, UnpackedMissionRecord *b) {
-    if (b->mFilled != 0) {
-        a->mFilled = 1;
-        a->mUnk_00_1 = b->mValue;
+void PackMissionRecord(MissionRecord *missionRecord, UnpackedMissionRecord *unpackedMissionRecord) {
+    if (unpackedMissionRecord->mFilled != 0) {
+        missionRecord->mFilled = 1;
+        missionRecord->mUnk_00_1 = unpackedMissionRecord->mValue;
     } else {
-        a->mFilled = 0;
+        missionRecord->mFilled = 0;
     }
 }
 
-void func_02056a2c(MissionRecord *a, UnpackedMissionRecord *b) {
-    if (a->mFilled != 0) {
-        b->mFilled = 1;
-        b->mValue = a->mUnk_00_1;
+void UnpackMissionRecord(MissionRecord *missionRecord, UnpackedMissionRecord *unpackedMissionRecord) {
+    if (missionRecord->mFilled != 0) {
+        unpackedMissionRecord->mFilled = 1;
+        unpackedMissionRecord->mValue = missionRecord->mUnk_00_1;
     } else {
-        b->mFilled = 0;
+        unpackedMissionRecord->mFilled = 0;
     }
 }
 
-void func_02056a04(s32 a, s32 b, UnpackedMissionRecord *c) {
-    func_02056a4c(&data_0217aa08->mMissionRecordBlock->mRecords[(a - 1) * 9 + b - 1], c);
+void SetMissionRecord(s32 row, s32 column, UnpackedMissionRecord *unpackedMissionRecord) {
+    PackMissionRecord(&data_0217aa08->mMissionRecordBlock->mRecords[(row - 1) * 9 + column - 1], unpackedMissionRecord);
 }
 
-s32 func_020569dc(s32 a, s32 b, UnpackedMissionRecord *c) {
-    func_02056a2c(&data_0217aa08->mMissionRecordBlock->mRecords[(a - 1) * 9 + b - 1], c);
+s32 GetMissionRecord(s32 row, s32 column, UnpackedMissionRecord *unpackedMissionRecord) {
+    UnpackMissionRecord(&data_0217aa08->mMissionRecordBlock->mRecords[(row - 1) * 9 + column - 1],
+                        unpackedMissionRecord);
     return 1;
 }
 
-void func_020569a8(void *a) {
-    MI_CpuCopy8(a, data_0217aa08->mEmblemRecord->mEmblemData, 0x200);
+void SetEmblemRecordAndWriteBackup(void *emblemData) {
+    MI_CpuCopy8(emblemData, data_0217aa08->mEmblemRecord->mEmblemData, 0x200);
     data_0217aa08->mEmblemRecord->mFilled = 1;
-    func_02056430();
+    WriteBackupEmblem();
 }
 
-void func_02056750(s32 a, u16 b) {
-    GhostRecord *p;
-    s32 k;
-    s32 n;
-    u8 m;
-    u8 i;
-    u8 j;
-    s32 t[4];
-    Unk02056750_c v;
-    u8 v1[0xf];
-    u32 w;
+void FillAndWriteCourseGhostRecord(s32 courseId, u16 entryIndex) {
+    GhostRecord *ghostRecord;
+    s32 playerIndex;
+    s32 cupCourseIndex;
+    u8 courseIndexByte;
+    u8 lapNumber;
+    u8 byteOffset;
+    s32 clockDate[4];
+    KartTime kartTime;
+    u8 lapBytes[0xf];
+    u32 tempValue;
 
-    n = FindCupCourseIndex();
-    k = gRaceSetup->mCurrentEntries[b].mPlayer.mIndex;
-    p = data_0217aa08->mUnk_14[0];
-    if (n == -1) {
+    cupCourseIndex = FindCupCourseIndex();
+    playerIndex = gRaceSetup->mCurrentEntries[entryIndex].mPlayer.mIndex;
+    ghostRecord = data_0217aa08->mGhostRecords[0];
+    if (cupCourseIndex == -1) {
         return;
     }
-    MI_CpuFill8(p, 0, 0xe00);
-    GetClockDateOrDefault(t);
-    p->mYear = t[0];
-    p->mMonth = t[1];
-    p->mDay = t[2];
-    w = gRaceSetup->mCurrentEntries[b].mCharacterIndex;
-    p->mCharacterIndex = (u8) w;
-    w = gRaceSetup->mCurrentEntries[b].mKartIndex;
-    p->mKartIndex = (u8) w;
-    w = gRaceSetup->mCourseId;
-    p->mCourseId = (u8) w;
-    p->mFilled = 1;
-    p->mUnk_08_1 = 0;
-    p->mUnk_08_2 = data_021759d0->mUnk_00;
-    p->mUnk_08_4 = 0;
-    p->mUnk_2f_0 = func_02056208();
-    GetKartFinishTime(b, &v.mUnk_00, &v.mUnk_01, &v.mUnk_02);
-    p->mMinute = v.mUnk_00;
-    p->mSecond = v.mUnk_01;
-    p->mMillisecond = v.mUnk_02;
-    MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, p->mName, 0x14);
-    MI_CpuCopy8(data_02175628[k].mUnk_28, p->mUnk_30, 0xdcc);
-    MI_CpuFill8(v1, 0, 0xf);
-    for (i = 1; i <= GetLapCount(); i++) {
-        j = (i - 1) * 3;
-        GetKartLapTime(b, i, &v.mUnk_00, &v.mUnk_01, &v.mUnk_02);
-        w = 0;
-        w |= (v.mUnk_00 & 0x7f) << 17;
-        w |= (v.mUnk_01 & 0x7f) << 10;
-        w |= v.mUnk_02 & 0x3ff;
-        v1[j] = w >> 16;
-        v1[j + 1] = w >> 8;
-        v1[j + 2] = w;
+    MI_CpuFill8(ghostRecord, 0, 0xe00);
+    GetClockDateOrDefault(clockDate);
+    ghostRecord->mYear = clockDate[0];
+    ghostRecord->mMonth = clockDate[1];
+    ghostRecord->mDay = clockDate[2];
+    tempValue = gRaceSetup->mCurrentEntries[entryIndex].mCharacterIndex;
+    ghostRecord->mCharacterIndex = (u8) tempValue;
+    tempValue = gRaceSetup->mCurrentEntries[entryIndex].mKartIndex;
+    ghostRecord->mKartIndex = (u8) tempValue;
+    tempValue = gRaceSetup->mCourseId;
+    ghostRecord->mCourseId = (u8) tempValue;
+    ghostRecord->mFilled = 1;
+    ghostRecord->mUnk_08_1 = 0;
+    ghostRecord->mUnk_08_2 = data_021759d0->mUnk_00;
+    ghostRecord->mUnk_08_4 = 0;
+    ghostRecord->mUnk_2f_0 = func_02056208();
+    GetKartFinishTime(entryIndex, &kartTime.mMinute, &kartTime.mSecond, &kartTime.mMillisecond);
+    ghostRecord->mMinute = kartTime.mMinute;
+    ghostRecord->mSecond = kartTime.mSecond;
+    ghostRecord->mMillisecond = kartTime.mMillisecond;
+    MI_CpuCopy8(data_0217aa08->mUnk_00->mPlayerName, ghostRecord->mName, 0x14);
+    MI_CpuCopy8(data_02175628[playerIndex].mUnk_28, ghostRecord->mUnk_30, 0xdcc);
+    MI_CpuFill8(lapBytes, 0, 0xf);
+    for (lapNumber = 1; lapNumber <= GetLapCount(); lapNumber++) {
+        byteOffset = (lapNumber - 1) * 3;
+        GetKartLapTime(entryIndex, lapNumber, &kartTime.mMinute, &kartTime.mSecond, &kartTime.mMillisecond);
+        tempValue = 0;
+        tempValue |= (kartTime.mMinute & 0x7f) << 17;
+        tempValue |= (kartTime.mSecond & 0x7f) << 10;
+        tempValue |= kartTime.mMillisecond & 0x3ff;
+        lapBytes[byteOffset] = tempValue >> 16;
+        lapBytes[byteOffset + 1] = tempValue >> 8;
+        lapBytes[byteOffset + 2] = tempValue;
     }
-    MI_CpuCopy8(v1, p->mLapTimes, 0xf);
-    m = n;
-    func_020579d0(m, p);
-    if (func_020573f8(m) == 0) {
-        func_0205746c(m, data_0217aa08->mUnk_00->mUnk_26, 4);
+    MI_CpuCopy8(lapBytes, ghostRecord->mLapTimes, 0xf);
+    courseIndexByte = cupCourseIndex;
+    func_020579d0(courseIndexByte, ghostRecord);
+    if (func_020573f8(courseIndexByte) == 0) {
+        func_0205746c(courseIndexByte, data_0217aa08->mUnk_00->mCourseGhostBits, 4);
         func_020574a0();
     }
 }
 
-void func_02056700(u32 a) {
-    s32 n;
-    BOOL f;
-    GhostRecord *p;
+void ReadCourseGhostRecord(u32 courseId) {
+    s32 cupCourseIndex;
+    BOOL noGhost;
+    GhostRecord *ghostRecord;
 
-    f = FALSE;
-    n = FindCupCourseIndex(a);
-    p = data_0217aa08->mUnk_14[0];
-    if (n == -1) {
-        f = TRUE;
-    } else if (func_020573f8(n) == 0) {
-        f = TRUE;
+    noGhost = FALSE;
+    cupCourseIndex = FindCupCourseIndex(courseId);
+    ghostRecord = data_0217aa08->mGhostRecords[0];
+    if (cupCourseIndex == -1) {
+        noGhost = TRUE;
+    } else if (func_020573f8(cupCourseIndex) == 0) {
+        noGhost = TRUE;
     }
-    if (f != FALSE) {
-        p->mFilled = 0;
+    if (noGhost != FALSE) {
+        ghostRecord->mFilled = 0;
     } else {
-        func_0205798c(n, p);
+        func_0205798c(cupCourseIndex, ghostRecord);
     }
 }
 

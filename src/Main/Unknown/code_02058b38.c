@@ -144,7 +144,7 @@ void func_02058c74(void) {
     u16 v;
 
     v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
-    func_02056464(&data_0217aa00->mUnk_045c[v]);
+    FillPlayerRecord(&data_0217aa00->mUnk_045c[v]);
 }
 
 void func_02058c10(void) {

@@ -61,14 +61,14 @@ void func_020612b0(void) {
 }
 
 s32 func_02061290(void) {
-    return DWC_CheckValidConsole((DWCAccUserData *) data_0217aa08->mUnk_00->mUnk_4c);
+    return DWC_CheckValidConsole((DWCAccUserData *) data_0217aa08->mUnk_00->mUserData);
 }
 
 s32 func_02061250(void) {
     u64 a;
     s32 b;
 
-    a = DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mUnk_00->mUnk_4c);
+    a = DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mUnk_00->mUserData);
     b = 0;
     if (a != b) {
         b = 1;
@@ -79,7 +79,7 @@ s32 func_02061250(void) {
 void func_02061220(u32 a) {
     u64 b;
 
-    b = DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mUnk_00->mUnk_4c);
+    b = DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mUnk_00->mUserData);
     FormatFriendKey(b, b >> 32, a);
 }
 
@@ -95,7 +95,7 @@ s32 func_02061104(const void *a) {
     if (DWC_Acc_CheckFriendKey(d, 0x414d434a) == 0) {
         return 1;
     }
-    if (d == DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mUnk_00->mUnk_4c)) {
+    if (d == DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mUnk_00->mUserData)) {
         return 1;
     }
     InitFriendDataFromFriendKey(b, d, d >> 32);

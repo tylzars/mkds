@@ -6,17 +6,17 @@
 
 #pragma thumb on
 
-void func_02056cac(PackedCourseTimeRecord *a, TimeRecord *b) {
-    if (b->mFilled != 0) {
-        MI_CpuCopy8(b->mName, a->mName, 0x14);
-        a->mFilled = 1;
-        a->mCharacterIndex = b->mCharacterIndex;
-        a->mKartIndex = b->mKartIndex;
-        a->mMinute = b->mMinute;
-        a->mSecond = b->mSecond;
-        a->mMillisecond = b->mMillisecond;
+void PackCourseTimeRecord(PackedCourseTimeRecord *packedCourseTimeRecord, TimeRecord *timeRecord) {
+    if (timeRecord->mFilled != 0) {
+        MI_CpuCopy8(timeRecord->mName, packedCourseTimeRecord->mName, 0x14);
+        packedCourseTimeRecord->mFilled = 1;
+        packedCourseTimeRecord->mCharacterIndex = timeRecord->mCharacterIndex;
+        packedCourseTimeRecord->mKartIndex = timeRecord->mKartIndex;
+        packedCourseTimeRecord->mMinute = timeRecord->mMinute;
+        packedCourseTimeRecord->mSecond = timeRecord->mSecond;
+        packedCourseTimeRecord->mMillisecond = timeRecord->mMillisecond;
     } else {
-        MI_CpuFill8(a, 0, 0x1c);
+        MI_CpuFill8(packedCourseTimeRecord, 0, 0x1c);
     }
 }
 

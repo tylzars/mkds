@@ -154,7 +154,7 @@ void func_0204e568(void) {
     b.mUnk_01 = 10;
     b.mUnk_00_0 = data_021759d0->mUnk_40;
     b.mUnk_00_4 = 8;
-    MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, b.mUnk_02, 0x14);
+    MI_CpuCopy8(data_0217aa08->mUnk_00->mPlayerName, b.mUnk_02, 0x14);
     data_0217aa00->mUnk_1690 = func_02052c5c(1);
     if (InitWirelessWork(data_0217aa00->mUnk_165c, (Unk02009ff4 *) &b, 0x25, data_0217aa00->mUnk_1690, 2) != 0) {
         func_02050e60(5);
@@ -178,7 +178,7 @@ void SetupScanConnect(void) {
     b.mUnk_00_0 = data_021759d0->mUnk_40;
     b.mUnk_01 = 10;
     b.mUnk_00_4 = 9;
-    MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, b.mUnk_02, 0x14);
+    MI_CpuCopy8(data_0217aa08->mUnk_00->mPlayerName, b.mUnk_02, 0x14);
     data_0217aa00->mScanEntryIndex = -1;
     InitScanConnectWork(data_0217aa00->mUnk_165c, &b);
     SetScanConnectStateCallback(ScanConnectStateCallback);

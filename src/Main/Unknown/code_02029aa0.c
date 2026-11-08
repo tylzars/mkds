@@ -112,7 +112,7 @@ void InitResultsGp(void *heap, void *firstOamList, void *secondOamList) {
     LoadCellFileSet(mainFileSet, gResultsGpMNcgrName, gResultsGpMNcerName, gResultsGpMONclrName, gResultsGpMBnclName,
                     gResultsGpMBnllName, NULL, FindSceneFile);
     func_02025a50(0, heap, mainFileSet);
-    MIi_CpuCopy16(&data_0217aa08->mUnk_00->mUnk_0c, playerName, 0x14);
+    MIi_CpuCopy16(&data_0217aa08->mUnk_00->mPlayerName, playerName, 0x14);
     playerName[10] = 0;
     InitLabelCanvas(heap, 0, mainFileSet->mLabelLayout, 0x82, 0xd, 0x14, mainFileSet->mCells, mainFileSet->mCellLayout,
                     mainFileSet->mCellTable, mainObjSize);

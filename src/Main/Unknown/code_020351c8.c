@@ -346,7 +346,7 @@ s32 func_0203551c(u16 *sceneNumbers) {
             if (GetTxtSystemDone() != 0) {
                 if (GetTxtSystemSelectedIndex() == 0) {
                     ((Unk0202ddd8 *) GetSlotGhostBuffer())->mUnk_08_0 = 1;
-                    func_020566a8((u8) data_02174e68->mSelectedIndex, GetSlotGhostBuffer());
+                    WriteSlotGhostRecord((u8) data_02174e68->mSelectedIndex, GetSlotGhostBuffer());
                     data_02174e68->mState = 3;
                 } else {
                     RequestSelectReturnState1();

@@ -522,7 +522,7 @@ void func_0203147c(void *parentHeap, void *mainOam, void *subOam) {
 
     InitMultiSelectMember(parentHeap, mainOam, subOam);
     subFileSet = &gMultiSelectMember->mCellFileSets[1];
-    MIi_CpuCopy16(data_0217aa08->mUnk_00->mUnk_0c, nameBuffer, 0x14);
+    MIi_CpuCopy16(data_0217aa08->mUnk_00->mPlayerName, nameBuffer, 0x14);
     nameBuffer[10] = 0;
     func_0212426c(1, data_usa_02153d7c[0].mLabelIndex, subFileSet->mUnk_14, nameBuffer, subFileSet->mUnk_0c,
                   subFileSet->mUnk_18);

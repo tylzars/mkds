@@ -44,7 +44,7 @@ void func_020b6c74(u32 rowIndex, u16 *nameOut, u32 copyFullLength) {
             }
         }
     } else {
-        if (func_02056bc0(gRaceSetup->mCourseId, rowIndex - 1, &record) != 0) {
+        if (GetCourseTimeRecord(gRaceSetup->mCourseId, rowIndex - 1, &record) != 0) {
             name = record.mName;
             if (copyFullLength != 0) {
                 length = 10;

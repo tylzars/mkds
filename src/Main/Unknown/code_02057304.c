@@ -33,15 +33,15 @@ void func_02057410(s32 a, u8 *b, s32 c) {
 }
 
 s32 func_020573f8(u8 a) {
-    return func_0205743c(a, data_0217aa08->mUnk_00->mUnk_26, 4);
+    return func_0205743c(a, data_0217aa08->mUnk_00->mCourseGhostBits, 4);
 }
 
 void func_020573e0(s32 a) {
-    func_02057410(a, data_0217aa08->mUnk_00->mUnk_26, 4);
+    func_02057410(a, data_0217aa08->mUnk_00->mCourseGhostBits, 4);
 }
 
 s32 func_020573c8(u32 a) {
-    return func_0205743c(a, data_0217aa08->mUnk_00->mUnk_2a, 2);
+    return func_0205743c(a, data_0217aa08->mUnk_00->mSlotGhostBits, 2);
 }
 
 void func_02057304(s32 a) {
@@ -53,15 +53,15 @@ void func_02057304(s32 a) {
         n = data_021759d0->mOwnerCharCount;
         p = data_021759d0->mOwnerText;
         data_0217aa08->mUnk_00->mUnk_31_0 = 1;
-        MI_CpuFill8(data_0217aa08->mUnk_00->mUnk_0c, 0, 0x14);
-        MI_CpuCopy8(p, data_0217aa08->mUnk_00->mUnk_0c, ((u32) n << 17) >> 16);
+        MI_CpuFill8(data_0217aa08->mUnk_00->mPlayerName, 0, 0x14);
+        MI_CpuCopy8(p, data_0217aa08->mUnk_00->mPlayerName, ((u32) n << 17) >> 16);
     }
     data_0217aa08->mUnk_00->mSoundMode = SOUND_MODE_SURROUND;
     data_0217aa08->mUnk_00->mUnk_31_3 = 0;
     data_0217aa08->mUnk_00->mLocateFriendOff = 0;
-    data_0217aa08->mUnk_00->mUnk_24 = 0x1388;
+    data_0217aa08->mUnk_00->mElo = 0x1388;
     func_0209119c();
-    DWC_CreateUserData((DWCAccUserData *) data_0217aa08->mUnk_00->mUnk_4c, 0x414d434a);
+    DWC_CreateUserData((DWCAccUserData *) data_0217aa08->mUnk_00->mUserData, 0x414d434a);
 }
 
 #pragma thumb off

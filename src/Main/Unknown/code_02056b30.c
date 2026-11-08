@@ -7,49 +7,50 @@
 
 #pragma thumb on
 
-void func_02056c0c(PackedCourseTimeRecord *a, TimeRecord *b) {
-    if (a->mFilled != 0) {
-        MI_CpuCopy8(a->mName, b->mName, 0x14);
-        b->mCharacterIndex = a->mCharacterIndex;
-        b->mKartIndex = a->mKartIndex;
-        b->mMinute = a->mMinute;
-        b->mSecond = a->mSecond;
-        b->mMillisecond = a->mMillisecond;
-        b->mFilled = 1;
+void UnpackCourseTimeRecord(PackedCourseTimeRecord *packedCourseTimeRecord, TimeRecord *timeRecord) {
+    if (packedCourseTimeRecord->mFilled != 0) {
+        MI_CpuCopy8(packedCourseTimeRecord->mName, timeRecord->mName, 0x14);
+        timeRecord->mCharacterIndex = packedCourseTimeRecord->mCharacterIndex;
+        timeRecord->mKartIndex = packedCourseTimeRecord->mKartIndex;
+        timeRecord->mMinute = packedCourseTimeRecord->mMinute;
+        timeRecord->mSecond = packedCourseTimeRecord->mSecond;
+        timeRecord->mMillisecond = packedCourseTimeRecord->mMillisecond;
+        timeRecord->mFilled = 1;
     } else {
-        MI_CpuFill8(b, 0, 0x20);
+        MI_CpuFill8(timeRecord, 0, 0x20);
     }
 }
 
-s32 func_02056bc0(s32 a, s32 b, TimeRecord *c) {
-    BOOL r;
-    s32 n;
+BOOL GetCourseTimeRecord(s32 courseId, s32 recordIndex, TimeRecord *timeRecord) {
+    BOOL found;
+    s32 cupCourseIndex;
 
-    n = FindCupCourseIndex(a);
-    r = TRUE;
-    if (n != -1) {
-        func_02056c0c(&data_0217aa08->mCourseTimeRecordBlock->mRecords[b][n], c);
+    cupCourseIndex = FindCupCourseIndex(courseId);
+    found = TRUE;
+    if (cupCourseIndex != -1) {
+        UnpackCourseTimeRecord(&data_0217aa08->mCourseTimeRecordBlock->mRecords[recordIndex][cupCourseIndex],
+                               timeRecord);
     } else {
-        r = FALSE;
+        found = FALSE;
     }
-    if (r == FALSE) {
-        c->mFilled = 0;
+    if (found == FALSE) {
+        timeRecord->mFilled = 0;
     }
-    return r;
+    return found;
 }
 
-void func_02056b30(PackedGrandPrixRecord *a, TimeRecord *b) {
-    if (b->mFilled != 0) {
-        MI_CpuCopy8(b->mName, a->mName, 0x14);
-        a->mFilled = 1;
-        a->mCharacterIndex = b->mCharacterIndex;
-        a->mUnk_00_b[1] = b->mKartIndex;
-        a->mMinute = b->mMinute;
-        a->mSecond = b->mSecond;
-        a->mMillisecond = b->mMillisecond;
-        a->mUnk_00_b[3] = b->mUnk_1e;
-        a->mUnk_00_b[2] = b->mTotalPoints;
-        a->mUnk_04_b[0] = b->mCupRank;
+void PackGrandPrixRecord(PackedGrandPrixRecord *packedGrandPrixRecord, TimeRecord *timeRecord) {
+    if (timeRecord->mFilled != 0) {
+        MI_CpuCopy8(timeRecord->mName, packedGrandPrixRecord->mName, 0x14);
+        packedGrandPrixRecord->mFilled = 1;
+        packedGrandPrixRecord->mCharacterIndex = timeRecord->mCharacterIndex;
+        packedGrandPrixRecord->mUnk_00_b[1] = timeRecord->mKartIndex;
+        packedGrandPrixRecord->mMinute = timeRecord->mMinute;
+        packedGrandPrixRecord->mSecond = timeRecord->mSecond;
+        packedGrandPrixRecord->mMillisecond = timeRecord->mMillisecond;
+        packedGrandPrixRecord->mUnk_00_b[3] = timeRecord->mUnk_1e;
+        packedGrandPrixRecord->mUnk_00_b[2] = timeRecord->mTotalPoints;
+        packedGrandPrixRecord->mUnk_04_b[0] = timeRecord->mCupRank;
     }
 }
 

@@ -249,7 +249,7 @@ void EnterMPState8(void) {
     u16 v;
 
     v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
-    func_02056464(&data_0217aa00->mUnk_045c[v]);
+    FillPlayerRecord(&data_0217aa00->mUnk_045c[v]);
     data_0217aa00->mUnk_1608.mUnk_1a |= 1;
     data_0217aa00->mEntryChunkIndex = 0;
     data_0217aa00->mUnk_1608.mUnk_16 = 0;

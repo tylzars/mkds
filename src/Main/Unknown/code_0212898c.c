@@ -162,7 +162,7 @@ void func_0212a448(void) {
     u16 text[12];
     text[0] = 0;
     MIi_CpuClear16(text[0], &text[1], 0x16);
-    MIi_CpuCopy16(data_0217aa08->mUnk_00->mUnk_0c, &text[1], 0x14);
+    MIi_CpuCopy16(data_0217aa08->mUnk_00->mPlayerName, &text[1], 0x14);
     SetKeyboardText(&text[1]);
 }
 
@@ -835,8 +835,8 @@ void AdvanceKeyboardState10(void) {
                 gKeyboard->mNextState = 0xb;
             } else {
                 data_0217aa08->mUnk_00->mUnk_31_0 = 1;
-                MI_CpuFill8(data_0217aa08->mUnk_00->mUnk_0c, 0, 0x14);
-                MI_CpuCopy8(&keyboard->mUnk_2c[1], data_0217aa08->mUnk_00->mUnk_0c, 0x14);
+                MI_CpuFill8(data_0217aa08->mUnk_00->mPlayerName, 0, 0x14);
+                MI_CpuCopy8(&keyboard->mUnk_2c[1], data_0217aa08->mUnk_00->mPlayerName, 0x14);
                 func_02056d40();
                 SetTxtSystemOpenSoundId(0x21);
                 message = GetBmgEntry(gKeyboard->mCommonMessages, 0x10);

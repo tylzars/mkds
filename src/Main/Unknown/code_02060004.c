@@ -21,7 +21,7 @@
 static inline s32 func_02060004_inline(s32 a, s32 b, TimeRecord *c) {
     BOOL r;
 
-    if (func_02056bc0(a, b, c) != 0 && c->mFilled != 0) {
+    if (GetCourseTimeRecord(a, b, c) != 0 && c->mFilled != 0) {
         r = TRUE;
     } else {
         r = FALSE;
@@ -344,7 +344,7 @@ s32 func_02060268(s32 a) {
 BOOL IsTimeRecordFilled(s32 a, s32 b) {
     TimeRecord c;
 
-    if (func_02056bc0(a, b, &c) != 0 && c.mFilled != 0) {
+    if (GetCourseTimeRecord(a, b, &c) != 0 && c.mFilled != 0) {
         return TRUE;
     }
     return FALSE;
@@ -415,11 +415,11 @@ void ClearCourseTimeRecords(s32 a) {
     }
     for (i = 0; i < 6; i++) {
         MI_CpuFill8(&b, 0, 0x20);
-        func_02056c6c(a, i, &b);
+        SetCourseTimeRecord(a, i, &b);
     }
     if (d != FALSE) {
         func_020563ec();
     } else {
-        func_02056408();
+        WriteBackupCourseTimeRecords();
     }
 }

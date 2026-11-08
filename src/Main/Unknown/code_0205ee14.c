@@ -92,7 +92,7 @@ s32 func_0205fdb4(s32 a, void *b) {
     BOOL d;
 
     d = FALSE;
-    if (func_02056bc0(a, 0, &c) != 0 && c.mFilled != 0) {
+    if (GetCourseTimeRecord(a, 0, &c) != 0 && c.mFilled != 0) {
         d = TRUE;
     }
     if (d == FALSE) {
@@ -106,7 +106,7 @@ s32 func_0205fd78(s32 a, s32 b, s32 *v1) {
     BOOL d;
 
     d = FALSE;
-    func_020569dc(a, b, &c);
+    GetMissionRecord(a, b, &c);
     if (c.mFilled == 1) {
         d = TRUE;
         *v1 = c.mValue;
@@ -523,7 +523,7 @@ void func_0205ef70(void) {
             }
         }
     }
-    data_0217aa08->mUnk_00->mUnk_24 = GetPlayerRecordElo(func_ov000_0219bb50());
+    data_0217aa08->mUnk_00->mElo = GetPlayerRecordElo(func_ov000_0219bb50());
     data_0217aa08->mUnk_00->mUnk_34[4] = a;
     data_0217aa08->mUnk_00->mUnk_34[5] = b;
     func_0205edcc();
