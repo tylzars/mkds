@@ -173,12 +173,12 @@ void CollideKartWithKarts(Kart *p) {
             if (w & 0x10000000) {
                 if (!(q->mUnk_4c & 0x10000040)) {
                     c = TRUE;
-                    func_0206dbf8(p, q);
+                    TryStartKartPushDoubleFlip(p, q);
                 }
             } else if ((x = q->mUnk_4c) & 0x10000000) {
                 if (!(w & 0x10000040)) {
                     c = TRUE;
-                    func_0206dbf8(q, p);
+                    TryStartKartPushDoubleFlip(q, p);
                 }
             } else if (w & 0x40) {
                 if (!(x & 0x10000040)) {
@@ -186,12 +186,12 @@ void CollideKartWithKarts(Kart *p) {
                     m.y = -n.y;
                     m.z = -n.z;
                     c = TRUE;
-                    func_0206de18(p, q, &m);
+                    TryStartKartPushFlip(p, q, &m);
                 }
             } else if (x & 0x40) {
                 if (!(w & 0x10000040)) {
                     c = TRUE;
-                    func_0206de18(q, p, &n);
+                    TryStartKartPushFlip(q, p, &n);
                 }
             } else if (p->mKartCollisionDelayTimer <= 0) {
                 if (p->mVelocityLength > 0x1000 || q->mVelocityLength > 0x1000) {

@@ -532,7 +532,7 @@ typedef struct Kart {
     /* 4d4 */ s32 mUnk_4d4;
     /* 4d8 */ s16 mUnk_4d8;
     /* 4da */ s16 mUnk_4da;
-    /* 4dc */ s16 mUnk_4dc;
+    /* 4dc */ s16 mLandingTimer;
     // Angle added to mHeadingAngle when the orientation is built, never to mHeadingAngle itself; func_020713a0 swings
     // it back and forth and sets it to 0 at the end.
     /* 4de */ s16 mHeadingAngleOffset;
@@ -575,26 +575,26 @@ extern Kart *gJgKart;
 
 extern int data_02154f10[];
 
-void StartKartState(Kart *p, KartState mode);
-BOOL func_0206c094(Kart *p);
-int func_0206c0a8(Kart *p);
-BOOL func_0206c0b0(Kart *p);
-BOOL func_0206c0e0(Kart *p);
-void SetupKartAiItemInUseEntry(Kart *p);
-void SetupKartAiHeldItemEntry(Kart *p);
-void func_0206c17c(Kart *p);
-void func_0206c1ac(Unk0206c1ac *obj, Kart *p);
-void func_0206c2b4(Unk0206c1ac *obj, Kart *p);
-BOOL TryStartKartCollisionEffects(Kart *p, const Vec3 *a, int flag);
-void func_0206c450(Unk0206c1ac *obj, Kart *p);
-void func_0206c488(Unk0206c1ac *obj, Kart *p);
+void StartKartState(Kart *kart, KartState mode);
+BOOL func_0206c094(Kart *kart);
+int func_0206c0a8(Kart *kart);
+BOOL func_0206c0b0(Kart *kart);
+BOOL func_0206c0e0(Kart *kart);
+void SetupKartAiItemInUseEntry(Kart *kart);
+void SetupKartAiHeldItemEntry(Kart *kart);
+void func_0206c17c(Kart *kart);
+void func_0206c1ac(Unk0206c1ac *emitter, Kart *kart);
+void func_0206c2b4(Unk0206c1ac *emitter, Kart *kart);
+BOOL TryStartKartCollisionEffects(Kart *kart, const Vec3 *overlapDirection, int flag);
+void func_0206c450(Unk0206c1ac *emitter, Kart *kart);
+void func_0206c488(Unk0206c1ac *emitter, Kart *kart);
 
 void func_0208b748(u32 idx, const Vec3 *pos, void *p, void (*cb)());
-int TryTurnKartAtLowSpeed(Kart *p);
-void func_0206cc60(Kart *p, int arg);
+int TryTurnKartAtLowSpeed(Kart *kart);
+void func_0206cc60(Kart *kart, int fromLowSpeedTurn);
 #include "Main/Unknown/code_0210ab48.h"
-void EndKartDrift(Kart *p);
-void AdvanceKartBoost(s32 *out, Kart *p);
+void EndKartDrift(Kart *kart);
+void AdvanceKartBoost(s32 *acceleration, Kart *kart);
 extern SoundRequestQueue data_0217d26c[7];
 extern SoundRequestQueue data_0217d274;
 extern SoundRequestQueue data_0217d284;
@@ -603,9 +603,9 @@ extern SoundRequestQueue data_0217d28c;
 void func_020718c8(void *p, int arg);
 void func_02071944(void *p, int arg);
 #include "Main/Unknown/code_021035ac.h"
-BOOL TrySpinKart(Kart *p, int a, int b);
-BOOL TryStartKartState(Kart *p, KartState a);
-void AdvanceKartDrift(Kart *p);
+BOOL TrySpinKart(Kart *kart, int rotationCount, int b);
+BOOL TryStartKartState(Kart *kart, KartState newState);
+void AdvanceKartDrift(Kart *kart);
 void GetKartForward(const Kart *p, Vec3 *out);
 void GetKartUp(const Kart *p, Vec3 *out);
 

@@ -585,7 +585,7 @@ void ResetKart(Kart *p) {
     p->mUnk_4d0 = 0;
     p->mUnk_4d4 = 0;
     p->mUnk_4d8 = -1;
-    p->mUnk_4dc = 0;
+    p->mLandingTimer = 0;
     p->mUnk_4da = 0;
     p->mHeadingAngleOffset = 0;
     p->mHeadingAngleOffsetPerFrame = 0;

@@ -219,7 +219,7 @@ void func_01ffb130(Kart *p) {
         p->mUnk_44 &= ~0x2000;
     }
     FindCollisionSlotsOverlappingSlot(p->mCollisionSlot, 0xe800);
-    func_0206e874(p);
+    CollideKartWithMapObjects(p);
     if (p->mUnk_7c & 0x8000000) {
         return;
     }

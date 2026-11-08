@@ -268,7 +268,7 @@ void func_01ff9d18(Kart *p) {
         }
     }
     if (!(p->mUnk_44 & 0x1000000) && !(p->mUnk_7c & 0x400)) {
-        func_0206f914(p);
+        AdvanceKartRaceStartBoost(p);
     }
     if (!(p->mUnk_4c & 0x400)) {
         return;

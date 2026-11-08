@@ -184,11 +184,11 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
     } else {
         func_01ffa350(p, 0x90);
     }
-    if (p->mUnk_4dc > 0) {
-        p->mUnk_4dc--;
+    if (p->mLandingTimer > 0) {
+        p->mLandingTimer--;
     }
     if (func_020d3d94()) {
-        func_0206fe08(p);
+        ApplyKartWaterDepth(p);
     }
     if ((p->mUnk_4c & 0x40000000) && p->mState == KART_STATE_NORMAL) {
         func_0206f824(p, a, b1);
