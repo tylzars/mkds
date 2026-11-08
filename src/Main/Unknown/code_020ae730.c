@@ -7,7 +7,7 @@
 
 #pragma thumb on
 
-void *func_020ae730(s32 count, s32 elementSize) {
+void *AllocArrayFromCurrentHeap(s32 count, s32 elementSize) {
     void *memory;
 
     memory = NULL;

@@ -33,7 +33,7 @@
 
 u32 func_0209753c(u32 a) {
     Flipper *flipper;
-    flipper = GetMapObjectFromList(func_02100138(MAP_OBJECT_KIND_FLIPPER), a);
+    flipper = GetMapObjectFromList(FindMapObjectKindUpdateList(MAP_OBJECT_KIND_FLIPPER), a);
     flipper->mUnk_ebc = 0xaa;
     return 1;
 }

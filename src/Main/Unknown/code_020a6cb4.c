@@ -172,7 +172,7 @@ void func_020a6cb4(s32 a) {
     Unk020a6cb4 *e;
     s32 i;
 
-    v1 = func_02100138(0x6b);
+    v1 = FindMapObjectKindUpdateList(0x6b);
     if (v1 == NULL) {
         return;
     }

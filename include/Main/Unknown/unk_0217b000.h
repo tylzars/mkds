@@ -608,15 +608,15 @@ typedef struct RaceHud {
     /* 848 */ s32 mUnk_848;
     /* 84c */ s32 mUnk_84c;
     /* 850 */ s32 mUnk_850;
-    /* 854 */ s32 mUnk_854;
+    /* 854 */ s32 mSubScreenCourseScale;
     /* 858 */ Unk0217b350_858 mUnk_858[2];
     // FALSE from func_020b03bc until the scene's screen set-up func_020af99c ends and sets it TRUE (never cleared
     // again); the step, the draw, the page choice and the upload slot return at once while FALSE.
     /* 898 */ BOOL mEnabled;
     /* 89c */ s32 mKartRemoved[8];
     /* 8bc */ s32 mRemovedSoundPlayed[8];
-    /* 8dc */ s32 mUnk_8dc;
-    /* 8e0 */ s32 mUnk_8e0;
+    /* 8dc */ s32 mShowLapTime;
+    /* 8e0 */ s32 mShowLapTimeFrames;
     // Set once in func_020b03bc: 1 only in mode 1 with more than one kart; gates func_020b1a34 (the computation) and
     // the draw of the time difference.
     /* 8e4 */ s32 mUseTimeDifference;
@@ -638,41 +638,41 @@ struct ChoisesS;
 extern struct ChoisesS *gChoisesS;
 struct RaceNcerNclrNcgrTables;
 extern struct RaceNcerNclrNcgrTables *gRaceNcerNclrNcgrTables;
-// 8-byte elements at the start of Unk0217b3d8.
-typedef struct Unk0217b3d8_00 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-} Unk0217b3d8_00;
+// 8-byte elements at the start of RaceRankList.
+typedef struct RaceRankListPos {
+    /* 00 */ s32 mX;
+    /* 04 */ s32 mY;
+} RaceRankListPos;
 
-// 0xc-byte elements from 0xfc of Unk0217b3d8.
-typedef struct Unk0217b3d8_fc {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-} Unk0217b3d8_fc;
+// 0xc-byte elements from 0xfc of RaceRankList.
+typedef struct RaceRankListItemInUse {
+    /* 00 */ s32 mInUseFrames;
+    /* 04 */ s32 mItemInfoIndex;
+    /* 08 */ s32 mObjectCount;
+} RaceRankListItemInUse;
 
 // Object behind gRaceRankList, 0x15c bytes, allocated by InitRaceRankList.
-typedef struct Unk0217b3d8 {
-    /* 000 */ Unk0217b3d8_00 mUnk_000[8];
-    /* 040 */ s32 mUnk_040[8];
-    /* 060 */ s32 mUnk_060[8];
-    /* 080 */ s32 mUnk_080[8];
-    /* 0a0 */ s32 mUnk_0a0[8];
-    /* 0c0 */ s32 mUnk_0c0[8];
-    /* 0e0 */ s32 mUnk_0e0;
-    /* 0e4 */ u16 mUnk_0e4;
+typedef struct RaceRankList {
+    /* 000 */ RaceRankListPos mRowPositions[8];
+    /* 040 */ s32 mShownItems[8];
+    /* 060 */ s32 mPrevRanks[8];
+    /* 080 */ s32 mRanks[8];
+    /* 0a0 */ s32 mKartsByRank[8];
+    /* 0c0 */ s32 mBalloonOrShineCounts[8];
+    /* 0e0 */ s32 mSlideX;
+    /* 0e4 */ u16 mOamMatrixIndex;
     /* 0e6 */ u8 mUnk_0e6[2];
-    /* 0e8 */ s32 mUnk_0e8[4];
-    /* 0f8 */ u16 mUnk_0f8;
+    /* 0e8 */ s32 mMatrix[4];
+    /* 0f8 */ u16 mMoveFrames;
     /* 0fa */ u8 mUnk_0fa[2];
-    /* 0fc */ Unk0217b3d8_fc mUnk_0fc[8];
-} Unk0217b3d8;
+    /* 0fc */ RaceRankListItemInUse mItemsInUse[8];
+} RaceRankList;
 
-extern Unk0217b3d8 *gRaceRankList;
+extern RaceRankList *gRaceRankList;
 // Object behind gRaceHudSubScreenCellGroups, 0x25c bytes, allocated by InitRaceHudSubScreenCellGroups.
 typedef struct RaceHudSubScreenCellGroups {
     /* 000 */ u16 mUnk_000;
-    /* 004 */ s32 mUnk_004;
+    /* 004 */ s32 mScale;
     /* 008 */ s32 mUnk_008;
     /* 00c */ s32 mGroupCount;
     /* 010 */ void (*mClearFunctions[49])(void);
@@ -978,7 +978,7 @@ extern RaceHudSubScreenCells *gRaceHudSubScreenMoveTreeCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenPukupukuCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenChoropuCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenKoopaBlockCells;
-extern RaceHudSubScreenCells *data_0217b420;
+extern RaceHudSubScreenCells *gRaceHudSubScreenCarCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenItemCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenCrabCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenShine16Cells;
@@ -993,7 +993,7 @@ extern RaceHudSubScreenCells *gRaceHudSubScreenCoverPooHoleCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenObPakkunSfCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenKuriboCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenIronBallCells;
-extern RaceHudSubScreenCells *data_0217b46c;
+extern RaceHudSubScreenCells *gRaceHudSubScreenSunFireballCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenMkdEfBurnerCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenBoundCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenMkdEfBubbleCells;

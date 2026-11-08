@@ -641,7 +641,7 @@ BOOL FindKartAiTargetShine(KartAi *kartAi, s32 distanceSquaredLimit, s32 yDiffer
     s32 distanceSquared;
     BOOL isInRange;
 
-    shineList = func_02100138(MAP_OBJECT_KIND_SHINE16);
+    shineList = FindMapObjectKindUpdateList(MAP_OBJECT_KIND_SHINE16);
     listCount = GetMapObjectListCount(shineList);
     longestDistanceSquared = 0;
     farthestShine = NULL;
@@ -649,7 +649,7 @@ BOOL FindKartAiTargetShine(KartAi *kartAi, s32 distanceSquaredLimit, s32 yDiffer
     checkedCount = 0;
     listIndex = kartAi->mEntrySearchStartIndex;
     for (; i < listCount; i++) {
-        shine = func_0210008c(shineList)[listIndex];
+        shine = GetMapObjects(shineList)[listIndex];
         listIndex++;
         if (listIndex >= listCount) {
             listIndex = 0;

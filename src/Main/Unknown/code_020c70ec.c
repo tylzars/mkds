@@ -27,7 +27,7 @@ void UpdateRaceHudSubScreenItemBoxCells(void) {
     Vec3 *v;
 
     n = 0;
-    c = func_020c0db0();
+    c = GetRaceHudSubScreenScale();
     k = 0;
     for (i = 0; i < gRaceHudSubScreenItemBoxCells->mObjectCount; i++) {
         if (data_0217b3f8 == 0 ||

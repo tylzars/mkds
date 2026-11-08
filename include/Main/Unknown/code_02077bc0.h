@@ -111,10 +111,10 @@ EntryKartCounters *GetEntryKartCounters(void);
 void func_0207a6c0(Kart *kart);
 void func_0207a70c(s32 kartIndex);
 BOOL func_0207a7fc(s32 kartIndex);
-s32 func_0207a84c(s32 kartIndex);
+BOOL func_0207a84c(s32 kartIndex);
 // Copies mScale of Kart b to a.
 void GetKartScale(Vec3 *scale, s32 kartIndex);
-void func_0207a91c(Vec3 *dst, u8 idx);
+void GetKartPosFromPosSourceCopy(Vec3 *dst, u8 idx);
 // Copies the position of Kart idx to dst, read through mPosSource (which points to mPos, or for a kind-3 entry in mode
 // 5 to a Vec3 of the received record).
 void GetKartPos(Vec3 *dst, s32 idx);

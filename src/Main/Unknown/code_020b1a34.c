@@ -63,7 +63,7 @@ void func_020b1a34(void) {
     u8 lap;
 
     if (gRaceSetup->mMode == MODE_GRAND_PRIX || gRaceSetup->mMode == MODE_TIME_ATTACK) {
-        gRaceHud->mUnk_8dc = 1;
+        gRaceHud->mShowLapTime = 1;
     }
     if (gRaceHud->mUseTimeDifference == 0) {
         return;

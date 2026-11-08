@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-void DrawRaceHudSubScreenCellGroups(void *a);
+void DrawRaceHudSubScreenCellGroups(void *oamBuffer);
 void UpdateRaceHudSubScreenCellGroups(void);
 void ClearRaceHudSubScreenCellGroups(void);

@@ -275,7 +275,7 @@ void InitKart(Kart *kart, void (**slotFunctions)(Kart *)) {
         kart->mUnk_50c = &kart->mUnk_110_q;
         kart->mUnk_510 = &kart->mPos;
     }
-    kart->mUnk_534 = kart->mPosSource;
+    kart->mPosSourceCopy = kart->mPosSource;
     func_020646f0(kart, 0);
     if (GetRaceUseChainCameras() != 0 && gRaceSetup->mRaceKind != RACE_KIND_AWARD) {
         kart->mSlotFunctions[3] = func_020649e8;

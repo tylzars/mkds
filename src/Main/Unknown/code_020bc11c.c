@@ -52,14 +52,14 @@
 #include "Main/Unknown/code_02077bc0.h"
 
 void StopRaceRankListItemInUse(int kartIndex) {
-    gRaceRankList->mUnk_0fc[kartIndex].mUnk_00 = 0;
+    gRaceRankList->mItemsInUse[kartIndex].mInUseFrames = 0;
 }
 
 // Starts the 0x24-frame display of the item kart kartIndex has just put in use; its cell blinks.
-void StartRaceRankListItemInUse(s32 kartIndex, s32 itemId, s32 b) {
-    gRaceRankList->mUnk_0fc[kartIndex].mUnk_00 = 1;
-    gRaceRankList->mUnk_0fc[kartIndex].mUnk_04 = itemId;
-    gRaceRankList->mUnk_0fc[kartIndex].mUnk_08 = b;
+void StartRaceRankListItemInUse(s32 kartIndex, s32 itemId, s32 objectCount) {
+    gRaceRankList->mItemsInUse[kartIndex].mInUseFrames = 1;
+    gRaceRankList->mItemsInUse[kartIndex].mItemInfoIndex = itemId;
+    gRaceRankList->mItemsInUse[kartIndex].mObjectCount = objectCount;
 }
 
 void InitRaceRankList(void) {
@@ -67,47 +67,47 @@ void InitRaceRankList(void) {
 
     gRaceRankList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x15c);
     for (i = 0; i < (s32) gRaceSetup->mKartCount; i++) {
-        gRaceRankList->mUnk_080[i] = 1;
-        gRaceRankList->mUnk_060[i] = gRaceRankList->mUnk_080[i];
-        gRaceRankList->mUnk_0a0[i] = 0;
-        gRaceRankList->mUnk_0c0[i] = 0;
+        gRaceRankList->mRanks[i] = 1;
+        gRaceRankList->mPrevRanks[i] = gRaceRankList->mRanks[i];
+        gRaceRankList->mKartsByRank[i] = 0;
+        gRaceRankList->mBalloonOrShineCounts[i] = 0;
     }
-    gRaceRankList->mUnk_0e0 = 0;
-    gRaceRankList->mUnk_0e4 = 0;
-    gRaceRankList->mUnk_0e8[0] = 0xc4e;
-    gRaceRankList->mUnk_0e8[1] = 0;
-    gRaceRankList->mUnk_0e8[2] = 0;
-    gRaceRankList->mUnk_0e8[3] = 0xc4e;
-    gRaceRankList->mUnk_0f8 = 0;
+    gRaceRankList->mSlideX = 0;
+    gRaceRankList->mOamMatrixIndex = 0;
+    gRaceRankList->mMatrix[0] = 0xc4e;
+    gRaceRankList->mMatrix[1] = 0;
+    gRaceRankList->mMatrix[2] = 0;
+    gRaceRankList->mMatrix[3] = 0xc4e;
+    gRaceRankList->mMoveFrames = 0;
 }
 
 u32 ClearRaceRankListPointer(void) {
-    u32 value0;
-    u32 value1;
-    value0 = (u32) &gRaceRankList;
-    value1 = 0u;
-    *(u32 *) ((value0) + (0)) = value1;
-    return value0;
+    u32 pointerAddress;
+    u32 nullValue;
+    pointerAddress = (u32) &gRaceRankList;
+    nullValue = 0u;
+    *(u32 *) ((pointerAddress) + (0)) = nullValue;
+    return pointerAddress;
 }
 
 // Every 0x1c calls it re-reads each kart's rank and slides its row from the old rank slot to the new one.
 void UpdateRaceRankList(void) {
-    Unk0217b3d8_00 t[9] = {{0x1b, 0xf},  {0x1b, 0xf},  {0x1b, 0x26}, {0x1b, 0x3d}, {0x1b, 0x54},
-                           {0x1b, 0x6b}, {0x1b, 0x82}, {0x1b, 0x99}, {0x1b, 0xb0}};
-    Unk0217b3d8_00 v1;
-    Unk0217b3d8_00 v2;
-    Unk0217b3d8_00 v3;
-    s32 b[8];
-    s32 tick;
-    s32 k;
+    RaceRankListPos slotPositions[9] = {{0x1b, 0xf},  {0x1b, 0xf},  {0x1b, 0x26}, {0x1b, 0x3d}, {0x1b, 0x54},
+                                        {0x1b, 0x6b}, {0x1b, 0x82}, {0x1b, 0x99}, {0x1b, 0xb0}};
+    RaceRankListPos fromPosition;
+    RaceRankListPos toPosition;
+    RaceRankListPos position;
+    s32 rankKeys[8];
+    s32 moveFrames;
+    s32 middleFrames;
     u8 i;
-    KartItems *o;
+    KartItems *kartItems;
 
-    tick = gRaceRankList->mUnk_0f8;
+    moveFrames = gRaceRankList->mMoveFrames;
     if (GetRaceStartSequenceFrames() <= 0x188) {
-        gRaceRankList->mUnk_0e0 = (0x20 - (GetRaceStartSequenceFrames() - 0x168)) * 4;
+        gRaceRankList->mSlideX = (0x20 - (GetRaceStartSequenceFrames() - 0x168)) * 4;
     } else {
-        gRaceRankList->mUnk_0e0 = 0;
+        gRaceRankList->mSlideX = 0;
     }
     if (GetRaceStartSequenceFrames() < 0x168) {
         return;
@@ -120,96 +120,97 @@ void UpdateRaceRankList(void) {
     }
     if (gRaceSetup->mMode == MODE_BATTLE) {
         for (i = 0; i < (s32) gRaceSetup->mKartCount; i++) {
-            gRaceRankList->mUnk_0c0[i] = GetBalloonOrShineCount(i);
+            gRaceRankList->mBalloonOrShineCounts[i] = GetBalloonOrShineCount(i);
         }
     }
     for (i = 0; i < (s32) gRaceSetup->mKartCount; i++) {
-        o = &gKartItems[i];
-        gRaceRankList->mUnk_040[i] = o->mHeldItem.mItemInfoIndex == 0x13 ? o->mActiveItem : o->mHeldItem.mItemInfoIndex;
-        if (gRaceRankList->mUnk_0f8 % 0x1c == 0) {
-            gRaceRankList->mUnk_060[i] = gRaceRankList->mUnk_080[i];
-            gRaceRankList->mUnk_080[i] = GetKartRank(i);
+        kartItems = &gKartItems[i];
+        gRaceRankList->mShownItems[i] =
+            kartItems->mHeldItem.mItemInfoIndex == 0x13 ? kartItems->mActiveItem : kartItems->mHeldItem.mItemInfoIndex;
+        if (gRaceRankList->mMoveFrames % 0x1c == 0) {
+            gRaceRankList->mPrevRanks[i] = gRaceRankList->mRanks[i];
+            gRaceRankList->mRanks[i] = GetKartRank(i);
         }
-        v1 = t[gRaceRankList->mUnk_060[i]];
-        v2 = t[gRaceRankList->mUnk_080[i]];
-        if (gRaceRankList->mUnk_060[i] > gRaceRankList->mUnk_080[i]) {
-            if (tick < 10) {
-                v3.mUnk_00 = v1.mUnk_00 + (tick * 16) / 10;
-                v3.mUnk_04 = v1.mUnk_04;
-            } else if (tick < 0x12) {
-                k = tick - 10;
-                v3.mUnk_00 = v1.mUnk_00 + (v2.mUnk_00 - v1.mUnk_00) * k / 8 + 0x10;
-                v3.mUnk_04 = v1.mUnk_04 + (v2.mUnk_04 - v1.mUnk_04) * k / 8;
+        fromPosition = slotPositions[gRaceRankList->mPrevRanks[i]];
+        toPosition = slotPositions[gRaceRankList->mRanks[i]];
+        if (gRaceRankList->mPrevRanks[i] > gRaceRankList->mRanks[i]) {
+            if (moveFrames < 10) {
+                position.mX = fromPosition.mX + (moveFrames * 16) / 10;
+                position.mY = fromPosition.mY;
+            } else if (moveFrames < 0x12) {
+                middleFrames = moveFrames - 10;
+                position.mX = fromPosition.mX + (toPosition.mX - fromPosition.mX) * middleFrames / 8 + 0x10;
+                position.mY = fromPosition.mY + (toPosition.mY - fromPosition.mY) * middleFrames / 8;
             } else {
-                v3.mUnk_00 = v1.mUnk_00 + 0x10 - ((tick - 0x12) * 16) / 10;
-                v3.mUnk_04 = v2.mUnk_04;
+                position.mX = fromPosition.mX + 0x10 - ((moveFrames - 0x12) * 16) / 10;
+                position.mY = toPosition.mY;
             }
         } else {
-            v3.mUnk_00 = v1.mUnk_00 + tick * (v2.mUnk_00 - v1.mUnk_00) / 0x1c;
-            v3.mUnk_04 = v1.mUnk_04 + tick * (v2.mUnk_04 - v1.mUnk_04) / 0x1c;
+            position.mX = fromPosition.mX + moveFrames * (toPosition.mX - fromPosition.mX) / 0x1c;
+            position.mY = fromPosition.mY + moveFrames * (toPosition.mY - fromPosition.mY) / 0x1c;
         }
-        gRaceRankList->mUnk_000[i] = v3;
+        gRaceRankList->mRowPositions[i] = position;
     }
     for (i = 0; i < (s32) gRaceSetup->mKartCount; i++) {
-        gRaceRankList->mUnk_0a0[i] = i;
-        b[i] = gRaceRankList->mUnk_080[i];
+        gRaceRankList->mKartsByRank[i] = i;
+        rankKeys[i] = gRaceRankList->mRanks[i];
     }
-    SortIndicesByKey(gRaceRankList->mUnk_0a0, b, gRaceSetup->mKartCount);
-    gRaceRankList->mUnk_0f8++;
-    if (gRaceRankList->mUnk_0f8 >= 0x1c) {
-        gRaceRankList->mUnk_0f8 = 0;
+    SortIndicesByKey(gRaceRankList->mKartsByRank, rankKeys, gRaceSetup->mKartCount);
+    gRaceRankList->mMoveFrames++;
+    if (gRaceRankList->mMoveFrames >= 0x1c) {
+        gRaceRankList->mMoveFrames = 0;
     }
     for (i = 0; i < (s32) gRaceSetup->mKartCount; i++) {
-        if (gRaceRankList->mUnk_0fc[i].mUnk_00 != 0) {
-            gRaceRankList->mUnk_0fc[i].mUnk_00++;
-            if (gRaceRankList->mUnk_0fc[i].mUnk_00 > 0x24) {
-                gRaceRankList->mUnk_0fc[i].mUnk_00 = 0;
+        if (gRaceRankList->mItemsInUse[i].mInUseFrames != 0) {
+            gRaceRankList->mItemsInUse[i].mInUseFrames++;
+            if (gRaceRankList->mItemsInUse[i].mInUseFrames > 0x24) {
+                gRaceRankList->mItemsInUse[i].mInUseFrames = 0;
             }
         }
     }
 }
 
-void DrawRaceRankList(RaceHudOamBuffer *a) {
-    s32 *e;
-    GXOamAttr *p;
+void DrawRaceRankList(RaceHudOamBuffer *oamBuffer) {
+    s32 *matrix;
+    GXOamAttr *oams;
 
     if (GetRaceStartSequenceFrames() < 0x168) {
         return;
     }
-    gRaceRankList->mUnk_0e4 = AllocOamMatrixIndex(a);
+    gRaceRankList->mOamMatrixIndex = AllocOamMatrixIndex(oamBuffer);
     switch (gRaceSetup->mMode) {
         case MODE_GRAND_PRIX:
         case MODE_VS:
         case 5:
-            func_020bd7f8(a);
+            DrawRaceRankListNonBattleRows(oamBuffer);
             break;
         case MODE_BATTLE:
             switch (GetRaceHudSubScreenState()) {
                 case 0:
-                    func_020bd178(a);
+                    DrawRaceRankListBattleState0Rows(oamBuffer);
                     break;
                 case 1:
                 case 2:
                 case 3:
-                    func_020bcbe8(a);
+                    DrawRaceRankListBattleState1To3Rows(oamBuffer);
                     break;
             }
             break;
     }
-    e = gRaceRankList->mUnk_0e8;
-    p = &a->mOams[gRaceRankList->mUnk_0e4 * 4];
-    p[0].mUnk_00[3] = e[0] >> 4;
-    p[1].mUnk_00[3] = e[1] >> 4;
-    p[2].mUnk_00[3] = e[2] >> 4;
-    p[3].mUnk_00[3] = e[3] >> 4;
+    matrix = gRaceRankList->mMatrix;
+    oams = &oamBuffer->mOams[gRaceRankList->mOamMatrixIndex * 4];
+    oams[0].mUnk_00[3] = matrix[0] >> 4;
+    oams[1].mUnk_00[3] = matrix[1] >> 4;
+    oams[2].mUnk_00[3] = matrix[2] >> 4;
+    oams[3].mUnk_00[3] = matrix[3] >> 4;
 }
 
 // Returns the cell index beside the kart (0xc9 = none): cell 0x24 or 0x25, the item just used, the held item or 0x16.
 u32 GetRaceRankListSNcerIndex(u16 kartIndex) {
     u32 cellIndex;
-    Unk0217b3d8 *d;
-    Unk0217b3d8_fc *e;
-    s32 v;
+    RaceRankList *rankList;
+    RaceRankListItemInUse *itemIndexView;
+    s32 framesSinceStart;
 
     if (GetRaceHudKartRemoved(kartIndex) != 0) {
         cellIndex = 0x25;
@@ -219,12 +220,14 @@ u32 GetRaceRankListSNcerIndex(u16 kartIndex) {
         cellIndex = 0xc9;
     } else if (gRaceSetup->mMode != MODE_BATTLE && IsKartEnded(kartIndex) != 0) {
         cellIndex = 0x24;
-    } else if ((d = gRaceRankList)->mUnk_0fc[kartIndex].mUnk_00 != 0) {
-        v = d->mUnk_0fc[kartIndex].mUnk_00 - 1;
-        if (v % 12 < 6) {
+    } else if ((rankList = gRaceRankList)->mItemsInUse[kartIndex].mInUseFrames != 0) {
+// itemIndexView starts at mItemsInUse[0].mItemInfoIndex, so its [k].mInUseFrames is kart k's item index.
+        framesSinceStart = rankList->mItemsInUse[kartIndex].mInUseFrames - 1;
+        if (framesSinceStart % 12 < 6) {
             cellIndex = 0xc9;
-        } else if ((e = (Unk0217b3d8_fc *) &d->mUnk_0fc[0].mUnk_04)[kartIndex].mUnk_00 == 5) {
-            switch (d->mUnk_0fc[kartIndex].mUnk_08) {
+        } else if ((itemIndexView = (RaceRankListItemInUse *) &rankList->mItemsInUse[0].mItemInfoIndex)[kartIndex]
+                       .mInUseFrames == 5) {
+            switch (rankList->mItemsInUse[kartIndex].mObjectCount) {
                 case 1:
                     cellIndex = 0x11;
                     break;
@@ -236,10 +239,10 @@ u32 GetRaceRankListSNcerIndex(u16 kartIndex) {
                     break;
             }
         } else {
-            cellIndex = LookupRaceSNcerIndex(kartIndex, e[kartIndex].mUnk_00);
+            cellIndex = LookupRaceSNcerIndex(kartIndex, itemIndexView[kartIndex].mInUseFrames);
         }
-    } else if (d->mUnk_040[kartIndex] != 0x13) {
-        cellIndex = LookupRaceSNcerIndex(kartIndex, d->mUnk_040[kartIndex]);
+    } else if (rankList->mShownItems[kartIndex] != 0x13) {
+        cellIndex = LookupRaceSNcerIndex(kartIndex, rankList->mShownItems[kartIndex]);
     } else if (gKartItems[kartIndex].mSlotState == 1) {
         cellIndex = 0x16;
     } else {
@@ -248,397 +251,443 @@ u32 GetRaceRankListSNcerIndex(u16 kartIndex) {
     return cellIndex;
 }
 
-void func_020bdf08(RaceHudOamBuffer *a) {
-    s32 t[8][2] = {{8, 0xf}, {8, 0x26}, {8, 0x3d}, {8, 0x54}, {8, 0x6b}, {8, 0x82}, {8, 0x99}, {8, 0xb0}};
+void DrawRaceRankListRankCells(RaceHudOamBuffer *oamBuffer) {
+    s32 slotPositions[8][2] = {{8, 0xf}, {8, 0x26}, {8, 0x3d}, {8, 0x54}, {8, 0x6b}, {8, 0x82}, {8, 0x99}, {8, 0xb0}};
     u16 i;
-    s32 e;
-    s32 j;
-    s32 v;
-    s32 y;
-    s32 q1[2];
-    s32 q2[2];
-    Unk020224e0_c *c;
+    s32 slideX;
+    s32 rankSlot;
+    s32 markerIndex;
+    s32 slotY;
+    s32 rankDrawPosition[2];
+    s32 markerDrawPosition[2];
+    Unk020224e0_c *cell;
 
-    e = gRaceRankList->mUnk_0e0;
+    slideX = gRaceRankList->mSlideX;
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-        j = gRaceRankList->mUnk_060[i] - 1;
-        c = GetRaceSNcerEntry(j + 0x35);
-        q1[0] = (t[j][0] - e - 1) << 12;
-        y = t[j][1];
-        q1[1] = (y - 4) << 12;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q1, 0, 1);
-        v = 0;
+        rankSlot = gRaceRankList->mPrevRanks[i] - 1;
+        cell = GetRaceSNcerEntry(rankSlot + 0x35);
+        rankDrawPosition[0] = (slotPositions[rankSlot][0] - slideX - 1) << 12;
+        slotY = slotPositions[rankSlot][1];
+        rankDrawPosition[1] = (slotY - 4) << 12;
+        oamBuffer->mOamCount += NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount],
+                                                      0x80 - oamBuffer->mOamCount, cell, NULL, rankDrawPosition, 0, 1);
+        markerIndex = 0;
         if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated(i) != FALSE) {
-            v = 1;
+            markerIndex = 1;
         } else if (gRaceSetup->mMode != MODE_BATTLE && (GetRaceHudKartRemoved(i) != 0 || func_0207a84c(i) != 0)) {
-            v = 1;
+            markerIndex = 1;
         }
-        if (v != 0) {
-            v = 3;
+        if (markerIndex != 0) {
+            markerIndex = 3;
         } else if (i == GetFollowedKartOrEntryIndex()) {
-            v = 0;
+            markerIndex = 0;
         } else if (gRaceSetup->mUseTeams != 0 && gRaceSetup->mCurrentEntries[i].mPlayer.mTeamIndex == 1) {
-            v = 2;
+            markerIndex = 2;
         } else {
-            v = 1;
+            markerIndex = 1;
         }
-        c = GetRaceSNcerEntry(v + 0x75);
-        q2[0] = -e << 12;
-        q2[1] = y << 12;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q2, 0, 1);
+        cell = GetRaceSNcerEntry(markerIndex + 0x75);
+        markerDrawPosition[0] = -slideX << 12;
+        markerDrawPosition[1] = slotY << 12;
+        oamBuffer->mOamCount += NNS_G2dMakeCellToOams(
+            &oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL, markerDrawPosition, 0, 1);
     }
 }
 
-void func_020bdb34(RaceHudOamBuffer *a) {
+void DrawRaceRankListState0Rows(RaceHudOamBuffer *oamBuffer) {
     u16 i;
-    s32 k;
-    Unk0217b3d8_00 p;
-    s32 r;
-    u16 f;
-    s32 *d;
-    s32 s;
-    s32 q1[2];
-    s32 q2[2];
-    s32 q3[2];
-    s32 q4[2];
-    s32 v;
-    Unk020224e0_c *c;
+    s32 kartIndex;
+    RaceRankListPos position;
+    s32 itemCellIndex;
+    u16 matrixIndex;
+    s32 *matrix;
+    s32 secondKartCellBase;
+    s32 itemDrawPosition[2];
+    s32 kartDrawPosition[2];
+    s32 secondKartDrawPosition[2];
+    s32 markerDrawPosition[2];
+    s32 markerIndex;
+    Unk020224e0_c *cell;
 
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-        k = gRaceRankList->mUnk_0a0[i];
-        p = gRaceRankList->mUnk_000[k];
-        r = GetRaceRankListSNcerIndex(k);
-        p.mUnk_00 -= gRaceRankList->mUnk_0e0;
-        if (r != 0xc9) {
-            c = GetRaceSNcerEntry(r);
-            q1[0] = (p.mUnk_00 + 0x45) << 12;
-            q1[1] = p.mUnk_04 << 12;
-            a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q1, 0, 1);
+        kartIndex = gRaceRankList->mKartsByRank[i];
+        position = gRaceRankList->mRowPositions[kartIndex];
+        itemCellIndex = GetRaceRankListSNcerIndex(kartIndex);
+        position.mX -= gRaceRankList->mSlideX;
+        if (itemCellIndex != 0xc9) {
+            cell = GetRaceSNcerEntry(itemCellIndex);
+            itemDrawPosition[0] = (position.mX + 0x45) << 12;
+            itemDrawPosition[1] = position.mY << 12;
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                      itemDrawPosition, 0, 1);
         }
-        if (gRaceRankList->mUnk_060[k] > gRaceRankList->mUnk_080[k]) {
-            f = gRaceRankList->mUnk_0e4;
+        if (gRaceRankList->mPrevRanks[kartIndex] > gRaceRankList->mRanks[kartIndex]) {
+            matrixIndex = gRaceRankList->mOamMatrixIndex;
         } else {
-            f = 0;
+            matrixIndex = 0;
         }
-        if (gRaceRankList->mUnk_060[k] > gRaceRankList->mUnk_080[k]) {
-            d = gRaceRankList->mUnk_0e8;
+        if (gRaceRankList->mPrevRanks[kartIndex] > gRaceRankList->mRanks[kartIndex]) {
+            matrix = gRaceRankList->mMatrix;
         } else {
-            d = NULL;
+            matrix = NULL;
         }
-        c = GetRaceSNcerEntry(k + 8);
-        q2[0] = p.mUnk_00 << 12;
-        q2[1] = p.mUnk_04 << 12;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, d, q2, f, 1);
-        s = 0;
-        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
-            s = 1;
+        cell = GetRaceSNcerEntry(kartIndex + 8);
+        kartDrawPosition[0] = position.mX << 12;
+        kartDrawPosition[1] = position.mY << 12;
+        oamBuffer->mOamCount +=
+            NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, matrix,
+                                  kartDrawPosition, matrixIndex, 1);
+        secondKartCellBase = 0;
+        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) kartIndex) != FALSE) {
+            secondKartCellBase = 1;
         } else if (gRaceSetup->mMode != MODE_BATTLE &&
-                   (GetRaceHudKartRemoved((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
-            s = 1;
+                   (GetRaceHudKartRemoved((u16) kartIndex) != 0 || func_0207a84c((u16) kartIndex) != 0)) {
+            secondKartCellBase = 1;
         }
-        s = s != 0 ? 0x6d : 0x65;
-        c = GetRaceSNcerEntry(s + k);
-        q3[0] = (p.mUnk_00 + 0xa) << 12;
-        q3[1] = p.mUnk_04 << 12;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q3, 0, 1);
-        v = 0;
-        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
-            v = 1;
+        secondKartCellBase = secondKartCellBase != 0 ? 0x6d : 0x65;
+        cell = GetRaceSNcerEntry(secondKartCellBase + kartIndex);
+        secondKartDrawPosition[0] = (position.mX + 0xa) << 12;
+        secondKartDrawPosition[1] = position.mY << 12;
+        oamBuffer->mOamCount +=
+            NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                  secondKartDrawPosition, 0, 1);
+        markerIndex = 0;
+        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) kartIndex) != FALSE) {
+            markerIndex = 1;
         } else if (gRaceSetup->mMode != MODE_BATTLE &&
-                   (GetRaceHudKartRemoved((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
-            v = 1;
+                   (GetRaceHudKartRemoved((u16) kartIndex) != 0 || func_0207a84c((u16) kartIndex) != 0)) {
+            markerIndex = 1;
         }
-        if (v != 0) {
-            v = 3;
-        } else if ((u16) k == GetFollowedKartOrEntryIndex()) {
-            v = 0;
-        } else if (gRaceSetup->mUseTeams != 0 && gRaceSetup->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 1) {
-            v = 2;
+        if (markerIndex != 0) {
+            markerIndex = 3;
+        } else if ((u16) kartIndex == GetFollowedKartOrEntryIndex()) {
+            markerIndex = 0;
+        } else if (gRaceSetup->mUseTeams != 0 && gRaceSetup->mCurrentEntries[(u16) kartIndex].mPlayer.mTeamIndex == 1) {
+            markerIndex = 2;
         } else {
-            v = 1;
+            markerIndex = 1;
         }
-        c = GetRaceSNcerEntry(v + 0x79);
-        q4[0] = (p.mUnk_00 - 0xb) << 12;
-        q4[1] = p.mUnk_04 << 12;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q4, 0, 1);
+        cell = GetRaceSNcerEntry(markerIndex + 0x79);
+        markerDrawPosition[0] = (position.mX - 0xb) << 12;
+        markerDrawPosition[1] = position.mY << 12;
+        oamBuffer->mOamCount += NNS_G2dMakeCellToOams(
+            &oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL, markerDrawPosition, 0, 1);
     }
 }
 
-void func_020bd850(RaceHudOamBuffer *a) {
+void DrawRaceRankListState1To3Rows(RaceHudOamBuffer *oamBuffer) {
     u16 i;
-    s32 k;
-    Unk0217b3d8_00 p;
-    s32 r;
-    s32 *d;
-    u16 f;
-    s32 q1[2];
-    s32 q2[2];
-    s32 q3[2];
-    s32 v;
-    Unk020224e0_c *c;
+    s32 kartIndex;
+    RaceRankListPos position;
+    s32 itemCellIndex;
+    s32 *matrix;
+    u16 matrixIndex;
+    s32 itemDrawPosition[2];
+    s32 kartDrawPosition[2];
+    s32 markerDrawPosition[2];
+    s32 markerIndex;
+    Unk020224e0_c *cell;
 
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-        k = gRaceRankList->mUnk_0a0[i];
-        p = gRaceRankList->mUnk_000[k];
-        r = GetRaceRankListSNcerIndex(k);
-        p.mUnk_00 -= gRaceRankList->mUnk_0e0;
-        if (r != 0xc9) {
-            c = GetRaceSNcerEntry(r);
-            q1[0] = (p.mUnk_00 + 0x12) << 12;
-            q1[1] = p.mUnk_04 << 12;
-            a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q1, 0, 1);
+        kartIndex = gRaceRankList->mKartsByRank[i];
+        position = gRaceRankList->mRowPositions[kartIndex];
+        itemCellIndex = GetRaceRankListSNcerIndex(kartIndex);
+        position.mX -= gRaceRankList->mSlideX;
+        if (itemCellIndex != 0xc9) {
+            cell = GetRaceSNcerEntry(itemCellIndex);
+            itemDrawPosition[0] = (position.mX + 0x12) << 12;
+            itemDrawPosition[1] = position.mY << 12;
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                      itemDrawPosition, 0, 1);
         }
-        if (gRaceRankList->mUnk_060[k] > gRaceRankList->mUnk_080[k]) {
-            f = gRaceRankList->mUnk_0e4;
+        if (gRaceRankList->mPrevRanks[kartIndex] > gRaceRankList->mRanks[kartIndex]) {
+            matrixIndex = gRaceRankList->mOamMatrixIndex;
         } else {
-            f = 0;
+            matrixIndex = 0;
         }
-        if (gRaceRankList->mUnk_060[k] > gRaceRankList->mUnk_080[k]) {
-            d = gRaceRankList->mUnk_0e8;
+        if (gRaceRankList->mPrevRanks[kartIndex] > gRaceRankList->mRanks[kartIndex]) {
+            matrix = gRaceRankList->mMatrix;
         } else {
-            d = NULL;
+            matrix = NULL;
         }
-        c = GetRaceSNcerEntry(k + 8);
-        q2[0] = p.mUnk_00 << 12;
-        q2[1] = p.mUnk_04 << 12;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, d, q2, f, 1);
-        v = 0;
-        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
-            v = 1;
+        cell = GetRaceSNcerEntry(kartIndex + 8);
+        kartDrawPosition[0] = position.mX << 12;
+        kartDrawPosition[1] = position.mY << 12;
+        oamBuffer->mOamCount +=
+            NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, matrix,
+                                  kartDrawPosition, matrixIndex, 1);
+        markerIndex = 0;
+        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) kartIndex) != FALSE) {
+            markerIndex = 1;
         } else if (gRaceSetup->mMode != MODE_BATTLE &&
-                   (GetRaceHudKartRemoved((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
-            v = 1;
+                   (GetRaceHudKartRemoved((u16) kartIndex) != 0 || func_0207a84c((u16) kartIndex) != 0)) {
+            markerIndex = 1;
         }
-        if (v != 0) {
-            v = 3;
-        } else if ((u16) k == GetFollowedKartOrEntryIndex()) {
-            v = 0;
-        } else if (gRaceSetup->mUseTeams != 0 && gRaceSetup->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 1) {
-            v = 2;
+        if (markerIndex != 0) {
+            markerIndex = 3;
+        } else if ((u16) kartIndex == GetFollowedKartOrEntryIndex()) {
+            markerIndex = 0;
+        } else if (gRaceSetup->mUseTeams != 0 && gRaceSetup->mCurrentEntries[(u16) kartIndex].mPlayer.mTeamIndex == 1) {
+            markerIndex = 2;
         } else {
-            v = 1;
+            markerIndex = 1;
         }
-        c = GetRaceSNcerEntry(v + 0x7d);
-        q3[0] = (p.mUnk_00 - 0xb) << 12;
-        q3[1] = p.mUnk_04 << 12;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q3, 0, 1);
+        cell = GetRaceSNcerEntry(markerIndex + 0x7d);
+        markerDrawPosition[0] = (position.mX - 0xb) << 12;
+        markerDrawPosition[1] = position.mY << 12;
+        oamBuffer->mOamCount += NNS_G2dMakeCellToOams(
+            &oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL, markerDrawPosition, 0, 1);
     }
 }
 
-void func_020bd7f8(RaceHudOamBuffer *a) {
+void DrawRaceRankListNonBattleRows(RaceHudOamBuffer *a) {
     switch (GetRaceHudSubScreenState()) {
         case 0:
-            func_020bdf08(a);
-            func_020bdb34(a);
+            DrawRaceRankListRankCells(a);
+            DrawRaceRankListState0Rows(a);
             break;
         case 1:
         case 2:
         case 3:
-            func_020bdf08(a);
-            func_020bd850(a);
+            DrawRaceRankListRankCells(a);
+            DrawRaceRankListState1To3Rows(a);
             break;
     }
 }
 
-void func_020bd178(RaceHudOamBuffer *a) {
-    s32 s;
+void DrawRaceRankListBattleState0Rows(RaceHudOamBuffer *oamBuffer) {
+    s32 secondKartCellBase;
     u16 i;
-    u16 f;
-    Unk0217b3d8_00 p;
-    s32 *d;
-    s32 k;
-    s32 q1[2];
-    s32 q2[2];
-    s32 q3[2];
-    s32 q4[2];
-    s32 r;
-    s32 q5[2];
-    s32 q6[2];
-    s32 q7[2];
-    s32 q8[2];
-    s32 q9[2];
-    s32 v;
-    Unk020224e0_c *c;
+    u16 matrixIndex;
+    RaceRankListPos position;
+    s32 *matrix;
+    s32 kartIndex;
+    s32 itemDrawPosition[2];
+    s32 kartDrawPosition[2];
+    s32 secondKartDrawPosition[2];
+    s32 balloonCellDrawPosition[2];
+    s32 itemCellIndex;
+    s32 balloonCountDrawPosition[2];
+    s32 shineCellDrawPosition[2];
+    s32 shineTensDrawPosition[2];
+    s32 shineOnesDrawPosition[2];
+    s32 markerDrawPosition[2];
+    s32 markerIndex;
+    Unk020224e0_c *cell;
 
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-        k = gRaceRankList->mUnk_0a0[i];
-        p = gRaceRankList->mUnk_000[k];
-        r = GetRaceRankListSNcerIndex(k);
-        p.mUnk_00 -= gRaceRankList->mUnk_0e0 + 0x13;
-        if (r != 0xc9) {
-            c = GetRaceSNcerEntry(r);
-            q1[0] = (p.mUnk_00 + 0x45) << 12;
-            q1[1] = p.mUnk_04 << 12;
-            a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q1, 0, 1);
+        kartIndex = gRaceRankList->mKartsByRank[i];
+        position = gRaceRankList->mRowPositions[kartIndex];
+        itemCellIndex = GetRaceRankListSNcerIndex(kartIndex);
+        position.mX -= gRaceRankList->mSlideX + 0x13;
+        if (itemCellIndex != 0xc9) {
+            cell = GetRaceSNcerEntry(itemCellIndex);
+            itemDrawPosition[0] = (position.mX + 0x45) << 12;
+            itemDrawPosition[1] = position.mY << 12;
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                      itemDrawPosition, 0, 1);
         }
-        if (gRaceRankList->mUnk_060[k] > gRaceRankList->mUnk_080[k]) {
-            f = gRaceRankList->mUnk_0e4;
+        if (gRaceRankList->mPrevRanks[kartIndex] > gRaceRankList->mRanks[kartIndex]) {
+            matrixIndex = gRaceRankList->mOamMatrixIndex;
         } else {
-            f = 0;
+            matrixIndex = 0;
         }
-        if (gRaceRankList->mUnk_060[k] > gRaceRankList->mUnk_080[k]) {
-            d = gRaceRankList->mUnk_0e8;
+        if (gRaceRankList->mPrevRanks[kartIndex] > gRaceRankList->mRanks[kartIndex]) {
+            matrix = gRaceRankList->mMatrix;
         } else {
-            d = NULL;
+            matrix = NULL;
         }
-        c = GetRaceSNcerEntry(k + 8);
-        q2[0] = (p.mUnk_00 + 1) << 12;
-        q2[1] = p.mUnk_04 << 12;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, d, q2, f, 1);
-        s = 0;
-        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
-            s = 1;
+        cell = GetRaceSNcerEntry(kartIndex + 8);
+        kartDrawPosition[0] = (position.mX + 1) << 12;
+        kartDrawPosition[1] = position.mY << 12;
+        oamBuffer->mOamCount +=
+            NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, matrix,
+                                  kartDrawPosition, matrixIndex, 1);
+        secondKartCellBase = 0;
+        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) kartIndex) != FALSE) {
+            secondKartCellBase = 1;
         } else if (gRaceSetup->mMode != MODE_BATTLE &&
-                   (GetRaceHudKartRemoved((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
-            s = 1;
+                   (GetRaceHudKartRemoved((u16) kartIndex) != 0 || func_0207a84c((u16) kartIndex) != 0)) {
+            secondKartCellBase = 1;
         }
-        s = s != 0 ? 0x6d : 0x65;
-        c = GetRaceSNcerEntry(s + k);
-        q3[0] = (p.mUnk_00 + 0xb) << 12;
-        q3[1] = p.mUnk_04 << 12;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q3, 0, 1);
+        secondKartCellBase = secondKartCellBase != 0 ? 0x6d : 0x65;
+        cell = GetRaceSNcerEntry(secondKartCellBase + kartIndex);
+        secondKartDrawPosition[0] = (position.mX + 0xb) << 12;
+        secondKartDrawPosition[1] = position.mY << 12;
+        oamBuffer->mOamCount +=
+            NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                  secondKartDrawPosition, 0, 1);
         if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
-            s32 t = gRaceRankList->mUnk_0c0[k];
+            s32 balloonCount = gRaceRankList->mBalloonOrShineCounts[kartIndex];
 
-            c = GetRaceSNcerEntry(0xc3);
-            q4[0] = (p.mUnk_00 + 0x57) << 12;
-            q4[1] = (p.mUnk_04 - 2) << 12;
-            a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q4, 0, 1);
-            c = GetRaceSNcerEntry(t + 0xb9);
-            q5[0] = (p.mUnk_00 + 0x5c) << 12;
-            q5[1] = p.mUnk_04 << 12;
-            a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q5, 0, 1);
+            cell = GetRaceSNcerEntry(0xc3);
+            balloonCellDrawPosition[0] = (position.mX + 0x57) << 12;
+            balloonCellDrawPosition[1] = (position.mY - 2) << 12;
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                      balloonCellDrawPosition, 0, 1);
+            cell = GetRaceSNcerEntry(balloonCount + 0xb9);
+            balloonCountDrawPosition[0] = (position.mX + 0x5c) << 12;
+            balloonCountDrawPosition[1] = position.mY << 12;
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                      balloonCountDrawPosition, 0, 1);
         } else {
-            s32 t = gRaceRankList->mUnk_0c0[k] / 10;
-            s32 u = gRaceRankList->mUnk_0c0[k] % 10;
+            s32 shineTens = gRaceRankList->mBalloonOrShineCounts[kartIndex] / 10;
+            s32 shineOnes = gRaceRankList->mBalloonOrShineCounts[kartIndex] % 10;
 
-            c = GetRaceSNcerEntry(0xc4);
-            q6[0] = (p.mUnk_00 + 0x57) << 12;
-            q6[1] = (p.mUnk_04 - 2) << 12;
-            a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q6, 0, 1);
-            c = GetRaceSNcerEntry(t + 0xb9);
-            q7[0] = (p.mUnk_00 + 0x54) << 12;
-            q7[1] = p.mUnk_04 << 12;
-            a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q7, 0, 1);
-            c = GetRaceSNcerEntry(u + 0xb9);
-            q8[0] = (p.mUnk_00 + 0x5c) << 12;
-            q8[1] = p.mUnk_04 << 12;
-            a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q8, 0, 1);
+            cell = GetRaceSNcerEntry(0xc4);
+            shineCellDrawPosition[0] = (position.mX + 0x57) << 12;
+            shineCellDrawPosition[1] = (position.mY - 2) << 12;
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                      shineCellDrawPosition, 0, 1);
+            cell = GetRaceSNcerEntry(shineTens + 0xb9);
+            shineTensDrawPosition[0] = (position.mX + 0x54) << 12;
+            shineTensDrawPosition[1] = position.mY << 12;
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                      shineTensDrawPosition, 0, 1);
+            cell = GetRaceSNcerEntry(shineOnes + 0xb9);
+            shineOnesDrawPosition[0] = (position.mX + 0x5c) << 12;
+            shineOnesDrawPosition[1] = position.mY << 12;
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                      shineOnesDrawPosition, 0, 1);
         }
-        v = 0;
-        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
-            v = 1;
+        markerIndex = 0;
+        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) kartIndex) != FALSE) {
+            markerIndex = 1;
         } else if (gRaceSetup->mMode != MODE_BATTLE &&
-                   (GetRaceHudKartRemoved((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
-            v = 1;
+                   (GetRaceHudKartRemoved((u16) kartIndex) != 0 || func_0207a84c((u16) kartIndex) != 0)) {
+            markerIndex = 1;
         }
-        if (v != 0) {
-            v = 3;
-        } else if ((u16) k == GetFollowedKartOrEntryIndex()) {
-            v = 0;
-        } else if (gRaceSetup->mUseTeams != 0 && gRaceSetup->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 1) {
-            v = 2;
+        if (markerIndex != 0) {
+            markerIndex = 3;
+        } else if ((u16) kartIndex == GetFollowedKartOrEntryIndex()) {
+            markerIndex = 0;
+        } else if (gRaceSetup->mUseTeams != 0 && gRaceSetup->mCurrentEntries[(u16) kartIndex].mPlayer.mTeamIndex == 1) {
+            markerIndex = 2;
         } else {
-            v = 1;
+            markerIndex = 1;
         }
-        c = GetRaceSNcerEntry(v + 0x81);
-        q9[0] = (p.mUnk_00 - 0xb) << 12;
-        q9[1] = p.mUnk_04 << 12;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q9, 0, 1);
+        cell = GetRaceSNcerEntry(markerIndex + 0x81);
+        markerDrawPosition[0] = (position.mX - 0xb) << 12;
+        markerDrawPosition[1] = position.mY << 12;
+        oamBuffer->mOamCount += NNS_G2dMakeCellToOams(
+            &oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL, markerDrawPosition, 0, 1);
     }
 }
 
-void func_020bcbe8(RaceHudOamBuffer *a) {
+void DrawRaceRankListBattleState1To3Rows(RaceHudOamBuffer *oamBuffer) {
     u16 i;
-    u16 f;
-    Unk0217b3d8_00 p;
-    s32 *d;
-    s32 k;
-    s32 q1[2];
-    s32 q2[2];
-    s32 q3[2];
-    s32 q4[2];
-    s32 r;
-    s32 q5[2];
-    s32 q6[2];
-    s32 q7[2];
-    s32 q8[2];
-    s32 v;
-    Unk020224e0_c *c;
+    u16 matrixIndex;
+    RaceRankListPos position;
+    s32 *matrix;
+    s32 kartIndex;
+    s32 itemDrawPosition[2];
+    s32 kartDrawPosition[2];
+    s32 balloonCellDrawPosition[2];
+    s32 balloonCountDrawPosition[2];
+    s32 itemCellIndex;
+    s32 shineCellDrawPosition[2];
+    s32 shineTensDrawPosition[2];
+    s32 shineOnesDrawPosition[2];
+    s32 markerDrawPosition[2];
+    s32 markerIndex;
+    Unk020224e0_c *cell;
 
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-        k = gRaceRankList->mUnk_0a0[i];
-        p = gRaceRankList->mUnk_000[k];
-        r = GetRaceRankListSNcerIndex(k);
-        p.mUnk_00 -= gRaceRankList->mUnk_0e0 + 0x13;
-        if (r != 0xc9) {
-            c = GetRaceSNcerEntry(r);
-            q1[0] = (p.mUnk_00 + 0x12) << 12;
-            q1[1] = p.mUnk_04 << 12;
-            a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q1, 0, 1);
+        kartIndex = gRaceRankList->mKartsByRank[i];
+        position = gRaceRankList->mRowPositions[kartIndex];
+        itemCellIndex = GetRaceRankListSNcerIndex(kartIndex);
+        position.mX -= gRaceRankList->mSlideX + 0x13;
+        if (itemCellIndex != 0xc9) {
+            cell = GetRaceSNcerEntry(itemCellIndex);
+            itemDrawPosition[0] = (position.mX + 0x12) << 12;
+            itemDrawPosition[1] = position.mY << 12;
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                      itemDrawPosition, 0, 1);
         }
-        if (gRaceRankList->mUnk_060[k] > gRaceRankList->mUnk_080[k]) {
-            f = gRaceRankList->mUnk_0e4;
+        if (gRaceRankList->mPrevRanks[kartIndex] > gRaceRankList->mRanks[kartIndex]) {
+            matrixIndex = gRaceRankList->mOamMatrixIndex;
         } else {
-            f = 0;
+            matrixIndex = 0;
         }
-        if (gRaceRankList->mUnk_060[k] > gRaceRankList->mUnk_080[k]) {
-            d = gRaceRankList->mUnk_0e8;
+        if (gRaceRankList->mPrevRanks[kartIndex] > gRaceRankList->mRanks[kartIndex]) {
+            matrix = gRaceRankList->mMatrix;
         } else {
-            d = NULL;
+            matrix = NULL;
         }
-        c = GetRaceSNcerEntry(k + 8);
-        q2[0] = (p.mUnk_00 + 1) << 12;
-        q2[1] = p.mUnk_04 << 12;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, d, q2, f, 1);
+        cell = GetRaceSNcerEntry(kartIndex + 8);
+        kartDrawPosition[0] = (position.mX + 1) << 12;
+        kartDrawPosition[1] = position.mY << 12;
+        oamBuffer->mOamCount +=
+            NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, matrix,
+                                  kartDrawPosition, matrixIndex, 1);
         if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
-            s32 t = gRaceRankList->mUnk_0c0[k];
+            s32 balloonCount = gRaceRankList->mBalloonOrShineCounts[kartIndex];
 
-            c = GetRaceSNcerEntry(0xc3);
-            q3[0] = (p.mUnk_00 + 0x25) << 12;
-            q3[1] = (p.mUnk_04 - 2) << 12;
-            a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q3, 0, 1);
-            c = GetRaceSNcerEntry(t + 0xb9);
-            q4[0] = (p.mUnk_00 + 0x2a) << 12;
-            q4[1] = p.mUnk_04 << 12;
-            a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q4, 0, 1);
+            cell = GetRaceSNcerEntry(0xc3);
+            balloonCellDrawPosition[0] = (position.mX + 0x25) << 12;
+            balloonCellDrawPosition[1] = (position.mY - 2) << 12;
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                      balloonCellDrawPosition, 0, 1);
+            cell = GetRaceSNcerEntry(balloonCount + 0xb9);
+            balloonCountDrawPosition[0] = (position.mX + 0x2a) << 12;
+            balloonCountDrawPosition[1] = position.mY << 12;
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                      balloonCountDrawPosition, 0, 1);
         } else {
-            s32 t = gRaceRankList->mUnk_0c0[k] / 10;
-            s32 u = gRaceRankList->mUnk_0c0[k] % 10;
+            s32 shineTens = gRaceRankList->mBalloonOrShineCounts[kartIndex] / 10;
+            s32 shineOnes = gRaceRankList->mBalloonOrShineCounts[kartIndex] % 10;
 
-            c = GetRaceSNcerEntry(0xc4);
-            q5[0] = (p.mUnk_00 + 0x25) << 12;
-            q5[1] = (p.mUnk_04 - 2) << 12;
-            a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q5, 0, 1);
-            c = GetRaceSNcerEntry(t + 0xb9);
-            q6[0] = (p.mUnk_00 + 0x22) << 12;
-            q6[1] = p.mUnk_04 << 12;
-            a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q6, 0, 1);
-            c = GetRaceSNcerEntry(u + 0xb9);
-            q7[0] = (p.mUnk_00 + 0x2a) << 12;
-            q7[1] = p.mUnk_04 << 12;
-            a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q7, 0, 1);
+            cell = GetRaceSNcerEntry(0xc4);
+            shineCellDrawPosition[0] = (position.mX + 0x25) << 12;
+            shineCellDrawPosition[1] = (position.mY - 2) << 12;
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                      shineCellDrawPosition, 0, 1);
+            cell = GetRaceSNcerEntry(shineTens + 0xb9);
+            shineTensDrawPosition[0] = (position.mX + 0x22) << 12;
+            shineTensDrawPosition[1] = position.mY << 12;
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                      shineTensDrawPosition, 0, 1);
+            cell = GetRaceSNcerEntry(shineOnes + 0xb9);
+            shineOnesDrawPosition[0] = (position.mX + 0x2a) << 12;
+            shineOnesDrawPosition[1] = position.mY << 12;
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                      shineOnesDrawPosition, 0, 1);
         }
-        v = 0;
-        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
-            v = 1;
+        markerIndex = 0;
+        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) kartIndex) != FALSE) {
+            markerIndex = 1;
         } else if (gRaceSetup->mMode != MODE_BATTLE &&
-                   (GetRaceHudKartRemoved((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
-            v = 1;
+                   (GetRaceHudKartRemoved((u16) kartIndex) != 0 || func_0207a84c((u16) kartIndex) != 0)) {
+            markerIndex = 1;
         }
-        if (v != 0) {
-            v = 3;
-        } else if ((u16) k == GetFollowedKartOrEntryIndex()) {
-            v = 0;
-        } else if (gRaceSetup->mUseTeams != 0 && gRaceSetup->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 1) {
-            v = 2;
+        if (markerIndex != 0) {
+            markerIndex = 3;
+        } else if ((u16) kartIndex == GetFollowedKartOrEntryIndex()) {
+            markerIndex = 0;
+        } else if (gRaceSetup->mUseTeams != 0 && gRaceSetup->mCurrentEntries[(u16) kartIndex].mPlayer.mTeamIndex == 1) {
+            markerIndex = 2;
         } else {
-            v = 1;
+            markerIndex = 1;
         }
-        c = GetRaceSNcerEntry(v + 0x85);
-        q8[0] = (p.mUnk_00 - 0xb) << 12;
-        q8[1] = p.mUnk_04 << 12;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q8, 0, 1);
+        cell = GetRaceSNcerEntry(markerIndex + 0x85);
+        markerDrawPosition[0] = (position.mX - 0xb) << 12;
+        markerDrawPosition[1] = position.mY << 12;
+        oamBuffer->mOamCount += NNS_G2dMakeCellToOams(
+            &oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL, markerDrawPosition, 0, 1);
     }
 }
 
@@ -652,12 +701,12 @@ void InitRaceLapNumber(void) {
 }
 
 u32 ClearRaceLapNumberPointer(void) {
-    u32 value0;
-    u32 value1;
-    value0 = (u32) &gRaceLapNumber;
-    value1 = 0u;
-    *(u32 *) ((value0) + (0)) = value1;
-    return value0;
+    u32 pointerAddress;
+    u32 nullValue;
+    pointerAddress = (u32) &gRaceLapNumber;
+    nullValue = 0u;
+    *(u32 *) ((pointerAddress) + (0)) = nullValue;
+    return pointerAddress;
 }
 
 // Values of the first argument DrawRaceLapAndTimeDifference passes to GetRaceTaMNcerEntry.
@@ -665,9 +714,9 @@ typedef enum { UNK_020B843C_ARG_0, UNK_020B843C_ARG_1 } Unk020b843c_Arg;
 
 // Plays a sound when the displayed kart starts a lap before the last, and counts 0x78 frames for the lap number blink.
 void UpdateRaceLapNumber(void) {
-    Unk0217b3ec *d;
-    NNSSndSeqPlayer **a;
-    u32 v;
+    Unk0217b3ec *lapNumber;
+    NNSSndSeqPlayer **seqPlayerHandle;
+    u32 seqIndex;
 
     if (gRaceSetup->mMode == MODE_BATTLE) {
         return;
@@ -687,52 +736,52 @@ void UpdateRaceLapNumber(void) {
     gRaceLapNumber->mUnk_00 = GetKartHighestLap(GetFollowedKartOrEntryIndex()) - 1;
     if (gRaceLapNumber->mUnk_00 != gRaceLapNumber->mUnk_04 && gRaceLapNumber->mUnk_08 > 0) {
         if (gRaceLapNumber->mUnk_00 < gRaceLapNumber->mUnk_08) {
-            v = 0x41;
+            seqIndex = 0x41;
             if (gRaceSetup->mCourseId == COURSE_ID_PINBALL) {
-                v = 0x1c7;
+                seqIndex = 0x1c7;
             }
             if (data_0217c780 & 1) {
-                a = TakeSoundHandleEntry(GetSoundHandlePool(0));
+                seqPlayerHandle = TakeSoundHandleEntry(GetSoundHandlePool(0));
                 if (data_0217d084.mUnk_0c != 0) {
-                    if (*a != NULL) {
-                        NNS_SndPlayerStopSeq(a, 0);
+                    if (*seqPlayerHandle != NULL) {
+                        NNS_SndPlayerStopSeq(seqPlayerHandle, 0);
                     }
-                    if (*a != NULL) {
-                        NNS_SndPlayerStopSeq(a, 0);
+                    if (*seqPlayerHandle != NULL) {
+                        NNS_SndPlayerStopSeq(seqPlayerHandle, 0);
                     }
-                    NNS_SndArcPlayerStartSeqArc(a, 0, v);
+                    NNS_SndArcPlayerStartSeqArc(seqPlayerHandle, 0, seqIndex);
                 }
             }
         }
         gRaceLapNumber->mUnk_0c = 1;
     }
-    d = gRaceLapNumber;
-    if (d->mUnk_0c != 0) {
-        if ((d->mUnk_0c - 1) % 12 < 8) {
-            d->mUnk_10 = 1;
+    lapNumber = gRaceLapNumber;
+    if (lapNumber->mUnk_0c != 0) {
+        if ((lapNumber->mUnk_0c - 1) % 12 < 8) {
+            lapNumber->mUnk_10 = 1;
         } else {
-            d->mUnk_10 = 0;
+            lapNumber->mUnk_10 = 0;
         }
         gRaceLapNumber->mUnk_0c++;
         if (gRaceLapNumber->mUnk_0c > 0x78) {
             gRaceLapNumber->mUnk_0c = 0;
         }
     } else {
-        d->mUnk_10 = 1;
+        lapNumber->mUnk_10 = 1;
     }
 }
 
 // Draws the lap label, the lap number while the blink shows it, a cell for last lap index 2 or 4, the time difference.
-void DrawRaceLapAndTimeDifference(RaceHudOamBuffer *a) {
-    s32 t[2] = {0xf8, 0x10};
-    s32 *p;
-    TimeDigits *r;
-    s32 q1[2];
-    s32 q2[2];
-    s32 q3[2];
-    s32 q4[2];
-    s32 v;
-    Unk020224e0_c *c;
+void DrawRaceLapAndTimeDifference(RaceHudOamBuffer *oamBuffer) {
+    s32 lapPosition[2] = {0xf8, 0x10};
+    s32 *timeDifferenceSign;
+    TimeDigits *timeDifferenceDigits;
+    s32 lapLabelDrawPosition[2];
+    s32 lapNumberDrawPosition[2];
+    s32 lastLapIndexTwoDrawPosition[2];
+    s32 lastLapIndexFourDrawPosition[2];
+    s32 showLapTimeFrames;
+    Unk020224e0_c *cell;
 
     if (gRaceSetup->mRaceKind == 4) {
         return;
@@ -757,96 +806,116 @@ void DrawRaceLapAndTimeDifference(RaceHudOamBuffer *a) {
     if (gRaceSetup->mMode == MODE_BATTLE) {
         return;
     }
-    c = GetRaceMNcerEntry(0x20);
-    q1[0] = t[0] << 12;
-    q1[1] = t[1] << 12;
-    a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q1, 0, 1);
+    cell = GetRaceMNcerEntry(0x20);
+    lapLabelDrawPosition[0] = lapPosition[0] << 12;
+    lapLabelDrawPosition[1] = lapPosition[1] << 12;
+    oamBuffer->mOamCount += NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount,
+                                                  cell, NULL, lapLabelDrawPosition, 0, 1);
     if (gRaceLapNumber->mUnk_10 != 0) {
-        c = GetRaceMNcerEntry(gRaceLapNumber->mUnk_00 + 0x21);
-        q2[0] = t[0] << 12;
-        q2[1] = t[1] << 12;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q2, 0, 1);
+        cell = GetRaceMNcerEntry(gRaceLapNumber->mUnk_00 + 0x21);
+        lapNumberDrawPosition[0] = lapPosition[0] << 12;
+        lapNumberDrawPosition[1] = lapPosition[1] << 12;
+        oamBuffer->mOamCount +=
+            NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                  lapNumberDrawPosition, 0, 1);
     }
     switch (gRaceLapNumber->mUnk_08) {
         case 2:
-            c = GetRaceMNcerEntry(0x26);
-            q3[0] = t[0] << 12;
-            q3[1] = t[1] << 12;
-            a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q3, 0, 1);
+            cell = GetRaceMNcerEntry(0x26);
+            lastLapIndexTwoDrawPosition[0] = lapPosition[0] << 12;
+            lastLapIndexTwoDrawPosition[1] = lapPosition[1] << 12;
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                      lastLapIndexTwoDrawPosition, 0, 1);
             break;
         case 4:
-            c = GetRaceMNcerEntry(0x27);
-            q4[0] = t[0] << 12;
-            q4[1] = t[1] << 12;
-            a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q4, 0, 1);
+            cell = GetRaceMNcerEntry(0x27);
+            lastLapIndexFourDrawPosition[0] = lapPosition[0] << 12;
+            lastLapIndexFourDrawPosition[1] = lapPosition[1] << 12;
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                      lastLapIndexFourDrawPosition, 0, 1);
             break;
     }
     if (GetUseTimeDifference() == 0) {
         return;
     }
-    if (func_020b1a20() == 0) {
+    if (GetShowLapTime() == 0) {
         return;
     }
-    v = func_020b1a0c();
-    if (v % 0x24 >= 0x18) {
+    showLapTimeFrames = GetShowLapTimeFrames();
+    if (showLapTimeFrames % 0x24 >= 0x18) {
         return;
     }
     {
-        s32 q5[2];
-        s32 q6[2];
-        s32 q7[2];
-        s32 q8[2];
-        s32 q9[2];
-        s32 q10[2];
-        s32 q11[2];
-        s32 q12[2];
-        s32 q13[2];
-        s32 q14[2];
-        s32 b[10] = {0x57, 0x61, 0x6a, 0x72, 0x7c, 0x85, 0x8e, 0x98, 0xa1, 0xaa};
+        s32 signDrawPosition[2];
+        s32 digit0DrawPosition[2];
+        s32 digit1DrawPosition[2];
+        s32 firstSeparatorDrawPosition[2];
+        s32 digit2DrawPosition[2];
+        s32 digit3DrawPosition[2];
+        s32 secondSeparatorDrawPosition[2];
+        s32 digit4DrawPosition[2];
+        s32 digit5DrawPosition[2];
+        s32 digit6DrawPosition[2];
+        s32 cellXs[10] = {0x57, 0x61, 0x6a, 0x72, 0x7c, 0x85, 0x8e, 0x98, 0xa1, 0xaa};
 
-        GetRaceHudTimeDifference(&p, &r);
-        c = GetRaceTaMNcerEntry(*p != 0 ? UNK_020B843C_ARG_0 : UNK_020B843C_ARG_1);
-        q5[0] = b[0] << 12;
-        q5[1] = 0x58000;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q5, 0, 1);
-        if (r->mDigits[0] != 0) {
-            c = GetRaceTaMNcerEntry(r->mDigits[0] + 2);
-            q6[0] = b[1] << 12;
-            q6[1] = 0x58000;
-            a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q6, 0, 1);
+        GetRaceHudTimeDifference(&timeDifferenceSign, &timeDifferenceDigits);
+        cell = GetRaceTaMNcerEntry(*timeDifferenceSign != 0 ? UNK_020B843C_ARG_0 : UNK_020B843C_ARG_1);
+        signDrawPosition[0] = cellXs[0] << 12;
+        signDrawPosition[1] = 0x58000;
+        oamBuffer->mOamCount += NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount],
+                                                      0x80 - oamBuffer->mOamCount, cell, NULL, signDrawPosition, 0, 1);
+        if (timeDifferenceDigits->mDigits[0] != 0) {
+            cell = GetRaceTaMNcerEntry(timeDifferenceDigits->mDigits[0] + 2);
+            digit0DrawPosition[0] = cellXs[1] << 12;
+            digit0DrawPosition[1] = 0x58000;
+            oamBuffer->mOamCount +=
+                NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                      digit0DrawPosition, 0, 1);
         }
-        c = GetRaceTaMNcerEntry(r->mDigits[1] + 2);
-        q7[0] = b[2] << 12;
-        q7[1] = 0x58000;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q7, 0, 1);
-        c = GetRaceTaMNcerEntry(0xc);
-        q8[0] = b[3] << 12;
-        q8[1] = 0x58000;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q8, 0, 1);
-        c = GetRaceTaMNcerEntry(r->mDigits[2] + 2);
-        q9[0] = b[4] << 12;
-        q9[1] = 0x58000;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q9, 0, 1);
-        c = GetRaceTaMNcerEntry(r->mDigits[3] + 2);
-        q10[0] = b[5] << 12;
-        q10[1] = 0x58000;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q10, 0, 1);
-        c = GetRaceTaMNcerEntry(0xc);
-        q11[0] = b[6] << 12;
-        q11[1] = 0x58000;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q11, 0, 1);
-        c = GetRaceTaMNcerEntry(r->mDigits[4] + 2);
-        q12[0] = b[7] << 12;
-        q12[1] = 0x58000;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q12, 0, 1);
-        c = GetRaceTaMNcerEntry(r->mDigits[5] + 2);
-        q13[0] = b[8] << 12;
-        q13[1] = 0x58000;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q13, 0, 1);
-        c = GetRaceTaMNcerEntry(r->mDigits[6] + 2);
-        q14[0] = b[9] << 12;
-        q14[1] = 0x58000;
-        a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q14, 0, 1);
+        cell = GetRaceTaMNcerEntry(timeDifferenceDigits->mDigits[1] + 2);
+        digit1DrawPosition[0] = cellXs[2] << 12;
+        digit1DrawPosition[1] = 0x58000;
+        oamBuffer->mOamCount += NNS_G2dMakeCellToOams(
+            &oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL, digit1DrawPosition, 0, 1);
+        cell = GetRaceTaMNcerEntry(0xc);
+        firstSeparatorDrawPosition[0] = cellXs[3] << 12;
+        firstSeparatorDrawPosition[1] = 0x58000;
+        oamBuffer->mOamCount +=
+            NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                  firstSeparatorDrawPosition, 0, 1);
+        cell = GetRaceTaMNcerEntry(timeDifferenceDigits->mDigits[2] + 2);
+        digit2DrawPosition[0] = cellXs[4] << 12;
+        digit2DrawPosition[1] = 0x58000;
+        oamBuffer->mOamCount += NNS_G2dMakeCellToOams(
+            &oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL, digit2DrawPosition, 0, 1);
+        cell = GetRaceTaMNcerEntry(timeDifferenceDigits->mDigits[3] + 2);
+        digit3DrawPosition[0] = cellXs[5] << 12;
+        digit3DrawPosition[1] = 0x58000;
+        oamBuffer->mOamCount += NNS_G2dMakeCellToOams(
+            &oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL, digit3DrawPosition, 0, 1);
+        cell = GetRaceTaMNcerEntry(0xc);
+        secondSeparatorDrawPosition[0] = cellXs[6] << 12;
+        secondSeparatorDrawPosition[1] = 0x58000;
+        oamBuffer->mOamCount +=
+            NNS_G2dMakeCellToOams(&oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL,
+                                  secondSeparatorDrawPosition, 0, 1);
+        cell = GetRaceTaMNcerEntry(timeDifferenceDigits->mDigits[4] + 2);
+        digit4DrawPosition[0] = cellXs[7] << 12;
+        digit4DrawPosition[1] = 0x58000;
+        oamBuffer->mOamCount += NNS_G2dMakeCellToOams(
+            &oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL, digit4DrawPosition, 0, 1);
+        cell = GetRaceTaMNcerEntry(timeDifferenceDigits->mDigits[5] + 2);
+        digit5DrawPosition[0] = cellXs[8] << 12;
+        digit5DrawPosition[1] = 0x58000;
+        oamBuffer->mOamCount += NNS_G2dMakeCellToOams(
+            &oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL, digit5DrawPosition, 0, 1);
+        cell = GetRaceTaMNcerEntry(timeDifferenceDigits->mDigits[6] + 2);
+        digit6DrawPosition[0] = cellXs[9] << 12;
+        digit6DrawPosition[1] = 0x58000;
+        oamBuffer->mOamCount += NNS_G2dMakeCellToOams(
+            &oamBuffer->mOams[oamBuffer->mOamCount], 0x80 - oamBuffer->mOamCount, cell, NULL, digit6DrawPosition, 0, 1);
     }
 }
 

@@ -56,7 +56,7 @@ void UpdateRaceHudSubScreenIwanteCells(void) {
     Unk0217b498_00 *object;
     Vec3 *position;
 
-    var = func_020c0db0();
+    var = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenIwanteCells->mObjectCount; i++) {
         object = gRaceHudSubScreenIwanteCells->mObjects[i];
         if (!(object->mFlags & 1)) {
@@ -103,7 +103,7 @@ void UpdateRaceHudSubScreenKurikingCells(void) {
     Nclr *nclr;
     Vec3 *position;
 
-    var = func_020c0db0();
+    var = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenKurikingCells->mObjectCount; i++) {
         object = gRaceHudSubScreenKurikingCells->mObjects[i];
         if (!(object->mFlags & 1)) {
@@ -160,7 +160,7 @@ void UpdateRaceHudSubScreenBombKingCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    unk = func_020c0db0();
+    unk = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenBombKingCells->mObjectCount; i++) {
         object = gRaceHudSubScreenBombKingCells->mObjects[i];
         if (object->mFlags & 1) {
@@ -199,7 +199,7 @@ void UpdateRaceHudSubScreenBossDonketuCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    unk = func_020c0db0();
+    unk = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenBossDonketuCells->mObjectCount; i++) {
         object = gRaceHudSubScreenBossDonketuCells->mObjects[i];
         if (object->mFlags & 1) {
@@ -238,7 +238,7 @@ void UpdateRaceHudSubScreenStopSignCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    unk = func_020c0db0();
+    unk = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenStopSignCells->mObjectCount; i++) {
         object = gRaceHudSubScreenStopSignCells->mObjects[i];
         position = &object->mPos;
@@ -274,7 +274,7 @@ void UpdateRaceHudSubScreenMissionGateCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    unk = func_020c0db0();
+    unk = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenMissionGateCells->mObjectCount; i++) {
         object = gRaceHudSubScreenMissionGateCells->mObjects[i];
         position = &object->mPos;
@@ -311,7 +311,7 @@ void UpdateRaceHudSubScreenHanachanCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    unk = func_020c0db0();
+    unk = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenHanachanCells->mObjectCount; i++) {
         object = gRaceHudSubScreenHanachanCells->mObjects[i];
         if (object->mFlags & 1) {

@@ -56,7 +56,7 @@ void UpdateRaceHudSubScreenCrabCells(void) {
     u32 v;
 
     cellCount = 0;
-    v = func_020c0db0();
+    v = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenCrabCells->mObjectCount; i++) {
         Unk0217b498_00 *object;
 
@@ -107,7 +107,7 @@ void UpdateRaceHudSubScreenItemCells(void) {
     s32 v;
 
     cellCount = 0;
-    a = func_020c0db0();
+    a = GetRaceHudSubScreenScale();
     for (tableIndex = 0; tableIndex < 10; tableIndex++) {
         poolIndex = gRaceHudSubScreenItemPoolIndices[tableIndex];
         pool = &gItemPools[poolIndex];
@@ -221,7 +221,7 @@ void UpdateRaceHudSubScreenKarts(void) {
     s32 screenX;
     s32 screenY;
 
-    a = func_020c0db0();
+    a = GetRaceHudSubScreenScale();
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         gRaceHudSubScreenKarts->mUnk_000[i] = 0;
         gRaceHudSubScreenKarts->mUnk_130[i] = i;
@@ -277,7 +277,7 @@ void UpdateRaceHudSubScreenKarts(void) {
                     objects = itemInUse->mObjects;
                     objectCount = itemInUse->mObjectCount;
                     cellCount = gRaceHudSubScreenKarts->mUnk_190->mCellCount;
-                    b = func_020c0db0();
+                    b = GetRaceHudSubScreenScale();
                     for (j = 0; j < objectCount; j++) {
                         object = objects[j];
                         if ((object->mFlags & 0x80000) != 0) {
@@ -528,7 +528,7 @@ BOOL CreateRaceHudSubScreenSecondHand(void) {
     MapObjectList *kindEntry;
     s32 objectCount;
 
-    kindEntry = func_021000d0(MAP_OBJECT_KIND_SECOND_HAND);
+    kindEntry = FindMapObjectKindDrawList0(MAP_OBJECT_KIND_SECOND_HAND);
     if (kindEntry == NULL) {
         return FALSE;
     }
@@ -537,7 +537,7 @@ BOOL CreateRaceHudSubScreenSecondHand(void) {
         return FALSE;
     }
     gRaceHudSubScreenSecondHand = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
-    gRaceHudSubScreenSecondHand->mObjects = func_02100084(kindEntry);
+    gRaceHudSubScreenSecondHand->mObjects = RaceHudSubScreenGetMapObjects(kindEntry);
     gRaceHudSubScreenSecondHand->mUnk_04 = objectCount;
     gRaceHudSubScreenSecondHand->mObjectCount = objectCount;
     return TRUE;
@@ -562,7 +562,7 @@ void UpdateRaceHudSubScreenSecondHand(void) {
     s32 deltaZ;
     Vec3 endPosition;
 
-    a = func_020c0db0();
+    a = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenSecondHand->mObjectCount; i++) {
         object = gRaceHudSubScreenSecondHand->mObjects[i];
         extentZ = object->mUnk_000.mExtent.z;
@@ -779,25 +779,25 @@ void DrawRaceHudSubScreenSecondHand(Unk020c06c4 *oamBuffer) {
     oamBuffer->mUnk_000.mUnk_20[rotationSlot1].mUnk_1e = rotationMatrix[3] >> 4;
 }
 
-BOOL func_020c8254(void) {
+BOOL CreateRaceHudSubScreenCarCells(void) {
     u16 kinds[3] = {MAP_OBJECT_KIND_CAR_A, MAP_OBJECT_KIND_BUS_A, MAP_OBJECT_KIND_TRUCK_A};
     u16 i;
     u16 kind;
 
     for (i = 0; i < 3; i++) {
         kind = kinds[i];
-        if (func_021000d0(kind) != NULL) {
-            return CreateRaceHudSubScreenCells(&data_0217b420, kind);
+        if (FindMapObjectKindDrawList0(kind) != NULL) {
+            return CreateRaceHudSubScreenCells(&gRaceHudSubScreenCarCells, kind);
         }
     }
     return FALSE;
 }
 
-void func_020c8240(void) {
-    ClearRaceHudSubScreenCells(&data_0217b420);
+void ClearRaceHudSubScreenCarCells(void) {
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenCarCells);
 }
 
-void func_020c80cc(void) {
+void UpdateRaceHudSubScreenCarCells(void) {
     s32 i;
     s32 cellCount;
     Unk020e1e98 *object;
@@ -807,35 +807,36 @@ void func_020c80cc(void) {
     u16 angle;
 
     cellCount = 0;
-    a = func_020c0db0();
-    for (i = 0; i < data_0217b420->mObjectCount; i++) {
-        object = (Unk020e1e98 *) data_0217b420->mObjects[i];
+    a = GetRaceHudSubScreenScale();
+    for (i = 0; i < gRaceHudSubScreenCarCells->mObjectCount; i++) {
+        object = (Unk020e1e98 *) gRaceHudSubScreenCarCells->mObjects[i];
         position = &object->mUnk_000.mPos;
-        if (ComputeRaceHudSubScreenPosition(&object->mUnk_000.mPos, &data_0217b420->mCells[cellCount].mDrawPos, a, 1,
-                                            1) != FALSE) {
+        if (ComputeRaceHudSubScreenPosition(&object->mUnk_000.mPos,
+                                            &gRaceHudSubScreenCarCells->mCells[cellCount].mDrawPos, a, 1, 1) != FALSE) {
             kind = object->mUnk_000.mKind;
             angle = object->mUnk_000.mAngle;
             switch (kind) {
                 case MAP_OBJECT_KIND_CAR_A:
-                    data_0217b420->mCells[cellCount].mCell = GetRaceSNcerEntry(object->mUnk_130 + 0x95);
+                    gRaceHudSubScreenCarCells->mCells[cellCount].mCell = GetRaceSNcerEntry(object->mUnk_130 + 0x95);
                     break;
                 case MAP_OBJECT_KIND_BUS_A:
-                    data_0217b420->mCells[cellCount].mCell = GetRaceSNcerEntry(0x93);
+                    gRaceHudSubScreenCarCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0x93);
                     break;
                 case MAP_OBJECT_KIND_TRUCK_A:
-                    data_0217b420->mCells[cellCount].mCell = GetRaceSNcerEntry(0x94);
+                    gRaceHudSubScreenCarCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0x94);
                     break;
             }
-            data_0217b420->mCells[cellCount].mUnk_0c = IsPositionOutsideBox((Vec3 *) &position) != 0 ? 2 : 3;
-            data_0217b420->mCells[cellCount].mUnk_10 = angle;
+            gRaceHudSubScreenCarCells->mCells[cellCount].mUnk_0c =
+                IsPositionOutsideBox((Vec3 *) &position) != 0 ? 2 : 3;
+            gRaceHudSubScreenCarCells->mCells[cellCount].mUnk_10 = angle;
             cellCount++;
         }
     }
-    data_0217b420->mCellCount = cellCount;
+    gRaceHudSubScreenCarCells->mCellCount = cellCount;
 }
 
-void func_020c80b0(Unk020c06c4 *oamBuffer) {
-    DrawRaceHudSubScreenCells(oamBuffer, data_0217b420, 1);
+void DrawRaceHudSubScreenCarCells(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenCarCells, 1);
 }
 
 s32 CreateRaceHudSubScreenKoopaBlockCells(void) {
@@ -852,7 +853,7 @@ void UpdateRaceHudSubScreenKoopaBlockCells(void) {
     u32 a;
 
     cellCount = 0;
-    a = func_020c0db0();
+    a = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenKoopaBlockCells->mObjectCount; i++) {
         if (ComputeRaceHudSubScreenPosition(&gRaceHudSubScreenKoopaBlockCells->mObjects[i]->mPos,
                                             &gRaceHudSubScreenKoopaBlockCells->mCells[cellCount].mDrawPos, a, 1,
@@ -886,7 +887,7 @@ void UpdateRaceHudSubScreenChoropuCells(void) {
     s32 isPositiveHeight;
 
     cellCount = 0;
-    a = func_020c0db0();
+    a = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenChoropuCells->mObjectCount; i++) {
         if (IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenChoropuCells->mUnk_0c[i]) != FALSE) {
             object = gRaceHudSubScreenChoropuCells->mObjects[i];
@@ -934,7 +935,7 @@ void UpdateRaceHudSubScreenPukupukuCells(void) {
     u32 a;
 
     cellCount = 0;
-    a = func_020c0db0();
+    a = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenPukupukuCells->mObjectCount; i++) {
         if (IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenPukupukuCells->mUnk_0c[i]) != FALSE) {
             object = gRaceHudSubScreenPukupukuCells->mObjects[i];
@@ -969,7 +970,7 @@ void UpdateRaceHudSubScreenMoveTreeCells(void) {
     u32 a;
 
     cellCount = 0;
-    a = func_020c0db0();
+    a = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenMoveTreeCells->mObjectCount; i++) {
         if (ComputeRaceHudSubScreenPosition(&gRaceHudSubScreenMoveTreeCells->mObjects[i]->mPos,
                                             &gRaceHudSubScreenMoveTreeCells->mCells[cellCount].mDrawPos, a, 1,
@@ -1001,7 +1002,7 @@ void UpdateRaceHudSubScreenSmanCells(void) {
     u32 a;
 
     cellCount = 0;
-    a = func_020c0db0();
+    a = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenSmanCells->mObjectCount; i++) {
         if (IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenSmanCells->mUnk_0c[i]) != FALSE) {
             object = gRaceHudSubScreenSmanCells->mObjects[i];
@@ -1038,7 +1039,7 @@ void UpdateRaceHudSubScreenDossunCells(void) {
     s32 offset;
 
     cellCount = 0;
-    a = func_020c0db0();
+    a = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenDossunCells->mObjectCount; i++) {
         if (IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenDossunCells->mUnk_0c[i]) != FALSE) {
             object = gRaceHudSubScreenDossunCells->mObjects[i];
@@ -1070,7 +1071,7 @@ BOOL CreateRaceHudSubScreenWanwanCells(void) {
 
     for (i = 0; i < 2; i++) {
         kind = kinds[i];
-        if (func_021000d0(kind) != NULL) {
+        if (FindMapObjectKindDrawList0(kind) != NULL) {
             return CreateRaceHudSubScreenCells(&gRaceHudSubScreenWanwanCells, kind);
         }
     }
@@ -1087,7 +1088,7 @@ void UpdateRaceHudSubScreenWanwanCells(void) {
     u32 a;
 
     cellCount = 0;
-    a = func_020c0db0();
+    a = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenWanwanCells->mObjectCount; i++) {
         if (ComputeRaceHudSubScreenPosition(&gRaceHudSubScreenWanwanCells->mObjects[i]->mPos,
                                             &gRaceHudSubScreenWanwanCells->mCells[cellCount].mDrawPos, a, 1,
@@ -1120,7 +1121,7 @@ void UpdateRaceHudSubScreenEarthenPipeCells(void) {
     u32 a;
 
     cellCount = 0;
-    a = func_020c0db0();
+    a = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenEarthenPipeCells->mObjectCount; i++) {
         if (IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenEarthenPipeCells->mUnk_0c[i]) != FALSE) {
             object = gRaceHudSubScreenEarthenPipeCells->mObjects[i];
@@ -1153,7 +1154,7 @@ s32 CreateRaceHudSubScreenItemBoxCells(void) {
 
     for (i = 0; i < 2; i++) {
         kind = kinds[i];
-        if (func_021000d0(kind) != NULL) {
+        if (FindMapObjectKindDrawList0(kind) != NULL) {
             created = CreateRaceHudSubScreenCells(&gRaceHudSubScreenItemBoxCells, kind);
             highest = 0;
             for (j = 0; j < gRaceHudSubScreenItemBoxCells->mObjectCount; j++) {

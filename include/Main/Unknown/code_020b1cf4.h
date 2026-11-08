@@ -18,4 +18,4 @@ unsigned int GetRaceHudKartRemoved(unsigned int kartIndex);
 unsigned int func_020b1d0c(void);
 unsigned int func_020b1d20(void);
 RaceHudSubScreenBgAffine *GetRaceHudSubScreenBgAffine(void);
-s32 func_020b1d50(void);
+s32 GetRaceHudSubScreenCourseScale(void);

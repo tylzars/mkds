@@ -1,7 +1,7 @@
 #include "Main/Unknown/code_020b1cf4.h"
 
-s32 func_020b1d50(void) {
-    return (gRaceHud->mUnk_854);
+s32 GetRaceHudSubScreenCourseScale(void) {
+    return (gRaceHud->mSubScreenCourseScale);
 }
 
 RaceHudSubScreenBgAffine *GetRaceHudSubScreenBgAffine(void) {

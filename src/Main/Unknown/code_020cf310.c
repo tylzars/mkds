@@ -104,9 +104,9 @@ void UpdateRaceHudSubScreenBgPalette(RaceHudSubScreenBgPalette *palette) {
             void *p;
             u16 angle;
 
-            p = func_021000d0(0xcb);
+            p = FindMapObjectKindDrawList0(0xcb);
             if (p != NULL) {
-                objects = func_02100084(p);
+                objects = RaceHudSubScreenGetMapObjects(p);
                 for (i = 0; i < 5; i++) {
                     angle = objects[i]->mAngle;
                     if (i == 4) {
@@ -198,9 +198,9 @@ void UpdateRaceHudSubScreenBgPalette(RaceHudSubScreenBgPalette *palette) {
             Unk0217b498_00 **objects;
             Unk020e005c **blocks;
 
-            p = func_021000d0(0xd0);
+            p = FindMapObjectKindDrawList0(0xd0);
             if (p != NULL) {
-                objects = func_02100084(p);
+                objects = RaceHudSubScreenGetMapObjects(p);
                 v = (objects[1]->mAngle * 0x48) >> 16;
                 for (i = 0; i < 6; i++) {
                     palette->mUnk_00[i + 0x54] = data_0217b490->mUnk_02.mUnk_03.mUnk_00[(i + 0x48 - v) % 6];
@@ -213,9 +213,9 @@ void UpdateRaceHudSubScreenBgPalette(RaceHudSubScreenBgPalette *palette) {
                     }
                 }
             }
-            p = func_021000d0(MAP_OBJECT_KIND_KOOPA_BLOCK);
+            p = FindMapObjectKindDrawList0(MAP_OBJECT_KIND_KOOPA_BLOCK);
             if (p != NULL) {
-                blocks = func_02100084(p);
+                blocks = RaceHudSubScreenGetMapObjects(p);
                 for (i = 0; i < 4; i++) {
                     v = func_020dff4c(blocks[i]);
                     if (i % 2 != 0) {

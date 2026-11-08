@@ -151,7 +151,7 @@ void *CreateShineBalloonUpdateList(void) {
 void StartShineBalloon(Kart *a) {
     ShineBalloonObject *o;
 
-    o = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_SHINE_BALLOON));
+    o = UnparkFirstParkedMapObject(FindMapObjectKindUpdateList(MAP_OBJECT_KIND_SHINE_BALLOON));
     if (o == NULL) {
         return;
     }
@@ -190,8 +190,8 @@ void *FindParkedMapObject(s32 a) {
     s32 i;
     MapObject *e;
 
-    v1 = func_02100138(a);
-    v2 = func_0210008c(v1);
+    v1 = FindMapObjectKindUpdateList(a);
+    v2 = GetMapObjects(v1);
     n = GetMapObjectListCount(v1);
     for (i = 0; i < n; i++) {
         e = v2[i];

@@ -57,7 +57,7 @@ void func_ov001_0218d374(Unk02188950 *a) {
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_078, a->mPrm->mUnk_07c);
     func_ov001_02188c90(a);
     SetSpeedAndClearTarget(a, 0);
-    list = func_02100138(0x1fe);
+    list = FindMapObjectKindUpdateList(0x1fe);
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && (p = list->mUnk_00[i]) != NULL; i++) {
             func_ov001_02187218(p, 1, NULL);

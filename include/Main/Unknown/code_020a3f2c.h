@@ -7,7 +7,7 @@
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
 // Object of kind 0x6a (Shine16), also typed MapObject (code_020a3f2c.c) where the
-// pool list is walked. Object reached through func_02100138(0x6a), set up by StartShine16 and updated by
+// pool list is walked. Object reached through FindMapObjectKindUpdateList(0x6a), set up by StartShine16 and updated by
 // UpdateShine16: the shared MapObject part, then words up to 0xe8. UpdateShine16 switches on the word at 0xe0 (0 to 6).
 typedef struct Shine16 {
     /* 00 */ MapObject mUnk_00;

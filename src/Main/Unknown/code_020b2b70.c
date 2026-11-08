@@ -40,7 +40,7 @@ u32 func_020b2bc8(void) {
 
 u32 func_020b2b70(void) {
     if (IsRaceStartSequenceDone() != 0 && func_020b2bc8() != 0 && func_020c5dc4() != 0 && func_020c3da0() == 0 &&
-        func_020c70bc() == 0 && func_020c70a0() == 0 && func_020b1a20() == 0 &&
+        func_020c70bc() == 0 && func_020c70a0() == 0 && GetShowLapTime() == 0 &&
         (GetChoisesSOpenDuringRace() != 0 || func_02055b1c() == FALSE)) {
         return 1;
     }

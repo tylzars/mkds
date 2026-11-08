@@ -1,12 +1,12 @@
 #include "Main/Unknown/code_020b19f8.h"
 #include "Main/Unknown/unk_0217b000.h"
 
-u32 func_020b1a20(void) {
-    return (gRaceHud->mUnk_8dc);
+BOOL GetShowLapTime(void) {
+    return (gRaceHud->mShowLapTime);
 }
 
-u32 func_020b1a0c(void) {
-    return (gRaceHud->mUnk_8e0);
+u32 GetShowLapTimeFrames(void) {
+    return (gRaceHud->mShowLapTimeFrames);
 }
 
 u32 GetUseTimeDifference(void) {

@@ -225,7 +225,7 @@ void CreateSunFireballUpdateList(void) {
 void StartSunFireball(Vec3 *startPos, Vec3 *direction) {
     SunFireball *sunFireball;
 
-    sunFireball = UnparkFirstParkedMapObject(func_02100138(0x1ae));
+    sunFireball = UnparkFirstParkedMapObject(FindMapObjectKindUpdateList(MAP_OBJECT_KIND_SUN_FIREBALL));
     if (sunFireball == NULL) {
         return;
     }

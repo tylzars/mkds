@@ -19,7 +19,7 @@ BOOL IsFollowedKartOutsideBox(void) {
     s32 courseId = RaceHudSubScreenGetCurrentCourseId();
 
     if (courseId == COURSE_ID_CLOCK || courseId == COURSE_ID_AIRSHIP) {
-        func_0207a91c(&position, GetFollowedKartOrEntryIndex());
+        GetKartPosFromPosSourceCopy(&position, GetFollowedKartOrEntryIndex());
         isOutside = IsPositionOutsideBox(&position);
     }
     return isOutside;

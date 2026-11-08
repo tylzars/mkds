@@ -4,4 +4,4 @@
 
 typedef struct RaceHudSubScreenCells RaceHudSubScreenCells;
 
-void ClearRaceHudSubScreenCells(RaceHudSubScreenCells **a);
+void ClearRaceHudSubScreenCells(RaceHudSubScreenCells **cellsPointerAddress);

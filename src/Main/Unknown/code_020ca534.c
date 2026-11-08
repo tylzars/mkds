@@ -23,7 +23,7 @@ void UpdateRaceHudSubScreenShine16Cells(void) {
     u32 v;
 
     n = 0;
-    v = func_020c0db0();
+    v = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenShine16Cells->mObjectCount; i++) {
         Unk0217b498_00 *p;
 

@@ -431,7 +431,7 @@ void ShineEndCallback(void) {
     MapObject *o;
     MapObjectList *l;
 
-    l = func_02100138(0x6b);
+    l = FindMapObjectKindUpdateList(0x6b);
     if (l != NULL) {
         for (i = 0; i < l->mMapObjectCount && (o = l->mMapObjects[i]) != NULL; i++) {
             if ((o->mFlags & 0x100) == 0) {
@@ -439,7 +439,7 @@ void ShineEndCallback(void) {
             }
         }
     }
-    l = func_02100138(MAP_OBJECT_KIND_SHINE_BALLOON);
+    l = FindMapObjectKindUpdateList(MAP_OBJECT_KIND_SHINE_BALLOON);
     if (l != NULL) {
         for (i = 0; i < l->mMapObjectCount && (o = l->mMapObjects[i]) != NULL; i++) {
             if ((o->mFlags & 0x100) == 0) {

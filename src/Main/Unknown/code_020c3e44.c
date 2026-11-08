@@ -596,7 +596,7 @@ void InitRaceTaPositions(void) {
     gRaceTaPositions->mSampleFrames = 0;
     for (a = 0; a < gRaceSetup->mKartCount; a++) {
         u16 angle = (u32) GetRaceHudSubScreenKartAngle(a);
-        func_0207a91c(&position, a);
+        GetKartPosFromPosSourceCopy(&position, a);
         for (j = 0; j < 0x28; j++) {
             gRaceTaPositions->mSamples[a][j].mPos = position;
             gRaceTaPositions->mSamples[a][j].mAngle = angle;
@@ -656,7 +656,7 @@ void UpdateRaceTaPositions(void) {
         if ((gKartItems)[i].mKinokoBoostStarted != FALSE) {
             count = gRaceTaPositions->mUnk_790[i].mUnk_00;
             gRaceTaPositions->mUnk_790[i].mUnk_00 = count + 1;
-            ((void (*)(Vec3 *, s32)) func_0207a91c)(&gRaceTaPositions->mUnk_790[i].mUnk_04[count], i);
+            ((void (*)(Vec3 *, s32)) GetKartPosFromPosSourceCopy)(&gRaceTaPositions->mUnk_790[i].mUnk_04[count], i);
             gRaceTaPositions->mUnk_790[i].mUnk_28[count] =
                 IsPositionOutsideBox(&gRaceTaPositions->mUnk_790[i].mUnk_04[count]) != 0 ? 2 : 3;
         }
@@ -671,15 +671,15 @@ void UpdateRaceTaPositions(void) {
                 }
             }
         }
-        func_020b1d50();
-        func_020b1d50();
+        GetRaceHudSubScreenCourseScale();
+        GetRaceHudSubScreenCourseScale();
         for (i = 0; i < gRaceSetup->mKartCount; i = (u16) (i + 1)) {
             kart = GetKart(i);
             positions = gRaceTaPositions;
             for (j = 0x27; j != 0; j--) {
                 positions->mSamples[i][j] = positions->mSamples[i][j - 1];
             }
-            func_0207a91c(&gRaceTaPositions->mSamples[i][0].mPos, i);
+            GetKartPosFromPosSourceCopy(&gRaceTaPositions->mSamples[i][0].mPos, i);
             gRaceTaPositions->mSamples[i][0].mUnk_14 =
                 IsPositionOutsideBox(&gRaceTaPositions->mSamples[i][0].mPos) != 0 ? 2 : 3;
             gRaceTaPositions->mSamples[i][0].mAngle = GetRaceHudSubScreenKartAngle(i);
@@ -728,10 +728,10 @@ void DrawRaceTaPositions(Unk020c06c4 *oamBuffer) {
     for (i = 1; i < 16; i++) {
         AllocOamMatrixIndex(oamBuffer);
     }
-    if ((func_020b1d50() * 3) > 0) {
-        f = (func_020b1d50() * 0x3000) + 0.5f;
+    if ((GetRaceHudSubScreenCourseScale() * 3) > 0) {
+        f = (GetRaceHudSubScreenCourseScale() * 0x3000) + 0.5f;
     } else {
-        f = (func_020b1d50() * 0x3000) - 0.5f;
+        f = (GetRaceHudSubScreenCourseScale() * 0x3000) - 0.5f;
     }
     v = f;
     s = ((s64) v * 20) >> 12;

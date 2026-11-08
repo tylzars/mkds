@@ -49,7 +49,7 @@ void UpdateRaceHudSubScreenBombKouraWCells(void) {
     Vec3 *kouraPosition;
 
     cellCount = 0;
-    v = func_020c0db0();
+    v = GetRaceHudSubScreenScale();
     pool = &gItemPools[9];
     activeCount = pool->mActiveCount;
     objects = pool->mObjects;

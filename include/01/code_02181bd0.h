@@ -24,7 +24,7 @@ typedef struct Coin {
     /* 100 */ s32 mEffectTimer;
 } Coin;
 
-// List of objects, as returned by func_02100138(0x68).
+// List of objects, as returned by FindMapObjectKindUpdateList(0x68).
 typedef struct CoinList {
     /* 00 */ Coin **mObjects;
     /* 04 */ u16 mObjectCount;

@@ -32,7 +32,7 @@ void func_020ced2c(void) {
     Unk0217b498_00 *object;
 
     cellCount = 0;
-    v = func_020c0db0();
+    v = GetRaceHudSubScreenScale();
     for (i = 0; i < data_0217b484->mObjectCount; i++) {
         object = data_0217b484->mObjects[i];
         if ((object->mFlags & 1) == 0) {

@@ -8,7 +8,7 @@ typedef struct MapObjectList MapObjectList;
 
 struct MapObjectKindDescriptor;
 
-// Row of the table searched by func_021000d0 and func_02100138.
+// Row of the table searched by FindMapObjectKindDrawList0 and FindMapObjectKindUpdateList.
 typedef struct MapObjectKindRow {
     /* 00 */ u32 mKind;
     /* 04 */ struct MapObjectKindDescriptor *mUnk_04;
@@ -55,8 +55,10 @@ extern MapObjectKindRow data_0216b288[];
 #define MAP_OBJECT_KIND_BOUND 0x1a8
 #define MAP_OBJECT_KIND_FLIPPER 0x1a9
 #define MAP_OBJECT_KIND_CRAB 0x1ac
-// InitSun creates 30 objects of the pool kind 0x1ae (not named), which stays a literal.
+// InitSun creates 30 objects of the pool kind MAP_OBJECT_KIND_SUN_FIREBALL.
 #define MAP_OBJECT_KIND_SUN 0x1ad
+// Pool kind of the SunFireball objects (StartSunFireball unparks them).
+#define MAP_OBJECT_KIND_SUN_FIREBALL 0x1ae
 #define MAP_OBJECT_KIND_FIREBALL2 0x1af
 // The class IronBall also has kind 0x1b3 (Init and Draw only), which stays a literal.
 #define MAP_OBJECT_KIND_IRON_BALL 0x1b0
@@ -88,5 +90,5 @@ typedef struct MapObjectKindDescriptor {
     /* 24 */ MapObjectList *mLists[4];
 } MapObjectKindDescriptor;
 
-void *func_02100138(u32 a);
-void *func_021000d0(u32 a);
+void *FindMapObjectKindUpdateList(u32 a);
+void *FindMapObjectKindDrawList0(u32 a);

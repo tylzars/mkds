@@ -22,7 +22,7 @@ void func_ov001_021882b8(void) {
         for (i = gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181b54() : (u8) 0;
              i <= (gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunMapObjectLastIndex() : (u16) 0); i++) {
             obj = gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunMapObject(i) : 0;
-            table = func_02100138(0x1ff);
+            table = FindMapObjectKindUpdateList(0x1ff);
             func_ov001_02188e88(obj);
             obj->mGravityEnabled = FALSE;
             obj->mUnk_2b8 = 3;

@@ -4,5 +4,5 @@
 
 typedef struct MapObjectList MapObjectList;
 
-void *func_02100084(MapObjectList *list);
-void **func_0210008c(MapObjectList *list);
+void *RaceHudSubScreenGetMapObjects(MapObjectList *list);
+void **GetMapObjects(MapObjectList *list);

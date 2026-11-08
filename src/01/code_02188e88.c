@@ -38,7 +38,7 @@ void ClearRaceHudSubScreenKingIceDonketuCells(void) {
 void UpdateRaceHudSubScreenKingIceDonketuCells(void) {
     s32 i;
     s32 cellCount = 0;
-    u32 v = func_020c0db0();
+    u32 v = GetRaceHudSubScreenScale();
     Unk0217b498_00 *object;
     Vec3 *pos;
 
@@ -63,7 +63,7 @@ void DrawRaceHudSubScreenKingIceDonketuCells(void *oamBuffer) {
     DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenKingIceDonketuCells, 0);
 }
 
-s32 func_ov001_02189128(void) {
+BOOL func_ov001_02189128(void) {
     return CreateRaceHudSubScreenCells(&data_ov001_021a9ba4, 0x1fd);
 }
 
@@ -74,7 +74,7 @@ void func_ov001_02189114(void) {
 void func_ov001_02188ff8(void) {
     s32 i;
     s32 cellCount = 0;
-    u32 v = func_020c0db0();
+    u32 v = GetRaceHudSubScreenScale();
     Unk0217b498_00 *object;
     Vec3 *pos;
 

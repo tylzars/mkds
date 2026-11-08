@@ -570,7 +570,7 @@ void ParkShine16Objects(void) {
     MapObject *o;
     MapObjectList *l;
 
-    l = func_02100138(MAP_OBJECT_KIND_SHINE16);
+    l = FindMapObjectKindUpdateList(MAP_OBJECT_KIND_SHINE16);
     if (l == NULL) {
         return;
     }
@@ -585,7 +585,7 @@ void ParkShine16Objects(void) {
 void StartShine16(Vec3 *a, s32 b, s32 c) {
     Shine16 *p;
 
-    p = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_SHINE16));
+    p = UnparkFirstParkedMapObject(FindMapObjectKindUpdateList(MAP_OBJECT_KIND_SHINE16));
     if (p == NULL) {
         return;
     }
@@ -625,7 +625,7 @@ void StartShine16FromKart(Kart *a, Kart *b) {
     u16 c;
     s32 n;
 
-    p = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_SHINE16));
+    p = UnparkFirstParkedMapObject(FindMapObjectKindUpdateList(MAP_OBJECT_KIND_SHINE16));
     if (p == NULL) {
         return;
     }

@@ -43,7 +43,7 @@ void *func_02099004(void) {
 
 void func_02098f18(GroupFollower *groupFollower, s32 b) {
     Unk0209905c *p;
-    p = UnparkFirstParkedMapObject(func_02100138(0x1ab));
+    p = UnparkFirstParkedMapObject(FindMapObjectKindUpdateList(0x1ab));
     if (p == NULL) {
         return;
     }

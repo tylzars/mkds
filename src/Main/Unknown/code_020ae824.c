@@ -56,9 +56,10 @@ void func_020ae824(void) {
         func_020d1198((RaceHudOamBuffer *) gRaceHud->mMainOam);
     }
     v = gRaceSetup->mMode;
-    if ((v == MODE_BATTLE        ? gRaceProgress->mRaceDone
-         : v == MODE_MISSION_RUN ? IsFramesSinceFinishPastWait()
-                                 : (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
+    if ((v == MODE_BATTLE ? gRaceProgress->mRaceDone
+         : v == MODE_MISSION_RUN
+             ? IsFramesSinceFinishPastWait()
+             : (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceHud->mShowLapTime == 0)) == 0) {
         DrawRaceItemSlot((RaceHudOamBuffer *) gRaceHud->mMainOam);
         DrawRaceLapAndTimeDifference((RaceHudOamBuffer *) gRaceHud->mMainOam);
         DrawRaceMNumberPair((RaceHudOamBuffer *) gRaceHud->mMainOam);

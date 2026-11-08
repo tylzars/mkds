@@ -51,7 +51,7 @@ void func_020aeb7c(void) {
     }
     switch (gRaceSetup->mMode) {
         case MODE_GRAND_PRIX:
-            if (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceHud->mUnk_8dc == 0) {
+            if (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceHud->mShowLapTime == 0) {
                 if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
                     if (gRaceHud->mUnk_83c != FALSE) {
                         gRaceHud->mSubScreenEnabled = FALSE;
@@ -116,7 +116,7 @@ void func_020aeb7c(void) {
             }
             break;
         case MODE_TIME_ATTACK:
-            if (gRaceProgress->mRaceDone != 0 && gRaceHud->mUnk_8dc == 0) {
+            if (gRaceProgress->mRaceDone != 0 && gRaceHud->mShowLapTime == 0) {
                 if (gRaceHud->mUnk_83c == FALSE) {
                     gRaceHud->mUnk_83c = TRUE;
                     gRaceHud->mUnk_840 = TRUE;

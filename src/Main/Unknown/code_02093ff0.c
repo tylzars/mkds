@@ -212,7 +212,7 @@ void ClearTeresaTimers(void) {
     Teresa *teresa;
     s32 i;
 
-    mapObjectList = func_02100138(MAP_OBJECT_KIND_TERESA);
+    mapObjectList = FindMapObjectKindUpdateList(MAP_OBJECT_KIND_TERESA);
     if (mapObjectList == NULL) {
         return;
     }
@@ -252,7 +252,7 @@ void StartTeresa(Vec3 *startPos) {
     s32 d;
     s32 f;
 
-    teresa = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_TERESA));
+    teresa = UnparkFirstParkedMapObject(FindMapObjectKindUpdateList(MAP_OBJECT_KIND_TERESA));
     if (teresa == NULL) {
         return;
     }

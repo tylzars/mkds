@@ -39,5 +39,5 @@ typedef struct Unk020c06c4 {
     /* 400 */ u16 mUnk_400;
 } Unk020c06c4;
 
-void DrawRaceHudSubScreenCells(Unk020c06c4 *a, RaceHudSubScreenCells *b, s32 c);
-void DrawRaceHudSubScreenCellsScaled(Unk020c06c4 *a, RaceHudSubScreenCells *b, s32 c);
+void DrawRaceHudSubScreenCells(Unk020c06c4 *oamBuffer, RaceHudSubScreenCells *cells, s32 useRotation);
+void DrawRaceHudSubScreenCellsScaled(Unk020c06c4 *oamBuffer, RaceHudSubScreenCells *cells, s32 useRotation);

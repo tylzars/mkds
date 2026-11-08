@@ -14,7 +14,7 @@ typedef struct Unk0218dabc {
     /* 184 */ s32 mUnk_184;
 } Unk0218dabc;
 
-// Table of objects returned by func_02100138(0x1fe).
+// Table of objects returned by FindMapObjectKindUpdateList(0x1fe).
 typedef struct Unk0218d87c {
     /* 00 */ Unk02188950 **mUnk_00;
     /* 04 */ u16 mUnk_04;

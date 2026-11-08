@@ -2,7 +2,7 @@
 
 #include "Main/Unknown/code_020d2b78.h"
 
-void *func_02100138(u32 a) {
+void *FindMapObjectKindUpdateList(u32 a) {
     s32 n = GetMapObjectKindCount();
     s32 i;
 
@@ -14,7 +14,7 @@ void *func_02100138(u32 a) {
     return NULL;
 }
 
-void *func_021000d0(u32 a) {
+void *FindMapObjectKindDrawList0(u32 a) {
     s32 n = GetMapObjectKindCount();
     s32 i;
 

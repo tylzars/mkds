@@ -41,7 +41,7 @@ void UpdateRaceHudSubScreenRainStarCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    n = func_020c0db0();
+    n = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenRainStarCells->mObjectCount; i++) {
         object = gRaceHudSubScreenRainStarCells->mObjects[i];
         position = &object->mPos;
@@ -79,7 +79,7 @@ void UpdateRaceHudSubScreenBasabasaCells(void) {
     void *cell;
 
     cellCount = 0;
-    n = func_020c0db0();
+    n = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenBasabasaCells->mObjectCount; i++) {
         object = gRaceHudSubScreenBasabasaCells->mObjects[i];
         if ((object->mFlags & 1) == 0) {
@@ -125,7 +125,7 @@ void UpdateRaceHudSubScreenMkdEfBubbleCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    n = func_020c0db0();
+    n = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenMkdEfBubbleCells->mObjectCount; i++) {
         if (IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenMkdEfBubbleCells->mUnk_0c[i]) != FALSE) {
             object = gRaceHudSubScreenMkdEfBubbleCells->mObjects[i];
@@ -166,7 +166,7 @@ void UpdateRaceHudSubScreenBoundCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    n = func_020c0db0();
+    n = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenBoundCells->mObjectCount; i++) {
         object = gRaceHudSubScreenBoundCells->mObjects[i];
         position = &object->mPos;
@@ -203,7 +203,7 @@ void UpdateRaceHudSubScreenMkdEfBurnerCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    n = func_020c0db0();
+    n = GetRaceHudSubScreenScale();
     gRaceHudSubScreenMkdEfBurnerCells->mUnk_0c[0].mUnk_04++;
     if (gRaceHudSubScreenMkdEfBurnerCells->mUnk_0c[0].mUnk_04 < 0 ||
         gRaceHudSubScreenMkdEfBurnerCells->mUnk_0c[0].mUnk_04 >= 8) {
@@ -232,15 +232,15 @@ void DrawRaceHudSubScreenMkdEfBurnerCells(Unk020c06c4 *oamBuffer) {
     DrawRaceHudSubScreenCellsScaled(oamBuffer, gRaceHudSubScreenMkdEfBurnerCells, 0);
 }
 
-s32 func_020cdf18(void) {
-    return CreateRaceHudSubScreenCells(&data_0217b46c, 0x1ae);
+BOOL CreateRaceHudSubScreenSunFireballCells(void) {
+    return CreateRaceHudSubScreenCells(&gRaceHudSubScreenSunFireballCells, MAP_OBJECT_KIND_SUN_FIREBALL);
 }
 
-void func_020cdf04(void) {
-    ClearRaceHudSubScreenCells(&data_0217b46c);
+void ClearRaceHudSubScreenSunFireballCells(void) {
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenSunFireballCells);
 }
 
-void func_020cde18(void) {
+void UpdateRaceHudSubScreenSunFireballCells(void) {
     s32 i;
     s32 cellCount;
     u32 n;
@@ -248,24 +248,25 @@ void func_020cde18(void) {
     Vec3 *position;
 
     cellCount = 0;
-    n = func_020c0db0();
-    for (i = 0; i < data_0217b46c->mObjectCount; i++) {
-        object = data_0217b46c->mObjects[i];
+    n = GetRaceHudSubScreenScale();
+    for (i = 0; i < gRaceHudSubScreenSunFireballCells->mObjectCount; i++) {
+        object = gRaceHudSubScreenSunFireballCells->mObjects[i];
         if ((object->mFlags & 1) == 0) {
             position = &object->mPos;
-            if (ComputeRaceHudSubScreenPosition(position, &data_0217b46c->mCells[cellCount].mDrawPos, n, 1, 1) !=
-                FALSE) {
-                data_0217b46c->mCells[cellCount].mCell = GetRaceSNcerEntry(0x8d);
-                data_0217b46c->mCells[cellCount].mUnk_0c = IsPositionOutsideBox(position) != 0 ? 2 : 3;
+            if (ComputeRaceHudSubScreenPosition(
+                    position, &gRaceHudSubScreenSunFireballCells->mCells[cellCount].mDrawPos, n, 1, 1) != FALSE) {
+                gRaceHudSubScreenSunFireballCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0x8d);
+                gRaceHudSubScreenSunFireballCells->mCells[cellCount].mUnk_0c =
+                    IsPositionOutsideBox(position) != 0 ? 2 : 3;
                 cellCount++;
             }
         }
     }
-    data_0217b46c->mCellCount = cellCount;
+    gRaceHudSubScreenSunFireballCells->mCellCount = cellCount;
 }
 
-void func_020cddfc(Unk020c06c4 *oamBuffer) {
-    DrawRaceHudSubScreenCells(oamBuffer, data_0217b46c, 0);
+void DrawRaceHudSubScreenSunFireballCells(Unk020c06c4 *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenSunFireballCells, 0);
 }
 
 s32 CreateRaceHudSubScreenIronBallCells(void) {
@@ -284,7 +285,7 @@ void UpdateRaceHudSubScreenIronBallCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    n = func_020c0db0();
+    n = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenIronBallCells->mObjectCount; i++) {
         object = gRaceHudSubScreenIronBallCells->mObjects[i];
         if ((object->mFlags & 2) == 0) {
@@ -321,7 +322,7 @@ void UpdateRaceHudSubScreenKuriboCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    n = func_020c0db0();
+    n = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenKuriboCells->mObjectCount; i++) {
         object = gRaceHudSubScreenKuriboCells->mObjects[i];
         position = &object->mPos;
@@ -357,7 +358,7 @@ void UpdateRaceHudSubScreenObPakkunSfCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    n = func_020c0db0();
+    n = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenObPakkunSfCells->mObjectCount; i++) {
         if (IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenObPakkunSfCells->mUnk_0c[i]) != FALSE) {
             object = gRaceHudSubScreenObPakkunSfCells->mObjects[i];
@@ -397,7 +398,7 @@ void UpdateRaceHudSubScreenCoverPooHoleCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    n = func_020c0db0();
+    n = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenCoverPooHoleCells->mObjectCount; i++) {
         if (IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenCoverPooHoleCells->mUnk_0c[i]) != FALSE) {
             object = gRaceHudSubScreenCoverPooHoleCells->mObjects[i];
@@ -439,7 +440,7 @@ void UpdateRaceHudSubScreenRock2Cells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    n = func_020c0db0();
+    n = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenRock2Cells->mObjectCount; i++) {
         object = gRaceHudSubScreenRock2Cells->mObjects[i];
         if ((object->mFlags & 2) == 0) {
@@ -476,7 +477,7 @@ void UpdateRaceHudSubScreenSanboCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    n = func_020c0db0();
+    n = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenSanboCells->mObjectCount; i++) {
         if (IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenSanboCells->mUnk_0c[i]) != FALSE) {
             object = gRaceHudSubScreenSanboCells->mObjects[i];
@@ -515,7 +516,7 @@ void UpdateRaceHudSubScreenRockCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    n = func_020c0db0();
+    n = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenRockCells->mObjectCount; i++) {
         object = gRaceHudSubScreenRockCells->mObjects[i];
         if ((object->mFlags & 2) == 0) {
@@ -552,7 +553,7 @@ void UpdateRaceHudSubScreenWoodbox1Cells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    n = func_020c0db0();
+    n = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenWoodbox1Cells->mObjectCount; i++) {
         if (IsRaceHudSubScreenPairNearCenter(&gRaceHudSubScreenWoodbox1Cells->mUnk_0c[i]) != FALSE) {
             object = gRaceHudSubScreenWoodbox1Cells->mObjects[i];
@@ -591,7 +592,7 @@ void UpdateRaceHudSubScreenFlipperCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    n = func_020c0db0();
+    n = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenFlipperCells->mObjectCount; i++) {
         object = gRaceHudSubScreenFlipperCells->mObjects[i];
         if ((object->mFlags & 2) == 0) {
@@ -681,7 +682,7 @@ void UpdateRaceHudSubScreenNsKiller2Cells(void) {
     Unk0217b498_00 *object;
 
     cellCount = 0;
-    n = func_020c0db0();
+    n = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenNsKiller2Cells->mObjectCount; i++) {
         object = gRaceHudSubScreenNsKiller2Cells->mObjects[i];
         if ((object->mFlags & 1) == 0 && (object->mFlags & 2) == 0) {
@@ -718,7 +719,7 @@ void UpdateRaceHudSubScreenPendulumCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    n = func_020c0db0();
+    n = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenPendulumCells->mObjectCount; i++) {
         object = gRaceHudSubScreenPendulumCells->mObjects[i];
         if ((object->mFlags & 2) == 0) {

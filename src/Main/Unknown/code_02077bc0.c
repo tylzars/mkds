@@ -227,8 +227,8 @@ void GetKartPos(Vec3 *pos, s32 kartIndex) {
     *pos = *gKarts[kartIndex].mPosSource;
 }
 
-void func_0207a91c(Vec3 *pos, u8 kartIndex) {
-    *pos = *gKarts[kartIndex].mUnk_534;
+void GetKartPosFromPosSourceCopy(Vec3 *pos, u8 kartIndex) {
+    *pos = *gKarts[kartIndex].mPosSourceCopy;
 }
 
 void GetKartPrevPos(Vec3 *pos, s32 kartIndex) {
@@ -251,7 +251,7 @@ u32 IsMissionRunWithKind2Shapes(void) {
     return gMissionRunKind2ShapesPresent;
 }
 
-s32 func_0207a84c(s32 kartIndex) {
+BOOL func_0207a84c(s32 kartIndex) {
     return func_02068eac(&gKarts[kartIndex]);
 }
 

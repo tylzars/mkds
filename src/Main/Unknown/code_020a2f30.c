@@ -420,7 +420,7 @@ void func_020a305c(void) {
     MapObjectList *mapObjectList;
     Balloon *balloon;
 
-    mapObjectList = func_02100138(MAP_OBJECT_KIND_BALLOON);
+    mapObjectList = FindMapObjectKindUpdateList(MAP_OBJECT_KIND_BALLOON);
     if (mapObjectList == NULL) {
         return;
     }
@@ -441,7 +441,7 @@ void func_020a305c(void) {
 Balloon *StartBalloon(u16 nsbtpFrameIndex, Vec3 *targetPos) {
     Balloon *balloon;
 
-    balloon = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_BALLOON));
+    balloon = UnparkFirstParkedMapObject(FindMapObjectKindUpdateList(MAP_OBJECT_KIND_BALLOON));
     if (balloon == NULL) {
         return NULL;
     }

@@ -53,7 +53,7 @@ void UpdateRaceHudSubScreenFireball2Cells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    a = func_020c0db0();
+    a = GetRaceHudSubScreenScale();
     gRaceHudSubScreenFireball2Cells->mUnk_0c->mUnk_04++;
     if (gRaceHudSubScreenFireball2Cells->mUnk_0c->mUnk_04 < 0 ||
         gRaceHudSubScreenFireball2Cells->mUnk_0c->mUnk_04 >= 0x14) {
@@ -295,7 +295,7 @@ void UpdateRaceHudSubScreenBerryCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    a = func_020c0db0();
+    a = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenBerryCells->mObjectCount; i++) {
         object = gRaceHudSubScreenBerryCells->mObjects[i];
         position = &object->mPos;
@@ -335,7 +335,7 @@ void UpdateRaceHudSubScreenCreamCells(void) {
     Vec3 *position;
 
     cellCount = 0;
-    v = func_020c0db0();
+    v = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenCreamCells->mObjectCount; i++) {
         object = gRaceHudSubScreenCreamCells->mObjects[i];
         position = &object->mPos;

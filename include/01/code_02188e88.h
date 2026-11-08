@@ -21,7 +21,7 @@ BOOL IsWithinXzDistanceOfPoint(Unk02188950 *mapObject, Vec3 *point, s32 radius);
 void func_ov001_02188fdc(void *oamBuffer);
 void func_ov001_02188ff8(void);
 void func_ov001_02189114(void);
-s32 func_ov001_02189128(void);
+BOOL func_ov001_02189128(void);
 void DrawRaceHudSubScreenKingIceDonketuCells(void *oamBuffer);
 void UpdateRaceHudSubScreenKingIceDonketuCells(void);
 void ClearRaceHudSubScreenKingIceDonketuCells(void);

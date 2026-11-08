@@ -233,7 +233,7 @@ void CreateNsKiller2UpdateList(void) {
 void StartNsKiller2(Vec3 *startPos, Vec3 *b, u16 angle) {
     NsKiller2 *nsKiller2;
 
-    nsKiller2 = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_NS_KILLER2));
+    nsKiller2 = UnparkFirstParkedMapObject(FindMapObjectKindUpdateList(MAP_OBJECT_KIND_NS_KILLER2));
     if (nsKiller2 == NULL) {
         return;
     }

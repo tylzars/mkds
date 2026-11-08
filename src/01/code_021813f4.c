@@ -59,7 +59,7 @@ void UpdateRaceHudSubScreenCoinCells(void) {
     u32 v;
 
     cellCount = 0;
-    v = func_020c0db0();
+    v = GetRaceHudSubScreenScale();
     for (i = 0; i < gRaceHudSubScreenCoinCells->mObjectCount; i++) {
         object = gRaceHudSubScreenCoinCells->mObjects[i];
         if ((object->mFlags & 1) == 0) {

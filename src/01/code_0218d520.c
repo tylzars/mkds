@@ -126,7 +126,7 @@ void func_ov001_0218d9cc(Unk02188950 *a) {
     int i;
     Unk02188950 *q;
 
-    list = func_02100138(0x1fe);
+    list = FindMapObjectKindUpdateList(0x1fe);
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && (q = list->mUnk_00[i]) != NULL; i++) {
             StartStateFrameCountCallback(q, (q->mUnk_0a8 * 15), (UnkFunc *) func_ov001_0218da1c);
@@ -157,7 +157,7 @@ void func_ov001_0218d8f4(Unk02188950 *a, int b) {
     Unk0218d87c *list;
     int i;
 
-    list = func_02100138(0x1fe);
+    list = FindMapObjectKindUpdateList(0x1fe);
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && list->mUnk_00[i] != NULL; i++) {
             StartAnimationNoEndCallback(a, a->mPrm->mUnk_088, (a->mPrm->mUnk_08c * b / 100));
@@ -170,7 +170,7 @@ void func_ov001_0218d87c(Unk02188950 *a, int b) {
     int i;
     Unk02188950 *q;
 
-    list = func_02100138(0x1fe);
+    list = FindMapObjectKindUpdateList(0x1fe);
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && (q = list->mUnk_00[i]) != NULL; i++) {
             q->mUnk_13c = q->mPrm->mUnk_0d8 * q->mUnk_0a8 * 100 / b;

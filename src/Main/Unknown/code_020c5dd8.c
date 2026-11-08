@@ -365,7 +365,7 @@ void func_020c610c(void) {
     if (gRaceProgress->mRaceDone == 0) {
         return;
     }
-    if (func_020b1a20() != 0) {
+    if (GetShowLapTime() != 0) {
         return;
     }
     if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
@@ -498,7 +498,7 @@ void func_020c5f08(void) {
 }
 
 void ShowRaceNewRecordTaSubScreen(void) {
-    if (func_020b1a20() != 0) {
+    if (GetShowLapTime() != 0) {
         return;
     }
     RequestRaceHudSubScreenState6();

@@ -51,7 +51,7 @@ void UpdateRaceTimeDigits(void) {
     if (GetRaceHudSubScreenState() == 6) {
         return;
     }
-    if (func_020b1a20() != 0) {
+    if (GetShowLapTime() != 0) {
         kartIndex = GetFollowedKartOrEntryIndex();
         GetKartLapTime(kartIndex, GetFollowedKartLastEndedLap(), &minute, &second, &millisecond);
     } else {
@@ -189,7 +189,7 @@ void DrawRaceTimeDigits(RaceHudOamBuffer *oamBuffer) {
     s32 cycleFrame;
     s32 afterCellIndex;
 
-    hasLapTime = func_020b1a20();
+    hasLapTime = GetShowLapTime();
     cellOffset = 0;
     if (GetRaceHudSubScreenState() == 6) {
         return;
@@ -204,7 +204,7 @@ void DrawRaceTimeDigits(RaceHudOamBuffer *oamBuffer) {
         return;
     }
     if (hasLapTime != 0) {
-        cycleFrame = (s32) func_020b1a0c() % 16;
+        cycleFrame = (s32) GetShowLapTimeFrames() % 16;
         if (cycleFrame >= 4) {
             if (cycleFrame < 8) {
                 cellOffset = 0xc;

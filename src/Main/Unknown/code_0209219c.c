@@ -215,7 +215,7 @@ void StartBasabasa(u32 state2TimerBase, const Vec3 *startPos, const Vec3 *veloci
     u32 n;
     u16 w;
 
-    basabasa = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_BASABASA));
+    basabasa = UnparkFirstParkedMapObject(FindMapObjectKindUpdateList(MAP_OBJECT_KIND_BASABASA));
     if (basabasa == NULL) {
         return;
     }

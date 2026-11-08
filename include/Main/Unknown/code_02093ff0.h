@@ -19,8 +19,8 @@ typedef struct TeresaWobble {
     /* 1c */ s32 mUnk_1c;
 } TeresaWobble;
 
-// Object of kind 0x13b (Teresa), returned by UnparkFirstParkedMapObject for func_02100138(0x13b), filled by
-// StartTeresa. The pool objects are made by another kind's init (func_020954e4 in code_02094e1c.c); Unk02094db4 is a
+// Object of kind 0x13b (Teresa), returned by UnparkFirstParkedMapObject for FindMapObjectKindUpdateList(0x13b), filled
+// by StartTeresa. The pool objects are made by another kind's init (func_020954e4 in code_02094e1c.c); Unk02094db4 is a
 // view of the draw group record, not of this object.
 typedef struct Teresa {
     /* 000 */ MapObject mUnk_00;

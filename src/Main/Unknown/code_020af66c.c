@@ -405,10 +405,10 @@ void func_020b03bc(void) {
     if (gRaceSetup->mMode == MODE_BATTLE) {
         switch (gRaceSetup->mCourseId) {
             case COURSE_ID_MINI_STAGE3:
-                gRaceHud->mUnk_854 = 0x40;
+                gRaceHud->mSubScreenCourseScale = 0x40;
                 break;
             default:
-                gRaceHud->mUnk_854 = 0x64;
+                gRaceHud->mSubScreenCourseScale = 0x64;
                 break;
         }
     } else if (gRaceSetup->mMode == MODE_MISSION_RUN) {
@@ -417,22 +417,22 @@ void func_020b03bc(void) {
             case COURSE_ID_MR_STAGE2:
             case COURSE_ID_MR_STAGE3:
             case COURSE_ID_MR_STAGE4:
-                gRaceHud->mUnk_854 = 0x64;
+                gRaceHud->mSubScreenCourseScale = 0x64;
                 break;
             default:
-                gRaceHud->mUnk_854 = 0x86;
+                gRaceHud->mSubScreenCourseScale = 0x86;
                 break;
         }
     } else {
-        gRaceHud->mUnk_854 = 0x86;
+        gRaceHud->mSubScreenCourseScale = 0x86;
     }
     gRaceHud->mEnabled = FALSE;
     for (i = 0; i < 8; i++) {
         gRaceHud->mKartRemoved[i] = 0;
         gRaceHud->mRemovedSoundPlayed[i] = 0;
     }
-    gRaceHud->mUnk_8dc = 0;
-    gRaceHud->mUnk_8e0 = -1;
+    gRaceHud->mShowLapTime = 0;
+    gRaceHud->mShowLapTimeFrames = -1;
     if (gRaceSetup->mMode == MODE_TIME_ATTACK && gRaceSetup->mKartCount > 1) {
         gRaceHud->mUseTimeDifference = 1;
     } else {
@@ -759,11 +759,11 @@ void func_020af66c(void) {
     if (gRaceHud->mEnabled == FALSE) {
         return;
     }
-    if (gRaceHud->mUnk_8dc != 0) {
-        gRaceHud->mUnk_8e0++;
-        if (gRaceHud->mUnk_8e0 >= 0x80) {
-            gRaceHud->mUnk_8dc = 0;
-            gRaceHud->mUnk_8e0 = -1;
+    if (gRaceHud->mShowLapTime != 0) {
+        gRaceHud->mShowLapTimeFrames++;
+        if (gRaceHud->mShowLapTimeFrames >= 0x80) {
+            gRaceHud->mShowLapTime = 0;
+            gRaceHud->mShowLapTimeFrames = -1;
         }
     }
     UpdateRaceStartSequence();
@@ -772,9 +772,10 @@ void func_020af66c(void) {
         func_020d1298();
     }
     v = gRaceSetup->mMode;
-    if ((v == MODE_BATTLE        ? gRaceProgress->mRaceDone
-         : v == MODE_MISSION_RUN ? IsFramesSinceFinishPastWait()
-                                 : (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
+    if ((v == MODE_BATTLE ? gRaceProgress->mRaceDone
+         : v == MODE_MISSION_RUN
+             ? IsFramesSinceFinishPastWait()
+             : (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceHud->mShowLapTime == 0)) == 0) {
         UpdateRaceItemSlot();
         UpdateRaceLapNumber();
         func_020d2090();

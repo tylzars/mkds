@@ -72,7 +72,7 @@ void func_ov001_0218d2c4(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
     StartAnimationNoEndCallback(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
     SetMapObjectModelNsbtpFrameIndex(a->mNsbmd, 0);
-    list = func_02100138(0x1fe);
+    list = FindMapObjectKindUpdateList(0x1fe);
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && (p = list->mUnk_00[i]) != NULL; i++) {
             func_ov001_02187218(p, 1, NULL);
@@ -92,7 +92,7 @@ void func_ov001_0218d280(void) {
     int i;
 
     func_ov001_021882b8();
-    list = func_02100138(0x1fe);
+    list = FindMapObjectKindUpdateList(0x1fe);
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && (p = list->mUnk_00[i]) != NULL; i++) {
             func_ov001_0218dadc(p);

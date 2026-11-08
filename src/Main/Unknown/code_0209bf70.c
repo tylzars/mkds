@@ -59,7 +59,7 @@ void InitSun(u32 sun) {
     value0 = (sunObject) + (0xb8u);
     value2 = 0u;
     InitGroupFollower((GroupFollower *) value0, (CourseMapRow *) value1, value2);
-    value0 = 0x1aeu;
+    value0 = MAP_OBJECT_KIND_SUN_FIREBALL;
     value2 = sunObject;
     value1 = 0x1eu;
     CreateParkedMapObjects(value0, value1, (void *) value2);
@@ -679,7 +679,7 @@ BOOL StartBoundWobble(s32 a) {
     Unk0210b7a8 s;
     s32 k;
 
-    bound = GetMapObjectFromList(func_02100138(MAP_OBJECT_KIND_BOUND), a);
+    bound = GetMapObjectFromList(FindMapObjectKindUpdateList(MAP_OBJECT_KIND_BOUND), a);
     if (bound->mWobbling == FALSE) {
         bound->mWobbleXAngle = 0x8000;
         bound->mWobbleXMid = 0x1000;
