@@ -4,5 +4,5 @@
 
 typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
-void func_020bb5ec(RaceHudOamBuffer *p);
-void func_020bbbb4(void);
+void DrawRaceTimeDigits(RaceHudOamBuffer *oamBuffer);
+void UpdateRaceTimeDigits(void);

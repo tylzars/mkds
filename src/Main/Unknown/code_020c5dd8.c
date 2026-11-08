@@ -109,18 +109,18 @@ void DrawRaceNewRecordTaTime(Unk020c06c4 *oamBuffer, s32 x, s32 y, TimeRecord *r
 
     SplitTimeDigits(record->mMinute, record->mSecond, record->mMillisecond, &digits);
     if (record->mFilled == 0) {
-        digits.mUnk_00[0] = digits.mUnk_00[1] = digits.mUnk_00[2] = digits.mUnk_00[3] = digits.mUnk_00[4] =
-            digits.mUnk_00[5] = digits.mUnk_00[6] = 0xb;
+        digits.mDigits[0] = digits.mDigits[1] = digits.mDigits[2] = digits.mDigits[3] = digits.mDigits[4] =
+            digits.mDigits[5] = digits.mDigits[6] = 0xb;
     }
-    if (digits.mUnk_00[0] != 0) {
-        cell = GetRaceNewRecordTaSNcerEntry(digits.mUnk_00[0] + 0xe);
+    if (digits.mDigits[0] != 0) {
+        cell = GetRaceNewRecordTaSNcerEntry(digits.mDigits[0] + 0xe);
         digit0Position[0] = (x + cellOffsets[0]) << 12;
         digit0Position[1] = y << 12;
         oamIndex = oamBuffer->mUnk_400;
         oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex],
                                                      0x80 - oamIndex, cell, NULL, digit0Position, 0, 1);
     }
-    cell = GetRaceNewRecordTaSNcerEntry(digits.mUnk_00[1] + 0xe);
+    cell = GetRaceNewRecordTaSNcerEntry(digits.mDigits[1] + 0xe);
     digit1Position[0] = (x + cellOffsets[1]) << 12;
     digit1Position[1] = y << 12;
     oamIndex = oamBuffer->mUnk_400;
@@ -132,13 +132,13 @@ void DrawRaceNewRecordTaTime(Unk020c06c4 *oamBuffer, s32 x, s32 y, TimeRecord *r
     oamIndex = oamBuffer->mUnk_400;
     oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex,
                                                  cell, NULL, firstSeparatorPosition, 0, 1);
-    cell = GetRaceNewRecordTaSNcerEntry(digits.mUnk_00[2] + 0xe);
+    cell = GetRaceNewRecordTaSNcerEntry(digits.mDigits[2] + 0xe);
     digit2Position[0] = (x + cellOffsets[3]) << 12;
     digit2Position[1] = y << 12;
     oamIndex = oamBuffer->mUnk_400;
     oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex,
                                                  cell, NULL, digit2Position, 0, 1);
-    cell = GetRaceNewRecordTaSNcerEntry(digits.mUnk_00[3] + 0xe);
+    cell = GetRaceNewRecordTaSNcerEntry(digits.mDigits[3] + 0xe);
     digit3Position[0] = (x + cellOffsets[4]) << 12;
     digit3Position[1] = y << 12;
     oamIndex = oamBuffer->mUnk_400;
@@ -150,19 +150,19 @@ void DrawRaceNewRecordTaTime(Unk020c06c4 *oamBuffer, s32 x, s32 y, TimeRecord *r
     oamIndex = oamBuffer->mUnk_400;
     oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex,
                                                  cell, NULL, secondSeparatorPosition, 0, 1);
-    cell = GetRaceNewRecordTaSNcerEntry(digits.mUnk_00[4] + 0xe);
+    cell = GetRaceNewRecordTaSNcerEntry(digits.mDigits[4] + 0xe);
     digit4Position[0] = (x + cellOffsets[6]) << 12;
     digit4Position[1] = y << 12;
     oamIndex = oamBuffer->mUnk_400;
     oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex,
                                                  cell, NULL, digit4Position, 0, 1);
-    cell = GetRaceNewRecordTaSNcerEntry(digits.mUnk_00[5] + 0xe);
+    cell = GetRaceNewRecordTaSNcerEntry(digits.mDigits[5] + 0xe);
     digit5Position[0] = (x + cellOffsets[7]) << 12;
     digit5Position[1] = y << 12;
     oamIndex = oamBuffer->mUnk_400;
     oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex,
                                                  cell, NULL, digit5Position, 0, 1);
-    cell = GetRaceNewRecordTaSNcerEntry(digits.mUnk_00[6] + 0xe);
+    cell = GetRaceNewRecordTaSNcerEntry(digits.mDigits[6] + 0xe);
     digit6Position[0] = (x + cellOffsets[8]) << 12;
     digit6Position[1] = y << 12;
     oamIndex = oamBuffer->mUnk_400;
@@ -378,7 +378,7 @@ void func_020c610c(void) {
             gRaceNewRecordTa->mUpdateFrames = 0;
         } else {
             r = FALSE;
-            if (func_020ba620() != 0) {
+            if (IsRaceKeyRecordingNotFull() != 0) {
                 if (gRaceSetup->mMode == MODE_TIME_ATTACK && gRaceSetup->mFirstGhostRecordFilled == 1) {
                     MI_CpuCopy8(&gRaceSetup->mFirstGhostRecordMillisecond, &setupTime, 4);
                     hasSetupTime = TRUE;
@@ -452,7 +452,7 @@ void func_020c5f7c(void) {
         return;
     }
     r = FALSE;
-    if (func_020ba620() != 0) {
+    if (IsRaceKeyRecordingNotFull() != 0) {
         if (gRaceSetup->mMode == MODE_TIME_ATTACK && gRaceSetup->mFirstGhostRecordFilled == 1) {
             MI_CpuCopy8(&gRaceSetup->mFirstGhostRecordMillisecond, &setupTime, 4);
             hasSetupTime = TRUE;

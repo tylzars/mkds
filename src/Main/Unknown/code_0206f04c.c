@@ -93,7 +93,7 @@ void func_0206ff50(Kart *kart, u32 collisionFlags) {
         kart->mRespawnSlot = respawnSlot;
         if ((kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mCourseId == COURSE_ID_RAINBOW &&
             (data_0217c780 & 1)) {
-            soundHandleEntry = TakeSoundHandleEntry(func_02108ea0(0));
+            soundHandleEntry = TakeSoundHandleEntry(GetSoundHandlePool(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (soundHandleEntry[0] != NULL) {
                     NNS_SndPlayerStopSeq(soundHandleEntry, 0);

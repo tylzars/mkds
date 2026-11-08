@@ -821,7 +821,7 @@ void InitKartItems(KartItems *kartItems, s32 kartIndex) {
     courseMap = (Unk02175620_060 *) gCourseMap;
     kartItems->mUnk_1f0.mLink = courseMap->mUnk_060 != 0 ? courseMap->mUnk_0b0 : 0;
     kartItems->mUnk_1f0.mNextLinksUsed = 1;
-    kartItems->mUnk_204 = FALSE;
+    kartItems->mKinokoBoostStarted = FALSE;
     kartItems->mUnk_208 = FALSE;
     kartItems->mUnk_20c = FALSE;
 }

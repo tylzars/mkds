@@ -692,7 +692,7 @@ void UpdateRaceLapNumber(void) {
                 v = 0x1c7;
             }
             if (data_0217c780 & 1) {
-                a = TakeSoundHandleEntry(func_02108ea0(0));
+                a = TakeSoundHandleEntry(GetSoundHandlePool(0));
                 if (data_0217d084.mUnk_0c != 0) {
                     if (*a != NULL) {
                         NNS_SndPlayerStopSeq(a, 0);
@@ -809,13 +809,13 @@ void DrawRaceLapAndTimeDifference(RaceHudOamBuffer *a) {
         q5[0] = b[0] << 12;
         q5[1] = 0x58000;
         a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q5, 0, 1);
-        if (r->mUnk_00[0] != 0) {
-            c = GetRaceTaMNcerEntry(r->mUnk_00[0] + 2);
+        if (r->mDigits[0] != 0) {
+            c = GetRaceTaMNcerEntry(r->mDigits[0] + 2);
             q6[0] = b[1] << 12;
             q6[1] = 0x58000;
             a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q6, 0, 1);
         }
-        c = GetRaceTaMNcerEntry(r->mUnk_00[1] + 2);
+        c = GetRaceTaMNcerEntry(r->mDigits[1] + 2);
         q7[0] = b[2] << 12;
         q7[1] = 0x58000;
         a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q7, 0, 1);
@@ -823,11 +823,11 @@ void DrawRaceLapAndTimeDifference(RaceHudOamBuffer *a) {
         q8[0] = b[3] << 12;
         q8[1] = 0x58000;
         a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q8, 0, 1);
-        c = GetRaceTaMNcerEntry(r->mUnk_00[2] + 2);
+        c = GetRaceTaMNcerEntry(r->mDigits[2] + 2);
         q9[0] = b[4] << 12;
         q9[1] = 0x58000;
         a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q9, 0, 1);
-        c = GetRaceTaMNcerEntry(r->mUnk_00[3] + 2);
+        c = GetRaceTaMNcerEntry(r->mDigits[3] + 2);
         q10[0] = b[5] << 12;
         q10[1] = 0x58000;
         a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q10, 0, 1);
@@ -835,15 +835,15 @@ void DrawRaceLapAndTimeDifference(RaceHudOamBuffer *a) {
         q11[0] = b[6] << 12;
         q11[1] = 0x58000;
         a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q11, 0, 1);
-        c = GetRaceTaMNcerEntry(r->mUnk_00[4] + 2);
+        c = GetRaceTaMNcerEntry(r->mDigits[4] + 2);
         q12[0] = b[7] << 12;
         q12[1] = 0x58000;
         a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q12, 0, 1);
-        c = GetRaceTaMNcerEntry(r->mUnk_00[5] + 2);
+        c = GetRaceTaMNcerEntry(r->mDigits[5] + 2);
         q13[0] = b[8] << 12;
         q13[1] = 0x58000;
         a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q13, 0, 1);
-        c = GetRaceTaMNcerEntry(r->mUnk_00[6] + 2);
+        c = GetRaceTaMNcerEntry(r->mDigits[6] + 2);
         q14[0] = b[9] << 12;
         q14[1] = 0x58000;
         a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q14, 0, 1);
@@ -854,25 +854,25 @@ void InitRaceTimeDigits(void) {
     s32 i;
 
     gRaceTimeDigits = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x38);
-    gRaceTimeDigits->mUnk_00.mUnk_00[0] = 0;
-    gRaceTimeDigits->mUnk_00.mUnk_00[1] = 0;
-    gRaceTimeDigits->mUnk_00.mUnk_00[2] = 0;
-    gRaceTimeDigits->mUnk_00.mUnk_00[3] = 0;
-    gRaceTimeDigits->mUnk_00.mUnk_00[4] = 0;
-    gRaceTimeDigits->mUnk_00.mUnk_00[5] = 0;
-    gRaceTimeDigits->mUnk_00.mUnk_00[6] = 0;
-    gRaceTimeDigits->mUnk_1c = FALSE;
+    gRaceTimeDigits->mTime.mDigits[0] = 0;
+    gRaceTimeDigits->mTime.mDigits[1] = 0;
+    gRaceTimeDigits->mTime.mDigits[2] = 0;
+    gRaceTimeDigits->mTime.mDigits[3] = 0;
+    gRaceTimeDigits->mTime.mDigits[4] = 0;
+    gRaceTimeDigits->mTime.mDigits[5] = 0;
+    gRaceTimeDigits->mTime.mDigits[6] = 0;
+    gRaceTimeDigits->mUseLastSecondsSound = FALSE;
     if (gRaceSetup->mMode == MODE_BATTLE) {
         if (gRaceSetup->mBattleKind == BATTLE_KIND_SHINE) {
-            gRaceTimeDigits->mUnk_1c = TRUE;
+            gRaceTimeDigits->mUseLastSecondsSound = TRUE;
         }
     }
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         if (gRaceSetup->mMissionKind != 6) {
-            gRaceTimeDigits->mUnk_1c = TRUE;
+            gRaceTimeDigits->mUseLastSecondsSound = TRUE;
         }
     }
     for (i = 0; i < 6; i++) {
-        gRaceTimeDigits->mUnk_20[i] = 0;
+        gRaceTimeDigits->mLastSecondsReached[i] = 0;
     }
 }

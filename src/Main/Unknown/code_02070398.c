@@ -1397,7 +1397,7 @@ void PlaceKartAtKeyedPlacement(Kart *kart, u32 key) {
     if (kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         SetupCameraBehindKart();
         if (data_0217c780 & 1) {
-            sndHandle = TakeSoundHandleEntry(func_02108ea0(0));
+            sndHandle = TakeSoundHandleEntry(GetSoundHandlePool(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (sndHandle[0] != NULL) {
                     NNS_SndPlayerStopSeq(sndHandle, 0);

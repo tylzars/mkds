@@ -196,7 +196,7 @@ typedef struct RaceSetup {
             /* 2f */ u8 mMissionKind;
             /* 030 */ u8 mUnk_030[0x6];
             /* 036 */ u8 mUnk_036;
-            /* 37 */ u8 mUnk_37;
+            /* 37 */ u8 mMissionRunCountLimit;
         };
     };
     /* 038 */ u16 mFinishWaitFrameCount;

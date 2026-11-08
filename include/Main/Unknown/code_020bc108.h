@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_020bc108(void);
+u32 ClearRaceTimeDigitsPointer(void);

@@ -39,11 +39,11 @@ void UpdateKartItems(KartItems *p) {
         p->mFlags |= data_usa_021595d0;
     }
     if (func_02068eac(q) != FALSE) {
-        p->mUnk_204 = FALSE;
+        p->mKinokoBoostStarted = FALSE;
         p->mUnk_208 = FALSE;
         return;
     }
-    p->mUnk_204 = FALSE;
+    p->mKinokoBoostStarted = FALSE;
     if (p->mUnk_20c != FALSE) {
         if (func_01ffc67c(q) == FALSE && !(q->mUnk_48 & 0x10000) && (q->mUnk_44 & KART_44_ON_GROUND)) {
             p->mUnk_20c = FALSE;

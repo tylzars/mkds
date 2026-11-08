@@ -112,7 +112,7 @@ BOOL func_01ffa1f8(Kart *p) {
             p->mRespawnSlot = r;
             if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
                 if (gRaceSetup->mCourseId == COURSE_ID_RAINBOW && (data_0217c780 & 1)) {
-                    q = TakeSoundHandleEntry(func_02108ea0(0));
+                    q = TakeSoundHandleEntry(GetSoundHandlePool(0));
                     if (data_0217d084.mUnk_0c != 0) {
                         if (*(u32 *) q != 0) {
                             NNS_SndPlayerStopSeq(q, 0);

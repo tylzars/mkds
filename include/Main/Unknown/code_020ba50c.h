@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_020ba50c(void);
+u32 ClearRaceModeCountPointer(void);

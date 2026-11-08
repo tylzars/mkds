@@ -374,9 +374,9 @@ void func_020b03bc(void) {
     if (gRaceSetup->mRaceKind == 4) {
         func_020d12b0();
     }
-    func_020bb530();
+    InitRaceItemSlot();
     InitRaceLinkLevel();
-    func_020ba520();
+    InitRaceModeCount();
     InitRaceGoalM();
     InitRaceTimeDigits();
     InitRaceLapNumber();
@@ -720,11 +720,11 @@ void func_020af86c(void) {
     if (gRaceSetup->mRaceKind == 4) {
         func_020d129c();
     }
-    func_020bb51c();
+    ClearRaceItemSlotPointer();
     ClearRaceLinkLevelPointer();
-    func_020ba50c();
+    ClearRaceModeCountPointer();
     ClearRaceGoalMPointer();
-    func_020bc108();
+    ClearRaceTimeDigitsPointer();
     ClearRaceLapNumberPointer();
     ClearRaceMNumberPairPointer();
     ClearRaceGoalTimesPointer();
@@ -775,19 +775,19 @@ void func_020af66c(void) {
     if ((v == MODE_BATTLE        ? gRaceProgress->mRaceDone
          : v == MODE_MISSION_RUN ? IsFramesSinceFinishPastWait()
                                  : (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
-        func_020bab54();
+        UpdateRaceItemSlot();
         UpdateRaceLapNumber();
         func_020d2090();
         UpdateRaceGoalTimes();
-        func_020ba3ec();
+        UpdateRaceModeCount();
         UpdateRaceGoalM();
     } else {
-        func_020bb5cc();
+        StopRaceItemSlotSound();
         UpdateRaceLapNumber();
         UpdateRaceGoalTimes();
         UpdateRaceGoalM();
     }
-    func_020bbbb4();
+    UpdateRaceTimeDigits();
     UpdateRaceRankList();
     switch (gRaceHud->mSubScreenState) {
         case 0:

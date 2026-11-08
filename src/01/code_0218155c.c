@@ -223,7 +223,7 @@ u32 GetMissionRunCount(void) {
 }
 
 u32 GetMissionRunCountLimit(void) {
-    u32 countLimit = gRaceSetup->mUnk_37;
+    u32 countLimit = gRaceSetup->mMissionRunCountLimit;
     if (countLimit == 0) {
         countLimit = 1;
     }

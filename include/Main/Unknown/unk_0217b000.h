@@ -791,47 +791,49 @@ extern s32 data_0217bc60;
 extern u16 data_0217b220;
 #include "Main/Unknown/unk_0217b358.h"
 #include "Main/Unknown/unk_0217b35c.h"
-// Object behind data_0217b3c8, 0xc bytes, allocated by func_020ba520. The word at 0 is also read and written as two
-// halfwords.
-typedef struct Unk0217b3c8 {
+// Object behind gRaceModeCount, 0xc bytes, allocated by InitRaceModeCount. The word at 0 is also read and written as
+// two halfwords.
+typedef struct RaceModeCount {
     /* 00 */ union {
-        s32 mUnk_00;
-        u16 mUnk_00_h[2];
+        s32 mNumber;
+        u16 mNumberHalves[2];
     };
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-} Unk0217b3c8;
+    /* 04 */ s32 mMissionRunCountLimit;
+    // 1 from init; cleared by DrawRaceModeCount once the time attack key recording is full; IsRaceKeyRecordingNotFull
+    // reads it.
+    /* 08 */ s32 mKeyRecordingNotFull;
+} RaceModeCount;
 
-extern Unk0217b3c8 *data_0217b3c8;
-// Five words at 0x18 of Unk0217b3cc.
-typedef struct Unk0217b3cc_18 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
-} Unk0217b3cc_18;
+extern RaceModeCount *gRaceModeCount;
+// Scale spring of the item cells: frame counter, x and y scale, y-scale per-frame increment and target (fx32).
+typedef struct RaceItemSlotScale {
+    /* 00 */ s32 mScaleFrames;
+    /* 04 */ s32 mScaleX;
+    /* 08 */ s32 mScaleY;
+    /* 0c */ s32 mScaleYPerFrame;
+    /* 10 */ s32 mScaleYTarget;
+} RaceItemSlotScale;
 
-// Object behind data_0217b3cc, 0x2c bytes, allocated by func_020bb530.
-typedef struct Unk0217b3cc {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
-    /* 14 */ s32 mUnk_14;
-    /* 18 */ Unk0217b3cc_18 mUnk_18;
-} Unk0217b3cc;
+// Object behind gRaceItemSlot, 0x2c bytes, allocated by InitRaceItemSlot.
+typedef struct RaceItemSlot {
+    /* 00 */ s32 mScrollY;
+    /* 04 */ s32 mSlotFrames;
+    /* 08 */ s32 mUpperItem;
+    /* 0c */ s32 mLowerItem;
+    /* 10 */ s32 mSlotRunning;
+    /* 14 */ s32 mPrevSlotRunning;
+    /* 18 */ RaceItemSlotScale mScale;
+} RaceItemSlot;
 
-extern Unk0217b3cc *data_0217b3cc;
+extern RaceItemSlot *gRaceItemSlot;
 // Object behind gRaceTimeDigits, 0x38 bytes, allocated by InitRaceTimeDigits.
-typedef struct Unk0217b3d0 {
-    /* 00 */ TimeDigits mUnk_00;
-    /* 1c */ BOOL mUnk_1c;
-    /* 20 */ s32 mUnk_20[6];
-} Unk0217b3d0;
+typedef struct RaceTimeDigits {
+    /* 00 */ TimeDigits mTime;
+    /* 1c */ BOOL mUseLastSecondsSound;
+    /* 20 */ s32 mLastSecondsReached[6];
+} RaceTimeDigits;
 
-extern Unk0217b3d0 *gRaceTimeDigits;
+extern RaceTimeDigits *gRaceTimeDigits;
 // 0x18-byte elements of the tables at member 0x10 of RaceTaPositions.
 typedef struct RaceTaPositionSample {
     /* 00 */ Vec3 mPos;

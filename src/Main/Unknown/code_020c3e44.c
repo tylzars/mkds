@@ -653,7 +653,7 @@ void UpdateRaceTaPositions(void) {
         gRaceTaPositions->mVisible = gRaceTaPositions->mVisible == 0 ? 1 : 0;
     }
     for (i = 0; i < gRaceSetup->mKartCount; i = (u16) (i + 1)) {
-        if ((gKartItems)[i].mUnk_204 != FALSE) {
+        if ((gKartItems)[i].mKinokoBoostStarted != FALSE) {
             count = gRaceTaPositions->mUnk_790[i].mUnk_00;
             gRaceTaPositions->mUnk_790[i].mUnk_00 = count + 1;
             ((void (*)(Vec3 *, s32)) func_0207a91c)(&gRaceTaPositions->mUnk_790[i].mUnk_04[count], i);

@@ -151,20 +151,20 @@ void StartItemSlot(KartItems *slot, s32 forcedRowHandle, s32 rank, s32 isHumanGh
         slot->mUnk_01c = FALSE;
         slot->mSlotFrames = 0;
         slot->mSlotFrameCount = 0x85;
-        slot->mUnk_028 = 0x10;
-        slot->mUnk_02c = 4;
+        slot->mSlotFinalScrollFrameCount = 0x10;
+        slot->mSlotFinalScrollFrameShift = 4;
     } else if (shortSpin != 0) {
         slot->mUnk_01c = TRUE;
         slot->mSlotFrames = 0x4d;
         slot->mSlotFrameCount = 0x65;
-        slot->mUnk_028 = 8;
-        slot->mUnk_02c = 3;
+        slot->mSlotFinalScrollFrameCount = 8;
+        slot->mSlotFinalScrollFrameShift = 3;
     } else {
         slot->mUnk_01c = FALSE;
         slot->mSlotFrames = 0;
         slot->mSlotFrameCount = 0xd5;
-        slot->mUnk_028 = 0x10;
-        slot->mUnk_02c = 4;
+        slot->mSlotFinalScrollFrameCount = 0x10;
+        slot->mSlotFinalScrollFrameShift = 4;
     }
     isEntryKart = kartItems->mKartIndex == gRaceSetup->mEntryIndex;
     if (kartItems->mItemInUse.mObjectKind != 0xf && kartItems->mItemInUse.mItemInfoIndex >= 9) {
@@ -262,7 +262,7 @@ BOOL UpdateItemSlot(KartItems *slot, KartItems *kartItems) {
             break;
         case 2:
             slot->mSlotFrames++;
-            if (slot->mSlotFrames > slot->mUnk_028 * 2) {
+            if (slot->mSlotFrames > slot->mSlotFinalScrollFrameCount * 2) {
                 return TRUE;
             }
             break;
@@ -395,7 +395,7 @@ void func_020f81c0(KartItems *slot) {
     enum { K0 } itemIndex, objectKind;
 
     if (slot->mSelf->mKartIndex == gRaceSetup->mEntryIndex) {
-        func_020bb5cc();
+        StopRaceItemSlotSound();
     }
     itemIndex = slot->mSlotResult;
     itemInfo = &gItemInfos[itemIndex];

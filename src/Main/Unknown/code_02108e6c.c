@@ -76,7 +76,7 @@ void func_02108eb4(u32 index, u32 value) {
     *(u32 *) ((table) + ((indexCopy << 2))) = valueCopy;
 }
 
-Unk0217c7c4 *func_02108ea0(u32 index) {
+Unk0217c7c4 *GetSoundHandlePool(u32 index) {
     u32 value0 = index;
     u32 elementSize;
     u32 base;

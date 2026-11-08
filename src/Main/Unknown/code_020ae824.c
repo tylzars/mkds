@@ -59,12 +59,12 @@ void func_020ae824(void) {
     if ((v == MODE_BATTLE        ? gRaceProgress->mRaceDone
          : v == MODE_MISSION_RUN ? IsFramesSinceFinishPastWait()
                                  : (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
-        func_020ba63c((RaceHudOamBuffer *) gRaceHud->mMainOam);
+        DrawRaceItemSlot((RaceHudOamBuffer *) gRaceHud->mMainOam);
         DrawRaceLapAndTimeDifference((RaceHudOamBuffer *) gRaceHud->mMainOam);
         DrawRaceMNumberPair((RaceHudOamBuffer *) gRaceHud->mMainOam);
         DrawRaceGoalTimes((RaceHudOamBuffer *) gRaceHud->mMainOam);
         DrawRaceLinkLevel((Unk020c06c4 *) gRaceHud->mMainOam);
-        func_020b9dfc((RaceHudOamBuffer *) gRaceHud->mMainOam);
+        DrawRaceModeCount((RaceHudOamBuffer *) gRaceHud->mMainOam);
         DrawRaceGoalM((Unk020c06c4 *) gRaceHud->mMainOam);
     } else {
         DrawRaceGoalTimes((RaceHudOamBuffer *) gRaceHud->mMainOam);
@@ -77,7 +77,7 @@ void func_020ae824(void) {
     gRaceHud->mSubMatrixCount = 0;
     subScreenState = gRaceHud->mSubScreenState;
     if (subScreenState != 4 && subScreenState != 5) {
-        func_020bb5ec((RaceHudOamBuffer *) gRaceHud->mSubOam);
+        DrawRaceTimeDigits((RaceHudOamBuffer *) gRaceHud->mSubOam);
     }
     DrawRaceRankList((RaceHudOamBuffer *) gRaceHud->mSubOam);
     DC_FlushRange(gRaceHud->mSubOam, 0x400);

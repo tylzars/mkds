@@ -298,7 +298,7 @@ void StartItemThunder(ItemInUse *itemInUse, HeldItem *heldItem) {
     NNSSndSeqPlayer **seqPlayer;
 
     if (data_0217c780 & 1) {
-        seqPlayer = TakeSoundHandleEntry(func_02108ea0(0));
+        seqPlayer = TakeSoundHandleEntry(GetSoundHandlePool(0));
         if (data_0217d084.mUnk_0c != 0) {
             if (*seqPlayer != NULL) {
                 NNS_SndPlayerStopSeq(seqPlayer, 0);
@@ -909,7 +909,7 @@ void InitItemBananaFromData(ItemBanana *banana) {
 void StartItemKinokoBoost(ItemInUse *itemInUse, HeldItem *heldItem) {
     StartKartKinokoBoost(heldItem->mKartItems->mKart);
     RemoveHeldItemObjects(heldItem, 1);
-    itemInUse->mKartItems->mUnk_204 = TRUE;
+    itemInUse->mKartItems->mKinokoBoostStarted = TRUE;
     if (gRaceSetup->mMode != 5) {
         return;
     }

@@ -6,7 +6,7 @@
 // hundreds, tens and ones. Embedded in the race timer object, the time difference and the digit object of
 // code_020cffd0.c; code_020c5dd8.c also fills all seven with 0xb (blank) for a missing time.
 typedef struct TimeDigits {
-    /* 00 */ s32 mUnk_00[7];
+    /* 00 */ s32 mDigits[7];
 } TimeDigits;
 
 void SortIndicesByKey(s32 *a, s32 *b, s32 c);

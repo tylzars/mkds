@@ -520,7 +520,7 @@ u16 func_020a1520(void) {
         }
     }
     if (data_0217c780 & 1) {
-        seqPlayerHandle = TakeSoundHandleEntry(func_02108ea0(0));
+        seqPlayerHandle = TakeSoundHandleEntry(GetSoundHandlePool(0));
         if (data_0217d084.mUnk_0c != 0) {
             if (seqPlayerHandle[0] != NULL) {
                 NNS_SndPlayerStopSeq(seqPlayerHandle, 0);
@@ -685,7 +685,8 @@ BOOL IsKartEliminated(int kartIndex) {
     return FALSE;
 }
 
-BOOL func_020a1048(u16 kartIndex) {
+// TRUE when the kart has the lowest balloon or shine count (ties count) and not every kart has it.
+BOOL IsKartLastByBalloonOrShineCount(u16 kartIndex) {
     Standings *standings;
     BOOL result;
     s32 count;

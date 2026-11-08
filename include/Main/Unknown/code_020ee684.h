@@ -32,8 +32,8 @@ typedef struct KartItems {
     /* 01c */ BOOL mUnk_01c;
     /* 020 */ BOOL mResultPending;
     /* 024 */ s32 mIsPeer;
-    /* 028 */ u32 mUnk_028;
-    /* 02c */ s32 mUnk_02c;
+    /* 028 */ u32 mSlotFinalScrollFrameCount;
+    /* 02c */ s32 mSlotFinalScrollFrameShift;
     // Record of the held item (HeldItem: item at 0, 0x13 = none, uses left at 8)
     /* 030 */ HeldItem mHeldItem;
     // The item in use. (replaces the three-line comment above mItemInUse)
@@ -49,7 +49,7 @@ typedef struct KartItems {
     /* 1fa */ u8 mUnk_1fa[2];
     /* 1fc */ Kart *mKart;
     /* 200 */ s32 mEntryIndex;
-    /* 204 */ BOOL mUnk_204;
+    /* 204 */ BOOL mKinokoBoostStarted;
     /* 208 */ BOOL mUnk_208;
     /* 20c */ BOOL mUnk_20c;
 } KartItems;

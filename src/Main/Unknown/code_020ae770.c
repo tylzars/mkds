@@ -7,13 +7,13 @@
 // Splits minutes, seconds and milliseconds into the seven digits of a TimeDigits (no clamping; the callers pass minutes
 // < 100).
 void SplitTimeDigits(s32 a, s32 b, s32 c, TimeDigits *d) {
-    d->mUnk_00[0] = a / 10;
-    d->mUnk_00[1] = a % 10;
-    d->mUnk_00[2] = b / 10;
-    d->mUnk_00[3] = b % 10;
-    d->mUnk_00[4] = c / 100;
-    d->mUnk_00[5] = (c - d->mUnk_00[4] * 100) / 10;
-    d->mUnk_00[6] = c % 10;
+    d->mDigits[0] = a / 10;
+    d->mDigits[1] = a % 10;
+    d->mDigits[2] = b / 10;
+    d->mDigits[3] = b % 10;
+    d->mDigits[4] = c / 100;
+    d->mDigits[5] = (c - d->mDigits[4] * 100) / 10;
+    d->mDigits[6] = c % 10;
 }
 
 // Exchange sort in place: afterwards keys[indices[0]] <= keys[indices[1]] <= ... for the first count entries (a smaller
