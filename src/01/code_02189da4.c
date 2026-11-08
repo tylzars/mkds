@@ -47,7 +47,7 @@
 #include "Main/Unknown/code_0210b708.h"
 
 void func_ov001_0218a30c(Unk02188950 *mapObject) {
-    Unk021a7c08 local;
+    Unk021a7c08 soundRequest;
 
     func_ov001_02187218(mapObject, 8, NULL);
     ReleaseEffects(mapObject);
@@ -56,10 +56,10 @@ void func_ov001_0218a30c(Unk02188950 *mapObject) {
     StartEffectAtOffset(mapObject, 0, 0x2000, 0, 0x40e, 0);
     StartEffectAtOffset(mapObject, 0, 0x2000, 0, 0x40d, 0);
     StartEffectAtOffset(mapObject, 0, 0x2000, 0, 0x40f, 0);
-    local = data_ov001_021a7ad0;
-    local.mUnk_04 = &mapObject->mUnk_000.mPos;
-    local.mUnk_0c = GetHorizontalCameraDistanceSquared(&mapObject->mUnk_000.mPos);
-    func_0210b734(&local, func_02108e7c());
+    soundRequest = data_ov001_021a7ad0;
+    soundRequest.mUnk_04 = &mapObject->mUnk_000.mPos;
+    soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(&mapObject->mUnk_000.mPos);
+    func_0210b734(&soundRequest, func_02108e7c());
     mapObject->mUnk_000.mFlags |= data_ov001_021a6588;
     mapObject->mUnk_000.mFlags |= data_ov001_021a658c;
     mapObject->mUnk_000.mFlags |= data_ov001_021a6590;
@@ -84,7 +84,7 @@ s32 func_ov001_0218a2b8(Unk02188950 *mapObject) {
     return 0;
 }
 
-void func_ov001_0218a290(Unk02188950 *mapObject) {
+void StartBombKingWaitForRaceStart(Unk02188950 *mapObject) {
     func_ov001_02187218(mapObject, 8, func_ov001_0218a2b8);
     StartAnimationNoEndCallback(mapObject, mapObject->mPrm->mUnk_064, mapObject->mPrm->mUnk_068);
 }
@@ -92,7 +92,7 @@ void func_ov001_0218a290(Unk02188950 *mapObject) {
 void func_ov001_0218a250(Unk02188950 *mapObject) {
     func_ov001_02187218(mapObject, 8, NULL);
     StartAnimationWithEndCallback(mapObject, mapObject->mPrm->mUnk_058, mapObject->mPrm->mUnk_05c,
-                                  (UnkFunc *) &func_ov001_0218a290);
+                                  (UnkFunc *) &StartBombKingWaitForRaceStart);
     SetAnimationFrameCallback(mapObject, ((u32) mapObject->mPrm->mUnk_148), func_ov001_0218b034);
 }
 
@@ -121,10 +121,10 @@ void InitBombKingObjects(Unk0218d87c *list) {
 
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && (mapObject = list->mUnk_00[i]) != NULL; i++) {
-            Vec3 v = {0, 0, 0};
-            v.x = mapObject->mPrm->mUnk_0fc;
-            v.y = mapObject->mPrm->mUnk_100;
-            func_ov001_02187c88(mapObject, 5, (&v));
+            Vec3 offset = {0, 0, 0};
+            offset.x = mapObject->mPrm->mUnk_0fc;
+            offset.y = mapObject->mPrm->mUnk_100;
+            func_ov001_02187c88(mapObject, 5, (&offset));
             if (GetRaceUseChainCameras() != 0) {
                 func_ov001_0218a19c(mapObject);
             } else {
@@ -159,14 +159,14 @@ void UpdateBombKing(u32 a, Unk02188950 *mapObject) {
     } else {
         if (func_ov001_021871f8(mapObject, 3) != 0) {
             if (func_ov001_02188220(mapObject) >= 2) {
-                func_ov001_0218ab04(mapObject);
+                StartBombKingJumpCycle(mapObject);
             }
         }
         if (func_ov001_021871f8(mapObject, 3) != 0) {
-            func_ov001_0218a75c(mapObject);
+            StartBombKingWalkToBombState(mapObject);
         }
         if (func_ov001_021871f8(mapObject, 2) != 0) {
-            func_ov001_0218a60c(mapObject);
+            StartBombKingWalkState(mapObject);
         }
     }
     AdvanceMissionRunMapObject(a, mapObject);
@@ -193,7 +193,7 @@ void func_ov001_02189fe0(Unk02188950 *mapObject, ItemObject *itemObject) {
     SetItemCollisionCallback(mapObject, (UnkFunc *) func_ov001_02189fe0);
 }
 
-void func_ov001_02189ed8(Unk02188950 *mapObject, ItemObject *itemObject) {
+void BombKingItemHitCallback(Unk02188950 *mapObject, ItemObject *itemObject) {
     Vec3 velocity;
     s64 scale;
 
@@ -201,7 +201,7 @@ void func_ov001_02189ed8(Unk02188950 *mapObject, ItemObject *itemObject) {
         func_ov001_02187bfc(mapObject, NULL, 0);
     }
     mapObject->mUnk_2e0 = 2;
-    SetItemCollisionCallback(mapObject, (UnkFunc *) func_ov001_02189ed8);
+    SetItemCollisionCallback(mapObject, (UnkFunc *) BombKingItemHitCallback);
     if (func_ov001_021871f8(mapObject, 7) != 0) {
         velocity.x = mapObject->mUnk_000.mPos.x - itemObject->mPos.x;
         velocity.y = 0;
@@ -233,7 +233,7 @@ void InitBombKing(Unk0218d87c *list) {
             prm = mapObject->mPrm;
             SetCollisionOffsetAndExtent(mapObject, prm->mUnk_008, prm->mUnk_00c, prm->mUnk_20c);
             SetShadowOffsetYAndScale(mapObject, 0, 0x23000);
-            SetItemCollisionCallback(mapObject, (UnkFunc *) func_ov001_02189ed8);
+            SetItemCollisionCallback(mapObject, (UnkFunc *) BombKingItemHitCallback);
         }
     }
 }

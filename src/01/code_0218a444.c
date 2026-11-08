@@ -7,7 +7,7 @@
 void func_ov001_0218a52c(Unk02188950 *mapObject) {
     func_ov001_02187218(mapObject, 7, NULL);
     StartAnimationWithEndCallback(mapObject, mapObject->mPrm->mUnk_174, mapObject->mPrm->mUnk_178, NULL);
-    SetItemCollisionCallback(mapObject, (UnkFunc *) &func_ov001_02189ed8);
+    SetItemCollisionCallback(mapObject, (UnkFunc *) &BombKingItemHitCallback);
 }
 
 void func_ov001_0218a4d0(Unk02188950 *mapObject) {
@@ -22,7 +22,7 @@ void func_ov001_0218a4d0(Unk02188950 *mapObject) {
 void func_ov001_0218a4a0(Unk02188950 *mapObject) {
     func_ov001_02187218(mapObject, 7, NULL);
     StartAnimationWithEndCallback(mapObject, mapObject->mPrm->mUnk_070, mapObject->mPrm->mUnk_074, NULL);
-    SetItemCollisionCallback(mapObject, (UnkFunc *) &func_ov001_02189ed8);
+    SetItemCollisionCallback(mapObject, (UnkFunc *) &BombKingItemHitCallback);
 }
 
 void func_ov001_0218a444(Unk02188950 *mapObject) {

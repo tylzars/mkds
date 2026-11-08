@@ -30,7 +30,7 @@ void func_ov001_0218aba0(Unk02188950 *mapObject) {
     StartMapObjectSound(&mapObject->mUnk_000, 0x238);
 }
 
-void func_ov001_0218ab04(Unk02188950 *mapObject) {
+void StartBombKingJumpCycle(Unk02188950 *mapObject) {
     IncrementEntryIndex(mapObject);
     func_ov001_02187218(mapObject, 3, NULL);
     StartAnimationNoEndCallback(mapObject, mapObject->mPrm->mUnk_17c, mapObject->mPrm->mUnk_180);
@@ -41,7 +41,7 @@ void func_ov001_0218ab04(Unk02188950 *mapObject) {
     func_ov001_0218b278(mapObject);
 }
 
-void func_ov001_0218aaac(Unk02188950 *mapObject) {
+void StartBombKingThrowBombsState(Unk02188950 *mapObject) {
     func_ov001_02187218(mapObject, 3, NULL);
     StartAnimationWithEndCallback(mapObject, mapObject->mPrm->mUnk_140, mapObject->mPrm->mUnk_144, NULL);
     func_ov001_02188c90(mapObject);
@@ -67,7 +67,7 @@ void func_ov001_0218aa34(Unk02188950 *mapObject) {
     StartMapObjectSound(&mapObject->mUnk_000, 0x23c);
 }
 
-void func_ov001_0218a970(Unk02188950 *mapObject) {
+void StartBombKingChaseState(Unk02188950 *mapObject) {
     Kart *kart;
 
     kart = GetEntryKartInRange(mapObject, mapObject->mPrm->mUnk_0c0, mapObject->mPrm->mUnk_0c4);
@@ -122,7 +122,7 @@ void func_ov001_0218a828(Unk02188950 *mapObject) {
     }
 }
 
-void func_ov001_0218a75c(Unk02188950 *mapObject) {
+void StartBombKingWalkToBombState(Unk02188950 *mapObject) {
     ItemBomb *bomb;
 
     bomb = FindItemBombInRange(mapObject, mapObject->mPrm->mUnk_114, mapObject->mPrm->mUnk_118);
@@ -139,7 +139,7 @@ void func_ov001_0218a75c(Unk02188950 *mapObject) {
     }
 }
 
-void func_ov001_0218a6b0(Unk02188950 *mapObject) {
+void StartBombKingRandomState(Unk02188950 *mapObject) {
     u32 randomLimit;
     RandomState64 *rng;
     u32 randomValue;
@@ -164,13 +164,13 @@ void func_ov001_0218a6b0(Unk02188950 *mapObject) {
         randomValue = (u16) randomValue;
     }
     if (randomValue != 0) {
-        func_ov001_0218aaac(mapObject);
+        StartBombKingThrowBombsState(mapObject);
     } else {
-        func_ov001_0218a970(mapObject);
+        StartBombKingChaseState(mapObject);
     }
 }
 
-void func_ov001_0218a60c(Unk02188950 *mapObject) {
+void StartBombKingWalkState(Unk02188950 *mapObject) {
     MissionRunPrm *prm;
 
     IncrementEntryIndex(mapObject);
@@ -179,14 +179,14 @@ void func_ov001_0218a60c(Unk02188950 *mapObject) {
     func_ov001_02188c48(mapObject, mapObject->mPrm->mUnk_090, mapObject->mPrm->mUnk_090);
     SetAnglePointAndMoveAnglePoint(mapObject, &GetCurrentGroupEntry(mapObject)->mPos);
     SetSpeedAndClearTarget(mapObject, mapObject->mPrm->mUnk_08c);
-    StartStateFrameCountCallback(mapObject, mapObject->mPrm->mUnk_09c, &func_ov001_0218a6b0);
+    StartStateFrameCountCallback(mapObject, mapObject->mPrm->mUnk_09c, &StartBombKingRandomState);
     prm = mapObject->mPrm;
     SetPointInRangeCallback(mapObject, prm->mUnk_094, prm->mUnk_098, &GetCurrentGroupEntry(mapObject)->mPos,
-                            &func_ov001_0218aaac);
+                            &StartBombKingThrowBombsState);
     func_ov001_0218b278(mapObject);
 }
 
-int func_ov001_0218a590(Unk02188950 *mapObject) {
+int StartBombKingBounceEffects(Unk02188950 *mapObject) {
     if ((mapObject->mCollisionBits & 0x1e34ef) != 0) {
         if (mapObject->mVelocity.y > 0x3333) {
             ReleaseEffects(mapObject);
@@ -202,7 +202,7 @@ int func_ov001_0218a590(Unk02188950 *mapObject) {
 
 int func_ov001_0218a568(Unk02188950 *mapObject) {
     if ((mapObject->mCollisionBits & 0x1e34ef) != 0) {
-        mapObject->mUnk_158 = func_ov001_0218a590;
+        mapObject->mUnk_158 = StartBombKingBounceEffects;
     }
     return 0;
 }
