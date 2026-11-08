@@ -138,24 +138,24 @@ void func_ov003_021c7614(void) {
     int v1;
     v1 = func_ov003_021d1f70(1);
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
-        func_ov003_021c1cd8();
+        CreateEditAddrKeyboard();
         StartSoundSeq(0x14);
         if (gEditAddr->mGroupIndex == 0) {
-            func_ov003_021c1c90(0);
-            func_ov003_021c1c70(0);
+            SetEditAddrKeyboardRemoveCharEnabled(0);
+            SetEditAddrKeyboardNextGroupEnabled(0);
         } else {
             v1 = func_ov003_021c735c(0x1a);
             if (v1 != 0) {
-                func_ov003_021c1c80(0);
+                SetEditAddrKeyboardAddCharEnabled(0);
             }
-            func_ov003_021c1c70(0);
+            SetEditAddrKeyboardNextGroupEnabled(0);
         }
         func_ov003_021c212c(func_ov003_021c75f8);
     }
 }
 
 void func_ov003_021c75f8(void) {
-    if (func_ov003_021c1ca0() != 31) {
+    if (GetEditAddrKeyboardInput() != 31) {
         func_ov003_021c212c(UpdateEditAddr);
     }
 }
@@ -172,7 +172,7 @@ void UpdateEditAddrInput(void) {
     EditAddr *h;
     EditAddr **g;
     u8 e;
-    a = func_ov003_021c1ca0();
+    a = GetEditAddrKeyboardInput();
     switch (a) {
         case 0:
             return;
@@ -186,10 +186,10 @@ void UpdateEditAddrInput(void) {
             }
             MI_CpuFill8(gEditAddr->mText + gEditAddr->mGroupIndex * 3, 0, 3);
             if (gEditAddr->mGroupIndex == 0 && gEditAddr->mText[2] == 0) {
-                func_ov003_021c1c90(0);
+                SetEditAddrKeyboardRemoveCharEnabled(0);
             }
-            func_ov003_021c1c80(1);
-            func_ov003_021c1c70(0);
+            SetEditAddrKeyboardAddCharEnabled(1);
+            SetEditAddrKeyboardNextGroupEnabled(0);
             break;
         case 0x11:
             e = gEditAddr->mGroupIndex;
@@ -201,7 +201,7 @@ void UpdateEditAddrInput(void) {
             }
             StartSoundSeq(1);
             gEditAddr->mGroupIndex = gEditAddr->mGroupIndex + 1;
-            func_ov003_021c1c70(0);
+            SetEditAddrKeyboardNextGroupEnabled(0);
             break;
         case 0x12:
             gEditAddr->mUnk_15 = 0;
@@ -251,15 +251,15 @@ void UpdateEditAddrInput(void) {
                     (*g)->mGroupIndex = (*g)->mGroupIndex + 1;
                 }
             }
-            func_ov003_021c1c90(1);
+            SetEditAddrKeyboardRemoveCharEnabled(1);
             if (gEditAddr->mGroupIndex < 3) {
-                func_ov003_021c1c70(1);
+                SetEditAddrKeyboardNextGroupEnabled(1);
             } else {
-                func_ov003_021c1c70(0);
+                SetEditAddrKeyboardNextGroupEnabled(0);
             }
             if (gEditAddr->mGroupIndex == 3) {
                 if (func_ov003_021c735c(0x1a) != 0) {
-                    func_ov003_021c1c80(0);
+                    SetEditAddrKeyboardAddCharEnabled(0);
                 }
             }
             break;
@@ -307,7 +307,7 @@ void func_ov003_021c7314(void) {
     int v1;
     v1 = func_ov003_021d1f70(1);
     if (v1 == 0) {
-        func_ov003_021c1cb0();
+        StartEditAddrKeyboardSlideOut();
         StartSoundSeq(0x15);
         func_ov003_021c212c(func_ov003_021c72a4);
     }
@@ -315,7 +315,7 @@ void func_ov003_021c7314(void) {
 
 void func_ov003_021c72a4(void) {
     u8 a;
-    if (func_ov003_021c1c5c() == 0) {
+    if (HasEditAddrKeyboard() == 0) {
         a = gEditAddr->mUnk_15;
         if (a == 0) {
             func_ov003_021c212c(func_ov003_021c722c);

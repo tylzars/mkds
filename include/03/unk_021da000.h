@@ -80,11 +80,11 @@ typedef struct EditKeyboard {
 } EditKeyboard;
 
 extern EditKeyboard *gEditKeyboard;
-struct Unk021da160;
-extern struct Unk021da160 *data_ov003_021da160;
-extern u8 data_ov003_021da164[];
+struct EditAddrKeyboard;
+extern struct EditAddrKeyboard *gEditAddrKeyboard;
+extern u8 gValueRecordsRequestSucceeded[];
 struct ValueRecordsRequest;
-extern struct ValueRecordsRequest *data_ov003_021da168;
+extern struct ValueRecordsRequest *gValueRecordsRequest;
 extern u8 data_ov003_021da16c[];
 extern u8 data_ov003_021da170[];
 extern void *data_ov003_021da174;

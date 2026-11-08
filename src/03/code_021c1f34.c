@@ -13,45 +13,46 @@
 #include "code_0214d018.h"
 
 void func_ov003_021c1fc8(void) {
-    Unk021c1fc8 a;
-    ValueRecordsRequest *p;
-    data_ov003_021da168 = func_ov003_021d283c(0x26c, 4);
-    data_ov003_021da164[0] = 0;
-    a.mUnk_00 = 0;
-    MIi_CpuClear16(a.mUnk_00, &a.mUnk_02, 0x104);
-    a.mUnk_02 = 0x50;
-    a.mUnk_04 = 0xc;
-    MI_CpuCopy8(data_ov003_021d630c, a.mUnk_06, 0xc);
-    data_ov003_021da168->mWantedRecordMask = 3;
-    p = data_ov003_021da168;
-    *(Unk021c1fc8_02 *) &p->mItemType = *(Unk021c1fc8_02 *) &a.mUnk_02;
-    p->mScanRetryLimit = 1;
-    data_ov003_021da168->mScanRetryDelayMs = -1;
-    data_ov003_021da168->mSendAttemptLimit = 1;
-    data_ov003_021da168->mSendAttemptDelayMs = -1;
-    data_ov003_021da168->mReceiveTimeoutMs = -1;
-    OS_GetMacAddress(data_ov003_021da168->mMacAddress);
+    Unk021c1fc8 requestItem;
+    ValueRecordsRequest *request;
+    gValueRecordsRequest = func_ov003_021d283c(0x26c, 4);
+    gValueRecordsRequestSucceeded[0] = 0;
+    requestItem.mUnk_00 = 0;
+    MIi_CpuClear16(requestItem.mUnk_00, &requestItem.mItemType, 0x104);
+    requestItem.mItemType = 0x50;
+    requestItem.mItemLength = 0xc;
+    MI_CpuCopy8(gNintendoDsItemBytes, requestItem.mItemBytes, 0xc);
+    gValueRecordsRequest->mWantedRecordMask = 3;
+    request = gValueRecordsRequest;
+    *(Unk021c1fc8_02 *) &request->mItemType = *(Unk021c1fc8_02 *) &requestItem.mItemType;
+    request->mScanRetryLimit = 1;
+    gValueRecordsRequest->mScanRetryDelayMs = -1;
+    gValueRecordsRequest->mSendAttemptLimit = 1;
+    gValueRecordsRequest->mSendAttemptDelayMs = -1;
+    gValueRecordsRequest->mReceiveTimeoutMs = -1;
+    OS_GetMacAddress(gValueRecordsRequest->mMacAddress);
     if (func_ov003_021ba61c((void *(*) (u32)) func_ov003_021c1f28, func_ov003_021c1f20) != 0) {
         OS_Terminate();
     }
 }
 
-void func_ov003_021c1f84(int a) {
+void func_ov003_021c1f84(int succeeded) {
     func_ov003_021ba560();
-    if (((a != 0) && (data_ov003_021da168->mResultCode == 0)) && ((*(u8 *) &data_ov003_021da164) == 1)) {
-        func_ov003_021cd4e8((s32) &data_ov003_021da168->mUnk_117);
+    if (((succeeded != 0) && (gValueRecordsRequest->mResultCode == 0)) &&
+        ((*(u8 *) &gValueRecordsRequestSucceeded) == 1)) {
+        func_ov003_021cd4e8((s32) &gValueRecordsRequest->mUnk_117);
     }
-    func_ov003_021d2808(&data_ov003_021da168);
+    func_ov003_021d2808(&gValueRecordsRequest);
 }
 
 u32 func_ov003_021c1f34(void) {
-    u8 a;
-    if (func_ov003_021ba05c(data_ov003_021da168) == 0) {
-        data_ov003_021da164[0] = 1;
+    u8 resultCode;
+    if (func_ov003_021ba05c(gValueRecordsRequest) == 0) {
+        gValueRecordsRequestSucceeded[0] = 1;
         return 1;
     }
-    a = data_ov003_021da168->mResultCode;
-    if (a == 1 || (u8) (a + 253) <= 2) {
+    resultCode = gValueRecordsRequest->mResultCode;
+    if (resultCode == 1 || (u8) (resultCode + 253) <= 2) {
         return 0;
     }
     return 2;
