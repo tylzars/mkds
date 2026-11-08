@@ -77,7 +77,7 @@ void UpdateRaceHudSubScreenBombKouraWCells(void) {
     for (i = 0; i < activeCount; i++) {
         kouraW = objects[i];
         if (IsItemKouraWState7((ItemKouraW *) kouraW) != FALSE) {
-            kouraPosition = func_020fad9c((ItemKouraW *) kouraW, &kouraStateFrames, &y2);
+            kouraPosition = GetItemKouraWState7Info((ItemKouraW *) kouraW, &kouraStateFrames, &y2);
             if (ComputeRaceHudSubScreenPosition(
                     kouraPosition, &gRaceHudSubScreenBombKouraWCells->mCells[cellCount].mDrawPos, v, 1, 1) != FALSE) {
                 gRaceHudSubScreenBombKouraWCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0x64);
