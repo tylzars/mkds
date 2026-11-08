@@ -4,7 +4,7 @@
 #include "code_0214d018.h"
 
 void func_ov000_021abca0(void *f, const u8 *b, u32 c) {
-    Unk021abca0 *a = f;
+    Hash20Context *a = f;
     u32 d;
     u32 e;
     d = (a->mUnk_18 >> 3) & 0x3f;

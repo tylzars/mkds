@@ -139,7 +139,7 @@ Unk020de390 *CreateMkdEfBubbleKindData(void) {
     return kindData;
 }
 
-Unk020de334 *CreateMkdEfBubbleDrawList(void) {
+MapObjectDrawList *CreateMkdEfBubbleDrawList(void) {
     data_0217b774 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     *data_0217b774 = data_021587b0;
     func_020d49d8(&data_0217b774);

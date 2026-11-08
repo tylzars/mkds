@@ -484,15 +484,15 @@ typedef struct Unk0217d3ec {
 } Unk0217d3ec;
 
 // Objects of 0x20 bytes set up by NNS_G2dCharCanvasInitForBG; the word at 0x18 is called with the object and a value.
-typedef struct Unk0217d3f0_2098 {
+typedef struct CharCanvas {
     /* 00 */ u8 mUnk_00[0x18];
-    /* 18 */ void (*mUnk_18)(struct Unk0217d3f0_2098 *, s32);
+    /* 18 */ void (*mUnk_18)(struct CharCanvas *, s32);
     /* 1c */ u32 mUnk_1c;
-} Unk0217d3f0_2098;
+} CharCanvas;
 
-// Objects of 0x10 bytes passed first to func_0212583c; member 0x00 points to one Unk0217d3f0_2098.
+// Objects of 0x10 bytes passed first to func_0212583c; member 0x00 points to one CharCanvas.
 typedef struct Unk0217d3f0_2178 {
-    /* 00 */ Unk0217d3f0_2098 *mUnk_00;
+    /* 00 */ CharCanvas *mUnk_00;
     /* 04 */ u32 mUnk_04;
     /* 08 */ u32 mUnk_08;
     /* 0c */ u32 mUnk_0c;
@@ -530,7 +530,7 @@ typedef struct TxtSystem {
     /* 2080 */ u32 mBlendPlanes[2];
     /* 2088 */ u32 mBlendEv1[2];
     /* 2090 */ u32 mBlendEv2[2];
-    /* 2098 */ Unk0217d3f0_2098 mCharCanvases[7];
+    /* 2098 */ CharCanvas mCharCanvases[7];
     /* 2178 */ Unk0217d3f0_2178 mUnk_2178[7];
     /* 21e8 */ void *mCharBuffers[7];
     /* 2204 */ u32 mCanvasInUse[7];
@@ -561,7 +561,7 @@ typedef struct SelectChoises {
     /* 02c */ u16 mNscrCopy[0x400];
     /* 82c */ u32 mToggleOnFirstTile;
     /* 830 */ u32 mToggleOffFirstTile;
-    /* 834 */ Unk0217d3f0_2098 mCharCanvases[2];
+    /* 834 */ CharCanvas mCharCanvases[2];
     /* 874 */ Unk0217d3f0_2178 mUnk_874[2];
     /* 894 */ u8 *mCharBuffers[2];
     /* 89c */ s32 mFirstTileIndex;

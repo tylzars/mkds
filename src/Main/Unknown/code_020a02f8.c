@@ -718,7 +718,7 @@ Vec3 *GetKartStandingPos(int arg0) {
     return &gStandings->mKarts[arg0].mPos;
 }
 
-Unk02175620_84 *MoveToRandomForwardBattlePoint(void) {
+CourseMapPoint *MoveToRandomForwardBattlePoint(void) {
     RandomState64 *a;
     u16 v;
     s32 w;

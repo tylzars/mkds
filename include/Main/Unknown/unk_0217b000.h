@@ -14,7 +14,7 @@
 #include "Main/Unknown/code_0209bc74.h" // MapObjectModel
 #include "Main/Unknown/unk_02158000.h"
 #include "Main/Unknown/code_0208fd8c.h"
-#include "Main/Unknown/unk_0217d000.h" // Unk0217d3f0_2098
+#include "Main/Unknown/unk_0217d000.h" // CharCanvas
 #include "Main/Unknown/types_02180728.h" // TextCanvas
 #include "Main/Unknown/code_020ae000.h"
 #include "Main/Unknown/code_020ae630.h"
@@ -162,7 +162,7 @@ typedef struct EmblemChoises {
     /* 24 */ s32 mUnk_24;
     /* 28 */ s32 mChoisesCount;
     /* 2c */ void *mUnk_2c;
-    /* 30 */ Unk0217d3f0_2098 mUnk_30;
+    /* 30 */ CharCanvas mUnk_30;
     /* 50 */ TextCanvas mUnk_50;
     /* 60 */ struct Nclr *mChoisesSBNclr;
     /* 64 */ struct Ncgr *mChoisesSBNcgr;
@@ -744,21 +744,21 @@ extern struct Unk020dbed0 *gDossunDrawList;
 extern MtxFx43 gDossunDrawMatrix;
 extern struct Nsbmd *gWanwan;
 extern struct ShadowModel *gWanwanRockShadow;
-extern Unk020de334 *data_0217b6dc;
+extern MapObjectDrawList *data_0217b6dc;
 extern Unk020de2d8 *data_0217b6e0;
 extern NsbmdModel *gWanwanKui;
 extern NsbmdModel *gWanwanChain;
 extern Unk020de2d8 *gEarthenPipeUpdateList;
 extern NsbmdModel *gEarthenPipe1;
 extern NsbmdModel *gEarthenPipe2;
-extern Unk020de334 *gEarthenPipeDrawList;
+extern MapObjectDrawList *gEarthenPipeDrawList;
 extern u16 data_0217b6fc;
-extern Unk020de334 *gQuestionDrawList;
+extern MapObjectDrawList *gQuestionDrawList;
 extern BoxRotation *gBoxRotations;
 extern QuestionRotation *gQuestionRotations;
-extern Unk020de334 *gBoxDrawList;
+extern MapObjectDrawList *gBoxDrawList;
 extern NsbmdModel *gQuestion;
-extern Unk020de334 *data_0217b714;
+extern MapObjectDrawList *data_0217b714;
 extern Unk020de2d8 *gItemBoxUpdateList;
 extern NsbmdModel *gBox;
 extern MtxFx43 data_0217b720;
@@ -769,7 +769,7 @@ extern s32 data_0217b75c;
 extern Vec3 data_0217b760;
 extern Unk020dfc44 *data_0217b76c;
 extern void *gMkdEfBubble;
-extern Unk020de334 *data_0217b774;
+extern MapObjectDrawList *data_0217b774;
 extern void *gMkdEfBubbleNsbta;
 extern void *gKoopaBlock;
 extern NsbmdModel *gChoropu;

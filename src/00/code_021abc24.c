@@ -3,7 +3,7 @@
 #include "00/code_021ac37c.h"
 #include "00/unk_021b4000.h"
 
-void func_ov000_021abc4c(Unk021abca0 *a, u8 *b) {
+void func_ov000_021abc4c(Hash20Context *a, u8 *b) {
     int v1;
     int v2;
     func_ov000_021ac37c(b, &a->mUnk_14, 8);
@@ -18,7 +18,7 @@ void func_ov000_021abc4c(Unk021abca0 *a, u8 *b) {
     func_ov000_021ac37c(b, &a->mUnk_00, 0x14);
 }
 
-void func_ov000_021abc24(Unk021abca0 *a, u8 *b) {
+void func_ov000_021abc24(Hash20Context *a, u8 *b) {
     func_ov000_021abca0(a, data_ov000_021b4be5, 0x2c);
     func_ov000_021ac37c(b, &a->mUnk_00, 0x14);
 }

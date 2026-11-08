@@ -246,7 +246,7 @@ void BuildCourseMapRaceRouteLinks(RacePointLink *previousLink, CourseMapRoute *r
     RacePointLink *link;
     s32 nextRoute;
     s32 k;
-    Unk02175620_84 *racePoint;
+    CourseMapPoint *racePoint;
 
     racePoint = gCourseMap->mRacePoints + pointIndex;
     link = gCourseMap->mRacePointLinks + pointIndex;
@@ -339,7 +339,7 @@ void BuildCourseMapBattlePointLinks(void *heap) {
     u16 routeIndex;
     u16 linkCount;
     u16 lastPoint;
-    Unk02175620_84 *battlePoint;
+    CourseMapPoint *battlePoint;
     u16 b;
     u16 c;
 
@@ -680,7 +680,7 @@ CourseMapShape *GetCourseMapShape(u32 shapeIndex) {
 void BuildCourseMapKind3ShapeLists(void) {
     void *heap;
     CourseMapShape *shape;
-    Unk02175620_d8 **nodeSlot;
+    CourseMapKind3ShapeNode **nodeSlot;
     u16 shapeIndex;
     u16 listIndex;
 

@@ -123,7 +123,7 @@ Unk020de390 *CreateEarthenPipeKindData(void) {
     return kindData;
 }
 
-Unk020de334 *CreateEarthenPipeDrawList(void) {
+MapObjectDrawList *CreateEarthenPipeDrawList(void) {
     gEarthenPipeDrawList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     *gEarthenPipeDrawList = data_021584fc;
     func_020d49d8(&gEarthenPipeDrawList);

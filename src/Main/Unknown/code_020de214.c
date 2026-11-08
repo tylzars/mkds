@@ -28,7 +28,7 @@ Unk020de390 *CreateWanwanChainKindData(void) {
     return kindData;
 }
 
-Unk020de334 *CreateWanwanChainDrawList(void) {
+MapObjectDrawList *CreateWanwanChainDrawList(void) {
     data_0217b6dc = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     *data_0217b6dc = data_02158434;
     func_020d49d8(&data_0217b6dc);

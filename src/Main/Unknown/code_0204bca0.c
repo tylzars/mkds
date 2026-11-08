@@ -221,12 +221,12 @@ void SendRomArchiveMessage(void) {
     RomArchiveMessage sizeMessage;
     RomArchiveMessage replyMessage;
     BOOL v6;
-    Unk02175ec0_440 *firstEntry;
+    RomArchiveParentViewEntry *firstEntry;
     s32 sendMask;
     s32 i;
     s32 v5;
     s32 v7;
-    Unk02175ec0_440 *entry;
+    RomArchiveParentViewEntry *entry;
     u32 childPacketSize;
     s32 g;
     RomArchiveTransfer *transfer = &gRomArchiveTransfer;
@@ -331,7 +331,7 @@ void func_0204d18c(RomArchiveParentView *view, RomArchiveFileNode *node, s32 c) 
     s32 blockId;
     s32 index;
     s32 length;
-    Unk02175ec0_440 *entry;
+    RomArchiveParentViewEntry *entry;
 
     savedInterrupts = OS_DisableInterrupts();
     if (gRomArchiveTransfer.mState != 0) {

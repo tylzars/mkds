@@ -80,7 +80,7 @@ typedef struct {
     /* 00 */ Vec3 mPos;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s16 mUnk_10[4];
-} Unk02175620_84;
+} CourseMapPoint;
 
 // 0x30-byte entries of the table at CourseMap.mUnk_bc (ResetBattlePointLinkCursorNear searches it).
 typedef struct PointLink {
@@ -215,7 +215,7 @@ typedef struct {
 typedef struct RacePointLink {
     /* 00 */ struct RacePointLink *mUnk_00[3];
     /* 0c */ struct RacePointLink *mUnk_0c[3];
-    /* 18 */ Unk02175620_84 *mUnk_18;
+    /* 18 */ CourseMapPoint *mUnk_18;
     /* 1c */ s32 mUnk_1c;
     /* 20 */ s16 *mUnk_20;
     /* 24 */ u16 mUnk_24;
@@ -223,10 +223,10 @@ typedef struct RacePointLink {
 } RacePointLink;
 
 // Node of the lists at CourseMap.mKind3ShapeLists: an entry of the table at mShapes and the next node.
-typedef struct Unk02175620_d8 {
+typedef struct CourseMapKind3ShapeNode {
     /* 00 */ CourseMapShape *mUnk_00;
-    /* 04 */ struct Unk02175620_d8 *mUnk_04;
-} Unk02175620_d8;
+    /* 04 */ struct CourseMapKind3ShapeNode *mUnk_04;
+} CourseMapKind3ShapeNode;
 
 // Object behind the word at 0x3c of the object behind gCourseMap: two vectors and the halfword at 0x1a.
 typedef struct Unk02175620_3c {
@@ -287,7 +287,7 @@ typedef struct CourseMap {
     /* 62 */ u8 mUnk_62[0x2];
     // Race point records (0x18 bytes: position, a value, 8 bytes), stored here instead of mBattlePoints when the course
     // has at most one start placement; mRacePointLinks is built from them.
-    /* 64 */ Unk02175620_84 *mRacePoints;
+    /* 64 */ CourseMapPoint *mRacePoints;
     // Number of mRacePoints, and of mRacePointLinks.
     /* 68 */ u16 mRacePointCount;
     /* 6a */ u8 mUnk_6a[0x2];
@@ -304,7 +304,7 @@ typedef struct CourseMap {
     /* 82 */ u8 mUnk_82[0x2];
     // Battle point records (0x18 bytes: position, a value, 8 bytes), stored here instead of mRacePoints when the course
     // has several start placements; mBattlePointLinks is built from them.
-    /* 84 */ Unk02175620_84 *mBattlePoints;
+    /* 84 */ CourseMapPoint *mBattlePoints;
     // Number of mBattlePoints, and of mBattlePointLinks.
     /* 88 */ u16 mBattlePointCount;
     /* 8a */ u8 mUnk_8a[2];
@@ -357,7 +357,7 @@ typedef struct CourseMap {
     /* d0 */ CourseMapCamera *mFirstKind7EntryInMode2;
     // The first entry of mKind 8, set only when the mode is 4; the loader does not set it to NULL first.
     /* d4 */ CourseMapCamera *mFirstKind8EntryInMode4;
-    /* d8 */ struct Unk02175620_d8 *mKind3ShapeLists[8];
+    /* d8 */ struct CourseMapKind3ShapeNode *mKind3ShapeLists[8];
     /* f8 */ u16 *mRespawnIndexBySlot;
     // Record index of mKeyedPlacements for each key, one halfword per record (BuildCourseMapKeyedPlacementIndexByKey).
     /* fc */ u16 *mKeyedPlacementIndexByKey;

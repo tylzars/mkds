@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020de214.h" // Unk020de334
+#include "Main/Unknown/code_020de214.h" // MapObjectDrawList
 #include "Main/Unknown/code_02067cb0.h" // MapObject
 
 typedef struct PooledMapObject PooledMapObject;
@@ -17,9 +17,9 @@ typedef struct Unk0215a64c {
     /* 04 */ s32 mUnk_04;
     /* 08 */ void (*mUnk_08)(void *, void *);
     /* 0c */ Unk0215a680 *(*mUnk_0c)(void);
-    /* 10 */ Unk020de334 *(*mUnk_10)(void);
-    /* 14 */ Unk020de334 *(*mUnk_14)(void);
-    /* 18 */ Unk020de334 *(*mUnk_18)(void);
+    /* 10 */ MapObjectDrawList *(*mUnk_10)(void);
+    /* 14 */ MapObjectDrawList *(*mUnk_14)(void);
+    /* 18 */ MapObjectDrawList *(*mUnk_18)(void);
     /* 1c */ u8 mUnk_1c[0x18];
 } Unk0215a64c;
 

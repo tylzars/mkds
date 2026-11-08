@@ -455,7 +455,7 @@ struct ItemPointLink *GetCourseMapRespawnItemPointLink(u32 slot) {
 }
 
 s32 IsKartInCourseMapKind3ShapeList(s32 kartIndex, u32 listIndex) {
-    Unk02175620_d8 *node;
+    CourseMapKind3ShapeNode *node;
     s32 inside;
     CourseMapShape *shape;
     Vec3 kartPos;

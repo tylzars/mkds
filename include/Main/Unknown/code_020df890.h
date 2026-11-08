@@ -13,7 +13,7 @@ s32 func_020dff4c(Unk020e005c *koopaBlock);
 void CreateKoopaBlock(void);
 void InitKoopaBlock(Unk020e005c *koopaBlock, CourseMapRow *courseRow);
 Unk020de390 *CreateMkdEfBubbleKindData(void);
-Unk020de334 *CreateMkdEfBubbleDrawList(void);
+MapObjectDrawList *CreateMkdEfBubbleDrawList(void);
 Unk020dfc44 *CreateMkdEfBubbleUpdateList(void);
 /* writes the polygon alpha cap (mUnk_030 of its effect record), read only by draw routines */
 void DrawMkdEfBubble(void *a, MkdEfBubbleObject *bubble, void *c, s32 alpha);

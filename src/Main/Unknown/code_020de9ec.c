@@ -63,21 +63,21 @@ Unk020de390 *CreateItemBoxKindData(void) {
     return kindData;
 }
 
-Unk020de334 *CreateBoxDrawList(void) {
+MapObjectDrawList *CreateBoxDrawList(void) {
     gBoxDrawList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     *gBoxDrawList = data_02158628;
     func_020d49d8(&gBoxDrawList);
     return gBoxDrawList;
 }
 
-Unk020de334 *CreateQuestionDrawList(void) {
+MapObjectDrawList *CreateQuestionDrawList(void) {
     gQuestionDrawList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     *gQuestionDrawList = data_021585fc;
     func_020d49d8(&gQuestionDrawList);
     return gQuestionDrawList;
 }
 
-Unk020de334 *func_020df294(void) {
+MapObjectDrawList *func_020df294(void) {
     data_0217b714 = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
     *data_0217b714 = data_021585d0;
     func_020d49d8(&data_0217b714);

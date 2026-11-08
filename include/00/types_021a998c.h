@@ -45,8 +45,8 @@ typedef struct HttpsState {
     /* 1b0 */ u8 *mUnk_1b0;
     /* 1b4 */ u8 mReceiveKeyStreamState[0x104];
     /* 2b8 */ u8 mReceiveRecordCount[8];
-    /* 2c0 */ Unk021abca0 mMessageHash20;
-    /* 31c */ Unk021abca0 mScratchHash20;
+    /* 2c0 */ Hash20Context mMessageHash20;
+    /* 31c */ Hash20Context mScratchHash20;
     /* 378 */ Unk021ab728 mMessageHash16;
     /* 3d0 */ Unk021ab728 mScratchHash16;
     // 1 on the side that receives the kind 1 message, 0 on the side that sends it.

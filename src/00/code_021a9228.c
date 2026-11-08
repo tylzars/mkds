@@ -446,7 +446,7 @@ u32 CheckTransformedBytesHoldPaddedDigest(HttpsState *a, AuthorityRecord *b) {
 u32 ComputeParsedItemCheckFlags(HttpsState *a) {
     u32 f;
     Unk021ab728 *h;
-    Unk021abca0 *g;
+    Hash20Context *g;
     u32 r;
     if (a->mDateInRange != 0) {
         f = 0;
@@ -750,7 +750,7 @@ void func_ov000_021aa880(u8 *a, const u8 *b, Unk021aa880 *c) {
 
 void ComputeLabeledDigest16(u8 *a, const u8 *b, HttpsState *c) {
     u8 d[0x14];
-    Unk021abca0 *e;
+    Hash20Context *e;
     Unk021ab728 *g;
     e = &c->mScratchHash20;
     func_ov000_021abd2c(e);
@@ -873,7 +873,7 @@ void ComputeLabeledMessageDigest16(HttpsState *a, u8 *b, u32 c) {
 
 void ComputeLabeledMessageDigest20(HttpsState *a, u8 *b, u32 c) {
     u8 d[0x28];
-    Unk021abca0 *e;
+    Hash20Context *e;
     e = &a->mMessageHash20;
     if ((a->mReceivesKind1Record ^ c) != 0) {
         func_ov000_021abca0(e, gSrvrText, 4);
@@ -942,7 +942,7 @@ s32 XorReceivedRecordWithKeyStreamAndCheckDigest(HttpsState *a, u8 *b) {
     s32 e;
     u32 f;
     Unk021ab728 *g;
-    Unk021abca0 *h;
+    Hash20Context *h;
     e = XorReceivedBytesWithKeyStream((u32) a, (b + 5), (b[3] << 8) + b[4]);
     switch (a->mCommonValue) {
         case 4:
@@ -1004,7 +1004,7 @@ s32 AppendDigestAndXorSentRecordWithKeyStream(void *g, u8 *h) {
     u8 *d = b + 5 + c;
     u8 e[0x30];
     Unk021ab728 *f;
-    Unk021abca0 *g2;
+    Hash20Context *g2;
     switch (a->mCommonValue) {
         case 4:
             f = &a->mScratchHash16;
@@ -1213,10 +1213,10 @@ void FillNonzeroRandomBytes(u8 *out, s32 count) {
     j = 0;
     while (j < count) {
         if (i == 0x14) {
-            func_ov000_021abd2c((Unk021abca0 *) d);
+            func_ov000_021abd2c((Hash20Context *) d);
             g = OS_DisableInterrupts();
             func_ov000_021abca0(d, gRandomByteState, 0x14);
-            func_ov000_021abc24((Unk021abca0 *) d, b);
+            func_ov000_021abc24((Hash20Context *) d, b);
             h = 1;
             k = 0x13;
             e = b + 0x13;
@@ -1243,11 +1243,11 @@ void FillNonzeroRandomBytes(u8 *out, s32 count) {
 void MixBytesIntoRandomState(void *bytes, u32 n) {
     u8 b[0x60];
     u32 c;
-    func_ov000_021abd2c((Unk021abca0 *) b);
+    func_ov000_021abd2c((Hash20Context *) b);
     c = OS_DisableInterrupts();
     func_ov000_021abca0(b, gRandomByteState, 0x14);
     func_ov000_021abca0(b, bytes, n);
-    func_ov000_021abc4c((Unk021abca0 *) b, gRandomByteState);
+    func_ov000_021abc4c((Hash20Context *) b, gRandomByteState);
     OS_RestoreInterrupts(c);
     gRandomByteStateMixed = 1;
 }

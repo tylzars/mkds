@@ -37,7 +37,7 @@ typedef struct Unk020a066c {
 #include "Main/Unknown/code_020b47d8.h"
 #include "Main/Unknown/code_020b6a18.h"
 #include "Main/Unknown/code_0207a880.h"
-#include "Main/Unknown/code_020b502c.h" // Unk02175620_84
+#include "Main/Unknown/code_020b502c.h" // CourseMapPoint
 
 void *func_020a02f8(void);
 void func_020a0318(void *a, Unk020a0318 *p);
@@ -50,7 +50,7 @@ void UpdateStandings(void);
 // progress calls it.
 void FinishStandings(void);
 void InitStandings(void);
-Unk02175620_84 *MoveToRandomForwardBattlePoint(void);
+CourseMapPoint *MoveToRandomForwardBattlePoint(void);
 Vec3 *GetKartStandingPos(int arg0);
 void CallKartHitCallbackForSelf(u16 a);
 void SetWinnerIfOneTeamLeft(void);

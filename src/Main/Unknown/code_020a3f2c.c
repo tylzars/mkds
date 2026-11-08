@@ -221,7 +221,7 @@ void UpdateShine16(void *a, Shine16 *p) {
     u32 f;
     Kart *v;
     s32 i;
-    Unk02175620_84 *q;
+    CourseMapPoint *q;
     s32 n;
     s32 x;
     s32 z;

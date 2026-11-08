@@ -389,7 +389,7 @@ u32 ClearSelectChoisesUseCharBuffers(void) {
 s32 InitSelectChoises(void *heap, void *font, s32 subCharOffset) {
     s32 i;
     s32 charSpacing;
-    Unk0217d3f0_2098 *charCanvas;
+    CharCanvas *charCanvas;
     Unk0217d3f0_2178 *textCanvas;
     u32 subDisplayBits;
     gSelectChoises = HeapAlloc(heap, 0x8b4);
@@ -790,7 +790,7 @@ void RequestSelectChoisesState1(void) {
 }
 
 void StartSelectChoises(void *firstText, void *secondText, s32 startOnSecond) {
-    Unk0217d3f0_2098 *charCanvas;
+    CharCanvas *charCanvas;
 
     charCanvas = &gSelectChoises->mCharCanvases[0];
     charCanvas->mUnk_18(charCanvas, 5);

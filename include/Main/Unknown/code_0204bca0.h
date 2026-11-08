@@ -55,7 +55,7 @@ typedef union Unk0204c320_14 {
         s16 mUnk_16;
         s16 mUnk_18;
     } h;
-    Unk02175ec0_440 mUnk_0e;
+    RomArchiveParentViewEntry mUnk_0e;
     RomArchiveMessage mUnk_m;
 } Unk0204c320_14;
 

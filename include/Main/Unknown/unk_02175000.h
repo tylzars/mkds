@@ -308,12 +308,12 @@ extern KeyRecording data_02175650[];
 
 // Entry of the table at 0x440 of gRomArchiveTransfer: a four-bit part in the low bits of the first word, then two
 // words.
-typedef struct Unk02175ec0_440 {
+typedef struct RomArchiveParentViewEntry {
     /* 00 */ u32 mUnk_00_0 : 4;
     /* 00 */ u32 mUnk_00_4 : 28;
     /* 04 */ s32 mUnk_04;
     /* 08 */ u8 *mUnk_08;
-} Unk02175ec0_440;
+} RomArchiveParentViewEntry;
 
 // Nine bytes that SendRomArchiveMessage builds on the stack and passes to RequestSendBytes: two four-bit parts, a
 // 24-bit part, a word and a byte.
@@ -330,7 +330,7 @@ struct FSFile;
 
 // Part of gRomArchiveTransfer from 0x440: the table, then nine words at 0x46cc.
 typedef struct RomArchiveParentView {
-    /* 0000 */ Unk02175ec0_440 mUnk_0000[32];
+    /* 0000 */ RomArchiveParentViewEntry mUnk_0000[32];
     /* 0180 */ u8 mUnk_0180[0x97c];
     /* 0afc */ void *mUnk_0afc;
     /* 0b00 */ u32 mUnk_0b00;
