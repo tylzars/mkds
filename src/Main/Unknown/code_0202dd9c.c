@@ -101,7 +101,7 @@ void InitGhostScene(void *heap) {
     func_020ae6d4(gGhostScene, gGhostScene->mSubOam);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;
-    switch (data_0217b488->mUnk_0c) {
+    switch (data_0217b488->mGhostSceneInitialCallbacksIndex) {
         case 0:
             gGhostScene->mRequestedCallbacksIndex = 0;
             break;

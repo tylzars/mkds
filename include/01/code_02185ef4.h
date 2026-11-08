@@ -6,15 +6,15 @@
 
 // Object passed to the per-frame functions UpdateMissionGate and DrawMissionGate.
 typedef struct MissionGateObject {
-    /* 000 */ MapObject mUnk_000;
-    /* 0a0 */ MapObject *mUnk_0a0;
-    /* 0a4 */ MapObject *mUnk_0a4;
-    /* 0a8 */ u16 mUnk_0a8;
+    /* 000 */ MapObject mMapObject;
+    /* 0a0 */ MapObject *mNegativeSideObject;
+    /* 0a4 */ MapObject *mPositiveSideObject;
+    /* 0a8 */ u16 mNsbmaFrameIndex;
     /* 0aa */ u8 mUnk_0aa[0x2];
     /* 0ac */ s32 mState;
 } MissionGateObject;
 
-// Object whose flags and index func_ov001_02185d74 reads.
+// Object whose flags and index CollideKartWithMissionGate reads.
 typedef struct Unk02185d74 {
     /* 00 */ u8 mUnk_00[0x48];
     /* 48 */ u32 mUnk_48;
@@ -23,10 +23,10 @@ typedef struct Unk02185d74 {
 } Unk02185d74;
 
 // Table of objects walked by InitMissionGateObjects.
-typedef struct Unk02185c4c {
-    /* 00 */ MissionGateObject **mUnk_00;
-    /* 04 */ u16 mUnk_04;
-} Unk02185c4c;
+typedef struct MissionGateList {
+    /* 00 */ MissionGateObject **mObjects;
+    /* 04 */ u16 mObjectCount;
+} MissionGateList;
 
 #include "01/code_0219b250.h"
 #include "01/code_0218155c.h"

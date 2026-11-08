@@ -9,7 +9,7 @@ void func_020cef1c(void) {
     data_0217b488->mUnk_00 = 0;
     data_0217b488->mUnk_04 = 0;
     data_0217b488->mUnk_08 = 0;
-    data_0217b488->mUnk_0c = 0;
+    data_0217b488->mGhostSceneInitialCallbacksIndex = 0;
     data_0217b488->mUnk_10 = 0;
     data_0217b488->mUnk_14 = 0;
     data_0217b488->mUnk_1c = 0;

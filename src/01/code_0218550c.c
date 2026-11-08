@@ -44,7 +44,7 @@ void WriteSelectGhostScreenRegisters(void) {
     if (func_020cccc0() != 0) {
         func_ov001_021856a8(0x19);
         GX_SetGraphicsMode(1, 0, 0);
-        func_ov001_021857c0(0, 0);
+        WriteMainBg1Offset(0, 0);
         func_ov001_021857a4(0);
         func_ov001_02185778(0);
         func_ov001_02185740(0, 0, 0xc, 0, 0);

@@ -27,8 +27,8 @@
 
 #pragma optimize_for_size on
 
-u16 func_ov001_02185b50(MissionGateObject *a) {
-    return a->mUnk_0a8 != 0;
+u16 func_ov001_02185b50(MissionGateObject *missionGateObject) {
+    return missionGateObject->mNsbmaFrameIndex != 0;
 }
 
 void func_ov001_02185b1c(void) {
@@ -41,7 +41,7 @@ void func_ov001_02185b1c(void) {
     WriteMissionRunLVselBg0Offset();
 }
 
-void func_ov001_02185af0(void) {
+void UpdateMissionRunLVsel(void) {
     switch (AdvanceMissionRunLVsel()) {
         case 1:
             SwitchMenuScreen(SCREEN_MISSION_RUN_MSSEL, 0x1f);
@@ -53,14 +53,14 @@ void func_ov001_02185af0(void) {
 }
 
 #pragma thumb off
-void func_ov001_02185ad8(u32 a) {
-    vu32 *r = &reg_GX_DISPCNT;
-    *r = (*r & ~0x1f00) | (a << 8);
+void func_ov001_02185ad8(u32 bits) {
+    vu32 *dispCnt = &reg_GX_DISPCNT;
+    *dispCnt = (*dispCnt & ~0x1f00) | (bits << 8);
 }
 
-void func_ov001_02185abc(u32 a) {
-    vu32 *r = &reg_GXS_DB_DISPCNT;
-    *r = (*r & ~0x1f00) | (a << 8);
+void func_ov001_02185abc(u32 bits) {
+    vu32 *dispCnt = &reg_GXS_DB_DISPCNT;
+    *dispCnt = (*dispCnt & ~0x1f00) | (bits << 8);
 }
 #pragma thumb on
 
@@ -74,7 +74,7 @@ void func_ov001_02185a88(void) {
     func_ov001_0219f8ec();
 }
 
-void func_ov001_02185a5c(void) {
+void UpdateMissionRunMSsel(void) {
     switch (AdvanceMissionRunMSsel()) {
         case 1:
             SwitchMenuScreen(0x1d, 0x1f);
@@ -96,23 +96,23 @@ void func_ov001_02185a28(void) {
 }
 
 #pragma thumb off
-void func_ov001_02185a14(s32 a) {
-    data_0217b488->mUnk_0c = a;
+void SetGhostSceneInitialCallbacksIndex(s32 callbacksIndex) {
+    data_0217b488->mGhostSceneInitialCallbacksIndex = callbacksIndex;
 }
 #pragma thumb on
 
-void func_ov001_021859b8(void) {
+void UpdateTimeAttackTopMenu(void) {
     switch (AdvanceTimeAttackTopMenu()) {
         case 1:
             SwitchMenuScreen(0x15, 0x1f);
             break;
         case 2:
             SwitchMenuScreen(0x1c, 0x1f);
-            func_ov001_02185a14(0);
+            SetGhostSceneInitialCallbacksIndex(0);
             break;
         case 3:
             SwitchMenuScreen(0x1c, 0x1f);
-            func_ov001_02185a14(1);
+            SetGhostSceneInitialCallbacksIndex(1);
             break;
         case 4:
             SwitchMenuScreen(0, 0x1f);
@@ -131,7 +131,7 @@ void func_ov001_02185980(void) {
     WriteSelectCharacterRegisters();
 }
 
-void func_ov001_02185954(void) {
+void UpdateTimeAttackSelectCharacter(void) {
     switch (AdvanceSelectCharacter()) {
         case 1:
             SwitchMenuScreen(0x16, 0x1f);
@@ -151,7 +151,7 @@ void func_ov001_02185928(void) {
     WriteSelectKartRegisters();
 }
 
-void func_ov001_021858fc(void) {
+void UpdateTimeAttackSelectKart(void) {
     switch (AdvanceSelectKart()) {
         case 1:
             SwitchMenuScreen(0x17, 0x1f);
@@ -173,16 +173,16 @@ void func_ov001_021858c8(void) {
 }
 
 #pragma thumb off
-void func_ov001_021858b4(s32 a) {
-    data_0217b488->mUnk_08 = a;
+void func_ov001_021858b4(s32 value) {
+    data_0217b488->mUnk_08 = value;
 }
 
-void func_ov001_021858a0(s32 a) {
-    data_0217b488->mUnk_04 = a;
+void func_ov001_021858a0(s32 value) {
+    data_0217b488->mUnk_04 = value;
 }
 #pragma thumb on
 
-void func_ov001_0218585c(void) {
+void UpdateTimeAttackSelectCupGrid(void) {
     switch (AdvanceSelectCupGrid()) {
         case 1:
             SwitchMenuScreen(0x18, 0x1f);
@@ -208,7 +208,7 @@ void func_ov001_02185828(void) {
     WriteSelectCupCourseBgOffsets();
 }
 
-void func_ov001_021857ec(void) {
+void UpdateTimeAttackSelectCupCourse(void) {
     switch (AdvanceSelectCupCourse()) {
         case 1:
             if (func_0211e130()) {
@@ -224,12 +224,12 @@ void func_ov001_021857ec(void) {
 }
 
 #pragma thumb off
-void func_ov001_021857c0(u32 a, u32 b) {
-    reg_G2_BG1OFS = (a & 0x1ff) | ((b << 16) & 0x1ff0000);
+void WriteMainBg1Offset(u32 offsetX, u32 offsetY) {
+    reg_G2_BG1OFS = (offsetX & 0x1ff) | ((offsetY << 16) & 0x1ff0000);
 }
 
-void func_ov001_021857a4(u32 a) {
-    vu16 *r = &reg_G2_BG1CNT;
-    *r = (*r & ~3) | a;
+void func_ov001_021857a4(u32 bits) {
+    vu16 *bg1Cnt = &reg_G2_BG1CNT;
+    *bg1Cnt = (*bg1Cnt & ~3) | bits;
 }
 #pragma thumb on

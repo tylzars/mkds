@@ -104,7 +104,7 @@ typedef struct Unk0217b488 {
     /* 000 */ s32 mUnk_00;
     /* 004 */ s32 mUnk_04;
     /* 008 */ s32 mUnk_08;
-    /* 00c */ s32 mUnk_0c;
+    /* 00c */ s32 mGhostSceneInitialCallbacksIndex;
     /* 010 */ s32 mUnk_10;
     /* 014 */ s32 mUnk_14;
     /* 018 */ BOOL mUnk_18;

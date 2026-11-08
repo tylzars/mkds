@@ -24,42 +24,49 @@
 
 Unk0219b250 *gMissionGate;
 
-void InitMissionGate(MissionGateObject *a) {
+void InitMissionGate(MissionGateObject *missionGateObject) {
     s32 mtx[9];
-    s32 r4;
-    s32 r6;
+    s32 sideExtentX;
+    s32 sideExtentY;
     s16 saved;
 
-    RefreshMapObjectMatrixFromHitNormal(a);
-    a->mUnk_000.mAngle = (a->mUnk_000.mCourseMapRow->mUnk_0c.y * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
-    MTX_RotY33_(mtx, gPairsByAngle[(a->mUnk_000.mAngle >> 4) * 2], gPairsByAngle[(a->mUnk_000.mAngle >> 4) * 2 + 1]);
-    MTX_Concat33(mtx, &a->mUnk_000.mMatrix.mUnk_00[0].x, &a->mUnk_000.mMatrix.mUnk_00[0].x);
-    r4 = (a->mUnk_000.mScale.x * 0xA000LL) >> 12;
-    r6 = (a->mUnk_000.mScale.y * 0xF000LL) >> 12;
-    saved = a->mUnk_000.mCourseMapRow->mUnk_28;
-    a->mUnk_000.mCourseMapRow->mUnk_28 = 0x12;
-    a->mUnk_0a0 = CreateMapObjectFromObject(&a->mUnk_000, 0x66);
-    a->mUnk_0a4 = CreateMapObjectFromObject(&a->mUnk_000, 0x66);
-    a->mUnk_000.mCourseMapRow->mUnk_28 = saved;
-    VEC_MultAdd(-(a->mUnk_000.mExtent.x + r4), &a->mUnk_000.mMatrix.mUnk_00[0], &a->mUnk_000.mPos, &a->mUnk_0a0->mPos);
-    VEC_MultAdd(a->mUnk_000.mExtent.x + r4, &a->mUnk_000.mMatrix.mUnk_00[0], &a->mUnk_000.mPos, &a->mUnk_0a4->mPos);
-    SetMapObjectExtentX(a->mUnk_0a0, r4);
-    SetMapObjectExtentX(a->mUnk_0a4, r4);
-    SetMapObjectExtentY(a->mUnk_0a0, r6);
-    SetMapObjectExtentY(a->mUnk_0a4, r6);
+    RefreshMapObjectMatrixFromHitNormal(missionGateObject);
+    missionGateObject->mMapObject.mAngle =
+        (missionGateObject->mMapObject.mCourseMapRow->mUnk_0c.y * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
+    MTX_RotY33_(mtx, gPairsByAngle[(missionGateObject->mMapObject.mAngle >> 4) * 2],
+                gPairsByAngle[(missionGateObject->mMapObject.mAngle >> 4) * 2 + 1]);
+    MTX_Concat33(mtx, &missionGateObject->mMapObject.mMatrix.mUnk_00[0].x,
+                 &missionGateObject->mMapObject.mMatrix.mUnk_00[0].x);
+    sideExtentX = (missionGateObject->mMapObject.mScale.x * 0xA000LL) >> 12;
+    sideExtentY = (missionGateObject->mMapObject.mScale.y * 0xF000LL) >> 12;
+    saved = missionGateObject->mMapObject.mCourseMapRow->mUnk_28;
+    missionGateObject->mMapObject.mCourseMapRow->mUnk_28 = 0x12;
+    missionGateObject->mNegativeSideObject = CreateMapObjectFromObject(&missionGateObject->mMapObject, 0x66);
+    missionGateObject->mPositiveSideObject = CreateMapObjectFromObject(&missionGateObject->mMapObject, 0x66);
+    missionGateObject->mMapObject.mCourseMapRow->mUnk_28 = saved;
+    VEC_MultAdd(-(missionGateObject->mMapObject.mExtent.x + sideExtentX),
+                &missionGateObject->mMapObject.mMatrix.mUnk_00[0], &missionGateObject->mMapObject.mPos,
+                &missionGateObject->mNegativeSideObject->mPos);
+    VEC_MultAdd(missionGateObject->mMapObject.mExtent.x + sideExtentX,
+                &missionGateObject->mMapObject.mMatrix.mUnk_00[0], &missionGateObject->mMapObject.mPos,
+                &missionGateObject->mPositiveSideObject->mPos);
+    SetMapObjectExtentX(missionGateObject->mNegativeSideObject, sideExtentX);
+    SetMapObjectExtentX(missionGateObject->mPositiveSideObject, sideExtentX);
+    SetMapObjectExtentY(missionGateObject->mNegativeSideObject, sideExtentY);
+    SetMapObjectExtentY(missionGateObject->mPositiveSideObject, sideExtentY);
 }
 
-u32 func_ov001_02185d74(MissionGateObject *c, Unk02185d74 *d, u8 *e, u8 *f) {
+u32 CollideKartWithMissionGate(MissionGateObject *missionGateObject, Unk02185d74 *kart, u8 *e, u8 *f) {
     u32 a = *e;
     u32 b = *f;
 
-    if ((d->mUnk_48 & 0x200) != 0 ||
-        (gRaceSetup->mMode == MODE_MISSION_RUN ? IsKartEliminated(d->mUnk_74) : 0) != FALSE) {
+    if ((kart->mUnk_48 & 0x200) != 0 ||
+        (gRaceSetup->mMode == MODE_MISSION_RUN ? IsKartEliminated(kart->mUnk_74) : 0) != FALSE) {
         return 0;
     }
     if (a == 1) {
-        c->mUnk_000.mFlags |= data_ov001_021a6580;
-        c->mState = 2;
+        missionGateObject->mMapObject.mFlags |= data_ov001_021a6580;
+        missionGateObject->mState = 2;
     }
     return b;
 }
@@ -75,68 +82,69 @@ void LoadMissionGate(void *a) {
 
 void func_ov001_02185d18(void) {}
 
-void DrawMissionGate(void *a, MissionGateObject *b) {
+void DrawMissionGate(void *mapObjectList, MissionGateObject *missionGateObject) {
     s32 buf;
 
     buf = 0x1e;
     func_01ff9048(0x14, &buf, 1);
-    b->mUnk_000.mMatrix.mUnk_00[3].x = b->mUnk_000.mPos.x >> 4;
-    b->mUnk_000.mMatrix.mUnk_00[3].y = b->mUnk_000.mPos.y >> 4;
-    b->mUnk_000.mMatrix.mUnk_00[3].z = b->mUnk_000.mPos.z >> 4;
-    func_01ff9048(0x19, &b->mUnk_000.mMatrix, 0xc);
-    func_01ff9048(0x1b, &b->mUnk_000.mScale, 3);
-    SetMapObjectModelNsbtpFrameIndex(gMissionGate, b->mUnk_000.mCourseMapRow->mUnk_28);
-    SetMapObjectModelNsbmaFrameIndex(gMissionGate, b->mUnk_0a8);
-    DrawMapObjectModel(a, gMissionGate, b);
+    missionGateObject->mMapObject.mMatrix.mUnk_00[3].x = missionGateObject->mMapObject.mPos.x >> 4;
+    missionGateObject->mMapObject.mMatrix.mUnk_00[3].y = missionGateObject->mMapObject.mPos.y >> 4;
+    missionGateObject->mMapObject.mMatrix.mUnk_00[3].z = missionGateObject->mMapObject.mPos.z >> 4;
+    func_01ff9048(0x19, &missionGateObject->mMapObject.mMatrix, 0xc);
+    func_01ff9048(0x1b, &missionGateObject->mMapObject.mScale, 3);
+    SetMapObjectModelNsbtpFrameIndex(gMissionGate, missionGateObject->mMapObject.mCourseMapRow->mUnk_28);
+    SetMapObjectModelNsbmaFrameIndex(gMissionGate, missionGateObject->mNsbmaFrameIndex);
+    DrawMapObjectModel(mapObjectList, gMissionGate, missionGateObject);
 }
 
-void InitMissionGateObjects(Unk02185c4c *a) {
+void InitMissionGateObjects(MissionGateList *missionGateList) {
     s32 i;
-    MissionGateObject *e;
+    MissionGateObject *missionGateObject;
 
-    if (a) {
-        for (i = 0; i < a->mUnk_04 && (e = a->mUnk_00[i]) != NULL; i++) {
-            if (e->mUnk_000.mCourseMapRow->mUnk_28 != 0) {
-                e->mUnk_000.mFlags |= data_ov001_021a6580;
-                e->mState = 0;
+    if (missionGateList) {
+        for (i = 0; i < missionGateList->mObjectCount && (missionGateObject = missionGateList->mObjects[i]) != NULL;
+             i++) {
+            if (missionGateObject->mMapObject.mCourseMapRow->mUnk_28 != 0) {
+                missionGateObject->mMapObject.mFlags |= data_ov001_021a6580;
+                missionGateObject->mState = 0;
             } else {
-                e->mUnk_000.mFlags &= ~1;
-                e->mState = 1;
+                missionGateObject->mMapObject.mFlags &= ~1;
+                missionGateObject->mState = 1;
             }
         }
     }
 }
 
-void UpdateMissionGate(void *a, MissionGateObject *b) {
-    s32 pos;
+void UpdateMissionGate(void *a, MissionGateObject *missionGateObject) {
+    s32 count;
 
-    switch (b->mState) {
+    switch (missionGateObject->mState) {
         case 0:
-            pos = gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunCount() : 0;
-            if (pos >= b->mUnk_000.mCourseMapRow->mUnk_28 - 1) {
-                b->mUnk_000.mFlags &= ~1;
-                b->mState = 1;
+            count = gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunCount() : 0;
+            if (count >= missionGateObject->mMapObject.mCourseMapRow->mUnk_28 - 1) {
+                missionGateObject->mMapObject.mFlags &= ~1;
+                missionGateObject->mState = 1;
             }
             break;
         case 2:
-            pos = GetMapObjectModelNsbmaFrameCount(gMissionGate);
-            b->mUnk_0a8++;
-            if (b->mUnk_0a8 >= pos - 1) {
-                b->mUnk_0a8 = GetMapObjectModelNsbmaFrameCount(gMissionGate) - 1;
-                b->mState = 1;
+            count = GetMapObjectModelNsbmaFrameCount(gMissionGate);
+            missionGateObject->mNsbmaFrameIndex++;
+            if (missionGateObject->mNsbmaFrameIndex >= count - 1) {
+                missionGateObject->mNsbmaFrameIndex = GetMapObjectModelNsbmaFrameCount(gMissionGate) - 1;
+                missionGateObject->mState = 1;
             }
             break;
     }
 }
 
-void func_ov001_02185b98(void) {
-    CreateMapObjectKindData(&func_ov001_02185d74, NULL, NULL, 0, 1);
+void CreateMissionGateKindData(void) {
+    CreateMapObjectKindData(&CollideKartWithMissionGate, NULL, NULL, 0, 1);
 }
 
-void func_ov001_02185b7c(void) {
+void CreateMissionGateDrawList(void) {
     CreateMapObjectDrawList1(LoadMissionGate, DrawMissionGate, func_ov001_02185d18);
 }
 
-void func_ov001_02185b64(void) {
+void CreateMissionGateUpdateList(void) {
     CreateMapObjectUpdateList(InitMissionGateObjects, UpdateMissionGate, NULL);
 }
