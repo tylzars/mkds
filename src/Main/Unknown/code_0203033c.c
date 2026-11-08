@@ -124,7 +124,7 @@ s32 AdvanceMultiSelectNS(void) {
                 gMultiSelectNS->mOffset = 0;
                 gMultiSelectNS->mState = 1;
             }
-            func_020309d8();
+            SetMultiSelectNSCellTableOffsetY();
             break;
         case 1:
             touchInReturnRect = 0;
@@ -185,7 +185,7 @@ s32 AdvanceMultiSelectNS(void) {
                 gMultiSelectNS->mOffset = 0;
                 gMultiSelectNS->mState = 4;
             }
-            func_020309d8();
+            SetMultiSelectNSCellTableOffsetY();
             break;
         case 4:
             result = multiSelectNS->mNextCallbacksIndex;

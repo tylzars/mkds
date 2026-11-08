@@ -25,103 +25,107 @@
 
 #pragma thumb on
 
-void func_020309d8(void) {
-    MultiSelectNS *o;
+void SetMultiSelectNSCellTableOffsetY(void) {
+    MultiSelectNS *multiSelectNS;
     s32 i;
-    s32 n;
+    s32 entryCount;
 
-    o = gMultiSelectNS;
-    n = func_02030a18(o->mBncl) + func_02030a10(o->mBnll);
-    for (i = 0; i < n; i++) {
-        o->mCellTable[i].mOffsetY = gMultiSelectNS->mOffset;
+    multiSelectNS = gMultiSelectNS;
+    entryCount = func_02030a18(multiSelectNS->mBncl) + func_02030a10(multiSelectNS->mBnll);
+    for (i = 0; i < entryCount; i++) {
+        multiSelectNS->mCellTable[i].mOffsetY = gMultiSelectNS->mOffset;
     }
 }
 
-void RefreshMultiSelectNS(s32 a) {
-    u32 t[2];
+void RefreshMultiSelectNS(s32 showSelected) {
+    u32 valueTable[2];
     s32 i;
-    MultiSelectNS *o;
-    s32 v;
-    s32 w;
+    MultiSelectNS *multiSelectNS;
+    s32 rowSelected;
+    s32 rowNotSelected;
     BOOL z1;
     BOOL z2;
-    u16 *q;
-    u32 c;
-    u32 d;
+    u16 *rowCellIndices;
+    u32 firstValue;
+    u32 secondValue;
 
-    o = gMultiSelectNS;
-    c = *(volatile u32 *) &data_02163614[0];
-    d = *(volatile u32 *) &data_02163614[1];
-    t[0] = c;
-    t[1] = d;
+    multiSelectNS = gMultiSelectNS;
+    firstValue = *(volatile u32 *) &gMultiSelectNSLabelValues[0];
+    secondValue = *(volatile u32 *) &gMultiSelectNSLabelValues[1];
+    valueTable[0] = firstValue;
+    valueTable[1] = secondValue;
     z1 = FALSE;
     z2 = FALSE;
     for (i = 0; i < 2; i++) {
-        if (gMultiSelectNS->mIndex == i && a != 0) {
-            v = 1;
+        if (gMultiSelectNS->mIndex == i && showSelected != 0) {
+            rowSelected = 1;
         } else {
-            v = z1;
+            rowSelected = z1;
         }
-        q = data_02153d20[i];
-        o->mCellTable[q[0]].mVisible = v;
-        if (v == 0) {
-            w = 1;
+        rowCellIndices = gMultiSelectNSRowCellIndices[i];
+        multiSelectNS->mCellTable[rowCellIndices[0]].mVisible = rowSelected;
+        if (rowSelected == 0) {
+            rowNotSelected = 1;
         } else {
-            w = z2;
+            rowNotSelected = z2;
         }
-        o->mCellTable[q[1]].mVisible = w;
-        func_02124100(q[2], t[v], o->mBnll, o->mCellTable, o->mBncl);
+        multiSelectNS->mCellTable[rowCellIndices[1]].mVisible = rowNotSelected;
+        func_02124100(rowCellIndices[2], valueTable[rowSelected], multiSelectNS->mBnll, multiSelectNS->mCellTable,
+                      multiSelectNS->mBncl);
     }
 }
 
 #pragma thumb off
 
-void func_02030930(void *a, u32 b, u32 c) {
-    volatile u32 v = b;
-    MIi_CpuClearFast(v, a, c);
+void func_02030930(void *destination, u32 value, u32 size) {
+    volatile u32 valueCopy = value;
+    MIi_CpuClearFast(valueCopy, destination, size);
 }
 
-void func_0203091c(void *a, u32 b) {
-    func_02030930(a, 0, b);
+void func_0203091c(void *destination, u32 size) {
+    func_02030930(destination, 0, size);
 }
 
 #pragma thumb on
 
-void InitMultiSelectNS(void *a, void *b, void *c) {
-    void *h;
-    MultiSelectNS *o;
-    Unk02153d2c *q;
+void InitMultiSelectNS(void *parentHeap, void *scene, void *oamList) {
+    void *heap;
+    MultiSelectNS *multiSelectNS;
+    Unk02153d2c *labelMessageRow;
     s32 i;
-    u32 n;
-    s32 x;
+    u32 subObjSizeLeft;
+    s32 labelIndex;
 
-    h = CreateFrmHeapFromMaxFree(a);
-    gMultiSelectNS = HeapAlloc(h, 0x40);
+    heap = CreateFrmHeapFromMaxFree(parentHeap);
+    gMultiSelectNS = HeapAlloc(heap, 0x40);
     func_0203091c(gMultiSelectNS, 0x40);
-    gMultiSelectNS->mHeap = h;
-    gMultiSelectNS->mUnk_1c = b;
-    gMultiSelectNS->mOamList = c;
+    gMultiSelectNS->mHeap = heap;
+    gMultiSelectNS->mUnk_1c = scene;
+    gMultiSelectNS->mOamList = oamList;
     gMultiSelectNS->mBannerMessages = FindSceneFile(data_0216362c);
     gMultiSelectNS->mOffset = -0xc0;
-    n = GX_GetSizeOfSubOBJ();
-    o = gMultiSelectNS;
-    LocateNcgr2(&o->mNcgr, FindSceneFile(data_02163638));
-    LocateNcer(&o->mNcer, FindSceneFile(data_02163654));
-    LocateNclr(&o->mNclr, FindSceneFile(data_02163670));
-    o->mBncl = FindSceneFile(gMultiSelectNSSBnclName);
-    o->mBnbl = FindSceneFile(gMultiSelectNSSBnblName);
-    o->mBnll = FindSceneFile(gMultiSelectNSSBnllName);
-    InitLayoutTable(gMultiSelectNS->mHeap, o->mBncl, o->mBnll, &o->mCellTable);
+    subObjSizeLeft = GX_GetSizeOfSubOBJ();
+    multiSelectNS = gMultiSelectNS;
+    LocateNcgr2(&multiSelectNS->mNcgr, FindSceneFile(data_02163638));
+    LocateNcer(&multiSelectNS->mNcer, FindSceneFile(data_02163654));
+    LocateNclr(&multiSelectNS->mNclr, FindSceneFile(data_02163670));
+    multiSelectNS->mBncl = FindSceneFile(gMultiSelectNSSBnclName);
+    multiSelectNS->mBnbl = FindSceneFile(gMultiSelectNSSBnblName);
+    multiSelectNS->mBnll = FindSceneFile(gMultiSelectNSSBnllName);
+    InitLayoutTable(gMultiSelectNS->mHeap, multiSelectNS->mBncl, multiSelectNS->mBnll, &multiSelectNS->mCellTable);
     for (i = 0; i < 2; i++) {
-        q = &data_02153d2c[i];
-        x = q->mUnk_00;
-        n -= func_021243ac(gMultiSelectNS->mHeap, x, o->mBnll, q->mUnk_02, q->mUnk_04, q->mUnk_06, o->mNcer, o->mBncl,
-                           o->mCellTable, n);
-        func_0212426c(1, x, o->mBnll, GetBmgEntry(gMultiSelectNS->mBannerMessages, q->mUnk_08), o->mBncl,
-                      o->mCellTable);
+        labelMessageRow = &gMultiSelectNSLabelMessageRows[i];
+        labelIndex = labelMessageRow->mUnk_00;
+        subObjSizeLeft -=
+            func_021243ac(gMultiSelectNS->mHeap, labelIndex, multiSelectNS->mBnll, labelMessageRow->mUnk_02,
+                          labelMessageRow->mUnk_04, labelMessageRow->mUnk_06, multiSelectNS->mNcer,
+                          multiSelectNS->mBncl, multiSelectNS->mCellTable, subObjSizeLeft);
+        func_0212426c(1, labelIndex, multiSelectNS->mBnll,
+                      GetBmgEntry(gMultiSelectNS->mBannerMessages, labelMessageRow->mUnk_08), multiSelectNS->mBncl,
+                      multiSelectNS->mCellTable);
     }
-    CallQueueAppend(0x23, 0, o->mNcgr->mData, o->mNcgr->mDataSize);
-    CallQueueAppend(0x1e, 0, o->mNclr->mData, o->mNclr->mDataSize);
+    CallQueueAppend(0x23, 0, multiSelectNS->mNcgr->mData, multiSelectNS->mNcgr->mDataSize);
+    CallQueueAppend(0x1e, 0, multiSelectNS->mNclr->mData, multiSelectNS->mNclr->mDataSize);
     RefreshMultiSelectNS(1);
     SetSelectReturnSoundId(0xe);
     func_0204f804();

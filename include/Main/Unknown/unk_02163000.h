@@ -56,7 +56,7 @@ extern const char gMultiSelectMemberSGroupBnclName[];
 extern const char gMultiSelectMemberSGroupBnllName[];
 extern const char gMultiSelectMemberSGroupBnblName[];
 extern u8 data_02163610[];
-extern u32 data_02163614[];
+extern u32 gMultiSelectNSLabelValues[];
 extern const char data_0216362c[];
 extern const char data_02163638[];
 extern const char data_02163654[];

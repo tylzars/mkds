@@ -4,26 +4,26 @@
 #include "Main/Unknown/unk_02174000.h"
 
 // 6-byte entries of mTable (data_02153de8 and data_02153df4).
-typedef struct Unk02174e5c_4c {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ u16 mUnk_04;
-} Unk02174e5c_4c;
+typedef struct SelectGameRow {
+    /* 00 */ u16 mSelectedCellIndex;
+    /* 02 */ u16 mCellIndex;
+    /* 04 */ u16 mRectEntryId;
+} SelectGameRow;
 
 // 0x6c bytes.
 typedef struct SelectGame {
-    /* 00 */ CellFileSet mUnk_00[2];
-    /* 38 */ void *mUnk_38;
-    /* 3c */ void *mUnk_3c;
+    /* 00 */ CellFileSet mCellFileSets[2];
+    /* 38 */ void *mMainOam;
+    /* 3c */ void *mSubOam;
     /* 40 */ void *mHeap;
     /* 44 */ s32 mSelectedIndex;
     /* 48 */ s32 mTableCount;
-    /* 4c */ Unk02174e5c_4c *mTable;
+    /* 4c */ SelectGameRow *mTable;
     /* 50 */ struct Bmg *mMenuMessages;
     /* 54 */ s32 mState;
     /* 58 */ s32 mStateFrames;
-    /* 5c */ s32 mUnk_5c;
-    /* 60 */ s32 mUnk_60;
+    /* 5c */ s32 mSubOffsetX;
+    /* 60 */ s32 mMainOffsetY;
     /* 64 */ s32 mResult;
     /* 68 */ s32 mMode;
 } SelectGame;
@@ -37,19 +37,19 @@ typedef struct Unk02153e08 {
     /* 08 */ const char *mUnk_08;
 } Unk02153e08;
 
-// 12-byte entries of the table data_02153e20.
+// 12-byte entries of the table gSelectGameLabelMessageRows.
 typedef struct Unk02153e20 {
     /* 00 */ s16 mUnk_00;
     /* 02 */ u8 mUnk_02[6];
     /* 08 */ s32 mUnk_08;
 } Unk02153e20;
 
-extern Unk02174e5c_4c data_02153de8[];
-extern Unk02174e5c_4c data_02153df4[];
+extern SelectGameRow data_02153de8[];
+extern SelectGameRow data_02153df4[];
 extern Unk02153e08 data_02153e08[];
 extern Unk02153e08 data_02153e0c[];
 extern Unk02153e08 data_02153e10[];
-extern Unk02153e20 data_02153e20[];
+extern Unk02153e20 gSelectGameLabelMessageRows[];
 
 extern const char gSelectGameMBNcgrName[];
 extern const char gSelectGameMNceNcgrName[];
@@ -79,10 +79,10 @@ void func_02032138(void);
 void LoadSelectGameData(void);
 void ReleaseSelectGame(void);
 s32 AdvanceSelectGame(void);
-void InitSelectGame(void *a, s32 b, void *c, void *d);
-void func_020328c8(s32 a);
-void func_020328f8(s32 a);
-void func_02032940(void);
-void func_020329a0(void);
-void func_020329dc(s32 a);
+void InitSelectGame(void *parentHeap, s32 mode, void *mainOam, void *subOam);
+void SetSelectGameSubCellsVisible(s32 visible);
+void SetSelectGameSelectedRowVisible(s32 showSelected);
+void SetSelectGameCellTableOffsets(void);
+void SetSelectGameRowOffsetX(void);
+void SetSelectGameRowCellsVisible(s32 visible);
 void func_02032a20(void);

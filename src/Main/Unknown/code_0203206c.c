@@ -36,132 +36,132 @@
 #pragma thumb on
 
 void func_02032a20(void) {
-    BOOL v;
+    BOOL battleKind;
 
     if (gSelectGame->mMode == 0) {
         GetRaceSetupCopy()->mMode = 2;
         switch (gSelectGame->mSelectedIndex) {
             case 0:
-                v = FALSE;
+                battleKind = FALSE;
                 break;
             default:
-                v = TRUE;
+                battleKind = TRUE;
                 break;
         }
-        GetRaceSetupCopy()->mBattleKind = v;
+        GetRaceSetupCopy()->mBattleKind = battleKind;
     } else if (gSelectGame->mSelectedIndex == 0) {
         GetRaceSetupCopy()->mMode = 3;
     } else {
         GetRaceSetupCopy()->mMode = 2;
         switch (gSelectGame->mSelectedIndex) {
             case 1:
-                v = FALSE;
+                battleKind = FALSE;
                 break;
             default:
-                v = TRUE;
+                battleKind = TRUE;
                 break;
         }
-        GetRaceSetupCopy()->mBattleKind = v;
+        GetRaceSetupCopy()->mBattleKind = battleKind;
     }
     gSelectGame->mResult = 1;
     gSelectGame->mState = 5;
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
 }
 
-void func_020329dc(s32 a) {
+void SetSelectGameRowCellsVisible(s32 visible) {
     s32 i;
-    CellFileSet *p;
+    CellFileSet *subFileSet;
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        p = &gSelectGame->mUnk_00[1];
+        subFileSet = &gSelectGame->mCellFileSets[1];
         for (i = 0; i < gSelectGame->mTableCount; i++) {
-            p->mCellTable[gSelectGame->mTable[i].mUnk_02].mVisible = a;
+            subFileSet->mCellTable[gSelectGame->mTable[i].mCellIndex].mVisible = visible;
         }
     }
 }
 
-void func_020329a0(void) {
+void SetSelectGameRowOffsetX(void) {
     s32 i;
-    CellFileSet *p;
+    CellFileSet *subFileSet;
 
-    p = &gSelectGame->mUnk_00[1];
+    subFileSet = &gSelectGame->mCellFileSets[1];
     for (i = 0; i < gSelectGame->mTableCount; i++) {
-        p->mCellTable[gSelectGame->mTable[i].mUnk_00].mOffsetX = gSelectGame->mUnk_5c;
+        subFileSet->mCellTable[gSelectGame->mTable[i].mSelectedCellIndex].mOffsetX = gSelectGame->mSubOffsetX;
     }
 }
 
-void func_02032940(void) {
-    CellFileSet *p;
+void SetSelectGameCellTableOffsets(void) {
+    CellFileSet *subFileSet;
     s32 i;
-    s32 n;
+    s32 mainCellCount;
     s32 m;
-    SelectGame *o;
+    SelectGame *selectGame;
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        o = gSelectGame;
-        n = o->mUnk_00[0].mCellLayout->mUnk_06;
-        m = o->mUnk_00[0].mLabelLayout->mUnk_06;
+        selectGame = gSelectGame;
+        mainCellCount = selectGame->mCellFileSets[0].mCellLayout->mUnk_06;
+        m = selectGame->mCellFileSets[0].mLabelLayout->mUnk_06;
         for (i = 0; i < m; i++) {
-            o->mUnk_00[0].mCellTable[i + n].mOffsetY = gSelectGame->mUnk_60;
+            selectGame->mCellFileSets[0].mCellTable[i + mainCellCount].mOffsetY = gSelectGame->mMainOffsetY;
         }
     }
-    p = &gSelectGame->mUnk_00[1];
-    m = p->mCellLayout->mUnk_06;
+    subFileSet = &gSelectGame->mCellFileSets[1];
+    m = subFileSet->mCellLayout->mUnk_06;
     for (i = 0; i < m; i++) {
-        p->mCellTable[i].mOffsetX = gSelectGame->mUnk_5c;
+        subFileSet->mCellTable[i].mOffsetX = gSelectGame->mSubOffsetX;
     }
 }
 
-void func_020328f8(s32 a) {
-    BOOL v;
+void SetSelectGameSelectedRowVisible(s32 showSelected) {
+    BOOL visible;
     s32 i;
-    CellFileSet *p;
+    CellFileSet *subFileSet;
 
-    p = &gSelectGame->mUnk_00[1];
+    subFileSet = &gSelectGame->mCellFileSets[1];
     for (i = 0; i < gSelectGame->mTableCount; i++) {
-        if (i == gSelectGame->mSelectedIndex && a != 0) {
-            v = TRUE;
+        if (i == gSelectGame->mSelectedIndex && showSelected != 0) {
+            visible = TRUE;
         } else {
-            v = FALSE;
+            visible = FALSE;
         }
-        p->mCellTable[gSelectGame->mTable[i].mUnk_00].mVisible = v;
+        subFileSet->mCellTable[gSelectGame->mTable[i].mSelectedCellIndex].mVisible = visible;
     }
 }
 
-void func_020328c8(s32 a) {
+void SetSelectGameSubCellsVisible(s32 visible) {
     s32 i;
-    CellFileSet *p;
+    CellFileSet *subFileSet;
 
-    p = &gSelectGame->mUnk_00[1];
-    for (i = 0; i < p->mCellLayout->mUnk_06; i++) {
-        p->mCellTable[i].mVisible = a;
+    subFileSet = &gSelectGame->mCellFileSets[1];
+    for (i = 0; i < subFileSet->mCellLayout->mUnk_06; i++) {
+        subFileSet->mCellTable[i].mVisible = visible;
     }
 }
 
-void InitSelectGame(void *a, s32 b, void *c, void *d) {
-    void *h;
-    SelectGame *o;
-    CellFileSet *q;
-    u8 v1[0x28];
-    u32 k;
+void InitSelectGame(void *parentHeap, s32 mode, void *mainOam, void *subOam) {
+    void *heap;
+    SelectGame *selectGame;
+    CellFileSet *subFileSet;
+    u8 screenMapFileSet[0x28];
+    u32 mainObjSizeLeft;
     s32 i;
-    s32 n;
-    s32 m;
+    s32 mainCellCount;
+    s32 mainLabelCount;
     s32 j;
-    s32 s;
-    s32 e;
-    Unk02153e20 *t;
-    Unk02153e20 *g;
+    s32 hiddenLabelStart;
+    s32 hiddenLabelCount;
+    Unk02153e20 *canvasRow;
+    Unk02153e20 *printRow;
 
-    h = CreateFrmHeapFromMaxFree(a);
-    gSelectGame = HeapAlloc(h, 0x6c);
+    heap = CreateFrmHeapFromMaxFree(parentHeap);
+    gSelectGame = HeapAlloc(heap, 0x6c);
     MemFillWordsByBlock_inline(gSelectGame, 0x6c);
-    gSelectGame->mHeap = h;
-    gSelectGame->mMode = b;
-    gSelectGame->mUnk_38 = c;
-    gSelectGame->mUnk_3c = d;
-    gSelectGame->mUnk_5c = 0xee;
-    gSelectGame->mUnk_60 = -0xc0;
+    gSelectGame->mHeap = heap;
+    gSelectGame->mMode = mode;
+    gSelectGame->mMainOam = mainOam;
+    gSelectGame->mSubOam = subOam;
+    gSelectGame->mSubOffsetX = 0xee;
+    gSelectGame->mMainOffsetY = -0xc0;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         gSelectGame->mMenuMessages = FindSceneFile(gMenuBmgName);
     }
@@ -179,48 +179,48 @@ void InitSelectGame(void *a, s32 b, void *c, void *d) {
             break;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_020258d4(0, v1, gSelectGameMBNcgrName2, gSelectGameMBNclrName2, data_02153e10[gSelectGame->mMode].mUnk_00,
-                      1, FindSceneFile);
+        func_020258d4(0, screenMapFileSet, gSelectGameMBNcgrName2, gSelectGameMBNclrName2,
+                      data_02153e10[gSelectGame->mMode].mUnk_00, 1, FindSceneFile);
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        k = GX_GetSizeOfOBJ();
-        o = gSelectGame;
-        LocateCellFileSet(o, gSelectGameMNceNcgrName2, gSelectGameMNceNcerName2, gSelectGameMONclrName2,
+        mainObjSizeLeft = GX_GetSizeOfOBJ();
+        selectGame = gSelectGame;
+        LocateCellFileSet(selectGame, gSelectGameMNceNcgrName2, gSelectGameMNceNcerName2, gSelectGameMONclrName2,
                           gSelectGameMBnclName, gSelectGameMBnllName, NULL, FindSceneFile);
-        func_02025a50(0, gSelectGame->mHeap, o);
-        n = o->mUnk_00[0].mCellLayout->mUnk_06;
-        m = o->mUnk_00[0].mLabelLayout->mUnk_06;
+        func_02025a50(0, gSelectGame->mHeap, selectGame);
+        mainCellCount = selectGame->mCellFileSets[0].mCellLayout->mUnk_06;
+        mainLabelCount = selectGame->mCellFileSets[0].mLabelLayout->mUnk_06;
         i = 0;
-        if (m > 0) {
-            t = data_02153e20;
-            g = t;
+        if (mainLabelCount > 0) {
+            canvasRow = gSelectGameLabelMessageRows;
+            printRow = canvasRow;
             do {
-                k -= func_02025a00(0, gSelectGame->mHeap, o, t, k);
-                func_0212426c(0, g->mUnk_00, o->mUnk_00[0].mLabelLayout,
-                              GetBmgEntry(gSelectGame->mMenuMessages, g->mUnk_08), o->mUnk_00[0].mCellLayout,
-                              o->mUnk_00[0].mCellTable);
-                t++;
-                g++;
+                mainObjSizeLeft -= func_02025a00(0, gSelectGame->mHeap, selectGame, canvasRow, mainObjSizeLeft);
+                func_0212426c(0, printRow->mUnk_00, selectGame->mCellFileSets[0].mLabelLayout,
+                              GetBmgEntry(gSelectGame->mMenuMessages, printRow->mUnk_08),
+                              selectGame->mCellFileSets[0].mCellLayout, selectGame->mCellFileSets[0].mCellTable);
+                canvasRow++;
+                printRow++;
                 i++;
-            } while (i < m);
+            } while (i < mainLabelCount);
         }
         if (gSelectGame->mMode == 0) {
-            s = 4;
-            e = 6;
+            hiddenLabelStart = 4;
+            hiddenLabelCount = 6;
         } else {
-            s = 0;
-            e = 4;
+            hiddenLabelStart = 0;
+            hiddenLabelCount = 4;
         }
-        for (j = s; j < s + e; j++) {
-            o->mUnk_00[0].mCellTable[j + n].mVisible = 0;
+        for (j = hiddenLabelStart; j < hiddenLabelStart + hiddenLabelCount; j++) {
+            selectGame->mCellFileSets[0].mCellTable[j + mainCellCount].mVisible = 0;
         }
     }
-    q = &gSelectGame->mUnk_00[1];
-    LocateCellFileSet(q, gSelectGameSNceNcgrName2, gSelectGameSNceNcerName2, gSelectGameSONclrName2,
+    subFileSet = &gSelectGame->mCellFileSets[1];
+    LocateCellFileSet(subFileSet, gSelectGameSNceNcgrName2, gSelectGameSNceNcerName2, gSelectGameSONclrName2,
                       data_02153e08[gSelectGame->mMode].mUnk_00, NULL, data_02153e0c[gSelectGame->mMode].mUnk_00,
                       FindSceneFile);
-    func_02025a50(1, gSelectGame->mHeap, q);
-    func_020328c8(0);
+    func_02025a50(1, gSelectGame->mHeap, subFileSet);
+    SetSelectGameSubCellsVisible(0);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         SetSelectReturnSoundId(-1);
     } else {
@@ -237,86 +237,86 @@ void InitSelectGame(void *a, s32 b, void *c, void *d) {
 
 s32 AdvanceSelectGame(void) {
     s32 a;
-    Unk02175628Index v1;
-    SelectGame *o;
-    CellFileSet *q;
-    s32 b;
-    s32 c;
+    Unk02175628Index slotIndex;
+    SelectGame *selectGame;
+    CellFileSet *subFileSet;
+    s32 previousSelectedIndex;
+    s32 touchInReturnRect;
     s32 d;
-    BOOL f;
-    BOOL e;
-    s32 g;
+    BOOL pairIsNew;
+    BOOL pairRecentlyGone;
+    s32 pairY;
     s32 h;
-    u32 t;
+    u32 hasPair;
     s32 i;
-    const void *p;
-    const void *p1;
+    const void *firstChoiceText;
+    const void *secondChoiceText;
 
     a = 0;
-    v1 = UNK_02175628_INDEX_8;
-    o = gSelectGame;
-    q = &o->mUnk_00[1];
-    switch (o->mState) {
+    slotIndex = UNK_02175628_INDEX_8;
+    selectGame = gSelectGame;
+    subFileSet = &selectGame->mCellFileSets[1];
+    switch (selectGame->mState) {
         case 3:
-            func_020328c8(1);
-            func_020328f8(1);
+            SetSelectGameSubCellsVisible(1);
+            SetSelectGameSelectedRowVisible(1);
             gSelectGame->mStateFrames = gSelectGame->mStateFrames + 1;
             if (gSelectGame->mStateFrames < 10) {
-                gSelectGame->mUnk_5c = InterpolateS16(1, 0xee, a, gSelectGame->mStateFrames, 10);
-                gSelectGame->mUnk_60 = InterpolateS16(1, -0xc0, a, gSelectGame->mStateFrames, 10);
+                gSelectGame->mSubOffsetX = InterpolateS16(1, 0xee, a, gSelectGame->mStateFrames, 10);
+                gSelectGame->mMainOffsetY = InterpolateS16(1, -0xc0, a, gSelectGame->mStateFrames, 10);
             } else {
                 gSelectGame->mStateFrames = a;
-                gSelectGame->mUnk_5c = a;
-                gSelectGame->mUnk_60 = a;
+                gSelectGame->mSubOffsetX = a;
+                gSelectGame->mMainOffsetY = a;
                 gSelectGame->mState = 4;
             }
-            func_02032940();
+            SetSelectGameCellTableOffsets();
             break;
         case 4:
-            b = o->mSelectedIndex;
+            previousSelectedIndex = selectGame->mSelectedIndex;
             d = ~a;
-            c = 0;
-            f = FALSE;
-            e = FALSE;
-            t = data_02175628[v1].mHasPair;
-            if (t == 0 && data_02175628[v1].mNoPairCount < 5) {
-                e = TRUE;
+            touchInReturnRect = 0;
+            pairIsNew = FALSE;
+            pairRecentlyGone = FALSE;
+            hasPair = data_02175628[slotIndex].mHasPair;
+            if (hasPair == 0 && data_02175628[slotIndex].mNoPairCount < 5) {
+                pairRecentlyGone = TRUE;
             }
-            if (e == FALSE && data_02175628[v1].mPrevHasPair == 0 && t != 0) {
-                f = TRUE;
+            if (pairRecentlyGone == FALSE && data_02175628[slotIndex].mPrevHasPair == 0 && hasPair != 0) {
+                pairIsNew = TRUE;
             }
-            if (f != FALSE) {
-                d = data_02175628[v1].mPairX;
-                g = data_02175628[v1].mPairY;
-                c = IsSelectReturnState2NoState3Or4RequestAndInRect(d, g);
-                d = RectTableFindContaining(q->mRects, d, g);
+            if (pairIsNew != FALSE) {
+                d = data_02175628[slotIndex].mPairX;
+                pairY = data_02175628[slotIndex].mPairY;
+                touchInReturnRect = IsSelectReturnState2NoState3Or4RequestAndInRect(d, pairY);
+                d = RectTableFindContaining(subFileSet->mRects, d, pairY);
             }
-            if ((u16) (data_02175628[v1].mUnk_00 & PAD_KEY_A) != 0) {
-                func_020328f8(0);
+            if ((u16) (data_02175628[slotIndex].mUnk_00 & PAD_KEY_A) != 0) {
+                SetSelectGameSelectedRowVisible(0);
                 func_02032a20();
             } else if (d >= 0) {
                 for (i = 0; i < gSelectGame->mTableCount; i++) {
-                    if (d == gSelectGame->mTable[i].mUnk_04) {
-                        func_020328f8(gSelectGame->mSelectedIndex != i ? 1 : 0);
+                    if (d == gSelectGame->mTable[i].mRectEntryId) {
+                        SetSelectGameSelectedRowVisible(gSelectGame->mSelectedIndex != i ? 1 : 0);
                         gSelectGame->mSelectedIndex = i;
                         func_02032a20();
                         break;
                     }
                 }
-            } else if ((u16) (data_02175628[v1].mUnk_00 & PAD_KEY_B) != 0 || c != 0) {
+            } else if ((u16) (data_02175628[slotIndex].mUnk_00 & PAD_KEY_B) != 0 || touchInReturnRect != 0) {
                 if (gSelectGame->mMode == 0) {
                     gSelectGame->mResult = 2;
                     gSelectGame->mState = 9;
                 } else {
-                    p = data_02163aec;
-                    p1 = data_02163af0;
+                    firstChoiceText = data_02163aec;
+                    secondChoiceText = data_02163af0;
                     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-                        p = GetBmgEntry(gSelectGame->mMenuMessages, 0x14);
-                        p1 = GetBmgEntry(gSelectGame->mMenuMessages, 0x16);
+                        firstChoiceText = GetBmgEntry(gSelectGame->mMenuMessages, 0x14);
+                        secondChoiceText = GetBmgEntry(gSelectGame->mMenuMessages, 0x16);
                     }
-                    StartSelectChoises(p, p1, 0);
+                    StartSelectChoises(firstChoiceText, secondChoiceText, 0);
                     gSelectGame->mState = 7;
-                    func_020329dc(0);
+                    SetSelectGameRowCellsVisible(0);
                 }
                 RequestSelectReturnState3WithSound(0);
             } else if (GetNewOrRepeatBits(8, PAD_KEY_UP) != 0) {
@@ -336,8 +336,8 @@ s32 AdvanceSelectGame(void) {
                     gSelectGame->mSelectedIndex = gSelectGame->mSelectedIndex + 1;
                 }
             }
-            if (d < 0 && b != gSelectGame->mSelectedIndex) {
-                func_020328f8(1);
+            if (d < 0 && previousSelectedIndex != gSelectGame->mSelectedIndex) {
+                SetSelectGameSelectedRowVisible(1);
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
             }
             break;
@@ -350,7 +350,7 @@ s32 AdvanceSelectGame(void) {
                     gSelectGame->mResult = 3;
                     gSelectGame->mState = 8;
                 }
-                func_020329dc(1);
+                SetSelectGameRowCellsVisible(1);
                 RequestSelectChoisesState0();
             }
             break;
@@ -361,17 +361,17 @@ s32 AdvanceSelectGame(void) {
             }
             break;
         case 5:
-            o->mStateFrames = o->mStateFrames + 1;
+            selectGame->mStateFrames = selectGame->mStateFrames + 1;
             if (gSelectGame->mStateFrames >= 5) {
                 gSelectGame->mStateFrames = a;
                 gSelectGame->mState = 6;
-                func_020328f8(1);
+                SetSelectGameSelectedRowVisible(1);
             }
             break;
         case 6:
-            o->mStateFrames = o->mStateFrames + 1;
+            selectGame->mStateFrames = selectGame->mStateFrames + 1;
             if (gSelectGame->mStateFrames < 10) {
-                gSelectGame->mUnk_5c = func_020ae488(gSelectGame->mStateFrames);
+                gSelectGame->mSubOffsetX = func_020ae488(gSelectGame->mStateFrames);
             } else {
                 gSelectGame->mStateFrames = a;
                 gSelectGame->mState = 9;
@@ -379,30 +379,32 @@ s32 AdvanceSelectGame(void) {
                     RequestSelectReturnState4();
                 }
             }
-            func_020329a0();
+            SetSelectGameRowOffsetX();
             break;
         case 9:
-            o->mStateFrames = o->mStateFrames + 1;
+            selectGame->mStateFrames = selectGame->mStateFrames + 1;
             if (gSelectGame->mStateFrames < 10) {
-                gSelectGame->mUnk_5c = InterpolateS16(1, a, 0xee, gSelectGame->mStateFrames, 10);
-                gSelectGame->mUnk_60 = InterpolateS16(1, a, -0xc0, gSelectGame->mStateFrames, 10);
+                gSelectGame->mSubOffsetX = InterpolateS16(1, a, 0xee, gSelectGame->mStateFrames, 10);
+                gSelectGame->mMainOffsetY = InterpolateS16(1, a, -0xc0, gSelectGame->mStateFrames, 10);
             } else {
-                gSelectGame->mUnk_5c = a;
-                gSelectGame->mUnk_60 = a;
+                gSelectGame->mSubOffsetX = a;
+                gSelectGame->mMainOffsetY = a;
                 gSelectGame->mState = 10;
             }
-            func_02032940();
+            SetSelectGameCellTableOffsets();
             break;
         case 10:
-            a = o->mResult;
+            a = selectGame->mResult;
             break;
     }
     if (gSelectGame->mState != 10) {
         if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-            DrawLayoutTable(o->mUnk_00[0].mCellLayout, o->mUnk_00[0].mCells, o->mUnk_00[0].mLabelLayout,
-                            gSelectGame->mUnk_38, o->mUnk_00[0].mCellTable);
+            DrawLayoutTable(selectGame->mCellFileSets[0].mCellLayout, selectGame->mCellFileSets[0].mCells,
+                            selectGame->mCellFileSets[0].mLabelLayout, gSelectGame->mMainOam,
+                            selectGame->mCellFileSets[0].mCellTable);
         }
-        DrawLayoutTable(q->mCellLayout, q->mCells, q->mLabelLayout, gSelectGame->mUnk_3c, q->mCellTable);
+        DrawLayoutTable(subFileSet->mCellLayout, subFileSet->mCells, subFileSet->mLabelLayout, gSelectGame->mSubOam,
+                        subFileSet->mCellTable);
     }
     return a;
 }
@@ -419,53 +421,53 @@ void ReleaseSelectGame(void) {
 }
 
 void func_02032138(void) {
-    u32 a;
-    u32 b;
-    s32 y;
+    u32 displayBits;
+    u32 bgControlBits;
+    s32 windowEndY;
 
-    a = 0x18;
-    b = 0;
+    displayBits = 0x18;
+    bgControlBits = 0;
     if (gSelectGame->mState != 10) {
-        a |= 2;
-        b = 3;
+        displayBits |= 2;
+        bgControlBits = 3;
     }
-    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (a << 8);
-    reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | b;
-    reg_G2_BG1OFS = (-gSelectGame->mUnk_60 << 16) & 0x1ff0000;
-    if (gSelectGame->mUnk_60 != 0) {
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (displayBits << 8);
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | bgControlBits;
+    reg_G2_BG1OFS = (-gSelectGame->mMainOffsetY << 16) & 0x1ff0000;
+    if (gSelectGame->mMainOffsetY != 0) {
         reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffff1fff) | 0x6000;
         reg_G2_WININ = (u32) ((reg_G2_WININ & ~0x3f) | 0x1f) | 0x20;
         reg_G2_WININ = (u32) ((reg_G2_WININ & 0xffffc0ff) | 0x1f00) | 0x2000;
         reg_G2_WINOUT = (u32) ((reg_G2_WINOUT & ~0x3f) | 0xd) | 0x20;
-        y = gSelectGame->mUnk_60 + 0xc0;
+        windowEndY = gSelectGame->mMainOffsetY + 0xc0;
         reg_G2_WIN0H = 0xff;
-        reg_G2_WIN0V = y & 0xff;
-        y = gSelectGame->mUnk_60 + 0xc0;
+        reg_G2_WIN0V = windowEndY & 0xff;
+        windowEndY = gSelectGame->mMainOffsetY + 0xc0;
         reg_G2_WIN1H = 0xff00;
-        reg_G2_WIN1V = y & 0xff;
+        reg_G2_WIN1V = windowEndY & 0xff;
     } else {
         reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
     }
 }
 
 void LoadSelectGameData(void) {
-    Ncgr *a;
-    Nclr *b;
-    Unk02021dc8 *c;
-    Nscr *d;
+    Ncgr *chars;
+    Nclr *palette;
+    Unk02021dc8 *cells;
+    Nscr *screenMap;
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        LoadNcgrData(&a, FindSceneFile(gSelectGameMBNcgrName));
-        LoadNcgrData2(&a, FindSceneFile(gSelectGameMNceNcgrName));
-        LoadNcerData(&c, FindSceneFile(gSelectGameMNceNcerName));
-        LoadNclrData(&b, FindSceneFile(gSelectGameMBNclrName));
-        LoadNclrData(&b, FindSceneFile(gSelectGameMONclrName));
-        LoadNscrData(&d, FindSceneFile(gSelectGameMMultiNscrName));
-        LoadNscrData(&d, FindSceneFile(gSelectGameMSingleNscrName));
+        LoadNcgrData(&chars, FindSceneFile(gSelectGameMBNcgrName));
+        LoadNcgrData2(&chars, FindSceneFile(gSelectGameMNceNcgrName));
+        LoadNcerData(&cells, FindSceneFile(gSelectGameMNceNcerName));
+        LoadNclrData(&palette, FindSceneFile(gSelectGameMBNclrName));
+        LoadNclrData(&palette, FindSceneFile(gSelectGameMONclrName));
+        LoadNscrData(&screenMap, FindSceneFile(gSelectGameMMultiNscrName));
+        LoadNscrData(&screenMap, FindSceneFile(gSelectGameMSingleNscrName));
     }
-    LoadNcgrData2(&a, FindSceneFile(gSelectGameSNceNcgrName));
-    LoadNcerData(&c, FindSceneFile(gSelectGameSNceNcerName));
-    LoadNclrData(&b, FindSceneFile(gSelectGameSONclrName));
+    LoadNcgrData2(&chars, FindSceneFile(gSelectGameSNceNcgrName));
+    LoadNcerData(&cells, FindSceneFile(gSelectGameSNceNcerName));
+    LoadNclrData(&palette, FindSceneFile(gSelectGameSONclrName));
 }
 
 #pragma thumb off
