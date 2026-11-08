@@ -20,5 +20,5 @@ typedef struct Dram {
     /* bc */ s32 mUnk_bc;
 } Dram;
 
-void UpdateDramState4(Dram *p);
-void EnterDramState5(Dram *p);
+void UpdateDramState4(Dram *dram);
+void EnterDramState5(Dram *dram);

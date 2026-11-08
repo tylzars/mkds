@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void ParkItemBombMapObject(u32 arg0);
+void ParkItemBombMapObject(u32 bomb);

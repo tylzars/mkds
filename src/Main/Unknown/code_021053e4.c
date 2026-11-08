@@ -64,7 +64,7 @@ MapObject *AllocPooledMapObject(void) {
     return mapObjects[index];
 }
 
-void ResetPooledMapObject(Unk021052fc *pooledObject) {
+void ResetPooledMapObject(PooledMapObject *pooledObject) {
     UnparkMapObject(&pooledObject->mUnk_00);
     pooledObject->mUnk_00.mAlpha = 0x1f;
     pooledObject->mUnk_00.mFlags &= ~2;

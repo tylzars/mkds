@@ -9,12 +9,12 @@
 #include "Main/Unknown/code_020f36d8.h" // ItemKind, ItemInfo
 
 // Element of gItemPools[8]: 0x14c bytes (the size in gItemKinds[8]), handled by AdvanceBouncingItemBox to
-// StartBouncingItemBox: the BouncingItemObject part, words at 0x130 and 0x138, the Unk021052fc at 0x134, a vector at
-// 0x13c and a word at 0x148.
+// StartBouncingItemBox: the BouncingItemObject part, words at 0x130 and 0x138, the PooledMapObject at 0x134, a vector
+// at 0x13c and a word at 0x148.
 typedef struct BouncingItemBox {
     /* 000 */ BouncingItemObject mUnk_000;
     /* 130 */ s32 mThrownForward;
-    /* 134 */ Unk021052fc *mPooledMapObject;
+    /* 134 */ PooledMapObject *mPooledMapObject;
     /* 138 */ s32 mKartIsEntry;
     /* 13c */ Vec3 mMapObjectPos;
     /* 148 */ s32 mScaleRatio;

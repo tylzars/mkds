@@ -4,4 +4,4 @@
 
 typedef struct ItemBomb ItemBomb;
 
-void UpdateItemBombState0(ItemBomb *e);
+void UpdateItemBombState0(ItemBomb *bomb);

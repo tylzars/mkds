@@ -4,4 +4,4 @@
 
 typedef struct ItemTeresa ItemTeresa;
 
-void func_02100b78(ItemTeresa *p0);
+void SetItemTeresaPosPointerToDrawPos(ItemTeresa *teresa);

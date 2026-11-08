@@ -2,7 +2,7 @@
 #include "code_02012b30.h"
 #include "Main/Unknown/code_020f9c6c.h"
 
-void ClearItemKouraWKartItemsAndAngle(ItemKouraW *p0) {
-    p0->mKartItems = NULL;
-    p0->mAngle = 0x0u;
+void ClearItemKouraWKartItemsAndAngle(ItemKouraW *item) {
+    item->mKartItems = NULL;
+    item->mAngle = 0x0u;
 }

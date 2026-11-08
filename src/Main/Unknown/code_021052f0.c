@@ -10,7 +10,7 @@ void ParkPooledMapObject(u32 pooledMapObject) {
     ParkMapObject((void *) parkedObject);
 }
 
-void SetPooledMapObjectFromItem(Unk021052fc *object, s32 alpha, Vec3 *scale) {
+void SetPooledMapObjectFromItem(PooledMapObject *object, s32 alpha, Vec3 *scale) {
     object->mUnk_00.mPos = *object->mUnk_fc;
     if (alpha < 1) {
         alpha = 1;
@@ -21,7 +21,7 @@ void SetPooledMapObjectFromItem(Unk021052fc *object, s32 alpha, Vec3 *scale) {
     object->mUnk_00.mScale.z = ((s64) scale->z * 0x666) >> 12;
 }
 
-void AdvancePooledMapObject(Unk021052fc *object) {
+void AdvancePooledMapObject(PooledMapObject *object) {
     object->mUnk_a0 = object->mUnk_a0 + 1;
     if (object->mUnk_a0 >= 0x12c) {
         object->mUnk_a0 = 0;
@@ -32,7 +32,7 @@ void AdvancePooledMapObject(Unk021052fc *object) {
     }
 }
 
-void SetPooledMapObjectCallback(Unk021052fc *object, void *callback, ItemFBox *owner) {
+void SetPooledMapObjectCallback(PooledMapObject *object, void *callback, ItemFBox *owner) {
     object->mUnk_100 = callback;
     object->mUnk_104 = owner;
 }

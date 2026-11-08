@@ -26,178 +26,178 @@
 #include "code_02146cbc.h"
 
 Unk02100004 *func_02100004(void) {
-    Unk02100004 *p;
+    Unk02100004 *block;
 
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
+    block = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     {
-        Unk02100004 v1 = {0};
+        Unk02100004 zeroBlock = {0};
 
-        *p = v1;
+        *block = zeroBlock;
     }
-    return p;
+    return block;
 }
 
 Unk020fffa8 *func_020fffa8(void) {
-    Unk020fffa8 *p;
+    Unk020fffa8 *block;
 
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
-    data_0217c624 = p;
-    *p = data_0215a12c;
+    block = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
+    data_0217c624 = block;
+    *block = data_0215a12c;
     SetUpdateListSlot(&data_0217c624);
     return data_0217c624;
 }
 
 Unk020fff4c *func_020fff4c(void) {
-    Unk020fff4c *p;
+    Unk020fff4c *block;
 
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
-    data_0217c62c = p;
-    *p = data_0215a100;
+    block = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
+    data_0217c62c = block;
+    *block = data_0215a100;
     func_020d49d8(&data_0217c62c);
     return data_0217c62c;
 }
 
-void DrawDram(void *a, Dram *e, void *c, s32 d) {
-    MtxFx43 *q;
-    s32 v;
+void DrawDram(void *a, Dram *dram, void *c, s32 maxAlpha) {
+    MtxFx43 *matrix;
+    s32 angleIndex;
 
-    q = &e->mUnk_00.mMatrix;
-    v = (u16) (-(s32) e->mUnk_a6) >> 4;
-    MTX_RotX33_((s32 *) q, gPairsByAngle[v * 2], gPairsByAngle[v * 2 + 1]);
-    q->mUnk_00[3].x = e->mUnk_00.mPos.x >> 4;
-    q->mUnk_00[3].y = e->mUnk_00.mPos.y >> 4;
-    q->mUnk_00[3].z = e->mUnk_00.mPos.z >> 4;
-    DrawNsbmdWithMatrixAndMaxAlpha(gDram, q, &e->mUnk_00.mScale, d);
+    matrix = &dram->mUnk_00.mMatrix;
+    angleIndex = (u16) (-(s32) dram->mUnk_a6) >> 4;
+    MTX_RotX33_((s32 *) matrix, gPairsByAngle[angleIndex * 2], gPairsByAngle[angleIndex * 2 + 1]);
+    matrix->mUnk_00[3].x = dram->mUnk_00.mPos.x >> 4;
+    matrix->mUnk_00[3].y = dram->mUnk_00.mPos.y >> 4;
+    matrix->mUnk_00[3].z = dram->mUnk_00.mPos.z >> 4;
+    DrawNsbmdWithMatrixAndMaxAlpha(gDram, matrix, &dram->mUnk_00.mScale, maxAlpha);
 }
 
-void func_020ffdd4(MapObjectList *v1) {
-    Unk020f41c4_B *q;
-    void **arr;
-    Dram *e;
-    u16 *v2;
-    s32 n, i;
-    u16 t;
+void func_020ffdd4(MapObjectList *list) {
+    Unk020f41c4_B *random;
+    void **dramObjects;
+    Dram *dram;
+    u16 *row;
+    s32 count, index;
+    u16 rowIndex;
 
-    n = v1->mMapObjectCount;
-    arr = v1->mMapObjects;
-    for (i = 0; i < n; i++) {
-        e = arr[i];
-        if (e->mUnk_00.mStateMachine.mState != 1) {
+    count = list->mMapObjectCount;
+    dramObjects = list->mMapObjects;
+    for (index = 0; index < count; index++) {
+        dram = dramObjects[index];
+        if (dram->mUnk_00.mStateMachine.mState != 1) {
             return;
         }
     }
-    q = GetMapObjectRandom();
-    q->mValue = q->mMultiplier * q->mValue + q->mIncrement;
-    t = ((u64) (u32) (q->mValue >> 32) * 6) >> 32;
-    for (i = 0; i < n; i++) {
-        e = arr[i];
-        v2 = (u16 *) data_0215a0a8[t];
-        e->mUnk_a8 = e->mUnk_b4[v2[i]];
-        e->mUnk_00.mStateMachine.mNextState = 0;
-        e->mUnk_00.mStateMachine.mNextStateRequested = 1;
+    random = GetMapObjectRandom();
+    random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+    rowIndex = ((u64) (u32) (random->mValue >> 32) * 6) >> 32;
+    for (index = 0; index < count; index++) {
+        dram = dramObjects[index];
+        row = (u16 *) data_0215a0a8[rowIndex];
+        dram->mUnk_a8 = dram->mUnk_b4[row[index]];
+        dram->mUnk_00.mStateMachine.mNextState = 0;
+        dram->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
-void UpdateDram(u32 arg0, u32 arg1) {
+void UpdateDram(u32 arg0, u32 dram) {
     u32 value0;
-    u32 value1 = arg1;
+    u32 dramAddress = dram;
     u32 value12;
-    value0 = (value1) + (0x80u);
+    value0 = (dramAddress) + (0x80u);
     AdvanceStateMachine((void *) value0);
 }
 
-u32 func_020ffdc0(u32 p0) {
-    return p0;
+u32 func_020ffdc0(u32 value) {
+    return value;
 }
 
-void UpdateDramState0(Dram *p) {
-    if (p->mUnk_00.mStateMachine.mStateFrames > p->mUnk_a4) {
-        p->mUnk_00.mStateMachine.mNextState = 2;
-        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
+void UpdateDramState0(Dram *dram) {
+    if (dram->mUnk_00.mStateMachine.mStateFrames > dram->mUnk_a4) {
+        dram->mUnk_00.mStateMachine.mNextState = 2;
+        dram->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
-void EnterDramState2(Unk020ffd94 *p0) {
-    p0->mUnk_ac = 0x0u;
+void EnterDramState2(Unk020ffd94 *dram) {
+    dram->mUnk_ac = 0x0u;
 }
 
-void UpdateDramState2(Dram *p) {
-    p->mUnk_ac += p->mUnk_b0;
-    p->mUnk_a6 += (s16) ((s32) (((s64) p->mUnk_ac * p->mUnk_a8) >> 12));
-    if (p->mUnk_00.mStateMachine.mStateFrames > p->mUnk_a0) {
-        p->mUnk_00.mStateMachine.mNextState = 3;
-        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
+void UpdateDramState2(Dram *dram) {
+    dram->mUnk_ac += dram->mUnk_b0;
+    dram->mUnk_a6 += (s16) ((s32) (((s64) dram->mUnk_ac * dram->mUnk_a8) >> 12));
+    if (dram->mUnk_00.mStateMachine.mStateFrames > dram->mUnk_a0) {
+        dram->mUnk_00.mStateMachine.mNextState = 3;
+        dram->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
-u32 func_020ffd3c(u32 p0) {
-    return p0;
+u32 func_020ffd3c(u32 value) {
+    return value;
 }
 
-void UpdateDramState3(Dram *p) {
-    p->mUnk_a6 += p->mUnk_a8;
-    if (p->mUnk_a2 == 0) {
+void UpdateDramState3(Dram *dram) {
+    dram->mUnk_a6 += dram->mUnk_a8;
+    if (dram->mUnk_a2 == 0) {
         return;
     }
-    if (p->mUnk_00.mStateMachine.mStateFrames > p->mUnk_a2) {
-        p->mUnk_00.mStateMachine.mNextState = 4;
-        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
+    if (dram->mUnk_00.mStateMachine.mStateFrames > dram->mUnk_a2) {
+        dram->mUnk_00.mStateMachine.mNextState = 4;
+        dram->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
-void EnterDramState4(Unk020ffcf8 *p0) {
-    p0->mUnk_ac = 0x1000u;
+void EnterDramState4(Unk020ffcf8 *dram) {
+    dram->mUnk_ac = 0x1000u;
 }
 
-void UpdateDramState4(Dram *p) {
-    s16 d;
+void UpdateDramState4(Dram *dram) {
+    s16 angleStep;
 
-    p->mUnk_ac -= p->mUnk_b0;
-    d = (s32) (((s64) p->mUnk_ac * p->mUnk_a8) >> 12);
-    if (d <= 0x96) {
-        d = 0x96;
+    dram->mUnk_ac -= dram->mUnk_b0;
+    angleStep = (s32) (((s64) dram->mUnk_ac * dram->mUnk_a8) >> 12);
+    if (angleStep <= 0x96) {
+        angleStep = 0x96;
     }
-    p->mUnk_a6 += d;
-    if (p->mUnk_00.mStateMachine.mStateFrames > p->mUnk_a0) {
-        p->mUnk_00.mStateMachine.mNextState = 5;
-        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
+    dram->mUnk_a6 += angleStep;
+    if (dram->mUnk_00.mStateMachine.mStateFrames > dram->mUnk_a0) {
+        dram->mUnk_00.mStateMachine.mNextState = 5;
+        dram->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
-void EnterDramState5(Dram *p) {
-    s32 n;
+void EnterDramState5(Dram *dram) {
+    s32 angle;
 
-    n = p->mUnk_a6;
-    p->mUnk_bc = 0x1999 - n % 0x1999;
+    angle = dram->mUnk_a6;
+    dram->mUnk_bc = 0x1999 - angle % 0x1999;
 }
 
 // Raw stores of 1 at +0x90 and +0x92 are mNextState and mNextStateRequested (MapObject +0x80 + 0x10 / 0x12): it asks
 // for state 1.
-void UpdateDramState5(u32 arg0) {
-    u32 value0 = arg0;
+void UpdateDramState5(u32 dram) {
+    u32 dramAddress = dram;
     u32 value1;
     u32 value2;
     u32 value3;
-    u32 value12;
+    u32 anglePointer;
     s32 compareLeft0;
-    s32 compareRight0;
-    value1 = *(const u16 *) ((value0) + (166));
-    value12 = (value0) + (0xa6u);
+    s32 zero;
+    value1 = *(const u16 *) ((dramAddress) + (166));
+    anglePointer = (dramAddress) + (0xa6u);
     value1 = (value1) + (0x96u);
-    *(u16 *) ((value0) + (166)) = value1;
-    value1 = *(const u32 *) ((value0) + (188));
+    *(u16 *) ((dramAddress) + (166)) = value1;
+    value1 = *(const u32 *) ((dramAddress) + (188));
     value1 = (value1) - (0x96u);
-    *(u32 *) ((value0) + (188)) = value1;
-    value3 = *(const u32 *) ((value0) + (188));
+    *(u32 *) ((dramAddress) + (188)) = value1;
+    value3 = *(const u32 *) ((dramAddress) + (188));
     compareLeft0 = value3;
-    compareRight0 = 0u;
-    if (compareLeft0 >= compareRight0) {
+    zero = 0u;
+    if (compareLeft0 >= zero) {
         return;
     }
-    value2 = *(const u16 *) ((value12) + (0));
+    value2 = *(const u16 *) ((anglePointer) + (0));
     value1 = 1u;
     value2 = (value2) + (value3);
-    *(u16 *) ((value12) + (0)) = value2;
-    *(u16 *) ((value0) + (144)) = value1;
-    *(u16 *) ((value0) + (146)) = value1;
+    *(u16 *) ((anglePointer) + (0)) = value2;
+    *(u16 *) ((dramAddress) + (144)) = value1;
+    *(u16 *) ((dramAddress) + (146)) = value1;
 }

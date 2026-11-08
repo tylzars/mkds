@@ -130,7 +130,7 @@ void UpdateRaceHudSubScreenItemCells(void) {
                     if (ComputeRaceHudSubScreenPosition(
                             position, &gRaceHudSubScreenItemCells->mCells[cellCount].mDrawPos, a, 1, 1) != FALSE) {
                         if (object->mAlpha > 0) {
-                            v = ((ItemTeresa *) object)->mUnk_170;
+                            v = ((ItemTeresa *) object)->mOffsetY;
                             gRaceHudSubScreenItemCells->mCells[cellCount].mDrawPos.mUnk_04 -=
                                 0x88 * v / func_021001a0();
                             if (gRaceHudSubScreenItemCells->mCells[cellCount].mDrawPos.mUnk_04 > 0) {
@@ -144,7 +144,7 @@ void UpdateRaceHudSubScreenItemCells(void) {
                     }
                 }
             } else if (tableIndex == 6) {
-                if (((ItemBomb *) object)->mUnk_1a0 != FALSE && position != NULL) {
+                if (((ItemBomb *) object)->mVisible != FALSE && position != NULL) {
                     if (ComputeRaceHudSubScreenPosition(
                             position, &gRaceHudSubScreenItemCells->mCells[cellCount].mDrawPos, a, 1, 1) != FALSE) {
                         if (func_020d3d10(position->y) == 0) {

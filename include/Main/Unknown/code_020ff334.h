@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void ParkItemFBoxMapObject(u32 arg0);
+void ParkItemFBoxMapObject(u32 fbox);

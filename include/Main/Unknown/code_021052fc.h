@@ -6,7 +6,7 @@
 
 // Object of AdvancePooledMapObject (AllocPooledMapObject allocates them): the shared MapObject part, then counters that
 // run and wrap and whose three fixed-point words follow the vector at mUnk_fc.
-typedef struct Unk021052fc {
+typedef struct PooledMapObject {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ u16 mUnk_a0;
     /* a2 */ u16 mUnk_a2;
@@ -17,7 +17,7 @@ typedef struct Unk021052fc {
     /* fc */ Vec3 *mUnk_fc;
     /* 100 */ void *mUnk_100;
     /* 104 */ void *mUnk_104;
-} Unk021052fc;
+} PooledMapObject;
 
-void SetPooledMapObjectFromItem(Unk021052fc *object, s32 alpha, Vec3 *scale);
-void AdvancePooledMapObject(Unk021052fc *object);
+void SetPooledMapObjectFromItem(PooledMapObject *object, s32 alpha, Vec3 *scale);
+void AdvancePooledMapObject(PooledMapObject *object);

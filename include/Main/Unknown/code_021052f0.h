@@ -4,6 +4,6 @@
 
 typedef struct ItemFBox ItemFBox;
 
-typedef struct Unk021052fc Unk021052fc;
+typedef struct PooledMapObject PooledMapObject;
 
-void SetPooledMapObjectCallback(Unk021052fc *object, void *callback, ItemFBox *owner);
+void SetPooledMapObjectCallback(PooledMapObject *object, void *callback, ItemFBox *owner);

@@ -192,7 +192,7 @@ void *FindParkedMapObject(s32 a) {
 
     v1 = func_02100138(a);
     v2 = func_0210008c(v1);
-    n = func_021000c8(v1);
+    n = GetMapObjectListCount(v1);
     for (i = 0; i < n; i++) {
         e = v2[i];
         if (e->mFlags & 0x100) {

@@ -219,7 +219,7 @@ u32 InitItemFBox(ItemInUse *inUse, ItemFBox *fbox) {
 }
 
 void AdvanceItemFBox(ItemFBox *fbox) {
-    s32 t;
+    s32 unusedOutput;
 
     if (fbox->mUnk_000.mItemObject.mFlags & 0x180000) {
         if (fbox->mUnk_000.mItemObject.mFlags & 0x80000) {
@@ -233,16 +233,16 @@ void AdvanceItemFBox(ItemFBox *fbox) {
         AdvanceFallingItemObject(&fbox->mUnk_000.mItemObject);
     } else {
         if (fbox->mThrownForward != 0) {
-            AdvanceBouncingItem(&fbox->mUnk_000, 0x1ec, 0xfec, 0, (u32 *) &t);
+            AdvanceBouncingItem(&fbox->mUnk_000, 0x1ec, 0xfec, 0, (u32 *) &unusedOutput);
         } else {
-            AdvanceBouncingItem(&fbox->mUnk_000, 0x2e1, 0xf85, 0, (u32 *) &t);
+            AdvanceBouncingItem(&fbox->mUnk_000, 0x2e1, 0xf85, 0, (u32 *) &unusedOutput);
         }
         if ((fbox->mUnk_000.mItemObject.mFlags & 8) && (fbox->mUnk_000.mItemObject.mFlags & 3) == 0) {
             if (fbox->mThrownForward != 0) {
                 fbox->mUnk_000.mItemObject.mVelocity.y *= 2;
             }
             StopSound(&fbox->mUnk_000.mItemObject.mSoundSource, 0xda);
-            StartRestingItemObject(&fbox->mUnk_000.mItemObject, &t);
+            StartRestingItemObject(&fbox->mUnk_000.mItemObject, &unusedOutput);
         }
     }
     SetPooledMapObjectFromItem(fbox->mPooledMapObject, fbox->mUnk_000.mItemObject.mAlpha,

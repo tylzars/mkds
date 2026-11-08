@@ -181,7 +181,7 @@ void ResetBouncingItemBox(BouncingItemBox *box) {
 
 void AdvanceBouncingItemBoxInUse(ItemInUse *itemInUse, BouncingItemBox *box) {
     Vec3 scale;
-    Unk021052fc *mapObject = box->mPooledMapObject;
+    PooledMapObject *mapObject = box->mPooledMapObject;
     s32 scaleRatio;
     if (box->mKartIsEntry != 0) {
         VEC_MultAdd(((s64) itemInUse->mKartScaleFactorTimesBase.z * -28877) >> 12, &itemInUse->mKartOrientation.mUnk_0c,
@@ -229,7 +229,7 @@ void AdvanceBouncingItemBox(BouncingItemBox *box) {
     s32 v;
     s32 scaleRatio;
     s32 kartIsEntry;
-    Unk021052fc *mapObject;
+    PooledMapObject *mapObject;
     if ((box->mUnk_000.mItemObject.mFlags & 0x180000) != 0) {
         if ((box->mUnk_000.mItemObject.mFlags & 0x80000) != 0) {
             func_020f6e58(&box->mUnk_000.mItemObject);

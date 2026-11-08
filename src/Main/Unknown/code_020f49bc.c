@@ -374,7 +374,7 @@ void *func_020f6038(void *buffer, ItemKouraG *koura, void *toBuffer) {
         func_020ff1b8(Vec3DotUnrounded(&koura->mUnk_000.mUnk_000.mVelocity, &koura->mUnk_000.mDirection) < 0,
                       &koura->mUnk_000.mUnk_000.mVelocity.y);
     }
-    result = func_020fecdc(buffer, koura, toBuffer);
+    result = CopyItemObjectData(buffer, koura, toBuffer);
     if (koura != NULL && toBuffer == NULL) {
         func_020ff1a0(koura->mUnk_000.mUnk_000.mVelocity.y, &koura->mUnk_168);
     }
@@ -732,7 +732,7 @@ void func_020f5614(void *kouraParam, s32 hitType, ItemObject *otherParam) {
 }
 
 // Hands the 0x44 word and the 0x5c/0x130/0x250/0x254/0x60/0x54 addresses of b to
-// func_020fecdc, func_020ff040, func_020ff1b8, func_020ff1a0 and func_020fe8ac.
+// CopyItemObjectData, CopyItemPointLinkIndex, func_020ff1b8, func_020ff1a0 and func_020fe8ac.
 void *func_020f5550(void *buffer, ItemKouraR *kouraR, void *toBuffer) {
     s32 dot;
     void *result;
@@ -742,8 +742,8 @@ void *func_020f5550(void *buffer, ItemKouraR *kouraR, void *toBuffer) {
         func_020ff1b8(dot < 0, &kouraR->mUnk_000.mUnk_000.mUnk_000.mVelocity.y);
         func_020ff1b8(kouraR->mThrowForward, &kouraR->mUnk_000.mUnk_000.mUnk_000.mPos.y);
     }
-    result = func_020fecdc(buffer, kouraR, toBuffer);
-    result = func_020ff040(result, kouraR != NULL ? &kouraR->mUnk_000.mPreviousLink : 0, toBuffer);
+    result = CopyItemObjectData(buffer, kouraR, toBuffer);
+    result = CopyItemPointLinkIndex(result, kouraR != NULL ? &kouraR->mUnk_000.mPreviousLink : 0, toBuffer);
     if (kouraR != NULL && toBuffer == NULL) {
         func_020ff1a0(kouraR->mUnk_000.mUnk_000.mUnk_000.mVelocity.y, &kouraR->mUnk_250);
         func_020ff1a0(kouraR->mUnk_000.mUnk_000.mUnk_000.mPos.y, &kouraR->mThrowForward);
@@ -872,14 +872,14 @@ void AdvanceItemBanana(ItemBanana *banana) {
 }
 
 // Hands the 0x130 word and the 0x60 word to func_020ff1b8/func_020ff1a0 around the
-// func_020fecdc call, and returns func_020fe8ac's value when b and c are both set.
+// CopyItemObjectData call, and returns func_020fe8ac's value when b and c are both set.
 void *func_020f5108(void *buffer, ItemBanana *banana, void *toBuffer) {
     void *result;
 
     if (banana != NULL && toBuffer != NULL) {
         func_020ff1b8(banana->mThrowForward, &banana->mUnk_000.mItemObject.mVelocity.y);
     }
-    result = func_020fecdc(buffer, banana, toBuffer);
+    result = CopyItemObjectData(buffer, banana, toBuffer);
     if (banana != NULL && toBuffer == NULL) {
         func_020ff1a0(banana->mUnk_000.mItemObject.mVelocity.y, &banana->mThrowForward);
     }

@@ -4,4 +4,4 @@
 
 typedef struct ItemKouraW ItemKouraW;
 
-void ClearItemKouraWKartItemsAndAngle(ItemKouraW *p0);
+void ClearItemKouraWKartItemsAndAngle(ItemKouraW *item);

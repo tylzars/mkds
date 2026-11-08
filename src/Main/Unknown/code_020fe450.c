@@ -19,11 +19,11 @@ void InitIndexLinks(u8 *usedHead, u8 *freeHead, u8 (*entries)[2]) {
 }
 
 void func_020fe46c(void) {
-    InitIndexLinks(data_0217bd60, data_0217bd64, data_0217bd80);
+    InitIndexLinks(gItemDataQueueUsedHead, gItemDataQueueFreeHead, gItemDataQueueLinks);
 }
 
 void func_020fe450(void) {
-    InitIndexLinks(data_0217bd68, data_0217bd5c, data_0217bdc0);
+    InitIndexLinks(gItemDataDelayedUsedHead, gItemDataDelayedFreeHead, gItemDataDelayedLinks);
 }
 
 #pragma thumb off

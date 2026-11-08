@@ -7,4 +7,4 @@ typedef struct Unk02100dd8 {
     /* 19c */ u32 mUnk_19c;
 } Unk02100dd8;
 
-void EnterItemTeresaState3(Unk02100dd8 *p0);
+void EnterItemTeresaState3(Unk02100dd8 *teresa);

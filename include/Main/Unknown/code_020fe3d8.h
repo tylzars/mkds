@@ -4,4 +4,4 @@
 
 typedef struct ItemBomb ItemBomb;
 
-void ResetItemBomb(ItemBomb *a);
+void ResetItemBomb(ItemBomb *bomb);

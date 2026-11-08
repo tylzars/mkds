@@ -686,8 +686,8 @@ void *func_020fb208(void *param_1, ItemKouraW *item, void *param_3) {
         func_020ff1b8(Vec3DotUnrounded(&item->mUnk_000.mVelocity, (Vec3 *) &item->mDirection) < 0 ? 1 : 0,
                       &item->mUnk_000.mVelocity.y);
     }
-    t = func_020fecdc(param_1, item, param_3);
-    r = func_020ff040(t, item != NULL ? (void *) &item->mPreviousLink : 0, param_3);
+    t = CopyItemObjectData(param_1, item, param_3);
+    r = CopyItemPointLinkIndex(t, item != NULL ? (void *) &item->mPreviousLink : 0, param_3);
     if (item != NULL && param_3 == NULL) {
         func_020ff1a0(item->mUnk_000.mVelocity.y, &item->mUnk_2fc);
     }

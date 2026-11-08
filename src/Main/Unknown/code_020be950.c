@@ -84,7 +84,7 @@ BOOL CreateRaceHudSubScreenCells(RaceHudSubScreenCells **a, s32 b) {
         if (p == NULL) {
             return FALSE;
         }
-        n = func_021000c8(p);
+        n = GetMapObjectListCount(p);
         if (n == 0) {
             return FALSE;
         }

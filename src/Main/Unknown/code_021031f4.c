@@ -54,7 +54,7 @@ void InitBouncingItemBoxMapObjects(void) {
             do {
                 box = (BouncingItemBox *) *objectCursor;
                 mapObject = AllocPooledMapObject();
-                box->mPooledMapObject = (Unk021052fc *) mapObject;
+                box->mPooledMapObject = (PooledMapObject *) mapObject;
                 box->mPooledMapObject->mUnk_fc = &box->mMapObjectPos;
                 objectCursor = objectCursor + 1;
                 index = index + 1;

@@ -4,6 +4,6 @@
 
 typedef struct ItemTeresa ItemTeresa;
 
-void UpdateItemTeresaState5(ItemTeresa *p);
-void EnterItemTeresaState5(ItemTeresa *p);
-void func_02100b54(ItemTeresa *p);
+void UpdateItemTeresaState5(ItemTeresa *teresa);
+void EnterItemTeresaState5(ItemTeresa *teresa);
+void func_02100b54(ItemTeresa *teresa);

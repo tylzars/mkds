@@ -4,4 +4,4 @@
 
 typedef struct Dram Dram;
 
-void UpdateDramState0(Dram *p);
+void UpdateDramState0(Dram *dram);

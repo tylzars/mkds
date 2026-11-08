@@ -194,7 +194,7 @@ void DrawItemGesso(ItemGesso *p, s32 param_2, Unk020e6488 *t) {
 }
 
 void CopyItemGessoData(void *data, ItemGesso *gesso, void *toData) {
-    func_020fecdc(data, gesso, toData);
+    CopyItemObjectData(data, gesso, toData);
     if (gesso == NULL) {
         return;
     }

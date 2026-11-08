@@ -633,7 +633,7 @@ BOOL FindKartAiTargetShine(KartAi *p, s32 a, s32 b) {
     BOOL x;
 
     l = func_02100138(MAP_OBJECT_KIND_SHINE16);
-    n = func_021000c8(l);
+    n = GetMapObjectListCount(l);
     m = 0;
     r = NULL;
     i = 0;
