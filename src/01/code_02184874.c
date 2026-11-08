@@ -12,80 +12,88 @@
 #include "Main/Unknown/code_02109054.h"
 #include "code_02147cd8.h"
 
-void func_ov001_02184874(Unk02188950 *d, Kart *e) {
+void func_ov001_02184874(Unk02188950 *donketu, Kart *kart) {
     s32 scale;
 
-    if ((GetKart(e->mIndex)->mUnk_48 & KART_48_BOOST) && e->mBoostTimer > 0) {
-        if (func_ov001_021871f8(d, 8)) {
-            if (d->mPrm->mUnk_1dc > 0 || d->mPrm->mUnk_1e0 > 0) {
-                Vec3 a = {0, 0, 0};
-                a.x = e->mVelocity.x;
-                a.z = e->mVelocity.z;
-                if ((s64) a.z * a.z + ((s64) a.x * a.x + (s64) a.y * a.y) >= 0x10) {
-                    Vec3NormalizeAndGetLengthUnchecked(&a, &a);
+    if ((GetKart(kart->mIndex)->mUnk_48 & KART_48_BOOST) && kart->mBoostTimer > 0) {
+        if (func_ov001_021871f8(donketu, 8)) {
+            if (donketu->mPrm->mUnk_1dc > 0 || donketu->mPrm->mUnk_1e0 > 0) {
+                Vec3 velocityWhenBoosted = {0, 0, 0};
+                velocityWhenBoosted.x = kart->mVelocity.x;
+                velocityWhenBoosted.z = kart->mVelocity.z;
+                if ((s64) velocityWhenBoosted.z * velocityWhenBoosted.z +
+                        ((s64) velocityWhenBoosted.x * velocityWhenBoosted.x +
+                         (s64) velocityWhenBoosted.y * velocityWhenBoosted.y) >=
+                    0x10) {
+                    Vec3NormalizeAndGetLengthUnchecked(&velocityWhenBoosted, &velocityWhenBoosted);
                 }
-                scale = d->mPrm->mUnk_1e0;
-                a.x = (((s64) a.x * scale) >> 12);
-                a.y = (((s64) a.y * scale) >> 12);
-                a.z = (((s64) a.z * scale) >> 12);
-                a.y = d->mPrm->mUnk_1dc;
-                func_ov001_02187218(d, 7, NULL);
-                func_ov001_02188d64(d, d->mPrm->mUnk_1d4, d->mPrm->mUnk_1d8);
-                func_ov001_02188a8c(d, d->mPrm->mUnk_1e4, 0x270f000);
-                SetVelocity(d, &a);
-                func_ov001_02188dcc(d, func_ov001_02184d70);
-                func_ov001_02188cec(d, 0);
+                scale = donketu->mPrm->mUnk_1e0;
+                velocityWhenBoosted.x = (((s64) velocityWhenBoosted.x * scale) >> 12);
+                velocityWhenBoosted.y = (((s64) velocityWhenBoosted.y * scale) >> 12);
+                velocityWhenBoosted.z = (((s64) velocityWhenBoosted.z * scale) >> 12);
+                velocityWhenBoosted.y = donketu->mPrm->mUnk_1dc;
+                func_ov001_02187218(donketu, 7, NULL);
+                func_ov001_02188d64(donketu, donketu->mPrm->mUnk_1d4, donketu->mPrm->mUnk_1d8);
+                func_ov001_02188a8c(donketu, donketu->mPrm->mUnk_1e4, 0x270f000);
+                SetVelocity(donketu, &velocityWhenBoosted);
+                func_ov001_02188dcc(donketu, func_ov001_02184d70);
+                func_ov001_02188cec(donketu, 0);
             }
             {
-                Vec3 b;
+                Vec3 effectPosition;
 
-                VEC_Subtract(&d->mUnk_000.mPos, &e->mCollisionCenter, &b);
-                if ((s64) b.z * b.z + ((s64) b.x * b.x + (s64) b.y * b.y) >= 0x10) {
-                    Vec3NormalizeAndGetLengthUnchecked(&b, &b);
+                VEC_Subtract(&donketu->mUnk_000.mPos, &kart->mCollisionCenter, &effectPosition);
+                if ((s64) effectPosition.z * effectPosition.z +
+                        ((s64) effectPosition.x * effectPosition.x + (s64) effectPosition.y * effectPosition.y) >=
+                    0x10) {
+                    Vec3NormalizeAndGetLengthUnchecked(&effectPosition, &effectPosition);
                 }
-                VEC_MultAdd(e->mRadius, &b, &e->mCollisionCenter, &b);
-                if (d->mUnk_000.mKind == 0x1f5) {
-                    d->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
-                    StopSound(&d->mUnk_000.mSound->mSoundSource, 0x214);
-                    StartMapObjectSound(&d->mUnk_000, 0x211);
-                    StartEffect(0x3e9, &b);
-                    StartEffect(0x3e8, &b);
-                    StartEffect(0x3ea, &b);
-                    func_ov001_02187518(d, 0x99a, 0, 0x75c, 0x3f3, 0);
-                    func_ov001_02187518(d, -0x99a, 0, 0x75c, 0x3f3, 0);
-                } else if (d->mUnk_000.mKind == 0x1f6) {
-                    d->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
-                    StopSound(&d->mUnk_000.mSound->mSoundSource, 0x245);
-                    StartMapObjectSound(&d->mUnk_000, 0x23f);
-                    StartEffect(0x3fa, &b);
-                    StartEffect(0x3fb, &b);
-                    StartEffect(0x3fc, &b);
-                    func_ov001_02187518(d, -0x11ec, 0, 0x1800, 0x445, 0);
-                    func_ov001_02187518(d, 0x11ec, 0, 0x1800, 0x445, 0);
+                VEC_MultAdd(kart->mRadius, &effectPosition, &kart->mCollisionCenter, &effectPosition);
+                if (donketu->mUnk_000.mKind == 0x1f5) {
+                    donketu->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
+                    StopSound(&donketu->mUnk_000.mSound->mSoundSource, 0x214);
+                    StartMapObjectSound(&donketu->mUnk_000, 0x211);
+                    StartEffect(0x3e9, &effectPosition);
+                    StartEffect(0x3e8, &effectPosition);
+                    StartEffect(0x3ea, &effectPosition);
+                    func_ov001_02187518(donketu, 0x99a, 0, 0x75c, 0x3f3, 0);
+                    func_ov001_02187518(donketu, -0x99a, 0, 0x75c, 0x3f3, 0);
+                } else if (donketu->mUnk_000.mKind == 0x1f6) {
+                    donketu->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
+                    StopSound(&donketu->mUnk_000.mSound->mSoundSource, 0x245);
+                    StartMapObjectSound(&donketu->mUnk_000, 0x23f);
+                    StartEffect(0x3fa, &effectPosition);
+                    StartEffect(0x3fb, &effectPosition);
+                    StartEffect(0x3fc, &effectPosition);
+                    func_ov001_02187518(donketu, -0x11ec, 0, 0x1800, 0x445, 0);
+                    func_ov001_02187518(donketu, 0x11ec, 0, 0x1800, 0x445, 0);
                 }
             }
         }
-    } else if (func_ov001_021871f8(d, 7)) {
-        if (d->mPrm->mUnk_1c4 > 0 || d->mPrm->mUnk_1c8 > 0) {
-            Vec3 c = {0, 0, 0};
-            c.x = e->mVelocity.x;
-            c.z = e->mVelocity.z;
-            if ((s64) c.z * c.z + ((s64) c.x * c.x + (s64) c.y * c.y) >= 0x10) {
-                Vec3NormalizeAndGetLengthUnchecked(&c, &c);
+    } else if (func_ov001_021871f8(donketu, 7)) {
+        if (donketu->mPrm->mUnk_1c4 > 0 || donketu->mPrm->mUnk_1c8 > 0) {
+            Vec3 velocityWhenNotBoosted = {0, 0, 0};
+            velocityWhenNotBoosted.x = kart->mVelocity.x;
+            velocityWhenNotBoosted.z = kart->mVelocity.z;
+            if ((s64) velocityWhenNotBoosted.z * velocityWhenNotBoosted.z +
+                    ((s64) velocityWhenNotBoosted.x * velocityWhenNotBoosted.x +
+                     (s64) velocityWhenNotBoosted.y * velocityWhenNotBoosted.y) >=
+                0x10) {
+                Vec3NormalizeAndGetLengthUnchecked(&velocityWhenNotBoosted, &velocityWhenNotBoosted);
             }
-            scale = d->mPrm->mUnk_1c8;
-            c.x = (((s64) c.x * scale) >> 12);
-            c.y = (((s64) c.y * scale) >> 12);
-            c.z = (((s64) c.z * scale) >> 12);
-            c.y = d->mPrm->mUnk_1c4;
-            func_ov001_02187218(d, 7, NULL);
-            func_ov001_02188d64(d, d->mPrm->mUnk_1bc, d->mPrm->mUnk_1c0);
-            func_ov001_02188a8c(d, d->mPrm->mUnk_1cc, 0x270f000);
-            SetVelocity(d, &c);
-            func_ov001_02188dcc(d, NULL);
-            func_ov001_02188cec(d, 0);
+            scale = donketu->mPrm->mUnk_1c8;
+            velocityWhenNotBoosted.x = (((s64) velocityWhenNotBoosted.x * scale) >> 12);
+            velocityWhenNotBoosted.y = (((s64) velocityWhenNotBoosted.y * scale) >> 12);
+            velocityWhenNotBoosted.z = (((s64) velocityWhenNotBoosted.z * scale) >> 12);
+            velocityWhenNotBoosted.y = donketu->mPrm->mUnk_1c4;
+            func_ov001_02187218(donketu, 7, NULL);
+            func_ov001_02188d64(donketu, donketu->mPrm->mUnk_1bc, donketu->mPrm->mUnk_1c0);
+            func_ov001_02188a8c(donketu, donketu->mPrm->mUnk_1cc, 0x270f000);
+            SetVelocity(donketu, &velocityWhenNotBoosted);
+            func_ov001_02188dcc(donketu, NULL);
+            func_ov001_02188cec(donketu, 0);
         }
     }
-    func_ov001_02188200(d, func_ov001_02184874);
-    d->mUnk_2d8 = 13;
+    func_ov001_02188200(donketu, func_ov001_02184874);
+    donketu->mUnk_2d8 = 13;
 }

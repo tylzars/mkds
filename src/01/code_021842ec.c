@@ -1,15 +1,15 @@
 #include "01/code_021842ec.h"
 #include "01/unk_021a6000.h"
 
-void func_ov001_021842ec(Unk02188950 *a) {
-    func_ov001_02187218(a, 7, NULL);
-    func_ov001_02188d30(a, a->mPrm->mUnk_23c, a->mPrm->mUnk_240, NULL);
-    func_ov001_02188c90(a);
-    func_ov001_02188cec(a, 0);
-    func_ov001_02187518(a, 0, 0, 0, 0x411, 0);
-    func_ov001_02187518(a, 0, 0, 0, 0x412, 0);
-    StartMapObjectSound(&a->mUnk_000, 0x242);
-    StartCameraWobbleAtDistance(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
-    func_ov001_02188200(a, func_ov001_02184874);
-    a->mUnk_000.mFlags &= ~0x20;
+void func_ov001_021842ec(Unk02188950 *donketu) {
+    func_ov001_02187218(donketu, 7, NULL);
+    func_ov001_02188d30(donketu, donketu->mPrm->mUnk_23c, donketu->mPrm->mUnk_240, NULL);
+    func_ov001_02188c90(donketu);
+    func_ov001_02188cec(donketu, 0);
+    func_ov001_02187518(donketu, 0, 0, 0, 0x411, 0);
+    func_ov001_02187518(donketu, 0, 0, 0, 0x412, 0);
+    StartMapObjectSound(&donketu->mUnk_000, 0x242);
+    StartCameraWobbleAtDistance(donketu->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
+    func_ov001_02188200(donketu, func_ov001_02184874);
+    donketu->mUnk_000.mFlags &= ~0x20;
 }

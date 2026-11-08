@@ -112,16 +112,16 @@ func_ov001_02182f1c kind:function(thumb,size=0x7c) addr:0x02182efc
 func_ov001_02182f98 kind:function(thumb,size=0xf8) addr:0x02182f78
 func_ov001_02183090 kind:function(thumb,size=0x18) addr:0x02183070
 func_ov001_021830a8 kind:function(thumb,size=0xc) addr:0x02183088
-func_ov001_021830b4 kind:function(thumb,size=0x18) addr:0x02183094
-func_ov001_021830cc kind:function(thumb,size=0x1c) addr:0x021830ac
-func_ov001_021830e8 kind:function(thumb,size=0x1c) addr:0x021830c8
+CreateDonketuUpdateList kind:function(thumb,size=0x18) addr:0x02183094
+CreateKingIceDonketuDrawList kind:function(thumb,size=0x1c) addr:0x021830ac
+CreateBossDonketuDrawList kind:function(thumb,size=0x1c) addr:0x021830c8
 func_ov001_02183104 kind:function(thumb,size=0x34) addr:0x021830e4
 func_ov001_02183138 kind:function(thumb,size=0x1e) addr:0x02183118
 InitKingIceDonketu kind:function(thumb,size=0x98) addr:0x02183138
 InitBossDonketu kind:function(thumb,size=0xa4) addr:0x021831d0
 func_ov001_02183294 kind:function(thumb,size=0x38) addr:0x02183274
-func_ov001_021832cc kind:function(thumb,size=0x184) addr:0x021832ac
-func_ov001_02183450 kind:function(thumb,size=0x74) addr:0x02183430
+UpdateDonketu kind:function(thumb,size=0x184) addr:0x021832ac
+InitDonketuObjects kind:function(thumb,size=0x74) addr:0x02183430
 func_ov001_021834c4 kind:function(thumb,size=0x38) addr:0x021834a4
 func_ov001_021834fc kind:function(thumb,size=0x28) addr:0x021834dc
 func_ov001_02183524 kind:function(thumb,size=0x38) addr:0x02183504
@@ -1366,13 +1366,13 @@ data_ov001_021a78cc kind:data(any) addr:0x021a789c
 @3035 kind:data(any) addr:0x021a78a8 local
 data_usa_ov001_021a78b8 kind:data(any) addr:0x021a78b8 ambiguous
 data_usa_ov001_021a78ec kind:data(any) addr:0x021a78ec ambiguous
-data_ov001_021a7950 kind:data(any) addr:0x021a7920
-data_ov001_021a7968 kind:data(any) addr:0x021a7938
-data_ov001_021a7980 kind:data(any) addr:0x021a7950
+gKingIceDonketuNsbmdName kind:data(any) addr:0x021a7920
+gKingIceDonketuNsbcaName kind:data(any) addr:0x021a7938
+gKingIceDonketuPrmName kind:data(any) addr:0x021a7950
 data_ov001_021a7998 kind:data(any) addr:0x021a7968
-data_ov001_021a79a8 kind:data(any) addr:0x021a7978
-data_ov001_021a79bc kind:data(any) addr:0x021a798c
-data_ov001_021a79d0 kind:data(any) addr:0x021a79a0
+gBossDonketuNsbmdName kind:data(any) addr:0x021a7978
+gBossDonketuNsbcaName kind:data(any) addr:0x021a798c
+gBossDonketuPrmName kind:data(any) addr:0x021a79a0
 data_ov001_021a79e4 kind:data(any) addr:0x021a79b4
 data_usa_ov001_021a79c4 kind:data(any) addr:0x021a79c4 ambiguous
 @5110 kind:data(any) addr:0x021a79f8 local

@@ -8,4 +8,4 @@
 #include "Main/Unknown/code_02073000.h"
 #include "Main/Unknown/code_020d2000.h"
 
-void func_ov001_021842ec(Unk02188950 *a);
+void func_ov001_021842ec(Unk02188950 *donketu);
