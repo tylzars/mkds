@@ -17,7 +17,7 @@ const char *gBackScreenMNclrNames[2] = {"back_screen_m_b_00.nclr", "back_screen_
 #pragma thumb on
 
 void LoadTxtSystemAndSelectChoisesAndSelectReturnData(void) {
-    Unk02111684_v p;
+    LoadedPartPointer p;
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         LoadNcgrData(&p.mNcgr, FindSceneFile("txt_system_b_00.ncgr"));

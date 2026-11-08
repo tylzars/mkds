@@ -8,6 +8,6 @@ typedef struct Unk02111324 {
     /* 04 */ u16 mUnk_04;
 } Unk02111324;
 
-void UpdateRecordScene(Unk02111324 *a);
+void UpdateRecordScene(Unk02111324 *sceneNumbers);
 void *GetRecordMainOam(void);
 void *GetRecordSubOam(void);

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void CreateRecordList(void *a);
+void CreateRecordList(void *heap);

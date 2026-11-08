@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void SetRecordScreenCallbacks(const void *a);
+void SetRecordScreenCallbacks(const void *callbacks);

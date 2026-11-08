@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void InitRecordScene(s16 *a);
+void InitRecordScene(s16 *sceneNumbers);

@@ -17,61 +17,61 @@
 #include "Main/Unknown/code_0203c8dc.h"
 
 void func_02111024(void) {
-    s32 a;
-    s32 b;
-    s32 t;
-    u32 c;
-    u32 *q;
+    s32 resultKind;
+    s32 callCount;
+    s32 callLimit;
+    u32 seqId;
+    u32 *row;
     if (data_0217d324 == 0) {
         return;
     }
     if (data_0217d070.mUnk_0c != NULL) {
         return;
     }
-    a = func_02110e58();
-    t = (a == 2) ? 0x91 : 0x82;
-    b = data_0217d320 + 1;
-    data_0217d320 = b;
-    if (b <= t) {
+    resultKind = func_02110e58();
+    callLimit = (resultKind == 2) ? 0x91 : 0x82;
+    callCount = data_0217d320 + 1;
+    data_0217d320 = callCount;
+    if (callCount <= callLimit) {
         return;
     }
     if (data_0217d328 == 0) {
         return;
     }
-    q = data_0217d32c.mUnk_08;
-    c = 0xff;
-    switch (a) {
+    row = data_0217d32c.mSeqRow;
+    seqId = 0xff;
+    switch (resultKind) {
         case 0:
         case 1:
-            c = q[3];
+            seqId = row[3];
             break;
         case 2:
-            c = q[4];
+            seqId = row[4];
             break;
     }
-    func_0210d614(&data_0217d070, c, NULL);
+    func_0210d614(&data_0217d070, seqId, NULL);
     data_0217d328 = 0;
     data_0217d324 = 0;
     data_0217d320 = 0;
 }
 
-s32 func_02110fb8(s32 a) {
+s32 func_02110fb8(s32 kartRank) {
     s32 b;
     b = 0xb;
-    if (a == 1) {
+    if (kartRank == 1) {
         b = 9;
     } else {
         switch (gRaceSetup->mKartCount) {
             case 4:
             case 5:
-                if (a < 3) {
+                if (kartRank < 3) {
                     b = 0xa;
                 }
                 break;
             case 6:
             case 7:
             case 8:
-                if (a < 4) {
+                if (kartRank < 4) {
                     b = 0xa;
                 }
                 break;
@@ -81,71 +81,71 @@ s32 func_02110fb8(s32 a) {
 }
 
 s32 func_02110e58(void) {
-    s32 a;
-    s32 b;
-    RaceSetup *p;
-    a = -1;
-    p = gRaceSetup;
-    switch (p->mMode) {
+    s32 resultKind;
+    s32 candidateKind;
+    RaceSetup *raceSetup;
+    resultKind = -1;
+    raceSetup = gRaceSetup;
+    switch (raceSetup->mMode) {
         case MODE_GRAND_PRIX:
         case 5:
             switch (data_0217d32c.mUnk_0c) {
                 case 0:
-                    if (GetKartRank((u16) p->mEntryIndex) - 1 == 0) {
-                        b = 0;
+                    if (GetKartRank((u16) raceSetup->mEntryIndex) - 1 == 0) {
+                        candidateKind = 0;
                     } else {
-                        b = 1;
+                        candidateKind = 1;
                     }
                     break;
                 case 1:
                 case 2:
-                    b = 2;
+                    candidateKind = 2;
                     break;
             }
-            a = b;
+            resultKind = candidateKind;
             break;
         case MODE_VS:
-            if (p->mRuleKind == 1) {
-                a = (data_0217d32c.mUnk_0c == 0) ? 0 : 2;
+            if (raceSetup->mRuleKind == 1) {
+                resultKind = (data_0217d32c.mUnk_0c == 0) ? 0 : 2;
             } else {
                 switch (data_0217d32c.mUnk_0c) {
                     case 0:
-                        if (GetKartRank((u16) p->mEntryIndex) - 1 == 0) {
-                            b = 0;
+                        if (GetKartRank((u16) raceSetup->mEntryIndex) - 1 == 0) {
+                            candidateKind = 0;
                         } else {
-                            b = 1;
+                            candidateKind = 1;
                         }
                         break;
                     case 1:
                     case 2:
-                        b = 2;
+                        candidateKind = 2;
                         break;
                 }
-                a = b;
+                resultKind = candidateKind;
             }
             break;
         case MODE_MISSION_RUN:
-            a = (data_0217d32c.mUnk_0c == 0) ? 0 : 2;
+            resultKind = (data_0217d32c.mUnk_0c == 0) ? 0 : 2;
             break;
         case MODE_BATTLE:
-            a = (data_0217d32c.mUnk_0c == 0) ? 0 : 2;
+            resultKind = (data_0217d32c.mUnk_0c == 0) ? 0 : 2;
             break;
         case MODE_TIME_ATTACK:
-            a = (data_0217d32c.mUnk_0c == 0) ? 1 : 2;
-            if (a == IsRaceNewRecordTaFinishRecordFirst()) {
-                a = 0;
+            resultKind = (data_0217d32c.mUnk_0c == 0) ? 1 : 2;
+            if (resultKind == IsRaceNewRecordTaFinishRecordFirst()) {
+                resultKind = 0;
             }
             break;
     }
-    return a;
+    return resultKind;
 }
 
-void func_02110cc8(s32 d) {
-    s32 a;
-    s32 b;
+void func_02110cc8(s32 unused) {
+    s32 seqId;
+    s32 resultKind;
     u32 c;
-    u32 *q;
-    a = -1;
+    u32 *row;
+    seqId = -1;
     c = gRaceSetup->mRaceKind;
     if (c != 2 && c != RACE_KIND_NORMAL) {
         return;
@@ -154,18 +154,18 @@ void func_02110cc8(s32 d) {
         return;
     }
     EndRaceSounds();
-    b = func_02110e58();
-    q = data_0217d32c.mUnk_08;
+    resultKind = func_02110e58();
+    row = data_0217d32c.mSeqRow;
     c = 0xff;
-    switch (b) {
+    switch (resultKind) {
         case 0:
-            c = q[0];
+            c = row[0];
             break;
         case 1:
-            c = q[1];
+            c = row[1];
             break;
         case 2:
-            c = q[2];
+            c = row[2];
             break;
     }
     func_0210d614(&data_0217d070, c, NULL);
@@ -173,120 +173,120 @@ void func_02110cc8(s32 d) {
     data_0217d328 = 1;
     switch (gRaceSetup->mCourseId) {
         case COURSE_ID_STADIUM:
-            switch (b) {
+            switch (resultKind) {
                 case 0:
                 case 1:
-                    a = 0x1bd;
+                    seqId = 0x1bd;
                     break;
                 default:
-                    a = 0x1be;
+                    seqId = 0x1be;
                     break;
             }
             break;
         case COURSE_ID_CROSS:
-            switch (b) {
+            switch (resultKind) {
                 case 0:
                 case 1:
-                    a = 0x105;
+                    seqId = 0x105;
                     break;
                 default:
-                    a = 0x106;
+                    seqId = 0x106;
                     break;
             }
             break;
         case COURSE_ID_MARIO:
-            switch (b) {
+            switch (resultKind) {
                 case 0:
                 case 1:
-                    a = 0x19d;
+                    seqId = 0x19d;
                     break;
                 default:
-                    a = 0x19e;
+                    seqId = 0x19e;
                     break;
             }
             break;
     }
-    if (a <= -1) {
+    if (seqId <= -1) {
         return;
     }
     func_02108e38();
-    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, (u16) a);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, (u16) seqId);
 }
 
 s32 func_02110c40(void) {
-    s32 a;
-    s32 b;
-    b = func_02110e58();
-    a = -1;
+    s32 seqId;
+    s32 resultKind;
+    resultKind = func_02110e58();
+    seqId = -1;
     switch (gRaceSetup->mCourseId) {
         case COURSE_ID_CROSS:
-            switch (b) {
+            switch (resultKind) {
                 case 0:
                 case 1:
-                    a = 0x104;
+                    seqId = 0x104;
                     break;
                 default:
-                    a = 0x107;
+                    seqId = 0x107;
                     break;
             }
             break;
         case COURSE_ID_MARIO:
-            switch (b) {
+            switch (resultKind) {
                 case 0:
                 case 1:
-                    a = 0x19c;
+                    seqId = 0x19c;
                     break;
                 default:
-                    a = 0x19f;
+                    seqId = 0x19f;
                     break;
             }
             break;
     }
-    return a;
+    return seqId;
 }
 
 // Releases the object when it holds nothing other than the given value, otherwise sets it up with that value.
-static inline void func_02110aac_inline(NNSSndSeqPlayer **p, u32 v) {
-    NNSSndSeqPlayer *q;
-    u32 r;
-    if (v != 0xffff) {
-        q = *p;
-        if (q != NULL && q->mSeqArcIndex == v && q->mSeqNo == 0) {
-            r = 1;
+static inline void func_02110aac_inline(NNSSndSeqPlayer **handleSlot, u32 seqId) {
+    NNSSndSeqPlayer *currentPlayer;
+    u32 sameSeq;
+    if (seqId != 0xffff) {
+        currentPlayer = *handleSlot;
+        if (currentPlayer != NULL && currentPlayer->mSeqArcIndex == seqId && currentPlayer->mSeqNo == 0) {
+            sameSeq = 1;
         } else {
-            r = 0;
+            sameSeq = 0;
         }
-        if (r == 0) {
-            NNS_SndPlayerStopSeq(p, 0);
-            if (*p != NULL) {
-                NNS_SndPlayerStopSeq(p, 0);
+        if (sameSeq == 0) {
+            NNS_SndPlayerStopSeq(handleSlot, 0);
+            if (*handleSlot != NULL) {
+                NNS_SndPlayerStopSeq(handleSlot, 0);
             }
-            NNS_SndArcPlayerStartSeqArc(p, 0, v);
+            NNS_SndArcPlayerStartSeqArc(handleSlot, 0, seqId);
         }
-    } else if (*p != NULL) {
-        NNS_SndPlayerStopSeq(p, 0);
+    } else if (*handleSlot != NULL) {
+        NNS_SndPlayerStopSeq(handleSlot, 0);
     }
 }
 
 void func_02110aac(s32 a, s32 b) {
-    NNSSndSeqPlayer **p;
-    u32 x;
-    u32 y;
-    p = GetSndHandleSlot(1);
+    NNSSndSeqPlayer **handleSlot;
+    u32 firstSeqId;
+    u32 secondSeqId;
+    handleSlot = GetSndHandleSlot(1);
     if (a == 0) {
-        x = 0x1ff;
+        firstSeqId = 0x1ff;
     } else if (a == 1) {
-        x = 0x200;
+        firstSeqId = 0x200;
     } else {
-        x = 0xffff;
+        firstSeqId = 0xffff;
     }
-    func_02110aac_inline(p, x);
-    p = GetSndHandleSlot(2);
-    y = (b != 0) ? 0x201 : 0xffff;
-    if (x != 0xffff) {
-        y = 0xffff;
+    func_02110aac_inline(handleSlot, firstSeqId);
+    handleSlot = GetSndHandleSlot(2);
+    secondSeqId = (b != 0) ? 0x201 : 0xffff;
+    if (firstSeqId != 0xffff) {
+        secondSeqId = 0xffff;
     }
-    func_02110aac_inline(p, y);
+    func_02110aac_inline(handleSlot, secondSeqId);
 }
 
 void func_02110a60(void) {
@@ -297,55 +297,55 @@ void func_02110a60(void) {
 }
 
 void func_021108bc(s32 a) {
-    s32 b;
-    s32 c;
+    s32 seqId;
+    s32 pitch;
     u8 m;
-    u32 n;
-    NNSSndSeqPlayer **p;
+    u32 callsSincePlay;
+    NNSSndSeqPlayer **handleSlot;
     if (a <= 2) {
-        b = 0x1f7;
+        seqId = 0x1f7;
     } else if (a <= 5) {
-        b = 0x1f8;
+        seqId = 0x1f8;
     } else {
-        b = -1;
+        seqId = -1;
     }
     m = data_0217d1e4 + 1;
-    n = data_0217d204 + 1;
+    callsSincePlay = data_0217d204 + 1;
     data_0217d1e4 = m;
-    data_0217d204 = n;
-    if (b == -1) {
+    data_0217d204 = callsSincePlay;
+    if (seqId == -1) {
         return;
     }
-    if (n < 2) {
+    if (callsSincePlay < 2) {
         return;
     }
-    p = GetSndHandleSlot((data_0217d1e0 & 1) ? 2 : 3);
+    handleSlot = GetSndHandleSlot((data_0217d1e0 & 1) ? 2 : 3);
     if (data_0217d204 >= 0x14) {
         data_0217d1e4 = 0;
     }
-    if (*p != NULL) {
-        NNS_SndPlayerStopSeq(p, 0);
+    if (*handleSlot != NULL) {
+        NNS_SndPlayerStopSeq(handleSlot, 0);
     }
-    NNS_SndArcPlayerStartSeqArc(p, 0, (u16) b);
+    NNS_SndArcPlayerStartSeqArc(handleSlot, 0, (u16) seqId);
     data_0217d1e0 = data_0217d1e0 + 1;
-    if (p != NULL) {
+    if (handleSlot != NULL) {
         switch (data_0217d1e4 % 3) {
             case 0:
-                c = 0;
+                pitch = 0;
                 break;
             case 1:
-                c = (a <= 2) ? 0x40 : -0x40;
+                pitch = (a <= 2) ? 0x40 : -0x40;
                 break;
             case 2:
-                c = (a <= 2) ? 0x80 : -0x80;
+                pitch = (a <= 2) ? 0x80 : -0x80;
                 break;
         }
         if (a == 1 || a == 4) {
-            c -= 0x100;
+            pitch -= 0x100;
         } else if (a == 2 || a == 5) {
-            c -= 0x200;
+            pitch -= 0x200;
         }
-        SetSndHandleTrackPitch(p, c);
+        SetSndHandleTrackPitch(handleSlot, pitch);
     }
     data_0217d204 = 0;
 }

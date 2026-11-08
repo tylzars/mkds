@@ -162,9 +162,9 @@ typedef struct SoundModeHolder {
 
 // Object at data_0217d32c (0x10 bytes); mUnk_08 points to a row of six words.
 typedef struct Unk0217d32c {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ NNSSndHeap *mUnk_04;
-    /* 08 */ u32 *mUnk_08;
+    /* 00 */ s32 mLoadedIndex;
+    /* 04 */ NNSSndHeap *mSeqHeap;
+    /* 08 */ u32 *mSeqRow;
     /* 0c */ u32 mUnk_0c;
 } Unk0217d32c;
 

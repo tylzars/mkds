@@ -17,12 +17,12 @@
 
 #pragma thumb on
 
-void InitRecordScene(s16 *a) {
+void InitRecordScene(s16 *sceneNumbers) {
     void *heap;
     heap = GetHeap(GetCurrentHeapCall());
     gRecordMainOam = HeapAlloc(heap, 0x404);
     gRecordSubOam = HeapAlloc(heap, 0x404);
-    InitRecordSceneObject(heap, *a);
+    InitRecordSceneObject(heap, *sceneNumbers);
 }
 
 #pragma thumb off
@@ -55,12 +55,12 @@ void func_02111368(void) {
 
 #pragma thumb on
 
-void UpdateRecordScene(Unk02111324 *a) {
+void UpdateRecordScene(Unk02111324 *sceneNumbers) {
     func_020ae6ac(gRecordMainOam, gRecordSubOam);
     AdvanceRecordScene();
     func_020ae630(gRecordMainOam, gRecordSubOam);
-    if (a != NULL && GetRecordNextScene() != -1) {
-        a->mUnk_04 = GetRecordNextScene();
+    if (sceneNumbers != NULL && GetRecordNextScene() != -1) {
+        sceneNumbers->mUnk_04 = GetRecordNextScene();
     }
 }
 

@@ -31,12 +31,12 @@ typedef struct Nclr {
 } Nclr;
 
 // One stack word whose address the functions above store different pointer types through.
-typedef union Unk02111684_v {
+typedef union LoadedPartPointer {
     Ncgr *mNcgr;
     Nscr *mNscr;
     Nclr *mNclr;
     Unk02021dc8 *mNcer;
-} Unk02111684_v;
+} LoadedPartPointer;
 
 // Declared here until the code that defines them is decompiled.
 void *func_020b4000(int param_1);

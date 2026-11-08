@@ -198,7 +198,7 @@ void func_021162cc(void) {
             func_02124fac(t[2][2], buf);
             func_02124248(0, data_0215c530[2][2], gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
-            func_021142d4(v + gRecordVSErase->mShownIndex, &a);
+            GetRecordDate(v + gRecordVSErase->mShownIndex, &a);
             FormatDate(&a, buf);
             func_02124224(0, 0xc, gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);

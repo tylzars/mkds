@@ -57,7 +57,7 @@ void ClearWiFiStateCallbacks(void) {
 }
 
 void LoadWiFiMenuSceneData(void) {
-    Unk02111684_v v;
+    LoadedPartPointer v;
     LoadNcgrData(&v.mNcgr, FindSceneFile("WiFi_VS_setting_s_b.ncgr"));
     LoadNclrData(&v.mNclr, FindSceneFile("WiFi_VS_setting_s_b.nclr"));
     LoadNscrData(&v.mNscr, FindSceneFile("WiFi_VS_s_setting.nscr"));

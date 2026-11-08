@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-u16 GetRecordSortKey(u16 a);
-void SortRecordRange(s32 a, u16 b);
+u16 GetRecordSortKey(u16 listIndex);
+void SortRecordRange(s32 first, u16 count);

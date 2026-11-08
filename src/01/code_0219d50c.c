@@ -5,7 +5,7 @@
 
 void LoadSelectBattleStageData(void) {
     void *v1;
-    Unk02111684_v v;
+    LoadedPartPointer v;
     v1 = FindSceneFile(data_ov001_021a8b54);
     LoadNcgrData(&v.mNcgr, v1);
     v1 = FindSceneFile(data_ov001_021a8b74);

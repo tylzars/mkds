@@ -27,7 +27,7 @@ void ClearOptionStateCallbacks(void) {
 }
 
 void LoadOptionData(void) {
-    Unk02111684_v v;
+    LoadedPartPointer v;
     LoadNcgrData(&v.mNcgr, FindSceneFile("Option_top_menu_m_b.ncgr"));
     LoadNscrData(&v.mNscr, FindSceneFile("Option_top_menu_m.nscr"));
     LoadNclrData(&v.mNclr, FindSceneFile("Option_top_menu_m_b.nclr"));

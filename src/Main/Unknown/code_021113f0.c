@@ -59,9 +59,9 @@
 #pragma thumb on
 
 void AdvanceRecordVSState0(void) {
-    int v1;
-    v1 = AreBrightnessFadesClear();
-    if (v1 != 0) {
+    int fadesClear;
+    fadesClear = AreBrightnessFadesClear();
+    if (fadesClear != 0) {
         RequestRecordVSState1();
     }
 }
@@ -71,37 +71,37 @@ void AdvanceRecordVSState0(void) {
 #pragma thumb on
 
 void AdvanceRecordVSState1(void) {
-    u16 b;
-    u16 a;
+    u16 transientBase;
+    u16 mainBase;
     s32 i;
     s32 j;
-    s16 v;
+    s16 offset;
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
-    v = InterpolateS16(1, -192, 0, gRecordVS->mStateFrames, 10);
-    gRecordVS->mBg0OffsetY = v;
-    gRecordVS->mBg1OffsetY = v;
-    a = gRecordVS->mRecordVSMBncl->mUnk_06;
-    gRecordVS->mRecordVSMTable[0].mOffsetY = v;
-    gRecordVS->mRecordVSMTable[1].mOffsetY = v;
-    gRecordVS->mRecordVSMTable[2].mOffsetY = v;
-    gRecordVS->mRecordVSMTable[3].mOffsetY = v;
-    gRecordVS->mRecordVSMTable[a].mOffsetY = v;
-    gRecordVS->mRecordVSMTable[a + 1].mOffsetY = v;
-    gRecordVS->mRecordVSMTable[a + 11].mOffsetY = v;
-    gRecordVS->mRecordVSMTable[a + 12].mOffsetY = v;
+    offset = InterpolateS16(1, -192, 0, gRecordVS->mStateFrames, 10);
+    gRecordVS->mBg0OffsetY = offset;
+    gRecordVS->mBg1OffsetY = offset;
+    mainBase = gRecordVS->mRecordVSMBncl->mUnk_06;
+    gRecordVS->mRecordVSMTable[0].mOffsetY = offset;
+    gRecordVS->mRecordVSMTable[1].mOffsetY = offset;
+    gRecordVS->mRecordVSMTable[2].mOffsetY = offset;
+    gRecordVS->mRecordVSMTable[3].mOffsetY = offset;
+    gRecordVS->mRecordVSMTable[mainBase].mOffsetY = offset;
+    gRecordVS->mRecordVSMTable[mainBase + 1].mOffsetY = offset;
+    gRecordVS->mRecordVSMTable[mainBase + 11].mOffsetY = offset;
+    gRecordVS->mRecordVSMTable[mainBase + 12].mOffsetY = offset;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            gRecordVS->mRecordVSMTable[a + data_0215c410[i][j]].mOffsetY = v;
+            gRecordVS->mRecordVSMTable[mainBase + gRecordVSGridLabelIndices[i][j]].mOffsetY = offset;
         }
     }
-    b = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
-    gRecordVS->mRecordVSMTransientTable[1].mOffsetY = v;
-    gRecordVS->mRecordVSMTransientTable[0].mOffsetY = v;
-    gRecordVS->mRecordVSMTransientTable[b].mOffsetY = v;
-    gRecordVS->mRecordVSMTransientTable[b + 1].mOffsetY = v;
-    gRecordVS->mRecordVSMTransientTable[b + 14].mOffsetY = v;
+    transientBase = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
+    gRecordVS->mRecordVSMTransientTable[1].mOffsetY = offset;
+    gRecordVS->mRecordVSMTransientTable[0].mOffsetY = offset;
+    gRecordVS->mRecordVSMTransientTable[transientBase].mOffsetY = offset;
+    gRecordVS->mRecordVSMTransientTable[transientBase + 1].mOffsetY = offset;
+    gRecordVS->mRecordVSMTransientTable[transientBase + 14].mOffsetY = offset;
     for (j = 0; j < 12; j++) {
-        gRecordVS->mRecordVSMTransientTable[b + data_0215c478[j]].mOffsetY = v;
+        gRecordVS->mRecordVSMTransientTable[transientBase + gRecordVSFriendKeyLabelIndices[j]].mOffsetY = offset;
     }
     if (gRecordVS->mStateFrames >= 10) {
         RequestRecordVSState2AndRefreshPage();
@@ -109,25 +109,25 @@ void AdvanceRecordVSState1(void) {
 }
 
 void AdvanceRecordVSState2(void) {
-    s16 v;
+    s16 offset;
     s32 i;
-    u16 x;
+    u16 subBase;
     AdvanceRecordVSOffsetTimers();
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
-    v = InterpolateS16(1, 0x100, 0, gRecordVS->mStateFrames, 10);
-    x = gRecordVS->mRecordVSSBncl->mUnk_06;
-    gRecordVS->mRecordVSSTable[20].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[21].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[24].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[25].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[26].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[x + 5].mOffsetX = v;
+    offset = InterpolateS16(1, 0x100, 0, gRecordVS->mStateFrames, 10);
+    subBase = gRecordVS->mRecordVSSBncl->mUnk_06;
+    gRecordVS->mRecordVSSTable[20].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[21].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[24].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[25].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[26].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[subBase + 5].mOffsetX = offset;
     for (i = 0; i < 5; i++) {
-        gRecordVS->mRecordVSSTable[data_0215c3e0[i]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c3ec[i]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c3f8[i]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c404[i]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[x + data_0215c3bc[i]].mOffsetX = v;
+        gRecordVS->mRecordVSSTable[gRecordVSUnhighlightedObjectIndices[i]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSHighlightObjectIndices[i]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSUnflaggedObjectIndices[i]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSFlaggedObjectIndices[i]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[subBase + gRecordVSRowLabelIndices[i]].mOffsetX = offset;
     }
     if (gRecordVS->mStateFrames >= 10) {
         RequestRecordVSState3();
@@ -143,9 +143,9 @@ void AdvanceRecordVSState2(void) {
 #pragma thumb on
 
 void AdvanceRecordVSState3(void) {
-    int v1;
-    v1 = IsSelectReturnState2NoState3Or4Request();
-    if (v1 != 0) {
+    int selectReturnState2NoRequest;
+    selectReturnState2NoRequest = IsSelectReturnState2NoState3Or4Request();
+    if (selectReturnState2NoRequest != 0) {
         RequestRecordVSState4();
     }
 }
@@ -157,42 +157,44 @@ void AdvanceRecordVSState3(void) {
 void AdvanceRecordVSState4(void) {
     s32 a;
     s32 b;
-    Unk02175628Index i;
+    Unk02175628Index inputSlotIndex;
     BOOL g;
     BOOL f;
     u16 x;
-    InputSlot *p;
-    InputSlot *q;
-    s16 t;
+    InputSlot *touchSlot;
+    InputSlot *keySlot;
+    s16 rowIndex;
     a = -1;
     b = -1;
-    i = UNK_02175628_INDEX_8;
+    inputSlotIndex = UNK_02175628_INDEX_8;
     AdvanceRecordVSOffsetTimers();
     AdvanceRecordVSIndexChange();
     g = TRUE;
     f = FALSE;
-    p = &data_02175674[i];
-    x = data_02175674[i].mUnk_00;
-    if (x == 0 && data_02175680[i].mUnk_00 < 5) {
+    touchSlot = &data_02175674[inputSlotIndex];
+    x = data_02175674[inputSlotIndex].mUnk_00;
+    if (x == 0 && data_02175680[inputSlotIndex].mUnk_00 < 5) {
         f = TRUE;
     }
     if (f == FALSE && x == 0) {
         g = FALSE;
     }
     if (g != FALSE) {
-        a = RectTableFindContaining(gRecordVS->mRecordVSSBnbl, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
+        a = RectTableFindContaining(gRecordVS->mRecordVSSBnbl, data_02175670[inputSlotIndex].mUnk_00,
+                                    data_02175672[inputSlotIndex].mUnk_00);
     }
     g = FALSE;
     f = FALSE;
-    x = p->mUnk_00;
-    if (x == 0 && data_02175680[i].mUnk_00 < 5) {
+    x = touchSlot->mUnk_00;
+    if (x == 0 && data_02175680[inputSlotIndex].mUnk_00 < 5) {
         f = TRUE;
     }
-    if (f == FALSE && data_0217567c[i].mUnk_00 == 0 && x != 0) {
+    if (f == FALSE && data_0217567c[inputSlotIndex].mUnk_00 == 0 && x != 0) {
         g = TRUE;
     }
     if (g != FALSE) {
-        b = RectTableFindContaining(gRecordVS->mRecordVSSBnbl, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
+        b = RectTableFindContaining(gRecordVS->mRecordVSSBnbl, data_02175670[inputSlotIndex].mUnk_00,
+                                    data_02175672[inputSlotIndex].mUnk_00);
     }
     if (a != 10) {
         gRecordVS->mUnk_88 = FALSE;
@@ -200,19 +202,19 @@ void AdvanceRecordVSState4(void) {
     if (a != 11) {
         gRecordVS->mUnk_8c = FALSE;
     }
-    q = &data_02175628[i];
-    if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_B) == 0) {
+    keySlot = &data_02175628[inputSlotIndex];
+    if ((u16) (data_02175628[inputSlotIndex].mUnk_00 & PAD_KEY_B) == 0) {
         g = FALSE;
         f = FALSE;
-        x = p->mUnk_00;
-        if (x == 0 && data_02175680[i].mUnk_00 < 5) {
+        x = touchSlot->mUnk_00;
+        if (x == 0 && data_02175680[inputSlotIndex].mUnk_00 < 5) {
             f = TRUE;
         }
-        if (f == FALSE && data_0217567c[i].mUnk_00 == 0 && x != 0) {
+        if (f == FALSE && data_0217567c[inputSlotIndex].mUnk_00 == 0 && x != 0) {
             g = TRUE;
         }
-        if (g == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00,
-                                                                          data_02175672[i].mUnk_00) == FALSE) {
+        if (g == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(
+                              data_02175670[inputSlotIndex].mUnk_00, data_02175672[inputSlotIndex].mUnk_00) == FALSE) {
             goto l1;
         }
     }
@@ -230,7 +232,7 @@ void AdvanceRecordVSState4(void) {
     return;
 l1:
     if ((a == 10 && gRecordVS->mUnk_88 != FALSE) || (b == 10 && gRecordVS->mUnk_88 == FALSE) ||
-        (u16) (data_0217562a[i].mBits & PAD_KEY_LEFT) != 0) {
+        (u16) (data_0217562a[inputSlotIndex].mBits & PAD_KEY_LEFT) != 0) {
         if (IsRecordVSIndexChangeRunning() != 0) {
             return;
         }
@@ -245,7 +247,7 @@ l1:
         return;
     }
     if ((a == 11 && gRecordVS->mUnk_8c != FALSE) || (b == 11 && gRecordVS->mUnk_8c == FALSE) ||
-        (u16) (data_0217562a[i].mBits & PAD_KEY_RIGHT) != 0) {
+        (u16) (data_0217562a[inputSlotIndex].mBits & PAD_KEY_RIGHT) != 0) {
         if (IsRecordVSIndexChangeRunning() != 0) {
             return;
         }
@@ -260,33 +262,33 @@ l1:
         return;
     }
     if ((u32) (b - 5) <= 4) {
-        t = data_0215c44c[b];
-        if (IsRecordVSRowFilled(t) == 0) {
+        rowIndex = data_0215c44c[b];
+        if (IsRecordVSRowFilled(rowIndex) == 0) {
             return;
         }
-        gRecordVS->mIndex = t;
-        ToggleRecordVSRowFlag(t);
+        gRecordVS->mIndex = rowIndex;
+        ToggleRecordVSRowFlag(rowIndex);
         return;
     }
     if ((u32) b <= 4) {
-        t = data_0215c44c[b];
-        if (t == gRecordVS->mIndex) {
-            ToggleRecordVSRowFlag(t);
+        rowIndex = data_0215c44c[b];
+        if (rowIndex == gRecordVS->mIndex) {
+            ToggleRecordVSRowFlag(rowIndex);
             return;
         }
-        if (IsRecordVSRowFilled(t) == 0) {
+        if (IsRecordVSRowFilled(rowIndex) == 0) {
             return;
         }
-        gRecordVS->mIndex = t;
+        gRecordVS->mIndex = rowIndex;
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         return;
     }
-    if (b == 12 || (u16) (q->mUnk_00 & PAD_KEY_X) != 0) {
-        func_021132b4();
+    if (b == 12 || (u16) (keySlot->mUnk_00 & PAD_KEY_X) != 0) {
+        RequestRecordVSState9();
         gRecordVS->mUnk_90 = 4;
         return;
     }
-    if ((u16) (q->mUnk_00 & PAD_KEY_A) != 0) {
+    if ((u16) (keySlot->mUnk_00 & PAD_KEY_A) != 0) {
         ToggleRecordVSRowFlag(gRecordVS->mIndex);
         return;
     }
@@ -301,55 +303,55 @@ l1:
 
 void AdvanceRecordVSState5(void) {
     s32 i;
-    u16 b;
-    u16 x;
+    u16 transientBase;
+    u16 subBase;
     s32 l;
-    u16 a;
+    u16 mainBase;
     s32 j;
-    s16 c;
-    s16 v;
-    c = 0;
+    s16 endOffset;
+    s16 offset;
+    endOffset = 0;
     AdvanceRecordVSOffsetTimers();
     switch (gRecordVS->mPageDecrement) {
         case 0:
-            c = -256;
+            endOffset = -256;
             break;
         case 1:
-            c = 0x100;
+            endOffset = 0x100;
             break;
     }
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
-    a = gRecordVS->mRecordVSMBncl->mUnk_06;
-    b = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
-    x = gRecordVS->mRecordVSSBncl->mUnk_06;
-    v = InterpolateS16(1, 0, c, gRecordVS->mStateFrames, 10);
-    gRecordVS->mBg0OffsetX = v;
-    gRecordVS->mBg1OffsetX = v;
-    gRecordVS->mRecordVSMTable[1].mOffsetX = v;
-    gRecordVS->mRecordVSMTable[2].mOffsetX = v;
-    gRecordVS->mRecordVSMTable[3].mOffsetX = v;
-    gRecordVS->mRecordVSMTable[a].mOffsetX = v;
-    gRecordVS->mRecordVSMTable[a + 1].mOffsetX = v;
-    gRecordVS->mRecordVSMTable[a + 11].mOffsetX = v;
-    gRecordVS->mRecordVSMTable[a + 12].mOffsetX = v;
+    mainBase = gRecordVS->mRecordVSMBncl->mUnk_06;
+    transientBase = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
+    subBase = gRecordVS->mRecordVSSBncl->mUnk_06;
+    offset = InterpolateS16(1, 0, endOffset, gRecordVS->mStateFrames, 10);
+    gRecordVS->mBg0OffsetX = offset;
+    gRecordVS->mBg1OffsetX = offset;
+    gRecordVS->mRecordVSMTable[1].mOffsetX = offset;
+    gRecordVS->mRecordVSMTable[2].mOffsetX = offset;
+    gRecordVS->mRecordVSMTable[3].mOffsetX = offset;
+    gRecordVS->mRecordVSMTable[mainBase].mOffsetX = offset;
+    gRecordVS->mRecordVSMTable[mainBase + 1].mOffsetX = offset;
+    gRecordVS->mRecordVSMTable[mainBase + 11].mOffsetX = offset;
+    gRecordVS->mRecordVSMTable[mainBase + 12].mOffsetX = offset;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            gRecordVS->mRecordVSMTable[a + data_0215c410[i][j]].mOffsetX = v;
+            gRecordVS->mRecordVSMTable[mainBase + gRecordVSGridLabelIndices[i][j]].mOffsetX = offset;
         }
     }
-    gRecordVS->mRecordVSMTransientTable[1].mOffsetX = v;
-    gRecordVS->mRecordVSMTransientTable[b].mOffsetX = v;
-    gRecordVS->mRecordVSMTransientTable[b + 1].mOffsetX = v;
-    gRecordVS->mRecordVSMTransientTable[b + 14].mOffsetX = v;
+    gRecordVS->mRecordVSMTransientTable[1].mOffsetX = offset;
+    gRecordVS->mRecordVSMTransientTable[transientBase].mOffsetX = offset;
+    gRecordVS->mRecordVSMTransientTable[transientBase + 1].mOffsetX = offset;
+    gRecordVS->mRecordVSMTransientTable[transientBase + 14].mOffsetX = offset;
     for (j = 0; j < 12; j++) {
-        gRecordVS->mRecordVSMTransientTable[b + data_0215c478[j]].mOffsetX = v;
+        gRecordVS->mRecordVSMTransientTable[transientBase + gRecordVSFriendKeyLabelIndices[j]].mOffsetX = offset;
     }
     for (l = 0; l < 5; l++) {
-        gRecordVS->mRecordVSSTable[data_0215c3e0[l]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c3ec[l]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c3f8[l]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c404[l]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[x + data_0215c3bc[l]].mOffsetX = v;
+        gRecordVS->mRecordVSSTable[gRecordVSUnhighlightedObjectIndices[l]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSHighlightObjectIndices[l]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSUnflaggedObjectIndices[l]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSFlaggedObjectIndices[l]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[subBase + gRecordVSRowLabelIndices[l]].mOffsetX = offset;
     }
     if (gRecordVS->mStateFrames >= 10) {
         RequestRecordVSState6AndChangePage();
@@ -358,55 +360,55 @@ void AdvanceRecordVSState5(void) {
 
 void AdvanceRecordVSState6(void) {
     s32 i;
-    u16 b;
-    u16 x;
+    u16 transientBase;
+    u16 subBase;
     s32 l;
-    u16 a;
+    u16 mainBase;
     s32 j;
-    s16 c;
-    s16 v;
-    c = 0;
+    s16 startOffset;
+    s16 offset;
+    startOffset = 0;
     AdvanceRecordVSOffsetTimers();
     switch (gRecordVS->mPageDecrement) {
         case 0:
-            c = 0x100;
+            startOffset = 0x100;
             break;
         case 1:
-            c = -256;
+            startOffset = -256;
             break;
     }
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
-    a = gRecordVS->mRecordVSMBncl->mUnk_06;
-    b = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
-    x = gRecordVS->mRecordVSSBncl->mUnk_06;
-    v = InterpolateS16(1, c, 0, gRecordVS->mStateFrames, 10);
-    gRecordVS->mBg0OffsetX = v;
-    gRecordVS->mBg1OffsetX = v;
-    gRecordVS->mRecordVSMTable[1].mOffsetX = v;
-    gRecordVS->mRecordVSMTable[2].mOffsetX = v;
-    gRecordVS->mRecordVSMTable[3].mOffsetX = v;
-    gRecordVS->mRecordVSMTable[a].mOffsetX = v;
-    gRecordVS->mRecordVSMTable[a + 1].mOffsetX = v;
-    gRecordVS->mRecordVSMTable[a + 11].mOffsetX = v;
-    gRecordVS->mRecordVSMTable[a + 12].mOffsetX = v;
+    mainBase = gRecordVS->mRecordVSMBncl->mUnk_06;
+    transientBase = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
+    subBase = gRecordVS->mRecordVSSBncl->mUnk_06;
+    offset = InterpolateS16(1, startOffset, 0, gRecordVS->mStateFrames, 10);
+    gRecordVS->mBg0OffsetX = offset;
+    gRecordVS->mBg1OffsetX = offset;
+    gRecordVS->mRecordVSMTable[1].mOffsetX = offset;
+    gRecordVS->mRecordVSMTable[2].mOffsetX = offset;
+    gRecordVS->mRecordVSMTable[3].mOffsetX = offset;
+    gRecordVS->mRecordVSMTable[mainBase].mOffsetX = offset;
+    gRecordVS->mRecordVSMTable[mainBase + 1].mOffsetX = offset;
+    gRecordVS->mRecordVSMTable[mainBase + 11].mOffsetX = offset;
+    gRecordVS->mRecordVSMTable[mainBase + 12].mOffsetX = offset;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            gRecordVS->mRecordVSMTable[a + data_0215c410[i][j]].mOffsetX = v;
+            gRecordVS->mRecordVSMTable[mainBase + gRecordVSGridLabelIndices[i][j]].mOffsetX = offset;
         }
     }
-    gRecordVS->mRecordVSMTransientTable[1].mOffsetX = v;
-    gRecordVS->mRecordVSMTransientTable[b].mOffsetX = v;
-    gRecordVS->mRecordVSMTransientTable[b + 1].mOffsetX = v;
-    gRecordVS->mRecordVSMTransientTable[b + 14].mOffsetX = v;
+    gRecordVS->mRecordVSMTransientTable[1].mOffsetX = offset;
+    gRecordVS->mRecordVSMTransientTable[transientBase].mOffsetX = offset;
+    gRecordVS->mRecordVSMTransientTable[transientBase + 1].mOffsetX = offset;
+    gRecordVS->mRecordVSMTransientTable[transientBase + 14].mOffsetX = offset;
     for (j = 0; j < 12; j++) {
-        gRecordVS->mRecordVSMTransientTable[b + data_0215c478[j]].mOffsetX = v;
+        gRecordVS->mRecordVSMTransientTable[transientBase + gRecordVSFriendKeyLabelIndices[j]].mOffsetX = offset;
     }
     for (l = 0; l < 5; l++) {
-        gRecordVS->mRecordVSSTable[data_0215c3e0[l]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c3ec[l]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c3f8[l]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c404[l]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[x + data_0215c3bc[l]].mOffsetX = v;
+        gRecordVS->mRecordVSSTable[gRecordVSUnhighlightedObjectIndices[l]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSHighlightObjectIndices[l]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSUnflaggedObjectIndices[l]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSFlaggedObjectIndices[l]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[subBase + gRecordVSRowLabelIndices[l]].mOffsetX = offset;
     }
     if (gRecordVS->mStateFrames >= 10) {
         RequestRecordVSState4();
@@ -414,27 +416,27 @@ void AdvanceRecordVSState6(void) {
 }
 
 void AdvanceRecordVSState7(void) {
-    s16 v;
+    s16 offset;
     s32 i;
-    u16 x;
+    u16 subBase;
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
-    v = InterpolateS16(1, 0, 0x100, gRecordVS->mStateFrames, 10);
-    x = gRecordVS->mRecordVSSBncl->mUnk_06;
-    gRecordVS->mRecordVSSTable[20].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[21].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[24].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[25].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[26].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[x + 5].mOffsetX = v;
+    offset = InterpolateS16(1, 0, 0x100, gRecordVS->mStateFrames, 10);
+    subBase = gRecordVS->mRecordVSSBncl->mUnk_06;
+    gRecordVS->mRecordVSSTable[20].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[21].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[24].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[25].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[26].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[subBase + 5].mOffsetX = offset;
     for (i = 0; i < 5; i++) {
-        gRecordVS->mRecordVSSTable[data_0215c3e0[i]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c3ec[i]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c3f8[i]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c404[i]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[x + data_0215c3bc[i]].mOffsetX = v;
+        gRecordVS->mRecordVSSTable[gRecordVSUnhighlightedObjectIndices[i]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSHighlightObjectIndices[i]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSUnflaggedObjectIndices[i]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSFlaggedObjectIndices[i]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[subBase + gRecordVSRowLabelIndices[i]].mOffsetX = offset;
     }
     if (gRecordVS->mStateFrames >= 10) {
-        func_021132e4();
+        RequestRecordVSState8();
     }
     if (gRecordVS->mStateFrames == 6) {
         gRecordVS->mRecordVSSTable[24].mVisible = 0;
@@ -443,40 +445,40 @@ void AdvanceRecordVSState7(void) {
 }
 
 void AdvanceRecordVSState8(void) {
-    u16 b;
-    u16 a;
+    u16 transientBase;
+    u16 mainBase;
     s32 i;
     s32 j;
-    s16 v;
+    s16 offset;
     if (GetRecordNextScene() == -1 && gRecordVS->mUnk_90 == 6) {
         SetRecordNextScene(12);
     }
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
-    v = InterpolateS16(1, 0, -192, gRecordVS->mStateFrames, 10);
-    gRecordVS->mBg0OffsetY = v;
-    gRecordVS->mBg1OffsetY = v;
-    a = gRecordVS->mRecordVSMBncl->mUnk_06;
-    gRecordVS->mRecordVSMTable[0].mOffsetY = v;
-    gRecordVS->mRecordVSMTable[1].mOffsetY = v;
-    gRecordVS->mRecordVSMTable[2].mOffsetY = v;
-    gRecordVS->mRecordVSMTable[3].mOffsetY = v;
-    gRecordVS->mRecordVSMTable[a].mOffsetY = v;
-    gRecordVS->mRecordVSMTable[a + 1].mOffsetY = v;
-    gRecordVS->mRecordVSMTable[a + 11].mOffsetY = v;
-    gRecordVS->mRecordVSMTable[a + 12].mOffsetY = v;
+    offset = InterpolateS16(1, 0, -192, gRecordVS->mStateFrames, 10);
+    gRecordVS->mBg0OffsetY = offset;
+    gRecordVS->mBg1OffsetY = offset;
+    mainBase = gRecordVS->mRecordVSMBncl->mUnk_06;
+    gRecordVS->mRecordVSMTable[0].mOffsetY = offset;
+    gRecordVS->mRecordVSMTable[1].mOffsetY = offset;
+    gRecordVS->mRecordVSMTable[2].mOffsetY = offset;
+    gRecordVS->mRecordVSMTable[3].mOffsetY = offset;
+    gRecordVS->mRecordVSMTable[mainBase].mOffsetY = offset;
+    gRecordVS->mRecordVSMTable[mainBase + 1].mOffsetY = offset;
+    gRecordVS->mRecordVSMTable[mainBase + 11].mOffsetY = offset;
+    gRecordVS->mRecordVSMTable[mainBase + 12].mOffsetY = offset;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            gRecordVS->mRecordVSMTable[a + data_0215c410[i][j]].mOffsetY = v;
+            gRecordVS->mRecordVSMTable[mainBase + gRecordVSGridLabelIndices[i][j]].mOffsetY = offset;
         }
     }
-    b = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
-    gRecordVS->mRecordVSMTransientTable[1].mOffsetY = v;
-    gRecordVS->mRecordVSMTransientTable[0].mOffsetY = v;
-    gRecordVS->mRecordVSMTransientTable[b].mOffsetY = v;
-    gRecordVS->mRecordVSMTransientTable[b + 1].mOffsetY = v;
-    gRecordVS->mRecordVSMTransientTable[b + 14].mOffsetY = v;
+    transientBase = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
+    gRecordVS->mRecordVSMTransientTable[1].mOffsetY = offset;
+    gRecordVS->mRecordVSMTransientTable[0].mOffsetY = offset;
+    gRecordVS->mRecordVSMTransientTable[transientBase].mOffsetY = offset;
+    gRecordVS->mRecordVSMTransientTable[transientBase + 1].mOffsetY = offset;
+    gRecordVS->mRecordVSMTransientTable[transientBase + 14].mOffsetY = offset;
     for (j = 0; j < 12; j++) {
-        gRecordVS->mRecordVSMTransientTable[b + data_0215c478[j]].mOffsetY = v;
+        gRecordVS->mRecordVSMTransientTable[transientBase + gRecordVSFriendKeyLabelIndices[j]].mOffsetY = offset;
     }
     if (gRecordVS->mStateFrames >= 10 && gRecordVS->mUnk_90 != 6) {
         RequestRecordScreen(gRecordVS->mUnk_90);
@@ -484,39 +486,39 @@ void AdvanceRecordVSState8(void) {
 }
 
 void AdvanceRecordVSState9(void) {
-    s16 v;
-    u16 i;
+    s16 offset;
+    u16 subBase;
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
-    v = func_020ae488(gRecordVS->mStateFrames);
-    i = gRecordVS->mRecordVSSBncl->mUnk_06;
-    gRecordVS->mRecordVSSTable[24].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[25].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[26].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[i + 5].mOffsetX = v;
+    offset = func_020ae488(gRecordVS->mStateFrames);
+    subBase = gRecordVS->mRecordVSSBncl->mUnk_06;
+    gRecordVS->mRecordVSSTable[24].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[25].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[26].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[subBase + 5].mOffsetX = offset;
     if (gRecordVS->mStateFrames >= 10) {
         RequestRecordVSState10();
     }
 }
 
 void AdvanceRecordVSState10(void) {
-    s16 v;
+    s16 offset;
     s32 i;
-    u16 x;
+    u16 subBase;
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
-    v = InterpolateS16(1, 0, 0x100, gRecordVS->mStateFrames, 10);
-    x = gRecordVS->mRecordVSSBncl->mUnk_06;
-    gRecordVS->mRecordVSSTable[20].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[21].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[24].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[25].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[26].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[x + 5].mOffsetX = v;
+    offset = InterpolateS16(1, 0, 0x100, gRecordVS->mStateFrames, 10);
+    subBase = gRecordVS->mRecordVSSBncl->mUnk_06;
+    gRecordVS->mRecordVSSTable[20].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[21].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[24].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[25].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[26].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[subBase + 5].mOffsetX = offset;
     for (i = 0; i < 5; i++) {
-        gRecordVS->mRecordVSSTable[data_0215c3e0[i]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c3ec[i]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c3f8[i]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c404[i]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[x + data_0215c3bc[i]].mOffsetX = v;
+        gRecordVS->mRecordVSSTable[gRecordVSUnhighlightedObjectIndices[i]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSHighlightObjectIndices[i]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSUnflaggedObjectIndices[i]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSFlaggedObjectIndices[i]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[subBase + gRecordVSRowLabelIndices[i]].mOffsetX = offset;
     }
     if (gRecordVS->mStateFrames >= 10) {
         RequestRecordScreen(gRecordVS->mUnk_90);
@@ -528,25 +530,25 @@ void AdvanceRecordVSState10(void) {
 }
 
 void AdvanceRecordVSState11(void) {
-    s16 v;
+    s16 offset;
     s32 i;
-    u16 x;
+    u16 subBase;
     AdvanceRecordVSOffsetTimers();
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
-    v = InterpolateS16(1, 0x100, 0, gRecordVS->mStateFrames, 10);
-    x = gRecordVS->mRecordVSSBncl->mUnk_06;
-    gRecordVS->mRecordVSSTable[20].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[21].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[24].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[25].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[26].mOffsetX = v;
-    gRecordVS->mRecordVSSTable[x + 5].mOffsetX = v;
+    offset = InterpolateS16(1, 0x100, 0, gRecordVS->mStateFrames, 10);
+    subBase = gRecordVS->mRecordVSSBncl->mUnk_06;
+    gRecordVS->mRecordVSSTable[20].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[21].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[24].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[25].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[26].mOffsetX = offset;
+    gRecordVS->mRecordVSSTable[subBase + 5].mOffsetX = offset;
     for (i = 0; i < 5; i++) {
-        gRecordVS->mRecordVSSTable[data_0215c3e0[i]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c3ec[i]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c3f8[i]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[data_0215c404[i]].mOffsetX = v;
-        gRecordVS->mRecordVSSTable[x + data_0215c3bc[i]].mOffsetX = v;
+        gRecordVS->mRecordVSSTable[gRecordVSUnhighlightedObjectIndices[i]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSHighlightObjectIndices[i]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSUnflaggedObjectIndices[i]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[gRecordVSFlaggedObjectIndices[i]].mOffsetX = offset;
+        gRecordVS->mRecordVSSTable[subBase + gRecordVSRowLabelIndices[i]].mOffsetX = offset;
     }
     if (gRecordVS->mStateFrames >= 10) {
         RequestRecordVSState4();
@@ -558,7 +560,7 @@ void AdvanceRecordVSState11(void) {
 }
 
 void AdvanceRecordVS(void) {
-    RecordVS *p;
+    RecordVS *recordVS;
     gRecordVS->mState = gRecordVS->mNextState;
     switch (gRecordVS->mState) {
         case 0:
@@ -599,19 +601,20 @@ void AdvanceRecordVS(void) {
             break;
     }
     AdvanceRecordVSRowObjects();
-    p = gRecordVS;
-    switch (p->mShowsFriendKey) {
+    recordVS = gRecordVS;
+    switch (recordVS->mShowsFriendKey) {
         case 0:
-            DrawLayoutTable(p->mRecordVSMBncl, p->mRecordVSMNcer, p->mRecordVSMBnll, GetRecordMainOam(),
-                            p->mRecordVSMTable);
+            DrawLayoutTable(recordVS->mRecordVSMBncl, recordVS->mRecordVSMNcer, recordVS->mRecordVSMBnll,
+                            GetRecordMainOam(), recordVS->mRecordVSMTable);
             break;
         case 1:
-            DrawLayoutTable(p->mRecordVSMTransientBncl, p->mRecordVSMNcer, p->mRecordVSMTransientBnll,
-                            GetRecordMainOam(), p->mRecordVSMTransientTable);
+            DrawLayoutTable(recordVS->mRecordVSMTransientBncl, recordVS->mRecordVSMNcer,
+                            recordVS->mRecordVSMTransientBnll, GetRecordMainOam(), recordVS->mRecordVSMTransientTable);
             break;
     }
-    p = gRecordVS;
-    DrawLayoutTable(p->mRecordVSSBncl, p->mRecordVSSNcer, p->mRecordVSSBnll, GetRecordSubOam(), p->mRecordVSSTable);
+    recordVS = gRecordVS;
+    DrawLayoutTable(recordVS->mRecordVSSBncl, recordVS->mRecordVSSNcer, recordVS->mRecordVSSBnll, GetRecordSubOam(),
+                    recordVS->mRecordVSSTable);
 }
 
 #pragma thumb off
@@ -629,20 +632,20 @@ void WriteRecordVSBgOffsets(void) {
 #pragma thumb on
 
 void WriteRecordVSRegisters(void) {
-    u32 v;
+    u32 planeBits;
     if (GetRecordPrevScene() == 12) {
         reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x1b00;
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | 0x1600;
     } else {
-        v = (reg_GX_DISPCNT & 0x1f00) >> 8;
-        reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | ((v | 0x13) << 8);
+        planeBits = (reg_GX_DISPCNT & 0x1f00) >> 8;
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | ((planeBits | 0x13) << 8);
     }
 }
 
 void RegisterRecordVSCallbacks(void) {
-    RecordScreenCallbacks v = {InitRecordVS, ReleaseRecordVS, AdvanceRecordVS, WriteRecordVSBgOffsets,
-                               WriteRecordVSRegisters};
-    SetRecordScreenCallbacks(&v);
+    RecordScreenCallbacks callbacks = {InitRecordVS, ReleaseRecordVS, AdvanceRecordVS, WriteRecordVSBgOffsets,
+                                       WriteRecordVSRegisters};
+    SetRecordScreenCallbacks(&callbacks);
 }
 
 void func_02111a98(void) {
@@ -657,111 +660,111 @@ void func_02111a98(void) {
 #pragma thumb on
 
 void LoadRecordSceneData(void) {
-    void *v1;
-    Unk02111684_v v2;
-    v2.mNcgr = NULL;
-    v1 = FindSceneFile(gRecordTopMenuMBNcgrName);
-    LoadNcgrData(&v2.mNcgr, v1);
-    v1 = FindSceneFile(gRecordTopMenuMBNclrName);
-    LoadNclrData(&v2.mNclr, v1);
-    v1 = FindSceneFile(gRecordTopMenuMNscrName);
-    LoadNscrData(&v2.mNscr, v1);
-    v1 = FindSceneFile(gRecordTopMenuMNcgrName);
-    LoadNcgrData2(&v2.mNcgr, v1);
-    v1 = FindSceneFile(gRecordTopMenuMNcerName);
-    LoadNcerData(&v2.mNcer, v1);
-    v1 = FindSceneFile(gRecordTopMenuMONclrName);
-    LoadNclrData(&v2.mNclr, v1);
-    v1 = FindSceneFile(gRecordTopMenuSNcgrName);
-    LoadNcgrData2(&v2.mNcgr, v1);
-    v1 = FindSceneFile(gRecordTopMenuSNcerName);
-    LoadNcerData(&v2.mNcer, v1);
-    v1 = FindSceneFile(gRecordTopMenuSONclrName);
-    LoadNclrData(&v2.mNclr, v1);
-    v1 = FindSceneFile(gRecordGpxMNcgrName);
-    LoadNcgrData(&v2.mNcgr, v1);
-    v1 = FindSceneFile(gRecordGpxMNcerName);
-    LoadNcerData(&v2.mNcer, v1);
-    v1 = FindSceneFile(gRecordGpxMONclrName);
-    LoadNclrData(&v2.mNclr, v1);
-    v1 = FindSceneFile(gRecordGpxMBNcgrName);
-    LoadNcgrData2(&v2.mNcgr, v1);
-    v1 = FindSceneFile(gRecordGpxMBNclrName);
-    LoadNclrData(&v2.mNclr, v1);
-    v1 = FindSceneFile(gRecordGpxMNscrName);
-    LoadNscrData(&v2.mNscr, v1);
-    v1 = FindSceneFile(gRecordGpxSNcgrName);
-    LoadNcgrData(&v2.mNcgr, v1);
-    v1 = FindSceneFile(gRecordGpxSNcerName);
-    LoadNcerData(&v2.mNcer, v1);
-    v1 = FindSceneFile(gRecordGpxSONclrName);
-    LoadNclrData(&v2.mNclr, v1);
-    v1 = FindSceneFile(gRecordGpxSBNcgrName);
-    LoadNcgrData2(&v2.mNcgr, v1);
-    v1 = FindSceneFile(gRecordGpxSBNclrName);
-    LoadNclrData(&v2.mNclr, v1);
-    v1 = FindSceneFile(gRecordGpxSNscrName);
-    LoadNscrData(&v2.mNscr, v1);
-    v1 = FindSceneFile(gRecordTrophyONcgrName);
-    LoadNcgrData(&v2.mNcgr, v1);
-    v1 = FindSceneFile(gRecordTrophyONcerName);
-    LoadNcerData(&v2.mNcer, v1);
-    v1 = FindSceneFile(gRecordTrophySONclrName);
-    LoadNclrData(&v2.mNclr, v1);
-    v1 = FindSceneFile(gRecordTAttMNcgrName);
-    LoadNcgrData(&v2.mNcgr, v1);
-    v1 = FindSceneFile(gRecordTAttMNcerName);
-    LoadNcerData(&v2.mNcer, v1);
-    v1 = FindSceneFile(gRecordTAttMONclrName);
-    LoadNclrData(&v2.mNclr, v1);
-    v1 = FindSceneFile(gRecordTAttMBNcgrName);
-    LoadNcgrData2(&v2.mNcgr, v1);
-    v1 = FindSceneFile(gRecordTAttMNscrName);
-    LoadNscrData(&v2.mNscr, v1);
-    v1 = FindSceneFile(gRecordTAttMScoreNscrName);
-    LoadNscrData(&v2.mNscr, v1);
-    v1 = FindSceneFile(gRecordTAttMBNclrName);
-    LoadNclrData(&v2.mNclr, v1);
-    v1 = FindSceneFile(gRecordTAttSNcgrName);
-    LoadNcgrData(&v2.mNcgr, v1);
-    v1 = FindSceneFile(gRecordTAttSNcerName);
-    LoadNcerData(&v2.mNcer, v1);
-    v1 = FindSceneFile(gRecordTAttSONclrName);
-    LoadNclrData(&v2.mNclr, v1);
-    v1 = FindSceneFile(gRecordTAttSBNcgrName);
-    LoadNcgrData2(&v2.mNcgr, v1);
-    v1 = FindSceneFile(gRecordTAttSBNclrName);
-    LoadNclrData(&v2.mNclr, v1);
-    v1 = FindSceneFile(gRecordTAttSNscrName);
-    LoadNscrData(&v2.mNscr, v1);
-    v1 = FindSceneFile(gRecordVSMNcgrName);
-    LoadNcgrData(&v2.mNcgr, v1);
-    v1 = FindSceneFile(gRecordVSMNcerName);
-    LoadNcerData(&v2.mNcer, v1);
-    v1 = FindSceneFile(gRecordVSMONclrName);
-    LoadNclrData(&v2.mNclr, v1);
-    v1 = FindSceneFile(gRecordVSMBNcgrName);
-    LoadNcgrData2(&v2.mNcgr, v1);
-    v1 = FindSceneFile(gRecordVSMNscrName);
-    LoadNscrData(&v2.mNscr, v1);
-    v1 = FindSceneFile(gRecordVSM02NscrName);
-    LoadNscrData(&v2.mNscr, v1);
-    v1 = FindSceneFile(gRecordVSMBNclrName);
-    LoadNclrData(&v2.mNclr, v1);
-    v1 = FindSceneFile(gRecordVSSNcgrName);
-    LoadNcgrData(&v2.mNcgr, v1);
-    v1 = FindSceneFile(gRecordVSSNcerName);
-    LoadNcerData(&v2.mNcer, v1);
-    v1 = FindSceneFile(gRecordVSSONclrName);
-    LoadNclrData(&v2.mNclr, v1);
-    v1 = FindSceneFile(gRecordVSM03NscrName);
-    LoadNscrData(&v2.mNscr, v1);
-    v1 = FindSceneFile(gRecordVSSBNcgrName);
-    LoadNcgrData2(&v2.mNcgr, v1);
-    v1 = FindSceneFile(gRecordVSSEraseNscrName);
-    LoadNscrData(&v2.mNscr, v1);
-    v1 = FindSceneFile(gRecordVSSBNclrName);
-    LoadNclrData(&v2.mNclr, v1);
+    void *file;
+    LoadedPartPointer loadedPart;
+    loadedPart.mNcgr = NULL;
+    file = FindSceneFile(gRecordTopMenuMBNcgrName);
+    LoadNcgrData(&loadedPart.mNcgr, file);
+    file = FindSceneFile(gRecordTopMenuMBNclrName);
+    LoadNclrData(&loadedPart.mNclr, file);
+    file = FindSceneFile(gRecordTopMenuMNscrName);
+    LoadNscrData(&loadedPart.mNscr, file);
+    file = FindSceneFile(gRecordTopMenuMNcgrName);
+    LoadNcgrData2(&loadedPart.mNcgr, file);
+    file = FindSceneFile(gRecordTopMenuMNcerName);
+    LoadNcerData(&loadedPart.mNcer, file);
+    file = FindSceneFile(gRecordTopMenuMONclrName);
+    LoadNclrData(&loadedPart.mNclr, file);
+    file = FindSceneFile(gRecordTopMenuSNcgrName);
+    LoadNcgrData2(&loadedPart.mNcgr, file);
+    file = FindSceneFile(gRecordTopMenuSNcerName);
+    LoadNcerData(&loadedPart.mNcer, file);
+    file = FindSceneFile(gRecordTopMenuSONclrName);
+    LoadNclrData(&loadedPart.mNclr, file);
+    file = FindSceneFile(gRecordGpxMNcgrName);
+    LoadNcgrData(&loadedPart.mNcgr, file);
+    file = FindSceneFile(gRecordGpxMNcerName);
+    LoadNcerData(&loadedPart.mNcer, file);
+    file = FindSceneFile(gRecordGpxMONclrName);
+    LoadNclrData(&loadedPart.mNclr, file);
+    file = FindSceneFile(gRecordGpxMBNcgrName);
+    LoadNcgrData2(&loadedPart.mNcgr, file);
+    file = FindSceneFile(gRecordGpxMBNclrName);
+    LoadNclrData(&loadedPart.mNclr, file);
+    file = FindSceneFile(gRecordGpxMNscrName);
+    LoadNscrData(&loadedPart.mNscr, file);
+    file = FindSceneFile(gRecordGpxSNcgrName);
+    LoadNcgrData(&loadedPart.mNcgr, file);
+    file = FindSceneFile(gRecordGpxSNcerName);
+    LoadNcerData(&loadedPart.mNcer, file);
+    file = FindSceneFile(gRecordGpxSONclrName);
+    LoadNclrData(&loadedPart.mNclr, file);
+    file = FindSceneFile(gRecordGpxSBNcgrName);
+    LoadNcgrData2(&loadedPart.mNcgr, file);
+    file = FindSceneFile(gRecordGpxSBNclrName);
+    LoadNclrData(&loadedPart.mNclr, file);
+    file = FindSceneFile(gRecordGpxSNscrName);
+    LoadNscrData(&loadedPart.mNscr, file);
+    file = FindSceneFile(gRecordTrophyONcgrName);
+    LoadNcgrData(&loadedPart.mNcgr, file);
+    file = FindSceneFile(gRecordTrophyONcerName);
+    LoadNcerData(&loadedPart.mNcer, file);
+    file = FindSceneFile(gRecordTrophySONclrName);
+    LoadNclrData(&loadedPart.mNclr, file);
+    file = FindSceneFile(gRecordTAttMNcgrName);
+    LoadNcgrData(&loadedPart.mNcgr, file);
+    file = FindSceneFile(gRecordTAttMNcerName);
+    LoadNcerData(&loadedPart.mNcer, file);
+    file = FindSceneFile(gRecordTAttMONclrName);
+    LoadNclrData(&loadedPart.mNclr, file);
+    file = FindSceneFile(gRecordTAttMBNcgrName);
+    LoadNcgrData2(&loadedPart.mNcgr, file);
+    file = FindSceneFile(gRecordTAttMNscrName);
+    LoadNscrData(&loadedPart.mNscr, file);
+    file = FindSceneFile(gRecordTAttMScoreNscrName);
+    LoadNscrData(&loadedPart.mNscr, file);
+    file = FindSceneFile(gRecordTAttMBNclrName);
+    LoadNclrData(&loadedPart.mNclr, file);
+    file = FindSceneFile(gRecordTAttSNcgrName);
+    LoadNcgrData(&loadedPart.mNcgr, file);
+    file = FindSceneFile(gRecordTAttSNcerName);
+    LoadNcerData(&loadedPart.mNcer, file);
+    file = FindSceneFile(gRecordTAttSONclrName);
+    LoadNclrData(&loadedPart.mNclr, file);
+    file = FindSceneFile(gRecordTAttSBNcgrName);
+    LoadNcgrData2(&loadedPart.mNcgr, file);
+    file = FindSceneFile(gRecordTAttSBNclrName);
+    LoadNclrData(&loadedPart.mNclr, file);
+    file = FindSceneFile(gRecordTAttSNscrName);
+    LoadNscrData(&loadedPart.mNscr, file);
+    file = FindSceneFile(gRecordVSMNcgrName);
+    LoadNcgrData(&loadedPart.mNcgr, file);
+    file = FindSceneFile(gRecordVSMNcerName);
+    LoadNcerData(&loadedPart.mNcer, file);
+    file = FindSceneFile(gRecordVSMONclrName);
+    LoadNclrData(&loadedPart.mNclr, file);
+    file = FindSceneFile(gRecordVSMBNcgrName);
+    LoadNcgrData2(&loadedPart.mNcgr, file);
+    file = FindSceneFile(gRecordVSMNscrName);
+    LoadNscrData(&loadedPart.mNscr, file);
+    file = FindSceneFile(gRecordVSM02NscrName);
+    LoadNscrData(&loadedPart.mNscr, file);
+    file = FindSceneFile(gRecordVSMBNclrName);
+    LoadNclrData(&loadedPart.mNclr, file);
+    file = FindSceneFile(gRecordVSSNcgrName);
+    LoadNcgrData(&loadedPart.mNcgr, file);
+    file = FindSceneFile(gRecordVSSNcerName);
+    LoadNcerData(&loadedPart.mNcer, file);
+    file = FindSceneFile(gRecordVSSONclrName);
+    LoadNclrData(&loadedPart.mNclr, file);
+    file = FindSceneFile(gRecordVSM03NscrName);
+    LoadNscrData(&loadedPart.mNscr, file);
+    file = FindSceneFile(gRecordVSSBNcgrName);
+    LoadNcgrData2(&loadedPart.mNcgr, file);
+    file = FindSceneFile(gRecordVSSEraseNscrName);
+    LoadNscrData(&loadedPart.mNscr, file);
+    file = FindSceneFile(gRecordVSSBNclrName);
+    LoadNclrData(&loadedPart.mNclr, file);
     LoadKartIconData();
     LoadCupMarkData();
 }
@@ -770,14 +773,14 @@ void LoadRecordSceneData(void) {
 
 #pragma thumb on
 
-void InitRecordSceneObject(void *a, s16 b) {
+void InitRecordSceneObject(void *heap, s16 previousScene) {
     Unk02125de0Arg v;
-    gRecordScene = HeapAlloc(a, 0x34);
-    gRecordScene->mHeap = a;
+    gRecordScene = HeapAlloc(heap, 0x34);
+    gRecordScene->mHeap = heap;
     gRecordScene->mPageIndex = 0;
     gRecordScene->mIndex = 0;
-    func_021250b0(a);
-    func_0212abdc(a, GetRecordMainOam());
+    func_021250b0(heap);
+    func_0212abdc(heap, GetRecordMainOam());
     v.mUnk_00 = TRUE;
     v.mUnk_04 = func_020b403c(1);
     v.mUnk_08 = 0;
@@ -788,13 +791,13 @@ void InitRecordSceneObject(void *a, s16 b) {
     v.mUnk_20 = TRUE;
     v.mUnk_24 = 0;
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
-    func_02125de0(a, &v);
+    func_02125de0(heap, &v);
     CreateRecordList(gRecordScene->mHeap);
     BuildRecordList();
     gRecordScene->mStateHeap = CreateExpHeapFromMaxFree(gRecordScene->mHeap);
     LoadRecordSceneData();
     func_02111a98();
-    gRecordScene->mPrevScene = b;
+    gRecordScene->mPrevScene = previousScene;
     gRecordScene->mNextScene = -1;
     gRecordScene->mNextScreen = -1;
     gRecordScene->mRegistersTimer = 2;
@@ -878,17 +881,17 @@ void WriteRecordSceneRegisters(void) {
 
 #pragma thumb on
 
-void SetRecordScreenCallbacks(const void *a) {
-    gRecordScene->mScreenCallbacks = *(const RecordScreenCallbacks *) a;
+void SetRecordScreenCallbacks(const void *callbacks) {
+    gRecordScene->mScreenCallbacks = *(const RecordScreenCallbacks *) callbacks;
 }
 
 #pragma thumb off
 
 #pragma thumb on
-void RequestRecordScreen(s32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    gRecordScene->mNextScreen = value0;
+void RequestRecordScreen(s32 screen) {
+    u32 screenCopy = screen;
+    u32 unused;
+    gRecordScene->mNextScreen = screenCopy;
 }
 #pragma thumb off
 
@@ -906,8 +909,8 @@ u32 GetRecordNextScene(void) {
     return (gRecordScene->mNextScene);
 }
 
-void SetRecordNextScene(u32 p0) {
-    gRecordScene->mNextScene = (u16) p0;
+void SetRecordNextScene(u32 scene) {
+    gRecordScene->mNextScene = (u16) scene;
 }
 
 #pragma thumb off
@@ -929,11 +932,11 @@ void AdvanceRecordSceneRegistersTimer(void) {
 #pragma thumb on
 u32 GetRecordScenePageIndex(void) {
     u32 value0;
-    u32 value1;
+    u32 recordScene;
     value0 = (u32) &gRecordScene;
-    value1 = *(const u32 *) ((value0) + 0u);
+    recordScene = *(const u32 *) ((value0) + 0u);
     value0 = 48u;
-    value0 = *(const s16 *) ((value1) + (value0));
+    value0 = *(const s16 *) ((recordScene) + (value0));
     return value0;
 }
 #pragma thumb off
@@ -941,27 +944,27 @@ u32 GetRecordScenePageIndex(void) {
 #pragma thumb on
 u32 GetRecordSceneIndex(void) {
     u32 value0;
-    u32 value1;
+    u32 recordScene;
     value0 = (u32) &gRecordScene;
-    value1 = *(const u32 *) ((value0) + 0u);
+    recordScene = *(const u32 *) ((value0) + 0u);
     value0 = 50u;
-    value0 = *(const s16 *) ((value1) + (value0));
+    value0 = *(const s16 *) ((recordScene) + (value0));
     return value0;
 }
 #pragma thumb off
 
 #pragma thumb on
-void SetRecordScenePageIndex(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    gRecordScene->mPageIndex = (u16) value0;
+void SetRecordScenePageIndex(u32 pageIndex) {
+    u32 pageIndexCopy = pageIndex;
+    u32 unused;
+    gRecordScene->mPageIndex = (u16) pageIndexCopy;
 }
 #pragma thumb off
 
 #pragma thumb on
-void SetRecordSceneIndex(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    gRecordScene->mIndex = (u16) value0;
+void SetRecordSceneIndex(u32 index) {
+    u32 indexCopy = index;
+    u32 unused;
+    gRecordScene->mIndex = (u16) indexCopy;
 }
 #pragma thumb off

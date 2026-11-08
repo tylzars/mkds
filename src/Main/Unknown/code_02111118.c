@@ -50,8 +50,8 @@ u32 func_0211127c(void) {
 }
 
 void CreateSeqRowHeap(void *heapMemory, u32 heapSize) {
-    data_0217d32c.mUnk_04 = NNS_SndHeapCreate(heapMemory, heapSize);
-    data_0217d32c.mUnk_08 = NULL;
+    data_0217d32c.mSeqHeap = NNS_SndHeapCreate(heapMemory, heapSize);
+    data_0217d32c.mSeqRow = NULL;
 }
 
 // Loads the sequences of the row for index a unless that row is already loaded; returns 0 if a load fails.
@@ -67,11 +67,11 @@ u32 LoadSeqRowIfChanged(s32 index) {
     } else {
         row = data_0216cbd8[index];
     }
-    if (state->mUnk_08 == row) {
+    if (state->mSeqRow == row) {
         return 1;
     }
-    data_0217d130 = data_0217d32c.mUnk_04;
-    NNS_SndHeapClear(state->mUnk_04);
+    data_0217d130 = data_0217d32c.mSeqHeap;
+    NNS_SndHeapClear(state->mSeqHeap);
     for (i = 0; i < 6; i++) {
         if (row[i] != 0xff) {
             if (NNS_SndArcLoadSeq(row[i], data_0217d130) == 0) {
@@ -80,8 +80,8 @@ u32 LoadSeqRowIfChanged(s32 index) {
             }
         }
     }
-    state->mUnk_00 = index;
-    state->mUnk_08 = row;
+    state->mLoadedIndex = index;
+    state->mSeqRow = row;
     data_0217d130 = savedHeap;
     return 1;
 }
