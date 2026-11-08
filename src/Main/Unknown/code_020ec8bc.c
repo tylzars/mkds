@@ -115,7 +115,7 @@ void InitLinkFollowingItemFromInUse(LinkFollowingItemObject *follower, ItemInUse
                                     s32 rampWeightPerCount, s32 throwForward, s32 d, s32 endsOnFirstHit, s32 baseSpeed,
                                     u16 targetKartIndex, s32 h) {
     InitItemObjectThrow(follower, inUse, (endsOnFirstHit == 0) ? -1 : 0, throwForward, d, baseSpeed);
-    follower->mUnk_214 = rampCount;
+    follower->mRampTimer = rampCount;
     follower->mUnk_218 = rampWeightPerCount;
     follower->mPreviousLink = inUse->mKartItems->mUnk_1f0;
     PickNextItemPointLink(&follower->mPreviousLink, &follower->mTargetLink, targetKartIndex, h);
@@ -214,7 +214,7 @@ void func_020ece1c(LinkFollowingItemObject *follower, s32 targetSpeed, s32 targe
     if ((s64) toLink.x * toLink.x + (s64) toLink.y * toLink.y + (s64) toLink.z * toLink.z >= 0x10) {
         Vec3NormalizeAndGetLengthUnchecked(&toLink, &toLink);
     }
-    s = 0x1000 - follower->mUnk_214 * follower->mUnk_218;
+    s = 0x1000 - follower->mRampTimer * follower->mUnk_218;
     n = (follower->mUnk_224 != 0) ? 0x266 : 0x148;
     func_020eacc0(direction, ((u64) ((s64) n * s)) >> 12, &toLink, &toLink);
     SetItemObjectDirection(follower, &toLink);
@@ -322,11 +322,11 @@ void func_020ec9c0(LinkFollowingItemObject *follower, s32 targetSpeed, s32 speed
 
 void AdvanceLinkFollowingItem(LinkFollowingItemObject *follower, s32 targetSpeed, s32 speedEase, s32 targetKartIndex,
                               s32 d) {
-    if (follower->mUnk_214 >= 0) {
+    if (follower->mRampTimer >= 0) {
         func_020ece1c(follower, targetSpeed, targetKartIndex, d);
-        if (follower->mUnk_214 == 0) {
+        if (follower->mRampTimer == 0) {
             if (func_020ed0f4(follower) != FALSE) {
-                follower->mUnk_214 = -1;
+                follower->mRampTimer = -1;
             }
             return;
         }
@@ -335,7 +335,7 @@ void AdvanceLinkFollowingItem(LinkFollowingItemObject *follower, s32 targetSpeed
                 return;
             }
         }
-        follower->mUnk_214 -= 1;
+        follower->mRampTimer -= 1;
     } else {
         func_020ec9c0(follower, targetSpeed, speedEase, targetKartIndex, d);
     }
@@ -344,7 +344,7 @@ void AdvanceLinkFollowingItem(LinkFollowingItemObject *follower, s32 targetSpeed
 void InitLinkFollowingItem(LinkFollowingItemObject *follower, s32 rampCount, s32 rampWeightPerCount, s32 c,
                            s32 endsOnFirstHit, s32 reverse, u16 targetKartIndex, s32 g) {
     InitItemObjectMotion(follower, (endsOnFirstHit == 0) ? -1 : 0, reverse, c);
-    follower->mUnk_214 = rampCount;
+    follower->mRampTimer = rampCount;
     follower->mUnk_218 = rampWeightPerCount;
     PickNextItemPointLink(&follower->mPreviousLink, &follower->mTargetLink, targetKartIndex, g);
     follower->mUnk_224 = 0;

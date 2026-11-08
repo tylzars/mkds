@@ -9,7 +9,7 @@
 typedef struct ItemGesso {
     /* 000 */ ItemObject mUnk_000;
     /* 12c */ Kart *mKart;
-    /* 130 */ u8 mUnk_130[0x8];
+    /* 130 */ u8 mOrthoQuadCounts[0x8];
     /* 138 */ s32 mStepIndex;
     /* 13c */ Vec3 mViewOffset;
     /* 148 */ s32 mVelocityX;

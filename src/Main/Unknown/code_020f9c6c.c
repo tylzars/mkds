@@ -112,7 +112,7 @@ void ResetItemKouraW(ItemKouraW *item) {
     item->mPosStrip = 0;
     item->mSoundId = 0xdc;
     item->mKartMask = 0;
-    item->mUnk_2e4 = 0;
+    item->mHitSpinsKart = 0;
 }
 
 void func_020fc94c(ItemKouraW *item) {
@@ -668,7 +668,7 @@ void UpdateItemKouraWState7(ItemKouraW *item) {
         return;
     }
     if (stateFrames == 0x16) {
-        item->mUnk_2e4 = 1;
+        item->mHitSpinsKart = 1;
     } else if (stateFrames == 0x2a) {
         FreeItemObjectCollisionSlot((s32) item);
     }

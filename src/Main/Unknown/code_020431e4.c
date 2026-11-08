@@ -33,14 +33,14 @@ u16 func_020435bc(void) {
 }
 
 u32 func_0204359c(void) {
-    return (data_02175624->mFlags & 1) != 0;
+    return (data_02175624->mFlags & INPUT_STATE_OPEN_DURING_RACE) != 0;
 }
 
-void func_02043544(u32 a) {
-    if (GetCurrentSceneNumber() == 2 && a != 0) {
-        data_02175624->mFlags |= 2;
+void SetReadRaceKeys(u32 enable) {
+    if (GetCurrentSceneNumber() == 2 && enable != 0) {
+        data_02175624->mFlags |= INPUT_STATE_READ_RACE_KEYS;
     } else {
-        data_02175624->mFlags &= ~2;
+        data_02175624->mFlags &= ~INPUT_STATE_READ_RACE_KEYS;
     }
 }
 

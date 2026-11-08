@@ -6,4 +6,4 @@
 u32 GetKartRank(u32 kartIndex);
 // The time jitters while the clock runs.
 void GetRaceClockTime(u8 *outMinute, u8 *outSecond, u16 *outMillisecond);
-void func_0203c98c(void);
+void StartRaceInput(void);

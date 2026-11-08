@@ -390,7 +390,7 @@ void func_0206d18c(Kart *p) {
             StartKartStar(p);
             break;
         case 5:
-            if (((ItemKouraW *) e)->mUnk_2e4 != 0) {
+            if (((ItemKouraW *) e)->mHitSpinsKart != 0) {
                 r = TrySpinKart(p, 2, r);
             } else {
                 r = TryStartKartState6(p);

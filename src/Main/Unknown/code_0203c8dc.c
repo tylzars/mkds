@@ -5,9 +5,9 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/unk_02175628.h"
 
-void func_0203c98c(void) {
+void StartRaceInput(void) {
     u32 entryIndex;
-    func_02043544(1);
+    SetReadRaceKeys(1);
     for (entryIndex = 0; entryIndex < gRaceSetup->mKartCount; entryIndex = (u16) (entryIndex + 1)) {
         InputSlot *inputSlot = &data_02175628[gRaceSetup->mCurrentEntries[entryIndex].mPlayer.mIndex];
         if (inputSlot->mSourceKind != 1) {

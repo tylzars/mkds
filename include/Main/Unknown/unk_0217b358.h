@@ -4,7 +4,7 @@
 
 // Start sequence of the race, one record behind gRaceStartSequence (0xc bytes, allocated by InitRaceStartSequence, set
 // NULL by ClearRaceStartSequencePointer in the release slot). mSequenceFrames starts at -0x78 (func_020b36a4), counts
-// once mCounting is set, calls func_0203c98c at -1 and at 180 starts the race (StartRaceSounds, StartRace, mDone); the
+// once mCounting is set, calls StartRaceInput at -1 and at 180 starts the race (StartRaceSounds, StartRace, mDone); the
 // sounds at 0, 60, 120 (0x27) and 175 (0x28) are played by func_020b3410 from the HUD draw. The counter never stops (it
 // keeps counting up to INT_MAX), and karts, map objects and HUD read it through GetRaceStartSequenceFrames as the
 // frames since the countdown began.

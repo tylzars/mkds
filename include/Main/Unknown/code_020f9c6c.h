@@ -78,7 +78,7 @@ typedef struct ItemKouraW {
     /* 2a4 */ Vec3 mUnk_2a4;
     /* 2b0 */ struct ModelEffect *mModelEffect;
     /* 2b4 */ u8 mUnk_2b4[0x30];
-    /* 2e4 */ s32 mUnk_2e4;
+    /* 2e4 */ s32 mHitSpinsKart;
     /* 2e8 */ u8 mUnk_2e8[4];
     /* 2ec */ u32 mStateFrames;
     /* 2f0 */ u8 mUnk_2f0[6];

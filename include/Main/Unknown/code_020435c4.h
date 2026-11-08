@@ -10,7 +10,7 @@
 typedef struct MissionFileRow MissionFileRow;
 
 u32 func_020435c4(void);
-void func_020435d4(u32 openDuringRace);
+void SetInputOpenDuringRace(u32 openDuringRace);
 void RequestBits(s32 slotIndex, u32 bits);
 void func_02043648(void);
 unsigned int GetPadKeys(void);

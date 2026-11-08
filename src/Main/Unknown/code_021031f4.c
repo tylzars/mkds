@@ -711,7 +711,7 @@ void func_021031f4(ItemGesso *gesso) {
             raceProgress = gRaceProgress;
             random = &raceProgress->mLocalRandom;
             random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
-            gesso->mUnk_130[i] = (u16) (((random->mValue >> 32) * 4) >> 32) + 1;
+            gesso->mOrthoQuadCounts[i] = (u16) (((random->mValue >> 32) * 4) >> 32) + 1;
         }
     } else {
         rank = 1;
@@ -721,12 +721,12 @@ void func_021031f4(ItemGesso *gesso) {
             kart = GetKart(kartIndex);
             if ((kart->mUnk_7c & 0x402020) == 0 && (kart->mUnk_4c & 0x10000840) == 0 &&
                 (kart->mUnk_48 & 0x10000) == 0) {
-                gesso->mUnk_130[kartIndex] = 4 - ((rank - 1) >> 1);
+                gesso->mOrthoQuadCounts[kartIndex] = 4 - ((rank - 1) >> 1);
             }
             rank++;
         } while (rank < ownerRank);
     }
-    if (entryIndex < 0 || gesso->mUnk_130[entryIndex] == 0) {
+    if (entryIndex < 0 || gesso->mOrthoQuadCounts[entryIndex] == 0) {
         gesso->mVisible = FALSE;
         return;
     }

@@ -135,9 +135,9 @@ void UpdateRaceScene(Unk0203a0dc *sceneNumbers, u32 sceneFrames) {
                 break;
         }
         if (func_020b2ec0() != 0) {
-            func_020435d4(1);
+            SetInputOpenDuringRace(1);
         } else {
-            func_020435d4(0);
+            SetInputOpenDuringRace(0);
         }
     }
     raceSetup = gRaceSetup;

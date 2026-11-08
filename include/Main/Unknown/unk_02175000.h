@@ -164,6 +164,10 @@ typedef struct DisplaySettings {
 // Objects whose layout isn't known yet.
 extern DisplaySettings *gDisplaySettings;
 extern InputSlot data_021755dc;
+// Set from the start of a race; recording and playback slots read keys only while set.
+#define INPUT_STATE_READ_RACE_KEYS 2
+// Set while the pause menu is open during a race; the input slots stop updating.
+#define INPUT_STATE_OPEN_DURING_RACE 1
 typedef struct InputState {
     /* 00 */ u8 mUnk_00[2];
     /* 02 */ u16 mPadKeys;

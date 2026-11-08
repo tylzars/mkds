@@ -354,9 +354,9 @@ void func_02043648(void) {
         slotKeys = 0;
         n = 0xffff;
         o = slotKeys;
-        f = (data_02175624->mFlags & 1) ? 1 : 0;
+        f = (data_02175624->mFlags & INPUT_STATE_OPEN_DURING_RACE) ? 1 : 0;
         skipUpdate = FALSE;
-        c = (GetCurrentSceneNumber() != 2 || (data_02175624->mFlags & 2)) ? 1 : 0;
+        c = (GetCurrentSceneNumber() != 2 || (data_02175624->mFlags & INPUT_STATE_READ_RACE_KEYS)) ? 1 : 0;
         inputSlot = &data_02175628[slotIndex];
         flags = data_02175624->mFlags;
         if (!(flags & 8)) {
@@ -461,12 +461,12 @@ void RequestBits(s32 slotIndex, u32 bits) {
     }
 }
 
-void func_020435d4(u32 openDuringRace) {
+void SetInputOpenDuringRace(u32 openDuringRace) {
     if (openDuringRace != 0) {
-        data_02175624->mFlags |= 1;
+        data_02175624->mFlags |= INPUT_STATE_OPEN_DURING_RACE;
         return;
     }
-    data_02175624->mFlags &= ~1;
+    data_02175624->mFlags &= ~INPUT_STATE_OPEN_DURING_RACE;
 }
 
 u32 func_020435c4(void) {

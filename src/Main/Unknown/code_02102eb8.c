@@ -24,7 +24,7 @@ void ResetItemGesso(ItemGesso *gesso) {
 
     gesso->mKart = NULL;
     for (i = 0; i < 8; i++) {
-        gesso->mUnk_130[i] = 0;
+        gesso->mOrthoQuadCounts[i] = 0;
     }
     gesso->mStepIndex = -1;
     gesso->mUnk_000.mAlpha = 0x1f;

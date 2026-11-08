@@ -47,7 +47,7 @@ void AdvanceItemGesso(ItemGesso *p) {
     if (ageFrames == 0x8f) {
         kartCount = gRaceSetup->mKartCount;
         for (i = 0; i < kartCount; i++) {
-            if (p->mUnk_130[i] == 0) {
+            if (p->mOrthoQuadCounts[i] == 0) {
                 continue;
             }
             kartAtIndex = GetKart(i);
@@ -60,7 +60,7 @@ void AdvanceItemGesso(ItemGesso *p) {
             if (kartAtIndex->mUnk_48 & 0x10000) {
                 continue;
             }
-            func_0206924c(kartAtIndex, p->mUnk_130[i]);
+            func_0206924c(kartAtIndex, p->mOrthoQuadCounts[i]);
             func_020f8e3c((u32) kartAtIndex, 0xf0);
         }
     }

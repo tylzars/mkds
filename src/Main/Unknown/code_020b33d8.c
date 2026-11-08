@@ -57,7 +57,7 @@ void UpdateRaceStartSequence(void) {
         if (frames < 200) {
             sequence->mSequenceFrames = frames + 1;
             if (frames == -1) {
-                func_0203c98c();
+                StartRaceInput();
                 return;
             }
             if (frames != 180) {

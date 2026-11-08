@@ -12,7 +12,7 @@ typedef struct LinkFollowingItemObject {
     /* 000 */ DirectedItemObject mUnk_000;
     /* 168 */ ItemPointLinkRef mTargetLink;
     /* 170 */ SegmentPoints mSegmentPoints;
-    /* 214 */ s32 mUnk_214;
+    /* 214 */ s32 mRampTimer;
     /* 218 */ s32 mUnk_218;
     /* 21c */ ItemPointLinkRef mPreviousLink;
     /* 224 */ s32 mUnk_224;

@@ -492,7 +492,7 @@ void func_0203d568(void) {
     u16 entryIndex;
     enum { K0 } inputSlotIndex;
 
-    func_02043544(0);
+    SetReadRaceKeys(0);
     if (func_0203d568_c_inline() != 0) {
         func_02057d9c();
         if (gBackupAccess->mBackupEnabled != 0) {
