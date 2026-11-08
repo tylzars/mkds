@@ -18,8 +18,8 @@ typedef struct LldData {
     /* 02 */ LldRecord mRecords[1];
 } LldData;
 
-// Group of 0x20 bytes at Unk0218516c.mUnk_000.
-typedef struct Unk0218516c_000 {
+// Group of 0x20 bytes at OamBuffer.mOams.
+typedef struct OamBuffer_000 {
     /* 00 */ u8 mUnk_00[0x6];
     /* 06 */ s16 mUnk_06;
     /* 08 */ u8 mUnk_08[0x6];
@@ -28,7 +28,7 @@ typedef struct Unk0218516c_000 {
     /* 16 */ s16 mUnk_16;
     /* 18 */ u8 mUnk_18[0x6];
     /* 1e */ s16 mUnk_1e;
-} Unk0218516c_000;
+} OamBuffer_000;
 
 void func_ov001_02184f7c(Unk02188950 *mapObject);
 void func_ov001_02184f8c(Unk02188950 *mapObject);
@@ -43,7 +43,7 @@ void func_ov001_02185018(LldEntry *entry, s32 frameOrCommand);
 void func_ov001_021850a4(LldEntry *entry, s32 (*callback)(LldEntry *));
 s32 FindLldEntryAtPoint(Lld *lld, s32 startIndex, s32 pointX, s32 pointY);
 LldEntry *GetLldEntry(Lld *lld, s32 index);
-void AdvanceLld(Lld *lld, Unk0218516c *oamBuffer);
+void AdvanceLld(Lld *lld, OamBuffer *oamBuffer);
 Lld *CreateLld(const char *fileName, void *cells, void *cellAnims);
 
 #include "01/code_021a6430.h"

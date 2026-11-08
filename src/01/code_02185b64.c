@@ -7,6 +7,7 @@
 #include "01/unk_021a6000.h"
 #include "Main/Unknown/code_02084000.h"
 #include "Main/Unknown/code_0209b000.h"
+#include "Main/Unknown/code_0206bcb0.h"
 #include "code_02146d78.h"
 #include "Main/Unknown/code_02042044.h"
 #include "Main/Unknown/unk_021759c0.h"
@@ -56,12 +57,12 @@ void InitMissionGate(MissionGateObject *missionGateObject) {
     SetMapObjectExtentY(missionGateObject->mPositiveSideObject, sideExtentY);
 }
 
-u32 CollideKartWithMissionGate(MissionGateObject *missionGateObject, Unk02185d74 *kart, u8 *e, u8 *f) {
+u32 CollideKartWithMissionGate(MissionGateObject *missionGateObject, Kart *kart, u8 *e, u8 *f) {
     u32 a = *e;
     u32 b = *f;
 
     if ((kart->mUnk_48 & 0x200) != 0 ||
-        (gRaceSetup->mMode == MODE_MISSION_RUN ? IsKartEliminated(kart->mUnk_74) : 0) != FALSE) {
+        (gRaceSetup->mMode == MODE_MISSION_RUN ? IsKartEliminated(kart->mIndex) : 0) != FALSE) {
         return 0;
     }
     if (a == 1) {

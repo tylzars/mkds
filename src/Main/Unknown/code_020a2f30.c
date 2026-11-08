@@ -22,6 +22,7 @@
 #include "Main/Unknown/unk_0215d000.h"
 #include "code_02146cbc.h"
 #include "code_02147cd8.h"
+#include "code_0201c528.h"
 #include "code_02148538.h"
 #include "ITCM/code_01ff8000.h"
 #include "ITCM/code_01ff9000.h"
@@ -180,7 +181,7 @@ void DrawBalloon(void *p, Balloon *a) {
     }
 }
 
-void func_020a392c(Unk0206c1ac *a, Balloon *b) {
+void func_020a392c(Unk0201ca6c *a, Balloon *b) {
     a->mUnk_72 = func_0208606c(b->mNsbtpFrameIndex);
 }
 

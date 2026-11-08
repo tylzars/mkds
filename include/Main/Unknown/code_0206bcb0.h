@@ -10,6 +10,7 @@
 #include "types.h"
 #include "Main/Unknown/code_02039774.h"
 #include "code_02012b30.h" // MtxFx43
+#include "code_02147cd8.h" // Vec3s16
 #include "code_02148538.h"
 #include "Main/Unknown/code_02039860.h"
 #include "Main/Unknown/unk_02175628.h"
@@ -19,37 +20,9 @@
 #include "Main/Unknown/code_0210b000.h" // SoundDistanceSquaredChange
 #include "Main/Unknown/code_02080b1c.h" // KartKillerCursor
 
-typedef struct UnkVec16 {
-    s16 x;
-    s16 y;
-    s16 z;
-} UnkVec16;
-
 struct KartAi;
 
-typedef struct Unk0206c1ac_B {
-    /* 0 */ u32 mUnk_00;
-    /* 4 */ Vec3 mUnk_04;
-} Unk0206c1ac_B;
-
-typedef struct Unk0206c1ac_A {
-    /* 0 */ Unk0206c1ac_B *mUnk_00;
-} Unk0206c1ac_A;
-
-typedef struct Unk0206c1ac {
-    /* 0 */ u8 mUnk_00[0x20];
-    /* 20 */ Unk0206c1ac_A *mUnk_20;
-    /* 24 */ u8 mUnk_24[4];
-    /* 28 */ Vec3 mUnk_28;
-    /* 34 */ u8 mUnk_34[0xc];
-    /* 40 */ Vec3 mUnk_40;
-    /* 4c */ u8 mUnk_4c[4];
-    /* 50 */ UnkVec16 mUnk_50;
-    /* 56 */ u8 mUnk_56[0x16];
-    /* 6c */ s32 mUnk_6c;
-    /* 70 */ u8 mUnk_70[2];
-    /* 72 */ u16 mUnk_72;
-} Unk0206c1ac;
+typedef struct Unk0201ca6c Unk0201ca6c;
 
 // The 0x98-byte record of one kart slot, copied from a row of kartphysicalparam.bin (50 rows: 37 kart rows, then 13
 // character rows used in mode 2). Edited in place per race: mBaseSpeedLimit by the engine class, the surface tables by
@@ -583,11 +556,11 @@ BOOL func_0206c0e0(Kart *kart);
 void SetupKartAiItemInUseEntry(Kart *kart);
 void SetupKartAiHeldItemEntry(Kart *kart);
 void func_0206c17c(Kart *kart);
-void func_0206c1ac(Unk0206c1ac *emitter, Kart *kart);
-void func_0206c2b4(Unk0206c1ac *emitter, Kart *kart);
+void func_0206c1ac(Unk0201ca6c *emitter, Kart *kart);
+void func_0206c2b4(Unk0201ca6c *emitter, Kart *kart);
 BOOL TryStartKartCollisionEffects(Kart *kart, const Vec3 *overlapDirection, int flag);
-void func_0206c450(Unk0206c1ac *emitter, Kart *kart);
-void func_0206c488(Unk0206c1ac *emitter, Kart *kart);
+void func_0206c450(Unk0201ca6c *emitter, Kart *kart);
+void func_0206c488(Unk0201ca6c *emitter, Kart *kart);
 
 void func_0208b748(u32 idx, const Vec3 *pos, void *p, void (*cb)());
 int TryTurnKartAtLowSpeed(Kart *kart);

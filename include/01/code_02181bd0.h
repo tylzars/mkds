@@ -30,12 +30,6 @@ typedef struct CoinList {
     /* 04 */ u16 mObjectCount;
 } CoinList;
 
-// Object with a flags word at 0x48.
-typedef struct Unk0218274c {
-    /* 00 */ u8 mUnk_00[0x48];
-    /* 48 */ u32 mUnk_48;
-} Unk0218274c;
-
 #include "Main/Unknown/code_0209b000.h"
 #include "01/code_02182000.h"
 #include "01/code_0218155c.h"
@@ -81,7 +75,7 @@ void func_ov001_0218254c(void);
 void InitCoinObjects(CoinList *coinList);
 void DrawCoin(void *b, Coin *coin);
 void LoadCoin(Unk0219b478 *a);
-u8 CollideKartWithCoin(Coin *coin, Unk0218274c *kart, u8 *e, u8 *f);
+u8 CollideKartWithCoin(Coin *coin, Kart *kart, u8 *e, u8 *f);
 void func_ov001_021827a4(void);
 void func_ov001_021827f0(void);
 void func_ov001_021828f0(void);

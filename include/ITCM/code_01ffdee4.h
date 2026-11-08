@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h" // UnkVec16
+#include "code_02147cd8.h" // Vec3s16
 
 // Sixteen bytes; gCourseCollision.mUnk_08 points to an array of these, which func_01ffdee4 indexes by halfwords.
 typedef struct Unk0217b614_08 {
@@ -18,7 +18,7 @@ typedef struct Unk0217b614_08 {
 // shift counts.
 typedef struct CourseCollision {
     /* 00 */ Vec3 *mUnk_00;
-    /* 04 */ UnkVec16 *mUnk_04;
+    /* 04 */ Vec3s16 *mUnk_04;
     /* 08 */ Unk0217b614_08 *mUnk_08;
     /* 0c */ u8 *mUnk_0c;
     /* 10 */ u8 mUnk_10[4];

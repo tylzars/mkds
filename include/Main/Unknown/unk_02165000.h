@@ -131,11 +131,11 @@ typedef struct KartFollowEffectIds {
 extern const KartFollowEffectIds gKartFollowEffectIds;
 
 // Eight halfwords.
-typedef struct Unk0216557c {
+typedef struct KartKillerEndRankOffsets {
     /* 00 */ s16 mUnk_00[8];
-} Unk0216557c;
+} KartKillerEndRankOffsets;
 
-extern const Unk0216557c data_usa_0216557c;
+extern const KartKillerEndRankOffsets data_usa_0216557c;
 extern s32 data_usa_021654dc;
 extern const Vec3 data_usa_02165554;
 // 37 words.

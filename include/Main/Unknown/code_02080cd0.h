@@ -15,7 +15,7 @@ void ResetPointLinkCursor(LinkCursor *p, PointLink *a);
 void InitRacePointLinkCursor(Unk02080d34 *p, u16 kartIndex);
 s32 IsPastBattlePointLink(LinkCursor *p, Vec3 *a);
 s32 IsWithinBattlePointLinkDistance(LinkCursor *p, Vec3 *a);
-void func_02080e88(Unk0206c1ac *p, Kart *q);
+void func_02080e88(Unk0201ca6c *p, Kart *q);
 void func_02080e9c(Kart *p);
 void func_02080ee4(Kart *p);
 void func_02080f44(Kart *p);

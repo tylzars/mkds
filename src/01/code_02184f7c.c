@@ -69,7 +69,7 @@ Lld *CreateLld(const char *fileName, void *cells, void *cellAnims) {
     return list;
 }
 
-void AdvanceLld(Lld *lld, Unk0218516c *oamBuffer) {
+void AdvanceLld(Lld *lld, OamBuffer *oamBuffer) {
     s32 i;
     LldEntry *entry;
     Unk02022030 *cellAnim;
@@ -97,25 +97,25 @@ void AdvanceLld(Lld *lld, Unk0218516c *oamBuffer) {
 
                     mtx[0] = FX_Div(0x1000, entry->mScale);
                     mtx[3] = FX_Div(0x1000, entry->mScale);
-                    ((Unk0218516c_000 *) oamBuffer->mUnk_000)[idx].mUnk_06 = mtx[0] >> 4;
-                    ((Unk0218516c_000 *) oamBuffer->mUnk_000)[idx].mUnk_0e = mtx[1] >> 4;
-                    ((Unk0218516c_000 *) oamBuffer->mUnk_000)[idx].mUnk_16 = mtx[2] >> 4;
-                    ((Unk0218516c_000 *) oamBuffer->mUnk_000)[idx].mUnk_1e = mtx[3] >> 4;
+                    ((OamBuffer_000 *) oamBuffer->mOams)[idx].mUnk_06 = mtx[0] >> 4;
+                    ((OamBuffer_000 *) oamBuffer->mOams)[idx].mUnk_0e = mtx[1] >> 4;
+                    ((OamBuffer_000 *) oamBuffer->mOams)[idx].mUnk_16 = mtx[2] >> 4;
+                    ((OamBuffer_000 *) oamBuffer->mOams)[idx].mUnk_1e = mtx[3] >> 4;
                     mtx[0] = entry->mScale;
                     mtx[3] = entry->mScale;
                     cell = (Unk021a5a58_2c_2c *) entry->mUnk_2c.mUnk_2c;
                     pos_a[0] = screenX << 12;
                     pos_a[1] = screenY << 12;
-                    oamBuffer->mUnk_400 +=
-                        NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000[oamBuffer->mUnk_400 * 8],
-                                              0x80 - oamBuffer->mUnk_400, (Unk020224e0_c *) cell, mtx, pos_a, idx, 1);
+                    oamBuffer->mOamCount +=
+                        NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mOams[oamBuffer->mOamCount * 8],
+                                              0x80 - oamBuffer->mOamCount, (Unk020224e0_c *) cell, mtx, pos_a, idx, 1);
                 } else {
                     cell = (Unk021a5a58_2c_2c *) entry->mUnk_2c.mUnk_2c;
                     pos_b[0] = screenX << 12;
                     pos_b[1] = screenY << 12;
-                    oamBuffer->mUnk_400 +=
-                        NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000[oamBuffer->mUnk_400 * 8],
-                                              0x80 - oamBuffer->mUnk_400, (Unk020224e0_c *) cell, NULL, pos_b, 0, 0);
+                    oamBuffer->mOamCount +=
+                        NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mOams[oamBuffer->mOamCount * 8],
+                                              0x80 - oamBuffer->mOamCount, (Unk020224e0_c *) cell, NULL, pos_b, 0, 0);
                 }
             }
         }

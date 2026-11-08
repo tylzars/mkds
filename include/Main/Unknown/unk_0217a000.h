@@ -25,9 +25,7 @@ typedef enum { SOUND_MODE_SURROUND, SOUND_MODE_STEREO, SOUND_MODE_HEADPHONES } S
 typedef struct BackupFirstBlock {
     /* 00 */ u8 mUnk_00[0xc];
     /* 0c */ u8 mPlayerName[0x14];
-    /* 20 */ u8 mFlags[2];
-    /* 22 */ u8 mUnk_22;
-    /* 23 */ u8 mUnk_23;
+    /* 20 */ u8 mFlags[4];
     /* 24 */ u16 mElo;
     /* 26 */ u8 mCourseGhostBits[0x4];
     /* 2a */ u8 mSlotGhostBits[0x2];

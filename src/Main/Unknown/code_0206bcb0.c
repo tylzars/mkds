@@ -1,6 +1,7 @@
 #include "Main/Unknown/code_0206bcb0.h"
 #include "01/code_0218155c.h"
 #include "code_02147cd8.h"
+#include "code_0201c528.h"
 #include "Main/Unknown/code_02109000.h"
 #include "Main/Unknown/code_02080cd0.h"
 #include "Main/Unknown/code_0208c188.h"
@@ -353,11 +354,11 @@ int TryTurnKartAtLowSpeed(Kart *kart) {
     return result;
 }
 
-void func_0206c488(Unk0206c1ac *emitter, Kart *kart) {
+void func_0206c488(Unk0201ca6c *emitter, Kart *kart) {
     func_02080e88(emitter, kart);
 }
 
-void func_0206c450(Unk0206c1ac *emitter, Kart *kart) {
+void func_0206c450(Unk0201ca6c *emitter, Kart *kart) {
     emitter->mUnk_40 = kart->mEffectVelocity;
     func_02080e88(emitter, kart);
 }
@@ -385,7 +386,7 @@ BOOL TryStartKartCollisionEffects(Kart *kart, const Vec3 *overlapDirection, int 
     return FALSE;
 }
 
-void func_0206c2b4(Unk0206c1ac *emitter, Kart *kart) {
+void func_0206c2b4(Unk0201ca6c *emitter, Kart *kart) {
     Vec3 velocity = kart->mEffectVelocity;
 
     velocity.y = 0;
@@ -395,9 +396,9 @@ void func_0206c2b4(Unk0206c1ac *emitter, Kart *kart) {
     emitter->mUnk_40 = velocity;
 }
 
-void func_0206c1ac(Unk0206c1ac *emitter, Kart *kart) {
+void func_0206c1ac(Unk0201ca6c *emitter, Kart *kart) {
     Vec3 position = kart->mPos;
-    UnkVec16 rot;
+    Vec3s16 rot;
     Vec3 *q;
 
     VEC_MultAdd(((s64) kart->mRadius * -0x1333 + 0x800) >> 12, &kart->mUnk_138, &position, &position);

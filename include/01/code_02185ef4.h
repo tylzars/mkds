@@ -4,6 +4,9 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
+typedef struct Unk0201ca6c Unk0201ca6c;
+typedef struct Vec3s16 Vec3s16;
+
 // Object passed to the per-frame functions UpdateMissionGate and DrawMissionGate.
 typedef struct MissionGateObject {
     /* 000 */ MapObject mMapObject;
@@ -13,14 +16,6 @@ typedef struct MissionGateObject {
     /* 0aa */ u8 mUnk_0aa[0x2];
     /* 0ac */ s32 mState;
 } MissionGateObject;
-
-// Object whose flags and index CollideKartWithMissionGate reads.
-typedef struct Unk02185d74 {
-    /* 00 */ u8 mUnk_00[0x48];
-    /* 48 */ u32 mUnk_48;
-    /* 4c */ u8 mUnk_4c[0x28];
-    /* 74 */ u16 mUnk_74;
-} Unk02185d74;
 
 // Table of objects walked by InitMissionGateObjects.
 typedef struct MissionGateList {
@@ -88,7 +83,7 @@ BOOL func_ov001_021871d0(Unk02188950 *mapObject);
 u32 func_ov001_021871f8(Unk02188950 *mapObject, int b);
 void DisableMissionRunMapObjectGravity(Unk02188950 *mapObject);
 void func_ov001_02187218(Unk02188950 *mapObject, int b, s32 (*nextFunc)(Unk02188950 *));
-void func_ov001_0218742c(Unk0206c1ac *a, const UnkVec16 *b);
+void func_ov001_0218742c(Unk0201ca6c *a, const Vec3s16 *b);
 void StartModelEffectAtWaterHeight(Unk02188950 *mapObject, u32 modelEffectKind, int timer);
 void StartEffectAtWaterHeight(Unk02188950 *mapObject, u32 offsetX, u32 offsetY, u32 offsetZ, u32 effectId, u32 timer);
 void StartEffectAtRowHeight(Unk02188950 *mapObject, u32 offsetX, u32 offsetY, u32 offsetZ, u32 effectId, u32 timer);

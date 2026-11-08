@@ -19,6 +19,7 @@ void AdvanceWiFiVSSetting(void);
 #include "Main/Unknown/code_02077bc0.h"
 #include "Main/Unknown/code_02124094.h" // LayoutTableEntry
 #include "Main/Unknown/code_020467d0.h" // StateMachine
+#include "code_02152490.h" // DWCAccFriendData
 
 // Allocated by InitWiFiVSSetting and held in gWiFiVSSetting.
 typedef struct WiFiVSSetting {
@@ -138,11 +139,6 @@ typedef struct Unk0217b488 {
     /* 12c */ s32 mIndicesShuffled;
 } Unk0217b488;
 
-// 0xc-byte elements of the table at member 0x19f0 of WiFiSession.
-typedef struct Unk0217d384_19f0 {
-    /* 00 */ u8 mUnk_00[0xc];
-} Unk0217d384_19f0;
-
 // 0x10-byte object at member 0x1f20 of WiFiSession.
 typedef struct WiFiSessionLogin {
     /* 00 */ u8 mUnk_00[0xc];
@@ -255,7 +251,7 @@ typedef struct WiFiSession {
     /* 19ec */ u32 mUnk_19ec;
     // 0x3c saved buddy entries (12 bytes each), loaded from the save at login and written back; their GP status is
     // polled one per frame.
-    /* 19f0 */ Unk0217d384_19f0 mBuddies[0x3c];
+    /* 19f0 */ DWCAccFriendData mBuddies[0x3c];
     // One status byte per mBuddies entry (poll or the buddy status callback). Meaning of the values not decoded.
     /* 1cc0 */ u8 mBuddyStatuses[0x3c];
     /* 1cfc */ BOOL mBuddiesChanged;

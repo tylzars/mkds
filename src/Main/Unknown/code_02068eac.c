@@ -373,7 +373,7 @@ void AdvanceKartTeresa(Kart *kart) {
 // Killer: the Bullet Bill item (mItemEffect 3).
 void StartKartKiller(Kart *kart) {
     KartItemEffectState *effectState;
-    Unk0216557c rankOffsets;
+    KartKillerEndRankOffsets rankOffsets;
     KartFollowEffectIds effectIds;
     s32 i;
     u8 kartCount;

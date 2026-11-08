@@ -318,7 +318,7 @@ void func_ov001_021827a4(void) {
     }
 }
 
-u8 CollideKartWithCoin(Coin *coin, Unk0218274c *kart, u8 *e, u8 *f) {
+u8 CollideKartWithCoin(Coin *coin, Kart *kart, u8 *e, u8 *f) {
     u8 a = *e;
     u8 b = *f;
 

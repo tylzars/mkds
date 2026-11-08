@@ -188,7 +188,7 @@ void DrawCourseModelV(void) {
 }
 
 void SetKoopaCourseLight2(void) {
-    UnkVec16 lightVector;
+    Vec3s16 lightVector;
 
     if (gRaceSetup->mCourseId != COURSE_ID_KOOPA) {
         return;

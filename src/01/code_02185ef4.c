@@ -20,6 +20,7 @@
 #include "Main/Unknown/code_0211e000.h"
 #include "code_02146cbc.h"
 #include "code_02147cd8.h"
+#include "code_0201c528.h"
 #include "01/code_0218d520.h"
 #include "01/unk_021a9000.h"
 #include "ITCM/code_01ff8000.h"
@@ -310,7 +311,7 @@ void StartModelEffectAtWaterHeight(Unk02188950 *mapObject, u32 modelEffectKind, 
     }
 }
 
-void func_ov001_0218742c(Unk0206c1ac *a, const UnkVec16 *b) {
+void func_ov001_0218742c(Unk0201ca6c *a, const Vec3s16 *b) {
     a->mUnk_50 = *b;
 }
 
@@ -318,7 +319,7 @@ void func_ov001_021872e0(Unk02188950 *mapObject, int offsetX, int offsetY, int o
                          int emitterParamY, int emitterParamZ, int effectId, u32 timer) {
     int effectIndex;
     Vec3 position;
-    UnkVec16 emitterParams;
+    Vec3s16 emitterParams;
 
     for (effectIndex = 0; effectIndex < 5; effectIndex++) {
         if (mapObject->mEffects[effectIndex].mEffect == NULL) {

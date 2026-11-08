@@ -1,7 +1,8 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0206bcb0.h" // Kart, UnkVec16
+#include "Main/Unknown/code_0206bcb0.h" // Kart
+#include "code_02147cd8.h" // Vec3s16
 #include "Main/Unknown/code_020846c0.h" // Nsbmd
 
 // Object at gCourseModels: two Nsbmd pointers, then the words and halfwords the code tests. The flag halfwords
@@ -53,7 +54,7 @@ extern const char data_usa_02165440[];
 extern const char data_usa_02165454[];
 extern const char data_usa_0216546c[];
 extern const char data_usa_02165484[];
-extern const UnkVec16 data_usa_021653fc;
+extern const Vec3s16 data_usa_021653fc;
 extern const u32 data_usa_02154990[];
 extern const u32 data_usa_021549a0[];
 extern const u32 data_usa_021549b0[];

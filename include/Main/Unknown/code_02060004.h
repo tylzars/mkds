@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk0217d384_19f0 Unk0217d384_19f0;
+typedef struct DWCAccFriendData DWCAccFriendData;
 
 void ClearCourseTimeRecords(s32 courseId);
 BOOL func_02060268(s32 courseId);
@@ -34,4 +34,4 @@ BOOL GetTimeRecordName(s32 courseId, s32 recordIndex, void *timeRecord);
 s32 func_020600b4(s32 courseId);
 void MergeBuddyRecords(u8 keptIndex, u8 mergedIndex);
 void RefreshNotYetBuddyFlags(void);
-void CopyWiFiBuddiesToRecordBlock(Unk0217d384_19f0 *buddies);
+void CopyWiFiBuddiesToRecordBlock(DWCAccFriendData *buddies);

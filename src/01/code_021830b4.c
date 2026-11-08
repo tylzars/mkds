@@ -90,10 +90,10 @@ void func_ov001_02183f0c(Unk02188950 *donketu) {
         StartEffectAtWaterHeight(donketu, 0, 0, 0, 0x425, 0);
     }
     {
-        Unk021a78d8 soundRequest = {0x212, 0, 0xc, 0};
+        Unk0210b7a8 soundRequest = {0x212, 0, 0xc, 0};
 
-        soundRequest.mUnk_04 = &donketu->mUnk_000.mPos;
-        soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(&donketu->mUnk_000.mPos);
+        soundRequest.mPositionSource = &donketu->mUnk_000.mPos;
+        soundRequest.mDistanceSquared = GetHorizontalCameraDistanceSquared(&donketu->mUnk_000.mPos);
         func_0210b734(&soundRequest, func_02108e7c());
     }
     donketu->mUnk_000.mFlags |= data_ov001_021a6578;

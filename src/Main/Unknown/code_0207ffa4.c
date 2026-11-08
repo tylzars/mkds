@@ -100,7 +100,7 @@ void func_02080e9c(Kart *p) {
     data_0217ae74[p->mIndex] = NULL;
 }
 
-void func_02080e88(Unk0206c1ac *p, Kart *q) {
+void func_02080e88(Unk0201ca6c *p, Kart *q) {
     p->mUnk_6c = (s16) q->mScale.z;
 }
 

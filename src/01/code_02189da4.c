@@ -15,6 +15,7 @@
 #include "01/code_02188158.h"
 #include "01/code_02188484.h"
 #include "Main/Unknown/code_0206bcb0.h"
+#include "code_0201c528.h"
 #include "Main/Unknown/code_02039860.h"
 #include "Main/Unknown/code_020a100c.h"
 #include "Main/Unknown/code_020a126c.h"
@@ -177,7 +178,7 @@ void func_ov001_0218a034(Unk02188950 *a) {
     a->mUnk_000.mFarDistanceSquared = data_0217cbec[0x50 / 4];
 }
 
-void func_ov001_0218a028(Unk0206c1ac *a) {
+void func_ov001_0218a028(Unk0201ca6c *a) {
     a->mUnk_6c = 0x2000;
 }
 

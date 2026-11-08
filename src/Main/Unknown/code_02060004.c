@@ -29,7 +29,7 @@ static inline s32 func_02060004_inline(s32 courseId, s32 recordIndex, TimeRecord
     return isFilled;
 }
 
-void CopyWiFiBuddiesToRecordBlock(Unk0217d384_19f0 *buddies) {
+void CopyWiFiBuddiesToRecordBlock(DWCAccFriendData *buddies) {
     MI_CpuCopy8(buddies, (u8 *) data_0217aa08->mBuddyRecordBlock + 0x874, 0x2d0);
 }
 

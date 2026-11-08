@@ -2,14 +2,6 @@
 
 #include "types.h"
 
-// Four words handed to func_0210b734.
-typedef struct Unk021a78d8 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ Vec3 *mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ u32 mUnk_0c;
-} Unk021a78d8;
-
 #include "01/code_02181bd0.h"
 #include "01/code_02185ef4.h"
 #include "ITCM/code_01ff9000.h"

@@ -307,7 +307,7 @@ void InitRock(RockObject *rock, struct CourseMapRow *courseRow) {
 void LoadCourseCollisionData(CourseCollision *collision, CourseCollision *file) {
     *collision = *file;
     collision->mUnk_00 = OFFSET_PTR(Vec3, file, (u32) collision->mUnk_00);
-    collision->mUnk_04 = OFFSET_PTR(UnkVec16, file, (u32) collision->mUnk_04);
+    collision->mUnk_04 = OFFSET_PTR(Vec3s16, file, (u32) collision->mUnk_04);
     collision->mUnk_08 = OFFSET_PTR(Unk0217b614_08, file, (u32) collision->mUnk_08);
     collision->mUnk_0c = OFFSET_PTR(u8, file, (u32) collision->mUnk_0c);
     data_0217b610 = 0;

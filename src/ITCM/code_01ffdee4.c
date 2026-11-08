@@ -22,7 +22,7 @@ BOOL func_01ffdee4(void *a, void *b, Vec3 *c, int r, u16 fl, short e, void *f, v
     Unk0217b614_08 *ta;
     s64 ss;
     Vec3 *tb;
-    UnkVec16 *tc;
+    Vec3s16 *tc;
     u16 hw;
     s64 qq;
     s64 tq;
