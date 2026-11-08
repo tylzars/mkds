@@ -74,11 +74,11 @@ int AdvanceSelectKart(void) {
     q = &d->mSelectCharacterGpMParts;
     p = &d->mSelectKartSParts;
     t = func_020435bc();
-    func_02025edc(&gSelectKart->mUnk_0ac[0]);
-    func_02025edc(&gSelectKart->mUnk_0ac[1]);
-    func_02025edc(&gSelectKart->mUnk_0ac[2]);
-    func_02025edc(&gSelectKart->mUnk_0ac[3]);
-    func_02025edc(&gSelectKart->mUnk_0ac[4]);
+    AdvanceInterpolation(&gSelectKart->mInterpolations[0]);
+    AdvanceInterpolation(&gSelectKart->mInterpolations[1]);
+    AdvanceInterpolation(&gSelectKart->mInterpolations[2]);
+    AdvanceInterpolation(&gSelectKart->mInterpolations[3]);
+    AdvanceInterpolation(&gSelectKart->mInterpolations[4]);
     func_02029008();
     if (func_020280dc() == 0) {
         AdvancePaletteBlend();
@@ -91,7 +91,7 @@ int AdvanceSelectKart(void) {
     d = gSelectKart;
     switch (d->mState) {
         case 0:
-            if (d->mUnk_0ac[4].mUnk_00 == 1) {
+            if (d->mInterpolations[4].mState == 1) {
                 d->mStateFrames = 0;
                 if (func_020280dc() != 0) {
                     v = 1;
@@ -124,9 +124,9 @@ int AdvanceSelectKart(void) {
                 gSelectKart->mStateFrames = 0;
                 gSelectKart->mResult = 2;
                 func_0202941c(0);
-                func_02025f14(&gSelectKart->mUnk_0ac[1], 2);
-                func_02025f14(&gSelectKart->mUnk_0ac[3], 2);
-                func_02025f14(&gSelectKart->mUnk_0ac[4], 2);
+                func_02025f14(&gSelectKart->mInterpolations[1], 2);
+                func_02025f14(&gSelectKart->mInterpolations[3], 2);
+                func_02025f14(&gSelectKart->mInterpolations[4], 2);
                 gSelectKart->mState = 7;
                 if (gSelectKart->mMode != 0) {
                     v = 1;
@@ -148,7 +148,7 @@ int AdvanceSelectKart(void) {
             if (e != gSelectKart->mKartIndex) {
                 func_02110698();
                 func_02028f20();
-                func_02028e38();
+                RefreshKartMenuParamElements();
                 gSelectKart->mState = 3;
                 gSelectKart->mStateFrames = 0;
             }
@@ -207,11 +207,11 @@ int AdvanceSelectKart(void) {
         case 6:
             d->mStateFrames = d->mStateFrames + 1;
             if (gSelectKart->mStateFrames > 0x3c) {
-                func_02025f14(&gSelectKart->mUnk_0ac[0], 2);
-                func_02025f14(&gSelectKart->mUnk_0ac[1], 2);
-                func_02025f14(&gSelectKart->mUnk_0ac[2], 2);
-                func_02025f14(&gSelectKart->mUnk_0ac[3], 2);
-                func_02025f14(&gSelectKart->mUnk_0ac[4], 2);
+                func_02025f14(&gSelectKart->mInterpolations[0], 2);
+                func_02025f14(&gSelectKart->mInterpolations[1], 2);
+                func_02025f14(&gSelectKart->mInterpolations[2], 2);
+                func_02025f14(&gSelectKart->mInterpolations[3], 2);
+                func_02025f14(&gSelectKart->mInterpolations[4], 2);
                 if (gSelectKart->mMode == 2) {
                     func_021219cc();
                     func_0202941c(3);
@@ -228,7 +228,7 @@ int AdvanceSelectKart(void) {
             }
             break;
         case 7:
-            if (d->mUnk_0ac[4].mUnk_00 == 3) {
+            if (d->mInterpolations[4].mState == 3) {
                 GetRaceSetupCopy()->mEntries[gSelectKart->mEntryIndex].mUnk_14 = d->mResult == 1;
                 gSelectKart->mState = 8;
             }

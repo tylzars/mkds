@@ -19,7 +19,7 @@ void func_02028fac(void) {
         parts = &gSelectKart->mSelectKartSParts;
         count = func_02029000(parts->mUnk_0c) + func_02028ff8(parts->mUnk_14);
         for (i = 0; i < count; i++) {
-            parts->mUnk_18[i].mUnk_06 = func_02025ebc(&gSelectKart->mUnk_0ac[4]);
+            parts->mUnk_18[i].mUnk_06 = GetInterpolatedValue(&gSelectKart->mInterpolations[4]);
         }
     }
 }

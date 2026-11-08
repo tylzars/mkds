@@ -79,8 +79,8 @@ void func_02027188(void) {
 
 #pragma thumb on
 
-void func_020270fc(s32 a) {
-    gSelectCharacter->mUnk_064 = a;
+void func_020270fc(s32 previousTableIndex) {
+    gSelectCharacter->mUnk_064 = previousTableIndex;
     switch (gSelectCharacter->mUnk_07c) {
         case 8:
             func_02027be0();
@@ -100,9 +100,9 @@ void func_020270fc(s32 a) {
     }
     func_02027188();
     func_0202721c();
-    func_02025f54(&gSelectCharacter->mUnk_0f8[0], 0);
-    gSelectCharacter->mUnk_0f0 = gSelectCharacter->mUnk_090[gSelectCharacter->mUnk_060].mUnk_00;
-    gSelectCharacter->mUnk_0f4 = func_02025e60(gSelectCharacter->mUnk_0f0);
+    SetInterpolationState(&gSelectCharacter->mInterpolations[0], 0);
+    gSelectCharacter->mCharacterIndex = gSelectCharacter->mUnk_090[gSelectCharacter->mUnk_060].mCharacterIndex;
+    gSelectCharacter->mKartIndex = func_02025e60(gSelectCharacter->mCharacterIndex);
 }
 
 #pragma thumb off
@@ -110,8 +110,8 @@ void func_020270fc(s32 a) {
 #pragma thumb on
 
 u32 func_020270d0(void) {
-    int v1;
-    if ((gSelectCharacter->mUnk_080 != 0) && (v1 = func_0202b8c0(), v1 != 0)) {
+    int result;
+    if ((gSelectCharacter->mUnk_080 != 0) && (result = func_0202b8c0(), result != 0)) {
         return 1;
     }
     return 0;
@@ -122,13 +122,13 @@ u32 func_020270d0(void) {
 #pragma thumb on
 
 void func_02027084(void) {
-    Unk02174e14_00 *p = &gSelectCharacter->mUnk_01c;
+    Unk02174e14_00 *sParts = &gSelectCharacter->mUnk_01c;
     s32 i;
-    s32 n;
+    s32 elementCount;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        n = p->mCellLayout->mUnk_06;
-        for (i = 0; i < n; i++) {
-            func_02124b1c(&p->mCellTable[i], gSelectCharacter->mUnk_074, gSelectCharacter->mUnk_070);
+        elementCount = sParts->mCellLayout->mUnk_06;
+        for (i = 0; i < elementCount; i++) {
+            func_02124b1c(&sParts->mCellTable[i], gSelectCharacter->mUnk_074, gSelectCharacter->mUnk_070);
         }
     }
 }
@@ -137,34 +137,34 @@ void func_02027084(void) {
 
 #pragma thumb on
 
-void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
-    void *h;
-    Unk02174e14 *p;
-    Unk02174e14_00 *s;
-    Unk021534bc *t;
+void InitSelectCharacter(void *parentHeap, s32 mode, void *mainOam, void *subOam) {
+    void *heap;
+    Unk02174e14 *selectCharacter;
+    Unk02174e14_00 *sParts;
+    Unk021534bc *positions;
     s32 i;
-    s32 j;
-    s32 k;
+    s32 tableIndex;
+    s32 modeValue;
     BOOL f;
-    Unk02174e14_00 v;
+    Unk02174e14_00 titleParts;
     Unk02174e14_00 w;
 
-    h = CreateFrmHeapFromMaxFree(a);
-    gSelectCharacter = HeapAlloc(h, 0x12c);
+    heap = CreateFrmHeapFromMaxFree(parentHeap);
+    gSelectCharacter = HeapAlloc(heap, 0x12c);
     MemFillWordsByBlock_inline(gSelectCharacter, 0x12c);
-    gSelectCharacter->mHeap = h;
-    gSelectCharacter->mUnk_080 = b;
+    gSelectCharacter->mHeap = heap;
+    gSelectCharacter->mUnk_080 = mode;
     switch (GetRaceSetupCopy()->mUnk_108) {
         case 0:
-            func_02025f80(&gSelectCharacter->mUnk_0f8[0], 0, 10, -0x80, 0);
-            func_02025f80(&gSelectCharacter->mUnk_0f8[2], 0, 10, 0x60, 0);
+            SetupInterpolation(&gSelectCharacter->mInterpolations[0], 0, 10, -0x80, 0);
+            SetupInterpolation(&gSelectCharacter->mInterpolations[2], 0, 10, 0x60, 0);
             if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
                 StartKartModelMenuBg0Increase();
             }
             break;
         case 2:
-            func_02025f80(&gSelectCharacter->mUnk_0f8[0], 1, 10, -0x80, 0);
-            func_02025f80(&gSelectCharacter->mUnk_0f8[2], 1, 10, 0x60, 0);
+            SetupInterpolation(&gSelectCharacter->mInterpolations[0], 1, 10, -0x80, 0);
+            SetupInterpolation(&gSelectCharacter->mInterpolations[2], 1, 10, 0x60, 0);
             switch (gSelectCharacter->mUnk_080) {
                 case 1:
                     if (data_0217aa00->mUnk_0004 == 8) {
@@ -177,9 +177,9 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
             }
             break;
     }
-    func_02025f80(&gSelectCharacter->mUnk_0f8[1], 0, 10, -0x40, 0);
-    gSelectCharacter->mUnk_054 = c;
-    gSelectCharacter->mUnk_058 = d;
+    SetupInterpolation(&gSelectCharacter->mInterpolations[1], 0, 10, -0x40, 0);
+    gSelectCharacter->mMainOam = mainOam;
+    gSelectCharacter->mUnk_058 = subOam;
     if (gSelectCharacter->mUnk_080 != 0 || GetRaceSetupCopy()->mMode == 3 || GetRaceSetupCopy()->mMode == 2) {
         f = TRUE;
     } else {
@@ -189,66 +189,72 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
     if (gSelectCharacter->mUnk_128 != FALSE) {
         switch (gSelectCharacter->mUnk_080) {
             case 0:
-                k = 0;
+                modeValue = 0;
                 break;
             case 1:
-                k = 1;
+                modeValue = 1;
                 break;
             case 2:
-                k = 2;
+                modeValue = 2;
                 break;
         }
-        func_0202c0d4(k, 0);
+        func_0202c0d4(modeValue, 0);
     }
-    p = gSelectCharacter;
-    switch (p->mUnk_080) {
+    selectCharacter = gSelectCharacter;
+    switch (selectCharacter->mUnk_080) {
         case 0:
-            p->mUnk_078 = 0;
+            selectCharacter->mEntryIndex = 0;
             break;
         case 1:
-            p->mUnk_078 =
-                data_0217aa00->mUnk_1e52[(u16) (data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0)].mUnk_00;
+            selectCharacter->mEntryIndex =
+                data_0217aa00->mUnk_1e52[(u16) (data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0)]
+                    .mEntryIndex;
             break;
         case 2:
-            gSelectCharacter->mUnk_078 = func_020295e4();
+            gSelectCharacter->mEntryIndex = func_020295e4();
             break;
     }
-    p = gSelectCharacter;
-    if (p->mUnk_128 == FALSE) {
-        LocateCellFileSet(&p->mUnk_000, gSelectCharacterGpMNcgrName, gSelectCharacterGpMNcerName,
+    selectCharacter = gSelectCharacter;
+    if (selectCharacter->mUnk_128 == FALSE) {
+        LocateCellFileSet(&selectCharacter->mUnk_000, gSelectCharacterGpMNcgrName, gSelectCharacterGpMNcerName,
                           gSelectCharacterGpMONclrName, gSelectCharacterGpMBnclName, NULL, NULL,
                           FindFileInLoadedArchives);
-        func_02025a50(0, gSelectCharacter->mHeap, &p->mUnk_000);
-        LocateCellFileSet(&v, gSelectCharacterGpTitleMNcgrName, gSelectCharacterGpTitleMNcerName, NULL,
+        func_02025a50(0, gSelectCharacter->mHeap, &selectCharacter->mUnk_000);
+        LocateCellFileSet(&titleParts, gSelectCharacterGpTitleMNcgrName, gSelectCharacterGpTitleMNcerName, NULL,
                           gSelectCharacterGpTitleMBnclName, NULL, NULL, FindFileInLoadedArchives);
-        func_02124748(0, v.mCells, v.mChars, v.mCellLayout, 0, 0, p->mUnk_000.mCells, p->mUnk_000.mCellLayout);
+        func_02124748(0, titleParts.mCells, titleParts.mChars, titleParts.mCellLayout, 0, 0,
+                      selectCharacter->mUnk_000.mCells, selectCharacter->mUnk_000.mCellLayout);
         LocateCellFileSet(&gSelectCharacter->mUnk_038, gSelectCharacterGpNameMNcgrName, gSelectCharacterGpNameMNcerName,
                           NULL, gSelectCharacterGpNameMBnclName, NULL, NULL, FindFileInLoadedArchives);
-        p->mUnk_000.mCellTable[9].mUnk_00 = 0;
-        p->mUnk_000.mCellTable[8].mUnk_00 = p->mUnk_000.mCellTable[9].mUnk_00;
-        p->mUnk_000.mCellTable[7].mUnk_00 = p->mUnk_000.mCellTable[8].mUnk_00;
-        p->mUnk_000.mCellTable[6].mUnk_00 = p->mUnk_000.mCellTable[7].mUnk_00;
-        p->mUnk_000.mCellTable[5].mUnk_00 = p->mUnk_000.mCellTable[6].mUnk_00;
-        p->mUnk_000.mCellTable[4].mUnk_00 = p->mUnk_000.mCellTable[5].mUnk_00;
+        selectCharacter->mUnk_000.mCellTable[9].mUnk_00 = 0;
+        selectCharacter->mUnk_000.mCellTable[8].mUnk_00 = selectCharacter->mUnk_000.mCellTable[9].mUnk_00;
+        selectCharacter->mUnk_000.mCellTable[7].mUnk_00 = selectCharacter->mUnk_000.mCellTable[8].mUnk_00;
+        selectCharacter->mUnk_000.mCellTable[6].mUnk_00 = selectCharacter->mUnk_000.mCellTable[7].mUnk_00;
+        selectCharacter->mUnk_000.mCellTable[5].mUnk_00 = selectCharacter->mUnk_000.mCellTable[6].mUnk_00;
+        selectCharacter->mUnk_000.mCellTable[4].mUnk_00 = selectCharacter->mUnk_000.mCellTable[5].mUnk_00;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        s = &gSelectCharacter->mUnk_01c;
-        LocateCellFileSet(s, gSelectCharacterSNcgrName, gSelectCharacterSNcerName, gSelectCharacterSONclrName,
+        sParts = &gSelectCharacter->mUnk_01c;
+        LocateCellFileSet(sParts, gSelectCharacterSNcgrName, gSelectCharacterSNcerName, gSelectCharacterSONclrName,
                           gSelectCharacterSBnclName, NULL, gSelectCharacterSBnblName, FindFileInLoadedArchives);
-        func_02025a50(1, gSelectCharacter->mHeap, s);
-        s->mCellTable[24].mUnk_00 = 0;
+        func_02025a50(1, gSelectCharacter->mHeap, sParts);
+        sParts->mCellTable[24].mUnk_00 = 0;
         for (i = 0; i < 12; i++) {
-            s->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_10 = 1;
-            s->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_10 = s->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_10;
-            s->mCellTable[data_usa_02153554[i].mUnk_00].mUnk_10 = s->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_10;
-            s->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_34 = 0;
-            s->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_34 = s->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_34;
-            s->mCellTable[data_usa_02153554[i].mUnk_00].mUnk_34 = s->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_34;
+            sParts->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_10 = 1;
+            sParts->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_10 =
+                sParts->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_10;
+            sParts->mCellTable[data_usa_02153554[i].mUnk_00].mUnk_10 =
+                sParts->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_10;
+            sParts->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_34 = 0;
+            sParts->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_34 =
+                sParts->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_34;
+            sParts->mCellTable[data_usa_02153554[i].mUnk_00].mUnk_34 =
+                sParts->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_34;
         }
-        s->mCellTable[25].mUnk_10 = 1;
-        s->mCellTable[24].mUnk_10 = s->mCellTable[25].mUnk_10;
-        s->mCellTable[25].mUnk_34 = 0;
-        s->mCellTable[24].mUnk_34 = s->mCellTable[25].mUnk_34;
+        sParts->mCellTable[25].mUnk_10 = 1;
+        sParts->mCellTable[24].mUnk_10 = sParts->mCellTable[25].mUnk_10;
+        sParts->mCellTable[25].mUnk_34 = 0;
+        sParts->mCellTable[24].mUnk_34 = sParts->mCellTable[25].mUnk_34;
     } else if (GetRaceSetupCopy()->mMode == 2) {
         func_0211f4b0(gSelectCharacter->mHeap, gSelectCharacter->mUnk_058);
         func_0211f394();
@@ -278,69 +284,72 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
         gSelectCharacter->mUnk_07c++;
     }
     for (; i < 12; i++) {
-        gSelectCharacter->mUnk_090[i].mUnk_00 = -1;
+        gSelectCharacter->mUnk_090[i].mCharacterIndex = -1;
     }
-    for (j = 0; j < gSelectCharacter->mUnk_07c; j++) {
-        if (gSelectCharacter->mUnk_090[j].mUnk_00 ==
-            GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mCharacterIndex) {
-            gSelectCharacter->mUnk_060 = j;
+    for (tableIndex = 0; tableIndex < gSelectCharacter->mUnk_07c; tableIndex++) {
+        if (gSelectCharacter->mUnk_090[tableIndex].mCharacterIndex ==
+            GetRaceSetupCopy()->mEntries[gSelectCharacter->mEntryIndex].mCharacterIndex) {
+            gSelectCharacter->mUnk_060 = tableIndex;
         }
     }
     gSelectCharacter->mUnk_064 = gSelectCharacter->mUnk_060;
-    p = gSelectCharacter;
-    p->mUnk_0f0 = GetRaceSetupCopy()->mEntries[p->mUnk_078].mCharacterIndex;
-    if (gSelectCharacter->mUnk_0f0 == -1) {
-        gSelectCharacter->mUnk_0f0 = 0;
+    selectCharacter = gSelectCharacter;
+    selectCharacter->mCharacterIndex = GetRaceSetupCopy()->mEntries[selectCharacter->mEntryIndex].mCharacterIndex;
+    if (gSelectCharacter->mCharacterIndex == -1) {
+        gSelectCharacter->mCharacterIndex = 0;
     }
-    gSelectCharacter->mUnk_0f4 = func_02025e60(gSelectCharacter->mUnk_0f0);
-    GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mCharacterIndex = -1;
-    GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mKartIndex = -1;
-    GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mUnk_14 = 0;
+    gSelectCharacter->mKartIndex = func_02025e60(gSelectCharacter->mCharacterIndex);
+    GetRaceSetupCopy()->mEntries[gSelectCharacter->mEntryIndex].mCharacterIndex = -1;
+    GetRaceSetupCopy()->mEntries[gSelectCharacter->mEntryIndex].mKartIndex = -1;
+    GetRaceSetupCopy()->mEntries[gSelectCharacter->mEntryIndex].mUnk_14 = 0;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        s = &gSelectCharacter->mUnk_01c;
+        sParts = &gSelectCharacter->mUnk_01c;
         func_02025b84(0, &w);
         for (i = 0; i < gSelectCharacter->mUnk_07c; i++) {
-            func_0212481c(gSelectCharacter->mUnk_090[i].mUnk_00, w.mCells, w.mChars, w.mPalette, w.mCellLayout, 1,
-                          data_usa_02153554[i].mUnk_02, s->mCells, s->mCellLayout);
+            func_0212481c(gSelectCharacter->mUnk_090[i].mCharacterIndex, w.mCells, w.mChars, w.mPalette, w.mCellLayout,
+                          1, data_usa_02153554[i].mUnk_02, sParts->mCells, sParts->mCellLayout);
         }
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        t = NULL;
-        s = &gSelectCharacter->mUnk_01c;
+        positions = NULL;
+        sParts = &gSelectCharacter->mUnk_01c;
         switch (gSelectCharacter->mUnk_07c) {
             case 8:
-                t = data_021534bc;
+                positions = data_021534bc;
                 func_02027be0();
                 break;
             case 9:
-                t = data_021534dc;
+                positions = data_021534dc;
                 func_02027a58();
                 break;
             case 10:
-                t = data_02153500;
+                positions = data_02153500;
                 func_02027850();
                 break;
             case 11:
-                t = data_02153528;
+                positions = data_02153528;
                 func_02027648();
                 break;
             case 12:
                 func_02027448();
                 break;
         }
-        if (t != NULL) {
+        if (positions != NULL) {
             for (i = 0; i < gSelectCharacter->mUnk_07c; i++) {
-                func_02025c94(data_usa_02153554[i].mUnk_00, t[i].mUnk_00, t[i].mUnk_02, s->mCellLayout);
-                func_02025c94(data_usa_02153554[i].mUnk_02, t[i].mUnk_00, t[i].mUnk_02, s->mCellLayout);
-                RectTableSetEntryXY(data_usa_02153554[i].mRectEntryId, t[i].mUnk_00, t[i].mUnk_02, s->mRects);
-                func_02025c94(data_usa_02153554[i].mUnk_04, (s16) (t[i].mUnk_00 + 3), (s16) (t[i].mUnk_02 + 3),
-                              s->mCellLayout);
+                func_02025c94(data_usa_02153554[i].mUnk_00, positions[i].mUnk_00, positions[i].mUnk_02,
+                              sParts->mCellLayout);
+                func_02025c94(data_usa_02153554[i].mUnk_02, positions[i].mUnk_00, positions[i].mUnk_02,
+                              sParts->mCellLayout);
+                RectTableSetEntryXY(data_usa_02153554[i].mRectEntryId, positions[i].mUnk_00, positions[i].mUnk_02,
+                                    sParts->mRects);
+                func_02025c94(data_usa_02153554[i].mUnk_04, (s16) (positions[i].mUnk_00 + 3),
+                              (s16) (positions[i].mUnk_02 + 3), sParts->mCellLayout);
             }
             for (; i < 12; i++) {
-                s->mCellTable[data_usa_02153554[i].mUnk_00].mUnk_00 = 0;
-                s->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_00 = 0;
-                s->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_00 = 0;
-                RectTableSetEntryXY(data_usa_02153554[i].mRectEntryId, 0x400, 0x400, s->mRects);
+                sParts->mCellTable[data_usa_02153554[i].mUnk_00].mUnk_00 = 0;
+                sParts->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_00 = 0;
+                sParts->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_00 = 0;
+                RectTableSetEntryXY(data_usa_02153554[i].mRectEntryId, 0x400, 0x400, sParts->mRects);
             }
         }
         func_020271e8();
@@ -367,174 +376,175 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
 
 #pragma thumb on
 
-static inline s32 func_02026120_inline(u16 i) {
-    BOOL a = FALSE;
-    if (data_02175674[i].mUnk_00 == 0 && data_02175680[i].mUnk_00 < 5) {
-        a = TRUE;
+static inline s32 func_02026120_inline(u16 inputSlot) {
+    BOOL result = FALSE;
+    if (data_02175674[inputSlot].mUnk_00 == 0 && data_02175680[inputSlot].mUnk_00 < 5) {
+        result = TRUE;
     }
-    return a;
+    return result;
 }
 
-static inline s32 func_02026120_inline_2(u16 i) {
-    BOOL b = FALSE;
-    if (func_02026120_inline(i) == 0 && data_0217567c[i].mUnk_00 == 0 && data_02175674[i].mUnk_00 != 0) {
-        b = TRUE;
+static inline s32 func_02026120_inline_2(u16 inputSlot) {
+    BOOL result = FALSE;
+    if (func_02026120_inline(inputSlot) == 0 && data_0217567c[inputSlot].mUnk_00 == 0 &&
+        data_02175674[inputSlot].mUnk_00 != 0) {
+        result = TRUE;
     }
-    return b;
+    return result;
 }
 
 int AdvanceSelectCharacter(void) {
-    int r;
-    Unk02174e14 *g;
-    Unk02174e14_00 *s;
-    s32 n;
-    Unk02174e14 *p;
-    u16 i;
-    s32 a;
-    s32 j;
-    s32 k;
-    s32 x;
-    s32 y;
-    u16 v;
-    u8 c;
-    s16 t;
-    s16 m;
+    int result;
+    Unk02174e14 *selectCharacter;
+    Unk02174e14_00 *sParts;
+    s32 previousTableIndex;
+    Unk02174e14 *selectCharacterReload;
+    u16 inputSlot;
+    s32 nextState;
+    s32 tableIndex;
+    s32 rectEntryId;
+    s32 pointX;
+    s32 pointY;
+    u16 keyBits;
+    u8 flaggedCharacterIndex;
+    s16 targetTableIndex;
+    s16 interpolatedValue;
 
-    r = 0;
-    i = func_020435bc();
-    g = gSelectCharacter;
-    s = &g->mUnk_01c;
-    switch (g->mUnk_06c) {
+    result = 0;
+    inputSlot = func_020435bc();
+    selectCharacter = gSelectCharacter;
+    sParts = &selectCharacter->mUnk_01c;
+    switch (selectCharacter->mUnk_06c) {
         case 0:
             if (AreBrightnessFadesClear() != 0) {
                 gSelectCharacter->mUnk_06c = 1;
             }
             break;
         case 1:
-            if (g->mUnk_068 == 0) {
+            if (selectCharacter->mUnk_068 == 0) {
                 func_0202734c(1);
             }
             gSelectCharacter->mUnk_068++;
-            p = gSelectCharacter;
-            if (p->mUnk_068 < 10) {
-                p->mUnk_070 = (p->mUnk_068 << 12) / 10;
+            selectCharacterReload = gSelectCharacter;
+            if (selectCharacterReload->mUnk_068 < 10) {
+                selectCharacterReload->mUnk_070 = (selectCharacterReload->mUnk_068 << 12) / 10;
             } else {
-                p->mUnk_070 = 0x1000;
+                selectCharacterReload->mUnk_070 = 0x1000;
                 gSelectCharacter->mUnk_068 = 0;
                 if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-                    a = 2;
+                    nextState = 2;
                 } else {
-                    a = 3;
+                    nextState = 3;
                 }
-                gSelectCharacter->mUnk_06c = a;
+                gSelectCharacter->mUnk_06c = nextState;
             }
             func_02027084();
             break;
         case 2:
-            g->mUnk_0f0 = 0xc;
-            gSelectCharacter->mUnk_0f4 = 0x24;
+            selectCharacter->mCharacterIndex = 0xc;
+            gSelectCharacter->mKartIndex = 0x24;
             gSelectCharacter->mUnk_068 = 0;
             gSelectCharacter->mUnk_08c = 1;
             if (GetRaceSetupCopy()->mMode == 3) {
-                c = gSelectCharacter->mUnk_0f0 | 0x40;
+                flaggedCharacterIndex = gSelectCharacter->mCharacterIndex | 0x40;
                 if (data_0217aa00->mUnk_0004 == 8) {
-                    data_0217aa00->mUnk_15f7 = c;
+                    data_0217aa00->mUnk_15f7 = flaggedCharacterIndex;
                 }
                 func_02027424(1);
                 gSelectCharacter->mUnk_06c = 8;
             } else if (GetRaceSetupCopy()->mMode == 2) {
-                c = gSelectCharacter->mUnk_0f0 | 0xc0;
+                flaggedCharacterIndex = gSelectCharacter->mCharacterIndex | 0xc0;
                 if (data_0217aa00->mUnk_0004 == 8) {
-                    data_0217aa00->mUnk_15f7 = c;
+                    data_0217aa00->mUnk_15f7 = flaggedCharacterIndex;
                 }
                 gSelectCharacter->mUnk_06c = 6;
             }
             break;
         case 3:
-            n = g->mUnk_060;
-            if (func_02026120_inline_2(i) != 0) {
-                x = data_02175670[i].mUnk_00;
-                y = data_02175672[i].mUnk_00;
-                k = RectTableFindContaining(s->mRects, x, y);
-                if (k >= 0) {
-                    for (j = 0; j < gSelectCharacter->mUnk_07c; j++) {
-                        if (k == data_usa_02153554[j].mRectEntryId) {
-                            gSelectCharacter->mUnk_060 = j;
+            previousTableIndex = selectCharacter->mUnk_060;
+            if (func_02026120_inline_2(inputSlot) != 0) {
+                pointX = data_02175670[inputSlot].mUnk_00;
+                pointY = data_02175672[inputSlot].mUnk_00;
+                rectEntryId = RectTableFindContaining(sParts->mRects, pointX, pointY);
+                if (rectEntryId >= 0) {
+                    for (tableIndex = 0; tableIndex < gSelectCharacter->mUnk_07c; tableIndex++) {
+                        if (rectEntryId == data_usa_02153554[tableIndex].mRectEntryId) {
+                            gSelectCharacter->mUnk_060 = tableIndex;
                             break;
                         }
                     }
-                    func_020270fc(n);
-                    func_021106a8(func_02025eb0(gSelectCharacter->mUnk_0f0), 0);
+                    func_020270fc(previousTableIndex);
+                    func_021106a8(func_02025eb0(gSelectCharacter->mCharacterIndex), 0);
                     gSelectCharacter->mUnk_068 = 0;
                     gSelectCharacter->mUnk_06c = 5;
                 } else if (gSelectCharacter->mUnk_080 == 0 &&
-                           IsSelectReturnState2NoState3Or4RequestAndInRect(x, y) != FALSE) {
+                           IsSelectReturnState2NoState3Or4RequestAndInRect(pointX, pointY) != FALSE) {
                     StartSelectCharacterReturn();
                 }
             } else if (func_020270d0() != 0) {
                 gSelectCharacter->mUnk_068 = 0;
                 gSelectCharacter->mUnk_08c = 3;
                 gSelectCharacter->mUnk_06c = 6;
-                func_021106a8(func_02025eb0(gSelectCharacter->mUnk_0f0), 0);
+                func_021106a8(func_02025eb0(gSelectCharacter->mCharacterIndex), 0);
                 func_02077f48(1);
-                p = gSelectCharacter;
-                switch (p->mUnk_080) {
+                selectCharacterReload = gSelectCharacter;
+                switch (selectCharacterReload->mUnk_080) {
                     case 2:
-                        SetWiFiSessionOwnCharacterIndex(p->mUnk_0f0);
-                        SetWiFiSessionOwnKartIndex(gSelectCharacter->mUnk_0f4);
+                        SetWiFiSessionOwnCharacterIndex(selectCharacterReload->mCharacterIndex);
+                        SetWiFiSessionOwnKartIndex(gSelectCharacter->mKartIndex);
                         break;
                     case 1:
-                        c = p->mUnk_0f0 | 0xc0;
+                        flaggedCharacterIndex = selectCharacterReload->mCharacterIndex | 0xc0;
                         if (data_0217aa00->mUnk_0004 == 8) {
-                            data_0217aa00->mUnk_15f7 = c;
+                            data_0217aa00->mUnk_15f7 = flaggedCharacterIndex;
                         }
                         break;
                 }
             } else {
-                v = data_02175628[i].mUnk_00;
-                if ((u16) (v & PAD_KEY_A) != 0) {
+                keyBits = data_02175628[inputSlot].mUnk_00;
+                if ((u16) (keyBits & PAD_KEY_A) != 0) {
                     gSelectCharacter->mUnk_068 = 0;
                     gSelectCharacter->mUnk_06c = 5;
                     func_02027188();
-                    func_021106a8(func_02025eb0(gSelectCharacter->mUnk_0f0), 0);
-                } else if (gSelectCharacter->mUnk_080 == 0 && (u16) (v & PAD_KEY_B) != 0) {
+                    func_021106a8(func_02025eb0(gSelectCharacter->mCharacterIndex), 0);
+                } else if (gSelectCharacter->mUnk_080 == 0 && (u16) (keyBits & PAD_KEY_B) != 0) {
                     StartSelectCharacterReturn();
                 } else {
-                    if (GetNewOrRepeatBits(i, PAD_KEY_UP) != 0) {
-                        p = gSelectCharacter;
-                        t = p->mTableIndexByKey[0];
-                        if (t != -1) {
-                            p->mUnk_060 = t;
+                    if (GetNewOrRepeatBits(inputSlot, PAD_KEY_UP) != 0) {
+                        selectCharacterReload = gSelectCharacter;
+                        targetTableIndex = selectCharacterReload->mTableIndexByKey[0];
+                        if (targetTableIndex != -1) {
+                            selectCharacterReload->mUnk_060 = targetTableIndex;
                         }
-                    } else if (GetNewOrRepeatBits(i, PAD_KEY_DOWN) != 0) {
-                        p = gSelectCharacter;
-                        t = p->mTableIndexByKey[1];
-                        if (t != -1) {
-                            p->mUnk_060 = t;
+                    } else if (GetNewOrRepeatBits(inputSlot, PAD_KEY_DOWN) != 0) {
+                        selectCharacterReload = gSelectCharacter;
+                        targetTableIndex = selectCharacterReload->mTableIndexByKey[1];
+                        if (targetTableIndex != -1) {
+                            selectCharacterReload->mUnk_060 = targetTableIndex;
                         }
-                    } else if (GetNewOrRepeatBits(i, PAD_KEY_RIGHT) != 0) {
-                        p = gSelectCharacter;
-                        t = p->mTableIndexByKey[2];
-                        if (t != -1) {
-                            p->mUnk_060 = t;
+                    } else if (GetNewOrRepeatBits(inputSlot, PAD_KEY_RIGHT) != 0) {
+                        selectCharacterReload = gSelectCharacter;
+                        targetTableIndex = selectCharacterReload->mTableIndexByKey[2];
+                        if (targetTableIndex != -1) {
+                            selectCharacterReload->mUnk_060 = targetTableIndex;
                         }
-                    } else if (GetNewOrRepeatBits(i, PAD_KEY_LEFT) != 0) {
-                        p = gSelectCharacter;
-                        t = p->mTableIndexByKey[3];
-                        if (t != -1) {
-                            p->mUnk_060 = t;
+                    } else if (GetNewOrRepeatBits(inputSlot, PAD_KEY_LEFT) != 0) {
+                        selectCharacterReload = gSelectCharacter;
+                        targetTableIndex = selectCharacterReload->mTableIndexByKey[3];
+                        if (targetTableIndex != -1) {
+                            selectCharacterReload->mUnk_060 = targetTableIndex;
                         }
                     }
-                    if (gSelectCharacter->mUnk_060 != n) {
+                    if (gSelectCharacter->mUnk_060 != previousTableIndex) {
                         func_02110698();
-                        func_020270fc(n);
+                        func_020270fc(previousTableIndex);
                         gSelectCharacter->mUnk_06c = 4;
                     }
                 }
             }
             break;
         case 4:
-            g->mUnk_068++;
+            selectCharacter->mUnk_068++;
             if (gSelectCharacter->mUnk_068 > 5) {
                 func_020272ec();
                 gSelectCharacter->mUnk_068 = 0;
@@ -542,21 +552,22 @@ int AdvanceSelectCharacter(void) {
             }
             break;
         case 5:
-            g->mUnk_068++;
-            p = gSelectCharacter;
-            if (p->mUnk_068 > 5) {
-                p->mUnk_068 = 0;
+            selectCharacter->mUnk_068++;
+            selectCharacterReload = gSelectCharacter;
+            if (selectCharacterReload->mUnk_068 > 5) {
+                selectCharacterReload->mUnk_068 = 0;
                 gSelectCharacter->mUnk_08c = 1;
                 func_020272ec();
-                p = gSelectCharacter;
-                switch (p->mUnk_080) {
+                selectCharacterReload = gSelectCharacter;
+                switch (selectCharacterReload->mUnk_080) {
                     case 0:
-                        GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mCharacterIndex = p->mUnk_0f0;
-                        GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mKartIndex =
-                            gSelectCharacter->mUnk_0f4;
+                        GetRaceSetupCopy()->mEntries[gSelectCharacter->mEntryIndex].mCharacterIndex =
+                            selectCharacterReload->mCharacterIndex;
+                        GetRaceSetupCopy()->mEntries[gSelectCharacter->mEntryIndex].mKartIndex =
+                            gSelectCharacter->mKartIndex;
                         FillRandomCharacterIndices();
                         if (GetRaceSetupCopy()->mMode == 2) {
-                            GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mUnk_14 = 1;
+                            GetRaceSetupCopy()->mEntries[gSelectCharacter->mEntryIndex].mUnk_14 = 1;
                             func_02077f48(1);
                             gSelectCharacter->mUnk_06c = 7;
                             func_02117060();
@@ -565,31 +576,31 @@ int AdvanceSelectCharacter(void) {
                             func_02027424(1);
                             func_02077f5c();
                             gSelectCharacter->mUnk_06c = 8;
-                            func_02025f14(&gSelectCharacter->mUnk_0f8[1], 2);
+                            func_02025f14(&gSelectCharacter->mInterpolations[1], 2);
                         }
                         break;
                     case 1:
                         if (GetRaceSetupCopy()->mMode == 3) {
-                            c = gSelectCharacter->mUnk_0f0 | 0x40;
+                            flaggedCharacterIndex = gSelectCharacter->mCharacterIndex | 0x40;
                             if (data_0217aa00->mUnk_0004 == 8) {
-                                data_0217aa00->mUnk_15f7 = c;
+                                data_0217aa00->mUnk_15f7 = flaggedCharacterIndex;
                             }
-                            func_02025f14(&gSelectCharacter->mUnk_0f8[1], 2);
+                            func_02025f14(&gSelectCharacter->mInterpolations[1], 2);
                             func_02027424(1);
                             gSelectCharacter->mUnk_06c = 8;
                             func_02077f5c();
                         } else if (GetRaceSetupCopy()->mMode == 2) {
-                            c = gSelectCharacter->mUnk_0f0 | 0xc0;
+                            flaggedCharacterIndex = gSelectCharacter->mCharacterIndex | 0xc0;
                             if (data_0217aa00->mUnk_0004 == 8) {
-                                data_0217aa00->mUnk_15f7 = c;
+                                data_0217aa00->mUnk_15f7 = flaggedCharacterIndex;
                             }
                             func_02077f48(1);
                             gSelectCharacter->mUnk_06c = 6;
                         }
                         break;
                     case 2:
-                        SetWiFiSessionOwnCharacterIndex(p->mUnk_0f0);
-                        func_02025f14(&gSelectCharacter->mUnk_0f8[1], 2);
+                        SetWiFiSessionOwnCharacterIndex(selectCharacterReload->mCharacterIndex);
+                        func_02025f14(&gSelectCharacter->mInterpolations[1], 2);
                         func_02027424(1);
                         gSelectCharacter->mUnk_06c = 8;
                         func_02077f5c();
@@ -598,7 +609,7 @@ int AdvanceSelectCharacter(void) {
             }
             break;
         case 6:
-            if ((g->mUnk_080 == 1 && func_0202b888() != 0) ||
+            if ((selectCharacter->mUnk_080 == 1 && func_0202b888() != 0) ||
                 (gSelectCharacter->mUnk_080 == 2 && func_02121d0c() != 0)) {
                 if (gSelectCharacter->mUnk_080 == 2) {
                     func_021219cc();
@@ -607,21 +618,21 @@ int AdvanceSelectCharacter(void) {
                     gSelectCharacter->mUnk_06c = 7;
                 } else {
                     func_02027424(1);
-                    func_02025f14(&gSelectCharacter->mUnk_0f8[1], 2);
+                    func_02025f14(&gSelectCharacter->mInterpolations[1], 2);
                     gSelectCharacter->mUnk_06c = 8;
                 }
             }
             break;
         case 7:
-            g->mUnk_068++;
-            p = gSelectCharacter;
-            if (p->mUnk_068 > 60) {
-                if (p->mUnk_080 == 2) {
+            selectCharacter->mUnk_068++;
+            selectCharacterReload = gSelectCharacter;
+            if (selectCharacterReload->mUnk_068 > 60) {
+                if (selectCharacterReload->mUnk_080 == 2) {
                     func_02027424(3);
                 } else {
                     func_02027424(2);
                 }
-                func_02025f14(&gSelectCharacter->mUnk_0f8[1], 2);
+                func_02025f14(&gSelectCharacter->mInterpolations[1], 2);
                 if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
                     StartKartModelMenuBg0Decrease();
                 } else if (GetRaceSetupCopy()->mMode == 2) {
@@ -632,45 +643,46 @@ int AdvanceSelectCharacter(void) {
             }
             break;
         case 8:
-            g->mUnk_068++;
-            p = gSelectCharacter;
-            if (p->mUnk_068 < 10) {
-                p->mUnk_070 = ((10 - p->mUnk_068) << 12) / 10;
+            selectCharacter->mUnk_068++;
+            selectCharacterReload = gSelectCharacter;
+            if (selectCharacterReload->mUnk_068 < 10) {
+                selectCharacterReload->mUnk_070 = ((10 - selectCharacterReload->mUnk_068) << 12) / 10;
             } else {
-                GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mCharacterIndex = p->mUnk_0f0;
-                GetRaceSetupCopy()->mEntries[gSelectCharacter->mUnk_078].mKartIndex = gSelectCharacter->mUnk_0f4;
+                GetRaceSetupCopy()->mEntries[gSelectCharacter->mEntryIndex].mCharacterIndex =
+                    selectCharacterReload->mCharacterIndex;
+                GetRaceSetupCopy()->mEntries[gSelectCharacter->mEntryIndex].mKartIndex = gSelectCharacter->mKartIndex;
                 gSelectCharacter->mUnk_06c = 9;
             }
             gSelectCharacter->mUnk_074 += 0x1000;
             func_02027084();
             break;
         case 9:
-            r = g->mUnk_08c;
+            result = selectCharacter->mUnk_08c;
             break;
     }
 
-    func_02025edc(&gSelectCharacter->mUnk_0f8[0]);
-    func_02025edc(&gSelectCharacter->mUnk_0f8[1]);
-    func_02025edc(&gSelectCharacter->mUnk_0f8[2]);
-    func_0202728c(func_02025ebc(&gSelectCharacter->mUnk_0f8[0]));
-    m = func_02025ebc(&gSelectCharacter->mUnk_0f8[1]);
-    func_020272c0(m, func_02025ebc(&gSelectCharacter->mUnk_0f8[2]));
+    AdvanceInterpolation(&gSelectCharacter->mInterpolations[0]);
+    AdvanceInterpolation(&gSelectCharacter->mInterpolations[1]);
+    AdvanceInterpolation(&gSelectCharacter->mInterpolations[2]);
+    func_0202728c(GetInterpolatedValue(&gSelectCharacter->mInterpolations[0]));
+    interpolatedValue = GetInterpolatedValue(&gSelectCharacter->mInterpolations[1]);
+    func_020272c0(interpolatedValue, GetInterpolatedValue(&gSelectCharacter->mInterpolations[2]));
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        p = gSelectCharacter;
-        if (p->mUnk_08c != 2) {
-            RequestKartModelMenuCharacter(p->mUnk_0f0);
-            RequestKartModelMenuKart(gSelectCharacter->mUnk_0f4);
+        selectCharacterReload = gSelectCharacter;
+        if (selectCharacterReload->mUnk_08c != 2) {
+            RequestKartModelMenuCharacter(selectCharacterReload->mCharacterIndex);
+            RequestKartModelMenuKart(gSelectCharacter->mKartIndex);
         }
         AdvanceKartModelMenu(GetRaceSetupCopy()->mMirrorMode);
     }
     if (gSelectCharacter->mUnk_128 != FALSE) {
         func_0202bb80();
     } else {
-        DrawLayoutTable(g->mUnk_000.mCellLayout, g->mUnk_000.mCells, NULL, gSelectCharacter->mUnk_054,
-                        g->mUnk_000.mCellTable);
+        DrawLayoutTable(selectCharacter->mUnk_000.mCellLayout, selectCharacter->mUnk_000.mCells, NULL,
+                        gSelectCharacter->mMainOam, selectCharacter->mUnk_000.mCellTable);
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_02124bf0(s->mCellLayout, s->mCells, NULL, gSelectCharacter->mUnk_058, s->mCellTable);
+        func_02124bf0(sParts->mCellLayout, sParts->mCells, NULL, gSelectCharacter->mUnk_058, sParts->mCellTable);
         func_020ae5d4(gSelectCharacter->mUnk_058);
     } else if (GetRaceSetupCopy()->mMode == 2) {
         func_0211f39c();
@@ -678,7 +690,7 @@ int AdvanceSelectCharacter(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         DrawKartModelMenu();
     }
-    switch (r) {
+    switch (result) {
         case 1:
             if (GetRaceSetupCopy()->mMode == 2) {
                 GetRaceSetupCopy()->mUnk_108 = 0;
@@ -694,14 +706,14 @@ int AdvanceSelectCharacter(void) {
             GetRaceSetupCopy()->mUnk_108 = 0;
             break;
     }
-    return r;
+    return result;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_020260e4(void) {
+void ReleaseSelectCharacter(void) {
     if (*(vu16 *) 0x27ffc40 == 2) {
         if (GetRaceSetupCopy()->mMode == 2) {
             func_0211f498();
@@ -711,14 +723,14 @@ void func_020260e4(void) {
     gSelectCharacter = NULL;
 }
 
-void func_02026058(void) {
-    u32 a = 0x18;
+void WriteSelectCharacterRegisters(void) {
+    u32 displayBits = 0x18;
 
     G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 0x3f, 6, 10);
     if (!(gSelectCharacter->mUnk_06c == 9 && gSelectCharacter->mUnk_08c == 2)) {
-        a |= 1;
+        displayBits |= 1;
     }
-    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (a << 8);
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (displayBits << 8);
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | 0x1600;
     reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 1;
     if (gSelectCharacter->mUnk_128 != FALSE) {
@@ -727,27 +739,27 @@ void func_02026058(void) {
 }
 
 void func_02025f90(void) {
-    Ncgr *a = NULL;
-    Nclr *b = NULL;
-    Unk02021dc8 *c = NULL;
+    Ncgr *chars = NULL;
+    Nclr *palette = NULL;
+    Unk02021dc8 *cells = NULL;
 
-    LoadNcgrData2(&a, FindFileInLoadedArchives(data_usa_02161b3c));
-    LoadNcerData(&c, FindFileInLoadedArchives(data_usa_02161b5c));
-    LoadNclrData(&b, FindFileInLoadedArchives(data_usa_02161b7c));
-    LoadNcgrData2(&a, FindFileInLoadedArchives(data_usa_02161b9c));
-    LoadNcerData(&c, FindFileInLoadedArchives(data_usa_02161bb8));
-    LoadNclrData(&b, FindFileInLoadedArchives(data_usa_02161bd4));
-    LoadNcgrData2(&a, FindFileInLoadedArchives(data_usa_02161bf0));
-    LoadNcerData(&c, FindFileInLoadedArchives(data_usa_02161c14));
-    LoadNcgrData2(&a, FindFileInLoadedArchives(data_usa_02161c38));
-    LoadNcerData(&c, FindFileInLoadedArchives(data_usa_02161c60));
+    LoadNcgrData2(&chars, FindFileInLoadedArchives(data_usa_02161b3c));
+    LoadNcerData(&cells, FindFileInLoadedArchives(data_usa_02161b5c));
+    LoadNclrData(&palette, FindFileInLoadedArchives(data_usa_02161b7c));
+    LoadNcgrData2(&chars, FindFileInLoadedArchives(data_usa_02161b9c));
+    LoadNcerData(&cells, FindFileInLoadedArchives(data_usa_02161bb8));
+    LoadNclrData(&palette, FindFileInLoadedArchives(data_usa_02161bd4));
+    LoadNcgrData2(&chars, FindFileInLoadedArchives(data_usa_02161bf0));
+    LoadNcerData(&cells, FindFileInLoadedArchives(data_usa_02161c14));
+    LoadNcgrData2(&chars, FindFileInLoadedArchives(data_usa_02161c38));
+    LoadNcerData(&cells, FindFileInLoadedArchives(data_usa_02161c60));
 }
 
-void func_02025f80(Unk02025ebc *a, s32 b, s32 c, s16 d, s32 e) {
-    a->mUnk_08 = c;
-    a->mUnk_0c = d;
-    a->mUnk_0e = e;
-    func_02025f14(a, b);
+void SetupInterpolation(Interpolation *interpolation, s32 state, s32 counterLimit, s16 startValue, s32 endValue) {
+    interpolation->mCounterLimit = counterLimit;
+    interpolation->mStartValue = startValue;
+    interpolation->mEndValue = endValue;
+    func_02025f14(interpolation, state);
 }
 
 #pragma thumb off

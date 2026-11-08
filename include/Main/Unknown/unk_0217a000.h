@@ -361,7 +361,7 @@ typedef struct Unk0217aa00_1e48 {
 
 // Elements of the array at member 0x1e52 of data_0217aa00.
 typedef struct Unk0217aa00_1e52 {
-    /* 00 */ u16 mUnk_00;
+    /* 00 */ u16 mEntryIndex;
     /* 02 */ u8 mUnk_02[6];
 } Unk0217aa00_1e52;
 

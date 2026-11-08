@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk02025ebc Unk02025ebc;
+typedef struct Interpolation Interpolation;
 
-void func_02025f54(Unk02025ebc *a, u32 b);
+void SetInterpolationState(Interpolation *interpolation, u32 state);

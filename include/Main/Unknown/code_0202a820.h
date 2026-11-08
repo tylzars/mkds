@@ -20,8 +20,8 @@ typedef struct WiFiVSCourseSelect {
     /* 0b4 */ s32 mUnk_0b4;
     /* 0b8 */ s32 mUnk_0b8;
     /* 0bc */ s32 mUnk_0bc[4];
-    /* 0cc */ Unk02025ebc mUnk_0cc[3];
-    /* 0fc */ Unk02025ebc mUnk_0fc[4];
+    /* 0cc */ Interpolation mUnk_0cc[3];
+    /* 0fc */ Interpolation mUnk_0fc[4];
     /* 13c */ s32 mStateFrames; /* counts only in states 3, 4, 5, 6 */
     /* 140 */ s32 mTimer;
     /* 144 */ s32 mUnk_144;

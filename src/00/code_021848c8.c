@@ -36,7 +36,7 @@ void InitWiFiSelectCharacterState(void *a) {
 }
 
 void ReleaseWiFiSelectCharacterState(void) {
-    func_020260e4();
+    ReleaseSelectCharacter();
     *(u32 *) &gWiFiSelectCharacterState = 0;
 }
 
@@ -62,7 +62,7 @@ void AdvanceWiFiSelectCharacterState(void) {
 
 void func_ov000_021848ec(void) {
     u32 value3;
-    func_02026058();
+    WriteSelectCharacterRegisters();
 }
 
 void RegisterSelectCharacterCallbacks(void) {

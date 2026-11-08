@@ -22,7 +22,7 @@ void func_02034244(void) {
     s32 d;
     s32 e;
 
-    a = func_02025ebc(&data_02174e64->mUnk_194);
+    a = GetInterpolatedValue(&data_02174e64->mUnk_194);
     reg_G2_BG0OFS = (a << 16) & 0x1ff0000;
     d = -a;
     reg_G2S_DB_BG3OFS = (d << 16) & 0x1ff0000;

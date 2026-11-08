@@ -48,7 +48,7 @@ u32 func_0202a360(void) {
             } else {
                 w = 0;
             }
-            v = data_0217aa00->mUnk_1e52[(u16) w].mUnk_00;
+            v = data_0217aa00->mUnk_1e52[(u16) w].mEntryIndex;
             break;
         case 3:
             v = (u16) GetPackedIndex(func_ov000_0219bb50());

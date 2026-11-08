@@ -196,7 +196,7 @@ BOOL func_0205373c(void) {
             for (i = 0; i < 8; i++) {
                 v3 = 1 << i;
                 f = data_0217aa00->mParticipantMask;
-                v = data_0217aa00->mUnk_1e52[i].mUnk_00;
+                v = data_0217aa00->mUnk_1e52[i].mEntryIndex;
                 if ((f & v3) != 0 && (m & v3) != 0) {
                     data_0217aa00->mParticipantMask = f & ~v3;
                     if (data_0217aa00->mUnk_0004 == 9) {

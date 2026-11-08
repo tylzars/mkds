@@ -106,7 +106,7 @@ s32 func_02034370(Unk02034370 *a) {
     r = -1;
     m = -1;
     q = &data_02174e64->mUnk_02c[1];
-    func_02025edc(&data_02174e64->mUnk_194);
+    AdvanceInterpolation(&data_02174e64->mUnk_194);
     switch (data_02174e64->mState) {
         case 0:
             if (AreBrightnessFadesClear() == 0) {
@@ -117,7 +117,7 @@ s32 func_02034370(Unk02034370 *a) {
             }
             break;
         case 1:
-            if (data_02174e64->mUnk_194.mUnk_00 == 1) {
+            if (data_02174e64->mUnk_194.mState == 1) {
                 data_02174e64->mState = 2;
             } else {
                 func_02034fec();
@@ -369,7 +369,7 @@ s32 func_02034370(Unk02034370 *a) {
             }
             break;
         case 13:
-            if (data_02174e64->mUnk_194.mUnk_00 == 3) {
+            if (data_02174e64->mUnk_194.mState == 3) {
                 r = data_02174e64->mUnk_098;
                 data_02174e64->mState = 16;
             } else {

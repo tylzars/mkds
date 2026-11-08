@@ -11,67 +11,67 @@
 #include "code_0214d018.h"
 #include "Main/Unknown/code_02027e78.h"
 
-void *func_02028f08(s32 a, Unk0201ea30 *b) {
-    return func_0201ea30(b, a);
+void *func_02028f08(s32 index, Unk0201ea30 *cellLayout) {
+    return func_0201ea30(cellLayout, index);
 }
 
 #pragma thumb on
 
-void func_02028ec0(s32 a, s32 b, s32 c, Unk02174e14_00 *d) {
-    Unk0201ea84 *p = func_02028f08(a, d->mCellLayout);
-    Unk0201ea84 *q = func_02028f08(b, d->mCellLayout);
-    d->mCellTable[a].mUnk_04 = (100 - c) * (q->mUnk_00_0 - p->mUnk_00_0) / 100;
+void SetKartMenuParamElementOffset(s32 elementIndex, s32 endCellIndex, s32 paramValue, Unk02174e14_00 *parts) {
+    Unk0201ea84 *startCell = func_02028f08(elementIndex, parts->mCellLayout);
+    Unk0201ea84 *endCell = func_02028f08(endCellIndex, parts->mCellLayout);
+    parts->mCellTable[elementIndex].mUnk_04 = (100 - paramValue) * (endCell->mUnk_00_0 - startCell->mUnk_00_0) / 100;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_02028e38(void) {
-    int v1;
-    Unk02174e14_00 *v3;
-    short *v2;
-    v1 = func_020280dc();
-    if (v1 == 0) {
-        v2 = ComputeKartMenuParams(gSelectKart->mKartIndex, gSelectKart->mCharacterIndex);
-        v3 = (Unk02174e14_00 *) &gSelectKart->mSelectKartSParts;
-        func_02028ec0(10, 0x10, *v2, v3);
-        func_02028ec0(9, 0xf, v2[1], v3);
-        func_02028ec0(8, 0xe, v2[2], v3);
-        func_02028ec0(7, 0xd, v2[3], v3);
-        func_02028ec0(6, 0xc, v2[4], v3);
-        func_02028ec0(5, 0xb, v2[5], v3);
+void RefreshKartMenuParamElements(void) {
+    int result;
+    Unk02174e14_00 *parts;
+    short *params;
+    result = func_020280dc();
+    if (result == 0) {
+        params = ComputeKartMenuParams(gSelectKart->mKartIndex, gSelectKart->mCharacterIndex);
+        parts = (Unk02174e14_00 *) &gSelectKart->mSelectKartSParts;
+        SetKartMenuParamElementOffset(10, 0x10, *params, parts);
+        SetKartMenuParamElementOffset(9, 0xf, params[1], parts);
+        SetKartMenuParamElementOffset(8, 0xe, params[2], parts);
+        SetKartMenuParamElementOffset(7, 0xd, params[3], parts);
+        SetKartMenuParamElementOffset(6, 0xc, params[4], parts);
+        SetKartMenuParamElementOffset(5, 0xb, params[5], parts);
     }
 }
 
 #pragma thumb off
 
-void func_02028e14(void *a, u32 b, u32 c) {
-    volatile u32 v = b;
-    MIi_CpuClearFast(v, a, c);
+void func_02028e14(void *destination, u32 value, u32 size) {
+    volatile u32 valueCopy = value;
+    MIi_CpuClearFast(valueCopy, destination, size);
 }
 
-void func_02028e00(void *a, u32 b) {
-    func_02028e14(a, 0, b);
+void func_02028e00(void *destination, u32 size) {
+    func_02028e14(destination, 0, size);
 }
 
 u16 func_02028dd4(void) {
-    int v1;
+    int index;
     if (data_0217aa00->mUnk_0000 == 2) {
-        v1 = data_0217aa00->mOwnIndex;
+        index = data_0217aa00->mOwnIndex;
     } else {
-        v1 = 0;
+        index = 0;
     }
-    return v1;
+    return index;
 }
 
-u32 func_02028db8(u32 p0) {
-    return (data_0217aa00->mUnk_1e52[p0].mUnk_00);
+u32 GetParticipantEntryIndex(u32 participantIndex) {
+    return (data_0217aa00->mUnk_1e52[participantIndex].mEntryIndex);
 }
 
-u32 func_02028d9c(void) {
+u32 GetOwnEntryIndex(void) {
     u32 value0;
     value0 = func_02028dd4();
-    value0 = func_02028db8(value0);
+    value0 = GetParticipantEntryIndex(value0);
     return value0;
 }

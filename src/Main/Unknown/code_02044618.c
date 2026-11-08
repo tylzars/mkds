@@ -393,7 +393,7 @@ void SetCurrentRaceFromNext(void) {
                 f = TRUE;
             }
             if (f != FALSE) {
-                h = q->mUnk_1e52[(u16) (q->mUnk_0000 == 2 ? q->mOwnIndex : 0)].mUnk_00;
+                h = q->mUnk_1e52[(u16) (q->mUnk_0000 == 2 ? q->mOwnIndex : 0)].mEntryIndex;
             }
             gRaceSetup->mNextHeader.mEntryIndex = h;
             gRaceSetup->mNextHeader.mFollowedKartIndex = h;

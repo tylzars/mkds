@@ -221,7 +221,7 @@ void func_0202d554(void) {
     q = &gTimeAttackGhostSend->mUnk_050[1];
     n = p->mCellLayout->mUnk_06 + p->mLabelLayout->mUnk_06;
     m = q->mCellLayout->mUnk_06 + q->mLabelLayout->mUnk_06;
-    k = func_02025ebc(&gTimeAttackGhostSend->mUnk_0cc);
+    k = GetInterpolatedValue(&gTimeAttackGhostSend->mUnk_0cc);
     for (i = 0; i < n; i++) {
         p->mCellTable[i].mUnk_06 = -k;
     }
@@ -309,7 +309,7 @@ void InitTimeAttackGhostSend(void *a, void *b, void *c) {
         }
     }
     func_02025b84(0, &gTimeAttackGhostSend->mUnk_050[2]);
-    func_02025f80(&gTimeAttackGhostSend->mUnk_0cc, 3, 10, -0xc0, 0);
+    SetupInterpolation(&gTimeAttackGhostSend->mUnk_0cc, 3, 10, -0xc0, 0);
     SetSelectReturnSoundId(0xf);
     func_0204f804();
     gTimeAttackGhostSend->mState = 1;
@@ -328,7 +328,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
     s32 i;
     e = func_020435bc();
     c = 0;
-    func_02025edc(&gTimeAttackGhostSend->mUnk_0cc);
+    AdvanceInterpolation(&gTimeAttackGhostSend->mUnk_0cc);
     b = c;
     a = b;
     x = data_02175628[e].mHasPair;
@@ -367,7 +367,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
             }
             break;
         case 2:
-            if (gTimeAttackGhostSend->mUnk_0cc.mUnk_00 == 1) {
+            if (gTimeAttackGhostSend->mUnk_0cc.mState == 1) {
                 gTimeAttackGhostSend->mUnk_0b4 = 0;
                 gTimeAttackGhostSend->mState = 3;
             } else {
@@ -527,7 +527,7 @@ void ReleaseTimeAttackGhostSend(void) {
 #pragma thumb on
 
 void func_0202ccc0(void) {
-    s16 a = func_02025ebc(&gTimeAttackGhostSend->mUnk_0cc);
+    s16 a = GetInterpolatedValue(&gTimeAttackGhostSend->mUnk_0cc);
     int b;
     reg_G2_BG0OFS = ((a << 16) & 0x1ff0000);
     b = -a;

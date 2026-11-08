@@ -3,8 +3,9 @@
 
 #pragma thumb on
 
-s16 func_02025ebc(Unk02025ebc *a) {
-    return InterpolateS16(1, a->mUnk_0c, a->mUnk_0e, a->mUnk_04, a->mUnk_08);
+s16 GetInterpolatedValue(Interpolation *interpolation) {
+    return InterpolateS16(1, interpolation->mStartValue, interpolation->mEndValue, interpolation->mCounter,
+                          interpolation->mCounterLimit);
 }
 
 #pragma thumb off

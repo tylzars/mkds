@@ -139,8 +139,8 @@ void func_0202b264(void) {
 
     p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectSParts;
     n = p->mCellLayout->mUnk_06 + p->mLabelLayout->mUnk_06;
-    func_02025edc(&gWiFiVSCourseSelect->mUnk_0cc[0]);
-    gWiFiVSCourseSelect->mUnk_154 = func_02025ebc(&gWiFiVSCourseSelect->mUnk_0cc[0]);
+    AdvanceInterpolation(&gWiFiVSCourseSelect->mUnk_0cc[0]);
+    gWiFiVSCourseSelect->mUnk_154 = GetInterpolatedValue(&gWiFiVSCourseSelect->mUnk_0cc[0]);
     for (i = 0; i < n; i++) {
         p->mCellTable[i].mUnk_06 = gWiFiVSCourseSelect->mUnk_154;
     }
@@ -156,7 +156,7 @@ void func_0202b100(void) {
     p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
     n = p->mCellLayout->mUnk_06;
     for (i = 0; i < gWiFiVSCourseSelect->mUnk_0b8; i++) {
-        func_02025edc(&gWiFiVSCourseSelect->mUnk_0fc[i]);
+        AdvanceInterpolation(&gWiFiVSCourseSelect->mUnk_0fc[i]);
         if (GetIndexOfPackedIndex(i) >= 0) {
             v = GetWiFiSessionPickedCourseId((u8) GetIndexOfPackedIndex(i));
         } else {
@@ -177,7 +177,8 @@ void func_0202b100(void) {
                 }
                 break;
         }
-        p->mCellTable[n + data_usa_021539f4[i].mUnk_00].mUnk_04 = func_02025ebc(&gWiFiVSCourseSelect->mUnk_0fc[i]);
+        p->mCellTable[n + data_usa_021539f4[i].mUnk_00].mUnk_04 =
+            GetInterpolatedValue(&gWiFiVSCourseSelect->mUnk_0fc[i]);
         p->mCellTable[data_usa_021539d8[i]].mUnk_04 = p->mCellTable[n + data_usa_021539f4[i].mUnk_00].mUnk_04;
     }
 }
@@ -190,8 +191,8 @@ void func_0202afe4(void) {
 
     v = 0;
     p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
-    func_02025edc(&gWiFiVSCourseSelect->mUnk_0cc[2]);
-    p->mCellTable[16].mUnk_04 = func_02025ebc(&gWiFiVSCourseSelect->mUnk_0cc[2]);
+    AdvanceInterpolation(&gWiFiVSCourseSelect->mUnk_0cc[2]);
+    p->mCellTable[16].mUnk_04 = GetInterpolatedValue(&gWiFiVSCourseSelect->mUnk_0cc[2]);
     p->mCellTable[15].mUnk_04 = p->mCellTable[16].mUnk_04;
     switch (gWiFiVSCourseSelect->mState) {
         case 0:
@@ -285,11 +286,11 @@ void InitWiFiVSCourseSelect(void *param_1, void *param_2, void *param_3) {
     gWiFiVSCourseSelect->mUnk_154 = -0xc0;
     for (i = 0; i < 4; i++) {
         gWiFiVSCourseSelect->mUnk_0bc[i] = 0;
-        func_02025f80(&gWiFiVSCourseSelect->mUnk_0fc[i], 3, 10, 0xfc, 0);
+        SetupInterpolation(&gWiFiVSCourseSelect->mUnk_0fc[i], 3, 10, 0xfc, 0);
     }
-    func_02025f80(&gWiFiVSCourseSelect->mUnk_0cc[1], 0, 10, -0x40, 0);
-    func_02025f80(&gWiFiVSCourseSelect->mUnk_0cc[0], 0, 10, -0xc0, 0);
-    func_02025f80(&gWiFiVSCourseSelect->mUnk_0cc[2], 0, 10, 0x40, 0);
+    SetupInterpolation(&gWiFiVSCourseSelect->mUnk_0cc[1], 0, 10, -0x40, 0);
+    SetupInterpolation(&gWiFiVSCourseSelect->mUnk_0cc[0], 0, 10, -0xc0, 0);
+    SetupInterpolation(&gWiFiVSCourseSelect->mUnk_0cc[2], 0, 10, 0x40, 0);
     reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0xc00;
     func_020258d4(0, gWiFiVSCourseSelect, gWiFiVSCourseSelectMBNcgrName, gWiFiVSCourseSelectMBNclrName,
                   gWiFiVSCourseSelectMNscrName, 0, FindSceneFile);
@@ -362,7 +363,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
             if (AreBrightnessFadesClear() == 0) {
                 break;
             }
-            if (gWiFiVSCourseSelect->mUnk_0cc[0].mUnk_00 == 1) {
+            if (gWiFiVSCourseSelect->mUnk_0cc[0].mState == 1) {
                 gWiFiVSCourseSelect->mState = 1;
             }
             func_0202b264();
@@ -431,7 +432,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
             break;
     }
     func_0202afe4();
-    func_02025edc(&gWiFiVSCourseSelect->mUnk_0cc[1]);
+    AdvanceInterpolation(&gWiFiVSCourseSelect->mUnk_0cc[1]);
     for (i = 0; i < 2; i++) {
         d = gWiFiVSCourseSelect;
         p = &d->mWiFiVSCourseSelectMParts;
@@ -459,7 +460,7 @@ void func_0202a820(void) {
     GX_SetGraphicsMode(1, 0, 0);
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | 0x1a00;
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 2;
-    reg_G2_BG0OFS = (-func_02025ebc(&gWiFiVSCourseSelect->mUnk_0cc[1]) << 16) & 0x1ff0000;
+    reg_G2_BG0OFS = (-GetInterpolatedValue(&gWiFiVSCourseSelect->mUnk_0cc[1]) << 16) & 0x1ff0000;
     reg_G2S_DB_BG3OFS = (-gWiFiVSCourseSelect->mUnk_154 << 16) & 0x1ff0000;
     if (gWiFiVSCourseSelect->mUnk_154 != 0) {
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffff1fff) | 0x2000;

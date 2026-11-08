@@ -28,7 +28,7 @@ typedef struct Unk02153554 {
 
 // 8-byte entries at 0x90 of Unk02174e14, filled from data_021535b4.
 typedef struct Unk021535b4 {
-    /* 00 */ s32 mUnk_00;
+    /* 00 */ s32 mCharacterIndex;
     /* 04 */ s32 mUnk_04;
 } Unk021535b4;
 

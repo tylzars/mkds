@@ -18,7 +18,7 @@ void WriteVsSelectCharacterRegisters(void) {
         GXS_SetGraphicsMode(0);
     }
     GxsDispCntBits8To12Write(0x12);
-    func_02026058();
+    WriteSelectCharacterRegisters();
 }
 
 #pragma thumb off

@@ -29,7 +29,7 @@ void func_0202ba14(void) {
     BOOL b;
     s16 x;
 
-    x = func_02025ebc(&data_02174e3c->mUnk_210[2]);
+    x = GetInterpolatedValue(&data_02174e3c->mUnk_210[2]);
     if (data_02174e3c->mUnk_254 == 2) {
         b = FALSE;
         a |= 2;

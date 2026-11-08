@@ -54,21 +54,21 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     gSelectKart->mTouchRect = -1;
     switch (GetRaceSetupCopy()->mUnk_108) {
         case 1:
-            func_02025f80(&gSelectKart->mUnk_0ac[0], 1, 10, -0x80, 0);
-            func_02025f80(&gSelectKart->mUnk_0ac[2], 1, 10, 0x60, 0);
+            SetupInterpolation(&gSelectKart->mInterpolations[0], 1, 10, -0x80, 0);
+            SetupInterpolation(&gSelectKart->mInterpolations[2], 1, 10, 0x60, 0);
             break;
         case 0:
-            func_02025f80(&gSelectKart->mUnk_0ac[0], 0, 10, -0x80, 0);
-            func_02025f80(&gSelectKart->mUnk_0ac[2], 0, 10, 0x60, 0);
+            SetupInterpolation(&gSelectKart->mInterpolations[0], 0, 10, -0x80, 0);
+            SetupInterpolation(&gSelectKart->mInterpolations[2], 0, 10, 0x60, 0);
             if (func_020280dc() == 0) {
                 StartKartModelMenuBg0Increase();
                 func_02077f48(0);
             }
             break;
     }
-    func_02025f80(&gSelectKart->mUnk_0ac[1], 0, 10, -0x40, 0);
-    func_02025f80(&gSelectKart->mUnk_0ac[3], 0, 10, 0x40, 0);
-    func_02025f80(&gSelectKart->mUnk_0ac[4], 0, 10, -0xc0, 0);
+    SetupInterpolation(&gSelectKart->mInterpolations[1], 0, 10, -0x40, 0);
+    SetupInterpolation(&gSelectKart->mInterpolations[3], 0, 10, 0x40, 0);
+    SetupInterpolation(&gSelectKart->mInterpolations[4], 0, 10, -0xc0, 0);
     gSelectKart->mUnk_080 = c;
     gSelectKart->mUnk_084 = d;
     if (gSelectKart->mMode != 0 || GetRaceSetupCopy()->mMode == 3 || GetRaceSetupCopy()->mMode == 2) {
@@ -96,7 +96,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
             gSelectKart->mEntryIndex = 0;
             break;
         case 1:
-            gSelectKart->mEntryIndex = func_02028d9c();
+            gSelectKart->mEntryIndex = GetOwnEntryIndex();
             break;
         case 2:
             gSelectKart->mEntryIndex = func_020295e4();
@@ -168,7 +168,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
         func_0211f4b0(gSelectKart->mHeap, gSelectKart->mUnk_084);
         func_0211f394();
     }
-    func_02028e38();
+    RefreshKartMenuParamElements();
     func_02029330();
     func_02028f20();
     if (func_020280dc() == 0) {

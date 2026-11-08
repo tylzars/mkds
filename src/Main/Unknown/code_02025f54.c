@@ -3,16 +3,16 @@
 
 #pragma thumb on
 
-void func_02025f54(Unk02025ebc *a, u32 b) {
-    a->mUnk_00 = b;
-    switch (a->mUnk_00) {
+void SetInterpolationState(Interpolation *interpolation, u32 state) {
+    interpolation->mState = state;
+    switch (interpolation->mState) {
         case 0:
         case 3:
-            a->mUnk_04 = 0;
+            interpolation->mCounter = 0;
             return;
         case 1:
         case 2:
-            a->mUnk_04 = a->mUnk_08;
+            interpolation->mCounter = interpolation->mCounterLimit;
     }
 }
 

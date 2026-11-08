@@ -131,22 +131,22 @@ void func_0202c960(void) {
     s32 d;
     s16 w;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_02025edc(&data_02174e3c->mUnk_210[0]);
-        q->mCellTable[25].mUnk_06 = func_02025ebc(&data_02174e3c->mUnk_210[0]);
-        func_02025edc(&data_02174e3c->mUnk_210[3]);
-        q->mCellTable[64].mUnk_06 = func_02025ebc(&data_02174e3c->mUnk_210[3]);
+        AdvanceInterpolation(&data_02174e3c->mUnk_210[0]);
+        q->mCellTable[25].mUnk_06 = GetInterpolatedValue(&data_02174e3c->mUnk_210[0]);
+        AdvanceInterpolation(&data_02174e3c->mUnk_210[3]);
+        q->mCellTable[64].mUnk_06 = GetInterpolatedValue(&data_02174e3c->mUnk_210[3]);
         q->mCellTable[63].mUnk_06 = q->mCellTable[64].mUnk_06;
         q->mCellTable[62].mUnk_06 = q->mCellTable[63].mUnk_06;
         q->mCellTable[61].mUnk_06 = q->mCellTable[62].mUnk_06;
         q->mCellTable[60].mUnk_06 = q->mCellTable[61].mUnk_06;
         q->mCellTable[59].mUnk_06 = q->mCellTable[60].mUnk_06;
     }
-    func_02025edc(&data_02174e3c->mUnk_210[1]);
-    w = func_02025ebc(&data_02174e3c->mUnk_210[1]);
+    AdvanceInterpolation(&data_02174e3c->mUnk_210[1]);
+    w = GetInterpolatedValue(&data_02174e3c->mUnk_210[1]);
     c = func_0202cc78();
     q->mCellTable[c].mUnk_04 = w;
     q->mCellTable[func_0202cc8c()].mUnk_04 = q->mCellTable[c].mUnk_04;
-    func_02025edc(&data_02174e3c->mUnk_210[2]);
+    AdvanceInterpolation(&data_02174e3c->mUnk_210[2]);
     func_0202cba4();
     for (i = 0; i < 8; i++) {
         w = InterpolateS16(1, data_usa_02153aa4[data_02174e3c->mUnk_04c[i].mUnk_04.mUnk_08],
@@ -231,9 +231,9 @@ void func_0202c65c(void *a, void *b) {
         q->mCellTable[data_usa_02174e0c[i].mUnk_02].mUnk_00 = q->mCellTable[data_usa_02174e0c[i].mUnk_04].mUnk_00;
     }
     func_0202cbf4();
-    func_02025f80(&data_02174e3c->mUnk_210[0], 0, 10, -0x40, 0);
-    func_02025f80(&data_02174e3c->mUnk_210[2], 3, 10, 0x60, 0);
-    func_02025f80(&data_02174e3c->mUnk_210[3], 3, 10, 0x40, 0);
+    SetupInterpolation(&data_02174e3c->mUnk_210[0], 0, 10, -0x40, 0);
+    SetupInterpolation(&data_02174e3c->mUnk_210[2], 3, 10, 0x60, 0);
+    SetupInterpolation(&data_02174e3c->mUnk_210[3], 3, 10, 0x40, 0);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         LocateCellFileSet(&data_02174e3c->mUnk_01c, data_usa_02162bf0, data_usa_02162c14, NULL,
                           gSelectMenuEtcTitleMBnclName, NULL, NULL, FindFileInLoadedArchives);
@@ -258,7 +258,7 @@ void func_0202c0d4(s32 a, s32 b) {
     data_02174e3c->mUnk_254 = b;
     if (data_02174e3c->mUnk_1fc != FALSE) {
         data_02174e3c->mTimer = 0x708;
-        func_02025f80(&data_02174e3c->mUnk_210[1], 0, 10, 0x40, 0);
+        SetupInterpolation(&data_02174e3c->mUnk_210[1], 0, 10, 0x40, 0);
         switch (data_02174e3c->mUnk_250) {
             case 0:
                 data_02174e3c->mPlayerCount = 1;
@@ -284,7 +284,7 @@ void func_0202c0d4(s32 a, s32 b) {
                 } else {
                     i = 0;
                 }
-                data_02174e3c->mUnk_044 = data_0217aa00->mUnk_1e52[(u16) i].mUnk_00;
+                data_02174e3c->mUnk_044 = data_0217aa00->mUnk_1e52[(u16) i].mEntryIndex;
                 for (j = 0; j < (n = data_02174e3c->mPlayerCount); j++) {
                     GetRaceSetupCopy()->mEntries[j].mPlayerKind = PLAYER_KIND_HUMAN;
                     v = 0;
@@ -371,7 +371,7 @@ void func_0202c0d4(s32 a, s32 b) {
     for (i = 0; i < 8; i++) {
         PrintEntryName(i, data_02174e3c->mUnk_04c[i].mName);
     }
-    func_02025f80(&data_02174e3c->mUnk_210[2], 3, 10, 0x60, 0);
+    SetupInterpolation(&data_02174e3c->mUnk_210[2], 3, 10, 0x60, 0);
     data_02174e3c->mUnk_204 = 0;
     n = 0;
     if (data_02174e3c->mUnk_254 != 2 && data_02174e3c->mUnk_250 != 0) {

@@ -126,7 +126,7 @@ void func_ov001_02185598(void) {
         func_ov001_021854d8(8);
         GXS_SetGraphicsMode(0);
     }
-    func_02026058();
+    WriteSelectCharacterRegisters();
 }
 
 void func_ov001_0218556c(void) {

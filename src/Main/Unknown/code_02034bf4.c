@@ -71,8 +71,8 @@ void func_02035060(void) {
     s = &data_02174e64->mUnk_02c[1];
     m = s->mCellLayout->mUnk_06;
     for (i = 0; i < 4; i++) {
-        func_02025edc(&data_02174e64->mUnk_09c[i].mUnk_2c);
-        c = func_02025ebc(&data_02174e64->mUnk_09c[i].mUnk_2c);
+        AdvanceInterpolation(&data_02174e64->mUnk_09c[i].mUnk_2c);
+        c = GetInterpolatedValue(&data_02174e64->mUnk_09c[i].mUnk_2c);
         s->mCellTable[m + data_02164254[i + 4][0]].mUnk_04 = c;
         v = s->mCellTable[m + ((const s16(*)[4]) data_02164254)[i + 4][0]].mUnk_04;
         s->mCellTable[m + data_02164254[i][0]].mUnk_04 = v;
@@ -96,7 +96,7 @@ void func_02034fec(void) {
     t = &data_02174e64->mUnk_02c[1];
     n = s->mCellLayout->mUnk_06 + s->mLabelLayout->mUnk_06;
     m = t->mCellLayout->mUnk_06 + t->mLabelLayout->mUnk_06;
-    c = func_02025ebc(&data_02174e64->mUnk_194);
+    c = GetInterpolatedValue(&data_02174e64->mUnk_194);
     for (i = 0; i < n; i++) {
         s->mCellTable[i].mUnk_06 = -c;
     }
@@ -194,7 +194,7 @@ void func_02034bf4(void *a, void *b, void *c) {
     InitBlockEntries(data_02174e64->mHeap, 2);
     data_02174e64->mUnk_080 = -1;
     for (i = 0; i < 4; i++) {
-        func_02025f80(&data_02174e64->mUnk_09c[i].mUnk_2c, 3, 10, 0x100, 0);
+        SetupInterpolation(&data_02174e64->mUnk_09c[i].mUnk_2c, 3, 10, 0x100, 0);
     }
     func_020258d4(0, data_02174e64, data_021642ac, data_021642cc, data_021642ec, 0, FindSceneFile);
     s = &data_02174e64->mUnk_02c[0];
@@ -240,7 +240,7 @@ void func_02034bf4(void *a, void *b, void *c) {
     }
     s->mCellTable[4].mUnk_00 = 0;
     func_02025b84(0, &data_02174e64->mUnk_064);
-    func_02025f80(&data_02174e64->mUnk_194, 3, 10, -0xc0, 0);
+    SetupInterpolation(&data_02174e64->mUnk_194, 3, 10, -0xc0, 0);
     SetSelectReturnSoundId(0xf);
     FrmHeapShrinkInParent(data_02174e64->mHeap);
 }

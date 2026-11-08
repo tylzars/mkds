@@ -158,7 +158,7 @@ void func_02035b0c(void) {
     t = &data_02174e68->mUnk_2c[1];
     n = s->mCellLayout->mUnk_06 + s->mLabelLayout->mUnk_06;
     m = t->mCellLayout->mUnk_06 + t->mLabelLayout->mUnk_06;
-    c = func_02025ebc(&data_02174e68->mUnk_90);
+    c = GetInterpolatedValue(&data_02174e68->mUnk_90);
     for (i = 0; i < n; i++) {
         s->mCellTable[i].mUnk_06 = -c;
     }
@@ -259,7 +259,7 @@ void func_020357dc(void *a, void *b, void *c) {
                   2, 10, func_02035c50);
     func_02025b84(0, &data_02174e68->mUnk_64);
     PrintSelectedGhostRecord();
-    func_02025f80(&data_02174e68->mUnk_90, 0, 10, -0xc0, 0);
+    SetupInterpolation(&data_02174e68->mUnk_90, 0, 10, -0xc0, 0);
     RequestSelectReturnState1();
     SetSelectReturnSoundId(0xf);
     func_02035c14();
@@ -282,7 +282,7 @@ s32 func_0203551c(u16 *a) {
     r = K0;
     k = func_020435bc();
     z = 0;
-    func_02025edc(&data_02174e68->mUnk_90);
+    AdvanceInterpolation(&data_02174e68->mUnk_90);
     f = FALSE;
     g = FALSE;
     w = data_02175674[k].mUnk_00;
@@ -298,7 +298,7 @@ s32 func_0203551c(u16 *a) {
     p = data_02174e68;
     switch (p->mState) {
         case 0:
-            if (p->mUnk_90.mUnk_00 == 1) {
+            if (p->mUnk_90.mState == 1) {
                 p->mState = 1;
             } else {
                 func_02035b0c();
@@ -393,7 +393,7 @@ void func_020353f8(void) {
     s32 r;
     s32 n;
 
-    r = func_02025ebc(&data_02174e68->mUnk_90);
+    r = GetInterpolatedValue(&data_02174e68->mUnk_90);
     reg_G2_BG0OFS = (r << 16) & 0x1ff0000;
     n = -r;
     reg_G2S_DB_BG3OFS = (n << 16) & 0x1ff0000;
@@ -460,7 +460,7 @@ void MoveSelectedGhostUp(s32 a) {
     }
     if (i != c) {
         do {
-            if (p->mUnk_09c[i].mUnk_28 == TRUE && p->mUnk_09c[i].mUnk_2c.mUnk_00 == 1) {
+            if (p->mUnk_09c[i].mUnk_28 == TRUE && p->mUnk_09c[i].mUnk_2c.mState == 1) {
                 f = TRUE;
                 p->mUnk_080 = i;
                 break;
@@ -499,7 +499,7 @@ void MoveSelectedGhostDown(s32 a) {
     }
     if (i != c) {
         do {
-            if (p->mUnk_09c[i].mUnk_28 == TRUE && p->mUnk_09c[i].mUnk_2c.mUnk_00 == 1) {
+            if (p->mUnk_09c[i].mUnk_28 == TRUE && p->mUnk_09c[i].mUnk_2c.mState == 1) {
                 f = TRUE;
                 p->mUnk_080 = i;
                 break;

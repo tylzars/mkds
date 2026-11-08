@@ -2,13 +2,13 @@
 
 #include "types.h"
 
-// 0x10-byte object passed to func_02025ebc, func_02025edc and func_02025f14.
-typedef struct Unk02025ebc {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s16 mUnk_0c;
-    /* 0e */ s16 mUnk_0e;
-} Unk02025ebc;
+// Eases an s16 from a start to an end value while a counter steps from 0 up to its limit, and back down.
+typedef struct Interpolation {
+    /* 00 */ s32 mState;
+    /* 04 */ s32 mCounter;
+    /* 08 */ s32 mCounterLimit;
+    /* 0c */ s16 mStartValue;
+    /* 0e */ s16 mEndValue;
+} Interpolation;
 
-s16 func_02025ebc(Unk02025ebc *a);
+s16 GetInterpolatedValue(Interpolation *interpolation);

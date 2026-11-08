@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/unk_02029930.h" // Unk02029930_f8
-#include "Main/Unknown/code_02025ebc.h" // Unk02025ebc
+#include "Main/Unknown/code_02025ebc.h" // Interpolation
 #include "Main/Unknown/code_02036588.h" // HeapCall
 #include "Main/Unknown/unk_02153000.h" // Unk021535b4
 #include "Main/Unknown/code_020b4000.h" // Ncgr, Nscr, Nclr
@@ -82,7 +82,7 @@ typedef struct SelectKart {
     /* 0a0 */ s32 mEntryIndex;
     /* 0a4 */ s32 mCharacterIndex;
     /* 0a8 */ s32 mKartIndex;
-    /* ac */ Unk02025ebc mUnk_0ac[5];
+    /* ac */ Interpolation mInterpolations[5];
     /* 0fc */ s32 mMode;
     /* 100 */ s32 mResult;
     /* 104 */ BOOL mUnk_104;
@@ -130,7 +130,7 @@ typedef struct Unk02174e14 {
     /* 000 */ Unk02174e14_00 mUnk_000;
     /* 01c */ Unk02174e14_00 mUnk_01c;
     /* 038 */ Unk02174e14_00 mUnk_038;
-    /* 054 */ void *mUnk_054;
+    /* 054 */ void *mMainOam;
     /* 058 */ void *mUnk_058;
     /* 05c */ void *mHeap;
     /* 060 */ s32 mUnk_060;
@@ -140,16 +140,16 @@ typedef struct Unk02174e14 {
     /* 070 */ s32 mUnk_070;
     /* 074 */ u16 mUnk_074;
     /* 076 */ u8 mUnk_076[2];
-    /* 078 */ s32 mUnk_078;
+    /* 078 */ s32 mEntryIndex;
     /* 07c */ s32 mUnk_07c;
     /* 080 */ s32 mUnk_080;
     // Row to move to on up, down, right and left; 0xffff means stay on the row.
     /* 84 */ s16 mTableIndexByKey[4];
     /* 08c */ s32 mUnk_08c;
     /* 090 */ Unk021535b4 mUnk_090[12];
-    /* 0f0 */ s32 mUnk_0f0;
-    /* 0f4 */ s32 mUnk_0f4;
-    /* f8 */ Unk02025ebc mUnk_0f8[3];
+    /* 0f0 */ s32 mCharacterIndex;
+    /* 0f4 */ s32 mKartIndex;
+    /* f8 */ Interpolation mInterpolations[3];
     /* 128 */ BOOL mUnk_128;
 } Unk02174e14;
 
@@ -173,7 +173,7 @@ typedef struct Unk02174e3c {
     /* 204 */ s32 mUnk_204;
     /* 208 */ s32 mUnk_208;
     /* 20c */ BOOL mUnk_20c;
-    /* 210 */ Unk02025ebc mUnk_210[4];
+    /* 210 */ Interpolation mUnk_210[4];
     /* 250 */ s32 mUnk_250;
     /* 254 */ s32 mUnk_254;
 } Unk02174e3c;
@@ -233,7 +233,7 @@ typedef struct Unk02174e64_9c_00 {
 typedef struct Unk02174e64_9c {
     /* 00 */ Unk02174e64_9c_00 mUnk_00;
     /* 28 */ BOOL mUnk_28;
-    /* 2c */ Unk02025ebc mUnk_2c;
+    /* 2c */ Interpolation mUnk_2c;
 } Unk02174e64_9c;
 
 // Object behind data_02174e64.
@@ -252,7 +252,7 @@ typedef struct Unk02174e64 {
     /* 09c */ Unk02174e64_9c mUnk_09c[4];
     /* 18c */ BOOL mUnk_18c;
     /* 190 */ s32 mUnk_190;
-    /* 194 */ Unk02025ebc mUnk_194;
+    /* 194 */ Interpolation mUnk_194;
     /* 1a4 */ void *mHeap;
 } Unk02174e64;
 
@@ -279,7 +279,7 @@ typedef struct TimeAttackGhostSend {
     /* 0b0 */ s32 mState;
     /* 0b4 */ s32 mUnk_0b4;
     /* 0b8 */ u8 mUnk_0b8[0x14];
-    /* 0cc */ Unk02025ebc mUnk_0cc;
+    /* 0cc */ Interpolation mUnk_0cc;
     /* 0dc */ void *mHeap;
 } TimeAttackGhostSend;
 
@@ -366,7 +366,7 @@ typedef struct Unk02174e68 {
     /* 84 */ Bmg *mCommonMessages;
     /* 88 */ Bmg *mGhostMessages;
     /* 8c */ s32 mState;
-    /* 90 */ Unk02025ebc mUnk_90;
+    /* 90 */ Interpolation mUnk_90;
     /* a0 */ BOOL mUnk_a0;
     /* a4 */ void *mHeap;
 } Unk02174e68;

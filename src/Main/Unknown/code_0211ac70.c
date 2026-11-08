@@ -451,7 +451,7 @@ void ChangeSelectRaceRulePlayerTeam(u16 a, u32 b) {
     }
     if (IsPlayerTeamPlayerCountNotOne(a) == 0) {
         v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
-        if (a == data_0217aa00->mUnk_1e52[v].mUnk_00) {
+        if (a == data_0217aa00->mUnk_1e52[v].mEntryIndex) {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
         }
         return;
@@ -473,7 +473,7 @@ void ChangeSelectRaceRulePlayerTeam(u16 a, u32 b) {
         ChangeSelectRaceRulePlayerTeam(c, GetOtherTeamIndex(b));
     }
     v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
-    if (a == data_0217aa00->mUnk_1e52[v].mUnk_00) {
+    if (a == data_0217aa00->mUnk_1e52[v].mEntryIndex) {
         switch (gSelectRaceRule->mPlayerTeamIndices[a]) {
             case 0:
                 gSelectRaceRule->mUnk_50[1][0] = 6;
@@ -999,7 +999,7 @@ void func_0211c14c(void) {
             for (j = 0; j < 2; j++) {
                 if (gSelectRaceRule->mRow == 4 && gSelectRaceRule->mOnButton == 0) {
                     v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
-                    if (IsPlayerTeamPlayerCountNotOne(data_0217aa00->mUnk_1e52[v].mUnk_00) != 0) {
+                    if (IsPlayerTeamPlayerCountNotOne(data_0217aa00->mUnk_1e52[v].mEntryIndex) != 0) {
                         gSelectRaceRule->mTable[data_0215cc6c[j]].mUnk_00 = 1;
                         gSelectRaceRule->mTable[data_0215cc70[j]].mUnk_00 = 0;
                     } else {
@@ -1033,7 +1033,7 @@ void func_0211c14c(void) {
         if (gSelectRaceRule->mRowValues[4] == 2) {
             for (j = 0; j < 2; j++) {
                 v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
-                if (IsPlayerTeamPlayerCountNotOne(data_0217aa00->mUnk_1e52[v].mUnk_00) != 0) {
+                if (IsPlayerTeamPlayerCountNotOne(data_0217aa00->mUnk_1e52[v].mEntryIndex) != 0) {
                     gSelectRaceRule->mTable[data_0215cc6c[j]].mUnk_00 = 1;
                     gSelectRaceRule->mTable[data_0215cc70[j]].mUnk_00 = 0;
                 } else {

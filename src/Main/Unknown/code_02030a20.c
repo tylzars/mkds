@@ -162,8 +162,8 @@ void func_02031ba4(void) {
     n1 = p->mUnk_0c->mUnk_06;
     n2 = q->mUnk_14->mUnk_06;
     n3 = q->mUnk_0c->mUnk_06;
-    func_02025edc(&gMultiSelectMember->mUnk_a0[0]);
-    p->mUnk_18[2].mUnk_06 = func_02025ebc(&gMultiSelectMember->mUnk_a0[0]);
+    AdvanceInterpolation(&gMultiSelectMember->mUnk_a0[0]);
+    p->mUnk_18[2].mUnk_06 = GetInterpolatedValue(&gMultiSelectMember->mUnk_a0[0]);
     p->mUnk_18[1].mUnk_06 = p->mUnk_18[2].mUnk_06;
     p->mUnk_18[0].mUnk_06 = p->mUnk_18[1].mUnk_06;
     gMultiSelectMember->mUnk_144 = gMultiSelectMember->mUnk_144 + 1;
@@ -192,8 +192,8 @@ void func_02031ba4(void) {
         d = 0;
     }
     p->mUnk_18[2].mUnk_00 = d;
-    func_02025edc(&gMultiSelectMember->mUnk_a0[1]);
-    v = func_02025ebc(&gMultiSelectMember->mUnk_a0[1]);
+    AdvanceInterpolation(&gMultiSelectMember->mUnk_a0[1]);
+    v = GetInterpolatedValue(&gMultiSelectMember->mUnk_a0[1]);
     p->mUnk_18[0xb].mUnk_06 = v;
     p->mUnk_18[0xa].mUnk_06 = p->mUnk_18[0xb].mUnk_06;
     p->mUnk_18[9].mUnk_06 = p->mUnk_18[0xa].mUnk_06;
@@ -206,8 +206,8 @@ void func_02031ba4(void) {
     for (i = 0; i < n0; i++) {
         p->mUnk_18[i + n1].mUnk_06 = v;
     }
-    func_02025edc(&gMultiSelectMember->mUnk_a0[2]);
-    v = func_02025ebc(&gMultiSelectMember->mUnk_a0[2]);
+    AdvanceInterpolation(&gMultiSelectMember->mUnk_a0[2]);
+    v = GetInterpolatedValue(&gMultiSelectMember->mUnk_a0[2]);
     i = 0;
     d = n3 + n2;
     for (; i < d; i++) {
@@ -218,8 +218,8 @@ void func_02031ba4(void) {
     } else {
         func_02025f14(&gMultiSelectMember->mUnk_a0[3], 2);
     }
-    func_02025edc(&gMultiSelectMember->mUnk_a0[3]);
-    v = func_02025ebc(&gMultiSelectMember->mUnk_a0[3]);
+    AdvanceInterpolation(&gMultiSelectMember->mUnk_a0[3]);
+    v = GetInterpolatedValue(&gMultiSelectMember->mUnk_a0[3]);
     n3 = n3 + 8;
     q->mUnk_18[n3].mUnk_06 = v;
     q->mUnk_18[0x11].mUnk_06 = q->mUnk_18[n3].mUnk_06;
@@ -493,12 +493,12 @@ void InitMultiSelectMember(void *a, void *b, void *c) {
     for (i = 0; i < 9; i++) {
         r -= func_02025a00(1, gMultiSelectMember->mHeap, q, &data_usa_02153d7c[i], r);
     }
-    func_02025f80(&gMultiSelectMember->mUnk_a0[3], 3, 10, 0x40, 0);
+    SetupInterpolation(&gMultiSelectMember->mUnk_a0[3], 3, 10, 0x40, 0);
     InitPaletteBlend(gMultiSelectMember->mHeap, q->mUnk_04, 3);
     func_02031b30(1);
-    func_02025f80(&gMultiSelectMember->mUnk_a0[0], 0, 10, -0x40, 0);
-    func_02025f80(&gMultiSelectMember->mUnk_a0[1], 0, 10, 0x40, 0);
-    func_02025f80(&gMultiSelectMember->mUnk_a0[2], 0, 10, -0xc0, 0);
+    SetupInterpolation(&gMultiSelectMember->mUnk_a0[0], 0, 10, -0x40, 0);
+    SetupInterpolation(&gMultiSelectMember->mUnk_a0[1], 0, 10, 0x40, 0);
+    SetupInterpolation(&gMultiSelectMember->mUnk_a0[2], 0, 10, -0xc0, 0);
     gMultiSelectMember->mUnk_e0[0].mUnk_00 = 2;
     for (i = 0; i < 8; i++) {
         gMultiSelectMember->mUnk_e0[i].mUnk_08 = i * 2;
@@ -596,14 +596,14 @@ void func_02031280(void *a, void *b, void *c) {
 #pragma thumb on
 
 u32 func_02031268(void) {
-    if (gMultiSelectMember->mUnk_a0[2].mUnk_00 == 1) {
+    if (gMultiSelectMember->mUnk_a0[2].mState == 1) {
         return 1;
     }
     return 0;
 }
 
 u32 func_02031250(void) {
-    if (gMultiSelectMember->mUnk_a0[2].mUnk_00 == 3) {
+    if (gMultiSelectMember->mUnk_a0[2].mState == 3) {
         return 1;
     }
     return 0;
@@ -714,7 +714,7 @@ s32 func_02030ea4(Unk02030b18 *a) {
                 m = RectTableFindContaining(p->mUnk_10, x, y);
             }
             if ((u16) (data_02175628[k].mUnk_00 & PAD_KEY_A) != 0 || m == 0) {
-                if (gMultiSelectMember->mUnk_74 > 0 && gMultiSelectMember->mUnk_a0[3].mUnk_00 == 1) {
+                if (gMultiSelectMember->mUnk_74 > 0 && gMultiSelectMember->mUnk_a0[3].mState == 1) {
                     func_02031b30(0);
                     RequestSelectReturnState4();
                     StopPaletteBlend();
@@ -957,7 +957,7 @@ void func_02030a20(void) {
     s32 r;
 
     a = 0x17;
-    r = func_02025ebc(&gMultiSelectMember->mUnk_a0[2]);
+    r = GetInterpolatedValue(&gMultiSelectMember->mUnk_a0[2]);
     if (gMultiSelectMember->mUnk_84 == 0 && gMultiSelectMember->mState != 6) {
         a |= 8;
     }

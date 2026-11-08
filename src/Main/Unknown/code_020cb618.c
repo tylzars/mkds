@@ -172,7 +172,7 @@ void ReleasePreviousMenuScreen(void) {
             case 8:
             case 15:
             case 21:
-                func_020260e4();
+                ReleaseSelectCharacter();
                 break;
             case 6:
             case 9:
