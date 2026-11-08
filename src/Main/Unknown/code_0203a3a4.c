@@ -47,25 +47,25 @@
 #include "registers.h"
 
 static inline u32 func_0203a908_inline(void) {
-    Unk02175628Index i = UNK_02175628_INDEX_8;
-    u32 b = 1;
-    u32 c = 0;
-    u16 x = data_02175628[i].mHasPair;
-    if (x == 0 && data_02175628[i].mNoPairCount < 5) {
-        c = 1;
+    Unk02175628Index slotIndex = UNK_02175628_INDEX_8;
+    u32 result = 1;
+    u32 briefNoPair = 0;
+    u16 hasPair = data_02175628[slotIndex].mHasPair;
+    if (hasPair == 0 && data_02175628[slotIndex].mNoPairCount < 5) {
+        briefNoPair = 1;
     }
-    if (c == 0 && x == 0) {
-        b = 0;
+    if (briefNoPair == 0 && hasPair == 0) {
+        result = 0;
     }
-    return b;
+    return result;
 }
 
-BOOL TryFormatGhostPath(u32 a, void *b, u32 c) {
-    int v = FindCupCourseIndex(a);
-    if (v == -1) {
+BOOL TryFormatGhostPath(u32 courseId, void *buffer, u32 size) {
+    int cupCourseIndex = FindCupCourseIndex(courseId);
+    if (cupCourseIndex == -1) {
         return FALSE;
     }
-    OS_SNPrintf(b, c, gGhostPathFormat, v & 0xff);
+    OS_SNPrintf(buffer, size, gGhostPathFormat, cupCourseIndex & 0xff);
     return TRUE;
 }
 
@@ -83,57 +83,57 @@ static inline u32 func_0203a9ec_inline(void) {
 }
 
 // The staff roll waits 0x708 frames before the race runs.
-u32 ShouldUpdateRace(u32 a) {
+u32 ShouldUpdateRace(u32 sceneFrames) {
     if (gRaceSetup->mRaceKind != RACE_KIND_STAFF_ROLL) {
         return 1;
     }
-    return a >= 0x708;
+    return sceneFrames >= 0x708;
 }
 
-void SetupRaceDisplay(void *a) {
-    DisplaySettings *b;
-    b = CreateDisplaySettings(a, gRaceDisplaySettingsDescs[gRaceSetup->mRaceKind]);
-    SetG3xSwapBits(b, 1, 1);
-    SetBg0Record(&b->mMainBg0, 1, 0, 0, 1, 0, 0, 0);
+void SetupRaceDisplay(void *heap) {
+    DisplaySettings *settings;
+    settings = CreateDisplaySettings(heap, gRaceDisplaySettingsDescs[gRaceSetup->mRaceKind]);
+    SetG3xSwapBits(settings, 1, 1);
+    SetBg0Record(&settings->mMainBg0, 1, 0, 0, 1, 0, 0, 0);
     switch (gRaceSetup->mRaceKind) {
         case RACE_KIND_NORMAL:
         case 2:
         case RACE_KIND_STAFF_ROLL:
-            SetBg2RecordParams(&b->mMainBg0, 1, 0, 0, 0, 7, 0);
-            SetBg0Record(&b->mSubBg0, 0, 0, 0, 0, 0xd, 0, 0);
-            SetBg1Record(&b->mSubBg0, 1, 0, 0, 0, 0xe, 0, 0);
-            SetBg2RecordParams(&b->mSubBg0, 2, 0, 0, 0, 0xf, 0);
+            SetBg2RecordParams(&settings->mMainBg0, 1, 0, 0, 0, 7, 0);
+            SetBg0Record(&settings->mSubBg0, 0, 0, 0, 0, 0xd, 0, 0);
+            SetBg1Record(&settings->mSubBg0, 1, 0, 0, 0, 0xe, 0, 0);
+            SetBg2RecordParams(&settings->mSubBg0, 2, 0, 0, 0, 0xf, 0);
             SetDispCapMode(0);
             break;
         case RACE_KIND_DEMO:
-            SetBg2RecordParams(&b->mMainBg0, 1, 0, 0, 0, 7, 0);
-            SetBg0Record(&b->mSubBg0, 0, 0, 0, 0, 0xd, 0, 0);
-            SetBg1Record(&b->mSubBg0, 1, 0, 0, 0, 0xe, 0, 0);
-            SetBg2RecordParams(&b->mSubBg0, 2, 0, 0, 0, 0xf, 0);
+            SetBg2RecordParams(&settings->mMainBg0, 1, 0, 0, 0, 7, 0);
+            SetBg0Record(&settings->mSubBg0, 0, 0, 0, 0, 0xd, 0, 0);
+            SetBg1Record(&settings->mSubBg0, 1, 0, 0, 0, 0xe, 0, 0);
+            SetBg2RecordParams(&settings->mSubBg0, 2, 0, 0, 0, 0xf, 0);
             SetDispCapMode(0);
             break;
         case RACE_KIND_START_GP:
         case RACE_KIND_AWARD:
-            SetBg2RecordParams(&b->mMainBg0, 1, 0, 0, 0, 7, 0);
-            SetBg2RecordMode5(&b->mSubBg0, 0, 0, 1, 0, 0);
-            func_02038c94(b, 0x20);
+            SetBg2RecordParams(&settings->mMainBg0, 1, 0, 0, 0, 7, 0);
+            SetBg2RecordMode5(&settings->mSubBg0, 0, 0, 1, 0, 0);
+            func_02038c94(settings, 0x20);
             SetDispCapMode(1);
             break;
         case 4:
-            SetBg2RecordParams(&b->mMainBg0, 1, 0, 0, 0, 7, 0);
+            SetBg2RecordParams(&settings->mMainBg0, 1, 0, 0, 0, 7, 0);
             SetDispCapMode(0);
             break;
     }
-    InitDisplayFromSettings(b);
+    InitDisplayFromSettings(settings);
     SetupDispCap();
     reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 2;
 }
 
 void InitRaceScene(void) {
     void *p;
-    s32 x;
-    WiFiSession *q;
-    BOOL f;
+    s32 mirrorMode;
+    WiFiSession *session;
+    BOOL sessionHeapCreated;
     p = GetHeap(GetCurrentHeapCall());
     CreateOverlayExpHeap();
     if (gRaceSetup->mRaceKind == RACE_KIND_START_GP || gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
@@ -156,26 +156,26 @@ void InitRaceScene(void) {
         func_020af99c();
     }
     SetHeapGroupId(8);
-    x = gRaceSetup->mMirrorMode;
-    if (x == 0 && gRaceSetup->mMode == MODE_MISSION_RUN) {
+    mirrorMode = gRaceSetup->mMirrorMode;
+    if (mirrorMode == 0 && gRaceSetup->mMode == MODE_MISSION_RUN) {
         if ((gRaceSetup->mUnk_044 & 0x10) != 0) {
-            x = 1;
+            mirrorMode = 1;
         }
     }
-    func_02043a9c(x);
+    func_02043a9c(mirrorMode);
     SetHeapGroupId(9);
     if (gRaceSetup->mMode != MODE_BATTLE) {
         if (gRaceSetup->mMode == 5) {
-            f = FALSE;
-            q = gWiFiSession;
-            if (q != NULL) {
-                if (q->mHeapCreated != FALSE) {
-                    f = TRUE;
+            sessionHeapCreated = FALSE;
+            session = gWiFiSession;
+            if (session != NULL) {
+                if (session->mHeapCreated != FALSE) {
+                    sessionHeapCreated = TRUE;
                 }
             }
-            if (f != FALSE) {
+            if (sessionHeapCreated != FALSE) {
                 Unk0217d384_08 *p;
-                q->mUnk_1f38 = TRUE;
+                session->mUnk_1f38 = TRUE;
                 p = &gWiFiSession->mUnk_0008;
                 p->mNextState = 5;
                 p->mNextStateRequested = 1;
@@ -190,20 +190,20 @@ void InitRaceScene(void) {
 
 void func_0203aacc(void) {
     RaceSetup *p;
-    WiFiSession *q;
-    s32 t;
-    BOOL f;
+    WiFiSession *session;
+    s32 flagIndex;
+    BOOL sessionHeapCreated;
     if (gRaceSetup->mMode == 5) {
-        f = FALSE;
-        q = gWiFiSession;
-        if (q != NULL) {
-            if (q->mHeapCreated != FALSE) {
-                f = TRUE;
+        sessionHeapCreated = FALSE;
+        session = gWiFiSession;
+        if (session != NULL) {
+            if (session->mHeapCreated != FALSE) {
+                sessionHeapCreated = TRUE;
             }
         }
-        if (f != FALSE) {
+        if (sessionHeapCreated != FALSE) {
             Unk0217d384_08 *p;
-            q->mUnk_1f38 = FALSE;
+            session->mUnk_1f38 = FALSE;
             p = &gWiFiSession->mUnk_0008;
             p->mNextState = 4;
             p->mNextStateRequested = 1;
@@ -211,18 +211,18 @@ void func_0203aacc(void) {
     }
     p = gRaceSetup;
     if (p->mRaceKind == RACE_KIND_STAFF_ROLL) {
-        t = 0x18;
+        flagIndex = 0x18;
         if (p->mMode != MODE_GRAND_PRIX) {
             if (p->mMode == MODE_MISSION_RUN) {
-                t = 0x1a;
+                flagIndex = 0x1a;
             }
         } else {
             if (p->mCourseId == COURSE_ID_STAFFROLLTRUE) {
-                t = 0x19;
+                flagIndex = 0x19;
             }
         }
-        if (func_02056dec(t) == 0) {
-            func_02056e24(t);
+        if (func_02056dec(flagIndex) == 0) {
+            func_02056e24(flagIndex);
             func_02056d40();
             func_02057d9c();
             if (data_021759d4->mBackupEnabled != 0) {
@@ -246,16 +246,16 @@ void func_0203aaa8(void) {
 }
 
 // The award scene ends after 0x564 frames, or on a new key press once some Grand Prix record is filled.
-u32 ShouldEndAwardRace(u32 a) {
-    if (a > 0x564) {
+u32 ShouldEndAwardRace(u32 sceneFrames) {
+    if (sceneFrames > 0x564) {
         return 1;
     }
     if (AreBrightnessFadesClear() == 0) {
         return 0;
     }
     if (func_0203a9ec_inline() != 0) {
-        Unk02175628Index i = UNK_02175628_INDEX_8;
-        if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_A) != 0) {
+        Unk02175628Index slotIndex = UNK_02175628_INDEX_8;
+        if ((u16) (data_02175628[slotIndex].mUnk_00 & PAD_KEY_A) != 0) {
             return 1;
         }
     }
@@ -263,45 +263,45 @@ u32 ShouldEndAwardRace(u32 a) {
 }
 
 // The staff roll can end early on input after 0xb4 frames when its flag for the mode is set.
-u32 ShouldEndStaffRoll(u32 a) {
-    u32 r;
-    s32 t = 0x18;
+u32 ShouldEndStaffRoll(u32 sceneFrames) {
+    u32 result;
+    s32 flagIndex = 0x18;
     if (gRaceSetup->mMode != MODE_GRAND_PRIX) {
         if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-            t = 0x1a;
+            flagIndex = 0x1a;
         }
     } else {
         if (gRaceSetup->mCourseId == COURSE_ID_STAFFROLLTRUE) {
-            t = 0x19;
+            flagIndex = 0x19;
         }
     }
-    r = 0;
-    if (func_02056dec(t) != 0 && a > 0xb4) {
-        Unk02175628Index i = UNK_02175628_INDEX_8;
-        if ((u16) (data_02175628[i].mBits & 0xc0f) != 0 || func_0203a908_inline() != 0) {
-            r = 1;
+    result = 0;
+    if (func_02056dec(flagIndex) != 0 && sceneFrames > 0xb4) {
+        Unk02175628Index slotIndex = UNK_02175628_INDEX_8;
+        if ((u16) (data_02175628[slotIndex].mBits & 0xc0f) != 0 || func_0203a908_inline() != 0) {
+            result = 1;
         }
     }
-    return r;
+    return result;
 }
 
 u32 func_0203a8f4(void) {
     return (gRaceSetup->mMode);
 }
 
-void func_0203a8e0(u32 p0) {
-    data_021759d0->mUnk_44 = p0;
+void func_0203a8e0(u32 pickedValue) {
+    data_021759d0->mUnk_44 = pickedValue;
 }
 
 // Turns the value picked on the choice screen into the next scene and the settings that go with it.
-void SetNextSceneFromPickedValue(Unk0203a0dc *a, u32 b) {
-    s32 r;
+void SetNextSceneFromPickedValue(Unk0203a0dc *sceneNumbers, u32 pickedValue) {
+    s32 nextScene;
     data_0217b488->mUnk_08 = 0;
-    r = -1;
-    switch (b) {
+    nextScene = -1;
+    switch (pickedValue) {
         case 10:
             func_02045a2c(0);
-            r = 2;
+            nextScene = 2;
             break;
         case 9:
             if (gRaceSetup->mMode != 5) {
@@ -322,45 +322,45 @@ void SetNextSceneFromPickedValue(Unk0203a0dc *a, u32 b) {
                 }
                 if (f != 0) {
                     if (data_021759d0->mUnk_1c_2 != 0) {
-                        r = 6;
+                        nextScene = 6;
                         data_0217b488->mUnk_74 = 3;
                     } else {
-                        r = 1;
+                        nextScene = 1;
                     }
                     data_0217b488->mUnk_08 = 4;
                     data_0217b488->mUnk_04 = 1;
                 } else {
-                    r = 0;
+                    nextScene = 0;
                 }
                 if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
                     func_0204673c();
                 }
             } else {
-                r = 0xc;
+                nextScene = 0xc;
                 data_0217b488->mUnk_1c = 0;
             }
             break;
         case 1:
         case 3:
-            r = 2;
+            nextScene = 2;
             gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_NORMAL;
             break;
         case 8:
-            r = 2;
-            gRaceSetup->mNextHeader.mRaceKind = r;
+            nextScene = 2;
+            gRaceSetup->mNextHeader.mRaceKind = nextScene;
             break;
         case 2:
             switch (gRaceSetup->mMode) {
                 case MODE_GRAND_PRIX:
                     SetNextGrandPrixCourse();
-                    r = 2;
+                    nextScene = 2;
                     break;
                 case MODE_VS:
                     if (func_02045914() != 0) {
                         if (data_021759d0->mUnk_1c_2 == 0) {
-                            r = 2;
+                            nextScene = 2;
                         } else {
-                            r = 6;
+                            nextScene = 6;
                             data_0217b488->mUnk_74 = 1;
                         }
                     } else {
@@ -368,28 +368,28 @@ void SetNextSceneFromPickedValue(Unk0203a0dc *a, u32 b) {
                             data_0217b488->mUnk_08 = 2;
                         }
                         if (data_021759d0->mUnk_1c_2 == 0) {
-                            r = 1;
+                            nextScene = 1;
                         } else {
-                            r = 6;
+                            nextScene = 6;
                             data_0217b488->mUnk_74 = 3;
                         }
                     }
                     break;
                 case 5:
                     if (func_02045874() != FALSE) {
-                        r = 0xc;
+                        nextScene = 0xc;
                         data_0217b488->mUnk_1c = 3;
                     } else {
-                        r = 0xa;
+                        nextScene = 0xa;
                         data_0217b488->mUnk_1c = 2;
                     }
                     break;
                 case MODE_BATTLE:
                     if (func_020458cc() != 0) {
                         if (data_021759d0->mUnk_1c_2 == 0) {
-                            r = 2;
+                            nextScene = 2;
                         } else {
-                            r = 6;
+                            nextScene = 6;
                             data_0217b488->mUnk_74 = 1;
                         }
                     } else {
@@ -397,9 +397,9 @@ void SetNextSceneFromPickedValue(Unk0203a0dc *a, u32 b) {
                             data_0217b488->mUnk_08 = 2;
                         }
                         if (data_021759d0->mUnk_1c_2 == 0) {
-                            r = 1;
+                            nextScene = 1;
                         } else {
-                            r = 6;
+                            nextScene = 6;
                             data_0217b488->mUnk_74 = 3;
                         }
                     }
@@ -410,40 +410,40 @@ void SetNextSceneFromPickedValue(Unk0203a0dc *a, u32 b) {
             switch (gRaceSetup->mMode) {
                 case MODE_GRAND_PRIX:
                     if (func_02045bd4() != FALSE) {
-                        r = 2;
+                        nextScene = 2;
                     } else {
-                        r = 0xa;
+                        nextScene = 0xa;
                     }
                     break;
                 case MODE_MISSION_RUN:
-                    r = 0;
+                    nextScene = 0;
                     break;
                 case MODE_BATTLE:
                 case MODE_VS:
                     if (data_021759d0->mUnk_1c_2 != 0) {
-                        r = 6;
+                        nextScene = 6;
                         data_0217b488->mUnk_74 = 2;
                     } else {
-                        r = 0xa;
+                        nextScene = 0xa;
                     }
                     break;
             }
             break;
         case 5:
-            r = 1;
-            data_0217b488->mUnk_08 = r;
+            nextScene = 1;
+            data_0217b488->mUnk_08 = nextScene;
             break;
         case 4:
             data_0217b488->mUnk_08 = 2;
-            r = 1;
+            nextScene = 1;
             break;
         case 6:
             data_0217b488->mUnk_08 = 3;
-            r = 1;
+            nextScene = 1;
             break;
     }
-    if (r != -1) {
-        a->mNextScene = r;
+    if (nextScene != -1) {
+        sceneNumbers->mNextScene = nextScene;
     }
 }
 
@@ -463,14 +463,14 @@ u32 func_0203a4cc(void) {
     return 0x8u;
 }
 
-u16 GetDownBits(u32 a, u32 b) {
-    u32 v;
-    v = data_02175628[a].mBits;
-    return v & b;
+u16 GetDownBits(u32 slotIndex, u32 mask) {
+    u32 bits;
+    bits = data_02175628[slotIndex].mBits;
+    return bits & mask;
 }
 
-u32 func_0203a48c(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_0203a48c(u32 index) {
+    u32 value0 = index;
     u32 value1;
     u32 value2;
     u32 value12;
@@ -482,42 +482,42 @@ u32 func_0203a48c(u32 arg0) {
     return value0;
 }
 
-u32 func_0203a440(u32 a) {
-    u32 r;
-    u32 f;
-    u16 x;
-    r = 1;
-    f = 0;
-    x = data_02175628[a].mHasPair;
-    if (x == 0 && data_02175628[a].mNoPairCount < 5) {
-        f = 1;
+u32 func_0203a440(u32 slotIndex) {
+    u32 result;
+    u32 briefNoPair;
+    u16 hasPair;
+    result = 1;
+    briefNoPair = 0;
+    hasPair = data_02175628[slotIndex].mHasPair;
+    if (hasPair == 0 && data_02175628[slotIndex].mNoPairCount < 5) {
+        briefNoPair = 1;
     }
-    if (f == 0 && x == 0) {
-        r = 0;
+    if (briefNoPair == 0 && hasPair == 0) {
+        result = 0;
     }
-    return r;
+    return result;
 }
 
 u32 IsCameraChainEnded(void) {
     return gRaceProgress->mCameraChainEnded;
 }
 
-u32 func_0203a3cc(u32 a) {
-    u32 r;
-    u32 f;
-    r = 0;
-    f = 0;
-    if (data_02175628[a].mHasPair == 0 && data_02175628[a].mNoPairCount < 5) {
-        f = 1;
+u32 func_0203a3cc(u32 slotIndex) {
+    u32 result;
+    u32 briefNoPair;
+    result = 0;
+    briefNoPair = 0;
+    if (data_02175628[slotIndex].mHasPair == 0 && data_02175628[slotIndex].mNoPairCount < 5) {
+        briefNoPair = 1;
     }
-    if (f == 0 && data_02175628[a].mPrevHasPair == 0 && data_02175628[a].mHasPair != 0) {
-        r = 1;
+    if (briefNoPair == 0 && data_02175628[slotIndex].mPrevHasPair == 0 && data_02175628[slotIndex].mHasPair != 0) {
+        result = 1;
     }
-    return r;
+    return result;
 }
 
-void SetNextRaceKind(u32 p0) {
-    gRaceSetup->mNextHeader.mRaceKind = p0;
+void SetNextRaceKind(u32 raceKind) {
+    gRaceSetup->mNextHeader.mRaceKind = raceKind;
 }
 
 u32 func_0203a3a4(void) {

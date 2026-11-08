@@ -50,10 +50,10 @@ typedef struct InputSlot {
     /* 0c */ u16 mRepeatMask;
     /* 0e */ u16 mRepeatDelayLimit;
     /* 10 */ u16 mRepeatIntervalLimit;
-    /* 12 */ u16 mUnk_12;
+    /* 12 */ u16 mHoldLong;
     /* 14 */ u16 mUnk_14;
     /* 16 */ u8 mUnk_16[0x2];
-    /* 18 */ u64 mUnk_18;
+    /* 18 */ u64 mHoldStartTick;
     /* 20 */ s32 mUnk_20;
     /* 24 */ s32 mUnk_24;
     /* 28 */ void *mUnk_28;

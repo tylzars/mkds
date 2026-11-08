@@ -281,12 +281,12 @@ extern vu16 data_021758e8[];
 extern vu16 data_02175928[];
 extern u8 data_02175dd8[];
 // Object at data_02175614: a word and a function pointer.
-typedef struct Unk02175614 {
+typedef struct WvrState {
     /* 00 */ volatile s32 mUnk_00;
-    /* 04 */ s32 (*mUnk_04)();
-} Unk02175614;
+    /* 04 */ s32 (*mCallback)();
+} WvrState;
 
-extern Unk02175614 data_02175614;
+extern WvrState data_02175614;
 
 // Eight halfwords at data_usa_021755e4: two groups of four.
 typedef struct Unk021755e4 {

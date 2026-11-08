@@ -13,9 +13,9 @@ void func_020394cc(void) {
     data_021755dc.mRepeatMask = 0;
     data_021755dc.mRepeatDelayLimit = 0x14;
     data_021755dc.mRepeatIntervalLimit = 8;
-    data_021755dc.mUnk_12 = 0;
+    data_021755dc.mHoldLong = 0;
     data_021755dc.mUnk_14 = 0;
-    data_021755dc.mUnk_18 = 0;
+    data_021755dc.mHoldStartTick = 0;
     data_021755dc.mUnk_20 = 0;
     data_021755dc.mUnk_24 = 0;
 }
@@ -30,117 +30,117 @@ void func_02039478(void) {
     data_021755dc.mRepeatMask = 0;
     data_021755dc.mRepeatDelayLimit = 0x14;
     data_021755dc.mRepeatIntervalLimit = 8;
-    data_021755dc.mUnk_12 = 0;
+    data_021755dc.mHoldLong = 0;
     data_021755dc.mUnk_14 = 0;
-    data_021755dc.mUnk_18 = 0;
+    data_021755dc.mHoldStartTick = 0;
     data_021755dc.mUnk_20 = 0;
     data_021755dc.mUnk_24 = 0;
 }
 
-void func_0203940c(void) {
-    u32 a;
+void ReadKeysIntoInputSlot(void) {
+    u32 keys;
     if (data_021755dc.mUnk_24 != 0) {
-        a = func_02039230();
+        keys = ReadKeyBitsFromStream();
     } else {
-        a = (u16) (((*(vu16 *) 0x4000130 | *(vu16 *) 0x27fffa8) ^ 0x2fff) & 0x2fff);
+        keys = (u16) (((*(vu16 *) 0x4000130 | *(vu16 *) 0x27fffa8) ^ 0x2fff) & 0x2fff);
     }
-    func_02039530(a, &data_021755dc);
+    UpdateInputSlot(keys, &data_021755dc);
 }
 
-void func_02039378(u32 a, u32 b) {
-    u32 c = data_usa_021755a0.mUnk_14;
-    u8 *d;
-    u8 *s;
-    switch (b) {
+void SeekKeyStream(u32 count, u32 origin) {
+    u32 elementSize = gKeyStream.mElementSize;
+    u8 *newPosition;
+    u8 *start;
+    switch (origin) {
         case 2:
-            d = data_usa_021755a0.mUnk_0c - a * c;
+            newPosition = gKeyStream.mHighestWritten - count * elementSize;
             break;
         case 0:
-            d = data_usa_021755a0.mUnk_00 + a * c;
+            newPosition = gKeyStream.mStart + count * elementSize;
             break;
         case 1:
-            d = data_usa_021755a0.mUnk_08 + a * c;
+            newPosition = gKeyStream.mPosition + count * elementSize;
             break;
     }
-    s = data_usa_021755a0.mUnk_00;
-    if (d < s) {
-        d = s;
+    start = gKeyStream.mStart;
+    if (newPosition < start) {
+        newPosition = start;
     }
-    if (data_usa_021755a0.mUnk_04 < d + c) {
-        d = s + c * ((u32) (data_usa_021755a0.mUnk_04 - s) / c);
+    if (gKeyStream.mEnd < newPosition + elementSize) {
+        newPosition = start + elementSize * ((u32) (gKeyStream.mEnd - start) / elementSize);
     }
-    data_usa_021755a0.mUnk_08 = d;
+    gKeyStream.mPosition = newPosition;
 }
 
-void func_020392c8(u32 a) {
-    u32 b = data_usa_021755a0.mUnk_14;
-    u32 d;
-    u32 e;
-    u8 *c = data_usa_021755a0.mUnk_08;
-    u16 f;
-    u16 g;
-    u32 h;
-    if (c + b > data_usa_021755a0.mUnk_04) {
+void WriteKeyBitsToStream(u32 keys) {
+    u32 elementSize = gKeyStream.mElementSize;
+    u32 keyBit;
+    u32 packedBit;
+    u8 *position = gKeyStream.mPosition;
+    u16 keyMask;
+    u16 keyBitCopy;
+    u32 packed;
+    if (position + elementSize > gKeyStream.mEnd) {
         return;
     }
-    if (b == 1) {
-        f = data_usa_021755a0.mUnk_18;
-        d = 1;
-        e = 1;
-        h = 0;
-        for (; d < 0x10000; d <<= 1) {
-            g = d;
-            if (g & f) {
-                if (g & a) {
-                    h |= e;
+    if (elementSize == 1) {
+        keyMask = gKeyStream.mKeyMask;
+        keyBit = 1;
+        packedBit = 1;
+        packed = 0;
+        for (; keyBit < 0x10000; keyBit <<= 1) {
+            keyBitCopy = keyBit;
+            if (keyBitCopy & keyMask) {
+                if (keyBitCopy & keys) {
+                    packed |= packedBit;
                 }
-                e = (e << 1) & 0xff;
-                if (e == 0) {
+                packedBit = (packedBit << 1) & 0xff;
+                if (packedBit == 0) {
                     break;
                 }
             }
         }
-        *c = h;
+        *position = packed;
     } else {
-        *(u16 *) c = a;
+        *(u16 *) position = keys;
     }
-    func_02039378(1, 1);
-    if (data_usa_021755a0.mUnk_08 > data_usa_021755a0.mUnk_0c) {
-        data_usa_021755a0.mUnk_0c = data_usa_021755a0.mUnk_08;
+    SeekKeyStream(1, 1);
+    if (gKeyStream.mPosition > gKeyStream.mHighestWritten) {
+        gKeyStream.mHighestWritten = gKeyStream.mPosition;
     }
 }
 
-u32 func_02039230(void) {
-    u32 a;
-    u32 c;
-    u32 d;
-    s32 b;
-    u16 e;
-    u16 f;
-    if (data_usa_021755a0.mUnk_08 + data_usa_021755a0.mUnk_14 > data_usa_021755a0.mUnk_04) {
+u32 ReadKeyBitsFromStream(void) {
+    u32 keys;
+    u32 keyBit;
+    u32 packedBit;
+    s32 packed;
+    u16 keyBitCopy;
+    u16 keyMask;
+    if (gKeyStream.mPosition + gKeyStream.mElementSize > gKeyStream.mEnd) {
         return 0;
     }
-    if (data_usa_021755a0.mUnk_14 == 1) {
-        b = *data_usa_021755a0.mUnk_08;
-        c = 1;
-        f = data_usa_021755a0.mUnk_18;
-        d = 1;
-        a = 0;
-        for (; c < 0x10000; c <<= 1) {
-            e = c;
-            if (e & f) {
-                if (d & b) {
-                    a |= e;
+    if (gKeyStream.mElementSize == 1) {
+        packed = *gKeyStream.mPosition;
+        keyBit = 1;
+        keyMask = gKeyStream.mKeyMask;
+        packedBit = 1;
+        keys = 0;
+        for (; keyBit < 0x10000; keyBit <<= 1) {
+            keyBitCopy = keyBit;
+            if (keyBitCopy & keyMask) {
+                if (packedBit & packed) {
+                    keys |= keyBitCopy;
                 }
-                d = (d << 1) & 0xff;
-                if (d == 0) {
+                packedBit = (packedBit << 1) & 0xff;
+                if (packedBit == 0) {
                     break;
                 }
             }
         }
     } else {
-        a = *(u16 *) data_usa_021755a0.mUnk_08;
+        keys = *(u16 *) gKeyStream.mPosition;
     }
-    func_02039378(1, 1);
-    return a;
+    SeekKeyStream(1, 1);
+    return keys;
 }

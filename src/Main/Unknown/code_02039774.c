@@ -12,7 +12,7 @@ static inline u32 func_020399a8_inline(void) {
 
 void InitWvrState(void) {
     data_02175614.mUnk_00 = 1;
-    data_02175614.mUnk_04 = NULL;
+    data_02175614.mCallback = NULL;
 }
 
 void ClearLcdcBanksByState(void) {
@@ -33,14 +33,14 @@ void ClearLcdcBanksByState(void) {
     GX_DisableBankForLCDC();
 }
 
-void SetBankForARM7ByState(u32 a) {
+void SetBankForARM7ByState(u32 bank) {
     switch (data_02175614.mUnk_00) {
         case 0:
         case 2:
             break;
         case 1:
         case 3:
-            GX_SetBankForARM7(a);
+            GX_SetBankForARM7(bank);
             break;
     }
 }
@@ -70,20 +70,20 @@ void DisableAllBanks(void) {
 }
 
 // Stores the state; for states 0 and 1 calls the stored callback with 0 or 1.
-void WvrCallback(u32 a, s32 b) {
+void WvrCallback(u32 state, s32 b) {
     if (b != 0) {
         OS_Terminate();
     }
-    data_02175614.mUnk_00 = a;
-    if (data_02175614.mUnk_04 == NULL) {
+    data_02175614.mUnk_00 = state;
+    if (data_02175614.mCallback == NULL) {
         return;
     }
-    switch (a) {
+    switch (state) {
         case 0:
-            data_02175614.mUnk_04(0);
+            data_02175614.mCallback(0);
             break;
         case 1:
-            data_02175614.mUnk_04(1);
+            data_02175614.mCallback(1);
             break;
     }
 }
@@ -113,46 +113,46 @@ void StopWvrAndWait(void) {
     }
 }
 
-s32 Vec3NormalizeAndGetLengthUnchecked(const Vec3 *v, Vec3 *v1) {
-    s64 w;
-    s32 r;
-    s64 q;
-    s64 t;
-    w = (s64) v->x * v->x;
-    w += (s64) v->y * v->y;
-    w += (s64) v->z * v->z;
+s32 Vec3NormalizeAndGetLengthUnchecked(const Vec3 *v, Vec3 *dst) {
+    s64 lengthSquared;
+    s32 sqrtResult;
+    s64 divResult;
+    s64 scale;
+    lengthSquared = (s64) v->x * v->x;
+    lengthSquared += (s64) v->y * v->y;
+    lengthSquared += (s64) v->z * v->z;
     reg_CP_DIVCNT = 2;
     reg_CP_DIV_NUMER = 0x1000000000000LL << 8;
-    reg_CP_DIV_DENOM = w;
+    reg_CP_DIV_DENOM = lengthSquared;
     reg_CP_SQRTCNT = 1;
-    reg_CP_SQRT_PARAM = w << 2;
+    reg_CP_SQRT_PARAM = lengthSquared << 2;
     while (reg_CP_SQRTCNT & 0x8000) {
     }
-    r = reg_CP_SQRT_RESULT;
+    sqrtResult = reg_CP_SQRT_RESULT;
     while (reg_CP_DIVCNT & 0x8000) {
     }
-    q = reg_CP_DIV_RESULT;
-    t = q * r;
-    v1->x = (t * v->x + 0x100000000000LL) >> 45;
-    v1->y = (t * v->y + 0x100000000000LL) >> 45;
-    v1->z = (t * v->z + 0x100000000000LL) >> 45;
-    return (r + 1) >> 1;
+    divResult = reg_CP_DIV_RESULT;
+    scale = divResult * sqrtResult;
+    dst->x = (scale * v->x + 0x100000000000LL) >> 45;
+    dst->y = (scale * v->y + 0x100000000000LL) >> 45;
+    dst->z = (scale * v->z + 0x100000000000LL) >> 45;
+    return (sqrtResult + 1) >> 1;
 }
 
 s32 Vec3DotUnrounded(const Vec3 *a, const Vec3 *b) {
     return ((s64) a->x * b->x + (s64) a->y * b->y + (s64) a->z * b->z) >> 12;
 }
 
-void Vec3CrossUnrounded(const Vec3 *a, const Vec3 *b, Vec3 *v1) {
+void Vec3CrossUnrounded(const Vec3 *a, const Vec3 *b, Vec3 *axb) {
     s64 x;
     s64 y;
     s64 z;
     x = (s64) a->y * b->z - (s64) a->z * b->y;
     y = (s64) a->z * b->x - (s64) a->x * b->z;
     z = (s64) a->x * b->y - (s64) a->y * b->x;
-    v1->x = x >> 12;
-    v1->y = y >> 12;
-    v1->z = z >> 12;
+    axb->x = x >> 12;
+    axb->y = y >> 12;
+    axb->z = z >> 12;
 }
 
 void func_02039774(void) {

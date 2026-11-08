@@ -20,35 +20,35 @@
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_02036820.h"
 
-void UpdateBrightnessFade(BrightnessFade *a) {
-    switch (a->mState) {
+void UpdateBrightnessFade(BrightnessFade *fade) {
+    switch (fade->mState) {
         case 0:
             break;
         case 1:
-            a->mFadeFrames++;
-            if (a->mFadeFrames >= a->mFadeFrameCount) {
-                a->mState = 2;
-                a->mBrightness = 0;
+            fade->mFadeFrames++;
+            if (fade->mFadeFrames >= fade->mFadeFrameCount) {
+                fade->mState = 2;
+                fade->mBrightness = 0;
             } else {
-                a->mBrightness = 0x10 - (a->mFadeFrames << 4) / a->mFadeFrameCount;
+                fade->mBrightness = 0x10 - (fade->mFadeFrames << 4) / fade->mFadeFrameCount;
             }
-            if (a->mPositive == 0) {
-                a->mBrightness = -a->mBrightness;
+            if (fade->mPositive == 0) {
+                fade->mBrightness = -fade->mBrightness;
             }
             break;
         case 2:
-            a->mBrightness = 0;
+            fade->mBrightness = 0;
             break;
         case 3:
-            a->mFadeFrames++;
-            if (a->mFadeFrames >= a->mFadeFrameCount) {
-                a->mState = 0;
-                a->mBrightness = 0x10;
+            fade->mFadeFrames++;
+            if (fade->mFadeFrames >= fade->mFadeFrameCount) {
+                fade->mState = 0;
+                fade->mBrightness = 0x10;
             } else {
-                a->mBrightness = (a->mFadeFrames << 4) / a->mFadeFrameCount;
+                fade->mBrightness = (fade->mFadeFrames << 4) / fade->mFadeFrameCount;
             }
-            if (a->mPositive == 0) {
-                a->mBrightness = -a->mBrightness;
+            if (fade->mPositive == 0) {
+                fade->mBrightness = -fade->mBrightness;
             }
             break;
     }
@@ -75,361 +75,373 @@ void WaitIrqAndTurnOnDisplays(void) {
     reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT | 0x10000;
 }
 
-void InitDisplayBgRecords(void *a, u32 b) {
-    DisplayBgRecords *p = a;
-    u32 c;
-    p->mUnk_00 = 0;
-    p->mUnk_02 = 0;
-    p->mUnk_04 = 0;
-    p->mUnk_06 = 0;
-    p->mUnk_08 = 0;
-    p->mUnk_0a = 0;
-    p->mUnk_0c = 0;
-    p->mUnk_10 = 1;
-    p->mUnk_14 = 0;
-    p->mUnk_16 = 0;
-    p->mUnk_12 = 0;
-    p->mUnk_18 = 0;
-    p->mUnk_1a = 0;
-    p->mUnk_1c = 0;
-    c = 6;
-    switch (b) {
+void InitDisplayBgRecords(void *recordsBase, u32 bgMode) {
+    DisplayBgRecords *records = recordsBase;
+    u32 bgCntMode;
+    records->mBg0CntLow2 = 0;
+    records->mBg0CntBit6 = 0;
+    records->mBg0CntVal14 = 0;
+    records->mBg0CntVal7 = 0;
+    records->mBg0CntVal8 = 0;
+    records->mBg0CntVal2 = 0;
+    records->mBg0CntVal13 = 0;
+    records->mBg1CntLow2 = 1;
+    records->mBg1CntVal14 = 0;
+    records->mBg1CntVal7 = 0;
+    records->mBg1CntBit6 = 0;
+    records->mBg1CntVal8 = 0;
+    records->mBg1CntVal2 = 0;
+    records->mBg1CntVal13 = 0;
+    bgCntMode = 6;
+    switch (bgMode) {
         case 0:
         case 1:
         case 3:
-            c = 1;
+            bgCntMode = 1;
             break;
         case 2:
         case 4:
-            c = 2;
+            bgCntMode = 2;
             break;
         case 5:
-            c = 3;
+            bgCntMode = 3;
             break;
         case 6:
             break;
     }
-    p->mUnk_20 = c;
-    switch (c) {
+    records->mBg2Mode = bgCntMode;
+    switch (bgCntMode) {
         case 1:
-            p->mUnk_24 = 2;
-            p->mUnk_28 = 0;
-            p->mUnk_2a = 0;
-            p->mUnk_26 = 0;
-            p->mUnk_2c = 0;
-            p->mUnk_2e = 0;
+            records->mBg2CntLow2 = 2;
+            records->mBg2CntVal14 = 0;
+            records->mUnk_2a = 0;
+            records->mBg2CntBit6 = 0;
+            records->mBg2CntVal8 = 0;
+            records->mBg2CntVal2 = 0;
             break;
         case 2:
-            p->mUnk_24 = 2;
-            p->mUnk_28 = 0;
-            p->mUnk_26 = 0;
-            p->mUnk_2a = 0;
-            p->mUnk_2c = 0;
-            p->mUnk_2e = 0;
+            records->mBg2CntLow2 = 2;
+            records->mBg2CntVal14 = 0;
+            records->mBg2CntBit6 = 0;
+            records->mUnk_2a = 0;
+            records->mBg2CntVal8 = 0;
+            records->mBg2CntVal2 = 0;
             break;
         case 3:
-            p->mUnk_24 = 2;
-            p->mUnk_26 = 0;
-            p->mUnk_28 = 0;
-            p->mUnk_2a = 0;
-            p->mUnk_2c = 0;
+            records->mBg2CntLow2 = 2;
+            records->mBg2CntBit6 = 0;
+            records->mBg2CntVal14 = 0;
+            records->mUnk_2a = 0;
+            records->mBg2CntVal8 = 0;
             break;
     }
-    c = 6;
-    switch (b) {
+    bgCntMode = 6;
+    switch (bgMode) {
         case 0:
-            c = 1;
+            bgCntMode = 1;
             break;
         case 1:
         case 2:
-            c = 2;
+            bgCntMode = 2;
             break;
         case 3:
         case 4:
         case 5:
-            c = 3;
+            bgCntMode = 3;
             break;
         case 6:
             break;
     }
-    p->mUnk_30 = c;
-    switch (c) {
+    records->mBg3Mode = bgCntMode;
+    switch (bgCntMode) {
         case 1:
-            p->mUnk_34 = 2;
-            p->mUnk_38 = 0;
-            p->mUnk_3a = 0;
-            p->mUnk_36 = 0;
-            p->mUnk_3c = 0;
-            p->mUnk_3e = 0;
+            records->mBg3CntLow2 = 2;
+            records->mBg3CntVal14 = 0;
+            records->mUnk_3a = 0;
+            records->mBg3CntBit6 = 0;
+            records->mBg3CntVal8 = 0;
+            records->mBg3CntVal2 = 0;
             break;
         case 2:
-            p->mUnk_34 = 2;
-            p->mUnk_38 = 0;
-            p->mUnk_36 = 0;
-            p->mUnk_3a = 0;
-            p->mUnk_3c = 0;
-            p->mUnk_3e = 0;
+            records->mBg3CntLow2 = 2;
+            records->mBg3CntVal14 = 0;
+            records->mBg3CntBit6 = 0;
+            records->mUnk_3a = 0;
+            records->mBg3CntVal8 = 0;
+            records->mBg3CntVal2 = 0;
             break;
         case 3:
-            p->mUnk_34 = 2;
-            p->mUnk_36 = 0;
-            p->mUnk_38 = 0;
-            p->mUnk_3a = 0;
-            p->mUnk_3c = 0;
+            records->mBg3CntLow2 = 2;
+            records->mBg3CntBit6 = 0;
+            records->mBg3CntVal14 = 0;
+            records->mUnk_3a = 0;
+            records->mBg3CntVal8 = 0;
             break;
     }
-    p->mUnk_40 = 0;
-    p->mUnk_42 = 0;
+    records->mUnk_40 = 0;
+    records->mUnk_42 = 0;
 }
 
-void InitDisplaySettings(DisplaySettings *a, void *b) {
-    DisplaySettingsDesc *c = b;
-    *(DisplaySettingsDesc *) a = *c;
-    InitDisplayBgRecords(&a->mMainBg0, c->mMainBgMode);
-    InitDisplayBgRecords(&a->mSubBg0, c->mSubBgMode);
-    a->mG3xParams = NULL;
-    a->mFrameStartTick = 0;
-    a->mWaitEndTick = 0;
-    a->mTimeBeforeWait = 0;
-    a->mTimeSinceWaitEnd = 0;
-    a->mTimeSinceFrameStart = 0;
-    a->mUnk_b4 = 0;
-    a->mIrqCallback = NULL;
-    a->mFrameFlags = 0;
+void InitDisplaySettings(DisplaySettings *settings, void *descriptorBase) {
+    DisplaySettingsDesc *descriptor = descriptorBase;
+    *(DisplaySettingsDesc *) settings = *descriptor;
+    InitDisplayBgRecords(&settings->mMainBg0, descriptor->mMainBgMode);
+    InitDisplayBgRecords(&settings->mSubBg0, descriptor->mSubBgMode);
+    settings->mG3xParams = NULL;
+    settings->mFrameStartTick = 0;
+    settings->mWaitEndTick = 0;
+    settings->mTimeBeforeWait = 0;
+    settings->mTimeSinceWaitEnd = 0;
+    settings->mTimeSinceFrameStart = 0;
+    settings->mUnk_b4 = 0;
+    settings->mIrqCallback = NULL;
+    settings->mFrameFlags = 0;
 }
 
-void *CreateDisplaySettings(void *a, void *b) {
-    DisplaySettings *p = HeapAlloc(a, 0xdc);
-    G3xParams *q;
-    InitDisplaySettings(p, b);
-    if (p->mBg0As == 1) {
-        q = HeapAlloc(a, 8);
-        q->mClearColor = 0x5000;
-        q->mSwapBit0 = 1;
-        q->mSwapBit1 = 1;
-        p->mG3xParams = q;
+void *CreateDisplaySettings(void *heap, void *descriptor) {
+    DisplaySettings *settings = HeapAlloc(heap, 0xdc);
+    G3xParams *g3xParams;
+    InitDisplaySettings(settings, descriptor);
+    if (settings->mBg0As == 1) {
+        g3xParams = HeapAlloc(heap, 8);
+        g3xParams->mClearColor = 0x5000;
+        g3xParams->mSwapBit0 = 1;
+        g3xParams->mSwapBit1 = 1;
+        settings->mG3xParams = g3xParams;
     }
-    return p;
+    return settings;
 }
 
-void SetBg0Record(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
-    DisplayBgRecords *p = a;
-    p->mUnk_00 = b;
-    p->mUnk_04 = d;
-    p->mUnk_06 = e;
-    p->mUnk_02 = c;
-    p->mUnk_08 = f;
-    p->mUnk_0a = g;
-    p->mUnk_0c = h;
+void SetBg0Record(void *recordsBase, u32 cntLow2, u32 cntBit6, u32 cntVal14, u32 cntVal7, u32 cntVal8, u32 cntVal2,
+                  u32 cntVal13) {
+    DisplayBgRecords *records = recordsBase;
+    records->mBg0CntLow2 = cntLow2;
+    records->mBg0CntVal14 = cntVal14;
+    records->mBg0CntVal7 = cntVal7;
+    records->mBg0CntBit6 = cntBit6;
+    records->mBg0CntVal8 = cntVal8;
+    records->mBg0CntVal2 = cntVal2;
+    records->mBg0CntVal13 = cntVal13;
 }
 
-void SetBg1Record(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
-    DisplayBgRecords *p = a;
-    p->mUnk_10 = b;
-    p->mUnk_14 = d;
-    p->mUnk_16 = e;
-    p->mUnk_12 = c;
-    p->mUnk_18 = f;
-    p->mUnk_1a = g;
-    p->mUnk_1c = h;
+void SetBg1Record(void *recordsBase, u32 cntLow2, u32 cntBit6, u32 cntVal14, u32 cntVal7, u32 cntVal8, u32 cntVal2,
+                  u32 cntVal13) {
+    DisplayBgRecords *records = recordsBase;
+    records->mBg1CntLow2 = cntLow2;
+    records->mBg1CntVal14 = cntVal14;
+    records->mBg1CntVal7 = cntVal7;
+    records->mBg1CntBit6 = cntBit6;
+    records->mBg1CntVal8 = cntVal8;
+    records->mBg1CntVal2 = cntVal2;
+    records->mBg1CntVal13 = cntVal13;
 }
 
-void SetBg2RecordParams(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    DisplayBgRecords *p = a;
-    p->mUnk_24 = b;
-    p->mUnk_26 = c;
-    p->mUnk_28 = d;
-    p->mUnk_2a = e;
-    p->mUnk_2c = f;
-    p->mUnk_2e = g;
+void SetBg2RecordParams(void *recordsBase, u32 cntLow2, u32 cntBit6, u32 cntVal14, u32 e, u32 cntVal8, u32 cntVal2) {
+    DisplayBgRecords *records = recordsBase;
+    records->mBg2CntLow2 = cntLow2;
+    records->mBg2CntBit6 = cntBit6;
+    records->mBg2CntVal14 = cntVal14;
+    records->mUnk_2a = e;
+    records->mBg2CntVal8 = cntVal8;
+    records->mBg2CntVal2 = cntVal2;
 }
 
-void SetBg3RecordParams(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    DisplayBgRecords *p = a;
-    p->mUnk_34 = b;
-    p->mUnk_36 = c;
-    p->mUnk_38 = d;
-    p->mUnk_3a = e;
-    p->mUnk_3c = f;
-    p->mUnk_3e = g;
+void SetBg3RecordParams(void *recordsBase, u32 cntLow2, u32 cntBit6, u32 cntVal14, u32 e, u32 cntVal8, u32 cntVal2) {
+    DisplayBgRecords *records = recordsBase;
+    records->mBg3CntLow2 = cntLow2;
+    records->mBg3CntBit6 = cntBit6;
+    records->mBg3CntVal14 = cntVal14;
+    records->mUnk_3a = e;
+    records->mBg3CntVal8 = cntVal8;
+    records->mBg3CntVal2 = cntVal2;
 }
 
-void SetBg2RecordMode5(void *a, u32 b, u32 c, u32 d, u32 e, u32 f) {
-    DisplayBgRecords *p = a;
-    p->mUnk_20 = 5;
-    p->mUnk_24 = b;
-    p->mUnk_26 = c;
-    p->mUnk_28 = d;
-    p->mUnk_2a = e;
-    p->mUnk_2c = f;
+void SetBg2RecordMode5(void *recordsBase, u32 cntLow2, u32 cntBit6, u32 cntVal14, u32 e, u32 cntVal8) {
+    DisplayBgRecords *records = recordsBase;
+    records->mBg2Mode = 5;
+    records->mBg2CntLow2 = cntLow2;
+    records->mBg2CntBit6 = cntBit6;
+    records->mBg2CntVal14 = cntVal14;
+    records->mUnk_2a = e;
+    records->mBg2CntVal8 = cntVal8;
 }
 
-u32 SetG3xSwapBits(DisplaySettings *arg0, u32 arg1, u32 arg2) {
-    u32 value0 = (u32) arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value3;
-    value3 = *(const u32 *) ((value0) + (108));
-    arg0->mG3xParams->mSwapBit0 = value1;
+u32 SetG3xSwapBits(DisplaySettings *settings, u32 swapBit0, u32 swapBit1) {
+    u32 value0 = (u32) settings;
+    u32 swapBit0Copy = swapBit0;
+    u32 swapBit1Copy = swapBit1;
+    u32 g3xParams;
+    g3xParams = *(const u32 *) ((value0) + (108));
+    settings->mG3xParams->mSwapBit0 = swapBit0Copy;
     value0 = *(const u32 *) ((value0) + (108));
-    *(u8 *) ((value0) + (3)) = value2;
+    *(u8 *) ((value0) + (3)) = swapBit1Copy;
     return value0;
 }
 
-void func_02038c94(DisplaySettings *p0, u32 p1) {
-    p0->mUnk_b2 = p1;
+void func_02038c94(DisplaySettings *settings, u32 value) {
+    settings->mUnk_b2 = value;
 }
 
 // Enum-typed parameters of the inlines below: the original reads their values before the register.
 typedef enum { UNK_0203810C_ARG_0 } Unk0203810c_Arg;
 
 // Sets the low two bits of the halfword register r and its bit 6 from the first two halfwords of q.
-static inline void func_0203810c_inline(vu16 *r, Bg23CntFields *q) {
-    *r = (*r & ~3) | q->mUnk_00;
-    if (q->mUnk_02 != 0) {
-        *r |= 0x40;
+static inline void func_0203810c_inline(vu16 *cntReg, Bg23CntFields *fields) {
+    *cntReg = (*cntReg & ~3) | fields->mBgCntLow2;
+    if (fields->mBgCntBit6 != 0) {
+        *cntReg |= 0x40;
     } else {
-        *r &= ~0x40;
+        *cntReg &= ~0x40;
     }
 }
 
 // Keeps bits 0, 1 and 6 of the halfword register r and sets the rest from four values.
-static inline void func_0203810c_inline2(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d,
-                                         Unk0203810c_Arg e) {
-    *r = (*r & 0x43) | (b << 14) | (c << 7) | (d << 8) | (e << 2);
+static inline void func_0203810c_inline2(vu16 *cntReg, Unk0203810c_Arg val14, Unk0203810c_Arg val7,
+                                         Unk0203810c_Arg val8, Unk0203810c_Arg val2) {
+    *cntReg = (*cntReg & 0x43) | (val14 << 14) | (val7 << 7) | (val8 << 8) | (val2 << 2);
 }
 
 // Keeps bits 0, 1 and 6 of the halfword register r and sets the rest from four values.
-static inline void func_0203810c_inline3(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d,
-                                         Unk0203810c_Arg e) {
-    *r = (*r & 0x43) | (b << 14) | (c << 8) | (d << 2) | (e << 13);
+static inline void func_0203810c_inline3(vu16 *cntReg, Unk0203810c_Arg val14, Unk0203810c_Arg val8,
+                                         Unk0203810c_Arg val2, Unk0203810c_Arg val13) {
+    *cntReg = (*cntReg & 0x43) | (val14 << 14) | (val8 << 8) | (val2 << 2) | (val13 << 13);
 }
 
 // Keeps bits 0, 1 and 6 of the halfword register r and sets the rest from three values.
-static inline void func_0203810c_inline4(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d) {
-    *r = (*r & 0x43) | (b << 14) | (d << 8) | (c << 13);
+static inline void func_0203810c_inline4(vu16 *cntReg, Unk0203810c_Arg val14, Unk0203810c_Arg val13,
+                                         Unk0203810c_Arg val8) {
+    *cntReg = (*cntReg & 0x43) | (val14 << 14) | (val8 << 8) | (val13 << 13);
 }
 
 // Keeps bits 0, 1 and 6 of the halfword register r, sets bit 7 and the rest from three values.
-static inline void func_0203810c_inline5(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d) {
-    *r = (*r & 0x43) | (b << 14) | 0x80 | (d << 8) | (c << 13);
+static inline void func_0203810c_inline5(vu16 *cntReg, Unk0203810c_Arg val14, Unk0203810c_Arg val13,
+                                         Unk0203810c_Arg val8) {
+    *cntReg = (*cntReg & 0x43) | (val14 << 14) | 0x80 | (val8 << 8) | (val13 << 13);
 }
 
 // Keeps bits 0, 1 and 6 of the halfword register r, sets bits 2 and 7 and the rest from three values.
-static inline void func_0203810c_inline6(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d) {
-    *r = (*r & 0x43) | (b << 14) | 0x84 | (d << 8) | (c << 13);
+static inline void func_0203810c_inline6(vu16 *cntReg, Unk0203810c_Arg val14, Unk0203810c_Arg val13,
+                                         Unk0203810c_Arg val8) {
+    *cntReg = (*cntReg & 0x43) | (val14 << 14) | 0x84 | (val8 << 8) | (val13 << 13);
 }
 
 // Sets the low two bits of the halfword register r and its bit 6 from the first two halfwords of q.
-static inline void func_020386d0_inline(vu16 *r, Bg23CntFields *q) {
-    *r = (*r & ~3) | q->mUnk_00;
-    if (q->mUnk_02 != 0) {
-        *r |= 0x40;
+static inline void func_020386d0_inline(vu16 *cntReg, Bg23CntFields *fields) {
+    *cntReg = (*cntReg & ~3) | fields->mBgCntLow2;
+    if (fields->mBgCntBit6 != 0) {
+        *cntReg |= 0x40;
     } else {
-        *r &= ~0x40;
+        *cntReg &= ~0x40;
     }
 }
 
 // Keeps bits 0, 1 and 6 of the halfword register r and sets the rest from four values.
-static inline void func_020386d0_inline2(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d,
-                                         Unk0203810c_Arg e) {
-    *r = (*r & 0x43) | (b << 14) | (c << 7) | (d << 8) | (e << 2);
+static inline void func_020386d0_inline2(vu16 *cntReg, Unk0203810c_Arg val14, Unk0203810c_Arg val7,
+                                         Unk0203810c_Arg val8, Unk0203810c_Arg val2) {
+    *cntReg = (*cntReg & 0x43) | (val14 << 14) | (val7 << 7) | (val8 << 8) | (val2 << 2);
 }
 
 // Keeps bits 0, 1 and 6 of the halfword register r and sets the rest from four values.
-static inline void func_020386d0_inline3(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d,
-                                         Unk0203810c_Arg e) {
-    *r = (*r & 0x43) | (b << 14) | (c << 8) | (d << 2) | (e << 13);
+static inline void func_020386d0_inline3(vu16 *cntReg, Unk0203810c_Arg val14, Unk0203810c_Arg val8,
+                                         Unk0203810c_Arg val2, Unk0203810c_Arg val13) {
+    *cntReg = (*cntReg & 0x43) | (val14 << 14) | (val8 << 8) | (val2 << 2) | (val13 << 13);
 }
 
 // Keeps bits 0, 1 and 6 of the halfword register r and sets the rest from three values.
-static inline void func_020386d0_inline4(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d) {
-    *r = (*r & 0x43) | (b << 14) | (d << 8) | (c << 13);
+static inline void func_020386d0_inline4(vu16 *cntReg, Unk0203810c_Arg val14, Unk0203810c_Arg val13,
+                                         Unk0203810c_Arg val8) {
+    *cntReg = (*cntReg & 0x43) | (val14 << 14) | (val8 << 8) | (val13 << 13);
 }
 
 // Keeps bits 0, 1 and 6 of the halfword register r, sets bit 7 and the rest from three values.
-static inline void func_020386d0_inline5(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d) {
-    *r = (*r & 0x43) | (b << 14) | 0x80 | (d << 8) | (c << 13);
+static inline void func_020386d0_inline5(vu16 *cntReg, Unk0203810c_Arg val14, Unk0203810c_Arg val13,
+                                         Unk0203810c_Arg val8) {
+    *cntReg = (*cntReg & 0x43) | (val14 << 14) | 0x80 | (val8 << 8) | (val13 << 13);
 }
 
 // Keeps bits 0, 1 and 6 of the halfword register r, sets bits 2 and 7 and the rest from three values.
-static inline void func_020386d0_inline6(vu16 *r, Unk0203810c_Arg b, Unk0203810c_Arg c, Unk0203810c_Arg d) {
-    *r = (*r & 0x43) | (b << 14) | 0x84 | (d << 8) | (c << 13);
+static inline void func_020386d0_inline6(vu16 *cntReg, Unk0203810c_Arg val14, Unk0203810c_Arg val13,
+                                         Unk0203810c_Arg val8) {
+    *cntReg = (*cntReg & 0x43) | (val14 << 14) | 0x84 | (val8 << 8) | (val13 << 13);
 }
 
-void ApplyBg2Cnt(Bg23Cnt *a, s32 b) {
-    s32 m[4];
-    Bg23CntFields *q;
+void ApplyBg2Cnt(Bg23Cnt *cnt, s32 isMainScreen) {
+    s32 matrix[4];
+    Bg23CntFields *fields;
 
-    m[1] = 0;
-    m[2] = 0;
-    m[0] = 0x1000;
-    m[3] = 0x1000;
-    q = &a->mFields;
-    switch (a->mMode) {
+    matrix[1] = 0;
+    matrix[2] = 0;
+    matrix[0] = 0x1000;
+    matrix[3] = 0x1000;
+    fields = &cnt->mFields;
+    switch (cnt->mMode) {
         case 1:
-            if (b != 0) {
+            if (isMainScreen != 0) {
                 reg_G2_BG2OFS = 0;
-                func_020386d0_inline(&reg_G2_BG2CNT, q);
-                func_020386d0_inline2(&reg_G2_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
-                                      (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
+                func_020386d0_inline(&reg_G2_BG2CNT, fields);
+                func_020386d0_inline2(&reg_G2_BG2CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mUnk_06, (Unk0203810c_Arg) fields->mBgCntVal8,
+                                      (Unk0203810c_Arg) fields->mBgCntVal2);
             } else {
                 reg_G2S_DB_BG2OFS = 0;
-                func_020386d0_inline(&reg_G2S_DB_BG2CNT, q);
-                func_020386d0_inline2(&reg_G2S_DB_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
-                                      (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
+                func_020386d0_inline(&reg_G2S_DB_BG2CNT, fields);
+                func_020386d0_inline2(&reg_G2S_DB_BG2CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mUnk_06, (Unk0203810c_Arg) fields->mBgCntVal8,
+                                      (Unk0203810c_Arg) fields->mBgCntVal2);
             }
             break;
         case 2:
-            if (b != 0) {
-                G2x_SetBGyAffine_(&reg_G2_BG2PA, m, 0, 0, 0, 0);
-                func_020386d0_inline(&reg_G2_BG2CNT, q);
-                func_020386d0_inline3(&reg_G2_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
-                                      (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
+            if (isMainScreen != 0) {
+                G2x_SetBGyAffine_(&reg_G2_BG2PA, matrix, 0, 0, 0, 0);
+                func_020386d0_inline(&reg_G2_BG2CNT, fields);
+                func_020386d0_inline3(&reg_G2_BG2CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mBgCntVal8, (Unk0203810c_Arg) fields->mBgCntVal2,
+                                      (Unk0203810c_Arg) fields->mUnk_06);
             } else {
-                G2x_SetBGyAffine_(&reg_G2S_DB_BG2PA, m, 0, 0, 0, 0);
-                func_020386d0_inline(&reg_G2S_DB_BG2CNT, q);
-                func_020386d0_inline3(&reg_G2S_DB_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
-                                      (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
+                G2x_SetBGyAffine_(&reg_G2S_DB_BG2PA, matrix, 0, 0, 0, 0);
+                func_020386d0_inline(&reg_G2S_DB_BG2CNT, fields);
+                func_020386d0_inline3(&reg_G2S_DB_BG2CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mBgCntVal8, (Unk0203810c_Arg) fields->mBgCntVal2,
+                                      (Unk0203810c_Arg) fields->mUnk_06);
             }
             break;
         case 3:
-            if (b != 0) {
-                G2x_SetBGyAffine_(&reg_G2_BG2PA, m, 0, 0, 0, 0);
-                func_020386d0_inline(&reg_G2_BG2CNT, q);
-                func_020386d0_inline4(&reg_G2_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
-                                      (Unk0203810c_Arg) q->mUnk_08);
+            if (isMainScreen != 0) {
+                G2x_SetBGyAffine_(&reg_G2_BG2PA, matrix, 0, 0, 0, 0);
+                func_020386d0_inline(&reg_G2_BG2CNT, fields);
+                func_020386d0_inline4(&reg_G2_BG2CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mUnk_06, (Unk0203810c_Arg) fields->mBgCntVal8);
             } else {
-                G2x_SetBGyAffine_(&reg_G2S_DB_BG2PA, m, 0, 0, 0, 0);
-                func_020386d0_inline(&reg_G2S_DB_BG2CNT, q);
-                func_020386d0_inline4(&reg_G2S_DB_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
-                                      (Unk0203810c_Arg) q->mUnk_08);
+                G2x_SetBGyAffine_(&reg_G2S_DB_BG2PA, matrix, 0, 0, 0, 0);
+                func_020386d0_inline(&reg_G2S_DB_BG2CNT, fields);
+                func_020386d0_inline4(&reg_G2S_DB_BG2CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mUnk_06, (Unk0203810c_Arg) fields->mBgCntVal8);
             }
             break;
         case 4:
-            if (b != 0) {
-                G2x_SetBGyAffine_(&reg_G2_BG2PA, m, 0, 0, 0, 0);
-                func_020386d0_inline(&reg_G2_BG2CNT, q);
-                func_020386d0_inline5(&reg_G2_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
-                                      (Unk0203810c_Arg) q->mUnk_08);
+            if (isMainScreen != 0) {
+                G2x_SetBGyAffine_(&reg_G2_BG2PA, matrix, 0, 0, 0, 0);
+                func_020386d0_inline(&reg_G2_BG2CNT, fields);
+                func_020386d0_inline5(&reg_G2_BG2CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mUnk_06, (Unk0203810c_Arg) fields->mBgCntVal8);
             } else {
-                G2x_SetBGyAffine_(&reg_G2S_DB_BG2PA, m, 0, 0, 0, 0);
-                func_020386d0_inline(&reg_G2S_DB_BG2CNT, q);
-                func_020386d0_inline5(&reg_G2S_DB_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
-                                      (Unk0203810c_Arg) q->mUnk_08);
+                G2x_SetBGyAffine_(&reg_G2S_DB_BG2PA, matrix, 0, 0, 0, 0);
+                func_020386d0_inline(&reg_G2S_DB_BG2CNT, fields);
+                func_020386d0_inline5(&reg_G2S_DB_BG2CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mUnk_06, (Unk0203810c_Arg) fields->mBgCntVal8);
             }
             break;
         case 5:
-            if (b != 0) {
-                G2x_SetBGyAffine_(&reg_G2_BG2PA, m, 0, 0, 0, 0);
-                func_020386d0_inline(&reg_G2_BG2CNT, q);
-                func_020386d0_inline6(&reg_G2_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
-                                      (Unk0203810c_Arg) q->mUnk_08);
+            if (isMainScreen != 0) {
+                G2x_SetBGyAffine_(&reg_G2_BG2PA, matrix, 0, 0, 0, 0);
+                func_020386d0_inline(&reg_G2_BG2CNT, fields);
+                func_020386d0_inline6(&reg_G2_BG2CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mUnk_06, (Unk0203810c_Arg) fields->mBgCntVal8);
             } else {
-                G2x_SetBGyAffine_(&reg_G2S_DB_BG2PA, m, 0, 0, 0, 0);
-                func_020386d0_inline(&reg_G2S_DB_BG2CNT, q);
-                func_020386d0_inline6(&reg_G2S_DB_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
-                                      (Unk0203810c_Arg) q->mUnk_08);
+                G2x_SetBGyAffine_(&reg_G2S_DB_BG2PA, matrix, 0, 0, 0, 0);
+                func_020386d0_inline(&reg_G2S_DB_BG2CNT, fields);
+                func_020386d0_inline6(&reg_G2S_DB_BG2CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mUnk_06, (Unk0203810c_Arg) fields->mBgCntVal8);
             }
             break;
         default:
@@ -437,79 +449,83 @@ void ApplyBg2Cnt(Bg23Cnt *a, s32 b) {
     }
 }
 
-void ApplyBg3Cnt(Bg23Cnt *a, s32 b) {
-    s32 m[4];
-    Bg23CntFields *q;
+void ApplyBg3Cnt(Bg23Cnt *cnt, s32 isMainScreen) {
+    s32 matrix[4];
+    Bg23CntFields *fields;
 
-    m[1] = 0;
-    m[2] = 0;
-    m[0] = 0x1000;
-    m[3] = 0x1000;
-    q = &a->mFields;
-    switch (a->mMode) {
+    matrix[1] = 0;
+    matrix[2] = 0;
+    matrix[0] = 0x1000;
+    matrix[3] = 0x1000;
+    fields = &cnt->mFields;
+    switch (cnt->mMode) {
         case 1:
-            if (b != 0) {
+            if (isMainScreen != 0) {
                 reg_G2_BG3OFS = 0;
-                func_0203810c_inline(&reg_G2_BG3CNT, q);
-                func_0203810c_inline2(&reg_G2_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
-                                      (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
+                func_0203810c_inline(&reg_G2_BG3CNT, fields);
+                func_0203810c_inline2(&reg_G2_BG3CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mUnk_06, (Unk0203810c_Arg) fields->mBgCntVal8,
+                                      (Unk0203810c_Arg) fields->mBgCntVal2);
             } else {
                 reg_G2S_DB_BG3OFS = 0;
-                func_0203810c_inline(&reg_G2S_DB_BG3CNT, q);
-                func_0203810c_inline2(&reg_G2S_DB_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
-                                      (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
+                func_0203810c_inline(&reg_G2S_DB_BG3CNT, fields);
+                func_0203810c_inline2(&reg_G2S_DB_BG3CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mUnk_06, (Unk0203810c_Arg) fields->mBgCntVal8,
+                                      (Unk0203810c_Arg) fields->mBgCntVal2);
             }
             break;
         case 2:
-            if (b != 0) {
-                G2x_SetBGyAffine_(&reg_G2_BG3PA, m, 0, 0, 0, 0);
-                func_0203810c_inline(&reg_G2_BG3CNT, q);
-                func_0203810c_inline3(&reg_G2_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
-                                      (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
+            if (isMainScreen != 0) {
+                G2x_SetBGyAffine_(&reg_G2_BG3PA, matrix, 0, 0, 0, 0);
+                func_0203810c_inline(&reg_G2_BG3CNT, fields);
+                func_0203810c_inline3(&reg_G2_BG3CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mBgCntVal8, (Unk0203810c_Arg) fields->mBgCntVal2,
+                                      (Unk0203810c_Arg) fields->mUnk_06);
             } else {
-                G2x_SetBGyAffine_(&reg_G2S_DB_BG3PA, m, 0, 0, 0, 0);
-                func_0203810c_inline(&reg_G2S_DB_BG3CNT, q);
-                func_0203810c_inline3(&reg_G2S_DB_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
-                                      (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
+                G2x_SetBGyAffine_(&reg_G2S_DB_BG3PA, matrix, 0, 0, 0, 0);
+                func_0203810c_inline(&reg_G2S_DB_BG3CNT, fields);
+                func_0203810c_inline3(&reg_G2S_DB_BG3CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mBgCntVal8, (Unk0203810c_Arg) fields->mBgCntVal2,
+                                      (Unk0203810c_Arg) fields->mUnk_06);
             }
             break;
         case 3:
-            if (b != 0) {
-                G2x_SetBGyAffine_(&reg_G2_BG3PA, m, 0, 0, 0, 0);
-                func_0203810c_inline(&reg_G2_BG3CNT, q);
-                func_0203810c_inline4(&reg_G2_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
-                                      (Unk0203810c_Arg) q->mUnk_08);
+            if (isMainScreen != 0) {
+                G2x_SetBGyAffine_(&reg_G2_BG3PA, matrix, 0, 0, 0, 0);
+                func_0203810c_inline(&reg_G2_BG3CNT, fields);
+                func_0203810c_inline4(&reg_G2_BG3CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mUnk_06, (Unk0203810c_Arg) fields->mBgCntVal8);
             } else {
-                G2x_SetBGyAffine_(&reg_G2S_DB_BG3PA, m, 0, 0, 0, 0);
-                func_0203810c_inline(&reg_G2S_DB_BG3CNT, q);
-                func_0203810c_inline4(&reg_G2S_DB_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
-                                      (Unk0203810c_Arg) q->mUnk_08);
+                G2x_SetBGyAffine_(&reg_G2S_DB_BG3PA, matrix, 0, 0, 0, 0);
+                func_0203810c_inline(&reg_G2S_DB_BG3CNT, fields);
+                func_0203810c_inline4(&reg_G2S_DB_BG3CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mUnk_06, (Unk0203810c_Arg) fields->mBgCntVal8);
             }
             break;
         case 4:
-            if (b != 0) {
-                G2x_SetBGyAffine_(&reg_G2_BG3PA, m, 0, 0, 0, 0);
-                func_0203810c_inline(&reg_G2_BG3CNT, q);
-                func_0203810c_inline5(&reg_G2_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
-                                      (Unk0203810c_Arg) q->mUnk_08);
+            if (isMainScreen != 0) {
+                G2x_SetBGyAffine_(&reg_G2_BG3PA, matrix, 0, 0, 0, 0);
+                func_0203810c_inline(&reg_G2_BG3CNT, fields);
+                func_0203810c_inline5(&reg_G2_BG3CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mUnk_06, (Unk0203810c_Arg) fields->mBgCntVal8);
             } else {
-                G2x_SetBGyAffine_(&reg_G2S_DB_BG3PA, m, 0, 0, 0, 0);
-                func_0203810c_inline(&reg_G2S_DB_BG3CNT, q);
-                func_0203810c_inline5(&reg_G2S_DB_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
-                                      (Unk0203810c_Arg) q->mUnk_08);
+                G2x_SetBGyAffine_(&reg_G2S_DB_BG3PA, matrix, 0, 0, 0, 0);
+                func_0203810c_inline(&reg_G2S_DB_BG3CNT, fields);
+                func_0203810c_inline5(&reg_G2S_DB_BG3CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mUnk_06, (Unk0203810c_Arg) fields->mBgCntVal8);
             }
             break;
         case 5:
-            if (b != 0) {
-                G2x_SetBGyAffine_(&reg_G2_BG3PA, m, 0, 0, 0, 0);
-                func_0203810c_inline(&reg_G2_BG3CNT, q);
-                func_0203810c_inline6(&reg_G2_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
-                                      (Unk0203810c_Arg) q->mUnk_08);
+            if (isMainScreen != 0) {
+                G2x_SetBGyAffine_(&reg_G2_BG3PA, matrix, 0, 0, 0, 0);
+                func_0203810c_inline(&reg_G2_BG3CNT, fields);
+                func_0203810c_inline6(&reg_G2_BG3CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mUnk_06, (Unk0203810c_Arg) fields->mBgCntVal8);
             } else {
-                G2x_SetBGyAffine_(&reg_G2S_DB_BG3PA, m, 0, 0, 0, 0);
-                func_0203810c_inline(&reg_G2S_DB_BG3CNT, q);
-                func_0203810c_inline6(&reg_G2S_DB_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
-                                      (Unk0203810c_Arg) q->mUnk_08);
+                G2x_SetBGyAffine_(&reg_G2S_DB_BG3PA, matrix, 0, 0, 0, 0);
+                func_0203810c_inline(&reg_G2S_DB_BG3CNT, fields);
+                func_0203810c_inline6(&reg_G2S_DB_BG3CNT, (Unk0203810c_Arg) fields->mBgCntVal14,
+                                      (Unk0203810c_Arg) fields->mUnk_06, (Unk0203810c_Arg) fields->mBgCntVal8);
             }
             break;
         default:
@@ -521,49 +537,49 @@ void ApplyBg3Cnt(Bg23Cnt *a, s32 b) {
 typedef enum { UNK_02037ABC_ARG_0 } Unk02037abc_Arg;
 
 // Calls MIi_CpuClearFast with v, passed through a stack offset of its own.
-static inline void func_02037abc_inline(u32 v, void *p, u32 n) {
-    volatile u32 w = v;
-    MIi_CpuClearFast(w, p, n);
+static inline void func_02037abc_inline(u32 fillValue, void *destination, u32 size) {
+    volatile u32 fillValueCopy = fillValue;
+    MIi_CpuClearFast(fillValueCopy, destination, size);
 }
 
 // Sets the low two bits of the halfword register r and its bit 6 from the first two halfwords of q.
-static inline void func_02037abc_inline2(vu16 *r, Bg01Cnt *q) {
-    *r = (*r & ~3) | q->mBgCntLow2;
-    if (q->mBgCntBit6 != 0) {
-        *r |= 0x40;
+static inline void func_02037abc_inline2(vu16 *cntReg, Bg01Cnt *cnt) {
+    *cntReg = (*cntReg & ~3) | cnt->mBgCntLow2;
+    if (cnt->mBgCntBit6 != 0) {
+        *cntReg |= 0x40;
     } else {
-        *r &= ~0x40;
+        *cntReg &= ~0x40;
     }
 }
 
 // Sets bits 4, 20 and 21 of the word register r.
-static inline void func_02037abc_inline3(vu32 *r, Unk02037abc_Arg v) {
-    *r = (*r & 0xffcfffef) | v;
+static inline void func_02037abc_inline3(vu32 *reg, Unk02037abc_Arg bits) {
+    *reg = (*reg & 0xffcfffef) | bits;
 }
 
 // Sets bits 5, 6 and 22 of the word at 0x04000000.
-static inline void func_02037abc_inline4(Unk02037abc_Arg v) {
-    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffbfff9f) | v;
+static inline void func_02037abc_inline4(Unk02037abc_Arg bits) {
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffbfff9f) | bits;
 }
 
 // Sets bits 5 and 6 of the word at 0x04001000.
-static inline void func_02037abc_inline5(Unk02037abc_Arg v) {
-    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x60) | v;
+static inline void func_02037abc_inline5(Unk02037abc_Arg bits) {
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x60) | bits;
 }
 
 // Keeps bits 0, 1 and 6 of the halfword register r and sets the rest from five values.
-static inline void func_02037abc_inline6(vu16 *r, Unk02037abc_Arg b, Unk02037abc_Arg c, Unk02037abc_Arg d,
-                                         Unk02037abc_Arg e, Unk02037abc_Arg f) {
-    *r = (*r & 0x43) | (b << 14) | (c << 7) | (d << 8) | (e << 2) | (f << 13);
+static inline void func_02037abc_inline6(vu16 *cntReg, Unk02037abc_Arg val14, Unk02037abc_Arg val7,
+                                         Unk02037abc_Arg val8, Unk02037abc_Arg val2, Unk02037abc_Arg val13) {
+    *cntReg = (*cntReg & 0x43) | (val14 << 14) | (val7 << 7) | (val8 << 8) | (val2 << 2) | (val13 << 13);
 }
 
-void InitDisplayFromSettings(void *a) {
-    DisplaySettings *p;
-    Bg01Cnt *q;
-    u16 v;
+void InitDisplayFromSettings(void *settingsPtr) {
+    DisplaySettings *settings;
+    Bg01Cnt *cnt;
+    u16 clearColor;
 
-    p = a;
-    gDisplaySettings = p;
+    settings = settingsPtr;
+    gDisplaySettings = settings;
     ClearLcdcBanksByState();
     func_02037abc_inline(0xc0, (void *) 0x07000000, 0x400);
     func_02037abc_inline(0xc0, (void *) 0x07000400, 0x400);
@@ -609,11 +625,11 @@ void InitDisplayFromSettings(void *a) {
         GX_SetBankForLCDC(gDisplaySettings->mBankForLCDC);
     }
     data_02175614.mUnk_00;
-    GX_SetGraphicsMode(p->mDispMode, p->mMainBgMode, p->mBg0As);
-    reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | (p->mMainDisplayMask << 8);
-    GXS_SetGraphicsMode(p->mSubBgMode);
-    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | (p->mSubDisplayMask << 8);
-    if (p->mBg0As == 1) {
+    GX_SetGraphicsMode(settings->mDispMode, settings->mMainBgMode, settings->mBg0As);
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | (settings->mMainDisplayMask << 8);
+    GXS_SetGraphicsMode(settings->mSubBgMode);
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | (settings->mSubDisplayMask << 8);
+    if (settings->mBg0As == 1) {
         G3X_Init();
         G3X_InitTable();
         G3X_InitMtxStack();
@@ -623,65 +639,65 @@ void InitDisplayFromSettings(void *a) {
         reg_G3X_ALPHA_TEST_REF = 0;
         reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 8;
         reg_G2_BLDCNT = 0;
-        reg_G3_SWAP_BUFFERS = (p->mG3xParams->mSwapBit1 << 1) | p->mG3xParams->mSwapBit0;
-        v = p->mG3xParams->mClearColor;
-        G3X_SetClearColor((u16) (v & 0x7fff), (u8) ((v & 0x8000) >> 15), 0x7fff, 0x3f, 0);
+        reg_G3_SWAP_BUFFERS = (settings->mG3xParams->mSwapBit1 << 1) | settings->mG3xParams->mSwapBit0;
+        clearColor = settings->mG3xParams->mClearColor;
+        G3X_SetClearColor((u16) (clearColor & 0x7fff), (u8) ((clearColor & 0x8000) >> 15), 0x7fff, 0x3f, 0);
     }
-    if (p->mMainDisplayMask & 1) {
-        q = &p->mMainBg0;
-        func_02037abc_inline2(&reg_G2_BG0CNT, q);
-        if (p->mBg0As == 1) {
+    if (settings->mMainDisplayMask & 1) {
+        cnt = &settings->mMainBg0;
+        func_02037abc_inline2(&reg_G2_BG0CNT, cnt);
+        if (settings->mBg0As == 1) {
             G2Bg0OfsWrite(0);
         } else {
             reg_G2_BG0OFS = 0;
-            func_02037abc_inline6(&reg_G2_BG0CNT, (Unk02037abc_Arg) q->mBgCntVal14, (Unk02037abc_Arg) q->mBgCntVal7,
-                                  (Unk02037abc_Arg) q->mBgCntVal8, (Unk02037abc_Arg) q->mBgCntVal2,
-                                  (Unk02037abc_Arg) q->mBgCntVal13);
+            func_02037abc_inline6(&reg_G2_BG0CNT, (Unk02037abc_Arg) cnt->mBgCntVal14, (Unk02037abc_Arg) cnt->mBgCntVal7,
+                                  (Unk02037abc_Arg) cnt->mBgCntVal8, (Unk02037abc_Arg) cnt->mBgCntVal2,
+                                  (Unk02037abc_Arg) cnt->mBgCntVal13);
         }
     }
-    if (p->mSubDisplayMask & 1) {
+    if (settings->mSubDisplayMask & 1) {
         reg_G2S_DB_BG0OFS = 0;
-        q = &p->mSubBg0;
-        func_02037abc_inline2(&reg_G2S_DB_BG0CNT, q);
-        func_02037abc_inline6(&reg_G2S_DB_BG0CNT, (Unk02037abc_Arg) q->mBgCntVal14, (Unk02037abc_Arg) q->mBgCntVal7,
-                              (Unk02037abc_Arg) q->mBgCntVal8, (Unk02037abc_Arg) q->mBgCntVal2,
-                              (Unk02037abc_Arg) q->mBgCntVal13);
+        cnt = &settings->mSubBg0;
+        func_02037abc_inline2(&reg_G2S_DB_BG0CNT, cnt);
+        func_02037abc_inline6(&reg_G2S_DB_BG0CNT, (Unk02037abc_Arg) cnt->mBgCntVal14, (Unk02037abc_Arg) cnt->mBgCntVal7,
+                              (Unk02037abc_Arg) cnt->mBgCntVal8, (Unk02037abc_Arg) cnt->mBgCntVal2,
+                              (Unk02037abc_Arg) cnt->mBgCntVal13);
     }
-    if (p->mMainDisplayMask & 2) {
+    if (settings->mMainDisplayMask & 2) {
         reg_G2_BG1OFS = 0;
-        q = &p->mMainBg1;
-        func_02037abc_inline2(&reg_G2_BG1CNT, q);
-        func_02037abc_inline6(&reg_G2_BG1CNT, (Unk02037abc_Arg) q->mBgCntVal14, (Unk02037abc_Arg) q->mBgCntVal7,
-                              (Unk02037abc_Arg) q->mBgCntVal8, (Unk02037abc_Arg) q->mBgCntVal2,
-                              (Unk02037abc_Arg) q->mBgCntVal13);
+        cnt = &settings->mMainBg1;
+        func_02037abc_inline2(&reg_G2_BG1CNT, cnt);
+        func_02037abc_inline6(&reg_G2_BG1CNT, (Unk02037abc_Arg) cnt->mBgCntVal14, (Unk02037abc_Arg) cnt->mBgCntVal7,
+                              (Unk02037abc_Arg) cnt->mBgCntVal8, (Unk02037abc_Arg) cnt->mBgCntVal2,
+                              (Unk02037abc_Arg) cnt->mBgCntVal13);
     }
-    if (p->mSubDisplayMask & 2) {
+    if (settings->mSubDisplayMask & 2) {
         reg_G2S_DB_BG1OFS = 0;
-        q = &p->mSubBg1;
-        func_02037abc_inline2(&reg_G2S_DB_BG1CNT, q);
-        func_02037abc_inline6(&reg_G2S_DB_BG1CNT, (Unk02037abc_Arg) q->mBgCntVal14, (Unk02037abc_Arg) q->mBgCntVal7,
-                              (Unk02037abc_Arg) q->mBgCntVal8, (Unk02037abc_Arg) q->mBgCntVal2,
-                              (Unk02037abc_Arg) q->mBgCntVal13);
+        cnt = &settings->mSubBg1;
+        func_02037abc_inline2(&reg_G2S_DB_BG1CNT, cnt);
+        func_02037abc_inline6(&reg_G2S_DB_BG1CNT, (Unk02037abc_Arg) cnt->mBgCntVal14, (Unk02037abc_Arg) cnt->mBgCntVal7,
+                              (Unk02037abc_Arg) cnt->mBgCntVal8, (Unk02037abc_Arg) cnt->mBgCntVal2,
+                              (Unk02037abc_Arg) cnt->mBgCntVal13);
     }
-    if (p->mMainDisplayMask & 4) {
-        ApplyBg2Cnt(&p->mMainBg2, 1);
+    if (settings->mMainDisplayMask & 4) {
+        ApplyBg2Cnt(&settings->mMainBg2, 1);
     }
-    if (p->mSubDisplayMask & 4) {
-        ApplyBg2Cnt(&p->mSubBg2, 0);
+    if (settings->mSubDisplayMask & 4) {
+        ApplyBg2Cnt(&settings->mSubBg2, 0);
     }
-    if (p->mMainDisplayMask & 8) {
-        ApplyBg3Cnt(&p->mMainBg3, 1);
+    if (settings->mMainDisplayMask & 8) {
+        ApplyBg3Cnt(&settings->mMainBg3, 1);
     }
-    if (p->mSubDisplayMask & 8) {
-        ApplyBg3Cnt(&p->mSubBg3, 0);
+    if (settings->mSubDisplayMask & 8) {
+        ApplyBg3Cnt(&settings->mSubBg3, 0);
     }
-    if (p->mMainDisplayMask & 0x10) {
-        func_02037abc_inline3(&reg_GX_DISPCNT, (Unk02037abc_Arg) p->mUnk_68);
-        func_02037abc_inline4((Unk02037abc_Arg) p->mUnk_6a);
+    if (settings->mMainDisplayMask & 0x10) {
+        func_02037abc_inline3(&reg_GX_DISPCNT, (Unk02037abc_Arg) settings->mUnk_68);
+        func_02037abc_inline4((Unk02037abc_Arg) settings->mUnk_6a);
     }
-    if (p->mSubDisplayMask & 0x10) {
-        func_02037abc_inline3(&reg_GXS_DB_DISPCNT, (Unk02037abc_Arg) p->mUnk_b0);
-        func_02037abc_inline5((Unk02037abc_Arg) p->mUnk_b2);
+    if (settings->mSubDisplayMask & 0x10) {
+        func_02037abc_inline3(&reg_GXS_DB_DISPCNT, (Unk02037abc_Arg) settings->mUnk_b0);
+        func_02037abc_inline5((Unk02037abc_Arg) settings->mUnk_b2);
     }
     reg_GX_POWCNT |= 0x8000;
 }
@@ -692,12 +708,12 @@ void DisableAllBanksAndNullDisplaySettings(void) {
 }
 
 void PrepareDisplayFrame(void) {
-    DisplaySettings *p;
-    u64 t;
-    p = gDisplaySettings;
-    t = OS_GetTick();
-    p->mFrameStartTick = t;
-    if (p->mBg0As == 1) {
+    DisplaySettings *settings;
+    u64 tick;
+    settings = gDisplaySettings;
+    tick = OS_GetTick();
+    settings->mFrameStartTick = tick;
+    if (settings->mBg0As == 1) {
         G3X_Reset();
     }
     if (gFrameCallback != NULL) {
@@ -711,90 +727,90 @@ u32 func_02037a20(void) {
 
 u32 ClearFrameFinishedFlag(void) {
     u32 value0;
-    u32 value1;
+    u32 settings;
     value0 = (u32) &gDisplaySettings;
-    value1 = *(const u32 *) ((value0) + (0));
+    settings = *(const u32 *) ((value0) + (0));
     value0 = gDisplaySettings->mFrameFlags;
     value0 = (value0) & ~(1u);
     gDisplaySettings->mFrameFlags = value0;
     return value0;
 }
 
-static inline void func_02036d3c_inline(BrightnessFade *p, s16 a) {
-    if (p->mState == 0 || (p->mState == 3 && p->mPositive == 1)) {
+static inline void func_02036d3c_inline(BrightnessFade *fade, s16 frameCount) {
+    if (fade->mState == 0 || (fade->mState == 3 && fade->mPositive == 1)) {
         return;
     }
-    p->mPositive = 1;
-    if (p->mState != 1) {
-        p->mFadeFrames = 0;
+    fade->mPositive = 1;
+    if (fade->mState != 1) {
+        fade->mFadeFrames = 0;
     } else {
-        p->mFadeFrames = (a * p->mBrightness) / 16;
+        fade->mFadeFrames = (frameCount * fade->mBrightness) / 16;
     }
-    p->mState = 3;
-    p->mFadeFrameCount = a;
+    fade->mState = 3;
+    fade->mFadeFrameCount = frameCount;
 }
 
-static inline void func_02036f10_inline(BrightnessFade *p, s16 a) {
-    if (p->mState == 0 || (p->mState == 3 && p->mPositive == 0)) {
+static inline void func_02036f10_inline(BrightnessFade *fade, s16 frameCount) {
+    if (fade->mState == 0 || (fade->mState == 3 && fade->mPositive == 0)) {
         return;
     }
-    p->mPositive = 0;
-    if (p->mState != 1) {
-        p->mFadeFrames = 0;
+    fade->mPositive = 0;
+    if (fade->mState != 1) {
+        fade->mFadeFrames = 0;
     } else {
-        p->mFadeFrames = (a * p->mBrightness) / 16;
+        fade->mFadeFrames = (frameCount * fade->mBrightness) / 16;
     }
-    p->mState = 3;
-    p->mFadeFrameCount = a;
+    fade->mState = 3;
+    fade->mFadeFrameCount = frameCount;
 }
 
-static inline void func_020370d4_inline(BrightnessFade *p, s16 a) {
-    if (p->mState == 2 || p->mState == 1) {
+static inline void func_020370d4_inline(BrightnessFade *fade, s16 frameCount) {
+    if (fade->mState == 2 || fade->mState == 1) {
         return;
     }
-    p->mPositive = 0;
-    if (p->mState == 2 || p->mState == 1) {
+    fade->mPositive = 0;
+    if (fade->mState == 2 || fade->mState == 1) {
         return;
     }
-    if (p->mState != 3) {
-        p->mFadeFrames = 0;
+    if (fade->mState != 3) {
+        fade->mFadeFrames = 0;
     } else {
-        p->mFadeFrames = (a * p->mBrightness) / 16;
+        fade->mFadeFrames = (frameCount * fade->mBrightness) / 16;
     }
-    p->mState = 1;
-    p->mFadeFrameCount = a;
+    fade->mState = 1;
+    fade->mFadeFrameCount = frameCount;
 }
 
-static inline void func_02037288_inline(BrightnessFade *p, s16 a) {
-    if (p->mState == 2 || p->mState == 1) {
+static inline void func_02037288_inline(BrightnessFade *fade, s16 frameCount) {
+    if (fade->mState == 2 || fade->mState == 1) {
         return;
     }
-    if (p->mState != 3) {
-        p->mFadeFrames = 0;
+    if (fade->mState != 3) {
+        fade->mFadeFrames = 0;
     } else {
-        p->mFadeFrames = (a * p->mBrightness) / 16;
+        fade->mFadeFrames = (frameCount * fade->mBrightness) / 16;
     }
-    p->mState = 1;
-    p->mFadeFrameCount = a;
+    fade->mState = 1;
+    fade->mFadeFrameCount = frameCount;
 }
 
 void FinishDisplayFrame(void) {
-    DisplaySettings *p;
-    u64 t;
-    s16 c;
-    s16 d;
+    DisplaySettings *settings;
+    u64 tick;
+    s16 prevMainBrightness;
+    s16 prevSubBrightness;
     u16 i;
-    c = gMainBrightnessFade.mBrightness;
-    d = gSubBrightnessFade.mBrightness;
+    prevMainBrightness = gMainBrightnessFade.mBrightness;
+    prevSubBrightness = gSubBrightnessFade.mBrightness;
     if (gFrameCallback != NULL) {
         gFrameCallback(1);
     }
     UpdateBrightnessFade(&gMainBrightnessFade);
     UpdateBrightnessFade(&gSubBrightnessFade);
     DC_StoreAll();
-    p = gDisplaySettings;
-    if (p->mBg0As == 1) {
-        reg_G3_SWAP_BUFFERS = (p->mG3xParams->mSwapBit1 << 1) | p->mG3xParams->mSwapBit0;
+    settings = gDisplaySettings;
+    if (settings->mBg0As == 1) {
+        reg_G3_SWAP_BUFFERS = (settings->mG3xParams->mSwapBit1 << 1) | settings->mG3xParams->mSwapBit0;
     }
     if ((gDisplaySettings->mFrameFlags & 1) == 0) {
         gDisplaySettings->mFrameFlags |= 2;
@@ -802,18 +818,18 @@ void FinishDisplayFrame(void) {
         gDisplaySettings->mFrameFlags &= ~2;
         gDisplaySettings->mFrameFlags &= ~1;
     }
-    p = gDisplaySettings;
-    t = OS_GetTick();
-    p->mTimeBeforeWait = (t - p->mFrameStartTick) * 0xfa00 / 0x82ea;
+    settings = gDisplaySettings;
+    tick = OS_GetTick();
+    settings->mTimeBeforeWait = (tick - settings->mFrameStartTick) * 0xfa00 / 0x82ea;
     for (i = 0; i < gDisplaySettings->mWaitIrqCount; i++) {
         OS_WaitIrq(1, 1);
     }
     gDisplaySettings->mFrameFlags |= 1;
     gDisplaySettings->mWaitEndTick = OS_GetTick();
-    if (c != gMainBrightnessFade.mBrightness) {
+    if (prevMainBrightness != gMainBrightnessFade.mBrightness) {
         GXx_SetMasterBrightness_(&reg_GX_MASTER_BRIGHT, gMainBrightnessFade.mBrightness);
     }
-    if (d != gSubBrightnessFade.mBrightness) {
+    if (prevSubBrightness != gSubBrightnessFade.mBrightness) {
         GXx_SetMasterBrightness_(&reg_GXS_DB_MASTER_BRIGHT, gSubBrightnessFade.mBrightness);
     }
     if (gFrameCallback != NULL) {
@@ -822,14 +838,14 @@ void FinishDisplayFrame(void) {
 }
 
 void func_02037658(s32 a) {
-    u64 t;
-    s16 c;
-    s16 d;
+    u64 tick;
+    s16 prevMainBrightness;
+    s16 prevSubBrightness;
     u16 i;
-    BOOL e;
-    DisplaySettings *p;
-    c = gMainBrightnessFade.mBrightness;
-    d = gSubBrightnessFade.mBrightness;
+    BOOL swapAndWait;
+    DisplaySettings *settings;
+    prevMainBrightness = gMainBrightnessFade.mBrightness;
+    prevSubBrightness = gSubBrightnessFade.mBrightness;
     if (gFrameCallback != NULL) {
         gFrameCallback(1);
     }
@@ -843,28 +859,28 @@ void func_02037658(s32 a) {
         gDisplaySettings->mFrameFlags &= ~1;
     }
     if (a == 0 || (gDisplaySettings->mFrameFlags & 2) == 0) {
-        e = TRUE;
+        swapAndWait = TRUE;
     } else {
-        e = FALSE;
+        swapAndWait = FALSE;
     }
-    p = gDisplaySettings;
-    if (p->mBg0As == 1 && e != FALSE) {
-        reg_G3_SWAP_BUFFERS = (p->mG3xParams->mSwapBit1 << 1) | p->mG3xParams->mSwapBit0;
+    settings = gDisplaySettings;
+    if (settings->mBg0As == 1 && swapAndWait != FALSE) {
+        reg_G3_SWAP_BUFFERS = (settings->mG3xParams->mSwapBit1 << 1) | settings->mG3xParams->mSwapBit0;
     }
-    p = gDisplaySettings;
-    t = OS_GetTick();
-    p->mTimeBeforeWait = (t - p->mFrameStartTick) * 0xfa00 / 0x82ea;
-    if (e != FALSE) {
+    settings = gDisplaySettings;
+    tick = OS_GetTick();
+    settings->mTimeBeforeWait = (tick - settings->mFrameStartTick) * 0xfa00 / 0x82ea;
+    if (swapAndWait != FALSE) {
         for (i = 0; i < gDisplaySettings->mWaitIrqCount; i++) {
             OS_WaitIrq(1, 1);
         }
     }
     gDisplaySettings->mFrameFlags |= 1;
     gDisplaySettings->mWaitEndTick = OS_GetTick();
-    if (c != gMainBrightnessFade.mBrightness) {
+    if (prevMainBrightness != gMainBrightnessFade.mBrightness) {
         GXx_SetMasterBrightness_(&reg_GX_MASTER_BRIGHT, gMainBrightnessFade.mBrightness);
     }
-    if (d != gSubBrightnessFade.mBrightness) {
+    if (prevSubBrightness != gSubBrightnessFade.mBrightness) {
         GXx_SetMasterBrightness_(&reg_GXS_DB_MASTER_BRIGHT, gSubBrightnessFade.mBrightness);
     }
     if (gFrameCallback != NULL) {
@@ -872,14 +888,14 @@ void func_02037658(s32 a) {
     }
 }
 
-void FinishDisplayFrameSwapIf(s32 a) {
-    DisplaySettings *p;
-    u64 t;
-    s16 c;
-    s16 d;
+void FinishDisplayFrameSwapIf(s32 doSwap) {
+    DisplaySettings *settings;
+    u64 tick;
+    s16 prevMainBrightness;
+    s16 prevSubBrightness;
     u16 i;
-    c = gMainBrightnessFade.mBrightness;
-    d = gSubBrightnessFade.mBrightness;
+    prevMainBrightness = gMainBrightnessFade.mBrightness;
+    prevSubBrightness = gSubBrightnessFade.mBrightness;
     if (gFrameCallback != NULL) {
         gFrameCallback(1);
     }
@@ -892,22 +908,22 @@ void FinishDisplayFrameSwapIf(s32 a) {
         gDisplaySettings->mFrameFlags &= ~2;
         gDisplaySettings->mFrameFlags &= ~1;
     }
-    p = gDisplaySettings;
-    if (p->mBg0As == 1 && a != 0) {
-        reg_G3_SWAP_BUFFERS = (p->mG3xParams->mSwapBit1 << 1) | p->mG3xParams->mSwapBit0;
+    settings = gDisplaySettings;
+    if (settings->mBg0As == 1 && doSwap != 0) {
+        reg_G3_SWAP_BUFFERS = (settings->mG3xParams->mSwapBit1 << 1) | settings->mG3xParams->mSwapBit0;
     }
-    p = gDisplaySettings;
-    t = OS_GetTick();
-    p->mTimeBeforeWait = (t - p->mFrameStartTick) * 0xfa00 / 0x82ea;
+    settings = gDisplaySettings;
+    tick = OS_GetTick();
+    settings->mTimeBeforeWait = (tick - settings->mFrameStartTick) * 0xfa00 / 0x82ea;
     for (i = 0; i < gDisplaySettings->mWaitIrqCount; i++) {
         OS_WaitIrq(1, 1);
     }
     gDisplaySettings->mFrameFlags |= 1;
     gDisplaySettings->mWaitEndTick = OS_GetTick();
-    if (c != gMainBrightnessFade.mBrightness) {
+    if (prevMainBrightness != gMainBrightnessFade.mBrightness) {
         GXx_SetMasterBrightness_(&reg_GX_MASTER_BRIGHT, gMainBrightnessFade.mBrightness);
     }
-    if (d != gSubBrightnessFade.mBrightness) {
+    if (prevSubBrightness != gSubBrightnessFade.mBrightness) {
         GXx_SetMasterBrightness_(&reg_GXS_DB_MASTER_BRIGHT, gSubBrightnessFade.mBrightness);
     }
     if (gFrameCallback != NULL) {
@@ -916,68 +932,68 @@ void FinishDisplayFrameSwapIf(s32 a) {
 }
 
 void RecordFrameTimes(void) {
-    u64 t;
-    DisplaySettings *p;
-    t = OS_GetTick();
+    u64 tick;
+    DisplaySettings *settings;
+    tick = OS_GetTick();
     if (gFrameCallback != NULL) {
         gFrameCallback(3);
     }
-    p = gDisplaySettings;
-    p->mTimeSinceWaitEnd = (t - p->mWaitEndTick) * 0xfa00 / 0x82ea;
-    p = gDisplaySettings;
-    p->mTimeSinceFrameStart = (t - p->mFrameStartTick) * 0xfa00 / 0x82ea;
+    settings = gDisplaySettings;
+    settings->mTimeSinceWaitEnd = (tick - settings->mWaitEndTick) * 0xfa00 / 0x82ea;
+    settings = gDisplaySettings;
+    settings->mTimeSinceFrameStart = (tick - settings->mFrameStartTick) * 0xfa00 / 0x82ea;
 }
 
-void StartFadeToClearOneScreen(s16 a, s32 b) {
-    if (b != 0) {
-        func_02037288_inline(&gMainBrightnessFade, a);
+void StartFadeToClearOneScreen(s16 frameCount, s32 isMainScreen) {
+    if (isMainScreen != 0) {
+        func_02037288_inline(&gMainBrightnessFade, frameCount);
     } else {
-        func_02037288_inline(&gSubBrightnessFade, a);
+        func_02037288_inline(&gSubBrightnessFade, frameCount);
     }
 }
 
-void StartFadeToClear(s16 a) {
-    func_02037288_inline(&gMainBrightnessFade, a);
-    func_02037288_inline(&gSubBrightnessFade, a);
+void StartFadeToClear(s16 frameCount) {
+    func_02037288_inline(&gMainBrightnessFade, frameCount);
+    func_02037288_inline(&gSubBrightnessFade, frameCount);
 }
 
-void StartFadeToClearNegativeOneScreen(s32 a, s32 b) {
-    if (b != 0) {
-        func_020370d4_inline(&gMainBrightnessFade, a);
+void StartFadeToClearNegativeOneScreen(s32 frameCount, s32 isMainScreen) {
+    if (isMainScreen != 0) {
+        func_020370d4_inline(&gMainBrightnessFade, frameCount);
     } else {
-        func_020370d4_inline(&gSubBrightnessFade, a);
+        func_020370d4_inline(&gSubBrightnessFade, frameCount);
     }
 }
 
-void StartFadeToClearNegative(s16 a) {
-    func_020370d4_inline(&gMainBrightnessFade, a);
-    func_020370d4_inline(&gSubBrightnessFade, a);
+void StartFadeToClearNegative(s16 frameCount) {
+    func_020370d4_inline(&gMainBrightnessFade, frameCount);
+    func_020370d4_inline(&gSubBrightnessFade, frameCount);
 }
 
-void StartFadeToFadedNegativeOneScreen(s32 a, s32 b) {
-    if (b != 0) {
-        func_02036f10_inline(&gMainBrightnessFade, a);
+void StartFadeToFadedNegativeOneScreen(s32 frameCount, s32 isMainScreen) {
+    if (isMainScreen != 0) {
+        func_02036f10_inline(&gMainBrightnessFade, frameCount);
     } else {
-        func_02036f10_inline(&gSubBrightnessFade, a);
+        func_02036f10_inline(&gSubBrightnessFade, frameCount);
     }
 }
 
-void StartFadeToFadedNegative(s16 a) {
-    func_02036f10_inline(&gMainBrightnessFade, a);
-    func_02036f10_inline(&gSubBrightnessFade, a);
+void StartFadeToFadedNegative(s16 frameCount) {
+    func_02036f10_inline(&gMainBrightnessFade, frameCount);
+    func_02036f10_inline(&gSubBrightnessFade, frameCount);
 }
 
-void StartFadeToFadedPositiveOneScreen(s16 a, s32 b) {
-    if (b != 0) {
-        func_02036d3c_inline(&gMainBrightnessFade, a);
+void StartFadeToFadedPositiveOneScreen(s16 frameCount, s32 isMainScreen) {
+    if (isMainScreen != 0) {
+        func_02036d3c_inline(&gMainBrightnessFade, frameCount);
     } else {
-        func_02036d3c_inline(&gSubBrightnessFade, a);
+        func_02036d3c_inline(&gSubBrightnessFade, frameCount);
     }
 }
 
-void StartFadeToFadedPositive(s16 a) {
-    func_02036d3c_inline(&gMainBrightnessFade, a);
-    func_02036d3c_inline(&gSubBrightnessFade, a);
+void StartFadeToFadedPositive(s16 frameCount) {
+    func_02036d3c_inline(&gMainBrightnessFade, frameCount);
+    func_02036d3c_inline(&gSubBrightnessFade, frameCount);
 }
 
 u32 AreBrightnessFadesFaded(void) {

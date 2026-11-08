@@ -52,7 +52,7 @@ void func_02043410(void) {
 
     for (i = 0; i < 8; i++) {
         p = &data_02175628[i];
-        func_02039728(p);
+        ResetInputSlot(p);
         SetInputSlotRepeat(p, 0xff3, 0x1e, 0xa);
         p->mSourceKind = 0;
         p->mRequestedBits = 0;
@@ -86,7 +86,7 @@ void func_020431e4(void) {
 
     for (i = 0; i < 10; i++) {
         p = &data_02175628[(u32) i];
-        func_02039728(p);
+        ResetInputSlot(p);
         SetInputSlotRepeat(p, 0xff3, 0x1e, 0xa);
         p->mSourceKind = 0;
         p->mRequestedBits = 0;
@@ -101,7 +101,7 @@ void func_020431e4(void) {
     data_02175624->mUnk_0c = FALSE;
     p = data_02175628;
     for (k = 0; k < 10; k++) {
-        func_02039728(p);
+        ResetInputSlot(p);
         p->mRequestedBits = 0;
         SetInputSlotRepeat(p, 0xff3, 0x1e, 0xa);
         p++;

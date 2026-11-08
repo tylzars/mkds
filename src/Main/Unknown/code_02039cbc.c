@@ -31,39 +31,40 @@
 #include "Main/Unknown/code_0204b714.h"
 
 void func_02039cbc(void) {
-    void *a;
-    void *b;
-    void *c;
-    void *d;
-    void *e;
-    u32 f;
-    f = func_02039e08(GetHeap(GetCurrentHeapCall()), &a, &e, &b, &c, &d);
+    void *backHeap;
+    void *firstFrontHeap;
+    void *secondFrontHeap;
+    void *thirdFrontHeap;
+    void *soundBuffer;
+    u32 soundBufferSize;
+    soundBufferSize = func_02039e08(GetHeap(GetCurrentHeapCall()), &backHeap, &soundBuffer, &firstFrontHeap,
+                                    &secondFrontHeap, &thirdFrontHeap);
     CARD_SetPulledOutCallback(func_02039e00);
-    func_0205e180(a);
-    InitSceneRunState(a);
-    InitArchiveSlots(a);
-    func_0204af70(a);
-    InitConnection(a);
+    func_0205e180(backHeap);
+    InitSceneRunState(backHeap);
+    InitArchiveSlots(backHeap);
+    func_0204af70(backHeap);
+    InitConnection(backHeap);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        InitWiFiSession(a);
+        InitWiFiSession(backHeap);
     }
-    func_02046a3c(a);
-    func_02057524(a);
-    InitSound(e, f, ((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2);
+    func_02046a3c(backHeap);
+    func_02057524(backHeap);
+    InitSound(soundBuffer, soundBufferSize, ((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2);
     SetSoundOutputEffect(1);
     if (OS_IsRunOnEmulator() == 0) {
         RTC_Init();
     }
-    func_02043d10(a);
-    func_0204ba2c(a);
-    func_02057ed8(a);
-    InitOverlayTable(a);
-    func_020cefa0(a);
-    func_020471b0(a);
-    func_0212b158(a);
+    func_02043d10(backHeap);
+    func_0204ba2c(backHeap);
+    func_02057ed8(backHeap);
+    InitOverlayTable(backHeap);
+    func_020cefa0(backHeap);
+    func_020471b0(backHeap);
+    func_0212b158(backHeap);
     func_02057ed4();
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        InitArchiveBuffers(b, c, d);
+        InitArchiveBuffers(firstFrontHeap, secondFrontHeap, thirdFrontHeap);
     }
     ResetRaceSetup();
     func_0204b9ac();

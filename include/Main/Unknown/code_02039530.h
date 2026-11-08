@@ -4,4 +4,4 @@
 
 typedef struct InputSlot InputSlot;
 
-void func_02039530(u32 a, InputSlot *b);
+void UpdateInputSlot(u32 keys, InputSlot *slot);

@@ -229,7 +229,7 @@ void func_0204a1a8(void *a) {
             c = TRUE;
         }
         func_02039478();
-        func_0203940c();
+        ReadKeysIntoInputSlot();
         VBlankIntrWait();
         if (func_0204984c_inline6()) {
             b = TRUE;
@@ -267,7 +267,7 @@ void func_0204a1a8(void *a) {
             if (c != FALSE) {
                 PrepareDisplayFrame();
             }
-            func_0203940c();
+            ReadKeysIntoInputSlot();
             d = func_0212b0b8();
             UpdateSounds();
             VBlankIntrWait();
@@ -305,7 +305,7 @@ void func_02049f60(void) {
         func_0212ad28(gSceneRunState->mUnk_118, gSceneRunState->mUnk_11c);
     }
     func_02039478();
-    func_0203940c();
+    ReadKeysIntoInputSlot();
     VBlankIntrWait();
     if (func_0204984c_inline6()) {
         a = TRUE;
@@ -335,7 +335,7 @@ void func_02049f60(void) {
     }
     d = b == FALSE;
     do {
-        func_0203940c();
+        ReadKeysIntoInputSlot();
         if (d == FALSE) {
             PrepareDisplayFrame();
         }

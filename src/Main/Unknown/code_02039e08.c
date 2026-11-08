@@ -41,12 +41,12 @@
 #include "code_020176c0.h"
 #include "Main/Unknown/code_02044618.h"
 
-void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
-    RaceSetup *q;
+void UpdateRaceScene(Unk0203a0dc *sceneNumbers, u32 sceneFrames) {
+    RaceSetup *raceSetup;
     u32 c;
     if (func_02049b6c() == 0) {
         if (func_0204359c() == 0) {
-            if (a != NULL) {
+            if (sceneNumbers != NULL) {
                 if (func_0203a8f4() == 5) {
                     c = func_0205bba8();
                 } else {
@@ -54,12 +54,12 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
                 }
                 if (c != 0) {
                     func_0203a8e0(c);
-                    SetNextSceneFromPickedValue(a, c);
+                    SetNextSceneFromPickedValue(sceneNumbers, c);
                 }
                 switch (GetCurrentRaceKind()) {
                     case RACE_KIND_DEMO:
                         c = 0;
-                        if (b > func_0210f72c()) {
+                        if (sceneFrames > func_0210f72c()) {
                             if (IsSeqVariableChanged(1) != 0) {
                                 c = 1;
                                 func_0203a4d4(0);
@@ -77,14 +77,15 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
                             }
                         }
                         if (c != 0) {
-                            a->mNextScene = 0;
+                            sceneNumbers->mNextScene = 0;
                         }
                         break;
                     case RACE_KIND_START_GP:
                     case 4:
-                        if (IsCameraChainEnded() != 0 || (b > 0x5a && (GetDownBits(func_0203a4cc(), 0xc0f) != 0 ||
-                                                                       func_0203a3cc(func_0203a4cc()) != 0))) {
-                            a->mNextScene = 2;
+                        if (IsCameraChainEnded() != 0 ||
+                            (sceneFrames > 0x5a &&
+                             (GetDownBits(func_0203a4cc(), 0xc0f) != 0 || func_0203a3cc(func_0203a4cc()) != 0))) {
+                            sceneNumbers->mNextScene = 2;
                             SetNextRaceKind(0);
                         }
                         break;
@@ -93,14 +94,14 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
                             case MODE_GRAND_PRIX:
                             case MODE_TIME_ATTACK:
                                 if (func_0203c0bc() != 0) {
-                                    a->mNextScene = 2;
+                                    sceneNumbers->mNextScene = 2;
                                 }
                                 break;
                         }
                         break;
                     case RACE_KIND_AWARD:
-                        if (ShouldEndAwardRace(b) != 0) {
-                            a->mNextScene = 0xa;
+                        if (ShouldEndAwardRace(sceneFrames) != 0) {
+                            sceneNumbers->mNextScene = 0xa;
                         }
                         break;
                     case RACE_KIND_STAFF_ROLL:
@@ -108,18 +109,18 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
                         if (func_0203a3a4() == COURSE_ID_STAFFROLLTRUE) {
                             c = 0x2b02;
                         }
-                        if (b > c) {
-                            a->mNextScene = 0xf;
+                        if (sceneFrames > c) {
+                            sceneNumbers->mNextScene = 0xf;
                             break;
                         }
-                        if (ShouldEndStaffRoll(b) != 0) {
+                        if (ShouldEndStaffRoll(sceneFrames) != 0) {
                             func_ov001_0219e0c4();
-                            a->mNextScene = 0xf;
+                            sceneNumbers->mNextScene = 0xf;
                         }
                         break;
                 }
             }
-            if (ShouldUpdateRace(b) != 0) {
+            if (ShouldUpdateRace(sceneFrames) != 0) {
                 UpdateRace();
             }
             func_020af66c();
@@ -139,18 +140,18 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
             func_020435d4(0);
         }
     }
-    q = gRaceSetup;
-    if (q->mRaceKind != RACE_KIND_STAFF_ROLL) {
+    raceSetup = gRaceSetup;
+    if (raceSetup->mRaceKind != RACE_KIND_STAFF_ROLL) {
         c = 1;
     } else {
-        if (b < 0x708) {
+        if (sceneFrames < 0x708) {
             c = 0;
         } else {
             c = 1;
         }
     }
     if (c != 0) {
-        if (q->mMode != 5 || func_02037a20() == 0) {
+        if (raceSetup->mMode != 5 || func_02037a20() == 0) {
             DrawRace();
         }
     }
@@ -158,7 +159,7 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
     func_020b255c();
 }
 
-void func_0203a05c(void) {
+void PreSleepRaceScene(void) {
     data_021759d0->mUnk_54 = FALSE;
     if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
         func_020b2e64(1);
@@ -174,29 +175,29 @@ void func_0203a05c(void) {
     }
 }
 
-void func_0203a050(void) {
+void PostSleepRaceScene(void) {
     func_02046e24();
 }
 
-u32 RunRaceScene(SceneNumbers *a) {
-    SceneCallbacks b = gRaceSceneCallbacks;
+u32 RunRaceScene(SceneNumbers *sceneNumbers) {
+    SceneCallbacks callbacks = gRaceSceneCallbacks;
     SetCurrentRaceFromNext();
     if (gRaceSetup->mMode == 5) {
-        b.mUnk_1c = 1;
+        callbacks.mUnk_1c = 1;
     }
     if (gRaceSetup->mRaceKind != RACE_KIND_AWARD) {
         if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
-            b.mFadeToClearFrameCount = 1;
-            b.mFadeToFadedFrameCount = 0x78;
+            callbacks.mFadeToClearFrameCount = 1;
+            callbacks.mFadeToFadedFrameCount = 0x78;
         }
     } else {
-        b.mFadeToClearFrameCount = 0x3c;
-        b.mFadeToFadedFrameCount = 0x78;
+        callbacks.mFadeToClearFrameCount = 0x3c;
+        callbacks.mFadeToFadedFrameCount = 0x78;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_02043f28(1);
     }
-    RunScene(a, &b);
+    RunScene(sceneNumbers, &callbacks);
     return 0;
 }
 
@@ -219,30 +220,31 @@ void UpdateMenuScene(void) {
     func_020cb4c0();
 }
 
-u32 RunMenuScene(SceneNumbers *a) {
-    SceneCallbacks b = gMenuSceneCallbacks;
-    RunScene(a, &b);
+u32 RunMenuScene(SceneNumbers *sceneNumbers) {
+    SceneCallbacks callbacks = gMenuSceneCallbacks;
+    RunScene(sceneNumbers, &callbacks);
     return 0;
 }
 
-u32 func_02039e08(NNSiFndHeapHead *a, void **b, void **c, void **d, void **e, void **f) {
-    u32 r;
+u32 func_02039e08(NNSiFndHeapHead *heap, void **outBackHeap, void **outSoundBuffer, void **outFirstFrontHeap,
+                  void **outSecondFrontHeap, void **outThirdFrontHeap) {
+    u32 soundBufferSize;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        *b = CreateFrmHeapFromBack(a, 0x19000);
+        *outBackHeap = CreateFrmHeapFromBack(heap, 0x19000);
     } else {
-        *b = CreateFrmHeapFromBack(a, 0x1b800);
+        *outBackHeap = CreateFrmHeapFromBack(heap, 0x1b800);
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        *d = NULL;
-        *e = NULL;
-        *f = NULL;
+        *outFirstFrontHeap = NULL;
+        *outSecondFrontHeap = NULL;
+        *outThirdFrontHeap = NULL;
     } else {
-        *d = CreateFrmHeapFromFront(a, 0x19000);
-        *e = CreateFrmHeapFromFront(a, 0x4b000);
-        *f = CreateFrmHeapFromFront(a, 0x1b800);
+        *outFirstFrontHeap = CreateFrmHeapFromFront(heap, 0x19000);
+        *outSecondFrontHeap = CreateFrmHeapFromFront(heap, 0x4b000);
+        *outThirdFrontHeap = CreateFrmHeapFromFront(heap, 0x1b800);
     }
-    r = GetSndInitBufferSize(((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 ? 2 : 0);
-    *c = HeapAlloc(a, r);
-    NNS_FndGetTotalFreeSizeForExpHeap(a);
-    return r;
+    soundBufferSize = GetSndInitBufferSize(((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 ? 2 : 0);
+    *outSoundBuffer = HeapAlloc(heap, soundBufferSize);
+    NNS_FndGetTotalFreeSizeForExpHeap(heap);
+    return soundBufferSize;
 }
