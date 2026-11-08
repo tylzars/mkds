@@ -2,18 +2,18 @@
 
 #pragma optimize_for_size on
 
-void func_ov001_02180ccc(u16 *p0) {
+void ClearChars(u16 *chars) {
     s32 i;
 
     for (i = 0; i < 0x3000; i++) {
-        p0[i] = 0;
+        chars[i] = 0;
     }
 }
 
-void func_ov001_02180cb4(u16 *p0) {
+void FillScreenMapIndices(u16 *screenMap) {
     u16 i;
 
     for (i = 0; i < 0x300; i++) {
-        p0[i] = i;
+        screenMap[i] = i;
     }
 }

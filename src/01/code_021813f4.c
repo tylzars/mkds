@@ -28,54 +28,55 @@
 #include "Main/Unknown/code_020c0d9c.h"
 #include "Main/Unknown/code_0214d000.h"
 
-RaceHudSubScreenCells *data_ov001_021a9b8c;
+RaceHudSubScreenCells *gRaceHudSubScreenCoinCells;
 
 s32 func_ov001_02181528(void) {
-    Unk02188950 *p;
+    Unk02188950 *mapObject;
 
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-        p = GetMissionRunMapObject(gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181b54() : 0);
+        mapObject = GetMissionRunMapObject(gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181b54() : 0);
     } else {
-        p = NULL;
+        mapObject = NULL;
     }
-    return p->mUnk_168;
+    return mapObject->mUnk_168;
 }
 
 #pragma thumb off
 
-s32 func_ov001_02181510(void) {
-    return CreateRaceHudSubScreenCells(&data_ov001_021a9b8c, 0x68);
+s32 CreateRaceHudSubScreenCoinCells(void) {
+    return CreateRaceHudSubScreenCells(&gRaceHudSubScreenCoinCells, 0x68);
 }
 
-void func_ov001_021814fc(void) {
-    ClearRaceHudSubScreenCells(&data_ov001_021a9b8c);
+void ClearRaceHudSubScreenCoinCells(void) {
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenCoinCells);
 }
 
-void func_ov001_02181410(void) {
+void UpdateRaceHudSubScreenCoinCells(void) {
     s32 i;
-    s32 count;
-    Unk0217b498_00 *e;
-    Vec3 *pos;
+    s32 cellCount;
+    Unk0217b498_00 *object;
+    Vec3 *position;
     u32 v;
 
-    count = 0;
+    cellCount = 0;
     v = func_020c0db0();
-    for (i = 0; i < data_ov001_021a9b8c->mObjectCount; i++) {
-        e = data_ov001_021a9b8c->mObjects[i];
-        if ((e->mFlags & 1) == 0) {
-            pos = &e->mPos;
-            if (ComputeRaceHudSubScreenPosition(pos, &data_ov001_021a9b8c->mCells[count].mDrawPos, v, 1, 1)) {
-                data_ov001_021a9b8c->mCells[count].mCell = GetRaceSNcerEntry(0x58);
-                data_ov001_021a9b8c->mCells[count].mUnk_0c = func_020b4e70(pos) != 0 ? 2 : 3;
-                count++;
+    for (i = 0; i < gRaceHudSubScreenCoinCells->mObjectCount; i++) {
+        object = gRaceHudSubScreenCoinCells->mObjects[i];
+        if ((object->mFlags & 1) == 0) {
+            position = &object->mPos;
+            if (ComputeRaceHudSubScreenPosition(position, &gRaceHudSubScreenCoinCells->mCells[cellCount].mDrawPos, v, 1,
+                                                1)) {
+                gRaceHudSubScreenCoinCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0x58);
+                gRaceHudSubScreenCoinCells->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+                cellCount++;
             }
         }
     }
-    data_ov001_021a9b8c->mCellCount = count;
+    gRaceHudSubScreenCoinCells->mCellCount = cellCount;
 }
 
-void func_ov001_021813f4(void *p0) {
-    DrawRaceHudSubScreenCells(p0, data_ov001_021a9b8c, 0);
+void DrawRaceHudSubScreenCoinCells(void *oamBuffer) {
+    DrawRaceHudSubScreenCells(oamBuffer, gRaceHudSubScreenCoinCells, 0);
 }
 
 #pragma thumb on

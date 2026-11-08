@@ -749,12 +749,12 @@ void InitRaceHudSubScreenCellGroups(void) {
     if (gRaceSetup->mMode != MODE_MISSION_RUN) {
         return;
     }
-    if (func_ov001_02181510()) {
+    if (CreateRaceHudSubScreenCoinCells()) {
         s32 n;
         s32 i;
 
         n = gRaceHudSubScreenCellGroups->mGroupCount++;
-        for (i = 0; gRaceHudSubScreenCellGroupFunctions[i].mCreate != func_ov001_02181510 && i < 49; i++) {
+        for (i = 0; gRaceHudSubScreenCellGroupFunctions[i].mCreate != CreateRaceHudSubScreenCoinCells && i < 49; i++) {
         }
         if (i < 49) {
             gRaceHudSubScreenCellGroups->mClearFunctions[n] = gRaceHudSubScreenCellGroupFunctions[i].mClear;

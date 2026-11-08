@@ -93,9 +93,9 @@ u32 func_ov001_021811b8(void) {
 }
 
 int GetEmblemGridScrSize(void) {
-    int v1;
-    v1 = _s32_div_f(gEmblemGrid->mScrSide, 8);
-    return v1 * v1;
+    int charsPerSide;
+    charsPerSide = _s32_div_f(gEmblemGrid->mScrSide, 8);
+    return charsPerSide * charsPerSide;
 }
 
 u32 func_ov001_02181194(void) {
@@ -169,23 +169,23 @@ void ResetEmblemGridChanges(void) {
 }
 
 u32 SetEmblemGridCellValue(u32 x, u32 y, u32 value) {
-    u8 *v1;
-    u32 v2;
-    v2 = 0;
-    v1 = GetEmblemGridCellPtr(x, y);
-    if ((v1 != NULL) && (*v1 != value)) {
-        v2 = 1;
+    u8 *cellPtr;
+    u32 changed;
+    changed = 0;
+    cellPtr = GetEmblemGridCellPtr(x, y);
+    if ((cellPtr != NULL) && (*cellPtr != value)) {
+        changed = 1;
         CopyEmblemGridCellsOnFirstChange();
-        *v1 = value;
+        *cellPtr = value;
     }
-    return v2;
+    return changed;
 }
 
 u8 GetEmblemGridCellValue(s32 x, s32 y) {
-    u8 *v1;
-    v1 = GetEmblemGridCellPtr(x, y);
-    if (v1 != NULL) {
-        return *v1;
+    u8 *cellPtr;
+    cellPtr = GetEmblemGridCellPtr(x, y);
+    if (cellPtr != NULL) {
+        return *cellPtr;
     }
     return 0;
 }
@@ -196,9 +196,9 @@ s32 SetEmblemGridLine(s32 x, s32 y, s32 endX, s32 endY, s32 value) {
     s32 stepY;
     s32 stepX;
     BOOL changed;
-    s32 n;
+    s32 stepCount;
     s32 i;
-    u8 *ptr;
+    u8 *cellPtr;
 
     changed = FALSE;
     if ((endX >> 12) > (x >> 12)) {
@@ -234,98 +234,99 @@ s32 SetEmblemGridLine(s32 x, s32 y, s32 endX, s32 endY, s32 value) {
         stepY = -0x1000;
     }
     if (dx > dy) {
-        n = dx >> 12;
+        stepCount = dx >> 12;
     } else {
-        n = dy >> 12;
+        stepCount = dy >> 12;
     }
-    for (i = 0; i <= n; i++, x += stepX, y += stepY) {
-        ptr = GetEmblemGridCellPtr(x >> 12, y >> 12);
-        if (ptr != NULL && *ptr != value) {
+    for (i = 0; i <= stepCount; i++, x += stepX, y += stepY) {
+        cellPtr = GetEmblemGridCellPtr(x >> 12, y >> 12);
+        if (cellPtr != NULL && *cellPtr != value) {
             changed = TRUE;
             CopyEmblemGridCellsOnFirstChange();
-            *ptr = value;
+            *cellPtr = value;
         }
     }
-    ptr = GetEmblemGridCellPtr(endX >> 12, endY >> 12);
-    if (ptr != NULL && *ptr != value) {
+    cellPtr = GetEmblemGridCellPtr(endX >> 12, endY >> 12);
+    if (cellPtr != NULL && *cellPtr != value) {
         changed = TRUE;
         CopyEmblemGridCellsOnFirstChange();
-        *ptr = value;
+        *cellPtr = value;
     }
     return changed;
 }
 
 s32 FillEmblemGridRegion(s32 startX, s32 startY, s32 newValue) {
     BOOL result;
-    s32 top;
+    s32 stackCount;
     s32 k;
-    s32 *sm;
-    u8 hi;
-    s32 *sk;
-    s32 py;
+    s32 *rowStep;
+    u8 rightEdge;
+    s32 *scanStep;
+    s32 rowY;
     s32 m;
-    u8 *ptr;
-    u8 *q;
-    u8 val;
-    u8 *b;
-    EmblemGridPoint s0;
-    u8 buf[2];
-    EmblemGridPoint s1;
+    u8 *cellPtr;
+    u8 *visitedCell;
+    u8 oldValue;
+    u8 *edgeSlot;
+    EmblemGridPoint point;
+    u8 edges[2];
+    EmblemGridPoint scanPoint;
 
     result = FALSE;
-    s0.mX = startX;
-    s0.mY = startY;
-    ptr = GetEmblemGridCellPtr(s0.mX, s0.mY);
-    if (ptr != NULL) {
-        val = *ptr;
-        if (val != newValue) {
-            top = 1;
-            ((EmblemGridPoint *) gEmblemGrid->mBuffers[4])[0] = s0;
+    point.mX = startX;
+    point.mY = startY;
+    cellPtr = GetEmblemGridCellPtr(point.mX, point.mY);
+    if (cellPtr != NULL) {
+        oldValue = *cellPtr;
+        if (oldValue != newValue) {
+            stackCount = 1;
+            ((EmblemGridPoint *) gEmblemGrid->mBuffers[4])[0] = point;
             MemFillWordsByBlock_inline(gEmblemGrid->mBuffers[3], gEmblemGrid->mSide * gEmblemGrid->mSide);
             do {
                 s32 steps[2] = {-1, 1};
 
-                top--;
-                s0 = ((EmblemGridPoint *) gEmblemGrid->mBuffers[4])[top];
-                for (k = 0, b = buf, sk = steps, py = s0.mY; k < 2; k++) {
-                    *b = s0.mX;
+                stackCount--;
+                point = ((EmblemGridPoint *) gEmblemGrid->mBuffers[4])[stackCount];
+                for (k = 0, edgeSlot = edges, scanStep = steps, rowY = point.mY; k < 2; k++) {
+                    *edgeSlot = point.mX;
                     for (;;) {
-                        ptr = GetEmblemGridCellPtr(*b, py);
-                        q = &gEmblemGrid->mBuffers[3][*b + py * gEmblemGrid->mSide];
-                        if (ptr == NULL || *ptr != val) {
+                        cellPtr = GetEmblemGridCellPtr(*edgeSlot, rowY);
+                        visitedCell = &gEmblemGrid->mBuffers[3][*edgeSlot + rowY * gEmblemGrid->mSide];
+                        if (cellPtr == NULL || *cellPtr != oldValue) {
                             break;
                         }
-                        *b += *sk;
-                        *q = 1;
+                        *edgeSlot += *scanStep;
+                        *visitedCell = 1;
                     }
-                    *b -= *sk;
-                    b++;
-                    sk++;
+                    *edgeSlot -= *scanStep;
+                    edgeSlot++;
+                    scanStep++;
                 }
-                for (m = 0, sm = steps, hi = buf[1]; m < 2; m++) {
-                    s1.mY = py + *sm;
-                    for (s1.mX = buf[0]; s1.mX <= hi; s1.mX++) {
-                        ptr = GetEmblemGridCellPtr(s1.mX, s1.mY);
-                        q = &gEmblemGrid->mBuffers[3][s1.mX + s1.mY * gEmblemGrid->mSide];
-                        if (ptr != NULL && *ptr == val && *q == 0) {
+                for (m = 0, rowStep = steps, rightEdge = edges[1]; m < 2; m++) {
+                    scanPoint.mY = rowY + *rowStep;
+                    for (scanPoint.mX = edges[0]; scanPoint.mX <= rightEdge; scanPoint.mX++) {
+                        cellPtr = GetEmblemGridCellPtr(scanPoint.mX, scanPoint.mY);
+                        visitedCell = &gEmblemGrid->mBuffers[3][scanPoint.mX + scanPoint.mY * gEmblemGrid->mSide];
+                        if (cellPtr != NULL && *cellPtr == oldValue && *visitedCell == 0) {
                             do {
-                                s1.mX++;
-                                ptr = GetEmblemGridCellPtr(s1.mX, s1.mY);
-                                q = &gEmblemGrid->mBuffers[3][s1.mX + s1.mY * gEmblemGrid->mSide];
-                            } while (ptr != NULL && *ptr == val && *q == 0);
-                            s1.mX--;
-                            ((EmblemGridPoint *) gEmblemGrid->mBuffers[4])[top++] = s1;
+                                scanPoint.mX++;
+                                cellPtr = GetEmblemGridCellPtr(scanPoint.mX, scanPoint.mY);
+                                visitedCell =
+                                    &gEmblemGrid->mBuffers[3][scanPoint.mX + scanPoint.mY * gEmblemGrid->mSide];
+                            } while (cellPtr != NULL && *cellPtr == oldValue && *visitedCell == 0);
+                            scanPoint.mX--;
+                            ((EmblemGridPoint *) gEmblemGrid->mBuffers[4])[stackCount++] = scanPoint;
                         }
                     }
-                    sm++;
+                    rowStep++;
                 }
-            } while (top > 0);
+            } while (stackCount > 0);
             result = TRUE;
             CopyEmblemGridCellsOnFirstChange();
-            for (s0.mY = 0; s0.mY < gEmblemGrid->mSide; s0.mY++) {
-                for (s0.mX = 0; s0.mX < gEmblemGrid->mSide; s0.mX++) {
-                    if (gEmblemGrid->mBuffers[3][s0.mX + s0.mY * gEmblemGrid->mSide] != 0) {
-                        *GetEmblemGridCellPtr(s0.mX, s0.mY) = newValue;
+            for (point.mY = 0; point.mY < gEmblemGrid->mSide; point.mY++) {
+                for (point.mX = 0; point.mX < gEmblemGrid->mSide; point.mX++) {
+                    if (gEmblemGrid->mBuffers[3][point.mX + point.mY * gEmblemGrid->mSide] != 0) {
+                        *GetEmblemGridCellPtr(point.mX, point.mY) = newValue;
                     }
                 }
             }

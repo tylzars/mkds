@@ -19,21 +19,24 @@ typedef struct Unk02180774 {
 
 // Scene function of gSceneFuncs[5] (scene 'Test' in gSceneNames): copies the callbacks and calls
 // RunScene. Returns 0.
-int RunTestScene(void *p0);
-void func_ov001_0218050c(Unk0218052c *p0);
+int RunTestScene(void *sceneNumbers);
+void UpdateTestScene(Unk0218052c *sceneNumbers);
 void func_ov001_02180514(void);
-void func_ov001_0218051c(void);
-void func_ov001_02180524(void);
-void func_ov001_0218052c(Unk0218052c *p0);
-unsigned int func_ov001_021805bc(unsigned int p0, unsigned int p1);
-u16 func_ov001_021805d8(InputSlot *p0, unsigned int p1);
+void ReleaseTestScene(void);
+void InitTestScene(void);
+void func_ov001_0218052c(Unk0218052c *sceneNumbers);
+unsigned int func_ov001_021805bc(unsigned int slotIndex, unsigned int mask);
+u16 func_ov001_021805d8(InputSlot *inputSlot, unsigned int mask);
 unsigned int func_ov001_021805ec(void);
 void func_ov001_021805f4(void);
 void func_ov001_02180610(void);
-void func_ov001_02180728(TextCanvas *p0, void *p1, void *p2, s32 p3, s32 p4);
-void func_ov001_02180740(Unk02180774 *p0, u32 p1, u32 p2, u32 p3, u32 p4, u32 p5, u32 p6);
-void func_ov001_02180774(Unk02180774 *p0, u32 p1, u32 p2, u32 p3, u32 p4, u32 p5, u32 p6);
-void func_ov001_021807a8(Unk02180774 *p0, u32 p1, u32 p2, u32 p3, u32 p4, u32 p5, u32 p6, u32 p7);
+void func_ov001_02180728(TextCanvas *textCanvas, void *charCanvas, void *font, s32 charSpacing, s32 lineSpacing);
+void func_ov001_02180740(Unk02180774 *displaySettings, u32 cntLow2, u32 cntBit6, u32 cntVal14, u32 p4, u32 cntVal8,
+                         u32 cntVal2);
+void func_ov001_02180774(Unk02180774 *displaySettings, u32 cntLow2, u32 cntBit6, u32 cntVal14, u32 p4, u32 cntVal8,
+                         u32 cntVal2);
+void func_ov001_021807a8(Unk02180774 *displaySettings, u32 cntLow2, u32 cntBit6, u32 cntVal14, u32 cntVal7, u32 cntVal8,
+                         u32 cntVal2, u32 cntVal13);
 void *func_ov001_021807e4(void);
 void func_ov001_02180800(void);
-unsigned int func_ov001_02180ad0(TextCanvas *p0, u32 p1, u32 p2, u32 p3, u32 p4, u16 *p5);
+unsigned int func_ov001_02180ad0(TextCanvas *textCanvas, u32 drawX, u32 drawY, u32 color, u32 flags, u16 *text);

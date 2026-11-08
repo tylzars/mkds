@@ -125,17 +125,17 @@ typedef struct SelectBattleStage {
     /* 1084 */ struct Bmg *mCommonMessages;
 } SelectBattleStage;
 
-// Object that func_ov001_02180610 allocates and data_ov001_021a99e4 points to.
-typedef struct Unk021a99e4 {
+// Object that func_ov001_02180610 allocates and gTestScene points to.
+typedef struct TestScene {
     /* 0000 */ s32 mUnk_0000;
-    /* 0004 */ s32 mUnk_0004;
-    /* 0008 */ s32 mUnk_0008;
-    /* 000c */ void *mUnk_000c[3];
-    /* 0018 */ u8 mUnk_0018[3][0x20];
-    /* 0078 */ TextCanvas mUnk_0078[3];
-    /* 00a8 */ u16 mUnk_00a8[0x3000];
-    /* 60a8 */ u16 mUnk_60a8[0x300];
-} Unk021a99e4;
+    /* 0004 */ s32 mState;
+    /* 0008 */ s32 mStateChanged;
+    /* 000c */ void *mFonts[3];
+    /* 0018 */ u8 mCharCanvases[3][0x20];
+    /* 0078 */ TextCanvas mTextCanvases[3];
+    /* 00a8 */ u16 mChars[0x3000];
+    /* 60a8 */ u16 mScreenMap[0x300];
+} TestScene;
 
 // Objects whose layout isn't known yet.
 extern const char *gMissionRunMSselMNcgrName;
@@ -157,7 +157,7 @@ extern const char *gMissionRunBossIconSNcerName;
 extern const char *gMissionRunBossIconSNcgrName;
 extern const char *gMissionRunBossIconSBnclName;
 extern const char *gMissionRunBossIconSONclrName;
-extern Unk021a99e4 *data_ov001_021a99e4;
+extern TestScene *gTestScene;
 extern u16 data_ov001_021a9ba0;
 extern SelectBattleStage *gSelectBattleStage;
 // One pair of halfwords of the object behind gOptionEmbremSelect.
@@ -218,8 +218,8 @@ extern const char *gSelectEngineMBnclName;
 extern const char *gSelectEngineMBNclrName;
 extern const char *gSelectEngineMONclrName;
 extern const char *gSelectEngineBSBnblName;
-extern s32 data_ov001_021a99e8;
-extern u16 data_ov001_021a99ec[];
+extern s32 gTestSceneCharTableIndex;
+extern u16 gTestSceneCharText[];
 extern char data_ov001_021a94a4[];
 extern char data_ov001_021a94b0[];
 extern char data_ov001_021a94bc[];
