@@ -470,7 +470,7 @@ void AdvanceKartDriftCharge(Kart *kart) {
         return;
     }
     turnEffects = GetKartTurnEffects(kart->mIndex);
-    if ((kart->mUnk_4c & 0x8000) != 0) {
+    if ((kart->mUnk_4c & KART_4C_NEAR_PLAYER_RANK) != 0) {
         StopKartTurnStartEffects(turnEffects);
         RequestKartLevel4EffectsRestart(turnEffects);
         StartKartLevel3Effects(turnEffects, (kart->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0 ? 1 : 0);

@@ -5,7 +5,7 @@
 typedef struct TexPlttEntry TexPlttEntry;
 
 typedef struct TexPlttEntry TexPlttEntry;
-typedef struct Unk02086250 Unk02086250;
+typedef struct KartNameTag KartNameTag;
 
 #include "Main/Unknown/unk_0217a000.h"
 
@@ -20,6 +20,6 @@ void SetupKartEmblemTexture(TexPlttEntry *texPlttEntry, u16 kartIndex);
 void func_020872a4(void);
 u16 GetKartPaletteColor(int kartIndex);
 void SetTextureSizeFromBits(TexPlttEntry *texPlttEntry);
-void func_02087508(Unk02086250 *kartObject, u16 kartIndex, void *heap);
-void func_020875b4(void);
+void InitKartNameTag(KartNameTag *kartObject, u16 kartIndex, void *heap);
+void InitKartNameTagsAndDistanceOrder(void);
 void func_0208784c(s32 texWidthFixed, s32 texHeightFixed);

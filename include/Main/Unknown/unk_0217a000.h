@@ -1018,7 +1018,7 @@ typedef struct Race {
     // registers again.
     /* 24 */ s32 mDrawnFadeFog;
     // 1 when RaceSetup.mUnk_00c is 3, 4 or 5, else 0. While it is 1, InitRace creates the chain cameras, UpdateRace
-    // updates them and takes their view, and DrawRace skips the draw call of func_02086250. The other readers go
+    // updates them and takes their view, and DrawRace skips the draw call of DrawKartNameTags. The other readers go
     // through GetRaceUseChainCameras and use it to tell these kinds apart (map objects, balloons, effects, kart
     // set-up).
     /* 28 */ s32 mUseChainCameras;
@@ -1511,22 +1511,22 @@ extern u16 *gKartEmblemPlltBuffer;
 extern s32 data_0217aedc;
 extern Unk0214ad4c data_0217aee0;
 
-struct Unk02086250;
+struct KartNameTag;
 
 // Object behind data_0217aed0, 0x194 bytes: tables of eight entries.
 typedef struct Unk0217aed0 {
-    /* 000 */ struct Unk02086250 *mUnk_000[8];
-    /* 020 */ s32 mUnk_020;
+    /* 000 */ struct KartNameTag *mNameTagByKart[8];
+    /* 020 */ s32 mNameTagCount;
     /* 024 */ s16 mUnk_024[8];
-    /* 034 */ s16 mUnk_034[8];
+    /* 034 */ s16 mAlongViewOrderOffset[8];
     /* 044 */ u16 mKartIndicesByDistanceAlongView[8];
     /* 054 */ s32 mSortedDistanceAlongView[8];
-    /* 074 */ u16 mUnk_074[8];
-    /* 084 */ s16 mUnk_084[8];
+    /* 074 */ u16 mAlongViewOrderIndex[8];
+    /* 084 */ s16 mDistanceSquaredOrderOffset[8];
     /* 094 */ u16 mKartIndicesByDistance[8];
     /* 0a4 */ u32 mSortedDistanceSquared[8];
-    /* 0c4 */ struct Unk02086250 *mUnk_0c4[8];
-    /* 0e4 */ s32 mUnk_0e4[8];
+    /* 0c4 */ struct KartNameTag *mNameTags[8];
+    /* 0e4 */ s32 mNameTagBeyondTwoNearest[8];
     /* 104 */ s32 mDistanceAlongViewWithMargin[8];
     /* 124 */ u32 mDistanceSquared[8];
     /* 144 */ void *mEmblemTex[8];

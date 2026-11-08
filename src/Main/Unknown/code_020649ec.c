@@ -127,7 +127,7 @@ void func_02064f50(Kart *kart) {
     kart->mUnk_4d0 = kart->mUnk_4d0 + 1;
     func_01ffc920(kart);
     AdvanceKartCollisionTimer(kart);
-    if ((kart->mUnk_4c & 0x8000) != 0) {
+    if ((kart->mUnk_4c & KART_4C_NEAR_PLAYER_RANK) != 0) {
         ComputeKartSidePoints(kart);
     }
     if ((kart->mUnk_4c & 8) != 0) {

@@ -179,7 +179,7 @@ void UpdateKarts(void) {
         UpdateKartPrevValuesAndClearFlags(kart);
         kart++;
     }
-    func_0207a32c();
+    SetKartNearPlayerRankBits();
     kart = gKarts;
     for (i = 0; i < gKartCount; i++) {
         kart->mSlotFunctions[3](kart);
@@ -353,7 +353,7 @@ BOOL func_0207a4fc(void) {
     return (gKarts[gRaceSetup->mEntryIndex].mUnk_48 & 0x1000) != 0 ? 1 : 0;
 }
 
-void func_0207a32c(void) {
+void SetKartNearPlayerRankBits(void) {
     s32 kartIndices[3];
     u32 kartRank = GetKartRank((u16) gRaceSetup->mEntryIndex);
     u16 i;
@@ -362,7 +362,7 @@ void func_0207a32c(void) {
     Kart *kart;
     if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
         for (k = 0; k < 3; k++) {
-            gKarts[k].mUnk_4c |= 0x8000;
+            gKarts[k].mUnk_4c |= KART_4C_NEAR_PLAYER_RANK;
         }
         return;
     }
@@ -385,7 +385,7 @@ void func_0207a32c(void) {
             kartIndex = GetKartIndexAtRank((u16) (kartRank + 1));
             if (kartIndex >= 0) {
                 kart = &gKarts[kartIndex];
-                kart->mUnk_4c |= 0x40000;
+                kart->mUnk_4c |= KART_4C_ONE_RANK_BEHIND_PLAYER;
             }
         }
     }
@@ -394,7 +394,7 @@ void func_0207a32c(void) {
         if (kartIndex >= 0) {
             kart = &gKarts[kartIndex];
             if ((kart->mUnk_4c & 0x10000000) == 0) {
-                kart->mUnk_4c |= 0x8000;
+                kart->mUnk_4c |= KART_4C_NEAR_PLAYER_RANK;
             }
         }
     }

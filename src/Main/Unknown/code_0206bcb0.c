@@ -194,7 +194,7 @@ recheck:
                 kart->mAwayTurnCounter = &kart->mRightTurnCount;
                 kart->mTowardTurnCounter = &kart->mLeftTurnCount;
             }
-            if (kart->mUnk_4c & 0x8000) {
+            if (kart->mUnk_4c & KART_4C_NEAR_PLAYER_RANK) {
                 turnEffects = GetKartTurnEffects(kart->mIndex);
                 ResetKartLevel4Effects(turnEffects);
                 StartKartTurnStartEffects(turnEffects);
@@ -334,7 +334,8 @@ int TryTurnKartAtLowSpeed(Kart *kart) {
             delta = -500;
         }
         if (kart->mUnk_44 & KART_44_ON_GROUND) {
-            if (GetKartTurnEffects(kart->mIndex)->mTurnStartPresent == 0 && (kart->mUnk_4c & 0x8000)) {
+            if (GetKartTurnEffects(kart->mIndex)->mTurnStartPresent == 0 &&
+                (kart->mUnk_4c & KART_4C_NEAR_PLAYER_RANK)) {
                 turnEffects = GetKartTurnEffects(kart->mIndex);
                 ResetKartLevel4Effects(turnEffects);
                 StartKartTurnStartEffects(turnEffects);
@@ -455,7 +456,7 @@ int func_0206c0a8(Kart *kart) {
 }
 
 BOOL func_0206c094(Kart *kart) {
-    return (kart->mUnk_4c & 0x800000) != 0;
+    return (kart->mUnk_4c & KART_4C_OUT_OF_VIEW) != 0;
 }
 
 void StartKartState(Kart *kart, KartState mode) {

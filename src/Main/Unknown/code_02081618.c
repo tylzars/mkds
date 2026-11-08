@@ -207,7 +207,7 @@ void StartKartBoostCameraEffect(u32 effectIdIndex, Kart *kart) {
 void ApplyKartSurfaceEffect(s32 functionIndex, Kart *kart) {
     KartEffects *kartEffects;
 
-    if (kart->mUnk_4c & 0x8000) {
+    if (kart->mUnk_4c & KART_4C_NEAR_PLAYER_RANK) {
         gKartSurfaceEffectFunctions[functionIndex](kart);
         return;
     }
@@ -233,7 +233,7 @@ void ApplyKartSurfaceEffect(s32 functionIndex, Kart *kart) {
 void ApplyKartWaterEffects(Kart *kart) {
     KartEffects *kartEffects;
 
-    if (kart->mUnk_4c & 0x8000) {
+    if (kart->mUnk_4c & KART_4C_NEAR_PLAYER_RANK) {
         StartKartWaterEffects(&gKartSurfaceEffectRow3.mEffectIdSets[gKartEffectIdSetIndex[kart->mIndex]], 1, kart);
         return;
     }

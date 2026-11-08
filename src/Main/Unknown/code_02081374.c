@@ -25,7 +25,7 @@ void func_020813ec(s32 kartIndex, Vec3 *direction) {
     KartEffects *kartEffects = &gKartEffects[kartIndex];
     Unk0201ca6c *effect;
 
-    if ((kart->mUnk_4c & 0x8000) && kartEffects->mUnk_28 == NULL && kart->mVelocityLength > 0x1000) {
+    if ((kart->mUnk_4c & KART_4C_NEAR_PLAYER_RANK) && kartEffects->mUnk_28 == NULL && kart->mVelocityLength > 0x1000) {
         effect = StartEffect(0x53, kart->mPosSource);
         effect->mUnk_94 = kart;
         effect->mUnk_90 = func_02081374;

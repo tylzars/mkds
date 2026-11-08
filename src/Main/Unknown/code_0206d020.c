@@ -320,7 +320,7 @@ void func_0206d578(Kart *kart) {
         if (!(kart->mUnk_7c & 0x400)) {
             if (v1 != FALSE) {
                 kart->mUnk_4c |= 0x4000;
-                func_02081060(kart);
+                StartKartAheadEffectIfSelectedEntry(kart);
                 if (kart->mUnk_538.mUnk_08 > 0xf && distance < 0x3c000) {
                     func_02069068(kart);
                 }

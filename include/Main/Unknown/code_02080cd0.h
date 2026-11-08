@@ -21,4 +21,4 @@ void func_02080ee4(Kart *kart);
 void func_02080f44(Kart *kart);
 void func_02080fb8(Kart *kart);
 void func_02081000(Kart *kart);
-void func_02081060(Kart *kart);
+void StartKartAheadEffectIfSelectedEntry(Kart *kart);

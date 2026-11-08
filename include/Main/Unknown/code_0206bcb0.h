@@ -187,6 +187,54 @@ typedef struct Unk0206bcb0_A {
 // it).
 // Set while mHeadingAngleOffset swings (AdvanceKartRaceStartBoost sets it, AdvanceKartHeadingSwing clears it).
 #define KART_4C_HEADING_SWING 0x20000000
+// Set each frame on the kart one rank behind the player.
+#define KART_4C_ONE_RANK_BEHIND_PLAYER 0x40000
+// Set each frame on the player kart and the kart one rank ahead (karts 0 to 2 in an award race); effects and side
+// points run only while set.
+#define KART_4C_NEAR_PLAYER_RANK 0x8000
+// Set each frame on the player kart and the kart one rank ahead (karts 0 to 2 in an award race); effects and side
+// points run only while set.
+#define KART_4C_NEAR_PLAYER_RANK 0x8000
+// Set each frame on the player kart and the kart one rank ahead (karts 0 to 2 in an award race); effects and side
+// points run only while set.
+#define KART_4C_NEAR_PLAYER_RANK 0x8000
+// Set each frame on the player kart and the kart one rank ahead (karts 0 to 2 in an award race); effects and side
+// points run only while set.
+#define KART_4C_NEAR_PLAYER_RANK 0x8000
+// Set each frame on the player kart and the kart one rank ahead (karts 0 to 2 in an award race); effects and side
+// points run only while set.
+#define KART_4C_NEAR_PLAYER_RANK 0x8000
+// Set each frame on the player kart and the kart one rank ahead (karts 0 to 2 in an award race); effects and side
+// points run only while set.
+#define KART_4C_NEAR_PLAYER_RANK 0x8000
+// Set each frame on the player kart and the kart one rank ahead (karts 0 to 2 in an award race); effects and side
+// points run only while set.
+#define KART_4C_NEAR_PLAYER_RANK 0x8000
+// Set each frame on the player kart and the kart one rank ahead (karts 0 to 2 in an award race); effects and side
+// points run only while set.
+#define KART_4C_NEAR_PLAYER_RANK 0x8000
+// Set each frame on the player kart and the kart one rank ahead (karts 0 to 2 in an award race); effects and side
+// points run only while set.
+#define KART_4C_NEAR_PLAYER_RANK 0x8000
+// Set each frame on the player kart and the kart one rank ahead (karts 0 to 2 in an award race); effects and side
+// points run only while set.
+#define KART_4C_NEAR_PLAYER_RANK 0x8000
+// Set each frame on the player kart and the kart one rank ahead (karts 0 to 2 in an award race); effects and side
+// points run only while set.
+#define KART_4C_NEAR_PLAYER_RANK 0x8000
+// Set each frame on the player kart and the kart one rank ahead (karts 0 to 2 in an award race); effects and side
+// points run only while set.
+#define KART_4C_NEAR_PLAYER_RANK 0x8000
+// Set while the kart is behind the camera, outside the view planes or beyond the far distance.
+#define KART_4C_OUT_OF_VIEW 0x800000
+// Set while the kart is behind the camera, outside the view planes or beyond the far distance.
+#define KART_4C_OUT_OF_VIEW 0x800000
+// Set while the kart is behind the camera, outside the view planes or beyond the far distance.
+#define KART_4C_OUT_OF_VIEW 0x800000
+// Set while the kart is behind the camera, outside the view planes or beyond the far distance.
+#define KART_4C_OUT_OF_VIEW 0x800000
+// Set while the kart is behind the camera, outside the view planes or beyond the far distance.
+#define KART_4C_OUT_OF_VIEW 0x800000
 #define KART_4C_THUNDER_SHRINK 0x80
 // Bits of Kart.mUnk_48.
 // The Kart steers left in this step (from the input bits or the CPU); func_01ffca50 clears both turn bits.

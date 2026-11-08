@@ -12,7 +12,7 @@ void func_020812d0(s32 kartIndex) {
     Unk0201ca6c *effect;
     u16 effectIndex;
 
-    if (!(kart->mUnk_4c & 0x8000)) {
+    if (!(kart->mUnk_4c & KART_4C_NEAR_PLAYER_RANK)) {
         return;
     }
     effectIndex = 0;

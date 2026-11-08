@@ -172,7 +172,7 @@ void AdvanceKartCollision(Kart *p) {
     AdvanceKartOrientation(p, &v);
     p->mGroundNormal = v;
     p->mUnk_4d0 = p->mUnk_4d0 + 1;
-    if (p->mUnk_4c & 0x8000) {
+    if (p->mUnk_4c & KART_4C_NEAR_PLAYER_RANK) {
         ComputeKartSidePoints(p);
     }
     if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && IsRaceStarted() == 1) {

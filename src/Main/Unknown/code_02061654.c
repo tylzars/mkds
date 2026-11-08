@@ -126,7 +126,7 @@ void InitRace(void) {
     ResetResFileEntries();
     func_02077998();
     SetHeapGroupId(1);
-    func_020875b4();
+    InitKartNameTagsAndDistanceOrder();
     InitKartModels(heap, gRaceSetup->mKartCount);
     SetupHeyhoPalettes();
     func_020872a4();
@@ -403,7 +403,7 @@ void DrawRace(void) {
     DrawPosStrips(gCurrentViewMatrix);
     DrawStemSets();
     if (gRace->mUseChainCameras == 0) {
-        func_02086250(gCurrentViewMatrix);
+        DrawKartNameTags(gCurrentViewMatrix);
     }
     DrawOrthoQuads();
     gRace->mDrawFrames++;

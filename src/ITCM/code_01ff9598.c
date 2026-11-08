@@ -336,7 +336,7 @@ void AdvanceKartEffects(Kart *p) {
     KartEffects *b;
     u32 f;
 
-    if (p->mUnk_4c & 0x8000) {
+    if (p->mUnk_4c & KART_4C_NEAR_PLAYER_RANK) {
         a = GetKartTurnEffects(p->mIndex);
         b = GetKartEffects(p->mIndex);
         AdvanceKartLevel4Effects(a, p);

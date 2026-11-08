@@ -36,30 +36,30 @@
 void func_0208784c(s32 texWidthFixed, s32 texHeightFixed) {
     u16 heightTexCoord;
     u16 widthTexCoord;
-    u16 c;
+    u16 vertexZ;
     heightTexCoord = (texHeightFixed << 8) >> 16;
     widthTexCoord = (texWidthFixed << 8) >> 16;
     reg_G3_TEXCOORD = 0x60006;
-    c = data_021659d4[2];
+    vertexZ = data_021659d4[2];
     reg_G3_VTX_16 = data_021659d4[0] | data_021659d4[1] << 16;
-    reg_G3_VTX_16 = c;
+    reg_G3_VTX_16 = vertexZ;
     reg_G3_TEXCOORD = heightTexCoord << 16 | 6;
-    c = data_021659d4[5];
+    vertexZ = data_021659d4[5];
     reg_G3_VTX_16 = data_021659d4[3] | data_021659d4[4] << 16;
-    reg_G3_VTX_16 = c;
+    reg_G3_VTX_16 = vertexZ;
     reg_G3_TEXCOORD = widthTexCoord | heightTexCoord << 16;
-    c = data_021659d4[8];
+    vertexZ = data_021659d4[8];
     reg_G3_VTX_16 = data_021659d4[6] | data_021659d4[7] << 16;
-    reg_G3_VTX_16 = c;
+    reg_G3_VTX_16 = vertexZ;
     reg_G3_TEXCOORD = widthTexCoord | 0x60000;
-    c = data_021659d4[11];
+    vertexZ = data_021659d4[11];
     reg_G3_VTX_16 = data_021659d4[9] | data_021659d4[10] << 16;
-    reg_G3_VTX_16 = c;
+    reg_G3_VTX_16 = vertexZ;
 }
 
 #pragma thumb on
 
-void func_020875b4(void) {
+void InitKartNameTagsAndDistanceOrder(void) {
     void *heap;
     BOOL isGrandPrix;
     u16 i;
@@ -67,7 +67,7 @@ void func_020875b4(void) {
     BOOL createsObject;
     BOOL isEntryIndexHumanGhostOrPeer;
     u32 playerKind;
-    Unk02086250 *kartObject;
+    KartNameTag *kartObject;
     s32 entryIndex;
     BOOL isEntryHumanGhostOrPeer;
     heap = GetHeap(GetCurrentHeapCall());
@@ -80,17 +80,17 @@ void func_020875b4(void) {
     data_0217aed0->mUnk_184 = 0;
     data_0217aed0->mUnk_188 = NULL;
     if (IsRaceAwardOrStaffRoll() != 0) {
-        data_0217aed0->mUnk_020 = 0;
+        data_0217aed0->mNameTagCount = 0;
     } else if (isGrandPrix == FALSE) {
-        data_0217aed0->mUnk_020 = gRaceSetup->mKartCount - 1;
+        data_0217aed0->mNameTagCount = gRaceSetup->mKartCount - 1;
         for (i = 0; (u32) i < gRaceSetup->mKartCount; i++) {
             if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind == PLAYER_KIND_GHOST &&
                 gRaceSetup->mCurrentEntries[i].mPlayer.mGhostRecordIndex == 0) {
-                data_0217aed0->mUnk_020 = data_0217aed0->mUnk_020 - 1;
+                data_0217aed0->mNameTagCount = data_0217aed0->mNameTagCount - 1;
             }
         }
     } else {
-        data_0217aed0->mUnk_020 = gRaceSetup->mHumanAndPeerKartCount;
+        data_0217aed0->mNameTagCount = gRaceSetup->mHumanAndPeerKartCount;
         entryIndex = gRaceSetup->mEntryIndex;
         isEntryIndexHumanGhostOrPeer = FALSE;
         if (entryIndex != -1) {
@@ -99,7 +99,7 @@ void func_020875b4(void) {
                 isEntryIndexHumanGhostOrPeer = TRUE;
             }
             if (isEntryIndexHumanGhostOrPeer != FALSE) {
-                data_0217aed0->mUnk_020 = data_0217aed0->mUnk_020 - 1;
+                data_0217aed0->mNameTagCount = data_0217aed0->mNameTagCount - 1;
             }
         }
     }
@@ -109,17 +109,17 @@ void func_020875b4(void) {
         data_0217aed0->mUnk_024[i] = i;
         data_0217aed0->mKartIndicesByDistanceAlongView[i] = i;
         data_0217aed0->mKartIndicesByDistance[i] = i;
-        data_0217aed0->mUnk_034[i] = 0;
-        data_0217aed0->mUnk_084[i] = 0;
+        data_0217aed0->mAlongViewOrderOffset[i] = 0;
+        data_0217aed0->mDistanceSquaredOrderOffset[i] = 0;
         data_0217aed0->mSortedDistanceAlongView[i] = 0;
         data_0217aed0->mSortedDistanceSquared[i] = 0;
-        data_0217aed0->mUnk_074[i] = i;
+        data_0217aed0->mAlongViewOrderIndex[i] = i;
         data_0217aed0->mKartIndicesByDistance[i] = i;
         data_0217aed0->mDistanceAlongViewWithMargin[i] = 0;
-        data_0217aed0->mUnk_000[i] = NULL;
-        data_0217aed0->mUnk_0e4[i] = 0;
+        data_0217aed0->mNameTagByKart[i] = NULL;
+        data_0217aed0->mNameTagBeyondTwoNearest[i] = 0;
     }
-    if (data_0217aed0->mUnk_020 > 0) {
+    if (data_0217aed0->mNameTagCount > 0) {
         objectCount = 0;
         for (i = 0; (u32) i < gRaceSetup->mKartCount; i++) {
             createsObject = FALSE;
@@ -141,13 +141,13 @@ void func_020875b4(void) {
                 }
             }
             if (createsObject != FALSE) {
-                data_0217aed0->mUnk_000[i] = HeapAlloc(heap, 0x28);
-                kartObject = data_0217aed0->mUnk_000[i];
-                func_02087508(kartObject, i, heap);
-                data_0217aed0->mUnk_0c4[objectCount] = kartObject;
+                data_0217aed0->mNameTagByKart[i] = HeapAlloc(heap, 0x28);
+                kartObject = data_0217aed0->mNameTagByKart[i];
+                InitKartNameTag(kartObject, i, heap);
+                data_0217aed0->mNameTags[objectCount] = kartObject;
                 objectCount++;
             } else {
-                data_0217aed0->mUnk_000[i] = NULL;
+                data_0217aed0->mNameTagByKart[i] = NULL;
             }
         }
     }
@@ -155,17 +155,17 @@ void func_020875b4(void) {
     G3i_OrthoW_(0x60000, 0xfffa0000, 0xfff80000, 0x80000, 0, 0x1000, 0x200, 1, &data_0217aee0);
 }
 
-void func_02087508(Unk02086250 *kartObject, u16 kartIndex, void *heap) {
-    kartObject->mUnk_1c = HeapAlloc(heap, 0x90);
-    kartObject->mUnk_00 = data_02155ccc;
+void InitKartNameTag(KartNameTag *kartObject, u16 kartIndex, void *heap) {
+    kartObject->mTexPlttEntries = HeapAlloc(heap, 0x90);
+    kartObject->mPos = data_02155ccc;
     kartObject->mKartIndex = kartIndex;
-    kartObject->mUnk_1c->mUnk_00[0] = data_021659ec;
-    kartObject->mUnk_1c->mUnk_00[1] = data_02165a34;
-    kartObject->mUnk_1c->mUnk_00[2] = data_02165a10;
-    kartObject->mUnk_1c->mUnk_00[3] = data_02165a58;
+    kartObject->mTexPlttEntries->mEntries[0] = data_021659ec;
+    kartObject->mTexPlttEntries->mEntries[1] = data_02165a34;
+    kartObject->mTexPlttEntries->mEntries[2] = data_02165a10;
+    kartObject->mTexPlttEntries->mEntries[3] = data_02165a58;
     kartObject->mUnk_10 = TRUE;
     kartObject->mUnk_14 = 0;
-    kartObject->mUnk_18 = TRUE;
+    kartObject->mFadeStopped = TRUE;
     kartObject->mAlpha = 0;
     kartObject->mKartPaletteColor = 0x7fff;
     kartObject->mFadeLevel = 0;
@@ -251,8 +251,8 @@ u16 GetKartPaletteColor(int kartIndex) {
 void func_020872a4(void) {
     u16 i;
     void *heap;
-    Unk02086250 *kartObject;
-    Unk02086250_1c *texPlttEntries;
+    KartNameTag *kartObject;
+    KartNameTagTexPlttEntries *texPlttEntries;
     TexPlttEntry *entryNameTexPltt;
     TexPlttEntry *fourthTexPltt;
     heap = GetHeap(GetCurrentHeapCall());
@@ -262,22 +262,22 @@ void func_020872a4(void) {
     gKartEntryNameTexBuffer = HeapAllocAligned(heap, 0x100, -4);
     gKartEntryNamePlltBuffer = HeapAllocAligned(heap, 8, -4);
     data_0217aecc = HeapAllocAligned(heap, 0x200, -4);
-    for (i = 0; i < data_0217aed0->mUnk_020; i++) {
-        kartObject = data_0217aed0->mUnk_0c4[i];
-        texPlttEntries = kartObject->mUnk_1c;
-        entryNameTexPltt = &texPlttEntries->mUnk_00[1];
-        fourthTexPltt = &texPlttEntries->mUnk_00[3];
-        texPlttEntries->mUnk_00[0].mTexByteCount = 0x200;
-        texPlttEntries->mUnk_00[0].mPlttByteCount = 0x20;
-        texPlttEntries->mUnk_00[0].mPlttData = data_0217aed0->mUnk_188;
+    for (i = 0; i < data_0217aed0->mNameTagCount; i++) {
+        kartObject = data_0217aed0->mNameTags[i];
+        texPlttEntries = kartObject->mTexPlttEntries;
+        entryNameTexPltt = &texPlttEntries->mEntries[1];
+        fourthTexPltt = &texPlttEntries->mEntries[3];
+        texPlttEntries->mEntries[0].mTexByteCount = 0x200;
+        texPlttEntries->mEntries[0].mPlttByteCount = 0x20;
+        texPlttEntries->mEntries[0].mPlttData = data_0217aed0->mUnk_188;
         kartObject->mKartPaletteColor = GetKartPaletteColor(kartObject->mKartIndex);
-        SetupKartEmblemTexture(&texPlttEntries->mUnk_00[0], kartObject->mKartIndex);
+        SetupKartEmblemTexture(&texPlttEntries->mEntries[0], kartObject->mKartIndex);
         SetupKartEntryNameTexture(entryNameTexPltt, kartObject->mKartIndex);
-        SetPaletteKartColor(&texPlttEntries->mUnk_00[2], kartObject->mKartIndex);
+        SetPaletteKartColor(&texPlttEntries->mEntries[2], kartObject->mKartIndex);
         func_020870ec(fourthTexPltt, kartObject->mKartIndex);
-        UploadTextureAndPalette(&texPlttEntries->mUnk_00[0]);
+        UploadTextureAndPalette(&texPlttEntries->mEntries[0]);
         UploadTextureAndPalette(entryNameTexPltt);
-        UploadTextureAndPalette(&kartObject->mUnk_1c->mUnk_00[2]);
+        UploadTextureAndPalette(&kartObject->mTexPlttEntries->mEntries[2]);
         if (fourthTexPltt->mTexData != NULL) {
             UploadTextureAndPalette(fourthTexPltt);
         }
@@ -346,12 +346,12 @@ void func_020870ec(TexPlttEntry *texPlttEntry, u16 kartIndex) {
     u8 *pixels;
     s32 nibbleLimit;
     u32 i;
-    TexPlttEntry *q;
+    TexPlttEntry *texPlttEntryAlias;
     u8 pixelPair;
     u32 highNibbleBits;
     u8 highNibble;
     u8 lowNibble;
-    q = texPlttEntry;
+    texPlttEntryAlias = texPlttEntry;
     if (gRaceSetup->mCurrentEntries[kartIndex].mPlayer.mUnk_26 != 0) {
         pixels = data_0217aecc;
         nibbleLimit = 7;
@@ -363,9 +363,9 @@ void func_020870ec(TexPlttEntry *texPlttEntry, u16 kartIndex) {
                 nibbleLimit = -1;
                 break;
         }
-        MI_CpuCopy8(q->mTexData, pixels, q->mTexByteCount);
+        MI_CpuCopy8(texPlttEntryAlias->mTexData, pixels, texPlttEntryAlias->mTexByteCount);
         if (nibbleLimit > 0) {
-            for (i = 0; i < q->mTexByteCount; i++) {
+            for (i = 0; i < texPlttEntryAlias->mTexByteCount; i++) {
                 pixelPair = pixels[i];
                 highNibbleBits = pixelPair & 0xf0;
                 highNibble = highNibbleBits >> 4;
@@ -379,10 +379,10 @@ void func_020870ec(TexPlttEntry *texPlttEntry, u16 kartIndex) {
                 pixels[i] = pixelPair;
             }
         }
-        DC_FlushRange(pixels, q->mTexByteCount);
-        q->mTexData = pixels;
+        DC_FlushRange(pixels, texPlttEntryAlias->mTexByteCount);
+        texPlttEntryAlias->mTexData = pixels;
     } else {
-        q->mTexData = NULL;
+        texPlttEntryAlias->mTexData = NULL;
     }
 }
 
