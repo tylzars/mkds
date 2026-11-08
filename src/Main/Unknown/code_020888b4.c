@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020888b4.h"
+#include "Main/Unknown/code_020e6fd4.h"
 #include "Main/Unknown/code_020435c4.h"
 #include "Main/Unknown/code_0207d814.h"
 #include "Main/Unknown/code_0207e654.h"
@@ -547,7 +548,7 @@ void PickKartAiBalloonCountGoal(KartAi *p) {
 }
 
 void AdvanceBattleKartAiTargetShine(KartAi *p) {
-    Unk020888b4_d0 *r;
+    MapObject *r;
     Vec3 u;
     Vec3 v;
     Vec3 t;
@@ -625,8 +626,8 @@ BOOL FindKartAiTargetShine(KartAi *p, s32 a, s32 b) {
     s16 c;
     s16 k;
     s32 m;
-    Unk020888b4_d0 *r;
-    Unk020888b4_d0 *e;
+    MapObject *r;
+    MapObject *e;
     Vec3 *v1;
     Vec3 *v2;
     s32 d;

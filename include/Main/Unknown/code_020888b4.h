@@ -6,12 +6,7 @@
 #include "Main/Unknown/code_0208fd8c.h"
 #include "Main/Unknown/code_02080cd0.h"
 
-// Entry of the list FindKartAiTargetShine searches: a halfword at 0x02 (bit 0 tested) and a vector at 0x04.
-typedef struct Unk020888b4_d0 {
-    /* 00 */ u8 mUnk_00[2];
-    /* 02 */ u16 mFlags;
-    /* 04 */ Vec3 mPos;
-} Unk020888b4_d0;
+typedef struct MapObject MapObject;
 
 // Object of 0x34 bytes at 0xe8 of the object KartAi starts: func_02089a24 writes the words at 0x28 and 0x2c and
 // the halfword at 0x30.
@@ -88,7 +83,7 @@ typedef struct KartAi {
     /* c8 */ u16 mUnk_c8;
     /* ca */ u16 mUnk_ca;
     /* cc */ s32 mUnk_cc;
-    /* d0 */ Unk020888b4_d0 *mTargetShine;
+    /* d0 */ MapObject *mTargetShine;
     /* d4 */ s16 mEntrySearchStartIndex;
     /* d6 */ u8 mUnk_d6[2];
     /* d8 */ s32 mEntryForwardDot;

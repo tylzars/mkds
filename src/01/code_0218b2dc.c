@@ -2,6 +2,7 @@
 #include "01/code_021882b8.h"
 #include "01/code_02188cd8.h"
 #include "Main/Unknown/code_02042044.h"
+#include "Main/Unknown/code_0210b000.h"
 
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_0208b484.h"
@@ -49,22 +50,16 @@ Unk021a7b64 data_ov001_021a7b64 = {
     0, 0x30c, func_ov001_0218b72c, func_ov001_0218b310, func_ov001_0218b2f4, 0, 0, func_ov001_0218b2dc, {0, 0, 0, 0, 0},
 };
 
-typedef struct Unk0218b928_local {
-    s32 mUnk_00;
-    Vec3 *mUnk_04;
-    s32 mUnk_08;
-    u32 mUnk_0c;
-} Unk0218b928_local;
 void func_ov001_0218b928(Unk02188950 *mapObject) {
     func_ov001_02187218(mapObject, 8, (s32(*)(Unk02188950 *))(0));
     StartEffect(0x418, &mapObject->mUnk_000.mPos);
     StartEffect(0x417, &mapObject->mUnk_000.mPos);
     StartEffect(0x416, &mapObject->mUnk_000.mPos);
     {
-        Unk0218b928_local soundRequest = {0x225, 0, 0xf, 0};
+        Unk0210b7a8 soundRequest = {0x225, 0, 0xf, 0};
 
-        soundRequest.mUnk_04 = &mapObject->mUnk_000.mPos;
-        soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(soundRequest.mUnk_04);
+        soundRequest.mPositionSource = &mapObject->mUnk_000.mPos;
+        soundRequest.mDistanceSquared = GetHorizontalCameraDistanceSquared(soundRequest.mPositionSource);
         func_0210b734(&soundRequest, func_02108e7c());
     }
     mapObject->mUnk_000.mFlags |= data_ov001_021a659c;

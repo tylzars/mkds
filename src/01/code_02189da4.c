@@ -14,7 +14,7 @@
 #include "01/code_0218a568.h"
 #include "01/code_02188158.h"
 #include "01/code_02188484.h"
-#include "Main/Unknown/code_0206bcb0.h"
+#include "Main/Unknown/code_020f36d8.h"
 #include "code_0201c528.h"
 #include "Main/Unknown/code_02039860.h"
 #include "Main/Unknown/code_020a100c.h"
@@ -183,17 +183,17 @@ void func_ov001_0218a028(Unk0201ca6c *emitter) {
     emitter->mUnk_6c = 0x2000;
 }
 
-void func_ov001_02189fe0(Unk02188950 *mapObject, Kart *itemObject) {
-    if (itemObject->mUnk_44 == 9) {
+void func_ov001_02189fe0(Unk02188950 *mapObject, ItemObject *itemObject) {
+    if (itemObject->mKind == 9) {
         if (IsItemBombState2(itemObject) == FALSE) {
-            func_0208b748(0x3a, &itemObject->mTurnedForward, NULL, func_ov001_0218a028);
+            func_0208b748(0x3a, &itemObject->mPos, NULL, func_ov001_0218a028);
         }
     }
     mapObject->mUnk_2e0 = 1;
     SetItemCollisionCallback(mapObject, (UnkFunc *) func_ov001_02189fe0);
 }
 
-void func_ov001_02189ed8(Unk02188950 *mapObject, Kart *itemObject) {
+void func_ov001_02189ed8(Unk02188950 *mapObject, ItemObject *itemObject) {
     Vec3 velocity;
     s64 scale;
 
@@ -203,9 +203,9 @@ void func_ov001_02189ed8(Unk02188950 *mapObject, Kart *itemObject) {
     mapObject->mUnk_2e0 = 2;
     SetItemCollisionCallback(mapObject, (UnkFunc *) func_ov001_02189ed8);
     if (func_ov001_021871f8(mapObject, 7) != 0) {
-        velocity.x = mapObject->mUnk_000.mPos.x - itemObject->mTurnedForward.x;
+        velocity.x = mapObject->mUnk_000.mPos.x - itemObject->mPos.x;
         velocity.y = 0;
-        velocity.z = mapObject->mUnk_000.mPos.z - itemObject->mTurnedForward.z;
+        velocity.z = mapObject->mUnk_000.mPos.z - itemObject->mPos.z;
         if ((s64) velocity.x * velocity.x + (s64) velocity.y * velocity.y + (s64) velocity.z * velocity.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&velocity, &velocity);
         }

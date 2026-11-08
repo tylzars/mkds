@@ -559,7 +559,7 @@ void func_020fd540(void **bombSlot, Vec3 *v, s32 timerStart) {
     *bombSlot = NULL;
 }
 
-BOOL IsItemBombState2(Kart *object) {
+BOOL IsItemBombState2(ItemObject *object) {
     ItemBomb *bomb;
 
     bomb = (ItemBomb *) object;

@@ -55,7 +55,7 @@ void UpdateRaceHudSubScreenBombKouraWCells(void) {
     objects = pool->mObjects;
     for (i = 0; i < activeCount; i++) {
         bomb = objects[i];
-        if (IsItemBombState2((Kart *) bomb) != FALSE) {
+        if (IsItemBombState2(bomb) != FALSE) {
             bombPosition = func_020fd308((ItemBomb *) bomb, &bombStateFrames, &y);
             if (ComputeRaceHudSubScreenPosition(
                     bombPosition, &gRaceHudSubScreenBombKouraWCells->mCells[cellCount].mDrawPos, v, 1, 1) != FALSE) {

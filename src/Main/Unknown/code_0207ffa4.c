@@ -10,6 +10,7 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_020808d4.h"
 #include "Main/Unknown/code_020b1dbc.h"
+#include "Main/Unknown/code_020e6fd4.h"
 #include "Main/Unknown/code_0207b960.h"
 #include "Main/Unknown/code_020b4e5c.h"
 #include "Main/Unknown/code_02147000.h"
@@ -293,7 +294,7 @@ void ResetBattlePointLinkCursorTo(LinkCursor *linkCursor, PointLink *pointLink) 
 }
 
 void AdvanceBattlePointLinkCursor(LinkCursor *linkCursor, Vec3 *position, Vec3 *direction, u16 kartIndex,
-                                  Unk020888b4_d0 *targetShine, s32 targetKartIndex) {
+                                  MapObject *targetShine, s32 targetKartIndex) {
     s32 bestFallbackDot;
     PointLink *nextLink;
     s32 lowestTargetDot;
