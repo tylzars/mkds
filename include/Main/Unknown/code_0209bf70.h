@@ -5,21 +5,6 @@
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_020e005c.h" // GroupFollower
 
-// The 0x40-byte record CreateMapObjectKindData builds; its first five arguments go to 0x00, 0x04, 0x18, 0x20, 0x1c.
-typedef struct Unk0209bf70 {
-    /* 00 */ void *mUnk_00;
-    /* 04 */ void *mUnk_04;
-    /* 08 */ u8 mUnk_08[0x10];
-    /* 18 */ void *mUnk_18;
-    /* 1c */ u32 mUnk_1c;
-    /* 20 */ u32 mUnk_20;
-    /* 24 */ u32 mUnk_24;
-    /* 28 */ s32 mUnk_28;
-    /* 2c */ u8 mUnk_2c[0xc];
-    /* 38 */ s32 mUnk_38;
-    /* 3c */ s32 mUnk_3c;
-} Unk0209bf70;
-
 // Object of kinds 0x1a8, 0x1b4 and 0x1b5 (Bound, Cream, Berry); mWobbling is set while its scale wobbles.
 typedef struct Bound {
     /* 000 */ MapObject mUnk_000;
@@ -98,8 +83,8 @@ extern u32 data_usa_021565d0;
 extern u16 data_usa_021565d4;
 extern const char data_usa_02167328[];
 
-Unk0209bf70 *func_0209bf70(void *collideKartCallback, void *collideItemObjectCallback, void *sphereHitCallback, u32 d,
-                           u16 e, u16 f);
+MapObjectKindData *func_0209bf70(void *collideKartCallback, void *collideItemObjectCallback, void *sphereHitCallback,
+                                 u32 d, u16 e, u16 f);
 u32 CreateEmptyMapObjectKindData(void);
 void *CreateMapObjectKindData(void *collideKartCallback, void *collideItemObjectCallback, void *sphereHitCallback,
                               u32 param_4, u16 param_5);

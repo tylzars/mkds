@@ -6,22 +6,21 @@
 
 // Object of UpdatePicture: after the shared part, a halfword at 0xa0, the phase at 0xa4, a counter at 0xa8 and the
 // state at 0xac.
-typedef struct Unk0209ec80 {
+typedef struct Picture {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ u16 mNsbcaFrameIndex;
     /* a2 */ u8 mUnk_a2[2];
     /* a4 */ s32 mPictureIndex;
     /* a8 */ s32 mState1Timer;
     /* ac */ s32 mState;
-} Unk0209ec80;
+} Picture;
 
-/* kind 0xd objects are MapObject-sized (0xa0); the Unk0209ec80 parameter is the Picture type, only the MapObject
-   part is read */
-void DrawPuddle(void *a, Unk0209ec80 *b);
+/* kind 0xd objects are MapObject-sized (0xa0) */
+void DrawPuddle(void *a, MapObject *b);
 void SetupDrawPuddle(void *a);
 void CreatePuddle(void *a);
 void *CreatePictureUpdateList(void);
 void *CreatePictureDrawList(void);
-void UpdatePicture(void *a, Unk0209ec80 *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void DrawPicture(void *a, Unk0209ec80 *b);
+void UpdatePicture(void *a, Picture *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void DrawPicture(void *a, Picture *b);
 void CreatePicture1AndPicture2(void *a);

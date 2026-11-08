@@ -22,7 +22,7 @@ void CreatePicture1AndPicture2(void *a) {
     SetMapObjectModelPolygonId(gPicture2, 0x3f);
 }
 
-void DrawPicture(void *a, Unk0209ec80 *b) {
+void DrawPicture(void *a, Picture *b) {
     s32 s;
 
     s = 0x1e;
@@ -44,7 +44,7 @@ void DrawPicture(void *a, Unk0209ec80 *b) {
     }
 }
 
-void UpdatePicture(void *a, Unk0209ec80 *b) {
+void UpdatePicture(void *a, Picture *b) {
     Unk0210b7a8 s1;
     Unk0210b7a8 s2;
     Unk0210b7a8 s3;
@@ -164,7 +164,7 @@ void SetupDrawPuddle(void *a) {
     func_0209bbd0(a, gPuddle);
 }
 
-void DrawPuddle(void *a, Unk0209ec80 *b) {
+void DrawPuddle(void *a, MapObject *b) {
     s32 s;
     s32 x;
     s32 y;
@@ -173,14 +173,14 @@ void DrawPuddle(void *a, Unk0209ec80 *b) {
 
     s = 0x1e;
     func_01ff9048(0x14, &s, 1);
-    z = b->mUnk_00.mPos.z >> 4;
-    y = (b->mUnk_00.mPos.y + 0x1ccd) >> 4;
-    x = b->mUnk_00.mPos.x >> 4;
+    z = b->mPos.z >> 4;
+    y = (b->mPos.y + 0x1ccd) >> 4;
+    x = b->mPos.x >> 4;
     v.x = x;
     v.y = y;
     v.z = z;
     func_01ff9048(0x1c, &v, 3);
-    func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
-    func_01ff9048(0x1a, &b->mUnk_00.mMatrix, 9);
+    func_01ff9048(0x1b, &b->mScale, 3);
+    func_01ff9048(0x1a, &b->mMatrix, 9);
     DrawMapObjectModel(a, gPuddle, b);
 }

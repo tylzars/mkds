@@ -214,7 +214,7 @@ void UpdateNsKiller2(void *a, NsKiller2 *nsKiller2) {
 }
 
 void CreateNsKiller2KindData(void) {
-    Unk0209bf70 *o;
+    MapObjectKindData *o;
 
     o = func_0209bf70(CollideKartWithNsKiller2, NULL, NULL, 1, 1, 0x17b);
     o->mUnk_38 = 0x32000;

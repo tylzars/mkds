@@ -23,7 +23,7 @@
 #include "Main/Unknown/code_020ea514.h"
 
 void *func_ov001_0219b510(void *p0, void *p1, void *p2, u32 p3, u16 p4, u16 p5, u16 p6) {
-    Unk0209bf70 *r = CreateMapObjectKindData(p0, p1, p2, p3, p4);
+    MapObjectKindData *r = CreateMapObjectKindData(p0, p1, p2, p3, p4);
     r->mUnk_24 = p5;
     r->mUnk_28 = p6;
     r->mUnk_38 = 0x270f000;

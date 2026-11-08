@@ -1,22 +1,11 @@
 #pragma once
 
 #include "types.h"
+#include "Main/Unknown/code_02093ff0.h"
 #include "Main/Unknown/code_020e005c.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
-// Block of eight words at 0xb0 and 0xd0 of Crab: the u16 at 0x00 grows by 0x18 each step, 0x14 and 0x1c move
-// 0x10 and 0x18 towards zero.
-typedef struct Unk0209a7dc_b0 {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u8 mUnk_02[2];
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
-    /* 14 */ s32 mUnk_14;
-    /* 18 */ s32 mUnk_18;
-    /* 1c */ s32 mUnk_1c;
-} Unk0209a7dc_b0;
+typedef struct ItemObject ItemObject;
 
 // Object of kind 0x1ac (Crab), one state per value of mState; draws crab and crab_hand.
 typedef struct Crab {
@@ -26,8 +15,8 @@ typedef struct Crab {
     /* 0a4 */ s32 mTimer;
     /* 0a8 */ s32 mCrabNsbtpFrameIndexFixed12;
     /* 0ac */ s32 mHandNsbtpFrameIndexFixed12;
-    /* 0b0 */ Unk0209a7dc_b0 mCrabWobble;
-    /* 0d0 */ Unk0209a7dc_b0 mHandWobble;
+    /* 0b0 */ TeresaWobble mCrabWobble;
+    /* 0d0 */ TeresaWobble mHandWobble;
     /* 0f0 */ GroupFollower mFollower;
     /* State number of this kind's own per-frame switch in UpdateCrab; this object does not use MapObject.mUnk_80's
        state machine; also set by the group init and by the collision push (2) */
@@ -54,7 +43,7 @@ s16 func_0209af80(s32 a);
 void InitCrabObjects(Unk0209af98 *mapObjectList);
 void DrawCrab(void *a, Crab *crab);
 unsigned int func_0209b1f8(unsigned int p0);
-u8 CollideItemObjectWithCrab(Crab *crab, Kart *itemObject, u8 *c, u8 *d);
+u8 CollideItemObjectWithCrab(Crab *crab, ItemObject *itemObject, u8 *c, u8 *d);
 u8 CollideKartWithCrab(Crab *crab, Kart *kart, u8 *c, u8 *d);
 void StartCrabLaunch(Crab *crab, Vec3 *sourcePosition, Vec3 *sourceDirection, Vec3 *sourceVelocity);
 void InitCrab(u32 crab); /* starts the path follower (InitGroupFollower) */

@@ -210,7 +210,7 @@ void func_0209d84c(void *a, Unk0209d694 *p) {
 }
 
 void func_0209d800(void) {
-    Unk0209bf70 *o;
+    MapObjectKindData *o;
 
     o = func_0209bf70(&func_0209ddec, &func_0209dd44, NULL, 1, 0, 0x18d);
     o->mUnk_28 = 0x196;

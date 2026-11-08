@@ -185,7 +185,7 @@ u32 CollideKartWithCoverPooHole(CoverPooHole *coverPooHole, Kart *kart, u8 *b, u
     return 0;
 }
 
-u32 CollideItemObjectWithCoverPooHole(CoverPooHole *coverPooHole, Kart *a, u8 *b, u8 *c) {
+u32 CollideItemObjectWithCoverPooHole(CoverPooHole *coverPooHole, ItemObject *a, u8 *b, u8 *c) {
     u8 v1 = *b;
     u8 v2 = *c;
     if (coverPooHole->mState != 4) {
@@ -612,7 +612,7 @@ void UpdateCoverPooHole(void *a, CoverPooHole *coverPooHole) {
 }
 
 void CreateCoverPooHoleKindData(void) {
-    Unk0209bf70 *o;
+    MapObjectKindData *o;
     o = func_0209bf70(CollideKartWithCoverPooHole, CollideItemObjectWithCoverPooHole, TryGetCoverPooHolePushOut, 0, 1,
                       0x16d);
     o->mUnk_28 = 0x1b0;

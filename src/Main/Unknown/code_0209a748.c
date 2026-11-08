@@ -9,6 +9,7 @@
 #include "Main/Unknown/code_02042044.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/code_0209bf70.h"
+#include "Main/Unknown/code_020f36d8.h" // ItemObject
 #include "Main/Unknown/code_020d22c0.h"
 #include "Main/Unknown/code_020d8654.h"
 #include "Main/Unknown/code_020d88fc.h"
@@ -107,7 +108,7 @@ u8 CollideKartWithCrab(Crab *crab, Kart *kart, u8 *c, u8 *d) {
     return result;
 }
 
-u8 CollideItemObjectWithCrab(Crab *crab, Kart *itemObject, u8 *c, u8 *d) {
+u8 CollideItemObjectWithCrab(Crab *crab, ItemObject *itemObject, u8 *c, u8 *d) {
     Vec3 direction;
     Kart *entryKart;
     u32 result;
@@ -115,12 +116,12 @@ u8 CollideItemObjectWithCrab(Crab *crab, Kart *itemObject, u8 *c, u8 *d) {
     result = *d;
     if (*c == 1) {
         if (itemObject != NULL) {
-            if ((s64) itemObject->mSignedTurnedForward.x * itemObject->mSignedTurnedForward.x +
-                    (s64) itemObject->mSignedTurnedForward.y * itemObject->mSignedTurnedForward.y +
-                    (s64) itemObject->mSignedTurnedForward.z * itemObject->mSignedTurnedForward.z >=
+            if ((s64) itemObject->mVelocity.x * itemObject->mVelocity.x +
+                    (s64) itemObject->mVelocity.y * itemObject->mVelocity.y +
+                    (s64) itemObject->mVelocity.z * itemObject->mVelocity.z >=
                 0x10) {
-                Vec3NormalizeAndGetLengthUnchecked(&itemObject->mSignedTurnedForward, &direction);
-                StartCrabLaunch(crab, &itemObject->mTurnedForward, &direction, NULL);
+                Vec3NormalizeAndGetLengthUnchecked(&itemObject->mVelocity, &direction);
+                StartCrabLaunch(crab, &itemObject->mPos, &direction, NULL);
             } else {
                 StartCrabLaunch(crab, NULL, NULL, NULL);
             }
@@ -162,8 +163,8 @@ void DrawCrab(void *a, Crab *crab) {
     SetMapObjectModelNsbtpFrameIndex(gCrab, crab->mCrabNsbtpFrameIndexFixed12 >> 12);
     func_0209bbd0(a, gCrab);
     DrawMapObjectModel(a, gCrab, crab);
-    MTX_RotZ33_(handRotation, gPairsByAngle[((u16) crab->mHandWobble.mUnk_04 >> 4) * 2],
-                gPairsByAngle[((u16) crab->mHandWobble.mUnk_04 >> 4) * 2 + 1]);
+    MTX_RotZ33_(handRotation, gPairsByAngle[((u16) crab->mHandWobble.mValue >> 4) * 2],
+                gPairsByAngle[((u16) crab->mHandWobble.mValue >> 4) * 2 + 1]);
     func_01ff9048(0x1a, handRotation, 9);
     SetMapObjectModelNsbtpFrameIndex(gCrabHand, crab->mHandNsbtpFrameIndexFixed12 >> 12);
     func_0209bbd0(a, gCrabHand);
@@ -179,11 +180,11 @@ void InitCrabObjects(Unk0209af98 *mapObjectList) {
         return;
     }
     for (i = 0; i < mapObjectList->mMapObjectCount && (crab = mapObjectList->mMapObjects[i]) != NULL; i++) {
-        crab->mHandWobble.mUnk_00 = 0;
-        crab->mHandWobble.mUnk_0c = 0;
-        crab->mHandWobble.mUnk_10 = 0x1c7;
-        crab->mHandWobble.mUnk_14 = 0;
-        crab->mHandWobble.mUnk_18 = 0xe39;
+        crab->mHandWobble.mAngle = 0;
+        crab->mHandWobble.mMid = 0;
+        crab->mHandWobble.mAmplitude = 0x1c7;
+        crab->mHandWobble.mAmplitudePerFrame = 0;
+        crab->mHandWobble.mAnglePerFrame = 0xe39;
         crab->mHandWobble.mUnk_1c = 0;
         mapObjectRandom = GetMapObjectRandom();
         mapObjectRandom->mValue = mapObjectRandom->mMultiplier * mapObjectRandom->mValue + mapObjectRandom->mIncrement;
@@ -200,38 +201,37 @@ s32 func_0209af64(s32 a, s32 b) {
     return ((s64) a * b + 0x800) >> 12;
 }
 
-static inline void func_0209a7dc_inline(Unk0209a7dc_b0 *wobble) {
+static inline void func_0209a7dc_inline(TeresaWobble *wobble) {
     s32 t;
 
-    wobble->mUnk_00 += wobble->mUnk_18;
-    wobble->mUnk_08 =
-        wobble->mUnk_0c + func_0209af64(wobble->mUnk_10, func_0209af80(wobble->mUnk_00)) - wobble->mUnk_04;
-    wobble->mUnk_04 += wobble->mUnk_08;
-    if (wobble->mUnk_10 > 0) {
-        t = wobble->mUnk_10 + wobble->mUnk_14;
+    wobble->mAngle += wobble->mAnglePerFrame;
+    wobble->mUnk_08 = wobble->mMid + func_0209af64(wobble->mAmplitude, func_0209af80(wobble->mAngle)) - wobble->mValue;
+    wobble->mValue += wobble->mUnk_08;
+    if (wobble->mAmplitude > 0) {
+        t = wobble->mAmplitude + wobble->mAmplitudePerFrame;
         if (t <= 0) {
             t = 0;
         }
-        wobble->mUnk_10 = t;
-    } else if (wobble->mUnk_10 < 0) {
-        t = wobble->mUnk_10 + wobble->mUnk_14;
+        wobble->mAmplitude = t;
+    } else if (wobble->mAmplitude < 0) {
+        t = wobble->mAmplitude + wobble->mAmplitudePerFrame;
         if (t >= 0) {
             t = 0;
         }
-        wobble->mUnk_10 = t;
+        wobble->mAmplitude = t;
     }
-    if (wobble->mUnk_18 > 0) {
-        t = wobble->mUnk_18 + wobble->mUnk_1c;
+    if (wobble->mAnglePerFrame > 0) {
+        t = wobble->mAnglePerFrame + wobble->mUnk_1c;
         if (t <= 0) {
             t = 0;
         }
-        wobble->mUnk_18 = t;
-    } else if (wobble->mUnk_18 < 0) {
-        t = wobble->mUnk_18 + wobble->mUnk_1c;
+        wobble->mAnglePerFrame = t;
+    } else if (wobble->mAnglePerFrame < 0) {
+        t = wobble->mAnglePerFrame + wobble->mUnk_1c;
         if (t >= 0) {
             t = 0;
         }
-        wobble->mUnk_18 = t;
+        wobble->mAnglePerFrame = t;
     }
 }
 
@@ -262,11 +262,11 @@ void UpdateCrab(void *a, Crab *crab) {
                  0x800) >>
                 12;
             if (AdvanceGroupFollower(&crab->mFollower) != FALSE) {
-                crab->mHandWobble.mUnk_00 = 0;
-                crab->mHandWobble.mUnk_0c = 0;
-                crab->mHandWobble.mUnk_10 = 0x1c7;
-                crab->mHandWobble.mUnk_14 = 0;
-                crab->mHandWobble.mUnk_18 = 0xe39;
+                crab->mHandWobble.mAngle = 0;
+                crab->mHandWobble.mMid = 0;
+                crab->mHandWobble.mAmplitude = 0x1c7;
+                crab->mHandWobble.mAmplitudePerFrame = 0;
+                crab->mHandWobble.mAnglePerFrame = 0xe39;
                 crab->mHandWobble.mUnk_1c = 0;
                 mapObjectRandom = GetMapObjectRandom();
                 mapObjectRandom->mValue =
@@ -307,14 +307,14 @@ void UpdateCrab(void *a, Crab *crab) {
             SetupGroupFollowerAtEntry(&crab->mFollower, 0, 0);
             GetGroupFollowerLinearXz(&crab->mFollower, &crab->mUnk_000.mPos);
             crab->mUnk_000.mPos.y = crab->mUnk_000.mCourseMapRow->mUnk_00.y - 0x5000;
-            crab->mCrabWobble.mUnk_00 = 0;
-            crab->mCrabWobble.mUnk_0c = 0;
-            crab->mCrabWobble.mUnk_10 = 0x2aab;
-            crab->mCrabWobble.mUnk_14 = -0xb6;
-            crab->mCrabWobble.mUnk_18 = 0x71c;
+            crab->mCrabWobble.mAngle = 0;
+            crab->mCrabWobble.mMid = 0;
+            crab->mCrabWobble.mAmplitude = 0x2aab;
+            crab->mCrabWobble.mAmplitudePerFrame = -0xb6;
+            crab->mCrabWobble.mAnglePerFrame = 0x71c;
             crab->mCrabWobble.mUnk_1c = 0;
             func_0209a7dc_inline(&crab->mCrabWobble);
-            crab->mRotateZAngle = crab->mCrabWobble.mUnk_04;
+            crab->mRotateZAngle = crab->mCrabWobble.mValue;
             crab->mState = 3;
             break;
         case 3:
@@ -326,7 +326,7 @@ void UpdateCrab(void *a, Crab *crab) {
                 crab->mHandNsbtpFrameIndexFixed12 = 0;
             }
             func_0209a7dc_inline(&crab->mCrabWobble);
-            crab->mRotateZAngle = crab->mCrabWobble.mUnk_04;
+            crab->mRotateZAngle = crab->mCrabWobble.mValue;
             crab->mUnk_000.mPos.y += 0x200;
             if (crab->mUnk_000.mPos.y < crab->mUnk_000.mCourseMapRow->mUnk_00.y) {
                 return;
@@ -336,11 +336,11 @@ void UpdateCrab(void *a, Crab *crab) {
             crab->mUnk_000.mUnk_10.y = 0;
             crab->mUnk_000.mUnk_10.z = 0;
             crab->mRotateZAngle = 0;
-            crab->mHandWobble.mUnk_00 = 0;
-            crab->mHandWobble.mUnk_0c = 0;
-            crab->mHandWobble.mUnk_10 = 0x1c7;
-            crab->mHandWobble.mUnk_14 = 0;
-            crab->mHandWobble.mUnk_18 = 0xe39;
+            crab->mHandWobble.mAngle = 0;
+            crab->mHandWobble.mMid = 0;
+            crab->mHandWobble.mAmplitude = 0x1c7;
+            crab->mHandWobble.mAmplitudePerFrame = 0;
+            crab->mHandWobble.mAnglePerFrame = 0xe39;
             crab->mHandWobble.mUnk_1c = 0;
             mapObjectRandom = GetMapObjectRandom();
             mapObjectRandom->mValue =
@@ -353,7 +353,7 @@ void UpdateCrab(void *a, Crab *crab) {
 }
 
 void CreateCrabKindData(void) {
-    Unk0209bf70 *kindData;
+    MapObjectKindData *kindData;
 
     kindData = func_0209bf70(CollideKartWithCrab, CollideItemObjectWithCrab, NULL, 2, 1, 0x10e);
     kindData->mUnk_28 = 0x10f;

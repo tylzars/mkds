@@ -34,41 +34,42 @@ void *gBankEgg1;
 void *gKinoMount1;
 void *gOf6yoshi1;
 
-Unk02166a74 data_usa_02166b44 = {0, 0xa0, 0, func_0209a728, CreateOf6Tree1DrawList};
-Unk02166a74 gOlaTree1cKindDescriptor = {0, 0xa0, 0, func_0209a728, CreateOlaTree1cDrawList};
-Unk02166a74 data_usa_02166f88 = {0, 0xa0, 0, func_0209a728, CreateDeTree1DrawList};
-Unk02166a74 gOlgMush1KindDescriptor = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateOlgMush1DrawList};
-Unk02166a74 gOlgPipe1KindDescriptor = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateOlgPipe1DrawList};
-Unk02166a74 data_usa_02166eec = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateBeachTree1DrawList};
-Unk02166a74 gNsCannon1KindDescriptor = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateNsCannon1DrawList};
-Unk02166a74 gCrossTree1KindDescriptor = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateCrossTree1DrawList};
-Unk02166a74 gBankTree1KindDescriptor = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateBankTree1DrawList};
-Unk02166a74 gOf6yoshi1KindDescriptor = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateOf6yoshi1DrawList};
-Unk02166a74 data_usa_02166d4c = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateGardenTree1DrawList};
-Unk02166a74 data_usa_02166d80 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateGardenTree1DrawList};
-Unk02166a74 data_usa_02166db4 = {0, 0xa0, 0, func_0209a728, CreateTownTree1DrawList};
-Unk02166a74 data_usa_02166de8 = {0, 0xa0, 0, func_0209a728, CreateTownTree1DrawList};
-Unk02166a74 gMarioTree3KindDescriptor = {0, 0xa0, 0, func_0209a728, CreateMarioTree3DrawList};
-Unk02166a74 data_usa_02166e84 = {0, 0xa0, 0, func_0209a728, CreateSnowTree1DrawList};
-Unk02166a74 gOpaTree1KindDescriptor = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateOpaTree1DrawList};
-Unk02166a74 data_usa_02166f20 = {0, 0xa0, 0, func_0209a728, CreateSnowTree1DrawList};
-Unk02166a74 data_usa_02166f54 = {0, 0xa0, 0, func_0209a728, CreateDeTree1DrawList};
-Unk02166a74 gOsaTree1cKindDescriptor = {0, 0xa0, 0, func_0209a728, CreateOsaTree1cDrawList};
-Unk02166a74 gKinoHouse1KindDescriptor = {0, 0xa0, 0, func_0209a728, CreateKinoHouse1DrawList};
-Unk02166a74 data_usa_02166bac = {0, 0xa0, 0, func_0209a728, CreateOf6Tree1DrawList};
-Unk02166a74 gKinoHouse2KindDescriptor = {0, 0xa0, 0, func_0209a728, CreateKinoHouse2DrawList};
-Unk02166a74 gKinoMount1KindDescriptor = {0, 0xa0, 0, func_0209a728, CreateKinoMount1DrawList};
-Unk02166a74 gKinoMount2KindDescriptor = {0, 0xa0, 0, func_0209a728, CreateKinoMount2DrawList};
-Unk02166a74 gOm6Tree1KindDescriptor = {0, 0xa0, 0, func_0209a728, CreateOm6Tree1DrawList};
-Unk02166a74 data_usa_02166b78 = {0, 0xa0, 0, func_0209a728, (void (*)(void)) CreateBeachTree1DrawList};
-Unk02166a74 gBankEgg1KindDescriptor = {0, 0xa0, 0, func_0209a728, CreateBankEgg1DrawList};
-Unk02166a74 gMiniDokanKindDescriptor = {0, 0xa0, 0, func_0209a728, CreateMiniDokanDrawList};
+MapObjectKindDescriptor data_usa_02166b44 = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateOf6Tree1DrawList};
+MapObjectKindDescriptor gOlaTree1cKindDescriptor = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateOlaTree1cDrawList};
+MapObjectKindDescriptor data_usa_02166f88 = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateDeTree1DrawList};
+MapObjectKindDescriptor gOlgMush1KindDescriptor = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateOlgMush1DrawList};
+MapObjectKindDescriptor gOlgPipe1KindDescriptor = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateOlgPipe1DrawList};
+MapObjectKindDescriptor data_usa_02166eec = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateBeachTree1DrawList};
+MapObjectKindDescriptor gNsCannon1KindDescriptor = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateNsCannon1DrawList};
+MapObjectKindDescriptor gCrossTree1KindDescriptor = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateCrossTree1DrawList};
+MapObjectKindDescriptor gBankTree1KindDescriptor = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateBankTree1DrawList};
+MapObjectKindDescriptor gOf6yoshi1KindDescriptor = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateOf6yoshi1DrawList};
+MapObjectKindDescriptor data_usa_02166d4c = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateGardenTree1DrawList};
+MapObjectKindDescriptor data_usa_02166d80 = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateGardenTree1DrawList};
+MapObjectKindDescriptor data_usa_02166db4 = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateTownTree1DrawList};
+MapObjectKindDescriptor data_usa_02166de8 = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateTownTree1DrawList};
+MapObjectKindDescriptor gMarioTree3KindDescriptor = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateMarioTree3DrawList};
+MapObjectKindDescriptor data_usa_02166e84 = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateSnowTree1DrawList};
+MapObjectKindDescriptor gOpaTree1KindDescriptor = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateOpaTree1DrawList};
+MapObjectKindDescriptor data_usa_02166f20 = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateSnowTree1DrawList};
+MapObjectKindDescriptor data_usa_02166f54 = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateDeTree1DrawList};
+MapObjectKindDescriptor gOsaTree1cKindDescriptor = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateOsaTree1cDrawList};
+MapObjectKindDescriptor gKinoHouse1KindDescriptor = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateKinoHouse1DrawList};
+MapObjectKindDescriptor data_usa_02166bac = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateOf6Tree1DrawList};
+MapObjectKindDescriptor gKinoHouse2KindDescriptor = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateKinoHouse2DrawList};
+MapObjectKindDescriptor gKinoMount1KindDescriptor = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateKinoMount1DrawList};
+MapObjectKindDescriptor gKinoMount2KindDescriptor = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateKinoMount2DrawList};
+MapObjectKindDescriptor gOm6Tree1KindDescriptor = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateOm6Tree1DrawList};
+MapObjectKindDescriptor data_usa_02166b78 = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateBeachTree1DrawList};
+MapObjectKindDescriptor gBankEgg1KindDescriptor = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateBankEgg1DrawList};
+MapObjectKindDescriptor gMiniDokanKindDescriptor = {0, {0, 0}, 0xa0, 0, func_0209a728, CreateMiniDokanDrawList};
 
-void func_0209a728(void) {
-    Unk0209bf70 *kindData;
+MapObjectKindData *func_0209a728(void) {
+    MapObjectKindData *kindData;
 
-    kindData = (Unk0209bf70 *) CreateEmptyMapObjectKindData();
+    kindData = (MapObjectKindData *) CreateEmptyMapObjectKindData();
     kindData->mUnk_24 = 0x84;
+    return kindData;
 }
 
 void CreateBeachTree1(void *a) {
@@ -91,7 +92,7 @@ void DrawBeachTree1(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gBeachTree1, mapObject);
 }
 
-void *CreateBeachTree1DrawList(void) {
+MapObjectList *CreateBeachTree1DrawList(void) {
     return CreateMapObjectDrawList2(CreateBeachTree1, DrawBeachTree1, SetupDrawBeachTree1);
 }
 
@@ -115,7 +116,7 @@ void DrawOpaTree1(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gOpaTree1, mapObject);
 }
 
-void *CreateOpaTree1DrawList(void) {
+MapObjectList *CreateOpaTree1DrawList(void) {
     return CreateMapObjectDrawList2(CreateOpaTree1, DrawOpaTree1, SetupDrawOpaTree1);
 }
 
@@ -139,7 +140,7 @@ void DrawOlgMush1(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gOlgMush1, mapObject);
 }
 
-void *CreateOlgMush1DrawList(void) {
+MapObjectList *CreateOlgMush1DrawList(void) {
     return CreateMapObjectDrawList2(CreateOlgMush1, DrawOlgMush1, SetupDrawOlgMush1);
 }
 
@@ -163,7 +164,7 @@ void DrawOlgPipe1(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gOlgPipe1, mapObject);
 }
 
-void *CreateOlgPipe1DrawList(void) {
+MapObjectList *CreateOlgPipe1DrawList(void) {
     return CreateMapObjectDrawList2(CreateOlgPipe1, DrawOlgPipe1, SetupDrawOlgPipe1);
 }
 
@@ -187,7 +188,7 @@ void DrawOf6yoshi1(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gOf6yoshi1, mapObject);
 }
 
-void *CreateOf6yoshi1DrawList(void) {
+MapObjectList *CreateOf6yoshi1DrawList(void) {
     return CreateMapObjectDrawList2(CreateOf6yoshi1, DrawOf6yoshi1, SetupDrawOf6yoshi1);
 }
 
@@ -211,7 +212,7 @@ void DrawNsCannon1(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gNsCannon1, mapObject);
 }
 
-void *CreateNsCannon1DrawList(void) {
+MapObjectList *CreateNsCannon1DrawList(void) {
     return CreateMapObjectDrawList2(CreateNsCannon1, DrawNsCannon1, SetupDrawNsCannon1);
 }
 
@@ -235,7 +236,7 @@ void DrawCrossTree1(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gCrossTree1, mapObject);
 }
 
-void *CreateCrossTree1DrawList(void) {
+MapObjectList *CreateCrossTree1DrawList(void) {
     return CreateMapObjectDrawList2(CreateCrossTree1, DrawCrossTree1, SetupDrawCrossTree1);
 }
 
@@ -259,7 +260,7 @@ void DrawBankTree1(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gBankTree1, mapObject);
 }
 
-void *CreateBankTree1DrawList(void) {
+MapObjectList *CreateBankTree1DrawList(void) {
     return CreateMapObjectDrawList2(CreateBankTree1, DrawBankTree1, SetupDrawBankTree1);
 }
 
@@ -283,7 +284,7 @@ void DrawGardenTree1(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gGardenTree1, mapObject);
 }
 
-void *CreateGardenTree1DrawList(void) {
+MapObjectList *CreateGardenTree1DrawList(void) {
     return CreateMapObjectDrawList2(CreateGardenTree1, DrawGardenTree1, SetupDrawGardenTree1);
 }
 
@@ -307,8 +308,8 @@ void DrawTownTree1(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gTownTree1, mapObject);
 }
 
-void CreateTownTree1DrawList(void) {
-    CreateMapObjectDrawList2(CreateTownTree1, DrawTownTree1, SetupDrawTownTree1);
+MapObjectList *CreateTownTree1DrawList(void) {
+    return CreateMapObjectDrawList2(CreateTownTree1, DrawTownTree1, SetupDrawTownTree1);
 }
 
 void CreateMarioTree3(void *a) {
@@ -331,8 +332,8 @@ void DrawMarioTree3(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gMarioTree3, mapObject);
 }
 
-void CreateMarioTree3DrawList(void) {
-    CreateMapObjectDrawList2(CreateMarioTree3, DrawMarioTree3, SetupDrawMarioTree3);
+MapObjectList *CreateMarioTree3DrawList(void) {
+    return CreateMapObjectDrawList2(CreateMarioTree3, DrawMarioTree3, SetupDrawMarioTree3);
 }
 
 void CreateSnowTree1(void *a) {
@@ -355,8 +356,8 @@ void DrawSnowTree1(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gSnowTree1, mapObject);
 }
 
-void CreateSnowTree1DrawList(void) {
-    CreateMapObjectDrawList2(CreateSnowTree1, DrawSnowTree1, SetupDrawSnowTree1);
+MapObjectList *CreateSnowTree1DrawList(void) {
+    return CreateMapObjectDrawList2(CreateSnowTree1, DrawSnowTree1, SetupDrawSnowTree1);
 }
 
 void CreateDeTree1(void *a) {
@@ -379,8 +380,8 @@ void DrawDeTree1(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gDeTree1, mapObject);
 }
 
-void CreateDeTree1DrawList(void) {
-    CreateMapObjectDrawList2(CreateDeTree1, DrawDeTree1, SetupDrawDeTree1);
+MapObjectList *CreateDeTree1DrawList(void) {
+    return CreateMapObjectDrawList2(CreateDeTree1, DrawDeTree1, SetupDrawDeTree1);
 }
 
 void CreateOlaTree1c(void *a) {
@@ -403,8 +404,8 @@ void DrawOlaTree1c(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gOlaTree1c, mapObject);
 }
 
-void CreateOlaTree1cDrawList(void) {
-    CreateMapObjectDrawList2(CreateOlaTree1c, DrawOlaTree1c, SetupDrawOlaTree1c);
+MapObjectList *CreateOlaTree1cDrawList(void) {
+    return CreateMapObjectDrawList2(CreateOlaTree1c, DrawOlaTree1c, SetupDrawOlaTree1c);
 }
 
 void CreateOsaTree1c(void *a) {
@@ -427,8 +428,8 @@ void DrawOsaTree1c(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gOsaTree1c, mapObject);
 }
 
-void CreateOsaTree1cDrawList(void) {
-    CreateMapObjectDrawList2(CreateOsaTree1c, DrawOsaTree1c, SetupDrawOsaTree1c);
+MapObjectList *CreateOsaTree1cDrawList(void) {
+    return CreateMapObjectDrawList2(CreateOsaTree1c, DrawOsaTree1c, SetupDrawOsaTree1c);
 }
 
 void CreateKinoHouse1(void *a) {
@@ -451,8 +452,8 @@ void DrawKinoHouse1(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gKinoHouse1, mapObject);
 }
 
-void CreateKinoHouse1DrawList(void) {
-    CreateMapObjectDrawList2(CreateKinoHouse1, DrawKinoHouse1, SetupDrawKinoHouse1);
+MapObjectList *CreateKinoHouse1DrawList(void) {
+    return CreateMapObjectDrawList2(CreateKinoHouse1, DrawKinoHouse1, SetupDrawKinoHouse1);
 }
 
 void CreateKinoHouse2(void *a) {
@@ -475,8 +476,8 @@ void DrawKinoHouse2(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gKinoHouse2, mapObject);
 }
 
-void CreateKinoHouse2DrawList(void) {
-    CreateMapObjectDrawList2(CreateKinoHouse2, DrawKinoHouse2, SetupDrawKinoHouse2);
+MapObjectList *CreateKinoHouse2DrawList(void) {
+    return CreateMapObjectDrawList2(CreateKinoHouse2, DrawKinoHouse2, SetupDrawKinoHouse2);
 }
 
 void CreateKinoMount1(void *a) {
@@ -499,8 +500,8 @@ void DrawKinoMount1(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gKinoMount1, mapObject);
 }
 
-void CreateKinoMount1DrawList(void) {
-    CreateMapObjectDrawList2(CreateKinoMount1, DrawKinoMount1, SetupDrawKinoMount1);
+MapObjectList *CreateKinoMount1DrawList(void) {
+    return CreateMapObjectDrawList2(CreateKinoMount1, DrawKinoMount1, SetupDrawKinoMount1);
 }
 
 void CreateKinoMount2(void *a) {
@@ -523,8 +524,8 @@ void DrawKinoMount2(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gKinoMount2, mapObject);
 }
 
-void CreateKinoMount2DrawList(void) {
-    CreateMapObjectDrawList2(CreateKinoMount2, DrawKinoMount2, SetupDrawKinoMount2);
+MapObjectList *CreateKinoMount2DrawList(void) {
+    return CreateMapObjectDrawList2(CreateKinoMount2, DrawKinoMount2, SetupDrawKinoMount2);
 }
 
 void CreateOm6Tree1(void *a) {
@@ -547,8 +548,8 @@ void DrawOm6Tree1(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gOm6Tree1, mapObject);
 }
 
-void CreateOm6Tree1DrawList(void) {
-    CreateMapObjectDrawList2(CreateOm6Tree1, DrawOm6Tree1, SetupDrawOm6Tree1);
+MapObjectList *CreateOm6Tree1DrawList(void) {
+    return CreateMapObjectDrawList2(CreateOm6Tree1, DrawOm6Tree1, SetupDrawOm6Tree1);
 }
 
 void CreateOf6Tree1(void *a) {
@@ -571,8 +572,8 @@ void DrawOf6Tree1(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gOf6Tree1, mapObject);
 }
 
-void CreateOf6Tree1DrawList(void) {
-    CreateMapObjectDrawList2(CreateOf6Tree1, DrawOf6Tree1, SetupDrawOf6Tree1);
+MapObjectList *CreateOf6Tree1DrawList(void) {
+    return CreateMapObjectDrawList2(CreateOf6Tree1, DrawOf6Tree1, SetupDrawOf6Tree1);
 }
 
 void CreateBankEgg1(void *a) {
@@ -595,8 +596,8 @@ void DrawBankEgg1(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gBankEgg1, mapObject);
 }
 
-void CreateBankEgg1DrawList(void) {
-    CreateMapObjectDrawList2(CreateBankEgg1, DrawBankEgg1, SetupDrawBankEgg1);
+MapObjectList *CreateBankEgg1DrawList(void) {
+    return CreateMapObjectDrawList2(CreateBankEgg1, DrawBankEgg1, SetupDrawBankEgg1);
 }
 
 void CreateMiniDokan(void *a) {
@@ -619,6 +620,6 @@ void DrawMiniDokan(u32 a, MapObject *mapObject) {
     DrawMapObjectModelWithPos(a, gMiniDokan, mapObject);
 }
 
-void CreateMiniDokanDrawList(void) {
-    CreateMapObjectDrawList2(CreateMiniDokan, DrawMiniDokan, SetupDrawMiniDokan);
+MapObjectList *CreateMiniDokanDrawList(void) {
+    return CreateMapObjectDrawList2(CreateMiniDokan, DrawMiniDokan, SetupDrawMiniDokan);
 }

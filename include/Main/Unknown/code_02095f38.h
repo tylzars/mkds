@@ -4,6 +4,8 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject, MapObjectList
 
+typedef struct ItemObject ItemObject;
+
 // Object up to 0x109 bytes.
 typedef struct CoverPooHole {
     /* 00 */ MapObject mUnk_00;
@@ -53,7 +55,7 @@ void InitCoverPooHoleObjects(MapObjectList *mapObjectList);
 void DrawCoverPooHole(void *a, CoverPooHole *coverPooHole);
 void CreateCoverPooHole(void *a);
 BOOL TryGetCoverPooHolePushOut(CoverPooHole *coverPooHole, const Vec3 *position, s32 radius, Vec3 *pushOut);
-u32 CollideItemObjectWithCoverPooHole(CoverPooHole *coverPooHole, Kart *a, u8 *b, u8 *c);
+u32 CollideItemObjectWithCoverPooHole(CoverPooHole *coverPooHole, ItemObject *a, u8 *b, u8 *c);
 u32 CollideKartWithCoverPooHole(CoverPooHole *coverPooHole, Kart *kart, u8 *b, u8 *c);
 void InitCoverPooHole(MapObject *mapObject);
 u32 func_0209753c(u32 a);

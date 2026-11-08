@@ -637,21 +637,21 @@ void UpdateBoundAndCreamAndBerry(MapObjectList *mapObjectList, Bound *bound) {
 }
 
 void CreateBoundKindData(void) {
-    Unk0209bf70 *kindData;
+    MapObjectKindData *kindData;
 
     kindData = CreateMapObjectKindData(CollideKartWithBound, CollideItemObjectWithBound, ComputeSphereHitOnBound, 1, 1);
     kindData->mUnk_28 = 0x1cf;
 }
 
 void CreateCreamKindData(void) {
-    Unk0209bf70 *kindData;
+    MapObjectKindData *kindData;
 
     kindData = CreateMapObjectKindData(CollideKartWithBound, CollideItemObjectWithBound, ComputeSphereHitOnBound, 1, 1);
     kindData->mUnk_28 = 0x156;
 }
 
 void CreateBerryKindData(void) {
-    Unk0209bf70 *kindData;
+    MapObjectKindData *kindData;
 
     kindData = CreateMapObjectKindData(CollideKartWithBound, CollideItemObjectWithBound, ComputeSphereHitOnBound, 1, 1);
     kindData->mUnk_28 = 0x155;
@@ -717,7 +717,7 @@ BOOL StartBoundWobble(s32 a) {
 
 void *CreateMapObjectKindData(void *collideKartCallback, void *collideItemObjectCallback, void *sphereHitCallback,
                               u32 param_4, u16 param_5) {
-    Unk0209bf70 *kindData;
+    MapObjectKindData *kindData;
 
     GetHeap(GetCurrentHeapCall());
     kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
@@ -725,7 +725,7 @@ void *CreateMapObjectKindData(void *collideKartCallback, void *collideItemObject
     kindData->mUnk_04 = collideItemObjectCallback;
     kindData->mUnk_20 = param_4;
     kindData->mUnk_1c = param_5;
-    kindData->mUnk_18 = sphereHitCallback;
+    kindData->mSphereHitTest = sphereHitCallback;
     return kindData;
 }
 
@@ -733,9 +733,9 @@ u32 CreateEmptyMapObjectKindData(void) {
     return (u32) CreateMapObjectKindData(NULL, NULL, NULL, 0, 1);
 }
 
-Unk0209bf70 *func_0209bf70(void *collideKartCallback, void *collideItemObjectCallback, void *sphereHitCallback, u32 d,
-                           u16 e, u16 f) {
-    Unk0209bf70 *kindData;
+MapObjectKindData *func_0209bf70(void *collideKartCallback, void *collideItemObjectCallback, void *sphereHitCallback,
+                                 u32 d, u16 e, u16 f) {
+    MapObjectKindData *kindData;
 
     kindData = CreateMapObjectKindData(collideKartCallback, collideItemObjectCallback, sphereHitCallback, d, e);
     kindData->mUnk_24 = f;
