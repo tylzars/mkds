@@ -10,11 +10,11 @@ Nclr *GetChoisesSBNclr(void) {
 
 Ncgr *func_020b3374(void) {
     int v1;
-    v1 = func_020b2d04();
+    v1 = GetChoisesSListIndex();
     if (v1 == 1) {
         gChoisesS->mChoisesSBNcgr->mData = gChoisesS->mList1Chars;
     } else {
-        v1 = func_020b2d04();
+        v1 = GetChoisesSListIndex();
         if (v1 == 2) {
             gChoisesS->mChoisesSBNcgr->mData = gChoisesS->mList2Chars;
         }
@@ -26,7 +26,7 @@ void *func_020b32f8(void) {
     int v1;
     u16 *v2;
     v2 = 0;
-    v1 = func_020b2d04();
+    v1 = GetChoisesSListIndex();
     if (v1 == 0) {
         if (gChoisesS->mList0Nscr != NULL) {
             v2 = gChoisesS->mList0Nscr->mData;

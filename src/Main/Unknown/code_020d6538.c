@@ -573,7 +573,7 @@ void func_020d655c(void *a, RockObject *rock, void *c, s32 alpha) {
     Vec3 yAxis;
     RockShadowMatrix *shadowMatrix;
     s32 dot;
-    if (func_020b2ec0() == 0) {
+    if (GetChoisesSOpenDuringRace() == 0) {
         xAxis = rock->mMapObject.mMatrix.mUnk_00[0];
         yAxis = rock->mMapObject.mMatrix.mUnk_00[1];
         tiltAxis.x = ((s64) rock->mMapObject.mUnk_10.z * (s64) rock->mBottomOffsetReciprocal) >> 12;

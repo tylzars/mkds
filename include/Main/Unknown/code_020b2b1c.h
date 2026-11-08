@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-unsigned int func_020b2b1c(const void *p0);
+unsigned int func_020b2b1c(const void *inputSlotPair);

@@ -79,7 +79,7 @@ void func_020dd6c8(void *unused0, Wanwan *wanwan, void *unused1, u32 maxAlpha) {
     MtxFx43 shadowMatrix;
 
     if (wanwan->mUnk_00.mStateMachine.mState == 4) {
-        if (func_020b2ec0() == 0) {
+        if (GetChoisesSOpenDuringRace() == 0) {
             wanwan->mUnk_00.mPos.x += wanwan->mUnk_00.mUnk_10.x;
             wanwan->mUnk_00.mPos.z += wanwan->mUnk_00.mUnk_10.z;
         }

@@ -3,7 +3,7 @@
 
 #pragma thumb on
 
-u32 func_020b2ec0(void) {
+u32 GetChoisesSOpenDuringRace(void) {
     return (gChoisesS->mOpenDuringRace);
 }
 

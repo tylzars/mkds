@@ -10,9 +10,9 @@
 #pragma thumb on
 
 void func_020b255c(void) {
-    int v1;
-    v1 = func_020b2e98();
-    if (v1 != 0) {
+    int isOpen;
+    isOpen = func_020b2e98();
+    if (isOpen != 0) {
         func_020b2c68();
     }
 }

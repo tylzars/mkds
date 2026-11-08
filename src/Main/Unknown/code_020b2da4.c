@@ -17,7 +17,7 @@ void func_020b2da4(void) {
     s32 firstRow;
     u16 *screenMap;
 
-    valueCount = gChoisesS->mLists[func_020b2d04()].mValueCount;
+    valueCount = gChoisesS->mLists[GetChoisesSListIndex()].mValueCount;
     screenMap = func_020b32f8();
     if (screenMap != NULL) {
         for (valueIndex = 0, firstRow = 0xd - valueCount * 2; valueIndex < valueCount; valueIndex++) {

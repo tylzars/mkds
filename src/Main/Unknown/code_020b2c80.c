@@ -12,7 +12,7 @@
 #include "Main/Unknown/code_020b1de4.h"
 #include "Main/Unknown/code_0203c5f8.h"
 
-s32 func_020b2d54(void) {
+s32 GetEntryEndKind(void) {
     if (IsKartEnded((u16) GetEntryIndex()) != 0) {
         return gRaceProgress->mEntryEndKind;
     }
@@ -21,13 +21,13 @@ s32 func_020b2d54(void) {
 
 #pragma thumb on
 #pragma optimize_for_size on
-u32 func_020b2d04(void) {
+u32 GetChoisesSListIndex(void) {
     if (func_020b24e4() == 2 && GetRaceDone() == 0) {
         return 3;
     }
     if (GetRaceDone() != 0) {
         if (func_020b252c() == MODE_MISSION_RUN) {
-            if (func_020b2d54() == 0) {
+            if (GetEntryEndKind() == 0) {
                 return 2;
             }
             return 1;
@@ -40,21 +40,21 @@ u32 func_020b2d04(void) {
     return 0;
 }
 
-void func_020b2c80(s32 a) {
-    s32 n;
-    s32 b;
-    u16 *p;
+void func_020b2c80(s32 selectedIndex) {
+    s32 valueCount;
+    s32 row;
+    u16 *screenMap;
 
-    n = gChoisesS->mLists[func_020b2d04()].mValueCount;
-    p = func_020b32f8();
-    if (p != NULL) {
+    valueCount = gChoisesS->mLists[GetChoisesSListIndex()].mValueCount;
+    screenMap = func_020b32f8();
+    if (screenMap != NULL) {
         if (gChoisesS->mUnk_010 == FALSE || gChoisesS->mPickFrames >= 5) {
-            b = 0xd - n * 2 + a * 4;
+            row = 0xd - valueCount * 2 + selectedIndex * 4;
             if (gChoisesS->mCycleFrames < 0x1e) {
-                func_020b4428(p, 2, b, 1, 1, 0x21);
-                func_020b4428(p, 2, b + 1, 1, 1, 0x41);
+                func_020b4428(screenMap, 2, row, 1, 1, 0x21);
+                func_020b4428(screenMap, 2, row + 1, 1, 1, 0x41);
             }
-            func_020b44a4(p, 0, b - 1, 0x20, 4, 0xe);
+            func_020b44a4(screenMap, 0, row - 1, 0x20, 4, 0xe);
         }
     }
 }

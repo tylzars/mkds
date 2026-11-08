@@ -111,7 +111,7 @@ void func_020ff6d8(ItemFBox *fbox, MtxFx43 *out) {
     s32 scaledX, scaledZ;
     Vec3 *position;
 
-    if ((fbox->mUnk_000.mItemObject.mFlags & 0x80000) && func_020b2ec0() == 0) {
+    if ((fbox->mUnk_000.mItemObject.mFlags & 0x80000) && GetChoisesSOpenDuringRace() == 0) {
         s32 row0Dot, row2Dot;
 
         row0Dot = ((s64) fbox->mUnk_000.mItemObject.mUnk_94.mUnk_00[0].x * fbox->mUnk_130.x +

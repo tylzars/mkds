@@ -22,7 +22,7 @@
 
 #pragma thumb on
 #pragma optimize_for_size on
-void func_020b2574(void) {
+void UpdateChoisesS(void) {
     s32 a;
 
     gChoisesS->mPrevOpenDuringRace = gChoisesS->mOpenDuringRace;
@@ -170,7 +170,7 @@ void func_020b2574(void) {
             gChoisesS->mPickedValue = GetCourseNumber() != 4 ? 2 : 7;
         }
     }
-    if (func_020b2ec0() != 0) {
+    if (GetChoisesSOpenDuringRace() != 0) {
         a = gChoisesS->mUnk_030;
         gChoisesS->mUnk_030 = a + 1;
         if (a >= 1) {

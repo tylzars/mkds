@@ -211,7 +211,7 @@ void func_020dee8c(void) {
     s32 angleIndex;
 
     func_020e55b4();
-    if (func_020b2ec0() != 0) {
+    if (GetChoisesSOpenDuringRace() != 0) {
         return;
     }
     data_0217b6fc += 0xca;

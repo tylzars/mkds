@@ -131,10 +131,10 @@ void UpdateRaceScene(Unk0203a0dc *sceneNumbers, u32 sceneFrames) {
             case 2:
             case RACE_KIND_START_GP:
             case 4:
-                func_020b2574();
+                UpdateChoisesS();
                 break;
         }
-        if (func_020b2ec0() != 0) {
+        if (GetChoisesSOpenDuringRace() != 0) {
             SetInputOpenDuringRace(1);
         } else {
             SetInputOpenDuringRace(0);
@@ -167,7 +167,7 @@ void PreSleepRaceScene(void) {
     func_02046e84();
     while ((u32) data_0217c7ac != 0) {
         PrepareDisplayFrame();
-        func_020b2574();
+        UpdateChoisesS();
         UpdateSounds();
         FinishDisplayFrame();
         func_020b255c();

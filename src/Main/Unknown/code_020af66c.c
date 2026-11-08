@@ -162,7 +162,7 @@ void func_020b0b8c(void) {
         gRaceHud->mUnk_844 = 1;
         reg_GX_DISPCNT &= ~0xe000;
     } else if (gRaceHud->mUnk_844 != 0) {
-        if (func_020b2ec0() == 0) {
+        if (GetChoisesSOpenDuringRace() == 0) {
             if (gRaceHud->mUnk_844++ >= gRaceHud->mUnk_850) {
                 if (gRaceSetup->mMode == MODE_GRAND_PRIX && gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
                     w = (reg_GX_DISPCNT & 0x1f00) >> 8;

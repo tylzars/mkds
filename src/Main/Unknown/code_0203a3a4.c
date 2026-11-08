@@ -240,7 +240,7 @@ void func_0203aacc(void) {
 }
 
 void func_0203aaa8(void) {
-    AdvanceDispCap(func_020b2e58());
+    AdvanceDispCap(GetChoisesSPrevOpenDuringRace());
     func_02062000();
     func_020b0b8c();
 }

@@ -198,21 +198,21 @@ void InitChoisesS(void) {
         if (func_020b24e4() != 2) {
             for (i = 0; i < gChoisesS->mLists[0].mValueCount; i++) {
                 func_020b24a4(&gChoisesS->mTextCanvases[0], 0x90, i * 16 + 9, 0xc, 0x412,
-                              func_020b320c(0, gChoisesS->mLists[0].mValues[i]));
+                              GetChoisesSValueMessage(0, gChoisesS->mLists[0].mValues[i]));
             }
         } else {
             for (i = 0; i < gChoisesS->mLists[3].mValueCount; i++) {
                 func_020b24a4(&gChoisesS->mTextCanvases[3], 0x90, i * 16 + 9, 0xc, 0x412,
-                              func_020b320c(3, gChoisesS->mLists[3].mValues[i]));
+                              GetChoisesSValueMessage(3, gChoisesS->mLists[3].mValues[i]));
             }
         }
         for (i = 0; i < gChoisesS->mLists[1].mValueCount; i++) {
             func_020b24a4(&gChoisesS->mTextCanvases[1], 0x90, i * 16 + 9, 0xc, 0x412,
-                          func_020b320c(1, gChoisesS->mLists[1].mValues[i]));
+                          GetChoisesSValueMessage(1, gChoisesS->mLists[1].mValues[i]));
         }
         for (i = 0; i < gChoisesS->mLists[2].mValueCount; i++) {
             func_020b24a4(&gChoisesS->mTextCanvases[2], 0x90, i * 16 + 9, 0xc, 0x412,
-                          func_020b320c(2, gChoisesS->mLists[2].mValues[i]));
+                          GetChoisesSValueMessage(2, gChoisesS->mLists[2].mValues[i]));
         }
     } else {
         gChoisesS->mChoisesSBNclr = NULL;

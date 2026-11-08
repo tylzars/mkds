@@ -18,17 +18,17 @@
 
 #pragma thumb on
 #pragma optimize_for_size on
-void *func_020b320c(s32 a, s32 b) {
-    s32 c[11] = {0x5d, 0x67, 0x62, 0x64, 0x65, 0x66, 0x69, 0x62, 0x61, 0x5f, 0x75};
+void *GetChoisesSValueMessage(s32 listIndex, s32 value) {
+    s32 entryNumbers[11] = {0x5d, 0x67, 0x62, 0x64, 0x65, 0x66, 0x69, 0x62, 0x61, 0x5f, 0x75};
 
     if (func_020b24e4() == 2) {
-        c[0] = 0x6a;
-        c[8] = 0x63;
+        entryNumbers[0] = 0x6a;
+        entryNumbers[8] = 0x63;
     }
-    if (a != 0) {
-        c[2] = 0x60;
+    if (listIndex != 0) {
+        entryNumbers[2] = 0x60;
     }
-    return GetBmgEntry(func_020b47cc("common.bmg"), c[b]);
+    return GetBmgEntry(func_020b47cc("common.bmg"), entryNumbers[value]);
 }
 
 void ClearChoisesSListValueCounts(void) {
@@ -39,45 +39,46 @@ void ClearChoisesSListValueCounts(void) {
     }
 }
 
-void AppendChoisesSListValue(s32 a, s32 b) {
-    s32 n;
+void AppendChoisesSListValue(s32 listIndex, s32 value) {
+    s32 valueCount;
 
-    n = gChoisesS->mLists[a].mValueCount;
-    gChoisesS->mLists[a].mValueCount = n + 1;
-    gChoisesS->mLists[a].mValues[n] = b;
+    valueCount = gChoisesS->mLists[listIndex].mValueCount;
+    gChoisesS->mLists[listIndex].mValueCount = valueCount + 1;
+    gChoisesS->mLists[listIndex].mValues[valueCount] = value;
 }
 
-s32 MoveChoisesSSelectedValue(s32 a) {
-    s32 i = 0;
-    s32 n;
-    s32 k;
-    ChoisesS *d;
+s32 MoveChoisesSSelectedValue(s32 step) {
+    s32 selectedIndex = 0;
+    s32 valueCount;
+    s32 listIndex;
+    ChoisesS *choisesS;
 
     if (func_020b2e98() != 0) {
-        k = func_020b2d04();
-        n = gChoisesS->mLists[k].mValueCount;
-        for (; i < n; i++) {
-            if (gChoisesS->mSelectedValue == gChoisesS->mLists[k].mValues[i]) {
+        listIndex = GetChoisesSListIndex();
+        valueCount = gChoisesS->mLists[listIndex].mValueCount;
+        for (; selectedIndex < valueCount; selectedIndex++) {
+            if (gChoisesS->mSelectedValue == gChoisesS->mLists[listIndex].mValues[selectedIndex]) {
                 break;
             }
         }
-        if (n == 1) {
-            a = 0;
-        } else if (n == 2) {
-            if (a != 0 && i + a >= 0 && i + a < n) {
+        if (valueCount == 1) {
+            step = 0;
+        } else if (valueCount == 2) {
+            if (step != 0 && selectedIndex + step >= 0 && selectedIndex + step < valueCount) {
                 gChoisesS->mCycleFrames = 0;
                 StartSoundOncePerFrame(0);
             } else {
-                a = 0;
+                step = 0;
             }
-        } else if (a != 0) {
+        } else if (step != 0) {
             gChoisesS->mCycleFrames = 0;
             StartSoundOncePerFrame(0);
         }
-        d = gChoisesS;
-        d->mSelectedValue = d->mLists[k].mValues[(n + (i + a)) % n];
+        choisesS = gChoisesS;
+        choisesS->mSelectedValue =
+            choisesS->mLists[listIndex].mValues[(valueCount + (selectedIndex + step)) % valueCount];
     }
-    return i;
+    return selectedIndex;
 }
 
 static inline ChoisesS *func_020b302c_inline(void) {
@@ -85,37 +86,37 @@ static inline ChoisesS *func_020b302c_inline(void) {
 }
 
 u32 func_020b302c(void) {
-    u32 r = 0;
-    s32 n;
-    s32 k;
-    s32 i;
-    PairRect e[6];
-    s32 d;
-    s32 t;
+    u32 touched = 0;
+    s32 valueCount;
+    s32 listIndex;
+    s32 valueIndex;
+    PairRect valueRects[6];
+    s32 firstRectRow;
+    s32 top;
 
     if (func_020b2e98() != 0) {
         MoveChoisesSSelectedValue(0);
-        k = func_020b2d04();
-        n = gChoisesS->mLists[k].mValueCount;
-        for (i = 0, d = 0xc - n * 2; i < n; i++) {
-            t = (d + i * 4) * 8 + 6;
-            e[i].mMinX = 8;
-            e[i].mMaxX = 0xf8;
-            e[i].mMinY = t;
-            e[i].mMaxY = t + 0x16;
+        listIndex = GetChoisesSListIndex();
+        valueCount = gChoisesS->mLists[listIndex].mValueCount;
+        for (valueIndex = 0, firstRectRow = 0xc - valueCount * 2; valueIndex < valueCount; valueIndex++) {
+            top = (firstRectRow + valueIndex * 4) * 8 + 6;
+            valueRects[valueIndex].mMinX = 8;
+            valueRects[valueIndex].mMaxX = 0xf8;
+            valueRects[valueIndex].mMinY = top;
+            valueRects[valueIndex].mMaxY = top + 0x16;
         }
-        for (i = 0; i < n; i++) {
-            if (IsNewPairInRect(func_020b2b54(), e[i]) != 0) {
-                if (gChoisesS->mSelectedValue != func_020b302c_inline()->mLists[k].mValues[i]) {
-                    gChoisesS->mSelectedValue = gChoisesS->mLists[k].mValues[i];
+        for (valueIndex = 0; valueIndex < valueCount; valueIndex++) {
+            if (IsNewPairInRect(func_020b2b54(), valueRects[valueIndex]) != 0) {
+                if (gChoisesS->mSelectedValue != func_020b302c_inline()->mLists[listIndex].mValues[valueIndex]) {
+                    gChoisesS->mSelectedValue = gChoisesS->mLists[listIndex].mValues[valueIndex];
                     MoveChoisesSSelectedValue(0);
                 } else {
                     gChoisesS->mUnk_010 = TRUE;
                 }
-                r = 1;
+                touched = 1;
             }
         }
-        if (r != 0) {
+        if (touched != 0) {
             if (gChoisesS->mSelectedValue == 0) {
                 func_02105c4c();
             } else {
@@ -123,35 +124,35 @@ u32 func_020b302c(void) {
             }
         }
     }
-    return r;
+    return touched;
 }
 
 void ResetChoisesSSelection(void) {
-    ChoisesS *p;
+    ChoisesS *choisesS;
 
     gChoisesS->mPickedValue = 0;
-    p = gChoisesS;
-    p->mSelectedValue = p->mLists[func_020b2d04()].mValues[0];
+    choisesS = gChoisesS;
+    choisesS->mSelectedValue = choisesS->mLists[GetChoisesSListIndex()].mValues[0];
 }
 
-void func_020b2f88(s32 a) {
+void func_020b2f88(s32 openFlag) {
     if (gChoisesS->mPickLocked != 0) {
         return;
     }
-    if (a != 0 && func_020b2e98() == 0) {
+    if (openFlag != 0 && func_020b2e98() == 0) {
         if (func_020b29c4() != 0) {
-            gChoisesS->mOpenDuringRace = a;
+            gChoisesS->mOpenDuringRace = openFlag;
         } else if (func_020b2b70() != 0) {
-            gChoisesS->mUnk_008 = a;
+            gChoisesS->mUnk_008 = openFlag;
         } else {
             return;
         }
         ResetChoisesSSelection();
-    } else if (a == 0 && func_020b2e98() != 0) {
+    } else if (openFlag == 0 && func_020b2e98() != 0) {
         if (func_020b29c4() != 0) {
-            gChoisesS->mOpenDuringRace = a;
+            gChoisesS->mOpenDuringRace = openFlag;
         } else if (func_020b2b70() != 0) {
-            gChoisesS->mUnk_008 = a;
+            gChoisesS->mUnk_008 = openFlag;
         } else {
             return;
         }
@@ -171,30 +172,30 @@ u32 func_020b2f58(void) {
 #pragma thumb off
 
 s8 GetMissionRunTableRow(void) {
-    RaceSetup *d = gRaceSetup;
+    RaceSetup *raceSetup = gRaceSetup;
 
-    if (d->mMode == MODE_MISSION_RUN) {
-        return d->mMissionTableRow;
+    if (raceSetup->mMode == MODE_MISSION_RUN) {
+        return raceSetup->mMissionTableRow;
     }
     return -1;
 }
 
 s8 GetMissionRunTableColumn(void) {
-    RaceSetup *d = gRaceSetup;
+    RaceSetup *raceSetup = gRaceSetup;
 
-    if (d->mMode == MODE_MISSION_RUN) {
-        return d->mMissionTableColumn;
+    if (raceSetup->mMode == MODE_MISSION_RUN) {
+        return raceSetup->mMissionTableColumn;
     }
     return -1;
 }
 
 #pragma thumb on
 u32 func_020b2ecc(void) {
-    s32 v1;
-    s32 r;
+    s32 recordValue;
+    s32 isFilled;
 
-    r = GetMissionRecordValue(GetMissionRunTableRow(), GetMissionRunTableColumn(), &v1);
-    if (func_020b2d54() == 0 && gChoisesS->mUnk_020 != FALSE && r != 0 && (u32) (v1 - 5) <= 2) {
+    isFilled = GetMissionRecordValue(GetMissionRunTableRow(), GetMissionRunTableColumn(), &recordValue);
+    if (GetEntryEndKind() == 0 && gChoisesS->mUnk_020 != FALSE && isFilled != 0 && (u32) (recordValue - 5) <= 2) {
         return 1;
     }
     return 0;
