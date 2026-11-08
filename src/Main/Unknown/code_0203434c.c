@@ -77,35 +77,35 @@ static inline s32 func_02034370_inline_2(void) {
     return 1;
 }
 
-s32 func_02034370(Unk02034370 *a) {
-    CellFileSet *q;
-    CellFileSet *t;
-    s32 o;
-    u16 k;
-    s32 r;
-    s32 z;
-    s32 m;
+s32 func_02034370(Unk02034370 *sceneNumbers) {
+    CellFileSet *subCellFileSet;
+    CellFileSet *cellFileSet;
+    s32 previousSelectedIndex;
+    u16 slotIndex;
+    s32 result;
+    s32 touchInReturnRect;
+    s32 rectIndex;
     s32 i;
     s32 j;
-    s32 v;
-    BOOL b1;
-    BOOL a1;
-    u16 w;
-    s32 x;
-    s32 y;
-    void *e;
-    void *f;
-    void *g;
-    u8 c[3];
-    Unk02174e64_9c_00 s;
-    u16 h[0x100];
+    s32 courseMessageIndex;
+    BOOL pairIsNew;
+    BOOL pairRecentlyGone;
+    u16 hasPair;
+    s32 pairX;
+    s32 pairY;
+    void *message;
+    void *buttonText;
+    void *secondButtonText;
+    u8 idBytes[3];
+    GhostRecordInfo ghostRecordInfo;
+    u16 formattedText[0x100];
 
-    o = data_02174e64->mUnk_080;
-    k = func_020435bc();
-    z = 0;
-    r = -1;
-    m = -1;
-    q = &data_02174e64->mUnk_02c[1];
+    previousSelectedIndex = data_02174e64->mSelectedIndex;
+    slotIndex = func_020435bc();
+    touchInReturnRect = 0;
+    result = -1;
+    rectIndex = -1;
+    subCellFileSet = &data_02174e64->mCellFileSets[1];
     AdvanceInterpolation(&data_02174e64->mUnk_194);
     switch (data_02174e64->mState) {
         case 0:
@@ -139,27 +139,30 @@ s32 func_02034370(Unk02034370 *a) {
                     if (IsTxtSystemState0NoOpenRequest() != 0) {
                         func_02035378();
                     }
-                    data_02174e64->mUnk_190 = 0;
+                    data_02174e64->mFilledCount = 0;
                     for (i = 0; i < 4; i++) {
                         j = i + 4;
-                        if (func_0204ebb8(i, &s, &c[0], &c[1], &c[2], &s.mUnk_26, &s.mUnk_27, &s.mUnk_24)) {
-                            s.mUnk_18[1] = c[0];
-                            s.mUnk_18[0] = c[1];
-                            s.mUnk_18[2] = c[2];
-                            data_02174e64->mUnk_190++;
-                            if (data_02174e64->mUnk_09c[i].mUnk_28 == FALSE ||
-                                func_02034e68(&data_02174e64->mUnk_09c[i].mUnk_00, &s) != FALSE) {
-                                v = func_02025d74(s.mUnk_18[2]);
-                                s.mUnk_00[10] = 0;
-                                func_0212426c(1, data_02164254[i][0], q->mLabelLayout, &s, q->mCellLayout,
-                                              q->mCellTable);
-                                func_0212426c(1, data_02164254[j][0], q->mLabelLayout,
-                                              GetBmgEntry(data_02174e64->mGhostMessages, v), q->mCellLayout,
-                                              q->mCellTable);
-                                MIi_CpuCopyFast(&s, &data_02174e64->mUnk_09c[i].mUnk_00, 0x28);
-                                data_02174e64->mUnk_09c[i].mUnk_28 = TRUE;
-                                func_02025f14(&data_02174e64->mUnk_09c[i].mUnk_2c, 0);
-                                if (data_02174e64->mUnk_080 == i) {
+                        if (func_0204ebb8(i, &ghostRecordInfo, &idBytes[0], &idBytes[1], &idBytes[2],
+                                          &ghostRecordInfo.mMinute, &ghostRecordInfo.mSecond,
+                                          &ghostRecordInfo.mMillisecond)) {
+                            ghostRecordInfo.mUnk_18[1] = idBytes[0];
+                            ghostRecordInfo.mUnk_18[0] = idBytes[1];
+                            ghostRecordInfo.mUnk_18[2] = idBytes[2];
+                            data_02174e64->mFilledCount++;
+                            if (data_02174e64->mGhostInfoEntries[i].mFilled == FALSE ||
+                                AreGhostRecordInfosDifferent(&data_02174e64->mGhostInfoEntries[i].mInfo,
+                                                             &ghostRecordInfo) != FALSE) {
+                                courseMessageIndex = func_02025d74(ghostRecordInfo.mUnk_18[2]);
+                                ghostRecordInfo.mName[10] = 0;
+                                func_0212426c(1, data_02164254[i][0], subCellFileSet->mLabelLayout, &ghostRecordInfo,
+                                              subCellFileSet->mCellLayout, subCellFileSet->mCellTable);
+                                func_0212426c(1, data_02164254[j][0], subCellFileSet->mLabelLayout,
+                                              GetBmgEntry(data_02174e64->mGhostMessages, courseMessageIndex),
+                                              subCellFileSet->mCellLayout, subCellFileSet->mCellTable);
+                                MIi_CpuCopyFast(&ghostRecordInfo, &data_02174e64->mGhostInfoEntries[i].mInfo, 0x28);
+                                data_02174e64->mGhostInfoEntries[i].mFilled = TRUE;
+                                func_02025f14(&data_02174e64->mGhostInfoEntries[i].mInterpolation, 0);
+                                if (data_02174e64->mSelectedIndex == i) {
                                     func_02034f60();
                                 }
                                 NNS_SndArcSetCurrent(&data_0217c868);
@@ -167,56 +170,57 @@ s32 func_02034370(Unk02034370 *a) {
                                 NNS_SndArcSetCurrent(&data_0217d0a0);
                             }
                         } else {
-                            func_02025f14(&data_02174e64->mUnk_09c[i].mUnk_2c, 2);
-                            data_02174e64->mUnk_09c[i].mUnk_28 = FALSE;
+                            func_02025f14(&data_02174e64->mGhostInfoEntries[i].mInterpolation, 2);
+                            data_02174e64->mGhostInfoEntries[i].mFilled = FALSE;
                         }
                     }
                     func_02035114();
-                    b1 = FALSE;
-                    a1 = FALSE;
-                    w = data_02175674[k].mUnk_00;
-                    if (w == 0 && data_02175680[k].mUnk_00 < 5) {
-                        a1 = TRUE;
+                    pairIsNew = FALSE;
+                    pairRecentlyGone = FALSE;
+                    hasPair = data_02175674[slotIndex].mUnk_00;
+                    if (hasPair == 0 && data_02175680[slotIndex].mUnk_00 < 5) {
+                        pairRecentlyGone = TRUE;
                     }
-                    if (a1 == FALSE && data_0217567c[k].mUnk_00 == 0 && w != 0) {
-                        b1 = TRUE;
+                    if (pairRecentlyGone == FALSE && data_0217567c[slotIndex].mUnk_00 == 0 && hasPair != 0) {
+                        pairIsNew = TRUE;
                     }
-                    if (b1 != FALSE) {
-                        x = data_02175670[k].mUnk_00;
-                        y = data_02175672[k].mUnk_00;
-                        z = IsSelectReturnState2NoState3Or4RequestAndInRect(x, y);
-                        m = RectTableFindContaining(q->mRects, x, y);
+                    if (pairIsNew != FALSE) {
+                        pairX = data_02175670[slotIndex].mUnk_00;
+                        pairY = data_02175672[slotIndex].mUnk_00;
+                        touchInReturnRect = IsSelectReturnState2NoState3Or4RequestAndInRect(pairX, pairY);
+                        rectIndex = RectTableFindContaining(subCellFileSet->mRects, pairX, pairY);
                     }
-                    if (m >= 0 && data_02174e64->mUnk_09c[m].mUnk_28 != FALSE) {
+                    if (rectIndex >= 0 && data_02174e64->mGhostInfoEntries[rectIndex].mFilled != FALSE) {
                         SetupGhostSubTextTwoButtons();
-                        func_02035228(data_02174e64->mUnk_080 != m ? 1 : 0);
-                        data_02174e64->mUnk_080 = m;
+                        func_02035228(data_02174e64->mSelectedIndex != rectIndex ? 1 : 0);
+                        data_02174e64->mSelectedIndex = rectIndex;
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
                         RequestSelectReturnState4();
                         data_02174e64->mUnk_18c = TRUE;
-                        data_02174e64->mUnk_090 = 0;
+                        data_02174e64->mStateFrames = 0;
                         data_02174e64->mState = 3;
-                    } else if ((u16) (data_02175628[k].mUnk_00 & PAD_KEY_A) != 0 && data_02174e64->mUnk_080 >= 0) {
+                    } else if ((u16) (data_02175628[slotIndex].mUnk_00 & PAD_KEY_A) != 0 &&
+                               data_02174e64->mSelectedIndex >= 0) {
                         SetupGhostSubTextTwoButtons();
                         func_02035228(0);
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
                         RequestSelectReturnState4();
                         data_02174e64->mUnk_18c = TRUE;
-                        data_02174e64->mUnk_090 = 0;
+                        data_02174e64->mStateFrames = 0;
                         data_02174e64->mState = 3;
-                    } else if ((u16) (data_02175628[k].mUnk_00 & PAD_KEY_B) != 0 || z != 0) {
+                    } else if ((u16) (data_02175628[slotIndex].mUnk_00 & PAD_KEY_B) != 0 || touchInReturnRect != 0) {
                         data_02174e64->mState = 12;
                         RequestSelectReturnState3WithSound(0);
-                    } else if (GetNewOrRepeatBits(k, PAD_KEY_UP)) {
-                        if (data_02174e64->mUnk_190 == 2) {
+                    } else if (GetNewOrRepeatBits(slotIndex, PAD_KEY_UP)) {
+                        if (data_02174e64->mFilledCount == 2) {
                             MoveSelectedGhostUp(0);
-                        } else if (data_02174e64->mUnk_190 > 2) {
+                        } else if (data_02174e64->mFilledCount > 2) {
                             MoveSelectedGhostUp(1);
                         }
-                    } else if (GetNewOrRepeatBits(k, PAD_KEY_DOWN)) {
-                        if (data_02174e64->mUnk_190 == 2) {
+                    } else if (GetNewOrRepeatBits(slotIndex, PAD_KEY_DOWN)) {
+                        if (data_02174e64->mFilledCount == 2) {
                             MoveSelectedGhostDown(0);
-                        } else if (data_02174e64->mUnk_190 > 2) {
+                        } else if (data_02174e64->mFilledCount > 2) {
                             MoveSelectedGhostDown(1);
                         }
                     }
@@ -224,23 +228,23 @@ s32 func_02034370(Unk02034370 *a) {
                 case 2:
                     break;
             }
-            if (o != data_02174e64->mUnk_080) {
+            if (previousSelectedIndex != data_02174e64->mSelectedIndex) {
                 func_02034f60();
                 func_02034ef0();
             }
             break;
         case 3:
-            data_02174e64->mUnk_090++;
-            if (data_02174e64->mUnk_090 > 5) {
+            data_02174e64->mStateFrames++;
+            if (data_02174e64->mStateFrames > 5) {
                 func_02035228(1);
-                data_02174e64->mUnk_090 = 0;
+                data_02174e64->mStateFrames = 0;
                 data_02174e64->mState = 4;
             }
             break;
         case 4:
             if (GetTxtSystemDone() != 0) {
                 if (GetTxtSystemSelectedIndex() == 0) {
-                    func_0204ece0(data_02174e64->mUnk_080);
+                    func_0204ece0(data_02174e64->mSelectedIndex);
                 } else {
                     RequestSelectReturnState1();
                     data_02174e64->mUnk_18c = FALSE;
@@ -281,31 +285,34 @@ s32 func_02034370(Unk02034370 *a) {
             if (func_02054f58() == 1) {
                 func_0204f804();
                 data_0217b488->mUnk_08 = 5;
-                if (a != NULL) {
-                    a->mUnk_04 = 1;
+                if (sceneNumbers != NULL) {
+                    sceneNumbers->mUnk_04 = 1;
                 }
                 data_02174e64->mState = 16;
             }
             break;
         case 8:
-            if (DoesAnySlotGhostMatchCourse(data_02174e64->mUnk_09c[data_02174e64->mUnk_080].mUnk_00.mUnk_18[2]) != 0) {
-                v = func_02025d74(data_02174e64->mUnk_09c[data_02174e64->mUnk_080].mUnk_00.mUnk_18[2]);
-                e = GetBmgEntry(data_02174e64->mGhostMessages, 0x55);
-                f = GetBmgEntry(data_02174e64->mCommonMessages, 0);
-                g = GetBmgEntry(data_02174e64->mCommonMessages, 1);
-                func_0212513c(GetBmgEntry(data_02174e64->mGhostMessages, v), e, h, 0x100);
+            if (DoesAnySlotGhostMatchCourse(
+                    data_02174e64->mGhostInfoEntries[data_02174e64->mSelectedIndex].mInfo.mUnk_18[2]) != 0) {
+                courseMessageIndex =
+                    func_02025d74(data_02174e64->mGhostInfoEntries[data_02174e64->mSelectedIndex].mInfo.mUnk_18[2]);
+                message = GetBmgEntry(data_02174e64->mGhostMessages, 0x55);
+                buttonText = GetBmgEntry(data_02174e64->mCommonMessages, 0);
+                secondButtonText = GetBmgEntry(data_02174e64->mCommonMessages, 1);
+                func_0212513c(GetBmgEntry(data_02174e64->mGhostMessages, courseMessageIndex), message, formattedText,
+                              0x100);
                 SetTxtSystemSoundId(0, -1);
-                SetupTxtSystemSubTextTwoButtonsEx(h, f, g, 1, 0, 1, 1, 0);
+                SetupTxtSystemSubTextTwoButtonsEx(formattedText, buttonText, secondButtonText, 1, 0, 1, 1, 0);
                 data_02174e64->mState = 9;
             } else if (GetSlotGhostCount() == 10) {
                 RequestTxtSystemClose();
-                data_02174e64->mUnk_098 = 2;
+                data_02174e64->mNextCallbacksIndex = 2;
                 data_02174e64->mState = 13;
                 func_02025f14(&data_02174e64->mUnk_194, 2);
             } else {
-                data_02174e64->mUnk_08c = FindUnfilledGhostSlot();
+                data_02174e64->mGhostSlot = FindUnfilledGhostSlot();
                 ((Unk0202ddd8 *) GetSlotGhostBuffer())->mUnk_08_0 = 1;
-                func_020566a8((u8) data_02174e64->mUnk_08c, GetSlotGhostBuffer());
+                func_020566a8((u8) data_02174e64->mGhostSlot, GetSlotGhostBuffer());
                 NNS_SndArcSetCurrent(&data_0217c868);
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 10);
                 NNS_SndArcSetCurrent(&data_0217d0a0);
@@ -321,10 +328,10 @@ s32 func_02034370(Unk02034370 *a) {
             if (GetTxtSystemDone() != 0) {
                 RequestTxtSystemClose();
                 if (GetTxtSystemSelectedIndex() == 0) {
-                    data_02174e64->mUnk_08c =
-                        FindSlotGhostForCourse(data_02174e64->mUnk_09c[data_02174e64->mUnk_080].mUnk_00.mUnk_18[2]);
+                    data_02174e64->mGhostSlot = FindSlotGhostForCourse(
+                        data_02174e64->mGhostInfoEntries[data_02174e64->mSelectedIndex].mInfo.mUnk_18[2]);
                     ((Unk0202ddd8 *) GetSlotGhostBuffer())->mUnk_08_0 = 1;
-                    func_020566a8((u8) data_02174e64->mUnk_08c, GetSlotGhostBuffer());
+                    func_020566a8((u8) data_02174e64->mGhostSlot, GetSlotGhostBuffer());
                     data_02174e64->mState = 11;
                 } else {
                     data_02174e64->mState = 10;
@@ -333,19 +340,19 @@ s32 func_02034370(Unk02034370 *a) {
             break;
         case 10:
             if (IsTxtSystemState0NoOpenRequest() != 0) {
-                e = GetBmgEntry(data_02174e64->mGhostMessages, 0x54);
-                f = GetBmgEntry(data_02174e64->mCommonMessages, 4);
+                message = GetBmgEntry(data_02174e64->mGhostMessages, 0x54);
+                buttonText = GetBmgEntry(data_02174e64->mCommonMessages, 4);
                 SetTxtSystemSoundId(0, 5);
-                SetupTxtSystemSubTextButton(e, f);
+                SetupTxtSystemSubTextButton(message, buttonText);
                 data_02174e64->mState = 14;
             }
             break;
         case 11:
             if (func_02034370_inline_2() != 0) {
-                e = GetBmgEntry(data_02174e64->mGhostMessages, 0x10);
-                f = GetBmgEntry(data_02174e64->mCommonMessages, 4);
+                message = GetBmgEntry(data_02174e64->mGhostMessages, 0x10);
+                buttonText = GetBmgEntry(data_02174e64->mCommonMessages, 4);
                 SetTxtSystemSoundId(0, 5);
-                SetupTxtSystemSubTextButton(e, f);
+                SetupTxtSystemSubTextButton(message, buttonText);
                 data_02174e64->mState = 14;
             }
             break;
@@ -354,7 +361,7 @@ s32 func_02034370(Unk02034370 *a) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
             }
             if (GetTxtSystemDone() != 0) {
-                data_02174e64->mUnk_090 = 0;
+                data_02174e64->mStateFrames = 0;
                 data_02174e64->mState = 12;
                 RequestTxtSystemClose();
             }
@@ -362,15 +369,15 @@ s32 func_02034370(Unk02034370 *a) {
         case 14:
             if (GetTxtSystemDone() != 0) {
                 data_0217b488->mUnk_08 = 5;
-                if (a != NULL) {
-                    a->mUnk_04 = 1;
+                if (sceneNumbers != NULL) {
+                    sceneNumbers->mUnk_04 = 1;
                 }
                 data_02174e64->mState = 16;
             }
             break;
         case 13:
             if (data_02174e64->mUnk_194.mState == 3) {
-                r = data_02174e64->mUnk_098;
+                result = data_02174e64->mNextCallbacksIndex;
                 data_02174e64->mState = 16;
             } else {
                 func_02034fec();
@@ -380,10 +387,11 @@ s32 func_02034370(Unk02034370 *a) {
     func_02035060();
     func_02054aa0();
     for (i = 0; i < 2; i++) {
-        t = &data_02174e64->mUnk_02c[i];
-        DrawLayoutTable(t->mCellLayout, t->mCells, t->mLabelLayout, data_02174e64->mUnk_024[i], t->mCellTable);
+        cellFileSet = &data_02174e64->mCellFileSets[i];
+        DrawLayoutTable(cellFileSet->mCellLayout, cellFileSet->mCells, cellFileSet->mLabelLayout,
+                        data_02174e64->mUnk_024[i], cellFileSet->mCellTable);
     }
-    return r;
+    return result;
 }
 
 #pragma thumb off

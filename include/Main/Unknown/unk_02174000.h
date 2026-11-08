@@ -188,70 +188,70 @@ typedef struct ScreenMapFileSet {
 } ScreenMapFileSet;
 
 // 0xc-byte entries from 0xe4 of ResultsBattle.
-typedef struct Unk02174e60_e4 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-} Unk02174e60_e4;
+typedef struct ResultsBattleEntry {
+    /* 00 */ s32 mRank;
+    /* 04 */ s32 mScore;
+    /* 08 */ s32 mOrderIndex;
+} ResultsBattleEntry;
 
 // 0x154 bytes.
 typedef struct ResultsBattle {
-    /* 000 */ ScreenMapFileSet mUnk_000[2];
-    /* 048 */ CellFileSet mUnk_048[4];
+    /* 000 */ ScreenMapFileSet mScreenMapFileSets[2];
+    /* 048 */ CellFileSet mCellFileSets[4];
     /* 0b8 */ s32 mUnk_0b8[2];
     /* 0c0 */ Nclr *mUnk_0c0;
     /* 0c4 */ Nclr *mUnk_0c4;
     /* 0c8 */ struct Bmg *mCommonMessages;
-    /* 0cc */ u16 mUnk_0cc;
-    /* 0ce */ u16 mUnk_0ce;
-    /* 0d0 */ s32 mUnk_0d0;
+    /* 0cc */ u16 mTimerDigitCellBase;
+    /* 0ce */ u16 mTimerTensCell;
+    /* 0d0 */ s32 mOwnEntryIndex;
     /* 0d4 */ s32 mUnk_0d4;
-    /* 0d8 */ s32 mUnk_0d8;
-    /* 0dc */ s32 mUnk_0dc;
+    /* 0d8 */ s32 mKartCount;
+    /* 0dc */ s32 mFileSetKind;
     /* 0e0 */ s32 mMode;
-    /* 0e4 */ Unk02174e60_e4 mUnk_0e4[8];
-    /* 144 */ s32 mUnk_144;
-    /* 148 */ BOOL mUnk_148;
+    /* 0e4 */ ResultsBattleEntry mEntries[8];
+    /* 144 */ s32 mState0To2Frames;
+    /* 148 */ BOOL mUseTimer;
     /* 14c */ s32 mTimer;
-    /* 150 */ s32 mUnk_150;
+    /* 150 */ s32 mState;
 } ResultsBattle;
 
 extern ResultsBattle *gResultsBattle;
 
 // 0x28-byte part of the entries from 0x9c of Unk02174e64; func_02034370 fills one on the stack through
-// func_0204ebb8 and func_02034e68 compares two.
-typedef struct Unk02174e64_9c_00 {
-    /* 00 */ u16 mUnk_00[11];
+// func_0204ebb8 and AreGhostRecordInfosDifferent compares two.
+typedef struct GhostRecordInfo {
+    /* 00 */ u16 mName[11];
     /* 16 */ u8 mUnk_16[2];
     /* 18 */ s32 mUnk_18[3];
-    /* 24 */ u16 mUnk_24;
-    /* 26 */ u8 mUnk_26;
-    /* 27 */ u8 mUnk_27;
-} Unk02174e64_9c_00;
+    /* 24 */ u16 mMillisecond;
+    /* 26 */ u8 mMinute;
+    /* 27 */ u8 mSecond;
+} GhostRecordInfo;
 
 // 0x3c-byte entries from 0x9c of Unk02174e64.
-typedef struct Unk02174e64_9c {
-    /* 00 */ Unk02174e64_9c_00 mUnk_00;
-    /* 28 */ BOOL mUnk_28;
-    /* 2c */ Interpolation mUnk_2c;
-} Unk02174e64_9c;
+typedef struct GhostInfoEntry {
+    /* 00 */ GhostRecordInfo mInfo;
+    /* 28 */ BOOL mFilled;
+    /* 2c */ Interpolation mInterpolation;
+} GhostInfoEntry;
 
 // Object behind data_02174e64.
 typedef struct Unk02174e64 {
     /* 000 */ u8 mUnk_000[0x24];
     /* 024 */ void *mUnk_024[2];
-    /* 02c */ CellFileSet mUnk_02c[2];
+    /* 02c */ CellFileSet mCellFileSets[2];
     /* 064 */ u8 mUnk_064[0x1c];
-    /* 080 */ s32 mUnk_080;
+    /* 080 */ s32 mSelectedIndex;
     /* 084 */ Bmg *mCommonMessages;
     /* 088 */ Bmg *mGhostMessages;
-    /* 08c */ s32 mUnk_08c;
-    /* 090 */ s32 mUnk_090;
+    /* 08c */ s32 mGhostSlot;
+    /* 090 */ s32 mStateFrames;
     /* 094 */ s32 mState;
-    /* 098 */ s32 mUnk_098;
-    /* 09c */ Unk02174e64_9c mUnk_09c[4];
+    /* 098 */ s32 mNextCallbacksIndex;
+    /* 09c */ GhostInfoEntry mGhostInfoEntries[4];
     /* 18c */ BOOL mUnk_18c;
-    /* 190 */ s32 mUnk_190;
+    /* 190 */ s32 mFilledCount;
     /* 194 */ Interpolation mUnk_194;
     /* 1a4 */ void *mHeap;
 } Unk02174e64;
@@ -372,7 +372,7 @@ typedef struct Unk02174e68 {
     /* 00 */ u8 mUnk_00[0x20];
     /* 20 */ u8 *mUnk_20;
     /* 24 */ void *mUnk_24[2];
-    /* 2c */ CellFileSet mUnk_2c[2];
+    /* 2c */ CellFileSet mCellFileSets[2];
     /* 64 */ u8 mUnk_64[0x1c];
     /* 80 */ s32 mSelectedIndex;
     /* 84 */ Bmg *mCommonMessages;

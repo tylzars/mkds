@@ -9,5 +9,5 @@ typedef struct Unk02032ac4 {
 } Unk02032ac4;
 
 void func_02032ab0(void);
-void AdvanceResultsBattle(Unk02032ac4 *a);
-void InitResultsBattle(void *a, s32 b, s32 c);
+void AdvanceResultsBattle(Unk02032ac4 *sceneNumbers);
+void InitResultsBattle(void *heap, s32 b, s32 c);

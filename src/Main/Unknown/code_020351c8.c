@@ -66,23 +66,24 @@
 
 #pragma thumb on
 
-void func_02035c50(s32 a, s32 b, s32 c, s32 d) {
-    CellFileSet *s;
+void func_02035c50(s32 a, s32 b, s32 listIndex, s32 d) {
+    CellFileSet *subCellFileSet;
     s32 i;
     s32 v;
     s32 e;
-    u8 x[4];
-    s16 w[12];
+    u8 time[4];
+    s16 timeText[12];
 
-    s = &data_02174e68->mUnk_2c[1];
+    subCellFileSet = &data_02174e68->mCellFileSets[1];
     if (a == 1) {
-        c += GetCourseGhostCount();
-        func_0212426c(1, b, s->mLabelLayout,
-                      GetBmgEntry(data_02174e68->mGhostMessages, func_02025d74(GetListedGhostCourseId(c))),
-                      s->mCellLayout, s->mCellTable);
-        GetListedGhostTime(c, x);
-        WriteMinuteSecondMillisecondText(w, x[2], x[3], *(u16 *) x);
-        func_02124224(1, b + 7, s->mLabelLayout, w, s->mCellLayout, s->mCellTable, 7);
+        listIndex += GetCourseGhostCount();
+        func_0212426c(1, b, subCellFileSet->mLabelLayout,
+                      GetBmgEntry(data_02174e68->mGhostMessages, func_02025d74(GetListedGhostCourseId(listIndex))),
+                      subCellFileSet->mCellLayout, subCellFileSet->mCellTable);
+        GetListedGhostTime(listIndex, time);
+        WriteMinuteSecondMillisecondText(timeText, time[2], time[3], *(u16 *) time);
+        func_02124224(1, b + 7, subCellFileSet->mLabelLayout, timeText, subCellFileSet->mCellLayout,
+                      subCellFileSet->mCellTable, 7);
     } else if (a == 0) {
         for (i = 0; i < 7; i++) {
             e = i + 7;
@@ -91,8 +92,8 @@ void func_02035c50(s32 a, s32 b, s32 c, s32 d) {
             } else {
                 v = 15;
             }
-            func_02124100(i, v, s->mLabelLayout, s->mCellTable, s->mCellLayout);
-            func_02124100(e, v, s->mLabelLayout, s->mCellTable, s->mCellLayout);
+            func_02124100(i, v, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable, subCellFileSet->mCellLayout);
+            func_02124100(e, v, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable, subCellFileSet->mCellLayout);
         }
     }
 }
@@ -102,10 +103,10 @@ void func_02035c50(s32 a, s32 b, s32 c, s32 d) {
 #pragma thumb on
 
 void func_02035c14(void) {
-    void *v1;
-    v1 = GetBmgEntry(data_02174e68->mGhostMessages, 3);
+    void *message;
+    message = GetBmgEntry(data_02174e68->mGhostMessages, 3);
     SetTxtSystemBgOffsetRequested(0xfffffff4, 0);
-    func_02126638(v1, 0, 0, 0, 0, 0, 0);
+    func_02126638(message, 0, 0, 0, 0, 0, 0);
 }
 
 #pragma thumb off
@@ -128,135 +129,137 @@ static inline s32 func_0203551c_inline_2(void) {
 }
 
 void SetupGhostNameSubTextTwoButtons(void) {
-    void *e;
-    void *f;
-    void *g;
-    u8 y[0x14];
-    u16 w[11];
-    u16 h[0x100];
+    void *formatText;
+    void *firstButtonText;
+    void *secondButtonText;
+    u8 ghostName[0x14];
+    u16 nameText[11];
+    u16 formattedText[0x100];
 
-    e = GetBmgEntry(data_02174e68->mGhostMessages, 0x12);
-    f = GetBmgEntry(data_02174e68->mCommonMessages, 0);
-    g = GetBmgEntry(data_02174e68->mCommonMessages, 1);
-    GetListedGhostName(data_02174e68->mSelectedIndex + GetCourseGhostCount(), y);
-    MIi_CpuCopy16(y, w, 0x14);
-    w[10] = 0;
-    func_0212513c(w, e, h, 0x100);
+    formatText = GetBmgEntry(data_02174e68->mGhostMessages, 0x12);
+    firstButtonText = GetBmgEntry(data_02174e68->mCommonMessages, 0);
+    secondButtonText = GetBmgEntry(data_02174e68->mCommonMessages, 1);
+    GetListedGhostName(data_02174e68->mSelectedIndex + GetCourseGhostCount(), ghostName);
+    MIi_CpuCopy16(ghostName, nameText, 0x14);
+    nameText[10] = 0;
+    func_0212513c(nameText, formatText, formattedText, 0x100);
     SetTxtSystemSoundId(0, -1);
-    SetupTxtSystemSubTextTwoButtonsEx(h, f, g, 1, 0, 1, 1, 0);
+    SetupTxtSystemSubTextTwoButtonsEx(formattedText, firstButtonText, secondButtonText, 1, 0, 1, 1, 0);
 }
 
 void func_02035b0c(void) {
-    CellFileSet *s;
-    CellFileSet *t;
-    s32 n;
-    s32 m;
+    CellFileSet *mainCellFileSet;
+    CellFileSet *subCellFileSet;
+    s32 mainEntryCount;
+    s32 subEntryCount;
     s32 i;
-    s16 c;
+    s16 offset;
 
-    s = &data_02174e68->mUnk_2c[0];
-    t = &data_02174e68->mUnk_2c[1];
-    n = s->mCellLayout->mUnk_06 + s->mLabelLayout->mUnk_06;
-    m = t->mCellLayout->mUnk_06 + t->mLabelLayout->mUnk_06;
-    c = GetInterpolatedValue(&data_02174e68->mUnk_90);
-    for (i = 0; i < n; i++) {
-        s->mCellTable[i].mOffsetY = -c;
+    mainCellFileSet = &data_02174e68->mCellFileSets[0];
+    subCellFileSet = &data_02174e68->mCellFileSets[1];
+    mainEntryCount = mainCellFileSet->mCellLayout->mUnk_06 + mainCellFileSet->mLabelLayout->mUnk_06;
+    subEntryCount = subCellFileSet->mCellLayout->mUnk_06 + subCellFileSet->mLabelLayout->mUnk_06;
+    offset = GetInterpolatedValue(&data_02174e68->mUnk_90);
+    for (i = 0; i < mainEntryCount; i++) {
+        mainCellFileSet->mCellTable[i].mOffsetY = -offset;
     }
-    for (i = 0; i < m; i++) {
-        t->mCellTable[i].mOffsetY = c;
+    for (i = 0; i < subEntryCount; i++) {
+        subCellFileSet->mCellTable[i].mOffsetY = offset;
     }
 }
 
 void PrintSelectedGhostRecord(void) {
-    s32 n;
-    u32 d;
-    u32 e;
-    u32 f;
-    u32 x;
-    u8 y[0x14];
-    u16 w[11];
+    s32 listIndex;
+    u32 characterIndex;
+    u32 kartIndex;
+    u32 courseId;
+    u32 time;
+    u8 ghostName[0x14];
+    u16 nameText[11];
 
-    n = GetCourseGhostCount() + data_02174e68->mSelectedIndex;
-    GetListedGhostTime(n, &x);
-    GetListedGhostName(n, y);
-    MIi_CpuCopy16(y, w, 0x14);
-    w[10] = 0;
-    d = GetListedGhostCharacterIndex(n);
-    e = GetListedGhostKartIndex(n);
-    f = GetListedGhostCourseId(n);
-    PrintGhostRecordInfo((Unk02174e14 *) &data_02174e68->mUnk_2c[0], data_0215404c, w, d, e, f, (Unk0202de00_g *) &x);
+    listIndex = GetCourseGhostCount() + data_02174e68->mSelectedIndex;
+    GetListedGhostTime(listIndex, &time);
+    GetListedGhostName(listIndex, ghostName);
+    MIi_CpuCopy16(ghostName, nameText, 0x14);
+    nameText[10] = 0;
+    characterIndex = GetListedGhostCharacterIndex(listIndex);
+    kartIndex = GetListedGhostKartIndex(listIndex);
+    courseId = GetListedGhostCourseId(listIndex);
+    PrintGhostRecordInfo((Unk02174e14 *) &data_02174e68->mCellFileSets[0], data_0215404c, nameText, characterIndex,
+                         kartIndex, courseId, (Unk0202de00_g *) &time);
 }
 
-void func_020357dc(void *a, void *b, void *c) {
-    void *h;
-    CellFileSet *s;
+void func_020357dc(void *parentHeap, void *b, void *c) {
+    void *heap;
+    CellFileSet *cellFileSet;
     s32 i;
-    u32 n;
+    u32 remainingObjSize;
     s32 j;
-    s32 k;
-    s32 m;
-    s32 x;
-    s32 y;
-    s32 z;
-    s16 *t;
-    void *g;
+    s32 assignedCount;
+    s32 cellCount;
+    s32 cellIndex;
+    s32 labelIndex;
+    s32 secondLabelIndex;
+    s16 *row;
+    void *cellTable;
     u16 w[3];
 
-    h = CreateFrmHeapFromMaxFree(a);
-    data_02174e68 = HeapAlloc(h, 0xa8);
+    heap = CreateFrmHeapFromMaxFree(parentHeap);
+    data_02174e68 = HeapAlloc(heap, 0xa8);
     MemFillWordsByBlock_inline(data_02174e68, 0xa8);
-    data_02174e68->mHeap = h;
+    data_02174e68->mHeap = heap;
     data_02174e68->mUnk_24[0] = b;
     data_02174e68->mUnk_24[1] = c;
     data_02174e68->mCommonMessages = FindFileInLoadedArchives(data_021644e0);
     data_02174e68->mGhostMessages = FindSceneFile(data_021644ec);
-    s = &data_02174e68->mUnk_2c[0];
-    n = GX_GetSizeOfOBJ();
-    LocateCellFileSet(s, data_021644f8, data_02164518, data_02164538, data_02164558, data_02164574, NULL,
+    cellFileSet = &data_02174e68->mCellFileSets[0];
+    remainingObjSize = GX_GetSizeOfOBJ();
+    LocateCellFileSet(cellFileSet, data_021644f8, data_02164518, data_02164538, data_02164558, data_02164574, NULL,
                       FindSceneFile);
-    func_02025a50(0, data_02174e68->mHeap, s);
-    for (i = 0; i < s->mLabelLayout->mUnk_06; i++) {
-        n -= func_02025a00(0, data_02174e68->mHeap, s, data_0215404c[i], n);
+    func_02025a50(0, data_02174e68->mHeap, cellFileSet);
+    for (i = 0; i < cellFileSet->mLabelLayout->mUnk_06; i++) {
+        remainingObjSize -= func_02025a00(0, data_02174e68->mHeap, cellFileSet, data_0215404c[i], remainingObjSize);
     }
     func_020258d4(1, data_02174e68, data_02164590, data_021645b0, data_021645d0, 3, FindSceneFile);
-    s = &data_02174e68->mUnk_2c[1];
-    n = GX_GetSizeOfSubOBJ();
-    k = 0;
-    LocateCellFileSet(s, data_021645ec, data_0216460c, data_0216462c, gTimeAttackGhostGetSBnclName,
+    cellFileSet = &data_02174e68->mCellFileSets[1];
+    remainingObjSize = GX_GetSizeOfSubOBJ();
+    assignedCount = 0;
+    LocateCellFileSet(cellFileSet, data_021645ec, data_0216460c, data_0216462c, gTimeAttackGhostGetSBnclName,
                       gTimeAttackGhostGetSBnllName, gTimeAttackGhostGetSBnblName, FindSceneFile);
-    func_02025a50(1, data_02174e68->mHeap, s);
-    m = s->mCellLayout->mUnk_06;
+    func_02025a50(1, data_02174e68->mHeap, cellFileSet);
+    cellCount = cellFileSet->mCellLayout->mUnk_06;
     j = 0;
-    if (j < s->mLabelLayout->mUnk_06) {
-        t = data_02164470[0];
+    if (j < cellFileSet->mLabelLayout->mUnk_06) {
+        row = data_02164470[0];
         do {
-            if (t[3] < 0) {
-                t[3] = m + k++;
+            if (row[3] < 0) {
+                row[3] = cellCount + assignedCount++;
             }
-            n -= func_02025a00(1, data_02174e68->mHeap, s, data_02164470[j], n);
-            t += 4;
+            remainingObjSize -= func_02025a00(1, data_02174e68->mHeap, cellFileSet, data_02164470[j], remainingObjSize);
+            row += 4;
             j++;
-        } while (j < s->mLabelLayout->mUnk_06);
+        } while (j < cellFileSet->mLabelLayout->mUnk_06);
     }
     for (i = 0; i < 8; i++) {
-        func_021249a8(i, 3, s->mCells, s->mCellLayout);
+        func_021249a8(i, 3, cellFileSet->mCells, cellFileSet->mCellLayout);
     }
-    for (j = 0, t = data_02164470[0]; j < 7; j++) {
-        x = t[3];
-        y = t[0];
-        z = data_02164470[j + 7][0];
-        g = s->mCellTable;
-        func_02025c1c(x, (u8 *) g + (x << 6), s->mCellLayout);
-        func_02025bf0(y, (u8 *) g + (y << 6) + (m << 6), s->mLabelLayout);
-        func_02025bf0(z, (u8 *) g + (z << 6) + (m << 6), s->mLabelLayout);
-        t += 4;
+    for (j = 0, row = data_02164470[0]; j < 7; j++) {
+        cellIndex = row[3];
+        labelIndex = row[0];
+        secondLabelIndex = data_02164470[j + 7][0];
+        cellTable = cellFileSet->mCellTable;
+        func_02025c1c(cellIndex, (u8 *) cellTable + (cellIndex << 6), cellFileSet->mCellLayout);
+        func_02025bf0(labelIndex, (u8 *) cellTable + (labelIndex << 6) + (cellCount << 6), cellFileSet->mLabelLayout);
+        func_02025bf0(secondLabelIndex, (u8 *) cellTable + (secondLabelIndex << 6) + (cellCount << 6),
+                      cellFileSet->mLabelLayout);
+        row += 4;
     }
-    func_02025c1c(7, (u8 *) s->mCellTable + 0x1c0, s->mCellLayout);
+    func_02025c1c(7, (u8 *) cellFileSet->mCellTable + 0x1c0, cellFileSet->mCellLayout);
     w[0] = 0;
-    w[1] = m;
-    w[2] = m + 7;
-    InitScrollList(data_02174e68->mHeap, 3, w, 7, 8, 0x7c, s->mCellTable, s->mRects, data_02174e68->mUnk_20 + 0xc, 0, 1,
-                   2, 10, func_02035c50);
+    w[1] = cellCount;
+    w[2] = cellCount + 7;
+    InitScrollList(data_02174e68->mHeap, 3, w, 7, 8, 0x7c, cellFileSet->mCellTable, cellFileSet->mRects,
+                   data_02174e68->mUnk_20 + 0xc, 0, 1, 2, 10, func_02035c50);
     func_02025b84(0, &data_02174e68->mUnk_64);
     PrintSelectedGhostRecord();
     SetupInterpolation(&data_02174e68->mUnk_90, 0, 10, -0xc0, 0);
@@ -266,40 +269,41 @@ void func_020357dc(void *a, void *b, void *c) {
     FrmHeapShrinkInParent(data_02174e68->mHeap);
 }
 
-s32 func_0203551c(u16 *a) {
-    Unk02174e68 *p;
-    enum { K0 = -1 } r;
-    s32 z;
-    BOOL f;
-    BOOL g;
+s32 func_0203551c(u16 *sceneNumbers) {
+    Unk02174e68 *object;
+    enum { K0 = -1 } result;
+    s32 touchInReturnRect;
+    BOOL pairIsNew;
+    BOOL pairRecentlyGone;
     s32 i;
-    u16 k;
-    u16 w;
-    void *e;
-    CellFileSet *t;
-    void *h;
+    u16 slotIndex;
+    u16 hasPair;
+    void *message;
+    CellFileSet *cellFileSets;
+    void *buttonText;
 
-    r = K0;
-    k = func_020435bc();
-    z = 0;
+    result = K0;
+    slotIndex = func_020435bc();
+    touchInReturnRect = 0;
     AdvanceInterpolation(&data_02174e68->mUnk_90);
-    f = FALSE;
-    g = FALSE;
-    w = data_02175674[k].mUnk_00;
-    if (w == 0 && data_02175680[k].mUnk_00 < 5) {
-        g = TRUE;
+    pairIsNew = FALSE;
+    pairRecentlyGone = FALSE;
+    hasPair = data_02175674[slotIndex].mUnk_00;
+    if (hasPair == 0 && data_02175680[slotIndex].mUnk_00 < 5) {
+        pairRecentlyGone = TRUE;
     }
-    if (g == FALSE && data_0217567c[k].mUnk_00 == 0 && w != 0) {
-        f = TRUE;
+    if (pairRecentlyGone == FALSE && data_0217567c[slotIndex].mUnk_00 == 0 && hasPair != 0) {
+        pairIsNew = TRUE;
     }
-    if (f != FALSE) {
-        z = IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[k].mUnk_00, data_02175672[k].mUnk_00);
+    if (pairIsNew != FALSE) {
+        touchInReturnRect = IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[slotIndex].mUnk_00,
+                                                                            data_02175672[slotIndex].mUnk_00);
     }
-    p = data_02174e68;
-    switch (p->mState) {
+    object = data_02174e68;
+    switch (object->mState) {
         case 0:
-            if (p->mUnk_90.mState == 1) {
-                p->mState = 1;
+            if (object->mUnk_90.mState == 1) {
+                object->mState = 1;
             } else {
                 func_02035b0c();
             }
@@ -321,11 +325,11 @@ s32 func_0203551c(u16 *a) {
                 SetupGhostNameSubTextTwoButtons();
                 RequestSelectReturnState4();
                 data_02174e68->mState = 2;
-            } else if ((u16) (data_02175628[k].mUnk_00 & PAD_KEY_B) != 0 || z != 0) {
-                e = GetBmgEntry(data_02174e68->mGhostMessages, 0x54);
-                h = GetBmgEntry(data_02174e68->mCommonMessages, 4);
+            } else if ((u16) (data_02175628[slotIndex].mUnk_00 & PAD_KEY_B) != 0 || touchInReturnRect != 0) {
+                message = GetBmgEntry(data_02174e68->mGhostMessages, 0x54);
+                buttonText = GetBmgEntry(data_02174e68->mCommonMessages, 4);
                 SetTxtSystemSoundId(0, 5);
-                SetupTxtSystemSubTextButton(e, h);
+                SetupTxtSystemSubTextButton(message, buttonText);
                 RequestSelectReturnState3WithSound(1);
                 data_02174e68->mUnk_a0 = FALSE;
                 data_02174e68->mState = 4;
@@ -351,10 +355,10 @@ s32 func_0203551c(u16 *a) {
             break;
         case 3:
             if (func_0203551c_inline_2() != 0) {
-                e = GetBmgEntry(p->mGhostMessages, 0x10);
-                h = GetBmgEntry(data_02174e68->mCommonMessages, 4);
+                message = GetBmgEntry(object->mGhostMessages, 0x10);
+                buttonText = GetBmgEntry(data_02174e68->mCommonMessages, 4);
                 SetTxtSystemSoundId(0, 5);
-                SetupTxtSystemSubTextButton(e, h);
+                SetupTxtSystemSubTextButton(message, buttonText);
                 data_02174e68->mUnk_a0 = FALSE;
                 data_02174e68->mState = 4;
             }
@@ -362,18 +366,19 @@ s32 func_0203551c(u16 *a) {
         case 4:
             if (GetTxtSystemDone() != 0) {
                 data_0217b488->mUnk_08 = 5;
-                if (a != NULL) {
-                    a[2] = 1;
+                if (sceneNumbers != NULL) {
+                    sceneNumbers[2] = 1;
                 }
                 data_02174e68->mState = 5;
             }
             break;
     }
     for (i = 0; i < 2; i++) {
-        t = data_02174e68->mUnk_2c;
-        DrawLayoutTable(t[i].mCellLayout, t[i].mCells, t[i].mLabelLayout, data_02174e68->mUnk_24[i], t[i].mCellTable);
+        cellFileSets = data_02174e68->mCellFileSets;
+        DrawLayoutTable(cellFileSets[i].mCellLayout, cellFileSets[i].mCells, cellFileSets[i].mLabelLayout,
+                        data_02174e68->mUnk_24[i], cellFileSets[i].mCellTable);
     }
-    return r;
+    return result;
 }
 
 #pragma thumb off
@@ -390,24 +395,24 @@ void func_020354fc(void) {
 #pragma thumb on
 
 void func_020353f8(void) {
-    s32 r;
-    s32 n;
+    s32 offset;
+    s32 negatedOffset;
 
-    r = GetInterpolatedValue(&data_02174e68->mUnk_90);
-    reg_G2_BG0OFS = (r << 16) & 0x1ff0000;
-    n = -r;
-    reg_G2S_DB_BG3OFS = (n << 16) & 0x1ff0000;
-    if (r != 0) {
+    offset = GetInterpolatedValue(&data_02174e68->mUnk_90);
+    reg_G2_BG0OFS = (offset << 16) & 0x1ff0000;
+    negatedOffset = -offset;
+    reg_G2S_DB_BG3OFS = (negatedOffset << 16) & 0x1ff0000;
+    if (offset != 0) {
         reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffff1fff) | 0x2000;
         reg_G2_WININ = (u32) ((reg_G2_WININ & ~0x3f) | 0x1f) | 0x20;
         reg_G2_WINOUT = (u32) ((reg_G2_WINOUT & ~0x3f) | 0xe) | 0x20;
         reg_G2_WIN0H = 0xff;
-        reg_G2_WIN0V = ((n << 8) & 0xff00) | 0xc0;
+        reg_G2_WIN0V = ((negatedOffset << 8) & 0xff00) | 0xc0;
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffff1fff) | 0x2000;
         reg_G2S_DB_WININ = (u32) ((reg_G2S_DB_WININ & ~0x3f) | 0x1f) | 0x20;
         reg_G2S_DB_WINOUT = (u32) ((reg_G2S_DB_WINOUT & ~0x3f) | 7) | 0x20;
         reg_G2S_DB_WIN0H = 0xff;
-        reg_G2S_DB_WIN0V = (r + 0xc0) & 0xff;
+        reg_G2S_DB_WIN0V = (offset + 0xc0) & 0xff;
     } else {
         reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
         reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffff1fff;
@@ -415,14 +420,14 @@ void func_020353f8(void) {
 }
 
 void func_020353a4(void) {
-    void *e;
-    void *f;
+    void *message;
+    void *buttonText;
 
-    e = GetBmgEntry(data_02174e64->mGhostMessages, 0x11);
-    f = GetBmgEntry(data_02174e64->mCommonMessages, 4);
+    message = GetBmgEntry(data_02174e64->mGhostMessages, 0x11);
+    buttonText = GetBmgEntry(data_02174e64->mCommonMessages, 4);
     SetTxtSystemSoundId(0, 5);
-    SetupTxtSystemSubTextButton(e, f);
-    data_02174e64->mUnk_090 = 0;
+    SetupTxtSystemSubTextButton(message, buttonText);
+    data_02174e64->mStateFrames = 0;
     data_02174e64->mState = 15;
 }
 
@@ -431,9 +436,9 @@ void func_020353a4(void) {
 #pragma thumb on
 
 void func_02035378(void) {
-    void *v1;
-    v1 = GetBmgEntry(data_02174e64->mGhostMessages, 1);
-    func_0212658c(v1, 0, 0, 0, 0, 0, 0);
+    void *message;
+    message = GetBmgEntry(data_02174e64->mGhostMessages, 1);
+    func_0212658c(message, 0, 0, 0, 0, 0, 0);
 }
 
 #pragma thumb off
@@ -442,99 +447,102 @@ void func_02035378(void) {
 
 // Selects the previous filled entry whose counter has run up to its end; a nonzero argument wraps from the first entry
 // to the last.
-void MoveSelectedGhostUp(s32 a) {
-    BOOL f;
-    s32 c;
-    s32 i;
-    Unk02174e64 *p;
+void MoveSelectedGhostUp(s32 wrap) {
+    BOOL found;
+    s32 startIndex;
+    s32 index;
+    Unk02174e64 *object;
 
-    f = FALSE;
-    p = data_02174e64;
-    c = p->mUnk_080;
-    i = c - 1;
-    if (i < 0) {
-        if (a == 0) {
+    found = FALSE;
+    object = data_02174e64;
+    startIndex = object->mSelectedIndex;
+    index = startIndex - 1;
+    if (index < 0) {
+        if (wrap == 0) {
             return;
         }
-        i = 3;
+        index = 3;
     }
-    if (i != c) {
+    if (index != startIndex) {
         do {
-            if (p->mUnk_09c[i].mUnk_28 == TRUE && p->mUnk_09c[i].mUnk_2c.mState == 1) {
-                f = TRUE;
-                p->mUnk_080 = i;
+            if (object->mGhostInfoEntries[index].mFilled == TRUE &&
+                object->mGhostInfoEntries[index].mInterpolation.mState == 1) {
+                found = TRUE;
+                object->mSelectedIndex = index;
                 break;
             }
-            i--;
-            if (i < 0) {
-                if (a == 0) {
+            index--;
+            if (index < 0) {
+                if (wrap == 0) {
                     return;
                 }
-                i = 3;
+                index = 3;
             }
-        } while (i != p->mUnk_080);
+        } while (index != object->mSelectedIndex);
     }
-    if (f != FALSE) {
+    if (found != FALSE) {
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
     }
 }
 
 // Selects the next filled entry whose counter has run up to its end; a nonzero argument wraps from the last entry to
 // the first.
-void MoveSelectedGhostDown(s32 a) {
-    BOOL f;
-    s32 c;
-    s32 i;
-    Unk02174e64 *p;
+void MoveSelectedGhostDown(s32 wrap) {
+    BOOL found;
+    s32 startIndex;
+    s32 index;
+    Unk02174e64 *object;
 
-    f = FALSE;
-    p = data_02174e64;
-    c = p->mUnk_080;
-    i = c + 1;
-    if (i >= 4) {
-        if (a == 0) {
+    found = FALSE;
+    object = data_02174e64;
+    startIndex = object->mSelectedIndex;
+    index = startIndex + 1;
+    if (index >= 4) {
+        if (wrap == 0) {
             return;
         }
-        i = 0;
+        index = 0;
     }
-    if (i != c) {
+    if (index != startIndex) {
         do {
-            if (p->mUnk_09c[i].mUnk_28 == TRUE && p->mUnk_09c[i].mUnk_2c.mState == 1) {
-                f = TRUE;
-                p->mUnk_080 = i;
+            if (object->mGhostInfoEntries[index].mFilled == TRUE &&
+                object->mGhostInfoEntries[index].mInterpolation.mState == 1) {
+                found = TRUE;
+                object->mSelectedIndex = index;
                 break;
             }
-            i++;
-            if (i >= 4) {
-                if (a == 0) {
+            index++;
+            if (index >= 4) {
+                if (wrap == 0) {
                     return;
                 }
-                i = 0;
+                index = 0;
             }
-        } while (i != p->mUnk_080);
+        } while (index != object->mSelectedIndex);
     }
-    if (f != FALSE) {
+    if (found != FALSE) {
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
     }
 }
 
 void func_02035228(s32 a) {
-    CellFileSet *q;
-    s32 m;
+    CellFileSet *subCellFileSet;
+    s32 selectedIndex;
     s32 w;
     s32 v;
 
-    q = &data_02174e64->mUnk_02c[1];
-    m = data_02174e64->mUnk_080;
-    w = m + 4;
+    subCellFileSet = &data_02174e64->mCellFileSets[1];
+    selectedIndex = data_02174e64->mSelectedIndex;
+    w = selectedIndex + 4;
     if (a != 0) {
         v = 0xe;
     } else {
         v = 0xf;
     }
-    q->mCellTable[4].mVisible = a;
-    func_02124100(w, v, q->mLabelLayout, q->mCellTable, q->mCellLayout);
-    func_02124100(m, v, q->mLabelLayout, q->mCellTable, q->mCellLayout);
+    subCellFileSet->mCellTable[4].mVisible = a;
+    func_02124100(w, v, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable, subCellFileSet->mCellLayout);
+    func_02124100(selectedIndex, v, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable,
+                  subCellFileSet->mCellLayout);
 }
 
 #pragma thumb off
@@ -542,14 +550,14 @@ void func_02035228(s32 a) {
 #pragma thumb on
 
 void SetupGhostSubTextTwoButtons(void) {
-    void *v1;
-    void *v2;
-    void *v3;
-    v1 = GetBmgEntry(data_02174e64->mGhostMessages, 8);
-    v2 = GetBmgEntry(data_02174e64->mCommonMessages, 0);
-    v3 = GetBmgEntry(data_02174e64->mCommonMessages, 1);
+    void *message;
+    void *firstButtonText;
+    void *secondButtonText;
+    message = GetBmgEntry(data_02174e64->mGhostMessages, 8);
+    firstButtonText = GetBmgEntry(data_02174e64->mCommonMessages, 0);
+    secondButtonText = GetBmgEntry(data_02174e64->mCommonMessages, 1);
     SetTxtSystemSoundId(0, 5);
-    SetupTxtSystemSubTextTwoButtonsEx(v1, v2, v3, 0, 0, 1, 1, 0);
+    SetupTxtSystemSubTextTwoButtonsEx(message, firstButtonText, secondButtonText, 0, 0, 1, 1, 0);
 }
 
 #pragma thumb off

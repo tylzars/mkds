@@ -70,37 +70,37 @@
 #pragma thumb on
 
 // Fills with 0 through a halfword stack offset of its own.
-static inline void func_02032f94_inline(void *p, s32 n) {
-    volatile u16 v = 0;
-    MIi_CpuClear16(v, p, n);
+static inline void func_02032f94_inline(void *buffer, s32 byteCount) {
+    volatile u16 fillValue = 0;
+    MIi_CpuClear16(fillValue, buffer, byteCount);
 }
 
-static inline Unk0217aa1c_144_00 *func_02032f94_inline_2(s32 j) {
-    return &gCupRecords->mUnk_144[GetCourseIndexInCup()].mUnk_00[j];
+static inline Unk0217aa1c_144_00 *func_02032f94_inline_2(s32 index) {
+    return &gCupRecords->mUnk_144[GetCourseIndexInCup()].mUnk_00[index];
 }
 
 static inline Unk0217aa1c_144 *func_02032f94_inline_3(void) {
     return &gCupRecords->mUnk_144[GetCourseIndexInCup()];
 }
 
-void InitResultsBattle(void *a, s32 b, s32 c) {
-    Unk02180774 *r;
-    CellFileSet *s;
-    CellFileSet *q;
-    ResultsBattle *p;
-    ScreenMapFileSet *t;
-    Unk0201ea30 *u;
-    u32 n;
+void InitResultsBattle(void *heap, s32 b, s32 c) {
+    Unk02180774 *displaySettings;
+    CellFileSet *mainCellFileSet;
+    CellFileSet *subCellFileSet;
+    ResultsBattle *results;
+    ScreenMapFileSet *screenMapFileSet;
+    Unk0201ea30 *cellLayout;
+    u32 remainingObjSize;
     s32 j;
     s32 k;
-    s32 e;
+    s32 orderIndex;
     u16 i;
-    u16 m;
-    u16 w[11];
+    u16 entryIndex;
+    u16 entryName[11];
     Unk02125de0Arg v;
-    s32 f[8];
+    s32 orderUsed[8];
 
-    gResultsBattle = HeapAlloc(a, 0x154);
+    gResultsBattle = HeapAlloc(heap, 0x154);
     MemFillWordsByBlock_inline(gResultsBattle, 0x154);
     gResultsBattle->mUnk_0b8[0] = b;
     gResultsBattle->mUnk_0b8[1] = c;
@@ -109,13 +109,13 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
         SetupWiFiSession(3);
     }
     Init3dEngine();
-    r = CreateDisplaySettings(a, data_021547f0);
-    SetBg0Record(r->mMainBgRecords, 3, 0, 0, 0, 0xd, 2, 0);
-    SetBg1Record(r->mMainBgRecords, 0, 0, 0, 0, 0xc, 0, 0);
-    SetBg2RecordParams(r->mMainBgRecords, 2, 0, 0, 0, 0x1e, 6);
-    SetBg3RecordParams(r->mMainBgRecords, 3, 0, 0, 0, 0x1d, 6);
-    SetBg3RecordParams(r->mSubBgRecords, 3, 0, 0, 0, 1, 6);
-    InitDisplayFromSettings(r);
+    displaySettings = CreateDisplaySettings(heap, data_021547f0);
+    SetBg0Record(displaySettings->mMainBgRecords, 3, 0, 0, 0, 0xd, 2, 0);
+    SetBg1Record(displaySettings->mMainBgRecords, 0, 0, 0, 0, 0xc, 0, 0);
+    SetBg2RecordParams(displaySettings->mMainBgRecords, 2, 0, 0, 0, 0x1e, 6);
+    SetBg3RecordParams(displaySettings->mMainBgRecords, 3, 0, 0, 0, 0x1d, 6);
+    SetBg3RecordParams(displaySettings->mSubBgRecords, 3, 0, 0, 0, 1, 6);
+    InitDisplayFromSettings(displaySettings);
     v.mUnk_00 = 0;
     v.mUnk_04 = NULL;
     v.mUnk_08 = 0;
@@ -127,33 +127,33 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
     v.mUnk_20 = 0;
     v.mUnk_24 = 0;
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
-    func_02125de0(a, &v);
+    func_02125de0(heap, &v);
     func_020629a4();
     gResultsBattle->mCommonMessages = FindFileInLoadedArchives(data_0216416c);
     switch (gResultsBattle->mMode) {
         case 0:
-            gResultsBattle->mUnk_0d0 = 0;
-            gResultsBattle->mUnk_0d8 = gRaceSetup->mKartCount;
-            gResultsBattle->mUnk_150 = 2;
+            gResultsBattle->mOwnEntryIndex = 0;
+            gResultsBattle->mKartCount = gRaceSetup->mKartCount;
+            gResultsBattle->mState = 2;
             break;
         case 1:
         case 2:
             SetSelectChoisesSoundId(1, 0xf);
-            gResultsBattle->mUnk_0d0 =
+            gResultsBattle->mOwnEntryIndex =
                 data_0217aa00->mUnk_1e52[(u16) (data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0)]
                     .mEntryIndex;
-            gResultsBattle->mUnk_0d8 = gRaceSetup->mKartCount;
-            gResultsBattle->mUnk_150 = 0;
+            gResultsBattle->mKartCount = gRaceSetup->mKartCount;
+            gResultsBattle->mState = 0;
             break;
         case 3:
-            gResultsBattle->mUnk_0d0 = GetPackedIndex(func_ov000_0219bb50());
-            gResultsBattle->mUnk_0d8 = gWiFiSession->mKartCount;
-            gResultsBattle->mUnk_148 = TRUE;
+            gResultsBattle->mOwnEntryIndex = GetPackedIndex(func_ov000_0219bb50());
+            gResultsBattle->mKartCount = gWiFiSession->mKartCount;
+            gResultsBattle->mUseTimer = TRUE;
             gResultsBattle->mTimer = 0x384;
-            gResultsBattle->mUnk_150 = 2;
+            gResultsBattle->mState = 2;
             break;
     }
-    func_02033e6c();
+    FillResultsBattleEntries();
     if (gRaceSetup->mUseTeams != 0) {
         j = 0;
         k = 0;
@@ -168,119 +168,123 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
                 break;
         }
         if (j == k) {
-            gResultsBattle->mUnk_0d4 = gResultsBattle->mUnk_0d8;
-            gResultsBattle->mUnk_0dc = 2;
+            gResultsBattle->mUnk_0d4 = gResultsBattle->mKartCount;
+            gResultsBattle->mFileSetKind = 2;
         } else if (j > k) {
             gResultsBattle->mUnk_0d4 = gRaceSetup->mTeamKartCounts[0];
-            gResultsBattle->mUnk_0dc = 3;
+            gResultsBattle->mFileSetKind = 3;
         } else if (k > j) {
             gResultsBattle->mUnk_0d4 = gRaceSetup->mTeamKartCounts[1];
-            gResultsBattle->mUnk_0dc = 4;
+            gResultsBattle->mFileSetKind = 4;
         }
-    } else if (func_02033e24() != 0) {
-        gResultsBattle->mUnk_0d4 = gResultsBattle->mUnk_0d8;
-        gResultsBattle->mUnk_0dc = 2;
-    } else if (gResultsBattle->mUnk_0e4[gResultsBattle->mUnk_0d0].mUnk_00 == 0) {
-        gResultsBattle->mUnk_0dc = 0;
+    } else if (AreResultsBattleRanksAllZero() != 0) {
+        gResultsBattle->mUnk_0d4 = gResultsBattle->mKartCount;
+        gResultsBattle->mFileSetKind = 2;
+    } else if (gResultsBattle->mEntries[gResultsBattle->mOwnEntryIndex].mRank == 0) {
+        gResultsBattle->mFileSetKind = 0;
     } else {
-        gResultsBattle->mUnk_0dc = 1;
+        gResultsBattle->mFileSetKind = 1;
     }
-    func_02025b84(1, &gResultsBattle->mUnk_048[2]);
-    func_02025b84(0, &gResultsBattle->mUnk_048[3]);
+    func_02025b84(1, &gResultsBattle->mCellFileSets[2]);
+    func_02025b84(0, &gResultsBattle->mCellFileSets[3]);
     gResultsBattle->mUnk_0c0 = func_020b4024(1);
     gResultsBattle->mUnk_0c4 = func_020b4024(0);
-    t = &gResultsBattle->mUnk_000[0];
-    LoadScreenMapFileSet(t, data_02153f80[gResultsBattle->mUnk_0dc][0], data_02153f84[gResultsBattle->mUnk_0dc][0],
-                         data_02153f8c[gResultsBattle->mUnk_0dc][0], 3, FindSceneFile);
-    LoadNscrData(&t->mScreenMaps[2], FindSceneFile(data_02153f88[gResultsBattle->mUnk_0dc][0]));
-    GX_LoadBG3Char(t->mChars[3]->mData, 0, t->mChars[3]->mDataSize);
-    GX_LoadBGPltt(t->mPalette->mData, 0, 0x140);
-    GX_LoadBG2Scr(t->mScreenMaps[2]->mData, 0, t->mScreenMaps[2]->mDataSize);
-    GX_LoadBG3Scr(t->mScreenMaps[3]->mData, 0, t->mScreenMaps[3]->mDataSize);
-    s = &gResultsBattle->mUnk_048[0];
-    LoadCellFileSet(s, data_02153f90[gResultsBattle->mUnk_0dc][0], data_02153f94[gResultsBattle->mUnk_0dc][0],
-                    data_02153f98[gResultsBattle->mUnk_0dc][0], data_02153f9c[gResultsBattle->mUnk_0dc][0],
-                    data_02153fa0[gResultsBattle->mUnk_0dc][0], NULL, FindSceneFile);
-    func_02025a50(0, a, s);
-    switch (gResultsBattle->mUnk_0dc) {
+    screenMapFileSet = &gResultsBattle->mScreenMapFileSets[0];
+    LoadScreenMapFileSet(screenMapFileSet, data_02153f80[gResultsBattle->mFileSetKind][0],
+                         data_02153f84[gResultsBattle->mFileSetKind][0], data_02153f8c[gResultsBattle->mFileSetKind][0],
+                         3, FindSceneFile);
+    LoadNscrData(&screenMapFileSet->mScreenMaps[2], FindSceneFile(data_02153f88[gResultsBattle->mFileSetKind][0]));
+    GX_LoadBG3Char(screenMapFileSet->mChars[3]->mData, 0, screenMapFileSet->mChars[3]->mDataSize);
+    GX_LoadBGPltt(screenMapFileSet->mPalette->mData, 0, 0x140);
+    GX_LoadBG2Scr(screenMapFileSet->mScreenMaps[2]->mData, 0, screenMapFileSet->mScreenMaps[2]->mDataSize);
+    GX_LoadBG3Scr(screenMapFileSet->mScreenMaps[3]->mData, 0, screenMapFileSet->mScreenMaps[3]->mDataSize);
+    mainCellFileSet = &gResultsBattle->mCellFileSets[0];
+    LoadCellFileSet(mainCellFileSet, data_02153f90[gResultsBattle->mFileSetKind][0],
+                    data_02153f94[gResultsBattle->mFileSetKind][0], data_02153f98[gResultsBattle->mFileSetKind][0],
+                    data_02153f9c[gResultsBattle->mFileSetKind][0], data_02153fa0[gResultsBattle->mFileSetKind][0],
+                    NULL, FindSceneFile);
+    func_02025a50(0, heap, mainCellFileSet);
+    switch (gResultsBattle->mFileSetKind) {
         case 0:
-            func_02033a0c(a);
+            func_02033a0c(heap);
             break;
         case 1:
-            func_020338f8(a);
+            func_020338f8(heap);
             break;
         case 2:
-            func_02033840(a);
+            func_02033840(heap);
             break;
         case 3:
         case 4:
-            func_020336ec(a);
+            func_020336ec(heap);
             break;
     }
-    u = s->mCellLayout;
-    for (i = 0; i < u->mUnk_06; i++) {
-        func_0201ea30(s->mCellLayout, i);
+    cellLayout = mainCellFileSet->mCellLayout;
+    for (i = 0; i < cellLayout->mUnk_06; i++) {
+        func_0201ea30(mainCellFileSet->mCellLayout, i);
     }
-    t = &gResultsBattle->mUnk_000[1];
-    LoadScreenMapFileSet(t, gResultsBattleSBNcgrName, gResultsBattleSBNclrName, gResultsBattleSBgNscrName, 3,
-                         FindSceneFile);
-    GXS_LoadBG3Char(t->mChars[3]->mData, 0, t->mChars[3]->mDataSize);
-    GXS_LoadBGPltt(t->mPalette->mData, 0, 0x140);
-    GXS_LoadBG3Scr(t->mScreenMaps[3]->mData, 0, t->mScreenMaps[3]->mDataSize);
-    n = GX_GetSizeOfSubOBJ();
-    p = gResultsBattle;
-    q = &p->mUnk_048[1];
-    LoadCellFileSet(q, gResultsBattleSNcgrName, gResultsBattleSNcerName, gResultsBattleSONclrName,
+    screenMapFileSet = &gResultsBattle->mScreenMapFileSets[1];
+    LoadScreenMapFileSet(screenMapFileSet, gResultsBattleSBNcgrName, gResultsBattleSBNclrName,
+                         gResultsBattleSBgNscrName, 3, FindSceneFile);
+    GXS_LoadBG3Char(screenMapFileSet->mChars[3]->mData, 0, screenMapFileSet->mChars[3]->mDataSize);
+    GXS_LoadBGPltt(screenMapFileSet->mPalette->mData, 0, 0x140);
+    GXS_LoadBG3Scr(screenMapFileSet->mScreenMaps[3]->mData, 0, screenMapFileSet->mScreenMaps[3]->mDataSize);
+    remainingObjSize = GX_GetSizeOfSubOBJ();
+    results = gResultsBattle;
+    subCellFileSet = &results->mCellFileSets[1];
+    LoadCellFileSet(subCellFileSet, gResultsBattleSNcgrName, gResultsBattleSNcerName, gResultsBattleSONclrName,
                     gResultsBattleSBnclName, gResultsBattleSBnllName, NULL, FindSceneFile);
-    InitLayoutTable(a, q->mCellLayout, q->mLabelLayout, &q->mCellTable);
-    GXS_LoadOBJ(((Ncgr *) p->mUnk_048[1].mChars)->mData, 0, ((Ncgr *) p->mUnk_048[1].mChars)->mDataSize);
-    GXS_LoadOBJPltt(((Nclr *) q->mPalette)->mData, 0, ((Nclr *) q->mPalette)->mDataSize);
-    for (i = 0; i < q->mLabelLayout->mUnk_06; i++) {
-        n -= func_02025a00(1, a, q, data_02153f00[i], n);
+    InitLayoutTable(heap, subCellFileSet->mCellLayout, subCellFileSet->mLabelLayout, &subCellFileSet->mCellTable);
+    GXS_LoadOBJ(((Ncgr *) results->mCellFileSets[1].mChars)->mData, 0,
+                ((Ncgr *) results->mCellFileSets[1].mChars)->mDataSize);
+    GXS_LoadOBJPltt(((Nclr *) subCellFileSet->mPalette)->mData, 0, ((Nclr *) subCellFileSet->mPalette)->mDataSize);
+    for (i = 0; i < subCellFileSet->mLabelLayout->mUnk_06; i++) {
+        remainingObjSize -= func_02025a00(1, heap, subCellFileSet, data_02153f00[i], remainingObjSize);
     }
-    for (i = 0; i < q->mCellLayout->mUnk_06; i++) {
-        func_021249a8(i, 2, q->mCells, q->mCellLayout);
+    for (i = 0; i < subCellFileSet->mCellLayout->mUnk_06; i++) {
+        func_021249a8(i, 2, subCellFileSet->mCells, subCellFileSet->mCellLayout);
     }
     for (i = 0; i < 8; i++) {
-        f[i] = 0;
+        orderUsed[i] = 0;
     }
-    for (m = 0; m < 8; m++) {
-        e = gResultsBattle->mUnk_0e4[m].mUnk_08;
-        k = gRaceSetup->mCurrentEntries[m].mPlayer.mKind;
+    for (entryIndex = 0; entryIndex < 8; entryIndex++) {
+        orderIndex = gResultsBattle->mEntries[entryIndex].mOrderIndex;
+        k = gRaceSetup->mCurrentEntries[entryIndex].mPlayer.mKind;
         if ((k == PLAYER_KIND_HUMAN || k == PLAYER_KIND_CPU || k == PLAYER_KIND_PEER) &&
-            (gResultsBattle->mMode != 3 || gResultsBattle->mUnk_0e4[m].mUnk_04 != 0)) {
-            func_02033ab8(1, m, e + 0x30, 1);
-            func_02032f94_inline(w, 0x16);
-            CopyKartEntryName(m, w, 0);
-            func_0212426c(1, e, q->mLabelLayout, w, q->mCellLayout, q->mCellTable);
-            func_02033b80(m);
-            func_02033c80(m);
-            f[e] = 1;
+            (gResultsBattle->mMode != 3 || gResultsBattle->mEntries[entryIndex].mScore != 0)) {
+            func_02033ab8(1, entryIndex, orderIndex + 0x30, 1);
+            func_02032f94_inline(entryName, 0x16);
+            CopyKartEntryName(entryIndex, entryName, 0);
+            func_0212426c(1, orderIndex, subCellFileSet->mLabelLayout, entryName, subCellFileSet->mCellLayout,
+                          subCellFileSet->mCellTable);
+            func_02033b80(entryIndex);
+            func_02033c80(entryIndex);
+            orderUsed[orderIndex] = 1;
         }
     }
     for (i = 0; i < 8; i++) {
-        if (f[i] == 0) {
-            q->mCellTable[i + 0x48].mVisible = 0;
-            q->mCellTable[i + 0x30].mVisible = q->mCellTable[i + 0x48].mVisible;
-            q->mCellTable[i + 0x38].mVisible = q->mCellTable[i + 0x30].mVisible;
-            q->mCellTable[i + 0x28].mVisible = q->mCellTable[i + 0x38].mVisible;
-            q->mCellTable[i + 0x20].mVisible = q->mCellTable[i + 0x28].mVisible;
-            q->mCellTable[i + 0x18].mVisible = q->mCellTable[i + 0x20].mVisible;
-            q->mCellTable[i + 0x10].mVisible = q->mCellTable[i + 0x18].mVisible;
-            q->mCellTable[i + 0x08].mVisible = q->mCellTable[i + 0x10].mVisible;
-            q->mCellTable[i].mVisible = q->mCellTable[i + 0x08].mVisible;
+        if (orderUsed[i] == 0) {
+            subCellFileSet->mCellTable[i + 0x48].mVisible = 0;
+            subCellFileSet->mCellTable[i + 0x30].mVisible = subCellFileSet->mCellTable[i + 0x48].mVisible;
+            subCellFileSet->mCellTable[i + 0x38].mVisible = subCellFileSet->mCellTable[i + 0x30].mVisible;
+            subCellFileSet->mCellTable[i + 0x28].mVisible = subCellFileSet->mCellTable[i + 0x38].mVisible;
+            subCellFileSet->mCellTable[i + 0x20].mVisible = subCellFileSet->mCellTable[i + 0x28].mVisible;
+            subCellFileSet->mCellTable[i + 0x18].mVisible = subCellFileSet->mCellTable[i + 0x20].mVisible;
+            subCellFileSet->mCellTable[i + 0x10].mVisible = subCellFileSet->mCellTable[i + 0x18].mVisible;
+            subCellFileSet->mCellTable[i + 0x08].mVisible = subCellFileSet->mCellTable[i + 0x10].mVisible;
+            subCellFileSet->mCellTable[i].mVisible = subCellFileSet->mCellTable[i + 0x08].mVisible;
         }
     }
-    switch (gResultsBattle->mUnk_0dc) {
+    switch (gResultsBattle->mFileSetKind) {
         case 3:
-            if (gRaceSetup->mCurrentEntries[(u16) gResultsBattle->mUnk_0d0].mPlayer.mTeamIndex == 0) {
+            if (gRaceSetup->mCurrentEntries[(u16) gResultsBattle->mOwnEntryIndex].mPlayer.mTeamIndex == 0) {
                 k = 0;
             } else {
                 k = 7;
             }
             break;
         case 4:
-            if (gRaceSetup->mCurrentEntries[(u16) gResultsBattle->mUnk_0d0].mPlayer.mTeamIndex == 1) {
+            if (gRaceSetup->mCurrentEntries[(u16) gResultsBattle->mOwnEntryIndex].mPlayer.mTeamIndex == 1) {
                 k = 0;
             } else {
                 k = 7;
@@ -300,63 +304,66 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
 
 #pragma thumb on
 
-void AdvanceResultsBattle(Unk02032ac4 *a) {
-    CellFileSet *s;
-    CellFileSet *t;
-    Unk02175628Index v1;
-    s32 x;
-    s32 j;
-    void *m;
-    void *n;
-    void *m2;
-    void *n2;
+void AdvanceResultsBattle(Unk02032ac4 *sceneNumbers) {
+    CellFileSet *mainCellFileSet;
+    CellFileSet *subCellFileSet;
+    Unk02175628Index inputSlotIndex;
+    s32 shownTimer;
+    s32 cellCount;
+    void *tensCellLayout;
+    void *tensCells;
+    void *unitsCellLayout;
+    void *unitsCells;
     s32 i;
-    s32 r;
+    s32 frameLimit;
 
-    t = &gResultsBattle->mUnk_048[1];
-    s = &gResultsBattle->mUnk_048[0];
-    if (gResultsBattle->mUnk_148 != FALSE) {
+    subCellFileSet = &gResultsBattle->mCellFileSets[1];
+    mainCellFileSet = &gResultsBattle->mCellFileSets[0];
+    if (gResultsBattle->mUseTimer != FALSE) {
         if (gResultsBattle->mTimer != 0) {
             gResultsBattle->mTimer = gResultsBattle->mTimer - 1;
-            x = (gResultsBattle->mTimer + 0x3c) / 0x3c;
-            s->mCellTable[gResultsBattle->mUnk_0ce].mVisible = x >= 10 ? 1 : 0;
+            shownTimer = (gResultsBattle->mTimer + 0x3c) / 0x3c;
+            mainCellFileSet->mCellTable[gResultsBattle->mTimerTensCell].mVisible = shownTimer >= 10 ? 1 : 0;
             if (gResultsBattle->mTimer == 0) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x51);
-            } else if ((gResultsBattle->mTimer + 0x3c) % 0x3c == 0 && x <= 4) {
+            } else if ((gResultsBattle->mTimer + 0x3c) % 0x3c == 0 && shownTimer <= 4) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x50);
             }
         } else {
-            x = 0;
+            shownTimer = 0;
         }
-        m = s->mCellLayout;
-        n = s->mCells;
-        func_02124748(gResultsBattle->mUnk_0cc + (x / 10) % 10, n, s->mChars, m, 0, gResultsBattle->mUnk_0ce, n, m);
-        m2 = s->mCellLayout;
-        n2 = s->mCells;
-        func_02124748(gResultsBattle->mUnk_0cc + x % 10, n2, s->mChars, m2, 0, gResultsBattle->mUnk_0ce + 1, n2, m2);
+        tensCellLayout = mainCellFileSet->mCellLayout;
+        tensCells = mainCellFileSet->mCells;
+        func_02124748(gResultsBattle->mTimerDigitCellBase + (shownTimer / 10) % 10, tensCells, mainCellFileSet->mChars,
+                      tensCellLayout, 0, gResultsBattle->mTimerTensCell, tensCells, tensCellLayout);
+        unitsCellLayout = mainCellFileSet->mCellLayout;
+        unitsCells = mainCellFileSet->mCells;
+        func_02124748(gResultsBattle->mTimerDigitCellBase + shownTimer % 10, unitsCells, mainCellFileSet->mChars,
+                      unitsCellLayout, 0, gResultsBattle->mTimerTensCell + 1, unitsCells, unitsCellLayout);
     } else {
-        s->mCellTable[gResultsBattle->mUnk_0ce + 1].mVisible = 0;
-        s->mCellTable[gResultsBattle->mUnk_0ce].mVisible = s->mCellTable[gResultsBattle->mUnk_0ce + 1].mVisible;
+        mainCellFileSet->mCellTable[gResultsBattle->mTimerTensCell + 1].mVisible = 0;
+        mainCellFileSet->mCellTable[gResultsBattle->mTimerTensCell].mVisible =
+            mainCellFileSet->mCellTable[gResultsBattle->mTimerTensCell + 1].mVisible;
     }
-    switch (gResultsBattle->mUnk_150) {
+    switch (gResultsBattle->mState) {
         case 0:
-            gResultsBattle->mUnk_144 = gResultsBattle->mUnk_144 + 1;
+            gResultsBattle->mState0To2Frames = gResultsBattle->mState0To2Frames + 1;
             if (StartDataSharingSync() == 1) {
-                gResultsBattle->mUnk_150 = 1;
+                gResultsBattle->mState = 1;
             }
             break;
         case 1:
-            gResultsBattle->mUnk_144 = gResultsBattle->mUnk_144 + 1;
+            gResultsBattle->mState0To2Frames = gResultsBattle->mState0To2Frames + 1;
             if (FinishDataSharingSync() == 1) {
-                gResultsBattle->mUnk_150 = 2;
+                gResultsBattle->mState = 2;
             }
             break;
         case 2:
-            r = func_0210f714();
-            gResultsBattle->mUnk_144 = gResultsBattle->mUnk_144 + 1;
-            if (gResultsBattle->mUnk_144 > r) {
-                gResultsBattle->mUnk_144 = 0;
-                gResultsBattle->mUnk_150 = 3;
+            frameLimit = func_0210f714();
+            gResultsBattle->mState0To2Frames = gResultsBattle->mState0To2Frames + 1;
+            if (gResultsBattle->mState0To2Frames > frameLimit) {
+                gResultsBattle->mState0To2Frames = 0;
+                gResultsBattle->mState = 3;
             }
             break;
         case 3:
@@ -364,30 +371,30 @@ void AdvanceResultsBattle(Unk02032ac4 *a) {
                 case 0:
                     if ((u16) (data_02175628[func_020435bc()].mUnk_00 & PAD_KEY_A) != 0) {
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
-                        if (a != NULL) {
-                            a->mUnk_04 = 1;
+                        if (sceneNumbers != NULL) {
+                            sceneNumbers->mUnk_04 = 1;
                         }
-                        gResultsBattle->mUnk_150 = 7;
+                        gResultsBattle->mState = 7;
                     }
                     break;
                 case 1:
                 case 2:
-                    v1 = UNK_02175628_INDEX_8;
-                    if ((u16) (data_02175628[v1].mUnk_00 & PAD_KEY_A) != 0) {
+                    inputSlotIndex = UNK_02175628_INDEX_8;
+                    if ((u16) (data_02175628[inputSlotIndex].mUnk_00 & PAD_KEY_A) != 0) {
                         StartResultsBattleChoices();
-                        gResultsBattle->mUnk_150 = 4;
+                        gResultsBattle->mState = 4;
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
                     }
                     break;
                 case 3:
-                    if (func_02033dfc() != 0) {
+                    if (IsResultsBattleTimerRunOut() != 0) {
                         func_02121dec(1);
-                        gResultsBattle->mUnk_150 = 5;
+                        gResultsBattle->mState = 5;
                     } else if ((u16) (data_02175628[func_020435bc()].mUnk_00 & PAD_KEY_A) != 0 ||
                                func_02033dd0() != 0) {
                         StartResultsBattleChoices();
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
-                        gResultsBattle->mUnk_150 = 4;
+                        gResultsBattle->mState = 4;
                     }
                     break;
             }
@@ -402,45 +409,45 @@ void AdvanceResultsBattle(Unk02032ac4 *a) {
                                 if (data_021759d0->mUnk_1c_2 != 0) {
                                     data_0217b488->mUnk_74 = 3;
                                     data_0217b488->mUnk_08 = 4;
-                                    if (a != NULL) {
-                                        a->mUnk_04 = 6;
+                                    if (sceneNumbers != NULL) {
+                                        sceneNumbers->mUnk_04 = 6;
                                     }
                                 } else {
                                     data_0217b488->mUnk_08 = 4;
-                                    if (a != NULL) {
-                                        a->mUnk_04 = 1;
+                                    if (sceneNumbers != NULL) {
+                                        sceneNumbers->mUnk_04 = 1;
                                     }
                                 }
-                                gResultsBattle->mUnk_150 = 7;
+                                gResultsBattle->mState = 7;
                                 break;
                             case 1:
                                 data_0217aa00->mUnk_0454 = data_0217aa00->mUnk_0454 | 0x80;
-                                gResultsBattle->mUnk_150 = 6;
+                                gResultsBattle->mState = 6;
                                 break;
                             case -1:
-                                gResultsBattle->mUnk_150 = 3;
+                                gResultsBattle->mState = 3;
                                 break;
                         }
                         RequestSelectChoisesState0();
                     }
                     break;
                 case 3:
-                    if (GetSelectChoisesDone() != 0 || func_02033dfc() != 0) {
+                    if (GetSelectChoisesDone() != 0 || IsResultsBattleTimerRunOut() != 0) {
                         switch (GetSelectChoisesIndex()) {
                             case 0:
-                                gResultsBattle->mUnk_150 = 5;
+                                gResultsBattle->mState = 5;
                                 func_02121dec(1);
                                 break;
                             case 1:
                                 func_02121dec(0);
                                 data_0217b488->mUnk_1c = 1;
-                                if (a != NULL) {
-                                    a->mUnk_04 = 0xc;
+                                if (sceneNumbers != NULL) {
+                                    sceneNumbers->mUnk_04 = 0xc;
                                 }
-                                gResultsBattle->mUnk_150 = 7;
+                                gResultsBattle->mState = 7;
                                 break;
                             case -1:
-                                gResultsBattle->mUnk_150 = 3;
+                                gResultsBattle->mState = 3;
                                 break;
                         }
                         RequestSelectChoisesState0();
@@ -458,36 +465,37 @@ void AdvanceResultsBattle(Unk02032ac4 *a) {
                         data_0217b488->mUnk_1c = 1;
                         break;
                 }
-                if (a != NULL) {
-                    a->mUnk_04 = 0xc;
+                if (sceneNumbers != NULL) {
+                    sceneNumbers->mUnk_04 = 0xc;
                 }
-                gResultsBattle->mUnk_150 = 7;
+                gResultsBattle->mState = 7;
             }
             break;
         case 6:
             if (func_02054f58() == 1) {
-                if (a != NULL) {
-                    a->mUnk_04 = 0;
+                if (sceneNumbers != NULL) {
+                    sceneNumbers->mUnk_04 = 0;
                 }
-                gResultsBattle->mUnk_150 = 7;
+                gResultsBattle->mState = 7;
             }
             break;
     }
     func_020a2558();
     func_020a23cc();
     for (i = 0; i < 2; i++) {
-        DrawLayoutTable(gResultsBattle->mUnk_048[i].mCellLayout, gResultsBattle->mUnk_048[i].mCells,
-                        gResultsBattle->mUnk_048[i].mLabelLayout, (void *) gResultsBattle->mUnk_0b8[i],
-                        gResultsBattle->mUnk_048[i].mCellTable);
+        DrawLayoutTable(gResultsBattle->mCellFileSets[i].mCellLayout, gResultsBattle->mCellFileSets[i].mCells,
+                        gResultsBattle->mCellFileSets[i].mLabelLayout, (void *) gResultsBattle->mUnk_0b8[i],
+                        gResultsBattle->mCellFileSets[i].mCellTable);
     }
-    j = t->mCellLayout->mUnk_06;
+    cellCount = subCellFileSet->mCellLayout->mUnk_06;
     for (i = 0; i < 8; i++) {
-        t->mCellTable[i + j].mOffsetY = t->mCellTable[i + j].mOffsetY + 1;
-        func_02124100(i, 0xe, t->mLabelLayout, t->mCellTable, t->mCellLayout);
-        DrawLayoutTableEntry(i + j, t->mCellLayout, t->mCells, t->mLabelLayout, (void *) gResultsBattle->mUnk_0b8[1],
-                             t->mCellTable);
-        func_02124100(i, 0xf, t->mLabelLayout, t->mCellTable, t->mCellLayout);
-        t->mCellTable[i + j].mOffsetY = t->mCellTable[i + j].mOffsetY - 1;
+        subCellFileSet->mCellTable[i + cellCount].mOffsetY = subCellFileSet->mCellTable[i + cellCount].mOffsetY + 1;
+        func_02124100(i, 0xe, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable, subCellFileSet->mCellLayout);
+        DrawLayoutTableEntry(i + cellCount, subCellFileSet->mCellLayout, subCellFileSet->mCells,
+                             subCellFileSet->mLabelLayout, (void *) gResultsBattle->mUnk_0b8[1],
+                             subCellFileSet->mCellTable);
+        func_02124100(i, 0xf, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable, subCellFileSet->mCellLayout);
+        subCellFileSet->mCellTable[i + cellCount].mOffsetY = subCellFileSet->mCellTable[i + cellCount].mOffsetY - 1;
     }
     func_02125928();
 }

@@ -16,4 +16,4 @@ typedef struct Unk0202ddd8 {
 } Unk0202ddd8;
 
 void func_0203434c(void);
-s32 func_02034370(Unk02034370 *a);
+s32 func_02034370(Unk02034370 *sceneNumbers);
