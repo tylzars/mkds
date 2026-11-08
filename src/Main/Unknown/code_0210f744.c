@@ -667,7 +667,7 @@ void func_0210f9f0(void *kartAddress, int b) {
 }
 
 void func_0210f9ac(Kart *kart) {
-    AddSoundRequest(&data_0217d28c, func_02086080(kart->mIndex), func_0210f9f0, kart, 0);
+    AddSoundRequest(&data_0217d28c, GetKartCameraDistanceSquared(kart->mIndex), func_0210f9f0, kart, 0);
 }
 
 void func_0210f8b0(SoundSetPlayer *player, s32 seqId, s32 firstBankId) {

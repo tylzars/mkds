@@ -3094,7 +3094,7 @@ UploadResTexture kind:function(arm,size=0x1a8) addr:0x020850c4
 AddResFileEntry kind:function(arm,size=0xd0) addr:0x0208526c
 ResetResFileEntries kind:function(arm,size=0x18) addr:0x0208533c
 func_02085354 kind:function(arm,size=0xc) addr:0x02085354
-func_02085360 kind:function(arm,size=0x1c) addr:0x02085360
+DrawNsbmd1Mat1Shp kind:function(arm,size=0x1c) addr:0x02085360
 GetKartAiRandom kind:function(arm,size=0x14) addr:0x0208537c
 func_02085390 kind:function(arm,size=0x14) addr:0x02085390
 GetKartRaceProgressScaled kind:function(arm,size=0x38) addr:0x020853a4
@@ -3118,9 +3118,9 @@ func_02085bec kind:function(thumb,size=0x130) addr:0x02085bec
 InitKartAiNonCpuCounts kind:function(thumb,size=0xe8) addr:0x02085d1c
 InitKartAiShared kind:function(thumb,size=0x1d4) addr:0x02085e04
 SetKartAiParamRow kind:function(thumb,size=0x80) addr:0x02085fd8
-func_02086058 kind:function(arm,size=0x14) addr:0x02086058
+GetKartIndicesByDistance kind:function(arm,size=0x14) addr:0x02086058
 func_0208606c kind:function(arm,size=0x14) addr:0x0208606c
-func_02086080 kind:function(arm,size=0x18) addr:0x02086080
+GetKartCameraDistanceSquared kind:function(arm,size=0x18) addr:0x02086080
 func_02086098 kind:function(arm,size=0x1b8) addr:0x02086098
 func_02086250 kind:function(arm,size=0x39c) addr:0x02086250
 func_020865ec kind:function(arm,size=0xc8) addr:0x020865ec
@@ -8038,7 +8038,7 @@ gKartSurfaceEffectRow6 kind:data(any) addr:0x021559c8
 gKartSurfaceEffectRow7 kind:data(any) addr:0x021559e8
 data_02155a08 kind:data(any) addr:0x02155a08
 data_02155a14 kind:data(any) addr:0x02155a14
-data_02155a20 kind:data(any) addr:0x02155a20
+gNsbmdDrawFunctions kind:data(any) addr:0x02155a20
 data_02155a28 kind:data(any) addr:0x02155a28
 data_02155a2c kind:data(any) addr:0x02155a2c
 data_usa_02155a34 kind:data(any) addr:0x02155a34
@@ -11395,7 +11395,7 @@ gKartEntryNamePlltBuffer kind:bss addr:0x0217aea8
 data_0217aecc kind:bss addr:0x0217aeac
 data_0217aed0 kind:bss addr:0x0217aeb0
 gKartEmblemPlltBuffer kind:bss addr:0x0217aeb4
-data_0217aed8 kind:bss addr:0x0217aeb8
+gKartDistanceLimitsSquared kind:bss addr:0x0217aeb8
 data_0217aedc kind:bss addr:0x0217aebc
 data_0217aee0 kind:bss addr:0x0217aec0
 gAnmObjSizeRequired kind:bss addr:0x0217af00

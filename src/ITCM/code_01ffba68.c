@@ -217,7 +217,7 @@ void func_01ffc9e8(Kart *p, s32 a) {
 
     c = (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) ? 3 : 2;
     b = data_usa_0216ca38[a];
-    d = func_02086080(p->mIndex);
+    d = GetKartCameraDistanceSquared(p->mIndex);
     AddSoundRequest(&(data_0217d26c)[c], d + b, func_02071980, p, a);
 }
 

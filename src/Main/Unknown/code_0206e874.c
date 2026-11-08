@@ -53,7 +53,7 @@ void func_0206edac(Kart *kart, Vec3 *groundNormal) {
     if (kart->mLandingTimer <= 0) {
         k = (kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) ? 3 : 2;
         x = data_usa_0216ca38[2];
-        distanceSquared = func_02086080(kart->mIndex);
+        distanceSquared = GetKartCameraDistanceSquared(kart->mIndex);
         AddSoundRequest(data_0217d26c + k, distanceSquared + x, (void (*)(void *, int)) func_02071958, kart, 2);
         StartKartModelScaleAnimation(kart, 0);
     }

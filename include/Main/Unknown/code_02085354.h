@@ -10,5 +10,5 @@ typedef struct Unk02085360 {
     /* 04 */ NNSG3dResMdl *mUnk_04;
 } Unk02085360;
 
-void func_02085354(void *a);
-void func_02085360(Unk02085360 *a);
+void func_02085354(void *object);
+void DrawNsbmd1Mat1Shp(Unk02085360 *nsbmd);

@@ -167,22 +167,22 @@ void func_02024a88(Kart *kart) {
                 g = func_02024eec((KartSound *) &kart->mUnk_450, i, 0);
                 soundRecord->mUnk_04 = 0x7f;
                 soundRecord->mUnk_00 = soundRecord->mUnk_44;
-                AddSoundRequest(&data_0217d274, func_02086080(kart->mIndex), (void (*)(void *, int)) func_02024fc0,
-                                kart, (s32) soundRecord);
+                AddSoundRequest(&data_0217d274, GetKartCameraDistanceSquared(kart->mIndex),
+                                (void (*)(void *, int)) func_02024fc0, kart, (s32) soundRecord);
             } else {
                 i = ((s64) h * 0x480000 + 0x800) >> 12;
                 g = func_02024eec((KartSound *) &kart->mUnk_450, i, 0);
                 soundRecord->mUnk_04 = 0x46;
                 soundRecord->mUnk_00 = soundRecord->mUnk_44;
-                AddSoundRequest(&data_0217d274, func_02086080(kart->mIndex), (void (*)(void *, int)) func_02024fc0,
-                                kart, (s32) soundRecord);
+                AddSoundRequest(&data_0217d274, GetKartCameraDistanceSquared(kart->mIndex),
+                                (void (*)(void *, int)) func_02024fc0, kart, (s32) soundRecord);
             }
         } else {
             soundRecord->mUnk_0c = 0;
             soundRecord->mUnk_10 = 0;
             soundRecord->mUnk_04 = 0x3c;
-            AddSoundRequest(&data_0217d274, func_02086080(kart->mIndex), (void (*)(void *, int)) func_02025030, kart,
-                            (s32) soundRecord);
+            AddSoundRequest(&data_0217d274, GetKartCameraDistanceSquared(kart->mIndex),
+                            (void (*)(void *, int)) func_02025030, kart, (s32) soundRecord);
             g = -1;
         }
         soundRecord->mUnk_08 = g;
@@ -199,8 +199,8 @@ void func_02024a88(Kart *kart) {
             g = 0x280000;
         }
         soundRecord->mUnk_04 = data_02153158[(kart->mVelocityLengthRatio >> 8) & 0xff];
-        AddSoundRequest(&data_0217d274, func_02086080(kart->mIndex), (void (*)(void *, int)) func_02024fe8, kart,
-                        (s32) soundRecord);
+        AddSoundRequest(&data_0217d274, GetKartCameraDistanceSquared(kart->mIndex),
+                        (void (*)(void *, int)) func_02024fe8, kart, (s32) soundRecord);
     } else if (f != 0 || (g != 0 && kart->mForwardSpeed < 0)) {
         if (aboveSpeedLimit != 0) {
             i = (s32) (((s64) h * soundRecord->mUnk_18 + 0x800) >> 12) + 0x580000;
@@ -212,8 +212,8 @@ void func_02024a88(Kart *kart) {
         if (soundRecord->mUnk_14 == 0) {
             soundRecord->mUnk_00 = kart->mVelocityLengthRatio < 0x333 ? soundRecord->mUnk_64 : soundRecord->mUnk_60;
         }
-        AddSoundRequest(&data_0217d274, func_02086080(kart->mIndex), (void (*)(void *, int)) func_0202506c, kart,
-                        (s32) soundRecord);
+        AddSoundRequest(&data_0217d274, GetKartCameraDistanceSquared(kart->mIndex),
+                        (void (*)(void *, int)) func_0202506c, kart, (s32) soundRecord);
     } else {
         if (aboveSpeedLimit != 0) {
             i = (s32) (((s64) h * soundRecord->mUnk_18 + 0x800) >> 12) + 0x480000;
@@ -229,8 +229,8 @@ void func_02024a88(Kart *kart) {
         } else {
             soundRecord->mUnk_00 = soundRecord->mUnk_50;
         }
-        AddSoundRequest(&data_0217d274, func_02086080(kart->mIndex), (void (*)(void *, int)) func_0202506c, kart,
-                        (s32) soundRecord);
+        AddSoundRequest(&data_0217d274, GetKartCameraDistanceSquared(kart->mIndex),
+                        (void (*)(void *, int)) func_0202506c, kart, (s32) soundRecord);
     }
     soundRecord->mUnk_08 = g;
     soundRecord->mUnk_14 = f;

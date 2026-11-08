@@ -387,9 +387,9 @@ void DrawShadowWithMatrix(void *model, const void *matrix, Vec3 *extraVector) {
         func_01ff9048(0x1b, &copiedVector, 3);
     }
     func_02084ad8(shadowModel, shadowModel->mAlpha);
-    data_02155a20[shadowModel->mNsbmd.mDrawKind](shadowModel);
+    gNsbmdDrawFunctions[shadowModel->mNsbmd.mDrawKind](shadowModel);
     func_02084a88(shadowModel, shadowModel->mAlpha, shadowModel->mPolygonId);
-    data_02155a20[shadowModel->mNsbmd.mDrawKind](shadowModel);
+    gNsbmdDrawFunctions[shadowModel->mNsbmd.mDrawKind](shadowModel);
 }
 
 void func_0207ae58(ShadowModel *shadowModel) {
@@ -397,7 +397,7 @@ void func_0207ae58(ShadowModel *shadowModel) {
         return;
     }
     func_02084ad8(shadowModel, shadowModel->mAlpha);
-    data_02155a20[shadowModel->mNsbmd.mDrawKind](shadowModel);
+    gNsbmdDrawFunctions[shadowModel->mNsbmd.mDrawKind](shadowModel);
     func_02084a88(shadowModel, shadowModel->mAlpha, shadowModel->mPolygonId);
-    data_02155a20[shadowModel->mNsbmd.mDrawKind](shadowModel);
+    gNsbmdDrawFunctions[shadowModel->mNsbmd.mDrawKind](shadowModel);
 }

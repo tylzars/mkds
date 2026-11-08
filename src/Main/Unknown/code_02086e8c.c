@@ -103,19 +103,19 @@ void func_020875b4(void) {
             }
         }
     }
-    data_0217aed8 = &data_02155a48;
+    gKartDistanceLimitsSquared = &data_02155a48;
     InitKartEmblemPointers();
     for (i = 0; (u32) i < gRaceSetup->mKartCount; i++) {
         data_0217aed0->mUnk_024[i] = i;
-        data_0217aed0->mUnk_044[i] = i;
-        data_0217aed0->mUnk_094[i] = i;
+        data_0217aed0->mKartIndicesByDistanceAlongView[i] = i;
+        data_0217aed0->mKartIndicesByDistance[i] = i;
         data_0217aed0->mUnk_034[i] = 0;
         data_0217aed0->mUnk_084[i] = 0;
-        data_0217aed0->mUnk_054[i] = 0;
-        data_0217aed0->mUnk_0a4[i] = 0;
+        data_0217aed0->mSortedDistanceAlongView[i] = 0;
+        data_0217aed0->mSortedDistanceSquared[i] = 0;
         data_0217aed0->mUnk_074[i] = i;
-        data_0217aed0->mUnk_094[i] = i;
-        data_0217aed0->mUnk_104[i] = 0;
+        data_0217aed0->mKartIndicesByDistance[i] = i;
+        data_0217aed0->mDistanceAlongViewWithMargin[i] = 0;
         data_0217aed0->mUnk_000[i] = NULL;
         data_0217aed0->mUnk_0e4[i] = 0;
     }
@@ -158,7 +158,7 @@ void func_020875b4(void) {
 void func_02087508(Unk02086250 *a, u16 b, void *c) {
     a->mUnk_1c = HeapAlloc(c, 0x90);
     a->mUnk_00 = data_02155ccc;
-    a->mUnk_0c = b;
+    a->mKartIndex = b;
     a->mUnk_1c->mUnk_00[0] = data_021659ec;
     a->mUnk_1c->mUnk_00[1] = data_02165a34;
     a->mUnk_1c->mUnk_00[2] = data_02165a10;
@@ -166,13 +166,13 @@ void func_02087508(Unk02086250 *a, u16 b, void *c) {
     a->mUnk_10 = TRUE;
     a->mUnk_14 = 0;
     a->mUnk_18 = TRUE;
-    a->mUnk_24 = 0;
-    a->mUnk_26 = 0x7fff;
-    a->mUnk_22 = 0;
-    a->mUnk_20 = 0;
+    a->mAlpha = 0;
+    a->mKartPaletteColor = 0x7fff;
+    a->mFadeLevel = 0;
+    a->mFadeLevelPerCall = 0;
 }
 
-void SetTextureSizeFromBits(Unk02086098 *a) {
+void SetTextureSizeFromBits(TexPlttEntry *a) {
     u16 v;
     u16 w;
     s32 x;
@@ -231,8 +231,8 @@ void SetTextureSizeFromBits(Unk02086098 *a) {
             y = 0x400;
             break;
     }
-    a->mUnk_1c = x << 12;
-    a->mUnk_20 = y << 12;
+    a->mTexWidthFixed = x << 12;
+    a->mTexHeightFixed = y << 12;
 }
 
 u16 GetKartPaletteColor(int a) {
@@ -253,8 +253,8 @@ void func_020872a4(void) {
     void *v1;
     Unk02086250 *p;
     Unk02086250_1c *q;
-    Unk02086098 *e1;
-    Unk02086098 *e3;
+    TexPlttEntry *e1;
+    TexPlttEntry *e3;
     v1 = GetHeap(GetCurrentHeapCall());
     UploadKartEmblems();
     data_0217aedc = 0;
@@ -270,11 +270,11 @@ void func_020872a4(void) {
         q->mUnk_00[0].mTexByteCount = 0x200;
         q->mUnk_00[0].mPlttByteCount = 0x20;
         q->mUnk_00[0].mPlttData = data_0217aed0->mUnk_188;
-        p->mUnk_26 = GetKartPaletteColor(p->mUnk_0c);
-        SetupKartEmblemTexture(&q->mUnk_00[0], p->mUnk_0c);
-        SetupKartEntryNameTexture(e1, p->mUnk_0c);
-        SetPaletteKartColor(&q->mUnk_00[2], p->mUnk_0c);
-        func_020870ec(e3, p->mUnk_0c);
+        p->mKartPaletteColor = GetKartPaletteColor(p->mKartIndex);
+        SetupKartEmblemTexture(&q->mUnk_00[0], p->mKartIndex);
+        SetupKartEntryNameTexture(e1, p->mKartIndex);
+        SetPaletteKartColor(&q->mUnk_00[2], p->mKartIndex);
+        func_020870ec(e3, p->mKartIndex);
         UploadTextureAndPalette(&q->mUnk_00[0]);
         UploadTextureAndPalette(e1);
         UploadTextureAndPalette(&p->mUnk_1c->mUnk_00[2]);
@@ -288,7 +288,7 @@ void func_020872a4(void) {
     HeapFree(v1, gKartEmblemPlltBuffer);
 }
 
-void SetupKartEmblemTexture(Unk02086098 *a, u16 b) {
+void SetupKartEmblemTexture(TexPlttEntry *a, u16 b) {
     u16 *p;
     void *q;
     u16 v;
@@ -310,7 +310,7 @@ void SetupKartEmblemTexture(Unk02086098 *a, u16 b) {
 
 #pragma thumb on
 
-void SetupKartEntryNameTexture(Unk02086098 *a, u32 b) {
+void SetupKartEntryNameTexture(TexPlttEntry *a, u32 b) {
     u16 v1;
     u16 *v2;
     u8 *v3;
@@ -329,7 +329,7 @@ void SetupKartEntryNameTexture(Unk02086098 *a, u32 b) {
     a->mPlttData = v2;
 }
 
-void SetPaletteKartColor(Unk02086098 *a, u32 b) {
+void SetPaletteKartColor(TexPlttEntry *a, u32 b) {
     u16 v1;
     u16 *v2;
     v2 = a->mPlttData;
@@ -342,11 +342,11 @@ void SetPaletteKartColor(Unk02086098 *a, u32 b) {
 
 #pragma thumb on
 
-void func_020870ec(Unk02086098 *a, u16 b) {
+void func_020870ec(TexPlttEntry *a, u16 b) {
     u8 *p;
     s32 c;
     u32 i;
-    Unk02086098 *q;
+    TexPlttEntry *q;
     u8 v;
     u32 w;
     u8 x;
@@ -452,7 +452,7 @@ void UploadKartEmblem(u32 a, void *b, void *c) {
     GX_EndLoadTexPltt();
 }
 
-void UploadTextureAndPalette(Unk02086098 *a) {
+void UploadTextureAndPalette(TexPlttEntry *a) {
     u16 v;
     u32 d;
     v = a->mUnk_00 >> 26 & 7;

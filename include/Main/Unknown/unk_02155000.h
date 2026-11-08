@@ -11,7 +11,7 @@ extern const u32 data_usa_02155068[];
 extern const Vec3 data_usa_02155188;
 struct Vec4;
 extern const struct Vec4 data_usa_02155194;
-extern void (*data_02155a20[])(void *param_1);
+extern void (*gNsbmdDrawFunctions[])(void *param_1);
 extern const u16 data_02155a64[];
 extern const u16 data_02155a28[];
 extern const u16 data_02155a2c[];

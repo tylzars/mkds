@@ -19,8 +19,8 @@
 #include "Main/Unknown/unk_0215d000.h"
 
 void SetKartSoundDistanceSquaredAndChange(Kart *kart) {
-    kart->mSoundSource.mDistanceSquared = func_02086080(kart->mIndex);
-    AdvanceSoundDistanceSquaredChange(&kart->mUnk_518, func_02086080(kart->mIndex));
+    kart->mSoundSource.mDistanceSquared = GetKartCameraDistanceSquared(kart->mIndex);
+    AdvanceSoundDistanceSquaredChange(&kart->mUnk_518, GetKartCameraDistanceSquared(kart->mIndex));
 }
 
 static inline void func_02063cc4_inline(u32 command, s32 value) {

@@ -24,109 +24,114 @@
 #include "registers.h"
 
 void func_02086a04(void) {
-    Vec3 v24;
-    Vec3 v30;
+    Vec3 cameraToKartWhole;
+    Vec3 cameraToKart;
     s32 i;
-    ViewFrustum *q;
-    KartModelsEntry *s;
-    s32 k;
-    u32 e;
-    Kart *p;
-    BOOL g;
-    s32 d;
-    s32 h;
-    BOOL a;
-    BOOL b;
-    u16 n;
-    s32 j;
-    q = GetViewFrustum();
+    ViewFrustum *viewFrustum;
+    KartModelsEntry *modelsEntry;
+    s32 margin;
+    u32 distanceSquared;
+    Kart *kart;
+    BOOL isBeyondPlanes;
+    s32 distanceAlongView;
+    s32 marginWhole;
+    BOOL isWithinFalloff;
+    BOOL isSourceEnabled;
+    u16 objectCount;
+    s32 orderIndex;
+    viewFrustum = GetViewFrustum();
     for (i = 0; i < gRaceSetup->mKartCount; i++) {
         GetKart(i);
         data_0217aed0->mUnk_0e4[i] = 0;
-        p = GetKart(i);
-        k = p->mRadius * 3;
-        s = p->mKartModelsEntry;
-        VEC_Subtract(p->mPosSource, &q->mCameraPos, &v30);
-        d = VEC_DotProduct(&v30, &q->mViewDirection);
-        data_0217aed0->mUnk_104[i] = d + k;
-        data_0217aed0->mUnk_074[p->mIndex] = data_0217aed0->mUnk_024[p->mIndex] + data_0217aed0->mUnk_034[p->mIndex];
-        data_0217aed0->mUnk_054[data_0217aed0->mUnk_074[p->mIndex]] = d;
-        VEC_Subtract(p->mPosSource, &q->mCameraPos, &v24);
-        v24.x = v24.x >> 12;
-        v24.y = v24.y >> 12;
-        v24.z = v24.z >> 12;
-        e = v24.x * v24.x + v24.y * v24.y + v24.z * v24.z;
-        data_0217aed0->mUnk_124[i] = e;
-        data_0217aed0->mUnk_0a4[(u16) (data_0217aed0->mUnk_024[p->mIndex] + data_0217aed0->mUnk_084[p->mIndex])] = e;
-        if (p->mIndex != gRaceSetup->mEntryIndex) {
-            a = TRUE;
-            if (e > gSoundFalloffs[0].mUnk_20) {
-                a = FALSE;
+        kart = GetKart(i);
+        margin = kart->mRadius * 3;
+        modelsEntry = kart->mKartModelsEntry;
+        VEC_Subtract(kart->mPosSource, &viewFrustum->mCameraPos, &cameraToKart);
+        distanceAlongView = VEC_DotProduct(&cameraToKart, &viewFrustum->mViewDirection);
+        data_0217aed0->mDistanceAlongViewWithMargin[i] = distanceAlongView + margin;
+        data_0217aed0->mUnk_074[kart->mIndex] =
+            data_0217aed0->mUnk_024[kart->mIndex] + data_0217aed0->mUnk_034[kart->mIndex];
+        data_0217aed0->mSortedDistanceAlongView[data_0217aed0->mUnk_074[kart->mIndex]] = distanceAlongView;
+        VEC_Subtract(kart->mPosSource, &viewFrustum->mCameraPos, &cameraToKartWhole);
+        cameraToKartWhole.x = cameraToKartWhole.x >> 12;
+        cameraToKartWhole.y = cameraToKartWhole.y >> 12;
+        cameraToKartWhole.z = cameraToKartWhole.z >> 12;
+        distanceSquared = cameraToKartWhole.x * cameraToKartWhole.x + cameraToKartWhole.y * cameraToKartWhole.y +
+                          cameraToKartWhole.z * cameraToKartWhole.z;
+        data_0217aed0->mDistanceSquared[i] = distanceSquared;
+        data_0217aed0->mSortedDistanceSquared[(u16) (data_0217aed0->mUnk_024[kart->mIndex] +
+                                                     data_0217aed0->mUnk_084[kart->mIndex])] = distanceSquared;
+        if (kart->mIndex != gRaceSetup->mEntryIndex) {
+            isWithinFalloff = TRUE;
+            if (distanceSquared > gSoundFalloffs[0].mUnk_20) {
+                isWithinFalloff = FALSE;
             }
-            if (p->mSoundSource.mSourceFlags & 1) {
-                b = TRUE;
+            if (kart->mSoundSource.mSourceFlags & 1) {
+                isSourceEnabled = TRUE;
             } else {
-                b = FALSE;
+                isSourceEnabled = FALSE;
             }
-            if ((a != FALSE && b == FALSE) || (a == FALSE && b != FALSE)) {
-                SetSoundSourceFlagBit(&p->mSoundSource, 2, 1);
+            if ((isWithinFalloff != FALSE && isSourceEnabled == FALSE) ||
+                (isWithinFalloff == FALSE && isSourceEnabled != FALSE)) {
+                SetSoundSourceFlagBit(&kart->mSoundSource, 2, 1);
             }
-            if (d < 0) {
-                s->mUnk_058 = s->mUnk_05c = s->mUnk_060 = TRUE;
-                s->mShadowModel->mFlags &= ~1;
-                p->mUnk_4c |= 0x800000;
+            if (distanceAlongView < 0) {
+                modelsEntry->mUnk_058 = modelsEntry->mUnk_05c = modelsEntry->mUnk_060 = TRUE;
+                modelsEntry->mShadowModel->mFlags &= ~1;
+                kart->mUnk_4c |= 0x800000;
             } else {
-                g = FALSE;
-                h = k >> 12;
-                if (VEC_DotProduct(&v24, &q->mUnk_20) - h > 0) {
-                    g = TRUE;
-                } else if (VEC_DotProduct(&v24, &q->mUnk_2c) - h > 0) {
-                    g = TRUE;
+                isBeyondPlanes = FALSE;
+                marginWhole = margin >> 12;
+                if (VEC_DotProduct(&cameraToKartWhole, &viewFrustum->mUnk_20) - marginWhole > 0) {
+                    isBeyondPlanes = TRUE;
+                } else if (VEC_DotProduct(&cameraToKartWhole, &viewFrustum->mUnk_2c) - marginWhole > 0) {
+                    isBeyondPlanes = TRUE;
                 }
-                if (g != FALSE) {
-                    p->mUnk_4c |= 0x800000;
+                if (isBeyondPlanes != FALSE) {
+                    kart->mUnk_4c |= 0x800000;
                 } else {
-                    p->mUnk_4c &= ~0x800000;
-                    s->mUnk_058 = s->mUnk_05c = s->mUnk_060 = FALSE;
-                    s->mShadowModel->mFlags |= 1;
-                    if (e > data_0217aed8->z) {
-                        p->mUnk_4c |= 0x800000;
-                        s->mUnk_058 = s->mUnk_05c = s->mUnk_060 = TRUE;
-                        s->mShadowModel->mFlags &= ~1;
-                    } else if (e > data_0217aed8->y) {
-                        s->mUnk_058 = s->mUnk_060 = TRUE;
-                        s->mShadowModel->mFlags &= ~1;
-                    } else if (e > data_0217aed8->x) {
-                        s->mUnk_060 = TRUE;
-                        s->mShadowModel->mFlags &= ~1;
+                    kart->mUnk_4c &= ~0x800000;
+                    modelsEntry->mUnk_058 = modelsEntry->mUnk_05c = modelsEntry->mUnk_060 = FALSE;
+                    modelsEntry->mShadowModel->mFlags |= 1;
+                    if (distanceSquared > gKartDistanceLimitsSquared->z) {
+                        kart->mUnk_4c |= 0x800000;
+                        modelsEntry->mUnk_058 = modelsEntry->mUnk_05c = modelsEntry->mUnk_060 = TRUE;
+                        modelsEntry->mShadowModel->mFlags &= ~1;
+                    } else if (distanceSquared > gKartDistanceLimitsSquared->y) {
+                        modelsEntry->mUnk_058 = modelsEntry->mUnk_060 = TRUE;
+                        modelsEntry->mShadowModel->mFlags &= ~1;
+                    } else if (distanceSquared > gKartDistanceLimitsSquared->x) {
+                        modelsEntry->mUnk_060 = TRUE;
+                        modelsEntry->mShadowModel->mFlags &= ~1;
                     }
                 }
             }
         }
     }
     if (GetCurrentCameraKind() != 3) {
-        n = 0;
-        for (j = data_0217aed0->mUnk_074[gRaceSetup->mEntryIndex] + 1; j < gRaceSetup->mKartCount; j++) {
-            Unk02086250 *t;
-            t = data_0217aed0->mUnk_000[data_0217aed0->mUnk_044[j]];
-            if (t != NULL) {
-                if (n >= 2) {
-                    data_0217aed0->mUnk_0e4[t->mUnk_0c] = 1;
+        objectCount = 0;
+        for (orderIndex = data_0217aed0->mUnk_074[gRaceSetup->mEntryIndex] + 1; orderIndex < gRaceSetup->mKartCount;
+             orderIndex++) {
+            Unk02086250 *kartObject;
+            kartObject = data_0217aed0->mUnk_000[data_0217aed0->mKartIndicesByDistanceAlongView[orderIndex]];
+            if (kartObject != NULL) {
+                if (objectCount >= 2) {
+                    data_0217aed0->mUnk_0e4[kartObject->mKartIndex] = 1;
                 }
-                n++;
+                objectCount++;
             }
         }
     } else {
-        n = 0;
-        for (j = 0; j < gRaceSetup->mKartCount; j++) {
-            Unk02086250 *t;
-            t = data_0217aed0->mUnk_000[data_0217aed0->mUnk_044[j]];
-            if (t != NULL) {
-                if (data_0217aed0->mUnk_054[data_0217aed0->mUnk_074[t->mUnk_0c]] >= 0) {
-                    if (n >= 2) {
-                        data_0217aed0->mUnk_0e4[t->mUnk_0c] = 1;
+        objectCount = 0;
+        for (orderIndex = 0; orderIndex < gRaceSetup->mKartCount; orderIndex++) {
+            Unk02086250 *kartObject;
+            kartObject = data_0217aed0->mUnk_000[data_0217aed0->mKartIndicesByDistanceAlongView[orderIndex]];
+            if (kartObject != NULL) {
+                if (data_0217aed0->mSortedDistanceAlongView[data_0217aed0->mUnk_074[kartObject->mKartIndex]] >= 0) {
+                    if (objectCount >= 2) {
+                        data_0217aed0->mUnk_0e4[kartObject->mKartIndex] = 1;
                     }
-                    n++;
+                    objectCount++;
                 }
             }
         }
@@ -134,69 +139,70 @@ void func_02086a04(void) {
 }
 
 void func_0208677c(void) {
-    Vec3 v;
+    Vec3 objectPosition;
     s32 i;
     s32 x;
-    s32 r;
-    Unk02086250 *p;
-    Vec3 *w;
-    Kart *m;
+    s32 alphaScale;
+    Unk02086250 *kartObject;
+    Vec3 *posSource;
+    Kart *kart;
     if (GetCurrentCameraKind() == 0) {
-        data_0217aed8 = &data_02155a3c;
+        gKartDistanceLimitsSquared = &data_02155a3c;
     } else {
-        data_0217aed8 = &data_02155a48;
+        gKartDistanceLimitsSquared = &data_02155a48;
     }
     func_02086a04();
     i = 0;
     while (i < data_0217aed0->mUnk_020) {
-        p = data_0217aed0->mUnk_0c4[i];
-        m = GetKart(p->mUnk_0c);
-        w = m->mPosSource;
-        v = *w;
-        x = data_0217aed0->mUnk_104[p->mUnk_0c];
-        r = 0x1000;
+        kartObject = data_0217aed0->mUnk_0c4[i];
+        kart = GetKart(kartObject->mKartIndex);
+        posSource = kart->mPosSource;
+        objectPosition = *posSource;
+        x = data_0217aed0->mDistanceAlongViewWithMargin[kartObject->mKartIndex];
+        alphaScale = 0x1000;
         if (x > 0) {
-            if (data_0217aed0->mUnk_124[p->mUnk_0c] < 0x9c400 || GetCurrentCameraKind() == 3) {
+            if (data_0217aed0->mDistanceSquared[kartObject->mKartIndex] < 0x9c400 || GetCurrentCameraKind() == 3) {
                 x -= 0x14000;
-                p->mUnk_20 = 1;
-                p->mUnk_14 = 1;
+                kartObject->mFadeLevelPerCall = 1;
+                kartObject->mUnk_14 = 1;
                 if (x < 0) {
                     x = 0;
                 }
-                r = ((s64) x * 0x44 + 0x800) >> 12;
+                alphaScale = ((s64) x * 0x44 + 0x800) >> 12;
             } else {
-                p->mUnk_20 = -1;
-                p->mUnk_14 = 2;
+                kartObject->mFadeLevelPerCall = -1;
+                kartObject->mUnk_14 = 2;
             }
         }
-        if (data_0217aed0->mUnk_0e4[p->mUnk_0c] != 0 || (GetKart(p->mUnk_0c)->mUnk_7c & 0x402020) != 0 ||
-            (GetAbsoluteValue(w->y - GetKart(gRaceSetup->mEntryIndex)->mPos.y) > 0x96000 &&
+        if (data_0217aed0->mUnk_0e4[kartObject->mKartIndex] != 0 ||
+            (GetKart(kartObject->mKartIndex)->mUnk_7c & 0x402020) != 0 ||
+            (GetAbsoluteValue(posSource->y - GetKart(gRaceSetup->mEntryIndex)->mPos.y) > 0x96000 &&
              GetCurrentCameraKind() != 3)) {
-            p->mUnk_20 = -1;
+            kartObject->mFadeLevelPerCall = -1;
         }
-        if (p->mUnk_18 != FALSE) {
+        if (kartObject->mUnk_18 != FALSE) {
             if (GetRaceElapsedFrames() - 0x3c > 0) {
-                p->mUnk_18 = FALSE;
+                kartObject->mUnk_18 = FALSE;
             }
-        } else if (p->mUnk_20 != 0) {
-            p->mUnk_22 = p->mUnk_22 + p->mUnk_20;
-            if (p->mUnk_22 > 0x1e) {
-                p->mUnk_22 = 0x1e;
-                p->mUnk_20 = 0;
-            } else if (p->mUnk_22 < 0) {
-                p->mUnk_22 = 0;
-                p->mUnk_20 = 0;
+        } else if (kartObject->mFadeLevelPerCall != 0) {
+            kartObject->mFadeLevel = kartObject->mFadeLevel + kartObject->mFadeLevelPerCall;
+            if (kartObject->mFadeLevel > 0x1e) {
+                kartObject->mFadeLevel = 0x1e;
+                kartObject->mFadeLevelPerCall = 0;
+            } else if (kartObject->mFadeLevel < 0) {
+                kartObject->mFadeLevel = 0;
+                kartObject->mFadeLevelPerCall = 0;
             }
         }
-        if (r >= 0x1000) {
-            p->mUnk_24 = p->mUnk_22;
+        if (alphaScale >= 0x1000) {
+            kartObject->mAlpha = kartObject->mFadeLevel;
         } else {
-            p->mUnk_24 = (s32) (((s64) p->mUnk_22 * r + 0x800) >> 12);
+            kartObject->mAlpha = (s32) (((s64) kartObject->mFadeLevel * alphaScale + 0x800) >> 12);
         }
-        v.y += 0xf000;
-        p->mUnk_00.x = v.x >> 4;
-        p->mUnk_00.y = v.y >> 4;
-        p->mUnk_00.z = v.z >> 4;
+        objectPosition.y += 0xf000;
+        kartObject->mUnk_00.x = objectPosition.x >> 4;
+        kartObject->mUnk_00.y = objectPosition.y >> 4;
+        kartObject->mUnk_00.z = objectPosition.z >> 4;
         i += 1;
     }
     func_020866b4();
@@ -204,71 +210,71 @@ void func_0208677c(void) {
 }
 
 void func_020866b4(void) {
-    u16 *p;
-    s16 *q;
+    u16 *kartIndices;
+    s16 *orderOffset;
     u16 i;
-    s32 *a;
-    s32 j;
-    s32 x;
-    s32 y;
-    u16 u;
-    a = data_0217aed0->mUnk_054;
+    s32 *distancesAlongView;
+    s32 previousIndex;
+    s32 previousDistance;
+    s32 distance;
+    u16 savedKartIndex;
+    distancesAlongView = data_0217aed0->mSortedDistanceAlongView;
     for (i = 1; (u32) i < gRaceSetup->mKartCount; i++) {
-        j = i - 1;
-        x = a[j];
-        y = a[i];
-        if (x > y) {
-            p = data_0217aed0->mUnk_044;
-            q = data_0217aed0->mUnk_034;
-            a[j] = y;
-            a[i] = x;
-            q[p[i]]--;
-            q[p[j]]++;
-            u = p[i];
-            p[i] = p[j];
-            p[j] = u;
+        previousIndex = i - 1;
+        previousDistance = distancesAlongView[previousIndex];
+        distance = distancesAlongView[i];
+        if (previousDistance > distance) {
+            kartIndices = data_0217aed0->mKartIndicesByDistanceAlongView;
+            orderOffset = data_0217aed0->mUnk_034;
+            distancesAlongView[previousIndex] = distance;
+            distancesAlongView[i] = previousDistance;
+            orderOffset[kartIndices[i]]--;
+            orderOffset[kartIndices[previousIndex]]++;
+            savedKartIndex = kartIndices[i];
+            kartIndices[i] = kartIndices[previousIndex];
+            kartIndices[previousIndex] = savedKartIndex;
         }
     }
 }
 
 void func_020865ec(void) {
-    u16 *p;
-    s16 *q;
+    u16 *kartIndices;
+    s16 *orderOffset;
     u16 i;
-    u32 *a;
-    s32 j;
-    u32 x;
-    u32 y;
-    u16 u;
-    a = data_0217aed0->mUnk_0a4;
+    u32 *distancesSquared;
+    s32 previousIndex;
+    u32 previousDistanceSquared;
+    u32 distanceSquared;
+    u16 savedKartIndex;
+    distancesSquared = data_0217aed0->mSortedDistanceSquared;
     for (i = 1; (u32) i < gRaceSetup->mKartCount; i++) {
-        j = i - 1;
-        x = a[j];
-        y = a[i];
-        if (x > y) {
-            p = data_0217aed0->mUnk_094;
-            q = data_0217aed0->mUnk_084;
-            a[j] = y;
-            a[i] = x;
-            q[p[i]]--;
-            q[p[j]]++;
-            u = p[i];
-            p[i] = p[j];
-            p[j] = u;
+        previousIndex = i - 1;
+        previousDistanceSquared = distancesSquared[previousIndex];
+        distanceSquared = distancesSquared[i];
+        if (previousDistanceSquared > distanceSquared) {
+            kartIndices = data_0217aed0->mKartIndicesByDistance;
+            orderOffset = data_0217aed0->mUnk_084;
+            distancesSquared[previousIndex] = distanceSquared;
+            distancesSquared[i] = previousDistanceSquared;
+            orderOffset[kartIndices[i]]--;
+            orderOffset[kartIndices[previousIndex]]++;
+            savedKartIndex = kartIndices[i];
+            kartIndices[i] = kartIndices[previousIndex];
+            kartIndices[previousIndex] = savedKartIndex;
         }
     }
 }
 
-void func_02086250(MtxFx43 *a) {
+void func_02086250(MtxFx43 *viewMatrix) {
     s32 i;
-    s16 h;
-    s32 u;
-    s32 t;
-    s32 z;
-    Vec3 v;
-    MtxFx43 *m;
-    Unk02086250 *p;
-    BOOL f;
+    s16 alpha;
+    s32 screenY;
+    s32 screenX;
+    s32 depth;
+    Vec3 viewPos;
+    MtxFx43 *projectionMatrix;
+    Unk02086250 *kartObject;
+    BOOL isProjected;
     if (GetCurrentCameraKind() != 0 && GetCurrentCameraKind() != 3) {
         return;
     }
@@ -280,93 +286,99 @@ void func_02086250(MtxFx43 *a) {
     reg_G3_MTX_MODE = 3;
     reg_G3_MTX_IDENTITY = 0;
     for (i = gRaceSetup->mKartCount - 1; i >= 0; i--) {
-        p = data_0217aed0->mUnk_000[data_0217aed0->mUnk_044[i]];
-        if (p == NULL) {
+        kartObject = data_0217aed0->mUnk_000[data_0217aed0->mKartIndicesByDistanceAlongView[i]];
+        if (kartObject == NULL) {
             continue;
         }
-        if (data_0217aed0->mUnk_054[i] <= 0) {
+        if (data_0217aed0->mSortedDistanceAlongView[i] <= 0) {
             continue;
         }
-        h = p->mUnk_24;
-        if (h == 0) {
+        alpha = kartObject->mAlpha;
+        if (alpha == 0) {
             continue;
         }
-        if ((GetKart(data_0217aed0->mUnk_044[i])->mUnk_7c & 0xe0) != 0) {
+        if ((GetKart(data_0217aed0->mKartIndicesByDistanceAlongView[i])->mUnk_7c & 0xe0) != 0) {
             continue;
         }
-        MTX_MultVec43(&p->mUnk_00, a, &v);
-        if (v.z >= 0) {
-            f = FALSE;
+        MTX_MultVec43(&kartObject->mUnk_00, viewMatrix, &viewPos);
+        if (viewPos.z >= 0) {
+            isProjected = FALSE;
         } else {
-            m = GetProjectionMatrix();
-            t = ((s64) v.x * m->mUnk_00[0].x + (s64) v.z * m->mUnk_00[2].z) >> 12;
-            u = ((s64) v.y * m->mUnk_00[1].z + (s64) v.z * m->mUnk_00[3].x) >> 12;
-            z = -((const Vec3 *) &v)->z;
-            t = FX_Div(t, z);
-            u = FX_Div(u, z);
-            t = (((s64) t << 19) + 0x800) >> 12;
-            u = ((s64) u * 0x60000 + 0x800) >> 12;
-            f = TRUE;
+            projectionMatrix = GetProjectionMatrix();
+            screenX =
+                ((s64) viewPos.x * projectionMatrix->mUnk_00[0].x + (s64) viewPos.z * projectionMatrix->mUnk_00[2].z) >>
+                12;
+            screenY =
+                ((s64) viewPos.y * projectionMatrix->mUnk_00[1].z + (s64) viewPos.z * projectionMatrix->mUnk_00[3].x) >>
+                12;
+            depth = -((const Vec3 *) &viewPos)->z;
+            screenX = FX_Div(screenX, depth);
+            screenY = FX_Div(screenY, depth);
+            screenX = (((s64) screenX << 19) + 0x800) >> 12;
+            screenY = ((s64) screenY * 0x60000 + 0x800) >> 12;
+            isProjected = TRUE;
         }
-        if (f == FALSE) {
+        if (isProjected == FALSE) {
             continue;
         }
-        if (p->mUnk_1c->mUnk_00[3].mTexData != NULL) {
-            func_02086098(&p->mUnk_1c->mUnk_00[3], p, a, data_021659a8, data_021659a0, h, t, u, data_021659bc,
-                          data_021659b0, func_02087ab0);
+        if (kartObject->mUnk_1c->mUnk_00[3].mTexData != NULL) {
+            func_02086098(&kartObject->mUnk_1c->mUnk_00[3], kartObject, viewMatrix, data_021659a8, data_021659a0, alpha,
+                          screenX, screenY, data_021659bc, data_021659b0, func_02087ab0);
         }
-        func_02086098(&p->mUnk_1c->mUnk_00[2], p, a, data_021659cc, 0x9000, h, t, u, data_021659d0, 0, func_0208784c);
-        func_02086098(&p->mUnk_1c->mUnk_00[1], p, a, 0x21000, 0xa000, h, t, u, data_021659a4, 0x199a, func_02087ab0);
-        func_02086098(&p->mUnk_1c->mUnk_00[0], p, a, data_021659c8, data_021659c4, h, t, u, data_021659ac,
-                      data_021659b8, func_02087918);
+        func_02086098(&kartObject->mUnk_1c->mUnk_00[2], kartObject, viewMatrix, data_021659cc, 0x9000, alpha, screenX,
+                      screenY, data_021659d0, 0, func_0208784c);
+        func_02086098(&kartObject->mUnk_1c->mUnk_00[1], kartObject, viewMatrix, 0x21000, 0xa000, alpha, screenX,
+                      screenY, data_021659a4, 0x199a, func_02087ab0);
+        func_02086098(&kartObject->mUnk_1c->mUnk_00[0], kartObject, viewMatrix, data_021659c8, data_021659c4, alpha,
+                      screenX, screenY, data_021659ac, data_021659b8, func_02087918);
     }
 }
 
-static inline s32 func_02086098_inline(Unk02086250 *b) {
-    return (b->mUnk_0c + 11) << 24;
+static inline s32 func_02086098_inline(Unk02086250 *kartObject) {
+    return (kartObject->mKartIndex + 11) << 24;
 }
 
-void func_02086098(Unk02086098 *a, Unk02086250 *b, MtxFx43 *c, s32 d, s32 e, s16 f, s32 g, s32 h, s32 i, s32 j,
-                   UnkFunc *k) {
-    MtxFx43 m;
-    s32 x;
-    s32 y;
+void func_02086098(TexPlttEntry *texPlttEntry, Unk02086250 *kartObject, MtxFx43 *viewMatrix, s32 scaleX, s32 scaleY,
+                   s16 alpha, s32 screenX, s32 screenY, s32 xOffset, s32 yOffset, UnkFunc *drawVertices) {
+    MtxFx43 quadMatrix;
+    s32 texWidthFixed;
+    s32 texHeightFixed;
     s32 z;
-    reg_G3_TEXIMAGE_PARAM = a->mUnk_00;
-    if (a->mPlttByteCount != 0) {
-        reg_G3_PLTT_BASE = a->mPlttOffset >> (4 - ((a->mUnk_00 >> 26 & 7) == 2));
+    reg_G3_TEXIMAGE_PARAM = texPlttEntry->mUnk_00;
+    if (texPlttEntry->mPlttByteCount != 0) {
+        reg_G3_PLTT_BASE = texPlttEntry->mPlttOffset >> (4 - ((texPlttEntry->mUnk_00 >> 26 & 7) == 2));
     }
-    MTX_Identity43_(&m);
-    m.mUnk_00[3] = b->mUnk_00;
-    MTX_Concat43(&m, c, &m);
-    m.mUnk_00[3].x = g;
-    if (b->mUnk_10 == TRUE) {
-        m.mUnk_00[3].x = g + ((s32) (((s64) i * d + 0x800) >> 12) + 0x1e000);
+    MTX_Identity43_(&quadMatrix);
+    quadMatrix.mUnk_00[3] = kartObject->mUnk_00;
+    MTX_Concat43(&quadMatrix, viewMatrix, &quadMatrix);
+    quadMatrix.mUnk_00[3].x = screenX;
+    if (kartObject->mUnk_10 == TRUE) {
+        quadMatrix.mUnk_00[3].x = screenX + ((s32) (((s64) xOffset * scaleX + 0x800) >> 12) + 0x1e000);
     }
-    m.mUnk_00[3].y = 0x5000 + h + (s32) (((s64) j * e + 0x800) >> 12);
-    m.mUnk_00[3].z = 0;
-    x = a->mUnk_1c;
-    y = a->mUnk_20;
-    m.mUnk_00[1].y = e;
-    m.mUnk_00[0].x = d;
-    m.mUnk_00[0].y = 0;
-    m.mUnk_00[0].z = 0;
-    m.mUnk_00[1].x = 0;
-    m.mUnk_00[1].z = 0;
-    m.mUnk_00[2].z = 0;
-    m.mUnk_00[2].y = 0;
-    m.mUnk_00[2].x = 0;
-    reg_G3_POLYGON_ATTR = (func_02086098_inline(b) | 0xc0) | (f << 16);
+    quadMatrix.mUnk_00[3].y = 0x5000 + screenY + (s32) (((s64) yOffset * scaleY + 0x800) >> 12);
+    quadMatrix.mUnk_00[3].z = 0;
+    texWidthFixed = texPlttEntry->mTexWidthFixed;
+    texHeightFixed = texPlttEntry->mTexHeightFixed;
+    quadMatrix.mUnk_00[1].y = scaleY;
+    quadMatrix.mUnk_00[0].x = scaleX;
+    quadMatrix.mUnk_00[0].y = 0;
+    quadMatrix.mUnk_00[0].z = 0;
+    quadMatrix.mUnk_00[1].x = 0;
+    quadMatrix.mUnk_00[1].z = 0;
+    quadMatrix.mUnk_00[2].z = 0;
+    quadMatrix.mUnk_00[2].y = 0;
+    quadMatrix.mUnk_00[2].x = 0;
+    reg_G3_POLYGON_ATTR = (func_02086098_inline(kartObject) | 0xc0) | (alpha << 16);
     reg_G3_MTX_MODE = 2;
-    G3_LoadMtx43(&m);
+    G3_LoadMtx43(&quadMatrix);
     reg_G3_BEGIN_VTXS = 1;
     reg_G3_COLOR = 0x7fff;
-    k(x, y, b->mUnk_26);
+    drawVertices(texWidthFixed, texHeightFixed, kartObject->mKartPaletteColor);
     reg_G3_END_VTXS = 0;
 }
 
-int func_02086080(int arg0) {
-    u32 value0 = arg0;
+u32 GetKartCameraDistanceSquared(int kartIndex) {
+    u32 value0 = kartIndex;
     u32 value1;
     value1 = (u32) &data_0217aed0;
     value1 = *(const u32 *) ((value1) + (0));
@@ -375,10 +387,10 @@ int func_02086080(int arg0) {
     return value0;
 }
 
-u16 func_0208606c(int a) {
-    return data_02155a64[a];
+u16 func_0208606c(int index) {
+    return data_02155a64[index];
 }
 
-u16 *func_02086058(void) {
-    return data_0217aed0->mUnk_094;
+u16 *GetKartIndicesByDistance(void) {
+    return data_0217aed0->mKartIndicesByDistance;
 }

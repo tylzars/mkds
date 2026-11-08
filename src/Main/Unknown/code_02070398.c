@@ -921,7 +921,7 @@ void func_02071914(void *kart, int soundId) {
 void func_020718c8(void *kart, int soundId) {
     int sortKeyBase;
 
-    sortKeyBase = func_02086080(((Kart *) kart)->mIndex);
+    sortKeyBase = GetKartCameraDistanceSquared(((Kart *) kart)->mIndex);
     AddSoundRequest(&data_0217d284, sortKeyBase + func_0210a588(), func_02071914, kart, soundId);
 }
 
@@ -1262,7 +1262,7 @@ void AdvanceKartToKeyedPlacement(Kart *kart) {
     if (kart->mUnk_4c & 0x2000) {
         itemEffectState = &kart->mUnk_538;
         if (kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-            AddSoundRequest(data_0217d26c, func_02086080(kart->mIndex), func_020718c8, kart, 0xa3);
+            AddSoundRequest(data_0217d26c, GetKartCameraDistanceSquared(kart->mIndex), func_020718c8, kart, 0xa3);
         }
         itemEffectState->mUnk_0a++;
         if (itemEffectState->mUnk_0a > KART_KILLER_RANK_END_FRAMES && (kart->mUnk_4c & 0x2000)) {
