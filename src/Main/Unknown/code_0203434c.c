@@ -142,9 +142,9 @@ s32 func_02034370(Unk02034370 *sceneNumbers) {
                     data_02174e64->mFilledCount = 0;
                     for (i = 0; i < 4; i++) {
                         j = i + 4;
-                        if (func_0204ebb8(i, &ghostRecordInfo, &idBytes[0], &idBytes[1], &idBytes[2],
-                                          &ghostRecordInfo.mMinute, &ghostRecordInfo.mSecond,
-                                          &ghostRecordInfo.mMillisecond)) {
+                        if (TryGetScanGhostInfo(i, &ghostRecordInfo, &idBytes[0], &idBytes[1], &idBytes[2],
+                                                &ghostRecordInfo.mMinute, &ghostRecordInfo.mSecond,
+                                                &ghostRecordInfo.mMillisecond)) {
                             ghostRecordInfo.mUnk_18[1] = idBytes[0];
                             ghostRecordInfo.mUnk_18[0] = idBytes[1];
                             ghostRecordInfo.mUnk_18[2] = idBytes[2];
@@ -257,7 +257,7 @@ s32 func_02034370(Unk02034370 *sceneNumbers) {
             switch (AdvanceBlockCountRequest()) {
                 case 1:
                     ResetPendingFiles();
-                    func_0204ee4c(0, GetSlotGhostBuffer());
+                    SetBlockEntryBuffer(0, GetSlotGhostBuffer());
                     data_02174e64->mState = 6;
                     break;
                 case 2:

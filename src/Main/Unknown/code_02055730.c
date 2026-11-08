@@ -373,7 +373,7 @@ s32 func_02055808(s32 a) {
             break;
         case 4:
             func_0204f814();
-            func_0204fb40(1);
+            FillParentParameter(1);
             SetParentParameter();
             break;
         case 5:

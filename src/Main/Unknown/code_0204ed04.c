@@ -10,9 +10,9 @@
 #include "code_0214d018.h"
 
 #pragma thumb on
-u32 func_0204ee4c(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
+u32 SetBlockEntryBuffer(u32 entryIndex, u32 buffer) {
+    u32 value0 = entryIndex;
+    u32 value1 = buffer;
     u32 value2;
     u32 value3;
     value2 = (u32) &data_0217aa00;
@@ -46,8 +46,8 @@ u32 func_0204ee30(void) {
 #pragma thumb on
 
 void func_0204ed84(void) {
-    u16 b;
-    u16 c;
+    u16 packetSize;
+    u16 destMask;
     if (!(data_0217aa00->mUnk_1e44 & 1)) {
         u32 v;
         if (data_0217aa00 == NULL) {
@@ -58,35 +58,35 @@ void func_0204ed84(void) {
         switch (v) {
             case 1:
                 data_usa_0216522c.mMaxDataSize = 0x192;
-                b = BuildParentPacket(data_0217aa00->mPacketBuffer, 0x192);
-                c = data_0217aa00->mUnk_0044.mChildMask;
+                packetSize = BuildParentPacket(data_0217aa00->mPacketBuffer, 0x192);
+                destMask = data_0217aa00->mUnk_0044.mChildMask;
                 break;
             case 2:
                 data_usa_0216522c.mMaxDataSize = 0xe;
-                b = BuildChildPacket(data_0217aa00->mPacketBuffer, 0xe);
-                c = 1;
+                packetSize = BuildChildPacket(data_0217aa00->mPacketBuffer, 0xe);
+                destMask = 1;
                 break;
         }
-        if (QueueMPDataToPort(data_0217aa00->mPacketBuffer, b, c, NULL, &data_usa_0216522c) == FALSE) {
-            data_0217aa00->mUnk_1e42 = data_usa_02165228;
+        if (QueueMPDataToPort(data_0217aa00->mPacketBuffer, packetSize, destMask, NULL, &data_usa_0216522c) == FALSE) {
+            data_0217aa00->mSendTimer = data_usa_02165228;
             data_0217aa00->mUnk_1e44 &= ~1;
         }
     }
 }
 
-void func_0204ed04(Unk0204ed04 *a) {
-    u8 b[0x192];
+void PacketPortCallback(Unk0204ed04 *result) {
+    u8 packet[0x192];
     u32 v;
-    if (a->mUnk_02 == 0 && a->mUnk_0c != NULL && a->mUnk_10 <= 0x192) {
-        DC_InvalidateRange(a->mUnk_0c, a->mUnk_10);
-        MI_CpuCopy8(a->mUnk_0c, b, a->mUnk_10);
-        if (a->mUnk_04 == 7) {
+    if (result->mUnk_02 == 0 && result->mUnk_0c != NULL && result->mUnk_10 <= 0x192) {
+        DC_InvalidateRange(result->mUnk_0c, result->mUnk_10);
+        MI_CpuCopy8(result->mUnk_0c, packet, result->mUnk_10);
+        if (result->mUnk_04 == 7) {
             return;
         }
-        if (a->mUnk_04 == 9) {
+        if (result->mUnk_04 == 9) {
             return;
         }
-        if (a->mUnk_04 == 0x15) {
+        if (result->mUnk_04 == 0x15) {
             if (data_0217aa00 == NULL) {
                 v = 0;
             } else {
@@ -94,10 +94,10 @@ void func_0204ed04(Unk0204ed04 *a) {
             }
             switch (v) {
                 case 1:
-                    ReceivePacketFromIndexChecked(b, a->mUnk_10, a->mUnk_12);
+                    ReceivePacketFromIndexChecked(packet, result->mUnk_10, result->mUnk_12);
                     break;
                 case 2:
-                    ReceiveParentPacketChecked(b, a->mUnk_10);
+                    ReceiveParentPacketChecked(packet, result->mUnk_10);
                     break;
             }
         }

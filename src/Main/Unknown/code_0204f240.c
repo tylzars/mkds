@@ -10,7 +10,7 @@
 
 #pragma thumb on
 
-void AddPendingFile(const void *path, void *heap, void **dataOutput, u32 d, s32 uncompress) {
+void AddPendingFile(const void *path, void *heap, void **dataOutput, u32 value, s32 uncompress) {
     u16 i;
     for (i = 0; i < 12; i++) {
         if (data_0217aa00->mBlockEntries[i].mPath == 0) {
@@ -19,12 +19,12 @@ void AddPendingFile(const void *path, void *heap, void **dataOutput, u32 d, s32 
                 data_0217aa00->mBlockEntries[i].mBuffer = data_0217aa00->mCompressedBuffer;
                 data_0217aa00->mBlockEntries[i].mUncompressedBuffer = 0;
                 data_0217aa00->mBlockEntries[i].mUncompressPending = 1;
-                data_0217aa00->mBlockEntries[i].mUnk_84_0 = d;
+                data_0217aa00->mBlockEntries[i].mUnk_84_0 = value;
             } else {
                 data_0217aa00->mBlockEntries[i].mBuffer = 0;
                 data_0217aa00->mBlockEntries[i].mUncompressedBuffer = 0;
                 data_0217aa00->mBlockEntries[i].mUncompressPending = 0;
-                data_0217aa00->mBlockEntries[i].mUnk_84_0 = d;
+                data_0217aa00->mBlockEntries[i].mUnk_84_0 = value;
             }
             data_0217aa00->mBlockEntries[i].mHeap = heap;
             data_0217aa00->mBlockEntries[i].mUnk_84_30 = 1;
@@ -38,7 +38,7 @@ void StartParentSideBlockTransfer(void) {
     data_0217aa00->mUnk_000c = 0x28;
     data_0217aa00->mRequestPending = 1;
     StartParentBlockTransfer(0x192, 0xe, ParentBlockTransferCallback);
-    data_0217aa00->mUnk_1e42 = 0;
+    data_0217aa00->mSendTimer = 0;
     data_0217aa00->mUnk_1e44 &= ~1;
     data_0217aa00->mUnk_0454 |= 0x200;
     data_0217aa00->mRequestPending = 0;
@@ -47,8 +47,8 @@ void StartParentSideBlockTransfer(void) {
 void StartChildSideBlockTransfer(void) {
     data_0217aa00->mUnk_000c = 0x29;
     data_0217aa00->mRequestPending = 1;
-    StartChildBlockTransfer(func_0204f198);
-    data_0217aa00->mUnk_1e42 = 0;
+    StartChildBlockTransfer(ChildBlockTransferCallback);
+    data_0217aa00->mSendTimer = 0;
     data_0217aa00->mUnk_1e44 &= ~1;
     data_0217aa00->mUnk_0454 |= 0x200;
     data_0217aa00->mRequestPending = 0;
@@ -56,16 +56,16 @@ void StartChildSideBlockTransfer(void) {
 
 void func_0204f33c(void *heap) {
     s32 i;
-    data_0217aa00->mUnk_1e28 = 0x1c0;
-    data_0217aa00->mUnk_1e20 = HeapAllocAligned(heap, data_0217aa00->mUnk_1e28, 0x20);
-    data_0217aa00->mUnk_1e2c = 0x400;
-    data_0217aa00->mUnk_1e24 = HeapAllocAligned(heap, data_0217aa00->mUnk_1e2c, 0x20);
+    data_0217aa00->mMPSendBufferSize = 0x1c0;
+    data_0217aa00->mMPSendBuffer = HeapAllocAligned(heap, data_0217aa00->mMPSendBufferSize, 0x20);
+    data_0217aa00->mMPReceiveBufferSize = 0x400;
+    data_0217aa00->mMPReceiveBuffer = HeapAllocAligned(heap, data_0217aa00->mMPReceiveBufferSize, 0x20);
     for (i = 0; i < 8; i++) {
         data_0217aa00->mBlockInfos[i] = HeapAllocAligned(heap, 0x28, 0x20);
         data_0217aa00->mChunkBitmaps[i] = HeapAllocAligned(heap, 4, 0x20);
     }
     data_0217aa00->mPacketBuffer = HeapAllocAligned(heap, 0x192, 0x20);
-    data_0217aa00->mUnk_1e48 = HeapAllocAligned(heap, 0x20, 0x20);
+    data_0217aa00->mScanGhostInfos = HeapAllocAligned(heap, 0x20, 0x20);
 }
 
 void InitBlockEntries(void *heap, s32 mode) {

@@ -98,8 +98,8 @@ void SetOwnIndexFromConnection(void) {
 void func_0204ef1c(void) {
     data_0217aa00->mUnk_000c = 0xb;
     data_0217aa00->mRequestPending = 1;
-    if (WM_StartMPEx(StartMPCallback, data_0217aa00->mUnk_1e24, data_0217aa00->mUnk_1e2c, data_0217aa00->mUnk_1e20,
-                     data_0217aa00->mUnk_1e28, 1, 0, 0, 0, 0, 0) != 2) {
+    if (WM_StartMPEx(StartMPCallback, data_0217aa00->mMPReceiveBuffer, data_0217aa00->mMPReceiveBufferSize,
+                     data_0217aa00->mMPSendBuffer, data_0217aa00->mMPSendBufferSize, 1, 0, 0, 0, 0, 0) != 2) {
         func_02050e60(2);
     }
 }

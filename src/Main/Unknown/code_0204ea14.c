@@ -10,29 +10,29 @@
 #pragma thumb on
 
 u32 func_0204ea3c(void) {
-    u32 v1;
+    u32 size;
     int v2;
-    u32 v3;
-    v3 = 0;
-    v1 = func_02008880(NULL);
-    if ((0x00010000u) <= v1) {
+    u32 result;
+    result = 0;
+    size = func_02008880(NULL);
+    if ((0x00010000u) <= size) {
         v2 = func_02008570(NULL, data_0217aa00->mUnk_1658, data_0217aa00->mUnk_168c);
         if ((v2 != 0) && (v2 = func_02008310(data_0215472c, data_0217aa00->mUnk_1658), v2 != 0)) {
-            v3 = 1;
+            result = 1;
         }
     }
-    return v3;
+    return result;
 }
 
-void func_0204ea14(Bmg *a) {
-    void **v1;
-    void *v2;
-    void *v3;
-    v2 = GetBmgEntry(a, 0);
-    v3 = GetBmgEntry(a, 1);
-    v1 = data_0215472c;
-    data_0215472c[1] = v2;
-    v1[2] = v3;
+void func_0204ea14(Bmg *bmg) {
+    void **table;
+    void *firstEntry;
+    void *secondEntry;
+    firstEntry = GetBmgEntry(bmg, 0);
+    secondEntry = GetBmgEntry(bmg, 1);
+    table = data_0215472c;
+    data_0215472c[1] = firstEntry;
+    table[2] = secondEntry;
 }
 
 #pragma thumb off

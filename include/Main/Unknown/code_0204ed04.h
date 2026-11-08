@@ -12,7 +12,7 @@ typedef struct Unk0204ed04 {
     /* 12 */ u16 mUnk_12;
 } Unk0204ed04;
 
-void func_0204ed04(Unk0204ed04 *a);
+void PacketPortCallback(Unk0204ed04 *result);
 void func_0204ed84(void);
 u32 func_0204ee30(void);
-u32 func_0204ee4c(u32 arg0, u32 arg1);
+u32 SetBlockEntryBuffer(u32 entryIndex, u32 buffer);

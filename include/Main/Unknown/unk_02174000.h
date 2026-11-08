@@ -224,7 +224,7 @@ typedef struct ResultsBattle {
 extern ResultsBattle *gResultsBattle;
 
 // 0x28-byte part of the entries from 0x9c of Unk02174e64; func_02034370 fills one on the stack through
-// func_0204ebb8 and AreGhostRecordInfosDifferent compares two.
+// TryGetScanGhostInfo and AreGhostRecordInfosDifferent compares two.
 typedef struct GhostRecordInfo {
     /* 00 */ u16 mName[11];
     /* 16 */ u8 mUnk_16[2];

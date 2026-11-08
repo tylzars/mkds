@@ -81,7 +81,7 @@ void func_02053d00(void) {
     v->mUnk_79c = FALSE;
     func_0204e65c(&data_0217aa00->mUnk_1658_view);
     func_02059878();
-    func_0204fb40(1);
+    FillParentParameter(1);
 }
 
 // Fills the record handed to WM_StepDataSharing, steps the data sharing with it and keeps the result.
@@ -256,7 +256,7 @@ void InitializeCallback(Unk021425e8 *a) {
         return;
     }
     if (data_0217aa00->mUnk_1d00 != 0) {
-        WM_SetPortCallback(1, func_0204ed04, NULL);
+        WM_SetPortCallback(1, PacketPortCallback, NULL);
     }
     ResetConnectionData();
 }

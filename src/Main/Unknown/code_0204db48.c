@@ -197,12 +197,12 @@ s32 func_0204db6c(void) {
             SetLifeTime(0x14);
             break;
         case 3:
-            func_0204fb40(1);
+            FillParentParameter(1);
             SetParentParameter();
             break;
         case 4:
             func_0204f814();
-            func_0204fb40(1);
+            FillParentParameter(1);
             SetParentParameter();
             break;
         case 5:

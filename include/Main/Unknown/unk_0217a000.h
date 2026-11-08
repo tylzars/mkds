@@ -263,7 +263,7 @@ typedef struct Unk0217aa00_24_50_0e {
         u8 mUnk_07;
         struct {
             u8 mUnk_07_0 : 1;
-            u8 mUnk_07_1 : 6;
+            u8 mKartIndex : 6;
         };
     };
     /* 08 */ u8 mUnk_08[2];
@@ -288,11 +288,11 @@ typedef struct Unk0217aa00_24_50 {
             /* 18 */ union {
                 u32 mUnk_18;
                 struct {
-                    u32 mUnk_18_0 : 4;
-                    u32 mUnk_18_4 : 5;
-                    u32 mUnk_18_9 : 7;
-                    u32 mUnk_18_16 : 6;
-                    u32 mUnk_18_22 : 10;
+                    u32 mCharacterIndex : 4;
+                    u32 mCupCourseIndex : 5;
+                    u32 mMinute : 7;
+                    u32 mSecond : 6;
+                    u32 mMillisecond : 10;
                 };
             };
             /* 1c */ u8 mUnk_1c[0x54];
@@ -349,15 +349,15 @@ typedef struct Unk0217aa00_44 {
 } Unk0217aa00_44;
 
 // 8-byte entries behind member 0x1e48 of data_0217aa00.
-typedef struct Unk0217aa00_1e48 {
-    /* 00 */ u8 mUnk_00;
-    /* 01 */ u8 mUnk_01;
-    /* 02 */ u8 mUnk_02;
-    /* 03 */ u8 mUnk_03;
-    /* 04 */ u8 mUnk_04;
+typedef struct ScanGhostInfo {
+    /* 00 */ u8 mKartIndex;
+    /* 01 */ u8 mCharacterIndex;
+    /* 02 */ u8 mCourseId;
+    /* 03 */ u8 mMinute;
+    /* 04 */ u8 mSecond;
     /* 05 */ u8 mUnk_05[1];
-    /* 06 */ u16 mUnk_06;
-} Unk0217aa00_1e48;
+    /* 06 */ u16 mMillisecond;
+} ScanGhostInfo;
 
 // Elements of the array at member 0x1e52 of data_0217aa00.
 typedef struct Unk0217aa00_1e52 {
@@ -721,21 +721,21 @@ typedef struct Unk0217aa00 {
             /* 1d64 */ u8 mUnk_1d64[0x3c];
             /* 1da0 */ BlockInfo *mBlockInfos[16];
             /* 1de0 */ void *mChunkBitmaps[16];
-            /* 1e20 */ void *mUnk_1e20;
-            /* 1e24 */ void *mUnk_1e24;
-            /* 1e28 */ s32 mUnk_1e28;
-            /* 1e2c */ s32 mUnk_1e2c;
+            /* 1e20 */ void *mMPSendBuffer;
+            /* 1e24 */ void *mMPReceiveBuffer;
+            /* 1e28 */ s32 mMPSendBufferSize;
+            /* 1e2c */ s32 mMPReceiveBufferSize;
             /* 1e30 */ u8 *mPacketBuffer;
             /* 1e34 */ s32 mUnk_1e34;
             /* 1e38 */ s32 mUnk_1e38;
             /* 1e3c */ s32 mUnk_1e3c;
             /* 1e40 */ u16 mGhostBlockCount;
-            /* 1e42 */ u16 mUnk_1e42;
+            /* 1e42 */ u16 mSendTimer;
             /* 1e44 */ u8 mUnk_1e44;
             /* 1e45 */ s8 mUnk_1e45;
             /* 1e46 */ u8 mUnk_1e46;
             /* 1e47 */ u8 mUnk_1e47[0x1];
-            /* 1e48 */ Unk0217aa00_1e48 *mUnk_1e48;
+            /* 1e48 */ ScanGhostInfo *mScanGhostInfos;
             /* 1e4c */ union {
                 struct {
                     /* 1e4c */ u16 mUnk_1e4c;

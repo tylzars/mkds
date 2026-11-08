@@ -18,23 +18,23 @@
 
 #pragma thumb on
 
-void func_0204e928(void *a, u32 b, void *c) {
-    u32 r;
-    data_0217aa00->mUnk_1664 = a;
-    r = GetScanConnectWorkSize();
-    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2 && r < 0xc000) {
-        r = 0xc000;
+void func_0204e928(void *heap, u32 b, void *bmg) {
+    u32 workSize;
+    data_0217aa00->mUnk_1664 = heap;
+    workSize = GetScanConnectWorkSize();
+    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2 && workSize < 0xc000) {
+        workSize = 0xc000;
     }
-    data_0217aa00->mUnk_1660 = r;
-    data_0217aa00->mUnk_165c = HeapAllocAligned(a, data_0217aa00->mUnk_1660, 0x20);
+    data_0217aa00->mUnk_1660 = workSize;
+    data_0217aa00->mUnk_165c = HeapAllocAligned(heap, data_0217aa00->mUnk_1660, 0x20);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         data_0217aa00->mUnk_168c = func_02008880(NULL);
         if (data_0217aa00->mUnk_168c > 0x80000) {
             data_0217aa00->mUnk_168c = 0x80000;
         }
-        data_0217aa00->mUnk_1658 = HeapAllocAligned(a, data_0217aa00->mUnk_168c, 0x20);
-        func_0204ea14(c);
-        data_0217aa00->mUnk_1668 = HeapAllocAligned(a, 0x4c0, 0x20);
+        data_0217aa00->mUnk_1658 = HeapAllocAligned(heap, data_0217aa00->mUnk_168c, 0x20);
+        func_0204ea14(bmg);
+        data_0217aa00->mUnk_1668 = HeapAllocAligned(heap, 0x4c0, 0x20);
     } else {
         data_0217aa00->mUnk_168c = 0;
         data_0217aa00->mUnk_1658 = 0;
@@ -43,12 +43,12 @@ void func_0204e928(void *a, u32 b, void *c) {
     func_0204e65c(&data_0217aa00->mUnk_1658_view);
 }
 
-void func_0204e6e8(u32 a, u32 b, Unk0204e4d8 *c) {
-    data_0217aa00->mUnk_1658_view.mUnk_14[a] = b;
-    if (data_0217aa00->mUnk_000c == 0x1b && b != 0xc) {
+void func_0204e6e8(u32 index, u32 code, Unk0204e4d8 *c) {
+    data_0217aa00->mUnk_1658_view.mUnk_14[index] = code;
+    if (data_0217aa00->mUnk_000c == 0x1b && code != 0xc) {
         return;
     }
-    switch (b) {
+    switch (code) {
         case 10: {
             u32 v = 1;
             if (data_0217aa00->mUnk_1694 & 1) {
@@ -57,20 +57,20 @@ void func_0204e6e8(u32 a, u32 b, Unk0204e4d8 *c) {
                 v = 0;
             }
             if (v != 0) {
-                func_02007d50(a, 1);
+                func_02007d50(index, 1);
             } else {
-                func_02007d50(a, 0);
+                func_02007d50(index, 0);
             }
             return;
         }
         case 7:
-            data_0217aa00->mUnk_1697 |= 1 << a;
+            data_0217aa00->mUnk_1697 |= 1 << index;
             if (data_0217aa00->mUnk_1696 == (data_0217aa00->mUnk_1696 & data_0217aa00->mUnk_1697)) {
                 data_0217aa00->mRequestPending = 0;
             }
             break;
         case 9:
-            data_0217aa00->mUnk_1695 |= 1 << a;
+            data_0217aa00->mUnk_1695 |= 1 << index;
             break;
         case 12:
             data_0217aa00->mRequestPending = 0;
@@ -79,16 +79,16 @@ void func_0204e6e8(u32 a, u32 b, Unk0204e4d8 *c) {
             data_0217aa00->mRequestPending = 0;
             break;
         case 3:
-            if (data_0217aa00->mUnk_1695 & (1 << a)) {
-                data_0217aa00->mUnk_1698 |= 1 << a;
+            if (data_0217aa00->mUnk_1695 & (1 << index)) {
+                data_0217aa00->mUnk_1698 |= 1 << index;
                 if (data_0217aa00->mUnk_1696 == (data_0217aa00->mUnk_1696 & data_0217aa00->mUnk_1698)) {
                     data_0217aa00->mRequestPending = 0;
                 }
             }
             if (!(data_0217aa00->mUnk_1694 & 2)) {
                 if (data_0217aa00->mUnk_1699 != 0) {
-                    if (data_0217aa00->mUnk_1696 & (1 << a)) {
-                        data_0217aa00->mUnk_1696 &= ~(1 << a);
+                    if (data_0217aa00->mUnk_1696 & (1 << index)) {
+                        data_0217aa00->mUnk_1696 &= ~(1 << index);
                         data_0217aa00->mUnk_1699--;
                     }
                     if ((data_0217aa00->mUnk_1694 & 1) && data_0217aa00->mUnk_1696 == 0) {
@@ -115,35 +115,35 @@ void func_0204e6e8(u32 a, u32 b, Unk0204e4d8 *c) {
             }
             break;
         case 14:
-            if (!(data_0217aa00->mUnk_1696 & (1 << a))) {
-                data_0217aa00->mUnk_1696 |= 1 << a;
+            if (!(data_0217aa00->mUnk_1696 & (1 << index))) {
+                data_0217aa00->mUnk_1696 |= 1 << index;
                 data_0217aa00->mUnk_1699++;
             }
             break;
     }
 }
 
-void func_0204e65c(Unk0217aa00_1658 *a) {
-    s32 i;
+void func_0204e65c(Unk0217aa00_1658 *view) {
+    s32 index;
     if (data_0217aa00->mUnk_165c != 0) {
         MI_CpuFill8(data_0217aa00->mUnk_165c, 0, data_0217aa00->mUnk_1660);
     }
     if (data_0217aa00->mUnk_1668 != 0) {
         MI_CpuFill8(data_0217aa00->mUnk_1668, 0, 0x4c0);
     }
-    for (i = 0; i < 8; i++) {
-        a->mUnk_14[i] = 0;
+    for (index = 0; index < 8; index++) {
+        view->mUnk_14[index] = 0;
     }
-    a->mUnk_3c = 0;
-    a->mUnk_3d = 0;
-    a->mUnk_3e = 0;
-    a->mUnk_3f = 0;
-    a->mUnk_40 = 0;
-    a->mUnk_41 = 0;
-    a->mUnk_38 = 0;
-    a->mUnk_3a = 0;
-    a->mUnk_42 = -1;
-    a->mUnk_44 = 0;
+    view->mUnk_3c = 0;
+    view->mUnk_3d = 0;
+    view->mUnk_3e = 0;
+    view->mUnk_3f = 0;
+    view->mUnk_40 = 0;
+    view->mUnk_41 = 0;
+    view->mUnk_38 = 0;
+    view->mUnk_3a = 0;
+    view->mUnk_42 = -1;
+    view->mUnk_44 = 0;
 }
 
 void func_0204e568(void) {
@@ -211,30 +211,31 @@ void func_0204e474(void) {
 }
 
 // Returns the scan entry index with bytes 4..9 matching the first six of element a of mUnk_00ac[0].mUnk_c0, or -1.
-s32 FindScanEntryIndex(u32 a) {
-    s32 r;
-    u16 i;
-    Unk0217aa00_24 b;
-    r = -1;
+s32 FindScanEntryIndex(u32 entryIndex) {
+    s32 result;
+    u16 index;
+    Unk0217aa00_24 scanBlock;
+    result = -1;
     if (data_0217aa00->mUnk_000c == 0x1e) {
-        for (i = 0; i < 16; i++) {
-            if (func_0200b1b0(i, &b) != 0) {
-                u8 *p = data_0217aa00->mUnk_00ac[0].mUnk_c0;
-                u8 *q = p + a * 0xe0;
-                if (b.mUnk_02[2] == p[a * 0xe0] && b.mUnk_02[3] == q[1] && b.mUnk_02[4] == q[2] &&
-                    b.mUnk_02[5] == q[3] && b.mUnk_02[6] == q[4] && b.mUnk_02[7] == q[5]) {
-                    r = (s8) i;
+        for (index = 0; index < 16; index++) {
+            if (func_0200b1b0(index, &scanBlock) != 0) {
+                u8 *tableBytes = data_0217aa00->mUnk_00ac[0].mUnk_c0;
+                u8 *entryBytes = tableBytes + entryIndex * 0xe0;
+                if (scanBlock.mUnk_02[2] == tableBytes[entryIndex * 0xe0] && scanBlock.mUnk_02[3] == entryBytes[1] &&
+                    scanBlock.mUnk_02[4] == entryBytes[2] && scanBlock.mUnk_02[5] == entryBytes[3] &&
+                    scanBlock.mUnk_02[6] == entryBytes[4] && scanBlock.mUnk_02[7] == entryBytes[5]) {
+                    result = (s8) index;
                     break;
                 }
             }
         }
     }
-    return r;
+    return result;
 }
 
 // Codes: 2 is an error, 3 the end of the scan; 0 and 1 carry a table entry and are ignored.
-void RepeatedScanCallback(u32 a) {
-    switch (a) {
+void RepeatedScanCallback(u32 code) {
+    switch (code) {
         case 0:
         case 1:
             break;
@@ -247,8 +248,8 @@ void RepeatedScanCallback(u32 a) {
     }
 }
 
-void ScanConnectStateCallback(u32 a) {
-    switch (a) {
+void ScanConnectStateCallback(u32 state) {
+    switch (state) {
         case 11:
             data_0217aa00->mRequestPending = 0;
             break;
@@ -295,8 +296,8 @@ s32 func_0204e29c(void) {
 }
 
 s32 func_0204e204(void) {
-    BOOL s = FALSE;
-    BOOL r = FALSE;
+    BOOL stepDone = FALSE;
+    BOOL result = FALSE;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         switch (data_0217aa00->mUnk_000c) {
             case 0:
@@ -305,7 +306,7 @@ s32 func_0204e204(void) {
                 Initialize();
                 break;
             case 1:
-                s = TRUE;
+                stepDone = TRUE;
                 break;
         }
     } else {
@@ -320,28 +321,28 @@ s32 func_0204e204(void) {
                 break;
             case 0x1c:
                 func_0204e498();
-                s = TRUE;
+                stepDone = TRUE;
                 break;
         }
     }
-    if (s != FALSE) {
+    if (stepDone != FALSE) {
         data_0217aa00->mUnk_0004 = 3;
-        r = TRUE;
+        result = TRUE;
     }
-    return r;
+    return result;
 }
 
 s32 func_0204e1a8(s32 a) {
-    s32 r = 0;
+    s32 result = 0;
     if (data_0217aa00->mRequestPending != 0) {
         return 0;
     }
     switch (func_0204e1a8_inline()) {
         case 1:
-            r = func_0204e29c();
+            result = func_0204e29c();
             break;
         case 2:
-            r = func_0204e204();
+            result = func_0204e204();
             break;
         case 0:
             if (a != 0) {
@@ -351,47 +352,47 @@ s32 func_0204e1a8(s32 a) {
             }
             break;
     }
-    return r;
+    return result;
 }
 
 void func_0204e128(void) {
-    u8 i;
-    u8 n;
+    u8 index;
+    u8 count;
     if (data_0217aa00->mUnk_1696 == 0) {
         func_02050e60(5);
         return;
     }
     data_0217aa00->mUnk_000c = 0x18;
-    i = 1;
-    data_0217aa00->mRequestPending = i;
-    n = 0;
-    data_0217aa00->mUnk_1697 = n;
-    data_0217aa00->mUnk_1694 |= i;
-    for (; i <= 15; i++) {
-        if (func_02007d50(i, 2) == 1) {
-            n++;
+    index = 1;
+    data_0217aa00->mRequestPending = index;
+    count = 0;
+    data_0217aa00->mUnk_1697 = count;
+    data_0217aa00->mUnk_1694 |= index;
+    for (; index <= 15; index++) {
+        if (func_02007d50(index, 2) == 1) {
+            count++;
         }
     }
-    if (n == 0) {
+    if (count == 0) {
         data_0217aa00->mUnk_1694 &= ~1;
     }
 }
 
 void func_0204e0bc(void) {
-    u8 i;
-    u8 n;
+    u8 index;
+    u8 count;
     data_0217aa00->mUnk_000c = 0x19;
-    i = 1;
-    data_0217aa00->mRequestPending = i;
+    index = 1;
+    data_0217aa00->mRequestPending = index;
     data_0217aa00->mUnk_1694 |= 2;
-    n = 0;
-    data_0217aa00->mUnk_1695 = n;
-    for (; i <= 15; i++) {
-        if (func_02007d50(i, 3) == 1) {
-            n++;
+    count = 0;
+    data_0217aa00->mUnk_1695 = count;
+    for (; index <= 15; index++) {
+        if (func_02007d50(index, 3) == 1) {
+            count++;
         }
     }
-    if (n == 0) {
+    if (count == 0) {
         data_0217aa00->mUnk_1694 &= ~2;
     }
 }
@@ -409,23 +410,23 @@ void StartRequestEndScan(void) {
     RequestEndScan();
 }
 
-void func_0204e03c(u32 a) {
+void func_0204e03c(u32 entryIndex) {
     data_0217aa00->mUnk_000c = 0x22;
     data_0217aa00->mRequestPending = 1;
     data_0217aa00->mUnk_169c = 0;
-    if (StartConnectToEntry(a) == 0) {
+    if (StartConnectToEntry(entryIndex) == 0) {
         func_02050e60(5);
     }
 }
 
 void func_0204dfe0(u32 a) {
-    u32 r;
+    u32 result;
     data_0217aa00->mUnk_000c = 0x23;
     data_0217aa00->mRequestPending = 1;
-    r = func_0200b15c(a, (ScanBlock *) data_0217aa00->mUnk_0024, 0x1bc, 0x36, 0, 0);
+    result = func_0200b15c(a, (ScanBlock *) data_0217aa00->mUnk_0024, 0x1bc, 0x36, 0, 0);
     data_0217aa00->mRequestPending = 0;
     data_0217aa00->mUnk_0024->mUnk_48 = (data_0217aa00->mUnk_0024->mUnk_48 + 7) & 0x7fff;
-    if (r == 0) {
+    if (result == 0) {
         func_02050e60(5);
     }
 }

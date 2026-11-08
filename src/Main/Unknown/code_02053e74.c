@@ -147,7 +147,7 @@ s32 AdvanceConnectionSetup(s32 a, void *b) {
             break;
         case 4:
             func_0204f814();
-            func_0204f938(b);
+            FillGhostParentParameter(b);
             SetParentParameter();
             break;
         case 5:
@@ -239,8 +239,8 @@ void func_02054aa0(void) {
     if (data_0217aa00->mUnk_000c == 0x2c) {
         TryGetBlockReceiveProgress(data_0217aa00->mBlockInfos[0]->mBlockId, 0, &c0, &c1);
     }
-    if (data_0217aa00->mUnk_1e42 != 0) {
-        data_0217aa00->mUnk_1e42 = data_0217aa00->mUnk_1e42 - 1;
+    if (data_0217aa00->mSendTimer != 0) {
+        data_0217aa00->mSendTimer = data_0217aa00->mSendTimer - 1;
         return;
     }
     if (func_02053e74_inline() == 0) {
@@ -407,10 +407,10 @@ void InitConnectionBuffers(void *a) {
     data_0217aa00->mUnk_1658 = 0;
     data_0217aa00->mUnk_0044.mUnk_38 = HeapAllocAligned(a, 0x1c, 0x20);
     data_0217aa00->mHeap = NNS_FndCreateExpHeapEx(HeapAlloc(a, 0x7800), 0x7800, 1);
-    data_0217aa00->mUnk_1e24 = 0;
-    data_0217aa00->mUnk_1e2c = 0;
-    data_0217aa00->mUnk_1e20 = 0;
-    data_0217aa00->mUnk_1e28 = 0;
+    data_0217aa00->mMPReceiveBuffer = 0;
+    data_0217aa00->mMPReceiveBufferSize = 0;
+    data_0217aa00->mMPSendBuffer = 0;
+    data_0217aa00->mMPSendBufferSize = 0;
     data_0217aa00->mUnk_0456_0 = 1;
     func_02053d00();
 }

@@ -115,7 +115,7 @@ void func_020525a8(Unk0217aa00_0ac *a, Unk0217aa00_24 *b, Unk0217aa00_42c *c, Un
         a->mUnk_dc_5 = 0;
         a->mUnk_dc_6 = k;
         MI_CpuCopy8(d, a->mUnk_c6, 0x14);
-        func_0204ec28(e, d);
+        SetScanGhostInfo(e, d);
     } else {
         s32 m0;
         u8 m1;

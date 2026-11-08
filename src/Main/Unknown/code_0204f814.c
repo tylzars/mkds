@@ -26,233 +26,233 @@ static inline u32 func_0204ff14_inline(Unk0217aa00 *p) {
     return p->mUnk_0000;
 }
 
-u16 func_0204ffe8(u32 a) {
-    BOOL f;
-    u32 r;
+u16 func_0204ffe8(u32 participantIndex) {
+    BOOL stateMatches;
+    u32 result;
 
-    f = FALSE;
+    stateMatches = FALSE;
     switch (data_0217aa00->mUnk_0004) {
         case 8:
         case 9:
-            f = TRUE;
+            stateMatches = TRUE;
             break;
     }
-    if (f != FALSE) {
-        r = data_0217aa00->mUnk_15c8[a].mUnk_00_0;
+    if (stateMatches != FALSE) {
+        result = data_0217aa00->mUnk_15c8[participantIndex].mUnk_00_0;
     } else {
-        r = 0;
+        result = 0;
     }
-    return r;
+    return result;
 }
 
-s32 func_0204ffbc(void) {
-    BOOL r;
+BOOL func_0204ffbc(void) {
+    BOOL result;
 
-    r = FALSE;
+    result = FALSE;
     switch (data_0217aa00->mUnk_0004) {
         case 8:
         case 9:
-            r = TRUE;
+            result = TRUE;
             break;
     }
-    return r;
+    return result;
 }
 
-BOOL func_0204ff14(u16 a, void *b) {
+BOOL func_0204ff14(u16 entryIndex, void *destination) {
     Unk0217aa00 *t;
-    BOOL r;
+    BOOL result;
 
     t = data_0217aa00;
-    r = FALSE;
+    result = FALSE;
     if (func_0204ff14_inline(t) != 2) {
         return FALSE;
     }
     if (*(u16 *) 0x027ffc40 == 2) {
         return FALSE;
     }
-    if (t->mUnk_00ac[a].mUnk_dc_0 != 0) {
-        if (b != NULL) {
-            MI_CpuCopy8(t->mUnk_00ac[a].mUnk_c6, b, 0x14);
+    if (t->mUnk_00ac[entryIndex].mUnk_dc_0 != 0) {
+        if (destination != NULL) {
+            MI_CpuCopy8(t->mUnk_00ac[entryIndex].mUnk_c6, destination, 0x14);
         }
-        r = TRUE;
+        result = TRUE;
     }
-    return r;
+    return result;
 }
 
-s32 func_0204fe90(u16 a) {
-    BOOL r;
-    BOOL b;
+BOOL func_0204fe90(u16 entryIndex) {
+    BOOL result;
+    BOOL entryValid;
 
-    r = FALSE;
-    b = FALSE;
+    result = FALSE;
+    entryValid = FALSE;
     if (func_0204f814_inline() != 2) {
-        b = FALSE;
+        entryValid = FALSE;
     } else if (*(u16 *) 0x027ffc40 == 2) {
-        b = FALSE;
-    } else if (data_0217aa00->mUnk_00ac[a].mUnk_dc_0 != 0) {
-        b = TRUE;
+        entryValid = FALSE;
+    } else if (data_0217aa00->mUnk_00ac[entryIndex].mUnk_dc_0 != 0) {
+        entryValid = TRUE;
     }
-    if (b != FALSE) {
-        if (data_0217aa00->mUnk_00ac[a].mUnk_dc_5 != 0) {
-            r = TRUE;
+    if (entryValid != FALSE) {
+        if (data_0217aa00->mUnk_00ac[entryIndex].mUnk_dc_5 != 0) {
+            result = TRUE;
         }
     }
-    return r;
+    return result;
 }
 
-s32 func_0204fe1c(u16 a) {
-    s32 r;
-    BOOL b;
+s32 func_0204fe1c(u16 entryIndex) {
+    s32 result;
+    BOOL entryValid;
 
-    r = 0;
-    b = FALSE;
+    result = 0;
+    entryValid = FALSE;
     if (func_0204f814_inline() != 2) {
-        b = FALSE;
+        entryValid = FALSE;
     } else if (*(u16 *) 0x027ffc40 == 2) {
-        b = FALSE;
-    } else if (data_0217aa00->mUnk_00ac[a].mUnk_dc_0 != 0) {
-        b = TRUE;
+        entryValid = FALSE;
+    } else if (data_0217aa00->mUnk_00ac[entryIndex].mUnk_dc_0 != 0) {
+        entryValid = TRUE;
     }
-    if (b != FALSE) {
-        r = data_0217aa00->mUnk_00ac[a].mUnk_da;
+    if (entryValid != FALSE) {
+        result = data_0217aa00->mUnk_00ac[entryIndex].mUnk_da;
     }
-    return r;
+    return result;
 }
 
-s32 func_0204fcec(u16 a, void *b) {
-    BOOL r;
+BOOL func_0204fcec(u16 entryIndex, void *destination) {
+    BOOL result;
     void *p;
 
-    r = FALSE;
+    result = FALSE;
     switch (func_0204f814_inline()) {
         case 1:
-            r = FALSE;
+            result = FALSE;
             if ((data_0217aa00->mUnk_0454 & 0x40) != 0) {
-                p = func_02007e38(a);
-                if ((data_0217aa00->mUnk_1696 & (1 << a)) != 0 && p != NULL) {
-                    if (b != NULL) {
-                        MI_CpuCopy8((u8 *) p + 2, b, 0x14);
+                p = func_02007e38(entryIndex);
+                if ((data_0217aa00->mUnk_1696 & (1 << entryIndex)) != 0 && p != NULL) {
+                    if (destination != NULL) {
+                        MI_CpuCopy8((u8 *) p + 2, destination, 0x14);
                     }
-                    r = TRUE;
+                    result = TRUE;
                 }
-            } else if ((data_0217aa00->mUnk_0044.mChildMask & (1 << a)) != 0) {
-                if (b != NULL) {
-                    MI_CpuCopy8(&data_0217aa00->mUnk_045c[a], b, 0x14);
+            } else if ((data_0217aa00->mUnk_0044.mChildMask & (1 << entryIndex)) != 0) {
+                if (destination != NULL) {
+                    MI_CpuCopy8(&data_0217aa00->mUnk_045c[entryIndex], destination, 0x14);
                 }
-                r = TRUE;
+                result = TRUE;
             }
             break;
         case 2:
-            r = FALSE;
-            if ((data_0217aa00->mUnk_043d & (1 << a)) != 0) {
-                if (b != NULL) {
-                    MI_CpuCopy8(&data_0217aa00->mUnk_045c[a], b, 0x14);
+            result = FALSE;
+            if ((data_0217aa00->mUnk_043d & (1 << entryIndex)) != 0) {
+                if (destination != NULL) {
+                    MI_CpuCopy8(&data_0217aa00->mUnk_045c[entryIndex], destination, 0x14);
                 }
-                r = TRUE;
+                result = TRUE;
             }
             break;
     }
-    return r;
+    return result;
 }
 
-void func_0204fb40(s32 a) {
-    Unk02143c30 *q;
-    Unk0217aa00_24_50 *e;
-    RTCTime t;
-    u32 h;
-    u16 m;
-    u64 x;
-    u64 y;
+void FillParentParameter(s32 a) {
+    Unk02143c30 *parentParameter;
+    Unk0217aa00_24_50 *gameInfo;
+    RTCTime time;
+    u32 hour;
+    u16 seconds;
+    u64 generatorState;
+    u64 highWord;
 
-    q = data_0217aa00->mParentParameter;
-    MIi_CpuCopy32(data_02154788, q, 0x40);
-    e = data_0217aa00->mUnk_0044.mUnk_38;
-    e->mUnk_0e.mUnk_07_0 = 0;
-    e->mUnk_0e.mUnk_07_1 = 0;
-    e->mUnk_18_0 = 0;
-    e->mUnk_18_4 = 0;
-    e->mUnk_18_9 = 0;
-    e->mUnk_18_16 = 0;
-    e->mUnk_18_22 = 0;
-    e->mUnk_0e.mUnk_06_0 = 0;
+    parentParameter = data_0217aa00->mParentParameter;
+    MIi_CpuCopy32(data_02154788, parentParameter, 0x40);
+    gameInfo = data_0217aa00->mUnk_0044.mUnk_38;
+    gameInfo->mUnk_0e.mUnk_07_0 = 0;
+    gameInfo->mUnk_0e.mKartIndex = 0;
+    gameInfo->mCharacterIndex = 0;
+    gameInfo->mCupCourseIndex = 0;
+    gameInfo->mMinute = 0;
+    gameInfo->mSecond = 0;
+    gameInfo->mMillisecond = 0;
+    gameInfo->mUnk_0e.mUnk_06_0 = 0;
     if ((data_0217aa00->mUnk_0454 & 0x40) != 0) {
-        q->mUnk_0c = (data_0217aa00->mUnk_1690 + 7) & 0x7fff;
+        parentParameter->mUnk_0c = (data_0217aa00->mUnk_1690 + 7) & 0x7fff;
     } else {
-        GetClockTimeOrZero(&t);
-        h = t.mHour;
-        if (h >= 0x12) {
-            h -= 0x12;
+        GetClockTimeOrZero(&time);
+        hour = time.mHour;
+        if (hour >= 0x12) {
+            hour -= 0x12;
         }
-        m = (h * 0x3c + t.mMinute) * 0x3c + t.mSecond;
-        x = OS_GetTickLo() | m << 16;
-        x = x * 0x5d588b656c078965ull + 0x269ec3;
-        y = x >> 32;
-        q->mUnk_0c = (u16) (y * 0x10000 >> 32) | 0x8000;
+        seconds = (hour * 0x3c + time.mMinute) * 0x3c + time.mSecond;
+        generatorState = OS_GetTickLo() | seconds << 16;
+        generatorState = generatorState * 0x5d588b656c078965ull + 0x269ec3;
+        highWord = generatorState >> 32;
+        parentParameter->mUnk_0c = (u16) (highWord * 0x10000 >> 32) | 0x8000;
     }
-    q->mUnk_32 = data_0217aa00->mUnk_0088;
-    q->mUnk_18 = WM_GetDispersionBeaconPeriod();
-    q->mUnk_00 = data_0217aa00->mUnk_0044.mUnk_38;
-    q->mUnk_04 = 0x1c;
-    q->mUnk_10 = 7;
-    q->mUnk_0e = a != 0 ? 1 : 0;
+    parentParameter->mUnk_32 = data_0217aa00->mUnk_0088;
+    parentParameter->mUnk_18 = WM_GetDispersionBeaconPeriod();
+    parentParameter->mUnk_00 = data_0217aa00->mUnk_0044.mUnk_38;
+    parentParameter->mUnk_04 = 0x1c;
+    parentParameter->mUnk_10 = 7;
+    parentParameter->mUnk_0e = a != 0 ? 1 : 0;
 }
 
-void func_0204f938(GhostRecord *a) {
-    Unk02143c30 *q;
-    Unk0217aa00_24_50 *e;
-    RTCTime t;
-    u32 h;
-    u16 m;
-    u64 x;
-    u64 y;
+void FillGhostParentParameter(GhostRecord *ghostRecord) {
+    Unk02143c30 *parentParameter;
+    Unk0217aa00_24_50 *gameInfo;
+    RTCTime time;
+    u32 hour;
+    u16 seconds;
+    u64 generatorState;
+    u64 highWord;
 
-    q = data_0217aa00->mParentParameter;
-    MIi_CpuCopy32(data_02154788, q, 0x40);
-    e = data_0217aa00->mUnk_0044.mUnk_38;
-    e->mUnk_0e.mUnk_07_0 = 1;
-    MI_CpuCopy8(a->mName, e, 0x14);
-    e->mUnk_0e.mUnk_07_1 = a->mKartIndex;
-    e->mUnk_18_0 = a->mCharacterIndex;
-    e->mUnk_18_4 = (u8) FindCupCourseIndex(a->mCourseId);
-    e->mUnk_18_9 = a->mMinute;
-    e->mUnk_18_16 = a->mSecond;
-    e->mUnk_18_22 = a->mMillisecond;
-    GetClockTimeOrZero(&t);
-    h = t.mHour;
-    if (h >= 0x12) {
-        h -= 0x12;
+    parentParameter = data_0217aa00->mParentParameter;
+    MIi_CpuCopy32(data_02154788, parentParameter, 0x40);
+    gameInfo = data_0217aa00->mUnk_0044.mUnk_38;
+    gameInfo->mUnk_0e.mUnk_07_0 = 1;
+    MI_CpuCopy8(ghostRecord->mName, gameInfo, 0x14);
+    gameInfo->mUnk_0e.mKartIndex = ghostRecord->mKartIndex;
+    gameInfo->mCharacterIndex = ghostRecord->mCharacterIndex;
+    gameInfo->mCupCourseIndex = (u8) FindCupCourseIndex(ghostRecord->mCourseId);
+    gameInfo->mMinute = ghostRecord->mMinute;
+    gameInfo->mSecond = ghostRecord->mSecond;
+    gameInfo->mMillisecond = ghostRecord->mMillisecond;
+    GetClockTimeOrZero(&time);
+    hour = time.mHour;
+    if (hour >= 0x12) {
+        hour -= 0x12;
     }
-    m = (h * 0x3c + t.mMinute) * 0x3c + t.mSecond;
-    x = OS_GetTickLo() | m << 16;
-    x = x * 0x5d588b656c078965ull + 0x269ec3;
-    y = x >> 32;
-    q->mUnk_0c = (u16) (y * 0x10000 >> 32) | 0x8000;
-    q->mUnk_32 = data_0217aa00->mUnk_0088;
-    q->mUnk_18 = WM_GetDispersionBeaconPeriod();
-    q->mUnk_00 = data_0217aa00->mUnk_0044.mUnk_38;
-    q->mUnk_04 = 0x1c;
-    q->mUnk_10 = 1;
-    q->mUnk_34 = 0x1b6;
-    q->mUnk_36 = 0x2e;
+    seconds = (hour * 0x3c + time.mMinute) * 0x3c + time.mSecond;
+    generatorState = OS_GetTickLo() | seconds << 16;
+    generatorState = generatorState * 0x5d588b656c078965ull + 0x269ec3;
+    highWord = generatorState >> 32;
+    parentParameter->mUnk_0c = (u16) (highWord * 0x10000 >> 32) | 0x8000;
+    parentParameter->mUnk_32 = data_0217aa00->mUnk_0088;
+    parentParameter->mUnk_18 = WM_GetDispersionBeaconPeriod();
+    parentParameter->mUnk_00 = data_0217aa00->mUnk_0044.mUnk_38;
+    parentParameter->mUnk_04 = 0x1c;
+    parentParameter->mUnk_10 = 1;
+    parentParameter->mUnk_34 = 0x1b6;
+    parentParameter->mUnk_36 = 0x2e;
 }
 
 void func_0204f8a0(u8 a) {
-    BOOL r;
-    BOOL b;
+    BOOL proceed;
+    BOOL allowed;
 
-    r = FALSE;
+    proceed = FALSE;
     if ((data_0217aa00->mUnk_0454 & 0x40) != 0) {
-        b = TRUE;
+        allowed = TRUE;
         if (func_0204f814_inline() != 1) {
             if (*(u16 *) 0x027ffc40 != 2) {
-                b = FALSE;
+                allowed = FALSE;
             }
         }
-        if (b != FALSE) {
-            r = TRUE;
+        if (allowed != FALSE) {
+            proceed = TRUE;
         }
     }
-    if (r == FALSE) {
+    if (proceed == FALSE) {
         return;
     }
     if (func_0204f814_inline() != 1) {
@@ -262,22 +262,22 @@ void func_0204f8a0(u8 a) {
 }
 
 void func_0204f814(void) {
-    s32 i;
-    s32 m;
-    s8 b;
-    s32 v;
+    s32 index;
+    s32 lowest;
+    s8 lowestIndex;
+    s32 value;
 
-    b = -1;
-    m = 0x7fff;
-    for (i = 1; i < 14; i++) {
-        v = data_0217aa00->mUnk_008c[i];
-        if (v != -1 && v < m) {
-            m = v;
-            b = i;
+    lowestIndex = -1;
+    lowest = 0x7fff;
+    for (index = 1; index < 14; index++) {
+        value = data_0217aa00->mUnk_008c[index];
+        if (value != -1 && value < lowest) {
+            lowest = value;
+            lowestIndex = index;
         }
     }
-    if (b != -1) {
-        data_0217aa00->mUnk_0088 = b;
+    if (lowestIndex != -1) {
+        data_0217aa00->mUnk_0088 = lowestIndex;
         return;
     }
     data_0217aa00->mUnk_0088 = -1;
