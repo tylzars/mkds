@@ -8,7 +8,7 @@
 
 #pragma thumb on
 
-const Unk0215c5b4 gIndexChangeOffsets = {
+const IndexChangeOffsets gIndexChangeOffsets = {
     0, -2, -4, -5, -4, -2, 0, 0, -1, -2, -2, -2, -1, 0,
 };
 
@@ -16,7 +16,7 @@ s16 LookupIndexChangeOffset(s32 step, s32 row) {
     return gIndexChangeOffsets[row][step];
 }
 
-void func_02116ce8(s32 number, u16 *text, s32 variant) {
+void FormatNumberByVariant(s32 number, u16 *text, s32 variant) {
     switch (variant) {
         case 0:
             func_02124fac(number, text);
@@ -27,7 +27,7 @@ void func_02116ce8(s32 number, u16 *text, s32 variant) {
     }
 }
 
-void func_02116ccc(u16 *text, s32 variant) {
+void WriteColonByVariant(u16 *text, s32 variant) {
     switch (variant) {
         case 0:
             *text = 0x3a;
@@ -38,7 +38,7 @@ void func_02116ccc(u16 *text, s32 variant) {
     }
 }
 
-void func_02116cb0(u16 *text, s32 variant) {
+void WriteZeroDigitByVariant(u16 *text, s32 variant) {
     switch (variant) {
         case 0:
             *text = 0x30;
@@ -51,49 +51,49 @@ void func_02116cb0(u16 *text, s32 variant) {
 
 // Writes the time as minute, second and millisecond text; c picks which digit and separator characters.
 void FormatMinuteSecondMillisecondTime(MinuteSecondMillisecondTime *time, u16 *text, s32 variant) {
-    u16 i;
-    u16 buf[0x12];
+    u16 length;
+    u16 digitText[0x12];
 
-    i = 0;
-    func_02116ce8(time->mMinute, text, variant);
-    i++;
+    length = 0;
+    FormatNumberByVariant(time->mMinute, text, variant);
+    length++;
     if (time->mMinute >= 10) {
-        i++;
+        length++;
     }
-    func_02116ccc(text + i, variant);
-    func_02116ce8(time->mSecond, buf, variant);
+    WriteColonByVariant(text + length, variant);
+    FormatNumberByVariant(time->mSecond, digitText, variant);
     if (time->mSecond >= 10) {
-        MIi_CpuCopy16(buf, text + (u16) (i + 1), 4);
-        i += 3;
+        MIi_CpuCopy16(digitText, text + (u16) (length + 1), 4);
+        length += 3;
     } else {
-        func_02116cb0(text + (u16) (i + 1), variant);
-        MIi_CpuCopy16(buf, text + (u16) (i + 2), 2);
-        i += 3;
+        WriteZeroDigitByVariant(text + (u16) (length + 1), variant);
+        MIi_CpuCopy16(digitText, text + (u16) (length + 2), 2);
+        length += 3;
     }
-    func_02116ccc(text + i, variant);
-    func_02116ce8(time->mMillisecond, buf, variant);
+    WriteColonByVariant(text + length, variant);
+    FormatNumberByVariant(time->mMillisecond, digitText, variant);
     if (time->mMillisecond >= 100) {
-        MIi_CpuCopy16(buf, text + (u16) (i + 1), 6);
-        i += 4;
+        MIi_CpuCopy16(digitText, text + (u16) (length + 1), 6);
+        length += 4;
     } else if (time->mMillisecond >= 10) {
-        func_02116cb0(text + (u16) (i + 1), variant);
-        MIi_CpuCopy16(buf, text + (u16) (i + 2), 4);
-        i += 4;
+        WriteZeroDigitByVariant(text + (u16) (length + 1), variant);
+        MIi_CpuCopy16(digitText, text + (u16) (length + 2), 4);
+        length += 4;
     } else {
-        func_02116cb0(text + (u16) (i + 1), variant);
-        func_02116cb0(text + (u16) (i + 2), variant);
-        MIi_CpuCopy16(buf, text + (u16) (i + 3), 2);
-        i += 4;
+        WriteZeroDigitByVariant(text + (u16) (length + 1), variant);
+        WriteZeroDigitByVariant(text + (u16) (length + 2), variant);
+        MIi_CpuCopy16(digitText, text + (u16) (length + 3), 2);
+        length += 4;
     }
-    text[i] = 0;
+    text[length] = 0;
 }
 
-void func_02116b8c(void *time, u16 *text) {
+void FormatTimeAscii(void *time, u16 *text) {
     FormatMinuteSecondMillisecondTime(time, text, 0);
 }
 
-void func_02116b80(void *in, void *out) {
-    FormatMinuteSecondMillisecondTime(in, out, 1);
+void func_02116b80(void *time, void *text) {
+    FormatMinuteSecondMillisecondTime(time, text, 1);
 }
 
 void FormatTwoDigitNumber(u32 number, u16 *text) {

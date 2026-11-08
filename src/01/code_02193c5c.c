@@ -121,7 +121,7 @@ void SetupRecordGpxValues(s32 a) {
                   data_ov001_021a668c[a], 1);
     count = gRecordGpx->mRecordGpxSBncl->mUnk_06;
     GetGrandPrixRecordTime(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a], &value);
-    func_02116b8c(&value, buf);
+    FormatTimeAscii(&value, buf);
     gRecordGpx->mRecordGpxSTable[count + data_ov001_021a6614[a]].mVisible = 1;
     func_02124224(1, data_ov001_021a6614[a], gRecordGpx->mRecordGpxSBnll, buf, gRecordGpx->mRecordGpxSBncl,
                   gRecordGpx->mRecordGpxSTable, 7);
@@ -456,7 +456,7 @@ void InitRecordGpx(void *heap) {
 void func_ov001_021946d0(void) {
     u32 v;
 
-    func_02117218();
+    ClearKartIconPointer();
     func_0211df38();
     gRecordGpx = NULL;
     v = (reg_GX_DISPCNT & 0x1f00) >> 8;

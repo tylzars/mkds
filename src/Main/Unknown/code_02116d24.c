@@ -27,10 +27,10 @@ void AdvanceWait(void) {
         q = p->mNclr->mUnk_0c;
         switch (p->mUnk_20) {
             case 0:
-                CallQueueAppend(0xe, p->mUnk_1c << 5, q + 0x1c0, 0x20);
+                CallQueueAppend(0xe, p->mPaletteIndex << 5, q + 0x1c0, 0x20);
                 break;
             case 1:
-                CallQueueAppend(0x1e, p->mUnk_1c << 5, q + 0x1c0, 0x20);
+                CallQueueAppend(0x1e, p->mPaletteIndex << 5, q + 0x1c0, 0x20);
                 break;
         }
     }

@@ -16,5 +16,5 @@ void RequestRecordVSEraseState9(void);
 void RequestRecordVSEraseState10(void);
 void RequestRecordVSEraseState11(void);
 void RequestRecordVSEraseState12(void);
-void InitRecordVSErase(void *a);
+void InitRecordVSErase(void *heap);
 void ReleaseRecordVSErase(void);

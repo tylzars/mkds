@@ -1579,7 +1579,7 @@ void ReleaseSelectRaceRule(void) {
     b &= ~3;
     (reg_G2_BG2CNT) = b;
     (reg_G2_BG2CNT) = ((reg_G2_BG2CNT) & 0x43) | 0x9e10;
-    func_02116dc8();
+    ClearWaitPointer();
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_0212b91c();
     }

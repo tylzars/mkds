@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_02119dfc(void);
+u32 IsSelectCupCourseIndexChangeRunning(void);

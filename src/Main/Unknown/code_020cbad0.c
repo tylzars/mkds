@@ -154,7 +154,7 @@ void InitMenu(void) {
         LoadMissionRunMSselAndBossIconData();
         LoadSelectBattleStageData();
         LoadSelectEngineData();
-        func_02118d44();
+        LoadSelectCupGridData();
         func_0211f240();
         func_0211a6bc();
     }

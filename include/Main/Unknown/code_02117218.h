@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02117218(void);
+void ClearKartIconPointer(void);

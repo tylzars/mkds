@@ -25,7 +25,7 @@ void WriteVsSelectCupCourseRegisters(void) {
             GXS_SetGraphicsMode(0);
         }
     }
-    func_02118e30();
+    WriteSelectCupCourseBgOffsets();
 }
 
 #pragma thumb off

@@ -103,7 +103,7 @@ void func_0211f4b0(void *a, void *b) {
 #pragma thumb on
 
 void func_0211f498(void) {
-    func_02116dc8();
+    ClearWaitPointer();
     *(u32 *) &data_0217d380 = 0;
 }
 

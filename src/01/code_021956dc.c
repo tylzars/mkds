@@ -121,7 +121,7 @@ void func_ov001_021975f4(u16 a) {
                       data_ov001_021a683c[5], 0);
         cnt = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
         GetTimeRecordTime(data_ov001_021a6900[gRecordTAtt->mIndex], value, &time);
-        func_02116b8c(&time, str);
+        FormatTimeAscii(&time, str);
         pal = data_ov001_021a67d4[0];
         gRecordTAtt->mRecordTAttMTable[cnt + pal].mVisible = 1;
         func_02124224(0, pal, gRecordTAtt->mRecordTAttMBnll, str, gRecordTAtt->mRecordTAttMBncl,
@@ -153,7 +153,7 @@ void func_ov001_021975f4(u16 a) {
                       data_ov001_021a6846[a], 1);
         cnt = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
         GetTimeRecordTime(data_ov001_021a6900[gRecordTAtt->mIndex], value, &time);
-        func_02116b8c(&time, str);
+        FormatTimeAscii(&time, str);
         pal = data_ov001_021a67d4[a];
         gRecordTAtt->mRecordTAttSTable[cnt + pal].mVisible = 1;
         func_02124224(1, pal, gRecordTAtt->mRecordTAttSBnll, str, gRecordTAtt->mRecordTAttSBncl,
@@ -225,7 +225,7 @@ void func_ov001_021972f4(void) {
         gRecordTAtt->mRecordTAttMTable[6].mVisible = 1;
         QueueKartIcon(result, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl, 6, 6, 0);
         GetTimeRecordTime(data_ov001_021a6900[gRecordTAtt->mIndex], 5, &time);
-        func_02116b8c(&time, str);
+        FormatTimeAscii(&time, str);
         gRecordTAtt->mRecordTAttMTable[cnt + 2].mVisible = 1;
         func_02124224(0, 2, gRecordTAtt->mRecordTAttMBnll, str, gRecordTAtt->mRecordTAttMBncl,
                       gRecordTAtt->mRecordTAttMTable, 7);
@@ -580,7 +580,7 @@ void func_ov001_02196904(void) {
     u32 a;
     u32 b;
 
-    func_02117218();
+    ClearKartIconPointer();
     gRecordTAtt = NULL;
     a = ((reg_GX_DISPCNT) & 0x1f00) >> 8;
     (reg_GX_DISPCNT) = ((reg_GX_DISPCNT) & ~0x1f00) | ((a & ~0x13) << 8);

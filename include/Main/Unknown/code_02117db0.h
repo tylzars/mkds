@@ -8,7 +8,7 @@ void RequestSelectCupGridState10(void);
 void RequestSelectCupGridState11(void);
 // Builds the cup chooser: makes its heap and object, loads the cup files, builds the cells and sets the first state. a
 // is the parent heap, d the mode (0, 1 or 2 to 4 by the screen that opened it).
-void InitSelectCupGrid(void *a, void *b, void *c, s32 d);
+void InitSelectCupGrid(void *heap, void *mainOam, void *subOam, s32 mode);
 // Releases the cup chooser: writes the layer enable bits 0x1800 of the display control register when mResult is 2 (or 1
 // in mode 0), releases the file helpers, destroys the heap and clears gSelectCupGrid.
 void ReleaseSelectCupGrid(void);

@@ -410,7 +410,7 @@ void ReleaseSelectGhost(void) {
     func_0212b91c();
     func_0211de34();
     func_0211df38();
-    func_02117218();
+    ClearKartIconPointer();
     HeapDestroy(gSelectGhost->mHeap);
     gSelectGhost = NULL;
 }

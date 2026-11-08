@@ -205,7 +205,7 @@ void func_ov001_02185828(void) {
         func_ov001_0218568c(0x1e);
         GXS_SetGraphicsMode(0);
     }
-    func_02118e30();
+    WriteSelectCupCourseBgOffsets();
 }
 
 void func_ov001_021857ec(void) {

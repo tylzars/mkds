@@ -17,61 +17,61 @@
 #pragma thumb on
 
 void LoadKartIconData(void) {
-    void *v1;
-    int v2;
-    const char **v3;
-    Ncgr *v4;
-    Unk02021dc8 *v5;
-    Nclr *v6[2];
-    v4 = NULL;
-    v5 = NULL;
-    v6[0] = NULL;
-    v1 = FindSceneFile(gKartIconNcgrName);
-    LoadNcgrData(&v4, v1);
-    v1 = FindSceneFile(gKartIconNcerName);
-    LoadNcerData(&v5, v1);
-    v2 = 0;
-    v3 = gKartIconNclrNames;
+    void *sceneFile;
+    int paletteCount;
+    const char **nclrNameCursor;
+    Ncgr *chars;
+    Unk02021dc8 *cells;
+    Nclr *palette[2];
+    chars = NULL;
+    cells = NULL;
+    palette[0] = NULL;
+    sceneFile = FindSceneFile(gKartIconNcgrName);
+    LoadNcgrData(&chars, sceneFile);
+    sceneFile = FindSceneFile(gKartIconNcerName);
+    LoadNcerData(&cells, sceneFile);
+    paletteCount = 0;
+    nclrNameCursor = gKartIconNclrNames;
     do {
-        v1 = FindSceneFile(*v3);
-        LoadNclrData(v6, v1);
-        v3 = v3 + 1;
-        v2 = v2 + 1;
-    } while (v2 < 3);
+        sceneFile = FindSceneFile(*nclrNameCursor);
+        LoadNclrData(palette, sceneFile);
+        nclrNameCursor = nclrNameCursor + 1;
+        paletteCount = paletteCount + 1;
+    } while (paletteCount < 3);
 }
 
 void LoadCommonKartIconData(void) {
-    void *v1;
-    int v2;
-    const char **v3;
-    Ncgr *v4;
-    Unk02021dc8 *v5;
-    Nclr *v6[2];
-    v4 = NULL;
-    v5 = NULL;
-    v6[0] = NULL;
-    v1 = FindSceneFile(gCommonKartIconNcgrName);
-    LoadNcgrData(&v4, v1);
-    v1 = FindSceneFile(gCommonKartIconNcerName);
-    LoadNcerData(&v5, v1);
-    v2 = 0;
-    v3 = gCommonKartIconNclrNames;
+    void *sceneFile;
+    int paletteCount;
+    const char **nclrNameCursor;
+    Ncgr *chars;
+    Unk02021dc8 *cells;
+    Nclr *palette[2];
+    chars = NULL;
+    cells = NULL;
+    palette[0] = NULL;
+    sceneFile = FindSceneFile(gCommonKartIconNcgrName);
+    LoadNcgrData(&chars, sceneFile);
+    sceneFile = FindSceneFile(gCommonKartIconNcerName);
+    LoadNcerData(&cells, sceneFile);
+    paletteCount = 0;
+    nclrNameCursor = gCommonKartIconNclrNames;
     do {
-        v1 = FindSceneFile(*v3);
-        LoadNclrData(v6, v1);
-        v3 = v3 + 1;
-        v2 = v2 + 1;
-    } while (v2 < 3);
+        sceneFile = FindSceneFile(*nclrNameCursor);
+        LoadNclrData(palette, sceneFile);
+        nclrNameCursor = nclrNameCursor + 1;
+        paletteCount = paletteCount + 1;
+    } while (paletteCount < 3);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void CreateKartIcon(void *a) {
+void CreateKartIcon(void *heap) {
     int i;
 
-    gKartIcon = HeapAlloc(a, 0x18);
+    gKartIcon = HeapAlloc(heap, 0x18);
     LocateNcgr2(&gKartIcon->mNcgr, FindSceneFile(gKartIconNcgrName));
     LocateNcer(&gKartIcon->mNcer, FindSceneFile(gKartIconNcerName));
     for (i = 0; i < 3; i++) {
@@ -99,32 +99,35 @@ void CreateCommonKartIcon(void *heap) {
 #pragma thumb off
 
 #pragma thumb on
-void func_02117218(void) {
-    u32 value0;
-    u32 value1;
-    value1 = 0u;
-    value0 = (u32) &gKartIcon;
-    *(u32 *) ((value0) + 0u) = value1;
+void ClearKartIconPointer(void) {
+    u32 pointerAddress;
+    u32 zero;
+    zero = 0u;
+    pointerAddress = (u32) &gKartIcon;
+    *(u32 *) ((pointerAddress) + 0u) = zero;
 }
 #pragma thumb off
 
 #pragma thumb on
 
-void QueueKartIcon(s32 a, Unk02021dc8 *b, Unk0201ea30 *c, u32 d, u16 e, s32 f) {
-    int n;
+void QueueKartIcon(s32 iconIndex, Unk02021dc8 *destinationNcer, Unk0201ea30 *destinationBncl, u32 destinationBnclIndex,
+                   u16 paletteIndex, s32 f) {
+    int queueKind;
 
-    n = 0x12;
+    queueKind = 0x12;
     switch (f) {
         case 0:
-            n = 0xe;
+            queueKind = 0xe;
             break;
         case 1:
-            n = 0x1e;
+            queueKind = 0x1e;
             break;
     }
-    func_02124748(gKartIconRows[a].mBnclIndex, gKartIcon->mNcer, gKartIcon->mNcgr, gKartIcon->mBncl, f, d, b, c);
-    CallQueueAppend(n, e * 32, gKartIcon->mNclrs[gKartIconRows[a].mNclrIndex]->mData + gKartIconRows[a].mNclrStart * 16,
-                    0x20);
+    func_02124748(gKartIconRows[iconIndex].mBnclIndex, gKartIcon->mNcer, gKartIcon->mNcgr, gKartIcon->mBncl, f,
+                  destinationBnclIndex, destinationNcer, destinationBncl);
+    CallQueueAppend(
+        queueKind, paletteIndex * 32,
+        gKartIcon->mNclrs[gKartIconRows[iconIndex].mNclrIndex]->mData + gKartIconRows[iconIndex].mNclrStart * 16, 0x20);
 }
 
 #pragma thumb off

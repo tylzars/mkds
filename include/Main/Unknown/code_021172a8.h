@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void CreateKartIcon(void *a);
+void CreateKartIcon(void *heap);

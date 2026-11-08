@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02119a90(void);
+void RequestSelectCupCourseState6(void);

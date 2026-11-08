@@ -11,6 +11,6 @@ void SetupSelectCupGridIndex(void);
 // Asks for the cup picture of the course that mShownCourseIndex selects and sets mCupPicturePending;
 // AdvanceSelectCupGrid queues the picture data when it is ready.
 void RequestSelectCupGridCupPicture(void);
-void func_02118814(void);
+void UpdateSelectCupGridCupCells(void);
 void func_021188dc(void);
 void RefreshSelectCupGridCupsEnabled(void);

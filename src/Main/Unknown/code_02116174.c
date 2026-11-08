@@ -20,54 +20,54 @@
 #pragma thumb on
 
 void LocateAndQueueRecordVSErase(void) {
-    void *v2;
-    Nclr *v3;
-    Ncgr *v4;
-    Nclr *v5;
-    Nscr *v6[2];
-    v4 = NULL;
-    v5 = NULL;
-    v6[0] = NULL;
-    v2 = FindSceneFile(gRecordVSMNcgrName);
-    LocateNcgr2((Ncgr **) gRecordVSErase, v2);
-    v2 = FindSceneFile(gRecordVSMNcerName);
-    LocateNcer(&gRecordVSErase->mRecordVSMNcer, v2);
-    v2 = FindSceneFile(gRecordVSMBnclName);
-    gRecordVSErase->mRecordVSMBncl = v2;
-    v2 = FindSceneFile(gRecordVSMBnllName);
-    gRecordVSErase->mRecordVSMBnll = v2;
-    v2 = FindSceneFile(gRecordVSMTransientBnclName);
-    gRecordVSErase->mRecordVSMTransientBncl = v2;
-    v2 = FindSceneFile(gRecordVSMTransientBnllName);
-    gRecordVSErase->mRecordVSMTransientBnll = v2;
-    v2 = FindSceneFile(gRecordVSSNcgrName);
-    LocateNcgr2(&gRecordVSErase->mRecordVSSNcgr, v2);
-    v2 = FindSceneFile(gRecordVSSNcerName);
-    LocateNcer(&gRecordVSErase->mRecordVSSNcer, v2);
-    v2 = FindSceneFile(gRecordVSSEraseBnclName);
-    gRecordVSErase->mRecordVSSEraseBncl = v2;
-    v2 = FindSceneFile(gRecordVSSEraseBnblName);
-    gRecordVSErase->mRecordVSSEraseBnbl = v2;
-    v2 = FindSceneFile(gRecordVSSEraseBnllName);
-    gRecordVSErase->mRecordVSSEraseBnll = v2;
-    v2 = HeapAlloc(gRecordVSErase->mHeap, (0x00000800u));
-    gRecordVSErase->mUnk_4c = v2;
-    v2 = FindSceneFile(gRecordVSSBNcgrName);
-    LocateNcgr(&v4, v2);
-    v2 = FindSceneFile(gRecordVSSEraseNscrName);
-    LocateNscr(v6, v2);
-    v2 = FindSceneFile(gRecordVSSBNclrName);
-    LocateNclr(&v5, v2);
-    v2 = FindSceneFile(gRecordVSM02NscrName);
-    LocateNscr(&gRecordVSErase->mRecordVSM02Nscr, v2);
-    v2 = FindSceneFile(gRecordVSM03NscrName);
-    LocateNscr(&gRecordVSErase->mRecordVSM03Nscr, v2);
-    v3 = GetEmblemSBNclr();
-    CallQueueAppend(0x17, 0, v4->mData, v4->mDataSize);
-    CallQueueAppend(0x1b, 0, v6[0]->mData, v6[0]->mDataSize);
+    void *sceneFile;
+    Nclr *emblemPalette;
+    Ncgr *sbChars;
+    Nclr *sbPalette;
+    Nscr *eraseScreenMap[2];
+    sbChars = NULL;
+    sbPalette = NULL;
+    eraseScreenMap[0] = NULL;
+    sceneFile = FindSceneFile(gRecordVSMNcgrName);
+    LocateNcgr2((Ncgr **) gRecordVSErase, sceneFile);
+    sceneFile = FindSceneFile(gRecordVSMNcerName);
+    LocateNcer(&gRecordVSErase->mRecordVSMNcer, sceneFile);
+    sceneFile = FindSceneFile(gRecordVSMBnclName);
+    gRecordVSErase->mRecordVSMBncl = sceneFile;
+    sceneFile = FindSceneFile(gRecordVSMBnllName);
+    gRecordVSErase->mRecordVSMBnll = sceneFile;
+    sceneFile = FindSceneFile(gRecordVSMTransientBnclName);
+    gRecordVSErase->mRecordVSMTransientBncl = sceneFile;
+    sceneFile = FindSceneFile(gRecordVSMTransientBnllName);
+    gRecordVSErase->mRecordVSMTransientBnll = sceneFile;
+    sceneFile = FindSceneFile(gRecordVSSNcgrName);
+    LocateNcgr2(&gRecordVSErase->mRecordVSSNcgr, sceneFile);
+    sceneFile = FindSceneFile(gRecordVSSNcerName);
+    LocateNcer(&gRecordVSErase->mRecordVSSNcer, sceneFile);
+    sceneFile = FindSceneFile(gRecordVSSEraseBnclName);
+    gRecordVSErase->mRecordVSSEraseBncl = sceneFile;
+    sceneFile = FindSceneFile(gRecordVSSEraseBnblName);
+    gRecordVSErase->mRecordVSSEraseBnbl = sceneFile;
+    sceneFile = FindSceneFile(gRecordVSSEraseBnllName);
+    gRecordVSErase->mRecordVSSEraseBnll = sceneFile;
+    sceneFile = HeapAlloc(gRecordVSErase->mHeap, (0x00000800u));
+    gRecordVSErase->mUnk_4c = sceneFile;
+    sceneFile = FindSceneFile(gRecordVSSBNcgrName);
+    LocateNcgr(&sbChars, sceneFile);
+    sceneFile = FindSceneFile(gRecordVSSEraseNscrName);
+    LocateNscr(eraseScreenMap, sceneFile);
+    sceneFile = FindSceneFile(gRecordVSSBNclrName);
+    LocateNclr(&sbPalette, sceneFile);
+    sceneFile = FindSceneFile(gRecordVSM02NscrName);
+    LocateNscr(&gRecordVSErase->mRecordVSM02Nscr, sceneFile);
+    sceneFile = FindSceneFile(gRecordVSM03NscrName);
+    LocateNscr(&gRecordVSErase->mRecordVSM03Nscr, sceneFile);
+    emblemPalette = GetEmblemSBNclr();
+    CallQueueAppend(0x17, 0, sbChars->mData, sbChars->mDataSize);
+    CallQueueAppend(0x1b, 0, eraseScreenMap[0]->mData, eraseScreenMap[0]->mDataSize);
     CallQueueAppend(0x1b, (0x00000800u), gRecordVSErase->mUnk_4c, (0x00000800u));
-    CallQueueAppend(0x1f, 0, v5->mData, 0x40);
-    CallQueueAppend(0xe, 0x40, v3->mData, 0x20);
+    CallQueueAppend(0x1f, 0, sbPalette->mData, 0x40);
+    CallQueueAppend(0xe, 0x40, emblemPalette->mData, 0x20);
 }
 
 #pragma thumb off
@@ -82,12 +82,12 @@ u16 GetRecordVSEraseFirstRecordIndex(void) {
 
 #pragma thumb on
 
-u32 IsRecordVSEraseRowFilled(int a) {
-    int v1;
-    int v2;
-    v1 = GetRecordVSEraseFirstRecordIndex();
-    v2 = GetRecordCount();
-    if (v2 > v1 + a) {
+u32 IsRecordVSEraseRowFilled(int row) {
+    int firstRecordIndex;
+    int recordCount;
+    firstRecordIndex = GetRecordVSEraseFirstRecordIndex();
+    recordCount = GetRecordCount();
+    if (recordCount > firstRecordIndex + row) {
         return 1;
     }
     return 0;
@@ -97,13 +97,13 @@ u32 IsRecordVSEraseRowFilled(int a) {
 
 #pragma thumb on
 
-void func_02116624(void) {
+void UpdateRecordVSEraseRows(void) {
     s32 i;
-    s32 n;
-    s32 v;
+    s32 eraseCellCount;
+    s32 firstRecordIndex;
 
-    n = gRecordVSErase->mRecordVSSEraseBncl->mUnk_06;
-    v = GetRecordVSEraseFirstRecordIndex();
+    eraseCellCount = gRecordVSErase->mRecordVSSEraseBncl->mUnk_06;
+    firstRecordIndex = GetRecordVSEraseFirstRecordIndex();
     for (i = 0; i < 5; i++) {
         gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mVisible = 0;
         gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mVisible = 0;
@@ -111,12 +111,12 @@ void func_02116624(void) {
         gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mVisible = 0;
         gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mVisible = 0;
         gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mVisible = 0;
-        gRecordVSErase->mRecordVSSEraseTable[n + data_0215c4b8[i]].mVisible = 0;
+        gRecordVSErase->mRecordVSSEraseTable[eraseCellCount + data_0215c4b8[i]].mVisible = 0;
     }
     for (i = 0; i < 5; i++) {
         if (IsRecordVSEraseRowFilled((s16) i)) {
             if (gRecordVSErase->mIndex == i) {
-                if (IsRecordFlagged(v)) {
+                if (IsRecordFlagged(firstRecordIndex)) {
                     gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mVisible = 1;
                     func_02124100(data_0215c4b8[i], 0xe, gRecordVSErase->mRecordVSSEraseBnll,
                                   gRecordVSErase->mRecordVSSEraseTable, gRecordVSErase->mRecordVSSEraseBncl);
@@ -126,7 +126,7 @@ void func_02116624(void) {
                                   gRecordVSErase->mRecordVSSEraseTable, gRecordVSErase->mRecordVSSEraseBncl);
                 }
             } else {
-                if (IsRecordFlagged(v)) {
+                if (IsRecordFlagged(firstRecordIndex)) {
                     gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mVisible = 1;
                     func_02124100(data_0215c4b8[i], 0xe, gRecordVSErase->mRecordVSSEraseBnll,
                                   gRecordVSErase->mRecordVSSEraseTable, gRecordVSErase->mRecordVSSEraseBncl);
@@ -136,26 +136,26 @@ void func_02116624(void) {
                                   gRecordVSErase->mRecordVSSEraseTable, gRecordVSErase->mRecordVSSEraseBncl);
                 }
             }
-            gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mVisible = IsRecordFlagged(v) ? 0 : 1;
-            gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mVisible = IsRecordFlagged(v);
-            gRecordVSErase->mRecordVSSEraseTable[n + data_0215c4b8[i]].mVisible = 1;
+            gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mVisible = IsRecordFlagged(firstRecordIndex) ? 0 : 1;
+            gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mVisible = IsRecordFlagged(firstRecordIndex);
+            gRecordVSErase->mRecordVSSEraseTable[eraseCellCount + data_0215c4b8[i]].mVisible = 1;
         }
-        v++;
+        firstRecordIndex++;
     }
 }
 
-void func_021162cc(void) {
-    s32 v;
+void PrintRecordVSEraseShownRecord(void) {
+    s32 firstRecordIndex;
     s32 i;
     s32 j;
     BOOL z;
-    u16 buf[0x10];
-    u32 t[3][3] = {0};
-    u8 buf3[0x14];
-    DateBytes a;
+    u16 text[0x10];
+    u32 counts[3][3] = {0};
+    u8 friendKeyText[0x14];
+    DateBytes date;
 
-    v = GetRecordVSEraseFirstRecordIndex();
-    if (GetRecordFriendKeyText(v + gRecordVSErase->mShownIndex, buf3)) {
+    firstRecordIndex = GetRecordVSEraseFirstRecordIndex();
+    if (GetRecordFriendKeyText(firstRecordIndex + gRecordVSErase->mShownIndex, friendKeyText)) {
         gRecordVSErase->mTransientDrawn = 1;
         CallQueueAppend(9, 0, gRecordVSErase->mRecordVSM03Nscr->mData, gRecordVSErase->mRecordVSM03Nscr->mDataSize);
     } else {
@@ -164,60 +164,60 @@ void func_021162cc(void) {
     }
     switch (gRecordVSErase->mTransientDrawn) {
         case 0:
-            CopyRecordText(v + gRecordVSErase->mShownIndex, buf, 0x20);
-            func_0212426c(0, 0, gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
+            CopyRecordText(firstRecordIndex + gRecordVSErase->mShownIndex, text, 0x20);
+            func_0212426c(0, 0, gRecordVSErase->mRecordVSMBnll, text, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable);
-            t[1][0] = func_0211437c(v + gRecordVSErase->mShownIndex);
-            t[1][1] = func_02114360(v + gRecordVSErase->mShownIndex);
-            t[1][2] = func_02114344(v + gRecordVSErase->mShownIndex);
-            t[2][0] = func_02114328(v + gRecordVSErase->mShownIndex);
-            t[2][1] = func_0211430c(v + gRecordVSErase->mShownIndex);
-            t[2][2] = func_021142f0(v + gRecordVSErase->mShownIndex);
+            counts[1][0] = func_0211437c(firstRecordIndex + gRecordVSErase->mShownIndex);
+            counts[1][1] = func_02114360(firstRecordIndex + gRecordVSErase->mShownIndex);
+            counts[1][2] = func_02114344(firstRecordIndex + gRecordVSErase->mShownIndex);
+            counts[2][0] = func_02114328(firstRecordIndex + gRecordVSErase->mShownIndex);
+            counts[2][1] = func_0211430c(firstRecordIndex + gRecordVSErase->mShownIndex);
+            counts[2][2] = func_021142f0(firstRecordIndex + gRecordVSErase->mShownIndex);
             for (i = 1; i < 3; i++) {
                 for (j = 0; j < 3; j++) {
-                    if (t[i][j] > 0x270f) {
-                        t[i][j] = 0x270f;
+                    if (counts[i][j] > 0x270f) {
+                        counts[i][j] = 0x270f;
                     }
                 }
             }
-            func_02124fac(t[1][0], buf);
-            func_02124248(0, data_0215c530[1][0], gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
+            func_02124fac(counts[1][0], text);
+            func_02124248(0, data_0215c530[1][0], gRecordVSErase->mRecordVSMBnll, text, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
-            func_02124fac(t[1][1], buf);
-            func_02124248(0, data_0215c530[1][1], gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
+            func_02124fac(counts[1][1], text);
+            func_02124248(0, data_0215c530[1][1], gRecordVSErase->mRecordVSMBnll, text, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
-            func_02124fac(t[1][2], buf);
-            func_02124248(0, data_0215c530[1][2], gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
+            func_02124fac(counts[1][2], text);
+            func_02124248(0, data_0215c530[1][2], gRecordVSErase->mRecordVSMBnll, text, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
-            func_02124fac(t[2][0], buf);
-            func_02124248(0, data_0215c530[2][0], gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
+            func_02124fac(counts[2][0], text);
+            func_02124248(0, data_0215c530[2][0], gRecordVSErase->mRecordVSMBnll, text, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
-            func_02124fac(t[2][1], buf);
-            func_02124248(0, data_0215c530[2][1], gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
+            func_02124fac(counts[2][1], text);
+            func_02124248(0, data_0215c530[2][1], gRecordVSErase->mRecordVSMBnll, text, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
-            func_02124fac(t[2][2], buf);
-            func_02124248(0, data_0215c530[2][2], gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
+            func_02124fac(counts[2][2], text);
+            func_02124248(0, data_0215c530[2][2], gRecordVSErase->mRecordVSMBnll, text, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
-            GetRecordDate(v + gRecordVSErase->mShownIndex, &a);
-            FormatDate(&a, buf);
-            func_02124224(0, 0xc, gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
+            GetRecordDate(firstRecordIndex + gRecordVSErase->mShownIndex, &date);
+            FormatDate(&date, text);
+            func_02124224(0, 0xc, gRecordVSErase->mRecordVSMBnll, text, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
-            ReadRecordEmblem(v + gRecordVSErase->mShownIndex, gRecordVSErase->mEmblem,
+            ReadRecordEmblem(firstRecordIndex + gRecordVSErase->mShownIndex, gRecordVSErase->mEmblem,
                              gRecordVSErase->mEmblemConverted);
             CallQueueAppend(0x13, func_0212497c(3, gRecordVSErase->mRecordVSMNcer, gRecordVSErase->mRecordVSMBncl) << 5,
                             gRecordVSErase->mEmblemConverted, 0x200);
             break;
         case 1:
-            CopyRecordText(v + gRecordVSErase->mShownIndex, buf, 0x20);
-            func_0212426c(0, 0, gRecordVSErase->mRecordVSMTransientBnll, buf, gRecordVSErase->mRecordVSMTransientBncl,
+            CopyRecordText(firstRecordIndex + gRecordVSErase->mShownIndex, text, 0x20);
+            func_0212426c(0, 0, gRecordVSErase->mRecordVSMTransientBnll, text, gRecordVSErase->mRecordVSMTransientBncl,
                           gRecordVSErase->mRecordVSMTransientTable);
             z = FALSE;
             for (i = 0; i < 12; i++) {
-                func_02124fac(buf3[i] - 0x30, buf);
-                func_0212426c(z, data_0215c584[i], gRecordVSErase->mRecordVSMTransientBnll, buf,
+                func_02124fac(friendKeyText[i] - 0x30, text);
+                func_0212426c(z, data_0215c584[i], gRecordVSErase->mRecordVSMTransientBnll, text,
                               gRecordVSErase->mRecordVSMTransientBncl, gRecordVSErase->mRecordVSMTransientTable);
             }
-            ReadRecordEmblem(v + gRecordVSErase->mShownIndex, gRecordVSErase->mEmblem,
+            ReadRecordEmblem(firstRecordIndex + gRecordVSErase->mShownIndex, gRecordVSErase->mEmblem,
                              gRecordVSErase->mEmblemConverted);
             CallQueueAppend(
                 0x13, func_0212497c(1, gRecordVSErase->mRecordVSMNcer, gRecordVSErase->mRecordVSMTransientBncl) << 5,
@@ -227,23 +227,23 @@ void func_021162cc(void) {
 }
 
 void func_02116244(void) {
-    s32 v;
+    s32 firstRecordIndex;
     s32 i;
-    u8 buf[0x20];
+    u8 nameText[0x20];
 
-    v = GetRecordVSEraseFirstRecordIndex();
+    firstRecordIndex = GetRecordVSEraseFirstRecordIndex();
     for (i = 0; i < 5; i++) {
-        if (GetRecordCount() > v + i) {
-            CopyRecordText(v + i, buf, 0x20);
-            func_0212426c(1, data_0215c4b8[i], gRecordVSErase->mRecordVSSEraseBnll, buf,
+        if (GetRecordCount() > firstRecordIndex + i) {
+            CopyRecordText(firstRecordIndex + i, nameText, 0x20);
+            func_0212426c(1, data_0215c4b8[i], gRecordVSErase->mRecordVSSEraseBnll, nameText,
                           gRecordVSErase->mRecordVSSEraseBncl, gRecordVSErase->mRecordVSSEraseTable);
         }
     }
-    if (GetRecordCount() <= v + gRecordVSErase->mIndex) {
+    if (GetRecordCount() <= firstRecordIndex + gRecordVSErase->mIndex) {
         gRecordVSErase->mIndex = GetRecordCount() % 5 - 1;
         gRecordVSErase->mShownIndex = gRecordVSErase->mIndex;
     }
-    func_021162cc();
+    PrintRecordVSEraseShownRecord();
 }
 
 #pragma thumb off
@@ -281,38 +281,38 @@ u32 DecrementRecordVSErasePageIndex(void) {
 #pragma thumb on
 
 void IncrementRecordVSEraseIndex(void) {
-    int v1;
-    int v2;
-    v2 = (gRecordVSErase->mIndex + 1) * 0x10000 >> 0x10;
-    v1 = IsRecordVSEraseRowFilled(v2);
-    if ((v1 == 0) || (5 <= v2)) {
-        v2 = 0;
+    int rowFilled;
+    int nextIndex;
+    nextIndex = (gRecordVSErase->mIndex + 1) * 0x10000 >> 0x10;
+    rowFilled = IsRecordVSEraseRowFilled(nextIndex);
+    if ((rowFilled == 0) || (5 <= nextIndex)) {
+        nextIndex = 0;
     }
-    if (gRecordVSErase->mIndex != v2) {
+    if (gRecordVSErase->mIndex != nextIndex) {
         NNS_SndArcPlayerStartSeqArc((const void *) (((u32) ((u8 *) &data_0217d068))), 0, 0);
     }
-    gRecordVSErase->mIndex = v2;
+    gRecordVSErase->mIndex = nextIndex;
 }
 
 void DecrementRecordVSEraseIndex(void) {
-    int v1;
-    int v2;
-    int v3;
-    int v4;
-    v4 = (gRecordVSErase->mIndex + -1) * 0x10000 >> 0x10;
-    if (v4 < 0) {
-        v4 = 4;
-        v1 = IsRecordVSEraseRowFilled(4);
-        if (v1 == 0) {
-            v2 = GetRecordCount();
-            v3 = (v2) % 5;
-            v4 = (v3 + -1) * 0x10000 >> 0x10;
+    int rowFilled;
+    int recordCount;
+    int recordsOnLastPage;
+    int previousIndex;
+    previousIndex = (gRecordVSErase->mIndex + -1) * 0x10000 >> 0x10;
+    if (previousIndex < 0) {
+        previousIndex = 4;
+        rowFilled = IsRecordVSEraseRowFilled(4);
+        if (rowFilled == 0) {
+            recordCount = GetRecordCount();
+            recordsOnLastPage = (recordCount) % 5;
+            previousIndex = (recordsOnLastPage + -1) * 0x10000 >> 0x10;
         }
     }
-    if (gRecordVSErase->mIndex != v4) {
+    if (gRecordVSErase->mIndex != previousIndex) {
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
     }
-    gRecordVSErase->mIndex = v4;
+    gRecordVSErase->mIndex = previousIndex;
 }
 
 #pragma thumb off

@@ -145,7 +145,7 @@ void ReleaseGhostScene(void) {
     reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffff1fff;
     func_02125da0();
     func_0212abd0();
-    func_02117218();
+    ClearKartIconPointer();
     func_0204f7f4();
 }
 

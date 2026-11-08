@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02116dc8(void);
+void ClearWaitPointer(void);

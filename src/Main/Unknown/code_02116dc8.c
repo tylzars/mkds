@@ -8,40 +8,41 @@
 
 #pragma thumb on
 
-void func_02116e70(void) {
-    void *v1;
-    Unk02021dc8 *v2;
-    Ncgr *v3;
-    Nclr *v4[1];
-    v2 = NULL;
-    v3 = NULL;
-    v4[0] = NULL;
-    v1 = FindSceneFile(gWaitNcerName);
-    LoadNcerData(&v2, v1);
-    v1 = FindSceneFile(gWaitNcgrName);
-    LoadNcgrData2(&v3, v1);
-    v1 = FindSceneFile(gWaitNclrName);
-    LoadNclrData(v4, v1);
+void LoadWaitData(void) {
+    void *sceneFile;
+    Unk02021dc8 *cells;
+    Ncgr *chars;
+    Nclr *palette[1];
+    cells = NULL;
+    chars = NULL;
+    palette[0] = NULL;
+    sceneFile = FindSceneFile(gWaitNcerName);
+    LoadNcerData(&cells, sceneFile);
+    sceneFile = FindSceneFile(gWaitNcgrName);
+    LoadNcgrData2(&chars, sceneFile);
+    sceneFile = FindSceneFile(gWaitNclrName);
+    LoadNclrData(palette, sceneFile);
 }
 
-void CreateWait(void *a, Unk02021dc8 *b, Unk0201ea30 *c, u32 d, u16 e, u32 f) {
+void CreateWait(void *heap, Unk02021dc8 *destinationNcer, Unk0201ea30 *destinationBncl, u32 destinationBnclIndex,
+                u16 paletteIndex, u32 f) {
     Wait *v1;
-    Wait *v2;
-    void *v3;
-    v2 = HeapAlloc(a, 0x2c);
-    gWait = v2;
-    v3 = FindSceneFile(gWaitNcerName);
-    LocateNcer(&gWait->mNcer, v3);
-    v3 = FindSceneFile(gWaitNcgrName);
-    LocateNcgr2((Ncgr **) &gWait->mNcgr, v3);
-    v3 = FindSceneFile(gWaitNclrName);
-    LocateNclr((Nclr **) (((s32) gWait + 8)), v3);
-    v3 = FindSceneFile(gWaitBnclName);
-    gWait->mBncl = v3;
-    gWait->mDestinationNcer = b;
-    gWait->mDestinationBncl = c;
-    gWait->mDestinationBnclIndex = d;
-    gWait->mUnk_1c = e;
+    Wait *newWait;
+    void *sceneFile;
+    newWait = HeapAlloc(heap, 0x2c);
+    gWait = newWait;
+    sceneFile = FindSceneFile(gWaitNcerName);
+    LocateNcer(&gWait->mNcer, sceneFile);
+    sceneFile = FindSceneFile(gWaitNcgrName);
+    LocateNcgr2((Ncgr **) &gWait->mNcgr, sceneFile);
+    sceneFile = FindSceneFile(gWaitNclrName);
+    LocateNclr((Nclr **) (((s32) gWait + 8)), sceneFile);
+    sceneFile = FindSceneFile(gWaitBnclName);
+    gWait->mBncl = sceneFile;
+    gWait->mDestinationNcer = destinationNcer;
+    gWait->mDestinationBncl = destinationBncl;
+    gWait->mDestinationBnclIndex = destinationBnclIndex;
+    gWait->mPaletteIndex = paletteIndex;
     gWait->mUnk_20 = f;
     gWait->mFrameIndex = 2;
     gWait->mFrameIndexFrames = 3;
@@ -50,11 +51,11 @@ void CreateWait(void *a, Unk02021dc8 *b, Unk0201ea30 *c, u32 d, u16 e, u32 f) {
 #pragma thumb off
 
 #pragma thumb on
-void func_02116dc8(void) {
-    u32 value0;
-    u32 value1;
-    value1 = 0u;
-    value0 = (u32) &gWait;
-    *(u32 *) ((value0) + 0u) = value1;
+void ClearWaitPointer(void) {
+    u32 pointerAddress;
+    u32 zero;
+    zero = 0u;
+    pointerAddress = (u32) &gWait;
+    *(u32 *) ((pointerAddress) + 0u) = zero;
 }
 #pragma thumb off

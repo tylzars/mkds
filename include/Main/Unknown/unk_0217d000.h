@@ -72,7 +72,7 @@ typedef struct Wait {
     /* 10 */ struct Unk02021dc8 *mDestinationNcer;
     /* 14 */ struct Unk0201ea30 *mDestinationBncl;
     /* 18 */ u32 mDestinationBnclIndex;
-    /* 1c */ u16 mUnk_1c;
+    /* 1c */ u16 mPaletteIndex;
     /* 20 */ s32 mUnk_20;
     /* 24 */ u16 mFrameIndex;
     /* 28 */ s32 mFrameIndexFrames;
@@ -308,18 +308,18 @@ typedef struct SelectCupCourse {
     /* 50 */ s16 mIndex; /* 0..3 position among the four courses of the cup: the course is data_0215cbec[row][mIndex] */
     /* 52 */ u8 mUnk_52[2];
     /* 54 */ BOOL mUnk_54;
-    // Counts 7 down to 0 after mIndex changed: func_02119d78 sets 7 when mIndex differs from mShownIndex,
-    // rebuilds the page through func_02119e88 at 7 and moves the objects while it runs; func_02119dfc tells whether it
-    // is non-zero.
+    // Counts 7 down to 0 after mIndex changed: AdvanceSelectCupCourseIndexChange sets 7 when mIndex differs from
+    // mShownIndex, rebuilds the page through func_02119e88 at 7 and moves the objects while it runs;
+    // IsSelectCupCourseIndexChangeRunning tells whether it is non-zero.
     /* 58 */ s32 mIndexChangeTimer;
-    // mIndex the page was last built for: func_02119d78 copies mIndex here when func_02119e88 rebuilds the page,
-    // and starts mIndexChangeTimer when mIndex differs from it.
+    // mIndex the page was last built for: AdvanceSelectCupCourseIndexChange copies mIndex here when func_02119e88
+    // rebuilds the page, and starts mIndexChangeTimer when mIndex differs from it.
     /* 5c */ s16 mShownIndex;
     /* 5e */ u8 mUnk_5e[2];
     // Set when the cup picture was asked for; the step queues its data once it is ready.
     /* 60 */ BOOL mCupPicturePending;
-    /* 64 */ void *mUnk_64;
-    /* 68 */ void *mUnk_68;
+    /* 64 */ void *mMainOam;
+    /* 68 */ void *mSubOam;
     /* 6c */ s32 mResult;
 } SelectCupCourse;
 

@@ -38,7 +38,7 @@ void func_0211dd44(void) {
     LoadNcerData(&v3, v1);
     v1 = FindSceneFile(data_0216dbec);
     LoadNclrData(&v4, v1);
-    func_02116e70();
+    LoadWaitData();
 }
 
 void LocateAndQueueSelectRaceRule(void) {
