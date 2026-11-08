@@ -29,7 +29,7 @@ void InitStopSign(Unk02188950 *a) {
 void LoadStopSign(Unk0219b478 *a) {
     gStopSign = LoadMapObjectModelAnimated(a, "StopSign.nsbmd");
     SetMapObjectModelPolygonId(gStopSign, 0x3f);
-    func_0209ba08(gStopSign, 2);
+    SetMapObjectModelLightEnableFlag(gStopSign, 2);
     SetNsbmdEmiAll(gStopSign->mAnimatedModel, 0x294a);
 }
 

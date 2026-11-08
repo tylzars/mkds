@@ -872,7 +872,7 @@ void DrawMissionRunMapObject(void *mapObjectList, Unk02188950 *mapObject) {
             resMdl = mapObject->mNsbmd->mAnimatedModel->mResMdl;
             NNS_G3dMdlSetMdlXLDepthUpdateAll(resMdl, 1);
             for (materialIndex = 0; materialIndex < resMdl->mInfo.mNumMat; materialIndex++) {
-                func_0209b904(mapObject->mNsbmd, AllocPolygonIdWrapping(), materialIndex);
+                SetMapObjectModelMaterialPolygonId(mapObject->mNsbmd, AllocPolygonIdWrapping(), materialIndex);
             }
         }
         value = 0x1e;

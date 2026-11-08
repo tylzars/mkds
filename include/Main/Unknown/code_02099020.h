@@ -24,11 +24,11 @@ typedef struct Unk0209905c_d0 {
 // Object up to 0xd4 bytes: the shared part, an GroupFollower at 0xa0, then three words and a pointer.
 typedef struct Unk0209905c {
     /* 00 */ MapObject mUnk_00;
-    /* a0 */ GroupFollower mUnk_a0;
-    /* c4 */ s32 mUnk_c4;
+    /* a0 */ GroupFollower mFollower;
+    /* c4 */ s32 mHeightOffset;
     /* c8 */ s32 mUnk_c8;
-    /* cc */ s32 mUnk_cc;
-    /* d0 */ Unk0209905c_d0 *mUnk_d0;
+    /* cc */ s32 mState;
+    /* d0 */ Unk0209905c_d0 *mEmitter;
 } Unk0209905c;
 
 #include "Main/Unknown/code_0206bcb0.h" // Kart
@@ -38,5 +38,5 @@ extern u32 data_usa_02156594;
 
 void func_02099020(void);
 void func_0209905c(void *a, Unk0209905c *p);
-u32 func_02099208(Unk0209905c *a, Kart *b, u8 *c, u8 *d);
-void func_02099278(unsigned int p0);
+u32 func_02099208(Unk0209905c *a, Kart *kart, u8 *c, u8 *d);
+void func_02099278(unsigned int mapObject);

@@ -52,16 +52,16 @@ void func_02098f18(GroupFollower *groupFollower, s32 b) {
     p->mUnk_00.mFlags = p->mUnk_00.mFlags & ~2;
     p->mUnk_00.mFlags = p->mUnk_00.mFlags & ~8;
     p->mUnk_00.mAlpha = 0x1f;
-    p->mUnk_a0.mGroupIndex = groupFollower->mGroupIndex;
-    p->mUnk_a0.mPath = groupFollower->mPath;
-    SetupGroupFollowerAtEntry(&p->mUnk_a0, 0, 1);
-    p->mUnk_a0.mSpeed = 0x7800;
-    p->mUnk_a0.mProgressStep =
-        ((s64) p->mUnk_a0.mPath->mSegments[p->mUnk_a0.mSegmentIndex].mInverseProgressLength * 0x7800) >> 12;
-    p->mUnk_c4 = b;
+    p->mFollower.mGroupIndex = groupFollower->mGroupIndex;
+    p->mFollower.mPath = groupFollower->mPath;
+    SetupGroupFollowerAtEntry(&p->mFollower, 0, 1);
+    p->mFollower.mSpeed = 0x7800;
+    p->mFollower.mProgressStep =
+        ((s64) p->mFollower.mPath->mSegments[p->mFollower.mSegmentIndex].mInverseProgressLength * 0x7800) >> 12;
+    p->mHeightOffset = b;
     p->mUnk_c8 = -0x5000;
-    p->mUnk_cc = 0;
-    p->mUnk_d0 = StartEffect(0x33, &p->mUnk_00.mPos);
+    p->mState = 0;
+    p->mEmitter = StartEffect(0x33, &p->mUnk_00.mPos);
 }
 
 void InitPakkun(Pakkun *pakkun) {

@@ -21,14 +21,14 @@ typedef struct Unk0209a7dc_b0 {
 // Object of kind 0x1ac (Crab), one state per value of mState; draws crab and crab_hand.
 typedef struct Crab {
     /* 000 */ MapObject mUnk_000;
-    /* 0a0 */ u16 mUnk_0a0;
-    /* 0a2 */ u16 mUnk_0a2;
-    /* 0a4 */ s32 mUnk_0a4;
-    /* 0a8 */ s32 mUnk_0a8;
-    /* 0ac */ s32 mUnk_0ac;
-    /* 0b0 */ Unk0209a7dc_b0 mUnk_0b0;
-    /* 0d0 */ Unk0209a7dc_b0 mUnk_0d0;
-    /* 0f0 */ GroupFollower mUnk_0f0;
+    /* 0a0 */ u16 mRotateZAnglePerFrame;
+    /* 0a2 */ u16 mRotateZAngle;
+    /* 0a4 */ s32 mTimer;
+    /* 0a8 */ s32 mCrabNsbtpFrameIndexFixed12;
+    /* 0ac */ s32 mHandNsbtpFrameIndexFixed12;
+    /* 0b0 */ Unk0209a7dc_b0 mCrabWobble;
+    /* 0d0 */ Unk0209a7dc_b0 mHandWobble;
+    /* 0f0 */ GroupFollower mFollower;
     /* State number of this kind's own per-frame switch in UpdateCrab; this object does not use MapObject.mUnk_80's
        state machine; also set by the group init and by the collision push (2) */
     /* 114 */ s32 mState;
@@ -36,8 +36,8 @@ typedef struct Crab {
 
 // Table of object pointers with a halfword count behind it.
 typedef struct Unk0209af98 {
-    /* 00 */ Crab **mUnk_00;
-    /* 04 */ u16 mUnk_04;
+    /* 00 */ Crab **mMapObjects;
+    /* 04 */ u16 mMapObjectCount;
 } Unk0209af98;
 
 typedef struct Crab Crab;
@@ -48,13 +48,13 @@ void CreateCrabAndCrabHand(void *a);
 void *CreateCrabUpdateList(void);
 void *CreateCrabDrawList(void);
 void CreateCrabKindData(void);
-void UpdateCrab(void *a, Crab *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void UpdateCrab(void *a, Crab *crab); /* skipped for objects with mFlags & 4 (parked pool objects) */
 s32 func_0209af64(s32 a, s32 b);
 s16 func_0209af80(s32 a);
-void InitCrabObjects(Unk0209af98 *p);
-void DrawCrab(void *a, Crab *b);
+void InitCrabObjects(Unk0209af98 *mapObjectList);
+void DrawCrab(void *a, Crab *crab);
 unsigned int func_0209b1f8(unsigned int p0);
-u8 CollideItemObjectWithCrab(Crab *a, Kart *b, u8 *c, u8 *d);
-u8 CollideKartWithCrab(Crab *a, Kart *b, u8 *c, u8 *d);
-void func_0209b388(Crab *a, Vec3 *b, Vec3 *c, Vec3 *d);
-void InitCrab(u32 arg0); /* starts the path follower (InitGroupFollower) */
+u8 CollideItemObjectWithCrab(Crab *crab, Kart *itemObject, u8 *c, u8 *d);
+u8 CollideKartWithCrab(Crab *crab, Kart *kart, u8 *c, u8 *d);
+void StartCrabLaunch(Crab *crab, Vec3 *sourcePosition, Vec3 *sourceDirection, Vec3 *sourceVelocity);
+void InitCrab(u32 crab); /* starts the path follower (InitGroupFollower) */
