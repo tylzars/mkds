@@ -4,8 +4,8 @@
 
 // Declared here until the code that defines it is decompiled.
 
-void *func_020365ac(void);
-void func_020365bc(u32 a);
+void *GetArenaHeap(void);
+void RunRootHeapCall(u32 func);
 void func_020365f0(void);
 void func_02036678(void);
 void func_020366bc(void);

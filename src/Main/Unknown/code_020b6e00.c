@@ -58,21 +58,21 @@ void func_020b8624(void) {
     Unk02021dc8 *a11;
     Unk02021dc8 *a12;
     u8 buf0[0x20];
-    Unk02180728 s0;
+    TextCanvas s0;
     u8 buf1[0x20];
-    Unk02180728 s1;
+    TextCanvas s1;
     u8 buf2[0x20];
-    Unk02180728 s2;
+    TextCanvas s2;
     u8 buf3[0x20];
-    Unk02180728 s3;
+    TextCanvas s3;
     u16 w3[0x14];
     u8 buf4[0x20];
-    Unk02180728 s4;
+    TextCanvas s4;
     u8 buf5[0x20];
-    Unk02180728 s5;
+    TextCanvas s5;
     u16 w5[0x14];
     u8 buf6[0x20];
-    Unk02180728 s6;
+    TextCanvas s6;
     u16 w6[0xe];
     u16 i;
     u16 x3;
@@ -182,10 +182,10 @@ void func_020b8624(void) {
         case MODE_TIME_ATTACK:
             p = func_020b403c(2);
             NNS_G2dCharCanvasInitForBG(buf0, data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mData, 0x20, 0x10, 4);
-            s0.mUnk_08 = func_020b4acc();
-            s0.mUnk_00 = buf0;
-            s0.mUnk_04 = p;
-            s0.mUnk_0c = 0;
+            s0.mCharSpacing = func_020b4acc();
+            s0.mCharCanvas = buf0;
+            s0.mFont = p;
+            s0.mLineSpacing = 0;
             NNSi_G2dTextCanvasDrawText(&s0, 0x80, 0x38, 0xe, 0x412, GetBmgEntry(func_020b47cc("common.bmg"), 0x81));
             DC_FlushRange(data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mData,
                           data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mDataSize);
@@ -196,10 +196,10 @@ void func_020b8624(void) {
             }
             p = func_020b403c(2);
             NNS_G2dCharCanvasInitForBG(buf1, data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mData, 0x20, 4, 4);
-            s1.mUnk_08 = func_020b4acc();
-            s1.mUnk_00 = buf1;
-            s1.mUnk_04 = p;
-            s1.mUnk_0c = 0;
+            s1.mCharSpacing = func_020b4acc();
+            s1.mCharCanvas = buf1;
+            s1.mFont = p;
+            s1.mLineSpacing = 0;
             NNSi_G2dTextCanvasDrawText(&s1, 0x80, 0x18, 0xe, 0x412, GetBmgEntry(func_020b47cc("common.bmg"), 0x6d));
             DC_FlushRange(data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mData,
                           data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mDataSize);
@@ -227,17 +227,17 @@ void func_020b8624(void) {
                 n = GetCourseMessageIndex(gRaceSetup->mCourseId);
                 NNS_G2dCharCanvasInitForBG(buf2, data_0217b3c4->mNclrNcgrPairs[10].mNcgr->mData, 0x20, 4, 4);
                 n2 = func_020b4b54();
-                s2.mUnk_04 = p;
-                s2.mUnk_00 = buf2;
-                s2.mUnk_0c = 0;
-                s2.mUnk_08 = n2;
+                s2.mFont = p;
+                s2.mCharCanvas = buf2;
+                s2.mLineSpacing = 0;
+                s2.mCharSpacing = n2;
                 NNSi_G2dTextCanvasDrawText(&s2, 0, 9, 0xc, 0x40a,
                                            GetBmgEntry(func_020b47cc("common.bmg"),
                                                        gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON ? 0x54 : 0x55));
                 NNSi_G2dTextCanvasDrawText(&s2, 0, 8, 0xc, 0x40a,
                                            GetBmgEntry(func_020b47cc("common.bmg"),
                                                        gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON ? 0x54 : 0x55));
-                s2.mUnk_08 = func_020b4b54();
+                s2.mCharSpacing = func_020b4b54();
                 NNSi_G2dTextCanvasDrawText(&s2, 0, 0x19, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), n));
                 NNSi_G2dTextCanvasDrawText(&s2, 0, 0x18, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), n));
                 DC_FlushRange(data_0217b3c4->mNclrNcgrPairs[10].mNcgr->mData,
@@ -295,10 +295,10 @@ void func_020b8624(void) {
 
     p = func_020b403c(0);
     NNS_G2dCharCanvasInitForBG(buf3, data_0217b3c4->mNclrNcgrPairs[7].mNcgr->mData, 0x20, 0x10, 4);
-    s3.mUnk_00 = buf3;
-    s3.mUnk_04 = p;
-    s3.mUnk_08 = 1;
-    s3.mUnk_0c = 0;
+    s3.mCharCanvas = buf3;
+    s3.mFont = p;
+    s3.mCharSpacing = 1;
+    s3.mLineSpacing = 0;
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         x = (i % 2) * 0x68;
         y = (i / 2) * 0x10 + 0x48;
@@ -309,18 +309,18 @@ void func_020b8624(void) {
 
     p = func_020b403c(2);
     NNS_G2dCharCanvasInitForBG(buf4, data_0217b3c4->mNclrNcgrPairs[7].mNcgr->mData, 0x20, 0x10, 4);
-    s4.mUnk_00 = buf4;
-    s4.mUnk_04 = p;
-    s4.mUnk_08 = 1;
-    s4.mUnk_0c = 0;
+    s4.mCharCanvas = buf4;
+    s4.mFont = p;
+    s4.mCharSpacing = 1;
+    s4.mLineSpacing = 0;
     NNSi_G2dTextCanvasDrawText(&s4, 0x20, 0x38, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), 0x79));
 
     p = func_020b403c(0);
     NNS_G2dCharCanvasInitForBG(buf5, data_0217b3c4->mNclrNcgrPairs[8].mNcgr->mData, 0x20, 0xa, 4);
-    s5.mUnk_00 = buf5;
-    s5.mUnk_04 = p;
-    s5.mUnk_08 = 1;
-    s5.mUnk_0c = 0;
+    s5.mCharCanvas = buf5;
+    s5.mFont = p;
+    s5.mCharSpacing = 1;
+    s5.mLineSpacing = 0;
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         x2 = (i % 4) * 0x38;
         y2 = (i / 4) * 0x10 + 0x38;
@@ -369,10 +369,10 @@ void func_020b8624(void) {
     LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[9].mNcgr, FindSceneFileWrapper("race_new_record_ta_s_o.NCGR"));
     p = func_020b403c(0);
     NNS_G2dCharCanvasInitForBG(buf6, data_0217b3c4->mNclrNcgrPairs[9].mNcgr->mData, 0x20, 0x10, 4);
-    s6.mUnk_00 = buf6;
-    s6.mUnk_04 = p;
-    s6.mUnk_08 = 1;
-    s6.mUnk_0c = 0;
+    s6.mCharCanvas = buf6;
+    s6.mFont = p;
+    s6.mCharSpacing = 1;
+    s6.mLineSpacing = 0;
     for (i = 0; i < 7; i++) {
         y3 = (i / 2) * 0x10 + 0x49;
         func_020b6c74(i, w6, 1);
@@ -593,17 +593,17 @@ void func_020b80a8(void) {
     s32 c;
     BOOL k;
     u8 v1[0x20];
-    Unk02180728 o;
+    TextCanvas o;
     u16 t[22];
 
     p = func_020b403c(0);
     a = func_0212b090();
     func_0212b09c();
     NNS_G2dCharCanvasInitForBG(v1, a, 0x20, 4, 4);
-    o.mUnk_00 = v1;
-    o.mUnk_08 = 1;
-    o.mUnk_04 = p;
-    o.mUnk_0c = 0;
+    o.mCharCanvas = v1;
+    o.mCharSpacing = 1;
+    o.mFont = p;
+    o.mLineSpacing = 0;
     i = 0;
     k = FALSE;
     for (; i < 8; i++) {

@@ -384,16 +384,16 @@ typedef struct Unk02174e68 {
 } Unk02174e68;
 
 extern Unk02174e68 *data_02174e68;
-struct Unk02174e6c;
-extern struct Unk02174e6c *data_02174e6c;
+struct WLMenuMessage;
+extern struct WLMenuMessage *gWLMenuMessage;
 extern HeapCall *gCurrentHeapCall;
 
-// Object at data_02174e78: mUnk_0c is the pointer func_020365ac returns; mUnk_10 overlaps the first member of
+// Object at data_02174e78: mUnk_0c is the pointer GetArenaHeap returns; mUnk_10 overlaps the first member of
 // gRootHeapCall.
 typedef struct Unk02174e78 {
     /* 00 */ u32 mUnk_00;
-    /* 04 */ u32 mUnk_04;
-    /* 08 */ void *mUnk_08;
+    /* 04 */ u32 mArm9TextStart;
+    /* 08 */ void *mArenaLo;
     /* 0c */ void *mHeap;
     /* 10 */ const char *mUnk_10;
 } Unk02174e78;

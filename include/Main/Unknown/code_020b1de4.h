@@ -37,7 +37,7 @@ typedef struct ChoisesS {
     /* 038 */ ChoisesSList mLists[4];
     /* 0a8 */ void *mFont;
     /* 0ac */ u8 mCharCanvases[4][0x20];
-    /* 12c */ Unk02180728 mTextCanvases[4];
+    /* 12c */ TextCanvas mTextCanvases[4];
     /* 16c */ Nclr *mChoisesSBNclr;
     /* 170 */ Ncgr *mChoisesSBNcgr;
     /* 174 */ u16 *mList1Chars;
@@ -49,7 +49,7 @@ typedef struct ChoisesS {
     /* 18c */ Nscr *mChoisesSNscrs[6];
 } ChoisesS;
 
-void func_020b24cc(Unk02180728 *a, void *b, void *c, s32 d, s32 e);
-u32 func_020b24a4(Unk02180728 *a, s32 b, s32 c, u32 d, u32 e, void *f);
+void func_020b24cc(TextCanvas *a, void *b, void *c, s32 d, s32 e);
+u32 func_020b24a4(TextCanvas *a, s32 b, s32 c, u32 d, u32 e, void *f);
 void InitChoisesS(void);
 void ClearChoisesSPointer(void);

@@ -17,7 +17,7 @@ void func_0204b5dc(void (*a)(u32 *, u32)) {
     s = CARD_GetResultCode();
     func_0204b3dc();
     e = 0;
-    data_021759d4->mUnk_10 = 0;
+    data_021759d4->mCommandRunning = 0;
     switch (s) {
         case 0:
             e = 0;
@@ -91,7 +91,7 @@ void func_0204b574(void) {
                                    (UnkFunc *) func_0204b5dc, data_021759d4->mUnk_54, 1, 7, 10, 2);
     } else {
         func_0204b3dc();
-        data_021759d4->mUnk_10 = 0;
+        data_021759d4->mCommandRunning = 0;
         func_0204b344(r);
     }
 }
@@ -114,7 +114,7 @@ u32 func_0204b458(u32 a, u32 *b, u32 n, void (*c)(u32 *, u32), s32 d, s32 e) {
         return 0;
     }
     data_021759d4->mUnk_04 = NULL;
-    data_021759d4->mUnk_10 = 1;
+    data_021759d4->mCommandRunning = 1;
     data_021759d4->mUnk_00 = 1;
     data_021759d4->mUnk_44 = a;
     data_021759d4->mUnk_40 = b;

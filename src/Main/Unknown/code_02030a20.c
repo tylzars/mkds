@@ -361,7 +361,7 @@ void func_02031960(void) {
         case 6:
             if (data_0217aa08->mUnk_28 == 0) {
                 if (data_021759d4->mBackupEnabled != 0) {
-                    v = data_021759d4->mUnk_10;
+                    v = data_021759d4->mCommandRunning;
                 } else {
                     v = 0;
                 }
@@ -437,7 +437,7 @@ void func_020317a0(void) {
         case 6:
             if (data_0217aa08->mUnk_28 == 0) {
                 if (data_021759d4->mBackupEnabled != 0) {
-                    v = data_021759d4->mUnk_10;
+                    v = data_021759d4->mCommandRunning;
                 } else {
                     v = 0;
                 }

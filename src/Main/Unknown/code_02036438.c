@@ -11,22 +11,22 @@
 
 #pragma thumb on
 
-void func_02036438(void *heap) {
-    void *v1;
-    int v2;
-    Ncgr *v3;
-    Nclr *v4;
-    v1 = CreateFrmHeapFromMaxFree(heap);
-    v2 = ((u32) HeapAlloc(v1, (0x00000654u)));
-    *(s32 *) &data_02174e6c = v2;
-    func_02036264((void *) v2, (0x00000654u));
-    data_02174e6c->mHeap = v1;
+void InitWLMenuMessage(void *heap) {
+    void *frameHeap;
+    int object;
+    Ncgr *chars;
+    Nclr *palette;
+    frameHeap = CreateFrmHeapFromMaxFree(heap);
+    object = ((u32) HeapAlloc(frameHeap, (0x00000654u)));
+    *(s32 *) &gWLMenuMessage = object;
+    func_02036264((void *) object, (0x00000654u));
+    gWLMenuMessage->mHeap = frameHeap;
     SetSubBg1Cnt(0, 0, 0x10, 0, 0);
-    v3 = func_020d1630()->mUnk_24;
-    v4 = func_020d1630()->mUnk_28;
-    GXS_LoadBG1Char(v3->mData, 0, v3->mDataSize);
-    GXS_LoadBG3Char(v3->mData, 0, v3->mDataSize);
-    GXS_LoadBGPltt(v4->mData, 0, v4->mDataSize);
+    chars = func_020d1630()->mUnk_24;
+    palette = func_020d1630()->mUnk_28;
+    GXS_LoadBG1Char(chars->mData, 0, chars->mDataSize);
+    GXS_LoadBG3Char(chars->mData, 0, chars->mDataSize);
+    GXS_LoadBGPltt(palette->mData, 0, palette->mDataSize);
 }
 
 #pragma thumb off

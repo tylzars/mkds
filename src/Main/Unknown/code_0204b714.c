@@ -116,7 +116,7 @@ void func_0204b9ac(void) {
     data_021759d4->mUnk_00 = 0;
     data_021759d4->mUnk_04 = NULL;
     data_021759d4->mUnk_08 = -3;
-    data_021759d4->mUnk_10 = 0;
+    data_021759d4->mCommandRunning = 0;
     data_021759d4->mUnk_14 = 0;
     data_021759d4->mUnk_28 = NULL;
     data_021759d4->mUnk_30 = 0;
@@ -153,7 +153,7 @@ void func_0204b7b8(void (*a)(u32 *, u32)) {
     f = TRUE;
     s = CARD_GetResultCode();
     func_0204b3dc();
-    data_021759d4->mUnk_10 = 0;
+    data_021759d4->mCommandRunning = 0;
     switch (s) {
         case 0:
             DC_StoreRange(data_021759d4->mUnk_28, data_021759d4->mUnk_30);
@@ -257,7 +257,7 @@ u32 func_0204b714(u32 a, u32 *b, u32 n, void (*c)(u32 *, u32), s32 d, u32 e, s32
         return 0;
     }
     data_021759d4->mUnk_04 = NULL;
-    data_021759d4->mUnk_10 = 1;
+    data_021759d4->mCommandRunning = 1;
     data_021759d4->mUnk_00 = 3;
     data_021759d4->mUnk_2c = a;
     data_021759d4->mUnk_28 = b;

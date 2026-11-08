@@ -34,7 +34,7 @@
 #pragma optimize_for_size on
 #pragma thumb off
 
-u32 func_ov001_02180ad0(Unk02180728 *p0, u32 p1, u32 p2, u32 p3, u32 p4, u16 *p5) {
+u32 func_ov001_02180ad0(TextCanvas *p0, u32 p1, u32 p2, u32 p3, u32 p4, u16 *p5) {
     return NNSi_G2dTextCanvasDrawText(p0, p1, p2, p3, p4, p5);
 }
 
@@ -164,11 +164,11 @@ void func_ov001_02180740(Unk02180774 *p0, u32 p1, u32 p2, u32 p3, u32 p4, u32 p5
     SetBg2RecordParams(p0->mSubBgRecords, p1, p2, p3, p4, p5, p6);
 }
 
-void func_ov001_02180728(Unk02180728 *p0, void *p1, void *p2, s32 p3, s32 p4) {
-    p0->mUnk_00 = p1;
-    p0->mUnk_04 = p2;
-    p0->mUnk_08 = p3;
-    p0->mUnk_0c = p4;
+void func_ov001_02180728(TextCanvas *p0, void *p1, void *p2, s32 p3, s32 p4) {
+    p0->mCharCanvas = p1;
+    p0->mFont = p2;
+    p0->mCharSpacing = p3;
+    p0->mLineSpacing = p4;
 }
 
 #pragma thumb on

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/types_02180728.h" // Unk02180728
+#include "Main/Unknown/types_02180728.h" // TextCanvas
 #include "code_02022aa8.h" // Unk02022aa8
 #include "code_020245a4.h" // Unk020247fc
 
@@ -49,11 +49,11 @@ void DrawGlyphLine(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 c
 void LetterChar(Unk02023d84 *pInfo);
 void ClearChar(u8 *pChar, s32 x, s32 y, s32 w, s32 h, u32 cl8, s32 bpp);
 u32 OBJSizeToShape(const u8 *pSize);
-void NNSi_G2dTextCanvasDrawTextAlign(Unk02180728 *pTxn, s32 x, s32 y, s32 areaWidth, u32 cl, u32 flags, u16 *txt);
-void NNSi_G2dTextCanvasDrawString(Unk02180728 *pTxn, s32 x, s32 y, u32 cl, u16 *str, u16 **pPos);
+void NNSi_G2dTextCanvasDrawTextAlign(TextCanvas *pTxn, s32 x, s32 y, s32 areaWidth, u32 cl, u32 flags, u16 *txt);
+void NNSi_G2dTextCanvasDrawString(TextCanvas *pTxn, s32 x, s32 y, u32 cl, u16 *str, u16 **pPos);
 void NNS_G2dCharCanvasInitForOBJ1D(void *pCC, void *charBase, s32 areaWidth, s32 areaHeight, s32 colorMode);
 void NNS_G2dCharCanvasInitForBG(void *pCC, void *charBase, u32 areaWidth, u32 areaHeight, u32 colorMode);
 s32 NNS_G2dCharCanvasDrawChar(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl, u16 ccode);
 u32 GetCharIndex1D(u32 cx, u32 cy, u32 areaWidth, u32 areaHeight, u32 objWidth, u32 objHeight);
-void NNSi_G2dTextCanvasDrawTextRect(Unk02180728 *pTxn, s32 x, s32 y, s32 w, s32 h, s32 cl, u32 flags, u16 *txt);
-u32 NNSi_G2dTextCanvasDrawText(Unk02180728 *pTxn, s32 x, s32 y, u32 cl, u32 flags, void *txt);
+void NNSi_G2dTextCanvasDrawTextRect(TextCanvas *pTxn, s32 x, s32 y, s32 w, s32 h, s32 cl, u32 flags, u16 *txt);
+u32 NNSi_G2dTextCanvasDrawText(TextCanvas *pTxn, s32 x, s32 y, u32 cl, u32 flags, void *txt);

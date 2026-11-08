@@ -15,7 +15,7 @@
 #include "Main/Unknown/unk_02158000.h"
 #include "Main/Unknown/code_0208fd8c.h"
 #include "Main/Unknown/unk_0217d000.h" // Unk0217d3f0_2098
-#include "Main/Unknown/types_02180728.h" // Unk02180728
+#include "Main/Unknown/types_02180728.h" // TextCanvas
 #include "Main/Unknown/code_020ae000.h"
 #include "Main/Unknown/code_020ae630.h"
 #include "Main/Unknown/code_02089fa0.h" // StemSet
@@ -163,7 +163,7 @@ typedef struct EmblemChoises {
     /* 28 */ s32 mChoisesCount;
     /* 2c */ void *mUnk_2c;
     /* 30 */ Unk0217d3f0_2098 mUnk_30;
-    /* 50 */ Unk02180728 mUnk_50;
+    /* 50 */ TextCanvas mUnk_50;
     /* 60 */ struct Nclr *mChoisesSBNclr;
     /* 64 */ struct Ncgr *mChoisesSBNcgr;
     /* 68 */ struct Nscr *mChoisesS3Nscr;

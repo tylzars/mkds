@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-u32 func_0203606c(void);
-u32 func_020360a0(void);
+u32 IsBackupBusy(void);
+u32 IsBackupCommandRunning(void);

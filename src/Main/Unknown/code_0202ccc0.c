@@ -412,7 +412,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *advanceArg) {
         case 4:
             d = data_021759d4;
             if (d->mBackupEnabled != 0) {
-                i = d->mUnk_10;
+                i = d->mCommandRunning;
             } else {
                 i = 0;
             }

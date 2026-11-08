@@ -43,16 +43,16 @@
 #pragma thumb on
 void func_0212b158(void *heap) {
     Unk0217d408 *object;
-    Unk02180728 *textCanvas;
+    TextCanvas *textCanvas;
     object = HeapAlloc(heap, 0x1a44);
     data_0217d408 = object;
     NNS_G2dCharCanvasInitForBG(object->mUnk_0014, object->mUnk_0044, 0x20, 5, 4);
     object = data_0217d408;
     textCanvas = &object->mUnk_0034;
-    object->mUnk_0034.mUnk_00 = object->mUnk_0014;
-    textCanvas->mUnk_04 = NULL;
-    textCanvas->mUnk_08 = 1;
-    textCanvas->mUnk_0c = 2;
+    object->mUnk_0034.mCharCanvas = object->mUnk_0014;
+    textCanvas->mFont = NULL;
+    textCanvas->mCharSpacing = 1;
+    textCanvas->mLineSpacing = 2;
     func_0212b144();
 }
 
@@ -156,9 +156,9 @@ void func_0212ae80(void) {
     s32 i;
     func_0212b09c();
     if (*(vu16 *) 0x27ffc40 == 2) {
-        data_0217d408->mUnk_0034.mUnk_04 = &func_020d1630()->mUnk_14;
+        data_0217d408->mUnk_0034.mFont = &func_020d1630()->mUnk_14;
     } else {
-        data_0217d408->mUnk_0034.mUnk_04 = func_020b403c(0);
+        data_0217d408->mUnk_0034.mFont = func_020b403c(0);
     }
     NNSi_G2dTextCanvasDrawText(&data_0217d408->mUnk_0034, 0x80, 0x14, 0xe, 0x412, data_0217d408->mUnk_0008);
     func_0212b064();

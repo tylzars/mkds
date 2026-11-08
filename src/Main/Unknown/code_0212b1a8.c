@@ -110,7 +110,7 @@ void InitStaffRollText(void *heap) {
     s32 v;
     Nclr *p;
     StaffRollText *d;
-    Unk02180728 *q;
+    TextCanvas *q;
     void *t;
     gStaffRollText = HeapAlloc(heap, 0x85c);
     gStaffRollText->mHeap = heap;
@@ -138,10 +138,10 @@ void InitStaffRollText(void *heap) {
     t = func_020b403c(2);
     d = gStaffRollText;
     q = &d->mUnk_040;
-    d->mUnk_040.mUnk_00 = d->mUnk_020;
-    q->mUnk_04 = t;
-    q->mUnk_08 = v;
-    q->mUnk_0c = 0;
+    d->mUnk_040.mCharCanvas = d->mUnk_020;
+    q->mFont = t;
+    q->mCharSpacing = v;
+    q->mLineSpacing = 0;
     MI_CpuFill8(gStaffRollText->mUnk_050, 0, 0x800);
     gStaffRollText->mTextPosition = GetBmgEntry(FindSceneFile(gStaffRollBmgName), 0);
 }

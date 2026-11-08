@@ -102,10 +102,10 @@ Unk021d2188 *func_ov003_021d2288(u32 g, u32 h) {
     }
     NNS_G2dCharCanvasInitForBG(a, a->mUnk_30, c, b, 4);
     f = (u8 *) data_ov003_021da2c4->mUnk_000 + h * 12;
-    a->mUnk_20.mUnk_00 = a;
-    a->mUnk_20.mUnk_04 = f;
-    a->mUnk_20.mUnk_08 = 1;
-    a->mUnk_20.mUnk_0c = 1;
+    a->mUnk_20.mCharCanvas = a;
+    a->mUnk_20.mFont = f;
+    a->mUnk_20.mCharSpacing = 1;
+    a->mUnk_20.mLineSpacing = 1;
     if (g == 1) {
         e = G2S_GetBG0ScrPtr();
     } else {
@@ -163,7 +163,7 @@ void func_ov003_021d214c(u32 p0, u32 p1, u32 p2, u32 p3, u32 p4, u32 p5) {
     u32 v2 = p4;
     u32 v4 = p5;
     u32 v6 = ((p0) + (0x20u));
-    u32 v7 = NNSi_G2dTextCanvasDrawText((Unk02180728 *) v6, p1, p2, p3, v2, (void *) v4);
+    u32 v7 = NNSi_G2dTextCanvasDrawText((TextCanvas *) v6, p1, p2, p3, v2, (void *) v4);
 }
 
 void func_ov003_021d211c(void *a, u32 b, u32 c, u32 d, u16 e, int f) {

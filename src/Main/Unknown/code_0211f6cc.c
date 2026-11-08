@@ -49,7 +49,8 @@ void func_0211fe44(void) {
     CopyWiFiBuddiesToRecordBlock(&gWiFiSession->mBuddies[0]);
     RefreshNotYetBuddyFlags();
     func_0205edf8();
-    while (data_0217aa08->mUnk_28 == 0 ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mUnk_10 : 0) : 1) {
+    while (data_0217aa08->mUnk_28 == 0 ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mCommandRunning : 0)
+                                       : 1) {
     }
     gWiFiSession->mUnk_1cfc = FALSE;
 }
@@ -160,7 +161,8 @@ u32 func_0211f91c(void) {
             func_0211fa70();
             break;
         case 3:
-            if (data_0217aa08->mUnk_28 == 0 ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mUnk_10 : 0) : 1) {
+            if (data_0217aa08->mUnk_28 == 0 ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mCommandRunning : 0)
+                                            : 1) {
                 break;
             }
             DWC_ReportUserData((DWCAccUserData *) &gWiFiSession->mUnk_19b0);
@@ -224,7 +226,8 @@ void func_0211f6e8(u32 a, u32 b) {
     CopyWiFiBuddiesToRecordBlock(&gWiFiSession->mBuddies[0]);
     RefreshNotYetBuddyFlags();
     func_0205edf8();
-    while (data_0217aa08->mUnk_28 == 0 ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mUnk_10 : 0) : 1) {
+    while (data_0217aa08->mUnk_28 == 0 ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mCommandRunning : 0)
+                                       : 1) {
     }
 }
 

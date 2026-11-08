@@ -84,7 +84,7 @@ static inline s32 func_0204984c_inline6(void) {
 
 static inline s32 func_0204984c_inline7(void) {
     if (data_021759d4->mBackupEnabled) {
-        return data_021759d4->mUnk_10;
+        return data_021759d4->mCommandRunning;
     }
     return 0;
 }

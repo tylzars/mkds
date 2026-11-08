@@ -9,7 +9,7 @@
 #include "code_0201ea58.h" // Unk0201ea30
 #include "Main/Unknown/code_02124094.h" // LayoutTableEntry
 #include "code_0212d214.h"
-#include "Main/Unknown/types_02180728.h" // Unk02180728
+#include "Main/Unknown/types_02180728.h" // TextCanvas
 #include "Main/Unknown/code_02105ec0.h" // Unk0217c7c4
 
 typedef struct OSMessageQueue OSMessageQueue;
@@ -703,7 +703,7 @@ typedef struct Unk0217d408 {
     /* 000c */ BOOL mUnk_000c;
     /* 0010 */ s32 mUnk_0010;
     /* 0014 */ u8 mUnk_0014[0x20];
-    /* 0034 */ Unk02180728 mUnk_0034;
+    /* 0034 */ TextCanvas mUnk_0034;
     /* 0044 */ u16 mUnk_0044[0xa00];
     /* 1444 */ u16 mUnk_1444[0x300];
 } Unk0217d408;
@@ -729,7 +729,7 @@ typedef struct StaffRollText {
     /* 01c */ s8 mUnk_01c;
     /* 01d */ u8 mUnk_01d[3];
     /* 020 */ u8 mUnk_020[0x20];
-    /* 040 */ Unk02180728 mUnk_040;
+    /* 040 */ TextCanvas mUnk_040;
     /* 050 */ u8 mUnk_050[0x800];
     /* 850 */ s8 mUnk_850;
     /* 851 */ u8 mUnk_851[3];

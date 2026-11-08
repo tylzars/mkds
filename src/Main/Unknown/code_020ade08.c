@@ -417,14 +417,14 @@ void CopyKartEntryName(u32 a, u16 *b, u32 c) {
 
 #pragma thumb off
 
-void InitTextCanvas(Unk02180728 *a, void *b, void *c, s32 d, s32 e) {
-    a->mUnk_00 = b;
-    a->mUnk_04 = c;
-    a->mUnk_08 = d;
-    a->mUnk_0c = e;
+void InitTextCanvas(TextCanvas *a, void *b, void *c, s32 d, s32 e) {
+    a->mCharCanvas = b;
+    a->mFont = c;
+    a->mCharSpacing = d;
+    a->mLineSpacing = e;
 }
 
-void DrawTextOnCanvas(Unk02180728 *a, s32 b, s32 c, u32 d, u32 e, void *f) {
+void DrawTextOnCanvas(TextCanvas *a, s32 b, s32 c, u32 d, u32 e, void *f) {
     NNSi_G2dTextCanvasDrawText(a, b, c, d, e, f);
 }
 
@@ -433,7 +433,7 @@ void DrawTextOnCanvas(Unk02180728 *a, s32 b, s32 c, u32 d, u32 e, void *f) {
 // Writes the entry name, outlined, into the text buffer and flushes it.
 void RenderKartEntryName(u32 a) {
     Unk02023374 o;
-    Unk02180728 q;
+    TextCanvas q;
     u16 r[22];
     void *t;
     u16 *s;

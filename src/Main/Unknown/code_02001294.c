@@ -16,7 +16,7 @@ void UpdateLogoState1(void) {
     LogoScene *scene;
     if (data_0217aa08->mUnk_28 == 0) {
         if (data_021759d4->mBackupEnabled != 0) {
-            v1 = data_021759d4->mUnk_10;
+            v1 = data_021759d4->mCommandRunning;
         } else {
             v1 = 0;
         }
@@ -94,7 +94,7 @@ void UpdateLogoState3(void) {
     }
     if (data_0217aa08->mUnk_28 == 0) {
         if (data_021759d4->mBackupEnabled != 0) {
-            v1 = data_021759d4->mUnk_10;
+            v1 = data_021759d4->mCommandRunning;
         } else {
             v1 = 0;
         }
@@ -191,7 +191,7 @@ void UpdateLogoState6(void) {
         }
         if (data_0217aa08->mUnk_28 == 0) {
             if (data_021759d4->mBackupEnabled != 0) {
-                v2 = data_021759d4->mUnk_10;
+                v2 = data_021759d4->mCommandRunning;
             } else {
                 v2 = 0;
             }
@@ -212,7 +212,7 @@ void UpdateLogoState6(void) {
     } else {
         if (data_0217aa08->mUnk_28 == 0) {
             if (data_021759d4->mBackupEnabled != 0) {
-                v2 = data_021759d4->mUnk_10;
+                v2 = data_021759d4->mCommandRunning;
             } else {
                 v2 = 0;
             }

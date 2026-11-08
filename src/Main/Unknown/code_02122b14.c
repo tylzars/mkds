@@ -144,7 +144,7 @@ s32 UpdateWiFiSessionStep(void) {
             if (data_0217aa08->mUnk_28 == 0) {
                 backup = data_021759d4;
                 if (backup->mBackupEnabled != 0) {
-                    waitFlag = backup->mUnk_10;
+                    waitFlag = backup->mCommandRunning;
                 } else {
                     waitFlag = 0;
                 }

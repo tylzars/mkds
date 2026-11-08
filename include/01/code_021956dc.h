@@ -68,7 +68,7 @@ typedef struct Unk021759d4 {
     /* 04 */ void *mUnk_04;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mBackupEnabled;
-    /* 10 */ s32 mUnk_10;
+    /* 10 */ s32 mCommandRunning;
     /* 14 */ s32 mUnk_14;
     /* 18 */ u32 mUnk_18;
     /* 1c */ s32 mUnk_1c;

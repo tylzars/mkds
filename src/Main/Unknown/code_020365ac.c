@@ -77,24 +77,24 @@ void func_02036678(void) {
 }
 
 void func_020365f0(void) {
-    u8 *a;
+    u8 *arenaLo;
     func_020366bc();
     InitBrightnessFades();
-    data_02174e78.mUnk_04 = (u32) ARM9_TEXT_START;
-    data_02174e78.mUnk_08 = OS_GetArenaLo(0);
+    data_02174e78.mArm9TextStart = (u32) ARM9_TEXT_START;
+    data_02174e78.mArenaLo = OS_GetArenaLo(0);
     func_02036678();
-    a = OS_GetArenaLo(0);
-    data_02174e78.mHeap = CreateExpHeapOverBlock(a, (u8 *) OS_GetArenaHi(0) - a);
+    arenaLo = OS_GetArenaLo(0);
+    data_02174e78.mHeap = CreateExpHeapOverBlock(arenaLo, (u8 *) OS_GetArenaHi(0) - arenaLo);
     InitHeapCall(&gRootHeapCall, 0);
     data_02174e78.mUnk_10 = data_usa_021646ec;
     func_020394cc();
 }
 
-void func_020365bc(u32 a) {
-    SetHeapCallFunc(&gRootHeapCall, a);
+void RunRootHeapCall(u32 func) {
+    SetHeapCallFunc(&gRootHeapCall, func);
     RunHeapCall(&gRootHeapCall, 0xbeef);
 }
 
-void *func_020365ac(void) {
+void *GetArenaHeap(void) {
     return data_02174e78.mHeap;
 }

@@ -447,7 +447,7 @@ void AdvanceOptionSelectMenuState5(void) {
     if (GetTxtSystemDone() != 0) {
         if (data_0217aa08->mUnk_28 == 0) {
             if (data_021759d4->mBackupEnabled != 0) {
-                r = data_021759d4->mUnk_10;
+                r = data_021759d4->mCommandRunning;
             } else {
                 r = 0;
             }

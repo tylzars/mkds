@@ -224,7 +224,7 @@ void ReadRecordEmblem(u16 a, EmblemData *b, void *c) {
     SetupEmblemBlock(gRecordList->mEmblemBlock, gRecordList->mUnk_04[a].mUnk_00);
     d = data_0217aa08->mUnk_28;
     do {
-    } while (d == 0 ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mUnk_10 : 0) : 1);
+    } while (d == 0 ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mCommandRunning : 0) : 1);
     if (!CopyEmblemFromBlock(gRecordList->mEmblemBlock, gRecordList->mUnk_04[a].mUnk_00, b) || b->mUnk_200 == 0) {
         b->mUnk_200 = 1;
         MIi_CpuCopyFast(gRecordList->mUnk_0c, b, 0x200);
@@ -239,7 +239,7 @@ void EraseRecord(u16 a) {
     RemoveBuddyRecord(gRecordList->mUnk_04[a].mUnk_00);
     d = data_0217aa08->mUnk_28;
     do {
-    } while (d == 0 ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mUnk_10 : 0) : 1);
+    } while (d == 0 ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mCommandRunning : 0) : 1);
     BuildRecordList();
 }
 

@@ -9,7 +9,7 @@
 #include "01/code_0219b540.h"
 #include "01/code_02193c5c.h"
 #include "00/code_02181f98.h"
-#include "Main/Unknown/types_02180728.h" // Unk02180728
+#include "Main/Unknown/types_02180728.h" // TextCanvas
 
 // Four callbacks; the first receives OptionStates.mStateHeap.
 typedef struct OptionStateCallbacks {
@@ -132,7 +132,7 @@ typedef struct Unk021a99e4 {
     /* 0008 */ s32 mUnk_0008;
     /* 000c */ void *mUnk_000c[3];
     /* 0018 */ u8 mUnk_0018[3][0x20];
-    /* 0078 */ Unk02180728 mUnk_0078[3];
+    /* 0078 */ TextCanvas mUnk_0078[3];
     /* 00a8 */ u16 mUnk_00a8[0x3000];
     /* 60a8 */ u16 mUnk_60a8[0x300];
 } Unk021a99e4;

@@ -480,7 +480,7 @@ void UploadRaceStartGpOam(void) {
 void InitRaceStartGp(void) {
     Unk02021dc8 *ncer;
     u8 charCanvas[0x20];
-    Unk02180728 textCanvas;
+    TextCanvas textCanvas;
     void *r;
     s32 messageIndex;
     s32 i;
@@ -501,16 +501,16 @@ void InitRaceStartGp(void) {
     r = func_020b403c(2);
     messageIndex = -1;
     NNS_G2dCharCanvasInitForBG(charCanvas, gRaceStartGp->mRaceStartGpMONcgr->mData, 0x20, 4, 4);
-    textCanvas.mUnk_00 = charCanvas;
-    textCanvas.mUnk_04 = r;
-    textCanvas.mUnk_08 = 1;
-    textCanvas.mUnk_0c = 0;
+    textCanvas.mCharCanvas = charCanvas;
+    textCanvas.mFont = r;
+    textCanvas.mCharSpacing = 1;
+    textCanvas.mLineSpacing = 0;
     if (gRaceSetup->mMode == MODE_GRAND_PRIX) {
         messageIndex = GetCourseMessageIndex(gRaceSetup->mCourseId);
-        textCanvas.mUnk_08 = func_020b4b10();
+        textCanvas.mCharSpacing = func_020b4b10();
     } else if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         messageIndex = (gRaceSetup->mMode == MODE_MISSION_RUN ? gRaceSetup->mMissionTableRow : messageIndex) + 0x55;
-        textCanvas.mUnk_08 = func_020b4b54();
+        textCanvas.mCharSpacing = func_020b4b54();
     }
     NNSi_G2dTextCanvasDrawText(&textCanvas, 0, 9, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), messageIndex));
     NNSi_G2dTextCanvasDrawText(&textCanvas, 0, 8, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), messageIndex));

@@ -150,7 +150,7 @@ static inline void func_020487fc_inline9(const SceneCallbacks *b) {
 
 static inline s32 func_020487fc_inline10(void) {
     if (data_021759d4->mBackupEnabled) {
-        return data_021759d4->mUnk_10;
+        return data_021759d4->mCommandRunning;
     }
     return 0;
 }

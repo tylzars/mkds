@@ -18,7 +18,7 @@ void func_ov003_021d214c(unsigned int p0, unsigned int p1, unsigned int p2, unsi
 // 0x38-byte object; func_ov003_021d2288 sets it up.
 typedef struct Unk021d2188 {
     /* 00 */ Unk02023374 mUnk_00;
-    /* 20 */ Unk02180728 mUnk_20;
+    /* 20 */ TextCanvas mUnk_20;
     /* 30 */ u8 *mUnk_30;
     /* 34 */ u32 mUnk_34;
 } Unk021d2188;

@@ -316,7 +316,7 @@ void AdvanceOptionTopMenuState8(void) {
     }
     if (data_0217aa08->mUnk_28 == 0) {
         if (data_021759d4->mBackupEnabled != 0) {
-            flag = data_021759d4->mUnk_10;
+            flag = data_021759d4->mCommandRunning;
         } else {
             flag = 0;
         }

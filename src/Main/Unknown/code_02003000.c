@@ -4,5 +4,5 @@
 
 void main(void) {
     func_020365f0();
-    func_020365bc((u32) func_02039c98);
+    RunRootHeapCall((u32) func_02039c98);
 }

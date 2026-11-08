@@ -17,14 +17,14 @@
 #include "Main/Unknown/code_020b3000.h"
 #include "g2d_CharCanvas.h"
 
-void func_020b24cc(Unk02180728 *a, void *b, void *c, s32 d, s32 e) {
-    a->mUnk_00 = b;
-    a->mUnk_04 = c;
-    a->mUnk_08 = d;
-    a->mUnk_0c = e;
+void func_020b24cc(TextCanvas *a, void *b, void *c, s32 d, s32 e) {
+    a->mCharCanvas = b;
+    a->mFont = c;
+    a->mCharSpacing = d;
+    a->mLineSpacing = e;
 }
 
-u32 func_020b24a4(Unk02180728 *a, s32 b, s32 c, u32 d, u32 e, void *f) {
+u32 func_020b24a4(TextCanvas *a, s32 b, s32 c, u32 d, u32 e, void *f) {
     return NNSi_G2dTextCanvasDrawText(a, b, c, d, e, f);
 }
 

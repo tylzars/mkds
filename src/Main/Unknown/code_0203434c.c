@@ -65,7 +65,7 @@
 static inline s32 func_02034370_inline(void) {
     Unk021759d4 *p = data_021759d4;
     if (p->mBackupEnabled != 0) {
-        return p->mUnk_10;
+        return p->mCommandRunning;
     }
     return 0;
 }

@@ -12,7 +12,7 @@ u32 RunHeapCall(HeapCall *call, u32 argument) {
     if (call->mParent != NULL) {
         outerHeap = call->mParent->mHeap;
     } else {
-        outerHeap = func_020365ac();
+        outerHeap = GetArenaHeap();
     }
     call->mHeap = CreateExpHeapFromMaxFree(outerHeap);
     gCurrentHeapCall = call;
