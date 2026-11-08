@@ -7,24 +7,24 @@
 
 #pragma thumb on
 void ClearEmblemChoisesPointer(void) {
-    u32 value0;
+    u32 pointerAddress;
     u32 zero;
     zero = 0u;
-    value0 = (u32) &gEmblemChoises;
-    *(u32 *) ((value0) + 0u) = zero;
+    pointerAddress = (u32) &gEmblemChoises;
+    *(u32 *) ((pointerAddress) + 0u) = zero;
 }
 #pragma thumb off
 
 #pragma thumb on
 void RequestEmblemChoisesGraphicsUpload(void) {
-    gEmblemChoises->mUnk_08 = TRUE;
+    gEmblemChoises->mGraphicsUploadRequested = TRUE;
 }
 #pragma thumb off
 
 #pragma thumb on
 
 u32 GetEmblemChoisesResult(void) {
-    return (gEmblemChoises->mUnk_1c);
+    return (gEmblemChoises->mResult);
 }
 
 #pragma thumb off

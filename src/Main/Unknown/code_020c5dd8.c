@@ -92,257 +92,275 @@ void UpdateRaceNewRecordTa(void) {
     }
 }
 
-void DrawRaceNewRecordTaTime(Unk020c06c4 *a, s32 b, s32 c, TimeRecord *d) {
-    s32 e0[2];
-    s32 e1[2];
-    s32 e2[2];
-    s32 e3[2];
-    s32 e4[2];
-    s32 e5[2];
-    s32 e6[2];
-    s32 e7[2];
-    s32 e8[2];
-    s32 v[9] = {0, 9, 18, 28, 37, 46, 56, 65, 74};
-    TimeDigits w;
-    s32 k;
-    void *p;
+void DrawRaceNewRecordTaTime(Unk020c06c4 *oamBuffer, s32 x, s32 y, TimeRecord *record) {
+    s32 digit0Position[2];
+    s32 digit1Position[2];
+    s32 firstSeparatorPosition[2];
+    s32 digit2Position[2];
+    s32 digit3Position[2];
+    s32 secondSeparatorPosition[2];
+    s32 digit4Position[2];
+    s32 digit5Position[2];
+    s32 digit6Position[2];
+    s32 cellOffsets[9] = {0, 9, 18, 28, 37, 46, 56, 65, 74};
+    TimeDigits digits;
+    s32 oamIndex;
+    void *cell;
 
-    SplitTimeDigits(d->mMinute, d->mSecond, d->mMillisecond, &w);
-    if (d->mFilled == 0) {
-        w.mUnk_00[0] = w.mUnk_00[1] = w.mUnk_00[2] = w.mUnk_00[3] = w.mUnk_00[4] = w.mUnk_00[5] = w.mUnk_00[6] = 0xb;
+    SplitTimeDigits(record->mMinute, record->mSecond, record->mMillisecond, &digits);
+    if (record->mFilled == 0) {
+        digits.mUnk_00[0] = digits.mUnk_00[1] = digits.mUnk_00[2] = digits.mUnk_00[3] = digits.mUnk_00[4] =
+            digits.mUnk_00[5] = digits.mUnk_00[6] = 0xb;
     }
-    if (w.mUnk_00[0] != 0) {
-        p = GetRaceNewRecordTaSNcerEntry(w.mUnk_00[0] + 0xe);
-        e0[0] = (b + v[0]) << 12;
-        e0[1] = c << 12;
-        k = a->mUnk_400;
-        a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e0, 0, 1);
+    if (digits.mUnk_00[0] != 0) {
+        cell = GetRaceNewRecordTaSNcerEntry(digits.mUnk_00[0] + 0xe);
+        digit0Position[0] = (x + cellOffsets[0]) << 12;
+        digit0Position[1] = y << 12;
+        oamIndex = oamBuffer->mUnk_400;
+        oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex],
+                                                     0x80 - oamIndex, cell, NULL, digit0Position, 0, 1);
     }
-    p = GetRaceNewRecordTaSNcerEntry(w.mUnk_00[1] + 0xe);
-    e1[0] = (b + v[1]) << 12;
-    e1[1] = c << 12;
-    k = a->mUnk_400;
-    a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e1, 0, 1);
-    p = GetRaceNewRecordTaSNcerEntry(0x18);
-    e2[0] = (b + v[2]) << 12;
-    e2[1] = c << 12;
-    k = a->mUnk_400;
-    a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e2, 0, 1);
-    p = GetRaceNewRecordTaSNcerEntry(w.mUnk_00[2] + 0xe);
-    e3[0] = (b + v[3]) << 12;
-    e3[1] = c << 12;
-    k = a->mUnk_400;
-    a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e3, 0, 1);
-    p = GetRaceNewRecordTaSNcerEntry(w.mUnk_00[3] + 0xe);
-    e4[0] = (b + v[4]) << 12;
-    e4[1] = c << 12;
-    k = a->mUnk_400;
-    a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e4, 0, 1);
-    p = GetRaceNewRecordTaSNcerEntry(0x18);
-    e5[0] = (b + v[5]) << 12;
-    e5[1] = c << 12;
-    k = a->mUnk_400;
-    a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e5, 0, 1);
-    p = GetRaceNewRecordTaSNcerEntry(w.mUnk_00[4] + 0xe);
-    e6[0] = (b + v[6]) << 12;
-    e6[1] = c << 12;
-    k = a->mUnk_400;
-    a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e6, 0, 1);
-    p = GetRaceNewRecordTaSNcerEntry(w.mUnk_00[5] + 0xe);
-    e7[0] = (b + v[7]) << 12;
-    e7[1] = c << 12;
-    k = a->mUnk_400;
-    a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e7, 0, 1);
-    p = GetRaceNewRecordTaSNcerEntry(w.mUnk_00[6] + 0xe);
-    e8[0] = (b + v[8]) << 12;
-    e8[1] = c << 12;
-    k = a->mUnk_400;
-    a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e8, 0, 1);
+    cell = GetRaceNewRecordTaSNcerEntry(digits.mUnk_00[1] + 0xe);
+    digit1Position[0] = (x + cellOffsets[1]) << 12;
+    digit1Position[1] = y << 12;
+    oamIndex = oamBuffer->mUnk_400;
+    oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex,
+                                                 cell, NULL, digit1Position, 0, 1);
+    cell = GetRaceNewRecordTaSNcerEntry(0x18);
+    firstSeparatorPosition[0] = (x + cellOffsets[2]) << 12;
+    firstSeparatorPosition[1] = y << 12;
+    oamIndex = oamBuffer->mUnk_400;
+    oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex,
+                                                 cell, NULL, firstSeparatorPosition, 0, 1);
+    cell = GetRaceNewRecordTaSNcerEntry(digits.mUnk_00[2] + 0xe);
+    digit2Position[0] = (x + cellOffsets[3]) << 12;
+    digit2Position[1] = y << 12;
+    oamIndex = oamBuffer->mUnk_400;
+    oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex,
+                                                 cell, NULL, digit2Position, 0, 1);
+    cell = GetRaceNewRecordTaSNcerEntry(digits.mUnk_00[3] + 0xe);
+    digit3Position[0] = (x + cellOffsets[4]) << 12;
+    digit3Position[1] = y << 12;
+    oamIndex = oamBuffer->mUnk_400;
+    oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex,
+                                                 cell, NULL, digit3Position, 0, 1);
+    cell = GetRaceNewRecordTaSNcerEntry(0x18);
+    secondSeparatorPosition[0] = (x + cellOffsets[5]) << 12;
+    secondSeparatorPosition[1] = y << 12;
+    oamIndex = oamBuffer->mUnk_400;
+    oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex,
+                                                 cell, NULL, secondSeparatorPosition, 0, 1);
+    cell = GetRaceNewRecordTaSNcerEntry(digits.mUnk_00[4] + 0xe);
+    digit4Position[0] = (x + cellOffsets[6]) << 12;
+    digit4Position[1] = y << 12;
+    oamIndex = oamBuffer->mUnk_400;
+    oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex,
+                                                 cell, NULL, digit4Position, 0, 1);
+    cell = GetRaceNewRecordTaSNcerEntry(digits.mUnk_00[5] + 0xe);
+    digit5Position[0] = (x + cellOffsets[7]) << 12;
+    digit5Position[1] = y << 12;
+    oamIndex = oamBuffer->mUnk_400;
+    oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex,
+                                                 cell, NULL, digit5Position, 0, 1);
+    cell = GetRaceNewRecordTaSNcerEntry(digits.mUnk_00[6] + 0xe);
+    digit6Position[0] = (x + cellOffsets[8]) << 12;
+    digit6Position[1] = y << 12;
+    oamIndex = oamBuffer->mUnk_400;
+    oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex,
+                                                 cell, NULL, digit6Position, 0, 1);
 }
 
-void DrawRaceNewRecordTaRow(Unk020c06c4 *a, s32 b, s32 c, s32 d) {
-    s32 e0[2];
-    s32 e1[2];
-    TimeRecord l;
-    s32 n;
-    BOOL f;
-    s32 k;
-    void *p;
-    RaceNewRecordTa *m;
+void DrawRaceNewRecordTaRow(Unk020c06c4 *oamBuffer, s32 b, s32 x, s32 y) {
+    s32 firstCellPosition[2];
+    s32 secondCellPosition[2];
+    TimeRecord record;
+    s32 cycleFrames;
+    BOOL isNewRecord;
+    s32 oamIndex;
+    void *cell;
+    RaceNewRecordTa *newRecordTa;
 
-    m = gRaceNewRecordTa;
-    n = m->mCycleFrames;
-    f = FALSE;
-    l = m->mRecords[b];
+    newRecordTa = gRaceNewRecordTa;
+    cycleFrames = newRecordTa->mCycleFrames;
+    isNewRecord = FALSE;
+    record = newRecordTa->mRecords[b];
     if (b == 5) {
-        if ((m != NULL ? m->mBestLapIsRecord : 0) != 0) {
+        if ((newRecordTa != NULL ? newRecordTa->mBestLapIsRecord : 0) != 0) {
             b = 0;
-            f = TRUE;
+            isNewRecord = TRUE;
         } else {
             b = 6;
         }
-    } else if (m->mFinishTimeIsRecord == 0 || b < m->mFinishRecordIndex) {
+    } else if (newRecordTa->mFinishTimeIsRecord == 0 || b < newRecordTa->mFinishRecordIndex) {
         b++;
-    } else if (b == m->mFinishRecordIndex) {
+    } else if (b == newRecordTa->mFinishRecordIndex) {
         b = 0;
-        f = TRUE;
+        isNewRecord = TRUE;
     }
-    if (l.mFilled != 0) {
-        p = GetRaceNewRecordTaSNcerEntry(b + 7);
-        e0[0] = (c + 0x32) << 12;
-        e0[1] = d << 12;
-        k = a->mUnk_400;
-        a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e0, 0, 1);
-        p = GetRaceNewRecordTaSNcerEntry(b + 0x1a);
-        e1[0] = (c + 0x3d) << 12;
-        e1[1] = d << 12;
-        k = a->mUnk_400;
-        a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e1, 0, 1);
+    if (record.mFilled != 0) {
+        cell = GetRaceNewRecordTaSNcerEntry(b + 7);
+        firstCellPosition[0] = (x + 0x32) << 12;
+        firstCellPosition[1] = y << 12;
+        oamIndex = oamBuffer->mUnk_400;
+        oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex],
+                                                     0x80 - oamIndex, cell, NULL, firstCellPosition, 0, 1);
+        cell = GetRaceNewRecordTaSNcerEntry(b + 0x1a);
+        secondCellPosition[0] = (x + 0x3d) << 12;
+        secondCellPosition[1] = y << 12;
+        oamIndex = oamBuffer->mUnk_400;
+        oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex],
+                                                     0x80 - oamIndex, cell, NULL, secondCellPosition, 0, 1);
     }
-    if (f != FALSE && n >= 0x10) {
+    if (isNewRecord != FALSE && cycleFrames >= 0x10) {
         return;
     }
-    DrawRaceNewRecordTaTime(a, c + 0xab, d, &l);
+    DrawRaceNewRecordTaTime(oamBuffer, x + 0xab, y, &record);
 }
 
-void DrawRaceNewRecordTa(Unk020c06c4 *a) {
-    s32 e0[2];
-    s32 e1[2];
-    s32 e2[2];
+void DrawRaceNewRecordTa(Unk020c06c4 *oamBuffer) {
+    s32 headerPosition[2];
+    s32 rowPosition[2];
+    s32 lastRowPosition[2];
     s32 e3[2];
     u16 i;
-    s32 k;
-    s32 x;
-    void *p;
+    s32 oamIndex;
+    s32 rowY;
+    void *cell;
 
-    p = GetRaceNewRecordTaSNcerEntry(0);
-    e0[0] = (gRaceNewRecordTa->mOffsetX + 0x80) << 12;
-    e0[1] = 0xc000;
-    k = a->mUnk_400;
-    a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e0, 0, 1);
+    cell = GetRaceNewRecordTaSNcerEntry(0);
+    headerPosition[0] = (gRaceNewRecordTa->mOffsetX + 0x80) << 12;
+    headerPosition[1] = 0xc000;
+    oamIndex = oamBuffer->mUnk_400;
+    oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex,
+                                                 cell, NULL, headerPosition, 0, 1);
     for (i = 0; i < 5; i++) {
-        p = GetRaceNewRecordTaSNcerEntry(i + 1);
-        x = i * 0x18 + 0x28;
-        e1[0] = gRaceNewRecordTa->mOffsetX << 12;
-        e1[1] = (i * 0x18 + 0x28) << 12;
-        k = a->mUnk_400;
-        a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e1, 0, 1);
-        DrawRaceNewRecordTaRow(a, i, gRaceNewRecordTa->mOffsetX, x);
+        cell = GetRaceNewRecordTaSNcerEntry(i + 1);
+        rowY = i * 0x18 + 0x28;
+        rowPosition[0] = gRaceNewRecordTa->mOffsetX << 12;
+        rowPosition[1] = (i * 0x18 + 0x28) << 12;
+        oamIndex = oamBuffer->mUnk_400;
+        oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex],
+                                                     0x80 - oamIndex, cell, NULL, rowPosition, 0, 1);
+        DrawRaceNewRecordTaRow(oamBuffer, i, gRaceNewRecordTa->mOffsetX, rowY);
     }
-    p = GetRaceNewRecordTaSNcerEntry(6);
-    e2[0] = gRaceNewRecordTa->mOffsetX << 12;
-    e2[1] = 0x9f000;
-    k = a->mUnk_400;
-    a->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e2, 0, 1);
-    DrawRaceNewRecordTaRow(a, i, gRaceNewRecordTa->mOffsetX + 1, 0xb4);
+    cell = GetRaceNewRecordTaSNcerEntry(6);
+    lastRowPosition[0] = gRaceNewRecordTa->mOffsetX << 12;
+    lastRowPosition[1] = 0x9f000;
+    oamIndex = oamBuffer->mUnk_400;
+    oamBuffer->mUnk_400 += NNS_G2dMakeCellToOams((GXOamAttr *) &oamBuffer->mUnk_000.mUnk_00[oamIndex], 0x80 - oamIndex,
+                                                 cell, NULL, lastRowPosition, 0, 1);
+    DrawRaceNewRecordTaRow(oamBuffer, i, gRaceNewRecordTa->mOffsetX + 1, 0xb4);
 }
 
-BOOL func_020c657c(s32 a) {
-    u8 x;
-    u8 y;
-    u16 z;
-    s32 k;
+BOOL func_020c657c(s32 store) {
+    u8 minute;
+    u8 second;
+    u16 millisecond;
+    s32 recordIndex;
     s32 j;
-    TimeRecord *q;
-    s32 t;
-    TimeRecord *e;
-    TimeRecord *g;
-    u8 n0;
-    u8 n1;
-    u16 n2;
+    TimeRecord *record;
+    s32 totalMilliseconds;
+    TimeRecord *slot;
+    TimeRecord *records;
+    u8 copiedMinute;
+    u8 copiedSecond;
+    u16 copiedMillisecond;
 
-    GetKartFinishTime(GetFollowedKartOrEntryIndex(), &x, &y, &z);
-    q = gRaceNewRecordTa->mRecords;
-    t = y * 1000 + x * 60000 + z;
-    k = 0;
+    GetKartFinishTime(GetFollowedKartOrEntryIndex(), &minute, &second, &millisecond);
+    record = gRaceNewRecordTa->mRecords;
+    totalMilliseconds = second * 1000 + minute * 60000 + millisecond;
+    recordIndex = 0;
     do {
-        if (q->mFilled == 0 || t < q->mMillisecond + (q->mSecond * 1000 + q->mMinute * 60000)) {
+        if (record->mFilled == 0 ||
+            totalMilliseconds < record->mMillisecond + (record->mSecond * 1000 + record->mMinute * 60000)) {
             goto found;
         }
-        k++;
-        q++;
-    } while (k < 5);
+        recordIndex++;
+        record++;
+    } while (recordIndex < 5);
     return FALSE;
 found:
-    if (a != 0) {
-        for (j = 4; j > k; j--) {
+    if (store != 0) {
+        for (j = 4; j > recordIndex; j--) {
             gRaceNewRecordTa->mRecords[j] = gRaceNewRecordTa->mRecords[j - 1];
             func_02056c6c(gRaceSetup->mCourseId, j, &gRaceNewRecordTa->mRecords[j]);
         }
-        n2 = z;
-        n1 = y;
-        n0 = x;
-        g = gRaceNewRecordTa->mRecords;
-        e = g + k;
-        e->mMinute = n0;
-        e->mSecond = n1;
-        g[k].mMillisecond = n2;
-        MIi_CpuCopy16(gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mPlayer.mName, e->mName, 0x14);
-        e->mFilled = 1;
-        e->mCharacterIndex = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mCharacterIndex;
-        e->mKartIndex = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mKartIndex;
-        func_02056c6c(gRaceSetup->mCourseId, k, e);
-        if (k != 5) {
-            gRaceNewRecordTa->mFinishRecordIndex = k;
+        copiedMillisecond = millisecond;
+        copiedSecond = second;
+        copiedMinute = minute;
+        records = gRaceNewRecordTa->mRecords;
+        slot = records + recordIndex;
+        slot->mMinute = copiedMinute;
+        slot->mSecond = copiedSecond;
+        records[recordIndex].mMillisecond = copiedMillisecond;
+        MIi_CpuCopy16(gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mPlayer.mName, slot->mName, 0x14);
+        slot->mFilled = 1;
+        slot->mCharacterIndex = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mCharacterIndex;
+        slot->mKartIndex = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mKartIndex;
+        func_02056c6c(gRaceSetup->mCourseId, recordIndex, slot);
+        if (recordIndex != 5) {
+            gRaceNewRecordTa->mFinishRecordIndex = recordIndex;
         }
     } else {
-        gRaceNewRecordTa->mFinishRecordIndex = k;
+        gRaceNewRecordTa->mFinishRecordIndex = recordIndex;
     }
     return TRUE;
 }
 
-BOOL func_020c6428(s32 a) {
-    u8 x;
-    u8 y;
-    u16 z;
-    TimeRecord *e;
-    TimeRecord *g;
-    u8 n0;
-    u8 n1;
-    u16 n2;
+BOOL func_020c6428(s32 store) {
+    u8 minute;
+    u8 second;
+    u16 millisecond;
+    TimeRecord *record;
+    TimeRecord *records;
+    u8 copiedMinute;
+    u8 copiedSecond;
+    u16 copiedMillisecond;
 
-    e = &gRaceNewRecordTa->mRecords[TIME_RECORD_BEST_LAP];
-    gRaceNewRecordTa->mBestLapNumber = GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &x, &y, &z);
-    if (e->mFilled != 0) {
-        if (z + (y * 1000 + x * 60000) >= e->mMillisecond + (e->mSecond * 1000 + e->mMinute * 60000)) {
+    record = &gRaceNewRecordTa->mRecords[TIME_RECORD_BEST_LAP];
+    gRaceNewRecordTa->mBestLapNumber =
+        GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &minute, &second, &millisecond);
+    if (record->mFilled != 0) {
+        if (millisecond + (second * 1000 + minute * 60000) >=
+            record->mMillisecond + (record->mSecond * 1000 + record->mMinute * 60000)) {
             return FALSE;
         }
     }
-    if (a != 0) {
-        n2 = z;
-        n1 = y;
-        n0 = x;
-        g = gRaceNewRecordTa->mRecords;
-        e = g + TIME_RECORD_BEST_LAP;
-        e->mMinute = n0;
-        e->mSecond = n1;
-        g[TIME_RECORD_BEST_LAP].mMillisecond = n2;
-        MIi_CpuCopy16(gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mPlayer.mName, e->mName, 0x14);
-        e->mFilled = 1;
-        e->mCharacterIndex = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mCharacterIndex;
-        e->mKartIndex = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mKartIndex;
-        func_02056c6c(gRaceSetup->mCourseId, TIME_RECORD_BEST_LAP, e);
+    if (store != 0) {
+        copiedMillisecond = millisecond;
+        copiedSecond = second;
+        copiedMinute = minute;
+        records = gRaceNewRecordTa->mRecords;
+        record = records + TIME_RECORD_BEST_LAP;
+        record->mMinute = copiedMinute;
+        record->mSecond = copiedSecond;
+        records[TIME_RECORD_BEST_LAP].mMillisecond = copiedMillisecond;
+        MIi_CpuCopy16(gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mPlayer.mName, record->mName, 0x14);
+        record->mFilled = 1;
+        record->mCharacterIndex = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mCharacterIndex;
+        record->mKartIndex = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mKartIndex;
+        func_02056c6c(gRaceSetup->mCourseId, TIME_RECORD_BEST_LAP, record);
     }
     return TRUE;
 }
 
 void func_020c610c(void) {
-    Unk020adc24 x;
-    Unk020adc24 y;
-    u8 a;
-    u8 b;
-    u16 c;
-    u8 d;
-    u8 e;
-    u16 f;
+    Unk020adc24 setupTime;
+    Unk020adc24 finishTime;
+    u8 minute;
+    u8 second;
+    u16 millisecond;
+    u8 bestLapMinute;
+    u8 bestLapSecond;
+    u16 bestLapMillisecond;
     BOOL r;
-    BOOL v1;
-    s32 t;
+    BOOL hasSetupTime;
+    s32 totalMilliseconds;
     s32 j;
     s32 n;
     s32 g;
-    TimeRecord *q;
-    TimeRecord *w;
+    TimeRecord *record;
+    TimeRecord *records;
 
     if (gRaceProgress->mRaceDone == 0) {
         return;
@@ -362,14 +380,15 @@ void func_020c610c(void) {
             r = FALSE;
             if (func_020ba620() != 0) {
                 if (gRaceSetup->mMode == MODE_TIME_ATTACK && gRaceSetup->mUnk_3e6 == 1) {
-                    MI_CpuCopy8(&gRaceSetup->mUnk_3e2, &x, 4);
-                    v1 = TRUE;
+                    MI_CpuCopy8(&gRaceSetup->mUnk_3e2, &setupTime, 4);
+                    hasSetupTime = TRUE;
                 } else {
-                    v1 = FALSE;
+                    hasSetupTime = FALSE;
                 }
-                if (v1 != FALSE) {
-                    GetKartFinishTime((u16) gRaceSetup->mEntryIndex, &y.mUnk_02, &y.mUnk_03, &y.mUnk_00);
-                    if (func_020adc24(&y, &x) != FALSE) {
+                if (hasSetupTime != FALSE) {
+                    GetKartFinishTime((u16) gRaceSetup->mEntryIndex, &finishTime.mUnk_02, &finishTime.mUnk_03,
+                                      &finishTime.mUnk_00);
+                    if (func_020adc24(&finishTime, &setupTime) != FALSE) {
                         r = TRUE;
                     }
                 } else {
@@ -387,12 +406,13 @@ void func_020c610c(void) {
             }
         }
     } else {
-        GetKartFinishTime(GetFollowedKartOrEntryIndex(), &a, &b, &c);
-        w = gRaceNewRecordTa->mRecords;
-        t = b * 1000 + a * 60000 + c;
+        GetKartFinishTime(GetFollowedKartOrEntryIndex(), &minute, &second, &millisecond);
+        records = gRaceNewRecordTa->mRecords;
+        totalMilliseconds = second * 1000 + minute * 60000 + millisecond;
         for (j = 4; j >= 0; j--) {
-            q = &w[j];
-            if (q->mFilled != 0 && t == q->mMillisecond + (q->mSecond * 1000 + q->mMinute * 60000)) {
+            record = &records[j];
+            if (record->mFilled != 0 &&
+                totalMilliseconds == record->mMillisecond + (record->mSecond * 1000 + record->mMinute * 60000)) {
                 j = 1;
                 goto found;
             }
@@ -400,9 +420,11 @@ void func_020c610c(void) {
         j = 0;
     found:
         gRaceNewRecordTa->mFinishTimeIsRecord = j;
-        q = &gRaceNewRecordTa->mRecords[TIME_RECORD_BEST_LAP];
-        gRaceNewRecordTa->mBestLapNumber = GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &d, &e, &f);
-        if (d == q->mMinute && e == q->mSecond && f == q->mMillisecond) {
+        record = &gRaceNewRecordTa->mRecords[TIME_RECORD_BEST_LAP];
+        gRaceNewRecordTa->mBestLapNumber =
+            GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &bestLapMinute, &bestLapSecond, &bestLapMillisecond);
+        if (bestLapMinute == record->mMinute && bestLapSecond == record->mSecond &&
+            bestLapMillisecond == record->mMillisecond) {
             r = TRUE;
         } else {
             r = FALSE;
@@ -415,31 +437,32 @@ void func_020c610c(void) {
 }
 
 void func_020c5f7c(void) {
-    Unk020adc24 x;
-    Unk020adc24 y;
+    Unk020adc24 setupTime;
+    Unk020adc24 finishTime;
     BOOL r;
-    BOOL v1;
-    s32 t;
+    BOOL hasSetupTime;
+    s32 waiting;
 
     if (data_0217aa08->mUnk_28 == 0) {
-        t = data_021759d4->mBackupEnabled != 0 ? data_021759d4->mUnk_10 : 0;
+        waiting = data_021759d4->mBackupEnabled != 0 ? data_021759d4->mUnk_10 : 0;
     } else {
-        t = 1;
+        waiting = 1;
     }
-    if (t != 0) {
+    if (waiting != 0) {
         return;
     }
     r = FALSE;
     if (func_020ba620() != 0) {
         if (gRaceSetup->mMode == MODE_TIME_ATTACK && gRaceSetup->mUnk_3e6 == 1) {
-            MI_CpuCopy8(&gRaceSetup->mUnk_3e2, &x, 4);
-            v1 = TRUE;
+            MI_CpuCopy8(&gRaceSetup->mUnk_3e2, &setupTime, 4);
+            hasSetupTime = TRUE;
         } else {
-            v1 = FALSE;
+            hasSetupTime = FALSE;
         }
-        if (v1 != FALSE) {
-            GetKartFinishTime((u16) gRaceSetup->mEntryIndex, &y.mUnk_02, &y.mUnk_03, &y.mUnk_00);
-            if (func_020adc24(&y, &x) != FALSE) {
+        if (hasSetupTime != FALSE) {
+            GetKartFinishTime((u16) gRaceSetup->mEntryIndex, &finishTime.mUnk_02, &finishTime.mUnk_03,
+                              &finishTime.mUnk_00);
+            if (func_020adc24(&finishTime, &setupTime) != FALSE) {
                 r = TRUE;
             }
         } else {
@@ -459,14 +482,14 @@ void func_020c5f7c(void) {
 }
 
 void func_020c5f08(void) {
-    s32 t;
+    s32 waiting;
 
     if (data_0217aa08->mUnk_28 == 0) {
-        t = data_021759d4->mBackupEnabled != 0 ? data_021759d4->mUnk_10 : 0;
+        waiting = data_021759d4->mBackupEnabled != 0 ? data_021759d4->mUnk_10 : 0;
     } else {
-        t = 1;
+        waiting = 1;
     }
-    if (t != 0) {
+    if (waiting != 0) {
         return;
     }
     gRaceNewRecordTa->mUnk_18 = 0;
@@ -502,16 +525,16 @@ u32 func_020c5df0(void) {
     u32 value1;
     u32 value2;
     u32 value3;
-    s32 compareLeft0;
-    s32 compareRight0;
+    s32 frame;
+    s32 limit;
     value0 = (u32) &gRaceNewRecordTa;
     value3 = *(const u32 *) ((value0) + (0));
     value2 = gRaceNewRecordTa->mUpdateFrames;
     value1 = (value2) + (1u);
     gRaceNewRecordTa->mUpdateFrames = value1;
-    compareLeft0 = value2;
-    compareRight0 = 0x3cu;
-    if (compareLeft0 < compareRight0) {
+    frame = value2;
+    limit = 0x3cu;
+    if (frame < limit) {
         return value0;
     }
     value2 = *(const u32 *) ((value0) + (0));
@@ -525,10 +548,10 @@ u32 func_020c5df0(void) {
 
 u32 func_020c5dd8(void) {
     u32 value0;
-    u32 value1;
+    u32 zero;
     value0 = (u32) &gRaceNewRecordTa;
-    value1 = 0u;
+    zero = 0u;
     value0 = *(const u32 *) ((value0) + (0));
-    *(u32 *) ((value0) + (220)) = value1;
+    *(u32 *) ((value0) + (220)) = zero;
     return value0;
 }

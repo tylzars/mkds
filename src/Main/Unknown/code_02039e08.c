@@ -201,7 +201,7 @@ u32 RunRaceScene(SceneNumbers *a) {
 }
 
 void InitMenuScene(void) {
-    func_020cbb10();
+    InitMenu();
 }
 
 void ReleaseMenuScene(void) {

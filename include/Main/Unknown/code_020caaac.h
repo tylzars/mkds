@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020caaac(u32 a, u32 b, u32 c, u32 d);
+void func_020caaac(u32 plane1, u32 plane2, u32 ev1, u32 ev2);

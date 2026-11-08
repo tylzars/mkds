@@ -9,6 +9,6 @@ Nscr *GetRaceGoalSNscr(u32 index) {
     return (gRaceGoalS->mRaceGoalSNscrs[index]);
 }
 
-s32 func_020c3e00(void) {
-    return gRaceGoalS->mUnk_00a0;
+s32 GetRaceGoalSOffsetX(void) {
+    return gRaceGoalS->mOffsetX;
 }

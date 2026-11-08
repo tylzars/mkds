@@ -36,23 +36,23 @@ void UpdateSinglePlaySelectInput(s32 a) {
             RequestSelectReturnState3WithSound(1);
         } else if (GetNewOrRepeatBits(v, PAD_KEY_UP)) {
             menu = data_0217b43c;
-            menu->mUnk_930 = (menu->mUnk_930 + 4) % 5;
+            menu->mSinglePlaySelectModeIndex = (menu->mSinglePlaySelectModeIndex + 4) % 5;
             StartSoundOncePerFrame(0);
         } else if (GetNewOrRepeatBits(v, PAD_KEY_DOWN)) {
             menu = data_0217b43c;
-            menu->mUnk_930 = (menu->mUnk_930 + 6) % 5;
+            menu->mSinglePlaySelectModeIndex = (menu->mSinglePlaySelectModeIndex + 6) % 5;
             StartSoundOncePerFrame(0);
         } else if (func_020cb11c(v)) {
             pairX = func_020cb0f4(v);
             v = func_020cb0cc(v);
             touchedIndex = FindRectContainingPoint(pairX, v, data_0217b43c->mSinglePlaySelectModeSBnbl);
             menu = data_0217b43c;
-            previousSelected = menu->mUnk_930;
+            previousSelected = menu->mSinglePlaySelectModeIndex;
             if (touchedIndex != -1) {
                 if (previousSelected == touchedIndex) {
                     menu->mUnk_934 = TRUE;
                 }
-                data_0217b43c->mUnk_930 = touchedIndex;
+                data_0217b43c->mSinglePlaySelectModeIndex = touchedIndex;
                 func_020ccc74(3, 0x1f);
                 func_020cb1cc(5);
             } else if (IsSelectReturnState2NoState3Or4RequestAndInRect(pairX, v)) {

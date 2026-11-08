@@ -11,16 +11,16 @@
 #pragma thumb on
 #pragma optimize_for_size on
 void DrawEmblemChoises(void) {
-    if (gEmblemChoises->mUnk_08 != FALSE) {
+    if (gEmblemChoises->mGraphicsUploadRequested != FALSE) {
         GXS_LoadBGPltt(gEmblemChoises->mChoisesSBNclr->mData + 0xe0, 0x1c0, 0x40);
         GXS_LoadBG0Char(gEmblemChoises->mChoisesSBNcgr->mData, 0, 0x3000);
-        gEmblemChoises->mUnk_08 = FALSE;
+        gEmblemChoises->mGraphicsUploadRequested = FALSE;
     }
-    if (gEmblemChoises->mUnk_00 != 0) {
+    if (gEmblemChoises->mShown != 0) {
         GXS_LoadBG0Scr(gEmblemChoises->mChoisesS3Nscr->mData, 0, 0x600);
     }
-    if (gEmblemChoises->mUnk_00 != gEmblemChoises->mUnk_04) {
-        if (gEmblemChoises->mUnk_00 != 0) {
+    if (gEmblemChoises->mShown != gEmblemChoises->mUnk_04) {
+        if (gEmblemChoises->mShown != 0) {
             func_020cab58(func_020cab74() | 1);
             func_020cab2c(0, 0);
             func_020caae8(0x3e, 0x3f, 8, 8, -7);
@@ -33,6 +33,6 @@ void DrawEmblemChoises(void) {
             }
         }
     }
-    gEmblemChoises->mUnk_04 = gEmblemChoises->mUnk_00;
+    gEmblemChoises->mUnk_04 = gEmblemChoises->mShown;
 }
 #pragma thumb off

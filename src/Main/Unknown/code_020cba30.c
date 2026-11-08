@@ -11,10 +11,10 @@ void func_020cbaa8(u32 value) {
     data_0217b488->mUnk_10 = value;
 }
 
-void func_020cba6c(u32 a, u32 b, u32 c, u32 d) {
-    G2x_SetBlendAlpha_(&reg_G2_BLDCNT, a, b, c, d);
+void func_020cba6c(u32 plane1, u32 plane2, u32 ev1, u32 ev2) {
+    G2x_SetBlendAlpha_(&reg_G2_BLDCNT, plane1, plane2, ev1, ev2);
 }
 
-void func_020cba30(u32 a, u32 b, u32 c, u32 d) {
-    G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, a, b, c, d);
+void func_020cba30(u32 plane1, u32 plane2, u32 ev1, u32 ev2) {
+    G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, plane1, plane2, ev1, ev2);
 }

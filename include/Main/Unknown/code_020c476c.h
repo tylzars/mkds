@@ -19,11 +19,11 @@ extern const Vec3 gVec3Zero;
 
 u32 ClearRaceTaPositionsPointer(void);
 void InitRaceTaPositions(void);
-void ResetRaceTaKartPositions(s32 a);
-void HideRaceTaKartPositions(s32 a);
+void ResetRaceTaKartPositions(s32 kartIndex);
+void HideRaceTaKartPositions(s32 kartIndex);
 void DrawRaceStartGp(void);
 u16 UpdateRaceStartGp(void);
 void UploadRaceStartGpOam(void);
-void DrawRaceLinkLevel(Unk020c06c4 *a);
+void DrawRaceLinkLevel(Unk020c06c4 *oamBuffer);
 void UpdateRaceLinkLevel(void);
 u32 ClearRaceLinkLevelPointer(void);

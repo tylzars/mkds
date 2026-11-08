@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_020c31ec(void);
+u32 ClearRaceGoalSPointer(void);

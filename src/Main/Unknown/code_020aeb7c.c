@@ -406,7 +406,7 @@ void func_020aeb7c(void) {
                 break;
             case 4:
             case 5:
-                func_020c31c0();
+                UpdateRaceGoalS();
                 break;
             case 6:
                 UpdateRaceNewRecordTa();

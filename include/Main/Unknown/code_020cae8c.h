@@ -15,13 +15,13 @@ typedef struct ScreenCallbacks {
 
 // Object behind data_0217b43c.
 typedef struct Unk0217b43c {
-    /* 000 */ s32 mUnk_000;
+    /* 000 */ s32 mFramesSinceScreenSwitch;
     /* 004 */ s32 mUnk_004;
-    /* 008 */ s32 mUnk_008;
+    /* 008 */ s32 mPreviousScreenNumber;
     /* 00c */ s32 mScreenNumber;
-    /* 010 */ s32 mUnk_010;
+    /* 010 */ s32 mNextScreenNumber;
     /* 014 */ ScreenCallbacks mScreenCallbacks[0x1e];
-    /* 104 */ BOOL mUnk_104;
+    /* 104 */ BOOL mScreenInitPending;
     /* 108 */ u8 mMainOam[0x404];
     /* 50c */ u8 mSubOam[0x404];
     /* 910 */ Nclr *mSinglePlaySelectModeMONclr;
@@ -32,14 +32,14 @@ typedef struct Unk0217b43c {
     /* 924 */ Ncgr *mSinglePlaySelectModeSNcgr;
     /* 928 */ Unk02021dc8 *mSinglePlaySelectModeSNcer;
     /* 92c */ u8 mUnk_92c[4];
-    /* 930 */ s32 mUnk_930;
+    /* 930 */ s32 mSinglePlaySelectModeIndex;
     /* 934 */ BOOL mUnk_934;
     /* 938 */ s16 mUnk_938;
     /* 93a */ u8 mUnk_93a[2];
-    /* 93c */ Unk02124b1c *mUnk_93c;
+    /* 93c */ Unk02124b1c *mSinglePlaySelectModeMLayoutTable;
     /* 940 */ struct Unk0201ea30 *mSinglePlaySelectModeMBncl;
     /* 944 */ s32 mUnk_944;
-    /* 948 */ Unk02124b1c *mUnk_948;
+    /* 948 */ Unk02124b1c *mSinglePlaySelectModeSLayoutTable;
     /* 94c */ struct Unk0201ea30 *mSinglePlaySelectModeSBncl;
     /* 950 */ void *mSinglePlaySelectModeSBnbl;
     /* 954 */ u8 *mUnk_954;

@@ -156,14 +156,14 @@ typedef struct ViewFrustum {
 // Object behind gEmblemChoises, 0x6c bytes (InitEmblemChoises allocates it); DrawEmblemChoises calls the function at
 // 0x0c.
 typedef struct EmblemChoises {
-    /* 00 */ s32 mUnk_00;
+    /* 00 */ s32 mShown;
     /* 04 */ s32 mUnk_04;
-    /* 08 */ BOOL mUnk_08;
+    /* 08 */ BOOL mGraphicsUploadRequested;
     /* 0c */ UnkFunc *mUnk_0c;
     /* 10 */ BOOL mUnk_10;
     /* 14 */ s32 mUnk_14;
     /* 18 */ s32 mUnk_18;
-    /* 1c */ s32 mUnk_1c;
+    /* 1c */ s32 mResult;
     /* 20 */ s32 mChoisesIndex;
     /* 24 */ s32 mUnk_24;
     /* 28 */ s32 mChoisesCount;
@@ -689,16 +689,16 @@ typedef struct RaceHudSubScreenCellGroups {
 extern RaceHudSubScreenCellGroups *gRaceHudSubScreenCellGroups;
 // Object behind gRaceGoalS, 0x20e4 bytes, allocated by InitRaceGoalS.
 typedef struct RaceGoalS {
-    /* 0000 */ s32 mUnk_0000[8];
-    /* 0020 */ s32 mUnk_0020[8];
-    /* 0040 */ s32 mUnk_0040[8];
-    /* 0060 */ s32 mUnk_0060[8];
-    /* 0080 */ s32 mUnk_0080[8];
-    /* 00a0 */ s32 mUnk_00a0;
+    /* 0000 */ s32 mRowVisible[8];
+    /* 0020 */ s32 mShownNumbers[8];
+    /* 0040 */ s32 mRowKartIndex[8];
+    /* 0060 */ s32 mPreviousRowKartIndex[8];
+    /* 0080 */ s32 mRankComparison[8];
+    /* 00a0 */ s32 mOffsetX;
     /* 00a4 */ s32 mUnk_00a4;
-    /* 00a8 */ s32 mUnk_00a8;
-    /* 00ac */ void *mUnk_00ac;
-    /* 00b0 */ s32 mUnk_00b0;
+    /* 00a8 */ s32 mHiddenRowCount;
+    /* 00ac */ void *mUpdate;
+    /* 00b0 */ s32 mUpdateFrames;
     /* 00b4 */ s32 mUnk_00b4;
     /* 00b8 */ struct Nclr *mRaceGoalSBNclr;
     /* 00bc */ struct Ncgr *mRaceGoalSBNcgr;

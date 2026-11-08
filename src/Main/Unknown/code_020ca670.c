@@ -7,8 +7,8 @@
 
 #pragma thumb on
 void SetEmblemChoisesShownAndReset(u32 shown) {
-    gEmblemChoises->mUnk_00 = shown;
-    func_020cac9c();
+    gEmblemChoises->mShown = shown;
+    ResetEmblemChoisesState();
 }
 #pragma thumb off
 

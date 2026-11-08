@@ -1,12 +1,12 @@
 #include "Main/Unknown/code_020c2118.h"
 #include "Main/Unknown/code_020c214c.h"
 
-void func_020c2118(Unk020c06c4 *a) {
+void DrawRaceGoalS(Unk020c06c4 *oamBuffer) {
     int state;
     state = GetRaceHudSubScreenState();
     if (state != 5) {
-        func_020c28dc(a);
+        DrawRaceGoalSKarts(oamBuffer);
         return;
     }
-    func_020c214c(a);
+    DrawRaceGoalSTeams(oamBuffer);
 }

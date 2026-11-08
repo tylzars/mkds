@@ -57,10 +57,10 @@ void CopyCurrentToRaceSetupCopy(void) {
     GetRaceSetupCopy()->mCpuDifficulty = GetCurrentCpuDifficulty();
     GetRaceSetupCopy()->mKartCount = GetCurrentKartCount();
     if (func_020cae54() != 0) {
-        u32 v;
+        u32 currentMode;
 
-        v = GetCurrentMode();
-        switch (v) {
+        currentMode = GetCurrentMode();
+        switch (currentMode) {
             case 0:
             case 1:
             case 4:
@@ -69,7 +69,7 @@ void CopyCurrentToRaceSetupCopy(void) {
             case 2:
             case 3:
             case 5:
-                GetRaceSetupCopy()->mMode = v;
+                GetRaceSetupCopy()->mMode = currentMode;
                 break;
         }
     } else {
@@ -113,42 +113,42 @@ void func_020cc36c(void) {
 }
 #pragma thumb off
 
-void SetMainBg0Record(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
-    SetBg0Record(a->mMainBgRecords, b, c, d, e, f, g, h);
+void SetMainBg0Record(Unk02180774 *displaySettings, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
+    SetBg0Record(displaySettings->mMainBgRecords, b, c, d, e, f, g, h);
 }
 
-void func_020cc2f4(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
-    SetBg1Record(a->mMainBgRecords, b, c, d, e, f, g, h);
+void func_020cc2f4(Unk02180774 *displaySettings, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
+    SetBg1Record(displaySettings->mMainBgRecords, b, c, d, e, f, g, h);
 }
 
-void func_020cc2c0(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    SetBg2RecordParams(a->mMainBgRecords, b, c, d, e, f, g);
+void func_020cc2c0(Unk02180774 *displaySettings, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
+    SetBg2RecordParams(displaySettings->mMainBgRecords, b, c, d, e, f, g);
 }
 
-void func_020cc28c(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    SetBg3RecordParams(a->mMainBgRecords, b, c, d, e, f, g);
+void func_020cc28c(Unk02180774 *displaySettings, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
+    SetBg3RecordParams(displaySettings->mMainBgRecords, b, c, d, e, f, g);
 }
 
-void SetSubBg0Record(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
-    SetBg0Record(a->mSubBgRecords, b, c, d, e, f, g, h);
+void SetSubBg0Record(Unk02180774 *displaySettings, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
+    SetBg0Record(displaySettings->mSubBgRecords, b, c, d, e, f, g, h);
 }
 
-void SetSubBg1Record(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
-    SetBg1Record(a->mSubBgRecords, b, c, d, e, f, g, h);
+void SetSubBg1Record(Unk02180774 *displaySettings, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
+    SetBg1Record(displaySettings->mSubBgRecords, b, c, d, e, f, g, h);
 }
 
-void func_020cc1e0(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    SetBg2RecordParams(a->mSubBgRecords, b, c, d, e, f, g);
+void func_020cc1e0(Unk02180774 *displaySettings, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
+    SetBg2RecordParams(displaySettings->mSubBgRecords, b, c, d, e, f, g);
 }
 
-void func_020cc1ac(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    SetBg3RecordParams(a->mSubBgRecords, b, c, d, e, f, g);
+void func_020cc1ac(Unk02180774 *displaySettings, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
+    SetBg3RecordParams(displaySettings->mSubBgRecords, b, c, d, e, f, g);
 }
 
-void func_020cc18c(u32 a) {
-    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | a;
+void func_020cc18c(u32 bits) {
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | bits;
 }
 
-void SetSubDispcntBits(u32 a) {
-    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | a;
+void SetSubDispcntBits(u32 bits) {
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | bits;
 }

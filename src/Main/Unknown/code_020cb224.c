@@ -5,7 +5,7 @@
 
 #pragma thumb on
 void func_020cb22c(void) {
-    u32 value3;
+    u32 unusedValue;
     SetupSinglePlaySelectGraphics();
 }
 #pragma thumb off

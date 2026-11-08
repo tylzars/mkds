@@ -21,7 +21,7 @@ void func_02039f50(void);
 // data_021759d0->mUnk_50 and, in mode 1, resets the CPU entries 1..7 of mNextEntries
 // (ResetTimeAttackNextEntries).
 void ReleaseMenuScene(void);
-// Wrapper of func_020cbb10, which allocates data_0217b43c and loads the single_play_select_mode
+// Wrapper of InitMenu, which allocates data_0217b43c and loads the single_play_select_mode
 // files.
 void InitMenuScene(void);
 // Scene function of gSceneFuncs[2] (scene 'Race' in gSceneNames): copies the callbacks and calls

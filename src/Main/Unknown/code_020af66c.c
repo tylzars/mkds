@@ -270,7 +270,7 @@ void func_020b0b8c(void) {
                     GXS_LoadBG0Char(func_020b3374()->mData, 0, 0x800);
                     break;
             }
-            w = func_020c3e00();
+            w = GetRaceGoalSOffsetX();
             if (w < 0x100) {
                 a = -w & 0x1ff;
                 reg_G2S_DB_BG2OFS = a;
@@ -287,7 +287,7 @@ void func_020b0b8c(void) {
                     GXS_LoadBG0Char(func_020b3374()->mData, 0, 0x800);
                     break;
             }
-            w = func_020c3e00();
+            w = GetRaceGoalSOffsetX();
             if (gRaceHud->mSubScreenState5LoadPending != FALSE) {
                 GXS_LoadBG1Scr(GetRaceGoalSNscr(3)->mData, 0, GetRaceGoalSNscr(3)->mDataSize);
                 GXS_LoadBG2Scr(GetRaceGoalSNscr(4)->mData, 0, GetRaceGoalSNscr(4)->mDataSize);
@@ -730,7 +730,7 @@ void func_020af86c(void) {
     ClearRaceGoalTimesPointer();
     ClearRaceRankListPointer();
     ClearRaceHudSubScreenCellGroups();
-    func_020c31ec();
+    ClearRaceGoalSPointer();
     ClearRaceNewRecordTaPointer();
     ClearRaceTaPositionsPointer();
     reg_GX_DISPCNT &= ~0xe000;
@@ -799,7 +799,7 @@ void func_020af66c(void) {
             break;
         case 4:
         case 5:
-            func_020c31c0();
+            UpdateRaceGoalS();
             break;
         case 6:
             break;

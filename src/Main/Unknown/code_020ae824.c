@@ -94,7 +94,7 @@ void func_020ae824(void) {
             break;
         case 4:
         case 5:
-            func_020c2118((Unk020c06c4 *) gRaceHud->mUnk_408);
+            DrawRaceGoalS((Unk020c06c4 *) gRaceHud->mUnk_408);
             break;
         case 6:
             DrawRaceNewRecordTa((Unk020c06c4 *) gRaceHud->mUnk_408);

@@ -17,8 +17,8 @@
 #pragma thumb on
 #pragma optimize_for_size on
 void UpdateMenuScreen(u32 a) {
-    Unk0217b43c *p;
-    enum { K0 } k;
+    Unk0217b43c *menu;
+    enum { K0 } screenNumber;
 
     if (func_02049b6c() == 0) {
         if (func_020cae54() == 1 || func_020cae54() == 2) {
@@ -36,25 +36,25 @@ void UpdateMenuScreen(u32 a) {
             }
         }
         func_020ae6ac(data_0217b43c->mMainOam, data_0217b43c->mSubOam);
-        if (data_0217b43c->mUnk_104 != FALSE) {
-            data_0217b43c->mUnk_104 = FALSE;
-            func_020cb6c0();
-            p = data_0217b43c;
-            k = p->mScreenNumber;
-            p->mScreenCallbacks[k].mUpdate(a);
+        if (data_0217b43c->mScreenInitPending != FALSE) {
+            data_0217b43c->mScreenInitPending = FALSE;
+            InitCurrentMenuScreen();
+            menu = data_0217b43c;
+            screenNumber = menu->mScreenNumber;
+            menu->mScreenCallbacks[screenNumber].mUpdate(a);
         } else {
-            p = data_0217b43c;
-            k = p->mScreenNumber;
-            p->mScreenCallbacks[k].mUpdate(a);
+            menu = data_0217b43c;
+            screenNumber = menu->mScreenNumber;
+            menu->mScreenCallbacks[screenNumber].mUpdate(a);
             if (data_0217b43c->mUnk_004 != 0) {
-                func_020cb618();
-                func_020cb6c0();
+                ReleasePreviousMenuScreen();
+                InitCurrentMenuScreen();
             }
         }
         func_02125928();
         func_0212a920();
         if (AreBrightnessFadesClear() != 0) {
-            func_020cb600(&data_0217b43c->mUnk_000);
+            func_020cb600(&data_0217b43c->mFramesSinceScreenSwitch);
         }
     }
 }

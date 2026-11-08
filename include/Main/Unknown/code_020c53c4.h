@@ -17,7 +17,7 @@ typedef struct RaceGoalM {
 } RaceGoalM;
 
 void InitRaceLinkLevel(void);
-void DrawRaceGoalMMissionRun(Unk020c06c4 *a);
-void DrawRaceGoalMGrandPrix(Unk020c06c4 *a);
-void DrawRaceGoalM(Unk020c06c4 *a);
+void DrawRaceGoalMMissionRun(Unk020c06c4 *oamBuffer);
+void DrawRaceGoalMGrandPrix(Unk020c06c4 *oamBuffer);
+void DrawRaceGoalM(Unk020c06c4 *oamBuffer);
 void UpdateRaceGoalM(void);

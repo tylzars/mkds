@@ -9,49 +9,49 @@
 
 #pragma thumb on
 #pragma optimize_for_size on
-s32 func_020cadac(s32 a) {
-    s32 v;
-    s32 n;
+s32 MoveEmblemChoisesIndex(s32 step) {
+    s32 previousIndex;
+    s32 choisesCount;
 
-    v = gEmblemChoises->mChoisesIndex;
-    if (gEmblemChoises->mUnk_00 != 0) {
-        n = gEmblemChoises->mChoisesCount;
-        if (a != 0) {
+    previousIndex = gEmblemChoises->mChoisesIndex;
+    if (gEmblemChoises->mShown != 0) {
+        choisesCount = gEmblemChoises->mChoisesCount;
+        if (step != 0) {
             gEmblemChoises->mUnk_24 = 0;
             StartSoundOncePerFrame(0);
         }
-        gEmblemChoises->mChoisesIndex = (v + a + n) % n;
+        gEmblemChoises->mChoisesIndex = (previousIndex + step + choisesCount) % choisesCount;
     }
-    return v;
+    return previousIndex;
 }
 
 s32 func_020cacc0(void) {
-    BOOL v;
-    s32 n;
-    BOOL z;
+    BOOL touched;
+    s32 choisesCount;
+    BOOL zeroStep;
     s32 i;
     s32 j;
-    PairRect r[6];
+    PairRect choiceRects[6];
 
-    v = FALSE;
-    if (gEmblemChoises->mUnk_00 != 0) {
-        func_020cadac(v);
-        n = gEmblemChoises->mChoisesCount;
-        for (i = 0; i < n; i++) {
-            s32 y;
+    touched = FALSE;
+    if (gEmblemChoises->mShown != 0) {
+        MoveEmblemChoisesIndex(touched);
+        choisesCount = gEmblemChoises->mChoisesCount;
+        for (i = 0; i < choisesCount; i++) {
+            s32 minY;
 
-            y = (12 - n * 2 + i * 4) * 8 + 6;
-            r[i].mMinX = 8;
-            r[i].mMaxX = 0xf8;
-            r[i].mMinY = y;
-            r[i].mMaxY = y + 0x16;
+            minY = (12 - choisesCount * 2 + i * 4) * 8 + 6;
+            choiceRects[i].mMinX = 8;
+            choiceRects[i].mMaxX = 0xf8;
+            choiceRects[i].mMinY = minY;
+            choiceRects[i].mMaxY = minY + 0x16;
         }
-        z = FALSE;
-        for (j = 0; j < n; j++) {
-            if (IsNewPairInRect(GetEmblemChoisesInputSlot(), r[j])) {
+        zeroStep = FALSE;
+        for (j = 0; j < choisesCount; j++) {
+            if (IsNewPairInRect(GetEmblemChoisesInputSlot(), choiceRects[j])) {
                 if (gEmblemChoises->mChoisesIndex != j) {
                     gEmblemChoises->mChoisesIndex = j;
-                    func_020cadac(z);
+                    MoveEmblemChoisesIndex(zeroStep);
                 } else {
                     gEmblemChoises->mUnk_10 = TRUE;
                 }
@@ -66,15 +66,15 @@ s32 func_020cacc0(void) {
                         StartEmblemChoisesSound(5);
                         break;
                 }
-                v = TRUE;
+                touched = TRUE;
             }
         }
     }
-    return v;
+    return touched;
 }
 
-void func_020cac9c(void) {
-    gEmblemChoises->mUnk_1c = -1;
+void ResetEmblemChoisesState(void) {
+    gEmblemChoises->mResult = -1;
     gEmblemChoises->mChoisesIndex = 0;
     gEmblemChoises->mUnk_24 = 0;
     gEmblemChoises->mUnk_10 = FALSE;
@@ -82,43 +82,43 @@ void func_020cac9c(void) {
     gEmblemChoises->mUnk_18 = 0;
 }
 
-void func_020cac68(u16 *a, s32 b, s32 c) {
-    func_020b4428(a, b, c, 1, 1, 4);
-    func_020b4428(a, b, c + 1, 1, 1, 0x24);
+void func_020cac68(u16 *mapData, s32 column, s32 row) {
+    func_020b4428(mapData, column, row, 1, 1, 4);
+    func_020b4428(mapData, column, row + 1, 1, 1, 0x24);
 }
 
 void func_020cac18(void) {
-    s32 n;
-    u16 *v;
+    s32 choisesCount;
+    u16 *mapData;
     s32 i;
 
-    n = gEmblemChoises->mChoisesCount;
-    v = gEmblemChoises->mChoisesS3Nscr->mData;
-    if (v != NULL) {
-        for (i = 0; i < n; i++) {
-            func_020cac68(v, 2, 13 - n * 2 + i * 4);
+    choisesCount = gEmblemChoises->mChoisesCount;
+    mapData = gEmblemChoises->mChoisesS3Nscr->mData;
+    if (mapData != NULL) {
+        for (i = 0; i < choisesCount; i++) {
+            func_020cac68(mapData, 2, 13 - choisesCount * 2 + i * 4);
         }
-        func_020b44a4(v, 0, 0, 0x20, 0x18, 0xf);
+        func_020b44a4(mapData, 0, 0, 0x20, 0x18, 0xf);
     }
 }
 
-void func_020caba4(s32 a) {
-    EmblemChoises *p;
-    s32 n;
-    u16 *v;
-    s32 c;
+void func_020caba4(s32 choiceIndex) {
+    EmblemChoises *emblemChoises;
+    s32 choisesCount;
+    u16 *mapData;
+    s32 firstRow;
 
-    p = gEmblemChoises;
-    n = p->mChoisesCount;
-    v = p->mChoisesS3Nscr->mData;
-    if (v != NULL) {
-        if (p->mUnk_10 == FALSE || p->mUnk_14 >= 5) {
-            c = 13 - n * 2 + a * 4;
-            if (p->mUnk_24 < 0x1e) {
-                func_020b4428(v, 2, c, 1, 1, 0x21);
-                func_020b4428(v, 2, c + 1, 1, 1, 0x41);
+    emblemChoises = gEmblemChoises;
+    choisesCount = emblemChoises->mChoisesCount;
+    mapData = emblemChoises->mChoisesS3Nscr->mData;
+    if (mapData != NULL) {
+        if (emblemChoises->mUnk_10 == FALSE || emblemChoises->mUnk_14 >= 5) {
+            firstRow = 13 - choisesCount * 2 + choiceIndex * 4;
+            if (emblemChoises->mUnk_24 < 0x1e) {
+                func_020b4428(mapData, 2, firstRow, 1, 1, 0x21);
+                func_020b4428(mapData, 2, firstRow + 1, 1, 1, 0x41);
             }
-            func_020b44a4(v, 0, c - 1, 0x20, 4, 0xe);
+            func_020b44a4(mapData, 0, firstRow - 1, 0x20, 4, 0xe);
         }
     }
 }

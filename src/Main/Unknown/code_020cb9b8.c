@@ -14,10 +14,10 @@
 #pragma thumb on
 #pragma optimize_for_size on
 void ReleaseMenu(void) {
-    if (data_0217b43c->mUnk_104 == FALSE) {
-        data_0217b43c->mUnk_008 = data_0217b43c->mScreenNumber;
+    if (data_0217b43c->mScreenInitPending == FALSE) {
+        data_0217b43c->mPreviousScreenNumber = data_0217b43c->mScreenNumber;
         data_0217b43c->mScreenNumber = 0x1f;
-        func_020cb618();
+        ReleasePreviousMenuScreen();
     }
     if (func_020cbad0() == 0) {
         func_020d10fc();

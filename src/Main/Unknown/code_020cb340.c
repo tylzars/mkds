@@ -10,8 +10,8 @@ void func_020cb340(void) {
     s32 selectedIndex;
     s32 i;
 
-    subCells = data_0217b43c->mUnk_948;
-    selectedIndex = data_0217b43c->mUnk_930;
+    subCells = data_0217b43c->mSinglePlaySelectModeSLayoutTable;
+    selectedIndex = data_0217b43c->mSinglePlaySelectModeIndex;
     for (i = 0; i <= 9; i++) {
         subCells[i].mUnk_00 = 1;
     }

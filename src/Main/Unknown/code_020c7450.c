@@ -3,8 +3,8 @@
 #include "Main/Unknown/unk_0217b000.h"
 
 void ClearRaceHudSubScreenItemBoxCells(void) {
-    u32 value0;
+    u32 address;
     u32 value12;
-    value0 = (u32) &gRaceHudSubScreenItemBoxCells;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    address = (u32) &gRaceHudSubScreenItemBoxCells;
+    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) address);
 }

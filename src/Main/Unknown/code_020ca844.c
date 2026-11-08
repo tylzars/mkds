@@ -13,7 +13,7 @@ void UpdateEmblemChoises(void) {
     if (gEmblemChoises->mUnk_24 >= 0x32) {
         gEmblemChoises->mUnk_24 = 0;
     }
-    if (gEmblemChoises->mUnk_14 == 0 && gEmblemChoises->mUnk_18 == 0 && gEmblemChoises->mUnk_00 != 0 &&
+    if (gEmblemChoises->mUnk_14 == 0 && gEmblemChoises->mUnk_18 == 0 && gEmblemChoises->mShown != 0 &&
         gEmblemChoises->mUnk_04 != 0) {
         if (func_020cacc0()) {
             gEmblemChoises->mUnk_14 = 1;
@@ -36,16 +36,16 @@ void UpdateEmblemChoises(void) {
             StartEmblemChoisesSound(0x10);
         }
         if (func_020ca9ac(GetEmblemChoisesInputSlot(), PAD_KEY_UP)) {
-            func_020cadac(-1);
+            MoveEmblemChoisesIndex(-1);
         } else if (func_020ca9ac(GetEmblemChoisesInputSlot(), PAD_KEY_DOWN)) {
-            func_020cadac(1);
+            MoveEmblemChoisesIndex(1);
         }
     }
     if (gEmblemChoises->mUnk_14 != 0) {
         gEmblemChoises->mUnk_14++;
         if (gEmblemChoises->mUnk_14 > 0xf) {
-            if (gEmblemChoises->mUnk_00 != 0) {
-                gEmblemChoises->mUnk_1c = gEmblemChoises->mChoisesIndex;
+            if (gEmblemChoises->mShown != 0) {
+                gEmblemChoises->mResult = gEmblemChoises->mChoisesIndex;
                 gEmblemChoises->mUnk_14 = 0;
             }
             gEmblemChoises->mUnk_14 = 0;
@@ -55,8 +55,8 @@ void UpdateEmblemChoises(void) {
     if (gEmblemChoises->mUnk_18 != 0) {
         gEmblemChoises->mUnk_18++;
         if (gEmblemChoises->mUnk_18 > 4) {
-            if (gEmblemChoises->mUnk_00 != 0) {
-                gEmblemChoises->mUnk_1c = -2;
+            if (gEmblemChoises->mShown != 0) {
+                gEmblemChoises->mResult = -2;
                 gEmblemChoises->mUnk_14 = 0;
             }
             gEmblemChoises->mUnk_18 = 0;

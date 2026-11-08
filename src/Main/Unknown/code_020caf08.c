@@ -18,8 +18,8 @@ void UpdateSinglePlaySelectMenuScreen2(void) {
     s16 offset;
 
     frame = GetFramesSinceMenuScreenSwitch();
-    mainCells = data_0217b43c->mUnk_93c;
-    subCells = data_0217b43c->mUnk_948;
+    mainCells = data_0217b43c->mSinglePlaySelectModeMLayoutTable;
+    subCells = data_0217b43c->mSinglePlaySelectModeSLayoutTable;
     if (frame < 10) {
         mainCells->mUnk_06 = InterpolateS16(1, 0, -0x28, frame, 10);
         offset = InterpolateS16(1, 0, 0xf0, frame, 10);

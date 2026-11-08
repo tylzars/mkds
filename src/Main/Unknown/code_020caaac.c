@@ -12,7 +12,7 @@
 
 void func_020cab8c(void) {
     func_020cac18();
-    func_020caba4(func_020cadac(0));
+    func_020caba4(MoveEmblemChoisesIndex(0));
 }
 
 #pragma thumb off
@@ -26,13 +26,13 @@ u32 func_020cab74(void) {
 
 u32 func_020cab58(u32 bits) {
     u32 value0 = bits;
-    u32 value1;
-    u32 value2;
-    value2 = 0x4001000u;
-    value1 = *(const u32 *) ((value2) + (0));
-    value1 = (value1) & ~(0x1f00u);
-    value0 = (value1) | ((value0 << 8));
-    *(u32 *) ((value2) + (0)) = value0;
+    u32 registerValue;
+    u32 registerAddress;
+    registerAddress = 0x4001000u;
+    registerValue = *(const u32 *) ((registerAddress) + (0));
+    registerValue = (registerValue) & ~(0x1f00u);
+    value0 = (registerValue) | ((value0 << 8));
+    *(u32 *) ((registerAddress) + (0)) = value0;
     return value0;
 }
 
@@ -40,10 +40,10 @@ void func_020cab2c(u32 x, u32 y) {
     reg_G2S_DB_BG0OFS = (x & 0x1ff) | ((y << 16) & 0x1ff0000);
 }
 
-void func_020caae8(u32 a, u32 b, u32 c, u32 d, s32 e) {
-    G2x_SetBlendBrightnessExt_(&reg_G2S_DB_BLDCNT, a, b, c, d, e);
+void func_020caae8(u32 plane1, u32 plane2, u32 ev1, u32 ev2, s32 brightness) {
+    G2x_SetBlendBrightnessExt_(&reg_G2S_DB_BLDCNT, plane1, plane2, ev1, ev2, brightness);
 }
 
-void func_020caaac(u32 a, u32 b, u32 c, u32 d) {
-    G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, a, b, c, d);
+void func_020caaac(u32 plane1, u32 plane2, u32 ev1, u32 ev2) {
+    G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, plane1, plane2, ev1, ev2);
 }
