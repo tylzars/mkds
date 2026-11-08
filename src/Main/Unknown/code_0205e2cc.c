@@ -336,7 +336,7 @@ void func_0205e2cc(void *a) {
         p = GetCourseMapShape(j);
         if (p->mKind == 5) {
             e = &data_0217aa24->mUnk_00[k];
-            e->mUnk_00 = j;
+            e->mShapeIndex = j;
             u = 0;
             switch (p->mShapeKind) {
                 case 0:
@@ -351,7 +351,7 @@ void func_0205e2cc(void *a) {
                     u = func_0205e2cc_inline(func_020431dc(), p->mScale.x);
                     break;
             }
-            e->mUnk_04 = u;
+            e->mRadius = u;
             e->mUnk_09 = 0;
             e->mUnk_08 = 0;
             k = k + 1;

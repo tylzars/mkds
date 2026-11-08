@@ -236,8 +236,8 @@ BOOL UpdateItemSlot(KartItems *slot, KartItems *kartItems) {
             mode = gRaceSetup->mMode;
             if (mode == 5 && slot->mResultPending != FALSE) {
                 b = kartItems->mKartIndex & 0xff;
-                if (func_0205a310(((u8 *) data_0217aa18)[b]) == 0) {
-                    b = func_0205a2ac(((u8 *) data_0217aa18)[b]);
+                if (func_0205a310(((u8 *) gParticipantKartMap)[b]) == 0) {
+                    b = func_0205a2ac(((u8 *) gParticipantKartMap)[b]);
                     if (IsItemInfoObjectCountFree(b) != FALSE) {
                         TryReleaseItemObjectsForItemInfo(b);
                     }

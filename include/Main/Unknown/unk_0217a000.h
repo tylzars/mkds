@@ -1572,20 +1572,20 @@ typedef struct DispCap {
 } DispCap;
 
 extern DispCap *gDispCap;
-// Object behind data_0217aa20, 0x10 bytes.
-typedef struct Unk0217aa20 {
+// Object behind gRunScenesState, 0x10 bytes.
+typedef struct RunScenesState {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
-    /* 08 */ s16 mUnk_08;
+    /* 08 */ s16 mSceneNumber;
     /* 0a */ u8 mUnk_0a[2];
-    /* 0c */ void *mUnk_0c;
-} Unk0217aa20;
+    /* 0c */ void *mSndHeapsBuffer;
+} RunScenesState;
 
 // 0xc-byte entries of the array behind member 0x00 of Unk0217aa24.
 typedef struct Unk0217aa24_00 {
-    /* 00 */ u16 mUnk_00;
+    /* 00 */ u16 mShapeIndex;
     /* 02 */ u8 mUnk_02[2];
-    /* 04 */ s32 mUnk_04;
+    /* 04 */ s32 mRadius;
     /* 08 */ u8 mUnk_08;
     /* 09 */ u8 mUnk_09;
     /* 0a */ u8 mUnk_0a[2];
@@ -1598,7 +1598,7 @@ typedef struct Unk0217aa24 {
     /* 06 */ u8 mUnk_06[2];
 } Unk0217aa24;
 
-extern Unk0217aa20 *data_0217aa20;
+extern RunScenesState *gRunScenesState;
 extern Unk0217aa24 *data_0217aa24;
 extern u16 gFadeFogHoldFrames;
 // Set to 1 when TryUpdateEntryCamera is entered; cleared once per UpdateRace call by ClearCameraEntryFlags.
@@ -1613,7 +1613,7 @@ typedef struct ParticipantKartMap {
     /* 06 */ s8 mKartOfParticipant[4];
 } ParticipantKartMap;
 
-extern ParticipantKartMap *data_0217aa18;
+extern ParticipantKartMap *gParticipantKartMap;
 // 0xa-byte elements of the rows (eight each) of the table at member 0 of CupRecords.
 typedef struct KartCourseResult {
     /* 00 */ u16 mTotalPoints;

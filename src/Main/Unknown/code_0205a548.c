@@ -61,7 +61,7 @@ void func_0205a750(s32 itemIndex) {
 }
 
 void func_0205a71c(s32 participantIndex) {
-    func_020f86c4(&gKartItems[(u8) data_0217aa18->mKartOfParticipant[participantIndex]]);
+    func_020f86c4(&gKartItems[(u8) gParticipantKartMap->mKartOfParticipant[participantIndex]]);
 }
 
 void func_0205a6b4(void) {
@@ -86,7 +86,8 @@ s32 func_0205a630(s32 participantIndex) {
 
     itemInfoIndex = data_0217aa14->mUnk_104[participantIndex].mUnk_6c;
     result = FALSE;
-    if (func_020efd84(&gKartItems[(u8) data_0217aa18->mKartOfParticipant[participantIndex]], itemInfoIndex) != FALSE) {
+    if (func_020efd84(&gKartItems[(u8) gParticipantKartMap->mKartOfParticipant[participantIndex]], itemInfoIndex) !=
+        FALSE) {
         data_0217aa14->mUnk_104[participantIndex].mUnk_6c = 0x13;
         result = TRUE;
     }
@@ -101,7 +102,7 @@ void func_0205a5b0(u32 participantIndex) {
         return;
     }
     view->mUnk_04 = 0x13;
-    ResetHeldItem(&gKartItems[(u16) data_0217aa18->mKartOfParticipant[participantIndex]].mHeldItem);
+    ResetHeldItem(&gKartItems[(u16) gParticipantKartMap->mKartOfParticipant[participantIndex]].mHeldItem);
 }
 
 void func_0205a548(s32 participantIndex, s32 itemInfoIndex, s32 count) {
@@ -110,6 +111,6 @@ void func_0205a548(s32 participantIndex, s32 itemInfoIndex, s32 count) {
     view = &data_0217aa14->mUnk_104[participantIndex].mUnk_68_view;
     view->mUnk_00 = itemInfoIndex;
     view->mUnk_04 = itemInfoIndex;
-    SetHeldItemWithCount(&gKartItems[(u16) data_0217aa18->mKartOfParticipant[participantIndex]].mHeldItem,
+    SetHeldItemWithCount(&gKartItems[(u16) gParticipantKartMap->mKartOfParticipant[participantIndex]].mHeldItem,
                          itemInfoIndex, count);
 }

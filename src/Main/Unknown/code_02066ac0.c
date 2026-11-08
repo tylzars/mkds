@@ -464,10 +464,10 @@ void func_02066ac0(Kart *a) {
 
     b = a->mUnk_514;
     j = 0;
-    h = func_0205b954(((u8 *) data_0217aa18)[a->mIndex & 0xff]);
+    h = func_0205b954(((u8 *) gParticipantKartMap)[a->mIndex & 0xff]);
     b->mUnk_24 = IsRaceStarted() == 1 ? 0x333 : j;
     if (h > b->mUnk_20) {
-        f = func_0205b978(((u8 *) data_0217aa18)[a->mIndex & 0xff], h);
+        f = func_0205b978(((u8 *) gParticipantKartMap)[a->mIndex & 0xff], h);
         g = f != NULL ? (Unk020653d0 *) f->mUnk_08 : 0;
         if (g != NULL) {
             i = data_0217aa14->mUnk_728 - h;

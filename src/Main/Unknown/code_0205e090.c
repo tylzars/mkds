@@ -26,47 +26,47 @@ u32 func_0205e2b8(void) {
 }
 
 s32 func_0205e1c4(void) {
-    BOOL r = FALSE;
+    BOOL result = FALSE;
     u16 i = 0;
-    Unk0217aa24_00 *e;
-    CourseMapShape *p;
-    s32 n;
+    Unk0217aa24_00 *entry;
+    CourseMapShape *courseMapShape;
+    s32 mapObjectCount;
     u16 j;
-    u8 c;
+    u8 insideCount;
     for (i = 0; i < data_0217aa24->mUnk_04; i++) {
-        e = &data_0217aa24->mUnk_00[i];
-        p = GetCourseMapShape(e->mUnk_00);
-        n = FindMapObjectsOfKindInRadius(&p->mPos, e->mUnk_04, p->mUnk_3c);
-        c = 0;
-        for (j = 0; j < n; j++) {
-            if (IsPosInCourseMapShape(&GetFoundMapObject(j)->mPos, p) != 0) {
-                c = c + 1;
+        entry = &data_0217aa24->mUnk_00[i];
+        courseMapShape = GetCourseMapShape(entry->mShapeIndex);
+        mapObjectCount = FindMapObjectsOfKindInRadius(&courseMapShape->mPos, entry->mRadius, courseMapShape->mUnk_3c);
+        insideCount = 0;
+        for (j = 0; j < mapObjectCount; j++) {
+            if (IsPosInCourseMapShape(&GetFoundMapObject(j)->mPos, courseMapShape) != 0) {
+                insideCount = insideCount + 1;
             }
         }
-        if (e->mUnk_09 < c) {
-            e->mUnk_08++;
+        if (entry->mUnk_09 < insideCount) {
+            entry->mUnk_08++;
         }
-        e->mUnk_09 = c;
-        if (e->mUnk_08 > p->mUnk_3e) {
-            r = TRUE;
+        entry->mUnk_09 = insideCount;
+        if (entry->mUnk_08 > courseMapShape->mUnk_3e) {
+            result = TRUE;
             break;
         }
     }
-    return r;
+    return result;
 }
 
-void func_0205e180(void *a) {
-    data_0217aa20 = HeapAlloc(a, 0x10);
-    data_0217aa20->mUnk_00 = 0;
-    data_0217aa20->mUnk_04 = 3;
-    data_0217aa20->mUnk_0c = NULL;
+void CreateRunScenesState(void *heap) {
+    gRunScenesState = HeapAlloc(heap, 0x10);
+    gRunScenesState->mUnk_00 = 0;
+    gRunScenesState->mUnk_04 = 3;
+    gRunScenesState->mSndHeapsBuffer = NULL;
 }
 
 void func_0205e0b0(void) {
     void *h;
     s32 m;
     h = GetHeap(GetCurrentHeapCall());
-    switch (data_0217aa20->mUnk_00) {
+    switch (gRunScenesState->mUnk_00) {
         case 0:
             if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
                 m = 2;
@@ -89,7 +89,7 @@ void func_0205e0b0(void) {
     }
     h = HeapAlloc(h, GetSndHeapsBufferSize(m));
     CreateSndHeaps(m, (u32) h);
-    data_0217aa20->mUnk_0c = h;
+    gRunScenesState->mSndHeapsBuffer = h;
 }
 
 int GetCurrentSceneNumber(void) {

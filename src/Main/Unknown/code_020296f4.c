@@ -42,7 +42,7 @@ void func_020297bc(void) {
             kartMask |= 1 << index;
         }
     }
-    func_0205cfd4(kartMask);
+    SetParticipantKartMapFromMask(kartMask);
 }
 
 void func_02029758(void) {

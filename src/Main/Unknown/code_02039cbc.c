@@ -40,7 +40,7 @@ void func_02039cbc(void) {
     soundBufferSize = func_02039e08(GetHeap(GetCurrentHeapCall()), &backHeap, &soundBuffer, &firstFrontHeap,
                                     &secondFrontHeap, &thirdFrontHeap);
     CARD_SetPulledOutCallback(func_02039e00);
-    func_0205e180(backHeap);
+    CreateRunScenesState(backHeap);
     InitSceneRunState(backHeap);
     InitArchiveSlots(backHeap);
     func_0204af70(backHeap);

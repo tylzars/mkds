@@ -17,7 +17,7 @@ void SetCupWinningTeam(s32 team);
 void SetKartCupRank(s32 kart, u8 rank);
 void GetKartCourseFinishTime(Unk0217aa1c_144_00 *finishTime, u32 kart, u32 course);
 void SetKartCourseFinishTime(u32 kart, Unk0217aa1c_144_00 *finishTime);
-void func_0205d88c(u32 a, s32 b);
+void func_0205d88c(u32 kart, s32 b);
 void ClearKartCourseTotalPoints(u32 kart);
 void SetKartCourseResult(u32 kart, s32 rank, u32 points);
 u8 GetCourseIndexInCup(void);

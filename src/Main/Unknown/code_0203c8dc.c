@@ -31,7 +31,7 @@ void GetRaceClockTime(u8 *outMinute, u8 *outSecond, u16 *outMillisecond) {
 
 u32 GetKartRank(u32 kartIndex) {
     if (gRaceSetup->mMode == 5) {
-        return data_0217aa14->mUnk_104[data_0217aa18->mParticipantOfKart[kartIndex & 0xff]].mRank;
+        return data_0217aa14->mUnk_104[gParticipantKartMap->mParticipantOfKart[kartIndex & 0xff]].mRank;
     }
     return gRaceProgress->mKarts[kartIndex].mRank;
 }

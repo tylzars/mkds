@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_0205d0bc(void *heap);
+u32 CreateParticipantKartMap(void *heap);

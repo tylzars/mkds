@@ -76,7 +76,7 @@ s32 func_02046a88(void *a) {
 void func_02046a3c(void *heap) {
     gRaceSetup = HeapAlloc(heap, 0x400);
     gRaceSetup->mCourseList = HeapAlloc(heap, 0x21);
-    func_0205d0bc(heap);
+    CreateParticipantKartMap(heap);
     CreateCupRecords(heap);
 }
 

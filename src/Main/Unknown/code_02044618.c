@@ -112,7 +112,7 @@ void ResetRaceSetup(void) {
         time->mMillisecond = 0;
     }
     ResetCupRecords();
-    func_0205d07c();
+    ResetParticipantKartMap();
     SetCurrentRaceFromNext();
 }
 
@@ -210,7 +210,7 @@ void SetCurrentEntryPlayer(s32 entryIndex) {
             }
             break;
         case PLAYER_KIND_PEER:
-            x = data_0217aa18->mParticipantOfKart[(u8) entryIndex];
+            x = gParticipantKartMap->mParticipantOfKart[(u8) entryIndex];
             if (x < 0) {
                 return;
             }

@@ -16,7 +16,7 @@ s32 func_0205afa8(void) {
     s32 d;
     s32 lapBits;
 
-    kartIndex = data_0217aa18->mKartOfParticipant[func_ov000_0219bb50()];
+    kartIndex = gParticipantKartMap->mKartOfParticipant[func_ov000_0219bb50()];
     kartStartRank = GetKartStartRank(kartIndex);
     c = GetKartFinishTimeMs(kartIndex) & 0x7ffff;
     if (IsKartEnded(kartIndex) != 0 && gRaceProgress->mUnk_000[kartIndex].mStatus != 1 &&

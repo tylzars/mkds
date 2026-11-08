@@ -646,7 +646,7 @@ s32 func_02101014(ItemTeresa *teresa) {
     if (teresa->mUnk_000.mFlags & 0x8000000) {
         teresa->mItemInfoIndex = heldItem->mItemInfoIndex;
         teresa->mItemCount = heldItem->mObjectCount;
-        func_0205a5b0(((u8 *) data_0217aa18)[teresa->mPickedKartIndex & 0xff]);
+        func_0205a5b0(((u8 *) gParticipantKartMap)[teresa->mPickedKartIndex & 0xff]);
     } else {
         RemoveHeldItem(heldItem, &teresa->mItemInfoIndex, &teresa->mItemCount);
     }
@@ -687,7 +687,7 @@ void UpdateItemTeresaState2(ItemTeresa *teresa) {
                         teresa->mItemObjectKind = 0xf;
                     } else {
                         teresa->mItemObjectKind = gItemInfos[teresa->mItemInfoIndex].mObjectKind;
-                        func_0205a5b0(((u8 *) data_0217aa18)[teresa->mPickedKartIndex & 0xff]);
+                        func_0205a5b0(((u8 *) gParticipantKartMap)[teresa->mPickedKartIndex & 0xff]);
                     }
                     teresa->mItemModelAlpha = 0;
                     k = TRUE;
@@ -904,8 +904,8 @@ void UpdateItemTeresaState5(ItemTeresa *teresa) {
                 ownerKartItems->mActiveItem = 0x13;
                 if (teresa->mItemInfoIndex != 0x13) {
                     if (teresa->mUnk_24c == FALSE) {
-                        func_0205a548(((u8 *) data_0217aa18)[ownerKartItems->mKartIndex & 0xff], teresa->mItemInfoIndex,
-                                      teresa->mItemCount);
+                        func_0205a548(((u8 *) gParticipantKartMap)[ownerKartItems->mKartIndex & 0xff],
+                                      teresa->mItemInfoIndex, teresa->mItemCount);
                     } else {
                         SetHeldItemWithCount(&ownerKartItems->mHeldItem, teresa->mItemInfoIndex, teresa->mItemCount);
                     }

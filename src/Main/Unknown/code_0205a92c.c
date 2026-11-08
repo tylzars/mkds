@@ -19,7 +19,7 @@ void func_0205ae8c(u32 kartIndex) {
     ParticipantKartMap *g;
     Unk0217aa14 *p;
 
-    g = data_0217aa18;
+    g = gParticipantKartMap;
     p = data_0217aa14;
     participantIndex = g->mParticipantOfKart[(u8) kartIndex];
     rank = p->mUnk_104[participantIndex].mRank;
@@ -212,7 +212,7 @@ void ProcessOtherParticipantItemData(void) {
                         func_0205a630(participantIndex);
                     }
                     func_020fe5b8(slot->mItemKind, slot->mMessageKind, data,
-                                  data_0217aa18->mKartOfParticipant[participantIndex]);
+                                  gParticipantKartMap->mKartOfParticipant[participantIndex]);
                     *handledFlag = 1;
                 }
             }
