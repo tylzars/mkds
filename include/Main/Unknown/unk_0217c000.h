@@ -55,8 +55,8 @@ extern s32 data_0217ccb0;
 extern s32 gSoundPitchSwing;
 extern u8 gSoundPitchSwingAngle[];
 extern s32 data_0217ccbc;
-extern u16 *data_0217c630;
-extern s32 data_0217c634;
+extern u16 *gItemTeresaFrameScales;
+extern s32 gItemGessoFrameCount;
 extern OrthoQuad *gOrthoQuads;
 extern u16 data_0217c638;
 // TRUE for the cream effect, FALSE for geso_sumi; chosen by the call that started the quads.

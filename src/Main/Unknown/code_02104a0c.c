@@ -77,212 +77,213 @@ void CreatePooledMapObjects(void) {
 }
 #pragma thumb off
 
-void StartItemKiller(ItemInUse *p0, HeldItem *p1) {
-    StartKartKiller(p1->mKartItems->mKart);
-    RemoveHeldItemObjects(p1, 1);
-    SetActiveItem(p0->mKartItems, 0xe);
+void StartItemKiller(ItemInUse *itemInUse, HeldItem *heldItem) {
+    StartKartKiller(heldItem->mKartItems->mKart);
+    RemoveHeldItemObjects(heldItem, 1);
+    SetActiveItem(itemInUse->mKartItems, 0xe);
 }
 
-void func_0210515c(s32 a) {
-    gKartItems[a].mActiveItem = 0x13;
+void func_0210515c(s32 kartIndex) {
+    gKartItems[kartIndex].mActiveItem = 0x13;
     if (gRaceSetup->mMode != 5) {
         return;
     }
-    if (a == gRaceSetup->mEntryIndex) {
+    if (kartIndex == gRaceSetup->mEntryIndex) {
         return;
     }
-    func_020efd84(&gKartItems[a], 0xe);
+    func_020efd84(&gKartItems[kartIndex], 0xe);
 }
 
 // Battle only: hands item 17 to a kart with an empty hand when its timer is 0 and counts the running timers down.
 void UpdateBouncingItemBoxTimers(void) {
     s32 i;
-    s32 c;
-    KartItems *p;
-    HeldItem *q;
-    NNSSndSeqPlayer **v;
+    s32 timer;
+    KartItems *kartItems;
+    HeldItem *heldItem;
+    NNSSndSeqPlayer **sndHandle;
     u32 a = 0;
     u32 b = 0;
     if (gRaceSetup->mMode != MODE_BATTLE) {
         return;
     }
     for (i = 0; i < 8; i++) {
-        c = gBouncingItemBoxTimers[i];
-        if (c < 0) {
+        timer = gBouncingItemBoxTimers[i];
+        if (timer < 0) {
             continue;
         }
-        p = &gKartItems[(u16) i];
-        q = &p->mHeldItem;
-        if (q->mItemInfoIndex != 0x13) {
+        kartItems = &gKartItems[(u16) i];
+        heldItem = &kartItems->mHeldItem;
+        if (heldItem->mItemInfoIndex != 0x13) {
             continue;
         }
-        if (c == 0) {
-            SetHeldItem(q, 0x11);
+        if (timer == 0) {
+            SetHeldItem(heldItem, 0x11);
             gBouncingItemBoxTimerRunning[i] = 0;
             if (i == gRaceSetup->mEntryIndex && (data_0217c780 & 1)) {
-                v = func_0210e128(func_02108ea0(0));
+                sndHandle = func_0210e128(func_02108ea0(0));
                 if (data_0217d084.mUnk_0c != 0) {
-                    if (v[0] != NULL) {
-                        NNS_SndPlayerStopSeq(v, 0);
+                    if (sndHandle[0] != NULL) {
+                        NNS_SndPlayerStopSeq(sndHandle, 0);
                     }
-                    if (v[0] != NULL) {
-                        NNS_SndPlayerStopSeq(v, a);
+                    if (sndHandle[0] != NULL) {
+                        NNS_SndPlayerStopSeq(sndHandle, a);
                     }
-                    NNS_SndArcPlayerStartSeqArc(v, b, 0x3f);
+                    NNS_SndArcPlayerStartSeqArc(sndHandle, b, 0x3f);
                 }
             }
-        } else if (gBouncingItemBoxTimerRunning[i] != 0 && c > 0) {
+        } else if (gBouncingItemBoxTimerRunning[i] != 0 && timer > 0) {
             gBouncingItemBoxTimers[i]--;
         }
     }
 }
 
-void func_02104f84(s32 a) {
+void func_02104f84(s32 kartIndex) {
     if (gRaceSetup->mMode != MODE_BATTLE) {
         return;
     }
-    if ((s32) gBouncingItemBoxTimers[a] >= 0) {
+    if ((s32) gBouncingItemBoxTimers[kartIndex] >= 0) {
         return;
     }
-    gBouncingItemBoxTimers[a] = 0;
-    ReleaseKartItems(&gKartItems[a]);
+    gBouncingItemBoxTimers[kartIndex] = 0;
+    ReleaseKartItems(&gKartItems[kartIndex]);
 }
 
-void StartBouncingItemBox(BouncingItemBox *p) {
-    if (p->mKartIsEntry != 0) {
-        (p->mPooledMapObject)->mUnk_b0 = 1;
+void StartBouncingItemBox(BouncingItemBox *box) {
+    if (box->mKartIsEntry != 0) {
+        (box->mPooledMapObject)->mUnk_b0 = 1;
     }
-    if ((p->mUnk_000.mItemObject.mFlags & 0x180000) == 0) {
-        p->mUnk_000.mItemObject.mAdvance = (void (*)(ItemObject *)) AdvanceBouncingItemBox;
+    if ((box->mUnk_000.mItemObject.mFlags & 0x180000) == 0) {
+        box->mUnk_000.mItemObject.mAdvance = (void (*)(ItemObject *)) AdvanceBouncingItemBox;
     }
 }
 
-void ReleaseBouncingItemBox(BouncingItemBox *p) {
-    u16 i = p->mUnk_000.mItemObject.mUnk_78 & ~0xff00;
-    if ((s32) gBouncingItemBoxTimers[i] > 0) {
-        gBouncingItemBoxTimerRunning[i] = 1;
+void ReleaseBouncingItemBox(BouncingItemBox *box) {
+    u16 kartIndex = box->mUnk_000.mItemObject.mUnk_78 & ~0xff00;
+    if ((s32) gBouncingItemBoxTimers[kartIndex] > 0) {
+        gBouncingItemBoxTimerRunning[kartIndex] = 1;
     }
-    func_021053d8((u32) p->mPooledMapObject);
+    ParkPooledMapObject((u32) box->mPooledMapObject);
 }
 
-void CollideKartWithBouncingItemBox(BouncingItemBox *p, void *a) {
-    func_020deb2c(&p->mUnk_000.mItemObject.mPos, a, 0, (p->mUnk_000.mItemObject.mFlags & 0x10000) ? 1 : 0, 0);
+void CollideKartWithBouncingItemBox(BouncingItemBox *box, void *a) {
+    func_020deb2c(&box->mUnk_000.mItemObject.mPos, a, 0, (box->mUnk_000.mItemObject.mFlags & 0x10000) ? 1 : 0, 0);
 }
 
-void ResetBouncingItemBox(BouncingItemBox *p) {
-    p->mScaleRatio = 0x666;
-    func_021053e4(p->mPooledMapObject);
-    p->mKartIsEntry = (u16) (p->mUnk_000.mItemObject.mUnk_78 & ~0xff00) == gRaceSetup->mEntryIndex;
-    if (p->mKartIsEntry != 0) {
-        (p->mPooledMapObject)->mUnk_b0 = 2;
+void ResetBouncingItemBox(BouncingItemBox *box) {
+    box->mScaleRatio = 0x666;
+    ResetPooledMapObject(box->mPooledMapObject);
+    box->mKartIsEntry = (u16) (box->mUnk_000.mItemObject.mUnk_78 & ~0xff00) == gRaceSetup->mEntryIndex;
+    if (box->mKartIsEntry != 0) {
+        (box->mPooledMapObject)->mUnk_b0 = 2;
     }
-    gBouncingItemBoxTimers[(u16) (p->mUnk_000.mItemObject.mUnk_78 & ~0xff00)] = 0x258;
+    gBouncingItemBoxTimers[(u16) (box->mUnk_000.mItemObject.mUnk_78 & ~0xff00)] = 0x258;
 }
 
-void AdvanceBouncingItemBoxInUse(ItemInUse *p0, BouncingItemBox *p1) {
-    Vec3 t;
-    Unk021052fc *b = p1->mPooledMapObject;
-    s32 n;
-    if (p1->mKartIsEntry != 0) {
-        VEC_MultAdd(((s64) p0->mKartScaleFactorTimesBase.z * -28877) >> 12, &p0->mKartOrientation.mUnk_0c,
-                    &p1->mUnk_000.mItemObject.mPos, &p1->mMapObjectPos);
-        n = p1->mScaleRatio;
-        t.x = ((s64) p1->mUnk_000.mItemObject.mScale.x * n) >> 12;
-        t.y = ((s64) p1->mUnk_000.mItemObject.mScale.y * n) >> 12;
-        t.z = ((s64) p1->mUnk_000.mItemObject.mScale.z * n) >> 12;
-        SetPooledMapObjectFromItem(b, p1->mUnk_000.mItemObject.mAlpha, &t);
+void AdvanceBouncingItemBoxInUse(ItemInUse *itemInUse, BouncingItemBox *box) {
+    Vec3 scale;
+    Unk021052fc *mapObject = box->mPooledMapObject;
+    s32 scaleRatio;
+    if (box->mKartIsEntry != 0) {
+        VEC_MultAdd(((s64) itemInUse->mKartScaleFactorTimesBase.z * -28877) >> 12, &itemInUse->mKartOrientation.mUnk_0c,
+                    &box->mUnk_000.mItemObject.mPos, &box->mMapObjectPos);
+        scaleRatio = box->mScaleRatio;
+        scale.x = ((s64) box->mUnk_000.mItemObject.mScale.x * scaleRatio) >> 12;
+        scale.y = ((s64) box->mUnk_000.mItemObject.mScale.y * scaleRatio) >> 12;
+        scale.z = ((s64) box->mUnk_000.mItemObject.mScale.z * scaleRatio) >> 12;
+        SetPooledMapObjectFromItem(mapObject, box->mUnk_000.mItemObject.mAlpha, &scale);
     } else {
-        p1->mMapObjectPos = p1->mUnk_000.mItemObject.mPos;
-        SetPooledMapObjectFromItem(b, p1->mUnk_000.mItemObject.mAlpha, &p1->mUnk_000.mItemObject.mScale);
+        box->mMapObjectPos = box->mUnk_000.mItemObject.mPos;
+        SetPooledMapObjectFromItem(mapObject, box->mUnk_000.mItemObject.mAlpha, &box->mUnk_000.mItemObject.mScale);
     }
-    AdvancePooledMapObject(b);
+    AdvancePooledMapObject(mapObject);
 }
 
-s32 InitBouncingItemBox(ItemInUse *p0, BouncingItemBox *p1) {
-    func_020f9114(p1);
-    p1->mUnk_000.mItemObject.mUnk_78 |= data_0215a584;
-    if (p1->mKartIsEntry != 0) {
-        (p1->mPooledMapObject)->mUnk_b0 = 1;
+s32 InitBouncingItemBox(ItemInUse *itemInUse, BouncingItemBox *box) {
+    func_020f9114(box);
+    box->mUnk_000.mItemObject.mUnk_78 |= data_0215a584;
+    if (box->mKartIsEntry != 0) {
+        (box->mPooledMapObject)->mUnk_b0 = 1;
     }
-    if ((p0->mKartItems->mFlags & KART_ITEMS_THROW_FORWARD) != 0) {
-        ThrowBouncingItem(&p1->mUnk_000, p0, 0, 1, 0x4000, 0x3000, 0x59a);
-        StartSound(&p1->mUnk_000.mItemObject.mSoundSource, 0xda, 0x7f, 0);
-        p1->mThrownForward = 1;
-        return p1->mThrownForward;
+    if ((itemInUse->mKartItems->mFlags & KART_ITEMS_THROW_FORWARD) != 0) {
+        ThrowBouncingItem(&box->mUnk_000, itemInUse, 0, 1, 0x4000, 0x3000, 0x59a);
+        StartSound(&box->mUnk_000.mItemObject.mSoundSource, 0xda, 0x7f, 0);
+        box->mThrownForward = 1;
+        return box->mThrownForward;
     } else {
-        ThrowBouncingItem(&p1->mUnk_000, p0, 0, 0, 0x4000, 0x3000, 0x59a);
-        if (p0->mKartVelocityLength < 0x1000) {
-            p1->mUnk_000.mItemObject.mVelocity.x = 0;
-            p1->mUnk_000.mItemObject.mVelocity.y = 0;
-            p1->mUnk_000.mItemObject.mVelocity.z = 0;
+        ThrowBouncingItem(&box->mUnk_000, itemInUse, 0, 0, 0x4000, 0x3000, 0x59a);
+        if (itemInUse->mKartVelocityLength < 0x1000) {
+            box->mUnk_000.mItemObject.mVelocity.x = 0;
+            box->mUnk_000.mItemObject.mVelocity.y = 0;
+            box->mUnk_000.mItemObject.mVelocity.z = 0;
         }
-        p1->mThrownForward = 0;
-        return p1->mThrownForward;
+        box->mThrownForward = 0;
+        return box->mThrownForward;
     }
 }
 
-void AdvanceBouncingItemBox(BouncingItemBox *p) {
+void AdvanceBouncingItemBox(BouncingItemBox *box) {
     u32 buf;
-    Vec3 d;
-    Vec3 t;
-    u16 i;
+    Vec3 offset;
+    Vec3 scale;
+    u16 kartIndex;
     s32 v;
-    s32 n;
-    s32 a;
-    Unk021052fc *b;
-    if ((p->mUnk_000.mItemObject.mFlags & 0x180000) != 0) {
-        if ((p->mUnk_000.mItemObject.mFlags & 0x80000) != 0) {
-            func_020f6e58(&p->mUnk_000.mItemObject);
-        } else if ((p->mUnk_000.mItemObject.mFlags & 0x100000) != 0) {
-            AdvanceItemObjectReleaseTimer(&p->mUnk_000.mItemObject);
+    s32 scaleRatio;
+    s32 kartIsEntry;
+    Unk021052fc *mapObject;
+    if ((box->mUnk_000.mItemObject.mFlags & 0x180000) != 0) {
+        if ((box->mUnk_000.mItemObject.mFlags & 0x80000) != 0) {
+            func_020f6e58(&box->mUnk_000.mItemObject);
+        } else if ((box->mUnk_000.mItemObject.mFlags & 0x100000) != 0) {
+            AdvanceItemObjectReleaseTimer(&box->mUnk_000.mItemObject);
         }
-    } else if ((p->mUnk_000.mItemObject.mFlags & 0x8000) != 0) {
+    } else if ((box->mUnk_000.mItemObject.mFlags & 0x8000) != 0) {
         if (gRaceSetup->mMode == MODE_BATTLE) {
-            i = p->mUnk_000.mItemObject.mUnk_78 & ~0xff00;
-            v = gBouncingItemBoxTimers[i] - 0x3c;
-            if (v < p->mUnk_000.mItemObject.mAlpha) {
-                p->mUnk_000.mItemObject.mAlpha = v;
+            kartIndex = box->mUnk_000.mItemObject.mUnk_78 & ~0xff00;
+            v = gBouncingItemBoxTimers[kartIndex] - 0x3c;
+            if (v < box->mUnk_000.mItemObject.mAlpha) {
+                box->mUnk_000.mItemObject.mAlpha = v;
             }
             if (v < 0xa) {
-                FreeItemObjectCollisionSlot((s32) p);
+                FreeItemObjectCollisionSlot((s32) box);
                 if (v == 0) {
-                    ReleaseItemPoolObject(&gItemPools[p->mUnk_000.mItemObject.mKind], &p->mUnk_000.mItemObject);
+                    ReleaseItemPoolObject(&gItemPools[box->mUnk_000.mItemObject.mKind], &box->mUnk_000.mItemObject);
                     return;
                 }
             }
-            gBouncingItemBoxTimers[i]--;
+            gBouncingItemBoxTimers[kartIndex]--;
         }
-        AdvanceRestingItemObject(&p->mUnk_000.mItemObject);
-    } else if ((p->mUnk_000.mItemObject.mFlags & 0x4000) != 0) {
-        AdvanceFallingItemObject(&p->mUnk_000.mItemObject);
+        AdvanceRestingItemObject(&box->mUnk_000.mItemObject);
+    } else if ((box->mUnk_000.mItemObject.mFlags & 0x4000) != 0) {
+        AdvanceFallingItemObject(&box->mUnk_000.mItemObject);
     } else {
-        if (p->mThrownForward != 0) {
-            AdvanceBouncingItem(&p->mUnk_000, 0x1ec, 0xfec, 0, &buf);
+        if (box->mThrownForward != 0) {
+            AdvanceBouncingItem(&box->mUnk_000, 0x1ec, 0xfec, 0, &buf);
         } else {
-            AdvanceBouncingItem(&p->mUnk_000, 0x2e1, 0xf85, 0, &buf);
+            AdvanceBouncingItem(&box->mUnk_000, 0x2e1, 0xf85, 0, &buf);
         }
-        if ((p->mUnk_000.mItemObject.mFlags & 8) != 0 && (p->mUnk_000.mItemObject.mFlags & 3) == 0) {
-            if (p->mThrownForward != 0) {
-                p->mUnk_000.mItemObject.mVelocity.y <<= 1;
+        if ((box->mUnk_000.mItemObject.mFlags & 8) != 0 && (box->mUnk_000.mItemObject.mFlags & 3) == 0) {
+            if (box->mThrownForward != 0) {
+                box->mUnk_000.mItemObject.mVelocity.y <<= 1;
             }
-            StopSound(&p->mUnk_000.mItemObject.mSoundSource, 0xda);
-            StartRestingItemObject(&p->mUnk_000.mItemObject, &buf);
+            StopSound(&box->mUnk_000.mItemObject.mSoundSource, 0xda);
+            StartRestingItemObject(&box->mUnk_000.mItemObject, &buf);
         }
     }
-    a = p->mKartIsEntry;
-    b = p->mPooledMapObject;
-    if (a != 0 && p->mScaleRatio < 0x1000) {
-        p->mScaleRatio += 0xcd;
-        n = p->mScaleRatio;
-        t.x = ((s64) p->mUnk_000.mItemObject.mScale.x * n) >> 12;
-        t.y = ((s64) p->mUnk_000.mItemObject.mScale.y * n) >> 12;
-        t.z = ((s64) p->mUnk_000.mItemObject.mScale.z * n) >> 12;
-        VEC_Subtract(&p->mUnk_000.mItemObject.mPos, &p->mMapObjectPos, &d);
-        VEC_MultAdd(((s64) p->mScaleRatio * p->mScaleRatio) >> 12, &d, &p->mMapObjectPos, &p->mMapObjectPos);
-        SetPooledMapObjectFromItem(b, p->mUnk_000.mItemObject.mAlpha, &t);
+    kartIsEntry = box->mKartIsEntry;
+    mapObject = box->mPooledMapObject;
+    if (kartIsEntry != 0 && box->mScaleRatio < 0x1000) {
+        box->mScaleRatio += 0xcd;
+        scaleRatio = box->mScaleRatio;
+        scale.x = ((s64) box->mUnk_000.mItemObject.mScale.x * scaleRatio) >> 12;
+        scale.y = ((s64) box->mUnk_000.mItemObject.mScale.y * scaleRatio) >> 12;
+        scale.z = ((s64) box->mUnk_000.mItemObject.mScale.z * scaleRatio) >> 12;
+        VEC_Subtract(&box->mUnk_000.mItemObject.mPos, &box->mMapObjectPos, &offset);
+        VEC_MultAdd(((s64) box->mScaleRatio * box->mScaleRatio) >> 12, &offset, &box->mMapObjectPos,
+                    &box->mMapObjectPos);
+        SetPooledMapObjectFromItem(mapObject, box->mUnk_000.mItemObject.mAlpha, &scale);
     } else {
-        p->mMapObjectPos = p->mUnk_000.mItemObject.mPos;
-        SetPooledMapObjectFromItem(b, p->mUnk_000.mItemObject.mAlpha, &p->mUnk_000.mItemObject.mScale);
+        box->mMapObjectPos = box->mUnk_000.mItemObject.mPos;
+        SetPooledMapObjectFromItem(mapObject, box->mUnk_000.mItemObject.mAlpha, &box->mUnk_000.mItemObject.mScale);
     }
-    AdvancePooledMapObject(b);
+    AdvancePooledMapObject(mapObject);
 }

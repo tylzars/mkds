@@ -9,7 +9,7 @@ typedef struct SoundSet {
     /* 08 */ u32 mUnk_08;
 } SoundSet;
 
-// Object data_0217c7b4, which func_02108950 returns: an SoundSet at 0 and a word at 0xc that
+// Object data_0217c7b4, which GetLoadedSoundSet returns: an SoundSet at 0 and a word at 0xc that
 // SaveSndHeapState and ReleaseSoundSet write.
 typedef struct LoadedSoundSet {
     /* 00 */ SoundSet mSoundSet;

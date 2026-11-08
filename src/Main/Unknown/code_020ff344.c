@@ -184,7 +184,7 @@ void func_020ff6d8(ItemFBox *fbox, MtxFx43 *out) {
 
 void ResetItemFBox(ItemFBox *fbox) {
     *(MtxFx33 *) &fbox->mUnk_000.mItemObject.mUnk_94 = *(MtxFx33 *) &data_0217c600;
-    func_021053e4(fbox->mPooledMapObject);
+    ResetPooledMapObject(fbox->mPooledMapObject);
     fbox->mPooledMapObject->mUnk_b0 = 2;
     SetPooledMapObjectCallback(fbox->mPooledMapObject, SetItemFBoxDrawMatrix, fbox);
 }

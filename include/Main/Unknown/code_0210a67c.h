@@ -5,10 +5,10 @@
 typedef struct Kart Kart;
 typedef struct PlayingSound PlayingSound;
 
-void SetKartPlayingSoundVolumePitch(Kart *a, PlayingSound *b, s32 c);
-void func_0210a77c(Kart *a, PlayingSound *b);
-void UpdateKartPlayingSound(Kart *a, PlayingSound *b);
-void func_0210a724(Kart *a, PlayingSound *b);
-void func_0210a6ec(Kart *a, PlayingSound *b);
-void func_0210a6b4(Kart *a, PlayingSound *b);
-void func_0210a67c(Kart *a, PlayingSound *b);
+void SetKartPlayingSoundVolumePitch(Kart *kart, PlayingSound *playingSound, s32 pitchOffset);
+void func_0210a77c(Kart *kart, PlayingSound *playingSound);
+void UpdateKartPlayingSound(Kart *kart, PlayingSound *playingSound);
+void func_0210a724(Kart *kart, PlayingSound *playingSound);
+void func_0210a6ec(Kart *kart, PlayingSound *playingSound);
+void func_0210a6b4(Kart *kart, PlayingSound *playingSound);
+void func_0210a67c(Kart *kart, PlayingSound *playingSound);

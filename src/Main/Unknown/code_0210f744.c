@@ -676,7 +676,7 @@ void func_0210f8b0(Unk0217d060 *a, s32 b, s32 c) {
     if (b == 4) {
         c = 0x23;
     }
-    func_0210dccc(a, b, c, 0xff, func_02108950());
+    func_0210dccc(a, b, c, 0xff, GetLoadedSoundSet());
     for (i = 0; i < 2; i++) {
         gSeqVariableReadings[i].mValue = -1;
         gSeqVariableReadings[i].mPrevValue = -1;

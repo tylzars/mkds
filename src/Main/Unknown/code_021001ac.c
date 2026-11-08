@@ -484,13 +484,13 @@ s32 func_021014a0(ItemTeresa *p, s32 a, s32 b) {
     if (p->mUnk_15c != FALSE) {
         func_0210174c(p);
     } else if (p->mUnk_26c != FALSE) {
-        k = data_0217c630[n];
+        k = gItemTeresaFrameScales[n];
         p->mUnk_16c = ((s64) p->mUnk_16c * k) >> 12;
         p->mUnk_174 = ((s64) p->mUnk_174 * k) >> 12;
     } else {
         p->mUnk_170 += p->mUnk_17c;
         p->mUnk_17c += 0x133;
-        k = data_0217c630[n];
+        k = gItemTeresaFrameScales[n];
         p->mUnk_16c = ((s64) p->mUnk_16c * k) >> 12;
         p->mUnk_174 = ((s64) p->mUnk_174 * k) >> 12;
     }

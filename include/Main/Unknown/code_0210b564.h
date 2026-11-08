@@ -4,4 +4,4 @@
 
 typedef struct SoundSource SoundSource;
 
-void StartSurfaceSound(SoundSource *a, int b, u32 c, u32 d, u32 e);
+void StartSurfaceSound(SoundSource *source, int entryIndex, u32 surfaceKind, u32 surfaceVariant, u32 waterDepth);

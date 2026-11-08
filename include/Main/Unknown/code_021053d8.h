@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_021053d8(u32 mapObject);
+void ParkPooledMapObject(u32 pooledMapObject);

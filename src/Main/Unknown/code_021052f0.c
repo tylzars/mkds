@@ -4,8 +4,8 @@
 #include "Main/Unknown/code_021052fc.h"
 #include "Main/Unknown/code_021053d8.h"
 
-void func_021053d8(u32 mapObject) {
-    u32 parkedObject = mapObject;
+void ParkPooledMapObject(u32 pooledMapObject) {
+    u32 parkedObject = pooledMapObject;
     u32 value12;
     ParkMapObject((void *) parkedObject);
 }

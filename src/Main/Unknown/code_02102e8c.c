@@ -2,9 +2,9 @@
 #include "Main/Unknown/code_020f8e3c.h"
 #include "Main/Unknown/code_02102eb8.h"
 
-u32 InitItemGesso(u32 p0, u32 p1) {
-    u32 v1 = (*(u32 *) ((p0) + (16)));
-    u32 v4 = func_02102eb8(p1, 0x0u);
-    u32 v7 = func_020f8e3c(v1, 0xf2u);
+u32 InitItemGesso(u32 itemInUse, u32 gesso) {
+    u32 kart = (*(u32 *) ((itemInUse) + (16)));
+    u32 v4 = SetupItemGesso(gesso, 0x0u);
+    u32 v7 = func_020f8e3c(kart, 0xf2u);
     return 0x1u;
 }

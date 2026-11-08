@@ -58,341 +58,342 @@ u32 InitSoundPitchSwing(void) {
 }
 
 void UpdateSoundPitchSwing(void) {
-    s32 a;
-    s32 b;
+    s32 angle;
+    s32 wrappedAngle;
     s32 c;
     s64 d;
 
-    a = *(u32 *) gSoundPitchSwingAngle + 0x1999;
-    *(u32 *) gSoundPitchSwingAngle = a;
-    b = a & 0xffff;
-    c = gPairsByAngle[(b >> 4) * 2];
+    angle = *(u32 *) gSoundPitchSwingAngle + 0x1999;
+    *(u32 *) gSoundPitchSwingAngle = angle;
+    wrappedAngle = angle & 0xffff;
+    c = gPairsByAngle[(wrappedAngle >> 4) * 2];
     d = (s64) c * 0x90000 + 0x800;
-    *(u32 *) gSoundPitchSwingAngle = b;
+    *(u32 *) gSoundPitchSwingAngle = wrappedAngle;
     gSoundPitchSwing = (s32) (d >> 12) >> 12;
 }
 
-void StartSurfaceSound(SoundSource *a, int b, u32 c, u32 d, u32 e) {
+void StartSurfaceSound(SoundSource *source, int entryIndex, u32 surfaceKind, u32 surfaceVariant, u32 waterDepth) {
     int v1;
-    if ((a->mUnk_34 & 1) == 0) {
+    if ((source->mUnk_34 & 1) == 0) {
         return;
     }
-    if (b == 2) {
-        if ((0x00009c40u) < e) {
-            StartSound(a, 0x70, 0x7f, 0);
+    if (entryIndex == 2) {
+        if ((0x00009c40u) < waterDepth) {
+            StartSound(source, 0x70, 0x7f, 0);
             return;
         }
-        if (e != 0) {
-            StartSound(a, 0x6f, 0x7f, 0);
+        if (waterDepth != 0) {
+            StartSound(source, 0x6f, 0x7f, 0);
             return;
         }
     }
-    v1 = GetSurfaceSoundId(b, c, d);
+    v1 = GetSurfaceSoundId(entryIndex, surfaceKind, surfaceVariant);
     if (v1 != 0xffff) {
-        StartSound(a, v1, 0x7f, 0);
+        StartSound(source, v1, 0x7f, 0);
         return;
     }
 }
 
-void func_0210b4e0(Kart *a, s32 b, s32 c, s32 d) {
-    u32 e;
+void func_0210b4e0(Kart *kart, s32 b, s32 surfaceKind, s32 surfaceVariant) {
+    u32 soundId;
 
-    switch (a->mUnk_490) {
+    switch (kart->mUnk_490) {
         case 0:
-            e = 0xb2;
+            soundId = 0xb2;
             break;
         case 1:
-            e = 0xb9;
+            soundId = 0xb9;
             break;
         case 2:
-            e = 0xc0;
+            soundId = 0xc0;
             break;
     }
     if (b != 0) {
-        StartSoundWhileRequested(&a->mSoundSource, GetSurfaceSoundId(1, c, d), 0x5f, -0x345);
+        StartSoundWhileRequested(&kart->mSoundSource, GetSurfaceSoundId(1, surfaceKind, surfaceVariant), 0x5f, -0x345);
     }
-    StartSoundWhileRequested(&a->mSoundSource, e, 0x7f, 0);
+    StartSoundWhileRequested(&kart->mSoundSource, soundId, 0x7f, 0);
 }
 
-void StartKartSurfaceSoundWhileRequested(Kart *a, s32 b, s32 c, s32 d, u32 e) {
-    Unk0206bcb0_A *p;
+void StartKartSurfaceSoundWhileRequested(Kart *kart, s32 entryIndex, s32 surfaceKind, s32 surfaceVariant,
+                                         u32 waterDepth) {
+    Unk0206bcb0_A *soundState;
     s16 f;
-    s32 g;
-    BOOL h;
-    s16 w;
-    u32 i;
-    s32 j;
+    s32 volume;
+    BOOL isEntryKart;
+    s16 depthPitch;
+    u32 soundId;
+    s32 lapProgress;
     s32 k;
     u32 m;
-    u32 n;
+    u32 baseSoundId;
 
-    if (!(a->mSoundSource.mUnk_34 & 1)) {
+    if (!(kart->mSoundSource.mUnk_34 & 1)) {
         return;
     }
-    if (a->mUnk_4c & 0x10000000) {
+    if (kart->mUnk_4c & 0x10000000) {
         return;
     }
-    p = &a->mUnk_450;
-    f = p->mUnk_08 >> 12;
+    soundState = &kart->mUnk_450;
+    f = soundState->mUnk_08 >> 12;
     if (f > 0x1fc) {
-        g = 0x7f;
+        volume = 0x7f;
     } else {
-        g = f >> 2;
+        volume = f >> 2;
     }
-    if (b == 1) {
-        if (e != 0) {
+    if (entryIndex == 1) {
+        if (waterDepth != 0) {
             f = f + 0x1c0;
         } else {
             f = (s16) (f - 0x7d0) >> 2;
         }
     }
-    if (e != 0) {
-        w = 0;
-        h = a->mIndex == gRaceSetup->mEntryIndex;
-        if (e > 0x11170) {
-            w = 0x384;
-            if (h != FALSE) {
-                w += gSoundPitchSwing;
+    if (waterDepth != 0) {
+        depthPitch = 0;
+        isEntryKart = kart->mIndex == gRaceSetup->mEntryIndex;
+        if (waterDepth > 0x11170) {
+            depthPitch = 0x384;
+            if (isEntryKart != FALSE) {
+                depthPitch += gSoundPitchSwing;
             }
-        } else if (e > 0x61a8 && e <= 0x11170) {
-            w = ((s32) ((((s64) data_0217ccb0 * (s32) ((e - 0x61a8) << 12)) + 0x800) >> 12)) >> 12;
-            if (h != FALSE) {
-                w += gSoundPitchSwing >> 1;
+        } else if (waterDepth > 0x61a8 && waterDepth <= 0x11170) {
+            depthPitch = ((s32) ((((s64) data_0217ccb0 * (s32) ((waterDepth - 0x61a8) << 12)) + 0x800) >> 12)) >> 12;
+            if (isEntryKart != FALSE) {
+                depthPitch += gSoundPitchSwing >> 1;
             }
         }
-        StartSoundWhileRequested(&a->mSoundSource, 0x74, g & 0xff, (s16) (f - w));
+        StartSoundWhileRequested(&kart->mSoundSource, 0x74, volume & 0xff, (s16) (f - depthPitch));
     } else {
-        i = GetSurfaceSoundId(b, c, d);
-        if (i == 0xffff) {
+        soundId = GetSurfaceSoundId(entryIndex, surfaceKind, surfaceVariant);
+        if (soundId == 0xffff) {
             return;
         }
-        switch (i) {
+        switch (soundId) {
             case 0xffd0:
             case 0xffd1:
-                m = i & 1;
-                j = GetKartLapProgress(a->mIndex);
-                k = j - p->mUnk_28;
+                m = soundId & 1;
+                lapProgress = GetKartLapProgress(kart->mIndex);
+                k = lapProgress - soundState->mUnk_28;
                 if (k < 0) {
                     k = -k;
                 }
                 if (k > GetLapProgressSoundGap(m)) {
-                    n = GetLapProgressSoundId(m);
-                    p->mUnk_2c++;
-                    StartSound(&a->mSoundSource, (u16) ((p->mUnk_2c & 1) + n), 0x7f, 0);
-                    p->mUnk_28 = j;
+                    baseSoundId = GetLapProgressSoundId(m);
+                    soundState->mUnk_2c++;
+                    StartSound(&kart->mSoundSource, (u16) ((soundState->mUnk_2c & 1) + baseSoundId), 0x7f, 0);
+                    soundState->mUnk_28 = lapProgress;
                 }
                 break;
             default:
-                StartSoundWhileRequested(&a->mSoundSource, i, g & 0xff, f);
+                StartSoundWhileRequested(&kart->mSoundSource, soundId, volume & 0xff, f);
                 break;
         }
     }
 }
 
-void func_0210b234(Kart *a, s32 b, s32 c, s32 d, s32 f) {
-    u32 e;
+void func_0210b234(Kart *kart, s32 b, s32 c, s32 d, s32 f) {
+    u32 soundId;
 
-    if (!(a->mSoundSource.mUnk_34 & 1)) {
+    if (!(kart->mSoundSource.mUnk_34 & 1)) {
         return;
     }
-    e = func_0210bafc(b, c, d);
-    if (e == 0xffff) {
+    soundId = func_0210bafc(b, c, d);
+    if (soundId == 0xffff) {
         return;
     }
     if (gRaceSetup->mCourseId == COURSE_ID_RAINBOW) {
-        e = 0x1b6;
+        soundId = 0x1b6;
     }
-    StartSound(&a->mSoundSource, e, 0x7f, 0);
+    StartSound(&kart->mSoundSource, soundId, 0x7f, 0);
 }
 
-void func_0210b198(s32 a, s32 b, u32 c, s32 d, s32 e) {
-    NNSSndSeqPlayer *h;
+void func_0210b198(s32 a, s32 b, u32 volume, s32 d, s32 e) {
+    NNSSndSeqPlayer *sndHandle;
     u16 f;
 
     if (func_02105504() == 0) {
         return;
     }
-    NNS_SndHandleInit(&h);
+    NNS_SndHandleInit(&sndHandle);
     f = a * 0xe + b;
-    if (h != NULL) {
-        NNS_SndPlayerStopSeq(&h, 0);
+    if (sndHandle != NULL) {
+        NNS_SndPlayerStopSeq(&sndHandle, 0);
     }
-    NNS_SndArcPlayerStartSeqArcEx(&h, d, -1, e, 2, f);
-    SetSndHandleTrackVolume(&h, c);
-    NNS_SndHandleReleaseSeq(&h);
+    NNS_SndArcPlayerStartSeqArcEx(&sndHandle, d, -1, e, 2, f);
+    SetSndHandleTrackVolume(&sndHandle, volume);
+    NNS_SndHandleReleaseSeq(&sndHandle);
 }
 
-void StartKartCollisionSound(Kart *a, s32 b, s16 d) {
-    PlayingSound *p;
-    s32 c;
+void StartKartCollisionSound(Kart *kart, s32 b, s16 d) {
+    PlayingSound *playingSound;
+    s32 soundId;
 
-    c = b + 0xc1;
+    soundId = b + 0xc1;
     if (gSceneSoundState.mRaceFrames < 0x78) {
         return;
     }
-    p = StartSoundEx(&a->mSoundSource, 0, c, 0x7f, 0);
-    if (p == NULL) {
+    playingSound = StartSoundEx(&kart->mSoundSource, 0, soundId, 0x7f, 0);
+    if (playingSound == NULL) {
         return;
     }
-    p->mUnk_19 |= 0x20;
-    p->mUnk_19 |= 0x40;
+    playingSound->mUnk_19 |= 0x20;
+    playingSound->mUnk_19 |= 0x40;
 }
 
-void func_0210af40(Kart *a, s32 b, s32 c) {
-    NNSSndSeqPlayer *h;
-    Unk0206bcb0_A *p;
-    u32 d;
-    s32 e;
-    BOOL f;
-    u16 g;
-    s32 x;
-    s32 y;
+void func_0210af40(Kart *kart, s32 b, s32 c) {
+    NNSSndSeqPlayer *sndHandle;
+    Unk0206bcb0_A *soundState;
+    u32 raceFrames;
+    s32 volume;
+    BOOL isEntryKart;
+    u16 sequenceNo;
+    s32 minFrames;
+    s32 minFrameGap;
 
-    d = gSceneSoundState.mRaceFrames;
-    if (!(a->mSoundSource.mUnk_34 & 1)) {
+    raceFrames = gSceneSoundState.mRaceFrames;
+    if (!(kart->mSoundSource.mUnk_34 & 1)) {
         return;
     }
-    p = &a->mUnk_450;
-    if (a->mUnk_4c & 0x10000000) {
+    soundState = &kart->mUnk_450;
+    if (kart->mUnk_4c & 0x10000000) {
         return;
     }
-    if (a->mUnk_7c & KART_7C_ENTRY_KIND_2) {
+    if (kart->mUnk_7c & KART_7C_ENTRY_KIND_2) {
         return;
     }
     if (gSceneSoundState.mRaceState != 1) {
         if (gSceneSoundState.mRaceState != 0) {
             return;
         }
-        e = 0x7f;
-        f = a->mIndex == gRaceSetup->mEntryIndex;
+        volume = 0x7f;
+        isEntryKart = kart->mIndex == gRaceSetup->mEntryIndex;
         if (c == 5) {
-            e = 0x7f;
+            volume = 0x7f;
         } else if (c == 3) {
-            e = 0x7f;
+            volume = 0x7f;
         }
-        if (f != FALSE) {
+        if (isEntryKart != FALSE) {
             if (func_02105504() == 0) {
                 return;
             }
-            NNS_SndHandleInit(&h);
-            g = b * 0xe + c;
-            if (h != NULL) {
-                NNS_SndPlayerStopSeq(&h, 0);
+            NNS_SndHandleInit(&sndHandle);
+            sequenceNo = b * 0xe + c;
+            if (sndHandle != NULL) {
+                NNS_SndPlayerStopSeq(&sndHandle, 0);
             }
-            NNS_SndArcPlayerStartSeqArcEx(&h, 1, -1, 0x7f, 2, g);
-            SetSndHandleTrackVolume(&h, e);
-            NNS_SndHandleReleaseSeq(&h);
+            NNS_SndArcPlayerStartSeqArcEx(&sndHandle, 1, -1, 0x7f, 2, sequenceNo);
+            SetSndHandleTrackVolume(&sndHandle, volume);
+            NNS_SndHandleReleaseSeq(&sndHandle);
         } else {
             if (c != 3 && c != 5) {
                 return;
             }
-            StartSoundEx(&a->mSoundSource, 2, b * 0xe + (c + 1), 0x73, 0);
+            StartSoundEx(&kart->mSoundSource, 2, b * 0xe + (c + 1), 0x73, 0);
         }
     } else {
-        x = 0xf0;
-        y = 0x1e;
+        minFrames = 0xf0;
+        minFrameGap = 0x1e;
         if (c == 1 || c == 2) {
-            x = 0x3c;
-            y = 0;
+            minFrames = 0x3c;
+            minFrameGap = 0;
         }
-        if (d < x) {
+        if (raceFrames < minFrames) {
             return;
         }
-        if (d - p->mUnk_30 < y) {
+        if (raceFrames - soundState->mUnk_30 < minFrameGap) {
             return;
         }
-        StartSoundEx(&a->mSoundSource, 2, b * 0xe + c, 0x7f, 0);
-        p->mUnk_30 = d;
+        StartSoundEx(&kart->mSoundSource, 2, b * 0xe + c, 0x7f, 0);
+        soundState->mUnk_30 = raceFrames;
     }
 }
 
 void InitKartSoundQueue(void) {
     s32 i;
-    KartSoundQueue *q = &gKartSoundQueue;
+    KartSoundQueue *queue = &gKartSoundQueue;
 
-    q->mCount = 0;
-    q->mDisabled = FALSE;
+    queue->mCount = 0;
+    queue->mDisabled = FALSE;
     for (i = 0; i < 8; i++) {
-        q->mKarts[i] = NULL;
-        q->mFramesSinceStart[i] = 0;
+        queue->mKarts[i] = NULL;
+        queue->mFramesSinceStart[i] = 0;
     }
-    q->mVolume = 0x5f;
-    q->mDelayFrames = -1;
+    queue->mVolume = 0x5f;
+    queue->mDelayFrames = -1;
 }
 
 void UpdateKartSoundQueue(void) {
-    KartSoundQueue *q = &gKartSoundQueue;
+    KartSoundQueue *queue = &gKartSoundQueue;
     s32 i;
 
-    if (q->mDisabled != FALSE) {
+    if (queue->mDisabled != FALSE) {
         return;
     }
-    if (q->mDelayFrames != -1) {
-        q->mDelayFrames++;
-        if (q->mDelayFrames >= 0x19) {
-            q->mDelayFrames = -1;
+    if (queue->mDelayFrames != -1) {
+        queue->mDelayFrames++;
+        if (queue->mDelayFrames >= 0x19) {
+            queue->mDelayFrames = -1;
         }
         return;
     }
     for (i = 0; i < 8; i++) {
-        if (q->mKarts[i] == NULL) {
+        if (queue->mKarts[i] == NULL) {
             continue;
         }
-        if (q->mFramesSinceStart[i] == 0) {
-            if (i != 0 && q->mFramesSinceStart[i - 1] < 0x14) {
+        if (queue->mFramesSinceStart[i] == 0) {
+            if (i != 0 && queue->mFramesSinceStart[i - 1] < 0x14) {
                 continue;
             }
-            if (i != 0 && q->mFramesSinceStart[i - 1] == 0x14) {
-                q->mVolume -= 0xf;
+            if (i != 0 && queue->mFramesSinceStart[i - 1] == 0x14) {
+                queue->mVolume -= 0xf;
             } else {
-                q->mVolume = 0x5f;
+                queue->mVolume = 0x5f;
             }
-            if (q->mVolume < 0x1e) {
-                q->mVolume = 0x1e;
+            if (queue->mVolume < 0x1e) {
+                queue->mVolume = 0x1e;
             }
-            StartQueuedKartSound(q->mKarts[i], q->mUnk_20[i], 0, q->mVolume);
-            q->mFramesSinceStart[i]++;
+            StartQueuedKartSound(queue->mKarts[i], queue->mUnk_20[i], 0, queue->mVolume);
+            queue->mFramesSinceStart[i]++;
         } else {
-            q->mFramesSinceStart[i]++;
+            queue->mFramesSinceStart[i]++;
         }
     }
 }
 
-void QueueKartSound(Kart *a, s32 b) {
-    KartSoundQueue *q = &gKartSoundQueue;
+void QueueKartSound(Kart *kart, s32 b) {
+    KartSoundQueue *queue = &gKartSoundQueue;
 
-    if (q->mDisabled != FALSE) {
+    if (queue->mDisabled != FALSE) {
         return;
     }
-    if (a->mIndex == gRaceSetup->mEntryIndex) {
-        StartQueuedKartSound(a, b, 1, 0x6e);
-        q->mDelayFrames = 0;
+    if (kart->mIndex == gRaceSetup->mEntryIndex) {
+        StartQueuedKartSound(kart, b, 1, 0x6e);
+        queue->mDelayFrames = 0;
         return;
     }
-    q->mKarts[q->mCount] = a;
-    q->mUnk_20[q->mCount] = b;
-    q->mCount++;
+    queue->mKarts[queue->mCount] = kart;
+    queue->mUnk_20[queue->mCount] = b;
+    queue->mCount++;
 }
 
-void StartQueuedKartSound(Kart *a, s32 b, s32 c, s32 d) {
-    NNSSndSeqPlayer *h;
-    PlayingSound *p;
-    PlayingSound *q;
+void StartQueuedKartSound(Kart *kart, s32 b, s32 c, s32 volume) {
+    NNSSndSeqPlayer *sndHandle;
+    PlayingSound *playingSound;
+    PlayingSound *stoppedSound;
     BOOL e;
-    u16 f;
+    u16 sequenceNo;
     enum { K0 } k;
 
-    p = a->mSoundSource.mPlayingSounds.mHead;
-    if (p != NULL) {
+    playingSound = kart->mSoundSource.mPlayingSounds.mHead;
+    if (playingSound != NULL) {
         do {
-            if (p->mUnk_18 == 2) {
-                q = p;
-                p = NNS_FndGetNextListObject(&a->mSoundSource.mPlayingSounds, p);
-                StopPlayingSound(&a->mSoundSource, q, 0);
+            if (playingSound->mUnk_18 == 2) {
+                stoppedSound = playingSound;
+                playingSound = NNS_FndGetNextListObject(&kart->mSoundSource.mPlayingSounds, playingSound);
+                StopPlayingSound(&kart->mSoundSource, stoppedSound, 0);
             } else {
-                p = NNS_FndGetNextListObject(&a->mSoundSource.mPlayingSounds, p);
+                playingSound = NNS_FndGetNextListObject(&kart->mSoundSource.mPlayingSounds, playingSound);
             }
-        } while (p != NULL);
+        } while (playingSound != NULL);
     }
     e = TRUE;
     if (data_0217d084.mMode != 2 && data_0217d084.mMode != 3) {
@@ -403,24 +404,24 @@ void StartQueuedKartSound(Kart *a, s32 b, s32 c, s32 d) {
     }
     k = 0xd;
     if (c != 0) {
-        StartSoundEx(&a->mSoundSource, 2, b * 0xe + k, 0x7f, 0);
+        StartSoundEx(&kart->mSoundSource, 2, b * 0xe + k, 0x7f, 0);
         return;
     }
     if (func_02105504() == 0) {
         return;
     }
-    NNS_SndHandleInit(&h);
-    f = b * 0xe + k;
-    if (h != NULL) {
-        NNS_SndPlayerStopSeq(&h, 0);
+    NNS_SndHandleInit(&sndHandle);
+    sequenceNo = b * 0xe + k;
+    if (sndHandle != NULL) {
+        NNS_SndPlayerStopSeq(&sndHandle, 0);
     }
-    NNS_SndArcPlayerStartSeqArcEx(&h, -1, -1, 0x6e, 2, f);
-    SetSndHandleTrackVolume(&h, d);
-    NNS_SndHandleReleaseSeq(&h);
+    NNS_SndArcPlayerStartSeqArcEx(&sndHandle, -1, -1, 0x6e, 2, sequenceNo);
+    SetSndHandleTrackVolume(&sndHandle, volume);
+    NNS_SndHandleReleaseSeq(&sndHandle);
 }
 
 void func_0210ab48(s32 a, s32 b) {
-    NNSSndSeqPlayer *h;
+    NNSSndSeqPlayer *sndHandle;
     s32 c;
     u16 d;
 
@@ -429,14 +430,14 @@ void func_0210ab48(s32 a, s32 b) {
     if (func_02105504() == 0) {
         return;
     }
-    NNS_SndHandleInit(&h);
+    NNS_SndHandleInit(&sndHandle);
     d = a * 0xe + c;
-    if (h != NULL) {
-        NNS_SndPlayerStopSeq(&h, 0);
+    if (sndHandle != NULL) {
+        NNS_SndPlayerStopSeq(&sndHandle, 0);
     }
-    NNS_SndArcPlayerStartSeqArcEx(&h, 7, -1, -1, 2, d);
-    SetSndHandleTrackVolume(&h, 0x6e);
-    NNS_SndHandleReleaseSeq(&h);
+    NNS_SndArcPlayerStartSeqArcEx(&sndHandle, 7, -1, -1, 2, d);
+    SetSndHandleTrackVolume(&sndHandle, 0x6e);
+    NNS_SndHandleReleaseSeq(&sndHandle);
 }
 
 void func_0210ab44(Kart *a, PlayingSound *b, s32 c) {}
@@ -447,19 +448,19 @@ void func_0210ab30(Kart *a) {
     a->mSoundSource.mUnk_2c = (void (*)(void *, void *, u32)) func_0210ab40;
 }
 
-void StartKartPlayingSoundSeq(Kart *a, PlayingSound *b, s32 c) {
+void StartKartPlayingSoundSeq(Kart *kart, PlayingSound *playingSound, s32 c) {
     u32 d;
-    u32 e;
+    u32 soundId;
     s32 f;
-    NNSSndSeqParam *p;
+    NNSSndSeqParam *seqParam;
     u32 g;
 
-    d = b->mUnk_18;
-    e = b->mSoundId;
+    d = playingSound->mUnk_18;
+    soundId = playingSound->mSoundId;
     f = -1;
-    if (a->mIndex == gRaceSetup->mEntryIndex) {
-        p = NNS_SndArcGetSeqArcParam(d, e);
-        g = p->mPlayerNo;
+    if (kart->mIndex == gRaceSetup->mEntryIndex) {
+        seqParam = NNS_SndArcGetSeqArcParam(d, soundId);
+        g = seqParam->mPlayerNo;
         if (g == 2) {
             f = 4;
         } else if (g == 3) {
@@ -470,15 +471,15 @@ void StartKartPlayingSoundSeq(Kart *a, PlayingSound *b, s32 c) {
             }
         }
     }
-    if ((b->mUnk_19 & 0x20) && (b->mUnk_19 & 0x40)) {
-        g = GetKartVariant(a->mIndex) + 0x2d;
-        NNS_SndArcPlayerStartSeqArcEx(&b->mUnk_00, f, g, c, d, e);
-        if (b == NULL) {
+    if ((playingSound->mUnk_19 & 0x20) && (playingSound->mUnk_19 & 0x40)) {
+        g = GetKartVariant(kart->mIndex) + 0x2d;
+        NNS_SndArcPlayerStartSeqArcEx(&playingSound->mUnk_00, f, g, c, d, soundId);
+        if (playingSound == NULL) {
             return;
         }
-        NNS_SndPlayerWriteVariable(&b->mUnk_00, 0, a->mUnk_4b8);
+        NNS_SndPlayerWriteVariable(&playingSound->mUnk_00, 0, kart->mUnk_4b8);
     } else {
-        NNS_SndArcPlayerStartSeqArcEx(&b->mUnk_00, f, -1, c, d, e);
+        NNS_SndArcPlayerStartSeqArcEx(&playingSound->mUnk_00, f, -1, c, d, soundId);
     }
 }
 
@@ -486,117 +487,117 @@ u32 func_0210aa0c(void) {
     return 0x0u;
 }
 
-void SetKartPlayingSoundVolumePitch(Kart *a, PlayingSound *b, s32 c) {
-    s32 d;
-    u32 e;
-    u32 f;
-    BOOL g;
-    s16 w;
+void SetKartPlayingSoundVolumePitch(Kart *kart, PlayingSound *playingSound, s32 pitchOffset) {
+    s32 totalPitchOffset;
+    u32 volume;
+    u32 waterDepth;
+    BOOL isEntryKart;
+    s16 depthPitch;
 
-    e = b->mVolume;
-    d = c + a->mUnk_48c(&a->mUnk_518);
-    if (b->mUnk_18 != 2) {
-        f = a->mWaterDepth;
-        w = 0;
-        g = a->mIndex == gRaceSetup->mEntryIndex;
-        if (f > 0x11170) {
-            w = 0x384;
-            if (g != FALSE) {
-                w += gSoundPitchSwing;
+    volume = playingSound->mVolume;
+    totalPitchOffset = pitchOffset + kart->mUnk_48c(&kart->mUnk_518);
+    if (playingSound->mUnk_18 != 2) {
+        waterDepth = kart->mWaterDepth;
+        depthPitch = 0;
+        isEntryKart = kart->mIndex == gRaceSetup->mEntryIndex;
+        if (waterDepth > 0x11170) {
+            depthPitch = 0x384;
+            if (isEntryKart != FALSE) {
+                depthPitch += gSoundPitchSwing;
             }
-        } else if (f > 0x61a8 && f <= 0x11170) {
-            w = ((s32) ((((s64) data_0217ccb0 * (s32) ((f - 0x61a8) << 12)) + 0x800) >> 12)) >> 12;
-            if (g != FALSE) {
-                w += gSoundPitchSwing >> 1;
+        } else if (waterDepth > 0x61a8 && waterDepth <= 0x11170) {
+            depthPitch = ((s32) ((((s64) data_0217ccb0 * (s32) ((waterDepth - 0x61a8) << 12)) + 0x800) >> 12)) >> 12;
+            if (isEntryKart != FALSE) {
+                depthPitch += gSoundPitchSwing >> 1;
             }
         }
-        d -= w;
+        totalPitchOffset -= depthPitch;
     } else {
-        f = a->mWaterDepth;
-        w = 0;
-        if (f > 0x11170) {
-            w += gSoundPitchSwing;
-        } else if (f > 0x61a8 && f <= 0x11170) {
-            w += gSoundPitchSwing;
+        waterDepth = kart->mWaterDepth;
+        depthPitch = 0;
+        if (waterDepth > 0x11170) {
+            depthPitch += gSoundPitchSwing;
+        } else if (waterDepth > 0x61a8 && waterDepth <= 0x11170) {
+            depthPitch += gSoundPitchSwing;
         }
-        d -= w;
+        totalPitchOffset -= depthPitch;
     }
-    SetSndHandleTrackVolume(&b->mUnk_00, e);
-    SetSndHandleTrackPitch(&b->mUnk_00, b->mUnk_14 + d);
+    SetSndHandleTrackVolume(&playingSound->mUnk_00, volume);
+    SetSndHandleTrackPitch(&playingSound->mUnk_00, playingSound->mUnk_14 + totalPitchOffset);
 }
 
-void func_0210a77c(Kart *a, PlayingSound *b) {
+void func_0210a77c(Kart *kart, PlayingSound *playingSound) {
     Vec3 *o;
-    u32 c;
+    u32 volume;
     s32 v;
-    s16 w;
-    u32 m;
-    s32 t;
+    s16 depthPitch;
+    u32 depth;
+    s32 heightAboveWater;
 
     v = 0;
-    c = b->mVolume;
-    if (a->mUnk_44 == 0) {
-        o = (Vec3 *) &a->mUnk_168.y;
+    volume = playingSound->mVolume;
+    if (kart->mUnk_44 == 0) {
+        o = (Vec3 *) &kart->mUnk_168.y;
     } else {
-        o = (Vec3 *) &a->mUnk_250.z;
+        o = (Vec3 *) &kart->mUnk_250.z;
     }
     v += o->z;
-    t = GetHeightAboveWaterOrEfct(a->mTurnedForward.y);
-    if (t < 0) {
-        m = -t;
-        w = 0;
-        if (m > 0x11170) {
-            w = 0x1c2;
-            w += gSoundPitchSwing;
-        } else if (m > 0x61a8 && m <= 0x11170) {
-            w = ((s32) ((((s64) data_0217ccbc * (s32) ((m - 0x61a8) << 12)) + 0x800) >> 12)) >> 12;
-            w += gSoundPitchSwing >> 1;
+    heightAboveWater = GetHeightAboveWaterOrEfct(kart->mTurnedForward.y);
+    if (heightAboveWater < 0) {
+        depth = -heightAboveWater;
+        depthPitch = 0;
+        if (depth > 0x11170) {
+            depthPitch = 0x1c2;
+            depthPitch += gSoundPitchSwing;
+        } else if (depth > 0x61a8 && depth <= 0x11170) {
+            depthPitch = ((s32) ((((s64) data_0217ccbc * (s32) ((depth - 0x61a8) << 12)) + 0x800) >> 12)) >> 12;
+            depthPitch += gSoundPitchSwing >> 1;
         }
-        v -= w;
+        v -= depthPitch;
     }
-    SetSndHandleTrackVolume(&b->mUnk_00, c);
-    SetSndHandleTrackPitch(&b->mUnk_00, b->mUnk_14 + v);
+    SetSndHandleTrackVolume(&playingSound->mUnk_00, volume);
+    SetSndHandleTrackPitch(&playingSound->mUnk_00, playingSound->mUnk_14 + v);
 }
 
-void UpdateKartPlayingSound(Kart *a, PlayingSound *b) {
-    SetKartPlayingSoundVolumePitch(a, b, 0);
+void UpdateKartPlayingSound(Kart *kart, PlayingSound *playingSound) {
+    SetKartPlayingSoundVolumePitch(kart, playingSound, 0);
 }
 
-void func_0210a724(Kart *a, PlayingSound *b) {
+void func_0210a724(Kart *kart, PlayingSound *playingSound) {
     u32 c;
-    s32 v;
+    s32 pitchOffset;
 
-    c = b->mUnk_19;
-    v = 0;
-    if (!(c & 0x10) && gSceneSoundState.mRaceFrames > a->mUnk_450.mUnk_34 + 1) {
-        v = 0x180;
+    c = playingSound->mUnk_19;
+    pitchOffset = 0;
+    if (!(c & 0x10) && gSceneSoundState.mRaceFrames > kart->mUnk_450.mUnk_34 + 1) {
+        pitchOffset = 0x180;
         if (c & 0x80) {
-            v += 0x100;
+            pitchOffset += 0x100;
         }
     }
-    SetKartPlayingSoundVolumePitch(a, b, v);
+    SetKartPlayingSoundVolumePitch(kart, playingSound, pitchOffset);
 }
 
-void func_0210a6ec(Kart *a, PlayingSound *b) {
+void func_0210a6ec(Kart *kart, PlayingSound *playingSound) {
     u32 c;
 
-    c = a->mUnk_4c;
-    SetSndHandleTrackVolume(&b->mUnk_00, b->mVolume);
-    SetSndHandleTrackPitch(&b->mUnk_00, b->mUnk_14 + c);
+    c = kart->mUnk_4c;
+    SetSndHandleTrackVolume(&playingSound->mUnk_00, playingSound->mVolume);
+    SetSndHandleTrackPitch(&playingSound->mUnk_00, playingSound->mUnk_14 + c);
 }
 
-void func_0210a6b4(Kart *a, PlayingSound *b) {
+void func_0210a6b4(Kart *kart, PlayingSound *playingSound) {
     u32 c;
 
-    c = a->mUnk_4c;
-    SetSndHandleTrackVolume(&b->mUnk_00, b->mVolume);
-    SetSndHandleTrackPitch(&b->mUnk_00, b->mUnk_14 + c);
+    c = kart->mUnk_4c;
+    SetSndHandleTrackVolume(&playingSound->mUnk_00, playingSound->mVolume);
+    SetSndHandleTrackPitch(&playingSound->mUnk_00, playingSound->mUnk_14 + c);
 }
 
-void func_0210a67c(Kart *a, PlayingSound *b) {
-    s32 c;
+void func_0210a67c(Kart *kart, PlayingSound *playingSound) {
+    s32 turnCounter;
 
-    c = (s32) a->mTowardTurnCounter;
-    SetSndHandleTrackVolume(&b->mUnk_00, b->mVolume);
-    SetSndHandleTrackPitch(&b->mUnk_00, b->mUnk_14 + c);
+    turnCounter = (s32) kart->mTowardTurnCounter;
+    SetSndHandleTrackVolume(&playingSound->mUnk_00, playingSound->mVolume);
+    SetSndHandleTrackPitch(&playingSound->mUnk_00, playingSound->mUnk_14 + turnCounter);
 }

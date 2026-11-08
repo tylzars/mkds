@@ -5,4 +5,4 @@
 typedef struct Kart Kart;
 typedef struct PlayingSound PlayingSound;
 
-void StartKartPlayingSoundSeq(Kart *a, PlayingSound *b, s32 c);
+void StartKartPlayingSoundSeq(Kart *kart, PlayingSound *playingSound, s32 c);

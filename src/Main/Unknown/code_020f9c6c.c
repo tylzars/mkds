@@ -1213,9 +1213,9 @@ void InitItems(void) {
     }
     gCollidedItemObjects = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     StartCourseMapItemObjects();
-    func_02102674();
+    CreateItemTeresaFrameScaleTable();
     InitOrthoQuads();
-    func_02104970();
+    InitBouncingItemBoxTimers();
 }
 
 s32 func_020fa0e8(s32 kind, s32 param_2) {

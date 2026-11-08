@@ -4,7 +4,7 @@
 #include "Main/Unknown/code_0210d4a4.h"
 #include "Main/Unknown/unk_0217c000.h"
 
-void func_0210912c(void) {
+void InitSoundFalloffsAndPlayingSounds(void) {
     InitSoundFalloffs();
     InitPlayingSoundPool((PlayingSound *) data_0217c91c, 0xc);
     SetSoundPanFunction(ComputeSoundPan);

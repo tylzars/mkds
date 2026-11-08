@@ -25,7 +25,7 @@ const SoundSet data_0215c380 = {0xff, 0xff, 0xff};
 const SoundSet data_0215c398 = {0xff, 0xff, 0xff};
 
 void ReleaseLoadedSoundSet(void) {
-    ReleaseSoundSet(func_02108950());
+    ReleaseSoundSet(GetLoadedSoundSet());
 }
 
 // Loads wave archives 0 and 0x50 (taken from archives 0x61 and 0x62 when b is set), assigns bank 0's wave archives to
@@ -132,10 +132,10 @@ u32 LoadSoundSetIfChanged(SoundSet v, u32 d) {
     if (v.mSeqId == 0xff && v.mUnk_04 == 0xff && v.mUnk_08 == 0xff) {
         return 1;
     }
-    if (IsSoundSetLoaded(func_02108950(), v) != 0) {
+    if (IsSoundSetLoaded(GetLoadedSoundSet(), v) != 0) {
         return 1;
     }
-    ReleaseSoundSet(func_02108950());
+    ReleaseSoundSet(GetLoadedSoundSet());
     p = &data_0217d134;
     for (i = 0; i < p->mCount; i++) {
         NNS_SndArcSetFileAddress(p->mFileIds[i], NULL);
@@ -245,7 +245,7 @@ u32 LoadSoundSetIfChanged(SoundSet v, u32 d) {
             }
         }
     }
-    return LoadSoundSet(func_02108950(), v) != 0;
+    return LoadSoundSet(GetLoadedSoundSet(), v) != 0;
 }
 
 void func_0210e920(void) {
@@ -260,7 +260,7 @@ void func_0210e920(void) {
 
 void func_0210e8f8(u32 a) {
     func_0210ed20(0, a);
-    SaveSndHeapState(func_02108950());
+    SaveSndHeapState(GetLoadedSoundSet());
 }
 
 void LoadSceneSoundSet(Unk0210e524 a, u32 b) {
@@ -337,7 +337,7 @@ u32 LoadSndDataFromFile(void) {
     if (func_0210ed20(1, 1) == 0) {
         return 0;
     }
-    SaveSndHeapState(func_02108950());
+    SaveSndHeapState(GetLoadedSoundSet());
     return 1;
 }
 

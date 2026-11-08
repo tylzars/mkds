@@ -4,4 +4,4 @@
 
 typedef struct PlayingSound PlayingSound;
 
-u32 func_0210a63c(PlayingSound *b);
+u32 func_0210a63c(PlayingSound *playingSound);

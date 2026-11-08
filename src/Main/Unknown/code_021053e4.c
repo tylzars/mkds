@@ -18,62 +18,62 @@ const Unk0215a64c data_usa_0215a64c = {
 const Unk0215a680 data_0215a680 = {{0, 0, 0, 0xf000, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0}};
 
 u32 func_02105504(void) {
-    u32 r = 0;
-    u32 f;
+    u32 result = 0;
+    u32 isNormalOrKind2;
     if (GetCurrentSceneNumber() == 2) {
-        s32 a = gRaceSetup->mRaceKind;
-        f = 1;
-        if (a != RACE_KIND_NORMAL && a != 2) {
-            f = 0;
+        s32 raceKind = gRaceSetup->mRaceKind;
+        isNormalOrKind2 = 1;
+        if (raceKind != RACE_KIND_NORMAL && raceKind != 2) {
+            isNormalOrKind2 = 0;
         }
-        if (f != 0) {
-            r = 1;
+        if (isNormalOrKind2 != 0) {
+            result = 1;
         }
     }
-    return r;
+    return result;
 }
 
 u32 func_021054d0(void) {
-    u32 r = 0;
+    u32 result = 0;
     s32 a = gRaceSetup->mMode;
     if (a != MODE_MISSION_RUN) {
-        return r;
+        return result;
     }
     a = a == MODE_MISSION_RUN ? gRaceSetup->mMissionTableColumn : -1;
     if (a == 9) {
-        r = 1;
+        result = 1;
     }
-    return r;
+    return result;
 }
 
 Unk0215a680 *func_02105480(void) {
-    Unk0215a680 *p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
-    *p = data_0215a680;
-    return p;
+    Unk0215a680 *data = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
+    *data = data_0215a680;
+    return data;
 }
 
-void func_02105464(void *p, void *q) {
-    InitItemBox(p, q);
-    ParkMapObject(p);
+void func_02105464(void *mapObject, void *q) {
+    InitItemBox(mapObject, q);
+    ParkMapObject(mapObject);
 }
 
 MapObject *AllocPooledMapObject(void) {
-    u32 i = gPooledMapObjectNextIndex;
-    MapObject **t = gPooledMapObjects;
-    gPooledMapObjectNextIndex = i + 1;
-    return t[i];
+    u32 index = gPooledMapObjectNextIndex;
+    MapObject **mapObjects = gPooledMapObjects;
+    gPooledMapObjectNextIndex = index + 1;
+    return mapObjects[index];
 }
 
-void func_021053e4(Unk021052fc *p) {
-    UnparkMapObject(&p->mUnk_00);
-    p->mUnk_00.mAlpha = 0x1f;
-    p->mUnk_00.mFlags &= ~2;
-    p->mUnk_00.mFlags &= ~8;
-    p->mUnk_00.mAlpha = 0x1f;
-    p->mUnk_00.mScale.x = 0;
-    p->mUnk_00.mScale.y = 0;
-    p->mUnk_00.mScale.z = 0;
-    p->mUnk_a0 = 0;
-    p->mUnk_a2 = 0;
-    p->mUnk_a4 = 0x80;
+void ResetPooledMapObject(Unk021052fc *pooledObject) {
+    UnparkMapObject(&pooledObject->mUnk_00);
+    pooledObject->mUnk_00.mAlpha = 0x1f;
+    pooledObject->mUnk_00.mFlags &= ~2;
+    pooledObject->mUnk_00.mFlags &= ~8;
+    pooledObject->mUnk_00.mAlpha = 0x1f;
+    pooledObject->mUnk_00.mScale.x = 0;
+    pooledObject->mUnk_00.mScale.y = 0;
+    pooledObject->mUnk_00.mScale.z = 0;
+    pooledObject->mUnk_a0 = 0;
+    pooledObject->mUnk_a2 = 0;
+    pooledObject->mUnk_a4 = 0x80;
 }

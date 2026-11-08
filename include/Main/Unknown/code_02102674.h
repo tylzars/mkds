@@ -10,18 +10,18 @@ typedef struct ItemGesso {
     /* 000 */ ItemObject mUnk_000;
     /* 12c */ Kart *mKart;
     /* 130 */ u8 mUnk_130[0x8];
-    /* 138 */ s32 mUnk_138;
-    /* 13c */ Vec3 mUnk_13c;
-    /* 148 */ s32 mUnk_148;
-    /* 14c */ s32 mUnk_14c;
+    /* 138 */ s32 mStepIndex;
+    /* 13c */ Vec3 mViewOffset;
+    /* 148 */ s32 mVelocityX;
+    /* 14c */ s32 mVelocityY;
     /* 150 */ s32 mUnk_150;
-    /* 154 */ s32 mUnk_154;
-    /* 158 */ s32 mUnk_158;
+    /* 154 */ s32 mTargetVelocityX;
+    /* 158 */ s32 mTargetVelocityY;
     /* 15c */ s32 mUnk_15c;
     /* 160 */ BOOL mUnk_160;
-    /* 164 */ s32 mUnk_164;
-    /* 168 */ s32 mUnk_168;
-    /* 16c */ s32 mUnk_16c;
+    /* 164 */ s32 mApproachRate;
+    /* 168 */ s32 mDamping;
+    /* 16c */ s32 mStepTimer;
     /* 170 */ s32 mUnk_170;
     /* 174 */ s32 mUnk_174;
     /* 178 */ s32 mUnk_178;
@@ -30,7 +30,7 @@ typedef struct ItemGesso {
     /* 184 */ Vec3 mUnk_184;
     /* 190 */ u8 mUnk_190[0x4];
     /* 194 */ s32 mUnk_194;
-    /* 198 */ BOOL mUnk_198;
+    /* 198 */ BOOL mVisible;
     /* 19c */ s32 mUnk_19c;
     /* 1a0 */ u8 mUnk_1a0[0x14];
 } ItemGesso;
@@ -49,21 +49,21 @@ typedef struct Unk020748a8 {
     /* 15c */ Vec3 mForward;
 } Unk020748a8;
 
-// Row of the 0xc-byte table behind data_0215a3b0.
-typedef struct Unk0215a3b0 {
-    /* 00 */ s16 mUnk_00;
-    /* 02 */ s16 mUnk_02;
-    /* 04 */ s16 mUnk_04;
-    /* 06 */ s16 mUnk_06;
+// Row of the 0xc-byte table behind gItemGessoSteps.
+typedef struct ItemGessoStep {
+    /* 00 */ s16 mTargetVelocityX;
+    /* 02 */ s16 mTargetVelocityY;
+    /* 04 */ s16 mApproachRate;
+    /* 06 */ s16 mDamping;
     /* 08 */ u16 mUnk_08;
     /* 0a */ u16 mUnk_0a;
-} Unk0215a3b0;
+} ItemGessoStep;
 
-extern Unk0215a3b0 data_0215a3b0[];
+extern ItemGessoStep gItemGessoSteps[];
 
-void func_02102674(void);
-void func_02102718(void);
-void InitItemGessoFromData(ItemGesso *p);
-void func_02102764(void *param_1, ItemGesso *param_2, void *param_3);
+void CreateItemTeresaFrameScaleTable(void);
+void ComputeItemGessoFrameCount(void);
+void InitItemGessoFromData(ItemGesso *gesso);
+void CopyItemGessoData(void *data, ItemGesso *gesso, void *toData);
 void DrawItemGesso(ItemGesso *p, s32 param_2, Unk020e6488 *t);
 void AdvanceItemGesso(ItemGesso *p);
