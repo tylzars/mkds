@@ -274,7 +274,7 @@ void InitItemTeresa(Unk02101d18 *x, ItemTeresa *p) {
     StartKartTeresa(q);
     func_020f8e3c((u32) q, 0xf6);
     SetActiveItem(x->mUnk_0c, 0x10);
-    InitCourseColorBlend(&p->mUnk_000.mUnk_7c, 1);
+    InitCourseColorBlend(&p->mUnk_000.mColorBlend, 1);
     if (x->mUnk_0c->mFlags & 0x20) {
         p->mUnk_148 = FALSE;
     } else {
@@ -391,7 +391,7 @@ void EnterItemTeresaState0(ItemTeresa *p) {
     *(Vec3 *) &p->mUnk_16c =
         (Vec3){0, (s32) (((s64) * (s32 *) p->mKart->mPhysicalParam * p->mKart->mScale.z + 0x800) >> 12), 0};
     p->mUnk_17c = 0;
-    p->mUnk_000.mUnk_d8 = 0x1f;
+    p->mUnk_000.mAlpha = 0x1f;
     if (p->mKart->mUnk_48 & 1) {
         p->mUnk_000.mUnk_d0 = &p->mUnk_000.mDrawPos;
     }
@@ -458,8 +458,8 @@ BOOL func_02101618(ItemTeresa *p, s32 a, s32 b) {
     }
     func_02101964(p, a);
     if (n > m) {
-        if (p->mUnk_000.mUnk_d8 > 0) {
-            p->mUnk_000.mUnk_d8 -= d;
+        if (p->mUnk_000.mAlpha > 0) {
+            p->mUnk_000.mAlpha -= d;
         }
         if (n >= (p->mUnk_15c != FALSE ? 0x37 : 0x28)) {
             if (b < 7) {
@@ -496,8 +496,8 @@ s32 func_021014a0(ItemTeresa *p, s32 a, s32 b) {
     }
     func_02101964(p, a);
     if (n > 7) {
-        if (p->mUnk_000.mUnk_d8 < 0x1f) {
-            p->mUnk_000.mUnk_d8 += 6;
+        if (p->mUnk_000.mAlpha < 0x1f) {
+            p->mUnk_000.mAlpha += 6;
         }
         if (n == 0x27) {
             if (p->mUnk_15c == FALSE) {
@@ -1032,7 +1032,7 @@ void InitItemTeresaFromData(ItemTeresa *p) {
     int i;
 
     func_020f8e78(p);
-    InitCourseColorBlend(&p->mUnk_000.mUnk_7c, 1);
+    InitCourseColorBlend(&p->mUnk_000.mColorBlend, 1);
     SetStateMachineState(p->mUnk_12c, 0);
     if ((p->mUnk_000.mUnk_78 & 0x8000) == 0) {
         i = (u16) (p->mUnk_000.mUnk_78 & ~0xff00);
@@ -1078,7 +1078,7 @@ void DrawItemTeresa(ItemTeresa *p, s32 c, Unk020e6488 *q) {
     s32 i;
     s32 b2;
 
-    if (p->mUnk_000.mUnk_d8 <= 0) {
+    if (p->mUnk_000.mAlpha <= 0) {
         return;
     }
     a = 0x1e;
@@ -1095,9 +1095,9 @@ void DrawItemTeresa(ItemTeresa *p, s32 c, Unk020e6488 *q) {
         r = GetItemModel(p->mItemObjectKind);
         n = p->mUnk_164;
         b2 = p->mItemCount;
-        if (p->mUnk_000.mUnk_d8 < 0x1f) {
-            if (p->mUnk_000.mUnk_d8 < n) {
-                n = p->mUnk_000.mUnk_d8;
+        if (p->mUnk_000.mAlpha < 0x1f) {
+            if (p->mUnk_000.mAlpha < n) {
+                n = p->mUnk_000.mAlpha;
             }
         }
         if (n > 0x1f) {
@@ -1130,7 +1130,7 @@ void DrawItemTeresa(ItemTeresa *p, s32 c, Unk020e6488 *q) {
     t = AllocPolygonIdWrapping();
     q->mUnk_14 = q->mUnk_14 & ~0x3f000000;
     q->mUnk_14 = q->mUnk_14 | (t << 24);
-    d = p->mUnk_000.mUnk_d8;
+    d = p->mUnk_000.mAlpha;
     q->mUnk_14 = q->mUnk_14 & ~0x1f0000;
     q->mUnk_14 = q->mUnk_14 | (d << 16);
     func_020ed588(&p->mUnk_000, q);

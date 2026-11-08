@@ -23,43 +23,43 @@
 #include "Main/Unknown/code_0210b000.h"
 #include "Main/Unknown/code_020e337c.h"
 
-BOOL func_020f9290(void *a, Vec3 *b) {
-    ItemObject *p = a;
-    if ((p->mFlags & 0x2000000) != 0 && Vec3DotUnrounded(b, &p->mUnk_108) < 0 && (p->mFlags & 8) == 0) {
-        func_020f6fc4(p, 1);
+BOOL func_020f9290(void *itemParam, Vec3 *normal) {
+    ItemObject *item = itemParam;
+    if ((item->mFlags & 0x2000000) != 0 && Vec3DotUnrounded(normal, &item->mUnk_108) < 0 && (item->mFlags & 8) == 0) {
+        func_020f6fc4(item, 1);
         return TRUE;
     }
     return FALSE;
 }
 
-void func_020f91fc(void *b, s32 c) {
-    ItemObject *p = b;
-    Unk0210b7a8 a;
+void func_020f91fc(void *itemParam, s32 soundId) {
+    ItemObject *item = itemParam;
+    Unk0210b7a8 request;
 
-    if (c == 1) {
+    if (soundId == 1) {
         return;
     }
-    if ((s32) (p->mUnk_d4 & ~0xc000001f) >= gSoundFalloffs[1].mUnk_20) {
+    if ((s32) (item->mDistanceSquaredAndFlags & ~0xc000001f) >= gSoundFalloffs[1].mUnk_20) {
         return;
     }
-    if (c == 1) {
+    if (soundId == 1) {
         return;
     }
-    a = data_0216c698;
-    a.mUnk_04 = &p->mPos;
-    a.mUnk_00 = c;
-    a.mUnk_0c = p->mUnk_d4 & ~0xc000001f;
-    func_0210b7a8(&a);
+    request = data_0216c698;
+    request.mUnk_04 = &item->mPos;
+    request.mUnk_00 = soundId;
+    request.mUnk_0c = item->mDistanceSquaredAndFlags & ~0xc000001f;
+    func_0210b7a8(&request);
 }
 
-BOOL func_020f91e0(ItemObject *a) {
-    ItemObject *p = a;
+BOOL func_020f91e0(ItemObject *itemParam) {
+    ItemObject *item = itemParam;
 
-    return p->mScale.z >= 0xccd;
+    return item->mScale.z >= 0xccd;
 }
 
-BOOL func_020f91c4(ItemObject *a, s32 b) {
-    return (s32) (a->mUnk_d4 & ~0xc000001f) > b * b;
+BOOL IsItemObjectFartherFromCameraThan(ItemObject *item, s32 distance) {
+    return (s32) (item->mDistanceSquaredAndFlags & ~0xc000001f) > distance * distance;
 }
 
 BOOL func_020f9160(ItemObject *c) {
@@ -70,110 +70,110 @@ BOOL func_020f9160(ItemObject *c) {
     if ((c->mFlags & 0x10000) == 0) {
         a = TRUE;
     }
-    if (a != FALSE && (s32) (c->mUnk_d4 & ~0xc000001f) <= 0x3d0900) {
+    if (a != FALSE && (s32) (c->mDistanceSquaredAndFlags & ~0xc000001f) <= 0x3d0900) {
         b = TRUE;
     } else {
         b = FALSE;
     }
-    if (b == FALSE && (s32) (c->mUnk_d4 & ~0xc000001f) > 0x3d090) {
+    if (b == FALSE && (s32) (c->mDistanceSquaredAndFlags & ~0xc000001f) > 0x3d090) {
         return TRUE;
     }
     return FALSE;
 }
 
-void func_020f9114(void *b) {
-    ItemObject *p = b;
-    enum { K0 } a = p->mKind;
+void func_020f9114(void *itemParam) {
+    ItemObject *item = itemParam;
+    enum { K0 } kind = item->mKind;
 
-    func_02109038(p, gItemKinds[a].mUnk_a0, &p->mPos);
-    SetSoundSourceEnabled(&p->mSoundSource, 1);
-    p->mFlags |= 0x400000;
+    func_02109038(item, gItemKinds[kind].mUnk_a0, &item->mPos);
+    SetSoundSourceEnabled(&item->mSoundSource, 1);
+    item->mFlags |= 0x400000;
 }
 
-void func_020f90dc(ItemObject *a) {
-    ItemObject *p = a;
-    if ((p->mFlags & 0x400000) == 0) {
+void func_020f90dc(ItemObject *itemParam) {
+    ItemObject *item = itemParam;
+    if ((item->mFlags & 0x400000) == 0) {
         return;
     }
-    func_02109054(&p->mSoundSource);
-    p->mSoundSource.mUnk_30 = NULL;
-    p->mFlags &= ~0x400000;
+    func_02109054(&item->mSoundSource);
+    item->mSoundSource.mUnk_30 = NULL;
+    item->mFlags &= ~0x400000;
 }
 
-void func_020f90bc(ItemObject *a) {
-    ItemObject *p = a;
+void func_020f90bc(ItemObject *itemParam) {
+    ItemObject *item = itemParam;
 
-    p->mSoundSource.mDistanceSquared = p->mUnk_d4 & ~0xc000001f;
-    func_020d4e28(p, &p->mPos, p->mUnk_d4);
+    item->mSoundSource.mDistanceSquared = item->mDistanceSquaredAndFlags & ~0xc000001f;
+    func_020d4e28(item, &item->mPos, item->mDistanceSquaredAndFlags);
 }
 
-void func_020f9054(ItemObject *a, s32 b, void *c, s32 d) {
-    ItemObject *p = a;
-    void *(*f)(void *, void *, s32);
+void ResetItemObjectFromData(ItemObject *itemParam, s32 kind, void *buffer, s32 d) {
+    ItemObject *item = itemParam;
+    void *(*copyData)(void *, void *, s32);
 
-    f = d != 0 ? func_020fe4c0 : gItemKinds[b].mCopyData;
-    ResetItemObject(p, b);
-    f(c, p, 0);
-    p->mFlags &= ~0x400000;
-    p->mFlags |= 0x10000000;
+    copyData = d != 0 ? func_020fe4c0 : gItemKinds[kind].mCopyData;
+    ResetItemObject(item, kind);
+    copyData(buffer, item, 0);
+    item->mFlags &= ~0x400000;
+    item->mFlags |= 0x10000000;
 }
 
-void func_020f8e78(void *b) {
-    ItemObject *p = b;
-    ItemKind *e;
-    BOOL a;
-    s32 m;
-    enum { K0 } k;
-    void (*f)(struct ItemObject *);
+void func_020f8e78(void *itemParam) {
+    ItemObject *item = itemParam;
+    ItemKind *kindInfo;
+    BOOL hasCollisionSlot;
+    s32 kindRadius;
+    enum { K0 } kind;
+    void (*advance)(struct ItemObject *);
 
-    p->mScale.z = 0xccd;
-    k = p->mKind;
-    p->mFlags |= 0x40;
-    p->mScale.y = p->mScale.z;
-    p->mScale.x = p->mScale.y;
-    e = &gItemKinds[k];
-    m = e->mUnk_6c;
-    p->mUnk_dc = ((s64) p->mScale.y * e->mUnk_64) >> 12;
-    p->mRadius = ((s64) p->mScale.y * m) >> 12;
-    SetCollisionSlotRadius(p->mCollisionSlotIndex, p->mRadius + 0xa000);
-    InitCourseColorBlend(p->mUnk_7c.mUnk_00, 1);
-    p->mUnk_90 = NULL;
-    p->mUnk_f0 = data_02159ca0;
-    p->mUnk_fc = 0;
-    p->mUnk_100 = 0;
-    p->mUnk_104->mUnk_00 = NULL;
-    p->mUnk_108.x = 0;
-    p->mUnk_108.y = 0;
-    p->mUnk_108.z = 0;
-    p->mUnk_114 = 5;
-    p->mUnk_116 = 0;
-    p->mUnk_118 = 0;
-    p->mUnk_11a = 0;
-    p->mAgeFrames = 1;
-    if ((p->mFlags & 0x400000) == 0) {
-        k = p->mKind;
-        func_02109038(p, gItemKinds[k].mUnk_a0, &p->mPos);
-        SetSoundSourceEnabled(&p->mSoundSource, 1);
-        p->mFlags |= 0x400000;
+    item->mScale.z = 0xccd;
+    kind = item->mKind;
+    item->mFlags |= 0x40;
+    item->mScale.y = item->mScale.z;
+    item->mScale.x = item->mScale.y;
+    kindInfo = &gItemKinds[kind];
+    kindRadius = kindInfo->mUnk_6c;
+    item->mUnk_dc = ((s64) item->mScale.y * kindInfo->mUnk_64) >> 12;
+    item->mRadius = ((s64) item->mScale.y * kindRadius) >> 12;
+    SetCollisionSlotRadius(item->mCollisionSlotIndex, item->mRadius + 0xa000);
+    InitCourseColorBlend(item->mColorBlend.mUnk_00, 1);
+    item->mUnk_90 = NULL;
+    item->mNormal = data_02159ca0;
+    item->mCollisionBits = 0;
+    item->mUnk_100 = 0;
+    item->mUnk_104->mUnk_00 = NULL;
+    item->mUnk_108.x = 0;
+    item->mUnk_108.y = 0;
+    item->mUnk_108.z = 0;
+    item->mUnk_114 = 5;
+    item->mUnk_116 = 0;
+    item->mUnk_118 = 0;
+    item->mUnk_11a = 0;
+    item->mAgeFrames = 1;
+    if ((item->mFlags & 0x400000) == 0) {
+        kind = item->mKind;
+        func_02109038(item, gItemKinds[kind].mUnk_a0, &item->mPos);
+        SetSoundSourceEnabled(&item->mSoundSource, 1);
+        item->mFlags |= 0x400000;
     }
-    k = p->mKind;
-    f = gItemKinds[k].mAdvance;
-    if ((p->mFlags & 0x180000) == 0) {
-        p->mAdvance = f;
+    kind = item->mKind;
+    advance = gItemKinds[kind].mAdvance;
+    if ((item->mFlags & 0x180000) == 0) {
+        item->mAdvance = advance;
     }
-    if ((p->mUnk_78 & 0xf00) != 0) {
+    if ((item->mUnk_78 & 0xf00) != 0) {
         return;
     }
-    k = p->mKind;
-    if (gItemKinds[k].mUnk_54 != 0) {
+    kind = item->mKind;
+    if (gItemKinds[kind].mUnk_54 != 0) {
         return;
     }
-    a = p->mCollisionSlotIndex != -1;
-    if (a != FALSE) {
+    hasCollisionSlot = item->mCollisionSlotIndex != -1;
+    if (hasCollisionSlot != FALSE) {
         return;
     }
-    if (a != FALSE) {
+    if (hasCollisionSlot != FALSE) {
         return;
     }
-    p->mCollisionSlotIndex = CreateCollisionSlot(&p->mPos, p->mRadius + 0xa000, 0x4000, p);
+    item->mCollisionSlotIndex = CreateCollisionSlot(&item->mPos, item->mRadius + 0xa000, 0x4000, item);
 }

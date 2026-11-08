@@ -85,10 +85,10 @@ void AdvanceItemGesso(ItemGesso *p) {
         p->mUnk_198 = FALSE;
     }
     v = p->mUnk_148;
-    if (p->mUnk_000.mUnk_d8 < 0x1f && p->mUnk_194 == 0 && p->mUnk_198 != FALSE) {
-        p->mUnk_000.mUnk_d8 = p->mUnk_000.mUnk_d8 + 7;
-        if (p->mUnk_000.mUnk_d8 > 0x1f) {
-            p->mUnk_000.mUnk_d8 = 0x1f;
+    if (p->mUnk_000.mAlpha < 0x1f && p->mUnk_194 == 0 && p->mUnk_198 != FALSE) {
+        p->mUnk_000.mAlpha = p->mUnk_000.mAlpha + 7;
+        if (p->mUnk_000.mAlpha > 0x1f) {
+            p->mUnk_000.mAlpha = 0x1f;
         }
     }
     p->mUnk_16c = p->mUnk_16c - 1;
@@ -103,13 +103,13 @@ void AdvanceItemGesso(ItemGesso *p) {
         p->mUnk_148 = ((s64) p->mUnk_148 * f) >> 12;
         p->mUnk_14c = ((s64) p->mUnk_14c * f) >> 12;
         if (p->mUnk_194 != 0) {
-            p->mUnk_000.mUnk_d8 = p->mUnk_000.mUnk_d8 - p->mUnk_170;
-            if (p->mUnk_000.mUnk_d8 >= 1) {
+            p->mUnk_000.mAlpha = p->mUnk_000.mAlpha - p->mUnk_170;
+            if (p->mUnk_000.mAlpha >= 1) {
                 p->mUnk_16c = 0;
             } else {
                 p->mUnk_16c = -1 - p->mUnk_170;
                 p->mUnk_198 = FALSE;
-                p->mUnk_000.mUnk_d8 = 1;
+                p->mUnk_000.mAlpha = 1;
             }
         }
         if (p->mUnk_16c < -p->mUnk_170) {
@@ -179,14 +179,14 @@ void DrawItemGesso(ItemGesso *p, s32 param_2, Unk020e6488 *t) {
     k = func_0203c5e4() != 0 ? 0xccd : 0x119a;
     w.x = ((s64) w.x * k) >> 12;
     w.y = ((s64) w.y * k) >> 12;
-    d = p->mUnk_000.mUnk_d8;
+    d = p->mUnk_000.mAlpha;
     if (d != 0x1f) {
         t->mUnk_14 = t->mUnk_14 & ~0x1f0000;
         t->mUnk_14 = t->mUnk_14 | ((u16) d << 16);
     }
     func_020e6a18(t);
     func_020e67c4(t, &s, &w, 0, 0x1f);
-    if (p->mUnk_000.mUnk_d8 == 0x1f) {
+    if (p->mUnk_000.mAlpha == 0x1f) {
         return;
     }
     t->mUnk_14 = t->mUnk_14 & ~0x1f0000;

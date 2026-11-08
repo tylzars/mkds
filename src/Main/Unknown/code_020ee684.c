@@ -226,7 +226,7 @@ void func_020f0b00(ItemPool *v1, s32 a, void *b, s32 c) {
     i = v1->mTakenCount;
     v1->mTakenCount = i + 1;
     e = v1->mObjects[i];
-    func_020f9054(e, v1->mKind, b, c);
+    ResetItemObjectFromData(e, v1->mKind, b, c);
     v1->mReservedCount = v1->mReservedCount + 1;
     k = v1->mActiveCount;
     n = v1->mTakenCount;
@@ -451,10 +451,10 @@ void func_020f0684(ItemObject **p, s32 i, s32 n, s32 v1) {
             }
             j = 0;
             do {
-                if ((w->mUnk_fc & data_021595e4[j]) != 0) {
+                if ((w->mCollisionBits & data_021595e4[j]) != 0) {
                     goto next;
                 }
-                if ((v->mUnk_fc & data_021595e4[j]) != 0) {
+                if ((v->mCollisionBits & data_021595e4[j]) != 0) {
                     p[i - 1] = w;
                     p[i] = v;
                     goto next;
@@ -849,8 +849,8 @@ void StartLastItemInUseObjectAndInit(ItemInUse *a, s32 f) {
             f = 0;
         }
     }
-    b->mUnk_d4 = gItemKinds[b->mKind].mViewTest(b->mUnk_d0, b->mRadius << 1, gItemKinds[b->mKind].mUnk_5c,
-                                                gItemKinds[b->mKind].mUnk_a4, 0x1f);
+    b->mDistanceSquaredAndFlags = gItemKinds[b->mKind].mViewTest(
+        b->mUnk_d0, b->mRadius << 1, gItemKinds[b->mKind].mUnk_5c, gItemKinds[b->mKind].mUnk_a4, 0x1f);
     if (b->mFlags & 0x400000) {
         func_020f90bc(b);
     }
@@ -1187,7 +1187,7 @@ void RemoveItemInUseTrail(ItemInUse *a, s32 i, ItemObject *v) {
             StartLastItemInUseObjectAndInit(a, 0);
             f = f + 0x4cd;
             if (k++ > 0) {
-                VEC_MultAdd(f, &e->mUnk_f0, &e->mVelocity, &e->mVelocity);
+                VEC_MultAdd(f, &e->mNormal, &e->mVelocity, &e->mVelocity);
             }
         } while (a->mObjectCount > (b = i + 1));
         f = d + 1;

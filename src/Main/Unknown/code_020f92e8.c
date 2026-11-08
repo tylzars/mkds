@@ -3,7 +3,7 @@
 #include "Main/Unknown/code_020f36d8.h"
 
 void func_020f9320(ItemObject *item, u32 clearBits) {
-    item->mUnk_fc = (((item->mUnk_fc)) & ((~(clearBits))));
+    item->mCollisionBits = (((item->mCollisionBits)) & ((~(clearBits))));
 }
 
 void BounceItemVelocityOffSurface(Vec3 *velocity, Vec3 *normal) {

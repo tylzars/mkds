@@ -88,7 +88,7 @@ BOOL UpdateItemObject(ItemPool *a, ItemObject *p, s32 f) {
         p->mUnk_116 += 1;
     }
     if (!(p->mFlags & 0x8000)) {
-        p->mUnk_fc = 0;
+        p->mCollisionBits = 0;
     }
     if (!(p->mFlags & 0x800000)) {
         if (p->mUnk_100 == 0) {
@@ -135,11 +135,11 @@ BOOL UpdateItemObject(ItemPool *a, ItemObject *p, s32 f) {
             }
         }
     }
-    v = p->mUnk_fc;
+    v = p->mCollisionBits;
     if (p->mFlags & 0x8000) {
-        AdvanceCourseColorBlend(&p->mUnk_7c, (v & 0x3c000000) >> 26, 0x800);
+        AdvanceCourseColorBlend(&p->mColorBlend, (v & 0x3c000000) >> 26, 0x800);
     } else {
-        AdvanceCourseColorBlend(&p->mUnk_7c, (v & 0x3c000000) >> 26, 0x5000);
+        AdvanceCourseColorBlend(&p->mColorBlend, (v & 0x3c000000) >> 26, 0x5000);
     }
     if (v & 0x1e34ef) {
         p->mUnk_114 = 0;
@@ -178,8 +178,8 @@ BOOL UpdateItemObject(ItemPool *a, ItemObject *p, s32 f) {
         p->mFlags &= ~0x20000;
     } else {
         p->mFlags |= 0x20000;
-        if (p->mUnk_f0.y < 0xfae && !(p->mFlags & 0x40000080)) {
-            func_020eac20(&p->mUnk_f0, 0xcd);
+        if (p->mNormal.y < 0xfae && !(p->mFlags & 0x40000080)) {
+            func_020eac20(&p->mNormal, 0xcd);
         }
     }
     if (p->mUnk_116 < 5) {
@@ -189,8 +189,8 @@ BOOL UpdateItemObject(ItemPool *a, ItemObject *p, s32 f) {
     }
     k = p->mKind;
     m = gItemKinds[k].mUnk_60;
-    p->mUnk_d4 = a->mUnk_28(p->mUnk_d0, p->mRadius * m, a->mUnk_38, a->mUnk_3c, 0x1f);
-    if (p->mUnk_d4 & 3) {
+    p->mDistanceSquaredAndFlags = a->mUnk_28(p->mUnk_d0, p->mRadius * m, a->mUnk_38, a->mUnk_3c, 0x1f);
+    if (p->mDistanceSquaredAndFlags & 3) {
         p->mFlags |= 0x10000;
     } else {
         p->mFlags &= ~0x10000;

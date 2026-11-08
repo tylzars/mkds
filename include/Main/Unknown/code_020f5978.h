@@ -4,4 +4,4 @@
 
 typedef struct ItemKouraR ItemKouraR;
 
-void UpdateItemKouraRState3(ItemKouraR *a);
+void UpdateItemKouraRState3(ItemKouraR *kouraR);

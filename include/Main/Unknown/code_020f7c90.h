@@ -17,14 +17,14 @@ extern ItemSlotTable data_0217bc64;
 
 extern ItemSlotTable data_0217bc6c;
 
-// Element of the table behind data_02159c3c, 0xe bytes.
-typedef struct Unk02159c3c {
-    /* 00 */ u16 mUnk_00[7];
-} Unk02159c3c;
+// Element of the table behind gItemSlotRowRemaps, 0xe bytes.
+typedef struct ItemSlotRowRemap {
+    /* 00 */ u16 mSourceRowNumbers[7];
+} ItemSlotRowRemap;
 
-extern Unk02159c3c data_02159c3c[];
+extern ItemSlotRowRemap gItemSlotRowRemaps[];
 
-void func_020f80c0(ItemSlotTable *a, s32 b);
+void func_020f80c0(ItemSlotTable *table, s32 kartCount);
 void CreateItemSlotTables(void);
-u8 func_020f7ea8(ItemObject *a, ItemObject *b);
-void func_020f7c90(ItemObject *a, Vec3 *b, Vec3 *c);
+u8 GetItemObjectHitType(ItemObject *itemParam, ItemObject *otherParam);
+void func_020f7c90(ItemObject *item, Vec3 *otherPos, Vec3 *normal);

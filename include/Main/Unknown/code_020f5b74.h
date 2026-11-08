@@ -4,4 +4,4 @@
 
 typedef struct ItemKouraR ItemKouraR;
 
-void EnterItemKouraRState3(ItemKouraR *p0);
+void EnterItemKouraRState3(ItemKouraR *kouraR);

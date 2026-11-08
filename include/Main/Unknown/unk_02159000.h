@@ -65,7 +65,7 @@ extern u16 data_02159b6c;
 extern u16 data_02159b68;
 extern u16 data_02159b70;
 extern u16 data_02159b74;
-extern u8 data_02159b78[];
+extern u8 gItemHitTypes[];
 extern Vec3 data_02159ca0;
 extern u16 data_02159cac;
 extern const u16 data_02159cbc;

@@ -187,17 +187,17 @@ void func_020ece1c(Unk020ec8bc *p, s32 a, s32 b, s32 c) {
         v.x -= (s32) (((u64) ((s64) r->x * s)) >> 12);
         v.y -= (s32) (((u64) ((s64) r->y * s)) >> 12);
         v.z -= (s32) (((u64) ((s64) r->z * s)) >> 12);
-        s = VEC_DotProduct(&p->mUnk_000.mUnk_000.mUnk_f0, &v);
-        v.x -= (s32) (((u64) ((s64) p->mUnk_000.mUnk_000.mUnk_f0.x * s)) >> 12);
-        v.y -= (s32) (((u64) ((s64) p->mUnk_000.mUnk_000.mUnk_f0.y * s)) >> 12);
-        v.z -= (s32) (((u64) ((s64) p->mUnk_000.mUnk_000.mUnk_f0.z * s)) >> 12);
+        s = VEC_DotProduct(&p->mUnk_000.mUnk_000.mNormal, &v);
+        v.x -= (s32) (((u64) ((s64) p->mUnk_000.mUnk_000.mNormal.x * s)) >> 12);
+        v.y -= (s32) (((u64) ((s64) p->mUnk_000.mUnk_000.mNormal.y * s)) >> 12);
+        v.z -= (s32) (((u64) ((s64) p->mUnk_000.mUnk_000.mNormal.z * s)) >> 12);
         VEC_MultAdd(0x29, &v, &p->mUnk_000.mUnk_000.mPos, &p->mUnk_000.mUnk_000.mPos);
         VEC_MultAdd(0x3, &v, r, r);
         return;
     }
     if (Vec3DotUnrounded(r, &v) < 0) {
         w = &p->mUnk_000.mUnk_148;
-        Vec3CrossUnrounded(r, &p->mUnk_000.mUnk_000.mUnk_f0, w);
+        Vec3CrossUnrounded(r, &p->mUnk_000.mUnk_000.mNormal, w);
         if (Vec3DotUnrounded(w, &v) > 0) {
             v = *w;
         } else {
@@ -247,9 +247,9 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
         r->y = 0;
         if (p->mUnk_000.mUnk_158 == 0) {
             VEC_Subtract(q, &v4c, &v4c);
-            w = Vec3DotUnrounded(&v4c, &p->mUnk_000.mUnk_000.mUnk_f0);
+            w = Vec3DotUnrounded(&v4c, &p->mUnk_000.mUnk_000.mNormal);
             if (w > 0) {
-                VEC_MultAdd(-w, &p->mUnk_000.mUnk_000.mUnk_f0, q, q);
+                VEC_MultAdd(-w, &p->mUnk_000.mUnk_000.mNormal, q, q);
             }
         }
     } else {
@@ -265,8 +265,8 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
         q->y = q->y + r->y;
     }
     if (func_01ffdee4(q, &p->mUnk_000.mUnk_000.mPrevPos, 0, p->mUnk_000.mUnk_000.mUnk_dc, 4,
-                      p->mUnk_000.mUnk_000.mCollisionSlotIndex, &v28, &v34, (s32 *) &v40, &p->mUnk_000.mUnk_000.mUnk_fc,
-                      NULL, NULL, NULL, NULL) != 0) {
+                      p->mUnk_000.mUnk_000.mCollisionSlotIndex, &v28, &v34, (s32 *) &v40,
+                      &p->mUnk_000.mUnk_000.mCollisionBits, NULL, NULL, NULL, NULL) != 0) {
         if (p->mUnk_000.mUnk_158 != 0) {
             if (v28.y > 0) {
                 q->y = q->y + v28.y;
@@ -274,21 +274,21 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
         } else {
             VEC_Add(&v28, q, q);
         }
-        if (p->mUnk_000.mUnk_000.mUnk_fc & 0x1e34ef) {
+        if (p->mUnk_000.mUnk_000.mCollisionBits & 0x1e34ef) {
             s = VEC_DotProduct(&v34, r);
             r->x -= (s32) (((u64) ((s64) v34.x * s)) >> 12);
             r->y -= (s32) (((u64) ((s64) v34.y * s)) >> 12);
             r->z -= (s32) (((u64) ((s64) v34.z * s)) >> 12);
-            s = (v34.x == p->mUnk_000.mUnk_000.mUnk_f0.x && v34.y == p->mUnk_000.mUnk_000.mUnk_f0.y &&
-                 v34.z == p->mUnk_000.mUnk_000.mUnk_f0.z)
+            s = (v34.x == p->mUnk_000.mUnk_000.mNormal.x && v34.y == p->mUnk_000.mUnk_000.mNormal.y &&
+                 v34.z == p->mUnk_000.mUnk_000.mNormal.z)
                     ? 1
                     : 0;
             if (s == 0) {
-                p->mUnk_000.mUnk_000.mUnk_f0 = v34;
+                p->mUnk_000.mUnk_000.mNormal = v34;
                 p->mUnk_000.mUnk_000.mFlags |= 0x100;
             }
         }
-        if ((p->mUnk_000.mUnk_000.mUnk_fc & 0x214300) != 0 && p->mUnk_000.mUnk_15c != FALSE) {
+        if ((p->mUnk_000.mUnk_000.mCollisionBits & 0x214300) != 0 && p->mUnk_000.mUnk_15c != FALSE) {
             s = VEC_DotProduct(&v40, r);
             v28.x = ((u64) ((s64) v40.x * s)) >> 12;
             v28.y = ((u64) ((s64) v40.y * s)) >> 12;
@@ -303,7 +303,7 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
             func_020f6fc4(p, 1);
             return;
         }
-        if (p->mUnk_000.mUnk_000.mUnk_fc & 0x8000) {
+        if (p->mUnk_000.mUnk_000.mCollisionBits & 0x8000) {
             if (p->mUnk_000.mUnk_000.mKind != 5) {
                 func_020f7070(p, 1);
                 return;

@@ -23,7 +23,7 @@ void func_020f77f8(ItemObject *itemParam, s32 hitType, Vec3 *otherPos, Vec3 *oth
     Vec3 offset;
     Vec3 direction;
     Vec3 push;
-    s32 i;
+    s32 soundId;
     s32 n;
     s32 radius;
     void (*soundCallback)(ItemObject *, s32);
@@ -31,7 +31,7 @@ void func_020f77f8(ItemObject *itemParam, s32 hitType, Vec3 *otherPos, Vec3 *oth
     if (item->mFlags & 0x80000) {
         return;
     }
-    i = mapObject ? mapObject->mKindData->mUnk_28 : -1;
+    soundId = mapObject ? mapObject->mKindData->mUnk_28 : -1;
     switch (hitType) {
         case 1:
             if (item->mFlags & 0x1000) {
@@ -47,7 +47,7 @@ void func_020f77f8(ItemObject *itemParam, s32 hitType, Vec3 *otherPos, Vec3 *oth
                 if ((s64) offset.x * offset.x + (s64) offset.y * offset.y + (s64) offset.z * offset.z >= 0x10) {
                     Vec3NormalizeAndGetLengthUnchecked(&offset, &offset);
                 }
-                item->mUnk_124(item, otherVelocity, &offset);
+                item->mBounce(item, otherVelocity, &offset);
                 if (item->mFlags & 0x8000) {
                     break;
                 }
@@ -106,22 +106,22 @@ void func_020f77f8(ItemObject *itemParam, s32 hitType, Vec3 *otherPos, Vec3 *oth
                 push.z = ((s64) direction.z * 0x1800) >> 12;
                 func_020f6be8(item, otherPos, &push, &direction);
             }
-            if (i == -1 || (item->mFlags & 0x8000000)) {
+            if (soundId == -1 || (item->mFlags & 0x8000000)) {
                 func_020f6fc4(item, 1);
             } else {
                 n = item->mKind;
                 func_020f7104(item, 1);
                 if (n == 5 || n == 9) {
-                    i = -1;
+                    soundId = -1;
                 }
             }
     }
-    if (i == -1) {
+    if (soundId == -1) {
         return;
     }
     soundCallback = (item->mFlags & 0x400000) ? (void (*)(ItemObject *, s32)) func_020f7c60
                                               : (void (*)(ItemObject *, s32)) func_020f91fc;
-    soundCallback(item, i);
+    soundCallback(item, soundId);
 }
 
 void func_020f7658(ItemObject *item, s32 c) {
@@ -193,11 +193,11 @@ void AdvanceItemObjectReleaseTimer(ItemObject *item) {
     if (item->mFlags & 0x8000) {
         AdvanceRestingItemObject(item);
     }
-    item->mUnk_d8--;
-    if (item->mUnk_d8 <= 0) {
+    item->mAlpha--;
+    if (item->mAlpha <= 0) {
         ReleaseItemPoolObject(&gItemPools[item->mKind], item);
     } else {
-        if (item->mUnk_d8 < 0xa) {
+        if (item->mAlpha < 0xa) {
             FreeItemObjectCollisionSlot((s32) item);
         }
     }

@@ -180,7 +180,7 @@ void EnterItemBombState2(ItemBomb *e) {
             NNS_SndArcPlayerStartSeqArc(p, 0, 0xe0);
         }
     }
-    StartCameraWobbleAtDistance(e->mUnk_000.mItemObject.mUnk_d4 & ~0xc000001f, 0x1000);
+    StartCameraWobbleAtDistance(e->mUnk_000.mItemObject.mDistanceSquaredAndFlags & ~0xc000001f, 0x1000);
 }
 
 void UpdateItemBombState2(ItemBomb *e) {
@@ -276,7 +276,7 @@ void func_020fdd78(ItemBomb *e) {
 void func_020fdc08(ItemBomb *e, ItemBomb *b, Unk021052fc *c) {
     Unk021052fc *v1;
 
-    b->mUnk_000.mItemObject.mUnk_d4 |= data_02159f2c;
+    b->mUnk_000.mItemObject.mDistanceSquaredAndFlags |= data_02159f2c;
     AdvanceStateMachine(&e->mUnk_184);
     if (c->mUnk_00.mFlags & 0x100) {
         e->mUnk_198 = NULL;
@@ -496,10 +496,10 @@ void func_020fd684(void *c, Vec3 *d, Vec3 *f) {
     b = f;
     if (e->mUnk_198 == NULL) {
         e->mUnk_1a0 = TRUE;
-        SetCourseColorBlendColor(e->mUnk_000.mItemObject.mUnk_7c.mUnk_00, 1);
+        SetCourseColorBlendColor(e->mUnk_000.mItemObject.mColorBlend.mUnk_00, 1);
     }
     if (a != NULL) {
-        e->mUnk_000.mItemObject.mUnk_f0 = *a;
+        e->mUnk_000.mItemObject.mNormal = *a;
         e->mUnk_000.mItemObject.mFlags |= 0x80;
     }
     if (b == NULL) {

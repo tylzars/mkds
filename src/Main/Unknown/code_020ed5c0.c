@@ -162,8 +162,8 @@ void func_020ee160(ItemObject *a, ItemObject *b) {
         }
     }
     v = a->mVelocity;
-    n = func_020f7ea8(a, b);
-    m = func_020f7ea8(b, a);
+    n = GetItemObjectHitType(a, b);
+    m = GetItemObjectHitType(b, a);
     func_020f77f8(a, n, &b->mPos, &b->mVelocity, NULL);
     func_020f77f8(b, m, &a->mPos, &v, NULL);
     if (b->mKind != 1) {
@@ -192,8 +192,8 @@ void func_020edf10(ItemInUse *p) {
         VEC_Subtract(&q->mPos, &q->mPrevPos, &q->mVelocity);
         q->mPrevPos = q->mPos;
         if (p->mObjectStartFramesLeft == 0) {
-            q->mUnk_f0 = p->mUnk_02c.mUnk_0c;
-            if (q->mUnk_f0.y < 0xff4) {
+            q->mNormal = p->mUnk_02c.mUnk_0c;
+            if (q->mNormal.y < 0xff4) {
                 q->mFlags |= 0x80;
             }
         }
@@ -386,9 +386,9 @@ void RemoveItemInUseObject(ItemInUse *p, ItemObject *q) {
 }
 
 void *func_020ed98c(ItemObject *p, Vec3 *v) {
-    if (p->mUnk_f0.y < 0xfae || (p->mFlags & 0x80) != 0) {
+    if (p->mNormal.y < 0xfae || (p->mFlags & 0x80) != 0) {
         p->mUnk_94.mUnk_00[2] = *v;
-        Vec3CrossUnrounded(&p->mUnk_f0, &p->mUnk_94.mUnk_00[2], &p->mUnk_94.mUnk_00[0]);
+        Vec3CrossUnrounded(&p->mNormal, &p->mUnk_94.mUnk_00[2], &p->mUnk_94.mUnk_00[0]);
         if ((s64) p->mUnk_94.mUnk_00[0].x * p->mUnk_94.mUnk_00[0].x +
                 (s64) p->mUnk_94.mUnk_00[0].y * p->mUnk_94.mUnk_00[0].y +
                 (s64) p->mUnk_94.mUnk_00[0].z * p->mUnk_94.mUnk_00[0].z >=
@@ -433,9 +433,9 @@ void func_020ed79c(Unk020ed718 *p, Vec3 *v) {
         if ((q->mFlags & 0x1000) != 0) {
             func_0208ab4c(q->mUnk_90);
         } else {
-            func_0208ab4c(q->mUnk_7c.mUnk_00);
+            func_0208ab4c(q->mColorBlend.mUnk_00);
         }
-        if ((d8 = q->mUnk_d8) != 0x1f) {
+        if ((d8 = q->mAlpha) != 0x1f) {
             d->mUnk_14 &= ~0x1f0000;
             d->mUnk_14 |= (u16) d8 << 16;
         }
@@ -443,9 +443,9 @@ void func_020ed79c(Unk020ed718 *p, Vec3 *v) {
             d->mUnk_14 &= ~0x3f000000;
             d->mUnk_14 |= 0x3000000;
         }
-        if (q->mUnk_f0.y < 0xfae || (q->mFlags & 0x80) != 0) {
+        if (q->mNormal.y < 0xfae || (q->mFlags & 0x80) != 0) {
             q->mUnk_94.mUnk_00[2] = *v;
-            Vec3CrossUnrounded(&q->mUnk_f0, &q->mUnk_94.mUnk_00[2], &q->mUnk_94.mUnk_00[0]);
+            Vec3CrossUnrounded(&q->mNormal, &q->mUnk_94.mUnk_00[2], &q->mUnk_94.mUnk_00[0]);
             if ((s64) q->mUnk_94.mUnk_00[0].x * q->mUnk_94.mUnk_00[0].x +
                     (s64) q->mUnk_94.mUnk_00[0].y * q->mUnk_94.mUnk_00[0].y +
                     (s64) q->mUnk_94.mUnk_00[0].z * q->mUnk_94.mUnk_00[0].z >=
@@ -466,7 +466,7 @@ void func_020ed79c(Unk020ed718 *p, Vec3 *v) {
             r = func_020e6b94(q->mUnk_d0);
         }
         func_020e67c4(d, r, &q->mScale, 0, 0x1f);
-        if ((d8 = q->mUnk_d8) != 0x1f) {
+        if ((d8 = q->mAlpha) != 0x1f) {
             d->mUnk_14 &= ~0x1f0000;
             d->mUnk_14 |= 0x1f0000;
         }
@@ -487,7 +487,7 @@ void func_020ed718(Unk020ed718 *p, void *a, void (*cb)(void *, void *, void *)) 
         if ((q->mFlags & 0x1000) != 0) {
             func_0208ab4c(q->mUnk_90);
         } else {
-            func_0208ab4c(q->mUnk_7c.mUnk_00);
+            func_0208ab4c(q->mColorBlend.mUnk_00);
         }
         cb(q, a, gItemModels[p->mUnk_000]);
     }
@@ -497,14 +497,14 @@ void func_020ed5c0(ItemObject *p, Unk020e6488 *q, Vec3 *v) {
     s16 d;
     void *r;
 
-    if ((d = p->mUnk_d8) != 0x1f) {
+    if ((d = p->mAlpha) != 0x1f) {
         q->mUnk_14 &= ~0x1f0000;
         q->mUnk_14 |= (u16) d << 16;
     }
     func_020e6a18(q);
-    if (p->mUnk_f0.y < 0xfae || (p->mFlags & 0x80) != 0) {
+    if (p->mNormal.y < 0xfae || (p->mFlags & 0x80) != 0) {
         p->mUnk_94.mUnk_00[2] = *v;
-        Vec3CrossUnrounded(&p->mUnk_f0, &p->mUnk_94.mUnk_00[2], &p->mUnk_94.mUnk_00[0]);
+        Vec3CrossUnrounded(&p->mNormal, &p->mUnk_94.mUnk_00[2], &p->mUnk_94.mUnk_00[0]);
         if ((s64) p->mUnk_94.mUnk_00[0].x * p->mUnk_94.mUnk_00[0].x +
                 (s64) p->mUnk_94.mUnk_00[0].y * p->mUnk_94.mUnk_00[0].y +
                 (s64) p->mUnk_94.mUnk_00[0].z * p->mUnk_94.mUnk_00[0].z >=
@@ -525,7 +525,7 @@ void func_020ed5c0(ItemObject *p, Unk020e6488 *q, Vec3 *v) {
         r = func_020e6b94(p->mUnk_d0);
     }
     func_020e67c4(q, r, &p->mScale, 0, 0x1f);
-    if ((d = p->mUnk_d8) != 0x1f) {
+    if ((d = p->mAlpha) != 0x1f) {
         q->mUnk_14 &= ~0x1f0000;
         q->mUnk_14 |= 0x1f0000;
     }

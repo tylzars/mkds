@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020f8ddc(void *a);
+void func_020f8ddc(void *itemParam);

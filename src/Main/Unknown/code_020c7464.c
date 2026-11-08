@@ -129,7 +129,7 @@ void UpdateRaceHudSubScreenItemCells(void) {
                 if (position != NULL) {
                     if (ComputeRaceHudSubScreenPosition(
                             position, &gRaceHudSubScreenItemCells->mCells[cellCount].mDrawPos, a, 1, 1) != FALSE) {
-                        if (object->mUnk_d8 > 0) {
+                        if (object->mAlpha > 0) {
                             v = ((ItemTeresa *) object)->mUnk_170;
                             gRaceHudSubScreenItemCells->mCells[cellCount].mDrawPos.mUnk_04 -=
                                 0x88 * v / func_021001a0();

@@ -228,7 +228,7 @@ void TakeHeldItemObjects(HeldItem *rec) {
             elem->mScale.x = 0xcd;
             elem->mScale.y = 0xcd;
             elem->mScale.z = 0xcd;
-            elem->mUnk_7c = *halves;
+            elem->mColorBlend = *halves;
             i++;
         } while (i < count);
     }
@@ -738,7 +738,7 @@ void ThrowBouncingItem(BouncingItemObject *p, ItemInUse *a, s32 b, s32 c, s32 d,
         u->z = 0xccd;
     }
     p->mBouncesRemaining = b;
-    p->mItemObject.mUnk_124 = BounceItemObject;
+    p->mItemObject.mBounce = BounceItemObject;
     p->mItemObject.mFlags &= ~0x7000000;
     if (!m) {
         return;
@@ -764,7 +764,7 @@ void InitBouncingItem(BouncingItemObject *a, s32 b, Vec3 *c) {
         a->mItemObject.mScale.z = 0xccd;
     }
     a->mBouncesRemaining = b;
-    a->mItemObject.mUnk_124 = BounceItemObject;
+    a->mItemObject.mBounce = BounceItemObject;
     a->mItemObject.mFlags &= ~0x7000000;
 }
 
@@ -784,9 +784,9 @@ void AdvanceBouncingItem(BouncingItemObject *a, s32 b, s32 c, s32 d, u32 *e) {
     p->y = ((s64) p->y * c) >> 12;
     p->z = ((s64) p->z * c) >> 12;
     if (func_01ffdee4(q, &a->mItemObject.mPrevPos, 0, a->mItemObject.mUnk_dc, 0x24, a->mItemObject.mCollisionSlotIndex,
-                      &t, &u, (s32 *) &v, &a->mItemObject.mUnk_fc, NULL, NULL, NULL, e) != 0) {
+                      &t, &u, (s32 *) &v, &a->mItemObject.mCollisionBits, NULL, NULL, NULL, e) != 0) {
         VEC_Add(&t, q, q);
-        if (a->mItemObject.mUnk_fc & 0x1e34ef) {
+        if (a->mItemObject.mCollisionBits & 0x1e34ef) {
             n = a->mBouncesRemaining;
             a->mBouncesRemaining = n - 1;
             if (n <= 0) {
@@ -804,10 +804,10 @@ void AdvanceBouncingItem(BouncingItemObject *a, s32 b, s32 c, s32 d, u32 *e) {
                 p->y = ((s64) p->y * 0x8cd) >> 12;
                 p->z = ((s64) p->z * 0x8cd) >> 12;
                 VEC_MultAdd(-d, &t, p, p);
-                a->mItemObject.mUnk_f0 = u;
+                a->mItemObject.mNormal = u;
             }
         }
-        if (a->mItemObject.mUnk_fc & 0x214300) {
+        if (a->mItemObject.mCollisionBits & 0x214300) {
             a->mItemObject.mFlags |= 0x20;
             BounceItemVelocityOffSurface(p, &v);
             if (func_020f9290(a, &v) != FALSE) {
@@ -815,13 +815,13 @@ void AdvanceBouncingItem(BouncingItemObject *a, s32 b, s32 c, s32 d, u32 *e) {
             }
             a->mItemObject.mUnk_78 &= ~0x4000;
         }
-        if (a->mItemObject.mUnk_fc & 0x8000) {
+        if (a->mItemObject.mCollisionBits & 0x8000) {
             func_020f7070(a, 1);
             return;
         }
     }
     a->mItemObject.mFlags &= ~0x4000000;
-    if (a->mItemObject.mUnk_fc & 0x1e34ef) {
+    if (a->mItemObject.mCollisionBits & 0x1e34ef) {
         return;
     }
     p->y -= b;

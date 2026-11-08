@@ -80,20 +80,20 @@ typedef struct ItemObject {
     /* 74 */ u32 mFlags;
     /* 78 */ u16 mUnk_78;
     /* 7a */ u16 mUnk_7a;
-    /* 7c */ Unk020f41c4_C mUnk_7c;
+    /* 7c */ Unk020f41c4_C mColorBlend;
     /* 08e */ u8 mUnk_08e[2];
     /* 090 */ u16 *mUnk_90;
     /* 094 */ MtxFx43 mUnk_94;
     /* 0c4 */ Vec3 mDrawPos;
     /* d0 */ Vec3 *mUnk_d0;
-    /* 0d4 */ s32 mUnk_d4;
-    /* 0d8 */ s16 mUnk_d8;
+    /* 0d4 */ s32 mDistanceSquaredAndFlags;
+    /* 0d8 */ s16 mAlpha;
     /* 0da */ s16 mCollisionSlotIndex;
     /* 0dc */ s32 mUnk_dc;
     /* e0 */ s32 mRadius;
     /* 0e4 */ Vec3 mPrevPos;
-    /* 0f0 */ Vec3 mUnk_f0;
-    /* fc */ u32 mUnk_fc;
+    /* 0f0 */ Vec3 mNormal;
+    /* fc */ u32 mCollisionBits;
     /* 100 */ s32 mUnk_100;
     /* 104 */ struct Unk020e04b0 *mUnk_104;
     /* 108 */ Vec3 mUnk_108;
@@ -105,7 +105,7 @@ typedef struct ItemObject {
     // mode 5); held objects count too.
     /* 11c */ s32 mAgeFrames;
     /* 120 */ void (*mAdvance)(struct ItemObject *);
-    /* 124 */ void (*mUnk_124)(struct ItemObject *, Vec3 *, Vec3 *);
+    /* 124 */ void (*mBounce)(struct ItemObject *, Vec3 *, Vec3 *);
     /* 128 */ u8 mUnk_128;
     /* 129 */ u8 mUnk_129[3];
 } ItemObject;

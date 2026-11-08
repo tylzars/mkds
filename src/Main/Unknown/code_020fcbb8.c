@@ -80,7 +80,7 @@ BOOL TrySetItemKouraWKartItems(ItemKouraW *item, s32 kartIndex) {
         if (offsetX * offsetX + offsetZ * offsetZ > (shortRange ? 0x9c40 : 0x27100)) {
             return FALSE;
         }
-        normalDistance = Vec3DotUnrounded(&item->mUnk_000.mUnk_f0, &v) >> 12;
+        normalDistance = Vec3DotUnrounded(&item->mUnk_000.mNormal, &v) >> 12;
         if (normalDistance * normalDistance > 0x9c4) {
             return FALSE;
         }

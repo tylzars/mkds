@@ -30,8 +30,8 @@ typedef struct KartItems {
     // Always the record itself (the roulette functions take a part that points to its owner)
     /* 018 */ struct KartItems *mSelf;
     /* 01c */ BOOL mUnk_01c;
-    /* 020 */ BOOL mUnk_020;
-    /* 024 */ s32 mUnk_024;
+    /* 020 */ BOOL mResultPending;
+    /* 024 */ s32 mIsPeer;
     /* 028 */ u32 mUnk_028;
     /* 02c */ s32 mUnk_02c;
     // Record of the held item (HeldItem: item at 0, 0x13 = none, uses left at 8)

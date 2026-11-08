@@ -5,7 +5,7 @@ void *func_020f7c60(SoundSource *source, u32 soundId) {
     SoundSource *sourceCopy = source;
     u32 soundIdCopy = soundId;
     u32 volume;
-    u32 value3;
+    u32 zero;
     u32 soundIdCompared;
     u32 skipId;
     soundIdCompared = soundIdCopy;
@@ -18,6 +18,6 @@ void *func_020f7c60(SoundSource *source, u32 soundId) {
         return sourceCopy;
     }
     volume = 0x7fu;
-    value3 = 0u;
-    return StartSound(sourceCopy, soundIdCopy, volume, value3);
+    zero = 0u;
+    return StartSound(sourceCopy, soundIdCopy, volume, zero);
 }

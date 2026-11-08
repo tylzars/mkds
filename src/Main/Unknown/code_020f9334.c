@@ -24,260 +24,263 @@
 #include "Main/Unknown/code_02109000.h"
 #include "code_02147cd8.h"
 
-BOOL func_020f9c08(ItemObject *param_1) {
-    if (param_1->mAgeFrames > 0x12c && (param_1->mFlags & 0x8000) != 0 &&
-        param_1->mAdvance == (void (*)(ItemObject *)) AdvanceRestingItemObject) {
+BOOL func_020f9c08(ItemObject *item) {
+    if (item->mAgeFrames > 0x12c && (item->mFlags & 0x8000) != 0 &&
+        item->mAdvance == (void (*)(ItemObject *)) AdvanceRestingItemObject) {
         return TRUE;
     }
     return FALSE;
 }
 
-void func_020f9ba8(ItemObject *param_1) {
-    if (param_1->mAgeFrames <= 0x12c) {
+void func_020f9ba8(ItemObject *item) {
+    if (item->mAgeFrames <= 0x12c) {
         return;
     }
-    if ((param_1->mFlags & 0x8000) == 0) {
+    if ((item->mFlags & 0x8000) == 0) {
         return;
     }
-    if (param_1->mAdvance != (void (*)(ItemObject *)) AdvanceRestingItemObject) {
+    if (item->mAdvance != (void (*)(ItemObject *)) AdvanceRestingItemObject) {
         return;
     }
-    func_020f7658(param_1, 1);
+    func_020f7658(item, 1);
 }
 
-void func_020f9b0c(ItemObject *param_1) {
-    if ((param_1->mFlags & 0x8000) != 0) {
-        func_020f7658(param_1, 1);
+void func_020f9b0c(ItemObject *item) {
+    if ((item->mFlags & 0x8000) != 0) {
+        func_020f7658(item, 1);
         return;
     }
-    param_1->mVelocity.x = ((s64) param_1->mVelocity.x * 0x99a) >> 12;
-    param_1->mVelocity.y = ((s64) param_1->mVelocity.y * 0x99a) >> 12;
-    param_1->mVelocity.z = ((s64) param_1->mVelocity.z * 0x99a) >> 12;
-    func_020f6fc4(param_1, 1);
+    item->mVelocity.x = ((s64) item->mVelocity.x * 0x99a) >> 12;
+    item->mVelocity.y = ((s64) item->mVelocity.y * 0x99a) >> 12;
+    item->mVelocity.z = ((s64) item->mVelocity.z * 0x99a) >> 12;
+    func_020f6fc4(item, 1);
 }
 
-void ResetItemObject(ItemObject *param_1, s32 param_2) {
-    void (*f)(void *);
+void ResetItemObject(ItemObject *item, s32 kind) {
+    void (*reset)(void *);
 
-    f = gItemKinds[param_2].mReset;
-    param_1->mKind = param_2;
-    param_1->mFlags = 0;
-    param_1->mUnk_7a = 0;
-    param_1->mScale.x = 0;
-    param_1->mScale.y = 0;
-    param_1->mScale.z = 0;
-    param_1->mUnk_100 = 0;
-    param_1->mUnk_dc = 0x7b;
-    param_1->mRadius = 0x7b;
-    param_1->mUnk_d8 = 0x1f;
-    param_1->mUnk_fc = 0;
-    param_1->mUnk_118 = 0;
-    param_1->mUnk_114 = 5;
-    param_1->mUnk_124 = NULL;
-    param_1->mUnk_d0 = &param_1->mPos;
-    param_1->mCollisionSlotIndex = -1;
-    param_1->mUnk_104->mUnk_00 = NULL;
+    reset = gItemKinds[kind].mReset;
+    item->mKind = kind;
+    item->mFlags = 0;
+    item->mUnk_7a = 0;
+    item->mScale.x = 0;
+    item->mScale.y = 0;
+    item->mScale.z = 0;
+    item->mUnk_100 = 0;
+    item->mUnk_dc = 0x7b;
+    item->mRadius = 0x7b;
+    item->mAlpha = 0x1f;
+    item->mCollisionBits = 0;
+    item->mUnk_118 = 0;
+    item->mUnk_114 = 5;
+    item->mBounce = NULL;
+    item->mUnk_d0 = &item->mPos;
+    item->mCollisionSlotIndex = -1;
+    item->mUnk_104->mUnk_00 = NULL;
     if (gRaceSetup->mMode == 5) {
-        param_1->mFlags |= 0x8000000;
+        item->mFlags |= 0x8000000;
     }
-    param_1->mUnk_78 |= data_02159cac;
-    InitCourseColorBlend(param_1->mUnk_7c.mUnk_00, 1);
-    param_1->mUnk_90 = NULL;
-    if (f != NULL) {
-        f(param_1);
+    item->mUnk_78 |= data_02159cac;
+    InitCourseColorBlend(item->mColorBlend.mUnk_00, 1);
+    item->mUnk_90 = NULL;
+    if (reset != NULL) {
+        reset(item);
     }
-    param_1->mUnk_128 = 0;
+    item->mUnk_128 = 0;
 }
 
-void ResetItemObjectAtPos(ItemObject *param_1, s32 param_2, u16 param_3, Vec3 *param_4) {
-    param_1->mPos = *param_4;
-    param_1->mUnk_78 = param_3;
-    ResetItemObject(param_1, param_2);
-    if ((param_1->mFlags & 0x8000000) == 0) {
+void ResetItemObjectAtPos(ItemObject *item, s32 kind, u16 ownerAndFlags, Vec3 *pos) {
+    item->mPos = *pos;
+    item->mUnk_78 = ownerAndFlags;
+    ResetItemObject(item, kind);
+    if ((item->mFlags & 0x8000000) == 0) {
         return;
     }
-    param_1->mId = ComputeItemObjectId(param_1);
+    item->mId = ComputeItemObjectId(item);
 }
 
-void ReleaseItemObject(ItemObject *param_1) {
-    enum { K0 } k;
+void ReleaseItemObject(ItemObject *item) {
+    enum { K0 } kind;
 
-    if (param_1->mCollisionSlotIndex != -1) {
-        param_1->mCollisionSlotIndex = FreeCollisionSlot(param_1->mCollisionSlotIndex);
+    if (item->mCollisionSlotIndex != -1) {
+        item->mCollisionSlotIndex = FreeCollisionSlot(item->mCollisionSlotIndex);
     }
-    if ((param_1->mFlags & 0x400000) != 0) {
-        func_02109054(&param_1->mSoundSource);
-        param_1->mSoundSource.mUnk_30 = NULL;
-        param_1->mFlags &= ~0x400000;
+    if ((item->mFlags & 0x400000) != 0) {
+        func_02109054(&item->mSoundSource);
+        item->mSoundSource.mUnk_30 = NULL;
+        item->mFlags &= ~0x400000;
     }
-    param_1->mFlags |= 4;
-    k = param_1->mKind;
-    if (gItemKinds[k].mRelease != NULL) {
-        gItemKinds[k].mRelease(param_1);
+    item->mFlags |= 4;
+    kind = item->mKind;
+    if (gItemKinds[kind].mRelease != NULL) {
+        gItemKinds[kind].mRelease(item);
     }
 }
 
-void func_020f98a0(ItemObject *param_1, Vec3 *param_2, Vec3 *param_3, u16 *param_4, s32 param_5) {
-    ItemObject *a = param_1;
-    a->mPrevPos = *param_2;
-    if (param_4 != NULL) {
-        a->mUnk_7c = *(Unk020f41c4_C *) param_4;
+void func_020f98a0(ItemObject *itemParam, Vec3 *prevPos, Vec3 *normal, u16 *colorBlend, s32 param_5) {
+    ItemObject *item = itemParam;
+    item->mPrevPos = *prevPos;
+    if (colorBlend != NULL) {
+        item->mColorBlend = *(Unk020f41c4_C *) colorBlend;
     } else {
-        InitCourseColorBlend(a->mUnk_7c.mUnk_00, 1);
+        InitCourseColorBlend(item->mColorBlend.mUnk_00, 1);
     }
-    a->mUnk_f0 = *param_3;
-    a->mUnk_116 = param_5 != 0 ? 0 : 5;
+    item->mNormal = *normal;
+    item->mUnk_116 = param_5 != 0 ? 0 : 5;
 }
 
-s32 func_020f9880(ItemObject *param_1) {
-    return gItemKinds[param_1->mKind].mUnk_84;
+s32 func_020f9880(ItemObject *item) {
+    return gItemKinds[item->mKind].mUnk_84;
 }
 
-BOOL func_020f97e0(ItemObject *param_1, Kart *param_2) {
-    Vec3 d;
-    s32 n;
+BOOL func_020f97e0(ItemObject *item, Kart *kart) {
+    Vec3 offset;
+    s32 hitRadius;
 
-    if (param_1->mCollisionSlotIndex == -1 ||
-        param_2->mIndex == (u16) ((param_1->mUnk_78 & 0x4000) != 0 ? (u16) (param_1->mUnk_78 & ~0xff00) : 8)) {
+    if (item->mCollisionSlotIndex == -1 ||
+        kart->mIndex == (u16) ((item->mUnk_78 & 0x4000) != 0 ? (u16) (item->mUnk_78 & ~0xff00) : 8)) {
         return FALSE;
     }
-    n = param_2->mRadius + param_1->mRadius;
-    d.x = param_1->mPos.x - param_2->mPointAlongUp.x;
-    d.y = param_1->mPos.y - param_2->mPointAlongUp.y;
-    d.z = param_1->mPos.z - param_2->mPointAlongUp.z;
-    return (s64) d.x * d.x + (s64) d.y * d.y + (s64) d.z * d.z < (s64) n * n;
+    hitRadius = kart->mRadius + item->mRadius;
+    offset.x = item->mPos.x - kart->mPointAlongUp.x;
+    offset.y = item->mPos.y - kart->mPointAlongUp.y;
+    offset.z = item->mPos.z - kart->mPointAlongUp.z;
+    return (s64) offset.x * offset.x + (s64) offset.y * offset.y + (s64) offset.z * offset.z <
+           (s64) hitRadius * hitRadius;
 }
 
-BOOL IsItemObjectOverlappingSphere(ItemObject *param_1, Vec3 *param_2, s32 param_3) {
-    Vec3 d;
-    s32 n;
+BOOL IsItemObjectOverlappingSphere(ItemObject *item, Vec3 *center, s32 radius) {
+    Vec3 offset;
+    s32 sumRadius;
 
-    n = param_3 + param_1->mRadius;
-    d.x = param_1->mPos.x - param_2->x;
-    d.y = param_1->mPos.y - param_2->y;
-    d.z = param_1->mPos.z - param_2->z;
-    return (s64) d.x * d.x + (s64) d.y * d.y + (s64) d.z * d.z < (s64) n * n;
+    sumRadius = radius + item->mRadius;
+    offset.x = item->mPos.x - center->x;
+    offset.y = item->mPos.y - center->y;
+    offset.z = item->mPos.z - center->z;
+    return (s64) offset.x * offset.x + (s64) offset.y * offset.y + (s64) offset.z * offset.z <
+           (s64) sumRadius * sumRadius;
 }
 
-void func_020f95d4(ItemObject *param_1, ItemObject *param_2) {
-    Vec3 v;
-    s32 a;
-    s32 b;
+void func_020f95d4(ItemObject *item, ItemObject *other) {
+    Vec3 itemVelocity;
+    s32 hitType;
+    s32 otherHitType;
 
-    if (param_2->mCollisionSlotIndex == -1) {
+    if (other->mCollisionSlotIndex == -1) {
         return;
     }
-    if ((param_2->mFlags & 0x1000) != 0) {
+    if ((other->mFlags & 0x1000) != 0) {
         return;
     }
-    if ((param_2->mFlags & 0x8000) == 0) {
-        if (param_1->mUnk_48 > param_2->mUnk_48) {
+    if ((other->mFlags & 0x8000) == 0) {
+        if (item->mUnk_48 > other->mUnk_48) {
             return;
         }
     }
-    if ((param_1->mFlags & 0x10000000) != 0 && (param_2->mFlags & 0x10000000) != 0) {
-        if (func_020f7ea8(param_1, param_2) != 1 && func_020f7ea8(param_2, param_1) != 1) {
+    if ((item->mFlags & 0x10000000) != 0 && (other->mFlags & 0x10000000) != 0) {
+        if (GetItemObjectHitType(item, other) != 1 && GetItemObjectHitType(other, item) != 1) {
             return;
         }
     }
-    if (IsItemObjectOverlappingSphere(param_1, &param_2->mPos, param_2->mRadius) == FALSE) {
-        if (IsItemObjectOverlappingSphere(param_1, &param_2->mPrevPos, param_2->mRadius) == FALSE) {
+    if (IsItemObjectOverlappingSphere(item, &other->mPos, other->mRadius) == FALSE) {
+        if (IsItemObjectOverlappingSphere(item, &other->mPrevPos, other->mRadius) == FALSE) {
             return;
         }
-        if (IsItemObjectOverlappingSphere(param_2, &param_1->mPrevPos, param_1->mRadius) == FALSE) {
+        if (IsItemObjectOverlappingSphere(other, &item->mPrevPos, item->mRadius) == FALSE) {
             return;
         }
     }
-    v = param_1->mVelocity;
-    a = func_020f7ea8(param_1, param_2);
-    b = func_020f7ea8(param_2, param_1);
-    func_020f77f8(param_1, a, &param_2->mPos, &param_2->mVelocity, NULL);
-    func_020f77f8(param_2, b, &param_1->mPos, &v, NULL);
-    if (param_1->mKind == 1) {
-        func_020f5614(param_1, a, param_2);
+    itemVelocity = item->mVelocity;
+    hitType = GetItemObjectHitType(item, other);
+    otherHitType = GetItemObjectHitType(other, item);
+    func_020f77f8(item, hitType, &other->mPos, &other->mVelocity, NULL);
+    func_020f77f8(other, otherHitType, &item->mPos, &itemVelocity, NULL);
+    if (item->mKind == 1) {
+        func_020f5614(item, hitType, other);
     }
-    if (param_2->mKind != 1) {
+    if (other->mKind != 1) {
         return;
     }
-    func_020f5614(param_2, b, param_1);
+    func_020f5614(other, otherHitType, item);
 }
 
-void func_020f944c(ItemObject *param_1, MapObject *param_2) {
+void func_020f944c(ItemObject *itemParam, MapObject *mapObjectParam) {
     Vec3 a;
-    Vec3 t;
+    Vec3 otherPos;
     s32 b;
-    MapObject *q;
-    ItemObject *p = param_1;
-    MapObject *r = param_2;
+    MapObject *reportedMapObject;
+    ItemObject *item = itemParam;
+    MapObject *mapObject = mapObjectParam;
 
-    if (IsSphereHittingMapObject(&p->mPos, p->mRadius, r, &a) == FALSE) {
+    if (IsSphereHittingMapObject(&item->mPos, item->mRadius, mapObject, &a) == FALSE) {
         return;
     }
-    if ((r->mFlags & 0x40) == 0 && (p->mFlags & 0x80000) == 0 && DoesItemObjectRespondToMapObject(p->mKind, r) != 0) {
-        VEC_Add(&p->mPos, &a, &p->mPos);
+    if ((mapObject->mFlags & 0x40) == 0 && (item->mFlags & 0x80000) == 0 &&
+        DoesItemObjectRespondToMapObject(item->mKind, mapObject) != 0) {
+        VEC_Add(&item->mPos, &a, &item->mPos);
     }
-    switch (func_020d6a54(p, r, &b)) {
+    switch (func_020d6a54(item, mapObject, &b)) {
         case 1:
-            t.x = r->mPos.x;
-            t.y = p->mPos.y;
-            t.z = r->mPos.z;
-            a = t;
-            if (b == 1 || (r->mDistanceSquaredAndFlags & 0x80000000) != 0) {
-                r->mDistanceSquaredAndFlags &= ~0x80000000;
-                q = r;
+            otherPos.x = mapObject->mPos.x;
+            otherPos.y = item->mPos.y;
+            otherPos.z = mapObject->mPos.z;
+            a = otherPos;
+            if (b == 1 || (mapObject->mDistanceSquaredAndFlags & 0x80000000) != 0) {
+                mapObject->mDistanceSquaredAndFlags &= ~0x80000000;
+                reportedMapObject = mapObject;
             } else {
-                r->mDistanceSquaredAndFlags &= ~0x80000000;
-                q = NULL;
+                mapObject->mDistanceSquaredAndFlags &= ~0x80000000;
+                reportedMapObject = NULL;
             }
-            func_020f77f8(p, 1, &a, &r->mUnk_10, q);
-            p->mUnk_78 &= ~0x4000;
+            func_020f77f8(item, 1, &a, &mapObject->mUnk_10, reportedMapObject);
+            item->mUnk_78 &= ~0x4000;
             return;
         case 2:
-            if (b == 1 || (r->mDistanceSquaredAndFlags & 0x80000000) != 0) {
-                r->mDistanceSquaredAndFlags &= ~0x80000000;
-                q = r;
+            if (b == 1 || (mapObject->mDistanceSquaredAndFlags & 0x80000000) != 0) {
+                mapObject->mDistanceSquaredAndFlags &= ~0x80000000;
+                reportedMapObject = mapObject;
             } else {
-                r->mDistanceSquaredAndFlags &= ~0x80000000;
-                q = NULL;
+                mapObject->mDistanceSquaredAndFlags &= ~0x80000000;
+                reportedMapObject = NULL;
             }
-            func_020f77f8(p, 2, &r->mPos, &r->mUnk_10, q);
+            func_020f77f8(item, 2, &mapObject->mPos, &mapObject->mUnk_10, reportedMapObject);
             return;
     }
 }
 
-void func_020f9334(void *param_1, Vec3 *param_2, Vec3 *param_3, s32 param_4, Vec3 *param_5) {
-    ItemObject *p = param_1;
-    Vec3 v;
-    u32 a;
+void func_020f9334(void *itemParam, Vec3 *pos, Vec3 *velocity, s32 minFallSpeed, Vec3 *normal) {
+    ItemObject *item = itemParam;
+    Vec3 lowerPos;
+    u32 collisionBits;
     s32 x;
     s32 y;
     s32 z;
 
-    a = 0;
-    z = param_2->z;
-    y = param_2->y - p->mUnk_dc;
-    x = param_2->x;
-    v.x = x;
-    v.y = y;
-    v.z = z;
+    collisionBits = 0;
+    z = pos->z;
+    y = pos->y - item->mUnk_dc;
+    x = pos->x;
+    lowerPos.x = x;
+    lowerPos.y = y;
+    lowerPos.z = z;
 
-    func_01ffdee4(&v, param_2, 0, p->mUnk_dc >> 1, 0x24, p->mCollisionSlotIndex, NULL, NULL, NULL, &a, NULL, NULL, NULL,
-                  NULL);
-    if ((a & 0x1e34ef) != 0 || (p->mUnk_fc & 0x80000) != 0) {
-        if ((p->mFlags & 0x4000000) != 0) {
+    func_01ffdee4(&lowerPos, pos, 0, item->mUnk_dc >> 1, 0x24, item->mCollisionSlotIndex, NULL, NULL, NULL,
+                  &collisionBits, NULL, NULL, NULL, NULL);
+    if ((collisionBits & 0x1e34ef) != 0 || (item->mCollisionBits & 0x80000) != 0) {
+        if ((item->mFlags & 0x4000000) != 0) {
             return;
         }
-        p->mFlags |= 8;
-        p->mUnk_f0 = *param_5;
+        item->mFlags |= 8;
+        item->mNormal = *normal;
         return;
     }
-    param_3->z = 0;
-    param_3->x = param_3->z;
-    if (param_3->y > 0) {
-        param_3->y = 0;
+    velocity->z = 0;
+    velocity->x = velocity->z;
+    if (velocity->y > 0) {
+        velocity->y = 0;
         return;
     }
-    if (param_3->y > -param_4) {
-        param_3->y = -param_4;
+    if (velocity->y > -minFallSpeed) {
+        velocity->y = -minFallSpeed;
     }
 }

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void AdvanceItemKouraR(u32 arg0);
+void AdvanceItemKouraR(u32 kouraR);

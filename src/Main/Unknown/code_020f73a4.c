@@ -19,14 +19,14 @@ void ReleaseItemObjectToItsPool(u32 item) {
     ReleaseItemPoolObject((ItemPool *) value0, (ItemObject *) itemAddress);
 }
 
-u32 func_020f73a4(void) {
+u32 CreateItemPushVector(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) GetCurrentHeapCall();
     value0 = (u32) GetHeap((void *) value0);
     value1 = 0xcu;
     value0 = (u32) HeapAlloc((void *) value0, value1);
-    value1 = (u32) &data_0217bc4c;
+    value1 = (u32) &gItemPushVector;
     *(u32 *) ((value1) + (0)) = value0;
     return value0;
 }

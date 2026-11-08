@@ -1017,7 +1017,7 @@ typedef struct Unk0217b9ec {
 } Unk0217b9ec;
 
 extern Unk0217b9ec gJgStateMachine;
-extern Vec3 *data_0217bc4c;
+extern Vec3 *gItemPushVector;
 extern void *gBridge;
 extern void *gBridgeNsbca;
 extern void *data_0217b7c0;
@@ -1130,7 +1130,7 @@ extern s32 gItemSlotSpinItems[];
 extern u16 gItemSlotPossibleItemCount;
 // Length of gItemSlotSpinItems; 0 means the spin uses gItemSlotPossibleItems.
 extern u16 gItemSlotSpinItemCount;
-extern u16 data_0217bc7c[];
+extern u16 gItemWeightSums[];
 extern s32 gKouraWState7ScaleLimit;
 extern s32 gKouraWState7InverseLimit;
 extern s32 gKouraWState7ScaleStep;

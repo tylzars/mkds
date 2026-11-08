@@ -195,7 +195,7 @@ void StartItemFBox(ItemFBox *fbox) {
 }
 
 void AdvanceItemFBoxInUse(ItemInUse *inUse, ItemFBox *fbox) {
-    SetPooledMapObjectFromItem(fbox->mPooledMapObject, fbox->mUnk_000.mItemObject.mUnk_d8,
+    SetPooledMapObjectFromItem(fbox->mPooledMapObject, fbox->mUnk_000.mItemObject.mAlpha,
                                &fbox->mUnk_000.mItemObject.mScale);
 }
 
@@ -245,14 +245,14 @@ void AdvanceItemFBox(ItemFBox *fbox) {
             StartRestingItemObject(&fbox->mUnk_000.mItemObject, &t);
         }
     }
-    SetPooledMapObjectFromItem(fbox->mPooledMapObject, fbox->mUnk_000.mItemObject.mUnk_d8,
+    SetPooledMapObjectFromItem(fbox->mPooledMapObject, fbox->mUnk_000.mItemObject.mAlpha,
                                &fbox->mUnk_000.mItemObject.mScale);
 }
 
 s32 func_020ff3c4(ItemFBox *fbox) {
     Vec3 *vector;
 
-    vector = data_0217bc4c;
+    vector = gItemPushVector;
     if ((s64) vector->x * vector->x + (s64) vector->y * vector->y + (s64) vector->z * vector->z >= 0x10) {
         Vec3NormalizeAndGetLengthUnchecked(vector, &fbox->mUnk_130);
     }

@@ -65,9 +65,9 @@ s32 func_020f7184(ItemObject *item, s32 b, s32 c) {
     if (kindInfo->mUnk_40 == 0) {
         item->mAdvance = func_020f6e58;
     }
-    item->mUnk_124 = (void (*)(ItemObject *, Vec3 *, Vec3 *)) func_020f6be4;
-    if (item->mUnk_f0.y != 0) {
-        Vec3 *normal = &item->mUnk_f0;
+    item->mBounce = (void (*)(ItemObject *, Vec3 *, Vec3 *)) func_020f6be4;
+    if (item->mNormal.y != 0) {
+        Vec3 *normal = &item->mNormal;
 
         r = Vec3DotUnrounded(velocity, normal);
         if (r < 0x3000) {
@@ -180,14 +180,14 @@ void func_020f6f10(ItemObject *item, s32 b, s32 c) {
 void func_020f6e58(ItemObject *item) {
     Vec3 direction;
 
-    Vec3CrossUnrounded(&item->mUnk_f0, GetViewTransposeMatrixAxis2(), &direction);
-    VEC_MultAdd(item->mUnk_108.x != 0 ? item->mUnk_108.y : -item->mUnk_108.y, &direction, &item->mUnk_f0,
-                &item->mUnk_f0);
+    Vec3CrossUnrounded(&item->mNormal, GetViewTransposeMatrixAxis2(), &direction);
+    VEC_MultAdd(item->mUnk_108.x != 0 ? item->mUnk_108.y : -item->mUnk_108.y, &direction, &item->mNormal,
+                &item->mNormal);
     item->mFlags |= 0x80;
     item->mVelocity.y -= 0x400;
     VEC_Add(&item->mPos, &item->mVelocity, &item->mPos);
-    item->mUnk_d8--;
-    if (item->mUnk_d8 > 0) {
+    item->mAlpha--;
+    if (item->mAlpha > 0) {
         return;
     }
     ReleaseItemPoolObject(&gItemPools[item->mKind], item);
@@ -212,19 +212,19 @@ void func_020f6be8(ItemObject *item, Vec3 *otherPos, Vec3 *otherVelocity, Vec3 *
     }
     if (item->mFlags & 0x8000) {
         VEC_MultAdd(0x666, &relativeVelocity, &item->mVelocity, &item->mVelocity);
-        push = data_0217bc4c;
+        push = gItemPushVector;
         push->x = ((s64) away.x * 0xccd) >> 12;
         push->y = ((s64) away.y * 0xccd) >> 12;
         push->z = ((s64) away.z * 0xccd) >> 12;
-        VEC_Add(&item->mVelocity, data_0217bc4c, &item->mVelocity);
+        VEC_Add(&item->mVelocity, gItemPushVector, &item->mVelocity);
     } else {
         item->mVelocity.x = ((s64) otherVelocity->x * 0x8cd) >> 12;
         item->mVelocity.y = ((s64) otherVelocity->y * 0x8cd) >> 12;
         item->mVelocity.z = ((s64) otherVelocity->z * 0x8cd) >> 12;
-        push = data_0217bc4c;
+        push = gItemPushVector;
         push->x = ((s64) away.x * 0x1800) >> 12;
         push->y = ((s64) away.y * 0x1800) >> 12;
         push->z = ((s64) away.z * 0x1800) >> 12;
-        VEC_Add(&item->mVelocity, data_0217bc4c, &item->mVelocity);
+        VEC_Add(&item->mVelocity, gItemPushVector, &item->mVelocity);
     }
 }

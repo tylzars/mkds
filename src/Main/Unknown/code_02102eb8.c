@@ -27,7 +27,7 @@ void ResetItemGesso(ItemGesso *p) {
         p->mUnk_130[i] = 0;
     }
     p->mUnk_138 = -1;
-    p->mUnk_000.mUnk_d8 = 0x1f;
+    p->mUnk_000.mAlpha = 0x1f;
     p->mUnk_19c = 0;
     p->mUnk_160 = FALSE;
 }
@@ -124,5 +124,5 @@ u32 func_02102eb8(ItemGesso *p, s32 b) {
     }
     p->mUnk_198 = a == (u16) b2;
     FreeItemObjectCollisionSlot((s32) p);
-    return (u32) InitCourseColorBlend(&p->mUnk_000.mUnk_7c, 1);
+    return (u32) InitCourseColorBlend(&p->mUnk_000.mColorBlend, 1);
 }

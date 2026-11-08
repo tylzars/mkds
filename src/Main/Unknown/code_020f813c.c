@@ -20,41 +20,41 @@
 #include "code_02012b30.h"
 #include "Main/Unknown/code_020f9c6c.h"
 
-static inline u32 func_020f8a04_inline(Unk020f41c4_B *b, u32 c) {
-    b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
-    if (c == 0) {
-        return b->mUnk_00 >> 32;
+static inline u32 func_020f8a04_inline(Unk020f41c4_B *random, u32 limit) {
+    random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
+    if (limit == 0) {
+        return random->mUnk_00 >> 32;
     } else {
-        return ((b->mUnk_00 >> 32) * c) >> 32;
+        return ((random->mUnk_00 >> 32) * limit) >> 32;
     }
 }
 
-s32 PickItem(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, s32 param_6) {
-    ItemSlotTable *q;
-    Unk020f41c4_B *b;
+s32 PickItem(s32 kartVariant, s32 forcedRowHandle, s32 param_3, s32 param_4, s32 isEntryKart, s32 itemCount) {
+    ItemSlotTable *table;
+    Unk020f41c4_B *random;
     u16 *row;
-    s32 m;
+    s32 variant;
     s32 i;
     u16 acc;
     s32 j;
     s32 x;
     s32 sel;
     s32 t;
-    u16 k;
-    s32 n;
+    u16 roll;
+    s32 objectKind;
     enum { K0 } u;
 
     sel = 0x13;
-    if (param_2 != 0) {
-        param_3 = (u16) (param_2 - 1);
-        m = 0;
-        q = &data_0217bc74;
+    if (forcedRowHandle != 0) {
+        param_3 = (u16) (forcedRowHandle - 1);
+        variant = 0;
+        table = &data_0217bc74;
     } else {
-        q = param_4 != 0 ? &data_0217bc6c : &data_0217bc64;
+        table = param_4 != 0 ? &data_0217bc6c : &data_0217bc64;
         param_3 = (u16) (param_3 - 1);
-        m = param_1;
+        variant = kartVariant;
     }
-    row = q->mRows[param_3];
+    row = table->mRows[param_3];
     acc = 0;
     t = 0;
     if (gRaceSetup->mMode != MODE_MISSION_RUN) {
@@ -63,14 +63,15 @@ s32 PickItem(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, s3
                         (gItemPools[(s32) i].mReservedCount - gItemPools[(s32) i].mUnk_18));
         }
     }
-    for (j = 0; j < param_6; j++) {
-        n = gItemInfos[(s32) j].mObjectKind;
+    for (j = 0; j < itemCount; j++) {
+        objectKind = gItemInfos[(s32) j].mObjectKind;
         if (!((j == 8 && data_0217bc60 > 0) || (j == 7 && data_0217bc5c > 0) || (j == 0xf && data_0217bc58 > 0))) {
-            if (gItemPools[n].mLimit - gItemPools[n].mReservedCount > 0 && gItemInfos[(s32) j].mEnabled != FALSE) {
-                x = gItemKinds[n].mUnk_90 * gItemInfos[(s32) j].mObjectCount;
+            if (gItemPools[objectKind].mLimit - gItemPools[objectKind].mReservedCount > 0 &&
+                gItemInfos[(s32) j].mEnabled != FALSE) {
+                x = gItemKinds[objectKind].mUnk_90 * gItemInfos[(s32) j].mObjectCount;
                 if (x == 0 || x + t <= 0x28) {
-                    if (j >= 9 && m != 0) {
-                        if (m == 1) {
+                    if (j >= 9 && variant != 0) {
+                        if (variant == 1) {
                             acc = acc + (row[j] >> 2);
                         } else {
                             acc = 3 * row[j] + acc;
@@ -81,17 +82,17 @@ s32 PickItem(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, s3
                 }
             }
         }
-        data_0217bc7c[j] = acc;
+        gItemWeightSums[j] = acc;
     }
-    b = &gRaceProgress->mRandom;
+    random = &gRaceProgress->mRandom;
     if (acc == 0) {
         x = 0;
     } else {
-        x = func_020f8a04_inline(b, acc);
+        x = func_020f8a04_inline(random, acc);
     }
-    k = x;
-    for (j = 0; j < param_6; j++) {
-        if (k < data_0217bc7c[j]) {
+    roll = x;
+    for (j = 0; j < itemCount; j++) {
+        if (roll < gItemWeightSums[j]) {
             sel = j;
             break;
         }
@@ -99,10 +100,10 @@ s32 PickItem(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, s3
     if (ReplaceUnavailableItem(&sel) != FALSE) {
         TryReleaseItemObjectsForItemInfo(sel);
     }
-    if (param_5 != 0) {
-        if (param_2 != 0) {
+    if (isEntryKart != 0) {
+        if (forcedRowHandle != 0) {
             gItemSlotSpinItemCount = 0;
-            for (u = 0; u < param_6; u++) {
+            for (u = 0; u < itemCount; u++) {
                 if (u == sel || row[u] != 0) {
                     gItemSlotSpinItems[gItemSlotSpinItemCount++] = u;
                 }
@@ -114,153 +115,154 @@ s32 PickItem(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, s3
     return sel;
 }
 
-void InitItemSlot(KartItems *param_1, KartItems *param_2) {
-    param_1->mSelf = param_2;
-    param_1->mSlotState = 0;
-    param_1->mSlotFrames = 0;
-    param_1->mSlotShownItem = 0x13;
-    param_1->mSlotResult = 0x13;
-    param_1->mActiveItem = 0x13;
-    param_1->mUnk_020 = FALSE;
-    param_1->mUnk_024 = gRaceSetup->mCurrentEntries[param_2->mKartIndex].mPlayer.mKind == PLAYER_KIND_PEER;
+void InitItemSlot(KartItems *slot, KartItems *kartItems) {
+    slot->mSelf = kartItems;
+    slot->mSlotState = 0;
+    slot->mSlotFrames = 0;
+    slot->mSlotShownItem = 0x13;
+    slot->mSlotResult = 0x13;
+    slot->mActiveItem = 0x13;
+    slot->mResultPending = FALSE;
+    slot->mIsPeer = gRaceSetup->mCurrentEntries[kartItems->mKartIndex].mPlayer.mKind == PLAYER_KIND_PEER;
 }
 
-void StartItemSlot(KartItems *param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5) {
-    KartItems *p;
-    ItemInfo *e;
-    ItemPool *v;
-    enum { K0 } k, j;
-    BOOL a;
-    BOOL b;
+void StartItemSlot(KartItems *slot, s32 forcedRowHandle, s32 rank, s32 isHumanGhostOrPeer, s32 shortSpin) {
+    KartItems *kartItems;
+    ItemInfo *itemInfo;
+    ItemPool *pool;
+    enum { K0 } itemIndex, objectKind;
+    BOOL isMode5;
+    BOOL isEntryKart;
 
-    p = param_1->mSelf;
-    a = gRaceSetup->mMode == 5;
-    if (param_1->mSlotState != 0) {
+    kartItems = slot->mSelf;
+    isMode5 = gRaceSetup->mMode == 5;
+    if (slot->mSlotState != 0) {
         return;
     }
-    if (param_1->mActiveItem != 0x13) {
+    if (slot->mActiveItem != 0x13) {
         return;
     }
-    param_1->mSlotState = 1;
-    param_1->mSlotShownItem = 0x13;
-    if (!a) {
-        StopRaceRankListItemInUse(param_1->mSelf->mKartIndex);
+    slot->mSlotState = 1;
+    slot->mSlotShownItem = 0x13;
+    if (!isMode5) {
+        StopRaceRankListItemInUse(slot->mSelf->mKartIndex);
     }
-    if (a) {
-        param_1->mUnk_01c = FALSE;
-        param_1->mSlotFrames = 0;
-        param_1->mSlotFrameCount = 0x85;
-        param_1->mUnk_028 = 0x10;
-        param_1->mUnk_02c = 4;
-    } else if (param_5 != 0) {
-        param_1->mUnk_01c = TRUE;
-        param_1->mSlotFrames = 0x4d;
-        param_1->mSlotFrameCount = 0x65;
-        param_1->mUnk_028 = 8;
-        param_1->mUnk_02c = 3;
+    if (isMode5) {
+        slot->mUnk_01c = FALSE;
+        slot->mSlotFrames = 0;
+        slot->mSlotFrameCount = 0x85;
+        slot->mUnk_028 = 0x10;
+        slot->mUnk_02c = 4;
+    } else if (shortSpin != 0) {
+        slot->mUnk_01c = TRUE;
+        slot->mSlotFrames = 0x4d;
+        slot->mSlotFrameCount = 0x65;
+        slot->mUnk_028 = 8;
+        slot->mUnk_02c = 3;
     } else {
-        param_1->mUnk_01c = FALSE;
-        param_1->mSlotFrames = 0;
-        param_1->mSlotFrameCount = 0xd5;
-        param_1->mUnk_028 = 0x10;
-        param_1->mUnk_02c = 4;
+        slot->mUnk_01c = FALSE;
+        slot->mSlotFrames = 0;
+        slot->mSlotFrameCount = 0xd5;
+        slot->mUnk_028 = 0x10;
+        slot->mUnk_02c = 4;
     }
-    b = p->mKartIndex == gRaceSetup->mEntryIndex;
-    if (p->mItemInUse.mObjectKind != 0xf && p->mItemInUse.mItemInfoIndex >= 9) {
-        param_1->mSlotResult = PickItem(0, param_2, param_3, param_4, b, 9);
+    isEntryKart = kartItems->mKartIndex == gRaceSetup->mEntryIndex;
+    if (kartItems->mItemInUse.mObjectKind != 0xf && kartItems->mItemInUse.mItemInfoIndex >= 9) {
+        slot->mSlotResult = PickItem(0, forcedRowHandle, rank, isHumanGhostOrPeer, isEntryKart, 9);
     } else {
-        param_1->mSlotResult = PickItem(GetKartVariant(p->mKartIndex), param_2, param_3, param_4, b, 0x12);
+        slot->mSlotResult = PickItem(GetKartVariant(kartItems->mKartIndex), forcedRowHandle, rank, isHumanGhostOrPeer,
+                                     isEntryKart, 0x12);
     }
-    if (a) {
-        func_0205a750(param_1->mSlotResult);
-        param_1->mUnk_020 = TRUE;
+    if (isMode5) {
+        func_0205a750(slot->mSlotResult);
+        slot->mResultPending = TRUE;
         return;
     }
-    k = param_1->mSlotResult;
-    e = &gItemInfos[k];
-    j = e->mObjectKind;
-    v = &gItemPools[j];
-    v->mReservedCount += e->mObjectCount;
+    itemIndex = slot->mSlotResult;
+    itemInfo = &gItemInfos[itemIndex];
+    objectKind = itemInfo->mObjectKind;
+    pool = &gItemPools[objectKind];
+    pool->mReservedCount += itemInfo->mObjectCount;
 }
 
-void func_020f86c4(KartItems *param_1) {
-    KartItems *p;
-    ItemInfo *e;
-    ItemPool *v;
-    enum { K0 } k, j;
+void func_020f86c4(KartItems *slot) {
+    KartItems *kartItems;
+    ItemInfo *itemInfo;
+    ItemPool *pool;
+    enum { K0 } itemIndex, objectKind;
 
-    p = param_1->mSelf;
-    if (p->mActiveItem != 0x13) {
-        p->mActiveItem = 0x13;
+    kartItems = slot->mSelf;
+    if (kartItems->mActiveItem != 0x13) {
+        kartItems->mActiveItem = 0x13;
     }
-    if (param_1->mSlotState != 0) {
-        if (p->mUnk_020 == FALSE) {
-            k = p->mSlotResult;
-            e = &gItemInfos[k];
-            j = e->mObjectKind;
-            v = &gItemPools[j];
-            v->mReservedCount -= e->mObjectCount;
+    if (slot->mSlotState != 0) {
+        if (kartItems->mResultPending == FALSE) {
+            itemIndex = kartItems->mSlotResult;
+            itemInfo = &gItemInfos[itemIndex];
+            objectKind = itemInfo->mObjectKind;
+            pool = &gItemPools[objectKind];
+            pool->mReservedCount -= itemInfo->mObjectCount;
         }
-        p->mSlotState = 0;
-        p->mSlotFrames = 0;
-        p->mSlotShownItem = 0x13;
-        p->mSlotResult = 0x13;
-        p->mActiveItem = 0x13;
-        p->mUnk_020 = FALSE;
+        kartItems->mSlotState = 0;
+        kartItems->mSlotFrames = 0;
+        kartItems->mSlotShownItem = 0x13;
+        kartItems->mSlotResult = 0x13;
+        kartItems->mActiveItem = 0x13;
+        kartItems->mResultPending = FALSE;
     } else {
-        if (p->mHeldItem.mItemInfoIndex != 0x13) {
-            ReleaseHeldItem(&p->mHeldItem, 1);
+        if (kartItems->mHeldItem.mItemInfoIndex != 0x13) {
+            ReleaseHeldItem(&kartItems->mHeldItem, 1);
         }
     }
-    param_1->mSlotState = 1;
-    param_1->mSlotFrames = 0;
-    param_1->mSlotFrameCount = 0x85;
-    param_1->mSlotShownItem = 0x13;
-    param_1->mActiveItem = 0x13;
-    param_1->mSlotResult = 0x13;
-    param_1->mUnk_020 = TRUE;
+    slot->mSlotState = 1;
+    slot->mSlotFrames = 0;
+    slot->mSlotFrameCount = 0x85;
+    slot->mSlotShownItem = 0x13;
+    slot->mActiveItem = 0x13;
+    slot->mSlotResult = 0x13;
+    slot->mResultPending = TRUE;
 }
 
-BOOL UpdateItemSlot(KartItems *param_1, KartItems *param_2) {
-    ItemInfo *e;
-    ItemPool *v;
-    enum { K0 } j;
-    s32 a;
+BOOL UpdateItemSlot(KartItems *slot, KartItems *kartItems) {
+    ItemInfo *itemInfo;
+    ItemPool *pool;
+    enum { K0 } objectKind;
+    s32 mode;
     u32 b;
 
-    switch (param_1->mSlotState) {
+    switch (slot->mSlotState) {
         case 1:
-            param_1->mSlotFrames++;
-            a = gRaceSetup->mMode;
-            if (a == 5 && param_1->mUnk_020 != FALSE) {
-                b = param_2->mKartIndex & 0xff;
+            slot->mSlotFrames++;
+            mode = gRaceSetup->mMode;
+            if (mode == 5 && slot->mResultPending != FALSE) {
+                b = kartItems->mKartIndex & 0xff;
                 if (func_0205a310(((u8 *) data_0217aa18)[b]) == 0) {
                     b = func_0205a2ac(((u8 *) data_0217aa18)[b]);
                     if (IsItemInfoObjectCountFree(b) != FALSE) {
                         TryReleaseItemObjectsForItemInfo(b);
                     }
-                    e = &gItemInfos[b];
-                    j = e->mObjectKind;
-                    v = &gItemPools[j];
-                    v->mReservedCount += e->mObjectCount;
-                    param_1->mSlotResult = b;
-                    param_1->mUnk_020 = FALSE;
-                    param_1->mSlotFrameCount += param_1->mSlotFrames - 0x6f;
-                } else if (param_1->mSlotFrames > 0x6e) {
-                    param_1->mSlotFrames = 0x67;
+                    itemInfo = &gItemInfos[b];
+                    objectKind = itemInfo->mObjectKind;
+                    pool = &gItemPools[objectKind];
+                    pool->mReservedCount += itemInfo->mObjectCount;
+                    slot->mSlotResult = b;
+                    slot->mResultPending = FALSE;
+                    slot->mSlotFrameCount += slot->mSlotFrames - 0x6f;
+                } else if (slot->mSlotFrames > 0x6e) {
+                    slot->mSlotFrames = 0x67;
                 }
                 return FALSE;
             }
-            if (param_1->mSlotFrames > 0x3c &&
-                (((param_2->mFlags & 0x241) == 0x241 && a != 5 && param_1->mUnk_01c == FALSE) ||
-                 param_1->mSlotFrames > param_1->mSlotFrameCount)) {
-                param_1->mSlotFrames = 0;
-                param_1->mSlotState = 2;
+            if (slot->mSlotFrames > 0x3c &&
+                (((kartItems->mFlags & 0x241) == 0x241 && mode != 5 && slot->mUnk_01c == FALSE) ||
+                 slot->mSlotFrames > slot->mSlotFrameCount)) {
+                slot->mSlotFrames = 0;
+                slot->mSlotState = 2;
             }
             break;
         case 2:
-            param_1->mSlotFrames++;
-            if (param_1->mSlotFrames > param_1->mUnk_028 * 2) {
+            slot->mSlotFrames++;
+            if (slot->mSlotFrames > slot->mUnk_028 * 2) {
                 return TRUE;
             }
             break;
@@ -268,88 +270,88 @@ BOOL UpdateItemSlot(KartItems *param_1, KartItems *param_2) {
     return FALSE;
 }
 
-void FinishItemSlot(KartItems *param_1) {
-    ItemInfo *e;
-    ItemPool *v;
-    enum { K0 } k, j;
+void FinishItemSlot(KartItems *slot) {
+    ItemInfo *itemInfo;
+    ItemPool *pool;
+    enum { K0 } itemIndex, objectKind;
 
-    k = param_1->mSlotResult;
-    e = &gItemInfos[k];
-    j = e->mObjectKind;
-    v = &gItemPools[j];
-    v->mReservedCount -= e->mObjectCount;
-    param_1->mSlotState = 0;
-    param_1->mSlotFrames = 0;
-    param_1->mSlotShownItem = 0x13;
-    param_1->mSlotResult = 0x13;
-    param_1->mActiveItem = 0x13;
-    param_1->mUnk_020 = FALSE;
+    itemIndex = slot->mSlotResult;
+    itemInfo = &gItemInfos[itemIndex];
+    objectKind = itemInfo->mObjectKind;
+    pool = &gItemPools[objectKind];
+    pool->mReservedCount -= itemInfo->mObjectCount;
+    slot->mSlotState = 0;
+    slot->mSlotFrames = 0;
+    slot->mSlotShownItem = 0x13;
+    slot->mSlotResult = 0x13;
+    slot->mActiveItem = 0x13;
+    slot->mResultPending = FALSE;
 }
 
-void StopItemSlot(KartItems *param_1) {
-    ItemInfo *e;
-    ItemPool *v;
-    enum { K0 } k, j;
+void StopItemSlot(KartItems *slot) {
+    ItemInfo *itemInfo;
+    ItemPool *pool;
+    enum { K0 } itemIndex, objectKind;
 
-    if (param_1->mUnk_020 == FALSE) {
-        k = param_1->mSlotResult;
-        e = &gItemInfos[k];
-        j = e->mObjectKind;
-        v = &gItemPools[j];
-        v->mReservedCount -= e->mObjectCount;
+    if (slot->mResultPending == FALSE) {
+        itemIndex = slot->mSlotResult;
+        itemInfo = &gItemInfos[itemIndex];
+        objectKind = itemInfo->mObjectKind;
+        pool = &gItemPools[objectKind];
+        pool->mReservedCount -= itemInfo->mObjectCount;
     }
-    param_1->mSlotState = 0;
-    param_1->mSlotFrames = 0;
-    param_1->mSlotShownItem = 0x13;
-    param_1->mSlotResult = 0x13;
-    param_1->mActiveItem = 0x13;
-    param_1->mUnk_020 = FALSE;
+    slot->mSlotState = 0;
+    slot->mSlotFrames = 0;
+    slot->mSlotShownItem = 0x13;
+    slot->mSlotResult = 0x13;
+    slot->mActiveItem = 0x13;
+    slot->mResultPending = FALSE;
 }
 
-static inline u16 func_020f830c_inline(Unk020f41c4_B *b, u32 n) {
-    u32 t;
-    if (n == 0) {
-        t = 0;
+static inline u16 func_020f830c_inline(Unk020f41c4_B *random, u32 limit) {
+    u32 value;
+    if (limit == 0) {
+        value = 0;
     } else {
-        b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
-        if (n == 0) {
-            t = b->mUnk_00 >> 32;
+        random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
+        if (limit == 0) {
+            value = random->mUnk_00 >> 32;
         } else {
-            t = ((b->mUnk_00 >> 32) * n) >> 32;
+            value = ((random->mUnk_00 >> 32) * limit) >> 32;
         }
     }
-    return t;
+    return value;
 }
 
-void PickItemSlotShownItem(KartItems *param_1) {
-    Unk020f41c4_B *b;
-    s32 *q;
-    u16 n;
-    u32 i;
+void PickItemSlotShownItem(KartItems *slot) {
+    Unk020f41c4_B *random;
+    s32 *items;
+    u16 itemCount;
+    u32 index;
 
-    switch (param_1->mSlotState) {
+    switch (slot->mSlotState) {
         case 0:
             return;
         case 1:
             if (gItemSlotSpinItemCount != 0) {
-                n = gItemSlotSpinItemCount;
-                q = gItemSlotSpinItems;
+                itemCount = gItemSlotSpinItemCount;
+                items = gItemSlotSpinItems;
             } else {
-                n = gItemSlotPossibleItemCount;
-                q = gItemSlotPossibleItems;
+                itemCount = gItemSlotPossibleItemCount;
+                items = gItemSlotPossibleItems;
             }
-            b = &gRaceProgress->mLocalRandom;
-            i = func_020f830c_inline(b, n);
-            if (param_1->mSlotShownItem == q[i]) {
-                i = (u16) (i + 1);
-                if (i >= n) {
-                    i = 0;
+            random = &gRaceProgress->mLocalRandom;
+            index = func_020f830c_inline(random, itemCount);
+            if (slot->mSlotShownItem == items[index]) {
+                index = (u16) (index + 1);
+                if (index >= itemCount) {
+                    index = 0;
                 }
             }
-            param_1->mSlotShownItem = q[i];
+            slot->mSlotShownItem = items[index];
             break;
         case 2:
-            param_1->mSlotShownItem = param_1->mSlotResult;
+            slot->mSlotShownItem = slot->mSlotResult;
             break;
     }
 }
@@ -387,58 +389,58 @@ void func_020f8258(void) {
     }
 }
 
-void func_020f81c0(KartItems *a) {
-    ItemInfo *e;
-    ItemPool *v;
-    enum { K0 } k, j;
+void func_020f81c0(KartItems *slot) {
+    ItemInfo *itemInfo;
+    ItemPool *pool;
+    enum { K0 } itemIndex, objectKind;
 
-    if (a->mSelf->mKartIndex == gRaceSetup->mEntryIndex) {
+    if (slot->mSelf->mKartIndex == gRaceSetup->mEntryIndex) {
         func_020bb5cc();
     }
-    k = a->mSlotResult;
-    e = &gItemInfos[k];
-    j = e->mObjectKind;
-    v = &gItemPools[j];
-    v->mReservedCount -= e->mObjectCount;
-    a->mSlotState = 0;
-    a->mSlotFrames = 0;
-    a->mSlotShownItem = 0x13;
-    a->mSlotResult = 0x13;
-    a->mActiveItem = 0x13;
-    a->mUnk_020 = FALSE;
+    itemIndex = slot->mSlotResult;
+    itemInfo = &gItemInfos[itemIndex];
+    objectKind = itemInfo->mObjectKind;
+    pool = &gItemPools[objectKind];
+    pool->mReservedCount -= itemInfo->mObjectCount;
+    slot->mSlotState = 0;
+    slot->mSlotFrames = 0;
+    slot->mSlotShownItem = 0x13;
+    slot->mSlotResult = 0x13;
+    slot->mActiveItem = 0x13;
+    slot->mResultPending = FALSE;
 }
 
-void SetActiveItem(KartItems *p0, u32 p1) {
-    p0->mActiveItem = p1;
+void SetActiveItem(KartItems *kartItems, u32 itemIndex) {
+    kartItems->mActiveItem = itemIndex;
 }
 
 #pragma thumb on
 
-u8 *LoadItemSlotTableData(ItemSlotTable *param_1, u8 *param_2) {
-    s32 a;
-    s32 b;
+u8 *LoadItemSlotTableData(ItemSlotTable *table, u8 *data) {
+    s32 rowCount;
+    s32 columnCount;
     s32 i;
     s32 j;
     u16(*tab)[0x12];
 
-    a = *param_2++;
-    b = *param_2++;
-    param_1->mRowCount = a;
-    param_1->mRows = HeapAlloc(GetHeap(GetCurrentHeapCall()), (a + 1) * 0x24);
-    tab = param_1->mRows;
-    for (i = 0; i < b; i++) {
-        for (j = 0; j < a; j++) {
-            tab[j][i] = *param_2++;
+    rowCount = *data++;
+    columnCount = *data++;
+    table->mRowCount = rowCount;
+    table->mRows = HeapAlloc(GetHeap(GetCurrentHeapCall()), (rowCount + 1) * 0x24);
+    tab = table->mRows;
+    for (i = 0; i < columnCount; i++) {
+        for (j = 0; j < rowCount; j++) {
+            tab[j][i] = *data++;
         }
         tab[j][i] = 0xffff;
     }
-    return param_2;
+    return data;
 }
 
 #pragma thumb off
 
 #pragma thumb on
-u8 *ComputeItemSlotTableDataEnd(u8 *p) {
-    return p + 2 + p[1] * p[0];
+u8 *ComputeItemSlotTableDataEnd(u8 *data) {
+    return data + 2 + data[1] * data[0];
 }
 #pragma thumb off

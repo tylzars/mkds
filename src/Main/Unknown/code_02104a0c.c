@@ -190,10 +190,10 @@ void AdvanceBouncingItemBoxInUse(ItemInUse *p0, BouncingItemBox *p1) {
         t.x = ((s64) p1->mUnk_000.mItemObject.mScale.x * n) >> 12;
         t.y = ((s64) p1->mUnk_000.mItemObject.mScale.y * n) >> 12;
         t.z = ((s64) p1->mUnk_000.mItemObject.mScale.z * n) >> 12;
-        SetPooledMapObjectFromItem(b, p1->mUnk_000.mItemObject.mUnk_d8, &t);
+        SetPooledMapObjectFromItem(b, p1->mUnk_000.mItemObject.mAlpha, &t);
     } else {
         p1->mMapObjectPos = p1->mUnk_000.mItemObject.mPos;
-        SetPooledMapObjectFromItem(b, p1->mUnk_000.mItemObject.mUnk_d8, &p1->mUnk_000.mItemObject.mScale);
+        SetPooledMapObjectFromItem(b, p1->mUnk_000.mItemObject.mAlpha, &p1->mUnk_000.mItemObject.mScale);
     }
     AdvancePooledMapObject(b);
 }
@@ -240,8 +240,8 @@ void AdvanceBouncingItemBox(BouncingItemBox *p) {
         if (gRaceSetup->mMode == MODE_BATTLE) {
             i = p->mUnk_000.mItemObject.mUnk_78 & ~0xff00;
             v = gBouncingItemBoxTimers[i] - 0x3c;
-            if (v < p->mUnk_000.mItemObject.mUnk_d8) {
-                p->mUnk_000.mItemObject.mUnk_d8 = v;
+            if (v < p->mUnk_000.mItemObject.mAlpha) {
+                p->mUnk_000.mItemObject.mAlpha = v;
             }
             if (v < 0xa) {
                 FreeItemObjectCollisionSlot((s32) p);
@@ -279,10 +279,10 @@ void AdvanceBouncingItemBox(BouncingItemBox *p) {
         t.z = ((s64) p->mUnk_000.mItemObject.mScale.z * n) >> 12;
         VEC_Subtract(&p->mUnk_000.mItemObject.mPos, &p->mMapObjectPos, &d);
         VEC_MultAdd(((s64) p->mScaleRatio * p->mScaleRatio) >> 12, &d, &p->mMapObjectPos, &p->mMapObjectPos);
-        SetPooledMapObjectFromItem(b, p->mUnk_000.mItemObject.mUnk_d8, &t);
+        SetPooledMapObjectFromItem(b, p->mUnk_000.mItemObject.mAlpha, &t);
     } else {
         p->mMapObjectPos = p->mUnk_000.mItemObject.mPos;
-        SetPooledMapObjectFromItem(b, p->mUnk_000.mItemObject.mUnk_d8, &p->mUnk_000.mItemObject.mScale);
+        SetPooledMapObjectFromItem(b, p->mUnk_000.mItemObject.mAlpha, &p->mUnk_000.mItemObject.mScale);
     }
     AdvancePooledMapObject(b);
 }

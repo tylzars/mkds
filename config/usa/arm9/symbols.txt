@@ -5615,7 +5615,7 @@ func_020f7070 kind:function(arm,size=0x80) addr:0x020f7070
 func_020f70f0 kind:function(arm,size=0x14) addr:0x020f70f0
 func_020f7104 kind:function(arm,size=0x80) addr:0x020f7104
 func_020f7184 kind:function(arm,size=0x220) addr:0x020f7184
-func_020f73a4 kind:function(arm,size=0x30) addr:0x020f73a4
+CreateItemPushVector kind:function(arm,size=0x30) addr:0x020f73a4
 ReleaseItemObjectToItsPool kind:function(arm,size=0x28) addr:0x020f73d4
 StartItemObjectRelease kind:function(arm,size=0x34) addr:0x020f73fc
 func_020f7430 kind:function(arm,size=0x15c) addr:0x020f7430
@@ -5625,7 +5625,7 @@ func_020f7658 kind:function(arm,size=0x1a0) addr:0x020f7658
 func_020f77f8 kind:function(arm,size=0x468) addr:0x020f77f8
 func_020f7c60 kind:function(arm,size=0x30) addr:0x020f7c60
 func_020f7c90 kind:function(arm,size=0x218) addr:0x020f7c90
-func_020f7ea8 kind:function(arm,size=0x20) addr:0x020f7ea8
+GetItemObjectHitType kind:function(arm,size=0x20) addr:0x020f7ea8
 CreateItemSlotTables kind:function(thumb,size=0x1f8) addr:0x020f7ec8
 func_020f80c0 kind:function(thumb,size=0x7c) addr:0x020f80c0
 ComputeItemSlotTableDataEnd kind:function(thumb,size=0xc) addr:0x020f813c
@@ -5648,12 +5648,12 @@ InitItemObject kind:function(thumb,size=0x40) addr:0x020f8d9c
 func_020f8ddc kind:function(arm,size=0x60) addr:0x020f8ddc
 func_020f8e3c kind:function(arm,size=0x3c) addr:0x020f8e3c
 func_020f8e78 kind:function(arm,size=0x1dc) addr:0x020f8e78
-func_020f9054 kind:function(arm,size=0x68) addr:0x020f9054
+ResetItemObjectFromData kind:function(arm,size=0x68) addr:0x020f9054
 func_020f90bc kind:function(arm,size=0x20) addr:0x020f90bc
 func_020f90dc kind:function(arm,size=0x38) addr:0x020f90dc
 func_020f9114 kind:function(arm,size=0x4c) addr:0x020f9114
 func_020f9160 kind:function(arm,size=0x64) addr:0x020f9160
-func_020f91c4 kind:function(arm,size=0x1c) addr:0x020f91c4
+IsItemObjectFartherFromCameraThan kind:function(arm,size=0x1c) addr:0x020f91c4
 func_020f91e0 kind:function(arm,size=0x1c) addr:0x020f91e0
 func_020f91fc kind:function(arm,size=0x94) addr:0x020f91fc
 func_020f9290 kind:function(arm,size=0x58) addr:0x020f9290
@@ -8615,8 +8615,8 @@ data_02159b68 kind:data(any) addr:0x02159b68
 data_02159b6c kind:data(any) addr:0x02159b6c
 data_02159b70 kind:data(any) addr:0x02159b70
 data_02159b74 kind:data(any) addr:0x02159b74
-data_02159b78 kind:data(any) addr:0x02159b78
-data_02159c3c kind:data(any) addr:0x02159c3c
+gItemHitTypes kind:data(any) addr:0x02159b78
+gItemSlotRowRemaps kind:data(any) addr:0x02159c3c
 data_02159ca0 kind:data(any) addr:0x02159ca0
 data_02159cac kind:data(any) addr:0x02159cac
 data_02159cb0 kind:data(any) addr:0x02159cb0
@@ -11856,7 +11856,7 @@ gItemModels kind:bss addr:0x0217bbdc
 gItemKinds kind:bss addr:0x0217bc14
 data_0217bc38 kind:bss addr:0x0217bc18
 gItemInfos kind:bss addr:0x0217bc28
-data_0217bc4c kind:bss addr:0x0217bc2c
+gItemPushVector kind:bss addr:0x0217bc2c
 gItemSlotSpinItemCount kind:bss addr:0x0217bc30
 gItemSlotPossibleItemCount kind:bss addr:0x0217bc34
 data_0217bc58 kind:bss addr:0x0217bc38
@@ -11865,7 +11865,7 @@ data_0217bc60 kind:bss addr:0x0217bc40
 data_0217bc64 kind:bss addr:0x0217bc44
 data_0217bc6c kind:bss addr:0x0217bc4c
 data_0217bc74 kind:bss addr:0x0217bc54
-data_0217bc7c kind:bss addr:0x0217bc5c
+gItemWeightSums kind:bss addr:0x0217bc5c
 gItemSlotSpinItems kind:bss addr:0x0217bc80
 gItemSlotPossibleItems kind:bss addr:0x0217bcc8
 gCollidedItemObjects kind:bss addr:0x0217bd10
