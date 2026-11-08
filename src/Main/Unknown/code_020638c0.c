@@ -3,7 +3,7 @@
 #include "code_020109c4.h"
 
 void SetKillerItemRenderCallback(void *model) {
-    NNS_G3dRenderObjSetCallBack(model, (NNSG3dSbcCallBackFunc) func_0206390c, 0, 6, (u8) 3);
+    NNS_G3dRenderObjSetCallBack(model, (NNSG3dSbcCallBackFunc) PlaceKartKillerEffectCallback, 0, 6, (u8) 3);
 }
 
 // Calls slot 8 of the kart's function table.

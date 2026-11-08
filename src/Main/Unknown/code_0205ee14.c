@@ -172,7 +172,7 @@ void AddBuddyRecordResult(u32 entryIndex, s32 *date, u32 matchKind, u32 resultKi
     if (raceSetup->mCurrentEntries[entryIndex].mPlayer.mUnk_20 == 0) {
         return;
     }
-    foundIndex = func_0206105c((const void *) raceSetup->mCurrentEntries[entryIndex].mPlayer.mUnk_20);
+    foundIndex = FindBuddyIndexByFriendData((const void *) raceSetup->mCurrentEntries[entryIndex].mPlayer.mUnk_20);
     if (foundIndex == -1) {
         return;
     }

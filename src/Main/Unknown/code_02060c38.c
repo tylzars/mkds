@@ -2,8 +2,8 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "code_0214d018.h"
 
-void func_02060c38(void *arg0) {
-    u32 value0 = (u32) arg0;
+void CopyBuddyFriendDataList(void *destination) {
+    u32 value0 = (u32) destination;
     u32 value1;
     u32 value2;
     u32 value3;

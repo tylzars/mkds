@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void func_02061540(void *a);
-void func_02061588(void);
+void StartReadCourseGhostRecords(void *records);
+void ReadCourseGhostRecords(void);

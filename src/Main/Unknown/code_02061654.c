@@ -110,40 +110,41 @@ u32 IsRaceAwardOrStaffRoll(void) {
 // Builds the race world and gRace. Not part of it: the screen and 3D engine set-up (Init3dEngine, called before), the
 // net and the HUD, which are in the scene slot InitRaceScene.
 void InitRace(void) {
-    void *a;
-    u16 b;
+    void *heap;
+    u16 texBankMask;
     s16 i;
     u16 j;
 
-    a = GetHeap(GetCurrentHeapCall());
+    heap = GetHeap(GetCurrentHeapCall());
     SetKartModelPathPrefix(0);
-    gRace = HeapAlloc(a, 72);
+    gRace = HeapAlloc(heap, 72);
     InitRaceFields();
-    b = GX_GetBankForTex();
-    NNS_GfdInitFrmTexVramManager(((b >> 3) & 1) + ((b >> 2) & 1) + ((b >> 1) & 1) + (b & 1), 1);
+    texBankMask = GX_GetBankForTex();
+    NNS_GfdInitFrmTexVramManager(
+        ((texBankMask >> 3) & 1) + ((texBankMask >> 2) & 1) + ((texBankMask >> 1) & 1) + (texBankMask & 1), 1);
     NNS_GfdInitFrmPlttVramManager(0x10000, 1);
     ResetResFileEntries();
     func_02077998();
     SetHeapGroupId(1);
     func_020875b4();
-    InitKartModels(a, gRaceSetup->mKartCount);
+    InitKartModels(heap, gRaceSetup->mKartCount);
     func_0207800c();
     func_020872a4();
     func_02047728();
     InitMap2D();
     SetHeapGroupId(2);
-    CreateCourseMap(a);
-    InitCourseModels(a);
+    CreateCourseMap(heap);
+    InitCourseModels(heap);
     func_020476ec();
     SetHeapGroupId(7);
-    CreateRaceProgress(a);
-    func_0205cd24(a);
+    CreateRaceProgress(heap);
+    func_0205cd24(heap);
     SetHeapGroupId(2);
     InitCourseCollision();
     SetHeapGroupId(8);
     InitCollisionSlots();
     SetHeapGroupId(1);
-    InitStemSets(a);
+    InitStemSets(heap);
     InitKartAiShared();
     InitKarts(gRaceSetup->mKartCount);
     CreateChaseCamera();
@@ -180,10 +181,10 @@ void InitRace(void) {
     InitMapObjects();
     InitItems();
     SetHeapGroupId(6);
-    func_0208b934(a);
-    func_020846c0(a);
-    InitModelEffects(a);
-    InitPosStrips(a);
+    func_0208b934(heap);
+    func_020846c0(heap);
+    InitModelEffects(heap);
+    InitPosStrips(heap);
     SetHeapGroupId(9);
     *(u16 *) 0x05000000 = 0xff00;
     reg_G3X_DISP3DCNT = reg_G3X_DISP3DCNT & 0xffffcffd;
@@ -206,7 +207,7 @@ void InitRace(void) {
 }
 
 void InitRaceFields(void) {
-    Vec3 v;
+    Vec3 lightVector;
     s32 m;
 
     gRace->mUpdateFrames = 0;
@@ -219,10 +220,10 @@ void InitRaceFields(void) {
     gRace->mUpdateFramesLimitReached = FALSE;
     gRace->mUpdateFramesUnlimited = FALSE;
     gRace->mUpdateFramesAtEntryEnd = 0;
-    v = data_021653f0;
-    gRace->mLightVectorX = v.x;
-    gRace->mLightVectorY = v.y;
-    gRace->mLightVectorZ = v.z;
+    lightVector = data_021653f0;
+    gRace->mLightVectorX = lightVector.x;
+    gRace->mLightVectorY = lightVector.y;
+    gRace->mLightVectorZ = lightVector.z;
     gRace->mUseChainCameras = (gRaceSetup->mRaceKind - 3) <= 2 ? 1 : 0;
     gRace->mUseFirstChainCamera = gRaceSetup->mRaceKind == 4 ? 1 : 0;
     gRace->mIsAwardOrStaffRoll =
@@ -231,10 +232,11 @@ void InitRaceFields(void) {
 }
 
 void func_020629a4(void) {
-    u16 b;
+    u16 texBankMask;
 
-    b = GX_GetBankForTex();
-    NNS_GfdInitFrmTexVramManager(((b >> 3) & 1) + ((b >> 2) & 1) + ((b >> 1) & 1) + (b & 1), 1);
+    texBankMask = GX_GetBankForTex();
+    NNS_GfdInitFrmTexVramManager(
+        ((texBankMask >> 3) & 1) + ((texBankMask >> 2) & 1) + ((texBankMask >> 1) & 1) + (texBankMask & 1), 1);
     NNS_GfdInitFrmPlttVramManager(0x10000, 1);
     ResetResFileEntries();
 }
@@ -264,7 +266,7 @@ void Init3dEngine(void) {
 // the first 0x708 frames (neither update nor draw). The HUD step and the end-of-race state are in the scene slot
 // UpdateRaceScene, which calls this; the exit loop also runs it with a == NULL.
 void UpdateRace(void) {
-    void *v;
+    void *viewMatrix;
 
     data_0217d020 = 1;
     UpdateCollisionSlotBounds();
@@ -289,11 +291,11 @@ void UpdateRace(void) {
     ClearCameraEntryFlags();
     if (gRace->mUseChainCameras != 0) {
         if (gRace->mUseFirstChainCamera != 0) {
-            v = UpdateFirstChainCamera();
+            viewMatrix = UpdateFirstChainCamera();
         } else {
-            v = UpdateChainCameraPair();
+            viewMatrix = UpdateChainCameraPair();
         }
-        gCurrentViewMatrix = v;
+        gCurrentViewMatrix = viewMatrix;
         gCurrentCamera = GetCurrentChainCamera();
     } else if (func_0203c5e4() != 0) {
         UpdateChaseCamera(gRaceChaseCamera, GetKart(gRaceSetup->mFollowedKartIndex));
@@ -407,35 +409,37 @@ void DrawRace(void) {
     gRace->mDrawFrames++;
 }
 
-void SetRaceLightVector(const Vec3 *a) {
-    gRace->mLightVectorX = a->x;
-    gRace->mLightVectorY = a->y;
-    gRace->mLightVectorZ = a->z;
+void SetRaceLightVector(const Vec3 *lightVector) {
+    gRace->mLightVectorX = lightVector->x;
+    gRace->mLightVectorY = lightVector->y;
+    gRace->mLightVectorZ = lightVector->z;
 }
 
 void DrawRaceWorld(void) {
-    Vec3 c;
+    Vec3 lightVector;
     Vec3 a;
     Vec3 b;
     u32 v;
-    Camera *p;
+    Camera *currentCamera;
 
     ApplyCameraFrustum(gCurrentCamera, 1);
     ApplyCameraLookAt(gCurrentCamera);
-    p = gCurrentCamera;
+    currentCamera = gCurrentCamera;
     NNS_G3dGlbLightVector(0, gRace->mLightVectorX, gRace->mLightVectorY, gRace->mLightVectorZ);
     NNS_G3dGlbLightColor(0, 0x7fff);
-    a.x = p->mViewMatrix.mUnk_00[0].y;
-    a.y = p->mViewMatrix.mUnk_00[1].y;
-    a.z = p->mViewMatrix.mUnk_00[2].y;
-    b.x = -p->mViewMatrix.mUnk_00[0].z;
-    b.y = -p->mViewMatrix.mUnk_00[1].z;
-    b.z = -p->mViewMatrix.mUnk_00[2].z;
-    VEC_Subtract(&b, &a, &c);
-    if ((s64) c.x * c.x + (s64) c.y * c.y + (s64) c.z * c.z >= 16) {
-        Vec3NormalizeAndGetLengthUnchecked(&c, &c);
+    a.x = currentCamera->mViewMatrix.mUnk_00[0].y;
+    a.y = currentCamera->mViewMatrix.mUnk_00[1].y;
+    a.z = currentCamera->mViewMatrix.mUnk_00[2].y;
+    b.x = -currentCamera->mViewMatrix.mUnk_00[0].z;
+    b.y = -currentCamera->mViewMatrix.mUnk_00[1].z;
+    b.z = -currentCamera->mViewMatrix.mUnk_00[2].z;
+    VEC_Subtract(&b, &a, &lightVector);
+    if ((s64) lightVector.x * lightVector.x + (s64) lightVector.y * lightVector.y +
+            (s64) lightVector.z * lightVector.z >=
+        16) {
+        Vec3NormalizeAndGetLengthUnchecked(&lightVector, &lightVector);
     }
-    NNS_G3dGlbLightVector(1, (s16) c.x, (s16) c.y, (s16) c.z);
+    NNS_G3dGlbLightVector(1, (s16) lightVector.x, (s16) lightVector.y, (s16) lightVector.z);
     NNS_G3dGlbLightColor(1, 0x7fff);
     NNS_G3dGlbFlushP();
     func_01ff9048(23, gCurrentViewMatrix, 12);
@@ -458,20 +462,20 @@ void DrawRaceWorld(void) {
 }
 
 void func_02062004(void) {
-    WiFiSession *p;
-    BOOL f;
+    WiFiSession *wiFiSession;
+    BOOL heapCreated;
 
     func_020d2d94();
     func_0207a990();
     ReleaseAllResFiles();
     func_0203d568();
-    f = FALSE;
-    p = gWiFiSession;
-    if (p != NULL && p->mHeapCreated != FALSE) {
-        f = TRUE;
+    heapCreated = FALSE;
+    wiFiSession = gWiFiSession;
+    if (wiFiSession != NULL && wiFiSession->mHeapCreated != FALSE) {
+        heapCreated = TRUE;
     }
-    if (f != FALSE) {
-        p->mKartMask = data_0217aa14->mUnk_749;
+    if (heapCreated != FALSE) {
+        wiFiSession->mKartMask = data_0217aa14->mUnk_749;
     }
     data_0217aa14 = NULL;
 }
@@ -505,9 +509,9 @@ u32 GetRaceUpdateFramesMod2(void) {
 
 // Also writes FOG_COLOR, FOG_OFFSET and FOG_TABLE directly and resets the fade state.
 void InitRaceFog(void) {
-    u32 a[32];
+    u32 fogCurve[32];
     u16 i;
-    u8 m;
+    u8 fogTableMode;
 
     BuildFadeFog(72, 1);
     data_021653e8 = 72;
@@ -517,33 +521,35 @@ void InitRaceFog(void) {
     gRace->mDrawnFadeFog = 0;
     gRace->mFadeFog = gRace->mDrawnFadeFog;
     if (gCourseMap->mSettings->mFogEnabled != 0) {
-        m = gCourseMap->mSettings->mFogTableMode;
-        if (m == 0) {
+        fogTableMode = gCourseMap->mSettings->mFogTableMode;
+        if (fogTableMode == 0) {
             for (i = 0; i < 8; i++) {
                 gCourseFogTable[i] =
                     ((i * 4) << 2) | ((i * 16 + 4) << 8) | ((i * 16 + 8) << 16) | ((i * 16 + 12) << 24);
             }
-        } else if (m == 1) {
+        } else if (fogTableMode == 1) {
             for (i = 0; i < 32; i++) {
-                a[i] = ((i + 1) * (i + 1)) / 8;
-                if (a[i] > 127) {
-                    a[i] = 127;
+                fogCurve[i] = ((i + 1) * (i + 1)) / 8;
+                if (fogCurve[i] > 127) {
+                    fogCurve[i] = 127;
                 }
             }
-            a[0] = 0;
+            fogCurve[0] = 0;
             for (i = 0; i < 8; i++) {
-                gCourseFogTable[i] = a[i * 4] | (a[i * 4 + 1] << 8) | (a[i * 4 + 2] << 16) | (a[i * 4 + 3] << 24);
+                gCourseFogTable[i] = fogCurve[i * 4] | (fogCurve[i * 4 + 1] << 8) | (fogCurve[i * 4 + 2] << 16) |
+                                     (fogCurve[i * 4 + 3] << 24);
             }
-        } else if (m == 2) {
+        } else if (fogTableMode == 2) {
             for (i = 0; i < 32; i++) {
-                a[i] = 128 - ((32 - (i + 1)) * (32 - (i + 1))) / 8;
-                if (a[i] > 127) {
-                    a[i] = 127;
+                fogCurve[i] = 128 - ((32 - (i + 1)) * (32 - (i + 1))) / 8;
+                if (fogCurve[i] > 127) {
+                    fogCurve[i] = 127;
                 }
             }
-            a[0] = 0;
+            fogCurve[0] = 0;
             for (i = 0; i < 8; i++) {
-                gCourseFogTable[i] = a[i * 4] | (a[i * 4 + 1] << 8) | (a[i * 4 + 2] << 16) | (a[i * 4 + 3] << 24);
+                gCourseFogTable[i] = fogCurve[i * 4] | (fogCurve[i * 4 + 1] << 8) | (fogCurve[i * 4 + 2] << 16) |
+                                     (fogCurve[i * 4 + 3] << 24);
             }
         }
         data_0217aa38 = gCourseMap->mSettings->mColorAndFogAlpha & 0x7fff;
@@ -563,43 +569,43 @@ void InitRaceFog(void) {
     }
 }
 
-void BuildFadeFog(s32 a, s32 b) {
-    s32 t;
-    s32 u;
-    u32 j;
-    u32 w;
+void BuildFadeFog(s32 fadeLevel, s32 b) {
+    s32 fadeWeight;
+    s32 courseWeight;
+    u32 byteIndex;
+    u32 tableEntry;
     u16 i;
-    s32 e;
+    s32 fogByte;
 
     if (gCourseMap->mSettings->mFogEnabled != 0 && b == 0) {
-        t = ((s64) 57 * (a << 12) + 0x800) >> 12;
-        data_0217aa78 = t;
-        u = 4096 - t;
-        data_0217aa84 = u;
-        data_0217aa44 = ((s64) t * 72 + 0x800) >> 12;
-        data_0217aa28 = (s32) (((s64) data_0217aa40 * u + 0x800) >> 12) +
-                        ((s32) (((s64) data_0217aa34 * u + 0x800) >> 12) << 5) +
-                        ((s32) (((s64) data_0217aa3c * u + 0x800) >> 12) << 10);
-        data_0217aa68 =
-            (s32) (((s64) u * data_0217aa50 + 0x800) >> 12) + (s32) (((s64) t * data_0217aa60 + 0x800) >> 12);
-        gFadeFogOffset = ((s64) u * gCourseFogOffset + 0x800) >> 12;
+        fadeWeight = ((s64) 57 * (fadeLevel << 12) + 0x800) >> 12;
+        data_0217aa78 = fadeWeight;
+        courseWeight = 4096 - fadeWeight;
+        data_0217aa84 = courseWeight;
+        data_0217aa44 = ((s64) fadeWeight * 72 + 0x800) >> 12;
+        data_0217aa28 = (s32) (((s64) data_0217aa40 * courseWeight + 0x800) >> 12) +
+                        ((s32) (((s64) data_0217aa34 * courseWeight + 0x800) >> 12) << 5) +
+                        ((s32) (((s64) data_0217aa3c * courseWeight + 0x800) >> 12) << 10);
+        data_0217aa68 = (s32) (((s64) courseWeight * data_0217aa50 + 0x800) >> 12) +
+                        (s32) (((s64) fadeWeight * data_0217aa60 + 0x800) >> 12);
+        gFadeFogOffset = ((s64) courseWeight * gCourseFogOffset + 0x800) >> 12;
         for (i = 0; i < 8; i++) {
-            w = gCourseFogTable[i];
-            data_0217aa8c[0] = w & 0xff;
-            data_0217aa8c[1] = (w & 0xff00) >> 8;
-            data_0217aa8c[2] = (w & 0xff0000) >> 16;
-            data_0217aa8c[3] = (w & 0xff000000) >> 24;
-            for (j = 0; j < 4; j++) {
-                e = data_0217aa8c[j];
-                data_0217aa8c[j] = (s32) (((s64) e * (s32) u + 0x800) >> 12) + data_0217aa44;
+            tableEntry = gCourseFogTable[i];
+            data_0217aa8c[0] = tableEntry & 0xff;
+            data_0217aa8c[1] = (tableEntry & 0xff00) >> 8;
+            data_0217aa8c[2] = (tableEntry & 0xff0000) >> 16;
+            data_0217aa8c[3] = (tableEntry & 0xff000000) >> 24;
+            for (byteIndex = 0; byteIndex < 4; byteIndex++) {
+                fogByte = data_0217aa8c[byteIndex];
+                data_0217aa8c[byteIndex] = (s32) (((s64) fogByte * (s32) courseWeight + 0x800) >> 12) + data_0217aa44;
             }
             gFadeFogTable[i] =
                 data_0217aa8c[0] | (data_0217aa8c[1] << 8) | (data_0217aa8c[2] << 16) | (data_0217aa8c[3] << 24);
         }
-        data_0217aa58 = w;
+        data_0217aa58 = tableEntry;
     } else {
         for (i = 0; i < 8; i++) {
-            gFadeFogTable[i] = a | (a << 8) | (a << 16) | (a << 24);
+            gFadeFogTable[i] = fadeLevel | (fadeLevel << 8) | (fadeLevel << 16) | (fadeLevel << 24);
         }
     }
 }
@@ -674,17 +680,17 @@ u32 SetRaceUpdateFramesAtEntryEnd(void) {
     return value0;
 }
 
-s32 TryGetRaceUpdateFramesSinceEntryEnd(u32 *a) {
-    Race *b;
-    BOOL c;
+s32 TryGetRaceUpdateFramesSinceEntryEnd(u32 *framesOut) {
+    Race *race;
+    BOOL found;
 
-    b = gRace;
-    c = FALSE;
-    if (b->mUpdateFramesAtEntryEnd != 0) {
-        c = TRUE;
-        *a = b->mUpdateFrames - b->mUpdateFramesAtEntryEnd;
+    race = gRace;
+    found = FALSE;
+    if (race->mUpdateFramesAtEntryEnd != 0) {
+        found = TRUE;
+        *framesOut = race->mUpdateFrames - race->mUpdateFramesAtEntryEnd;
     }
-    return c;
+    return found;
 }
 
 s32 GetMapObjectFirstPolygonId(void) {
@@ -701,60 +707,60 @@ u16 GetSplMaxPolyId(void) {
     return 0x1e;
 }
 
-BOOL IsGhostRecordFilled(void *v) {
-    GhostRecord *a = v;
+BOOL IsGhostRecordFilled(void *record) {
+    GhostRecord *ghostRecord = record;
 
-    if (a->mFilled == 1) {
+    if (ghostRecord->mFilled == 1) {
         return TRUE;
     }
     return FALSE;
 }
 
-BOOL GetGhostRecordTime(void *v, TimeRecord *b) {
-    GhostRecord *a = v;
+BOOL GetGhostRecordTime(void *record, TimeRecord *timeRecord) {
+    GhostRecord *ghostRecord = record;
 
-    if (a->mFilled != 1) {
+    if (ghostRecord->mFilled != 1) {
         return FALSE;
     }
-    b->mMinute = a->mMinute;
-    b->mSecond = a->mSecond;
-    b->mMillisecond = a->mMillisecond;
+    timeRecord->mMinute = ghostRecord->mMinute;
+    timeRecord->mSecond = ghostRecord->mSecond;
+    timeRecord->mMillisecond = ghostRecord->mMillisecond;
     return TRUE;
 }
 
-BOOL GetGhostRecordName(void *v, void *b) {
-    GhostRecord *a = v;
+BOOL GetGhostRecordName(void *record, void *name) {
+    GhostRecord *ghostRecord = record;
 
-    if (a->mFilled != 1) {
+    if (ghostRecord->mFilled != 1) {
         return FALSE;
     }
-    MI_CpuCopy8(a->mName, b, 0x14);
+    MI_CpuCopy8(ghostRecord->mName, name, 0x14);
     return TRUE;
 }
 
-s32 GetGhostRecordCharacterIndex(void *v) {
-    GhostRecord *a = v;
+s32 GetGhostRecordCharacterIndex(void *record) {
+    GhostRecord *ghostRecord = record;
 
-    if (a->mFilled != 1) {
+    if (ghostRecord->mFilled != 1) {
         return -1;
     }
-    return a->mCharacterIndex;
+    return ghostRecord->mCharacterIndex;
 }
 
-s32 GetGhostRecordKartIndex(void *v) {
-    GhostRecord *a = v;
+s32 GetGhostRecordKartIndex(void *record) {
+    GhostRecord *ghostRecord = record;
 
-    if (a->mFilled != 1) {
+    if (ghostRecord->mFilled != 1) {
         return -1;
     }
-    return a->mKartIndex;
+    return ghostRecord->mKartIndex;
 }
 
-u32 GetGhostRecordCourseId(void *v) {
-    GhostRecord *a = v;
+u32 GetGhostRecordCourseId(void *record) {
+    GhostRecord *ghostRecord = record;
 
-    if (a->mFilled != 1) {
+    if (ghostRecord->mFilled != 1) {
         return 0;
     }
-    return a->mCourseId;
+    return ghostRecord->mCourseId;
 }

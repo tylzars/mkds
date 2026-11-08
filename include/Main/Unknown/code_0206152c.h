@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_0206152c(u32 arg0);
+u32 CreateSlotGhostRecords(u32 heap);

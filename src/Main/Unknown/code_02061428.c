@@ -4,33 +4,33 @@
 #include "Main/Unknown/code_02057800.h"
 #include "01/code_021956dc.h"
 
-void func_02061470(void) {
+void ReadSlotGhostRecords(void) {
     u8 i;
-    u8 *a;
-    GhostRecord *b;
+    u8 *records;
+    GhostRecord *record;
 
-    a = data_0217aa08->mReadDestination;
+    records = data_0217aa08->mReadDestination;
     for (i = 0; i < 10; i++) {
-        b = (GhostRecord *) (a + i * 0x230);
+        record = (GhostRecord *) (records + i * 0x230);
         if (IsSlotGhostBitSet(i) != 0) {
-            func_02057800(0, i, b);
+            func_02057800(0, i, record);
             if (gBackupAccess->mBackupEnabled != 0) {
                 CARD_WaitBackupAsync();
             }
             if (gBackupAccess->mErrorCode != NULL) {
-                b->mFilled = 0;
+                record->mFilled = 0;
             }
         } else {
-            b->mFilled = 0;
+            record->mFilled = 0;
         }
     }
     ClearBackupBusy();
     data_0217aa08->mReadDestination = NULL;
 }
 
-void func_02061428(void *a) {
-    data_0217aa08->mReadDestination = a;
+void StartReadSlotGhostRecords(void *records) {
+    data_0217aa08->mReadDestination = records;
     SetBackupBusy();
-    QueueThreadFunction((void (*)(void)) func_02061470);
+    QueueThreadFunction((void (*)(void)) ReadSlotGhostRecords);
     gThreadFunctionQueue->mRunRequested = 1;
 }

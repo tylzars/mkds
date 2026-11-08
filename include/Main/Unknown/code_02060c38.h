@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02060c38(void *arg0);
+void CopyBuddyFriendDataList(void *destination);

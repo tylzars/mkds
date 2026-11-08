@@ -4,33 +4,33 @@
 #include "Main/Unknown/code_02057800.h"
 #include "01/code_021956dc.h"
 
-void func_02061588(void) {
+void ReadCourseGhostRecords(void) {
     u8 i;
-    u8 *a;
-    GhostRecord *b;
+    u8 *records;
+    GhostRecord *record;
 
-    a = data_0217aa08->mReadDestination;
+    records = data_0217aa08->mReadDestination;
     for (i = 0; i < 0x20; i++) {
-        b = (GhostRecord *) (a + i * 0x30);
+        record = (GhostRecord *) (records + i * 0x30);
         if (IsCourseGhostBitSet(i) != 0) {
-            func_0205786c(1, i, b);
+            func_0205786c(1, i, record);
             if (gBackupAccess->mBackupEnabled != 0) {
                 CARD_WaitBackupAsync();
             }
             if (gBackupAccess->mErrorCode != NULL) {
-                b->mFilled = 0;
+                record->mFilled = 0;
             }
         } else {
-            b->mFilled = 0;
+            record->mFilled = 0;
         }
     }
     data_0217aa08->mReadDestination = NULL;
     ClearBackupBusy();
 }
 
-void func_02061540(void *a) {
-    data_0217aa08->mReadDestination = a;
+void StartReadCourseGhostRecords(void *records) {
+    data_0217aa08->mReadDestination = records;
     SetBackupBusy();
-    QueueThreadFunction((void (*)(void)) func_02061588);
+    QueueThreadFunction((void (*)(void)) ReadCourseGhostRecords);
     gThreadFunctionQueue->mRunRequested = 1;
 }

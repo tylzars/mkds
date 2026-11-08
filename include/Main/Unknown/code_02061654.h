@@ -12,17 +12,17 @@ extern u16 data_021653e8;
 extern s16 data_021653ec;
 extern Vec3 data_021653f0;
 
-u32 GetGhostRecordCourseId(void *a);
-s32 GetGhostRecordKartIndex(void *a);
-s32 GetGhostRecordCharacterIndex(void *a);
-BOOL GetGhostRecordName(void *a, void *b);
-BOOL GetGhostRecordTime(void *a, TimeRecord *b);
-BOOL IsGhostRecordFilled(void *a);
+u32 GetGhostRecordCourseId(void *ghostRecord);
+s32 GetGhostRecordKartIndex(void *ghostRecord);
+s32 GetGhostRecordCharacterIndex(void *ghostRecord);
+BOOL GetGhostRecordName(void *ghostRecord, void *name);
+BOOL GetGhostRecordTime(void *ghostRecord, TimeRecord *timeRecord);
+BOOL IsGhostRecordFilled(void *ghostRecord);
 u16 GetSplMaxPolyId(void);
 s32 GetMapObjectFirstPolygonId(void);
 // Returns TRUE and writes the number of update frames since SetRaceUpdateFramesAtEntryEnd to a, or returns FALSE when
 // that has not run yet.
-s32 TryGetRaceUpdateFramesSinceEntryEnd(u32 *a);
+s32 TryGetRaceUpdateFramesSinceEntryEnd(u32 *framesOut);
 // Stores the current mUpdateFrames in Race.mUpdateFramesAtEntryEnd; called when the end handler of the kart of the
 // selected entry first runs.
 u32 SetRaceUpdateFramesAtEntryEnd(void);
@@ -34,7 +34,7 @@ unsigned int IsFadeFogActive(void);
 void SetFadeFogHoldFramesToLimit(void);
 void ClearFadeFogHoldFrames(void);
 void StartFadeFog(void);
-void BuildFadeFog(s32 a, s32 b);
+void BuildFadeFog(s32 fadeLevel, s32 b);
 void InitRaceFog(void);
 // Returns Race.mUpdateFramesMod2; changes nothing.
 unsigned int GetRaceUpdateFramesMod2(void);
@@ -52,7 +52,7 @@ void func_02062000(void);
 void func_02062004(void);
 void DrawRaceWorld(void);
 // Sets the direction of light 0 that DrawRaceWorld gives to the 3D engine (Race.mLightVectorX, Y and Z) from a.
-void SetRaceLightVector(const Vec3 *a);
+void SetRaceLightVector(const Vec3 *lightVector);
 void DrawRace(void);
 void UpdateRace(void);
 void Init3dEngine(void);

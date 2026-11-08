@@ -518,7 +518,7 @@ void AdvanceKeyboardState3(void) {
         keyboard = gKeyboard;
         if (keyboard->mUnk_2c[2].mUnk_10 != 0) {
             CopyKeyboardTextAsBytes();
-            switch (func_02061104(&gKeyboard->mUnk_2c[2])) {
+            switch (CheckFriendKeyString(&gKeyboard->mUnk_2c[2])) {
                 case 1:
                     gKeyboard->mNextState = 4;
                     SetupTxtSystemSubText(GetBmgEntry(gKeyboard->mCommonMessages, 0xa));
@@ -828,7 +828,7 @@ void AdvanceKeyboardState10(void) {
         if (GetTxtSystemSelectedIndex() == 0) {
             keyboard = gKeyboard;
             if (keyboard->mUnk_2c[2].mMode == 0xc) {
-                func_02060cb4(&keyboard->mUnk_2c[2], &keyboard->mUnk_2c[1]);
+                AddBuddyFromFriendKey(&keyboard->mUnk_2c[2], &keyboard->mUnk_2c[1]);
                 WriteBackupBuddyRecords();
                 message = GetBmgEntry(gKeyboard->mCommonMessages, 0x81);
                 SetupTxtSystemSubTextEx(message, 0, 1, 1, 0, 1);

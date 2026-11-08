@@ -86,7 +86,7 @@ void UpdateRaceHudSubScreenBgPalette(RaceHudSubScreenBgPalette *palette) {
 
     switch (gRaceSetup->mCourseId) {
         case COURSE_ID_OLD_NOKO_SFC:
-            v = func_02062ed8();
+            v = GetCourseModelNsbtpFrame();
             for (i = 0; i < 3; i++) {
                 palette->mUnk_00[i + 0x40] = data_0217b490->mUnk_02.mUnk_01[v / 10][i];
             }

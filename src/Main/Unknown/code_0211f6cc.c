@@ -111,12 +111,12 @@ void SetupWiFiSessionLogin(void) {
     MI_CpuFill8(&gWiFiSession->mLogin, 0, 0x10);
     MI_CpuFill8(&gWiFiSession->mUserData, 0, 0x350);
     MI_CpuFill8(&gWiFiSession->mConnection, 0, 0xe24);
-    if (func_02061290() != 0) {
+    if (CheckUserDataValidConsole() != 0) {
         MI_CpuCopy8(&data_0217aa08->mFirstBlock->mUserData, &gWiFiSession->mUserData, 0x40);
     } else {
         DWC_CreateUserData((DWCAccUserData *) &gWiFiSession->mUserData, 0x414d434a);
     }
-    func_02060c38(&gWiFiSession->mBuddies[0]);
+    CopyBuddyFriendDataList(&gWiFiSession->mBuddies[0]);
     func_ov000_021a39c4(&gWiFiSession->mLogin);
     func_ov000_021a397c(2);
     func_ov000_021a3910();

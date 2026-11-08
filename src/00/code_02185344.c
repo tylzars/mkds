@@ -25,7 +25,7 @@ void SetWiFiAikotobaCheckDigits(void) {
     u8 a[20];
     s32 i;
 
-    func_02061220((u32) a);
+    FormatUserDataFriendKey((u32) a);
     for (i = 0; i < 12; i++) {
         gWiFiAikotobaCheck->mDigits[i] = a[i];
     }

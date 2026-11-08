@@ -13,18 +13,18 @@ typedef struct CourseModels {
     // NULL when '/course_model_V.nsbmd' is absent; drawn before the main model under the other projection argument.
     /* 04 */ Nsbmd *mVNsbmd;
     /* 08 */ u8 mUnk_08[0xc];
-    /* 14 */ s32 mUnk_14;
+    /* 14 */ s32 mNsbtpFrameIndex;
     /* 18 */ u8 mUnk_18[8];
-    /* 20 */ u16 mUnk_20;
+    /* 20 */ u16 mNsbtpAnmObjCount;
     /* 22 */ u8 mUnk_22[0x36];
-    /* 58 */ u16 mUnk_58;
+    /* 58 */ u16 mNsbtaAnmObjCount;
     /* 5a */ u8 mUnk_5a[0x36];
-    /* 90 */ u16 mUnk_90;
+    /* 90 */ u16 mVNsbtaAnmObjCount;
     /* 92 */ u8 mUnk_92[0x4e];
-    /* e0 */ BOOL mUnk_e0;
-    /* e4 */ u64 mUnk_e4;
-    /* ec */ BOOL mUnk_ec;
-    /* f0 */ u16 mUnk_f0;
+    /* e0 */ BOOL mRestoreFogEnableFlags;
+    /* e4 */ u64 mSavedFogEnableFlags;
+    /* ec */ BOOL mRestoreVFogEnableFlags;
+    /* f0 */ u16 mSavedVFogEnableFlags;
 } CourseModels;
 
 // What func_020636f8 writes from 0x08 of the Unk0217aa14_754_04 it points to.
@@ -65,16 +65,16 @@ extern const u32 data_usa_02154a00[];
 extern const u32 data_usa_02154a10[];
 extern u32 data_usa_02154a20[];
 
-s32 func_02062ed8(void);
-void SetCourseModelsFogEnableFlags(u32 a);
+s32 GetCourseModelNsbtpFrame(void);
+void SetCourseModelsFogEnableFlags(u32 flag);
 void InitCourseModelsFogEnableFlags(void);
 void SetKoopaCourseLight2(void);
 void DrawCourseModelV(void);
 void DrawCourseModel(void);
 void UpdateCourseModels(void);
-void InitCourseModels(void *a);
-void func_020636f8(Kart *a);
-void func_020637c4(Kart *a);
-void func_020637e0(Kart *a);
-void func_02063830(Kart *a);
-void func_02063880(Kart *a);
+void InitCourseModels(void *heap);
+void func_020636f8(Kart *kart);
+void func_020637c4(Kart *kart);
+void func_020637e0(Kart *kart);
+void func_02063830(Kart *kart);
+void func_02063880(Kart *kart);

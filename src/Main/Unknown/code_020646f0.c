@@ -19,76 +19,76 @@
 #include "Main/Unknown/code_020ed5c0.h"
 #include "code_02147cd8.h"
 
-void func_020646f0(Kart *a, s32 b) {
-    MtxFx43 *m;
-    CourseMap *c;
-    Vec3 d;
+void func_020646f0(Kart *kart, s32 b) {
+    MtxFx43 *rotationMatrix;
+    CourseMap *courseMap;
+    Vec3 startRotation;
     Vec3 e;
     Vec3 f;
     Vec3 g;
     Vec3 h;
-    KartModelAnimationView *i;
+    KartModelAnimationView *characterAnimation;
     s16 j;
     s16 k;
     s16 l;
     Vec3 *n;
 
     if (b == 0) {
-        GetCourseMapKartStartPlacement(&a->mPos, &d, a->mIndex);
+        GetCourseMapKartStartPlacement(&kart->mPos, &startRotation, kart->mIndex);
         if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
-            a->mPos = data_0216549c[a->mIndex];
+            kart->mPos = data_0216549c[kart->mIndex];
         }
     } else {
-        c = gCourseMap;
-        if (c->mUnk_3c != NULL) {
-            n = &a->mPos;
+        courseMap = gCourseMap;
+        if (courseMap->mUnk_3c != NULL) {
+            n = &kart->mPos;
             if (n != NULL) {
-                *n = c->mUnk_3c->mUnk_00;
+                *n = courseMap->mUnk_3c->mUnk_00;
             }
-            d = c->mUnk_3c->mUnk_0c;
+            startRotation = courseMap->mUnk_3c->mUnk_0c;
         }
     }
-    if ((a->mUnk_7c & 0x600) != 0) {
-        j = a->mPos.x >> 10;
-        k = a->mPos.y >> 10;
-        l = a->mPos.z >> 10;
-        a->mPos.x = j << 10;
-        a->mPos.y = k << 10;
-        a->mPos.z = l << 10;
+    if ((kart->mUnk_7c & 0x600) != 0) {
+        j = kart->mPos.x >> 10;
+        k = kart->mPos.y >> 10;
+        l = kart->mPos.z >> 10;
+        kart->mPos.x = j << 10;
+        kart->mPos.y = k << 10;
+        kart->mPos.z = l << 10;
     }
-    g = a->mPos;
+    g = kart->mPos;
     g.y = g.y + 0x1000;
-    a->mPos.y = a->mPos.y - 0x1400;
-    if (func_01ffdee4(&a->mPos, (u32 *) &g, &a->mTurnedForward, 0x5000, 1, -2, &e, &f, NULL, NULL, NULL, NULL, NULL,
-                      NULL) != 0) {
+    kart->mPos.y = kart->mPos.y - 0x1400;
+    if (func_01ffdee4(&kart->mPos, (u32 *) &g, &kart->mTurnedForward, 0x5000, 1, -2, &e, &f, NULL, NULL, NULL, NULL,
+                      NULL, NULL) != 0) {
         h.x = (s64) f.x * 0x5000 >> 12;
         h.y = (s64) f.y * 0x5000 >> 12;
         h.z = (s64) f.z * 0x5000 >> 12;
         VEC_Subtract(&e, &h, &e);
-        VEC_Add(&a->mPos, &e, &a->mPos);
+        VEC_Add(&kart->mPos, &e, &kart->mPos);
     }
-    a->mPos.y = a->mPos.y - 0x1000;
-    a->mHeadingAngle = (u32) (d.y * 0xb6) >> 12;
-    QuaternionFromAxisAngle(&data_02154a3c, a->mHeadingAngle, &a->mUnk_e0_m);
-    a->mUnk_110_q = a->mUnk_e0_m;
-    Matrix4x3FromQuaternion(&a->mUnk_120, &a->mUnk_110_q);
-    a->mUnk_150_m = a->mUnk_120_m;
-    a->mPrevPos = a->mPos;
-    a->mDrawMatrixPos = a->mPrevPos;
-    a->mUnk_174.x = a->mDrawMatrixPos.x;
-    a->mUnk_174.y = a->mDrawMatrixPos.y;
-    a->mUnk_174.z = a->mDrawMatrixPos.z;
-    m = &a->mUnk_120_m;
-    a->mForward.x = m->mUnk_00[2].x;
-    a->mForward.y = m->mUnk_00[2].y;
-    a->mForward.z = m->mUnk_00[2].z;
-    a->mTurnedForward = a->mForward;
-    a->mDrawMatrix = &a->mUnk_150_m;
-    i = a->mKartModelsEntry->mCharacterAnimation;
-    if (i == NULL) {
+    kart->mPos.y = kart->mPos.y - 0x1000;
+    kart->mHeadingAngle = (u32) (startRotation.y * 0xb6) >> 12;
+    QuaternionFromAxisAngle(&data_02154a3c, kart->mHeadingAngle, &kart->mUnk_e0_m);
+    kart->mUnk_110_q = kart->mUnk_e0_m;
+    Matrix4x3FromQuaternion(&kart->mUnk_120, &kart->mUnk_110_q);
+    kart->mUnk_150_m = kart->mUnk_120_m;
+    kart->mPrevPos = kart->mPos;
+    kart->mDrawMatrixPos = kart->mPrevPos;
+    kart->mUnk_174.x = kart->mDrawMatrixPos.x;
+    kart->mUnk_174.y = kart->mDrawMatrixPos.y;
+    kart->mUnk_174.z = kart->mDrawMatrixPos.z;
+    rotationMatrix = &kart->mUnk_120_m;
+    kart->mForward.x = rotationMatrix->mUnk_00[2].x;
+    kart->mForward.y = rotationMatrix->mUnk_00[2].y;
+    kart->mForward.z = rotationMatrix->mUnk_00[2].z;
+    kart->mTurnedForward = kart->mForward;
+    kart->mDrawMatrix = &kart->mUnk_150_m;
+    characterAnimation = kart->mKartModelsEntry->mCharacterAnimation;
+    if (characterAnimation == NULL) {
         return;
     }
-    if (i->mUnk_18 != 0) {
-        i->mUnk_0c = a->mKartModelsEntry->mMiddleFrame;
+    if (characterAnimation->mUnk_18 != 0) {
+        characterAnimation->mUnk_0c = kart->mKartModelsEntry->mMiddleFrame;
     }
 }

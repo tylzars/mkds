@@ -19,223 +19,225 @@
 
 #pragma opt_loop_invariants off
 
-void func_020613a0(void) {
+void ReadGhostFileRecords(void) {
     u8 i;
-    u8 *a;
-    char b[0x80];
+    u8 *records;
+    char path[0x80];
 
     i = 0;
-    a = data_0217aa08->mReadDestination;
+    records = data_0217aa08->mReadDestination;
     for (; i < 0x20; i++) {
-        FormatGhostFilePath(i, b, 0x80);
-        ReadFileBytes(b, a + i * 0x230, 0x230);
+        FormatGhostFilePath(i, path, 0x80);
+        ReadFileBytes(path, records + i * 0x230, 0x230);
     }
     ClearBackupBusy();
     data_0217aa08->mReadDestination = NULL;
 }
 
-void func_02061358(void *a) {
-    data_0217aa08->mReadDestination = a;
+void StartReadGhostFileRecords(void *records) {
+    data_0217aa08->mReadDestination = records;
     SetBackupBusy();
-    QueueThreadFunction((void (*)(void)) func_020613a0);
+    QueueThreadFunction((void (*)(void)) ReadGhostFileRecords);
     gThreadFunctionQueue->mRunRequested = 1;
 }
 
 void func_020612b0(void) {
-    BackupFirstBlock *a;
-    u32 b;
-    u32 c;
+    BackupFirstBlock *firstBlock;
+    u32 total;
+    u32 limit;
 
     gWiFiSession->mKartCountCopy = gWiFiSession->mKartCount;
-    a = data_0217aa08->mFirstBlock;
-    b = a->mUnk_34[5] + (u8) (gWiFiSession->mKartCountCopy - 1);
-    c = data_021653e4 + 3;
-    if (b > c) {
-        b = c;
+    firstBlock = data_0217aa08->mFirstBlock;
+    total = firstBlock->mUnk_34[5] + (u8) (gWiFiSession->mKartCountCopy - 1);
+    limit = data_021653e4 + 3;
+    if (total > limit) {
+        total = limit;
     }
-    data_0217aa08->mFirstBlock->mUnk_34[5] = b;
+    data_0217aa08->mFirstBlock->mUnk_34[5] = total;
     WriteBackupFirstBlock(data_0217aa08->mFirstBlock);
     if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
 }
 
-s32 func_02061290(void) {
+s32 CheckUserDataValidConsole(void) {
     return DWC_CheckValidConsole((DWCAccUserData *) data_0217aa08->mFirstBlock->mUserData);
 }
 
 s32 func_02061250(void) {
-    u64 a;
-    s32 b;
+    u64 friendKey;
+    s32 result;
 
-    a = DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mFirstBlock->mUserData);
-    b = 0;
-    if (a != b) {
-        b = 1;
+    friendKey = DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mFirstBlock->mUserData);
+    result = 0;
+    if (friendKey != result) {
+        result = 1;
     }
-    return b;
+    return result;
 }
 
-void func_02061220(u32 a) {
-    u64 b;
+void FormatUserDataFriendKey(u32 buffer) {
+    u64 friendKey;
 
-    b = DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mFirstBlock->mUserData);
-    FormatFriendKey(b, b >> 32, a);
+    friendKey = DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mFirstBlock->mUserData);
+    FormatFriendKey(friendKey, friendKey >> 32, buffer);
 }
 
-s32 func_02061104(const void *a) {
-    u8 b[12];
-    BuddyRecord c;
-    u64 d;
-    s32 e;
+s32 CheckFriendKeyString(const void *keyString) {
+    u8 friendData[12];
+    BuddyRecord buddyRecord;
+    u64 friendKey;
+    s32 foundIndex;
     u8 i;
-    u8 *f;
+    u8 *friendDataList;
 
-    d = DWC_StringToFriendKey(a);
-    if (DWC_Acc_CheckFriendKey(d, 0x414d434a) == 0) {
+    friendKey = DWC_StringToFriendKey(keyString);
+    if (DWC_Acc_CheckFriendKey(friendKey, 0x414d434a) == 0) {
         return 1;
     }
-    if (d == DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mFirstBlock->mUserData)) {
+    if (friendKey == DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mFirstBlock->mUserData)) {
         return 1;
     }
-    InitFriendDataFromFriendKey(b, d, d >> 32);
-    f = (u8 *) data_0217aa08->mBuddyRecordBlock + 0x874;
-    e = -1;
+    InitFriendDataFromFriendKey(friendData, friendKey, friendKey >> 32);
+    friendDataList = (u8 *) data_0217aa08->mBuddyRecordBlock + 0x874;
+    foundIndex = -1;
     for (i = 0; i < 60; i++) {
-        u8 *g;
+        u8 *entry;
 
-        GetBuddyRecord(i, &c);
-        if (c.mFilled == 1) {
-            g = f + i * 12;
-            if (func_02152698(g) != 0 && DWC_IsEqualFriendData((DWCAccFriendData *) g, (DWCAccFriendData *) b) != 0) {
-                e = (s8) i;
+        GetBuddyRecord(i, &buddyRecord);
+        if (buddyRecord.mFilled == 1) {
+            entry = friendDataList + i * 12;
+            if (func_02152698(entry) != 0 &&
+                DWC_IsEqualFriendData((DWCAccFriendData *) entry, (DWCAccFriendData *) friendData) != 0) {
+                foundIndex = (s8) i;
                 break;
             }
         }
     }
-    if (e != -1) {
+    if (foundIndex != -1) {
         return 2;
     }
     return 0;
 }
 
-s32 func_0206105c(const void *a) {
-    BuddyRecord b;
-    s32 c;
+s32 FindBuddyIndexByFriendData(const void *friendData) {
+    BuddyRecord buddyRecord;
+    s32 foundIndex;
     u8 i;
-    u8 *d;
+    u8 *friendDataList;
 
-    d = (u8 *) data_0217aa08->mBuddyRecordBlock + 0x874;
-    c = -1;
+    friendDataList = (u8 *) data_0217aa08->mBuddyRecordBlock + 0x874;
+    foundIndex = -1;
     for (i = 0; i < 60; i++) {
-        u8 *e;
+        u8 *entry;
 
-        GetBuddyRecord(i, &b);
-        if (b.mFilled == 1) {
-            e = d + i * 12;
-            if (func_02152698(e) != 0 && DWC_IsEqualFriendData((DWCAccFriendData *) e, a) != 0) {
-                c = (s8) i;
+        GetBuddyRecord(i, &buddyRecord);
+        if (buddyRecord.mFilled == 1) {
+            entry = friendDataList + i * 12;
+            if (func_02152698(entry) != 0 && DWC_IsEqualFriendData((DWCAccFriendData *) entry, friendData) != 0) {
+                foundIndex = (s8) i;
                 break;
             }
         }
     }
-    return c;
+    return foundIndex;
 }
 
-s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
-    DateBytes h;
-    DateBytes j;
-    BuddyRecord k;
-    s32 g[3];
-    s32 m;
-    BOOL n;
-    s32 q;
+s32 AddOrUpdateBuddyRecord(u8 *friendDataList, void *name, u8 *friendData, s32 notYetBuddy, s32 e, s32 allowAdd) {
+    DateBytes oldestDate;
+    DateBytes recordDate;
+    BuddyRecord buddyRecord;
+    s32 today[3];
+    s32 slotIndex;
+    BOOL found;
+    s32 oldestIndex;
     s32 i;
-    u8 *p;
-    u8 r;
-    u8 s;
-    u8 t;
-    u8 v;
+    u8 *entry;
+    u8 year;
+    u8 month;
+    u8 day;
+    u8 slot;
 
-    m = -1;
-    n = FALSE;
-    GetClockDateOrDefault(g);
-    r = g[0];
-    s = g[1];
-    t = g[2];
-    p = a;
-    for (i = 0; i < 60; i = (s8) (i + 1), p += 12) {
-        GetBuddyRecord((u8) i, &k);
-        if (k.mFilled == 1 && func_02152698(c) != 0 && func_02152698(p) != 0 &&
-            DWC_IsEqualFriendData((DWCAccFriendData *) p, (DWCAccFriendData *) c) != 0) {
-            m = i;
-            n = TRUE;
+    slotIndex = -1;
+    found = FALSE;
+    GetClockDateOrDefault(today);
+    year = today[0];
+    month = today[1];
+    day = today[2];
+    entry = friendDataList;
+    for (i = 0; i < 60; i = (s8) (i + 1), entry += 12) {
+        GetBuddyRecord((u8) i, &buddyRecord);
+        if (buddyRecord.mFilled == 1 && func_02152698(friendData) != 0 && func_02152698(entry) != 0 &&
+            DWC_IsEqualFriendData((DWCAccFriendData *) entry, (DWCAccFriendData *) friendData) != 0) {
+            slotIndex = i;
+            found = TRUE;
             break;
         }
     }
-    if (d != 0 && n != FALSE) {
+    if (notYetBuddy != 0 && found != FALSE) {
         return -1;
     }
-    if (f == 0 && m == -1) {
+    if (allowAdd == 0 && slotIndex == -1) {
         return -1;
     }
-    if (m == -1) {
+    if (slotIndex == -1) {
         for (i = 0; i < 60; i = (s8) (i + 1)) {
-            GetBuddyRecord((u8) i, &k);
-            if (k.mFilled == 0) {
-                m = i;
+            GetBuddyRecord((u8) i, &buddyRecord);
+            if (buddyRecord.mFilled == 0) {
+                slotIndex = i;
                 break;
             }
         }
     }
-    q = -1;
-    if (m == -1) {
-        h.mYear = 100;
-        h.mMonth = 12;
-        h.mDay = 31;
+    oldestIndex = -1;
+    if (slotIndex == -1) {
+        oldestDate.mYear = 100;
+        oldestDate.mMonth = 12;
+        oldestDate.mDay = 31;
         for (i = 0; i < 60; i = (s8) (i + 1)) {
-            GetBuddyRecord((u8) i, &k);
-            j.mYear = k.mYear;
-            j.mMonth = k.mMonth;
-            j.mDay = k.mDay;
-            if (k.mFilled == 1 && k.mFlagged == 0 && IsDateEarlier(&j, &h) != FALSE) {
-                h = j;
-                q = i;
+            GetBuddyRecord((u8) i, &buddyRecord);
+            recordDate.mYear = buddyRecord.mYear;
+            recordDate.mMonth = buddyRecord.mMonth;
+            recordDate.mDay = buddyRecord.mDay;
+            if (buddyRecord.mFilled == 1 && buddyRecord.mFlagged == 0 &&
+                IsDateEarlier(&recordDate, &oldestDate) != FALSE) {
+                oldestDate = recordDate;
+                oldestIndex = i;
             }
         }
-        if (q != -1) {
-            m = q;
+        if (oldestIndex != -1) {
+            slotIndex = oldestIndex;
         }
     }
-    if (m == -1) {
+    if (slotIndex == -1) {
         return -1;
     }
-    MI_CpuCopy8(c, a + m * 12, 12);
-    v = m;
-    GetBuddyRecord(v, &k);
-    if (n == FALSE) {
-        ResetBuddyRecord((u32) &k);
+    MI_CpuCopy8(friendData, friendDataList + slotIndex * 12, 12);
+    slot = slotIndex;
+    GetBuddyRecord(slot, &buddyRecord);
+    if (found == FALSE) {
+        ResetBuddyRecord((u32) &buddyRecord);
     }
-    k.mYear = r;
-    k.mMonth = s;
-    k.mDay = t;
-    if (d != 0) {
-        k.mNotYetBuddy = 1;
+    buddyRecord.mYear = year;
+    buddyRecord.mMonth = month;
+    buddyRecord.mDay = day;
+    if (notYetBuddy != 0) {
+        buddyRecord.mNotYetBuddy = 1;
     } else {
-        k.mNotYetBuddy = 0;
+        buddyRecord.mNotYetBuddy = 0;
     }
-    MI_CpuCopy8(b, k.mName, 0x14);
-    k.mUnk_22_2 = e != 0;
-    k.mFilled = 1;
-    SetBuddyRecord(v, &k);
-    return m;
+    MI_CpuCopy8(name, buddyRecord.mName, 0x14);
+    buddyRecord.mUnk_22_2 = e != 0;
+    buddyRecord.mFilled = 1;
+    SetBuddyRecord(slot, &buddyRecord);
+    return slotIndex;
 }
 
-s32 func_02060cb4(const void *a, void *b) {
-    u8 c[12];
-    u64 d;
+s32 AddBuddyFromFriendKey(const void *keyString, void *name) {
+    u8 friendData[12];
+    u64 friendKey;
 
-    d = DWC_StringToFriendKey(a);
-    InitFriendDataFromFriendKey(c, d, d >> 32);
-    return func_02060d1c((u8 *) data_0217aa08->mBuddyRecordBlock + 0x874, b, c, 1, 0, 1);
+    friendKey = DWC_StringToFriendKey(keyString);
+    InitFriendDataFromFriendKey(friendData, friendKey, friendKey >> 32);
+    return AddOrUpdateBuddyRecord((u8 *) data_0217aa08->mBuddyRecordBlock + 0x874, name, friendData, 1, 0, 1);
 }
