@@ -81,8 +81,8 @@ void LoadWiFiMenuSceneData(void) {
     LoadNclrData(&v.mNclr, FindSceneFile("WiFi_aikotoba_check_m_o.nclr"));
     func_02025f90();
     func_02027df8();
-    func_0202a734();
-    func_0202b8d8();
+    LoadWiFiVSCourseSelectFiles();
+    LoadPlayerEntryListFiles();
 }
 
 void InitWiFiStates(void *heap, s32 b) {
@@ -107,7 +107,7 @@ void InitWiFiStates(void *heap, s32 b) {
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(heap, &c);
     LoadWiFiMenuSceneData();
-    func_0202c65c(heap, func_ov000_021804f4());
+    InitPlayerEntryList(heap, func_ov000_021804f4());
     func_02078d64(GetHeap(GetCurrentHeapCall()));
     RequestKartModelMenuCharacter(-1);
     RequestKartModelMenuKart(-1);
@@ -189,7 +189,7 @@ void ReleaseWiFiStates(void) {
         gWiFiStates->mCallbacks.mRelease();
     }
     ClearWiFiStateCallbacks();
-    func_0202bb60();
+    ReleasePlayerEntryList();
     func_0212abd0();
     func_02125da0();
     gWiFiStates = NULL;

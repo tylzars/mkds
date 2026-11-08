@@ -106,7 +106,7 @@ void InitKeyboardCursorCorners(void) {
     for (i = 0; i < 2; i++) {
         for (j = 0; j < 2; j++) {
             for (k = 0; k < 4; k++) {
-                Unk02124b1c *p = &gKeyboard->mTables[i][j][data_0215d0f8[i][k]];
+                LayoutTableEntry *p = &gKeyboard->mTables[i][j][data_0215d0f8[i][k]];
                 p->mUnk_08 = TRUE;
                 p->mUnk_0c = 0;
                 p->mPositionY = 0;
@@ -122,23 +122,23 @@ void func_0212a4f4(void) {
     for (i = 0; i < 2; i++) {
         for (j = 0; j < 2; j++) {
             for (k = 0; k < 3; k++) {
-                gKeyboard->mTables[i][0][data_0215d128[i][j][k]].mUnk_00 = 0;
+                gKeyboard->mTables[i][0][data_0215d128[i][j][k]].mVisible = 0;
             }
-            gKeyboard->mTables[i][0][data_0215d0e4[i][j] + gKeyboard->mBncls[i]->mUnk_06].mUnk_00 = 0;
+            gKeyboard->mTables[i][0][data_0215d0e4[i][j] + gKeyboard->mBncls[i]->mUnk_06].mVisible = 0;
         }
     }
     for (i = 0; i < 2; i++) {
         for (j = 0; j < gKeyboardTextLimits[i]; j++) {
-            gKeyboard->mTables[i][0][data_0215d14c[i][j]].mUnk_00 = 0;
+            gKeyboard->mTables[i][0][data_0215d14c[i][j]].mVisible = 0;
         }
     }
     for (i = 0; i < 2; i++) {
         for (k = 0; k < 4; k++) {
-            gKeyboard->mTables[i][0][data_0215d0f8[i][k]].mUnk_00 = 0;
+            gKeyboard->mTables[i][0][data_0215d0f8[i][k]].mVisible = 0;
         }
     }
     for (j = 0; j < 10; j++) {
-        gKeyboard->mTables[1][0][data_0215d110[j]].mUnk_00 = 0;
+        gKeyboard->mTables[1][0][data_0215d110[j]].mVisible = 0;
     }
 }
 
@@ -298,18 +298,18 @@ void WriteKeyboardObjectOffsets(void) {
                 v = gKeyboard->mTextOffsetY[i][j];
             }
             for (k = 0; k < data_0215d0d8[i]; k++) {
-                gKeyboard->mTables[i][j][data_0215d0dc[i][k]].mUnk_06 = v;
+                gKeyboard->mTables[i][j][data_0215d0dc[i][k]].mOffsetY = v;
             }
             for (k = 0; k < gKeyboardTextLimits[i]; k++) {
-                gKeyboard->mTables[i][j][data_0215d14c[i][k]].mUnk_06 = v;
-                (gKeyboard->mTables[i][j] + e[i])[data_0215d134[i][k]].mUnk_06 = v;
+                gKeyboard->mTables[i][j][data_0215d14c[i][k]].mOffsetY = v;
+                (gKeyboard->mTables[i][j] + e[i])[data_0215d134[i][k]].mOffsetY = v;
             }
             v = gKeyboard->mOffsetY;
             for (m = 0; m < 2; m++) {
                 for (k = 0; k < 3; k++) {
-                    gKeyboard->mTables[i][j][data_0215d128[i][m][k]].mUnk_06 = v;
+                    gKeyboard->mTables[i][j][data_0215d128[i][m][k]].mOffsetY = v;
                 }
-                (gKeyboard->mTables[i][j] + e[i])[data_0215d0e4[i][m]].mUnk_06 = v;
+                (gKeyboard->mTables[i][j] + e[i])[data_0215d0e4[i][m]].mOffsetY = v;
             }
             w = gKeyboard->mOffsetY;
             GetKeyboardCursorBoundsRelative(&a, &b, &c, &d);
@@ -329,14 +329,14 @@ void WriteKeyboardObjectOffsets(void) {
             v = gKeyboard->mOffsetY;
         }
         for (k = 0; k < 10; k++) {
-            gKeyboard->mTables[1][i][data_0215d110[k]].mUnk_06 = v;
+            gKeyboard->mTables[1][i][data_0215d110[k]].mOffsetY = v;
         }
         v = -500;
         if (gKeyboard->mKind == 1) {
             v = gKeyboard->mTextOffsetY[1][i];
         }
         for (k = 0; k < 6; k++) {
-            gKeyboard->mTables[1][i][data_0215d0f0[k]].mUnk_06 = v;
+            gKeyboard->mTables[1][i][data_0215d0f0[k]].mOffsetY = v;
         }
     }
 }
@@ -946,10 +946,10 @@ void ShowKeyboardCursorButtonObjects(void) {
     for (i = 0; i < 2; i++) {
         if (gKeyboard->mCursorOnButton[i] != 0) {
             n = gKeyboard->mKind;
-            gKeyboard->mTables[n][1][data_0215d128[n][i][0]].mUnk_00 = 1;
+            gKeyboard->mTables[n][1][data_0215d128[n][i][0]].mVisible = 1;
         } else {
             n = gKeyboard->mKind;
-            gKeyboard->mTables[n][1][data_0215d128[n][i][0]].mUnk_00 = 0;
+            gKeyboard->mTables[n][1][data_0215d128[n][i][0]].mVisible = 0;
         }
     }
 }
@@ -960,10 +960,10 @@ void ShowKeyboardDisabledButtonObjects(void) {
     for (i = 0; i < 2; i++) {
         if (gKeyboard->mButtonEnabled[i] != 0) {
             n = gKeyboard->mKind;
-            gKeyboard->mTables[n][1][data_0215d128[n][i][1]].mUnk_00 = 0;
+            gKeyboard->mTables[n][1][data_0215d128[n][i][1]].mVisible = 0;
         } else {
             n = gKeyboard->mKind;
-            gKeyboard->mTables[n][1][data_0215d128[n][i][1]].mUnk_00 = 1;
+            gKeyboard->mTables[n][1][data_0215d128[n][i][1]].mVisible = 1;
         }
     }
 }
@@ -971,9 +971,9 @@ void ShowKeyboardDisabledButtonObjects(void) {
 void ShowKeyboardTextIndexObject(void) {
     s32 i;
     for (i = 0; i < gKeyboardTextLimits[gKeyboard->mKind]; i++) {
-        gKeyboard->mTables[gKeyboard->mKind][1][data_0215d14c[gKeyboard->mKind][i]].mUnk_00 = 0;
+        gKeyboard->mTables[gKeyboard->mKind][1][data_0215d14c[gKeyboard->mKind][i]].mVisible = 0;
     }
-    gKeyboard->mTables[gKeyboard->mKind][1][data_0215d14c[gKeyboard->mKind][GetKeyboardTextIndex()]].mUnk_00 = 1;
+    gKeyboard->mTables[gKeyboard->mKind][1][data_0215d14c[gKeyboard->mKind][GetKeyboardTextIndex()]].mVisible = 1;
 }
 
 void func_02128b54(void) {
@@ -996,9 +996,9 @@ void func_02128b54(void) {
         for (; i < 6; i++) {
             for (j = 0; j < 2; j++) {
                 if (i >= l && gKeyboard->mUnk_2c[2].mMode != 0xc) {
-                    gKeyboard->mTables[1][j][*q].mUnk_00 = 1;
+                    gKeyboard->mTables[1][j][*q].mVisible = 1;
                 } else {
-                    gKeyboard->mTables[1][j][*q].mUnk_00 = 0;
+                    gKeyboard->mTables[1][j][*q].mVisible = 0;
                 }
             }
             q++;
@@ -1017,11 +1017,11 @@ void ShowKeyboardLayoutObject(void) {
     for (; i < 6; i++) {
         c = *q;
         if (c != 0xff) {
-            gKeyboard->mTables[1][1][c].mUnk_00 = z;
+            gKeyboard->mTables[1][1][c].mVisible = z;
         }
         q++;
     }
-    gKeyboard->mTables[1][1][data_0215d0e8[gKeyboard->mLayout]].mUnk_00 = 1;
+    gKeyboard->mTables[1][1][data_0215d0e8[gKeyboard->mLayout]].mVisible = 1;
 }
 
 void AdvanceKeyboard(void) {

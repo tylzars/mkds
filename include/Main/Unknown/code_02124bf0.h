@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02124094.h" // Unk02124b1c, Unk02021dc8, Unk0201ea30
+#include "Main/Unknown/code_02124094.h" // LayoutTableEntry, Unk02021dc8, Unk0201ea30
 #include "code_02022030.h" // GXOamAttr
 
 // 0x20 bytes: four 8-byte entries (the table behind Unk02124c70 is indexed in 8-byte steps by DrawLayoutEntry and in
@@ -18,9 +18,9 @@ typedef struct Unk02124c70 {
     /* 402 */ u16 mUnk_402;
 } Unk02124c70;
 
-void InitLayoutTable(void *heap, Unk0201ea30 *cellLayout, Unk0201ea30 *labelLayout, Unk02124b1c **tableOut);
+void InitLayoutTable(void *heap, Unk0201ea30 *cellLayout, Unk0201ea30 *labelLayout, LayoutTableEntry **tableOut);
 u32 DrawLayoutEntry(s32 index, Unk02021dc8 *cells, Unk0201ea30 *cellLayout, Unk0201ea30 *labelLayout,
-                    Unk02124c70 *oamList, Unk02124b1c *entry, s32 incrementFlag);
+                    Unk02124c70 *oamList, LayoutTableEntry *entry, s32 incrementFlag);
 void DrawLayoutTable(Unk0201ea30 *cellLayout, Unk02021dc8 *cells, Unk0201ea30 *labelLayout, void *oamList,
-                     Unk02124b1c *table);
+                     LayoutTableEntry *table);
 void func_02124bf0(Unk0201ea30 *cellLayout, Unk02021dc8 *cells, void *labelLayout, void *oamList, void *table);

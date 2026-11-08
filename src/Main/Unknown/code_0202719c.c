@@ -430,13 +430,13 @@ void func_0202734c(s32 value) {
     sParts = &selectCharacter->mUnk_01c;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         for (i = 0; i < gSelectCharacter->mUnk_07c; i++) {
-            sParts->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_00 = value;
-            sParts->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_00 =
-                sParts->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_00;
-            sParts->mCellTable[data_usa_02153554[i].mUnk_00].mUnk_00 =
-                sParts->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_00;
+            sParts->mCellTable[data_usa_02153554[i].mUnk_04].mVisible = value;
+            sParts->mCellTable[data_usa_02153554[i].mUnk_02].mVisible =
+                sParts->mCellTable[data_usa_02153554[i].mUnk_04].mVisible;
+            sParts->mCellTable[data_usa_02153554[i].mUnk_00].mVisible =
+                sParts->mCellTable[data_usa_02153554[i].mUnk_02].mVisible;
         }
-        sParts->mCellTable[25].mUnk_00 = value;
+        sParts->mCellTable[25].mVisible = value;
     }
 }
 
@@ -447,12 +447,12 @@ void func_020272ec(void) {
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         sParts = &gSelectCharacter->mUnk_01c;
-        sParts->mCellTable[24].mUnk_00 = 0;
-        sParts->mCellTable[25].mUnk_00 = 1;
+        sParts->mCellTable[24].mVisible = 0;
+        sParts->mCellTable[25].mVisible = 1;
         tableRow = data_usa_02153554;
         for (i = 0; i < 12; i++) {
-            sParts->mCellTable[tableRow->mUnk_02].mUnk_04 = 0;
-            sParts->mCellTable[tableRow->mUnk_02].mUnk_06 = 0;
+            sParts->mCellTable[tableRow->mUnk_02].mOffsetX = 0;
+            sParts->mCellTable[tableRow->mUnk_02].mOffsetY = 0;
             tableRow++;
         }
     }
@@ -464,8 +464,8 @@ void func_020272c0(s16 firstValue, s16 secondValue) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         selectCharacter = gSelectCharacter;
         if (selectCharacter->mUnk_128 == FALSE) {
-            selectCharacter->mUnk_000.mCellTable[0].mUnk_06 = firstValue;
-            selectCharacter->mUnk_000.mCellTable[3].mUnk_06 = secondValue;
+            selectCharacter->mUnk_000.mCellTable[0].mOffsetY = firstValue;
+            selectCharacter->mUnk_000.mCellTable[3].mOffsetY = secondValue;
         }
     }
 }
@@ -476,8 +476,8 @@ void func_0202728c(s16 value) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         selectCharacter = gSelectCharacter;
         if (selectCharacter->mUnk_128 == FALSE) {
-            selectCharacter->mUnk_000.mCellTable[1].mUnk_04 = value;
-            selectCharacter->mUnk_000.mCellTable[2].mUnk_04 = selectCharacter->mUnk_000.mCellTable[1].mUnk_04;
+            selectCharacter->mUnk_000.mCellTable[1].mOffsetX = value;
+            selectCharacter->mUnk_000.mCellTable[2].mOffsetX = selectCharacter->mUnk_000.mCellTable[1].mOffsetX;
         }
     }
 }
@@ -518,10 +518,10 @@ void func_0202719c(void) {
     selectCharacter = gSelectCharacter;
     sParts = &selectCharacter->mUnk_01c;
     tableRow = &data_usa_02153554[selectCharacter->mUnk_060];
-    sParts->mCellTable[24].mUnk_00 = 1;
-    sParts->mCellTable[25].mUnk_00 = 0;
-    sParts->mCellTable[tableRow->mUnk_02].mUnk_04 = 1;
-    sParts->mCellTable[tableRow->mUnk_02].mUnk_06 = 1;
+    sParts->mCellTable[24].mVisible = 1;
+    sParts->mCellTable[25].mVisible = 0;
+    sParts->mCellTable[tableRow->mUnk_02].mOffsetX = 1;
+    sParts->mCellTable[tableRow->mUnk_02].mOffsetY = 1;
 }
 
 #pragma thumb off

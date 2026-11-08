@@ -86,11 +86,11 @@ void func_ov001_02182d30(void) {
     o = UnparkFirstParkedMapObject(func_02100138(0x68));
     if (o != NULL) {
         rnd = GetMapObjectRandom();
-        rnd->mUnk_00 = (s64) rnd->mUnk_08 * (s64) rnd->mUnk_00 + rnd->mUnk_10;
-        a = (u16) (((u64) (u32) (rnd->mUnk_00 >> 32) * 0x10000) >> 32);
+        rnd->mValue = (s64) rnd->mMultiplier * (s64) rnd->mValue + rnd->mIncrement;
+        a = (u16) (((u64) (u32) (rnd->mValue >> 32) * 0x10000) >> 32);
         rnd = GetMapObjectRandom();
-        rnd->mUnk_00 = (s64) rnd->mUnk_08 * (s64) rnd->mUnk_00 + rnd->mUnk_10;
-        b = (u32) (((u64) (u32) (rnd->mUnk_00 >> 32) * 0x800) >> 32) + 0x800;
+        rnd->mValue = (s64) rnd->mMultiplier * (s64) rnd->mValue + rnd->mIncrement;
+        b = (u32) (((u64) (u32) (rnd->mValue >> 32) * 0x800) >> 32) + 0x800;
         o->mUnk_0f8 = 3;
         o->mUnk_0b0 = 0x99a;
         o->mUnk_0a0 = 0x10;
@@ -123,11 +123,11 @@ void func_ov001_02182bdc(void) {
     o = UnparkFirstParkedMapObject(func_02100138(0x68));
     if (o != NULL) {
         rnd = GetMapObjectRandom();
-        rnd->mUnk_00 = (s64) rnd->mUnk_08 * (s64) rnd->mUnk_00 + rnd->mUnk_10;
-        a = (u16) (((u64) (u32) (rnd->mUnk_00 >> 32) * 0x10000) >> 32);
+        rnd->mValue = (s64) rnd->mMultiplier * (s64) rnd->mValue + rnd->mIncrement;
+        a = (u16) (((u64) (u32) (rnd->mValue >> 32) * 0x10000) >> 32);
         rnd = GetMapObjectRandom();
-        rnd->mUnk_00 = (s64) rnd->mUnk_08 * (s64) rnd->mUnk_00 + rnd->mUnk_10;
-        b = (u32) (((u64) (u32) (rnd->mUnk_00 >> 32) * 0x800) >> 32) + 0x800;
+        rnd->mValue = (s64) rnd->mMultiplier * (s64) rnd->mValue + rnd->mIncrement;
+        b = (u32) (((u64) (u32) (rnd->mValue >> 32) * 0x800) >> 32) + 0x800;
         o->mUnk_0f8 = 5;
         o->mUnk_0b0 = 0x99a;
         o->mUnk_0a0 = 0x10;
@@ -180,8 +180,8 @@ void func_ov001_02182a3c(s32 a) {
                 if (n <= a) {
                     if (p->mUnk_0e8 == NULL) {
                         rng = GetMapObjectRandom();
-                        rng->mUnk_00 = (s64) rng->mUnk_08 * (s64) rng->mUnk_00 + rng->mUnk_10;
-                        r = ((u64) (u32) (rng->mUnk_00 >> 32) * 0x10000) >> 32;
+                        rng->mValue = (s64) rng->mMultiplier * (s64) rng->mValue + rng->mIncrement;
+                        r = ((u64) (u32) (rng->mValue >> 32) * 0x10000) >> 32;
                         p->mUnk_0b0 = 0x1000;
                         p->mUnk_0a0 = 0;
                         p->mUnk_0e8 =

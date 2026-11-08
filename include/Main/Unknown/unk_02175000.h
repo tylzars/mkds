@@ -61,7 +61,7 @@ typedef struct SceneCallbacks {
     // (RunScene ends it).
     /* 04 */ void (*mUpdate)();
     // Called once after the loops. Calls the scene's undo functions and clears the scene's globals;
-    // it frees nothing by itself except in the WiFi scene (the heap of func_0202bb60): the scene
+    // it frees nothing by itself except in the WiFi scene (the heap of ReleasePlayerEntryList): the scene
     // heap is destroyed by the caller. The Race slot also writes a save block in kind 6.
     /* 08 */ void (*mRelease)();
     /* 0c */ void (*mUnk_0c)();

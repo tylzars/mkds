@@ -160,10 +160,10 @@ void func_02035b0c(void) {
     m = t->mCellLayout->mUnk_06 + t->mLabelLayout->mUnk_06;
     c = GetInterpolatedValue(&data_02174e68->mUnk_90);
     for (i = 0; i < n; i++) {
-        s->mCellTable[i].mUnk_06 = -c;
+        s->mCellTable[i].mOffsetY = -c;
     }
     for (i = 0; i < m; i++) {
-        t->mCellTable[i].mUnk_06 = c;
+        t->mCellTable[i].mOffsetY = c;
     }
 }
 
@@ -532,7 +532,7 @@ void func_02035228(s32 a) {
     } else {
         v = 0xf;
     }
-    q->mCellTable[4].mUnk_00 = a;
+    q->mCellTable[4].mVisible = a;
     func_02124100(w, v, q->mLabelLayout, q->mCellTable, q->mCellLayout);
     func_02124100(m, v, q->mLabelLayout, q->mCellTable, q->mCellLayout);
 }

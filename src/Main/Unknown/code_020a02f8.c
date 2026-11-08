@@ -571,11 +571,11 @@ void EliminateKartsUntilWinnerDecided(void) {
                 if ((u16) n == 0) {
                     m = 0;
                 } else {
-                    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
+                    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
                     if (s == 0) {
-                        m = (u32) (r->mUnk_00 >> 32);
+                        m = (u32) (r->mValue >> 32);
                     } else {
-                        m = (u32) (((u64) (u32) (r->mUnk_00 >> 32) * (u64) s) >> 32);
+                        m = (u32) (((u64) (u32) (r->mValue >> 32) * (u64) s) >> 32);
                     }
                 }
                 k = m;
@@ -771,8 +771,8 @@ Unk02175620_84 *MoveToRandomForwardBattlePoint(void) {
     s32 w;
 
     a = &gRaceProgress->mRandom;
-    a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-    v = (u16) (((u64) (u32) (a->mUnk_00 >> 32) * 5) >> 32) + 1;
+    a->mValue = a->mMultiplier * a->mValue + a->mIncrement;
+    v = (u16) (((u64) (u32) (a->mValue >> 32) * 5) >> 32) + 1;
     w = gStandings->mUnk_3b8 + v;
     if (w >= gCourseMap->mBattlePointCount) {
         w = 0;
@@ -991,12 +991,12 @@ void func_020a066c(Unk020a066c *p) {
             o->mUnk_b8 = FALSE;
         }
         a = &gRaceProgress->mLocalRandom;
-        a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-        o->mUnk_c8 = (u16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x3c) >> 32) + 0x258;
+        a->mValue = a->mMultiplier * a->mValue + a->mIncrement;
+        o->mUnk_c8 = (u16) (((u64) (u32) (a->mValue >> 32) * 0x3c) >> 32) + 0x258;
         o->mUnk_a4 = 0x7f000;
         a = &gRaceProgress->mLocalRandom;
-        a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-        o->mUnk_c0 = (u16) (((u64) (u32) (a->mUnk_00 >> 32) * 0xf) >> 32);
+        a->mValue = a->mMultiplier * a->mValue + a->mIncrement;
+        o->mUnk_c0 = (u16) (((u64) (u32) (a->mValue >> 32) * 0xf) >> 32);
     }
 }
 
@@ -1062,8 +1062,8 @@ void func_020a0318(void *a, Unk020a0318 *p) {
                 s1.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
                 func_0210b760(&s1, h);
                 r = &gRaceProgress->mLocalRandom;
-                r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-                p->mUnk_c8 = (u16) (((u64) (u32) (r->mUnk_00 >> 32) * 0x3c) >> 32) + 0x78;
+                r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+                p->mUnk_c8 = (u16) (((u64) (u32) (r->mValue >> 32) * 0x3c) >> 32) + 0x78;
                 p->mUnk_a0 = 0x7f000;
             }
         } else if (p->mUnk_c8 > 0) {

@@ -64,11 +64,11 @@ void InitItemBox(Unk020de6a8 *a, Unk020de6a8_1 *b) {
     a->mUnk_000.mPos.y += 0xc000;
     a->mUnk_0fc = &a->mUnk_000.mPos;
     r = GetMapObjectRandom();
-    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    a->mUnk_0a0 = ((u64) (u32) (r->mUnk_00 >> 32) * 0x12c) >> 32;
+    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+    a->mUnk_0a0 = ((u64) (u32) (r->mValue >> 32) * 0x12c) >> 32;
     r = GetMapObjectRandom();
-    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    a->mUnk_0a2 = ((u64) (u32) (r->mUnk_00 >> 32) * 0x82) >> 32;
+    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+    a->mUnk_0a2 = ((u64) (u32) (r->mValue >> 32) * 0x82) >> 32;
     a->mUnk_0a4 = 0x80;
     if (b != NULL) {
         if (a->mUnk_000.mKind == 0xc9 && b->mUnk_26 >= 0) {

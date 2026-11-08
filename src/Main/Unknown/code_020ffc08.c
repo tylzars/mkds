@@ -87,8 +87,8 @@ void func_020ffdd4(MapObjectList *v1) {
         }
     }
     q = GetMapObjectRandom();
-    q->mUnk_00 = q->mUnk_08 * q->mUnk_00 + q->mUnk_10;
-    t = ((u64) (u32) (q->mUnk_00 >> 32) * 6) >> 32;
+    q->mValue = q->mMultiplier * q->mValue + q->mIncrement;
+    t = ((u64) (u32) (q->mValue >> 32) * 6) >> 32;
     for (i = 0; i < n; i++) {
         e = arr[i];
         v2 = (u16 *) data_0215a0a8[t];

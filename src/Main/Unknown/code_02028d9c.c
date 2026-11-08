@@ -20,7 +20,7 @@ void *func_02028f08(s32 index, Unk0201ea30 *cellLayout) {
 void SetKartMenuParamElementOffset(s32 elementIndex, s32 endCellIndex, s32 paramValue, CellFileSet *parts) {
     Unk0201ea84 *startCell = func_02028f08(elementIndex, parts->mCellLayout);
     Unk0201ea84 *endCell = func_02028f08(endCellIndex, parts->mCellLayout);
-    parts->mCellTable[elementIndex].mUnk_04 = (100 - paramValue) * (endCell->mUnk_00_0 - startCell->mUnk_00_0) / 100;
+    parts->mCellTable[elementIndex].mOffsetX = (100 - paramValue) * (endCell->mUnk_00_0 - startCell->mUnk_00_0) / 100;
 }
 
 #pragma thumb off

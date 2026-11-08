@@ -133,44 +133,44 @@ void func_ov001_021a0b3c(void) {
     cnt04 = gMissionRunMSsel->mMissionRunMSselMBncl->mUnk_06;
     cnt10 = gMissionRunMSsel->mMissionRunMSselSBncl->mUnk_06;
     for (i = 0; i < 9; i++) {
-        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6dd4[i]].mUnk_00 = 0;
+        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6dd4[i]].mVisible = 0;
         for (j = 0; j < 9; j++) {
-            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][j]].mUnk_00 = 0;
+            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][j]].mVisible = 0;
         }
         for (j = 0; j < 2; j++) {
-            gMissionRunMSsel->mMissionRunMSselSTable[cnt10 + data_ov001_021a6e10[i][j]].mUnk_00 = 0;
+            gMissionRunMSsel->mMissionRunMSselSTable[cnt10 + data_ov001_021a6e10[i][j]].mVisible = 0;
         }
     }
     for (j = 0; j < 7; j++) {
-        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d88[j]].mUnk_00 = 0;
+        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d88[j]].mVisible = 0;
     }
-    gMissionRunMSsel->mMissionRunMSselMTable[cnt04].mUnk_00 = 1;
+    gMissionRunMSsel->mMissionRunMSselMTable[cnt04].mVisible = 1;
     for (i = 0; i < 9; i++) {
         if (i == 8) {
             if (gMissionRunMSsel->mUnk_a0 != 0) {
-                gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][1]].mUnk_00 = 1;
+                gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][1]].mVisible = 1;
                 QueueMissionRunBossIcon((s16) (GetMissionTableRow() - 1), 1, gMissionRunMSsel->mMissionRunMSselSNcer,
                                         gMissionRunMSsel->mMissionRunMSselSBncl, 0x2d, 8, 1);
             } else {
-                gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][4]].mUnk_00 = 1;
+                gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][4]].mVisible = 1;
                 QueueMissionRunBossIcon((s16) (GetMissionTableRow() - 1), 0, gMissionRunMSsel->mMissionRunMSselSNcer,
                                         gMissionRunMSsel->mMissionRunMSselSBncl, 0x2d, 8, 1);
             }
         } else {
-            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][1]].mUnk_00 = 1;
+            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][1]].mVisible = 1;
         }
-        gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][0]].mUnk_00 = 1;
-        gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][2]].mUnk_00 = 0;
-        gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][3]].mUnk_00 = 0;
+        gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][0]].mVisible = 1;
+        gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][2]].mVisible = 0;
+        gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][3]].mVisible = 0;
         if (func_0205fd78((u8) GetMissionTableRow(), (u8) (i + 1), &out)) {
             if (out <= 4) {
-                gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][5]].mUnk_00 = 1;
-                gMissionRunMSsel->mMissionRunMSselSTable[cnt10 + data_ov001_021a6e10[i][0]].mUnk_00 = 1;
+                gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][5]].mVisible = 1;
+                gMissionRunMSsel->mMissionRunMSselSTable[cnt10 + data_ov001_021a6e10[i][0]].mVisible = 1;
                 func_0212426c(1, data_ov001_021a6e10[i][0], gMissionRunMSsel->mMissionRunMSselSBnll,
                               data_ov001_021a92c8[out], gMissionRunMSsel->mMissionRunMSselSBncl,
                               gMissionRunMSsel->mMissionRunMSselSTable);
             } else if (out <= 7) {
-                gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][out + 1]].mUnk_00 = 1;
+                gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][out + 1]].mVisible = 1;
             }
             if (i == 8) {
                 gMissionRunMSsel->mUnk_a4 = TRUE;
@@ -196,14 +196,14 @@ void func_ov001_021a0b3c(void) {
                 }
             }
         }
-        gMissionRunMSsel->mMissionRunMSselSTable[cnt10 + data_ov001_021a6e10[i][1]].mUnk_00 = 1;
+        gMissionRunMSsel->mMissionRunMSselSTable[cnt10 + data_ov001_021a6e10[i][1]].mVisible = 1;
         func_ov001_021a0e08((s16) i, buf);
         func_0212426c(1, data_ov001_021a6e10[i][1], gMissionRunMSsel->mMissionRunMSselSBnll, buf,
                       gMissionRunMSsel->mMissionRunMSselSBncl, gMissionRunMSsel->mMissionRunMSselSTable);
         func_02124a98(data_ov001_021a6e7c[i][0], 1, gMissionRunMSsel->mMissionRunMSselSNcer,
                       gMissionRunMSsel->mMissionRunMSselSBncl);
     }
-    gMissionRunMSsel->mMissionRunMSselSTable[45].mUnk_00 = 1;
+    gMissionRunMSsel->mMissionRunMSselSTable[45].mVisible = 1;
 }
 
 void func_ov001_021a09a4(void) {
@@ -282,26 +282,26 @@ void func_ov001_021a08d8(void) {
     s32 cnt;
     s16 n;
     for (i = 0; i < 9; i++) {
-        gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][1]].mUnk_00 = 0;
-        gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][2]].mUnk_00 = 0;
-        gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][3]].mUnk_00 = 0;
-        gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][4]].mUnk_00 = 0;
+        gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][1]].mVisible = 0;
+        gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][2]].mVisible = 0;
+        gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][3]].mVisible = 0;
+        gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][4]].mVisible = 0;
         cnt = gMissionRunMSsel->mUnk_6c[i];
         if (cnt > 0) {
             gMissionRunMSsel->mUnk_6c[i] = cnt - 1;
-            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][3]].mUnk_00 = 1;
-            n = gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][2]].mUnk_06 + 1;
-            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][3]].mUnk_06 = n;
+            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][3]].mVisible = 1;
+            n = gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][2]].mOffsetY + 1;
+            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][3]].mOffsetY = n;
         } else if (gMissionRunMSsel->mIndex == i) {
-            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][2]].mUnk_00 = 1;
+            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][2]].mVisible = 1;
         } else if (i == 8) {
             if (gMissionRunMSsel->mUnk_a0) {
-                gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][1]].mUnk_00 = 1;
+                gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][1]].mVisible = 1;
             } else {
-                gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][4]].mUnk_00 = 1;
+                gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][4]].mVisible = 1;
             }
         } else {
-            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][1]].mUnk_00 = 1;
+            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][1]].mVisible = 1;
         }
     }
 }
@@ -311,31 +311,31 @@ void func_ov001_021a0774(void) {
     s32 i;
     s32 out;
     s32 ret;
-    gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d88[GetMissionTableRow() - 1]].mUnk_00 = 0;
-    gMissionRunMSsel->mMissionRunMSselMTable[9].mUnk_00 = 0;
+    gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d88[GetMissionTableRow() - 1]].mVisible = 0;
+    gMissionRunMSsel->mMissionRunMSselMTable[9].mVisible = 0;
     for (i = 0; i < 9; i++) {
-        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6dd4[i]].mUnk_00 = 0;
+        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6dd4[i]].mVisible = 0;
     }
     if (gMissionRunMSsel->mIndex == 8) {
-        gMissionRunMSsel->mMissionRunMSselMTable[0].mUnk_00 = 0;
-        gMissionRunMSsel->mMissionRunMSselMTable[1].mUnk_00 = 1;
+        gMissionRunMSsel->mMissionRunMSselMTable[0].mVisible = 0;
+        gMissionRunMSsel->mMissionRunMSselMTable[1].mVisible = 1;
     } else {
-        gMissionRunMSsel->mMissionRunMSselMTable[0].mUnk_00 = 1;
-        gMissionRunMSsel->mMissionRunMSselMTable[1].mUnk_00 = 0;
-        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d88[GetMissionTableRow() - 1]].mUnk_00 = 1;
-        gMissionRunMSsel->mMissionRunMSselMTable[9].mUnk_00 = 1;
-        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6dd4[gMissionRunMSsel->mIndex]].mUnk_00 = 1;
+        gMissionRunMSsel->mMissionRunMSselMTable[0].mVisible = 1;
+        gMissionRunMSsel->mMissionRunMSselMTable[1].mVisible = 0;
+        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d88[GetMissionTableRow() - 1]].mVisible = 1;
+        gMissionRunMSsel->mMissionRunMSselMTable[9].mVisible = 1;
+        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6dd4[gMissionRunMSsel->mIndex]].mVisible = 1;
     }
     ret = func_0205fd78((u8) GetMissionTableRow(), (u8) (gMissionRunMSsel->mIndex + 1), &out);
-    gMissionRunMSsel->mMissionRunMSselMTable[18].mUnk_00 = 0;
+    gMissionRunMSsel->mMissionRunMSselMTable[18].mVisible = 0;
     for (i = 0; i < 6; i++) {
-        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d7c[i]].mUnk_00 = 0;
+        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d7c[i]].mVisible = 0;
     }
     if (ret != 0 && out <= 7) {
         if (out <= 4) {
-            gMissionRunMSsel->mMissionRunMSselMTable[18].mUnk_00 = 1;
+            gMissionRunMSsel->mMissionRunMSselMTable[18].mVisible = 1;
         }
-        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d7c[out - 2]].mUnk_00 = 1;
+        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d7c[out - 2]].mVisible = 1;
     }
     d = gMissionRunMSsel;
     func_0212426c(
@@ -377,19 +377,19 @@ void func_ov001_021a0620(void) {
             b = gMissionRunMSsel->mMissionRunMSselMBncl->mUnk_06;
             v = LookupIndexChangeOffset(7 - gMissionRunMSsel->mUnk_ac, 1);
             gMissionRunMSsel->mBg0OffsetY = v;
-            gMissionRunMSsel->mMissionRunMSselMTable[0].mUnk_06 = v;
-            gMissionRunMSsel->mMissionRunMSselMTable[1].mUnk_06 = v;
-            gMissionRunMSsel->mMissionRunMSselMTable[9].mUnk_06 = v;
-            gMissionRunMSsel->mMissionRunMSselMTable[18].mUnk_06 = v;
+            gMissionRunMSsel->mMissionRunMSselMTable[0].mOffsetY = v;
+            gMissionRunMSsel->mMissionRunMSselMTable[1].mOffsetY = v;
+            gMissionRunMSsel->mMissionRunMSselMTable[9].mOffsetY = v;
+            gMissionRunMSsel->mMissionRunMSselMTable[18].mOffsetY = v;
             for (i = 0; i < 7; i++) {
-                gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d88[i]].mUnk_06 = v;
+                gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d88[i]].mOffsetY = v;
             }
             for (i = 0; i < 6; i++) {
-                gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d7c[i]].mUnk_06 = v;
+                gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d7c[i]].mOffsetY = v;
             }
-            gMissionRunMSsel->mMissionRunMSselMTable[b].mUnk_06 = v;
+            gMissionRunMSsel->mMissionRunMSselMTable[b].mOffsetY = v;
             for (i = 0; i < 9; i++) {
-                gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6dd4[i]].mUnk_06 = v;
+                gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6dd4[i]].mOffsetY = v;
             }
         }
         gMissionRunMSsel->mUnk_ac = gMissionRunMSsel->mUnk_ac - 1;
@@ -411,25 +411,25 @@ void func_ov001_021a04f0(void) {
     gMissionRunMSsel->mBg0OffsetX = 0x100;
     gMissionRunMSsel->mBg0OffsetY = 0;
     gMissionRunMSsel->mBg1Offset = -192;
-    gMissionRunMSsel->mMissionRunMSselMTable[0].mUnk_04 = 0x100;
-    gMissionRunMSsel->mMissionRunMSselMTable[1].mUnk_04 = 0x100;
-    gMissionRunMSsel->mMissionRunMSselMTable[9].mUnk_04 = 0x100;
-    gMissionRunMSsel->mMissionRunMSselMTable[18].mUnk_04 = 0x100;
+    gMissionRunMSsel->mMissionRunMSselMTable[0].mOffsetX = 0x100;
+    gMissionRunMSsel->mMissionRunMSselMTable[1].mOffsetX = 0x100;
+    gMissionRunMSsel->mMissionRunMSselMTable[9].mOffsetX = 0x100;
+    gMissionRunMSsel->mMissionRunMSselMTable[18].mOffsetX = 0x100;
     for (i = 0; i < 7; i++) {
-        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d88[i]].mUnk_04 = 0x100;
+        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d88[i]].mOffsetX = 0x100;
     }
-    gMissionRunMSsel->mMissionRunMSselSTable[45].mUnk_04 = 0x100;
+    gMissionRunMSsel->mMissionRunMSselSTable[45].mOffsetX = 0x100;
     for (i = 0; i < 6; i++) {
-        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d7c[i]].mUnk_04 = 0x100;
+        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d7c[i]].mOffsetX = 0x100;
     }
-    gMissionRunMSsel->mMissionRunMSselMTable[a].mUnk_04 = 0x100;
+    gMissionRunMSsel->mMissionRunMSselMTable[a].mOffsetX = 0x100;
     for (i = 0; i < 9; i++) {
-        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6dd4[i]].mUnk_04 = 0x100;
+        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6dd4[i]].mOffsetX = 0x100;
         for (j = 0; j < 9; j++) {
-            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][j]].mUnk_04 = 0x100;
+            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][j]].mOffsetX = 0x100;
         }
         for (j = 0; j < 2; j++) {
-            gMissionRunMSsel->mMissionRunMSselSTable[b + data_ov001_021a6e10[i][j]].mUnk_04 = 0x100;
+            gMissionRunMSsel->mMissionRunMSselSTable[b + data_ov001_021a6e10[i][j]].mOffsetX = 0x100;
         }
     }
 }
@@ -469,7 +469,7 @@ void func_ov001_021a0428(void) {
     v0 = GetBmgEntry(gMissionRunMSsel->mCommonMessages, 4);
     StartSelectChoises(v0, GetBmgEntry(gMissionRunMSsel->mCommonMessages, 2), 0);
     for (i = 0; i < 9; i++) {
-        gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][0]].mUnk_00 = 0;
+        gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][0]].mVisible = 0;
     }
 }
 
@@ -597,25 +597,25 @@ void AdvanceMissionRunMSselState1(void) {
     v1 = InterpolateS16(1, -192, 0, gMissionRunMSsel->mStateFrames, 10);
     gMissionRunMSsel->mBg0OffsetX = v0;
     gMissionRunMSsel->mBg1Offset = v1;
-    gMissionRunMSsel->mMissionRunMSselMTable[0].mUnk_04 = v0;
-    gMissionRunMSsel->mMissionRunMSselMTable[1].mUnk_04 = v0;
-    gMissionRunMSsel->mMissionRunMSselMTable[9].mUnk_04 = v0;
-    gMissionRunMSsel->mMissionRunMSselMTable[18].mUnk_04 = v0;
+    gMissionRunMSsel->mMissionRunMSselMTable[0].mOffsetX = v0;
+    gMissionRunMSsel->mMissionRunMSselMTable[1].mOffsetX = v0;
+    gMissionRunMSsel->mMissionRunMSselMTable[9].mOffsetX = v0;
+    gMissionRunMSsel->mMissionRunMSselMTable[18].mOffsetX = v0;
     for (i = 0; i < 7; i++) {
-        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d88[i]].mUnk_04 = v0;
+        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d88[i]].mOffsetX = v0;
     }
-    gMissionRunMSsel->mMissionRunMSselSTable[45].mUnk_04 = v0;
+    gMissionRunMSsel->mMissionRunMSselSTable[45].mOffsetX = v0;
     for (i = 0; i < 6; i++) {
-        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d7c[i]].mUnk_04 = v0;
+        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d7c[i]].mOffsetX = v0;
     }
-    gMissionRunMSsel->mMissionRunMSselMTable[a].mUnk_04 = v0;
+    gMissionRunMSsel->mMissionRunMSselMTable[a].mOffsetX = v0;
     for (i = 0; i < 9; i++) {
-        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6dd4[i]].mUnk_04 = v0;
+        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6dd4[i]].mOffsetX = v0;
         for (j = 0; j < 9; j++) {
-            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][j]].mUnk_04 = v0;
+            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][j]].mOffsetX = v0;
         }
         for (j = 0; j < 2; j++) {
-            gMissionRunMSsel->mMissionRunMSselSTable[b + data_ov001_021a6e10[i][j]].mUnk_04 = v0;
+            gMissionRunMSsel->mMissionRunMSselSTable[b + data_ov001_021a6e10[i][j]].mOffsetX = v0;
         }
     }
     if (gMissionRunMSsel->mStateFrames >= 10) {
@@ -805,7 +805,7 @@ void AdvanceMissionRunMSselState7(void) {
                 break;
         }
         for (i = 0; i < 9; i++) {
-            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][0]].mUnk_00 = 1;
+            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][0]].mVisible = 1;
         }
     }
 }
@@ -825,25 +825,25 @@ void AdvanceMissionRunMSselState8(void) {
     second = InterpolateS16(1, 0, -0xc0, gMissionRunMSsel->mStateFrames, 10);
     gMissionRunMSsel->mBg0OffsetX = first;
     gMissionRunMSsel->mBg1Offset = second;
-    gMissionRunMSsel->mMissionRunMSselMTable[0].mUnk_04 = first;
-    gMissionRunMSsel->mMissionRunMSselMTable[1].mUnk_04 = first;
-    gMissionRunMSsel->mMissionRunMSselMTable[9].mUnk_04 = first;
-    gMissionRunMSsel->mMissionRunMSselMTable[18].mUnk_04 = first;
+    gMissionRunMSsel->mMissionRunMSselMTable[0].mOffsetX = first;
+    gMissionRunMSsel->mMissionRunMSselMTable[1].mOffsetX = first;
+    gMissionRunMSsel->mMissionRunMSselMTable[9].mOffsetX = first;
+    gMissionRunMSsel->mMissionRunMSselMTable[18].mOffsetX = first;
     for (i = 0; i < 7; i++) {
-        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d88[i]].mUnk_04 = first;
+        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d88[i]].mOffsetX = first;
     }
-    gMissionRunMSsel->mMissionRunMSselSTable[45].mUnk_04 = first;
+    gMissionRunMSsel->mMissionRunMSselSTable[45].mOffsetX = first;
     for (i = 0; i < 6; i++) {
-        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d7c[i]].mUnk_04 = first;
+        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6d7c[i]].mOffsetX = first;
     }
-    gMissionRunMSsel->mMissionRunMSselMTable[a].mUnk_04 = first;
+    gMissionRunMSsel->mMissionRunMSselMTable[a].mOffsetX = first;
     for (i = 0; i < 9; i++) {
-        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6dd4[i]].mUnk_04 = first;
+        gMissionRunMSsel->mMissionRunMSselMTable[data_ov001_021a6dd4[i]].mOffsetX = first;
         for (j = 0; j < 9; j++) {
-            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][j]].mUnk_04 = first;
+            gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][j]].mOffsetX = first;
         }
         for (j = 0; j < 2; j++) {
-            gMissionRunMSsel->mMissionRunMSselSTable[b + data_ov001_021a6e10[i][j]].mUnk_04 = first;
+            gMissionRunMSsel->mMissionRunMSselSTable[b + data_ov001_021a6e10[i][j]].mOffsetX = first;
         }
     }
     if (gMissionRunMSsel->mStateFrames == 5) {

@@ -18,7 +18,7 @@
 
 #pragma thumb on
 
-void func_02124b1c(Unk02124b1c *a, s32 b, s32 c) {
+void func_02124b1c(LayoutTableEntry *a, s32 b, s32 c) {
     s32 i;
     s32 *p;
     s32 *q;
@@ -290,8 +290,8 @@ void func_0212463c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Un
     CallQueueAppend(k, w, z, 0x20);
 }
 
-s32 func_021243ac(void *a, s32 b, Unk0201ea30 *c, s32 d, s32 e, s32 f, Unk02021dc8 *g, Unk0201ea30 *h, Unk02124b1c *i,
-                  s32 j) {
+s32 func_021243ac(void *a, s32 b, Unk0201ea30 *c, s32 d, s32 e, s32 f, Unk02021dc8 *g, Unk0201ea30 *h,
+                  LayoutTableEntry *i, s32 j) {
     Unk02022eb0 buf[128];
     Unk0212428c *p;
     Unk021243ac *q;
@@ -388,7 +388,7 @@ s32 func_021243ac(void *a, s32 b, Unk0201ea30 *c, s32 d, s32 e, s32 f, Unk02021d
 }
 
 // Clears the character canvas of entry b, draws the string d into it and queues its upload.
-void PrintLabelLayoutText(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s32 g, s8 h) {
+void PrintLabelLayoutText(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, LayoutTableEntry *f, s32 g, s8 h) {
     s32 k;
     s32 w;
     s32 z;
@@ -441,20 +441,20 @@ void PrintLabelLayoutText(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e,
     }
 }
 
-void func_0212426c(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f) {
+void func_0212426c(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, LayoutTableEntry *f) {
     PrintLabelLayoutText(a, b, c, d, e, f, 0, -1);
 }
 
-void func_02124248(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s8 g) {
+void func_02124248(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, LayoutTableEntry *f, s8 g) {
     PrintLabelLayoutText(a, b, c, d, e, f, 0, g);
 }
 
-void func_02124224(s32 a, u32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s8 g) {
+void func_02124224(s32 a, u32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, LayoutTableEntry *f, s8 g) {
     PrintLabelLayoutText(a, b, c, d, e, f, 1, g);
 }
 
 // Clears the character canvas of entry b and queues its upload.
-void ClearAndQueueLabelLayoutText(s32 a, s32 b, Unk0201ea30 *c, Unk0201ea30 *d, Unk02124b1c *e) {
+void ClearAndQueueLabelLayoutText(s32 a, s32 b, Unk0201ea30 *c, Unk0201ea30 *d, LayoutTableEntry *e) {
     Unk021243ac *p;
     void *buf;
     s32 u;
@@ -473,9 +473,9 @@ void ClearAndQueueLabelLayoutText(s32 a, s32 b, Unk0201ea30 *c, Unk0201ea30 *d, 
     }
 }
 
-BOOL func_0212418c(s32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d) {
-    Unk02124b1c *p;
-    Unk02124b1c *q;
+BOOL func_0212418c(s32 a, void *b, LayoutTableEntry *c, Unk0201ea30 *d) {
+    LayoutTableEntry *p;
+    LayoutTableEntry *q;
     p = c + a;
     q = p + d->mUnk_06;
     if ((q->mUnk_3c->mUnk_44->mUnk_04->mUnk_00 & 0xc00) >> 10 == 1) {
@@ -484,9 +484,9 @@ BOOL func_0212418c(s32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d) {
     return FALSE;
 }
 
-void func_02124140(u32 a, u32 b, Unk0201ea30 *c, Unk02124b1c *d, Unk0201ea30 *e) {
-    Unk02124b1c *r;
-    Unk02124b1c *s;
+void func_02124140(u32 a, u32 b, Unk0201ea30 *c, LayoutTableEntry *d, Unk0201ea30 *e) {
+    LayoutTableEntry *r;
+    LayoutTableEntry *s;
     s32 i;
     Unk020224e0_c *p;
     Unk020224e0_s *q;
@@ -503,9 +503,9 @@ void func_02124140(u32 a, u32 b, Unk0201ea30 *c, Unk02124b1c *d, Unk0201ea30 *e)
     }
 }
 
-void func_02124100(s32 a, u8 b, Unk0201ea30 *c, Unk02124b1c *d, Unk0201ea30 *e) {
-    Unk02124b1c *r;
-    Unk02124b1c *s;
+void func_02124100(s32 a, u8 b, Unk0201ea30 *c, LayoutTableEntry *d, Unk0201ea30 *e) {
+    LayoutTableEntry *r;
+    LayoutTableEntry *s;
     s32 i;
     Unk020224e0_c *p;
     Unk020224e0_s *q;
@@ -520,17 +520,17 @@ void func_02124100(s32 a, u8 b, Unk0201ea30 *c, Unk02124b1c *d, Unk0201ea30 *e) 
     }
 }
 
-u8 func_021240d4(s32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d) {
-    Unk02124b1c *p;
-    Unk02124b1c *q;
+u8 func_021240d4(s32 a, void *b, LayoutTableEntry *c, Unk0201ea30 *d) {
+    LayoutTableEntry *p;
+    LayoutTableEntry *q;
     p = c + a;
     q = p + d->mUnk_06;
     return (q->mUnk_3c->mUnk_44->mUnk_04->mUnk_04 & 0xc00) >> 10;
 }
 
-void func_02124094(u32 a, u32 b, Unk0201ea30 *c, Unk02124b1c *d, Unk0201ea30 *e) {
-    Unk02124b1c *r;
-    Unk02124b1c *s;
+void func_02124094(u32 a, u32 b, Unk0201ea30 *c, LayoutTableEntry *d, Unk0201ea30 *e) {
+    LayoutTableEntry *r;
+    LayoutTableEntry *s;
     s32 i;
     Unk020224e0_c *p;
     Unk020224e0_s *q;

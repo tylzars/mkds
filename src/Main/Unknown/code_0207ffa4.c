@@ -202,8 +202,8 @@ void AdvancePointLinkCursor(Unk02080b1c *p) {
             if (n == 0) {
                 v = 0;
             } else {
-                q->mUnk_00 = (s64) q->mUnk_08 * (s64) q->mUnk_00 + q->mUnk_10;
-                v = (n == 0) ? (u32) (q->mUnk_00 >> 32) : (u32) (((q->mUnk_00 >> 32) * (u32) n) >> 32);
+                q->mValue = (s64) q->mMultiplier * (s64) q->mValue + q->mIncrement;
+                v = (n == 0) ? (u32) (q->mValue >> 32) : (u32) (((q->mValue >> 32) * (u32) n) >> 32);
             }
             i = v;
         }
@@ -463,11 +463,11 @@ void AdvanceBattlePointLinkCursor(LinkCursor *p, Vec3 *a, Vec3 *b, u16 c, Unk020
                     if (n == 0) {
                         v32 = 0;
                     } else {
-                        g->mUnk_00 = g->mUnk_08 * g->mUnk_00 + g->mUnk_10;
+                        g->mValue = g->mMultiplier * g->mValue + g->mIncrement;
                         if (n == 0) {
-                            v32 = g->mUnk_00 >> 32;
+                            v32 = g->mValue >> 32;
                         } else {
-                            v32 = ((g->mUnk_00 >> 32) * (u32) n) >> 32;
+                            v32 = ((g->mValue >> 32) * (u32) n) >> 32;
                         }
                     }
                     k = v32;

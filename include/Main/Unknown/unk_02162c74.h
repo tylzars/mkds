@@ -4,7 +4,7 @@
 
 typedef struct GhostSceneCallbacks GhostSceneCallbacks;
 
-extern s16 data_usa_02162c74[][4];
+extern s16 gTimeAttackGhostSendSLabelTextRows[][4];
 extern char data_usa_02162d04[];
 extern char gGhostBmgName[];
 extern char gTimeAttackGhostSendMBNcgrName[];

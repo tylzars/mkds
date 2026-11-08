@@ -78,10 +78,10 @@ void AdvanceRecordVSEraseIndexChange(void) {
             b = gRecordVSErase->mRecordVSMTransientBncl->mUnk_06;
             v = LookupIndexChangeOffset(7 - gRecordVSErase->mIndexChangeTimer, 0);
             gRecordVSErase->mBg0OffsetY = v;
-            gRecordVSErase->mRecordVSMTable[3].mUnk_06 = v;
-            gRecordVSErase->mRecordVSMTable[a].mUnk_06 = v;
-            gRecordVSErase->mRecordVSMTransientTable[1].mUnk_06 = v;
-            gRecordVSErase->mRecordVSMTransientTable[b].mUnk_06 = v;
+            gRecordVSErase->mRecordVSMTable[3].mOffsetY = v;
+            gRecordVSErase->mRecordVSMTable[a].mOffsetY = v;
+            gRecordVSErase->mRecordVSMTransientTable[1].mOffsetY = v;
+            gRecordVSErase->mRecordVSMTransientTable[b].mOffsetY = v;
         }
         gRecordVSErase->mIndexChangeTimer--;
     } else {
@@ -100,23 +100,23 @@ void RequestRecordVSEraseState0(void) {
     gRecordVSErase->mStateFrames = 0;
     gRecordVSErase->mBg3Offset = ~0xbf;
     n = gRecordVSErase->mRecordVSSEraseBncl->mUnk_06;
-    gRecordVSErase->mRecordVSSEraseTable[30].mUnk_04 = 0x100;
-    gRecordVSErase->mRecordVSSEraseTable[31].mUnk_04 = 0x100;
-    gRecordVSErase->mRecordVSSEraseTable[n + 5].mUnk_06 = ~0xbf;
+    gRecordVSErase->mRecordVSSEraseTable[30].mOffsetX = 0x100;
+    gRecordVSErase->mRecordVSSEraseTable[31].mOffsetX = 0x100;
+    gRecordVSErase->mRecordVSSEraseTable[n + 5].mOffsetY = ~0xbf;
     for (; i < 5; i++) {
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mUnk_04 = 0x100;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mUnk_04 = 0x100;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mUnk_04 = 0x100;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mUnk_04 = 0x100;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mUnk_04 = 0x100;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mUnk_04 = 0x100;
-        gRecordVSErase->mRecordVSSEraseTable[n + data_0215c4b8[i]].mUnk_04 = 0x100;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mOffsetX = 0x100;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mOffsetX = 0x100;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mOffsetX = 0x100;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mOffsetX = 0x100;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mOffsetX = 0x100;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mOffsetX = 0x100;
+        gRecordVSErase->mRecordVSSEraseTable[n + data_0215c4b8[i]].mOffsetX = 0x100;
     }
     func_021162cc();
     SetupTxtSystemSubTextButtonEx(GetBmgEntry(gRecordVSErase->mRecordMessages, 4),
                                   GetBmgEntry(gRecordVSErase->mCommonMessages, 6), 0, 1, 1, 1);
     for (i = 0; i < 2; i++) {
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4a8[i]].mUnk_00 = 0;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4a8[i]].mVisible = 0;
     }
 }
 
@@ -379,17 +379,17 @@ void AdvanceRecordVSEraseState3(void) {
     w = InterpolateS16(1, ~0xbf, 0, gRecordVSErase->mStateFrames, 0xa);
     n = gRecordVSErase->mRecordVSSEraseBncl->mUnk_06;
     gRecordVSErase->mBg3Offset = w;
-    gRecordVSErase->mRecordVSSEraseTable[30].mUnk_04 = v;
-    gRecordVSErase->mRecordVSSEraseTable[31].mUnk_04 = v;
-    gRecordVSErase->mRecordVSSEraseTable[n + 5].mUnk_06 = w;
+    gRecordVSErase->mRecordVSSEraseTable[30].mOffsetX = v;
+    gRecordVSErase->mRecordVSSEraseTable[31].mOffsetX = v;
+    gRecordVSErase->mRecordVSSEraseTable[n + 5].mOffsetY = w;
     for (i = 0; i < 5; i++) {
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[n + data_0215c4b8[i]].mUnk_04 = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[n + data_0215c4b8[i]].mOffsetX = v;
     }
     if (gRecordVSErase->mStateFrames >= 0xa) {
         if (IsSelectReturnState2NoState3Or4Request() != 0) {
@@ -446,7 +446,7 @@ void AdvanceRecordVSEraseState4(void) {
         if (IsRecordVSEraseIndexChangeRunning() != 0) {
             return;
         }
-        if (gRecordVSErase->mRecordVSSEraseTable[30].mUnk_00 == 0) {
+        if (gRecordVSErase->mRecordVSSEraseTable[30].mVisible == 0) {
             return;
         }
         gRecordVSErase->mPageDecrement = 1;
@@ -461,7 +461,7 @@ void AdvanceRecordVSEraseState4(void) {
         if (IsRecordVSEraseIndexChangeRunning() != 0) {
             return;
         }
-        if (gRecordVSErase->mRecordVSSEraseTable[31].mUnk_00 == 0) {
+        if (gRecordVSErase->mRecordVSSEraseTable[31].mVisible == 0) {
             return;
         }
         gRecordVSErase->mPageDecrement = 0;
@@ -538,33 +538,33 @@ void AdvanceRecordVSEraseState5(void) {
     v = InterpolateS16(1, 0, k, gRecordVSErase->mStateFrames, 0xa);
     gRecordVSErase->mBg0OffsetX = v;
     gRecordVSErase->mBg1OffsetX = v;
-    gRecordVSErase->mRecordVSMTable[1].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTable[2].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTable[3].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTable[a].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTable[a + 1].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTable[a + 0xb].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTable[a + 0xc].mUnk_04 = v;
+    gRecordVSErase->mRecordVSMTable[1].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTable[2].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTable[3].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTable[a].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTable[a + 1].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTable[a + 0xb].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTable[a + 0xc].mOffsetX = v;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            gRecordVSErase->mRecordVSMTable[a + data_0215c530[i][j]].mUnk_04 = v;
+            gRecordVSErase->mRecordVSMTable[a + data_0215c530[i][j]].mOffsetX = v;
         }
     }
-    gRecordVSErase->mRecordVSMTransientTable[1].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTransientTable[b].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTransientTable[b + 1].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTransientTable[b + 0xe].mUnk_04 = v;
+    gRecordVSErase->mRecordVSMTransientTable[1].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTransientTable[b].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTransientTable[b + 1].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTransientTable[b + 0xe].mOffsetX = v;
     for (i = 0; i < 0xc; i++) {
-        gRecordVSErase->mRecordVSMTransientTable[b + data_0215c584[i]].mUnk_04 = v;
+        gRecordVSErase->mRecordVSMTransientTable[b + data_0215c584[i]].mOffsetX = v;
     }
     for (i = 0; i < 5; i++) {
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[c + data_0215c4b8[i]].mUnk_04 = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[c + data_0215c4b8[i]].mOffsetX = v;
     }
     if (gRecordVSErase->mStateFrames >= 0xa) {
         RequestRecordVSEraseState6();
@@ -597,33 +597,33 @@ void AdvanceRecordVSEraseState6(void) {
     v = InterpolateS16(1, k, 0, gRecordVSErase->mStateFrames, 0xa);
     gRecordVSErase->mBg0OffsetX = v;
     gRecordVSErase->mBg1OffsetX = v;
-    gRecordVSErase->mRecordVSMTable[1].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTable[2].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTable[3].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTable[a].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTable[a + 1].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTable[a + 0xb].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTable[a + 0xc].mUnk_04 = v;
+    gRecordVSErase->mRecordVSMTable[1].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTable[2].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTable[3].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTable[a].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTable[a + 1].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTable[a + 0xb].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTable[a + 0xc].mOffsetX = v;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            gRecordVSErase->mRecordVSMTable[a + data_0215c530[i][j]].mUnk_04 = v;
+            gRecordVSErase->mRecordVSMTable[a + data_0215c530[i][j]].mOffsetX = v;
         }
     }
-    gRecordVSErase->mRecordVSMTransientTable[1].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTransientTable[b].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTransientTable[b + 1].mUnk_04 = v;
-    gRecordVSErase->mRecordVSMTransientTable[b + 0xe].mUnk_04 = v;
+    gRecordVSErase->mRecordVSMTransientTable[1].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTransientTable[b].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTransientTable[b + 1].mOffsetX = v;
+    gRecordVSErase->mRecordVSMTransientTable[b + 0xe].mOffsetX = v;
     for (i = 0; i < 0xc; i++) {
-        gRecordVSErase->mRecordVSMTransientTable[b + data_0215c584[i]].mUnk_04 = v;
+        gRecordVSErase->mRecordVSMTransientTable[b + data_0215c584[i]].mOffsetX = v;
     }
     for (i = 0; i < 5; i++) {
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[c + data_0215c4b8[i]].mUnk_04 = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[c + data_0215c4b8[i]].mOffsetX = v;
     }
     if (gRecordVSErase->mStateFrames >= 0xa) {
         RequestRecordVSEraseState4();
@@ -641,17 +641,17 @@ void AdvanceRecordVSEraseState7(void) {
     w = InterpolateS16(1, 0, ~0xbf, gRecordVSErase->mStateFrames, 0xa);
     n = gRecordVSErase->mRecordVSSEraseBncl->mUnk_06;
     gRecordVSErase->mBg3Offset = w;
-    gRecordVSErase->mRecordVSSEraseTable[30].mUnk_04 = v;
-    gRecordVSErase->mRecordVSSEraseTable[31].mUnk_04 = v;
-    gRecordVSErase->mRecordVSSEraseTable[n + 5].mUnk_06 = w;
+    gRecordVSErase->mRecordVSSEraseTable[30].mOffsetX = v;
+    gRecordVSErase->mRecordVSSEraseTable[31].mOffsetX = v;
+    gRecordVSErase->mRecordVSSEraseTable[n + 5].mOffsetY = w;
     for (i = 0; i < 5; i++) {
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mUnk_04 = v;
-        gRecordVSErase->mRecordVSSEraseTable[n + data_0215c4b8[i]].mUnk_04 = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mOffsetX = v;
+        gRecordVSErase->mRecordVSSEraseTable[n + data_0215c4b8[i]].mOffsetX = v;
     }
     if (gRecordVSErase->mStateFrames > 0xa) {
         if (IsSelectReturnState0NoState1Request() != 0) {
@@ -705,24 +705,24 @@ void AdvanceRecordVSEraseState10(void) {
     y = gRecordVSErase->mRecordVSMTransientBncl->mUnk_06;
     if (GetRecordCount() != 0 && gRecordVSErase->mErased != 0) {
         gRecordVSErase->mBg1OffsetX = a;
-        gRecordVSErase->mRecordVSMTable[1].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTable[2].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTable[3].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTable[x].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTable[x + 1].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTable[x + 0xb].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTable[x + 0xc].mUnk_04 = a;
+        gRecordVSErase->mRecordVSMTable[1].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTable[2].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTable[3].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTable[x].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTable[x + 1].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTable[x + 0xb].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTable[x + 0xc].mOffsetX = a;
         for (i = 0; i < 3; i++) {
             for (j = 0; j < 3; j++) {
-                gRecordVSErase->mRecordVSMTable[x + data_0215c530[i][j]].mUnk_04 = a;
+                gRecordVSErase->mRecordVSMTable[x + data_0215c530[i][j]].mOffsetX = a;
             }
         }
-        gRecordVSErase->mRecordVSMTransientTable[1].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTransientTable[y].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTransientTable[y + 1].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTransientTable[y + 0xe].mUnk_04 = a;
+        gRecordVSErase->mRecordVSMTransientTable[1].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTransientTable[y].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTransientTable[y + 1].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTransientTable[y + 0xe].mOffsetX = a;
         for (i = 0; i < 12; i++) {
-            gRecordVSErase->mRecordVSMTransientTable[y + data_0215c584[i]].mUnk_04 = a;
+            gRecordVSErase->mRecordVSMTransientTable[y + data_0215c584[i]].mOffsetX = a;
         }
     }
     if (IsTxtSystemState0NoOpenRequest()) {
@@ -756,38 +756,38 @@ void AdvanceRecordVSEraseState11(void) {
     z = gRecordVSErase->mRecordVSSEraseBncl->mUnk_06;
     if (gRecordVSErase->mErased != 0) {
         gRecordVSErase->mBg1OffsetX = a;
-        gRecordVSErase->mRecordVSMTable[1].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTable[2].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTable[3].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTable[x].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTable[x + 1].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTable[x + 0xb].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTable[x + 0xc].mUnk_04 = a;
+        gRecordVSErase->mRecordVSMTable[1].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTable[2].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTable[3].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTable[x].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTable[x + 1].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTable[x + 0xb].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTable[x + 0xc].mOffsetX = a;
         for (i = 0; i < 3; i++) {
             for (j = 0; j < 3; j++) {
-                gRecordVSErase->mRecordVSMTable[x + data_0215c530[i][j]].mUnk_04 = a;
+                gRecordVSErase->mRecordVSMTable[x + data_0215c530[i][j]].mOffsetX = a;
             }
         }
-        gRecordVSErase->mRecordVSMTransientTable[1].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTransientTable[y].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTransientTable[y + 1].mUnk_04 = a;
-        gRecordVSErase->mRecordVSMTransientTable[y + 0xe].mUnk_04 = a;
+        gRecordVSErase->mRecordVSMTransientTable[1].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTransientTable[y].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTransientTable[y + 1].mOffsetX = a;
+        gRecordVSErase->mRecordVSMTransientTable[y + 0xe].mOffsetX = a;
         for (i = 0; i < 12; i++) {
-            gRecordVSErase->mRecordVSMTransientTable[y + data_0215c584[i]].mUnk_04 = a;
+            gRecordVSErase->mRecordVSMTransientTable[y + data_0215c584[i]].mOffsetX = a;
         }
     }
     gRecordVSErase->mBg3Offset = b;
-    gRecordVSErase->mRecordVSSEraseTable[30].mUnk_04 = a;
-    gRecordVSErase->mRecordVSSEraseTable[31].mUnk_04 = a;
-    gRecordVSErase->mRecordVSSEraseTable[z + 5].mUnk_06 = b;
+    gRecordVSErase->mRecordVSSEraseTable[30].mOffsetX = a;
+    gRecordVSErase->mRecordVSSEraseTable[31].mOffsetX = a;
+    gRecordVSErase->mRecordVSSEraseTable[z + 5].mOffsetY = b;
     for (i = 0; i < 5; i++) {
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mUnk_04 = a;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mUnk_04 = a;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mUnk_04 = a;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mUnk_04 = a;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mUnk_04 = a;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mUnk_04 = a;
-        gRecordVSErase->mRecordVSSEraseTable[z + data_0215c4b8[i]].mUnk_04 = a;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mOffsetX = a;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mOffsetX = a;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mOffsetX = a;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mOffsetX = a;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mOffsetX = a;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mOffsetX = a;
+        gRecordVSErase->mRecordVSSEraseTable[z + data_0215c4b8[i]].mOffsetX = a;
     }
     if (gRecordVSErase->mStateFrames > 10) {
         if (IsSelectReturnState2NoState3Or4Request()) {
@@ -807,17 +807,17 @@ void AdvanceRecordVSEraseState12(void) {
     b = InterpolateS16(1, 0, -0xc0, gRecordVSErase->mStateFrames, 10);
     z = gRecordVSErase->mRecordVSSEraseBncl->mUnk_06;
     gRecordVSErase->mBg3Offset = b;
-    gRecordVSErase->mRecordVSSEraseTable[30].mUnk_04 = a;
-    gRecordVSErase->mRecordVSSEraseTable[31].mUnk_04 = a;
-    gRecordVSErase->mRecordVSSEraseTable[z + 5].mUnk_06 = b;
+    gRecordVSErase->mRecordVSSEraseTable[30].mOffsetX = a;
+    gRecordVSErase->mRecordVSSEraseTable[31].mOffsetX = a;
+    gRecordVSErase->mRecordVSSEraseTable[z + 5].mOffsetY = b;
     for (i = 0; i < 5; i++) {
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mUnk_04 = a;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mUnk_04 = a;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mUnk_04 = a;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mUnk_04 = a;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mUnk_04 = a;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mUnk_04 = a;
-        gRecordVSErase->mRecordVSSEraseTable[z + data_0215c4b8[i]].mUnk_04 = a;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mOffsetX = a;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mOffsetX = a;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mOffsetX = a;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mOffsetX = a;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mOffsetX = a;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mOffsetX = a;
+        gRecordVSErase->mRecordVSSEraseTable[z + data_0215c4b8[i]].mOffsetX = a;
     }
     if (gRecordVSErase->mStateFrames >= 10) {
         RequestRecordScreen(gRecordVSErase->mNextScreen);

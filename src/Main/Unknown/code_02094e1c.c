@@ -29,11 +29,11 @@ void func_020954e4(u32 arg0) {
 }
 
 static inline u32 func_02095228_inline(Unk020f41c4_B *b, u32 n) {
-    b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
+    b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
     if (n == 0) {
-        return b->mUnk_00 >> 32;
+        return b->mValue >> 32;
     }
-    return ((b->mUnk_00 >> 32) * n) >> 32;
+    return ((b->mValue >> 32) * n) >> 32;
 }
 
 static inline u16 func_020952dc_inline(u32 n) {
@@ -42,19 +42,19 @@ static inline u16 func_020952dc_inline(u32 n) {
     u32 m;
     if (n == 0x10000) {
         r = &gRaceProgress->mLocalRandom;
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        return (r->mUnk_00 >> 32) * 0x10000 >> 32;
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        return (r->mValue >> 32) * 0x10000 >> 32;
     }
     r = &gRaceProgress->mLocalRandom;
     m = (u16) n;
     if (m == 0) {
         t = 0;
     } else {
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
         if (m == 0) {
-            t = r->mUnk_00 >> 32;
+            t = r->mValue >> 32;
         } else {
-            t = ((r->mUnk_00 >> 32) * m) >> 32;
+            t = ((r->mValue >> 32) * m) >> 32;
         }
     }
     return t;
@@ -110,8 +110,8 @@ Unk020f41c4_B *GetRaceLocalRandom(void) {
 }
 
 u16 func_020951b4(Unk020f41c4_B *a) {
-    a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-    return ((a->mUnk_00 >> 32) * 0x10000) >> 32;
+    a->mValue = a->mMultiplier * a->mValue + a->mIncrement;
+    return ((a->mValue >> 32) * 0x10000) >> 32;
 }
 
 s16 func_0209519c(s32 a) {

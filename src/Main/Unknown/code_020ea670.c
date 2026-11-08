@@ -189,8 +189,8 @@ void StartWoodbox1ItemObject(Woodbox1 *woodbox, Vec3 *velocity) {
         return;
     }
     raceRandom = GetRaceRandom();
-    raceRandom->mUnk_00 = raceRandom->mUnk_08 * raceRandom->mUnk_00 + raceRandom->mUnk_10;
-    if (woodbox->mItemChancePercent <= (u16) (((u64) (u32) (raceRandom->mUnk_00 >> 32) * 100) >> 32)) {
+    raceRandom->mValue = raceRandom->mMultiplier * raceRandom->mValue + raceRandom->mIncrement;
+    if (woodbox->mItemChancePercent <= (u16) (((u64) (u32) (raceRandom->mValue >> 32) * 100) >> 32)) {
         return;
     }
     if (woodbox->mItemRowHandle == 0) {
@@ -207,11 +207,11 @@ void StartWoodbox1ItemObject(Woodbox1 *woodbox, Vec3 *velocity) {
     }
     Vec3CrossUnrounded(&woodbox->mGroundUp, &direction, &sideDirection);
     raceRandom = GetRaceRandom();
-    raceRandom->mUnk_00 = raceRandom->mUnk_08 * raceRandom->mUnk_00 + raceRandom->mUnk_10;
+    raceRandom->mValue = raceRandom->mMultiplier * raceRandom->mValue + raceRandom->mIncrement;
     spawnDistance =
-        ((s64) (s32) ((u32) (((u64) (u32) (raceRandom->mUnk_00 >> 32) * 0x1800) >> 32) + 0x119a) << 12) >> 12;
+        ((s64) (s32) ((u32) (((u64) (u32) (raceRandom->mValue >> 32) * 0x1800) >> 32) + 0x119a) << 12) >> 12;
     raceRandom = GetRaceRandom();
-    raceRandom->mUnk_00 = raceRandom->mUnk_08 * raceRandom->mUnk_00 + raceRandom->mUnk_10;
+    raceRandom->mValue = raceRandom->mMultiplier * raceRandom->mValue + raceRandom->mIncrement;
     itemObject->mVelocity = *velocity;
     VEC_MultAdd(spawnDistance, &direction, &woodbox->mUnk_000.mPos, &itemObject->mPos);
     VEC_MultAdd(0, &sideDirection, &itemObject->mPos, &itemObject->mPos);

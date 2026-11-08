@@ -15,7 +15,7 @@
 #pragma thumb on
 
 void InitScrollList(void *heap, s32 b, const void *groupFirstEntries, u16 cursorEntry, u16 e, s32 f,
-                    Unk02124b1c *entries, void *rects, const void *screenMap, s32 upRectIndex, s32 downRectIndex,
+                    LayoutTableEntry *entries, void *rects, const void *screenMap, s32 upRectIndex, s32 downRectIndex,
                     s32 firstRowRectIndex, s32 rowCount,
                     void (*callback)(int heap, int b, int groupFirstEntries, int cursorEntry)) {
     s32 row;
@@ -49,9 +49,9 @@ void InitScrollList(void *heap, s32 b, const void *groupFirstEntries, u16 cursor
     for (row = gScrollList->mRowCount; row < 5; row++) {
         SetScrollListSlotVisible(row + 1, 0);
     }
-    gScrollList->mEntries[gScrollList->mUnk_02e].mUnk_00 = gScrollList->mRowCount > 5;
+    gScrollList->mEntries[gScrollList->mUnk_02e].mVisible = gScrollList->mRowCount > 5;
     if (gScrollList->mRowCount == 0) {
-        gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 0;
+        gScrollList->mEntries[gScrollList->mCursorEntry].mVisible = 0;
     }
     gScrollList->mScrollFrameCount = 0xf;
 }

@@ -18,27 +18,27 @@ void AdvanceRecordVSEraseOffsetTimers(void) {
     s32 i;
 
     v = GetRecordVSEraseFirstRecordIndex();
-    gRecordVSErase->mRecordVSSEraseTable[data_0215c4a8[0]].mUnk_04 =
+    gRecordVSErase->mRecordVSSEraseTable[data_0215c4a8[0]].mOffsetX =
         -func_020adc64(6 - gRecordVSErase->mOffsetTimers[0]);
-    gRecordVSErase->mRecordVSSEraseTable[data_0215c4a8[1]].mUnk_04 =
+    gRecordVSErase->mRecordVSSEraseTable[data_0215c4a8[1]].mOffsetX =
         func_020adc64(6 - gRecordVSErase->mOffsetTimers[1]);
     a = FALSE;
     b = FALSE;
     for (i = 0; i < 2; i++) {
         if (gRecordVSErase->mOffsetTimers[i] > 0) {
             gRecordVSErase->mOffsetTimers[i]--;
-            gRecordVSErase->mRecordVSSEraseTable[data_0215c4ac[i]].mUnk_00 = a;
-            gRecordVSErase->mRecordVSSEraseTable[data_0215c4a8[i]].mUnk_00 = 1;
+            gRecordVSErase->mRecordVSSEraseTable[data_0215c4ac[i]].mVisible = a;
+            gRecordVSErase->mRecordVSSEraseTable[data_0215c4a8[i]].mVisible = 1;
         } else {
-            gRecordVSErase->mRecordVSSEraseTable[data_0215c4ac[i]].mUnk_00 = 1;
-            gRecordVSErase->mRecordVSSEraseTable[data_0215c4a8[i]].mUnk_00 = b;
+            gRecordVSErase->mRecordVSSEraseTable[data_0215c4ac[i]].mVisible = 1;
+            gRecordVSErase->mRecordVSSEraseTable[data_0215c4a8[i]].mVisible = b;
         }
     }
     if (v == 0) {
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4ac[0]].mUnk_00 = 0;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4ac[0]].mVisible = 0;
     }
     if (v + 5 >= GetRecordCount()) {
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4ac[1]].mUnk_00 = 0;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4ac[1]].mVisible = 0;
     }
 }
 

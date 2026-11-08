@@ -38,335 +38,355 @@
 
 #pragma thumb on
 
-void func_0202b554(s32 a, s32 b) {
-    CellFileSet *p;
-    s32 t;
-    s32 o;
+// Sets the digit cells for the place of the kart among the karts that appear for the character and for how many appear.
+void WriteKartPositionAndCount(s32 position, s32 kartCount) {
+    CellFileSet *fileSet;
+    s32 tens;
+    s32 ones;
 
-    t = b / 10 % 10;
-    o = b % 10;
-    p = &data_02174e3c->mUnk_000;
-    p->mCellTable[0x3c].mUnk_00 = a >= 10 ? 1 : 0;
-    func_02025c48(0x3c, a / 10 % 10 + 0x41, p->mCellLayout);
-    func_02025c48(0x3d, a % 10 + 0x41, p->mCellLayout);
-    if (b >= 10) {
-        t += 0x4b;
-        func_02025c48(0x3f, t, p->mCellLayout);
-        func_02025c48(0x40, o + 0x4b, p->mCellLayout);
+    tens = kartCount / 10 % 10;
+    ones = kartCount % 10;
+    fileSet = &gPlayerEntryList->mParts;
+    fileSet->mCellTable[0x3c].mVisible = position >= 10 ? 1 : 0;
+    func_02025c48(0x3c, position / 10 % 10 + 0x41, fileSet->mCellLayout);
+    func_02025c48(0x3d, position % 10 + 0x41, fileSet->mCellLayout);
+    if (kartCount >= 10) {
+        tens += 0x4b;
+        func_02025c48(0x3f, tens, fileSet->mCellLayout);
+        func_02025c48(0x40, ones + 0x4b, fileSet->mCellLayout);
     } else {
-        p->mCellTable[0x40].mUnk_00 = 0;
-        func_02025c48(0x3f, o + 0x4b, p->mCellLayout);
+        fileSet->mCellTable[0x40].mVisible = 0;
+        func_02025c48(0x3f, ones + 0x4b, fileSet->mCellLayout);
     }
 }
 
-void func_0202b4bc(s32 a, s32 b, s32 c, s32 d) {
-    CellFileSet *p;
-    void *h;
+// List callback: action 1 prints the label of a row, action 0 sets the highlight value of the seven slots.
+void RefreshCourseListRows(s32 action, s32 slot, s32 row, s32 selectedSlot) {
+    CellFileSet *fileSet;
+    void *text;
     s32 i;
     s32 k;
 
-    p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectSParts;
-    if (a == 1) {
-        if (c == 0) {
-            h = GetBmgEntry(gWiFiVSCourseSelect->mWiFiMessages, 0x1a);
+    fileSet = &gWiFiVSCourseSelect->mWiFiVSCourseSelectSParts;
+    if (action == 1) {
+        if (row == 0) {
+            text = GetBmgEntry(gWiFiVSCourseSelect->mWiFiMessages, 0x1a);
         } else {
-            h = GetBmgEntry(gWiFiVSCourseSelect->mWiFiMessages, func_02025d5c(data_usa_02153a4c[c - 1]));
+            text = GetBmgEntry(gWiFiVSCourseSelect->mWiFiMessages, func_02025d5c(gCourseIdTable[row - 1]));
         }
-        func_0212426c(1, b, p->mLabelLayout, h, p->mCellLayout, p->mCellTable);
-    } else if (a == 0) {
+        func_0212426c(1, slot, fileSet->mLabelLayout, text, fileSet->mCellLayout, fileSet->mCellTable);
+    } else if (action == 0) {
         for (i = 0; i < 7; i++) {
-            if (i == d) {
+            if (i == selectedSlot) {
                 k = 0xe;
             } else {
                 k = 0xf;
             }
-            func_02124100(i, k, p->mLabelLayout, p->mCellTable, p->mCellLayout);
+            func_02124100(i, k, fileSet->mLabelLayout, fileSet->mCellTable, fileSet->mCellLayout);
         }
     }
 }
 
 void func_0202b3f4(void) {
-    CellFileSet *p;
-    s32 n;
+    CellFileSet *fileSet;
+    s32 cellCount;
     s32 i;
 
-    p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
-    n = p->mCellLayout->mUnk_06;
-    for (i = 0; i < gWiFiVSCourseSelect->mUnk_0b8; i++) {
-        p->mCellTable[data_usa_021539f4[i].mUnk_06].mUnk_06 = InterpolateS16(
-            1, 0, 0x60 - (((s16 *) func_0201ea30(p->mCellLayout, data_usa_021539f4[i].mUnk_06))[1] << 20 >> 20),
+    fileSet = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
+    cellCount = fileSet->mCellLayout->mUnk_06;
+    for (i = 0; i < gWiFiVSCourseSelect->mPlayerCount; i++) {
+        fileSet->mCellTable[gWiFiVSCourseSelectMLabelTextRows[i].mCellIndex].mOffsetY = InterpolateS16(
+            1, 0,
+            0x60 - (((s16 *) func_0201ea30(fileSet->mCellLayout, gWiFiVSCourseSelectMLabelTextRows[i].mCellIndex))[1]
+                        << 20 >>
+                    20),
             (*(struct WiFiVSCourseSelect **) &gWiFiVSCourseSelect)->mStateFrames, 0x3c);
-        p->mCellTable[n + data_usa_021539f4[i].mUnk_00].mUnk_06 = InterpolateS16(
-            1, 0, 0x60 - (((s16 *) func_0201ea58(p->mLabelLayout, data_usa_021539f4[i].mUnk_00))[1] << 20 >> 20),
+        fileSet->mCellTable[cellCount + gWiFiVSCourseSelectMLabelTextRows[i].mLabelIndex].mOffsetY = InterpolateS16(
+            1, 0,
+            0x60 - (((s16 *) func_0201ea58(fileSet->mLabelLayout, gWiFiVSCourseSelectMLabelTextRows[i].mLabelIndex))[1]
+                        << 20 >>
+                    20),
             (*(struct WiFiVSCourseSelect **) &gWiFiVSCourseSelect)->mStateFrames, 0x3c);
     }
 }
 
-void func_0202b2bc(void) {
-    CellFileSet *p;
-    u16 n;
+void ShowWiFiSessionCourse(void) {
+    CellFileSet *fileSet;
+    u16 cellCount;
     s32 i;
-    s32 a;
-    u16 *h;
+    s32 courseId;
+    u16 *text;
 
-    p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
-    n = p->mCellLayout->mUnk_06;
-    a = GetWiFiSessionCourseId();
-    h = GetBmgEntry(gWiFiVSCourseSelect->mCommonMessages, GetCourseMessageIndex(a));
+    fileSet = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
+    cellCount = fileSet->mCellLayout->mUnk_06;
+    courseId = GetWiFiSessionCourseId();
+    text = GetBmgEntry(gWiFiVSCourseSelect->mCommonMessages, GetCourseMessageIndex(courseId));
     for (i = 0; i < 4; i++) {
-        p->mCellTable[data_usa_021539f4[i].mUnk_06].mUnk_00 = 0;
-        p->mCellTable[n + data_usa_021539f4[i].mUnk_00].mUnk_00 = p->mCellTable[data_usa_021539f4[i].mUnk_06].mUnk_00;
-        p->mCellTable[data_usa_021539f4[i].mUnk_06].mUnk_04 = 0;
-        p->mCellTable[n + data_usa_021539f4[i].mUnk_00].mUnk_04 = p->mCellTable[data_usa_021539f4[i].mUnk_06].mUnk_04;
-        func_02025f14(&gWiFiVSCourseSelect->mUnk_0fc[i], 1);
+        fileSet->mCellTable[gWiFiVSCourseSelectMLabelTextRows[i].mCellIndex].mVisible = 0;
+        fileSet->mCellTable[cellCount + gWiFiVSCourseSelectMLabelTextRows[i].mLabelIndex].mVisible =
+            fileSet->mCellTable[gWiFiVSCourseSelectMLabelTextRows[i].mCellIndex].mVisible;
+        fileSet->mCellTable[gWiFiVSCourseSelectMLabelTextRows[i].mCellIndex].mOffsetX = 0;
+        fileSet->mCellTable[cellCount + gWiFiVSCourseSelectMLabelTextRows[i].mLabelIndex].mOffsetX =
+            fileSet->mCellTable[gWiFiVSCourseSelectMLabelTextRows[i].mCellIndex].mOffsetX;
+        func_02025f14(&gWiFiVSCourseSelect->mRowInterpolations[i], 1);
     }
-    p->mCellTable[4].mUnk_00 = 1;
-    p->mCellTable[data_usa_021539f4[0].mUnk_00 + n].mUnk_00 = p->mCellTable[4].mUnk_00;
-    p->mCellTable[data_usa_021539f4[0].mUnk_00 + n].mUnk_06 += 2;
-    func_0212426c(0, data_usa_021539f4[0].mUnk_00, p->mLabelLayout, h, p->mCellLayout, p->mCellTable);
-    gWiFiVSCourseSelect->mUnk_144 = a;
-    gWiFiVSCourseSelect->mUnk_148 = GetCourseMessageIndex(a);
-    gWiFiVSCourseSelect->mUnk_14c[0] = h[0];
-    gWiFiVSCourseSelect->mUnk_14c[1] = h[1];
-    gWiFiVSCourseSelect->mUnk_14c[2] = h[2];
-    gWiFiVSCourseSelect->mUnk_14c[3] = h[3];
+    fileSet->mCellTable[4].mVisible = 1;
+    fileSet->mCellTable[gWiFiVSCourseSelectMLabelTextRows[0].mLabelIndex + cellCount].mVisible =
+        fileSet->mCellTable[4].mVisible;
+    fileSet->mCellTable[gWiFiVSCourseSelectMLabelTextRows[0].mLabelIndex + cellCount].mOffsetY += 2;
+    func_0212426c(0, gWiFiVSCourseSelectMLabelTextRows[0].mLabelIndex, fileSet->mLabelLayout, text,
+                  fileSet->mCellLayout, fileSet->mCellTable);
+    gWiFiVSCourseSelect->mCourseId = courseId;
+    gWiFiVSCourseSelect->mCourseMessageIndex = GetCourseMessageIndex(courseId);
+    gWiFiVSCourseSelect->mUnk_14c[0] = text[0];
+    gWiFiVSCourseSelect->mUnk_14c[1] = text[1];
+    gWiFiVSCourseSelect->mUnk_14c[2] = text[2];
+    gWiFiVSCourseSelect->mUnk_14c[3] = text[3];
 }
 
-void func_0202b264(void) {
-    CellFileSet *p;
-    s32 n;
+void AdvanceSubCellsOffsetY(void) {
+    CellFileSet *fileSet;
+    s32 entryCount;
     s32 i;
 
-    p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectSParts;
-    n = p->mCellLayout->mUnk_06 + p->mLabelLayout->mUnk_06;
-    AdvanceInterpolation(&gWiFiVSCourseSelect->mUnk_0cc[0]);
-    gWiFiVSCourseSelect->mUnk_154 = GetInterpolatedValue(&gWiFiVSCourseSelect->mUnk_0cc[0]);
-    for (i = 0; i < n; i++) {
-        p->mCellTable[i].mUnk_06 = gWiFiVSCourseSelect->mUnk_154;
+    fileSet = &gWiFiVSCourseSelect->mWiFiVSCourseSelectSParts;
+    entryCount = fileSet->mCellLayout->mUnk_06 + fileSet->mLabelLayout->mUnk_06;
+    AdvanceInterpolation(&gWiFiVSCourseSelect->mInterpolations[0]);
+    gWiFiVSCourseSelect->mSubOffsetY = GetInterpolatedValue(&gWiFiVSCourseSelect->mInterpolations[0]);
+    for (i = 0; i < entryCount; i++) {
+        fileSet->mCellTable[i].mOffsetY = gWiFiVSCourseSelect->mSubOffsetY;
     }
 }
 
-void func_0202b100(void) {
+void AdvancePickedCourseRows(void) {
     s32 i;
-    CellFileSet *p;
-    s32 n;
-    s32 v;
-    void *h;
+    CellFileSet *fileSet;
+    s32 cellCount;
+    s32 pickedCourseId;
+    void *text;
 
-    p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
-    n = p->mCellLayout->mUnk_06;
-    for (i = 0; i < gWiFiVSCourseSelect->mUnk_0b8; i++) {
-        AdvanceInterpolation(&gWiFiVSCourseSelect->mUnk_0fc[i]);
+    fileSet = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
+    cellCount = fileSet->mCellLayout->mUnk_06;
+    for (i = 0; i < gWiFiVSCourseSelect->mPlayerCount; i++) {
+        AdvanceInterpolation(&gWiFiVSCourseSelect->mRowInterpolations[i]);
         if (GetIndexOfPackedIndex(i) >= 0) {
-            v = GetWiFiSessionPickedCourseId((u8) GetIndexOfPackedIndex(i));
+            pickedCourseId = GetWiFiSessionPickedCourseId((u8) GetIndexOfPackedIndex(i));
         } else {
-            v = 0;
+            pickedCourseId = 0;
         }
         switch (gWiFiVSCourseSelect->mState) {
             case 0:
             case 1:
             case 2:
-                if (v != 0 && v != gWiFiVSCourseSelect->mUnk_0bc[i]) {
-                    h = GetBmgEntry(gWiFiVSCourseSelect->mCommonMessages, GetCourseMessageIndex(v));
-                    func_0212426c(0, data_usa_021539f4[i].mUnk_00, p->mLabelLayout, h, p->mCellLayout, p->mCellTable);
-                    gWiFiVSCourseSelect->mUnk_0bc[i] = v;
-                    func_02025f14(&gWiFiVSCourseSelect->mUnk_0fc[i], 0);
-                    if (gWiFiVSCourseSelect->mUnk_0b4 != i) {
+                if (pickedCourseId != 0 && pickedCourseId != gWiFiVSCourseSelect->mShownCourseIds[i]) {
+                    text = GetBmgEntry(gWiFiVSCourseSelect->mCommonMessages, GetCourseMessageIndex(pickedCourseId));
+                    func_0212426c(0, gWiFiVSCourseSelectMLabelTextRows[i].mLabelIndex, fileSet->mLabelLayout, text,
+                                  fileSet->mCellLayout, fileSet->mCellTable);
+                    gWiFiVSCourseSelect->mShownCourseIds[i] = pickedCourseId;
+                    func_02025f14(&gWiFiVSCourseSelect->mRowInterpolations[i], 0);
+                    if (gWiFiVSCourseSelect->mEntryIndex != i) {
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x208);
                     }
                 }
                 break;
         }
-        p->mCellTable[n + data_usa_021539f4[i].mUnk_00].mUnk_04 =
-            GetInterpolatedValue(&gWiFiVSCourseSelect->mUnk_0fc[i]);
-        p->mCellTable[data_usa_021539d8[i]].mUnk_04 = p->mCellTable[n + data_usa_021539f4[i].mUnk_00].mUnk_04;
+        fileSet->mCellTable[cellCount + gWiFiVSCourseSelectMLabelTextRows[i].mLabelIndex].mOffsetX =
+            GetInterpolatedValue(&gWiFiVSCourseSelect->mRowInterpolations[i]);
+        fileSet->mCellTable[gCourseRowCellIndices[i]].mOffsetX =
+            fileSet->mCellTable[cellCount + gWiFiVSCourseSelectMLabelTextRows[i].mLabelIndex].mOffsetX;
     }
 }
 
-void func_0202afe4(void) {
-    s32 v;
-    CellFileSet *p;
-    Unk0201ea30 *b;
-    void *a;
+void AdvanceWiFiVSCourseSelectTimer(void) {
+    s32 seconds;
+    CellFileSet *fileSet;
+    Unk0201ea30 *cellLayout;
+    void *cells;
 
-    v = 0;
-    p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
-    AdvanceInterpolation(&gWiFiVSCourseSelect->mUnk_0cc[2]);
-    p->mCellTable[16].mUnk_04 = GetInterpolatedValue(&gWiFiVSCourseSelect->mUnk_0cc[2]);
-    p->mCellTable[15].mUnk_04 = p->mCellTable[16].mUnk_04;
+    seconds = 0;
+    fileSet = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
+    AdvanceInterpolation(&gWiFiVSCourseSelect->mInterpolations[2]);
+    fileSet->mCellTable[16].mOffsetX = GetInterpolatedValue(&gWiFiVSCourseSelect->mInterpolations[2]);
+    fileSet->mCellTable[15].mOffsetX = fileSet->mCellTable[16].mOffsetX;
     switch (gWiFiVSCourseSelect->mState) {
         case 0:
         case 1:
         case 2:
             if (gWiFiVSCourseSelect->mTimer != 0) {
                 gWiFiVSCourseSelect->mTimer--;
-                v = (gWiFiVSCourseSelect->mTimer + 0x3c) / 0x3c;
-                p->mCellTable[15].mUnk_00 = v >= 10 ? 1 : 0;
+                seconds = (gWiFiVSCourseSelect->mTimer + 0x3c) / 0x3c;
+                fileSet->mCellTable[15].mVisible = seconds >= 10 ? 1 : 0;
                 if (gWiFiVSCourseSelect->mTimer == 0) {
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x51);
-                } else if ((gWiFiVSCourseSelect->mTimer + 0x3c) % 0x3c == 0 && v <= 4) {
+                } else if ((gWiFiVSCourseSelect->mTimer + 0x3c) % 0x3c == 0 && seconds <= 4) {
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x50);
                 }
             }
-            b = p->mCellLayout;
-            a = p->mCells;
-            func_02124748(data_usa_021539e0[v / 10 % 10], a, p->mChars, b, 0, 0xf, a, b);
-            b = p->mCellLayout;
-            a = p->mCells;
-            func_02124748(data_usa_021539e0[v % 10], a, p->mChars, b, 0, 0x10, a, b);
+            cellLayout = fileSet->mCellLayout;
+            cells = fileSet->mCells;
+            func_02124748(gCourseTimerDigitCellIndices[seconds / 10 % 10], cells, fileSet->mChars, cellLayout, 0, 0xf,
+                          cells, cellLayout);
+            cellLayout = fileSet->mCellLayout;
+            cells = fileSet->mCells;
+            func_02124748(gCourseTimerDigitCellIndices[seconds % 10], cells, fileSet->mChars, cellLayout, 0, 0x10,
+                          cells, cellLayout);
             break;
     }
 }
 
-s32 func_0202af60(void) {
-    WiFiVSCourseSelect *o;
-    Unk020f41c4_B *r;
+// Picks a course index at random that none of the stored course ids of the earlier races has.
+s32 PickRandomCourseIndexNotRaced(void) {
+    WiFiVSCourseSelect *courseSelect;
+    Unk020f41c4_B *random;
     Unk0217b488 *d;
     s32 i;
-    s32 v;
-    BOOL f;
-    u32 t;
-    u32 *q;
+    s32 courseIndex;
+    BOOL notRaced;
+    u32 courseId;
+    u32 *cursor;
 
-    o = gWiFiVSCourseSelect;
-    r = &o->mUnk_094;
-    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    v = (u16) (r->mUnk_00 >> 32 >> 20) % 20;
+    courseSelect = gWiFiVSCourseSelect;
+    random = &courseSelect->mRandom;
+    random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+    courseIndex = (u16) (random->mValue >> 32 >> 20) % 20;
     d = data_0217b488;
     do {
-        f = TRUE;
-        v = (v + 1) % 20;
+        notRaced = TRUE;
+        courseIndex = (courseIndex + 1) % 20;
         i = 0;
-        q = (u32 *) d;
-        t = data_usa_02153a4c[v];
+        cursor = (u32 *) d;
+        courseId = gCourseIdTable[courseIndex];
         for (; i < 4; i++) {
-            if (q[0x17] == t) {
-                f = FALSE;
+            if (cursor[0x17] == courseId) {
+                notRaced = FALSE;
                 break;
             }
-            q++;
+            cursor++;
         }
-    } while (f == FALSE);
-    return v;
+    } while (notRaced == FALSE);
+    return courseIndex;
 }
 
-void InitWiFiVSCourseSelect(void *param_1, void *param_2, void *param_3) {
-    void *h;
-    CellFileSet *p;
-    CellFileSet *t;
-    Unk020f41c4_B *l;
-    u32 a;
-    u32 s;
-    u32 k;
+void InitWiFiVSCourseSelect(void *parentHeap, void *mainOam, void *subOam) {
+    void *heap;
+    CellFileSet *mainFileSet;
+    CellFileSet *subFileSet;
+    Unk020f41c4_B *random;
+    u32 tick;
+    u32 seed;
+    u32 objSizeLeft;
     s32 i;
     s32 n;
-    s32 m;
+    s32 subCellCount;
     s32 j;
-    s32 q;
-    Unk02124b1c *e;
+    s32 labelIndex;
+    LayoutTableEntry *cellTable;
     u16 w[2];
 
-    h = CreateFrmHeapFromMaxFree(param_1);
-    gWiFiVSCourseSelect = HeapAlloc(h, 0x158);
+    heap = CreateFrmHeapFromMaxFree(parentHeap);
+    gWiFiVSCourseSelect = HeapAlloc(heap, 0x158);
     MemFillWordsByBlock_inline(gWiFiVSCourseSelect, 0x158);
-    gWiFiVSCourseSelect->mHeap = h;
-    gWiFiVSCourseSelect->mUnk_080[0] = param_2;
-    gWiFiVSCourseSelect->mUnk_080[1] = param_3;
+    gWiFiVSCourseSelect->mHeap = heap;
+    gWiFiVSCourseSelect->mOamLists[0] = mainOam;
+    gWiFiVSCourseSelect->mOamLists[1] = subOam;
     gWiFiVSCourseSelect->mCommonMessages = FindFileInLoadedArchives(gCommonBmgName3);
     gWiFiVSCourseSelect->mWiFiMessages = FindSceneFile(gWiFiBmgName);
-    a = OS_GetTick();
-    s = (a << 16) + (u32) OS_GetTick();
-    l = &gWiFiVSCourseSelect->mUnk_094;
-    l->mUnk_00 = s;
-    l->mUnk_08 = 0x5d588b656c078965;
-    l->mUnk_10 = 0x269ec3;
-    gWiFiVSCourseSelect->mUnk_0b8 = GetSessionKartCount();
-    gWiFiVSCourseSelect->mUnk_0b4 = GetRaceSetupCopyEntryIndex();
+    tick = OS_GetTick();
+    seed = (tick << 16) + (u32) OS_GetTick();
+    random = &gWiFiVSCourseSelect->mRandom;
+    random->mValue = seed;
+    random->mMultiplier = 0x5d588b656c078965;
+    random->mIncrement = 0x269ec3;
+    gWiFiVSCourseSelect->mPlayerCount = GetSessionKartCount();
+    gWiFiVSCourseSelect->mEntryIndex = GetRaceSetupCopyEntryIndex();
     gWiFiVSCourseSelect->mTimer = 0x4b0;
-    gWiFiVSCourseSelect->mUnk_154 = -0xc0;
+    gWiFiVSCourseSelect->mSubOffsetY = -0xc0;
     for (i = 0; i < 4; i++) {
-        gWiFiVSCourseSelect->mUnk_0bc[i] = 0;
-        SetupInterpolation(&gWiFiVSCourseSelect->mUnk_0fc[i], 3, 10, 0xfc, 0);
+        gWiFiVSCourseSelect->mShownCourseIds[i] = 0;
+        SetupInterpolation(&gWiFiVSCourseSelect->mRowInterpolations[i], 3, 10, 0xfc, 0);
     }
-    SetupInterpolation(&gWiFiVSCourseSelect->mUnk_0cc[1], 0, 10, -0x40, 0);
-    SetupInterpolation(&gWiFiVSCourseSelect->mUnk_0cc[0], 0, 10, -0xc0, 0);
-    SetupInterpolation(&gWiFiVSCourseSelect->mUnk_0cc[2], 0, 10, 0x40, 0);
+    SetupInterpolation(&gWiFiVSCourseSelect->mInterpolations[1], 0, 10, -0x40, 0);
+    SetupInterpolation(&gWiFiVSCourseSelect->mInterpolations[0], 0, 10, -0xc0, 0);
+    SetupInterpolation(&gWiFiVSCourseSelect->mInterpolations[2], 0, 10, 0x40, 0);
     reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0xc00;
     func_020258d4(0, gWiFiVSCourseSelect, gWiFiVSCourseSelectMBNcgrName, gWiFiVSCourseSelectMBNclrName,
                   gWiFiVSCourseSelectMNscrName, 0, FindSceneFile);
-    p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
-    k = GX_GetSizeOfOBJ();
-    LocateCellFileSet(p, gWiFiVSCourseSelectMNcgrName, gWiFiVSCourseSelectMNcerName, gWiFiVSCourseSelectMONclrName,
-                      gWiFiVSCourseSelectMBnclName, gWiFiVSCourseSelectMBnllName, NULL, FindSceneFile);
-    func_02025a50(0, gWiFiVSCourseSelect->mHeap, p);
-    n = p->mCellLayout->mUnk_06;
+    mainFileSet = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
+    objSizeLeft = GX_GetSizeOfOBJ();
+    LocateCellFileSet(mainFileSet, gWiFiVSCourseSelectMNcgrName, gWiFiVSCourseSelectMNcerName,
+                      gWiFiVSCourseSelectMONclrName, gWiFiVSCourseSelectMBnclName, gWiFiVSCourseSelectMBnllName, NULL,
+                      FindSceneFile);
+    func_02025a50(0, gWiFiVSCourseSelect->mHeap, mainFileSet);
+    n = mainFileSet->mCellLayout->mUnk_06;
     for (i = 0; i < n; i++) {
-        func_021249a8(i, 1, p->mCells, p->mCellLayout);
+        func_021249a8(i, 1, mainFileSet->mCells, mainFileSet->mCellLayout);
     }
-    for (i = 0; i < p->mLabelLayout->mUnk_06; i++) {
-        k -= func_02025a00(0, gWiFiVSCourseSelect->mHeap, p, &data_usa_021539f4[i], k);
+    for (i = 0; i < mainFileSet->mLabelLayout->mUnk_06; i++) {
+        objSizeLeft -= func_02025a00(0, gWiFiVSCourseSelect->mHeap, mainFileSet, &gWiFiVSCourseSelectMLabelTextRows[i],
+                                     objSizeLeft);
     }
-    for (i = gWiFiVSCourseSelect->mUnk_0b8; i < 4; i++) {
-        p->mCellTable[data_usa_021539d8[i]].mUnk_00 = 0;
-        p->mCellTable[n + data_usa_021539f4[i].mUnk_00].mUnk_00 = 0;
+    for (i = gWiFiVSCourseSelect->mPlayerCount; i < 4; i++) {
+        mainFileSet->mCellTable[gCourseRowCellIndices[i]].mVisible = 0;
+        mainFileSet->mCellTable[n + gWiFiVSCourseSelectMLabelTextRows[i].mLabelIndex].mVisible = 0;
     }
     for (i = 0; i < n; i++) {
-        func_021249a8(i, 2, p->mCells, p->mCellLayout);
+        func_021249a8(i, 2, mainFileSet->mCells, mainFileSet->mCellLayout);
     }
-    p->mCellTable[4].mUnk_06 = 0x60 - (((s16 *) func_0201ea30(p->mCellLayout, 4))[1] << 20 >> 20);
-    p->mCellTable[4].mUnk_00 = 0;
+    mainFileSet->mCellTable[4].mOffsetY = 0x60 - (((s16 *) func_0201ea30(mainFileSet->mCellLayout, 4))[1] << 20 >> 20);
+    mainFileSet->mCellTable[4].mVisible = 0;
     func_020258d4(1, &gWiFiVSCourseSelect->mWiFiVSCourseSelectMBAndSBParts[1], gWiFiVSCourseSelectSBNcgrName,
                   gWiFiVSCourseSelectSBNclrName, gWiFiVSCourseSelectSNscrName, 3, FindSceneFile);
-    t = &gWiFiVSCourseSelect->mWiFiVSCourseSelectSParts;
-    k = GX_GetSizeOfSubOBJ();
-    LocateCellFileSet(t, gWiFiVSCourseSelectSNcgrName, gWiFiVSCourseSelectSNcerName, gWiFiVSCourseSelectSONclrName,
-                      gWiFiVSCourseSelectSBnclName, gWiFiVSCourseSelectSBnllName, gWiFiVSCourseSelectSBnblName,
-                      FindSceneFile);
-    func_02025a50(1, gWiFiVSCourseSelect->mHeap, t);
-    m = t->mCellLayout->mUnk_06;
-    for (j = 0; j < m; j++) {
-        func_021249a8(j, 1, t->mCells, t->mCellLayout);
+    subFileSet = &gWiFiVSCourseSelect->mWiFiVSCourseSelectSParts;
+    objSizeLeft = GX_GetSizeOfSubOBJ();
+    LocateCellFileSet(subFileSet, gWiFiVSCourseSelectSNcgrName, gWiFiVSCourseSelectSNcerName,
+                      gWiFiVSCourseSelectSONclrName, gWiFiVSCourseSelectSBnclName, gWiFiVSCourseSelectSBnllName,
+                      gWiFiVSCourseSelectSBnblName, FindSceneFile);
+    func_02025a50(1, gWiFiVSCourseSelect->mHeap, subFileSet);
+    subCellCount = subFileSet->mCellLayout->mUnk_06;
+    for (j = 0; j < subCellCount; j++) {
+        func_021249a8(j, 1, subFileSet->mCells, subFileSet->mCellLayout);
     }
-    for (j = 0; j < t->mLabelLayout->mUnk_06; j++) {
-        k -= func_02025a00(1, gWiFiVSCourseSelect->mHeap, t, &data_usa_02153a14[j], k);
+    for (j = 0; j < subFileSet->mLabelLayout->mUnk_06; j++) {
+        objSizeLeft -= func_02025a00(1, gWiFiVSCourseSelect->mHeap, subFileSet, &gWiFiVSCourseSelectSLabelTextRows[j],
+                                     objSizeLeft);
     }
-    for (j = 0; j < m; j++) {
-        func_021249a8(j, 2, t->mCells, t->mCellLayout);
+    for (j = 0; j < subCellCount; j++) {
+        func_021249a8(j, 2, subFileSet->mCells, subFileSet->mCellLayout);
     }
     for (i = 0; i < 7; i++) {
-        n = data_usa_02153a14[i].mUnk_06;
-        q = data_usa_02153a14[i].mUnk_00;
-        e = t->mCellTable;
-        func_02025c1c(n, e + n, t->mCellLayout);
-        func_02025bf0(q, e + q + m, t->mLabelLayout);
+        n = gWiFiVSCourseSelectSLabelTextRows[i].mCellIndex;
+        labelIndex = gWiFiVSCourseSelectSLabelTextRows[i].mLabelIndex;
+        cellTable = subFileSet->mCellTable;
+        func_02025c1c(n, cellTable + n, subFileSet->mCellLayout);
+        func_02025bf0(labelIndex, cellTable + labelIndex + subCellCount, subFileSet->mLabelLayout);
     }
-    func_02025c1c(7, t->mCellTable + 7, t->mCellLayout);
+    func_02025c1c(7, subFileSet->mCellTable + 7, subFileSet->mCellLayout);
     w[0] = 0;
-    w[1] = m;
-    InitScrollList(gWiFiVSCourseSelect->mHeap, 2, w, 7, 8, 0x7c, t->mCellTable, t->mRects,
+    w[1] = subCellCount;
+    InitScrollList(gWiFiVSCourseSelect->mHeap, 2, w, 7, 8, 0x7c, subFileSet->mCellTable, subFileSet->mRects,
                    (u8 *) gWiFiVSCourseSelect->mWiFiVSCourseSelectMBAndSBParts[1].mScreenMaps[3] + 0xc, 5, 6, 0, 0x15,
-                   func_0202b4bc);
+                   RefreshCourseListRows);
     FrmHeapShrinkInParent(gWiFiVSCourseSelect->mHeap);
 }
 
 s32 AdvanceWiFiVSCourseSelect(void) {
-    WiFiVSCourseSelect *d;
-    CellFileSet *p;
-    s32 r = 0;
+    WiFiVSCourseSelect *courseSelect;
+    CellFileSet *fileSets;
+    s32 result = 0;
     s32 i;
     s32 v;
 
     AdvanceScrollList();
-    func_0202b100();
+    AdvancePickedCourseRows();
     switch (gWiFiVSCourseSelect->mState) {
         case 0:
             if (AreBrightnessFadesClear() == 0) {
                 break;
             }
-            if (gWiFiVSCourseSelect->mUnk_0cc[0].mState == 1) {
+            if (gWiFiVSCourseSelect->mInterpolations[0].mState == 1) {
                 gWiFiVSCourseSelect->mState = 1;
             }
-            func_0202b264();
+            AdvanceSubCellsOffsetY();
             break;
         case 1:
             if (IsScrollListPickStarted() != 0) {
@@ -377,11 +397,11 @@ s32 AdvanceWiFiVSCourseSelect(void) {
             }
             v = GetScrollListSelectedRow();
             if (v == 0) {
-                v = func_0202af60();
+                v = PickRandomCourseIndexNotRaced();
             } else {
                 v--;
             }
-            SetWiFiSessionOwnPickedCourseId(data_usa_02153a4c[v]);
+            SetWiFiSessionOwnPickedCourseId(gCourseIdTable[v]);
             gWiFiVSCourseSelect->mState = 2;
             gWiFiVSCourseSelect->mUnk_0b0 = 1;
             SetScrollListEnabled(0);
@@ -389,7 +409,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
         case 2:
             if (func_02121cd0() != 0) {
                 gWiFiVSCourseSelect->mState = 3;
-                func_02025f14(&gWiFiVSCourseSelect->mUnk_0cc[2], 2);
+                func_02025f14(&gWiFiVSCourseSelect->mInterpolations[2], 2);
             }
             break;
         case 3:
@@ -409,7 +429,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
                 StartFadeToClearOneScreen(10, 1);
                 gWiFiVSCourseSelect->mState = 5;
                 gWiFiVSCourseSelect->mStateFrames = 0;
-                func_0202b2bc();
+                ShowWiFiSessionCourse();
             }
             break;
         case 5:
@@ -428,17 +448,18 @@ s32 AdvanceWiFiVSCourseSelect(void) {
             }
             break;
         case 7:
-            r = gWiFiVSCourseSelect->mUnk_0b0;
+            result = gWiFiVSCourseSelect->mUnk_0b0;
             break;
     }
-    func_0202afe4();
-    AdvanceInterpolation(&gWiFiVSCourseSelect->mUnk_0cc[1]);
+    AdvanceWiFiVSCourseSelectTimer();
+    AdvanceInterpolation(&gWiFiVSCourseSelect->mInterpolations[1]);
     for (i = 0; i < 2; i++) {
-        d = gWiFiVSCourseSelect;
-        p = &d->mWiFiVSCourseSelectMParts;
-        DrawLayoutTable(p[i].mCellLayout, p[i].mCells, p[i].mLabelLayout, d->mUnk_080[i], p[i].mCellTable);
+        courseSelect = gWiFiVSCourseSelect;
+        fileSets = &courseSelect->mWiFiVSCourseSelectMParts;
+        DrawLayoutTable(fileSets[i].mCellLayout, fileSets[i].mCells, fileSets[i].mLabelLayout,
+                        courseSelect->mOamLists[i], fileSets[i].mCellTable);
     }
-    return r;
+    return result;
 }
 
 #pragma thumb off
@@ -454,21 +475,21 @@ void ReleaseWiFiVSCourseSelect(void) {
 
 #pragma thumb on
 
-void func_0202a820(void) {
-    s32 t;
+void WriteWiFiVSCourseSelectRegisters(void) {
+    s32 window0V;
 
     GX_SetGraphicsMode(1, 0, 0);
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | 0x1a00;
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 2;
-    reg_G2_BG0OFS = (-GetInterpolatedValue(&gWiFiVSCourseSelect->mUnk_0cc[1]) << 16) & 0x1ff0000;
-    reg_G2S_DB_BG3OFS = (-gWiFiVSCourseSelect->mUnk_154 << 16) & 0x1ff0000;
-    if (gWiFiVSCourseSelect->mUnk_154 != 0) {
+    reg_G2_BG0OFS = (-GetInterpolatedValue(&gWiFiVSCourseSelect->mInterpolations[1]) << 16) & 0x1ff0000;
+    reg_G2S_DB_BG3OFS = (-gWiFiVSCourseSelect->mSubOffsetY << 16) & 0x1ff0000;
+    if (gWiFiVSCourseSelect->mSubOffsetY != 0) {
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffff1fff) | 0x2000;
         reg_G2S_DB_WININ = (u32) ((reg_G2S_DB_WININ & ~0x3f) | 0x1f) | 0x20;
         reg_G2S_DB_WINOUT = (u32) ((reg_G2S_DB_WINOUT & ~0x3f) | 7) | 0x20;
-        t = gWiFiVSCourseSelect->mUnk_154 + 0xc0;
+        window0V = gWiFiVSCourseSelect->mSubOffsetY + 0xc0;
         reg_G2S_DB_WIN0H = 0xff;
-        reg_G2S_DB_WIN0V = t & 0xff;
+        reg_G2S_DB_WIN0V = window0V & 0xff;
     } else {
         reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffff1fff;
     }

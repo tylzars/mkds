@@ -80,11 +80,11 @@ void ResetItemTeresa(Unk021025d8 *a) {
 }
 
 static inline u32 func_02101f7c_inline_2(Unk020f41c4_B *b, u32 n) {
-    b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
+    b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
     if (n == 0) {
-        return b->mUnk_00 >> 32;
+        return b->mValue >> 32;
     }
-    return ((b->mUnk_00 >> 32) * n) >> 32;
+    return ((b->mValue >> 32) * n) >> 32;
 }
 
 static inline s32 func_02101f7c_inline(KartItems *v1, RaceSetup *o, s32 a, u16 k) {
@@ -224,9 +224,9 @@ void PickItemTeresaKartBattle(ItemTeresa *p, s32 a) {
 
     m = gRaceProgress;
     b = &m->mRandom;
-    b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
+    b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
     o = gRaceSetup;
-    i = (u16) (((u64) (u32) (b->mUnk_00 >> 32) * 8) >> 32);
+    i = (u16) (((u64) (u32) (b->mValue >> 32) * 8) >> 32);
     end = i + 8;
     lim = o->mKartCount;
     b3 = (u16) ((p->mUnk_000.mUnk_78 & 0x8000) == 0 ? (u16) (p->mUnk_000.mUnk_78 & ~0xff00) : 8);

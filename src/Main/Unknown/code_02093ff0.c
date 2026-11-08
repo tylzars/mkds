@@ -218,11 +218,11 @@ void ClearTeresaTimers(void) {
 }
 
 static inline u32 func_02094000_inline(Unk020f41c4_B *b, u32 n) {
-    b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
+    b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
     if (n == 0) {
-        return b->mUnk_00 >> 32;
+        return b->mValue >> 32;
     }
-    return ((b->mUnk_00 >> 32) * n) >> 32;
+    return ((b->mValue >> 32) * n) >> 32;
 }
 
 static inline void func_02094000_inline_2(Unk02094000_bc *p, u16 a, s32 b, s32 c, s32 d, s32 e, s32 f) {

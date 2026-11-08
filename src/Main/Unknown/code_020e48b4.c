@@ -144,11 +144,11 @@ void EnterPukupukuState0(Unk020e4dec *pukupuku) {
 }
 
 static inline u32 func_020e4ad0_inline(Unk020f41c4_B *random, u32 range) {
-    random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
+    random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
     if (range == 0) {
-        return random->mUnk_00 >> 32;
+        return random->mValue >> 32;
     } else {
-        return ((random->mUnk_00 >> 32) * range) >> 32;
+        return ((random->mValue >> 32) * range) >> 32;
     }
 }
 

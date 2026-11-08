@@ -172,8 +172,8 @@ void SetupRaceKartAi(KartAi *p, Kart *q, s32 a) {
     InitRacePointLinkCursor(&p->mUnk_08, p->mIndex);
     ResetKartAi(p, 0);
     r = GetKartAiRandom();
-    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    v = (s16) (u16) (r->mUnk_00 >> 52);
+    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+    v = (s16) (u16) (r->mValue >> 52);
     p->mUnk_cc = v > 0x800 ? 1 : -1;
 }
 
@@ -403,8 +403,8 @@ void func_0207f05c(KartAi *p) {
     if (p->mUnk_90 == 0 && i >= 1 && i <= 4) {
         j = FALSE;
         r = GetKartAiRandom();
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (s16) (u16) (r->mUnk_00 >> 52);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (s16) (u16) (r->mValue >> 52);
         if (v <= p->mUnk_88 && p->mKart->mVelocityLength >= p->mMinVelocityLength) {
             a = *p->mUnk_08.mUnk_00.mLink->mUnk_18;
             d = data_usa_021557c4;
@@ -567,8 +567,8 @@ void func_0207ebfc(KartAi *p) {
     b = FALSE;
     if (p->mUnk_98 == 0x28 && p->mUnk_a0 != FALSE) {
         Unk0217aebc_128 *r = GetKartAiRandom();
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        if ((s16) (u16) (r->mUnk_00 >> 52) <= p->mDriftChargeRandomLimit) {
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        if ((s16) (u16) (r->mValue >> 52) <= p->mDriftChargeRandomLimit) {
             b = TRUE;
         }
     }
@@ -626,11 +626,11 @@ void AdvanceKartAiSideOffset(KartAi *p) {
 
         p->mUnk_6c = 0;
         r = GetKartAiRandom();
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
         p->mUnk_6e = 0;
         r = GetKartAiRandom();
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        t = (s16) (u16) (r->mUnk_00 >> 52);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        t = (s16) (u16) (r->mValue >> 52);
         u = p->mSideOffsetRatio + (s32) (((s64) ((s32) (((s64) t * 0x2000) >> 12) - 0x1000) * 0x267) >> 12);
         if (GetAbsoluteValue(u) > 0xb36) {
             if (u > 0) {

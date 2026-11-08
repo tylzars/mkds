@@ -34,17 +34,17 @@ void func_02029330(void) {
         b = func_02025df4(gSelectKart->mUnk_098, gSelectKart->mCharacterIndex);
         d = gSelectKart;
         if (d->mUnk_104 != FALSE) {
-            func_0202b554(a, b);
+            WriteKartPositionAndCount(a, b);
         } else {
             p = &d->mSelectCharacterGpMParts;
-            p->mUnk_18[5].mUnk_00 = (a >= 10);
+            p->mUnk_18[5].mVisible = (a >= 10);
             func_02025c48(5, a / 10 % 10 + 10, p->mUnk_0c);
             func_02025c48(6, a % 10 + 10, p->mUnk_0c);
             if (b >= 10) {
                 func_02025c48(8, b / 10 % 10 + 20, p->mUnk_0c);
                 func_02025c48(9, b % 10 + 20, p->mUnk_0c);
             } else {
-                p->mUnk_18[9].mUnk_00 = 0;
+                p->mUnk_18[9].mVisible = 0;
                 func_02025c48(8, b % 10 + 20, p->mUnk_0c);
             }
         }

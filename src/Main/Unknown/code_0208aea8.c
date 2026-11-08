@@ -13,11 +13,11 @@
 #include "code_0214d018.h"
 
 static inline u32 func_0208b190_inline(Unk020f41c4_B *b, u32 n) {
-    b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
+    b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
     if (n == 0) {
-        return b->mUnk_00 >> 32;
+        return b->mValue >> 32;
     }
-    return ((b->mUnk_00 >> 32) * n) >> 32;
+    return ((b->mValue >> 32) * n) >> 32;
 }
 
 // Ids from 1000 up belong to the second manager (Mission Run); the id inside the manager goes to *a.

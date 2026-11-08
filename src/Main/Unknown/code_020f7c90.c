@@ -167,8 +167,8 @@ void func_020f7c90(ItemObject *item, Vec3 *otherPos, Vec3 *normal) {
         return;
     }
     random = &gRaceProgress->mRandom;
-    random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
-    angleIndex = (u16) ((((u64) (u32) (random->mUnk_00 >> 32) * 0x10000) >> 32)) >> 4;
+    random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+    angleIndex = (u16) ((((u64) (u32) (random->mValue >> 32) * 0x10000) >> 32)) >> 4;
     item->mUnk_108.z = gPairsByAngle[angleIndex * 2 + 1];
     item->mUnk_108.x = gPairsByAngle[angleIndex * 2];
     item->mVelocity.z = ((s64) item->mUnk_108.z * 0x14cd) >> 12;

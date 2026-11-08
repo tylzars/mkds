@@ -89,7 +89,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
                 m = 2;
                 break;
         }
-        func_0202c0d4(m, 1);
+        SetupPlayerEntryList(m, 1);
     }
     switch (gSelectKart->mMode) {
         case 0:
@@ -162,8 +162,8 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
         func_0212426c(1, i, p->mUnk_14, w, p->mUnk_0c, p->mUnk_18);
         func_02124100(i, 1, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
         InitPaletteBlend(gSelectKart->mHeap, (Nclr *) p->mUnk_04, 1);
-        p->mUnk_18[2].mUnk_00 = 0;
-        p->mUnk_18[3].mUnk_00 = p->mUnk_18[2].mUnk_00;
+        p->mUnk_18[2].mVisible = 0;
+        p->mUnk_18[3].mVisible = p->mUnk_18[2].mVisible;
     } else {
         func_0211f4b0(gSelectKart->mHeap, gSelectKart->mUnk_084);
         func_0211f394();

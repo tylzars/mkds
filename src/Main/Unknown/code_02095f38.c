@@ -365,9 +365,9 @@ void InitCoverPooHoleObjects(Unk020968f4 *p) {
     for (i = 0; i < p->mUnk_04 && (o = p->mUnk_00[i]) != NULL; i++) {
         o->mUnk_a8 = 0x1000;
         v1 = GetMapObjectRandom();
-        v1->mUnk_00 = (s64) v1->mUnk_08 * (s64) v1->mUnk_00 + v1->mUnk_10;
+        v1->mValue = (s64) v1->mMultiplier * (s64) v1->mValue + v1->mIncrement;
         o->mTimer =
-            (u16) (o->mUnk_00.mCourseMapRow->mUnk_28 + (u16) (((u64) (u32) (v1->mUnk_00 >> 32) * 60) >> 32) - 30);
+            (u16) (o->mUnk_00.mCourseMapRow->mUnk_28 + (u16) (((u64) (u32) (v1->mValue >> 32) * 60) >> 32) - 30);
         if (gRaceSetup->mMode == MODE_MISSION_RUN) {
             o->mState = 3;
             o->mUnk_a0 = 0x2000;
@@ -392,8 +392,8 @@ static inline u16 func_02095fec_inline(u32 n) {
     Unk020f41c4_B *b;
 
     b = GetMapObjectRandom();
-    b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
-    return (u32) (((b->mUnk_00 >> 32) * n) >> 32);
+    b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
+    return (u32) (((b->mValue >> 32) * n) >> 32);
 }
 
 static inline void func_02095fec_inline_2(CoverPooHole *p, s32 n) {

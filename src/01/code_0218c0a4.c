@@ -91,19 +91,19 @@ void func_ov001_0218c0a4(Unk02188950 *a) {
     n1 = a0->mUnk_1a8;
     if (n1 == 0x10000) {
         r = GetMapObjectRandom();
-        r->mUnk_00 = r->mUnk_10 + (s64) r->mUnk_08 * (s64) r->mUnk_00;
-        res1 = (r->mUnk_00 >> 32) * 0x10000 >> 32;
+        r->mValue = r->mIncrement + (s64) r->mMultiplier * (s64) r->mValue;
+        res1 = (r->mValue >> 32) * 0x10000 >> 32;
     } else {
         r = GetMapObjectRandom();
         if ((u16) n1 == 0) {
             t1 = 0;
         } else {
-            r->mUnk_00 = r->mUnk_10 + (s64) r->mUnk_08 * (s64) r->mUnk_00;
+            r->mValue = r->mIncrement + (s64) r->mMultiplier * (s64) r->mValue;
             m1 = (u16) n1;
             if (m1 == 0) {
-                t1 = r->mUnk_00 >> 32;
+                t1 = r->mValue >> 32;
             } else {
-                t1 = ((s64) (r->mUnk_00 >> 32) * m1) >> 32;
+                t1 = ((s64) (r->mValue >> 32) * m1) >> 32;
             }
         }
         res1 = t1;
@@ -112,19 +112,19 @@ void func_ov001_0218c0a4(Unk02188950 *a) {
         n2 = a->mUnk_138;
         if (n2 == 0x10000) {
             r = GetMapObjectRandom();
-            r->mUnk_00 = r->mUnk_10 + (s64) r->mUnk_08 * (s64) r->mUnk_00;
-            res2 = (r->mUnk_00 >> 32) * 0x10000 >> 32;
+            r->mValue = r->mIncrement + (s64) r->mMultiplier * (s64) r->mValue;
+            res2 = (r->mValue >> 32) * 0x10000 >> 32;
         } else {
             r = GetMapObjectRandom();
             if ((u16) n2 == 0) {
                 t2 = 0;
             } else {
-                r->mUnk_00 = r->mUnk_10 + (s64) r->mUnk_08 * (s64) r->mUnk_00;
+                r->mValue = r->mIncrement + (s64) r->mMultiplier * (s64) r->mValue;
                 m2 = (u16) n2;
                 if (m2 == 0) {
-                    t2 = r->mUnk_00 >> 32;
+                    t2 = r->mValue >> 32;
                 } else {
-                    t2 = ((s64) (r->mUnk_00 >> 32) * m2) >> 32;
+                    t2 = ((s64) (r->mValue >> 32) * m2) >> 32;
                 }
             }
             res2 = t2;

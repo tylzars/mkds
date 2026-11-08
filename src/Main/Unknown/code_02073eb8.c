@@ -354,7 +354,7 @@ void StartEntryCameraKind6Entry(void) {
     }
     if (IsKartEnded(GetKart(gRaceSetup->mEntryIndex)->mIndex) != 0) {
         r = &gRaceProgress->mLocalRandom;
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
     }
     gCameraEntryChanged = 1;
 }
@@ -401,7 +401,7 @@ void func_02075d08(s32 a) {
     }
     if (IsKartEnded(GetKart(gRaceSetup->mEntryIndex)->mIndex) != 0) {
         r = &gRaceProgress->mLocalRandom;
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
     }
     gCameraEntryChanged = 1;
 }
@@ -476,7 +476,7 @@ BOOL TryUpdateEntryCamera(Camera *p) {
                 }
                 if (IsKartEnded(GetKart(gRaceSetup->mEntryIndex)->mIndex) != 0) {
                     b = &gRaceProgress->mLocalRandom;
-                    b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
+                    b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
                 }
                 gCameraEntryChanged = 1;
             }
@@ -568,7 +568,7 @@ void StartEntryCameraKind8Entry(void) {
     }
     if (IsKartEnded(GetKart(gRaceSetup->mEntryIndex)->mIndex) != 0) {
         b = &gRaceProgress->mLocalRandom;
-        b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
+        b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
     }
     gCameraEntryChanged = 1;
 }

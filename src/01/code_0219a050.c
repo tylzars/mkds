@@ -81,12 +81,12 @@ void LocateAndQueueRecordTopMenu(void) {
 }
 
 void SetRecordTopMenuRowOn(s32 a) {
-    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[a]].mUnk_00 = 1;
+    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[a]].mVisible = 1;
     func_02124a20(data_ov001_021a6aa4[a], 14, gRecordTopMenu->mRecordTopMenuSNcer, gRecordTopMenu->mRecordTopMenuSBncl);
 }
 
 void SetRecordTopMenuRowOff(s32 a) {
-    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[a]].mUnk_00 = 0;
+    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[a]].mVisible = 0;
     func_02124a20(data_ov001_021a6aa4[a], 15, gRecordTopMenu->mRecordTopMenuSNcer, gRecordTopMenu->mRecordTopMenuSBncl);
 }
 
@@ -100,23 +100,23 @@ void ResetRecordTopMenu(void) {
     gRecordTopMenu->mStateFrames = 0;
     gRecordTopMenu->mBg0Offset = ~0xbf;
     n = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
-    gRecordTopMenu->mRecordTopMenuMTable[0].mUnk_06 = ~0xbf;
-    gRecordTopMenu->mRecordTopMenuMTable[1].mUnk_06 = ~0xbf;
-    gRecordTopMenu->mRecordTopMenuMTable[n].mUnk_06 = ~0xbf;
+    gRecordTopMenu->mRecordTopMenuMTable[0].mOffsetY = ~0xbf;
+    gRecordTopMenu->mRecordTopMenuMTable[1].mOffsetY = ~0xbf;
+    gRecordTopMenu->mRecordTopMenuMTable[n].mOffsetY = ~0xbf;
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mRecordTopMenuMTable[data_ov001_021a6aac[i]].mUnk_06 = ~0xbf;
+        gRecordTopMenu->mRecordTopMenuMTable[data_ov001_021a6aac[i]].mOffsetY = ~0xbf;
     }
     for (i = 0; i < 3; i++) {
         for (j = 0, p = data_ov001_021a6ae4[i]; j < 3; j++) {
-            gRecordTopMenu->mRecordTopMenuMTable[n + *p].mUnk_06 = ~0xbf;
+            gRecordTopMenu->mRecordTopMenuMTable[n + *p].mOffsetY = ~0xbf;
             p++;
         }
     }
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mUnk_04 = 0xe0;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mUnk_04 = 0xe0;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mUnk_04 = 0xe0;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mUnk_04 = 0xe0;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mOffsetX = 0xe0;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mOffsetX = 0xe0;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mOffsetX = 0xe0;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mOffsetX = 0xe0;
         SetRecordTopMenuRowOff(i);
     }
 }
@@ -221,10 +221,10 @@ void func_ov001_0219ac98(void) {
         }
     }
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mRecordTopMenuMTable[data_ov001_021a6aac[i]].mUnk_00 = 0;
+        gRecordTopMenu->mRecordTopMenuMTable[data_ov001_021a6aac[i]].mVisible = 0;
     }
     if (best > 4) {
-        gRecordTopMenu->mRecordTopMenuMTable[data_ov001_021a6aac[best - 5]].mUnk_00 = 1;
+        gRecordTopMenu->mRecordTopMenuMTable[data_ov001_021a6aac[best - 5]].mVisible = 1;
     }
 }
 
@@ -349,23 +349,23 @@ void AdvanceRecordTopMenuState1(void) {
     b = InterpolateS16(1, -0xc0, 0, gRecordTopMenu->mStateFrames, 10);
     gRecordTopMenu->mBg0Offset = b;
     idx = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
-    gRecordTopMenu->mRecordTopMenuMTable[0].mUnk_06 = b;
-    gRecordTopMenu->mRecordTopMenuMTable[1].mUnk_06 = b;
-    gRecordTopMenu->mRecordTopMenuMTable[idx].mUnk_06 = b;
+    gRecordTopMenu->mRecordTopMenuMTable[0].mOffsetY = b;
+    gRecordTopMenu->mRecordTopMenuMTable[1].mOffsetY = b;
+    gRecordTopMenu->mRecordTopMenuMTable[idx].mOffsetY = b;
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mRecordTopMenuMTable[data_ov001_021a6aac[i]].mUnk_06 = b;
+        gRecordTopMenu->mRecordTopMenuMTable[data_ov001_021a6aac[i]].mOffsetY = b;
     }
     for (i = 0; i < 3; i++) {
         for (j = 0, p = data_ov001_021a6ae4[i]; j < 3; j++) {
-            gRecordTopMenu->mRecordTopMenuMTable[idx + *p].mUnk_06 = b;
+            gRecordTopMenu->mRecordTopMenuMTable[idx + *p].mOffsetY = b;
             p++;
         }
     }
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mUnk_04 = a;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mUnk_04 = a;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mUnk_04 = a;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mUnk_04 = a;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mOffsetX = a;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mOffsetX = a;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mOffsetX = a;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mOffsetX = a;
     }
     if (gRecordTopMenu->mStateFrames >= 10) {
         RequestRecordTopMenuState2();
@@ -379,10 +379,10 @@ void AdvanceRecordTopMenuState2(void) {
     gRecordTopMenu->mStateFrames++;
     v = func_020ae488(gRecordTopMenu->mStateFrames);
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mUnk_04 = v;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mUnk_04 = v;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mUnk_04 = v;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mUnk_04 = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mOffsetX = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mOffsetX = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mOffsetX = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mOffsetX = v;
     }
     if (gRecordTopMenu->mStateFrames >= 10) {
         func_ov001_0219ae44();
@@ -444,7 +444,7 @@ void AdvanceRecordTopMenuState4(void) {
 skip:
     if ((u32) sel <= 2) {
         t = data_ov001_021a6acc[sel];
-        if (gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[t]].mUnk_00 != 0) {
+        if (gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[t]].mVisible != 0) {
             if (gRecordTopMenu->mIndex == t) {
                 SetRecordTopMenuRowOff(gRecordTopMenu->mIndex);
                 gRecordTopMenu->mIndex = t;
@@ -477,10 +477,10 @@ void AdvanceRecordTopMenuState5(void) {
 
     gRecordTopMenu->mStateFrames++;
     v = func_020ae488(gRecordTopMenu->mStateFrames);
-    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[gRecordTopMenu->mIndex]].mUnk_04 = v;
-    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[gRecordTopMenu->mIndex]].mUnk_04 = v;
-    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[gRecordTopMenu->mIndex]].mUnk_04 = v;
-    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[gRecordTopMenu->mIndex]].mUnk_04 = v;
+    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[gRecordTopMenu->mIndex]].mOffsetX = v;
+    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[gRecordTopMenu->mIndex]].mOffsetX = v;
+    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[gRecordTopMenu->mIndex]].mOffsetX = v;
+    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[gRecordTopMenu->mIndex]].mOffsetX = v;
     if (gRecordTopMenu->mStateFrames == 5) {
         SetRecordTopMenuRowOn(gRecordTopMenu->mIndex);
     }
@@ -510,23 +510,23 @@ void AdvanceRecordTopMenuState6(void) {
     b = InterpolateS16(1, 0, -0xc0, gRecordTopMenu->mStateFrames, 10);
     gRecordTopMenu->mBg0Offset = b;
     idx = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
-    gRecordTopMenu->mRecordTopMenuMTable[0].mUnk_06 = b;
-    gRecordTopMenu->mRecordTopMenuMTable[1].mUnk_06 = b;
-    gRecordTopMenu->mRecordTopMenuMTable[idx].mUnk_06 = b;
+    gRecordTopMenu->mRecordTopMenuMTable[0].mOffsetY = b;
+    gRecordTopMenu->mRecordTopMenuMTable[1].mOffsetY = b;
+    gRecordTopMenu->mRecordTopMenuMTable[idx].mOffsetY = b;
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mRecordTopMenuMTable[data_ov001_021a6aac[i]].mUnk_06 = b;
+        gRecordTopMenu->mRecordTopMenuMTable[data_ov001_021a6aac[i]].mOffsetY = b;
     }
     for (i = 0; i < 3; i++) {
         for (j = 0, p = data_ov001_021a6ae4[i]; j < 3; j++) {
-            gRecordTopMenu->mRecordTopMenuMTable[idx + *p].mUnk_06 = b;
+            gRecordTopMenu->mRecordTopMenuMTable[idx + *p].mOffsetY = b;
             p++;
         }
     }
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mUnk_04 = a;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mUnk_04 = a;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mUnk_04 = a;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mUnk_04 = a;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mOffsetX = a;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mOffsetX = a;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mOffsetX = a;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mOffsetX = a;
     }
     if (gRecordTopMenu->mStateFrames >= 10 && GetRecordNextScene() == -1) {
         RequestRecordScreen(gRecordTopMenu->mUnk_44);
@@ -540,10 +540,10 @@ void AdvanceRecordTopMenuState7(void) {
     gRecordTopMenu->mStateFrames++;
     v = InterpolateS16(1, 0, 0xe0, gRecordTopMenu->mStateFrames, 10);
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mUnk_04 = v;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mUnk_04 = v;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mUnk_04 = v;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mUnk_04 = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mOffsetX = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mOffsetX = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mOffsetX = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mOffsetX = v;
     }
     if (gRecordTopMenu->mStateFrames >= 10) {
         RequestRecordTopMenuState8();
@@ -600,10 +600,10 @@ void AdvanceRecordTopMenuState11(void) {
     gRecordTopMenu->mStateFrames++;
     v = InterpolateS16(1, 0xe0, 0, gRecordTopMenu->mStateFrames, 10);
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mUnk_04 = v;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mUnk_04 = v;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mUnk_04 = v;
-        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mUnk_04 = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mOffsetX = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mOffsetX = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mOffsetX = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mOffsetX = v;
     }
     if (gRecordTopMenu->mStateFrames >= 10) {
         func_ov001_0219ae44();

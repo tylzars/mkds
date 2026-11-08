@@ -41,7 +41,7 @@ void InitWiFiVSMatching(void *a);
 #include "Main/Unknown/unk_0217d068.h"
 #include "Main/Unknown/unk_02175628.h"
 #include "Main/Unknown/code_0212426c.h"
-#include "Main/Unknown/code_02124094.h" // Unk02124b1c
+#include "Main/Unknown/code_02124094.h" // LayoutTableEntry
 #include "code_02016468.h"
 
 extern Unk0217b488 *data_0217b488;

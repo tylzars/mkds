@@ -124,19 +124,19 @@ static inline u32 func_020983c4_inline(u32 n) {
     u32 m;
     if (n == 0x10000) {
         r = GetMapObjectRandom();
-        r->mUnk_00 = r->mUnk_10 + (s64) r->mUnk_08 * (s64) r->mUnk_00;
-        return (u16) ((r->mUnk_00 >> 32) * 0x10000 >> 32);
+        r->mValue = r->mIncrement + (s64) r->mMultiplier * (s64) r->mValue;
+        return (u16) ((r->mValue >> 32) * 0x10000 >> 32);
     }
     r = GetMapObjectRandom();
     m = (u16) n;
     if (m == 0) {
         t = 0;
     } else {
-        r->mUnk_00 = r->mUnk_10 + (s64) r->mUnk_08 * (s64) r->mUnk_00;
+        r->mValue = r->mIncrement + (s64) r->mMultiplier * (s64) r->mValue;
         if (m == 0) {
-            t = r->mUnk_00 >> 32;
+            t = r->mValue >> 32;
         } else {
-            t = ((r->mUnk_00 >> 32) * m) >> 32;
+            t = ((r->mValue >> 32) * m) >> 32;
         }
     }
     return (u16) t;

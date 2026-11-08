@@ -163,9 +163,9 @@ void func_02031ba4(void) {
     n2 = q->mUnk_14->mUnk_06;
     n3 = q->mUnk_0c->mUnk_06;
     AdvanceInterpolation(&gMultiSelectMember->mUnk_a0[0]);
-    p->mUnk_18[2].mUnk_06 = GetInterpolatedValue(&gMultiSelectMember->mUnk_a0[0]);
-    p->mUnk_18[1].mUnk_06 = p->mUnk_18[2].mUnk_06;
-    p->mUnk_18[0].mUnk_06 = p->mUnk_18[1].mUnk_06;
+    p->mUnk_18[2].mOffsetY = GetInterpolatedValue(&gMultiSelectMember->mUnk_a0[0]);
+    p->mUnk_18[1].mOffsetY = p->mUnk_18[2].mOffsetY;
+    p->mUnk_18[0].mOffsetY = p->mUnk_18[1].mOffsetY;
     gMultiSelectMember->mUnk_144 = gMultiSelectMember->mUnk_144 + 1;
     if (gMultiSelectMember->mUnk_144 > data_usa_02153d46[gMultiSelectMember->mUnk_140][0]) {
         gMultiSelectMember->mUnk_140 = gMultiSelectMember->mUnk_140 + 1;
@@ -179,39 +179,39 @@ void func_02031ba4(void) {
     } else {
         d = 0;
     }
-    p->mUnk_18[0].mUnk_00 = d;
+    p->mUnk_18[0].mVisible = d;
     if (data_usa_02153d44[gMultiSelectMember->mUnk_140][0] == 1) {
         d = 1;
     } else {
         d = 0;
     }
-    p->mUnk_18[1].mUnk_00 = d;
+    p->mUnk_18[1].mVisible = d;
     if (data_usa_02153d44[gMultiSelectMember->mUnk_140][0] == 2) {
         d = 1;
     } else {
         d = 0;
     }
-    p->mUnk_18[2].mUnk_00 = d;
+    p->mUnk_18[2].mVisible = d;
     AdvanceInterpolation(&gMultiSelectMember->mUnk_a0[1]);
     v = GetInterpolatedValue(&gMultiSelectMember->mUnk_a0[1]);
-    p->mUnk_18[0xb].mUnk_06 = v;
-    p->mUnk_18[0xa].mUnk_06 = p->mUnk_18[0xb].mUnk_06;
-    p->mUnk_18[9].mUnk_06 = p->mUnk_18[0xa].mUnk_06;
-    p->mUnk_18[8].mUnk_06 = p->mUnk_18[9].mUnk_06;
-    p->mUnk_18[7].mUnk_06 = p->mUnk_18[8].mUnk_06;
-    p->mUnk_18[6].mUnk_06 = p->mUnk_18[7].mUnk_06;
-    p->mUnk_18[5].mUnk_06 = p->mUnk_18[6].mUnk_06;
-    p->mUnk_18[4].mUnk_06 = p->mUnk_18[5].mUnk_06;
-    p->mUnk_18[3].mUnk_06 = p->mUnk_18[4].mUnk_06;
+    p->mUnk_18[0xb].mOffsetY = v;
+    p->mUnk_18[0xa].mOffsetY = p->mUnk_18[0xb].mOffsetY;
+    p->mUnk_18[9].mOffsetY = p->mUnk_18[0xa].mOffsetY;
+    p->mUnk_18[8].mOffsetY = p->mUnk_18[9].mOffsetY;
+    p->mUnk_18[7].mOffsetY = p->mUnk_18[8].mOffsetY;
+    p->mUnk_18[6].mOffsetY = p->mUnk_18[7].mOffsetY;
+    p->mUnk_18[5].mOffsetY = p->mUnk_18[6].mOffsetY;
+    p->mUnk_18[4].mOffsetY = p->mUnk_18[5].mOffsetY;
+    p->mUnk_18[3].mOffsetY = p->mUnk_18[4].mOffsetY;
     for (i = 0; i < n0; i++) {
-        p->mUnk_18[i + n1].mUnk_06 = v;
+        p->mUnk_18[i + n1].mOffsetY = v;
     }
     AdvanceInterpolation(&gMultiSelectMember->mUnk_a0[2]);
     v = GetInterpolatedValue(&gMultiSelectMember->mUnk_a0[2]);
     i = 0;
     d = n3 + n2;
     for (; i < d; i++) {
-        q->mUnk_18[i].mUnk_06 = v;
+        q->mUnk_18[i].mOffsetY = v;
     }
     if (gMultiSelectMember->mUnk_74 > 0) {
         func_02025f14(&gMultiSelectMember->mUnk_a0[3], 0);
@@ -221,16 +221,16 @@ void func_02031ba4(void) {
     AdvanceInterpolation(&gMultiSelectMember->mUnk_a0[3]);
     v = GetInterpolatedValue(&gMultiSelectMember->mUnk_a0[3]);
     n3 = n3 + 8;
-    q->mUnk_18[n3].mUnk_06 = v;
-    q->mUnk_18[0x11].mUnk_06 = q->mUnk_18[n3].mUnk_06;
-    q->mUnk_18[0x10].mUnk_06 = q->mUnk_18[0x11].mUnk_06;
+    q->mUnk_18[n3].mOffsetY = v;
+    q->mUnk_18[0x11].mOffsetY = q->mUnk_18[n3].mOffsetY;
+    q->mUnk_18[0x10].mOffsetY = q->mUnk_18[0x11].mOffsetY;
     if (gMultiSelectMember->mUnk_84 == 0) {
         for (i = 0; i < 8; i++) {
             t = &gMultiSelectMember->mUnk_e0[i];
             switch (t->mUnk_00) {
                 case 0:
-                    q->mUnk_18[t->mUnk_0a].mUnk_00 = 0;
-                    q->mUnk_18[t->mUnk_08].mUnk_00 = q->mUnk_18[t->mUnk_0a].mUnk_00;
+                    q->mUnk_18[t->mUnk_0a].mVisible = 0;
+                    q->mUnk_18[t->mUnk_08].mVisible = q->mUnk_18[t->mUnk_0a].mVisible;
                     t->mUnk_04 = 0;
                     break;
                 case 1:
@@ -243,18 +243,18 @@ void func_02031ba4(void) {
                         } else {
                             e = FALSE;
                         }
-                        q->mUnk_18[t->mUnk_08].mUnk_00 = e;
+                        q->mUnk_18[t->mUnk_08].mVisible = e;
                         if (e == FALSE) {
                             e = TRUE;
                         } else {
                             e = FALSE;
                         }
-                        q->mUnk_18[t->mUnk_0a].mUnk_00 = e;
+                        q->mUnk_18[t->mUnk_0a].mVisible = e;
                     }
                     break;
                 case 2:
-                    q->mUnk_18[t->mUnk_0a].mUnk_00 = 1;
-                    q->mUnk_18[t->mUnk_08].mUnk_00 = q->mUnk_18[t->mUnk_0a].mUnk_00;
+                    q->mUnk_18[t->mUnk_0a].mVisible = 1;
+                    q->mUnk_18[t->mUnk_08].mVisible = q->mUnk_18[t->mUnk_0a].mVisible;
                     t->mUnk_04 = 0;
                     break;
             }
@@ -274,7 +274,7 @@ void func_02031b6c(void) {
         } else {
             f = FALSE;
         }
-        p->mUnk_18[data_usa_02153d54[i]].mUnk_00 = f;
+        p->mUnk_18[data_usa_02153d54[i]].mVisible = f;
     }
 }
 
@@ -288,7 +288,7 @@ void func_02031b30(s32 a) {
     } else {
         f = 0;
     }
-    q->mUnk_18[0x11].mUnk_00 = a;
+    q->mUnk_18[0x11].mVisible = a;
     func_02124100(8, f, q->mUnk_14, q->mUnk_18, q->mUnk_0c);
 }
 
@@ -521,8 +521,8 @@ void func_0203147c(void *a, void *b, void *c) {
                   q->mUnk_18);
     data_021759d0->mUnk_20 = 1;
     func_02126638(GetBmgEntry(gMultiSelectMember->mBannerMessages, 9), 0, 0, 1, 0, 0, 0);
-    q->mUnk_18[0x11].mUnk_00 = 0;
-    q->mUnk_18[0x10].mUnk_00 = q->mUnk_18[0x11].mUnk_00;
+    q->mUnk_18[0x11].mVisible = 0;
+    q->mUnk_18[0x10].mVisible = q->mUnk_18[0x11].mVisible;
     SetSelectReturnSoundId(-1);
     FrmHeapShrinkInParent(gMultiSelectMember->mHeap);
 }
@@ -550,8 +550,8 @@ void func_02031280(void *a, void *b, void *c) {
         func_0212426c(1, data_usa_02153d7c[0].mUnk_00, q->mUnk_14, &v1[1], q->mUnk_0c, q->mUnk_18);
         gMultiSelectMember->mUnk_80 = TRUE;
     }
-    q->mUnk_18[0x11].mUnk_00 = 0;
-    q->mUnk_18[0x10].mUnk_00 = q->mUnk_18[0x11].mUnk_00;
+    q->mUnk_18[0x11].mVisible = 0;
+    q->mUnk_18[0x10].mVisible = q->mUnk_18[0x11].mVisible;
     v = GetBmgEntry(gMultiSelectMember->mBannerMessages, 10);
     if (gMultiSelectMember->mUnk_84 != 0) {
         SetupTxtSystemSubTextEx(v, 0, 0, 1, 0, 1);
@@ -564,27 +564,27 @@ void func_02031280(void *a, void *b, void *c) {
         n2 = q->mUnk_14->mUnk_06;
         n3 = q->mUnk_0c->mUnk_06;
         i = 0;
-        p->mUnk_18[0xb].mUnk_00 = 0;
-        p->mUnk_18[0xa].mUnk_00 = p->mUnk_18[0xb].mUnk_00;
-        p->mUnk_18[9].mUnk_00 = p->mUnk_18[0xa].mUnk_00;
-        p->mUnk_18[8].mUnk_00 = p->mUnk_18[9].mUnk_00;
-        p->mUnk_18[7].mUnk_00 = p->mUnk_18[8].mUnk_00;
-        p->mUnk_18[6].mUnk_00 = p->mUnk_18[7].mUnk_00;
-        p->mUnk_18[5].mUnk_00 = p->mUnk_18[6].mUnk_00;
-        p->mUnk_18[4].mUnk_00 = p->mUnk_18[5].mUnk_00;
-        p->mUnk_18[3].mUnk_00 = p->mUnk_18[4].mUnk_00;
+        p->mUnk_18[0xb].mVisible = 0;
+        p->mUnk_18[0xa].mVisible = p->mUnk_18[0xb].mVisible;
+        p->mUnk_18[9].mVisible = p->mUnk_18[0xa].mVisible;
+        p->mUnk_18[8].mVisible = p->mUnk_18[9].mVisible;
+        p->mUnk_18[7].mVisible = p->mUnk_18[8].mVisible;
+        p->mUnk_18[6].mVisible = p->mUnk_18[7].mVisible;
+        p->mUnk_18[5].mVisible = p->mUnk_18[6].mVisible;
+        p->mUnk_18[4].mVisible = p->mUnk_18[5].mVisible;
+        p->mUnk_18[3].mVisible = p->mUnk_18[4].mVisible;
         for (i = 0; i < 8; i++) {
-            q->mUnk_18[gMultiSelectMember->mUnk_e0[i].mUnk_0a].mUnk_00 = 0;
-            q->mUnk_18[gMultiSelectMember->mUnk_e0[i].mUnk_08].mUnk_00 =
-                q->mUnk_18[gMultiSelectMember->mUnk_e0[i].mUnk_0a].mUnk_00;
+            q->mUnk_18[gMultiSelectMember->mUnk_e0[i].mUnk_0a].mVisible = 0;
+            q->mUnk_18[gMultiSelectMember->mUnk_e0[i].mUnk_08].mVisible =
+                q->mUnk_18[gMultiSelectMember->mUnk_e0[i].mUnk_0a].mVisible;
         }
         for (i = 0; i < n0; i++) {
-            p->mUnk_18[i + n1].mUnk_00 = 0;
+            p->mUnk_18[i + n1].mVisible = 0;
         }
         i = 0;
         n0 = n3 + n2;
         for (; i < n0; i++) {
-            q->mUnk_18[i].mUnk_00 = 0;
+            q->mUnk_18[i].mVisible = 0;
         }
     }
     SetSelectReturnSoundId(-1);
@@ -691,7 +691,7 @@ s32 func_02030ea4(Unk02030b18 *a) {
         case 0:
             if (func_02031268() != 0) {
                 gMultiSelectMember->mState = 1;
-                p->mUnk_18[0x10].mUnk_00 = 1;
+                p->mUnk_18[0x10].mVisible = 1;
                 func_02031b30(1);
             }
             break;

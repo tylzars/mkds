@@ -14,7 +14,7 @@ typedef struct Unk02174e58_24 {
     /* 0c */ Unk0201ea30 *mUnk_0c;
     /* 10 */ Unk0201ea30 *mUnk_10;
     /* 14 */ Unk0201ea30 *mUnk_14;
-    /* 18 */ Unk02124b1c *mUnk_18;
+    /* 18 */ LayoutTableEntry *mUnk_18;
 } Unk02174e58_24;
 
 // 0xc-byte elements from 0xe0 of MultiSelectMember.

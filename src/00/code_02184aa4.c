@@ -62,7 +62,7 @@ void AdvanceWiFiVSCourseSelectState(void) {
 }
 
 void func_ov000_02184ac8(void) {
-    func_0202a820();
+    WriteWiFiVSCourseSelectRegisters();
 }
 
 void RegisterWiFiVSCourseSelectCallbacks(void) {

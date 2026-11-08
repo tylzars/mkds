@@ -220,14 +220,14 @@ void InitFireball2Objects(MapObjectList *p) {
         e->mUnk_a4 = 0x10000 / e->mUnk_a0;
         e->mUnk_a8 = e->mUnk_ac / e->mUnk_a2;
         r = GetMapObjectRandom();
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        t = r->mUnk_00 >> 32;
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        t = r->mValue >> 32;
         e->mUnk_c2 = (t * 0x10000) >> 32;
         for (j = 0; j < e->mUnk_a2; j++) {
             for (k = 0; k < e->mUnk_a0; k++) {
                 r = GetMapObjectRandom();
-                r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-                t = r->mUnk_00 >> 32;
+                r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+                t = r->mValue >> 32;
                 e->mUnk_c4[k][j].mUnk_0e = (t * 0x10000) >> 32;
             }
         }

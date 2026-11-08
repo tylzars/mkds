@@ -4,7 +4,7 @@
 
 extern u8 data_ov000_021b06d0[2][4];
 
-#include "Main/Unknown/code_02124094.h" // Unk02124b1c
+#include "Main/Unknown/code_02124094.h" // LayoutTableEntry
 
 struct Unk02021dc8;
 struct Ncgr;
@@ -20,7 +20,7 @@ typedef struct WiFiAikotoba {
     /* 14 */ BOOL mUnk_14;
     /* 18 */ void *mHeap;
     // Table of cells built from the Bncl by InitLayoutTable.
-    /* 1c */ Unk02124b1c *mWiFiAikotobaTable;
+    /* 1c */ LayoutTableEntry *mWiFiAikotobaTable;
     /* 20 */ struct Unk02021dc8 *mWiFiAikotobaSNcer;
     /* 24 */ struct Ncgr *mWiFiAikotobaSNcgr;
     /* 28 */ struct Nclr *mWiFiAikotobaSONclr;

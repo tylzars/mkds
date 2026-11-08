@@ -37,8 +37,8 @@ typedef struct SelectGhost {
     /* 24 */ struct Unk02021dc8 *mPlayerCharacterMNcer;
     /* 28 */ Unk021a9bf4Block *mPlayerCharacterMONclr;
     /* 2c */ struct Unk0201ea30 *mPlayerCharacterMBncl;
-    /* 30 */ Unk02124b1c *mSelectCupCourseTaMTable;
-    /* 34 */ Unk02124b1c *mSelectGhostSTable;
+    /* 30 */ LayoutTableEntry *mSelectCupCourseTaMTable;
+    /* 34 */ LayoutTableEntry *mSelectGhostSTable;
     /* 38 */ struct Bmg *mCommonMessages;
     /* 3c */ struct Bmg *mMenuMessages;
     /* 40 */ void *mUnk_40;

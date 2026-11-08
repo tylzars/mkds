@@ -78,8 +78,8 @@ void AdvanceScrollListInput(void) {
 }
 
 void func_0202ee88(void) {
-    if (gScrollList->mEntries[gScrollList->mUnk_02e].mUnk_00 != 0) {
-        gScrollList->mEntries[gScrollList->mUnk_02e].mUnk_06 =
+    if (gScrollList->mEntries[gScrollList->mUnk_02e].mVisible != 0) {
+        gScrollList->mEntries[gScrollList->mUnk_02e].mOffsetY =
             gScrollList->mUnk_030 * (gScrollList->mSelectedRow - gScrollList->mSelectedVisibleRow) /
             (gScrollList->mRowCount - 5);
     }

@@ -101,9 +101,9 @@ void func_0204ad44(void) {
     u = OS_GetTick();
     p = data_021759d0;
     q = &p->mUnk_60;
-    q->mUnk_00 = (u32) ((t << 16) + u);
-    q->mUnk_08 = 0x5d588b656c078965;
-    q->mUnk_10 = 0x269ec3;
+    q->mValue = (u32) ((t << 16) + u);
+    q->mMultiplier = 0x5d588b656c078965;
+    q->mIncrement = 0x269ec3;
     if (PM_GetBackLight(&p->mUnk_48, &p->mUnk_4c) == 0) {
         return;
     }

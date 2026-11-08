@@ -66,11 +66,11 @@ u32 func_0203b8e4(Unk020f41c4_B *a) {
     if (n == 0) {
         v = 0;
     } else {
-        a->mUnk_00 = _ll_mul(a->mUnk_08, a->mUnk_00) + a->mUnk_10;
+        a->mValue = _ll_mul(a->mMultiplier, a->mValue) + a->mIncrement;
         if (n == 0) {
-            v = a->mUnk_00 >> 32;
+            v = a->mValue >> 32;
         } else {
-            v = (u64) (u32) (a->mUnk_00 >> 32) * (u32) n >> 32;
+            v = (u64) (u32) (a->mValue >> 32) * (u32) n >> 32;
         }
     }
     m = v;
@@ -108,9 +108,9 @@ void SetNextDemoRace(u8 *a) {
         t.mMinute = 0;
         t.mSecond = 0;
     }
-    r.mUnk_00 = (u32) ((t.mHour * 60 + t.mMinute) * 60 + t.mSecond + OS_GetTick());
-    r.mUnk_08 = 0x5d588b656c078965ULL;
-    r.mUnk_10 = 0x269ec3;
+    r.mValue = (u32) ((t.mHour * 60 + t.mMinute) * 60 + t.mSecond + OS_GetTick());
+    r.mMultiplier = 0x5d588b656c078965ULL;
+    r.mIncrement = 0x269ec3;
     gRaceSetup->mNextHeader.mMode = MODE_GRAND_PRIX;
     gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_DEMO;
     gRaceSetup->mNextHeader.mEngineIndex = 2;
@@ -120,12 +120,12 @@ void SetNextDemoRace(u8 *a) {
     gRaceSetup->mNextHeader.mMirrorMode = 0;
     gRaceSetup->mNextHeader.mLapCount = -1;
     gRaceSetup->mNextHeader.mCpuDifficulty = 2;
-    r.mUnk_00 = _ll_mul(r.mUnk_08, r.mUnk_00) + r.mUnk_10;
-    d = (u64) (u32) (r.mUnk_00 >> 32) * 4 >> 32;
+    r.mValue = _ll_mul(r.mMultiplier, r.mValue) + r.mIncrement;
+    d = (u64) (u32) (r.mValue >> 32) * 4 >> 32;
     c = func_0203b8e4(&r);
     gRaceSetup->mNextHeader.mCourseId = gCupCourseIdTable[c][d];
-    r.mUnk_00 = _ll_mul(r.mUnk_08, r.mUnk_00) + r.mUnk_10;
-    e = (u64) (u32) (r.mUnk_00 >> 32) * 8 >> 32;
+    r.mValue = _ll_mul(r.mMultiplier, r.mValue) + r.mIncrement;
+    e = (u64) (u32) (r.mValue >> 32) * 8 >> 32;
     gRaceSetup->mNextHeader.mFollowedKartIndex = e;
     for (k = 0; k < 2; k++) {
         for (j = 0; j < 8; j++) {
@@ -139,12 +139,12 @@ void SetNextDemoRace(u8 *a) {
         v2[i] = i;
     }
     for (g = 0; g < 1000; g++) {
-        r.mUnk_00 = _ll_mul(r.mUnk_08, r.mUnk_00) + r.mUnk_10;
-        f = (u64) (u32) (r.mUnk_00 >> 32) * 7 >> 32;
-        r.mUnk_00 = _ll_mul(r.mUnk_08, r.mUnk_00) + r.mUnk_10;
+        r.mValue = _ll_mul(r.mMultiplier, r.mValue) + r.mIncrement;
+        f = (u64) (u32) (r.mValue >> 32) * 7 >> 32;
+        r.mValue = _ll_mul(r.mMultiplier, r.mValue) + r.mIncrement;
         h = v2[f];
-        v2[f] = v2[(u16) ((u64) (u32) (r.mUnk_00 >> 32) * 7 >> 32)];
-        v2[(u16) ((u64) (u32) (r.mUnk_00 >> 32) * 7 >> 32)] = h;
+        v2[f] = v2[(u16) ((u64) (u32) (r.mValue >> 32) * 7 >> 32)];
+        v2[(u16) ((u64) (u32) (r.mValue >> 32) * 7 >> 32)] = h;
     }
     func_0203be6c(a, 0, 0, 0);
     func_0203ba70(a);

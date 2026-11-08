@@ -473,11 +473,11 @@ static inline u16 func_020427d4_inline(Unk020f41c4_B *p, u16 n) {
     if (n == 0) {
         t = 0;
     } else {
-        p->mUnk_00 = (s64) p->mUnk_08 * (s64) p->mUnk_00 + p->mUnk_10;
+        p->mValue = (s64) p->mMultiplier * (s64) p->mValue + p->mIncrement;
         if (n == 0) {
-            t = p->mUnk_00 >> 32;
+            t = p->mValue >> 32;
         } else {
-            t = ((s64) (p->mUnk_00 >> 32) * (u32) n) >> 32;
+            t = ((s64) (p->mValue >> 32) * (u32) n) >> 32;
         }
     }
     return t;

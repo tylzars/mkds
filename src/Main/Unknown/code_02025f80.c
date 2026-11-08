@@ -111,7 +111,7 @@ void func_020270fc(s32 previousTableIndex) {
 
 u32 func_020270d0(void) {
     int result;
-    if ((gSelectCharacter->mUnk_080 != 0) && (result = func_0202b8c0(), result != 0)) {
+    if ((gSelectCharacter->mUnk_080 != 0) && (result = IsPlayerEntryListTimerZero(), result != 0)) {
         return 1;
     }
     return 0;
@@ -198,7 +198,7 @@ void InitSelectCharacter(void *parentHeap, s32 mode, void *mainOam, void *subOam
                 modeValue = 2;
                 break;
         }
-        func_0202c0d4(modeValue, 0);
+        SetupPlayerEntryList(modeValue, 0);
     }
     selectCharacter = gSelectCharacter;
     switch (selectCharacter->mUnk_080) {
@@ -226,19 +226,19 @@ void InitSelectCharacter(void *parentHeap, s32 mode, void *mainOam, void *subOam
                       selectCharacter->mUnk_000.mCells, selectCharacter->mUnk_000.mCellLayout);
         LocateCellFileSet(&gSelectCharacter->mUnk_038, gSelectCharacterGpNameMNcgrName, gSelectCharacterGpNameMNcerName,
                           NULL, gSelectCharacterGpNameMBnclName, NULL, NULL, FindFileInLoadedArchives);
-        selectCharacter->mUnk_000.mCellTable[9].mUnk_00 = 0;
-        selectCharacter->mUnk_000.mCellTable[8].mUnk_00 = selectCharacter->mUnk_000.mCellTable[9].mUnk_00;
-        selectCharacter->mUnk_000.mCellTable[7].mUnk_00 = selectCharacter->mUnk_000.mCellTable[8].mUnk_00;
-        selectCharacter->mUnk_000.mCellTable[6].mUnk_00 = selectCharacter->mUnk_000.mCellTable[7].mUnk_00;
-        selectCharacter->mUnk_000.mCellTable[5].mUnk_00 = selectCharacter->mUnk_000.mCellTable[6].mUnk_00;
-        selectCharacter->mUnk_000.mCellTable[4].mUnk_00 = selectCharacter->mUnk_000.mCellTable[5].mUnk_00;
+        selectCharacter->mUnk_000.mCellTable[9].mVisible = 0;
+        selectCharacter->mUnk_000.mCellTable[8].mVisible = selectCharacter->mUnk_000.mCellTable[9].mVisible;
+        selectCharacter->mUnk_000.mCellTable[7].mVisible = selectCharacter->mUnk_000.mCellTable[8].mVisible;
+        selectCharacter->mUnk_000.mCellTable[6].mVisible = selectCharacter->mUnk_000.mCellTable[7].mVisible;
+        selectCharacter->mUnk_000.mCellTable[5].mVisible = selectCharacter->mUnk_000.mCellTable[6].mVisible;
+        selectCharacter->mUnk_000.mCellTable[4].mVisible = selectCharacter->mUnk_000.mCellTable[5].mVisible;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         sParts = &gSelectCharacter->mUnk_01c;
         LocateCellFileSet(sParts, gSelectCharacterSNcgrName, gSelectCharacterSNcerName, gSelectCharacterSONclrName,
                           gSelectCharacterSBnclName, NULL, gSelectCharacterSBnblName, FindFileInLoadedArchives);
         func_02025a50(1, gSelectCharacter->mHeap, sParts);
-        sParts->mCellTable[24].mUnk_00 = 0;
+        sParts->mCellTable[24].mVisible = 0;
         for (i = 0; i < 12; i++) {
             sParts->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_10 = 1;
             sParts->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_10 =
@@ -346,9 +346,9 @@ void InitSelectCharacter(void *parentHeap, s32 mode, void *mainOam, void *subOam
                               (s16) (positions[i].mUnk_02 + 3), sParts->mCellLayout);
             }
             for (; i < 12; i++) {
-                sParts->mCellTable[data_usa_02153554[i].mUnk_00].mUnk_00 = 0;
-                sParts->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_00 = 0;
-                sParts->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_00 = 0;
+                sParts->mCellTable[data_usa_02153554[i].mUnk_00].mVisible = 0;
+                sParts->mCellTable[data_usa_02153554[i].mUnk_02].mVisible = 0;
+                sParts->mCellTable[data_usa_02153554[i].mUnk_04].mVisible = 0;
                 RectTableSetEntryXY(data_usa_02153554[i].mRectEntryId, 0x400, 0x400, sParts->mRects);
             }
         }
@@ -609,7 +609,7 @@ int AdvanceSelectCharacter(void) {
             }
             break;
         case 6:
-            if ((selectCharacter->mUnk_080 == 1 && func_0202b888() != 0) ||
+            if ((selectCharacter->mUnk_080 == 1 && IsEveryPlayerKartStored() != 0) ||
                 (gSelectCharacter->mUnk_080 == 2 && func_02121d0c() != 0)) {
                 if (gSelectCharacter->mUnk_080 == 2) {
                     func_021219cc();
@@ -676,7 +676,7 @@ int AdvanceSelectCharacter(void) {
         AdvanceKartModelMenu(GetRaceSetupCopy()->mMirrorMode);
     }
     if (gSelectCharacter->mUnk_128 != FALSE) {
-        func_0202bb80();
+        AdvancePlayerEntryList();
     } else {
         DrawLayoutTable(selectCharacter->mUnk_000.mCellLayout, selectCharacter->mUnk_000.mCells, NULL,
                         gSelectCharacter->mMainOam, selectCharacter->mUnk_000.mCellTable);
@@ -734,7 +734,7 @@ void WriteSelectCharacterRegisters(void) {
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | 0x1600;
     reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 1;
     if (gSelectCharacter->mUnk_128 != FALSE) {
-        func_0202ba14();
+        WritePlayerEntryListRegisters();
     }
 }
 

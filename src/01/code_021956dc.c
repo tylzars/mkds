@@ -107,7 +107,7 @@ void func_ov001_021975f4(u16 a) {
         value = data_ov001_021a6828[0];
         result = GetTimeRecordCharacterIndex(data_ov001_021a6900[gRecordTAtt->mIndex], value);
         index = data_ov001_021a6850[0][0];
-        gRecordTAtt->mRecordTAttMTable[index].mUnk_00 = 1;
+        gRecordTAtt->mRecordTAttMTable[index].mVisible = 1;
         tile = data_ov001_021a6864[result];
         func_02124748(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 0, index,
                       gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl);
@@ -116,21 +116,21 @@ void func_ov001_021975f4(u16 a) {
                         palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5), 0x20);
         result = GetTimeRecordKartIndex(data_ov001_021a6900[gRecordTAtt->mIndex], value);
         slot = data_ov001_021a6850[0][1];
-        gRecordTAtt->mRecordTAttMTable[slot].mUnk_00 = 1;
+        gRecordTAtt->mRecordTAttMTable[slot].mVisible = 1;
         QueueKartIcon(result, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl, slot,
                       data_ov001_021a683c[5], 0);
         cnt = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
         GetTimeRecordTime(data_ov001_021a6900[gRecordTAtt->mIndex], value, &time);
         func_02116b8c(&time, str);
         pal = data_ov001_021a67d4[0];
-        gRecordTAtt->mRecordTAttMTable[cnt + pal].mUnk_00 = 1;
+        gRecordTAtt->mRecordTAttMTable[cnt + pal].mVisible = 1;
         func_02124224(0, pal, gRecordTAtt->mRecordTAttMBnll, str, gRecordTAtt->mRecordTAttMBncl,
                       gRecordTAtt->mRecordTAttMTable, 7);
         GetTimeRecordName(data_ov001_021a6900[gRecordTAtt->mIndex], value, name);
         MI_CpuFill8(str, 0, 0x20);
         MIi_CpuCopy16(name, str, 0x14);
         pal = data_ov001_021a6810[0];
-        gRecordTAtt->mRecordTAttMTable[cnt + pal].mUnk_00 = 1;
+        gRecordTAtt->mRecordTAttMTable[cnt + pal].mVisible = 1;
         func_0212426c(0, pal, gRecordTAtt->mRecordTAttMBnll, str, gRecordTAtt->mRecordTAttMBncl,
                       gRecordTAtt->mRecordTAttMTable);
     } else {
@@ -139,7 +139,7 @@ void func_ov001_021975f4(u16 a) {
         value = data_ov001_021a6828[a];
         result = GetTimeRecordCharacterIndex(data_ov001_021a6900[gRecordTAtt->mIndex], value);
         index = data_ov001_021a6850[a][0];
-        gRecordTAtt->mRecordTAttSTable[index].mUnk_00 = 1;
+        gRecordTAtt->mRecordTAttSTable[index].mVisible = 1;
         tile = data_ov001_021a6864[result];
         func_02124748(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 1, index,
                       gRecordTAtt->mRecordTAttSNcer, gRecordTAtt->mRecordTAttSBncl);
@@ -148,21 +148,21 @@ void func_ov001_021975f4(u16 a) {
                         palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5), 0x20);
         result = GetTimeRecordKartIndex(data_ov001_021a6900[gRecordTAtt->mIndex], value);
         slot = data_ov001_021a6852[a][0];
-        gRecordTAtt->mRecordTAttSTable[slot].mUnk_00 = 1;
+        gRecordTAtt->mRecordTAttSTable[slot].mVisible = 1;
         QueueKartIcon(result, gRecordTAtt->mRecordTAttSNcer, gRecordTAtt->mRecordTAttSBncl, slot,
                       data_ov001_021a6846[a], 1);
         cnt = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
         GetTimeRecordTime(data_ov001_021a6900[gRecordTAtt->mIndex], value, &time);
         func_02116b8c(&time, str);
         pal = data_ov001_021a67d4[a];
-        gRecordTAtt->mRecordTAttSTable[cnt + pal].mUnk_00 = 1;
+        gRecordTAtt->mRecordTAttSTable[cnt + pal].mVisible = 1;
         func_02124224(1, pal, gRecordTAtt->mRecordTAttSBnll, str, gRecordTAtt->mRecordTAttSBncl,
                       gRecordTAtt->mRecordTAttSTable, 7);
         GetTimeRecordName(data_ov001_021a6900[gRecordTAtt->mIndex], value, name);
         MI_CpuFill8(str, 0, 0x20);
         MIi_CpuCopy16(name, str, 0x14);
         pal = data_ov001_021a6810[a];
-        gRecordTAtt->mRecordTAttSTable[cnt + pal].mUnk_00 = 1;
+        gRecordTAtt->mRecordTAttSTable[cnt + pal].mVisible = 1;
         func_0212426c(1, pal, gRecordTAtt->mRecordTAttSBnll, str, gRecordTAtt->mRecordTAttSBncl,
                       gRecordTAtt->mRecordTAttSTable);
     }
@@ -172,21 +172,21 @@ void func_ov001_0219750c(u16 a) {
     u16 cnt;
 
     if (a == 0) {
-        gRecordTAtt->mRecordTAttMTable[data_ov001_021a6850[0][0]].mUnk_00 = 0;
-        gRecordTAtt->mRecordTAttMTable[data_ov001_021a6850[0][1]].mUnk_00 = 0;
+        gRecordTAtt->mRecordTAttMTable[data_ov001_021a6850[0][0]].mVisible = 0;
+        gRecordTAtt->mRecordTAttMTable[data_ov001_021a6850[0][1]].mVisible = 0;
         cnt = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
-        gRecordTAtt->mRecordTAttMTable[cnt + data_ov001_021a67d4[0]].mUnk_00 = 1;
+        gRecordTAtt->mRecordTAttMTable[cnt + data_ov001_021a67d4[0]].mVisible = 1;
         func_02124224(0, data_ov001_021a67d4[0], gRecordTAtt->mRecordTAttMBnll, L"--:--:---",
                       gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMTable, 7);
-        gRecordTAtt->mRecordTAttMTable[cnt + data_ov001_021a6810[0]].mUnk_00 = 0;
+        gRecordTAtt->mRecordTAttMTable[cnt + data_ov001_021a6810[0]].mVisible = 0;
     } else {
-        gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[a][0]].mUnk_00 = 0;
-        gRecordTAtt->mRecordTAttSTable[data_ov001_021a6852[a][0]].mUnk_00 = 0;
+        gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[a][0]].mVisible = 0;
+        gRecordTAtt->mRecordTAttSTable[data_ov001_021a6852[a][0]].mVisible = 0;
         cnt = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
-        gRecordTAtt->mRecordTAttSTable[cnt + data_ov001_021a67d4[a]].mUnk_00 = 1;
+        gRecordTAtt->mRecordTAttSTable[cnt + data_ov001_021a67d4[a]].mVisible = 1;
         func_02124224(1, data_ov001_021a67d4[a], gRecordTAtt->mRecordTAttSBnll, L"--:--:---",
                       gRecordTAtt->mRecordTAttSBncl, gRecordTAtt->mRecordTAttSTable, 7);
-        gRecordTAtt->mRecordTAttSTable[cnt + data_ov001_021a6810[a]].mUnk_00 = 0;
+        gRecordTAtt->mRecordTAttSTable[cnt + data_ov001_021a6810[a]].mVisible = 0;
     }
 }
 
@@ -214,7 +214,7 @@ void func_ov001_021972f4(void) {
     cnt = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
     if (IsTimeRecordFilled(data_ov001_021a6900[gRecordTAtt->mIndex], 5)) {
         result = GetTimeRecordCharacterIndex(data_ov001_021a6900[gRecordTAtt->mIndex], 5);
-        gRecordTAtt->mRecordTAttMTable[5].mUnk_00 = 1;
+        gRecordTAtt->mRecordTAttMTable[5].mVisible = 1;
         tile = data_ov001_021a6864[result];
         func_02124748(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 0, 5,
                       gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl);
@@ -222,26 +222,26 @@ void func_ov001_021972f4(void) {
         CallQueueAppend(0xe, 0x80, palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5),
                         0x20);
         result = GetTimeRecordKartIndex(data_ov001_021a6900[gRecordTAtt->mIndex], 5);
-        gRecordTAtt->mRecordTAttMTable[6].mUnk_00 = 1;
+        gRecordTAtt->mRecordTAttMTable[6].mVisible = 1;
         QueueKartIcon(result, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl, 6, 6, 0);
         GetTimeRecordTime(data_ov001_021a6900[gRecordTAtt->mIndex], 5, &time);
         func_02116b8c(&time, str);
-        gRecordTAtt->mRecordTAttMTable[cnt + 2].mUnk_00 = 1;
+        gRecordTAtt->mRecordTAttMTable[cnt + 2].mVisible = 1;
         func_02124224(0, 2, gRecordTAtt->mRecordTAttMBnll, str, gRecordTAtt->mRecordTAttMBncl,
                       gRecordTAtt->mRecordTAttMTable, 7);
         GetTimeRecordName(data_ov001_021a6900[gRecordTAtt->mIndex], 5, name);
         MI_CpuFill8(str, 0, 0x20);
         MIi_CpuCopy16(name, str, 0x14);
-        gRecordTAtt->mRecordTAttMTable[cnt + 4].mUnk_00 = 1;
+        gRecordTAtt->mRecordTAttMTable[cnt + 4].mVisible = 1;
         func_0212426c(0, 4, gRecordTAtt->mRecordTAttMBnll, str, gRecordTAtt->mRecordTAttMBncl,
                       gRecordTAtt->mRecordTAttMTable);
     } else {
-        gRecordTAtt->mRecordTAttMTable[5].mUnk_00 = 0;
-        gRecordTAtt->mRecordTAttMTable[6].mUnk_00 = 0;
-        gRecordTAtt->mRecordTAttMTable[cnt + 2].mUnk_00 = 1;
+        gRecordTAtt->mRecordTAttMTable[5].mVisible = 0;
+        gRecordTAtt->mRecordTAttMTable[6].mVisible = 0;
+        gRecordTAtt->mRecordTAttMTable[cnt + 2].mVisible = 1;
         func_02124224(0, 2, gRecordTAtt->mRecordTAttMBnll, L"--:--:---", gRecordTAtt->mRecordTAttMBncl,
                       gRecordTAtt->mRecordTAttMTable, 7);
-        gRecordTAtt->mRecordTAttMTable[cnt + 4].mUnk_00 = 0;
+        gRecordTAtt->mRecordTAttMTable[cnt + 4].mVisible = 0;
     }
 }
 
@@ -292,37 +292,37 @@ void func_ov001_02197058(void) {
     gRecordTAtt->mBg3OffsetX = -256;
     n = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
     m = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
-    gRecordTAtt->mRecordTAttMTable[0].mUnk_06 = -192;
-    gRecordTAtt->mRecordTAttMTable[0].mUnk_04 = 0x100;
-    gRecordTAtt->mRecordTAttMTable[1].mUnk_04 = 0x100;
-    gRecordTAtt->mRecordTAttMTable[2].mUnk_04 = 0x100;
-    gRecordTAtt->mRecordTAttMTable[3].mUnk_04 = 0x100;
-    gRecordTAtt->mRecordTAttMTable[4].mUnk_04 = 0x100;
-    gRecordTAtt->mRecordTAttMTable[5].mUnk_04 = 0x100;
-    gRecordTAtt->mRecordTAttMTable[6].mUnk_04 = 0x100;
-    gRecordTAtt->mRecordTAttMTable[n].mUnk_04 = 0x100;
-    gRecordTAtt->mRecordTAttMTable[n + 1].mUnk_04 = 0x100;
-    gRecordTAtt->mRecordTAttMTable[n + 2].mUnk_04 = 0x100;
-    gRecordTAtt->mRecordTAttMTable[n + 3].mUnk_04 = 0x100;
-    gRecordTAtt->mRecordTAttMTable[n + 4].mUnk_04 = 0x100;
-    gRecordTAtt->mRecordTAttSTable[15].mUnk_04 = 0x100;
-    gRecordTAtt->mRecordTAttSTable[16].mUnk_04 = 0x100;
-    gRecordTAtt->mRecordTAttSTable[12].mUnk_04 = 0x100;
-    gRecordTAtt->mRecordTAttSTable[13].mUnk_04 = 0x100;
-    gRecordTAtt->mRecordTAttSTable[14].mUnk_04 = 0x100;
-    gRecordTAtt->mRecordTAttSTable[m + 8].mUnk_04 = 0x100;
+    gRecordTAtt->mRecordTAttMTable[0].mOffsetY = -192;
+    gRecordTAtt->mRecordTAttMTable[0].mOffsetX = 0x100;
+    gRecordTAtt->mRecordTAttMTable[1].mOffsetX = 0x100;
+    gRecordTAtt->mRecordTAttMTable[2].mOffsetX = 0x100;
+    gRecordTAtt->mRecordTAttMTable[3].mOffsetX = 0x100;
+    gRecordTAtt->mRecordTAttMTable[4].mOffsetX = 0x100;
+    gRecordTAtt->mRecordTAttMTable[5].mOffsetX = 0x100;
+    gRecordTAtt->mRecordTAttMTable[6].mOffsetX = 0x100;
+    gRecordTAtt->mRecordTAttMTable[n].mOffsetX = 0x100;
+    gRecordTAtt->mRecordTAttMTable[n + 1].mOffsetX = 0x100;
+    gRecordTAtt->mRecordTAttMTable[n + 2].mOffsetX = 0x100;
+    gRecordTAtt->mRecordTAttMTable[n + 3].mOffsetX = 0x100;
+    gRecordTAtt->mRecordTAttMTable[n + 4].mOffsetX = 0x100;
+    gRecordTAtt->mRecordTAttSTable[15].mOffsetX = 0x100;
+    gRecordTAtt->mRecordTAttSTable[16].mOffsetX = 0x100;
+    gRecordTAtt->mRecordTAttSTable[12].mOffsetX = 0x100;
+    gRecordTAtt->mRecordTAttSTable[13].mOffsetX = 0x100;
+    gRecordTAtt->mRecordTAttSTable[14].mOffsetX = 0x100;
+    gRecordTAtt->mRecordTAttSTable[m + 8].mOffsetX = 0x100;
     for (i = 1; i < 5; i++) {
-        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mUnk_04 = 0x100;
-        gRecordTAtt->mRecordTAttSTable[m + data_ov001_021a67d4[i]].mUnk_04 = 0x100;
-        gRecordTAtt->mRecordTAttSTable[m + data_ov001_021a6810[i]].mUnk_04 = 0x100;
+        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mOffsetX = 0x100;
+        gRecordTAtt->mRecordTAttSTable[m + data_ov001_021a67d4[i]].mOffsetX = 0x100;
+        gRecordTAtt->mRecordTAttSTable[m + data_ov001_021a6810[i]].mOffsetX = 0x100;
         for (j = 0; j < 2; j++) {
-            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mUnk_04 = 0x100;
+            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mOffsetX = 0x100;
         }
     }
     for (j = 0; j < 2; j++) {
-        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67c4[j]].mUnk_00 = 0;
+        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67c4[j]].mVisible = 0;
     }
-    gRecordTAtt->mRecordTAttSTable[13].mUnk_00 = 0;
+    gRecordTAtt->mRecordTAttSTable[13].mVisible = 0;
 }
 
 void func_ov001_0219703c(void) {
@@ -372,7 +372,7 @@ void RequestRecordTAttState6(void) {
 void func_ov001_02196f80(void) {
     gRecordTAtt->mNextState = 7;
     gRecordTAtt->mStateFrames = 0;
-    gRecordTAtt->mRecordTAttSTable[13].mUnk_00 = 1;
+    gRecordTAtt->mRecordTAttSTable[13].mVisible = 1;
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 4);
 }
 
@@ -418,7 +418,7 @@ void func_ov001_02196e54(void) {
     gRecordTAtt->mStateFrames = 0;
     RequestSelectReturnState1();
     func_ov001_021972f4();
-    gRecordTAtt->mRecordTAttSTable[13].mUnk_00 = 0;
+    gRecordTAtt->mRecordTAttSTable[13].mVisible = 0;
 }
 
 void func_ov001_02196e30(void) {
@@ -477,16 +477,16 @@ void RequestRecordTAttState17(void) {
 void func_ov001_02196cd0(void) {
     s32 i;
 
-    gRecordTAtt->mRecordTAttSTable[data_ov001_021a67c4[0]].mUnk_04 = -func_020adc64(6 - gRecordTAtt->mUnk_78[0]);
-    gRecordTAtt->mRecordTAttSTable[data_ov001_021a67c4[1]].mUnk_04 = func_020adc64(6 - gRecordTAtt->mUnk_78[1]);
+    gRecordTAtt->mRecordTAttSTable[data_ov001_021a67c4[0]].mOffsetX = -func_020adc64(6 - gRecordTAtt->mUnk_78[0]);
+    gRecordTAtt->mRecordTAttSTable[data_ov001_021a67c4[1]].mOffsetX = func_020adc64(6 - gRecordTAtt->mUnk_78[1]);
     for (i = 0; i < 2; i++) {
         if (gRecordTAtt->mUnk_78[i] > 0) {
             gRecordTAtt->mUnk_78[i]--;
-            gRecordTAtt->mRecordTAttSTable[data_ov001_021a67c0[i]].mUnk_00 = 0;
-            gRecordTAtt->mRecordTAttSTable[data_ov001_021a67c4[i]].mUnk_00 = 1;
+            gRecordTAtt->mRecordTAttSTable[data_ov001_021a67c0[i]].mVisible = 0;
+            gRecordTAtt->mRecordTAttSTable[data_ov001_021a67c4[i]].mVisible = 1;
         } else {
-            gRecordTAtt->mRecordTAttSTable[data_ov001_021a67c0[i]].mUnk_00 = 1;
-            gRecordTAtt->mRecordTAttSTable[data_ov001_021a67c4[i]].mUnk_00 = 0;
+            gRecordTAtt->mRecordTAttSTable[data_ov001_021a67c0[i]].mVisible = 1;
+            gRecordTAtt->mRecordTAttSTable[data_ov001_021a67c4[i]].mVisible = 0;
         }
     }
 }
@@ -595,7 +595,7 @@ void AdvanceRecordTAttState0(void) {
     v = InterpolateS16(1, -0xc0, 0, gRecordTAtt->mStateFrames, 10);
     gRecordTAtt->mBg0Offset = v;
     gRecordTAtt->mBg1OffsetY = v;
-    gRecordTAtt->mRecordTAttMTable[0].mUnk_06 = v;
+    gRecordTAtt->mRecordTAttMTable[0].mOffsetY = v;
     if (gRecordTAtt->mStateFrames >= 10) {
         func_ov001_0219703c();
     }
@@ -614,30 +614,30 @@ void AdvanceRecordTAttState1(void) {
     gRecordTAtt->mBg3OffsetX = v;
     x = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
     y = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
-    gRecordTAtt->mRecordTAttMTable[0].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[1].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[2].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[3].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[4].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[5].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[6].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x + 1].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x + 2].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x + 3].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x + 4].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[15].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[16].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[12].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[13].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[14].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[y + 8].mUnk_04 = v;
+    gRecordTAtt->mRecordTAttMTable[0].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[1].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[2].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[3].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[4].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[5].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[6].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x + 1].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x + 2].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x + 3].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x + 4].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[15].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[16].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[12].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[13].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[14].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[y + 8].mOffsetX = v;
     for (i = 1; i < 5; i++) {
-        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttSTable[y + data_ov001_021a67d4[i]].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttSTable[y + data_ov001_021a6810[i]].mUnk_04 = v;
+        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mOffsetX = v;
+        gRecordTAtt->mRecordTAttSTable[y + data_ov001_021a67d4[i]].mOffsetX = v;
+        gRecordTAtt->mRecordTAttSTable[y + data_ov001_021a6810[i]].mOffsetX = v;
         for (j = 0; j < 2; j++) {
-            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mUnk_04 = v;
+            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mOffsetX = v;
         }
     }
     if (gRecordTAtt->mStateFrames >= 10) {
@@ -755,24 +755,24 @@ void AdvanceRecordTAttState3(void) {
     gRecordTAtt->mBg3OffsetX = v;
     x = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
     y = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
-    gRecordTAtt->mRecordTAttMTable[0].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[1].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[2].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[3].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[4].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[5].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[6].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x + 1].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x + 2].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x + 3].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x + 4].mUnk_04 = v;
+    gRecordTAtt->mRecordTAttMTable[0].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[1].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[2].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[3].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[4].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[5].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[6].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x + 1].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x + 2].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x + 3].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x + 4].mOffsetX = v;
     for (i = 1; i < 5; i++) {
-        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttSTable[y + data_ov001_021a67d4[i]].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttSTable[y + data_ov001_021a6810[i]].mUnk_04 = v;
+        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mOffsetX = v;
+        gRecordTAtt->mRecordTAttSTable[y + data_ov001_021a67d4[i]].mOffsetX = v;
+        gRecordTAtt->mRecordTAttSTable[y + data_ov001_021a6810[i]].mOffsetX = v;
         for (j = 0; j < 2; j++) {
-            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mUnk_04 = v;
+            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mOffsetX = v;
         }
     }
     if (gRecordTAtt->mStateFrames >= 10) {
@@ -804,24 +804,24 @@ void AdvanceRecordTAttState4(void) {
     gRecordTAtt->mBg3OffsetX = v;
     x = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
     y = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
-    gRecordTAtt->mRecordTAttMTable[0].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[1].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[2].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[3].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[4].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[5].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[6].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x + 1].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x + 2].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x + 3].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x + 4].mUnk_04 = v;
+    gRecordTAtt->mRecordTAttMTable[0].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[1].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[2].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[3].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[4].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[5].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[6].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x + 1].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x + 2].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x + 3].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x + 4].mOffsetX = v;
     for (i = 1; i < 5; i++) {
-        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttSTable[y + data_ov001_021a67d4[i]].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttSTable[y + data_ov001_021a6810[i]].mUnk_04 = v;
+        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mOffsetX = v;
+        gRecordTAtt->mRecordTAttSTable[y + data_ov001_021a67d4[i]].mOffsetX = v;
+        gRecordTAtt->mRecordTAttSTable[y + data_ov001_021a6810[i]].mOffsetX = v;
         for (j = 0; j < 2; j++) {
-            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mUnk_04 = v;
+            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mOffsetX = v;
         }
     }
     if (gRecordTAtt->mStateFrames >= 10) {
@@ -842,30 +842,30 @@ void AdvanceRecordTAttState5(void) {
     gRecordTAtt->mBg3OffsetX = v;
     x = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
     y = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
-    gRecordTAtt->mRecordTAttMTable[0].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[1].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[2].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[3].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[4].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[5].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[6].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x + 1].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x + 2].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x + 3].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttMTable[x + 4].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[15].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[16].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[12].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[13].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[14].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[y + 8].mUnk_04 = v;
+    gRecordTAtt->mRecordTAttMTable[0].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[1].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[2].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[3].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[4].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[5].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[6].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x + 1].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x + 2].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x + 3].mOffsetX = v;
+    gRecordTAtt->mRecordTAttMTable[x + 4].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[15].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[16].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[12].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[13].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[14].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[y + 8].mOffsetX = v;
     for (i = 1; i < 5; i++) {
-        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttSTable[y + data_ov001_021a67d4[i]].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttSTable[y + data_ov001_021a6810[i]].mUnk_04 = v;
+        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mOffsetX = v;
+        gRecordTAtt->mRecordTAttSTable[y + data_ov001_021a67d4[i]].mOffsetX = v;
+        gRecordTAtt->mRecordTAttSTable[y + data_ov001_021a6810[i]].mOffsetX = v;
         for (j = 0; j < 2; j++) {
-            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mUnk_04 = v;
+            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mOffsetX = v;
         }
     }
     if (gRecordTAtt->mStateFrames >= 10) {
@@ -880,7 +880,7 @@ void AdvanceRecordTAttState6(void) {
     v = InterpolateS16(1, 0, -0xc0, gRecordTAtt->mStateFrames, 10);
     gRecordTAtt->mBg0Offset = v;
     gRecordTAtt->mBg1OffsetY = v;
-    gRecordTAtt->mRecordTAttMTable[0].mUnk_06 = v;
+    gRecordTAtt->mRecordTAttMTable[0].mOffsetY = v;
     if (gRecordTAtt->mStateFrames >= 10) {
         RequestRecordScreen(gRecordTAtt->mUnk_90);
     }
@@ -893,10 +893,10 @@ void AdvanceRecordTAttState7(void) {
     gRecordTAtt->mStateFrames++;
     v = func_020ae488(gRecordTAtt->mStateFrames);
     x = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
-    gRecordTAtt->mRecordTAttSTable[12].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[13].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[14].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[x + 8].mUnk_04 = v;
+    gRecordTAtt->mRecordTAttSTable[12].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[13].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[14].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[x + 8].mOffsetX = v;
     if (gRecordTAtt->mStateFrames >= 10) {
         func_ov001_02196f64();
     }
@@ -912,18 +912,18 @@ void AdvanceRecordTAttState8(void) {
     v = InterpolateS16(1, 0, 0x100, gRecordTAtt->mStateFrames, 10);
     gRecordTAtt->mBg3OffsetX = v;
     x = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
-    gRecordTAtt->mRecordTAttSTable[15].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[16].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[12].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[13].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[14].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[x + 8].mUnk_04 = v;
+    gRecordTAtt->mRecordTAttSTable[15].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[16].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[12].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[13].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[14].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[x + 8].mOffsetX = v;
     for (i = 1; i < 5; i++) {
-        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttSTable[x + data_ov001_021a67d4[i]].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttSTable[x + data_ov001_021a6810[i]].mUnk_04 = v;
+        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mOffsetX = v;
+        gRecordTAtt->mRecordTAttSTable[x + data_ov001_021a67d4[i]].mOffsetX = v;
+        gRecordTAtt->mRecordTAttSTable[x + data_ov001_021a6810[i]].mOffsetX = v;
         for (j = 0; j < 2; j++) {
-            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mUnk_04 = v;
+            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mOffsetX = v;
         }
     }
     if (gRecordTAtt->mStateFrames > 10) {
@@ -932,8 +932,8 @@ void AdvanceRecordTAttState8(void) {
         }
     }
     if (gRecordTAtt->mStateFrames == 7) {
-        gRecordTAtt->mRecordTAttSTable[12].mUnk_00 = 0;
-        gRecordTAtt->mRecordTAttSTable[13].mUnk_00 = 0;
+        gRecordTAtt->mRecordTAttSTable[12].mVisible = 0;
+        gRecordTAtt->mRecordTAttSTable[13].mVisible = 0;
     }
 }
 
@@ -968,18 +968,18 @@ void AdvanceRecordTAttState11(void) {
         v = InterpolateS16(1, 0, 0x100, gRecordTAtt->mStateFrames, 10);
         gRecordTAtt->mBg1OffsetX = v;
         w = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
-        gRecordTAtt->mRecordTAttMTable[0].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[1].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[2].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[3].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[4].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[5].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[6].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[w].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[w + 1].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[w + 2].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[w + 3].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[w + 4].mUnk_04 = v;
+        gRecordTAtt->mRecordTAttMTable[0].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[1].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[2].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[3].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[4].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[5].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[6].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[w].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[w + 1].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[w + 2].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[w + 3].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[w + 4].mOffsetX = v;
     }
     if (gRecordTAtt->mStateFrames >= 10) {
         if (IsTxtSystemState0NoOpenRequest() != 0) {
@@ -1001,33 +1001,33 @@ void AdvanceRecordTAttState12(void) {
 
         gRecordTAtt->mBg1OffsetX = v;
         w = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
-        gRecordTAtt->mRecordTAttMTable[0].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[1].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[2].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[3].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[4].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[5].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[6].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[w].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[w + 1].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[w + 2].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[w + 3].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttMTable[w + 4].mUnk_04 = v;
+        gRecordTAtt->mRecordTAttMTable[0].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[1].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[2].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[3].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[4].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[5].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[6].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[w].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[w + 1].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[w + 2].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[w + 3].mOffsetX = v;
+        gRecordTAtt->mRecordTAttMTable[w + 4].mOffsetX = v;
     }
     gRecordTAtt->mBg3OffsetX = v;
     x = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
-    gRecordTAtt->mRecordTAttSTable[15].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[16].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[12].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[13].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[14].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[x + 8].mUnk_04 = v;
+    gRecordTAtt->mRecordTAttSTable[15].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[16].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[12].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[13].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[14].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[x + 8].mOffsetX = v;
     for (i = 1; i < 5; i++) {
-        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttSTable[x + data_ov001_021a67d4[i]].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttSTable[x + data_ov001_021a6810[i]].mUnk_04 = v;
+        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mOffsetX = v;
+        gRecordTAtt->mRecordTAttSTable[x + data_ov001_021a67d4[i]].mOffsetX = v;
+        gRecordTAtt->mRecordTAttSTable[x + data_ov001_021a6810[i]].mOffsetX = v;
         for (j = 0; j < 2; j++) {
-            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mUnk_04 = v;
+            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mOffsetX = v;
         }
     }
     if (gRecordTAtt->mStateFrames > 10) {
@@ -1036,7 +1036,7 @@ void AdvanceRecordTAttState12(void) {
         }
     }
     if (gRecordTAtt->mStateFrames == 2) {
-        gRecordTAtt->mRecordTAttSTable[12].mUnk_00 = 1;
+        gRecordTAtt->mRecordTAttSTable[12].mVisible = 1;
     }
 }
 
@@ -1050,26 +1050,26 @@ void AdvanceRecordTAttState13(void) {
     v = InterpolateS16(1, 0, 0x100, gRecordTAtt->mStateFrames, 10);
     gRecordTAtt->mBg3OffsetX = v;
     x = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
-    gRecordTAtt->mRecordTAttSTable[15].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[16].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[12].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[13].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[14].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[x + 8].mUnk_04 = v;
+    gRecordTAtt->mRecordTAttSTable[15].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[16].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[12].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[13].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[14].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[x + 8].mOffsetX = v;
     for (i = 1; i < 5; i++) {
-        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttSTable[x + data_ov001_021a67d4[i]].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttSTable[x + data_ov001_021a6810[i]].mUnk_04 = v;
+        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mOffsetX = v;
+        gRecordTAtt->mRecordTAttSTable[x + data_ov001_021a67d4[i]].mOffsetX = v;
+        gRecordTAtt->mRecordTAttSTable[x + data_ov001_021a6810[i]].mOffsetX = v;
         for (j = 0; j < 2; j++) {
-            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mUnk_04 = v;
+            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mOffsetX = v;
         }
     }
     if (gRecordTAtt->mStateFrames > 10) {
         func_ov001_02196dbc();
     }
     if (gRecordTAtt->mStateFrames == 7) {
-        gRecordTAtt->mRecordTAttSTable[12].mUnk_00 = 0;
-        gRecordTAtt->mRecordTAttSTable[13].mUnk_00 = 0;
+        gRecordTAtt->mRecordTAttSTable[12].mVisible = 0;
+        gRecordTAtt->mRecordTAttSTable[13].mVisible = 0;
     }
 }
 
@@ -1124,25 +1124,25 @@ void AdvanceRecordTAttState17(void) {
     v = InterpolateS16(1, 0x100, 0, gRecordTAtt->mStateFrames, 10);
     gRecordTAtt->mBg3OffsetX = v;
     m = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
-    gRecordTAtt->mRecordTAttSTable[15].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[16].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[12].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[13].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[14].mUnk_04 = v;
-    gRecordTAtt->mRecordTAttSTable[m + 8].mUnk_04 = v;
+    gRecordTAtt->mRecordTAttSTable[15].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[16].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[12].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[13].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[14].mOffsetX = v;
+    gRecordTAtt->mRecordTAttSTable[m + 8].mOffsetX = v;
     for (i = 1; i < 5; i++) {
-        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttSTable[m + data_ov001_021a67d4[i]].mUnk_04 = v;
-        gRecordTAtt->mRecordTAttSTable[m + data_ov001_021a6810[i]].mUnk_04 = v;
+        gRecordTAtt->mRecordTAttSTable[data_ov001_021a67f8[i]].mOffsetX = v;
+        gRecordTAtt->mRecordTAttSTable[m + data_ov001_021a67d4[i]].mOffsetX = v;
+        gRecordTAtt->mRecordTAttSTable[m + data_ov001_021a6810[i]].mOffsetX = v;
         for (j = 0; j < 2; j++) {
-            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mUnk_04 = v;
+            gRecordTAtt->mRecordTAttSTable[data_ov001_021a6850[i][j]].mOffsetX = v;
         }
     }
     if (gRecordTAtt->mStateFrames > 10) {
         func_ov001_02197024();
     }
     if (gRecordTAtt->mStateFrames == 2) {
-        gRecordTAtt->mRecordTAttSTable[12].mUnk_00 = 1;
+        gRecordTAtt->mRecordTAttSTable[12].mVisible = 1;
     }
 }
 

@@ -107,12 +107,12 @@ void func_ov000_021854f8(void) {
     s32 i;
 
     for (i = 0; i < 2; i++) {
-        gWiFiAikotobaCheck->mWiFiAikotobaCheckTable[data_ov000_021b06d8[i]].mUnk_06 = gWiFiAikotobaCheck->mOffset;
+        gWiFiAikotobaCheck->mWiFiAikotobaCheckTable[data_ov000_021b06d8[i]].mOffsetY = gWiFiAikotobaCheck->mOffset;
     }
     for (i = 0; i < 12; i++) {
         gWiFiAikotobaCheck
             ->mWiFiAikotobaCheckTable[data_ov000_021b06dc[i] + gWiFiAikotobaCheck->mWiFiAikotobaCheckBncl->mUnk_06]
-            .mUnk_06 = gWiFiAikotobaCheck->mOffset;
+            .mOffsetY = gWiFiAikotobaCheck->mOffset;
     }
 }
 

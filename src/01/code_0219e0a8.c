@@ -36,7 +36,7 @@ void CreateEndingScene(void *heap) {
     InitLayoutTable(gEndingScene->mHeap, gEndingScene->mEndingThanksBncl, gEndingScene->mEndingThanksBnll,
                     &gEndingScene->mEndingThanksTable);
     result = NULL;
-    gEndingScene->mEndingThanksTable->mUnk_00 = 0;
+    gEndingScene->mEndingThanksTable->mVisible = 0;
     {
         u16 table[2][2] = {{200, 24}, {200, 24}};
 

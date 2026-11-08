@@ -15,37 +15,37 @@
 
 #pragma thumb on
 
-void func_0202bb60(void) {
-    HeapDestroy(data_02174e3c->mHeap);
-    *&data_02174e3c = NULL;
+void ReleasePlayerEntryList(void) {
+    HeapDestroy(gPlayerEntryList->mHeap);
+    *&gPlayerEntryList = NULL;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_0202ba14(void) {
-    u32 a = 0x19;
+void WritePlayerEntryListRegisters(void) {
+    u32 displayBits = 0x19;
     BOOL b;
-    s16 x;
+    s16 interpolatedValue;
 
-    x = GetInterpolatedValue(&data_02174e3c->mUnk_210[2]);
-    if (data_02174e3c->mUnk_254 == 2) {
+    interpolatedValue = GetInterpolatedValue(&gPlayerEntryList->mInterpolations[2]);
+    if (gPlayerEntryList->mScreenKind == 2) {
         b = FALSE;
-        a |= 2;
-        reg_G2_BG0OFS = x & 0x1ff;
-        reg_G2_BG1OFS = -x & 0x1ff;
+        displayBits |= 2;
+        reg_G2_BG0OFS = interpolatedValue & 0x1ff;
+        reg_G2_BG1OFS = -interpolatedValue & 0x1ff;
         reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 3;
         reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 3;
     } else {
         b = TRUE;
     }
-    if (data_02174e3c->mUnk_250 == 2) {
-        a |= 2;
+    if (gPlayerEntryList->mMode == 2) {
+        displayBits |= 2;
     }
-    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (a << 8);
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (displayBits << 8);
     GX_SetGraphicsMode(1, 0, b);
-    if (data_02174e3c->mUnk_254 == 2) {
+    if (gPlayerEntryList->mScreenKind == 2) {
         reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffff1fff) | 0x6000;
         reg_G2_WININ = (u32) ((reg_G2_WININ & ~0x3f) | 0x1d) | 0x20;
         reg_G2_WININ = (u32) ((reg_G2_WININ & 0xffffc0ff) | 0x1e00) | 0x2000;
@@ -59,30 +59,30 @@ void func_0202ba14(void) {
     }
 }
 
-void func_0202b8d8(void) {
-    Ncgr *a;
-    Nclr *b;
-    Unk02021dc8 *c;
-    Nscr *d;
+void LoadPlayerEntryListFiles(void) {
+    Ncgr *chars;
+    Nclr *palette;
+    Unk02021dc8 *cells;
+    Nscr *screenMap;
 
     if (*(vu16 *) 0x27ffc40 == 2) {
-        LoadNcgrData(&a, FindSceneFile(gSelectMenuEtcDownloadMBNcgrName));
-        LoadNcgrData2(&a, FindSceneFile(gSelectMenuEtcDownloadMNcgrName));
-        LoadNcerData(&c, FindSceneFile(gSelectMenuEtcDownloadMNcerName));
-        LoadNclrData(&b, FindSceneFile(gSelectMenuEtcDownloadMONclrName));
-        LoadNclrData(&b, FindSceneFile(gSelectMenuEtcDownloadMBNclrName));
-        LoadNscrData(&d, FindSceneFile(gSelectMenuEtcDownloadMBg00NscrName));
-        LoadNscrData(&d, FindSceneFile(gSelectMenuEtcDownloadMBg01NscrName));
+        LoadNcgrData(&chars, FindSceneFile(gSelectMenuEtcDownloadMBNcgrName));
+        LoadNcgrData2(&chars, FindSceneFile(gSelectMenuEtcDownloadMNcgrName));
+        LoadNcerData(&cells, FindSceneFile(gSelectMenuEtcDownloadMNcerName));
+        LoadNclrData(&palette, FindSceneFile(gSelectMenuEtcDownloadMONclrName));
+        LoadNclrData(&palette, FindSceneFile(gSelectMenuEtcDownloadMBNclrName));
+        LoadNscrData(&screenMap, FindSceneFile(gSelectMenuEtcDownloadMBg00NscrName));
+        LoadNscrData(&screenMap, FindSceneFile(gSelectMenuEtcDownloadMBg01NscrName));
     } else {
-        LoadNcgrData(&a, FindFileInLoadedArchives(gSelectMenuEtcMBNcgrName));
-        LoadNcgrData2(&a, FindFileInLoadedArchives(gSelectMenuEtcMNcgrName));
-        LoadNcgrData2(&a, FindFileInLoadedArchives(gSelectMenuEtcTitleMNcgrName));
-        LoadNcerData(&c, FindFileInLoadedArchives(gSelectMenuEtcMNcerName));
-        LoadNcerData(&c, FindFileInLoadedArchives(gSelectMenuEtcTitleMNcerName));
-        LoadNclrData(&b, FindFileInLoadedArchives(gSelectMenuEtcMONclrName));
-        LoadNclrData(&b, FindFileInLoadedArchives(gSelectMenuEtcMBNclrName));
-        LoadNscrData(&d, FindFileInLoadedArchives(gSelectMenuEtcMBg00NscrName));
-        LoadNscrData(&d, FindFileInLoadedArchives(gSelectMenuEtcMBg01NscrName));
+        LoadNcgrData(&chars, FindFileInLoadedArchives(gSelectMenuEtcMBNcgrName));
+        LoadNcgrData2(&chars, FindFileInLoadedArchives(gSelectMenuEtcMNcgrName));
+        LoadNcgrData2(&chars, FindFileInLoadedArchives(gSelectMenuEtcTitleMNcgrName));
+        LoadNcerData(&cells, FindFileInLoadedArchives(gSelectMenuEtcMNcerName));
+        LoadNcerData(&cells, FindFileInLoadedArchives(gSelectMenuEtcTitleMNcerName));
+        LoadNclrData(&palette, FindFileInLoadedArchives(gSelectMenuEtcMONclrName));
+        LoadNclrData(&palette, FindFileInLoadedArchives(gSelectMenuEtcMBNclrName));
+        LoadNscrData(&screenMap, FindFileInLoadedArchives(gSelectMenuEtcMBg00NscrName));
+        LoadNscrData(&screenMap, FindFileInLoadedArchives(gSelectMenuEtcMBg01NscrName));
     }
 }
 
@@ -90,109 +90,109 @@ void func_0202b8d8(void) {
 
 #pragma thumb on
 
-u32 func_0202b8c0(void) {
-    if (data_02174e3c->mTimer == 0) {
+u32 IsPlayerEntryListTimerZero(void) {
+    if (gPlayerEntryList->mTimer == 0) {
         return 1;
     }
     return 0;
 }
 
-u32 func_0202b888(void) {
-    u32 v1;
-    int v2;
-    int v3;
-    int v4;
-    v1 = 1;
-    v2 = 0;
-    if (0 < data_02174e3c->mPlayerCount) {
-        v3 = 0;
+u32 IsEveryPlayerKartStored(void) {
+    u32 allKartsStored;
+    int index;
+    int offset;
+    int setupCopy;
+    allKartsStored = 1;
+    index = 0;
+    if (0 < gPlayerEntryList->mPlayerCount) {
+        offset = 0;
         do {
-            v4 = ((u32) GetRaceSetupCopy());
-            v1 = v1 & *(u32 *) (v4 + v3 + 0x14);
-            v3 = v3 + 0x18;
-            v2 = v2 + 1;
-        } while (v2 < *(s32 *) (*(s32 *) &data_02174e3c + 0x48));
+            setupCopy = ((u32) GetRaceSetupCopy());
+            allKartsStored = allKartsStored & *(u32 *) (setupCopy + offset + 0x14);
+            offset = offset + 0x18;
+            index = index + 1;
+        } while (index < *(s32 *) (*(s32 *) &gPlayerEntryList + 0x48));
     }
-    return v1;
+    return allKartsStored;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_0202b7c0(s32 a) {
+void func_0202b7c0(s32 kind) {
     s32 i;
 
-    func_02025f14(&data_02174e3c->mUnk_210[0], 2);
-    func_02025f14(&data_02174e3c->mUnk_210[3], 2);
-    func_02025f14(&data_02174e3c->mUnk_210[2], 2);
-    switch (a) {
+    func_02025f14(&gPlayerEntryList->mInterpolations[0], 2);
+    func_02025f14(&gPlayerEntryList->mInterpolations[3], 2);
+    func_02025f14(&gPlayerEntryList->mInterpolations[2], 2);
+    switch (kind) {
         case 0:
         case 1:
             for (i = 0; i < 8; i++) {
-                if (i < data_02174e3c->mPlayerCount || data_02174e3c->mUnk_208 != 0) {
-                    func_0202cc18(i, 1);
+                if (i < gPlayerEntryList->mPlayerCount || gPlayerEntryList->mUnk_208 != 0) {
+                    SetEntryTargetSlot(i, 1);
                 }
             }
             break;
         case 2:
-            func_02025f14(&data_02174e3c->mUnk_210[1], 2);
+            func_02025f14(&gPlayerEntryList->mInterpolations[1], 2);
             break;
         case 3:
             for (i = 0; i < 8; i++) {
                 func_0202cb2c(i);
             }
-            data_02174e3c->mUnk_20c = TRUE;
+            gPlayerEntryList->mUnk_20c = TRUE;
             break;
     }
 }
 
-void func_0202b6f0(s32 a) {
+void SetPlayerEntryListUseTeams(s32 useTeams) {
     s32 i;
-    s32 k;
+    s32 slot;
 
-    if (data_02174e3c->mUnk_204 != a) {
-        if (a != 0) {
+    if (gPlayerEntryList->mUseTeams != useTeams) {
+        if (useTeams != 0) {
             for (i = 0; i < 8; i++) {
-                if (i < data_02174e3c->mPlayerCount || data_02174e3c->mUnk_208 != 0) {
-                    if (data_02174e3c->mUnk_04c[i].mUnk_00 == 0) {
-                        k = 1;
-                    } else if (data_02174e3c->mUnk_04c[i].mUnk_00 == 1) {
-                        k = 2;
+                if (i < gPlayerEntryList->mPlayerCount || gPlayerEntryList->mUnk_208 != 0) {
+                    if (gPlayerEntryList->mEntries[i].mTeamIndex == 0) {
+                        slot = 1;
+                    } else if (gPlayerEntryList->mEntries[i].mTeamIndex == 1) {
+                        slot = 2;
                     }
-                    func_0202cc18(i, k);
+                    SetEntryTargetSlot(i, slot);
                 }
             }
-            func_02025f14(&data_02174e3c->mUnk_210[2], 0);
-            func_02025f14(&data_02174e3c->mUnk_210[0], 2);
+            func_02025f14(&gPlayerEntryList->mInterpolations[2], 0);
+            func_02025f14(&gPlayerEntryList->mInterpolations[0], 2);
         } else {
             for (i = 0; i < 8; i++) {
-                if (i < data_02174e3c->mPlayerCount || data_02174e3c->mUnk_208 != 0) {
-                    func_0202cc18(i, 1);
+                if (i < gPlayerEntryList->mPlayerCount || gPlayerEntryList->mUnk_208 != 0) {
+                    SetEntryTargetSlot(i, 1);
                 }
             }
-            func_02025f14(&data_02174e3c->mUnk_210[2], 2);
-            func_02025f14(&data_02174e3c->mUnk_210[0], 0);
+            func_02025f14(&gPlayerEntryList->mInterpolations[2], 2);
+            func_02025f14(&gPlayerEntryList->mInterpolations[0], 0);
         }
     }
-    data_02174e3c->mUnk_204 = a;
+    gPlayerEntryList->mUseTeams = useTeams;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_0202b6a0(int a, int b) {
-    u32 v1;
-    if ((data_02174e3c->mUnk_204 != 0) && (b != data_02174e3c->mUnk_04c[a].mUnk_00)) {
-        if (b == 1) {
-            v1 = 2;
+void SetEntryTeamIndex(int entryIndex, int teamIndex) {
+    u32 slot;
+    if ((gPlayerEntryList->mUseTeams != 0) && (teamIndex != gPlayerEntryList->mEntries[entryIndex].mTeamIndex)) {
+        if (teamIndex == 1) {
+            slot = 2;
         } else {
-            v1 = 1;
+            slot = 1;
         }
-        func_0202cc18(a, v1);
+        SetEntryTargetSlot(entryIndex, slot);
     }
-    data_02174e3c->mUnk_04c[a].mUnk_00 = b;
+    gPlayerEntryList->mEntries[entryIndex].mTeamIndex = teamIndex;
 }
 
 #pragma thumb off
@@ -201,42 +201,42 @@ void func_0202b6a0(int a, int b) {
 
 void func_0202b618(s32 a) {
     s32 i;
-    s32 b;
-    if (data_02174e3c->mUnk_208 != a) {
+    s32 slot;
+    if (gPlayerEntryList->mUnk_208 != a) {
         if (a != 0) {
-            for (i = data_02174e3c->mPlayerCount; i < 8; i++) {
-                if (data_02174e3c->mUnk_204 != 0) {
-                    if (data_02174e3c->mUnk_04c[i].mUnk_00 == 1) {
-                        b = 3;
+            for (i = gPlayerEntryList->mPlayerCount; i < 8; i++) {
+                if (gPlayerEntryList->mUseTeams != 0) {
+                    if (gPlayerEntryList->mEntries[i].mTeamIndex == 1) {
+                        slot = 3;
                     } else {
-                        b = 0;
+                        slot = 0;
                     }
                 } else {
-                    b = 0;
+                    slot = 0;
                 }
-                func_0202cc44(i, b);
+                SetEntrySlot(i, slot);
                 func_0202cb68(i);
             }
         } else {
-            for (i = data_02174e3c->mPlayerCount; i < 8; i++) {
+            for (i = gPlayerEntryList->mPlayerCount; i < 8; i++) {
                 func_0202cb2c(i);
             }
         }
     }
-    data_02174e3c->mUnk_208 = a;
+    gPlayerEntryList->mUnk_208 = a;
 }
 
 #pragma thumb off
 
 #pragma thumb on
-void func_0202b604(void) {
+void RequestPlayerEntryListSetup(void) {
     u32 value0;
-    u32 value1;
-    u32 value2;
-    value2 = 1u;
-    value0 = (u32) &data_02174e3c;
-    value1 = *(const u32 *) ((value0) + 0u);
+    u32 entryList;
+    u32 requested;
+    requested = 1u;
+    value0 = (u32) &gPlayerEntryList;
+    entryList = *(const u32 *) ((value0) + 0u);
     value0 = 0x1fcu;
-    *(u32 *) ((value1) + (value0)) = value2;
+    *(u32 *) ((entryList) + (value0)) = requested;
 }
 #pragma thumb off

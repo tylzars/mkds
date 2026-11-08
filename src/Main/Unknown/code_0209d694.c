@@ -88,8 +88,8 @@ u32 func_0209dd40(u32 p0) {
 }
 
 static inline u32 func_0209d84c_inline(Unk020f41c4_B *b) {
-    b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
-    return b->mUnk_00 >> 32;
+    b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
+    return b->mValue >> 32;
 }
 
 void func_0209d84c(void *a, Unk0209d694 *p) {

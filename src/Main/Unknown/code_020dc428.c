@@ -306,17 +306,17 @@ void UpdateWanwanState0(Wanwan *p) {
                 if (n == 0) {
                     v = 0;
                 } else {
-                    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
+                    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
                     if (n == 0) {
-                        v = (u32) (r->mUnk_00 >> 32);
+                        v = (u32) (r->mValue >> 32);
                     } else {
-                        v = (u32) (((u64) (r->mUnk_00 >> 32) * (u64) n) >> 32);
+                        v = (u32) (((u64) (r->mValue >> 32) * (u64) n) >> 32);
                     }
                 }
                 r = GetMapObjectRandom();
                 d = v + 0x2d000;
-                r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-                i = (u16) (((r->mUnk_00 >> 32) * 0x10000) >> 32) >> 4;
+                r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+                i = (u16) (((r->mValue >> 32) * 0x10000) >> 32) >> 4;
                 j++;
                 q->x = p->mUnk_a0.x + (s32) (((s64) gPairsByAngle[i * 2] * d) >> 12);
                 q->z = p->mUnk_a0.z + (s32) (((s64) gPairsByAngle[i * 2 + 1] * d) >> 12);

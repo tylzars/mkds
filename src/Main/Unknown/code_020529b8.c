@@ -612,9 +612,9 @@ void StartParentCallback(Unk021425e8 *a) {
                         break;
                 }
                 p = &data_0217aa00->mUnk_1ee8;
-                p->mUnk_00 = (u32) (v * 3 | v << 16);
-                p->mUnk_08 = 0x5d588b656c078965ull;
-                p->mUnk_10 = 0x269ec3;
+                p->mValue = (u32) (v * 3 | v << 16);
+                p->mMultiplier = 0x5d588b656c078965ull;
+                p->mIncrement = 0x269ec3;
                 data_0217aa00->mRequestPending = 0;
                 break;
             case 9:

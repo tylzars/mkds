@@ -39,14 +39,14 @@ void func_02035114(void) {
         for (i = 0; i < 4; i++) {
             if (p->mUnk_09c[i].mUnk_28 != FALSE) {
                 p->mUnk_080 = i;
-                s->mCellTable[4].mUnk_00 = 1;
+                s->mCellTable[4].mVisible = 1;
                 func_02025c6c(4, data_02164254[i][3], s->mCellLayout);
                 return;
             }
         }
     } else {
         if (p->mUnk_190 == 0) {
-            s->mCellTable[4].mUnk_00 = 0;
+            s->mCellTable[4].mVisible = 0;
             data_02174e64->mUnk_080 = -1;
             return;
         }
@@ -73,13 +73,13 @@ void func_02035060(void) {
     for (i = 0; i < 4; i++) {
         AdvanceInterpolation(&data_02174e64->mUnk_09c[i].mUnk_2c);
         c = GetInterpolatedValue(&data_02174e64->mUnk_09c[i].mUnk_2c);
-        s->mCellTable[m + data_02164254[i + 4][0]].mUnk_04 = c;
-        v = s->mCellTable[m + ((const s16(*)[4]) data_02164254)[i + 4][0]].mUnk_04;
-        s->mCellTable[m + data_02164254[i][0]].mUnk_04 = v;
-        v = s->mCellTable[m + data_02164254[i][0]].mUnk_04;
-        s->mCellTable[data_02164254[i][3]].mUnk_04 = v;
+        s->mCellTable[m + data_02164254[i + 4][0]].mOffsetX = c;
+        v = s->mCellTable[m + ((const s16(*)[4]) data_02164254)[i + 4][0]].mOffsetX;
+        s->mCellTable[m + data_02164254[i][0]].mOffsetX = v;
+        v = s->mCellTable[m + data_02164254[i][0]].mOffsetX;
+        s->mCellTable[data_02164254[i][3]].mOffsetX = v;
         if (data_02174e64->mUnk_080 == i) {
-            s->mCellTable[4].mUnk_04 = c;
+            s->mCellTable[4].mOffsetX = c;
         }
     }
 }
@@ -98,10 +98,10 @@ void func_02034fec(void) {
     m = t->mCellLayout->mUnk_06 + t->mLabelLayout->mUnk_06;
     c = GetInterpolatedValue(&data_02174e64->mUnk_194);
     for (i = 0; i < n; i++) {
-        s->mCellTable[i].mUnk_06 = -c;
+        s->mCellTable[i].mOffsetY = -c;
     }
     for (i = 0; i < m; i++) {
-        t->mCellTable[i].mUnk_06 = c;
+        t->mCellTable[i].mOffsetY = c;
     }
 }
 
@@ -121,7 +121,7 @@ void func_02034f60(void) {
         } else {
             v = FALSE;
         }
-        s->mCellTable[i].mUnk_00 = v;
+        s->mCellTable[i].mVisible = v;
     }
     if (data_02174e64->mUnk_080 >= 0) {
         PrintGhostRecordInfo((Unk02174e14 *) &data_02174e64->mUnk_02c[0], data_02154034, e, e->mUnk_00.mUnk_18[0],
@@ -214,7 +214,7 @@ void func_02034bf4(void *a, void *b, void *c) {
     }
     j = s->mCellLayout->mUnk_06 + s->mLabelLayout->mUnk_06;
     for (i = 0; i < j; i++) {
-        s->mCellTable[i].mUnk_00 = 0;
+        s->mCellTable[i].mVisible = 0;
     }
     s = &data_02174e64->mUnk_02c[1];
     n = GX_GetSizeOfSubOBJ();
@@ -238,7 +238,7 @@ void func_02034bf4(void *a, void *b, void *c) {
     for (j = 0; j < m; j++) {
         func_021249a8(j, 3, s->mCells, s->mCellLayout);
     }
-    s->mCellTable[4].mUnk_00 = 0;
+    s->mCellTable[4].mVisible = 0;
     func_02025b84(0, &data_02174e64->mUnk_064);
     SetupInterpolation(&data_02174e64->mUnk_194, 3, 10, -0xc0, 0);
     SetSelectReturnSoundId(0xf);

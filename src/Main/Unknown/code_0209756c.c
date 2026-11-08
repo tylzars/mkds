@@ -252,8 +252,8 @@ void UpdateFlipper(void *a, Flipper *p) {
             if (p->mUnk_ec0 <= 0) {
                 p->mUnk_ec0 = 0;
                 v1 = GetMapObjectRandom();
-                v1->mUnk_00 = (s64) v1->mUnk_08 * (s64) v1->mUnk_00 + v1->mUnk_10;
-                r = ((u64) (u32) (v1->mUnk_00 >> 32) * 12) >> 32;
+                v1->mValue = (s64) v1->mMultiplier * (s64) v1->mValue + v1->mIncrement;
+                r = ((u64) (u32) (v1->mValue >> 32) * 12) >> 32;
                 p->mUnk_eb8 = (u16) ((u16) r * 0x14);
                 p->mState = 1;
             }
@@ -285,8 +285,8 @@ void UpdateFlipper(void *a, Flipper *p) {
             if (p->mUnk_ec0 <= 0) {
                 p->mUnk_ec0 = 0;
                 v1 = GetMapObjectRandom();
-                v1->mUnk_00 = (s64) v1->mUnk_08 * (s64) v1->mUnk_00 + v1->mUnk_10;
-                r = ((u64) (u32) (v1->mUnk_00 >> 32) * 12) >> 32;
+                v1->mValue = (s64) v1->mMultiplier * (s64) v1->mValue + v1->mIncrement;
+                r = ((u64) (u32) (v1->mValue >> 32) * 12) >> 32;
                 p->mUnk_eb8 = (u16) ((u16) r * 0x14);
                 p->mState = 1;
             }

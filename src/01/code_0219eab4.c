@@ -101,36 +101,36 @@ void func_ov001_0219f4f8(void) {
     s32 r;
     cnt = gMissionRunLVsel->mMissionRunLVselS7Or6Bncl->mUnk_06;
     for (i = 0; i < 7; i++) {
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][0]].mUnk_00 = 0;
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][1]].mUnk_00 = 0;
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][2]].mUnk_00 = 0;
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][3]].mUnk_00 = 0;
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][4]].mUnk_00 = 0;
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][5]].mUnk_00 = 0;
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][6]].mUnk_00 = 0;
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][7]].mUnk_00 = 0;
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][8]].mUnk_00 = 0;
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][9]].mUnk_00 = 0;
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][10]].mUnk_00 = 0;
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[cnt + data_ov001_021a6c60[i]].mUnk_00 = 0;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][0]].mVisible = 0;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][1]].mVisible = 0;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][2]].mVisible = 0;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][3]].mVisible = 0;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][4]].mVisible = 0;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][5]].mVisible = 0;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][6]].mVisible = 0;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][7]].mVisible = 0;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][8]].mVisible = 0;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][9]].mVisible = 0;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][10]].mVisible = 0;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[cnt + data_ov001_021a6c60[i]].mVisible = 0;
         if (func_ov001_0219f688((s16) i)) {
-            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][0]].mUnk_00 = 1;
-            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][1]].mUnk_00 = 1;
-            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][5]].mUnk_00 = 1;
+            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][0]].mVisible = 1;
+            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][1]].mVisible = 1;
+            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][5]].mVisible = 1;
             r = func_ov001_0219f6a0(i);
             if (r <= 4) {
-                gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][7]].mUnk_00 = 1;
-                gMissionRunLVsel->mMissionRunLVselS7Or6Table[cnt + data_ov001_021a6c60[i]].mUnk_00 = 1;
+                gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][7]].mVisible = 1;
+                gMissionRunLVsel->mMissionRunLVselS7Or6Table[cnt + data_ov001_021a6c60[i]].mVisible = 1;
                 func_0212426c(1, data_ov001_021a6c60[i], gMissionRunLVsel->mMissionRunLVselS7Or6Bnll,
                               data_ov001_021a90e8[r], gMissionRunLVsel->mMissionRunLVselS7Or6Bncl,
                               gMissionRunLVsel->mMissionRunLVselS7Or6Table);
             } else if (r <= 7) {
-                gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][r + 3]].mUnk_00 = 1;
+                gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][r + 3]].mVisible = 1;
             }
         } else if (i != 6) {
-            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][0]].mUnk_00 = 1;
-            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][4]].mUnk_00 = 1;
-            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][6]].mUnk_00 = 1;
+            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][0]].mVisible = 1;
+            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][4]].mVisible = 1;
+            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][6]].mVisible = 1;
         }
         func_02124a98(data_ov001_021a6ce0[i][0], 1, gMissionRunLVsel->mMissionRunLVselSNcer,
                       gMissionRunLVsel->mMissionRunLVselS7Or6Bncl);
@@ -140,21 +140,21 @@ void func_ov001_0219f4f8(void) {
 void func_ov001_0219f430(void) {
     s32 i;
     for (i = 0; i < 7; i++) {
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][1]].mUnk_00 = 0;
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][2]].mUnk_00 = 0;
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][3]].mUnk_00 = 0;
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][4]].mUnk_00 = 0;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][1]].mVisible = 0;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][2]].mVisible = 0;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][3]].mVisible = 0;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][4]].mVisible = 0;
         if (gMissionRunLVsel->mUnk_28[i] > 0) {
             gMissionRunLVsel->mUnk_28[i] = gMissionRunLVsel->mUnk_28[i] - 1;
-            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][3]].mUnk_00 = 1;
-            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][3]].mUnk_06 =
-                gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][2]].mUnk_06 + 1;
+            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][3]].mVisible = 1;
+            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][3]].mOffsetY =
+                gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][2]].mOffsetY + 1;
         } else if (gMissionRunLVsel->mIndex == i) {
-            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][2]].mUnk_00 = 1;
+            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][2]].mVisible = 1;
         } else if (func_ov001_0219f688((s16) i)) {
-            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][1]].mUnk_00 = 1;
+            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][1]].mVisible = 1;
         } else if (i != 6) {
-            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][4]].mUnk_00 = 1;
+            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][4]].mVisible = 1;
         }
     }
 }
@@ -222,9 +222,9 @@ void func_ov001_0219f2a4(void) {
     gMissionRunLVsel->mBg0Offset = -192;
     for (i = 0; i < 7; i++) {
         for (j = 0; j < 11; j++) {
-            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][j]].mUnk_04 = 0x100;
+            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][j]].mOffsetX = 0x100;
         }
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[count + data_ov001_021a6c60[i]].mUnk_04 = 0x100;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[count + data_ov001_021a6c60[i]].mOffsetX = 0x100;
     }
 }
 
@@ -364,9 +364,9 @@ void AdvanceMissionRunLVselState1(void) {
     gMissionRunLVsel->mBg0Offset = InterpolateS16(1, -192, 0, gMissionRunLVsel->mStateFrames, 10);
     for (i = 0; i < 7; i++) {
         for (j = 0; j < 11; j++) {
-            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][j]].mUnk_04 = value;
+            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][j]].mOffsetX = value;
         }
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[count + data_ov001_021a6c60[i]].mUnk_04 = value;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[count + data_ov001_021a6c60[i]].mOffsetX = value;
     }
     if (gMissionRunLVsel->mStateFrames >= 10) {
         func_ov001_0219f244();
@@ -500,9 +500,9 @@ void AdvanceMissionRunLVselState5(void) {
     gMissionRunLVsel->mBg0Offset = InterpolateS16(1, 0, -192, gMissionRunLVsel->mStateFrames, 10);
     for (i = 0; i < 7; i++) {
         for (j = 0; j < 11; j++) {
-            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][j]].mUnk_04 = value;
+            gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][j]].mOffsetX = value;
         }
-        gMissionRunLVsel->mMissionRunLVselS7Or6Table[count + data_ov001_021a6c60[i]].mUnk_04 = value;
+        gMissionRunLVsel->mMissionRunLVselS7Or6Table[count + data_ov001_021a6c60[i]].mOffsetX = value;
     }
 }
 

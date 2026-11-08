@@ -4,13 +4,13 @@
 
 #pragma thumb on
 
-void InitLayoutTableEntries(Unk02124b1c *entry, s32 count) {
+void InitLayoutTableEntries(LayoutTableEntry *entry, s32 count) {
     s32 i;
 
     for (i = 0; i < count; i++) {
-        entry->mUnk_00 = 1;
-        entry->mUnk_04 = 0;
-        entry->mUnk_06 = 0;
+        entry->mVisible = 1;
+        entry->mOffsetX = 0;
+        entry->mOffsetY = 0;
         entry->mUnk_08 = FALSE;
         entry->mUnk_0c = 0;
         entry->mPositionY = 0;

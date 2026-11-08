@@ -42,10 +42,10 @@ typedef struct Unk021243ac {
 // 0x40-byte element of the tables InitLayoutTable allocates and InitLayoutTableEntries sets up: behind
 // WiFiVSMatching.mUnk_10d4, members 0x14, 0x24 and 0x3c of RecordVSErase, and the tables of the objects behind
 // gRecordVS to data_0217d380 and of several overlay globals.
-typedef struct Unk02124b1c {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s16 mUnk_04;
-    /* 06 */ s16 mUnk_06;
+typedef struct LayoutTableEntry {
+    /* 00 */ s32 mVisible;
+    /* 04 */ s16 mOffsetX;
+    /* 06 */ s16 mOffsetY;
     /* 08 */ BOOL mUnk_08;
     /* 0c */ s16 mUnk_0c;
     /* 0e */ s16 mPositionY;
@@ -55,7 +55,7 @@ typedef struct Unk02124b1c {
     /* 34 */ s32 mUnk_34;
     /* 38 */ s32 mUnk_38;
     /* 3c */ Unk021243ac *mUnk_3c;
-} Unk02124b1c;
+} LayoutTableEntry;
 
 // 8-byte elements func_021243ac fills and copies into Unk020224e0_s elements.
 typedef struct Unk02022eb0 {
@@ -95,7 +95,7 @@ typedef struct Unk0212463c_d {
 } Unk0212463c_d;
 
 BOOL func_02124ae4(s32 a, Unk02021dc8 *b, Unk0201ea30 *c);
-void func_02124b1c(Unk02124b1c *a, s32 b, s32 c);
+void func_02124b1c(LayoutTableEntry *a, s32 b, s32 c);
 void func_02124a98(u32 a, s32 b, Unk02021dc8 *c, Unk0201ea30 *d);
 u8 func_02124a68(u32 a, Unk02021dc8 *b, Unk0201ea30 *c);
 void func_02124a20(s32 a, s32 b, Unk02021dc8 *c, Unk0201ea30 *d);
@@ -107,15 +107,15 @@ void func_0212481c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Un
 void func_02124748(u32 a, Unk02021dc8 *b, void *c, Unk0201ea30 *d, s32 e, u32 f, Unk02021dc8 *g, Unk0201ea30 *h);
 void func_0212463c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Unk0201ea30 *e, s32 f, u32 g,
                    Unk02021dc8 *h, Unk0201ea30 *i);
-s32 func_021243ac(void *a, s32 b, Unk0201ea30 *c, s32 d, s32 e, s32 f, Unk02021dc8 *g, Unk0201ea30 *h, Unk02124b1c *i,
-                  s32 j);
-void PrintLabelLayoutText(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s32 g, s8 h);
-void func_0212426c(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f);
-void func_02124248(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s8 g);
-void func_02124224(s32 a, u32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s8 g);
-void ClearAndQueueLabelLayoutText(s32 a, s32 b, Unk0201ea30 *c, Unk0201ea30 *d, Unk02124b1c *e);
-BOOL func_0212418c(s32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d);
-void func_02124140(u32 a, u32 b, Unk0201ea30 *c, Unk02124b1c *d, Unk0201ea30 *e);
-void func_02124100(s32 a, u8 b, Unk0201ea30 *c, Unk02124b1c *d, Unk0201ea30 *e);
-u8 func_021240d4(s32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d);
-void func_02124094(u32 a, u32 b, Unk0201ea30 *c, Unk02124b1c *d, Unk0201ea30 *e);
+s32 func_021243ac(void *a, s32 b, Unk0201ea30 *c, s32 d, s32 e, s32 f, Unk02021dc8 *g, Unk0201ea30 *h,
+                  LayoutTableEntry *i, s32 j);
+void PrintLabelLayoutText(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, LayoutTableEntry *f, s32 g, s8 h);
+void func_0212426c(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, LayoutTableEntry *f);
+void func_02124248(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, LayoutTableEntry *f, s8 g);
+void func_02124224(s32 a, u32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, LayoutTableEntry *f, s8 g);
+void ClearAndQueueLabelLayoutText(s32 a, s32 b, Unk0201ea30 *c, Unk0201ea30 *d, LayoutTableEntry *e);
+BOOL func_0212418c(s32 a, void *b, LayoutTableEntry *c, Unk0201ea30 *d);
+void func_02124140(u32 a, u32 b, Unk0201ea30 *c, LayoutTableEntry *d, Unk0201ea30 *e);
+void func_02124100(s32 a, u8 b, Unk0201ea30 *c, LayoutTableEntry *d, Unk0201ea30 *e);
+u8 func_021240d4(s32 a, void *b, LayoutTableEntry *c, Unk0201ea30 *d);
+void func_02124094(u32 a, u32 b, Unk0201ea30 *c, LayoutTableEntry *d, Unk0201ea30 *e);

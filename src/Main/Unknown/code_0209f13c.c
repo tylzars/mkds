@@ -25,8 +25,8 @@ void InitChandelierObjects(Unk0209f514 *a) {
     }
     for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != NULL; i++) {
         r = &gRaceProgress->mLocalRandom;
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        o->mUnk_a4 = (u16) (((u64) (u32) (r->mUnk_00 >> 32) * 0x3c) >> 32) + 0x3c;
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        o->mUnk_a4 = (u16) (((u64) (u32) (r->mValue >> 32) * 0x3c) >> 32) + 0x3c;
     }
 }
 

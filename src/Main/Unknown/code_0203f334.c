@@ -107,8 +107,8 @@ void UpdateRaceClock(void) {
         }
         q = gRaceProgress;
         r = &q->mRandom;
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        t = -(s16) (u16) (r->mUnk_00 >> 32 >> 20);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        t = -(s16) (u16) (r->mValue >> 32 >> 20);
     }
     c = &q->mUnk_000[0].mUnk_08;
     ComputeRaceTime((u8 *) c + 2, (u8 *) c + 3, c, t, p->mUnk_000[0].mElapsedFrames);

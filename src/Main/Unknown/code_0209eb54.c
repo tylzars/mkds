@@ -140,8 +140,8 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                 return;
             }
             r = &gRaceProgress->mLocalRandom;
-            r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-            b->mUnk_a8 = (u16) (((r->mUnk_00 >> 32) * 0x78) >> 32) + 0x3c;
+            r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+            b->mUnk_a8 = (u16) (((r->mValue >> 32) * 0x78) >> 32) + 0x3c;
             b->mUnk_ac = 1;
             break;
     }

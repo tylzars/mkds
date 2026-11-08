@@ -358,7 +358,7 @@ void func_ov001_0218eb94(Unk02188950 *a) {
     Unk020f41c4_B *rng;
     GetKart((u16) gRaceSetup->mEntryIndex);
     rng = GetMapObjectRandom();
-    rng->mUnk_00 = (s64) rng->mUnk_08 * (s64) rng->mUnk_00 + rng->mUnk_10;
+    rng->mValue = (s64) rng->mMultiplier * (s64) rng->mValue + rng->mIncrement;
     a->mUnk_000.mPos.x = (&func_ov001_02187fc0(a)->mUnk_00)->x;
     a->mUnk_000.mPos.y = a->mPrm->mUnk_080 + (&func_ov001_02187fc0(a)->mUnk_00)->y;
     a->mUnk_000.mPos.z = (&func_ov001_02187fc0(a)->mUnk_00)->z;

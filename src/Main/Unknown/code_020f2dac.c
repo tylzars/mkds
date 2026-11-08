@@ -162,11 +162,11 @@ void ReleaseHeldItem(HeldItem *rec, s32 keep) {
 }
 
 static inline u32 TakeHeldItemObjects_inline(Unk020f41c4_B *generator, u32 range) {
-    generator->mUnk_00 = generator->mUnk_08 * generator->mUnk_00 + generator->mUnk_10;
+    generator->mValue = generator->mMultiplier * generator->mValue + generator->mIncrement;
     if (range == 0) {
-        return generator->mUnk_00 >> 32;
+        return generator->mValue >> 32;
     } else {
-        return ((generator->mUnk_00 >> 32) * range) >> 32;
+        return ((generator->mValue >> 32) * range) >> 32;
     }
 }
 
@@ -676,8 +676,8 @@ void InitItemPointLinkDirections(void) {
 #pragma thumb off
 
 static inline u32 ThrowBouncingItem_inline(Unk020f41c4_B *generator, u32 range) {
-    generator->mUnk_00 = generator->mUnk_08 * generator->mUnk_00 + generator->mUnk_10;
-    return ((u64) (u32) (generator->mUnk_00 >> 32) * range) >> 32;
+    generator->mValue = generator->mMultiplier * generator->mValue + generator->mIncrement;
+    return ((u64) (u32) (generator->mValue >> 32) * range) >> 32;
 }
 
 // Gives a bouncing item its start velocity and position from the kart; c is 1 to throw forward.

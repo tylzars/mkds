@@ -114,23 +114,23 @@ void InitSelectCupMCellsAndRequestCupPicture(void) {
     d = gSelectCupM->mSubBncl->mUnk_06;
     v = FALSE;
     for (i = 0; i < 8; i++) {
-        gSelectCupM->mMainTable[data_0215cf1c[i]].mUnk_00 = v;
-        gSelectCupM->mSubTable[data_0215cf1c[i]].mUnk_00 = v;
+        gSelectCupM->mMainTable[data_0215cf1c[i]].mVisible = v;
+        gSelectCupM->mSubTable[data_0215cf1c[i]].mVisible = v;
     }
     for (i = 0; i < 4; i++) {
-        gSelectCupM->mMainTable[data_0215cefc[i]].mUnk_00 = 0;
-        gSelectCupM->mSubTable[data_0215cefc[i]].mUnk_00 = 0;
+        gSelectCupM->mMainTable[data_0215cefc[i]].mVisible = 0;
+        gSelectCupM->mSubTable[data_0215cefc[i]].mVisible = 0;
     }
     for (i = 0; i < 4; i++) {
-        gSelectCupM->mMainTable[data_0215cf04[i]].mUnk_00 = 0;
-        gSelectCupM->mMainTable[c + data_0215cf0c[i]].mUnk_00 = 1;
-        gSelectCupM->mSubTable[data_0215cf04[i]].mUnk_00 = 0;
-        gSelectCupM->mSubTable[d + data_0215cf0c[i]].mUnk_00 = 1;
+        gSelectCupM->mMainTable[data_0215cf04[i]].mVisible = 0;
+        gSelectCupM->mMainTable[c + data_0215cf0c[i]].mVisible = 1;
+        gSelectCupM->mSubTable[data_0215cf04[i]].mVisible = 0;
+        gSelectCupM->mSubTable[d + data_0215cf0c[i]].mVisible = 1;
     }
-    gSelectCupM->mMainTable[20].mUnk_00 = 0;
-    gSelectCupM->mMainTable[19].mUnk_00 = 1;
-    gSelectCupM->mSubTable[20].mUnk_00 = 0;
-    gSelectCupM->mSubTable[19].mUnk_00 = 1;
+    gSelectCupM->mMainTable[20].mVisible = 0;
+    gSelectCupM->mMainTable[19].mVisible = 1;
+    gSelectCupM->mSubTable[20].mVisible = 0;
+    gSelectCupM->mSubTable[19].mVisible = 1;
     QueueSelectCupNameM(data_0215cf2c[GetCupIndex()], gSelectCupM->mMainNcer, gSelectCupM->mMainBncl, 0x13, 0);
     QueueSelectCupNameM(data_0215cf2c[GetCupIndex()], gSelectCupM->mSubNcer, gSelectCupM->mSubBncl, 0x13, 1);
     n = FALSE;
@@ -143,15 +143,15 @@ void InitSelectCupMCellsAndRequestCupPicture(void) {
                       gSelectCupM->mSubBncl, gSelectCupM->mSubTable);
     }
     a = data_0215cf04[0];
-    gSelectCupM->mMainTable[a].mUnk_00 = 1;
+    gSelectCupM->mMainTable[a].mVisible = 1;
     j = data_0215cf0c[0];
     func_02124100(j, 0xe, gSelectCupM->mMainBnll, gSelectCupM->mMainTable, gSelectCupM->mMainBncl);
-    gSelectCupM->mSubTable[a].mUnk_00 = 1;
+    gSelectCupM->mSubTable[a].mVisible = 1;
     func_02124100(j, 0xe, gSelectCupM->mSubBnll, gSelectCupM->mSubTable, gSelectCupM->mSubBncl);
     for (m = 1; m < 4; m++) {
-        gSelectCupM->mMainTable[data_0215cf04[m]].mUnk_00 = 0;
+        gSelectCupM->mMainTable[data_0215cf04[m]].mVisible = 0;
         func_02124100(data_0215cf0c[m], 0xf, gSelectCupM->mMainBnll, gSelectCupM->mMainTable, gSelectCupM->mMainBncl);
-        gSelectCupM->mSubTable[data_0215cf04[m]].mUnk_00 = 0;
+        gSelectCupM->mSubTable[data_0215cf04[m]].mVisible = 0;
         func_02124100(data_0215cf0c[m], 0xf, gSelectCupM->mSubBnll, gSelectCupM->mSubTable, gSelectCupM->mSubBncl);
     }
     TrySetCupPictureIndexAndQueueLoads(data_0215cf8c[data_0215cf2c[GetCupIndex()]][0]);
@@ -171,30 +171,30 @@ void StartSelectCupMState0(void) {
     c = gSelectCupM->mMainBncl->mUnk_06;
     d = gSelectCupM->mSubBncl->mUnk_06;
     gSelectCupM->mBg0Offset = 0;
-    gSelectCupM->mMainTable[20].mUnk_06 = 0;
-    gSelectCupM->mMainTable[19].mUnk_06 = 0;
-    gSelectCupM->mMainTable[2].mUnk_06 = 0;
-    gSelectCupM->mMainTable[1].mUnk_06 = 0;
-    gSelectCupM->mMainTable[0].mUnk_06 = 0;
+    gSelectCupM->mMainTable[20].mOffsetY = 0;
+    gSelectCupM->mMainTable[19].mOffsetY = 0;
+    gSelectCupM->mMainTable[2].mOffsetY = 0;
+    gSelectCupM->mMainTable[1].mOffsetY = 0;
+    gSelectCupM->mMainTable[0].mOffsetY = 0;
     for (i = 0; i < 8; i++) {
-        gSelectCupM->mMainTable[data_0215cf1c[i]].mUnk_06 = 0;
+        gSelectCupM->mMainTable[data_0215cf1c[i]].mOffsetY = 0;
     }
     for (i = 0; i < 4; i++) {
-        gSelectCupM->mMainTable[data_0215cf04[i]].mUnk_06 = 0;
-        gSelectCupM->mMainTable[c + data_0215cf0c[i]].mUnk_06 = 0;
+        gSelectCupM->mMainTable[data_0215cf04[i]].mOffsetY = 0;
+        gSelectCupM->mMainTable[c + data_0215cf0c[i]].mOffsetY = 0;
     }
     gSelectCupM->mBg3Offset = ~0xbf;
-    gSelectCupM->mSubTable[20].mUnk_06 = ~0xbf;
-    gSelectCupM->mSubTable[19].mUnk_06 = ~0xbf;
-    gSelectCupM->mSubTable[2].mUnk_06 = ~0xbf;
-    gSelectCupM->mSubTable[1].mUnk_06 = ~0xbf;
-    gSelectCupM->mSubTable[0].mUnk_06 = ~0xbf;
+    gSelectCupM->mSubTable[20].mOffsetY = ~0xbf;
+    gSelectCupM->mSubTable[19].mOffsetY = ~0xbf;
+    gSelectCupM->mSubTable[2].mOffsetY = ~0xbf;
+    gSelectCupM->mSubTable[1].mOffsetY = ~0xbf;
+    gSelectCupM->mSubTable[0].mOffsetY = ~0xbf;
     for (i = 0; i < 8; i++) {
-        gSelectCupM->mSubTable[data_0215cf1c[i]].mUnk_06 = ~0xbf;
+        gSelectCupM->mSubTable[data_0215cf1c[i]].mOffsetY = ~0xbf;
     }
     for (i = 0; i < 4; i++) {
-        gSelectCupM->mSubTable[data_0215cf04[i]].mUnk_06 = ~0xbf;
-        gSelectCupM->mSubTable[d + data_0215cf0c[i]].mUnk_06 = ~0xbf;
+        gSelectCupM->mSubTable[data_0215cf04[i]].mOffsetY = ~0xbf;
+        gSelectCupM->mSubTable[d + data_0215cf0c[i]].mOffsetY = ~0xbf;
     }
 }
 
@@ -211,30 +211,30 @@ void StartSelectCupMState1(void) {
     c = gSelectCupM->mMainBncl->mUnk_06;
     d = gSelectCupM->mSubBncl->mUnk_06;
     gSelectCupM->mBg0Offset = 0xc0;
-    gSelectCupM->mMainTable[20].mUnk_06 = 0xc0;
-    gSelectCupM->mMainTable[19].mUnk_06 = 0xc0;
-    gSelectCupM->mMainTable[2].mUnk_06 = 0xc0;
-    gSelectCupM->mMainTable[1].mUnk_06 = 0xc0;
-    gSelectCupM->mMainTable[0].mUnk_06 = 0xc0;
+    gSelectCupM->mMainTable[20].mOffsetY = 0xc0;
+    gSelectCupM->mMainTable[19].mOffsetY = 0xc0;
+    gSelectCupM->mMainTable[2].mOffsetY = 0xc0;
+    gSelectCupM->mMainTable[1].mOffsetY = 0xc0;
+    gSelectCupM->mMainTable[0].mOffsetY = 0xc0;
     for (i = 0; i < 8; i++) {
-        gSelectCupM->mMainTable[data_0215cf1c[i]].mUnk_06 = 0xc0;
+        gSelectCupM->mMainTable[data_0215cf1c[i]].mOffsetY = 0xc0;
     }
     for (i = 0; i < 4; i++) {
-        gSelectCupM->mMainTable[data_0215cf04[i]].mUnk_06 = 0xc0;
-        gSelectCupM->mMainTable[c + data_0215cf0c[i]].mUnk_06 = 0xc0;
+        gSelectCupM->mMainTable[data_0215cf04[i]].mOffsetY = 0xc0;
+        gSelectCupM->mMainTable[c + data_0215cf0c[i]].mOffsetY = 0xc0;
     }
     gSelectCupM->mBg3Offset = ~0x1f;
-    gSelectCupM->mSubTable[20].mUnk_06 = ~0x1f;
-    gSelectCupM->mSubTable[19].mUnk_06 = ~0x1f;
-    gSelectCupM->mSubTable[2].mUnk_06 = ~0x1f;
-    gSelectCupM->mSubTable[1].mUnk_06 = ~0x1f;
-    gSelectCupM->mSubTable[0].mUnk_06 = ~0x1f;
+    gSelectCupM->mSubTable[20].mOffsetY = ~0x1f;
+    gSelectCupM->mSubTable[19].mOffsetY = ~0x1f;
+    gSelectCupM->mSubTable[2].mOffsetY = ~0x1f;
+    gSelectCupM->mSubTable[1].mOffsetY = ~0x1f;
+    gSelectCupM->mSubTable[0].mOffsetY = ~0x1f;
     for (i = 0; i < 8; i++) {
-        gSelectCupM->mSubTable[data_0215cf1c[i]].mUnk_06 = ~0x1f;
+        gSelectCupM->mSubTable[data_0215cf1c[i]].mOffsetY = ~0x1f;
     }
     for (i = 0; i < 4; i++) {
-        gSelectCupM->mSubTable[data_0215cf04[i]].mUnk_06 = ~0x1f;
-        gSelectCupM->mSubTable[d + data_0215cf0c[i]].mUnk_06 = ~0x1f;
+        gSelectCupM->mSubTable[data_0215cf04[i]].mOffsetY = ~0x1f;
+        gSelectCupM->mSubTable[d + data_0215cf0c[i]].mOffsetY = ~0x1f;
     }
 }
 
@@ -315,31 +315,31 @@ void AdvanceSelectCupMState0(void) {
     b = InterpolateS16(1, ~0xbf, ~0x1f, gSelectCupM->mStateFrames, 0xa);
     c = gSelectCupM->mMainBncl->mUnk_06;
     gSelectCupM->mBg0Offset = a;
-    gSelectCupM->mMainTable[20].mUnk_06 = a;
-    gSelectCupM->mMainTable[19].mUnk_06 = a;
-    gSelectCupM->mMainTable[2].mUnk_06 = a;
-    gSelectCupM->mMainTable[1].mUnk_06 = a;
-    gSelectCupM->mMainTable[0].mUnk_06 = a;
+    gSelectCupM->mMainTable[20].mOffsetY = a;
+    gSelectCupM->mMainTable[19].mOffsetY = a;
+    gSelectCupM->mMainTable[2].mOffsetY = a;
+    gSelectCupM->mMainTable[1].mOffsetY = a;
+    gSelectCupM->mMainTable[0].mOffsetY = a;
     for (i = 0; i < 8; i++) {
-        gSelectCupM->mMainTable[data_0215cf1c[i]].mUnk_06 = a;
+        gSelectCupM->mMainTable[data_0215cf1c[i]].mOffsetY = a;
     }
     for (i = 0; i < 4; i++) {
-        gSelectCupM->mMainTable[data_0215cf04[i]].mUnk_06 = a;
-        gSelectCupM->mMainTable[c + data_0215cf0c[i]].mUnk_06 = a;
+        gSelectCupM->mMainTable[data_0215cf04[i]].mOffsetY = a;
+        gSelectCupM->mMainTable[c + data_0215cf0c[i]].mOffsetY = a;
     }
     d = gSelectCupM->mSubBncl->mUnk_06;
     gSelectCupM->mBg3Offset = b;
-    gSelectCupM->mSubTable[20].mUnk_06 = b;
-    gSelectCupM->mSubTable[19].mUnk_06 = b;
-    gSelectCupM->mSubTable[2].mUnk_06 = b;
-    gSelectCupM->mSubTable[1].mUnk_06 = b;
-    gSelectCupM->mSubTable[0].mUnk_06 = b;
+    gSelectCupM->mSubTable[20].mOffsetY = b;
+    gSelectCupM->mSubTable[19].mOffsetY = b;
+    gSelectCupM->mSubTable[2].mOffsetY = b;
+    gSelectCupM->mSubTable[1].mOffsetY = b;
+    gSelectCupM->mSubTable[0].mOffsetY = b;
     for (i = 0; i < 8; i++) {
-        gSelectCupM->mSubTable[data_0215cf1c[i]].mUnk_06 = b;
+        gSelectCupM->mSubTable[data_0215cf1c[i]].mOffsetY = b;
     }
     for (i = 0; i < 4; i++) {
-        gSelectCupM->mSubTable[data_0215cf04[i]].mUnk_06 = b;
-        gSelectCupM->mSubTable[d + data_0215cf0c[i]].mUnk_06 = b;
+        gSelectCupM->mSubTable[data_0215cf04[i]].mOffsetY = b;
+        gSelectCupM->mSubTable[d + data_0215cf0c[i]].mOffsetY = b;
     }
 }
 
@@ -358,31 +358,31 @@ void AdvanceSelectCupMState1(void) {
     b = InterpolateS16(1, ~0x1f, ~0xbf, gSelectCupM->mStateFrames, 0xa);
     c = gSelectCupM->mMainBncl->mUnk_06;
     gSelectCupM->mBg0Offset = a;
-    gSelectCupM->mMainTable[20].mUnk_06 = a;
-    gSelectCupM->mMainTable[19].mUnk_06 = a;
-    gSelectCupM->mMainTable[2].mUnk_06 = a;
-    gSelectCupM->mMainTable[1].mUnk_06 = a;
-    gSelectCupM->mMainTable[0].mUnk_06 = a;
+    gSelectCupM->mMainTable[20].mOffsetY = a;
+    gSelectCupM->mMainTable[19].mOffsetY = a;
+    gSelectCupM->mMainTable[2].mOffsetY = a;
+    gSelectCupM->mMainTable[1].mOffsetY = a;
+    gSelectCupM->mMainTable[0].mOffsetY = a;
     for (i = 0; i < 8; i++) {
-        gSelectCupM->mMainTable[data_0215cf1c[i]].mUnk_06 = a;
+        gSelectCupM->mMainTable[data_0215cf1c[i]].mOffsetY = a;
     }
     for (i = 0; i < 4; i++) {
-        gSelectCupM->mMainTable[data_0215cf04[i]].mUnk_06 = a;
-        gSelectCupM->mMainTable[c + data_0215cf0c[i]].mUnk_06 = a;
+        gSelectCupM->mMainTable[data_0215cf04[i]].mOffsetY = a;
+        gSelectCupM->mMainTable[c + data_0215cf0c[i]].mOffsetY = a;
     }
     d = gSelectCupM->mSubBncl->mUnk_06;
     gSelectCupM->mBg3Offset = b;
-    gSelectCupM->mSubTable[20].mUnk_06 = b;
-    gSelectCupM->mSubTable[19].mUnk_06 = b;
-    gSelectCupM->mSubTable[2].mUnk_06 = b;
-    gSelectCupM->mSubTable[1].mUnk_06 = b;
-    gSelectCupM->mSubTable[0].mUnk_06 = b;
+    gSelectCupM->mSubTable[20].mOffsetY = b;
+    gSelectCupM->mSubTable[19].mOffsetY = b;
+    gSelectCupM->mSubTable[2].mOffsetY = b;
+    gSelectCupM->mSubTable[1].mOffsetY = b;
+    gSelectCupM->mSubTable[0].mOffsetY = b;
     for (i = 0; i < 8; i++) {
-        gSelectCupM->mSubTable[data_0215cf1c[i]].mUnk_06 = b;
+        gSelectCupM->mSubTable[data_0215cf1c[i]].mOffsetY = b;
     }
     for (i = 0; i < 4; i++) {
-        gSelectCupM->mSubTable[data_0215cf04[i]].mUnk_06 = b;
-        gSelectCupM->mSubTable[d + data_0215cf0c[i]].mUnk_06 = b;
+        gSelectCupM->mSubTable[data_0215cf04[i]].mOffsetY = b;
+        gSelectCupM->mSubTable[d + data_0215cf0c[i]].mOffsetY = b;
     }
 }
 

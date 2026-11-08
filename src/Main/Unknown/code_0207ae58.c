@@ -189,8 +189,8 @@ void StartKartWinOrLoseAnimation(Kart *a) {
         } else {
             q->mUnk_04 = TRUE;
             r = &gRaceProgress->mLocalRandom;
-            r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-            q->mUnk_10 = (u32) (((r->mUnk_00 >> 32) * 200) >> 32);
+            r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+            q->mUnk_10 = (u32) (((r->mValue >> 32) * 200) >> 32);
             q->mUnk_10 += 0x96;
         }
     } else if (f == 2) {
@@ -229,8 +229,8 @@ void func_0207b354(Kart *p) {
         func_02068a64(p, 2, 1);
     }
     r = &gRaceProgress->mLocalRandom;
-    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    q->mUnk_10 = (u32) (((r->mUnk_00 >> 32) * 200) >> 32);
+    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+    q->mUnk_10 = (u32) (((r->mValue >> 32) * 200) >> 32);
     q->mUnk_10 += 0x96;
 }
 

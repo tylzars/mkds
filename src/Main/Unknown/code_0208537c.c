@@ -355,12 +355,12 @@ s32 PickKartAiTableIndex(u16 a, u32 *b) {
             if (x == 0) {
                 h = 0;
             } else {
-                c->mUnk_00 = (s64) c->mUnk_08 * (s64) c->mUnk_00 + c->mUnk_10;
+                c->mValue = (s64) c->mMultiplier * (s64) c->mValue + c->mIncrement;
                 y = (u16) n - 1;
                 if (y == 0) {
-                    h = c->mUnk_00 >> 32;
+                    h = c->mValue >> 32;
                 } else {
-                    h = (s64) (u32) (c->mUnk_00 >> 32) * (s64) (u32) y >> 32;
+                    h = (s64) (u32) (c->mValue >> 32) * (s64) (u32) y >> 32;
                 }
             }
             e = NNS_FndGetNthListObject(l, h);

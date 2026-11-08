@@ -168,6 +168,6 @@ void WriteSelectKartRegisters(void) {
         func_02027fb8(0);
     }
     if (gSelectKart->mUnk_104 != FALSE) {
-        func_0202ba14();
+        WritePlayerEntryListRegisters();
     }
 }

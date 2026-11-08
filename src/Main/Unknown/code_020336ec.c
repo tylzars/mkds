@@ -51,39 +51,39 @@ void func_02033c80(s32 a) {
         if (c != FALSE && d != FALSE) {
             e = TRUE;
         }
-        t->mCellTable[r + 0x10].mUnk_00 = e;
+        t->mCellTable[r + 0x10].mVisible = e;
         if (c != FALSE && d == FALSE) {
             c = TRUE;
         } else {
             c = FALSE;
         }
-        t->mCellTable[r + 0x18].mUnk_00 = c;
+        t->mCellTable[r + 0x18].mVisible = c;
         if (b != FALSE && d != FALSE) {
             c = TRUE;
         } else {
             c = FALSE;
         }
-        t->mCellTable[r + 0x20].mUnk_00 = c;
+        t->mCellTable[r + 0x20].mVisible = c;
         if (b != FALSE && d == FALSE) {
             d = TRUE;
         } else {
             d = FALSE;
         }
-        t->mCellTable[r + 0x28].mUnk_00 = d;
-        t->mCellTable[r + 8].mUnk_00 = 0;
-        t->mCellTable[r].mUnk_00 = t->mCellTable[r + 8].mUnk_00;
+        t->mCellTable[r + 0x28].mVisible = d;
+        t->mCellTable[r + 8].mVisible = 0;
+        t->mCellTable[r].mVisible = t->mCellTable[r + 8].mVisible;
     } else {
-        t->mCellTable[r].mUnk_00 = d;
+        t->mCellTable[r].mVisible = d;
         if (d == FALSE) {
             d = TRUE;
         } else {
             d = FALSE;
         }
-        t->mCellTable[r + 8].mUnk_00 = d;
-        t->mCellTable[r + 0x28].mUnk_00 = 0;
-        t->mCellTable[r + 0x20].mUnk_00 = t->mCellTable[r + 0x28].mUnk_00;
-        t->mCellTable[r + 0x18].mUnk_00 = t->mCellTable[r + 0x20].mUnk_00;
-        t->mCellTable[r + 0x10].mUnk_00 = t->mCellTable[r + 0x18].mUnk_00;
+        t->mCellTable[r + 8].mVisible = d;
+        t->mCellTable[r + 0x28].mVisible = 0;
+        t->mCellTable[r + 0x20].mVisible = t->mCellTable[r + 0x28].mVisible;
+        t->mCellTable[r + 0x18].mVisible = t->mCellTable[r + 0x20].mVisible;
+        t->mCellTable[r + 0x10].mVisible = t->mCellTable[r + 0x18].mVisible;
     }
 }
 
@@ -98,8 +98,8 @@ void func_02033b80(s32 a) {
     r = gResultsBattle->mUnk_0e4[a].mUnk_08;
     q = gResultsBattle->mUnk_0e4[a].mUnk_04;
     if (gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUseTeams != 0 && gRaceSetup->mRuleKind == 1) {
-        t->mCellTable[r + 0x38].mUnk_00 = 0;
-        t->mCellTable[r + 0x48].mUnk_00 = 0;
+        t->mCellTable[r + 0x38].mVisible = 0;
+        t->mCellTable[r + 0x48].mVisible = 0;
         return;
     }
     n = 0;
@@ -114,7 +114,7 @@ void func_02033b80(s32 a) {
     w[n] = 0;
     func_02124224(1, r + 8, t->mLabelLayout, w, t->mCellLayout, t->mCellTable, 6);
     r += 0x38;
-    t->mCellTable[r].mUnk_00 = 1;
+    t->mCellTable[r].mVisible = 1;
     func_02025c48(r, gResultsBattle->mUnk_0e4[a].mUnk_00 + 0x40, t->mCellLayout);
 }
 
@@ -188,7 +188,7 @@ void func_020338f8(void *a) {
     u8 *p;
     u16 w[11];
     s32 b;
-    Unk02124b1c *c;
+    LayoutTableEntry *c;
 
     t = &gResultsBattle->mUnk_048[0];
     r = GX_GetSizeOfOBJ();
@@ -218,10 +218,10 @@ void func_020338f8(void *a) {
     }
     while (n < 7) {
         n = n + 1;
-        t->mCellTable[n].mUnk_00 = 0;
+        t->mCellTable[n].mVisible = 0;
         n = (u32) n;
         c = &t->mCellTable[n + h];
-        c->mUnk_00 = 0;
+        c->mVisible = 0;
     }
 }
 
@@ -243,11 +243,11 @@ void func_02033840(void *a) {
     gResultsBattle->mUnk_0cc = 0x46;
     gResultsBattle->mUnk_0ce = 0x50;
     for (i = 0; i < 0x46; i++) {
-        t->mCellTable[i].mUnk_00 = 0;
+        t->mCellTable[i].mVisible = 0;
     }
     for (i = data_usa_02153ea0[gResultsBattle->mUnk_0d4 - 2];
          i < data_usa_02153ea0[gResultsBattle->mUnk_0d4 - 2] + gResultsBattle->mUnk_0d4 * 2; i++) {
-        t->mCellTable[i].mUnk_00 = 1;
+        t->mCellTable[i].mVisible = 1;
     }
     for (i = 0; i < gResultsBattle->mUnk_0d4; i++) {
         func_02033ab8(0, i, d + i, e);
@@ -291,13 +291,13 @@ void func_020336ec(void *a) {
     o->mUnk_0cc = 0x3a;
     gResultsBattle->mUnk_0ce = 0x44;
     for (i = 0; i < 0x38; i++) {
-        t->mCellTable[i].mUnk_00 = 0;
+        t->mCellTable[i].mVisible = 0;
     }
     j = data_usa_02153eb0[gResultsBattle->mUnk_0d4 - 1];
     j = (u32) j;
     if (j < data_usa_02153eb0[gResultsBattle->mUnk_0d4 - 1] + gResultsBattle->mUnk_0d4 * 2) {
         do {
-            t->mCellTable[j].mUnk_00 = 1;
+            t->mCellTable[j].mVisible = 1;
             j++;
         } while (j < data_usa_02153eb0[gResultsBattle->mUnk_0d4 - 1] + gResultsBattle->mUnk_0d4 * 2);
     }
@@ -313,8 +313,8 @@ void func_020336ec(void *a) {
             n++;
         }
     }
-    t->mCellTable[0x39].mUnk_00 = 0;
-    t->mCellTable[0x38].mUnk_00 = t->mCellTable[0x39].mUnk_00;
+    t->mCellTable[0x39].mVisible = 0;
+    t->mCellTable[0x38].mVisible = t->mCellTable[0x39].mVisible;
 }
 
 #pragma thumb off

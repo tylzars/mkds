@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02124094.h" // Unk02124b1c, Unk0201ea30
+#include "Main/Unknown/code_02124094.h" // LayoutTableEntry, Unk0201ea30
 
 typedef struct RecordTopMenu {
     /* 0x00 */ struct Unk02021dc8 *mRecordTopMenuMNcer;
@@ -11,9 +11,9 @@ typedef struct RecordTopMenu {
     /* 0x10 */ struct Unk0201ea30 *mRecordTopMenuSBncl;
     /* 0x14 */ struct Unk0201ea30 *mRecordTopMenuSBnbl;
     // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by InitLayoutTable
-    /* 0x18 */ Unk02124b1c *mRecordTopMenuMTable;
+    /* 0x18 */ LayoutTableEntry *mRecordTopMenuMTable;
     // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by InitLayoutTable
-    /* 0x1c */ Unk02124b1c *mRecordTopMenuSTable;
+    /* 0x1c */ LayoutTableEntry *mRecordTopMenuSTable;
     /* 0x20 */ void *mUnk_20;
     /* 0x24 */ struct Bmg *mRecordMessages;
     /* 0x28 */ void *mUnk_28;

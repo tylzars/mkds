@@ -3,39 +3,39 @@
 #include "types.h"
 
 typedef struct CellFileSet CellFileSet;
-typedef struct Unk02174e3c Unk02174e3c;
+typedef struct PlayerEntryList PlayerEntryList;
 
-// 6-byte elements of the table behind data_usa_02174e0c: three indices into the arrays at member 0x18 of
+// 6-byte elements of the table behind gEntryCellIndices: three indices into the arrays at member 0x18 of
 // CellFileSet.
-typedef struct Unk02174e0c {
+typedef struct EntryCellIndices {
     /* 00 */ u16 mUnk_00;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ u16 mUnk_04;
-} Unk02174e0c;
+    /* 02 */ u16 mCharacterCellIndex;
+    /* 04 */ u16 mKartCellIndex;
+} EntryCellIndices;
 
-// 8-byte elements of the table behind data_usa_02174e14.
+// 8-byte elements of the table behind gEntryLabelTextRows.
 typedef struct Unk02174e14_8 {
     /* 00 */ s16 mUnk_00;
     /* 02 */ u8 mUnk_02[6];
 } Unk02174e14_8;
 
-// What the first member of Unk02174e3c points to.
+// What the first member of PlayerEntryList points to.
 typedef struct Unk02174e3c_00 {
     /* 00 */ u8 mUnk_00[0x10];
     /* 10 */ u32 mUnk_10;
     /* 14 */ void *mUnk_14;
 } Unk02174e3c_00;
 
-extern u16 data_usa_02153a9c[];
-extern s16 data_usa_02153aa4[];
-extern u16 data_usa_02153aac[];
-extern u16 data_usa_02153ac0[];
-extern u16 data_usa_02153ad4[];
-extern u16 data_usa_02153af0[];
-extern Unk02174e0c data_usa_02153b0c[];
-extern Unk02174e0c data_usa_02153b3c[];
-extern Unk02174e14_8 data_usa_02153b6c[];
-extern Unk02174e14_8 data_usa_02153bac[];
+extern u16 gTitleCellIndices[];
+extern s16 gEntrySlotOffsetsX[];
+extern u16 gNormalTimerDigitCellIndices[];
+extern u16 gDownloadTimerDigitCellIndices[];
+extern u16 gDownloadCharacterCellIndices[];
+extern u16 gNormalCharacterCellIndices[];
+extern EntryCellIndices gNormalEntryCellIndices[];
+extern EntryCellIndices gDownloadEntryCellIndices[];
+extern Unk02174e14_8 gNormalEntryLabelTextRows[];
+extern Unk02174e14_8 gDownloadEntryLabelTextRows[];
 extern const char data_usa_02162904[];
 extern const char data_usa_0216292c[];
 extern const char data_usa_02162954[];
@@ -62,20 +62,20 @@ extern const char data_usa_02162bf0[];
 extern const char data_usa_02162c14[];
 extern const char gSelectMenuEtcTitleMBnclName[];
 extern const char data_usa_02162c58[];
-extern Unk02174e0c *data_usa_02174e0c;
-extern u16 *data_usa_02174e10;
-extern Unk02174e14_8 *data_usa_02174e14;
-extern u16 *data_usa_02174e18;
+extern EntryCellIndices *gEntryCellIndices;
+extern u16 *gCharacterCellIndices;
+extern Unk02174e14_8 *gEntryLabelTextRows;
+extern u16 *gTimerDigitCellIndices;
 
-void func_0202bb80(void);
-void func_0202c0d4(s32 a, s32 b);
-void func_0202c65c(void *a, void *b);
-void PrintEntryName(s32 a, u16 *b);
+void AdvancePlayerEntryList(void);
+void SetupPlayerEntryList(s32 mode, s32 screenKind);
+void InitPlayerEntryList(void *parentHeap, void *mainOam);
+void PrintEntryName(s32 entryIndex, u16 *name);
 void func_0202c8dc(void);
-void func_0202c960(void);
-void func_0202cb2c(s32 a);
-void func_0202cb68(s32 a);
-void func_0202cba4(void);
-void func_0202cbf4(void);
-void func_0202cc18(s32 a, s32 b);
-void func_0202cc44(s32 a, s32 b);
+void AdvancePlayerEntryListOffsets(void);
+void func_0202cb2c(s32 entryIndex);
+void func_0202cb68(s32 entryIndex);
+void AdvanceEntrySlots(void);
+void ResetEntrySlots(void);
+void SetEntryTargetSlot(s32 entryIndex, s32 slot);
+void SetEntrySlot(s32 entryIndex, s32 slot);

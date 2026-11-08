@@ -20,8 +20,8 @@ void func_ov001_0218aef4(Unk02188950 *a) {
     Vec3 pos;
 
     rng = GetMapObjectRandom();
-    rng->mUnk_00 = (s64) rng->mUnk_08 * (s64) rng->mUnk_00 + rng->mUnk_10;
-    angle = (u16) (((rng->mUnk_00 >> 32) << 16) >> 32);
+    rng->mValue = (s64) rng->mMultiplier * (s64) rng->mValue + rng->mIncrement;
+    angle = (u16) (((rng->mValue >> 32) << 16) >> 32);
     for (i = 0; i < 3; i++) {
         Vec3 vel = {0, 0, 0};
         angle += 0x5555;

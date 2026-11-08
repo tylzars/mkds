@@ -21,11 +21,11 @@
 #include "Main/Unknown/code_020f9c6c.h"
 
 static inline u32 func_020f8a04_inline(Unk020f41c4_B *random, u32 limit) {
-    random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
+    random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
     if (limit == 0) {
-        return random->mUnk_00 >> 32;
+        return random->mValue >> 32;
     } else {
-        return ((random->mUnk_00 >> 32) * limit) >> 32;
+        return ((random->mValue >> 32) * limit) >> 32;
     }
 }
 
@@ -313,11 +313,11 @@ static inline u16 func_020f830c_inline(Unk020f41c4_B *random, u32 limit) {
     if (limit == 0) {
         value = 0;
     } else {
-        random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
+        random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
         if (limit == 0) {
-            value = random->mUnk_00 >> 32;
+            value = random->mValue >> 32;
         } else {
-            value = ((random->mUnk_00 >> 32) * limit) >> 32;
+            value = ((random->mValue >> 32) * limit) >> 32;
         }
     }
     return value;

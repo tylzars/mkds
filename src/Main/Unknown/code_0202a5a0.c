@@ -24,17 +24,17 @@
 
 #pragma thumb on
 
-void func_0202a658(void *a) {
-    data_02174e24 = HeapAlloc(a, 0x80c);
-    MemFillWordsByBlock_inline(data_02174e24, 0x80c);
-    func_020ae6d4(data_02174e24, data_02174e24->mUnk_404);
-    data_02174e24->mUnk_808 = gRaceSetup->mMode;
-    if (data_02174e24->mUnk_808 == 0) {
-        InitResultsGp(a, data_02174e24, data_02174e24->mUnk_404);
+void InitResultsByMode(void *heap) {
+    gResultScene = HeapAlloc(heap, 0x80c);
+    MemFillWordsByBlock_inline(gResultScene, 0x80c);
+    func_020ae6d4(gResultScene, gResultScene->mSubOam);
+    gResultScene->mMode = gRaceSetup->mMode;
+    if (gResultScene->mMode == 0) {
+        InitResultsGp(heap, gResultScene, gResultScene->mSubOam);
     } else {
-        InitResultsBattle(a, (s32) data_02174e24, (s32) data_02174e24->mUnk_404);
+        InitResultsBattle(heap, (s32) gResultScene, (s32) gResultScene->mSubOam);
     }
-    func_0212abdc(a, data_02174e24);
+    func_0212abdc(heap, gResultScene);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;
     G2x_SetBlendAlpha_(&reg_G2_BLDCNT, 1, 0x3f, 8, 8);
@@ -47,23 +47,23 @@ void func_0202a658(void *a) {
 
 #pragma thumb on
 
-void func_0202a604(u32 a) {
-    int v1;
-    v1 = func_02049b6c();
-    if (v1 == 0) {
-        func_020ae6ac(data_02174e24, data_02174e24->mUnk_404);
-        if (data_02174e24->mUnk_808 == 0) {
-            AdvanceResultsGp((Unk02029aa0 *) a);
+void AdvanceResultsByMode(u32 sceneNumbers) {
+    int result;
+    result = func_02049b6c();
+    if (result == 0) {
+        func_020ae6ac(gResultScene, gResultScene->mSubOam);
+        if (gResultScene->mMode == 0) {
+            AdvanceResultsGp((Unk02029aa0 *) sceneNumbers);
         } else {
-            AdvanceResultsBattle((Unk02032ac4 *) a);
+            AdvanceResultsBattle((Unk02032ac4 *) sceneNumbers);
         }
-        func_020ae630(data_02174e24, data_02174e24->mUnk_404);
+        func_020ae630(gResultScene, gResultScene->mSubOam);
         func_0212a920();
     }
 }
 
 void func_0202a5d8(void) {
-    if (data_02174e24->mUnk_808 == 0) {
+    if (gResultScene->mMode == 0) {
         func_02029a98();
     } else {
         func_02032ab0();
@@ -72,12 +72,12 @@ void func_0202a5d8(void) {
 }
 
 void func_0202a5a0(void) {
-    if (data_02174e24->mUnk_808 == 0) {
+    if (gResultScene->mMode == 0) {
         func_02029a90();
     } else {
         func_02032aa8();
     }
-    func_020ae5f0(data_02174e24, data_02174e24->mUnk_404);
+    func_020ae5f0(gResultScene, gResultScene->mSubOam);
 }
 
 #pragma thumb off

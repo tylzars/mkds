@@ -105,40 +105,40 @@ void func_02116624(void) {
     n = gRecordVSErase->mRecordVSSEraseBncl->mUnk_06;
     v = GetRecordVSEraseFirstRecordIndex();
     for (i = 0; i < 5; i++) {
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mUnk_00 = 0;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mUnk_00 = 0;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mUnk_00 = 0;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mUnk_00 = 0;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mUnk_00 = 0;
-        gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mUnk_00 = 0;
-        gRecordVSErase->mRecordVSSEraseTable[n + data_0215c4b8[i]].mUnk_00 = 0;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mVisible = 0;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mVisible = 0;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mVisible = 0;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mVisible = 0;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mVisible = 0;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mVisible = 0;
+        gRecordVSErase->mRecordVSSEraseTable[n + data_0215c4b8[i]].mVisible = 0;
     }
     for (i = 0; i < 5; i++) {
         if (IsRecordVSEraseRowFilled((s16) i)) {
             if (gRecordVSErase->mIndex == i) {
                 if (IsRecordFlagged(v)) {
-                    gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mUnk_00 = 1;
+                    gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mVisible = 1;
                     func_02124100(data_0215c4b8[i], 0xe, gRecordVSErase->mRecordVSSEraseBnll,
                                   gRecordVSErase->mRecordVSSEraseTable, gRecordVSErase->mRecordVSSEraseBncl);
                 } else {
-                    gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mUnk_00 = 1;
+                    gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mVisible = 1;
                     func_02124100(data_0215c4b8[i], 0xe, gRecordVSErase->mRecordVSSEraseBnll,
                                   gRecordVSErase->mRecordVSSEraseTable, gRecordVSErase->mRecordVSSEraseBncl);
                 }
             } else {
                 if (IsRecordFlagged(v)) {
-                    gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mUnk_00 = 1;
+                    gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mVisible = 1;
                     func_02124100(data_0215c4b8[i], 0xe, gRecordVSErase->mRecordVSSEraseBnll,
                                   gRecordVSErase->mRecordVSSEraseTable, gRecordVSErase->mRecordVSSEraseBncl);
                 } else {
-                    gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mUnk_00 = 1;
+                    gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mVisible = 1;
                     func_02124100(data_0215c4b8[i], 0xf, gRecordVSErase->mRecordVSSEraseBnll,
                                   gRecordVSErase->mRecordVSSEraseTable, gRecordVSErase->mRecordVSSEraseBncl);
                 }
             }
-            gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mUnk_00 = IsRecordFlagged(v) ? 0 : 1;
-            gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mUnk_00 = IsRecordFlagged(v);
-            gRecordVSErase->mRecordVSSEraseTable[n + data_0215c4b8[i]].mUnk_00 = 1;
+            gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mVisible = IsRecordFlagged(v) ? 0 : 1;
+            gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mVisible = IsRecordFlagged(v);
+            gRecordVSErase->mRecordVSSEraseTable[n + data_0215c4b8[i]].mVisible = 1;
         }
         v++;
     }

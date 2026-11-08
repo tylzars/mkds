@@ -11,7 +11,7 @@
 
 #pragma thumb on
 
-void InitLayoutTable(void *heap, Unk0201ea30 *cellLayout, Unk0201ea30 *labelLayout, Unk02124b1c **tableOut) {
+void InitLayoutTable(void *heap, Unk0201ea30 *cellLayout, Unk0201ea30 *labelLayout, LayoutTableEntry **tableOut) {
     u16 count;
 
     count = cellLayout->mUnk_06;
@@ -25,7 +25,7 @@ void InitLayoutTable(void *heap, Unk0201ea30 *cellLayout, Unk0201ea30 *labelLayo
 // Draws entry a: first the entry it is chained to, then itself; appends the cell OAMs to the list, and returns without
 // drawing when the entry is disabled or lies off the 256 x 192 screen.
 u32 DrawLayoutEntry(s32 index, Unk02021dc8 *cells, Unk0201ea30 *cellLayout, Unk0201ea30 *labelLayout,
-                    Unk02124c70 *oamList, Unk02124b1c *entry, s32 incrementFlag) {
+                    Unk02124c70 *oamList, LayoutTableEntry *entry, s32 incrementFlag) {
     s32 width;
     s32 height;
     s32 *matrix;
@@ -42,7 +42,7 @@ u32 DrawLayoutEntry(s32 index, Unk02021dc8 *cells, Unk0201ea30 *cellLayout, Unk0
                         entry - index + cellLayout->mUnk_06 + entry->mUnk_38, incrementFlag);
     }
     matrix = NULL;
-    if (entry->mUnk_00 == 0) {
+    if (entry->mVisible == 0) {
         return (u32) matrix;
     }
     if (index >= cellLayout->mUnk_06) {
@@ -74,8 +74,8 @@ u32 DrawLayoutEntry(s32 index, Unk02021dc8 *cells, Unk0201ea30 *cellLayout, Unk0
             position[1] = (entry->mPositionY + (height >> 1) * (1 - l20[1].mUnk_00_12)) << 12;
         }
     }
-    position[0] += entry->mUnk_04 << 12;
-    position[1] += entry->mUnk_06 << 12;
+    position[0] += entry->mOffsetX << 12;
+    position[1] += entry->mOffsetY << 12;
     if ((position[0] >> 12) + width < 0 || (position[0] >> 12) - width > 0x100 || (position[1] >> 12) + height < 0 ||
         (position[1] >> 12) - height > 0xc0) {
         return 0;
@@ -98,17 +98,17 @@ u32 DrawLayoutEntry(s32 index, Unk02021dc8 *cells, Unk0201ea30 *cellLayout, Unk0
 }
 
 void DrawLayoutTable(Unk0201ea30 *cellLayout, Unk02021dc8 *cells, Unk0201ea30 *labelLayout, void *oamList,
-                     Unk02124b1c *table) {
+                     LayoutTableEntry *table) {
     s32 i;
     for (i = ((Unk0201ea30 *) cellLayout)->mUnk_06 - 1; i >= 0; i--) {
-        DrawLayoutEntry(i, cells, cellLayout, labelLayout, oamList, (Unk02124b1c *) table + i, 1);
+        DrawLayoutEntry(i, cells, cellLayout, labelLayout, oamList, (LayoutTableEntry *) table + i, 1);
     }
 }
 
 void func_02124bf0(Unk0201ea30 *cellLayout, Unk02021dc8 *cells, void *labelLayout, void *oamList, void *table) {
     s32 i;
     for (i = ((Unk0201ea30 *) cellLayout)->mUnk_06 - 1; i >= 0; i--) {
-        DrawLayoutEntry(i, cells, cellLayout, labelLayout, oamList, (Unk02124b1c *) table + i, 0);
+        DrawLayoutEntry(i, cells, cellLayout, labelLayout, oamList, (LayoutTableEntry *) table + i, 0);
     }
 }
 

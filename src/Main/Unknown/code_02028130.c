@@ -115,7 +115,7 @@ int AdvanceSelectKart(void) {
                 gSelectKart->mStateFrames = 0;
                 gSelectKart->mResult = 1;
                 gSelectKart->mState = 4;
-                p->mUnk_18[18].mUnk_00 = 0;
+                p->mUnk_18[18].mVisible = 0;
                 func_02124100(data_usa_02153834[4], 0, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
                 func_021106a8(func_02025eb0(gSelectKart->mCharacterIndex), 1);
                 func_02077f48(1);
@@ -137,13 +137,13 @@ int AdvanceSelectKart(void) {
             } else if (GetNewOrRepeatBits(t, PAD_KEY_RIGHT) != 0 || IsSelectKartTouchRepeat(1) != 0) {
                 MoveSelectKartNext();
                 gSelectKart->mUnk_114 = 3;
-                p->mUnk_18[1].mUnk_00 = 0;
-                p->mUnk_18[3].mUnk_00 = 1;
+                p->mUnk_18[1].mVisible = 0;
+                p->mUnk_18[3].mVisible = 1;
             } else if (GetNewOrRepeatBits(t, PAD_KEY_LEFT) != 0 || IsSelectKartTouchRepeat(0) != 0) {
                 MoveSelectKartPrev();
                 gSelectKart->mUnk_114 = 2;
-                p->mUnk_18[0].mUnk_00 = 0;
-                p->mUnk_18[2].mUnk_00 = 1;
+                p->mUnk_18[0].mVisible = 0;
+                p->mUnk_18[2].mVisible = 1;
             }
             if (e != gSelectKart->mKartIndex) {
                 func_02110698();
@@ -158,17 +158,17 @@ int AdvanceSelectKart(void) {
             if (gSelectKart->mStateFrames > 6) {
                 gSelectKart->mStateFrames = 0;
                 gSelectKart->mState = 2;
-                p->mUnk_18[gSelectKart->mUnk_114].mUnk_04 = 0;
-                p->mUnk_18[1].mUnk_00 = 1;
-                p->mUnk_18[0].mUnk_00 = 1;
-                p->mUnk_18[3].mUnk_00 = 0;
-                p->mUnk_18[2].mUnk_00 = 0;
+                p->mUnk_18[gSelectKart->mUnk_114].mOffsetX = 0;
+                p->mUnk_18[1].mVisible = 1;
+                p->mUnk_18[0].mVisible = 1;
+                p->mUnk_18[3].mVisible = 0;
+                p->mUnk_18[2].mVisible = 0;
             } else {
                 v = func_020adc64(gSelectKart->mStateFrames);
                 if (gSelectKart->mUnk_114 == 2) {
                     v = -v;
                 }
-                p->mUnk_18[gSelectKart->mUnk_114].mUnk_04 = v;
+                p->mUnk_18[gSelectKart->mUnk_114].mOffsetX = v;
             }
             break;
         case 4:
@@ -194,12 +194,12 @@ int AdvanceSelectKart(void) {
                         break;
                 }
                 gSelectKart->mStateFrames = 0;
-                p->mUnk_18[18].mUnk_00 = 1;
+                p->mUnk_18[18].mVisible = 1;
                 func_02124100(data_usa_02153834[4], 1, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
             }
             break;
         case 5:
-            if (d->mMode == 1 && func_0202b888() != 0 || gSelectKart->mMode == 2 && func_02121d0c() != 0) {
+            if (d->mMode == 1 && IsEveryPlayerKartStored() != 0 || gSelectKart->mMode == 2 && func_02121d0c() != 0) {
                 gSelectKart->mStateFrames = 0;
                 gSelectKart->mState = 6;
             }
@@ -246,7 +246,7 @@ int AdvanceSelectKart(void) {
     }
     d = gSelectKart;
     if (d->mUnk_104 != FALSE) {
-        func_0202bb80();
+        AdvancePlayerEntryList();
     } else {
         DrawLayoutTable(q->mUnk_0c, q->mUnk_08, NULL, d->mUnk_080, q->mUnk_18);
     }

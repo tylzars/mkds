@@ -97,7 +97,7 @@ void func_02030200(void) {
     p = &gMultiSelectMemberGroup->mGroupSParts;
     n = *OFFSET_PTR(u16, p->mUnk_0c, 6) + *OFFSET_PTR(u16, p->mUnk_14, 6);
     for (i = 0; i < n; i++) {
-        p->mUnk_18[i].mUnk_06 = gMultiSelectMemberGroup->mBg3Offset;
+        p->mUnk_18[i].mOffsetY = gMultiSelectMemberGroup->mBg3Offset;
     }
 }
 
@@ -125,39 +125,39 @@ void func_0203003c(s32 a) {
             v = 1;
         }
         x = *(s32 *) ((u8 *) gMultiSelectMemberGroup + r4 + 0x58);
-        p->mUnk_18[q->mUnk_00[0]].mUnk_00 = v;
+        p->mUnk_18[q->mUnk_00[0]].mVisible = v;
         if (v == 0) {
             w = 1;
         } else {
             w = 0;
         }
-        p->mUnk_18[q->mUnk_00[0x18 / 2]].mUnk_00 = w;
+        p->mUnk_18[q->mUnk_00[0x18 / 2]].mVisible = w;
         for (j = 1; j < 12; j++) {
-            p->mUnk_18[q->mUnk_00[j]].mUnk_00 = v & x;
-            p->mUnk_18[(q->mUnk_00 + 12)[j]].mUnk_00 = w & x;
+            p->mUnk_18[q->mUnk_00[j]].mVisible = v & x;
+            p->mUnk_18[(q->mUnk_00 + 12)[j]].mVisible = w & x;
         }
-        p->mUnk_18[q->mUnk_00[1]].mUnk_00 &= *(s32 *) ((u8 *) gMultiSelectMemberGroup + r4 + 0x5c);
-        p->mUnk_18[q->mUnk_00[13]].mUnk_00 &= *(s32 *) ((u8 *) gMultiSelectMemberGroup + r4 + 0x5c);
+        p->mUnk_18[q->mUnk_00[1]].mVisible &= *(s32 *) ((u8 *) gMultiSelectMemberGroup + r4 + 0x5c);
+        p->mUnk_18[q->mUnk_00[13]].mVisible &= *(s32 *) ((u8 *) gMultiSelectMemberGroup + r4 + 0x5c);
         if (*(s32 *) ((u8 *) gMultiSelectMemberGroup + r4 + 0x5c) == 0) {
             y = TRUE;
         } else {
             y = FALSE;
         }
-        p->mUnk_18[q->mUnk_00[2]].mUnk_00 &= y;
+        p->mUnk_18[q->mUnk_00[2]].mVisible &= y;
         if (*(s32 *) ((u8 *) gMultiSelectMemberGroup + r4 + 0x5c) == 0) {
             y = TRUE;
         } else {
             y = FALSE;
         }
-        p->mUnk_18[q->mUnk_00[14]].mUnk_00 &= y;
+        p->mUnk_18[q->mUnk_00[14]].mVisible &= y;
         for (j = 0; j < 8; j++) {
             if (j == *(s32 *) (r4 + (s32) gMultiSelectMemberGroup + 0x60)) {
                 z = TRUE;
             } else {
                 z = FALSE;
             }
-            p->mUnk_18[(q->mUnk_00 + 4)[j]].mUnk_00 &= z;
-            p->mUnk_18[(q->mUnk_00 + 16)[j]].mUnk_00 &= z;
+            p->mUnk_18[(q->mUnk_00 + 4)[j]].mVisible &= z;
+            p->mUnk_18[(q->mUnk_00 + 16)[j]].mVisible &= z;
         }
         func_02124100(q->mUnk_30, t.mUnk_00[v], p->mUnk_14, p->mUnk_18, p->mUnk_0c);
         r4 += 0xc;
@@ -169,13 +169,13 @@ void func_0203003c(s32 a) {
     } else {
         v = 0;
     }
-    p->mUnk_18[89].mUnk_00 = v;
+    p->mUnk_18[89].mVisible = v;
     if (v == 0) {
         w = 1;
     } else {
         w = 0;
     }
-    p->mUnk_18[88].mUnk_00 = w;
+    p->mUnk_18[88].mVisible = w;
     func_02124100(4, t.mUnk_00[v], p->mUnk_14, p->mUnk_18, p->mUnk_0c);
 }
 

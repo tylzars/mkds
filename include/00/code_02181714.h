@@ -21,7 +21,7 @@ typedef struct WiFiTopMenu {
     /* 14 */ void *mHeap;
     /* 18 */ BOOL mUnk_18;
     // Table of cells built from the Bncl / Bnll by InitLayoutTable.
-    /* 1c */ Unk02124b1c *mWiFiTopMenuTable;
+    /* 1c */ LayoutTableEntry *mWiFiTopMenuTable;
     /* 20 */ struct Unk02021dc8 *mWiFiTopMenuSNcer;
     /* 24 */ struct Ncgr *mWiFiTopMenuSNcgr;
     /* 28 */ struct Nclr *mWiFiTopMenuSONclr;

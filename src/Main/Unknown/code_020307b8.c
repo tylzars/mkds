@@ -33,7 +33,7 @@ void func_020309d8(void) {
     o = gMultiSelectNS;
     n = func_02030a18(o->mBncl) + func_02030a10(o->mBnll);
     for (i = 0; i < n; i++) {
-        o->mUnk_18[i].mUnk_06 = gMultiSelectNS->mOffset;
+        o->mUnk_18[i].mOffsetY = gMultiSelectNS->mOffset;
     }
 }
 
@@ -63,13 +63,13 @@ void RefreshMultiSelectNS(s32 a) {
             v = z1;
         }
         q = data_02153d20[i];
-        o->mUnk_18[q[0]].mUnk_00 = v;
+        o->mUnk_18[q[0]].mVisible = v;
         if (v == 0) {
             w = 1;
         } else {
             w = z2;
         }
-        o->mUnk_18[q[1]].mUnk_00 = w;
+        o->mUnk_18[q[1]].mVisible = w;
         func_02124100(q[2], t[v], o->mBnll, o->mUnk_18, o->mBncl);
     }
 }

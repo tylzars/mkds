@@ -136,8 +136,8 @@ void InitMenu(void) {
         menu = data_0217b43c;
         func_02124a98(4, 1, menu->mSinglePlaySelectModeSNcer, menu->mSinglePlaySelectModeSBncl);
     }
-    func_0202b8d8();
-    func_0202c65c(func_020cb99c(), data_0217b43c->mMainOam);
+    LoadPlayerEntryListFiles();
+    InitPlayerEntryList(func_020cb99c(), data_0217b43c->mMainOam);
     data_0217b43c->mUnk_954 = func_0203bedc(func_020cb99c());
     func_020cc18c(0x10);
     SetSubDispcntBits(0x10);

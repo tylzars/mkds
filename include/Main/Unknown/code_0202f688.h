@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_020b3f7c.h" // Bmg
 #include "code_0201ea58.h" // Unk0201ea30
-#include "Main/Unknown/code_02124094.h" // Unk02124b1c
+#include "Main/Unknown/code_02124094.h" // LayoutTableEntry
 
 // Seven words at 0x24 of MultiSelectMemberGroup, passed by address to LocateCellFileSet, func_02025a50 and
 // func_02025a00.
@@ -14,7 +14,7 @@ typedef struct Unk02174e50_24 {
     /* 0c */ struct Unk0201ea30 *mUnk_0c;
     /* 10 */ Unk0201ea30 *mUnk_10;
     /* 14 */ struct Unk0201ea30 *mUnk_14;
-    /* 18 */ Unk02124b1c *mUnk_18;
+    /* 18 */ LayoutTableEntry *mUnk_18;
 } Unk02174e50_24;
 
 // 12-byte entries at 0x58 of MultiSelectMemberGroup.
@@ -61,7 +61,7 @@ typedef struct MultiSelectNS {
     /* 0c */ Unk0201ea30 *mBncl;
     /* 10 */ void *mBnbl;
     /* 14 */ Unk0201ea30 *mBnll;
-    /* 18 */ Unk02124b1c *mUnk_18;
+    /* 18 */ LayoutTableEntry *mUnk_18;
     /* 1c */ void *mUnk_1c;
     /* 20 */ void *mUnk_20;
     /* 24 */ void *mBannerMessages;

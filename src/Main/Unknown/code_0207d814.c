@@ -207,8 +207,8 @@ void PickKartAiRaceStart(struct Unk02089a24 *a, struct KartAi *b) {
     }
     r6 = FALSE;
     r = GetKartAiRandom();
-    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    r4 = (s16) (u16) (r->mUnk_00 >> 52);
+    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+    r4 = (s16) (u16) (r->mValue >> 52);
     r5 = GetKartAiTableIndex(b->mIndex);
     u = GetKart(b->mIndex)->mAi;
     if (u->mUnk_154 != 0) {
@@ -455,8 +455,8 @@ u16 PickKartAiRaceStartBoost(s32 a) {
         i = 2;
     } else {
         r = GetKartAiRandom();
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        i = (u16) (((r->mUnk_00 >> 32) * 3) >> 32);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        i = (u16) (((r->mValue >> 32) * 3) >> 32);
     }
     switch (gRaceSetup->mCpuDifficulty) {
         case CPU_DIFFICULTY_EASY:

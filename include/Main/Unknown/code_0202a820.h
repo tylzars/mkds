@@ -10,33 +10,33 @@ typedef struct WiFiVSCourseSelect {
     // mWiFiVSCourseSelectMParts and mWiFiVSCourseSelectSParts are also walked as a two-element array from the M one.
     /* 048 */ CellFileSet mWiFiVSCourseSelectMParts;
     /* 064 */ CellFileSet mWiFiVSCourseSelectSParts;
-    /* 080 */ void *mUnk_080[2];
+    /* 080 */ void *mOamLists[2];
     /* 088 */ struct Bmg *mCommonMessages;
     /* 08c */ struct Bmg *mWiFiMessages;
     /* 090 */ void *mHeap;
-    /* 094 */ Unk020f41c4_B mUnk_094;
+    /* 094 */ Unk020f41c4_B mRandom;
     /* 0ac */ s32 mState;
     /* 0b0 */ s32 mUnk_0b0;
-    /* 0b4 */ s32 mUnk_0b4;
-    /* 0b8 */ s32 mUnk_0b8;
-    /* 0bc */ s32 mUnk_0bc[4];
-    /* 0cc */ Interpolation mUnk_0cc[3];
-    /* 0fc */ Interpolation mUnk_0fc[4];
+    /* 0b4 */ s32 mEntryIndex;
+    /* 0b8 */ s32 mPlayerCount;
+    /* 0bc */ s32 mShownCourseIds[4];
+    /* 0cc */ Interpolation mInterpolations[3];
+    /* 0fc */ Interpolation mRowInterpolations[4];
     /* 13c */ s32 mStateFrames; /* counts only in states 3, 4, 5, 6 */
     /* 140 */ s32 mTimer;
-    /* 144 */ s32 mUnk_144;
-    /* 148 */ s32 mUnk_148;
+    /* 144 */ s32 mCourseId;
+    /* 148 */ s32 mCourseMessageIndex;
     /* 14c */ u16 mUnk_14c[4];
-    /* 154 */ s16 mUnk_154;
+    /* 154 */ s16 mSubOffsetY;
 } WiFiVSCourseSelect;
 
-// 8-byte entries of the tables at data_usa_021539f4 and data_usa_02153a14.
-typedef struct Unk021539f4 {
-    /* 00 */ s16 mUnk_00;
-    /* 02 */ s16 mUnk_02;
-    /* 04 */ s16 mUnk_04;
-    /* 06 */ s16 mUnk_06;
-} Unk021539f4;
+// 8-byte entries of the tables at gWiFiVSCourseSelectMLabelTextRows and gWiFiVSCourseSelectSLabelTextRows.
+typedef struct LabelTextRow {
+    /* 00 */ s16 mLabelIndex;
+    /* 02 */ s16 mWidth;
+    /* 04 */ s16 mHeight;
+    /* 06 */ s16 mCellIndex;
+} LabelTextRow;
 
 extern char gCommonBmgName3[];
 extern char gWiFiBmgName[];
@@ -59,21 +59,21 @@ extern char gWiFiVSCourseSelectSBnllName[];
 extern char gWiFiVSCourseSelectSBnblName[];
 
 s32 AdvanceWiFiVSCourseSelect(void);
-void InitWiFiVSCourseSelect(void *param_1, void *param_2, void *param_3);
+void InitWiFiVSCourseSelect(void *parentHeap, void *mainOam, void *subOam);
 
-extern u16 data_usa_021539d8[];
-extern u16 data_usa_021539e0[];
-extern Unk021539f4 data_usa_021539f4[];
-extern Unk021539f4 data_usa_02153a14[];
-extern s32 data_usa_02153a4c[];
+extern u16 gCourseRowCellIndices[];
+extern u16 gCourseTimerDigitCellIndices[];
+extern LabelTextRow gWiFiVSCourseSelectMLabelTextRows[];
+extern LabelTextRow gWiFiVSCourseSelectSLabelTextRows[];
+extern s32 gCourseIdTable[];
 
-void func_0202a820(void);
+void WriteWiFiVSCourseSelectRegisters(void);
 void ReleaseWiFiVSCourseSelect(void);
-s32 func_0202af60(void);
-void func_0202afe4(void);
-void func_0202b100(void);
-void func_0202b264(void);
-void func_0202b2bc(void);
+s32 PickRandomCourseIndexNotRaced(void);
+void AdvanceWiFiVSCourseSelectTimer(void);
+void AdvancePickedCourseRows(void);
+void AdvanceSubCellsOffsetY(void);
+void ShowWiFiSessionCourse(void);
 void func_0202b3f4(void);
-void func_0202b4bc(s32 a, s32 b, s32 c, s32 d);
-void func_0202b554(s32 a, s32 b);
+void RefreshCourseListRows(s32 action, s32 slot, s32 row, s32 selectedSlot);
+void WriteKartPositionAndCount(s32 position, s32 kartCount);

@@ -36,9 +36,9 @@ void PickRandomKarts(u8 *rawPicks) {
     } else {
         firstTick = OS_GetTick();
         secondTick = OS_GetTick();
-        localRandom.mUnk_00 = ((u32) firstTick << 24) + (u32) (secondTick >> 8);
-        localRandom.mUnk_08 = 0x5d588b656c078965;
-        localRandom.mUnk_10 = 0x269ec3;
+        localRandom.mValue = ((u32) firstTick << 24) + (u32) (secondTick >> 8);
+        localRandom.mMultiplier = 0x5d588b656c078965;
+        localRandom.mIncrement = 0x269ec3;
         random = &localRandom;
     }
     for (entry = 0; entry < 8; entry++) {
@@ -71,11 +71,11 @@ void PickRandomKarts(u8 *rawPicks) {
             if (candidateCount == 0) {
                 pick = 0;
             } else {
-                random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
+                random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
                 if (candidateCount == 0) {
-                    pick = random->mUnk_00 >> 32;
+                    pick = random->mValue >> 32;
                 } else {
-                    pick = ((random->mUnk_00 >> 32) * candidateCount) >> 32;
+                    pick = ((random->mValue >> 32) * candidateCount) >> 32;
                 }
             }
             seen = 0;
@@ -130,9 +130,9 @@ void PickRandomCharacters(u8 *rawPicks) {
     } else {
         firstTick = OS_GetTick();
         secondTick = OS_GetTick();
-        localRandom.mUnk_00 = ((u32) firstTick << 24) + (u32) (secondTick >> 8);
-        localRandom.mUnk_08 = 0x5d588b656c078965;
-        localRandom.mUnk_10 = 0x269ec3;
+        localRandom.mValue = ((u32) firstTick << 24) + (u32) (secondTick >> 8);
+        localRandom.mMultiplier = 0x5d588b656c078965;
+        localRandom.mIncrement = 0x269ec3;
         random = &localRandom;
     }
     for (character = 0; character < 0xd; character++) {
@@ -172,11 +172,11 @@ void PickRandomCharacters(u8 *rawPicks) {
             if (availableCount == 0) {
                 pick = seen;
             } else {
-                random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
+                random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
                 if (availableCount == 0) {
-                    pick = random->mUnk_00 >> 32;
+                    pick = random->mValue >> 32;
                 } else {
-                    pick = ((random->mUnk_00 >> 32) * availableCount) >> 32;
+                    pick = ((random->mValue >> 32) * availableCount) >> 32;
                 }
             }
             for (candidate = 0; candidate < 0xd && pickedCharacter == -1; candidate++) {

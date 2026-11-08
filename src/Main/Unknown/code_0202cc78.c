@@ -3,14 +3,14 @@
 
 #pragma thumb on
 
-s32 func_0202cc8c(void) {
+s32 GetTimerTensCellIndex(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         return 0x38;
     }
     return 0x39;
 }
 
-s32 func_0202cc78(void) {
+s32 GetTimerOnesCellIndex(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         return 0x39;
     }

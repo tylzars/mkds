@@ -98,14 +98,14 @@ void SetupRecordGpxValues(s32 a) {
     u8 *p;
 
     k = GetGrandPrixRecordCupRank(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
-    gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[a]].mUnk_00 = 1;
+    gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[a]].mVisible = 1;
     func_02124748(data_ov001_021a66a4[gRecordGpx->mIndex], (gRecordGpx->mRecordTrophyONcer),
                   (gRecordGpx->mRecordTrophyONcgr), (gRecordGpx->mRecordTrophySOBncl), 1, data_ov001_021a666c[a],
                   (gRecordGpx->mRecordGpxSNcer), (gRecordGpx->mRecordGpxSBncl));
     func_02124a20(data_ov001_021a666c[a], (u8) data_ov001_021a6604[k], gRecordGpx->mRecordGpxSNcer,
                   gRecordGpx->mRecordGpxSBncl);
     k = GetGrandPrixRecordCharacterIndex(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
-    gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[a][0]].mUnk_00 = 1;
+    gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[a][0]].mVisible = 1;
     func_02124748(data_ov001_021a66e4[k], (gRecordGpx->mPlayerCharacterMNcer), (gRecordGpx->mPlayerCharacterMNcgr),
                   (gRecordGpx->mPlayerCharacterMBncl), 1, data_ov001_021a6674[a][0], (gRecordGpx->mRecordGpxSNcer),
                   (gRecordGpx->mRecordGpxSBncl));
@@ -116,66 +116,66 @@ void SetupRecordGpxValues(s32 a) {
                          << 5),
                     0x20);
     k = GetGrandPrixRecordKartIndex(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
-    gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[a][1]].mUnk_00 = 1;
+    gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[a][1]].mVisible = 1;
     QueueKartIcon(k, gRecordGpx->mRecordGpxSNcer, gRecordGpx->mRecordGpxSBncl, data_ov001_021a6674[a][1],
                   data_ov001_021a668c[a], 1);
     count = gRecordGpx->mRecordGpxSBncl->mUnk_06;
     GetGrandPrixRecordTime(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a], &value);
     func_02116b8c(&value, buf);
-    gRecordGpx->mRecordGpxSTable[count + data_ov001_021a6614[a]].mUnk_00 = 1;
+    gRecordGpx->mRecordGpxSTable[count + data_ov001_021a6614[a]].mVisible = 1;
     func_02124224(1, data_ov001_021a6614[a], gRecordGpx->mRecordGpxSBnll, buf, gRecordGpx->mRecordGpxSBncl,
                   gRecordGpx->mRecordGpxSTable, 7);
     y = (u16) func_02060390(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
     func_02124fac(y, buf);
-    gRecordGpx->mRecordGpxSTable[count + data_ov001_021a662c[a]].mUnk_00 = 1;
+    gRecordGpx->mRecordGpxSTable[count + data_ov001_021a662c[a]].mVisible = 1;
     func_02124248(1, data_ov001_021a662c[a], gRecordGpx->mRecordGpxSBnll, buf, gRecordGpx->mRecordGpxSBncl,
                   gRecordGpx->mRecordGpxSTable, 7);
     for (i = 0; i < 3; i++) {
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[a][i]].mUnk_00 = 0;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[a][i]].mVisible = 0;
     }
     switch (y) {
         case 0:
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[a][0]].mUnk_00 = 1;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[a][0]].mVisible = 1;
             break;
         case 1:
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[a][1]].mUnk_00 = 1;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[a][1]].mVisible = 1;
             break;
         default:
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[a][2]].mUnk_00 = 1;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[a][2]].mVisible = 1;
             break;
     }
-    gRecordGpx->mRecordGpxSTable[count + data_ov001_021a663c[a]].mUnk_00 = 0;
+    gRecordGpx->mRecordGpxSTable[count + data_ov001_021a663c[a]].mVisible = 0;
     for (i = 0; i < 3; i++) {
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[a][i]].mUnk_00 = 0;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[a][i]].mVisible = 0;
     }
     z = func_02060364(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
     if (z < 5) {
-        gRecordGpx->mRecordGpxSTable[count + data_ov001_021a663c[a]].mUnk_00 = 1;
+        gRecordGpx->mRecordGpxSTable[count + data_ov001_021a663c[a]].mVisible = 1;
         func_0212426c(1, data_ov001_021a663c[a], gRecordGpx->mRecordGpxSBnll, data_ov001_021a8280[z],
                       gRecordGpx->mRecordGpxSBncl, gRecordGpx->mRecordGpxSTable);
     } else {
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[a][z - 5]].mUnk_00 = 1;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[a][z - 5]].mVisible = 1;
     }
 }
 
 void SetupRecordGpxDashes(s32 a) {
     s32 i;
 
-    gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[a]].mUnk_00 = 0;
-    gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[a][0]].mUnk_00 = 0;
-    gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[a][1]].mUnk_00 = 0;
+    gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[a]].mVisible = 0;
+    gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[a][0]].mVisible = 0;
+    gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[a][1]].mVisible = 0;
     func_02124224(1, data_ov001_021a6614[a], gRecordGpx->mRecordGpxSBnll, L"--:--:---", gRecordGpx->mRecordGpxSBncl,
                   gRecordGpx->mRecordGpxSTable, 7);
     func_02124248(1, data_ov001_021a662c[a], gRecordGpx->mRecordGpxSBnll, L"--", gRecordGpx->mRecordGpxSBncl,
                   gRecordGpx->mRecordGpxSTable, 7);
     for (i = 0; i < 3; i++) {
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[a][i]].mUnk_00 = 0;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[a][i]].mVisible = 0;
     }
     if (a != 3 || func_ov001_02194d04(gRecordGpx->mIndex) != 0) {
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[a][0]].mUnk_00 = 1;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[a][0]].mVisible = 1;
     }
     for (i = 0; i < 3; i++) {
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[a][i]].mUnk_00 = 0;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[a][i]].mVisible = 0;
     }
     func_0212426c(1, data_ov001_021a663c[a], gRecordGpx->mRecordGpxSBnll, L"-", gRecordGpx->mRecordGpxSBncl,
                   gRecordGpx->mRecordGpxSTable);
@@ -186,16 +186,16 @@ void SetupRecordGpxDashes(s32 a) {
 void AdvanceRecordGpxOffsetTimers(void) {
     s32 i;
 
-    gRecordGpx->mRecordGpxSTable[data_ov001_021a65fc[0]].mUnk_04 = -func_020adc64(6 - gRecordGpx->mOffsetTimers[0]);
-    gRecordGpx->mRecordGpxSTable[data_ov001_021a65fc[1]].mUnk_04 = func_020adc64(6 - gRecordGpx->mOffsetTimers[1]);
+    gRecordGpx->mRecordGpxSTable[data_ov001_021a65fc[0]].mOffsetX = -func_020adc64(6 - gRecordGpx->mOffsetTimers[0]);
+    gRecordGpx->mRecordGpxSTable[data_ov001_021a65fc[1]].mOffsetX = func_020adc64(6 - gRecordGpx->mOffsetTimers[1]);
     for (i = 0; i < 2; i++) {
         if (gRecordGpx->mOffsetTimers[i] > 0) {
             gRecordGpx->mOffsetTimers[i]--;
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a6600[i]].mUnk_00 = 0;
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a65fc[i]].mUnk_00 = 1;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a6600[i]].mVisible = 0;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a65fc[i]].mVisible = 1;
         } else {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a6600[i]].mUnk_00 = 1;
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a65fc[i]].mUnk_00 = 0;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a6600[i]].mVisible = 1;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a65fc[i]].mVisible = 0;
         }
     }
 }
@@ -210,24 +210,24 @@ void SetupRecordGpx(void) {
     n = gRecordGpx->mRecordGpxSBncl->mUnk_06;
     if (func_ov001_02194d04(gRecordGpx->mIndex) != 0) {
         CallQueueAppend(0x1b, 0x3c6, OFFSET_PTR(u8, gRecordGpx->mRecordGpxSNscr, 0xc) + 0x3c6, 0x134);
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[3]].mUnk_00 = 1;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[3]].mVisible = 1;
         for (i = 0; i < 3; i++) {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[3][i]].mUnk_00 = 1;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[3][i]].mVisible = 1;
         }
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[3]].mUnk_00 = 1;
-        gRecordGpx->mRecordGpxSTable[n + data_ov001_021a6614[3]].mUnk_00 = 1;
-        gRecordGpx->mRecordGpxSTable[n + data_ov001_021a662c[3]].mUnk_00 = 1;
-        gRecordGpx->mRecordGpxSTable[n + data_ov001_021a663c[3]].mUnk_00 = 1;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[3]].mVisible = 1;
+        gRecordGpx->mRecordGpxSTable[n + data_ov001_021a6614[3]].mVisible = 1;
+        gRecordGpx->mRecordGpxSTable[n + data_ov001_021a662c[3]].mVisible = 1;
+        gRecordGpx->mRecordGpxSTable[n + data_ov001_021a663c[3]].mVisible = 1;
     } else {
         CallQueueAppend(0x1b, 0x3c6, (u8 *) gRecordGpx->mZeroBuffer + 0x3c6, 0x134);
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[3]].mUnk_00 = 0;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[3]].mVisible = 0;
         for (i = 0; i < 3; i++) {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[3][i]].mUnk_00 = 0;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[3][i]].mVisible = 0;
         }
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[3]].mUnk_00 = 0;
-        gRecordGpx->mRecordGpxSTable[n + data_ov001_021a6614[3]].mUnk_00 = 0;
-        gRecordGpx->mRecordGpxSTable[n + data_ov001_021a662c[3]].mUnk_00 = 0;
-        gRecordGpx->mRecordGpxSTable[n + data_ov001_021a663c[3]].mUnk_00 = 0;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[3]].mVisible = 0;
+        gRecordGpx->mRecordGpxSTable[n + data_ov001_021a6614[3]].mVisible = 0;
+        gRecordGpx->mRecordGpxSTable[n + data_ov001_021a662c[3]].mVisible = 0;
+        gRecordGpx->mRecordGpxSTable[n + data_ov001_021a663c[3]].mVisible = 0;
     }
     d = gRecordGpx;
     v = func_02124a68(1, (d->mRecordGpxMNcer), (d->mRecordGpxMBncl));
@@ -312,39 +312,39 @@ void func_ov001_02194a50(void) {
     gRecordGpx->mBg3OffsetX = ~0xff;
     count0 = gRecordGpx->mRecordGpxMBncl->mUnk_06;
     count1 = gRecordGpx->mRecordGpxSBncl->mUnk_06;
-    gRecordGpx->mRecordGpxMTable[0].mUnk_04 = 0x100;
-    gRecordGpx->mRecordGpxMTable[1].mUnk_04 = 0x100;
-    gRecordGpx->mRecordGpxMTable[count0].mUnk_04 = 0x100;
-    gRecordGpx->mRecordGpxSTable[44].mUnk_04 = 0x100;
-    gRecordGpx->mRecordGpxSTable[45].mUnk_04 = 0x100;
+    gRecordGpx->mRecordGpxMTable[0].mOffsetX = 0x100;
+    gRecordGpx->mRecordGpxMTable[1].mOffsetX = 0x100;
+    gRecordGpx->mRecordGpxMTable[count0].mOffsetX = 0x100;
+    gRecordGpx->mRecordGpxSTable[44].mOffsetX = 0x100;
+    gRecordGpx->mRecordGpxSTable[45].mOffsetX = 0x100;
     for (i = 0; i < 4; i++) {
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[i]].mUnk_04 = 0x100;
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[i]].mUnk_06 = gRecordGpx->mBg3OffsetY;
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[i]].mUnk_04 = 0x100;
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[i]].mUnk_06 = gRecordGpx->mBg3OffsetY;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[i]].mOffsetX = 0x100;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[i]].mOffsetY = gRecordGpx->mBg3OffsetY;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[i]].mOffsetX = 0x100;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[i]].mOffsetY = gRecordGpx->mBg3OffsetY;
         for (j = 0; j < 3; j++) {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[i][j]].mUnk_04 = 0x100;
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[i][j]].mUnk_06 = gRecordGpx->mBg3OffsetY;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[i][j]].mOffsetX = 0x100;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[i][j]].mOffsetY = gRecordGpx->mBg3OffsetY;
         }
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[i]].mUnk_04 = 0x100;
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[i]].mUnk_06 = gRecordGpx->mBg3OffsetY;
-        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a6614[i]].mUnk_04 = 0x100;
-        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a6614[i]].mUnk_06 = gRecordGpx->mBg3OffsetY;
-        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a662c[i]].mUnk_04 = 0x100;
-        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a662c[i]].mUnk_06 = gRecordGpx->mBg3OffsetY;
-        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a663c[i]].mUnk_04 = 0x100;
-        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a663c[i]].mUnk_06 = gRecordGpx->mBg3OffsetY;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[i]].mOffsetX = 0x100;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[i]].mOffsetY = gRecordGpx->mBg3OffsetY;
+        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a6614[i]].mOffsetX = 0x100;
+        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a6614[i]].mOffsetY = gRecordGpx->mBg3OffsetY;
+        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a662c[i]].mOffsetX = 0x100;
+        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a662c[i]].mOffsetY = gRecordGpx->mBg3OffsetY;
+        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a663c[i]].mOffsetX = 0x100;
+        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a663c[i]].mOffsetY = gRecordGpx->mBg3OffsetY;
         for (j = 0; j < 3; j++) {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[i][j]].mUnk_04 = 0x100;
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[i][j]].mUnk_06 = gRecordGpx->mBg3OffsetY;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[i][j]].mOffsetX = 0x100;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[i][j]].mOffsetY = gRecordGpx->mBg3OffsetY;
         }
         for (j = 0; j < 2; j++) {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[i][j]].mUnk_04 = 0x100;
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[i][j]].mUnk_06 = gRecordGpx->mBg3OffsetY;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[i][j]].mOffsetX = 0x100;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[i][j]].mOffsetY = gRecordGpx->mBg3OffsetY;
         }
     }
     for (i = 0; i < 2; i++) {
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a65fc[i]].mUnk_00 = 0;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a65fc[i]].mVisible = 0;
     }
 }
 
@@ -488,26 +488,26 @@ void AdvanceRecordGpxState1(void) {
     gRecordGpx->mBg3OffsetX = v;
     a = gRecordGpx->mRecordGpxMBncl->mUnk_06;
     b = gRecordGpx->mRecordGpxSBncl->mUnk_06;
-    gRecordGpx->mRecordGpxMTable[0].mUnk_04 = v;
-    gRecordGpx->mRecordGpxMTable[1].mUnk_04 = v;
-    gRecordGpx->mRecordGpxMTable[a].mUnk_04 = v;
-    gRecordGpx->mRecordGpxSTable[0x2c].mUnk_04 = v;
-    gRecordGpx->mRecordGpxSTable[0x2d].mUnk_04 = v;
+    gRecordGpx->mRecordGpxMTable[0].mOffsetX = v;
+    gRecordGpx->mRecordGpxMTable[1].mOffsetX = v;
+    gRecordGpx->mRecordGpxMTable[a].mOffsetX = v;
+    gRecordGpx->mRecordGpxSTable[0x2c].mOffsetX = v;
+    gRecordGpx->mRecordGpxSTable[0x2d].mOffsetX = v;
     for (i = 0; i < 4; i++) {
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[i]].mUnk_04 = v;
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[i]].mUnk_04 = v;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[i]].mOffsetX = v;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[i]].mOffsetX = v;
         for (j = 0; j < 3; j++) {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[i][j]].mUnk_04 = v;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[i][j]].mOffsetX = v;
         }
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[i]].mUnk_04 = v;
-        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a6614[i]].mUnk_04 = v;
-        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a662c[i]].mUnk_04 = v;
-        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a663c[i]].mUnk_04 = v;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[i]].mOffsetX = v;
+        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a6614[i]].mOffsetX = v;
+        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a662c[i]].mOffsetX = v;
+        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a663c[i]].mOffsetX = v;
         for (j = 0; j < 3; j++) {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[i][j]].mUnk_04 = v;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[i][j]].mOffsetX = v;
         }
         for (j = 0; j < 2; j++) {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[i][j]].mUnk_04 = v;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[i][j]].mOffsetX = v;
         }
     }
     if (gRecordGpx->mStateFrames >= 10) {
@@ -610,24 +610,24 @@ void AdvanceRecordGpxState3(void) {
     gRecordGpx->mBg3OffsetX = v;
     a = gRecordGpx->mRecordGpxMBncl->mUnk_06;
     b = gRecordGpx->mRecordGpxSBncl->mUnk_06;
-    gRecordGpx->mRecordGpxMTable[0].mUnk_04 = v;
-    gRecordGpx->mRecordGpxMTable[1].mUnk_04 = v;
-    gRecordGpx->mRecordGpxMTable[a].mUnk_04 = v;
+    gRecordGpx->mRecordGpxMTable[0].mOffsetX = v;
+    gRecordGpx->mRecordGpxMTable[1].mOffsetX = v;
+    gRecordGpx->mRecordGpxMTable[a].mOffsetX = v;
     for (i = 0; i < 4; i++) {
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[i]].mUnk_04 = v;
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[i]].mUnk_04 = v;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[i]].mOffsetX = v;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[i]].mOffsetX = v;
         for (j = 0; j < 3; j++) {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[i][j]].mUnk_04 = v;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[i][j]].mOffsetX = v;
         }
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[i]].mUnk_04 = v;
-        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a6614[i]].mUnk_04 = v;
-        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a662c[i]].mUnk_04 = v;
-        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a663c[i]].mUnk_04 = v;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[i]].mOffsetX = v;
+        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a6614[i]].mOffsetX = v;
+        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a662c[i]].mOffsetX = v;
+        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a663c[i]].mOffsetX = v;
         for (j = 0; j < 3; j++) {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[i][j]].mUnk_04 = v;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[i][j]].mOffsetX = v;
         }
         for (j = 0; j < 2; j++) {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[i][j]].mUnk_04 = v;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[i][j]].mOffsetX = v;
         }
     }
     if (gRecordGpx->mStateFrames >= 10) {
@@ -657,24 +657,24 @@ void AdvanceRecordGpxState4(void) {
     gRecordGpx->mBg3OffsetX = v;
     a = gRecordGpx->mRecordGpxMBncl->mUnk_06;
     b = gRecordGpx->mRecordGpxSBncl->mUnk_06;
-    gRecordGpx->mRecordGpxMTable[0].mUnk_04 = v;
-    gRecordGpx->mRecordGpxMTable[1].mUnk_04 = v;
-    gRecordGpx->mRecordGpxMTable[a].mUnk_04 = v;
+    gRecordGpx->mRecordGpxMTable[0].mOffsetX = v;
+    gRecordGpx->mRecordGpxMTable[1].mOffsetX = v;
+    gRecordGpx->mRecordGpxMTable[a].mOffsetX = v;
     for (i = 0; i < 4; i++) {
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[i]].mUnk_04 = v;
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[i]].mUnk_04 = v;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[i]].mOffsetX = v;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[i]].mOffsetX = v;
         for (j = 0; j < 3; j++) {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[i][j]].mUnk_04 = v;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[i][j]].mOffsetX = v;
         }
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[i]].mUnk_04 = v;
-        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a6614[i]].mUnk_04 = v;
-        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a662c[i]].mUnk_04 = v;
-        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a663c[i]].mUnk_04 = v;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[i]].mOffsetX = v;
+        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a6614[i]].mOffsetX = v;
+        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a662c[i]].mOffsetX = v;
+        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a663c[i]].mOffsetX = v;
         for (j = 0; j < 3; j++) {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[i][j]].mUnk_04 = v;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[i][j]].mOffsetX = v;
         }
         for (j = 0; j < 2; j++) {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[i][j]].mUnk_04 = v;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[i][j]].mOffsetX = v;
         }
     }
     if (gRecordGpx->mStateFrames >= 10) {
@@ -694,26 +694,26 @@ void AdvanceRecordGpxState5(void) {
     gRecordGpx->mBg3OffsetX = v;
     a = gRecordGpx->mRecordGpxMBncl->mUnk_06;
     b = gRecordGpx->mRecordGpxSBncl->mUnk_06;
-    gRecordGpx->mRecordGpxMTable[0].mUnk_04 = v;
-    gRecordGpx->mRecordGpxMTable[1].mUnk_04 = v;
-    gRecordGpx->mRecordGpxMTable[a].mUnk_04 = v;
-    gRecordGpx->mRecordGpxSTable[0x2c].mUnk_04 = v;
-    gRecordGpx->mRecordGpxSTable[0x2d].mUnk_04 = v;
+    gRecordGpx->mRecordGpxMTable[0].mOffsetX = v;
+    gRecordGpx->mRecordGpxMTable[1].mOffsetX = v;
+    gRecordGpx->mRecordGpxMTable[a].mOffsetX = v;
+    gRecordGpx->mRecordGpxSTable[0x2c].mOffsetX = v;
+    gRecordGpx->mRecordGpxSTable[0x2d].mOffsetX = v;
     for (i = 0; i < 4; i++) {
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[i]].mUnk_04 = v;
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[i]].mUnk_04 = v;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[i]].mOffsetX = v;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[i]].mOffsetX = v;
         for (j = 0; j < 3; j++) {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[i][j]].mUnk_04 = v;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[i][j]].mOffsetX = v;
         }
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[i]].mUnk_04 = v;
-        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a6614[i]].mUnk_04 = v;
-        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a662c[i]].mUnk_04 = v;
-        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a663c[i]].mUnk_04 = v;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[i]].mOffsetX = v;
+        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a6614[i]].mOffsetX = v;
+        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a662c[i]].mOffsetX = v;
+        gRecordGpx->mRecordGpxSTable[b + data_ov001_021a663c[i]].mOffsetX = v;
         for (j = 0; j < 3; j++) {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[i][j]].mUnk_04 = v;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[i][j]].mOffsetX = v;
         }
         for (j = 0; j < 2; j++) {
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[i][j]].mUnk_04 = v;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[i][j]].mOffsetX = v;
         }
     }
     if (gRecordGpx->mStateFrames >= 10) {

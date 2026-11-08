@@ -6,25 +6,25 @@
 #pragma thumb on
 #pragma optimize_for_size on
 void func_020cb340(void) {
-    Unk02124b1c *subCells;
+    LayoutTableEntry *subCells;
     s32 selectedIndex;
     s32 i;
 
     subCells = data_0217b43c->mSinglePlaySelectModeSLayoutTable;
     selectedIndex = data_0217b43c->mSinglePlaySelectModeIndex;
     for (i = 0; i <= 9; i++) {
-        subCells[i].mUnk_00 = 1;
+        subCells[i].mVisible = 1;
     }
     for (i = 10; i <= 14; i++) {
-        subCells[i].mUnk_00 = 0;
+        subCells[i].mVisible = 0;
     }
     if (GetMenuScreenNumber() != 3 || data_0217b43c->mUnk_934 == FALSE || GetFramesSinceMenuScreenSwitch() >= 5) {
-        subCells[selectedIndex + 5].mUnk_00 = 0;
-        subCells[selectedIndex + 10].mUnk_00 = 1;
+        subCells[selectedIndex + 5].mVisible = 0;
+        subCells[selectedIndex + 10].mVisible = 1;
     }
     if (data_0217b43c->mScreenNumber == 3) {
-        subCells[selectedIndex].mUnk_04 = data_0217b43c->mUnk_938;
-        subCells[selectedIndex + 5].mUnk_04 = data_0217b43c->mUnk_938;
-        subCells[selectedIndex + 10].mUnk_04 = data_0217b43c->mUnk_938;
+        subCells[selectedIndex].mOffsetX = data_0217b43c->mUnk_938;
+        subCells[selectedIndex + 5].mOffsetX = data_0217b43c->mUnk_938;
+        subCells[selectedIndex + 10].mOffsetX = data_0217b43c->mUnk_938;
     }
 }

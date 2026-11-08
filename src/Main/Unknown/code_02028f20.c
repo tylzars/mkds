@@ -19,14 +19,14 @@ void func_02028fac(void) {
         parts = &gSelectKart->mSelectKartSParts;
         count = func_02029000(parts->mUnk_0c) + func_02028ff8(parts->mUnk_14);
         for (i = 0; i < count; i++) {
-            parts->mUnk_18[i].mUnk_06 = GetInterpolatedValue(&gSelectKart->mInterpolations[4]);
+            parts->mUnk_18[i].mOffsetY = GetInterpolatedValue(&gSelectKart->mInterpolations[4]);
         }
     }
 }
 
 u32 func_02028f84(void) {
     u32 r = 0;
-    if (gSelectKart->mMode != 0 && func_0202b8c0() != 0) {
+    if (gSelectKart->mMode != 0 && IsPlayerEntryListTimerZero() != 0) {
         r = 1;
     }
     return r;

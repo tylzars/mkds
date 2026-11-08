@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02124094.h" // Unk02124b1c, Unk0201ea30
+#include "Main/Unknown/code_02124094.h" // LayoutTableEntry, Unk0201ea30
 
 struct Unk02021dc8;
 struct Ncgr;
@@ -18,7 +18,7 @@ typedef struct WiFiAikotobaCheck {
     /* 28 */ s32 mPendingWiFiState;
     /* 2c */ void *mHeap;
     // Table of cells built from the Bncl / Bnll by InitLayoutTable.
-    /* 30 */ Unk02124b1c *mWiFiAikotobaCheckTable;
+    /* 30 */ LayoutTableEntry *mWiFiAikotobaCheckTable;
     /* 34 */ struct Unk02021dc8 *mWiFiAikotobaCheckMNcer;
     /* 38 */ struct Ncgr *mWiFiAikotobaCheckMNcgr;
     /* 3c */ struct Nclr *mWiFiAikotobaCheckMONclr;

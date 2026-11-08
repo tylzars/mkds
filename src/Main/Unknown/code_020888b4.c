@@ -131,8 +131,8 @@ void func_02089a24(KartAi *a, Unk02089a24 *b) {
         return;
     }
     r = GetKartAiRandom();
-    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    v = (s16) (u16) (r->mUnk_00 >> 52);
+    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+    v = (s16) (u16) (r->mValue >> 52);
     t = 0x333;
     switch (gRaceSetup->mCpuDifficulty) {
         case CPU_DIFFICULTY_NORMAL:
@@ -219,8 +219,8 @@ void SetupBattleKartAi(KartAi *p, Kart *q) {
         t = data_0217b030;
         k = 0;
         r = GetKartAiRandom();
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (s16) (u16) (r->mUnk_00 >> 52);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (s16) (u16) (r->mValue >> 52);
         for (j = 0; j < 3; j++) {
             if (t->mUnk_00[j] > 0 && v <= t->mUnk_00[j]) {
                 k = j + 1;
@@ -339,11 +339,11 @@ void AdvanceBattleKartAiSideOffset(KartAi *p) {
     if (p->mUnk_6c > p->mUnk_6e) {
         p->mUnk_6c = 0;
         r = GetKartAiRandom();
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
         p->mUnk_6e = 0;
         r = GetKartAiRandom();
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        a = (s16) (u16) (r->mUnk_00 >> 52);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        a = (s16) (u16) (r->mValue >> 52);
         t = (s32) (((s64) a * 0x2000 + 0x800) >> 12) - 0x1000;
         u = ((s64) t * 0x4ce + 0x800) >> 12;
         n = p->mSideOffsetRatio + u;
@@ -535,8 +535,8 @@ void PickKartAiBalloonCountGoal(KartAi *p) {
     s16 k = 0;
 
     r = GetKartAiRandom();
-    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    v = (s16) (u16) (r->mUnk_00 >> 52);
+    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+    v = (s16) (u16) (r->mValue >> 52);
     for (j = 0; j < 3; j++) {
         if (t[j] > 0 && v <= t[j]) {
             k = j + 1;

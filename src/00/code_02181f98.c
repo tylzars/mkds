@@ -587,22 +587,22 @@ void func_ov000_02182270(void) {
     v = gWiFiVSSetting->mWiFiVSSettingBncl->mUnk_06;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < data_ov000_021b0600[i]; j++) {
-            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][j]].mUnk_04 = gWiFiVSSetting->mRowOffsets[i][0];
-            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][j]].mUnk_06 = gWiFiVSSetting->mRowOffsets[i][1];
+            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][j]].mOffsetX = gWiFiVSSetting->mRowOffsets[i][0];
+            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][j]].mOffsetY = gWiFiVSSetting->mRowOffsets[i][1];
         }
     }
     for (i = 0; i < 3; i++) {
-        (gWiFiVSSetting->mWiFiVSSettingTable + v)[data_ov000_021b05e8[i]].mUnk_04 = gWiFiVSSetting->mRowOffsets[i][0];
-        (gWiFiVSSetting->mWiFiVSSettingTable + v)[data_ov000_021b05e8[i]].mUnk_06 = gWiFiVSSetting->mRowOffsets[i][1];
+        (gWiFiVSSetting->mWiFiVSSettingTable + v)[data_ov000_021b05e8[i]].mOffsetX = gWiFiVSSetting->mRowOffsets[i][0];
+        (gWiFiVSSetting->mWiFiVSSettingTable + v)[data_ov000_021b05e8[i]].mOffsetY = gWiFiVSSetting->mRowOffsets[i][1];
     }
     for (k = 0; k < 3; k++) {
-        (gWiFiVSSetting->mWiFiVSSettingTable + v)[1].mUnk_04 = gWiFiVSSetting->mRowOffsets[1][0];
-        (gWiFiVSSetting->mWiFiVSSettingTable + v)[1].mUnk_06 = gWiFiVSSetting->mRowOffsets[1][1];
+        (gWiFiVSSetting->mWiFiVSSettingTable + v)[1].mOffsetX = gWiFiVSSetting->mRowOffsets[1][0];
+        (gWiFiVSSetting->mWiFiVSSettingTable + v)[1].mOffsetY = gWiFiVSSetting->mRowOffsets[1][1];
     }
     for (i = 0; i < 3; i++) {
-        gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[i][0]].mUnk_04 -=
+        gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[i][0]].mOffsetX -=
             func_020adc64(6 - gWiFiVSSetting->mIndexDecrementTimer);
-        gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[i][1]].mUnk_04 +=
+        gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[i][1]].mOffsetX +=
             func_020adc64(6 - gWiFiVSSetting->mIndexIncrementTimer);
     }
 }
@@ -613,11 +613,11 @@ void func_ov000_021821e0(void) {
 
     for (i = 0; i < 3; i++) {
         if (i == gWiFiVSSetting->mRow && gWiFiVSSetting->mUnk_24 != FALSE) {
-            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][1]].mUnk_00 = 1;
+            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][1]].mVisible = 1;
             func_02124100(data_ov000_021b05e8[i], 14, gWiFiVSSetting->mWiFiVSSettingBnll,
                           gWiFiVSSetting->mWiFiVSSettingTable, gWiFiVSSetting->mWiFiVSSettingBncl);
         } else {
-            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][1]].mUnk_00 = z;
+            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][1]].mVisible = z;
             func_02124100(data_ov000_021b05e8[i], 15, gWiFiVSSetting->mWiFiVSSettingBnll,
                           gWiFiVSSetting->mWiFiVSSettingTable, gWiFiVSSetting->mWiFiVSSettingBncl);
         }
@@ -632,16 +632,16 @@ void func_ov000_02182150(void) {
     for (i = 0; i < 2; i++) {
         if (gWiFiVSSetting->mRow == 1) {
             if ((&gWiFiVSSetting->mIndexDecrementTimer)[i] > 0) {
-                gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[0][i]].mUnk_00 = 1;
-                gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[1][i]].mUnk_00 = 1;
+                gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[0][i]].mVisible = 1;
+                gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[1][i]].mVisible = 1;
                 (&gWiFiVSSetting->mIndexDecrementTimer)[i]--;
             } else {
-                gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[0][i]].mUnk_00 = y;
-                gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[1][i]].mUnk_00 = 1;
+                gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[0][i]].mVisible = y;
+                gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[1][i]].mVisible = 1;
             }
         } else {
-            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[0][i]].mUnk_00 = z;
-            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[1][i]].mUnk_00 = z;
+            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[0][i]].mVisible = z;
+            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[1][i]].mVisible = z;
         }
     }
 }

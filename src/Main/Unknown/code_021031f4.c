@@ -165,8 +165,8 @@ void AdvanceOrthoQuadCornersByVelocity(OrthoQuad *quad) {
     if ((quad->mTimer & 0xf) == 0) {
         Unk020f41c4_B *a = &gRaceProgress->mLocalRandom;
 
-        a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-        quad->mPickedCornerIndex = (u16) (((u64) (u32) (a->mUnk_00 >> 32) * 6) >> 32);
+        a->mValue = a->mMultiplier * a->mValue + a->mIncrement;
+        quad->mPickedCornerIndex = (u16) (((u64) (u32) (a->mValue >> 32) * 6) >> 32);
     }
 }
 
@@ -358,16 +358,16 @@ void SetupOrthoQuad(s32 index, Unk021035ac_Pair startPair, s32 overlap) {
     quad = &gOrthoQuads[index];
     random = &raceProgress->mLocalRandom;
     velocities = quad->mCornerVelocities;
-    random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
-    t = (s32) (u16) (((u64) (u32) (random->mUnk_00 >> 32) * 0x10000) >> 32) >> 4;
+    random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+    t = (s32) (u16) (((u64) (u32) (random->mValue >> 32) * 0x10000) >> 32) >> 4;
     c = gPairsByAngle[2 * t];
     s = gPairsByAngle[2 * t + 1];
     if (overlap != 0) {
-        random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
-        t = (s16) (((u64) (u32) (random->mUnk_00 >> 32) * 0xcd) >> 32) + 0x800;
+        random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+        t = (s16) (((u64) (u32) (random->mValue >> 32) * 0xcd) >> 32) + 0x800;
     } else {
-        random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
-        t = 0xa66 + (s16) (((u64) (u32) (random->mUnk_00 >> 32) * 0x52) >> 32);
+        random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+        t = 0xa66 + (s16) (((u64) (u32) (random->mValue >> 32) * 0x52) >> 32);
     }
     t = (s16) t;
     if (gOrthoQuadUseCreamEffect != 0) {
@@ -426,26 +426,26 @@ void StartOrthoQuads(s32 kartIndex, s32 count, s32 useCreamEffect) {
     m = 1;
     for (i = 0, placedCount = 0; i < 0x10 && placedCount < count; i++) {
         if (gOrthoQuadUseCreamEffect != 0) {
-            random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
-            startPair.mHalf.mUnk_00 = (s16) (((u64) (u32) (random->mUnk_00 >> 32) * 0x1000) >> 32) * 2;
-            random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
-            startPair.mHalf.mUnk_02 = (s16) (((u64) (u32) (random->mUnk_00 >> 32) * 0xc00) >> 32) * 2;
+            random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+            startPair.mHalf.mUnk_00 = (s16) (((u64) (u32) (random->mValue >> 32) * 0x1000) >> 32) * 2;
+            random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+            startPair.mHalf.mUnk_02 = (s16) (((u64) (u32) (random->mValue >> 32) * 0xc00) >> 32) * 2;
         } else if (gOrthoQuadCount == 0) {
-            random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
-            startPair.mHalf.mUnk_00 = ((u64) (u32) (random->mUnk_00 >> 32) * 0x1000) >> 32;
-            random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
+            random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+            startPair.mHalf.mUnk_00 = ((u64) (u32) (random->mValue >> 32) * 0x1000) >> 32;
+            random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
             startPair.mHalf.mUnk_00 =
-                startPair.mHalf.mUnk_00 + (s16) (((u64) (u32) (random->mUnk_00 >> 32) * 0x1000) >> 32);
-            random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
-            startPair.mHalf.mUnk_02 = ((u64) (u32) (random->mUnk_00 >> 32) * 0xc00) >> 32;
-            random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
+                startPair.mHalf.mUnk_00 + (s16) (((u64) (u32) (random->mValue >> 32) * 0x1000) >> 32);
+            random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+            startPair.mHalf.mUnk_02 = ((u64) (u32) (random->mValue >> 32) * 0xc00) >> 32;
+            random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
             startPair.mHalf.mUnk_02 =
-                startPair.mHalf.mUnk_02 + (s16) (((u64) (u32) (random->mUnk_00 >> 32) * 0xc00) >> 32);
+                startPair.mHalf.mUnk_02 + (s16) (((u64) (u32) (random->mValue >> 32) * 0xc00) >> 32);
         } else {
-            random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
-            startPair.mHalf.mUnk_00 = ((u64) (u32) (random->mUnk_00 >> 32) * 0x2000) >> 32;
-            random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
-            startPair.mHalf.mUnk_02 = ((u64) (u32) (random->mUnk_00 >> 32) * 0x1800) >> 32;
+            random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+            startPair.mHalf.mUnk_00 = ((u64) (u32) (random->mValue >> 32) * 0x2000) >> 32;
+            random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+            startPair.mHalf.mUnk_02 = ((u64) (u32) (random->mValue >> 32) * 0x1800) >> 32;
         }
         column = startPair.mHalf.mUnk_00 >> 10;
         row = startPair.mHalf.mUnk_02 >> 10;
@@ -709,8 +709,8 @@ void func_021031f4(ItemGesso *gesso) {
             }
             raceProgress = gRaceProgress;
             random = &raceProgress->mLocalRandom;
-            random->mUnk_00 = random->mUnk_08 * random->mUnk_00 + random->mUnk_10;
-            gesso->mUnk_130[i] = (u16) (((random->mUnk_00 >> 32) * 4) >> 32) + 1;
+            random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+            gesso->mUnk_130[i] = (u16) (((random->mValue >> 32) * 4) >> 32) + 1;
         }
     } else {
         rank = 1;

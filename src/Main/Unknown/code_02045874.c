@@ -19,11 +19,11 @@ static inline u32 func_02046524_inline(Unk020f41c4_B *a, u32 b) {
     if (b == 0) {
         r = 0;
     } else {
-        a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
+        a->mValue = a->mMultiplier * a->mValue + a->mIncrement;
         if (b == 0) {
-            r = a->mUnk_00 >> 32;
+            r = a->mValue >> 32;
         } else {
-            r = ((a->mUnk_00 >> 32) * b) >> 32;
+            r = ((a->mValue >> 32) * b) >> 32;
         }
     }
     return (u16) r;
@@ -95,11 +95,11 @@ u32 func_02046524(Unk020f41c4_B *a, u32 b) {
     if (b == 0) {
         r = 0;
     } else {
-        a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
+        a->mValue = a->mMultiplier * a->mValue + a->mIncrement;
         if (b == 0) {
-            r = a->mUnk_00 >> 32;
+            r = a->mValue >> 32;
         } else {
-            r = ((a->mUnk_00 >> 32) * b) >> 32;
+            r = ((a->mValue >> 32) * b) >> 32;
         }
     }
     return (u16) r;

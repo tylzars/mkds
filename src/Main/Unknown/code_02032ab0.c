@@ -260,15 +260,15 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
     }
     for (i = 0; i < 8; i++) {
         if (f[i] == 0) {
-            q->mCellTable[i + 0x48].mUnk_00 = 0;
-            q->mCellTable[i + 0x30].mUnk_00 = q->mCellTable[i + 0x48].mUnk_00;
-            q->mCellTable[i + 0x38].mUnk_00 = q->mCellTable[i + 0x30].mUnk_00;
-            q->mCellTable[i + 0x28].mUnk_00 = q->mCellTable[i + 0x38].mUnk_00;
-            q->mCellTable[i + 0x20].mUnk_00 = q->mCellTable[i + 0x28].mUnk_00;
-            q->mCellTable[i + 0x18].mUnk_00 = q->mCellTable[i + 0x20].mUnk_00;
-            q->mCellTable[i + 0x10].mUnk_00 = q->mCellTable[i + 0x18].mUnk_00;
-            q->mCellTable[i + 0x08].mUnk_00 = q->mCellTable[i + 0x10].mUnk_00;
-            q->mCellTable[i].mUnk_00 = q->mCellTable[i + 0x08].mUnk_00;
+            q->mCellTable[i + 0x48].mVisible = 0;
+            q->mCellTable[i + 0x30].mVisible = q->mCellTable[i + 0x48].mVisible;
+            q->mCellTable[i + 0x38].mVisible = q->mCellTable[i + 0x30].mVisible;
+            q->mCellTable[i + 0x28].mVisible = q->mCellTable[i + 0x38].mVisible;
+            q->mCellTable[i + 0x20].mVisible = q->mCellTable[i + 0x28].mVisible;
+            q->mCellTable[i + 0x18].mVisible = q->mCellTable[i + 0x20].mVisible;
+            q->mCellTable[i + 0x10].mVisible = q->mCellTable[i + 0x18].mVisible;
+            q->mCellTable[i + 0x08].mVisible = q->mCellTable[i + 0x10].mVisible;
+            q->mCellTable[i].mVisible = q->mCellTable[i + 0x08].mVisible;
         }
     }
     switch (gResultsBattle->mUnk_0dc) {
@@ -319,7 +319,7 @@ void AdvanceResultsBattle(Unk02032ac4 *a) {
         if (gResultsBattle->mTimer != 0) {
             gResultsBattle->mTimer = gResultsBattle->mTimer - 1;
             x = (gResultsBattle->mTimer + 0x3c) / 0x3c;
-            s->mCellTable[gResultsBattle->mUnk_0ce].mUnk_00 = x >= 10 ? 1 : 0;
+            s->mCellTable[gResultsBattle->mUnk_0ce].mVisible = x >= 10 ? 1 : 0;
             if (gResultsBattle->mTimer == 0) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x51);
             } else if ((gResultsBattle->mTimer + 0x3c) % 0x3c == 0 && x <= 4) {
@@ -335,8 +335,8 @@ void AdvanceResultsBattle(Unk02032ac4 *a) {
         n2 = s->mCells;
         func_02124748(gResultsBattle->mUnk_0cc + x % 10, n2, s->mChars, m2, 0, gResultsBattle->mUnk_0ce + 1, n2, m2);
     } else {
-        s->mCellTable[gResultsBattle->mUnk_0ce + 1].mUnk_00 = 0;
-        s->mCellTable[gResultsBattle->mUnk_0ce].mUnk_00 = s->mCellTable[gResultsBattle->mUnk_0ce + 1].mUnk_00;
+        s->mCellTable[gResultsBattle->mUnk_0ce + 1].mVisible = 0;
+        s->mCellTable[gResultsBattle->mUnk_0ce].mVisible = s->mCellTable[gResultsBattle->mUnk_0ce + 1].mVisible;
     }
     switch (gResultsBattle->mUnk_150) {
         case 0:
@@ -482,12 +482,12 @@ void AdvanceResultsBattle(Unk02032ac4 *a) {
     }
     j = t->mCellLayout->mUnk_06;
     for (i = 0; i < 8; i++) {
-        t->mCellTable[i + j].mUnk_06 = t->mCellTable[i + j].mUnk_06 + 1;
+        t->mCellTable[i + j].mOffsetY = t->mCellTable[i + j].mOffsetY + 1;
         func_02124100(i, 0xe, t->mLabelLayout, t->mCellTable, t->mCellLayout);
         DrawLayoutTableEntry(i + j, t->mCellLayout, t->mCells, t->mLabelLayout, (void *) gResultsBattle->mUnk_0b8[1],
                              t->mCellTable);
         func_02124100(i, 0xf, t->mLabelLayout, t->mCellTable, t->mCellLayout);
-        t->mCellTable[i + j].mUnk_06 = t->mCellTable[i + j].mUnk_06 - 1;
+        t->mCellTable[i + j].mOffsetY = t->mCellTable[i + j].mOffsetY - 1;
     }
     func_02125928();
 }

@@ -176,19 +176,19 @@ static inline u16 func_0209219c_inline(u32 n) {
 
     if (n == 0x10000) {
         b = GetMapObjectRandom();
-        b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
-        return ((b->mUnk_00 >> 32) * 0x10000) >> 32;
+        b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
+        return ((b->mValue >> 32) * 0x10000) >> 32;
     } else {
         b = GetMapObjectRandom();
         m = (u16) n;
         if (m == 0) {
             r = 0;
         } else {
-            b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
+            b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
             if (m == 0) {
-                r = b->mUnk_00 >> 32;
+                r = b->mValue >> 32;
             } else {
-                r = ((b->mUnk_00 >> 32) * m) >> 32;
+                r = ((b->mValue >> 32) * m) >> 32;
             }
         }
     }
@@ -219,8 +219,8 @@ void StartBasabasa(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {
     p->mUnk_bc = e;
     p->mUnk_c0 = f;
     r = GetMapObjectRandom();
-    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    p->mUnk_b0 = (u16) (((r->mUnk_00 >> 32) * 30) >> 32);
+    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+    p->mUnk_b0 = (u16) (((r->mValue >> 32) * 30) >> 32);
     n = (d << 12) >> 16;
     w = func_0209219c_inline(n);
     p->mUnk_b4 = d + w;

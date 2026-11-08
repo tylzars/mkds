@@ -49,9 +49,9 @@ void InitOptionHensyuMenu(void *heap) {
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6a8c[i]; j++) {
             if (i == 1) {
-                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mUnk_04 = 0xfa;
+                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mOffsetX = 0xfa;
             } else {
-                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mUnk_04 = -0xfa;
+                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mOffsetX = -0xfa;
             }
         }
     }
@@ -101,9 +101,9 @@ void AdvanceOptionHensyuMenuState1(void) {
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6a8c[i]; j++) {
             if (i == 1) {
-                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mUnk_04 = v;
+                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mOffsetX = v;
             } else {
-                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mUnk_04 = -v;
+                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mOffsetX = -v;
             }
         }
     }
@@ -249,9 +249,9 @@ void AdvanceOptionHensyuMenuState5(void) {
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6a8c[i]; j++) {
             if (i == 1) {
-                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mUnk_04 = v;
+                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mOffsetX = v;
             } else {
-                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mUnk_04 = -v;
+                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mOffsetX = -v;
             }
         }
     }
@@ -269,11 +269,11 @@ void func_ov001_02199a20(void) {
     s32 i;
     for (i = 0; i < 2; i++) {
         if (i == gOptionHensyuMenu->mIndex && gOptionHensyuMenu->mUnk_14 != FALSE) {
-            gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a88[i]].mUnk_00 = 1;
+            gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a88[i]].mVisible = 1;
             func_02124a20(data_ov001_021a6a80[i], 0xe, gOptionHensyuMenu->mOptionHensyuMenuSNcer,
                           gOptionHensyuMenu->mOptionHensyuMenuSBncl);
         } else {
-            gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a88[i]].mUnk_00 = 0;
+            gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a88[i]].mVisible = 0;
             func_02124a20(data_ov001_021a6a80[i], 0xf, gOptionHensyuMenu->mOptionHensyuMenuSNcer,
                           gOptionHensyuMenu->mOptionHensyuMenuSBncl);
         }

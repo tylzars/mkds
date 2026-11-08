@@ -16,7 +16,7 @@ void AdvanceWiFiVSSetting(void);
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_02077bc0.h"
-#include "Main/Unknown/code_02124094.h" // Unk02124b1c
+#include "Main/Unknown/code_02124094.h" // LayoutTableEntry
 
 // Allocated by InitWiFiVSSetting and held in gWiFiVSSetting.
 typedef struct WiFiVSSetting {
@@ -38,7 +38,7 @@ typedef struct WiFiVSSetting {
     /* 0038 */ u8 mNscrCopy[0x1000];
     /* 1038 */ void *mHeap;
     // Table of cells built from the Bncl / Bnll by InitLayoutTable.
-    /* 103c */ Unk02124b1c *mWiFiVSSettingTable;
+    /* 103c */ LayoutTableEntry *mWiFiVSSettingTable;
     /* 1040 */ Unk02021dc8 *mWiFiVSSettingSNcer;
     /* 1044 */ Ncgr *mWiFiVSSettingSNcgr;
     /* 1048 */ Nclr *mWiFiVSSettingSONclr;
@@ -77,7 +77,7 @@ typedef struct WiFiVSMatching {
     /* 00d0 */ void *mHeap;
     /* 00d4 */ u8 mNscrCopy[0x1000];
     // Table of cells built from the Bncl / Bnll by InitLayoutTable.
-    /* 10d4 */ Unk02124b1c *mWiFiVSMatchingTable;
+    /* 10d4 */ LayoutTableEntry *mWiFiVSMatchingTable;
     /* 10d8 */ u8 mOtherEmblems[3][0x200];
     /* 16d8 */ s32 mUnk_16d8[3];
     /* 16e4 */ struct Unk02021dc8 *mWiFiVSMatchingSNcer;

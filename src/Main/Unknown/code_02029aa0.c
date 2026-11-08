@@ -124,7 +124,7 @@ void InitResultsGp(void *heap, void *firstOamList, void *secondOamList) {
         } else {
             cellFlag = 0;
         }
-        mainFileSet->mCellTable[gCupRankCellIndexTable[i]].mUnk_00 = cellFlag;
+        mainFileSet->mCellTable[gCupRankCellIndexTable[i]].mVisible = cellFlag;
     }
     for (i = 0; i < 8; i++) {
         if (i == gResultsGp->mUnk_44) {
@@ -132,17 +132,17 @@ void InitResultsGp(void *heap, void *firstOamList, void *secondOamList) {
         } else {
             cellFlag = 0;
         }
-        mainFileSet->mCellTable[data_usa_02153888[i]].mUnk_00 = cellFlag;
+        mainFileSet->mCellTable[data_usa_02153888[i]].mVisible = cellFlag;
     }
     if (gResultsGp->mCupRankIndex >= 3) {
         cellFlag = 1;
     } else {
         cellFlag = 0;
     }
-    mainFileSet->mCellTable[3].mUnk_00 = cellFlag;
-    mainFileSet->mCellTable[2].mUnk_00 = mainFileSet->mCellTable[3].mUnk_00;
-    mainFileSet->mCellTable[1].mUnk_00 = (mainFileSet->mCellTable[2].mUnk_00 == 0) ? 1 : 0;
-    mainFileSet->mCellTable[0].mUnk_00 = mainFileSet->mCellTable[1].mUnk_00;
+    mainFileSet->mCellTable[3].mVisible = cellFlag;
+    mainFileSet->mCellTable[2].mVisible = mainFileSet->mCellTable[3].mVisible;
+    mainFileSet->mCellTable[1].mVisible = (mainFileSet->mCellTable[2].mVisible == 0) ? 1 : 0;
+    mainFileSet->mCellTable[0].mVisible = mainFileSet->mCellTable[1].mVisible;
     characterIndex = data_0217b488->mCharacterIndex;
     mainFileSet = &gResultsGp->mCellFileSets[0];
     func_02025b84(1, &cellFileSet);

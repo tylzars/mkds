@@ -514,7 +514,7 @@ typedef struct TitleStateHandlers {
     /* 04 */ void (*mUpdate)(s32);
 } TitleStateHandlers;
 
-struct Unk02124b1c;
+struct LayoutTableEntry;
 struct Unk0201ea30;
 
 // 0x8bc bytes.
@@ -534,7 +534,7 @@ typedef struct TitleScene {
     /* 060 */ s16 mSelectedOffset;
     /* 062 */ u8 pad_62[2];
     /* 064 */ s32 mBlendFrames;
-    /* 068 */ struct Unk02124b1c *mTitleTable;
+    /* 068 */ struct LayoutTableEntry *mTitleTable;
     /* 06c */ struct Unk0201ea30 *mTitleSBncl;
     /* 070 */ void *mTitleSBnbl;
     /* 074 */ struct Unk0201ea30 *mTitleSBnll;

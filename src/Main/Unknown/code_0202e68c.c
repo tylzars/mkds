@@ -43,7 +43,7 @@ void AdvanceScrollListState0(void) {
     if (func_0202ecd4(slotIndex, PAD_KEY_A) != 0) {
         gScrollList->mState = 5;
         gScrollList->mPickedVisibleRow = gScrollList->mSelectedVisibleRow;
-        gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 0;
+        gScrollList->mEntries[gScrollList->mCursorEntry].mVisible = 0;
         gScrollList->mTimer = 10;
         gScrollList->mDownHeldFrames = 0;
         gScrollList->mUpHeldFrames = gScrollList->mDownHeldFrames;
@@ -58,7 +58,7 @@ void AdvanceScrollListState0(void) {
         gScrollList->mState = 5;
         gScrollList->mPickedVisibleRow = gScrollList->mPressedRectIndex - gScrollList->mFirstRowRectIndex;
         rowChanged = gScrollList->mPickedVisibleRow != gScrollList->mSelectedVisibleRow;
-        gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = rowChanged;
+        gScrollList->mEntries[gScrollList->mCursorEntry].mVisible = rowChanged;
         gScrollList->mTimer = 10;
         gScrollList->mDownHeldFrames = 0;
         gScrollList->mUpHeldFrames = gScrollList->mDownHeldFrames;
@@ -75,7 +75,7 @@ void AdvanceScrollListState0(void) {
         gScrollList->mSelectedRow > 0) {
         if (gScrollList->mSelectedVisibleRow == 0) {
             gScrollList->mTimer = gScrollList->mScrollFrameCount;
-            gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 0;
+            gScrollList->mEntries[gScrollList->mCursorEntry].mVisible = 0;
             gScrollList->mState = 3;
             SetScrollListSlotVisible(gScrollList->mHiddenTopSlot, 1);
             CallScrollListCallback(0, -1, -1, -1);
@@ -97,7 +97,7 @@ void AdvanceScrollListState0(void) {
         gScrollList->mSelectedRow < gScrollList->mRowCount - 1) {
         if (gScrollList->mSelectedVisibleRow == 4) {
             gScrollList->mTimer = gScrollList->mScrollFrameCount;
-            gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 0;
+            gScrollList->mEntries[gScrollList->mCursorEntry].mVisible = 0;
             gScrollList->mState = 4;
             SetScrollListSlotVisible(GetScrollListHiddenBottomSlot(), 1);
             CallScrollListCallback(0, -1, -1, -1);
@@ -145,7 +145,7 @@ void AdvanceScrollListScrollUp(void) {
     s32 slotIndex;
     s32 firstEntry;
     s32 distance;
-    Unk02124b1c *entry;
+    LayoutTableEntry *entry;
     BOOL zero = FALSE;
     s32 hiddenBottomSlot = GetScrollListHiddenBottomSlot();
     gScrollList->mTimer = gScrollList->mTimer - 1;
@@ -155,9 +155,10 @@ void AdvanceScrollListScrollUp(void) {
             distance = GetScrollListPositionYDifference(slotIndex + firstEntry, (slotIndex + 1) % 7 + firstEntry);
             entry = &gScrollList->mEntries[slotIndex + firstEntry];
             if (slotIndex == hiddenBottomSlot) {
-                entry->mUnk_06 = distance;
+                entry->mOffsetY = distance;
             } else {
-                entry->mUnk_06 = InterpolateS16(1, distance, zero, gScrollList->mTimer, gScrollList->mScrollFrameCount);
+                entry->mOffsetY =
+                    InterpolateS16(1, distance, zero, gScrollList->mTimer, gScrollList->mScrollFrameCount);
             }
         }
     }
@@ -165,11 +166,11 @@ void AdvanceScrollListScrollUp(void) {
         for (groupIndex = 0; groupIndex < gScrollList->mGroupCount; groupIndex++) {
             for (slotIndex = zero; slotIndex < 7; slotIndex++) {
                 entry = &gScrollList->mEntries[slotIndex + gScrollList->mGroupFirstEntries[groupIndex]];
-                entry->mPositionY = entry->mPositionY + entry->mUnk_06;
-                entry->mUnk_06 = 0;
+                entry->mPositionY = entry->mPositionY + entry->mOffsetY;
+                entry->mOffsetY = 0;
             }
         }
-        gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 1;
+        gScrollList->mEntries[gScrollList->mCursorEntry].mVisible = 1;
         gScrollList->mSelectedRow = gScrollList->mSelectedRow - 1;
         gScrollList->mHiddenTopSlot = hiddenBottomSlot;
         CallScrollListCallback(1, gScrollList->mHiddenTopSlot, gScrollList->mSelectedRow - 1, -1);
@@ -187,7 +188,7 @@ void AdvanceScrollListScrollDown(void) {
     s32 slotIndex;
     s32 firstEntry;
     s32 distance;
-    Unk02124b1c *entry;
+    LayoutTableEntry *entry;
     BOOL zero = FALSE;
     gScrollList->mTimer = gScrollList->mTimer - 1;
     for (groupIndex = 0; groupIndex < gScrollList->mGroupCount; groupIndex++) {
@@ -196,9 +197,10 @@ void AdvanceScrollListScrollDown(void) {
             distance = GetScrollListPositionYDifference(slotIndex + firstEntry, (slotIndex + 6) % 7 + firstEntry);
             entry = &gScrollList->mEntries[slotIndex + firstEntry];
             if (slotIndex == gScrollList->mHiddenTopSlot) {
-                entry->mUnk_06 = distance;
+                entry->mOffsetY = distance;
             } else {
-                entry->mUnk_06 = InterpolateS16(1, distance, zero, gScrollList->mTimer, gScrollList->mScrollFrameCount);
+                entry->mOffsetY =
+                    InterpolateS16(1, distance, zero, gScrollList->mTimer, gScrollList->mScrollFrameCount);
             }
         }
     }
@@ -206,11 +208,11 @@ void AdvanceScrollListScrollDown(void) {
         for (groupIndex = 0; groupIndex < gScrollList->mGroupCount; groupIndex++) {
             for (slotIndex = zero; slotIndex < 7; slotIndex++) {
                 entry = &gScrollList->mEntries[slotIndex + gScrollList->mGroupFirstEntries[groupIndex]];
-                entry->mPositionY = entry->mPositionY + entry->mUnk_06;
-                entry->mUnk_06 = 0;
+                entry->mPositionY = entry->mPositionY + entry->mOffsetY;
+                entry->mOffsetY = 0;
             }
         }
-        gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 1;
+        gScrollList->mEntries[gScrollList->mCursorEntry].mVisible = 1;
         gScrollList->mSelectedRow = gScrollList->mSelectedRow + 1;
         CallScrollListCallback(1, gScrollList->mHiddenTopSlot, gScrollList->mSelectedRow + 1, -1);
         {
@@ -233,7 +235,7 @@ void AdvanceScrollListPick(void) {
     gScrollList->mTimer = gScrollList->mTimer - 1;
     if (gScrollList->mTimer == 0) {
         CallScrollListCallback(0, -1, -1, GetScrollListSelectedSlot());
-        gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 1;
+        gScrollList->mEntries[gScrollList->mCursorEntry].mVisible = 1;
         gScrollList->mState = 0;
         gScrollList->mPickFinished = 1;
     }

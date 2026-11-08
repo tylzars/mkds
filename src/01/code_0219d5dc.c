@@ -324,18 +324,18 @@ void func_ov001_0219d858(void) {
     index = gOptionEmbremSelect->mOptionEmbremSelectSBncl->mUnk_06;
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6c28[i]; j++) {
-            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c38[i][j]].mUnk_04 =
+            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c38[i][j]].mOffsetX =
                 gOptionEmbremSelect->mUnk_18[i].mUnk_00;
-            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c38[i][j]].mUnk_06 =
+            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c38[i][j]].mOffsetY =
                 gOptionEmbremSelect->mUnk_18[i].mUnk_02;
         }
     }
-    gOptionEmbremSelect->mOptionEmbremSelectSTable[index].mUnk_04 = gOptionEmbremSelect->mUnk_18[1].mUnk_00;
-    gOptionEmbremSelect->mOptionEmbremSelectSTable[index].mUnk_06 = gOptionEmbremSelect->mUnk_18[1].mUnk_02;
+    gOptionEmbremSelect->mOptionEmbremSelectSTable[index].mOffsetX = gOptionEmbremSelect->mUnk_18[1].mUnk_00;
+    gOptionEmbremSelect->mOptionEmbremSelectSTable[index].mOffsetY = gOptionEmbremSelect->mUnk_18[1].mUnk_02;
     for (k = 0; k < 3; k++) {
-        gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[k][0]].mUnk_04 -=
+        gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[k][0]].mOffsetX -=
             func_020adc64(6 - gOptionEmbremSelect->mOffsetTimers[0]);
-        gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[k][1]].mUnk_04 +=
+        gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[k][1]].mOffsetX +=
             func_020adc64(6 - gOptionEmbremSelect->mOffsetTimers[1]);
     }
 }
@@ -345,9 +345,9 @@ void func_ov001_0219d810(void) {
 
     for (i = 0; i < data_ov001_021a6c30[1]; i++) {
         if (i == gOptionEmbremSelect->mUnk_0c) {
-            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c1c[1][i]].mUnk_00 = 1;
+            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c1c[1][i]].mVisible = 1;
         } else {
-            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c1c[1][i]].mUnk_00 = 0;
+            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c1c[1][i]].mVisible = 0;
         }
     }
 }
@@ -358,7 +358,7 @@ void func_ov001_0219d730(void) {
 
     for (i = 0; i < 2; i++) {
         if (i == gOptionEmbremSelect->mUnk_08 && gOptionEmbremSelect->mUnk_24 != FALSE) {
-            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c38[i][1]].mUnk_00 = 1;
+            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c38[i][1]].mVisible = 1;
             if (i == 1) {
                 func_02124100(0, 14, gOptionEmbremSelect->mOptionEmbremSelectSBnll,
                               gOptionEmbremSelect->mOptionEmbremSelectSTable,
@@ -369,7 +369,7 @@ void func_ov001_0219d730(void) {
                               gOptionEmbremSelect->mOptionEmbremSelectSBncl);
             }
         } else {
-            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c38[i][1]].mUnk_00 = 0;
+            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c38[i][1]].mVisible = 0;
             if (i == 1) {
                 func_02124100(0, 15, gOptionEmbremSelect->mOptionEmbremSelectSBnll,
                               gOptionEmbremSelect->mOptionEmbremSelectSTable,
@@ -389,16 +389,16 @@ void func_ov001_0219d6ac(void) {
     for (i = 0; i < 2; i++) {
         if (gOptionEmbremSelect->mUnk_08 == 1) {
             if (gOptionEmbremSelect->mOffsetTimers[i] > 0) {
-                gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[0][i]].mUnk_00 = 1;
-                gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[1][i]].mUnk_00 = 1;
+                gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[0][i]].mVisible = 1;
+                gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[1][i]].mVisible = 1;
                 gOptionEmbremSelect->mOffsetTimers[i]--;
             } else {
-                gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[0][i]].mUnk_00 = 0;
-                gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[1][i]].mUnk_00 = 1;
+                gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[0][i]].mVisible = 0;
+                gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[1][i]].mVisible = 1;
             }
         } else {
-            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[0][i]].mUnk_00 = 0;
-            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[1][i]].mUnk_00 = 0;
+            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[0][i]].mVisible = 0;
+            gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c20[1][i]].mVisible = 0;
         }
     }
 }

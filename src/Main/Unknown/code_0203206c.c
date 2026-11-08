@@ -75,7 +75,7 @@ void func_020329dc(s32 a) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         p = &gSelectGame->mUnk_00[1];
         for (i = 0; i < gSelectGame->mTableCount; i++) {
-            p->mCellTable[gSelectGame->mTable[i].mUnk_02].mUnk_00 = a;
+            p->mCellTable[gSelectGame->mTable[i].mUnk_02].mVisible = a;
         }
     }
 }
@@ -86,7 +86,7 @@ void func_020329a0(void) {
 
     p = &gSelectGame->mUnk_00[1];
     for (i = 0; i < gSelectGame->mTableCount; i++) {
-        p->mCellTable[gSelectGame->mTable[i].mUnk_00].mUnk_04 = gSelectGame->mUnk_5c;
+        p->mCellTable[gSelectGame->mTable[i].mUnk_00].mOffsetX = gSelectGame->mUnk_5c;
     }
 }
 
@@ -102,13 +102,13 @@ void func_02032940(void) {
         n = o->mUnk_00[0].mCellLayout->mUnk_06;
         m = o->mUnk_00[0].mLabelLayout->mUnk_06;
         for (i = 0; i < m; i++) {
-            o->mUnk_00[0].mCellTable[i + n].mUnk_06 = gSelectGame->mUnk_60;
+            o->mUnk_00[0].mCellTable[i + n].mOffsetY = gSelectGame->mUnk_60;
         }
     }
     p = &gSelectGame->mUnk_00[1];
     m = p->mCellLayout->mUnk_06;
     for (i = 0; i < m; i++) {
-        p->mCellTable[i].mUnk_04 = gSelectGame->mUnk_5c;
+        p->mCellTable[i].mOffsetX = gSelectGame->mUnk_5c;
     }
 }
 
@@ -124,7 +124,7 @@ void func_020328f8(s32 a) {
         } else {
             v = FALSE;
         }
-        p->mCellTable[gSelectGame->mTable[i].mUnk_00].mUnk_00 = v;
+        p->mCellTable[gSelectGame->mTable[i].mUnk_00].mVisible = v;
     }
 }
 
@@ -134,7 +134,7 @@ void func_020328c8(s32 a) {
 
     p = &gSelectGame->mUnk_00[1];
     for (i = 0; i < p->mCellLayout->mUnk_06; i++) {
-        p->mCellTable[i].mUnk_00 = a;
+        p->mCellTable[i].mVisible = a;
     }
 }
 
@@ -212,7 +212,7 @@ void InitSelectGame(void *a, s32 b, void *c, void *d) {
             e = 4;
         }
         for (j = s; j < s + e; j++) {
-            o->mUnk_00[0].mCellTable[j + n].mUnk_00 = 0;
+            o->mUnk_00[0].mCellTable[j + n].mVisible = 0;
         }
     }
     q = &gSelectGame->mUnk_00[1];
@@ -409,7 +409,7 @@ s32 AdvanceSelectGame(void) {
 
 void ReleaseSelectGame(void) {
     if (gSelectGame->mMode == 1) {
-        func_0202b604();
+        RequestPlayerEntryListSetup();
         if (data_021759d0->mUnk_1c_2 != 0) {
             FillShuffledIndices();
         }

@@ -50,8 +50,8 @@ void func_0211f5e4(void) {
     data_0217d380->mNextState = 0;
     data_0217d380->mStateFrames = 0;
     a = data_0217d380->mBncl->mUnk_06;
-    data_0217d380->mTable[0x2a].mUnk_06 = 0xc0;
-    data_0217d380->mTable[a + 0xe].mUnk_06 = 0xc0;
+    data_0217d380->mTable[0x2a].mOffsetY = 0xc0;
+    data_0217d380->mTable[a + 0xe].mOffsetY = 0xc0;
 }
 
 void func_0211f5d0(void) {
@@ -65,8 +65,8 @@ void func_0211f598(void) {
     data_0217d380->mNextState = 2;
     data_0217d380->mStateFrames = 0;
     a = data_0217d380->mBncl->mUnk_06;
-    data_0217d380->mTable[0x2a].mUnk_06 = 0;
-    data_0217d380->mTable[a + 0xe].mUnk_06 = 0;
+    data_0217d380->mTable[0x2a].mOffsetY = 0;
+    data_0217d380->mTable[a + 0xe].mOffsetY = 0;
 }
 
 void func_0211f4b0(void *a, void *b) {
@@ -89,9 +89,9 @@ void func_0211f4b0(void *a, void *b) {
     i = 0;
     n = data_0217d380->mBncl->mUnk_06;
     for (; i < n; i++) {
-        data_0217d380->mTable[i].mUnk_00 = 0;
+        data_0217d380->mTable[i].mVisible = 0;
     }
-    data_0217d380->mTable[0x2a].mUnk_00 = 1;
+    data_0217d380->mTable[0x2a].mVisible = 1;
     CreateWait(a, data_0217d380->mNcer, data_0217d380->mBncl, 0x2a, 0xe, 1);
     func_0211f5e4();
     func_0211f5d0();
@@ -118,8 +118,8 @@ void func_0211f440(void) {
     a = data_0217d380->mBncl->mUnk_06;
     data_0217d380->mStateFrames++;
     v = InterpolateS16(1, 0xc0, 0, data_0217d380->mStateFrames, 10);
-    data_0217d380->mTable[0x2a].mUnk_06 = v;
-    data_0217d380->mTable[a + 0xe].mUnk_06 = v;
+    data_0217d380->mTable[0x2a].mOffsetY = v;
+    data_0217d380->mTable[a + 0xe].mOffsetY = v;
     if (data_0217d380->mStateFrames >= 10) {
         func_0211f5d0();
     }
@@ -132,8 +132,8 @@ void func_0211f3e8(void) {
     a = data_0217d380->mBncl->mUnk_06;
     data_0217d380->mStateFrames++;
     v = InterpolateS16(1, 0, 0xc0, data_0217d380->mStateFrames, 10);
-    data_0217d380->mTable[0x2a].mUnk_06 = v;
-    data_0217d380->mTable[a + 0xe].mUnk_06 = v;
+    data_0217d380->mTable[0x2a].mOffsetY = v;
+    data_0217d380->mTable[a + 0xe].mOffsetY = v;
     if (data_0217d380->mStateFrames >= 10) {
         func_0211f5d0();
     }

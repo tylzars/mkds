@@ -40,11 +40,11 @@ void InitCrab(u32 arg0) {
 }
 
 static inline u32 func_0209b388_inline(Unk020f41c4_B *r, u32 c) {
-    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
+    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
     if (c == 0) {
-        return r->mUnk_00 >> 32;
+        return r->mValue >> 32;
     } else {
-        return ((r->mUnk_00 >> 32) * c) >> 32;
+        return ((r->mValue >> 32) * c) >> 32;
     }
 }
 
@@ -185,8 +185,8 @@ void InitCrabObjects(Unk0209af98 *p) {
         o->mUnk_0d0.mUnk_18 = 0xe39;
         o->mUnk_0d0.mUnk_1c = 0;
         r = GetMapObjectRandom();
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        o->mUnk_0a4 = (u16) ((u16) (((u64) (u32) (r->mUnk_00 >> 32) * 60) >> 32) + 30);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        o->mUnk_0a4 = (u16) ((u16) (((u64) (u32) (r->mValue >> 32) * 60) >> 32) + 30);
         o->mState = 0;
     }
 }
@@ -263,8 +263,8 @@ void UpdateCrab(void *a, Crab *b) {
                 b->mUnk_0d0.mUnk_18 = 0xe39;
                 b->mUnk_0d0.mUnk_1c = 0;
                 r = GetMapObjectRandom();
-                r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-                b->mUnk_0a4 = (u16) ((u16) (((u64) (u32) (r->mUnk_00 >> 32) * 60) >> 32) + 30);
+                r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+                b->mUnk_0a4 = (u16) ((u16) (((u64) (u32) (r->mValue >> 32) * 60) >> 32) + 30);
                 b->mState = 0;
             }
             b->mUnk_0a8 += 0x200;
@@ -333,8 +333,8 @@ void UpdateCrab(void *a, Crab *b) {
             b->mUnk_0d0.mUnk_18 = 0xe39;
             b->mUnk_0d0.mUnk_1c = 0;
             r = GetMapObjectRandom();
-            r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-            b->mUnk_0a4 = (u16) ((u16) (((u64) (u32) (r->mUnk_00 >> 32) * 60) >> 32) + 30);
+            r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+            b->mUnk_0a4 = (u16) ((u16) (((u64) (u32) (r->mValue >> 32) * 60) >> 32) + 30);
             b->mState = 0;
             b->mUnk_000.mFlags &= ~1;
             break;

@@ -90,20 +90,20 @@ void func_021188dc(void) {
     if (*(vu16 *) 0x027ffc40 != 2) {
         v = gSelectCupGrid->mSelectCupMBncl->mUnk_06;
         for (i = 0; i < 4; i++) {
-            gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mUnk_00 = 0;
-            gSelectCupGrid->mSelectCupMTable[v + data_0215c7d8[i]].mUnk_00 = 1;
+            gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mVisible = 0;
+            gSelectCupGrid->mSelectCupMTable[v + data_0215c7d8[i]].mVisible = 1;
         }
         for (i = 0; i < 8; i++) {
             for (k = 0, q = gSelectCupGridCupCellIndices[i]; k < 6; k++) {
-                gSelectCupGrid->mSelectCupSTable[q[k]].mUnk_00 = 0;
+                gSelectCupGrid->mSelectCupSTable[q[k]].mVisible = 0;
             }
         }
-        gSelectCupGrid->mSelectCupMTable[0x14].mUnk_00 = 1;
-        gSelectCupGrid->mSelectCupMTable[0x13].mUnk_00 = 1;
-        gSelectCupGrid->mSelectCupSTable[2].mUnk_00 = 1;
-        gSelectCupGrid->mSelectCupSTable[3].mUnk_00 = 1;
+        gSelectCupGrid->mSelectCupMTable[0x14].mVisible = 1;
+        gSelectCupGrid->mSelectCupMTable[0x13].mVisible = 1;
+        gSelectCupGrid->mSelectCupSTable[2].mVisible = 1;
+        gSelectCupGrid->mSelectCupSTable[3].mVisible = 1;
         for (i = 0; i < 8; i++) {
-            gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][0]].mUnk_00 = 1;
+            gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][0]].mVisible = 1;
         }
         for (i = 0; i < 8; i++) {
             p = gSelectCupGrid;
@@ -121,24 +121,24 @@ void func_02118814(void) {
         z = FALSE;
         for (i = 0; i < 8; i++) {
             u16 *q = gSelectCupGridCupCellIndices[i];
-            gSelectCupGrid->mSelectCupSTable[q[1]].mUnk_00 = 0;
-            gSelectCupGrid->mSelectCupSTable[q[2]].mUnk_00 = 0;
-            gSelectCupGrid->mSelectCupSTable[q[3]].mUnk_00 = 0;
-            gSelectCupGrid->mSelectCupSTable[q[4]].mUnk_00 = 0;
-            gSelectCupGrid->mSelectCupSTable[q[5]].mUnk_00 = 0;
+            gSelectCupGrid->mSelectCupSTable[q[1]].mVisible = 0;
+            gSelectCupGrid->mSelectCupSTable[q[2]].mVisible = 0;
+            gSelectCupGrid->mSelectCupSTable[q[3]].mVisible = 0;
+            gSelectCupGrid->mSelectCupSTable[q[4]].mVisible = 0;
+            gSelectCupGrid->mSelectCupSTable[q[5]].mVisible = 0;
             if (gSelectCupGrid->mCupsEnabled[i] == 0) {
-                gSelectCupGrid->mSelectCupSTable[q[3]].mUnk_00 = 1;
-                gSelectCupGrid->mSelectCupSTable[q[5]].mUnk_00 = 1;
+                gSelectCupGrid->mSelectCupSTable[q[3]].mVisible = 1;
+                gSelectCupGrid->mSelectCupSTable[q[5]].mVisible = 1;
             } else {
                 if (gSelectCupGrid->mIndex == i && gSelectCupGrid->mUnk_68 != FALSE) {
-                    gSelectCupGrid->mSelectCupSTable[q[2]].mUnk_00 = 1;
+                    gSelectCupGrid->mSelectCupSTable[q[2]].mVisible = 1;
                 } else {
-                    gSelectCupGrid->mSelectCupSTable[q[1]].mUnk_00 = 1;
+                    gSelectCupGrid->mSelectCupSTable[q[1]].mVisible = 1;
                 }
-                gSelectCupGrid->mSelectCupSTable[q[4]].mUnk_00 = 1;
+                gSelectCupGrid->mSelectCupSTable[q[4]].mVisible = 1;
             }
             if (gSelectCupGrid->mMode == 3) {
-                gSelectCupGrid->mSelectCupSTable[q[5]].mUnk_00 = z;
+                gSelectCupGrid->mSelectCupSTable[q[5]].mVisible = z;
             }
         }
     }
@@ -176,10 +176,10 @@ void SetupSelectCupGridIndex(void) {
                       p->mSelectCupMBncl, p->mSelectCupMTable);
     }
     for (j = 0, q = data_0215c83c; j < 8; q++, j++) {
-        gSelectCupGrid->mSelectCupMTable[*q].mUnk_00 = 0;
+        gSelectCupGrid->mSelectCupMTable[*q].mVisible = 0;
     }
     for (i = 0; i < 4; i++) {
-        gSelectCupGrid->mSelectCupMTable[data_0215c7c8[i]].mUnk_00 = 0;
+        gSelectCupGrid->mSelectCupMTable[data_0215c7c8[i]].mVisible = 0;
     }
     if (gSelectCupGrid->mMode == 0) {
         if (GetMirrorMode() != 0) {
@@ -190,7 +190,7 @@ void SetupSelectCupGridIndex(void) {
         b = data_0215c81c[v];
         if (IsGrandPrixRecordFilled(data_0215c85c[gSelectCupGrid->mIndex], b) != 0) {
             c = func_02060364(data_0215c85c[gSelectCupGrid->mIndex], b);
-            gSelectCupGrid->mSelectCupMTable[data_0215c83c[data_0215c87c[c]]].mUnk_00 = 1;
+            gSelectCupGrid->mSelectCupMTable[data_0215c83c[data_0215c87c[c]]].mVisible = 1;
             switch (c) {
                 case 0:
                 case 1:
@@ -209,7 +209,7 @@ void SetupSelectCupGridIndex(void) {
                     a = data_0215c7c8[3];
                     break;
             }
-            gSelectCupGrid->mSelectCupMTable[a].mUnk_00 = 1;
+            gSelectCupGrid->mSelectCupMTable[a].mVisible = 1;
             c = GetGrandPrixRecordCupRank(data_0215c85c[gSelectCupGrid->mIndex], b);
             p = gSelectCupGrid;
             QueueTrophyIcon(data_0215c85c[p->mIndex], c, p->mSelectCupMNcer, p->mSelectCupMBncl, a, 4, 0);
@@ -250,19 +250,19 @@ void AdvanceSelectCupGridIndexChange(void) {
             v = gSelectCupGrid->mSelectCupMBncl->mUnk_06;
             b = LookupIndexChangeOffset(7 - gSelectCupGrid->mIndexChangeTimer, 1);
             gSelectCupGrid->mBg0Offset = b;
-            gSelectCupGrid->mSelectCupMTable[19].mUnk_06 = b;
-            gSelectCupGrid->mSelectCupMTable[2].mUnk_06 = b;
-            gSelectCupGrid->mSelectCupMTable[1].mUnk_06 = b;
-            gSelectCupGrid->mSelectCupMTable[0].mUnk_06 = b;
+            gSelectCupGrid->mSelectCupMTable[19].mOffsetY = b;
+            gSelectCupGrid->mSelectCupMTable[2].mOffsetY = b;
+            gSelectCupGrid->mSelectCupMTable[1].mOffsetY = b;
+            gSelectCupGrid->mSelectCupMTable[0].mOffsetY = b;
             for (i = 0; i < 8; i++) {
-                gSelectCupGrid->mSelectCupMTable[data_0215c83c[i]].mUnk_06 = b;
+                gSelectCupGrid->mSelectCupMTable[data_0215c83c[i]].mOffsetY = b;
             }
             for (i = 0; i < 4; i++) {
-                gSelectCupGrid->mSelectCupMTable[data_0215c7c8[i]].mUnk_06 = b;
+                gSelectCupGrid->mSelectCupMTable[data_0215c7c8[i]].mOffsetY = b;
             }
             for (i = 0; i < 4; i++) {
-                gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mUnk_06 = b;
-                gSelectCupGrid->mSelectCupMTable[v + data_0215c7d8[i]].mUnk_06 = b;
+                gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mOffsetY = b;
+                gSelectCupGrid->mSelectCupMTable[v + data_0215c7d8[i]].mOffsetY = b;
             }
         }
         gSelectCupGrid->mIndexChangeTimer = gSelectCupGrid->mIndexChangeTimer - 1;
@@ -277,11 +277,11 @@ void func_02118458(void) {
     if (*(vu16 *) 0x027ffc40 != 2) {
         for (i = 0; i < 4; i++) {
             if (gSelectCupGrid->mShownCourseIndex == i) {
-                gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mUnk_00 = 1;
+                gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mVisible = 1;
                 func_02124100(data_0215c7d8[i], 0xe, gSelectCupGrid->mSelectCupMBnll, gSelectCupGrid->mSelectCupMTable,
                               gSelectCupGrid->mSelectCupMBncl);
             } else {
-                gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mUnk_00 = 0;
+                gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mVisible = 0;
                 func_02124100(data_0215c7d8[i], 0xf, gSelectCupGrid->mSelectCupMBnll, gSelectCupGrid->mSelectCupMTable,
                               gSelectCupGrid->mSelectCupMBncl);
             }
@@ -320,55 +320,55 @@ void func_021181fc(void) {
         if (GetPreviousMenuScreenNumber() == 0x18 || GetPreviousMenuScreenNumber() == 0xc) {
             b = 0;
             gSelectCupGrid->mBg0Offset = b;
-            gSelectCupGrid->mSelectCupMTable[20].mUnk_06 = b;
-            gSelectCupGrid->mSelectCupMTable[19].mUnk_06 = b;
-            gSelectCupGrid->mSelectCupMTable[2].mUnk_06 = b;
-            gSelectCupGrid->mSelectCupMTable[1].mUnk_06 = b;
-            gSelectCupGrid->mSelectCupMTable[0].mUnk_06 = b;
+            gSelectCupGrid->mSelectCupMTable[20].mOffsetY = b;
+            gSelectCupGrid->mSelectCupMTable[19].mOffsetY = b;
+            gSelectCupGrid->mSelectCupMTable[2].mOffsetY = b;
+            gSelectCupGrid->mSelectCupMTable[1].mOffsetY = b;
+            gSelectCupGrid->mSelectCupMTable[0].mOffsetY = b;
             for (i = 0; i < 8; i++) {
-                gSelectCupGrid->mSelectCupMTable[data_0215c83c[i]].mUnk_06 = b;
+                gSelectCupGrid->mSelectCupMTable[data_0215c83c[i]].mOffsetY = b;
             }
             for (i = 0; i < 4; i++) {
-                gSelectCupGrid->mSelectCupMTable[data_0215c7c8[i]].mUnk_06 = b;
+                gSelectCupGrid->mSelectCupMTable[data_0215c7c8[i]].mOffsetY = b;
             }
             for (i = 0; i < 4; i++) {
-                gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mUnk_06 = b;
-                gSelectCupGrid->mSelectCupMTable[v + data_0215c7d8[i]].mUnk_06 = b;
+                gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mOffsetY = b;
+                gSelectCupGrid->mSelectCupMTable[v + data_0215c7d8[i]].mOffsetY = b;
             }
         } else {
             b = -192;
             gSelectCupGrid->mBg0Offset = b;
-            gSelectCupGrid->mSelectCupMTable[20].mUnk_06 = b;
-            gSelectCupGrid->mSelectCupMTable[19].mUnk_06 = b;
-            gSelectCupGrid->mSelectCupMTable[2].mUnk_06 = b;
-            gSelectCupGrid->mSelectCupMTable[1].mUnk_06 = b;
-            gSelectCupGrid->mSelectCupMTable[0].mUnk_06 = b;
+            gSelectCupGrid->mSelectCupMTable[20].mOffsetY = b;
+            gSelectCupGrid->mSelectCupMTable[19].mOffsetY = b;
+            gSelectCupGrid->mSelectCupMTable[2].mOffsetY = b;
+            gSelectCupGrid->mSelectCupMTable[1].mOffsetY = b;
+            gSelectCupGrid->mSelectCupMTable[0].mOffsetY = b;
             for (i = 0; i < 8; i++) {
-                gSelectCupGrid->mSelectCupMTable[data_0215c83c[i]].mUnk_06 = b;
+                gSelectCupGrid->mSelectCupMTable[data_0215c83c[i]].mOffsetY = b;
             }
             for (i = 0; i < 4; i++) {
-                gSelectCupGrid->mSelectCupMTable[data_0215c7c8[i]].mUnk_06 = b;
+                gSelectCupGrid->mSelectCupMTable[data_0215c7c8[i]].mOffsetY = b;
             }
             for (i = 0; i < 4; i++) {
-                gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mUnk_06 = b;
-                gSelectCupGrid->mSelectCupMTable[v + data_0215c7d8[i]].mUnk_06 = b;
+                gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mOffsetY = b;
+                gSelectCupGrid->mSelectCupMTable[v + data_0215c7d8[i]].mOffsetY = b;
             }
         }
         b = -192;
-        gSelectCupGrid->mSelectCupMTable[20].mUnk_06 = b;
+        gSelectCupGrid->mSelectCupMTable[20].mOffsetY = b;
         c = -224;
-        gSelectCupGrid->mSelectCupSTable[0].mUnk_04 = c;
-        gSelectCupGrid->mSelectCupSTable[1].mUnk_04 = 0xe0;
-        gSelectCupGrid->mSelectCupSTable[2].mUnk_04 = c;
-        gSelectCupGrid->mSelectCupSTable[3].mUnk_04 = 0xe0;
+        gSelectCupGrid->mSelectCupSTable[0].mOffsetX = c;
+        gSelectCupGrid->mSelectCupSTable[1].mOffsetX = 0xe0;
+        gSelectCupGrid->mSelectCupSTable[2].mOffsetX = c;
+        gSelectCupGrid->mSelectCupSTable[3].mOffsetX = 0xe0;
         for (i = 0; i < 4; i++) {
             for (j = 0; j < 6; j++) {
-                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mUnk_04 = c;
+                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mOffsetX = c;
             }
         }
         for (i = 4; i < 8; i++) {
             for (j = 0; j < 6; j++) {
-                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mUnk_04 = 0xe0;
+                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mOffsetX = 0xe0;
             }
         }
     }
@@ -577,35 +577,35 @@ void AdvanceSelectCupGridState1(void) {
         b = InterpolateS16(1, -192, 0, gSelectCupGrid->mStateFrames, 0xa);
         if (GetPreviousMenuScreenNumber() != 0x18 && GetPreviousMenuScreenNumber() != 0xc) {
             gSelectCupGrid->mBg0Offset = b;
-            gSelectCupGrid->mSelectCupMTable[19].mUnk_06 = b;
-            gSelectCupGrid->mSelectCupMTable[2].mUnk_06 = b;
-            gSelectCupGrid->mSelectCupMTable[1].mUnk_06 = b;
-            gSelectCupGrid->mSelectCupMTable[0].mUnk_06 = b;
+            gSelectCupGrid->mSelectCupMTable[19].mOffsetY = b;
+            gSelectCupGrid->mSelectCupMTable[2].mOffsetY = b;
+            gSelectCupGrid->mSelectCupMTable[1].mOffsetY = b;
+            gSelectCupGrid->mSelectCupMTable[0].mOffsetY = b;
             for (i = 0; i < 8; i++) {
-                gSelectCupGrid->mSelectCupMTable[data_0215c83c[i]].mUnk_06 = b;
+                gSelectCupGrid->mSelectCupMTable[data_0215c83c[i]].mOffsetY = b;
             }
             for (i = 0; i < 4; i++) {
-                gSelectCupGrid->mSelectCupMTable[data_0215c7c8[i]].mUnk_06 = b;
+                gSelectCupGrid->mSelectCupMTable[data_0215c7c8[i]].mOffsetY = b;
             }
             for (i = 0; i < 4; i++) {
-                gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mUnk_06 = b;
-                gSelectCupGrid->mSelectCupMTable[v + data_0215c7d8[i]].mUnk_06 = b;
+                gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mOffsetY = b;
+                gSelectCupGrid->mSelectCupMTable[v + data_0215c7d8[i]].mOffsetY = b;
             }
         }
-        gSelectCupGrid->mSelectCupMTable[20].mUnk_06 = b;
+        gSelectCupGrid->mSelectCupMTable[20].mOffsetY = b;
         c = -a;
-        gSelectCupGrid->mSelectCupSTable[0].mUnk_04 = c;
-        gSelectCupGrid->mSelectCupSTable[1].mUnk_04 = a;
-        gSelectCupGrid->mSelectCupSTable[2].mUnk_04 = c;
-        gSelectCupGrid->mSelectCupSTable[3].mUnk_04 = a;
+        gSelectCupGrid->mSelectCupSTable[0].mOffsetX = c;
+        gSelectCupGrid->mSelectCupSTable[1].mOffsetX = a;
+        gSelectCupGrid->mSelectCupSTable[2].mOffsetX = c;
+        gSelectCupGrid->mSelectCupSTable[3].mOffsetX = a;
         for (i = 0; i < 4; i++) {
             for (j = 0; j < 6; j++) {
-                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mUnk_04 = -a;
+                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mOffsetX = -a;
             }
         }
         for (i = 4; i < 8; i++) {
             for (j = 0; j < 6; j++) {
-                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mUnk_04 = a;
+                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mOffsetX = a;
             }
         }
     }
@@ -930,35 +930,35 @@ void AdvanceSelectCupGridState11(void) {
         b = InterpolateS16(1, 0, -192, gSelectCupGrid->mStateFrames, 0xa);
         if (gSelectCupGrid->mResult == 2 || gSelectCupGrid->mResult == 3 || gSelectCupGrid->mMode == 0) {
             gSelectCupGrid->mBg0Offset = b;
-            gSelectCupGrid->mSelectCupMTable[19].mUnk_06 = b;
-            gSelectCupGrid->mSelectCupMTable[2].mUnk_06 = b;
-            gSelectCupGrid->mSelectCupMTable[1].mUnk_06 = b;
-            gSelectCupGrid->mSelectCupMTable[0].mUnk_06 = b;
+            gSelectCupGrid->mSelectCupMTable[19].mOffsetY = b;
+            gSelectCupGrid->mSelectCupMTable[2].mOffsetY = b;
+            gSelectCupGrid->mSelectCupMTable[1].mOffsetY = b;
+            gSelectCupGrid->mSelectCupMTable[0].mOffsetY = b;
             for (i = 0; i < 8; i++) {
-                gSelectCupGrid->mSelectCupMTable[data_0215c83c[i]].mUnk_06 = b;
+                gSelectCupGrid->mSelectCupMTable[data_0215c83c[i]].mOffsetY = b;
             }
             for (i = 0; i < 4; i++) {
-                gSelectCupGrid->mSelectCupMTable[data_0215c7c8[i]].mUnk_06 = b;
+                gSelectCupGrid->mSelectCupMTable[data_0215c7c8[i]].mOffsetY = b;
             }
             for (i = 0; i < 4; i++) {
-                gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mUnk_06 = b;
-                gSelectCupGrid->mSelectCupMTable[v + data_0215c7d8[i]].mUnk_06 = b;
+                gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mOffsetY = b;
+                gSelectCupGrid->mSelectCupMTable[v + data_0215c7d8[i]].mOffsetY = b;
             }
         }
-        gSelectCupGrid->mSelectCupMTable[20].mUnk_06 = b;
+        gSelectCupGrid->mSelectCupMTable[20].mOffsetY = b;
         c = -a;
-        gSelectCupGrid->mSelectCupSTable[0].mUnk_04 = c;
-        gSelectCupGrid->mSelectCupSTable[1].mUnk_04 = a;
-        gSelectCupGrid->mSelectCupSTable[2].mUnk_04 = c;
-        gSelectCupGrid->mSelectCupSTable[3].mUnk_04 = a;
+        gSelectCupGrid->mSelectCupSTable[0].mOffsetX = c;
+        gSelectCupGrid->mSelectCupSTable[1].mOffsetX = a;
+        gSelectCupGrid->mSelectCupSTable[2].mOffsetX = c;
+        gSelectCupGrid->mSelectCupSTable[3].mOffsetX = a;
         for (i = 0; i < 4; i++) {
             for (j = 0; j < 6; j++) {
-                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mUnk_04 = -a;
+                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mOffsetX = -a;
             }
         }
         for (i = 4; i < 8; i++) {
             for (j = 0; j < 6; j++) {
-                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mUnk_04 = a;
+                gSelectCupGrid->mSelectCupSTable[gSelectCupGridCupCellIndices[i][j]].mOffsetX = a;
             }
         }
     }

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_02124094.h" // Unk02124b1c
+#include "Main/Unknown/code_02124094.h" // LayoutTableEntry
 
 typedef struct Ncgr Ncgr;
 typedef struct Nclr Nclr;
@@ -36,10 +36,10 @@ typedef struct Unk0217b43c {
     /* 934 */ BOOL mUnk_934;
     /* 938 */ s16 mUnk_938;
     /* 93a */ u8 mUnk_93a[2];
-    /* 93c */ Unk02124b1c *mSinglePlaySelectModeMLayoutTable;
+    /* 93c */ LayoutTableEntry *mSinglePlaySelectModeMLayoutTable;
     /* 940 */ struct Unk0201ea30 *mSinglePlaySelectModeMBncl;
     /* 944 */ s32 mUnk_944;
-    /* 948 */ Unk02124b1c *mSinglePlaySelectModeSLayoutTable;
+    /* 948 */ LayoutTableEntry *mSinglePlaySelectModeSLayoutTable;
     /* 94c */ struct Unk0201ea30 *mSinglePlaySelectModeSBncl;
     /* 950 */ void *mSinglePlaySelectModeSBnbl;
     /* 954 */ u8 *mUnk_954;

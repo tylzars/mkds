@@ -74,16 +74,16 @@ void func_02029008(void) {
     Unk02174e50_24 *p;
     if (d->mUnk_104 == FALSE) {
         p = &d->mSelectCharacterGpMParts;
-        p->mUnk_18[1].mUnk_04 = GetInterpolatedValue(&d->mInterpolations[0]);
-        p->mUnk_18[2].mUnk_04 = p->mUnk_18[1].mUnk_04;
-        p->mUnk_18[0].mUnk_06 = GetInterpolatedValue(&gSelectKart->mInterpolations[1]);
-        p->mUnk_18[3].mUnk_06 = GetInterpolatedValue(&gSelectKart->mInterpolations[2]);
-        p->mUnk_18[9].mUnk_06 = GetInterpolatedValue(&gSelectKart->mInterpolations[3]);
-        p->mUnk_18[8].mUnk_06 = p->mUnk_18[9].mUnk_06;
-        p->mUnk_18[7].mUnk_06 = p->mUnk_18[8].mUnk_06;
-        p->mUnk_18[6].mUnk_06 = p->mUnk_18[7].mUnk_06;
-        p->mUnk_18[5].mUnk_06 = p->mUnk_18[6].mUnk_06;
-        p->mUnk_18[4].mUnk_06 = p->mUnk_18[5].mUnk_06;
+        p->mUnk_18[1].mOffsetX = GetInterpolatedValue(&d->mInterpolations[0]);
+        p->mUnk_18[2].mOffsetX = p->mUnk_18[1].mOffsetX;
+        p->mUnk_18[0].mOffsetY = GetInterpolatedValue(&gSelectKart->mInterpolations[1]);
+        p->mUnk_18[3].mOffsetY = GetInterpolatedValue(&gSelectKart->mInterpolations[2]);
+        p->mUnk_18[9].mOffsetY = GetInterpolatedValue(&gSelectKart->mInterpolations[3]);
+        p->mUnk_18[8].mOffsetY = p->mUnk_18[9].mOffsetY;
+        p->mUnk_18[7].mOffsetY = p->mUnk_18[8].mOffsetY;
+        p->mUnk_18[6].mOffsetY = p->mUnk_18[7].mOffsetY;
+        p->mUnk_18[5].mOffsetY = p->mUnk_18[6].mOffsetY;
+        p->mUnk_18[4].mOffsetY = p->mUnk_18[5].mOffsetY;
     }
 }
 #pragma thumb off

@@ -30,16 +30,16 @@ static inline u32 func_020919e8_inline(u32 n) {
     Unk020f41c4_B *b;
 
     b = GetMapObjectRandom();
-    b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
-    return ((b->mUnk_00 >> 32) * n) >> 32;
+    b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
+    return ((b->mValue >> 32) * n) >> 32;
 }
 
 static inline u16 func_020919e8_inline_2(u32 n) {
     Unk020f41c4_B *b;
 
     b = GetMapObjectRandom();
-    b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
-    return (u32) (((b->mUnk_00 >> 32) * n) >> 32);
+    b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
+    return (u32) (((b->mValue >> 32) * n) >> 32);
 }
 
 static inline void func_020919e8_inline_3(Unk020919e8 *p, s32 n) {
@@ -101,11 +101,11 @@ u32 NextRandomBelow(Unk020f41c4_B *a, u32 b) {
     if (b == 0) {
         return 0;
     }
-    a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
+    a->mValue = a->mMultiplier * a->mValue + a->mIncrement;
     if (b == 0) {
-        return a->mUnk_00 >> 32;
+        return a->mValue >> 32;
     }
-    return ((a->mUnk_00 >> 32) * b) >> 32;
+    return ((a->mValue >> 32) * b) >> 32;
 }
 
 s16 func_02091f54(s32 a) {

@@ -95,8 +95,8 @@ void func_0207d5b8(KartAiItemUse *a, struct KartAi *b) {
     if (n == 0) {
         v = 0;
     } else {
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
     }
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
@@ -126,8 +126,8 @@ void UseItemAfterHeld(KartAiItemUse *a, struct KartAi *b) {
     if (n == 0) {
         v = 0;
     } else {
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
     }
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
@@ -221,8 +221,8 @@ void UseItemByTargetOrRank(KartAiItemUse *a, struct KartAi *b) {
             if (n == 0) {
                 v = 0;
             } else {
-                r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-                v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+                r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+                v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
             }
             a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
             return;
@@ -239,8 +239,8 @@ void UseItemByTargetOrRank(KartAiItemUse *a, struct KartAi *b) {
             if (n == 0) {
                 v = 0;
             } else {
-                r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-                v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+                r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+                v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
             }
             a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
             return;
@@ -270,8 +270,8 @@ void RequestItemBitsByKartRank(KartAiItemUse *a, struct KartAi *b) {
         if (n == 0) {
             v = 0;
         } else {
-            r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-            v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+            r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+            v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
         }
         a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
         return;
@@ -288,8 +288,8 @@ void RequestItemBitsByKartRank(KartAiItemUse *a, struct KartAi *b) {
                 if (n == 0) {
                     v = 0;
                 } else {
-                    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-                    v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+                    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+                    v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
                 }
                 a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
                 return;
@@ -306,8 +306,8 @@ void RequestItemBitsByKartRank(KartAiItemUse *a, struct KartAi *b) {
                 if (n == 0) {
                     v = 0;
                 } else {
-                    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-                    v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+                    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+                    v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
                 }
                 a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
                 return;
@@ -324,8 +324,8 @@ void RequestItemBitsByKartRank(KartAiItemUse *a, struct KartAi *b) {
                 if (n == 0) {
                     v = 0;
                 } else {
-                    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-                    v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+                    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+                    v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
                 }
                 a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
                 return;
@@ -345,8 +345,8 @@ void RequestItemBitsByKartRank(KartAiItemUse *a, struct KartAi *b) {
         if (n == 0) {
             v = 0;
         } else {
-            r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-            v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+            r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+            v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
         }
         a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
         return;
@@ -381,8 +381,8 @@ void UseItemAfterHeldIfTurnUnder20(KartAiItemUse *a, struct KartAi *b) {
     if (n == 0) {
         v = 0;
     } else {
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
     }
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
@@ -415,8 +415,8 @@ void func_0207cb74(KartAiItemUse *a, struct KartAi *b) {
     if (n == 0) {
         v = 0;
     } else {
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
     }
     a->mHeldItemTimer = a->mHeldItemEntry->mTimerBase + (u16) v;
 }
@@ -577,8 +577,8 @@ void UseItemAndResetHeldTimer(KartAiItemUse *a, struct KartAi *b) {
     if (n == 0) {
         v = 0;
     } else {
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
     }
     a->mHeldItemTimer = a->mHeldItemEntry->mTimerBase + (u16) v;
 }
@@ -599,8 +599,8 @@ void UseItemAndResetInUseTimer(KartAiItemUse *a, struct KartAi *b) {
     if (n == 0) {
         v = 0;
     } else {
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
     }
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
@@ -623,8 +623,8 @@ void UseItemForwardAndResetInUseTimer(KartAiItemUse *a, struct KartAi *b) {
     if (n == 0) {
         v = 0;
     } else {
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
     }
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
@@ -647,8 +647,8 @@ void UseItemBehindAndResetInUseTimer(KartAiItemUse *a, struct KartAi *b) {
     if (n == 0) {
         v = 0;
     } else {
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
     }
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
@@ -725,8 +725,8 @@ void SetupHeldItemEntry(struct KartAiItemUse *a, struct KartAi *b) {
     k = gKartItems[b->mIndex].mHeldItem.mItemInfoIndex;
     a->mHeldItemEntry = &data_0217ae38[k];
     r = GetKartAiRandom();
-    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    a->mRandomValue = (s16) (u16) (r->mUnk_00 >> 52);
+    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+    a->mRandomValue = (s16) (u16) (r->mValue >> 52);
     if (a->mHeldItemEntry == NULL) {
         return;
     }
@@ -735,8 +735,8 @@ void SetupHeldItemEntry(struct KartAiItemUse *a, struct KartAi *b) {
     if (n == 0) {
         v = 0;
     } else {
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
     }
     a->mHeldItemTimer = a->mHeldItemEntry->mTimerBase + (u16) v;
 }
@@ -754,8 +754,8 @@ void ResetHeldItemTimer(struct KartAiItemUse *a) {
     if (n == 0) {
         v = 0;
     } else {
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
     }
     a->mHeldItemTimer = a->mHeldItemEntry->mTimerBase + (u16) v;
 }
@@ -785,8 +785,8 @@ void ResetItemInUseTimer(struct KartAiItemUse *a, struct KartAiItemUseEntry *b) 
     if (n == 0) {
         v = 0;
     } else {
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
     }
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
@@ -820,8 +820,8 @@ void SetupItemInUseEntry(struct KartAiItemUse *a, struct KartAi *b) {
     if (n == 0) {
         v = 0;
     } else {
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (n == 0) ? (u32) (r->mUnk_00 >> 32) : (u32) (((r->mUnk_00 >> 32) * (u32) n) >> 32);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (n == 0) ? (u32) (r->mValue >> 32) : (u32) (((r->mValue >> 32) * (u32) n) >> 32);
     }
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }

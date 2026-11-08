@@ -41,8 +41,8 @@ void func_02090088(KartAiItemUse *a, KartAi *b) {
 
     if (DecrementHeldItemTimer(a) != 0) {
         r = GetKartAiRandom();
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (s16) (u16) (r->mUnk_00 >> 52);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (s16) (u16) (r->mValue >> 52);
         if (v < 0xb33) {
             UseItemForwardAndResetInUseTimer(a, b);
         } else {
@@ -71,8 +71,8 @@ void func_0208ffe4(KartAiItemUse *a, KartAi *b) {
         return;
     }
     r = GetKartAiRandom();
-    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    v = (s16) (u16) (r->mUnk_00 >> 52);
+    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+    v = (s16) (u16) (r->mValue >> 52);
     if (v < 0xb33) {
         UseItemForwardAndResetInUseTimer(a, b);
     } else {
@@ -90,8 +90,8 @@ void func_0208fefc(KartAiItemUse *a, struct KartAi *b) {
 
     if (DecrementHeldItemTimer(a) != 0) {
         r = GetKartAiRandom();
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (s16) (u16) (r->mUnk_00 >> 52);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (s16) (u16) (r->mValue >> 52);
         if (v > 0xccd) {
             UseItemBehindAndResetInUseTimer(a, b);
         } else {
@@ -116,8 +116,8 @@ void func_0208fe58(KartAiItemUse *a, struct KartAi *b) {
         return;
     }
     r = GetKartAiRandom();
-    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    v = (s16) (u16) (r->mUnk_00 >> 52);
+    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+    v = (s16) (u16) (r->mValue >> 52);
     if (v > 0xccd) {
         UseItemBehindAndResetInUseTimer(a, b);
     } else {
@@ -183,8 +183,8 @@ void func_0208fba0(KartAiItemUse *a, struct KartAi *b) {
 
     if (DecrementItemInUseTimer(a) != 0) {
         r = GetKartAiRandom();
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (s16) (u16) (r->mUnk_00 >> 52);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (s16) (u16) (r->mValue >> 52);
         if (v < 0xb33) {
             UseItemForwardAndResetInUseTimer(a, b);
         } else {
@@ -213,8 +213,8 @@ void func_0208fafc(KartAiItemUse *a, struct KartAi *b) {
         return;
     }
     r = GetKartAiRandom();
-    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    v = (s16) (u16) (r->mUnk_00 >> 52);
+    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+    v = (s16) (u16) (r->mValue >> 52);
     if (v < 0xb33) {
         UseItemForwardAndResetInUseTimer(a, b);
     } else {
@@ -248,8 +248,8 @@ void func_0208f9ac(KartAiItemUse *a, struct KartAi *b) {
         return;
     }
     r = GetKartAiRandom();
-    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    v = (s16) (u16) (r->mUnk_00 >> 52);
+    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+    v = (s16) (u16) (r->mValue >> 52);
     if (v < 0xb33) {
         UseItemForwardAndResetInUseTimer(a, b);
     } else {
@@ -378,8 +378,8 @@ void func_0208f4e8(KartAiItemUse *a, struct KartAi *b) {
 
     if (DecrementItemInUseTimer(a) != 0) {
         r = GetKartAiRandom();
-        r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        v = (s16) (u16) (r->mUnk_00 >> 52);
+        r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+        v = (s16) (u16) (r->mValue >> 52);
         if (v > 0xb33) {
             UseItemBehindAndResetInUseTimer(a, b);
         } else {

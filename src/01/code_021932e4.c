@@ -59,9 +59,9 @@ void InitOptionTopMenu(void *heap) {
     for (i = 0; i < 3; i++) {
         for (j = 0; j < data_ov001_021a65e4[i]; j++) {
             if (i == 1) {
-                gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65f0[i][j]].mUnk_04 = 250;
+                gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65f0[i][j]].mOffsetX = 250;
             } else {
-                gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65f0[i][j]].mUnk_04 = -250;
+                gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65f0[i][j]].mOffsetX = -250;
             }
         }
     }
@@ -112,9 +112,9 @@ void AdvanceOptionTopMenuState1(void) {
     for (i = 0; i < 3; i++) {
         for (j = 0; j < data_ov001_021a65e4[i]; j++) {
             if (i == 1) {
-                gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65f0[i][j]].mUnk_04 = amount;
+                gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65f0[i][j]].mOffsetX = amount;
             } else {
-                gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65f0[i][j]].mUnk_04 = -amount;
+                gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65f0[i][j]].mOffsetX = -amount;
             }
         }
     }
@@ -252,9 +252,9 @@ void AdvanceOptionTopMenuState5(void) {
     for (i = 0; i < 3; i++) {
         for (j = 0; j < data_ov001_021a65e4[i]; j++) {
             if (i == 1) {
-                gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65f0[i][j]].mUnk_04 = amount;
+                gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65f0[i][j]].mOffsetX = amount;
             } else {
-                gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65f0[i][j]].mUnk_04 = -amount;
+                gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65f0[i][j]].mOffsetX = -amount;
             }
         }
     }
@@ -351,11 +351,11 @@ void func_ov001_021933dc(void) {
 
     for (i = 0; i < 3; i++) {
         if (i == gOptionTopMenu->mIndex && gOptionTopMenu->mUnk_14 != FALSE) {
-            gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65e0[i]].mUnk_00 = 1;
+            gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65e0[i]].mVisible = 1;
             func_02124a20(data_ov001_021a65d8[i], 14, gOptionTopMenu->mOptionTopMenuSNcer,
                           gOptionTopMenu->mOptionTopMenuSBncl);
         } else {
-            gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65e0[i]].mUnk_00 = zero;
+            gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65e0[i]].mVisible = zero;
             func_02124a20(data_ov001_021a65d8[i], 15, gOptionTopMenu->mOptionTopMenuSNcer,
                           gOptionTopMenu->mOptionTopMenuSBncl);
         }

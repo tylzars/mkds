@@ -413,11 +413,11 @@ void UpdateShine16(void *a, Shine16 *p) {
             }
             if (p->mUnk_dc > 0) {
                 g = &gRaceProgress->mRandom;
-                g->mUnk_00 = g->mUnk_08 * g->mUnk_00 + g->mUnk_10;
-                r = ((u64) (u32) (g->mUnk_00 >> 32) * 0x10000) >> 32;
+                g->mValue = g->mMultiplier * g->mValue + g->mIncrement;
+                r = ((u64) (u32) (g->mValue >> 32) * 0x10000) >> 32;
                 g = &gRaceProgress->mRandom;
-                g->mUnk_00 = g->mUnk_08 * g->mUnk_00 + g->mUnk_10;
-                s = ((u64) (u32) (g->mUnk_00 >> 32) * 0x14000) >> 32;
+                g->mValue = g->mMultiplier * g->mValue + g->mIncrement;
+                s = ((u64) (u32) (g->mValue >> 32) * 0x14000) >> 32;
                 x = p->mUnk_cc.x + (s32) (((s64) s * gPairsByAngle[(r >> 4) * 2]) >> 12) - p->mUnk_00.mPos.x;
                 z = p->mUnk_cc.z + (s32) (((s64) s * gPairsByAngle[(r >> 4) * 2 + 1]) >> 12) - p->mUnk_00.mPos.z;
                 p->mState = 4;

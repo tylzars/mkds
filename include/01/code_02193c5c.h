@@ -20,7 +20,7 @@ typedef struct OptionTopMenu {
     /* 18 */ s32 mBg0Offset;
     /* 1c */ void *mUnk_1c;
     // one 0x40-byte record per cell of the Bncl member, built by InitLayoutTable
-    /* 20 */ Unk02124b1c *mOptionTopMenuSTable;
+    /* 20 */ LayoutTableEntry *mOptionTopMenuSTable;
     /* 24 */ struct Unk02021dc8 *mOptionTopMenuSNcer;
     /* 28 */ Ncgr *mOptionTopMenuSNcgr;
     /* 2c */ Nclr *mOptionTopMenuSONclr;
@@ -63,8 +63,8 @@ typedef struct RecordGpx {
     /* 44 */ struct Unk0201ea30 *mPlayerCharacterMBncl;
     /* 48 */ Nscr *mRecordGpxSNscr;
     /* 4c */ void *mZeroBuffer;
-    /* 50 */ Unk02124b1c *mRecordGpxMTable;
-    /* 54 */ Unk02124b1c *mRecordGpxSTable;
+    /* 50 */ LayoutTableEntry *mRecordGpxMTable;
+    /* 54 */ LayoutTableEntry *mRecordGpxSTable;
     /* 58 */ void *mCommonMessages;
     /* 5c */ void *mHeap;
     /* 60 */ s32 mState;

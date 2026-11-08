@@ -7,7 +7,7 @@
 #include "stream.h" // NNSSndStrmChannel
 #include "code_0212c9d4.h" // CaptureParam, EffectInfo
 #include "code_0201ea58.h" // Unk0201ea30
-#include "Main/Unknown/code_02124094.h" // Unk02124b1c
+#include "Main/Unknown/code_02124094.h" // LayoutTableEntry
 #include "code_0212d214.h"
 #include "Main/Unknown/types_02180728.h" // Unk02180728
 #include "Main/Unknown/code_02105ec0.h" // Unk0217c7c4
@@ -84,17 +84,17 @@ typedef struct RecordVSErase {
     /* 08 */ Unk0201ea30 *mRecordVSMBncl;
     /* 0c */ struct Unk0201ea30 *mRecordVSMBnll;
     /* 10 */ struct Nscr *mRecordVSM02Nscr;
-    /* 14 */ Unk02124b1c *mRecordVSMTable;
+    /* 14 */ LayoutTableEntry *mRecordVSMTable;
     /* 18 */ Unk0201ea30 *mRecordVSMTransientBncl;
     /* 1c */ struct Unk0201ea30 *mRecordVSMTransientBnll;
     /* 20 */ struct Nscr *mRecordVSM03Nscr;
-    /* 24 */ Unk02124b1c *mRecordVSMTransientTable;
+    /* 24 */ LayoutTableEntry *mRecordVSMTransientTable;
     /* 28 */ struct Ncgr *mRecordVSSNcgr;
     /* 2c */ struct Unk02021dc8 *mRecordVSSNcer;
     /* 30 */ Unk0201ea30 *mRecordVSSEraseBncl;
     /* 34 */ struct Unk0201ea30 *mRecordVSSEraseBnbl;
     /* 38 */ struct Unk0201ea30 *mRecordVSSEraseBnll;
-    /* 3c */ Unk02124b1c *mRecordVSSEraseTable;
+    /* 3c */ LayoutTableEntry *mRecordVSSEraseTable;
     /* 40 */ s32 mTransientDrawn;
     /* 44 */ struct Bmg *mCommonMessages;
     /* 48 */ struct Bmg *mRecordMessages;
@@ -176,19 +176,19 @@ typedef struct RecordVS {
     /* 0c */ struct Unk0201ea30 *mRecordVSMBnll;
     /* 10 */ struct Nscr *mRecordVSM02Nscr;
     // Object table of the main part of the screen (files mRecordVSMBncl / mRecordVSMBnll).
-    /* 14 */ Unk02124b1c *mRecordVSMTable;
+    /* 14 */ LayoutTableEntry *mRecordVSMTable;
     /* 18 */ Unk0201ea30 *mRecordVSMTransientBncl;
     /* 1c */ struct Unk0201ea30 *mRecordVSMTransientBnll;
     /* 20 */ struct Nscr *mRecordVSM03Nscr;
     // Object table of the transient part of the main screen (files mRecordVSMTransientBncl / mRecordVSMTransientBnll).
-    /* 24 */ Unk02124b1c *mRecordVSMTransientTable;
+    /* 24 */ LayoutTableEntry *mRecordVSMTransientTable;
     /* 28 */ struct Ncgr *mRecordVSSNcgr;
     /* 2c */ struct Unk02021dc8 *mRecordVSSNcer;
     /* 30 */ Unk0201ea30 *mRecordVSSBncl;
     /* 34 */ Unk0201ea30 *mRecordVSSBnbl;
     /* 38 */ struct Unk0201ea30 *mRecordVSSBnll;
     // Object table of the sub screen (files mRecordVSSBncl / mRecordVSSBnll).
-    /* 3c */ Unk02124b1c *mRecordVSSTable;
+    /* 3c */ LayoutTableEntry *mRecordVSSTable;
     /* 40 */ s32 mShowsFriendKey;
     /* 44 */ struct Bmg *mRecordMessages;
     /* 48 */ void *mHeap;
@@ -237,8 +237,8 @@ typedef struct SelectCupGrid {
     /* 0c */ struct Unk02021dc8 *mSelectCupSNcer;
     /* 10 */ struct Unk0201ea30 *mSelectCupSBncl;
     /* 14 */ Unk0201ea30 *mSelectCupSBnbl;
-    /* 18 */ Unk02124b1c *mSelectCupMTable;
-    /* 1c */ Unk02124b1c *mSelectCupSTable;
+    /* 18 */ LayoutTableEntry *mSelectCupMTable;
+    /* 1c */ LayoutTableEntry *mSelectCupSTable;
     /* 20 */ void *mUnk_20;
     /* 24 */ struct Bmg *mCommonMessages;
     /* 28 */ struct Bmg *mMenuMessages;
@@ -289,11 +289,11 @@ typedef struct SelectCupCourse {
     // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by InitLayoutTable; assigned only when
     // *(vu16
     // *) 0x027ffc40 != 2
-    /* 1c */ Unk02124b1c *mSelectCupCourseTaOrVsMTable;
+    /* 1c */ LayoutTableEntry *mSelectCupCourseTaOrVsMTable;
     // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by InitLayoutTable; assigned only when
     // *(vu16
     // *) 0x027ffc40 != 2
-    /* 20 */ Unk02124b1c *mSelectCupMTable;
+    /* 20 */ LayoutTableEntry *mSelectCupMTable;
     /* 24 */ void *mUnk_24;
     /* 28 */ struct Bmg *mCommonMessages;
     /* 2c */ void *mGhostMessages;
@@ -337,7 +337,7 @@ typedef struct SelectRaceRule {
     /* 0c */ struct Unk0201ea30 *mBnll;
     /* 10 */ struct Nclr *mNclr; /* the _o palette */
     // Object table allocated for the bncl / bnll of this screen.
-    /* 14 */ Unk02124b1c *mTable;
+    /* 14 */ LayoutTableEntry *mTable;
     // Messages of common.bmg.
     /* 18 */ struct Bmg *mCommonMessages;
     // Messages of rule.bmg.
@@ -404,7 +404,7 @@ typedef struct Unk0217d380 {
     /* 04 */ Unk0201ea30 *mBncl;
     /* 08 */ u8 mUnk_08[0x4];
     /* 0c */ struct Unk0201ea30 *mBnll;
-    /* 10 */ Unk02124b1c *mTable;
+    /* 10 */ LayoutTableEntry *mTable;
     /* 14 */ void *mCommonMessages;
     /* 18 */ void *mUnk_18;
     /* 1c */ s32 mState;
@@ -448,8 +448,8 @@ typedef struct SelectCupM {
     /* 0c */ struct Unk02021dc8 *mSubNcer;
     /* 10 */ Unk0201ea30 *mSubBncl;
     /* 14 */ struct Unk0201ea30 *mSubBnll;
-    /* 18 */ Unk02124b1c *mMainTable;
-    /* 1c */ Unk02124b1c *mSubTable;
+    /* 18 */ LayoutTableEntry *mMainTable;
+    /* 1c */ LayoutTableEntry *mSubTable;
     /* 20 */ void *mUnk_20;
     /* 24 */ struct Bmg *mCommonMessages;
     /* 28 */ void *mHeap;
@@ -652,7 +652,7 @@ typedef struct Keyboard {
     /* 28 */ s32 mStateFrames;
     /* 2c */ Unk0217d400_2c mUnk_2c[3];
     // Object tables of the keyboard, indexed by kind and by the buffer they are drawn to.
-    /* 74 */ Unk02124b1c *mTables[2][2];
+    /* 74 */ LayoutTableEntry *mTables[2][2];
     // Vertical shift in lines of the whole screen (0xc0 = slid out of view, 0 = in place); also stored negated into the
     // vertical half of the sub engine's BG3 offset.
     /* 84 */ s16 mOffsetY;

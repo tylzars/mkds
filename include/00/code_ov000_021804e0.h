@@ -14,6 +14,6 @@ s32 RunWiFiMenuScene(SceneNumbers *a);
 void UpdateWiFiMenuScene(SceneNumbers *a);
 void func_ov000_0218058c(void);
 // Calls the current state's release callback, clears the state callbacks, destroys the heap of
-// func_0202bb60 and clears gWiFiStates and the list block.
+// ReleasePlayerEntryList and clears gWiFiStates and the list block.
 void ReleaseWiFiMenuScene(void);
 void InitWiFiMenuScene(s16 *a);

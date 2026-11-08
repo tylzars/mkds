@@ -66,12 +66,12 @@ void InitSelectBattleStage(void *c, s32 d, void *e, void *f) {
                         gSelectBattleStage->mSelectBattleStageBnlls[i],
                         &gSelectBattleStage->mSelectBattleStageTables[i]);
     }
-    gSelectBattleStage->mSelectBattleStageTables[0][0].mUnk_06 = -0xa0;
+    gSelectBattleStage->mSelectBattleStageTables[0][0].mOffsetY = -0xa0;
     gSelectBattleStage->mUnk_14 = 0xa0;
     func_ov001_0219cec4();
     for (i = 0; i < 6; i++) {
         for (j = 0; j < 3; j++) {
-            gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][j]].mUnk_04 = 0xdc;
+            gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][j]].mOffsetX = 0xdc;
         }
     }
     {
@@ -93,9 +93,9 @@ void InitSelectBattleStage(void *c, s32 d, void *e, void *f) {
                           gSelectBattleStage->mSelectBattleStageTables[0]);
         }
         if (d == 1) {
-            gSelectBattleStage->mSelectBattleStageTables[0][5].mUnk_00 = 0;
+            gSelectBattleStage->mSelectBattleStageTables[0][5].mVisible = 0;
         } else {
-            gSelectBattleStage->mSelectBattleStageTables[0][6].mUnk_00 = 0;
+            gSelectBattleStage->mSelectBattleStageTables[0][6].mVisible = 0;
         }
     }
     reg_G2_BG2CNT = (reg_G2_BG2CNT & 0x43) | 0x9e10;
@@ -173,17 +173,17 @@ void func_ov001_0219cec4(void) {
     u16 x = gSelectBattleStage->mSelectBattleStageBncls[0]->mUnk_06;
 
     for (i = 0; i < 1; i++) {
-        gSelectBattleStage->mSelectBattleStageTables[0][data_ov001_021a6bc4[i]].mUnk_06 = -gSelectBattleStage->mUnk_14;
+        gSelectBattleStage->mSelectBattleStageTables[0][data_ov001_021a6bc4[i]].mOffsetY = -gSelectBattleStage->mUnk_14;
     }
     for (i = 0; i < 3; i++) {
-        gSelectBattleStage->mSelectBattleStageTables[0][data_ov001_021a6bd0[i]].mUnk_06 =
+        gSelectBattleStage->mSelectBattleStageTables[0][data_ov001_021a6bd0[i]].mOffsetY =
             gSelectBattleStage->mOffset - gSelectBattleStage->mUnk_14;
     }
     for (i = 0; i < 3; i++) {
-        gSelectBattleStage->mSelectBattleStageTables[0][data_ov001_021a6bd4[i]].mUnk_04 = gSelectBattleStage->mUnk_18;
+        gSelectBattleStage->mSelectBattleStageTables[0][data_ov001_021a6bd4[i]].mOffsetX = gSelectBattleStage->mUnk_18;
     }
     for (i = 0; i < 2; i++) {
-        (gSelectBattleStage->mSelectBattleStageTables[0] + x)[data_ov001_021a6bc8[i]].mUnk_04 =
+        (gSelectBattleStage->mSelectBattleStageTables[0] + x)[data_ov001_021a6bc8[i]].mOffsetX =
             gSelectBattleStage->mUnk_18;
     }
 }
@@ -200,7 +200,7 @@ void AdvanceSelectBattleStageState0(void) {
     } else if (gSelectBattleStage->mStateFrames > 10) {
         for (i = 0; i < 6; i++) {
             for (j = 0; j < 3; j++) {
-                gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][j]].mUnk_04 =
+                gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][j]].mOffsetX =
                     func_020ae488(gSelectBattleStage->mStateFrames - 10);
             }
         }
@@ -209,7 +209,7 @@ void AdvanceSelectBattleStageState0(void) {
         gSelectBattleStage->mUnk_18 = InterpolateS16(1, -0x100, 0, gSelectBattleStage->mStateFrames, 10);
         for (i = 0; i < 6; i++) {
             for (j = 0; j < 3; j++) {
-                gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][j]].mUnk_04 =
+                gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][j]].mOffsetX =
                     InterpolateS16(1, 0xdc, 0, gSelectBattleStage->mStateFrames, 10);
             }
         }
@@ -324,7 +324,7 @@ void AdvanceSelectBattleStageState3(void) {
     v = func_020ae488(gSelectBattleStage->mStateFrames);
     for (i = 0; i < 3; i++) {
         gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[gSelectBattleStage->mIndex][i]]
-            .mUnk_04 = v;
+            .mOffsetX = v;
     }
     if (gSelectBattleStage->mStateFrames >= 10) {
         gSelectBattleStage->mNextState = 5;
@@ -389,7 +389,7 @@ void AdvanceSelectBattleStageState6(void) {
     gSelectBattleStage->mUnk_18 = InterpolateS16(1, 0, -0x100, gSelectBattleStage->mStateFrames, 10);
     for (i = 0; i < 6; i++) {
         for (j = 0; j < 3; j++) {
-            gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][j]].mUnk_04 =
+            gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][j]].mOffsetX =
                 InterpolateS16(1, 0, 0xdc, gSelectBattleStage->mStateFrames, 10);
         }
     }
@@ -401,11 +401,11 @@ void func_ov001_0219c8ec(void) {
 
     for (i = 0; i < 6; i++) {
         if (i == gSelectBattleStage->mIndex && gSelectBattleStage->mUnk_20 != FALSE) {
-            gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][1]].mUnk_00 = 1;
-            gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][2]].mUnk_00 = 0;
+            gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][1]].mVisible = 1;
+            gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][2]].mVisible = 0;
         } else {
-            gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][1]].mUnk_00 = zero;
-            gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][2]].mUnk_00 = 1;
+            gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][1]].mVisible = zero;
+            gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][2]].mVisible = 1;
         }
     }
 }

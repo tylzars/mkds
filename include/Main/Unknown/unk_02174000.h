@@ -6,7 +6,7 @@
 #include "Main/Unknown/code_02036588.h" // HeapCall
 #include "Main/Unknown/unk_02153000.h" // Unk021535b4
 #include "Main/Unknown/code_020b4000.h" // Ncgr, Nscr, Nclr
-#include "Main/Unknown/code_02124094.h" // Unk02124b1c, Unk0201ea30
+#include "Main/Unknown/code_02124094.h" // LayoutTableEntry, Unk0201ea30
 #include "Main/Unknown/code_020b3f7c.h" // Bmg
 #include "Main/Unknown/code_0202f688.h"
 #include "Main/Unknown/code_0205ee14.h" // KartAppear
@@ -95,20 +95,20 @@ typedef struct SelectKart {
 
 extern SelectKart *gSelectKart;
 
-// Four words at 0x04 of Unk02174e3c_4c.
-typedef struct Unk02174e3c_4c_04 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-} Unk02174e3c_4c_04;
+// Four words at 0x04 of PlayerEntryRow.
+typedef struct EntrySlotMove {
+    /* 00 */ s32 mMoveFrames;
+    /* 04 */ s32 mTargetSlot;
+    /* 08 */ s32 mFromSlot;
+    /* 0c */ s32 mToSlot;
+} EntrySlotMove;
 
-// 0x2c-byte entries from 0x4c of Unk02174e3c.
-typedef struct Unk02174e3c_4c {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ Unk02174e3c_4c_04 mUnk_04;
+// 0x2c-byte entries from 0x4c of PlayerEntryList.
+typedef struct PlayerEntryRow {
+    /* 00 */ s32 mTeamIndex;
+    /* 04 */ EntrySlotMove mSlotMove;
     /* 14 */ u16 mName[0xc];
-} Unk02174e3c_4c;
+} PlayerEntryRow;
 
 extern HeapCall gRootHeapCall;
 
@@ -121,10 +121,10 @@ typedef struct CellFileSet {
     /* 0c */ Unk0201ea30 *mCellLayout;
     /* 10 */ struct Unk0201ea30 *mRects;
     /* 14 */ Unk0201ea30 *mLabelLayout;
-    /* 18 */ Unk02124b1c *mCellTable;
+    /* 18 */ LayoutTableEntry *mCellTable;
 } CellFileSet;
 
-// Object behind data_02174e3c.
+// Object behind gPlayerEntryList.
 // Object behind gSelectCharacter.
 typedef struct Unk02174e14 {
     /* 000 */ CellFileSet mUnk_000;
@@ -155,30 +155,30 @@ typedef struct Unk02174e14 {
 
 extern Unk02174e14 *gSelectCharacter;
 
-// Object behind data_02174e3c, 0x258 bytes (func_0202c65c allocates it).
-typedef struct Unk02174e3c {
-    /* 000 */ CellFileSet mUnk_000;
-    /* 01c */ CellFileSet mUnk_01c;
-    /* 038 */ void *mUnk_038;
+// Object behind gPlayerEntryList, 0x258 bytes (InitPlayerEntryList allocates it).
+typedef struct PlayerEntryList {
+    /* 000 */ CellFileSet mParts;
+    /* 01c */ CellFileSet mTitleParts;
+    /* 038 */ void *mMainOam;
     /* 03c */ void *mHeap;
     /* 040 */ s32 mTimer;
-    /* 044 */ s32 mUnk_044;
+    /* 044 */ s32 mEntryIndex;
     /* 048 */ s32 mPlayerCount;
-    /* 04c */ Unk02174e3c_4c mUnk_04c[8];
+    /* 04c */ PlayerEntryRow mEntries[8];
     /* 1ac */ s32 mUnk_1ac[4];
     /* 1bc */ s32 mUnk_1bc[8];
     /* 1dc */ s32 mUnk_1dc[8];
-    /* 1fc */ BOOL mUnk_1fc;
-    /* 200 */ s32 mUnk_200;
-    /* 204 */ s32 mUnk_204;
+    /* 1fc */ BOOL mSetupRequested;
+    /* 200 */ s32 mTimerEnabled;
+    /* 204 */ s32 mUseTeams;
     /* 208 */ s32 mUnk_208;
     /* 20c */ BOOL mUnk_20c;
-    /* 210 */ Interpolation mUnk_210[4];
-    /* 250 */ s32 mUnk_250;
-    /* 254 */ s32 mUnk_254;
-} Unk02174e3c;
+    /* 210 */ Interpolation mInterpolations[4];
+    /* 250 */ s32 mMode;
+    /* 254 */ s32 mScreenKind;
+} PlayerEntryList;
 
-extern Unk02174e3c *data_02174e3c;
+extern PlayerEntryList *gPlayerEntryList;
 
 // 0x24-byte part of ResultsBattle, at 0x00 and 0x24, filled by LoadScreenMapFileSet.
 typedef struct ScreenMapFileSet {
@@ -259,7 +259,7 @@ typedef struct Unk02174e64 {
 extern Unk02174e64 *data_02174e64;
 
 // Objects whose layout isn't known yet.
-extern struct Unk0202a658 *data_02174e24;
+extern struct ResultScene *gResultScene;
 extern struct WiFiVSCourseSelect *gWiFiVSCourseSelect;
 // 0x20 bytes, then the word at 0x44 the code addresses 0xc past.
 typedef struct Unk02174e40_24 {
@@ -271,15 +271,15 @@ typedef struct Unk02174e40_24 {
 typedef struct TimeAttackGhostSend {
     /* 000 */ u8 mUnk_000[0x24];
     /* 024 */ Unk02174e40_24 mUnk_024;
-    /* 048 */ void *mUnk_048[2];
+    /* 048 */ void *mOamLists[2];
     /* 050 */ CellFileSet mUnk_050[3];
-    /* 0a4 */ s32 mUnk_0a4;
+    /* 0a4 */ s32 mSelectedIndex;
     /* 0a8 */ Bmg *mCommonMessages;
     /* 0ac */ Bmg *mGhostMessages;
     /* 0b0 */ s32 mState;
     /* 0b4 */ s32 mUnk_0b4;
     /* 0b8 */ u8 mUnk_0b8[0x14];
-    /* 0cc */ Interpolation mUnk_0cc;
+    /* 0cc */ Interpolation mInterpolation;
     /* 0dc */ void *mHeap;
 } TimeAttackGhostSend;
 
@@ -325,7 +325,7 @@ extern GhostScene *gGhostScene;
 typedef struct ScrollList {
     /* 000 */ s32 mGroupCount;
     /* 004 */ u16 *mGroupFirstEntries;
-    /* 008 */ Unk02124b1c *mEntries;
+    /* 008 */ LayoutTableEntry *mEntries;
     /* 00c */ struct Unk0201ea30 *mRects;
     /* 010 */ s32 mUpRectIndex;
     /* 014 */ s32 mDownRectIndex;

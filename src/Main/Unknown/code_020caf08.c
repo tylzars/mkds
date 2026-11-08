@@ -12,8 +12,8 @@
 #pragma optimize_for_size on
 void UpdateSinglePlaySelectMenuScreen2(void) {
     s32 frame;
-    Unk02124b1c *mainCells;
-    Unk02124b1c *subCells;
+    LayoutTableEntry *mainCells;
+    LayoutTableEntry *subCells;
     s32 i;
     s16 offset;
 
@@ -21,15 +21,15 @@ void UpdateSinglePlaySelectMenuScreen2(void) {
     mainCells = data_0217b43c->mSinglePlaySelectModeMLayoutTable;
     subCells = data_0217b43c->mSinglePlaySelectModeSLayoutTable;
     if (frame < 10) {
-        mainCells->mUnk_06 = InterpolateS16(1, 0, -0x28, frame, 10);
+        mainCells->mOffsetY = InterpolateS16(1, 0, -0x28, frame, 10);
         offset = InterpolateS16(1, 0, 0xf0, frame, 10);
         for (i = 0; i <= 14; i++) {
-            subCells[i].mUnk_04 = offset;
+            subCells[i].mOffsetX = offset;
         }
     } else {
-        mainCells->mUnk_06 = -0x28;
+        mainCells->mOffsetY = -0x28;
         for (i = 0; i <= 14; i++) {
-            subCells[i].mUnk_04 = 0xf0;
+            subCells[i].mOffsetX = 0xf0;
         }
         SwitchMenuScreen(GetNextMenuScreenNumber(), 0x1f);
     }
