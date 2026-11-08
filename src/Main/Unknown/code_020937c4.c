@@ -231,13 +231,13 @@ void CreateNsKiller2UpdateList(void) {
 
 // Starts a parked NsKiller2 at a (raised), flying along b with angle c.
 void StartNsKiller2(Vec3 *startPos, Vec3 *b, u16 angle) {
-    Unk020937c4 *nsKiller2;
+    NsKiller2 *nsKiller2;
 
     nsKiller2 = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_NS_KILLER2));
     if (nsKiller2 == NULL) {
         return;
     }
-    nsKiller2->mUnk_a0 = 600;
+    nsKiller2->mParkTimer = 600;
     nsKiller2->mUnk_00.mPos.x = startPos->x;
     nsKiller2->mUnk_00.mPos.y = startPos->y + 0x2a000;
     nsKiller2->mUnk_00.mPos.z = startPos->z;
@@ -248,5 +248,5 @@ void StartNsKiller2(Vec3 *startPos, Vec3 *b, u16 angle) {
     nsKiller2->mUnk_00.mUnk_10.y = 0;
     nsKiller2->mUnk_00.mUnk_10.z = ((s64) b->z * 0x6000) >> 12;
     nsKiller2->mUnk_00.mAngle = angle;
-    nsKiller2->mUnk_a4 = 0;
+    nsKiller2->mMode = 0;
 }

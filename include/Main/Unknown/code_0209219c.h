@@ -3,6 +3,7 @@
 #include "types.h"
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
+#include "Main/Unknown/code_0206bcb0.h" // Kart
 
 // Object of kind 0x19f (Basabasa), 0xd8 bytes: the MapObject it starts with, a vector at 0xa0 and words and halfwords
 // up to 0xd4.
@@ -29,14 +30,6 @@ typedef struct Basabasa {
 
 typedef struct Basabasa Basabasa;
 
-// Object CollideKartWithBasabasa reads: a halfword at 0x74 and a vector at 0x80.
-typedef struct Unk0209297c {
-    /* 00 */ u8 mUnk_00[0x74];
-    /* 74 */ u16 mUnk_74;
-    /* 76 */ u8 mUnk_76[10];
-    /* 80 */ Vec3 mUnk_80;
-} Unk0209297c;
-
 void CreateBasabasa(void *a);
 
 void StartBasabasa(u32 state2TimerBase, const Vec3 *startPos, const Vec3 *velocity, u32 state0TimerBase,
@@ -47,7 +40,7 @@ void CreateBasabasaKindData(void);
 void UpdateBasabasa(void *a, Basabasa *basabasa); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void DrawBasabasa(void *a, Basabasa *basabasa);
 void SetupDrawBasabasa(void *a);
-u8 CollideKartWithBasabasa(Basabasa *basabasa, Unk0209297c *kart, void *c, u8 *d);
+u8 CollideKartWithBasabasa(Basabasa *basabasa, Kart *kart, void *c, u8 *d);
 /* creates the pooled object hidden (parks it with ParkMapObject); the spawner later takes it with
  * UnparkFirstParkedMapObject */
 void InitBasabasa(MapObject *mapObject);

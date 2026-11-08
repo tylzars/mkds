@@ -32,7 +32,7 @@ void InitBasabasa(MapObject *mapObject) {
     CreateMapObjectSoundSourceFalloff2(value0);
 }
 
-u8 CollideKartWithBasabasa(Basabasa *basabasa, Unk0209297c *kart, void *c, u8 *d) {
+u8 CollideKartWithBasabasa(Basabasa *basabasa, Kart *kart, void *c, u8 *d) {
     Vec3 u;
     Vec3 offsetToKart;
     s32 k;
@@ -42,10 +42,10 @@ u8 CollideKartWithBasabasa(Basabasa *basabasa, Unk0209297c *kart, void *c, u8 *d
     u8 kartBit;
     s64 lengthSquared;
 
-    kartBit = 1 << kart->mUnk_74;
+    kartBit = 1 << kart->mIndex;
     r = *d;
     if ((basabasa->mHitKartMask & kartBit) == 0) {
-        VEC_Subtract(&kart->mUnk_80, &basabasa->mUnk_00.mPos, &offsetToKart);
+        VEC_Subtract(&kart->mPos, &basabasa->mUnk_00.mPos, &offsetToKart);
         k = ((s64) basabasa->mUnk_00.mMatrix.mUnk_00[2].x * offsetToKart.x +
              (s64) basabasa->mUnk_00.mMatrix.mUnk_00[2].z * offsetToKart.z) >>
             12;

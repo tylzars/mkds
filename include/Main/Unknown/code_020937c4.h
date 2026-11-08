@@ -7,15 +7,7 @@
 #include "Main/Unknown/code_020e005c.h" // GroupFollower
 #include "Main/Unknown/code_0210b000.h" // SoundDistanceSquaredChange
 
-// Object of StartNsKiller2: after the shared part, a counter at 0xa0 and a word at 0xa4. A prefix view of the
-// kind 0x1a2 (NsKiller2) pool objects.
-typedef struct Unk020937c4 {
-    /* 00 */ MapObject mUnk_00;
-    /* a0 */ s32 mUnk_a0;
-    /* a4 */ s32 mUnk_a4;
-} Unk020937c4;
-
-// Object of kind 0x1a2 (NsKiller2), pool objects: after the shared part, a counter at 0xa0, a state at 0xa4 and an
+// Object of kind 0x1a2 (NsKiller2), pool objects: after the shared part, a counter at 0xa0, mMode at 0xa4 and an
 // object at 0xa8.
 typedef struct NsKiller2 {
     /* 00 */ MapObject mUnk_00;

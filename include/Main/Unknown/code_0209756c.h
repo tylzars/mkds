@@ -7,8 +7,7 @@
 #include "code_0201c528.h" // Unk0201ca6c
 #include "code_02012b30.h" // MtxFx43
 
-// Object of kind 0x1a9 (Flipper), up to 0xed4 bytes plus a table of words from 0xed4. mUnk_ebc is also written
-// through Unk0209753c.
+// Object of kind 0x1a9 (Flipper), up to 0xed4 bytes plus a table of words from 0xed4.
 typedef struct Flipper {
     /* 000 */ MapObject mUnk_00;
     /* 0a0 */ s32 mUnk_a0;

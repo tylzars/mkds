@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "code_02146d78.h"
-#include "Main/Unknown/code_020e6fd4.h" // MapObject
+#include "Main/Unknown/code_020e6fd4.h" // MapObject, MapObjectList
 
 // Object up to 0x109 bytes.
 typedef struct CoverPooHole {
@@ -38,23 +38,6 @@ typedef struct CoverPooHole {
     /* 108 */ u8 mUnk_108;
 } CoverPooHole;
 
-// Pointer table with a halfword count behind it.
-typedef struct Unk020968f4 {
-    /* 00 */ CoverPooHole **mUnk_00;
-    /* 04 */ u16 mUnk_04;
-} Unk020968f4;
-
-typedef struct Unk02097520 {
-    /* 00 */ u8 mUnk_00[0x2];
-    /* 02 */ u16 mUnk_02;
-} Unk02097520;
-
-// A second type for the kind 0x1a9 (Flipper) objects: only the prefix up to mUnk_ebc is used.
-typedef struct Unk0209753c {
-    /* 00 */ u8 mUnk_00[0xebc];
-    /* ebc */ u32 mUnk_ebc;
-} Unk0209753c;
-
 #include "Main/Unknown/unk_0217b000.h" // Unk0217b498_00
 #include "Main/Unknown/code_0206bcb0.h" // Kart
 
@@ -66,12 +49,11 @@ void UpdateCoverPooHole(void *a,
                         CoverPooHole *coverPooHole); /* skipped for objects with mFlags & 4 (parked pool objects) */
 s32 func_020968c0(s32 a, s32 b);
 s32 func_020968dc(s32 a);
-void InitCoverPooHoleObjects(Unk020968f4 *mapObjectList);
+void InitCoverPooHoleObjects(MapObjectList *mapObjectList);
 void DrawCoverPooHole(void *a, CoverPooHole *coverPooHole);
 void CreateCoverPooHole(void *a);
 BOOL TryGetCoverPooHolePushOut(CoverPooHole *coverPooHole, const Vec3 *position, s32 radius, Vec3 *pushOut);
 u32 CollideItemObjectWithCoverPooHole(CoverPooHole *coverPooHole, Kart *a, u8 *b, u8 *c);
 u32 CollideKartWithCoverPooHole(CoverPooHole *coverPooHole, Kart *kart, u8 *b, u8 *c);
-/* sets flag 0x200 through the prefix type Unk02097520, whose mUnk_02 is MapObject.mFlags */
-void InitCoverPooHole(Unk02097520 *mapObject);
+void InitCoverPooHole(MapObject *mapObject);
 u32 func_0209753c(u32 a);

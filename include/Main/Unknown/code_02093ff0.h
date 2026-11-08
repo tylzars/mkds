@@ -4,7 +4,8 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
-// 0x20-byte part of Teresa at 0xbc and 0xdc, written by StartTeresa.
+// 0x20-byte part of Teresa at 0xbc and 0xdc, written by StartTeresa. mAmplitudePerFrame and mUnk_1c are always 0 in
+// this build.
 typedef struct TeresaWobble {
     /* 00 */ u16 mAngle;
     /* 02 */ u8 mUnk_02[2];
@@ -41,12 +42,6 @@ typedef struct Teresa {
     /* 110 */ s32 mState;
 } Teresa;
 
-// Table of the objects of func_02100138(0x13b) and their number.
-typedef struct Unk020946b8 {
-    /* 00 */ Teresa **mUnk_00;
-    /* 04 */ u16 mUnk_04;
-} Unk020946b8;
-
 // Object of CreateTeresa: the word at 0x1c is set.
 typedef struct Unk02094db4 {
     /* 00 */ u8 mUnk_00[0x1c];
@@ -62,7 +57,7 @@ void UpdateTeresa(void *a, Teresa *teresa); /* skipped for objects with mFlags &
 s16 func_02094bd0(s32 angle);
 s32 func_02094bf0(s32 a, s32 b);
 s16 func_02094c0c(s32 angle);
-void InitTeresaObjects(Unk020946b8 *mapObjectList);
+void InitTeresaObjects(MapObjectList *mapObjectList);
 void DrawTeresa(void *a, Teresa *teresa);
 void SetupDrawTeresa(void *a);
 void CreateTeresa(Unk02094db4 *a); /* also sets word +0x1c of the group record to 1 */

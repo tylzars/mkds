@@ -99,14 +99,14 @@ static inline void func_02094768_inline_2(s32 *p, s32 *q) {
 }
 
 // Gives each Teresa two values from its place in the list: bit 0 and bit 1 of its index.
-void InitTeresaObjects(Unk020946b8 *mapObjectList) {
+void InitTeresaObjects(MapObjectList *mapObjectList) {
     s32 i;
     Teresa *teresa;
 
     if (mapObjectList == NULL) {
         return;
     }
-    for (i = 0; i < mapObjectList->mUnk_04 && (teresa = mapObjectList->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < mapObjectList->mMapObjectCount && (teresa = mapObjectList->mMapObjects[i]) != NULL; i++) {
         teresa->mNsbtpFrameIndex = i & 1;
         teresa->mMirror = (i / 2) & 1;
     }
@@ -208,7 +208,7 @@ void CreateTeresaUpdateList(void) {
 }
 
 void ClearTeresaTimers(void) {
-    Unk020946b8 *mapObjectList;
+    MapObjectList *mapObjectList;
     Teresa *teresa;
     s32 i;
 
@@ -216,7 +216,7 @@ void ClearTeresaTimers(void) {
     if (mapObjectList == NULL) {
         return;
     }
-    for (i = 0; i < mapObjectList->mUnk_04 && (teresa = mapObjectList->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < mapObjectList->mMapObjectCount && (teresa = mapObjectList->mMapObjects[i]) != NULL; i++) {
         teresa->mState1Timer = 0;
         teresa->mState0Timer = 0;
     }

@@ -93,14 +93,14 @@ void func_020952dc(Unk02094e8c *a, s32 teresaCountLimit, s32 spawnCount, s32 dis
     }
 }
 
-void func_02095228(Unk02095228 *mapObjectList) {
+void func_02095228(MapObjectList *mapObjectList) {
     s32 i;
     Unk02094e8c *o;
 
     if (mapObjectList == NULL) {
         return;
     }
-    for (i = 0; i < mapObjectList->mUnk_04 && (o = mapObjectList->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < mapObjectList->mMapObjectCount && (o = mapObjectList->mMapObjects[i]) != NULL; i++) {
         o->mUnk_a0 = (u16) func_02095228_inline(&gRaceProgress->mLocalRandom, 0xf);
     }
 }

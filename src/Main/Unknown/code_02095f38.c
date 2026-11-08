@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_02095f38.h"
+#include "Main/Unknown/code_0209756c.h" // Flipper
 #include "Main/Unknown/code_0208b484.h"
 #include "Main/Unknown/code_0209b634.h"
 #include "Main/Unknown/code_0209bc5c.h"
@@ -31,14 +32,14 @@
 #include "01/code_0218155c.h"
 
 u32 func_0209753c(u32 a) {
-    Unk0209753c *flipper;
+    Flipper *flipper;
     flipper = GetMapObjectFromList(func_02100138(MAP_OBJECT_KIND_FLIPPER), a);
     flipper->mUnk_ebc = 0xaa;
     return 1;
 }
 
-void InitCoverPooHole(Unk02097520 *mapObject) {
-    mapObject->mUnk_02 |= data_021564c0;
+void InitCoverPooHole(MapObject *mapObject) {
+    mapObject->mFlags |= data_021564c0;
 }
 
 u32 CollideKartWithCoverPooHole(CoverPooHole *coverPooHole, Kart *kart, u8 *b, u8 *c) {
@@ -357,14 +358,14 @@ void DrawCoverPooHole(void *a, CoverPooHole *coverPooHole) {
     DrawMapObjectModel(a, gCover, coverPooHole);
 }
 
-void InitCoverPooHoleObjects(Unk020968f4 *mapObjectList) {
+void InitCoverPooHoleObjects(MapObjectList *mapObjectList) {
     s32 i;
     CoverPooHole *coverPooHole;
     RandomState64 *mapObjectRandom;
     if (mapObjectList == NULL) {
         return;
     }
-    for (i = 0; i < mapObjectList->mUnk_04 && (coverPooHole = mapObjectList->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < mapObjectList->mMapObjectCount && (coverPooHole = mapObjectList->mMapObjects[i]) != NULL; i++) {
         coverPooHole->mUnk_a8 = 0x1000;
         mapObjectRandom = GetMapObjectRandom();
         mapObjectRandom->mValue =
