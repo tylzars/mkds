@@ -40,7 +40,7 @@ void func_ov003_021c9fd4(void) {
     LoadHlSetScr();
     PrintMessage(0x71);
     func_ov003_021beef8(2);
-    func_ov003_021c212c(func_ov003_021c9f48);
+    SetUpdateFunction(func_ov003_021c9f48);
 }
 
 void func_ov003_021c9f70(void) {
@@ -93,7 +93,7 @@ void func_ov003_021c9f70(void) {
 void func_ov003_021c9f48(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
     func_ov003_021d2784(0, 0x15);
-    func_ov003_021c212c(func_ov003_021c9f24);
+    SetUpdateFunction(func_ov003_021c9f24);
 }
 
 void func_ov003_021c9f24(void) {
@@ -101,7 +101,7 @@ void func_ov003_021c9f24(void) {
     v1 = func_ov003_021d1f70(0);
     if (v1 == 0) {
         func_ov003_021bf5c8(1);
-        func_ov003_021c212c(func_ov003_021c9f00);
+        SetUpdateFunction(func_ov003_021c9f00);
     }
 }
 
@@ -110,7 +110,7 @@ void func_ov003_021c9f00(void) {
     v1 = GetButtonResult();
     if (v1 != -2) {
         EnableButtonTouch();
-        func_ov003_021c212c(func_ov003_021c9ee0);
+        SetUpdateFunction(func_ov003_021c9ee0);
     }
 }
 
@@ -143,14 +143,14 @@ void func_ov003_021c9e84(void) {
     if (v1 == 0) {
         StopSoundSeq();
         StartSoundSeq(7);
-        func_ov003_021c212c(func_ov003_021c9e64);
+        SetUpdateFunction(func_ov003_021c9e64);
     }
 }
 
 void func_ov003_021c9e64(void) {
     DisableButtonTouch();
     func_ov003_021d1dd0(8);
-    func_ov003_021c212c(func_ov003_021c9e1c);
+    SetUpdateFunction(func_ov003_021c9e1c);
 }
 
 void func_ov003_021c9e1c(void) {
@@ -162,7 +162,7 @@ void func_ov003_021c9e1c(void) {
             func_ov003_021d1ee0(3, 1, 1, 8);
         }
         func_ov003_021d1ee0(3, 0, 0x15, 8);
-        func_ov003_021c212c(func_ov003_021c9d94);
+        SetUpdateFunction(func_ov003_021c9d94);
     }
 }
 
@@ -177,14 +177,14 @@ void func_ov003_021c9d94(void) {
             func_ov003_021bf410();
             func_ov003_021d272c(1, 1);
         }
-        func_ov003_021c29b8();
+        StopExchangeWithStatusRecord();
         if (data_ov003_021da21c == 0) {
             func_ov003_021c2120(2, 1);
-            func_ov003_021c212c(SetupWay);
+            SetUpdateFunction(SetupWay);
             return;
         }
         func_ov003_021c2120(0, 0);
-        func_ov003_021c212c(func_ov003_021ca194);
+        SetUpdateFunction(func_ov003_021ca194);
     }
 }
 
@@ -194,7 +194,7 @@ void func_ov003_021c9cf4(void) {
             data_ov003_021da21c = 1;
             StopSoundSeq();
             func_ov003_021c2918();
-            func_ov003_021c212c(func_ov003_021c9e64);
+            SetUpdateFunction(func_ov003_021c9e64);
             break;
         case 4:
             data_ov003_021da21c = 0;
@@ -202,7 +202,7 @@ void func_ov003_021c9cf4(void) {
             StartSoundSeq(9);
             func_ov003_021cefc0(0x41, 1, 1, -1, 0);
             DisableButtonTouch();
-            func_ov003_021c212c(func_ov003_021c9ccc);
+            SetUpdateFunction(func_ov003_021c9ccc);
             break;
         case 5:
             data_ov003_021da21c = 0;
@@ -210,7 +210,7 @@ void func_ov003_021c9cf4(void) {
             StartSoundSeq(0x12);
             func_ov003_021cefc0(0x42, 1, 1, -1, 0);
             DisableButtonTouch();
-            func_ov003_021c212c(func_ov003_021c9ccc);
+            SetUpdateFunction(func_ov003_021c9ccc);
             break;
     }
 }

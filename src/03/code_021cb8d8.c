@@ -50,7 +50,7 @@ void func_ov003_021cbb98(void) {
     func_ov003_021cbaa0();
     CreateLinkLevel(0);
     StartSoundSeq(0xc);
-    func_ov003_021c212c(func_ov003_021cba54);
+    SetUpdateFunction(func_ov003_021cba54);
 }
 
 void func_ov003_021cbb14(void) {
@@ -135,12 +135,12 @@ void func_ov003_021cba54(void) {
         func_ov003_021d1ee0(2, 1, 1, 8);
         func_ov003_021d2784(1, 1);
     }
-    func_ov003_021c212c(func_ov003_021cba2c);
+    SetUpdateFunction(func_ov003_021cba2c);
 }
 
 void func_ov003_021cba2c(void) {
     if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0) {
-        func_ov003_021c212c(func_ov003_021cba14);
+        SetUpdateFunction(func_ov003_021cba14);
     }
 }
 
@@ -158,14 +158,14 @@ void func_ov003_021cba08(void) {}
 
 void func_ov003_021cb9e8(void) {
     func_ov003_021d1ee0(3, 0, 0x15, 8);
-    func_ov003_021c212c(func_ov003_021cb9c8);
+    SetUpdateFunction(func_ov003_021cb9c8);
 }
 
 void func_ov003_021cb9c8(void) {
     int v1;
     v1 = func_ov003_021d1f70(0);
     if (v1 == 0) {
-        func_ov003_021c212c(func_ov003_021cb948);
+        SetUpdateFunction(func_ov003_021cb948);
     }
 }
 
@@ -179,10 +179,10 @@ void func_ov003_021cb948(void) {
         func_ov003_021d272c(0, 0x15);
         if (data_ov003_021da248 == 0) {
             func_ov003_021c2120(0, 1);
-            func_ov003_021c212c(SetupJb4Error);
+            SetUpdateFunction(SetupJb4Error);
         } else {
             func_ov003_021c2120(0, 1);
-            func_ov003_021c212c(func_ov003_021cbdbc);
+            SetUpdateFunction(func_ov003_021cbdbc);
         }
     }
 }
@@ -199,7 +199,7 @@ void func_ov003_021cb8f0(u32 b) {
             SetJb4ErrorCode(func_ov000_02188758());
             StartSoundSeq(0x12);
         }
-        func_ov003_021c212c(func_ov003_021cb9e8);
+        SetUpdateFunction(func_ov003_021cb9e8);
         func_ov003_021d34c8(0, b);
     }
 }

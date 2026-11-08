@@ -29,7 +29,7 @@ void func_ov003_021c4804(void) {
     data_ov003_021da1c4 = 0;
     func_ov003_021c47b0();
     PrintMessage(99);
-    func_ov003_021c212c(func_ov003_021c4788);
+    SetUpdateFunction(func_ov003_021c4788);
 }
 
 void func_ov003_021c47b0(void) {
@@ -73,12 +73,12 @@ void func_ov003_021c47b0(void) {
 void func_ov003_021c4788(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
     func_ov003_021d2784(0, 0x15);
-    func_ov003_021c212c(func_ov003_021c4760);
+    SetUpdateFunction(func_ov003_021c4760);
 }
 
 void func_ov003_021c4760(void) {
     if (func_ov003_021d1f70(0) == 0 && func_ov003_021c27e4() != 0) {
-        func_ov003_021c212c(func_ov003_021c474c);
+        SetUpdateFunction(func_ov003_021c474c);
     }
 }
 
@@ -92,7 +92,7 @@ void func_ov003_021c4748(void) {}
 void func_ov003_021c471c(void) {
     func_ov003_021d1ee0(3, 1, 1, 8);
     func_ov003_021d1ee0(3, 0, 0x15, 8);
-    func_ov003_021c212c(func_ov003_021c46d0);
+    SetUpdateFunction(func_ov003_021c46d0);
 }
 
 void func_ov003_021c46d0(void) {
@@ -104,13 +104,13 @@ void func_ov003_021c46d0(void) {
         func_ov003_021d272c(1, 1);
         func_ov003_021d272c(0, 0x15);
         func_ov003_021c2120(0, 1);
-        func_ov003_021c212c(SetupOptMenu);
+        SetUpdateFunction(SetupOptMenu);
     }
 }
 
 void func_ov003_021c46a8(void) {
     data_ov003_021da1c4++;
     if (data_ov003_021da1c4 >= 120) {
-        func_ov003_021c212c(func_ov003_021c471c);
+        SetUpdateFunction(func_ov003_021c471c);
     }
 }

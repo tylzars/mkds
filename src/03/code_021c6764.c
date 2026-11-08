@@ -64,7 +64,7 @@ void CreateEdit(void) {
     gEdit->mUnk_04->mUnk_04 = (gEdit->mUnk_04->mUnk_04 & 0xfffff3ff) | 0xc00;
     func_ov003_021c6914();
     PrintEditText();
-    func_ov003_021c212c(func_ov003_021c6d68);
+    SetUpdateFunction(func_ov003_021c6d68);
 }
 
 void LoadEditFilesAndSetBgCnt(void) {
@@ -128,7 +128,7 @@ void func_ov003_021c6d68(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x15);
-    func_ov003_021c212c(func_ov003_021c6d0c);
+    SetUpdateFunction(func_ov003_021c6d0c);
 }
 
 void func_ov003_021c6d0c(void) {
@@ -143,13 +143,13 @@ void func_ov003_021c6d0c(void) {
         if (gEdit->mCharCount == ' ') {
             SetEditKeyboardAddCharEnabled(0);
         }
-        func_ov003_021c212c(func_ov003_021c6cf0);
+        SetUpdateFunction(func_ov003_021c6cf0);
     }
 }
 
 void func_ov003_021c6cf0(void) {
     if (GetEditKeyboardInput() != 255) {
-        func_ov003_021c212c(UpdateEdit);
+        SetUpdateFunction(UpdateEdit);
     }
 }
 
@@ -180,7 +180,7 @@ void UpdateEditInput(void) {
         case 0x82:
             StartSoundSeq(7);
             gEdit->mUnk_2a = 0;
-            func_ov003_021c212c(func_ov003_021c6b80);
+            SetUpdateFunction(func_ov003_021c6b80);
             return;
         case 0x83:
             if (func_ov003_021c6764() != FALSE) {
@@ -191,7 +191,7 @@ void UpdateEditInput(void) {
                 StartSoundSeq(9);
             }
             gEdit->mUnk_04->mUnk_00 = (gEdit->mUnk_04->mUnk_00 & 0xc1fffcff) | 0x200;
-            func_ov003_021c212c(func_ov003_021c6b80);
+            SetUpdateFunction(func_ov003_021c6b80);
             return;
         case 0:
             break;
@@ -219,7 +219,7 @@ void func_ov003_021c6b9c(void) {}
 
 void func_ov003_021c6b80(void) {
     func_ov003_021d1dd0(8);
-    func_ov003_021c212c(func_ov003_021c6b58);
+    SetUpdateFunction(func_ov003_021c6b58);
 }
 
 void func_ov003_021c6b58(void) {
@@ -228,7 +228,7 @@ void func_ov003_021c6b58(void) {
     if (v1 == 0) {
         StartEditKeyboardSlideOut();
         StartSoundSeq(0x15);
-        func_ov003_021c212c(func_ov003_021c6acc);
+        SetUpdateFunction(func_ov003_021c6acc);
     }
 }
 
@@ -237,14 +237,14 @@ void func_ov003_021c6acc(void) {
     s32 b;
     if (HasEditKeyboard() == 0) {
         if (gEdit->mUnk_2a == 0) {
-            func_ov003_021c212c(func_ov003_021c6a18);
+            SetUpdateFunction(func_ov003_021c6a18);
         } else if (gEdit->mUnk_2a == 2) {
             func_ov003_021cefc0(0x2f, 3, 1, -1, 0);
-            func_ov003_021c212c(func_ov003_021c673c);
+            SetUpdateFunction(func_ov003_021c673c);
         } else {
             func_ov003_021c20dc(NULL, &b);
             func_ov003_021cefc0(a[b], 2, 1, -1, 0);
-            func_ov003_021c212c(func_ov003_021c68c8);
+            SetUpdateFunction(func_ov003_021c68c8);
         }
     }
 }
@@ -262,15 +262,15 @@ void func_ov003_021c6a18(void) {
     if (v2[0] == 0) {
         func_ov003_021c2120(2, 1);
         func_ov003_021c20f8(0, v1);
-        func_ov003_021c212c(CreateJb3List);
+        SetUpdateFunction(CreateJb3List);
     } else if (gEdit->mUnk_2a == 0) {
         func_ov003_021c2120(0, 1);
         func_ov003_021c20f8(1, 0);
-        func_ov003_021c212c(CreateApList);
+        SetUpdateFunction(CreateApList);
     } else {
         func_ov003_021c2120(0, 0);
         func_ov003_021c20f8(0, 1);
-        func_ov003_021c212c(func_ov003_021cbf60);
+        SetUpdateFunction(func_ov003_021cbf60);
     }
     func_ov003_021d2808(&gEdit);
 }
@@ -337,7 +337,7 @@ void func_ov003_021c68c8(void) {
             return;
     }
     func_ov003_021cef90();
-    func_ov003_021c212c(func_ov003_021c6854);
+    SetUpdateFunction(func_ov003_021c6854);
 }
 
 void func_ov003_021c6854(void) {
@@ -346,12 +346,12 @@ void func_ov003_021c6854(void) {
     if (func_ov003_021cef6c() == 0) {
         if (gEdit->mUnk_2a == 0) {
             gEdit->mUnk_04->mUnk_00 = gEdit->mUnk_04->mUnk_00 & 0xc1fffcff;
-            func_ov003_021c212c(func_ov003_021c6d0c);
+            SetUpdateFunction(func_ov003_021c6d0c);
             return;
         }
         func_ov003_021c20dc(&b, NULL);
         a[b](gEdit->mText);
-        func_ov003_021c212c(func_ov003_021c6a18);
+        SetUpdateFunction(func_ov003_021c6a18);
     }
 }
 

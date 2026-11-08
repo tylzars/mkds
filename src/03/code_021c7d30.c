@@ -72,7 +72,7 @@ void CreateJb3List(void) {
     func_ov003_021c94c8();
     LoadJb3ListFilesAndSetBgCnt();
     if (gJb3ListMode == 0) {
-        func_ov003_021bf43c(0x7c, data_ov003_021d6434[func_ov003_021c20d0()], b->mUnk_f4 + 1);
+        func_ov003_021bf43c(0x7c, data_ov003_021d6434[GetLanguageIndex()], b->mUnk_f4 + 1);
     } else {
         func_ov003_021bf43c(0x97, -1, 0);
     }
@@ -97,7 +97,7 @@ void CreateJb3List(void) {
     gJb3List->mIdTimerTask = func_ov003_021d3544(0, AdvanceJb3ListIdTimers, NULL, 0x78);
     RefreshJb3List();
     func_ov003_021c81b8();
-    func_ov003_021c212c(func_ov003_021c948c);
+    SetUpdateFunction(func_ov003_021c948c);
 }
 
 void LoadJb3ListFilesAndSetBgCnt(void) {
@@ -142,12 +142,12 @@ void func_ov003_021c948c(void) {
     func_ov003_021d1ee0(2, 0, 0x1d, 8);
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x1d);
-    func_ov003_021c212c(func_ov003_021c9464);
+    SetUpdateFunction(func_ov003_021c9464);
 }
 
 void func_ov003_021c9464(void) {
     if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0) {
-        func_ov003_021c212c(UpdateJb3List);
+        SetUpdateFunction(UpdateJb3List);
     }
 }
 
@@ -175,7 +175,7 @@ void UpdateJb3ListInput(void) {
     if (func_ov003_021d2b04(2) != 0) {
         StartSoundSeq(7);
         gJb3List->mUnk_40 = 0xd;
-        func_ov003_021c212c(func_ov003_021c8e80);
+        SetUpdateFunction(func_ov003_021c8e80);
         return;
     }
     if (func_ov003_021d2ae8(0x200) != 0) {
@@ -285,7 +285,7 @@ void func_ov003_021c90dc(u32 param_1) {
         if (func_ov003_021c7d8c() == 0) {
             StartSoundSeq(9);
             func_ov003_021cefc0(0x2f, 1, 1, -1, 0);
-            func_ov003_021c212c(func_ov003_021c7d58);
+            SetUpdateFunction(func_ov003_021c7d58);
             return;
         }
         if (param_1 == 0xb) {
@@ -302,7 +302,7 @@ void func_ov003_021c90dc(u32 param_1) {
         RefreshJb3ListRowPositions();
     }
     func_ov003_021cce38();
-    func_ov003_021c212c(func_ov003_021c8e80);
+    SetUpdateFunction(func_ov003_021c8e80);
 }
 
 void func_ov003_021c9084(u32 param_1) {
@@ -408,7 +408,7 @@ void UpdateJb3ListScrollInput(void) {
 void func_ov003_021c8e80(void) {
     func_ov003_021cce38();
     func_ov003_021d1dd0(8);
-    func_ov003_021c212c(func_ov003_021c8e48);
+    SetUpdateFunction(func_ov003_021c8e48);
 }
 
 void func_ov003_021c8e48(void) {
@@ -417,7 +417,7 @@ void func_ov003_021c8e48(void) {
     if (v1 == 0) {
         func_ov003_021d1ee0(3, 1, 1, 8);
         func_ov003_021d1ee0(3, 0, 0x1d, 8);
-        func_ov003_021c212c(func_ov003_021c8c14);
+        SetUpdateFunction(func_ov003_021c8c14);
     }
 }
 
@@ -467,7 +467,7 @@ void func_ov003_021c8c14(void) {
         case 1:
             func_ov003_021c20f8(v, 0);
             func_ov003_021c2120(2, 0);
-            func_ov003_021c212c(CreateEdit);
+            SetUpdateFunction(CreateEdit);
             break;
         case 4:
         case 5:
@@ -480,7 +480,7 @@ void func_ov003_021c8c14(void) {
             }
             func_ov003_021c2120(2, 0);
             func_ov003_021c20f8(i, 0);
-            func_ov003_021c212c(CreateEditAddr);
+            SetUpdateFunction(CreateEditAddr);
             break;
         case 11:
             r = func_ov003_021cdb6c();
@@ -496,20 +496,20 @@ void func_ov003_021c8c14(void) {
             }
             func_ov003_021c2120(2, 0);
             func_ov003_021c20f8(0, 0);
-            func_ov003_021c212c(func_ov003_021cbb98);
+            SetUpdateFunction(func_ov003_021cbb98);
             break;
         case 12:
             func_ov003_021c2120(0, 0);
-            func_ov003_021c212c(func_ov003_021c9944);
+            SetUpdateFunction(func_ov003_021c9944);
             break;
         case 13:
             if (gJb3ListMode == 0) {
                 func_ov003_021c2120(2, 1);
-                func_ov003_021c212c(CreateAp);
+                SetUpdateFunction(CreateAp);
             } else {
                 func_ov003_021cd790((func_ov003_021cdb6c())->mUnk_f4);
                 func_ov003_021c2120(0, 1);
-                func_ov003_021c212c(SetupWay);
+                SetUpdateFunction(SetupWay);
             }
             break;
     }
@@ -1218,7 +1218,7 @@ void func_ov003_021c7d58(void) {
         StartSoundSeq(6);
         func_ov003_021cef90();
         func_ov003_021cc900((u32) gJb3List->mYbBgStep2NclFiles[0]);
-        func_ov003_021c212c(func_ov003_021c7d3c);
+        SetUpdateFunction(func_ov003_021c7d3c);
     }
 }
 
@@ -1226,7 +1226,7 @@ void func_ov003_021c7d3c(void) {
     int v1;
     v1 = func_ov003_021cef6c();
     if (v1 == 0) {
-        func_ov003_021c212c(UpdateJb3List);
+        SetUpdateFunction(UpdateJb3List);
     }
 }
 

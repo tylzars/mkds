@@ -33,7 +33,7 @@ void SetupXb3Multi(void) {
     func_ov003_021bf43c(0x85, -1, 0);
     func_ov003_021bf5ec(1);
     PrintMessage(0x6c);
-    func_ov003_021c212c(func_ov003_021cc310);
+    SetUpdateFunction(func_ov003_021cc310);
 }
 
 void LoadXb3MultiFilesAndSetBgCnt(void) {
@@ -94,7 +94,7 @@ void func_ov003_021cc310(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x15);
-    func_ov003_021c212c(func_ov003_021cc2e0);
+    SetUpdateFunction(func_ov003_021cc2e0);
 }
 
 void func_ov003_021cc2e0(void) {
@@ -102,14 +102,14 @@ void func_ov003_021cc2e0(void) {
     v1 = func_ov003_021d1f70(1);
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
         func_ov003_021bf5c8(6);
-        func_ov003_021c212c(func_ov003_021cc2bc);
+        SetUpdateFunction(func_ov003_021cc2bc);
     }
 }
 
 void func_ov003_021cc2bc(void) {
     if (GetButtonResult() != -2) {
         EnableButtonTouch();
-        func_ov003_021c212c(UpdateXb3Multi);
+        SetUpdateFunction(UpdateXb3Multi);
     }
 }
 
@@ -145,13 +145,13 @@ void func_ov003_021cc234(void) {
         default:
             return;
     }
-    func_ov003_021c212c(func_ov003_021cc214);
+    SetUpdateFunction(func_ov003_021cc214);
 }
 
 void func_ov003_021cc214(void) {
     DisableButtonTouch();
     func_ov003_021d1dd0(8);
-    func_ov003_021c212c(func_ov003_021cc1cc);
+    SetUpdateFunction(func_ov003_021cc1cc);
 }
 
 void func_ov003_021cc1cc(void) {
@@ -163,7 +163,7 @@ void func_ov003_021cc1cc(void) {
             func_ov003_021d1ee0(3, 1, 1, 8);
         }
         func_ov003_021d1ee0(3, 0, 0x15, 8);
-        func_ov003_021c212c(func_ov003_021cc144);
+        SetUpdateFunction(func_ov003_021cc144);
     }
 }
 
@@ -180,10 +180,10 @@ void func_ov003_021cc144(void) {
         func_ov003_021d272c(0, 0x15);
         if (data_ov003_021da254 == 0) {
             func_ov003_021c2120(2, 1);
-            func_ov003_021c212c(CreateAp);
+            SetUpdateFunction(CreateAp);
             return;
         }
         func_ov003_021c2120(2, 1);
-        func_ov003_021c212c(SetupUsb);
+        SetUpdateFunction(SetupUsb);
     }
 }

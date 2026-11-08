@@ -46,7 +46,7 @@ void SetupJb5Move(void) {
                         data_ov003_021d6380.mUnk_06 - data_ov003_021d6380.mUnk_02, 2, 0x480, &c[1]);
     func_ov003_021d1fd0(b);
     func_ov003_021c27d0(func_ov003_021c4ad4);
-    func_ov003_021c212c(func_ov003_021c4cb0);
+    SetUpdateFunction(func_ov003_021c4cb0);
 }
 
 void LoadJb5MoveFileAndSetBgCnt(void) {
@@ -99,7 +99,7 @@ void LoadJb5MoveFileAndSetBgCnt(void) {
 void func_ov003_021c4cb0(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
     func_ov003_021d2784(0, 0x15);
-    func_ov003_021c212c(func_ov003_021c4c84);
+    SetUpdateFunction(func_ov003_021c4c84);
 }
 
 void func_ov003_021c4c84(void) {
@@ -107,7 +107,7 @@ void func_ov003_021c4c84(void) {
     v1 = func_ov003_021d1f70(0);
     if (v1 == 0) {
         func_ov003_021cefc0(0x5f, 4, 0, 0xffffffff, 0);
-        func_ov003_021c212c(func_ov003_021c4c64);
+        SetUpdateFunction(func_ov003_021c4c64);
     }
 }
 
@@ -115,7 +115,7 @@ void func_ov003_021c4c64(void) {
     int v1;
     v1 = func_ov003_021cef80();
     if (v1 != -2) {
-        func_ov003_021c212c(func_ov003_021c4c0c);
+        SetUpdateFunction(func_ov003_021c4c0c);
     }
 }
 
@@ -136,7 +136,7 @@ void func_ov003_021c4c0c(void) {
     }
     func_ov003_021c27d0(NULL);
     func_ov003_021cef90();
-    func_ov003_021c212c(func_ov003_021c4bc4);
+    SetUpdateFunction(func_ov003_021c4bc4);
 }
 
 void func_ov003_021c4c08(void) {}
@@ -151,7 +151,7 @@ void func_ov003_021c4bc4(void) {
             func_ov003_021d1ee0(3, 1, 1, 8);
         }
         func_ov003_021d1ee0(3, 0, 0x15, 8);
-        func_ov003_021c212c(func_ov003_021c4b78);
+        SetUpdateFunction(func_ov003_021c4b78);
     }
 }
 
@@ -162,7 +162,7 @@ void func_ov003_021c4b78(void) {
         } else {
             func_ov003_021c2824();
         }
-        func_ov003_021c212c(func_ov003_021c4ae0);
+        SetUpdateFunction(func_ov003_021c4ae0);
     }
 }
 
@@ -177,15 +177,15 @@ void func_ov003_021c4ae0(void) {
         }
         func_ov003_021c2120(0, 1);
         if (data_ov003_021da1d0 != 0) {
-            func_ov003_021c212c(func_ov003_021c4aa4);
+            SetUpdateFunction(func_ov003_021c4aa4);
             return;
         }
         if (data_ov003_021da1d4 == 0) {
             func_ov003_021d272c(1, 1);
-            func_ov003_021c212c(SetupOptMenu);
+            SetUpdateFunction(SetupOptMenu);
             return;
         }
-        func_ov003_021c212c(func_ov003_021c4054);
+        SetUpdateFunction(func_ov003_021c4054);
     }
 }
 

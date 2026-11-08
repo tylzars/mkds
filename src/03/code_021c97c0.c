@@ -20,7 +20,7 @@ void func_ov003_021c9980(void) {
     if (v1 == 0) {
         StartSoundSeq(6);
         func_ov003_021cef90();
-        func_ov003_021c212c(func_ov003_021c9964);
+        SetUpdateFunction(func_ov003_021c9964);
     }
 }
 
@@ -28,7 +28,7 @@ void func_ov003_021c9964(void) {
     int v1;
     v1 = func_ov003_021cef6c();
     if (v1 == 0) {
-        func_ov003_021c212c(func_ov003_021c9aec);
+        SetUpdateFunction(func_ov003_021c9aec);
     }
 }
 
@@ -36,7 +36,7 @@ void func_ov003_021c9944(void) {
     func_ov003_021c98d0();
     LoadHlSetScr();
     func_ov003_021cd6d0();
-    func_ov003_021c212c(func_ov003_021c9894);
+    SetUpdateFunction(func_ov003_021c9894);
 }
 
 void func_ov003_021c98d0(void) {
@@ -88,7 +88,7 @@ void func_ov003_021c9894(void) {
     func_ov003_021d1ee0(2, 0, 0x14, 8);
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x14);
-    func_ov003_021c212c(func_ov003_021c985c);
+    SetUpdateFunction(func_ov003_021c985c);
 }
 
 void func_ov003_021c985c(void) {
@@ -96,7 +96,7 @@ void func_ov003_021c985c(void) {
     v1 = func_ov003_021d1f70(1);
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
         func_ov003_021cefc0(0x96, 5, 1, 0xffffffff, 0);
-        func_ov003_021c212c(func_ov003_021c9838);
+        SetUpdateFunction(func_ov003_021c9838);
     }
 }
 
@@ -106,7 +106,7 @@ void func_ov003_021c9838(void) {
     func_ov003_021c9830();
     v1 = func_ov003_021cef6c();
     if (v1 == 0) {
-        func_ov003_021c212c(func_ov003_021c9804);
+        SetUpdateFunction(func_ov003_021c9804);
     }
 }
 
@@ -117,7 +117,7 @@ void func_ov003_021c9830(void) {}
 void func_ov003_021c9804(void) {
     func_ov003_021d1ee0(3, 1, 1, 8);
     func_ov003_021d1ee0(3, 0, 0x14, 8);
-    func_ov003_021c212c(func_ov003_021c97c0);
+    SetUpdateFunction(func_ov003_021c97c0);
 }
 
 void func_ov003_021c97c0(void) {
@@ -128,6 +128,6 @@ void func_ov003_021c97c0(void) {
         func_ov003_021d272c(1, 1);
         func_ov003_021d272c(0, 0x14);
         func_ov003_021c2120(2, 1);
-        func_ov003_021c212c(CreateAp);
+        SetUpdateFunction(CreateAp);
     }
 }

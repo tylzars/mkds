@@ -8,7 +8,7 @@
 void func_ov003_021c41ac(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
     func_ov003_021d2784(0, 0x15);
-    func_ov003_021c212c(func_ov003_021c4188);
+    SetUpdateFunction(func_ov003_021c4188);
 }
 
 void func_ov003_021c4188(void) {
@@ -16,6 +16,6 @@ void func_ov003_021c4188(void) {
     v1 = func_ov003_021d1f70(0);
     if (v1 == 0) {
         func_ov003_021bf5c8(5);
-        func_ov003_021c212c(func_ov003_021c4164);
+        SetUpdateFunction(func_ov003_021c4164);
     }
 }

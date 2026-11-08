@@ -71,7 +71,7 @@ void CreateApList(void) {
     gApList->mBgOffsetTask = func_ov003_021d3544(1, WriteApListBgOffset, NULL, 0x6e);
     RefreshApList();
     func_ov003_021c590c();
-    func_ov003_021c212c(func_ov003_021c63c4);
+    SetUpdateFunction(func_ov003_021c63c4);
 }
 
 void LoadApListFilesAndSetBgCnt(void) {
@@ -145,7 +145,7 @@ void func_ov003_021c63c4(void) {
     func_ov003_021d1ee0(2, 0, 0x1d, 8);
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x1d);
-    func_ov003_021c212c(func_ov003_021c6394);
+    SetUpdateFunction(func_ov003_021c6394);
 }
 
 void func_ov003_021c6394(void) {
@@ -153,14 +153,14 @@ void func_ov003_021c6394(void) {
     v1 = func_ov003_021d1f70(1);
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
         func_ov003_021bf5c8(0);
-        func_ov003_021c212c(func_ov003_021c6370);
+        SetUpdateFunction(func_ov003_021c6370);
     }
 }
 
 void func_ov003_021c6370(void) {
     if (GetButtonResult() != -2) {
         EnableButtonTouch();
-        func_ov003_021c212c(UpdateApList);
+        SetUpdateFunction(UpdateApList);
     }
 }
 
@@ -348,7 +348,7 @@ void func_ov003_021c5ec4(void) {
                         func_ov003_021cce38();
                         DisableButtonTouch();
                         func_ov003_021cefc0(0x42, 1, 1, -1, 0);
-                        func_ov003_021c212c(func_ov003_021c56fc);
+                        SetUpdateFunction(func_ov003_021c56fc);
                         return;
                     }
                     gApList->mUnk_54 = 1;
@@ -359,14 +359,14 @@ void func_ov003_021c5ec4(void) {
             default:
                 return;
         }
-        func_ov003_021c212c(func_ov003_021c5ea4);
+        SetUpdateFunction(func_ov003_021c5ea4);
     }
 }
 
 void func_ov003_021c5ea4(void) {
     DisableButtonTouch();
     func_ov003_021d1dd0(8);
-    func_ov003_021c212c(func_ov003_021c5e54);
+    SetUpdateFunction(func_ov003_021c5e54);
 }
 
 void func_ov003_021c5e54(void) {
@@ -378,7 +378,7 @@ void func_ov003_021c5e54(void) {
         }
         func_ov003_021d1ee0(3, 1, 1, 8);
         func_ov003_021d1ee0(3, 0, 0x1d, 8);
-        func_ov003_021c212c(func_ov003_021c5cdc);
+        SetUpdateFunction(func_ov003_021c5cdc);
     }
 }
 
@@ -419,22 +419,22 @@ void func_ov003_021c5cdc(void) {
         func_ov003_021cd27c();
         func_ov003_021cd790(func_ov003_021cdb6c()->mUnk_f4);
         func_ov003_021c2120(2, 0);
-        func_ov003_021c212c(SetupWay);
+        SetUpdateFunction(SetupWay);
     } else if (gApListSelectedRow == 4) {
         func_ov003_021cd27c();
         func_ov003_021c2120(0, 1);
-        func_ov003_021c212c(func_ov003_021ca8e8);
+        SetUpdateFunction(func_ov003_021ca8e8);
     } else {
         func_ov003_021cdb14(s->mEntries + s->mEntryIndex * 0x2a);
         func_ov003_021c2120(0, 0);
         if ((gApList->mEntries + gApList->mEntryIndex * 0x2a)[0x28] != 0) {
             func_ov003_021c2120(0, 1);
             func_ov003_021c20f8(1, 1);
-            func_ov003_021c212c(CreateEdit);
+            SetUpdateFunction(CreateEdit);
         } else {
             func_ov003_021c2120(0, 1);
             func_ov003_021c20f8(0, 1);
-            func_ov003_021c212c(func_ov003_021cbf60);
+            SetUpdateFunction(func_ov003_021cbf60);
         }
     }
     func_ov003_021d2808(&gApList);

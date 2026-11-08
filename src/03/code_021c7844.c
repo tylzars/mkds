@@ -115,11 +115,11 @@ void PrintJb4Error(void) {
     } else {
         c = 0;
     }
-    d = func_ov003_021d2288(0, data_ov003_021d6408[func_ov003_021c20d0()]);
-    e = func_ov003_021c2530(data_ov003_021da19c, c);
+    d = func_ov003_021d2288(0, data_ov003_021d6408[GetLanguageIndex()]);
+    e = GetMessageEntry(gMessages, c);
     swprintf(h, 8, gDecimalFormat, -*(s32 *) gJb4ErrorCode);
-    f = data_ov003_021d641a[func_ov003_021c20d0() * 2];
-    g = data_ov003_021d6418[func_ov003_021c20d0() * 2];
+    f = data_ov003_021d641a[GetLanguageIndex() * 2];
+    g = data_ov003_021d6418[GetLanguageIndex() * 2];
     func_ov003_021d2094(d, g, f, 2, 0xa, h, 0);
     func_ov003_021d2070(d, data_ov003_021d6410[0], data_ov003_021d6410[1], data_ov003_021d6410[2],
                         data_ov003_021d6410[3], 2, GetLanguageTextFlags(), e);
@@ -129,7 +129,7 @@ void PrintJb4Error(void) {
 void func_ov003_021c79e4(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
     func_ov003_021d2784(0, 0x15);
-    func_ov003_021c212c(func_ov003_021c79b4);
+    SetUpdateFunction(func_ov003_021c79b4);
 }
 
 void func_ov003_021c79b4(void) {
@@ -137,14 +137,14 @@ void func_ov003_021c79b4(void) {
     v1 = func_ov003_021d1f70(1);
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
         func_ov003_021bf5c8(4);
-        func_ov003_021c212c(func_ov003_021c7990);
+        SetUpdateFunction(func_ov003_021c7990);
     }
 }
 
 void func_ov003_021c7990(void) {
     if (GetButtonResult() != -2) {
         EnableButtonTouch();
-        func_ov003_021c212c(UpdateJb4Error);
+        SetUpdateFunction(UpdateJb4Error);
     }
 }
 
@@ -169,14 +169,14 @@ void func_ov003_021c7934(void) {
     v1 = GetButtonResult();
     if (v1 == 0) {
         StartSoundSeq(6);
-        func_ov003_021c212c(func_ov003_021c7914);
+        SetUpdateFunction(func_ov003_021c7914);
     }
 }
 
 void func_ov003_021c7914(void) {
     DisableButtonTouch();
     func_ov003_021d1dd0(8);
-    func_ov003_021c212c(func_ov003_021c78d8);
+    SetUpdateFunction(func_ov003_021c78d8);
 }
 
 void func_ov003_021c78d8(void) {
@@ -186,7 +186,7 @@ void func_ov003_021c78d8(void) {
         StartSlideButtonsOut();
         func_ov003_021d1ee0(3, 1, 1, 8);
         func_ov003_021d1ee0(3, 0, 0x15, 8);
-        func_ov003_021c212c(func_ov003_021c7850);
+        SetUpdateFunction(func_ov003_021c7850);
     }
 }
 
@@ -202,13 +202,13 @@ void func_ov003_021c7850(void) {
         func_ov003_021c20dc(NULL, v2);
         if (v2[0] != 0) {
             func_ov003_021c2120(2, 1);
-            func_ov003_021c212c(CreateAp);
+            SetUpdateFunction(CreateAp);
             return;
         }
         func_ov003_021c2120(2, 0);
         func_ov003_021c20f8(0, 0);
         SetJb3ListMode(0);
-        func_ov003_021c212c(CreateJb3List);
+        SetUpdateFunction(CreateJb3List);
     }
 }
 

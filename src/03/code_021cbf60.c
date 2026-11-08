@@ -25,5 +25,5 @@ void func_ov003_021cbf60(void) {
     if (a == 1) {
         func_ov003_021cd6d0();
     }
-    func_ov003_021c212c(func_ov003_021cbed0);
+    SetUpdateFunction(func_ov003_021cbed0);
 }

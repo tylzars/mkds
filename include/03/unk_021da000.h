@@ -85,7 +85,7 @@ extern struct EditAddrKeyboard *gEditAddrKeyboard;
 extern u8 gValueRecordsRequestSucceeded[];
 struct ValueRecordsRequest;
 extern struct ValueRecordsRequest *gValueRecordsRequest;
-extern u8 data_ov003_021da16c[];
+extern u8 gLanguageIndex[];
 extern u8 data_ov003_021da170[];
 extern void *data_ov003_021da174;
 extern u8 data_ov003_021da1a8;

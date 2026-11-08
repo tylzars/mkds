@@ -37,7 +37,7 @@ void SetupJb2Menu(void) {
     PlaceSelectionCorners(
         gJb2MenuSelectionLeft[gJb2MenuSelectedIndex * 4], gJb2MenuSelectionRight[gJb2MenuSelectedIndex * 4],
         gJb2MenuSelectionTop[gJb2MenuSelectedIndex * 4], gJb2MenuSelectionBottom[gJb2MenuSelectedIndex * 4]);
-    func_ov003_021c212c(func_ov003_021c2f98);
+    SetUpdateFunction(func_ov003_021c2f98);
 }
 
 void LoadJb2MenuFilesAndSetBgCnt(void) {
@@ -58,7 +58,7 @@ void func_ov003_021c2f98(void) {
     func_ov003_021d1ee0(2, 0, 0x14, 8);
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x14);
-    func_ov003_021c212c(func_ov003_021c2f68);
+    SetUpdateFunction(func_ov003_021c2f68);
 }
 
 void func_ov003_021c2f68(void) {
@@ -66,14 +66,14 @@ void func_ov003_021c2f68(void) {
     v1 = func_ov003_021d1f70(1);
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
         func_ov003_021bf5c8(0);
-        func_ov003_021c212c(func_ov003_021c2f44);
+        SetUpdateFunction(func_ov003_021c2f44);
     }
 }
 
 void func_ov003_021c2f44(void) {
     if (GetButtonResult() != -2) {
         EnableButtonTouch();
-        func_ov003_021c212c(UpdateJb2Menu);
+        SetUpdateFunction(UpdateJb2Menu);
     }
 }
 
@@ -116,12 +116,12 @@ void func_ov003_021c2df4(void) {
     switch (GetButtonResult()) {
         case 0:
             StartSoundSeq(7);
-            func_ov003_021c212c(func_ov003_021c2a74);
+            SetUpdateFunction(func_ov003_021c2a74);
             break;
         case 1:
             StartSoundSeq(6);
             func_ov003_021c2c94();
-            func_ov003_021c212c(func_ov003_021c2dd4);
+            SetUpdateFunction(func_ov003_021c2dd4);
             break;
     }
 }
@@ -129,7 +129,7 @@ void func_ov003_021c2df4(void) {
 void func_ov003_021c2dd4(void) {
     DisableButtonTouch();
     func_ov003_021d1dd0(8);
-    func_ov003_021c212c(func_ov003_021c2d9c);
+    SetUpdateFunction(func_ov003_021c2d9c);
 }
 
 void func_ov003_021c2d9c(void) {
@@ -138,7 +138,7 @@ void func_ov003_021c2d9c(void) {
     if (v1 == 0) {
         func_ov003_021d1ee0(3, 1, 1, 8);
         func_ov003_021d1ee0(3, 0, 0x14, 8);
-        func_ov003_021c212c(func_ov003_021c2d18);
+        SetUpdateFunction(func_ov003_021c2d18);
     }
 }
 
@@ -152,11 +152,11 @@ void func_ov003_021c2d18(void) {
         switch (gJb2MenuSelectedIndex) {
             case 0:
                 func_ov003_021c2120(1, 0);
-                func_ov003_021c212c(CreateAp);
+                SetUpdateFunction(CreateAp);
                 break;
             case 1:
                 func_ov003_021c2120(0, 0);
-                func_ov003_021c212c(SetupOptMenu);
+                SetUpdateFunction(SetupOptMenu);
                 break;
         }
     }

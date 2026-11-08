@@ -57,7 +57,7 @@ void func_ov003_021cefc0(u32 a, s32 b, s32 c, u32 d, u32 e) {
     u32 v2;
 
     v1 = data_ov003_021d7864;
-    v = func_ov003_021c250c(data_ov003_021da19c, a, d, e);
+    v = GetMessageEntryAndWriteDigit(gMessages, a, d, e);
     data_ov003_021da284 = func_ov003_021d283c(0x20, 4);
     data_ov003_021da284->mUnk_1c = b;
     data_ov003_021da284->mUnk_1b = -2;

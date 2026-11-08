@@ -32,19 +32,19 @@
 #include "code_021519d4.h"
 #include "03/code_021d28e0.h"
 
-s32 func_ov003_021c2494(void *a, s32 b, u32 c) {
-    data_ov003_021da174 = a;
-    if (func_ov003_021c2440(b, c) == 0) {
+s32 func_ov003_021c2494(void *memoryBlock, s32 languageIndex, u32 modeAndFlags) {
+    data_ov003_021da174 = memoryBlock;
+    if (func_ov003_021c2440(languageIndex, modeAndFlags) == 0) {
         return -1;
     }
     data_ov003_021da170[0] = 0;
     func_ov003_021c2398();
     func_ov003_021c2188();
     CreateSoundData();
-    func_ov003_021c212c(func_ov003_021c2b28);
+    SetUpdateFunction(func_ov003_021c2b28);
     do {
         func_ov003_021d2d14();
-        data_ov003_021da17c();
+        gUpdateFunction();
         func_ov003_021d3558(0);
         func_ov003_021d28e0();
         func_ov003_021d3278();
@@ -54,27 +54,27 @@ s32 func_ov003_021c2494(void *a, s32 b, u32 c) {
     return 0;
 }
 
-u32 func_ov003_021c2440(s32 a, u32 b) {
-    data_ov003_021da16c[0] = a;
-    *(u32 *) &data_ov003_021da178 = b;
-    if (a < 0 || a > 5) {
+BOOL func_ov003_021c2440(s32 languageIndex, u32 modeAndFlags) {
+    gLanguageIndex[0] = languageIndex;
+    *(u32 *) &data_ov003_021da178 = modeAndFlags;
+    if (languageIndex < 0 || languageIndex > 5) {
         return 0;
     }
-    if ((u32) (b << 28) >> 28 > 1) {
+    if ((u32) (modeAndFlags << 28) >> 28 > 1) {
         return 0;
     }
-    if (a != 0 && ((b >> 4) & 1) != 0) {
+    if (languageIndex != 0 && ((modeAndFlags >> 4) & 1) != 0) {
         return 0;
     }
-    if (a == 0 && ((*(u32 *) &data_ov003_021da178 >> 4) & 1) == 0) {
+    if (languageIndex == 0 && ((*(u32 *) &data_ov003_021da178 >> 4) & 1) == 0) {
         return 0;
     }
     return 1;
 }
 
 void func_ov003_021c2398(void) {
-    u8 *p;
-    u16 q = reg_OS_IME;
+    u8 *work;
+    u16 imeValue = reg_OS_IME;
     reg_OS_IME = 0;
     GX_DispOff();
     reg_GXS_DB_DISPCNT &= 0xfffeffff;
@@ -98,14 +98,14 @@ void func_ov003_021c2398(void) {
     func_ov003_021d1654();
     func_ov003_021d2d50();
     func_ov003_021d1f98();
-    p = func_ov003_021d285c(0x700, 0x20);
-    DWC_BM_Init(p);
-    func_ov003_021d2808(&p);
+    work = func_ov003_021d285c(0x700, 0x20);
+    DWC_BM_Init(work);
+    func_ov003_021d2808(&work);
 }
 
 void func_ov003_021c2188(void) {
     volatile u32 *p;
-    volatile u16 *q;
+    volatile u16 *powerControl;
     GX_VBlankIntr(0);
     GX_SetBankForBG(1);
     GX_SetBankForOBJ(2);
@@ -147,8 +147,8 @@ void func_ov003_021c2188(void) {
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 0xd00;
     reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & 0x43) | 0xe00;
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0xf00;
-    q = &reg_GX_POWCNT;
-    *q = *q & ~0x8000;
+    powerControl = &reg_GX_POWCNT;
+    *powerControl = *powerControl & ~0x8000;
     func_ov003_021d2490();
     func_ov003_021d2fdc();
     func_ov003_021d31b0();
@@ -175,15 +175,15 @@ void func_ov003_021c2138(void) {
     func_ov003_021d332c();
 }
 
-void func_ov003_021c212c(void (*callback)(void)) {
-    data_ov003_021da17c = callback;
+void SetUpdateFunction(void (*callback)(void)) {
+    gUpdateFunction = callback;
 }
 
-void func_ov003_021c2120(u32 a, u32 b) {
-    u32 *v1;
-    v1 = (u32 *) &data_ov003_021da180;
-    *(u32 *) &data_ov003_021da180 = a;
-    v1[1] = b;
+void func_ov003_021c2120(u32 first, u32 second) {
+    u32 *values;
+    values = (u32 *) &data_ov003_021da180;
+    *(u32 *) &data_ov003_021da180 = first;
+    values[1] = second;
 }
 
 void func_ov003_021c2104(s32 *first, s32 *second) {
@@ -195,13 +195,13 @@ void func_ov003_021c2104(s32 *first, s32 *second) {
     }
 }
 
-void func_ov003_021c20f8(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2;
-    value2 = (u32) &data_ov003_021da180;
-    *(u32 *) ((value2) + 8u) = value0;
-    *(u32 *) ((value2) + 12u) = value1;
+void func_ov003_021c20f8(u32 third, u32 fourth) {
+    u32 thirdValue = third;
+    u32 fourthValue = fourth;
+    u32 valuesAddress;
+    valuesAddress = (u32) &data_ov003_021da180;
+    *(u32 *) ((valuesAddress) + 8u) = thirdValue;
+    *(u32 *) ((valuesAddress) + 12u) = fourthValue;
 }
 
 void func_ov003_021c20dc(s32 *first, s32 *second) {
@@ -213,16 +213,16 @@ void func_ov003_021c20dc(s32 *first, s32 *second) {
     }
 }
 
-u8 func_ov003_021c20d0(void) {
-    return *(u8 *) &data_ov003_021da16c;
+u8 GetLanguageIndex(void) {
+    return *(u8 *) &gLanguageIndex;
 }
 
-u32 func_ov003_021c20c0(void) {
-    return data_ov003_021da178.mUnk_00;
+u32 GetMode(void) {
+    return data_ov003_021da178.mMode;
 }
 
-u32 func_ov003_021c20a8(u32 a) {
-    if (((*(u32 *) &data_ov003_021da178) >> 4 & a) != 0) {
+BOOL func_ov003_021c20a8(u32 mask) {
+    if (((*(u32 *) &data_ov003_021da178) >> 4 & mask) != 0) {
         return 1;
     }
     return 0;

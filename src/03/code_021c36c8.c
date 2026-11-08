@@ -7,6 +7,6 @@
 void func_ov003_021c36c8(void) {
     if (GetButtonResult() != -2) {
         EnableButtonTouch();
-        func_ov003_021c212c(UpdateJb5Info);
+        SetUpdateFunction(UpdateJb5Info);
     }
 }

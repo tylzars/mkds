@@ -46,26 +46,26 @@ void func_ov003_021cb3d8(void) {
         func_ov003_021d272c(0, 0x14);
         if (data_ov003_021da240[0] == 0) {
             func_ov003_021c2120(2, 0);
-            func_ov003_021c212c(CreateAp);
+            SetUpdateFunction(CreateAp);
         } else {
             switch (gWaySelectedIndex) {
                 case 0:
                     func_ov003_021c2120(2, 1);
-                    func_ov003_021c212c(func_ov003_021ca8e8);
+                    SetUpdateFunction(func_ov003_021ca8e8);
                     break;
                 case 1:
                     func_ov003_021c2120(2, 1);
-                    func_ov003_021c212c(func_ov003_021c54dc);
+                    SetUpdateFunction(func_ov003_021c54dc);
                     break;
                 case 2:
                     func_ov003_021c2120(2, 1);
-                    func_ov003_021c212c(func_ov003_021ca504);
+                    SetUpdateFunction(func_ov003_021ca504);
                     break;
                 case 3:
                     func_ov003_021c2120(2, 0);
                     func_ov003_021c20f8(0, 0);
                     SetJb3ListMode(1);
-                    func_ov003_021c212c(CreateJb3List);
+                    SetUpdateFunction(CreateJb3List);
                     break;
             }
         }
@@ -108,7 +108,7 @@ void CreateAp(void) {
     func_ov003_021bf5ec(0);
     func_ov003_021cb11c();
     func_ov003_021caca8();
-    func_ov003_021c212c(func_ov003_021cb0e0);
+    SetUpdateFunction(func_ov003_021cb0e0);
 }
 
 void LoadApFilesAndSetBgCnt(void) {

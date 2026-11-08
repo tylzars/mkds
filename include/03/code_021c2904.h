@@ -2,17 +2,17 @@
 
 #include "types.h"
 
-typedef struct Unk021c2904 {
-    /* 00 */ u32 mUnk_00;
-    /* 04 */ u32 mUnk_04;
-    /* 08 */ u32 mUnk_08;
-} Unk021c2904;
+typedef struct ExchangeStatus {
+    /* 00 */ u32 mStatus;
+    /* 04 */ u32 mTimeoutMillisecondsRemaining;
+    /* 08 */ u32 mResultCode;
+} ExchangeStatus;
 
-extern Unk021c2904 *data_ov003_021da198;
+extern ExchangeStatus *gExchangeStatusRecord;
 
-void func_ov003_021c2904(const Unk021c2904 *value);
+void StoreExchangeStatus(const ExchangeStatus *status);
 void func_ov003_021c2918(void);
 u32 func_ov003_021c2938(void);
-void func_ov003_021c29b8(void);
-void func_ov003_021c29d8(void);
+void StopExchangeWithStatusRecord(void);
+void StartExchangeWithStatusRecord(void);
 void func_ov003_021c2a28(void);

@@ -32,7 +32,7 @@ void func_ov003_021c4670(void) {
     LoadHlScr(19);
     func_ov003_021bf43c(141, -1, 0);
     PrintMessage(93);
-    func_ov003_021c212c(func_ov003_021c45d0);
+    SetUpdateFunction(func_ov003_021c45d0);
 }
 
 void func_ov003_021c460c(void) {
@@ -87,7 +87,7 @@ void func_ov003_021c45d0(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x15);
-    func_ov003_021c212c(func_ov003_021c45ac);
+    SetUpdateFunction(func_ov003_021c45ac);
 }
 
 void func_ov003_021c45ac(void) {
@@ -95,14 +95,14 @@ void func_ov003_021c45ac(void) {
     v1 = func_ov003_021d1f70(0);
     if (v1 == 0) {
         func_ov003_021bf5c8(3);
-        func_ov003_021c212c(func_ov003_021c4588);
+        SetUpdateFunction(func_ov003_021c4588);
     }
 }
 
 void func_ov003_021c4588(void) {
     if (GetButtonResult() != -2) {
         EnableButtonTouch();
-        func_ov003_021c212c(func_ov003_021c4570);
+        SetUpdateFunction(func_ov003_021c4570);
     }
 }
 
@@ -138,13 +138,13 @@ void func_ov003_021c4500(void) {
         default:
             return;
     }
-    func_ov003_021c212c(func_ov003_021c44e0);
+    SetUpdateFunction(func_ov003_021c44e0);
 }
 
 void func_ov003_021c44e0(void) {
     DisableButtonTouch();
     func_ov003_021d1dd0(8);
-    func_ov003_021c212c(func_ov003_021c4498);
+    SetUpdateFunction(func_ov003_021c4498);
 }
 
 void func_ov003_021c4498(void) {
@@ -156,7 +156,7 @@ void func_ov003_021c4498(void) {
             func_ov003_021d1ee0(3, 1, 1, 8);
         }
         func_ov003_021d1ee0(3, 0, 0x15, 8);
-        func_ov003_021c212c(func_ov003_021c4410);
+        SetUpdateFunction(func_ov003_021c4410);
     }
 }
 
@@ -173,16 +173,16 @@ void func_ov003_021c4410(void) {
         func_ov003_021d272c(0, 0x15);
         if (data_ov003_021da1c0 == 0) {
             func_ov003_021c2120(0, 1);
-            func_ov003_021c212c(SetupOptMenu);
+            SetUpdateFunction(SetupOptMenu);
             return;
         }
         func_ov003_021c2120(0, 1);
-        func_ov003_021c212c(func_ov003_021c43f0);
+        SetUpdateFunction(func_ov003_021c43f0);
     }
 }
 
 void func_ov003_021c43f0(void) {
     func_ov003_021c43a4();
     PrintMessage(0x5c);
-    func_ov003_021c212c(func_ov003_021c437c);
+    SetUpdateFunction(func_ov003_021c437c);
 }

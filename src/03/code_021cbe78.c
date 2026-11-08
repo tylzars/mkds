@@ -18,6 +18,6 @@ void func_ov003_021cbe78(void) {
     if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0) {
         func_ov003_021c20dc(NULL, &b);
         func_ov003_021cefc0(a.mUnk_00[b], 1, 1, -1, 0);
-        func_ov003_021c212c(func_ov003_021cbe44);
+        SetUpdateFunction(func_ov003_021cbe44);
     }
 }

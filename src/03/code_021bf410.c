@@ -23,7 +23,7 @@ BOOL func_ov003_021bf43c(u32 index, s32 column, u32 value) {
     LoadFileToVram(data_ov003_021d697c, GXS_LoadBG0Scr);
     reg_G2S_DB_BG0OFS = 0x1920000;
     a = func_ov003_021d2288(1, 0);
-    b = func_ov003_021c250c(data_ov003_021da19c, index, column, value);
+    b = GetMessageEntryAndWriteDigit(gMessages, index, column, value);
     func_ov003_021d2070(a, data_ov003_021d5efc[0], data_ov003_021d5efc[1], data_ov003_021d5efc[2],
                         data_ov003_021d5efc[3], 2, GetLanguageTextFlags(), b);
     func_ov003_021d1fd0(a);

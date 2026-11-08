@@ -21,14 +21,14 @@ void func_ov003_021c3468(void) {
     buttonResult = GetButtonResult();
     if (buttonResult == 0) {
         StartSoundSeq(6);
-        func_ov003_021c212c(func_ov003_021c3448);
+        SetUpdateFunction(func_ov003_021c3448);
     }
 }
 
 void func_ov003_021c3448(void) {
     DisableButtonTouch();
     func_ov003_021d1dd0(8);
-    func_ov003_021c212c(func_ov003_021c3410);
+    SetUpdateFunction(func_ov003_021c3410);
 }
 
 void func_ov003_021c3410(void) {
@@ -37,7 +37,7 @@ void func_ov003_021c3410(void) {
     if (v1 == 0) {
         func_ov003_021d1ee0(3, 1, 0x3f, 0x40);
         func_ov003_021d1ee0(3, 0, 0x3f, 0x40);
-        func_ov003_021c212c(func_ov003_021c33e4);
+        SetUpdateFunction(func_ov003_021c33e4);
     }
 }
 

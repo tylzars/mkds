@@ -55,7 +55,7 @@ void SetupOptMenu(void) {
     PlaceSelectionCorners(
         gOptMenuSelectionLeft[gOptMenuSelectedIndex * 4], gOptMenuSelectionRight[gOptMenuSelectedIndex * 4],
         gOptMenuSelectionTop[gOptMenuSelectedIndex * 4], gOptMenuSelectionBottom[gOptMenuSelectedIndex * 4]);
-    func_ov003_021c212c(func_ov003_021c3c88);
+    SetUpdateFunction(func_ov003_021c3c88);
 }
 
 void LoadOptMenuFilesAndSetBgCnt(void) {
@@ -94,7 +94,7 @@ void func_ov003_021c3c88(void) {
     func_ov003_021d1ee0(2, 0, 0x14, 8);
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x14);
-    func_ov003_021c212c(func_ov003_021c3c58);
+    SetUpdateFunction(func_ov003_021c3c58);
 }
 
 void func_ov003_021c3c58(void) {
@@ -102,14 +102,14 @@ void func_ov003_021c3c58(void) {
     v1 = func_ov003_021d1f70(1);
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
         func_ov003_021bf5c8(0);
-        func_ov003_021c212c(func_ov003_021c3c34);
+        SetUpdateFunction(func_ov003_021c3c34);
     }
 }
 
 void func_ov003_021c3c34(void) {
     if (GetButtonResult() != -2) {
         EnableButtonTouch();
-        func_ov003_021c212c(UpdateOptMenu);
+        SetUpdateFunction(UpdateOptMenu);
     }
 }
 
@@ -164,13 +164,13 @@ void func_ov003_021c3ae4(void) {
         default:
             return;
     }
-    func_ov003_021c212c(func_ov003_021c3ac4);
+    SetUpdateFunction(func_ov003_021c3ac4);
 }
 
 void func_ov003_021c3ac4(void) {
     DisableButtonTouch();
     func_ov003_021d1dd0(8);
-    func_ov003_021c212c(func_ov003_021c3a7c);
+    SetUpdateFunction(func_ov003_021c3a7c);
 }
 
 void func_ov003_021c3a7c(void) {
@@ -182,7 +182,7 @@ void func_ov003_021c3a7c(void) {
         }
         func_ov003_021d1ee0(3, 1, 1, 8);
         func_ov003_021d1ee0(3, 0, 0x14, 8);
-        func_ov003_021c212c(func_ov003_021c39a4);
+        SetUpdateFunction(func_ov003_021c39a4);
     }
 }
 
@@ -196,20 +196,20 @@ void func_ov003_021c39a4(void) {
         func_ov003_021d272c(0, 0x14);
         if (data_ov003_021da1b0[0] == 0) {
             func_ov003_021c2120(0, 0);
-            func_ov003_021c212c(SetupJb2Menu);
+            SetUpdateFunction(SetupJb2Menu);
         } else {
             switch (gOptMenuSelectedIndex) {
                 case 0:
                     func_ov003_021c2120(0, 1);
-                    func_ov003_021c212c(SetupJb5Info);
+                    SetUpdateFunction(SetupJb5Info);
                     break;
                 case 1:
                     func_ov003_021c2120(0, 1);
-                    func_ov003_021c212c(SetupYb5Multi);
+                    SetUpdateFunction(SetupYb5Multi);
                     break;
                 case 2:
                     func_ov003_021c2120(0, 1);
-                    func_ov003_021c212c(func_ov003_021c4670);
+                    SetUpdateFunction(func_ov003_021c4670);
                     break;
             }
         }

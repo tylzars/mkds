@@ -36,7 +36,7 @@ void func_ov003_021cbe44(void) {
         StartSoundSeq(6);
         func_ov003_021cef90();
         StartSoundSeq(6);
-        func_ov003_021c212c(func_ov003_021cbe14);
+        SetUpdateFunction(func_ov003_021cbe14);
     }
 }
 
@@ -49,7 +49,7 @@ void func_ov003_021cbe14(void) {
     v1 = func_ov003_021cef6c();
     if (v1 == 0) {
         func_ov003_021d1ee0(3, 0, 0x14, 8);
-        func_ov003_021c212c(func_ov003_021cbde4);
+        SetUpdateFunction(func_ov003_021cbde4);
     }
 }
 
@@ -59,7 +59,7 @@ void func_ov003_021cbde4(void) {
     if (v1 == 0) {
         func_ov003_021d272c(0, 0x14);
         func_ov003_021c2120(0, 1);
-        func_ov003_021c212c(func_ov003_021cbb98);
+        SetUpdateFunction(func_ov003_021cbb98);
     }
 }
 
@@ -67,7 +67,7 @@ void func_ov003_021cbdbc(void) {
     *(u8 *) &data_ov003_021da24c = 0;
     func_ov003_021cbd68();
     PrintMessage(0x77);
-    func_ov003_021c212c(func_ov003_021cbd40);
+    SetUpdateFunction(func_ov003_021cbd40);
 }
 
 void func_ov003_021cbd68(void) {
@@ -111,12 +111,12 @@ void func_ov003_021cbd68(void) {
 void func_ov003_021cbd40(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
     func_ov003_021d2784(0, 0x15);
-    func_ov003_021c212c(func_ov003_021cbd20);
+    SetUpdateFunction(func_ov003_021cbd20);
 }
 
 void func_ov003_021cbd20(void) {
     if (func_ov003_021d1f70(0) == 0) {
-        func_ov003_021c212c(func_ov003_021cbd0c);
+        SetUpdateFunction(func_ov003_021cbd0c);
     }
 }
 
@@ -135,7 +135,7 @@ void func_ov003_021cbcc8(void) {
     }
     func_ov003_021d1ee0(3, 1, 1, 8);
     func_ov003_021d1ee0(3, 0, 0x15, 8);
-    func_ov003_021c212c(func_ov003_021cbc50);
+    SetUpdateFunction(func_ov003_021cbc50);
 }
 
 void func_ov003_021cbc50(void) {
@@ -151,10 +151,10 @@ void func_ov003_021cbc50(void) {
         func_ov003_021c20dc(NULL, v2);
         if (v2[0] == 0) {
             func_ov003_021c20f8(0, 0);
-            func_ov003_021c212c(CreateJb3List);
+            SetUpdateFunction(CreateJb3List);
             return;
         }
-        func_ov003_021c212c(SetupJb2Menu);
+        SetUpdateFunction(SetupJb2Menu);
     }
 }
 
@@ -163,16 +163,16 @@ void func_ov003_021cbc00(void) {
     data_ov003_021da24c[0]++;
     if (data_ov003_021da24c[0] >= 0xb4) {
         func_ov003_021c20dc(NULL, &a);
-        switch (func_ov003_021c20c0()) {
+        switch (GetMode()) {
             case 0:
                 break;
             case 1:
                 if (a != 0) {
-                    func_ov003_021c212c(func_ov003_021c2a74);
+                    SetUpdateFunction(func_ov003_021c2a74);
                     return;
                 }
                 break;
         }
-        func_ov003_021c212c(func_ov003_021cbcc8);
+        SetUpdateFunction(func_ov003_021cbcc8);
     }
 }

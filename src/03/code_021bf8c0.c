@@ -476,7 +476,7 @@ void UpdateLinkLevel(void) {
 void InitHlScr(void) {
     gHlScr = func_ov003_021d285c(0xc0, 4);
     LoadFileToVram(gJbBgHlNcgName, GX_LoadBG1Char);
-    switch (func_ov003_021c20c0()) {
+    switch (GetMode()) {
         case 0:
             LoadFileToVram(gHlNscNames[0], GX_LoadBG1Scr);
             break;

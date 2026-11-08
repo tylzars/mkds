@@ -25,14 +25,14 @@ void func_ov003_021c42cc(void) {
     v1 = GetButtonResult();
     if (v1 == 0) {
         StartSoundSeq(6);
-        func_ov003_021c212c(func_ov003_021c42ac);
+        SetUpdateFunction(func_ov003_021c42ac);
     }
 }
 
 void func_ov003_021c42ac(void) {
     DisableButtonTouch();
     func_ov003_021d1dd0(8);
-    func_ov003_021c212c(func_ov003_021c427c);
+    SetUpdateFunction(func_ov003_021c427c);
 }
 
 void func_ov003_021c427c(void) {
@@ -41,7 +41,7 @@ void func_ov003_021c427c(void) {
     if (v1 == 0) {
         StartSlideButtonsOut();
         func_ov003_021d1ee0(3, 0, 0x15, 8);
-        func_ov003_021c212c(func_ov003_021c4240);
+        SetUpdateFunction(func_ov003_021c4240);
     }
 }
 
@@ -52,12 +52,12 @@ void func_ov003_021c4240(void) {
         func_ov003_021d2168(0);
         func_ov003_021d272c(0, 0x15);
         func_ov003_021c2120(0, 1);
-        func_ov003_021c212c(func_ov003_021c5098);
+        SetUpdateFunction(func_ov003_021c5098);
     }
 }
 
 void func_ov003_021c4220(void) {
     func_ov003_021c41d4();
     PrintMessage(0x61);
-    func_ov003_021c212c(func_ov003_021c41ac);
+    SetUpdateFunction(func_ov003_021c41ac);
 }

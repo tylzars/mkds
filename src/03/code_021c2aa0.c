@@ -8,14 +8,14 @@
 
 void func_ov003_021c2aa0(void) {
     if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0) {
-        switch (func_ov003_021c20c0()) {
+        switch (GetMode()) {
             case 0:
                 func_ov003_021c2120(0, 1);
-                func_ov003_021c212c(SetupJb2Menu);
+                SetUpdateFunction(SetupJb2Menu);
                 break;
             case 1:
                 func_ov003_021c2120(1, 1);
-                func_ov003_021c212c(CreateAp);
+                SetUpdateFunction(CreateAp);
                 break;
         }
     }

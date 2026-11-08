@@ -27,7 +27,7 @@ void func_ov003_021cc110(void) {
     LoadHlScr(8);
     PrintMessage(0x6f);
     StartSoundSeq(0x10);
-    func_ov003_021c212c(func_ov003_021cc084);
+    SetUpdateFunction(func_ov003_021cc084);
 }
 
 void func_ov003_021cc0ac(void) {
@@ -80,12 +80,12 @@ void func_ov003_021cc0ac(void) {
 void func_ov003_021cc084(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
     func_ov003_021d2784(0, 0x15);
-    func_ov003_021c212c(func_ov003_021cc064);
+    SetUpdateFunction(func_ov003_021cc064);
 }
 
 void func_ov003_021cc064(void) {
     if (func_ov003_021d1f70(0) == 0) {
-        func_ov003_021c212c(func_ov003_021cc050);
+        SetUpdateFunction(func_ov003_021cc050);
     }
 }
 
@@ -99,7 +99,7 @@ void func_ov003_021cc04c(void) {}
 void func_ov003_021cc020(void) {
     func_ov003_021d1ee0(3, 1, 1, 8);
     func_ov003_021d1ee0(3, 0, 0x15, 8);
-    func_ov003_021c212c(func_ov003_021cbfcc);
+    SetUpdateFunction(func_ov003_021cbfcc);
 }
 
 void func_ov003_021cbfcc(void) {
@@ -112,13 +112,13 @@ void func_ov003_021cbfcc(void) {
         func_ov003_021d272c(0, 0x15);
         func_ov003_021c2120(0, 0);
         func_ov003_021c20f8(0, 2);
-        func_ov003_021c212c(func_ov003_021cbf60);
+        SetUpdateFunction(func_ov003_021cbf60);
     }
 }
 
 void func_ov003_021cbfa4(void) {
     data_ov003_021da250++;
     if (data_ov003_021da250 >= 120) {
-        func_ov003_021c212c(func_ov003_021cc020);
+        SetUpdateFunction(func_ov003_021cc020);
     }
 }

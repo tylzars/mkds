@@ -33,7 +33,7 @@ void func_ov003_021c4aa4(void) {
     func_ov003_021c4a40();
     PrintMessage(0x62);
     data_ov003_021da1c8[0] = func_ov003_021bf43c(0x8d, -1, 0);
-    func_ov003_021c212c(func_ov003_021c49f8);
+    SetUpdateFunction(func_ov003_021c49f8);
 }
 
 void func_ov003_021c4a40(void) {
@@ -90,7 +90,7 @@ void func_ov003_021c49f8(void) {
         func_ov003_021d1ee0(2, 1, 1, 8);
         func_ov003_021d2784(1, 1);
     }
-    func_ov003_021c212c(func_ov003_021c49c8);
+    SetUpdateFunction(func_ov003_021c49c8);
 }
 
 void func_ov003_021c49c8(void) {
@@ -98,14 +98,14 @@ void func_ov003_021c49c8(void) {
     v1 = func_ov003_021d1f70(1);
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
         func_ov003_021bf5c8(3);
-        func_ov003_021c212c(func_ov003_021c499c);
+        SetUpdateFunction(func_ov003_021c499c);
     }
 }
 
 void func_ov003_021c499c(void) {
     if (GetButtonResult() != -2 && func_ov003_021c27e4() != 0) {
         EnableButtonTouch();
-        func_ov003_021c212c(func_ov003_021c4984);
+        SetUpdateFunction(func_ov003_021c4984);
     }
 }
 
@@ -142,13 +142,13 @@ void func_ov003_021c4914(void) {
         default:
             return;
     }
-    func_ov003_021c212c(func_ov003_021c48f4);
+    SetUpdateFunction(func_ov003_021c48f4);
 }
 
 void func_ov003_021c48f4(void) {
     DisableButtonTouch();
     func_ov003_021d1dd0(8);
-    func_ov003_021c212c(func_ov003_021c48ac);
+    SetUpdateFunction(func_ov003_021c48ac);
 }
 
 void func_ov003_021c48ac(void) {
@@ -160,7 +160,7 @@ void func_ov003_021c48ac(void) {
             func_ov003_021d1ee0(3, 1, 1, 8);
         }
         func_ov003_021d1ee0(3, 0, 0x15, 8);
-        func_ov003_021c212c(func_ov003_021c482c);
+        SetUpdateFunction(func_ov003_021c482c);
     }
 }
 
@@ -176,10 +176,10 @@ void func_ov003_021c482c(void) {
         func_ov003_021d272c(0, 0x15);
         if (data_ov003_021da1cc == 0) {
             func_ov003_021c2120(0, 1);
-            func_ov003_021c212c(SetupOptMenu);
+            SetUpdateFunction(SetupOptMenu);
             return;
         }
         func_ov003_021c2120(0, 1);
-        func_ov003_021c212c(func_ov003_021c5098);
+        SetUpdateFunction(func_ov003_021c5098);
     }
 }

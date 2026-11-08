@@ -52,7 +52,7 @@ void func_ov003_021c54dc(void) {
     func_ov003_021beef8(0);
     func_ov003_021c1fc8();
     StartSoundSeq(0xb);
-    func_ov003_021c212c(func_ov003_021c541c);
+    SetUpdateFunction(func_ov003_021c541c);
 }
 
 void func_ov003_021c5458(void) {
@@ -71,20 +71,20 @@ void func_ov003_021c541c(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x15);
-    func_ov003_021c212c(func_ov003_021c53ec);
+    SetUpdateFunction(func_ov003_021c53ec);
 }
 
 void func_ov003_021c53ec(void) {
     if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0) {
         func_ov003_021bf5c8(1);
-        func_ov003_021c212c(func_ov003_021c53b4);
+        SetUpdateFunction(func_ov003_021c53b4);
     }
 }
 
 void func_ov003_021c53b4(void) {
     if (GetButtonResult() != -2) {
         data_ov003_021da1e4 = func_ov003_021d3544(1, func_ov003_021c51a0, NULL, 0x78);
-        func_ov003_021c212c(func_ov003_021c5324);
+        SetUpdateFunction(func_ov003_021c5324);
     }
 }
 
@@ -101,7 +101,7 @@ void func_ov003_021c5324(void) {
             data_ov003_021da1dc = 1;
             func_ov003_021d34c0(1, data_ov003_021da1e4);
             data_ov003_021da1e4 = 0;
-            func_ov003_021c212c(func_ov003_021c5120);
+            SetUpdateFunction(func_ov003_021c5120);
             break;
         case 2:
             StopSoundSeq();
@@ -110,7 +110,7 @@ void func_ov003_021c5324(void) {
             DisableButtonTouch();
             func_ov003_021d34c0(1, data_ov003_021da1e4);
             data_ov003_021da1e4 = 0;
-            func_ov003_021c212c(func_ov003_021c5178);
+            SetUpdateFunction(func_ov003_021c5178);
             break;
     }
 }
@@ -135,7 +135,7 @@ void func_ov003_021c52d0(void) {
     v1 = GetButtonResult();
     if (v1 == 0) {
         DisableButtonTouch();
-        func_ov003_021c212c(func_ov003_021c50f8);
+        SetUpdateFunction(func_ov003_021c50f8);
     }
 }
 
@@ -145,7 +145,7 @@ void func_ov003_021c52a0(void) {
         func_ov003_021d34c0(1, data_ov003_021da1e4);
     }
     func_ov003_021d1dd0(8);
-    func_ov003_021c212c(func_ov003_021c5258);
+    SetUpdateFunction(func_ov003_021c5258);
 }
 
 void func_ov003_021c5258(void) {
@@ -157,7 +157,7 @@ void func_ov003_021c5258(void) {
             func_ov003_021d1ee0(3, 1, 1, 8);
         }
         func_ov003_021d1ee0(3, 0, 0x15, 8);
-        func_ov003_021c212c(func_ov003_021c51bc);
+        SetUpdateFunction(func_ov003_021c51bc);
     }
 }
 
@@ -176,11 +176,11 @@ void func_ov003_021c51bc(void) {
         func_ov003_021d272c(0, 0x15);
         if (data_ov003_021da1dc == 0) {
             func_ov003_021c2120(2, 1);
-            func_ov003_021c212c(SetupWay);
+            SetUpdateFunction(SetupWay);
             return;
         }
         func_ov003_021c2120(0, 0);
-        func_ov003_021c212c(func_ov003_021c56a4);
+        SetUpdateFunction(func_ov003_021c56a4);
     }
 }
 
@@ -197,7 +197,7 @@ void func_ov003_021c5178(void) {
     if (v1 == 0) {
         StartSoundSeq(6);
         func_ov003_021cef90();
-        func_ov003_021c212c(func_ov003_021c515c);
+        SetUpdateFunction(func_ov003_021c515c);
     }
 }
 
@@ -205,7 +205,7 @@ void func_ov003_021c515c(void) {
     int v1;
     v1 = func_ov003_021cef6c();
     if (v1 == 0) {
-        func_ov003_021c212c(func_ov003_021c52a0);
+        SetUpdateFunction(func_ov003_021c52a0);
     }
 }
 
@@ -216,7 +216,7 @@ void func_ov003_021c5120(void) {
     data_ov003_021da1e0 = data_ov003_021da1e0 + 1;
     if (data_ov003_021da1e0 >= 0x438) {
         StopSoundSeq();
-        func_ov003_021c212c(func_ov003_021c52a0);
+        SetUpdateFunction(func_ov003_021c52a0);
     }
 }
 
@@ -224,5 +224,5 @@ void func_ov003_021c50f8(void) {
     StopSoundSeq();
     StartSoundSeq(7);
     *(u8 *) &data_ov003_021da1dc = 0;
-    func_ov003_021c212c(func_ov003_021c52a0);
+    SetUpdateFunction(func_ov003_021c52a0);
 }

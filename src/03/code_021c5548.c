@@ -33,7 +33,7 @@ void func_ov003_021c56fc(void) {
     if (v1 == 0) {
         StartSoundSeq(6);
         func_ov003_021cef90();
-        func_ov003_021c212c(func_ov003_021c56d8);
+        SetUpdateFunction(func_ov003_021c56d8);
     }
 }
 
@@ -43,7 +43,7 @@ void func_ov003_021c56d8(void) {
     if (v1 == 0) {
         EnableButtonTouch();
         func_ov003_021cce48();
-        func_ov003_021c212c(UpdateApList);
+        SetUpdateFunction(UpdateApList);
     }
 }
 
@@ -53,7 +53,7 @@ void func_ov003_021c56a4(void) {
     LoadHlSetScr();
     PrintMessage(0x68);
     StartSoundSeq(0x10);
-    func_ov003_021c212c(func_ov003_021c5628);
+    SetUpdateFunction(func_ov003_021c5628);
 }
 
 void func_ov003_021c5650(void) {
@@ -97,12 +97,12 @@ void func_ov003_021c5650(void) {
 void func_ov003_021c5628(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
     func_ov003_021d2784(0, 0x15);
-    func_ov003_021c212c(func_ov003_021c5608);
+    SetUpdateFunction(func_ov003_021c5608);
 }
 
 void func_ov003_021c5608(void) {
     if (func_ov003_021d1f70(0) == 0) {
-        func_ov003_021c212c(func_ov003_021c55f4);
+        SetUpdateFunction(func_ov003_021c55f4);
     }
 }
 
@@ -116,7 +116,7 @@ void func_ov003_021c55f0(void) {}
 void func_ov003_021c55c4(void) {
     func_ov003_021d1ee0(3, 1, 1, 8);
     func_ov003_021d1ee0(3, 0, 0x15, 8);
-    func_ov003_021c212c(func_ov003_021c5570);
+    SetUpdateFunction(func_ov003_021c5570);
 }
 
 void func_ov003_021c5570(void) {
@@ -129,13 +129,13 @@ void func_ov003_021c5570(void) {
         func_ov003_021d272c(0, 0x15);
         func_ov003_021c2120(0, 0);
         func_ov003_021c20f8(0, 1);
-        func_ov003_021c212c(func_ov003_021cbf60);
+        SetUpdateFunction(func_ov003_021cbf60);
     }
 }
 
 void func_ov003_021c5548(void) {
     data_ov003_021da1e8[0]++;
     if (data_ov003_021da1e8[0] >= 120) {
-        func_ov003_021c212c(func_ov003_021c55c4);
+        SetUpdateFunction(func_ov003_021c55c4);
     }
 }

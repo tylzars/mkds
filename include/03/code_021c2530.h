@@ -3,17 +3,17 @@
 #include "types.h"
 
 typedef struct Unk021d1d88 Unk021d1d88;
-typedef struct Unk021c250c Unk021c250c;
+typedef struct MessageFile MessageFile;
 
-typedef struct Unk021da190 {
+typedef struct MessagesPool {
     /* 00 */ u8 pad_00[0x60];
-    /* 60 */ Unk021d1d88 *mUnk_60;
-} Unk021da190;
+    /* 60 */ Unk021d1d88 *mFreeList;
+} MessagesPool;
 
-extern Unk021da190 *data_ov003_021da190;
+extern MessagesPool *gMessagesPool;
 
-void *func_ov003_021c2530(Unk021c250c *a, u32 b);
-void func_ov003_021c2544(Unk021c250c *a);
-Unk021c250c *func_ov003_021c2564(void *a);
-void func_ov003_021c25a4(void);
-void func_ov003_021c25b4(void);
+void *GetMessageEntry(MessageFile *messages, u32 index);
+void ReleaseMessages(MessageFile *messages);
+MessageFile *LoadMessages(void *path);
+void FreeMessagesPool(void);
+void InitMessagesPool(void);

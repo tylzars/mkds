@@ -15,137 +15,137 @@
 #include "03/code_021bf410.h"
 #include "code_0200fc8c.h"
 
-void func_ov003_021c2840(u32 a) {
+void func_ov003_021c2840(u32 callback) {
     Unk021d6e24 b;
     data_ov003_021da194 = func_ov003_021d285c(0x1e2a4, 0x20);
-    data_ov003_021da194->mUnk_1e298 = (void (*)(s32)) a;
+    data_ov003_021da194->mCallback = (void (*)(s32)) callback;
     data_ov003_021da194->mUnk_1e2a0 = 0;
     data_ov003_021da194->mUnk_1e2a1 = 0;
     b = data_ov003_021d6e24;
-    b.mUnk_04 = func_ov003_021c2530(data_ov003_021da19c, 0xf);
-    b.mUnk_08 = func_ov003_021c2530(data_ov003_021da19c, 0x10);
-    b.mUnk_18 = func_ov003_021c20d0() + 0x31;
+    b.mUnk_04 = GetMessageEntry(gMessages, 0xf);
+    b.mUnk_08 = GetMessageEntry(gMessages, 0x10);
+    b.mUnk_18 = GetLanguageIndex() + 0x31;
     func_ov003_021d1358((Unk021da2ac *) data_ov003_021da194, (Unk021d1358 *) &b);
     if (func_ov003_021d11d4() == 0) {
         OS_Terminate();
     }
-    data_ov003_021da194->mUnk_1e29c = func_ov003_021d3544(0, func_ov003_021c25e0, NULL, 0x78);
+    data_ov003_021da194->mStepTask = func_ov003_021d3544(0, func_ov003_021c25e0, NULL, 0x78);
 }
 
 void func_ov003_021c2824(void) {
     func_ov003_021d3544(0, &func_ov003_021c27f8, NULL, 0x78);
 }
 
-void func_ov003_021c27f8(u32 a) {
-    int v1;
-    v1 = func_ov003_021d1290();
-    if (v1 != 0) {
+void func_ov003_021c27f8(u32 task) {
+    int result;
+    result = func_ov003_021d1290();
+    if (result != 0) {
         data_ov003_021da194->mUnk_1e2a1 = 1;
-        func_ov003_021d34c8(0, a);
+        func_ov003_021d34c8(0, task);
     }
 }
 
-u32 func_ov003_021c27e4(void) {
+BOOL func_ov003_021c27e4(void) {
     if (data_ov003_021da194 == NULL) {
         return 1;
     }
     return 0;
 }
 
-void func_ov003_021c27d0(void *a) {
-    data_ov003_021da194->mUnk_1e298 = (void (*)(s32)) a;
+void func_ov003_021c27d0(void *callback) {
+    data_ov003_021da194->mCallback = (void (*)(s32)) callback;
 }
 
 u32 func_ov003_021c27c8(void) {
-    u32 value0;
+    u32 result;
     u32 value3;
     value3 = (u32) &func_ov003_021d11a0;
-    value0 = func_ov003_021d11a0();
-    return value0;
+    result = func_ov003_021d11a0();
+    return result;
 }
 
 u8 *func_ov003_021c27b4(void) {
     return data_ov003_021da194->mUnk_1e280;
 }
 
-static inline void func_ov003_021c25e0_inline(const void *s, void *d, s32 n) {
-    MIi_CpuCopy16(s, d, n);
+static inline void func_ov003_021c25e0_inline(const void *source, void *destination, s32 size) {
+    MIi_CpuCopy16(source, destination, size);
 }
 
-void func_ov003_021c25e0(u32 a) {
-    u8 b[2];
-    Unk021da194 *p;
+void func_ov003_021c25e0(u32 task) {
+    u8 stateInfo[2];
+    Unk021da194 *object;
     func_ov003_021d0ee0();
-    p = data_ov003_021da194;
-    if (p->mUnk_1e2a0 != 0 && p->mUnk_1e2a1 == 0) {
-        if (p->mUnk_1e298 == NULL) {
+    object = data_ov003_021da194;
+    if (object->mUnk_1e2a0 != 0 && object->mUnk_1e2a1 == 0) {
+        if (object->mCallback == NULL) {
             return;
         }
-        p->mUnk_1e298(0);
+        object->mCallback(0);
         return;
     }
-    func_ov003_021d0e9c(&b[0], &b[1]);
-    switch (b[0]) {
+    func_ov003_021d0e9c(&stateInfo[0], &stateInfo[1]);
+    switch (stateInfo[0]) {
         case 1:
         case 2:
         case 3:
         case 4:
             break;
         case 5:
-            if (b[1] == 0) {
+            if (stateInfo[1] == 0) {
                 break;
             }
             func_ov003_021c25e0_inline(func_ov003_021d0e90(), data_ov003_021da194->mUnk_1e280, 0x16);
-            if (data_ov003_021da194->mUnk_1e298 != NULL) {
-                data_ov003_021da194->mUnk_1e298(0);
+            if (data_ov003_021da194->mCallback != NULL) {
+                data_ov003_021da194->mCallback(0);
             } else {
                 data_ov003_021da194->mUnk_1e2a0 = 1;
             }
             break;
         case 13:
-            if (b[1] == 0) {
+            if (stateInfo[1] == 0) {
                 break;
             }
-            if (data_ov003_021da194->mUnk_1e298 != NULL) {
-                data_ov003_021da194->mUnk_1e298(1);
+            if (data_ov003_021da194->mCallback != NULL) {
+                data_ov003_021da194->mCallback(1);
             } else {
                 data_ov003_021da194->mUnk_1e2a0 = 1;
             }
             break;
         case 20:
         case 23:
-            if (b[1] == 0) {
+            if (stateInfo[1] == 0) {
                 break;
             }
-            if (data_ov003_021da194->mUnk_1e298 != NULL) {
-                data_ov003_021da194->mUnk_1e298(3);
+            if (data_ov003_021da194->mCallback != NULL) {
+                data_ov003_021da194->mCallback(3);
             } else {
                 data_ov003_021da194->mUnk_1e2a0 = 1;
             }
             break;
         case 26:
         case 29:
-            if (b[1] == 0) {
+            if (stateInfo[1] == 0) {
                 break;
             }
-            if (data_ov003_021da194->mUnk_1e298 != NULL) {
-                data_ov003_021da194->mUnk_1e298(4);
+            if (data_ov003_021da194->mCallback != NULL) {
+                data_ov003_021da194->mCallback(4);
             } else {
                 data_ov003_021da194->mUnk_1e2a0 = 1;
             }
             break;
         case 12:
-            if (b[1] == 0) {
+            if (stateInfo[1] == 0) {
                 break;
             }
-            if (data_ov003_021da194->mUnk_1e298 != NULL) {
-                data_ov003_021da194->mUnk_1e298(2);
+            if (data_ov003_021da194->mCallback != NULL) {
+                data_ov003_021da194->mCallback(2);
             } else {
                 data_ov003_021da194->mUnk_1e2a0 = 1;
             }
             break;
         case 34:
-            func_ov003_021d34c8(0, a);
+            func_ov003_021d34c8(0, task);
             func_ov003_021d2808(&data_ov003_021da194);
             break;
     }

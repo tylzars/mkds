@@ -49,5 +49,5 @@ void func_ov003_021cbed0(void) {
     func_ov003_021d1ee0(2, 0, 0x14, 8);
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x14);
-    func_ov003_021c212c(func_ov003_021cbe78);
+    SetUpdateFunction(func_ov003_021cbe78);
 }

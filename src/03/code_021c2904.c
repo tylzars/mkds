@@ -26,31 +26,31 @@ void func_ov003_021c2a28(void) {
         func_ov003_021d1c90(0);
         ReleaseHlScr();
         ReleaseSelectionObjects();
-        func_ov003_021c2544(data_ov003_021da19c);
-        func_ov003_021c25a4();
+        ReleaseMessages(gMessages);
+        FreeMessagesPool();
         func_ov003_021cdb80();
         func_ov003_021c209c();
     }
 }
 
-void func_ov003_021c29d8(void) {
-    data_ov003_021da198 = func_ov003_021d283c(0xc, -4);
-    if (StartExchange(0xf, 0x40, func_ov003_021c2904, func_ov003_021c28f8, func_ov003_021c28f0, 0x800) != 1) {
+void StartExchangeWithStatusRecord(void) {
+    gExchangeStatusRecord = func_ov003_021d283c(0xc, -4);
+    if (StartExchange(0xf, 0x40, StoreExchangeStatus, func_ov003_021c28f8, func_ov003_021c28f0, 0x800) != 1) {
         OS_Terminate();
     }
     OS_Sleep(0xa);
 }
 
-void func_ov003_021c29b8(void) {
+void StopExchangeWithStatusRecord(void) {
     if (StopExchange() != 1) {
         OS_Terminate();
     }
-    func_ov003_021d2808(&data_ov003_021da198);
+    func_ov003_021d2808(&gExchangeStatusRecord);
 }
 
 u32 func_ov003_021c2938(void) {
-    ExchangeResult a;
-    switch (data_ov003_021da198->mUnk_00) {
+    ExchangeResult exchangeResult;
+    switch (gExchangeStatusRecord->mStatus) {
         case 0:
         case 1:
         case 3:
@@ -61,10 +61,10 @@ u32 func_ov003_021c2938(void) {
         case 4:
             return 2;
         case 6:
-            if (CopyExchangeResult(&a) != 1) {
+            if (CopyExchangeResult(&exchangeResult) != 1) {
                 OS_Terminate();
             }
-            if (a.mKind >= 0 && a.mKind <= 3 && a.mUnk_24 == 1) {
+            if (exchangeResult.mKind >= 0 && exchangeResult.mKind <= 3 && exchangeResult.mUnk_24 == 1) {
                 return 3;
             }
             return 5;
@@ -74,13 +74,13 @@ u32 func_ov003_021c2938(void) {
 }
 
 void func_ov003_021c2918(void) {
-    ExchangeResult a;
-    if (CopyExchangeResult(&a) != 1) {
+    ExchangeResult exchangeResult;
+    if (CopyExchangeResult(&exchangeResult) != 1) {
         OS_Terminate();
     }
-    func_ov003_021cd5e0((const Unk021cd5e0_arg *) &a);
+    func_ov003_021cd5e0((const Unk021cd5e0_arg *) &exchangeResult);
 }
 
-void func_ov003_021c2904(const Unk021c2904 *value) {
-    *data_ov003_021da198 = *value;
+void StoreExchangeStatus(const ExchangeStatus *status) {
+    *gExchangeStatusRecord = *status;
 }

@@ -67,7 +67,7 @@ void CreateEditAddr(void) {
     gEditAddr->mUnk_04->mUnk_04 = (gEditAddr->mUnk_04->mUnk_04 & 0xfffff3ff) | 0xc00;
     func_ov003_021c7160();
     PrintEditAddrText();
-    func_ov003_021c212c(func_ov003_021c7678);
+    SetUpdateFunction(func_ov003_021c7678);
 }
 
 void LoadEditAddrFilesAndSetBgCnt(void) {
@@ -131,7 +131,7 @@ void func_ov003_021c7678(void) {
     func_ov003_021d1ee0(2, 0, 0x15, 8);
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x15);
-    func_ov003_021c212c(func_ov003_021c7614);
+    SetUpdateFunction(func_ov003_021c7614);
 }
 
 void func_ov003_021c7614(void) {
@@ -150,13 +150,13 @@ void func_ov003_021c7614(void) {
             }
             SetEditAddrKeyboardNextGroupEnabled(0);
         }
-        func_ov003_021c212c(func_ov003_021c75f8);
+        SetUpdateFunction(func_ov003_021c75f8);
     }
 }
 
 void func_ov003_021c75f8(void) {
     if (GetEditAddrKeyboardInput() != 31) {
-        func_ov003_021c212c(UpdateEditAddr);
+        SetUpdateFunction(UpdateEditAddr);
     }
 }
 
@@ -206,7 +206,7 @@ void UpdateEditAddrInput(void) {
         case 0x12:
             gEditAddr->mUnk_15 = 0;
             StartSoundSeq(7);
-            func_ov003_021c212c(func_ov003_021c733c);
+            SetUpdateFunction(func_ov003_021c733c);
             return;
         case 0x13:
             if (func_ov003_021c6f64() != FALSE) {
@@ -220,7 +220,7 @@ void UpdateEditAddrInput(void) {
             gEditAddr->mUnk_04->mUnk_00 = (gEditAddr->mUnk_04->mUnk_00 & 0xc1fffcff) | 0x200;
             func_ov003_021c7160();
             func_ov003_021c7050();
-            func_ov003_021c212c(func_ov003_021c733c);
+            SetUpdateFunction(func_ov003_021c733c);
             return;
         default:
             if (gEditAddr->mGroupIndex == 3) {
@@ -300,7 +300,7 @@ void func_ov003_021c7358(void) {}
 
 void func_ov003_021c733c(void) {
     func_ov003_021d1dd0(8);
-    func_ov003_021c212c(func_ov003_021c7314);
+    SetUpdateFunction(func_ov003_021c7314);
 }
 
 void func_ov003_021c7314(void) {
@@ -309,7 +309,7 @@ void func_ov003_021c7314(void) {
     if (v1 == 0) {
         StartEditAddrKeyboardSlideOut();
         StartSoundSeq(0x15);
-        func_ov003_021c212c(func_ov003_021c72a4);
+        SetUpdateFunction(func_ov003_021c72a4);
     }
 }
 
@@ -318,16 +318,16 @@ void func_ov003_021c72a4(void) {
     if (HasEditAddrKeyboard() == 0) {
         a = gEditAddr->mUnk_15;
         if (a == 0) {
-            func_ov003_021c212c(func_ov003_021c722c);
+            SetUpdateFunction(func_ov003_021c722c);
             return;
         }
         if (a == 2) {
             func_ov003_021cefc0(0x2f, 3, 1, -1, 0);
-            func_ov003_021c212c(func_ov003_021c6f3c);
+            SetUpdateFunction(func_ov003_021c6f3c);
             return;
         }
         func_ov003_021cefc0(0x9b, 2, 1, -1, 0);
-        func_ov003_021c212c(func_ov003_021c7118);
+        SetUpdateFunction(func_ov003_021c7118);
     }
 }
 
@@ -345,7 +345,7 @@ void func_ov003_021c722c(void) {
     }
     func_ov003_021c2120(2, 1);
     func_ov003_021c20f8(0, v1[0] + 3);
-    func_ov003_021c212c(CreateJb3List);
+    SetUpdateFunction(CreateJb3List);
     func_ov003_021d2808(&gEditAddr);
 }
 
@@ -405,7 +405,7 @@ void func_ov003_021c7118(void) {
             return;
     }
     func_ov003_021cef90();
-    func_ov003_021c212c(func_ov003_021c70a4);
+    SetUpdateFunction(func_ov003_021c70a4);
 }
 
 void func_ov003_021c70a4(void) {
@@ -415,12 +415,12 @@ void func_ov003_021c70a4(void) {
     if (func_ov003_021cef6c() == 0) {
         if (gEditAddr->mUnk_15 == 0) {
             gEditAddr->mUnk_04->mUnk_00 = gEditAddr->mUnk_04->mUnk_00 & 0xc1fffcff;
-            func_ov003_021c212c(func_ov003_021c7614);
+            SetUpdateFunction(func_ov003_021c7614);
             return;
         }
         func_ov003_021c20dc(&b, NULL);
         a.mUnk_00[b](gEditAddr->mText);
-        func_ov003_021c212c(func_ov003_021c722c);
+        SetUpdateFunction(func_ov003_021c722c);
     }
 }
 
@@ -525,7 +525,7 @@ void func_ov003_021c6f3c(void) {
     if (v1 == 0) {
         StartSoundSeq(6);
         func_ov003_021cef90();
-        func_ov003_021c212c(func_ov003_021c6f08);
+        SetUpdateFunction(func_ov003_021c6f08);
     }
 }
 
@@ -534,6 +534,6 @@ void func_ov003_021c6f08(void) {
     v1 = func_ov003_021cef6c();
     if (v1 == 0) {
         gEditAddr->mUnk_04->mUnk_00 = gEditAddr->mUnk_04->mUnk_00 & (0xc1fffcffu);
-        func_ov003_021c212c(func_ov003_021c7614);
+        SetUpdateFunction(func_ov003_021c7614);
     }
 }

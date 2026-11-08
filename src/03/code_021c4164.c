@@ -7,6 +7,6 @@
 void func_ov003_021c4164(void) {
     if (GetButtonResult() != -2) {
         EnableButtonTouch();
-        func_ov003_021c212c(func_ov003_021c414c);
+        SetUpdateFunction(func_ov003_021c414c);
     }
 }
