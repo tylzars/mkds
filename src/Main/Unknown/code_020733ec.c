@@ -34,22 +34,22 @@
 #include "ITCM/code_01ff9598.h"
 
 void func_02073630(void) {
-    RaceSetup *d;
+    RaceSetup *raceSetup;
     u16 i;
-    void **a;
+    void **responseSlot;
     void **b;
 
     data_0217ac14 = func_01ffa478;
-    d = gRaceSetup;
+    raceSetup = gRaceSetup;
     i = 0;
-    a = data_0217ac18;
+    responseSlot = gCollideKartWithMapObjectResponses;
     b = data_0217ac54;
-    if (d->mCourseId == COURSE_ID_RAINBOW || d->mCourseId == COURSE_ID_OLD_SKY_AGB) {
+    if (raceSetup->mCourseId == COURSE_ID_RAINBOW || raceSetup->mCourseId == COURSE_ID_OLD_SKY_AGB) {
         data_0217ac14 = func_01ffa380;
     }
     data_0217ac10 = 0;
-    if (d->mMode == MODE_BATTLE) {
-        switch (d->mCourseId) {
+    if (raceSetup->mMode == MODE_BATTLE) {
+        switch (raceSetup->mCourseId) {
             case COURSE_ID_MINI_BLOCK_64:
             case COURSE_ID_MINI_DOKAN_GC:
                 data_0217ac10 = 1;
@@ -57,66 +57,66 @@ void func_02073630(void) {
                 break;
         }
     }
-    for (; i < 15; i++, a++, b++) {
+    for (; i < 15; i++, responseSlot++, b++) {
         switch (i) {
             case 0:
-                *a = CollideKartWithMapObjectResponse0;
+                *responseSlot = CollideKartWithMapObjectResponse0;
                 *b = func_020681e0;
                 break;
             case 2:
-                *a = CollideKartWithMapObjectResponse2;
+                *responseSlot = CollideKartWithMapObjectResponse2;
                 *b = func_020681e0;
                 break;
             case 3:
-                *a = CollideKartWithMapObjectResponse3;
+                *responseSlot = CollideKartWithMapObjectResponse3;
                 *b = func_020681e0;
                 break;
             case 4:
-                *a = CollideKartWithMapObjectResponse4;
+                *responseSlot = CollideKartWithMapObjectResponse4;
                 *b = func_020681e0;
                 break;
             case 5:
-                *a = CollideKartWithMapObjectResponse5;
+                *responseSlot = CollideKartWithMapObjectResponse5;
                 *b = func_020681e0;
                 break;
             case 6:
-                *a = CollideKartWithMapObjectResponse6;
+                *responseSlot = CollideKartWithMapObjectResponse6;
                 *b = func_020681e0;
                 break;
             case 7:
-                *a = CollideKartWithMapObjectResponse7;
+                *responseSlot = CollideKartWithMapObjectResponse7;
                 *b = func_020681e0;
                 break;
             case 9:
-                *a = CollideKartWithMapObjectResponse9;
+                *responseSlot = CollideKartWithMapObjectResponse9;
                 *b = func_02068094;
                 break;
             case 8:
-                *a = CollideKartWithMapObjectResponse8;
+                *responseSlot = CollideKartWithMapObjectResponse8;
                 *b = func_020680e0;
                 break;
             case 10:
-                *a = CollideKartWithMapObjectResponse10;
+                *responseSlot = CollideKartWithMapObjectResponse10;
                 *b = func_02067f94;
                 break;
             case 11:
-                *a = CollideKartWithMapObjectResponse11;
+                *responseSlot = CollideKartWithMapObjectResponse11;
                 *b = func_020681e0;
                 break;
             case 12:
-                *a = CollideKartWithMapObjectResponse12;
+                *responseSlot = CollideKartWithMapObjectResponse12;
                 *b = func_020681e0;
                 break;
             case 13:
-                *a = CollideKartWithMapObjectResponse13;
+                *responseSlot = CollideKartWithMapObjectResponse13;
                 *b = func_020681e0;
                 break;
             case 14:
-                *a = CollideKartWithMapObjectResponse14;
+                *responseSlot = CollideKartWithMapObjectResponse14;
                 *b = func_020681e0;
                 break;
             default:
-                *a = CollideKartWithMapObjectNoResponse;
+                *responseSlot = CollideKartWithMapObjectNoResponse;
                 *b = func_020681e0;
                 break;
         }
@@ -124,58 +124,59 @@ void func_02073630(void) {
     data_usa_021654ec = FX_Div(0x1000, ((s64) GetFirstBaseSpeedLimit() * 0xd9aLL) >> 12);
 }
 
-void func_020733ec(Kart *p) {
-    void *h;
-    Vec3 *v;
+void func_020733ec(Kart *kart) {
+    void *heap;
+    Vec3 *collisionPos;
     u16 i;
 
-    h = GetHeap(GetCurrentHeapCall());
-    p->mUnk_230 = func_02071568;
-    InitKartPhysicalParams(p);
-    func_02071e28(p);
-    if (p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) {
-        SetKartSpeedLimitReciprocal(FX_Div(0x1000, p->mPhysicalParam->mBaseSpeedLimit));
+    heap = GetHeap(GetCurrentHeapCall());
+    kart->mUnk_230 = func_02071568;
+    InitKartPhysicalParams(kart);
+    func_02071e28(kart);
+    if (kart->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) {
+        SetKartSpeedLimitReciprocal(FX_Div(0x1000, kart->mPhysicalParam->mBaseSpeedLimit));
     }
-    InitKartSound(p);
-    func_020e0650((u32 *) &p->mUnk_208);
-    p->mAi = HeapAlloc(h, 0x158);
+    InitKartSound(kart);
+    func_020e0650((u32 *) &kart->mUnk_208);
+    kart->mAi = HeapAlloc(heap, 0x158);
     if (gCourseMap->mRaceRouteCount != 0 || gCourseMap->mBattleRouteCount != 0) {
-        if (gRaceSetup->mCurrentEntries[p->mIndex].mPlayer.mKind == PLAYER_KIND_CPU) {
-            p->mUnk_7c |= 2;
-            if (p->mUnk_7c & 2) {
+        if (gRaceSetup->mCurrentEntries[kart->mIndex].mPlayer.mKind == PLAYER_KIND_CPU) {
+            kart->mUnk_7c |= 2;
+            if (kart->mUnk_7c & 2) {
                 for (i = 0; i < 12; i++) {
                     if (i != 0) {
-                        p->mPhysicalParam->mUnk_38[i] = p->mPhysicalParam->mUnk_38[i] << 2;
-                        if (p->mPhysicalParam->mUnk_38[i] > p->mPhysicalParam->mUnk_38[0]) {
-                            p->mPhysicalParam->mUnk_38[i] = p->mPhysicalParam->mUnk_38[0];
+                        kart->mPhysicalParam->mUnk_38[i] = kart->mPhysicalParam->mUnk_38[i] << 2;
+                        if (kart->mPhysicalParam->mUnk_38[i] > kart->mPhysicalParam->mUnk_38[0]) {
+                            kart->mPhysicalParam->mUnk_38[i] = kart->mPhysicalParam->mUnk_38[0];
                         }
                     }
                 }
             }
         }
     }
-    p->mUnk_2ca = -1;
-    p->mCollisionSlot = p->mUnk_2ca;
+    kart->mUnk_2ca = -1;
+    kart->mCollisionSlot = kart->mUnk_2ca;
     if (gRaceSetup->mMode == 5) {
-        v = &p->mPointAlongUp;
+        collisionPos = &kart->mPointAlongUp;
     } else {
-        v = &p->mCollisionCenter;
+        collisionPos = &kart->mCollisionCenter;
     }
-    if (p->mCollisionSlot == -1) {
-        p->mCollisionSlot = CreateCollisionSlot(v, p->mPhysicalParam->mRadius + 0xd000, 0x8000, p);
+    if (kart->mCollisionSlot == -1) {
+        kart->mCollisionSlot = CreateCollisionSlot(collisionPos, kart->mPhysicalParam->mRadius + 0xd000, 0x8000, kart);
     }
-    if (p->mUnk_2ca == -1) {
-        p->mUnk_2ca = CreateCollisionSlot(&p->mUnk_1f0, ((s64) p->mPhysicalParam->mRadius << 15) >> 12, 0x800, p);
+    if (kart->mUnk_2ca == -1) {
+        kart->mUnk_2ca =
+            CreateCollisionSlot(&kart->mUnk_1f0, ((s64) kart->mPhysicalParam->mRadius << 15) >> 12, 0x800, kart);
     }
-    p->mUnk_44 |= KART_44_ON_GROUND;
-    p->mUnk_4d0 = 0x64;
-    p->mRadius = p->mPhysicalParam->mRadius;
-    func_020719d0(p);
+    kart->mUnk_44 |= KART_44_ON_GROUND;
+    kart->mUnk_4d0 = 0x64;
+    kart->mRadius = kart->mPhysicalParam->mRadius;
+    func_020719d0(kart);
     if (gRaceSetup->mMode == 5) {
-        p->mUnk_514 = HeapAlloc(h, 0xb8);
-        func_02071fb8(p, h);
+        kart->mUnk_514 = HeapAlloc(heap, 0xb8);
+        func_02071fb8(kart, heap);
     }
     if (IsRaceAwardOrStaffRoll() != 0) {
-        p->mUnk_44 |= 0x1000000;
+        kart->mUnk_44 |= 0x1000000;
     }
 }

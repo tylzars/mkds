@@ -124,11 +124,11 @@ extern const char gEmblemSBNclrName[];
 extern s32 data_usa_021654ec;
 extern s32 data_021654f4;
 // Three words.
-typedef struct Unk02165560 {
-    /* 00 */ u32 mUnk_00[3];
-} Unk02165560;
+typedef struct KartFollowEffectIds {
+    /* 00 */ u32 mEffectIds[3];
+} KartFollowEffectIds;
 
-extern const Unk02165560 data_usa_02165560;
+extern const KartFollowEffectIds gKartFollowEffectIds;
 
 // Eight halfwords.
 typedef struct Unk0216557c {

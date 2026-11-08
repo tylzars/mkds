@@ -99,292 +99,294 @@
 #include "Main/Unknown/code_02077bc0.h"
 #include "code_021471bc.h"
 
-void AdvanceKartScaleFactor(Kart *p) {
-    s32 i;
-    enum { K0 } k;
+void AdvanceKartScaleFactor(Kart *kart) {
+    s32 frameIndex;
+    enum { K0 } entryIndex;
 
-    k = p->mEntryIndex;
-    data_0217566a[k].mBitMask = 0xff7;
-    if (p->mUnk_7c & 0x20) {
-        func_02068b98(p);
+    entryIndex = kart->mEntryIndex;
+    data_0217566a[entryIndex].mBitMask = 0xff7;
+    if (kart->mUnk_7c & 0x20) {
+        func_02068b98(kart);
         return;
     }
-    p->mUnk_3c8 = p->mUnk_3c8 + 1;
-    i = p->mUnk_3c8;
-    if (i >= 0x19) {
-        p->mUnk_7c &= ~0x80;
+    kart->mUnk_3c8 = kart->mUnk_3c8 + 1;
+    frameIndex = kart->mUnk_3c8;
+    if (frameIndex >= 0x19) {
+        kart->mUnk_7c &= ~0x80;
         return;
     }
-    p->mScaleFactor.x = gKartScaleFactorXTable[i];
-    p->mScaleFactor.y = gKartScaleFactorYTable[i];
-    p->mScaleFactor.z = gKartScaleFactorZTable[i];
-    p->mScale.x = ((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12;
-    p->mScale.y = ((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12;
-    p->mScale.z = ((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12;
-    p->mScale.y = ((s64) p->mScaleYFactor * p->mScale.y) >> 12;
+    kart->mScaleFactor.x = gKartScaleFactorXTable[frameIndex];
+    kart->mScaleFactor.y = gKartScaleFactorYTable[frameIndex];
+    kart->mScaleFactor.z = gKartScaleFactorZTable[frameIndex];
+    kart->mScale.x = ((s64) kart->mScaleBase.x * kart->mScaleFactor.x) >> 12;
+    kart->mScale.y = ((s64) kart->mScaleBase.y * kart->mScaleFactor.y) >> 12;
+    kart->mScale.z = ((s64) kart->mScaleBase.z * kart->mScaleFactor.z) >> 12;
+    kart->mScale.y = ((s64) kart->mScaleYFactor * kart->mScale.y) >> 12;
 }
 
-void ResetKartToRespawnPoint(Kart *p) {
-    Vec3 a;
-    Vec3 b;
-    Vec3 c;
-    Vec3 d;
-    s32 m[9];
-    PointLink *r;
+void ResetKartToRespawnPoint(Kart *kart) {
+    Vec3 respawnPos;
+    Vec3 respawnForward;
+    Vec3 respawnAngles;
+    Vec3 sideDirection;
+    s32 rotationMatrix[9];
+    PointLink *respawnLink;
     s32 x;
-    s32 y;
+    s32 forwardOffset;
     s32 i;
-    KartItems *e;
+    KartItems *kartItems;
     s64 l;
 
-    if (p->mRespawnSlot == -1) {
-        i = p->mIndex;
+    if (kart->mRespawnSlot == -1) {
+        i = kart->mIndex;
         if (gRaceSetup->mMode == MODE_BATTLE) {
             i = GetCourseMapRespawnSlot(0);
         } else {
             i = GetCourseMapRespawnSlot(gRaceProgress->mUnk_000[i].mCheckpoint);
         }
-        p->mRespawnSlot = i;
+        kart->mRespawnSlot = i;
     }
-    i = (u16) p->mRespawnSlot;
+    i = (u16) kart->mRespawnSlot;
     if (gRaceSetup->mMode == MODE_BATTLE) {
-        r = GetCourseMapRespawnBattlePointLink(i, &a, &c);
+        respawnLink = GetCourseMapRespawnBattlePointLink(i, &respawnPos, &respawnAngles);
     } else {
-        r = GetCourseMapRespawnRacePointLink(i, &a, &c);
+        respawnLink = GetCourseMapRespawnRacePointLink(i, &respawnPos, &respawnAngles);
     }
-    i = ((u16) ((s32) (((s64) c.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
-    MTX_RotY33_(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
-    MTX_MultVec33(&data_02154f70, m, &b);
+    i = ((u16) ((s32) (((s64) respawnAngles.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
+    MTX_RotY33_(rotationMatrix, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
+    MTX_MultVec33(&data_02154f70, rotationMatrix, &respawnForward);
     if (gRaceSetup->mMode != MODE_BATTLE && gCourseMap->mItemRouteCount != 0) {
-        (e = &gKartItems[p->mIndex])->mUnk_1f0.mLink = GetCourseMapRespawnItemPointLink((u16) p->mRespawnSlot);
-        e->mUnk_1f0.mNextLinksUsed = 1;
+        (kartItems = &gKartItems[kart->mIndex])->mUnk_1f0.mLink =
+            GetCourseMapRespawnItemPointLink((u16) kart->mRespawnSlot);
+        kartItems->mUnk_1f0.mNextLinksUsed = 1;
     }
     if (gRaceSetup->mMode != MODE_TIME_ATTACK) {
-        x = data_usa_02154d4c[p->mIndex][0];
-        y = data_usa_02154d50[p->mIndex][0];
-        Vec3CrossUnrounded(&data_02154f7c, &b, &d);
-        VEC_MultAdd(((s64) data_usa_02165504 * x) >> 12, &d, &a, &a);
-        VEC_MultAdd(((s64) data_usa_02165504 * y) >> 12, &b, &a, &a);
-        if (c.x != 0 && y != 0) {
-            i = ((u16) ((s32) (((s64) c.x * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
+        x = data_usa_02154d4c[kart->mIndex][0];
+        forwardOffset = data_usa_02154d50[kart->mIndex][0];
+        Vec3CrossUnrounded(&data_02154f7c, &respawnForward, &sideDirection);
+        VEC_MultAdd(((s64) data_usa_02165504 * x) >> 12, &sideDirection, &respawnPos, &respawnPos);
+        VEC_MultAdd(((s64) data_usa_02165504 * forwardOffset) >> 12, &respawnForward, &respawnPos, &respawnPos);
+        if (respawnAngles.x != 0 && forwardOffset != 0) {
+            i = ((u16) ((s32) (((s64) respawnAngles.x * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
             l = gPairsByAngle[i * 2];
-            i = (l * -y + 0x800) >> 12;
-            a.y += (s32) (((s64) i * data_usa_02165504 + 0x800) >> 12);
+            i = (l * -forwardOffset + 0x800) >> 12;
+            respawnPos.y += (s32) (((s64) i * data_usa_02165504 + 0x800) >> 12);
         }
-        if (c.z != 0 && x != 0) {
-            i = ((u16) ((s32) (((s64) c.z * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
+        if (respawnAngles.z != 0 && x != 0) {
+            i = ((u16) ((s32) (((s64) respawnAngles.z * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
             l = gPairsByAngle[i * 2];
             i = (l * x + 0x800) >> 12;
-            a.y += (s32) (((s64) i * data_usa_02165504 + 0x800) >> 12);
+            respawnPos.y += (s32) (((s64) i * data_usa_02165504 + 0x800) >> 12);
         }
     }
-    a.y += 0x28000;
-    x = p->mUnk_48;
+    respawnPos.y += 0x28000;
+    x = kart->mUnk_48;
     if (x & 0x800000) {
-        SetupKartFollowEffect(StartEffect(0x71, &a), p->mIndex, 0x32);
+        SetupKartFollowEffect(StartEffect(0x71, &respawnPos), kart->mIndex, 0x32);
     } else if (x & 0x1000000) {
-        SetupKartFollowEffect(StartEffect(0x70, &a), p->mIndex, 0x32);
+        SetupKartFollowEffect(StartEffect(0x70, &respawnPos), kart->mIndex, 0x32);
     }
-    ResetKartAndSetPos(p, &a, &b, r);
-    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
+    ResetKartAndSetPos(kart, &respawnPos, &respawnForward, respawnLink);
+    if (kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         GetEntryKartCounters()->mUnk_18++;
     } else {
-        ResetSoundDistanceSquaredChange(&p->mUnk_518);
+        ResetSoundDistanceSquaredChange(&kart->mUnk_518);
     }
-    p->mUnk_4c |= 0xc00;
-    p->mUnk_48 |= 0x2000000;
-    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
+    kart->mUnk_4c |= 0xc00;
+    kart->mUnk_48 |= 0x2000000;
+    if (kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         func_02055bd4(0x3c);
         func_02075d08(0);
     }
 }
 
-s32 AdvanceKartRespawnWait(Kart *p, s32 *a) {
-    BOOL r;
-    u32 f;
+s32 AdvanceKartRespawnWait(Kart *kart, s32 *a) {
+    BOOL finished;
+    u32 flags;
 
-    f = p->mUnk_4c;
-    r = FALSE;
-    if (f & 0x4000000) {
-        if (p->mUnk_4bc > 0x19a) {
-            p->mUnk_4bc = ((s64) p->mUnk_4bc * 0xe66LL) >> 12;
+    flags = kart->mUnk_4c;
+    finished = FALSE;
+    if (flags & 0x4000000) {
+        if (kart->mUnk_4bc > 0x19a) {
+            kart->mUnk_4bc = ((s64) kart->mUnk_4bc * 0xe66LL) >> 12;
         }
-        *a = p->mUnk_4bc;
-    } else if (f & 0x200000) {
-        if (p->mUnk_4bc > 0x666) {
-            p->mUnk_4bc = ((s64) p->mUnk_4bc * 0xe66LL) >> 12;
+        *a = kart->mUnk_4bc;
+    } else if (flags & 0x200000) {
+        if (kart->mUnk_4bc > 0x666) {
+            kart->mUnk_4bc = ((s64) kart->mUnk_4bc * 0xe66LL) >> 12;
         }
-        *a = p->mUnk_4bc;
+        *a = kart->mUnk_4bc;
     }
-    p->mRespawnFrames = p->mRespawnFrames + 1;
-    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-        if (p->mRespawnFrames == 0x16) {
+    kart->mRespawnFrames = kart->mRespawnFrames + 1;
+    if (kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
+        if (kart->mRespawnFrames == 0x16) {
             func_02055a94();
-        } else if (p->mRespawnFrames == 0x19) {
+        } else if (kart->mRespawnFrames == 0x19) {
             func_02055c18(0x3c);
         }
     }
-    if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && p->mRespawnFrames == 0x55) {
+    if ((kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && kart->mRespawnFrames == 0x55) {
         func_020e7a40();
-    } else if (p->mRespawnFrames > 0x78) {
-        func_02063ad0(p);
-        r = TRUE;
+    } else if (kart->mRespawnFrames > 0x78) {
+        func_02063ad0(kart);
+        finished = TRUE;
     }
-    return r;
+    return finished;
 }
 
-void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, PointLink *c) {
+void ResetKartAndSetPos(Kart *kart, const Vec3 *position, const Vec3 *forward, PointLink *link) {
     ParticipantKartRecordState *q;
-    Vec3 v;
+    Vec3 axis;
 
-    func_02072930(p);
-    SetKartModelsEntryCourseColors(p->mKartModelsEntry);
-    p->mSlotFunctions[1](p);
-    p->mUnk_7c &= ~0xe000;
-    StopOrthoQuads(p->mIndex);
-    p->mUnk_48 |= 0x240;
-    p->mPos = *a;
-    if (p->mUnk_7c & 0x400) {
-        q = p->mUnk_514;
-        q->mUnk_00 = p->mPos;
+    func_02072930(kart);
+    SetKartModelsEntryCourseColors(kart->mKartModelsEntry);
+    kart->mSlotFunctions[1](kart);
+    kart->mUnk_7c &= ~0xe000;
+    StopOrthoQuads(kart->mIndex);
+    kart->mUnk_48 |= 0x240;
+    kart->mPos = *position;
+    if (kart->mUnk_7c & 0x400) {
+        q = kart->mUnk_514;
+        q->mUnk_00 = kart->mPos;
         q->mUnk_10 = q->mUnk_00;
-        q->mUnk_4c = *(Vec4 *) &p->mUnk_108.z;
+        q->mUnk_4c = *(Vec4 *) &kart->mUnk_108.z;
         q->mUnk_a8 = data_02154f94;
         q->mUnk_b4 = 0;
     }
-    if (b != NULL) {
-        p->mHeadingAngle = (s32) (((s64) FX_Atan2(b->x, b->z) * 0x28be60dLL) >> 12) >> 12;
-        v = data_02165524;
-        QuaternionFromAxisAngle(&v, p->mHeadingAngle, &p->mUnk_e0_m);
+    if (forward != NULL) {
+        kart->mHeadingAngle = (s32) (((s64) FX_Atan2(forward->x, forward->z) * 0x28be60dLL) >> 12) >> 12;
+        axis = data_02165524;
+        QuaternionFromAxisAngle(&axis, kart->mHeadingAngle, &kart->mUnk_e0_m);
     }
-    Matrix4x3FromQuaternion(&p->mUnk_120, &p->mUnk_e0_m);
-    GetKartForward(p, &p->mForward);
-    p->mTurnedForward = p->mForward;
-    p->mEasedTurnedForward = p->mTurnedForward;
-    p->mPrevPos = p->mPos;
-    p->mDrawMatrixPos = p->mPrevPos;
-    p->mPrevCollisionCenter = p->mPos;
-    p->mCollisionCenter = p->mPos;
-    p->mLastGroundY = p->mPos.y;
-    if (p->mUnk_7c & 2) {
-        if (c != NULL) {
-            CallKartAiReset(p->mAi, c);
+    Matrix4x3FromQuaternion(&kart->mUnk_120, &kart->mUnk_e0_m);
+    GetKartForward(kart, &kart->mForward);
+    kart->mTurnedForward = kart->mForward;
+    kart->mEasedTurnedForward = kart->mTurnedForward;
+    kart->mPrevPos = kart->mPos;
+    kart->mDrawMatrixPos = kart->mPrevPos;
+    kart->mPrevCollisionCenter = kart->mPos;
+    kart->mCollisionCenter = kart->mPos;
+    kart->mLastGroundY = kart->mPos.y;
+    if (kart->mUnk_7c & 2) {
+        if (link != NULL) {
+            CallKartAiReset(kart->mAi, link);
         } else {
-            CallKartAiSetup(p->mAi, p->mIndex);
+            CallKartAiSetup(kart->mAi, kart->mIndex);
         }
     }
-    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-        ResetCameraBehind(a, &p->mUnk_e0_m);
+    if (kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
+        ResetCameraBehind(position, &kart->mUnk_e0_m);
         func_02089f9c(((u32(*)(void)) ResetCameraHalfFovAngle)());
         SetCameraHeightHold(0);
     }
 }
 
-void func_02072930(Kart *p) {
+void func_02072930(Kart *kart) {
     s32 i;
-    Unk02165560 v;
+    KartFollowEffectIds effectIds;
 
-    ReleaseKartItems(&gKartItems[p->mIndex]);
-    ReleaseKartSurfaceEffects(p);
-    ReleaseKartStarEffects(p->mIndex);
-    ReleaseKartKillerEffect(p->mIndex);
-    func_02081338(p->mIndex);
-    func_020810e4(p->mIndex);
-    func_02080fb8(p);
-    func_02080e9c(p);
-    ReleaseKartTurnEffects(GetKartTurnEffects(p->mIndex));
-    func_020719d0(p);
-    if (p->mIndex == gRaceSetup->mEntryIndex) {
+    ReleaseKartItems(&gKartItems[kart->mIndex]);
+    ReleaseKartSurfaceEffects(kart);
+    ReleaseKartStarEffects(kart->mIndex);
+    ReleaseKartKillerEffect(kart->mIndex);
+    func_02081338(kart->mIndex);
+    func_020810e4(kart->mIndex);
+    func_02080fb8(kart);
+    func_02080e9c(kart);
+    ReleaseKartTurnEffects(GetKartTurnEffects(kart->mIndex));
+    func_020719d0(kart);
+    if (kart->mIndex == gRaceSetup->mEntryIndex) {
         func_0210fa74(0);
     }
-    func_0210a664(p);
-    if (p->mUnk_4c & 0x2000) {
-        func_0207b0d0(p);
+    func_0210a664(kart);
+    if (kart->mUnk_4c & 0x2000) {
+        func_0207b0d0(kart);
     }
-    if (p->mUnk_4c & 0x40) {
-        p->mUnk_4c &= ~0x40;
-        func_0207b1a8(p);
-        p->mItemEffect = 0;
-        StopKartStarEffects(p->mIndex);
-        func_02068a64(p, 0, 1);
-        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
+    if (kart->mUnk_4c & 0x40) {
+        kart->mUnk_4c &= ~0x40;
+        func_0207b1a8(kart);
+        kart->mItemEffect = 0;
+        StopKartStarEffects(kart->mIndex);
+        func_02068a64(kart, 0, 1);
+        if ((kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
             func_02106dc8();
         }
-        if (p->mUnk_4c & 0x2000) {
-            func_0207b13c(p);
+        if (kart->mUnk_4c & 0x2000) {
+            func_0207b13c(kart);
         }
     }
-    if (p->mUnk_4c & 0x10000000) {
-        p->mUnk_4c &= ~0x10000000;
-        func_0210515c(p->mIndex);
-        if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
+    if (kart->mUnk_4c & 0x10000000) {
+        kart->mUnk_4c &= ~0x10000000;
+        func_0210515c(kart->mIndex);
+        if (kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             ResetCameraHalfFovAngleGoal();
         }
-        p->mRadiusFactor = 0x1000;
-        p->mSurfaceGroup = -1;
+        kart->mRadiusFactor = 0x1000;
+        kart->mSurfaceGroup = -1;
         i = 0;
-        p->mItemEffect = 0;
-        if (p->mKartModelsEntry->mUnk_058 == 0) {
-            v = data_usa_02165560;
+        kart->mItemEffect = 0;
+        if (kart->mKartModelsEntry->mUnk_058 == 0) {
+            effectIds = gKartFollowEffectIds;
             for (i = 0; i < 3; i++) {
-                SetupKartFollowEffect(StartEffect(v.mUnk_00[i], &p->mPos), p->mIndex, 0x14);
+                SetupKartFollowEffect(StartEffect(effectIds.mEffectIds[i], &kart->mPos), kart->mIndex, 0x14);
             }
         }
-        StopKartKillerEffect(p->mIndex);
-        StartSound(&p->mSoundSource, 0xfd, 0x7f, 0);
+        StopKartKillerEffect(kart->mIndex);
+        StartSound(&kart->mSoundSource, 0xfd, 0x7f, 0);
     }
-    if (p->mUnk_7c & 0x2000) {
-        p->mUnk_7c &= ~0x2000;
-        p->mUnk_7c &= ~0xc000;
-        p->mItemEffect = 0;
-        if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
-            ShowKartTurnEffects(GetKartTurnEffects(p->mIndex));
+    if (kart->mUnk_7c & 0x2000) {
+        kart->mUnk_7c &= ~0x2000;
+        kart->mUnk_7c &= ~0xc000;
+        kart->mItemEffect = 0;
+        if (!(kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
+            ShowKartTurnEffects(GetKartTurnEffects(kart->mIndex));
         } else {
-            StartSound(&p->mSoundSource, 0xf9, 0x7f, 0);
+            StartSound(&kart->mSoundSource, 0xf9, 0x7f, 0);
         }
-        func_0210fa40(0, (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) ? 1 : 0);
+        func_0210fa40(0, (kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) ? 1 : 0);
     }
 }
 
-void ResetKartToStartPlacement(Kart *p) {
-    Vec3 a;
-    Vec3 b;
-    Vec3 c;
-    Vec3 *q;
+void ResetKartToStartPlacement(Kart *kart) {
+    Vec3 startPos;
+    Vec3 forward;
+    Vec3 startAngles;
+    Vec3 *collisionPos;
 
-    if (!(p->mUnk_7c & 0x20)) {
+    if (!(kart->mUnk_7c & 0x20)) {
         return;
     }
-    GetCourseMapKartStartPlacement(&a, &c, p->mIndex);
-    p->mHeadingAngle = (u32) (c.y * 0xb6) >> 12;
-    QuaternionFromAxisAngle(&data_02154f7c, p->mHeadingAngle, &p->mUnk_e0_m);
-    Matrix4x3FromQuaternion(&p->mUnk_120, &p->mUnk_e0_m);
-    GetKartForward(p, &b);
-    ResetKartAndSetPos(p, &a, &b, NULL);
+    GetCourseMapKartStartPlacement(&startPos, &startAngles, kart->mIndex);
+    kart->mHeadingAngle = (u32) (startAngles.y * 0xb6) >> 12;
+    QuaternionFromAxisAngle(&data_02154f7c, kart->mHeadingAngle, &kart->mUnk_e0_m);
+    Matrix4x3FromQuaternion(&kart->mUnk_120, &kart->mUnk_e0_m);
+    GetKartForward(kart, &forward);
+    ResetKartAndSetPos(kart, &startPos, &forward, NULL);
     if (gRaceSetup->mMode == 5) {
-        q = &p->mPointAlongUp;
+        collisionPos = &kart->mPointAlongUp;
     } else {
-        q = &p->mCollisionCenter;
+        collisionPos = &kart->mCollisionCenter;
     }
-    if (p->mCollisionSlot == -1) {
-        p->mCollisionSlot = CreateCollisionSlot(q, p->mPhysicalParam->mRadius + 0xd000, 0x8000, p);
+    if (kart->mCollisionSlot == -1) {
+        kart->mCollisionSlot = CreateCollisionSlot(collisionPos, kart->mPhysicalParam->mRadius + 0xd000, 0x8000, kart);
     }
-    if (p->mUnk_2ca == -1) {
-        p->mUnk_2ca = CreateCollisionSlot(&p->mUnk_1f0, ((s64) p->mPhysicalParam->mRadius << 15) >> 12, 0x800, p);
+    if (kart->mUnk_2ca == -1) {
+        kart->mUnk_2ca =
+            CreateCollisionSlot(&kart->mUnk_1f0, ((s64) kart->mPhysicalParam->mRadius << 15) >> 12, 0x800, kart);
     }
-    p->mUnk_7c |= 0x80;
-    p->mUnk_7c &= ~0x60;
-    p->mScale = data_02154f94;
+    kart->mUnk_7c |= 0x80;
+    kart->mUnk_7c &= ~0x60;
+    kart->mScale = data_02154f94;
 }
 
-void InitKartPhysicalParams(Kart *p) {
+void InitKartPhysicalParams(Kart *kart) {
     s32 a;
     s32 b;
     s16 i;
-    KartPhysicalParam *q;
-    s32 *r;
+    KartPhysicalParam *physicalParam;
+    s32 *charPhysicalParam;
 
-    p->mPhysicalParam = GetKartPhysicalParam(p->mIndex);
+    kart->mPhysicalParam = GetKartPhysicalParam(kart->mIndex);
     a = 0x1000;
     b = 0;
     if (IsRaceAwardOrStaffRoll() == 0) {
@@ -399,227 +401,227 @@ void InitKartPhysicalParams(Kart *p) {
                 break;
         }
     }
-    p->mPhysicalParam->mBaseSpeedLimit = ((s64) p->mPhysicalParam->mBaseSpeedLimit * a) >> 12;
-    p->mPhysicalParam->mUnk_32 = p->mPhysicalParam->mUnk_32 + b;
-    p->mSpeedLimitFactorPerDepth = 0x1000 - p->mPhysicalParam->mSurfaceSpeedLimitFactors[4];
-    p->mSpeedLimitFactorPerDepth = FX_Div(p->mSpeedLimitFactorPerDepth, p->mPhysicalParam->mRadius << 1);
-    p->mCharPhysicalParam = GetCharPhysicalParam(p->mIndex);
-    q = p->mPhysicalParam;
-    r = p->mCharPhysicalParam;
+    kart->mPhysicalParam->mBaseSpeedLimit = ((s64) kart->mPhysicalParam->mBaseSpeedLimit * a) >> 12;
+    kart->mPhysicalParam->mUnk_32 = kart->mPhysicalParam->mUnk_32 + b;
+    kart->mSpeedLimitFactorPerDepth = 0x1000 - kart->mPhysicalParam->mSurfaceSpeedLimitFactors[4];
+    kart->mSpeedLimitFactorPerDepth = FX_Div(kart->mSpeedLimitFactorPerDepth, kart->mPhysicalParam->mRadius << 1);
+    kart->mCharPhysicalParam = GetCharPhysicalParam(kart->mIndex);
+    physicalParam = kart->mPhysicalParam;
+    charPhysicalParam = kart->mCharPhysicalParam;
     for (i = 0; i < 12; i++) {
-        a = q->mSurfaceSpeedLimitFactors[i];
+        a = physicalParam->mSurfaceSpeedLimitFactors[i];
         if (a < 0x1000) {
-            q->mSurfaceSpeedLimitFactors[i] = ((s64) a * *r + 0x800) >> 12;
+            physicalParam->mSurfaceSpeedLimitFactors[i] = ((s64) a * *charPhysicalParam + 0x800) >> 12;
         }
     }
 }
 
-void func_02072600(Kart *p) {
-    Vec3 v;
+void func_02072600(Kart *kart) {
+    Vec3 zeroVector;
 
-    p->mUnk_d4 = 0x1000;
-    p->mUnk_d8 = 0x1000;
-    p->mSpeedLimitFactor = 0x1000;
-    p->mSpeedLimitHitFactor = 0x1000;
-    v = data_02154f94;
-    *(Vec3 *) &p->mUnk_25c = v;
-    p->mUnk_268 = v;
-    p->mUnk_274 = 0;
-    p->mForward = v;
-    p->mHopStartForward = v;
-    p->mHitVelocity = v;
-    p->mPrevHitVelocity = v;
-    p->mUnk_2f0 = v;
-    *(Vec3 *) &p->mUnk_25c = v;
-    p->mAirborneFrames = 0;
-    p->mTurnAngle = 0;
-    p->mUnk_38a = 0;
-    p->mTurnedForwardEaseFactor = 0x1000;
-    p->mHeadingAnglePerFrame = 0;
+    kart->mUnk_d4 = 0x1000;
+    kart->mUnk_d8 = 0x1000;
+    kart->mSpeedLimitFactor = 0x1000;
+    kart->mSpeedLimitHitFactor = 0x1000;
+    zeroVector = data_02154f94;
+    *(Vec3 *) &kart->mUnk_25c = zeroVector;
+    kart->mUnk_268 = zeroVector;
+    kart->mUnk_274 = 0;
+    kart->mForward = zeroVector;
+    kart->mHopStartForward = zeroVector;
+    kart->mHitVelocity = zeroVector;
+    kart->mPrevHitVelocity = zeroVector;
+    kart->mUnk_2f0 = zeroVector;
+    *(Vec3 *) &kart->mUnk_25c = zeroVector;
+    kart->mAirborneFrames = 0;
+    kart->mTurnAngle = 0;
+    kart->mUnk_38a = 0;
+    kart->mTurnedForwardEaseFactor = 0x1000;
+    kart->mHeadingAnglePerFrame = 0;
 }
 
-void ResetKart(Kart *p) {
-    Vec3 v;
+void ResetKart(Kart *kart) {
+    Vec3 zeroVector;
     u16 i;
 
-    func_0207b8c4(p->mKartModelsEntry);
-    p->mUnk_44 = 0;
-    p->mUnk_48 = 0;
-    p->mUnk_4c = 0;
-    v = data_02154f94;
-    p->mDrawMatrixPos = v;
-    p->mPrevPos = p->mDrawMatrixPos;
-    p->mPos = p->mPrevPos;
-    p->mVelocity = v;
-    p->mVelocityDirection = v;
-    p->mScale.x = 0x1000;
-    p->mScale.y = 0x1000;
-    p->mScale.z = 0x1000;
-    p->mScaleFactor.x = 0x1000;
-    p->mScaleFactor.y = 0x1000;
-    p->mScaleFactor.z = 0x1000;
-    p->mScaleBase.x = 0x1000;
-    p->mScaleBase.y = 0x1000;
-    p->mScaleBase.z = 0x1000;
-    p->mScaleYFactor = 0x1000;
-    p->mGravity = -0x2b9;
-    p->mSpeedLimitGoal = 0;
-    p->mSpeedLimit = 0xd000;
-    p->mUnk_d4 = 0x1000;
-    p->mUnk_d8 = 0x1000;
-    p->mState = KART_STATE_NORMAL;
-    func_02071ddc(&p->mUnk_538);
-    MTX_Identity43_(&p->mUnk_120_m);
-    MTX_Identity43_(&p->mUnk_150_m);
-    MTX_Identity43_(&p->mWobbleMatrix);
-    p->mPointAlongUp = v;
-    p->mPrevPointAlongUp = p->mPointAlongUp;
-    p->mPrevCollisionCenter = p->mPrevPointAlongUp;
-    p->mCollisionCenter = p->mPrevCollisionCenter;
-    p->mUnk_1f0 = v;
-    p->mUnk_1fc = v;
-    p->mSpeedLimitFactor = 0x1000;
-    p->mUnk_e0_m = data_usa_02154f14;
-    *(Vec4 *) &p->mUnk_f0 = data_usa_02154f24;
-    *(Vec4 *) &p->mUnk_100 = data_usa_02154f34;
-    *(Vec4 *) &p->mUnk_108.z = data_usa_02154f44;
-    p->mAirTiltAngle = 0;
-    p->mHeadingAngle = 0;
-    p->mBoostTimer = 0;
-    p->mUnk_23a = 0;
-    p->mMiniTurboTimer = 0;
-    p->mTurnedForwardEaseFactor = 0x1000;
-    p->mGroundNormal = data_02154f7c;
-    p->mUnk_250 = v;
-    *(Vec3 *) &p->mUnk_25c = v;
-    p->mUnk_268 = v;
-    p->mUnk_274 = 0;
-    p->mForward = v;
-    p->mHopStartForward = v;
-    p->mTurnedForward = v;
-    p->mEasedTurnedForward = p->mTurnedForward;
-    p->mVelocityLengthRatio = 0;
-    p->mVelocityLength = 0;
-    p->mForwardSpeed = 0;
-    p->mLastGroundY = 0;
-    p->mTestedKartMask = 0;
-    p->mNearKartMask = 0;
-    p->mPrevNearKartMask = 0;
-    p->mItemEffect = 0;
-    p->mHopSpeed = 0;
-    p->mHopHeight = 0;
-    p->mHopTiltAngle = 0;
-    p->mTurnDirection = 0;
-    p->mTurnRatio = 0;
-    p->mHitVelocity = v;
-    p->mUnk_334 = 0;
-    p->mUnk_338 = 0;
-    p->mUnk_33c = 0;
-    p->mUnk_344 = 0;
-    p->mLaunchStartY = p->mPos.y;
-    p->mLaunchFrames = 0;
-    p->mDriftCharge = 0;
-    p->mRightTurnCount = 0;
-    p->mLeftTurnCount = p->mRightTurnCount;
-    p->mTowardTurnCounter = NULL;
-    p->mAwayTurnCounter = p->mTowardTurnCounter;
-    p->mTurnCountTimer = 0;
-    p->mRotationAngle = 0;
-    p->mRotationAngleSum = 0;
-    p->mRotationAxis = v;
-    p->mRotationQuaternion = data_usa_02154f54;
-    p->mRotationEndFrames = 0;
-    p->mRotationAnglePerFrame = 0;
-    p->mYRotationAngle = 0;
-    p->mYRotationAnglePerFrame = 0;
-    p->mYRotationCount = 0;
-    p->mYRotationAngleSum = 0;
-    p->mUnk_370 = 0;
-    p->mUnk_374 = v;
-    p->mAirborneFrames = 0;
-    p->mVisible = 0xffff;
-    p->mHeadingAnglePerFrame = 0;
-    p->mTurnAngle = 0;
-    p->mUnk_38a = 0;
-    p->mSpeedLimitHitFactor = 0x1000;
-    p->mUnk_394 = 0x1000;
-    p->mMapObjectVectorLength = 0;
-    p->mMapObjectVectorForwardDot = 0;
-    p->mTireSpinAngle = 0;
-    p->mQuaternionBlendFactor = 0x1ec;
-    p->mSinkFrames = 0;
-    p->mVelocity = v;
-    p->mUnk_3bc = 0;
-    p->mRaceStartFrameCount = 0;
-    p->mRespawnFrames = 0;
-    p->mRespawnSlot = -1;
-    p->mUnk_3c8 = 0;
-    p->mKartCollisionTimer = 0;
-    p->mKartCollisionDelayTimer = 0;
-    p->mSurfaceGroup = -1;
-    p->mSurfaceKind = 0;
-    p->mSurfaceVariant = 0;
-    p->mUnk_3e8 = 0;
-    p->mTurnHeadingAnglePerFrameGoal = 0;
-    p->mTurnHeadingAnglePerFrame = 0;
-    p->mUnk_3f8 = 0x1000;
-    p->mModelScaleKind = 0;
-    p->mModelScaleFrameIndex = 0;
-    p->mModelScaleFrameCount = 0;
-    p->mModelScaleY = 0x1000;
-    p->mModelScaleX = 0x1000;
-    p->mModelScaleZ = 0x1000;
+    func_0207b8c4(kart->mKartModelsEntry);
+    kart->mUnk_44 = 0;
+    kart->mUnk_48 = 0;
+    kart->mUnk_4c = 0;
+    zeroVector = data_02154f94;
+    kart->mDrawMatrixPos = zeroVector;
+    kart->mPrevPos = kart->mDrawMatrixPos;
+    kart->mPos = kart->mPrevPos;
+    kart->mVelocity = zeroVector;
+    kart->mVelocityDirection = zeroVector;
+    kart->mScale.x = 0x1000;
+    kart->mScale.y = 0x1000;
+    kart->mScale.z = 0x1000;
+    kart->mScaleFactor.x = 0x1000;
+    kart->mScaleFactor.y = 0x1000;
+    kart->mScaleFactor.z = 0x1000;
+    kart->mScaleBase.x = 0x1000;
+    kart->mScaleBase.y = 0x1000;
+    kart->mScaleBase.z = 0x1000;
+    kart->mScaleYFactor = 0x1000;
+    kart->mGravity = -0x2b9;
+    kart->mSpeedLimitGoal = 0;
+    kart->mSpeedLimit = 0xd000;
+    kart->mUnk_d4 = 0x1000;
+    kart->mUnk_d8 = 0x1000;
+    kart->mState = KART_STATE_NORMAL;
+    func_02071ddc(&kart->mUnk_538);
+    MTX_Identity43_(&kart->mUnk_120_m);
+    MTX_Identity43_(&kart->mUnk_150_m);
+    MTX_Identity43_(&kart->mWobbleMatrix);
+    kart->mPointAlongUp = zeroVector;
+    kart->mPrevPointAlongUp = kart->mPointAlongUp;
+    kart->mPrevCollisionCenter = kart->mPrevPointAlongUp;
+    kart->mCollisionCenter = kart->mPrevCollisionCenter;
+    kart->mUnk_1f0 = zeroVector;
+    kart->mUnk_1fc = zeroVector;
+    kart->mSpeedLimitFactor = 0x1000;
+    kart->mUnk_e0_m = data_usa_02154f14;
+    *(Vec4 *) &kart->mUnk_f0 = data_usa_02154f24;
+    *(Vec4 *) &kart->mUnk_100 = data_usa_02154f34;
+    *(Vec4 *) &kart->mUnk_108.z = data_usa_02154f44;
+    kart->mAirTiltAngle = 0;
+    kart->mHeadingAngle = 0;
+    kart->mBoostTimer = 0;
+    kart->mUnk_23a = 0;
+    kart->mMiniTurboTimer = 0;
+    kart->mTurnedForwardEaseFactor = 0x1000;
+    kart->mGroundNormal = data_02154f7c;
+    kart->mUnk_250 = zeroVector;
+    *(Vec3 *) &kart->mUnk_25c = zeroVector;
+    kart->mUnk_268 = zeroVector;
+    kart->mUnk_274 = 0;
+    kart->mForward = zeroVector;
+    kart->mHopStartForward = zeroVector;
+    kart->mTurnedForward = zeroVector;
+    kart->mEasedTurnedForward = kart->mTurnedForward;
+    kart->mVelocityLengthRatio = 0;
+    kart->mVelocityLength = 0;
+    kart->mForwardSpeed = 0;
+    kart->mLastGroundY = 0;
+    kart->mTestedKartMask = 0;
+    kart->mNearKartMask = 0;
+    kart->mPrevNearKartMask = 0;
+    kart->mItemEffect = 0;
+    kart->mHopSpeed = 0;
+    kart->mHopHeight = 0;
+    kart->mHopTiltAngle = 0;
+    kart->mTurnDirection = 0;
+    kart->mTurnRatio = 0;
+    kart->mHitVelocity = zeroVector;
+    kart->mUnk_334 = 0;
+    kart->mUnk_338 = 0;
+    kart->mUnk_33c = 0;
+    kart->mUnk_344 = 0;
+    kart->mLaunchStartY = kart->mPos.y;
+    kart->mLaunchFrames = 0;
+    kart->mDriftCharge = 0;
+    kart->mRightTurnCount = 0;
+    kart->mLeftTurnCount = kart->mRightTurnCount;
+    kart->mTowardTurnCounter = NULL;
+    kart->mAwayTurnCounter = kart->mTowardTurnCounter;
+    kart->mTurnCountTimer = 0;
+    kart->mRotationAngle = 0;
+    kart->mRotationAngleSum = 0;
+    kart->mRotationAxis = zeroVector;
+    kart->mRotationQuaternion = data_usa_02154f54;
+    kart->mRotationEndFrames = 0;
+    kart->mRotationAnglePerFrame = 0;
+    kart->mYRotationAngle = 0;
+    kart->mYRotationAnglePerFrame = 0;
+    kart->mYRotationCount = 0;
+    kart->mYRotationAngleSum = 0;
+    kart->mUnk_370 = 0;
+    kart->mUnk_374 = zeroVector;
+    kart->mAirborneFrames = 0;
+    kart->mVisible = 0xffff;
+    kart->mHeadingAnglePerFrame = 0;
+    kart->mTurnAngle = 0;
+    kart->mUnk_38a = 0;
+    kart->mSpeedLimitHitFactor = 0x1000;
+    kart->mUnk_394 = 0x1000;
+    kart->mMapObjectVectorLength = 0;
+    kart->mMapObjectVectorForwardDot = 0;
+    kart->mTireSpinAngle = 0;
+    kart->mQuaternionBlendFactor = 0x1ec;
+    kart->mSinkFrames = 0;
+    kart->mVelocity = zeroVector;
+    kart->mUnk_3bc = 0;
+    kart->mRaceStartFrameCount = 0;
+    kart->mRespawnFrames = 0;
+    kart->mRespawnSlot = -1;
+    kart->mUnk_3c8 = 0;
+    kart->mKartCollisionTimer = 0;
+    kart->mKartCollisionDelayTimer = 0;
+    kart->mSurfaceGroup = -1;
+    kart->mSurfaceKind = 0;
+    kart->mSurfaceVariant = 0;
+    kart->mUnk_3e8 = 0;
+    kart->mTurnHeadingAnglePerFrameGoal = 0;
+    kart->mTurnHeadingAnglePerFrame = 0;
+    kart->mUnk_3f8 = 0x1000;
+    kart->mModelScaleKind = 0;
+    kart->mModelScaleFrameIndex = 0;
+    kart->mModelScaleFrameCount = 0;
+    kart->mModelScaleY = 0x1000;
+    kart->mModelScaleX = 0x1000;
+    kart->mModelScaleZ = 0x1000;
     for (i = 0; i < 2; i++) {
-        p->mPrevTouchingMapObjects[i] = NULL;
-        p->mUnk_440[i] = 0;
-        p->mUnk_444[i] = 0;
+        kart->mPrevTouchingMapObjects[i] = NULL;
+        kart->mUnk_440[i] = 0;
+        kart->mUnk_444[i] = 0;
     }
-    p->mUnk_44c = NULL;
-    p->mModelOffsetY = 0;
-    p->mUnk_40c = 0;
-    p->mUnk_410 = 0;
-    p->mUnk_4bc = 0;
-    p->mUnk_4c0 = 0;
-    p->mUnk_4c4 = 0;
-    p->mRadiusFactor = 0x1000;
-    p->mUnk_4d0 = 0;
-    p->mUnk_4d4 = 0;
-    p->mUnk_4d8 = -1;
-    p->mLandingTimer = 0;
-    p->mUnk_4da = 0;
-    p->mHeadingAngleOffset = 0;
-    p->mHeadingAngleOffsetPerFrame = 0;
-    p->mHeadingAngleOffsetDirection = 1;
-    p->mHeadingAngleOffsetCount = 0;
-    p->mUnk_4ec = 0;
-    p->mUnk_4e8 = 0x1000;
-    p->mUnk_4f0 = data_usa_02154f64;
-    p->mUnk_4f0.z = 0;
-    p->mUnk_4fc = 0;
-    p->mWaterDepth = 0;
-    p->mUnk_506 = 0;
-    p->mUnk_504 = p->mUnk_506;
-    p->mWobbleEasedAmplitude = 0;
-    p->mWobbleAmplitude = p->mWobbleEasedAmplitude;
-    p->mWobbleAngle = 0;
-    p->mRank = 0;
-    func_02068a64(p, 0, 0);
-    p->mUnk_4cc = 0;
+    kart->mUnk_44c = NULL;
+    kart->mModelOffsetY = 0;
+    kart->mUnk_40c = 0;
+    kart->mUnk_410 = 0;
+    kart->mUnk_4bc = 0;
+    kart->mUnk_4c0 = 0;
+    kart->mUnk_4c4 = 0;
+    kart->mRadiusFactor = 0x1000;
+    kart->mUnk_4d0 = 0;
+    kart->mUnk_4d4 = 0;
+    kart->mUnk_4d8 = -1;
+    kart->mLandingTimer = 0;
+    kart->mUnk_4da = 0;
+    kart->mHeadingAngleOffset = 0;
+    kart->mHeadingAngleOffsetPerFrame = 0;
+    kart->mHeadingAngleOffsetDirection = 1;
+    kart->mHeadingAngleOffsetCount = 0;
+    kart->mUnk_4ec = 0;
+    kart->mUnk_4e8 = 0x1000;
+    kart->mUnk_4f0 = data_usa_02154f64;
+    kart->mUnk_4f0.z = 0;
+    kart->mUnk_4fc = 0;
+    kart->mWaterDepth = 0;
+    kart->mUnk_506 = 0;
+    kart->mUnk_504 = kart->mUnk_506;
+    kart->mWobbleEasedAmplitude = 0;
+    kart->mWobbleAmplitude = kart->mWobbleEasedAmplitude;
+    kart->mWobbleAngle = 0;
+    kart->mRank = 0;
+    func_02068a64(kart, 0, 0);
+    kart->mUnk_4cc = 0;
 }
 
-void func_02071fb8(Kart *p, void *a) {
+void func_02071fb8(Kart *kart, void *heap) {
     ParticipantKartRecordState *q;
-    Vec3 v;
+    Vec3 zeroVector;
     u16 i;
-    u8 *b;
+    u8 *entries;
 
-    q = p->mUnk_514;
+    q = kart->mUnk_514;
     if (q == NULL) {
         return;
     }
-    q->mUnk_00 = p->mPos;
+    q->mUnk_00 = kart->mPos;
     q->mUnk_10 = q->mUnk_00;
-    q->mUnk_0e = p->mHeadingAngle;
+    q->mUnk_0e = kart->mHeadingAngle;
     q->mUnk_0c = q->mUnk_0e;
     q->mUnk_1c = 0;
     q->mUnk_20 = 0;
@@ -627,152 +629,152 @@ void func_02071fb8(Kart *p, void *a) {
     q->mUnk_28 = 0;
     q->mAppliedFlags = 0;
     q->mUnk_2c = q->mAppliedFlags;
-    v = data_02154f94;
-    q->mUnk_34 = v;
+    zeroVector = data_02154f94;
+    q->mUnk_34 = zeroVector;
     q->mUnk_44 = 0;
     q->mUnk_48 = 0;
     q->mTargetTurnAngle = 0;
     q->mEasedTurnAngle = 0;
     q->mUnk_60 = 0;
     q->mUnk_64 = 0;
-    q->mPushDirection = v;
-    q->mUnk_a8 = v;
+    q->mPushDirection = zeroVector;
+    q->mUnk_a8 = zeroVector;
     q->mUnk_b4 = 0;
     NNS_FndInitList(&q->mPendingRecords, 0);
     NNS_FndInitList(&q->mFreeRecords, 0);
-    b = HeapAlloc(a, 0x438);
+    entries = HeapAlloc(heap, 0x438);
     for (i = 0; i < 0x1e; i++) {
-        NNS_FndAppendListObject(&q->mFreeRecords, b + i * 0x24);
+        NNS_FndAppendListObject(&q->mFreeRecords, entries + i * 0x24);
     }
 }
 
-void func_02071f44(Kart *p) {
+void func_02071f44(Kart *kart) {
     ParticipantKartRecordState *q;
 
-    if (!(p->mUnk_7c & 0x400)) {
+    if (!(kart->mUnk_7c & 0x400)) {
         return;
     }
-    q = p->mUnk_514;
-    q->mUnk_00 = p->mPos;
+    q = kart->mUnk_514;
+    q->mUnk_00 = kart->mPos;
     q->mUnk_10 = q->mUnk_00;
-    q->mUnk_4c = *(Vec4 *) &p->mUnk_108.z;
+    q->mUnk_4c = *(Vec4 *) &kart->mUnk_108.z;
     q->mUnk_a8 = data_02154f94;
     q->mUnk_b4 = 0;
 }
 
-void func_02071e28(Kart *p) {
-    p->mUnk_7c = 0;
-    if (p->mIndex == gRaceSetup->mEntryIndex) {
-        p->mUnk_7c |= KART_7C_INDEX_IS_SELECTED_ENTRY;
+void func_02071e28(Kart *kart) {
+    kart->mUnk_7c = 0;
+    if (kart->mIndex == gRaceSetup->mEntryIndex) {
+        kart->mUnk_7c |= KART_7C_INDEX_IS_SELECTED_ENTRY;
         if (gRaceSetup->mMode == 5) {
-            p->mUnk_7c |= 0x200;
+            kart->mUnk_7c |= 0x200;
             if (func_0203c5e4() != 0) {
-                p->mUnk_7c &= ~0x200;
-                p->mUnk_7c |= 0x400;
+                kart->mUnk_7c &= ~0x200;
+                kart->mUnk_7c |= 0x400;
             }
         }
     } else if (gRaceSetup->mMode == 5) {
-        p->mUnk_7c |= 0x400;
+        kart->mUnk_7c |= 0x400;
     }
-    if (gRaceSetup->mCurrentEntries[p->mIndex].mPlayer.mKind == PLAYER_KIND_GHOST) {
-        p->mUnk_7c |= KART_7C_ENTRY_KIND_2;
-        p->mVisible = 0;
+    if (gRaceSetup->mCurrentEntries[kart->mIndex].mPlayer.mKind == PLAYER_KIND_GHOST) {
+        kart->mUnk_7c |= KART_7C_ENTRY_KIND_2;
+        kart->mVisible = 0;
     }
-    if (p->mKartModelsEntry->mCharacterAnimation != NULL) {
-        p->mUnk_7c |= KART_7C_MODELS_ENTRY_008_SET;
+    if (kart->mKartModelsEntry->mCharacterAnimation != NULL) {
+        kart->mUnk_7c |= KART_7C_MODELS_ENTRY_008_SET;
     }
     if (gRaceSetup->mMode == MODE_TIME_ATTACK || IsRaceAwardOrStaffRoll() != 0) {
-        p->mUnk_7c |= 0x8000000;
+        kart->mUnk_7c |= 0x8000000;
     }
 }
 
-void func_02071ddc(KartItemEffectState *p0) {
-    p0->mUnk_00 = 0;
-    p0->mUnk_02 = 0;
-    p0->mUnk_04 = 0;
-    p0->mUnk_06 = 0;
-    p0->mUnk_08 = 0;
-    p0->mUnk_0a = 0;
-    p0->mUnk_0c = 0;
-    p0->mUnk_0e = 0;
-    p0->mUnk_12 = 0;
-    p0->mUnk_14 = 0;
-    p0->mUnk_16 = 0;
-    p0->mUnk_18 = 0;
-    p0->mUnk_1c = 0;
-    p0->mKillerFrames = 0;
-    p0->mUnk_20 = 0;
-    p0->mKillerEnding = FALSE;
-    p0->mKillerEndRank = 0;
+void func_02071ddc(KartItemEffectState *itemEffectState) {
+    itemEffectState->mUnk_00 = 0;
+    itemEffectState->mUnk_02 = 0;
+    itemEffectState->mUnk_04 = 0;
+    itemEffectState->mUnk_06 = 0;
+    itemEffectState->mUnk_08 = 0;
+    itemEffectState->mUnk_0a = 0;
+    itemEffectState->mUnk_0c = 0;
+    itemEffectState->mUnk_0e = 0;
+    itemEffectState->mUnk_12 = 0;
+    itemEffectState->mUnk_14 = 0;
+    itemEffectState->mUnk_16 = 0;
+    itemEffectState->mUnk_18 = 0;
+    itemEffectState->mUnk_1c = 0;
+    itemEffectState->mKillerFrames = 0;
+    itemEffectState->mUnk_20 = 0;
+    itemEffectState->mKillerEnding = FALSE;
+    itemEffectState->mKillerEndRank = 0;
 }
 
-void InitKartSound(Kart *p) {
-    InitSoundSource(&p->mSoundSource, 0, p->mPosSource);
-    InitKartSoundCallbacks(p, (Unk0210a5a8 *) &p->mUnk_450);
-    func_020719d0(p);
-    switch (p->mKartModelsEntry->mUnk_000) {
+void InitKartSound(Kart *kart) {
+    InitSoundSource(&kart->mSoundSource, 0, kart->mPosSource);
+    InitKartSoundCallbacks(kart, (Unk0210a5a8 *) &kart->mUnk_450);
+    func_020719d0(kart);
+    switch (kart->mKartModelsEntry->mUnk_000) {
         case 0:
-            p->mSoundIndex = 4;
+            kart->mSoundIndex = 4;
             break;
         case 1:
-            p->mSoundIndex = 0;
+            kart->mSoundIndex = 0;
             break;
         case 2:
-            p->mSoundIndex = 1;
+            kart->mSoundIndex = 1;
             break;
         case 3:
-            p->mSoundIndex = 2;
+            kart->mSoundIndex = 2;
             break;
         case 4:
-            p->mSoundIndex = 5;
+            kart->mSoundIndex = 5;
             break;
         case 5:
-            p->mSoundIndex = 6;
+            kart->mSoundIndex = 6;
             break;
         case 6:
-            p->mSoundIndex = 7;
+            kart->mSoundIndex = 7;
             break;
         case 7:
-            p->mSoundIndex = 3;
+            kart->mSoundIndex = 3;
             break;
         case 8:
-            p->mSoundIndex = 10;
+            kart->mSoundIndex = 10;
             break;
         case 9:
-            p->mSoundIndex = 8;
+            kart->mSoundIndex = 8;
             break;
         case 10:
-            p->mSoundIndex = 9;
+            kart->mSoundIndex = 9;
             break;
         case 11:
-            p->mSoundIndex = 11;
+            kart->mSoundIndex = 11;
             break;
         case 12:
-            p->mSoundIndex = 12;
+            kart->mSoundIndex = 12;
             break;
     }
-    p->mUnk_3d0 = p->mKartModelsEntry->mUnk_004 % 3;
-    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-        if (!(p->mSoundSource.mSourceFlags & 1)) {
-            SetSoundSourceFlagBit(&p->mSoundSource, 2, 1);
+    kart->mUnk_3d0 = kart->mKartModelsEntry->mUnk_004 % 3;
+    if (kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
+        if (!(kart->mSoundSource.mSourceFlags & 1)) {
+            SetSoundSourceFlagBit(&kart->mSoundSource, 2, 1);
         }
         if (gRaceSetup->mRaceKind == 2) {
-            ResetSoundDistanceSquaredChange(&p->mUnk_518);
+            ResetSoundDistanceSquaredChange(&kart->mUnk_518);
         }
     } else {
-        if (p->mSoundSource.mSourceFlags & 1) {
-            SetSoundSourceFlagBit(&p->mSoundSource, 2, 1);
+        if (kart->mSoundSource.mSourceFlags & 1) {
+            SetSoundSourceFlagBit(&kart->mSoundSource, 2, 1);
         }
-        ResetSoundDistanceSquaredChange(&p->mUnk_518);
+        ResetSoundDistanceSquaredChange(&kart->mUnk_518);
     }
 }
 
-void func_020719d0(Kart *p) {
-    KartSound *q;
+void func_020719d0(Kart *kart) {
+    KartSound *kartSound;
     Unk02024eec_40 t;
     s32 i;
     s32 k;
-    s32 m;
+    s32 rowOffset;
     s32 a;
     s32 b;
     s32 c;
@@ -781,23 +783,23 @@ void func_020719d0(Kart *p) {
     s32 f;
     s32 g;
 
-    p->mUnk_450.mUnk_00 = 0xa5;
-    q = (KartSound *) &p->mUnk_450;
-    q->mUnk_04 = 0x64;
-    q->mUnk_08 = -1;
-    q->mUnk_0c = 0;
-    q->mUnk_10 = 0;
-    q->mUnk_14 = 0;
-    q->mUnk_18 = FX_Div(0x300000, 0xd000 - p->mPhysicalParam->mBaseSpeedLimit);
-    q->mUnk_1c = FX_Div(0x580000, p->mPhysicalParam->mBaseSpeedLimit);
-    q->mUnk_20 = FX_Div(0x480000, p->mPhysicalParam->mBaseSpeedLimit);
-    q->mUnk_24 = FX_Div(0x280000, p->mPhysicalParam->mBaseSpeedLimit);
-    q->mUnk_28 = 0;
-    q->mUnk_2c = 0;
-    q->mUnk_30 = 0;
-    q->mUnk_34 = -1;
-    q->mUnk_38 = -1;
-    switch (p->mKartModelsEntry->mUnk_004 / 3) {
+    kart->mUnk_450.mUnk_00 = 0xa5;
+    kartSound = (KartSound *) &kart->mUnk_450;
+    kartSound->mUnk_04 = 0x64;
+    kartSound->mUnk_08 = -1;
+    kartSound->mUnk_0c = 0;
+    kartSound->mUnk_10 = 0;
+    kartSound->mUnk_14 = 0;
+    kartSound->mUnk_18 = FX_Div(0x300000, 0xd000 - kart->mPhysicalParam->mBaseSpeedLimit);
+    kartSound->mUnk_1c = FX_Div(0x580000, kart->mPhysicalParam->mBaseSpeedLimit);
+    kartSound->mUnk_20 = FX_Div(0x480000, kart->mPhysicalParam->mBaseSpeedLimit);
+    kartSound->mUnk_24 = FX_Div(0x280000, kart->mPhysicalParam->mBaseSpeedLimit);
+    kartSound->mUnk_28 = 0;
+    kartSound->mUnk_2c = 0;
+    kartSound->mUnk_30 = 0;
+    kartSound->mUnk_34 = -1;
+    kartSound->mUnk_38 = -1;
+    switch (kart->mKartModelsEntry->mUnk_004 / 3) {
         case 0:
             k = 4;
             break;
@@ -838,16 +840,16 @@ void func_020719d0(Kart *p) {
             k = 12;
             break;
     }
-    q->mUnk_68 = k;
-    i = func_0202578c(p->mKartModelsEntry->mUnk_004);
-    m = i * 0x1c;
-    a = *(s32 *) (data_02161ae8 + m);
-    b = *(s32 *) (data_02161aec + m);
-    c = *(s32 *) (data_02161af0 + m);
-    d = *(s32 *) (data_02161af4 + m);
-    e = *(s32 *) (data_02161af8 + m);
-    f = *(s32 *) (data_02161afc + m);
-    g = *(s32 *) (data_02161b00 + m);
+    kartSound->mUnk_68 = k;
+    i = func_0202578c(kart->mKartModelsEntry->mUnk_004);
+    rowOffset = i * 0x1c;
+    a = *(s32 *) (data_02161ae8 + rowOffset);
+    b = *(s32 *) (data_02161aec + rowOffset);
+    c = *(s32 *) (data_02161af0 + rowOffset);
+    d = *(s32 *) (data_02161af4 + rowOffset);
+    e = *(s32 *) (data_02161af8 + rowOffset);
+    f = *(s32 *) (data_02161afc + rowOffset);
+    g = *(s32 *) (data_02161b00 + rowOffset);
     t.mUnk_00 = i;
     t.mUnk_04 = a;
     t.mUnk_08 = b;
@@ -856,128 +858,134 @@ void func_020719d0(Kart *p) {
     t.mUnk_14 = e;
     t.mUnk_18 = f;
     t.mUnk_1c = g;
-    if (p->mIndex != gRaceSetup->mEntryIndex) {
+    if (kart->mIndex != gRaceSetup->mEntryIndex) {
         b = c;
     }
-    if (p->mIndex != gRaceSetup->mEntryIndex) {
+    if (kart->mIndex != gRaceSetup->mEntryIndex) {
         a = c;
     }
     t.mUnk_20 = b;
     t.mUnk_24 = a;
-    q->mUnk_40_m = t;
+    kartSound->mUnk_40_m = t;
 }
 
-PlayingSound *func_020719bc(SoundSource *p, u32 a) {
-    SoundSource *value0 = p;
-    u32 value1 = a;
-    u32 value2;
-    u32 value3;
+PlayingSound *func_020719bc(SoundSource *soundSource, u32 soundId) {
+    SoundSource *sourceCopy = soundSource;
+    u32 soundIdCopy = soundId;
+    u32 volume;
+    u32 pitch;
     u32 value12;
     value12 = (u32) &StartSound;
-    value2 = 0x7fu;
-    value3 = 0u;
-    return StartSound(value0, value1, value2, value3);
+    volume = 0x7fu;
+    pitch = 0u;
+    return StartSound(sourceCopy, soundIdCopy, volume, pitch);
 }
 
-void func_020719a8(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2;
-    u32 value3;
+void func_020719a8(u32 soundSource, u32 soundId) {
+    u32 sourceCopy = soundSource;
+    u32 soundIdCopy = soundId;
+    u32 volume;
+    u32 pitch;
     u32 value12;
-    value2 = 0x7fu;
-    value3 = 0u;
-    StartSoundWhileRequested((SoundSource *) value0, value1, value2, value3);
+    volume = 0x7fu;
+    pitch = 0u;
+    StartSoundWhileRequested((SoundSource *) sourceCopy, soundIdCopy, volume, pitch);
 }
 
-void func_02071980(void *p, int b) {
-    StartKartSurfaceSoundWhileRequested(p, b, ((Kart *) p)->mSurfaceKind, ((Kart *) p)->mSurfaceVariant,
-                                        ((Kart *) p)->mWaterDepth);
+void func_02071980(void *kart, int entryIndex) {
+    StartKartSurfaceSoundWhileRequested(kart, entryIndex, ((Kart *) kart)->mSurfaceKind,
+                                        ((Kart *) kart)->mSurfaceVariant, ((Kart *) kart)->mWaterDepth);
 }
 
-void func_02071958(Kart *p, s32 b) {
-    StartSurfaceSound(&p->mSoundSource, b, p->mSurfaceKind, p->mSurfaceVariant, p->mWaterDepth);
+void func_02071958(Kart *kart, s32 entryIndex) {
+    StartSurfaceSound(&kart->mSoundSource, entryIndex, kart->mSurfaceKind, kart->mSurfaceVariant, kart->mWaterDepth);
 }
 
-void func_02071944(void *p, int v1) {
-    SoundSource *v2 = p;
-    u32 v3 = v1;
-    u32 v4;
-    u32 v5;
+void func_02071944(void *soundSource, int soundId) {
+    SoundSource *sourceCopy = soundSource;
+    u32 soundIdCopy = soundId;
+    u32 volume;
+    u32 pitch;
     u32 v6;
-    v4 = 0x7fu;
-    v5 = 0u;
-    StartSound(v2, v3, v4, v5);
+    volume = 0x7fu;
+    pitch = 0u;
+    StartSound(sourceCopy, soundIdCopy, volume, pitch);
 }
 
-void func_02071914(void *p, int a) {
-    if (StartSoundWhileRequested(p, a, 0x7f, 0) != NULL) {
-        ((Kart *) p)->mUnk_488 = a;
+void func_02071914(void *kart, int soundId) {
+    if (StartSoundWhileRequested(kart, soundId, 0x7f, 0) != NULL) {
+        ((Kart *) kart)->mUnk_488 = soundId;
     }
 }
 
-void func_020718c8(void *p, int v1) {
-    int v;
+void func_020718c8(void *kart, int soundId) {
+    int sortKeyBase;
 
-    v = func_02086080(((Kart *) p)->mIndex);
-    AddSoundRequest(&data_0217d284, v + func_0210a588(), func_02071914, p, v1);
+    sortKeyBase = func_02086080(((Kart *) kart)->mIndex);
+    AddSoundRequest(&data_0217d284, sortKeyBase + func_0210a588(), func_02071914, kart, soundId);
 }
 
-void func_02071894(Kart *p) {
-    if (p->mUnk_48 & 0x840) {
+void func_02071894(Kart *kart) {
+    if (kart->mUnk_48 & 0x840) {
         return;
     }
-    func_0210af40(p, p->mSoundIndex, 7);
+    func_0210af40(kart, kart->mSoundIndex, 7);
 }
 
-void AdvanceKartModelScaleAnimation(Kart *p) {
-    p->mModelScaleFrameIndex++;
-    if (p->mModelScaleFrameIndex >= p->mModelScaleFrameCount) {
-        p->mModelScaleFrameIndex = 0;
-        p->mUnk_4c &= ~8;
+void AdvanceKartModelScaleAnimation(Kart *kart) {
+    kart->mModelScaleFrameIndex++;
+    if (kart->mModelScaleFrameIndex >= kart->mModelScaleFrameCount) {
+        kart->mModelScaleFrameIndex = 0;
+        kart->mUnk_4c &= ~8;
         return;
     }
-    if (p->mModelScaleKind == 0) {
-        p->mModelScaleY = data_02154be4[p->mModelScaleFrameIndex];
-        p->mModelOffsetY = data_02154c20[p->mModelScaleFrameIndex];
-        p->mModelScaleZ = 0x1000;
-        p->mModelScaleX = p->mModelScaleZ;
-    } else if (p->mModelScaleKind == 1) {
-        p->mModelScaleY = data_02154c5c[p->mModelScaleFrameIndex];
-        p->mModelOffsetY = data_02154c98[p->mModelScaleFrameIndex];
-        p->mModelScaleZ = 0x1000;
-        p->mModelScaleX = p->mModelScaleZ;
-    } else if (p->mModelScaleKind == 2) {
-        p->mModelScaleY = 0x1000;
-        p->mModelOffsetY = data_02154c20[p->mModelScaleFrameIndex];
-        p->mModelScaleX = data_02154cd4[p->mModelScaleFrameIndex];
-        p->mModelScaleZ = data_02154d10[p->mModelScaleFrameIndex];
+    if (kart->mModelScaleKind == 0) {
+        kart->mModelScaleY = gKartModelScaleYKind0Table[kart->mModelScaleFrameIndex];
+        kart->mModelOffsetY = gKartModelOffsetYKind0And2Table[kart->mModelScaleFrameIndex];
+        kart->mModelScaleZ = 0x1000;
+        kart->mModelScaleX = kart->mModelScaleZ;
+    } else if (kart->mModelScaleKind == 1) {
+        kart->mModelScaleY = gKartModelScaleYKind1Table[kart->mModelScaleFrameIndex];
+        kart->mModelOffsetY = gKartModelOffsetYKind1Table[kart->mModelScaleFrameIndex];
+        kart->mModelScaleZ = 0x1000;
+        kart->mModelScaleX = kart->mModelScaleZ;
+    } else if (kart->mModelScaleKind == 2) {
+        kart->mModelScaleY = 0x1000;
+        kart->mModelOffsetY = gKartModelOffsetYKind0And2Table[kart->mModelScaleFrameIndex];
+        kart->mModelScaleX = gKartModelScaleXKind2Table[kart->mModelScaleFrameIndex];
+        kart->mModelScaleZ = gKartModelScaleZKind2Table[kart->mModelScaleFrameIndex];
     }
 }
 
-void func_02071568(Kart *p) {
-    s32 f;
-    u16 i;
-    u16 j;
+void func_02071568(Kart *kart) {
+    s32 fraction;
+    u16 tableIndex;
+    u16 nextTableIndex;
     s32 v;
     s32 s;
     s32 t;
 
-    p->mUnk_4ec = p->mUnk_4ec + p->mUnk_4e8;
-    t = p->mUnk_4ec - 0x8000;
+    kart->mUnk_4ec = kart->mUnk_4ec + kart->mUnk_4e8;
+    t = kart->mUnk_4ec - 0x8000;
     if (t >= 0) {
-        p->mUnk_4ec = t;
+        kart->mUnk_4ec = t;
     }
-    f = p->mUnk_4ec & 0xfff;
-    i = p->mUnk_4ec >> 12;
-    j = i + 1;
-    if (j >= 8) {
-        j = 0;
+    fraction = kart->mUnk_4ec & 0xfff;
+    tableIndex = kart->mUnk_4ec >> 12;
+    nextTableIndex = tableIndex + 1;
+    if (nextTableIndex >= 8) {
+        nextTableIndex = 0;
     }
-    p->mUnk_4f0.x = data_02154b64[i] + (s32) (((s64) ((data_02154b64[j] - data_02154b64[i]) >> 1) * f) >> 12);
-    p->mUnk_4f0.y = data_02154b84[i] + (s32) (((s64) ((data_02154b84[j] - data_02154b84[i]) >> 1) * f) >> 12);
-    p->mUnk_4f0.z = data_02154ba4[i] + (s32) (((s64) ((data_02154ba4[j] - data_02154ba4[i]) >> 1) * f) >> 12);
-    v = p->mUnk_4d4;
+    kart->mUnk_4f0.x =
+        data_02154b64[tableIndex] +
+        (s32) (((s64) ((data_02154b64[nextTableIndex] - data_02154b64[tableIndex]) >> 1) * fraction) >> 12);
+    kart->mUnk_4f0.y =
+        data_02154b84[tableIndex] +
+        (s32) (((s64) ((data_02154b84[nextTableIndex] - data_02154b84[tableIndex]) >> 1) * fraction) >> 12);
+    kart->mUnk_4f0.z =
+        data_02154ba4[tableIndex] +
+        (s32) (((s64) ((data_02154ba4[nextTableIndex] - data_02154ba4[tableIndex]) >> 1) * fraction) >> 12);
+    v = kart->mUnk_4d4;
     s = ((s64) v * 0x333) >> 12;
     if (v > 0xf33) {
         t = ((s64) ((v - 0xf33) * 0x32) * 0x19a) >> 12;
@@ -994,474 +1002,479 @@ void func_02071568(Kart *p) {
         t = t + 0x333;
         s = ((s64) v * t) >> 12;
     }
-    p->mUnk_4f0.x = p->mUnk_4f0.x + (s32) (((s64) p->mUnk_4f0.x * s) >> 12);
-    p->mUnk_4f0.y = p->mUnk_4f0.y + (s32) (((s64) p->mUnk_4f0.y * s) >> 12);
-    p->mUnk_4f0.z = p->mUnk_4f0.z + (s32) (((s64) p->mUnk_4f0.z * s) >> 12);
+    kart->mUnk_4f0.x = kart->mUnk_4f0.x + (s32) (((s64) kart->mUnk_4f0.x * s) >> 12);
+    kart->mUnk_4f0.y = kart->mUnk_4f0.y + (s32) (((s64) kart->mUnk_4f0.y * s) >> 12);
+    kart->mUnk_4f0.z = kart->mUnk_4f0.z + (s32) (((s64) kart->mUnk_4f0.z * s) >> 12);
 }
 
-void func_020713a0(Kart *p) {
-    s32 t;
+void func_020713a0(Kart *kart) {
+    s32 offset;
 
-    if (p->mHeadingAngleOffsetCount <= 2) {
-        p->mHeadingAngleOffsetPerFrame = p->mHeadingAngleOffsetDirection * 0x3c + p->mHeadingAngleOffsetPerFrame;
-        if (p->mHeadingAngleOffsetPerFrame > 0x17c) {
-            p->mHeadingAngleOffsetPerFrame = 0x17c;
-        } else if (p->mHeadingAngleOffsetPerFrame < -0x17c) {
-            p->mHeadingAngleOffsetPerFrame = -0x17c;
+    if (kart->mHeadingAngleOffsetCount <= 2) {
+        kart->mHeadingAngleOffsetPerFrame =
+            kart->mHeadingAngleOffsetDirection * 0x3c + kart->mHeadingAngleOffsetPerFrame;
+        if (kart->mHeadingAngleOffsetPerFrame > 0x17c) {
+            kart->mHeadingAngleOffsetPerFrame = 0x17c;
+        } else if (kart->mHeadingAngleOffsetPerFrame < -0x17c) {
+            kart->mHeadingAngleOffsetPerFrame = -0x17c;
         }
-        p->mHeadingAngleOffset = p->mHeadingAngleOffset + p->mHeadingAngleOffsetPerFrame;
-        t = p->mHeadingAngleOffset;
-        if ((t > 0 ? t : -t) > 0x1770) {
-            if ((t > 0 && p->mHeadingAngleOffsetDirection > 0) || (t < 0 && p->mHeadingAngleOffsetDirection < 0)) {
-                p->mHeadingAngleOffsetDirection *= -1;
-                p->mHeadingAngleOffsetCount = p->mHeadingAngleOffsetCount + 1;
+        kart->mHeadingAngleOffset = kart->mHeadingAngleOffset + kart->mHeadingAngleOffsetPerFrame;
+        offset = kart->mHeadingAngleOffset;
+        if ((offset > 0 ? offset : -offset) > 0x1770) {
+            if ((offset > 0 && kart->mHeadingAngleOffsetDirection > 0) ||
+                (offset < 0 && kart->mHeadingAngleOffsetDirection < 0)) {
+                kart->mHeadingAngleOffsetDirection *= -1;
+                kart->mHeadingAngleOffsetCount = kart->mHeadingAngleOffsetCount + 1;
             }
         }
-        p->mUnk_4d4 = 0x1000;
+        kart->mUnk_4d4 = 0x1000;
     } else {
-        p->mHeadingAngleOffsetPerFrame = p->mHeadingAngleOffsetDirection * 0x3c + p->mHeadingAngleOffsetPerFrame;
-        if (p->mHeadingAngleOffsetPerFrame > 0xd2) {
-            p->mHeadingAngleOffsetPerFrame = 0xd2;
-        } else if (p->mHeadingAngleOffsetPerFrame < -0xd2) {
-            p->mHeadingAngleOffsetPerFrame = -0xd2;
+        kart->mHeadingAngleOffsetPerFrame =
+            kart->mHeadingAngleOffsetDirection * 0x3c + kart->mHeadingAngleOffsetPerFrame;
+        if (kart->mHeadingAngleOffsetPerFrame > 0xd2) {
+            kart->mHeadingAngleOffsetPerFrame = 0xd2;
+        } else if (kart->mHeadingAngleOffsetPerFrame < -0xd2) {
+            kart->mHeadingAngleOffsetPerFrame = -0xd2;
         }
-        p->mHeadingAngleOffset = p->mHeadingAngleOffset + p->mHeadingAngleOffsetPerFrame;
-        p->mUnk_4d4 = ((s64) p->mUnk_4d4 * 0xf5c) >> 12;
-        t = p->mHeadingAngleOffset;
-        if ((t > 0 && p->mHeadingAngleOffsetDirection > 0) || (t < 0 && p->mHeadingAngleOffsetDirection < 0)) {
-            p->mHeadingAngleOffset = 0;
-            p->mUnk_4c &= ~0x20000000;
-            func_02068a64(p, 0, 1);
-            p->mUnk_44 |= 0x1000000;
+        kart->mHeadingAngleOffset = kart->mHeadingAngleOffset + kart->mHeadingAngleOffsetPerFrame;
+        kart->mUnk_4d4 = ((s64) kart->mUnk_4d4 * 0xf5c) >> 12;
+        offset = kart->mHeadingAngleOffset;
+        if ((offset > 0 && kart->mHeadingAngleOffsetDirection > 0) ||
+            (offset < 0 && kart->mHeadingAngleOffsetDirection < 0)) {
+            kart->mHeadingAngleOffset = 0;
+            kart->mUnk_4c &= ~0x20000000;
+            func_02068a64(kart, 0, 1);
+            kart->mUnk_44 |= 0x1000000;
         }
     }
 }
 
-void StartKartModelScaleAnimation(Kart *p, s32 a) {
-    s32 k;
+void StartKartModelScaleAnimation(Kart *kart, s32 a) {
+    s32 state;
 
-    k = p->mState;
-    if (k != KART_STATE_NORMAL && k != KART_STATE_LAUNCH_DOUBLE_FLIP) {
+    state = kart->mState;
+    if (state != KART_STATE_NORMAL && state != KART_STATE_LAUNCH_DOUBLE_FLIP) {
         return;
     }
     if (a == 2) {
-        p->mModelScaleKind = 2;
-    } else if (p->mUnk_44 & 2) {
-        p->mModelScaleKind = 1;
-    } else if (p->mAirborneFrames > 0xa) {
-        p->mModelScaleKind = 1;
+        kart->mModelScaleKind = 2;
+    } else if (kart->mUnk_44 & 2) {
+        kart->mModelScaleKind = 1;
+    } else if (kart->mAirborneFrames > 0xa) {
+        kart->mModelScaleKind = 1;
     } else {
-        p->mModelScaleKind = 0;
+        kart->mModelScaleKind = 0;
     }
-    p->mModelScaleFrameIndex = 0;
-    p->mModelScaleFrameCount = 0xf;
-    p->mUnk_4c |= 8;
+    kart->mModelScaleFrameIndex = 0;
+    kart->mModelScaleFrameCount = 0xf;
+    kart->mUnk_4c |= 8;
 }
 
-void ResetKartMotionState(Kart *p, s32 b) {
-    NNSSndSeqPlayer **h;
-    PlayingSound *d;
+void ResetKartMotionState(Kart *kart, s32 b) {
+    NNSSndSeqPlayer **sndHandleSlot;
+    PlayingSound *playingSound;
 
     if (b == 0) {
-        p->mUnk_48 |= 0x40000;
-        p->mUnk_44 &= ~KART_44_ON_GROUND;
+        kart->mUnk_48 |= 0x40000;
+        kart->mUnk_44 &= ~KART_44_ON_GROUND;
     }
-    p->mUnk_48 &= 0xdfe77fdf;
-    p->mBoostTimer = 0;
-    p->mUnk_538.mUnk_00 = 0;
-    p->mMiniTurboTimer = 0;
-    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-        if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
+    kart->mUnk_48 &= 0xdfe77fdf;
+    kart->mBoostTimer = 0;
+    kart->mUnk_538.mUnk_00 = 0;
+    kart->mMiniTurboTimer = 0;
+    if (kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
+        if (!(kart->mUnk_4c & 0x10000000) && !(kart->mUnk_48 & 0x4000000)) {
             ResetCameraHalfFovAngleGoal();
         }
         StopDispCapBlend();
     }
-    if (p->mUnk_4c & 0x2000) {
-        p->mUnk_4c &= ~0x2000;
-        p->mUnk_d8 = 0x1000;
-        if (!(p->mUnk_4c & 0x8000000)) {
-            func_0207b0d0(p);
+    if (kart->mUnk_4c & 0x2000) {
+        kart->mUnk_4c &= ~0x2000;
+        kart->mUnk_d8 = 0x1000;
+        if (!(kart->mUnk_4c & 0x8000000)) {
+            func_0207b0d0(kart);
         }
-        func_02080ee4(p);
+        func_02080ee4(kart);
     }
-    func_02080fb8(p);
-    p->mUnk_44 &= 0xfffff7f4;
-    p->mTurnDirection = 0;
-    p->mDriftCharge = 0;
-    p->mRightTurnCount = 0;
-    p->mLeftTurnCount = p->mRightTurnCount;
-    p->mTurnCountTimer = 0;
-    StopKartTurnEffects(GetKartTurnEffects(p->mIndex));
-    p->mState = KART_STATE_NORMAL;
-    p->mUnk_4c &= ~0x30;
-    p->mUnk_48 &= ~0x20000;
-    func_02068a64(p, 0, 1);
-    p->mUnk_44 |= 0x80000000;
-    func_02072600(p);
-    func_02070f8c(p);
-    if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
+    func_02080fb8(kart);
+    kart->mUnk_44 &= 0xfffff7f4;
+    kart->mTurnDirection = 0;
+    kart->mDriftCharge = 0;
+    kart->mRightTurnCount = 0;
+    kart->mLeftTurnCount = kart->mRightTurnCount;
+    kart->mTurnCountTimer = 0;
+    StopKartTurnEffects(GetKartTurnEffects(kart->mIndex));
+    kart->mState = KART_STATE_NORMAL;
+    kart->mUnk_4c &= ~0x30;
+    kart->mUnk_48 &= ~0x20000;
+    func_02068a64(kart, 0, 1);
+    kart->mUnk_44 |= 0x80000000;
+    func_02072600(kart);
+    func_02070f8c(kart);
+    if (!(kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
         return;
     }
     StartCameraWobbleByCourse();
     switch (gRaceSetup->mCourseId) {
         case COURSE_ID_AIRSHIP:
             func_02089d14(0);
-            d = StartSound((SoundSource *) p, 0x15c, 0x7f, 0);
-            if (d != NULL) {
-                d->mFlags |= 0x10;
+            playingSound = StartSound((SoundSource *) kart, 0x15c, 0x7f, 0);
+            if (playingSound != NULL) {
+                playingSound->mFlags |= 0x10;
             }
-            h = GetSndHandleSlot(7);
+            sndHandleSlot = GetSndHandleSlot(7);
             if (!(data_0217c780 & 1)) {
                 return;
             }
             if (data_0217d084.mUnk_0c == 0) {
                 return;
             }
-            if (h[0] != NULL) {
-                NNS_SndPlayerStopSeq(h, 0);
+            if (sndHandleSlot[0] != NULL) {
+                NNS_SndPlayerStopSeq(sndHandleSlot, 0);
             }
-            if (h[0] != NULL) {
-                NNS_SndPlayerStopSeq(h, 0);
+            if (sndHandleSlot[0] != NULL) {
+                NNS_SndPlayerStopSeq(sndHandleSlot, 0);
             }
-            NNS_SndArcPlayerStartSeqArc(h, 0, 0x1d2);
+            NNS_SndArcPlayerStartSeqArc(sndHandleSlot, 0, 0x1d2);
             break;
         case COURSE_ID_PINBALL:
-            d = StartSound((SoundSource *) p, 0x15b, 0x7f, 0);
-            if (d != NULL) {
-                d->mFlags |= 0x10;
+            playingSound = StartSound((SoundSource *) kart, 0x15b, 0x7f, 0);
+            if (playingSound != NULL) {
+                playingSound->mFlags |= 0x10;
             }
             break;
     }
 }
 
-void func_02070f8c(Kart *p) {
-    s32 q[2];
-    Vec3 v;
-    Vec3 u;
-    Camera *r;
-    Vec3 *c;
-    BOOL v1;
-    s32 n;
+void func_02070f8c(Kart *kart) {
+    s32 effectIdsOther[2];
+    Vec3 effectPos;
+    Vec3 effectIdsSelected;
+    Camera *currentCamera;
+    Vec3 *cameraPos;
+    BOOL cameraOutsideBox;
+    s32 effectCount;
     s32 i;
-    s32 *v2;
+    s32 *nextEffectId;
     s32 *w;
 
-    v = data_0216553c;
-    v1 = TRUE;
-    r = GetCurrentCamera();
-    c = &r->mPos;
-    if (c->x > -0x64f000) {
-        if (c->x < -0x3cb000) {
-            if (c->z > -0x1ad7000) {
-                if (c->z < -0x164d000) {
-                    v1 = FALSE;
+    effectPos = data_0216553c;
+    cameraOutsideBox = TRUE;
+    currentCamera = GetCurrentCamera();
+    cameraPos = &currentCamera->mPos;
+    if (cameraPos->x > -0x64f000) {
+        if (cameraPos->x < -0x3cb000) {
+            if (cameraPos->z > -0x1ad7000) {
+                if (cameraPos->z < -0x164d000) {
+                    cameraOutsideBox = FALSE;
                 }
             }
         }
     }
-    if (v1 != FALSE) {
-        u = data_02165548;
-        w = q;
-        q[0] = data_02165510[0];
-        q[1] = data_02165510[1];
-        n = 3;
-        v2 = (s32 *) &u;
-        if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
-            n = 2;
-            v2 = w;
+    if (cameraOutsideBox != FALSE) {
+        effectIdsSelected = data_02165548;
+        w = effectIdsOther;
+        effectIdsOther[0] = data_02165510[0];
+        effectIdsOther[1] = data_02165510[1];
+        effectCount = 3;
+        nextEffectId = (s32 *) &effectIdsSelected;
+        if (!(kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
+            effectCount = 2;
+            nextEffectId = w;
         }
-        for (i = 0; i < n; i++) {
-            StartEffect(*v2, &v);
-            v2++;
+        for (i = 0; i < effectCount; i++) {
+            StartEffect(*nextEffectId, &effectPos);
+            nextEffectId++;
         }
     } else {
-        StartEffect((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) ? 0x47 : 0x52, &v);
+        StartEffect((kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) ? 0x47 : 0x52, &effectPos);
     }
 }
 
-static inline s32 func_020708a4_inline(Vec3 *v, Vec3 *n) {
-    if ((s64) v->x * v->x + (s64) v->y * v->y + (s64) v->z * v->z < 0x10) {
+static inline s32 func_020708a4_inline(Vec3 *src, Vec3 *dst) {
+    if ((s64) src->x * src->x + (s64) src->y * src->y + (s64) src->z * src->z < 0x10) {
         return 0;
     }
-    return Vec3NormalizeAndGetLengthUnchecked(v, n);
+    return Vec3NormalizeAndGetLengthUnchecked(src, dst);
 }
 
-void AdvanceKartToKeyedPlacement(Kart *p) {
-    KartItemEffectState *s;
-    u16 i;
-    s32 d;
-    s32 k;
+void AdvanceKartToKeyedPlacement(Kart *kart) {
+    KartItemEffectState *itemEffectState;
+    u16 placementIndex;
+    s32 distance;
+    s32 angleIndex;
     s32 t;
-    u32 w;
-    Vec3 a;
-    Vec3 b;
-    Vec3 n;
-    Vec3 c;
-    Vec3 e;
-    Vec3 f;
-    Vec3 g;
-    Vec3 h;
+    u32 flags;
+    Vec3 placementPos;
+    Vec3 placementAngles;
+    Vec3 groundNormal;
+    Vec3 toTarget;
+    Vec3 placementForward;
+    Vec3 side;
+    Vec3 toKart;
+    Vec3 flatForward;
     Vec3 l;
     MtxFx43 m2;
-    s32 m1[9];
-    Vec3 q;
+    s32 rotationMatrix[9];
+    Vec3 axis;
 
-    b = data_02154f94;
-    i = *gCourseMap->mKeyedPlacementIndexByKey;
-    a.x = gCourseMap->mKeyedPlacements[i].mPos.x;
-    a.y = gCourseMap->mKeyedPlacements[i].mPos.y;
-    a.z = gCourseMap->mKeyedPlacements[i].mPos.z;
-    b.x = gCourseMap->mKeyedPlacements[*gCourseMap->mKeyedPlacementIndexByKey].mUnk_0c.x;
-    b.y = gCourseMap->mKeyedPlacements[*gCourseMap->mKeyedPlacementIndexByKey].mUnk_0c.y;
-    b.z = gCourseMap->mKeyedPlacements[*gCourseMap->mKeyedPlacementIndexByKey].mUnk_0c.z;
-    k = (u16) (((s64) b.y * 0xb60b60b60bLL + 0x80000000LL) >> 44) >> 4;
-    MTX_RotY33_(m1, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
-    MTX_MultVec33(&data_02154f70, m1, &e);
-    SkipOrthoQuadsHoldAndSetVelocities(p->mIndex);
+    placementAngles = data_02154f94;
+    placementIndex = *gCourseMap->mKeyedPlacementIndexByKey;
+    placementPos.x = gCourseMap->mKeyedPlacements[placementIndex].mPos.x;
+    placementPos.y = gCourseMap->mKeyedPlacements[placementIndex].mPos.y;
+    placementPos.z = gCourseMap->mKeyedPlacements[placementIndex].mPos.z;
+    placementAngles.x = gCourseMap->mKeyedPlacements[*gCourseMap->mKeyedPlacementIndexByKey].mUnk_0c.x;
+    placementAngles.y = gCourseMap->mKeyedPlacements[*gCourseMap->mKeyedPlacementIndexByKey].mUnk_0c.y;
+    placementAngles.z = gCourseMap->mKeyedPlacements[*gCourseMap->mKeyedPlacementIndexByKey].mUnk_0c.z;
+    angleIndex = (u16) (((s64) placementAngles.y * 0xb60b60b60bLL + 0x80000000LL) >> 44) >> 4;
+    MTX_RotY33_(rotationMatrix, gPairsByAngle[angleIndex * 2], gPairsByAngle[angleIndex * 2 + 1]);
+    MTX_MultVec33(&data_02154f70, rotationMatrix, &placementForward);
+    SkipOrthoQuadsHoldAndSetVelocities(kart->mIndex);
 
-    w = p->mUnk_4c;
-    if (!(w & 0x20000) && (w & 0x8000000)) {
-        s = &p->mUnk_538;
-        if (s->mUnk_1c <= 0x190) {
-            s->mUnk_1c = 0x190;
-            p->mUnk_4c |= 0x20000;
-            StartKartModelColorBlend(p->mKartModelsEntry, GetKartCourseDiffColor(), GetKartCourseEmiColor(),
+    flags = kart->mUnk_4c;
+    if (!(flags & 0x20000) && (flags & 0x8000000)) {
+        itemEffectState = &kart->mUnk_538;
+        if (itemEffectState->mUnk_1c <= 0x190) {
+            itemEffectState->mUnk_1c = 0x190;
+            kart->mUnk_4c |= 0x20000;
+            StartKartModelColorBlend(kart->mKartModelsEntry, GetKartCourseDiffColor(), GetKartCourseEmiColor(),
                                      GetKartCourseAmbColor());
         }
     }
-    if (p->mUnk_4c & 0x8000000) {
-        AdvanceKartGesso(p);
+    if (kart->mUnk_4c & 0x8000000) {
+        AdvanceKartGesso(kart);
     }
-    w = p->mUnk_4c;
-    if (w & 0x10000000) {
-        AdvanceKartKiller(p);
+    flags = kart->mUnk_4c;
+    if (flags & 0x10000000) {
+        AdvanceKartKiller(kart);
     } else {
-        if (w & KART_4C_THUNDER_SHRINK) {
-            AdvanceKartThunderShrink(p);
+        if (flags & KART_4C_THUNDER_SHRINK) {
+            AdvanceKartThunderShrink(kart);
         }
-        if (p->mUnk_4c & 0x10000) {
-            func_02069f6c(p);
+        if (kart->mUnk_4c & 0x10000) {
+            func_02069f6c(kart);
         }
-        if (p->mUnk_7c & 0x402000) {
-            AdvanceKartTeresa(p);
+        if (kart->mUnk_7c & 0x402000) {
+            AdvanceKartTeresa(kart);
         }
     }
 
-    if (p->mUnk_4c & 0x2000) {
-        s = &p->mUnk_538;
-        if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-            AddSoundRequest(data_0217d26c, func_02086080(p->mIndex), func_020718c8, p, 0xa3);
+    if (kart->mUnk_4c & 0x2000) {
+        itemEffectState = &kart->mUnk_538;
+        if (kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
+            AddSoundRequest(data_0217d26c, func_02086080(kart->mIndex), func_020718c8, kart, 0xa3);
         }
-        s->mUnk_0a++;
-        if (s->mUnk_0a > KART_KILLER_RANK_END_FRAMES && (p->mUnk_4c & 0x2000)) {
-            p->mUnk_4c &= ~0x2000;
-            p->mUnk_d8 = 0x1000;
-            if (!(p->mUnk_4c & 0x8000000)) {
-                func_0207b0d0(p);
+        itemEffectState->mUnk_0a++;
+        if (itemEffectState->mUnk_0a > KART_KILLER_RANK_END_FRAMES && (kart->mUnk_4c & 0x2000)) {
+            kart->mUnk_4c &= ~0x2000;
+            kart->mUnk_d8 = 0x1000;
+            if (!(kart->mUnk_4c & 0x8000000)) {
+                func_0207b0d0(kart);
             }
-            func_02080ee4(p);
+            func_02080ee4(kart);
         }
     }
 
-    if (p->mUnk_4c & 0x40) {
-        s = &p->mUnk_538;
-        AdvanceKartStarEffects(p->mIndex);
-        if ((p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) && p->mKartModelsEntry->mCharacterAnimation->mUnk_1a == 0) {
-            func_02068a64(p, 2, 1);
+    if (kart->mUnk_4c & 0x40) {
+        itemEffectState = &kart->mUnk_538;
+        AdvanceKartStarEffects(kart->mIndex);
+        if ((kart->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) &&
+            kart->mKartModelsEntry->mCharacterAnimation->mUnk_1a == 0) {
+            func_02068a64(kart, 2, 1);
         }
-        s->mUnk_06++;
-        if (s->mUnk_06 > KART_TERESA_MAX_FRAMES) {
-            p->mUnk_4c &= ~0x40;
-            func_0207b1a8(p);
-            p->mItemEffect = 0;
-            StopKartStarEffects(p->mIndex);
-            func_02068a64(p, 0, 1);
-            if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
+        itemEffectState->mUnk_06++;
+        if (itemEffectState->mUnk_06 > KART_TERESA_MAX_FRAMES) {
+            kart->mUnk_4c &= ~0x40;
+            func_0207b1a8(kart);
+            kart->mItemEffect = 0;
+            StopKartStarEffects(kart->mIndex);
+            func_02068a64(kart, 0, 1);
+            if ((kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
                 func_02106dc8();
             }
-            if (p->mUnk_4c & 0x2000) {
-                func_0207b13c(p);
+            if (kart->mUnk_4c & 0x2000) {
+                func_0207b13c(kart);
             }
         }
     }
 
-    data_0217566a[p->mEntryIndex].mBitMask = 0xe04;
-    Vec3CrossUnrounded(&data_02154f7c, &e, &f);
-    VEC_Subtract(&p->mPos, &a, &g);
-    g.y = 0;
-    VEC_MultAdd(Vec3DotUnrounded(&f, &g), &f, &a, &a);
-    Vec3DotUnrounded(&f, &g);
-    VEC_Subtract(&a, &p->mPos, &c);
-    d = func_020708a4_inline(&c, &c);
+    data_0217566a[kart->mEntryIndex].mBitMask = 0xe04;
+    Vec3CrossUnrounded(&data_02154f7c, &placementForward, &side);
+    VEC_Subtract(&kart->mPos, &placementPos, &toKart);
+    toKart.y = 0;
+    VEC_MultAdd(Vec3DotUnrounded(&side, &toKart), &side, &placementPos, &placementPos);
+    Vec3DotUnrounded(&side, &toKart);
+    VEC_Subtract(&placementPos, &kart->mPos, &toTarget);
+    distance = func_020708a4_inline(&toTarget, &toTarget);
 
-    if (Vec3DotUnrounded(&c, &e) <= 0) {
+    if (Vec3DotUnrounded(&toTarget, &placementForward) <= 0) {
         StopDispCapBlend();
-        p->mUnk_48 &= ~0x10000;
-        AdvanceKartQuaternionBlendFactor(p, &p->mGroundNormal);
-        p->mUnk_48 &= ~0x40000;
-        p->mUnk_3e8 = (s16) ((s32) (((s64) b.x * 0x4000) >> 12) >> 12) + 0x32;
-        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mCourseId == COURSE_ID_AIRSHIP) {
+        kart->mUnk_48 &= ~0x10000;
+        AdvanceKartQuaternionBlendFactor(kart, &kart->mGroundNormal);
+        kart->mUnk_48 &= ~0x40000;
+        kart->mUnk_3e8 = (s16) ((s32) (((s64) placementAngles.x * 0x4000) >> 12) >> 12) + 0x32;
+        if ((kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mCourseId == COURSE_ID_AIRSHIP) {
             NNS_SndPlayerStopSeq(GetSndHandleSlot(7), 0x14);
         }
     } else {
-        if (d > 0x64000) {
-            p->mTurnedForward = c;
+        if (distance > 0x64000) {
+            kart->mTurnedForward = toTarget;
         }
-        h = p->mTurnedForward;
-        h.y = 0;
-        p->mQuaternionBlendFactor = 0x1000;
-        func_020708a4_inline(&h, &h);
-        p->mHeadingAngle = (s32) (((s64) FX_Atan2(h.x, h.z) * 0x28be60d) >> 12) >> 12;
-        q = data_02165524;
-        QuaternionFromAxisAngle(&q, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);
-        Vec3CrossUnrounded(&data_02154f7c, &p->mTurnedForward, &l);
-        Vec3CrossUnrounded(&p->mTurnedForward, &l, &n);
-        if (p->mAirTiltAngle > -5000) {
-            p->mAirTiltAngle -= 300;
-            if (p->mAirTiltAngle < -5000) {
-                p->mAirTiltAngle = -5000;
+        flatForward = kart->mTurnedForward;
+        flatForward.y = 0;
+        kart->mQuaternionBlendFactor = 0x1000;
+        func_020708a4_inline(&flatForward, &flatForward);
+        kart->mHeadingAngle = (s32) (((s64) FX_Atan2(flatForward.x, flatForward.z) * 0x28be60d) >> 12) >> 12;
+        axis = data_02165524;
+        QuaternionFromAxisAngle(&axis, kart->mHeadingAngle, (Vec4 *) &kart->mUnk_e0);
+        Vec3CrossUnrounded(&data_02154f7c, &kart->mTurnedForward, &l);
+        Vec3CrossUnrounded(&kart->mTurnedForward, &l, &groundNormal);
+        if (kart->mAirTiltAngle > -5000) {
+            kart->mAirTiltAngle -= 300;
+            if (kart->mAirTiltAngle < -5000) {
+                kart->mAirTiltAngle = -5000;
             }
         }
-        MTX_RotAxis33(&m2, &p->mUnk_120, gPairsByAngle[((u16) p->mAirTiltAngle >> 4) * 2],
-                      gPairsByAngle[((u16) p->mAirTiltAngle >> 4) * 2 + 1]);
-        MTX_MultVec33(&n, &m2.mUnk_00[0].x, &n);
-        p->mGroundNormal = n;
-        AdvanceKartOrientation(p, &n);
+        MTX_RotAxis33(&m2, &kart->mUnk_120, gPairsByAngle[((u16) kart->mAirTiltAngle >> 4) * 2],
+                      gPairsByAngle[((u16) kart->mAirTiltAngle >> 4) * 2 + 1]);
+        MTX_MultVec33(&groundNormal, &m2.mUnk_00[0].x, &groundNormal);
+        kart->mGroundNormal = groundNormal;
+        AdvanceKartOrientation(kart, &groundNormal);
     }
 
-    p->mForwardSpeed = 0x1e000;
-    t = p->mForwardSpeed;
-    m2.mUnk_00[3].x = ((s64) p->mTurnedForward.x * t) >> 12;
-    m2.mUnk_00[3].y = ((s64) p->mTurnedForward.y * t) >> 12;
-    m2.mUnk_00[3].z = ((s64) p->mTurnedForward.z * t) >> 12;
-    p->mEasedTurnedForward = p->mTurnedForward;
-    if (d < 0x3e8000) {
-        t = (s32) (((s64) d * 0x29) >> 12) + 0x14000;
-        if (p->mForwardSpeed > t) {
-            p->mForwardSpeed = t;
+    kart->mForwardSpeed = 0x1e000;
+    t = kart->mForwardSpeed;
+    m2.mUnk_00[3].x = ((s64) kart->mTurnedForward.x * t) >> 12;
+    m2.mUnk_00[3].y = ((s64) kart->mTurnedForward.y * t) >> 12;
+    m2.mUnk_00[3].z = ((s64) kart->mTurnedForward.z * t) >> 12;
+    kart->mEasedTurnedForward = kart->mTurnedForward;
+    if (distance < 0x3e8000) {
+        t = (s32) (((s64) distance * 0x29) >> 12) + 0x14000;
+        if (kart->mForwardSpeed > t) {
+            kart->mForwardSpeed = t;
         }
     }
-    p->mVelocity = m2.mUnk_00[3];
-    VEC_Add(&p->mPos, &p->mVelocity, &p->mPos);
+    kart->mVelocity = m2.mUnk_00[3];
+    VEC_Add(&kart->mPos, &kart->mVelocity, &kart->mPos);
 }
 
-void PlaceKartAtKeyedPlacement(Kart *p, u32 b) {
-    Vec3 a;
-    Vec3 e;
-    s32 m[9];
-    Vec3 v;
-    Vec3 w;
-    NNSSndSeqPlayer **h;
-    u16 i;
-    s32 k;
+void PlaceKartAtKeyedPlacement(Kart *kart, u32 key) {
+    Vec3 placementPos;
+    Vec3 placementForward;
+    s32 rotationMatrix[9];
+    Vec3 offset;
+    Vec3 axis;
+    NNSSndSeqPlayer **sndHandle;
+    u16 placementIndex;
+    s32 angleIndex;
 
-    ResetKartMotionState(p, 1);
-    p->mVerticalSpeed = 0x3000;
-    i = gCourseMap->mKeyedPlacementIndexByKey[b];
-    a.x = gCourseMap->mKeyedPlacements[i].mPos.x;
-    a.y = gCourseMap->mKeyedPlacements[i].mPos.y;
-    a.z = gCourseMap->mKeyedPlacements[i].mPos.z;
-    k = (u16) (((s64) gCourseMap->mKeyedPlacements[gCourseMap->mKeyedPlacementIndexByKey[b]].mUnk_0c.y *
-                    0xb60b60b60bLL +
-                0x80000000LL) >>
-               44) >>
-        4;
-    MTX_RotY33_(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
-    MTX_MultVec33(&data_02154f70, m, &e);
+    ResetKartMotionState(kart, 1);
+    kart->mVerticalSpeed = 0x3000;
+    placementIndex = gCourseMap->mKeyedPlacementIndexByKey[key];
+    placementPos.x = gCourseMap->mKeyedPlacements[placementIndex].mPos.x;
+    placementPos.y = gCourseMap->mKeyedPlacements[placementIndex].mPos.y;
+    placementPos.z = gCourseMap->mKeyedPlacements[placementIndex].mPos.z;
+    angleIndex = (u16) (((s64) gCourseMap->mKeyedPlacements[gCourseMap->mKeyedPlacementIndexByKey[key]].mUnk_0c.y *
+                             0xb60b60b60bLL +
+                         0x80000000LL) >>
+                        44) >>
+                 4;
+    MTX_RotY33_(rotationMatrix, gPairsByAngle[angleIndex * 2], gPairsByAngle[angleIndex * 2 + 1]);
+    MTX_MultVec33(&data_02154f70, rotationMatrix, &placementForward);
     if (gRaceSetup->mMode == MODE_BATTLE) {
-        VEC_Subtract(&a, &p->mPos, &v);
-        CallStandingsKartOffsetCallback(p->mIndex, (s32) &v);
+        VEC_Subtract(&placementPos, &kart->mPos, &offset);
+        CallStandingsKartOffsetCallback(kart->mIndex, (s32) &offset);
     }
-    p->mPos = a;
-    p->mPrevPos = p->mPos;
-    p->mDrawMatrixPos = p->mPrevPos;
-    p->mForwardSpeed = 0x5000;
-    p->mTurnedForward = e;
-    p->mEasedTurnedForward = p->mTurnedForward;
-    p->mHeadingAngle = (s32) (((s64) FX_Atan2(e.x, e.z) * 0x28be60dLL) >> 12) >> 12;
-    w = data_02165524;
-    QuaternionFromAxisAngle(&w, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);
-    if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
+    kart->mPos = placementPos;
+    kart->mPrevPos = kart->mPos;
+    kart->mDrawMatrixPos = kart->mPrevPos;
+    kart->mForwardSpeed = 0x5000;
+    kart->mTurnedForward = placementForward;
+    kart->mEasedTurnedForward = kart->mTurnedForward;
+    kart->mHeadingAngle = (s32) (((s64) FX_Atan2(placementForward.x, placementForward.z) * 0x28be60dLL) >> 12) >> 12;
+    axis = data_02165524;
+    QuaternionFromAxisAngle(&axis, kart->mHeadingAngle, (Vec4 *) &kart->mUnk_e0);
+    if (kart->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         SetupCameraBehindKart();
         if (data_0217c780 & 1) {
-            h = TakeSoundHandleEntry(func_02108ea0(0));
+            sndHandle = TakeSoundHandleEntry(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
-                if (h[0] != NULL) {
-                    NNS_SndPlayerStopSeq(h, 0);
+                if (sndHandle[0] != NULL) {
+                    NNS_SndPlayerStopSeq(sndHandle, 0);
                 }
-                if (h[0] != NULL) {
-                    NNS_SndPlayerStopSeq(h, 0);
+                if (sndHandle[0] != NULL) {
+                    NNS_SndPlayerStopSeq(sndHandle, 0);
                 }
-                NNS_SndArcPlayerStartSeqArc(h, 0, 0x159);
+                NNS_SndArcPlayerStartSeqArc(sndHandle, 0, 0x159);
             }
         }
     }
-    if (!(p->mUnk_7c & 2)) {
+    if (!(kart->mUnk_7c & 2)) {
         return;
     }
     if (gRaceSetup->mMode != MODE_BATTLE) {
         return;
     }
-    ResetBattleKartAiAtPointLink(p->mAi, GetKeyedPlacementBattlePointLink(b));
+    ResetBattleKartAiAtPointLink(kart->mAi, GetKeyedPlacementBattlePointLink(key));
 }
 
-void func_02070484(Kart *p, Vec4 *q) {
+void func_02070484(Kart *kart, Vec4 *quaternion) {
     MtxFx43 m1;
     MtxFx43 m2;
     Vec3 v1;
     Vec3 v2;
-    s32 d;
-    u16 k;
-    u16 t;
+    s32 dot;
+    u16 headingAngle;
+    u16 airTiltAngle;
 
-    if (p->mVelocityLength < 0x1000) {
+    if (kart->mVelocityLength < 0x1000) {
         return;
     }
-    if (Vec3DotUnrounded(&p->mUnk_12c, &data_02154f7c) <= 0) {
+    if (Vec3DotUnrounded(&kart->mUnk_12c, &data_02154f7c) <= 0) {
         return;
     }
-    p->mAirTiltAngle = p->mAirTiltAngle + p->mUnk_3e8;
-    k = p->mHeadingAngle;
-    t = p->mAirTiltAngle;
-    MTX_RotY43_(&m1, gPairsByAngle[(k >> 4) * 2], gPairsByAngle[(k >> 4) * 2 + 1]);
+    kart->mAirTiltAngle = kart->mAirTiltAngle + kart->mUnk_3e8;
+    headingAngle = kart->mHeadingAngle;
+    airTiltAngle = kart->mAirTiltAngle;
+    MTX_RotY43_(&m1, gPairsByAngle[(headingAngle >> 4) * 2], gPairsByAngle[(headingAngle >> 4) * 2 + 1]);
     MTX_MultVec43(&data_02154f88, &m1, &v1);
-    MTX_RotAxis43(&m2, &v1, gPairsByAngle[(t >> 4) * 2], gPairsByAngle[(t >> 4) * 2 + 1]);
+    MTX_RotAxis43(&m2, &v1, gPairsByAngle[(airTiltAngle >> 4) * 2], gPairsByAngle[(airTiltAngle >> 4) * 2 + 1]);
     MTX_MultVec43(&data_02154f7c, &m2, &v2);
-    TryQuaternionFromVectors(q, &data_02154f7c, &v2);
-    if (p->mUnk_48 & 0x80000000) {
-        q->x = -q->x;
-        q->y = -q->y;
-        q->z = -q->z;
-        q->w = -q->w;
+    TryQuaternionFromVectors(quaternion, &data_02154f7c, &v2);
+    if (kart->mUnk_48 & 0x80000000) {
+        quaternion->x = -quaternion->x;
+        quaternion->y = -quaternion->y;
+        quaternion->z = -quaternion->z;
+        quaternion->w = -quaternion->w;
     }
-    if (p->mUnk_44 & 2) {
+    if (kart->mUnk_44 & 2) {
         return;
     }
-    d = Vec3DotUnrounded(&p->mVelocityDirection, &p->mUnk_138);
-    if (d <= 0) {
-        d = -d;
+    dot = Vec3DotUnrounded(&kart->mVelocityDirection, &kart->mUnk_138);
+    if (dot <= 0) {
+        dot = -dot;
     }
-    p->mUnk_3f8 = d;
-    if (p->mUnk_3f8 < 0xb33) {
-        p->mUnk_3f8 = 0xb33;
+    kart->mUnk_3f8 = dot;
+    if (kart->mUnk_3f8 < 0xb33) {
+        kart->mUnk_3f8 = 0xb33;
     }
 }
 
-BOOL TryHoldKartStill(Kart *p, u32 b, void *c) {
-    u32 w;
+BOOL TryHoldKartStill(Kart *kart, u32 b, void *c) {
+    u32 flags;
 
-    w = p->mUnk_44;
-    if (!(w & 0xc2200) && !(p->mUnk_7c & 0x400)) {
-        if (!(w & 0xc0000) && !(p->mUnk_4c & 0x100) && p->mUnk_1fc.x == 0 && p->mUnk_1fc.y == 0 && p->mUnk_1fc.z == 0 &&
-            p->mUnk_274 == 0 && p->mUnk_4d0 >= 0x64) {
-            p->mPos.x = p->mPrevPos.x;
-            p->mPos.z = p->mPrevPos.z;
+    flags = kart->mUnk_44;
+    if (!(flags & 0xc2200) && !(kart->mUnk_7c & 0x400)) {
+        if (!(flags & 0xc0000) && !(kart->mUnk_4c & 0x100) && kart->mUnk_1fc.x == 0 && kart->mUnk_1fc.y == 0 &&
+            kart->mUnk_1fc.z == 0 && kart->mUnk_274 == 0 && kart->mUnk_4d0 >= 0x64) {
+            kart->mPos.x = kart->mPrevPos.x;
+            kart->mPos.z = kart->mPrevPos.z;
         } else {
-            func_020d5aa0(c, b, (Unk020e04b0 *) p->mUnk_208, &p->mPos, NULL);
+            func_020d5aa0(c, b, (Unk020e04b0 *) kart->mUnk_208, &kart->mPos, NULL);
         }
-        p->mVelocity = data_02154f94;
-        p->mVelocityLength = 0;
-        p->mUnk_44 |= 0x1000;
+        kart->mVelocity = data_02154f94;
+        kart->mVelocityLength = 0;
+        kart->mUnk_44 |= 0x1000;
         return TRUE;
     }
     return FALSE;

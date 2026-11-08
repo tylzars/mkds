@@ -374,7 +374,7 @@ void AdvanceKartTeresa(Kart *kart) {
 void StartKartKiller(Kart *kart) {
     KartItemEffectState *effectState;
     Unk0216557c rankOffsets;
-    Unk02165560 effectIds;
+    KartFollowEffectIds effectIds;
     s32 i;
     u8 kartCount;
 
@@ -433,9 +433,9 @@ void StartKartKiller(Kart *kart) {
         func_02080ee4(kart);
     }
     if (kart->mKartModelsEntry->mUnk_058 == 0) {
-        effectIds = data_usa_02165560;
+        effectIds = gKartFollowEffectIds;
         for (i = 0; i < 3; i++) {
-            SetupKartFollowEffect(StartEffect(effectIds.mUnk_00[i], &kart->mPos), kart->mIndex, 0x14);
+            SetupKartFollowEffect(StartEffect(effectIds.mEffectIds[i], &kart->mPos), kart->mIndex, 0x14);
         }
     }
     StartKartKillerEffect(kart->mIndex);
@@ -454,7 +454,7 @@ void AdvanceKartKiller(Kart *kart) {
     s32 i;
     BOOL rankReached;
     BOOL endEarly;
-    Unk02165560 effectIds;
+    KartFollowEffectIds effectIds;
 
     effectState = &kart->mUnk_538;
     effectState->mKillerFrames++;
@@ -485,9 +485,9 @@ void AdvanceKartKiller(Kart *kart) {
         i = 0;
         kart->mItemEffect = 0;
         if (kart->mKartModelsEntry->mUnk_058 == 0) {
-            effectIds = data_usa_02165560;
+            effectIds = gKartFollowEffectIds;
             for (i = 0; i < 3; i++) {
-                SetupKartFollowEffect(StartEffect(effectIds.mUnk_00[i], &kart->mPos), kart->mIndex, 0x14);
+                SetupKartFollowEffect(StartEffect(effectIds.mEffectIds[i], &kart->mPos), kart->mIndex, 0x14);
             }
         }
         StopKartKillerEffect(kart->mIndex);

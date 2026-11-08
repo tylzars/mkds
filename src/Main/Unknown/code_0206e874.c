@@ -146,7 +146,8 @@ void CollideKartWithMapObjects(Kart *kart) {
                     mapObject = GetFoundMapObject(i);
                     handlerIndex = func_020d6be0(kart, mapObject);
                     handlerResult =
-                        ((s32(*)(Kart *, s32 *, MapObject *)) data_0217ac18[handlerIndex])(kart, &v2, mapObject);
+                        ((s32(*)(Kart *, s32 *, MapObject *)) gCollideKartWithMapObjectResponses[handlerIndex])(
+                            kart, &v2, mapObject);
                     if (handlerResult != 0) {
                         v = z;
                         u = &mapObject->mUnk_10;

@@ -600,8 +600,8 @@ extern SoundRequestQueue data_0217d274;
 extern SoundRequestQueue data_0217d284;
 extern SoundRequestQueue data_0217d28c;
 #include "Main/Unknown/code_0210dc7c.h"
-void func_020718c8(void *p, int arg);
-void func_02071944(void *p, int arg);
+void func_020718c8(void *kart, int arg);
+void func_02071944(void *soundSource, int arg);
 #include "Main/Unknown/code_021035ac.h"
 BOOL TrySpinKart(Kart *kart, int rotationCount, int b);
 BOOL TryStartKartState(Kart *kart, KartState newState);

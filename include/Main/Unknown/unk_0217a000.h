@@ -1231,7 +1231,7 @@ extern u16 data_0217aadc[32];
 extern MtxFx43 *gCurrentViewMatrix;
 extern u32 data_0217ac10;
 extern void *data_0217ac14;
-extern void *data_0217ac18[15];
+extern void *gCollideKartWithMapObjectResponses[15];
 extern void *data_0217ac54[15];
 extern struct Camera *gChaseCamera;
 // Set to 1 at race set-up and when a camera entry is started or advanced; cleared once per UpdateRace call by

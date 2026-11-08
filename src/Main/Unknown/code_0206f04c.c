@@ -63,7 +63,7 @@ void func_0206ff50(Kart *kart, u32 collisionFlags) {
     s32 mode;
     u16 kartIndex;
     Vec3 g;
-    Unk02165560 e;
+    KartFollowEffectIds e;
 
     if (kart->mUnk_7c & 0x400) {
         return;
@@ -134,9 +134,9 @@ void func_0206ff50(Kart *kart, u32 collisionFlags) {
         f = 0;
         kart->mItemEffect = 0;
         if (kart->mKartModelsEntry->mUnk_058 == 0) {
-            e = data_usa_02165560;
+            e = gKartFollowEffectIds;
             for (f = 0; f < 3; f++) {
-                SetupKartFollowEffect(StartEffect(e.mUnk_00[f], &kart->mPos), kart->mIndex, 0x14);
+                SetupKartFollowEffect(StartEffect(e.mEffectIds[f], &kart->mPos), kart->mIndex, 0x14);
             }
         }
         StopKartKillerEffect(kart->mIndex);

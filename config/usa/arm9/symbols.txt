@@ -7937,12 +7937,12 @@ data_02154b64 kind:data(any) addr:0x02154b64
 data_02154b84 kind:data(any) addr:0x02154b84
 data_02154ba4 kind:data(any) addr:0x02154ba4
 gKartSurfaceKind5Effects kind:data(any) addr:0x02154bc4
-data_02154be4 kind:data(any) addr:0x02154be4
-data_02154c20 kind:data(any) addr:0x02154c20
-data_02154c5c kind:data(any) addr:0x02154c5c
-data_02154c98 kind:data(any) addr:0x02154c98
-data_02154cd4 kind:data(any) addr:0x02154cd4
-data_02154d10 kind:data(any) addr:0x02154d10
+gKartModelScaleYKind0Table kind:data(any) addr:0x02154be4
+gKartModelOffsetYKind0And2Table kind:data(any) addr:0x02154c20
+gKartModelScaleYKind1Table kind:data(any) addr:0x02154c5c
+gKartModelOffsetYKind1Table kind:data(any) addr:0x02154c98
+gKartModelScaleXKind2Table kind:data(any) addr:0x02154cd4
+gKartModelScaleZKind2Table kind:data(any) addr:0x02154d10
 data_usa_02154d4c kind:data(any) addr:0x02154d4c
 data_usa_02154d50 kind:data(any) addr:0x02154d50
 gKartSurfaceFunctions kind:data(any) addr:0x02154d8c
@@ -9575,7 +9575,7 @@ data_02165530 kind:data(any) addr:0x02165530
 data_0216553c kind:data(any) addr:0x0216553c
 data_02165548 kind:data(any) addr:0x02165548
 data_usa_02165554 kind:data(any) addr:0x02165554
-data_usa_02165560 kind:data(any) addr:0x02165560
+gKartFollowEffectIds kind:data(any) addr:0x02165560
 data_usa_0216556c kind:data(any) addr:0x0216556c
 data_usa_0216557c kind:data(any) addr:0x0216557c
 @4116 kind:data(any) addr:0x0216558c local
@@ -11330,7 +11330,7 @@ data_usa_0217ab74 kind:bss addr:0x0217ab74
 data_usa_0217abac kind:bss addr:0x0217abac
 data_0217ac10 kind:bss addr:0x0217abf0
 data_0217ac14 kind:bss addr:0x0217abf4
-data_0217ac18 kind:bss addr:0x0217abf8
+gCollideKartWithMapObjectResponses kind:bss addr:0x0217abf8
 data_0217ac54 kind:bss addr:0x0217ac34
 data_usa_0217ac70 kind:bss addr:0x0217ac70
 gChaseCamera kind:bss addr:0x0217ac74

@@ -54,7 +54,8 @@ s32 DoesKartRespondToMapObject(s32 itemEffect, MapObject *mapObject);
 // Response code for the ItemObject a and the map object b; the kind's own callback may change it; the second value goes
 // to *c.
 s32 func_020d6a54(ItemObject *itemObject, MapObject *mapObject, s32 *firstResponseOut);
-// Index into data_0217ac18 of the Kart a response to the map object b; the kind's own callback may change it.
+// Index into gCollideKartWithMapObjectResponses of the Kart a response to the map object b; the kind's own callback may
+// change it.
 s32 func_020d6be0(Kart *kart, MapObject *mapObject);
 u32 GetItemObjectResponseByKind(s32 flagBit, s32 itemKind, s32 kindHundreds, s32 kindRemainder, s32 kindDataValue);
 u32 func_020d6d8c(u32 zeroResultFlag, u32 itemKind, u32 kindHundreds, u32 kindRemainder);
