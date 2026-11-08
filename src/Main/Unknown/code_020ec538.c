@@ -6,10 +6,10 @@
 #include "code_02147cd8.h"
 
 const Vec3 data_02159588 = {0x1000, 0, 0};
-const Vec3 data_0215957c = {0x1000, 0, 0};
+const Vec3 gVec3UnitX = {0x1000, 0, 0};
 const Vec3 data_02159594 = {0, 0, 0};
 
-void func_020ec854(Unk020e43a8 *object, s32 lowestY, u32 gravity, u16 angleStep, u32 upwardSpeed, s32 pushSpeed) {
+void InitPushedMotion(Unk020e43a8 *object, s32 lowestY, u32 gravity, u16 angleStep, u32 upwardSpeed, s32 pushSpeed) {
     object->mUnk_0a0 = lowestY;
     object->mUnk_0a4 = gravity;
     object->mUnk_0a8 = 1;
@@ -19,7 +19,7 @@ void func_020ec854(Unk020e43a8 *object, s32 lowestY, u32 gravity, u16 angleStep,
     object->mUnk_0b4 = pushSpeed;
 }
 
-BOOL func_020ec7e8(Unk020e43a8 *object) {
+BOOL AdvancePushedMotion(Unk020e43a8 *object) {
     if (object->mUnk_0a8) {
         object->mUnk_0ac = object->mUnk_0ac + object->mUnk_0ae;
     } else {
@@ -30,7 +30,7 @@ BOOL func_020ec7e8(Unk020e43a8 *object) {
     return object->mUnk_00.mPos.y < object->mUnk_0a0;
 }
 
-void func_020ec6e4(Unk020e43a8 *object, Unk020ec6e4 *other) {
+void SetPushedMotionFromKart(Unk020e43a8 *object, Unk020ec6e4 *other) {
     Vec3 offset;
     s32 pushSpeed;
 
@@ -59,7 +59,7 @@ void func_020ec6e4(Unk020e43a8 *object, Unk020ec6e4 *other) {
     object->mUnk_00.mUnk_10.y = object->mUnk_0b0;
 }
 
-void func_020ec538(Unk020e43a8 *object, const Unk020ec6e4 *other) {
+void SetPushedMotionFromItemObject(Unk020e43a8 *object, const Unk020ec6e4 *other) {
     Vec3 out;
     Vec3 otherPoint;
     Vec3 otherVector;
@@ -70,7 +70,7 @@ void func_020ec538(Unk020e43a8 *object, const Unk020ec6e4 *other) {
     VEC_Subtract(&object->mUnk_00.mPos, &otherPoint, &out);
     if ((s64) out.z * otherVector.x - (s64) out.x * otherVector.z < 0) {
         if (Vec3NormalizeXZAndGetLengthOrZero(&otherVector, &out) == 0) {
-            out = data_0215957c;
+            out = gVec3UnitX;
         } else {
             s32 x = out.x;
             s32 z = out.z;

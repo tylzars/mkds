@@ -56,9 +56,9 @@ typedef struct {
     /* 60 */ s32 mUnk_60;
     /* 64 */ Vec3 *mUnk_64[4];
     /* 74 */ Vec3 mUnk_74[4];
-} Unk020f3fa8;
+} SegmentPoints;
 
-extern Unk020f3fa8 data_0217bb88;
+extern SegmentPoints data_0217bb88;
 
 // Element returned through gItemPools: the first 0x12c bytes that every pool object shares; the per-kind objects
 // embed it as their first member and run from 0x12c (kinds 4, 6 and 13) to 0x31c bytes. One is also embedded in
@@ -340,7 +340,7 @@ typedef struct ItemKind {
     // plus 3 in mode 5, or 0x10 for kind 2 in the other modes.
     /* 0c */ s32 mObjectCount;
     /* 10 */ s32 mUnk_10;
-    /* 14 */ u8 mUnk_14[4];
+    /* 14 */ u8 mSetup[4];
     // Called with the object by ResetItemObject after it has reset the common fields.
     /* 18 */ void (*mReset)(void *);
     // Called with the object when StartItemObject moves it into the started part of its pool.
@@ -431,16 +431,16 @@ extern ItemKind gItemKindKouraR;
 
 extern ItemKind gItemKindKouraG;
 
-// Two words of a row of data_0215961c.
+// Two words of a row of gItemSpreadRows.
 typedef struct {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
-} Unk020f41c4_Pair;
+} ItemSpreadOffset;
 
-// Row of data_0215961c.
+// Row of gItemSpreadRows.
 typedef struct {
-    /* 00 */ Unk020f41c4_Pair mUnk_00[3];
-} Unk020f41c4_Row;
+    /* 00 */ ItemSpreadOffset mUnk_00[3];
+} ItemSpreadRow;
 
 typedef enum {
     ITEM_USE_KIND_HOOK_ONLY,
@@ -550,19 +550,20 @@ typedef struct HeldItem {
 extern s32 data_0217bc38[];
 extern ItemKind *gItemKinds;
 extern RaceProgress *gRaceProgress;
-extern Unk020f41c4_Row data_0215961c[];
+extern ItemSpreadRow gItemSpreadRows[];
 extern ItemInfo *gItemInfos;
 extern ItemPool *gItemPools;
 
-u8 GetItemPointLinkIndex(Unk020f36d8 *p);
+u8 GetItemPointLinkIndex(Unk020f36d8 *ref);
 void PickNextItemPointLink(ItemPointLinkRef *in, ItemPointLinkRef *out, u32 idx, s32 flag);
 BOOL FollowItemPointLinksToPos(ItemPointLinkRef *in, ItemPointLinkRef *out, Vec3 *pos);
-BOOL CopyCloserItemPointLinkRef(ItemPointLinkRef *a, ItemPointLinkRef *b, ItemPointLinkRef *out, Vec3 *pos);
+BOOL CopyCloserItemPointLinkRef(ItemPointLinkRef *current, ItemPointLinkRef *candidate, ItemPointLinkRef *out,
+                                Vec3 *pos);
 BOOL PickNearestNearbyItemPointLink(ItemPointLinkRef *in, ItemPointLinkRef *out, Vec3 *pos);
-s32 func_020f3fa8(Unk020f3fa8 *p, Vec3 *v);
-void func_020f4020(Unk020f3fa8 *p, Vec3 *points, s32 scale);
+s32 PushSegmentPoint(SegmentPoints *segmentPoints, Vec3 *point);
+void InitSegmentPoints(SegmentPoints *segmentPoints, Vec3 *points, s32 scale);
 s32 func_020f4090(s32 idx);
-void RemoveReservedItemObjects(s32 idx, s32 amount);
+void RemoveReservedItemObjects(s32 itemInfoIndex, s32 amount);
 void SetHeldItemWithCount(HeldItem *rec, s32 kind, s32 count);
 void RemoveHeldItem(HeldItem *rec, s32 *kind, s32 *count);
 void func_020f4188(HeldItem *rec, s32 v);

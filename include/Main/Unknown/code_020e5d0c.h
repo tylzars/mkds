@@ -56,7 +56,7 @@ typedef struct PendulumObject {
     /* 10c */ BOOL mUnk_10c;
 } PendulumObject;
 
-// Allocated by func_020e6488 and func_020ed4d0, filled in by func_020e6514, 0x2c bytes.
+// Allocated by func_020e6488 and CreateItemModel, filled in by func_020e6514, 0x2c bytes.
 typedef struct Unk020e6488 {
     /* 00 */ u8 *mUnk_00;
     /* 04 */ u32 mUnk_04;

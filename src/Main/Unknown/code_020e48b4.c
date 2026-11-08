@@ -228,7 +228,7 @@ void EnterPukupukuState1(Unk020e43a8 *pukupuku) {
 }
 
 void UpdatePukupukuState1(Unk020e43a8 *pukupuku) {
-    if (func_020ec7e8(pukupuku) == FALSE) {
+    if (AdvancePushedMotion(pukupuku) == FALSE) {
         return;
     }
     if (pukupuku->mUnk_00.mCourseMapRow->mUnk_28 == 0) {
@@ -273,7 +273,7 @@ void UpdatePukupukuState3(Unk020e43a8 *pukupuku) {
 
 u8 CollideKartWithPukupuku(Unk020e43a8 *pukupuku, Unk020ec6e4 *kart, u8 *c, u8 *d) {
     if (*c == 1) {
-        func_020ec6e4(pukupuku, kart);
+        SetPushedMotionFromKart(pukupuku, kart);
         pukupuku->mUnk_00.mStateMachine.mNextState = 1;
         pukupuku->mUnk_00.mStateMachine.mNextStateRequested = 1;
         pukupuku->mUnk_00.mFlags = pukupuku->mUnk_00.mFlags | (data_02158fe4);
@@ -284,7 +284,7 @@ u8 CollideKartWithPukupuku(Unk020e43a8 *pukupuku, Unk020ec6e4 *kart, u8 *c, u8 *
 
 s32 CollideItemObjectWithPukupuku(Unk020e43a8 *pukupuku, void *itemObject, u8 *b, u8 *c) {
     if (*b == 1) {
-        func_020ec538(pukupuku, itemObject);
+        SetPushedMotionFromItemObject(pukupuku, itemObject);
         pukupuku->mUnk_00.mFlags |= data_02158fe4;
         pukupuku->mUnk_00.mStateMachine.mNextState = 1;
         pukupuku->mUnk_00.mStateMachine.mNextStateRequested = 1;

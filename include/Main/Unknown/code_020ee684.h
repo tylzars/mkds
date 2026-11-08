@@ -83,53 +83,53 @@ typedef struct Unk02175620_060 {
     /* 0b0 */ void *mUnk_0b0;
 } Unk02175620_060;
 
-void InitItemInUse(ItemInUse *a, KartItems *b);
-void ResetItemInUse(ItemInUse *a);
-void RemoveItemInUseCircle(ItemInUse *a, s32 i, ItemObject *v);
-void AdvanceItemInUseCircle(ItemInUse *a);
-void StartItemInUseCircle(ItemInUse *a);
-void PlaceItemInUseCircleObjects(ItemInUse *a);
-void RemoveItemInUseTrail(ItemInUse *a, s32 i, ItemObject *v);
-void AdvanceItemInUseTrail(ItemInUse *a);
-void StartItemInUseTrail(ItemInUse *p);
-void RemoveItemInUseOne(ItemInUse *a, ItemObject *b, ItemObject *c);
-void AdvanceItemInUseOneWithOrientation(ItemInUse *a);
-void AdvanceItemInUseOne(ItemInUse *a);
-void ComputeItemInUseObjectPosition(ItemInUse *a, Vec3 *v, Vec3 *w);
-void StartItemInUseOneWithOrientation(ItemInUse *a);
-void StartItemInUseOne(ItemInUse *a);
-void StartItemInUseObjectAndCountDown(ItemInUse *a, ItemObject *v);
-void StartLastItemInUseObjectAndInit(ItemInUse *a, s32 f);
-void StartItemInUseObject(ItemInUse *p, ItemObject *v);
-void InitKartItems(KartItems *a, s32 n);
-void func_020efc74(KartItems *p, s32 a);
-void func_020efd1c(KartItems *p, ItemObject *a);
-BOOL func_020efd84(KartItems *p, s32 a);
-void func_020efea4(KartItems *p);
-void func_020eff40(KartItems *p);
-void func_020f0044(KartItems *p);
-void func_020f00f0(KartItems *p);
-BOOL func_020f0154(KartItems *p);
+void InitItemInUse(ItemInUse *itemInUse, KartItems *kartItems);
+void ResetItemInUse(ItemInUse *itemInUse);
+void RemoveItemInUseCircle(ItemInUse *itemInUse, s32 i, ItemObject *object);
+void AdvanceItemInUseCircle(ItemInUse *itemInUse);
+void StartItemInUseCircle(ItemInUse *itemInUse);
+void PlaceItemInUseCircleObjects(ItemInUse *itemInUse);
+void RemoveItemInUseTrail(ItemInUse *itemInUse, s32 i, ItemObject *object);
+void AdvanceItemInUseTrail(ItemInUse *itemInUse);
+void StartItemInUseTrail(ItemInUse *itemInUse);
+void RemoveItemInUseOne(ItemInUse *itemInUse, ItemObject *index, ItemObject *object);
+void AdvanceItemInUseOneWithOrientation(ItemInUse *itemInUse);
+void AdvanceItemInUseOne(ItemInUse *itemInUse);
+void ComputeItemInUseObjectPosition(ItemInUse *itemInUse, Vec3 *objectPos, Vec3 *behindPos);
+void StartItemInUseOneWithOrientation(ItemInUse *itemInUse);
+void StartItemInUseOne(ItemInUse *itemInUse);
+void StartItemInUseObjectAndCountDown(ItemInUse *itemInUse, ItemObject *object);
+void StartLastItemInUseObjectAndInit(ItemInUse *itemInUse, s32 callKart);
+void StartItemInUseObject(ItemInUse *itemInUse, ItemObject *object);
+void InitKartItems(KartItems *kartItems, s32 kartIndex);
+void func_020efc74(KartItems *kartItems, s32 a);
+void func_020efd1c(KartItems *kartItems, ItemObject *object);
+BOOL func_020efd84(KartItems *kartItems, s32 itemInfoIndex);
+void func_020efea4(KartItems *kartItems);
+void func_020eff40(KartItems *kartItems);
+void ReleaseKartItems(KartItems *kartItems);
+void func_020f00f0(KartItems *kartItems);
+BOOL func_020f0154(KartItems *kartItems);
 // Builds the pool of one kind: allocates the pointer array and every object, and runs InitItemObject for each.
-void CreateItemPool(ItemPool *q, s32 a, s32 *b);
+void CreateItemPool(ItemPool *pool, s32 kind, s32 *objectIdCounter);
 // Releases the object at index 0 of mObjects (not necessarily the oldest: the array is reordered); FALSE when none is
 // active.
 BOOL TryReleaseFirstItemObject(ItemPool *tab);
 // Runs UpdateItemObject for every active object (mode 5: some get several sub-steps). When mLimit is above 1 and
 // mLimit - mReservedCount is below 2 it first calls func_020f9ba8 on the first object or sorts with func_020f0684.
-void UpdateItemPool(ItemPool *a);
-void func_020f0684(ItemObject **p, s32 i, s32 n, s32 step);
-void func_020f0758(ItemPool *a, s32 m, s32 b, u8 *c, s32 d);
-s32 func_020f0898(ItemPool *a, u8 *b);
-s32 func_020f0950(ItemPool *a, s32 b, s32 c);
-void func_020f0b00(ItemPool *tab, s32 a, void *b, s32 c);
-void func_020f0d04(ItemObject *p);
+void UpdateItemPool(ItemPool *pool);
+void func_020f0684(ItemObject **objects, s32 pairIndex, s32 endIndex, s32 step);
+void func_020f0758(ItemPool *pool, s32 messageKind, s32 b, u8 *packet, s32 d);
+s32 func_020f0898(ItemPool *pool, u8 *packet);
+s32 func_020f0950(ItemPool *pool, s32 eventByte, s32 objectId);
+void func_020f0b00(ItemPool *tab, s32 a, void *data, s32 c);
+void func_020f0d04(ItemObject *object);
 // Draws every taken object, including those only held by a kart, with the kind's draw callback or the default.
-void DrawItemPool(ItemPool *tab, void *a);
-void func_020f0e2c(ItemPool *tab, ItemObject *v);
+void DrawItemPool(ItemPool *tab, void *viewAxis);
+void func_020f0e2c(ItemPool *tab, ItemObject *object);
 // Starts an object taken now or earlier and held by a kart: swaps it into the active part of mObjects and counts it.
-void StartItemObject(ItemPool *tab, ItemObject *v);
+void StartItemObject(ItemPool *tab, ItemObject *object);
 // Hands an object back to its pool behind the active and taken parts and counts it out; what the object holds is
 // freed by ReleaseItemObject.
-void ReleaseItemPoolObject(ItemPool *tab, ItemObject *v);
-void TakeItemPoolObjects(ItemPool *tab, s32 count, ItemObject **out, u16 kind, Vec3 *v);
+void ReleaseItemPoolObject(ItemPool *tab, ItemObject *object);
+void TakeItemPoolObjects(ItemPool *tab, s32 count, ItemObject **out, u16 kind, Vec3 *pos);

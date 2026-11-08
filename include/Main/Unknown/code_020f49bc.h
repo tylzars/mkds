@@ -16,7 +16,7 @@ typedef struct ItemKinoko ItemKinoko;
 
 // Koura: a shell. Object of the red shell (item kind 1), element of gItemPools[1].
 typedef struct ItemKouraR {
-    /* 000 */ Unk020ec8bc mUnk_000;
+    /* 000 */ LinkFollowingItemObject mUnk_000;
     /* 228 */ struct KartItems *mKartItems;
     /* 22c */ Vec3 mUnk_22c;
     /* 238 */ s32 mUnk_238;
@@ -35,7 +35,7 @@ typedef struct ItemBanana {
 
 // Object of the green shell (item kind 0), element of gItemPools[0].
 typedef struct ItemKouraG {
-    /* 000 */ Unk020f1d70 mUnk_000;
+    /* 000 */ DirectedItemObject mUnk_000;
     /* 168 */ s32 mUnk_168;
     /* 16c */ SoundDistanceSquaredChange mUnk_16c;
     /* 17c */ u8 mUnk_17c[0xc];

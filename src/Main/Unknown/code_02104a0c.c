@@ -145,7 +145,7 @@ void func_02104f84(s32 a) {
         return;
     }
     gBouncingItemBoxTimers[a] = 0;
-    func_020f0044(&gKartItems[a]);
+    ReleaseKartItems(&gKartItems[a]);
 }
 
 void StartBouncingItemBox(BouncingItemBox *p) {
@@ -184,8 +184,8 @@ void AdvanceBouncingItemBoxInUse(ItemInUse *p0, BouncingItemBox *p1) {
     Unk021052fc *b = p1->mPooledMapObject;
     s32 n;
     if (p1->mKartIsEntry != 0) {
-        VEC_MultAdd(((s64) p0->mUnk_084.z * -28877) >> 12, &p0->mUnk_02c.mUnk_0c, &p1->mUnk_000.mItemObject.mPos,
-                    &p1->mMapObjectPos);
+        VEC_MultAdd(((s64) p0->mKartScaleFactorTimesBase.z * -28877) >> 12, &p0->mKartOrientation.mUnk_0c,
+                    &p1->mUnk_000.mItemObject.mPos, &p1->mMapObjectPos);
         n = p1->mScaleRatio;
         t.x = ((s64) p1->mUnk_000.mItemObject.mScale.x * n) >> 12;
         t.y = ((s64) p1->mUnk_000.mItemObject.mScale.y * n) >> 12;

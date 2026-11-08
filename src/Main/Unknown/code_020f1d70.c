@@ -11,8 +11,9 @@
 #include "Main/Unknown/code_02109054.h"
 #include "code_02147cd8.h"
 
-void func_020f2b94(void *objectParam, ItemInUse *inUseParam, s32 hitLimit, s32 d, s32 e, s32 f) {
-    Unk020f1d70 *object;
+void InitItemObjectThrow(void *objectParam, ItemInUse *inUseParam, s32 hitLimit, s32 throwForward, s32 e,
+                         s32 baseSpeed) {
+    DirectedItemObject *object;
     ItemInUse *inUse;
     s32 dot;
     s32 negatedZ;
@@ -20,55 +21,56 @@ void func_020f2b94(void *objectParam, ItemInUse *inUseParam, s32 hitLimit, s32 d
 
     object = objectParam;
     inUse = inUseParam;
-    if (d != 0) {
-        object->mUnk_12c = func_020edc9c(inUse, f, 0x1000, 0x3800, &object->mUnk_130);
+    if (throwForward != 0) {
+        object->mSpeed = ComputeItemThrowForward(inUse, baseSpeed, 0x1000, 0x3800, &object->mDirection);
     } else {
-        Vec3 *direction = &object->mUnk_130;
-        object->mUnk_12c = func_020edb8c(inUse, 0x3000, 0x1000, 0x4000, direction);
+        Vec3 *direction = &object->mDirection;
+        object->mSpeed = ComputeItemThrowBackward(inUse, 0x3000, 0x1000, 0x4000, direction);
     }
-    object->mUnk_13c = object->mUnk_130;
-    negatedZ = -object->mUnk_130.z;
-    directionX = object->mUnk_130.x;
-    object->mUnk_148.z = directionX;
-    object->mUnk_148.x = negatedZ;
-    object->mUnk_148.y = 0;
-    object->mUnk_000.mVelocity.x = ((s64) object->mUnk_130.x * object->mUnk_12c) >> 12;
-    object->mUnk_000.mVelocity.z = ((s64) object->mUnk_130.z * object->mUnk_12c) >> 12;
-    if (d == 0) {
+    object->mSurfaceDirection = object->mDirection;
+    negatedZ = -object->mDirection.z;
+    directionX = object->mDirection.x;
+    object->mSideDirection.z = directionX;
+    object->mSideDirection.x = negatedZ;
+    object->mSideDirection.y = 0;
+    object->mUnk_000.mVelocity.x = ((s64) object->mDirection.x * object->mSpeed) >> 12;
+    object->mUnk_000.mVelocity.z = ((s64) object->mDirection.z * object->mSpeed) >> 12;
+    if (throwForward == 0) {
         VEC_Add(&object->mUnk_000.mVelocity, &inUse->mKart->mUnk_1fc, &object->mUnk_000.mVelocity);
     }
     if (inUse->mKart->mUnk_48 & 1) {
-        dot = VEC_DotProduct(&inUse->mUnk_02c.mUnk_0c, &object->mUnk_000.mVelocity);
+        dot = VEC_DotProduct(&inUse->mKartOrientation.mUnk_0c, &object->mUnk_000.mVelocity);
         {
-            s32 x, y, z;
+            s32 alongX, alongY, alongZ;
 
-            x = ((s64) inUse->mUnk_02c.mUnk_0c.x * dot) >> 12;
-            y = ((s64) inUse->mUnk_02c.mUnk_0c.y * dot) >> 12;
-            z = ((s64) inUse->mUnk_02c.mUnk_0c.z * dot) >> 12;
-            object->mUnk_000.mVelocity.x = (s32) (object->mUnk_000.mVelocity.x - x);
-            object->mUnk_000.mVelocity.y -= y;
-            object->mUnk_000.mVelocity.z -= z;
+            alongX = ((s64) inUse->mKartOrientation.mUnk_0c.x * dot) >> 12;
+            alongY = ((s64) inUse->mKartOrientation.mUnk_0c.y * dot) >> 12;
+            alongZ = ((s64) inUse->mKartOrientation.mUnk_0c.z * dot) >> 12;
+            object->mUnk_000.mVelocity.x = (s32) (object->mUnk_000.mVelocity.x - alongX);
+            object->mUnk_000.mVelocity.y -= alongY;
+            object->mUnk_000.mVelocity.z -= alongZ;
         }
-        VEC_MultAdd(-0x1000, &inUse->mUnk_02c.mUnk_0c, &object->mUnk_000.mVelocity, &object->mUnk_000.mVelocity);
+        VEC_MultAdd(-0x1000, &inUse->mKartOrientation.mUnk_0c, &object->mUnk_000.mVelocity,
+                    &object->mUnk_000.mVelocity);
     }
     if (object->mUnk_000.mScale.z < 0xccd) {
         object->mUnk_000.mScale.x = 0xccd;
         object->mUnk_000.mScale.y = 0xccd;
         object->mUnk_000.mScale.z = 0xccd;
-        if (d != 0) {
+        if (throwForward != 0) {
             object->mUnk_000.mPos = inUse->mKart->mCollisionCenter;
-            VEC_MultAdd(object->mUnk_000.mScale.z * 10, &inUse->mUnk_02c.mUnk_18, &object->mUnk_000.mPos,
+            VEC_MultAdd(object->mUnk_000.mScale.z * 10, &inUse->mKartOrientation.mUnk_18, &object->mUnk_000.mPos,
                         &object->mUnk_000.mPos);
         }
     }
     if (hitLimit < 0) {
-        object->mUnk_154 = 0;
-        object->mUnk_15c = FALSE;
+        object->mHitsRemaining = 0;
+        object->mHasHitLimit = FALSE;
     } else {
-        object->mUnk_154 = hitLimit;
-        object->mUnk_15c = TRUE;
+        object->mHitsRemaining = hitLimit;
+        object->mHasHitLimit = TRUE;
     }
-    object->mUnk_000.mBounce = (void (*)(ItemObject *, Vec3 *, Vec3 *)) func_020f1f98;
+    object->mUnk_000.mBounce = (void (*)(ItemObject *, Vec3 *, Vec3 *)) DeflectItemObjectOnHit;
     object->mUnk_160 = TRUE;
     object->mUnk_158 = e;
     object->mUnk_164 = 4;
@@ -98,38 +100,38 @@ void func_020f2a6c(Vec3 *direction, Vec3 *normal, Vec3 *result) {
 }
 
 void func_020f29e8(ItemKouraR *item) {
-    Unk020f1d70 *object;
+    DirectedItemObject *object;
     Vec3 *normal;
     s32 speed;
 
-    object = (Unk020f1d70 *) item;
+    object = (DirectedItemObject *) item;
     speed = 0;
     normal = &object->mUnk_000.mNormal;
     if ((s64) object->mUnk_000.mVelocity.x * object->mUnk_000.mVelocity.x +
             (s64) object->mUnk_000.mVelocity.y * object->mUnk_000.mVelocity.y +
             (s64) object->mUnk_000.mVelocity.z * object->mUnk_000.mVelocity.z >=
         0x10) {
-        speed = Vec3NormalizeAndGetLengthUnchecked(&object->mUnk_000.mVelocity, &object->mUnk_130);
+        speed = Vec3NormalizeAndGetLengthUnchecked(&object->mUnk_000.mVelocity, &object->mDirection);
     }
-    object->mUnk_12c = speed;
-    func_020f2a6c(&object->mUnk_130, normal, &object->mUnk_13c);
-    Vec3CrossUnrounded(&object->mUnk_13c, normal, &object->mUnk_148);
-    object->mUnk_000.mBounce = (void (*)(ItemObject *, Vec3 *, Vec3 *)) func_020f1f98;
+    object->mSpeed = speed;
+    func_020f2a6c(&object->mDirection, normal, &object->mSurfaceDirection);
+    Vec3CrossUnrounded(&object->mSurfaceDirection, normal, &object->mSideDirection);
+    object->mUnk_000.mBounce = (void (*)(ItemObject *, Vec3 *, Vec3 *)) DeflectItemObjectOnHit;
 }
 
-void func_020f288c(Unk020f1d70 *object, Vec3 *hitNormal) {
+void func_020f288c(DirectedItemObject *object, Vec3 *hitNormal) {
     Vec3 along;
     Vec3 *velocityDirection;
     Vec3 *flatDirection;
     s32 n;
 
-    velocityDirection = &object->mUnk_13c;
-    flatDirection = &object->mUnk_130;
+    velocityDirection = &object->mSurfaceDirection;
+    flatDirection = &object->mDirection;
     n = VEC_DotProduct(hitNormal, velocityDirection);
     along.x = ((s64) hitNormal->x * n) >> 12;
     along.y = ((s64) hitNormal->y * n) >> 12;
     along.z = ((s64) hitNormal->z * n) >> 12;
-    object->mUnk_13c.x -= along.x;
+    object->mSurfaceDirection.x -= along.x;
     velocityDirection->y -= along.y;
     velocityDirection->z -= along.z;
     if (object->mUnk_160 != FALSE) {
@@ -149,21 +151,21 @@ void func_020f288c(Unk020f1d70 *object, Vec3 *hitNormal) {
         0x10) {
         Vec3NormalizeAndGetLengthUnchecked(flatDirection, flatDirection);
     }
-    Vec3CrossUnrounded(flatDirection, &object->mUnk_000.mNormal, &object->mUnk_148);
+    Vec3CrossUnrounded(flatDirection, &object->mUnk_000.mNormal, &object->mSideDirection);
     StartSound(&object->mUnk_000.mSoundSource, 0xd5, 0x7f, 0);
 }
 
-void func_020f2768(Unk020f1d70 *object, Vec3 *hitNormal, Vec3 *c) {
+void DeflectItemObjectAndStartSound(DirectedItemObject *object, Vec3 *hitNormal, Vec3 *c) {
     Vec3 along;
     Vec3 *direction;
     s32 n;
 
-    direction = &object->mUnk_130;
+    direction = &object->mDirection;
     n = VEC_DotProduct(hitNormal, direction);
     along.x = ((s64) hitNormal->x * n) >> 12;
     along.y = ((s64) hitNormal->y * n) >> 12;
     along.z = ((s64) hitNormal->z * n) >> 12;
-    object->mUnk_130.x -= along.x;
+    object->mDirection.x -= along.x;
     direction->y -= along.y;
     direction->z -= along.z;
     if (object->mUnk_160 != FALSE) {
@@ -173,20 +175,20 @@ void func_020f2768(Unk020f1d70 *object, Vec3 *hitNormal, Vec3 *c) {
         0x10) {
         Vec3NormalizeAndGetLengthUnchecked(direction, direction);
     }
-    object->mUnk_13c = *direction;
-    Vec3CrossUnrounded(direction, &object->mUnk_000.mNormal, &object->mUnk_148);
+    object->mSurfaceDirection = *direction;
+    Vec3CrossUnrounded(direction, &object->mUnk_000.mNormal, &object->mSideDirection);
     object->mUnk_000.mNormal.y += 1;
     StartSound(&object->mUnk_000.mSoundSource, 0xd5, 0x7f, 0);
 }
 
-void func_020f2228(Unk020f1d70 *object, s32 targetSpeed) {
+void AdvanceItemObjectMotion(DirectedItemObject *object, s32 targetSpeed) {
     Vec3 v1;
     Vec3 hitNormal;
     Vec3 v3;
     Vec3 normalPart;
     Vec3 *pos;
     Vec3 *velocity;
-    Vec3 *r;
+    Vec3 *direction;
     s32 flag80000;
     s32 n;
     BOOL sameNormal;
@@ -194,7 +196,7 @@ void func_020f2228(Unk020f1d70 *object, s32 targetSpeed) {
 
     pos = &object->mUnk_000.mPos;
     velocity = &object->mUnk_000.mVelocity;
-    r = &object->mUnk_130;
+    direction = &object->mDirection;
     VEC_Add(velocity, pos, pos);
     n = func_01ffdee4(pos, &object->mUnk_000.mPrevPos, 0, object->mUnk_000.mUnk_dc, object->mUnk_164,
                       object->mUnk_000.mCollisionSlotIndex, &v1, &hitNormal, (s32 *) &v3,
@@ -215,20 +217,22 @@ void func_020f2228(Unk020f1d70 *object, s32 targetSpeed) {
                 object->mUnk_000.mNormal = hitNormal;
                 object->mUnk_000.mFlags |= 0x100;
                 if (flag80000 != 0) {
-                    n = VEC_DotProduct(&hitNormal, &object->mUnk_13c);
-                    object->mUnk_13c.x = (s32) (object->mUnk_13c.x - (s32) (((s64) hitNormal.x * n) >> 12));
-                    object->mUnk_13c.y -= (s32) (((s64) hitNormal.y * n) >> 12);
-                    object->mUnk_13c.z -= (s32) (((s64) hitNormal.z * n) >> 12);
-                    if ((s64) object->mUnk_13c.x * object->mUnk_13c.x + (s64) object->mUnk_13c.y * object->mUnk_13c.y +
-                            (s64) object->mUnk_13c.z * object->mUnk_13c.z >=
+                    n = VEC_DotProduct(&hitNormal, &object->mSurfaceDirection);
+                    object->mSurfaceDirection.x =
+                        (s32) (object->mSurfaceDirection.x - (s32) (((s64) hitNormal.x * n) >> 12));
+                    object->mSurfaceDirection.y -= (s32) (((s64) hitNormal.y * n) >> 12);
+                    object->mSurfaceDirection.z -= (s32) (((s64) hitNormal.z * n) >> 12);
+                    if ((s64) object->mSurfaceDirection.x * object->mSurfaceDirection.x +
+                            (s64) object->mSurfaceDirection.y * object->mSurfaceDirection.y +
+                            (s64) object->mSurfaceDirection.z * object->mSurfaceDirection.z >=
                         0x10) {
-                        Vec3NormalizeAndGetLengthUnchecked(&object->mUnk_13c, &object->mUnk_13c);
+                        Vec3NormalizeAndGetLengthUnchecked(&object->mSurfaceDirection, &object->mSurfaceDirection);
                     }
-                    *r = object->mUnk_13c;
+                    *direction = object->mSurfaceDirection;
                 } else {
-                    func_020f2a6c(r, &hitNormal, &object->mUnk_13c);
+                    func_020f2a6c(direction, &hitNormal, &object->mSurfaceDirection);
                 }
-                Vec3CrossUnrounded(&object->mUnk_13c, &hitNormal, &object->mUnk_148);
+                Vec3CrossUnrounded(&object->mSurfaceDirection, &hitNormal, &object->mSideDirection);
             }
         }
         if (object->mUnk_000.mCollisionBits & 0x214300) {
@@ -241,18 +245,18 @@ void func_020f2228(Unk020f1d70 *object, s32 targetSpeed) {
                 func_020f288c(object, &v3);
             } else {
                 v3.y = 0;
-                func_020f2768(object, &v3, NULL);
+                DeflectItemObjectAndStartSound(object, &v3, NULL);
             }
             object->mUnk_000.mUnk_78 &= ~0x4000;
-            if (object->mUnk_15c != FALSE) {
+            if (object->mHasHitLimit != FALSE) {
                 object->mUnk_000.mFlags |= 0x20;
-                object->mUnk_154 -= 1;
+                object->mHitsRemaining -= 1;
             }
         }
-        n = object->mUnk_12c;
-        velocity->x = ((s64) object->mUnk_13c.x * n) >> 12;
-        velocity->y = ((s64) object->mUnk_13c.y * n) >> 12;
-        velocity->z = ((s64) object->mUnk_13c.z * n) >> 12;
+        n = object->mSpeed;
+        velocity->x = ((s64) object->mSurfaceDirection.x * n) >> 12;
+        velocity->y = ((s64) object->mSurfaceDirection.y * n) >> 12;
+        velocity->z = ((s64) object->mSurfaceDirection.z * n) >> 12;
         if (object->mUnk_000.mCollisionBits & 0x1e34ef) {
             v1.y = pos->y - object->mUnk_000.mPrevPos.y;
             if (v1.y > 0x5000 && flag80000 == 0) {
@@ -262,7 +266,7 @@ void func_020f2228(Unk020f1d70 *object, s32 targetSpeed) {
                 velocity->y = v1.y;
             }
         }
-        if (object->mUnk_154 < 0) {
+        if (object->mHitsRemaining < 0) {
             velocity->x = ((s64) velocity->x * 0x23d) >> 12;
             velocity->y = ((s64) velocity->y * 0x23d) >> 12;
             velocity->z = ((s64) velocity->z * 0x23d) >> 12;
@@ -274,7 +278,7 @@ void func_020f2228(Unk020f1d70 *object, s32 targetSpeed) {
             return;
         }
     }
-    object->mUnk_12c += (s32) (((s64) (targetSpeed - object->mUnk_12c) * 0x29) >> 12);
+    object->mSpeed += (s32) (((s64) (targetSpeed - object->mSpeed) * 0x29) >> 12);
     velocityAlias = &object->mUnk_000.mVelocity;
     if (object->mUnk_000.mCollisionBits & 0x1e34ef) {
         normalPart.x = object->mUnk_000.mNormal.x >> 2;
@@ -372,25 +376,25 @@ void func_020f2028(ItemObject *object) {
     }
 }
 
-void func_020f1f98(Unk020f1d70 *object, Vec3 *otherVelocity, Vec3 *awayDirection) {
+void DeflectItemObjectOnHit(DirectedItemObject *object, Vec3 *otherVelocity, Vec3 *awayDirection) {
     Vec3 flatDirection;
     s32 speed;
 
     if (awayDirection->y > 0) {
-        func_020f2768(object, awayDirection, awayDirection);
+        DeflectItemObjectAndStartSound(object, awayDirection, awayDirection);
     } else {
         flatDirection = *awayDirection;
         flatDirection.y = 0;
-        func_020f2768(object, &flatDirection, NULL);
+        DeflectItemObjectAndStartSound(object, &flatDirection, NULL);
     }
-    speed = object->mUnk_12c;
-    object->mUnk_000.mVelocity.x = ((s64) object->mUnk_13c.x * speed) >> 12;
-    object->mUnk_000.mVelocity.y = ((s64) object->mUnk_13c.y * speed) >> 12;
-    object->mUnk_000.mVelocity.z = ((s64) object->mUnk_13c.z * speed) >> 12;
+    speed = object->mSpeed;
+    object->mUnk_000.mVelocity.x = ((s64) object->mSurfaceDirection.x * speed) >> 12;
+    object->mUnk_000.mVelocity.y = ((s64) object->mSurfaceDirection.y * speed) >> 12;
+    object->mUnk_000.mVelocity.z = ((s64) object->mSurfaceDirection.z * speed) >> 12;
 }
 
-void func_020f1ea4(void *objectParam, s32 hitLimit, s32 reverse, s32 d) {
-    Unk020f1d70 *object;
+void InitItemObjectMotion(void *objectParam, s32 hitLimit, s32 reverse, s32 d) {
+    DirectedItemObject *object;
     s32 speed;
     s32 negatedZ;
     s32 directionX;
@@ -401,59 +405,60 @@ void func_020f1ea4(void *objectParam, s32 hitLimit, s32 reverse, s32 d) {
             (s64) object->mUnk_000.mVelocity.y * object->mUnk_000.mVelocity.y +
             (s64) object->mUnk_000.mVelocity.z * object->mUnk_000.mVelocity.z >=
         0x10) {
-        speed = Vec3NormalizeAndGetLengthUnchecked(&object->mUnk_000.mVelocity, &object->mUnk_130);
+        speed = Vec3NormalizeAndGetLengthUnchecked(&object->mUnk_000.mVelocity, &object->mDirection);
     }
-    object->mUnk_12c = speed;
+    object->mSpeed = speed;
     if (reverse != 0) {
-        object->mUnk_12c = -object->mUnk_12c;
-        object->mUnk_130.x = -object->mUnk_130.x;
-        object->mUnk_130.y = -object->mUnk_130.y;
-        object->mUnk_130.z = -object->mUnk_130.z;
+        object->mSpeed = -object->mSpeed;
+        object->mDirection.x = -object->mDirection.x;
+        object->mDirection.y = -object->mDirection.y;
+        object->mDirection.z = -object->mDirection.z;
     }
-    object->mUnk_13c = object->mUnk_130;
-    negatedZ = -object->mUnk_130.z;
-    directionX = object->mUnk_130.x;
-    object->mUnk_148.z = directionX;
-    object->mUnk_148.x = negatedZ;
-    object->mUnk_148.y = 0;
+    object->mSurfaceDirection = object->mDirection;
+    negatedZ = -object->mDirection.z;
+    directionX = object->mDirection.x;
+    object->mSideDirection.z = directionX;
+    object->mSideDirection.x = negatedZ;
+    object->mSideDirection.y = 0;
     if (hitLimit < 0) {
-        object->mUnk_154 = 0;
-        object->mUnk_15c = FALSE;
+        object->mHitsRemaining = 0;
+        object->mHasHitLimit = FALSE;
     } else {
-        object->mUnk_154 = hitLimit;
-        object->mUnk_15c = TRUE;
+        object->mHitsRemaining = hitLimit;
+        object->mHasHitLimit = TRUE;
     }
-    object->mUnk_000.mBounce = (void (*)(ItemObject *, Vec3 *, Vec3 *)) func_020f1f98;
+    object->mUnk_000.mBounce = (void (*)(ItemObject *, Vec3 *, Vec3 *)) DeflectItemObjectOnHit;
     object->mUnk_160 = TRUE;
     object->mUnk_158 = d;
 }
 
-void func_020f1d70(void *objectParam, const Vec3 *direction) {
-    Unk020f1d70 *object;
+void SetItemObjectDirection(void *objectParam, const Vec3 *direction) {
+    DirectedItemObject *object;
     Vec3 *normal;
     Vec3 projected;
     s32 dot;
     s32 speed;
 
     object = objectParam;
-    object->mUnk_130.x = direction->x;
-    object->mUnk_130.z = direction->z;
+    object->mDirection.x = direction->x;
+    object->mDirection.z = direction->z;
     normal = &object->mUnk_000.mNormal;
     dot = VEC_DotProduct(normal, direction);
     projected.x = direction->x - (s32) (((s64) normal->x * dot) >> 12);
     projected.y = direction->y - (s32) (((s64) normal->y * dot) >> 12);
     projected.z = direction->z - (s32) (((s64) normal->z * dot) >> 12);
-    object->mUnk_13c.x = normal->x >> 2;
-    object->mUnk_13c.y = normal->y >> 2;
-    object->mUnk_13c.z = normal->z >> 2;
-    VEC_Subtract(&projected, &object->mUnk_13c, &object->mUnk_13c);
-    if ((s64) object->mUnk_13c.x * object->mUnk_13c.x + (s64) object->mUnk_13c.y * object->mUnk_13c.y +
-            (s64) object->mUnk_13c.z * object->mUnk_13c.z >=
+    object->mSurfaceDirection.x = normal->x >> 2;
+    object->mSurfaceDirection.y = normal->y >> 2;
+    object->mSurfaceDirection.z = normal->z >> 2;
+    VEC_Subtract(&projected, &object->mSurfaceDirection, &object->mSurfaceDirection);
+    if ((s64) object->mSurfaceDirection.x * object->mSurfaceDirection.x +
+            (s64) object->mSurfaceDirection.y * object->mSurfaceDirection.y +
+            (s64) object->mSurfaceDirection.z * object->mSurfaceDirection.z >=
         0x10) {
-        Vec3NormalizeAndGetLengthUnchecked(&object->mUnk_13c, &object->mUnk_13c);
+        Vec3NormalizeAndGetLengthUnchecked(&object->mSurfaceDirection, &object->mSurfaceDirection);
     }
-    speed = object->mUnk_12c;
-    object->mUnk_000.mVelocity.x = ((s64) object->mUnk_13c.x * speed) >> 12;
-    object->mUnk_000.mVelocity.z = ((s64) object->mUnk_13c.z * speed) >> 12;
-    Vec3CrossUnrounded(direction, normal, &object->mUnk_148);
+    speed = object->mSpeed;
+    object->mUnk_000.mVelocity.x = ((s64) object->mSurfaceDirection.x * speed) >> 12;
+    object->mUnk_000.mVelocity.z = ((s64) object->mSurfaceDirection.z * speed) >> 12;
+    Vec3CrossUnrounded(direction, normal, &object->mSideDirection);
 }

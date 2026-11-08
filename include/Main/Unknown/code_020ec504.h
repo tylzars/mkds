@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020ec504(int object);
+void EnterPushedObjectState1(int object);

@@ -108,8 +108,8 @@ void InitObPakkunSf(Unk020e43a8 *obPakkunSf) {
     obPakkunSf->mUnk_00.mPos.y =
         obPakkunSf->mUnk_00.mPos.y + (s32) (((s64) obPakkunSf->mUnk_00.mScale.y * 0xa000) >> 12);
     *(u16 *) &obPakkunSf->mUnk_a0.mUnk_18.x = 0;
-    func_020ec854(obPakkunSf, obPakkunSf->mUnk_00.mPos.y - 0x18000, 0x400, 0x800, 0x4000, 0x1800);
-    func_020ec884(obPakkunSf);
+    InitPushedMotion(obPakkunSf, obPakkunSf->mUnk_00.mPos.y - 0x18000, 0x400, 0x800, 0x4000, 0x1800);
+    InitPushedObjectStates(obPakkunSf);
 }
 
 #pragma thumb off

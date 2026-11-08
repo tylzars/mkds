@@ -348,18 +348,18 @@ BOOL InitItemKouraG(ItemInUse *itemInUse, ItemKouraG *koura) {
     ResetSoundDistanceSquaredChange(&koura->mUnk_16c);
     koura->mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
     if (itemInUse->mKartItems->mFlags & 0x20) {
-        func_020f2b94(koura, itemInUse, isBattle != FALSE ? 2 : 4, 0, 0, 0x5000);
+        InitItemObjectThrow(koura, itemInUse, isBattle != FALSE ? 2 : 4, 0, 0, 0x5000);
         return FALSE;
     }
-    func_020f2b94(koura, itemInUse, isBattle != FALSE ? 5 : 9, 1, 0, 0x5000);
+    InitItemObjectThrow(koura, itemInUse, isBattle != FALSE ? 5 : 9, 1, 0, 0x5000);
     return TRUE;
 }
 
 void AdvanceItemKouraG(ItemKouraG *koura) {
     if (koura->mUnk_000.mUnk_000.mAgeFrames > 0x258) {
-        koura->mUnk_000.mUnk_154 = 0;
+        koura->mUnk_000.mHitsRemaining = 0;
     }
-    func_020f2228(&koura->mUnk_000, 0x84cd);
+    AdvanceItemObjectMotion(&koura->mUnk_000, 0x84cd);
     if (koura->mUnk_000.mUnk_000.mFlags & 1) {
         return;
     }
@@ -371,7 +371,7 @@ void *func_020f6038(void *buffer, ItemKouraG *koura, void *toBuffer) {
     void *result;
 
     if (koura != NULL && toBuffer != NULL) {
-        func_020ff1b8(Vec3DotUnrounded(&koura->mUnk_000.mUnk_000.mVelocity, &koura->mUnk_000.mUnk_130) < 0,
+        func_020ff1b8(Vec3DotUnrounded(&koura->mUnk_000.mUnk_000.mVelocity, &koura->mUnk_000.mDirection) < 0,
                       &koura->mUnk_000.mUnk_000.mVelocity.y);
     }
     result = func_020fecdc(buffer, koura, toBuffer);
@@ -388,7 +388,7 @@ void InitItemKouraGFromData(ItemKouraG *koura) {
     func_020f8e78(koura);
     ResetSoundDistanceSquaredChange(&koura->mUnk_16c);
     koura->mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
-    func_020f1ea4(koura, 9, koura->mUnk_168, 0);
+    InitItemObjectMotion(koura, 9, koura->mUnk_168, 0);
 }
 
 void StartItemKouraRSound(void *kouraParam, s32 b) {
@@ -405,7 +405,7 @@ void StartItemKouraRSound(void *kouraParam, s32 b) {
 
 void func_020f5f7c(ItemKouraR *kouraR, Vec3 *otherVelocity, Vec3 *normal) {
     func_020f29e8(kouraR);
-    func_020f1f98(&kouraR->mUnk_000.mUnk_000, otherVelocity, normal);
+    DeflectItemObjectOnHit(&kouraR->mUnk_000.mUnk_000, otherVelocity, normal);
     kouraR->mStateMachine.mNextState = 1;
     kouraR->mStateMachine.mNextStateRequested = 1;
 }
@@ -422,11 +422,11 @@ s32 InitItemKouraR(ItemInUse *itemInUse, ItemKouraR *kouraR) {
     func_02046be8(&kouraR->mStateMachine, (UnkFunc *const *) gItemKouraRStateTable, 7, kouraR);
     if (itemInUse->mKartItems->mFlags & 0x20) {
         kouraR->mThrowForward = 0;
-        func_020f2b94(kouraR, itemInUse, 0, 0, 0, 0x5000);
+        InitItemObjectThrow(kouraR, itemInUse, 0, 0, 0, 0x5000);
         kouraR->mStateMachine.mNextState = 1;
         kouraR->mStateMachine.mNextStateRequested = 1;
-        kouraR->mUnk_000.mUnk_21c.mLink = NULL;
-        kouraR->mUnk_000.mUnk_21c.mNextLinksUsed = 1;
+        kouraR->mUnk_000.mPreviousLink.mLink = NULL;
+        kouraR->mUnk_000.mPreviousLink.mNextLinksUsed = 1;
     } else {
         kouraR->mThrowForward = 1;
         if (gRaceSetup->mMode != MODE_BATTLE && itemInUse->mKartItems->mUnk_1f0.mLink != NULL) {
@@ -442,15 +442,16 @@ s32 InitItemKouraR(ItemInUse *itemInUse, ItemKouraR *kouraR) {
                 }
                 targetKartIndex = gRaceProgress->mKartAtRank[(u8) rankAhead - 1];
             }
-            func_020ed268(&kouraR->mUnk_000, itemInUse, 0x2d, 0x5b, 1, 0, 1, 0x5000, targetKartIndex, 0);
+            InitLinkFollowingItemFromInUse(&kouraR->mUnk_000, itemInUse, 0x2d, 0x5b, 1, 0, 1, 0x5000, targetKartIndex,
+                                           0);
             kouraR->mStateMachine.mNextState = 3;
             kouraR->mStateMachine.mNextStateRequested = 1;
         } else {
-            func_020f2b94(kouraR, itemInUse, 0, 1, 0, 0x5000);
+            InitItemObjectThrow(kouraR, itemInUse, 0, 1, 0, 0x5000);
             kouraR->mStateMachine.mNextState = 2;
             kouraR->mStateMachine.mNextStateRequested = 1;
-            kouraR->mUnk_000.mUnk_21c.mLink = NULL;
-            kouraR->mUnk_000.mUnk_21c.mNextLinksUsed = 1;
+            kouraR->mUnk_000.mPreviousLink.mLink = NULL;
+            kouraR->mUnk_000.mPreviousLink.mNextLinksUsed = 1;
         }
         kouraR->mUnk_000.mUnk_000.mUnk_000.mFlags |= 0x200000;
     }
@@ -470,7 +471,7 @@ void AdvanceItemKouraR(u32 kouraR) {
 }
 
 void UpdateItemKouraRState0And1(ItemKouraR *kouraR) {
-    func_020f2228(&kouraR->mUnk_000.mUnk_000, 0x8800);
+    AdvanceItemObjectMotion(&kouraR->mUnk_000.mUnk_000, 0x8800);
     if (kouraR->mUnk_000.mUnk_000.mUnk_000.mFlags & 1) {
         return;
     }
@@ -505,7 +506,7 @@ void func_020f5cc4(ItemObject *item, u32 kartIndex) {
 }
 
 void UpdateItemKouraRState2(ItemKouraR *kouraR) {
-    func_020f2228(&kouraR->mUnk_000.mUnk_000, 0x8800);
+    AdvanceItemObjectMotion(&kouraR->mUnk_000.mUnk_000, 0x8800);
     if (!(kouraR->mUnk_000.mUnk_000.mUnk_000.mFlags & 1)) {
         func_0210ddf4(&data_0217d294, kouraR->mUnk_000.mUnk_000.mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f,
                       StartItemKouraRSound, kouraR, 0);
@@ -559,7 +560,7 @@ void UpdateItemKouraRState3(ItemKouraR *kouraR) {
         }
         targetKartIndex = gRaceProgress->mKartAtRank[(u8) rankAhead - 1];
     }
-    func_020ec918(&kouraR->mUnk_000, 0xd000, 0x29, targetKartIndex, 0);
+    AdvanceLinkFollowingItem(&kouraR->mUnk_000, 0xd000, 0x29, targetKartIndex, 0);
     if (!(kouraR->mUnk_000.mUnk_000.mUnk_000.mFlags & 1)) {
         func_0210ddf4(&data_0217d294, kouraR->mUnk_000.mUnk_000.mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f,
                       StartItemKouraRSound, kouraR, 0);
@@ -639,8 +640,8 @@ void UpdateItemKouraRState4(ItemKouraR *kouraR) {
             func_020f1104(kouraR);
             kouraR->mStateMachine.mNextState = 2;
             kouraR->mStateMachine.mNextStateRequested = 1;
-            kouraR->mUnk_000.mUnk_21c.mLink = NULL;
-            kouraR->mUnk_000.mUnk_21c.mNextLinksUsed = 1;
+            kouraR->mUnk_000.mPreviousLink.mLink = NULL;
+            kouraR->mUnk_000.mPreviousLink.mNextLinksUsed = 1;
         }
     }
     if (kouraR->mUnk_000.mUnk_000.mUnk_000.mFlags & 1) {
@@ -681,9 +682,9 @@ void UpdateItemKouraRState5(ItemKouraR *kouraR) {
     func_020f6f10(&kouraR->mUnk_000.mUnk_000.mUnk_000, 0, 8);
 }
 
-// Runs func_020f2228 and hands StartItemKouraRSound to func_0210ddf4 when the 0x74 bit 0 is clear.
+// Runs AdvanceItemObjectMotion and hands StartItemKouraRSound to func_0210ddf4 when the 0x74 bit 0 is clear.
 void UpdateItemKouraRState6(ItemKouraR *kouraR) {
-    func_020f2228(&kouraR->mUnk_000.mUnk_000, 0xc000);
+    AdvanceItemObjectMotion(&kouraR->mUnk_000.mUnk_000, 0xc000);
     if (kouraR->mUnk_000.mUnk_000.mUnk_000.mFlags & 1) {
         return;
     }
@@ -737,12 +738,12 @@ void *func_020f5550(void *buffer, ItemKouraR *kouraR, void *toBuffer) {
     void *result;
 
     if (kouraR != NULL && toBuffer != NULL) {
-        dot = Vec3DotUnrounded(&kouraR->mUnk_000.mUnk_000.mUnk_000.mVelocity, &kouraR->mUnk_000.mUnk_000.mUnk_130);
+        dot = Vec3DotUnrounded(&kouraR->mUnk_000.mUnk_000.mUnk_000.mVelocity, &kouraR->mUnk_000.mUnk_000.mDirection);
         func_020ff1b8(dot < 0, &kouraR->mUnk_000.mUnk_000.mUnk_000.mVelocity.y);
         func_020ff1b8(kouraR->mThrowForward, &kouraR->mUnk_000.mUnk_000.mUnk_000.mPos.y);
     }
     result = func_020fecdc(buffer, kouraR, toBuffer);
-    result = func_020ff040(result, kouraR != NULL ? &kouraR->mUnk_000.mUnk_21c : 0, toBuffer);
+    result = func_020ff040(result, kouraR != NULL ? &kouraR->mUnk_000.mPreviousLink : 0, toBuffer);
     if (kouraR != NULL && toBuffer == NULL) {
         func_020ff1a0(kouraR->mUnk_000.mUnk_000.mUnk_000.mVelocity.y, &kouraR->mUnk_250);
         func_020ff1a0(kouraR->mUnk_000.mUnk_000.mUnk_000.mPos.y, &kouraR->mThrowForward);
@@ -766,7 +767,7 @@ void InitItemKouraRFromData(ItemKouraR *kouraR) {
     kouraR->mUnk_000.mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
     func_02046be8(&kouraR->mStateMachine, (UnkFunc *const *) gItemKouraRStateTable, 7, kouraR);
     if (kouraR->mThrowForward != 0) {
-        if (kouraR->mUnk_000.mUnk_21c.mLink != NULL) {
+        if (kouraR->mUnk_000.mPreviousLink.mLink != NULL) {
             kouraR->mStateMachine.mNextState = 3;
             kouraR->mStateMachine.mNextStateRequested = 1;
             ownerKartIndex = !(kouraR->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & 0x8000)
@@ -782,17 +783,17 @@ void InitItemKouraRFromData(ItemKouraR *kouraR) {
                 }
                 targetKartIndex = gRaceProgress->mKartAtRank[(rankAhead & 0xff) - 1];
             }
-            func_020ec8bc(&kouraR->mUnk_000, 0x2d, 0x5b, 0, 1, kouraR->mUnk_250, targetKartIndex, 0);
+            InitLinkFollowingItem(&kouraR->mUnk_000, 0x2d, 0x5b, 0, 1, kouraR->mUnk_250, targetKartIndex, 0);
         } else {
             kouraR->mStateMachine.mNextState = 2;
             kouraR->mStateMachine.mNextStateRequested = 1;
-            func_020f1ea4(kouraR, 0, kouraR->mUnk_250, 0);
+            InitItemObjectMotion(kouraR, 0, kouraR->mUnk_250, 0);
         }
         kouraR->mUnk_000.mUnk_000.mUnk_000.mFlags |= 0x200000;
     } else {
         kouraR->mStateMachine.mNextState = 1;
         kouraR->mStateMachine.mNextStateRequested = 1;
-        func_020f1ea4(kouraR, 0, kouraR->mUnk_250, 0);
+        InitItemObjectMotion(kouraR, 0, kouraR->mUnk_250, 0);
     }
     ResetItemKouraRKartItems(kouraR);
 }
@@ -919,12 +920,12 @@ void ResetItemKinoko(ItemKinoko *kinoko) {
 
 #pragma thumb off
 
-// Runs func_020ed5c0 with the last two parameters swapped when the 0x134 word is set.
+// Runs DrawItemObjectModel with the last two parameters swapped when the 0x134 word is set.
 void DrawItemKinoko(ItemKinoko *kinoko, void *b, void *c) {
     if (kinoko->mVisible == FALSE) {
         return;
     }
-    func_020ed5c0(&kinoko->mUnk_000.mItemObject, c, b);
+    DrawItemObjectModel(&kinoko->mUnk_000.mItemObject, c, b);
 }
 
 // Decreases the 0x130 word by one; when it goes below zero func_020f7658 runs first.

@@ -162,7 +162,8 @@ s32 InitItemKouraW(ItemInUse *a, ItemKouraW *e) {
 
     func_020f9114(e);
     if (a->mKartItems->mUnk_1f0.mLink != NULL) {
-        func_020ed268((Unk020ec8bc *) e, a, 0x14, 0xcc, 1, 1, 0, 0x6000, e->mRankKartIndex, 1);
+        InitLinkFollowingItemFromInUse((LinkFollowingItemObject *) e, a, 0x14, 0xcc, 1, 1, 0, 0x6000, e->mRankKartIndex,
+                                       1);
         SetStateMachineState(e->mUnk_2e8, 1);
     } else {
         SetItemKouraWKartItems(e, (u16) gRaceProgress->mKartAtRank[0]);
@@ -175,7 +176,7 @@ s32 InitItemKouraW(ItemInUse *a, ItemKouraW *e) {
     }
     func_020fc94c(e);
     // one 36-byte copy of the three vectors (three Vec3 assignments give 0x160 bytes against 0x150)
-    *(MtxFx33 *) &e->mUnk_000.mUnk_94 = *(MtxFx33 *) &a->mUnk_02c.mUnk_00;
+    *(MtxFx33 *) &e->mUnk_000.mUnk_94 = *(MtxFx33 *) &a->mKartOrientation.mUnk_00;
     if (e->mUnk_000.mFlags & 0x8000000) {
         e->mNextState = 0;
         e->mNextStateRequested = 1;
@@ -274,7 +275,7 @@ void AdvanceItemKouraW(ItemKouraW *a) {
 #pragma thumb off
 
 void UpdateItemKouraWState0(ItemKouraW *param_1) {
-    func_020f2228((Unk020f1d70 *) param_1, 0xd000);
+    AdvanceItemObjectMotion((DirectedItemObject *) param_1, 0xd000);
     if (param_1->mUnk_000.mFlags & 1) {
         return;
     }
@@ -306,7 +307,7 @@ void UpdateItemKouraWState1(ItemKouraW *param_1) {
     if (param_1->mStateFrames == 8) {
         param_1->mPosStrip = StartPosStrip((u32) param_1->mUnk_000.mUnk_d0);
     }
-    func_020ec918((Unk020ec8bc *) param_1, param_1->mUnk_27c, 0x21, param_1->mRankKartIndex, 1);
+    AdvanceLinkFollowingItem((LinkFollowingItemObject *) param_1, param_1->mUnk_27c, 0x21, param_1->mRankKartIndex, 1);
     if (!(param_1->mUnk_000.mFlags & 1)) {
         AdvanceSoundDistanceSquaredChange(&param_1->mUnk_300, param_1->mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f);
         if (param_1->mSoundId != 1) {
@@ -439,7 +440,7 @@ void UpdateItemKouraWState2(ItemKouraW *param_1) {
     } else {
         param_1->mUnk_27c += 0xccd;
     }
-    func_020ec918((Unk020ec8bc *) param_1, param_1->mUnk_27c, 0x21, param_1->mRankKartIndex, 1);
+    AdvanceLinkFollowingItem((LinkFollowingItemObject *) param_1, param_1->mUnk_27c, 0x21, param_1->mRankKartIndex, 1);
     if (!(param_1->mUnk_000.mFlags & 1)) {
         AdvanceSoundDistanceSquaredChange(&param_1->mUnk_300, param_1->mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f);
         if (param_1->mSoundId != 1) {
@@ -702,7 +703,8 @@ void InitItemKouraWFromData(ItemKouraW *param_1) {
 
     func_020f8e78(param_1);
     if (param_1->mUnk_21c != 0) {
-        func_020ec8bc((Unk020ec8bc *) param_1, 0x14, 0xcc, 1, 0, param_1->mUnk_2fc, gRaceProgress->mKartAtRank[0], 1);
+        InitLinkFollowingItem((LinkFollowingItemObject *) param_1, 0x14, 0xcc, 1, 0, param_1->mUnk_2fc,
+                              gRaceProgress->mKartAtRank[0], 1);
         SetStateMachineState(&param_1->mUnk_2e8, 1);
     } else if (param_1->mUnk_000.mFlags & 0x8000000) {
         v = (u16) gRaceProgress->mKartAtRank[0];
@@ -758,7 +760,7 @@ void DrawItemKouraWModel(ItemKouraW *param_1, s32 param_2, s32 param_3) {
         }
     }
     if (param_1->mUnk_000.mFlags & 0x80000) {
-        q = func_020ed98c(&param_1->mUnk_000, (Vec3 *) param_2);
+        q = BuildItemObjectMatrix(&param_1->mUnk_000, (Vec3 *) param_2);
     } else {
         Vec3 *pv;
 
@@ -841,7 +843,7 @@ void SetupItemKouraWKind(void) {
     v >>= 12;
     data_0217bd34 = v;
     data_0217bd34 = v * v;
-    gKouraW = func_020ed490(data_0216c6f4, data_0216c704);
+    gKouraW = CreateItemNsbmd(data_0216c6f4, data_0216c704);
     if (gRaceSetup->mCourseId == COURSE_ID_RAINBOW) {
         NNS_G3dMdlSetMdlFogEnableFlagAll(gKouraW->mResMdl, 0);
     }
@@ -925,7 +927,7 @@ void func_020fa9e4(void) {
         TryReleaseFirstItemObject(&gItemPools[i]);
     }
     for (j = 0; j < gKartItemsCount; j++) {
-        func_020f0044(&gKartItems[j]);
+        ReleaseKartItems(&gKartItems[j]);
     }
 }
 

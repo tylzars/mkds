@@ -5,18 +5,18 @@
 #include "Main/Unknown/code_020f1d70.h"
 #include "Main/Unknown/code_020f36d8.h"
 
-// Element of gItemPools[1] and [5] up to 0x228: after the Unk020f1d70 part, the ItemPointLinkRef at 0x168 that
-// PickNextItemPointLink fills, the Unk020f3fa8 at 0x170, the words at 0x214 and 0x218 and the ItemPointLinkRef at
+// Element of gItemPools[1] and [5] up to 0x228: after the DirectedItemObject part, the ItemPointLinkRef at 0x168 that
+// PickNextItemPointLink fills, the SegmentPoints at 0x170, the words at 0x214 and 0x218 and the ItemPointLinkRef at
 // 0x21c.
-typedef struct Unk020ec8bc {
-    /* 000 */ Unk020f1d70 mUnk_000;
-    /* 168 */ ItemPointLinkRef mUnk_168;
-    /* 170 */ Unk020f3fa8 mUnk_170;
+typedef struct LinkFollowingItemObject {
+    /* 000 */ DirectedItemObject mUnk_000;
+    /* 168 */ ItemPointLinkRef mTargetLink;
+    /* 170 */ SegmentPoints mSegmentPoints;
     /* 214 */ s32 mUnk_214;
     /* 218 */ s32 mUnk_218;
-    /* 21c */ ItemPointLinkRef mUnk_21c;
+    /* 21c */ ItemPointLinkRef mPreviousLink;
     /* 224 */ s32 mUnk_224;
-} Unk020ec8bc;
+} LinkFollowingItemObject;
 
 // One element of the table behind gItemKinds from its first byte: the
 // pointer at 0x14.
@@ -25,13 +25,17 @@ typedef struct {
     /* 14 */ void (*mUnk_14)(void);
 } Unk0217bc34_14;
 
-void func_020ec8bc(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 d, s32 e, u16 f, s32 g);
-void func_020ec918(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 d);
-void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e);
-void func_020ece1c(Unk020ec8bc *p, s32 a, s32 b, s32 c);
-BOOL func_020ed0f4(Unk020ec8bc *p);
-void func_020ed268(Unk020ec8bc *p, ItemInUse *q, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, u16 g, s32 h);
+void InitLinkFollowingItem(LinkFollowingItemObject *follower, s32 rampCount, s32 rampWeightPerCount, s32 c,
+                           s32 endsOnFirstHit, s32 reverse, u16 targetKartIndex, s32 g);
+void AdvanceLinkFollowingItem(LinkFollowingItemObject *follower, s32 targetSpeed, s32 speedEase, s32 targetKartIndex,
+                              s32 d);
+void func_020ec9c0(LinkFollowingItemObject *follower, s32 targetSpeed, s32 speedEase, s32 targetKartIndex, s32 e);
+void func_020ece1c(LinkFollowingItemObject *follower, s32 targetSpeed, s32 targetKartIndex, s32 c);
+BOOL func_020ed0f4(LinkFollowingItemObject *follower);
+void InitLinkFollowingItemFromInUse(LinkFollowingItemObject *follower, ItemInUse *inUse, s32 rampCount,
+                                    s32 rampWeightPerCount, s32 throwForward, s32 d, s32 endsOnFirstHit, s32 baseSpeed,
+                                    u16 targetKartIndex, s32 h);
 void CreateItemModels(void);
-void *func_020ed490(u8 *a, u8 *b);
-Unk020e6488 *func_020ed4d0(u8 *a, u8 *b, u8 *c);
-void *func_020ed548(u8 *a);
+void *CreateItemNsbmd(u8 *modelName, u8 *textureName);
+Unk020e6488 *CreateItemModel(u8 *modelName, u8 *animationName, u8 *textureName);
+void *FindItemFile(u8 *fileName);

@@ -52,264 +52,264 @@
 #include "Main/Unknown/code_02077bc0.h"
 
 // Hands out count objects from the pool, releasing the first active one while the pool is too full.
-void TakeItemPoolObjects(ItemPool *v1, s32 v2, ItemObject **out, u16 v3, Vec3 *v) {
+void TakeItemPoolObjects(ItemPool *pool, s32 count, ItemObject **out, u16 kartIndex, Vec3 *pos) {
     s32 i;
 
-    if (v1->mTakenCount + v2 > v1->mObjectCount) {
-        while (v1->mTakenCount + v2 > v1->mObjectCount) {
-            if (v1->mActiveCount > 0) {
-                ReleaseItemPoolObject(v1, v1->mObjects[0]);
+    if (pool->mTakenCount + count > pool->mObjectCount) {
+        while (pool->mTakenCount + count > pool->mObjectCount) {
+            if (pool->mActiveCount > 0) {
+                ReleaseItemPoolObject(pool, pool->mObjects[0]);
             }
         }
     }
     i = 0;
-    while (i < v2) {
-        out[i] = v1->mObjects[v1->mTakenCount++];
-        ResetItemObjectAtPos(out[i], v1->mKind, v3, v);
+    while (i < count) {
+        out[i] = pool->mObjects[pool->mTakenCount++];
+        ResetItemObjectAtPos(out[i], pool->mKind, kartIndex, pos);
         i++;
     }
 }
 
-void ReleaseItemPoolObject(ItemPool *v1, ItemObject *v) {
+void ReleaseItemPoolObject(ItemPool *pool, ItemObject *object) {
     s32 i;
-    ItemObject **p;
-    s32 n;
+    ItemObject **objects;
+    s32 endIndex;
 
     i = 0;
-    p = v1->mObjects;
-    while (i < v1->mTakenCount) {
-        if (p[i] == v) {
+    objects = pool->mObjects;
+    while (i < pool->mTakenCount) {
+        if (objects[i] == object) {
             goto found;
         }
         i++;
     }
-    i = v1->mTakenCount;
+    i = pool->mTakenCount;
 found:
-    if (i < v1->mUnk_18) {
-        v1->mUnk_18 = v1->mUnk_18 - 1;
-        n = v1->mUnk_18;
-        for (; i < n; i++) {
-            p[i] = p[i + 1];
+    if (i < pool->mUnk_18) {
+        pool->mUnk_18 = pool->mUnk_18 - 1;
+        endIndex = pool->mUnk_18;
+        for (; i < endIndex; i++) {
+            objects[i] = objects[i + 1];
         }
     }
-    if (i < v1->mActiveCount) {
-        v1->mActiveCount = v1->mActiveCount - 1;
-        p[i] = p[v1->mActiveCount];
-        i = v1->mActiveCount;
+    if (i < pool->mActiveCount) {
+        pool->mActiveCount = pool->mActiveCount - 1;
+        objects[i] = objects[pool->mActiveCount];
+        i = pool->mActiveCount;
     }
-    if (i < v1->mTakenCount) {
-        v1->mTakenCount = v1->mTakenCount - 1;
-        p[i] = p[v1->mTakenCount];
-        i = v1->mTakenCount;
+    if (i < pool->mTakenCount) {
+        pool->mTakenCount = pool->mTakenCount - 1;
+        objects[i] = objects[pool->mTakenCount];
+        i = pool->mTakenCount;
     }
-    p[i] = v;
-    ReleaseItemObject(v);
-    v1->mReservedCount = v1->mReservedCount - 1;
+    objects[i] = object;
+    ReleaseItemObject(object);
+    pool->mReservedCount = pool->mReservedCount - 1;
 }
 
-void StartItemObject(ItemPool *v1, ItemObject *v) {
+void StartItemObject(ItemPool *pool, ItemObject *object) {
     s32 i;
-    s32 n;
-    ItemObject **p;
-    s32 c;
-    ItemKind *t;
-    enum { K0 } k;
+    s32 takenCount;
+    ItemObject **objects;
+    s32 activeCount;
+    ItemKind *itemKind;
+    enum { K0 } kind;
 
-    c = v1->mActiveCount;
-    n = v1->mTakenCount;
-    i = c;
-    p = v1->mObjects;
-    if (c < n) {
+    activeCount = pool->mActiveCount;
+    takenCount = pool->mTakenCount;
+    i = activeCount;
+    objects = pool->mObjects;
+    if (activeCount < takenCount) {
         do {
-            if (p[i] == v) {
+            if (objects[i] == object) {
                 goto found;
             }
             i++;
-        } while (i < n);
+        } while (i < takenCount);
     }
-    i = n;
+    i = takenCount;
 found:
-    if (c < i) {
-        p[i] = p[c];
-        p[v1->mActiveCount] = v;
+    if (activeCount < i) {
+        objects[i] = objects[activeCount];
+        objects[pool->mActiveCount] = object;
     }
-    v1->mActiveCount = v1->mActiveCount + 1;
-    v->mFlags |= 0x2000;
-    k = v1->mKind;
-    t = gItemKinds + k;
-    if (t->mUnk_6c != 0) {
-        CreateItemObjectCollisionSlot(v);
+    pool->mActiveCount = pool->mActiveCount + 1;
+    object->mFlags |= 0x2000;
+    kind = pool->mKind;
+    itemKind = gItemKinds + kind;
+    if (itemKind->mUnk_6c != 0) {
+        CreateItemObjectCollisionSlot(object);
     }
-    v->mAgeFrames = 0;
-    k = v->mKind;
-    t = gItemKinds + k;
-    if (t->mStart != NULL) {
-        t->mStart(v);
+    object->mAgeFrames = 0;
+    kind = object->mKind;
+    itemKind = gItemKinds + kind;
+    if (itemKind->mStart != NULL) {
+        itemKind->mStart(object);
     }
 }
 
-void func_020f0e2c(ItemPool *v1, ItemObject *v) {
+void func_020f0e2c(ItemPool *pool, ItemObject *object) {
     s32 i;
     s32 n;
-    ItemObject **p;
+    ItemObject **objects;
 
-    n = v1->mActiveCount;
+    n = pool->mActiveCount;
     i = 0;
-    p = v1->mObjects;
+    objects = pool->mObjects;
     while (i < n) {
-        if (p[i] == v) {
+        if (objects[i] == object) {
             goto found;
         }
         i++;
     }
     i = n;
 found:
-    n = v1->mUnk_18;
+    n = pool->mUnk_18;
     if (i < n) {
         return;
     }
-    p[i] = p[n];
-    p[v1->mUnk_18] = v;
-    v1->mUnk_18 = v1->mUnk_18 + 1;
+    objects[i] = objects[n];
+    objects[pool->mUnk_18] = object;
+    pool->mUnk_18 = pool->mUnk_18 + 1;
 }
 
-void DrawItemPool(ItemPool *v1, void *a) {
-    if (v1->mUnk_24 != NULL) {
-        func_020ed718((Unk020ed718 *) v1, a, (void (*)(void *, void *, void *)) v1->mUnk_24);
+void DrawItemPool(ItemPool *pool, void *viewAxis) {
+    if (pool->mUnk_24 != NULL) {
+        DrawItemPoolWithCallback((Unk020ed718 *) pool, viewAxis, (void (*)(void *, void *, void *)) pool->mUnk_24);
     } else {
-        func_020ed79c((Unk020ed718 *) v1, a);
+        DrawItemPoolModels((Unk020ed718 *) pool, viewAxis);
     }
 }
 
-void func_020f0d04(ItemObject *p) {
-    void *(*f)(void *, void *, s32);
-    s32 i;
-    void *z;
+void func_020f0d04(ItemObject *object) {
+    void *(*copyData)(void *, void *, s32);
+    s32 kind;
+    void *data;
 
-    z = NULL;
-    i = p->mKind;
-    if ((p->mUnk_78 & 0xf00) != 0) {
-        z = func_020fe4c0(z, p, 1);
-        func_020fe4c0(z, p, 0);
-        func_020fe4b4(p);
-        if (p->mUnk_78 & 0x800) {
-            func_020f70f0(p);
+    data = NULL;
+    kind = object->mKind;
+    if ((object->mUnk_78 & 0xf00) != 0) {
+        data = func_020fe4c0(data, object, 1);
+        func_020fe4c0(data, object, 0);
+        func_020fe4b4(object);
+        if (object->mUnk_78 & 0x800) {
+            func_020f70f0(object);
         }
-        if (p->mUnk_78 & 0x400) {
-            func_020f705c(p);
+        if (object->mUnk_78 & 0x400) {
+            func_020f705c(object);
         }
-        if (p->mUnk_78 & 0x200) {
-            StartItemObjectReleaseTimer(p);
+        if (object->mUnk_78 & 0x200) {
+            StartItemObjectReleaseTimer(object);
         }
-        if (p->mUnk_78 & 0x100) {
-            StartItemObjectRelease(p);
+        if (object->mUnk_78 & 0x100) {
+            StartItemObjectRelease(object);
         }
     } else {
-        f = gItemKinds[i].mCopyData;
-        z = f(z, p, 1);
-        f(z, p, 0);
-        gItemKinds[i].mInitFromData(p);
+        copyData = gItemKinds[kind].mCopyData;
+        data = copyData(data, object, 1);
+        copyData(data, object, 0);
+        gItemKinds[kind].mInitFromData(object);
     }
-    p->mFlags |= 0x20000000;
+    object->mFlags |= 0x20000000;
 }
 
-void func_020f0b00(ItemPool *v1, s32 a, void *b, s32 c) {
-    ItemObject *e;
-    s32 i;
-    s32 m;
-    s32 n;
-    ItemObject **p;
+void func_020f0b00(ItemPool *pool, s32 a, void *data, s32 c) {
+    ItemObject *object;
+    s32 takenIndex;
+    s32 scanIndex;
+    s32 takenCount;
+    ItemObject **objects;
     s32 k;
-    enum { J0 } j;
-    void (*g)(void *);
+    enum { J0 } kind;
+    void (*initFunc)(void *);
 
-    i = v1->mTakenCount;
-    v1->mTakenCount = i + 1;
-    e = v1->mObjects[i];
-    ResetItemObjectFromData(e, v1->mKind, b, c);
-    v1->mReservedCount = v1->mReservedCount + 1;
-    k = v1->mActiveCount;
-    n = v1->mTakenCount;
-    p = v1->mObjects;
-    m = k;
-    if (k < n) {
+    takenIndex = pool->mTakenCount;
+    pool->mTakenCount = takenIndex + 1;
+    object = pool->mObjects[takenIndex];
+    ResetItemObjectFromData(object, pool->mKind, data, c);
+    pool->mReservedCount = pool->mReservedCount + 1;
+    k = pool->mActiveCount;
+    takenCount = pool->mTakenCount;
+    objects = pool->mObjects;
+    scanIndex = k;
+    if (k < takenCount) {
         do {
-            if (p[m] == e) {
+            if (objects[scanIndex] == object) {
                 goto found;
             }
-            m++;
-        } while (m < n);
+            scanIndex++;
+        } while (scanIndex < takenCount);
     }
-    m = n;
+    scanIndex = takenCount;
 found:
-    if (k < m) {
-        p[m] = p[k];
-        p[v1->mActiveCount] = e;
+    if (k < scanIndex) {
+        objects[scanIndex] = objects[k];
+        objects[pool->mActiveCount] = object;
     }
-    v1->mActiveCount = v1->mActiveCount + 1;
-    e->mFlags |= 0x2000;
-    j = v1->mKind;
-    if (gItemKinds[j].mUnk_6c != 0) {
-        CreateItemObjectCollisionSlot(e);
+    pool->mActiveCount = pool->mActiveCount + 1;
+    object->mFlags |= 0x2000;
+    kind = pool->mKind;
+    if (gItemKinds[kind].mUnk_6c != 0) {
+        CreateItemObjectCollisionSlot(object);
     }
-    e->mAgeFrames = 0;
-    j = e->mKind;
-    if (gItemKinds[j].mStart != NULL) {
-        gItemKinds[j].mStart(e);
+    object->mAgeFrames = 0;
+    kind = object->mKind;
+    if (gItemKinds[kind].mStart != NULL) {
+        gItemKinds[kind].mStart(object);
     }
     if (c != 0) {
-        g = func_020fe4b4;
+        initFunc = func_020fe4b4;
     } else {
-        j = e->mKind;
-        g = gItemKinds[j].mInitFromData;
+        kind = object->mKind;
+        initFunc = gItemKinds[kind].mInitFromData;
     }
-    g(e);
-    e->mFlags |= 0x20000000;
+    initFunc(object);
+    object->mFlags |= 0x20000000;
     if (c != 0) {
-        if (e->mUnk_78 & 0x800) {
-            func_020f70f0(e);
+        if (object->mUnk_78 & 0x800) {
+            func_020f70f0(object);
         }
-        if (e->mUnk_78 & 0x400) {
-            func_020f705c(e);
+        if (object->mUnk_78 & 0x400) {
+            func_020f705c(object);
         }
-        if (e->mUnk_78 & 0x200) {
-            StartItemObjectReleaseTimer(e);
+        if (object->mUnk_78 & 0x200) {
+            StartItemObjectReleaseTimer(object);
         }
-        if (e->mUnk_78 & 0x100) {
-            StartItemObjectRelease(e);
+        if (object->mUnk_78 & 0x100) {
+            StartItemObjectRelease(object);
         }
-    } else if ((e->mUnk_78 & 0x1000) == 0) {
-        k = (u16) ((e->mUnk_78 & 0x8000) == 0 ? (u16) (e->mUnk_78 & ~0xff00) : 8);
+    } else if ((object->mUnk_78 & 0x1000) == 0) {
+        k = (u16) ((object->mUnk_78 & 0x8000) == 0 ? (u16) (object->mUnk_78 & ~0xff00) : 8);
         if (k != 8) {
             func_02071894(GetKart(k));
         }
     }
     if (a > 0) {
-        e->mUnk_7a = a;
-        e->mUnk_7a |= data_02159618;
+        object->mUnk_7a = a;
+        object->mUnk_7a |= data_02159618;
     }
 }
 
-s32 func_020f0950(ItemPool *a, s32 b, s32 c) {
+s32 func_020f0950(ItemPool *pool, s32 eventByte, s32 objectId) {
     enum { K0 } k;
     s32 i;
-    ItemObject *e;
-    ItemObject **p;
-    s32 n;
-    BOOL r;
+    ItemObject *object;
+    ItemObject **objects;
+    s32 activeCount;
+    BOOL found;
     BOOL z0;
     BOOL z1;
     BOOL z2;
     BOOL z3;
     BOOL z4;
     BOOL z5;
-    u32 h;
+    u32 eventValue;
 
-    k = b;
-    h = ((u32) (k & 0xf0) << 12) >> 16;
-    n = a->mActiveCount;
-    p = a->mObjects;
-    r = FALSE;
+    k = eventByte;
+    eventValue = ((u32) (k & 0xf0) << 12) >> 16;
+    activeCount = pool->mActiveCount;
+    objects = pool->mObjects;
+    found = FALSE;
     i = 0;
     k &= 0xf;
     z0 = FALSE;
@@ -318,1033 +318,1059 @@ s32 func_020f0950(ItemPool *a, s32 b, s32 c) {
     z3 = FALSE;
     z4 = FALSE;
     z5 = FALSE;
-    for (; i < n; i++) {
-        e = p[i];
-        if (c != e->mId) {
+    for (; i < activeCount; i++) {
+        object = objects[i];
+        if (objectId != object->mId) {
             continue;
         }
-        r = TRUE;
+        found = TRUE;
         if (k < 4) {
-            e->mVelocity.x = ((s64) e->mVelocity.x * 0x4cd) >> 12;
-            e->mVelocity.y = ((s64) e->mVelocity.y * 0x4cd) >> 12;
-            e->mVelocity.z = ((s64) e->mVelocity.z * 0x4cd) >> 12;
+            object->mVelocity.x = ((s64) object->mVelocity.x * 0x4cd) >> 12;
+            object->mVelocity.y = ((s64) object->mVelocity.y * 0x4cd) >> 12;
+            object->mVelocity.z = ((s64) object->mVelocity.z * 0x4cd) >> 12;
         }
         switch (k) {
             case 0:
-                func_020f7104(e, z0);
+                func_020f7104(object, z0);
                 break;
             case 1:
-                func_020f7070(e, z1);
+                func_020f7070(object, z1);
                 break;
             case 2:
-                func_020f6fc4(e, z2);
+                func_020f6fc4(object, z2);
                 break;
             case 3:
-                if (a->mKind == 1) {
-                    if (func_020f5324(e, h) == 0) {
+                if (pool->mKind == 1) {
+                    if (func_020f5324(object, eventValue) == 0) {
                         break;
                     }
                 }
-                func_020f6f10(e, z3, h);
+                func_020f6f10(object, z3, eventValue);
                 break;
             case 4:
-                func_020f7658(e, z4);
+                func_020f7658(object, z4);
                 break;
             case 5:
-                func_020f7430(e, z5);
+                func_020f7430(object, z5);
                 break;
         }
     }
-    return r;
+    return found;
 }
 
-s32 func_020f0898(ItemPool *a, u8 *b) {
-    s32 k;
+s32 func_020f0898(ItemPool *pool, u8 *packet) {
+    s32 objectId;
     s32 i;
-    s32 n;
-    ItemObject *e;
-    s32 c;
-    ItemObject **p;
-    BOOL m;
+    s32 activeCount;
+    ItemObject *object;
+    s32 value;
+    ItemObject **objects;
+    BOOL found;
 
-    n = a->mActiveCount;
+    activeCount = pool->mActiveCount;
     i = 0;
-    m = FALSE;
-    k = b[1];
-    p = a->mObjects;
-    for (; i < n; i++) {
-        e = p[i];
-        if (k != e->mId) {
+    found = FALSE;
+    objectId = packet[1];
+    objects = pool->mObjects;
+    for (; i < activeCount; i++) {
+        object = objects[i];
+        if (objectId != object->mId) {
             continue;
         }
-        m = TRUE;
-        c = b[2];
-        if (a->mKind == 1) {
-            func_020f5cc4(e, c);
+        found = TRUE;
+        value = packet[2];
+        if (pool->mKind == 1) {
+            func_020f5cc4(object, value);
         }
-        if (a->mKind == 5) {
-            func_020fc8ec((ItemKouraW *) e, c);
+        if (pool->mKind == 5) {
+            func_020fc8ec((ItemKouraW *) object, value);
         }
-        if (a->mKind == 0xb) {
-            func_021003e8((ItemTeresa *) e, c, b[3]);
+        if (pool->mKind == 0xb) {
+            func_021003e8((ItemTeresa *) object, value, packet[3]);
         }
     }
-    return m;
+    return found;
 }
 
-void func_020f0758(ItemPool *a, s32 m, s32 b, u8 *c, s32 d) {
-    enum { K0 } k;
+void func_020f0758(ItemPool *pool, s32 messageKind, s32 b, u8 *packet, s32 d) {
+    enum { K0 } kind;
 
-    switch (m) {
+    switch (messageKind) {
         case 0:
-            k = a->mKind;
-            if (!gItemKinds[k].mCopyData) {
+            kind = pool->mKind;
+            if (!gItemKinds[kind].mCopyData) {
                 return;
             }
-            if (c[1] == 0xff) {
+            if (packet[1] == 0xff) {
                 return;
             }
-            func_020f0b00(a, b, c, 0);
-            if (a->mKind == 6) {
+            func_020f0b00(pool, b, packet, 0);
+            if (pool->mKind == 6) {
                 func_020f82e8(0);
             }
-            if (a->mKind == 0xa) {
+            if (pool->mKind == 0xa) {
                 func_020f82a4(0);
             }
             return;
         case 1:
-            func_020f0b00(a, b, c, 1);
+            func_020f0b00(pool, b, packet, 1);
             return;
         case 2:
-            if (func_020f0950(a, c[2], c[1]) != 0) {
+            if (func_020f0950(pool, packet[2], packet[1]) != 0) {
                 return;
             }
             break;
         case 3:
-            if (func_020f0898(a, c) != 0) {
+            if (func_020f0898(pool, packet) != 0) {
                 return;
             }
             break;
         default:
             return;
     }
-    func_020fe56c(a->mKind, m, b, c, d);
+    func_020fe56c(pool->mKind, messageKind, b, packet, d);
 }
 
-void func_020f0684(ItemObject **p, s32 i, s32 n, s32 v1) {
-    ItemObject *v;
-    ItemObject *w;
+void func_020f0684(ItemObject **objects, s32 pairIndex, s32 endIndex, s32 step) {
+    ItemObject *previous;
+    ItemObject *current;
     s32 j;
 
-    if (i >= n) {
+    if (pairIndex >= endIndex) {
         return;
     }
     do {
-        v = p[i - 1];
-        w = p[i];
-        if ((v->mFlags & 0x180000) != 0) {
+        previous = objects[pairIndex - 1];
+        current = objects[pairIndex];
+        if ((previous->mFlags & 0x180000) != 0) {
             goto next;
         }
-        if (func_020f9c08(v) != 0) {
-            if (func_020f9c08(w) == 0) {
+        if (func_020f9c08(previous) != 0) {
+            if (func_020f9c08(current) == 0) {
                 goto next;
             }
             j = 0;
             do {
-                if ((w->mCollisionBits & data_021595e4[j]) != 0) {
+                if ((current->mCollisionBits & data_021595e4[j]) != 0) {
                     goto next;
                 }
-                if ((v->mCollisionBits & data_021595e4[j]) != 0) {
-                    p[i - 1] = w;
-                    p[i] = v;
+                if ((previous->mCollisionBits & data_021595e4[j]) != 0) {
+                    objects[pairIndex - 1] = current;
+                    objects[pairIndex] = previous;
                     goto next;
                 }
                 j++;
             } while (j < 0xd);
-        } else if (func_020f9c08(w) != 0) {
-            p[i - 1] = w;
-            p[i] = v;
+        } else if (func_020f9c08(current) != 0) {
+            objects[pairIndex - 1] = current;
+            objects[pairIndex] = previous;
         }
     next:
-        i += v1;
-    } while (i < n);
+        pairIndex += step;
+    } while (pairIndex < endIndex);
 }
 
-void UpdateItemPool(ItemPool *a) {
-    ItemObject **e;
-    ItemObject *p;
-    Kart *q;
-    s32 k;
+void UpdateItemPool(ItemPool *pool) {
+    ItemObject **objects;
+    ItemObject *object;
+    Kart *kart;
+    s32 updateCount;
     s32 min;
-    Vec3 *b;
-    Vec3 *c;
-    s32 n;
+    Vec3 *objectPos;
+    Vec3 *kartPos;
+    s32 activeCount;
     s32 i;
-    s32 t;
-    s32 v;
+    s32 frameMod8;
+    s32 pendingUpdateCount;
     s32 w;
-    s32 d;
+    s32 distanceSquared;
     s32 z;
     s32 m;
-    s32 g;
-    s32 h;
-    u16 u;
+    s32 deltaY;
+    s32 deltaZ;
+    u16 kartIndex;
 
-    e = a->mObjects;
-    n = a->mActiveCount;
-    if (a->mLimit > 1 && a->mLimit - a->mReservedCount < 2) {
-        m = a->mUnk_18;
-        if ((t = GetRaceUpdateFramesMod8()) == 0) {
-            if (a->mLimit - a->mReservedCount < 1 && a->mActiveCount > 0) {
-                func_020f9ba8(a->mObjects[0]);
+    objects = pool->mObjects;
+    activeCount = pool->mActiveCount;
+    if (pool->mLimit > 1 && pool->mLimit - pool->mReservedCount < 2) {
+        m = pool->mUnk_18;
+        if ((frameMod8 = GetRaceUpdateFramesMod8()) == 0) {
+            if (pool->mLimit - pool->mReservedCount < 1 && pool->mActiveCount > 0) {
+                func_020f9ba8(pool->mObjects[0]);
             }
         } else {
-            if (a->mKind == 2) {
+            if (pool->mKind == 2) {
                 m -= 3;
             }
-            func_020f0684(e, t, m, 7);
+            func_020f0684(objects, frameMod8, m, 7);
         }
     }
     if (gRaceSetup->mMode != 5) {
-        for (i = 0; i < n; i++) {
-            if (UpdateItemObject(a, e[i], 0) != 0) {
-                n = a->mActiveCount, i--;
+        for (i = 0; i < activeCount; i++) {
+            if (UpdateItemObject(pool, objects[i], 0) != 0) {
+                activeCount = pool->mActiveCount, i--;
             }
         }
         return;
     }
-    for (i = 0; i < n; i++) {
-        p = e[i];
-        v = (u16) (p->mUnk_7a & ~0x8000);
-        if (v <= 0) {
-            if (UpdateItemObject(a, p, 0) != 0) {
-                n = a->mActiveCount;
+    for (i = 0; i < activeCount; i++) {
+        object = objects[i];
+        pendingUpdateCount = (u16) (object->mUnk_7a & ~0x8000);
+        if (pendingUpdateCount <= 0) {
+            if (UpdateItemObject(pool, object, 0) != 0) {
+                activeCount = pool->mActiveCount;
                 i--;
             }
         } else {
-            w = p->mUnk_7a & 0x8000;
-            k = 1;
+            w = object->mUnk_7a & 0x8000;
+            updateCount = 1;
             if (w != 0) {
                 min = 0x5f592e1;
-                p->mUnk_7a &= ~0x8000;
-                k += v;
+                object->mUnk_7a &= ~0x8000;
+                updateCount += pendingUpdateCount;
             } else {
-                k++;
-                for (z = v >> 2; z != 0; z >>= 2) {
-                    k++;
+                updateCount++;
+                for (z = pendingUpdateCount >> 2; z != 0; z >>= 2) {
+                    updateCount++;
                 }
             }
-            FindCollisionSlotsAroundPos(&p->mPos, p->mRadius + k * 0xa000, 0x6000);
-            p->mUnk_7a++;
+            FindCollisionSlotsAroundPos(&object->mPos, object->mRadius + updateCount * 0xa000, 0x6000);
+            object->mUnk_7a++;
             do {
-                p->mUnk_7a--;
-                if (UpdateItemObject(a, p, 1) != 0) {
-                    n = a->mActiveCount;
+                object->mUnk_7a--;
+                if (UpdateItemObject(pool, object, 1) != 0) {
+                    activeCount = pool->mActiveCount;
                     i--;
                     break;
                 }
                 if (w != 0) {
-                    b = p->mUnk_d0;
-                    u = p->mUnk_78 & ~0xff00;
-                    q = GetKart(u);
-                    c = &q->mDrawMatrixPos;
-                    d = ((c->x - b->x) >> 12) * ((c->x - b->x) >> 12);
-                    g = (c->y - b->y) >> 12;
-                    h = (c->z - b->z) >> 12;
-                    d += g * g;
-                    d += h * h;
-                    if (min <= d) {
+                    objectPos = object->mUnk_d0;
+                    kartIndex = object->mUnk_78 & ~0xff00;
+                    kart = GetKart(kartIndex);
+                    kartPos = &kart->mDrawMatrixPos;
+                    distanceSquared = ((kartPos->x - objectPos->x) >> 12) * ((kartPos->x - objectPos->x) >> 12);
+                    deltaY = (kartPos->y - objectPos->y) >> 12;
+                    deltaZ = (kartPos->z - objectPos->z) >> 12;
+                    distanceSquared += deltaY * deltaY;
+                    distanceSquared += deltaZ * deltaZ;
+                    if (min <= distanceSquared) {
                         break;
                     }
-                    min = d;
+                    min = distanceSquared;
                 }
-            } while (--k > 0);
+            } while (--updateCount > 0);
         }
     }
 }
 
-BOOL TryReleaseFirstItemObject(ItemPool *v1) {
-    if (v1->mActiveCount <= 0) {
+BOOL TryReleaseFirstItemObject(ItemPool *pool) {
+    if (pool->mActiveCount <= 0) {
         return FALSE;
     }
-    ReleaseItemPoolObject(v1, v1->mObjects[0]);
+    ReleaseItemPoolObject(pool, pool->mObjects[0]);
     return TRUE;
 }
 
 #pragma thumb on
-void CreateItemPool(ItemPool *q, s32 a, s32 *b) {
-    void *v;
-    s32 n;
-    s32 s;
-    s32 k;
+void CreateItemPool(ItemPool *pool, s32 kind, s32 *objectIdCounter) {
+    void *heap;
+    s32 objectCount;
+    s32 objectSize;
+    s32 objectId;
     s32 i;
 
-    v = GetHeap(GetCurrentHeapCall());
-    k = *b;
-    n = gItemKinds[a].mObjectCount;
-    s = gItemKinds[a].mObjectSize;
-    q->mKind = a;
-    q->mObjects = n != 0 ? (ItemObject **) HeapAlloc(v, n * 4) : 0;
-    q->mObjectCount = n;
-    q->mUnk_0c = gItemKinds[a].mUnk_10;
-    q->mTakenCount = 0;
-    q->mActiveCount = 0;
-    q->mUnk_18 = 0;
-    q->mReservedCount = 0;
-    q->mLimit = gItemKinds[a].mLimit;
-    for (i = 0; i < n; i++) {
-        q->mObjects[i] = HeapAlloc(v, s);
-        InitItemObject(q->mObjects[i], k, a);
-        k++;
-        q->mObjects[i]->mPoolIndex = i;
+    heap = GetHeap(GetCurrentHeapCall());
+    objectId = *objectIdCounter;
+    objectCount = gItemKinds[kind].mObjectCount;
+    objectSize = gItemKinds[kind].mObjectSize;
+    pool->mKind = kind;
+    pool->mObjects = objectCount != 0 ? (ItemObject **) HeapAlloc(heap, objectCount * 4) : 0;
+    pool->mObjectCount = objectCount;
+    pool->mUnk_0c = gItemKinds[kind].mUnk_10;
+    pool->mTakenCount = 0;
+    pool->mActiveCount = 0;
+    pool->mUnk_18 = 0;
+    pool->mReservedCount = 0;
+    pool->mLimit = gItemKinds[kind].mLimit;
+    for (i = 0; i < objectCount; i++) {
+        pool->mObjects[i] = HeapAlloc(heap, objectSize);
+        InitItemObject(pool->mObjects[i], objectId, kind);
+        objectId++;
+        pool->mObjects[i]->mPoolIndex = i;
     }
-    q->mUnk_24 = gItemKinds[a].mDraw;
-    q->mUnk_28 = gItemKinds[a].mViewTest;
-    q->mUnk_2c = gItemKinds[a].mUnk_70;
-    q->mUnk_30 = gItemKinds[a].mUnk_74;
-    q->mUnk_34 = gItemKinds[a].mUnk_78;
-    q->mUnk_38 = gItemKinds[a].mUnk_5c;
-    q->mUnk_3c = gItemKinds[a].mUnk_a4;
-    *b = k;
+    pool->mUnk_24 = gItemKinds[kind].mDraw;
+    pool->mUnk_28 = gItemKinds[kind].mViewTest;
+    pool->mUnk_2c = gItemKinds[kind].mUnk_70;
+    pool->mUnk_30 = gItemKinds[kind].mUnk_74;
+    pool->mUnk_34 = gItemKinds[kind].mUnk_78;
+    pool->mUnk_38 = gItemKinds[kind].mUnk_5c;
+    pool->mUnk_3c = gItemKinds[kind].mUnk_a4;
+    *objectIdCounter = objectId;
 }
 
 #pragma thumb off
-BOOL func_020f0154(KartItems *p) {
-    Kart *b;
-    u16 v;
-    enum { K0 } i;
+BOOL func_020f0154(KartItems *kartItems) {
+    Kart *kart;
+    u16 padBits;
+    enum { K0 } entryIndex;
 
-    b = p->mKart;
+    kart = kartItems->mKart;
     if (IsRaceStarted() == 0) {
         return FALSE;
     }
-    if (b->mState != KART_STATE_NORMAL) {
+    if (kart->mState != KART_STATE_NORMAL) {
         return FALSE;
     }
-    if ((b->mUnk_4c & 0x20000000) != 0) {
+    if ((kart->mUnk_4c & 0x20000000) != 0) {
         return FALSE;
     }
-    if (p->mItemInUse.mObjectKind != 0xf) {
-        p->mFlags |= data_021595b8;
-    } else if (p->mHeldItem.mItemInfoIndex != 0x13) {
-        p->mFlags |= data_021595bc;
-    } else if (p->mSlotState != 0) {
-        p->mFlags |= data_021595c0;
+    if (kartItems->mItemInUse.mObjectKind != 0xf) {
+        kartItems->mFlags |= data_021595b8;
+    } else if (kartItems->mHeldItem.mItemInfoIndex != 0x13) {
+        kartItems->mFlags |= data_021595bc;
+    } else if (kartItems->mSlotState != 0) {
+        kartItems->mFlags |= data_021595c0;
     }
-    i = p->mEntryIndex;
-    v = data_0217562a[i].mBits & ITEM_THROW_FORWARD_BIT;
-    if (v != 0) {
-        p->mFlags |= data_021595c4;
+    entryIndex = kartItems->mEntryIndex;
+    padBits = data_0217562a[entryIndex].mBits & ITEM_THROW_FORWARD_BIT;
+    if (padBits != 0) {
+        kartItems->mFlags |= data_021595c4;
     }
-    i = p->mEntryIndex;
-    v = data_0217562a[i].mBits & PAD_KEY_DOWN;
-    if (v != 0) {
-        p->mFlags |= data_021595c8;
+    entryIndex = kartItems->mEntryIndex;
+    padBits = data_0217562a[entryIndex].mBits & PAD_KEY_DOWN;
+    if (padBits != 0) {
+        kartItems->mFlags |= data_021595c8;
     }
     return TRUE;
 }
 
-void func_020f00f0(KartItems *p) {
-    if ((p->mKart->mUnk_7c & 0x400) != 0) {
+void func_020f00f0(KartItems *kartItems) {
+    if ((kartItems->mKart->mUnk_7c & 0x400) != 0) {
         return;
     }
     if (gRaceSetup->mMode == 5) {
         return;
     }
-    if (p->mSlotState == 0) {
+    if (kartItems->mSlotState == 0) {
         return;
     }
-    func_020f81c0(p);
+    func_020f81c0(kartItems);
 }
 
-void func_020f0044(KartItems *p) {
-    if ((p->mKart->mUnk_7c & 0x400) != 0) {
+void ReleaseKartItems(KartItems *kartItems) {
+    if ((kartItems->mKart->mUnk_7c & 0x400) != 0) {
         return;
     }
-    if (p->mHeldItem.mItemInfoIndex != 0x13) {
-        ReleaseHeldItem(&p->mHeldItem, 0);
+    if (kartItems->mHeldItem.mItemInfoIndex != 0x13) {
+        ReleaseHeldItem(&kartItems->mHeldItem, 0);
     }
     if (gRaceSetup->mMode == 5) {
         return;
     }
-    if (p->mSlotState != 0) {
-        func_020f81c0(p);
+    if (kartItems->mSlotState != 0) {
+        func_020f81c0(kartItems);
     }
-    if (p->mActiveItem != 0x13) {
-        p->mActiveItem = 0x13;
-    }
-    if (gRaceSetup->mMode == 5) {
-        return;
-    }
-    if (p->mItemInUse.mObjectKind == 0xf) {
-        return;
-    }
-    func_020edb00(&p->mItemInUse);
-}
-
-void func_020eff40(KartItems *p) {
-    BOOL f;
-
-    f = gRaceSetup->mMode == 5;
-    if ((p->mKart->mUnk_7c & 0x400) != 0) {
-        return;
-    }
-    if ((u32) (p->mKart->mItemEffect - 2) <= 1) {
-        return;
-    }
-    if (f && p->mActiveItem != 0x13) {
-        return;
-    }
-    if (p->mHeldItem.mItemInfoIndex != 0x13 && p->mHeldItem.mObjectStartFramesLeft == 0) {
-        StartHeldItemObjects(&p->mHeldItem);
-    }
-    if (f) {
-        return;
-    }
-    if (p->mSlotState != 0) {
-        func_020f81c0(p);
-    }
-    if (f) {
-        return;
-    }
-    if (p->mItemInUse.mObjectKind == 0xf) {
-        return;
-    }
-    if (p->mItemInUse.mObjectStartFramesLeft != 0) {
-        return;
-    }
-    func_020edad8(&p->mItemInUse);
-}
-
-void func_020efea4(KartItems *p) {
-    if ((u32) (p->mKart->mItemEffect - 2) <= 1) {
-        return;
+    if (kartItems->mActiveItem != 0x13) {
+        kartItems->mActiveItem = 0x13;
     }
     if (gRaceSetup->mMode == 5) {
         return;
     }
-    if (p->mItemInUse.mObjectKind == 0xf) {
+    if (kartItems->mItemInUse.mObjectKind == 0xf) {
         return;
     }
-    if (p->mItemInUse.mObjectStartFramesLeft != 0) {
-        return;
-    }
-    if (p->mItemInUse.mUseKind != ITEM_USE_KIND_ONE && p->mItemInUse.mUseKind != ITEM_USE_KIND_ONE_WITH_ORIENTATION) {
-        return;
-    }
-    func_020edad8(&p->mItemInUse);
+    ReleaseItemInUse(&kartItems->mItemInUse);
 }
 
-BOOL func_020efd84(KartItems *p, s32 a) {
-    HeldItem *r;
-    ItemPool *q;
-    enum { K0 } i;
+void func_020eff40(KartItems *kartItems) {
+    BOOL isMode5;
 
-    r = &p->mHeldItem;
-    if (a == 0x13) {
+    isMode5 = gRaceSetup->mMode == 5;
+    if ((kartItems->mKart->mUnk_7c & 0x400) != 0) {
+        return;
+    }
+    if ((u32) (kartItems->mKart->mItemEffect - 2) <= 1) {
+        return;
+    }
+    if (isMode5 && kartItems->mActiveItem != 0x13) {
+        return;
+    }
+    if (kartItems->mHeldItem.mItemInfoIndex != 0x13 && kartItems->mHeldItem.mObjectStartFramesLeft == 0) {
+        StartHeldItemObjects(&kartItems->mHeldItem);
+    }
+    if (isMode5) {
+        return;
+    }
+    if (kartItems->mSlotState != 0) {
+        func_020f81c0(kartItems);
+    }
+    if (isMode5) {
+        return;
+    }
+    if (kartItems->mItemInUse.mObjectKind == 0xf) {
+        return;
+    }
+    if (kartItems->mItemInUse.mObjectStartFramesLeft != 0) {
+        return;
+    }
+    StartItemInUseObjectCountdown(&kartItems->mItemInUse);
+}
+
+void func_020efea4(KartItems *kartItems) {
+    if ((u32) (kartItems->mKart->mItemEffect - 2) <= 1) {
+        return;
+    }
+    if (gRaceSetup->mMode == 5) {
+        return;
+    }
+    if (kartItems->mItemInUse.mObjectKind == 0xf) {
+        return;
+    }
+    if (kartItems->mItemInUse.mObjectStartFramesLeft != 0) {
+        return;
+    }
+    if (kartItems->mItemInUse.mUseKind != ITEM_USE_KIND_ONE &&
+        kartItems->mItemInUse.mUseKind != ITEM_USE_KIND_ONE_WITH_ORIENTATION) {
+        return;
+    }
+    StartItemInUseObjectCountdown(&kartItems->mItemInUse);
+}
+
+BOOL func_020efd84(KartItems *kartItems, s32 itemInfoIndex) {
+    HeldItem *heldItem;
+    ItemPool *pool;
+    enum { K0 } objectKind;
+
+    heldItem = &kartItems->mHeldItem;
+    if (itemInfoIndex == 0x13) {
         return TRUE;
     }
-    if (p->mActiveItem != 0x13) {
-        p->mActiveItem = 0x13;
+    if (kartItems->mActiveItem != 0x13) {
+        kartItems->mActiveItem = 0x13;
     }
-    if (p->mSlotState != 0) {
-        if (p->mSlotState == 1 && p->mSlotFrames < 0x3c) {
-            i = gItemInfos[a].mObjectKind;
-            q = &gItemPools[i];
-            q->mReservedCount--;
+    if (kartItems->mSlotState != 0) {
+        if (kartItems->mSlotState == 1 && kartItems->mSlotFrames < 0x3c) {
+            objectKind = gItemInfos[itemInfoIndex].mObjectKind;
+            pool = &gItemPools[objectKind];
+            pool->mReservedCount--;
             return TRUE;
         }
-        StopItemSlot(p);
-        SetHeldItem(r, a);
+        StopItemSlot(kartItems);
+        SetHeldItem(heldItem, itemInfoIndex);
     } else {
-        if (r->mItemInfoIndex == 0x13 && r->mObjectCount == 0) {
-            i = gItemInfos[a].mObjectKind;
-            q = &gItemPools[i];
-            q->mReservedCount--;
+        if (heldItem->mItemInfoIndex == 0x13 && heldItem->mObjectCount == 0) {
+            objectKind = gItemInfos[itemInfoIndex].mObjectKind;
+            pool = &gItemPools[objectKind];
+            pool->mReservedCount--;
         }
     }
-    RemoveHeldItemObjects(r, 1);
-    return r->mItemInfoIndex == 0x13;
+    RemoveHeldItemObjects(heldItem, 1);
+    return heldItem->mItemInfoIndex == 0x13;
 }
 
-void func_020efd1c(KartItems *p, ItemObject *a) {
-    Kart *b;
-    Vec3 *v;
+void func_020efd1c(KartItems *kartItems, ItemObject *object) {
+    Kart *kart;
+    Vec3 *axis;
 
-    b = p->mKart;
-    if ((b->mUnk_48 & 1) != 0) {
-        v = &b->mUnk_15c;
+    kart = kartItems->mKart;
+    if ((kart->mUnk_48 & 1) != 0) {
+        axis = &kart->mUnk_15c;
     } else {
-        v = &data_021595d8;
+        axis = &data_021595d8;
     }
-    func_020f98a0(a, &b->mDrawMatrixPos, v, &b->mKartModelsEntry->mUnk_040, func_0206c0a8(b));
-    if ((b->mUnk_48 & 1) != 0) {
-        a->mFlags |= 0x40000000;
+    func_020f98a0(object, &kart->mDrawMatrixPos, axis, &kart->mKartModelsEntry->mUnk_040, func_0206c0a8(kart));
+    if ((kart->mUnk_48 & 1) != 0) {
+        object->mFlags |= 0x40000000;
     }
 }
 
-void func_020efc74(KartItems *p, s32 a) {
-    ItemPointLinkRef *r;
-    Kart *b;
-    Vec3 *v;
-    s64 d;
-    s32 t;
-    if ((t = func_020f4090(a)) != 0) {
-        p->mUnk_1f0.mLink = (ItemPointLink *) t;
-        p->mUnk_1f0.mNextLinksUsed = 1;
+void func_020efc74(KartItems *kartItems, s32 a) {
+    ItemPointLinkRef *linkRef;
+    Kart *kart;
+    Vec3 *kartPos;
+    s64 distanceSquared;
+    s32 linkByIndex;
+    if ((linkByIndex = func_020f4090(a)) != 0) {
+        kartItems->mUnk_1f0.mLink = (ItemPointLink *) linkByIndex;
+        kartItems->mUnk_1f0.mNextLinksUsed = 1;
     }
-    if ((r = &p->mUnk_1f0)->mLink == NULL) {
+    if ((linkRef = &kartItems->mUnk_1f0)->mLink == NULL) {
         return;
     }
-    b = p->mKart;
-    v = &b->mDrawMatrixPos;
-    PickNearestNearbyItemPointLink(r, r, v);
-    d = (s64) (r->mLink->mPointPos->x - v->x) * (r->mLink->mPointPos->x - v->x);
-    d += (s64) (r->mLink->mPointPos->z - v->z) * (r->mLink->mPointPos->z - v->z);
-    if (d < ((s64) 0x15f9 << 32)) {
+    kart = kartItems->mKart;
+    kartPos = &kart->mDrawMatrixPos;
+    PickNearestNearbyItemPointLink(linkRef, linkRef, kartPos);
+    distanceSquared = (s64) (linkRef->mLink->mPointPos->x - kartPos->x) * (linkRef->mLink->mPointPos->x - kartPos->x);
+    distanceSquared += (s64) (linkRef->mLink->mPointPos->z - kartPos->z) * (linkRef->mLink->mPointPos->z - kartPos->z);
+    if (distanceSquared < ((s64) 0x15f9 << 32)) {
         return;
     }
-    FollowItemPointLinksToPos(r, r, v);
+    FollowItemPointLinksToPos(linkRef, linkRef, kartPos);
 }
 
 #pragma thumb on
-void InitKartItems(KartItems *a, s32 n) {
-    Unk02175620_060 *q;
+void InitKartItems(KartItems *kartItems, s32 kartIndex) {
+    Unk02175620_060 *courseMap;
 
-    a->mKartIndex = n;
-    a->mKart = GetKart(n);
-    a->mEntryIndex = ((Unk021759c0_000 *) gRaceSetup)->mUnk_07c[n].mUnk_00;
-    InitItemSlot(a, a);
-    InitHeldItem(&a->mHeldItem, a);
-    InitItemInUse(&a->mItemInUse, a);
-    q = (Unk02175620_060 *) gCourseMap;
-    a->mUnk_1f0.mLink = q->mUnk_060 != 0 ? q->mUnk_0b0 : 0;
-    a->mUnk_1f0.mNextLinksUsed = 1;
-    a->mUnk_204 = FALSE;
-    a->mUnk_208 = FALSE;
-    a->mUnk_20c = FALSE;
+    kartItems->mKartIndex = kartIndex;
+    kartItems->mKart = GetKart(kartIndex);
+    kartItems->mEntryIndex = ((Unk021759c0_000 *) gRaceSetup)->mUnk_07c[kartIndex].mUnk_00;
+    InitItemSlot(kartItems, kartItems);
+    InitHeldItem(&kartItems->mHeldItem, kartItems);
+    InitItemInUse(&kartItems->mItemInUse, kartItems);
+    courseMap = (Unk02175620_060 *) gCourseMap;
+    kartItems->mUnk_1f0.mLink = courseMap->mUnk_060 != 0 ? courseMap->mUnk_0b0 : 0;
+    kartItems->mUnk_1f0.mNextLinksUsed = 1;
+    kartItems->mUnk_204 = FALSE;
+    kartItems->mUnk_208 = FALSE;
+    kartItems->mUnk_20c = FALSE;
 }
 
 #pragma thumb off
-void StartItemInUseObject(ItemInUse *p, ItemObject *v) {
-    StartItemObject(&gItemPools[v->mKind], v);
-    func_020efd1c(p->mKartItems, v);
-    v->mFlags &= ~0x1000;
+void StartItemInUseObject(ItemInUse *itemInUse, ItemObject *object) {
+    StartItemObject(&gItemPools[object->mKind], object);
+    func_020efd1c(itemInUse->mKartItems, object);
+    object->mFlags &= ~0x1000;
 }
 
 // Takes the last object out of the record, starts it and runs its kind's Init; the argument says whether to call
 // func_02071894 on the kart.
-void StartLastItemInUseObjectAndInit(ItemInUse *a, s32 f) {
-    ItemObject *b;
-    s32 (*cb)(void *, void *);
-    void (*v)(struct ItemObject *);
+void StartLastItemInUseObjectAndInit(ItemInUse *itemInUse, s32 callKart) {
+    ItemObject *object;
+    s32 (*initFunc)(void *, void *);
+    void (*advanceFunc)(struct ItemObject *);
 
-    a->mObjectCount--;
-    b = a->mObjects[a->mObjectCount];
-    cb = gItemKinds[b->mKind].mInit;
-    StartItemInUseObject(a, b);
-    if (cb(a, b) == 0) {
-        if (a->mKartItems->mUnk_208 != FALSE) {
-            b->mUnk_78 |= data_021595ac;
-            f = 0;
+    itemInUse->mObjectCount--;
+    object = itemInUse->mObjects[itemInUse->mObjectCount];
+    initFunc = gItemKinds[object->mKind].mInit;
+    StartItemInUseObject(itemInUse, object);
+    if (initFunc(itemInUse, object) == 0) {
+        if (itemInUse->mKartItems->mUnk_208 != FALSE) {
+            object->mUnk_78 |= data_021595ac;
+            callKart = 0;
         }
     }
-    b->mDistanceSquaredAndFlags = gItemKinds[b->mKind].mViewTest(
-        b->mUnk_d0, b->mRadius << 1, gItemKinds[b->mKind].mUnk_5c, gItemKinds[b->mKind].mUnk_a4, 0x1f);
-    if (b->mFlags & 0x400000) {
-        func_020f90bc(b);
+    object->mDistanceSquaredAndFlags =
+        gItemKinds[object->mKind].mViewTest(object->mUnk_d0, object->mRadius << 1, gItemKinds[object->mKind].mUnk_5c,
+                                            gItemKinds[object->mKind].mUnk_a4, 0x1f);
+    if (object->mFlags & 0x400000) {
+        func_020f90bc(object);
     }
-    v = gItemKinds[b->mKind].mAdvance;
-    if ((b->mFlags & 0x180000) == 0) {
-        b->mAdvance = v;
+    advanceFunc = gItemKinds[object->mKind].mAdvance;
+    if ((object->mFlags & 0x180000) == 0) {
+        object->mAdvance = advanceFunc;
     }
-    if (f != 0) {
-        func_02071894(a->mKart);
+    if (callKart != 0) {
+        func_02071894(itemInUse->mKart);
     }
 }
 
 // The object must be the last one of the record.
-void StartItemInUseObjectAndCountDown(ItemInUse *a, ItemObject *v) {
-    a->mObjectCount = a->mObjectCount - 1;
-    StartItemInUseObject(a, v);
+void StartItemInUseObjectAndCountDown(ItemInUse *itemInUse, ItemObject *object) {
+    itemInUse->mObjectCount = itemInUse->mObjectCount - 1;
+    StartItemInUseObject(itemInUse, object);
 }
 
 // Entry 1 of gItemInUseStartTable. (the same one-line form above the other start, advance and remove entries:
 // StartItemInUseOneWithOrientation :886 entry 2, StartItemInUseCircle :1233 entry 4, AdvanceItemInUseOne :946 entry 1,
 // AdvanceItemInUseOneWithOrientation :983 entry 2,  :1056 entry 3, AdvanceItemInUseCircle :1250 entry 4,  :1162 entry
 // 3, RemoveItemInUseCircle :1306 entry 4)
-void StartItemInUseOne(ItemInUse *a) {
-    ItemInUse *p;
-    ItemObject *b;
-    Vec3 *v;
-    s32 d;
+void StartItemInUseOne(ItemInUse *itemInUse) {
+    ItemInUse *inUseAlias;
+    ItemObject *object;
+    Vec3 *forwardAxis;
+    s32 scaleOffset;
 
-    p = a;
-    b = a->mObjects[0];
-    v = &a->mUnk_02c.mUnk_18;
-    p->mUnk_090 = *v;
-    p->mUnk_09c.x = -v->x;
-    p->mUnk_09c.y = -v->y;
-    p->mUnk_09c.z = -v->z;
-    d = ((s64) a->mUnk_084.z << 14) >> 12;
-    VEC_MultAdd(a->mUnk_078 + d, &p->mUnk_09c, &a->mUnk_050, &p->mUnk_0a8);
-    VEC_MultAdd(((s64) a->mUnk_0e8 * a->mUnk_084.z) >> 12, &a->mUnk_02c.mUnk_0c, &p->mUnk_0a8, &b->mPos);
+    inUseAlias = itemInUse;
+    object = itemInUse->mObjects[0];
+    forwardAxis = &itemInUse->mKartOrientation.mUnk_18;
+    inUseAlias->mUnk_090 = *forwardAxis;
+    inUseAlias->mBehindDirection.x = -forwardAxis->x;
+    inUseAlias->mBehindDirection.y = -forwardAxis->y;
+    inUseAlias->mBehindDirection.z = -forwardAxis->z;
+    scaleOffset = ((s64) itemInUse->mKartScaleFactorTimesBase.z << 14) >> 12;
+    VEC_MultAdd(itemInUse->mUnk_078 + scaleOffset, &inUseAlias->mBehindDirection, &itemInUse->mKartDrawMatrixPos,
+                &inUseAlias->mBehindPos);
+    VEC_MultAdd(((s64) itemInUse->mUnk_0e8 * itemInUse->mKartScaleFactorTimesBase.z) >> 12,
+                &itemInUse->mKartOrientation.mUnk_0c, &inUseAlias->mBehindPos, &object->mPos);
 }
 
-void StartItemInUseOneWithOrientation(ItemInUse *a) {
-    ItemInUse *p;
-    ItemObject *b;
-    Vec3 *v;
-    s32 d;
+void StartItemInUseOneWithOrientation(ItemInUse *itemInUse) {
+    ItemInUse *inUseAlias;
+    ItemObject *object;
+    Vec3 *forwardAxis;
+    s32 scaleOffset;
 
-    p = a;
-    b = a->mObjects[0];
-    v = &a->mUnk_02c.mUnk_18;
-    p->mUnk_090 = *v;
-    p->mUnk_09c.x = -v->x;
-    p->mUnk_09c.y = -v->y;
-    p->mUnk_09c.z = -v->z;
-    d = ((s64) a->mUnk_084.z << 14) >> 12;
-    VEC_MultAdd(a->mUnk_078 + d, &p->mUnk_09c, &a->mUnk_050, &p->mUnk_0a8);
-    VEC_MultAdd(((s64) a->mUnk_0e8 * a->mUnk_084.z) >> 12, &a->mUnk_02c.mUnk_0c, &p->mUnk_0a8, &b->mPos);
-    b->mUnk_94.mUnk_00[1] = a->mUnk_02c.mUnk_0c;
-    b->mUnk_94.mUnk_00[2].x = -p->mUnk_09c.x;
-    b->mUnk_94.mUnk_00[2].y = -p->mUnk_09c.y;
-    b->mUnk_94.mUnk_00[2].z = -p->mUnk_09c.z;
-    Vec3CrossUnrounded(&b->mUnk_94.mUnk_00[1], &b->mUnk_94.mUnk_00[2], &b->mUnk_94.mUnk_00[0]);
+    inUseAlias = itemInUse;
+    object = itemInUse->mObjects[0];
+    forwardAxis = &itemInUse->mKartOrientation.mUnk_18;
+    inUseAlias->mUnk_090 = *forwardAxis;
+    inUseAlias->mBehindDirection.x = -forwardAxis->x;
+    inUseAlias->mBehindDirection.y = -forwardAxis->y;
+    inUseAlias->mBehindDirection.z = -forwardAxis->z;
+    scaleOffset = ((s64) itemInUse->mKartScaleFactorTimesBase.z << 14) >> 12;
+    VEC_MultAdd(itemInUse->mUnk_078 + scaleOffset, &inUseAlias->mBehindDirection, &itemInUse->mKartDrawMatrixPos,
+                &inUseAlias->mBehindPos);
+    VEC_MultAdd(((s64) itemInUse->mUnk_0e8 * itemInUse->mKartScaleFactorTimesBase.z) >> 12,
+                &itemInUse->mKartOrientation.mUnk_0c, &inUseAlias->mBehindPos, &object->mPos);
+    object->mUnk_94.mUnk_00[1] = itemInUse->mKartOrientation.mUnk_0c;
+    object->mUnk_94.mUnk_00[2].x = -inUseAlias->mBehindDirection.x;
+    object->mUnk_94.mUnk_00[2].y = -inUseAlias->mBehindDirection.y;
+    object->mUnk_94.mUnk_00[2].z = -inUseAlias->mBehindDirection.z;
+    Vec3CrossUnrounded(&object->mUnk_94.mUnk_00[1], &object->mUnk_94.mUnk_00[2], &object->mUnk_94.mUnk_00[0]);
 }
 
-void ComputeItemInUseObjectPosition(ItemInUse *a, Vec3 *v, Vec3 *w) {
-    ItemInUse *p;
-    Vec3 *q;
-    Vec3 t;
-    s32 d;
-    s64 sq;
+void ComputeItemInUseObjectPosition(ItemInUse *itemInUse, Vec3 *objectPos, Vec3 *behindPos) {
+    ItemInUse *inUseAlias;
+    Vec3 *smoothedDirection;
+    Vec3 direction;
+    s32 scaleOffset;
+    s64 lengthSquared;
 
-    p = a;
-    q = &p->mUnk_090;
-    t = a->mUnk_02c.mUnk_18;
-    if (a->mUnk_080 != 0) {
-        VEC_MultAdd(0x19a, &a->mUnk_06c, &t, &t);
+    inUseAlias = itemInUse;
+    smoothedDirection = &inUseAlias->mUnk_090;
+    direction = itemInUse->mKartOrientation.mUnk_18;
+    if (itemInUse->mMovingForward != 0) {
+        VEC_MultAdd(0x19a, &itemInUse->mKartMovement, &direction, &direction);
     }
-    q->x = ((s64) q->x * 0xccd) >> 12;
-    q->y = ((s64) q->y * 0xccd) >> 12;
-    q->z = ((s64) q->z * 0xccd) >> 12;
-    VEC_MultAdd(0x333, &t, q, q);
-    sq = (s64) q->x * q->x + (s64) q->y * q->y + (s64) q->z * q->z;
-    if (sq >= 0x10) {
-        Vec3NormalizeAndGetLengthUnchecked(q, &t);
+    smoothedDirection->x = ((s64) smoothedDirection->x * 0xccd) >> 12;
+    smoothedDirection->y = ((s64) smoothedDirection->y * 0xccd) >> 12;
+    smoothedDirection->z = ((s64) smoothedDirection->z * 0xccd) >> 12;
+    VEC_MultAdd(0x333, &direction, smoothedDirection, smoothedDirection);
+    lengthSquared = (s64) smoothedDirection->x * smoothedDirection->x +
+                    (s64) smoothedDirection->y * smoothedDirection->y +
+                    (s64) smoothedDirection->z * smoothedDirection->z;
+    if (lengthSquared >= 0x10) {
+        Vec3NormalizeAndGetLengthUnchecked(smoothedDirection, &direction);
     }
-    p->mUnk_09c.x = -t.x;
-    p->mUnk_09c.y = -t.y;
-    p->mUnk_09c.z = -t.z;
-    d = ((s64) a->mUnk_084.z << 14) >> 12;
-    VEC_MultAdd(a->mUnk_078 + d, &p->mUnk_09c, &a->mUnk_050, w);
-    if (a->mObjectCount > 1) {
-        p->mUnk_0e4 += (s32) (((s64) a->mKartHopHeight * 0x333) >> 12);
-        p->mUnk_0e4 -= (s32) (((s64) p->mUnk_0e4 * 0x266) >> 12);
+    inUseAlias->mBehindDirection.x = -direction.x;
+    inUseAlias->mBehindDirection.y = -direction.y;
+    inUseAlias->mBehindDirection.z = -direction.z;
+    scaleOffset = ((s64) itemInUse->mKartScaleFactorTimesBase.z << 14) >> 12;
+    VEC_MultAdd(itemInUse->mUnk_078 + scaleOffset, &inUseAlias->mBehindDirection, &itemInUse->mKartDrawMatrixPos,
+                behindPos);
+    if (itemInUse->mObjectCount > 1) {
+        inUseAlias->mUnk_0e4 += (s32) (((s64) itemInUse->mKartHopHeight * 0x333) >> 12);
+        inUseAlias->mUnk_0e4 -= (s32) (((s64) inUseAlias->mUnk_0e4 * 0x266) >> 12);
     } else {
-        p->mUnk_0e4 += (s32) (((s64) a->mKartHopHeight * 0xd1f) >> 12);
-        p->mUnk_0e4 -= (s32) (((s64) p->mUnk_0e4 * 0x68f) >> 12);
+        inUseAlias->mUnk_0e4 += (s32) (((s64) itemInUse->mKartHopHeight * 0xd1f) >> 12);
+        inUseAlias->mUnk_0e4 -= (s32) (((s64) inUseAlias->mUnk_0e4 * 0x68f) >> 12);
     }
-    VEC_MultAdd(p->mUnk_0e4 - a->mKartHopHeight + (s32) (((s64) a->mUnk_0e8 * a->mUnk_084.z) >> 12),
-                &a->mUnk_02c.mUnk_0c, w, v);
+    VEC_MultAdd(inUseAlias->mUnk_0e4 - itemInUse->mKartHopHeight +
+                    (s32) (((s64) itemInUse->mUnk_0e8 * itemInUse->mKartScaleFactorTimesBase.z) >> 12),
+                &itemInUse->mKartOrientation.mUnk_0c, behindPos, objectPos);
 }
 
-void AdvanceItemInUseOne(ItemInUse *a) {
-    ItemObject *b;
-    KartItems *c;
-    s32 n;
-    enum { K0 } k, i;
+void AdvanceItemInUseOne(ItemInUse *itemInUse) {
+    ItemObject *object;
+    KartItems *kartItems;
+    s32 previousScale;
+    enum { K0 } kind, entryIndex;
 
-    b = a->mObjects[0];
-    c = a->mKartItems;
-    n = b->mScale.z;
-    ComputeItemInUseObjectPosition(a, &b->mPos, &a->mUnk_0a8);
-    if (b->mAgeFrames > 0xc) {
-        k = b->mKind;
-        if (GrowItemObjectScale(b, gItemKinds[k].mUnk_70, 0x333) != 0) {
-            SetItemObjectScaleByRatios(b, a->mUnk_084.x, a->mUnk_084.y);
+    object = itemInUse->mObjects[0];
+    kartItems = itemInUse->mKartItems;
+    previousScale = object->mScale.z;
+    ComputeItemInUseObjectPosition(itemInUse, &object->mPos, &itemInUse->mBehindPos);
+    if (object->mAgeFrames > 0xc) {
+        kind = object->mKind;
+        if (GrowItemObjectScale(object, gItemKinds[kind].mUnk_70, 0x333) != 0) {
+            SetItemObjectScaleByRatios(object, itemInUse->mKartScaleFactorTimesBase.x,
+                                       itemInUse->mKartScaleFactorTimesBase.y);
         }
     }
-    if (n < 0xccd && b->mScale.z >= 0xccd && a->mKartIndex == gRaceSetup->mEntryIndex) {
-        func_020719bc(&c->mKart->mSoundSource, 0xe7);
+    if (previousScale < 0xccd && object->mScale.z >= 0xccd && itemInUse->mKartIndex == gRaceSetup->mEntryIndex) {
+        func_020719bc(&kartItems->mKart->mSoundSource, 0xe7);
     }
-    if ((c->mFlags & 0x284) == 0x284 && a->mObjectKind != 0xf && a->mObjectStartFramesLeft == 0) {
-        StartLastItemInUseObjectAndInit(a, 1);
+    if ((kartItems->mFlags & 0x284) == 0x284 && itemInUse->mObjectKind != 0xf &&
+        itemInUse->mObjectStartFramesLeft == 0) {
+        StartLastItemInUseObjectAndInit(itemInUse, 1);
     }
-    if (a->mUnk_170 != NULL) {
-        c->mActiveItem = 0x13;
-        i = c->mEntryIndex;
-        if ((u16) (data_0217562a[i].mBits & ITEM_THROW_FORWARD_BIT) != 0) {
-            c->mFlags |= data_021595a0;
+    if (itemInUse->mUnk_170 != NULL) {
+        kartItems->mActiveItem = 0x13;
+        entryIndex = kartItems->mEntryIndex;
+        if ((u16) (data_0217562a[entryIndex].mBits & ITEM_THROW_FORWARD_BIT) != 0) {
+            kartItems->mFlags |= data_021595a0;
         }
-        i = c->mEntryIndex;
-        if ((u16) (data_0217562a[i].mBits & PAD_KEY_DOWN) != 0) {
-            c->mFlags |= data_021595a4;
+        entryIndex = kartItems->mEntryIndex;
+        if ((u16) (data_0217562a[entryIndex].mBits & PAD_KEY_DOWN) != 0) {
+            kartItems->mFlags |= data_021595a4;
         }
-        StartLastItemInUseObjectAndInit(a, 1);
+        StartLastItemInUseObjectAndInit(itemInUse, 1);
     }
-    c->mFlags |= data_021595a8;
+    kartItems->mFlags |= data_021595a8;
 }
 
-void AdvanceItemInUseOneWithOrientation(ItemInUse *a) {
-    ItemInUse *c;
-    ItemObject *b;
-    Vec3 v;
+void AdvanceItemInUseOneWithOrientation(ItemInUse *itemInUse) {
+    ItemInUse *inUseAlias;
+    ItemObject *object;
+    Vec3 direction;
     s64 t;
-    s64 sq;
-    enum { K0 } k;
+    s64 lengthSquared;
+    enum { K0 } kind;
 
-    c = a;
-    b = a->mObjects[0];
-    AdvanceItemInUseOne(a);
-    if ((b->mFlags & 0x1000) != 0) {
-        v.x = ((s64) c->mUnk_09c.x << 13) >> 12;
-        v.y = ((s64) c->mUnk_09c.y << 13) >> 12;
-        v.z = ((s64) c->mUnk_09c.z << 13) >> 12;
-        VEC_Add(&v, &a->mUnk_02c.mUnk_18, &v);
-        sq = (s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z;
-        if (sq >= 0x10) {
-            Vec3NormalizeAndGetLengthUnchecked(&v, &v);
+    inUseAlias = itemInUse;
+    object = itemInUse->mObjects[0];
+    AdvanceItemInUseOne(itemInUse);
+    if ((object->mFlags & 0x1000) != 0) {
+        direction.x = ((s64) inUseAlias->mBehindDirection.x << 13) >> 12;
+        direction.y = ((s64) inUseAlias->mBehindDirection.y << 13) >> 12;
+        direction.z = ((s64) inUseAlias->mBehindDirection.z << 13) >> 12;
+        VEC_Add(&direction, &itemInUse->mKartOrientation.mUnk_18, &direction);
+        lengthSquared =
+            (s64) direction.x * direction.x + (s64) direction.y * direction.y + (s64) direction.z * direction.z;
+        if (lengthSquared >= 0x10) {
+            Vec3NormalizeAndGetLengthUnchecked(&direction, &direction);
         }
-        b->mUnk_94.mUnk_00[2].x = -v.x;
-        b->mUnk_94.mUnk_00[2].y = -v.y;
-        b->mUnk_94.mUnk_00[2].z = -v.z;
-        b->mUnk_94.mUnk_00[1] = a->mUnk_02c.mUnk_0c;
-        Vec3CrossUnrounded(&b->mUnk_94.mUnk_00[1], &b->mUnk_94.mUnk_00[2], &b->mUnk_94.mUnk_00[0]);
+        object->mUnk_94.mUnk_00[2].x = -direction.x;
+        object->mUnk_94.mUnk_00[2].y = -direction.y;
+        object->mUnk_94.mUnk_00[2].z = -direction.z;
+        object->mUnk_94.mUnk_00[1] = itemInUse->mKartOrientation.mUnk_0c;
+        Vec3CrossUnrounded(&object->mUnk_94.mUnk_00[1], &object->mUnk_94.mUnk_00[2], &object->mUnk_94.mUnk_00[0]);
     }
-    k = b->mKind;
-    if (gItemKinds[k].mAdvanceInUse != NULL) {
-        gItemKinds[k].mAdvanceInUse(a, b);
+    kind = object->mKind;
+    if (gItemKinds[kind].mAdvanceInUse != NULL) {
+        gItemKinds[kind].mAdvanceInUse(itemInUse, object);
     }
 }
 
 // Entry 1 and 2 of gItemInUseRemoveTable.
-void RemoveItemInUseOne(ItemInUse *a, ItemObject *b, ItemObject *c) {
-    StartItemInUseObjectAndCountDown(a, c);
+void RemoveItemInUseOne(ItemInUse *itemInUse, ItemObject *index, ItemObject *object) {
+    StartItemInUseObjectAndCountDown(itemInUse, object);
 }
 
-void StartItemInUseTrail(ItemInUse *p) {
-    ItemObject *b;
-    Vec3 *q;
-    s32 d;
+void StartItemInUseTrail(ItemInUse *itemInUse) {
+    ItemObject *object;
+    Vec3 *objectPos;
+    s32 scaleOffset;
     s32 i;
-    Vec3 *u;
-    ItemObject **l;
+    Vec3 *forwardAxis;
+    ItemObject **objects;
 
-    l = p->mObjects;
-    b = l[0];
-    q = &b->mPos;
-    u = &p->mUnk_02c.mUnk_18;
-    p->mUnk_090 = *u;
-    p->mUnk_09c.x = -p->mUnk_02c.mUnk_18.x;
-    p->mUnk_09c.y = -u->y;
-    p->mUnk_09c.z = -u->z;
-    d = ((s64) p->mUnk_084.z << 14) >> 12;
-    VEC_MultAdd(p->mUnk_078 + d, &p->mUnk_09c, &p->mUnk_050, &p->mUnk_0a8);
-    VEC_MultAdd(((s64) p->mUnk_0e8 * p->mUnk_084.z) >> 12, &p->mUnk_02c.mUnk_0c, &p->mUnk_0a8, q);
-    l[1]->mPos = p->mObjects[0]->mPos;
-    l[2]->mPos = l[1]->mPos;
-    p->mUnk_0b4 = p->mUnk_0a8;
-    p->mUnk_0c0 = p->mUnk_0b4;
-    p->mUnk_0cc[0] = 0xee1;
-    p->mUnk_0cc[1] = p->mUnk_0cc[0];
-    p->mUnk_0cc[2] = p->mUnk_0cc[1];
-    p->mUnk_0d8 = p->mUnk_02c.mUnk_18;
-    p->mUnk_16c = 0;
+    objects = itemInUse->mObjects;
+    object = objects[0];
+    objectPos = &object->mPos;
+    forwardAxis = &itemInUse->mKartOrientation.mUnk_18;
+    itemInUse->mUnk_090 = *forwardAxis;
+    itemInUse->mBehindDirection.x = -itemInUse->mKartOrientation.mUnk_18.x;
+    itemInUse->mBehindDirection.y = -forwardAxis->y;
+    itemInUse->mBehindDirection.z = -forwardAxis->z;
+    scaleOffset = ((s64) itemInUse->mKartScaleFactorTimesBase.z << 14) >> 12;
+    VEC_MultAdd(itemInUse->mUnk_078 + scaleOffset, &itemInUse->mBehindDirection, &itemInUse->mKartDrawMatrixPos,
+                &itemInUse->mBehindPos);
+    VEC_MultAdd(((s64) itemInUse->mUnk_0e8 * itemInUse->mKartScaleFactorTimesBase.z) >> 12,
+                &itemInUse->mKartOrientation.mUnk_0c, &itemInUse->mBehindPos, objectPos);
+    objects[1]->mPos = itemInUse->mObjects[0]->mPos;
+    objects[2]->mPos = objects[1]->mPos;
+    itemInUse->mUnk_0b4 = itemInUse->mBehindPos;
+    itemInUse->mUnk_0c0 = itemInUse->mUnk_0b4;
+    itemInUse->mUnk_0cc[0] = 0xee1;
+    itemInUse->mUnk_0cc[1] = itemInUse->mUnk_0cc[0];
+    itemInUse->mUnk_0cc[2] = itemInUse->mUnk_0cc[1];
+    itemInUse->mUnk_0d8 = itemInUse->mKartOrientation.mUnk_18;
+    itemInUse->mUnk_16c = 0;
     for (i = 0; i < 0x10; i++) {
-        p->mUnk_0ec[0][i] = 0;
-        p->mUnk_0ec[1][i] = 0;
+        itemInUse->mUnk_0ec[0][i] = 0;
+        itemInUse->mUnk_0ec[1][i] = 0;
     }
-    if (p->mKartIndex == gRaceSetup->mEntryIndex) {
-        func_020719bc(&p->mKartItems->mKart->mSoundSource, 0xe7);
+    if (itemInUse->mKartIndex == gRaceSetup->mEntryIndex) {
+        func_020719bc(&itemInUse->mKartItems->mKart->mSoundSource, 0xe7);
     }
 }
 
-void AdvanceItemInUseTrail(ItemInUse *a) {
-    KartItems *c;
-    ItemObject **q;
-    s32 n;
-    s32 k;
-    Vec3 *v;
-    s32 s14;
-    s32 k70;
-    s32 f;
+void AdvanceItemInUseTrail(ItemInUse *itemInUse) {
+    KartItems *kartItems;
+    ItemObject **objects;
+    s32 objectCount;
+    s32 historyIndex;
+    Vec3 *behindDirection;
+    s32 speedFactor;
+    s32 scaleLimit;
+    s32 maxGap;
     s32 d;
-    s32 e;
+    s32 delayedHopHeight;
     s32 s;
-    Vec3 v40;
-    Vec3 v4c;
+    Vec3 kartVector;
+    Vec3 offset;
     Vec3 v58;
-    Vec3 *w;
+    Vec3 *previousPos;
     s32 i;
-    s32 x;
-    Vec3 *t;
-    ItemObject *b;
-    ItemInUse *p;
+    s32 minDistance;
+    Vec3 *trailPos;
+    ItemObject *object;
+    ItemInUse *inUseAlias;
 
-    p = a;
-    c = a->mKartItems;
-    b = a->mObjects[0];
-    n = a->mObjectCount;
-    v40 = c->mKart->mUnk_1fc;
-    q = a->mObjects;
-    x = a->mUnk_078 + (s32) (((s64) a->mUnk_084.z << 14) >> 12);
-    w = &p->mUnk_0a8;
-    f = ((s64) a->mUnk_084.z * 0x3000) >> 12;
-    v = &p->mUnk_09c;
-    k70 = gItemKinds[b->mKind].mUnk_70;
-    ComputeItemInUseObjectPosition(a, &b->mPos, w);
-    if (GrowItemObjectScale(b, k70, 0x19a) != 0) {
-        SetItemObjectScaleByRatios(b, a->mUnk_084.x, a->mUnk_084.y);
+    inUseAlias = itemInUse;
+    kartItems = itemInUse->mKartItems;
+    object = itemInUse->mObjects[0];
+    objectCount = itemInUse->mObjectCount;
+    kartVector = kartItems->mKart->mUnk_1fc;
+    objects = itemInUse->mObjects;
+    minDistance = itemInUse->mUnk_078 + (s32) (((s64) itemInUse->mKartScaleFactorTimesBase.z << 14) >> 12);
+    previousPos = &inUseAlias->mBehindPos;
+    maxGap = ((s64) itemInUse->mKartScaleFactorTimesBase.z * 0x3000) >> 12;
+    behindDirection = &inUseAlias->mBehindDirection;
+    scaleLimit = gItemKinds[object->mKind].mUnk_70;
+    ComputeItemInUseObjectPosition(itemInUse, &object->mPos, previousPos);
+    if (GrowItemObjectScale(object, scaleLimit, 0x19a) != 0) {
+        SetItemObjectScaleByRatios(object, itemInUse->mKartScaleFactorTimesBase.x,
+                                   itemInUse->mKartScaleFactorTimesBase.y);
     }
-    if (n > 1) {
-        if (a->mUnk_080 != 0) {
-            VEC_Subtract(&p->mUnk_0d8, &p->mUnk_09c, &v58);
-            s = ((s64) a->mKartVelocityLength * a->mKartVelocityLength) >> 12;
+    if (objectCount > 1) {
+        if (itemInUse->mMovingForward != 0) {
+            VEC_Subtract(&inUseAlias->mUnk_0d8, &inUseAlias->mBehindDirection, &v58);
+            s = ((s64) itemInUse->mKartVelocityLength * itemInUse->mKartVelocityLength) >> 12;
             v58.x = ((s64) v58.x * s) >> 12;
             v58.y = ((s64) v58.y * s) >> 12;
             v58.z = ((s64) v58.z * s) >> 12;
         }
-        p->mUnk_0d8 = p->mUnk_09c;
-        k = p->mUnk_16c & 0xf;
-        p->mUnk_16c = p->mUnk_16c + 1;
-        p->mUnk_0ec[0][k] = p->mUnk_0e4;
-        s14 = ((s64) a->mKartVelocityLength << 9) >> 12;
-        if (s14 > 0x1000) {
-            s14 = 0x1000;
+        inUseAlias->mUnk_0d8 = inUseAlias->mBehindDirection;
+        historyIndex = inUseAlias->mUnk_16c & 0xf;
+        inUseAlias->mUnk_16c = inUseAlias->mUnk_16c + 1;
+        inUseAlias->mUnk_0ec[0][historyIndex] = inUseAlias->mUnk_0e4;
+        speedFactor = ((s64) itemInUse->mKartVelocityLength << 9) >> 12;
+        if (speedFactor > 0x1000) {
+            speedFactor = 0x1000;
         }
     }
-    for (i = 1; i < n; i++) {
-        b = q[i];
-        t = &(&p->mUnk_0a8)[i];
-        VEC_Add(t, &v40, t);
-        if (a->mObjectStartFramesLeft != 0) {
-            VEC_Add(&q[i - 1]->mVelocity, &b->mVelocity, &b->mVelocity);
+    for (i = 1; i < objectCount; i++) {
+        object = objects[i];
+        trailPos = &(&inUseAlias->mBehindPos)[i];
+        VEC_Add(trailPos, &kartVector, trailPos);
+        if (itemInUse->mObjectStartFramesLeft != 0) {
+            VEC_Add(&objects[i - 1]->mVelocity, &object->mVelocity, &object->mVelocity);
         }
-        if (a->mUnk_080 != 0) {
-            VEC_MultAdd(i * 0x1800, &v58, t, t);
+        if (itemInUse->mMovingForward != 0) {
+            VEC_MultAdd(i * 0x1800, &v58, trailPos, trailPos);
         }
-        if (p->mUnk_0cc[i] > 0) {
-            VEC_MultAdd(p->mUnk_0cc[i], &a->mUnk_06c, t, t);
+        if (inUseAlias->mUnk_0cc[i] > 0) {
+            VEC_MultAdd(inUseAlias->mUnk_0cc[i], &itemInUse->mKartMovement, trailPos, trailPos);
         }
-        VEC_Subtract(t, &a->mUnk_050, &v4c);
+        VEC_Subtract(trailPos, &itemInUse->mKartDrawMatrixPos, &offset);
         if (i > 1) {
-            x -= (i - 1) << 13;
+            minDistance -= (i - 1) << 13;
         }
-        d = x - Vec3DotUnrounded(&v4c, v);
+        d = minDistance - Vec3DotUnrounded(&offset, behindDirection);
         if (d > 0) {
-            VEC_MultAdd(d, v, t, t);
+            VEC_MultAdd(d, behindDirection, trailPos, trailPos);
         }
-        d = ((s64) (w->y - t->y) * 0x666) >> 12;
+        d = ((s64) (previousPos->y - trailPos->y) * 0x666) >> 12;
         if (d < 0) {
-            t->y = t->y + d;
+            trailPos->y = trailPos->y + d;
         }
-        e = p->mUnk_0ec[i - 1][(k - 6) & 0xf];
+        delayedHopHeight = inUseAlias->mUnk_0ec[i - 1][(historyIndex - 6) & 0xf];
         if (i == 1) {
-            p->mUnk_0ec[1][k] = e;
+            inUseAlias->mUnk_0ec[1][historyIndex] = delayedHopHeight;
         }
-        d = e - a->mKartHopHeight;
-        d = ((s64) d * s14) >> 12;
-        VEC_Subtract(t, w, &v4c);
-        if ((s64) v4c.x * v4c.x + (s64) v4c.y * v4c.y + (s64) v4c.z * v4c.z >= (s64) f * f) {
-            if ((s64) v4c.x * v4c.x + (s64) v4c.y * v4c.y + (s64) v4c.z * v4c.z >= 0x10) {
-                Vec3NormalizeAndGetLengthUnchecked(&v4c, &v4c);
+        d = delayedHopHeight - itemInUse->mKartHopHeight;
+        d = ((s64) d * speedFactor) >> 12;
+        VEC_Subtract(trailPos, previousPos, &offset);
+        if ((s64) offset.x * offset.x + (s64) offset.y * offset.y + (s64) offset.z * offset.z >=
+            (s64) maxGap * maxGap) {
+            if ((s64) offset.x * offset.x + (s64) offset.y * offset.y + (s64) offset.z * offset.z >= 0x10) {
+                Vec3NormalizeAndGetLengthUnchecked(&offset, &offset);
             }
-            VEC_MultAdd(f, &v4c, w, t);
-            if (p->mUnk_0cc[i] > 0) {
-                p->mUnk_0cc[i] -= 0x3d;
+            VEC_MultAdd(maxGap, &offset, previousPos, trailPos);
+            if (inUseAlias->mUnk_0cc[i] > 0) {
+                inUseAlias->mUnk_0cc[i] -= 0x3d;
             }
         }
-        VEC_MultAdd(d + (s32) (((s64) a->mUnk_084.z * 0x4333) >> 12), &a->mUnk_02c.mUnk_0c, t, &b->mPos);
-        w = t;
-        if (GrowItemObjectScale(b, k70, 0x19a + i * 0xcd) != 0) {
-            SetItemObjectScaleByRatios(b, a->mUnk_084.x, a->mUnk_084.y);
+        VEC_MultAdd(d + (s32) (((s64) itemInUse->mKartScaleFactorTimesBase.z * 0x4333) >> 12),
+                    &itemInUse->mKartOrientation.mUnk_0c, trailPos, &object->mPos);
+        previousPos = trailPos;
+        if (GrowItemObjectScale(object, scaleLimit, 0x19a + i * 0xcd) != 0) {
+            SetItemObjectScaleByRatios(object, itemInUse->mKartScaleFactorTimesBase.x,
+                                       itemInUse->mKartScaleFactorTimesBase.y);
         }
     }
-    if ((c->mFlags & 0x244) == 0x244 && a->mObjectKind != 0xf && a->mObjectStartFramesLeft == 0) {
-        StartLastItemInUseObjectAndInit(a, 1);
+    if ((kartItems->mFlags & 0x244) == 0x244 && itemInUse->mObjectKind != 0xf &&
+        itemInUse->mObjectStartFramesLeft == 0) {
+        StartLastItemInUseObjectAndInit(itemInUse, 1);
     }
 }
 
-void RemoveItemInUseTrail(ItemInUse *a, s32 i, ItemObject *v) {
-    s32 k;
-    ItemObject *e;
+void RemoveItemInUseTrail(ItemInUse *itemInUse, s32 i, ItemObject *object) {
+    s32 releaseCount;
+    ItemObject *released;
     s32 sum;
     s32 b;
     s32 d;
 
-    k = 0;
+    releaseCount = 0;
     sum = 0;
     d = i;
     d = d + 1;
-    if (a->mObjectCount > (b = d)) {
+    if (itemInUse->mObjectCount > (b = d)) {
         s32 f = 0;
         d = f;
         do {
-            e = a->mObjects[a->mObjectCount - 1];
-            StartLastItemInUseObjectAndInit(a, 0);
+            released = itemInUse->mObjects[itemInUse->mObjectCount - 1];
+            StartLastItemInUseObjectAndInit(itemInUse, 0);
             f = f + 0x4cd;
-            if (k++ > 0) {
-                VEC_MultAdd(f, &e->mNormal, &e->mVelocity, &e->mVelocity);
+            if (releaseCount++ > 0) {
+                VEC_MultAdd(f, &released->mNormal, &released->mVelocity, &released->mVelocity);
             }
-        } while (a->mObjectCount > (b = i + 1));
+        } while (itemInUse->mObjectCount > (b = i + 1));
         f = d + 1;
     }
-    StartItemInUseObjectAndCountDown(a, v);
+    StartItemInUseObjectAndCountDown(itemInUse, object);
 }
 
-void PlaceItemInUseCircleObjects(ItemInUse *a) {
-    ItemObject **d;
-    s32 n;
-    s32 c;
-    s32 x;
+void PlaceItemInUseCircleObjects(ItemInUse *itemInUse) {
+    ItemObject **objects;
+    s32 objectCount;
+    s32 radius;
+    s32 offsetX;
     s32 k;
     s32 m;
     s32 t;
     s32 u;
     s32 i;
-    Vec3 *q;
-    Vec3 *p1;
-    Vec3 *p0;
-    Vec3 *p2;
-    s32 y;
+    Vec3 *objectPos;
+    Vec3 *thirdAxis;
+    Vec3 *firstAxis;
+    Vec3 *center;
+    s32 offsetY;
 
-    i = a->mCircleAngle >> 4;
-    n = a->mObjectCount;
-    c = a->mCircleRadius;
-    y = ((s64) c * gPairsByAngle[i * 2 + 1]) >> 12;
-    x = ((s64) c * gPairsByAngle[i * 2]) >> 12;
-    t = -y >> 1;
-    u = -x >> 1;
-    d = a->mObjects;
-    p1 = &a->mUnk_02c.mUnk_18;
-    p0 = &a->mUnk_02c.mUnk_00;
-    p2 = &a->mCircleCenter;
-    k = ((s64) y * 0xddb) >> 12;
-    m = ((s64) x * 0xddb) >> 12;
-    for (i = 0; i < n; i++) {
-        q = &d[i]->mPos;
-        if (a->mCircleSlots[i] == 0) {
-            VEC_MultAdd(y, p1, p2, q);
-            VEC_MultAdd(x, p0, q, q);
-        } else if (a->mCircleSlots[i] == 1) {
-            VEC_MultAdd(t - m, p1, p2, q);
-            VEC_MultAdd(u + k, p0, q, q);
+    i = itemInUse->mCircleAngle >> 4;
+    objectCount = itemInUse->mObjectCount;
+    radius = itemInUse->mCircleRadius;
+    offsetY = ((s64) radius * gPairsByAngle[i * 2 + 1]) >> 12;
+    offsetX = ((s64) radius * gPairsByAngle[i * 2]) >> 12;
+    t = -offsetY >> 1;
+    u = -offsetX >> 1;
+    objects = itemInUse->mObjects;
+    thirdAxis = &itemInUse->mKartOrientation.mUnk_18;
+    firstAxis = &itemInUse->mKartOrientation.mUnk_00;
+    center = &itemInUse->mCircleCenter;
+    k = ((s64) offsetY * 0xddb) >> 12;
+    m = ((s64) offsetX * 0xddb) >> 12;
+    for (i = 0; i < objectCount; i++) {
+        objectPos = &objects[i]->mPos;
+        if (itemInUse->mCircleSlots[i] == 0) {
+            VEC_MultAdd(offsetY, thirdAxis, center, objectPos);
+            VEC_MultAdd(offsetX, firstAxis, objectPos, objectPos);
+        } else if (itemInUse->mCircleSlots[i] == 1) {
+            VEC_MultAdd(t - m, thirdAxis, center, objectPos);
+            VEC_MultAdd(u + k, firstAxis, objectPos, objectPos);
         } else {
-            VEC_MultAdd(t + m, p1, p2, q);
-            VEC_MultAdd(u - k, p0, q, q);
+            VEC_MultAdd(t + m, thirdAxis, center, objectPos);
+            VEC_MultAdd(u - k, firstAxis, objectPos, objectPos);
         }
     }
 }
 
-void StartItemInUseCircle(ItemInUse *a) {
+void StartItemInUseCircle(ItemInUse *itemInUse) {
     u16 i;
 
-    a->mCircleAngle = 0;
-    a->mCircleAngleSpeed = 0x258;
-    a->mCircleRadius = 0;
-    a->mUnk_17c = 0;
+    itemInUse->mCircleAngle = 0;
+    itemInUse->mCircleAngleSpeed = 0x258;
+    itemInUse->mCircleRadius = 0;
+    itemInUse->mUnk_17c = 0;
     for (i = 0; i < 3; i++) {
-        a->mCircleSlots[i] = i;
+        itemInUse->mCircleSlots[i] = i;
     }
-    VEC_MultAdd(((s64) a->mUnk_084.z * 0x4333) >> 12, &a->mUnk_02c.mUnk_0c, &a->mUnk_050, &a->mCircleCenter);
-    PlaceItemInUseCircleObjects(a);
-    if (a->mKartIndex == gRaceSetup->mEntryIndex) {
-        func_020719bc(&a->mKartItems->mKart->mSoundSource, 0xe7);
+    VEC_MultAdd(((s64) itemInUse->mKartScaleFactorTimesBase.z * 0x4333) >> 12, &itemInUse->mKartOrientation.mUnk_0c,
+                &itemInUse->mKartDrawMatrixPos, &itemInUse->mCircleCenter);
+    PlaceItemInUseCircleObjects(itemInUse);
+    if (itemInUse->mKartIndex == gRaceSetup->mEntryIndex) {
+        func_020719bc(&itemInUse->mKartItems->mKart->mSoundSource, 0xe7);
     }
 }
 
-void AdvanceItemInUseCircle(ItemInUse *a) {
-    KartItems *c;
+void AdvanceItemInUseCircle(ItemInUse *itemInUse) {
+    KartItems *kartItems;
     s32 i;
-    s32 n;
-    s32 e;
-    u32 d;
-    ItemObject *q;
-    enum { K0 } k;
+    s32 objectCount;
+    s32 scaleLimit;
+    u32 speedAngle;
+    ItemObject *object;
+    enum { K0 } kind;
 
-    c = a->mKartItems;
-    n = a->mObjectCount;
-    d = (u16) (((u32) (a->mKartVelocityLength * 0x1e)) >> 12);
-    if (a->mKart->mState != KART_STATE_NORMAL) {
-        a->mCircleAngleSpeed = 0;
+    kartItems = itemInUse->mKartItems;
+    objectCount = itemInUse->mObjectCount;
+    speedAngle = (u16) (((u32) (itemInUse->mKartVelocityLength * 0x1e)) >> 12);
+    if (itemInUse->mKart->mState != KART_STATE_NORMAL) {
+        itemInUse->mCircleAngleSpeed = 0;
     } else {
-        if (a->mCircleAngleSpeed < 0x578) {
-            a->mCircleAngleSpeed = a->mCircleAngleSpeed + 0x46;
+        if (itemInUse->mCircleAngleSpeed < 0x578) {
+            itemInUse->mCircleAngleSpeed = itemInUse->mCircleAngleSpeed + 0x46;
         }
-        a->mCircleAngle = a->mCircleAngle + a->mCircleAngleSpeed;
-        if (d >= 0x12c) {
-            d = 0x12c;
+        itemInUse->mCircleAngle = itemInUse->mCircleAngle + itemInUse->mCircleAngleSpeed;
+        if (speedAngle >= 0x12c) {
+            speedAngle = 0x12c;
         }
-        a->mCircleAngle = a->mCircleAngle + d;
+        itemInUse->mCircleAngle = itemInUse->mCircleAngle + speedAngle;
     }
-    a->mUnk_17c = a->mUnk_17c + (s32) (((s64) a->mKartHopHeight * 0x666) >> 12);
-    a->mUnk_17c = a->mUnk_17c - (s32) (((s64) a->mUnk_17c * 0x333) >> 12);
-    VEC_MultAdd((a->mUnk_17c - a->mKartHopHeight) + (s32) (((s64) a->mUnk_084.z * 0x4333) >> 12), &a->mUnk_02c.mUnk_0c,
-                &a->mUnk_050, &a->mCircleCenter);
-    a->mCircleRadius =
-        a->mCircleRadius +
-        (s32) (((s64) ((a->mUnk_078 + (s32) (((s64) a->mUnk_084.z * 0x3000) >> 12)) - a->mCircleRadius) * 0x333) >> 12);
-    PlaceItemInUseCircleObjects(a);
+    itemInUse->mUnk_17c = itemInUse->mUnk_17c + (s32) (((s64) itemInUse->mKartHopHeight * 0x666) >> 12);
+    itemInUse->mUnk_17c = itemInUse->mUnk_17c - (s32) (((s64) itemInUse->mUnk_17c * 0x333) >> 12);
+    VEC_MultAdd((itemInUse->mUnk_17c - itemInUse->mKartHopHeight) +
+                    (s32) (((s64) itemInUse->mKartScaleFactorTimesBase.z * 0x4333) >> 12),
+                &itemInUse->mKartOrientation.mUnk_0c, &itemInUse->mKartDrawMatrixPos, &itemInUse->mCircleCenter);
+    itemInUse->mCircleRadius =
+        itemInUse->mCircleRadius +
+        (s32) (((s64) ((itemInUse->mUnk_078 + (s32) (((s64) itemInUse->mKartScaleFactorTimesBase.z * 0x3000) >> 12)) -
+                       itemInUse->mCircleRadius) *
+                0x333) >>
+               12);
+    PlaceItemInUseCircleObjects(itemInUse);
     i = 0;
-    k = a->mObjectKind;
-    e = gItemKinds[k].mUnk_70;
-    for (; i < n; i++) {
-        q = a->mObjects[i];
-        if (GrowItemObjectScale(q, e, 0x19a) != 0) {
-            SetItemObjectScaleByRatios(q, a->mUnk_084.x, a->mUnk_084.y);
+    kind = itemInUse->mObjectKind;
+    scaleLimit = gItemKinds[kind].mUnk_70;
+    for (; i < objectCount; i++) {
+        object = itemInUse->mObjects[i];
+        if (GrowItemObjectScale(object, scaleLimit, 0x19a) != 0) {
+            SetItemObjectScaleByRatios(object, itemInUse->mKartScaleFactorTimesBase.x,
+                                       itemInUse->mKartScaleFactorTimesBase.y);
         }
     }
-    if (a->mKartIndex == gRaceSetup->mEntryIndex) {
-        func_020719a8((u32) c->mKart, n + 0xe0);
+    if (itemInUse->mKartIndex == gRaceSetup->mEntryIndex) {
+        func_020719a8((u32) kartItems->mKart, objectCount + 0xe0);
     }
-    if ((c->mFlags & 0x244) != 0x244) {
+    if ((kartItems->mFlags & 0x244) != 0x244) {
         return;
     }
-    if (a->mObjectKind == 0xf) {
+    if (itemInUse->mObjectKind == 0xf) {
         return;
     }
-    if (a->mObjectStartFramesLeft != 0) {
+    if (itemInUse->mObjectStartFramesLeft != 0) {
         return;
     }
-    StartLastItemInUseObjectAndInit(a, 1);
+    StartLastItemInUseObjectAndInit(itemInUse, 1);
 }
 
-void RemoveItemInUseCircle(ItemInUse *a, s32 i, ItemObject *v) {
-    s32 n;
-    u16 h;
-    ItemObject *t;
+void RemoveItemInUseCircle(ItemInUse *itemInUse, s32 i, ItemObject *object) {
+    s32 lastIndex;
+    u16 lastSlot;
+    ItemObject *lastObject;
 
-    n = a->mObjectCount - 1;
-    if (i != n) {
-        t = a->mObjects[n];
-        h = a->mCircleSlots[n];
-        a->mObjects[n] = v;
-        a->mCircleSlots[n] = a->mCircleSlots[i];
-        a->mObjects[i] = t;
-        a->mCircleSlots[i] = h;
+    lastIndex = itemInUse->mObjectCount - 1;
+    if (i != lastIndex) {
+        lastObject = itemInUse->mObjects[lastIndex];
+        lastSlot = itemInUse->mCircleSlots[lastIndex];
+        itemInUse->mObjects[lastIndex] = object;
+        itemInUse->mCircleSlots[lastIndex] = itemInUse->mCircleSlots[i];
+        itemInUse->mObjects[i] = lastObject;
+        itemInUse->mCircleSlots[i] = lastSlot;
     }
-    StartItemInUseObjectAndCountDown(a, v);
+    StartItemInUseObjectAndCountDown(itemInUse, object);
 }
 
-void ResetItemInUse(ItemInUse *a) {
+void ResetItemInUse(ItemInUse *itemInUse) {
     s32 i;
 
-    a->mObjectKind = 0xf;
-    a->mUseKind = 5;
-    a->mItemInfoIndex = 0x13;
+    itemInUse->mObjectKind = 0xf;
+    itemInUse->mUseKind = 5;
+    itemInUse->mItemInfoIndex = 0x13;
     for (i = 0; i < 3; i++) {
-        a->mObjects[i] = NULL;
+        itemInUse->mObjects[i] = NULL;
     }
-    a->mObjectCount = 0;
-    a->mObjectStartFramesLeft = 0;
+    itemInUse->mObjectCount = 0;
+    itemInUse->mObjectStartFramesLeft = 0;
 }
 
-void InitItemInUse(ItemInUse *a, KartItems *b) {
-    a->mKartItems = b;
-    a->mKart = b->mKart;
-    a->mKartIndex = b->mKartIndex;
-    ResetItemInUse(a);
+void InitItemInUse(ItemInUse *itemInUse, KartItems *kartItems) {
+    itemInUse->mKartItems = kartItems;
+    itemInUse->mKart = kartItems->mKart;
+    itemInUse->mKartIndex = kartItems->mKartIndex;
+    ResetItemInUse(itemInUse);
 }

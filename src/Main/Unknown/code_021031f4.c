@@ -647,7 +647,7 @@ void InitOrthoQuads(void) {
     gOrthoQuadCount = 0;
     gOrthoQuadUseCreamEffect = FALSE;
     NNS_SndPlayerStopSeq(GetSndHandleSlot(6), 1);
-    q = func_020ed4d0(data_0216c7b4, NULL, data_0216c7c4);
+    q = CreateItemModel(data_0216c7b4, NULL, data_0216c7c4);
     SetupOrthoQuadModel(&gOrthoQuadGesoSumi, q);
     gOrthoQuadFirstPolygonId = AllocPolygonId();
     for (i = 0; i < 3; i++) {

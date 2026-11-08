@@ -35,7 +35,7 @@ typedef struct ItemTeresa {
     /* 190 */ Vec3 mUnk_190;
     /* 19c */ s32 mUnk_19c;
     /* 1a0 */ s32 mUnk_1a0;
-    /* 1a4 */ Unk020f3fa8 mUnk_1a4;
+    /* 1a4 */ SegmentPoints mUnk_1a4;
     /* 248 */ s32 mUnk_248;
     /* 24c */ BOOL mUnk_24c;
     /* 250 */ s32 mUnk_250;

@@ -132,7 +132,7 @@ typedef struct {
     /* 00 */ Vec3 mUnk_00;
     /* 0c */ Vec3 mUnk_0c;
     /* 18 */ Vec3 mUnk_18;
-} Unk020eda5c_02c;
+} KartOrientation;
 // The item a kart is using: its objects and how they are carried. (replaces the two-line comment above the struct)
 
 // Object at 0x58 of a KartItems (that KartItems at 0x0c), passed first to the function pointers in the
@@ -151,18 +151,18 @@ typedef struct ItemInUse {
     /* 024 */ s32 mObjectStartFramesLeft;
     /* 028 */ u16 mKartIndex;
     /* 02a */ u8 mUnk_02a[2];
-    /* 02c */ Unk020eda5c_02c mUnk_02c;
-    /* 050 */ Vec3 mUnk_050;
+    /* 02c */ KartOrientation mKartOrientation;
+    /* 050 */ Vec3 mKartDrawMatrixPos;
     /* 05c */ Vec3 mKartVelocity;
     /* 068 */ s32 mKartVelocityLength;
-    /* 06c */ Vec3 mUnk_06c;
+    /* 06c */ Vec3 mKartMovement;
     /* 078 */ s32 mUnk_078;
     /* 07c */ s32 mKartHopHeight;
-    /* 080 */ s32 mUnk_080;
-    /* 084 */ Vec3 mUnk_084;
+    /* 080 */ s32 mMovingForward;
+    /* 084 */ Vec3 mKartScaleFactorTimesBase;
     /* 090 */ Vec3 mUnk_090;
-    /* 09c */ Vec3 mUnk_09c;
-    /* 0a8 */ Vec3 mUnk_0a8;
+    /* 09c */ Vec3 mBehindDirection;
+    /* 0a8 */ Vec3 mBehindPos;
     /* 0b4 */ Vec3 mUnk_0b4;
     /* 0c0 */ Vec3 mUnk_0c0;
     /* 0cc */ s32 mUnk_0cc[3];
@@ -181,18 +181,19 @@ typedef struct ItemInUse {
     /* 18c */ u16 mCircleSlots[3];
 } ItemInUse;
 
-void func_020ed5c0(ItemObject *p, Unk020e6488 *q, Vec3 *v);
-void func_020ed718(Unk020ed718 *p, void *a, void (*cb)(void *, void *, void *));
-void func_020ed79c(Unk020ed718 *p, Vec3 *v);
-void *func_020ed98c(ItemObject *p, Vec3 *v);
-void RemoveItemInUseObject(ItemInUse *p, ItemObject *q);
-void func_020edad8(ItemInUse *p);
-void func_020edb00(ItemInUse *p);
-s32 func_020edb8c(ItemInUse *p, s32 a, s32 b, s32 c, Vec3 *d);
-s32 func_020edc9c(ItemInUse *p, s32 a, s32 b, s32 c, Vec3 *d);
-void AdvanceItemInUse(ItemInUse *p);
-void StartItemInUse(ItemInUse *a, HeldItem *b);
-BOOL func_020ee528(ItemInUse *a);
-void func_020edf10(ItemInUse *p);
-void func_020ee160(ItemObject *a, ItemObject *b);
-BOOL func_020ee284(ItemObject *p, Vec3 *v, s32 d);
+void DrawItemObjectModel(ItemObject *object, Unk020e6488 *model, Vec3 *viewAxis);
+void DrawItemPoolWithCallback(Unk020ed718 *pool, void *callbackArg, void (*drawCallback)(void *, void *, void *));
+void DrawItemPoolModels(Unk020ed718 *pool, Vec3 *viewAxis);
+void *BuildItemObjectMatrix(ItemObject *object, Vec3 *viewAxis);
+void RemoveItemInUseObject(ItemInUse *itemInUse, ItemObject *object);
+void StartItemInUseObjectCountdown(ItemInUse *itemInUse);
+void ReleaseItemInUse(ItemInUse *itemInUse);
+s32 ComputeItemThrowBackward(ItemInUse *itemInUse, s32 speed, s32 speedFactor, s32 forwardWeight, Vec3 *outDirection);
+s32 ComputeItemThrowForward(ItemInUse *itemInUse, s32 baseSpeed, s32 speedFactor, s32 forwardWeight,
+                            Vec3 *outDirection);
+void AdvanceItemInUse(ItemInUse *itemInUse);
+void StartItemInUse(ItemInUse *itemInUse, HeldItem *heldItem);
+BOOL CopyKartToItemInUse(ItemInUse *itemInUse);
+void UpdateItemInUseObjects(ItemInUse *itemInUse);
+void CollideItemObjects(ItemObject *object, ItemObject *other);
+BOOL IsItemObjectNearPoint(ItemObject *object, Vec3 *point, s32 radius);

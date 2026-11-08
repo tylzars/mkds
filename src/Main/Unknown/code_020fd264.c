@@ -392,7 +392,7 @@ void DrawItemBomb(ItemBomb *e, Vec3 *a, Unk020e6488 *b) {
         } else {
             b->mFrameIndex = 0;
         }
-        func_020ed5c0(&e->mUnk_000.mItemObject, b, a);
+        DrawItemObjectModel(&e->mUnk_000.mItemObject, b, a);
         return;
     }
     if (e->mUnk_138 == NULL) {

@@ -15,8 +15,8 @@
 #pragma thumb on
 void InitEarthenPipe(Unk020e43a8 *pipe) {
     pipe->mUnk_00.mPos.y += (s32) (((s64) pipe->mUnk_00.mScale.y * 0xd000) >> 12);
-    func_020ec854(pipe, pipe->mUnk_00.mPos.y - 0xc0000, 0x400, 0x400, 0x5000, 0x2000);
-    func_020ec884(pipe);
+    InitPushedMotion(pipe, pipe->mUnk_00.mPos.y - 0xc0000, 0x400, 0x400, 0x5000, 0x2000);
+    InitPushedObjectStates(pipe);
 }
 #pragma thumb off
 

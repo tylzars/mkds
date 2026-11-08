@@ -411,7 +411,7 @@ void func_0210174c(ItemTeresa *p) {
             if (p->mUnk_248 >= 0xb) {
                 return;
             }
-        } while (func_020f3fa8(&p->mUnk_1a4, &data_0215a1c0[p->mUnk_248]) != 0);
+        } while (PushSegmentPoint(&p->mUnk_1a4, &data_0215a1c0[p->mUnk_248]) != 0);
     }
     func_020d8488(&p->mUnk_1a4, &s);
     SetSegmentProgressRate(&p->mUnk_1a4.mUnk_00, s.y);
@@ -835,7 +835,7 @@ void EnterItemTeresaState5(ItemTeresa *p) {
         }
     }
     if (p->mItemObjectKind == 0xf) {
-        func_020f4020(&p->mUnk_1a4, data_0215a1c0, data_0215a1c0[0].y);
+        InitSegmentPoints(&p->mUnk_1a4, data_0215a1c0, data_0215a1c0[0].y);
         p->mUnk_248 = 3;
         p->mUnk_15c = TRUE;
     } else {

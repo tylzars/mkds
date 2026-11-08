@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020ec484(u32 objectAddress);
+void EnterPushedObjectState2(u32 objectAddress);

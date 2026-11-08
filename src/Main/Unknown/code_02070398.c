@@ -284,7 +284,7 @@ void func_02072930(Kart *p) {
     s32 i;
     Unk02165560 v;
 
-    func_020f0044(&gKartItems[p->mIndex]);
+    ReleaseKartItems(&gKartItems[p->mIndex]);
     ReleaseKartSurfaceEffects(p);
     ReleaseKartStarEffects(p->mIndex);
     ReleaseKartKillerEffect(p->mIndex);

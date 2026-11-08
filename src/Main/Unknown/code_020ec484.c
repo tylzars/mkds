@@ -7,14 +7,14 @@
 #include "Main/Unknown/code_020ec504.h"
 #include "Main/Unknown/unk_02159000.h"
 
-void func_020ec504(int object) {
+void EnterPushedObjectState1(int object) {
     u16 newSlot;
     *(u16 *) (object + 2) = *(u16 *) (object + 2) | (*(u16 *) &data_02159578);
     newSlot = FreeCollisionSlot(*(s16 *) (object + 100));
     *(u16 *) (object + 100) = newSlot;
 }
 
-void func_020ec490(Unk020ec490 *object) {
+void UpdatePushedObjectState1(Unk020ec490 *object) {
     if (object->mUnk_a8) {
         object->mUnk_ac = object->mUnk_ac + object->mUnk_ae;
     } else {
@@ -28,7 +28,7 @@ void func_020ec490(Unk020ec490 *object) {
     }
 }
 
-void func_020ec484(u32 objectAddress) {
+void EnterPushedObjectState2(u32 objectAddress) {
     u32 object = objectAddress;
     u32 value12;
     ParkMapObject((void *) object);

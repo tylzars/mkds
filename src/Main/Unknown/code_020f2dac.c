@@ -30,9 +30,9 @@
 // off the held item.
 void UpdateHeldItem(HeldItem *rec) {
     s32 i;
-    u32 k;
+    u32 objectKind;
     Unk020f40dc_Kind kind;
-    s32 t;
+    s32 reservedCount;
 
     StartNextHeldItemObject(rec);
     if (rec->mUnk_0c == 0) {
@@ -55,9 +55,9 @@ void UpdateHeldItem(HeldItem *rec) {
         }
     }
     rec->mObjectCount -= 1;
-    k = gItemInfos[rec->mItemInfoIndex].mObjectKind;
-    t = gItemPools[k].mReservedCount;
-    gItemPools[(s32) k].mReservedCount = t - 1;
+    objectKind = gItemInfos[rec->mItemInfoIndex].mObjectKind;
+    reservedCount = gItemPools[objectKind].mReservedCount;
+    gItemPools[(s32) objectKind].mReservedCount = reservedCount - 1;
     if (rec->mObjectCount == 0) {
         rec->mItemInfoIndex = 0x13;
         rec->mObjectCount = 0;
@@ -74,7 +74,7 @@ void UpdateHeldItem(HeldItem *rec) {
 // Makes the item held and reserves its objects in the item's pool.
 void SetHeldItem(HeldItem *rec, s32 kind) {
     u32 k;
-    s32 t;
+    s32 reservedCount;
 
     k = gItemInfos[kind].mObjectCount;
     rec->mItemInfoIndex = kind;
@@ -85,17 +85,17 @@ void SetHeldItem(HeldItem *rec, s32 kind) {
     rec->mTimer = 0;
     rec->mUnk_12 = 0;
     k = gItemInfos[kind].mObjectKind;
-    t = gItemPools[k].mReservedCount;
-    gItemPools[(s32) k].mReservedCount = t + rec->mObjectCount;
+    reservedCount = gItemPools[k].mReservedCount;
+    gItemPools[(s32) k].mReservedCount = reservedCount + rec->mObjectCount;
 }
 
 void RemoveHeldItemObjects(HeldItem *rec, s32 n) {
     s32 i;
-    int k;
+    int objectKind;
 
     rec->mObjectCount -= n;
-    k = gItemInfos[rec->mItemInfoIndex].mObjectKind;
-    gItemPools[(s32) k].mReservedCount = gItemPools[k].mReservedCount - n;
+    objectKind = gItemInfos[rec->mItemInfoIndex].mObjectKind;
+    gItemPools[(s32) objectKind].mReservedCount = gItemPools[objectKind].mReservedCount - n;
     if (rec->mObjectCount == 0) {
         rec->mItemInfoIndex = 0x13;
         rec->mObjectCount = 0;
@@ -125,19 +125,19 @@ void ResetHeldItem(HeldItem *rec) {
 
 // Gives the held objects back to the pool, or the reserved count unless keep is set, then empties the record.
 void ReleaseHeldItem(HeldItem *rec, s32 keep) {
-    s32 t;
+    s32 reservedCount;
     s32 i;
-    s32 n;
+    s32 objectCount;
     s32 j;
     s32 m;
     Unk020f40dc_Kind kind = (Unk020f40dc_Kind) rec->mItemInfoIndex;
-    u32 tab = gItemInfos[kind].mObjectKind;
+    u32 poolIndex = gItemInfos[kind].mObjectKind;
 
     if (gRaceSetup->mMode == 5) {
-        n = rec->mObjectCount;
+        objectCount = rec->mObjectCount;
         if (rec->mUnk_24 == FALSE) {
-            for (i = 0; i < n; i++) {
-                func_020fe828(tab);
+            for (i = 0; i < objectCount; i++) {
+                func_020fe828(poolIndex);
             }
         }
     }
@@ -147,8 +147,8 @@ void ReleaseHeldItem(HeldItem *rec, s32 keep) {
             ReleaseItemPoolObject(&gItemPools[rec->mObjects[j]->mKind], rec->mObjects[j]);
         }
     } else if (keep == 0) {
-        t = gItemPools[tab].mReservedCount;
-        gItemPools[(s32) tab].mReservedCount = t - rec->mObjectCount;
+        reservedCount = gItemPools[poolIndex].mReservedCount;
+        gItemPools[(s32) poolIndex].mReservedCount = reservedCount - rec->mObjectCount;
     }
     rec->mItemInfoIndex = 0x13;
     rec->mObjectCount = 0;
@@ -161,12 +161,12 @@ void ReleaseHeldItem(HeldItem *rec, s32 keep) {
     }
 }
 
-static inline u32 TakeHeldItemObjects_inline(Unk020f41c4_B *r, u32 c) {
-    r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    if (c == 0) {
-        return r->mUnk_00 >> 32;
+static inline u32 TakeHeldItemObjects_inline(Unk020f41c4_B *generator, u32 range) {
+    generator->mUnk_00 = generator->mUnk_08 * generator->mUnk_00 + generator->mUnk_10;
+    if (range == 0) {
+        return generator->mUnk_00 >> 32;
     } else {
-        return ((r->mUnk_00 >> 32) * c) >> 32;
+        return ((generator->mUnk_00 >> 32) * range) >> 32;
     }
 }
 
@@ -178,11 +178,11 @@ void TakeHeldItemObjects(HeldItem *rec) {
     Vec3 *axis = &owner->mUnk_150;
     s32 i;
     s32 count;
-    Unk020f41c4_B *st;
-    Unk020f41c4_Row *row;
-    ItemObject *elem;
+    Unk020f41c4_B *generator;
+    ItemSpreadRow *row;
+    ItemObject *object;
     s32 kind = rec->mItemInfoIndex;
-    s32 tab;
+    s32 poolIndex;
     s32 radius;
     s32 angle;
     s32 va;
@@ -190,18 +190,18 @@ void TakeHeldItemObjects(HeldItem *rec) {
     s32 w1;
     s32 w2;
     s32 d;
-    s32 x;
-    s32 y;
+    s32 rowX;
+    s32 rowY;
 
     if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
-        st = &gRaceProgress->mLocalRandom;
+        generator = &gRaceProgress->mLocalRandom;
     } else {
-        st = &gRaceProgress->mRandom;
+        generator = &gRaceProgress->mRandom;
     }
-    angle = (u16) TakeHeldItemObjects_inline(st, 0x10000);
+    angle = (u16) TakeHeldItemObjects_inline(generator, 0x10000);
     angle >>= 4;
-    tab = gItemInfos[kind].mObjectKind;
-    if (gItemKinds[tab].mUnk_80 != 0) {
+    poolIndex = gItemInfos[kind].mObjectKind;
+    if (gItemKinds[poolIndex].mUnk_80 != 0) {
         radius = 0x2000;
     } else {
         radius = 0x1800;
@@ -209,26 +209,26 @@ void TakeHeldItemObjects(HeldItem *rec) {
     count = rec->mObjectCount;
     va = ((s64) radius * gPairsByAngle[angle * 2]) >> 12;
     vb = ((s64) radius * gPairsByAngle[angle * 2 + 1]) >> 12;
-    TakeItemPoolObjects(&gItemPools[tab], count, rec->mObjects, owner->mIndex, &owner->mDrawMatrixPos);
+    TakeItemPoolObjects(&gItemPools[poolIndex], count, rec->mObjects, owner->mIndex, &owner->mDrawMatrixPos);
     i = 0;
     if (i < count) {
-        row = &data_0215961c[count - 1];
+        row = &gItemSpreadRows[count - 1];
         do {
-            x = row->mUnk_00[i].mUnk_00;
-            y = row->mUnk_00[i].mUnk_04;
-            w1 = ((s64) x * (0x1000 + (s32) TakeHeldItemObjects_inline(st, 0x333))) >> 12;
-            w2 = ((s64) y * (0x1000 + (s32) TakeHeldItemObjects_inline(st, 0x333))) >> 12;
+            rowX = row->mUnk_00[i].mUnk_00;
+            rowY = row->mUnk_00[i].mUnk_04;
+            w1 = ((s64) rowX * (0x1000 + (s32) TakeHeldItemObjects_inline(generator, 0x333))) >> 12;
+            w2 = ((s64) rowY * (0x1000 + (s32) TakeHeldItemObjects_inline(generator, 0x333))) >> 12;
             d = (s32) (((s64) w1 * vb) >> 12) - (s32) (((s64) w2 * va) >> 12);
-            elem = rec->mObjects[i];
-            elem->mVelocity.x = ((s64) dir->x * d) >> 12;
-            elem->mVelocity.y = ((s64) dir->y * d) >> 12;
-            elem->mVelocity.z = ((s64) dir->z * d) >> 12;
-            VEC_MultAdd((s32) (((s64) w2 * vb) >> 12) + (s32) (((s64) d * va) >> 12), axis, &elem->mVelocity,
-                        &elem->mVelocity);
-            elem->mScale.x = 0xcd;
-            elem->mScale.y = 0xcd;
-            elem->mScale.z = 0xcd;
-            elem->mColorBlend = *halves;
+            object = rec->mObjects[i];
+            object->mVelocity.x = ((s64) dir->x * d) >> 12;
+            object->mVelocity.y = ((s64) dir->y * d) >> 12;
+            object->mVelocity.z = ((s64) dir->z * d) >> 12;
+            VEC_MultAdd((s32) (((s64) w2 * vb) >> 12) + (s32) (((s64) d * va) >> 12), axis, &object->mVelocity,
+                        &object->mVelocity);
+            object->mScale.x = 0xcd;
+            object->mScale.y = 0xcd;
+            object->mScale.z = 0xcd;
+            object->mColorBlend = *halves;
             i++;
         } while (i < count);
     }
@@ -279,148 +279,148 @@ void SetHeldItemWithCount(HeldItem *rec, s32 kind, s32 count) {
     rec->mUnk_12 = 0;
 }
 
-void RemoveReservedItemObjects(s32 idx, s32 amount) {
-    int i = gItemInfos[idx].mObjectKind;
+void RemoveReservedItemObjects(s32 itemInfoIndex, s32 amount) {
+    int objectKind = gItemInfos[itemInfoIndex].mObjectKind;
 
-    gItemPools[(s32) i].mReservedCount = gItemPools[i].mReservedCount - amount;
+    gItemPools[(s32) objectKind].mReservedCount = gItemPools[objectKind].mReservedCount - amount;
 }
 
 s32 func_020f4090(s32 idx) {
     return data_0217bc38[idx];
 }
 
-void func_020f4020(Unk020f3fa8 *p, Vec3 *points, s32 scale) {
+void InitSegmentPoints(SegmentPoints *segmentPoints, Vec3 *points, s32 scale) {
     s32 i;
 
     for (i = 0; i < 4; i++) {
-        p->mUnk_64[i] = &p->mUnk_74[i];
-        p->mUnk_74[i] = points[i];
+        segmentPoints->mUnk_64[i] = &segmentPoints->mUnk_74[i];
+        segmentPoints->mUnk_74[i] = points[i];
     }
-    p->mUnk_60 = 0;
-    func_020d7d18(&p->mUnk_00, 1, p->mUnk_64, scale);
+    segmentPoints->mUnk_60 = 0;
+    func_020d7d18(&segmentPoints->mUnk_00, 1, segmentPoints->mUnk_64, scale);
 }
 
-s32 func_020f3fa8(Unk020f3fa8 *p, Vec3 *v) {
+s32 PushSegmentPoint(SegmentPoints *segmentPoints, Vec3 *point) {
     Vec3 *first;
 
-    p->mUnk_74[p->mUnk_60] = *v;
-    p->mUnk_60 += 1;
-    p->mUnk_60 &= 3;
-    first = p->mUnk_64[0];
-    p->mUnk_64[0] = p->mUnk_64[1];
-    p->mUnk_64[1] = p->mUnk_64[2];
-    p->mUnk_64[2] = p->mUnk_64[3];
-    p->mUnk_64[3] = first;
-    return func_020d7c84(&p->mUnk_00, 1, p->mUnk_64);
+    segmentPoints->mUnk_74[segmentPoints->mUnk_60] = *point;
+    segmentPoints->mUnk_60 += 1;
+    segmentPoints->mUnk_60 &= 3;
+    first = segmentPoints->mUnk_64[0];
+    segmentPoints->mUnk_64[0] = segmentPoints->mUnk_64[1];
+    segmentPoints->mUnk_64[1] = segmentPoints->mUnk_64[2];
+    segmentPoints->mUnk_64[2] = segmentPoints->mUnk_64[3];
+    segmentPoints->mUnk_64[3] = first;
+    return func_020d7c84(&segmentPoints->mUnk_00, 1, segmentPoints->mUnk_64);
 }
 
 // Writes the link nearest pos among the link, its neighbours and their neighbours.
 BOOL PickNearestNearbyItemPointLink(ItemPointLinkRef *in, ItemPointLinkRef *out, Vec3 *pos) {
     ItemPointLink *node = in->mLink;
     ItemPointLink *best;
-    ItemPointLink *c;
-    ItemPointLink *g;
-    Vec3 *v = node->mPointPos;
-    s32 n;
-    ItemPointLink *c2;
-    ItemPointLink *g2;
-    Vec3 *v2;
-    s32 m;
-    s32 d;
-    s32 dx;
-    s32 dy;
-    s32 dz;
+    ItemPointLink *nextLink;
+    ItemPointLink *linkAroundNext;
+    Vec3 *linkPos = node->mPointPos;
+    s32 nextCount;
+    ItemPointLink *previousLink;
+    ItemPointLink *linkAroundPrevious;
+    Vec3 *previousLinkPos;
+    s32 previousCount;
+    s32 distanceSquared;
+    s32 deltaX;
+    s32 deltaY;
+    s32 deltaZ;
     s32 bestDist;
     s32 i;
     s32 j;
     s32 k;
-    Vec3 *q = pos;
-    ItemPointLink *n2 = node;
+    Vec3 *posAlias = pos;
+    ItemPointLink *nodeAlias = node;
 
     best = node;
-    dx = (v->x - pos->x) >> 12;
-    dy = (v->y - pos->y) >> 12;
-    dz = (v->z - pos->z) >> 12;
-    bestDist = dx * dx + dy * dy + dz * dz;
-    for (i = 0; i < n2->mNextCount; i++) {
-        c = node->mNextLinks[i];
-        if (c != NULL) {
-            v = c->mPointPos;
-            dx = (v->x - pos->x) >> 12;
-            dy = (v->y - q->y) >> 12;
-            dz = (v->z - q->z) >> 12;
-            d = dx * dx + dy * dy + dz * dz;
-            n = c->mNextCount;
-            if (d < bestDist) {
-                bestDist = d;
-                best = c;
+    deltaX = (linkPos->x - pos->x) >> 12;
+    deltaY = (linkPos->y - pos->y) >> 12;
+    deltaZ = (linkPos->z - pos->z) >> 12;
+    bestDist = deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
+    for (i = 0; i < nodeAlias->mNextCount; i++) {
+        nextLink = node->mNextLinks[i];
+        if (nextLink != NULL) {
+            linkPos = nextLink->mPointPos;
+            deltaX = (linkPos->x - pos->x) >> 12;
+            deltaY = (linkPos->y - posAlias->y) >> 12;
+            deltaZ = (linkPos->z - posAlias->z) >> 12;
+            distanceSquared = deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
+            nextCount = nextLink->mNextCount;
+            if (distanceSquared < bestDist) {
+                bestDist = distanceSquared;
+                best = nextLink;
             }
-            for (j = 0; j < n; j++) {
-                g = c->mNextLinks[j];
-                v = g->mPointPos;
-                dx = (v->x - pos->x) >> 12;
-                dy = (v->y - q->y) >> 12;
-                dz = (v->z - q->z) >> 12;
-                d = dx * dx + dy * dy + dz * dz;
-                if (d < bestDist) {
-                    bestDist = d;
-                    best = g;
+            for (j = 0; j < nextCount; j++) {
+                linkAroundNext = nextLink->mNextLinks[j];
+                linkPos = linkAroundNext->mPointPos;
+                deltaX = (linkPos->x - pos->x) >> 12;
+                deltaY = (linkPos->y - posAlias->y) >> 12;
+                deltaZ = (linkPos->z - posAlias->z) >> 12;
+                distanceSquared = deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
+                if (distanceSquared < bestDist) {
+                    bestDist = distanceSquared;
+                    best = linkAroundNext;
                 }
             }
-            m = c->mPreviousCount;
-            for (k = 0; k < m; k++) {
-                g = c->mPreviousLinks[k];
-                if (g != node) {
-                    v = g->mPointPos;
-                    dx = (v->x - pos->x) >> 12;
-                    dy = (v->y - q->y) >> 12;
-                    dz = (v->z - q->z) >> 12;
-                    d = dx * dx + dy * dy + dz * dz;
-                    if (d < bestDist) {
-                        bestDist = d;
-                        best = g;
+            previousCount = nextLink->mPreviousCount;
+            for (k = 0; k < previousCount; k++) {
+                linkAroundNext = nextLink->mPreviousLinks[k];
+                if (linkAroundNext != node) {
+                    linkPos = linkAroundNext->mPointPos;
+                    deltaX = (linkPos->x - pos->x) >> 12;
+                    deltaY = (linkPos->y - posAlias->y) >> 12;
+                    deltaZ = (linkPos->z - posAlias->z) >> 12;
+                    distanceSquared = deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
+                    if (distanceSquared < bestDist) {
+                        bestDist = distanceSquared;
+                        best = linkAroundNext;
                     }
                 }
             }
         }
     }
-    for (i = 0; i < n2->mPreviousCount; i++) {
-        c2 = node->mPreviousLinks[i];
-        if (c2 != NULL) {
-            v2 = c2->mPointPos;
-            dx = (v2->x - pos->x) >> 12;
-            dy = (v2->y - q->y) >> 12;
-            dz = (v2->z - q->z) >> 12;
-            d = dx * dx + dy * dy + dz * dz;
-            m = c2->mPreviousCount;
-            if (d < bestDist) {
-                bestDist = d;
-                best = c2;
+    for (i = 0; i < nodeAlias->mPreviousCount; i++) {
+        previousLink = node->mPreviousLinks[i];
+        if (previousLink != NULL) {
+            previousLinkPos = previousLink->mPointPos;
+            deltaX = (previousLinkPos->x - pos->x) >> 12;
+            deltaY = (previousLinkPos->y - posAlias->y) >> 12;
+            deltaZ = (previousLinkPos->z - posAlias->z) >> 12;
+            distanceSquared = deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
+            previousCount = previousLink->mPreviousCount;
+            if (distanceSquared < bestDist) {
+                bestDist = distanceSquared;
+                best = previousLink;
             }
-            for (j = 0; j < m; j++) {
-                g2 = c2->mPreviousLinks[j];
-                v2 = g2->mPointPos;
-                dx = (v2->x - pos->x) >> 12;
-                dy = (v2->y - q->y) >> 12;
-                dz = (v2->z - q->z) >> 12;
-                d = dx * dx + dy * dy + dz * dz;
-                if (d < bestDist) {
-                    bestDist = d;
-                    best = g2;
+            for (j = 0; j < previousCount; j++) {
+                linkAroundPrevious = previousLink->mPreviousLinks[j];
+                previousLinkPos = linkAroundPrevious->mPointPos;
+                deltaX = (previousLinkPos->x - pos->x) >> 12;
+                deltaY = (previousLinkPos->y - posAlias->y) >> 12;
+                deltaZ = (previousLinkPos->z - posAlias->z) >> 12;
+                distanceSquared = deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
+                if (distanceSquared < bestDist) {
+                    bestDist = distanceSquared;
+                    best = linkAroundPrevious;
                 }
             }
-            n = c2->mNextCount;
-            for (k = 0; k < n; k++) {
-                g2 = c2->mNextLinks[k];
-                if (g2 != node) {
-                    v2 = g2->mPointPos;
-                    dx = (v2->x - pos->x) >> 12;
-                    dy = (v2->y - q->y) >> 12;
-                    dz = (v2->z - q->z) >> 12;
-                    d = dx * dx + dy * dy + dz * dz;
-                    if (d < bestDist) {
-                        bestDist = d;
-                        best = g2;
+            nextCount = previousLink->mNextCount;
+            for (k = 0; k < nextCount; k++) {
+                linkAroundPrevious = previousLink->mNextLinks[k];
+                if (linkAroundPrevious != node) {
+                    previousLinkPos = linkAroundPrevious->mPointPos;
+                    deltaX = (previousLinkPos->x - pos->x) >> 12;
+                    deltaY = (previousLinkPos->y - posAlias->y) >> 12;
+                    deltaZ = (previousLinkPos->z - posAlias->z) >> 12;
+                    distanceSquared = deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
+                    if (distanceSquared < bestDist) {
+                        bestDist = distanceSquared;
+                        best = linkAroundPrevious;
                     }
                 }
             }
@@ -431,16 +431,19 @@ BOOL PickNearestNearbyItemPointLink(ItemPointLinkRef *in, ItemPointLinkRef *out,
     return best != node;
 }
 
-BOOL CopyCloserItemPointLinkRef(ItemPointLinkRef *a, ItemPointLinkRef *b, ItemPointLinkRef *out, Vec3 *pos) {
-    Vec3 *va = a->mLink->mPointPos;
-    Vec3 *vb = b->mLink->mPointPos;
-    s32 da = ((va->x - pos->x) >> 12) * ((va->x - pos->x) >> 12) + ((va->y - pos->y) >> 12) * ((va->y - pos->y) >> 12) +
-             ((va->z - pos->z) >> 12) * ((va->z - pos->z) >> 12);
-    s32 db = ((vb->x - pos->x) >> 12) * ((vb->x - pos->x) >> 12) + ((vb->y - pos->y) >> 12) * ((vb->y - pos->y) >> 12) +
-             ((vb->z - pos->z) >> 12) * ((vb->z - pos->z) >> 12);
+BOOL CopyCloserItemPointLinkRef(ItemPointLinkRef *current, ItemPointLinkRef *candidate, ItemPointLinkRef *out,
+                                Vec3 *pos) {
+    Vec3 *currentPos = current->mLink->mPointPos;
+    Vec3 *candidatePos = candidate->mLink->mPointPos;
+    s32 currentDistanceSquared = ((currentPos->x - pos->x) >> 12) * ((currentPos->x - pos->x) >> 12) +
+                                 ((currentPos->y - pos->y) >> 12) * ((currentPos->y - pos->y) >> 12) +
+                                 ((currentPos->z - pos->z) >> 12) * ((currentPos->z - pos->z) >> 12);
+    s32 candidateDistanceSquared = ((candidatePos->x - pos->x) >> 12) * ((candidatePos->x - pos->x) >> 12) +
+                                   ((candidatePos->y - pos->y) >> 12) * ((candidatePos->y - pos->y) >> 12) +
+                                   ((candidatePos->z - pos->z) >> 12) * ((candidatePos->z - pos->z) >> 12);
 
-    if (db < da) {
-        *out = *b;
+    if (candidateDistanceSquared < currentDistanceSquared) {
+        *out = *candidate;
         return TRUE;
     }
     return FALSE;
@@ -449,54 +452,54 @@ BOOL CopyCloserItemPointLinkRef(ItemPointLinkRef *a, ItemPointLinkRef *b, ItemPo
 // Follows the next links until one is nearer to pos than the start link.
 BOOL FollowItemPointLinksToPos(ItemPointLinkRef *in, ItemPointLinkRef *out, Vec3 *pos) {
     ItemPointLink *node = in->mLink;
-    s32 d;
-    Vec3 *v;
-    s32 dy;
-    Vec3 *q;
-    s32 dx;
-    s32 start;
-    s32 limit;
-    s32 dz;
+    s32 distanceSquared;
+    Vec3 *linkPos;
+    s32 deltaY;
+    Vec3 *posAlias;
+    s32 deltaX;
+    s32 startDistanceSquared;
+    s32 stepsLeft;
+    s32 deltaZ;
     ItemPointLink *child;
-    ItemPointLink *cur;
+    ItemPointLink *current;
     ItemPointLink *best;
     s32 bestDist;
     s32 i;
 
-    v = node->mPointPos;
-    dx = (v->x - pos->x) >> 12;
-    dy = (v->y - pos->y) >> 12;
-    dz = (v->z - pos->z) >> 12;
-    start = dx * dx + dy * dy + dz * dz;
-    limit = gCourseMap->mItemPointCount;
-    q = pos;
+    linkPos = node->mPointPos;
+    deltaX = (linkPos->x - pos->x) >> 12;
+    deltaY = (linkPos->y - pos->y) >> 12;
+    deltaZ = (linkPos->z - pos->z) >> 12;
+    startDistanceSquared = deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
+    stepsLeft = gCourseMap->mItemPointCount;
+    posAlias = pos;
 
-    cur = node;
+    current = node;
     do {
         best = NULL;
         bestDist = 0x7fffffff;
-        for (i = 0; i < cur->mNextCount; i++) {
-            child = cur->mNextLinks[i];
+        for (i = 0; i < current->mNextCount; i++) {
+            child = current->mNextLinks[i];
             if (child != NULL) {
-                v = child->mPointPos;
-                dx = (v->x - pos->x) >> 12;
-                dy = (v->y - q->y) >> 12;
-                dz = (v->z - q->z) >> 12;
-                d = dx * dx + dy * dy + dz * dz;
-                if (d < bestDist) {
-                    bestDist = d;
+                linkPos = child->mPointPos;
+                deltaX = (linkPos->x - pos->x) >> 12;
+                deltaY = (linkPos->y - posAlias->y) >> 12;
+                deltaZ = (linkPos->z - posAlias->z) >> 12;
+                distanceSquared = deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ;
+                if (distanceSquared < bestDist) {
+                    bestDist = distanceSquared;
                     best = child;
                 }
             }
         }
-        if (bestDist < start) {
+        if (bestDist < startDistanceSquared) {
             out->mLink = best;
             out->mNextLinksUsed = 1;
             return best != node;
         }
-        limit--;
-        cur = best;
-    } while (limit > 1 && best != node);
+        stepsLeft--;
+        current = best;
+    } while (stepsLeft > 1 && best != node);
     out->mLink = node;
     out->mNextLinksUsed = 1;
     return FALSE;
@@ -508,26 +511,26 @@ void PickNextItemPointLink(ItemPointLinkRef *in, ItemPointLinkRef *out, u32 idx,
     s32 side = in->mNextLinksUsed;
     ItemPointLink *cur;
     ItemPointLink *child;
-    s32 count2;
-    s32 count;
+    s32 secondCount;
+    s32 linkCount;
     Vec3 *origin;
     BOOL found;
-    s32 best;
-    ItemPointLink *best2;
+    s32 bestDistanceSquared;
+    ItemPointLink *bestSecondLink;
     Vec3 *pos;
     s32 i;
-    Vec3 *c;
+    Vec3 *childPos;
     Kart *other;
     s32 d;
 
     if (side != 0) {
-        count = node->mNextCount;
+        linkCount = node->mNextCount;
         cur = node->mNextLinks[0];
     } else {
-        count = node->mPreviousCount;
+        linkCount = node->mPreviousCount;
         cur = node->mPreviousLinks[0];
     }
-    if (count <= 1 && (side != 0 ? cur->mPreviousCount : cur->mNextCount) <= 1) {
+    if (linkCount <= 1 && (side != 0 ? cur->mPreviousCount : cur->mNextCount) <= 1) {
     done:
         out->mLink = cur;
         out->mNextLinksUsed = side;
@@ -535,7 +538,7 @@ void PickNextItemPointLink(ItemPointLinkRef *in, ItemPointLinkRef *out, u32 idx,
     }
     origin = node->mPointPos;
     found = FALSE;
-    best = 0x5f592e1;
+    bestDistanceSquared = 0x5f592e1;
     if (idx < 8) {
         other = GetKart(idx);
         pos = &other->mDrawMatrixPos;
@@ -546,18 +549,18 @@ void PickNextItemPointLink(ItemPointLinkRef *in, ItemPointLinkRef *out, u32 idx,
                   (((const Vec3 *) pos)->z - ((const Vec3 *) origin)->z);
             if (sq < 0x225510000000LL) {
                 found = TRUE;
-                for (i = 0; i < count; i++) {
+                for (i = 0; i < linkCount; i++) {
                     child = side != 0 ? node->mNextLinks[i] : node->mPreviousLinks[i];
                     if (child != NULL) {
-                        c = child->mPointPos;
-                        d = ((pos->x - origin->x) >> 12) * ((c->x - origin->x) >> 12);
-                        d += ((pos->z - origin->z) >> 12) * ((c->z - origin->z) >> 12);
+                        childPos = child->mPointPos;
+                        d = ((pos->x - origin->x) >> 12) * ((childPos->x - origin->x) >> 12);
+                        d += ((pos->z - origin->z) >> 12) * ((childPos->z - origin->z) >> 12);
                         if (d > 0) {
                             d = ((child->mPointPos->x - pos->x) >> 12) * ((child->mPointPos->x - pos->x) >> 12);
                             d += ((child->mPointPos->y - pos->y) >> 12) * ((child->mPointPos->y - pos->y) >> 12);
                             d += ((child->mPointPos->z - pos->z) >> 12) * ((child->mPointPos->z - pos->z) >> 12);
-                            if (d < best) {
-                                best = d;
+                            if (d < bestDistanceSquared) {
+                                bestDistanceSquared = d;
                                 cur = child;
                             }
                         }
@@ -568,22 +571,22 @@ void PickNextItemPointLink(ItemPointLinkRef *in, ItemPointLinkRef *out, u32 idx,
     }
     if (side == 0 || (found != FALSE && flag != 0)) {
         if ((side != 0 ? cur->mPreviousCount : cur->mNextCount) > 1) {
-            best2 = NULL;
-            count2 = side != 0 ? cur->mPreviousCount : cur->mNextCount;
-            for (i = 0; i < count2; i++) {
+            bestSecondLink = NULL;
+            secondCount = side != 0 ? cur->mPreviousCount : cur->mNextCount;
+            for (i = 0; i < secondCount; i++) {
                 child = side != 0 ? cur->mPreviousLinks[i] : cur->mNextLinks[i];
                 if (child != NULL && child != node) {
                     if (found != FALSE) {
-                        c = child->mPointPos;
-                        d = ((pos->x - origin->x) >> 12) * ((c->x - origin->x) >> 12);
-                        d += ((pos->z - origin->z) >> 12) * ((c->z - origin->z) >> 12);
+                        childPos = child->mPointPos;
+                        d = ((pos->x - origin->x) >> 12) * ((childPos->x - origin->x) >> 12);
+                        d += ((pos->z - origin->z) >> 12) * ((childPos->z - origin->z) >> 12);
                         if (d > 0) {
                             d = ((child->mPointPos->x - pos->x) >> 12) * ((child->mPointPos->x - pos->x) >> 12);
                             d += ((child->mPointPos->y - pos->y) >> 12) * ((child->mPointPos->y - pos->y) >> 12);
                             d += ((child->mPointPos->z - pos->z) >> 12) * ((child->mPointPos->z - pos->z) >> 12);
-                            if (d < best) {
-                                best = d;
-                                best2 = child;
+                            if (d < bestDistanceSquared) {
+                                bestDistanceSquared = d;
+                                bestSecondLink = child;
                             }
                         }
                     } else {
@@ -593,8 +596,8 @@ void PickNextItemPointLink(ItemPointLinkRef *in, ItemPointLinkRef *out, u32 idx,
                     }
                 }
             }
-            if (best2 != NULL) {
-                cur = best2;
+            if (bestSecondLink != NULL) {
+                cur = bestSecondLink;
                 side = side == 0 ? 1 : 0;
             }
         }
@@ -602,38 +605,38 @@ void PickNextItemPointLink(ItemPointLinkRef *in, ItemPointLinkRef *out, u32 idx,
     goto done;
 }
 
-u8 GetItemPointLinkIndex(Unk020f36d8 *p) {
-    s32 t = p->mUnk_00;
+u8 GetItemPointLinkIndex(Unk020f36d8 *ref) {
+    s32 linkAddress = ref->mUnk_00;
 
-    if (t == 0) {
+    if (linkAddress == 0) {
         return 0xff;
     }
-    return (t - gCourseMap->mItemRoute0FirstLink) / 40;
+    return (linkAddress - gCourseMap->mItemRoute0FirstLink) / 40;
 }
 
-s32 SetItemPointLinkRefFromIndex(u32 a, u32 *b) {
-    if (a >= 0xff) {
-        *b = 0;
+s32 SetItemPointLinkRefFromIndex(u32 index, u32 *ref) {
+    if (index >= 0xff) {
+        *ref = 0;
     } else {
-        *b = gCourseMap->mItemRoute0FirstLink + a * 0x28;
+        *ref = gCourseMap->mItemRoute0FirstLink + index * 0x28;
     }
-    b[1] = 1;
+    ref[1] = 1;
     return 1;
 }
 
-u32 GetItemPointLinkDirection(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2;
-    value2 = *(const s8 *) ((value0) + (33));
-    value2 = (value2 << 6);
-    *(u32 *) ((value1) + (0)) = value2;
-    value2 = *(const s8 *) ((value0) + (34));
-    value2 = (value2 << 6);
-    *(u32 *) ((value1) + (4)) = value2;
+u32 GetItemPointLinkDirection(u32 link, u32 directionOut) {
+    u32 value0 = link;
+    u32 directionOutCopy = directionOut;
+    u32 component;
+    component = *(const s8 *) ((value0) + (33));
+    component = (component << 6);
+    *(u32 *) ((directionOutCopy) + (0)) = component;
+    component = *(const s8 *) ((value0) + (34));
+    component = (component << 6);
+    *(u32 *) ((directionOutCopy) + (4)) = component;
     value0 = *(const s8 *) ((value0) + (35));
     value0 = (value0 << 6);
-    *(u32 *) ((value1) + (8)) = value0;
+    *(u32 *) ((directionOutCopy) + (8)) = value0;
     return value0;
 }
 
@@ -641,68 +644,70 @@ u32 GetItemPointLinkDirection(u32 arg0, u32 arg1) {
 
 // Sets each link's direction to its first next link; also fills data_0217bc38.
 void InitItemPointLinkDirections(void) {
-    ItemPointLink *e;
-    Vec3 v;
-    u32 n;
+    ItemPointLink *link;
+    Vec3 direction;
+    u32 linkCount;
     u16 i;
 
-    n = gCourseMap->mItemPointCount;
-    e = gCourseMap->mItemPointLinks;
+    linkCount = gCourseMap->mItemPointCount;
+    link = gCourseMap->mItemPointLinks;
     i = 0;
     for (i = 0; i < 4; i++) {
         data_0217bc38[i] = 0;
     }
-    for (i = 0; i < n; i++, e++) {
-        if (e->mUnk_1c >= 0x3e8000) {
-            data_0217bc38[e->mUnk_20] = (s32) e;
+    for (i = 0; i < linkCount; i++, link++) {
+        if (link->mUnk_1c >= 0x3e8000) {
+            data_0217bc38[link->mUnk_20] = (s32) link;
         }
     }
-    e = gCourseMap->mItemPointLinks;
-    for (i = 0; i < n; i++, e++) {
-        VEC_Subtract(e->mNextLinks[0]->mPointPos, e->mPointPos, &v);
-        if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
-            Vec3NormalizeAndGetLengthUnchecked(&v, &v);
+    link = gCourseMap->mItemPointLinks;
+    for (i = 0; i < linkCount; i++, link++) {
+        VEC_Subtract(link->mNextLinks[0]->mPointPos, link->mPointPos, &direction);
+        if ((s64) direction.x * direction.x + (s64) direction.y * direction.y + (s64) direction.z * direction.z >=
+            0x10) {
+            Vec3NormalizeAndGetLengthUnchecked(&direction, &direction);
         }
-        e->mDirectionX = v.x >> 6;
-        e->mDirectionY = v.y >> 6;
-        e->mDirectionZ = v.z >> 6;
+        link->mDirectionX = direction.x >> 6;
+        link->mDirectionY = direction.y >> 6;
+        link->mDirectionZ = direction.z >> 6;
     }
 }
 
 #pragma thumb off
 
-static inline u32 ThrowBouncingItem_inline(Unk020f41c4_B *x, u32 n) {
-    x->mUnk_00 = x->mUnk_08 * x->mUnk_00 + x->mUnk_10;
-    return ((u64) (u32) (x->mUnk_00 >> 32) * n) >> 32;
+static inline u32 ThrowBouncingItem_inline(Unk020f41c4_B *generator, u32 range) {
+    generator->mUnk_00 = generator->mUnk_08 * generator->mUnk_00 + generator->mUnk_10;
+    return ((u64) (u32) (generator->mUnk_00 >> 32) * range) >> 32;
 }
 
 // Gives a bouncing item its start velocity and position from the kart; c is 1 to throw forward.
-void ThrowBouncingItem(BouncingItemObject *p, ItemInUse *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
+void ThrowBouncingItem(BouncingItemObject *item, ItemInUse *itemInUse, s32 bounceCount, s32 throwForward,
+                       s32 forwardSpeed, s32 forwardUpSpeed, s32 backwardUpSpeed) {
     Vec3 v;
     s32 n;
     BOOL m;
-    Vec3 *u;
+    Vec3 *scale;
     s32 dx;
     s32 dy;
     s32 dz;
 
-    n = Vec3DotUnrounded(&a->mUnk_06c, &a->mUnk_02c.mUnk_18);
-    m = (a->mKart->mUnk_48 & 1) != 0;
+    n = Vec3DotUnrounded(&itemInUse->mKartMovement, &itemInUse->mKartOrientation.mUnk_18);
+    m = (itemInUse->mKart->mUnk_48 & 1) != 0;
     n = ((s64) n * 0x1ec) >> 12;
     if (n < 0x666) {
         n = 0x666;
     }
-    if (c != 0) {
-        n = func_020edc9c(a, d, 0x1b33, 0x7000, &v);
+    if (throwForward != 0) {
+        n = ComputeItemThrowForward(itemInUse, forwardSpeed, 0x1b33, 0x7000, &v);
     } else {
-        n = func_020edb8c(a, n, 0x1000, 0x7000, &v);
+        n = ComputeItemThrowBackward(itemInUse, n, 0x1000, 0x7000, &v);
     }
-    if (c != 0) {
-        if (a->mKartHopHeight > 0) {
-            n += (s32) (((s64) a->mKartHopHeight * 0x14cd) >> 12);
+    if (throwForward != 0) {
+        if (itemInUse->mKartHopHeight > 0) {
+            n += (s32) (((s64) itemInUse->mKartHopHeight * 0x14cd) >> 12);
         }
     }
-    if (a->mKartVelocityLength < 0x3000) {
+    if (itemInUse->mKartVelocityLength < 0x3000) {
         v.z += ThrowBouncingItem_inline(&gRaceProgress->mRandom, 0xf6) - 0x7b;
         v.x += ThrowBouncingItem_inline(&gRaceProgress->mRandom, 0xf6) - 0x7b;
     }
@@ -710,134 +715,139 @@ void ThrowBouncingItem(BouncingItemObject *p, ItemInUse *a, s32 b, s32 c, s32 d,
     v.y = ((s64) v.y * n) >> 12;
     v.z = ((s64) v.z * n) >> 12;
     if (!m) {
-        if (c != 0) {
-            n = e + (s32) (((s64) a->mKartVelocityLength * 0x200) >> 12) + (s32) (((s64) a->mUnk_06c.y * 0x2000) >> 12);
+        if (throwForward != 0) {
+            n = forwardUpSpeed + (s32) (((s64) itemInUse->mKartVelocityLength * 0x200) >> 12) +
+                (s32) (((s64) itemInUse->mKartMovement.y * 0x2000) >> 12);
         } else {
-            n = f;
-            dx = a->mUnk_06c.y > 0 ? 0x666 : 0x1333;
-            n += (s32) (((s64) dx * a->mUnk_06c.y) >> 12);
+            n = backwardUpSpeed;
+            dx = itemInUse->mKartMovement.y > 0 ? 0x666 : 0x1333;
+            n += (s32) (((s64) dx * itemInUse->mKartMovement.y) >> 12);
         }
-        VEC_MultAdd(n, &a->mUnk_02c.mUnk_0c, &v, &p->mItemObject.mVelocity);
+        VEC_MultAdd(n, &itemInUse->mKartOrientation.mUnk_0c, &v, &item->mItemObject.mVelocity);
     }
-    if (c == 0) {
-        VEC_Add(&p->mItemObject.mVelocity, &a->mKart->mUnk_1fc, &p->mItemObject.mVelocity);
+    if (throwForward == 0) {
+        VEC_Add(&item->mItemObject.mVelocity, &itemInUse->mKart->mUnk_1fc, &item->mItemObject.mVelocity);
     }
-    if (c != 0) {
-        p->mItemObject.mPos = a->mKart->mCollisionCenter;
-        VEC_MultAdd(p->mItemObject.mScale.z * 10, &a->mUnk_02c.mUnk_18, &p->mItemObject.mPos, &p->mItemObject.mPos);
+    if (throwForward != 0) {
+        item->mItemObject.mPos = itemInUse->mKart->mCollisionCenter;
+        VEC_MultAdd(item->mItemObject.mScale.z * 10, &itemInUse->mKartOrientation.mUnk_18, &item->mItemObject.mPos,
+                    &item->mItemObject.mPos);
     } else {
-        if (a->mKartHopHeight != 0 && a->mKartVelocityLength < 0x2000 && p->mItemObject.mScale.z < 0xccd) {
-            VEC_Subtract(&a->mUnk_02c.mUnk_0c, &a->mUnk_02c.mUnk_18, &v);
-            VEC_MultAdd(0x2000, &v, &p->mItemObject.mPos, &p->mItemObject.mPos);
+        if (itemInUse->mKartHopHeight != 0 && itemInUse->mKartVelocityLength < 0x2000 &&
+            item->mItemObject.mScale.z < 0xccd) {
+            VEC_Subtract(&itemInUse->mKartOrientation.mUnk_0c, &itemInUse->mKartOrientation.mUnk_18, &v);
+            VEC_MultAdd(0x2000, &v, &item->mItemObject.mPos, &item->mItemObject.mPos);
         }
     }
-    if (p->mItemObject.mScale.z < 0xccd) {
-        u = &p->mItemObject.mScale;
-        u->x = 0xccd;
-        u->y = 0xccd;
-        u->z = 0xccd;
+    if (item->mItemObject.mScale.z < 0xccd) {
+        scale = &item->mItemObject.mScale;
+        scale->x = 0xccd;
+        scale->y = 0xccd;
+        scale->z = 0xccd;
     }
-    p->mBouncesRemaining = b;
-    p->mItemObject.mBounce = BounceItemObject;
-    p->mItemObject.mFlags &= ~0x7000000;
+    item->mBouncesRemaining = bounceCount;
+    item->mItemObject.mBounce = BounceItemObject;
+    item->mItemObject.mFlags &= ~0x7000000;
     if (!m) {
         return;
     }
-    n = VEC_DotProduct(&a->mUnk_02c.mUnk_0c, &p->mItemObject.mVelocity);
-    dx = ((s64) a->mUnk_02c.mUnk_0c.x * n) >> 12;
-    dy = ((s64) a->mUnk_02c.mUnk_0c.y * n) >> 12;
-    dz = ((s64) a->mUnk_02c.mUnk_0c.z * n) >> 12;
-    p->mItemObject.mVelocity.x -= dx;
-    p->mItemObject.mVelocity.y -= dy;
-    p->mItemObject.mVelocity.z -= dz;
-    VEC_MultAdd(c != 0 ? 0x8800 : -0x1000, &a->mUnk_02c.mUnk_0c, &p->mItemObject.mVelocity, &p->mItemObject.mVelocity);
-    p->mBouncesRemaining = 0;
+    n = VEC_DotProduct(&itemInUse->mKartOrientation.mUnk_0c, &item->mItemObject.mVelocity);
+    dx = ((s64) itemInUse->mKartOrientation.mUnk_0c.x * n) >> 12;
+    dy = ((s64) itemInUse->mKartOrientation.mUnk_0c.y * n) >> 12;
+    dz = ((s64) itemInUse->mKartOrientation.mUnk_0c.z * n) >> 12;
+    item->mItemObject.mVelocity.x -= dx;
+    item->mItemObject.mVelocity.y -= dy;
+    item->mItemObject.mVelocity.z -= dz;
+    VEC_MultAdd(throwForward != 0 ? 0x8800 : -0x1000, &itemInUse->mKartOrientation.mUnk_0c,
+                &item->mItemObject.mVelocity, &item->mItemObject.mVelocity);
+    item->mBouncesRemaining = 0;
 }
 
-void InitBouncingItem(BouncingItemObject *a, s32 b, Vec3 *c) {
-    if (c != NULL) {
-        a->mItemObject.mVelocity = *c;
+void InitBouncingItem(BouncingItemObject *item, s32 bounceCount, Vec3 *velocity) {
+    if (velocity != NULL) {
+        item->mItemObject.mVelocity = *velocity;
     }
-    if (a->mItemObject.mScale.z < 0xccd) {
-        a->mItemObject.mScale.x = 0xccd;
-        a->mItemObject.mScale.y = 0xccd;
-        a->mItemObject.mScale.z = 0xccd;
+    if (item->mItemObject.mScale.z < 0xccd) {
+        item->mItemObject.mScale.x = 0xccd;
+        item->mItemObject.mScale.y = 0xccd;
+        item->mItemObject.mScale.z = 0xccd;
     }
-    a->mBouncesRemaining = b;
-    a->mItemObject.mBounce = BounceItemObject;
-    a->mItemObject.mFlags &= ~0x7000000;
+    item->mBouncesRemaining = bounceCount;
+    item->mItemObject.mBounce = BounceItemObject;
+    item->mItemObject.mFlags &= ~0x7000000;
 }
 
 // One step: moves by the velocity and reflects it at a surface while bounces are left.
-void AdvanceBouncingItem(BouncingItemObject *a, s32 b, s32 c, s32 d, u32 *e) {
+void AdvanceBouncingItem(BouncingItemObject *item, s32 gravity, s32 velocityFactor, s32 reflectFactor, u32 *e) {
     Vec3 t;
-    Vec3 u;
-    Vec3 v;
-    Vec3 *p;
-    Vec3 *q;
+    Vec3 hitNormal;
+    Vec3 wallNormal;
+    Vec3 *velocity;
+    Vec3 *pos;
     s32 n;
 
-    p = &a->mItemObject.mVelocity;
-    q = &a->mItemObject.mPos;
-    VEC_Add(p, q, q);
-    p->x = ((s64) p->x * c) >> 12;
-    p->y = ((s64) p->y * c) >> 12;
-    p->z = ((s64) p->z * c) >> 12;
-    if (func_01ffdee4(q, &a->mItemObject.mPrevPos, 0, a->mItemObject.mUnk_dc, 0x24, a->mItemObject.mCollisionSlotIndex,
-                      &t, &u, (s32 *) &v, &a->mItemObject.mCollisionBits, NULL, NULL, NULL, e) != 0) {
-        VEC_Add(&t, q, q);
-        if (a->mItemObject.mCollisionBits & 0x1e34ef) {
-            n = a->mBouncesRemaining;
-            a->mBouncesRemaining = n - 1;
+    velocity = &item->mItemObject.mVelocity;
+    pos = &item->mItemObject.mPos;
+    VEC_Add(velocity, pos, pos);
+    velocity->x = ((s64) velocity->x * velocityFactor) >> 12;
+    velocity->y = ((s64) velocity->y * velocityFactor) >> 12;
+    velocity->z = ((s64) velocity->z * velocityFactor) >> 12;
+    if (func_01ffdee4(pos, &item->mItemObject.mPrevPos, 0, item->mItemObject.mUnk_dc, 0x24,
+                      item->mItemObject.mCollisionSlotIndex, &t, &hitNormal, (s32 *) &wallNormal,
+                      &item->mItemObject.mCollisionBits, NULL, NULL, NULL, e) != 0) {
+        VEC_Add(&t, pos, pos);
+        if (item->mItemObject.mCollisionBits & 0x1e34ef) {
+            n = item->mBouncesRemaining;
+            item->mBouncesRemaining = n - 1;
             if (n <= 0) {
-                func_020f9334(a, q, p, b, &u);
+                func_020f9334(item, pos, velocity, gravity, &hitNormal);
             } else {
-                a->mItemObject.mFlags |= 0x10;
-                n = VEC_DotProduct(&u, p);
-                t.x = ((s64) u.x * n) >> 12;
-                t.y = ((s64) u.y * n) >> 12;
-                t.z = ((s64) u.z * n) >> 12;
-                p->x -= t.x;
-                p->y -= t.y;
-                p->z -= t.z;
-                p->x = ((s64) p->x * 0x8cd) >> 12;
-                p->y = ((s64) p->y * 0x8cd) >> 12;
-                p->z = ((s64) p->z * 0x8cd) >> 12;
-                VEC_MultAdd(-d, &t, p, p);
-                a->mItemObject.mNormal = u;
+                item->mItemObject.mFlags |= 0x10;
+                n = VEC_DotProduct(&hitNormal, velocity);
+                t.x = ((s64) hitNormal.x * n) >> 12;
+                t.y = ((s64) hitNormal.y * n) >> 12;
+                t.z = ((s64) hitNormal.z * n) >> 12;
+                velocity->x -= t.x;
+                velocity->y -= t.y;
+                velocity->z -= t.z;
+                velocity->x = ((s64) velocity->x * 0x8cd) >> 12;
+                velocity->y = ((s64) velocity->y * 0x8cd) >> 12;
+                velocity->z = ((s64) velocity->z * 0x8cd) >> 12;
+                VEC_MultAdd(-reflectFactor, &t, velocity, velocity);
+                item->mItemObject.mNormal = hitNormal;
             }
         }
-        if (a->mItemObject.mCollisionBits & 0x214300) {
-            a->mItemObject.mFlags |= 0x20;
-            BounceItemVelocityOffSurface(p, &v);
-            if (func_020f9290(a, &v) != FALSE) {
+        if (item->mItemObject.mCollisionBits & 0x214300) {
+            item->mItemObject.mFlags |= 0x20;
+            BounceItemVelocityOffSurface(velocity, &wallNormal);
+            if (func_020f9290(item, &wallNormal) != FALSE) {
                 return;
             }
-            a->mItemObject.mUnk_78 &= ~0x4000;
+            item->mItemObject.mUnk_78 &= ~0x4000;
         }
-        if (a->mItemObject.mCollisionBits & 0x8000) {
-            func_020f7070(a, 1);
+        if (item->mItemObject.mCollisionBits & 0x8000) {
+            func_020f7070(item, 1);
             return;
         }
     }
-    a->mItemObject.mFlags &= ~0x4000000;
-    if (a->mItemObject.mCollisionBits & 0x1e34ef) {
+    item->mItemObject.mFlags &= ~0x4000000;
+    if (item->mItemObject.mCollisionBits & 0x1e34ef) {
         return;
     }
-    p->y -= b;
-    if (p->y < -0xa000) {
-        p->y = -0xa000;
+    velocity->y -= gravity;
+    if (velocity->y < -0xa000) {
+        velocity->y = -0xa000;
     }
 }
 
 // Hit handler of bouncing items: reflects the velocity about the surface normal.
-void BounceItemObject(ItemObject *a, Vec3 *b, Vec3 *c) {
-    BounceItemVelocityOffSurface(&a->mVelocity, c);
-    if (a->mFlags & 0x1000000) {
+void BounceItemObject(ItemObject *item, Vec3 *b, Vec3 *awayDirection) {
+    BounceItemVelocityOffSurface(&item->mVelocity, awayDirection);
+    if (item->mFlags & 0x1000000) {
         return;
     }
-    a->mFlags |= 0x1000000;
-    a->mUnk_108.x = 0;
-    a->mUnk_108.y = 0;
-    a->mUnk_108.z = 0;
+    item->mFlags |= 0x1000000;
+    item->mUnk_108.x = 0;
+    item->mUnk_108.y = 0;
+    item->mUnk_108.z = 0;
 }

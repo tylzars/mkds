@@ -11,8 +11,9 @@ typedef struct BouncingItemObject {
     /* 12c */ s32 mBouncesRemaining;
 } BouncingItemObject;
 
-void BounceItemObject(ItemObject *a, Vec3 *b, Vec3 *c);
-void AdvanceBouncingItem(BouncingItemObject *a, s32 b, s32 c, s32 d, u32 *e);
-void InitBouncingItem(BouncingItemObject *a, s32 b, Vec3 *c);
-void ThrowBouncingItem(BouncingItemObject *p, ItemInUse *a, s32 b, s32 c, s32 d, s32 e, s32 f);
+void BounceItemObject(ItemObject *item, Vec3 *b, Vec3 *awayDirection);
+void AdvanceBouncingItem(BouncingItemObject *item, s32 gravity, s32 velocityFactor, s32 reflectFactor, u32 *e);
+void InitBouncingItem(BouncingItemObject *item, s32 bounceCount, Vec3 *velocity);
+void ThrowBouncingItem(BouncingItemObject *item, ItemInUse *itemInUse, s32 bounceCount, s32 throwForward,
+                       s32 forwardSpeed, s32 forwardUpSpeed, s32 backwardUpSpeed);
 void InitItemPointLinkDirections(void);

@@ -84,7 +84,7 @@ BOOL func_020ec450(Unk020e43a8 *mapObject, void *other, u8 *firstResponse) {
     if (*firstResponse != 1) {
         return FALSE;
     }
-    func_020ec6e4(mapObject, other);
+    SetPushedMotionFromKart(mapObject, other);
     mapObject->mUnk_00.mStateMachine.mNextState = 1;
     mapObject->mUnk_00.mStateMachine.mNextStateRequested = 1;
     return TRUE;
@@ -94,7 +94,7 @@ BOOL func_020ec41c(Unk020e43a8 *mapObject, void *other, u8 *firstResponse) {
     if (*firstResponse != 1) {
         return FALSE;
     }
-    func_020ec538(mapObject, other);
+    SetPushedMotionFromItemObject(mapObject, other);
     mapObject->mUnk_00.mStateMachine.mNextState = 1;
     mapObject->mUnk_00.mStateMachine.mNextStateRequested = 1;
     return TRUE;
