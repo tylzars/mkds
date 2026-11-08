@@ -10,30 +10,31 @@
 // bytes: the shared MapObject part, a GroupFollower at 0xc4 and a ShadowMatrix at 0xe8.
 typedef struct IronBall {
     /* 000 */ MapObject mUnk_000;
-    /* 0a0 */ s32 mUnk_0a0;
-    /* 0a4 */ s32 mUnk_0a4;
-    /* 0a8 */ s32 mUnk_0a8;
-    /* 0ac */ s32 mUnk_0ac;
-    /* 0b0 */ s32 mUnk_0b0;
+    /* 0a0 */ s32 mRotateZAngle;
+    /* 0a4 */ s32 mState1Timer;
+    /* 0a8 */ s32 mTimer;
+    /* 0ac */ s32 mNextStartLap;
+    /* 0b0 */ s32 mPathSpeed;
     /* 0b4 */ s32 mUnk_0b4;
     /* 0b8 */ s32 mUnk_0b8;
-    /* 0bc */ s32 mUnk_0bc;
-    /* 0c0 */ s32 mUnk_0c0;
-    /* 0c4 */ GroupFollower mUnk_0c4;
-    /* 0e8 */ ShadowMatrix mUnk_0e8;
+    /* 0bc */ s32 mHeightOffset;
+    /* 0c0 */ s32 mHeightSpeed;
+    /* 0c4 */ GroupFollower mFollower;
+    /* 0e8 */ ShadowMatrix mShadowMatrix;
     /* 11c */ Vec3 mUnk_11c;
     /* 128 */ s32 mUnk_128;
     /* 12c */ s32 mUnk_12c;
-    /* 130 */ s32 mUnk_130;
+    /* 130 */ s32 mState;
 } IronBall;
 
 // Array of object pointers: pointer to the array and the number of entries (InitIronBallObjects).
 typedef struct Unk020a9a5c {
-    /* 00 */ IronBall **mUnk_00;
-    /* 04 */ u16 mUnk_04;
+    /* 00 */ IronBall **mMapObjects;
+    /* 04 */ u16 mMapObjectCount;
 } Unk020a9a5c;
 
-// Object returned by CreateMapObjectKindData, with words at 0x38, 0x3c and 0xc0 (func_020a9224, func_020a9de4).
+// Object returned by CreateMapObjectKindData, with words at 0x38, 0x3c and 0xc0 (CreateIronBallKindData,
+// CollideKartWithIronBall).
 typedef struct Unk020a9224 {
     /* 00 */ u8 mUnk_00[0x38];
     /* 38 */ s32 mUnk_38;
@@ -44,12 +45,12 @@ typedef struct Unk020a9224 {
 
 #include "Main/Unknown/code_020a826c.h" // Unk020a826c_a0
 
-void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b);
-void *func_020a91c0(void);
-void *func_020a91e0(void);
-void *func_020a9204(void);
-void func_020a9224(void);
-void UpdateIronBall(void *a, IronBall *p); /* kind 0x1b0 only */
-void InitIronBallObjects(Unk020a9a5c *p);
-void func_020a9c54(void *a, IronBall *p, u32 c, u32 d);
+void func_020a8ed8(Unk020a826c_a0 *soundPart, Vec3 *position);
+void *CreateIronBallUpdateList(void);
+void *CreateIronBallDrawList(void);
+void *CreateIronBallShadowDrawList(void);
+void CreateIronBallKindData(void);
+void UpdateIronBall(void *a, IronBall *ironBall); /* kind 0x1b0 only */
+void InitIronBallObjects(Unk020a9a5c *mapObjectList);
+void DrawIronBallShadow(void *a, IronBall *ironBall, u32 c, u32 d);
 unsigned int func_020a9cd0(unsigned int p0);

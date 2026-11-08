@@ -23,11 +23,11 @@ u32 func_020acb00(u32 arg0) {
 #pragma thumb on
 
 void UpdateTitleState4(void) {
-    s32 n;
+    s32 titleStateFrames;
 
-    n = GetTitleStateFrames();
-    gTitleScene->mSelectedOffset = func_020ae488(n);
-    if (n >= 10) {
+    titleStateFrames = GetTitleStateFrames();
+    gTitleScene->mSelectedOffset = func_020ae488(titleStateFrames);
+    if (titleStateFrames >= 10) {
         SetTitleState(3, 5);
     }
     SetupAndDrawTitleTable();

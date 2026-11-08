@@ -38,271 +38,277 @@ u32 func_020a9cd0(u32 p0) {
     return p0;
 }
 
-void func_020a9c54(void *a, IronBall *p, u32 c, u32 d) {
-    u32 v;
+void DrawIronBallShadow(void *a, IronBall *ironBall, u32 c, u32 d) {
+    u32 shadowAlphaCap;
 
-    if (p->mUnk_12c == 0) {
+    if (ironBall->mUnk_12c == 0) {
         return;
     }
-    if (((s32) p->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0) >= 1000000) {
+    if (((s32) ironBall->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0) >= 1000000) {
         return;
     }
-    v = p->mUnk_0e8.mUnk_030;
-    if (v == 0) {
+    shadowAlphaCap = ironBall->mShadowMatrix.mUnk_030;
+    if (shadowAlphaCap == 0) {
         return;
     }
-    if (v > 0x1c) {
+    if (shadowAlphaCap > 0x1c) {
         return;
     }
-    func_020e53ac(&p->mUnk_0e8, NULL, c, d);
+    func_020e53ac(&ironBall->mShadowMatrix, NULL, c, d);
 }
 
-void InitIronBallObjects(Unk020a9a5c *p) {
+void InitIronBallObjects(Unk020a9a5c *mapObjectList) {
     s32 i;
-    IronBall *o;
+    IronBall *ironBall;
     u32 z0;
     u32 z1;
     u32 z2;
-    u32 k;
+    u32 shadowAlphaCap;
     u16 b;
     u16 c;
     u16 a;
 
-    if (p == NULL) {
+    if (mapObjectList == NULL) {
         return;
     }
     z0 = 0;
     z1 = 0;
     z2 = 0;
-    k = 0x1c;
+    shadowAlphaCap = 0x1c;
     b = data_021567ec;
     c = data_021567f0;
     a = data_021567f4;
-    for (i = 0; i < p->mUnk_04 && (o = p->mUnk_00[i]) != NULL; i++) {
-        o->mUnk_000.mFlags |= b;
-        o->mUnk_000.mFlags |= c;
-        o->mUnk_000.mFlags |= a;
-        o->mUnk_0b4 = (o->mUnk_000.mCourseMapRow->mUnk_28 * 0xa000L) / 100;
-        o->mUnk_0b8 = (o->mUnk_000.mCourseMapRow->mUnk_28 * 0x5000L) / 100;
-        o->mUnk_0b0 = o->mUnk_0b4;
-        o->mUnk_11c = o->mUnk_000.mCourseMapRow->mUnk_00;
-        o->mUnk_000.mPos = o->mUnk_11c;
-        o->mUnk_11c.y += 0x1000;
-        RefreshShadowMatrix(&o->mUnk_0e8, &o->mUnk_11c, o->mUnk_000.mExtent.x << 1, k);
-        RefreshMapObjectMatrixFromHitNormal(&o->mUnk_000);
-        InitGroupFollower(&o->mUnk_0c4, o->mUnk_000.mCourseMapRow, z0);
-        GetGroupFollowerLinearPosStep(&o->mUnk_0c4, &o->mUnk_11c, &o->mUnk_000.mUnk_10);
-        o->mUnk_11c.y += 0x1000;
-        VEC_MultAdd(o->mUnk_000.mExtent.x, &o->mUnk_000.mMatrix.mUnk_00[1], &o->mUnk_11c, &o->mUnk_000.mPos);
-        if (o->mUnk_000.mFlags & 0x800) {
-            o->mUnk_0a8 = (u16) o->mUnk_000.mCourseMapRow->mUnk_2a;
-            o->mUnk_130 = z2;
+    for (i = 0; i < mapObjectList->mMapObjectCount && (ironBall = mapObjectList->mMapObjects[i]) != NULL; i++) {
+        ironBall->mUnk_000.mFlags |= b;
+        ironBall->mUnk_000.mFlags |= c;
+        ironBall->mUnk_000.mFlags |= a;
+        ironBall->mUnk_0b4 = (ironBall->mUnk_000.mCourseMapRow->mUnk_28 * 0xa000L) / 100;
+        ironBall->mUnk_0b8 = (ironBall->mUnk_000.mCourseMapRow->mUnk_28 * 0x5000L) / 100;
+        ironBall->mPathSpeed = ironBall->mUnk_0b4;
+        ironBall->mUnk_11c = ironBall->mUnk_000.mCourseMapRow->mUnk_00;
+        ironBall->mUnk_000.mPos = ironBall->mUnk_11c;
+        ironBall->mUnk_11c.y += 0x1000;
+        RefreshShadowMatrix(&ironBall->mShadowMatrix, &ironBall->mUnk_11c, ironBall->mUnk_000.mExtent.x << 1,
+                            shadowAlphaCap);
+        RefreshMapObjectMatrixFromHitNormal(&ironBall->mUnk_000);
+        InitGroupFollower(&ironBall->mFollower, ironBall->mUnk_000.mCourseMapRow, z0);
+        GetGroupFollowerLinearPosStep(&ironBall->mFollower, &ironBall->mUnk_11c, &ironBall->mUnk_000.mUnk_10);
+        ironBall->mUnk_11c.y += 0x1000;
+        VEC_MultAdd(ironBall->mUnk_000.mExtent.x, &ironBall->mUnk_000.mMatrix.mUnk_00[1], &ironBall->mUnk_11c,
+                    &ironBall->mUnk_000.mPos);
+        if (ironBall->mUnk_000.mFlags & 0x800) {
+            ironBall->mTimer = (u16) ironBall->mUnk_000.mCourseMapRow->mUnk_2a;
+            ironBall->mState = z2;
         } else {
-            o->mUnk_0ac = (o->mUnk_000.mCourseMapRow->mUnk_2a + 0x176f) / 6000 + 1;
-            o->mUnk_130 = z1;
+            ironBall->mNextStartLap = (ironBall->mUnk_000.mCourseMapRow->mUnk_2a + 0x176f) / 6000 + 1;
+            ironBall->mState = z1;
         }
     }
 }
 
-void UpdateIronBall(void *a, IronBall *p) {
-    CourseMapGroupEntry *e;
-    RandomState64 *q;
-    BOOL f;
+void UpdateIronBall(void *a, IronBall *ironBall) {
+    CourseMapGroupEntry *fromEntry;
+    RandomState64 *mapObjectRandom;
+    BOOL lapReached;
     s32 v;
     s32 w;
     s32 i;
     s32 n;
     s32 t;
-    u16 u;
+    u16 randomNumber;
 
-    if (p->mUnk_0a8 > 0) {
-        p->mUnk_0a8 -= 1;
+    if (ironBall->mTimer > 0) {
+        ironBall->mTimer -= 1;
     }
-    switch (p->mUnk_130) {
+    switch (ironBall->mState) {
         case 0:
-            if (p->mUnk_000.mFlags & 0x800) {
-                if (p->mUnk_0a8-- > 0) {
+            if (ironBall->mUnk_000.mFlags & 0x800) {
+                if (ironBall->mTimer-- > 0) {
                     return;
                 }
-                p->mUnk_0a8 = (u16) p->mUnk_000.mCourseMapRow->mUnk_2c;
-                p->mUnk_0a4 = (u16) p->mUnk_000.mCourseMapRow->mUnk_2e;
-                SetupGroupFollowerAtEntry(&p->mUnk_0c4, 0, 1);
-                p->mUnk_130 = 1;
+                ironBall->mTimer = (u16) ironBall->mUnk_000.mCourseMapRow->mUnk_2c;
+                ironBall->mState1Timer = (u16) ironBall->mUnk_000.mCourseMapRow->mUnk_2e;
+                SetupGroupFollowerAtEntry(&ironBall->mFollower, 0, 1);
+                ironBall->mState = 1;
                 return;
             }
-            w = p->mUnk_0ac;
+            w = ironBall->mNextStartLap;
             for (i = 0; i < gRaceSetup->mKartCount; i++) {
                 if (GetKartHighestLap((u16) i) >= w) {
-                    f = TRUE;
+                    lapReached = TRUE;
                     goto found;
                 }
             }
-            f = FALSE;
+            lapReached = FALSE;
         found:
-            if (f == FALSE) {
+            if (lapReached == FALSE) {
                 return;
             }
-            p->mUnk_0ac = p->mUnk_0ac + 1;
-            p->mUnk_0a4 = (u16) p->mUnk_000.mCourseMapRow->mUnk_2e;
-            SetupGroupFollowerAtEntry(&p->mUnk_0c4, 0, 1);
-            p->mUnk_130 = 1;
+            ironBall->mNextStartLap = ironBall->mNextStartLap + 1;
+            ironBall->mState1Timer = (u16) ironBall->mUnk_000.mCourseMapRow->mUnk_2e;
+            SetupGroupFollowerAtEntry(&ironBall->mFollower, 0, 1);
+            ironBall->mState = 1;
             return;
         case 1:
-            p->mUnk_0a4 -= 1;
-            if (p->mUnk_0a4 > 0) {
+            ironBall->mState1Timer -= 1;
+            if (ironBall->mState1Timer > 0) {
                 return;
             }
-            p->mUnk_000.mFlags &= ~1;
-            p->mUnk_000.mFlags &= ~2;
-            p->mUnk_000.mFlags &= ~8;
-            p->mUnk_000.mAlpha = 0x1f;
-            p->mUnk_130 = 2;
+            ironBall->mUnk_000.mFlags &= ~1;
+            ironBall->mUnk_000.mFlags &= ~2;
+            ironBall->mUnk_000.mFlags &= ~8;
+            ironBall->mUnk_000.mAlpha = 0x1f;
+            ironBall->mState = 2;
             return;
         case 2:
             break;
         default:
             return;
     }
-    if (!(GetKartKind3ShapeMask() & p->mUnk_128) && !(p->mUnk_000.mDistanceSquaredAndFlags & 4)) {
-        func_0210b874(p->mUnk_000.mSound, p->mUnk_0b0);
+    if (!(GetKartKind3ShapeMask() & ironBall->mUnk_128) && !(ironBall->mUnk_000.mDistanceSquaredAndFlags & 4)) {
+        func_0210b874(ironBall->mUnk_000.mSound, ironBall->mPathSpeed);
     }
-    v = p->mUnk_0b0;
-    p->mUnk_0c4.mSpeed = v;
-    p->mUnk_0c4.mProgressStep =
-        ((s64) v * p->mUnk_0c4.mPath->mSegments[p->mUnk_0c4.mSegmentIndex].mInverseProgressLength) >> 12;
-    if (AdvanceGroupFollower(&p->mUnk_0c4) != FALSE) {
-        e = p->mUnk_0c4.mFromEntry;
-        if (p->mUnk_0c4.mForward == 0) {
-            if (e->mUnk_10 >= 0) {
-                SetupGroupFollowerAtEntry(&p->mUnk_0c4, e->mUnk_10, 1);
-                e = p->mUnk_0c4.mFromEntry;
-            } else if (p->mUnk_000.mCourseMapRow->mUnk_2c != 0) {
-                SetupGroupFollowerAtEntry(&p->mUnk_0c4, 0, 1);
-                p->mUnk_000.mFlags |= data_021567ec;
-                p->mUnk_000.mFlags |= data_021567f0;
-                p->mUnk_000.mFlags |= data_021567f4;
-                p->mUnk_130 = 0;
+    v = ironBall->mPathSpeed;
+    ironBall->mFollower.mSpeed = v;
+    ironBall->mFollower.mProgressStep =
+        ((s64) v * ironBall->mFollower.mPath->mSegments[ironBall->mFollower.mSegmentIndex].mInverseProgressLength) >>
+        12;
+    if (AdvanceGroupFollower(&ironBall->mFollower) != FALSE) {
+        fromEntry = ironBall->mFollower.mFromEntry;
+        if (ironBall->mFollower.mForward == 0) {
+            if (fromEntry->mUnk_10 >= 0) {
+                SetupGroupFollowerAtEntry(&ironBall->mFollower, fromEntry->mUnk_10, 1);
+                fromEntry = ironBall->mFollower.mFromEntry;
+            } else if (ironBall->mUnk_000.mCourseMapRow->mUnk_2c != 0) {
+                SetupGroupFollowerAtEntry(&ironBall->mFollower, 0, 1);
+                ironBall->mUnk_000.mFlags |= data_021567ec;
+                ironBall->mUnk_000.mFlags |= data_021567f0;
+                ironBall->mUnk_000.mFlags |= data_021567f4;
+                ironBall->mState = 0;
                 return;
             } else {
-                ParkMapObject(&p->mUnk_000);
+                ParkMapObject(&ironBall->mUnk_000);
                 return;
             }
-        } else if (e->mUnk_10 >= 0) {
-            q = GetMapObjectRandom();
-            q->mValue = q->mMultiplier * q->mValue + q->mIncrement;
-            u = ((u64) (u32) (q->mValue >> 32) * 5) >> 32;
-            if (u != 0) {
-                SetupGroupFollowerAtEntry(&p->mUnk_0c4, e->mUnk_10, 1);
-                e = p->mUnk_0c4.mFromEntry;
+        } else if (fromEntry->mUnk_10 >= 0) {
+            mapObjectRandom = GetMapObjectRandom();
+            mapObjectRandom->mValue =
+                mapObjectRandom->mMultiplier * mapObjectRandom->mValue + mapObjectRandom->mIncrement;
+            randomNumber = ((u64) (u32) (mapObjectRandom->mValue >> 32) * 5) >> 32;
+            if (randomNumber != 0) {
+                SetupGroupFollowerAtEntry(&ironBall->mFollower, fromEntry->mUnk_10, 1);
+                fromEntry = ironBall->mFollower.mFromEntry;
             }
         }
-        v = e->mUnk_0e;
+        v = fromEntry->mUnk_0e;
         if ((u16) v <= 1) {
-            p->mUnk_0b0 = p->mUnk_0b4;
-            p->mUnk_12c = 0;
+            ironBall->mPathSpeed = ironBall->mUnk_0b4;
+            ironBall->mUnk_12c = 0;
         } else if ((u16) (s16) (v - 2) <= 1) {
-            p->mUnk_0b0 = p->mUnk_0b8;
-            p->mUnk_12c = 2;
+            ironBall->mPathSpeed = ironBall->mUnk_0b8;
+            ironBall->mUnk_12c = 2;
         } else if (v == 10) {
-            p->mUnk_0b0 = 0x8000;
-            p->mUnk_12c = 2;
-            p->mUnk_0bc = p->mUnk_11c.y;
-            SetupGroupFollowerAtEntry(&p->mUnk_0c4, e->mUnk_0c + 1, 1);
-            GetGroupFollowerLinearPosStep(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
-            p->mUnk_11c.y += 0x1000;
-            p->mUnk_0bc = p->mUnk_0bc - p->mUnk_11c.y;
-            p->mUnk_0c0 = 0xa000;
+            ironBall->mPathSpeed = 0x8000;
+            ironBall->mUnk_12c = 2;
+            ironBall->mHeightOffset = ironBall->mUnk_11c.y;
+            SetupGroupFollowerAtEntry(&ironBall->mFollower, fromEntry->mUnk_0c + 1, 1);
+            GetGroupFollowerLinearPosStep(&ironBall->mFollower, &ironBall->mUnk_11c, &ironBall->mUnk_000.mUnk_10);
+            ironBall->mUnk_11c.y += 0x1000;
+            ironBall->mHeightOffset = ironBall->mHeightOffset - ironBall->mUnk_11c.y;
+            ironBall->mHeightSpeed = 0xa000;
         } else if (v == 11) {
-            p->mUnk_0b0 = 0x5000;
-            p->mUnk_12c = 2;
-            p->mUnk_0bc = p->mUnk_11c.y;
-            SetupGroupFollowerAtEntry(&p->mUnk_0c4, e->mUnk_0c + 1, 1);
-            GetGroupFollowerLinearPosStep(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
-            p->mUnk_11c.y += 0x1000;
-            p->mUnk_0bc = p->mUnk_0bc - p->mUnk_11c.y;
-            p->mUnk_0c0 = -0x3000;
+            ironBall->mPathSpeed = 0x5000;
+            ironBall->mUnk_12c = 2;
+            ironBall->mHeightOffset = ironBall->mUnk_11c.y;
+            SetupGroupFollowerAtEntry(&ironBall->mFollower, fromEntry->mUnk_0c + 1, 1);
+            GetGroupFollowerLinearPosStep(&ironBall->mFollower, &ironBall->mUnk_11c, &ironBall->mUnk_000.mUnk_10);
+            ironBall->mUnk_11c.y += 0x1000;
+            ironBall->mHeightOffset = ironBall->mHeightOffset - ironBall->mUnk_11c.y;
+            ironBall->mHeightSpeed = -0x3000;
         } else if (v >= 100) {
-            p->mUnk_11c = e->mPos;
-            p->mUnk_000.mUnk_10.x = 0;
-            p->mUnk_000.mUnk_10.y = 0;
-            p->mUnk_000.mUnk_10.z = 0;
-            n = ((const CourseMapGroupEntry *) e)->mUnk_0e;
+            ironBall->mUnk_11c = fromEntry->mPos;
+            ironBall->mUnk_000.mUnk_10.x = 0;
+            ironBall->mUnk_000.mUnk_10.y = 0;
+            ironBall->mUnk_000.mUnk_10.z = 0;
+            n = ((const CourseMapGroupEntry *) fromEntry)->mUnk_0e;
             if (n < 200) {
                 StartBoundWobble(n - 100);
-                p->mUnk_0b0 = 0xf000;
-                p->mUnk_12c = 1;
+                ironBall->mPathSpeed = 0xf000;
+                ironBall->mUnk_12c = 1;
             } else if (n < 300) {
                 t = n - 200;
-                if (n != p->mUnk_0c4.mToEntry->mUnk_0e) {
-                    p->mUnk_0b0 = 0x1e000;
+                if (n != ironBall->mFollower.mToEntry->mUnk_0e) {
+                    ironBall->mPathSpeed = 0x1e000;
                 } else {
                     func_0209753c(t);
                 }
-                p->mUnk_12c = 1;
+                ironBall->mUnk_12c = 1;
             }
         }
     }
-    if (p->mUnk_0c4.mFromEntry->mUnk_0d != 0 && p->mUnk_0c4.mToEntry->mUnk_0d != 0) {
-        p->mUnk_000.mFlags |= data_021567f8;
+    if (ironBall->mFollower.mFromEntry->mUnk_0d != 0 && ironBall->mFollower.mToEntry->mUnk_0d != 0) {
+        ironBall->mUnk_000.mFlags |= data_021567f8;
     } else {
-        p->mUnk_000.mFlags &= ~0x20;
+        ironBall->mUnk_000.mFlags &= ~0x20;
     }
-    if (p->mUnk_0bc > 0 || p->mUnk_0c0 != 0) {
-        p->mUnk_0c0 -= 0x1000;
-        p->mUnk_0bc = p->mUnk_0bc + p->mUnk_0c0;
-        if (p->mUnk_0bc <= 0) {
-            p->mUnk_0c0 = ((s64) p->mUnk_0c0 * -0x800) >> 12;
-            if (p->mUnk_0c0 < 0x1000) {
-                p->mUnk_0c0 = 0;
-            } else if (!(GetKartKind3ShapeMask() & p->mUnk_128) && !(p->mUnk_000.mDistanceSquaredAndFlags & 4)) {
-                func_0210b8bc(p->mUnk_000.mSound, p->mUnk_0c0);
+    if (ironBall->mHeightOffset > 0 || ironBall->mHeightSpeed != 0) {
+        ironBall->mHeightSpeed -= 0x1000;
+        ironBall->mHeightOffset = ironBall->mHeightOffset + ironBall->mHeightSpeed;
+        if (ironBall->mHeightOffset <= 0) {
+            ironBall->mHeightSpeed = ((s64) ironBall->mHeightSpeed * -0x800) >> 12;
+            if (ironBall->mHeightSpeed < 0x1000) {
+                ironBall->mHeightSpeed = 0;
+            } else if (!(GetKartKind3ShapeMask() & ironBall->mUnk_128) &&
+                       !(ironBall->mUnk_000.mDistanceSquaredAndFlags & 4)) {
+                func_0210b8bc(ironBall->mUnk_000.mSound, ironBall->mHeightSpeed);
             }
-            p->mUnk_0bc = p->mUnk_0c0;
+            ironBall->mHeightOffset = ironBall->mHeightSpeed;
         }
     }
-    v = p->mUnk_0c4.mFromEntry->mUnk_0e;
+    v = ironBall->mFollower.mFromEntry->mUnk_0e;
     if (v >= 100) {
-        GetGroupFollowerLinearPosStep(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
-        p->mUnk_11c.y += 0x1000;
-        w = p->mUnk_0b0 - 410;
+        GetGroupFollowerLinearPosStep(&ironBall->mFollower, &ironBall->mUnk_11c, &ironBall->mUnk_000.mUnk_10);
+        ironBall->mUnk_11c.y += 0x1000;
+        w = ironBall->mPathSpeed - 410;
         if (w <= 0xa000) {
             w = 0xa000;
         }
-        p->mUnk_0b0 = w;
+        ironBall->mPathSpeed = w;
     } else if ((u16) (s16) (v - 10) <= 1) {
-        GetGroupFollowerLinearPosStep(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
-        p->mUnk_11c.y += 0x1000;
+        GetGroupFollowerLinearPosStep(&ironBall->mFollower, &ironBall->mUnk_11c, &ironBall->mUnk_000.mUnk_10);
+        ironBall->mUnk_11c.y += 0x1000;
     } else if (v == 0 || v == 2) {
-        GetGroupFollowerCurvePosStep(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
-        p->mUnk_11c.y += 0x1000;
+        GetGroupFollowerCurvePosStep(&ironBall->mFollower, &ironBall->mUnk_11c, &ironBall->mUnk_000.mUnk_10);
+        ironBall->mUnk_11c.y += 0x1000;
     } else {
-        GetGroupFollowerLinearPosStep(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
-        p->mUnk_11c.y += 0x1000;
+        GetGroupFollowerLinearPosStep(&ironBall->mFollower, &ironBall->mUnk_11c, &ironBall->mUnk_000.mUnk_10);
+        ironBall->mUnk_11c.y += 0x1000;
     }
-    VEC_MultAdd(p->mUnk_000.mExtent.x, &p->mUnk_000.mMatrix.mUnk_00[1], &p->mUnk_11c, &p->mUnk_000.mPos);
-    p->mUnk_000.mPos.y = p->mUnk_000.mPos.y + p->mUnk_0bc;
-    if (p->mUnk_0a0 < 0) {
-        if (p->mUnk_0a0 == -1) {
+    VEC_MultAdd(ironBall->mUnk_000.mExtent.x, &ironBall->mUnk_000.mMatrix.mUnk_00[1], &ironBall->mUnk_11c,
+                &ironBall->mUnk_000.mPos);
+    ironBall->mUnk_000.mPos.y = ironBall->mUnk_000.mPos.y + ironBall->mHeightOffset;
+    if (ironBall->mRotateZAngle < 0) {
+        if (ironBall->mRotateZAngle == -1) {
             v = 0x38e;
         } else {
             v = -1;
         }
     } else {
-        if (p->mUnk_0a0 != 1) {
+        if (ironBall->mRotateZAngle != 1) {
             v = 1;
         } else {
             v = -0x38e;
         }
     }
-    p->mUnk_0a0 = v;
-    if (p->mUnk_12c == 2) {
-        RefreshShadowMatrix(&p->mUnk_0e8, &p->mUnk_11c, p->mUnk_000.mExtent.x << 1, 0x1c);
-        p->mUnk_11c.y += 0x1000;
-        p->mUnk_12c = 1;
+    ironBall->mRotateZAngle = v;
+    if (ironBall->mUnk_12c == 2) {
+        RefreshShadowMatrix(&ironBall->mShadowMatrix, &ironBall->mUnk_11c, ironBall->mUnk_000.mExtent.x << 1, 0x1c);
+        ironBall->mUnk_11c.y += 0x1000;
+        ironBall->mUnk_12c = 1;
     }
-    if (p->mUnk_12c != 0) {
-        if (((s32) p->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0) < 1000000) {
-            w = (p->mUnk_0bc >> 14) - 7;
+    if (ironBall->mUnk_12c != 0) {
+        if (((s32) ironBall->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0) < 1000000) {
+            w = (ironBall->mHeightOffset >> 14) - 7;
             if (w < 0) {
                 v = 0x1c;
             } else if (w < 0x1c) {
@@ -310,44 +316,44 @@ void UpdateIronBall(void *a, IronBall *p) {
             } else {
                 v = 0;
             }
-            p->mUnk_0e8.mUnk_030 = v;
-            SetShadowPositionRaised(&p->mUnk_0e8, &p->mUnk_11c);
+            ironBall->mShadowMatrix.mUnk_030 = v;
+            SetShadowPositionRaised(&ironBall->mShadowMatrix, &ironBall->mUnk_11c);
         }
-        p->mUnk_000.mFlags &= ~1;
+        ironBall->mUnk_000.mFlags &= ~1;
     } else {
-        p->mUnk_000.mFlags |= data_021567ec;
+        ironBall->mUnk_000.mFlags |= data_021567ec;
     }
 }
 
-void func_020a9224(void) {
-    Unk020a9224 *p;
+void CreateIronBallKindData(void) {
+    Unk020a9224 *mapObjectKindData;
 
-    p = CreateMapObjectKindData(func_020a9de4, NULL, NULL, 1, 1);
-    p->mUnk_38 = 0x190000;
-    p->mUnk_3c = -0x1f4000;
+    mapObjectKindData = CreateMapObjectKindData(CollideKartWithIronBall, NULL, NULL, 1, 1);
+    mapObjectKindData->mUnk_38 = 0x190000;
+    mapObjectKindData->mUnk_3c = -0x1f4000;
 }
 
-void *func_020a9204(void) {
-    return CreateMapObjectDrawList1(func_020a9cd0, func_020a9c54, NULL);
+void *CreateIronBallShadowDrawList(void) {
+    return CreateMapObjectDrawList1(func_020a9cd0, DrawIronBallShadow, NULL);
 }
 
-void *func_020a91e0(void) {
+void *CreateIronBallDrawList(void) {
     return CreateMapObjectDrawList2(CreateIronBall, DrawIronBall, SetupDrawIronBall);
 }
 
-void *func_020a91c0(void) {
+void *CreateIronBallUpdateList(void) {
     return CreateMapObjectUpdateList(InitIronBallObjects, UpdateIronBall, NULL);
 }
 
-void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
+void func_020a8ed8(Unk020a826c_a0 *soundPart, Vec3 *position) {
     s32 k;
-    Camera *r;
+    Camera *currentCamera;
     s32 v;
     s32 n;
     s32 x;
     s32 m;
 
-    r = GetCurrentCamera();
+    currentCamera = GetCurrentCamera();
     switch (gRaceSetup->mCourseId) {
         case COURSE_ID_CROSS:
             if (IsKartOnLastLap(gRaceSetup->mEntryIndex) != FALSE || GetRaceUseChainCameras() != 0) {
@@ -355,29 +361,29 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
             } else {
                 k = 0x834000;
             }
-            v = FX_Atan2Idx(r->mPos.x - b->x, r->mPos.z - b->z);
+            v = FX_Atan2Idx(currentCamera->mPos.x - position->x, currentCamera->mPos.z - position->z);
             if (v >= 0 && v <= 0xaaab) {
                 n = ((u16) v >> 4) << 1;
-                a->mSourcePos.x = b->x + (s32) (((s64) gPairsByAngle[n] * 0x5dc000) >> 12);
-                a->mSourcePos.y = b->y;
-                a->mSourcePos.z = b->z + (s32) (((s64) gPairsByAngle[n + 1] * 0x5dc000) >> 12);
-                a->mUnk_20 = FALSE;
-            } else if (r->mPos.z > b->z && r->mPos.y < b->y - 0x32000) {
-                a->mSourcePos.x = b->x + (s32) (((s64) gPairsByAngle[0] * 0x5dc000) >> 12);
-                a->mSourcePos.y = b->y;
-                a->mSourcePos.z = b->z + (s32) (((s64) gPairsByAngle[1] * 0x5dc000) >> 12);
-                v = a->mSourcePos.x - k;
-                n = r->mPos.x;
+                soundPart->mSourcePos.x = position->x + (s32) (((s64) gPairsByAngle[n] * 0x5dc000) >> 12);
+                soundPart->mSourcePos.y = position->y;
+                soundPart->mSourcePos.z = position->z + (s32) (((s64) gPairsByAngle[n + 1] * 0x5dc000) >> 12);
+                soundPart->mUnk_20 = FALSE;
+            } else if (currentCamera->mPos.z > position->z && currentCamera->mPos.y < position->y - 0x32000) {
+                soundPart->mSourcePos.x = position->x + (s32) (((s64) gPairsByAngle[0] * 0x5dc000) >> 12);
+                soundPart->mSourcePos.y = position->y;
+                soundPart->mSourcePos.z = position->z + (s32) (((s64) gPairsByAngle[1] * 0x5dc000) >> 12);
+                v = soundPart->mSourcePos.x - k;
+                n = currentCamera->mPos.x;
                 if (n <= v) {
                     n = v;
                 }
-                a->mSourcePos.x = n;
-                a->mUnk_20 = TRUE;
+                soundPart->mSourcePos.x = n;
+                soundPart->mUnk_20 = TRUE;
             } else {
-                a->mSourcePos.x = b->x + (s32) (((s64) data_0215feb4[0x54] * 0x5dc000) >> 12);
-                a->mSourcePos.y = b->y;
-                a->mSourcePos.z = b->z + (s32) (((s64) data_0215feb4[0x55] * 0x5dc000) >> 12);
-                a->mUnk_20 = FALSE;
+                soundPart->mSourcePos.x = position->x + (s32) (((s64) data_0215feb4[0x54] * 0x5dc000) >> 12);
+                soundPart->mSourcePos.y = position->y;
+                soundPart->mSourcePos.z = position->z + (s32) (((s64) data_0215feb4[0x55] * 0x5dc000) >> 12);
+                soundPart->mUnk_20 = FALSE;
             }
             break;
         case COURSE_ID_MARIO:
@@ -386,20 +392,20 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
             } else {
                 m = 0x320000;
             }
-            x = b->x - m;
-            if (x <= r->mPos.x) {
-                x = b->x + m;
-                if (x >= r->mPos.x) {
-                    x = r->mPos.x;
+            x = position->x - m;
+            if (x <= currentCamera->mPos.x) {
+                x = position->x + m;
+                if (x >= currentCamera->mPos.x) {
+                    x = currentCamera->mPos.x;
                 }
             }
-            a->mSourcePos.x = x;
-            a->mSourcePos.y = b->y;
-            a->mSourcePos.z = b->z;
-            if (r->mPos.x < b->x) {
-                a->mUnk_20 = TRUE;
+            soundPart->mSourcePos.x = x;
+            soundPart->mSourcePos.y = position->y;
+            soundPart->mSourcePos.z = position->z;
+            if (currentCamera->mPos.x < position->x) {
+                soundPart->mUnk_20 = TRUE;
             } else {
-                a->mUnk_20 = FALSE;
+                soundPart->mUnk_20 = FALSE;
             }
             break;
     }

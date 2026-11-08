@@ -4,26 +4,26 @@
 
 #pragma optimize_for_size on
 
-u32 func_020ace8c(InputSlotPair *a) {
-    if (func_020acebc(a) == 0) {
-        if (a->mNoPairCount < 5) {
+u32 func_020ace8c(InputSlotPair *inputSlotPair) {
+    if (func_020acebc(inputSlotPair) == 0) {
+        if (inputSlotPair->mNoPairCount < 5) {
             return 1;
         }
     }
     return 0;
 }
 
-u32 func_020ace68(InputSlotPair *a) {
-    if (a->mPrevHasPair == 0 && a->mHasPair != 0) {
+u32 func_020ace68(InputSlotPair *inputSlotPair) {
+    if (inputSlotPair->mPrevHasPair == 0 && inputSlotPair->mHasPair != 0) {
         return 1;
     }
     return 0;
 }
 
-u32 func_020ace34(InputSlotPair *a) {
+u32 func_020ace34(InputSlotPair *inputSlotPair) {
     u32 r;
 
-    if (func_020ace8c(a) == 0 && func_020ace68(a) != 0) {
+    if (func_020ace8c(inputSlotPair) == 0 && func_020ace68(inputSlotPair) != 0) {
         r = 1;
     } else {
         r = 0;
@@ -31,6 +31,6 @@ u32 func_020ace34(InputSlotPair *a) {
     return r;
 }
 
-u32 func_020ace14(u32 a) {
-    return func_020ace34((InputSlotPair *) &data_02175628[a].mPairX);
+u32 func_020ace14(u32 slotIndex) {
+    return func_020ace34((InputSlotPair *) &data_02175628[slotIndex].mPairX);
 }

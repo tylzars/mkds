@@ -4,4 +4,4 @@
 
 typedef struct TPData TPData;
 
-void AdvanceKeyboardInput(u16 a, volatile TPData b);
+void AdvanceKeyboardInput(u16 keys, volatile TPData touchPoint);

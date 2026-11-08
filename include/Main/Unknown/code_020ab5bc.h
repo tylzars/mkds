@@ -4,4 +4,4 @@
 
 typedef struct RepeatCounter RepeatCounter;
 
-void AdvanceRepeatCounter(RepeatCounter *p);
+void AdvanceRepeatCounter(RepeatCounter *repeatCounter);

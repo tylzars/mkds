@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void GetKeyboardCursorBoundsRelative(s32 *a, s32 *b, s32 *c, s32 *d);
+void GetKeyboardCursorBoundsRelative(s32 *left, s32 *top, s32 *right, s32 *bottom);

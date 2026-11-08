@@ -17,23 +17,23 @@ u32 func_020acbc0(void) {
 void UpdateTitleState3(void) {
     u32 w;
     s32 i;
-    LayoutTableEntry *p;
+    LayoutTableEntry *titleTable;
 
-    p = gTitleScene->mTitleTable;
+    titleTable = gTitleScene->mTitleTable;
     w = func_020acbe8(gTitleScene->mTitleSBncl);
     if (GetTitleStateFrames() < 10) {
         for (i = 0; i <= 14; i++) {
-            p[i].mOffsetX = InterpolateS16(1, 0, 0xf8, GetTitleStateFrames(), 10);
+            titleTable[i].mOffsetX = InterpolateS16(1, 0, 0xf8, GetTitleStateFrames(), 10);
         }
         for (i = 0; i <= 1; i++) {
-            p[i + w].mOffsetX = InterpolateS16(1, 0, 0xf8, GetTitleStateFrames(), 10);
+            titleTable[i + w].mOffsetX = InterpolateS16(1, 0, 0xf8, GetTitleStateFrames(), 10);
         }
     } else {
         for (i = 0; i <= 14; i++) {
-            p[i].mOffsetX = 0xf8;
+            titleTable[i].mOffsetX = 0xf8;
         }
         for (i = 0; i <= 1; i++) {
-            p[i + w].mOffsetX = 0xf8;
+            titleTable[i + w].mOffsetX = 0xf8;
         }
         if (func_020acbc0() != 0) {
             SetTitleState(gTitleScene->mNextState, 8);

@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void SetKeyboardOffset(s32 a, s32 b);
-void SelectKeyboardLayout(u32 a);
+void SetKeyboardOffset(s32 offsetX, s32 offsetY);
+void SelectKeyboardLayout(u32 layoutIndex);

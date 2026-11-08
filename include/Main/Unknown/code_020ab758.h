@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void SetKeyboardTextLimit(u16 a);
+void SetKeyboardTextLimit(u16 textLimit);

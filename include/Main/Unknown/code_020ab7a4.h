@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void SetKeyboardText(const u16 *a);
+void SetKeyboardText(const u16 *text);

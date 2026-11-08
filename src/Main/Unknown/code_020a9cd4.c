@@ -23,17 +23,17 @@
 
 #pragma thumb on
 
-void MoveKeyboardCursorToValue(u16 a) {
-    KeyboardRect *p;
-    u16 v;
+void MoveKeyboardCursorToValue(u16 value) {
+    KeyboardRect *foundRect;
+    u16 callbackValue;
 
-    p = FindKeyboardRectByValue(a);
-    if (p != NULL) {
-        gKeyboardKeys.mCursorRect = p;
+    foundRect = FindKeyboardRectByValue(value);
+    if (foundRect != NULL) {
+        gKeyboardKeys.mCursorRect = foundRect;
         if (gKeyboardKeys.mCursorCallback != NULL) {
-            v = gKeyboardKeys.mCursorCallback(GetKeyboardRectValue(p), 0);
-            if (v != 0) {
-                gKeyboardKeys.mCursorRect = FindKeyboardRectByValue(v);
+            callbackValue = gKeyboardKeys.mCursorCallback(GetKeyboardRectValue(foundRect), 0);
+            if (callbackValue != 0) {
+                gKeyboardKeys.mCursorRect = FindKeyboardRectByValue(callbackValue);
             }
         }
     }
@@ -49,22 +49,22 @@ s32 GetKeyboardChosenKeyValue(void) {
 
 #pragma thumb off
 
-void InitIronBall(IronBall *p) {
-    Vec3 v = data_02167974;
+void InitIronBall(IronBall *ironBall) {
+    Vec3 scale = data_02167974;
 
-    SetMapObjectScale(&p->mUnk_000, &v);
-    p->mUnk_000.mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
-    InitSoundSource(&p->mUnk_000.mSound->mSoundSource, 10, &p->mUnk_000.mPos);
-    p->mUnk_000.mFarDistanceSquared = gSoundFalloffs[10].mUnk_20;
-    p->mUnk_128 = DecimalNonZeroDigitsToBitMask(p->mUnk_000.mCourseMapRow->mUnk_34);
+    SetMapObjectScale(&ironBall->mUnk_000, &scale);
+    ironBall->mUnk_000.mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
+    InitSoundSource(&ironBall->mUnk_000.mSound->mSoundSource, 10, &ironBall->mUnk_000.mPos);
+    ironBall->mUnk_000.mFarDistanceSquared = gSoundFalloffs[10].mUnk_20;
+    ironBall->mUnk_128 = DecimalNonZeroDigitsToBitMask(ironBall->mUnk_000.mCourseMapRow->mUnk_34);
 }
 
-u32 func_020a9de4(Unk020a9224 *p, void *a, u8 *b, u8 *c) {
+u32 CollideKartWithIronBall(Unk020a9224 *ironBall, void *kart, u8 *b, u8 *c) {
     u32 x = *b;
     u32 y = *c;
 
     if (x == 1) {
-        p->mUnk_c0 = 0xa000;
+        ironBall->mUnk_c0 = 0xa000;
         return 0;
     }
     return (u8) y;
@@ -79,19 +79,19 @@ void SetupDrawIronBall(void *a) {
     func_0209bbd0(a, gIronBall);
 }
 
-void DrawIronBall(void *a, IronBall *p) {
+void DrawIronBall(void *a, IronBall *ironBall) {
     u32 v;
-    u8 v1[0x28];
-    s32 i;
+    u8 rotationMatrix[0x28];
+    s32 pairIndex;
 
     v = 0x1e;
     func_01ff9048(0x14, &v, 1);
-    func_01ff9048(0x19, SetViewTransposeMatrixPos(&p->mUnk_000.mPos), 0xc);
-    if (p->mUnk_0a0 != 0) {
-        i = (u16) p->mUnk_0a0 >> 4;
-        MTX_RotZ33_((s32 *) v1, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
-        func_01ff9048(0x1a, v1, 9);
+    func_01ff9048(0x19, SetViewTransposeMatrixPos(&ironBall->mUnk_000.mPos), 0xc);
+    if (ironBall->mRotateZAngle != 0) {
+        pairIndex = (u16) ironBall->mRotateZAngle >> 4;
+        MTX_RotZ33_((s32 *) rotationMatrix, gPairsByAngle[pairIndex * 2], gPairsByAngle[pairIndex * 2 + 1]);
+        func_01ff9048(0x1a, rotationMatrix, 9);
     }
-    func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
-    DrawMapObjectModel(a, gIronBall, p);
+    func_01ff9048(0x1b, &ironBall->mUnk_000.mScale, 3);
+    DrawMapObjectModel(a, gIronBall, ironBall);
 }
