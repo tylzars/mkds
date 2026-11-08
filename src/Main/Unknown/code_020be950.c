@@ -150,7 +150,7 @@ void DrawRaceHudSubScreenCells(Unk020c06c4 *a, RaceHudSubScreenCells *b, s32 c) 
 
     l = gRaceHudSubScreenCellGroups->mUnk_000;
     if (c != 0) {
-        v = func_020b6368();
+        v = GetSubScreenAngleAndClearScrollTimer();
     }
     for (i = 0; i < b->mCellCount; i++) {
         p = b->mCells[i].mUnk_0c;
@@ -209,7 +209,7 @@ void DrawRaceHudSubScreenCellsScaled(Unk020c06c4 *a, RaceHudSubScreenCells *b, s
 
     l = gRaceHudSubScreenCellGroups->mUnk_000;
     if (c != 0) {
-        v = func_020b6368();
+        v = GetSubScreenAngleAndClearScrollTimer();
     }
     for (i = 0; i < b->mCellCount; i++) {
         p = b->mCells[i].mUnk_0c;

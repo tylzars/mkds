@@ -595,7 +595,7 @@ void InitRaceTaPositions(void) {
     }
     gRaceTaPositions->mSampleFrames = 0;
     for (a = 0; a < gRaceSetup->mKartCount; a++) {
-        u16 angle = (u32) func_020b6338(a);
+        u16 angle = (u32) GetRaceHudSubScreenKartAngle(a);
         func_0207a91c(&position, a);
         for (j = 0; j < 0x28; j++) {
             gRaceTaPositions->mSamples[a][j].mPos = position;
@@ -682,7 +682,7 @@ void UpdateRaceTaPositions(void) {
             func_0207a91c(&gRaceTaPositions->mSamples[i][0].mPos, i);
             gRaceTaPositions->mSamples[i][0].mUnk_14 =
                 IsPositionOutsideBox(&gRaceTaPositions->mSamples[i][0].mPos) != 0 ? 2 : 3;
-            gRaceTaPositions->mSamples[i][0].mAngle = func_020b6338(i);
+            gRaceTaPositions->mSamples[i][0].mAngle = GetRaceHudSubScreenKartAngle(i);
             if ((kart->mUnk_44 & 0xa) != 0) {
                 gRaceTaPositions->mSamples[i][0].mKind = 2;
             } else if ((kart->mUnk_48 & 0x80020) != 0) {
@@ -760,7 +760,8 @@ void DrawRaceTaPositions(Unk020c06c4 *oamBuffer) {
                 }
             }
             for (j = 0; j < 0x28; j++) {
-                u16 angle = (u16) (gRaceTaPositions->mSamples[i][j].mAngle + func_020b6368()) + 0x800;
+                u16 angle =
+                    (u16) (gRaceTaPositions->mSamples[i][j].mAngle + GetSubScreenAngleAndClearScrollTimer()) + 0x800;
                 u16 rotationIndex = ((angle << 4) / 0x10000) % 16;
                 if (ComputeRaceHudSubScreenPosition(&gRaceTaPositions->mSamples[i][j].mPos, &samplePosition, s, 1, 1) !=
                     FALSE) {

@@ -637,7 +637,7 @@ extern RaceHud *gRaceHud;
 struct ChoisesS;
 extern struct ChoisesS *gChoisesS;
 struct RaceNcerNclrNcgrTables;
-extern struct RaceNcerNclrNcgrTables *data_0217b3c4;
+extern struct RaceNcerNclrNcgrTables *gRaceNcerNclrNcgrTables;
 // 8-byte elements at the start of Unk0217b3d8.
 typedef struct Unk0217b3d8_00 {
     /* 00 */ s32 mUnk_00;

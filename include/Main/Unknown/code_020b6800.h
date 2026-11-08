@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void *func_020b6800(void);
+void *RaceHudSubScreenGetCurrentHeap(void);

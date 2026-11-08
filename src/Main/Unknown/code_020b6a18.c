@@ -9,14 +9,14 @@
 // placeholder: an object of the original file that is not known yet; it only sets the order of the tables below
 const u8 data_020b6a18_pad[1] = {1};
 
-// Copies the name of row a (0 is the player of current entry 0, otherwise record a - 1 of the course) into b; the whole
-// 10 characters when c is non-zero, else only as many as fit the width.
-void func_020b6c74(u32 rowIndex, u16 *nameOut, u32 copyFullLength) {
+// Copies the name of row rowIndex (0 is the player of current entry 0, otherwise course record rowIndex - 1) into
+// nameOut; the whole 10 characters when copyFullLength is non-zero, else only as many as fit the width.
+void CopyPlayerOrTimeRecordName(u32 rowIndex, u16 *nameOut, u32 copyFullLength) {
     u32 length;
-    BOOL f;
+    BOOL isHumanGhostOrPeer;
     u16 *name;
     u16 clearIndex;
-    u16 v1[10];
+    u16 fittedText[10];
     TimeRecord record;
 
     name = NULL;
@@ -25,14 +25,14 @@ void func_020b6c74(u32 rowIndex, u16 *nameOut, u32 copyFullLength) {
     for (; clearIndex < 11; clearIndex++) {
         nameOut[clearIndex] = 0;
     }
-    f = FALSE;
+    isHumanGhostOrPeer = FALSE;
     if (rowIndex == 0) {
         if (gRaceSetup->mCurrentEntries[rowIndex].mPlayer.mKind <= 3) {
             if ((1 << gRaceSetup->mCurrentEntries[rowIndex].mPlayer.mKind) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) {
-                f = TRUE;
+                isHumanGhostOrPeer = TRUE;
             }
         }
-        if (f != FALSE) {
+        if (isHumanGhostOrPeer != FALSE) {
             name = gRaceSetup->mCurrentEntries[rowIndex].mPlayer.mName;
             if (name == NULL) {
                 return;
@@ -40,7 +40,7 @@ void func_020b6c74(u32 rowIndex, u16 *nameOut, u32 copyFullLength) {
             if (copyFullLength != 0) {
                 length = 10;
             } else {
-                length = CopyTextWithinWidth(name, v1);
+                length = CopyTextWithinWidth(name, fittedText);
             }
         }
     } else {
@@ -49,7 +49,7 @@ void func_020b6c74(u32 rowIndex, u16 *nameOut, u32 copyFullLength) {
             if (copyFullLength != 0) {
                 length = 10;
             } else {
-                length = CopyTextWithinWidth(name, v1);
+                length = CopyTextWithinWidth(name, fittedText);
             }
         }
     }
@@ -59,15 +59,16 @@ void func_020b6c74(u32 rowIndex, u16 *nameOut, u32 copyFullLength) {
     wcsncpy(nameOut, name, length);
 }
 
-void func_020b6bd4(UnkPair020b502c *outFirst, UnkPair020b502c *outSecond, s32 firstX, s32 firstZ, s16 secondX,
-                   s16 secondZ) {
+// The part of the rectangle that sub screen state 0 shows at x 0x78..0xf8, y 0x28..0xc0 of the 256 x 192 screen.
+void ComputeRaceHudSubScreenState0MinMax(UnkPair020b502c *outFirst, UnkPair020b502c *outSecond, s32 firstX, s32 firstZ,
+                                         s16 secondX, s16 secondZ) {
     outFirst->mUnk_00 = (firstX << 12) + (secondX - firstX) * 0xf000 / 32;
     outFirst->mUnk_04 = (firstZ << 12) + (secondZ - firstZ) * 0x5000 / 24;
     outSecond->mUnk_00 = (firstX << 12) + (secondX - firstX) * 0x1f000 / 32;
     outSecond->mUnk_04 = (firstZ << 12) + (secondZ - firstZ) * 0x18000 / 24;
 }
 
-void func_020b6b54(UnkPair020b502c *outFirst, UnkPair020b502c *outSecond) {
+void GetRaceHudSubScreenState0MinMax(UnkPair020b502c *outFirst, UnkPair020b502c *outSecond) {
     s16 rows[55][4] = {
         {-1000, -1000, 1000, 1000},
         {-6459, -3180, 2908, 3845},
@@ -127,11 +128,12 @@ void func_020b6b54(UnkPair020b502c *outFirst, UnkPair020b502c *outSecond) {
     };
     s32 courseId = RaceHudSubScreenGetCurrentCourseId();
 
-    func_020b6bd4(outFirst, outSecond, rows[courseId][0], rows[courseId][1], rows[courseId][2], rows[courseId][3]);
+    ComputeRaceHudSubScreenState0MinMax(outFirst, outSecond, rows[courseId][0], rows[courseId][1], rows[courseId][2],
+                                        rows[courseId][3]);
 }
 
-void func_020b6b18(UnkPair020b502c *outFirst, UnkPair020b502c *outSecond, s32 firstX, s32 firstZ, s16 secondX,
-                   s16 secondZ) {
+void SetFixed12MinMaxFromWhole(UnkPair020b502c *outFirst, UnkPair020b502c *outSecond, s32 firstX, s32 firstZ,
+                               s16 secondX, s16 secondZ) {
     outFirst->mUnk_00 = firstX << 12;
     outFirst->mUnk_04 = firstZ << 12;
     outSecond->mUnk_00 = secondX << 12;
@@ -198,7 +200,8 @@ void GetRaceHudSubScreenCourseMinMax(UnkPair020b502c *outFirst, UnkPair020b502c 
     };
     s32 courseId = RaceHudSubScreenGetCurrentCourseId();
 
-    func_020b6b18(outFirst, outSecond, rows[courseId][0], rows[courseId][1], rows[courseId][2], rows[courseId][3]);
+    SetFixed12MinMaxFromWhole(outFirst, outSecond, rows[courseId][0], rows[courseId][1], rows[courseId][2],
+                              rows[courseId][3]);
 }
 
 void GetRaceHudSubScreenScrollLimits(UnkPair020b502c *outFirst, UnkPair020b502c *outSecond) {
@@ -261,5 +264,6 @@ void GetRaceHudSubScreenScrollLimits(UnkPair020b502c *outFirst, UnkPair020b502c 
     };
     s32 courseId = RaceHudSubScreenGetCurrentCourseId();
 
-    func_020b6b18(outFirst, outSecond, rows[courseId][0], rows[courseId][1], rows[courseId][2], rows[courseId][3]);
+    SetFixed12MinMaxFromWhole(outFirst, outSecond, rows[courseId][0], rows[courseId][1], rows[courseId][2],
+                              rows[courseId][3]);
 }

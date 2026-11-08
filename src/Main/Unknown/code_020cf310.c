@@ -93,7 +93,7 @@ void UpdateRaceHudSubScreenBgPalette(RaceHudSubScreenBgPalette *palette) {
             DC_FlushRange(&palette->mUnk_00[0x40], 6);
             GXS_BeginLoadBGExtPltt();
             GXS_LoadBGExtPltt(&palette->mUnk_00[0x40], 0x4080, 6);
-            if (func_020b64e8() != 0) {
+            if (IsCourseWithMap2DLocal3() != 0) {
                 GXS_LoadBGExtPltt(&palette->mUnk_00[0x40], 0x6080, 6);
             }
             GXS_EndLoadBGExtPltt();
@@ -122,7 +122,7 @@ void UpdateRaceHudSubScreenBgPalette(RaceHudSubScreenBgPalette *palette) {
             DC_FlushRange(&palette->mUnk_00[0x80], 0x34);
             GXS_BeginLoadBGExtPltt();
             GXS_LoadBGExtPltt(&palette->mUnk_00[0x80], 0x4100, 0x34);
-            if (func_020b64e8() != 0) {
+            if (IsCourseWithMap2DLocal3() != 0) {
                 GXS_LoadBGExtPltt(&palette->mUnk_00[0x80], 0x6100, 0x34);
             }
             GXS_EndLoadBGExtPltt();
@@ -159,7 +159,7 @@ void UpdateRaceHudSubScreenBgPalette(RaceHudSubScreenBgPalette *palette) {
             DC_FlushRange(&palette->mUnk_00[0x78], 0x28);
             GXS_BeginLoadBGExtPltt();
             GXS_LoadBGExtPltt(&palette->mUnk_00[0x78], 0x40f0, 0x28);
-            if (func_020b64e8() != 0) {
+            if (IsCourseWithMap2DLocal3() != 0) {
                 GXS_LoadBGExtPltt(&palette->mUnk_00[0x78], 0x60f0, 0x28);
             }
             GXS_EndLoadBGExtPltt();
@@ -188,7 +188,7 @@ void UpdateRaceHudSubScreenBgPalette(RaceHudSubScreenBgPalette *palette) {
             DC_FlushRange(&palette->mUnk_00[0x50], 0x10);
             GXS_BeginLoadBGExtPltt();
             GXS_LoadBGExtPltt(&palette->mUnk_00[0x50], 0x40a0, 0x10);
-            if (func_020b64e8() != 0) {
+            if (IsCourseWithMap2DLocal3() != 0) {
                 GXS_LoadBGExtPltt(&palette->mUnk_00[0x50], 0x60a0, 0x10);
             }
             GXS_EndLoadBGExtPltt();
@@ -237,7 +237,7 @@ void UpdateRaceHudSubScreenBgPalette(RaceHudSubScreenBgPalette *palette) {
             DC_FlushRange(&palette->mUnk_00[0x54], 0x98);
             GXS_BeginLoadBGExtPltt();
             GXS_LoadBGExtPltt(&palette->mUnk_00[0x54], 0x40a8, 0x98);
-            if (func_020b64e8() != 0) {
+            if (IsCourseWithMap2DLocal3() != 0) {
                 GXS_LoadBGExtPltt(&palette->mUnk_00[0x54], 0x60a8, 0x98);
             }
             GXS_EndLoadBGExtPltt();
@@ -279,7 +279,7 @@ void UpdateRaceHudSubScreenBgPalette(RaceHudSubScreenBgPalette *palette) {
             DC_FlushRange(&palette->mUnk_00[0xe0], 0x2c);
             GXS_BeginLoadBGExtPltt();
             GXS_LoadBGExtPltt(&palette->mUnk_00[0xe0], 0x41c0, 0x2c);
-            if (func_020b64e8() != 0) {
+            if (IsCourseWithMap2DLocal3() != 0) {
                 GXS_LoadBGExtPltt(&palette->mUnk_00[0xe0], 0x61c0, 0x2c);
             }
             GXS_EndLoadBGExtPltt();

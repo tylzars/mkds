@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-struct RaceNcerNclrNcgrTables **func_020b8610(void);
+struct RaceNcerNclrNcgrTables **ClearRaceNcerNclrNcgrTablesPointer(void);

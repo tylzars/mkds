@@ -230,7 +230,7 @@ void UpdateRaceHudSubScreenKarts(void) {
     switch (GetRaceHudSubScreenState()) {
         case 0:
             for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-                func_020b6078(i, &gRaceHudSubScreenKarts->mUnk_060[i]);
+                ComputeSubScreenState0KartPosition(i, &gRaceHudSubScreenKarts->mUnk_060[i]);
                 screenX = gRaceHudSubScreenKarts->mUnk_060[i].mUnk_00;
                 screenY = gRaceHudSubScreenKarts->mUnk_060[i].mUnk_04;
                 if (screenX > -0x10 && screenX < 0x110 && screenY > -0x10 && screenY < 0xd0 && func_0207a84c(i) == 0) {
@@ -489,7 +489,8 @@ void DrawRaceHudSubScreenKarts(Unk020c06c4 *oamBuffer) {
                             gRaceHudSubScreenKarts->mUnk_110[kartIndex] != 0) {
                             n = AllocOamMatrixIndex(oamBuffer);
                             if (gRaceHudSubScreenKarts->mUnk_110[kartIndex] != 0) {
-                                angle = gRaceHudSubScreenKarts->mUnk_100[kartIndex] + func_020b6368();
+                                angle = gRaceHudSubScreenKarts->mUnk_100[kartIndex] +
+                                        GetSubScreenAngleAndClearScrollTimer();
                             } else {
                                 angle = 0;
                             }
@@ -627,9 +628,9 @@ void DrawRaceHudSubScreenSecondHand(Unk020c06c4 *oamBuffer) {
     }
     if (a == 0) {
         if (gRaceSetup->mMirrorMode != 0) {
-            angle0 = gRaceHudSubScreenSecondHand->mAngles[0] - func_020b6368();
+            angle0 = gRaceHudSubScreenSecondHand->mAngles[0] - GetSubScreenAngleAndClearScrollTimer();
         } else {
-            angle0 = gRaceHudSubScreenSecondHand->mAngles[0] + func_020b6368();
+            angle0 = gRaceHudSubScreenSecondHand->mAngles[0] + GetSubScreenAngleAndClearScrollTimer();
         }
         rotationSlot0 = AllocOamMatrixIndex(oamBuffer);
         Matrix2x2Rotation(rotationMatrix, angle0);
@@ -678,9 +679,9 @@ void DrawRaceHudSubScreenSecondHand(Unk020c06c4 *oamBuffer) {
     }
     if (gRaceHudSubScreenSecondHand->mObjectCount == 3 && a == 0) {
         if (gRaceSetup->mMirrorMode != 0) {
-            angle2 = gRaceHudSubScreenSecondHand->mAngles[2] - func_020b6368();
+            angle2 = gRaceHudSubScreenSecondHand->mAngles[2] - GetSubScreenAngleAndClearScrollTimer();
         } else {
-            angle2 = gRaceHudSubScreenSecondHand->mAngles[2] + func_020b6368();
+            angle2 = gRaceHudSubScreenSecondHand->mAngles[2] + GetSubScreenAngleAndClearScrollTimer();
         }
         rotationSlot2 = AllocOamMatrixIndex(oamBuffer);
         Matrix2x2Rotation(rotationMatrix, angle2);
@@ -728,9 +729,9 @@ void DrawRaceHudSubScreenSecondHand(Unk020c06c4 *oamBuffer) {
         oamBuffer->mUnk_000.mUnk_20[rotationSlot2].mUnk_1e = rotationMatrix[3] >> 4;
     }
     if (gRaceSetup->mMirrorMode != 0) {
-        angle1 = gRaceHudSubScreenSecondHand->mAngles[1] - func_020b6368();
+        angle1 = gRaceHudSubScreenSecondHand->mAngles[1] - GetSubScreenAngleAndClearScrollTimer();
     } else {
-        angle1 = gRaceHudSubScreenSecondHand->mAngles[1] + func_020b6368();
+        angle1 = gRaceHudSubScreenSecondHand->mAngles[1] + GetSubScreenAngleAndClearScrollTimer();
     }
     rotationSlot1 = AllocOamMatrixIndex(oamBuffer);
     Matrix2x2Rotation(rotationMatrix, angle1);

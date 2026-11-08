@@ -98,7 +98,7 @@
 #include "Main/Unknown/code_0203c5f8.h"
 
 void InitSubScreenGraphicsMode5(void) {
-    if (func_020b64e8() != 0) {
+    if (IsCourseWithMap2DLocal3() != 0) {
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1c00;
     } else {
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1400;
@@ -110,7 +110,7 @@ void InitSubScreenGraphicsMode5(void) {
     reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & 0x43) | 0x8410;
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 3;
     reg_G2S_DB_BG3CNT &= ~0x40;
-    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x8810 | ((func_020b6430() != 0) << 13);
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x8810 | ((IsCourseWithSubBg3CntBit13() != 0) << 13);
 }
 
 void InitSubScreenGraphicsMode0(void) {
@@ -246,13 +246,13 @@ void func_020b0b8c(void) {
             G2x_SetBGyAffine_(&reg_G2S_DB_BG2PA, gRaceHud->mUnk_858[0].mUnk_00, gRaceHud->mUnk_858[0].mUnk_10,
                               gRaceHud->mUnk_858[0].mUnk_14, gRaceHud->mUnk_858[0].mUnk_18,
                               gRaceHud->mUnk_858[0].mUnk_1c);
-            if (func_020b64e8() != 0) {
+            if (IsCourseWithMap2DLocal3() != 0) {
                 G2x_SetBGyAffine_(&reg_G2S_DB_BG3PA, gRaceHud->mUnk_858[1].mUnk_00, gRaceHud->mUnk_858[1].mUnk_10,
                                   gRaceHud->mUnk_858[1].mUnk_14, gRaceHud->mUnk_858[1].mUnk_18,
                                   gRaceHud->mUnk_858[1].mUnk_1c);
             }
             UpdateRaceHudSubScreenBgPalette((RaceHudSubScreenBgPalette *) &data_0217b34c[0x100]);
-            if (func_020b64e8() != 0) {
+            if (IsCourseWithMap2DLocal3() != 0) {
                 if (IsFollowedKartOutsideBox() != 0) {
                     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1c00;
                 } else {
@@ -369,7 +369,7 @@ void func_020b03bc(void) {
     InitRaceStartSequence();
     InitRaceEnd();
     InitRaceHudSubScreenProjection();
-    func_020b8624();
+    InitRaceNcerNclrNcgrTables();
     func_020cffa0();
     if (gRaceSetup->mRaceKind == 4) {
         func_020d12b0();
@@ -466,11 +466,11 @@ void func_020b03bc(void) {
     }
     G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 0x3f, 6, 10);
     if (gRaceSetup->mMode == MODE_GRAND_PRIX) {
-        func_020b6dc4(GetRaceNclrNcgr(1)->mNclr->mData, GetRaceNclrNcgr(1)->mNcgr->mData);
+        CopyPlayerCharacterToRaceGoalMO(GetRaceNclrNcgr(1)->mNclr->mData, GetRaceNclrNcgr(1)->mNcgr->mData);
         DC_FlushRange(GetRaceNclrNcgr(1)->mNclr->mData, GetRaceNclrNcgr(1)->mNclr->mDataSize);
         DC_FlushRange(GetRaceNclrNcgr(1)->mNcgr->mData, GetRaceNclrNcgr(1)->mNcgr->mDataSize);
     }
-    func_020b6d98(GetRaceNclrNcgr(6)->mNclr->mData, GetRaceNclrNcgr(6)->mNcgr->mData);
+    FillRaceSOPaletteAndChars(GetRaceNclrNcgr(6)->mNclr->mData, GetRaceNclrNcgr(6)->mNcgr->mData);
     DC_FlushRange(GetRaceNclrNcgr(6)->mNclr->mData, GetRaceNclrNcgr(6)->mNclr->mDataSize);
     DC_FlushRange(GetRaceNclrNcgr(6)->mNcgr->mData, GetRaceNclrNcgr(6)->mNcgr->mDataSize);
     CopyCharsBlock(GetRaceNclrNcgr(6)->mNcgr->mData, 0x10, 0, 0x10, 2, GetRaceNclrNcgr(7)->mNcgr->mData, 0x10, 0);
@@ -566,7 +566,7 @@ void InitMap2D(void) {
             LoadNscrData(&nscrs[1], FindCourseFileWrapper("Map2D/global2.NSCR"));
         }
         LoadNscrData(&nscrs[2], FindCourseFileWrapper("Map2D/local2.NSCR"));
-        if (func_020b64e8()) {
+        if (IsCourseWithMap2DLocal3()) {
             LoadNscrData(&nscrs[3], FindCourseFileWrapper("Map2D/local3.NSCR"));
         }
     } else {
@@ -575,7 +575,7 @@ void InitMap2D(void) {
             LocateNscr(&nscrs[1], FindCourseFileWrapper("Map2D/global2.NSCR"));
         }
         LocateNscr(&nscrs[2], FindCourseFileWrapper("Map2D/local2.NSCR"));
-        if (func_020b64e8()) {
+        if (IsCourseWithMap2DLocal3()) {
             LocateNscr(&nscrs[3], FindCourseFileWrapper("Map2D/local3.NSCR"));
         }
     }
@@ -618,7 +618,7 @@ void InitMap2D(void) {
     GXS_LoadBGPltt(nclrs[2]->mData, 0, 0x200);
     GXS_LoadBG3Char(ncgrs[2]->mData, 0, ncgrs[2]->mDataSize);
     GXS_LoadBG2Scr(nscrs[2]->mData, 0, nscrs[2]->mDataSize);
-    if (func_020b64e8()) {
+    if (IsCourseWithMap2DLocal3()) {
         GXS_LoadBG3Scr(nscrs[3]->mData, 0, nscrs[3]->mDataSize);
     }
     GX_SetBankForSubBGExtPltt(0x80);
@@ -716,7 +716,7 @@ void func_020af86c(void) {
     ClearRaceStartSequencePointer();
     ClearRaceEndPointer();
     ClearRaceHudSubScreenProjection();
-    func_020b8610();
+    ClearRaceNcerNclrNcgrTablesPointer();
     if (gRaceSetup->mRaceKind == 4) {
         func_020d129c();
     }

@@ -624,7 +624,7 @@ void DrawRaceHudSubScreenFlipperCells(Unk020c06c4 *oamBuffer) {
     s32 drawY;
 
     c = func_020c0dc4();
-    d = func_020b6368();
+    d = GetSubScreenAngleAndClearScrollTimer();
     for (i = 0; i < gRaceHudSubScreenFlipperCells->mCellCount; i++) {
         h = gRaceHudSubScreenFlipperCells->mCells[i].mUnk_0c;
         if (c <= h) {

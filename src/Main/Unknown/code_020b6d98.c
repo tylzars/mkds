@@ -3,12 +3,12 @@
 #include "Main/Unknown/code_020b6e00.h"
 #include "Main/Unknown/code_0212a910.h"
 
-void func_020b6dc4(void *a, void *b) {
+void CopyPlayerCharacterToRaceGoalMO(void *palette, void *chars) {
     (GetMessageScreenCharBuffer());
-    CopyPlayerCharacterPaletteAndChars(a, 0xc, b, 0x1b, 8);
+    CopyPlayerCharacterPaletteAndChars(palette, 0xc, chars, 0x1b, 8);
 }
 
-void func_020b6d98(void *a, void *b) {
-    func_020b80a8();
-    func_020b6e00(a, b);
+void FillRaceSOPaletteAndChars(void *palette, void *chars) {
+    RenderKartEntryNames();
+    CopyRaceTransferSOAndMapSO(palette, chars);
 }

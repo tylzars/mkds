@@ -4,4 +4,4 @@
 
 typedef struct Unk020224e0_c Unk020224e0_c;
 
-Unk020224e0_c *GetRaceMNcerEntry(u32 arg0);
+Unk020224e0_c *GetRaceMNcerEntry(u32 cellIndex);

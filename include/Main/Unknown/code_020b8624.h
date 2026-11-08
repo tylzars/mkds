@@ -11,7 +11,7 @@ typedef struct RaceNclrNcgr {
     /* 08 */ u8 mUnk_08[8];
 } RaceNclrNcgr;
 
-// 0x88c bytes, allocated by func_020b8624; the pointer to it is held in data_0217b3c4.
+// 0x88c bytes, allocated by InitRaceNcerNclrNcgrTables; the pointer to it is held in gRaceNcerNclrNcgrTables.
 typedef struct RaceNcerNclrNcgrTables {
     /* 000 */ Unk020224e0_c *mRaceMNcerEntries[0x38];
     /* 0e0 */ Unk020224e0_c *mRaceGoalMNcerEntries[0x44];
@@ -27,6 +27,6 @@ typedef struct RaceNcerNclrNcgrTables {
     /* 7dc */ RaceNclrNcgr mNclrNcgrPairs[11];
 } RaceNcerNclrNcgrTables;
 
-void func_020b8624(void);
+void InitRaceNcerNclrNcgrTables(void);
 
 #include "00/code_021832d8.h"
