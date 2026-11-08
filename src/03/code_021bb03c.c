@@ -558,7 +558,7 @@ u8 *ReadExchangePacketAndCheckSum(const u8 *packet, u32 *kind, s32 *length) {
     const u8 *cursor;
     sum = 0;
     *kind = SwapBytes16_inline(*(u16 *) packet);
-    *length = SwapBytes16_inline(*(u16 *) (packet + 2));
+    *length = SwapBytes16_inline(*OFFSET_PTR(u16, packet, 2));
     end = packet + 6 + *length;
     for (cursor = packet; cursor < end; cursor++) {
         sum += *cursor;
@@ -566,7 +566,7 @@ u8 *ReadExchangePacketAndCheckSum(const u8 *packet, u32 *kind, s32 *length) {
     if ((u16) sum != SwapBytes16_inline(*(u16 *) end)) {
         return NULL;
     }
-    return (u8 *) packet + 6;
+    return OFFSET_PTR(u8, packet, 6);
 }
 
 // Items are a big-endian type and length, then the value padded so the item is a multiple of 8 bytes.
@@ -577,7 +577,7 @@ u8 *ReadNextItem(u8 **cursor, u8 *end, u32 *type, s32 *length) {
         return NULL;
     }
     *type = SwapBytes16_inline(*(u16 *) item);
-    *length = SwapBytes16_inline(*(u16 *) (item + 2));
+    *length = SwapBytes16_inline(*OFFSET_PTR(u16, item, 2));
     item += 4;
     *cursor = item + (((*length + 0xb) & ~7) - 4);
     return item;
@@ -585,7 +585,7 @@ u8 *ReadNextItem(u8 **cursor, u8 *end, u32 *type, s32 *length) {
 
 u8 *ReadFirstItem(const u8 *body, u32 *type, s32 *length) {
     u8 *cursor;
-    cursor = (u8 *) body + 8;
+    cursor = OFFSET_PTR(u8, body, 8);
     return ReadNextItem(&cursor, cursor + SwapBytes16_inline(*(u16 *) body), type, length);
 }
 
@@ -618,7 +618,7 @@ s32 BuildExchangePacket(u8 *packet, u32 kind, u8 *body, u32 length, const void *
     packet[4] = 0;
     packet[5] = 0;
     *(u16 *) packet = SwapBytes16_inline(kind);
-    *(u16 *) (packet + 2) = SwapBytes16_inline(length);
+    *OFFSET_PTR(u16, packet, 2) = SwapBytes16_inline(length);
     end += 6;
     end += length;
     for (cursor = packet; cursor < end; cursor++) {
@@ -636,8 +636,8 @@ u8 *AppendItem(u8 *out, u32 type, const void *value, u32 length) {
     out[3] = 0;
     *(u16 *) out = SwapBytes16_inline(type);
     paddedSize = ((length + 0xb) & ~7) - 4;
-    *(u16 *) (out + 2) = SwapBytes16_inline(length);
-    out = (u8 *) out + 4;
+    *OFFSET_PTR(u16, out, 2) = SwapBytes16_inline(length);
+    out = OFFSET_PTR(u8, out, 4);
     memset(out, 0, paddedSize);
     memcpy(out, value, length);
     return out + paddedSize;
@@ -813,7 +813,7 @@ s32 ParseExchangePacketKind5Items(u8 *body) {
                 h = 0;
                 i = (u8 *) gKind5Words;
                 for (; h < 4; h++) {
-                    *(u32 *) (i + 0x15c) = g;
+                    *OFFSET_PTR(u32, i, 0x15c) = g;
                     i += 0x28;
                 }
                 break;
@@ -825,7 +825,7 @@ s32 ParseExchangePacketKind5Items(u8 *body) {
                 h = 0;
                 l = (u8 *) gKind5Words;
                 for (; h < 4; h++) {
-                    *(u32 *) (l + 0x160) = g;
+                    *OFFSET_PTR(u32, l, 0x160) = g;
                     l += 0x28;
                 }
                 break;

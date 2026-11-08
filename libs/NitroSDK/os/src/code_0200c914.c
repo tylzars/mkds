@@ -136,7 +136,7 @@ void OS_SetIrqStackChecker(void) {
     u32 base;
 
     base = (u32) &data_027e0000;
-    *(u32 *) (base + 0x3f7c) = 0xfddb597d;
+    *OFFSET_PTR(u32, base, 0x3f7c) = 0xfddb597d;
     *(u32 *) (base + 0x3f80 - (u32) data_00000c00) = 0x7bf9dd5b;
 }
 

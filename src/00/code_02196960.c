@@ -174,18 +174,18 @@ BOOL func_ov000_02197064(const s8 *a, u32 b, u8 *c, Unk021a8f84 **d) {
     c[6] = 0;
     c[7] = 0;
     c[1] = 2;
-    *(u16 *) (c + 2) = ((e >> 8) & 0xff) | ((e << 8) & 0xff00);
+    *OFFSET_PTR(u16, c, 2) = ((e >> 8) & 0xff) | ((e << 8) & 0xff00);
     if (a == NULL) {
-        *(u32 *) (c + 4) = 0;
+        *OFFSET_PTR(u32, c, 4) = 0;
     } else {
-        *(u32 *) (c + 4) = func_ov000_0218e374((u32) a);
+        *OFFSET_PTR(u32, c, 4) = func_ov000_0218e374((u32) a);
     }
-    if (*(u32 *) (c + 4) == -1) {
+    if (*OFFSET_PTR(u32, c, 4) == -1) {
         f = func_ov000_021a8f84((const char *) a);
         if (f == NULL) {
             return FALSE;
         }
-        *(u32 *) (c + 4) = **f->mUnk_0c;
+        *OFFSET_PTR(u32, c, 4) = **f->mUnk_0c;
     }
     if (d != NULL) {
         *d = f;

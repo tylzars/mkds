@@ -66,7 +66,7 @@ BOOL func_ov000_0218d644(const s8 *a, s32 b, u8 *c, u32 *d) {
     if (memcmp(c + 4, data_ov000_021b4db4, 4) != 0) {
         return TRUE;
     }
-    if (*(u16 *) (c + 2) != data_ov000_021b4dac.mUnk_06) {
+    if (*OFFSET_PTR(u16, c, 2) !=data_ov000_021b4dac.mUnk_06) {
         return TRUE;
     }
     if (memcmp((const u8 *) a, data_ov000_021b22b0, 3) != 0) {

@@ -104,7 +104,7 @@ s32 DWC_BM_Init(u8 *work) {
     if (func_02151830((u16 *) work) == 0) {
         return -10001;
     }
-    Crc16InitTable((u16 *) (work + 0x500), 0xa001);
+    Crc16InitTable(OFFSET_PTR(u16, work, 0x500), 0xa001);
     if (func_02151804(work) == 0) {
         return -10001;
     }
@@ -114,8 +114,8 @@ s32 DWC_BM_Init(u8 *work) {
     apPage = work;
     validEntry = valid;
     do {
-        crc = Crc16((u16 *) (work + 0x500), page, 0xfe);
-        if (crc == *(u16 *) (page + 0xfe)) {
+        crc = Crc16(OFFSET_PTR(u16, work, 0x500), page, 0xfe);
+        if (crc == *OFFSET_PTR(u16, page, 0xfe)) {
             if (checkAp(apPage) != 0) {
                 *validEntry = 1;
             }
@@ -125,8 +125,8 @@ s32 DWC_BM_Init(u8 *work) {
         validEntry++;
         i++;
     } while (i < 3);
-    crc = Crc16((u16 *) (work + 0x500), work + 0x300, 0xfe);
-    if (crc == *(u16 *) (work + 0x3fe)) {
+    crc = Crc16(OFFSET_PTR(u16, work, 0x500), work + 0x300, 0xfe);
+    if (crc == *OFFSET_PTR(u16, work, 0x3fe)) {
         valid[3] = 1;
     }
     if (valid[0] != 0 && valid[1] != 0 && valid[2] != 0 && valid[3] != 0) {

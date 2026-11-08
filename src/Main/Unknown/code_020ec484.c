@@ -7,11 +7,11 @@
 #include "Main/Unknown/code_020ec504.h"
 #include "Main/Unknown/unk_02159000.h"
 
-void EnterPushedObjectState1(int object) {
+void EnterPushedObjectState1(MapObject *object) {
     u16 newSlot;
-    *(u16 *) (object + 2) = *(u16 *) (object + 2) | (*(u16 *) &data_02159578);
-    newSlot = FreeCollisionSlot(*(s16 *) (object + 100));
-    *(u16 *) (object + 100) = newSlot;
+    object->mFlags = object->mFlags | (*(u16 *) &data_02159578);
+    newSlot = FreeCollisionSlot(object->mCollisionSlotIndex);
+    object->mCollisionSlotIndex = newSlot;
 }
 
 void UpdatePushedObjectState1(Unk020ec490 *object) {

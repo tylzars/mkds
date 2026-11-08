@@ -108,7 +108,7 @@ u32 IsEveryPlayerKartStored(void) {
         offset = 0;
         do {
             setupCopy = ((u32) GetRaceSetupCopy());
-            allKartsStored = allKartsStored & *(u32 *) (setupCopy + offset + 0x14);
+            allKartsStored = allKartsStored & ((RaceSetupCopy *) setupCopy)->mEntries[index].mUnk_14;
             offset = offset + 0x18;
             index = index + 1;
         } while (index < *(s32 *) (*(s32 *) &gPlayerEntryList + 0x48));

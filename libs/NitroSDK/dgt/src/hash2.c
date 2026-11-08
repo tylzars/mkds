@@ -173,13 +173,13 @@ void DGTi_Hash2ProcessMessageBlock(Hash20State *ctx, u8 *source, int length) {
 
     blocks = length / 64;
     for (i = 0; i < blocks; i++) {
-        saved18 = *(u32 *) (source + 0x18);
-        saved38 = *(u32 *) (source + 0x38);
-        *(u32 *) (source + 0x18) = 0;
-        *(u32 *) (source + 0x38) = 0;
+        saved18 = *OFFSET_PTR(u32, source, 0x18);
+        saved38 = *OFFSET_PTR(u32, source, 0x38);
+        *OFFSET_PTR(u32, source, 0x18) = 0;
+        *OFFSET_PTR(u32, source, 0x38) = 0;
         func_02150e1c(ctx, source, 0x40);
-        *(u32 *) (source + 0x18) = saved18;
-        *(u32 *) (source + 0x38) = saved38;
+        *OFFSET_PTR(u32, source, 0x18) = saved18;
+        *OFFSET_PTR(u32, source, 0x38) = saved38;
         source += 0x40;
     }
 }

@@ -613,17 +613,17 @@ void func_ov000_021af7e4(u8 *a, u32 b, Unk021a998c *c) {
 
     g = c->mSendBuffer;
     d = g + 0x22;
-    *(u16 *) (g + 0x22) = 8;
-    *(u16 *) (d + 4) = (u32) data_0216ff5c.mCurrentThread;
-    *(u16 *) (d + 2) = 0;
+    *OFFSET_PTR(u16, g, 0x22) = 8;
+    *OFFSET_PTR(u16, d, 4) = (u32) data_0216ff5c.mCurrentThread;
+    *OFFSET_PTR(u16, d, 2) = 0;
     h = data_ov000_021b636c;
     c->mUnk_0a = h;
     data_ov000_021b636c++;
-    *(u16 *) (d + 6) = h;
+    *OFFSET_PTR(u16, d, 6) = h;
     e = func_ov000_021b01b4(d, 8, 0);
     e = func_ov000_021b01b4(a, b, e);
     f = func_ov000_021b01a0(e);
-    *(u16 *) (d + 2) = (f >> 8) | (f << 8);
+    *OFFSET_PTR(u16, d, 2) = (f >> 8) | (f << 8);
     func_ov000_021af858(d, 8, a, b, c->mUnk_1c, 1);
 }
 
@@ -641,15 +641,15 @@ void func_ov000_021af70c(u8 *a, u32 b, Unk021a998c *c) {
     *(u16 *) (d - 6) = ((u16) c->mUnk_1c >> 8) | ((u16) c->mUnk_1c << 8);
     *(u16 *) (d - 4) = 0x1100;
     f = b + 8;
-    *(u16 *) (d + 4) = (f >> 8) | (f << 8);
-    *(u16 *) (d - 2) = *(u16 *) (d + 4);
-    *(u16 *) (d + 2) = (c->mUnk_18 >> 8) | (c->mUnk_18 << 8);
-    *(u16 *) (g + 0x22) = (c->mUnk_0a >> 8) | (c->mUnk_0a << 8);
-    *(u16 *) (d + 6) = 0;
+    *OFFSET_PTR(u16, d, 4) = (f >> 8) | (f << 8);
+    *(u16 *) (d - 2) = *OFFSET_PTR(u16, d, 4);
+    *OFFSET_PTR(u16, d, 2) = (c->mUnk_18 >> 8) | (c->mUnk_18 << 8);
+    *OFFSET_PTR(u16, g, 0x22) = (c->mUnk_0a >> 8) | (c->mUnk_0a << 8);
+    *OFFSET_PTR(u16, d, 6) = 0;
     e = func_ov000_021b01b4(d - 0xc, 0x14, 0);
     e = func_ov000_021b01b4(a, b, e);
     f = func_ov000_021b01a0(e);
-    *(u16 *) (d + 6) = (f >> 8) | (f << 8);
+    *OFFSET_PTR(u16, d, 6) = (f >> 8) | (f << 8);
     func_ov000_021af858(d, 8, a, b, c->mUnk_1c, 0x11);
 }
 
@@ -679,27 +679,27 @@ void func_ov000_021af550(u8 *a, u32 b, Unk021a998c *c, u32 d, u16 e) {
     *(u16 *) (f - 4) = 0x600;
     *(u16 *) (f - 2) = ((u16) (g + b) >> 8) | ((u16) (g + b) << 8);
     *(u16 *) f = (c->mUnk_0a >> 8) | (c->mUnk_0a << 8);
-    *(u16 *) (f + 2) = (c->mUnk_18 >> 8) | (c->mUnk_18 << 8);
-    *(u16 *) (f + 4) = ((u16) (c->mUnk_28 >> 16) >> 8) | ((u16) (c->mUnk_28 >> 16) << 8);
-    *(u16 *) (f + 6) = ((u16) c->mUnk_28 >> 8) | ((u16) c->mUnk_28 << 8);
-    *(u16 *) (f + 8) = ((u16) (c->mUnk_24 >> 16) >> 8) | ((u16) (c->mUnk_24 >> 16) << 8);
-    *(u16 *) (f + 0xa) = ((u16) c->mUnk_24 >> 8) | ((u16) c->mUnk_24 << 8);
+    *OFFSET_PTR(u16, f, 2) = (c->mUnk_18 >> 8) | (c->mUnk_18 << 8);
+    *OFFSET_PTR(u16, f, 4) = ((u16) (c->mUnk_28 >> 16) >> 8) | ((u16) (c->mUnk_28 >> 16) << 8);
+    *OFFSET_PTR(u16, f, 6) = ((u16) c->mUnk_28 >> 8) | ((u16) c->mUnk_28 << 8);
+    *OFFSET_PTR(u16, f, 8) = ((u16) (c->mUnk_24 >> 16) >> 8) | ((u16) (c->mUnk_24 >> 16) << 8);
+    *OFFSET_PTR(u16, f, 0xa) = ((u16) c->mUnk_24 >> 8) | ((u16) c->mUnk_24 << 8);
     f[0xc] = (g >> 2) << 4;
     f[0xd] = d;
-    *(u16 *) (f + 0xe) = ((u16) (c->mReceiveBufferSize - c->mReceiveBufferLength) >> 8) |
-                         ((u16) (c->mReceiveBufferSize - c->mReceiveBufferLength) << 8);
-    *(u16 *) (f + 0x10) = 0;
-    *(u16 *) (f + 0x12) = (e >> 8) | (e << 8);
+    *OFFSET_PTR(u16, f, 0xe) = ((u16) (c->mReceiveBufferSize - c->mReceiveBufferLength) >> 8) |
+                               ((u16) (c->mReceiveBufferSize - c->mReceiveBufferLength) << 8);
+    *OFFSET_PTR(u16, f, 0x10) = 0;
+    *OFFSET_PTR(u16, f, 0x12) = (e >> 8) | (e << 8);
     if (d & 2) {
-        *(u16 *) (f + 0x14) = ((u16) ((data_ov000_021b6370 + 0x2040000U) >> 16) >> 8) |
-                              ((u16) ((data_ov000_021b6370 + 0x2040000U) >> 16) << 8);
-        *(u16 *) (f + 0x16) =
+        *OFFSET_PTR(u16, f, 0x14) = ((u16) ((data_ov000_021b6370 + 0x2040000U) >> 16) >> 8) |
+                                    ((u16) ((data_ov000_021b6370 + 0x2040000U) >> 16) << 8);
+        *OFFSET_PTR(u16, f, 0x16) =
             ((u16) (data_ov000_021b6370 + 0x2040000U) >> 8) | ((u16) (data_ov000_021b6370 + 0x2040000U) << 8);
     }
     h = func_ov000_021b01b4(f - 0xc, g + 0xc, 0);
     h = func_ov000_021b01b4(a, b, h);
     i = func_ov000_021b01a0(h);
-    *(u16 *) (f + 0x10) = (i >> 8) | (i << 8);
+    *OFFSET_PTR(u16, f, 0x10) = (i >> 8) | (i << 8);
     func_ov000_021af858(f, g, a, b, c->mUnk_1c, 6);
     c->mUnk_28 += b;
     d &= 3;
@@ -2136,10 +2136,10 @@ u8 *func_ov000_021ad754(u8 *a, u8 b, u32 *c) {
     if (c != NULL) {
         *c = d;
     }
-    *(u16 *) (a + 4) = (u16) (d >> 16) >> 8 | (u16) (d >> 16) << 8;
-    *(u16 *) (a + 6) = (u16) d >> 8 | (u16) d << 8;
-    *(u16 *) (a + 0xc) = (u16) (data_ov000_021b63b4 >> 16) >> 8 | (u16) (data_ov000_021b63b4 >> 16) << 8;
-    *(u16 *) (a + 0xe) = (u16) data_ov000_021b63b4 >> 8 | (u16) data_ov000_021b63b4 << 8;
+    *OFFSET_PTR(u16, a, 4) = (u16) (d >> 16) >> 8 | (u16) (d >> 16) << 8;
+    *OFFSET_PTR(u16, a, 6) = (u16) d >> 8 | (u16) d << 8;
+    *OFFSET_PTR(u16, a, 0xc) = (u16) (data_ov000_021b63b4 >> 16) >> 8 | (u16) (data_ov000_021b63b4 >> 16) << 8;
+    *OFFSET_PTR(u16, a, 0xe) = (u16) data_ov000_021b63b4 >> 8 | (u16) data_ov000_021b63b4 << 8;
     MI_CpuCopy8(data_ov000_021b63d0, a + 0x1c, 6);
     *(u16 *) (a + 0xec) = 0x8263;
     *(u16 *) (a + 0xee) = 0x6353;

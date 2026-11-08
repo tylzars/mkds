@@ -56,10 +56,10 @@ void ScanConnectStartConnect(u8 *scanBuffer) {
     s32 r;
     gMPLink->mMPStarted = 0;
     gMPLink->mResetting = 0;
-    gMPLink->mSendBufferSize = (*(u16 *) (scanBuffer + 0x4e) + 0x21) & ~0x1f;
-    gMPLink->mReceiveBufferSize = ((*(u16 *) (scanBuffer + 0x4c) + 0x55) & ~0x1f) * 2;
-    gMPLink->mUnk_14 = *(u16 *) (scanBuffer + 0x4c);
-    gMPLink->mUnk_16 = *(u16 *) (scanBuffer + 0x4e);
+    gMPLink->mSendBufferSize = (*OFFSET_PTR(u16, scanBuffer, 0x4e) + 0x21) & ~0x1f;
+    gMPLink->mReceiveBufferSize = ((*OFFSET_PTR(u16, scanBuffer, 0x4c) + 0x55) & ~0x1f) * 2;
+    gMPLink->mUnk_14 = *OFFSET_PTR(u16, scanBuffer, 0x4c);
+    gMPLink->mUnk_16 = *OFFSET_PTR(u16, scanBuffer, 0x4e);
     gMPLink->mUnk_18 = gMPLink->mUnk_14 - 6;
     SetupPieceSizes(gMPLink->mUnk_16);
     r = WM_StartConnectEx(ScanConnectStartConnectCallback, (u16 *) scanBuffer, NULL, 1, 0);

@@ -19,7 +19,7 @@ void OS_GetOwnerInfo(Unk0200fddc *info) {
     u8 *source;
 
     source = (u8 *) 0x27ffc80;
-    info->mUnk_00 = (u32) (*(u16 *) (source + 0x64) << 29) >> 29;
+    info->mUnk_00 = (u32) (*OFFSET_PTR(u16, source, 0x64) << 29) >> 29;
     info->mUnk_01 = (u32) (source[2] << 28) >> 28;
     info->mUnk_02 = source[3];
     info->mUnk_03 = source[4];

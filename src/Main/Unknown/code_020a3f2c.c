@@ -963,12 +963,12 @@ void InitKartBalloons(Unk020a3fa8 *a) {
             a->mStartTimer = 0x3c;
         }
         SetStandingsKartBalloons(a->mKartBalloons);
-        SetStandingsKartHitByKartCallback((u32) BalloonKartHitByKartCallback);
-        SetStandingsKartsHitEachOtherCallback((u32) BalloonKartsHitEachOtherCallback);
+        SetStandingsKartHitByKartCallback((s32 (*)(s32, s32)) BalloonKartHitByKartCallback);
+        SetStandingsKartsHitEachOtherCallback((void (*)(s32, s32)) BalloonKartsHitEachOtherCallback);
         SetStandingsKartHitCallback(BalloonKartHitCallback);
         SetStandingsKartEliminatedCallback(BalloonKartEliminatedCallback);
         SetStandingsEndCallback(BalloonEndCallback);
-        SetStandingsKartOffsetCallback((u32) BalloonKartOffsetCallback);
+        SetStandingsKartOffsetCallback((void (*)(s32, s32)) BalloonKartOffsetCallback);
     } else {
         ParkMapObject(&a->mUnk_000);
     }

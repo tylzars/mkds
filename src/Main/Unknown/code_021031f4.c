@@ -31,6 +31,7 @@
 #include "Main/Unknown/unk_0215d000.h"
 #include "g3imm.h"
 #include "Main/Unknown/code_021053e4.h"
+#include "Main/Unknown/code_02104a0c.h"
 #include "Main/Unknown/code_0203c8dc.h"
 #include "Main/Unknown/code_02077bc0.h"
 #include "registers.h"
@@ -40,7 +41,7 @@
 void InitBouncingItemBoxMapObjects(void) {
     int objectCount;
     int index;
-    ItemObject *box;
+    BouncingItemBox *box;
     ItemObject **objectCursor;
     ItemPool *pool;
     MapObject *mapObject;
@@ -51,10 +52,10 @@ void InitBouncingItemBoxMapObjects(void) {
         index = 0;
         if (0 < objectCount) {
             do {
-                box = *objectCursor;
+                box = (BouncingItemBox *) *objectCursor;
                 mapObject = AllocPooledMapObject();
-                *(MapObject **) ((s32) box + 0x134) = mapObject;
-                *(s32 *) (*(s32 *) ((s32) box + 0x134) + 0xfc) = (s32) box + 0x13c;
+                box->mPooledMapObject = (Unk021052fc *) mapObject;
+                box->mPooledMapObject->mUnk_fc = &box->mMapObjectPos;
                 objectCursor = objectCursor + 1;
                 index = index + 1;
             } while (index < objectCount);

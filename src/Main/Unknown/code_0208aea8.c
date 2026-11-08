@@ -164,7 +164,7 @@ void CreateKartPhysicalParamTable(void *heap, u32 entryCount) {
     gKartPhysicalParamTable->mCharParams = HeapAlloc(heap, entryCount * 8);
     gKartPhysicalParamTable->mKartParamFile = FindKartModelFile(data_usa_021660c8);
     gKartPhysicalParamTable->mCharParamFile = FindKartModelFile(data_usa_021660e0);
-    gKartPhysicalParamTable->mFirstBaseSpeedLimit = *(s32 *) (gKartPhysicalParamTable->mKartParamFile + 0x10);
+    gKartPhysicalParamTable->mFirstBaseSpeedLimit = *OFFSET_PTR(s32, gKartPhysicalParamTable->mKartParamFile, 0x10);
 }
 
 // Copies the kart row and the character row of the files to the slot after choosing the rows (rows 0 when

@@ -313,18 +313,18 @@ void func_01ff8738(Unk02170500 *s, u32 a, const u8 *e, u32 b) {
     if (*(u16 *) (h + *(u32 *) (t + *(u16 *) (h + 0xa) + c * b + 4) + 0x1e) & 0x20) {
         o->mUnk_00 |= 0x20;
     }
-    k = *(u16 *) (e + 0x1e);
+    k = *OFFSET_PTR(u16, e, 0x1e);
     x = ((u32 *) data_usa_02152bec)[(k >> 6) & 7];
-    o->mUnk_04 = (data_0217029c.mPrmMatColor0 & ~x) | (*(u32 *) (e + 4) & x);
-    y = ((u32 *) data_usa_02152bec)[(*(u16 *) (e + 0x1e) >> 9) & 7];
-    o->mUnk_08 = (data_0217029c.mPrmMatColor1 & ~y) | (*(u32 *) (e + 8) & y);
-    x = *(u32 *) (e + 0x10);
-    o->mUnk_0c = (data_0217029c.mPrmPolygonAttr & ~x) | (*(u32 *) (e + 0xc) & x);
-    o->mUnk_10 = *(u32 *) (e + 0x14);
-    o->mUnk_14 = *(u16 *) (e + 0x1c);
-    k = *(u16 *) (e + 0x1e);
+    o->mUnk_04 = (data_0217029c.mPrmMatColor0 & ~x) | (*OFFSET_PTR(u32, e, 4) & x);
+    y = ((u32 *) data_usa_02152bec)[(*OFFSET_PTR(u16, e, 0x1e) >> 9) & 7];
+    o->mUnk_08 = (data_0217029c.mPrmMatColor1 & ~y) | (*OFFSET_PTR(u32, e, 8) & y);
+    x = *OFFSET_PTR(u32, e, 0x10);
+    o->mUnk_0c = (data_0217029c.mPrmPolygonAttr & ~x) | (*OFFSET_PTR(u32, e, 0xc) & x);
+    o->mUnk_10 = *OFFSET_PTR(u32, e, 0x14);
+    o->mUnk_14 = *OFFSET_PTR(u16, e, 0x1c);
+    k = *OFFSET_PTR(u16, e, 0x1e);
     if (k & 1) {
-        d = (u32 *) (e + 0x2c);
+        d = OFFSET_PTR(u32, e, 0x2c);
         if (!(k & 2)) {
             o->mUnk_18[0] = d[0];
             o->mUnk_18[1] = d[1];
@@ -332,14 +332,14 @@ void func_01ff8738(Unk02170500 *s, u32 a, const u8 *e, u32 b) {
         } else {
             o->mUnk_00 |= 1;
         }
-        if (!(*(u16 *) (e + 0x1e) & 4)) {
+        if (!(*OFFSET_PTR(u16, e, 0x1e) & 4)) {
             o->mUnk_20[0] = ((s16 *) d)[0];
             o->mUnk_20[1] = ((s16 *) d)[1];
             d = (u32 *) ((s16 *) d + 2);
         } else {
             o->mUnk_00 |= 2;
         }
-        if (!(*(u16 *) (e + 0x1e) & 8)) {
+        if (!(*OFFSET_PTR(u16, e, 0x1e) & 8)) {
             o->mUnk_24[0] = d[0];
             o->mUnk_24[1] = d[1];
         } else {
@@ -351,10 +351,10 @@ void func_01ff8738(Unk02170500 *s, u32 a, const u8 *e, u32 b) {
         s->mUnk_04->mUnk_0c(o, s->mUnk_04->mUnk_08, b);
     }
     if (o->mUnk_00 & 0x18) {
-        o->mUnk_2c = *(u16 *) (e + 0x20);
-        o->mUnk_2e = *(u16 *) (e + 0x22);
-        o->mUnk_30 = *(u32 *) (e + 0x24);
-        o->mUnk_34 = *(u32 *) (e + 0x28);
+        o->mUnk_2c = *OFFSET_PTR(u16, e, 0x20);
+        o->mUnk_2e = *OFFSET_PTR(u16, e, 0x22);
+        o->mUnk_30 = *OFFSET_PTR(u32, e, 0x24);
+        o->mUnk_34 = *OFFSET_PTR(u32, e, 0x28);
     }
 done:
     s->mUnk_b0 = o;
@@ -520,7 +520,7 @@ void func_01ff8220(Unk02170500 *s, u32 a) {
         b = *(u16 *) (h + *(u16 *) (h + 6));
         e = h + *(u32 *) (h + *(u16 *) (h + 6) + b * v1 + 4);
         p = (u16 *) e;
-        r = (u16 *) (e + 4);
+        r = OFFSET_PTR(u16, e, 4);
         if (!(*p & 1)) {
             o->mTrans.x = ((s32 *) r)[0];
             o->mTrans.y = ((s32 *) r)[1];

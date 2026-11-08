@@ -58,12 +58,12 @@ KartBalloons *GetStandingsKartBalloons(void) {
     return gStandings->mKartBalloons;
 }
 
-void SetStandingsKartHitByKartCallback(u32 p0) {
-    *(u32 *) ((u8 *) (u32) (((u32) gStandings)) + 896) = p0;
+void SetStandingsKartHitByKartCallback(s32 (*p0)(s32, s32)) {
+    gStandings->mKartHitByKartCallback = p0;
 }
 
-void SetStandingsKartsHitEachOtherCallback(u32 p0) {
-    *(u32 *) ((u8 *) (u32) (((u32) gStandings)) + 900) = p0;
+void SetStandingsKartsHitEachOtherCallback(void (*p0)(s32, s32)) {
+    gStandings->mKartsHitEachOtherCallback = p0;
 }
 
 void SetStandingsKartHitCallback(s32 (*p0)(u16 a, u16 b)) {
@@ -80,8 +80,8 @@ void SetStandingsEndCallback(void (*a)(void)) {
     gStandings->mEndCallback = a;
 }
 
-void SetStandingsKartOffsetCallback(u32 p0) {
-    *(u32 *) ((u8 *) (u32) (((u32) gStandings)) + 924) = p0;
+void SetStandingsKartOffsetCallback(void (*p0)(s32, s32)) {
+    gStandings->mKartOffsetCallback = p0;
 }
 
 void func_020a22ac(u16 a) {
@@ -95,7 +95,7 @@ void func_020a22ac(u16 a) {
 }
 
 void func_020a228c(int a) {
-    *(u32 *) (a * 0x70 + (u32) gStandings + 100) = 0xffffffff;
+    gStandings->mKarts[a].mUnk_64 = 0xffffffff;
 }
 
 s32 func_020a2264(u16 a) {
@@ -113,27 +113,11 @@ s32 func_020a223c(u16 a) {
 }
 
 void SetKartInflatingBalloon(u16 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2;
-    u32 value3;
-    value3 = (u32) &gStandings;
-    value2 = 0x70u;
-    value3 = *(const u32 *) ((value3) + (0));
-    value2 = (value0) * (value2) + (value3);
-    *(u32 *) ((value2) + (108)) = value1;
+    gStandings->mKarts[arg0].mInflatingBalloon = arg1;
 }
 
 u32 IsKartInflatingBalloon(u16 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    value2 = (u32) &gStandings;
-    value1 = 0x70u;
-    value2 = *(const u32 *) ((value2) + (0));
-    value1 = (value0) * (value1) + (value2);
-    value0 = *(const u32 *) ((value1) + (108));
-    return value0;
+    return gStandings->mKarts[arg0].mInflatingBalloon;
 }
 
 void CallStandingsKartOffsetCallback(s32 a, s32 b) {
@@ -474,7 +458,7 @@ void CallKartHitCallbackForSelf(u16 a) {
 }
 
 void ClearStandingEliminationStatus(int a) {
-    *(u32 *) (a * 0x70 + (u32) gStandings + 8) = 0;
+    gStandings->mKarts[a].mEliminationStatus = 0;
 }
 
 static inline u16 func_020a12b8_inline(s32 i) {
@@ -606,29 +590,14 @@ void EliminateKartsUntilWinnerDecided(void) {
 }
 
 u32 IsWinnerDecidedAndEndReached(void) {
-    u32 value0;
-    u32 value1;
-    u32 value2;
-    s32 compareLeft0;
-    s32 compareRight0;
-    s32 compareLeft1;
-    s32 compareRight1;
-    value1 = (u32) &gStandings;
-    value0 = 0u;
-    value2 = *(const u32 *) ((value1) + (0));
-    value1 = *(const u32 *) ((value2) + (948));
-    compareLeft0 = value1;
-    compareRight0 = 0u;
-    if (compareLeft0 < compareRight0) {
-        return value0;
+    u32 result = 0u;
+    if (gStandings->mWinnerTeamId < 0) {
+        return result;
     }
-    value1 = *(const u32 *) ((value2) + (936));
-    compareLeft1 = value1;
-    compareRight1 = 0u;
-    if (compareLeft1 < compareRight1) {
-        value0 = 1u;
+    if (gStandings->mEndTimer < 0) {
+        result = 1u;
     }
-    return value0;
+    return result;
 }
 
 // TRUE when mWinnerTeamId is not negative.
@@ -699,15 +668,7 @@ void AddBalloonOrShineCountAndMoveRank(u16 a, s32 b) {
 }
 
 u16 GetBalloonsLeftToMake(u16 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    value2 = (u32) &gStandings;
-    value1 = 0x70u;
-    value2 = *(const u32 *) ((value2) + (0));
-    value1 = (value0) * (value1) + (value2);
-    value0 = *(const u16 *) ((value1) + (80));
-    return value0;
+    return gStandings->mKarts[arg0].mBalloonsLeftToMake;
 }
 
 void AddBalloonsLeftToMake(u16 a, s32 b) {
@@ -754,15 +715,7 @@ s32 IsKartOnWinningTeamAtEnd(s32 a) {
 
 // Returns the address of the kart's saved position (mKarts[i].mPos), not its rank.
 Vec3 *GetKartStandingPos(int arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    value2 = (u32) &gStandings;
-    value1 = 0x70u;
-    value2 = *(const u32 *) ((value2) + (0));
-    value1 = (value0) * (value1) + (value2);
-    value0 = (value1) + (0xcu);
-    return (Vec3 *) value0;
+    return &gStandings->mKarts[arg0].mPos;
 }
 
 Unk02175620_84 *MoveToRandomForwardBattlePoint(void) {

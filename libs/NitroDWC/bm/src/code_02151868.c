@@ -24,14 +24,14 @@ BOOL DWCi_BM_SetWiFiInfo(const DWCWiFiInfo *info, u8 *work) {
     s32 page;
     address = *(u32 *) data_0218049c;
     DWCi_BACKUPlConvWifiInfo(info);
-    Crc16InitTable((u16 *) (work + 0x200), 0xa001);
+    Crc16InitTable(OFFSET_PTR(u16, work, 0x200), 0xa001);
     for (page = 0; page < 2;) {
         if (readNvram(address, 0x100, work) == 0) {
             OS_Terminate();
             return 0;
         }
         MI_CpuCopy8(data_021804a0, work + 0xf0, 0xe);
-        *(u16 *) (work + 0xfe) = Crc16((u16 *) (work + 0x200), work, 0xfe);
+        *OFFSET_PTR(u16, work, 0xfe) = Crc16(OFFSET_PTR(u16, work, 0x200), work, 0xfe);
         do {
             writeNvram(address, 0x100, work);
         } while (verify(work, address, 0x100, work + 0x100) == 0);

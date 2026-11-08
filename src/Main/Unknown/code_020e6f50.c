@@ -1,9 +1,10 @@
 #include "Main/Unknown/code_020e6f50.h"
+#include "Main/Unknown/code_020e6fd4.h"
 
 #pragma thumb on
 
 void SetUpdateListSlot(void *listSlot) {
-    *(u32 *) ((u8 *) (u32) (((u32) * (const u32 *) ((u8 *) (u32) listSlot + 0))) + 36) = (u32) listSlot;
+    (*(MapObjectList **) listSlot)->mUnk_24 = listSlot;
 }
 
 #pragma thumb off

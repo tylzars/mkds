@@ -303,14 +303,14 @@ void OS_GetLowEntropyData(Unk0201000c *buffer) {
     macAddress = OFFSET_PTR(u8, userInfo, 0x74);
     vcount = reg_GX_VCOUNT;
     buffer->mUnk_00 = OS_GetTickLo() | (vcount << 16);
-    buffer->mUnk_04 = (*(u16 *) (macAddress + 4) << 16) ^ (u32) gTickOverflowCount;
-    buffer->mUnk_08 = *(u32 *) (work + 0x3c) ^ ((gTickOverflowCount >> 32) ^ *(u32 *) macAddress);
+    buffer->mUnk_04 = (*OFFSET_PTR(u16, macAddress, 4) << 16) ^ (u32) gTickOverflowCount;
+    buffer->mUnk_08 = *OFFSET_PTR(u32, work, 0x3c) ^ ((gTickOverflowCount >> 32) ^ *(u32 *) macAddress);
     buffer->mUnk_08 = buffer->mUnk_08 ^ reg_G3X_GXSTAT;
-    buffer->mUnk_0c = *(u32 *) (work + 0x1e8);
-    buffer->mUnk_10 = *(u32 *) (work + 0x1ec);
-    buffer->mUnk_14 = *(u32 *) (work + 0x390) ^ (*(u16 *) (work + 0x394) << 16);
-    buffer->mUnk_18 = (*(u16 *) (work + 0x3aa) << 16) | *(u16 *) (work + 0x3ac);
-    buffer->mUnk_1c = reg_PAD_KEYINPUT | *(vu16 *) 0x27fffa8 | (*(u16 *) (work + 0x398) << 16);
+    buffer->mUnk_0c = *OFFSET_PTR(u32, work, 0x1e8);
+    buffer->mUnk_10 = *OFFSET_PTR(u32, work, 0x1ec);
+    buffer->mUnk_14 = *OFFSET_PTR(u32, work, 0x390) ^ (*OFFSET_PTR(u16, work, 0x394) << 16);
+    buffer->mUnk_18 = (*OFFSET_PTR(u16, work, 0x3aa) << 16) | *OFFSET_PTR(u16, work, 0x3ac);
+    buffer->mUnk_1c = reg_PAD_KEYINPUT | *(vu16 *) 0x27fffa8 | (*OFFSET_PTR(u16, work, 0x398) << 16);
 }
 
 // Sets the locked-bank mask and the nine bank lock ids to 0.

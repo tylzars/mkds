@@ -115,8 +115,8 @@ void func_ov003_021d34c0(u32 arg0, u32 arg1) {
 }
 
 void func_ov003_021d3488(int a, int b) {
-    if (*(u8 *) (b + 0x11) != 0) {
-        func_ov003_021d2808((s32 *) (b + 0xc));
+    if (*OFFSET_PTR(u8, b, 0x11) != 0) {
+        func_ov003_021d2808(OFFSET_PTR(s32, b, 0xc));
     }
     func_ov003_021d2e90(b);
     func_ov003_021d1d0c(data_ov003_021da32c[a].mUnk_00, (void *) b);

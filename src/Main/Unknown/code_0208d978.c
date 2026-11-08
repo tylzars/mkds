@@ -340,7 +340,7 @@ void SetupModelEffectKind(void *heap, s32 kind, NNSG3dResFileHeader *modelFile, 
         data_0217b07c = 1;
     }
     t = (u8 *) NNS_G3dGetMdlSet(modelFile);
-    h = (NNSG3dResMdl *) (t + *(u32 *) (t + *(u16 *) (t + 0xe) + 0xc));
+    h = OFFSET_PTR(NNSG3dResMdl, t, *OFFSET_PTR(u32, t + *OFFSET_PTR(u16, t, 0xe), 0xc));
     for (i = 0; i < g->mObjectCount; i++) {
         p = gModelEffects->mObjects[kind][i];
         func_02084f10(&p->mNsbmd, h);

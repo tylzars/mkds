@@ -1011,7 +1011,7 @@ void UploadKartAPaletteSlice(Nsbmd *a, s32 b, void *c) {
         DC_FlushRange(d, 0x10);
         i = NNS_G3dGetResDictIdxByName(p + *(s32 *) (p + 8) + 4, data_usa_02155088);
         q = p + *(s32 *) (p + 8);
-        t = q + 4 + *(u16 *) (q + 0xa);
+        t = q + 4 + *OFFSET_PTR(u16, q, 0xa);
         k = *(u16 *) (q + *(s32 *) (t + *(u16 *) t * i + 4) + 0x1c) << 4;
         GX_BeginLoadTexPltt();
         GX_LoadTexPltt(d, k, 0x10);
@@ -1046,10 +1046,10 @@ void UploadKartModelsEntryPalettes(KartModelsEntry *a, s32 b) {
             }
             i = NNS_G3dGetResDictIdxByName(p + *(s32 *) (p + 8) + 4, data_usa_02155008);
             q = p + *(s32 *) (p + 8);
-            t = q + 4 + *(u16 *) (q + 0xa);
+            t = q + 4 + *OFFSET_PTR(u16, q, 0xa);
             e = q + *(s32 *) (t + *(u16 *) t * i + 4);
             data_usa_0217acec = e;
-            k = *(u16 *) (e + 0x1c) << 4;
+            k = *OFFSET_PTR(u16, e, 0x1c) << 4;
             GX_BeginLoadTexPltt();
             GX_LoadTexPltt(c, k, 0x20);
             GX_EndLoadTexPltt();
@@ -1071,13 +1071,13 @@ void UploadKartModelsEntryPalettes(KartModelsEntry *a, s32 b) {
             }
             q = p + *(s32 *) (p + 8);
             t = q + 4;
-            e = q + *(s32 *) ((t = t + *(u16 *) (q + 0xa)) + *(u16 *) t * j + 4);
+            e = q + *(s32 *) ((t = t + *OFFSET_PTR(u16, q, 0xa)) + *(u16 *) t * j + 4);
             f = q + *(s32 *) (t + *(u16 *) t * i + 4);
-            g = (u8 *) (*(u16 *) (f + 0x1c) << 4);
+            g = (u8 *) (*OFFSET_PTR(u16, f, 0x1c) << 4);
             GX_BeginLoadTexPltt();
             GX_LoadTexPltt(c, (u32) g, 0x20);
             GX_EndLoadTexPltt();
-            g = (u8 *) (*(u16 *) (e + 0x1c) << 4);
+            g = (u8 *) (*OFFSET_PTR(u16, e, 0x1c) << 4);
             GX_BeginLoadTexPltt();
             GX_LoadTexPltt(h, (u32) g, m);
             GX_EndLoadTexPltt();
@@ -1105,7 +1105,7 @@ void CreateKartShadow(KartModelsEntry *a, void *b) {
     a->mUnk_01c = HeapAlloc(b, 0x74);
     AddResFileEntry(&a->mUnk_01c->mNsbmd.mResFileEntry, v6, v6);
     p = (u8 *) NNS_G3dGetMdlSet(v6);
-    InitShadowModelFromResMdl(&a->mUnk_01c->mNsbmd, p + *(s32 *) (p + *(u16 *) (p + 0xe) + 0xc), 3);
+    InitShadowModelFromResMdl(&a->mUnk_01c->mNsbmd, p + *(s32 *) (p + *OFFSET_PTR(u16, p, 0xe) + 0xc), 3);
 }
 
 void CreateKillerItem(void *a) {
@@ -1252,7 +1252,7 @@ void QueueKartEmblemTexture(void *param_1, void *param_2) {
         k = NNS_G3dGetResDictIdxByName((u8 *) e + e->mOfsMat + 4, data_usa_02155018);
         t = (u8 *) e + e->mOfsMat;
         u = t + 4;
-        w = u + *(u16 *) (t + 0xa);
+        w = u + *OFFSET_PTR(u16, t, 0xa);
         x = (NNSG3dResMatData *) (t + *(u32 *) (w + *(u16 *) w * k + 4));
         h = x->mTexPlttBase << 4;
         CallQueueAppend(0, (x->mTexImageParam & 0xffff) << 3, param_1, 0x200);
@@ -1815,7 +1815,7 @@ void func_02077f9c(int param_1, struct KartModelsEntry *param_2, Unk0217ad00_014
     }
     t = (u8 *) e + e->mOfsMat;
     u = t + 4;
-    w = u + *(u16 *) (t + 0xa);
+    w = u + *OFFSET_PTR(u16, t, 0xa);
     h = ((NNSG3dResMatData *) (t + *(u32 *) (w + *(u16 *) w * k + 4)))->mTexPlttBase << 4;
     GX_BeginLoadTexPltt();
     GX_LoadTexPltt(param_3, h, 0x20);

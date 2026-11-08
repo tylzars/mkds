@@ -26,8 +26,8 @@ Unk021c250c *func_ov003_021c2564(void *a) {
     b = func_ov003_021d1cd4(data_ov003_021da190->mUnk_60);
     b->mUnk_08 = func_ov003_021d14b8(a, &d, 4);
     c = b->mUnk_08 + 0x20;
-    b->mOffsets = (u32 *) (c + 0x10);
-    b->mData = c + *(s32 *) (c + 4) + 8;
+    b->mOffsets = OFFSET_PTR(u32, c, 0x10);
+    b->mData = c + *OFFSET_PTR(s32, c, 4) + 8;
     return b;
 }
 

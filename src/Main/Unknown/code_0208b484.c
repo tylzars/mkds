@@ -186,7 +186,8 @@ void func_0208b6d0(Unk0201ca6c **a) {
 }
 
 void func_0208b6b0(void **p0) {
-    *(u32 *) ((u8 *) *p0 + 36) = (*(u32 *) ((u8 *) *p0 + 36) & ~0x1u) | 0x1u;
+    Unk0201ca6c *effect = *p0;
+    effect->mUnk_24.mUnk_00_0 = 1;
     *p0 = NULL;
 }
 

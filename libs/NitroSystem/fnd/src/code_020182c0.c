@@ -41,7 +41,7 @@ u32 ArchiveLoadFromMemory(Unk020182c0 *a, const u8 *b, Unk02018344 *c) {
                 p4 = p;
                 break;
         }
-        p += *(u32 *) (p + 4);
+        p += *OFFSET_PTR(u32, p, 4);
     }
     FS_InitArchive(&a->mUnk_00);
     a->mUnk_5c = c;

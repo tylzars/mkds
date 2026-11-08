@@ -37,7 +37,7 @@ void InitMPChunkBuffers(void *a) {
     v2 = 0;
     do {
         v3 = HeapAlloc(a, 0x12);
-        *(void **) (*v4 + v2 + 0x162c) = v3;
+        data_0217aa00->mChunkReceivedFlags[v1] = v3;
         v2 = v2 + 4;
         v1 = v1 + 1;
     } while (v1 < 8);
