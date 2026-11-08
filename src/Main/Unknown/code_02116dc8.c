@@ -36,7 +36,7 @@ void CreateWait(void *heap, Unk02021dc8 *destinationNcer, Unk0201ea30 *destinati
     sceneFile = FindSceneFile(gWaitNcgrName);
     LocateNcgr2((Ncgr **) &gWait->mNcgr, sceneFile);
     sceneFile = FindSceneFile(gWaitNclrName);
-    LocateNclr((Nclr **) (((s32) gWait + 8)), sceneFile);
+    LocateNclr(&gWait->mNclr, sceneFile);
     sceneFile = FindSceneFile(gWaitBnclName);
     gWait->mBncl = sceneFile;
     gWait->mDestinationNcer = destinationNcer;

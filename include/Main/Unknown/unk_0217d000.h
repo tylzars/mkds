@@ -58,16 +58,10 @@ struct Ncgr;
 struct Nclr;
 struct Nscr;
 
-// Member 0x8 of Wait; 0xc is added to it.
-typedef struct Unk0217d354_08 {
-    /* 00 */ u8 mUnk_00[0xc];
-    /* 0c */ u8 *mUnk_0c;
-} Unk0217d354_08;
-
 typedef struct Wait {
     /* 00 */ struct Unk02021dc8 *mNcer;
     /* 04 */ void *mNcgr;
-    /* 08 */ Unk0217d354_08 *mNclr;
+    /* 08 */ struct Nclr *mNclr;
     /* 0c */ void *mBncl;
     /* 10 */ struct Unk02021dc8 *mDestinationNcer;
     /* 14 */ struct Unk0201ea30 *mDestinationBncl;
