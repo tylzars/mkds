@@ -54,11 +54,11 @@ void InitAirshipObjects(Unk020a0064 *list) {
         InitGroupFollower(&airship->mUnk_c8, airship->mUnk_00.mCourseMapRow, z);
         airship->mUnk_a4 = (airship->mUnk_00.mCourseMapRow->mUnk_28 * 0x5000L) / 100;
         v = airship->mUnk_a4;
-        airship->mUnk_c8.mUnk_04 = v;
-        airship->mUnk_c8.mUnk_10 =
-            ((s64) v * airship->mUnk_c8.mUnk_00->mUnk_00[airship->mUnk_c8.mUnk_0c].mUnk_34) >> 12;
+        airship->mUnk_c8.mSpeed = v;
+        airship->mUnk_c8.mProgressStep =
+            ((s64) v * airship->mUnk_c8.mPath->mSegments[airship->mUnk_c8.mSegmentIndex].mInverseProgressLength) >> 12;
         airship->mUnk_a0 = airship->mUnk_00.mPos.y;
-        func_020d8bf8(&airship->mUnk_c8, &airship->mUnk_00.mPos, &airship->mUnk_00.mUnk_10);
+        GetGroupFollowerCurvePosStep(&airship->mUnk_c8, &airship->mUnk_00.mPos, &airship->mUnk_00.mUnk_10);
         airship->mUnk_a0 = airship->mUnk_a0 - airship->mUnk_00.mPos.y;
         airship->mUnk_a8 = 0;
         airship->mUnk_b4 = 0;

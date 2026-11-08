@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk020e0144 Unk020e0144;
+typedef struct GroupFollower GroupFollower;
 
-void SetGroupFollowerSegmentEnd(Unk020e0144 *follower);
+void SetGroupFollowerSegmentEnd(GroupFollower *follower);

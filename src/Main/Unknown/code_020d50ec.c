@@ -105,8 +105,8 @@ void UpdateRock(void *a, RockObject *rock) {
     }
     oldBaseX = rock->mBasePos.x;
     oldBaseZ = rock->mBasePos.z;
-    func_020d84e4(&rock->mUnk_0a4);
-    func_020d8bc0(&rock->mUnk_0a4.mUnk_00, &rock->mBasePos);
+    AdvanceGroupFollowerWithSpeeds(&rock->mUnk_0a4);
+    GetGroupFollowerCurveXzLinearY(&rock->mUnk_0a4.mUnk_00, &rock->mBasePos);
     rock->mMapObject.mUnk_10.x = rock->mBasePos.x - oldBaseX;
     rock->mMapObject.mUnk_10.z = rock->mBasePos.z - oldBaseZ;
     rock->mOffsetX += rock->mOffsetVelocityX;
@@ -128,7 +128,7 @@ void UpdateRock(void *a, RockObject *rock) {
                 rock->mMapObject.mUnk_10.y = -(s32) (((s64) verticalSpeed * rock->mBounceRatio) >> 12);
                 rock->mBounceSide = (rock->mBounceSide == FALSE);
                 if (rock->mMapObject.mUnk_10.y > 0x4000) {
-                    sideIndex = (u16) rock->mUnk_0a4.mUnk_00.mUnk_0c;
+                    sideIndex = (u16) rock->mUnk_0a4.mUnk_00.mSegmentIndex;
                     rock->mMapObject.mUnk_10.y = 0x4000;
                     if (rock->mBounceSide != FALSE) {
                         rock->mOffsetVelocityX = rock->mSideVectors[sideIndex].x << 1;
@@ -168,7 +168,7 @@ void UpdateRock(void *a, RockObject *rock) {
         rock->mMapObject.mViewRadius = ((s64) rock->mMapObject.mKindData->mUnk_2c * newScale) >> 12;
         rock->mBottomOffsetReciprocal = FX_GetDivResult();
     }
-    if (rock->mUnk_0a4.mUnk_00.mUnk_18 == 0) {
+    if (rock->mUnk_0a4.mUnk_00.mForward == 0) {
         func_020d634c(rock, 0);
     } else if (rock->mMapObject.mPos.y < 0) {
         func_020d634c(rock, 0);
@@ -198,8 +198,8 @@ void ResetRock(RockObject *rock) {
     s32 zero;
     Vec3 *scale;
 
-    func_020d859c(&rock->mUnk_0a4, 0, 1);
-    func_020d8b18(&rock->mUnk_0a4.mUnk_00, &rock->mMapObject.mPos, &rock->mMapObject.mUnk_10);
+    SetupGroupFollowerWithSpeeds(&rock->mUnk_0a4, 0, 1);
+    GetGroupFollowerCurvePosStepXz(&rock->mUnk_0a4.mUnk_00, &rock->mMapObject.mPos, &rock->mMapObject.mUnk_10);
     rock->mUnk_0e0 = rock->mUnk_0dc;
     if (rock->mUnk_0e0 != 0) {
         rock->mMapObject.mFlags |= data_0215691c;
@@ -257,7 +257,7 @@ void CreateRock2(void *a) {
 #pragma thumb on
 // Fills a Rock from its course map row; both Rock kinds use it.
 void InitRock(RockObject *rock, struct CourseMapRow *courseRow) {
-    Unk02042044 *startEntry;
+    CourseMapGroupEntry *startEntry;
     s32 rowValue;
     float scaledValue;
 
@@ -265,7 +265,7 @@ void InitRock(RockObject *rock, struct CourseMapRow *courseRow) {
     rock->mUnk_0dc = courseRow->mUnk_28;
     rock->mSideVectors = CreateCourseMapGroupSideVectors(courseRow);
     startEntry = GetCourseMapGroupEntry(courseRow->mUnk_26, 0);
-    rock->mStartY = startEntry->mUnk_00.y;
+    rock->mStartY = startEntry->mPos.y;
     rock->mStartScale = rock->mMapObject.mScale.y;
     rowValue = courseRow->mUnk_2e;
     if (rowValue > 0) {

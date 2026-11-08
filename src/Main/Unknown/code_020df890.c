@@ -43,22 +43,23 @@
 #pragma thumb off
 
 void UpdateKoopaBlockState2(Unk020e005c *koopaBlock) {
-    Unk020e0144 *follower;
+    GroupFollower *follower;
     s32 progress;
     s32 speed;
     u16 angle;
     s32 sine;
 
     follower = &koopaBlock->mUnk_144;
-    progress = func_020d8cac(follower);
+    progress = GetGroupFollowerProgress(follower);
     angle = (s32) (((s64) progress * 0x40000) >> 12);
     sine = gPairsByAngle[(angle >> 4) * 2];
     speed = ((s64) -sine * koopaBlock->mUnk_168) >> 12;
-    follower->mUnk_04 = speed > 0x200 ? speed : 0x200;
+    follower->mSpeed = speed > 0x200 ? speed : 0x200;
     if (speed <= 0x200) {
         speed = 0x200;
     }
-    follower->mUnk_10 = ((s64) speed * follower->mUnk_00->mUnk_00[follower->mUnk_0c].mUnk_34) >> 12;
+    follower->mProgressStep =
+        ((s64) speed * follower->mPath->mSegments[follower->mSegmentIndex].mInverseProgressLength) >> 12;
 }
 
 void DrawAllKoopaBlocks(void *viewMatrix) {
@@ -76,11 +77,11 @@ u32 IsKoopaBlockKind(u32 kind) {
 
 s32 func_020dff4c(Unk020e005c *koopaBlock) {
     s32 progress;
-    Unk020e0144 *follower;
+    GroupFollower *follower;
 
     follower = &koopaBlock->mUnk_144;
-    progress = func_020d8cac(follower);
-    if (follower->mUnk_18 == 0) {
+    progress = GetGroupFollowerProgress(follower);
+    if (follower->mForward == 0) {
         progress = 0x1000 - progress;
     }
     return progress;
@@ -115,8 +116,8 @@ void InitKoopaBlock(Unk020e005c *koopaBlock, CourseMapRow *courseRow) {
     koopaBlock->mUnk_114.y = 0;
     koopaBlock->mUnk_114.z = 0;
     koopaBlock->mUnk_120 = 0x800;
-    func_020d90a8(&koopaBlock->mUnk_144, 0, 1);
-    func_020d8918(&koopaBlock->mUnk_144, &koopaBlock->mPos, &koopaBlock->mUnk_010);
+    SetupGroupFollowerAtEntry(&koopaBlock->mUnk_144, 0, 1);
+    GetGroupFollowerLinearPosStep(&koopaBlock->mUnk_144, &koopaBlock->mPos, &koopaBlock->mUnk_010);
     koopaBlock->mUnk_0e8 = koopaBlock->mPos;
     koopaBlock->mUnk_134 = 0;
     koopaBlock->mUnk_138 = 0;

@@ -119,7 +119,7 @@ void BuildCourseMapEntryGroupTable(void *a) {
     CourseMap *g;
     Unk02175620_94 *t;
     u16 n;
-    Unk02042044 *d;
+    CourseMapGroupEntry *d;
     u32 z;
     u16 i;
     CourseMapEntryGroup *r;

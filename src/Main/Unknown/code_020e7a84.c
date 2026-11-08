@@ -113,7 +113,7 @@ void AdvanceJgPointsAndSetTarget(Vec3 *offset, const Vec3 *endScale, const Vec3 
             }
         } while (func_020d7c84(&data_0217bb88.mUnk_00, 0, gJgPointPointers) != FALSE);
     }
-    func_020d8488(&data_0217bb88, &pathPoint);
+    GetSegmentProgressPoint(&data_0217bb88, &pathPoint);
     gJgAngle += 0x64;
     i = gJgAngle >> 4;
     anglePair0 = gPairsByAngle[i * 2];

@@ -16,189 +16,190 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/code_020de204.h"
 
-u32 func_020de20c(u32 p0, u32 p1, u32 p2, u32 p3) {
-    return (*OFFSET_PTR(const u8, p3, 0));
+u32 func_020de20c(u32 unused0, u32 unused1, u32 unused2, u32 bytePointer) {
+    return (*OFFSET_PTR(const u8, bytePointer, 0));
 }
 
-u32 func_020de204(u32 p0, u32 p1, u32 p2, u32 p3) {
-    return (*OFFSET_PTR(const u8, p3, 0));
+u32 func_020de204(u32 unused0, u32 unused1, u32 unused2, u32 bytePointer) {
+    return (*OFFSET_PTR(const u8, bytePointer, 0));
 }
 
 const u16 data_021583d4 = 1;
 
-void func_020de184(Unk020de000 *o) {
-    Wanwan *p;
-    Vec3 v;
-    Vec3 w;
+void ResetWanwanChainPoints(WanwanChainObject *chainObject) {
+    Wanwan *wanwan;
+    Vec3 startPoint;
+    Vec3 endPoint;
 
-    p = o->mUnk_a0;
-    VEC_MultAdd(-p->mUnk_f0, &p->mUnk_00.mMatrix.mUnk_00[2], &p->mUnk_00.mPos, &w);
-    v = p->mUnk_a0;
-    v.y -= p->mUnk_f0 >> 1;
-    SetWanwanChainPointsEvenly(&o->mUnk_a4, &v, &w);
-    if (o->mUnk_f4 != FALSE) {
+    wanwan = chainObject->mWanwan;
+    VEC_MultAdd(-wanwan->mUnk_f0, &wanwan->mUnk_00.mMatrix.mUnk_00[2], &wanwan->mUnk_00.mPos, &endPoint);
+    startPoint = wanwan->mCenterPos;
+    startPoint.y -= wanwan->mUnk_f0 >> 1;
+    SetWanwanChainPointsEvenly(&chainObject->mChain, &startPoint, &endPoint);
+    if (chainObject->mHasKui != FALSE) {
         return;
     }
-    func_020dda2c(&o->mUnk_a4);
+    func_020dda2c(&chainObject->mChain);
 }
 
 #pragma thumb on
 
 void CreateWanwanChainAndWanwanKui(void) {
-    void *v;
+    void *kuiFile;
 
     func_020e6488(&gWanwanChain, FindCourseMapObjFile("wanwan_chain.nsbmd"), 0, 0);
     func_020e6ab8(gWanwanChain);
-    v = FindCourseFile("MapObj/wanwan_kui.nsbmd");
-    if (v != NULL) {
-        func_020e6488(&gWanwanKui, v, 0, 0);
+    kuiFile = FindCourseFile("MapObj/wanwan_kui.nsbmd");
+    if (kuiFile != NULL) {
+        func_020e6488(&gWanwanKui, kuiFile, 0, 0);
         func_020e6ab8(gWanwanKui);
     }
 }
 
-void func_020de000(Unk020de000 *o, void *a, Wanwan *p) {
+void InitWanwanChainObject(WanwanChainObject *chainObject, void *unused, Wanwan *wanwan) {
     s32 d;
 
-    o->mUnk_04 = p->mUnk_a0;
-    o->mUnk_f4 = p->mUnk_fc == 0;
-    if (o->mUnk_f4 != FALSE) {
-        d = p->mUnk_1ec;
+    chainObject->mPos = wanwan->mCenterPos;
+    chainObject->mHasKui = wanwan->mUnk_fc == 0;
+    if (chainObject->mHasKui != FALSE) {
+        d = wanwan->mMaxRadius;
     } else {
         d = 0x55000;
     }
-    InitWanwanChain(&o->mUnk_a4, &o->mUnk_04, &o->mUnk_04, d - p->mUnk_f0, p->mUnk_fc != 0 ? 4 : 7, 0x6000,
-                    &o->mUnk_1c);
-    if (o->mUnk_f4 == FALSE) {
-        func_020dda2c(&o->mUnk_a4);
-        o->mUnk_a4.mUnk_04 -= 0xcd;
-        o->mUnk_a4.mUnk_10 -= 0x3d;
-        o->mUnk_a4.mUnk_14.x += 0x52;
-        o->mUnk_a4.mUnk_14.y += 0x35c;
-        o->mUnk_a4.mUnk_14.z += 0x52;
-        o->mUnk_a4.mUnk_0c = 0;
-        o->mUnk_02 |= data_021583d4;
+    InitWanwanChain(&chainObject->mChain, &chainObject->mPos, &chainObject->mPos, d - wanwan->mUnk_f0,
+                    wanwan->mUnk_fc != 0 ? 4 : 7, 0x6000, &chainObject->mUnk_1c);
+    if (chainObject->mHasKui == FALSE) {
+        func_020dda2c(&chainObject->mChain);
+        chainObject->mChain.mDownwardStep -= 0xcd;
+        chainObject->mChain.mUnk_10 -= 0x3d;
+        chainObject->mChain.mUnk_14.x += 0x52;
+        chainObject->mChain.mUnk_14.y += 0x35c;
+        chainObject->mChain.mUnk_14.z += 0x52;
+        chainObject->mChain.mMinY = 0;
+        chainObject->mUnk_02 |= data_021583d4;
     }
-    o->mUnk_a0 = p;
-    if (o->mUnk_f4 != FALSE) {
-        d = p->mUnk_f8;
+    chainObject->mWanwan = wanwan;
+    if (chainObject->mHasKui != FALSE) {
+        d = wanwan->mUnk_f8;
     } else {
         d = 0xc8000;
     }
-    o->mUnk_68 = 1.2f * (d + p->mUnk_f0);
+    chainObject->mUnk_68 = 1.2f * (d + wanwan->mUnk_f0);
 }
 
 #pragma thumb off
 
-void func_020ddb44(Unk020dd950 *a, Vec3 *b, Vec3 *v) {
-    Vec3 *p48;
-    s32 n;
-    s32 j;
-    s32 m;
-    s32 m0c;
-    Vec3 *p44;
-    s32 m04;
-    s32 m10;
+void UpdateWanwanChainPoints(WanwanChain *chain, Vec3 *endPoint, Vec3 *unused) {
+    Vec3 *velocities;
+    s32 pointCount;
+    s32 reversePointIndex;
+    s32 pullIndex;
+    s32 minY;
+    Vec3 *points;
+    s32 downwardStep;
+    s32 damping;
     Vec3 t;
-    Vec3 u;
-    Vec3 g;
-    Vec3 *q;
-    s32 i;
-    s32 w;
-    s32 c;
-    s32 e;
-    s64 d;
+    Vec3 offset;
+    Vec3 pullScale;
+    Vec3 *current;
+    s32 pointIndex;
+    s32 linkLength;
+    s32 weight;
+    s32 excess;
+    s64 excessSquared;
 
-    p48 = a->mUnk_48;
-    n = a->mUnk_20;
-    m0c = a->mUnk_0c;
-    p44 = a->mUnk_44;
-    m04 = a->mUnk_04;
-    m10 = a->mUnk_10;
-    g = a->mUnk_14;
-    j = n - 1;
-    for (i = 1; i < n; i++) {
-        p48[i].y -= m04;
+    velocities = chain->mVelocities;
+    pointCount = chain->mPointCount;
+    minY = chain->mMinY;
+    points = chain->mPoints;
+    downwardStep = chain->mDownwardStep;
+    damping = chain->mUnk_10;
+    pullScale = chain->mUnk_14;
+    reversePointIndex = pointCount - 1;
+    for (pointIndex = 1; pointIndex < pointCount; pointIndex++) {
+        velocities[pointIndex].y -= downwardStep;
     }
-    for (i = 1; i < n; i++) {
-        VEC_MultAdd((n - i) * -m10, &p48[i], &p48[i], &p48[i]);
+    for (pointIndex = 1; pointIndex < pointCount; pointIndex++) {
+        VEC_MultAdd((pointCount - pointIndex) * -damping, &velocities[pointIndex], &velocities[pointIndex],
+                    &velocities[pointIndex]);
     }
-    for (i = 1; i < n; i++) {
-        VEC_Add(&p44[i], &p48[i], &p44[i]);
+    for (pointIndex = 1; pointIndex < pointCount; pointIndex++) {
+        VEC_Add(&points[pointIndex], &velocities[pointIndex], &points[pointIndex]);
     }
-    q = &p44[j];
-    *q = *b;
-    for (; j > 1; j--) {
-        VEC_Subtract(&p44[j - 1], q, &t);
-        d = (s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z - a->mUnk_2c;
-        e = d < 0 ? 0 : (s32) (d >> 12);
-        if (e != 0) {
-            Vec3NormalizeAndGetLengthUnchecked(&t, &u);
-            w = a->mUnk_28;
-            u.x = ((s64) u.x * w) >> 12;
-            u.y = ((s64) u.y * w) >> 12;
-            u.z = ((s64) u.z * w) >> 12;
-            VEC_Add(q, &u, &p44[j - 1]);
-            VEC_Subtract(&u, &t, &t);
-            t.x = ((s64) t.x * g.x) >> 12;
-            t.y = ((s64) t.y * g.y) >> 12;
-            t.z = ((s64) t.z * g.z) >> 12;
-            c = a->mUnk_24 * j;
-            t.x = ((s64) t.x * c) >> 12;
-            t.y = ((s64) t.y * c) >> 12;
-            t.z = ((s64) t.z * c) >> 12;
-            VEC_Add(&p48[j - 1], &t, &p48[j - 1]);
+    current = &points[reversePointIndex];
+    *current = *endPoint;
+    for (; reversePointIndex > 1; reversePointIndex--) {
+        VEC_Subtract(&points[reversePointIndex - 1], current, &t);
+        excessSquared = (s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z - chain->mLinkLengthSquared;
+        excess = excessSquared < 0 ? 0 : (s32) (excessSquared >> 12);
+        if (excess != 0) {
+            Vec3NormalizeAndGetLengthUnchecked(&t, &offset);
+            linkLength = chain->mLinkLength;
+            offset.x = ((s64) offset.x * linkLength) >> 12;
+            offset.y = ((s64) offset.y * linkLength) >> 12;
+            offset.z = ((s64) offset.z * linkLength) >> 12;
+            VEC_Add(current, &offset, &points[reversePointIndex - 1]);
+            VEC_Subtract(&offset, &t, &t);
+            t.x = ((s64) t.x * pullScale.x) >> 12;
+            t.y = ((s64) t.y * pullScale.y) >> 12;
+            t.z = ((s64) t.z * pullScale.z) >> 12;
+            weight = chain->mStepFraction * reversePointIndex;
+            t.x = ((s64) t.x * weight) >> 12;
+            t.y = ((s64) t.y * weight) >> 12;
+            t.z = ((s64) t.z * weight) >> 12;
+            VEC_Add(&velocities[reversePointIndex - 1], &t, &velocities[reversePointIndex - 1]);
         }
-        q--;
+        current--;
     }
-    if (a->mUnk_08 != 0) {
-        m = 1;
+    if (chain->mUnk_08 != 0) {
+        pullIndex = 1;
     } else {
-        m = 2;
+        pullIndex = 2;
     }
-    for (; m < n; m++) {
-        VEC_Subtract(&p44[m], &p44[m - 1], &t);
-        d = (s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z - a->mUnk_2c;
-        e = d < 0 ? 0 : (s32) (d >> 12);
-        if (e != 0) {
-            Vec3NormalizeAndGetLengthUnchecked(&t, &u);
-            w = a->mUnk_28;
-            u.x = ((s64) u.x * w) >> 12;
-            u.y = ((s64) u.y * w) >> 12;
-            u.z = ((s64) u.z * w) >> 12;
-            VEC_Add(&p44[m - 1], &u, &p44[m]);
+    for (; pullIndex < pointCount; pullIndex++) {
+        VEC_Subtract(&points[pullIndex], &points[pullIndex - 1], &t);
+        excessSquared = (s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z - chain->mLinkLengthSquared;
+        excess = excessSquared < 0 ? 0 : (s32) (excessSquared >> 12);
+        if (excess != 0) {
+            Vec3NormalizeAndGetLengthUnchecked(&t, &offset);
+            linkLength = chain->mLinkLength;
+            offset.x = ((s64) offset.x * linkLength) >> 12;
+            offset.y = ((s64) offset.y * linkLength) >> 12;
+            offset.z = ((s64) offset.z * linkLength) >> 12;
+            VEC_Add(&points[pullIndex - 1], &offset, &points[pullIndex]);
         }
     }
-    for (i = 1; i < n - 2; i++) {
-        if (p44[i].y - m0c < 0) {
-            p44[i].y = m0c;
-            if (p48[i].y < 0) {
-                p48[i].y = 0;
+    for (pointIndex = 1; pointIndex < pointCount - 2; pointIndex++) {
+        if (points[pointIndex].y - minY < 0) {
+            points[pointIndex].y = minY;
+            if (velocities[pointIndex].y < 0) {
+                velocities[pointIndex].y = 0;
             }
-            p48[i].x = p48[i].x * 7 >> 3;
-            p48[i].z = p48[i].z * 7 >> 3;
+            velocities[pointIndex].x = velocities[pointIndex].x * 7 >> 3;
+            velocities[pointIndex].z = velocities[pointIndex].z * 7 >> 3;
         }
     }
 }
 
-void func_020ddaa0(Unk020dd950 *a, Unk020e6488 *b, s32 c, u16 e) {
-    s32 i;
-    u32 v;
+void DrawWanwanChainLinks(WanwanChain *chain, Unk020e6488 *model, s32 unused, u16 e) {
+    s32 pointIndex;
+    u32 polygonId;
 
-    func_020e6a18(b);
-    for (i = 1; i < a->mUnk_20; i++) {
-        v = AllocPolygonIdWrapping();
-        b->mUnk_14 &= ~0x3f000000;
-        b->mUnk_14 |= v << 24;
-        func_020e67c4(b, SetViewTransposeMatrixPos(&a->mUnk_44[i]), &a->mUnk_34, 1, e);
+    func_020e6a18(model);
+    for (pointIndex = 1; pointIndex < chain->mPointCount; pointIndex++) {
+        polygonId = AllocPolygonIdWrapping();
+        model->mUnk_14 &= ~0x3f000000;
+        model->mUnk_14 |= polygonId << 24;
+        func_020e67c4(model, SetViewTransposeMatrixPos(&chain->mPoints[pointIndex]), &chain->mUnk_34, 1, e);
     }
 }
 
-void func_020dda38(Unk020dd950 *a, Unk020e6488 *b, Vec3 *c, s32 d, u16 e) {
-    u32 v;
+void DrawWanwanChainKui(WanwanChain *chain, Unk020e6488 *model, Vec3 *position, s32 unused, u16 e) {
+    u32 polygonId;
 
-    func_020e6a18(b);
-    v = AllocPolygonIdWrapping();
-    b->mUnk_14 &= ~0x3f000000;
-    b->mUnk_14 |= v << 24;
-    func_020e67c4(b, func_020e6cbc(c), &a->mUnk_34, 1, e);
+    func_020e6a18(model);
+    polygonId = AllocPolygonIdWrapping();
+    model->mUnk_14 &= ~0x3f000000;
+    model->mUnk_14 |= polygonId << 24;
+    func_020e67c4(model, func_020e6cbc(position), &chain->mUnk_34, 1, e);
 }

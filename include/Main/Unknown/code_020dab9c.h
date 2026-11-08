@@ -4,4 +4,4 @@
 
 typedef struct Kuribo Kuribo;
 
-void UpdateKuriboState3(Kuribo *p);
+void UpdateKuriboState3(Kuribo *kuribo);

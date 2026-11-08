@@ -28,7 +28,7 @@ typedef struct Crab {
     /* 0ac */ s32 mUnk_0ac;
     /* 0b0 */ Unk0209a7dc_b0 mUnk_0b0;
     /* 0d0 */ Unk0209a7dc_b0 mUnk_0d0;
-    /* 0f0 */ Unk020e0144 mUnk_0f0;
+    /* 0f0 */ GroupFollower mUnk_0f0;
     /* State number of this kind's own per-frame switch in UpdateCrab; this object does not use MapObject.mUnk_80's
        state machine; also set by the group init and by the collision push (2) */
     /* 114 */ s32 mState;

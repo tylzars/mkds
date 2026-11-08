@@ -45,7 +45,7 @@ void InitSanbo(u32 arg0) {
     value1 = *(const u32 *) ((value0) + (156));
     value0 = (value0) + (0x1d8u);
     value2 = 0u;
-    InitGroupFollower((Unk020e0144 *) value0, (CourseMapRow *) value1, value2);
+    InitGroupFollower((GroupFollower *) value0, (CourseMapRow *) value1, value2);
 }
 
 u8 func_020a7fc4(Sanbo *p, Kart *a, u8 *b, u8 *c) {
@@ -255,21 +255,22 @@ void UpdateSanbo(void *a, Sanbo *p) {
 
     if (p->mUnk_0a0-- <= 0) {
         t = p->mUnk_1d4;
-        p->mUnk_1d8.mUnk_04 = t;
-        p->mUnk_1d8.mUnk_10 = (s64) t * p->mUnk_1d8.mUnk_00->mUnk_00[p->mUnk_1d8.mUnk_0c].mUnk_34 >> 12;
-        if (func_020d8cc8(&p->mUnk_1d8) != FALSE) {
-            p->mUnk_0a0 = (u16) p->mUnk_1d8.mUnk_1c->mUnk_0e;
+        p->mUnk_1d8.mSpeed = t;
+        p->mUnk_1d8.mProgressStep =
+            (s64) t * p->mUnk_1d8.mPath->mSegments[p->mUnk_1d8.mSegmentIndex].mInverseProgressLength >> 12;
+        if (AdvanceGroupFollower(&p->mUnk_1d8) != FALSE) {
+            p->mUnk_0a0 = (u16) p->mUnk_1d8.mFromEntry->mUnk_0e;
         } else {
             p->mUnk_0a0 = 0;
         }
-        if (p->mUnk_1d8.mUnk_00->mUnk_08 != 0) {
-            func_020d8bf8(&p->mUnk_1d8, &p->mUnk_000.mPos, &p->mUnk_000.mUnk_10);
+        if (p->mUnk_1d8.mPath->mWraps != 0) {
+            GetGroupFollowerCurvePosStep(&p->mUnk_1d8, &p->mUnk_000.mPos, &p->mUnk_000.mUnk_10);
         } else {
-            func_020d8918(&p->mUnk_1d8, &p->mUnk_000.mPos, &p->mUnk_000.mUnk_10);
+            GetGroupFollowerLinearPosStep(&p->mUnk_1d8, &p->mUnk_000.mPos, &p->mUnk_000.mUnk_10);
         }
     } else {
-        p->mUnk_1d8.mUnk_04 = 0;
-        p->mUnk_1d8.mUnk_10 = 0;
+        p->mUnk_1d8.mSpeed = 0;
+        p->mUnk_1d8.mProgressStep = 0;
         p->mUnk_000.mUnk_10.x = 0;
         p->mUnk_000.mUnk_10.y = 0;
         p->mUnk_000.mUnk_10.z = 0;

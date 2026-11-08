@@ -4,7 +4,7 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject, MapObjectList
 #include "Main/Unknown/code_0206bcb0.h" // Kart
-#include "Main/Unknown/code_020e005c.h" // Unk020e0144
+#include "Main/Unknown/code_020e005c.h" // GroupFollower
 #include "Main/Unknown/code_0210b000.h" // SoundDistanceSquaredChange
 
 // Object of StartNsKiller2: after the shared part, a counter at 0xa0 and a word at 0xa4. A prefix view of the
@@ -25,7 +25,7 @@ typedef struct NsKiller2 {
 } NsKiller2;
 
 // Object of kind 0x1a1 (NsKiller1), creates 20 NsKiller2 in its Init: after the shared part, a counter at 0xa0, a state
-// at 0xa8 and an Unk020e0144 at 0xac.
+// at 0xa8 and an GroupFollower at 0xac.
 typedef struct NsKiller1 {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
@@ -33,7 +33,7 @@ typedef struct NsKiller1 {
     /* State number of this kind's own per-frame switch in UpdateNsKiller1; this object does not use
        MapObject.mUnk_80's state machine */
     /* a8 */ s32 mState;
-    /* ac */ Unk020e0144 mUnk_ac;
+    /* ac */ GroupFollower mUnk_ac;
 } NsKiller1;
 
 void StartNsKiller2(Vec3 *a, Vec3 *b, u16 c);

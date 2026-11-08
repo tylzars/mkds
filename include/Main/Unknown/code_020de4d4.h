@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020de4d4(u32 arg0, u32 arg1);
+void func_020de4d4(u32 unused, u32 object);

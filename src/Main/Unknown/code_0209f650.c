@@ -121,8 +121,8 @@ void UpdateAirship(void *a, Airship *p) {
             func_0209fdb4_inline(p);
             break;
         case 2:
-            func_020d8cc8(&p->mUnk_c8);
-            func_020d8bf8(&p->mUnk_c8, &p->mUnk_00.mPos, &p->mUnk_00.mUnk_10);
+            AdvanceGroupFollower(&p->mUnk_c8);
+            GetGroupFollowerCurvePosStep(&p->mUnk_c8, &p->mUnk_00.mPos, &p->mUnk_00.mUnk_10);
             func_0209fdb4_inline(p);
             break;
     }

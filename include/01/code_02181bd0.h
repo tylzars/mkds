@@ -14,7 +14,7 @@ typedef struct Unk02181c3c {
     /* 0a8 */ s32 mUnk_0a8;
     /* 0ac */ s32 mUnk_0ac;
     /* 0b0 */ s32 mUnk_0b0;
-    /* 0b4 */ Unk020e0144 mUnk_0b4;
+    /* 0b4 */ GroupFollower mUnk_0b4;
     /* 0d8 */ Vec3 mUnk_0d8;
     /* 0e4 */ s32 mUnk_0e4;
     /* 0e8 */ Vec3 *mUnk_0e8;

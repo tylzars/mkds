@@ -40,67 +40,67 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-Unk020dd7a8 *data_0217b6d4 = 0;
-Unk020dd804 *data_0217b6d8 = 0;
+Unk020dd7a8 *gWanwanUpdateList = 0;
+Unk020dd804 *gWanwanDrawList = 0;
 
 const Unk020dd860 data_02158388 = {func_020dd230, func_020dd1f4, 1, 0x1b000, {0}, 1, 1, 0x12e, {0}};
 const Unk020dd804 data_0215835c = {{0}, CreateWanwanAndRockShadow, {0}, func_020dd6c8, {0}, 1, {0}, 0};
 const Unk020dd7a8 data_02158334 = {{0}, UpdateWanwan, {0}, 0};
 
-Unk020dd860 *func_020dd860(void) {
-    Unk020dd860 *p;
+Unk020dd860 *CreateWanwanKindData(void) {
+    Unk020dd860 *kindData;
 
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
-    *p = data_02158388;
-    return p;
+    kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
+    *kindData = data_02158388;
+    return kindData;
 }
 
-Unk020dd804 *func_020dd804(void) {
-    Unk020dd804 *p;
+Unk020dd804 *CreateWanwanDrawList(void) {
+    Unk020dd804 *drawList;
 
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
-    data_0217b6d8 = p;
-    *p = data_0215835c;
-    func_020d49d8(&data_0217b6d8);
-    return data_0217b6d8;
+    drawList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
+    gWanwanDrawList = drawList;
+    *drawList = data_0215835c;
+    func_020d49d8(&gWanwanDrawList);
+    return gWanwanDrawList;
 }
 
-Unk020dd7a8 *func_020dd7a8(void) {
-    Unk020dd7a8 *p;
+Unk020dd7a8 *CreateWanwanUpdateList(void) {
+    Unk020dd7a8 *updateList;
 
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
-    data_0217b6d4 = p;
-    *p = data_02158334;
-    SetUpdateListSlot(&data_0217b6d4);
-    return data_0217b6d4;
+    updateList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
+    gWanwanUpdateList = updateList;
+    *updateList = data_02158334;
+    SetUpdateListSlot(&gWanwanUpdateList);
+    return gWanwanUpdateList;
 }
 
-void func_020dd6c8(void *a, Wanwan *p, void *b, u32 c) {
-    MtxFx43 s;
+void func_020dd6c8(void *unused0, Wanwan *wanwan, void *unused1, u32 maxAlpha) {
+    MtxFx43 shadowMatrix;
 
-    if (p->mUnk_00.mStateMachine.mState == 4) {
+    if (wanwan->mUnk_00.mStateMachine.mState == 4) {
         if (func_020b2ec0() == 0) {
-            p->mUnk_00.mPos.x += p->mUnk_00.mUnk_10.x;
-            p->mUnk_00.mPos.z += p->mUnk_00.mUnk_10.z;
+            wanwan->mUnk_00.mPos.x += wanwan->mUnk_00.mUnk_10.x;
+            wanwan->mUnk_00.mPos.z += wanwan->mUnk_00.mUnk_10.z;
         }
     }
-    p->mUnk_00.mMatrix.mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
-    p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
-    p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
-    DrawNsbmdWithMatrixAndMaxAlpha(gWanwan, &p->mUnk_00.mMatrix, &p->mUnk_00.mScale, c);
-    Matrix3x3FromQuaternion(&s, &p->mUnk_d4);
-    s.mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
-    s.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
-    s.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
-    DrawShadowWithMaxAlpha(gWanwanRockShadow, &s, &p->mUnk_00.mScale, c);
+    wanwan->mUnk_00.mMatrix.mUnk_00[3].x = wanwan->mUnk_00.mPos.x >> 4;
+    wanwan->mUnk_00.mMatrix.mUnk_00[3].y = wanwan->mUnk_00.mPos.y >> 4;
+    wanwan->mUnk_00.mMatrix.mUnk_00[3].z = wanwan->mUnk_00.mPos.z >> 4;
+    DrawNsbmdWithMatrixAndMaxAlpha(gWanwan, &wanwan->mUnk_00.mMatrix, &wanwan->mUnk_00.mScale, maxAlpha);
+    Matrix3x3FromQuaternion(&shadowMatrix, &wanwan->mUnk_d4);
+    shadowMatrix.mUnk_00[3].x = wanwan->mUnk_00.mPos.x >> 4;
+    shadowMatrix.mUnk_00[3].y = wanwan->mUnk_00.mPos.y >> 4;
+    shadowMatrix.mUnk_00[3].z = wanwan->mUnk_00.mPos.z >> 4;
+    DrawShadowWithMaxAlpha(gWanwanRockShadow, &shadowMatrix, &wanwan->mUnk_00.mScale, maxAlpha);
 }
 
-void UpdateWanwan(void *a, Wanwan *p) {
-    u32 f;
-    Quaternion m;
-    Vec3 v;
-    Vec3 w;
-    Vec3 u;
+void UpdateWanwan(void *unused, Wanwan *wanwan) {
+    u32 surfaceFlags;
+    Quaternion targetOrientation;
+    Vec3 probePos;
+    Vec3 correction;
+    Vec3 surfaceNormal;
     Unk0210b7a8 b;
     Unk0210b7a8 c;
     Unk0210b7a8 d;
@@ -111,53 +111,54 @@ void UpdateWanwan(void *a, Wanwan *p) {
     s32 t;
     s32 y;
 
-    h = p->mUnk_b0;
-    AdvanceStateMachine(&p->mUnk_00.mStateMachine);
-    p->mUnk_00.mUnk_10.y -= 0x400;
-    p->mUnk_00.mPos.y += p->mUnk_00.mUnk_10.y;
+    h = wanwan->mUnk_b0;
+    AdvanceStateMachine(&wanwan->mUnk_00.mStateMachine);
+    wanwan->mUnk_00.mUnk_10.y -= 0x400;
+    wanwan->mUnk_00.mPos.y += wanwan->mUnk_00.mUnk_10.y;
     k = FALSE;
-    v.x = p->mUnk_00.mPos.x;
-    v.y = p->mUnk_00.mPos.y + p->mUnk_f4 + 0x5000;
-    v.z = p->mUnk_00.mPos.z;
+    probePos.x = wanwan->mUnk_00.mPos.x;
+    probePos.y = wanwan->mUnk_00.mPos.y + wanwan->mUnk_f4 + 0x5000;
+    probePos.z = wanwan->mUnk_00.mPos.z;
     if (h == 0) {
-        w.y = p->mUnk_ac + 0xd000 - v.y;
-        if (w.y > 0) {
+        correction.y = wanwan->mUnk_ac + 0xd000 - probePos.y;
+        if (correction.y > 0) {
             k = TRUE;
-            w.x = 0;
-            w.z = 0;
-            if (p->mUnk_fc != 0) {
-                if (!(p->mUnk_00.mDistanceSquaredAndFlags & 4)) {
-                    if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
+            correction.x = 0;
+            correction.z = 0;
+            if (wanwan->mUnk_fc != 0) {
+                if (!(wanwan->mUnk_00.mDistanceSquaredAndFlags & 4)) {
+                    if (wanwan->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                         y = 2;
-                    } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
+                    } else if (wanwan->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                         y = 3;
                     } else {
                         y = 4;
                     }
                     c.mUnk_00 = 0x1a1;
-                    c.mUnk_04 = &p->mUnk_00.mPos;
+                    c.mUnk_04 = &wanwan->mUnk_00.mPos;
                     c.mUnk_08 = y;
-                    c.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
+                    c.mUnk_0c = GetHorizontalCameraDistanceSquared(&wanwan->mUnk_00.mPos);
                     func_0210b7a8(&c);
                 }
             }
         }
     } else {
-        if (func_01ffdee4(&v, NULL, 0, 0xd000, 8, -2, &w, &u, NULL, &f, NULL, NULL, NULL, NULL) != 0) {
+        if (func_01ffdee4(&probePos, NULL, 0, 0xd000, 8, -2, &correction, &surfaceNormal, NULL, &surfaceFlags, NULL,
+                          NULL, NULL, NULL) != 0) {
             k = TRUE;
-            if (p->mUnk_fc != 0) {
-                if (!(p->mUnk_00.mDistanceSquaredAndFlags & 4)) {
-                    if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
+            if (wanwan->mUnk_fc != 0) {
+                if (!(wanwan->mUnk_00.mDistanceSquaredAndFlags & 4)) {
+                    if (wanwan->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                         y = 2;
-                    } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
+                    } else if (wanwan->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                         y = 3;
                     } else {
                         y = 4;
                     }
                     d.mUnk_00 = 0x1df;
-                    d.mUnk_04 = &p->mUnk_00.mPos;
+                    d.mUnk_04 = &wanwan->mUnk_00.mPos;
                     d.mUnk_08 = y;
-                    d.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
+                    d.mUnk_0c = GetHorizontalCameraDistanceSquared(&wanwan->mUnk_00.mPos);
                     func_0210b7a8(&d);
                 }
             }
@@ -165,412 +166,418 @@ void UpdateWanwan(void *a, Wanwan *p) {
     }
     if (k != FALSE) {
         k = TRUE;
-        if (p->mUnk_00.mStateMachine.mState == 2) {
-            if (p->mUnk_00.mStateMachine.mStateFrames < 0x78) {
+        if (wanwan->mUnk_00.mStateMachine.mState == 2) {
+            if (wanwan->mUnk_00.mStateMachine.mStateFrames < 0x78) {
                 k = FALSE;
             }
         }
-        p->mUnk_00.mPos.y += w.y;
-        if (p->mUnk_fc != 0 || k != FALSE) {
-            if (p->mUnk_fc != 0) {
-                x = p->mUnk_1a0.mUnk_00.mUnk_20->mUnk_00.x;
-                z = p->mUnk_1a0.mUnk_00.mUnk_20->mUnk_00.z;
+        wanwan->mUnk_00.mPos.y += correction.y;
+        if (wanwan->mUnk_fc != 0 || k != FALSE) {
+            if (wanwan->mUnk_fc != 0) {
+                x = wanwan->mFollower.mUnk_00.mToEntry->mPos.x;
+                z = wanwan->mFollower.mUnk_00.mToEntry->mPos.z;
             } else {
-                x = p->mUnk_160[2]->x - p->mUnk_00.mPos.x;
-                z = p->mUnk_160[2]->z - p->mUnk_00.mPos.z;
+                x = wanwan->mCurvePoints[2]->x - wanwan->mUnk_00.mPos.x;
+                z = wanwan->mCurvePoints[2]->z - wanwan->mUnk_00.mPos.z;
             }
-            t = ((s64) (s32) (((s64) p->mUnk_00.mUnk_10.x * x + (s64) p->mUnk_00.mUnk_10.z * z) >> 12) << 9) >> 12;
+            t = ((s64) (s32) (((s64) wanwan->mUnk_00.mUnk_10.x * x + (s64) wanwan->mUnk_00.mUnk_10.z * z) >> 12)
+                 << 9) >>
+                12;
             if (t > 0x3000) {
                 t = 0x3000;
             } else if (t < 0x2800) {
                 t = 0x2800;
             }
-            p->mUnk_00.mUnk_10.y = t;
-        } else if (p->mUnk_e8 == 0xd000) {
-            p->mUnk_00.mUnk_10.y = 0x2000;
-            p->mUnk_e8 += 0x1000;
+            wanwan->mUnk_00.mUnk_10.y = t;
+        } else if (wanwan->mUnk_e8 == 0xd000) {
+            wanwan->mUnk_00.mUnk_10.y = 0x2000;
+            wanwan->mUnk_e8 += 0x1000;
         } else {
-            p->mUnk_00.mUnk_10.y = 0;
+            wanwan->mUnk_00.mUnk_10.y = 0;
         }
         if (h != 0) {
-            if (f & 0x1e34ef) {
-                t = ((s64) p->mUnk_00.mUnk_10.x * u.x + (s64) p->mUnk_00.mUnk_10.z * u.z) >> 12;
+            if (surfaceFlags & 0x1e34ef) {
+                t = ((s64) wanwan->mUnk_00.mUnk_10.x * surfaceNormal.x +
+                     (s64) wanwan->mUnk_00.mUnk_10.z * surfaceNormal.z) >>
+                    12;
                 if (t < 0) {
-                    p->mUnk_00.mUnk_10.y += (s32) (((s64) -t * 0x14cd) >> 12);
+                    wanwan->mUnk_00.mUnk_10.y += (s32) (((s64) -t * 0x14cd) >> 12);
                 }
-                QuaternionFromYAxisToVec3(&u, &p->mUnk_c4);
+                QuaternionFromYAxisToVec3(&surfaceNormal, &wanwan->mUnk_c4);
             }
         }
-        if (p->mUnk_fc == 0 && !(p->mUnk_00.mDistanceSquaredAndFlags & 4) && k != FALSE) {
+        if (wanwan->mUnk_fc == 0 && !(wanwan->mUnk_00.mDistanceSquaredAndFlags & 4) && k != FALSE) {
             b = data_0216bedc;
-            b.mUnk_04 = &p->mUnk_00.mPos;
-            b.mUnk_0c = p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f;
+            b.mUnk_04 = &wanwan->mUnk_00.mPos;
+            b.mUnk_0c = wanwan->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f;
             func_0210b7a8(&b);
         }
     }
     if (h != 0) {
-        func_020d7938(&p->mUnk_c4, &p->mUnk_d4, &m);
+        func_020d7938(&wanwan->mUnk_c4, &wanwan->mUnk_d4, &targetOrientation);
     }
-    p->mUnk_e4 = p->mUnk_e4 + ((-p->mUnk_00.mUnk_10.y >> 1) - p->mUnk_e4 >> 4);
+    wanwan->mUnk_e4 = wanwan->mUnk_e4 + ((-wanwan->mUnk_00.mUnk_10.y >> 1) - wanwan->mUnk_e4 >> 4);
     if (h != 0) {
-        QuaternionMultiplyAngleAroundX(&m, (u16) (p->mUnk_e8 + p->mUnk_e4), &m);
+        QuaternionMultiplyAngleAroundX(&targetOrientation, (u16) (wanwan->mUnk_e8 + wanwan->mUnk_e4),
+                                       &targetOrientation);
     } else {
-        func_020d76a8(&p->mUnk_d4, (u16) (p->mUnk_e8 + p->mUnk_e4), &m);
+        func_020d76a8(&wanwan->mUnk_d4, (u16) (wanwan->mUnk_e8 + wanwan->mUnk_e4), &targetOrientation);
     }
-    QuaternionBlendTowardNearerSign(&p->mUnk_b4, &m, &p->mUnk_b4, p->mUnk_ec);
-    QuaternionNormalizeUnlessNearOne(&p->mUnk_b4, &p->mUnk_b4);
-    Matrix3x3FromQuaternion(&p->mUnk_00.mMatrix, &p->mUnk_b4);
-    if (p->mUnk_00.mPos.y >= 0) {
+    QuaternionBlendTowardNearerSign(&wanwan->mUnk_b4, &targetOrientation, &wanwan->mUnk_b4, wanwan->mUnk_ec);
+    QuaternionNormalizeUnlessNearOne(&wanwan->mUnk_b4, &wanwan->mUnk_b4);
+    Matrix3x3FromQuaternion(&wanwan->mUnk_00.mMatrix, &wanwan->mUnk_b4);
+    if (wanwan->mUnk_00.mPos.y >= 0) {
         return;
     }
-    func_020dbf7c(p);
+    ResetWanwan(wanwan);
 }
 
-u8 func_020dd230(Wanwan *p, void *a, u8 *b, u8 *c) {
+u8 func_020dd230(Wanwan *wanwan, void *kart, u8 *b, u8 *c) {
     if (*b == 1) {
-        if (p->mUnk_00.mStateMachine.mState != 2 || p->mUnk_00.mUnk_10.y < 0x4000) {
-            p->mUnk_00.mStateMachine.mNextState = 2;
-            p->mUnk_00.mStateMachine.mNextStateRequested = 1;
-            StartSoundIfKartStarOrKiller(&p->mUnk_00, a);
+        if (wanwan->mUnk_00.mStateMachine.mState != 2 || wanwan->mUnk_00.mUnk_10.y < 0x4000) {
+            wanwan->mUnk_00.mStateMachine.mNextState = 2;
+            wanwan->mUnk_00.mStateMachine.mNextStateRequested = 1;
+            StartSoundIfKartStarOrKiller(&wanwan->mUnk_00, kart);
         }
     }
     return *c;
 }
 
-u8 func_020dd1f4(Wanwan *p, void *a, u8 *b, u8 *c) {
+u8 func_020dd1f4(Wanwan *wanwan, void *kart, u8 *b, u8 *c) {
     if (*b == 1) {
-        if (p->mUnk_00.mStateMachine.mState != 2 || p->mUnk_00.mUnk_10.y < 0x4000) {
-            p->mUnk_00.mStateMachine.mNextState = 2;
-            p->mUnk_00.mStateMachine.mNextStateRequested = 1;
+        if (wanwan->mUnk_00.mStateMachine.mState != 2 || wanwan->mUnk_00.mUnk_10.y < 0x4000) {
+            wanwan->mUnk_00.mStateMachine.mNextState = 2;
+            wanwan->mUnk_00.mStateMachine.mNextStateRequested = 1;
         }
     }
     return *c;
 }
 
 // Kind 0x196 only (kind 0x1a5 never reaches state 0).
-void EnterWanwanState0(Wanwan *p) {
-    Vec3 *q;
+void EnterWanwanState0(Wanwan *wanwan) {
+    Vec3 *savedPoint;
 
-    p->mUnk_e8 = 0x555;
-    p->mUnk_ec = 0x1c2;
-    p->mUnk_1d8->mUnk_a8 = 0x599;
-    q = p->mUnk_160[0];
-    p->mUnk_160[0] = NULL;
-    *p->mUnk_160[1] = p->mUnk_00.mPos;
-    *p->mUnk_160[2] = *p->mUnk_160[1];
-    p->mUnk_160[2]->x += (s32) (((s64) p->mUnk_00.mMatrix.mUnk_00[2].x * p->mUnk_f0) >> 12);
-    p->mUnk_160[2]->z += (s32) (((s64) p->mUnk_00.mMatrix.mUnk_00[2].z * p->mUnk_f0) >> 12);
-    *p->mUnk_160[3] = *p->mUnk_160[2];
-    p->mUnk_160[3]->x += (s32) (((s64) p->mUnk_00.mMatrix.mUnk_00[0].x * p->mUnk_f0) >> 12);
-    p->mUnk_160[3]->z += (s32) (((s64) p->mUnk_00.mMatrix.mUnk_00[0].z * p->mUnk_f0) >> 12);
-    func_020d7d18(&p->mUnk_100, 1, p->mUnk_160, 0x1000);
-    p->mUnk_160[0] = q;
+    wanwan->mUnk_e8 = 0x555;
+    wanwan->mUnk_ec = 0x1c2;
+    wanwan->mChainObject->mUnk_a8 = 0x599;
+    savedPoint = wanwan->mCurvePoints[0];
+    wanwan->mCurvePoints[0] = NULL;
+    *wanwan->mCurvePoints[1] = wanwan->mUnk_00.mPos;
+    *wanwan->mCurvePoints[2] = *wanwan->mCurvePoints[1];
+    wanwan->mCurvePoints[2]->x += (s32) (((s64) wanwan->mUnk_00.mMatrix.mUnk_00[2].x * wanwan->mUnk_f0) >> 12);
+    wanwan->mCurvePoints[2]->z += (s32) (((s64) wanwan->mUnk_00.mMatrix.mUnk_00[2].z * wanwan->mUnk_f0) >> 12);
+    *wanwan->mCurvePoints[3] = *wanwan->mCurvePoints[2];
+    wanwan->mCurvePoints[3]->x += (s32) (((s64) wanwan->mUnk_00.mMatrix.mUnk_00[0].x * wanwan->mUnk_f0) >> 12);
+    wanwan->mCurvePoints[3]->z += (s32) (((s64) wanwan->mUnk_00.mMatrix.mUnk_00[0].z * wanwan->mUnk_f0) >> 12);
+    func_020d7d18(&wanwan->mSegmentProgress, 1, wanwan->mCurvePoints, 0x1000);
+    wanwan->mCurvePoints[0] = savedPoint;
 }
 
-static inline s64 func_020dccc8_inline(const Vec3 *v) {
-    return (s64) v->x * v->x + (s64) v->z * v->z;
+static inline s64 func_020dccc8_inline(const Vec3 *vector) {
+    return (s64) vector->x * vector->x + (s64) vector->z * vector->z;
 }
 
 // Kind 0x196 only (kind 0x1a5 never reaches state 0).
-void UpdateWanwanState0(Wanwan *p) {
-    Vec3 *q;
-    Vec3 *c;
-    Unk020f41c4_B *r;
-    Kart *o;
-    s32 j;
-    s32 dz;
-    s32 dx;
+void UpdateWanwanState0(Wanwan *wanwan) {
+    Vec3 *candidate;
+    Vec3 *lastPoint;
+    Unk020f41c4_B *random;
+    Kart *kart;
+    s32 attemptCount;
+    s32 lastStepZ;
+    s32 lastStepX;
     s32 a;
     u32 n;
     s32 v;
-    s32 d;
-    s32 xp;
-    s32 zp;
-    s32 g;
+    s32 radius;
+    s32 offsetX;
+    s32 offsetZ;
+    s32 dot;
     s32 e;
-    u32 i;
-    u16 u;
+    u32 angleIndex;
+    u16 kartIndex;
 
-    p->mUnk_00.mUnk_10.x = p->mUnk_00.mPos.x;
-    p->mUnk_00.mUnk_10.z = p->mUnk_00.mPos.z;
-    if (AdvanceSegmentProgress(&p->mUnk_100) != FALSE) {
-        dx = p->mUnk_160[3]->x - p->mUnk_160[2]->x;
-        dz = p->mUnk_160[3]->z - p->mUnk_160[2]->z;
+    wanwan->mUnk_00.mUnk_10.x = wanwan->mUnk_00.mPos.x;
+    wanwan->mUnk_00.mUnk_10.z = wanwan->mUnk_00.mPos.z;
+    if (AdvanceSegmentProgress(&wanwan->mSegmentProgress) != FALSE) {
+        lastStepX = wanwan->mCurvePoints[3]->x - wanwan->mCurvePoints[2]->x;
+        lastStepZ = wanwan->mCurvePoints[3]->z - wanwan->mCurvePoints[2]->z;
         do {
-            j = 0;
-            q = p->mUnk_160[0];
+            attemptCount = 0;
+            candidate = wanwan->mCurvePoints[0];
             while (1) {
-                a = p->mUnk_f8;
-                r = GetMapObjectRandom();
+                a = wanwan->mUnk_f8;
+                random = GetMapObjectRandom();
                 n = a - 0x2d000;
                 if (n == 0) {
                     v = 0;
                 } else {
-                    r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
+                    random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
                     if (n == 0) {
-                        v = (u32) (r->mValue >> 32);
+                        v = (u32) (random->mValue >> 32);
                     } else {
-                        v = (u32) (((u64) (r->mValue >> 32) * (u64) n) >> 32);
+                        v = (u32) (((u64) (random->mValue >> 32) * (u64) n) >> 32);
                     }
                 }
-                r = GetMapObjectRandom();
-                d = v + 0x2d000;
-                r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-                i = (u16) (((r->mValue >> 32) * 0x10000) >> 32) >> 4;
-                j++;
-                q->x = p->mUnk_a0.x + (s32) (((s64) gPairsByAngle[i * 2] * d) >> 12);
-                q->z = p->mUnk_a0.z + (s32) (((s64) gPairsByAngle[i * 2 + 1] * d) >> 12);
-                if (j > 5) {
+                random = GetMapObjectRandom();
+                radius = v + 0x2d000;
+                random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+                angleIndex = (u16) (((random->mValue >> 32) * 0x10000) >> 32) >> 4;
+                attemptCount++;
+                candidate->x = wanwan->mCenterPos.x + (s32) (((s64) gPairsByAngle[angleIndex * 2] * radius) >> 12);
+                candidate->z = wanwan->mCenterPos.z + (s32) (((s64) gPairsByAngle[angleIndex * 2 + 1] * radius) >> 12);
+                if (attemptCount > 5) {
                     break;
                 }
-                c = p->mUnk_160[3];
-                xp = q->x - c->x;
-                zp = q->z - c->z;
-                if ((s64) (s32) xp * xp + (s64) (s32) zp * zp < 0x7e9000000LL) {
+                lastPoint = wanwan->mCurvePoints[3];
+                offsetX = candidate->x - lastPoint->x;
+                offsetZ = candidate->z - lastPoint->z;
+                if ((s64) (s32) offsetX * offsetX + (s64) (s32) offsetZ * offsetZ < 0x7e9000000LL) {
                     continue;
                 }
-                g = ((s64) xp * dx + (s64) zp * dz) >> 12;
-                if (g < 0) {
-                    g = -g;
-                    e = (-(s64) xp * dz + (s64) zp * dx) >> 12;
+                dot = ((s64) offsetX * lastStepX + (s64) offsetZ * lastStepZ) >> 12;
+                if (dot < 0) {
+                    dot = -dot;
+                    e = (-(s64) offsetX * lastStepZ + (s64) offsetZ * lastStepX) >> 12;
                     if (e < 0) {
                         e = -e;
                     }
-                    if (g >> 2 >= e) {
+                    if (dot >> 2 >= e) {
                         continue;
                     }
                 }
                 break;
             }
-            p->mUnk_160[0] = p->mUnk_160[1];
-            p->mUnk_160[1] = p->mUnk_160[2];
-            p->mUnk_160[2] = p->mUnk_160[3];
-            p->mUnk_160[3] = q;
-        } while (func_020d7c84(&p->mUnk_100, 1, p->mUnk_160) != FALSE);
+            wanwan->mCurvePoints[0] = wanwan->mCurvePoints[1];
+            wanwan->mCurvePoints[1] = wanwan->mCurvePoints[2];
+            wanwan->mCurvePoints[2] = wanwan->mCurvePoints[3];
+            wanwan->mCurvePoints[3] = candidate;
+        } while (func_020d7c84(&wanwan->mSegmentProgress, 1, wanwan->mCurvePoints) != FALSE);
     }
-    func_020d8474(&p->mUnk_100, &p->mUnk_00.mPos);
-    if (!(p->mUnk_00.mFlags & 0x800)) {
-        u = GetRaceUpdateFramesModKartCount();
-        o = GetKart(u);
-        if (func_0206c0e0(o) == FALSE) {
-            e = p->mUnk_1dc;
-            if ((s64) (o->mPos.x - p->mUnk_a0.x) * (o->mPos.x - p->mUnk_a0.x) +
-                    (s64) (o->mPos.z - p->mUnk_a0.z) * (o->mPos.z - p->mUnk_a0.z) <
+    GetSegmentProgressPointXz(&wanwan->mSegmentProgress, &wanwan->mUnk_00.mPos);
+    if (!(wanwan->mUnk_00.mFlags & 0x800)) {
+        kartIndex = GetRaceUpdateFramesModKartCount();
+        kart = GetKart(kartIndex);
+        if (func_0206c0e0(kart) == FALSE) {
+            e = wanwan->mUnk_1dc;
+            if ((s64) (kart->mPos.x - wanwan->mCenterPos.x) * (kart->mPos.x - wanwan->mCenterPos.x) +
+                    (s64) (kart->mPos.z - wanwan->mCenterPos.z) * (kart->mPos.z - wanwan->mCenterPos.z) <
                 (s64) e * e) {
-                p->mUnk_1f0 = &GetKart(u)->mPos;
-                p->mUnk_1f4 = &GetKart(u)->mVelocity;
-                p->mUnk_00.mStateMachine.mNextState = 1;
-                p->mUnk_00.mStateMachine.mNextStateRequested = 1;
+                wanwan->mKartPos = &GetKart(kartIndex)->mPos;
+                wanwan->mKartVelocity = &GetKart(kartIndex)->mVelocity;
+                wanwan->mUnk_00.mStateMachine.mNextState = 1;
+                wanwan->mUnk_00.mStateMachine.mNextStateRequested = 1;
             }
         }
     }
-    p->mUnk_00.mUnk_10.x = p->mUnk_00.mPos.x - p->mUnk_00.mUnk_10.x;
-    p->mUnk_00.mUnk_10.z = p->mUnk_00.mPos.z - p->mUnk_00.mUnk_10.z;
-    if (func_020dccc8_inline(&p->mUnk_00.mUnk_10) >= 0x10) {
+    wanwan->mUnk_00.mUnk_10.x = wanwan->mUnk_00.mPos.x - wanwan->mUnk_00.mUnk_10.x;
+    wanwan->mUnk_00.mUnk_10.z = wanwan->mUnk_00.mPos.z - wanwan->mUnk_00.mUnk_10.z;
+    if (func_020dccc8_inline(&wanwan->mUnk_00.mUnk_10) >= 0x10) {
         QuaternionFromAngleAroundY(
-            (u16) (((s64) FX_Atan2(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL + 0x80000000000LL) >>
+            (u16) (((s64) FX_Atan2(wanwan->mUnk_00.mUnk_10.x, wanwan->mUnk_00.mUnk_10.z) * 0x28be60db9391LL +
+                    0x80000000000LL) >>
                    44),
-            &p->mUnk_d4);
+            &wanwan->mUnk_d4);
     }
-    if (p->mUnk_00.mStateMachine.mStateFrames < 0x40) {
-        p->mUnk_ec += 0x1c;
+    if (wanwan->mUnk_00.mStateMachine.mStateFrames < 0x40) {
+        wanwan->mUnk_ec += 0x1c;
     }
 }
 
-void EnterWanwanState1(Wanwan *p) {
-    Unk0210b7a8 a;
-    s32 k;
+void EnterWanwanState1(Wanwan *wanwan) {
+    Unk0210b7a8 soundRequest;
+    s32 falloffIndex;
 
-    p->mUnk_e8 = 0x2000;
-    p->mUnk_ec = 0x1c2;
-    p->mUnk_1e0 = p->mUnk_00.mPos;
-    p->mUnk_1d8->mUnk_a8 = 0x219;
-    p->mUnk_1f8 = 0;
-    if (p->mUnk_00.mDistanceSquaredAndFlags & 4) {
+    wanwan->mUnk_e8 = 0x2000;
+    wanwan->mUnk_ec = 0x1c2;
+    wanwan->mUnk_1e0 = wanwan->mUnk_00.mPos;
+    wanwan->mChainObject->mUnk_a8 = 0x219;
+    wanwan->mUnk_1f8 = 0;
+    if (wanwan->mUnk_00.mDistanceSquaredAndFlags & 4) {
         return;
     }
-    if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
-        k = 2;
-    } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
-        k = 3;
+    if (wanwan->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
+        falloffIndex = 2;
+    } else if (wanwan->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
+        falloffIndex = 3;
     } else {
-        k = 4;
+        falloffIndex = 4;
     }
-    a.mUnk_00 = 0x12c;
-    a.mUnk_04 = &p->mUnk_00.mPos;
-    a.mUnk_08 = k;
-    a.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
-    func_0210b7a8(&a);
+    soundRequest.mUnk_00 = 0x12c;
+    soundRequest.mUnk_04 = &wanwan->mUnk_00.mPos;
+    soundRequest.mUnk_08 = falloffIndex;
+    soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(&wanwan->mUnk_00.mPos);
+    func_0210b7a8(&soundRequest);
 }
 
-void UpdateWanwanState1(Wanwan *p) {
+void UpdateWanwanState1(Wanwan *wanwan) {
     Vec3 a;
-    Vec3 b;
+    Vec3 predictedPos;
     s32 t;
     s32 k;
     s32 m;
 
-    if (p->mUnk_00.mStateMachine.mStateFrames > p->mUnk_1f8) {
-        VEC_Subtract(p->mUnk_1f0, &p->mUnk_00.mPos, &a);
-        t = ((s64) p->mUnk_1f4->x * a.z - (s64) p->mUnk_1f4->z * a.x) >> 12;
+    if (wanwan->mUnk_00.mStateMachine.mStateFrames > wanwan->mUnk_1f8) {
+        VEC_Subtract(wanwan->mKartPos, &wanwan->mUnk_00.mPos, &a);
+        t = ((s64) wanwan->mKartVelocity->x * a.z - (s64) wanwan->mKartVelocity->z * a.x) >> 12;
         t = -t >> 12;
         if (t < 0) {
             t = -t;
         }
         k = ((s64) t * 0x7a) >> 12;
-        b.x = p->mUnk_1f4->x * k;
-        b.z = p->mUnk_1f4->z * k;
-        VEC_Add(&b, p->mUnk_1f0, &b);
-        VEC_Subtract(&b, &p->mUnk_a0, &a);
+        predictedPos.x = wanwan->mKartVelocity->x * k;
+        predictedPos.z = wanwan->mKartVelocity->z * k;
+        VEC_Add(&predictedPos, wanwan->mKartPos, &predictedPos);
+        VEC_Subtract(&predictedPos, &wanwan->mCenterPos, &a);
         m = Vec3NormalizeXZAndGetLengthOrZero(&a, &a);
-        if (m > p->mUnk_f0) {
-            m -= p->mUnk_f0 >> 1;
+        if (m > wanwan->mUnk_f0) {
+            m -= wanwan->mUnk_f0 >> 1;
         }
-        if (m > p->mUnk_1ec) {
-            m = p->mUnk_1ec;
+        if (m > wanwan->mMaxRadius) {
+            m = wanwan->mMaxRadius;
         }
         a.x = ((s64) a.x * m) >> 12;
         a.y = ((s64) a.y * m) >> 12;
         a.z = ((s64) a.z * m) >> 12;
-        VEC_Add(&a, &p->mUnk_a0, &p->mUnk_1e0);
-        p->mUnk_1f8 += 0xb4;
+        VEC_Add(&a, &wanwan->mCenterPos, &wanwan->mUnk_1e0);
+        wanwan->mUnk_1f8 += 0xb4;
     }
-    VEC_Subtract(&p->mUnk_1e0, &p->mUnk_00.mPos, &a);
-    p->mUnk_00.mUnk_10.x += (s32) (((s64) a.x << 5) >> 12);
-    p->mUnk_00.mUnk_10.z += (s32) (((s64) a.z << 5) >> 12);
-    if (func_020dccc8_inline(&p->mUnk_00.mUnk_10) >= 0x40000000) {
-        p->mUnk_00.mUnk_10.x -= (s32) (((s64) p->mUnk_00.mUnk_10.x * 0x4cc) >> 12);
-        p->mUnk_00.mUnk_10.z -= (s32) (((s64) p->mUnk_00.mUnk_10.z * 0x4cc) >> 12);
+    VEC_Subtract(&wanwan->mUnk_1e0, &wanwan->mUnk_00.mPos, &a);
+    wanwan->mUnk_00.mUnk_10.x += (s32) (((s64) a.x << 5) >> 12);
+    wanwan->mUnk_00.mUnk_10.z += (s32) (((s64) a.z << 5) >> 12);
+    if (func_020dccc8_inline(&wanwan->mUnk_00.mUnk_10) >= 0x40000000) {
+        wanwan->mUnk_00.mUnk_10.x -= (s32) (((s64) wanwan->mUnk_00.mUnk_10.x * 0x4cc) >> 12);
+        wanwan->mUnk_00.mUnk_10.z -= (s32) (((s64) wanwan->mUnk_00.mUnk_10.z * 0x4cc) >> 12);
     }
-    if (func_020dccc8_inline(&a) < (s64) (p->mUnk_f0 >> 1) * (p->mUnk_f0 >> 1)) {
-        p->mUnk_00.mUnk_10.x >>= 1;
-        p->mUnk_00.mUnk_10.z >>= 1;
+    if (func_020dccc8_inline(&a) < (s64) (wanwan->mUnk_f0 >> 1) * (wanwan->mUnk_f0 >> 1)) {
+        wanwan->mUnk_00.mUnk_10.x >>= 1;
+        wanwan->mUnk_00.mUnk_10.z >>= 1;
     } else {
         QuaternionFromAngleAroundY((u16) (((s64) FX_Atan2(a.x, a.z) * 0x28be60db9391LL + 0x80000000000LL) >> 44),
-                                   &p->mUnk_d4);
+                                   &wanwan->mUnk_d4);
     }
-    t = ((s64) p->mUnk_00.mUnk_10.x * a.z) >> 12;
-    t -= (s32) (((s64) p->mUnk_00.mUnk_10.z * a.x) >> 12);
+    t = ((s64) wanwan->mUnk_00.mUnk_10.x * a.z) >> 12;
+    t -= (s32) (((s64) wanwan->mUnk_00.mUnk_10.z * a.x) >> 12);
     if (((s64) a.x * a.x + (s64) a.z * a.z) * 10 < (s64) t * t) {
-        p->mUnk_00.mUnk_10.x >>= 1;
-        p->mUnk_00.mUnk_10.z >>= 1;
+        wanwan->mUnk_00.mUnk_10.x >>= 1;
+        wanwan->mUnk_00.mUnk_10.z >>= 1;
     }
-    p->mUnk_00.mPos.x += p->mUnk_00.mUnk_10.x;
-    p->mUnk_00.mPos.z += p->mUnk_00.mUnk_10.z;
-    VEC_Subtract(&p->mUnk_00.mPos, &p->mUnk_a0, &a);
-    if ((s64) a.x * a.x + (s64) a.z * a.z >= (s64) p->mUnk_1ec * p->mUnk_1ec) {
+    wanwan->mUnk_00.mPos.x += wanwan->mUnk_00.mUnk_10.x;
+    wanwan->mUnk_00.mPos.z += wanwan->mUnk_00.mUnk_10.z;
+    VEC_Subtract(&wanwan->mUnk_00.mPos, &wanwan->mCenterPos, &a);
+    if ((s64) a.x * a.x + (s64) a.z * a.z >= (s64) wanwan->mMaxRadius * wanwan->mMaxRadius) {
         Vec3NormalizeXZAndGetLengthOrZero(&a, &a);
-        p->mUnk_00.mPos.x = p->mUnk_a0.x + (s32) (((s64) a.x * p->mUnk_1ec) >> 12);
-        p->mUnk_00.mPos.z = p->mUnk_a0.z + (s32) (((s64) a.z * p->mUnk_1ec) >> 12);
-        k = ((s64) p->mUnk_00.mUnk_10.x * a.x) >> 12;
-        m = ((s64) p->mUnk_00.mUnk_10.z * a.z) >> 12;
+        wanwan->mUnk_00.mPos.x = wanwan->mCenterPos.x + (s32) (((s64) a.x * wanwan->mMaxRadius) >> 12);
+        wanwan->mUnk_00.mPos.z = wanwan->mCenterPos.z + (s32) (((s64) a.z * wanwan->mMaxRadius) >> 12);
+        k = ((s64) wanwan->mUnk_00.mUnk_10.x * a.x) >> 12;
+        m = ((s64) wanwan->mUnk_00.mUnk_10.z * a.z) >> 12;
         if (k + m > 0) {
-            p->mUnk_00.mUnk_10.x -= (s32) (((s64) k * a.x) >> 12);
-            p->mUnk_00.mUnk_10.z -= (s32) (((s64) m * a.z) >> 12);
+            wanwan->mUnk_00.mUnk_10.x -= (s32) (((s64) k * a.x) >> 12);
+            wanwan->mUnk_00.mUnk_10.z -= (s32) (((s64) m * a.z) >> 12);
         }
     }
-    if (p->mUnk_00.mStateMachine.mStateFrames >= 0xb4) {
-        p->mUnk_00.mStateMachine.mNextState = 3;
-        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
+    if (wanwan->mUnk_00.mStateMachine.mStateFrames >= 0xb4) {
+        wanwan->mUnk_00.mStateMachine.mNextState = 3;
+        wanwan->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
-void EnterWanwanState2(Wanwan *p) {
-    p->mUnk_e8 = 0xd000;
-    p->mUnk_ec = 0x1c2;
-    if (p->mUnk_fc == 0) {
-        p->mUnk_1d8->mUnk_a8 = 0x219;
+void EnterWanwanState2(Wanwan *wanwan) {
+    wanwan->mUnk_e8 = 0xd000;
+    wanwan->mUnk_ec = 0x1c2;
+    if (wanwan->mUnk_fc == 0) {
+        wanwan->mChainObject->mUnk_a8 = 0x219;
     }
-    p->mUnk_00.mUnk_10.y = 0x8000;
+    wanwan->mUnk_00.mUnk_10.y = 0x8000;
 }
 
-void UpdateWanwanState2(Wanwan *p) {
-    const Vec3 *v;
+void UpdateWanwanState2(Wanwan *wanwan) {
+    const Vec3 *velocity;
 
-    if (p->mUnk_fc != 0) {
-        p->mUnk_00.mUnk_10.x = p->mUnk_00.mPos.x;
-        p->mUnk_00.mUnk_10.z = p->mUnk_00.mPos.z;
-        func_020d84e4(&p->mUnk_1a0);
-        func_020d8b88(&p->mUnk_1a0.mUnk_00, &p->mUnk_00.mPos);
-        p->mUnk_00.mUnk_10.x = p->mUnk_00.mPos.x - p->mUnk_00.mUnk_10.x;
-        p->mUnk_00.mUnk_10.z = p->mUnk_00.mPos.z - p->mUnk_00.mUnk_10.z;
-        v = &p->mUnk_00.mUnk_10;
-        if ((s64) v->x * v->x + (s64) v->z * v->z >= 0x10) {
+    if (wanwan->mUnk_fc != 0) {
+        wanwan->mUnk_00.mUnk_10.x = wanwan->mUnk_00.mPos.x;
+        wanwan->mUnk_00.mUnk_10.z = wanwan->mUnk_00.mPos.z;
+        AdvanceGroupFollowerWithSpeeds(&wanwan->mFollower);
+        GetGroupFollowerCurveXz(&wanwan->mFollower.mUnk_00, &wanwan->mUnk_00.mPos);
+        wanwan->mUnk_00.mUnk_10.x = wanwan->mUnk_00.mPos.x - wanwan->mUnk_00.mUnk_10.x;
+        wanwan->mUnk_00.mUnk_10.z = wanwan->mUnk_00.mPos.z - wanwan->mUnk_00.mUnk_10.z;
+        velocity = &wanwan->mUnk_00.mUnk_10;
+        if ((s64) velocity->x * velocity->x + (s64) velocity->z * velocity->z >= 0x10) {
             QuaternionFromAngleAroundY(
-                (u16) (((s64) FX_Atan2(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL +
+                (u16) (((s64) FX_Atan2(wanwan->mUnk_00.mUnk_10.x, wanwan->mUnk_00.mUnk_10.z) * 0x28be60db9391LL +
                         0x80000000000LL) >>
                        44),
-                &p->mUnk_d4);
+                &wanwan->mUnk_d4);
         }
-        if (p->mUnk_00.mStateMachine.mStateFrames < 0x40) {
-            p->mUnk_ec += 0x1c;
+        if (wanwan->mUnk_00.mStateMachine.mStateFrames < 0x40) {
+            wanwan->mUnk_ec += 0x1c;
         }
-        if (p->mUnk_00.mStateMachine.mStateFrames >= 0x28) {
-            p->mUnk_e8 += 0x200;
+        if (wanwan->mUnk_00.mStateMachine.mStateFrames >= 0x28) {
+            wanwan->mUnk_e8 += 0x200;
         } else {
-            p->mUnk_00.mUnk_10.y -= 0x266;
+            wanwan->mUnk_00.mUnk_10.y -= 0x266;
         }
-        if (p->mUnk_e8 > 0x10555) {
-            p->mUnk_00.mStateMachine.mNextState = 5;
-            p->mUnk_00.mStateMachine.mNextStateRequested = 1;
+        if (wanwan->mUnk_e8 > 0x10555) {
+            wanwan->mUnk_00.mStateMachine.mNextState = 5;
+            wanwan->mUnk_00.mStateMachine.mNextStateRequested = 1;
         }
     } else {
-        if (p->mUnk_e8 == 0xd000) {
-            p->mUnk_00.mUnk_10.y -= 0x19a;
+        if (wanwan->mUnk_e8 == 0xd000) {
+            wanwan->mUnk_00.mUnk_10.y -= 0x19a;
         }
-        if (p->mUnk_00.mStateMachine.mStateFrames >= 0x78) {
-            p->mUnk_e8 += 0x100;
+        if (wanwan->mUnk_00.mStateMachine.mStateFrames >= 0x78) {
+            wanwan->mUnk_e8 += 0x100;
         }
-        if (p->mUnk_e8 > 0x10555) {
-            p->mUnk_00.mStateMachine.mNextState = 3;
-            p->mUnk_00.mStateMachine.mNextStateRequested = 1;
+        if (wanwan->mUnk_e8 > 0x10555) {
+            wanwan->mUnk_00.mStateMachine.mNextState = 3;
+            wanwan->mUnk_00.mStateMachine.mNextStateRequested = 1;
         }
     }
 }
 
-void EnterWanwanState3(Wanwan *p) {
-    p->mUnk_e8 = 0x555;
-    p->mUnk_ec = 0x1c2;
-    p->mUnk_1d8->mUnk_a8 = 0x599;
+void EnterWanwanState3(Wanwan *wanwan) {
+    wanwan->mUnk_e8 = 0x555;
+    wanwan->mUnk_ec = 0x1c2;
+    wanwan->mChainObject->mUnk_a8 = 0x599;
 }
 
-static inline s64 func_020dc474_inline(const Vec3 *v) {
-    return (s64) v->x * v->x + (s64) v->z * v->z;
+static inline s64 func_020dc474_inline(const Vec3 *vector) {
+    return (s64) vector->x * vector->x + (s64) vector->z * vector->z;
 }
 
-void UpdateWanwanState3(Wanwan *p) {
-    Vec3 a;
-    s32 k;
+void UpdateWanwanState3(Wanwan *wanwan) {
+    Vec3 toCenter;
+    s32 radius;
 
-    k = p->mUnk_1fc;
-    if ((s64) (p->mUnk_00.mPos.x - p->mUnk_a0.x) * (p->mUnk_00.mPos.x - p->mUnk_a0.x) +
-            (s64) (p->mUnk_00.mPos.z - p->mUnk_a0.z) * (p->mUnk_00.mPos.z - p->mUnk_a0.z) >=
-        (s64) k * k) {
-        VEC_Subtract(&p->mUnk_a0, &p->mUnk_00.mPos, &a);
-        p->mUnk_00.mUnk_10.x += (s32) (((s64) a.x << 2) >> 12);
-        p->mUnk_00.mUnk_10.z += (s32) (((s64) a.z << 2) >> 12);
-        if (func_020dc474_inline(&p->mUnk_00.mUnk_10) >= 0x1000000) {
-            p->mUnk_00.mUnk_10.x -= (s32) (((s64) p->mUnk_00.mUnk_10.x * 0x199) >> 12);
-            p->mUnk_00.mUnk_10.z -= (s32) (((s64) p->mUnk_00.mUnk_10.z * 0x199) >> 12);
+    radius = wanwan->mUnk_1fc;
+    if ((s64) (wanwan->mUnk_00.mPos.x - wanwan->mCenterPos.x) * (wanwan->mUnk_00.mPos.x - wanwan->mCenterPos.x) +
+            (s64) (wanwan->mUnk_00.mPos.z - wanwan->mCenterPos.z) * (wanwan->mUnk_00.mPos.z - wanwan->mCenterPos.z) >=
+        (s64) radius * radius) {
+        VEC_Subtract(&wanwan->mCenterPos, &wanwan->mUnk_00.mPos, &toCenter);
+        wanwan->mUnk_00.mUnk_10.x += (s32) (((s64) toCenter.x << 2) >> 12);
+        wanwan->mUnk_00.mUnk_10.z += (s32) (((s64) toCenter.z << 2) >> 12);
+        if (func_020dc474_inline(&wanwan->mUnk_00.mUnk_10) >= 0x1000000) {
+            wanwan->mUnk_00.mUnk_10.x -= (s32) (((s64) wanwan->mUnk_00.mUnk_10.x * 0x199) >> 12);
+            wanwan->mUnk_00.mUnk_10.z -= (s32) (((s64) wanwan->mUnk_00.mUnk_10.z * 0x199) >> 12);
         }
-        p->mUnk_00.mPos.x += p->mUnk_00.mUnk_10.x;
-        p->mUnk_00.mPos.z += p->mUnk_00.mUnk_10.z;
+        wanwan->mUnk_00.mPos.x += wanwan->mUnk_00.mUnk_10.x;
+        wanwan->mUnk_00.mPos.z += wanwan->mUnk_00.mUnk_10.z;
     }
-    if (p->mUnk_00.mStateMachine.mStateFrames >= 0xb4) {
-        p->mUnk_00.mStateMachine.mNextState = 0;
-        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
+    if (wanwan->mUnk_00.mStateMachine.mStateFrames >= 0xb4) {
+        wanwan->mUnk_00.mStateMachine.mNextState = 0;
+        wanwan->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
-void EnterWanwanState4(Wanwan *p) {
-    p->mUnk_e8 = 0x555;
-    p->mUnk_ec = 0x1c2;
-    p->mUnk_1d8->mUnk_a8 = 0x599;
+void EnterWanwanState4(Wanwan *wanwan) {
+    wanwan->mUnk_e8 = 0x555;
+    wanwan->mUnk_ec = 0x1c2;
+    wanwan->mChainObject->mUnk_a8 = 0x599;
 }
 
-void func_020dc444(Wanwan *p) {}
+void func_020dc444(Wanwan *wanwan) {}
 
-void EnterWanwanState5(Wanwan *p) {
-    p->mUnk_e8 = 0x555;
-    p->mUnk_ec = 0x1c2;
+void EnterWanwanState5(Wanwan *wanwan) {
+    wanwan->mUnk_e8 = 0x555;
+    wanwan->mUnk_ec = 0x1c2;
 }

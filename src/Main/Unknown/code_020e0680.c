@@ -151,7 +151,7 @@ void func_020e2a74(Unk020e20a8 *drawList, Unk020e1e98 *vehicle, u32 c, u32 alpha
     if (drawList->mUnk_03c != FALSE) {
         dotAxis2 = Vec3DotUnrounded(&vehicle->mUnk_000.mMatrix.mUnk_00[2], &drawList->mUnk_02c);
         v = vehicle->mUnk_000.mCourseMapRow->mUnk_2e;
-        w = vehicle->mUnk_0d8.mUnk_1c->mUnk_12;
+        w = vehicle->mUnk_0d8.mFromEntry->mUnk_12;
         if (v == 0) {
             dotAxis2 = -dotAxis2;
         }
@@ -227,12 +227,12 @@ void func_020e2630(u32 a, Unk020e1e98 *vehicle) {
         f = 0;
     }
     previousPosition = vehicle->mUnk_000.mPos;
-    func_020d8cc8(&vehicle->mUnk_0d8);
+    AdvanceGroupFollower(&vehicle->mUnk_0d8);
     if (!f) {
-        func_020d8bc0(&vehicle->mUnk_0d8, &vehicle->mUnk_000.mPos);
+        GetGroupFollowerCurveXzLinearY(&vehicle->mUnk_0d8, &vehicle->mUnk_000.mPos);
         VEC_Subtract(&vehicle->mUnk_000.mPos, &previousPosition, &vehicle->mUnk_000.mUnk_10);
     } else {
-        func_020d8bc0(&vehicle->mUnk_0d8, &vehicle->mUnk_144);
+        GetGroupFollowerCurveXzLinearY(&vehicle->mUnk_0d8, &vehicle->mUnk_144);
         vehicle->mUnk_000.mPos.x = vehicle->mUnk_144.x;
         vehicle->mUnk_000.mUnk_10.y -= 0x59a;
         vehicle->mUnk_000.mPos.y = vehicle->mUnk_000.mPos.y + vehicle->mUnk_000.mUnk_10.y;
@@ -397,7 +397,7 @@ void func_020e230c(Unk0217b79c *updateList) {
     Unk020e1e98 **vehicleCursor;
     u16 entryCount;
     u16 groupIndex;
-    Unk02042044 *entry;
+    CourseMapGroupEntry *entry;
     u16 entryIndex;
     u16 z;
     Unk020e1e98 *vehicle;
@@ -506,7 +506,7 @@ void func_020e1f54(Unk020e1e98 *vehicle, struct CourseMapRow *courseRow, Unk020e
     InitGroupFollower(&vehicle->mUnk_0d8, courseRow, (s16) courseRow->mUnk_28 * 0x3000 / 100);
     vehicle->mUnk_0fc = courseRow->mUnk_2a;
     vehicle->mUnk_130 = courseRow->mUnk_2c;
-    vehicle->mUnk_0a0 = GetCourseMapGroupEntry(courseRow->mUnk_26, vehicle->mUnk_0fc)->mUnk_00.y;
+    vehicle->mUnk_0a0 = GetCourseMapGroupEntry(courseRow->mUnk_26, vehicle->mUnk_0fc)->mPos.y;
     vehicle->mUnk_114.x = ((s64) kindInfo->mUnk_00 * vehicle->mUnk_000.mScale.x) >> 12;
     vehicle->mUnk_114.y = ((s64) kindInfo->mUnk_04 * vehicle->mUnk_000.mScale.y) >> 12;
     vehicle->mUnk_114.z = ((s64) kindInfo->mUnk_08 * vehicle->mUnk_000.mScale.z) >> 12;
@@ -526,8 +526,8 @@ void func_020e1f54(Unk020e1e98 *vehicle, struct CourseMapRow *courseRow, Unk020e
 }
 
 void func_020e1e98(Unk020e1e98 *vehicle) {
-    func_020d90a8(&vehicle->mUnk_0d8, vehicle->mUnk_0fc, 1);
-    func_020d8b18(&vehicle->mUnk_0d8, &vehicle->mUnk_000.mPos, &vehicle->mUnk_000.mUnk_10);
+    SetupGroupFollowerAtEntry(&vehicle->mUnk_0d8, vehicle->mUnk_0fc, 1);
+    GetGroupFollowerCurvePosStepXz(&vehicle->mUnk_0d8, &vehicle->mUnk_000.mPos, &vehicle->mUnk_000.mUnk_10);
     vehicle->mUnk_000.mPos.y = vehicle->mUnk_0a0;
     vehicle->mUnk_000.mUnk_10.y = 0;
     vehicle->mUnk_0b4 = *(const Unk020e1e98_0b4 *) data_0216c044;

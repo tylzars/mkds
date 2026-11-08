@@ -4,4 +4,4 @@
 
 typedef struct Kuribo Kuribo;
 
-void EnterKuriboState2(Kuribo *p0);
+void EnterKuriboState2(Kuribo *kuribo);

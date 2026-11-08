@@ -826,8 +826,8 @@ void func_02074b00(Camera *p) {
 void UpdateCameraPosCurve(Camera *p, s32 a) {
     CourseMapCamera *q = p->mCourseMapCamera;
     u16 n = gCourseMap->mEntryGroups[q->mEntryGroupIndex].mEntryCount;
-    Unk02042044 *e0;
-    Unk02042044 *e1;
+    CourseMapGroupEntry *e0;
+    CourseMapGroupEntry *e1;
     Vec3 v;
     Vec3 d;
     Vec3 s;
@@ -842,8 +842,8 @@ void UpdateCameraPosCurve(Camera *p, s32 a) {
     }
     e0 = GetCourseMapGroupEntry(q->mEntryGroupIndex, 0);
     e1 = GetCourseMapGroupEntry(q->mEntryGroupIndex, 1);
-    v = e0->mUnk_00;
-    VEC_Subtract(&e1->mUnk_00, &e0->mUnk_00, &d);
+    v = e0->mPos;
+    VEC_Subtract(&e1->mPos, &e0->mPos, &d);
     if ((s64) d.x * d.x + (s64) d.y * d.y + (s64) d.z * d.z < 0x10) {
         m = 0;
     } else {

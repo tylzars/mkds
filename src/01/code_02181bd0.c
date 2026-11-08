@@ -387,10 +387,11 @@ void InitCoinObjects(Unk02181c3c_list *a) {
             if (p->mUnk_000.mCourseMapRow->mUnk_26 >= 0) {
                 InitGroupFollower(&p->mUnk_0b4, p->mUnk_000.mCourseMapRow, 0);
                 n = (p->mUnk_000.mCourseMapRow->mUnk_28 << 12) / 100;
-                p->mUnk_0b4.mUnk_04 = n;
-                p->mUnk_0b4.mUnk_10 = ((s64) n * p->mUnk_0b4.mUnk_00->mUnk_00[p->mUnk_0b4.mUnk_0c].mUnk_34) >> 12;
+                p->mUnk_0b4.mSpeed = n;
+                p->mUnk_0b4.mProgressStep =
+                    ((s64) n * p->mUnk_0b4.mPath->mSegments[p->mUnk_0b4.mSegmentIndex].mInverseProgressLength) >> 12;
             } else {
-                p->mUnk_0b4.mUnk_08 = 0xffff;
+                p->mUnk_0b4.mGroupIndex = 0xffff;
             }
             p->mUnk_0b0 = 0x1000;
             if (p->mUnk_000.mCourseMapRow->mUnk_2a == 0) {
@@ -438,9 +439,9 @@ void UpdateCoin(void *a, Unk02181c3c *b) {
             s32 dx;
             s32 dz;
             func_ov001_02182eb8(b, 1);
-            if (b->mUnk_0b4.mUnk_08 != 0xffff) {
-                func_020d8cc8(&b->mUnk_0b4);
-                func_020d8bf8(&b->mUnk_0b4, &b->mUnk_000.mPos, &b->mUnk_000.mUnk_10);
+            if (b->mUnk_0b4.mGroupIndex != 0xffff) {
+                AdvanceGroupFollower(&b->mUnk_0b4);
+                GetGroupFollowerCurvePosStep(&b->mUnk_0b4, &b->mUnk_000.mPos, &b->mUnk_000.mUnk_10);
                 b->mUnk_000.mPos.y += 0xe000;
                 b->mUnk_0d8 = b->mUnk_000.mPos;
             } else {

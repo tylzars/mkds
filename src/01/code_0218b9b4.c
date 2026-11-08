@@ -45,7 +45,7 @@ void func_ov001_0218bee4(Unk02188950 *a) {
     func_ov001_02188cd8(a, 0, a->mPrm->mUnk_144);
     func_ov001_02188a30(a, 0, a->mPrm->mUnk_154, a->mPrm->mUnk_148, a->mPrm->mUnk_14c);
     SetAnglePoint(a, &unk->mPos);
-    SetMoveAnglePoint(a, &func_ov001_02187fc0(a)->mUnk_00);
+    SetMoveAnglePoint(a, &func_ov001_02187fc0(a)->mPos);
     func_ov001_02188e74(a, a->mPrm->mUnk_190, func_ov001_0218c0a4);
 }
 
@@ -59,7 +59,7 @@ void func_ov001_0218bde8(Unk02188950 *a) {
     func_ov001_02188cd8(a, a->mPrm->mUnk_140, a->mPrm->mUnk_144);
     func_ov001_02188a30(a, a->mPrm->mUnk_150, a->mPrm->mUnk_154, a->mPrm->mUnk_148, a->mPrm->mUnk_14c);
     SetAnglePoint(a, &unk->mPos);
-    SetMoveAnglePoint(a, &func_ov001_02187fc0(a)->mUnk_00);
+    SetMoveAnglePoint(a, &func_ov001_02187fc0(a)->mPos);
     func_ov001_02188e24(a, a->mPrm->mUnk_158, func_ov001_0218bee4);
     a->mUnk_138 = func_ov001_02187f7c(a);
     func_ov001_0218c5fc(a);
@@ -123,7 +123,7 @@ void func_ov001_0218ba48(Unk02188950 *a) {
     func_ov001_0219b1c4(a->mNsbmd, a->mPrm->mUnk_0e4, a->mPrm->mUnk_0e0, 0);
     func_ov001_02188cd8(a, a->mPrm->mUnk_0e8, a->mPrm->mUnk_0ec);
     func_ov001_02188c48(a, a->mPrm->mUnk_0f0, a->mPrm->mUnk_0f4);
-    SetAnglePointAndMoveAnglePoint(a, &func_ov001_02187fc0(a)->mUnk_00);
+    SetAnglePointAndMoveAnglePoint(a, &func_ov001_02187fc0(a)->mPos);
     func_ov001_02188e24(a, a->mPrm->mUnk_100, func_ov001_0218c354);
     func_ov001_02188d08(a, (a->mUnk_000.mScale.x + a->mPrm->mUnk_0f8), a->mPrm->mUnk_0fc);
     func_ov001_02188cec(a, 0);

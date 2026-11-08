@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_020d6dc0.h" // Quaternion
-#include "Main/Unknown/code_020e005c.h" // Unk020e0144
+#include "Main/Unknown/code_020e005c.h" // GroupFollower
 
 typedef struct CourseMapRow CourseMapRow;
 
@@ -20,7 +20,7 @@ typedef struct Kuribo {
     /* b4 */ Quaternion mUnk_b4;
     /* c4 */ s32 mUnk_c4;
     /* c8 */ s32 mUnk_c8;
-    /* cc */ Unk020e0144 mUnk_cc;
+    /* cc */ GroupFollower mUnk_cc;
     /* f0 */ u16 mUnk_f0;
     /* f2 */ u8 mUnk_f2[2];
     /* f4 */ s32 mUnk_f4;

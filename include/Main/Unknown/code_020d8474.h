@@ -5,5 +5,5 @@
 
 typedef struct SegmentProgress SegmentProgress;
 
-void func_020d8474(SegmentProgress *segmentProgress, Vec3 *output);
-void func_020d8488(SegmentPoints *arg0, Vec3 *output);
+void GetSegmentProgressPointXz(SegmentProgress *segmentProgress, Vec3 *output);
+void GetSegmentProgressPoint(SegmentPoints *progressOwner, Vec3 *output);

@@ -31,20 +31,20 @@ struct Nclr;
 struct Unk02022aa8;
 struct KartBalloons;
 
-// Element of 0x14 bytes of the table behind data_0217b704.
-typedef struct Unk020de84c_14 {
+// Element of 0x14 bytes of the table behind gBoxRotations.
+typedef struct BoxRotation {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s32 mUnk_10;
-} Unk020de84c_14;
+} BoxRotation;
 
-// Element of 8 bytes of the table behind data_0217b708.
-typedef struct Unk020de84c_08 {
+// Element of 8 bytes of the table behind gQuestionRotations.
+typedef struct QuestionRotation {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
-} Unk020de84c_08;
+} QuestionRotation;
 
 // UnkPair020b502c of code_020b502c.h is this type.
 typedef struct Unk0217b498_0c {
@@ -733,38 +733,38 @@ extern struct RockUpdateList *data_0217b654;
 extern struct Unk020ea868 *gRockShadow;
 extern struct Unk020ea670 *gRock;
 extern struct Quaternion gViewYawQuaternion;
-extern struct Unk020e0144_00 *data_0217b670;
-extern struct Unk020db20c *data_0217b680;
-extern struct Unk020db1b0 *data_0217b684;
+extern struct GroupPath *gGroupPaths;
+extern struct Unk020db20c *gKuriboDrawList;
+extern struct Unk020db1b0 *gKuriboUpdateList;
 extern Unk020e6488 *gKuribo;
 extern struct Unk020ea670 *gDossun;
-extern struct Unk020dbe74 *data_0217b690;
+extern struct Unk020dbe74 *gDossunUpdateList;
 extern struct Unk020ea868 *gDossunShadow;
-extern struct Unk020dbed0 *data_0217b698;
-extern MtxFx43 data_0217b69c;
+extern struct Unk020dbed0 *gDossunDrawList;
+extern MtxFx43 gDossunDrawMatrix;
 extern struct Unk020ea670 *gWanwan;
 extern struct Unk020ea868 *gWanwanRockShadow;
 extern Unk020de334 *data_0217b6dc;
 extern Unk020de2d8 *data_0217b6e0;
 extern Unk020e6488 *gWanwanKui;
 extern Unk020e6488 *gWanwanChain;
-extern Unk020de2d8 *data_0217b6ec;
+extern Unk020de2d8 *gEarthenPipeUpdateList;
 extern Unk020e6488 *gEarthenPipe1;
 extern Unk020e6488 *gEarthenPipe2;
-extern Unk020de334 *data_0217b6f8;
+extern Unk020de334 *gEarthenPipeDrawList;
 extern u16 data_0217b6fc;
-extern Unk020de334 *data_0217b700;
-extern Unk020de84c_14 *data_0217b704;
-extern Unk020de84c_08 *data_0217b708;
-extern Unk020de334 *data_0217b70c;
+extern Unk020de334 *gQuestionDrawList;
+extern BoxRotation *gBoxRotations;
+extern QuestionRotation *gQuestionRotations;
+extern Unk020de334 *gBoxDrawList;
 extern Unk020e6488 *gQuestion;
 extern Unk020de334 *data_0217b714;
-extern Unk020de2d8 *data_0217b718;
+extern Unk020de2d8 *gItemBoxUpdateList;
 extern Unk020e6488 *gBox;
 extern MtxFx43 data_0217b720;
 extern u16 data_0217b750;
 extern s32 data_0217b754;
-extern Unk020de2d8 *data_0217b758;
+extern Unk020de2d8 *gGroupItemBoxUpdateList;
 extern s32 data_0217b75c;
 extern Vec3 data_0217b760;
 extern Unk020dfc44 *data_0217b76c;

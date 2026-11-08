@@ -191,7 +191,7 @@ void UpdateKuriking(u32 a, Unk02188950 *b) {
             }
         }
     } else {
-        if (func_ov001_021881a8(b, &func_ov001_02187fc0(b)->mUnk_00, b->mPrm->mUnk_0b4, 0)) {
+        if (func_ov001_021881a8(b, &func_ov001_02187fc0(b)->mPos, b->mPrm->mUnk_0b4, 0)) {
             var = func_ov001_02187f7c(b);
             if (var >= 200) {
                 if (func_ov001_021871f8(b, 8)) {

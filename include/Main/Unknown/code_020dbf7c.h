@@ -11,8 +11,8 @@ extern Unk0210b7a8 data_0216bedc;
 extern Quaternion data_0216beec;
 extern UnkFunc *data_0216befc[];
 
-void UpdateWanwanState5(Wanwan *p);
-void func_020dc1d8(Wanwan *p, CourseMapRow *a);
-void func_020dc11c(Wanwan *p, CourseMapRow *a);
-void func_020dbf7c(Wanwan *p);
+void UpdateWanwanState5(Wanwan *wanwan);
+void func_020dc1d8(Wanwan *wanwan, CourseMapRow *row);
+void func_020dc11c(Wanwan *wanwan, CourseMapRow *row);
+void ResetWanwan(Wanwan *wanwan);
 void CreateWanwanAndRockShadow(void);

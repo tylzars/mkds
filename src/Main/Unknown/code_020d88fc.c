@@ -1,14 +1,14 @@
 #include "Main/Unknown/code_020d88fc.h"
 
-Vec3 *func_020d88fc(Unk020e0144 *follower) {
+Vec3 *GetGroupFollowerSegmentUp(GroupFollower *follower) {
     u32 value0 = (u32) follower;
-    u32 value1;
+    u32 segmentIndex;
     u32 value2;
     value2 = *(const u32 *) ((value0) + (0));
-    value1 = *(const u32 *) ((value0) + (12));
+    segmentIndex = *(const u32 *) ((value0) + (12));
     value2 = *(const u32 *) ((value2) + (0));
     value0 = 0x54u;
-    value0 = (value1) * (value0) + (value2);
+    value0 = (segmentIndex) * (value0) + (value2);
     value0 = (value0) + (0x48u);
     return (Vec3 *) value0;
 }

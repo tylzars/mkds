@@ -57,9 +57,9 @@ void func_ov001_0218c3ac(Unk02188950 *a) {
         func_ov001_02188cd8(a, a->mPrm->mUnk_0cc, a->mPrm->mUnk_0d0);
         func_ov001_02188c48(a, a->mPrm->mUnk_0d4, a->mPrm->mUnk_0d8);
     }
-    SetAnglePointAndMoveAnglePoint(a, &func_ov001_02187fc0(a)->mUnk_00);
+    SetAnglePointAndMoveAnglePoint(a, &func_ov001_02187fc0(a)->mPos);
     func_ov001_02188e24(a, a->mPrm->mUnk_0b8, NULL);
-    func_ov001_02188de0(a, a->mPrm->mUnk_0b4, 0, &func_ov001_02187fc0(a)->mUnk_00, NULL);
+    func_ov001_02188de0(a, a->mPrm->mUnk_0b4, 0, &func_ov001_02187fc0(a)->mPos, NULL);
 }
 
 void func_ov001_0218c354(Unk02188950 *a) {

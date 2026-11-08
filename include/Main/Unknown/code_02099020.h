@@ -3,7 +3,7 @@
 #include "types.h"
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
-#include "Main/Unknown/code_020e005c.h" // Unk020e0144
+#include "Main/Unknown/code_020e005c.h" // GroupFollower
 
 // Entry of the list behind the word at 0x08 of Unk0209905c_d0: a link at 0x00 and two halfwords at 0x24 and 0x26.
 typedef struct Unk0209905c_d0_08 {
@@ -21,10 +21,10 @@ typedef struct Unk0209905c_d0 {
     /* 24 */ u32 mUnk_24;
 } Unk0209905c_d0;
 
-// Object up to 0xd4 bytes: the shared part, an Unk020e0144 at 0xa0, then three words and a pointer.
+// Object up to 0xd4 bytes: the shared part, an GroupFollower at 0xa0, then three words and a pointer.
 typedef struct Unk0209905c {
     /* 00 */ MapObject mUnk_00;
-    /* a0 */ Unk020e0144 mUnk_a0;
+    /* a0 */ GroupFollower mUnk_a0;
     /* c4 */ s32 mUnk_c4;
     /* c8 */ s32 mUnk_c8;
     /* cc */ s32 mUnk_cc;

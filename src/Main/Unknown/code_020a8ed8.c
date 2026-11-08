@@ -91,7 +91,7 @@ void InitIronBallObjects(Unk020a9a5c *p) {
         RefreshShadowMatrix(&o->mUnk_0e8, &o->mUnk_11c, o->mUnk_000.mExtent.x << 1, k);
         RefreshMapObjectMatrixFromHitNormal(&o->mUnk_000);
         InitGroupFollower(&o->mUnk_0c4, o->mUnk_000.mCourseMapRow, z0);
-        func_020d8918(&o->mUnk_0c4, &o->mUnk_11c, &o->mUnk_000.mUnk_10);
+        GetGroupFollowerLinearPosStep(&o->mUnk_0c4, &o->mUnk_11c, &o->mUnk_000.mUnk_10);
         o->mUnk_11c.y += 0x1000;
         VEC_MultAdd(o->mUnk_000.mExtent.x, &o->mUnk_000.mMatrix.mUnk_00[1], &o->mUnk_11c, &o->mUnk_000.mPos);
         if (o->mUnk_000.mFlags & 0x800) {
@@ -105,7 +105,7 @@ void InitIronBallObjects(Unk020a9a5c *p) {
 }
 
 void UpdateIronBall(void *a, IronBall *p) {
-    Unk02042044 *e;
+    CourseMapGroupEntry *e;
     Unk020f41c4_B *q;
     BOOL f;
     s32 v;
@@ -126,7 +126,7 @@ void UpdateIronBall(void *a, IronBall *p) {
                 }
                 p->mUnk_0a8 = (u16) p->mUnk_000.mCourseMapRow->mUnk_2c;
                 p->mUnk_0a4 = (u16) p->mUnk_000.mCourseMapRow->mUnk_2e;
-                func_020d90a8(&p->mUnk_0c4, 0, 1);
+                SetupGroupFollowerAtEntry(&p->mUnk_0c4, 0, 1);
                 p->mUnk_130 = 1;
                 return;
             }
@@ -144,7 +144,7 @@ void UpdateIronBall(void *a, IronBall *p) {
             }
             p->mUnk_0ac = p->mUnk_0ac + 1;
             p->mUnk_0a4 = (u16) p->mUnk_000.mCourseMapRow->mUnk_2e;
-            func_020d90a8(&p->mUnk_0c4, 0, 1);
+            SetupGroupFollowerAtEntry(&p->mUnk_0c4, 0, 1);
             p->mUnk_130 = 1;
             return;
         case 1:
@@ -167,16 +167,17 @@ void UpdateIronBall(void *a, IronBall *p) {
         func_0210b874(p->mUnk_000.mSound, p->mUnk_0b0);
     }
     v = p->mUnk_0b0;
-    p->mUnk_0c4.mUnk_04 = v;
-    p->mUnk_0c4.mUnk_10 = ((s64) v * p->mUnk_0c4.mUnk_00->mUnk_00[p->mUnk_0c4.mUnk_0c].mUnk_34) >> 12;
-    if (func_020d8cc8(&p->mUnk_0c4) != FALSE) {
-        e = p->mUnk_0c4.mUnk_1c;
-        if (p->mUnk_0c4.mUnk_18 == 0) {
+    p->mUnk_0c4.mSpeed = v;
+    p->mUnk_0c4.mProgressStep =
+        ((s64) v * p->mUnk_0c4.mPath->mSegments[p->mUnk_0c4.mSegmentIndex].mInverseProgressLength) >> 12;
+    if (AdvanceGroupFollower(&p->mUnk_0c4) != FALSE) {
+        e = p->mUnk_0c4.mFromEntry;
+        if (p->mUnk_0c4.mForward == 0) {
             if (e->mUnk_10 >= 0) {
-                func_020d90a8(&p->mUnk_0c4, e->mUnk_10, 1);
-                e = p->mUnk_0c4.mUnk_1c;
+                SetupGroupFollowerAtEntry(&p->mUnk_0c4, e->mUnk_10, 1);
+                e = p->mUnk_0c4.mFromEntry;
             } else if (p->mUnk_000.mCourseMapRow->mUnk_2c != 0) {
-                func_020d90a8(&p->mUnk_0c4, 0, 1);
+                SetupGroupFollowerAtEntry(&p->mUnk_0c4, 0, 1);
                 p->mUnk_000.mFlags |= data_021567ec;
                 p->mUnk_000.mFlags |= data_021567f0;
                 p->mUnk_000.mFlags |= data_021567f4;
@@ -191,8 +192,8 @@ void UpdateIronBall(void *a, IronBall *p) {
             q->mValue = q->mMultiplier * q->mValue + q->mIncrement;
             u = ((u64) (u32) (q->mValue >> 32) * 5) >> 32;
             if (u != 0) {
-                func_020d90a8(&p->mUnk_0c4, e->mUnk_10, 1);
-                e = p->mUnk_0c4.mUnk_1c;
+                SetupGroupFollowerAtEntry(&p->mUnk_0c4, e->mUnk_10, 1);
+                e = p->mUnk_0c4.mFromEntry;
             }
         }
         v = e->mUnk_0e;
@@ -206,8 +207,8 @@ void UpdateIronBall(void *a, IronBall *p) {
             p->mUnk_0b0 = 0x8000;
             p->mUnk_12c = 2;
             p->mUnk_0bc = p->mUnk_11c.y;
-            func_020d90a8(&p->mUnk_0c4, e->mUnk_0c + 1, 1);
-            func_020d8918(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
+            SetupGroupFollowerAtEntry(&p->mUnk_0c4, e->mUnk_0c + 1, 1);
+            GetGroupFollowerLinearPosStep(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
             p->mUnk_11c.y += 0x1000;
             p->mUnk_0bc = p->mUnk_0bc - p->mUnk_11c.y;
             p->mUnk_0c0 = 0xa000;
@@ -215,24 +216,24 @@ void UpdateIronBall(void *a, IronBall *p) {
             p->mUnk_0b0 = 0x5000;
             p->mUnk_12c = 2;
             p->mUnk_0bc = p->mUnk_11c.y;
-            func_020d90a8(&p->mUnk_0c4, e->mUnk_0c + 1, 1);
-            func_020d8918(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
+            SetupGroupFollowerAtEntry(&p->mUnk_0c4, e->mUnk_0c + 1, 1);
+            GetGroupFollowerLinearPosStep(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
             p->mUnk_11c.y += 0x1000;
             p->mUnk_0bc = p->mUnk_0bc - p->mUnk_11c.y;
             p->mUnk_0c0 = -0x3000;
         } else if (v >= 100) {
-            p->mUnk_11c = e->mUnk_00;
+            p->mUnk_11c = e->mPos;
             p->mUnk_000.mUnk_10.x = 0;
             p->mUnk_000.mUnk_10.y = 0;
             p->mUnk_000.mUnk_10.z = 0;
-            n = ((const Unk02042044 *) e)->mUnk_0e;
+            n = ((const CourseMapGroupEntry *) e)->mUnk_0e;
             if (n < 200) {
                 StartBoundWobble(n - 100);
                 p->mUnk_0b0 = 0xf000;
                 p->mUnk_12c = 1;
             } else if (n < 300) {
                 t = n - 200;
-                if (n != p->mUnk_0c4.mUnk_20->mUnk_0e) {
+                if (n != p->mUnk_0c4.mToEntry->mUnk_0e) {
                     p->mUnk_0b0 = 0x1e000;
                 } else {
                     func_0209753c(t);
@@ -241,7 +242,7 @@ void UpdateIronBall(void *a, IronBall *p) {
             }
         }
     }
-    if (p->mUnk_0c4.mUnk_1c->mUnk_0d != 0 && p->mUnk_0c4.mUnk_20->mUnk_0d != 0) {
+    if (p->mUnk_0c4.mFromEntry->mUnk_0d != 0 && p->mUnk_0c4.mToEntry->mUnk_0d != 0) {
         p->mUnk_000.mFlags |= data_021567f8;
     } else {
         p->mUnk_000.mFlags &= ~0x20;
@@ -259,9 +260,9 @@ void UpdateIronBall(void *a, IronBall *p) {
             p->mUnk_0bc = p->mUnk_0c0;
         }
     }
-    v = p->mUnk_0c4.mUnk_1c->mUnk_0e;
+    v = p->mUnk_0c4.mFromEntry->mUnk_0e;
     if (v >= 100) {
-        func_020d8918(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
+        GetGroupFollowerLinearPosStep(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
         p->mUnk_11c.y += 0x1000;
         w = p->mUnk_0b0 - 410;
         if (w <= 0xa000) {
@@ -269,13 +270,13 @@ void UpdateIronBall(void *a, IronBall *p) {
         }
         p->mUnk_0b0 = w;
     } else if ((u16) (s16) (v - 10) <= 1) {
-        func_020d8918(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
+        GetGroupFollowerLinearPosStep(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
         p->mUnk_11c.y += 0x1000;
     } else if (v == 0 || v == 2) {
-        func_020d8bf8(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
+        GetGroupFollowerCurvePosStep(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
         p->mUnk_11c.y += 0x1000;
     } else {
-        func_020d8918(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
+        GetGroupFollowerLinearPosStep(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
         p->mUnk_11c.y += 0x1000;
     }
     VEC_MultAdd(p->mUnk_000.mExtent.x, &p->mUnk_000.mMatrix.mUnk_00[1], &p->mUnk_11c, &p->mUnk_000.mPos);

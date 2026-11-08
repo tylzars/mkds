@@ -35,19 +35,19 @@ const u8 data_020da414_pad[1] = {1};
 #pragma thumb on
 
 void InitKuribo(Kuribo *kuribo, CourseMapRow *row) {
-    Unk02042044 *startEntry;
+    CourseMapGroupEntry *startEntry;
     Vec3 *zeroedVector;
     Unk020e005c_080 *stateMachine;
     kuribo->mUnk_100 = 0x1f;
     if (row != NULL) {
         InitGroupFollower(&kuribo->mUnk_cc, row, (row->mUnk_28 << 11) / 100);
         startEntry = GetCourseMapGroupEntry(row->mUnk_26, row->mUnk_2e);
-        kuribo->mUnk_a0 = startEntry->mUnk_00.y;
+        kuribo->mUnk_a0 = startEntry->mPos.y;
         kuribo->mUnk_f8 = row->mUnk_28 * 0xb4 / 100;
         kuribo->mUnk_fc = row->mUnk_2a == 0;
         func_02046be8(&kuribo->mUnk_00.mStateMachine, data_0216be68, 6, kuribo);
-        func_020d90a8(&kuribo->mUnk_cc, kuribo->mUnk_00.mCourseMapRow->mUnk_2e, 1);
-        func_020d8b88(&kuribo->mUnk_cc, &kuribo->mUnk_00.mPos);
+        SetupGroupFollowerAtEntry(&kuribo->mUnk_cc, kuribo->mUnk_00.mCourseMapRow->mUnk_2e, 1);
+        GetGroupFollowerCurveXz(&kuribo->mUnk_cc, &kuribo->mUnk_00.mPos);
         kuribo->mUnk_00.mPos.y = kuribo->mUnk_a0;
         zeroedVector = &kuribo->mUnk_00.mUnk_10;
         zeroedVector->x = 0;
@@ -67,7 +67,7 @@ void InitKuribo(Kuribo *kuribo, CourseMapRow *row) {
         stateMachine->mNextState = 0;
         stateMachine->mNextStateRequested = 1;
     } else {
-        kuribo->mUnk_cc.mUnk_08 = 0xffff;
+        kuribo->mUnk_cc.mGroupIndex = 0xffff;
         kuribo->mUnk_a0 = 0;
         kuribo->mUnk_fc = 0;
         func_02046be8(&kuribo->mUnk_00.mStateMachine, data_0216be68, 6, kuribo);

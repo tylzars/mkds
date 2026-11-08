@@ -58,7 +58,7 @@ void InitSun(u32 arg0) {
     value1 = *(const u32 *) ((value4) + (156));
     value0 = (value4) + (0xb8u);
     value2 = 0u;
-    InitGroupFollower((Unk020e0144 *) value0, (CourseMapRow *) value1, value2);
+    InitGroupFollower((GroupFollower *) value0, (CourseMapRow *) value1, value2);
     value0 = 0x1aeu;
     value2 = value4;
     value1 = 0x1eu;
@@ -180,15 +180,16 @@ void UpdateSun(Unk02100094 *a, Sun *p) {
             }
             break;
         case 1:
-            p->mUnk_0b8.mUnk_04 = 0x3c000;
-            p->mUnk_0b8.mUnk_10 = ((s64) p->mUnk_0b8.mUnk_00->mUnk_00[p->mUnk_0b8.mUnk_0c].mUnk_34 * 0x3c000) >> 12;
-            if (func_020d8cc8(&p->mUnk_0b8) != FALSE && (t = p->mUnk_0b8.mUnk_1c->mUnk_0e) != 0) {
+            p->mUnk_0b8.mSpeed = 0x3c000;
+            p->mUnk_0b8.mProgressStep =
+                ((s64) p->mUnk_0b8.mPath->mSegments[p->mUnk_0b8.mSegmentIndex].mInverseProgressLength * 0x3c000) >> 12;
+            if (AdvanceGroupFollower(&p->mUnk_0b8) != FALSE && (t = p->mUnk_0b8.mFromEntry->mUnk_0e) != 0) {
                 if (p->mUnk_000.mFlags & 0x800) {
                     k = gRaceSetup->mMode;
                     if (k == MODE_TIME_ATTACK) {
                         p->mTimer = t;
                     } else if (k == 5) {
-                        p->mTimer = p->mUnk_0b8.mUnk_1c->mUnk_10;
+                        p->mTimer = p->mUnk_0b8.mFromEntry->mUnk_10;
                     }
                 }
                 p->mState = 2;
@@ -514,10 +515,11 @@ void InitBoundAndCreamAndBerryObjects(Unk02100094 *a) {
     for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
         if (p->mUnk_000.mCourseMapRow->mUnk_26 >= 0) {
             InitGroupFollower(&p->mUnk_0f8, p->mUnk_000.mCourseMapRow, 0);
-            p->mUnk_0f8.mUnk_04 = 0x3000;
-            p->mUnk_0f8.mUnk_10 = ((s64) p->mUnk_0f8.mUnk_00->mUnk_00[p->mUnk_0f8.mUnk_0c].mUnk_34 * 0x3000) >> 12;
+            p->mUnk_0f8.mSpeed = 0x3000;
+            p->mUnk_0f8.mProgressStep =
+                ((s64) p->mUnk_0f8.mPath->mSegments[p->mUnk_0f8.mSegmentIndex].mInverseProgressLength * 0x3000) >> 12;
         } else {
-            p->mUnk_0f8.mUnk_08 = 0xffff;
+            p->mUnk_0f8.mGroupIndex = 0xffff;
         }
     }
 }
@@ -536,9 +538,9 @@ void UpdateBoundAndCreamAndBerry(Unk02100094 *a, Bound *p) {
     s32 i;
     s32 n;
 
-    if (p->mUnk_0f8.mUnk_08 != 0xffff) {
-        func_020d8cc8(&p->mUnk_0f8);
-        func_020d8bf8(&p->mUnk_0f8, &p->mUnk_000.mPos, &p->mUnk_000.mUnk_10);
+    if (p->mUnk_0f8.mGroupIndex != 0xffff) {
+        AdvanceGroupFollower(&p->mUnk_0f8);
+        GetGroupFollowerCurvePosStep(&p->mUnk_0f8, &p->mUnk_000.mPos, &p->mUnk_000.mUnk_10);
         v = GetMapObjectModelNsbtpFrameCount(gBound);
         p->mNsbtpFrameIndex += 1;
         if (p->mNsbtpFrameIndex >= v) {

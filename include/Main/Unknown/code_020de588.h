@@ -23,11 +23,11 @@ typedef struct Unk020de6a8_1 {
 } Unk020de6a8_1;
 
 // Object of 0x108 or more bytes handled by InitItemBox.
-typedef struct Unk020de6a8 {
+typedef struct ItemBox {
     /* 000 */ MapObject mUnk_000;
-    /* 0a0 */ u16 mUnk_0a0;
-    /* 0a2 */ u16 mUnk_0a2;
-    /* 0a4 */ u16 mUnk_0a4;
+    /* 0a0 */ u16 mBoxRotationIndex;
+    /* 0a2 */ u16 mQuestionRotationIndex;
+    /* 0a4 */ u16 mFramesSinceHit;
     /* 0a6 */ u8 mUnk_0a6[2];
     /* 0a8 */ s32 mUnk_0a8;
     /* 0ac */ s32 mUnk_0ac;
@@ -36,7 +36,7 @@ typedef struct Unk020de6a8 {
     /* 0b4 */ Unk020e516c mUnk_0b4;
     /* 0e8 */ s32 mUnk_0e8;
     /* 0ec */ s32 mUnk_0ec;
-    /* 0f0 */ u16 mUnk_0f0;
+    /* 0f0 */ u16 mPolygonId;
     /* 0f2 */ u16 mUnk_0f2;
     /* 0f4 */ u16 mUnk_0f4;
     /* 0f6 */ u8 mUnk_0f6[2];
@@ -44,11 +44,11 @@ typedef struct Unk020de6a8 {
     /* 0fc */ Vec3 *mUnk_0fc;
     /* 100 */ UnkFunc *mUnk_100;
     /* 104 */ void *mUnk_104;
-    /* 108 */ Unk020d84e4 mUnk_108;
-} Unk020de6a8;
+    /* 108 */ GroupFollowerWithSpeeds mFollower;
+} ItemBox;
 
 void CreateBoxAndQuestion(void);
-void InitItemBox(Unk020de6a8 *a, Unk020de6a8_1 *b);
+void InitItemBox(ItemBox *itemBox, Unk020de6a8_1 *row);
 Unk020de390 *CreateEarthenPipeKindData(void);
 Unk020de334 *CreateEarthenPipeDrawList(void);
 Unk020de2d8 *CreateEarthenPipeUpdateList(void);

@@ -116,7 +116,7 @@ void *CreateKoopaBlockUpdateList(void) {
 }
 
 void UpdateKoopaBlock(void *a0, Unk020e005c *koopaBlock) {
-    Unk020e0144 *follower = &koopaBlock->mUnk_144;
+    GroupFollower *follower = &koopaBlock->mUnk_144;
 
     if (koopaBlock->mUnk_16c != 0) {
         Unk0210b7a8 soundRequest;
@@ -142,12 +142,12 @@ void UpdateKoopaBlock(void *a0, Unk020e005c *koopaBlock) {
         func_0210b7a8(&soundRequest);
         return;
     }
-    if (func_020d8cc8(follower) != FALSE) {
+    if (AdvanceGroupFollower(follower) != FALSE) {
         if (koopaBlock->mStateMachine.mState == 2) {
             koopaBlock->mStateMachine.mNextState = 0;
             koopaBlock->mStateMachine.mNextStateRequested = 1;
         }
-        koopaBlock->mUnk_16c = follower->mUnk_1c->mUnk_0e;
+        koopaBlock->mUnk_16c = follower->mFromEntry->mUnk_0e;
     }
     koopaBlock->mUnk_0e8 = koopaBlock->mPos;
     GetGroupFollowerLinearPosition(follower, &koopaBlock->mPos);
@@ -161,20 +161,20 @@ u32 func_020e01ec(u32 value) {
 }
 
 void UpdateKoopaBlockState0(Unk020e005c *koopaBlock) {
-    Unk020e0144 *follower = &koopaBlock->mUnk_144;
-    s32 progress = func_020d8cac(follower);
+    GroupFollower *follower = &koopaBlock->mUnk_144;
+    s32 progress = GetGroupFollowerProgress(follower);
     s32 angle = (u16) (((s64) progress << 18) >> 12);
     s16 sine = gPairsByAngle[(angle >> 4) * 2];
     s32 speed = ((s64) sine * koopaBlock->mUnk_168) >> 12;
     s32 m;
 
-    follower->mUnk_04 = speed > 0x200 ? speed : 0x200;
-    m = follower->mUnk_00->mUnk_00[follower->mUnk_0c].mUnk_34;
+    follower->mSpeed = speed > 0x200 ? speed : 0x200;
+    m = follower->mPath->mSegments[follower->mSegmentIndex].mInverseProgressLength;
     if (speed <= 0x200) {
         speed = 0x200;
     }
-    follower->mUnk_10 = ((s64) speed * m) >> 12;
-    if (func_020d8cac(follower) >= 0x100) {
+    follower->mProgressStep = ((s64) speed * m) >> 12;
+    if (GetGroupFollowerProgress(follower) >= 0x100) {
         koopaBlock->mStateMachine.mNextState = 1;
         koopaBlock->mStateMachine.mNextStateRequested = 1;
     }
@@ -183,24 +183,26 @@ void UpdateKoopaBlockState0(Unk020e005c *koopaBlock) {
 void EnterKoopaBlockState1(Unk020e005c *koopaBlock) {
     s32 speed = koopaBlock->mUnk_168;
 
-    koopaBlock->mUnk_144.mUnk_04 = speed;
-    koopaBlock->mUnk_144.mUnk_10 =
-        ((s64) speed * koopaBlock->mUnk_144.mUnk_00->mUnk_00[koopaBlock->mUnk_144.mUnk_0c].mUnk_34) >> 12;
+    koopaBlock->mUnk_144.mSpeed = speed;
+    koopaBlock->mUnk_144.mProgressStep =
+        ((s64) speed *
+         koopaBlock->mUnk_144.mPath->mSegments[koopaBlock->mUnk_144.mSegmentIndex].mInverseProgressLength) >>
+        12;
 }
 
 void UpdateKoopaBlockState1(Unk020e005c *koopaBlock) {
-    Unk020e0144 *follower = &koopaBlock->mUnk_144;
+    GroupFollower *follower = &koopaBlock->mUnk_144;
 
-    if (follower->mUnk_20->mUnk_0e == 0) {
-        Unk020e0144_00 *path = follower->mUnk_00;
+    if (follower->mToEntry->mUnk_0e == 0) {
+        GroupPath *path = follower->mPath;
         BOOL onEndSegment;
         BOOL onEndSegmentOfOpenPath = FALSE;
 
-        if (path->mUnk_08 == 0) {
-            if (follower->mUnk_18 != 0) {
-                onEndSegment = follower->mUnk_0c == path->mUnk_04 - 1;
+        if (path->mWraps == 0) {
+            if (follower->mForward != 0) {
+                onEndSegment = follower->mSegmentIndex == path->mSegmentCount - 1;
             } else {
-                onEndSegment = follower->mUnk_0c == 0;
+                onEndSegment = follower->mSegmentIndex == 0;
             }
             if (onEndSegment) {
                 onEndSegmentOfOpenPath = TRUE;
@@ -210,7 +212,7 @@ void UpdateKoopaBlockState1(Unk020e005c *koopaBlock) {
             return;
         }
     }
-    if (func_020d8cac(follower) >= 0xf00) {
+    if (GetGroupFollowerProgress(follower) >= 0xf00) {
         koopaBlock->mStateMachine.mNextState = 2;
         koopaBlock->mStateMachine.mNextStateRequested = 1;
     }

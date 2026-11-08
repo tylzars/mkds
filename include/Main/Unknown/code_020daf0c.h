@@ -8,4 +8,4 @@ typedef struct Unk020daf0c {
     /* c8 */ s32 mUnk_c8;
 } Unk020daf0c;
 
-void EnterKuriboState0(Unk020daf0c *p0);
+void EnterKuriboState0(Unk020daf0c *kuribo);

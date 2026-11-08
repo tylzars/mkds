@@ -11,19 +11,19 @@
 #include "Main/Unknown/code_02110000.h"
 
 s32 func_ov001_0218c5d4(Unk02188950 *a) {
-    SetAnglePoint(a, &func_ov001_02187fc0(a)->mUnk_00);
-    func_ov001_02188d8c(a, &func_ov001_02187fc0(a)->mUnk_00);
+    SetAnglePoint(a, &func_ov001_02187fc0(a)->mPos);
+    func_ov001_02188d8c(a, &func_ov001_02187fc0(a)->mPos);
     return 0;
 }
 
 s32 func_ov001_0218c5ac(Unk02188950 *a) {
-    SetAnglePoint(a, &func_ov001_02187fc0(a)->mUnk_00);
-    func_ov001_02188d8c(a, &func_ov001_02187fc0(a)->mUnk_00);
+    SetAnglePoint(a, &func_ov001_02187fc0(a)->mPos);
+    func_ov001_02188d8c(a, &func_ov001_02187fc0(a)->mPos);
     return 0;
 }
 
 s32 func_ov001_0218c584(Unk02188950 *a) {
-    SetMoveAnglePoint(a, &func_ov001_02187fc0(a)->mUnk_00);
-    func_ov001_02188d8c(a, &func_ov001_02187fc0(a)->mUnk_00);
+    SetMoveAnglePoint(a, &func_ov001_02187fc0(a)->mPos);
+    func_ov001_02188d8c(a, &func_ov001_02187fc0(a)->mPos);
     return 0;
 }

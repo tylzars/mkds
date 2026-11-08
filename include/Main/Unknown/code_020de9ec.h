@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk020de6a8 Unk020de6a8;
+typedef struct ItemBox ItemBox;
 
-void func_020de9ec(Unk020de6a8 *p0);
+void func_020de9ec(ItemBox *itemBox);

@@ -90,12 +90,13 @@ void InitMkdEfBurnerObjects(MapObjectList *p) {
     for (i = 0; i < p->mMapObjectCount && (e = p->mMapObjects[i]) != NULL; i++) {
         e->mUnk_00.mPos.y = e->mUnk_00.mCourseMapRow->mUnk_00.y - e->mUnk_00.mExtent.y;
         if (e->mUnk_00.mCourseMapRow->mUnk_26 < 0) {
-            e->mUnk_b0.mUnk_08 = 0xffff;
+            e->mUnk_b0.mGroupIndex = 0xffff;
         } else {
             InitGroupFollower(&e->mUnk_b0, e->mUnk_00.mCourseMapRow, z);
             n = (e->mUnk_00.mCourseMapRow->mUnk_2e << 12) / 100;
-            e->mUnk_b0.mUnk_04 = n;
-            e->mUnk_b0.mUnk_10 = ((s64) n * e->mUnk_b0.mUnk_00->mUnk_00[e->mUnk_b0.mUnk_0c].mUnk_34) >> 12;
+            e->mUnk_b0.mSpeed = n;
+            e->mUnk_b0.mProgressStep =
+                ((s64) n * e->mUnk_b0.mPath->mSegments[e->mUnk_b0.mSegmentIndex].mInverseProgressLength) >> 12;
         }
         if (e->mUnk_00.mCourseMapRow->mUnk_28 == 0 && e->mUnk_00.mCourseMapRow->mUnk_2a == 0 &&
             e->mUnk_00.mCourseMapRow->mUnk_2c == 0) {
@@ -162,8 +163,8 @@ void UpdateMkdEfBurner(void *a, MkdEfBurner *p) {
     if (p->mUnk_a4 >= n) {
         p->mUnk_a4 = 0;
     }
-    if (p->mUnk_b0.mUnk_08 != 0xffff) {
-        func_020d8cc8(&p->mUnk_b0);
+    if (p->mUnk_b0.mGroupIndex != 0xffff) {
+        AdvanceGroupFollower(&p->mUnk_b0);
         GetGroupFollowerLinearPosition(&p->mUnk_b0, &p->mUnk_00.mPos);
         p->mUnk_00.mPos.y = p->mUnk_00.mPos.y - p->mUnk_00.mExtent.y;
     } else {

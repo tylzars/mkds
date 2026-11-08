@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk020de6a8 Unk020de6a8;
+typedef struct ItemBox ItemBox;
 
 // Second argument of CollideKartWithItemBox: a halfword at 0x74 and a word at 0x7c.
 typedef struct Unk020dea50_1 {
@@ -12,5 +12,5 @@ typedef struct Unk020dea50_1 {
     /* 7c */ u32 mUnk_7c;
 } Unk020dea50_1;
 
-u8 CollideKartWithItemBox(Unk020de6a8 *a, Unk020dea50_1 *b, void *c, u8 *d);
-u32 func_020de9f8(Unk020de6a8 *a);
+u8 CollideKartWithItemBox(ItemBox *itemBox, Unk020dea50_1 *kart, void *c, u8 *d);
+u32 func_020de9f8(ItemBox *itemBox);

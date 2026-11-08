@@ -4,7 +4,7 @@
 
 typedef struct Wanwan Wanwan;
 
-// Object of func_020dd7a8: a function at 0x10 and the address of the pointer that holds it at 0x24.
+// Object of CreateWanwanUpdateList: a function at 0x10 and the address of the pointer that holds it at 0x24.
 typedef struct Unk020dd7a8 {
     /* 00 */ u8 mUnk_00[0x10];
     /* 10 */ void (*mUnk_10)(void *, Wanwan *);
@@ -12,8 +12,8 @@ typedef struct Unk020dd7a8 {
     /* 24 */ struct Unk020dd7a8 **mUnk_24;
 } Unk020dd7a8;
 
-// Object of func_020dd804: functions at 0x08 and 0x10, a word at 0x18 and the address of the pointer that holds it at
-// 0x28.
+// Object of CreateWanwanDrawList: functions at 0x08 and 0x10, a word at 0x18 and the address of the pointer that holds
+// it at 0x28.
 typedef struct Unk020dd804 {
     /* 00 */ u8 mUnk_00[8];
     /* 08 */ void (*mUnk_08)(void);
@@ -25,7 +25,7 @@ typedef struct Unk020dd804 {
     /* 28 */ struct Unk020dd804 **mUnk_28;
 } Unk020dd804;
 
-// Object of func_020dd860: two functions and words at 0x08, 0x0c, 0x1c, 0x20 and 0x24.
+// Object of CreateWanwanKindData: two functions and words at 0x08, 0x0c, 0x1c, 0x20 and 0x24.
 typedef struct Unk020dd860 {
     /* 00 */ u8 (*mUnk_00)(Wanwan *, void *, u8 *, u8 *);
     /* 04 */ u8 (*mUnk_04)(Wanwan *, void *, u8 *, u8 *);
@@ -41,21 +41,21 @@ typedef struct Unk020dd860 {
 extern const Unk020dd7a8 data_02158334;
 extern const Unk020dd804 data_0215835c;
 extern const Unk020dd860 data_02158388;
-extern Unk020dd7a8 *data_0217b6d4;
-extern Unk020dd804 *data_0217b6d8;
+extern Unk020dd7a8 *gWanwanUpdateList;
+extern Unk020dd804 *gWanwanDrawList;
 
-void EnterWanwanState5(Wanwan *p);
-void func_020dc444(Wanwan *p);
-void UpdateWanwanState2(Wanwan *p);
-void EnterWanwanState2(Wanwan *p);
-void UpdateWanwanState1(Wanwan *p);
-void EnterWanwanState1(Wanwan *p);
-void UpdateWanwanState0(Wanwan *p);
-void EnterWanwanState0(Wanwan *p);
-u8 func_020dd1f4(Wanwan *p, void *a, u8 *b, u8 *c);
-u8 func_020dd230(Wanwan *p, void *a, u8 *b, u8 *c);
-void UpdateWanwan(void *a, Wanwan *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_020dd6c8(void *a, Wanwan *p, void *b, u32 c);
-Unk020dd7a8 *func_020dd7a8(void);
-Unk020dd804 *func_020dd804(void);
-Unk020dd860 *func_020dd860(void);
+void EnterWanwanState5(Wanwan *wanwan);
+void func_020dc444(Wanwan *wanwan);
+void UpdateWanwanState2(Wanwan *wanwan);
+void EnterWanwanState2(Wanwan *wanwan);
+void UpdateWanwanState1(Wanwan *wanwan);
+void EnterWanwanState1(Wanwan *wanwan);
+void UpdateWanwanState0(Wanwan *wanwan);
+void EnterWanwanState0(Wanwan *wanwan);
+u8 func_020dd1f4(Wanwan *wanwan, void *kart, u8 *b, u8 *c);
+u8 func_020dd230(Wanwan *wanwan, void *kart, u8 *b, u8 *c);
+void UpdateWanwan(void *unused, Wanwan *wanwan); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void func_020dd6c8(void *unused0, Wanwan *wanwan, void *unused1, u32 maxAlpha);
+Unk020dd7a8 *CreateWanwanUpdateList(void);
+Unk020dd804 *CreateWanwanDrawList(void);
+Unk020dd860 *CreateWanwanKindData(void);

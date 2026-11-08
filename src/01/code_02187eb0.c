@@ -60,7 +60,7 @@ Kart *func_ov001_02188000(Unk02188950 *a, s32 b, s32 c) {
     return NULL;
 }
 
-Unk02042044 *func_ov001_02187fc0(Unk02188950 *a) {
+CourseMapGroupEntry *func_ov001_02187fc0(Unk02188950 *a) {
     if (a->mUnk_148 < gCourseMap->mEntryGroupCount) {
         return GetCourseMapGroupEntry(a->mUnk_148, a->mUnk_14c);
     }
@@ -81,7 +81,7 @@ s32 func_ov001_02187f38(Unk02188950 *a) {
     return 0;
 }
 
-Unk02042044 *func_ov001_02187ee8(Unk02188950 *a) {
+CourseMapGroupEntry *func_ov001_02187ee8(Unk02188950 *a) {
     CourseMap *g = gCourseMap;
     s32 n;
 

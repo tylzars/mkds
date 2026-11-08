@@ -68,10 +68,10 @@ void func_0209905c(void *a, Unk0209905c *p) {
                     func_0210b7a8(&s);
                 }
             }
-            if (func_020d8cc8(&p->mUnk_a0) != FALSE && p->mUnk_a0.mUnk_18 == 0) {
+            if (AdvanceGroupFollower(&p->mUnk_a0) != FALSE && p->mUnk_a0.mForward == 0) {
                 p->mUnk_cc = 1;
             } else {
-                func_020d8918(&p->mUnk_a0, &p->mUnk_00.mPos, &p->mUnk_00.mUnk_10);
+                GetGroupFollowerLinearPosStep(&p->mUnk_a0, &p->mUnk_00.mPos, &p->mUnk_00.mUnk_10);
                 p->mUnk_00.mPos.y = p->mUnk_00.mPos.y + (p->mUnk_c4 + 0xf000);
             }
             if (p->mUnk_d0 == NULL) {

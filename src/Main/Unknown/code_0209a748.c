@@ -36,7 +36,7 @@ void InitCrab(u32 arg0) {
     value1 = *(const u32 *) ((value0) + (156));
     value0 = (value0) + (0xf0u);
     value2 = 0u;
-    InitGroupFollower((Unk020e0144 *) value0, (CourseMapRow *) value1, value2);
+    InitGroupFollower((GroupFollower *) value0, (CourseMapRow *) value1, value2);
 }
 
 static inline u32 func_0209b388_inline(Unk020f41c4_B *r, u32 c) {
@@ -253,9 +253,10 @@ void UpdateCrab(void *a, Crab *b) {
             }
             break;
         case 1:
-            b->mUnk_0f0.mUnk_04 = 0x800;
-            b->mUnk_0f0.mUnk_10 = ((s64) b->mUnk_0f0.mUnk_00->mUnk_00[b->mUnk_0f0.mUnk_0c].mUnk_34 * 0x800) >> 12;
-            if (func_020d8cc8(&b->mUnk_0f0) != FALSE) {
+            b->mUnk_0f0.mSpeed = 0x800;
+            b->mUnk_0f0.mProgressStep =
+                ((s64) b->mUnk_0f0.mPath->mSegments[b->mUnk_0f0.mSegmentIndex].mInverseProgressLength * 0x800) >> 12;
+            if (AdvanceGroupFollower(&b->mUnk_0f0) != FALSE) {
                 b->mUnk_0d0.mUnk_00 = 0;
                 b->mUnk_0d0.mUnk_0c = 0;
                 b->mUnk_0d0.mUnk_10 = 0x1c7;
@@ -275,7 +276,7 @@ void UpdateCrab(void *a, Crab *b) {
             }
             func_0209a7dc_inline(&b->mUnk_0d0);
             GetGroupFollowerLinearPosition(&b->mUnk_0f0, &b->mUnk_000.mPos);
-            v = *func_020d88fc(&b->mUnk_0f0);
+            v = *GetGroupFollowerSegmentUp(&b->mUnk_0f0);
             VEC_Subtract(&v, &b->mUnk_000.mMatrix.mUnk_00[1], &v);
             v.x = ((s64) v.x * 0x800) >> 12;
             v.y = ((s64) v.y * 0x800) >> 12;
@@ -295,7 +296,7 @@ void UpdateCrab(void *a, Crab *b) {
                 b->mUnk_0a2 += b->mUnk_0a0;
                 return;
             }
-            func_020d90a8(&b->mUnk_0f0, 0, 0);
+            SetupGroupFollowerAtEntry(&b->mUnk_0f0, 0, 0);
             GetGroupFollowerLinearXz(&b->mUnk_0f0, &b->mUnk_000.mPos);
             b->mUnk_000.mPos.y = b->mUnk_000.mCourseMapRow->mUnk_00.y - 0x5000;
             b->mUnk_0b0.mUnk_00 = 0;

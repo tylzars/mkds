@@ -4,7 +4,7 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject, MapObjectList
 #include "Main/Unknown/code_0206bcb0.h" // Kart
-#include "Main/Unknown/code_020e005c.h" // Unk020e0144
+#include "Main/Unknown/code_020e005c.h" // GroupFollower
 #include "Main/Unknown/code_020e516c.h" // Unk020e516c
 
 // Object of kind 0x13c (Bakubaku): after the shared part, a counter at 0xa0, a vector at 0xa4 and a state at 0xb0.
@@ -18,7 +18,7 @@ typedef struct Bakubaku {
 } Bakubaku;
 
 // Object of kind 0x1a3 (MoveTree): after the shared part, three counters from 0xa0, a halfword at 0xac, a value at
-// 0xb0, an Unk020e0144 at 0xb4, a state at 0xd8 and an Unk020e516c at 0xdc.
+// 0xb0, an GroupFollower at 0xb4, a state at 0xd8 and an Unk020e516c at 0xdc.
 typedef struct MoveTree {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
@@ -27,7 +27,7 @@ typedef struct MoveTree {
     /* ac */ u16 mNsbcaFrameIndex;
     /* ae */ u8 mUnk_ae[2];
     /* b0 */ s32 mUnk_b0;
-    /* b4 */ Unk020e0144 mUnk_b4;
+    /* b4 */ GroupFollower mUnk_b4;
     /* State number of this kind's own per-frame switch in UpdateMoveTree; this object does not use
        MapObject.mUnk_80's state machine */
     /* d8 */ u32 mState;

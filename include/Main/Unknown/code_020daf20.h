@@ -13,14 +13,14 @@
 #include "Main/Unknown/code_020d849c.h"
 #include "Main/Unknown/code_020dc474.h"
 
-// Object with the Unk020e0144 base at 0xc8 and its own fields from 0xec.
+// Object with the GroupFollower base at 0xc8 and its own fields from 0xec.
 typedef struct Dossun {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mState;
     /* a4 */ s32 mTimer;
     /* a8 */ s32 mUnk_a8;
     /* ac */ s32 mUnk_ac;
-    /* b0 */ BOOL mUnk_b0;
+    /* b0 */ BOOL mEnteredState5;
     /* b4 */ s32 mUnk_b4;
     /* b8 */ s16 mUnk_b8;
     /* ba */ s16 mUnk_ba;
@@ -28,12 +28,12 @@ typedef struct Dossun {
     /* c0 */ u16 mUnk_c0;
     /* c2 */ u16 mUnk_c2;
     /* c4 */ s32 mUnk_c4;
-    /* c8 */ Unk020e0144 mUnk_c8;
-    /* ec */ u16 mUnk_ec;
+    /* c8 */ GroupFollower mFollower;
+    /* ec */ u16 mStartEntryIndex;
     /* ee */ u8 mUnk_ee[2];
     /* f0 */ s32 mUnk_f0;
     /* f4 */ s32 mUnk_f4;
-    /* f8 */ s32 mUnk_f8;
+    /* f8 */ s32 mHeightOffset;
     /* fc */ s32 mUnk_fc;
     /* 100 */ s32 mUnk_100;
     /* 104 */ s32 mUnk_104;
@@ -91,13 +91,13 @@ Unk020dbe74 *CreateDossunUpdateList(void);
 Unk020db268 *CreateKuriboKindData(void);
 Unk020db20c *CreateKuriboDrawList(void);
 Unk020db1b0 *CreateKuriboUpdateList(void);
-s32 func_020db4c4(Dossun *p);
-void func_020db430(Dossun *p);
+s32 func_020db4c4(Dossun *dossun);
+void func_020db430(Dossun *dossun);
 void CreateDossunAndDossunShadow(void);
-void InitDossun(Dossun *p, CourseMapRow *a);
+void InitDossun(Dossun *dossun, CourseMapRow *row);
 void SetupDrawKuribo(void);
-void DrawKuribo(void *a, Kuribo *p, void *c, u16 d);
-void UpdateKuribo(void *a, Kuribo *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void DrawDossun(void *a, Dossun *p, void *c, s32 d);
-u32 CollideKartWithDossun(Dossun *p, Kart *a, u8 *b, u8 *c);
-void UpdateDossun(void *a, Dossun *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void DrawKuribo(void *unused0, Kuribo *kuribo, void *unused1, u16 d);
+void UpdateKuribo(void *unused, Kuribo *kuribo); /* skipped for objects with mFlags & 4 (parked pool objects) */
+void DrawDossun(void *unused0, Dossun *dossun, void *unused1, s32 maxAlpha);
+u32 CollideKartWithDossun(Dossun *dossun, Kart *kart, u8 *b, u8 *c);
+void UpdateDossun(void *unused, Dossun *dossun); /* skipped for objects with mFlags & 4 (parked pool objects) */

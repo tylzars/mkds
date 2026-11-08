@@ -33,7 +33,7 @@ void func_ov001_02187e48(Unk02188950 *a, s32 b) {
 }
 
 void *func_ov001_02187e00(u16 a) {
-    Unk020de6a8 *p;
+    ItemBox *p;
 
     p = FindParkedMapObject(0xc9);
     if (p != NULL) {

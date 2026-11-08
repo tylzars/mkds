@@ -247,7 +247,7 @@ void func_020ec9c0(LinkFollowingItemObject *follower, s32 targetSpeed, s32 speed
     }
     if (f) {
         v4c = *pos;
-        func_020d8488(segmentPoints, pos);
+        GetSegmentProgressPoint(segmentPoints, pos);
         velocity->y = 0;
         if (follower->mUnk_000.mUnk_158 == 0) {
             VEC_Subtract(pos, &v4c, &v4c);
@@ -259,12 +259,12 @@ void func_020ec9c0(LinkFollowingItemObject *follower, s32 targetSpeed, s32 speed
     } else {
         if (follower->mUnk_000.mUnk_158 != 0 && (follower->mUnk_000.mUnk_000.mFlags & 0x20000) != 0) {
             v28.y = pos->y;
-            func_020d8460(segmentPoints, pos);
+            GetSegmentProgressPointXzLinearY(segmentPoints, pos);
             if (pos->y < v28.y) {
                 pos->y = v28.y;
             }
         } else {
-            func_020d8474(&segmentPoints->mUnk_00, pos);
+            GetSegmentProgressPointXz(&segmentPoints->mUnk_00, pos);
         }
         pos->y = pos->y + velocity->y;
     }

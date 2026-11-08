@@ -41,7 +41,7 @@ void *func_02099004(void) {
     return CreateMapObjectUpdateList(NULL, func_0209905c, NULL);
 }
 
-void func_02098f18(Unk020e0144 *a, s32 b) {
+void func_02098f18(GroupFollower *a, s32 b) {
     Unk0209905c *p;
     p = UnparkFirstParkedMapObject(func_02100138(0x1ab));
     if (p == NULL) {
@@ -52,11 +52,12 @@ void func_02098f18(Unk020e0144 *a, s32 b) {
     p->mUnk_00.mFlags = p->mUnk_00.mFlags & ~2;
     p->mUnk_00.mFlags = p->mUnk_00.mFlags & ~8;
     p->mUnk_00.mAlpha = 0x1f;
-    p->mUnk_a0.mUnk_08 = a->mUnk_08;
-    p->mUnk_a0.mUnk_00 = a->mUnk_00;
-    func_020d90a8(&p->mUnk_a0, 0, 1);
-    p->mUnk_a0.mUnk_04 = 0x7800;
-    p->mUnk_a0.mUnk_10 = ((s64) p->mUnk_a0.mUnk_00->mUnk_00[p->mUnk_a0.mUnk_0c].mUnk_34 * 0x7800) >> 12;
+    p->mUnk_a0.mGroupIndex = a->mGroupIndex;
+    p->mUnk_a0.mPath = a->mPath;
+    SetupGroupFollowerAtEntry(&p->mUnk_a0, 0, 1);
+    p->mUnk_a0.mSpeed = 0x7800;
+    p->mUnk_a0.mProgressStep =
+        ((s64) p->mUnk_a0.mPath->mSegments[p->mUnk_a0.mSegmentIndex].mInverseProgressLength * 0x7800) >> 12;
     p->mUnk_c4 = b;
     p->mUnk_c8 = -0x5000;
     p->mUnk_cc = 0;
@@ -78,7 +79,7 @@ void InitPakkun(Pakkun *p) {
     p->mUnk_1f4 = 0;
     p->mUnk_1f8 = 0x46000;
     for (i = 0; i < 7; i++) {
-        p->mUnk_0b8[i].mUnk_08 = 0xffff;
+        p->mUnk_0b8[i].mGroupIndex = 0xffff;
     }
     for (i = 0; i < 7; i++) {
         if (i == 0) {
@@ -97,8 +98,8 @@ void InitPakkun(Pakkun *p) {
             v = p->mUnk_000.mCourseMapRow->mUnk_34;
         }
         if (v >= 0) {
-            func_020d7db4(&p->mUnk_0b8[p->mUnk_1ba], v, 100);
-            func_020d8918(&p->mUnk_0b8[p->mUnk_1ba], &a, &b);
+            InitGroupFollowerForGroup(&p->mUnk_0b8[p->mUnk_1ba], v, 100);
+            GetGroupFollowerLinearPosStep(&p->mUnk_0b8[p->mUnk_1ba], &a, &b);
             d = FX_Atan2Idx(b.x, b.z) - p->mUnk_1d8;
             if (d > 0x8000) {
                 d -= 0x10000;

@@ -3,35 +3,35 @@
 #include "types.h"
 
 // Record of 0x54 bytes: four positions, then words at 0x30 and 0x34.
-typedef struct Unk020e0144_00_0 {
-    /* 00 */ Vec3 mUnk_00[4];
-    /* 30 */ s32 mUnk_30;
-    /* 34 */ s32 mUnk_34;
-    /* 38 */ s32 mUnk_38;
-    /* 3c */ s32 mUnk_3c;
-    /* 40 */ s32 mUnk_40;
-    /* 44 */ s32 mUnk_44;
-    /* 48 */ Vec3 mUnk_48;
-} Unk020e0144_00_0;
+typedef struct Segment {
+    /* 00 */ Vec3 mPoints[4];
+    /* 30 */ s32 mProgressLength;
+    /* 34 */ s32 mInverseProgressLength;
+    /* 38 */ s32 mCurveLength;
+    /* 3c */ s32 mInverseCurveLength;
+    /* 40 */ s32 mStraightLength;
+    /* 44 */ s32 mInverseStraightLength;
+    /* 48 */ Vec3 mUp;
+} Segment;
 
-typedef struct Unk020e0144_00 {
-    /* 00 */ Unk020e0144_00_0 *mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-} Unk020e0144_00;
+typedef struct GroupPath {
+    /* 00 */ Segment *mSegments;
+    /* 04 */ s32 mSegmentCount;
+    /* 08 */ s32 mWraps;
+} GroupPath;
 
-typedef struct Unk020e0144 {
-    /* 00 */ Unk020e0144_00 *mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ u16 mUnk_08;
+typedef struct GroupFollower {
+    /* 00 */ GroupPath *mPath;
+    /* 04 */ s32 mSpeed;
+    /* 08 */ u16 mGroupIndex;
     /* 0a */ u8 mUnk_0a[2];
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
-    /* 14 */ s32 mUnk_14;
-    /* 18 */ s32 mUnk_18;
-    /* 1c */ struct Unk02042044 *mUnk_1c;
-    /* 20 */ struct Unk02042044 *mUnk_20;
-} Unk020e0144;
+    /* 0c */ s32 mSegmentIndex;
+    /* 10 */ s32 mProgressStep;
+    /* 14 */ s32 mProgress;
+    /* 18 */ s32 mForward;
+    /* 1c */ struct CourseMapGroupEntry *mFromEntry;
+    /* 20 */ struct CourseMapGroupEntry *mToEntry;
+} GroupFollower;
 
 // Sub-object at 0x80 of Unk020e005c and MapObject: func_02046be8 stores its second, fourth and third arguments at
 // 0x00, 0x08 and 0x0c and zeroes 0x04, 0x0e and 0x10.
@@ -91,7 +91,7 @@ typedef struct Unk020e005c {
     /* 138 */ s32 mUnk_138;
     /* 13c */ s32 mUnk_13c;
     /* 140 */ void *mUnk_140;
-    /* 144 */ Unk020e0144 mUnk_144;
+    /* 144 */ GroupFollower mUnk_144;
     /* 168 */ s32 mUnk_168;
     /* 16c */ u16 mUnk_16c;
 } Unk020e005c;

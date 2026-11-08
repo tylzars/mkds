@@ -30,15 +30,15 @@
 
 #pragma thumb on
 
-void func_020d7d4c(Unk020d84e4 *follower, struct CourseMapRow *courseRow, s32 speed, s32 d) {
+void func_020d7d4c(GroupFollowerWithSpeeds *follower, struct CourseMapRow *courseRow, s32 speed, s32 d) {
     InitGroupFollower(&follower->mUnk_00, courseRow, speed);
-    follower->mUnk_24 = speed / 100;
-    follower->mUnk_28 = (speed * d) / 100;
-    func_020d859c(follower, 0, 1);
+    follower->mSpeedPerEntryUnit = speed / 100;
+    follower->mDefaultSpeed = (speed * d) / 100;
+    SetupGroupFollowerWithSpeeds(follower, 0, 1);
 }
 
 void func_020d7d18(SegmentProgress *segmentProgress, s32 a, Vec3 **points, s32 rate) {
-    func_020d80e4(&segmentProgress->mUnk_00, a, 0, points[0], points[1], points[2], points[3]);
+    BuildSegment(&segmentProgress->mUnk_00, a, 0, points[0], points[1], points[2], points[3]);
     SetSegmentProgressRate(segmentProgress, rate);
     segmentProgress->mUnk_5c = 0;
 }
@@ -46,9 +46,9 @@ void func_020d7d18(SegmentProgress *segmentProgress, s32 a, Vec3 **points, s32 r
 BOOL func_020d7c84(SegmentProgress *segmentProgress, s32 a, Vec3 **points) {
     s32 v;
     segmentProgress->mUnk_5c = segmentProgress->mUnk_5c - 0x1000000;
-    segmentProgress->mUnk_5c = ((s64) segmentProgress->mUnk_5c * (s64) segmentProgress->mUnk_00.mUnk_30) >> 12;
-    func_020d80e4(&segmentProgress->mUnk_00, a, 0, points[0], points[1], points[2], points[3]);
-    v = segmentProgress->mUnk_00.mUnk_34;
+    segmentProgress->mUnk_5c = ((s64) segmentProgress->mUnk_5c * (s64) segmentProgress->mUnk_00.mProgressLength) >> 12;
+    BuildSegment(&segmentProgress->mUnk_00, a, 0, points[0], points[1], points[2], points[3]);
+    v = segmentProgress->mUnk_00.mInverseProgressLength;
     if (v != 0) {
         segmentProgress->mUnk_5c = ((s64) segmentProgress->mUnk_5c * (s64) v) >> 24;
     }

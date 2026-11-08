@@ -186,7 +186,7 @@ void func_ov001_0218d824(Unk02188950 *b, int c) {
     func_ov001_02188cd8(b, (a->mUnk_090 * c / 100), a->mUnk_094);
     a = b->mPrm;
     func_ov001_02188c48(b, a->mUnk_098 * c / 100, a->mUnk_09c);
-    SetAnglePointAndMoveAnglePoint(b, &func_ov001_02187ee8(b)->mUnk_00);
+    SetAnglePointAndMoveAnglePoint(b, &func_ov001_02187ee8(b)->mPos);
 }
 
 void func_ov001_0218d800(Unk02188950 *a) {
@@ -199,7 +199,7 @@ int func_ov001_0218d520(Unk02188950 *a) {
     s32 t;
     s32 *v;
 
-    if (func_ov001_021881a8(a, &func_ov001_02187fc0(a)->mUnk_00, a->mPrm->mUnk_0a0, 0)) {
+    if (func_ov001_021881a8(a, &func_ov001_02187fc0(a)->mPos, a->mPrm->mUnk_0a0, 0)) {
         if (GetBalloonOrShineCount(gRaceSetup->mEntryIndex) <= 1) {
             r4 = 0x1000 - a->mPrm->mUnk_0ac;
             t = func_ov001_02187f38(a);

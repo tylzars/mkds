@@ -73,12 +73,13 @@ void UpdateNsKiller1(void *a, NsKiller1 *p) {
             if (p->mUnk_a0-- > 0) {
                 return;
             }
-            p->mUnk_ac.mUnk_04 = 0x2000;
-            p->mUnk_ac.mUnk_10 = ((s64) p->mUnk_ac.mUnk_00->mUnk_00[p->mUnk_ac.mUnk_0c].mUnk_34 << 13) >> 12;
+            p->mUnk_ac.mSpeed = 0x2000;
+            p->mUnk_ac.mProgressStep =
+                ((s64) p->mUnk_ac.mPath->mSegments[p->mUnk_ac.mSegmentIndex].mInverseProgressLength << 13) >> 12;
             p->mState = 1;
             break;
         case 1:
-            if (func_020d8cc8(&p->mUnk_ac) != FALSE) {
+            if (AdvanceGroupFollower(&p->mUnk_ac) != FALSE) {
                 p->mUnk_a0 = 0x2d;
                 p->mState = 2;
             }

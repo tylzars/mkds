@@ -211,7 +211,7 @@ typedef struct {
 // 8-byte entries of the table at CourseMap.mEntryGroupTable.
 typedef struct {
     /* 00 */ CourseMapEntryGroup *mGroup;
-    /* 04 */ Unk02042044 *mEntries;
+    /* 04 */ CourseMapGroupEntry *mEntries;
 } Unk02175620_94;
 
 // 0x28-byte nodes of the table at CourseMap.mRacePointLinks: two lists of node pointers.
@@ -247,7 +247,7 @@ typedef struct CourseMap {
     /* 08 */ CourseMapEntryGroup *mEntryGroups;
     /* 0c */ u16 mEntryGroupCount;
     /* 00e */ u8 mUnk_00e[0x2];
-    /* 010 */ Unk02042044 *mGroupEntries;
+    /* 010 */ CourseMapGroupEntry *mGroupEntries;
     /* 014 */ u16 mGroupEntryCount;
     /* 016 */ u8 mUnk_016[0x2];
     /* 018 */ CourseMapSettings *mSettings;

@@ -41,7 +41,7 @@ typedef struct Unk020d5a68 {
 typedef struct RockObject {
     /* 000 */ MapObject mMapObject;
     /* 0a0 */ s32 mStartY;
-    /* 0a4 */ Unk020d84e4 mUnk_0a4;
+    /* 0a4 */ GroupFollowerWithSpeeds mUnk_0a4;
     /* 0dc */ s32 mUnk_0dc;
     /* 0e0 */ s32 mUnk_0e0;
     /* 0e4 */ Vec3 mBasePos;

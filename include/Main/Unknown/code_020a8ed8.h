@@ -7,7 +7,7 @@
 #include "Main/Unknown/code_020e516c.h"
 
 // Object of kinds 0x1b0 and 0x1b3 (IronBall; kind 0x1b3 has only Init and Draw, no update or collision group), 0x134
-// bytes: the shared MapObject part, a Unk020e0144 at 0xc4 and a Unk020e516c at 0xe8.
+// bytes: the shared MapObject part, a GroupFollower at 0xc4 and a Unk020e516c at 0xe8.
 typedef struct IronBall {
     /* 000 */ MapObject mUnk_000;
     /* 0a0 */ s32 mUnk_0a0;
@@ -19,7 +19,7 @@ typedef struct IronBall {
     /* 0b8 */ s32 mUnk_0b8;
     /* 0bc */ s32 mUnk_0bc;
     /* 0c0 */ s32 mUnk_0c0;
-    /* 0c4 */ Unk020e0144 mUnk_0c4;
+    /* 0c4 */ GroupFollower mUnk_0c4;
     /* 0e8 */ Unk020e516c mUnk_0e8;
     /* 11c */ Vec3 mUnk_11c;
     /* 128 */ s32 mUnk_128;

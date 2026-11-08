@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Kart
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
-#include "Main/Unknown/code_020e005c.h" // Unk020e0144
+#include "Main/Unknown/code_020e005c.h" // GroupFollower
 
 // The 0x40-byte record CreateMapObjectKindData builds; its first five arguments go to 0x00, 0x04, 0x18, 0x20, 0x1c.
 typedef struct Unk0209bf70 {
@@ -47,7 +47,7 @@ typedef struct Bound {
     /* 0ec */ s32 mWobbleYAmplitudePerFrame;
     /* 0f0 */ s32 mWobbleYAnglePerFrame;
     /* 0f4 */ s32 mUnk_0f4;
-    /* 0f8 */ Unk020e0144 mUnk_0f8;
+    /* 0f8 */ GroupFollower mUnk_0f8;
     // TRUE while the scale wobbles; cleared when both amplitudes have reached 0.
     /* 11c */ BOOL mWobbling;
     // Per kart index: set to 0x1f after a push and counted down every frame; a push is only computed at 0.
@@ -66,7 +66,7 @@ typedef struct Sun {
     /* 0b2 */ u16 mNsbcaFrameIndex;
     // 1.12 fixed: mNsbcaFrameIndex grows by this >> 12; rises to 0x8000 in state 3, falls to 0x1000 in the others.
     /* 0b4 */ s32 mNsbcaFrameIndexPerFrame;
-    /* 0b8 */ Unk020e0144 mUnk_0b8;
+    /* 0b8 */ GroupFollower mUnk_0b8;
     /* 0dc */ s32 mState;
 } Sun;
 

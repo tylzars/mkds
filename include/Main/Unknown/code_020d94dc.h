@@ -126,17 +126,17 @@ typedef struct Water {
     // A creator argument that is 1 in all five creators; DrawWater draws A then C when it is non-zero and C then A when
     // it is 0, which the shipped creators never do.
     /* 54 */ s32 mDrawModelAFirst;
-    /* 58 */ u16 mUnk_58;
-    /* 5a */ u16 mUnk_5a;
+    /* 58 */ u16 mModelAAlpha;
+    /* 5a */ u16 mModelCMaterialAlpha;
     /* 5c */ u16 mUnk_5c;
     /* 5e */ u8 mUnk_5e[2];
     // Pointer FindCourseMapObjFile returned for ..._waterA.nsbmd, NULL for Yoshi; every use of model A tests it.
     /* 60 */ void *mModelAFile;
     // Pointer FindCourseMapObjFile returned for ..._waterC.nsbmd; never NULL in the five creators.
     /* 64 */ void *mModelCFile;
-    /* 68 */ Unk020d9cf4_68 mUnk_68;
-    /* d4 */ Unk020d9cf4_68 mUnk_d4;
-    /* 140 */ MtxFx43 mUnk_140;
+    /* 68 */ Unk020d9cf4_68 mModelA;
+    /* d4 */ Unk020d9cf4_68 mModelC;
+    /* 140 */ MtxFx43 mDrawMatrix;
     /* 170 */ s32 mUnk_170;
     // The file MapObj/water_efct.nsbmd as FindCourseFile returned it (a pointer to the whole file, not a built model
     // object), loaded by InitWater; the getter returns it when mUnk_170 is
@@ -148,25 +148,27 @@ typedef struct Water {
     /* 17c */ void *mEfctNsbmaFile;
 } Water;
 
-// Object allocated by func_020d9de0; 0x40 bytes.
+// Object allocated by CreateWaterEfctKindData; 0x40 bytes.
 typedef struct Unk020d9de0 {
     /* 00 */ s32 mUnk_00[0x10];
 } Unk020d9de0;
 
-void InitWater(Unk020da384 *a, void *b, UnkFunc *c);
-void UpdateWater(Water *a);
-void DrawWater(Water *a, struct MtxFx43 *b);
-Unk020d9de0 *func_020d9de0(void);
-void InitWaterFields(s32 a, s32 b, s32 c, s32 d, s32 e, u16 f, u16 g, u16 h, u16 i, u16 j, u16 k, u16 l, u16 m, u16 n,
-                     s32 o);
+void InitWater(Unk020da384 *mapObject, void *unused, UnkFunc *createWater);
+void UpdateWater(Water *water);
+void DrawWater(Water *water, struct MtxFx43 *unused);
+Unk020d9de0 *CreateWaterEfctKindData(void);
+void InitWaterFields(s32 highHeight, s32 lowHeight, s32 modelARadius, s32 modelCRadius, s32 e, u16 modelCAngleOffset,
+                     u16 g, u16 framesPerCycle, u16 highHoldFrameCount, u16 lowHoldFrameCount, u16 drawModelAFirst,
+                     u16 modelAAlpha, u16 modelCMaterialAlpha, u16 n, s32 o);
 void CreateMiniStage3Water(void);
 void CreateBeachWater(void);
 void CreateTownWater(void);
 void CreateYoshiWater(void);
 void CreateHyudoroWater(void);
-void InitWaterModels(Water *a);
-void CreateWaterEfct(Unk020da384 *a);
-void func_020d9810(s32 a, s32 *b, s32 *c, s32 *d, s32 *e);
-void func_020d970c(s32 a, s32 *b, s32 *c, s32 *d, s32 *e, s32 *f, s32 *g, s32 *h, s32 *i);
-void func_020d95c0(const Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e, s32 f);
-void func_020d94dc(const Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e, s32 f);
+void InitWaterModels(Water *water);
+void CreateWaterEfct(Unk020da384 *mapObject);
+void GetCurveWeights(s32 weight0, s32 *weight1, s32 *weight2, s32 *weight3, s32 *e);
+void GetCurveAndSlopeWeights(s32 weight0, s32 *weight1, s32 *weight2, s32 *weight3, s32 *slopeWeight0,
+                             s32 *slopeWeight1, s32 *slopeWeight2, s32 *slopeWeight3, s32 *i);
+void ComputeWeightedPoint(const Vec3 *weight0, Vec3 *weight1, s32 weight2, s32 weight3, s32 e, s32 f);
+void ComputeWeightedPointXz(const Vec3 *weight0, Vec3 *weight1, s32 weight2, s32 weight3, s32 e, s32 f);

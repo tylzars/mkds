@@ -27,167 +27,172 @@
 
 #pragma thumb off
 
-void func_020d8460(void *m, Vec3 *v) {
-    SegmentProgress *p = m;
-    func_020d91dc(&p->mUnk_00, p->mUnk_5c, v);
+void GetSegmentProgressPointXzLinearY(void *segmentProgressPointer, Vec3 *position) {
+    SegmentProgress *segmentProgress = segmentProgressPointer;
+    GetSegmentCurveXzLinearY(&segmentProgress->mUnk_00, segmentProgress->mUnk_5c, position);
 }
 
 #pragma thumb on
 
-void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e, Vec3 *f) {
-    Vec3 t1;
-    Vec3 t2;
-    Vec3 t3;
-    Vec3 t4;
-    Vec3 t5;
-    Vec3 t6;
-    s32 n;
-    s32 u = 0;
-    s32 v = 0;
+void BuildSegment(Segment *segment, s32 useStraightLength, s32 computeUp, Vec3 *previousPoint, Vec3 *startPoint,
+                  Vec3 *endPoint, Vec3 *nextPoint) {
+    Vec3 startToEnd;
+    Vec3 direction;
+    Vec3 previousToEnd;
+    Vec3 startSlope;
+    Vec3 startToNext;
+    Vec3 endSlope;
+    s32 length;
+    s32 startExtra = 0;
+    s32 endExtra = 0;
     s32 r;
-    s32 w;
-    s64 q;
-    p->mUnk_00[0] = *d;
-    p->mUnk_00[3] = *e;
-    VEC_Subtract(e, d, &t1);
-    n = Vec3NormalizeAndGetLengthOrZero(&t1, &t2);
-    if (n == 0) {
-        p->mUnk_00[1] = p->mUnk_00[0];
-        p->mUnk_00[2] = p->mUnk_00[3];
-        p->mUnk_30 = 0;
-        p->mUnk_34 = 0;
-        if (b != 0) {
-            p->mUnk_48 = data_0215807c;
+    s32 bend;
+    s64 squaredUpLength;
+    segment->mPoints[0] = *startPoint;
+    segment->mPoints[3] = *endPoint;
+    VEC_Subtract(endPoint, startPoint, &startToEnd);
+    length = Vec3NormalizeAndGetLengthOrZero(&startToEnd, &direction);
+    if (length == 0) {
+        segment->mPoints[1] = segment->mPoints[0];
+        segment->mPoints[2] = segment->mPoints[3];
+        segment->mProgressLength = 0;
+        segment->mInverseProgressLength = 0;
+        if (computeUp != 0) {
+            segment->mUp = data_0215807c;
         }
         return;
     }
-    if (c != NULL) {
-        VEC_Subtract(e, c, &t3);
-        if (Vec3NormalizeAndGetLengthOrZero(&t3, &t3) != 0) {
-            w = (0x1000 - Vec3DotUnrounded(&t2, &t3)) >> 1;
-            u = ((s64) n * (s64) w) >> 12;
-            if (a != 0) {
-                t4.x = ((s64) t3.x * n) >> 12;
-                t4.y = ((s64) t3.y * n) >> 12;
-                t4.z = ((s64) t3.z * n) >> 12;
+    if (previousPoint != NULL) {
+        VEC_Subtract(endPoint, previousPoint, &previousToEnd);
+        if (Vec3NormalizeAndGetLengthOrZero(&previousToEnd, &previousToEnd) != 0) {
+            bend = (0x1000 - Vec3DotUnrounded(&direction, &previousToEnd)) >> 1;
+            startExtra = ((s64) length * (s64) bend) >> 12;
+            if (useStraightLength != 0) {
+                startSlope.x = ((s64) previousToEnd.x * length) >> 12;
+                startSlope.y = ((s64) previousToEnd.y * length) >> 12;
+                startSlope.z = ((s64) previousToEnd.z * length) >> 12;
             } else {
-                r = n + u;
-                t4.x = ((s64) t3.x * (s64) r) >> 12;
-                t4.y = ((s64) t3.y * (s64) r) >> 12;
-                t4.z = ((s64) t3.z * (s64) r) >> 12;
+                r = length + startExtra;
+                startSlope.x = ((s64) previousToEnd.x * (s64) r) >> 12;
+                startSlope.y = ((s64) previousToEnd.y * (s64) r) >> 12;
+                startSlope.z = ((s64) previousToEnd.z * (s64) r) >> 12;
             }
-            VEC_MultAdd(0x555, &t4, &p->mUnk_00[0], &p->mUnk_00[1]);
+            VEC_MultAdd(0x555, &startSlope, &segment->mPoints[0], &segment->mPoints[1]);
         } else {
-            p->mUnk_00[1] = p->mUnk_00[0];
+            segment->mPoints[1] = segment->mPoints[0];
         }
     } else {
-        p->mUnk_00[1] = p->mUnk_00[0];
+        segment->mPoints[1] = segment->mPoints[0];
     }
-    if (f != NULL) {
-        VEC_Subtract(f, d, &t5);
-        if (Vec3NormalizeAndGetLengthOrZero(&t5, &t5) != 0) {
-            w = (0x1000 - Vec3DotUnrounded(&t2, &t5)) >> 1;
-            v = ((s64) n * (s64) w) >> 12;
-            if (a != 0) {
-                t6.x = ((s64) t5.x * n) >> 12;
-                t6.y = ((s64) t5.y * n) >> 12;
-                t6.z = ((s64) t5.z * n) >> 12;
+    if (nextPoint != NULL) {
+        VEC_Subtract(nextPoint, startPoint, &startToNext);
+        if (Vec3NormalizeAndGetLengthOrZero(&startToNext, &startToNext) != 0) {
+            bend = (0x1000 - Vec3DotUnrounded(&direction, &startToNext)) >> 1;
+            endExtra = ((s64) length * (s64) bend) >> 12;
+            if (useStraightLength != 0) {
+                endSlope.x = ((s64) startToNext.x * length) >> 12;
+                endSlope.y = ((s64) startToNext.y * length) >> 12;
+                endSlope.z = ((s64) startToNext.z * length) >> 12;
             } else {
-                r = n + v;
-                t6.x = ((s64) t5.x * (s64) r) >> 12;
-                t6.y = ((s64) t5.y * (s64) r) >> 12;
-                t6.z = ((s64) t5.z * (s64) r) >> 12;
+                r = length + endExtra;
+                endSlope.x = ((s64) startToNext.x * (s64) r) >> 12;
+                endSlope.y = ((s64) startToNext.y * (s64) r) >> 12;
+                endSlope.z = ((s64) startToNext.z * (s64) r) >> 12;
             }
-            VEC_MultAdd(-0x555, &t6, &p->mUnk_00[3], &p->mUnk_00[2]);
+            VEC_MultAdd(-0x555, &endSlope, &segment->mPoints[3], &segment->mPoints[2]);
         } else {
-            p->mUnk_00[2] = p->mUnk_00[3];
+            segment->mPoints[2] = segment->mPoints[3];
         }
     } else {
-        p->mUnk_00[2] = p->mUnk_00[3];
+        segment->mPoints[2] = segment->mPoints[3];
     }
-    p->mUnk_40 = n;
-    p->mUnk_44 = FX_Div(0x1000000, p->mUnk_40);
-    p->mUnk_38 = v + (n + u);
-    p->mUnk_3c = FX_Div(0x1000000, p->mUnk_38);
-    p->mUnk_30 = p->mUnk_38;
-    p->mUnk_34 = p->mUnk_3c;
-    if (b != 0) {
-        r = VEC_DotProduct(&t2, &data_02158088);
-        p->mUnk_48.x = data_02158088.x - (s32) (((s64) t2.x * (s64) r) >> 12);
-        p->mUnk_48.y = data_02158088.y - (s32) (((s64) t2.y * (s64) r) >> 12);
-        p->mUnk_48.z = data_02158088.z - (s32) (((s64) t2.z * (s64) r) >> 12);
-        q = (s64) p->mUnk_48.x * p->mUnk_48.x + (s64) p->mUnk_48.y * p->mUnk_48.y + (s64) p->mUnk_48.z * p->mUnk_48.z;
-        if (q < 16) {
+    segment->mStraightLength = length;
+    segment->mInverseStraightLength = FX_Div(0x1000000, segment->mStraightLength);
+    segment->mCurveLength = endExtra + (length + startExtra);
+    segment->mInverseCurveLength = FX_Div(0x1000000, segment->mCurveLength);
+    segment->mProgressLength = segment->mCurveLength;
+    segment->mInverseProgressLength = segment->mInverseCurveLength;
+    if (computeUp != 0) {
+        r = VEC_DotProduct(&direction, &data_02158088);
+        segment->mUp.x = data_02158088.x - (s32) (((s64) direction.x * (s64) r) >> 12);
+        segment->mUp.y = data_02158088.y - (s32) (((s64) direction.y * (s64) r) >> 12);
+        segment->mUp.z = data_02158088.z - (s32) (((s64) direction.z * (s64) r) >> 12);
+        squaredUpLength = (s64) segment->mUp.x * segment->mUp.x + (s64) segment->mUp.y * segment->mUp.y +
+                          (s64) segment->mUp.z * segment->mUp.z;
+        if (squaredUpLength < 16) {
             r = 0;
         } else {
-            r = Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_48, &p->mUnk_48);
+            r = Vec3NormalizeAndGetLengthUnchecked(&segment->mUp, &segment->mUp);
         }
         if (r == 0) {
-            p->mUnk_48 = data_02158088;
+            segment->mUp = data_02158088;
         }
     }
 }
 
-void func_020d7e44(u32 a, CourseMapEntryGroup *b) {
-    Unk020e0144_00 *p;
-    s32 n;
-    s32 i;
-    p = &data_0217b670[a];
-    if (p->mUnk_00 != NULL) {
+void BuildGroupPath(u32 groupIndex, CourseMapEntryGroup *entryGroup) {
+    GroupPath *path;
+    s32 entryCount;
+    s32 segmentIndex;
+    path = &gGroupPaths[groupIndex];
+    if (path->mSegments != NULL) {
         return;
     }
-    n = b->mEntryCount;
-    p->mUnk_04 = n;
-    p->mUnk_08 = b->mUnk_01;
-    if (p->mUnk_08 == 0) {
-        p->mUnk_04 = p->mUnk_04 - 1;
+    entryCount = entryGroup->mEntryCount;
+    path->mSegmentCount = entryCount;
+    path->mWraps = entryGroup->mUnk_01;
+    if (path->mWraps == 0) {
+        path->mSegmentCount = path->mSegmentCount - 1;
     }
-    p->mUnk_00 = HeapAlloc(GetHeap(GetCurrentHeapCall()), p->mUnk_04 * 0x54);
-    if (n == 2) {
-        func_020d80e4(p->mUnk_00, 0, 1, NULL, &GetCourseMapGroupEntry(a, 0)->mUnk_00,
-                      &GetCourseMapGroupEntry(a, 1)->mUnk_00, NULL);
-        if (p->mUnk_08 != 0) {
-            func_020d80e4(&p->mUnk_00[1], 0, 1, NULL, &GetCourseMapGroupEntry(a, 1)->mUnk_00,
-                          &GetCourseMapGroupEntry(a, 0)->mUnk_00, NULL);
+    path->mSegments = HeapAlloc(GetHeap(GetCurrentHeapCall()), path->mSegmentCount * 0x54);
+    if (entryCount == 2) {
+        BuildSegment(path->mSegments, 0, 1, NULL, &GetCourseMapGroupEntry(groupIndex, 0)->mPos,
+                     &GetCourseMapGroupEntry(groupIndex, 1)->mPos, NULL);
+        if (path->mWraps != 0) {
+            BuildSegment(&path->mSegments[1], 0, 1, NULL, &GetCourseMapGroupEntry(groupIndex, 1)->mPos,
+                         &GetCourseMapGroupEntry(groupIndex, 0)->mPos, NULL);
         }
         return;
     }
-    if (p->mUnk_08 != 0) {
-        func_020d80e4(p->mUnk_00, 0, 1, &GetCourseMapGroupEntry(a, n - 1)->mUnk_00,
-                      &GetCourseMapGroupEntry(a, 0)->mUnk_00, &GetCourseMapGroupEntry(a, 1)->mUnk_00,
-                      &GetCourseMapGroupEntry(a, 2)->mUnk_00);
+    if (path->mWraps != 0) {
+        BuildSegment(path->mSegments, 0, 1, &GetCourseMapGroupEntry(groupIndex, entryCount - 1)->mPos,
+                     &GetCourseMapGroupEntry(groupIndex, 0)->mPos, &GetCourseMapGroupEntry(groupIndex, 1)->mPos,
+                     &GetCourseMapGroupEntry(groupIndex, 2)->mPos);
     } else {
-        func_020d80e4(p->mUnk_00, 0, 1, NULL, &GetCourseMapGroupEntry(a, 0)->mUnk_00,
-                      &GetCourseMapGroupEntry(a, 1)->mUnk_00, &GetCourseMapGroupEntry(a, 2)->mUnk_00);
+        BuildSegment(path->mSegments, 0, 1, NULL, &GetCourseMapGroupEntry(groupIndex, 0)->mPos,
+                     &GetCourseMapGroupEntry(groupIndex, 1)->mPos, &GetCourseMapGroupEntry(groupIndex, 2)->mPos);
     }
-    for (i = 1; i < n - 2; i++) {
-        func_020d80e4(&p->mUnk_00[i], 0, 1, &GetCourseMapGroupEntry(a, i - 1)->mUnk_00,
-                      &GetCourseMapGroupEntry(a, i)->mUnk_00, &GetCourseMapGroupEntry(a, i + 1)->mUnk_00,
-                      &GetCourseMapGroupEntry(a, i + 2)->mUnk_00);
+    for (segmentIndex = 1; segmentIndex < entryCount - 2; segmentIndex++) {
+        BuildSegment(&path->mSegments[segmentIndex], 0, 1, &GetCourseMapGroupEntry(groupIndex, segmentIndex - 1)->mPos,
+                     &GetCourseMapGroupEntry(groupIndex, segmentIndex)->mPos,
+                     &GetCourseMapGroupEntry(groupIndex, segmentIndex + 1)->mPos,
+                     &GetCourseMapGroupEntry(groupIndex, segmentIndex + 2)->mPos);
     }
-    if (p->mUnk_08 != 0) {
-        func_020d80e4(&p->mUnk_00[i], 0, 1, &GetCourseMapGroupEntry(a, i - 1)->mUnk_00,
-                      &GetCourseMapGroupEntry(a, i)->mUnk_00, &GetCourseMapGroupEntry(a, i + 1)->mUnk_00,
-                      &GetCourseMapGroupEntry(a, 0)->mUnk_00);
+    if (path->mWraps != 0) {
+        BuildSegment(&path->mSegments[segmentIndex], 0, 1, &GetCourseMapGroupEntry(groupIndex, segmentIndex - 1)->mPos,
+                     &GetCourseMapGroupEntry(groupIndex, segmentIndex)->mPos,
+                     &GetCourseMapGroupEntry(groupIndex, segmentIndex + 1)->mPos,
+                     &GetCourseMapGroupEntry(groupIndex, 0)->mPos);
     } else {
-        func_020d80e4(&p->mUnk_00[i], 0, 1, &GetCourseMapGroupEntry(a, i - 1)->mUnk_00,
-                      &GetCourseMapGroupEntry(a, i)->mUnk_00, &GetCourseMapGroupEntry(a, i + 1)->mUnk_00, NULL);
+        BuildSegment(&path->mSegments[segmentIndex], 0, 1, &GetCourseMapGroupEntry(groupIndex, segmentIndex - 1)->mPos,
+                     &GetCourseMapGroupEntry(groupIndex, segmentIndex)->mPos,
+                     &GetCourseMapGroupEntry(groupIndex, segmentIndex + 1)->mPos, NULL);
     }
-    if (p->mUnk_08 != 0) {
-        func_020d80e4(&p->mUnk_00[i + 1], 0, 1, &GetCourseMapGroupEntry(a, i)->mUnk_00,
-                      &GetCourseMapGroupEntry(a, i + 1)->mUnk_00, &GetCourseMapGroupEntry(a, 0)->mUnk_00,
-                      &GetCourseMapGroupEntry(a, 1)->mUnk_00);
+    if (path->mWraps != 0) {
+        BuildSegment(&path->mSegments[segmentIndex + 1], 0, 1, &GetCourseMapGroupEntry(groupIndex, segmentIndex)->mPos,
+                     &GetCourseMapGroupEntry(groupIndex, segmentIndex + 1)->mPos,
+                     &GetCourseMapGroupEntry(groupIndex, 0)->mPos, &GetCourseMapGroupEntry(groupIndex, 1)->mPos);
     }
 }
 
-void func_020d7df8(void) {
-    s32 n = gCourseMap->mEntryGroupCount;
-    s32 i;
-    if (n != 0) {
-        data_0217b670 = HeapAlloc(GetHeap(GetCurrentHeapCall()), n * 0xc);
+void InitGroupPaths(void) {
+    s32 groupCount = gCourseMap->mEntryGroupCount;
+    s32 groupIndex;
+    if (groupCount != 0) {
+        gGroupPaths = HeapAlloc(GetHeap(GetCurrentHeapCall()), groupCount * 0xc);
     }
-    for (i = 0; i < n; i++) {
-        data_0217b670[i].mUnk_00 = NULL;
+    for (groupIndex = 0; groupIndex < groupCount; groupIndex++) {
+        gGroupPaths[groupIndex].mSegments = NULL;
     }
 }
 
@@ -195,12 +200,12 @@ void func_020d7df8(void) {
 
 #pragma thumb on
 
-void func_020d7db4(Unk020e0144 *a, u16 b, int c) {
-    a->mUnk_08 = b;
-    func_020d7e44(a->mUnk_08, &gCourseMap->mEntryGroups[a->mUnk_08]);
-    a->mUnk_00 = &data_0217b670[a->mUnk_08];
-    a->mUnk_04 = c;
-    func_020d90a8(a, 0, 1);
+void InitGroupFollowerForGroup(GroupFollower *follower, u16 groupIndex, int speed) {
+    follower->mGroupIndex = groupIndex;
+    BuildGroupPath(follower->mGroupIndex, &gCourseMap->mEntryGroups[follower->mGroupIndex]);
+    follower->mPath = &gGroupPaths[follower->mGroupIndex];
+    follower->mSpeed = speed;
+    SetupGroupFollowerAtEntry(follower, 0, 1);
 }
 
 #pragma thumb off

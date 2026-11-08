@@ -42,22 +42,22 @@ Unk020de2d8 *CreateWanwanChainUpdateList(void) {
     return data_0217b6e0;
 }
 
-void DrawWanwanChain(void *unused, Unk020de000 *chainObject, s32 c, u16 d) {
-    func_020ddaa0(&chainObject->mUnk_a4, gWanwanChain, c, d);
-    if (chainObject->mUnk_f4 == FALSE) {
+void DrawWanwanChain(void *unused, WanwanChainObject *chainObject, s32 c, u16 d) {
+    DrawWanwanChainLinks(&chainObject->mChain, gWanwanChain, c, d);
+    if (chainObject->mHasKui == FALSE) {
         return;
     }
-    func_020dda38(&chainObject->mUnk_a4, gWanwanKui, &chainObject->mUnk_04, c, d);
+    DrawWanwanChainKui(&chainObject->mChain, gWanwanKui, &chainObject->mPos, c, d);
 }
 
-void UpdateWanwanChain(void *unused, Unk020de000 *chainObject) {
+void UpdateWanwanChain(void *unused, WanwanChainObject *chainObject) {
     Vec3 endPoint;
     Wanwan *wanwan;
 
-    wanwan = chainObject->mUnk_a0;
-    if (chainObject->mUnk_f4 == FALSE) {
-        chainObject->mUnk_04 = wanwan->mUnk_00.mPos;
+    wanwan = chainObject->mWanwan;
+    if (chainObject->mHasKui == FALSE) {
+        chainObject->mPos = wanwan->mUnk_00.mPos;
     }
     VEC_MultAdd(-wanwan->mUnk_f0, &wanwan->mUnk_00.mMatrix.mUnk_00[2], &wanwan->mUnk_00.mPos, &endPoint);
-    func_020ddb44(&chainObject->mUnk_a4, &endPoint, &wanwan->mUnk_00.mUnk_10);
+    UpdateWanwanChainPoints(&chainObject->mChain, &endPoint, &wanwan->mUnk_00.mUnk_10);
 }

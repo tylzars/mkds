@@ -86,8 +86,8 @@ void UpdateMoveTree(void *a, MoveTree *p) {
 
     switch (p->mState) {
         case 0:
-            p->mUnk_b4.mUnk_04 = 0;
-            p->mUnk_b4.mUnk_10 = 0;
+            p->mUnk_b4.mSpeed = 0;
+            p->mUnk_b4.mProgressStep = 0;
             if (p->mUnk_a0-- <= 0) {
                 p->mState = 1;
             }
@@ -130,10 +130,11 @@ void UpdateMoveTree(void *a, MoveTree *p) {
             break;
         case 1:
             v = p->mUnk_a8;
-            p->mUnk_b4.mUnk_04 = v;
-            p->mUnk_b4.mUnk_10 = ((s64) v * p->mUnk_b4.mUnk_00->mUnk_00[p->mUnk_b4.mUnk_0c].mUnk_34) >> 12;
-            if (func_020d8cc8(&p->mUnk_b4) != FALSE) {
-                p->mUnk_a0 = (u16) p->mUnk_b4.mUnk_1c->mUnk_0e;
+            p->mUnk_b4.mSpeed = v;
+            p->mUnk_b4.mProgressStep =
+                ((s64) v * p->mUnk_b4.mPath->mSegments[p->mUnk_b4.mSegmentIndex].mInverseProgressLength) >> 12;
+            if (AdvanceGroupFollower(&p->mUnk_b4) != FALSE) {
+                p->mUnk_a0 = (u16) p->mUnk_b4.mFromEntry->mUnk_0e;
                 p->mState = 0;
             }
             GetGroupFollowerLinearXz(&p->mUnk_b4, &p->mUnk_00.mPos);

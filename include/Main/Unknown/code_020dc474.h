@@ -13,11 +13,11 @@ typedef struct Unk020dc474_1d8 {
 } Unk020dc474_1d8;
 
 // Object of kinds 0x196 (with chain post kind 0x197) and 0x1a5 (mUnk_fc is 0 or 1) of Wanwan; UpdateWanwanState3,
-// UpdateWanwanState2 and the functions after it up to func_020dd860: vectors at 0x04, 0x10 and 0xa0, ring of four
-// vector pointers at 0x160, words at 0xe8, 0xec, 0xf0 and 0x1fc.
+// UpdateWanwanState2 and the functions after it up to CreateWanwanKindData: vectors at 0x04, 0x10 and 0xa0, ring of
+// four vector pointers at 0x160, words at 0xe8, 0xec, 0xf0 and 0x1fc.
 typedef struct Wanwan {
     /* 00 */ MapObject mUnk_00;
-    /* a0 */ Vec3 mUnk_a0;
+    /* a0 */ Vec3 mCenterPos;
     /* ac */ s32 mUnk_ac;
     /* b0 */ s32 mUnk_b0;
     /* b4 */ Quaternion mUnk_b4;
@@ -30,20 +30,20 @@ typedef struct Wanwan {
     /* f4 */ s32 mUnk_f4;
     /* f8 */ s32 mUnk_f8;
     /* fc */ s32 mUnk_fc;
-    /* 100 */ SegmentProgress mUnk_100;
-    /* 160 */ Vec3 *mUnk_160[4];
-    /* 170 */ Vec3 mUnk_170[4];
-    /* 1a0 */ Unk020d84e4 mUnk_1a0;
-    /* 1d8 */ Unk020dc474_1d8 *mUnk_1d8;
+    /* 100 */ SegmentProgress mSegmentProgress;
+    /* 160 */ Vec3 *mCurvePoints[4];
+    /* 170 */ Vec3 mCurvePointValues[4];
+    /* 1a0 */ GroupFollowerWithSpeeds mFollower;
+    /* 1d8 */ Unk020dc474_1d8 *mChainObject;
     /* 1dc */ s32 mUnk_1dc;
     /* 1e0 */ Vec3 mUnk_1e0;
-    /* 1ec */ s32 mUnk_1ec;
-    /* 1f0 */ Vec3 *mUnk_1f0;
-    /* 1f4 */ Vec3 *mUnk_1f4;
+    /* 1ec */ s32 mMaxRadius;
+    /* 1f0 */ Vec3 *mKartPos;
+    /* 1f4 */ Vec3 *mKartVelocity;
     /* 1f8 */ u16 mUnk_1f8;
     /* 1fa */ s16 mUnk_1fa;
     /* 1fc */ s32 mUnk_1fc;
     /* 200 */ Vec3 mUnk_200;
 } Wanwan;
 
-void UpdateWanwanState3(Wanwan *p);
+void UpdateWanwanState3(Wanwan *wanwan);

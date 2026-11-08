@@ -3,12 +3,12 @@
 #include "types.h"
 #include "Main/Unknown/code_02099020.h"
 #include "Main/Unknown/code_0209bc74.h" // MapObjectModel
-#include "Main/Unknown/code_020e005c.h" // Unk020e0144
+#include "Main/Unknown/code_020e005c.h" // GroupFollower
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject, MapObjectList
 
 // Object up to 0x200 bytes: the shared part, a counter at 0xa4 that cycles between 0xac and 0xb0, a state at 0xb4,
-// seven Unk020e0144 from 0xb8, then a count and an index at 0x1b8 and 0x1ba and seven values at 0x1bc.
+// seven GroupFollower from 0xb8, then a count and an index at 0x1b8 and 0x1ba and seven values at 0x1bc.
 typedef struct Pakkun {
     /* 000 */ MapObject mUnk_000;
     /* 0a0 */ u16 mUnk_0a0;
@@ -18,7 +18,7 @@ typedef struct Pakkun {
     /* 0ac */ s32 mUnk_0ac;
     /* 0b0 */ s32 mUnk_0b0;
     /* 0b4 */ s32 mState;
-    /* 0b8 */ Unk020e0144 mUnk_0b8[7];
+    /* 0b8 */ GroupFollower mUnk_0b8[7];
     /* 1b4 */ s32 mTimer;
     /* 1b8 */ u16 mUnk_1b8;
     /* 1ba */ u16 mUnk_1ba;
@@ -64,5 +64,5 @@ void CreatePakkunZHead(void *a);
 void DrawPakkunMouth(void *a, Pakkun *p);
 void CreatePakkunMouth(void *a);
 void InitPakkun(Pakkun *p);
-void func_02098f18(Unk020e0144 *a, s32 b);
+void func_02098f18(GroupFollower *a, s32 b);
 void *func_02099004(void);

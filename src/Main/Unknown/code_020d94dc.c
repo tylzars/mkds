@@ -38,12 +38,12 @@ Water *gWater;
 // The mInitObject slot of the five water kinds (data_usa_021580a4): stores the map object in gWaterMapObject, clears
 // mFlags bits 2 and 8, sets mUnk_66 to 0x1f, runs the creator the kind row holds (third argument), then loads the three
 // water_efct files into gWater; once per water map object.
-void InitWater(Unk020da384 *a, void *b, UnkFunc *c) {
-    gWaterMapObject = a;
-    a->mUnk_02 &= ~2;
-    a->mUnk_02 &= ~8;
-    a->mUnk_66 = 0x1f;
-    c();
+void InitWater(Unk020da384 *mapObject, void *unused, UnkFunc *createWater) {
+    gWaterMapObject = mapObject;
+    mapObject->mUnk_02 &= ~2;
+    mapObject->mUnk_02 &= ~8;
+    mapObject->mUnk_66 = 0x1f;
+    createWater();
     gWater->mEfctNsbmdFile = FindCourseFile("MapObj/water_efct.nsbmd");
     gWater->mEfctNsbcaFile = FindCourseFile("MapObj/water_efct.nsbca");
     gWater->mEfctNsbmaFile = FindCourseFile("MapObj/water_efct.nsbma");
@@ -52,175 +52,176 @@ void InitWater(Unk020da384 *a, void *b, UnkFunc *c) {
 // One step per UpdateRace call while the course has water: advances the height swing (4 states) and the two circles;
 // when mUnk_170 is set it also sets a value on entry 10 of data_0217c838 (GetSndHandleSlot) every call (from
 // func_020a02c8 on course 0x1f, else 0x7f000) and requests sound 0x114 when state 1 ends and 0x113 when state 3 ends.
-void UpdateWater(Water *a) {
-    s32 v;
-    NNSSndSeqPlayer **h;
-    Unk0210b7a8 s1;
-    Unk0210b7a8 s2;
-    u16 w;
-    s32 j;
-    s32 k;
-    h = GetSndHandleSlot(10);
-    if (a->mUnk_170 != 0) {
+void UpdateWater(Water *water) {
+    s32 volume;
+    NNSSndSeqPlayer **soundHandleSlot;
+    Unk0210b7a8 highSoundRequest;
+    Unk0210b7a8 lowSoundRequest;
+    u16 modelCAngle;
+    s32 modelAIndex;
+    s32 modelCIndex;
+    soundHandleSlot = GetSndHandleSlot(10);
+    if (water->mUnk_170 != 0) {
         if (gRaceSetup->mCourseId != COURSE_ID_BEACH) {
-            v = 0x7f000;
+            volume = 0x7f000;
         } else {
-            v = func_020a02c8();
+            volume = func_020a02c8();
         }
-        if (v >= 0) {
-            SetSndHandleTrackVolume(h, v);
+        if (volume >= 0) {
+            SetSndHandleTrackVolume(soundHandleSlot, volume);
         }
     }
-    switch (a->mState) {
+    switch (water->mState) {
         case 0:
-            a->mHeightFactor = gPairsByAngle[(a->mHeightAngle >> 4) * 2];
-            a->mHeight = a->mMidHeight + (s32) (((s64) a->mHeightAmplitude * a->mHeightFactor) >> 12);
-            a->mModelCY = a->mHeight;
-            a->mHeightAngle = a->mHeightAngle + a->mHeightAnglePerFrame;
-            a->mUnk_3a = a->mUnk_3a + a->mHeightAnglePerFrame;
-            if (a->mHeightAngle > 0x3fff && a->mHeightAngle < 0x7fff) {
-                a->mState = 1;
-                a->mHoldFrames = 0;
-                a->mUnk_3e = a->mHeightAnglePerFrame;
+            water->mHeightFactor = gPairsByAngle[(water->mHeightAngle >> 4) * 2];
+            water->mHeight = water->mMidHeight + (s32) (((s64) water->mHeightAmplitude * water->mHeightFactor) >> 12);
+            water->mModelCY = water->mHeight;
+            water->mHeightAngle = water->mHeightAngle + water->mHeightAnglePerFrame;
+            water->mUnk_3a = water->mUnk_3a + water->mHeightAnglePerFrame;
+            if (water->mHeightAngle > 0x3fff && water->mHeightAngle < 0x7fff) {
+                water->mState = 1;
+                water->mHoldFrames = 0;
+                water->mUnk_3e = water->mHeightAnglePerFrame;
             }
             break;
         case 1:
-            a->mHoldFrames = a->mHoldFrames + 1;
-            if (a->mHoldFrames > a->mHighHoldFrameCount) {
-                a->mState = 2;
-                if (a->mUnk_170 != 0 && v >= 0) {
-                    s1.mUnk_00 = 0x114;
-                    s1.mUnk_04 = NULL;
-                    s1.mUnk_08 = 4;
-                    s1.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
-                    func_0210b760(&s1, h);
+            water->mHoldFrames = water->mHoldFrames + 1;
+            if (water->mHoldFrames > water->mHighHoldFrameCount) {
+                water->mState = 2;
+                if (water->mUnk_170 != 0 && volume >= 0) {
+                    highSoundRequest.mUnk_00 = 0x114;
+                    highSoundRequest.mUnk_04 = NULL;
+                    highSoundRequest.mUnk_08 = 4;
+                    highSoundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
+                    func_0210b760(&highSoundRequest, soundHandleSlot);
                 }
-            } else if (a->mHoldFrames > (a->mHighHoldFrameCount >> 1)) {
-                a->mUnk_3e = a->mUnk_3e + 1;
-                a->mUnk_3a = a->mUnk_3a + a->mUnk_3e;
+            } else if (water->mHoldFrames > (water->mHighHoldFrameCount >> 1)) {
+                water->mUnk_3e = water->mUnk_3e + 1;
+                water->mUnk_3a = water->mUnk_3a + water->mUnk_3e;
             } else {
-                a->mUnk_3e = a->mUnk_3e - 1;
-                a->mUnk_3a = a->mUnk_3a + a->mUnk_3e;
+                water->mUnk_3e = water->mUnk_3e - 1;
+                water->mUnk_3a = water->mUnk_3a + water->mUnk_3e;
             }
             break;
         case 2:
-            a->mHeightFactor = gPairsByAngle[(a->mHeightAngle >> 4) * 2];
-            a->mHeight = a->mMidHeight + (s32) (((s64) a->mHeightAmplitude * a->mHeightFactor) >> 12);
-            a->mModelCY = a->mHeight;
-            a->mHeightAngle = a->mHeightAngle + a->mHeightAnglePerFrame;
-            a->mUnk_3a = a->mUnk_3a + a->mHeightAnglePerFrame;
-            if (a->mHeightAngle > 0xbfff) {
-                a->mState = 3;
-                a->mHoldFrames = 0;
-                a->mUnk_3e = a->mHeightAnglePerFrame;
+            water->mHeightFactor = gPairsByAngle[(water->mHeightAngle >> 4) * 2];
+            water->mHeight = water->mMidHeight + (s32) (((s64) water->mHeightAmplitude * water->mHeightFactor) >> 12);
+            water->mModelCY = water->mHeight;
+            water->mHeightAngle = water->mHeightAngle + water->mHeightAnglePerFrame;
+            water->mUnk_3a = water->mUnk_3a + water->mHeightAnglePerFrame;
+            if (water->mHeightAngle > 0xbfff) {
+                water->mState = 3;
+                water->mHoldFrames = 0;
+                water->mUnk_3e = water->mHeightAnglePerFrame;
             }
             break;
         case 3:
-            a->mHoldFrames = a->mHoldFrames + 1;
-            if (a->mHoldFrames > a->mLowHoldFrameCount) {
-                a->mState = 0;
-                if (a->mUnk_170 != 0 && v >= 0) {
-                    s2.mUnk_00 = 0x113;
-                    s2.mUnk_04 = NULL;
-                    s2.mUnk_08 = 4;
-                    s2.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
-                    func_0210b760(&s2, h);
+            water->mHoldFrames = water->mHoldFrames + 1;
+            if (water->mHoldFrames > water->mLowHoldFrameCount) {
+                water->mState = 0;
+                if (water->mUnk_170 != 0 && volume >= 0) {
+                    lowSoundRequest.mUnk_00 = 0x113;
+                    lowSoundRequest.mUnk_04 = NULL;
+                    lowSoundRequest.mUnk_08 = 4;
+                    lowSoundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(NULL);
+                    func_0210b760(&lowSoundRequest, soundHandleSlot);
                 }
-            } else if (a->mHoldFrames > (a->mLowHoldFrameCount >> 1)) {
-                a->mUnk_3e = a->mUnk_3e + 1;
-                a->mUnk_3a = a->mUnk_3a + a->mUnk_3e;
+            } else if (water->mHoldFrames > (water->mLowHoldFrameCount >> 1)) {
+                water->mUnk_3e = water->mUnk_3e + 1;
+                water->mUnk_3a = water->mUnk_3a + water->mUnk_3e;
             } else {
-                a->mUnk_3e = a->mUnk_3e - 1;
-                a->mUnk_3a = a->mUnk_3a + a->mUnk_3e;
+                water->mUnk_3e = water->mUnk_3e - 1;
+                water->mUnk_3a = water->mUnk_3a + water->mUnk_3e;
             }
             break;
     }
-    a->mCircleAngle = a->mCircleAngle + a->mCircleAnglePerFrame;
-    w = a->mCircleAngle - a->mModelCAngleOffset;
-    if (a->mModelAFile != NULL) {
-        j = (a->mCircleAngle >> 4) * 2;
-        a->mModelAX = a->mCenterX + (s32) (((s64) a->mModelARadius * gPairsByAngle[j]) >> 12);
-        a->mModelAZ = a->mCenterZ + (s32) (((s64) a->mModelARadius * gPairsByAngle[j + 1]) >> 12);
+    water->mCircleAngle = water->mCircleAngle + water->mCircleAnglePerFrame;
+    modelCAngle = water->mCircleAngle - water->mModelCAngleOffset;
+    if (water->mModelAFile != NULL) {
+        modelAIndex = (water->mCircleAngle >> 4) * 2;
+        water->mModelAX = water->mCenterX + (s32) (((s64) water->mModelARadius * gPairsByAngle[modelAIndex]) >> 12);
+        water->mModelAZ = water->mCenterZ + (s32) (((s64) water->mModelARadius * gPairsByAngle[modelAIndex + 1]) >> 12);
     }
-    k = (w >> 4) * 2;
-    a->mModelCX = a->mCenterX + (s32) (((s64) a->mModelCRadius * gPairsByAngle[k]) >> 12);
-    a->mModelCZ = a->mCenterZ + (s32) (((s64) a->mModelCRadius * gPairsByAngle[k + 1]) >> 12);
+    modelCIndex = (modelCAngle >> 4) * 2;
+    water->mModelCX = water->mCenterX + (s32) (((s64) water->mModelCRadius * gPairsByAngle[modelCIndex]) >> 12);
+    water->mModelCZ = water->mCenterZ + (s32) (((s64) water->mModelCRadius * gPairsByAngle[modelCIndex + 1]) >> 12);
 }
 
 // Draws model A (when it exists) and model C at their circle positions and mHeight, in the order of mDrawModelAFirst;
 // returns at once when the water map object's mFlags has bit 0x2 or 0x10; writes only the scratch matrix mUnk_140.
-void DrawWater(Water *a, struct MtxFx43 *b) {
+void DrawWater(Water *water, struct MtxFx43 *unused) {
     if ((gWaterMapObject->mUnk_02 & 0x12) != 0) {
         return;
     }
-    if (a->mDrawModelAFirst != 0) {
-        if (a->mModelAFile != NULL) {
-            a->mUnk_140.mUnk_00[3].x = a->mModelAX >> 4;
-            a->mUnk_140.mUnk_00[3].y = a->mHeight >> 4;
-            a->mUnk_140.mUnk_00[3].z = a->mModelAZ >> 4;
-            DrawNsbmdWithMatrix(&a->mUnk_68, &a->mUnk_140, NULL);
+    if (water->mDrawModelAFirst != 0) {
+        if (water->mModelAFile != NULL) {
+            water->mDrawMatrix.mUnk_00[3].x = water->mModelAX >> 4;
+            water->mDrawMatrix.mUnk_00[3].y = water->mHeight >> 4;
+            water->mDrawMatrix.mUnk_00[3].z = water->mModelAZ >> 4;
+            DrawNsbmdWithMatrix(&water->mModelA, &water->mDrawMatrix, NULL);
         }
-        a->mUnk_140.mUnk_00[3].x = a->mModelCX >> 4;
-        a->mUnk_140.mUnk_00[3].y = a->mModelCY >> 4;
-        a->mUnk_140.mUnk_00[3].z = a->mModelCZ >> 4;
-        DrawNsbmdWithMatrix(&a->mUnk_d4, &a->mUnk_140, NULL);
+        water->mDrawMatrix.mUnk_00[3].x = water->mModelCX >> 4;
+        water->mDrawMatrix.mUnk_00[3].y = water->mModelCY >> 4;
+        water->mDrawMatrix.mUnk_00[3].z = water->mModelCZ >> 4;
+        DrawNsbmdWithMatrix(&water->mModelC, &water->mDrawMatrix, NULL);
     } else {
-        a->mUnk_140.mUnk_00[3].x = a->mModelCX >> 4;
-        a->mUnk_140.mUnk_00[3].y = a->mModelCY >> 4;
-        a->mUnk_140.mUnk_00[3].z = a->mModelCZ >> 4;
-        DrawNsbmdWithMatrix(&a->mUnk_d4, &a->mUnk_140, NULL);
-        if (a->mModelAFile != NULL) {
-            a->mUnk_140.mUnk_00[3].x = a->mModelAX >> 4;
-            a->mUnk_140.mUnk_00[3].y = a->mHeight >> 4;
-            a->mUnk_140.mUnk_00[3].z = a->mModelAZ >> 4;
-            DrawNsbmdWithMatrix(&a->mUnk_68, &a->mUnk_140, NULL);
+        water->mDrawMatrix.mUnk_00[3].x = water->mModelCX >> 4;
+        water->mDrawMatrix.mUnk_00[3].y = water->mModelCY >> 4;
+        water->mDrawMatrix.mUnk_00[3].z = water->mModelCZ >> 4;
+        DrawNsbmdWithMatrix(&water->mModelC, &water->mDrawMatrix, NULL);
+        if (water->mModelAFile != NULL) {
+            water->mDrawMatrix.mUnk_00[3].x = water->mModelAX >> 4;
+            water->mDrawMatrix.mUnk_00[3].y = water->mHeight >> 4;
+            water->mDrawMatrix.mUnk_00[3].z = water->mModelAZ >> 4;
+            DrawNsbmdWithMatrix(&water->mModelA, &water->mDrawMatrix, NULL);
         }
     }
 }
 
-Unk020d9de0 *func_020d9de0(void) {
-    Unk020d9de0 *p;
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
+Unk020d9de0 *CreateWaterEfctKindData(void) {
+    Unk020d9de0 *kindData;
+    kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     {
         Unk020d9de0 v = {0};
-        *p = v;
+        *kindData = v;
     }
-    return p;
+    return kindData;
 }
 
 #pragma thumb on
 
 // Called once by each Create...Water with 15 constants; sets 28 members of gWater (heights, step sizes, radii, hold
 // counts, flags) and resets the matrix mUnk_140, nothing else.
-void InitWaterFields(s32 a, s32 b, s32 c, s32 d, s32 e, u16 f, u16 g, u16 h, u16 i, u16 j, u16 k, u16 l, u16 m, u16 n,
-                     s32 o) {
-    gWater->mMidHeight = (a + b) >> 1;
+void InitWaterFields(s32 highHeight, s32 lowHeight, s32 modelARadius, s32 modelCRadius, s32 e, u16 modelCAngleOffset,
+                     u16 g, u16 framesPerCycle, u16 highHoldFrameCount, u16 lowHoldFrameCount, u16 drawModelAFirst,
+                     u16 modelAAlpha, u16 modelCMaterialAlpha, u16 n, s32 o) {
+    gWater->mMidHeight = (highHeight + lowHeight) >> 1;
     gWater->mHeight = gWater->mMidHeight;
     gWater->mModelCY = gWater->mHeight;
-    gWater->mHeightAmplitude = (a - b) >> 1;
+    gWater->mHeightAmplitude = (highHeight - lowHeight) >> 1;
     gWater->mHeightAngle = 0;
     gWater->mUnk_3a = 0;
     gWater->mCircleAngle = 0;
-    gWater->mModelCAngleOffset = f;
+    gWater->mModelCAngleOffset = modelCAngleOffset;
     gWater->mUnk_52 = g;
-    gWater->mHeightAnglePerFrame = 0x10000 / h;
+    gWater->mHeightAnglePerFrame = 0x10000 / framesPerCycle;
     gWater->mCircleAnglePerFrame = (u32) gWater->mHeightAnglePerFrame >> 2;
     gWater->mState = 0;
-    gWater->mHighHoldFrameCount = i;
-    gWater->mLowHoldFrameCount = j;
+    gWater->mHighHoldFrameCount = highHoldFrameCount;
+    gWater->mLowHoldFrameCount = lowHoldFrameCount;
     gWater->mHeightFactor = 0;
     gWater->mCenterX = gWaterMapObject->mUnk_04;
     gWater->mModelAX = gWater->mCenterX;
     gWater->mCenterZ = gWaterMapObject->mUnk_0c;
     gWater->mModelAZ = gWater->mCenterZ;
-    gWater->mModelARadius = c;
-    gWater->mModelCRadius = d;
+    gWater->mModelARadius = modelARadius;
+    gWater->mModelCRadius = modelCRadius;
     gWater->mUnk_4c = e;
-    gWater->mDrawModelAFirst = k;
-    gWater->mUnk_58 = l;
-    gWater->mUnk_5a = m;
+    gWater->mDrawModelAFirst = drawModelAFirst;
+    gWater->mModelAAlpha = modelAAlpha;
+    gWater->mModelCMaterialAlpha = modelCMaterialAlpha;
     gWater->mUnk_5c = n;
-    MTX_Identity43_(&gWater->mUnk_140);
+    MTX_Identity43_(&gWater->mDrawMatrix);
     gWater->mUnk_170 = o;
 }
 
@@ -268,54 +269,54 @@ void CreateHyudoroWater(void) {
 // Once per course, from func_020d2e24 in InitMapObjects: builds the embedded model of each file (mUnk_68 only when A
 // exists, mUnk_d4) and sets material values (NNS_G3dMdlSetMdlPolygonID: 1 for A, 2 for C; the two 5-bit values mUnk_58
 // / mUnk_5a through NNS_G3dMdlSetMdlAlpha).
-void InitWaterModels(Water *a) {
-    u32 i;
-    NNSG3dResMdl *p;
-    NNSG3dResMdl *q;
-    s32 r;
-    u32 n;
-    if (a->mModelAFile != NULL) {
-        InitNsbmd(&a->mUnk_68, a->mModelAFile);
-        i = 0;
-        p = a->mUnk_68.mUnk_04;
-        for (; i < p->mInfo.mNumMat; i++) {
-            NNS_G3dMdlSetMdlEmi(p, i, 0x294a);
+void InitWaterModels(Water *water) {
+    u32 materialIndex;
+    NNSG3dResMdl *modelResMdl;
+    NNSG3dResMdl *modelCResMdl;
+    s32 alphaMaterialIndex;
+    u32 modelAAlpha;
+    if (water->mModelAFile != NULL) {
+        InitNsbmd(&water->mModelA, water->mModelAFile);
+        materialIndex = 0;
+        modelResMdl = water->mModelA.mUnk_04;
+        for (; materialIndex < modelResMdl->mInfo.mNumMat; materialIndex++) {
+            NNS_G3dMdlSetMdlEmi(modelResMdl, materialIndex, 0x294a);
         }
-        i = 0;
-        p = a->mUnk_68.mUnk_04;
-        for (; i < p->mInfo.mNumMat; i++) {
-            NNS_G3dMdlSetMdlPolygonID(p, i, 1);
-        }
-    }
-    InitNsbmd(&a->mUnk_d4, a->mModelCFile);
-    i = 0;
-    p = a->mUnk_d4.mUnk_04;
-    for (; i < p->mInfo.mNumMat; i++) {
-        NNS_G3dMdlSetMdlEmi(p, i, 0x294a);
-    }
-    i = 0;
-    p = a->mUnk_d4.mUnk_04;
-    for (; i < p->mInfo.mNumMat; i++) {
-        NNS_G3dMdlSetMdlPolygonID(p, i, 2);
-    }
-    q = a->mUnk_d4.mUnk_04;
-    r = NNS_G3dGetResDictIdxByName((u8 *) q + q->mOfsMat + 4, data_02158094);
-    if (a->mModelAFile != NULL) {
-        n = a->mUnk_58;
-        i = 0;
-        p = a->mUnk_68.mUnk_04;
-        for (; i < p->mInfo.mNumMat; i++) {
-            NNS_G3dMdlSetMdlAlpha(p, i, n);
+        materialIndex = 0;
+        modelResMdl = water->mModelA.mUnk_04;
+        for (; materialIndex < modelResMdl->mInfo.mNumMat; materialIndex++) {
+            NNS_G3dMdlSetMdlPolygonID(modelResMdl, materialIndex, 1);
         }
     }
-    NNS_G3dMdlSetMdlAlpha(q, r, a->mUnk_5a);
+    InitNsbmd(&water->mModelC, water->mModelCFile);
+    materialIndex = 0;
+    modelResMdl = water->mModelC.mUnk_04;
+    for (; materialIndex < modelResMdl->mInfo.mNumMat; materialIndex++) {
+        NNS_G3dMdlSetMdlEmi(modelResMdl, materialIndex, 0x294a);
+    }
+    materialIndex = 0;
+    modelResMdl = water->mModelC.mUnk_04;
+    for (; materialIndex < modelResMdl->mInfo.mNumMat; materialIndex++) {
+        NNS_G3dMdlSetMdlPolygonID(modelResMdl, materialIndex, 2);
+    }
+    modelCResMdl = water->mModelC.mUnk_04;
+    alphaMaterialIndex = NNS_G3dGetResDictIdxByName((u8 *) modelCResMdl + modelCResMdl->mOfsMat + 4, data_02158094);
+    if (water->mModelAFile != NULL) {
+        modelAAlpha = water->mModelAAlpha;
+        materialIndex = 0;
+        modelResMdl = water->mModelA.mUnk_04;
+        for (; materialIndex < modelResMdl->mInfo.mNumMat; materialIndex++) {
+            NNS_G3dMdlSetMdlAlpha(modelResMdl, materialIndex, modelAAlpha);
+        }
+    }
+    NNS_G3dMdlSetMdlAlpha(modelCResMdl, alphaMaterialIndex, water->mModelCMaterialAlpha);
 }
 
-void CreateWaterEfct(Unk020da384 *a) {
-    WaterEfct *p;
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x10);
-    gWaterEfct = p;
-    p->mHeight = a->mUnk_08;
+void CreateWaterEfct(Unk020da384 *mapObject) {
+    WaterEfct *waterEfct;
+    waterEfct = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x10);
+    gWaterEfct = waterEfct;
+    waterEfct->mHeight = mapObject->mUnk_08;
     gWaterEfct->mNsbmdFile = FindCourseFile("MapObj/water_efct.nsbmd");
     gWaterEfct->mNsbcaFile = FindCourseFile("MapObj/water_efct.nsbca");
     gWaterEfct->mNsbmaFile = FindCourseFile("MapObj/water_efct.nsbma");
@@ -324,56 +325,57 @@ void CreateWaterEfct(Unk020da384 *a) {
 
 #pragma thumb off
 
-void func_020d9810(s32 t, s32 *a, s32 *b, s32 *c, s32 *d) {
-    s32 u = 0x1000000 - t;
-    s32 v = ((s64) u * u) >> 24;
-    *a = ((s64) u * v) >> 24;
-    *b = (s32) (((s64) u * t) >> 24) * 3;
-    *c = ((s64) *b * t) >> 24;
-    v = ((s64) t * t) >> 24;
-    *d = ((s64) t * v) >> 24;
-    *b = ((s64) *b * u) >> 24;
+void GetCurveWeights(s32 fraction, s32 *weight0, s32 *weight1, s32 *weight2, s32 *weight3) {
+    s32 remaining = 0x1000000 - fraction;
+    s32 v = ((s64) remaining * remaining) >> 24;
+    *weight0 = ((s64) remaining * v) >> 24;
+    *weight1 = (s32) (((s64) remaining * fraction) >> 24) * 3;
+    *weight2 = ((s64) *weight1 * fraction) >> 24;
+    v = ((s64) fraction * fraction) >> 24;
+    *weight3 = ((s64) fraction * v) >> 24;
+    *weight1 = ((s64) *weight1 * remaining) >> 24;
 }
 
-void func_020d970c(s32 t, s32 *a, s32 *b, s32 *c, s32 *d, s32 *e, s32 *f, s32 *g, s32 *h) {
-    s32 u = 0x1000000 - t;
-    *e = ((s64) u * u) >> 24;
-    *a = ((s64) *e * u) >> 24;
-    *h = ((s64) t * t) >> 24;
-    *d = ((s64) *h * t) >> 24;
-    *b = (s32) (((s64) u * t) >> 24) * 3;
-    *e = *e * 3;
-    *h = *h * 3;
-    *g = *b << 1;
-    *f = *e - *g;
-    *g = *g - *h;
-    *e = -*e;
-    *c = ((s64) *b * t) >> 24;
-    *b = ((s64) *b * u) >> 24;
+void GetCurveAndSlopeWeights(s32 fraction, s32 *weight0, s32 *weight1, s32 *weight2, s32 *weight3, s32 *slopeWeight0,
+                             s32 *slopeWeight1, s32 *slopeWeight2, s32 *slopeWeight3) {
+    s32 remaining = 0x1000000 - fraction;
+    *slopeWeight0 = ((s64) remaining * remaining) >> 24;
+    *weight0 = ((s64) *slopeWeight0 * remaining) >> 24;
+    *slopeWeight3 = ((s64) fraction * fraction) >> 24;
+    *weight3 = ((s64) *slopeWeight3 * fraction) >> 24;
+    *weight1 = (s32) (((s64) remaining * fraction) >> 24) * 3;
+    *slopeWeight0 = *slopeWeight0 * 3;
+    *slopeWeight3 = *slopeWeight3 * 3;
+    *slopeWeight2 = *weight1 << 1;
+    *slopeWeight1 = *slopeWeight0 - *slopeWeight2;
+    *slopeWeight2 = *slopeWeight2 - *slopeWeight3;
+    *slopeWeight0 = -*slopeWeight0;
+    *weight2 = ((s64) *weight1 * fraction) >> 24;
+    *weight1 = ((s64) *weight1 * remaining) >> 24;
 }
 
-void func_020d95c0(const Vec3 *p, Vec3 *o, s32 a, s32 b, s32 c, s32 d) {
-    o->x = ((s64) p[0].x * a) >> 24;
-    o->y = ((s64) p[0].y * a) >> 24;
-    o->z = ((s64) p[0].z * a) >> 24;
-    o->x = o->x + (s32) (((s64) p[1].x * b) >> 24);
-    o->y = o->y + (s32) (((s64) p[1].y * b) >> 24);
-    o->z = o->z + (s32) (((s64) p[1].z * b) >> 24);
-    o->x = o->x + (s32) (((s64) p[2].x * c) >> 24);
-    o->y = o->y + (s32) (((s64) p[2].y * c) >> 24);
-    o->z = o->z + (s32) (((s64) p[2].z * c) >> 24);
-    o->x = o->x + (s32) (((s64) p[3].x * d) >> 24);
-    o->y = o->y + (s32) (((s64) p[3].y * d) >> 24);
-    o->z = o->z + (s32) (((s64) p[3].z * d) >> 24);
+void ComputeWeightedPoint(const Vec3 *points, Vec3 *result, s32 weight0, s32 weight1, s32 weight2, s32 weight3) {
+    result->x = ((s64) points[0].x * weight0) >> 24;
+    result->y = ((s64) points[0].y * weight0) >> 24;
+    result->z = ((s64) points[0].z * weight0) >> 24;
+    result->x = result->x + (s32) (((s64) points[1].x * weight1) >> 24);
+    result->y = result->y + (s32) (((s64) points[1].y * weight1) >> 24);
+    result->z = result->z + (s32) (((s64) points[1].z * weight1) >> 24);
+    result->x = result->x + (s32) (((s64) points[2].x * weight2) >> 24);
+    result->y = result->y + (s32) (((s64) points[2].y * weight2) >> 24);
+    result->z = result->z + (s32) (((s64) points[2].z * weight2) >> 24);
+    result->x = result->x + (s32) (((s64) points[3].x * weight3) >> 24);
+    result->y = result->y + (s32) (((s64) points[3].y * weight3) >> 24);
+    result->z = result->z + (s32) (((s64) points[3].z * weight3) >> 24);
 }
 
-void func_020d94dc(const Vec3 *p, Vec3 *o, s32 a, s32 b, s32 c, s32 d) {
-    o->x = ((s64) p[0].x * a) >> 24;
-    o->z = ((s64) p[0].z * a) >> 24;
-    o->x = o->x + (s32) (((s64) p[1].x * b) >> 24);
-    o->z = o->z + (s32) (((s64) p[1].z * b) >> 24);
-    o->x = o->x + (s32) (((s64) p[2].x * c) >> 24);
-    o->z = o->z + (s32) (((s64) p[2].z * c) >> 24);
-    o->x = o->x + (s32) (((s64) p[3].x * d) >> 24);
-    o->z = o->z + (s32) (((s64) p[3].z * d) >> 24);
+void ComputeWeightedPointXz(const Vec3 *points, Vec3 *result, s32 weight0, s32 weight1, s32 weight2, s32 weight3) {
+    result->x = ((s64) points[0].x * weight0) >> 24;
+    result->z = ((s64) points[0].z * weight0) >> 24;
+    result->x = result->x + (s32) (((s64) points[1].x * weight1) >> 24);
+    result->z = result->z + (s32) (((s64) points[1].z * weight1) >> 24);
+    result->x = result->x + (s32) (((s64) points[2].x * weight2) >> 24);
+    result->z = result->z + (s32) (((s64) points[2].z * weight2) >> 24);
+    result->x = result->x + (s32) (((s64) points[3].x * weight3) >> 24);
+    result->z = result->z + (s32) (((s64) points[3].z * weight3) >> 24);
 }

@@ -55,171 +55,177 @@
 #pragma thumb off
 
 Unk020dbf2c *CreateDossunKindData(void) {
-    Unk020dbf2c *p;
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
-    *p = data_0215828c;
-    return p;
+    Unk020dbf2c *kindData;
+    kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
+    *kindData = data_0215828c;
+    return kindData;
 }
 
 Unk020dbed0 *CreateDossunDrawList(void) {
-    Unk020dbed0 *p;
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
-    data_0217b698 = p;
-    *p = data_02158260;
-    func_020d49d8(&data_0217b698);
-    return data_0217b698;
+    Unk020dbed0 *drawList;
+    drawList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
+    gDossunDrawList = drawList;
+    *drawList = data_02158260;
+    func_020d49d8(&gDossunDrawList);
+    return gDossunDrawList;
 }
 
 Unk020dbe74 *CreateDossunUpdateList(void) {
-    Unk020dbe74 *p;
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
-    data_0217b690 = p;
-    *p = data_02158238;
-    SetUpdateListSlot(&data_0217b690);
-    return data_0217b690;
+    Unk020dbe74 *updateList;
+    updateList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
+    gDossunUpdateList = updateList;
+    *updateList = data_02158238;
+    SetUpdateListSlot(&gDossunUpdateList);
+    return gDossunUpdateList;
 }
 
-void DrawDossun(void *a, Dossun *p, void *c, s32 d) {
-    MtxFx43 *q;
-    q = &p->mUnk_00.mMatrix;
-    if (p->mUnk_b4 != 0) {
-        q = &data_0217b69c;
-        MTX_RotY33_((s32 *) &data_0217b69c, gPairsByAngle[((u16) p->mUnk_ba >> 4) * 2],
-                    gPairsByAngle[((u16) p->mUnk_ba >> 4) * 2 + 1]);
-        MTX_Concat33((const s32 *) &data_0217b69c, (const s32 *) &p->mUnk_00.mMatrix, (s32 *) &data_0217b69c);
+void DrawDossun(void *unused0, Dossun *dossun, void *unused1, s32 maxAlpha) {
+    MtxFx43 *drawMatrix;
+    drawMatrix = &dossun->mUnk_00.mMatrix;
+    if (dossun->mUnk_b4 != 0) {
+        drawMatrix = &gDossunDrawMatrix;
+        MTX_RotY33_((s32 *) &gDossunDrawMatrix, gPairsByAngle[((u16) dossun->mUnk_ba >> 4) * 2],
+                    gPairsByAngle[((u16) dossun->mUnk_ba >> 4) * 2 + 1]);
+        MTX_Concat33((const s32 *) &gDossunDrawMatrix, (const s32 *) &dossun->mUnk_00.mMatrix,
+                     (s32 *) &gDossunDrawMatrix);
     }
-    q->mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
-    q->mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
-    q->mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
-    DrawNsbmdWithMatrixAndMaxAlpha(gDossun, q, &p->mUnk_00.mScale, d);
-    DrawShadowWithMaxAlpha(gDossunShadow, q, &p->mUnk_00.mScale, d);
+    drawMatrix->mUnk_00[3].x = dossun->mUnk_00.mPos.x >> 4;
+    drawMatrix->mUnk_00[3].y = dossun->mUnk_00.mPos.y >> 4;
+    drawMatrix->mUnk_00[3].z = dossun->mUnk_00.mPos.z >> 4;
+    DrawNsbmdWithMatrixAndMaxAlpha(gDossun, drawMatrix, &dossun->mUnk_00.mScale, maxAlpha);
+    DrawShadowWithMaxAlpha(gDossunShadow, drawMatrix, &dossun->mUnk_00.mScale, maxAlpha);
 }
 
-void UpdateDossun(void *a, Dossun *p) {
-    Unk0210b7a8 s;
-    Unk020e0144 *q;
-    Unk02042044 *e;
+void UpdateDossun(void *unused, Dossun *dossun) {
+    Unk0210b7a8 soundRequest;
+    GroupFollower *follower;
+    CourseMapGroupEntry *fromEntry;
     s32 n;
-    s32 v;
+    s32 speed;
     s32 t;
-    s32 w;
-    p->mUnk_b0 = FALSE;
-    q = &p->mUnk_c8;
-    if (p->mUnk_b4 != 0) {
-        p->mUnk_ba += p->mUnk_b8;
-        n = p->mUnk_b8;
+    s32 sine;
+    dossun->mEnteredState5 = FALSE;
+    follower = &dossun->mFollower;
+    if (dossun->mUnk_b4 != 0) {
+        dossun->mUnk_ba += dossun->mUnk_b8;
+        n = dossun->mUnk_b8;
         if (n > 0x3e8 || n < -0x3e8) {
-            if (p->mState < 4) {
-                p->mUnk_b8 = (n * 0xfa00) >> 16;
+            if (dossun->mState < 4) {
+                dossun->mUnk_b8 = (n * 0xfa00) >> 16;
             } else {
-                p->mUnk_b8 = (n * 0xf80c) >> 16;
+                dossun->mUnk_b8 = (n * 0xf80c) >> 16;
             }
-        } else if (p->mUnk_b4 == 2) {
-            if (n * p->mUnk_ba <= 0) {
+        } else if (dossun->mUnk_b4 == 2) {
+            if (n * dossun->mUnk_ba <= 0) {
                 return;
             }
-            if (n * n <= p->mUnk_ba * p->mUnk_ba) {
+            if (n * n <= dossun->mUnk_ba * dossun->mUnk_ba) {
                 return;
             }
-            p->mUnk_b8 = 0;
-            p->mUnk_ba = p->mUnk_b8;
-            p->mUnk_b4 = 0;
-            p->mUnk_c0 = 0;
-            p->mTimer = 0x1e;
-            p->mState = 0;
+            dossun->mUnk_b8 = 0;
+            dossun->mUnk_ba = dossun->mUnk_b8;
+            dossun->mUnk_b4 = 0;
+            dossun->mUnk_c0 = 0;
+            dossun->mTimer = 0x1e;
+            dossun->mState = 0;
             return;
         }
-        if (p->mUnk_b4 != 1) {
+        if (dossun->mUnk_b4 != 1) {
             return;
         }
-        v = q->mUnk_04;
-        if (p->mState < 4) {
-            if (v > 0x4000) {
-                t = ((s64) v * 0xf85) >> 12;
-                q->mUnk_04 = t;
-                q->mUnk_10 = ((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12;
+        speed = follower->mSpeed;
+        if (dossun->mState < 4) {
+            if (speed > 0x4000) {
+                t = ((s64) speed * 0xf85) >> 12;
+                follower->mSpeed = t;
+                follower->mProgressStep =
+                    ((s64) t * follower->mPath->mSegments[follower->mSegmentIndex].mInverseProgressLength) >> 12;
             }
         } else {
-            if (v > 0x800) {
-                t = ((s64) v * 0xe66) >> 12;
-                q->mUnk_04 = t;
-                q->mUnk_10 = ((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12;
+            if (speed > 0x800) {
+                t = ((s64) speed * 0xe66) >> 12;
+                follower->mSpeed = t;
+                follower->mProgressStep =
+                    ((s64) t * follower->mPath->mSegments[follower->mSegmentIndex].mInverseProgressLength) >> 12;
             }
         }
-        if (func_020d8cc8(q) != FALSE) {
-            p->mUnk_00.mPos = q->mUnk_1c->mUnk_00;
-            p->mUnk_00.mPos.y += p->mUnk_f8;
-            if (q->mUnk_18 != 0) {
-                q->mUnk_14 = 0;
+        if (AdvanceGroupFollower(follower) != FALSE) {
+            dossun->mUnk_00.mPos = follower->mFromEntry->mPos;
+            dossun->mUnk_00.mPos.y += dossun->mHeightOffset;
+            if (follower->mForward != 0) {
+                follower->mProgress = 0;
             } else {
-                ReverseGroupFollower(q);
-                SetGroupFollowerSegmentEnd(q);
+                ReverseGroupFollower(follower);
+                SetGroupFollowerSegmentEnd(follower);
             }
-            p->mUnk_b4 = 2;
+            dossun->mUnk_b4 = 2;
             return;
         }
-        GetGroupFollowerLinearPosition(q, &p->mUnk_00.mPos);
-        p->mUnk_00.mPos.y += p->mUnk_f8;
+        GetGroupFollowerLinearPosition(follower, &dossun->mUnk_00.mPos);
+        dossun->mUnk_00.mPos.y += dossun->mHeightOffset;
         return;
     }
-    switch (p->mState) {
+    switch (dossun->mState) {
         case 0:
-            p->mTimer--;
-            if (p->mTimer >= 0) {
+            dossun->mTimer--;
+            if (dossun->mTimer >= 0) {
                 return;
             }
-            p->mState++;
-            t = p->mUnk_f0 != 0 ? 0xc00 : 0x3000;
-            q->mUnk_04 = t;
-            q->mUnk_10 = ((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12;
+            dossun->mState++;
+            t = dossun->mUnk_f0 != 0 ? 0xc00 : 0x3000;
+            follower->mSpeed = t;
+            follower->mProgressStep =
+                ((s64) t * follower->mPath->mSegments[follower->mSegmentIndex].mInverseProgressLength) >> 12;
             return;
         case 1:
-            if (p->mUnk_f0 != 0) {
-                StartMapObjectSoundWhileRequested(&p->mUnk_00, 0x18b);
+            if (dossun->mUnk_f0 != 0) {
+                StartMapObjectSoundWhileRequested(&dossun->mUnk_00, 0x18b);
             }
             break;
         case 2:
-            p->mTimer--;
-            if (p->mTimer < 0 && p->mUnk_c2 < 0x1555) {
-                p->mState++;
-                p->mUnk_a8 = -p->mUnk_100;
+            dossun->mTimer--;
+            if (dossun->mTimer < 0 && dossun->mUnk_c2 < 0x1555) {
+                dossun->mState++;
+                dossun->mUnk_a8 = -dossun->mUnk_100;
                 return;
             }
-            p->mUnk_c2 += 0x1555;
-            p->mUnk_00.mPos.y = p->mUnk_ac;
-            w = gPairsByAngle[(p->mUnk_c2 >> 4) * 2];
-            p->mUnk_00.mPos.y += (s32) (((s64) w * p->mUnk_c4) >> 12);
+            dossun->mUnk_c2 += 0x1555;
+            dossun->mUnk_00.mPos.y = dossun->mUnk_ac;
+            sine = gPairsByAngle[(dossun->mUnk_c2 >> 4) * 2];
+            dossun->mUnk_00.mPos.y += (s32) (((s64) sine * dossun->mUnk_c4) >> 12);
             return;
         case 3:
-            p->mUnk_a8 += p->mUnk_104;
-            p->mUnk_00.mPos.y -= p->mUnk_a8;
-            if (p->mUnk_00.mPos.y < p->mUnk_ac) {
-                p->mState++;
+            dossun->mUnk_a8 += dossun->mUnk_104;
+            dossun->mUnk_00.mPos.y -= dossun->mUnk_a8;
+            if (dossun->mUnk_00.mPos.y < dossun->mUnk_ac) {
+                dossun->mState++;
             }
             return;
         case 4:
-            if (p->mUnk_a8 < 0x14000) {
-                p->mUnk_a8 += 0x1000;
-                t = p->mUnk_a8;
-                q->mUnk_04 = t;
-                q->mUnk_10 = ((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12;
+            if (dossun->mUnk_a8 < 0x14000) {
+                dossun->mUnk_a8 += 0x1000;
+                t = dossun->mUnk_a8;
+                follower->mSpeed = t;
+                follower->mProgressStep =
+                    ((s64) t * follower->mPath->mSegments[follower->mSegmentIndex].mInverseProgressLength) >> 12;
             }
             break;
         case 5:
-            p->mTimer--;
-            if (p->mTimer >= 0) {
+            dossun->mTimer--;
+            if (dossun->mTimer >= 0) {
                 return;
             }
-            p->mState++;
-            t = p->mUnk_108;
-            q->mUnk_04 = t;
-            q->mUnk_10 = ((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12;
+            dossun->mState++;
+            t = dossun->mUnk_108;
+            follower->mSpeed = t;
+            follower->mProgressStep =
+                ((s64) t * follower->mPath->mSegments[follower->mSegmentIndex].mInverseProgressLength) >> 12;
             return;
         case 6:
             break;
     }
-    if (func_020d8cc8(q) != FALSE) {
-        switch (q->mUnk_1c->mUnk_10) {
+    if (AdvanceGroupFollower(follower) != FALSE) {
+        switch (follower->mFromEntry->mUnk_10) {
             case 0:
                 n = 0;
                 break;
@@ -233,155 +239,156 @@ void UpdateDossun(void *a, Dossun *p) {
                 n = 0;
                 break;
         }
-        p->mState = n;
-        if (p->mState == 2) {
-            p->mUnk_ac = p->mUnk_00.mPos.y;
-            p->mUnk_c2 = 0;
+        dossun->mState = n;
+        if (dossun->mState == 2) {
+            dossun->mUnk_ac = dossun->mUnk_00.mPos.y;
+            dossun->mUnk_c2 = 0;
         }
-        if (p->mState == 5) {
-            e = q->mUnk_1c;
-            if (func_020d4ddc(&p->mUnk_00) == FALSE) {
-                if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
+        if (dossun->mState == 5) {
+            fromEntry = follower->mFromEntry;
+            if (func_020d4ddc(&dossun->mUnk_00) == FALSE) {
+                if (dossun->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                     n = 2;
-                } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
+                } else if (dossun->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                     n = 3;
                 } else {
                     n = 4;
                 }
-                s.mUnk_00 = 0x166;
-                s.mUnk_04 = &p->mUnk_00.mPos;
-                s.mUnk_08 = n;
-                s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
-                func_0210b7a8(&s);
+                soundRequest.mUnk_00 = 0x166;
+                soundRequest.mUnk_04 = &dossun->mUnk_00.mPos;
+                soundRequest.mUnk_08 = n;
+                soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(&dossun->mUnk_00.mPos);
+                func_0210b7a8(&soundRequest);
             }
-            StartCameraWobbleAtDistance(p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f, 0x1000);
-            if ((p->mUnk_00.mDistanceSquaredAndFlags & 3) == 0) {
-                StartEffect(0x59, &e->mUnk_00);
-                StartEffect(0x5a, &e->mUnk_00);
+            StartCameraWobbleAtDistance(dossun->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f, 0x1000);
+            if ((dossun->mUnk_00.mDistanceSquaredAndFlags & 3) == 0) {
+                StartEffect(0x59, &fromEntry->mPos);
+                StartEffect(0x5a, &fromEntry->mPos);
             }
-            p->mUnk_b0 = TRUE;
+            dossun->mEnteredState5 = TRUE;
         }
-        p->mTimer = q->mUnk_1c->mUnk_0e;
-        if (p->mTimer != 0) {
-            p->mUnk_00.mPos = q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_00[0];
-            p->mUnk_00.mPos.y += p->mUnk_f8;
-            q->mUnk_14 = 0;
+        dossun->mTimer = follower->mFromEntry->mUnk_0e;
+        if (dossun->mTimer != 0) {
+            dossun->mUnk_00.mPos = follower->mPath->mSegments[follower->mSegmentIndex].mPoints[0];
+            dossun->mUnk_00.mPos.y += dossun->mHeightOffset;
+            follower->mProgress = 0;
             return;
         }
     }
-    GetGroupFollowerLinearPosition(q, &p->mUnk_00.mPos);
-    p->mUnk_00.mPos.y += p->mUnk_f8;
+    GetGroupFollowerLinearPosition(follower, &dossun->mUnk_00.mPos);
+    dossun->mUnk_00.mPos.y += dossun->mHeightOffset;
 }
 
-u32 CollideKartWithDossun(Dossun *p, Kart *a, u8 *b, u8 *c) {
-    Vec3 s0;
-    Vec3 s1;
-    Vec3 s2;
-    Unk020e0144 *q;
-    s32 t;
+u32 CollideKartWithDossun(Dossun *dossun, Kart *kart, u8 *b, u8 *c) {
+    Vec3 kartOffset;
+    Vec3 toNextEntry;
+    Vec3 centerOffset;
+    GroupFollower *follower;
+    s32 speed;
     s64 m;
-    s32 y;
+    s32 verticalOffset;
     s64 n;
-    q = &p->mUnk_c8;
+    follower = &dossun->mFollower;
     if (*b == 1) {
-        if ((p->mUnk_c0 & (1 << a->mIndex)) == 0 || p->mUnk_bc + 0xf < GetRaceUpdateFrames()) {
-            VEC_Subtract(&a->mCollisionCenter, &p->mUnk_00.mPos, &s0);
-            VEC_Subtract(&q->mUnk_20->mUnk_00, &p->mUnk_00.mPos, &s1);
-            s1.y += p->mUnk_f8;
-            if (Vec3DotUnrounded(&s0, &s1) > 0) {
-                ReverseGroupFollower(q);
+        if ((dossun->mUnk_c0 & (1 << kart->mIndex)) == 0 || dossun->mUnk_bc + 0xf < GetRaceUpdateFrames()) {
+            VEC_Subtract(&kart->mCollisionCenter, &dossun->mUnk_00.mPos, &kartOffset);
+            VEC_Subtract(&follower->mToEntry->mPos, &dossun->mUnk_00.mPos, &toNextEntry);
+            toNextEntry.y += dossun->mHeightOffset;
+            if (Vec3DotUnrounded(&kartOffset, &toNextEntry) > 0) {
+                ReverseGroupFollower(follower);
             }
-            if (p->mState < 4) {
-                t = 0xa800;
+            if (dossun->mState < 4) {
+                speed = 0xa800;
             } else {
-                t = 0x8000;
+                speed = 0x8000;
             }
-            t = t - (s32) (((s64) (0x1000 - p->mUnk_00.mScale.y) * 0x2000) >> 12);
-            q->mUnk_04 = t;
-            q->mUnk_10 = ((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12;
-            p->mUnk_b4 = 1;
-            p->mUnk_b8 = 0x1b58;
-            if ((s64) s0.z * a->mVelocity.x - (s64) s0.x * a->mVelocity.z < 0) {
-                p->mUnk_b8 = -p->mUnk_b8;
+            speed = speed - (s32) (((s64) (0x1000 - dossun->mUnk_00.mScale.y) * 0x2000) >> 12);
+            follower->mSpeed = speed;
+            follower->mProgressStep =
+                ((s64) speed * follower->mPath->mSegments[follower->mSegmentIndex].mInverseProgressLength) >> 12;
+            dossun->mUnk_b4 = 1;
+            dossun->mUnk_b8 = 0x1b58;
+            if ((s64) kartOffset.z * kart->mVelocity.x - (s64) kartOffset.x * kart->mVelocity.z < 0) {
+                dossun->mUnk_b8 = -dossun->mUnk_b8;
             }
-            StartSoundIfKartStarOrKiller(&p->mUnk_00, a);
-            p->mUnk_c0 |= 1 << a->mIndex;
-            p->mUnk_bc = GetRaceUpdateFrames();
+            StartSoundIfKartStarOrKiller(&dossun->mUnk_00, kart);
+            dossun->mUnk_c0 |= 1 << kart->mIndex;
+            dossun->mUnk_bc = GetRaceUpdateFrames();
         }
     }
-    if (p->mState == 4 || p->mUnk_b0 != FALSE) {
-        VEC_Subtract(&a->mCollisionCenter, &p->mUnk_00.mPos, &s2);
-        n = ((s64) s2.x * s2.x + (s64) s2.z * s2.z) * 5;
-        y = s2.y;
-        m = ((s64) y * y) << 2;
-        if (y < 0 && n < m) {
-            return GetKartMapObjectResponseByKind(p->mUnk_00.mFlags & 0x800, a->mItemEffect, 4, 4);
+    if (dossun->mState == 4 || dossun->mEnteredState5 != FALSE) {
+        VEC_Subtract(&kart->mCollisionCenter, &dossun->mUnk_00.mPos, &centerOffset);
+        n = ((s64) centerOffset.x * centerOffset.x + (s64) centerOffset.z * centerOffset.z) * 5;
+        verticalOffset = centerOffset.y;
+        m = ((s64) verticalOffset * verticalOffset) << 2;
+        if (verticalOffset < 0 && n < m) {
+            return GetKartMapObjectResponseByKind(dossun->mUnk_00.mFlags & 0x800, kart->mItemEffect, 4, 4);
         }
     }
     return *c;
 }
 
-s32 func_020db4c4(Dossun *p) {
-    s32 r;
-    s32 n;
-    r = func_020d8cac(&p->mUnk_c8);
-    n = p->mState;
-    if (n < 4) {
-        if (p->mUnk_f0 != 0) {
+s32 func_020db4c4(Dossun *dossun) {
+    s32 progress;
+    s32 state;
+    progress = GetGroupFollowerProgress(&dossun->mFollower);
+    state = dossun->mState;
+    if (state < 4) {
+        if (dossun->mUnk_f0 != 0) {
             return 0;
         }
         return 0x1000;
     }
-    switch (p->mUnk_b4) {
+    switch (dossun->mUnk_b4) {
         case 0:
-            switch (n) {
+            switch (state) {
                 case 4:
-                    r = 0x1000 - r;
+                    progress = 0x1000 - progress;
                     break;
                 case 5:
-                    r = 0;
+                    progress = 0;
                     break;
                 case 6:
                     break;
             }
             break;
         case 2:
-            r = 0x1000;
+            progress = 0x1000;
             break;
     }
-    return r;
+    return progress;
 }
 
 #pragma thumb on
-void func_020db430(Dossun *p) {
-    Unk020e0144 *q;
-    s32 n;
-    q = &p->mUnk_c8;
-    func_020d90a8(q, p->mUnk_ec, 1);
-    GetGroupFollowerLinearPosition(q, &p->mUnk_00.mPos);
-    p->mUnk_00.mPos.y += p->mUnk_f8;
-    switch (q->mUnk_1c->mUnk_10) {
+void func_020db430(Dossun *dossun) {
+    GroupFollower *follower;
+    s32 state;
+    follower = &dossun->mFollower;
+    SetupGroupFollowerAtEntry(follower, dossun->mStartEntryIndex, 1);
+    GetGroupFollowerLinearPosition(follower, &dossun->mUnk_00.mPos);
+    dossun->mUnk_00.mPos.y += dossun->mHeightOffset;
+    switch (follower->mFromEntry->mUnk_10) {
         case 0:
-            n = 0;
+            state = 0;
             break;
         case 1:
-            n = 2;
+            state = 2;
             break;
         case 2:
-            n = 5;
+            state = 5;
             break;
         default:
-            n = 0;
+            state = 0;
             break;
     }
-    p->mState = n;
-    p->mTimer = q->mUnk_1c->mUnk_0e;
-    p->mUnk_b4 = 0;
-    p->mUnk_ba = 0;
-    p->mUnk_b8 = p->mUnk_ba;
-    p->mUnk_c0 = 0;
-    p->mUnk_ac = p->mUnk_00.mPos.y;
-    p->mUnk_b0 = FALSE;
+    dossun->mState = state;
+    dossun->mTimer = follower->mFromEntry->mUnk_0e;
+    dossun->mUnk_b4 = 0;
+    dossun->mUnk_ba = 0;
+    dossun->mUnk_b8 = dossun->mUnk_ba;
+    dossun->mUnk_c0 = 0;
+    dossun->mUnk_ac = dossun->mUnk_00.mPos.y;
+    dossun->mEnteredState5 = FALSE;
 }
 #pragma thumb off
 
@@ -394,115 +401,115 @@ void CreateDossunAndDossunShadow(void) {
 #pragma thumb off
 
 #pragma thumb on
-void InitDossun(Dossun *p, CourseMapRow *a) {
-    p->mUnk_f0 = a->mUnk_28;
-    InitGroupFollower(&p->mUnk_c8, a, p->mUnk_f0 != 0 ? 0xc00 : 0x3000);
-    p->mUnk_ec = a->mUnk_2a;
-    p->mUnk_f4 = ((s64) p->mUnk_00.mScale.x * 0x28000) >> 12;
-    p->mUnk_f8 = ((s64) p->mUnk_00.mScale.y * 0x2d000) >> 12;
-    p->mUnk_fc = ((s64) p->mUnk_00.mScale.z * 0x1e000) >> 12;
-    p->mUnk_100 = ((s64) p->mUnk_00.mScale.y * 0xf000) >> 12;
-    p->mUnk_104 = ((s64) p->mUnk_00.mScale.y * 0x1000) >> 12;
-    p->mUnk_108 = ((s64) p->mUnk_00.mScale.y * 0x2000) >> 12;
-    p->mUnk_c4 = ((s64) p->mUnk_00.mScale.y * 0x3000) >> 12;
-    func_020db430(p);
-    if (p->mUnk_f0 != 0) {
-        CreateMapObjectSoundSourceFalloff3(&p->mUnk_00);
+void InitDossun(Dossun *dossun, CourseMapRow *row) {
+    dossun->mUnk_f0 = row->mUnk_28;
+    InitGroupFollower(&dossun->mFollower, row, dossun->mUnk_f0 != 0 ? 0xc00 : 0x3000);
+    dossun->mStartEntryIndex = row->mUnk_2a;
+    dossun->mUnk_f4 = ((s64) dossun->mUnk_00.mScale.x * 0x28000) >> 12;
+    dossun->mHeightOffset = ((s64) dossun->mUnk_00.mScale.y * 0x2d000) >> 12;
+    dossun->mUnk_fc = ((s64) dossun->mUnk_00.mScale.z * 0x1e000) >> 12;
+    dossun->mUnk_100 = ((s64) dossun->mUnk_00.mScale.y * 0xf000) >> 12;
+    dossun->mUnk_104 = ((s64) dossun->mUnk_00.mScale.y * 0x1000) >> 12;
+    dossun->mUnk_108 = ((s64) dossun->mUnk_00.mScale.y * 0x2000) >> 12;
+    dossun->mUnk_c4 = ((s64) dossun->mUnk_00.mScale.y * 0x3000) >> 12;
+    func_020db430(dossun);
+    if (dossun->mUnk_f0 != 0) {
+        CreateMapObjectSoundSourceFalloff3(&dossun->mUnk_00);
     } else {
-        p->mUnk_00.mFarDistanceSquared = gSoundFalloffs[3].mUnk_20;
+        dossun->mUnk_00.mFarDistanceSquared = gSoundFalloffs[3].mUnk_20;
     }
 }
 #pragma thumb off
 
 Unk020db268 *CreateKuriboKindData(void) {
-    Unk020db268 *p;
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
-    *p = data_021581b8;
-    return p;
+    Unk020db268 *kindData;
+    kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
+    *kindData = data_021581b8;
+    return kindData;
 }
 
 Unk020db20c *CreateKuriboDrawList(void) {
-    Unk020db20c *p;
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
-    data_0217b680 = p;
-    *p = data_0215818c;
-    func_020d49d8(&data_0217b680);
-    return data_0217b680;
+    Unk020db20c *drawList;
+    drawList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x2c);
+    gKuriboDrawList = drawList;
+    *drawList = data_0215818c;
+    func_020d49d8(&gKuriboDrawList);
+    return gKuriboDrawList;
 }
 
 Unk020db1b0 *CreateKuriboUpdateList(void) {
-    Unk020db1b0 *p;
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
-    data_0217b684 = p;
-    *p = data_02158164;
-    SetUpdateListSlot(&data_0217b684);
-    return data_0217b684;
+    Unk020db1b0 *updateList;
+    updateList = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x28);
+    gKuriboUpdateList = updateList;
+    *updateList = data_02158164;
+    SetUpdateListSlot(&gKuriboUpdateList);
+    return gKuriboUpdateList;
 }
 
 void SetupDrawKuribo(void) {
     func_020e6a18(gKuribo);
 }
 
-void DrawKuribo(void *a, Kuribo *p, void *c, u16 d) {
-    Vec3 s;
-    Quaternion t;
+void DrawKuribo(void *unused0, Kuribo *kuribo, void *unused1, u16 d) {
+    Vec3 scale;
+    Quaternion orientation;
     u16 e;
-    Unk020e6488 *q;
-    if (p->mUnk_cc.mUnk_08 == 0xffff) {
-        func_020d7938(&p->mUnk_a4, &gViewYawQuaternion, &t);
-        Matrix3x3FromQuaternion(&p->mUnk_00.mMatrix, &t);
+    Unk020e6488 *model;
+    if (kuribo->mUnk_cc.mGroupIndex == 0xffff) {
+        func_020d7938(&kuribo->mUnk_a4, &gViewYawQuaternion, &orientation);
+        Matrix3x3FromQuaternion(&kuribo->mUnk_00.mMatrix, &orientation);
     } else {
-        func_020e6d34(func_020d88fc(&p->mUnk_cc), &p->mUnk_00.mMatrix);
+        func_020e6d34(GetGroupFollowerSegmentUp(&kuribo->mUnk_cc), &kuribo->mUnk_00.mMatrix);
     }
-    s.z = p->mUnk_00.mScale.z;
-    s.y = ((s64) p->mUnk_00.mScale.y * p->mUnk_c4) >> 12;
-    s.x = ((s64) p->mUnk_00.mScale.x * (((0x1000 - p->mUnk_c4) >> 1) + 0x1000)) >> 12;
-    p->mUnk_00.mMatrix.mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
-    p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
-    p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
-    if (p->mUnk_f0 < 0x14) {
-        gKuribo->mFrameIndex = p->mUnk_f0;
+    scale.z = kuribo->mUnk_00.mScale.z;
+    scale.y = ((s64) kuribo->mUnk_00.mScale.y * kuribo->mUnk_c4) >> 12;
+    scale.x = ((s64) kuribo->mUnk_00.mScale.x * (((0x1000 - kuribo->mUnk_c4) >> 1) + 0x1000)) >> 12;
+    kuribo->mUnk_00.mMatrix.mUnk_00[3].x = kuribo->mUnk_00.mPos.x >> 4;
+    kuribo->mUnk_00.mMatrix.mUnk_00[3].y = kuribo->mUnk_00.mPos.y >> 4;
+    kuribo->mUnk_00.mMatrix.mUnk_00[3].z = kuribo->mUnk_00.mPos.z >> 4;
+    if (kuribo->mUnk_f0 < 0x14) {
+        gKuribo->mFrameIndex = kuribo->mUnk_f0;
     } else {
-        s.x = -s.x;
-        gKuribo->mFrameIndex = p->mUnk_f0 - 0x14;
+        scale.x = -scale.x;
+        gKuribo->mFrameIndex = kuribo->mUnk_f0 - 0x14;
     }
-    e = p->mUnk_100;
-    q = gKuribo;
-    q->mUnk_14 &= ~0x1f0000;
-    q->mUnk_14 |= e << 16;
-    func_020e67c4(gKuribo, &p->mUnk_00.mMatrix, &s, 0, d);
+    e = kuribo->mUnk_100;
+    model = gKuribo;
+    model->mUnk_14 &= ~0x1f0000;
+    model->mUnk_14 |= e << 16;
+    func_020e67c4(gKuribo, &kuribo->mUnk_00.mMatrix, &scale, 0, d);
 }
 
-void UpdateKuribo(void *a, Kuribo *p) {
-    Unk0210b7a8 s;
-    Unk020f41c4_B *r;
-    s32 n;
-    p->mUnk_f0++;
-    if (p->mUnk_f0 == 0x14 || p->mUnk_f0 == 0x28) {
-        if ((p->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
-            if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
-                n = 2;
-            } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
-                n = 3;
+void UpdateKuribo(void *unused, Kuribo *kuribo) {
+    Unk0210b7a8 soundRequest;
+    Unk020f41c4_B *random;
+    s32 falloffIndex;
+    kuribo->mUnk_f0++;
+    if (kuribo->mUnk_f0 == 0x14 || kuribo->mUnk_f0 == 0x28) {
+        if ((kuribo->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
+            if (kuribo->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
+                falloffIndex = 2;
+            } else if (kuribo->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
+                falloffIndex = 3;
             } else {
-                n = 4;
+                falloffIndex = 4;
             }
-            s.mUnk_00 = 0x182;
-            s.mUnk_04 = &p->mUnk_00.mPos;
-            s.mUnk_08 = n;
-            s.mUnk_0c = GetHorizontalCameraDistanceSquared(&p->mUnk_00.mPos);
-            func_0210b7a8(&s);
+            soundRequest.mUnk_00 = 0x182;
+            soundRequest.mUnk_04 = &kuribo->mUnk_00.mPos;
+            soundRequest.mUnk_08 = falloffIndex;
+            soundRequest.mUnk_0c = GetHorizontalCameraDistanceSquared(&kuribo->mUnk_00.mPos);
+            func_0210b7a8(&soundRequest);
         }
     }
-    if (p->mUnk_f0 >= 0x28) {
-        if (p->mUnk_f4 != 0) {
-            p->mUnk_f0 = 0;
+    if (kuribo->mUnk_f0 >= 0x28) {
+        if (kuribo->mUnk_f4 != 0) {
+            kuribo->mUnk_f0 = 0;
         } else {
-            r = &gRaceProgress->mRandom;
-            r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
-            p->mUnk_f0 = ((u64) (u32) (r->mValue >> 32) * 0x28) >> 32;
-            p->mUnk_f4 = 1;
+            random = &gRaceProgress->mRandom;
+            random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
+            kuribo->mUnk_f0 = ((u64) (u32) (random->mValue >> 32) * 0x28) >> 32;
+            kuribo->mUnk_f4 = 1;
         }
     }
-    AdvanceStateMachine(&p->mUnk_00.mStateMachine);
+    AdvanceStateMachine(&kuribo->mUnk_00.mStateMachine);
 }

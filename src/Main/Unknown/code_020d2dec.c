@@ -373,7 +373,7 @@ void InitMapObjects(void) {
     gCourseWater = NULL;
     gCourseWaterEfct = NULL;
     ClearOrthoQuadCreamEffectPointer();
-    func_020d7df8();
+    InitGroupPaths();
     InitMatrices();
     func_020d4bf0();
     gWrappingPolygonId = gWrappingPolygonIdBase;

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020d9340(u32 points, u32 fraction, u32 result);
+void GetCurvePointXz(u32 points, u32 fraction, u32 result);

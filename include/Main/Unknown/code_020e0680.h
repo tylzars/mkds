@@ -124,7 +124,7 @@ typedef struct Unk020e1e98 {
     /* 0cc */ s32 mUnk_0cc;
     /* 0d0 */ u8 mUnk_0d0[0x4];
     /* 0d4 */ s32 mUnk_0d4;
-    /* 0d8 */ Unk020e0144 mUnk_0d8;
+    /* 0d8 */ GroupFollower mUnk_0d8;
     /* 0fc */ u16 mUnk_0fc;
     /* 0fe */ s16 mUnk_0fe;
     /* 100 */ s32 mUnk_100[3];

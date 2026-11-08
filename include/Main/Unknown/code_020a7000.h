@@ -4,7 +4,7 @@
 #include "Main/Unknown/code_0206bcb0.h" // Kart
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
-#include "Main/Unknown/code_020e005c.h" // Unk020e0144
+#include "Main/Unknown/code_020e005c.h" // GroupFollower
 
 // 0x48-byte entries from 0xb0 of Sanbo; func_020a8098 writes the first mUnk_1d0 of them.
 typedef struct Unk020a7f18_0b0 {
@@ -27,7 +27,7 @@ typedef struct Unk020a7f18_0b0 {
 
 // Object of kind 0x1b2 (Sanbo: sanbo_h and sanbo_b models in one object). Object passed to func_020a7f18 and
 // func_020a7fc4 as their first argument and on to func_020a8098: the shared MapObject part, words at 0xa0 to 0xac, four
-// 0x48-byte entries with their count at 0x1d0, a word at 0x1d4, an Unk020e0144 at 0x1d8 and a word at 0x1fc.
+// 0x48-byte entries with their count at 0x1d0, a word at 0x1d4, an GroupFollower at 0x1d8 and a word at 0x1fc.
 typedef struct Sanbo {
     /* 000 */ MapObject mUnk_000;
     /* 0a0 */ s32 mUnk_0a0;
@@ -38,7 +38,7 @@ typedef struct Sanbo {
     /* 1d0 */ u16 mUnk_1d0;
     /* 1d2 */ u8 mUnk_1d2[2];
     /* 1d4 */ s32 mUnk_1d4;
-    /* 1d8 */ Unk020e0144 mUnk_1d8;
+    /* 1d8 */ GroupFollower mUnk_1d8;
     /* State number of this kind's own per-frame switch in UpdateSanbo; this object does not use
        MapObject.mUnk_80's state machine; also read in its draw, state 1 is never written */
     /* 1fc */ s32 mState;

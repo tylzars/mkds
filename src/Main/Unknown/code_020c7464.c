@@ -1155,7 +1155,7 @@ s32 CreateRaceHudSubScreenItemBoxCells(void) {
             created = CreateRaceHudSubScreenCells(&gRaceHudSubScreenItemBoxCells, kind);
             highest = 0;
             for (j = 0; j < gRaceHudSubScreenItemBoxCells->mObjectCount; j++) {
-                s32 v = func_020de9f8((Unk020de6a8 *) gRaceHudSubScreenItemBoxCells->mObjects[j]);
+                s32 v = func_020de9f8((ItemBox *) gRaceHudSubScreenItemBoxCells->mObjects[j]);
                 if (v > highest) {
                     highest = v;
                 }

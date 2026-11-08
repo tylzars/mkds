@@ -346,8 +346,8 @@ void func_ov001_0218ec40(Unk02188950 *a) {
         func_ov001_02188cd8(a, a->mPrm->mUnk_230, a->mPrm->mUnk_234);
         func_ov001_02188c48(a, a->mPrm->mUnk_238, a->mPrm->mUnk_23c);
     }
-    SetAnglePointAndMoveAnglePoint(a, &func_ov001_02187fc0(a)->mUnk_00);
-    func_ov001_02188de0(a, a->mPrm->mUnk_138, a->mPrm->mUnk_13c, &func_ov001_02187fc0(a)->mUnk_00, NULL);
+    SetAnglePointAndMoveAnglePoint(a, &func_ov001_02187fc0(a)->mPos);
+    func_ov001_02188de0(a, a->mPrm->mUnk_138, a->mPrm->mUnk_13c, &func_ov001_02187fc0(a)->mPos, NULL);
     if (data_0217d20c != 5) {
         data_0217d21c = data_0217d20c;
     }
@@ -359,9 +359,9 @@ void func_ov001_0218eb94(Unk02188950 *a) {
     GetKart((u16) gRaceSetup->mEntryIndex);
     rng = GetMapObjectRandom();
     rng->mValue = (s64) rng->mMultiplier * (s64) rng->mValue + rng->mIncrement;
-    a->mUnk_000.mPos.x = (&func_ov001_02187fc0(a)->mUnk_00)->x;
-    a->mUnk_000.mPos.y = a->mPrm->mUnk_080 + (&func_ov001_02187fc0(a)->mUnk_00)->y;
-    a->mUnk_000.mPos.z = (&func_ov001_02187fc0(a)->mUnk_00)->z;
+    a->mUnk_000.mPos.x = (&func_ov001_02187fc0(a)->mPos)->x;
+    a->mUnk_000.mPos.y = a->mPrm->mUnk_080 + (&func_ov001_02187fc0(a)->mPos)->y;
+    a->mUnk_000.mPos.z = (&func_ov001_02187fc0(a)->mPos)->z;
     func_ov001_02187218(a, 5, (s32(*)(Unk02188950 *)) func_ov001_0218edb8);
     func_ov001_0218f900(a);
     func_ov001_02188e24(a, a->mPrm->mUnk_1b4, NULL);
@@ -675,7 +675,7 @@ void UpdateKingTeresa(u32 a, Unk02188950 *b) {
                 }
             }
             if (func_ov001_021871f8(b, 3) != 0) {
-                if (func_ov001_021881a8(b, &func_ov001_02187fc0(b)->mUnk_00, b->mPrm->mUnk_138, 0) != 0) {
+                if (func_ov001_021881a8(b, &func_ov001_02187fc0(b)->mPos, b->mPrm->mUnk_138, 0) != 0) {
                     func_ov001_02187e78(b);
                 }
                 func_ov001_02188200(b, func_ov001_0218e344);

@@ -3,10 +3,10 @@
 #include "types.h"
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
-#include "Main/Unknown/code_020e005c.h" // Unk020e0144
+#include "Main/Unknown/code_020e005c.h" // GroupFollower
 #include "Main/Unknown/code_020f9c6c.h" // CourseMapRow
 
-// Object of kind 0x158 (Airship) with the Unk020e0144 base at 0xc8 (DrawAirship, InitAirshipObjects).
+// Object of kind 0x158 (Airship) with the GroupFollower base at 0xc8 (DrawAirship, InitAirshipObjects).
 typedef struct Airship {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
@@ -20,7 +20,7 @@ typedef struct Airship {
     /* bc */ u32 mUnk_bc;
     /* c0 */ s32 mUnk_c0;
     /* c4 */ s32 mUnk_c4;
-    /* c8 */ Unk020e0144 mUnk_c8;
+    /* c8 */ GroupFollower mUnk_c8;
     /* State number of this kind's own per-frame switch in UpdateAirship; this object does not use
        MapObject.mUnk_80's state machine; also written by the group pre-step */
     /* ec */ s32 mState;

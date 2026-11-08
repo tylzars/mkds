@@ -18,34 +18,34 @@
 #include "code_02147cd8.h"
 #include "registers.h"
 
-u32 GetMaxXzDistanceToGroup(Unk020e0144 *follower, Vec3 *point) {
-    Unk020e0144_00 *path;
+u32 GetMaxXzDistanceToGroup(GroupFollower *follower, Vec3 *point) {
+    GroupPath *path;
     s32 segmentIndex;
     s64 maxDistanceSquared;
-    Unk020e0144_00_0 *segment;
+    Segment *segment;
     s64 distanceSquared;
     s32 pointX;
     s32 pointZ;
     s32 delta;
-    path = follower->mUnk_00;
+    path = follower->mPath;
     maxDistanceSquared = 0;
-    segmentIndex = path->mUnk_04 - 1;
-    segment = path->mUnk_00;
+    segmentIndex = path->mSegmentCount - 1;
+    segment = path->mSegments;
     if (segmentIndex >= 0) {
         segment = &segment[segmentIndex];
         pointX = point->x;
         pointZ = point->z;
         do {
-            delta = pointX - segment->mUnk_00[0].x;
+            delta = pointX - segment->mPoints[0].x;
             distanceSquared = (s64) delta * delta;
-            delta = pointZ - segment->mUnk_00[0].z;
+            delta = pointZ - segment->mPoints[0].z;
             distanceSquared = distanceSquared + (s64) delta * delta;
             if (maxDistanceSquared < distanceSquared) {
                 maxDistanceSquared = distanceSquared;
             }
-            delta = pointX - segment->mUnk_00[3].x;
+            delta = pointX - segment->mPoints[3].x;
             distanceSquared = (s64) delta * delta;
-            delta = pointZ - segment->mUnk_00[3].z;
+            delta = pointZ - segment->mPoints[3].z;
             distanceSquared = distanceSquared + (s64) delta * delta;
             if (maxDistanceSquared < distanceSquared) {
                 maxDistanceSquared = distanceSquared;
@@ -61,17 +61,17 @@ u32 GetMaxXzDistanceToGroup(Unk020e0144 *follower, Vec3 *point) {
     return reg_CP_SQRT_RESULT;
 }
 
-void GetGroupFollowerLinearXz(Unk020e0144 *follower, Vec3 *position) {
-    Unk020e0144_00_0 *segment;
+void GetGroupFollowerLinearXz(GroupFollower *follower, Vec3 *position) {
+    Segment *segment;
     s32 progress;
     s32 remaining;
-    segment = &follower->mUnk_00->mUnk_00[follower->mUnk_0c];
-    progress = follower->mUnk_14;
+    segment = &follower->mPath->mSegments[follower->mSegmentIndex];
+    progress = follower->mProgress;
     remaining = 0x1000000 - progress;
-    position->x = ((s64) segment->mUnk_00[0].x * remaining) >> 24;
-    position->z = ((s64) segment->mUnk_00[0].z * remaining) >> 24;
-    position->x = position->x + (s32) (((s64) segment->mUnk_00[3].x * progress) >> 24);
-    position->z = position->z + (s32) (((s64) segment->mUnk_00[3].z * progress) >> 24);
+    position->x = ((s64) segment->mPoints[0].x * remaining) >> 24;
+    position->z = ((s64) segment->mPoints[0].z * remaining) >> 24;
+    position->x = position->x + (s32) (((s64) segment->mPoints[3].x * progress) >> 24);
+    position->z = position->z + (s32) (((s64) segment->mPoints[3].z * progress) >> 24);
 }
 
 Vec3 *CreateCourseMapGroupSideVectors(CourseMapRow *row) {
@@ -80,8 +80,8 @@ Vec3 *CreateCourseMapGroupSideVectors(CourseMapRow *row) {
     u16 entryCount;
     Vec3 *sideVectors;
     Vec3 direction;
-    Unk02042044 *endEntry;
-    Unk02042044 *startEntry;
+    CourseMapGroupEntry *endEntry;
+    CourseMapGroupEntry *startEntry;
     s32 savedZ;
     groupIndex = row->mUnk_26;
     entryCount = gCourseMap->mEntryGroups[groupIndex].mEntryCount;
@@ -93,11 +93,11 @@ Vec3 *CreateCourseMapGroupSideVectors(CourseMapRow *row) {
             }
             endEntry = GetCourseMapGroupEntry(groupIndex, 0);
             startEntry = GetCourseMapGroupEntry(groupIndex, entryCount - 1);
-            VEC_Subtract(&endEntry->mUnk_00, &startEntry->mUnk_00, &direction);
+            VEC_Subtract(&endEntry->mPos, &startEntry->mPos, &direction);
         } else {
             endEntry = GetCourseMapGroupEntry(groupIndex, entryIndex + 1);
             startEntry = GetCourseMapGroupEntry(groupIndex, entryIndex);
-            VEC_Subtract(&endEntry->mUnk_00, &startEntry->mUnk_00, &direction);
+            VEC_Subtract(&endEntry->mPos, &startEntry->mPos, &direction);
         }
         savedZ = direction.z;
         direction.z = -direction.x;

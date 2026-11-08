@@ -225,11 +225,11 @@ void func_ov001_02183894(Unk02188950 *a) {
     Unk02188950_a0 *a0;
 
     a0 = a->mPrm;
-    if (func_ov001_021881a8(a, &func_ov001_02187fc0(a)->mUnk_00, a0->mUnk_0ac, a0->mUnk_0b0)) {
+    if (func_ov001_021881a8(a, &func_ov001_02187fc0(a)->mPos, a0->mUnk_0ac, a0->mUnk_0b0)) {
         func_ov001_02187218(a, 1, NULL);
         func_ov001_02188d64(a, a->mPrm->mUnk_0b8, a->mPrm->mUnk_0bc);
         func_ov001_02188b2c(a, a->mPrm->mUnk_0c4, a->mPrm->mUnk_0c4, 0);
-        SetAnglePointAndMoveAnglePoint(a, &func_ov001_02187fc0(a)->mUnk_00);
+        SetAnglePointAndMoveAnglePoint(a, &func_ov001_02187fc0(a)->mPos);
         func_ov001_02188cd8(a, a->mPrm->mUnk_0c0, a->mPrm->mUnk_0c0);
         func_ov001_02188e24(a, a->mPrm->mUnk_0c8, NULL);
     } else {
@@ -237,10 +237,10 @@ void func_ov001_02183894(Unk02188950 *a) {
         func_ov001_02187218(a, 1, NULL);
         func_ov001_02188d64(a, a->mPrm->mUnk_09c, a->mPrm->mUnk_0a0);
         func_ov001_02188c48(a, a->mPrm->mUnk_0a8, a->mPrm->mUnk_0a8);
-        SetAnglePointAndMoveAnglePoint(a, &func_ov001_02187fc0(a)->mUnk_00);
+        SetAnglePointAndMoveAnglePoint(a, &func_ov001_02187fc0(a)->mPos);
         func_ov001_02188cd8(a, a->mPrm->mUnk_0a4, a->mPrm->mUnk_0a4);
         a0 = a->mPrm;
-        func_ov001_02188de0(a, a0->mUnk_0ac, a0->mUnk_0b0, &func_ov001_02187fc0(a)->mUnk_00, NULL);
+        func_ov001_02188de0(a, a0->mUnk_0ac, a0->mUnk_0b0, &func_ov001_02187fc0(a)->mPos, NULL);
     }
     func_ov001_02184e6c(a);
 }
