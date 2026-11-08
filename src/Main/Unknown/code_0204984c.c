@@ -43,43 +43,43 @@ static inline u32 func_0204984c_inline(void) {
 }
 
 static inline s32 func_0204984c_inline2(void) {
-    BOOL r = FALSE;
+    BOOL result = FALSE;
     if (func_0204984c_inline() != 0 && data_0217aa00->mUnk_0004 != 13) {
-        r = TRUE;
+        result = TRUE;
     }
-    return r;
+    return result;
 }
 
 static inline s32 func_0204984c_inline3(void) {
-    BOOL r = FALSE;
+    BOOL result = FALSE;
     if (func_0204984c_inline2() && !(data_0217aa00->mUnk_0454 & 0x80)) {
-        r = TRUE;
+        result = TRUE;
     }
-    return r;
+    return result;
 }
 
 static inline s32 func_0204984c_inline4(void) {
-    BOOL r = FALSE;
+    BOOL result = FALSE;
     if (func_0204984c_inline3() && (data_0217aa00->mUnk_0454 & 0x10)) {
-        r = TRUE;
+        result = TRUE;
     }
-    return r;
+    return result;
 }
 
 static inline s32 func_0204984c_inline5(void) {
-    BOOL r = FALSE;
+    BOOL result = FALSE;
     if (data_0217aa14 != NULL && (data_0217aa14->mUnk_75c & 0x10)) {
-        r = TRUE;
+        result = TRUE;
     }
-    return r;
+    return result;
 }
 
 static inline s32 func_0204984c_inline6(void) {
-    BOOL r = FALSE;
+    BOOL result = FALSE;
     if (gWiFiSession != NULL && gWiFiSession->mHeapCreated != FALSE) {
-        r = TRUE;
+        result = TRUE;
     }
-    return r;
+    return result;
 }
 
 static inline s32 func_0204984c_inline7(void) {
@@ -97,24 +97,24 @@ static inline s32 func_0204984c_inline8(void) {
 }
 
 static inline s32 func_0204984c_inline9(void) {
-    BOOL r = FALSE;
+    BOOL result = FALSE;
     if (func_0204984c_inline3() && data_0217aa00->mUnk_0008 != 9) {
-        r = TRUE;
+        result = TRUE;
     }
-    return r;
+    return result;
 }
 
-static inline void func_02049c3c_inline(OSThreadQueue *q) {
-    q->mHead = q->mTail = NULL;
+static inline void func_02049c3c_inline(OSThreadQueue *threadQueue) {
+    threadQueue->mHead = threadQueue->mTail = NULL;
 }
 
-static inline void func_02049c3c_inline2(PMSleepCallbackInfo *p, void (*f)(void *)) {
-    p->mCallback = f;
-    p->mArg = NULL;
+static inline void func_02049c3c_inline2(PMSleepCallbackInfo *callbackInfo, void (*callback)(void *)) {
+    callbackInfo->mCallback = callback;
+    callbackInfo->mArg = NULL;
 }
 
-static inline void func_02049e38_inline(SceneNumbers *a) {
-    if (a == 0 || func_0204a340(a->mScene, a->mNextScene)) {
+static inline void func_02049e38_inline(SceneNumbers *sceneNumbers) {
+    if (sceneNumbers == 0 || func_0204a340(sceneNumbers->mScene, sceneNumbers->mNextScene)) {
         func_0204ac10();
     }
 }
@@ -137,21 +137,21 @@ void func_0204a4d8(void) {
     func_02120150();
 }
 
-s32 func_0204a428(s32 a, s32 *b) {
-    BOOL r = FALSE;
+s32 func_0204a428(s32 sceneNumber, s32 *b) {
+    BOOL result = FALSE;
 
-    switch (a) {
+    switch (sceneNumber) {
         case 11:
             *b = 4;
-            r = TRUE;
+            result = TRUE;
             break;
         case 0:
             *b = 0;
-            r = TRUE;
+            result = TRUE;
             break;
         case 7:
             *b = 4;
-            r = TRUE;
+            result = TRUE;
             break;
         case 2:
             if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
@@ -162,77 +162,77 @@ s32 func_0204a428(s32 a, s32 *b) {
                 } else {
                     *b = 0x45;
                 }
-                r = TRUE;
+                result = TRUE;
             }
             break;
     }
-    return r;
+    return result;
 }
 
-s32 func_0204a340(s32 a, s32 b) {
-    BOOL r = TRUE;
+s32 func_0204a340(s32 scene, s32 nextScene) {
+    BOOL result = TRUE;
 
-    switch (a) {
+    switch (scene) {
         case 0:
-            if (b == 2) {
-                r = FALSE;
+            if (nextScene == 2) {
+                result = FALSE;
             }
             break;
         case 11:
-            if (b == 14) {
-                r = FALSE;
+            if (nextScene == 14) {
+                result = FALSE;
             }
             break;
         case 14:
-            if (b == 3 || b == 7) {
-                r = FALSE;
+            if (nextScene == 3 || nextScene == 7) {
+                result = FALSE;
             }
             break;
         case 7:
-            if (b == 3 || b == 14) {
-                r = FALSE;
+            if (nextScene == 3 || nextScene == 14) {
+                result = FALSE;
             }
             break;
         case 3:
-            if (b == 7) {
-                r = FALSE;
+            if (nextScene == 7) {
+                result = FALSE;
             }
             break;
         case 2:
-            if (b != 0) {
-                if (b == 15) {
+            if (nextScene != 0) {
+                if (nextScene == 15) {
                     if (func_ov001_0219e0b8()) {
                         func_0204ab64(0x78);
                     }
-                    r = FALSE;
+                    result = FALSE;
                 }
             } else {
-                r = FALSE;
+                result = FALSE;
             }
             break;
     }
-    return r;
+    return result;
 }
 
-void func_0204a1a8(void *a) {
+void func_0204a1a8(void *arg) {
     s32 d;
-    BOOL b;
-    BOOL c;
+    BOOL sessionHeapCreated;
+    BOOL hasDisplaySettings;
 
     while (1) {
-        b = FALSE;
-        c = FALSE;
+        sessionHeapCreated = FALSE;
+        hasDisplaySettings = FALSE;
         OS_SleepThread(&gSceneRunState->mThreadQueue);
         gSceneRunState->mNextScene = 0;
         func_0212b144();
         if (gDisplaySettings != NULL) {
-            c = TRUE;
+            hasDisplaySettings = TRUE;
         }
         func_02039478();
         ReadKeysIntoInputSlot();
         VBlankIntrWait();
         if (func_0204984c_inline6()) {
-            b = TRUE;
+            sessionHeapCreated = TRUE;
         }
         func_0212ad28(gSceneRunState->mUnk_118, gSceneRunState->mUnk_11c);
         StopAllSeqPlayers();
@@ -241,7 +241,7 @@ void func_0204a1a8(void *a) {
         } else {
             func_02108c80();
         }
-        if (b != FALSE) {
+        if (sessionHeapCreated != FALSE) {
             switch (gSceneRunState->mUnk_118) {
                 case 1:
                 case 2:
@@ -253,25 +253,25 @@ void func_0204a1a8(void *a) {
             }
         }
         do {
-            if (c != FALSE) {
+            if (hasDisplaySettings != FALSE) {
                 PrepareDisplayFrame();
             }
-            d = b == FALSE ? func_02054f58() == 1 : 1;
+            d = sessionHeapCreated == FALSE ? func_02054f58() == 1 : 1;
             UpdateSounds();
             VBlankIntrWait();
-            if (c != FALSE) {
+            if (hasDisplaySettings != FALSE) {
                 RecordFrameTimes();
             }
         } while (d == 0);
         do {
-            if (c != FALSE) {
+            if (hasDisplaySettings != FALSE) {
                 PrepareDisplayFrame();
             }
             ReadKeysIntoInputSlot();
             d = func_0212b0b8();
             UpdateSounds();
             VBlankIntrWait();
-            if (c != FALSE) {
+            if (hasDisplaySettings != FALSE) {
                 RecordFrameTimes();
             }
         } while (d == -1);
@@ -288,18 +288,18 @@ void func_0204a1a8(void *a) {
 
 void func_02049f60(void) {
     s32 g;
-    BOOL a;
-    BOOL b;
-    BOOL d;
+    BOOL sessionHeapCreated;
+    BOOL hasDisplaySettings;
+    BOOL noDisplaySettings;
     BOOL e;
     s32 f;
 
-    a = FALSE;
-    b = FALSE;
+    sessionHeapCreated = FALSE;
+    hasDisplaySettings = FALSE;
     gSceneRunState->mNextScene = 0;
     func_0212b144();
     if (gDisplaySettings != NULL) {
-        b = TRUE;
+        hasDisplaySettings = TRUE;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         func_0212ad28(gSceneRunState->mUnk_118, gSceneRunState->mUnk_11c);
@@ -308,7 +308,7 @@ void func_02049f60(void) {
     ReadKeysIntoInputSlot();
     VBlankIntrWait();
     if (func_0204984c_inline6()) {
-        a = TRUE;
+        sessionHeapCreated = TRUE;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_0212ad28(gSceneRunState->mUnk_118, gSceneRunState->mUnk_11c);
@@ -322,7 +322,7 @@ void func_02049f60(void) {
     PM_DeletePreSleepCallback(&gSceneRunState->mPreSleepCallback);
     PM_DeletePostSleepCallback(&gSceneRunState->mPostSleepCallback);
     PM_SetLCDPower(1);
-    if (a != FALSE) {
+    if (sessionHeapCreated != FALSE) {
         switch (gSceneRunState->mUnk_118) {
             case 1:
             case 2:
@@ -333,13 +333,13 @@ void func_02049f60(void) {
                 break;
         }
     }
-    d = b == FALSE;
+    noDisplaySettings = hasDisplaySettings == FALSE;
     do {
         ReadKeysIntoInputSlot();
-        if (d == FALSE) {
+        if (noDisplaySettings == FALSE) {
             PrepareDisplayFrame();
         }
-        if (a == FALSE) {
+        if (sessionHeapCreated == FALSE) {
             e = func_02054f58() == 1;
             f = e;
         } else {
@@ -352,7 +352,7 @@ void func_02049f60(void) {
         g = func_0212b0b8();
         UpdateSounds();
         VBlankIntrWait();
-        if (b != FALSE) {
+        if (hasDisplaySettings != FALSE) {
             RecordFrameTimes();
         }
     } while (e == FALSE || g == -1);
@@ -366,13 +366,13 @@ void func_02049f60(void) {
     }
 }
 
-void func_02049e38(s32 a) {
-    BOOL b;
+void func_02049e38(s32 kind) {
+    BOOL hasDisplaySettings;
     BOOL c;
 
     c = FALSE;
-    b = gDisplaySettings != NULL;
-    switch (a) {
+    hasDisplaySettings = gDisplaySettings != NULL;
+    switch (kind) {
         case 0:
             if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
                 c = TRUE;
@@ -391,14 +391,14 @@ void func_02049e38(s32 a) {
             c = FALSE;
             break;
     }
-    gSceneRunState->mUnk_118 = a;
+    gSceneRunState->mUnk_118 = kind;
     gSceneRunState->mUnk_11c = c;
     func_02049f60();
     StopSceneSounds();
     if (data_021759d0->mUnk_1c_0) {
         func_02049e38_inline(0);
     }
-    if (b != FALSE) {
+    if (hasDisplaySettings != FALSE) {
         SetBrightnessFadesClear();
         StartFadeToFadedNegative(10);
         do {
@@ -412,23 +412,23 @@ void func_02049e38(s32 a) {
     }
 }
 
-void ScenePreSleepCallback(void *a) {
+void ScenePreSleepCallback(void *arg) {
     BOOL b;
     s32 c;
-    BOOL d;
+    BOOL done;
 
     do {
         PrepareDisplayFrame();
         b = func_02054f58() != 1;
         c = func_0204984c_inline8();
         if (b == FALSE && c == 0) {
-            d = TRUE;
+            done = TRUE;
         } else {
-            d = FALSE;
+            done = FALSE;
         }
         FinishDisplayFrame();
         RecordFrameTimes();
-    } while (d == FALSE);
+    } while (done == FALSE);
     if (gSceneRunState->mSceneCallbacks.mPreSleep != NULL) {
         gSceneRunState->mSceneCallbacks.mPreSleep();
     }
@@ -440,9 +440,9 @@ void ScenePostSleepCallback(void) {
     }
 }
 
-void InitSceneRunState(void *a) {
-    gSceneRunState = HeapAlloc(a, 0x124);
-    gSceneRunState->mThreadStack = HeapAllocAligned(a, 0x400, 0x20);
+void InitSceneRunState(void *heap) {
+    gSceneRunState = HeapAlloc(heap, 0x124);
+    gSceneRunState->mThreadStack = HeapAllocAligned(heap, 0x400, 0x20);
     gSceneRunState->mUnk_10c = 6;
     gSceneRunState->mLcdOff = FALSE;
     gSceneRunState->mUnk_118 = -1;
@@ -458,15 +458,15 @@ void InitSceneRunState(void *a) {
 }
 
 u32 func_02049b6c(void) {
-    u32 r = 0;
+    u32 result = 0;
 
     if (gRaceSetup->mMode == 5 && func_0204984c_inline5()) {
-        r = 1;
+        result = 1;
     }
     if (func_0204984c_inline4()) {
-        r = 1;
+        result = 1;
     }
-    return r;
+    return result;
 }
 
 BOOL ShouldGoSleepMode(void) {
@@ -500,15 +500,15 @@ u32 func_0204998c(void) {
     return 0;
 }
 
-void func_02049980(s32 a) {
-    func_02049e38(a);
+void func_02049980(s32 kind) {
+    func_02049e38(kind);
 }
 
-s32 func_0204984c(SceneNumbers *a, s32 b) {
-    BOOL r;
+s32 func_0204984c(SceneNumbers *sceneNumbers, s32 b) {
+    BOOL result;
     s32 v;
 
-    r = FALSE;
+    result = FALSE;
     if (func_0204984c_inline6()) {
         v = func_02120644();
         if (b != 0 && v != 0) {
@@ -525,14 +525,14 @@ s32 func_0204984c(SceneNumbers *a, s32 b) {
                     break;
             }
             func_02049e38(v);
-            r = TRUE;
+            result = TRUE;
         }
     } else if (b != 0 && func_0204984c_inline9()) {
         func_02049e38(0);
-        r = TRUE;
+        result = TRUE;
         data_0217aa00->mUnk_0008 = 9;
     } else {
         func_02055340();
     }
-    return r;
+    return result;
 }

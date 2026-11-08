@@ -19,14 +19,14 @@
 // Slot of data_02175628 that the code addresses through a constant.
 typedef enum InputSlotIndex { UNK_02175628_INDEX_8 = 8 } InputSlotIndex;
 
-typedef struct Unk02175650_buf {
+typedef struct KeyRecordingBuffer {
     /* 000 */ u32 mUnk_00;
-    /* 004 */ u8 mUnk_04[0xdc8];
-} Unk02175650_buf;
+    /* 004 */ u8 mPairs[0xdc8];
+} KeyRecordingBuffer;
 
 // Pad key bits recorded as (bits, repeat count) byte pairs, and played back from them.
 typedef struct KeyRecording {
-    /* 00 */ Unk02175650_buf *mBuffer;
+    /* 00 */ KeyRecordingBuffer *mBuffer;
     /* 04 */ u16 mPairIndex;
     /* 06 */ u16 mRepeatCount;
 // 0 idle, 1 recording, 2 playing, 3 buffer full.

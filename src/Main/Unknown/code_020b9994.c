@@ -587,7 +587,7 @@ void func_020b9dfc(RaceHudOamBuffer *p) {
             if (data_02175628[0].mSourceKind != 2) {
                 return;
             }
-            if (func_0204a650(&data_02175650[0]) == FALSE) {
+            if (IsKeyRecordingFull(&data_02175650[0]) == FALSE) {
                 return;
             }
             data_0217b3c8->mUnk_08 = 0;

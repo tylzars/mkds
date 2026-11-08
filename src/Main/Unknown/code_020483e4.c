@@ -24,7 +24,7 @@ void InitArchiveSlots(void *heap) {
     s32 index;
 
     data_021759c8 = HeapAlloc(heap, 0xa84);
-    data_021759c8->mUnk_8c8.mUnk_88 = HeapAllocAligned(heap, 0x400, 0x20);
+    data_021759c8->mUnk_8c8.mReadBuffer = HeapAllocAligned(heap, 0x400, 0x20);
     for (index = 0; index < 20; index++) {
         data_021759c8->mUnk_00[index].mLoaded = 0;
     }

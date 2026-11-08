@@ -40,155 +40,157 @@
 
 #pragma thumb on
 
-void BuildResultArchivePath(char *a) {
-    const char *b;
+void BuildResultArchivePath(char *path) {
+    const char *suffix;
 
     if (data_0217b488->mUnk_78 == 1) {
-        b = data_usa_02165108;
+        suffix = data_usa_02165108;
     } else {
-        b = data_usa_0216510c;
+        suffix = data_usa_0216510c;
     }
-    OS_SNPrintf(a, 0x80, gResultArchivePathFormat, gSceneNames[10].mName, b, data_usa_02165124);
+    OS_SNPrintf(path, 0x80, gResultArchivePathFormat, gSceneNames[10].mName, suffix, data_usa_02165124);
 }
 
-void BuildResultArchivePathWithLanguage(char *a) {
-    const char *b;
-    u32 c;
+void BuildResultArchivePathWithLanguage(char *path) {
+    const char *suffix;
+    u32 languageCode;
 
     if (data_0217b488->mUnk_78 == 1) {
-        b = data_usa_021650e0;
+        suffix = data_usa_021650e0;
     } else {
-        b = data_usa_021650e4;
+        suffix = data_usa_021650e4;
     }
-    c = GetLanguageCode();
-    OS_SNPrintf(a, 0x80, gResultLanguageArchivePathFormat, gSceneNames[10].mName, b, c, data_usa_02165100);
+    languageCode = GetLanguageCode();
+    OS_SNPrintf(path, 0x80, gResultLanguageArchivePathFormat, gSceneNames[10].mName, suffix, languageCode,
+                data_usa_02165100);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void BuildStaffRollArchivePath(char *a) {
-    u32 v1;
-    v1 = GetLanguageCode();
-    OS_SNPrintf(a, 0x80, gStaffRollLanguageArchivePathFormat, v1, data_021650d8);
+void BuildStaffRollArchivePath(char *path) {
+    u32 languageCode;
+    languageCode = GetLanguageCode();
+    OS_SNPrintf(path, 0x80, gStaffRollLanguageArchivePathFormat, languageCode, data_021650d8);
 }
 
-void BuildSceneModeArchivePath(char *a, const char *b, int c) {
-    if (*b != 0) {
-        OS_SNPrintf(a, 0x80, gSceneModeArchivePathFormat, b, gModeArchiveNames[c], data_021650b4);
+void BuildSceneModeArchivePath(char *path, const char *sceneName, int mode) {
+    if (*sceneName != 0) {
+        OS_SNPrintf(path, 0x80, gSceneModeArchivePathFormat, sceneName, gModeArchiveNames[mode], data_021650b4);
     }
 }
 
-void BuildSceneModeLanguageArchivePath(char *a, const char *b, int c) {
-    u32 v1;
-    if (*b != 0) {
-        v1 = GetLanguageCode();
-        OS_SNPrintf(a, 0x80, gSceneModeLanguageArchivePathFormat, b, gModeArchiveNames[c], v1, data_02165098);
+void BuildSceneModeLanguageArchivePath(char *path, const char *sceneName, int mode) {
+    u32 languageCode;
+    if (*sceneName != 0) {
+        languageCode = GetLanguageCode();
+        OS_SNPrintf(path, 0x80, gSceneModeLanguageArchivePathFormat, sceneName, gModeArchiveNames[mode], languageCode,
+                    data_02165098);
     }
 }
 
-void BuildArchivePathWithLanguage(const char *a, char *b) {
-    u32 v1;
-    v1 = GetLanguageCode();
-    OS_SNPrintf(b, 0x80, gLanguageArchivePathFormat, a, v1);
+void BuildArchivePathWithLanguage(const char *prefix, char *path) {
+    u32 languageCode;
+    languageCode = GetLanguageCode();
+    OS_SNPrintf(path, 0x80, gLanguageArchivePathFormat, prefix, languageCode);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void LoadArchiveSlotForScene(int a, int b) {
-    char c[0x80] = {0};
-    u32 *d;
+void LoadArchiveSlotForScene(int slotIndex, int sceneNumber) {
+    char path[0x80] = {0};
+    u32 *bufferData;
     s32 f;
-    s32 e;
+    s32 uncompressSource;
     s32 g;
     s32 h;
 
-    d = NULL;
-    if (data_021759c8->mUnk_00[a].mLoaded != 0) {
+    bufferData = NULL;
+    if (data_021759c8->mUnk_00[slotIndex].mLoaded != 0) {
         return;
     }
-    e = gArchiveSlotInfos[a].mUnk_0c;
-    f = gArchiveSlotInfos[a].mUnk_10;
-    g = gArchiveSlotInfos[a].mUnk_14;
-    h = gArchiveSlotInfos[a].mBufferIndex;
+    uncompressSource = gArchiveSlotInfos[slotIndex].mUncompressSource;
+    f = gArchiveSlotInfos[slotIndex].mUnk_10;
+    g = gArchiveSlotInfos[slotIndex].mUnk_14;
+    h = gArchiveSlotInfos[slotIndex].mBufferIndex;
     if (h != -1) {
-        d = data_021759c8->mBuffers[h].mData;
+        bufferData = data_021759c8->mBuffers[h].mData;
     }
-    switch (a) {
+    switch (slotIndex) {
         case 3:
         case 13:
-            BuildCourseArchivePath(c, gRaceSetup->mCourseId, a != 3);
+            BuildCourseArchivePath(path, gRaceSetup->mCourseId, slotIndex != 3);
             break;
         case 5:
-            switch (b) {
+            switch (sceneNumber) {
                 case 2:
-                    d = data_021759c8->mBuffers[2].mData;
+                    bufferData = data_021759c8->mBuffers[2].mData;
                     break;
                 case 1:
-                    d = data_021759c8->mBuffers[0].mData;
+                    bufferData = data_021759c8->mBuffers[0].mData;
                     break;
                 case 10:
-                    d = data_021759c8->mBuffers[14].mData;
+                    bufferData = data_021759c8->mBuffers[14].mData;
                     break;
             }
-            switch (b) {
+            switch (sceneNumber) {
                 case 10:
-                    BuildResultArchivePath(c);
+                    BuildResultArchivePath(path);
                     break;
                 case 2:
                     if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
-                        OS_SNPrintf(c, 0x80, gStaffRollArchivePath);
+                        OS_SNPrintf(path, 0x80, gStaffRollArchivePath);
                     } else {
-                        BuildSceneArchivePath(c, gSceneNames[b].mName);
+                        BuildSceneArchivePath(path, gSceneNames[sceneNumber].mName);
                     }
                     break;
                 default:
-                    BuildSceneArchivePath(c, gSceneNames[b].mName);
+                    BuildSceneArchivePath(path, gSceneNames[sceneNumber].mName);
                     break;
             }
-            g = gSceneNames[b].mUnk_04;
+            g = gSceneNames[sceneNumber].mUnk_04;
             break;
         case 9:
-            switch (b) {
+            switch (sceneNumber) {
                 case 2:
-                    d = data_021759c8->mBuffers[3].mData;
+                    bufferData = data_021759c8->mBuffers[3].mData;
                     break;
                 case 1:
-                    d = data_021759c8->mBuffers[1].mData;
+                    bufferData = data_021759c8->mBuffers[1].mData;
                     break;
                 case 10:
-                    d = data_021759c8->mBuffers[15].mData;
+                    bufferData = data_021759c8->mBuffers[15].mData;
                     break;
             }
-            switch (b) {
+            switch (sceneNumber) {
                 case 10:
-                    BuildResultArchivePathWithLanguage(c);
+                    BuildResultArchivePathWithLanguage(path);
                     break;
                 case 2:
                     if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
-                        BuildStaffRollArchivePath(c);
+                        BuildStaffRollArchivePath(path);
                     } else {
-                        BuildSceneArchivePathWithLanguage(c, gSceneNames[b].mName);
+                        BuildSceneArchivePathWithLanguage(path, gSceneNames[sceneNumber].mName);
                     }
                     break;
                 default:
-                    BuildSceneArchivePathWithLanguage(c, gSceneNames[b].mName);
+                    BuildSceneArchivePathWithLanguage(path, gSceneNames[sceneNumber].mName);
                     break;
             }
             break;
         case 11:
-            BuildSceneModeArchivePath(c, gSceneNames[b].mName, gRaceSetup->mMode);
+            BuildSceneModeArchivePath(path, gSceneNames[sceneNumber].mName, gRaceSetup->mMode);
             break;
         case 12:
-            BuildSceneModeLanguageArchivePath(c, gSceneNames[b].mName, gRaceSetup->mMode);
+            BuildSceneModeLanguageArchivePath(path, gSceneNames[sceneNumber].mName, gRaceSetup->mMode);
             break;
         case 2:
         case 15:
         case 17:
-            BuildArchivePathWithLanguage(gArchiveSlotInfos[a].mPath, c);
+            BuildArchivePathWithLanguage(gArchiveSlotInfos[slotIndex].mPath, path);
             break;
         case 0:
         case 1:
@@ -199,45 +201,45 @@ void LoadArchiveSlotForScene(int a, int b) {
         case 14:
         case 16:
         case 18:
-            strncpy(c, gArchiveSlotInfos[(s32) a].mPath, 0x80);
+            strncpy(path, gArchiveSlotInfos[(s32) slotIndex].mPath, 0x80);
             break;
     }
-    if (c[0] != 0) {
-        LoadArchiveSlot(a, c, d, NULL, f, e, g);
+    if (path[0] != 0) {
+        LoadArchiveSlot(slotIndex, path, bufferData, NULL, f, uncompressSource, g);
     }
-    h = *(s32 *) ((s32) &gArchiveSlotInfos[0].mNextSlot + a * 0x18);
+    h = *(s32 *) ((s32) &gArchiveSlotInfos[0].mNextSlot + slotIndex * 0x18);
     if (h != -1) {
-        LoadArchiveSlotForScene(h, b);
+        LoadArchiveSlotForScene(h, sceneNumber);
     }
 }
 
-void LoadArchiveSlot(s32 a, const char *b, u32 *c, void *d, s32 e, s32 f, s32 g) {
-    Unk021759c8_8c8 *p;
-    s32 h;
+void LoadArchiveSlot(s32 slotIndex, const char *path, u32 *sourceData, void *data, s32 e, s32 uncompressSource, s32 g) {
+    ArchiveLoadRequest *request;
+    s32 bufferIndex;
 
-    p = &data_021759c8->mUnk_8c8;
-    strncpy((char *) p->mUnk_00, b, 0x80);
-    p->mUnk_8c = a;
-    p->mUnk_80 = c;
-    p->mUnk_84 = d;
-    p->mUnk_90 = e;
-    p->mUnk_94 = f;
-    p->mUnk_9c = g;
+    request = &data_021759c8->mUnk_8c8;
+    strncpy((char *) request->mPath, path, 0x80);
+    request->mSlotIndex = slotIndex;
+    request->mSourceData = sourceData;
+    request->mData = data;
+    request->mUnk_90 = e;
+    request->mUncompressSource = uncompressSource;
+    request->mUnk_9c = g;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        if (p->mUnk_80 != NULL) {
-            if (p->mUnk_94 != 0) {
-                h = gArchiveSlotInfos[a].mBufferIndex;
-                if (h != -1) {
-                    data_021759c8->mBuffers[h].mUnk_08_31 = 1;
+        if (request->mSourceData != NULL) {
+            if (request->mUncompressSource != 0) {
+                bufferIndex = gArchiveSlotInfos[slotIndex].mBufferIndex;
+                if (bufferIndex != -1) {
+                    data_021759c8->mBuffers[bufferIndex].mUnk_08_31 = 1;
                 }
                 UncompressArchiveMemory();
             } else {
-                p->mUnk_84 = p->mUnk_80;
+                request->mData = request->mSourceData;
             }
             LoadArchiveSlotData();
         }
     } else {
-        if (a == 0x13) {
+        if (slotIndex == 0x13) {
             UncompressArchiveMemory();
         } else {
             UncompressArchiveFile();
@@ -247,126 +249,127 @@ void LoadArchiveSlot(s32 a, const char *b, u32 *c, void *d, s32 e, s32 f, s32 g)
 }
 
 void UncompressArchiveFile(void) {
-    Unk021759c8_8c8 *p;
-    FSFile f;
-    MIUncompContextLZ b;
-    u32 n;
-    s32 r;
+    ArchiveLoadRequest *request;
+    FSFile file;
+    MIUncompContextLZ uncompContext;
+    u32 uncompressedSize;
+    s32 bytesRead;
 
-    p = &data_021759c8->mUnk_8c8;
-    FS_InitFile(&f);
-    if (FS_OpenFile(&f, p->mUnk_00) == 0) {
+    request = &data_021759c8->mUnk_8c8;
+    FS_InitFile(&file);
+    if (FS_OpenFile(&file, request->mPath) == 0) {
         return;
     }
-    if (FS_ReadFile(&f, p->mUnk_88, 4) < 0) {
+    if (FS_ReadFile(&file, request->mReadBuffer, 4) < 0) {
         return;
     }
-    n = *p->mUnk_88 >> 8;
-    if (n > 0x200000) {
+    uncompressedSize = *request->mReadBuffer >> 8;
+    if (uncompressedSize > 0x200000) {
         return;
     }
-    if (p->mUnk_90 != 0) {
-        p->mUnk_84 = HeapAllocAligned(GetHeap(GetCurrentHeapCall()), n, -0x20);
+    if (request->mUnk_90 != 0) {
+        request->mData = HeapAllocAligned(GetHeap(GetCurrentHeapCall()), uncompressedSize, -0x20);
     } else {
-        p->mUnk_84 = HeapAllocAligned(GetHeap(GetCurrentHeapCall()), n, 0x20);
+        request->mData = HeapAllocAligned(GetHeap(GetCurrentHeapCall()), uncompressedSize, 0x20);
     }
-    MI_InitUncompContextLZ(&b, p->mUnk_84, (const MICompressionHeader *) p->mUnk_88);
+    MI_InitUncompContextLZ(&uncompContext, request->mData, (const MICompressionHeader *) request->mReadBuffer);
     do {
-        r = FS_ReadFile(&f, p->mUnk_88, 0x400);
-        if (r <= 0) {
+        bytesRead = FS_ReadFile(&file, request->mReadBuffer, 0x400);
+        if (bytesRead <= 0) {
             return;
         }
-    } while (MI_ReadUncompLZ8(&b, (const u8 *) p->mUnk_88, r) != 0);
-    DC_StoreRange(p->mUnk_84, n);
+    } while (MI_ReadUncompLZ8(&uncompContext, (const u8 *) request->mReadBuffer, bytesRead) != 0);
+    DC_StoreRange(request->mData, uncompressedSize);
     NNS_FndGetTotalFreeSizeForExpHeap(GetHeap(GetCurrentHeapCall()));
 }
 
 void UncompressArchiveMemory(void) {
-    Unk021759c8_8c8 *p;
-    u32 n;
+    ArchiveLoadRequest *request;
+    u32 uncompressedSize;
 
-    p = &data_021759c8->mUnk_8c8;
-    n = *p->mUnk_80 >> 8;
-    if (p->mUnk_90 != 0) {
-        p->mUnk_84 = HeapAllocAligned(GetHeap(GetCurrentHeapCall()), n, -0x20);
+    request = &data_021759c8->mUnk_8c8;
+    uncompressedSize = *request->mSourceData >> 8;
+    if (request->mUnk_90 != 0) {
+        request->mData = HeapAllocAligned(GetHeap(GetCurrentHeapCall()), uncompressedSize, -0x20);
     } else {
-        p->mUnk_84 = HeapAllocAligned(GetHeap(GetCurrentHeapCall()), n, 0x20);
+        request->mData = HeapAllocAligned(GetHeap(GetCurrentHeapCall()), uncompressedSize, 0x20);
     }
-    MI_UncompressLZ8(p->mUnk_80, p->mUnk_84);
-    DC_StoreRange(p->mUnk_84, n);
+    MI_UncompressLZ8(request->mSourceData, request->mData);
+    DC_StoreRange(request->mData, uncompressedSize);
     NNS_FndGetTotalFreeSizeForExpHeap(GetHeap(GetCurrentHeapCall()));
 }
 
 void LoadArchiveSlotData(void) {
-    Unk021759c8_8c8 *p;
-    ArchiveSlot *e;
+    ArchiveLoadRequest *request;
+    ArchiveSlot *slot;
 
-    p = &data_021759c8->mUnk_8c8;
-    e = &data_021759c8->mUnk_00[p->mUnk_8c];
-    if (p->mUnk_84 != NULL) {
-        if (ArchiveLoadFromMemory(&e->mArchive, (const u8 *) gArchiveNames[p->mUnk_8c], p->mUnk_84) != 0) {
-            e->mLoaded = 1;
-            e->mData = p->mUnk_84;
+    request = &data_021759c8->mUnk_8c8;
+    slot = &data_021759c8->mUnk_00[request->mSlotIndex];
+    if (request->mData != NULL) {
+        if (ArchiveLoadFromMemory(&slot->mArchive, (const u8 *) gArchiveNames[request->mSlotIndex], request->mData) !=
+            0) {
+            slot->mLoaded = 1;
+            slot->mData = request->mData;
         }
     }
 }
 
-void ReleaseArchiveSlot(int a) {
-    BOOL b;
-    s32 c;
+void ReleaseArchiveSlot(int slotIndex) {
+    BOOL shouldFree;
+    s32 bufferIndex;
 
-    b = TRUE;
-    if (data_021759c8->mUnk_00[a].mLoaded != 0 && a != 0x13) {
-        ArchiveUnload(&data_021759c8->mUnk_00[a].mArchive.mUnk_00);
+    shouldFree = TRUE;
+    if (data_021759c8->mUnk_00[slotIndex].mLoaded != 0 && slotIndex != 0x13) {
+        ArchiveUnload(&data_021759c8->mUnk_00[slotIndex].mArchive.mUnk_00);
         if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-            c = gArchiveSlotInfos[a].mBufferIndex;
-            if (c != -1 && data_021759c8->mBuffers[c].mUnk_08_29 != 0) {
-                b = FALSE;
+            bufferIndex = gArchiveSlotInfos[slotIndex].mBufferIndex;
+            if (bufferIndex != -1 && data_021759c8->mBuffers[bufferIndex].mUncompress != 0) {
+                shouldFree = FALSE;
             } else {
-                data_021759c8->mBuffers[c].mUnk_08_31 = 1;
+                data_021759c8->mBuffers[bufferIndex].mUnk_08_31 = 1;
             }
         }
-        if (b != FALSE) {
-            HeapFree(GetHeap(GetCurrentHeapCall()), data_021759c8->mUnk_00[a].mData);
+        if (shouldFree != FALSE) {
+            HeapFree(GetHeap(GetCurrentHeapCall()), data_021759c8->mUnk_00[slotIndex].mData);
         }
-        data_021759c8->mUnk_00[a].mLoaded = 0;
-        data_021759c8->mUnk_00[a].mData = 0;
+        data_021759c8->mUnk_00[slotIndex].mLoaded = 0;
+        data_021759c8->mUnk_00[slotIndex].mData = 0;
         NNS_FndGetTotalFreeSizeForExpHeap(GetHeap(GetCurrentHeapCall()));
     }
 }
 
-void LoadArchiveSlotsForScene(s32 a) {
-    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 && a == 6 && data_0217b488->mUnk_74 == 0) {
+void LoadArchiveSlotsForScene(s32 sceneNumber) {
+    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 && sceneNumber == 6 && data_0217b488->mUnk_74 == 0) {
     } else {
-        LoadArchiveSlotForScene(1, a);
+        LoadArchiveSlotForScene(1, sceneNumber);
     }
-    switch (a) {
+    switch (sceneNumber) {
         case 1:
         case 12:
-            LoadArchiveSlotForScene(5, a);
-            LoadArchiveSlotForScene(14, a);
-            LoadArchiveSlotForScene(16, a);
+            LoadArchiveSlotForScene(5, sceneNumber);
+            LoadArchiveSlotForScene(14, sceneNumber);
+            LoadArchiveSlotForScene(16, sceneNumber);
             break;
         case 10:
-            LoadArchiveSlotForScene(0, a);
-            LoadArchiveSlotForScene(5, a);
-            LoadArchiveSlotForScene(16, a);
-            LoadArchiveSlotForScene(18, a);
+            LoadArchiveSlotForScene(0, sceneNumber);
+            LoadArchiveSlotForScene(5, sceneNumber);
+            LoadArchiveSlotForScene(16, sceneNumber);
+            LoadArchiveSlotForScene(18, sceneNumber);
             break;
         case 2:
-            LoadArchiveSlotForScene(18, a);
-            LoadArchiveSlotForScene(6, a);
-            LoadArchiveSlotForScene(8, a);
+            LoadArchiveSlotForScene(18, sceneNumber);
+            LoadArchiveSlotForScene(6, sceneNumber);
+            LoadArchiveSlotForScene(8, sceneNumber);
             break;
         case 3:
-            LoadArchiveSlotForScene(0, a);
-            LoadArchiveSlotForScene(5, a);
-            LoadArchiveSlotForScene(16, a);
+            LoadArchiveSlotForScene(0, sceneNumber);
+            LoadArchiveSlotForScene(5, sceneNumber);
+            LoadArchiveSlotForScene(16, sceneNumber);
             break;
         case 5:
-            LoadArchiveSlotForScene(5, a);
-            LoadArchiveSlotForScene(14, a);
-            LoadArchiveSlotForScene(16, a);
+            LoadArchiveSlotForScene(5, sceneNumber);
+            LoadArchiveSlotForScene(14, sceneNumber);
+            LoadArchiveSlotForScene(16, sceneNumber);
             break;
         case 0:
         case 7:
@@ -376,19 +379,19 @@ void LoadArchiveSlotsForScene(s32 a) {
         case 13:
         case 14:
         case 15:
-            LoadArchiveSlotForScene(5, a);
-            LoadArchiveSlotForScene(16, a);
+            LoadArchiveSlotForScene(5, sceneNumber);
+            LoadArchiveSlotForScene(16, sceneNumber);
             break;
         case 4:
             if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-                LoadArchiveSlotForScene(5, a);
-                LoadArchiveSlotForScene(16, a);
+                LoadArchiveSlotForScene(5, sceneNumber);
+                LoadArchiveSlotForScene(16, sceneNumber);
             }
             break;
         case 6:
             if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-                LoadArchiveSlotForScene(5, a);
-                LoadArchiveSlotForScene(16, a);
+                LoadArchiveSlotForScene(5, sceneNumber);
+                LoadArchiveSlotForScene(16, sceneNumber);
             }
             break;
     }
@@ -405,8 +408,8 @@ void ReleaseArchiveSlots(void) {
 #pragma thumb off
 
 #pragma thumb on
-void SetHeapGroupId(u32 a) {
-    NNS_FndSetGroupIDForExpHeap(GetHeap(GetCurrentHeapCall()), a);
+void SetHeapGroupId(u32 groupId) {
+    NNS_FndSetGroupIDForExpHeap(GetHeap(GetCurrentHeapCall()), groupId);
 }
 #pragma thumb off
 
@@ -501,20 +504,20 @@ void *FindCourseFile(const char *path) {
 }
 
 void *func_02047950(const char *path) {
-    int v1;
-    v1 = GetCurrentSceneNumber();
-    if (v1 == 3) {
+    int currentSceneNumber;
+    currentSceneNumber = GetCurrentSceneNumber();
+    if (currentSceneNumber == 3) {
         return FindKartModelFile(path);
     }
     return LoadKartModelFile(path);
 }
 
 void *FindKartModelFile(const char *path) {
-    int v1;
+    int currentSceneNumber;
     void *file;
     file = NULL;
-    v1 = GetCurrentSceneNumber();
-    if (((v1 == 1) || (v1 == 3)) || (v1 == 0xc)) {
+    currentSceneNumber = GetCurrentSceneNumber();
+    if (((currentSceneNumber == 1) || (currentSceneNumber == 3)) || (currentSceneNumber == 0xc)) {
         file = FindArchiveFile(gArchiveNames[10], path);
     } else {
         if (data_021759c8->mUnk_308 != 0) {
@@ -536,13 +539,13 @@ void *FindKartModelFile(const char *path) {
 
 void *LoadKartModelFile(const char *path) {
     void *file;
-    s32 b;
+    s32 currentSceneNumber;
     char fullPath[0x80];
     u32 archiveName;
 
     file = NULL;
-    b = GetCurrentSceneNumber();
-    if (b == 1 || b == 3 || b == 0xc) {
+    currentSceneNumber = GetCurrentSceneNumber();
+    if (currentSceneNumber == 1 || currentSceneNumber == 3 || currentSceneNumber == 0xc) {
         archiveName = gArchiveNames[10];
         if (path[0] == '/') {
             OS_SNPrintf(fullPath, 0x80, data_usa_02165008, archiveName, path);
@@ -594,23 +597,23 @@ void func_0204775c(void) {
 }
 
 void func_02047728(void) {
-    int v1;
+    int currentSceneNumber;
     ReleaseArchiveSlot(7);
     ReleaseArchiveSlot(8);
     SetHeapGroupId((u16) 0);
-    v1 = GetCurrentSceneNumber();
-    if (v1 == 2) {
+    currentSceneNumber = GetCurrentSceneNumber();
+    if (currentSceneNumber == 2) {
         LoadArchiveSlotForScene(3, 2);
     }
     SetHeapGroupId((u16) 9);
 }
 
 void func_020476ec(void) {
-    int v1;
+    int currentSceneNumber;
     ReleaseArchiveSlot(0xd);
     SetHeapGroupId((u16) 0);
-    v1 = GetCurrentSceneNumber();
-    if (v1 == 2) {
+    currentSceneNumber = GetCurrentSceneNumber();
+    if (currentSceneNumber == 2) {
         LoadArchiveSlotForScene(5, 2);
         LoadArchiveSlotForScene(0xb, 2);
         LoadArchiveSlotForScene(0, 2);
@@ -619,14 +622,14 @@ void func_020476ec(void) {
 }
 
 void func_020476ac(void) {
-    u32 v1;
-    v1 = GetCurrentSceneNumber();
+    u32 currentSceneNumber;
+    currentSceneNumber = GetCurrentSceneNumber();
     ReleaseArchiveSlot(10);
     SetHeapGroupId((u16) 0);
-    LoadArchiveSlotForScene(1, v1);
-    LoadArchiveSlotForScene(5, v1);
-    LoadArchiveSlotForScene(0xe, v1);
-    LoadArchiveSlotForScene(0x10, v1);
+    LoadArchiveSlotForScene(1, currentSceneNumber);
+    LoadArchiveSlotForScene(5, currentSceneNumber);
+    LoadArchiveSlotForScene(0xe, currentSceneNumber);
+    LoadArchiveSlotForScene(0x10, currentSceneNumber);
     SetHeapGroupId((u16) 9);
 }
 
@@ -634,14 +637,14 @@ void func_020476ac(void) {
 
 #pragma thumb on
 
-void InitArchiveBuffer(NNSiFndHeapHead *a, s32 b, s32 c, u32 d, u32 e) {
-    ArchiveBuffer *p = &data_021759c8->mBuffers[b];
-    p->mHeap = a;
-    p->mData = NULL;
-    p->mUnk_08_0 = c << 10;
-    p->mUnk_08_29 = d;
-    p->mUnk_08_30 = e;
-    p->mUnk_08_31 = 1;
+void InitArchiveBuffer(NNSiFndHeapHead *heap, s32 bufferIndex, s32 c, u32 uncompress, u32 e) {
+    ArchiveBuffer *buffer = &data_021759c8->mBuffers[bufferIndex];
+    buffer->mHeap = heap;
+    buffer->mData = NULL;
+    buffer->mUnk_08_0 = c << 10;
+    buffer->mUncompress = uncompress;
+    buffer->mUnk_08_30 = e;
+    buffer->mUnk_08_31 = 1;
 }
 
 #pragma thumb off
@@ -649,7 +652,7 @@ void InitArchiveBuffer(NNSiFndHeapHead *a, s32 b, s32 c, u32 d, u32 e) {
 #pragma thumb on
 
 // Sets up 12 archive buffers on three heaps.
-void InitArchiveBuffers(NNSiFndHeapHead *a, NNSiFndHeapHead *b, NNSiFndHeapHead *c) {
+void InitArchiveBuffers(NNSiFndHeapHead *a, NNSiFndHeapHead *courseBufferHeap, NNSiFndHeapHead *c) {
     InitArchiveBuffer(c, 2, 0x3c, 0, 1);
     InitArchiveBuffer(c, 3, 0x32, 0, 1);
     InitArchiveBuffer(c, 4, 5, 0, 1);
@@ -658,12 +661,12 @@ void InitArchiveBuffers(NNSiFndHeapHead *a, NNSiFndHeapHead *b, NNSiFndHeapHead 
     InitArchiveBuffer(c, 1, 0x14, 0, 1);
     InitArchiveBuffer(c, 0xe, 0x46, 0, 1);
     InitArchiveBuffer(c, 0xf, 0x46, 0, 1);
-    InitArchiveBuffer(b, 6, 200, 1, 1);
-    InitArchiveBuffer(b, 7, 200, 0, 1);
+    InitArchiveBuffer(courseBufferHeap, 6, 200, 1, 1);
+    InitArchiveBuffer(courseBufferHeap, 7, 200, 0, 1);
     InitArchiveBuffer(a, 8, 0x46, 1, 0);
     InitArchiveBuffer(a, 0xd, 0x1e, 0, 0);
     data_021759c8->mUnk_a78 = a;
-    data_021759c8->mCourseBufferHeap = b;
+    data_021759c8->mCourseBufferHeap = courseBufferHeap;
     data_021759c8->mUnk_a80 = c;
 }
 
@@ -678,22 +681,22 @@ void func_020474e4(void) {
 
 #pragma thumb on
 
-void RequestArchiveLoad(const void *a, s32 b) {
-    ArchiveBuffer *p = &data_021759c8->mBuffers[b];
-    AddPendingFile(a, p->mHeap, &p->mData, p->mUnk_08_0, p->mUnk_08_29);
-    p->mUnk_08_31 = 1;
+void RequestArchiveLoad(const void *path, s32 bufferIndex) {
+    ArchiveBuffer *buffer = &data_021759c8->mBuffers[bufferIndex];
+    AddPendingFile(path, buffer->mHeap, &buffer->mData, buffer->mUnk_08_0, buffer->mUncompress);
+    buffer->mUnk_08_31 = 1;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void RequestArchiveLoadWithLanguage(const void *a, u32 b) {
-    u32 v1;
-    char v2[128];
-    v1 = GetMPLanguageCode();
-    OS_SNPrintf(v2, 0x80, gArchivePrefixFormat, a, v1);
-    RequestArchiveLoad(v2, b);
+void RequestArchiveLoadWithLanguage(const void *prefix, u32 bufferIndex) {
+    u32 languageCode;
+    char path[128];
+    languageCode = GetMPLanguageCode();
+    OS_SNPrintf(path, 0x80, gArchivePrefixFormat, prefix, languageCode);
+    RequestArchiveLoad(path, bufferIndex);
 }
 
 void func_020473e4(void) {
@@ -720,8 +723,8 @@ void RequestMenuDLArchives(void) {
 
 #pragma thumb on
 
-void RequestRaceArchives(void *a, void *b) {
-    char c[128];
+void RequestRaceArchives(void *courseId, void *b) {
+    char path[128];
     ResetPendingFiles();
     NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a80, 3);
     RequestArchiveLoad(gRaceArchivePath, 2);
@@ -735,11 +738,11 @@ void RequestRaceArchives(void *a, void *b) {
     }
     data_021759c8->mUnk_a74 = b;
     NNS_FndFreeToFrmHeap(data_021759c8->mCourseBufferHeap, 3);
-    BuildCourseArchivePath(c, (s32) a, 0);
-    RequestArchiveLoad(c, 6);
-    BuildCourseArchivePath(c, (s32) a, 1);
-    RequestArchiveLoad(c, 7);
-    data_021759c8->mUnk_a70 = a;
+    BuildCourseArchivePath(path, (s32) courseId, 0);
+    RequestArchiveLoad(path, 6);
+    BuildCourseArchivePath(path, (s32) courseId, 1);
+    RequestArchiveLoad(path, 7);
+    data_021759c8->mUnk_a70 = courseId;
 }
 
 #pragma thumb off
@@ -774,40 +777,40 @@ s32 func_02047250(void) {
 
 // Resizes the block that holds the MainEffect archive so it ends where the caller says.
 void ResizeMainEffectArchiveBlock(u8 *a, u32 b) {
-    u8 *p;
+    u8 *block;
 
-    p = data_021759c8->mUnk_84c;
-    NNS_FndResizeForMBlockExpHeap(GetHeap(GetCurrentHeapCall()), p, b + (a - p));
+    block = data_021759c8->mUnk_84c;
+    NNS_FndResizeForMBlockExpHeap(GetHeap(GetCurrentHeapCall()), block, b + (a - block));
 }
 
-void func_020471b0(void *a) {
-    u32 n;
-    void *p;
+void func_020471b0(void *heap) {
+    u32 uncompressedSize;
+    void *data;
 
-    n = *func_020cade8() >> 8;
+    uncompressedSize = *func_020cade8() >> 8;
     data_021759c8->mUnk_8b8 = 0;
-    p = HeapAllocAligned(a, n, 0x20);
-    func_020487e0(func_020cade8(), p, n);
-    ArchiveLoadFromMemory(&data_021759c8->mUnk_850, (const u8 *) gArchiveNames[19], p);
-    data_021759c8->mUnk_8bc = p;
+    data = HeapAllocAligned(heap, uncompressedSize, 0x20);
+    func_020487e0(func_020cade8(), data, uncompressedSize);
+    ArchiveLoadFromMemory(&data_021759c8->mUnk_850, (const u8 *) gArchiveNames[19], data);
+    data_021759c8->mUnk_8bc = data;
     data_021759c8->mUnk_8b8 = 1;
-    CreateSearchIconMBChildAndMultiDownload(a);
+    CreateSearchIconMBChildAndMultiDownload(heap);
 }
 
 #pragma thumb off
 
 void InitTouchPanelAndSetCalibration(void) {
-    TPCalibrateParam v;
+    TPCalibrateParam calibrateParam;
 
     TP_Init();
-    if (TP_GetUserInfo(&v) == 0) {
+    if (TP_GetUserInfo(&calibrateParam) == 0) {
         return;
     }
-    TP_SetCalibrateParam(&v);
+    TP_SetCalibrateParam(&calibrateParam);
 }
 
-void InitTouchMicInput(void *a) {
-    gTouchMicInput = HeapAlloc(a, 0x40);
+void InitTouchMicInput(void *heap) {
+    gTouchMicInput = HeapAlloc(heap, 0x40);
     gTouchMicInput->mTouchAutoSampling = 0;
     gTouchMicInput->mMicAutoSampling = 0;
     gTouchMicInput->mUnk_30_2 = 0;

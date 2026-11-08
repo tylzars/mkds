@@ -189,7 +189,7 @@ typedef struct ArchiveBuffer {
         s32 mUnk_08;
         struct {
             u32 mUnk_08_0 : 29;
-            s32 mUnk_08_29 : 1;
+            s32 mUncompress : 1;
             u32 mUnk_08_30 : 1;
             u32 mUnk_08_31 : 1;
         };
@@ -204,17 +204,17 @@ typedef struct ArchiveSlot {
 } ArchiveSlot;
 
 // The 0xa0 bytes at 0x8c8 of Unk021759c8.
-typedef struct Unk021759c8_8c8 {
-    /* 00 */ u8 mUnk_00[0x80];
-    /* 80 */ u32 *mUnk_80;
-    /* 84 */ void *mUnk_84;
-    /* 88 */ u32 *mUnk_88;
-    /* 8c */ s32 mUnk_8c;
+typedef struct ArchiveLoadRequest {
+    /* 00 */ u8 mPath[0x80];
+    /* 80 */ u32 *mSourceData;
+    /* 84 */ void *mData;
+    /* 88 */ u32 *mReadBuffer;
+    /* 8c */ s32 mSlotIndex;
     /* 90 */ s32 mUnk_90;
-    /* 94 */ s32 mUnk_94;
+    /* 94 */ s32 mUncompressSource;
     /* 98 */ s32 mUnk_98;
     /* 9c */ s32 mUnk_9c;
-} Unk021759c8_8c8;
+} ArchiveLoadRequest;
 
 typedef struct Unk021759c8 {
     union {
@@ -253,7 +253,7 @@ typedef struct Unk021759c8 {
     };
     /* 8c0 */ u32 mFileTableSize;
     /* 8c4 */ void *mFileTable;
-    /* 8c8 */ Unk021759c8_8c8 mUnk_8c8;
+    /* 8c8 */ ArchiveLoadRequest mUnk_8c8;
     /* 968 */ FSFile mFile;
     /* 9b0 */ ArchiveBuffer mBuffers[16];
     /* a70 */ void *mUnk_a70;

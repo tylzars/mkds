@@ -368,7 +368,7 @@ void func_02043648(void) {
                 case 1:
                     if (f == 0) {
                         if (c != 0) {
-                            slotKeys = func_0204a664((KeyRecording *) &inputSlot->mUnk_28);
+                            slotKeys = ReadKeysFromKeyRecording((KeyRecording *) &inputSlot->mUnk_28);
                         }
                     } else {
                         skipUpdate = TRUE;
@@ -389,7 +389,7 @@ void func_02043648(void) {
                                     slotKeys |= PAD_KEY_LEFT;
                                 }
                             }
-                            func_0204a798((KeyRecording *) &inputSlot->mUnk_28, slotKeys);
+                            AppendKeysToKeyRecording((KeyRecording *) &inputSlot->mUnk_28, slotKeys);
                         }
                     } else {
                         skipUpdate = TRUE;

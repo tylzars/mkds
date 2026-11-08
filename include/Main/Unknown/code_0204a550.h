@@ -13,14 +13,14 @@ typedef struct Unk0204a598 {
 
 // Scene function of gSceneFuncs[3] (scene 'Emblem' in gSceneNames): copies the callbacks and calls
 // RunScene. Returns 0.
-s32 RunEmblemScene(void *a);
-void UpdateEmblemScene(Unk0204a598 *a);
+s32 RunEmblemScene(void *sceneNumbers);
+void UpdateEmblemScene(Unk0204a598 *sceneNumbers);
 void func_0204a5e8(void);
-unsigned int func_0204a5f4(unsigned int p0);
+unsigned int func_0204a5f4(unsigned int value);
 // Calls StopWvrAndWait, ResetInputSlots and InitEmblem through func_ov001_021a23f4 (InitEmblem also
 // calls InitEmblemChoises).
 void InitEmblemScene(void);
-BOOL func_0204a620(KeyRecording *a);
-BOOL func_0204a650(KeyRecording *a);
-u16 func_0204a664(KeyRecording *a);
-void func_0204a798(KeyRecording *a, u16 b);
+BOOL func_0204a620(KeyRecording *keyRecording);
+BOOL IsKeyRecordingFull(KeyRecording *keyRecording);
+u16 ReadKeysFromKeyRecording(KeyRecording *keyRecording);
+void AppendKeysToKeyRecording(KeyRecording *keyRecording, u16 keys);
