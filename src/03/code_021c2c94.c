@@ -46,7 +46,7 @@ void LoadJb2MenuFilesAndSetBgCnt(void) {
     LoadFileToVram(gJbBgStep1NcgName2, GX_LoadBG2Char);
     LoadFileToVram(gJbBgStep1NclName2, GX_LoadBGPltt);
     LoadFileToVram(gJb2MenuNscName, GX_LoadBG2Scr);
-    gYbBgStep11Ncl = func_ov003_021d14b8(BuildFilePathWithLanguage(ybBgStep11NclName.mUnk_00), NULL, 4);
+    gYbBgStep11Ncl = LoadFile(BuildFilePathWithLanguage(ybBgStep11NclName.mUnk_00), NULL, 4);
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 3;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
     reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 3;
@@ -146,7 +146,7 @@ void func_ov003_021c2d18(void) {
     if (IsBlendBrightnessFadeSlotBusy(1) == 0 && IsBlendBrightnessFadeSlotBusy(0) == 0) {
         ReleaseSelectionObjectSlots();
         func_ov003_021bf410();
-        func_ov003_021d1490(gYbBgStep11Ncl);
+        DeleteLoadedFile(gYbBgStep11Ncl);
         ClearDispcntBits(1, 1);
         ClearDispcntBits(0, 0x14);
         switch (gJb2MenuSelectedIndex) {

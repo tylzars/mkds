@@ -14,110 +14,111 @@
 #include "03/code_021d2ecc.h"
 #include "03/unk_021d6000.h"
 
-void func_ov003_021d35f4(void) {
+void InitTasks(void) {
     s32 i;
-    u8 *b;
+    u8 *countPtr;
 
-    data_ov003_021da32c = AllocExpHeapBlock(0x78, 4);
+    gTaskLists = AllocExpHeapBlock(0x78, 4);
     i = 0;
-    b = data_ov003_021d67f0;
+    countPtr = data_ov003_021d67f0;
     do {
-        data_ov003_021da32c[i].mUnk_34 = *b;
-        data_ov003_021da32c[i].mUnk_38 = AllocExpHeapBlock(*b * 0x14, 4);
-        data_ov003_021da32c[i].mUnk_00 = CreateFilledPointerStack(*b, data_ov003_021da32c[i].mUnk_38, 0x14);
-        data_ov003_021da32c[i].mResource = CreatePointerStack(*b);
-        data_ov003_021da32c[i].mUnk_08 = func_ov003_021d2ecc();
-        data_ov003_021da32c[i].mUnk_0c.mUnk_10 = 0;
-        data_ov003_021da32c[i].mUnk_20.mUnk_10 = 0xff;
-        func_ov003_021d2e50(data_ov003_021da32c[i].mUnk_08, &data_ov003_021da32c[i].mUnk_0c);
-        func_ov003_021d2e5c(data_ov003_021da32c[i].mUnk_08, &data_ov003_021da32c[i].mUnk_20);
-        b++;
+        gTaskLists[i].mCapacity = *countPtr;
+        gTaskLists[i].mEntryStorage = AllocExpHeapBlock(*countPtr * 0x14, 4);
+        gTaskLists[i].mFreeEntries = CreateFilledPointerStack(*countPtr, gTaskLists[i].mEntryStorage, 0x14);
+        gTaskLists[i].mResource = CreatePointerStack(*countPtr);
+        gTaskLists[i].mList = CreateNodeList();
+        gTaskLists[i].mListStart.mPriority = 0;
+        gTaskLists[i].mListEnd.mPriority = 0xff;
+        func_ov003_021d2e50(gTaskLists[i].mList, &gTaskLists[i].mListStart);
+        func_ov003_021d2e5c(gTaskLists[i].mList, &gTaskLists[i].mListEnd);
+        countPtr++;
         i++;
     } while (i < 2);
 }
 
-void func_ov003_021d35c0(void) {
-    int v1;
-    v1 = 0;
+void ReleaseTasks(void) {
+    int listIndex;
+    listIndex = 0;
     do {
-        func_ov003_021d2eb8(data_ov003_021da32c[v1].mUnk_08);
-        func_ov003_021d1d4c(data_ov003_021da32c[v1].mUnk_00);
-        v1 = v1 + 1;
-    } while (2 > v1);
-    FreeExpHeapBlockAndClearPointer(&data_ov003_021da32c);
+        func_ov003_021d2eb8(gTaskLists[listIndex].mList);
+        func_ov003_021d1d4c(gTaskLists[listIndex].mFreeEntries);
+        listIndex = listIndex + 1;
+    } while (2 > listIndex);
+    FreeExpHeapBlockAndClearPointer(&gTaskLists);
 }
 
-void func_ov003_021d3558(int a) {
-    TaskEntry *b;
-    s32 c;
-    u32 d;
+void RunTasksAndRemoveRequested(int listIndex) {
+    TaskEntry *entry;
+    s32 removedCount;
+    u32 queuedEntry;
 
-    b = data_ov003_021da32c[a].mUnk_0c.mUnk_04;
-    if (b != &data_ov003_021da32c[a].mUnk_20) {
+    entry = gTaskLists[listIndex].mListStart.mNext;
+    if (entry != &gTaskLists[listIndex].mListEnd) {
         do {
-            b->mUnk_08(b, b->mUnk_0c);
-            b = b->mUnk_04;
-        } while (b != &data_ov003_021da32c[a].mUnk_20);
+            entry->mCallback(entry, entry->mArg);
+            entry = entry->mNext;
+        } while (entry != &gTaskLists[listIndex].mListEnd);
     }
-    c = 0;
-    if (data_ov003_021da32c[a].mUnk_34 > 0) {
+    removedCount = 0;
+    if (gTaskLists[listIndex].mCapacity > 0) {
         do {
-            d = (u32) PopPointerStack(data_ov003_021da32c[a].mResource);
-            if (d == 0) {
+            queuedEntry = (u32) PopPointerStack(gTaskLists[listIndex].mResource);
+            if (queuedEntry == 0) {
                 break;
             }
-            func_ov003_021d3488(a, d);
-            c++;
-        } while (c < data_ov003_021da32c[a].mUnk_34);
+            RemoveTaskEntry(listIndex, queuedEntry);
+            removedCount++;
+        } while (removedCount < gTaskLists[listIndex].mCapacity);
     }
 }
 
-u32 func_ov003_021d3544(u32 p0, void *p1, void *p2, u32 p3) {
-    return (u32) func_ov003_021d34e4(p0, (void (*)(TaskEntry *, u32))(p1), (u32) p2, p3, 0x0u);
+u32 AddTask(u32 listIndex, void *function, void *arg, u32 priority) {
+    return (u32) AddTaskEx(listIndex, (void (*)(TaskEntry *, u32))(function), (u32) arg, priority, 0x0u);
 }
 
-TaskEntry *func_ov003_021d34e4(u32 a, void (*b)(TaskEntry *a, u32 b), u32 c, u32 d, u8 e) {
-    TaskEntry *f;
-    TaskEntry *g;
-    u32 h;
+TaskEntry *AddTaskEx(u32 listIndex, void (*function)(TaskEntry *listIndex, u32 function), u32 arg, u32 priority,
+                     u8 freesArg) {
+    TaskEntry *entry;
+    TaskEntry *following;
+    u32 savedIrqMask;
 
-    f = PopPointerStack(data_ov003_021da32c[a].mUnk_00);
-    f->mUnk_08 = b;
-    f->mUnk_0c = c;
-    f->mUnk_10 = d;
-    f->mUnk_11 = e;
-    h = OS_DisableIrqMask(1);
-    g = data_ov003_021da32c[a].mUnk_0c.mUnk_04;
+    entry = PopPointerStack(gTaskLists[listIndex].mFreeEntries);
+    entry->mCallback = function;
+    entry->mArg = arg;
+    entry->mPriority = priority;
+    entry->mFreesArg = freesArg;
+    savedIrqMask = OS_DisableIrqMask(1);
+    following = gTaskLists[listIndex].mListStart.mNext;
     while (1) {
-        if (d < g->mUnk_10) {
-            AddNodeBefore((u32) g, (u32) f);
+        if (priority < following->mPriority) {
+            AddNodeBefore((u32) following, (u32) entry);
             break;
         }
-        g = g->mUnk_04;
+        following = following->mNext;
     }
-    OS_EnableIrqMask(h);
-    return f;
+    OS_EnableIrqMask(savedIrqMask);
+    return entry;
 }
 
-void func_ov003_021d34e0(TaskEntry *a, UnkFunc *b) {
-    a->mUnk_08 = b;
+void SetTaskCallback(TaskEntry *taskEntry, UnkFunc *function) {
+    taskEntry->mCallback = function;
 }
 
-void func_ov003_021d34c8(u32 index, u32 value) {
-    PushPointerStack(data_ov003_021da32c[index].mResource, (void *) value);
+void RequestTaskRemoval(u32 listIndex, u32 entry) {
+    PushPointerStack(gTaskLists[listIndex].mResource, (void *) entry);
 }
 
-void func_ov003_021d34c0(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value3;
-    func_ov003_021d3488(value0, value1);
+void RemoveTaskEntryWrapper(u32 listIndex, u32 entry) {
+    u32 listIndexCopy = listIndex;
+    u32 entryCopy = entry;
+    u32 unused;
+    RemoveTaskEntry(listIndexCopy, entryCopy);
 }
 
-void func_ov003_021d3488(int a, int b) {
-    if (*OFFSET_PTR(u8, b, 0x11) != 0) {
-        FreeExpHeapBlockAndClearPointer(OFFSET_PTR(s32, b, 0xc));
+void RemoveTaskEntry(int listIndex, int entry) {
+    if (*OFFSET_PTR(u8, entry, 0x11) != 0) {
+        FreeExpHeapBlockAndClearPointer(OFFSET_PTR(s32, entry, 0xc));
     }
-    RemoveNodeFromList(b);
-    PushPointerStack(data_ov003_021da32c[a].mUnk_00, (void *) b);
+    RemoveNodeFromList(entry);
+    PushPointerStack(gTaskLists[listIndex].mFreeEntries, (void *) entry);
 }

@@ -16,16 +16,16 @@
 void CreateSoundData(void) {
     u32 a;
     gSoundData = AllocExpHeapBlock(0x9c, 4);
-    gSoundData->mFileData = func_ov003_021d14b8(gSoundDataSdatName, &a, 0x20);
+    gSoundData->mFileData = LoadFile(gSoundDataSdatName, &a, 0x20);
     NNS_SndInit();
     NNS_SndArcInitOnMemory(&gSoundData->mArc, gSoundData->mFileData);
     NNS_SndArcPlayerSetup(NULL);
     NNS_SndHandleInit(&gSoundData->mSeqPlayer);
-    gSoundData->mTask = func_ov003_021d3544(0, UpdateSound, NULL, 0xc8);
+    gSoundData->mTask = AddTask(0, UpdateSound, NULL, 0xc8);
 }
 
 void func_ov003_021cdc28(void) {
-    func_ov003_021d34c8(0, gSoundData->mTask);
+    RequestTaskRemoval(0, gSoundData->mTask);
     FreeExpHeapBlockAndClearPointer(&gSoundData);
 }
 

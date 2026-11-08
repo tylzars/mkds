@@ -334,7 +334,7 @@ void func_ov003_021c72a4(void) {
 void func_ov003_021c722c(void) {
     int v1[1];
     func_ov003_021bf410();
-    func_ov003_021d2f00((u32 *) (u32) (gEditAddr->mUnk_04));
+    DeleteOamEntry((u32 *) (u32) (gEditAddr->mUnk_04));
     ReleaseBgTextCanvasOfScreen(0);
     LoadFileToVram(&gYbObjMainNclName3, &GX_LoadOBJPltt);
     ClearDispcntBits(1, 1);

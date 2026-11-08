@@ -205,16 +205,16 @@ typedef struct Unk021da2ac {
 extern Unk021da2ac *data_ov003_021da2ac;
 // Object of 0xe8 bytes: a pointer at 0x00, 32 pointers from 0x04, the list of them at 0x84, an FSArchive at 0x88
 // and a halfword at 0xe4.
-typedef struct Unk021da2b0 {
-    /* 00 */ void *mUnk_00;
+typedef struct DwcArchive {
+    /* 00 */ void *mTables;
     /* 04 */ void *mUnk_04[0x20];
     /* 84 */ PointerStack *mUnk_84;
-    /* 88 */ FSArchive mUnk_88;
-    /* e4 */ u16 mUnk_e4;
+    /* 88 */ FSArchive mArchive;
+    /* e4 */ u16 mLockId;
     /* e6 */ u8 mUnk_e6[2];
-} Unk021da2b0;
+} DwcArchive;
 
-extern Unk021da2b0 *data_ov003_021da2b0;
+extern DwcArchive *gDwcArchive;
 // Two objects of 0x228 bytes: 32 objects from 0x000, two list heads at 0x200 and 0x210, a pointer at 0x220 and the
 // list of the free objects at 0x224.
 typedef struct OamRanges {
@@ -242,10 +242,10 @@ extern KeyTouchInput *gKeyTouchInput;
 extern u8 gKeyRepeatFrames[];
 extern UnkFunc *gSavedIrqFunction;
 extern u32 gSavedIrqMask;
-struct Unk021d2fa0;
-extern struct Unk021d2fa0 *data_ov003_021da2f0;
-struct Unk021d31b0;
-extern struct Unk021d31b0 *data_ov003_021da2f4;
-extern u32 data_ov003_021da2f8[];
-struct Unk021d34c8;
-extern struct Unk021d34c8 *data_ov003_021da32c;
+struct OamBuffers;
+extern struct OamBuffers *gOamBuffers;
+struct ObjCharRanges;
+extern struct ObjCharRanges *gObjCharRanges;
+extern u32 gSavedBankSettings[];
+struct TaskList;
+extern struct TaskList *gTaskLists;

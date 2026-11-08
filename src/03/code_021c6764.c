@@ -49,7 +49,7 @@ void CreateEdit(void) {
     func_ov003_021c20dc(&b, &c);
     if (b == 0) {
         func_ov003_021cd948((u8 *) gEdit + 8);
-        gEdit->mCharCount = func_ov003_021d3254((u8 *) gEdit + 8, 0x20);
+        gEdit->mCharCount = GetStringLengthWithLimit((u8 *) gEdit + 8, 0x20);
     }
     LoadEditFilesAndSetBgCnt();
     LoadHlScr(b + 9);
@@ -253,7 +253,7 @@ void func_ov003_021c6a18(void) {
     s32 v1;
     int v2[1];
     func_ov003_021bf410();
-    func_ov003_021d2f00((u32 *) (u32) gEdit->mUnk_04);
+    DeleteOamEntry((u32 *) (u32) gEdit->mUnk_04);
     ReleaseBgTextCanvasOfScreen(0);
     LoadFileToVram(&gYbObjMainNclName2, &GX_LoadOBJPltt);
     ClearDispcntBits(1, 1);
@@ -374,7 +374,7 @@ BOOL func_ov003_021c6764(void) {
     if (b == 1 && gEdit->mText[0] == 0) {
         return FALSE;
     }
-    v1 = func_ov003_021d3254(gEdit->mText, 0x20);
+    v1 = GetStringLengthWithLimit(gEdit->mText, 0x20);
     switch (v1) {
         case 0:
         case 5:

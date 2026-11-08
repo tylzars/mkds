@@ -70,8 +70,8 @@ void LoadOptMenuFilesAndSetBgCnt(void) {
     ybBgOption1NclName = gYbBgOption1NclName;
     LoadFileToVram(gJbBgOptionNcgName, GX_LoadBG2Char);
     LoadFileToVram(gJb5OptMenuNscName, GX_LoadBG2Scr);
-    gYbBgOption1Ncl = func_ov003_021d14b8(BuildFilePathWithLanguage(ybBgOption1NclName.mUnk_00), NULL, 4);
-    palette = func_ov003_021d14b8(BuildFilePathWithLanguage(ybBgOptionNclName.mUnk_00), NULL, 4);
+    gYbBgOption1Ncl = LoadFile(BuildFilePathWithLanguage(ybBgOption1NclName.mUnk_00), NULL, 4);
+    palette = LoadFile(BuildFilePathWithLanguage(ybBgOptionNclName.mUnk_00), NULL, 4);
     DWCi_BM_GetWiFiInfo(&wifiInfo);
     if (wifiInfo.mAttestedUserId == 0) {
         copyFrom = palette + 0xc0;
@@ -82,7 +82,7 @@ void LoadOptMenuFilesAndSetBgCnt(void) {
     }
     DC_FlushRange(palette, 0x200);
     GX_LoadBGPltt(palette, 0, 0x200);
-    func_ov003_021d1490(palette);
+    DeleteLoadedFile(palette);
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 3;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
     reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 3;
@@ -188,10 +188,10 @@ void func_ov003_021c3a7c(void) {
 
 void func_ov003_021c39a4(void) {
     if (IsBlendBrightnessFadeSlotBusy(1) == 0 && IsBlendBrightnessFadeSlotBusy(0) == 0 && func_ov003_021bf2f0() != 0) {
-        func_ov003_021d2f00((u32 *) data_ov003_021da1b8);
+        DeleteOamEntry((u32 *) data_ov003_021da1b8);
         ReleaseSelectionObjectSlots();
         func_ov003_021bf410();
-        func_ov003_021d1490(gYbBgOption1Ncl);
+        DeleteLoadedFile(gYbBgOption1Ncl);
         ClearDispcntBits(1, 1);
         ClearDispcntBits(0, 0x14);
         if (data_ov003_021da1b0[0] == 0) {

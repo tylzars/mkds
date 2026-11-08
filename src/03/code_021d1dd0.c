@@ -37,7 +37,7 @@ void AdvanceBlendBrightnessFade(u32 task, BlendBrightnessFadeSlot *slot) {
             G2x_ChangeBlendBrightness_(&reg_G2_BLDCNT, finalLevels[slot->mKind]);
         }
         slot->mEnabled = 0;
-        func_ov003_021d34c8(1, task);
+        RequestTaskRemoval(1, task);
     }
 }
 
@@ -47,7 +47,7 @@ u32 StartBlendBrightnessFadeWait(u16 frameCount) {
     if (slot->mEnabled != 0) {
         return 0;
     }
-    slot->mTask = func_ov003_021d3544(1, AdvanceBlendBrightnessFadeWait, slot, 200);
+    slot->mTask = AddTask(1, AdvanceBlendBrightnessFadeWait, slot, 200);
     slot->mFrames = 0;
     slot->mFrameCount = frameCount;
     slot->mEnabled = 1;

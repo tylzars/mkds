@@ -26,9 +26,9 @@ void InitOamRanges(void) {
     gOamRanges = AllocZeroedExpHeapBlock(0x450, 4);
     for (i = 0; i < 2; i++) {
         gOamRanges[i].mFreeRanges = CreateFilledPointerStack(0x20, &gOamRanges[i], 0x10);
-        gOamRanges[i].mUnk_220 = func_ov003_021d2ecc();
-        gOamRanges[i].mListStart.mEntries = func_ov003_021d2eec(i, 0x40);
-        gOamRanges[i].mListEnd.mEntries = func_ov003_021d2eec(i, 0x7f) + 1;
+        gOamRanges[i].mUnk_220 = CreateNodeList();
+        gOamRanges[i].mListStart.mEntries = GetOamBufferEntry(i, 0x40);
+        gOamRanges[i].mListEnd.mEntries = GetOamBufferEntry(i, 0x7f) + 1;
         func_ov003_021d2e50(gOamRanges[i].mUnk_220, &gOamRanges[i].mListStart);
         func_ov003_021d2e5c(gOamRanges[i].mUnk_220, &gOamRanges[i].mListEnd);
     }

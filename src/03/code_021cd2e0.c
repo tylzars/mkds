@@ -54,7 +54,7 @@ void func_ov003_021cd9dc(const u8 *a) {
     s32 n;
     u8 *p;
     MI_CpuFill8(data_ov003_021da270->mUnk_400.mUnk_00.mUnk_80[0], 0, 0x10);
-    n = func_ov003_021d3254(a, 0x20);
+    n = GetStringLengthWithLimit(a, 0x20);
     switch (n) {
         case 0:
         case 10:

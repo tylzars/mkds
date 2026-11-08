@@ -29,11 +29,11 @@ void func_ov003_021c2840(u32 callback) {
     if (func_ov003_021d11d4() == 0) {
         OS_Terminate();
     }
-    data_ov003_021da194->mStepTask = func_ov003_021d3544(0, func_ov003_021c25e0, NULL, 0x78);
+    data_ov003_021da194->mStepTask = AddTask(0, func_ov003_021c25e0, NULL, 0x78);
 }
 
 void func_ov003_021c2824(void) {
-    func_ov003_021d3544(0, &func_ov003_021c27f8, NULL, 0x78);
+    AddTask(0, &func_ov003_021c27f8, NULL, 0x78);
 }
 
 void func_ov003_021c27f8(u32 task) {
@@ -41,7 +41,7 @@ void func_ov003_021c27f8(u32 task) {
     result = func_ov003_021d1290();
     if (result != 0) {
         data_ov003_021da194->mUnk_1e2a1 = 1;
-        func_ov003_021d34c8(0, task);
+        RequestTaskRemoval(0, task);
     }
 }
 
@@ -145,7 +145,7 @@ void func_ov003_021c25e0(u32 task) {
             }
             break;
         case 34:
-            func_ov003_021d34c8(0, task);
+            RequestTaskRemoval(0, task);
             FreeExpHeapBlockAndClearPointer(&data_ov003_021da194);
             break;
     }

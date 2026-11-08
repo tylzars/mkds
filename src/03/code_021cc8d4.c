@@ -14,11 +14,11 @@ void func_ov003_021cca30(const void *b) {
     Unk021da25c *a = AllocZeroedExpHeapBlock(0x608, 4);
     data_ov003_021da25c = a;
     MIi_CpuCopyFast(b, a->mUnk_004, 0x600);
-    data_ov003_021da25c->mUnk_000 = func_ov003_021d3544(1, func_ov003_021cc97c, NULL, 0x78);
+    data_ov003_021da25c->mUnk_000 = AddTask(1, func_ov003_021cc97c, NULL, 0x78);
 }
 
 void func_ov003_021cca10(void) {
-    func_ov003_021d34c0(1, data_ov003_021da25c->mUnk_000);
+    RemoveTaskEntryWrapper(1, data_ov003_021da25c->mUnk_000);
     FreeExpHeapBlockAndClearPointer(&data_ov003_021da25c);
 }
 
@@ -52,20 +52,20 @@ void func_ov003_021cc97c(void) {
 void func_ov003_021cc948(u8 *a, u32 b, u32 c) {
     ((u8 **) data_ov003_021da260)[0] = a + (b << 5);
     ((u8 **) data_ov003_021da260)[1] = (u8 *) 0x5000000 + (c << 5);
-    func_ov003_021d3544(1, func_ov003_021cc924, NULL, 0x78);
+    AddTask(1, func_ov003_021cc924, NULL, 0x78);
 }
 
 void func_ov003_021cc924(u32 a) {
     MIi_CpuCopy16(((const void **) data_ov003_021da260)[0], ((void **) data_ov003_021da260)[1], 0x20);
-    func_ov003_021d34c8(1, a);
+    RequestTaskRemoval(1, a);
 }
 
 void func_ov003_021cc900(u32 a) {
     *(u32 *) &data_ov003_021da260 = a;
-    func_ov003_021d3544(1, &func_ov003_021cc8d4, NULL, 0x78);
+    AddTask(1, &func_ov003_021cc8d4, NULL, 0x78);
 }
 
 void func_ov003_021cc8d4(u32 a) {
     MIi_CpuCopy16((const void *) ((*(u32 *) &data_ov003_021da260)), (void *) ((0x05000000u)), (0x00000200u));
-    func_ov003_021d34c8(1, a);
+    RequestTaskRemoval(1, a);
 }

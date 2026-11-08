@@ -24,7 +24,7 @@ MessageFile *LoadMessages(void *path) {
     u8 *section;
     u32 size;
     messages = PopPointerStack(gMessagesPool->mFreeList);
-    messages->mFile = func_ov003_021d14b8(path, &size, 4);
+    messages->mFile = LoadFile(path, &size, 4);
     section = messages->mFile + 0x20;
     messages->mOffsets = OFFSET_PTR(u32, section, 0x10);
     messages->mData = section + *OFFSET_PTR(s32, section, 4) + 8;
@@ -32,7 +32,7 @@ MessageFile *LoadMessages(void *path) {
 }
 
 void ReleaseMessages(MessageFile *messages) {
-    func_ov003_021d1490(messages->mFile);
+    DeleteLoadedFile(messages->mFile);
     PushPointerStack(gMessagesPool->mFreeList, messages);
 }
 

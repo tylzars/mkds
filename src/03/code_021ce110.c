@@ -49,7 +49,7 @@ void func_ov003_021ce4d4(u32 a) {
         }
         ((Unk021ce4d4 *) data_ov003_021da280)->mUnk_1b7c = 0;
         ((Unk021ce4d4 *) data_ov003_021da280)->mUnk_1b82 = 1;
-        func_ov003_021d34c8(0, a);
+        RequestTaskRemoval(0, a);
     }
 }
 
@@ -62,7 +62,7 @@ void func_ov003_021ce408(u32 a) {
         SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, -0x2a, data_ov003_021d66a8[i].mUnk_02);
         func_ov003_021d1890(data_ov003_021da27c->mUnk_00[i], -1, 0, data_ov003_021d6698[a][i]);
     }
-    data_ov003_021da27c->mTask = func_ov003_021d3544(0, func_ov003_021ce370, NULL, 0x78);
+    data_ov003_021da27c->mTask = AddTask(0, func_ov003_021ce370, NULL, 0x78);
     func_ov003_021cdcf0(a);
     StartSoundSeq(0xd);
 }
@@ -83,7 +83,7 @@ void func_ov003_021ce370(TaskEntry *a) {
     for (i = 0; i < 5; i++) {
         SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
     }
-    func_ov003_021d34e0(a, func_ov003_021ce2d0);
+    SetTaskCallback(a, func_ov003_021ce2d0);
 }
 
 void func_ov003_021ce2d0(TaskEntry *a) {
@@ -102,7 +102,7 @@ void func_ov003_021ce2d0(TaskEntry *a) {
     for (i = 1; i < 5; i++) {
         SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
     }
-    func_ov003_021d34e0(a, func_ov003_021ce230);
+    SetTaskCallback(a, func_ov003_021ce230);
 }
 
 void func_ov003_021ce230(TaskEntry *a) {
@@ -121,7 +121,7 @@ void func_ov003_021ce230(TaskEntry *a) {
     for (i = 2; i < 5; i++) {
         SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
     }
-    func_ov003_021d34e0(a, func_ov003_021ce190);
+    SetTaskCallback(a, func_ov003_021ce190);
 }
 
 void func_ov003_021ce190(TaskEntry *a) {
@@ -140,7 +140,7 @@ void func_ov003_021ce190(TaskEntry *a) {
     for (i = 3; i < 5; i++) {
         SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
     }
-    func_ov003_021d34e0(a, func_ov003_021ce110);
+    SetTaskCallback(a, func_ov003_021ce110);
 }
 
 void func_ov003_021ce110(TaskEntry *a) {
@@ -159,5 +159,5 @@ void func_ov003_021ce110(TaskEntry *a) {
     for (i = 4; i < 5; i++) {
         SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
     }
-    func_ov003_021d34e0(a, func_ov003_021ce0f0);
+    SetTaskCallback(a, func_ov003_021ce0f0);
 }

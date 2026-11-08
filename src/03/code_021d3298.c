@@ -5,42 +5,42 @@
 #include "code_02148950.h"
 #include "registers.h"
 
-void func_ov003_021d3408(void) {
-    data_ov003_021da2f8[0] = GX_DisableBankForBG();
-    data_ov003_021da2f8[1] = GX_DisableBankForOBJ();
-    data_ov003_021da2f8[2] = GX_DisableBankForBGExtPltt();
-    data_ov003_021da2f8[3] = GX_DisableBankForOBJExtPltt();
-    data_ov003_021da2f8[4] = GX_DisableBankForTex();
-    data_ov003_021da2f8[5] = GX_DisableBankForTexPltt();
-    data_ov003_021da2f8[6] = GX_DisableBankForClearImage();
-    data_ov003_021da2f8[7] = GX_DisableBankForSubBG();
-    data_ov003_021da2f8[8] = GX_DisableBankForSubOBJ();
-    data_ov003_021da2f8[9] = GX_DisableBankForSubBGExtPltt();
-    data_ov003_021da2f8[10] = GX_DisableBankForSubOBJExtPltt();
-    data_ov003_021da2f8[11] = GX_DisableBankForARM7();
-    data_ov003_021da2f8[12] = GX_DisableBankForLCDC();
-    GX_SetBankForARM7(data_ov003_021da2f8[11]);
-    func_ov003_021d3298();
+void SaveBankSettingsAndClearVram(void) {
+    gSavedBankSettings[0] = GX_DisableBankForBG();
+    gSavedBankSettings[1] = GX_DisableBankForOBJ();
+    gSavedBankSettings[2] = GX_DisableBankForBGExtPltt();
+    gSavedBankSettings[3] = GX_DisableBankForOBJExtPltt();
+    gSavedBankSettings[4] = GX_DisableBankForTex();
+    gSavedBankSettings[5] = GX_DisableBankForTexPltt();
+    gSavedBankSettings[6] = GX_DisableBankForClearImage();
+    gSavedBankSettings[7] = GX_DisableBankForSubBG();
+    gSavedBankSettings[8] = GX_DisableBankForSubOBJ();
+    gSavedBankSettings[9] = GX_DisableBankForSubBGExtPltt();
+    gSavedBankSettings[10] = GX_DisableBankForSubOBJExtPltt();
+    gSavedBankSettings[11] = GX_DisableBankForARM7();
+    gSavedBankSettings[12] = GX_DisableBankForLCDC();
+    GX_SetBankForARM7(gSavedBankSettings[11]);
+    ResetVramOamAndPalettes();
 }
 
-void func_ov003_021d332c(void) {
+void RestoreBankSettingsAndResetDisplay(void) {
     GX_DisableBankForBG();
     GX_DisableBankForOBJ();
     GX_DisableBankForSubBG();
     GX_DisableBankForSubOBJ();
-    func_ov003_021d3298();
-    GX_SetBankForBG(data_ov003_021da2f8[0]);
-    GX_SetBankForOBJ(data_ov003_021da2f8[1]);
-    GX_SetBankForBGExtPltt(data_ov003_021da2f8[2]);
-    GX_SetBankForOBJExtPltt(data_ov003_021da2f8[3]);
-    GX_SetBankForTex(data_ov003_021da2f8[4]);
-    GX_SetBankForTexPltt(data_ov003_021da2f8[5]);
-    GX_SetBankForClearImage(data_ov003_021da2f8[6]);
-    GX_SetBankForSubBG(data_ov003_021da2f8[7]);
-    GX_SetBankForSubOBJ(data_ov003_021da2f8[8]);
-    GX_SetBankForSubBGExtPltt(data_ov003_021da2f8[9]);
-    GX_SetBankForSubOBJExtPltt(data_ov003_021da2f8[10]);
-    GX_SetBankForLCDC(data_ov003_021da2f8[12]);
+    ResetVramOamAndPalettes();
+    GX_SetBankForBG(gSavedBankSettings[0]);
+    GX_SetBankForOBJ(gSavedBankSettings[1]);
+    GX_SetBankForBGExtPltt(gSavedBankSettings[2]);
+    GX_SetBankForOBJExtPltt(gSavedBankSettings[3]);
+    GX_SetBankForTex(gSavedBankSettings[4]);
+    GX_SetBankForTexPltt(gSavedBankSettings[5]);
+    GX_SetBankForClearImage(gSavedBankSettings[6]);
+    GX_SetBankForSubBG(gSavedBankSettings[7]);
+    GX_SetBankForSubOBJ(gSavedBankSettings[8]);
+    GX_SetBankForSubBGExtPltt(gSavedBankSettings[9]);
+    GX_SetBankForSubOBJExtPltt(gSavedBankSettings[10]);
+    GX_SetBankForLCDC(gSavedBankSettings[12]);
     reg_G2_BLDCNT = 0;
     reg_G2S_DB_BLDCNT = 0;
     reg_G2_BG0OFS = 0;
@@ -54,26 +54,26 @@ void func_ov003_021d332c(void) {
     PM_SetLCDPower(1);
 }
 
-void func_ov003_021d3298(void) {
-    vu32 c;
-    vu32 e;
-    vu32 a;
-    vu32 b;
-    vu32 d;
-    vu32 f;
+void ResetVramOamAndPalettes(void) {
+    vu32 mainOamFill;
+    vu32 subOamFill;
+    vu32 lcdcLowFill;
+    vu32 lcdcHighFill;
+    vu32 mainPaletteFill;
+    vu32 subPaletteFill;
 
     GX_SetBankForLCDC(0x1f3);
-    a = 0;
-    MIi_CpuClearFast(a, (void *) 0x6800000, 0x40000);
-    b = 0;
-    MIi_CpuClearFast(b, (void *) 0x6880000, 0x24000);
+    lcdcLowFill = 0;
+    MIi_CpuClearFast(lcdcLowFill, (void *) 0x6800000, 0x40000);
+    lcdcHighFill = 0;
+    MIi_CpuClearFast(lcdcHighFill, (void *) 0x6880000, 0x24000);
     GX_DisableBankForLCDC();
-    c = 0x200;
-    MIi_CpuClearFast(c, (void *) 0x7000000, 0x400);
-    d = 0;
-    MIi_CpuClearFast(d, (void *) 0x5000000, 0x400);
-    e = 0x200;
-    MIi_CpuClearFast(e, (void *) 0x7000400, 0x400);
-    f = 0;
-    MIi_CpuClearFast(f, (void *) 0x5000400, 0x400);
+    mainOamFill = 0x200;
+    MIi_CpuClearFast(mainOamFill, (void *) 0x7000000, 0x400);
+    mainPaletteFill = 0;
+    MIi_CpuClearFast(mainPaletteFill, (void *) 0x5000000, 0x400);
+    subOamFill = 0x200;
+    MIi_CpuClearFast(subOamFill, (void *) 0x7000400, 0x400);
+    subPaletteFill = 0;
+    MIi_CpuClearFast(subPaletteFill, (void *) 0x5000400, 0x400);
 }

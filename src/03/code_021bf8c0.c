@@ -364,7 +364,7 @@ void AdvanceEditKeyboardSlideOutRow4(TaskEntry *task) {
     yPos += 12;
     SetEditKeyboardRowY(gEditKeyboard->mPage, 4, yPos);
     if (yPos >= 0xc0) {
-        func_ov003_021d34e0(task, AdvanceEditKeyboardSlideOutRow3);
+        SetTaskCallback(task, AdvanceEditKeyboardSlideOutRow3);
     }
 }
 
@@ -375,7 +375,7 @@ void AdvanceEditKeyboardSlideOutRow3(TaskEntry *task) {
     y += 12;
     SetEditKeyboardRowY(gEditKeyboard->mPage, 3, y);
     if (y >= 0xc0) {
-        func_ov003_021d34e0(task, AdvanceEditKeyboardSlideOutRow2);
+        SetTaskCallback(task, AdvanceEditKeyboardSlideOutRow2);
     }
 }
 
@@ -386,7 +386,7 @@ void AdvanceEditKeyboardSlideOutRow2(TaskEntry *task) {
     yPos += 12;
     SetEditKeyboardRowY(gEditKeyboard->mPage, 2, yPos);
     if (yPos >= 0xc0) {
-        func_ov003_021d34e0(task, AdvanceEditKeyboardSlideOutRow1);
+        SetTaskCallback(task, AdvanceEditKeyboardSlideOutRow1);
     }
 }
 
@@ -397,7 +397,7 @@ void AdvanceEditKeyboardSlideOutRow1(TaskEntry *task) {
     y += 12;
     SetEditKeyboardRowY(gEditKeyboard->mPage, 1, y);
     if (y >= 0xc0) {
-        func_ov003_021d34e0(task, AdvanceEditKeyboardSlideOutRow0);
+        SetTaskCallback(task, AdvanceEditKeyboardSlideOutRow0);
     }
 }
 
@@ -408,14 +408,14 @@ void AdvanceEditKeyboardSlideOutRow0(TaskEntry *task) {
     y += 12;
     SetEditKeyboardRowY(gEditKeyboard->mPage, 0, y);
     if (y >= 0xc0) {
-        func_ov003_021d34e0(task, ReleaseEditKeyboard);
+        SetTaskCallback(task, ReleaseEditKeyboard);
     }
 }
 
 void ReleaseEditKeyboard(u32 task) {
     s32 i;
     s32 j;
-    func_ov003_021d34c8(0, task);
+    RequestTaskRemoval(0, task);
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 4; j++) {
             DeleteObjTextCanvas(gEditKeyboard->mRowTexts[i][j]);
@@ -428,10 +428,10 @@ void ReleaseEditKeyboard(u32 task) {
         DeleteOamRange(gEditKeyboard->mRow4Keys[i]);
     }
     for (i = 0; i < 4; i++) {
-        func_ov003_021d2f00((u32 *) gEditKeyboard->mExtraKeys[i]);
+        DeleteOamEntry((u32 *) gEditKeyboard->mExtraKeys[i]);
     }
     for (i = 0; i < 0x2f; i++) {
-        func_ov003_021d2f00((u32 *) gEditKeyboard->mKeys[i]);
+        DeleteOamEntry((u32 *) gEditKeyboard->mKeys[i]);
     }
     FreeExpHeapBlockAndClearPointer(&gEditKeyboard);
 }
@@ -444,14 +444,14 @@ void CreateLinkLevel(int row) {
         gLinkLevel->mUnk_00->mUnk_00 = ((data_ov003_021d5f54[0] & 0x1ff) << 16) |
                                        ((gLinkLevel->mUnk_00->mUnk_00 & 0xfe00ff00) | (data_ov003_021d5f54[1] & 0xff));
         gLinkLevel->mUnk_00->mUnk_04 = (gLinkLevel->mUnk_00->mUnk_04 & 0xfffff3ff) | 0x800;
-        gLinkLevel->mTask = func_ov003_021d3544(0, UpdateLinkLevel, NULL, 0x78);
+        gLinkLevel->mTask = AddTask(0, UpdateLinkLevel, NULL, 0x78);
     }
 }
 
 void ReleaseLinkLevel(void) {
     if (gLinkLevel != NULL) {
-        func_ov003_021d34c0(0, gLinkLevel->mTask);
-        func_ov003_021d2f00((u32 *) gLinkLevel->mUnk_00);
+        RemoveTaskEntryWrapper(0, gLinkLevel->mTask);
+        DeleteOamEntry((u32 *) gLinkLevel->mUnk_00);
         FreeExpHeapBlockAndClearPointer(&gLinkLevel);
     }
 }

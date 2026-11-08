@@ -23,7 +23,7 @@ u32 StartBlendBrightnessFade(s32 kind, s32 screen, u32 plane, u16 frameCount) {
     } else {
         G2x_SetBlendBrightness_(&reg_G2_BLDCNT, plane, startLevels[kind]);
     }
-    slot->mTask = func_ov003_021d3544(1, AdvanceBlendBrightnessFade, slot, 200);
+    slot->mTask = AddTask(1, AdvanceBlendBrightnessFade, slot, 200);
     slot->mFrames = 0;
     slot->mKind = kind;
     slot->mFrameCount = frameCount;

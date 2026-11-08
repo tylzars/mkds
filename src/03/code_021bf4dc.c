@@ -36,10 +36,10 @@ u32 LoadFileToVram(void *path, void *loader) {
     u32 size;
     void *data;
 
-    data = func_ov003_021d14b8(BuildFilePathWithLanguage(path), &size, 4);
+    data = LoadFile(BuildFilePathWithLanguage(path), &size, 4);
     DC_FlushRange(data, size);
     ((void (*)(void *, u32, u32)) loader)(data, 0, size);
-    func_ov003_021d1490(data);
+    DeleteLoadedFile(data);
 }
 
 void func_ov003_021bf5ec(u32 a) {

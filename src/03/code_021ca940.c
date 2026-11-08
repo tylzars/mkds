@@ -207,7 +207,7 @@ void func_ov003_021cacfc(void) {
         }
         ReleaseSelectionObjectSlots();
         func_ov003_021bf410();
-        func_ov003_021d1490(gAp->mYbBgStep11Ncl);
+        DeleteLoadedFile(gAp->mYbBgStep11Ncl);
         LoadFileToVram(gYbObjMainNclName5, GX_LoadOBJPltt);
         ClearDispcntBits(1, 1);
         ClearDispcntBits(0, 0x14);

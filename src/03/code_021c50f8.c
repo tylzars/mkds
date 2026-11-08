@@ -83,7 +83,7 @@ void func_ov003_021c53ec(void) {
 
 void func_ov003_021c53b4(void) {
     if (GetButtonResult() != -2) {
-        data_ov003_021da1e4 = func_ov003_021d3544(1, func_ov003_021c51a0, NULL, 0x78);
+        data_ov003_021da1e4 = AddTask(1, func_ov003_021c51a0, NULL, 0x78);
         SetUpdateFunction(func_ov003_021c5324);
     }
 }
@@ -99,7 +99,7 @@ void func_ov003_021c5324(void) {
             break;
         case 1:
             data_ov003_021da1dc = 1;
-            func_ov003_021d34c0(1, data_ov003_021da1e4);
+            RemoveTaskEntryWrapper(1, data_ov003_021da1e4);
             data_ov003_021da1e4 = 0;
             SetUpdateFunction(func_ov003_021c5120);
             break;
@@ -108,7 +108,7 @@ void func_ov003_021c5324(void) {
             func_ov003_021cefc0(0x40, 1, 1, -1, 0);
             StartSoundSeq(9);
             DisableButtonTouch();
-            func_ov003_021d34c0(1, data_ov003_021da1e4);
+            RemoveTaskEntryWrapper(1, data_ov003_021da1e4);
             data_ov003_021da1e4 = 0;
             SetUpdateFunction(func_ov003_021c5178);
             break;
@@ -142,7 +142,7 @@ void func_ov003_021c52d0(void) {
 void func_ov003_021c52a0(void) {
     DisableButtonTouch();
     if (data_ov003_021da1e4 != 0) {
-        func_ov003_021d34c0(1, data_ov003_021da1e4);
+        RemoveTaskEntryWrapper(1, data_ov003_021da1e4);
     }
     StartBlendBrightnessFadeWait(8);
     SetUpdateFunction(func_ov003_021c5258);
@@ -186,7 +186,7 @@ void func_ov003_021c51bc(void) {
 
 void func_ov003_021c51a0(void) {
     UpdateKeyTouchInput();
-    func_ov003_021d3558(0);
+    RunTasksAndRemoveRequested(0);
     func_ov003_021c52f4();
     func_ov003_021c52d0();
 }

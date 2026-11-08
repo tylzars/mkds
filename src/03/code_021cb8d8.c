@@ -123,7 +123,7 @@ void func_ov003_021cbaa0(void) {
     if (a == 0) {
         func_ov000_021886fc(c->mUnk_f4, c);
     }
-    func_ov003_021d3544(0, func_ov003_021cb8f0, NULL, 0x78);
+    AddTask(0, func_ov003_021cb8f0, NULL, 0x78);
 }
 
 void func_ov003_021cba54(void) {
@@ -200,7 +200,7 @@ void func_ov003_021cb8f0(u32 b) {
             StartSoundSeq(0x12);
         }
         SetUpdateFunction(func_ov003_021cb9e8);
-        func_ov003_021d34c8(0, b);
+        RequestTaskRemoval(0, b);
     }
 }
 

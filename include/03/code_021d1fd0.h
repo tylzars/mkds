@@ -31,7 +31,7 @@ typedef struct ObjTextCanvas {
     /* 24 */ void *mUnk_24;
     /* 28 */ s32 mUnk_28;
     /* 2c */ s32 mUnk_2c;
-    /* 30 */ Unk021d309c *mUnk_30;
+    /* 30 */ ObjCharRange *mUnk_30;
     /* 34 */ u16 mCharName;
     /* 36 */ u8 mAreaWidth;
     /* 37 */ u8 mAreaHeight;

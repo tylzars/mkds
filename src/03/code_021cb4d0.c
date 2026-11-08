@@ -59,7 +59,7 @@ void LoadWayFilesAndSetBgCnt(void) {
     LoadFileToVram(gJbBgStep2NcgName2, GX_LoadBG2Char);
     LoadFileToVram(gYbBgStep2NclName2, GX_LoadBGPltt);
     LoadFileToVram(gJb3WayNscName, GX_LoadBG2Scr);
-    gYbBgStep21Ncl = func_ov003_021d14b8(BuildFilePathWithLanguage((u8 *) &a), NULL, 4);
+    gYbBgStep21Ncl = LoadFile(BuildFilePathWithLanguage((u8 *) &a), NULL, 4);
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 3;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
     reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 3;

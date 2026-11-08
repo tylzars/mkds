@@ -38,12 +38,12 @@ void CreateSlideButtons(u32 kind) {
     data_ov003_021da108->mUnk_08 = CreateOamRangeFromNceImage(0, 1, 1);
     func_ov003_021d1790(data_ov003_021da108->mUnk_08, -1, 1);
     SetSlideButtonsY(0xc0);
-    data_ov003_021da108->mStepTask = (TaskEntry *) func_ov003_021d3544(0, AdvanceSlideButtonsIn, NULL, 0x78);
+    data_ov003_021da108->mStepTask = (TaskEntry *) AddTask(0, AdvanceSlideButtonsIn, NULL, 0x78);
 }
 
 void StartSlideButtonsOut(void) {
     data_ov003_021da108->mSlidingOut = 1;
-    func_ov003_021d34e0(data_ov003_021da108->mStepTask, AdvanceSlideButtonsOut);
+    SetTaskCallback(data_ov003_021da108->mStepTask, AdvanceSlideButtonsOut);
 }
 
 int GetButtonResult(void) {
@@ -103,7 +103,7 @@ void AdvanceSlideButtonsIn(TaskEntry *task) {
     SetSlideButtonsY(yPosition);
     if (yPosition <= data_ov003_021d5ec4[1]) {
         SetSlideButtonsY(data_ov003_021d5ec4[1]);
-        func_ov003_021d34e0(task, AdvanceSlideButtonsWait);
+        SetTaskCallback(task, AdvanceSlideButtonsWait);
     }
 }
 
@@ -114,7 +114,7 @@ void AdvanceSlideButtonsWait(TaskEntry *task) {
     data_ov003_021da108->mStepFrames = data_ov003_021da108->mStepFrames + 1;
     if (data_ov003_021da108->mStepFrames >= 4) {
         data_ov003_021da108->mStepFrames = a;
-        func_ov003_021d34e0(task, AdvanceButtonTouch);
+        SetTaskCallback(task, AdvanceButtonTouch);
     }
 }
 
@@ -144,7 +144,7 @@ void AdvanceButtonTouch(void) {
                 SetOamRangePosition(data_ov003_021da108->mButtons[i], -1, data_ov003_021d5ed4[positionIndex * 2],
                                     data_ov003_021d5ed6[positionIndex * 2]);
                 func_ov003_021d1790(data_ov003_021da108->mButtons[i], -1, 1);
-                data_ov003_021da108->mResetTask = func_ov003_021d3544(0, AdvanceButtonReset, NULL, 0x6e);
+                data_ov003_021da108->mResetTask = AddTask(0, AdvanceButtonReset, NULL, 0x6e);
                 data_ov003_021da108->mButtonResult = i;
                 return;
             }
@@ -160,6 +160,6 @@ void AdvanceSlideButtonsOut(TaskEntry *task) {
     yPosition = yPosition + 4;
     SetSlideButtonsY(yPosition);
     if (192 <= yPosition) {
-        func_ov003_021d34e0(task, ReleaseSlideButtons);
+        SetTaskCallback(task, ReleaseSlideButtons);
     }
 }

@@ -3,7 +3,7 @@
 
 void func_ov003_021d326c(void) {
     u32 value0;
-    u32 value3;
+    u32 unused;
     value0 = 1u;
     value0 = PMi_SendLEDPatternCommand(value0);
 }

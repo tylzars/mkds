@@ -21,60 +21,61 @@
 #include "os_printf.h"
 #include "code_0214578c.h"
 
-void func_ov003_021d1654(void) {
-    FSFile a;
-    u32 b[2];
-    u32 c[2];
-    char d[0x80];
-    u32 e;
-    u32 f;
+void InitDwcArchive(void) {
+    FSFile file;
+    u32 fntRegion[2];
+    u32 fatRegion[2];
+    char dirPath[0x80];
+    u32 base;
+    u32 tablesSize;
 
-    data_ov003_021da2b0 = AllocZeroedExpHeapBlock(0xe8, 4);
-    FS_InitFile(&a);
-    if (FS_OpenFile(&a, data_ov003_021d7be0) == 0) {
+    gDwcArchive = AllocZeroedExpHeapBlock(0xe8, 4);
+    FS_InitFile(&file);
+    if (FS_OpenFile(&file, data_ov003_021d7be0) == 0) {
         OS_Terminate();
     }
-    data_ov003_021da2b0->mUnk_e4 = OS_GetLockID();
-    e = a.mProp.w.mUnk_04;
-    FS_ReadFile(&a, b, 8);
-    FS_ReadFile(&a, c, 8);
-    FS_CloseFile(&a);
-    FS_InitArchive(&data_ov003_021da2b0->mUnk_88);
-    if (FS_RegisterArchiveName(&data_ov003_021da2b0->mUnk_88, data_ov003_021d67d8, 3) == 0) {
+    gDwcArchive->mLockId = OS_GetLockID();
+    base = file.mProp.w.mUnk_04;
+    FS_ReadFile(&file, fntRegion, 8);
+    FS_ReadFile(&file, fatRegion, 8);
+    FS_CloseFile(&file);
+    FS_InitArchive(&gDwcArchive->mArchive);
+    if (FS_RegisterArchiveName(&gDwcArchive->mArchive, data_ov003_021d67d8, 3) == 0) {
         OS_Terminate();
     }
-    FS_SetArchiveProc(&data_ov003_021da2b0->mUnk_88, func_ov003_021d15a4, 0x602);
-    if (FS_LoadArchive(&data_ov003_021da2b0->mUnk_88, (u8 *) e, c[0], c[1], b[0], b[1],
-                       (FS_ARCHIVE_READ_FUNC) func_ov003_021d1574, (FS_ARCHIVE_WRITE_FUNC) func_ov003_021d1564) == 0) {
+    FS_SetArchiveProc(&gDwcArchive->mArchive, DwcArchiveProc, 0x602);
+    if (FS_LoadArchive(&gDwcArchive->mArchive, (u8 *) base, fatRegion[0], fatRegion[1], fntRegion[0], fntRegion[1],
+                       (FS_ARCHIVE_READ_FUNC) DwcArchiveReadCallback,
+                       (FS_ARCHIVE_WRITE_FUNC) DwcArchiveWriteCallback) == 0) {
         OS_Terminate();
     }
-    f = FS_LoadArchiveTables(&data_ov003_021da2b0->mUnk_88, 0, 0);
-    data_ov003_021da2b0->mUnk_00 = AllocExpHeapBlock(f, 4);
-    FS_LoadArchiveTables(&data_ov003_021da2b0->mUnk_88, (u32) data_ov003_021da2b0->mUnk_00, f);
-    data_ov003_021da2b0->mUnk_84 = CreateFilledPointerStack(0x20, data_ov003_021da2b0->mUnk_04, 4);
-    OS_SPrintf(d, data_ov003_021d7bf8, data_ov003_021d67d8);
-    FS_ChangeDir((u8 *) d);
+    tablesSize = FS_LoadArchiveTables(&gDwcArchive->mArchive, 0, 0);
+    gDwcArchive->mTables = AllocExpHeapBlock(tablesSize, 4);
+    FS_LoadArchiveTables(&gDwcArchive->mArchive, (u32) gDwcArchive->mTables, tablesSize);
+    gDwcArchive->mUnk_84 = CreateFilledPointerStack(0x20, gDwcArchive->mUnk_04, 4);
+    OS_SPrintf(dirPath, data_ov003_021d7bf8, data_ov003_021d67d8);
+    FS_ChangeDir((u8 *) dirPath);
 }
 
-void func_ov003_021d15f4(void) {
+void ReleaseDwcArchive(void) {
     FS_ChangeDir(data_ov003_021d7bd8);
-    FS_UnloadArchiveTables(&data_ov003_021da2b0->mUnk_88);
-    FS_UnloadArchive(&data_ov003_021da2b0->mUnk_88);
-    FS_ReleaseArchiveName(&data_ov003_021da2b0->mUnk_88);
-    OS_ReleaseLockID(data_ov003_021da2b0->mUnk_e4);
-    data_ov003_021da2b0->mUnk_e4 = 0;
-    FreeExpHeapBlockAndClearPointer(data_ov003_021da2b0);
-    data_ov003_021da2b0->mUnk_00 = NULL;
-    FreeExpHeapBlockAndClearPointer(&data_ov003_021da2b0);
+    FS_UnloadArchiveTables(&gDwcArchive->mArchive);
+    FS_UnloadArchive(&gDwcArchive->mArchive);
+    FS_ReleaseArchiveName(&gDwcArchive->mArchive);
+    OS_ReleaseLockID(gDwcArchive->mLockId);
+    gDwcArchive->mLockId = 0;
+    FreeExpHeapBlockAndClearPointer(gDwcArchive);
+    gDwcArchive->mTables = NULL;
+    FreeExpHeapBlockAndClearPointer(&gDwcArchive);
 }
 
-s32 func_ov003_021d15a4(FSFile *a, u32 b) {
-    switch (b) {
+s32 DwcArchiveProc(FSFile *file, u32 command) {
+    switch (command) {
         case 9:
-            CARD_LockRom(data_ov003_021da2b0->mUnk_e4);
+            CARD_LockRom(gDwcArchive->mLockId);
             return 0;
         case 10:
-            CARD_UnlockRom(data_ov003_021da2b0->mUnk_e4);
+            CARD_UnlockRom(gDwcArchive->mLockId);
             return 0;
         case 1:
             return 4;
@@ -83,71 +84,72 @@ s32 func_ov003_021d15a4(FSFile *a, u32 b) {
     }
 }
 
-u32 func_ov003_021d1574(int a, u32 b, int c, u32 d) {
-    CARDi_ReadRom(0xffffffff, (c + *(s32 *) (a + 0x28)), b, d, (UnkFunc *) (&func_ov003_021d1568), a, 1);
+u32 DwcArchiveReadCallback(int archive, u32 dst, int offset, u32 length) {
+    CARDi_ReadRom(0xffffffff, (offset + *(s32 *) (archive + 0x28)), dst, length,
+                  (UnkFunc *) (&DwcArchiveReadEndCallback), archive, 1);
     return 6;
 }
 
-void func_ov003_021d1568(FSArchive *list) {
-    FS_NotifyArchiveAsyncEnd(list, 0);
+void DwcArchiveReadEndCallback(FSArchive *archive) {
+    FS_NotifyArchiveAsyncEnd(archive, 0);
 }
 
-s32 func_ov003_021d1564(void) {
+s32 DwcArchiveWriteCallback(void) {
     return 1;
 }
 
-void *func_ov003_021d14b8(const u8 *f, u32 *g, s32 h) {
-    FSFile a;
-    void *b;
+void *LoadFile(const u8 *path, u32 *outSize, s32 alignment) {
+    FSFile file;
+    void *fileData;
     u32 c;
-    s32 e;
+    s32 readAlignment;
 
-    PopPointerStack(data_ov003_021da2b0->mUnk_84);
-    FS_InitFile(&a);
-    if (FS_OpenFile(&a, f) == 0) {
+    PopPointerStack(gDwcArchive->mUnk_84);
+    FS_InitFile(&file);
+    if (FS_OpenFile(&file, path) == 0) {
         OS_Terminate();
     }
-    c = a.mProp.w.mUnk_08 - a.mProp.w.mUnk_04;
-    if (g != NULL) {
-        *g = c;
+    c = file.mProp.w.mUnk_08 - file.mProp.w.mUnk_04;
+    if (outSize != NULL) {
+        *outSize = c;
     }
-    if (func_ov003_021d1440(f, data_ov003_021d7bd4, 2) != 0) {
-        e = -4;
+    if (AreStringEndsEqual(path, data_ov003_021d7bd4, 2) != 0) {
+        readAlignment = -4;
     } else {
-        e = h;
+        readAlignment = alignment;
     }
-    b = AllocExpHeapBlock(c, e);
-    FS_ReadFile(&a, b, c);
-    FS_CloseFile(&a);
-    if (e > 0) {
-        return b;
+    fileData = AllocExpHeapBlock(c, readAlignment);
+    FS_ReadFile(&file, fileData, c);
+    FS_CloseFile(&file);
+    if (readAlignment > 0) {
+        return fileData;
     }
-    c = *(u32 *) b >> 8;
-    if (g != NULL) {
-        *g = c;
+    c = *(u32 *) fileData >> 8;
+    if (outSize != NULL) {
+        *outSize = c;
     }
     {
-        void *d = AllocExpHeapBlock(c, h);
+        void *uncompressed = AllocExpHeapBlock(c, alignment);
 
-        MI_UncompressLZ8(b, d);
-        FreeExpHeapBlockAndClearPointer(&b);
-        return d;
+        MI_UncompressLZ8(fileData, uncompressed);
+        FreeExpHeapBlockAndClearPointer(&fileData);
+        return uncompressed;
     }
 }
 
-void func_ov003_021d1490(void *a, ...) {
-    FreeExpHeapBlockAndClearPointer(&a);
-    PushPointerStack(data_ov003_021da2b0->mUnk_84, a);
+void DeleteLoadedFile(void *block, ...) {
+    FreeExpHeapBlockAndClearPointer(&block);
+    PushPointerStack(gDwcArchive->mUnk_84, block);
 }
 
-u32 func_ov003_021d1440(const u8 *c, const char *d, s32 e) {
-    s32 a = strlen((const char *) c);
-    s32 b = strlen(d);
+BOOL AreStringEndsEqual(const u8 *first, const char *second, s32 endLength) {
+    s32 firstLength = strlen((const char *) first);
+    s32 secondLength = strlen(second);
 
-    if (a < e || b < e) {
+    if (firstLength < endLength || secondLength < endLength) {
         return 0;
     }
-    if (memcmp(c + (a - e), d + (b - e), e) == 0) {
+    if (memcmp(first + (firstLength - endLength), second + (secondLength - endLength), endLength) == 0) {
         return 1;
     }
     return 0;

@@ -36,7 +36,7 @@ void InitTextCanvases(void) {
     gTextCanvases->mFreeObjCanvases = CreateFilledPointerStack(0x20, canvases->mObjCanvasStorage, 0x38);
     b = NULL;
     for (i = 0; i < 2; i++) {
-        gTextCanvases->mFontFiles[i] = func_ov003_021d14b8(data_ov003_021d7c0c[i], b, 4);
+        gTextCanvases->mFontFiles[i] = LoadFile(data_ov003_021d7c0c[i], b, 4);
         NNS_G2dFontInitUTF16(&gTextCanvases->mFonts[i], gTextCanvases->mFontFiles[i]);
     }
 }
@@ -44,7 +44,7 @@ void InitTextCanvases(void) {
 void ReleaseTextCanvases(void) {
     int i;
     for (i = 0; i < 2; i++) {
-        func_ov003_021d1490(gTextCanvases->mFontFiles[i]);
+        DeleteLoadedFile(gTextCanvases->mFontFiles[i]);
     }
     func_ov003_021d1d4c(gTextCanvases->mFreeObjCanvases);
     FreeExpHeapBlockAndClearPointer(&gTextCanvases);
@@ -59,7 +59,7 @@ ObjTextCanvas *CreateObjTextCanvas(u32 screen, u16 areaWidth, u16 areaHeight, s3
 
     canvas->mAreaWidth = areaWidth;
     canvas->mAreaHeight = areaHeight;
-    canvas->mUnk_30 = func_ov003_021d309c(screen, areaWidth * areaHeight, fromFront, &charName);
+    canvas->mUnk_30 = CreateObjCharRange(screen, areaWidth * areaHeight, fromFront, &charName);
     canvas->mCharName = charName;
     *entryCount = NNSi_G2dCalcRequiredOBJ(areaWidth, areaHeight);
     if (screen == 1) {
@@ -79,7 +79,7 @@ ObjTextCanvas *CreateObjTextCanvas(u32 screen, u16 areaWidth, u16 areaHeight, s3
 }
 
 void DeleteObjTextCanvas(void *canvas) {
-    func_ov003_021d305c(*OFFSET_PTR(u32, canvas, 0x30));
+    DeleteObjCharRange(*OFFSET_PTR(u32, canvas, 0x30));
     PushPointerStack(gTextCanvases->mFreeObjCanvases, canvas);
 }
 
@@ -114,8 +114,7 @@ BgTextCanvas *InitBgTextCanvas(u32 screen, u32 fontIndex) {
     }
     NNS_G2dMapScrToCharText((u16 *) screenBase, areaWidth, areaHeight, 0, 0, 0x20, data_ov003_021d67dc[screen], 0xf);
     ClearBgTextCanvas(canvas, 0);
-    canvas->mUploadTask =
-        func_ov003_021d3544(1, AdvanceBgTextCanvasUpload, &gTextCanvases->mBgUploadPending[screen], 200);
+    canvas->mUploadTask = AddTask(1, AdvanceBgTextCanvasUpload, &gTextCanvases->mBgUploadPending[screen], 200);
     return canvas;
 }
 
@@ -144,7 +143,7 @@ void ReleaseBgTextCanvas(BgTextCanvas *canvas) {
     volatile u16 b;
     void *charBase;
 
-    func_ov003_021d34c0(1, canvas->mUploadTask);
+    RemoveTaskEntryWrapper(1, canvas->mUploadTask);
     if (canvas == gTextCanvases->mBgTextCanvases) {
         charBase = (void *) G2_GetBG0CharPtr();
         a = 0;

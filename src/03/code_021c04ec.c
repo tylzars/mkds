@@ -72,13 +72,13 @@ void CreateEditKeyboard(void) {
     gEditKeyboard->mCursor = CreateOamRangeFromNceImage(0, 0x40, 1);
     SetOamRangeEffect(gEditKeyboard->mCursor, -1, 0x200, 0);
     func_ov003_021d1790(gEditKeyboard->mCursor, -1, 2);
-    gEditKeyboard->mStepTask = (TaskEntry *) func_ov003_021d3544(0, AdvanceEditKeyboardSlideInRow0, NULL, 0x78);
+    gEditKeyboard->mStepTask = (TaskEntry *) AddTask(0, AdvanceEditKeyboardSlideInRow0, NULL, 0x78);
     SetEditKeyboardRowY(gEditKeyboard->mPage, 0, 0xc0);
 }
 
 void StartEditKeyboardSlideOut(void) {
     DeleteOamRange(gEditKeyboard->mCursor);
-    func_ov003_021d34e0(gEditKeyboard->mStepTask, AdvanceEditKeyboardSlideOutRow4);
+    SetTaskCallback(gEditKeyboard->mStepTask, AdvanceEditKeyboardSlideOutRow4);
 }
 
 u8 GetEditKeyboardInput(void) {
@@ -116,7 +116,7 @@ void AdvanceEditKeyboardSlideInRow0(TaskEntry *task) {
     }
     SetEditKeyboardRowY(gEditKeyboard->mPage, 0, data_ov003_021d5fb0[0][1]);
     SetEditKeyboardRowY(gEditKeyboard->mPage, 1, 0xc0);
-    func_ov003_021d34e0(task, AdvanceEditKeyboardSlideInRow1);
+    SetTaskCallback(task, AdvanceEditKeyboardSlideInRow1);
 }
 
 void AdvanceEditKeyboardSlideInRow1(TaskEntry *task) {
@@ -130,7 +130,7 @@ void AdvanceEditKeyboardSlideInRow1(TaskEntry *task) {
     }
     SetEditKeyboardRowY(gEditKeyboard->mPage, 1, data_ov003_021d5fb0[12][1]);
     SetEditKeyboardRowY(gEditKeyboard->mPage, 2, 0xc0);
-    func_ov003_021d34e0(task, AdvanceEditKeyboardSlideInRow2);
+    SetTaskCallback(task, AdvanceEditKeyboardSlideInRow2);
 }
 
 void AdvanceEditKeyboardSlideInRow2(TaskEntry *task) {
@@ -144,7 +144,7 @@ void AdvanceEditKeyboardSlideInRow2(TaskEntry *task) {
     }
     SetEditKeyboardRowY(gEditKeyboard->mPage, 2, data_ov003_021d5ff0[8][1]);
     SetEditKeyboardRowY(gEditKeyboard->mPage, 3, 0xc0);
-    func_ov003_021d34e0(task, AdvanceEditKeyboardSlideInRow3);
+    SetTaskCallback(task, AdvanceEditKeyboardSlideInRow3);
 }
 
 void AdvanceEditKeyboardSlideInRow3(TaskEntry *task) {
@@ -158,7 +158,7 @@ void AdvanceEditKeyboardSlideInRow3(TaskEntry *task) {
     }
     SetEditKeyboardRowY(gEditKeyboard->mPage, 3, data_ov003_021d6030[4][1]);
     SetEditKeyboardRowY(gEditKeyboard->mPage, 4, 0xc0);
-    func_ov003_021d34e0(task, AdvanceEditKeyboardSlideInRow4);
+    SetTaskCallback(task, AdvanceEditKeyboardSlideInRow4);
 }
 
 void AdvanceEditKeyboardSlideInRow4(TaskEntry *task) {
@@ -172,7 +172,7 @@ void AdvanceEditKeyboardSlideInRow4(TaskEntry *task) {
     }
     SetEditKeyboardRowY(gEditKeyboard->mPage, 4, data_ov003_021d5f88[0][1]);
     PlaceEditKeyboardCursor();
-    func_ov003_021d34e0(task, AdvanceEditKeyboardInput);
+    SetTaskCallback(task, AdvanceEditKeyboardInput);
 }
 
 void AdvanceEditKeyboardInput(void) {

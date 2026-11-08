@@ -14,13 +14,13 @@
 #include "03/code_021d3000.h"
 
 void func_ov003_021ce0f0(u32 task) {
-    func_ov003_021d34c8(0, task);
+    RequestTaskRemoval(0, task);
     data_ov003_021da27c->mTask = 0;
 }
 
 void func_ov003_021ce0c4(void) {
     data_ov003_021da27c->mUnk_18 = 1;
-    data_ov003_021da27c->mTask = func_ov003_021d3544(0, func_ov003_021cdf98, NULL, 0x78);
+    data_ov003_021da27c->mTask = AddTask(0, func_ov003_021cdf98, NULL, 0x78);
 }
 
 void func_ov003_021ce024(u32 a) {
@@ -58,7 +58,7 @@ void func_ov003_021cdf98(TaskEntry *a) {
     for (i = 4; i < 5; i++) {
         SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
     }
-    func_ov003_021d34e0(a, func_ov003_021cdf00);
+    SetTaskCallback(a, func_ov003_021cdf00);
 }
 
 void func_ov003_021cdf00(TaskEntry *a) {
@@ -77,7 +77,7 @@ void func_ov003_021cdf00(TaskEntry *a) {
     for (i = 3; i < 5; i++) {
         SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
     }
-    func_ov003_021d34e0(a, func_ov003_021cde68);
+    SetTaskCallback(a, func_ov003_021cde68);
 }
 
 void func_ov003_021cde68(TaskEntry *a) {
@@ -96,7 +96,7 @@ void func_ov003_021cde68(TaskEntry *a) {
     for (i = 2; i < 5; i++) {
         SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
     }
-    func_ov003_021d34e0(a, func_ov003_021cddd0);
+    SetTaskCallback(a, func_ov003_021cddd0);
 }
 
 void func_ov003_021cddd0(TaskEntry *a) {
@@ -115,7 +115,7 @@ void func_ov003_021cddd0(TaskEntry *a) {
     for (i = 1; i < 5; i++) {
         SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
     }
-    func_ov003_021d34e0(a, func_ov003_021cdd48);
+    SetTaskCallback(a, func_ov003_021cdd48);
 }
 
 void func_ov003_021cdd48(TaskEntry *a) {
@@ -128,7 +128,7 @@ void func_ov003_021cdd48(TaskEntry *a) {
         SetOamRangePosition(data_ov003_021da27c->mUnk_00[i], -1, w, data_ov003_021d66a8[i].mUnk_02);
     }
     if (w <= 0x1d6 && w >= 0x100) {
-        func_ov003_021d34c8(0, (u32) a);
+        RequestTaskRemoval(0, (u32) a);
         for (i = 0; i < 5; i++) {
             DeleteOamRange(data_ov003_021da27c->mUnk_00[i]);
         }

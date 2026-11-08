@@ -11,11 +11,11 @@
 void LoadNceFile(u32 slot, const u8 *path) {
     u32 size;
 
-    gNceFiles[slot] = func_ov003_021d14b8(path, &size, 4);
+    gNceFiles[slot] = LoadFile(path, &size, 4);
 }
 
 void FreeNceFile(u32 slot) {
-    func_ov003_021d1490(gNceFiles[slot]);
+    DeleteLoadedFile(gNceFiles[slot]);
     gNceFiles[slot] = NULL;
 }
 
@@ -38,7 +38,7 @@ void CopyNceImageToOamEntries(u32 slot, u32 imageIndex, OamEntry *destination) {
 void *CreateOamEntryFromNceImage(u32 screen, u32 imageIndex) {
     OamEntry *entry;
     u8 v2[8];
-    entry = func_ov003_021d2f44(screen, v2);
+    entry = CreateOamEntry(screen, v2);
     CopyNceImageToOamEntries(screen, imageIndex, entry);
     return entry;
 }

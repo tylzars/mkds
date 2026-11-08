@@ -45,7 +45,7 @@ s32 func_ov003_021c2494(void *memoryBlock, s32 languageIndex, u32 modeAndFlags) 
     do {
         UpdateKeyTouchInput();
         gUpdateFunction();
-        func_ov003_021d3558(0);
+        RunTasksAndRemoveRequested(0);
         UpdateLcdPower();
         func_ov003_021d3278();
         VBlankIntrWait();
@@ -91,11 +91,11 @@ void func_ov003_021c2398(void) {
     RTC_Init();
     GX_DispOff();
     reg_GXS_DB_DISPCNT &= 0xfffeffff;
-    func_ov003_021d3408();
+    SaveBankSettingsAndClearVram();
     CreateExpHeapOverBuffer(data_ov003_021da174);
     func_ov003_021d2dfc();
-    func_ov003_021d35f4();
-    func_ov003_021d1654();
+    InitTasks();
+    InitDwcArchive();
     InitKeyTouchInput();
     InitBlendBrightnessFadeSlotsFaded();
     work = AllocExpHeapBlock(0x700, 0x20);
@@ -150,8 +150,8 @@ void func_ov003_021c2188(void) {
     powerControl = &reg_GX_POWCNT;
     *powerControl = *powerControl & ~0x8000;
     InitTextCanvases();
-    func_ov003_021d2fdc();
-    func_ov003_021d31b0();
+    InitOamBuffers();
+    InitObjCharRanges();
     InitOamRanges();
     GX_DispOn();
     *(u32 *) 0x4001000 = *(u32 *) 0x4001000 | 0x10000;
@@ -166,13 +166,13 @@ void func_ov003_021c2138(void) {
     func_ov003_021d2dcc();
     func_ov003_021cdc28();
     ReleaseOamRanges();
-    func_ov003_021d2f78();
+    ReleaseOamBuffers();
     ReleaseTextCanvases();
     FreeBlendBrightnessFadeSlots();
-    func_ov003_021d15f4();
-    func_ov003_021d35c0();
+    ReleaseDwcArchive();
+    ReleaseTasks();
     ReleaseExpHeap();
-    func_ov003_021d332c();
+    RestoreBankSettingsAndResetDisplay();
 }
 
 void SetUpdateFunction(void (*callback)(void)) {

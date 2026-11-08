@@ -41,7 +41,7 @@ void func_ov003_021cb3d8(void) {
     if (IsBlendBrightnessFadeSlotBusy(1) == 0 && IsBlendBrightnessFadeSlotBusy(0) == 0 && func_ov003_021bf2f0() != 0) {
         ReleaseSelectionObjectSlots();
         func_ov003_021bf410();
-        func_ov003_021d1490(gYbBgStep21Ncl);
+        DeleteLoadedFile(gYbBgStep21Ncl);
         ClearDispcntBits(1, 1);
         ClearDispcntBits(0, 0x14);
         if (data_ov003_021da240[0] == 0) {
@@ -117,7 +117,7 @@ void LoadApFilesAndSetBgCnt(void) {
     LoadFileToVram(gJbBgStep1NcgName3, GX_LoadBG2Char);
     LoadFileToVram(gJbBgStep1NclName3, GX_LoadBGPltt);
     LoadFileToVram(gJb2ApNscName, GX_LoadBG2Scr);
-    gAp->mYbBgStep11Ncl = func_ov003_021d14b8(BuildFilePathWithLanguage((u8 *) &a), NULL, 4);
+    gAp->mYbBgStep11Ncl = LoadFile(BuildFilePathWithLanguage((u8 *) &a), NULL, 4);
     CombineDispcntBits(1, 0x10);
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 3;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;

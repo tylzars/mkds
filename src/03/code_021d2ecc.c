@@ -9,43 +9,43 @@
 #include "03/code_021d3488.h"
 #include "code_0214d018.h"
 
-void func_ov003_021d2f78(void) {
-    func_ov003_021d34c0(1, data_ov003_021da2f0->mUnk_808);
-    FreeExpHeapBlockAndClearPointer(&data_ov003_021da2f0);
+void ReleaseOamBuffers(void) {
+    RemoveTaskEntryWrapper(1, gOamBuffers->mUploadTask);
+    FreeExpHeapBlockAndClearPointer(&gOamBuffers);
 }
 
-OamEntry *func_ov003_021d2f44(int a, u8 *b) {
-    OamEntry *v1;
-    v1 = PopPointerStack(data_ov003_021da2f0->mUnk_800[a]);
-    MIi_CpuCopy32(b, v1, 8);
-    return v1;
+OamEntry *CreateOamEntry(int screen, u8 *source) {
+    OamEntry *entry;
+    entry = PopPointerStack(gOamBuffers->mFreeEntries[screen]);
+    MIi_CpuCopy32(source, entry, 8);
+    return entry;
 }
 
-void func_ov003_021d2f00(u32 *a) {
-    Unk021d2fa0 *b;
-    s32 c = 0;
+void DeleteOamEntry(u32 *entry) {
+    OamBuffers *buffers;
+    s32 screen = 0;
 
-    *a = (*a & 0xc1fffcff) | 0x200;
-    b = data_ov003_021da2f0;
-    if ((u32) a >= (u32) b + 0x400) {
-        c = 1;
+    *entry = (*entry & 0xc1fffcff) | 0x200;
+    buffers = gOamBuffers;
+    if ((u32) entry >= (u32) buffers + 0x400) {
+        screen = 1;
     }
-    PushPointerStack(b->mUnk_800[c], a);
+    PushPointerStack(buffers->mFreeEntries[screen], entry);
 }
 
-OamEntry *func_ov003_021d2eec(int a, int b) {
-    return (OamEntry *) (&data_ov003_021da2f0->mUnk_000[a][b * 8]);
+OamEntry *GetOamBufferEntry(int screen, int index) {
+    return (OamEntry *) (&gOamBuffers->mBuffers[screen][index * 8]);
 }
 
-void *func_ov003_021d2ecc(void) {
-    u32 v4 = ((u32) AllocExpHeapBlock(0x10u, 0x4u));
-    u32 v7;
-    u32 v8;
-    *(u32 *) ((v4) + (0)) = 0x0u;
-    v7 = ((v4) + (0x0u));
-    v8 = ((v7) + (0x8u));
-    *(u32 *) ((v4) + (4)) = v8;
-    *(u32 *) ((v4) + (8)) = v4;
-    *(u32 *) ((v4) + (12)) = 0x0u;
-    return (void *) v4;
+void *CreateNodeList(void) {
+    u32 header = ((u32) AllocExpHeapBlock(0x10u, 0x4u));
+    u32 firstEndNode;
+    u32 lastEndNode;
+    *(u32 *) ((header) + (0)) = 0x0u;
+    firstEndNode = ((header) + (0x0u));
+    lastEndNode = ((firstEndNode) + (0x8u));
+    *(u32 *) ((header) + (4)) = lastEndNode;
+    *(u32 *) ((header) + (8)) = header;
+    *(u32 *) ((header) + (12)) = 0x0u;
+    return (void *) header;
 }

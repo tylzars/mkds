@@ -68,7 +68,7 @@ void CreateApList(void) {
     func_ov003_021c6508();
     func_ov003_021c6400();
     gApList->mUnk_0c = InitBgTextCanvas(0, 0);
-    gApList->mBgOffsetTask = func_ov003_021d3544(1, WriteApListBgOffset, NULL, 0x6e);
+    gApList->mBgOffsetTask = AddTask(1, WriteApListBgOffset, NULL, 0x6e);
     RefreshApList();
     func_ov003_021c590c();
     SetUpdateFunction(func_ov003_021c63c4);
@@ -78,10 +78,10 @@ void LoadApListFilesAndSetBgCnt(void) {
     u8 a[0x19] = "char/xb4ApListBack.nsc.l";
     u8 b[0x16] = "char/ybBgStep31.ncl.l";
     LoadFileToVram(gJb4ApListNscName, GX_LoadBG3Scr);
-    gApList->mXb4ApListBackNsc = func_ov003_021d14b8(BuildFilePathWithLanguage(a), NULL, 4);
+    gApList->mXb4ApListBackNsc = LoadFile(BuildFilePathWithLanguage(a), NULL, 4);
     func_ov003_021cca30(gApList->mXb4ApListBackNsc);
     func_ov003_021cc9fc();
-    gApList->mYbBgStep31Ncl = func_ov003_021d14b8(BuildFilePathWithLanguage(b), NULL, 4);
+    gApList->mYbBgStep31Ncl = LoadFile(BuildFilePathWithLanguage(b), NULL, 4);
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 3;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
     reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 3;
@@ -294,9 +294,9 @@ void func_ov003_021c5f9c(void) {
             if (a == 0) {
                 func_ov003_021c590c();
             } else if (a < 0xe) {
-                gApList->mScrollTask = func_ov003_021d3544(0, AdvanceApListScrollYDecrease, NULL, 0x78);
+                gApList->mScrollTask = AddTask(0, AdvanceApListScrollYDecrease, NULL, 0x78);
             } else {
-                gApList->mScrollTask = func_ov003_021d3544(0, AdvanceApListScrollYIncrease, NULL, 0x78);
+                gApList->mScrollTask = AddTask(0, AdvanceApListScrollYIncrease, NULL, 0x78);
             }
             break;
         case 4:
@@ -307,7 +307,7 @@ void func_ov003_021c5f9c(void) {
                 }
             } else {
                 StartSoundSeq(0x13);
-                gApList->mScrollTask = func_ov003_021d3544(0, AdvanceApListScrollYDecrease, NULL, 0x78);
+                gApList->mScrollTask = AddTask(0, AdvanceApListScrollYDecrease, NULL, 0x78);
             }
             break;
         case 6:
@@ -319,7 +319,7 @@ void func_ov003_021c5f9c(void) {
                 }
             } else {
                 StartSoundSeq(0x13);
-                gApList->mScrollTask = func_ov003_021d3544(0, AdvanceApListScrollYIncrease, NULL, 0x78);
+                gApList->mScrollTask = AddTask(0, AdvanceApListScrollYIncrease, NULL, 0x78);
             }
             break;
         case 5:
@@ -394,13 +394,13 @@ void func_ov003_021c5cdc(void) {
     if (func_ov003_021bf2f0() == 0) {
         return;
     }
-    func_ov003_021d34c0(1, gApList->mBgOffsetTask);
+    RemoveTaskEntryWrapper(1, gApList->mBgOffsetTask);
     for (i = 0; i < 5; i++) {
         if (gApList->mUnk_10[i] != NULL) {
-            func_ov003_021d2f00((u32 *) gApList->mUnk_10[i]);
+            DeleteOamEntry((u32 *) gApList->mUnk_10[i]);
         }
         if (gApList->mUnk_24[i] != NULL) {
-            func_ov003_021d2f00((u32 *) gApList->mUnk_24[i]);
+            DeleteOamEntry((u32 *) gApList->mUnk_24[i]);
         }
     }
     ReleaseBgTextCanvas(gApList->mUnk_0c);
@@ -408,8 +408,8 @@ void func_ov003_021c5cdc(void) {
     ReleaseSelectionObjectSlots();
     func_ov003_021bf410();
     func_ov003_021cca10();
-    func_ov003_021d1490(gApList->mXb4ApListBackNsc);
-    func_ov003_021d1490(gApList->mYbBgStep31Ncl);
+    DeleteLoadedFile(gApList->mXb4ApListBackNsc);
+    DeleteLoadedFile(gApList->mYbBgStep31Ncl);
     ClearDispcntBits(1, 1);
     ClearDispcntBits(0, 0x1d);
     reg_G2_BG0OFS = 0;
@@ -479,7 +479,7 @@ void PrintApListEntryText(int param_0, int param_1) {
     int i;
     int n;
     c = param_0 * 0x2a;
-    b = func_ov003_021d3254(gApList->mEntries + c, 0x20);
+    b = GetStringLengthWithLimit(gApList->mEntries + c, 0x20);
     param_1 *= 0x1c;
     if (param_0 < gApList->mEntryCount) {
         if (b <= 0x10) {
@@ -562,7 +562,7 @@ void AdvanceApListScrollYDecrease(u32 param_0) {
         func_ov003_021cce48();
         func_ov003_021c590c();
         gApList->mScrollTask = 0;
-        func_ov003_021d34c8(0, param_0);
+        RequestTaskRemoval(0, param_0);
     }
 }
 
@@ -582,7 +582,7 @@ void AdvanceApListScrollYIncrease(u32 param_0) {
     func_ov003_021cce48();
     func_ov003_021c590c();
     gApList->mScrollTask = 0;
-    func_ov003_021d34c8(0, param_0);
+    RequestTaskRemoval(0, param_0);
 }
 
 void WriteApListBgOffset(void) {
@@ -621,7 +621,7 @@ void MoveApListSelectedRow(int param_0) {
                     gApListSelectedRow = 4;
                 } else {
                     StartSoundSeq(0x13);
-                    gApList->mScrollTask = func_ov003_021d3544(0, AdvanceApListScrollYDecrease, NULL, 0x78);
+                    gApList->mScrollTask = AddTask(0, AdvanceApListScrollYDecrease, NULL, 0x78);
                     return;
                 }
             } else if (gApList->mEntryCount > 1) {
@@ -678,7 +678,7 @@ void StartApListScrollYDecrease(void) {
         }
     } else {
         StartSoundSeq(0x13);
-        gApList->mScrollTask = func_ov003_021d3544(0, AdvanceApListScrollYDecrease, NULL, 0x78);
+        gApList->mScrollTask = AddTask(0, AdvanceApListScrollYDecrease, NULL, 0x78);
     }
 }
 
@@ -690,7 +690,7 @@ void StartApListScrollYIncrease(void) {
         }
     } else {
         StartSoundSeq(0x13);
-        gApList->mScrollTask = func_ov003_021d3544(0, AdvanceApListScrollYIncrease, NULL, 0x78);
+        gApList->mScrollTask = AddTask(0, AdvanceApListScrollYIncrease, NULL, 0x78);
     }
 }
 

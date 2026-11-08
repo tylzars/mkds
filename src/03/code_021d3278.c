@@ -2,10 +2,10 @@
 #include "pm.h"
 
 void func_ov003_021d3278(void) {
-    int v1;
-    int v2[1];
-    v1 = PM_GetLEDPattern((u32 *) v2);
-    if ((v1 == 0) && (v2[0] != 0xf)) {
+    int result;
+    int pattern[1];
+    result = PM_GetLEDPattern((u32 *) pattern);
+    if ((result == 0) && (pattern[0] != 0xf)) {
         PMi_SendLEDPatternCommand(0xf);
     }
 }

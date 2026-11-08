@@ -93,8 +93,8 @@ void CreateJb3List(void) {
             gJb3List->mUnk_34->mUnk_04 = (gJb3List->mUnk_34->mUnk_04 & ~0xc00) | 0xc00;
             break;
     }
-    gJb3List->mBgOffsetTask = func_ov003_021d3544(1, WriteJb3ListBgOffset, NULL, 0x6e);
-    gJb3List->mIdTimerTask = func_ov003_021d3544(0, AdvanceJb3ListIdTimers, NULL, 0x78);
+    gJb3List->mBgOffsetTask = AddTask(1, WriteJb3ListBgOffset, NULL, 0x6e);
+    gJb3List->mIdTimerTask = AddTask(0, AdvanceJb3ListIdTimers, NULL, 0x78);
     RefreshJb3List();
     func_ov003_021c81b8();
     SetUpdateFunction(func_ov003_021c948c);
@@ -113,11 +113,11 @@ void LoadJb3ListFilesAndSetBgCnt(void) {
     LoadFileToVram(gJbBgStep21NcgName, GX_LoadBG2Char);
     LoadFileToVram(&b, GX_LoadBGPltt);
     LoadFileToVram(gJb3ListNscName, GX_LoadBG3Scr);
-    gJb3List->mJb3ListBackNsc = func_ov003_021d14b8(BuildFilePathWithLanguage((u8 *) &a), NULL, 4);
+    gJb3List->mJb3ListBackNsc = LoadFile(BuildFilePathWithLanguage((u8 *) &a), NULL, 4);
     func_ov003_021cca30(gJb3List->mJb3ListBackNsc);
     func_ov003_021cc9fc();
-    gJb3List->mYbBgStep2NclFiles[0] = func_ov003_021d14b8(BuildFilePathWithLanguage((u8 *) &b), NULL, 4);
-    gJb3List->mYbBgStep2NclFiles[1] = func_ov003_021d14b8(BuildFilePathWithLanguage((u8 *) &c), NULL, 4);
+    gJb3List->mYbBgStep2NclFiles[0] = LoadFile(BuildFilePathWithLanguage((u8 *) &b), NULL, 4);
+    gJb3List->mYbBgStep2NclFiles[1] = LoadFile(BuildFilePathWithLanguage((u8 *) &c), NULL, 4);
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~0x3) | 0x3;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~0x3) | 0x3;
     reg_G2_BG0CNT = (reg_G2_BG0CNT & ~0x3) | 0x3;
@@ -188,7 +188,7 @@ void UpdateJb3ListInput(void) {
             return;
         }
         StartSoundSeq(0x13);
-        gJb3List->mScrollTask = func_ov003_021d3544(0, AdvanceJb3ListScrollYIncrease, NULL, 0x78);
+        gJb3List->mScrollTask = AddTask(0, AdvanceJb3ListScrollYIncrease, NULL, 0x78);
         return;
     }
     if (AreKeysReleased(0x200) != 0) {
@@ -205,7 +205,7 @@ void UpdateJb3ListInput(void) {
             return;
         }
         StartSoundSeq(0x13);
-        gJb3List->mScrollTask = func_ov003_021d3544(0, AdvanceJb3ListScrollYDecrease, NULL, 0x78);
+        gJb3List->mScrollTask = AddTask(0, AdvanceJb3ListScrollYDecrease, NULL, 0x78);
         return;
     }
     if (AreKeysReleased(0x100) != 0) {
@@ -368,9 +368,9 @@ void UpdateJb3ListScrollInput(void) {
                     return;
                 }
                 if (a < 0x10) {
-                    gJb3List->mScrollTask = func_ov003_021d3544(0, AdvanceJb3ListScrollYDecrease, NULL, 0x78);
+                    gJb3List->mScrollTask = AddTask(0, AdvanceJb3ListScrollYDecrease, NULL, 0x78);
                 } else {
-                    gJb3List->mScrollTask = func_ov003_021d3544(0, AdvanceJb3ListScrollYIncrease, NULL, 0x78);
+                    gJb3List->mScrollTask = AddTask(0, AdvanceJb3ListScrollYIncrease, NULL, 0x78);
                 }
                 break;
             case 4:
@@ -382,7 +382,7 @@ void UpdateJb3ListScrollInput(void) {
                     gJb3List->mUnk_46 = 1;
                 } else {
                     StartSoundSeq(0x13);
-                    gJb3List->mScrollTask = func_ov003_021d3544(0, AdvanceJb3ListScrollYDecrease, NULL, 0x78);
+                    gJb3List->mScrollTask = AddTask(0, AdvanceJb3ListScrollYDecrease, NULL, 0x78);
                 }
                 break;
             case 6:
@@ -394,7 +394,7 @@ void UpdateJb3ListScrollInput(void) {
                     gJb3List->mUnk_46 = 1;
                 } else {
                     StartSoundSeq(0x13);
-                    gJb3List->mScrollTask = func_ov003_021d3544(0, AdvanceJb3ListScrollYIncrease, NULL, 0x78);
+                    gJb3List->mScrollTask = AddTask(0, AdvanceJb3ListScrollYIncrease, NULL, 0x78);
                 }
                 break;
             case 5:
@@ -436,13 +436,13 @@ void func_ov003_021c8c14(void) {
     if (IsBlendBrightnessFadeSlotBusy(0) != 0) {
         return;
     }
-    func_ov003_021d34c0(0, gJb3List->mIdTimerTask);
-    func_ov003_021d34c0(1, gJb3List->mBgOffsetTask);
+    RemoveTaskEntryWrapper(0, gJb3List->mIdTimerTask);
+    RemoveTaskEntryWrapper(1, gJb3List->mBgOffsetTask);
     for (i = 0; i < 7; i++) {
-        func_ov003_021d2f00((u32 *) gJb3List->mUnk_18[i]);
+        DeleteOamEntry((u32 *) gJb3List->mUnk_18[i]);
     }
     if (gJb3List->mUnk_34 != NULL) {
-        func_ov003_021d2f00((u32 *) gJb3List->mUnk_34);
+        DeleteOamEntry((u32 *) gJb3List->mUnk_34);
     }
     func_ov003_021cce78();
     ReleaseBgTextCanvasOfScreen(0);
@@ -451,9 +451,9 @@ void func_ov003_021c8c14(void) {
         func_ov003_021bf410();
     }
     func_ov003_021cca10();
-    func_ov003_021d1490(gJb3List->mJb3ListBackNsc);
+    DeleteLoadedFile(gJb3List->mJb3ListBackNsc);
     for (i = 0; i < 2; i++) {
-        func_ov003_021d1490(gJb3List->mYbBgStep2NclFiles[i]);
+        DeleteLoadedFile(gJb3List->mYbBgStep2NclFiles[i]);
     }
     LoadFileToVram(gYbObjMainNclName4, GX_LoadOBJPltt);
     ClearDispcntBits(1, 1);
@@ -747,7 +747,7 @@ void PrintJb3ListEntryString(const u8 *g, int h) {
     int d;
     int e;
     MI_CpuFill8(f, 0, 0x22);
-    a = func_ov003_021d3254(g, 0x20);
+    a = GetStringLengthWithLimit(g, 0x20);
     if (a <= 0x10) {
         b = a;
     } else {
@@ -937,7 +937,7 @@ void AdvanceJb3ListScrollYDecrease(u32 b) {
         func_ov003_021cce48();
         SetJb3ListSelectedIdFromRow();
         gJb3List->mScrollTask = 0;
-        func_ov003_021d34c8(0, b);
+        RequestTaskRemoval(0, b);
     }
 }
 
@@ -957,7 +957,7 @@ void AdvanceJb3ListScrollYIncrease(u32 b) {
     func_ov003_021cce48();
     SetJb3ListSelectedIdFromRow();
     gJb3List->mScrollTask = 0;
-    func_ov003_021d34c8(0, b);
+    RequestTaskRemoval(0, b);
 }
 
 void WriteJb3ListBgOffset(void) {
@@ -1106,7 +1106,7 @@ void MoveJb3ListSelection(s32 d) {
                     break;
                 }
                 StartSoundSeq(0x13);
-                gJb3List->mScrollTask = func_ov003_021d3544(0, AdvanceJb3ListScrollYDecrease, NULL, 0x78);
+                gJb3List->mScrollTask = AddTask(0, AdvanceJb3ListScrollYDecrease, NULL, 0x78);
                 return;
             } else if (d == 3) {
                 if (gJb3ListSelectedRow < 3) {
@@ -1114,7 +1114,7 @@ void MoveJb3ListSelection(s32 d) {
                     break;
                 }
                 StartSoundSeq(0x13);
-                gJb3List->mScrollTask = func_ov003_021d3544(0, AdvanceJb3ListScrollYIncrease, NULL, 0x78);
+                gJb3List->mScrollTask = AddTask(0, AdvanceJb3ListScrollYIncrease, NULL, 0x78);
                 return;
             } else {
                 b = 2;

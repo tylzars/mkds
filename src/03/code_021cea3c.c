@@ -41,7 +41,7 @@ void func_ov003_021cef28(TaskEntry *a) {
     data_ov003_021da284->mUnk_1a--;
     G2x_ChangeBlendBrightness_(&reg_G2_BLDCNT, data_ov003_021da284->mUnk_1a);
     if (data_ov003_021da284->mUnk_1a <= -12) {
-        func_ov003_021d34e0(a, func_ov003_021cee98);
+        SetTaskCallback(a, func_ov003_021cee98);
     }
 }
 
@@ -57,11 +57,11 @@ void func_ov003_021cee98(u32 a) {
     }
     func_ov003_021cec50(data_ov003_021d6780[data_ov003_021da284->mUnk_1c][1]);
     if (data_ov003_021da284->mUnk_1c == 5) {
-        data_ov003_021da284->mUnk_14 = func_ov003_021d3544(0, func_ov003_021ced78, NULL, 0x78);
+        data_ov003_021da284->mUnk_14 = AddTask(0, func_ov003_021ced78, NULL, 0x78);
     } else {
-        data_ov003_021da284->mUnk_14 = func_ov003_021d3544(0, func_ov003_021cedbc, NULL, 0x78);
+        data_ov003_021da284->mUnk_14 = AddTask(0, func_ov003_021cedbc, NULL, 0x78);
     }
-    func_ov003_021d34c8(1, a);
+    RequestTaskRemoval(1, a);
 }
 
 void func_ov003_021cedbc(void) {
@@ -97,8 +97,8 @@ void func_ov003_021ced78(u32 a) {
     data_ov003_021da284->mUnk_1b = -1;
     data_ov003_021da284->mUnk_18++;
     if (data_ov003_021da284->mUnk_18 >= 0x78) {
-        func_ov003_021d34c8(0, a);
-        data_ov003_021da284->mUnk_14 = func_ov003_021d3544(1, func_ov003_021ceb54, NULL, 0x78);
+        RequestTaskRemoval(0, a);
+        data_ov003_021da284->mUnk_14 = AddTask(1, func_ov003_021ceb54, NULL, 0x78);
     }
 }
 
@@ -172,7 +172,7 @@ void func_ov003_021ceb80(s32 a) {
 void func_ov003_021ceb54(TaskEntry *a) {
     data_ov003_021da284->mUnk_1d++;
     if (data_ov003_021da284->mUnk_1d >= 8) {
-        func_ov003_021d34e0(a, func_ov003_021ceaf8);
+        SetTaskCallback(a, func_ov003_021ceaf8);
     }
 }
 
@@ -185,10 +185,10 @@ void func_ov003_021ceaf8(TaskEntry *a) {
     func_ov003_021cec50(h);
     if (h >= 192) {
         if (data_ov003_021da284->mUnk_1e != 0) {
-            func_ov003_021d34e0(a, func_ov003_021ceab8);
+            SetTaskCallback(a, func_ov003_021ceab8);
             return;
         }
-        func_ov003_021d34e0(a, func_ov003_021cea3c);
+        SetTaskCallback(a, func_ov003_021cea3c);
     }
 }
 
@@ -196,7 +196,7 @@ void func_ov003_021ceab8(TaskEntry *a) {
     data_ov003_021da284->mUnk_1a++;
     G2x_ChangeBlendBrightness_(&reg_G2_BLDCNT, data_ov003_021da284->mUnk_1a);
     if (data_ov003_021da284->mUnk_1a >= 0) {
-        func_ov003_021d34e0(a, func_ov003_021cea3c);
+        SetTaskCallback(a, func_ov003_021cea3c);
     }
 }
 
@@ -212,6 +212,6 @@ void func_ov003_021cea3c(u32 a) {
         }
     }
     DeleteObjTextCanvas(data_ov003_021da284->mUnk_10);
-    func_ov003_021d34c8(1, a);
+    RequestTaskRemoval(1, a);
     FreeExpHeapBlockAndClearPointer(&data_ov003_021da284);
 }

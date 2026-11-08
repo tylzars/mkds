@@ -22,10 +22,10 @@ void ReleaseHlScr(void) {
 void LoadHlScr(int b) {
     void *a;
 
-    a = func_ov003_021d14b8(BuildFilePathWithLanguage(gHlNscNames[b]), NULL, 4);
+    a = LoadFile(BuildFilePathWithLanguage(gHlNscNames[b]), NULL, 4);
     MIi_CpuCopyFast(a, gHlScr, 0xc0);
-    func_ov003_021d1490(a);
-    func_ov003_021d3544(1, UploadHlScr, NULL, 0x78);
+    DeleteLoadedFile(a);
+    AddTask(1, UploadHlScr, NULL, 0x78);
 }
 
 void LoadHlSetScr(void) {
@@ -45,5 +45,5 @@ void LoadHlListScr(void) {
 void UploadHlScr(u32 a) {
     DC_FlushRange(gHlScr, 0xc0);
     GX_LoadBG1Scr(gHlScr, 0, 0xc0);
-    func_ov003_021d34c8(1, a);
+    RequestTaskRemoval(1, a);
 }

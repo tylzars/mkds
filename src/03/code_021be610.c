@@ -22,10 +22,10 @@ void ReleaseSlideButtons(u32 task) {
     SlideButtons *slideButtons;
     s32 i;
 
-    func_ov003_021d34c8(0, task);
+    RequestTaskRemoval(0, task);
     slideButtons = data_ov003_021da108;
     if (slideButtons->mResetTask != 0) {
-        func_ov003_021d34c8(0, slideButtons->mResetTask);
+        RequestTaskRemoval(0, slideButtons->mResetTask);
     }
     for (i = 0; i < 2; i++) {
         if (data_ov003_021da108->mButtons[i] != 0) {
@@ -61,7 +61,7 @@ void AdvanceButtonReset(u32 task) {
         slideButtons = data_ov003_021da108;
         if (slideButtons->mResetTask != 0) {
             slideButtons->mResetTask = 0;
-            func_ov003_021d34c8(0, task);
+            RequestTaskRemoval(0, task);
         }
     }
 }
@@ -83,12 +83,12 @@ void func_ov003_021beef8(int index) {
     innerObject = data_ov003_021da104->mUnk_04;
     innerObject->mUnk_00 = ((data_ov003_021d5ec0[0] & 0x1ff) << 16) |
                            ((innerObject->mUnk_00 & 0xfe00ff00) | (data_ov003_021d5ec0[1] & 0xff));
-    data_ov003_021da104->mUnk_00 = func_ov003_021d3544(1, func_ov003_021bee24, NULL, 0x78);
+    data_ov003_021da104->mUnk_00 = AddTask(1, func_ov003_021bee24, NULL, 0x78);
 }
 
 void func_ov003_021beecc(void) {
-    func_ov003_021d34c0(1, data_ov003_021da104->mUnk_00);
-    func_ov003_021d2f00((u32 *) data_ov003_021da104->mUnk_04);
+    RemoveTaskEntryWrapper(1, data_ov003_021da104->mUnk_00);
+    DeleteOamEntry((u32 *) data_ov003_021da104->mUnk_04);
     FreeExpHeapBlockAndClearPointer(&data_ov003_021da104);
 }
 

@@ -3,8 +3,8 @@
 #include "types.h"
 #include "03/code_021d1770.h" // OamEntry
 
-void *func_ov003_021d2ecc(void);
-OamEntry *func_ov003_021d2eec(int a, int b);
-void func_ov003_021d2f00(u32 *a);
-OamEntry *func_ov003_021d2f44(int a, u8 *b);
-void func_ov003_021d2f78(void);
+void *CreateNodeList(void);
+OamEntry *GetOamBufferEntry(int screen, int index);
+void DeleteOamEntry(u32 *entry);
+OamEntry *CreateOamEntry(int screen, u8 *source);
+void ReleaseOamBuffers(void);

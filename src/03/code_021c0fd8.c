@@ -70,13 +70,13 @@ void CreateEditAddrKeyboard(void) {
     gEditAddrKeyboard->mCursor = CreateOamRangeFromNceImage(0, 0x44, 1);
     SetOamRangeEffect(gEditAddrKeyboard->mCursor, -1, 0x200, 0);
     func_ov003_021d1790(gEditAddrKeyboard->mCursor, -1, 2);
-    gEditAddrKeyboard->mStepTask = (TaskEntry *) func_ov003_021d3544(0, AdvanceEditAddrKeyboardSlideInRow0, NULL, 0x78);
+    gEditAddrKeyboard->mStepTask = (TaskEntry *) AddTask(0, AdvanceEditAddrKeyboardSlideInRow0, NULL, 0x78);
     SetEditAddrKeyboardRowY(0, 0xc0);
 }
 
 void StartEditAddrKeyboardSlideOut(void) {
     DeleteOamRange(gEditAddrKeyboard->mCursor);
-    func_ov003_021d34e0(gEditAddrKeyboard->mStepTask, AdvanceEditAddrKeyboardSlideOutRow4);
+    SetTaskCallback(gEditAddrKeyboard->mStepTask, AdvanceEditAddrKeyboardSlideOutRow4);
 }
 
 u8 GetEditAddrKeyboardInput(void) {
@@ -118,7 +118,7 @@ void AdvanceEditAddrKeyboardSlideInRow0(TaskEntry *task) {
     }
     SetEditAddrKeyboardRowY(0, gEditAddrKeyboardDigitKeyPositions[0][1]);
     SetEditAddrKeyboardRowY(1, 0xc0);
-    func_ov003_021d34e0(task, AdvanceEditAddrKeyboardSlideInRow1);
+    SetTaskCallback(task, AdvanceEditAddrKeyboardSlideInRow1);
 }
 
 void AdvanceEditAddrKeyboardSlideInRow1(TaskEntry *task) {
@@ -132,7 +132,7 @@ void AdvanceEditAddrKeyboardSlideInRow1(TaskEntry *task) {
     }
     SetEditAddrKeyboardRowY(1, gEditAddrKeyboardDigitKeyPositions[3][1]);
     SetEditAddrKeyboardRowY(2, 0xc0);
-    func_ov003_021d34e0(task, AdvanceEditAddrKeyboardSlideInRow2);
+    SetTaskCallback(task, AdvanceEditAddrKeyboardSlideInRow2);
 }
 
 void AdvanceEditAddrKeyboardSlideInRow2(TaskEntry *task) {
@@ -146,7 +146,7 @@ void AdvanceEditAddrKeyboardSlideInRow2(TaskEntry *task) {
     }
     SetEditAddrKeyboardRowY(2, gEditAddrKeyboardDigitKeyPositions[6][1]);
     SetEditAddrKeyboardRowY(3, 0xc0);
-    func_ov003_021d34e0(task, AdvanceEditAddrKeyboardSlideInRow3);
+    SetTaskCallback(task, AdvanceEditAddrKeyboardSlideInRow3);
 }
 
 void AdvanceEditAddrKeyboardSlideInRow3(TaskEntry *task) {
@@ -160,7 +160,7 @@ void AdvanceEditAddrKeyboardSlideInRow3(TaskEntry *task) {
     }
     SetEditAddrKeyboardRowY(3, gEditAddrKeyboardDigitKeyPositions[9][1]);
     SetEditAddrKeyboardRowY(4, 0xc0);
-    func_ov003_021d34e0(task, AdvanceEditAddrKeyboardSlideInRow4);
+    SetTaskCallback(task, AdvanceEditAddrKeyboardSlideInRow4);
 }
 
 void AdvanceEditAddrKeyboardSlideInRow4(TaskEntry *task) {
@@ -174,7 +174,7 @@ void AdvanceEditAddrKeyboardSlideInRow4(TaskEntry *task) {
     }
     SetEditAddrKeyboardRowY(4, gEditAddrKeyboardRow4KeyPositions[0][1]);
     PlaceEditAddrKeyboardCursor();
-    func_ov003_021d34e0(task, AdvanceEditAddrKeyboardInput);
+    SetTaskCallback(task, AdvanceEditAddrKeyboardInput);
 }
 
 void AdvanceEditAddrKeyboardInput(void) {
@@ -504,7 +504,7 @@ void AdvanceEditAddrKeyboardSlideOutRow4(TaskEntry *task) {
     yPos = yPos + 0xc;
     SetEditAddrKeyboardRowY(4, yPos);
     if (yPos >= 0xc0) {
-        func_ov003_021d34e0(task, AdvanceEditAddrKeyboardSlideOutRow3);
+        SetTaskCallback(task, AdvanceEditAddrKeyboardSlideOutRow3);
     }
 }
 
@@ -515,7 +515,7 @@ void AdvanceEditAddrKeyboardSlideOutRow3(TaskEntry *task) {
     yPos = yPos + 0xc;
     SetEditAddrKeyboardRowY(3, yPos);
     if (yPos >= 0xc0) {
-        func_ov003_021d34e0(task, AdvanceEditAddrKeyboardSlideOutRow2);
+        SetTaskCallback(task, AdvanceEditAddrKeyboardSlideOutRow2);
     }
 }
 
@@ -526,7 +526,7 @@ void AdvanceEditAddrKeyboardSlideOutRow2(TaskEntry *task) {
     yPos = yPos + 0xc;
     SetEditAddrKeyboardRowY(2, yPos);
     if (yPos >= 0xc0) {
-        func_ov003_021d34e0(task, AdvanceEditAddrKeyboardSlideOutRow1);
+        SetTaskCallback(task, AdvanceEditAddrKeyboardSlideOutRow1);
     }
 }
 
@@ -537,7 +537,7 @@ void AdvanceEditAddrKeyboardSlideOutRow1(TaskEntry *task) {
     yPos = yPos + 0xc;
     SetEditAddrKeyboardRowY(1, yPos);
     if (yPos >= 0xc0) {
-        func_ov003_021d34e0(task, AdvanceEditAddrKeyboardSlideOutRow0);
+        SetTaskCallback(task, AdvanceEditAddrKeyboardSlideOutRow0);
     }
 }
 
@@ -548,13 +548,13 @@ void AdvanceEditAddrKeyboardSlideOutRow0(TaskEntry *task) {
     yPos = yPos + 0xc;
     SetEditAddrKeyboardRowY(0, yPos);
     if (yPos >= 0xc0) {
-        func_ov003_021d34e0(task, ReleaseEditAddrKeyboard);
+        SetTaskCallback(task, ReleaseEditAddrKeyboard);
     }
 }
 
 void ReleaseEditAddrKeyboard(u32 task) {
     int index;
-    func_ov003_021d34c8(0, task);
+    RequestTaskRemoval(0, task);
     index = 0;
     do {
         DeleteOamRange(gEditAddrKeyboard->mUnk_48[index]);
@@ -568,12 +568,12 @@ void ReleaseEditAddrKeyboard(u32 task) {
     } while (index < 2);
     index = 0;
     do {
-        func_ov003_021d2f00((u32 *) gEditAddrKeyboard->mExtraKeys[index]);
+        DeleteOamEntry((u32 *) gEditAddrKeyboard->mExtraKeys[index]);
         index = index + 1;
     } while (index < 2);
     index = 0;
     do {
-        func_ov003_021d2f00((u32 *) gEditAddrKeyboard->mDigitKeys[index]);
+        DeleteOamEntry((u32 *) gEditAddrKeyboard->mDigitKeys[index]);
         index = index + 1;
     } while (index < 10);
     FreeExpHeapBlockAndClearPointer(&gEditAddrKeyboard);

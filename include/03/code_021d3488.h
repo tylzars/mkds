@@ -5,31 +5,32 @@
 typedef struct PointerStack PointerStack;
 
 typedef struct TaskEntry {
-    /* 00 */ struct TaskEntry *mUnk_00;
-    /* 04 */ struct TaskEntry *mUnk_04;
-    /* 08 */ void (*mUnk_08)(struct TaskEntry *a, u32 b);
-    /* 0c */ u32 mUnk_0c;
-    /* 10 */ u8 mUnk_10;
-    /* 11 */ u8 mUnk_11;
+    /* 00 */ struct TaskEntry *mPrev;
+    /* 04 */ struct TaskEntry *mNext;
+    /* 08 */ void (*mCallback)(struct TaskEntry *a, u32 b);
+    /* 0c */ u32 mArg;
+    /* 10 */ u8 mPriority;
+    /* 11 */ u8 mFreesArg;
     /* 12 */ u8 mUnk_12[2];
 } TaskEntry;
 
-typedef struct Unk021d34c8 {
-    /* 00 */ PointerStack *mUnk_00;
+typedef struct TaskList {
+    /* 00 */ PointerStack *mFreeEntries;
     /* 04 */ struct PointerStack *mResource;
-    /* 08 */ void *mUnk_08;
-    /* 0c */ TaskEntry mUnk_0c;
-    /* 20 */ TaskEntry mUnk_20;
-    /* 34 */ s32 mUnk_34;
-    /* 38 */ TaskEntry *mUnk_38;
-} Unk021d34c8;
+    /* 08 */ void *mList;
+    /* 0c */ TaskEntry mListStart;
+    /* 20 */ TaskEntry mListEnd;
+    /* 34 */ s32 mCapacity;
+    /* 38 */ TaskEntry *mEntryStorage;
+} TaskList;
 
-void func_ov003_021d3488(int a, int b);
-void func_ov003_021d34c0(u32 arg0, u32 arg1);
-void func_ov003_021d34c8(u32 index, u32 value);
-void func_ov003_021d34e0(TaskEntry *a, UnkFunc *b);
-TaskEntry *func_ov003_021d34e4(u32 a, void (*b)(TaskEntry *a, u32 b), u32 c, u32 d, u8 e);
-unsigned int func_ov003_021d3544(unsigned int p0, void *p1, void *p2, unsigned int p3);
-void func_ov003_021d3558(int a);
-void func_ov003_021d35c0(void);
-void func_ov003_021d35f4(void);
+void RemoveTaskEntry(int listIndex, int entry);
+void RemoveTaskEntryWrapper(u32 listIndex, u32 entry);
+void RequestTaskRemoval(u32 listIndex, u32 entry);
+void SetTaskCallback(TaskEntry *taskEntry, UnkFunc *function);
+TaskEntry *AddTaskEx(u32 listIndex, void (*function)(TaskEntry *listIndex, u32 function), u32 arg, u32 priority,
+                     u8 freesArg);
+unsigned int AddTask(unsigned int listIndex, void *function, void *arg, unsigned int priority);
+void RunTasksAndRemoveRequested(int listIndex);
+void ReleaseTasks(void);
+void InitTasks(void);
