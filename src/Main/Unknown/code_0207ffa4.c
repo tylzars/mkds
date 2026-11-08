@@ -64,7 +64,7 @@ void func_02080fb8(Kart *kart) {
     if (data_0217ae94[kart->mIndex] == NULL) {
         return;
     }
-    func_0208b710(data_0217ae94[kart->mIndex]);
+    DeleteEffect(data_0217ae94[kart->mIndex]);
     data_0217ae94[kart->mIndex] = NULL;
 }
 
@@ -97,7 +97,7 @@ void func_02080e9c(Kart *kart) {
     if (data_0217ae74[kart->mIndex] == NULL) {
         return;
     }
-    func_0208b710(data_0217ae74[kart->mIndex]);
+    DeleteEffect(data_0217ae74[kart->mIndex]);
     data_0217ae74[kart->mIndex] = NULL;
 }
 

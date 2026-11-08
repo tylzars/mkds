@@ -26,8 +26,8 @@
 #include "Main/Unknown/unk_02156000.h"
 #include "Main/Unknown/code_020d8654.h"
 
-// Calls func_0208b748 twice at the rock; skipped when bit 0 of mDistanceSquaredAndFlags is set, or when b is 0 and bit
-// 1 is set. Then resets the rock.
+// Calls StartEffectWithCallback twice at the rock; skipped when bit 0 of mDistanceSquaredAndFlags is set, or when b is
+// 0 and bit 1 is set. Then resets the rock.
 void func_020d634c(RockObject *rock, s32 b) {
     EmitterParams firstEmitterParams;
     EmitterParams secondEmitterParams;
@@ -72,11 +72,11 @@ void func_020d634c(RockObject *rock, s32 b) {
             secondEmitterParams.mUnk_06 = data_02156930[j] + (s32) (((s64) c * scaleY) >> 12);
             secondEmitterParams.mUnk_08 = data_02156938[j] + (s32) (((s64) d * scaleY) >> 12);
             if (rock->mMapObject.mKind == 0x192) {
-                func_0208b748(0x54, &rock->mMapObject.mPos, &firstEmitterParams, func_020d6538);
-                func_0208b748(0x57, &rock->mMapObject.mPos, &secondEmitterParams, func_020d6538);
+                StartEffectWithCallback(0x54, &rock->mMapObject.mPos, &firstEmitterParams, func_020d6538);
+                StartEffectWithCallback(0x57, &rock->mMapObject.mPos, &secondEmitterParams, func_020d6538);
             } else {
-                func_0208b748(0x56, &rock->mMapObject.mPos, &firstEmitterParams, func_020d6538);
-                func_0208b748(0x55, &rock->mMapObject.mPos, &secondEmitterParams, func_020d6538);
+                StartEffectWithCallback(0x56, &rock->mMapObject.mPos, &firstEmitterParams, func_020d6538);
+                StartEffectWithCallback(0x55, &rock->mMapObject.mPos, &secondEmitterParams, func_020d6538);
             }
         }
     }

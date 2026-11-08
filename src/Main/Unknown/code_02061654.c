@@ -181,7 +181,7 @@ void InitRace(void) {
     InitMapObjects();
     InitItems();
     SetHeapGroupId(6);
-    func_0208b934(heap);
+    InitEffects(heap);
     func_020846c0(heap);
     InitModelEffects(heap);
     InitPosStrips(heap);
@@ -323,7 +323,7 @@ void UpdateRace(void) {
     UpdateMapObjects();
     UpdateModelEffects();
     UpdatePosStrips();
-    func_0208b8c8();
+    UpdateEffects();
     if (gFadeFogActive != 0) {
         if (gFadeFogStepping != 0) {
             if (data_021653e8 == 0) {
@@ -399,7 +399,7 @@ void DrawRace(void) {
     }
     gRace->mDrawnFadeFog = gRace->mFadeFog;
     DrawRaceWorld();
-    func_0208b870(gCurrentViewMatrix);
+    DrawEffects(gCurrentViewMatrix);
     DrawPosStrips(gCurrentViewMatrix);
     DrawStemSets();
     if (gRace->mUseChainCameras == 0) {

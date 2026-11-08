@@ -21,7 +21,7 @@ void func_020810e4(u32 kartIndex) {
     if (effect == zero) {
         return;
     }
-    func_0208b710((Unk0201ca6c *) value0);
+    DeleteEffect((Unk0201ca6c *) value0);
     value0 = 0u;
     *(u32 *) ((kartEffects) + (48)) = value0;
 }

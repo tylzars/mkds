@@ -187,7 +187,7 @@ void func_ov001_0218a028(Unk0201ca6c *emitter) {
 void func_ov001_02189fe0(Unk02188950 *mapObject, ItemObject *itemObject) {
     if (itemObject->mKind == 9) {
         if (IsItemBombState2(itemObject) == FALSE) {
-            func_0208b748(0x3a, &itemObject->mPos, NULL, func_ov001_0218a028);
+            StartEffectWithCallback(0x3a, &itemObject->mPos, NULL, func_ov001_0218a028);
         }
     }
     mapObject->mUnk_2e0 = 1;

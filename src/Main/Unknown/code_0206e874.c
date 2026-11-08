@@ -85,7 +85,7 @@ void func_0206edac(Kart *kart, Vec3 *groundNormal) {
             bits7c = kart->mUnk_7c;
             if ((bits7c & 0x10) && kart->mKartModelsEntry->mUnk_058 == 0) {
                 if ((bits7c & 1) || !(bits7c & 0x402000)) {
-                    func_0208b748(0x4e, &kart->mPos, kart, func_0206c2b4);
+                    StartEffectWithCallback(0x4e, &kart->mPos, kart, func_0206c2b4);
                 }
             }
         }

@@ -4,4 +4,4 @@
 
 typedef struct KartAi KartAi;
 
-void func_0208bd20(KartAi *p);
+void func_0208bd20(KartAi *kartAi);

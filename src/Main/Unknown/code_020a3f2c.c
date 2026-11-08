@@ -350,7 +350,7 @@ void UpdateShine16(void *a, Shine16 *p) {
             if (p->mEffect == NULL) {
                 return;
             }
-            func_0208b5b0(p->mEffect, &p->mUnk_00.mPos);
+            PlaceEffect(p->mEffect, &p->mUnk_00.mPos);
             p->mEffectTimer--;
             if (p->mEffectTimer >= 0) {
                 return;

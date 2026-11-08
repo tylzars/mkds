@@ -9,7 +9,7 @@
 // Stores the CPU kart callbacks for Award and Mission Run, Staff Roll, Battle, or else the race ones.
 void RegisterKartAiCallbacks(void) {
     if (gRaceSetup->mRaceKind == RACE_KIND_AWARD || gRaceSetup->mMode == MODE_MISSION_RUN) {
-        gKartAiSetupCallback = func_0208be00;
+        gKartAiSetupCallback = SetupKartAiForAwardMissionRun;
         gKartAiResetCallback = func_0208bde0;
         gKartAiAdvanceCallback = func_0208bdc0;
         gKartAiRequestLinkCallback = RequestKartAiPointLink;
@@ -18,7 +18,7 @@ void RegisterKartAiCallbacks(void) {
         gKartAiSetupHeldItemEntryCallback = func_0208bfec;
         gKartAiSetupItemInUseEntryCallback = func_0208bfd8;
     } else if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
-        gKartAiSetupCallback = func_0208bd44;
+        gKartAiSetupCallback = SetupKartAiForStaffRoll;
         gKartAiResetCallback = func_0208bd40;
         gKartAiAdvanceCallback = func_0208bd20;
         gKartAiRequestLinkCallback = RequestKartAiPointLink;
@@ -29,12 +29,12 @@ void RegisterKartAiCallbacks(void) {
     } else if (gRaceSetup->mMode == MODE_BATTLE) {
         gKartAiSetupCallback = SetupKartAiForBattle;
         gKartAiResetCallback = ResetKartAiForBattle;
-        gKartAiAdvanceCallback = func_0208bf40;
-        gKartAiRequestLinkCallback = func_0208bef4;
-        gKartAiIsLinkRequestedCallback = func_0208bee0;
-        gKartAiLinkPosAndDirectionCallback = func_0208bea4;
-        gKartAiSetupHeldItemEntryCallback = func_0208be90;
-        gKartAiSetupItemInUseEntryCallback = func_0208be7c;
+        gKartAiAdvanceCallback = AdvanceKartAiForBattle;
+        gKartAiRequestLinkCallback = RequestBattleKartAiPointLink;
+        gKartAiIsLinkRequestedCallback = IsBattleKartAiLinkRequested;
+        gKartAiLinkPosAndDirectionCallback = CopyBattleKartAiLinkPosAndDirection;
+        gKartAiSetupHeldItemEntryCallback = SetupBattleKartAiHeldItemEntry;
+        gKartAiSetupItemInUseEntryCallback = SetupBattleKartAiItemInUseEntry;
     } else {
         gKartAiSetupCallback = SetupKartAiForRace;
         gKartAiResetCallback = ResetKartAiForRace;

@@ -23,78 +23,79 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-u32 func_0208bd04(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    u32 value12;
-    value2 = (u32) &data_0217b040;
-    value12 = (u32) &HeapAlloc;
-    value1 = value0;
-    value0 = *(const u32 *) ((value2) + (0));
-    value0 = (u32) HeapAlloc((void *) value0, value1);
+u32 HeapAllocForSPLManager(u32 size) {
+    u32 value0 = size;
+    u32 sizeCopy;
+    u32 heapGlobalAddress;
+    u32 heapAllocAddress;
+    heapGlobalAddress = (u32) &gSPLManagerHeap;
+    heapAllocAddress = (u32) &HeapAlloc;
+    sizeCopy = value0;
+    value0 = *(const u32 *) ((heapGlobalAddress) + (0));
+    value0 = (u32) HeapAlloc((void *) value0, sizeCopy);
     return value0;
 }
 
-void func_0208b934(void *a) {
-    s32 e = 0x78;
-    s32 f = 0x28;
-    void *c = a;
-    void *g;
-    void *h;
-    void *t;
-    u8 j;
-    Vec3 w;
-    Vec3 v;
-    RaceSetup *d;
-    Vec3 *q;
+void InitEffects(void *defaultHeap) {
+    s32 maxParticles = 0x78;
+    s32 maxEmitters = 0x28;
+    void *effectHeap = defaultHeap;
+    void *raceEffectFile;
+    void *raceEffectFogOffFile;
+    void *missionEffectFile;
+    u8 emitterIndex;
+    Vec3 directionOrigin;
+    Vec3 offset;
+    RaceSetup *raceSetup;
+    Vec3 *emitterDirection;
 
-    *(u32 *) &data_0217b050 = (u32) func_0208b484;
+    *(u32 *) &gGetSPLManagerFunction = (u32) func_0208b484;
     if (GetCurrentSceneNumber() == 2) {
-        d = gRaceSetup;
-        if (d->mMode == MODE_MISSION_RUN) {
-            *(u32 *) &data_0217b050 = (u32) GetSPLManagerForEffectId;
-            c = data_0217aa10->mExpHeap;
-            e = 0x96;
+        raceSetup = gRaceSetup;
+        if (raceSetup->mMode == MODE_MISSION_RUN) {
+            *(u32 *) &gGetSPLManagerFunction = (u32) GetSPLManagerForEffectId;
+            effectHeap = data_0217aa10->mExpHeap;
+            maxParticles = 0x96;
         }
-        if (d->mCourseId == COURSE_ID_AWARD) {
-            e = 0x12c;
-            f = 0x32;
+        if (raceSetup->mCourseId == COURSE_ID_AWARD) {
+            maxParticles = 0x12c;
+            maxEmitters = 0x32;
         }
     }
-    data_0217b040 = c;
-    data_0217b044 = SPLManager_New((void *(*) (u32)) func_0208bd04, f, e, 3, 0xe, GetSplMaxPolyId());
-    g = FindMainRaceOrMainEffectFile(data_usa_02166138);
-    SPLManager_LoadResources(data_0217b044, g);
+    gSPLManagerHeap = effectHeap;
+    data_0217b044 =
+        SPLManager_New((void *(*) (u32)) HeapAllocForSPLManager, maxEmitters, maxParticles, 3, 0xe, GetSplMaxPolyId());
+    raceEffectFile = FindMainRaceOrMainEffectFile(gRaceEffectSpaName);
+    SPLManager_LoadResources(data_0217b044, raceEffectFile);
     SPLManager_UploadTextures(data_0217b044);
     SPLManager_UploadPalettes(data_0217b044);
-    ResizeMainEffectArchiveBlock(g, *OFFSET_PTR(u32, g, 0x18));
-    data_0217b04c = SPLManager_New((void *(*) (u32)) func_0208bd04, 0x1e, 0x64, 3, 0xe, 0x1e);
-    h = FindMainRaceOrMainEffectFile(data_usa_02166148);
-    SPLManager_LoadResources(data_0217b04c, h);
+    ResizeMainEffectArchiveBlock(raceEffectFile, *OFFSET_PTR(u32, raceEffectFile, 0x18));
+    data_0217b04c = SPLManager_New((void *(*) (u32)) HeapAllocForSPLManager, 0x1e, 0x64, 3, 0xe, 0x1e);
+    raceEffectFogOffFile = FindMainRaceOrMainEffectFile(gRaceEffectFogOffSpaName);
+    SPLManager_LoadResources(data_0217b04c, raceEffectFogOffFile);
     SPLManager_UploadTextures(data_0217b04c);
     SPLManager_UploadPalettes(data_0217b04c);
-    data_0217b03c = NULL;
+    gMissionRunSPLManager = NULL;
     data_0217b054 = NULL;
     data_0217b048 = NULL;
     if (GetCurrentSceneNumber() != 2) {
         return;
     }
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-        t = NULL;
-        data_0217b03c = SPLManager_New((void *(*) (u32)) func_0208bd04, 0x32, 0xc8, 3, 0xe, 0x1e);
-        LoadFileIntoHeap(data_usa_02166168, c, &t);
-        SPLManager_LoadResources(data_0217b03c, t);
-        SPLManager_UploadTextures(data_0217b03c);
-        SPLManager_UploadPalettes(data_0217b03c);
-        data_0217b03c->mMiscPolygonAttr = 0x8000;
+        missionEffectFile = NULL;
+        gMissionRunSPLManager = SPLManager_New((void *(*) (u32)) HeapAllocForSPLManager, 0x32, 0xc8, 3, 0xe, 0x1e);
+        LoadFileIntoHeap(gMissionEffectSpaName, effectHeap, &missionEffectFile);
+        SPLManager_LoadResources(gMissionRunSPLManager, missionEffectFile);
+        SPLManager_UploadTextures(gMissionRunSPLManager);
+        SPLManager_UploadPalettes(gMissionRunSPLManager);
+        gMissionRunSPLManager->mMiscPolygonAttr = 0x8000;
     }
     data_0217b044->mPolygonIDDrawOrder = 1;
     data_0217b04c->mPolygonIDDrawOrder = 1;
-    if (data_0217b03c != NULL) {
-        data_0217b03c->mPolygonIDDrawOrder = 1;
+    if (gMissionRunSPLManager != NULL) {
+        gMissionRunSPLManager->mPolygonIDDrawOrder = 1;
     }
-    InitKartTurnEffects(a);
+    InitKartTurnEffects(defaultHeap);
     if (gRaceSetup->mCourseId != COURSE_ID_RAINBOW) {
         data_0217b044->mMiscPolygonAttr = 0x8000;
     } else {
@@ -103,14 +104,14 @@ void func_0208b934(void *a) {
     InitCourseCameraEffects();
     switch (gRaceSetup->mCourseId) {
         case COURSE_ID_STADIUM:
-            w = data_usa_021660fc;
-            data_0217b048 = HeapAlloc(c, 0x64);
-            for (j = 0; j < 6; j++) {
-                data_0217b048->mEmitters[j] = NULL;
-                VEC_Subtract(&data_usa_02155f78[j], &w, &v);
-                q = &data_0217b048->mDirections[j];
-                if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
-                    Vec3NormalizeAndGetLengthUnchecked(&v, q);
+            directionOrigin = data_usa_021660fc;
+            data_0217b048 = HeapAlloc(effectHeap, 0x64);
+            for (emitterIndex = 0; emitterIndex < 6; emitterIndex++) {
+                data_0217b048->mEmitters[emitterIndex] = NULL;
+                VEC_Subtract(&data_usa_02155f78[emitterIndex], &directionOrigin, &offset);
+                emitterDirection = &data_0217b048->mDirections[emitterIndex];
+                if ((s64) offset.x * offset.x + (s64) offset.y * offset.y + (s64) offset.z * offset.z >= 0x10) {
+                    Vec3NormalizeAndGetLengthUnchecked(&offset, emitterDirection);
                 }
             }
             data_0217b048->mEmitterTimer = 1;
@@ -122,135 +123,136 @@ void func_0208b934(void *a) {
     }
 }
 
-void func_0208b8c8(void) {
+void UpdateEffects(void) {
     if (data_0217b054 != NULL) {
         data_0217b054();
     }
     SPLManager_Update(data_0217b044);
     SPLManager_Update(data_0217b04c);
-    if (data_0217b03c != NULL) {
-        SPLManager_Update(data_0217b03c);
+    if (gMissionRunSPLManager != NULL) {
+        SPLManager_Update(gMissionRunSPLManager);
     }
 }
 
-void func_0208b870(MtxFx43 *a) {
-    SPLManager_Draw(data_0217b044, a);
-    SPLManager_Draw(data_0217b04c, a);
-    if (data_0217b03c != NULL) {
-        SPLManager_Draw(data_0217b03c, a);
+void DrawEffects(MtxFx43 *viewMatrix) {
+    SPLManager_Draw(data_0217b044, viewMatrix);
+    SPLManager_Draw(data_0217b04c, viewMatrix);
+    if (gMissionRunSPLManager != NULL) {
+        SPLManager_Draw(gMissionRunSPLManager, viewMatrix);
     }
 }
 
-void *StartEffect(u32 a, const Vec3 *b) {
-    s32 e;
-    Vec3 v;
-    Unk0201ca6c *q;
-    SPLManager *p = data_0217b050(&e, a);
-    v.x = b->x >> 4;
-    v.y = b->y >> 4;
-    v.z = b->z >> 4;
-    q = SPLManager_CreateEmitter(p, e, &v);
-    if (q != NULL) {
-        if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
-            q->mUnk_80_16 = 1;
-        } else if (q->mUnk_20->mUnk_00->mUnk_54 & 0x40) {
-            q->mUnk_80_16 = 2;
+void *StartEffect(u32 effectId, const Vec3 *position) {
+    s32 resourceId;
+    Vec3 emitterPosition;
+    Unk0201ca6c *emitter;
+    SPLManager *splManager = gGetSPLManagerFunction(&resourceId, effectId);
+    emitterPosition.x = position->x >> 4;
+    emitterPosition.y = position->y >> 4;
+    emitterPosition.z = position->z >> 4;
+    emitter = SPLManager_CreateEmitter(splManager, resourceId, &emitterPosition);
+    if (emitter != NULL) {
+        if (emitter->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
+            emitter->mUnk_80_16 = 1;
+        } else if (emitter->mUnk_20->mUnk_00->mUnk_54 & 0x40) {
+            emitter->mUnk_80_16 = 2;
         }
     }
-    return q;
+    return emitter;
 }
 
-void func_0208b748(u32 a, const Vec3 *b, void *c, void (*d)()) {
-    s32 e;
-    Vec3 v;
-    SPLManager *p = data_0217b050(&e, a);
-    v.x = b->x >> 4;
-    v.y = b->y >> 4;
-    v.z = b->z >> 4;
-    SPLManager_CreateEmitterWithCallbackEx(p, e, &v, (s32) c, (void (*)(Unk0201ca6c *, s32)) d);
+void StartEffectWithCallback(u32 effectId, const Vec3 *position, void *callbackParam, void (*initCallback)()) {
+    s32 resourceId;
+    Vec3 emitterPosition;
+    SPLManager *splManager = gGetSPLManagerFunction(&resourceId, effectId);
+    emitterPosition.x = position->x >> 4;
+    emitterPosition.y = position->y >> 4;
+    emitterPosition.z = position->z >> 4;
+    SPLManager_CreateEmitterWithCallbackEx(splManager, resourceId, &emitterPosition, (s32) callbackParam,
+                                           (void (*)(Unk0201ca6c *, s32)) initCallback);
 }
 
-void func_0208b710(Unk0201ca6c *a) {
-    u32 v1;
-    u8 v2[8];
-    v1 = (*(UnkWordFunc *) (u32) data_0217b050)(v2, 0);
-    SPLManager_DeleteEmitter((SPLManager *) v1, a);
+void DeleteEffect(Unk0201ca6c *emitter) {
+    u32 splManager;
+    u8 indexBuffer[8];
+    splManager = (*(UnkWordFunc *) (u32) gGetSPLManagerFunction)(indexBuffer, 0);
+    SPLManager_DeleteEmitter((SPLManager *) splManager, emitter);
 }
 
-void func_0208b6d0(Unk0201ca6c **a) {
-    u32 v1;
-    u8 v2[8];
-    v1 = (*(UnkWordFunc *) (u32) data_0217b050)(v2, 0);
-    SPLManager_DeleteEmitter((SPLManager *) v1, *a);
-    *a = NULL;
+void DeleteEffectAndClearPointer(Unk0201ca6c **emitterSlot) {
+    u32 splManager;
+    u8 indexBuffer[8];
+    splManager = (*(UnkWordFunc *) (u32) gGetSPLManagerFunction)(indexBuffer, 0);
+    SPLManager_DeleteEmitter((SPLManager *) splManager, *emitterSlot);
+    *emitterSlot = NULL;
 }
 
-void func_0208b6b0(void **p0) {
-    Unk0201ca6c *effect = *p0;
+void func_0208b6b0(void **emitterSlot) {
+    Unk0201ca6c *effect = *emitterSlot;
     effect->mUnk_24.mUnk_00_0 = 1;
-    *p0 = NULL;
+    *emitterSlot = NULL;
 }
 
-Unk0201ca6c *func_0208b60c(s32 a, Vec3 *b) {
-    Vec3 v;
-    Unk0201ca6c *q;
-    v.x = b->x >> 4;
-    v.y = b->y >> 4;
-    v.z = b->z >> 4;
-    q = SPLManager_CreateEmitter(data_0217b04c, a, &v);
-    if (q != NULL) {
-        if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
-            q->mUnk_80_16 = 1;
-        } else if (q->mUnk_20->mUnk_00->mUnk_54 & 0x40) {
-            q->mUnk_80_16 = 2;
+Unk0201ca6c *func_0208b60c(s32 resourceId, Vec3 *position) {
+    Vec3 emitterPosition;
+    Unk0201ca6c *emitter;
+    emitterPosition.x = position->x >> 4;
+    emitterPosition.y = position->y >> 4;
+    emitterPosition.z = position->z >> 4;
+    emitter = SPLManager_CreateEmitter(data_0217b04c, resourceId, &emitterPosition);
+    if (emitter != NULL) {
+        if (emitter->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
+            emitter->mUnk_80_16 = 1;
+        } else if (emitter->mUnk_20->mUnk_00->mUnk_54 & 0x40) {
+            emitter->mUnk_80_16 = 2;
         }
     }
-    return q;
+    return emitter;
 }
 
-void func_0208b5b0(void *v1, const Vec3 *b) {
-    Unk0201ca6c *a = v1;
-    s32 c = b->x;
-    s32 d = b->y;
-    s32 e = b->z;
-    a->mUnk_28.x = (c >> 4) + a->mUnk_20->mUnk_00->mUnk_04.x;
-    a->mUnk_28.y = (d >> 4) + a->mUnk_20->mUnk_00->mUnk_04.y;
-    a->mUnk_28.z = (e >> 4) + a->mUnk_20->mUnk_00->mUnk_04.z;
+void PlaceEffect(void *effectHandle, const Vec3 *position) {
+    Unk0201ca6c *emitter = effectHandle;
+    s32 positionX = position->x;
+    s32 positionY = position->y;
+    s32 positionZ = position->z;
+    emitter->mUnk_28.x = (positionX >> 4) + emitter->mUnk_20->mUnk_00->mUnk_04.x;
+    emitter->mUnk_28.y = (positionY >> 4) + emitter->mUnk_20->mUnk_00->mUnk_04.y;
+    emitter->mUnk_28.z = (positionZ >> 4) + emitter->mUnk_20->mUnk_00->mUnk_04.z;
 }
 
-void *func_0208b498(u32 a, Vec3 *b, u32 c, s32 d) {
-    s32 e;
-    Vec3 w;
-    Vec3 v;
-    Unk0201ca6c *q;
-    SPLManager *p = data_0217b050(&e, a);
-    v.x = b->x >> 4;
-    v.y = b->y >> 4;
-    v.z = b->z >> 4;
-    q = SPLManager_CreateEmitter(p, e, &v);
-    if (q != NULL) {
-        if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
-            q->mUnk_80_16 = 1;
-        } else if (q->mUnk_20->mUnk_00->mUnk_54 & 0x40) {
-            q->mUnk_80_16 = 2;
+void *StartEffectWithKartVelocity(u32 effectId, Vec3 *position, u32 kartIndex, s32 velocityScale) {
+    s32 resourceId;
+    Vec3 velocity;
+    Vec3 emitterPosition;
+    Unk0201ca6c *emitter;
+    SPLManager *splManager = gGetSPLManagerFunction(&resourceId, effectId);
+    emitterPosition.x = position->x >> 4;
+    emitterPosition.y = position->y >> 4;
+    emitterPosition.z = position->z >> 4;
+    emitter = SPLManager_CreateEmitter(splManager, resourceId, &emitterPosition);
+    if (emitter != NULL) {
+        if (emitter->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
+            emitter->mUnk_80_16 = 1;
+        } else if (emitter->mUnk_20->mUnk_00->mUnk_54 & 0x40) {
+            emitter->mUnk_80_16 = 2;
         }
     }
-    if (q != NULL) {
-        w = GetKart(c)->mEffectVelocity;
-        w.x = ((s64) w.x * d) >> 12;
-        w.y = ((s64) w.y * d) >> 12;
-        w.z = ((s64) w.z * d) >> 12;
-        q->mUnk_40 = w;
+    if (emitter != NULL) {
+        velocity = GetKart(kartIndex)->mEffectVelocity;
+        velocity.x = ((s64) velocity.x * velocityScale) >> 12;
+        velocity.y = ((s64) velocity.y * velocityScale) >> 12;
+        velocity.z = ((s64) velocity.z * velocityScale) >> 12;
+        emitter->mUnk_40 = velocity;
     }
-    return q;
+    return emitter;
 }
 
-u32 func_0208b484(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2;
-    value2 = (u32) &data_0217b044;
-    *(u32 *) ((value0) + (0)) = value1;
-    value0 = *(const u32 *) ((value2) + (0));
+u32 func_0208b484(u32 outIndex, u32 effectId) {
+    u32 value0 = outIndex;
+    u32 effectIdCopy = effectId;
+    u32 managerGlobalAddress;
+    managerGlobalAddress = (u32) &data_0217b044;
+    *(u32 *) ((value0) + (0)) = effectIdCopy;
+    value0 = *(const u32 *) ((managerGlobalAddress) + (0));
     return value0;
 }

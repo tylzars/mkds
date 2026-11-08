@@ -338,7 +338,7 @@ void func_ov001_021872e0(Unk02188950 *mapObject, int offsetX, int offsetY, int o
                 emitterParams.y = emitterParamY;
                 emitterParams.z = ((s64) emitterParamZ * gPairsByAngle[((u16) mapObject->mAngle >> 4) * 2 + 1] >> 12) -
                                   ((s64) emitterParamX * gPairsByAngle[((u16) mapObject->mAngle >> 4) * 2] >> 12);
-                func_0208b748(effectId, &position, &emitterParams, func_ov001_0218742c);
+                StartEffectWithCallback(effectId, &position, &emitterParams, func_ov001_0218742c);
             }
         }
     }
@@ -831,7 +831,7 @@ void AdvanceMissionRunMapObject(u32 a, Unk02188950 *mapObject) {
             if (mapObject->mEffects[effectIndex].mTimer > 0 && --mapObject->mEffects[effectIndex].mTimer == 0) {
                 func_0208b6b0(&mapObject->mEffects[effectIndex].mEffect);
             } else {
-                func_0208b5b0(mapObject->mEffects[effectIndex].mEffect, &effectPosition);
+                PlaceEffect(mapObject->mEffects[effectIndex].mEffect, &effectPosition);
             }
         }
     }

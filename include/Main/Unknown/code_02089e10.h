@@ -10,5 +10,5 @@ typedef struct Unk02089e68 {
     /* 08 */ s32 mEnabled;
 } Unk02089e68;
 
-void UpdateTimedQuad(Unk02089e68 *a);
-void WriteQuadVertex(int a);
+void UpdateTimedQuad(Unk02089e68 *timedQuad);
+void WriteQuadVertex(int vertexIndex);

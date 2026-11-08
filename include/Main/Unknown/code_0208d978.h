@@ -31,15 +31,15 @@ typedef struct ModelEffect {
 } ModelEffect;
 
 void func_0208d978(const Vec3 *position, s32 startModel);
-void UpdateModelEffectBombcore2(ModelEffect *a);
-void StartModelEffectBombcore2(ModelEffect *a, s32 b);
-void UpdateModelEffectBkWave(ModelEffect *a);
-void StartModelEffectBkWave(ModelEffect *a, s32 b);
-void UpdateWaterEfctKinds(ModelEffect *a);
-void StartWaterEfctKind4(ModelEffect *a);
-void StartWaterEfctKind2(ModelEffect *a);
-void UpdateModelEffectBombcore(ModelEffect *a);
-void StartModelEffectBombcore(ModelEffect *a, s32 b);
+void UpdateModelEffectBombcore2(ModelEffect *modelEffect);
+void StartModelEffectBombcore2(ModelEffect *modelEffect, s32 startEffects);
+void UpdateModelEffectBkWave(ModelEffect *modelEffect);
+void StartModelEffectBkWave(ModelEffect *modelEffect, s32 startEffects);
+void UpdateWaterEfctKinds(ModelEffect *modelEffect);
+void StartWaterEfctKind4(ModelEffect *modelEffect);
+void StartWaterEfctKind2(ModelEffect *modelEffect);
+void UpdateModelEffectBombcore(ModelEffect *modelEffect);
+void StartModelEffectBombcore(ModelEffect *modelEffect, s32 startEffects);
 void SetupModelEffectKind(void *heap, s32 kind, NNSG3dResFileHeader *modelFile, void *nsbcaFile, void *nsbmaFile,
                           void *nsbtaFile);
 void InitModelEffectObjects(void *heap);
@@ -49,6 +49,7 @@ void DrawModelEffects(void);
 void UpdateModelEffects(void);
 ModelEffect *StartModelEffect(u32 kind, const Vec3 *position, s32 startEffects);
 void InitModelEffects(void *heap);
-void func_0208e808(s32 a);
-void DrawPosStripQuad(const MtxFx43 *a, PosStripPoint *b, PosStripPoint *c, PosStripTexture *d);
-void UpdatePosStrip(PosStrip *a);
+void SetAwardPosStripDrawEnabled(s32 drawEnabled);
+void DrawPosStripQuad(const MtxFx43 *viewMatrix, PosStripPoint *firstPoint, PosStripPoint *secondPoint,
+                      PosStripTexture *posStripTexture);
+void UpdatePosStrip(PosStrip *posStrip);

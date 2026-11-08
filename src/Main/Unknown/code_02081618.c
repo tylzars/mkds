@@ -401,8 +401,8 @@ void StopKartEffectPairs(Kart *kart, s32 deleteAtOnce) {
                 kartEffects->mEffectPairs[i].mEffect0->mUnk_98_8 = 1;
                 kartEffects->mEffectPairs[i].mEffect1->mUnk_98_8 = 1;
             } else {
-                func_0208b710(kartEffects->mEffectPairs[i].mEffect0);
-                func_0208b710(kartEffects->mEffectPairs[i].mEffect1);
+                DeleteEffect(kartEffects->mEffectPairs[i].mEffect0);
+                DeleteEffect(kartEffects->mEffectPairs[i].mEffect1);
             }
             kartEffects->mEffectPairs[i].mEffect0 = kartEffects->mEffectPairs[i].mEffect1 = 0;
             kartEffects->mEffectIds[i] = -1;
@@ -430,20 +430,20 @@ void ReleaseKartSurfaceEffects(Kart *kart) {
 
     kartEffects = &gKartEffects[kart->mIndex];
     if (kartEffects->mCurrentEffect != NULL) {
-        func_0208b710(kartEffects->mCurrentEffect);
+        DeleteEffect(kartEffects->mCurrentEffect);
         kartEffects->mCurrentEffect = NULL;
         kartEffects->mCurrentEffectId = -1;
     }
     StopKartEffectPairs(kart, 1);
     kartEffects = &gKartEffects[kart->mIndex];
     if (kartEffects->mWaterEffect0 != 0) {
-        func_0208b710(kartEffects->mWaterEffect0);
+        DeleteEffect(kartEffects->mWaterEffect0);
         kartEffects->mWaterEffect0 = 0;
     }
     if (kartEffects->mWaterEffect1 == 0) {
         return;
     }
-    func_0208b710(kartEffects->mWaterEffect1);
+    DeleteEffect(kartEffects->mWaterEffect1);
     kartEffects->mWaterEffect1 = 0;
 }
 
@@ -1095,7 +1095,7 @@ void func_02081f30(void) {
     switch (gRaceSetup->mCourseId) {
         case COURSE_ID_OLD_LUIGI_AGB:
             if (gFirstCourseCameraEffect != NULL) {
-                func_0208b710(gFirstCourseCameraEffect);
+                DeleteEffect(gFirstCourseCameraEffect);
                 effect = StartEffect(0x3c, &data_02155a14);
                 gFirstCourseCameraEffect = effect;
                 effect->mUnk_90 = func_020824d0;
@@ -1103,7 +1103,7 @@ void func_02081f30(void) {
             if (gSecondCourseCameraEffect == NULL) {
                 return;
             }
-            func_0208b710(gSecondCourseCameraEffect);
+            DeleteEffect(gSecondCourseCameraEffect);
             effect = StartEffect(0x3f, &data_02155a14);
             gSecondCourseCameraEffect = effect;
             effect->mUnk_90 = func_0208266c;
@@ -1115,7 +1115,7 @@ void func_02081f30(void) {
             if (gSecondCourseCameraEffect == NULL) {
                 return;
             }
-            func_0208b710(gSecondCourseCameraEffect);
+            DeleteEffect(gSecondCourseCameraEffect);
             gSecondCourseCameraEffect = NULL;
             break;
     }
@@ -1277,7 +1277,7 @@ void StartKartStarEffects(s32 kartIndex) {
     i = 0;
     do {
         if (starEffects->mEffects[i] != NULL) {
-            func_0208b710(starEffects->mEffects[i]);
+            DeleteEffect(starEffects->mEffects[i]);
         }
         starEffects->mEffects[i] = StartEffect(gKartStarEffectIds[i], &GetKart(kartIndex)->mPointAlongUp);
         i = i + 1;
@@ -1307,7 +1307,7 @@ void AdvanceKartStarEffects(s32 kartIndex) {
         if (starEffects->mEffects[i] != NULL) {
             VEC_MultAdd(((s64) kart->mScale.y * data_02155854[kart->mKartModelsEntry->mCharacterIndex] + 0x800) >> 12,
                         &kart->mUnk_12c, &kart->mPos, &effectPos);
-            func_0208b5b0(starEffects->mEffects[i], &effectPos);
+            PlaceEffect(starEffects->mEffects[i], &effectPos);
             velocity.x = ((s64) kart->mEffectVelocity.x * 0xc00) >> 12;
             velocity.y = ((s64) kart->mEffectVelocity.y * 0xc00) >> 12;
             velocity.z = ((s64) kart->mEffectVelocity.z * 0xc00) >> 12;
@@ -1341,7 +1341,7 @@ void ReleaseKartStarEffects(s32 kartIndex) {
     i = 0;
     do {
         if (starEffects->mEffects[i] != NULL) {
-            func_0208b710(starEffects->mEffects[i]);
+            DeleteEffect(starEffects->mEffects[i]);
             starEffects->mEffects[i] = NULL;
         }
         i = i + 1;
@@ -1352,7 +1352,7 @@ void StartKartKillerEffect(s32 kartIndex) {
     KartEffects *kartEffects = &gKartEffects[kartIndex];
 
     if (kartEffects->mKillerEffect != NULL) {
-        func_0208b710(kartEffects->mKillerEffect);
+        DeleteEffect(kartEffects->mKillerEffect);
     }
     kartEffects->mKillerEffect = StartEffect(0x63, &data_02155a14);
 }

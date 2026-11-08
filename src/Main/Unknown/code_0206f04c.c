@@ -257,8 +257,8 @@ void AdvanceKartRaceStartBoost(Kart *kart) {
                         if ((bits7c & 1) || !(bits7c & 0x402000)) {
                             VEC_MultAdd(g.mUnk_00[kart->mKartModelsEntry->mKartIndex] << 4, &kart->mUnk_138,
                                         &kart->mPos, &e);
-                            func_0208b748(0x72, &e, kart, func_0206c1ac);
-                            func_0208b748(0x73, &e, kart, func_0206c1ac);
+                            StartEffectWithCallback(0x72, &e, kart, func_0206c1ac);
+                            StartEffectWithCallback(0x73, &e, kart, func_0206c1ac);
                         }
                     }
                     if (!(kart->mUnk_48 & 0x840)) {
@@ -295,8 +295,8 @@ void AdvanceKartRaceStartBoost(Kart *kart) {
                         if ((bits7c & 1) || !(bits7c & 0x402000)) {
                             VEC_MultAdd(h.mUnk_00[kart->mKartModelsEntry->mKartIndex] << 4, &kart->mUnk_138,
                                         &kart->mPos, &f);
-                            func_0208b748(0x72, &f, kart, func_0206c1ac);
-                            func_0208b748(0x73, &f, kart, func_0206c1ac);
+                            StartEffectWithCallback(0x72, &f, kart, func_0206c1ac);
+                            StartEffectWithCallback(0x73, &f, kart, func_0206c1ac);
                         }
                     }
                     if (!(kart->mUnk_48 & 0x840)) {
@@ -504,7 +504,7 @@ s32 func_0206f04c(Kart *kart, Vec3 *contactNormal, s32 wasTouching, s32 baseSpee
                         }
                         VEC_MultAdd(-kart->mRadius, contactNormal, &kart->mPos, &n);
                         VEC_MultAdd(((s64) kart->mScale.y * (g << 4) + 0x800) >> 12, &kart->mUnk_12c, &n, &n);
-                        func_0208b748(0x3b, &n, kart, func_0206c488);
+                        StartEffectWithCallback(0x3b, &n, kart, func_0206c488);
                     }
                 }
                 StartKartModelScaleAnimation(kart, 2);

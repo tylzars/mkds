@@ -25,7 +25,7 @@ SPLManager *GetSPLManagerForEffectId(s32 *outIndex, s32 effectId) {
     if (effectId >= 0x3e8) {
         effectId -= 0x3e8;
         *outIndex = effectId;
-        return data_0217b03c;
+        return gMissionRunSPLManager;
     }
     *outIndex = effectId;
     return data_0217b044;
@@ -58,7 +58,7 @@ void AdvanceStadiumEmitters(void) {
         if (stadiumEmitters->mEmitters[i] != NULL) {
             s32 effectIndex;
             Unk0201ca6c **emitterSlot = &stadiumEmitters->mEmitters[i];
-            SPLManager_DeleteEmitter(data_0217b050(&effectIndex, 0), *emitterSlot);
+            SPLManager_DeleteEmitter(gGetSPLManagerFunction(&effectIndex, 0), *emitterSlot);
             *emitterSlot = NULL;
         }
     }
@@ -92,7 +92,7 @@ void AdvanceStadiumEmitters(void) {
         Unk0201ca6c *emitter;
         SPLManager *manager;
         Vec3 *tablePosition = &data_usa_02155f78[emitterDirectionIndices[emitterIndex]];
-        getManager = data_0217b050;
+        getManager = gGetSPLManagerFunction;
         manager = getManager(&effectIndex, effectIds[emitterIndex]);
         position.x = tablePosition->x >> 4;
         position.y = tablePosition->y >> 4;
@@ -126,7 +126,7 @@ void CreateAwardEmitters(void) {
         s32 effectIndex;
         Vec3 position;
         Unk0201ca6c *emitter;
-        SPLManager *manager = data_0217b050(&effectIndex, firstEffectIds.mUnk_00[emitterIndex]);
+        SPLManager *manager = gGetSPLManagerFunction(&effectIndex, firstEffectIds.mUnk_00[emitterIndex]);
         position.x = emitX;
         position.y = emitY;
         position.z = emitZ;
@@ -143,7 +143,7 @@ void CreateAwardEmitters(void) {
         s32 effectIndex;
         Vec3 position;
         Unk0201ca6c *emitter;
-        SPLManager *manager = data_0217b050(&effectIndex, secondEffectIds.mUnk_00[emitterIndex]);
+        SPLManager *manager = gGetSPLManagerFunction(&effectIndex, secondEffectIds.mUnk_00[emitterIndex]);
         position.x = baseX >> 4;
         position.y = emitY;
         position.z = emitZ;

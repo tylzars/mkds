@@ -21,9 +21,9 @@ typedef struct Unk02166108 {
     s16 mUnk_00[24];
 } Unk02166108;
 
-// Function stored at data_0217b050: writes a word to the first argument and returns the object.
+// Function stored at gGetSPLManagerFunction: writes a word to the first argument and returns the object.
 typedef SPLManager *Unk0217b050Func(s32 *a, s32 b);
-extern Unk0217b050Func *data_0217b050;
+extern Unk0217b050Func *gGetSPLManagerFunction;
 
 extern StadiumEmitters *data_0217b048;
 extern char data_usa_021660c8[];

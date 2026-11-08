@@ -207,8 +207,8 @@ void UpdateMkdEfBubble(void *a, MkdEfBubbleObject *bubble) {
     }
     bubble->mUnk_e8->mUnk_24 &= ~8;
     bubble->mUnk_ec->mUnk_24 &= ~8;
-    func_0208b5b0(bubble->mUnk_e8, &bubble->mUnk_00.mPos);
-    func_0208b5b0(bubble->mUnk_ec, &bubble->mUnk_00.mPos);
+    PlaceEffect(bubble->mUnk_e8, &bubble->mUnk_00.mPos);
+    PlaceEffect(bubble->mUnk_ec, &bubble->mUnk_00.mPos);
 }
 
 void EnterMkdEfBubbleState0(MkdEfBubbleObject *bubble) {

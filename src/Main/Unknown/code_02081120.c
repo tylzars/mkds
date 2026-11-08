@@ -42,7 +42,7 @@ void func_02081224(u32 kartIndex) {
     Unk0201ca6c *effect;
 
     if (kartEffects->mUnk_30 != NULL) {
-        func_0208b710(kartEffects->mUnk_30);
+        DeleteEffect(kartEffects->mUnk_30);
     }
     kartEffects->mUnk_30 = StartEffect(0x5e, &data_02155a14);
     effect = kartEffects->mUnk_30;

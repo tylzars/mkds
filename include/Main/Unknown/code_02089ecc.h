@@ -10,4 +10,4 @@ typedef struct Unk02089ecc {
     /* 08 */ u32 mEnabled;
 } Unk02089ecc;
 
-void StartTimedQuad(Unk02089ecc *p0);
+void StartTimedQuad(Unk02089ecc *timedQuad);

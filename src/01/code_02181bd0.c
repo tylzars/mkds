@@ -511,7 +511,7 @@ void UpdateCoin(void *a, Coin *coin) {
                 SetupKartFollowEffect(StartEffect(0x3f4, &kart->mPos), kart->mIndex, 0x18);
             }
             if (coin->mEffect != NULL) {
-                func_0208b5b0(coin->mEffect, &coin->mUnk_000.mPos);
+                PlaceEffect(coin->mEffect, &coin->mUnk_000.mPos);
                 if (coin->mEffectTimer-- < 0) {
                     func_0208b6b0(&coin->mEffect);
                 }

@@ -375,9 +375,9 @@ void UpdateBalloon(void *p, Balloon *a) {
         a->mUnk_d8 = 0;
         a->mScaleFactor = 0x1000;
         if (a->mNoKartTimer-- <= 0) {
-            func_0208b748(0x5b, &a->mUnk_00.mPos, a, func_020a392c);
-            func_0208b748(0x5c, &a->mUnk_00.mPos, a, func_020a392c);
-            func_0208b748(0x5d, &a->mUnk_00.mPos, a, func_020a392c);
+            StartEffectWithCallback(0x5b, &a->mUnk_00.mPos, a, func_020a392c);
+            StartEffectWithCallback(0x5c, &a->mUnk_00.mPos, a, func_020a392c);
+            StartEffectWithCallback(0x5d, &a->mUnk_00.mPos, a, func_020a392c);
             func_0210b8f4(&a->mUnk_00.mPos, GetHorizontalCameraDistanceSquared(&a->mUnk_00.mPos));
             ParkMapObject(&a->mUnk_00);
         } else {

@@ -11,77 +11,77 @@
 #include "Main/Unknown/code_02090000.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_0208bf40(KartAi *p) {
-    AdvanceBattleKartAi(p);
-    AdvanceBattleKartAiSpeedLimit(&p->mAiSpeedLimit, p);
-    func_0209033c(&p->mItemUse, p);
+void AdvanceKartAiForBattle(KartAi *kartAi) {
+    AdvanceBattleKartAi(kartAi);
+    AdvanceBattleKartAiSpeedLimit(&kartAi->mAiSpeedLimit, kartAi);
+    func_0209033c(&kartAi->mItemUse, kartAi);
 }
 
-void func_0208bef4(KartAi *p) {
-    if (p->mBattleLinkCursor.mRequestedLink != NULL) {
-        if (p->mBattleLinkCursor.mUnk_18 != FALSE) {
+void RequestBattleKartAiPointLink(KartAi *kartAi) {
+    if (kartAi->mBattleLinkCursor.mRequestedLink != NULL) {
+        if (kartAi->mBattleLinkCursor.mUnk_18 != FALSE) {
             return;
         }
     }
-    p->mBattleLinkCursor.mRequestedLink = FindCourseMapKind4ShapeBattlePointLink(&p->mKart->mPos);
-    if (p->mBattleLinkCursor.mRequestedLink != NULL) {
-        p->mBattleLinkCursor.mUnk_18 = TRUE;
+    kartAi->mBattleLinkCursor.mRequestedLink = FindCourseMapKind4ShapeBattlePointLink(&kartAi->mKart->mPos);
+    if (kartAi->mBattleLinkCursor.mRequestedLink != NULL) {
+        kartAi->mBattleLinkCursor.mUnk_18 = TRUE;
     }
 }
 
-BOOL func_0208bee0(KartAi *p) {
-    return p->mBattleLinkCursor.mRequestedLink != NULL;
+BOOL IsBattleKartAiLinkRequested(KartAi *kartAi) {
+    return kartAi->mBattleLinkCursor.mRequestedLink != NULL;
 }
 
-void func_0208bea4(Vec3 *a, Vec3 *b, KartAi *p) {
-    LinkCursor *s = &p->mBattleLinkCursor;
+void CopyBattleKartAiLinkPosAndDirection(Vec3 *position, Vec3 *direction, KartAi *kartAi) {
+    LinkCursor *cursor = &kartAi->mBattleLinkCursor;
 
-    *a = *s->mLink->mUnk_20;
-    *b = s->mDirection;
+    *position = *cursor->mLink->mUnk_20;
+    *direction = cursor->mDirection;
 }
 
-void func_0208be90(KartAi *p) {
-    SetupBattleHeldItemEntry(&p->mItemUse, p);
+void SetupBattleKartAiHeldItemEntry(KartAi *kartAi) {
+    SetupBattleHeldItemEntry(&kartAi->mItemUse, kartAi);
 }
 
-void func_0208be7c(KartAi *p) {
-    SetupBattleItemInUseEntry(&p->mItemUse, p);
+void SetupBattleKartAiItemInUseEntry(KartAi *kartAi) {
+    SetupBattleItemInUseEntry(&kartAi->mItemUse, kartAi);
 }
 
-void func_0208be00(KartAi *p, s32 a) {
-    Kart *q = GetKart(a);
+void SetupKartAiForAwardMissionRun(KartAi *kartAi, s32 kartIndex) {
+    Kart *kart = GetKart(kartIndex);
 
-    p->mUnk_154 = 0;
-    SetupAwardMissionRunKartAi(p, q, p->mUnk_154);
-    func_0207d814(&p->mUnk_e8, p);
+    kartAi->mUnk_154 = 0;
+    SetupAwardMissionRunKartAi(kartAi, kart, kartAi->mUnk_154);
+    func_0207d814(&kartAi->mUnk_e8, kartAi);
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-        p->mUnk_e8.mBoostsAtRaceStart = 1;
-        p->mUnk_e8.mRaceStartBoostChoice = 4;
+        kartAi->mUnk_e8.mBoostsAtRaceStart = 1;
+        kartAi->mUnk_e8.mRaceStartBoostChoice = 4;
     } else {
-        p->mUnk_e8.mBoostsAtRaceStart = 0;
-        p->mUnk_e8.mRaceStartBoostChoice = 0;
+        kartAi->mUnk_e8.mBoostsAtRaceStart = 0;
+        kartAi->mUnk_e8.mRaceStartBoostChoice = 0;
     }
 }
 
-void func_0208bde0(KartAi *p, PointLink *a) {
-    ResetAwardMissionRunKartAi(p, a);
-    ResetAwardMissionRunKartAiSpeedLimit(&p->mUnk_e8, p);
+void func_0208bde0(KartAi *kartAi, PointLink *pointLink) {
+    ResetAwardMissionRunKartAi(kartAi, pointLink);
+    ResetAwardMissionRunKartAiSpeedLimit(&kartAi->mUnk_e8, kartAi);
 }
 
-void func_0208bdc0(KartAi *p) {
-    AdvanceAwardMissionRunKartAi(p);
-    func_0207d6a4(&p->mUnk_e8, p);
+void func_0208bdc0(KartAi *kartAi) {
+    AdvanceAwardMissionRunKartAi(kartAi);
+    func_0207d6a4(&kartAi->mUnk_e8, kartAi);
 }
 
-void func_0208bd44(KartAi *p, s32 a) {
-    Kart *q = GetKart(a);
+void SetupKartAiForStaffRoll(KartAi *kartAi, s32 kartIndex) {
+    Kart *kart = GetKart(kartIndex);
 
-    p->mUnk_154 = 0;
-    SetupStaffRollKartAi(p, q, p->mUnk_154);
-    func_0207d814(&p->mUnk_e8, p);
-    p->mUnk_e8.mBoostsAtRaceStart = 0;
-    p->mUnk_e8.mRaceStartBoostChoice = 0;
-    if (q->mIndex != gRaceSetup->mEntryIndex) {
-        q->mUnk_7c |= 0x40;
+    kartAi->mUnk_154 = 0;
+    SetupStaffRollKartAi(kartAi, kart, kartAi->mUnk_154);
+    func_0207d814(&kartAi->mUnk_e8, kartAi);
+    kartAi->mUnk_e8.mBoostsAtRaceStart = 0;
+    kartAi->mUnk_e8.mRaceStartBoostChoice = 0;
+    if (kart->mIndex != gRaceSetup->mEntryIndex) {
+        kart->mUnk_7c |= 0x40;
     }
 }

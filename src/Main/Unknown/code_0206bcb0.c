@@ -379,7 +379,7 @@ BOOL TryStartKartCollisionEffects(Kart *kart, const Vec3 *overlapDirection, int 
         VEC_MultAdd(-kart->mRadius, overlapDirection, &kart->mPos, &contactPoint);
         VEC_MultAdd(((s64) kart->mScale.y * 0x8000 + 0x800) >> 12, &kart->mUnk_12c, &contactPoint, &contactPoint);
         for (; i < effectCount; i++) {
-            func_0208b748(effectIds[i], &contactPoint, kart, func_0206c450);
+            StartEffectWithCallback(effectIds[i], &contactPoint, kart, func_0206c450);
         }
         return TRUE;
     }

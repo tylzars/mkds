@@ -596,7 +596,7 @@ static inline void func_02075424_inline(Camera *camera) {
         SetupPosCurve(&camera->mPosCurve, nextCourseMapCamera);
     }
     if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
-        func_0208e808(nextCourseMapCamera->mShakeKind != 0);
+        SetAwardPosStripDrawEnabled(nextCourseMapCamera->mShakeKind != 0);
     }
     gCameraEntryChanged = 1;
 }

@@ -192,11 +192,11 @@ void func_0209d84c(void *a, Unk0209d694 *p) {
     }
     if ((p->mUnk_00.mFlags & 0x12) == 0) {
         if (p->mUnk_bc != NULL) {
-            func_0208b5b0(p->mUnk_bc, &p->mUnk_00.mPos);
+            PlaceEffect(p->mUnk_bc, &p->mUnk_00.mPos);
             p->mUnk_bc->mUnk_24 &= ~2;
         }
         if (p->mUnk_c0 != NULL) {
-            func_0208b5b0(p->mUnk_c0, &p->mUnk_00.mPos);
+            PlaceEffect(p->mUnk_c0, &p->mUnk_00.mPos);
             p->mUnk_c0->mUnk_24 &= ~2;
         }
     } else {

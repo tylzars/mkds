@@ -81,7 +81,7 @@ void func_0209905c(void *a, Unk0209905c *p) {
                 p->mUnk_d0->mUnk_24 |= 2;
                 return;
             }
-            func_0208b5b0(p->mUnk_d0, &p->mUnk_00.mPos);
+            PlaceEffect(p->mUnk_d0, &p->mUnk_00.mPos);
             p->mUnk_d0->mUnk_24 &= ~2;
             return;
         case 1:

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void SetStemSet(s32 a);
+void SetStemSet(s32 setIndex);

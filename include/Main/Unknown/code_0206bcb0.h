@@ -564,7 +564,7 @@ BOOL TryStartKartCollisionEffects(Kart *kart, const Vec3 *overlapDirection, int 
 void func_0206c450(Unk0201ca6c *emitter, Kart *kart);
 void func_0206c488(Unk0201ca6c *emitter, Kart *kart);
 
-void func_0208b748(u32 idx, const Vec3 *pos, void *p, void (*cb)());
+void StartEffectWithCallback(u32 idx, const Vec3 *pos, void *splManager, void (*cb)());
 int TryTurnKartAtLowSpeed(Kart *kart);
 void func_0206cc60(Kart *kart, int fromLowSpeedTurn);
 #include "Main/Unknown/code_0210ab48.h"

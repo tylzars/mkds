@@ -203,7 +203,7 @@ typedef struct KartPhysicalParamTable {
 
 extern KartPhysicalParamTable *gKartPhysicalParamTable;
 
-extern struct SPLManager *data_0217b03c;
+extern struct SPLManager *gMissionRunSPLManager;
 
 extern struct SPLManager *data_0217b044;
 extern struct SPLManager *data_0217b04c;
@@ -928,7 +928,7 @@ struct ItemObject;
 
 extern struct ItemObject **gCollidedItemObjects;
 
-extern void *data_0217b040;
+extern void *gSPLManagerHeap;
 extern s32 gKeyboardOffsetX;
 extern s32 gKeyboardOffsetY;
 extern u16 *gCharTablePair3[2];

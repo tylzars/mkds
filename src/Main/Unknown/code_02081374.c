@@ -39,7 +39,7 @@ void func_020813ec(s32 kartIndex, Vec3 *direction) {
     effectVelocity.z = ((s64) kart->mEffectVelocity.z * 0xccd) >> 12;
     kartEffects->mUnk_28->mUnk_40 = effectVelocity;
     VEC_MultAdd(-kart->mRadius, direction, kart->mPosSource, &effectPos);
-    func_0208b5b0(kartEffects->mUnk_28, &effectPos);
+    PlaceEffect(kartEffects->mUnk_28, &effectPos);
     directionHalfwords.x = direction->x;
     directionHalfwords.y = direction->y;
     directionHalfwords.z = direction->z;

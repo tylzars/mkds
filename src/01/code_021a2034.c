@@ -103,13 +103,13 @@ void func_ov001_021a2048(void *p0, Unk021a2048 *p1) {
         case 1:
             switch (p1->mUnk_9c->mUnk_28) {
                 case 0:
-                    func_0208b5b0(p1->mUnk_a4, &g->mPos);
+                    PlaceEffect(p1->mUnk_a4, &g->mPos);
                     break;
                 case 1:
                     break;
                 case 2:
                     ComputePointAheadOfCamera(p1, g, &v);
-                    func_0208b5b0(p1->mUnk_a4, &v);
+                    PlaceEffect(p1->mUnk_a4, &v);
                     break;
             }
             break;

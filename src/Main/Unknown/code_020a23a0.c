@@ -152,7 +152,7 @@ void func_020a269c(s32 a, u32 b) {
         s = &data_0217b200->mUnk_094;
         s->mUnk_0c = f;
         *s->mUnk_1c[s->mUnk_1a] = s->mUnk_0c;
-        func_0208b934(GetHeap(GetCurrentHeapCall()));
+        InitEffects(GetHeap(GetCurrentHeapCall()));
         if (b == 0) {
             Vec3 w0 = {0, 0, 0};
 
@@ -192,7 +192,7 @@ void func_020a2558(void) {
     if (data_0217b200->mUnk_002 >= 3) {
         return;
     }
-    func_0208b8c8();
+    UpdateEffects();
     data_0217b200->mUnk_004 += 0x6d;
     d = data_0217b200;
     p = &d->mUnk_008;
@@ -239,7 +239,7 @@ void func_020a23cc(void) {
     if (data_0217b200->mUnk_002 >= 3) {
         return;
     }
-    func_0208b870(&data_0217b200->mUnk_0cc);
+    DrawEffects(&data_0217b200->mUnk_0cc);
     NNS_G3dGlbFlushP();
     func_01ff9048(0x15, NULL, 0);
     v1[0] = 0x1000;

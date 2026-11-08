@@ -381,8 +381,8 @@ u32 CollideKartWithWoodbox1(Woodbox1 *woodbox, Unk020eb498 *kart, u8 *firstRespo
                 StartSoundIfKartStarOrKiller(&woodbox->mUnk_000, (Kart *) kart);
                 if ((woodbox->mUnk_000.mDistanceSquaredAndFlags & 3) == 0) {
                     if (*response == 0) {
-                        func_0208b498(0x31, &woodbox->mUnk_000.mPos, kart->mUnk_074, 0x1000);
-                        func_0208b498(0x32, &woodbox->mUnk_000.mPos, kart->mUnk_074, 0x1000);
+                        StartEffectWithKartVelocity(0x31, &woodbox->mUnk_000.mPos, kart->mUnk_074, 0x1000);
+                        StartEffectWithKartVelocity(0x32, &woodbox->mUnk_000.mPos, kart->mUnk_074, 0x1000);
                     } else {
                         StartEffect(0x31, &woodbox->mUnk_000.mPos);
                         StartEffect(0x32, &woodbox->mUnk_000.mPos);
