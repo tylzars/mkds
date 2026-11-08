@@ -76,11 +76,11 @@ typedef struct Unk02008188 {
     /* 258 */ u32 mUnk_258[1];
 } Unk02008188;
 
-void func_02007ec4(Unk02007ec4 *a, u16 b, u16 c, u32 d, u32 e);
-u32 func_02007f38(u32 a, u32 b, u32 c);
-u32 func_02007ff0(u32 a, u32 b, u32 c);
-BOOL func_0200806c(Unk020072c0_buf *a, void *b, u16 c, void *d);
-u32 func_020080e8(Unk0200806c_b *a, Unk020082b4 *b);
-void func_02008188(Unk02008188 *a, u32 *b, Unk020082b4_0c *c, u32 *d);
-void func_020082b4(Unk020082b4 *a, Unk02008188 *b);
-u32 func_02008310(void *a, Unk02008188 *b);
+void func_02007ec4(Unk02007ec4 *record, u16 b, u16 c, u32 d, u32 e);
+u32 func_02007f38(u32 rangeIndex, u32 address, u32 size);
+u32 func_02007ff0(u32 rangeIndex, u32 address, u32 size);
+BOOL func_0200806c(Unk020072c0_buf *result, void *b, u16 chunk, void *d);
+u32 func_020080e8(Unk0200806c_b *chunkTable, Unk020082b4 *record);
+void func_02008188(Unk02008188 *source, u32 *kindWord, Unk020082b4_0c *range, u32 *nextAddress);
+void func_020082b4(Unk020082b4 *record, Unk02008188 *source);
+u32 func_02008310(void *rangeTable, Unk02008188 *source);

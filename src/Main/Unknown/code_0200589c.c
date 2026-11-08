@@ -375,7 +375,7 @@ s32 ReplyToNoMissingChunk(BlockTransfer *a, s32 b, u8 *c, s32 d) {
     v2 = 1 << b;
     if (v3->mUnk_00 == 2) {
         if (v3->mPacketKind == 8) {
-            v1 = func_020065a8(c, v2, v3->mRequestId, v3->mBlockId);
+            v1 = WriteNoMissingChunkReplyPacket(c, v2, v3->mRequestId, v3->mBlockId);
             v3->mUnk_00 = 1;
         }
     }
@@ -512,7 +512,8 @@ s32 WriteCurrentRequestPacket(BlockTransfer *a, u8 *b, s32 c) {
                 if ((a->mCurrentRequest.mIndexMask & (u16) v2) != 0) {
                     v4 = PickMissingChunkIndex(v3);
                     if (v4 == -1) {
-                        v1 = func_020065f8(b, v2, a->mCurrentRequest.mRequestId, a->mCurrentRequest.mUnk_14);
+                        v1 =
+                            WriteNoMissingChunkPacket(b, v2, a->mCurrentRequest.mRequestId, a->mCurrentRequest.mUnk_14);
                     } else {
                         v5 = a->mCurrentRequest.mIndexMask;
                         if (a->mCurrentRequest.mKind == 4) {

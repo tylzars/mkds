@@ -37,9 +37,9 @@ typedef struct Unk0216fdac {
     /* 14a8 */ u32 mUnk_14a8[15];
     /* 14e4 */ void (*mCallback)(u32, u32, void *);
     /* 14e8 */ u32 mUnk_14e8[15];
-    /* 1524 */ u8 mUnk_1524;
+    /* 1524 */ u8 mEntryCount;
     /* 1525 */ u8 mUnk_1525;
-    /* 1526 */ s8 mUnk_1526[15];
+    /* 1526 */ s8 mChildEntryIndex[15];
     /* 1535 */ u8 mUnk_1535;
     /* 1536 */ u16 mUnk_1536;
     /* 1538 */ u8 mUnk_1538[0x1754 - 0x1538];
@@ -58,7 +58,7 @@ typedef struct Unk0216fdac {
     /* 1d4c */ u16 mUnk_1d4c;
     /* 1d4e */ u16 mUnk_1d4e;
     /* 1d50 */ u16 mUnk_1d50;
-    /* 1d52 */ u8 mUnk_1d52;
+    /* 1d52 */ u8 mEntryUsed;
     /* 1d53 */ u8 mUnk_1d53;
     /* 1d54 */ DataRangeTable *mUnk_1d54;
     /* 1d58 */ u32 *mUnk_1d58;
@@ -70,5 +70,5 @@ typedef struct Unk0216fdac {
     /* 7ce0 */ u8 mUnk_7ce0[0x18];
 } Unk0216fdac;
 
-u32 func_02007148(u32 a, u32 b);
-void func_02007154(u32 a);
+u32 GetLargerValue(u32 first, u32 second);
+void func_02007154(u32 entryIndex);

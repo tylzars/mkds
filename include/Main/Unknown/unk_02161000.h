@@ -16,7 +16,7 @@ extern s16 data_021615b8[];
 extern s32 gLastSentChunkIndex;
 extern u32 gLastSentBlockId;
 extern s32 gPrevSentChunkIndex;
-extern s32 data_0216177c;
+extern s32 gLastReplyIndex;
 extern u32 gOwnIndex;
 extern u16 data_02161790;
 extern u16 data_02161794;

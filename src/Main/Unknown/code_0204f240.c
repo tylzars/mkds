@@ -37,7 +37,7 @@ void AddPendingFile(const void *path, void *heap, void **dataOutput, u32 d, s32 
 void StartParentSideBlockTransfer(void) {
     data_0217aa00->mUnk_000c = 0x28;
     data_0217aa00->mRequestPending = 1;
-    func_02006aac(0x192, 0xe, ParentBlockTransferCallback);
+    StartParentBlockTransfer(0x192, 0xe, ParentBlockTransferCallback);
     data_0217aa00->mUnk_1e42 = 0;
     data_0217aa00->mUnk_1e44 &= ~1;
     data_0217aa00->mUnk_0454 |= 0x200;
@@ -47,7 +47,7 @@ void StartParentSideBlockTransfer(void) {
 void StartChildSideBlockTransfer(void) {
     data_0217aa00->mUnk_000c = 0x29;
     data_0217aa00->mRequestPending = 1;
-    func_02006a10(func_0204f198);
+    StartChildBlockTransfer(func_0204f198);
     data_0217aa00->mUnk_1e42 = 0;
     data_0217aa00->mUnk_1e44 &= ~1;
     data_0217aa00->mUnk_0454 |= 0x200;

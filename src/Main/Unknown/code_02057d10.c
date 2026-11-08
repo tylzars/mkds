@@ -58,7 +58,7 @@ void func_02057d9c(void) {
 }
 
 void func_02057d7c(void) {
-    func_02001ba0(GetHeap(GetCurrentHeapCall()));
+    InitLogoScene(GetHeap(GetCurrentHeapCall()));
 }
 
 void func_02057d70(void) {
@@ -66,11 +66,11 @@ void func_02057d70(void) {
 }
 
 void func_02057d64(void) {
-    func_02001abc();
+    WriteLogoSceneRegisters();
 }
 
 void func_02057d58(void *a) {
-    func_02001a74(a);
+    UpdateLogoScene(a);
 }
 
 s32 RunLogoScene(SceneNumbers *a) {

@@ -13,11 +13,11 @@
 #include "code_02142eac.h"
 #include "code_0200fc8c.h"
 
-void func_02007624(Unk021432ac *a);
-void func_02007698(Unk021432ac *a, u32 b);
-void func_020079c4(s32 a, Unk021425e8 *b);
-void func_02007cf8(u32 a, u32 b, void *c);
-void func_02007d18(u32 a, u32 b, void *c);
-u32 func_02007d50(u32 a, u32 b);
-u32 func_02007df8(u32 a);
-void *func_02007e38(u32 a);
+void func_02007624(Unk021432ac *header);
+void func_02007698(Unk021432ac *childData, u32 child);
+void func_020079c4(s32 eventCode, Unk021425e8 *eventData);
+void func_02007cf8(u32 child, u32 value, void *data);
+void func_02007d18(u32 child, u32 value, void *data);
+u32 func_02007d50(u32 child, u32 pairIndex);
+u32 func_02007df8(u32 child);
+void *func_02007e38(u32 child);

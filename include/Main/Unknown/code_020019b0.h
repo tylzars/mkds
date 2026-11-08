@@ -4,10 +4,10 @@
 
 typedef struct Unk02001d30 Unk02001d30;
 
-// Object whose halfword at 0x04 func_02001a74 clears.
+// Object whose halfword at 0x04 UpdateLogoScene clears.
 typedef struct Unk02001a74 {
     /* 00 */ u8 mUnk_00[4];
-    /* 04 */ u16 mUnk_04;
+    /* 04 */ u16 mNextScene;
 } Unk02001a74;
 
 extern const char data_usa_ov001_021a768c[];
@@ -18,10 +18,11 @@ extern const char data_usa_ov001_021a76f4[];
 extern const char data_usa_ov001_021a770c[];
 extern const char data_usa_ov001_021a7720[];
 
-void func_020019b0(void);
-void func_02001a44(void);
-void func_02001a74(Unk02001a74 *a);
-void func_02001abc(void);
+void UpdateLogoState0(void);
+void EnterLogoState0(void);
+void UpdateLogoScene(Unk02001a74 *sceneNumbers);
+void WriteLogoSceneRegisters(void);
 void ApplySavedSoundMode(void);
-void func_02001ba0(void *a);
-void func_02001d30(Unk02001d30 *a, s32 b, const char *c, const char *d, const char *e);
+void InitLogoScene(void *heap);
+void LoadBg1FromSceneFiles(Unk02001d30 *files, s32 mainScreen, const char *paletteFileName, const char *charsFileName,
+                           const char *screenMapFileName);

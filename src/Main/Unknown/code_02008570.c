@@ -20,132 +20,132 @@ static inline u32 func_02008570_inline(Unk02008570Header *a) {
     return b;
 }
 
-int func_02008570(FSFile *param_1, void *param_2, u32 param_3) {
-    FSFile *v1;
-    Unk02008570Header *v2;
+int func_02008570(FSFile *file, void *buffer, u32 bufferSize) {
+    FSFile *activeFile;
+    Unk02008570Header *header;
     u8 *v3;
-    FSFile v4;
-    BOOL v11;
-    BOOL v12;
-    u32 v13;
-    u32 v7;
-    DataRangeTable *v5;
+    FSFile openedFile;
+    BOOL result;
+    BOOL openedHere;
+    u32 remaining;
+    u32 basePosition;
+    DataRangeTable *rangeTable;
     u32 *v6;
     s32 v8;
-    u32 v9;
+    u32 seekOffset;
     s32 v10;
     u32 v14[4];
-    s8 *p;
-    v1 = param_1;
-    v2 = param_2;
-    v11 = FALSE;
-    if (param_3 >= 0x164) {
-        v12 = FALSE;
-        v13 = param_3;
-        v3 = (u8 *) v2;
-        v5 = NULL;
+    s8 *arcBytes;
+    activeFile = file;
+    header = buffer;
+    result = FALSE;
+    if (bufferSize >= 0x164) {
+        openedHere = FALSE;
+        remaining = bufferSize;
+        v3 = (u8 *) header;
+        rangeTable = NULL;
         v6 = NULL;
         v3 += 0x160;
-        v13 -= 0x160;
-        if (v1 != NULL) {
-            v7 = v1->mUnk_2c - v1->mProp.w.mUnk_04;
-            if (FS_ReadFile(v1, v2, 0x160) < 0x160) {
-                v13 = 0;
+        remaining -= 0x160;
+        if (activeFile != NULL) {
+            basePosition = activeFile->mUnk_2c - activeFile->mProp.w.mUnk_04;
+            if (FS_ReadFile(activeFile, header, 0x160) < 0x160) {
+                remaining = 0;
             }
-            v9 = func_02008570_inline(v2);
+            seekOffset = func_02008570_inline(header);
         } else {
-            v9 = func_02008570_inline((Unk02008570Header *) 0x027ffe00);
-            v12 = TRUE;
-            FS_InitFile(&v4);
-            FS_OpenFileDirect(&v4, FS_FindArchive(data_usa_0216178c, 3), 0, v9 + 0x88, -1);
-            v1 = &v4;
-            v7 = v4.mUnk_2c - v4.mProp.w.mUnk_04;
-            MI_CpuCopy8((const void *) 0x027ffe00, v2, 0x160);
-            v2->mUnk_60 |= 0x00406000;
+            seekOffset = func_02008570_inline((Unk02008570Header *) 0x027ffe00);
+            openedHere = TRUE;
+            FS_InitFile(&openedFile);
+            FS_OpenFileDirect(&openedFile, FS_FindArchive(data_usa_0216178c, 3), 0, seekOffset + 0x88, -1);
+            activeFile = &openedFile;
+            basePosition = openedFile.mUnk_2c - openedFile.mProp.w.mUnk_04;
+            MI_CpuCopy8((const void *) 0x027ffe00, header, 0x160);
+            header->mUnk_60 |= 0x00406000;
         }
-        if (v13 >= 0x88) {
-            FS_SeekFile(v1, v7 + v9, 0);
-            FS_ReadFile(v1, v3, 0x88);
+        if (remaining >= 0x88) {
+            FS_SeekFile(activeFile, basePosition + seekOffset, 0);
+            FS_ReadFile(activeFile, v3, 0x88);
             v3 += 0x88;
-            v13 -= 0x88;
+            remaining -= 0x88;
         } else {
-            v13 = 0;
+            remaining = 0;
         }
-        if (v13 >= 0x70) {
-            v5 = (DataRangeTable *) v3;
+        if (remaining >= 0x70) {
+            rangeTable = (DataRangeTable *) v3;
             ClearDataRangeTable((u32) v3);
             v3 += 0x70;
-            v13 -= 0x70;
-            AddDataRange(v5, 0, 0x160, (u8 *) v2, 3);
-            p = (s8 *) v1->mArc;
+            remaining -= 0x70;
+            AddDataRange(rangeTable, 0, 0x160, (u8 *) header, 3);
+            arcBytes = (s8 *) activeFile->mArc;
             v10 = 0;
-            while (v10 < 3 && p[v10] != 0) {
+            while (v10 < 3 && arcBytes[v10] != 0) {
                 v10++;
             }
-            MI_CpuCopy8(p, v5->mUnk_10, v10);
-            v5->mUnk_14 = v10;
+            MI_CpuCopy8(arcBytes, rangeTable->mUnk_10, v10);
+            rangeTable->mUnk_14 = v10;
         } else {
-            v13 = 0;
+            remaining = 0;
         }
-        if (v13 >= 0x10) {
+        if (remaining >= 0x10) {
             v6 = (u32 *) v3;
             v6[0] = 0;
-            v6[1] = v2->mUnk_20 + (v7 + v1->mProp.w.mUnk_04);
-            v6[2] = v2->mUnk_30 + (v7 + v1->mProp.w.mUnk_04);
+            v6[1] = header->mUnk_20 + (basePosition + activeFile->mProp.w.mUnk_04);
+            v6[2] = header->mUnk_30 + (basePosition + activeFile->mProp.w.mUnk_04);
             v3 += 0x10;
-            v13 -= 0x10;
+            remaining -= 0x10;
         } else {
-            v13 = 0;
+            remaining = 0;
         }
-        v8 = v2->mUnk_2c + v2->mUnk_3c;
-        if (v13 >= v8) {
-            v10 = v1->mProp.w.mUnk_04;
-            FS_SeekFile(v1, v6[1] - v10, 0);
-            FS_ReadFile(v1, v3, v2->mUnk_2c);
-            AddDataRange(v5, v6[1], v2->mUnk_2c, v3, 3);
-            v3 += v2->mUnk_2c;
-            FS_SeekFile(v1, v6[2] - v10, 0);
-            FS_ReadFile(v1, v3, v2->mUnk_3c);
-            AddDataRange(v5, v6[2], v2->mUnk_3c, v3, 3);
-            v11 = TRUE;
-        } else if (v13 >= 0xcc00) {
-            v10 = v1->mProp.w.mUnk_04;
+        v8 = header->mUnk_2c + header->mUnk_3c;
+        if (remaining >= v8) {
+            v10 = activeFile->mProp.w.mUnk_04;
+            FS_SeekFile(activeFile, v6[1] - v10, 0);
+            FS_ReadFile(activeFile, v3, header->mUnk_2c);
+            AddDataRange(rangeTable, v6[1], header->mUnk_2c, v3, 3);
+            v3 += header->mUnk_2c;
+            FS_SeekFile(activeFile, v6[2] - v10, 0);
+            FS_ReadFile(activeFile, v3, header->mUnk_3c);
+            AddDataRange(rangeTable, v6[2], header->mUnk_3c, v3, 3);
+            result = TRUE;
+        } else if (remaining >= 0xcc00) {
+            v10 = activeFile->mProp.w.mUnk_04;
             v8 = v6[1];
-            FS_SeekFile(v1, v8 - v10, 0);
-            FS_ReadFile(v1, v3, 0x4400);
-            AddDataRange(v5, v8, 0x4400, v3, 3);
-            FS_SeekFile(v1, v8 + 0x4400 - v10, 0);
-            FS_ReadFile(v1, v3 + 0x4400, 0x4400);
-            AddDataRange(v5, v8 + 0x4400, 0x4400, (v3 + 0x4400), 2);
-            FS_SeekFile(v1, v8 + 0x8800 - v10, 0);
-            FS_ReadFile(v1, v3 + 0x8800, 0x4400);
-            AddDataRange(v5, v8 + 0x8800, 0x4400, (v3 + 0x8800), 2);
-            v11 = TRUE;
+            FS_SeekFile(activeFile, v8 - v10, 0);
+            FS_ReadFile(activeFile, v3, 0x4400);
+            AddDataRange(rangeTable, v8, 0x4400, v3, 3);
+            FS_SeekFile(activeFile, v8 + 0x4400 - v10, 0);
+            FS_ReadFile(activeFile, v3 + 0x4400, 0x4400);
+            AddDataRange(rangeTable, v8 + 0x4400, 0x4400, (v3 + 0x4400), 2);
+            FS_SeekFile(activeFile, v8 + 0x8800 - v10, 0);
+            FS_ReadFile(activeFile, v3 + 0x8800, 0x4400);
+            AddDataRange(rangeTable, v8 + 0x8800, 0x4400, (v3 + 0x8800), 2);
+            result = TRUE;
         }
-        FS_SeekFile(v1, v7, 0);
-        if (v12 != FALSE) {
-            FS_CloseFile(&v4);
-            if (v11 != FALSE) {
+        FS_SeekFile(activeFile, basePosition, 0);
+        if (openedHere != FALSE) {
+            FS_CloseFile(&openedFile);
+            if (result != FALSE) {
                 v6 = data_usa_02161788;
-                v14[0] = v2->mUnk_20;
-                v14[1] = v2->mUnk_28 - v2->mUnk_20;
-                v14[2] = (u32) v5->mUnk_30[1].mData - v2->mUnk_20;
-                v14[3] = param_3;
+                v14[0] = header->mUnk_20;
+                v14[1] = header->mUnk_28 - header->mUnk_20;
+                v14[2] = (u32) rangeTable->mUnk_30[1].mData - header->mUnk_20;
+                v14[3] = bufferSize;
                 CopyOrClearRange(v14, 0x4000, 0x8000, 1);
                 while (((s32 *) v6)[1] != 0) {
                     CopyOrClearRange(v14, v6[0], v6[0] + v6[1], 0);
                     v6 += 2;
                 }
-                v3 = v5->mUnk_30[1].mData;
-                v3 += (u32) AutoloadCallback - v2->mUnk_28;
+                v3 = rangeTable->mUnk_30[1].mData;
+                v3 += (u32) AutoloadCallback - header->mUnk_28;
                 *(u32 *) v3 = 0xe12fff1e;
             }
         }
-        if (v11 != FALSE) {
-            DC_FlushRange(v2, param_3);
+        if (result != FALSE) {
+            DC_FlushRange(header, bufferSize);
         }
     }
-    return v11;
+    return result;
 }
 
 #pragma thumb off

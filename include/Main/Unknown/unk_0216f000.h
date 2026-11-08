@@ -27,7 +27,7 @@ extern u8 gRequestId[];
 extern s16 gReceiveChunkSize;
 extern s16 gSendChunkSize;
 struct BlockListNode;
-extern struct BlockListNode *data_0216f3d8;
+extern struct BlockListNode *gBlockListHead;
 extern u8 gBlockTransfer[];
 extern u8 gNextRequest[];
 struct WirelessWork;

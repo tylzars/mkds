@@ -22,14 +22,14 @@ u32 func_020074d8(void) {
     work = data_0216fdac;
     for (; child <= 15; child++) {
         if (work->mUnk_14e8[child - 1] == 5) {
-            v2[work->mUnk_1526[child - 1]]++;
+            v2[work->mChildEntryIndex[child - 1]]++;
         }
     }
     v6 = data_usa_02161784;
     v8 = 0;
     do {
         v6 = (v6 + 1) % 16;
-        if ((OFFSET_PTR(Unk0216fdac, work, v6 * 0x5d4))->mUnk_1d52 != 0 && v2[v6] != 0) {
+        if ((OFFSET_PTR(Unk0216fdac, work, v6 * 0x5d4))->mEntryUsed != 0 && v2[v6] != 0) {
             v4 = (s8) v6;
             break;
         }
@@ -40,7 +40,7 @@ u32 func_020074d8(void) {
     }
     data_usa_02161784 = v4;
     for (child = 1; child <= 15; child++) {
-        if (work->mUnk_14e8[child - 1] == 5 && v4 == work->mUnk_1526[child - 1]) {
+        if (work->mUnk_14e8[child - 1] == 5 && v4 == work->mChildEntryIndex[child - 1]) {
             childMask |= 1 << child;
         }
     }

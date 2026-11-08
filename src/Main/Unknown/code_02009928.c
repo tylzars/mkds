@@ -697,9 +697,9 @@ s32 StartParentOnChannel(u16 a) {
     SetupPieceBuffer((u32) data_0216fdac->mUnk_1538);
     for (i = 0; i < 15; i++) {
         data_0216fdac->mUnk_14e8[i] = 0;
-        data_0216fdac->mUnk_1526[i] = -1;
+        data_0216fdac->mChildEntryIndex[i] = -1;
     }
-    data_0216fdac->mUnk_1524 = 0;
+    data_0216fdac->mEntryCount = 0;
     v2[1] = 0;
     MIi_CpuClear16(v2[1], data_0216fdac->mUnk_1788, 0x5d40);
     MI_CpuFill8(data_0216fdac->mUnk_1754, 0, 0x1e);
@@ -806,14 +806,14 @@ void DisconnectChild(u32 a) {
         ClearChildPieces(a);
         v2 = 0;
         data_0216fdac->mUnk_1754[v1] = v2;
-        v3 = data_0216fdac->mUnk_1526[v1];
+        v3 = data_0216fdac->mChildEntryIndex[v1];
         v2 = ~v2;
         if (v3 != v2) {
             v4 = 1 << a;
             v3 = (u8) v3;
             ((Unk0216fdac *) ((u8 *) data_0216fdac + v3 * 0x5d4))->mUnk_1d4e &= ~v4;
             ((Unk0216fdac *) ((u8 *) data_0216fdac + v3 * 0x5d4))->mUnk_1d50 |= v4;
-            data_0216fdac->mUnk_1526[a - 1] = v2;
+            data_0216fdac->mChildEntryIndex[a - 1] = v2;
             ((Unk0216fdac *) ((u8 *) data_0216fdac + v3 * 0x5d4))->mUnk_1d4c &= ~v4;
         }
         if ((data_0216fdac->mUnk_1536 & (1 << a)) != 0) {

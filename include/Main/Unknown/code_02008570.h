@@ -22,4 +22,4 @@ typedef struct Unk02008570Header {
     /* 80 */ u32 mUnk_80;
 } Unk02008570Header;
 
-int func_02008570(FSFile *param_1, void *param_2, u32 param_3);
+int func_02008570(FSFile *file, void *buffer, u32 bufferSize);

@@ -462,7 +462,7 @@ void func_0204ce60(void) {
     }
     v4 = p->mUnk_0040;
     if (v1 != 0) {
-        v3 = func_02006954(v4, v2);
+        v3 = BuildParentPacket(v4, v2);
     } else {
         v3 = BuildChildPacket(v4, v2);
     }
@@ -505,7 +505,7 @@ void func_0204cc94(Unk0204cc94 *a) {
             }
             v4 = p->mUnk_0040;
             if (v1 != 0) {
-                v3 = func_02006954(v4, v2);
+                v3 = BuildParentPacket(v4, v2);
             } else {
                 v3 = BuildChildPacket(v4, v2);
             }
@@ -912,7 +912,7 @@ void func_0204c090(u32 a, void (*b)(s32 a), void *(*c)(s32 a, u32 b, void *c), u
     v3->mUnk_46ec = v2->mUnk_0028;
     DC_FlushRange(v3, 0x46f0);
     DC_WaitWriteBufferEmpty();
-    func_02006aac(v2->mUnk_0028, v2->mUnk_002c, (void (*)(BlockTransferRecord *)) func_0204c7e4);
+    StartParentBlockTransfer(v2->mUnk_0028, v2->mUnk_002c, (void (*)(BlockTransferRecord *)) func_0204c7e4);
     func_0204d6f4(f, g);
     v7 = v3->mUnk_46c0;
     v3->mUnk_46c0 = v7->mUnk_000;
@@ -953,7 +953,7 @@ void func_0204bfac(u32 a, void (*b)(s32 a), void *(*c)(s32 a, u32 b, void *c), u
     v3->mUnk_b08 = 0;
     DC_FlushRange(v3, 0xb0c);
     DC_WaitWriteBufferEmpty();
-    func_02006a10((void (*)(BlockTransferRecord *)) func_0204c320);
+    StartChildBlockTransfer((void (*)(BlockTransferRecord *)) func_0204c320);
     v2->mUnk_000c = 1;
 }
 
@@ -1005,7 +1005,7 @@ void func_0204be0c(void) {
     }
     q = g->mUnk_0040;
     if (z != 0) {
-        r = func_02006954(q, h);
+        r = BuildParentPacket(q, h);
     } else {
         r = BuildChildPacket(q, h);
     }

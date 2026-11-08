@@ -29,116 +29,119 @@
 #include "code_0214a390.h"
 #include "code_0214b824.h"
 
-void func_02001d30(Unk02001d30 *a, s32 b, const char *c, const char *d, const char *e) {
-    LoadNclrData(&a->mUnk_00, FindSceneFile(c));
-    DC_StoreRange(a->mUnk_00->mData, a->mUnk_00->mDataSize);
-    if (b != 0) {
-        GX_LoadBGPltt(a->mUnk_00->mData, 0, a->mUnk_00->mDataSize);
+void LoadBg1FromSceneFiles(Unk02001d30 *files, s32 mainScreen, const char *paletteFileName, const char *charsFileName,
+                           const char *screenMapFileName) {
+    LoadNclrData(&files->mPalette, FindSceneFile(paletteFileName));
+    DC_StoreRange(files->mPalette->mData, files->mPalette->mDataSize);
+    if (mainScreen != 0) {
+        GX_LoadBGPltt(files->mPalette->mData, 0, files->mPalette->mDataSize);
     } else {
-        GXS_LoadBGPltt(a->mUnk_00->mData, 0, a->mUnk_00->mDataSize);
+        GXS_LoadBGPltt(files->mPalette->mData, 0, files->mPalette->mDataSize);
     }
-    LoadNcgrData2(&a->mUnk_04, FindSceneFile(d));
-    DC_StoreRange(a->mUnk_04->mData, a->mUnk_04->mDataSize);
-    if (b != 0) {
-        GX_LoadBG1Char(a->mUnk_04->mData, 0, a->mUnk_04->mDataSize);
+    LoadNcgrData2(&files->mChars, FindSceneFile(charsFileName));
+    DC_StoreRange(files->mChars->mData, files->mChars->mDataSize);
+    if (mainScreen != 0) {
+        GX_LoadBG1Char(files->mChars->mData, 0, files->mChars->mDataSize);
     } else {
-        GXS_LoadBG1Char(a->mUnk_04->mData, 0, a->mUnk_04->mDataSize);
+        GXS_LoadBG1Char(files->mChars->mData, 0, files->mChars->mDataSize);
     }
-    LoadNscrData(&a->mUnk_08, FindSceneFile(e));
-    DC_StoreRange(a->mUnk_08->mData, a->mUnk_08->mDataSize);
-    if (b != 0) {
-        GX_LoadBG1Scr(a->mUnk_08->mData, 0, a->mUnk_08->mDataSize);
+    LoadNscrData(&files->mScreenMap, FindSceneFile(screenMapFileName));
+    DC_StoreRange(files->mScreenMap->mData, files->mScreenMap->mDataSize);
+    if (mainScreen != 0) {
+        GX_LoadBG1Scr(files->mScreenMap->mData, 0, files->mScreenMap->mDataSize);
     } else {
-        GXS_LoadBG1Scr(a->mUnk_08->mData, 0, a->mUnk_08->mDataSize);
+        GXS_LoadBG1Scr(files->mScreenMap->mData, 0, files->mScreenMap->mDataSize);
     }
 }
 
-void func_02001ba0(void *a) {
-    Unk02125de0Arg v1;
-    u8 *v2;
-    gLogoScene = HeapAlloc(a, 60);
-    v2 = CreateDisplaySettings(a, data_usa_021547c8);
-    SetBg1Record(v2 + 0x28, 1, 0, 0, 0, 0, 1, 0);
-    SetBg1Record(v2 + 0x70, 1, 0, 0, 0, 0, 2, 0);
-    InitDisplayFromSettings(v2);
-    func_02001d30(&gLogoScene->mUnk_00, 1, data_usa_ov001_021a768c, data_usa_ov001_021a76a8, data_usa_ov001_021a76c4);
-    func_02001d30(&gLogoScene->mUnk_0c, 0, data_usa_ov001_021a76dc, data_usa_ov001_021a76f4, data_usa_ov001_021a770c);
+void InitLogoScene(void *heap) {
+    Unk02125de0Arg arg;
+    u8 *displaySettings;
+    gLogoScene = HeapAlloc(heap, 60);
+    displaySettings = CreateDisplaySettings(heap, data_usa_021547c8);
+    SetBg1Record(displaySettings + 0x28, 1, 0, 0, 0, 0, 1, 0);
+    SetBg1Record(displaySettings + 0x70, 1, 0, 0, 0, 0, 2, 0);
+    InitDisplayFromSettings(displaySettings);
+    LoadBg1FromSceneFiles(&gLogoScene->mMainBg, 1, data_usa_ov001_021a768c, data_usa_ov001_021a76a8,
+                          data_usa_ov001_021a76c4);
+    LoadBg1FromSceneFiles(&gLogoScene->mSubBg, 0, data_usa_ov001_021a76dc, data_usa_ov001_021a76f4,
+                          data_usa_ov001_021a770c);
     func_02046be8(&gLogoScene->mStateMachine, gLogoStateTable, 12, NULL);
     gLogoScene->mUnk_2c_0 = 0;
-    gLogoScene->mUnk_30 = 0;
+    gLogoScene->mState0Frames = 0;
     gLogoScene->mCommonMessages = FindFileInLoadedArchives(data_usa_ov001_021a7720);
-    v1.mUnk_00 = TRUE;
-    v1.mUnk_04 = func_020b403c(1);
-    v1.mUnk_08 = 0;
-    v1.mUnk_10 = 0;
-    v1.mUnk_14 = FALSE;
-    v1.mUnk_18 = NULL;
-    v1.mUnk_1c = FALSE;
-    v1.mUnk_20 = FALSE;
-    v1.mUnk_24 = 0;
-    v1.mUnk_0c = 1;
+    arg.mUnk_00 = TRUE;
+    arg.mUnk_04 = func_020b403c(1);
+    arg.mUnk_08 = 0;
+    arg.mUnk_10 = 0;
+    arg.mUnk_14 = FALSE;
+    arg.mUnk_18 = NULL;
+    arg.mUnk_1c = FALSE;
+    arg.mUnk_20 = FALSE;
+    arg.mUnk_24 = 0;
+    arg.mUnk_0c = 1;
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
-    func_02125de0(a, &v1);
+    func_02125de0(heap, &arg);
 }
 
 void ApplySavedSoundMode(void) {
-    s32 v1;
-    s32 v2;
-    v1 = 0;
+    s32 outputEffect;
+    s32 soundMode;
+    outputEffect = 0;
     gLogoScene = NULL;
-    v2 = data_0217aa08->mUnk_00->mSoundMode;
-    switch (v2) {
+    soundMode = data_0217aa08->mUnk_00->mSoundMode;
+    switch (soundMode) {
         case SOUND_MODE_STEREO:
             break;
         case SOUND_MODE_HEADPHONES:
-            v1 = 2;
+            outputEffect = 2;
             break;
         case SOUND_MODE_SURROUND:
         default:
-            v1 = 1;
+            outputEffect = 1;
             break;
     }
-    SetSoundOutputEffect(v1);
+    SetSoundOutputEffect(outputEffect);
     func_02125da0();
 }
 
-void func_02001abc(void) {
-    s32 v1;
-    s32 v2;
-    v1 = 0;
+void WriteLogoSceneRegisters(void) {
+    s32 brightness;
+    s32 frames;
+    brightness = 0;
     func_021258f0();
-    v2 = gLogoScene->mUnk_30;
-    if (v2 > 90) {
-        v1 = (-(v2 - 90) * 16) / 30;
+    frames = gLogoScene->mState0Frames;
+    if (frames > 90) {
+        brightness = (-(frames - 90) * 16) / 30;
     }
-    G2x_SetBlendBrightness_(&reg_G2_BLDCNT, 2, v1);
-    G2x_SetBlendBrightness_(&reg_G2S_DB_BLDCNT, 2, v1);
+    G2x_SetBlendBrightness_(&reg_G2_BLDCNT, 2, brightness);
+    G2x_SetBlendBrightness_(&reg_G2S_DB_BLDCNT, 2, brightness);
 }
 
-void func_02001a74(Unk02001a74 *a) {
+void UpdateLogoScene(Unk02001a74 *sceneNumbers) {
     AdvanceStateMachine(&gLogoScene->mStateMachine);
-    if (a != NULL && gLogoScene->mStateMachine.mState == 11) {
-        a->mUnk_04 = 0;
+    if (sceneNumbers != NULL && gLogoScene->mStateMachine.mState == 11) {
+        sceneNumbers->mNextScene = 0;
     }
     func_02125928();
 }
 
-void func_02001a44(void) {
+void EnterLogoState0(void) {
     func_02056f98();
     gLogoScene->mUnk_2c_1 = 0;
 }
 
-void func_020019b0(void) {
-    s32 v1;
-    Unk021a99c0_18 *v2;
-    gLogoScene->mUnk_30 = gLogoScene->mUnk_30 + 1;
-    if (gLogoScene->mUnk_30 > 120) {
-        v2 = &gLogoScene->mStateMachine;
-        v2->mNextState = 1;
-        v2->mNextStateRequested = 1;
+void UpdateLogoState0(void) {
+    s32 slotIndex;
+    Unk021a99c0_18 *stateMachine;
+    gLogoScene->mState0Frames = gLogoScene->mState0Frames + 1;
+    if (gLogoScene->mState0Frames > 120) {
+        stateMachine = &gLogoScene->mStateMachine;
+        stateMachine->mNextState = 1;
+        stateMachine->mNextStateRequested = 1;
     }
-    v1 = func_020435bc();
-    if ((data_02175628[v1].mBits & 0xf03) != 0xf03) {
+    slotIndex = func_020435bc();
+    if ((data_02175628[slotIndex].mBits & 0xf03) != 0xf03) {
         return;
     }
     gLogoScene->mUnk_2c_0 = 1;

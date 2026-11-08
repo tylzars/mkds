@@ -25,7 +25,7 @@ u32 func_020072c0(void) {
     Unk0216fdac *v12;
     Unk0216fdac *v13;
     v12 = data_0216fdac;
-    if (v12->mUnk_1524 == 0) {
+    if (v12->mEntryCount == 0) {
         return 21;
     }
     v11 = 0;
@@ -34,7 +34,7 @@ u32 func_020072c0(void) {
         work->mUnk_1525 = (work->mUnk_1525 + 1) % 16;
         v13 = (Unk0216fdac *) *(u32 *) &data_0216fdac;
         childEntry = OFFSET_PTR(Unk0216fdac, v13, v13->mUnk_1525 * 0x5d4);
-        if (childEntry->mUnk_1d52 != 0 && childEntry->mUnk_1d4c != 0) {
+        if (childEntry->mEntryUsed != 0 && childEntry->mUnk_1d4c != 0) {
             break;
         }
         v11++;

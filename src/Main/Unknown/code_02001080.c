@@ -15,8 +15,8 @@
 #pragma section MAIN_TEXT begin
 
 UnkFunc *gLogoStateTable[24] = {
-    func_02001a44,
-    func_020019b0,
+    EnterLogoState0,
+    UpdateLogoState0,
     func_020019ac,
     UpdateLogoState1,
     EnterLogoState2,

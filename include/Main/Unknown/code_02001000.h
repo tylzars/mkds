@@ -9,9 +9,9 @@ typedef struct Nclr Nclr;
 
 // Three pointers filled in by LoadNclrData, LoadNcgrData2 and LoadNscrData.
 typedef struct Unk02001d30 {
-    /* 00 */ Nclr *mUnk_00;
-    /* 04 */ Ncgr *mUnk_04;
-    /* 08 */ Nscr *mUnk_08;
+    /* 00 */ Nclr *mPalette;
+    /* 04 */ Ncgr *mChars;
+    /* 08 */ Nscr *mScreenMap;
 } Unk02001d30;
 
 // The part of LogoScene from 0x18: a halfword at 0x0e and the halfwords at 0x10 and 0x12.
@@ -24,8 +24,8 @@ typedef struct Unk021a99c0_18 {
 
 // Object behind gLogoScene.
 typedef struct LogoScene {
-    /* 00 */ Unk02001d30 mUnk_00;
-    /* 0c */ Unk02001d30 mUnk_0c;
+    /* 00 */ Unk02001d30 mMainBg;
+    /* 0c */ Unk02001d30 mSubBg;
     /* 18 */ Unk021a99c0_18 mStateMachine;
     /* 2c */ union {
         s32 mUnk_2c;
@@ -35,7 +35,7 @@ typedef struct LogoScene {
             u32 mUnk_2c_1 : 1;
         };
     };
-    /* 30 */ s32 mUnk_30;
+    /* 30 */ s32 mState0Frames;
     /* 34 */ s32 mSubTextFrames;
     /* 38 */ Bmg *mCommonMessages;
 } LogoScene;
