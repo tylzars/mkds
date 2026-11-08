@@ -174,7 +174,7 @@ void func_ov001_02180728(TextCanvas *p0, void *p1, void *p2, s32 p3, s32 p4) {
 #pragma thumb on
 
 void func_ov001_02180610(void) {
-    Unk020391d4 v = {1, 0x16, 4, 1, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 4, 0, 0, 0, 8, 0};
+    DisplaySettingsDesc v = {1, 0x16, 4, 1, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 4, 0, 0, 0, 8, 0};
     void *x;
     int i;
 

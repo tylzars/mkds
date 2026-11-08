@@ -428,7 +428,7 @@ void *BuildItemObjectMatrix(ItemObject *object, Vec3 *viewAxis) {
     }
 }
 
-void DrawItemPoolModels(Unk020ed718 *pool, Vec3 *viewAxis) {
+void DrawItemPoolModels(ItemPool *pool, Vec3 *viewAxis) {
     s16 d8;
     s32 i;
     Unk020e6488 *model;
@@ -437,14 +437,14 @@ void DrawItemPoolModels(Unk020ed718 *pool, Vec3 *viewAxis) {
     ItemObject *object;
     void *matrix;
 
-    model = gItemModels[pool->mUnk_000];
-    takenCount = pool->mUnk_010;
-    activeCount = pool->mUnk_014;
+    model = gItemModels[pool->mKind];
+    takenCount = pool->mTakenCount;
+    activeCount = pool->mActiveCount;
     func_020e6a18(model);
     model->mUnk_14 &= ~0x3f000000;
     model->mUnk_14 |= 0x4000000;
     for (i = 0; i < takenCount; i++) {
-        object = pool->mUnk_004[i];
+        object = pool->mObjects[i];
         if ((object->mFlags & 0x10000) != 0) {
             continue;
         }
@@ -491,14 +491,14 @@ void DrawItemPoolModels(Unk020ed718 *pool, Vec3 *viewAxis) {
     }
 }
 
-void DrawItemPoolWithCallback(Unk020ed718 *pool, void *callbackArg, void (*drawCallback)(void *, void *, void *)) {
+void DrawItemPoolWithCallback(ItemPool *pool, void *callbackArg, void (*drawCallback)(void *, void *, void *)) {
     s32 takenCount;
     s32 i;
     ItemObject *object;
 
-    takenCount = pool->mUnk_010;
+    takenCount = pool->mTakenCount;
     for (i = 0; i < takenCount; i++) {
-        object = pool->mUnk_004[i];
+        object = pool->mObjects[i];
         if ((object->mFlags & 0x10000) != 0) {
             continue;
         }
@@ -507,7 +507,7 @@ void DrawItemPoolWithCallback(Unk020ed718 *pool, void *callbackArg, void (*drawC
         } else {
             func_0208ab4c(object->mColorBlend.mUnk_00);
         }
-        drawCallback(object, callbackArg, gItemModels[pool->mUnk_000]);
+        drawCallback(object, callbackArg, gItemModels[pool->mKind]);
     }
 }
 

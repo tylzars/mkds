@@ -120,7 +120,7 @@ void CreatePakkunMouth(void *a) {
 }
 
 static inline u32 func_020983c4_inline(u32 n) {
-    Unk020f41c4_B *r;
+    RandomState64 *r;
     u32 t;
     u32 m;
     if (n == 0x10000) {

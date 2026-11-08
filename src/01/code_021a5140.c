@@ -26,23 +26,23 @@
 #include "code_0214d018.h"
 
 void InitEmblem(void) {
-    Unk020391d4 unk;
+    DisplaySettingsDesc unk;
     EmblemRecord *p;
 
     gEmblem = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x10c0);
     InitDisplaySettingsDesc(&unk);
-    unk.mUnk_06 = 1;
-    unk.mUnk_08 = 0;
+    unk.mUnk_00[3] = 1;
+    unk.mMainBgMode = 0;
     unk.mUnk_0a = 1;
-    unk.mUnk_02 = 0x11;
-    unk.mUnk_16 = 3;
-    unk.mUnk_18 = 0x10;
-    unk.mUnk_0e = 0x20;
-    unk.mUnk_10 = 0x40;
-    unk.mUnk_0c = 1;
-    unk.mUnk_04 = 0x10;
-    unk.mUnk_1c = 4;
-    unk.mUnk_1e = 8;
+    unk.mUnk_00[1] = 0x11;
+    unk.mUnk_0e[4] = 3;
+    unk.mUnk_0e[5] = 0x10;
+    unk.mUnk_0e[0] = 0x20;
+    unk.mUnk_0e[1] = 0x40;
+    unk.mSubBgMode = 1;
+    unk.mUnk_00[2] = 0x10;
+    unk.mUnk_0e[7] = 4;
+    unk.mUnk_0e[8] = 8;
     InitDisplayFromSettings(CreateDisplaySettings(GetHeap(GetCurrentHeapCall()), &unk));
     LoadNclrData(&gEmblem->mEmblemMONclr, (FindSceneFile("emblem_m_o.NCLR")));
     LoadNcgrData2(&gEmblem->mEmblemMONcgr, (FindSceneFile("emblem_m_o.NCGR")));

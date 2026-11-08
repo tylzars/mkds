@@ -24,7 +24,7 @@ void UpdateRaceClock(void) {
     BOOL g;
     s8 k;
     u16 i;
-    Unk020f41c4_B *r;
+    RandomState64 *r;
     u16 *c;
     u32 v;
 

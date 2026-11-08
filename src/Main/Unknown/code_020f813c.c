@@ -20,7 +20,7 @@
 #include "code_02012b30.h"
 #include "Main/Unknown/code_020f9c6c.h"
 
-static inline u32 func_020f8a04_inline(Unk020f41c4_B *random, u32 limit) {
+static inline u32 func_020f8a04_inline(RandomState64 *random, u32 limit) {
     random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
     if (limit == 0) {
         return random->mValue >> 32;
@@ -31,7 +31,7 @@ static inline u32 func_020f8a04_inline(Unk020f41c4_B *random, u32 limit) {
 
 s32 PickItem(s32 kartVariant, s32 forcedRowHandle, s32 param_3, s32 param_4, s32 isEntryKart, s32 itemCount) {
     ItemSlotTable *table;
-    Unk020f41c4_B *random;
+    RandomState64 *random;
     u16 *row;
     s32 variant;
     s32 i;
@@ -308,7 +308,7 @@ void StopItemSlot(KartItems *slot) {
     slot->mResultPending = FALSE;
 }
 
-static inline u16 func_020f830c_inline(Unk020f41c4_B *random, u32 limit) {
+static inline u16 func_020f830c_inline(RandomState64 *random, u32 limit) {
     u32 value;
     if (limit == 0) {
         value = 0;
@@ -324,7 +324,7 @@ static inline u16 func_020f830c_inline(Unk020f41c4_B *random, u32 limit) {
 }
 
 void PickItemSlotShownItem(KartItems *slot) {
-    Unk020f41c4_B *random;
+    RandomState64 *random;
     s32 *items;
     u16 itemCount;
     u32 index;

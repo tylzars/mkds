@@ -178,7 +178,7 @@ u32 func_020ae3b4(u32 a) {
     } else {
         v2 = func_020ae3d8();
     }
-    return func_02046524((Unk020f41c4_B *) v2, a);
+    return func_02046524((RandomState64 *) v2, a);
 }
 
 #pragma thumb off

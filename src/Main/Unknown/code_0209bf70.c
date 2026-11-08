@@ -112,7 +112,7 @@ void DrawSun(void *a, Unk0209d3fc *b) {
     }
 }
 
-static inline u32 CollideKartWithBound_inline(Unk020f41c4_B *b) {
+static inline u32 CollideKartWithBound_inline(RandomState64 *b) {
     b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
     return b->mValue >> 32;
 }

@@ -13,6 +13,7 @@ void RegisterWiFiVSSettingCallbacks(void);
 void AdvanceWiFiVSSetting(void);
 
 #include "Main/Unknown/code_0205e2cc.h"
+#include "Main/Unknown/code_020d22c0.h" // RandomState64
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_02077bc0.h"
@@ -198,13 +199,6 @@ typedef struct Unk0217d384_021c {
     /* 23c */ s32 mUnk_23c;
     /* 240 */ s32 mSeed;
 } Unk0217d384_021c;
-
-// 0x18-byte object at member 0x1954 of WiFiSession: three 64-bit values (x = x * [8] + [0x10] in TallyPickedCourse).
-typedef struct RandomState64 {
-    /* 00 */ u64 mValue;
-    /* 08 */ u64 mMultiplier;
-    /* 10 */ u64 mIncrement;
-} RandomState64;
 
 // 8-byte object at member 0x18e0 of WiFiSession.
 typedef struct Unk0217d384_18e0 {

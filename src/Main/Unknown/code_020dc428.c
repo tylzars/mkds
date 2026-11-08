@@ -281,7 +281,7 @@ static inline s64 func_020dccc8_inline(const Vec3 *vector) {
 void UpdateWanwanState0(Wanwan *wanwan) {
     Vec3 *candidate;
     Vec3 *lastPoint;
-    Unk020f41c4_B *random;
+    RandomState64 *random;
     Kart *kart;
     s32 attemptCount;
     s32 lastStepZ;

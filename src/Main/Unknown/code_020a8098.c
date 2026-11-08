@@ -11,7 +11,7 @@ void *func_020a824c(void) {
 
 void func_020a8098(Sanbo *p) {
     s32 i;
-    Unk020f41c4_B *r;
+    RandomState64 *r;
     u16 v1;
     u16 v2;
 

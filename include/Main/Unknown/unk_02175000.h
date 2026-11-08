@@ -6,7 +6,7 @@
 #include "Main/Unknown/unk_02175628.h" // InputSlot
 #include "frameheap.h" // NNSiFndHeapHead
 #include "os_thread.h"
-#include "Main/Unknown/code_020d22c0.h" // Unk020f41c4_B
+#include "Main/Unknown/code_020d22c0.h" // RandomState64
 #include "pm.h" // PMSleepCallbackInfo
 #include "Main/Unknown/code_02105ec0.h" // Unk0217d060
 
@@ -40,7 +40,7 @@ typedef struct Unk021759d0 {
     /* 54 */ BOOL mUnk_54;
     /* 58 */ s32 mUnk_58;
     /* 5c */ s32 mUnk_5c;
-    /* 60 */ Unk020f41c4_B mUnk_60;
+    /* 60 */ RandomState64 mUnk_60;
     /* 78 */ s32 mUnk_78;
 } Unk021759d0;
 

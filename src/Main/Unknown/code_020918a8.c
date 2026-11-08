@@ -27,7 +27,7 @@
 #include "Main/Unknown/code_02077bc0.h"
 
 static inline u32 func_020919e8_inline(u32 n) {
-    Unk020f41c4_B *b;
+    RandomState64 *b;
 
     b = GetMapObjectRandom();
     b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
@@ -35,7 +35,7 @@ static inline u32 func_020919e8_inline(u32 n) {
 }
 
 static inline u16 func_020919e8_inline_2(u32 n) {
-    Unk020f41c4_B *b;
+    RandomState64 *b;
 
     b = GetMapObjectRandom();
     b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
@@ -97,7 +97,7 @@ void InitKanoke64Objects(MapObjectList *a) {
 }
 
 // Returns a random value below b (0 when b is 0), advancing the generator a.
-u32 NextRandomBelow(Unk020f41c4_B *a, u32 b) {
+u32 NextRandomBelow(RandomState64 *a, u32 b) {
     if (b == 0) {
         return 0;
     }

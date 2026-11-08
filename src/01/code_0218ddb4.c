@@ -355,7 +355,7 @@ void func_ov001_0218ec40(Unk02188950 *a) {
 }
 
 void func_ov001_0218eb94(Unk02188950 *a) {
-    Unk020f41c4_B *rng;
+    RandomState64 *rng;
     GetKart((u16) gRaceSetup->mEntryIndex);
     rng = GetMapObjectRandom();
     rng->mValue = (s64) rng->mMultiplier * (s64) rng->mValue + rng->mIncrement;

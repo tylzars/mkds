@@ -23,7 +23,7 @@
 u16 FX_Atan2Idx(s32 a, s32 b);
 
 static inline u16 func_0209f800_inline(u32 n) {
-    Unk020f41c4_B *b;
+    RandomState64 *b;
     u32 m;
     u32 r;
 
@@ -204,7 +204,7 @@ void DrawTownMonte(void *a, TownMonte *p) {
 
 void InitTownMonteObjects(Unk0209f800 *a) {
     TownMonte *p;
-    Unk020f41c4_B *r;
+    RandomState64 *r;
     s32 i;
     s32 j;
     u32 n;

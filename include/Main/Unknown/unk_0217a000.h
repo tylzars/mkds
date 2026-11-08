@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020d22c0.h" // Unk020f41c4_B
+#include "Main/Unknown/code_020d22c0.h" // RandomState64
 #include "code_02004dc0.h" // FSOverlayInfo, FSFile
 #include "code_0212d214.h"
 #include "os_thread.h"
@@ -762,7 +762,7 @@ typedef struct Unk0217aa00 {
         };
         Unk0217aa00_16a0_view mUnk_16a0_view;
     };
-    /* 1ee8 */ Unk020f41c4_B mUnk_1ee8;
+    /* 1ee8 */ RandomState64 mUnk_1ee8;
 } Unk0217aa00;
 
 extern Unk0217aa00 *data_0217aa00;
@@ -1470,7 +1470,7 @@ extern struct Unk0201ca6c **data_0217ae94;
 extern s32 gOtherKartFullPairCount;
 
 // Three doublewords (a random generator): the first is replaced by the first times the second plus the third.
-typedef Unk020f41c4_B Unk0217aebc_128;
+typedef RandomState64 Unk0217aebc_128;
 
 // Entry of the eight 0xc-byte entries at 0xb0 of KartAiShared: a word, then the links of a list.
 typedef struct KartAiTableIndexEntry {

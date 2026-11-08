@@ -529,8 +529,8 @@ s32 func_020d6910(s32 itemKind, MapObject *mapObject) {
     return response;
 }
 
-Unk02156adc *CreateRockKindData(void) {
-    Unk02156adc *kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
+MapObjectKindData *CreateRockKindData(void) {
+    MapObjectKindData *kindData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x40);
     *kindData = data_02156adc;
     kindData->mUnk_38 = 0x3e8000;
     kindData->mUnk_3c = -0x3e8000;
@@ -566,7 +566,7 @@ void SetupDrawRock(void) {
     MTX_RotY33_(data_0217b650->mUnk_2c.mUnk_00, gPairsByAngle[pairIndex * 2], gPairsByAngle[pairIndex * 2 + 1]);
 }
 
-void func_020d655c(void *a, Unk020d655c *rock, void *c, s32 alpha) {
+void func_020d655c(void *a, RockObject *rock, void *c, s32 alpha) {
     Vec3 tiltAxis;
     Vec3 crossProduct;
     Vec3 xAxis;
@@ -574,33 +574,33 @@ void func_020d655c(void *a, Unk020d655c *rock, void *c, s32 alpha) {
     RockShadowMatrix *shadowMatrix;
     s32 dot;
     if (func_020b2ec0() == 0) {
-        xAxis = rock->mUnk_00.mMatrix.mUnk_00[0];
-        yAxis = rock->mUnk_00.mMatrix.mUnk_00[1];
-        tiltAxis.x = ((s64) rock->mUnk_00.mUnk_10.z * (s64) rock->mUnk_118) >> 12;
-        tiltAxis.z = -(s32) (((s64) rock->mUnk_00.mUnk_10.x * (s64) rock->mUnk_118) >> 12);
+        xAxis = rock->mMapObject.mMatrix.mUnk_00[0];
+        yAxis = rock->mMapObject.mMatrix.mUnk_00[1];
+        tiltAxis.x = ((s64) rock->mMapObject.mUnk_10.z * (s64) rock->mBottomOffsetReciprocal) >> 12;
+        tiltAxis.z = -(s32) (((s64) rock->mMapObject.mUnk_10.x * (s64) rock->mBottomOffsetReciprocal) >> 12);
         tiltAxis.y = 0;
         Vec3CrossUnrounded(&tiltAxis, &xAxis, &crossProduct);
         VEC_Add(&xAxis, &crossProduct, &xAxis);
-        Vec3NormalizeAndGetLengthUnchecked(&xAxis, &rock->mUnk_00.mMatrix.mUnk_00[0]);
+        Vec3NormalizeAndGetLengthUnchecked(&xAxis, &rock->mMapObject.mMatrix.mUnk_00[0]);
         Vec3CrossUnrounded(&tiltAxis, &yAxis, &crossProduct);
         VEC_Add(&yAxis, &crossProduct, &yAxis);
-        dot = VEC_DotProduct(&rock->mUnk_00.mMatrix.mUnk_00[0], &yAxis);
-        yAxis.x = yAxis.x - (s32) (((s64) rock->mUnk_00.mMatrix.mUnk_00[0].x * (s64) dot) >> 12);
-        yAxis.y = yAxis.y - (s32) (((s64) rock->mUnk_00.mMatrix.mUnk_00[0].y * (s64) dot) >> 12);
-        yAxis.z = yAxis.z - (s32) (((s64) rock->mUnk_00.mMatrix.mUnk_00[0].z * (s64) dot) >> 12);
-        Vec3NormalizeAndGetLengthUnchecked(&yAxis, &rock->mUnk_00.mMatrix.mUnk_00[1]);
-        Vec3CrossUnrounded(&rock->mUnk_00.mMatrix.mUnk_00[0], &rock->mUnk_00.mMatrix.mUnk_00[1],
-                           &rock->mUnk_00.mMatrix.mUnk_00[2]);
+        dot = VEC_DotProduct(&rock->mMapObject.mMatrix.mUnk_00[0], &yAxis);
+        yAxis.x = yAxis.x - (s32) (((s64) rock->mMapObject.mMatrix.mUnk_00[0].x * (s64) dot) >> 12);
+        yAxis.y = yAxis.y - (s32) (((s64) rock->mMapObject.mMatrix.mUnk_00[0].y * (s64) dot) >> 12);
+        yAxis.z = yAxis.z - (s32) (((s64) rock->mMapObject.mMatrix.mUnk_00[0].z * (s64) dot) >> 12);
+        Vec3NormalizeAndGetLengthUnchecked(&yAxis, &rock->mMapObject.mMatrix.mUnk_00[1]);
+        Vec3CrossUnrounded(&rock->mMapObject.mMatrix.mUnk_00[0], &rock->mMapObject.mMatrix.mUnk_00[1],
+                           &rock->mMapObject.mMatrix.mUnk_00[2]);
     }
-    rock->mUnk_00.mMatrix.mUnk_00[3].x = rock->mUnk_00.mPos.x >> 4;
-    rock->mUnk_00.mMatrix.mUnk_00[3].y = rock->mUnk_00.mPos.y >> 4;
-    rock->mUnk_00.mMatrix.mUnk_00[3].z = rock->mUnk_00.mPos.z >> 4;
-    DrawNsbmdWithMatrixAndMaxAlpha(gRock, &rock->mUnk_00.mMatrix, &rock->mUnk_00.mScale, alpha);
+    rock->mMapObject.mMatrix.mUnk_00[3].x = rock->mMapObject.mPos.x >> 4;
+    rock->mMapObject.mMatrix.mUnk_00[3].y = rock->mMapObject.mPos.y >> 4;
+    rock->mMapObject.mMatrix.mUnk_00[3].z = rock->mMapObject.mPos.z >> 4;
+    DrawNsbmdWithMatrixAndMaxAlpha(gRock, &rock->mMapObject.mMatrix, &rock->mMapObject.mScale, alpha);
     shadowMatrix = &data_0217b650->mUnk_2c;
-    shadowMatrix->mUnk_24.x = rock->mUnk_00.mPos.x >> 4;
-    shadowMatrix->mUnk_24.y = rock->mUnk_00.mPos.y >> 4;
-    shadowMatrix->mUnk_24.z = rock->mUnk_00.mPos.z >> 4;
-    DrawShadowWithMaxAlpha(gRockShadow, &data_0217b650->mUnk_2c, &rock->mUnk_00.mScale, alpha);
+    shadowMatrix->mUnk_24.x = rock->mMapObject.mPos.x >> 4;
+    shadowMatrix->mUnk_24.y = rock->mMapObject.mPos.y >> 4;
+    shadowMatrix->mUnk_24.z = rock->mMapObject.mPos.z >> 4;
+    DrawShadowWithMaxAlpha(gRockShadow, &data_0217b650->mUnk_2c, &rock->mMapObject.mScale, alpha);
 }
 
 void func_020d6538(Unk020d6538_a *emitter, Unk020d634c *params) {

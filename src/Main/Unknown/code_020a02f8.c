@@ -538,7 +538,7 @@ void EliminateKartsUntilWinnerDecided(void) {
     u16 k;
     s32 m;
     u16 s;
-    Unk020f41c4_B *r;
+    RandomState64 *r;
 
     if (gStandings->mWinnerTeamId >= 0) {
         return;
@@ -719,7 +719,7 @@ Vec3 *GetKartStandingPos(int arg0) {
 }
 
 Unk02175620_84 *MoveToRandomForwardBattlePoint(void) {
-    Unk020f41c4_B *a;
+    RandomState64 *a;
     u16 v;
     s32 w;
 
@@ -918,7 +918,7 @@ void func_020a089c(Unk020a0318 *p) {
 void func_020a066c(Unk020a066c *p) {
     s32 i;
     Unk020a0318 *o;
-    Unk020f41c4_B *a;
+    RandomState64 *a;
 
     if (p == NULL) {
         return;
@@ -956,7 +956,7 @@ void func_020a066c(Unk020a066c *p) {
 void func_020a0318(void *a, Unk020a0318 *p) {
     Kart *o;
     NNSSndSeqPlayer **h;
-    Unk020f41c4_B *r;
+    RandomState64 *r;
     Unk0210b7a8 s1;
     Unk0210b7a8 s2;
     s32 v;

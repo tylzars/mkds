@@ -9,10 +9,10 @@
 
 void PickRandomKarts(u8 *rawPicks) {
     CharacterKartPicks *picks;
-    Unk020f41c4_B localRandom;
+    RandomState64 localRandom;
     u32 givenBits;
     u8 entry;
-    Unk020f41c4_B *random;
+    RandomState64 *random;
     u8 u;
     u8 candidateBits;
     u8 seen;
@@ -95,12 +95,12 @@ void PickRandomKarts(u8 *rawPicks) {
 
 void PickRandomCharacters(u8 *rawPicks) {
     CharacterKartPicks *picks;
-    Unk020f41c4_B localRandom;
+    RandomState64 localRandom;
     u16 availableBits;
     BOOL useSharedRandom;
     s32 x;
     u32 givenBits;
-    Unk020f41c4_B *random;
+    RandomState64 *random;
     u8 character;
     u8 entry;
     u32 availableCount;

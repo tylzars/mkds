@@ -18,13 +18,6 @@ typedef struct LinkFollowingItemObject {
     /* 224 */ s32 mUnk_224;
 } LinkFollowingItemObject;
 
-// One element of the table behind gItemKinds from its first byte: the
-// pointer at 0x14.
-typedef struct {
-    /* 00 */ u8 mUnk_00[0x14];
-    /* 14 */ void (*mUnk_14)(void);
-} Unk0217bc34_14;
-
 void InitLinkFollowingItem(LinkFollowingItemObject *follower, s32 rampCount, s32 rampWeightPerCount, s32 c,
                            s32 endsOnFirstHit, s32 reverse, u16 targetKartIndex, s32 g);
 void AdvanceLinkFollowingItem(LinkFollowingItemObject *follower, s32 targetSpeed, s32 speedEase, s32 targetKartIndex,

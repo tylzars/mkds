@@ -164,7 +164,7 @@ void AdvanceOrthoQuadCornersByVelocity(OrthoQuad *quad) {
     }
     quad->mTimer = quad->mTimer - 1;
     if ((quad->mTimer & 0xf) == 0) {
-        Unk020f41c4_B *a = &gRaceProgress->mLocalRandom;
+        RandomState64 *a = &gRaceProgress->mLocalRandom;
 
         a->mValue = a->mMultiplier * a->mValue + a->mIncrement;
         quad->mPickedCornerIndex = (u16) (((u64) (u32) (a->mValue >> 32) * 6) >> 32);
@@ -345,7 +345,7 @@ u8 MarkOrthoQuadCellsAndGetOverlap(s32 column, s32 row) {
 
 void SetupOrthoQuad(s32 index, Unk021035ac_Pair startPair, s32 overlap) {
     RaceProgress *raceProgress;
-    Unk020f41c4_B *random;
+    RandomState64 *random;
     OrthoQuad *quad;
     s16(*velocities)[2];
     s32 i;
@@ -404,7 +404,7 @@ void StartOrthoQuads(s32 kartIndex, s32 count, s32 useCreamEffect) {
     s32 m;
     s32 column;
     s32 row;
-    Unk020f41c4_B *random;
+    RandomState64 *random;
 
     random = &gRaceProgress->mLocalRandom;
     GetKart(kartIndex);
@@ -684,7 +684,7 @@ void func_021031f4(ItemGesso *gesso) {
     s32 ownerIndex;
     s32 i;
     RaceProgress *raceProgress;
-    Unk020f41c4_B *random;
+    RandomState64 *random;
     Kart *kart;
     u16 rank;
     u32 ownerRank;

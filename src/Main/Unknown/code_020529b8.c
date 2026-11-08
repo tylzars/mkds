@@ -588,7 +588,7 @@ void StartParent(Unk021425e8Func a) {
 
 // Callback of WM_StartParent: code 7 adds a child, 9 removes one, 0 copies the own data into the first member record.
 void StartParentCallback(Unk021425e8 *a) {
-    Unk020f41c4_B *p;
+    RandomState64 *p;
     u32 v1;
     u16 v;
     u32 n;

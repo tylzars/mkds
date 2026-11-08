@@ -468,7 +468,7 @@ s32 LoadCourseMapRespawnsData(void *a, ...) {
     return 1;
 }
 
-static inline u16 func_020427d4_inline(Unk020f41c4_B *p, u16 n) {
+static inline u16 func_020427d4_inline(RandomState64 *p, u16 n) {
     u32 t;
     if (n == 0) {
         t = 0;
@@ -483,7 +483,7 @@ static inline u16 func_020427d4_inline(Unk020f41c4_B *p, u16 n) {
     return t;
 }
 
-void ShuffleCourseMapRespawnSlots(Unk020f41c4_B *a) {
+void ShuffleCourseMapRespawnSlots(RandomState64 *a) {
     s32 i;
     u16 n;
     u16 x;

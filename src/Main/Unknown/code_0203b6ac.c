@@ -49,7 +49,7 @@ BOOL func_0203b96c(s32 a) {
     return FALSE;
 }
 
-u32 func_0203b8e4(Unk020f41c4_B *a) {
+u32 func_0203b8e4(RandomState64 *a) {
     u8 n;
     u8 i;
     u16 k;
@@ -86,7 +86,7 @@ u32 func_0203b8e4(Unk020f41c4_B *a) {
 }
 
 void SetNextDemoRace(u8 *a) {
-    Unk020f41c4_B r;
+    RandomState64 r;
     RTCTime t;
     u16 v1[2];
     u32 x;

@@ -8,15 +8,6 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_02087d0c.h"
 
-// Object with an array of ItemObject pointers at 0x04 and a word at 0x10.
-typedef struct Unk020ed718 {
-    /* 000 */ s32 mUnk_000;
-    /* 004 */ ItemObject **mUnk_004;
-    /* 008 */ u8 mUnk_008[8];
-    /* 010 */ s32 mUnk_010;
-    /* 014 */ s32 mUnk_014;
-} Unk020ed718;
-
 // The object behind the word at 0x20 of a KartModelsEntry: the vectors from 0x48.
 typedef struct Unk0206bcb0_590_20 {
     /* 00 */ char mUnk_00[0x10];
@@ -182,8 +173,8 @@ typedef struct ItemInUse {
 } ItemInUse;
 
 void DrawItemObjectModel(ItemObject *object, Unk020e6488 *model, Vec3 *viewAxis);
-void DrawItemPoolWithCallback(Unk020ed718 *pool, void *callbackArg, void (*drawCallback)(void *, void *, void *));
-void DrawItemPoolModels(Unk020ed718 *pool, Vec3 *viewAxis);
+void DrawItemPoolWithCallback(ItemPool *pool, void *callbackArg, void (*drawCallback)(void *, void *, void *));
+void DrawItemPoolModels(ItemPool *pool, Vec3 *viewAxis);
 void *BuildItemObjectMatrix(ItemObject *object, Vec3 *viewAxis);
 void RemoveItemInUseObject(ItemInUse *itemInUse, ItemObject *object);
 void StartItemInUseObjectCountdown(ItemInUse *itemInUse);

@@ -41,10 +41,10 @@ void SetRaceRandomPointers(void) {
     gRaceRandom = &gRaceProgress->mRandom;
 }
 
-Unk020f41c4_B *GetMapObjectRandom(void) {
-    return (Unk020f41c4_B *) ((u32) gMapObjectRandom);
+RandomState64 *GetMapObjectRandom(void) {
+    return (RandomState64 *) ((u32) gMapObjectRandom);
 }
 
-Unk020f41c4_B *GetRaceRandom(void) {
-    return (Unk020f41c4_B *) ((u32) gRaceRandom);
+RandomState64 *GetRaceRandom(void) {
+    return (RandomState64 *) ((u32) gRaceRandom);
 }

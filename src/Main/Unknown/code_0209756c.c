@@ -210,7 +210,7 @@ void InitFlipperObjects(MapObjectList *a) {
 void UpdateFlipper(void *a, Flipper *p) {
     s32 i;
     s32 n;
-    Unk020f41c4_B *v1;
+    RandomState64 *v1;
     u32 r;
     s32 w;
 

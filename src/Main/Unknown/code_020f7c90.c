@@ -140,7 +140,7 @@ u8 GetItemObjectHitType(ItemObject *itemParam, ItemObject *otherParam) {
 }
 
 void func_020f7c90(ItemObject *item, Vec3 *otherPos, Vec3 *normal) {
-    Unk020f41c4_B *random;
+    RandomState64 *random;
     s64 distanceSquared;
     s32 angleIndex;
 

@@ -28,7 +28,7 @@ void func_020954e4(u32 arg0) {
     CreateParkedMapObjects(value0, value1, (void *) value2);
 }
 
-static inline u32 func_02095228_inline(Unk020f41c4_B *b, u32 n) {
+static inline u32 func_02095228_inline(RandomState64 *b, u32 n) {
     b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
     if (n == 0) {
         return b->mValue >> 32;
@@ -37,7 +37,7 @@ static inline u32 func_02095228_inline(Unk020f41c4_B *b, u32 n) {
 }
 
 static inline u16 func_020952dc_inline(u32 n) {
-    Unk020f41c4_B *r;
+    RandomState64 *r;
     u32 t;
     u32 m;
     if (n == 0x10000) {
@@ -105,11 +105,11 @@ void func_02095228(Unk02095228 *a) {
     }
 }
 
-Unk020f41c4_B *GetRaceLocalRandom(void) {
+RandomState64 *GetRaceLocalRandom(void) {
     return &gRaceProgress->mLocalRandom;
 }
 
-u16 func_020951b4(Unk020f41c4_B *a) {
+u16 func_020951b4(RandomState64 *a) {
     a->mValue = a->mMultiplier * a->mValue + a->mIncrement;
     return ((a->mValue >> 32) * 0x10000) >> 32;
 }

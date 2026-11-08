@@ -17,13 +17,8 @@
 #include "code_0212d214.h"
 #include "Main/Unknown/code_0210bcf4.h"
 #include "Main/Unknown/code_020d849c.h"
-#include "Main/Unknown/code_020d22c0.h" // Unk020f41c4_B
+#include "Main/Unknown/code_020d22c0.h" // RandomState64
 #include "Main/Unknown/unk_0217a000.h" // Unk0217aa1c_144_00
-
-// Object whose first word is compared with a stored value.
-typedef struct {
-    /* 00 */ s32 mUnk_00;
-} Unk020f36d8;
 
 // One item point: the links that follow it and come before it, and a pointer to its position.
 typedef struct ItemPointLink {
@@ -285,15 +280,15 @@ typedef struct RaceProgress {
     /* 474 */ s8 mKartAtRank[8];
     // Synced random generator; also stepped at each clock update while the clock gate is on, for the jitter that
     // GetRaceClockTime shows.
-    /* 47c */ Unk020f41c4_B mRandom;
+    /* 47c */ RandomState64 mRandom;
     // Written once, never read; mNextHeader.mUnk_5c holds the same value.
     /* 494 */ s32 mSeed;
     // Random generator seeded from three OS_GetTick calls, not from mSeed. Local means this console, not the local
     // player (mFlags bit 1 is the local entry). Mode 1 uses it where the other modes use mRandom.
-    /* 498 */ Unk020f41c4_B mLocalRandom;
+    /* 498 */ RandomState64 mLocalRandom;
     // Random generator seeded with the constant 0xa094a2f; the map objects draw from it in mode 5 (from mRandom
     // otherwise).
-    /* 4b0 */ Unk020f41c4_B mFixedSeedRandom;
+    /* 4b0 */ RandomState64 mFixedSeedRandom;
     /* 4c8 */ RankTimeGp *mRankTimeGpFile;
     // Set once per race in every mode; read by HUD and net code.
     /* 4cc */ s32 mRaceDone;
@@ -340,7 +335,7 @@ typedef struct ItemKind {
     // plus 3 in mode 5, or 0x10 for kind 2 in the other modes.
     /* 0c */ s32 mObjectCount;
     /* 10 */ s32 mUnk_10;
-    /* 14 */ u8 mSetup[4];
+    /* 14 */ void (*mSetup)(void);
     // Called with the object by ResetItemObject after it has reset the common fields.
     /* 18 */ void (*mReset)(void *);
     // Called with the object when StartItemObject moves it into the started part of its pool.
@@ -554,7 +549,7 @@ extern ItemSpreadRow gItemSpreadRows[];
 extern ItemInfo *gItemInfos;
 extern ItemPool *gItemPools;
 
-u8 GetItemPointLinkIndex(Unk020f36d8 *ref);
+u8 GetItemPointLinkIndex(ItemPointLinkRef *ref);
 void PickNextItemPointLink(ItemPointLinkRef *in, ItemPointLinkRef *out, u32 idx, s32 flag);
 BOOL FollowItemPointLinksToPos(ItemPointLinkRef *in, ItemPointLinkRef *out, Vec3 *pos);
 BOOL CopyCloserItemPointLinkRef(ItemPointLinkRef *current, ItemPointLinkRef *candidate, ItemPointLinkRef *out,

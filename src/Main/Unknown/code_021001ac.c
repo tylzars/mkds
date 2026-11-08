@@ -79,7 +79,7 @@ void ResetItemTeresa(Unk021025d8 *teresa) {
     teresa->mUnk_270 = 0;
 }
 
-static inline u32 func_02101f7c_inline_2(Unk020f41c4_B *random, u32 range) {
+static inline u32 func_02101f7c_inline_2(RandomState64 *random, u32 range) {
     random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
     if (range == 0) {
         return random->mValue >> 32;
@@ -124,7 +124,7 @@ void PickItemTeresaKartByRank(ItemTeresa *teresa, s32 teamIndex) {
     u32 rankBehind;
     u16 kartIndex;
     u16 randomValue;
-    Unk020f41c4_B *random;
+    RandomState64 *random;
     u16 index;
     s32 candidateCount;
     u16 weightSum;
@@ -209,7 +209,7 @@ void PickItemTeresaKartByRank(ItemTeresa *teresa, s32 teamIndex) {
 
 void PickItemTeresaKartBattle(ItemTeresa *teresa, s32 teamIndex) {
     RaceProgress *raceProgress;
-    Unk020f41c4_B *random;
+    RandomState64 *random;
     s32 endIndex;
     s32 rowIndex;
     u32 kartCount;

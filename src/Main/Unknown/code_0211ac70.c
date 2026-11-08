@@ -414,7 +414,7 @@ u32 GetLargerTeamIndex(void) {
 
 // Picks a random CPU entry; FALSE when there are none.
 BOOL PickSelectRaceRuleCpuEntry(u16 *a) {
-    Unk020f41c4_B *p;
+    RandomState64 *p;
     u32 n;
     u32 c;
     if (GetSelectRaceRuleCpuCount() == 0) {
@@ -490,7 +490,7 @@ void func_0211d09c(void) {
     s32 a;
     s32 i;
     u16 n;
-    Unk020f41c4_B *p;
+    RandomState64 *p;
     a = 2;
     n = GetSelectRaceRuleHumanCount();
     gSelectRaceRule->mTeamHumanCounts[0] = 0;
@@ -521,7 +521,7 @@ void func_0211d09c(void) {
 void func_0211cfd0(void) {
     s32 a;
     s32 i;
-    Unk020f41c4_B *p;
+    RandomState64 *p;
     a = 2;
     GetSelectRaceRuleHumanCount();
     gSelectRaceRule->mUnk_b0[0] = 0;

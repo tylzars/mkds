@@ -14,17 +14,17 @@ void EnterPushedObjectState1(MapObject *object) {
     object->mCollisionSlotIndex = newSlot;
 }
 
-void UpdatePushedObjectState1(Unk020ec490 *object) {
-    if (object->mUnk_a8) {
-        object->mUnk_ac = object->mUnk_ac + object->mUnk_ae;
+void UpdatePushedObjectState1(Unk020e43a8 *object) {
+    if (object->mUnk_0a8) {
+        object->mUnk_0ac = object->mUnk_0ac + object->mUnk_0ae;
     } else {
-        object->mUnk_ac = object->mUnk_ac - object->mUnk_ae;
+        object->mUnk_0ac = object->mUnk_0ac - object->mUnk_0ae;
     }
-    object->mUnk_10.y -= object->mUnk_a4;
-    VEC_Add(&object->mUnk_04, &object->mUnk_10, &object->mUnk_04);
-    if (object->mUnk_04.y < object->mUnk_a0) {
-        object->mUnk_90 = 2;
-        object->mUnk_92 = 1;
+    object->mUnk_00.mUnk_10.y -= object->mUnk_0a4;
+    VEC_Add(&object->mUnk_00.mPos, &object->mUnk_00.mUnk_10, &object->mUnk_00.mPos);
+    if (object->mUnk_00.mPos.y < object->mUnk_0a0) {
+        object->mUnk_00.mStateMachine.mNextState = 2;
+        object->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 

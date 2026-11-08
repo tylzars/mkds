@@ -177,7 +177,7 @@ void StartWoodbox1ItemObject(Woodbox1 *woodbox, Vec3 *velocity) {
     s32 spawnDistance;
     Vec3 direction;
     Vec3 sideDirection;
-    Unk020f41c4_B *raceRandom;
+    RandomState64 *raceRandom;
     ItemObject *itemObject;
     s32 itemIndex;
 

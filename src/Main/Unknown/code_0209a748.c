@@ -39,7 +39,7 @@ void InitCrab(u32 arg0) {
     InitGroupFollower((GroupFollower *) value0, (CourseMapRow *) value1, value2);
 }
 
-static inline u32 func_0209b388_inline(Unk020f41c4_B *r, u32 c) {
+static inline u32 func_0209b388_inline(RandomState64 *r, u32 c) {
     r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
     if (c == 0) {
         return r->mValue >> 32;
@@ -50,7 +50,7 @@ static inline u32 func_0209b388_inline(Unk020f41c4_B *r, u32 c) {
 
 void func_0209b388(Crab *a, Vec3 *b, Vec3 *c, Vec3 *d) {
     Vec3 v;
-    Unk020f41c4_B *r;
+    RandomState64 *r;
     s32 x;
     s32 z;
 
@@ -172,7 +172,7 @@ void DrawCrab(void *a, Crab *b) {
 void InitCrabObjects(Unk0209af98 *p) {
     s32 i;
     Crab *o;
-    Unk020f41c4_B *r;
+    RandomState64 *r;
 
     if (p == NULL) {
         return;
@@ -235,7 +235,7 @@ static inline void func_0209a7dc_inline(Unk0209a7dc_b0 *b) {
 
 void UpdateCrab(void *a, Crab *b) {
     Vec3 v;
-    Unk020f41c4_B *r;
+    RandomState64 *r;
 
     switch (b->mState) {
         case 0:

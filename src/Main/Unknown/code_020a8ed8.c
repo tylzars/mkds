@@ -106,7 +106,7 @@ void InitIronBallObjects(Unk020a9a5c *p) {
 
 void UpdateIronBall(void *a, IronBall *p) {
     CourseMapGroupEntry *e;
-    Unk020f41c4_B *q;
+    RandomState64 *q;
     BOOL f;
     s32 v;
     s32 w;

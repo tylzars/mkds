@@ -143,7 +143,7 @@ void EnterPukupukuState0(Unk020e4dec *pukupuku) {
     pukupuku->mUnk_ac = 0x0u;
 }
 
-static inline u32 func_020e4ad0_inline(Unk020f41c4_B *random, u32 range) {
+static inline u32 func_020e4ad0_inline(RandomState64 *random, u32 range) {
     random->mValue = random->mMultiplier * random->mValue + random->mIncrement;
     if (range == 0) {
         return random->mValue >> 32;
@@ -185,13 +185,13 @@ void UpdatePukupukuState0(Unk020e43a8 *pukupuku) {
     pukupuku->mUnk_00.mPos.y = y;
     pukupuku->mUnk_c4 = pukupuku->mUnk_c4 - 1;
     if (pukupuku->mUnk_c4 == 0) {
-        Unk020f41c4_B *random;
+        RandomState64 *random;
 
         pukupuku->mUnk_00.mUnk_10.y = 0x3199;
         random = GetMapObjectRandom();
         pukupuku->mUnk_c4 = (u16) func_020e4ad0_inline(random, 3) + 4;
     } else {
-        Unk020f41c4_B *random;
+        RandomState64 *random;
 
         pukupuku->mUnk_00.mUnk_10.y = 0x2000;
         random = GetMapObjectRandom();
@@ -202,7 +202,7 @@ void UpdatePukupukuState0(Unk020e43a8 *pukupuku) {
     } else if (pukupuku->mUnk_00.mPos.x < pukupuku->mUnk_a0.mUnk_18.x - 0x14000) {
         pukupuku->mUnk_00.mUnk_10.x = 0xccc;
     } else {
-        Unk020f41c4_B *random;
+        RandomState64 *random;
 
         random = GetMapObjectRandom();
         pukupuku->mUnk_00.mUnk_10.x = func_020e4ad0_inline(random, 0x1998) - 0xccc;
@@ -216,7 +216,7 @@ void UpdatePukupukuState0(Unk020e43a8 *pukupuku) {
         return;
     }
     {
-        Unk020f41c4_B *random;
+        RandomState64 *random;
 
         random = GetMapObjectRandom();
         pukupuku->mUnk_00.mUnk_10.z = func_020e4ad0_inline(random, 0x1998) - 0xccc;

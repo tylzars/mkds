@@ -79,30 +79,6 @@ typedef struct Emblem {
     /* 10bc */ s32 mUnk_10bc;
 } Emblem;
 
-// Block of 20 halfwords that InitDisplaySettingsDesc fills with defaults and CreateDisplaySettings reads.
-typedef struct Unk020391d4 {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ u16 mUnk_04;
-    /* 06 */ u16 mUnk_06;
-    /* 08 */ u16 mUnk_08;
-    /* 0a */ u16 mUnk_0a;
-    /* 0c */ u16 mUnk_0c;
-    /* 0e */ u16 mUnk_0e;
-    /* 10 */ u16 mUnk_10;
-    /* 12 */ u16 mUnk_12;
-    /* 14 */ u16 mUnk_14;
-    /* 16 */ u16 mUnk_16;
-    /* 18 */ u16 mUnk_18;
-    /* 1a */ u16 mUnk_1a;
-    /* 1c */ u16 mUnk_1c;
-    /* 1e */ u16 mUnk_1e;
-    /* 20 */ u16 mUnk_20;
-    /* 22 */ u16 mUnk_22;
-    /* 24 */ u16 mUnk_24;
-    /* 26 */ u16 mUnk_26;
-} Unk020391d4;
-
 extern Emblem *gEmblem;
 
 void InitEmblem(void);

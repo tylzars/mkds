@@ -13,7 +13,7 @@
 #include "Main/Unknown/code_020fd264.h"
 
 void func_ov001_0218aef4(Unk02188950 *a) {
-    Unk020f41c4_B *rng;
+    RandomState64 *rng;
     s32 angle;
     s32 i;
     s32 idx;

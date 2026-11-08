@@ -12,7 +12,7 @@ static inline s32 func_02073904_inline(Vec3 *v, Vec3 *n) {
 }
 
 void UpdateCameraShake(Unk02073904 *p) {
-    Unk020f41c4_B *r;
+    RandomState64 *r;
     Vec3 a;
     Vec3 b;
     Vec3 d;

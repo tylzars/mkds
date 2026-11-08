@@ -334,7 +334,7 @@ void UpdateChaseCameraPosGoalYOffset(Camera *a, Kart *b, Vec3 *c) {
 void StartEntryCameraKind6Entry(void) {
     Camera *p = gEntryCamera;
     CourseMapCamera *q;
-    Unk020f41c4_B *r;
+    RandomState64 *r;
 
     q = gCourseMap->mFirstKind6Entry;
     if (q == NULL) {
@@ -364,7 +364,7 @@ void StartEntryCameraKind6Entry(void) {
 void func_02075d08(s32 a) {
     CourseMapCamera *q;
     Camera *p = gEntryCamera;
-    Unk020f41c4_B *r;
+    RandomState64 *r;
     Vec3 v;
     s32 s;
 
@@ -457,7 +457,7 @@ BOOL TryUpdateEntryCamera(Camera *p) {
     if (i == -1) {
         r = FALSE;
     } else {
-        Unk020f41c4_B *b;
+        RandomState64 *b;
 
         q = gCourseMap->mCameras + (u16) i;
         if (i != p->mLastCourseMapCameraIndex) {
@@ -546,7 +546,7 @@ void UpdateCameraByEntryKind(Camera *p) {
 void StartEntryCameraKind8Entry(void) {
     Camera *p;
     CourseMapCamera *q;
-    Unk020f41c4_B *b;
+    RandomState64 *b;
 
     p = gEntryCamera;
     q = gCourseMap->mFirstKind8EntryInMode4;

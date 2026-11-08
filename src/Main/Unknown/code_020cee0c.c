@@ -16,7 +16,7 @@ void FillShuffledIndices(void) {
     s32 i;
     s32 pickIndex;
     s32 k;
-    Unk020f41c4_B *random;
+    RandomState64 *random;
 
     remainingCount = 8;
     if (data_0217b488->mIndicesShuffled == 0) {

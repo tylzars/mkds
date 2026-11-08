@@ -72,7 +72,7 @@ void *CreateItemNsbmd(u8 *modelName, u8 *textureName) {
 
 void CreateItemModels(void) {
     enum { K0 } i;
-    void *itemKind;
+    ItemKind *itemKind;
     BOOL isRainbowCourse;
 
     i = 0;
@@ -98,8 +98,8 @@ void CreateItemModels(void) {
     i = 0;
     while (i < 0xe) {
         itemKind = &gItemKinds[i];
-        if (((Unk0217bc34_14 *) itemKind)->mUnk_14 != NULL) {
-            ((Unk0217bc34_14 *) itemKind)->mUnk_14();
+        if (itemKind->mSetup != NULL) {
+            itemKind->mSetup();
         }
         if (isRainbowCourse != FALSE) {
             gItemModels[i]->mUnk_14 &= 0xffff7fff;

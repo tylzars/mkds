@@ -77,7 +77,7 @@ void func_ov001_02182e84(void) {
 void func_ov001_02182d30(void) {
     Kart *c;
     Unk02181c3c *o;
-    Unk020f41c4_B *rnd;
+    RandomState64 *rnd;
     s32 a;
     s32 b;
     Unk0210b7a8 arg;
@@ -112,7 +112,7 @@ void func_ov001_02182d30(void) {
 void func_ov001_02182bdc(void) {
     Kart *c;
     Unk02181c3c *o;
-    Unk020f41c4_B *rnd;
+    RandomState64 *rnd;
     s32 a;
     s32 b;
     u8 n;
@@ -166,7 +166,7 @@ void func_ov001_02182a3c(s32 a) {
     s32 n;
     Unk02181c3c_list *list;
     Unk02181c3c *p;
-    Unk020f41c4_B *rng;
+    RandomState64 *rng;
     u16 r;
     int k;
 

@@ -14,7 +14,7 @@ typedef struct WiFiVSCourseSelect {
     /* 088 */ struct Bmg *mCommonMessages;
     /* 08c */ struct Bmg *mWiFiMessages;
     /* 090 */ void *mHeap;
-    /* 094 */ Unk020f41c4_B mRandom;
+    /* 094 */ RandomState64 mRandom;
     /* 0ac */ s32 mState;
     /* 0b0 */ s32 mUnk_0b0;
     /* 0b4 */ s32 mEntryIndex;

@@ -37,29 +37,15 @@ typedef struct RockUpdateList {
     /* 24 */ struct RockUpdateList **mUnk_24;
 } RockUpdateList;
 
-// Object of func_020d655c: the shared part, and a word at 0x118.
-typedef struct Unk020d655c {
-    /* 000 */ MapObject mUnk_00;
-    /* 0a0 */ u8 mUnk_a0[0x78];
-    /* 118 */ s32 mUnk_118;
-} Unk020d655c;
-
-// 0x40-byte object that CreateRockKindData allocates and fills from a table.
-typedef struct Unk02156adc {
-    /* 00 */ u8 mUnk_00[0x38];
-    /* 38 */ s32 mUnk_38;
-    /* 3c */ s32 mUnk_3c;
-} Unk02156adc;
-
-#include "Main/Unknown/code_020d50ec.h" // Unk020d634c
+#include "Main/Unknown/code_020d50ec.h" // Unk020d634c, RockObject
 
 void func_020d6538(Unk020d6538_a *emitter, Unk020d634c *params);
-void func_020d655c(void *a, Unk020d655c *rock, void *c, s32 alpha);
+void func_020d655c(void *a, RockObject *rock, void *c, s32 alpha);
 void SetupDrawRock(void);
 RockUpdateList *CreateRockUpdateList(void);
 RockDrawList *CreateRock2DrawList(void);
 RockDrawList *CreateRockDrawList(void);
-Unk02156adc *CreateRockKindData(void);
+MapObjectKindData *CreateRockKindData(void);
 s32 func_020d6910(s32 itemKind, MapObject *mapObject);
 // 1 when the ItemObject kind a has a response to the map object b, else 0.
 s32 DoesItemObjectRespondToMapObject(s32 itemKind, MapObject *mapObject);

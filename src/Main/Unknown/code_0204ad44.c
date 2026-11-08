@@ -53,7 +53,7 @@ void func_0204ad44(void) {
     u64 t;
     u64 u;
     Unk021759d0 *p;
-    Unk020f41c4_B *q;
+    RandomState64 *q;
 
     OS_GetOwnerInfo(&v);
     MI_CpuFill8(data_021759d0->mUnk_2a, 0, 0x14);

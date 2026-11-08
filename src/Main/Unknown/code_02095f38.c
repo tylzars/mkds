@@ -358,7 +358,7 @@ void DrawCoverPooHole(void *a, CoverPooHole *p) {
 void InitCoverPooHoleObjects(Unk020968f4 *p) {
     s32 i;
     CoverPooHole *o;
-    Unk020f41c4_B *v1;
+    RandomState64 *v1;
     if (p == NULL) {
         return;
     }
@@ -389,7 +389,7 @@ s32 func_020968c0(s32 a, s32 b) {
 }
 
 static inline u16 func_02095fec_inline(u32 n) {
-    Unk020f41c4_B *b;
+    RandomState64 *b;
 
     b = GetMapObjectRandom();
     b->mValue = b->mMultiplier * b->mValue + b->mIncrement;

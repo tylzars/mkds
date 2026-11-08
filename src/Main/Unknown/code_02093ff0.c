@@ -217,7 +217,7 @@ void ClearTeresaTimers(void) {
     }
 }
 
-static inline u32 func_02094000_inline(Unk020f41c4_B *b, u32 n) {
+static inline u32 func_02094000_inline(RandomState64 *b, u32 n) {
     b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
     if (n == 0) {
         return b->mValue >> 32;

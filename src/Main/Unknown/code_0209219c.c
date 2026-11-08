@@ -170,7 +170,7 @@ void CreateBasabasaKindData(void) {
 }
 
 static inline u16 func_0209219c_inline(u32 n) {
-    Unk020f41c4_B *b;
+    RandomState64 *b;
     u32 m;
     u32 r;
 
@@ -205,7 +205,7 @@ void CreateBasabasaUpdateList(void) {
 
 void StartBasabasa(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {
     Basabasa *p;
-    Unk020f41c4_B *r;
+    RandomState64 *r;
     u32 n;
     u16 w;
 

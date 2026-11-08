@@ -49,7 +49,7 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
     Unk0210b7a8 s2;
     Unk0210b7a8 s3;
     Unk0210b7a8 s4;
-    Unk020f41c4_B *r;
+    RandomState64 *r;
     s32 n;
     s32 t;
 

@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-typedef struct Unk020f41c4_B Unk020f41c4_B;
+typedef struct RandomState64 RandomState64;
 
 void SetNextDemoRace(u8 *a);
-u32 func_0203b8e4(Unk020f41c4_B *a);
+u32 func_0203b8e4(RandomState64 *a);
 BOOL func_0203b96c(s32 a);

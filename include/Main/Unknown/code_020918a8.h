@@ -25,7 +25,7 @@ void UpdateKanoke64(void *a, Unk020919e8 *p); /* Unk020919e8 is shared with Cow 
 s16 func_02091f24(s32 a);
 s32 func_02091f44(s32 a, s32 b);
 s16 func_02091f54(s32 a);
-u32 NextRandomBelow(Unk020f41c4_B *a, u32 b);
+u32 NextRandomBelow(RandomState64 *a, u32 b);
 void InitKanoke64Objects(MapObjectList *a);
 void DrawKanoke64(void *a, Unk020919e8 *p);
 void CreateKanoke64(void *a);

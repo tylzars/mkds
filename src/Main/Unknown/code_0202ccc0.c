@@ -67,7 +67,7 @@
 #pragma thumb on
 
 void RefreshGhostListRows(s32 action, s32 slot, s32 row, s32 selectedSlot) {
-    Unk0202de00_g recordTime;
+    MinuteSecondMillisecondTime recordTime;
     s16 text[10];
     CellFileSet *fileSet;
     s32 i;
@@ -79,7 +79,7 @@ void RefreshGhostListRows(s32 action, s32 slot, s32 row, s32 selectedSlot) {
                       GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, func_02025d74(GetListedGhostCourseId(row))),
                       fileSet->mCellLayout, fileSet->mCellTable);
         GetListedGhostTime(row, &recordTime);
-        WriteMinuteSecondMillisecondText(text, recordTime.mUnk_02, recordTime.mUnk_03, recordTime.mUnk_00);
+        WriteMinuteSecondMillisecondText(text, recordTime.mMinute, recordTime.mSecond, recordTime.mMillisecond);
         func_02124224(1, slot + 7, fileSet->mLabelLayout, text, fileSet->mCellLayout, fileSet->mCellTable, 7);
         j = IsSlotGhostIndex(row) == 0;
         fileSet->mCellTable[slot].mVisible = j;
@@ -159,7 +159,7 @@ void func_0202d720(void) {
 }
 
 void PrintSelectedGhostSendRecord(void) {
-    Unk0202de00_g recordTime;
+    MinuteSecondMillisecondTime recordTime;
     u16 name[10];
     u16 terminatedName[11];
     s32 characterIndex;

@@ -17,7 +17,7 @@ void func_ov001_021a2300(Unk021a2300 *p) {
     s32 i;
     Unk021a2048 *o;
     RaceProgress *d;
-    Unk020f41c4_B *b;
+    RandomState64 *b;
 
     if (p != NULL) {
         i = 0;
@@ -36,7 +36,7 @@ void func_ov001_021a2300(Unk021a2300 *p) {
 
 void func_ov001_021a2284(void *p0, Unk021a2048 *p1) {
     RaceProgress *d;
-    Unk020f41c4_B *b;
+    RandomState64 *b;
 
     p1->mUnk_a0 -= 1;
     if (p1->mUnk_a0 < 0) {

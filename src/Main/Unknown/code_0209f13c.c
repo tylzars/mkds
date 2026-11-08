@@ -18,7 +18,7 @@
 void InitChandelierObjects(Unk0209f514 *a) {
     s32 i;
     Unk0209f1c8 *o;
-    Unk020f41c4_B *r;
+    RandomState64 *r;
 
     if (a == NULL) {
         return;

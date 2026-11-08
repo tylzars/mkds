@@ -346,7 +346,7 @@ void func_0212513c(u16 *a, u16 *b, u16 *c, u32 d) {
 }
 
 void *func_021250b0(void *a) {
-    Unk020391d4 t = {1, 0x12, 0x18, 1, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 4, 0x100, 0, 0, 8, 0};
+    DisplaySettingsDesc t = {1, 0x12, 0x18, 1, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 4, 0x100, 0, 0, 8, 0};
     Unk02180774 *p;
 
     p = CreateDisplaySettings(a, &t);
@@ -359,7 +359,7 @@ void *func_021250b0(void *a) {
 }
 
 void *func_02125028(void *a) {
-    Unk020391d4 t = {1, 0x13, 0x18, 1, 0, 1, 0, 4, 0x60, 0, 0, 3, 0x10, 0, 0x80, 0x100, 0, 0, 8, 0};
+    DisplaySettingsDesc t = {1, 0x13, 0x18, 1, 0, 1, 0, 4, 0x60, 0, 0, 3, 0x10, 0, 0x80, 0x100, 0, 0, 8, 0};
     Unk02180774 *p;
 
     p = CreateDisplaySettings(a, &t);

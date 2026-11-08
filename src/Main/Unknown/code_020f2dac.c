@@ -161,7 +161,7 @@ void ReleaseHeldItem(HeldItem *rec, s32 keep) {
     }
 }
 
-static inline u32 TakeHeldItemObjects_inline(Unk020f41c4_B *generator, u32 range) {
+static inline u32 TakeHeldItemObjects_inline(RandomState64 *generator, u32 range) {
     generator->mValue = generator->mMultiplier * generator->mValue + generator->mIncrement;
     if (range == 0) {
         return generator->mValue >> 32;
@@ -178,7 +178,7 @@ void TakeHeldItemObjects(HeldItem *rec) {
     Vec3 *axis = &owner->mUnk_150;
     s32 i;
     s32 count;
-    Unk020f41c4_B *generator;
+    RandomState64 *generator;
     ItemSpreadRow *row;
     ItemObject *object;
     s32 kind = rec->mItemInfoIndex;
@@ -605,8 +605,8 @@ void PickNextItemPointLink(ItemPointLinkRef *in, ItemPointLinkRef *out, u32 idx,
     goto done;
 }
 
-u8 GetItemPointLinkIndex(Unk020f36d8 *ref) {
-    s32 linkAddress = ref->mUnk_00;
+u8 GetItemPointLinkIndex(ItemPointLinkRef *ref) {
+    s32 linkAddress = (s32) ref->mLink;
 
     if (linkAddress == 0) {
         return 0xff;
@@ -675,7 +675,7 @@ void InitItemPointLinkDirections(void) {
 
 #pragma thumb off
 
-static inline u32 ThrowBouncingItem_inline(Unk020f41c4_B *generator, u32 range) {
+static inline u32 ThrowBouncingItem_inline(RandomState64 *generator, u32 range) {
     generator->mValue = generator->mMultiplier * generator->mValue + generator->mIncrement;
     return ((u64) (u32) (generator->mValue >> 32) * range) >> 32;
 }

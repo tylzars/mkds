@@ -203,7 +203,7 @@ void InitFireball2Objects(MapObjectList *p) {
     float f;
     u64 t;
     Fireball2 *e;
-    Unk020f41c4_B *r;
+    RandomState64 *r;
 
     if (p == NULL) {
         return;

@@ -139,7 +139,7 @@ void func_ov001_0218a75c(Unk02188950 *b) {
 
 void func_ov001_0218a6b0(Unk02188950 *c) {
     u32 n;
-    Unk020f41c4_B *a;
+    RandomState64 *a;
     u32 b;
 
     n = (u16) c->mPrm->mUnk_208;

@@ -228,7 +228,7 @@ void UpdateShine16(void *a, Shine16 *p) {
     s32 t;
     u16 r;
     s32 s;
-    Unk020f41c4_B *g;
+    RandomState64 *g;
 
     switch (p->mState) {
         case 0:
@@ -963,7 +963,7 @@ void InitKartBalloons(Unk020a3fa8 *a) {
             a->mStartTimer = 0x3c;
         }
         SetStandingsKartBalloons(a->mKartBalloons);
-        SetStandingsKartHitByKartCallback((s32 (*)(s32, s32)) BalloonKartHitByKartCallback);
+        SetStandingsKartHitByKartCallback((s32(*)(s32, s32)) BalloonKartHitByKartCallback);
         SetStandingsKartsHitEachOtherCallback((void (*)(s32, s32)) BalloonKartsHitEachOtherCallback);
         SetStandingsKartHitCallback(BalloonKartHitCallback);
         SetStandingsKartEliminatedCallback(BalloonKartEliminatedCallback);

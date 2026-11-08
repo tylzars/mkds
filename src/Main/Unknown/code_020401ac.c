@@ -215,7 +215,7 @@ static inline void func_020401ac_inline3(Unk0217aa1c_144_00 *p, u32 e) {
     ComputeRaceTime(&p->mUnk_02, &p->mUnk_03, &p->mUnk_00, 0, e);
 }
 
-static inline void func_020401ac_inline4(Unk020f41c4_B *x, u32 s) {
+static inline void func_020401ac_inline4(RandomState64 *x, u32 s) {
     x->mValue = s;
     x->mMultiplier = 0x5d588b656c078965;
     x->mIncrement = 0x269ec3;
@@ -225,7 +225,7 @@ static inline s32 func_020401ac_inline5(s32 a, s32 b) {
     return b == 0 ? 0 : FX_Div(a + 0x1000, b << 12);
 }
 
-static inline u32 func_020401ac_inline6(Unk020f41c4_B *x, u32 n) {
+static inline u32 func_020401ac_inline6(RandomState64 *x, u32 n) {
     x->mValue = (s64) x->mMultiplier * (s64) x->mValue + x->mIncrement;
     return ((s64) (x->mValue >> 32) * n) >> 32;
 }

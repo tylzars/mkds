@@ -21,7 +21,7 @@
 #include "Main/Unknown/code_02089fa0.h" // StemSet
 #include "code_0214a748.h" // Unk0214ad4c
 
-struct Unk020f41c4_B;
+struct RandomState64;
 struct MapObjects;
 struct Water;
 struct Unk0217b43c;
@@ -712,8 +712,8 @@ extern EmblemChoises *gEmblemChoises;
 extern struct Unk0217b43c *data_0217b43c;
 extern struct CupPicture *gCupPicture;
 extern struct Unk0217b4b0 *data_0217b4b0;
-extern struct Unk020f41c4_B *gRaceRandom;
-extern struct Unk020f41c4_B *gMapObjectRandom;
+extern struct RandomState64 *gRaceRandom;
+extern struct RandomState64 *gMapObjectRandom;
 // The same pointer as gWaterEfct, stored by SetCourseWaterEfct (the last call of CreateWaterEfct) and set to NULL in
 // InitMapObjects; the water_efct getters and the level getter read this one.
 extern WaterEfct *gCourseWaterEfct;

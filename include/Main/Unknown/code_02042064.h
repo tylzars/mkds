@@ -27,7 +27,7 @@ extern s32 (*gCourseMapSectionLoaders[17])(void *a, ...);
 
 void CreateCourseMap(void *a);
 
-typedef struct Unk020f41c4_B Unk020f41c4_B;
+typedef struct RandomState64 RandomState64;
 
 typedef struct CourseMapRoute CourseMapRoute;
 typedef struct Unk02175620_a0 Unk02175620_a0;
@@ -66,7 +66,7 @@ s32 LoadCourseMapKeyedPlacementsData(void *a, ...);
 // NULL when there are no records.
 void BuildCourseMapKeyedPlacementIndexByKey(void);
 s32 func_020427ac(void *a, ...);
-void ShuffleCourseMapRespawnSlots(Unk020f41c4_B *a);
+void ShuffleCourseMapRespawnSlots(RandomState64 *a);
 s32 LoadCourseMapRespawnsData(void *a, ...);
 s32 LoadCourseMapStartPlacementsData(void *a, ...);
 u32 LoadCourseMapSettingsData(void *arg0);

@@ -40,7 +40,7 @@ BOOL func_020a6f94(Unk02100094 *a) {
     u32 r;
     u16 v2;
     u32 k;
-    Unk020f41c4_B *g;
+    RandomState64 *g;
 
     v1 = 0;
     if (a != NULL) {

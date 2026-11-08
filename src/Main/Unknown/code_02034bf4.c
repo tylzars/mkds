@@ -126,7 +126,8 @@ void func_02034f60(void) {
     if (data_02174e64->mSelectedIndex >= 0) {
         PrintGhostRecordInfo((Unk02174e14 *) &data_02174e64->mCellFileSets[0], data_02154034, selectedEntry,
                              selectedEntry->mInfo.mUnk_18[0], selectedEntry->mInfo.mUnk_18[1],
-                             selectedEntry->mInfo.mUnk_18[2], (Unk0202de00_g *) &selectedEntry->mInfo.mMillisecond);
+                             selectedEntry->mInfo.mUnk_18[2],
+                             (MinuteSecondMillisecondTime *) &selectedEntry->mInfo.mMillisecond);
     }
 }
 

@@ -58,7 +58,7 @@ extern Vec3 data_021569f0;
 extern struct RockUpdateList data_021569fc;
 extern struct RockDrawList data_02156a24;
 extern struct RockDrawList data_02156a80;
-extern struct Unk02156adc data_02156adc;
+extern struct MapObjectKindData data_02156adc;
 extern u16 data_021567a0;
 extern u16 data_021567a4[];
 extern u16 data_021567ac;

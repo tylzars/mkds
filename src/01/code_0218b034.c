@@ -22,7 +22,7 @@ void func_ov001_0218b1d8(Unk02188950 *a) {
 }
 
 void func_ov001_0218b034(Unk02188950 *a) {
-    Unk020f41c4_B *rng;
+    RandomState64 *rng;
     s32 angle;
     s32 i;
     s32 idx;

@@ -237,7 +237,7 @@ void AdvanceWiFiVSCourseSelectTimer(void) {
 // Picks a course index at random that none of the stored course ids of the earlier races has.
 s32 PickRandomCourseIndexNotRaced(void) {
     WiFiVSCourseSelect *courseSelect;
-    Unk020f41c4_B *random;
+    RandomState64 *random;
     Unk0217b488 *d;
     s32 i;
     s32 courseIndex;
@@ -271,7 +271,7 @@ void InitWiFiVSCourseSelect(void *parentHeap, void *mainOam, void *subOam) {
     void *heap;
     CellFileSet *mainFileSet;
     CellFileSet *subFileSet;
-    Unk020f41c4_B *random;
+    RandomState64 *random;
     u32 tick;
     u32 seed;
     u32 objSizeLeft;

@@ -482,7 +482,7 @@ void DrawKuribo(void *unused0, Kuribo *kuribo, void *unused1, u16 d) {
 
 void UpdateKuribo(void *unused, Kuribo *kuribo) {
     Unk0210b7a8 soundRequest;
-    Unk020f41c4_B *random;
+    RandomState64 *random;
     s32 falloffIndex;
     kuribo->mUnk_f0++;
     if (kuribo->mUnk_f0 == 0x14 || kuribo->mUnk_f0 == 0x28) {

@@ -12,7 +12,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_0214d018.h"
 
-static inline u32 func_0208b190_inline(Unk020f41c4_B *b, u32 n) {
+static inline u32 func_0208b190_inline(RandomState64 *b, u32 n) {
     b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
     if (n == 0) {
         return b->mValue >> 32;

@@ -87,7 +87,7 @@ u32 func_0209dd40(u32 p0) {
     return p0;
 }
 
-static inline u32 func_0209d84c_inline(Unk020f41c4_B *b) {
+static inline u32 func_0209d84c_inline(RandomState64 *b) {
     b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
     return b->mValue >> 32;
 }

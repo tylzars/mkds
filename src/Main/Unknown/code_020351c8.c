@@ -186,7 +186,7 @@ void PrintSelectedGhostRecord(void) {
     kartIndex = GetListedGhostKartIndex(listIndex);
     courseId = GetListedGhostCourseId(listIndex);
     PrintGhostRecordInfo((Unk02174e14 *) &data_02174e68->mCellFileSets[0], data_0215404c, nameText, characterIndex,
-                         kartIndex, courseId, (Unk0202de00_g *) &time);
+                         kartIndex, courseId, (MinuteSecondMillisecondTime *) &time);
 }
 
 void func_020357dc(void *parentHeap, void *b, void *c) {

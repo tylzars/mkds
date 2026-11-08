@@ -71,7 +71,7 @@ void DrawDram(void *a, Dram *dram, void *c, s32 maxAlpha) {
 }
 
 void func_020ffdd4(MapObjectList *list) {
-    Unk020f41c4_B *random;
+    RandomState64 *random;
     void **dramObjects;
     Dram *dram;
     u16 *row;

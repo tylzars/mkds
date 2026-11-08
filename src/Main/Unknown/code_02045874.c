@@ -14,7 +14,7 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/code_02090354.h"
 
-static inline u32 func_02046524_inline(Unk020f41c4_B *a, u32 b) {
+static inline u32 func_02046524_inline(RandomState64 *a, u32 b) {
     u64 r;
     if (b == 0) {
         r = 0;
@@ -90,7 +90,7 @@ void func_02046594(void) {
     gRaceSetup->mUnk_3e1 = k;
 }
 
-u32 func_02046524(Unk020f41c4_B *a, u32 b) {
+u32 func_02046524(RandomState64 *a, u32 b) {
     u64 r;
     if (b == 0) {
         r = 0;
@@ -190,7 +190,7 @@ void func_02046024(s32 a) {
             }
         case 2:
             if (a != 0) {
-                Unk020f41c4_B *g;
+                RandomState64 *g;
                 u32 n;
                 s32 k;
                 s32 c;
@@ -227,7 +227,7 @@ void func_02046024(s32 a) {
                 }
             } else {
                 s32 k;
-                Unk020f41c4_B *g;
+                RandomState64 *g;
                 g = func_0204aa60();
                 n = f != 0 ? 3 : 6;
                 t = f != 0 ? data_usa_021540c8 : data_usa_021540d4;

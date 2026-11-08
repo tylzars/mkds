@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk020391d4 Unk020391d4;
+#include "Main/Unknown/code_02036c5c.h"
 
-void InitDisplaySettingsDesc(Unk020391d4 *p0);
+void InitDisplaySettingsDesc(DisplaySettingsDesc *p0);

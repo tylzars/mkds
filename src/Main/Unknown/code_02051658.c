@@ -379,7 +379,7 @@ void StartConnect(Unk0217aa00_24 *a, void *b, s32 (*c)(), s32 (*d)(), s32 (*e)()
 void StartConnectCallback(Unk021425e8 *a) {
     BOOL r;
     u16 v;
-    Unk020f41c4_B *p;
+    RandomState64 *p;
 
     r = FALSE;
     switch (a->mResultCode) {

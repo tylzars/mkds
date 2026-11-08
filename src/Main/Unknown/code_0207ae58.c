@@ -132,7 +132,7 @@ void StartKartWinOrLoseAnimation(Kart *a) {
     BOOL c;
     s32 k;
     CharacterAnimationState *q;
-    Unk020f41c4_B *r;
+    RandomState64 *r;
     u32 t;
 
     c = TRUE;
@@ -212,7 +212,7 @@ void StartKartWinOrLoseAnimation(Kart *a) {
 
 void func_0207b354(Kart *p) {
     CharacterAnimationState *q = (CharacterAnimationState *) &p->mKartModelsEntry->mTurnFrameOffset;
-    Unk020f41c4_B *r;
+    RandomState64 *r;
     KartModelsEntry *s;
 
     if (q->mUnk_04 == FALSE) {

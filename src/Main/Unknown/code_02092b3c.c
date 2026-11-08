@@ -31,7 +31,7 @@ void func_02093190(u32 arg0) {
 }
 
 static inline u32 func_02092b5c_inline(u32 n) {
-    Unk020f41c4_B *b;
+    RandomState64 *b;
 
     b = GetMapObjectRandom();
     b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
@@ -39,7 +39,7 @@ static inline u32 func_02092b5c_inline(u32 n) {
 }
 
 static inline u16 func_02092b5c_inline_2(u32 n) {
-    Unk020f41c4_B *b;
+    RandomState64 *b;
 
     b = GetMapObjectRandom();
     b->mValue = b->mMultiplier * b->mValue + b->mIncrement;
