@@ -1577,30 +1577,30 @@ SetupRaceDisplay kind:function(arm,size=0x28c) addr:0x0203ad58
 ShouldUpdateRace kind:function(arm,size=0x34) addr:0x0203afe4
 TryFormatGhostPath kind:function(arm,size=0x58) addr:0x0203b018
 FormatGhostFilePath kind:function(arm,size=0x30) addr:0x0203b070
-func_0203b0a0 kind:function(arm,size=0x58) addr:0x0203b0a0
+IsDateEarlier kind:function(arm,size=0x58) addr:0x0203b0a0
 func_0203b0f8 kind:function(arm,size=0x9c) addr:0x0203b0f8
 func_0203b194 kind:function(arm,size=0x34) addr:0x0203b194
 func_0203b1c8 kind:function(arm,size=0x34) addr:0x0203b1c8
 func_0203b1fc kind:function(arm,size=0x34) addr:0x0203b1fc
-func_0203b230 kind:function(arm,size=0xf4) addr:0x0203b230
-func_0203b324 kind:function(arm,size=0xb4) addr:0x0203b324
-func_0203b3d8 kind:function(arm,size=0xf0) addr:0x0203b3d8
-func_0203b4c8 kind:function(arm,size=0xd0) addr:0x0203b4c8
-func_0203b598 kind:function(arm,size=0xe8) addr:0x0203b598
+TrySetMissionRecord kind:function(arm,size=0xf4) addr:0x0203b230
+TrySetGrandPrixRecord kind:function(arm,size=0xb4) addr:0x0203b324
+ShouldSetGrandPrixRecord kind:function(arm,size=0xf0) addr:0x0203b3d8
+FillGrandPrixRecord kind:function(arm,size=0xd0) addr:0x0203b4c8
+SumTimes kind:function(arm,size=0xe8) addr:0x0203b598
 GetMissionTableValue kind:function(arm,size=0x1c) addr:0x0203b680
 GetMissionTableColumnCount kind:function(arm,size=0x8) addr:0x0203b69c
 GetMissionTableRowCount kind:function(arm,size=0x8) addr:0x0203b6a4
 SetNextDemoRace kind:function(thumb,size=0x238) addr:0x0203b6ac
 func_0203b8e4 kind:function(thumb,size=0x88) addr:0x0203b8e4
 func_0203b96c kind:function(thumb,size=0x102) addr:0x0203b96c
-func_0203ba70 kind:function(thumb,size=0x14) addr:0x0203ba70
+PickRandomCharactersAndKarts kind:function(thumb,size=0x14) addr:0x0203ba70
 PickRandomCharacters kind:function(thumb,size=0x1e0) addr:0x0203ba84
 PickRandomKarts kind:function(thumb,size=0x1e4) addr:0x0203bc64
-func_0203be48 kind:function(thumb,size=0x22) addr:0x0203be48
-func_0203be6c kind:function(thumb,size=0x1c) addr:0x0203be6c
-func_0203be88 kind:function(thumb,size=0x1a) addr:0x0203be88
-func_0203bea4 kind:function(thumb,size=0x1a) addr:0x0203bea4
-func_0203bec0 kind:function(thumb,size=0x1c) addr:0x0203bec0
+GetEntryCharacterAndKart kind:function(thumb,size=0x22) addr:0x0203be48
+SetGivenCharacterAndKart kind:function(thumb,size=0x1c) addr:0x0203be6c
+SetGivenKart kind:function(thumb,size=0x1a) addr:0x0203be88
+SetGivenCharacter kind:function(thumb,size=0x1a) addr:0x0203bea4
+InitCharacterKartPicks kind:function(thumb,size=0x1c) addr:0x0203bec0
 func_0203bedc kind:function(thumb,size=0x26) addr:0x0203bedc
 func_0203bf04 kind:function(arm,size=0xc0) addr:0x0203bf04
 GetClockTimeOrZero kind:function(arm,size=0x28) addr:0x0203bfc4
@@ -7869,7 +7869,7 @@ data_02153f9c kind:data(any) addr:0x02153f9c
 data_02153fa0 kind:data(any) addr:0x02153fa0
 data_02154034 kind:data(any) addr:0x02154034
 data_0215404c kind:data(any) addr:0x0215404c
-data_usa_02154064 kind:data(any) addr:0x02154064
+gCupRankTable kind:data(any) addr:0x02154064
 data_0215406c kind:data(any) addr:0x0215406c
 data_0215406d kind:data(any) addr:0x0215406d
 gCourseMapSectionLoaders kind:data(any) addr:0x0215407c
@@ -9321,9 +9321,9 @@ gRaceSceneCallbacks kind:data(any) addr:0x02164734
 gGhostPathFormat kind:data(any) addr:0x02164754
 data_02164770 kind:data(any) addr:0x02164770
 data_usa_0216478c kind:data(any) addr:0x0216478c
-data_usa_02164798 kind:data(any) addr:0x02164798
-data_usa_021647b8 kind:data(any) addr:0x021647b8
-data_usa_021647c8 kind:data(any) addr:0x021647c8
+gTitleSceneCallbacks kind:data(any) addr:0x02164798
+gRankPointRptName kind:data(any) addr:0x021647b8
+gRankTimeGpRttName kind:data(any) addr:0x021647c8
 @2330 kind:data(any) addr:0x021647d8 local
 @2331 kind:data(any) addr:0x021647e8 local
 @2332 kind:data(any) addr:0x02164800 local

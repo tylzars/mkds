@@ -7,8 +7,8 @@
 
 void func_0202a340(s16 *a, int index) {
     Unk0217aa1c_144_00 *entry;
-    entry = &data_0217b488->mUnk_98[index];
-    WriteMinuteSecondMillisecondText((a), entry->mUnk_02, entry->mUnk_03, data_0217b488->mUnk_98[index].mUnk_00);
+    entry = &data_0217b488->mCourseTimes[index];
+    WriteMinuteSecondMillisecondText((a), entry->mUnk_02, entry->mUnk_03, data_0217b488->mCourseTimes[index].mUnk_00);
 }
 
 #pragma thumb off

@@ -198,7 +198,7 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
             j.mUnk_00 = k.mYear;
             j.mUnk_01 = k.mMonth;
             j.mUnk_02 = k.mDay;
-            if (k.mFilled == 1 && k.mFlagged == 0 && func_0203b0a0(&j, &h) != FALSE) {
+            if (k.mFilled == 1 && k.mFlagged == 0 && IsDateEarlier(&j, &h) != FALSE) {
                 h = j;
                 q = i;
             }

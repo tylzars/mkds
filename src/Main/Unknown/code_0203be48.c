@@ -3,17 +3,17 @@
 
 #pragma thumb on
 
-void func_0203be6c(u8 *a, u32 b, u32 c, u32 d) {
-    func_0203bea4(a, b, c);
-    func_0203be88(a, b, d);
+void SetGivenCharacterAndKart(u8 *picks, u32 entryIndex, u32 characterIndex, u32 kartIndex) {
+    SetGivenCharacter(picks, entryIndex, characterIndex);
+    SetGivenKart(picks, entryIndex, kartIndex);
 }
 
-void func_0203be48(u8 *a, u8 b, u32 *c, u32 *d) {
-    if (c != NULL) {
-        *c = *(u32 *) (a + b * 4 + 4);
+void GetEntryCharacterAndKart(u8 *picks, u8 entryIndex, u32 *outCharacterIndex, u32 *outKartIndex) {
+    if (outCharacterIndex != NULL) {
+        *outCharacterIndex = *(u32 *) (picks + entryIndex * 4 + 4);
     }
-    if (d != NULL) {
-        *d = *(u32 *) (a + b * 4 + 0x24);
+    if (outKartIndex != NULL) {
+        *outKartIndex = *(u32 *) (picks + entryIndex * 4 + 0x24);
     }
 }
 

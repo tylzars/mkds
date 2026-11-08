@@ -316,12 +316,12 @@ BOOL func_02045bd4(void) {
     c = GetLowByte((u8) t);
     b = GetCourseIndexInCup();
     e = &gCupRecords->mUnk_000[b][GetLowByte(c)];
-    data_0217b488->mUnk_a8 = e->mTotalPoints;
-    data_0217b488->mUnk_94 = gRaceSetup->mCurrentEntries[(u8) t].mKartIndex;
+    data_0217b488->mTotalPoints = e->mTotalPoints;
+    data_0217b488->mKartIndex = gRaceSetup->mCurrentEntries[(u8) t].mKartIndex;
     for (i = 0; i < 4; i++) {
         Unk0217aa1c_144_00 d;
         GetKartCourseFinishTime(&d, (u16) gRaceSetup->mEntryIndex, i);
-        data_0217b488->mUnk_98[i] = d;
+        data_0217b488->mCourseTimes[i] = d;
     }
     if ((u32) GetKartCupRank((u16) gRaceSetup->mEntryIndex) > 3) {
         return FALSE;

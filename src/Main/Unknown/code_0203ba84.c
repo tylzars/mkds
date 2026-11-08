@@ -50,7 +50,7 @@ void PickRandomKarts(u8 *rawPicks) {
             u = 0;
             firstKart = character * 3;
             for (; u < 3; u++) {
-                if (func_0205fc98(picks->mUnk_44, character, u + firstKart) != FALSE) {
+                if (func_0205fc98(picks->mKartAppear, character, u + firstKart) != FALSE) {
                     candidateBits = candidateBits | (1 << u);
                 }
             }
@@ -62,7 +62,7 @@ void PickRandomKarts(u8 *rawPicks) {
             }
             if (candidateBits == 0) {
                 for (u = 0; u < 3; u++) {
-                    if (func_0205fc98(picks->mUnk_44, character, u + firstKart) != FALSE) {
+                    if (func_0205fc98(picks->mKartAppear, character, u + firstKart) != FALSE) {
                         candidateBits = candidateBits | (1 << u);
                     }
                 }

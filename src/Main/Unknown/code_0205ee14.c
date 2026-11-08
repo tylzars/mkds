@@ -102,14 +102,14 @@ s32 func_0205fdb4(s32 a, void *b) {
 }
 
 s32 func_0205fd78(s32 a, s32 b, s32 *v1) {
-    Unk02056a2c c;
+    UnpackedMissionRecord c;
     BOOL d;
 
     d = FALSE;
     func_020569dc(a, b, &c);
-    if (c.mUnk_00 == 1) {
+    if (c.mFilled == 1) {
         d = TRUE;
-        *v1 = c.mUnk_01;
+        *v1 = c.mValue;
     }
     return d;
 }
@@ -536,7 +536,7 @@ void func_0205eeb0(void) {
                 func_0205f700();
                 break;
             case MODE_MISSION_RUN:
-                func_0203b230();
+                TrySetMissionRecord();
                 break;
             case MODE_BATTLE:
                 switch (gRaceSetup->mBattleKind) {

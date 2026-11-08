@@ -43,14 +43,14 @@ static inline s32 func_0203d568_inline(Unk0217aa00 *p) {
 }
 
 static inline void func_0203d568_b_inline(void) {
-    u16 i;
+    u16 entryIndex;
 
     if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL && GetNextSceneNumber() != 10 &&
         (GetNextSceneNumber() != 6 || data_0217b488->mUnk_74 != 2) && func_0203d568_inline(data_0217aa00) != 0) {
-        for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-            if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind == PLAYER_KIND_HUMAN &&
-                (data_0217aa00->mParticipantMask & (1 << data_0217aa00->mUnk_1e8c[i])) == 0) {
-                func_0204451c(i);
+        for (entryIndex = 0; entryIndex < (u32) gRaceSetup->mKartCount; entryIndex++) {
+            if (gRaceSetup->mCurrentEntries[entryIndex].mPlayer.mKind == PLAYER_KIND_HUMAN &&
+                (data_0217aa00->mParticipantMask & (1 << data_0217aa00->mUnk_1e8c[entryIndex])) == 0) {
+                func_0204451c(entryIndex);
             }
         }
     }
@@ -66,76 +66,76 @@ static inline s32 func_0203d568_c_inline(void) {
     return r;
 }
 
-static inline u16 func_0203df74_inline(u16 a) {
-    u16 i;
-    u16 v1;
-    u16 v2;
-    CourseMapRoute *r;
+static inline u16 func_0203df74_inline(u16 checkpoint) {
+    u16 routeIndex;
+    u16 firstEntry;
+    u16 endEntry;
+    CourseMapRoute *route;
 
-    for (i = 0; i < gCourseMap->mCheckpointRouteCount; i++) {
-        r = &gCourseMap->mCheckpointRoutes[i];
-        v1 = r->mFirstEntry;
-        v2 = v1 + r->mEntryCount;
-        if (a >= v1 && a < v2) {
-            return i;
+    for (routeIndex = 0; routeIndex < gCourseMap->mCheckpointRouteCount; routeIndex++) {
+        route = &gCourseMap->mCheckpointRoutes[routeIndex];
+        firstEntry = route->mFirstEntry;
+        endEntry = firstEntry + route->mEntryCount;
+        if (checkpoint >= firstEntry && checkpoint < endEntry) {
+            return routeIndex;
         }
     }
     return 0;
 }
 
-static inline s16 func_0203df74_b_inline(RaceProgressKart *b, s32 *v, Vec3 *a) {
-    u16 i;
-    u16 k;
+static inline s16 func_0203df74_b_inline(RaceProgressKart *kart, s32 *outProgress, Vec3 *position) {
+    u16 routeIndex;
+    u16 checkpoint;
     u16 lo;
     u16 hi;
-    CourseMapRoute *r;
+    CourseMapRoute *route;
 
-    for (i = 0; i < gCourseMap->mCheckpointRouteCount; i++) {
-        r = &gCourseMap->mCheckpointRoutes[i];
-        lo = r->mFirstEntry;
-        hi = lo + r->mEntryCount;
-        for (k = lo; k < hi; k++) {
-            if (TryGetKartCheckpointProgress(b, v, a, i, k) != 0) {
-                return k;
+    for (routeIndex = 0; routeIndex < gCourseMap->mCheckpointRouteCount; routeIndex++) {
+        route = &gCourseMap->mCheckpointRoutes[routeIndex];
+        lo = route->mFirstEntry;
+        hi = lo + route->mEntryCount;
+        for (checkpoint = lo; checkpoint < hi; checkpoint++) {
+            if (TryGetKartCheckpointProgress(kart, outProgress, position, routeIndex, checkpoint) != 0) {
+                return checkpoint;
             }
         }
     }
     return -1;
 }
 
-static inline s32 func_0203df74_c_inline(CourseMapRoute *r, u16 c, s32 v) {
+static inline s32 func_0203df74_c_inline(CourseMapRoute *route, u16 checkpoint, s32 progress) {
     s32 x;
     s32 t;
 
-    t = (c - r->mFirstEntry) << 12;
-    if (r->mEntryCount == 0) {
+    t = (checkpoint - route->mFirstEntry) << 12;
+    if (route->mEntryCount == 0) {
         x = 0;
     } else {
-        x = FX_Div(t + v, r->mEntryCount << 12);
+        x = FX_Div(t + progress, route->mEntryCount << 12);
     }
-    t = x + (r->mLapProgressBase << 12);
+    t = x + (route->mLapProgressBase << 12);
     return ((s64) t * gRaceProgress->mLapProgressScale + 0x800) >> 12;
 }
 
-static inline void func_0203e550_inline(s32 a) {
+static inline void func_0203e550_inline(s32 kartIndex) {
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-        FinishRaceProgressKartWithEndKind(a, 0);
+        FinishRaceProgressKartWithEndKind(kartIndex, 0);
     }
 }
 
-void CompleteRaceProgressKartLap(RaceProgressKart *a) {
+void CompleteRaceProgressKartLap(RaceProgressKart *kart) {
     BOOL f;
-    BOOL g;
+    BOOL missionTestPassed;
     Unk021759c0_28 *s;
-    EntryKartCounters *t;
+    EntryKartCounters *entryKartCounters;
 
-    if (a->mLap < 0x7fffffff) {
-        a->mLap = a->mLap + 1;
+    if (kart->mLap < 0x7fffffff) {
+        kart->mLap = kart->mLap + 1;
     }
-    a->mCheckpointNumber = -1;
-    a->mInOrderCheckpointNumber = -1;
+    kart->mCheckpointNumber = -1;
+    kart->mInOrderCheckpointNumber = -1;
     f = FALSE;
-    switch (a->mStatus) {
+    switch (kart->mStatus) {
         case 1:
         case 2:
         case 3:
@@ -145,15 +145,15 @@ void CompleteRaceProgressKartLap(RaceProgressKart *a) {
     if (f != FALSE) {
         return;
     }
-    if (a->mLap <= a->mHighestLap) {
+    if (kart->mLap <= kart->mHighestLap) {
         return;
     }
-    if ((a->mFlags & 1) != 0) {
+    if ((kart->mFlags & 1) != 0) {
         AdvanceSceneSoundLap();
     }
-    StoreRaceProgressKartLapTime(a, a->mLap > GetLapCount());
-    a->mHighestLap = a->mLap;
-    if ((a->mFlags & 1) != 0) {
+    StoreRaceProgressKartLapTime(kart, kart->mLap > GetLapCount());
+    kart->mHighestLap = kart->mLap;
+    if ((kart->mFlags & 1) != 0) {
         func_020b1a34();
     }
     f = FALSE;
@@ -171,214 +171,217 @@ void CompleteRaceProgressKartLap(RaceProgressKart *a) {
     if (f == FALSE) {
         return;
     }
-    if (a->mHighestLap <= GetLapCount()) {
+    if (kart->mHighestLap <= GetLapCount()) {
         return;
     }
-    a->mHighestLap = GetLapCount();
+    kart->mHighestLap = GetLapCount();
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         s = &gRaceSetup->mUnk_28_view;
-        g = TRUE;
-        t = GetEntryKartCounters();
+        missionTestPassed = TRUE;
+        entryKartCounters = GetEntryKartCounters();
         switch (s->mMissionKind) {
             case 4:
-                if (s->mUnk_0f > (u32) t->mUnk_04) {
-                    g = FALSE;
+                if (s->mUnk_0f > (u32) entryKartCounters->mUnk_04) {
+                    missionTestPassed = FALSE;
                 }
                 break;
             case 6:
-                if (a->mRank != 1) {
-                    g = FALSE;
+                if (kart->mRank != 1) {
+                    missionTestPassed = FALSE;
                 }
                 break;
         }
-        if (g != FALSE) {
-            func_0203e550_inline(a->mIndex);
+        if (missionTestPassed != FALSE) {
+            func_0203e550_inline(kart->mIndex);
         } else {
-            FinishRaceProgressKartWithEndKind(a->mIndex, 4);
+            FinishRaceProgressKartWithEndKind(kart->mIndex, 4);
         }
     } else {
-        if ((a->mFlags & 1) == 0 && gRaceSetup->mMode == 5) {
+        if ((kart->mFlags & 1) == 0 && gRaceSetup->mMode == 5) {
             return;
         }
-        a->mFlags |= 0x40;
+        kart->mFlags |= 0x40;
     }
 }
 
-void func_0203e4c4(u32 a, u32 b) {
-    RaceProgressKart *e;
-    u16 c;
+void func_0203e4c4(u32 kartIndex, u32 b) {
+    RaceProgressKart *kart;
+    u16 finishRequest;
 
-    e = &gRaceProgress->mKarts[a];
-    c = b != 0 ? 1 : 2;
-    e->mUnk_3c = (e->mUnk_3c & ~0x300) | ((c & 3) << 8);
+    kart = &gRaceProgress->mKarts[kartIndex];
+    finishRequest = b != 0 ? 1 : 2;
+    kart->mUnk_3c = (kart->mUnk_3c & ~0x300) | ((finishRequest & 3) << 8);
     if (gRaceProgress->mUnk_000[0].mFinishedCount + gRaceProgress->mUnk_000[0].mRemovedCount >=
         gRaceSetup->mKartCount) {
         FinishRaceProgress();
     }
 }
 
-void EnterRaceProgressKartCheckpoint(RaceProgressKart *a, s32 b) {
-    s16 c;
+void EnterRaceProgressKartCheckpoint(RaceProgressKart *kart, s32 checkpoint) {
+    s16 checkpointNumber;
 
-    c = gCourseMap->mCheckpoints[a->mCheckpoint].mNumber;
-    if (c != -1) {
-        a->mCheckpointNumber = c;
-        if (a->mInOrderCheckpointNumber + 1 >= c) {
-            a->mInOrderCheckpointNumber = c;
+    checkpointNumber = gCourseMap->mCheckpoints[kart->mCheckpoint].mNumber;
+    if (checkpointNumber != -1) {
+        kart->mCheckpointNumber = checkpointNumber;
+        if (kart->mInOrderCheckpointNumber + 1 >= checkpointNumber) {
+            kart->mInOrderCheckpointNumber = checkpointNumber;
         }
     }
-    if (b == 0 && a->mInOrderCheckpointNumber >= gCourseMap->mNumberedCheckpointCount - 1) {
-        CompleteRaceProgressKartLap(a);
-    } else if (a->mCheckpoint == 0 && b == gCourseMap->mLastCheckpoint) {
-        if (a->mLap > -100) {
-            a->mLap = a->mLap - 1;
+    if (checkpoint == 0 && kart->mInOrderCheckpointNumber >= gCourseMap->mNumberedCheckpointCount - 1) {
+        CompleteRaceProgressKartLap(kart);
+    } else if (kart->mCheckpoint == 0 && checkpoint == gCourseMap->mLastCheckpoint) {
+        if (kart->mLap > -100) {
+            kart->mLap = kart->mLap - 1;
         }
-        a->mCheckpointNumber = gCourseMap->mNumberedCheckpointCount - 1;
-        a->mInOrderCheckpointNumber = gCourseMap->mNumberedCheckpointCount - 1;
+        kart->mCheckpointNumber = gCourseMap->mNumberedCheckpointCount - 1;
+        kart->mInOrderCheckpointNumber = gCourseMap->mNumberedCheckpointCount - 1;
     }
-    a->mCheckpoint = b;
-    a->mRoute = func_0203df74_inline(b);
+    kart->mCheckpoint = checkpoint;
+    kart->mRoute = func_0203df74_inline(checkpoint);
 }
 
-void UpdateRaceProgressKart(Vec3 *a, RaceProgressKart *b) {
-    s32 v;
-    u16 c;
-    u16 d;
+void UpdateRaceProgressKart(Vec3 *position, RaceProgressKart *kart) {
+    s32 checkpointProgress;
+    u16 checkpoint;
+    u16 routeIndex;
     s16 p;
-    s32 w;
+    s32 lapProgress;
     s32 k;
-    CourseMapRoute *r;
+    CourseMapRoute *route;
 
-    c = b->mCheckpoint;
-    d = b->mRoute;
-    p = c;
-    v = 0;
-    if (func_0207a5c4(b->mIndex) != 0) {
+    checkpoint = kart->mCheckpoint;
+    routeIndex = kart->mRoute;
+    p = checkpoint;
+    checkpointProgress = 0;
+    if (func_0207a5c4(kart->mIndex) != 0) {
         return;
     }
-    if (TryGetKartCheckpointProgress(b, &v, a, d, c) == 0) {
-        if (v >= 0) {
-            p = FindKartCheckpointForward(b, &v, a, d, c, 5);
+    if (TryGetKartCheckpointProgress(kart, &checkpointProgress, position, routeIndex, checkpoint) == 0) {
+        if (checkpointProgress >= 0) {
+            p = FindKartCheckpointForward(kart, &checkpointProgress, position, routeIndex, checkpoint, 5);
             if (p == -1) {
-                p = FindKartCheckpointBackward(b, &v, a, d, c, 5);
+                p = FindKartCheckpointBackward(kart, &checkpointProgress, position, routeIndex, checkpoint, 5);
             }
         } else {
-            p = FindKartCheckpointBackward(b, &v, a, d, c, 5);
+            p = FindKartCheckpointBackward(kart, &checkpointProgress, position, routeIndex, checkpoint, 5);
             if (p == -1) {
-                p = FindKartCheckpointForward(b, &v, a, d, c, 5);
+                p = FindKartCheckpointForward(kart, &checkpointProgress, position, routeIndex, checkpoint, 5);
             }
         }
         if (p == -1) {
-            p = func_0203df74_b_inline(b, &v, a);
+            p = func_0203df74_b_inline(kart, &checkpointProgress, position);
         }
         if (p == -1) {
             return;
         }
-        d = func_0203df74_inline(p);
+        routeIndex = func_0203df74_inline(p);
     }
-    r = &gCourseMap->mCheckpointRoutes[d];
-    w = func_0203df74_c_inline(r, p, v);
+    route = &gCourseMap->mCheckpointRoutes[routeIndex];
+    lapProgress = func_0203df74_c_inline(route, p, checkpointProgress);
     k = 0;
     if (p != -1) {
         if (gCourseMap->mNumberedCheckpointCount >= 1) {
             k = gRaceProgress->mCheckpointLapProgress[gCourseMap->mNumberedCheckpointCount - 1];
         }
-        if (w <= gRaceProgress->mCheckpointLapProgress[b->mInOrderCheckpointNumber + 1]) {
-            EnterRaceProgressKartCheckpoint(b, p);
-        } else if (b->mCheckpoint == 0 && w > k) {
-            EnterRaceProgressKartCheckpoint(b, p);
+        if (lapProgress <= gRaceProgress->mCheckpointLapProgress[kart->mInOrderCheckpointNumber + 1]) {
+            EnterRaceProgressKartCheckpoint(kart, p);
+        } else if (kart->mCheckpoint == 0 && lapProgress > k) {
+            EnterRaceProgressKartCheckpoint(kart, p);
         } else {
-            v = b->mCheckpointProgress;
-            w = func_0203df74_c_inline(r, b->mCheckpoint, v);
+            checkpointProgress = kart->mCheckpointProgress;
+            lapProgress = func_0203df74_c_inline(route, kart->mCheckpoint, checkpointProgress);
         }
     }
-    b->mCheckpointProgress = v;
-    b->mLapProgress = w;
-    k = ((b->mLap - 1) << 12) + b->mLapProgress;
-    b->mRaceProgress = ((s64) k * gRaceProgress->mRaceProgressScale + 0x800) >> 12;
+    kart->mCheckpointProgress = checkpointProgress;
+    kart->mLapProgress = lapProgress;
+    k = ((kart->mLap - 1) << 12) + kart->mLapProgress;
+    kart->mRaceProgress = ((s64) k * gRaceProgress->mRaceProgressScale + 0x800) >> 12;
 }
 
 void UpdateRaceProgressKarts(void) {
     Unk02040d24 t;
-    s32 a[8];
-    s32 b[8];
-    s32 c[8];
-    u16 d[8];
-    Vec3 v;
-    Vec3 w;
+    s32 progressByKart[8];
+    s32 progressByRank[8];
+    s32 lapByRank[8];
+    u16 kartByRank[8];
+    Vec3 position;
+    Vec3 forward;
     u16 i;
     s32 k;
-    RaceProgressKart *e;
+    RaceProgressKart *kart;
     BOOL f;
-    RaceProgress *p;
-    Unk02040d24 *o;
+    RaceProgress *raceProgress;
+    Unk02040d24 *checkpointDirection;
     u16 m;
-    s32 x;
-    s32 y;
-    s32 n;
-    s32 h;
-    s32 q;
-    s32 r;
-    s32 u;
+    s32 finishedCount;
+    s32 notRemovedCount;
+    s32 insertPos;
+    s32 rankIndex;
+    s32 progressKey;
+    s32 lapKey;
+    s32 kartKey;
     u16 g;
     RaceProgressKart *s;
 
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-        e = &gRaceProgress->mKarts[i];
-        if (e->mStatus != 4 && gRaceSetup->mRaceKind != RACE_KIND_STAFF_ROLL) {
+        kart = &gRaceProgress->mKarts[i];
+        if (kart->mStatus != 4 && gRaceSetup->mRaceKind != RACE_KIND_STAFF_ROLL) {
             for (k = 0; k < 16; k++) {
-                e->mCheckpointTestedBits[k] = 0;
+                kart->mCheckpointTestedBits[k] = 0;
             }
-            GetKartPos(&v, i);
-            GetKartForward(GetKart(i), &w);
-            UpdateRaceProgressKart(&v, e);
+            GetKartPos(&position, i);
+            GetKartForward(GetKart(i), &forward);
+            UpdateRaceProgressKart(&position, kart);
             f = FALSE;
-            if (func_0207a7fc(e->mIndex) == 0) {
-                o = &gCourseMap->mCheckpoints[e->mCheckpoint].mDirection;
-                t.mUnk_00 = w.x;
-                t.mUnk_04 = w.z;
-                if (ComputeDotOfPairsRounded(&t, o) < -1394) {
+            if (func_0207a7fc(kart->mIndex) == 0) {
+                checkpointDirection = &gCourseMap->mCheckpoints[kart->mCheckpoint].mDirection;
+                t.mUnk_00 = forward.x;
+                t.mUnk_04 = forward.z;
+                if (ComputeDotOfPairsRounded(&t, checkpointDirection) < -1394) {
                     f = TRUE;
                 }
             }
             if (f != FALSE) {
-                e->mFlags |= 4;
+                kart->mFlags |= 4;
             } else {
-                e->mFlags &= ~4;
+                kart->mFlags &= ~4;
             }
-            a[i] = e->mRaceProgress;
+            progressByKart[i] = kart->mRaceProgress;
         }
     }
     if (gRaceSetup->mKartCount > 1) {
-        p = gRaceProgress;
-        y = gRaceSetup->mKartCount - p->mUnk_000[0].mRemovedCount;
-        x = p->mUnk_000[0].mFinishedCount;
+        raceProgress = gRaceProgress;
+        notRemovedCount = gRaceSetup->mKartCount - raceProgress->mUnk_000[0].mRemovedCount;
+        finishedCount = raceProgress->mUnk_000[0].mFinishedCount;
         for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-            h = p->mUnk_000[i].mUnk_50_0 - 1;
-            b[h] = a[i];
-            d[h] = i;
-            c[h] = p->mUnk_000[(u32) i].mLap;
+            rankIndex = raceProgress->mUnk_000[i].mUnk_50_0 - 1;
+            progressByRank[rankIndex] = progressByKart[i];
+            kartByRank[rankIndex] = i;
+            lapByRank[rankIndex] = raceProgress->mUnk_000[(u32) i].mLap;
         }
-        for (i = x + 1; i < y; i++) {
-            q = b[i];
-            u = d[i];
-            r = c[i];
-            for (n = i; n > x && (c[n - 1] < r || (r == c[n - 1] && b[n - 1] < q)); n--) {
-                c[n] = c[n - 1];
-                b[n] = b[n - 1];
-                d[n] = d[n - 1];
+        for (i = finishedCount + 1; i < notRemovedCount; i++) {
+            progressKey = progressByRank[i];
+            kartKey = kartByRank[i];
+            lapKey = lapByRank[i];
+            for (insertPos = i; insertPos > finishedCount &&
+                                (lapByRank[insertPos - 1] < lapKey ||
+                                 (lapKey == lapByRank[insertPos - 1] && progressByRank[insertPos - 1] < progressKey));
+                 insertPos--) {
+                lapByRank[insertPos] = lapByRank[insertPos - 1];
+                progressByRank[insertPos] = progressByRank[insertPos - 1];
+                kartByRank[insertPos] = kartByRank[insertPos - 1];
             }
-            b[n] = q;
-            d[n] = u;
+            progressByRank[insertPos] = progressKey;
+            kartByRank[insertPos] = kartKey;
         }
         for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-            if (d[i] < 8) {
-                gRaceProgress->mKarts[d[i]].mRank = i + 1;
+            if (kartByRank[i] < 8) {
+                gRaceProgress->mKarts[kartByRank[i]].mRank = i + 1;
             }
         }
-        gRaceProgress->mUnk_000[d[0]].mFirstPlaceFrames++;
+        gRaceProgress->mUnk_000[kartByRank[0]].mFirstPlaceFrames++;
         for (g = 0; g < (u32) gRaceSetup->mKartCount; g++) {
-            gRaceProgress->mKartAtRank[g] = d[g];
+            gRaceProgress->mKartAtRank[g] = kartByRank[g];
         }
         for (; g < 8; g++) {
             gRaceProgress->mKartAtRank[g] = -1;
@@ -449,23 +452,23 @@ void UpdateRaceProgressKarts(void) {
     }
 }
 
-void SetRankTimeFromRankTimeGp(RankTimeGp *a) {
-    s32 i;
-    RankTimeGpEntry *e;
+void SetRankTimeFromRankTimeGp(RankTimeGp *rankTimeGp) {
+    s32 entryIndex;
+    RankTimeGpEntry *entry;
 
     gRaceProgress->mUnk_000[0].mRankTime = 0;
-    for (i = 0; i < a->mEntryCount; i++) {
-        e = &a->mUnk_1c[i];
-        if (e->mCourseId == gRaceSetup->mCourseId) {
+    for (entryIndex = 0; entryIndex < rankTimeGp->mEntryCount; entryIndex++) {
+        entry = &rankTimeGp->mUnk_1c[entryIndex];
+        if (entry->mCourseId == gRaceSetup->mCourseId) {
             switch (gRaceSetup->mEngineIndex) {
                 case 0:
-                    gRaceProgress->mUnk_000[0].mRankTime = e->mUnk_02;
+                    gRaceProgress->mUnk_000[0].mRankTime = entry->mUnk_02;
                     return;
                 case 1:
-                    gRaceProgress->mUnk_000[0].mRankTime = e->mUnk_04;
+                    gRaceProgress->mUnk_000[0].mRankTime = entry->mUnk_04;
                     return;
                 case 2:
-                    gRaceProgress->mUnk_000[0].mRankTime = e->mUnk_06;
+                    gRaceProgress->mUnk_000[0].mRankTime = entry->mUnk_06;
                     break;
             }
             return;
@@ -473,21 +476,21 @@ void SetRankTimeFromRankTimeGp(RankTimeGp *a) {
     }
 }
 
-void CreateRaceProgress(void *a) {
-    gRaceProgress = HeapAlloc(a, 0x524);
-    gRaceProgress->mCheckpointLapProgress = HeapAlloc(a, (gCourseMap->mNumberedCheckpointCount + 1) << 2);
-    gRaceProgress->mRankPointFile = FindMainRaceOrMainEffectFile(data_usa_021647b8);
-    gRaceProgress->mRankTimeGpFile = FindMainRaceOrMainEffectFile(data_usa_021647c8);
+void CreateRaceProgress(void *heap) {
+    gRaceProgress = HeapAlloc(heap, 0x524);
+    gRaceProgress->mCheckpointLapProgress = HeapAlloc(heap, (gCourseMap->mNumberedCheckpointCount + 1) << 2);
+    gRaceProgress->mRankPointFile = FindMainRaceOrMainEffectFile(gRankPointRptName);
+    gRaceProgress->mRankTimeGpFile = FindMainRaceOrMainEffectFile(gRankTimeGpRttName);
     SetRankTimeFromRankTimeGp(gRaceProgress->mRankTimeGpFile);
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-        func_0205e2cc(a);
+        func_0205e2cc(heap);
     }
     InitRaceProgress();
 }
 
 void func_0203d568(void) {
-    u16 i;
-    enum { K0 } k;
+    u16 entryIndex;
+    enum { K0 } inputSlotIndex;
 
     func_02043544(0);
     if (func_0203d568_c_inline() != 0) {
@@ -507,8 +510,8 @@ void func_0203d568(void) {
             func_0203d568_b_inline();
             break;
     }
-    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-        k = gRaceSetup->mCurrentEntries[i].mPlayer.mIndex;
-        FinishKeyRecording(&data_02175628[k].mUnk_28);
+    for (entryIndex = 0; entryIndex < (u32) gRaceSetup->mKartCount; entryIndex++) {
+        inputSlotIndex = gRaceSetup->mCurrentEntries[entryIndex].mPlayer.mIndex;
+        FinishKeyRecording(&data_02175628[inputSlotIndex].mUnk_28);
     }
 }

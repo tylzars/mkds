@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_0203ba70(u8 *a);
+void PickRandomCharactersAndKarts(u8 *picks);

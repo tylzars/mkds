@@ -36,7 +36,7 @@ void func_021170f8(void) {
     BOOL isEightOrNine;
     u32 zeroValue, noIndex;
 
-    func_0203bec0(gPicksHolder->mPicks);
+    InitCharacterKartPicks(gPicksHolder->mPicks);
     if (data_021759d0->mUnk_20 == 0) {
         n = 1;
     } else {
@@ -60,7 +60,7 @@ void func_02117060(void) {
     BOOL isEightOrNine;
     u32 zeroValue, noIndex;
 
-    func_0203bec0(gPicksHolder->mPicks);
+    InitCharacterKartPicks(gPicksHolder->mPicks);
     if (data_021759d0->mUnk_20 == 0) {
         n = 1;
     } else {
@@ -71,7 +71,7 @@ void func_02117060(void) {
         n = (u8) (isEightOrNine != FALSE ? CountSetBits(data_0217aa00->mParticipantMask) : 0);
     }
     for (i = 0; i < 8; i++) {
-        func_0203bea4(gPicksHolder->mPicks, (u8) i, GetCharacterIndex(i));
+        SetGivenCharacter(gPicksHolder->mPicks, (u8) i, GetCharacterIndex(i));
     }
     zeroValue = 0;
     noIndex = ~0;
@@ -98,11 +98,11 @@ void FillRandomCharacterIndices(void) {
         n = (u8) (isEightOrNine != FALSE ? CountSetBits(data_0217aa00->mParticipantMask) : 0);
     }
     for (i = 0; i < n; i++) {
-        func_0203bea4(gPicksHolder->mPicks, (u8) i, GetCharacterIndex(i));
+        SetGivenCharacter(gPicksHolder->mPicks, (u8) i, GetCharacterIndex(i));
     }
     PickRandomCharacters(gPicksHolder->mPicks);
     for (; n < 8; n++) {
-        func_0203be48(gPicksHolder->mPicks, n, &pickedIndex, NULL);
+        GetEntryCharacterAndKart(gPicksHolder->mPicks, n, &pickedIndex, NULL);
         SetCharacterIndex(n, pickedIndex);
     }
 }
@@ -124,11 +124,11 @@ void FillRandomKartIndices(void) {
         n = (u8) (isEightOrNine != FALSE ? CountSetBits(data_0217aa00->mParticipantMask) : 0);
     }
     for (i = 0; i < n; i++) {
-        func_0203be88(gPicksHolder->mPicks, (u8) i, GetKartIndex(i));
+        SetGivenKart(gPicksHolder->mPicks, (u8) i, GetKartIndex(i));
     }
     PickRandomKarts(gPicksHolder->mPicks);
     for (; n < 8; n++) {
-        func_0203be48(gPicksHolder->mPicks, n, NULL, &pickedIndex);
+        GetEntryCharacterAndKart(gPicksHolder->mPicks, n, NULL, &pickedIndex);
         SetKartIndex(n, pickedIndex);
         func_020294ac(n, 1);
     }

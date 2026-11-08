@@ -292,7 +292,7 @@ s32 func_02060390(s32 a, s32 b) {
 
     GetGrandPrixRecord(a, b, &c);
     if (c.mFilled != 0) {
-        return (s8) c.mUnk_1d;
+        return (s8) c.mTotalPoints;
     }
     return -1;
 }

@@ -10,7 +10,7 @@ typedef struct CharacterKartPicks {
     /* 02 */ u8 mUnk_02[2];
     /* 04 */ s32 mCharacterIndices[8];
     /* 24 */ s32 mKartIndices[8];
-    /* 44 */ struct KartAppear *mUnk_44;
+    /* 44 */ struct KartAppear *mKartAppear;
 } CharacterKartPicks;
 
 void PickRandomCharacters(u8 *rawPicks);

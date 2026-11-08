@@ -15,11 +15,11 @@
 
 #pragma thumb on
 
-BOOL func_0203b96c(s32 a) {
-    if (a == 9) {
+BOOL func_0203b96c(s32 cupIndex) {
+    if (cupIndex == 9) {
         return FALSE;
     }
-    switch (a) {
+    switch (cupIndex) {
         case 0:
         case 1:
         case 4:
@@ -49,68 +49,68 @@ BOOL func_0203b96c(s32 a) {
     return FALSE;
 }
 
-u32 func_0203b8e4(RandomState64 *a) {
-    u8 n;
-    u8 i;
-    u16 k;
-    u16 m;
-    u32 v;
+u32 func_0203b8e4(RandomState64 *random) {
+    u8 passingCupCount;
+    u8 cupIndex;
+    u16 seenCount;
+    u16 pickedPosition;
+    u32 randomPosition;
 
-    n = 0;
-    k = 0;
-    for (i = 0; i < 8; i++) {
-        if (func_0203b96c(i) != FALSE) {
-            n++;
+    passingCupCount = 0;
+    seenCount = 0;
+    for (cupIndex = 0; cupIndex < 8; cupIndex++) {
+        if (func_0203b96c(cupIndex) != FALSE) {
+            passingCupCount++;
         }
     }
-    if (n == 0) {
-        v = 0;
+    if (passingCupCount == 0) {
+        randomPosition = 0;
     } else {
-        a->mValue = _ll_mul(a->mMultiplier, a->mValue) + a->mIncrement;
-        if (n == 0) {
-            v = a->mValue >> 32;
+        random->mValue = _ll_mul(random->mMultiplier, random->mValue) + random->mIncrement;
+        if (passingCupCount == 0) {
+            randomPosition = random->mValue >> 32;
         } else {
-            v = (u64) (u32) (a->mValue >> 32) * (u32) n >> 32;
+            randomPosition = (u64) (u32) (random->mValue >> 32) * (u32) passingCupCount >> 32;
         }
     }
-    m = v;
-    for (i = 0; i < 8; i++) {
-        if (func_0203b96c(i) != FALSE) {
-            k++;
-            if (k > m) {
+    pickedPosition = randomPosition;
+    for (cupIndex = 0; cupIndex < 8; cupIndex++) {
+        if (func_0203b96c(cupIndex) != FALSE) {
+            seenCount++;
+            if (seenCount > pickedPosition) {
                 break;
             }
         }
     }
-    return i;
+    return cupIndex;
 }
 
-void SetNextDemoRace(u8 *a) {
-    RandomState64 r;
-    RTCTime t;
-    u16 v1[2];
-    u32 x;
-    u32 y;
-    u16 v2[8];
-    u16 c;
-    u16 d;
-    u16 f;
+void SetNextDemoRace(u8 *picks) {
+    RandomState64 random;
+    RTCTime time;
+    u16 otherKartIndices[2];
+    u32 characterIndex;
+    u32 kartIndex;
+    u16 shuffledIndices[8];
+    u16 cupIndex;
+    u16 courseIndexInCup;
+    u16 swapIndex;
     u16 g;
     u16 i;
     u16 j;
     u16 k;
-    u16 e;
-    u32 h;
+    u16 followedKartIndex;
+    u32 swapTemp;
     u32 l;
 
-    if (RTC_GetTime(&t) != 0) {
-        t.mHour = 0;
-        t.mMinute = 0;
-        t.mSecond = 0;
+    if (RTC_GetTime(&time) != 0) {
+        time.mHour = 0;
+        time.mMinute = 0;
+        time.mSecond = 0;
     }
-    r.mValue = (u32) ((t.mHour * 60 + t.mMinute) * 60 + t.mSecond + OS_GetTick());
-    r.mMultiplier = 0x5d588b656c078965ULL;
-    r.mIncrement = 0x269ec3;
+    random.mValue = (u32) ((time.mHour * 60 + time.mMinute) * 60 + time.mSecond + OS_GetTick());
+    random.mMultiplier = 0x5d588b656c078965ULL;
+    random.mIncrement = 0x269ec3;
     gRaceSetup->mNextHeader.mMode = MODE_GRAND_PRIX;
     gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_DEMO;
     gRaceSetup->mNextHeader.mEngineIndex = 2;
@@ -120,44 +120,44 @@ void SetNextDemoRace(u8 *a) {
     gRaceSetup->mNextHeader.mMirrorMode = 0;
     gRaceSetup->mNextHeader.mLapCount = -1;
     gRaceSetup->mNextHeader.mCpuDifficulty = 2;
-    r.mValue = _ll_mul(r.mMultiplier, r.mValue) + r.mIncrement;
-    d = (u64) (u32) (r.mValue >> 32) * 4 >> 32;
-    c = func_0203b8e4(&r);
-    gRaceSetup->mNextHeader.mCourseId = gCupCourseIdTable[c][d];
-    r.mValue = _ll_mul(r.mMultiplier, r.mValue) + r.mIncrement;
-    e = (u64) (u32) (r.mValue >> 32) * 8 >> 32;
-    gRaceSetup->mNextHeader.mFollowedKartIndex = e;
+    random.mValue = _ll_mul(random.mMultiplier, random.mValue) + random.mIncrement;
+    courseIndexInCup = (u64) (u32) (random.mValue >> 32) * 4 >> 32;
+    cupIndex = func_0203b8e4(&random);
+    gRaceSetup->mNextHeader.mCourseId = gCupCourseIdTable[cupIndex][courseIndexInCup];
+    random.mValue = _ll_mul(random.mMultiplier, random.mValue) + random.mIncrement;
+    followedKartIndex = (u64) (u32) (random.mValue >> 32) * 8 >> 32;
+    gRaceSetup->mNextHeader.mFollowedKartIndex = followedKartIndex;
     for (k = 0; k < 2; k++) {
         for (j = 0; j < 8; j++) {
-            if (j != e) {
-                v1[k] = j;
+            if (j != followedKartIndex) {
+                otherKartIndices[k] = j;
                 break;
             }
         }
     }
     for (i = 0; i < 8; i++) {
-        v2[i] = i;
+        shuffledIndices[i] = i;
     }
     for (g = 0; g < 1000; g++) {
-        r.mValue = _ll_mul(r.mMultiplier, r.mValue) + r.mIncrement;
-        f = (u64) (u32) (r.mValue >> 32) * 7 >> 32;
-        r.mValue = _ll_mul(r.mMultiplier, r.mValue) + r.mIncrement;
-        h = v2[f];
-        v2[f] = v2[(u16) ((u64) (u32) (r.mValue >> 32) * 7 >> 32)];
-        v2[(u16) ((u64) (u32) (r.mValue >> 32) * 7 >> 32)] = h;
+        random.mValue = _ll_mul(random.mMultiplier, random.mValue) + random.mIncrement;
+        swapIndex = (u64) (u32) (random.mValue >> 32) * 7 >> 32;
+        random.mValue = _ll_mul(random.mMultiplier, random.mValue) + random.mIncrement;
+        swapTemp = shuffledIndices[swapIndex];
+        shuffledIndices[swapIndex] = shuffledIndices[(u16) ((u64) (u32) (random.mValue >> 32) * 7 >> 32)];
+        shuffledIndices[(u16) ((u64) (u32) (random.mValue >> 32) * 7 >> 32)] = swapTemp;
     }
-    func_0203be6c(a, 0, 0, 0);
-    func_0203ba70(a);
+    SetGivenCharacterAndKart(picks, 0, 0, 0);
+    PickRandomCharactersAndKarts(picks);
     for (i = 0; i < 8; i++) {
         l = 3;
-        if (v1[0] == i) {
+        if (otherKartIndices[0] == i) {
             l = 0;
         }
-        if (v1[1] == i) {
+        if (otherKartIndices[1] == i) {
             l = 1;
         }
-        func_0203be48(a, i, &x, &y);
-        SetNextRaceEntry(i, x, y, PLAYER_KIND_CPU, -1, l);
+        GetEntryCharacterAndKart(picks, i, &characterIndex, &kartIndex);
+        SetNextRaceEntry(i, characterIndex, kartIndex, PLAYER_KIND_CPU, -1, l);
     }
     ResetCupToFirstCourse();
 }

@@ -24,13 +24,13 @@ void SetNextGrandPrixEntries(void) {
     if (a <= b) {
         b++;
     }
-    func_0203be6c(data_0217b43c->mUnk_954, 0, GetRaceSetupCopy()->mEntries[0].mCharacterIndex,
-                  GetRaceSetupCopy()->mEntries[0].mKartIndex);
-    func_0203ba70(data_0217b43c->mUnk_954);
+    SetGivenCharacterAndKart(data_0217b43c->mUnk_954, 0, GetRaceSetupCopy()->mEntries[0].mCharacterIndex,
+                             GetRaceSetupCopy()->mEntries[0].mKartIndex);
+    PickRandomCharactersAndKarts(data_0217b43c->mUnk_954);
     SetNextRaceEntry(0, GetRaceSetupCopy()->mEntries[0].mCharacterIndex, GetRaceSetupCopy()->mEntries[0].mKartIndex, 0,
                      -1, 3);
     for (i = 1; i < 8; i++) {
-        func_0203be48(data_0217b43c->mUnk_954, i, &characterIndex, &kartIndex);
+        GetEntryCharacterAndKart(data_0217b43c->mUnk_954, i, &characterIndex, &kartIndex);
         SetNextRaceEntry(i, characterIndex, kartIndex, 1, -1, i == a ? 0 : i == b ? 1 : 3);
     }
 }

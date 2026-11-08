@@ -3,9 +3,9 @@
 
 #pragma thumb on
 
-void func_0203ba70(u8 *a) {
-    PickRandomCharacters(a);
-    PickRandomKarts(a);
+void PickRandomCharactersAndKarts(u8 *picks) {
+    PickRandomCharacters(picks);
+    PickRandomKarts(picks);
 }
 
 #pragma thumb off

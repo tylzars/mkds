@@ -25,130 +25,130 @@ static inline s32 func_0203ca38_inline(u32 i) {
 }
 
 void FinishRaceProgress(void) {
-    RaceProgress *p;
-    s32 v = -1;
-    RaceSetup *d = gRaceSetup;
-    s32 m = d->mMode;
-    u32 a;
-    BOOL f = FALSE;
-    switch (m) {
+    RaceProgress *raceProgress;
+    s32 winningTeamIndex = -1;
+    RaceSetup *raceSetup = gRaceSetup;
+    s32 mode = raceSetup->mMode;
+    u32 kartIndex;
+    BOOL usesTeams = FALSE;
+    switch (mode) {
         case MODE_BATTLE:
         case MODE_VS:
-            if (d->mUseTeams != 0) {
-                f = TRUE;
+            if (raceSetup->mUseTeams != 0) {
+                usesTeams = TRUE;
             }
             break;
     }
-    switch (m) {
+    switch (mode) {
         case MODE_GRAND_PRIX:
         case MODE_VS:
         case 5: {
-            for (a = 0; a < d->mKartCount; a = (u16) (a + 1)) {
+            for (kartIndex = 0; kartIndex < raceSetup->mKartCount; kartIndex = (u16) (kartIndex + 1)) {
                 u32 t;
-                u8 w;
-                u32 z = 0;
-                if (d->mMode == 5) {
-                    t = data_0217aa14->mUnk_104[data_0217aa18->mUnk_00[a & 0xff]].mUnk_86_1;
+                u8 rank;
+                u32 rankPoints = 0;
+                if (raceSetup->mMode == 5) {
+                    t = data_0217aa14->mUnk_104[data_0217aa18->mUnk_00[kartIndex & 0xff]].mUnk_86_1;
                 } else {
-                    t = gRaceProgress->mKarts[a].mRank;
+                    t = gRaceProgress->mKarts[kartIndex].mRank;
                 }
-                w = t;
-                if (gRaceProgress->mUnk_000[a].mStatus != 4) {
-                    z = LookupRankPoints(w);
+                rank = t;
+                if (gRaceProgress->mUnk_000[kartIndex].mStatus != 4) {
+                    rankPoints = LookupRankPoints(rank);
                 }
-                SetKartCourseResult(a, w, z);
-                SetKartCourseFinishTime(a, &gRaceProgress->mKarts[a].mLapTimes[5]);
+                SetKartCourseResult(kartIndex, rank, rankPoints);
+                SetKartCourseFinishTime(kartIndex, &gRaceProgress->mKarts[kartIndex].mLapTimes[5]);
                 if (gRaceSetup->mMode == 5) {
-                    if (gRaceProgress->mUnk_000[a].mStatus == 4) {
-                        ClearKartCourseTotalPoints(a);
+                    if (gRaceProgress->mUnk_000[kartIndex].mStatus == 4) {
+                        ClearKartCourseTotalPoints(kartIndex);
                     }
                 }
-                if (f != FALSE) {
-                    if (w == 1) {
-                        v = gRaceSetup->mCurrentEntries[a].mPlayer.mTeamIndex;
+                if (usesTeams != FALSE) {
+                    if (rank == 1) {
+                        winningTeamIndex = gRaceSetup->mCurrentEntries[kartIndex].mPlayer.mTeamIndex;
                     }
                 }
-                d = gRaceSetup;
+                raceSetup = gRaceSetup;
             }
             break;
         }
         case MODE_BATTLE: {
             s32 e;
-            if (f != FALSE) {
-                a = 0;
-                if (a < d->mKartCount) {
-                    p = gRaceProgress;
+            if (usesTeams != FALSE) {
+                kartIndex = 0;
+                if (kartIndex < raceSetup->mKartCount) {
+                    raceProgress = gRaceProgress;
                     do {
-                        if (p->mUnk_000[a].mStatus == 1) {
-                            if (f != FALSE) {
-                                if (v == -1) {
-                                    d = gRaceSetup;
-                                    v = d->mCurrentEntries[a].mPlayer.mTeamIndex;
+                        if (raceProgress->mUnk_000[kartIndex].mStatus == 1) {
+                            if (usesTeams != FALSE) {
+                                if (winningTeamIndex == -1) {
+                                    raceSetup = gRaceSetup;
+                                    winningTeamIndex = raceSetup->mCurrentEntries[kartIndex].mPlayer.mTeamIndex;
                                 }
                             }
                         }
-                        a = (u16) (a + 1);
-                    } while (a < d->mKartCount);
+                        kartIndex = (u16) (kartIndex + 1);
+                    } while (kartIndex < raceSetup->mKartCount);
                 }
             }
-            for (a = 0; a < gRaceSetup->mKartCount; a = (u16) (a + 1)) {
-                gRaceProgress->mUnk_000[a].mFlags |= 2;
-                if (gRaceProgress->mUnk_000[a].mStatus == 1) {
-                    if (f != FALSE) {
-                        e = v == gRaceSetup->mCurrentEntries[a].mPlayer.mTeamIndex ? 1 : 0;
+            for (kartIndex = 0; kartIndex < gRaceSetup->mKartCount; kartIndex = (u16) (kartIndex + 1)) {
+                gRaceProgress->mUnk_000[kartIndex].mFlags |= 2;
+                if (gRaceProgress->mUnk_000[kartIndex].mStatus == 1) {
+                    if (usesTeams != FALSE) {
+                        e = winningTeamIndex == gRaceSetup->mCurrentEntries[kartIndex].mPlayer.mTeamIndex ? 1 : 0;
                     } else {
                         e = 1;
                     }
-                    func_0205d88c(a, 1);
+                    func_0205d88c(kartIndex, 1);
                 } else {
-                    if (f != FALSE) {
-                        e = v == gRaceSetup->mCurrentEntries[a].mPlayer.mTeamIndex ? 1 : 0;
+                    if (usesTeams != FALSE) {
+                        e = winningTeamIndex == gRaceSetup->mCurrentEntries[kartIndex].mPlayer.mTeamIndex ? 1 : 0;
                     } else {
                         e = 0;
                     }
-                    func_0205d88c(a, 0);
-                    if (gRaceProgress->mUnk_000[a].mStatus == 0) {
-                        gRaceProgress->mUnk_000[a].mStatus = 2;
+                    func_0205d88c(kartIndex, 0);
+                    if (gRaceProgress->mUnk_000[kartIndex].mStatus == 0) {
+                        gRaceProgress->mUnk_000[kartIndex].mStatus = 2;
                     }
                 }
-                func_02068640(GetKart(a), e);
+                func_02068640(GetKart(kartIndex), e);
             }
             func_02110cc8(0);
             break;
         }
     }
-    if (f != FALSE) {
-        SetTeamWinCountsAndPoints(v);
+    if (usesTeams != FALSE) {
+        SetTeamWinCountsAndPoints(winningTeamIndex);
     }
     gRaceProgress->mRaceDone = 1;
 }
 
 void func_0203d078(void) {
-    u32 i;
+    u32 kartIndex;
     if (IsWinnerDecidedAndEndReached() != 0) {
-        for (i = 0; i < gRaceSetup->mKartCount; i = (u16) (i + 1)) {
-            RaceProgressKart *p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], i * 0x8c);
-            if (p->mStatus == 0) {
-                if (IsKartOnWinningTeamAtEnd(i) != 0) {
-                    p->mStatus = 1;
+        for (kartIndex = 0; kartIndex < gRaceSetup->mKartCount; kartIndex = (u16) (kartIndex + 1)) {
+            RaceProgressKart *kart = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], kartIndex * 0x8c);
+            if (kart->mStatus == 0) {
+                if (IsKartOnWinningTeamAtEnd(kartIndex) != 0) {
+                    kart->mStatus = 1;
                 } else {
-                    p->mStatus = 2;
+                    kart->mStatus = 2;
                 }
-                p->mFlags |= 2;
+                kart->mFlags |= 2;
             }
         }
         return;
     }
-    for (i = 0; i < gRaceSetup->mKartCount; i = (u16) (i + 1)) {
-        if (IsKartEliminated(i) != FALSE) {
-            RaceProgressKart *p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], i * 0x8c);
-            if (p->mStatus == 0) {
-                if (IsKartOnWinningTeamAtEnd(i) != 0) {
-                    p->mStatus = 1;
+    for (kartIndex = 0; kartIndex < gRaceSetup->mKartCount; kartIndex = (u16) (kartIndex + 1)) {
+        if (IsKartEliminated(kartIndex) != FALSE) {
+            RaceProgressKart *kart = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], kartIndex * 0x8c);
+            if (kart->mStatus == 0) {
+                if (IsKartOnWinningTeamAtEnd(kartIndex) != 0) {
+                    kart->mStatus = 1;
                 } else {
-                    p->mStatus = 2;
+                    kart->mStatus = 2;
                 }
-                p->mFlags |= 2;
+                kart->mFlags |= 2;
             }
         }
     }
@@ -178,119 +178,119 @@ static inline u16 func_0203cd14_inline(s32 v) {
 
 // TRUE once no kart is still racing in battle, until the race is marked done.
 BOOL ShouldFinishBattle(void) {
-    u32 i;
-    s32 c;
-    BOOL r = TRUE;
-    RaceProgress *d = gRaceProgress;
-    if (d->mRaceDone != 0) {
+    u32 kartIndex;
+    s32 racingCount;
+    BOOL noneRacing = TRUE;
+    RaceProgress *raceProgress = gRaceProgress;
+    if (raceProgress->mRaceDone != 0) {
         return FALSE;
     }
     if (gRaceSetup->mMode == MODE_BATTLE) {
-        c = 0;
-        for (i = 0; i < gRaceSetup->mKartCount; i = (u16) (i + 1)) {
-            if (d->mUnk_000[i].mStatus == 0) {
-                c++;
-                if (c > 0) {
-                    r = FALSE;
+        racingCount = 0;
+        for (kartIndex = 0; kartIndex < gRaceSetup->mKartCount; kartIndex = (u16) (kartIndex + 1)) {
+            if (raceProgress->mUnk_000[kartIndex].mStatus == 0) {
+                racingCount++;
+                if (racingCount > 0) {
+                    noneRacing = FALSE;
                     break;
                 }
             }
         }
-        return r;
+        return noneRacing;
     }
     return FALSE;
 }
 
 void AdvanceMissionRunEnd(void) {
-    BOOL g = FALSE;
-    s32 k = 2;
-    RaceSetup *d = gRaceSetup;
-    s32 v = d->mEntryIndex;
+    BOOL endFound = FALSE;
+    s32 endKind = 2;
+    RaceSetup *raceSetup = gRaceSetup;
+    s32 entryIndex = raceSetup->mEntryIndex;
     u16 w;
-    u32 v1;
-    RaceProgressKart *p;
-    BOOL h;
-    if (v < 0) {
+    u32 kartOffset;
+    RaceProgressKart *kart;
+    BOOL hasEnded;
+    if (entryIndex < 0) {
         return;
     }
-    w = v;
-    v1 = w * 0x8c;
-    p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], v1);
-    h = FALSE;
-    switch (p->mStatus) {
+    w = entryIndex;
+    kartOffset = w * 0x8c;
+    kart = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], kartOffset);
+    hasEnded = FALSE;
+    switch (kart->mStatus) {
         case 1:
         case 2:
         case 3:
-            h = TRUE;
+            hasEnded = TRUE;
             break;
     }
-    if (h != FALSE) {
-        if ((p->mFlags & 0x10) != 0) {
+    if (hasEnded != FALSE) {
+        if ((kart->mFlags & 0x10) != 0) {
             gRaceProgress->mFramesSinceFinish++;
             if (gRaceProgress->mFramesSinceFinish <= gRaceSetup->mFinishWaitFrameCount) {
                 return;
             }
-            func_020688a0(GetKart((u16) v));
-            func_0207a828(func_0203cd14_inline(v));
+            func_020688a0(GetKart((u16) entryIndex));
+            func_0207a828(func_0203cd14_inline(entryIndex));
             func_020b3f64();
             func_02110cc8(0);
             if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 FinishStandings();
             }
-            p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], v1);
-            p->mFlags &= ~0x10;
-        } else if ((p->mFlags & 0x20) != 0) {
+            kart = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], kartOffset);
+            kart->mFlags &= ~0x10;
+        } else if ((kart->mFlags & 0x20) != 0) {
             if (func_0207a218() != 0) {
                 gRaceProgress->mFramesSinceFailure++;
             }
             if (gRaceProgress->mFramesSinceFailure <= 0x3c) {
                 return;
             }
-            func_020688a0(GetKart(v));
-            func_0207a828((u16) v);
+            func_020688a0(GetKart(entryIndex));
+            func_0207a828((u16) entryIndex);
             func_02110cc8(0);
             if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 FinishStandings();
             }
-            p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], v1);
-            p->mFlags &= ~0x20;
+            kart = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], kartOffset);
+            kart->mFlags &= ~0x20;
         }
         return;
     }
-    if ((d->mUnk_044 & 2) != 0) {
+    if ((raceSetup->mUnk_044 & 2) != 0) {
         if (func_0207a574() != FALSE) {
-            g = TRUE;
+            endFound = TRUE;
         }
     }
-    if (g == FALSE) {
+    if (endFound == FALSE) {
         if ((gRaceSetup->mUnk_044 & 4) != 0) {
             if (func_0207a538() != 0) {
-                k = 3;
-                g = TRUE;
+                endKind = 3;
+                endFound = TRUE;
             }
         }
     }
-    if (g == FALSE) {
+    if (endFound == FALSE) {
         if ((gRaceSetup->mUnk_044 & 8) != 0) {
             if (func_0207a4fc() != 0) {
-                g = TRUE;
+                endFound = TRUE;
             }
         }
     }
-    if (g == FALSE) {
+    if (endFound == FALSE) {
         if (func_0205e1c4() != 0) {
-            k = 4;
-            g = TRUE;
+            endKind = 4;
+            endFound = TRUE;
         }
     }
-    if (g == FALSE) {
+    if (endFound == FALSE) {
         return;
     }
-    FinishRaceProgressKartWithEndKind((u16) gRaceSetup->mEntryIndex, k);
+    FinishRaceProgressKartWithEndKind((u16) gRaceSetup->mEntryIndex, endKind);
 }
 
-void FinishRaceProgressKartWithEndKind4(u16 a) {
-    FinishRaceProgressKartWithEndKind(a, 4);
+void FinishRaceProgressKartWithEndKind4(u16 kartIndex) {
+    FinishRaceProgressKartWithEndKind(kartIndex, 4);
 }
 
 void UpdateRaceProgress(void) {
@@ -298,9 +298,9 @@ void UpdateRaceProgress(void) {
     UpdateRaceClock();
     if (gRaceSetup->mMode == 5) {
         for (i = 0; i < gRaceSetup->mKartCount; i = (u16) (i + 1)) {
-            RaceProgressKart *p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], i * 0x8c);
-            if (p->mFinishRequest != 0) {
-                FinishRaceProgressKart(p, p->mFinishRequest == 1 ? 1 : 0);
+            RaceProgressKart *kart = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], i * 0x8c);
+            if (kart->mFinishRequest != 0) {
+                FinishRaceProgressKart(kart, kart->mFinishRequest == 1 ? 1 : 0);
                 if (IsRaceEndConditionMet() != 0) {
                     switch (gRaceSetup->mMode) {
                         case MODE_TIME_ATTACK:
@@ -319,7 +319,7 @@ void UpdateRaceProgress(void) {
                             break;
                     }
                 }
-                p->mFinishRequest = 0;
+                kart->mFinishRequest = 0;
             }
         }
     }
@@ -344,9 +344,9 @@ void UpdateRaceProgress(void) {
     if (gRaceSetup->mMode == MODE_BATTLE) {
         for (i = 0; i < gRaceSetup->mKartCount; i = (u16) (i + 1)) {
             u16 *q;
-            u8 v = func_0203ca38_inline(i);
+            u8 standingRank = func_0203ca38_inline(i);
             q = OFFSET_PTR(u16, &gRaceProgress->mUnk_000[0].mUnk_50, i * 0x8c);
-            *q = (*q & ~0xf) | (v & 0xf);
+            *q = (*q & ~0xf) | (standingRank & 0xf);
         }
         for (i = 0; i < 8; i = (u16) (i + 1)) {
             gRaceProgress->mKartAtRank[i] = -1;

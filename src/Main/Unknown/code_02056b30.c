@@ -48,7 +48,7 @@ void func_02056b30(PackedGrandPrixRecord *a, TimeRecord *b) {
         a->mSecond = b->mSecond;
         a->mMillisecond = b->mMillisecond;
         a->mUnk_00_b[3] = b->mUnk_1e;
-        a->mUnk_00_b[2] = b->mUnk_1d;
+        a->mUnk_00_b[2] = b->mTotalPoints;
         a->mUnk_04_b[0] = b->mCupRank;
     }
 }

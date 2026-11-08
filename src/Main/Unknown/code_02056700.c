@@ -21,29 +21,29 @@
 
 #pragma thumb on
 
-void func_02056a4c(MissionRecord *a, Unk02056a2c *b) {
-    if (b->mUnk_00 != 0) {
+void func_02056a4c(MissionRecord *a, UnpackedMissionRecord *b) {
+    if (b->mFilled != 0) {
         a->mFilled = 1;
-        a->mUnk_00_1 = b->mUnk_01;
+        a->mUnk_00_1 = b->mValue;
     } else {
         a->mFilled = 0;
     }
 }
 
-void func_02056a2c(MissionRecord *a, Unk02056a2c *b) {
+void func_02056a2c(MissionRecord *a, UnpackedMissionRecord *b) {
     if (a->mFilled != 0) {
-        b->mUnk_00 = 1;
-        b->mUnk_01 = a->mUnk_00_1;
+        b->mFilled = 1;
+        b->mValue = a->mUnk_00_1;
     } else {
-        b->mUnk_00 = 0;
+        b->mFilled = 0;
     }
 }
 
-void func_02056a04(s32 a, s32 b, Unk02056a2c *c) {
+void func_02056a04(s32 a, s32 b, UnpackedMissionRecord *c) {
     func_02056a4c(&data_0217aa08->mMissionRecordBlock->mRecords[(a - 1) * 9 + b - 1], c);
 }
 
-s32 func_020569dc(s32 a, s32 b, Unk02056a2c *c) {
+s32 func_020569dc(s32 a, s32 b, UnpackedMissionRecord *c) {
     func_02056a2c(&data_0217aa08->mMissionRecordBlock->mRecords[(a - 1) * 9 + b - 1], c);
     return 1;
 }

@@ -214,7 +214,7 @@ void InitResultsGp(void *heap, void *firstOamList, void *secondOamList) {
     if (i >= 0) {
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, (u16) i);
     }
-    if (func_0203b324()) {
+    if (TrySetGrandPrixRecord()) {
         func_02057d9c();
         if (data_021759d4->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();

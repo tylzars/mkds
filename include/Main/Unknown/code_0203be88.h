@@ -28,20 +28,20 @@ typedef struct Unk0203bf04_b {
     /* 230 */ u8 mUnk_230[0xdcc];
 } Unk0203bf04_b;
 
-void func_0203be88(u8 *a, u32 b, u32 c);
-void func_0203bea4(u8 *a, u32 b, u32 c);
-void func_0203bec0(u8 *a);
-u8 *func_0203bedc(void *a);
-void func_0203bf04(Unk0203bf04_a *a, Unk0203bf04_b *b);
-void GetClockTimeOrZero(RTCTime *a);
-void GetClockDateOrDefault(s32 *a);
+void SetGivenKart(u8 *rawPicks, u32 entryIndex, u32 kartIndex);
+void SetGivenCharacter(u8 *rawPicks, u32 entryIndex, u32 characterIndex);
+void InitCharacterKartPicks(u8 *rawPicks);
+u8 *func_0203bedc(void *heap);
+void func_0203bf04(Unk0203bf04_a *courseGhost, Unk0203bf04_b *slotGhost);
+void GetClockTimeOrZero(RTCTime *time);
+void GetClockDateOrDefault(s32 *date);
 // Scene function of gSceneFuncs[0] (scene 'Title' in gSceneNames): copies the callbacks and calls
 // RunScene. Returns 0.
-u32 RunTitleScene(SceneNumbers *a);
+u32 RunTitleScene(SceneNumbers *sceneNumbers);
 void UpdateTitleScene(s32 a);
 void func_0203c07c(void);
 void ReleaseTitleScene(void);
 void InitTitleScene(void);
 u32 func_0203c0bc(void);
 BOOL IsFramesSinceFinishPastWait(void);
-void func_0203c1a8(Vec3 *a, u32 b);
+void func_0203c1a8(Vec3 *position, u32 kartIndex);

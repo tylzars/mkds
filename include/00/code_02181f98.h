@@ -125,9 +125,9 @@ typedef struct Unk0217b488 {
     /* 088 */ s32 mEngineIndex;
     /* 08c */ s32 mMirrorMode;
     /* 090 */ s32 mCharacterIndex;
-    /* 094 */ s32 mUnk_94;
-    /* 098 */ Unk0217aa1c_144_00 mUnk_98[4];
-    /* 0a8 */ u16 mUnk_a8;
+    /* 094 */ s32 mKartIndex;
+    /* 098 */ Unk0217aa1c_144_00 mCourseTimes[4];
+    /* 0a8 */ u16 mTotalPoints;
     /* 0aa */ u8 mUnk_aa[0x2];
     /* 0ac */ s32 mUnk_ac[8];
     /* 0cc */ s32 mUnk_cc[8];

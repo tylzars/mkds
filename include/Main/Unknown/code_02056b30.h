@@ -16,7 +16,7 @@ typedef struct TimeRecord {
     /* 1a */ u8 mKartIndex;
     /* 1b */ u8 mUnk_1b;
     /* 1c */ u8 mCupRank;
-    /* 1d */ u8 mUnk_1d;
+    /* 1d */ u8 mTotalPoints;
     /* 1e */ u8 mUnk_1e;
     /* 1f */ u8 mUnk_1f;
 } TimeRecord;

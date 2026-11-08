@@ -34,9 +34,9 @@
 #include "01/code_0218155c.h"
 #include "Main/Unknown/code_0203e74c.h"
 
-void func_0203c1a8(Vec3 *a, u32 b) {
+void func_0203c1a8(Vec3 *position, u32 kartIndex) {
     s32 v;
-    if (func_0204176c(a, &v) == 0) {
+    if (func_0204176c(position, &v) == 0) {
         return;
     }
     if (v != 0) {
@@ -46,9 +46,9 @@ void func_0203c1a8(Vec3 *a, u32 b) {
         if (gRaceSetup->mMode != MODE_MISSION_RUN) {
             return;
         }
-        FinishRaceProgressKartWithEndKind(b, 0);
+        FinishRaceProgressKartWithEndKind(kartIndex, 0);
     } else {
-        FinishRaceProgressKartWithEndKind(b, 6);
+        FinishRaceProgressKartWithEndKind(kartIndex, 6);
     }
 }
 
@@ -57,19 +57,19 @@ BOOL IsFramesSinceFinishPastWait(void) {
 }
 
 u32 func_0203c0bc(void) {
-    u32 v;
-    s32 i = gRaceSetup->mEntryIndex;
-    if (i == -1) {
+    u32 framesSinceEntryEnd;
+    s32 entryIndex = gRaceSetup->mEntryIndex;
+    if (entryIndex == -1) {
         return 0;
     }
     if (gRaceProgress->mUnk_000[0].mUnk_0a >= 7) {
         return 1;
     }
-    if (func_0204a620((KeyRecording *) &data_02175628[i].mUnk_28) != FALSE) {
+    if (func_0204a620((KeyRecording *) &data_02175628[entryIndex].mUnk_28) != FALSE) {
         return 1;
     }
-    if (TryGetRaceUpdateFramesSinceEntryEnd(&v) != 0) {
-        if (v > 0x384) {
+    if (TryGetRaceUpdateFramesSinceEntryEnd(&framesSinceEntryEnd) != 0) {
+        if (framesSinceEntryEnd > 0x384) {
             return 1;
         }
     }
@@ -84,12 +84,12 @@ void InitTitleScene(void) {
 }
 
 void ReleaseTitleScene(void) {
-    u32 value12;
+    u32 unused;
     func_020ad32c();
 }
 
 void func_0203c07c(void) {
-    u32 value12;
+    u32 unused;
     func_020ada94();
 }
 
@@ -98,72 +98,72 @@ void UpdateTitleScene(s32 a) {
     AdvanceTitleStates(a);
 }
 
-u32 RunTitleScene(SceneNumbers *a) {
-    SceneCallbacks b = data_usa_02164798;
-    RunScene(a, &b);
+u32 RunTitleScene(SceneNumbers *sceneNumbers) {
+    SceneCallbacks callbacks = gTitleSceneCallbacks;
+    RunScene(sceneNumbers, &callbacks);
     return 0;
 }
 
-void GetClockDateOrDefault(s32 *a) {
-    if (RTC_GetDate((RTCDate *) a) != 0) {
-        a[0] = 5;
-        a[1] = 1;
-        a[2] = 1;
+void GetClockDateOrDefault(s32 *date) {
+    if (RTC_GetDate((RTCDate *) date) != 0) {
+        date[0] = 5;
+        date[1] = 1;
+        date[2] = 1;
     }
 }
 
-void GetClockTimeOrZero(RTCTime *a) {
-    if (RTC_GetTime(a) != 0) {
-        a->mHour = 0;
-        a->mMinute = 0;
-        a->mSecond = 0;
+void GetClockTimeOrZero(RTCTime *time) {
+    if (RTC_GetTime(time) != 0) {
+        time->mHour = 0;
+        time->mMinute = 0;
+        time->mSecond = 0;
     }
 }
 
-void func_0203bf04(Unk0203bf04_a *a, Unk0203bf04_b *b) {
-    MI_CpuCopy8(a, b, 0x30);
-    MI_CpuCopy8(a->mUnk_030, b->mUnk_230, 0xdcc);
+void func_0203bf04(Unk0203bf04_a *courseGhost, Unk0203bf04_b *slotGhost) {
+    MI_CpuCopy8(courseGhost, slotGhost, 0x30);
+    MI_CpuCopy8(courseGhost->mUnk_030, slotGhost->mUnk_230, 0xdcc);
     if (data_0217aa08->mEmblemRecord->mFilled != 0 && data_0217aa08->mUnk_00->mUnk_31_3 == 0) {
-        MI_CpuCopy8(data_0217aa08->mEmblemRecord->mEmblemData, b->mUnk_030, 0x200);
-        b->mUnk_008 |= 2;
+        MI_CpuCopy8(data_0217aa08->mEmblemRecord->mEmblemData, slotGhost->mUnk_030, 0x200);
+        slotGhost->mUnk_008 |= 2;
     } else {
-        MI_CpuFill8(b->mUnk_030, 0, 0x200);
-        b->mUnk_008 &= ~2;
+        MI_CpuFill8(slotGhost->mUnk_030, 0, 0x200);
+        slotGhost->mUnk_008 &= ~2;
     }
-    b->mUnk_02f_0 = func_02056208();
+    slotGhost->mUnk_02f_0 = func_02056208();
 }
 
 #pragma thumb on
 
-u8 *func_0203bedc(void *a) {
-    CharacterKartPicks *p;
-    void *t;
-    p = HeapAlloc(a, 0x48);
-    t = CreateKartAppear(a);
-    p->mUnk_44 = t;
-    func_0203bec0((u8 *) p);
-    return (u8 *) p;
+u8 *func_0203bedc(void *heap) {
+    CharacterKartPicks *picks;
+    void *kartAppear;
+    picks = HeapAlloc(heap, 0x48);
+    kartAppear = CreateKartAppear(heap);
+    picks->mKartAppear = kartAppear;
+    InitCharacterKartPicks((u8 *) picks);
+    return (u8 *) picks;
 }
 
-void func_0203bec0(u8 *a) {
-    CharacterKartPicks *p = (CharacterKartPicks *) a;
-    u8 i;
-    p->mKartGivenBits = 0;
-    p->mCharacterGivenBits = 0;
-    for (i = 0; i < 8; i++) {
-        p->mCharacterIndices[i] = -1;
-        p->mKartIndices[i] = -1;
+void InitCharacterKartPicks(u8 *rawPicks) {
+    CharacterKartPicks *picks = (CharacterKartPicks *) rawPicks;
+    u8 entryIndex;
+    picks->mKartGivenBits = 0;
+    picks->mCharacterGivenBits = 0;
+    for (entryIndex = 0; entryIndex < 8; entryIndex++) {
+        picks->mCharacterIndices[entryIndex] = -1;
+        picks->mKartIndices[entryIndex] = -1;
     }
 }
 
-void func_0203bea4(u8 *a, u32 b, u32 c) {
-    CharacterKartPicks *p = (CharacterKartPicks *) a;
-    p->mCharacterGivenBits |= 1 << b;
-    p->mCharacterIndices[b] = c;
+void SetGivenCharacter(u8 *rawPicks, u32 entryIndex, u32 characterIndex) {
+    CharacterKartPicks *picks = (CharacterKartPicks *) rawPicks;
+    picks->mCharacterGivenBits |= 1 << entryIndex;
+    picks->mCharacterIndices[entryIndex] = characterIndex;
 }
 
-void func_0203be88(u8 *a, u32 b, u32 c) {
-    CharacterKartPicks *p = (CharacterKartPicks *) a;
-    p->mKartGivenBits |= 1 << b;
-    p->mKartIndices[b] = c;
+void SetGivenKart(u8 *rawPicks, u32 entryIndex, u32 kartIndex) {
+    CharacterKartPicks *picks = (CharacterKartPicks *) rawPicks;
+    picks->mKartGivenBits |= 1 << entryIndex;
+    picks->mKartIndices[entryIndex] = kartIndex;
 }

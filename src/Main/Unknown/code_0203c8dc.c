@@ -6,32 +6,32 @@
 #include "Main/Unknown/unk_02175628.h"
 
 void func_0203c98c(void) {
-    u32 i;
+    u32 entryIndex;
     func_02043544(1);
-    for (i = 0; i < gRaceSetup->mKartCount; i = (u16) (i + 1)) {
-        InputSlot *e = &data_02175628[gRaceSetup->mCurrentEntries[i].mPlayer.mIndex];
-        if (e->mSourceKind != 1) {
-            if (e->mSourceKind == 2) {
-                func_0204a978((KeyRecording *) &e->mUnk_28);
+    for (entryIndex = 0; entryIndex < gRaceSetup->mKartCount; entryIndex = (u16) (entryIndex + 1)) {
+        InputSlot *inputSlot = &data_02175628[gRaceSetup->mCurrentEntries[entryIndex].mPlayer.mIndex];
+        if (inputSlot->mSourceKind != 1) {
+            if (inputSlot->mSourceKind == 2) {
+                func_0204a978((KeyRecording *) &inputSlot->mUnk_28);
             }
         } else {
-            func_0204a910((KeyRecording *) &e->mUnk_28);
+            func_0204a910((KeyRecording *) &inputSlot->mUnk_28);
         }
     }
 }
 
-void GetRaceClockTime(u8 *a, u8 *b, u16 *c) {
-    Unk0217aa1c_144_00 *t;
+void GetRaceClockTime(u8 *outMinute, u8 *outSecond, u16 *outMillisecond) {
+    Unk0217aa1c_144_00 *clockTime;
 
-    t = &gRaceProgress->mUnk_000[0].mUnk_08_view;
-    *a = t->mUnk_02;
-    *b = t->mUnk_03;
-    *c = t->mUnk_00;
+    clockTime = &gRaceProgress->mUnk_000[0].mUnk_08_view;
+    *outMinute = clockTime->mUnk_02;
+    *outSecond = clockTime->mUnk_03;
+    *outMillisecond = clockTime->mUnk_00;
 }
 
-u32 GetKartRank(u32 param_1) {
+u32 GetKartRank(u32 kartIndex) {
     if (gRaceSetup->mMode == 5) {
-        return data_0217aa14->mUnk_104[data_0217aa18->mUnk_00[param_1 & 0xff]].mUnk_86_1;
+        return data_0217aa14->mUnk_104[data_0217aa18->mUnk_00[kartIndex & 0xff]].mUnk_86_1;
     }
-    return gRaceProgress->mKarts[param_1].mRank;
+    return gRaceProgress->mKarts[kartIndex].mRank;
 }

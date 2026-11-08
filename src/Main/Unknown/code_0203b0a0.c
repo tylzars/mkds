@@ -25,165 +25,165 @@
 #include "Main/Unknown/code_0204f240.h"
 #include "Main/Unknown/code_0203c5f8.h"
 
-void func_0203b598(TimeRecord *a, Unk0217aa1c_144_00 *b, TimeRecord *c) {
-    u16 v1 = a->mMillisecond + b->mUnk_00;
-    u16 v2 = a->mMinute + b->mUnk_02;
-    u16 v3 = a->mSecond + b->mUnk_03;
-    u16 d = v1 / 1000;
-    if (d != 0) {
-        v3 += d;
-        v1 -= d * 1000;
+void SumTimes(TimeRecord *firstTime, Unk0217aa1c_144_00 *secondTime, TimeRecord *sum) {
+    u16 milliseconds = firstTime->mMillisecond + secondTime->mUnk_00;
+    u16 minutes = firstTime->mMinute + secondTime->mUnk_02;
+    u16 seconds = firstTime->mSecond + secondTime->mUnk_03;
+    u16 carry = milliseconds / 1000;
+    if (carry != 0) {
+        seconds += carry;
+        milliseconds -= carry * 1000;
     }
-    d = v3 / 60;
-    if (d != 0) {
-        v2 += d;
-        v3 -= d * 60;
+    carry = seconds / 60;
+    if (carry != 0) {
+        minutes += carry;
+        seconds -= carry * 60;
     }
-    if (v2 > 99) {
-        v2 = 99;
+    if (minutes > 99) {
+        minutes = 99;
     }
-    c->mMinute = v2;
-    c->mSecond = v3;
-    c->mMillisecond = v1;
+    sum->mMinute = minutes;
+    sum->mSecond = seconds;
+    sum->mMillisecond = milliseconds;
 }
 
-void func_0203b4c8(TimeRecord *a) {
-    u8 i;
-    a->mMinute = 0;
-    a->mSecond = 0;
-    a->mMillisecond = 0;
-    MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, a->mName, 0x14);
-    for (i = 0; i < 4; i++) {
-        func_0203b598(a, &data_0217b488->mUnk_98[i], a);
+void FillGrandPrixRecord(TimeRecord *record) {
+    u8 courseIndex;
+    record->mMinute = 0;
+    record->mSecond = 0;
+    record->mMillisecond = 0;
+    MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, record->mName, 0x14);
+    for (courseIndex = 0; courseIndex < 4; courseIndex++) {
+        SumTimes(record, &data_0217b488->mCourseTimes[courseIndex], record);
     }
-    a->mCharacterIndex = data_0217b488->mCharacterIndex;
-    a->mKartIndex = data_0217b488->mUnk_94;
-    a->mUnk_1b = 0;
-    a->mCupRank = data_usa_02154064[data_0217b488->mCupRankIndex];
-    a->mUnk_1d = data_0217b488->mUnk_a8;
-    a->mUnk_1e = data_0217b488->mUnk_80;
-    a->mFilled = 1;
+    record->mCharacterIndex = data_0217b488->mCharacterIndex;
+    record->mKartIndex = data_0217b488->mKartIndex;
+    record->mUnk_1b = 0;
+    record->mCupRank = gCupRankTable[data_0217b488->mCupRankIndex];
+    record->mTotalPoints = data_0217b488->mTotalPoints;
+    record->mUnk_1e = data_0217b488->mUnk_80;
+    record->mFilled = 1;
 }
 
-BOOL func_0203b3d8(TimeRecord *a, TimeRecord *b) {
-    s32 x;
-    s32 y;
-    if (b->mCupRank == 3) {
+BOOL ShouldSetGrandPrixRecord(TimeRecord *storedRecord, TimeRecord *newRecord) {
+    s32 storedTimeMs;
+    s32 newTimeMs;
+    if (newRecord->mCupRank == 3) {
         return FALSE;
     }
-    if (a->mFilled == 0) {
+    if (storedRecord->mFilled == 0) {
         return TRUE;
     }
-    if (a->mCupRank > b->mCupRank) {
+    if (storedRecord->mCupRank > newRecord->mCupRank) {
         return TRUE;
     }
-    if (a->mCupRank < b->mCupRank) {
+    if (storedRecord->mCupRank < newRecord->mCupRank) {
         return FALSE;
     }
-    if (a->mUnk_1e < b->mUnk_1e) {
+    if (storedRecord->mUnk_1e < newRecord->mUnk_1e) {
         return TRUE;
     }
-    if (a->mUnk_1e > b->mUnk_1e) {
+    if (storedRecord->mUnk_1e > newRecord->mUnk_1e) {
         return FALSE;
     }
-    if (a->mUnk_1d < b->mUnk_1d) {
+    if (storedRecord->mTotalPoints < newRecord->mTotalPoints) {
         return TRUE;
     }
-    if (a->mUnk_1d > b->mUnk_1d) {
+    if (storedRecord->mTotalPoints > newRecord->mTotalPoints) {
         return FALSE;
     }
-    x = a->mSecond * 1000 + a->mMinute * 60000 + a->mMillisecond;
-    y = b->mSecond * 1000 + b->mMinute * 60000 + b->mMillisecond;
-    return x > y;
+    storedTimeMs = storedRecord->mSecond * 1000 + storedRecord->mMinute * 60000 + storedRecord->mMillisecond;
+    newTimeMs = newRecord->mSecond * 1000 + newRecord->mMinute * 60000 + newRecord->mMillisecond;
+    return storedTimeMs > newTimeMs;
 }
 
-s32 func_0203b324(void) {
-    TimeRecord a;
-    TimeRecord b;
-    BOOL r = FALSE;
-    s32 v;
+BOOL TrySetGrandPrixRecord(void) {
+    TimeRecord storedRecord;
+    TimeRecord newRecord;
+    BOOL stored = FALSE;
+    s32 engineClass;
     Unk0217b488 *p = data_0217b488;
     switch (p->mEngineIndex) {
         case 0:
-            v = r;
+            engineClass = stored;
             break;
         case 1:
-            v = 1;
+            engineClass = 1;
             break;
         case 2:
-            v = (p->mMirrorMode != 0) ? 3 : 2;
+            engineClass = (p->mMirrorMode != 0) ? 3 : 2;
             break;
     }
-    GetGrandPrixRecord(p->mCupIndex, v, &a);
-    func_0203b4c8(&b);
-    if (func_0203b3d8(&a, &b) != FALSE) {
-        SetGrandPrixRecord(data_0217b488->mCupIndex, v, &b);
+    GetGrandPrixRecord(p->mCupIndex, engineClass, &storedRecord);
+    FillGrandPrixRecord(&newRecord);
+    if (ShouldSetGrandPrixRecord(&storedRecord, &newRecord) != FALSE) {
+        SetGrandPrixRecord(data_0217b488->mCupIndex, engineClass, &newRecord);
         func_0205641c();
-        r = TRUE;
+        stored = TRUE;
     }
-    return r;
+    return stored;
 }
 
-u32 func_0203b230(void) {
-    Unk02056a2c c;
-    Unk02056a2c d;
-    u32 r = 0;
-    s32 a;
-    s32 b;
+u32 TrySetMissionRecord(void) {
+    UnpackedMissionRecord storedRecord;
+    UnpackedMissionRecord newRecord;
+    u32 stored = 0;
+    s32 missionRow;
+    s32 missionColumn;
     s32 t;
-    BOOL v1;
-    a = (gRaceSetup->mMode == MODE_MISSION_RUN) ? gRaceSetup->mMissionTableRow : -1;
-    b = (gRaceSetup->mMode == MODE_MISSION_RUN) ? gRaceSetup->mMissionTableColumn : -1;
+    BOOL shouldStore;
+    missionRow = (gRaceSetup->mMode == MODE_MISSION_RUN) ? gRaceSetup->mMissionTableRow : -1;
+    missionColumn = (gRaceSetup->mMode == MODE_MISSION_RUN) ? gRaceSetup->mMissionTableColumn : -1;
     t = IsKartEnded((u16) gRaceSetup->mEntryIndex);
     t = (t != 0) ? gRaceProgress->mEntryEndKind : 6;
     if (t != 0) {
         return 0;
     }
-    func_020569dc((u16) a, (u16) b, &c);
-    d.mUnk_00 = 1;
-    d.mUnk_01 = func_0205d140();
-    if (c.mUnk_00 == 0) {
-        v1 = TRUE;
+    func_020569dc((u16) missionRow, (u16) missionColumn, &storedRecord);
+    newRecord.mFilled = 1;
+    newRecord.mValue = func_0205d140();
+    if (storedRecord.mFilled == 0) {
+        shouldStore = TRUE;
     } else {
-        v1 = c.mUnk_01 < d.mUnk_01;
+        shouldStore = storedRecord.mValue < newRecord.mValue;
     }
-    if (v1 != FALSE) {
-        func_02056a04((u16) a, (u16) b, &d);
+    if (shouldStore != FALSE) {
+        func_02056a04((u16) missionRow, (u16) missionColumn, &newRecord);
         func_020563d8();
-        r = 1;
+        stored = 1;
     }
-    return r;
+    return stored;
 }
 
-void func_0203b1fc(void *a) {
+void func_0203b1fc(void *heap) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        InitBlockEntries(a, 1);
+        InitBlockEntries(heap, 1);
     }
     RequestMPState16ForNextRace();
 }
 
-void func_0203b1c8(void *a) {
+void func_0203b1c8(void *heap) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        InitBlockEntries(a, 1);
+        InitBlockEntries(heap, 1);
     }
     RequestMPState18();
 }
 
-void func_0203b194(void *a) {
+void func_0203b194(void *heap) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        InitBlockEntries(a, 1);
+        InitBlockEntries(heap, 1);
     }
     RequestMPState21();
 }
 
-void func_0203b0f8(void *a) {
-    void *r = NULL;
+void func_0203b0f8(void *heap) {
+    void *bannerFile = NULL;
     s32 t;
     u32 f;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        InitBlockEntries(a, 1);
+        InitBlockEntries(heap, 1);
     } else {
-        r = FindSceneFile(data_usa_0216478c);
+        bannerFile = FindSceneFile(data_usa_0216478c);
     }
     t = data_021759d0->mUnk_20;
     f = 1;
@@ -191,24 +191,24 @@ void func_0203b0f8(void *a) {
         f = 0;
     }
     if (f != 0) {
-        func_0204e928(a, t == 1, r);
-        InitMPChunkBuffers(a);
+        func_0204e928(heap, t == 1, bannerFile);
+        InitMPChunkBuffers(heap);
     }
     ResetRaceSetup();
 }
 
-BOOL func_0203b0a0(const Unk0203b0a0 *a, const Unk0203b0a0 *b) {
-    if (a->mUnk_00 < b->mUnk_00) {
+BOOL IsDateEarlier(const Unk0203b0a0 *firstDate, const Unk0203b0a0 *secondDate) {
+    if (firstDate->mUnk_00 < secondDate->mUnk_00) {
         return TRUE;
     }
-    if (a->mUnk_00 > b->mUnk_00) {
+    if (firstDate->mUnk_00 > secondDate->mUnk_00) {
         return FALSE;
     }
-    if (a->mUnk_01 < b->mUnk_01) {
+    if (firstDate->mUnk_01 < secondDate->mUnk_01) {
         return TRUE;
     }
-    if (a->mUnk_01 > b->mUnk_01) {
+    if (firstDate->mUnk_01 > secondDate->mUnk_01) {
         return FALSE;
     }
-    return a->mUnk_02 < b->mUnk_02;
+    return firstDate->mUnk_02 < secondDate->mUnk_02;
 }
