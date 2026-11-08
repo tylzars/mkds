@@ -37,9 +37,9 @@ void func_ov001_0218c490(Unk02188950 *a) {
     Kart *p = GetKart((u16) gRaceSetup->mEntryIndex);
 
     func_ov001_02187218(a, 2, func_ov001_0218c5d4);
-    func_ov001_02188d64(a, a->mPrm->mUnk_104, a->mPrm->mUnk_108);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_104, a->mPrm->mUnk_108);
     func_ov001_0219b1c4(a->mNsbmd, a->mPrm->mUnk_10c, a->mPrm->mUnk_108, 0);
-    func_ov001_02188cd8(a, a->mPrm->mUnk_110, a->mPrm->mUnk_114);
+    SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_110, a->mPrm->mUnk_114);
     func_ov001_02188c48(a, a->mPrm->mUnk_118, a->mPrm->mUnk_11c);
     SetAnglePointAndMoveAnglePoint(a, &p->mPos);
     func_ov001_02188e24(a, a->mPrm->mUnk_12c, NULL);
@@ -48,23 +48,23 @@ void func_ov001_0218c490(Unk02188950 *a) {
 
 void func_ov001_0218c3ac(Unk02188950 *a) {
     if (func_ov001_02188220(a) == 0) {
-        func_ov001_02188cd8(a, a->mPrm->mUnk_0a4, a->mPrm->mUnk_0a8);
+        SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_0a4, a->mPrm->mUnk_0a8);
         func_ov001_02188c48(a, a->mPrm->mUnk_0ac, a->mPrm->mUnk_0b0);
     } else if (func_ov001_02188220(a) == 1) {
-        func_ov001_02188cd8(a, a->mPrm->mUnk_0bc, a->mPrm->mUnk_0c0);
+        SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_0bc, a->mPrm->mUnk_0c0);
         func_ov001_02188c48(a, a->mPrm->mUnk_0c4, a->mPrm->mUnk_0c8);
     } else {
-        func_ov001_02188cd8(a, a->mPrm->mUnk_0cc, a->mPrm->mUnk_0d0);
+        SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_0cc, a->mPrm->mUnk_0d0);
         func_ov001_02188c48(a, a->mPrm->mUnk_0d4, a->mPrm->mUnk_0d8);
     }
-    SetAnglePointAndMoveAnglePoint(a, &func_ov001_02187fc0(a)->mPos);
+    SetAnglePointAndMoveAnglePoint(a, &GetCurrentGroupEntry(a)->mPos);
     func_ov001_02188e24(a, a->mPrm->mUnk_0b8, NULL);
-    func_ov001_02188de0(a, a->mPrm->mUnk_0b4, 0, &func_ov001_02187fc0(a)->mPos, NULL);
+    func_ov001_02188de0(a, a->mPrm->mUnk_0b4, 0, &GetCurrentGroupEntry(a)->mPos, NULL);
 }
 
 void func_ov001_0218c354(Unk02188950 *a) {
     func_ov001_02187218(a, 1, func_ov001_0218c5ac);
-    func_ov001_02188d64(a, a->mPrm->mUnk_098, a->mPrm->mUnk_09c);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_098, a->mPrm->mUnk_09c);
     func_ov001_0219b1c4(a->mNsbmd, a->mPrm->mUnk_0a0, a->mPrm->mUnk_09c, 0);
     func_ov001_0218c3ac(a);
     func_ov001_0218c5fc(a);

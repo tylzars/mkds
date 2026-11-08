@@ -5,9 +5,9 @@
 
 u32 func_ov001_0218c55c(Unk02188950 *a) {
     CourseMapGroupEntry *v1;
-    v1 = func_ov001_02187fc0(a);
+    v1 = GetCurrentGroupEntry(a);
     SetMoveAnglePoint(a, &v1->mPos);
-    v1 = func_ov001_02187fc0(a);
+    v1 = GetCurrentGroupEntry(a);
     func_ov001_02188d8c(a, &v1->mPos);
     return 0;
 }

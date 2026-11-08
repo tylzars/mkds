@@ -4,37 +4,39 @@
 #include "Main/Unknown/code_020fd83c.h"
 #include "Main/Unknown/code_020fd7f0.h"
 
-void func_ov001_02188200(Unk02188950 *a, UnkFunc *b) {
-    a->mKartCollisionCallback = b;
+void SetKartCollisionCallback(Unk02188950 *mapObject, UnkFunc *kartCollisionCallback) {
+    mapObject->mKartCollisionCallback = kartCollisionCallback;
 }
 
-void func_ov001_021881f4(Unk02188950 *a, UnkFunc *b) {
-    a->mItemCollisionCallback = b;
+void SetItemCollisionCallback(Unk02188950 *mapObject, UnkFunc *itemCollisionCallback) {
+    mapObject->mItemCollisionCallback = itemCollisionCallback;
 }
 
-BOOL func_ov001_021881a8(Unk02188950 *a, Vec3 *b, s32 c, s32 d) {
-    if ((c != 0 || d != 0) && (c == 0 || func_ov001_02188f04(a, b, c) != 0) &&
-        (d == 0 || func_ov001_02188eac(a, a->mMoveAngle, b, d) != 0)) {
+BOOL IsPointInRange(Unk02188950 *mapObject, Vec3 *point, s32 radius, s32 halfAngle) {
+    if ((radius != 0 || halfAngle != 0) && (radius == 0 || func_ov001_02188f04(mapObject, point, radius) != 0) &&
+        (halfAngle == 0 || func_ov001_02188eac(mapObject, mapObject->mMoveAngle, point, halfAngle) != 0)) {
         return TRUE;
     }
     return FALSE;
 }
 
-ItemBomb *func_ov001_02188158(Unk02188950 *a, u32 b, u32 c) {
-    int v1;
-    ItemBomb *v2;
-    int v3;
-    int v4;
-    v1 = GetItemBombActiveCount();
-    v4 = 0;
-    if (0 < v1) {
+ItemBomb *FindItemBombInRange(Unk02188950 *mapObject, u32 radius, u32 halfAngle) {
+    int bombCount;
+    ItemBomb *bomb;
+    int inRange;
+    int index;
+    bombCount = GetItemBombActiveCount();
+    index = 0;
+    if (0 < bombCount) {
         do {
-            v2 = func_020fd7a4(v4);
-            if ((v2 != NULL) && (v3 = func_ov001_021881a8(a, &v2->mUnk_000.mItemObject.mPos, b, c), v3 != 0)) {
-                return v2;
+            bomb = func_020fd7a4(index);
+            if ((bomb != NULL) &&
+                (inRange = IsPointInRange(mapObject, &bomb->mUnk_000.mItemObject.mPos, radius, halfAngle),
+                 inRange != 0)) {
+                return bomb;
             }
-            v4 = v4 + 1;
-        } while (v4 < v1);
+            index = index + 1;
+        } while (index < bombCount);
     }
     return NULL;
 }

@@ -8,6 +8,6 @@
 #include "Main/Unknown/code_020fd000.h"
 #include "Main/Unknown/code_02147000.h"
 
-u16 func_ov001_0218820c(Unk02188950 *a) {
-    return a->mUnk_0b4;
+u16 func_ov001_0218820c(Unk02188950 *mapObject) {
+    return mapObject->mUnk_0b4;
 }

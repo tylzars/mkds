@@ -53,11 +53,11 @@ void func_ov001_02184874(Unk02188950 *donketu, Kart *kart) {
                 velocityWhenBoosted.z = ((s64) velocityWhenBoosted.z * scale) >> 12;
                 velocityWhenBoosted.y = donketu->mPrm->mUnk_1dc;
                 func_ov001_02187218(donketu, 7, NULL);
-                func_ov001_02188d64(donketu, donketu->mPrm->mUnk_1d4, donketu->mPrm->mUnk_1d8);
+                StartAnimationNoEndCallback(donketu, donketu->mPrm->mUnk_1d4, donketu->mPrm->mUnk_1d8);
                 func_ov001_02188a8c(donketu, donketu->mPrm->mUnk_1e4, 0x270f000);
                 SetVelocity(donketu, &velocityWhenBoosted);
                 func_ov001_02188dcc(donketu, func_ov001_02184d70);
-                func_ov001_02188cec(donketu, 0);
+                SetSpeedAndClearTarget(donketu, 0);
             }
             {
                 Vec3 effectPosition;
@@ -107,14 +107,14 @@ void func_ov001_02184874(Unk02188950 *donketu, Kart *kart) {
             velocityWhenNotBoosted.z = ((s64) velocityWhenNotBoosted.z * scale) >> 12;
             velocityWhenNotBoosted.y = donketu->mPrm->mUnk_1c4;
             func_ov001_02187218(donketu, 7, NULL);
-            func_ov001_02188d64(donketu, donketu->mPrm->mUnk_1bc, donketu->mPrm->mUnk_1c0);
+            StartAnimationNoEndCallback(donketu, donketu->mPrm->mUnk_1bc, donketu->mPrm->mUnk_1c0);
             func_ov001_02188a8c(donketu, donketu->mPrm->mUnk_1cc, 0x270f000);
             SetVelocity(donketu, &velocityWhenNotBoosted);
             func_ov001_02188dcc(donketu, NULL);
-            func_ov001_02188cec(donketu, 0);
+            SetSpeedAndClearTarget(donketu, 0);
         }
     }
-    func_ov001_02188200(donketu, func_ov001_02184874);
+    SetKartCollisionCallback(donketu, func_ov001_02184874);
     donketu->mUnk_2d8 = 13;
 }
 
@@ -132,11 +132,11 @@ void func_ov001_021843b0(Unk02188950 *donketu, Kart *kart) {
                 velocityWhenBoosted.z =
                     ((s64) -donketu->mPrm->mUnk_1ac * gPairsByAngle[((u16) donketu->mMoveAngle >> 4) * 2 + 1]) >> 12;
                 func_ov001_02187218(donketu, 7, NULL);
-                func_ov001_02188d64(donketu, donketu->mPrm->mUnk_1a0, donketu->mPrm->mUnk_1a4);
+                StartAnimationNoEndCallback(donketu, donketu->mPrm->mUnk_1a0, donketu->mPrm->mUnk_1a4);
                 func_ov001_02188a8c(donketu, donketu->mPrm->mUnk_1b0, 0x270f000);
                 SetVelocity(donketu, &velocityWhenBoosted);
                 func_ov001_02188dcc(donketu, func_ov001_02184d70);
-                func_ov001_02188cec(donketu, 0);
+                SetSpeedAndClearTarget(donketu, 0);
             }
             VEC_Subtract(&donketu->mUnk_000.mPos, &kart->mCollisionCenter, &effectPosition);
             if ((s64) effectPosition.x * effectPosition.x + (s64) effectPosition.y * effectPosition.y +
@@ -181,11 +181,11 @@ void func_ov001_021843b0(Unk02188950 *donketu, Kart *kart) {
             velocityWhenNotBoosted.z =
                 ((s64) -donketu->mPrm->mUnk_190 * gPairsByAngle[((u16) donketu->mMoveAngle >> 4) * 2 + 1]) >> 12;
             func_ov001_02187218(donketu, 7, NULL);
-            func_ov001_02188d64(donketu, donketu->mPrm->mUnk_184, donketu->mPrm->mUnk_188);
+            StartAnimationNoEndCallback(donketu, donketu->mPrm->mUnk_184, donketu->mPrm->mUnk_188);
             func_ov001_02188a8c(donketu, donketu->mPrm->mUnk_194, 0x270f000);
             SetVelocity(donketu, &velocityWhenNotBoosted);
             func_ov001_02188dcc(donketu, func_ov001_02184cc8);
-            func_ov001_02188cec(donketu, 0);
+            SetSpeedAndClearTarget(donketu, 0);
         }
         donketu->mUnk_000.mUnk_10.x =
             ((s64) donketu->mPrm->mUnk_19c * gPairsByAngle[((u16) donketu->mMoveAngle >> 4) * 2]) >> 12;
@@ -198,7 +198,7 @@ void func_ov001_021843b0(Unk02188950 *donketu, Kart *kart) {
         donketu->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
         StartMapObjectSound(&donketu->mUnk_000, 0x213);
     }
-    func_ov001_02188200(donketu, func_ov001_02184874);
+    SetKartCollisionCallback(donketu, func_ov001_02184874);
     donketu->mUnk_2d8 = 0xd;
     StartCameraWobbleAtDistance(donketu->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
 }

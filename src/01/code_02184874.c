@@ -34,11 +34,11 @@ void func_ov001_02184874(Unk02188950 *donketu, Kart *kart) {
                 velocityWhenBoosted.z = (((s64) velocityWhenBoosted.z * scale) >> 12);
                 velocityWhenBoosted.y = donketu->mPrm->mUnk_1dc;
                 func_ov001_02187218(donketu, 7, NULL);
-                func_ov001_02188d64(donketu, donketu->mPrm->mUnk_1d4, donketu->mPrm->mUnk_1d8);
+                StartAnimationNoEndCallback(donketu, donketu->mPrm->mUnk_1d4, donketu->mPrm->mUnk_1d8);
                 func_ov001_02188a8c(donketu, donketu->mPrm->mUnk_1e4, 0x270f000);
                 SetVelocity(donketu, &velocityWhenBoosted);
                 func_ov001_02188dcc(donketu, func_ov001_02184d70);
-                func_ov001_02188cec(donketu, 0);
+                SetSpeedAndClearTarget(donketu, 0);
             }
             {
                 Vec3 effectPosition;
@@ -88,13 +88,13 @@ void func_ov001_02184874(Unk02188950 *donketu, Kart *kart) {
             velocityWhenNotBoosted.z = (((s64) velocityWhenNotBoosted.z * scale) >> 12);
             velocityWhenNotBoosted.y = donketu->mPrm->mUnk_1c4;
             func_ov001_02187218(donketu, 7, NULL);
-            func_ov001_02188d64(donketu, donketu->mPrm->mUnk_1bc, donketu->mPrm->mUnk_1c0);
+            StartAnimationNoEndCallback(donketu, donketu->mPrm->mUnk_1bc, donketu->mPrm->mUnk_1c0);
             func_ov001_02188a8c(donketu, donketu->mPrm->mUnk_1cc, 0x270f000);
             SetVelocity(donketu, &velocityWhenNotBoosted);
             func_ov001_02188dcc(donketu, NULL);
-            func_ov001_02188cec(donketu, 0);
+            SetSpeedAndClearTarget(donketu, 0);
         }
     }
-    func_ov001_02188200(donketu, func_ov001_02184874);
+    SetKartCollisionCallback(donketu, func_ov001_02184874);
     donketu->mUnk_2d8 = 13;
 }

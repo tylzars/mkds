@@ -4,11 +4,17 @@
 
 typedef struct Unk02188950 Unk02188950;
 
-void func_ov001_02188484(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, u32 l);
-void func_ov001_021884f0(Unk02188950 *a, int b, int c, int d, u32 e, u32 f, u32 g);
-void func_ov001_021885d4(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, u32 l);
-void func_ov001_02188644(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 g);
-void func_ov001_021886f8(Unk02188950 *a, u32 b, u32 c, u32 d, int e, u32 f);
-void func_ov001_0218875c(Unk02188950 *a, s32 b, s32 c, s32 d);
-void func_ov001_0218883c(Unk02188950 *a, int b, u32 c, u32 d, u32 e);
-void func_ov001_021888a4(Unk02188950 *a, s32 b, s32 c);
+void SetCollisionBoxOffsetAndExtentTarget(Unk02188950 *mapObject, int offsetX, u32 offsetY, u32 offsetZ,
+                                          u32 offsetPerCall, u32 extentX, u32 extentY, u32 extentZ, u32 extentPerCall);
+void SetCollisionBoxOffsetAndExtent(Unk02188950 *mapObject, int offsetX, int offsetY, int offsetZ, u32 extentX,
+                                    u32 extentY, u32 extentZ);
+void SetShadowOffsetAndScaleTarget(Unk02188950 *mapObject, int offsetX, u32 offsetY, u32 offsetZ, u32 offsetPerCall,
+                                   u32 scaleX, u32 g, u32 scaleZ, u32 scalePerCall);
+void SetShadowOffsetAndScale(Unk02188950 *mapObject, int offsetX, u32 offsetY, u32 offsetZ, u32 scaleX, u32 f,
+                             u32 scaleZ);
+void SetCollisionOffsetAndExtentTarget(Unk02188950 *mapObject, u32 offsetY, u32 offsetPerCall, u32 extentXZ,
+                                       int extentY, u32 extentPerCall);
+void SetCollisionOffsetAndExtent(Unk02188950 *mapObject, s32 offsetY, s32 extentXZ, s32 extentY);
+void SetShadowOffsetYAndScaleTarget(Unk02188950 *mapObject, int offsetY, u32 offsetPerCall, u32 scaleXZ,
+                                    u32 scalePerCall);
+void SetShadowOffsetYAndScale(Unk02188950 *mapObject, s32 offsetY, s32 scaleXZ);

@@ -41,7 +41,7 @@ void func_ov001_0218d3ec(Unk02188950 *a) {
     }
     func_ov001_02187218(a, 1, func_ov001_0218d520);
     func_ov001_02188dcc(a, NULL);
-    func_ov001_02188d64(a, a->mPrm->mUnk_088, a->mPrm->mUnk_08c);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_088, a->mPrm->mUnk_08c);
     func_ov001_0218d824(a, x);
     func_ov001_0218d87c(a, x);
     func_ov001_0218d8f4(a, x);
@@ -54,14 +54,14 @@ void func_ov001_0218d374(Unk02188950 *a) {
     Unk02188950 *p;
 
     func_ov001_02187218(a, 8, NULL);
-    func_ov001_02188d64(a, a->mPrm->mUnk_078, a->mPrm->mUnk_07c);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_078, a->mPrm->mUnk_07c);
     func_ov001_02188c90(a);
-    func_ov001_02188cec(a, 0);
+    SetSpeedAndClearTarget(a, 0);
     list = func_02100138(0x1fe);
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && (p = list->mUnk_00[i]) != NULL; i++) {
             func_ov001_02187218(p, 1, NULL);
-            func_ov001_02188d64(p, p->mPrm->mUnk_078, p->mPrm->mUnk_07c);
+            StartAnimationNoEndCallback(p, p->mPrm->mUnk_078, p->mPrm->mUnk_07c);
         }
     }
 }

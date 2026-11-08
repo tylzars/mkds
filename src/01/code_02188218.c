@@ -1,15 +1,15 @@
 #include "01/code_02188218.h"
 #include "01/code_02188950.h"
 
-u16 func_ov001_02188220(Unk02188950 *a) {
-    s32 v1;
-    v1 = a->mUnk_0ac;
-    if (v1 < 0) {
-        v1 = -v1;
+u16 func_ov001_02188220(Unk02188950 *mapObject) {
+    s32 counter;
+    counter = mapObject->mUnk_0ac;
+    if (counter < 0) {
+        counter = -counter;
     }
-    return v1 & 0xffff;
+    return counter & 0xffff;
 }
 
-void func_ov001_02188218(Unk02188950 *a, s32 b) {
-    a->mUnk_0b4 = b;
+void func_ov001_02188218(Unk02188950 *mapObject, s32 b) {
+    mapObject->mUnk_0b4 = b;
 }

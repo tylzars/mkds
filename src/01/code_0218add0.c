@@ -39,19 +39,19 @@ void func_ov001_0218aef4(Unk02188950 *a) {
         pos2.z = a->mUnk_000.mPos.z;
         ThrowItemBombFromPosition(StartItemBombWithParkedItemBox(9), &pos2, &vel2, a->mPrm->mUnk_1ec);
     }
-    func_ov001_02188cec(a, 0);
+    SetSpeedAndClearTarget(a, 0);
 }
 
 void func_ov001_0218ae60(Unk02188950 *a) {
     func_ov001_02187218(a, 3, NULL);
-    func_ov001_02188d30(a, a->mPrm->mUnk_200, a->mPrm->mUnk_204, NULL);
+    StartAnimationWithEndCallback(a, a->mPrm->mUnk_200, a->mPrm->mUnk_204, NULL);
     func_ov001_02188c90(a);
-    func_ov001_02188cec(a, 0);
+    SetSpeedAndClearTarget(a, 0);
     StartEffectAtRowHeight(a, 0, 0, 0, 0x411, 0);
     StartEffectAtRowHeight(a, 0, 0, 0, 0x412, 0);
     StartCameraWobbleAtDistance(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
     a->mUnk_000.mFlags &= ~0x20;
-    func_ov001_02188200(a, NULL);
+    SetKartCollisionCallback(a, NULL);
 }
 
 void func_ov001_0218add0(Unk02188950 *a) {
@@ -59,12 +59,12 @@ void func_ov001_0218add0(Unk02188950 *a) {
 
     vec.y = a->mPrm->mUnk_1fc;
     func_ov001_02187218(a, 3, NULL);
-    func_ov001_02188d64(a, a->mPrm->mUnk_1f4, a->mPrm->mUnk_1f8);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_1f4, a->mPrm->mUnk_1f8);
     SetVelocity(a, &vec);
     func_ov001_02188c90(a);
-    func_ov001_02188cec(a, 0);
+    SetSpeedAndClearTarget(a, 0);
     func_ov001_02188db8(a, func_ov001_0218ae60);
     a->mGravityEnabled = TRUE;
     StartMapObjectSound(&a->mUnk_000, 0x23a);
-    func_ov001_02188200(a, func_ov001_0218b2b8);
+    SetKartCollisionCallback(a, func_ov001_0218b2b8);
 }

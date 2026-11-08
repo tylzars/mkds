@@ -69,13 +69,13 @@ void func_ov001_0218d2c4(Unk02188950 *a) {
     Unk021a7c08 local;
 
     func_ov001_02187218(a, 8, NULL);
-    func_ov001_02188d64(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
     SetMapObjectModelNsbtpFrameIndex(a->mNsbmd, 0);
     list = func_02100138(0x1fe);
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && (p = list->mUnk_00[i]) != NULL; i++) {
             func_ov001_02187218(p, 1, NULL);
-            func_ov001_02188d64(p, p->mPrm->mUnk_070, p->mPrm->mUnk_074);
+            StartAnimationNoEndCallback(p, p->mPrm->mUnk_070, p->mPrm->mUnk_074);
             SetMapObjectModelNsbtpFrameIndex((p->mNsbmd), 0);
         }
     }
@@ -111,28 +111,28 @@ s32 func_ov001_0218d264(Unk02188950 *a) {
 
 void func_ov001_0218d23c(Unk02188950 *a) {
     func_ov001_02187218(a, 8, func_ov001_0218d264);
-    func_ov001_02188d64(a, a->mPrm->mUnk_064, a->mPrm->mUnk_068);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_064, a->mPrm->mUnk_068);
 }
 
 void func_ov001_0218d214(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d30(a, a->mPrm->mUnk_058, a->mPrm->mUnk_05c, &func_ov001_0218d23c);
+    StartAnimationWithEndCallback(a, a->mPrm->mUnk_058, a->mPrm->mUnk_05c, &func_ov001_0218d23c);
 }
 
 void func_ov001_0218d1e0(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, a->mPrm->mUnk_04c, a->mPrm->mUnk_050);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_04c, a->mPrm->mUnk_050);
     func_ov001_02188e24(a, a->mPrm->mUnk_054, &func_ov001_0218d214);
 }
 
 void func_ov001_0218d1bc(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, a->mPrm->mUnk_040, a->mPrm->mUnk_044);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_040, a->mPrm->mUnk_044);
 }
 
 void func_ov001_0218d188(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
     func_ov001_02188e24(a, a->mPrm->mUnk_03c, &func_ov001_0218d1bc);
 }
 
@@ -163,34 +163,34 @@ s32 func_ov001_0218d0fc(Unk02188950 *a) {
 
 void func_ov001_0218d0d4(Unk02188950 *a) {
     func_ov001_02187218(a, 8, func_ov001_0218d16c);
-    func_ov001_02188d64(a, a->mPrm->mUnk_064, a->mPrm->mUnk_068);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_064, a->mPrm->mUnk_068);
 }
 
 void func_ov001_0218d0a8(Unk02188950 *a) {
     func_ov001_02187218(a, 8, func_ov001_0218d0fc);
-    func_ov001_02188d30(a, a->mPrm->mUnk_058, a->mPrm->mUnk_05c, &func_ov001_0218d0d4);
+    StartAnimationWithEndCallback(a, a->mPrm->mUnk_058, a->mPrm->mUnk_05c, &func_ov001_0218d0d4);
 }
 
 void func_ov001_0218d074(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, a->mPrm->mUnk_04c, a->mPrm->mUnk_050);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_04c, a->mPrm->mUnk_050);
     func_ov001_02188e24(a, a->mPrm->mUnk_054, &func_ov001_0218d0a8);
 }
 
 void func_ov001_0218d050(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
-    func_ov001_02188d64(a, a->mPrm->mUnk_040, a->mPrm->mUnk_044);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_040, a->mPrm->mUnk_044);
 }
 
 void func_ov001_0218d01c(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
     func_ov001_02188e24(a, a->mPrm->mUnk_03c, &func_ov001_0218d050);
 }
 
 void func_ov001_0218cfe8(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
-    func_ov001_02188d64(a, a->mPrm->mUnk_064, a->mPrm->mUnk_068);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_064, a->mPrm->mUnk_068);
     func_ov001_02188e24(a, a->mPrm->mUnk_054, &func_ov001_0218d0a8);
 }
 
@@ -333,7 +333,7 @@ void func_ov001_0218cbdc(Unk02188950 *a, MissionRunPrm *b) {
         a->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a65ac;
         func_020d26ec(b, 0x251);
     }
-    func_ov001_02188200(a, func_ov001_0218cbdc);
+    SetKartCollisionCallback(a, func_ov001_0218cbdc);
 }
 
 void InitHanachan(Unk0218d87c *a) {
@@ -348,10 +348,10 @@ void InitHanachan(Unk0218d87c *a) {
             InitMissionRunMapObject(a, obj, data_ov001_021a7d0c, data_ov001_021a7d1c, data_ov001_021a7d2c);
             LoadMissionRunMapObjectShadow(a, obj, data_ov001_021a7d3c);
             LoadMapObjectModelNsbtpAnimation(obj->mNsbmd, data_ov001_021a7d4c);
-            func_ov001_0218875c(obj, obj->mPrm->mUnk_008, obj->mPrm->mUnk_00c, obj->mPrm->mUnk_00c);
-            func_ov001_021888a4(obj, 0x5000, 0xc000);
-            func_ov001_02188200(obj, func_ov001_0218cbdc);
-            func_ov001_021881f4(obj, func_ov001_0218dd9c);
+            SetCollisionOffsetAndExtent(obj, obj->mPrm->mUnk_008, obj->mPrm->mUnk_00c, obj->mPrm->mUnk_00c);
+            SetShadowOffsetYAndScale(obj, 0x5000, 0xc000);
+            SetKartCollisionCallback(obj, func_ov001_0218cbdc);
+            SetItemCollisionCallback(obj, func_ov001_0218dd9c);
             obj->mUnk_0a8 = obj->mPrm->mUnk_12c;
         }
     }
@@ -383,10 +383,10 @@ void func_ov001_0218c87c(Unk0218d87c *d) {
     func_ov001_0219b28c(obj->mNsbmd, a);
     func_ov001_0219b25c(obj->mNsbmd, c);
     obj->mUnk_0a8 = 1;
-    func_ov001_0218875c(obj, obj->mPrm->mUnk_0dc, obj->mPrm->mUnk_00c, src->mPrm->mUnk_00c);
-    func_ov001_021888a4(obj, 0x5000, 0xc000);
-    func_ov001_02188200(obj, func_ov001_0218cbdc);
-    func_ov001_021881f4(obj, func_ov001_0218dd9c);
+    SetCollisionOffsetAndExtent(obj, obj->mPrm->mUnk_0dc, obj->mPrm->mUnk_00c, src->mPrm->mUnk_00c);
+    SetShadowOffsetYAndScale(obj, 0x5000, 0xc000);
+    SetKartCollisionCallback(obj, func_ov001_0218cbdc);
+    SetItemCollisionCallback(obj, func_ov001_0218dd9c);
 
     obj = d->mUnk_00[1];
     obj->mPrm = src->mPrm;
@@ -398,10 +398,10 @@ void func_ov001_0218c87c(Unk0218d87c *d) {
     func_ov001_0219b28c(obj->mNsbmd, b);
     func_ov001_0219b25c(obj->mNsbmd, c);
     obj->mUnk_0a8 = 2;
-    func_ov001_0218875c(obj, obj->mPrm->mUnk_0e4, obj->mPrm->mUnk_00c, src->mPrm->mUnk_00c);
-    func_ov001_021888a4(obj, 0x5000, 0xd000);
-    func_ov001_02188200(obj, func_ov001_0218cbdc);
-    func_ov001_021881f4(obj, func_ov001_0218dd9c);
+    SetCollisionOffsetAndExtent(obj, obj->mPrm->mUnk_0e4, obj->mPrm->mUnk_00c, src->mPrm->mUnk_00c);
+    SetShadowOffsetYAndScale(obj, 0x5000, 0xd000);
+    SetKartCollisionCallback(obj, func_ov001_0218cbdc);
+    SetItemCollisionCallback(obj, func_ov001_0218dd9c);
 
     obj = d->mUnk_00[2];
     obj->mPrm = src->mPrm;
@@ -413,10 +413,10 @@ void func_ov001_0218c87c(Unk0218d87c *d) {
     func_ov001_0219b28c(obj->mNsbmd, a);
     func_ov001_0219b25c(obj->mNsbmd, c);
     obj->mUnk_0a8 = 3;
-    func_ov001_0218875c(obj, obj->mPrm->mUnk_0ec, obj->mPrm->mUnk_00c, src->mPrm->mUnk_00c);
-    func_ov001_021888a4(obj, 0x5000, 0xc000);
-    func_ov001_02188200(obj, func_ov001_0218cbdc);
-    func_ov001_021881f4(obj, func_ov001_0218dd9c);
+    SetCollisionOffsetAndExtent(obj, obj->mPrm->mUnk_0ec, obj->mPrm->mUnk_00c, src->mPrm->mUnk_00c);
+    SetShadowOffsetYAndScale(obj, 0x5000, 0xc000);
+    SetKartCollisionCallback(obj, func_ov001_0218cbdc);
+    SetItemCollisionCallback(obj, func_ov001_0218dd9c);
 
     obj = d->mUnk_00[3];
     obj->mPrm = src->mPrm;
@@ -428,10 +428,10 @@ void func_ov001_0218c87c(Unk0218d87c *d) {
     func_ov001_0219b28c(obj->mNsbmd, b);
     func_ov001_0219b25c(obj->mNsbmd, c);
     obj->mUnk_0a8 = 4;
-    func_ov001_0218875c(obj, obj->mPrm->mUnk_0f4, obj->mPrm->mUnk_00c, src->mPrm->mUnk_00c);
-    func_ov001_021888a4(obj, 0x5000, 0xd000);
-    func_ov001_02188200(obj, func_ov001_0218cbdc);
-    func_ov001_021881f4(obj, func_ov001_0218dd9c);
+    SetCollisionOffsetAndExtent(obj, obj->mPrm->mUnk_0f4, obj->mPrm->mUnk_00c, src->mPrm->mUnk_00c);
+    SetShadowOffsetYAndScale(obj, 0x5000, 0xd000);
+    SetKartCollisionCallback(obj, func_ov001_0218cbdc);
+    SetItemCollisionCallback(obj, func_ov001_0218dd9c);
 }
 
 void func_ov001_0218c85c(void *a, Unk02188950 *b) {

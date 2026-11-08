@@ -68,9 +68,9 @@
 #include "Main/Unknown/unk_0217a000.h"
 
 void func_ov001_0218f850(Unk02188950 *a) {
-    func_ov001_02188d64(a, a->mPrm->mUnk_198, a->mPrm->mUnk_19c);
-    func_ov001_02188d1c(a, a->mPrm->mUnk_1a0, a->mPrm->mUnk_1a4);
-    func_ov001_02188cec(a, 0);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_198, a->mPrm->mUnk_19c);
+    SetAlphaLimitTargetAndPerCall(a, a->mPrm->mUnk_1a0, a->mPrm->mUnk_1a4);
+    SetSpeedAndClearTarget(a, 0);
     func_ov001_02188c90(a);
     StartEffectAtOffset(a, 0, 0, 0, 0x41e, 0);
     StartEffectAtOffset(a, 0, 0, 0, 0x41f, 0);
@@ -142,20 +142,20 @@ void func_ov001_0218f57c(Unk02188950 *a) {
 
     p = GetKart((u16) gRaceSetup->mEntryIndex);
     func_ov001_02187218(a, 5, func_ov001_0218f634);
-    func_ov001_02188d64(a, a->mPrm->mUnk_1fc, a->mPrm->mUnk_200);
-    func_ov001_02188cd8(a, a->mPrm->mUnk_204, a->mPrm->mUnk_208);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_1fc, a->mPrm->mUnk_200);
+    SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_204, a->mPrm->mUnk_208);
     func_ov001_02188bc4(a, a->mPrm->mUnk_20c, a->mPrm->mUnk_210);
     SetAnglePointAndMoveAnglePoint(a, &p->mPos);
     func_ov001_021889c8(a);
     func_ov001_02188e24(a, a->mPrm->mUnk_214, NULL);
-    func_ov001_02188200(a, func_ov001_0218f9a8);
+    SetKartCollisionCallback(a, func_ov001_0218f9a8);
 }
 
 void func_ov001_0218f51c(Unk02188950 *a) {
     GetKart((u16) gRaceSetup->mEntryIndex);
     func_ov001_02187218(a, 5, func_ov001_0218f634);
-    func_ov001_02188d30(a, a->mPrm->mUnk_1f4, a->mPrm->mUnk_1f8, func_ov001_0218f57c);
-    func_ov001_02188200(a, func_ov001_0218f9a8);
+    StartAnimationWithEndCallback(a, a->mPrm->mUnk_1f4, a->mPrm->mUnk_1f8, func_ov001_0218f57c);
+    SetKartCollisionCallback(a, func_ov001_0218f9a8);
     func_ov001_021828f0();
 }
 
@@ -164,13 +164,13 @@ void func_ov001_0218f454(Unk02188950 *a) {
 
     p = GetKart((u16) gRaceSetup->mEntryIndex);
     func_ov001_02187218(a, 5, func_ov001_0218f634);
-    func_ov001_02188d64(a, a->mPrm->mUnk_1d8, a->mPrm->mUnk_1dc);
-    func_ov001_02188cd8(a, a->mPrm->mUnk_1e0, a->mPrm->mUnk_1e4);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_1d8, a->mPrm->mUnk_1dc);
+    SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_1e0, a->mPrm->mUnk_1e4);
     func_ov001_02188c48(a, a->mPrm->mUnk_1e8, a->mPrm->mUnk_1ec);
     SetAnglePointAndMoveAnglePoint(a, &p->mPos);
     func_ov001_021889c8(a);
     func_ov001_02188e24(a, a->mPrm->mUnk_1f0, func_ov001_0218f51c);
-    func_ov001_02188200(a, func_ov001_0218f9a8);
+    SetKartCollisionCallback(a, func_ov001_0218f9a8);
     StartMapObjectSound(&a->mUnk_000, 0x229);
 }
 
@@ -207,16 +207,16 @@ void func_ov001_0218f2a8(Unk02188950 *a) {
     p = GetKart((u16) gRaceSetup->mEntryIndex);
     VEC_MultAdd(a->mPrm->mUnk_21c, &p->mEasedTurnedForward, &p->mPos, &v);
     func_ov001_02187218(a, 5, func_ov001_0218f3ac);
-    func_ov001_02188d64(a, a->mPrm->mUnk_0ec, a->mPrm->mUnk_0f0);
-    func_ov001_02188d1c(a, a->mPrm->mUnk_0f4, a->mPrm->mUnk_0f8);
-    func_ov001_02188cd8(a, a->mPrm->mUnk_0fc, a->mPrm->mUnk_100);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_0ec, a->mPrm->mUnk_0f0);
+    SetAlphaLimitTargetAndPerCall(a, a->mPrm->mUnk_0f4, a->mPrm->mUnk_0f8);
+    SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_0fc, a->mPrm->mUnk_100);
     func_ov001_02188c48(a, a->mPrm->mUnk_104, a->mPrm->mUnk_108);
     func_ov001_02188de0(a, a->mPrm->mUnk_218, 0, &v, (UnkFunc *) func_ov001_0218f454);
     if (data_0217d20c != 2) {
         data_0217d21c = data_0217d20c;
     }
     data_0217d20c = 2;
-    func_ov001_02188200(a, func_ov001_0218e298);
+    SetKartCollisionCallback(a, func_ov001_0218e298);
     a->mUnk_000.mFlags |= data_ov001_021a65b0;
 }
 
@@ -241,9 +241,9 @@ void func_ov001_0218f16c(Unk02188950 *a) {
     p = GetKart((u16) gRaceSetup->mEntryIndex);
     VEC_MultAdd(-a->mPrm->mUnk_0e8, &p->mEasedTurnedForward, &p->mPos, &v);
     func_ov001_02187218(a, 3, func_ov001_0218f244);
-    func_ov001_02188d64(a, a->mPrm->mUnk_0c4, a->mPrm->mUnk_0c8);
-    func_ov001_02188d1c(a, a->mPrm->mUnk_0cc, a->mPrm->mUnk_0d0);
-    func_ov001_02188cd8(a, a->mPrm->mUnk_0d4, a->mPrm->mUnk_0d8);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_0c4, a->mPrm->mUnk_0c8);
+    SetAlphaLimitTargetAndPerCall(a, a->mPrm->mUnk_0cc, a->mPrm->mUnk_0d0);
+    SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_0d4, a->mPrm->mUnk_0d8);
     func_ov001_02188c48(a, a->mPrm->mUnk_0dc, a->mPrm->mUnk_0e0);
     func_ov001_02188de0(a, a->mPrm->mUnk_0e4, 0, &v, (UnkFunc *) func_ov001_0218f2a8);
     if (data_0217d20c != 1) {
@@ -262,21 +262,21 @@ s32 func_ov001_0218efc4(Unk02188950 *a) {
         func_ov001_02188d8c(a, &p->mPos);
     }
     func_ov001_0218f724(a);
-    if (func_ov001_02188104(a, a->mPrm->mUnk_0b8, 0) == NULL) {
+    if (GetEntryKartInRange(a, a->mPrm->mUnk_0b8, 0) == NULL) {
         a->mUnk_1c4 = a->mPrm->mUnk_0c0;
     } else {
         a->mUnk_1c4 = 0;
     }
-    a->mUnk_170 = a->mPrm->mUnk_09c;
+    a->mAlphaLimitPerCall = a->mPrm->mUnk_09c;
     if (a->mPrm->mUnk_1cc - (gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunTimer() : 0) > 0) {
         f = 0.5f + ((a->mPrm->mUnk_1cc - (gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunTimer() : 0)) << 12);
     } else {
         f = ((a->mPrm->mUnk_1cc - (gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunTimer() : 0)) << 12) - 0.5f;
     }
-    a->mUnk_16c = (s32) f / a->mPrm->mUnk_1d4;
+    a->mAlphaLimitTarget = (s32) f / a->mPrm->mUnk_1d4;
     if ((gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunTimer() : 0) <= a->mPrm->mUnk_1d0 &&
-        func_ov001_02188000(a, 0, a->mPrm->mUnk_0bc) != NULL) {
-        func_ov001_02188200(a, func_ov001_0218f9a8);
+        GetEntryKartFacingObject(a, 0, a->mPrm->mUnk_0bc) != NULL) {
+        SetKartCollisionCallback(a, func_ov001_0218f9a8);
         a->mUnk_000.mFlags |= data_ov001_021a65b0;
         func_ov001_0218f16c(a);
     } else if ((gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunTimer() : 0) > a->mPrm->mUnk_1cc) {
@@ -288,8 +288,8 @@ s32 func_ov001_0218efc4(Unk02188950 *a) {
 void func_ov001_0218ef30(Unk02188950 *a) {
     GetKart((u16) gRaceSetup->mEntryIndex);
     func_ov001_02187218(a, 3, func_ov001_0218efc4);
-    func_ov001_02188d64(a, a->mPrm->mUnk_090, a->mPrm->mUnk_094);
-    func_ov001_02188cec(a, a->mPrm->mUnk_0a0);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_090, a->mPrm->mUnk_094);
+    SetSpeedAndClearTarget(a, a->mPrm->mUnk_0a0);
     func_ov001_02188adc(a, a->mPrm->mUnk_0b0, 0x270f000, a->mPrm->mUnk_0a8, 0x270f000, 0);
     if (data_0217d20c != 0) {
         data_0217d21c = data_0217d20c;
@@ -318,9 +318,9 @@ void func_ov001_0218edc8(Unk02188950 *a) {
 
     p = GetKart((u16) gRaceSetup->mEntryIndex);
     func_ov001_02187218(a, 3, func_ov001_0218f634);
-    func_ov001_02188d64(a, a->mPrm->mUnk_144, a->mPrm->mUnk_148);
-    func_ov001_02188d1c(a, a->mPrm->mUnk_14c, a->mPrm->mUnk_150);
-    func_ov001_02188cd8(a, a->mPrm->mUnk_154, a->mPrm->mUnk_158);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_144, a->mPrm->mUnk_148);
+    SetAlphaLimitTargetAndPerCall(a, a->mPrm->mUnk_14c, a->mPrm->mUnk_150);
+    SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_154, a->mPrm->mUnk_158);
     func_ov001_02188c48(a, a->mPrm->mUnk_15c, a->mPrm->mUnk_160);
     SetAnglePointAndMoveAnglePoint(a, &p->mPos);
     func_ov001_02188e24(a, a->mPrm->mUnk_164, NULL);
@@ -334,20 +334,20 @@ u32 func_ov001_0218edb8(void) {
 void func_ov001_0218ec40(Unk02188950 *a) {
     GetKart((u16) gRaceSetup->mEntryIndex);
     func_ov001_02187218(a, 1, (s32(*)(Unk02188950 *)) func_ov001_0218edb8);
-    func_ov001_02188d64(a, a->mPrm->mUnk_118, a->mPrm->mUnk_11c);
-    func_ov001_02188d1c(a, a->mPrm->mUnk_120, a->mPrm->mUnk_124);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_118, a->mPrm->mUnk_11c);
+    SetAlphaLimitTargetAndPerCall(a, a->mPrm->mUnk_120, a->mPrm->mUnk_124);
     if (a->mUnk_0a8 == 1) {
-        func_ov001_02188cd8(a, a->mPrm->mUnk_128, a->mPrm->mUnk_12c);
+        SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_128, a->mPrm->mUnk_12c);
         func_ov001_02188c48(a, a->mPrm->mUnk_130, a->mPrm->mUnk_134);
     } else if (a->mUnk_0a8 == 2) {
-        func_ov001_02188cd8(a, a->mPrm->mUnk_220, a->mPrm->mUnk_224);
+        SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_220, a->mPrm->mUnk_224);
         func_ov001_02188c48(a, a->mPrm->mUnk_228, a->mPrm->mUnk_22c);
     } else if (a->mUnk_0a8 == 3) {
-        func_ov001_02188cd8(a, a->mPrm->mUnk_230, a->mPrm->mUnk_234);
+        SetSpeedTargetAndPerCall(a, a->mPrm->mUnk_230, a->mPrm->mUnk_234);
         func_ov001_02188c48(a, a->mPrm->mUnk_238, a->mPrm->mUnk_23c);
     }
-    SetAnglePointAndMoveAnglePoint(a, &func_ov001_02187fc0(a)->mPos);
-    func_ov001_02188de0(a, a->mPrm->mUnk_138, a->mPrm->mUnk_13c, &func_ov001_02187fc0(a)->mPos, NULL);
+    SetAnglePointAndMoveAnglePoint(a, &GetCurrentGroupEntry(a)->mPos);
+    func_ov001_02188de0(a, a->mPrm->mUnk_138, a->mPrm->mUnk_13c, &GetCurrentGroupEntry(a)->mPos, NULL);
     if (data_0217d20c != 5) {
         data_0217d21c = data_0217d20c;
     }
@@ -359,9 +359,9 @@ void func_ov001_0218eb94(Unk02188950 *a) {
     GetKart((u16) gRaceSetup->mEntryIndex);
     rng = GetMapObjectRandom();
     rng->mValue = (s64) rng->mMultiplier * (s64) rng->mValue + rng->mIncrement;
-    a->mUnk_000.mPos.x = (&func_ov001_02187fc0(a)->mPos)->x;
-    a->mUnk_000.mPos.y = a->mPrm->mUnk_080 + (&func_ov001_02187fc0(a)->mPos)->y;
-    a->mUnk_000.mPos.z = (&func_ov001_02187fc0(a)->mPos)->z;
+    a->mUnk_000.mPos.x = (&GetCurrentGroupEntry(a)->mPos)->x;
+    a->mUnk_000.mPos.y = a->mPrm->mUnk_080 + (&GetCurrentGroupEntry(a)->mPos)->y;
+    a->mUnk_000.mPos.z = (&GetCurrentGroupEntry(a)->mPos)->z;
     func_ov001_02187218(a, 5, (s32(*)(Unk02188950 *)) func_ov001_0218edb8);
     func_ov001_0218f900(a);
     func_ov001_02188e24(a, a->mPrm->mUnk_1b4, NULL);
@@ -395,10 +395,10 @@ void func_ov001_0218ead0(Unk02188950 *a) {
         data_0217d21c = data_0217d20c;
     }
     data_0217d20c = 3;
-    a->mUnk_270 = a->mPrm->mUnk_00c;
-    a->mCollisionExtent.z = a->mUnk_270;
-    a->mUnk_268 = a->mCollisionExtent.z;
-    a->mCollisionExtent.x = a->mUnk_268;
+    a->mCollisionExtentTargetZ = a->mPrm->mUnk_00c;
+    a->mCollisionExtent.z = a->mCollisionExtentTargetZ;
+    a->mCollisionExtentTargetX = a->mCollisionExtent.z;
+    a->mCollisionExtent.x = a->mCollisionExtentTargetX;
 }
 
 u32 func_ov001_0218ea98(Unk02188950 *a) {
@@ -416,10 +416,10 @@ u32 func_ov001_0218ea98(Unk02188950 *a) {
 
 void func_ov001_0218e92c(Unk02188950 *p) {
     func_ov001_02187218(p, 5, (s32(*)(Unk02188950 *)) func_ov001_0218ea98);
-    func_ov001_02188d64(p, p->mPrm->mUnk_170, p->mPrm->mUnk_174);
-    func_ov001_02188d1c(p, p->mPrm->mUnk_178, p->mPrm->mUnk_17c);
+    StartAnimationNoEndCallback(p, p->mPrm->mUnk_170, p->mPrm->mUnk_174);
+    SetAlphaLimitTargetAndPerCall(p, p->mPrm->mUnk_178, p->mPrm->mUnk_17c);
     func_ov001_02188c90(p);
-    func_ov001_02188cec(p, 0);
+    SetSpeedAndClearTarget(p, 0);
     func_ov001_02188e24(p, p->mPrm->mUnk_194, func_ov001_0218ead0);
     StartEffectAtOffset(p, 0, 0, 0, 0x431, 0);
     StartEffectAtOffset(p, 0, 0, 0, 0x430, 0);
@@ -428,26 +428,27 @@ void func_ov001_0218e92c(Unk02188950 *p) {
         data_0217d21c = data_0217d20c;
     }
     data_0217d20c = 4;
-    func_ov001_02188200(p, func_ov001_0218e38c);
+    SetKartCollisionCallback(p, func_ov001_0218e38c);
     p->mUnk_000.mFlags |= data_ov001_021a65b0;
     func_ov001_02182a3c(p->mPrm->mUnk_18c < (gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunBossCount() : 0)
                             ? p->mPrm->mUnk_18c
                             : (gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunBossCount() : 0));
-    p->mCollisionExtent.x = p->mUnk_268 = p->mCollisionExtent.z = p->mUnk_270 = p->mPrm->mUnk_00c / 2;
+    p->mCollisionExtent.x = p->mCollisionExtentTargetX = p->mCollisionExtent.z = p->mCollisionExtentTargetZ =
+        p->mPrm->mUnk_00c / 2;
 }
 
 void func_ov001_0218e8d8(Unk02188950 *a) {
     func_ov001_02187218(a, 5, NULL);
-    func_ov001_02188d30(a, a->mPrm->mUnk_168, a->mPrm->mUnk_16c, func_ov001_0218e92c);
+    StartAnimationWithEndCallback(a, a->mPrm->mUnk_168, a->mPrm->mUnk_16c, func_ov001_0218e92c);
     func_ov001_02188c90(a);
-    func_ov001_02188cec(a, 0);
+    SetSpeedAndClearTarget(a, 0);
     func_ov001_02182a3c(0);
     StartMapObjectSound(&a->mUnk_000, 0x00000230u);
 }
 
 void func_ov001_0218e8b0(Unk02188950 *a) {
     func_ov001_02187218(a, 1, NULL);
-    func_ov001_021888a4(a, 0, 0x19000);
+    SetShadowOffsetYAndScale(a, 0, 0x19000);
     SetFadeFogHoldFramesToLimit();
     func_ov001_021827f0();
 }
@@ -464,10 +465,10 @@ void func_ov001_0218e860(Unk02188950 *a) {
 
 void func_ov001_0218e7d0(Unk02188950 *p) {
     func_ov001_02187218(p, 1, NULL);
-    func_ov001_021888a4(p, 0, 0x19000);
-    func_ov001_02188d64(p, p->mPrm->mUnk_198, p->mPrm->mUnk_19c);
-    func_ov001_02188d1c(p, p->mPrm->mUnk_1a0, p->mPrm->mUnk_1a4);
-    func_ov001_02188cec(p, 0);
+    SetShadowOffsetYAndScale(p, 0, 0x19000);
+    StartAnimationNoEndCallback(p, p->mPrm->mUnk_198, p->mPrm->mUnk_19c);
+    SetAlphaLimitTargetAndPerCall(p, p->mPrm->mUnk_1a0, p->mPrm->mUnk_1a4);
+    SetSpeedAndClearTarget(p, 0);
     func_ov001_02188c90(p);
     if (data_0217d20c != 3) {
         data_0217d21c = data_0217d20c;
@@ -478,7 +479,7 @@ void func_ov001_0218e7d0(Unk02188950 *p) {
 
 void func_ov001_0218e7b0(Unk02188950 *a) {
     func_ov001_02187218(a, 1, NULL);
-    func_ov001_021888a4(a, 0, 0x19000);
+    SetShadowOffsetYAndScale(a, 0, 0x19000);
 }
 
 void func_ov001_0218e760(Unk02188950 *p) {
@@ -493,9 +494,9 @@ void func_ov001_0218e760(Unk02188950 *p) {
 
 void func_ov001_0218e710(Unk02188950 *p) {
     func_ov001_02187218(p, 8, NULL);
-    func_ov001_02188d64(p, p->mPrm->mUnk_078, p->mPrm->mUnk_07c);
+    StartAnimationNoEndCallback(p, p->mPrm->mUnk_078, p->mPrm->mUnk_07c);
     func_ov001_02188c90(p);
-    func_ov001_02188cec(p, 0);
+    SetSpeedAndClearTarget(p, 0);
     if (data_0217d20c != 6) {
         data_0217d21c = data_0217d20c;
     }
@@ -505,7 +506,7 @@ void func_ov001_0218e710(Unk02188950 *p) {
 
 void func_ov001_0218e690(Unk02188950 *p) {
     func_ov001_02187218(p, 8, NULL);
-    func_ov001_02188d64(p, p->mPrm->mUnk_070, p->mPrm->mUnk_074);
+    StartAnimationNoEndCallback(p, p->mPrm->mUnk_070, p->mPrm->mUnk_074);
     StartEffect(0x3fe, &p->mUnk_000.mPos);
     StartEffect(0x3fd, &p->mUnk_000.mPos);
     if (data_0217d20c != 7) {
@@ -529,10 +530,10 @@ s32 func_ov001_0218e650(Unk02188950 *a) {
 
 void func_ov001_0218e5c4(Unk02188950 *a) {
     a->mUnk_000.mPos.y += a->mPrm->mUnk_080;
-    a->mAlphaLimit = a->mUnk_16c = 0x1f000;
-    a->mUnk_170 = 0;
+    a->mAlphaLimit = a->mAlphaLimitTarget = 0x1f000;
+    a->mAlphaLimitPerCall = 0;
     func_ov001_02187218(a, 8, func_ov001_0218e650);
-    func_ov001_02188d64(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
     func_ov001_02188e24(a, 0x3c, func_ov001_0218e690);
     if (data_0217d20c != 7) {
         data_0217d21c = data_0217d20c;
@@ -543,9 +544,9 @@ void func_ov001_0218e5c4(Unk02188950 *a) {
 
 void func_ov001_0218e594(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
-    func_ov001_02188d64(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
     func_ov001_02188c90(a);
-    func_ov001_02188cec(a, 0);
+    SetSpeedAndClearTarget(a, 0);
 }
 
 void func_ov001_0218e58c(void) {
@@ -554,13 +555,13 @@ void func_ov001_0218e58c(void) {
 
 void func_ov001_0218e564(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
-    func_ov001_02188d30(a, a->mPrm->mUnk_058, a->mPrm->mUnk_05c, func_ov001_0218e760);
+    StartAnimationWithEndCallback(a, a->mPrm->mUnk_058, a->mPrm->mUnk_05c, func_ov001_0218e760);
 }
 
 void func_ov001_0218e520(Unk02188950 *a) {
     a->mUnk_000.mPos.y += a->mPrm->mUnk_080;
     func_ov001_02187218(a, 8, NULL);
-    func_ov001_02188d64(a, a->mPrm->mUnk_04c, a->mPrm->mUnk_050);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_04c, a->mPrm->mUnk_050);
     func_ov001_02188e24(a, a->mPrm->mUnk_054, func_ov001_0218e564);
 }
 
@@ -571,11 +572,11 @@ void func_ov001_0218e508(Unk02188950 *a) {
 
 void func_ov001_0218e4ac(Unk02188950 *a) {
     a->mUnk_000.mPos.y += a->mPrm->mUnk_080;
-    a->mUnk_16c = 0;
-    a->mAlphaLimit = a->mUnk_16c;
+    a->mAlphaLimitTarget = 0;
+    a->mAlphaLimit = a->mAlphaLimitTarget;
     a->mAlphaLimit = 0;
     func_ov001_02187218(a, 8, NULL);
-    func_ov001_02188d64(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
     func_ov001_02188e24(a, a->mPrm->mUnk_03c, func_ov001_0218e508);
 }
 
@@ -592,11 +593,12 @@ void func_ov001_0218e38c(Unk02188950 *a, Kart *b) {
     func_ov001_021829ac(a->mPrm->mUnk_190);
     func_ov001_0218ead0(a);
     a->mUnk_2d8 = 0;
-    func_ov001_02188200(a, func_ov001_0218f9a8);
+    SetKartCollisionCallback(a, func_ov001_0218f9a8);
     func_ov001_0218e860(a);
     a->mUnk_0a8 = 0;
     StartMapObjectSound(&a->mUnk_000, 0x22c);
-    a->mCollisionExtent.x = a->mUnk_268 = a->mCollisionExtent.z = a->mUnk_270 = a->mPrm->mUnk_00c;
+    a->mCollisionExtent.x = a->mCollisionExtentTargetX = a->mCollisionExtent.z = a->mCollisionExtentTargetZ =
+        a->mPrm->mUnk_00c;
 }
 
 void func_ov001_0218e344(Unk02188950 *a) {
@@ -606,7 +608,7 @@ void func_ov001_0218e344(Unk02188950 *a) {
         func_ov001_0218edc8(a);
     }
     a->mUnk_2d8 = 0xd;
-    func_ov001_02188200(a, func_ov001_0218e344);
+    SetKartCollisionCallback(a, func_ov001_0218e344);
     if (a->mTimer == 0) {
         StartMapObjectSound(&a->mUnk_000, 0x00000234u);
     }
@@ -619,10 +621,10 @@ void func_ov001_0218e298(Unk02188950 *a, Kart *b) {
     a->mUnk_000.mUnk_10.z = 0;
     a->mUnk_2d8 = 0xc;
     a->mUnk_158 = func_ov001_0218f3ec;
-    func_ov001_02188200(a, func_ov001_0218f9a8);
+    SetKartCollisionCallback(a, func_ov001_0218f9a8);
     StartCameraWobbleAtDistance(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
     func_02068a10(b);
-    func_ov001_021888a4(a, 0, 0x32000);
+    SetShadowOffsetYAndScale(a, 0, 0x32000);
     a->mUnk_0a8 = 1;
     if (!(gRaceSetup->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0)) {
         StartFadeFog();
@@ -668,17 +670,17 @@ void UpdateKingTeresa(u32 a, Unk02188950 *b) {
             if (func_ov001_021871f8(b, 5) != 0) {
                 p = GetKart((u16) gRaceSetup->mEntryIndex);
                 if (p->mState == KART_STATE_NORMAL && (p->mUnk_48 & 0x200) == 0 &&
-                    func_ov001_02188104(b, 0, b->mPrm->mUnk_184) != NULL &&
-                    func_ov001_02188000(b, 0, b->mPrm->mUnk_180) != NULL &&
-                    func_ov001_02188104(b, b->mPrm->mUnk_188, 0) != NULL) {
+                    GetEntryKartInRange(b, 0, b->mPrm->mUnk_184) != NULL &&
+                    GetEntryKartFacingObject(b, 0, b->mPrm->mUnk_180) != NULL &&
+                    GetEntryKartInRange(b, b->mPrm->mUnk_188, 0) != NULL) {
                     func_ov001_0218e8d8(b);
                 }
             }
             if (func_ov001_021871f8(b, 3) != 0) {
-                if (func_ov001_021881a8(b, &func_ov001_02187fc0(b)->mPos, b->mPrm->mUnk_138, 0) != 0) {
+                if (IsPointInRange(b, &GetCurrentGroupEntry(b)->mPos, b->mPrm->mUnk_138, 0) != 0) {
                     IncrementEntryIndex(b);
                 }
-                func_ov001_02188200(b, func_ov001_0218e344);
+                SetKartCollisionCallback(b, func_ov001_0218e344);
                 b->mUnk_000.mFlags &= ~0x40;
                 func_ov001_02182a3c(0);
                 func_ov001_0218ec40(b);
@@ -696,7 +698,7 @@ void UpdateKingTeresa(u32 a, Unk02188950 *b) {
                     }
                 }
                 if ((b->mUnk_000.mFlags & 1) == 0) {
-                    func_ov001_02188200(b, func_ov001_0218f9a8);
+                    SetKartCollisionCallback(b, func_ov001_0218f9a8);
                     b->mUnk_000.mFlags |= data_ov001_021a65b0;
                     func_ov001_0218e7d0(b);
                 }
@@ -705,16 +707,16 @@ void UpdateKingTeresa(u32 a, Unk02188950 *b) {
                 if (func_ov001_021871f8(b, 3) != 0) {
                     if ((gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunTimer() : 0) < b->mPrm->mUnk_1c8) {
                         if (b->mUnk_000.mFlags & 1) {
-                            func_ov001_02188200(b, func_ov001_0218f9a8);
+                            SetKartCollisionCallback(b, func_ov001_0218f9a8);
                             b->mUnk_000.mFlags |= data_ov001_021a65b0;
                             func_ov001_0218ee88(b);
                         } else {
-                            func_ov001_02188200(b, func_ov001_0218f9a8);
+                            SetKartCollisionCallback(b, func_ov001_0218f9a8);
                             b->mUnk_000.mFlags |= data_ov001_021a65b0;
                             func_ov001_0218ef30(b);
                         }
                     } else if ((b->mUnk_000.mFlags & 1) == 0) {
-                        func_ov001_02188200(b, func_ov001_0218f9a8);
+                        SetKartCollisionCallback(b, func_ov001_0218f9a8);
                         b->mUnk_000.mFlags |= data_ov001_021a65b0;
                         func_ov001_0218e7d0(b);
                     }
@@ -745,9 +747,9 @@ void InitKingTeresa(Unk0218d87c *a) {
             InitMissionRunMapObject(a, p, data_ov001_021a7da0, data_ov001_021a7db4, data_ov001_021a7dc8);
             LoadMissionRunMapObjectShadow(a, p, data_ov001_021a7dd8);
             a0 = p->mPrm;
-            func_ov001_0218875c(p, a0->mUnk_008, a0->mUnk_00c, a0->mUnk_240);
-            func_ov001_021888a4(p, 0, 0x19000);
-            func_ov001_02188200(p, func_ov001_0218f9a8);
+            SetCollisionOffsetAndExtent(p, a0->mUnk_008, a0->mUnk_00c, a0->mUnk_240);
+            SetShadowOffsetYAndScale(p, 0, 0x19000);
+            SetKartCollisionCallback(p, func_ov001_0218f9a8);
             func_ov001_02187cd4(p, 0);
             p->mUnk_000.mFlags |= data_ov001_021a65b0;
             p->mUnk_2b8 = 3;

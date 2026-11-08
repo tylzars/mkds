@@ -22,93 +22,96 @@
 #include "Main/Unknown/code_020fd000.h"
 #include "Main/Unknown/code_02042044.h"
 
-Kart *func_ov001_02188104(Unk02188950 *a, s32 b, s32 c) {
-    Kart *q;
+Kart *GetEntryKartInRange(Unk02188950 *mapObject, s32 radius, s32 halfAngle) {
+    Kart *kart;
 
-    q = GetKart((u16) gRaceSetup->mEntryIndex);
-    if (q != NULL && func_ov001_021881a8(a, &q->mPos, b, c) != FALSE && (q->mUnk_48 & 0x40) == 0) {
-        return q;
+    kart = GetKart((u16) gRaceSetup->mEntryIndex);
+    if (kart != NULL && IsPointInRange(mapObject, &kart->mPos, radius, halfAngle) != FALSE &&
+        (kart->mUnk_48 & 0x40) == 0) {
+        return kart;
     }
     return NULL;
 }
 
-Kart *func_ov001_02188084(Unk02188950 *a, s32 b, s32 c, s32 d) {
-    Kart *q;
+Kart *GetEntryKartInAngleRange(Unk02188950 *mapObject, s32 angleOffset, s32 radius, s32 halfAngle) {
+    Kart *kart;
 
-    q = GetKart((u16) gRaceSetup->mEntryIndex);
-    if (q != NULL && (q->mUnk_48 & 0x40) == 0 && (c != 0 || d != 0)) {
-        if (c == 0 || func_ov001_02188f04(a, &q->mPos, c) != 0) {
-            if (d == 0 || func_ov001_02188eac(a, a->mAngle + b, &q->mPos, d) != 0) {
-                return q;
+    kart = GetKart((u16) gRaceSetup->mEntryIndex);
+    if (kart != NULL && (kart->mUnk_48 & 0x40) == 0 && (radius != 0 || halfAngle != 0)) {
+        if (radius == 0 || func_ov001_02188f04(mapObject, &kart->mPos, radius) != 0) {
+            if (halfAngle == 0 ||
+                func_ov001_02188eac(mapObject, mapObject->mAngle + angleOffset, &kart->mPos, halfAngle) != 0) {
+                return kart;
             }
         }
     }
     return NULL;
 }
 
-Kart *func_ov001_02188000(Unk02188950 *a, s32 b, s32 c) {
-    Kart *q;
+Kart *GetEntryKartFacingObject(Unk02188950 *mapObject, s32 radius, s32 halfAngle) {
+    Kart *kart;
 
-    q = GetKart((u16) gRaceSetup->mEntryIndex);
-    if (q != NULL && (q->mUnk_48 & 0x40) == 0 && (b != 0 || c != 0)) {
-        if (b == 0 || func_ov001_02188f04(a, &q->mPos, b) != 0) {
-            if (c == 0 || func_ov001_02188eac(a, q->mHeadingAngle + 0x8000, &q->mPos, c) != 0) {
-                return q;
+    kart = GetKart((u16) gRaceSetup->mEntryIndex);
+    if (kart != NULL && (kart->mUnk_48 & 0x40) == 0 && (radius != 0 || halfAngle != 0)) {
+        if (radius == 0 || func_ov001_02188f04(mapObject, &kart->mPos, radius) != 0) {
+            if (halfAngle == 0 ||
+                func_ov001_02188eac(mapObject, kart->mHeadingAngle + 0x8000, &kart->mPos, halfAngle) != 0) {
+                return kart;
             }
         }
     }
     return NULL;
 }
 
-CourseMapGroupEntry *func_ov001_02187fc0(Unk02188950 *a) {
-    if (a->mEntryGroupIndex < gCourseMap->mEntryGroupCount) {
-        return GetCourseMapGroupEntry(a->mEntryGroupIndex, a->mEntryIndex);
+CourseMapGroupEntry *GetCurrentGroupEntry(Unk02188950 *mapObject) {
+    if (mapObject->mEntryGroupIndex < gCourseMap->mEntryGroupCount) {
+        return GetCourseMapGroupEntry(mapObject->mEntryGroupIndex, mapObject->mEntryIndex);
     }
     return NULL;
 }
 
-s32 func_ov001_02187f7c(Unk02188950 *a) {
-    if (a->mEntryGroupIndex < gCourseMap->mEntryGroupCount) {
-        return GetCourseMapGroupEntry(a->mEntryGroupIndex, a->mEntryIndex)->mUnk_0e;
+s32 func_ov001_02187f7c(Unk02188950 *mapObject) {
+    if (mapObject->mEntryGroupIndex < gCourseMap->mEntryGroupCount) {
+        return GetCourseMapGroupEntry(mapObject->mEntryGroupIndex, mapObject->mEntryIndex)->mUnk_0e;
     }
     return 0;
 }
 
-s32 func_ov001_02187f38(Unk02188950 *a) {
-    if (a->mEntryGroupIndex < gCourseMap->mEntryGroupCount) {
-        return GetCourseMapGroupEntry(a->mEntryGroupIndex, a->mEntryIndex)->mUnk_10;
+s32 func_ov001_02187f38(Unk02188950 *mapObject) {
+    if (mapObject->mEntryGroupIndex < gCourseMap->mEntryGroupCount) {
+        return GetCourseMapGroupEntry(mapObject->mEntryGroupIndex, mapObject->mEntryIndex)->mUnk_10;
     }
     return 0;
 }
 
-CourseMapGroupEntry *func_ov001_02187ee8(Unk02188950 *a) {
-    CourseMap *g = gCourseMap;
-    s32 n;
+CourseMapGroupEntry *GetNextGroupEntry(Unk02188950 *mapObject) {
+    CourseMap *courseMap = gCourseMap;
+    s32 nextEntryIndex;
 
-    if (a->mEntryGroupIndex < g->mEntryGroupCount) {
-        n = a->mEntryIndex + 1;
-        if (n >= g->mEntryGroups[(u16) a->mEntryGroupIndex].mEntryCount) {
-            n = 0;
+    if (mapObject->mEntryGroupIndex < courseMap->mEntryGroupCount) {
+        nextEntryIndex = mapObject->mEntryIndex + 1;
+        if (nextEntryIndex >= courseMap->mEntryGroups[(u16) mapObject->mEntryGroupIndex].mEntryCount) {
+            nextEntryIndex = 0;
         }
-        return GetCourseMapGroupEntry(a->mEntryGroupIndex, n);
+        return GetCourseMapGroupEntry(mapObject->mEntryGroupIndex, nextEntryIndex);
     }
     return NULL;
 }
 
-void func_ov001_02187eb0(Unk02188950 *b) {
-    CourseMap *g;
-    CourseMapEntryGroup *e;
-    s32 a;
-    s32 n;
+void func_ov001_02187eb0(Unk02188950 *mapObject) {
+    CourseMap *courseMap;
+    CourseMapEntryGroup *entryGroup;
+    s32 groupIndex;
+    s32 entryIndex;
 
-    g = gCourseMap;
-    a = b->mEntryGroupIndex;
-    if (a < g->mEntryGroupCount) {
-        e = &g->mEntryGroups[(u16) a];
-        n = b->mEntryIndex - 1;
-        if (n <= 0) {
-            n = e->mEntryCount - 1;
+    courseMap = gCourseMap;
+    groupIndex = mapObject->mEntryGroupIndex;
+    if (groupIndex < courseMap->mEntryGroupCount) {
+        entryGroup = &courseMap->mEntryGroups[(u16) groupIndex];
+        entryIndex = mapObject->mEntryIndex - 1;
+        if (entryIndex <= 0) {
+            entryIndex = entryGroup->mEntryCount - 1;
         }
-        b->mEntryIndex = n;
+        mapObject->mEntryIndex = entryIndex;
     }
 }

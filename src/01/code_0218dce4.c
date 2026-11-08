@@ -14,7 +14,7 @@
 
 void func_ov001_0218dd9c(Unk02188950 *a) {
     a->mUnk_2e0 = 0;
-    func_ov001_021881f4(a, func_ov001_0218dd9c);
+    SetItemCollisionCallback(a, func_ov001_0218dd9c);
 }
 
 void func_ov001_0218dd50(Unk02188950 *a) {

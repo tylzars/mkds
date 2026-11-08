@@ -353,7 +353,7 @@ void func_ov001_02187218(Unk02188950 *mapObject, int b, s32 (*nextFunc)(Unk02188
     mapObject->mGravityEnabled = TRUE;
     if (mapObject->mUnk_2c4 == FALSE) {
         mapObject->mUnk_1d8 = 0;
-        mapObject->mUnk_1d4 = NULL;
+        mapObject->mAnimationEndCallback = NULL;
         mapObject->mUnk_1dc = NULL;
         mapObject->mUnk_1e0 = 0;
         mapObject->mUnk_1e4 = NULL;
@@ -532,55 +532,55 @@ void AdvanceMissionRunMapObject(u32 a, Unk02188950 *mapObject) {
             mapObject->mAngle = mapObject->mMoveAngle;
             break;
         case 2:
-            if (mapObject->mUnk_19c > 0) {
-                mapObject->mUnk_194 =
-                    StepIntTowardTarget(mapObject->mUnk_198, mapObject->mUnk_19c, mapObject->mUnk_194);
+            if (mapObject->mAnglePerCallIncrement > 0) {
+                mapObject->mAnglePerCall = StepIntTowardTarget(
+                    mapObject->mAnglePerCallTarget, mapObject->mAnglePerCallIncrement, mapObject->mAnglePerCall);
             }
-            if (mapObject->mUnk_194 > 0) {
+            if (mapObject->mAnglePerCall > 0) {
                 mapObject->mAngle = StepAngleTowardDirection(&mapObject->mAnglePoint, &mapObject->mUnk_000.mPos,
-                                                             mapObject->mUnk_194, mapObject->mAngle);
+                                                             mapObject->mAnglePerCall, mapObject->mAngle);
             }
             break;
         case 3:
-            if (mapObject->mUnk_19c > 0) {
-                mapObject->mUnk_194 =
-                    StepIntTowardTarget(mapObject->mUnk_198, mapObject->mUnk_19c, mapObject->mUnk_194);
+            if (mapObject->mAnglePerCallIncrement > 0) {
+                mapObject->mAnglePerCall = StepIntTowardTarget(
+                    mapObject->mAnglePerCallTarget, mapObject->mAnglePerCallIncrement, mapObject->mAnglePerCall);
             }
-            if (mapObject->mUnk_194 > 0) {
+            if (mapObject->mAnglePerCall > 0) {
                 mapObject->mAngle = StepAngleTowardDirection(&mapObject->mUnk_000.mPos, &mapObject->mAnglePoint,
-                                                             mapObject->mUnk_194, mapObject->mAngle);
+                                                             mapObject->mAnglePerCall, mapObject->mAngle);
             }
             break;
         case 4:
-            if (mapObject->mUnk_19c > 0) {
-                mapObject->mUnk_194 =
-                    StepIntTowardTarget(mapObject->mUnk_198, mapObject->mUnk_19c, mapObject->mUnk_194);
+            if (mapObject->mAnglePerCallIncrement > 0) {
+                mapObject->mAnglePerCall = StepIntTowardTarget(
+                    mapObject->mAnglePerCallTarget, mapObject->mAnglePerCallIncrement, mapObject->mAnglePerCall);
             }
-            if (mapObject->mUnk_194 > 0) {
+            if (mapObject->mAnglePerCall > 0) {
                 mapObject->mAngle =
-                    StepAngleSidewaysToPoint(&mapObject->mAnglePoint, &mapObject->mUnk_000.mPos, mapObject->mUnk_194,
-                                             mapObject->mUnk_1a0, mapObject->mAngle);
+                    StepAngleSidewaysToPoint(&mapObject->mAnglePoint, &mapObject->mUnk_000.mPos,
+                                             mapObject->mAnglePerCall, mapObject->mUnk_1a0, mapObject->mAngle);
             }
             break;
         case 5:
-            if (mapObject->mUnk_19c > 0) {
-                mapObject->mUnk_194 =
-                    StepIntTowardTarget(mapObject->mUnk_198, mapObject->mUnk_19c, mapObject->mUnk_194);
+            if (mapObject->mAnglePerCallIncrement > 0) {
+                mapObject->mAnglePerCall = StepIntTowardTarget(
+                    mapObject->mAnglePerCallTarget, mapObject->mAnglePerCallIncrement, mapObject->mAnglePerCall);
             }
-            if (mapObject->mUnk_194 > 0) {
-                mapObject->mAngle += mapObject->mUnk_194;
+            if (mapObject->mAnglePerCall > 0) {
+                mapObject->mAngle += mapObject->mAnglePerCall;
             }
             break;
         case 6:
         case 7:
         case 8:
-            if (mapObject->mUnk_19c > 0) {
-                mapObject->mUnk_194 =
-                    StepIntTowardTarget(mapObject->mUnk_198, mapObject->mUnk_19c, mapObject->mUnk_194);
+            if (mapObject->mAnglePerCallIncrement > 0) {
+                mapObject->mAnglePerCall = StepIntTowardTarget(
+                    mapObject->mAnglePerCallTarget, mapObject->mAnglePerCallIncrement, mapObject->mAnglePerCall);
             }
             if (mapObject->mAngleState == 6) {
-                if (StepAngleTowardDirection(&mapObject->mAnglePoint, &mapObject->mUnk_000.mPos, mapObject->mUnk_194,
-                                             mapObject->mAngle) -
+                if (StepAngleTowardDirection(&mapObject->mAnglePoint, &mapObject->mUnk_000.mPos,
+                                             mapObject->mAnglePerCall, mapObject->mAngle) -
                         mapObject->mAngle >=
                     0) {
                     mapObject->mAngleState = 8;
@@ -589,9 +589,9 @@ void AdvanceMissionRunMapObject(u32 a, Unk02188950 *mapObject) {
                 }
             }
             if (mapObject->mAngleState == 8) {
-                mapObject->mAngle += mapObject->mUnk_194;
+                mapObject->mAngle += mapObject->mAnglePerCall;
             } else if (mapObject->mAngleState == 7) {
-                mapObject->mAngle -= mapObject->mUnk_194;
+                mapObject->mAngle -= mapObject->mAnglePerCall;
             }
             break;
     }
@@ -601,63 +601,75 @@ void AdvanceMissionRunMapObject(u32 a, Unk02188950 *mapObject) {
             mapObject->mMoveAngle = mapObject->mAngle;
             break;
         case 2:
-            if (mapObject->mUnk_1c0 > 0) {
-                mapObject->mUnk_1b8 =
-                    StepIntTowardTarget(mapObject->mUnk_1bc, mapObject->mUnk_1c0, mapObject->mUnk_1b8);
+            if (mapObject->mMoveAnglePerCallIncrement > 0) {
+                mapObject->mMoveAnglePerCall =
+                    StepIntTowardTarget(mapObject->mMoveAnglePerCallTarget, mapObject->mMoveAnglePerCallIncrement,
+                                        mapObject->mMoveAnglePerCall);
             }
-            if (mapObject->mUnk_1b8 > 0) {
+            if (mapObject->mMoveAnglePerCall > 0) {
                 mapObject->mMoveAngle = StepAngleTowardDirection(&mapObject->mMoveAnglePoint, &mapObject->mUnk_000.mPos,
-                                                                 mapObject->mUnk_1b8, mapObject->mMoveAngle);
+                                                                 mapObject->mMoveAnglePerCall, mapObject->mMoveAngle);
             }
             break;
         case 3:
-            if (mapObject->mUnk_1c0 > 0) {
-                mapObject->mUnk_1b8 =
-                    StepIntTowardTarget(mapObject->mUnk_1bc, mapObject->mUnk_1c0, mapObject->mUnk_1b8);
+            if (mapObject->mMoveAnglePerCallIncrement > 0) {
+                mapObject->mMoveAnglePerCall =
+                    StepIntTowardTarget(mapObject->mMoveAnglePerCallTarget, mapObject->mMoveAnglePerCallIncrement,
+                                        mapObject->mMoveAnglePerCall);
             }
-            if (mapObject->mUnk_1b8 > 0) {
+            if (mapObject->mMoveAnglePerCall > 0) {
                 mapObject->mMoveAngle = StepAngleTowardDirection(&mapObject->mUnk_000.mPos, &mapObject->mMoveAnglePoint,
-                                                                 mapObject->mUnk_1b8, mapObject->mMoveAngle);
+                                                                 mapObject->mMoveAnglePerCall, mapObject->mMoveAngle);
             }
             break;
         case 4:
-            if (mapObject->mUnk_1c0 > 0) {
-                mapObject->mUnk_1b8 =
-                    StepIntTowardTarget(mapObject->mUnk_1bc, mapObject->mUnk_1c0, mapObject->mUnk_1b8);
+            if (mapObject->mMoveAnglePerCallIncrement > 0) {
+                mapObject->mMoveAnglePerCall =
+                    StepIntTowardTarget(mapObject->mMoveAnglePerCallTarget, mapObject->mMoveAnglePerCallIncrement,
+                                        mapObject->mMoveAnglePerCall);
             }
-            if (mapObject->mUnk_1b8 > 0) {
+            if (mapObject->mMoveAnglePerCall > 0) {
                 mapObject->mMoveAngle =
                     StepAngleSidewaysToPoint(&mapObject->mMoveAnglePoint, &mapObject->mUnk_000.mPos,
-                                             mapObject->mUnk_1b8, mapObject->mUnk_1c4, mapObject->mMoveAngle);
+                                             mapObject->mMoveAnglePerCall, mapObject->mUnk_1c4, mapObject->mMoveAngle);
             }
             break;
     }
 
-    if (mapObject->mUnk_17c > 0) {
-        mapObject->mSpeed = StepIntTowardTarget(mapObject->mUnk_178, mapObject->mUnk_17c, mapObject->mSpeed);
+    if (mapObject->mSpeedPerCall > 0) {
+        mapObject->mSpeed = StepIntTowardTarget(mapObject->mSpeedTarget, mapObject->mSpeedPerCall, mapObject->mSpeed);
     }
-    if (mapObject->mUnk_274 > 0) {
-        mapObject->mOffset.x = StepIntTowardTarget(mapObject->mUnk_250, mapObject->mUnk_274, mapObject->mOffset.x);
-        mapObject->mOffset.y = StepIntTowardTarget(mapObject->mUnk_254, mapObject->mUnk_274, mapObject->mOffset.y);
-        mapObject->mOffset.z = StepIntTowardTarget(mapObject->mUnk_258, mapObject->mUnk_274, mapObject->mOffset.z);
+    if (mapObject->mOffsetPerCall > 0) {
+        mapObject->mOffset.x =
+            StepIntTowardTarget(mapObject->mOffsetTargetX, mapObject->mOffsetPerCall, mapObject->mOffset.x);
+        mapObject->mOffset.y =
+            StepIntTowardTarget(mapObject->mOffsetTargetY, mapObject->mOffsetPerCall, mapObject->mOffset.y);
+        mapObject->mOffset.z =
+            StepIntTowardTarget(mapObject->mOffsetTargetZ, mapObject->mOffsetPerCall, mapObject->mOffset.z);
     }
-    if (mapObject->mUnk_278 > 0) {
-        mapObject->mCollisionExtent.x =
-            StepIntTowardTarget(mapObject->mUnk_268, mapObject->mUnk_278, mapObject->mCollisionExtent.x);
-        mapObject->mCollisionExtent.y =
-            StepIntTowardTarget(mapObject->mUnk_26c, mapObject->mUnk_278, mapObject->mCollisionExtent.y);
-        mapObject->mCollisionExtent.z =
-            StepIntTowardTarget(mapObject->mUnk_270, mapObject->mUnk_278, mapObject->mCollisionExtent.z);
+    if (mapObject->mCollisionExtentPerCall > 0) {
+        mapObject->mCollisionExtent.x = StepIntTowardTarget(
+            mapObject->mCollisionExtentTargetX, mapObject->mCollisionExtentPerCall, mapObject->mCollisionExtent.x);
+        mapObject->mCollisionExtent.y = StepIntTowardTarget(
+            mapObject->mCollisionExtentTargetY, mapObject->mCollisionExtentPerCall, mapObject->mCollisionExtent.y);
+        mapObject->mCollisionExtent.z = StepIntTowardTarget(
+            mapObject->mCollisionExtentTargetZ, mapObject->mCollisionExtentPerCall, mapObject->mCollisionExtent.z);
     }
-    if (mapObject->mUnk_2b0 > 0) {
-        mapObject->mUnk_280 = StepIntTowardTarget(mapObject->mUnk_28c, mapObject->mUnk_2b0, mapObject->mUnk_280);
-        mapObject->mUnk_284 = StepIntTowardTarget(mapObject->mUnk_290, mapObject->mUnk_2b0, mapObject->mUnk_284);
-        mapObject->mUnk_288 = StepIntTowardTarget(mapObject->mUnk_294, mapObject->mUnk_2b0, mapObject->mUnk_288);
+    if (mapObject->mShadowOffsetPerCall > 0) {
+        mapObject->mShadowOffsetX = StepIntTowardTarget(mapObject->mShadowOffsetTargetX,
+                                                        mapObject->mShadowOffsetPerCall, mapObject->mShadowOffsetX);
+        mapObject->mShadowOffsetY = StepIntTowardTarget(mapObject->mShadowOffsetTargetY,
+                                                        mapObject->mShadowOffsetPerCall, mapObject->mShadowOffsetY);
+        mapObject->mShadowOffsetZ = StepIntTowardTarget(mapObject->mShadowOffsetTargetZ,
+                                                        mapObject->mShadowOffsetPerCall, mapObject->mShadowOffsetZ);
     }
-    if (mapObject->mUnk_2b4 > 0) {
-        mapObject->mUnk_298 = StepIntTowardTarget(mapObject->mUnk_2a4, mapObject->mUnk_2b4, mapObject->mUnk_298);
-        mapObject->mUnk_29c = StepIntTowardTarget(mapObject->mUnk_2a8, mapObject->mUnk_2b4, mapObject->mUnk_29c);
-        mapObject->mUnk_2a0 = StepIntTowardTarget(mapObject->mUnk_2ac, mapObject->mUnk_2b4, mapObject->mUnk_2a0);
+    if (mapObject->mShadowScalePerCall > 0) {
+        mapObject->mShadowScaleX = StepIntTowardTarget(mapObject->mShadowScaleTargetX, mapObject->mShadowScalePerCall,
+                                                       mapObject->mShadowScaleX);
+        mapObject->mShadowScaleY = StepIntTowardTarget(mapObject->mShadowScaleTargetY, mapObject->mShadowScalePerCall,
+                                                       mapObject->mShadowScaleY);
+        mapObject->mShadowScaleZ = StepIntTowardTarget(mapObject->mShadowScaleTargetZ, mapObject->mShadowScalePerCall,
+                                                       mapObject->mShadowScaleZ);
     }
 
     if (mapObject->mGravityEnabled != FALSE) {
@@ -728,15 +740,16 @@ void AdvanceMissionRunMapObject(u32 a, Unk02188950 *mapObject) {
         mapObject->mUnk_000.mPos.y = 0;
         mapObject->mCollisionBits |= data_ov001_021a6584;
     }
-    if (mapObject->mUnk_170 > 0) {
-        mapObject->mAlphaLimit = StepIntTowardTarget(mapObject->mUnk_16c, mapObject->mUnk_170, mapObject->mAlphaLimit);
-        if (mapObject->mAlphaLimit == mapObject->mUnk_16c) {
-            mapObject->mUnk_170 = 0;
+    if (mapObject->mAlphaLimitPerCall > 0) {
+        mapObject->mAlphaLimit =
+            StepIntTowardTarget(mapObject->mAlphaLimitTarget, mapObject->mAlphaLimitPerCall, mapObject->mAlphaLimit);
+        if (mapObject->mAlphaLimit == mapObject->mAlphaLimitTarget) {
+            mapObject->mAlphaLimitPerCall = 0;
         }
     }
-    if (mapObject->mUnk_164 > 0) {
+    if (mapObject->mScalePerCall > 0) {
         mapObject->mUnk_000.mScale.x = mapObject->mUnk_000.mScale.y = mapObject->mUnk_000.mScale.z =
-            StepIntTowardTarget(mapObject->mUnk_160, mapObject->mUnk_164, mapObject->mUnk_000.mScale.x);
+            StepIntTowardTarget(mapObject->mScaleTarget, mapObject->mScalePerCall, mapObject->mUnk_000.mScale.x);
     }
     if (mapObject->mCollisionShape == 1) {
         MTX_RotY33_(&mapObject->mUnk_000.mMatrix.mUnk_00[0].x, gPairsByAngle[((u16) mapObject->mAngle >> 4) * 2],
@@ -779,7 +792,7 @@ void AdvanceMissionRunMapObject(u32 a, Unk02188950 *mapObject) {
             }
         }
         if (!func_ov001_0219b240(mapObject->mNsbmd)) {
-            func_ov001_02188e94(mapObject, &mapObject->mUnk_1d4);
+            func_ov001_02188e94(mapObject, &mapObject->mAnimationEndCallback);
         }
     }
 
@@ -790,11 +803,11 @@ void AdvanceMissionRunMapObject(u32 a, Unk02188950 *mapObject) {
         func_ov001_02188e94(mapObject, &mapObject->mUnk_1f4);
     }
     if (mapObject->mUnk_20c != NULL &&
-        func_ov001_021881a8(mapObject, &mapObject->mUnk_200, mapObject->mUnk_1f8, mapObject->mUnk_1fc)) {
+        IsPointInRange(mapObject, &mapObject->mUnk_200, mapObject->mUnk_1f8, mapObject->mUnk_1fc)) {
         func_ov001_02188e94(mapObject, &mapObject->mUnk_20c);
     }
     if (mapObject->mUnk_224 != NULL &&
-        !func_ov001_021881a8(mapObject, &mapObject->mUnk_218, mapObject->mUnk_210, mapObject->mUnk_214)) {
+        !IsPointInRange(mapObject, &mapObject->mUnk_218, mapObject->mUnk_210, mapObject->mUnk_214)) {
         func_ov001_02188e94(mapObject, &mapObject->mUnk_224);
     }
     if (mapObject->mUnk_228 != NULL && mapObject->mVelocity.y == 0 && -mapObject->mPrm->mUnk_018 < mapObject->mSpeed &&
@@ -920,14 +933,14 @@ void DrawMissionRunMapObjectShadow(void *mapObjectList, Unk02188950 *mapObject, 
         pairIndex = (u16) mapObject->mAngle >> 4;
         MTX_RotY33_(rotationMatrix, gPairsByAngle[pairIndex * 2], gPairsByAngle[pairIndex * 2 + 1]);
         func_01ff9048(0x1a, rotationMatrix, 9);
-        c = mapObject->mUnk_288 >> 4;
-        b = mapObject->mUnk_284 >> 4;
-        a = mapObject->mUnk_280 >> 4;
+        c = mapObject->mShadowOffsetZ >> 4;
+        b = mapObject->mShadowOffsetY >> 4;
+        a = mapObject->mShadowOffsetX >> 4;
         w.x = a;
         w.y = b;
         w.z = c;
         func_01ff9048(0x1c, &w, 3);
-        func_01ff9048(0x1b, &mapObject->mUnk_298, 3);
+        func_01ff9048(0x1b, &mapObject->mShadowScaleX, 3);
         if (gShadowScaleToggle == 0) {
             u.x = 0x1333;
             u.y = 0x1000;

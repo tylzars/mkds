@@ -74,7 +74,7 @@ void func_ov001_0218b928(Unk02188950 *a) {
 
 void func_ov001_0218b8f8(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
     func_ov001_02188e24(a, 0x3c, &func_ov001_0218b928);
 }
 
@@ -111,28 +111,28 @@ s32 func_ov001_0218b850(Unk02188950 *a) {
 
 void func_ov001_0218b828(Unk02188950 *a) {
     func_ov001_02187218(a, 8, func_ov001_0218b8d4);
-    func_ov001_02188d64(a, a->mPrm->mUnk_064, a->mPrm->mUnk_068);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_064, a->mPrm->mUnk_068);
 }
 
 void func_ov001_0218b7fc(Unk02188950 *a) {
     func_ov001_02187218(a, 8, func_ov001_0218b850);
-    func_ov001_02188d30(a, a->mPrm->mUnk_058, a->mPrm->mUnk_05c, &func_ov001_0218b828);
+    StartAnimationWithEndCallback(a, a->mPrm->mUnk_058, a->mPrm->mUnk_05c, &func_ov001_0218b828);
 }
 
 void func_ov001_0218b7c8(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, a->mPrm->mUnk_04c, a->mPrm->mUnk_050);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_04c, a->mPrm->mUnk_050);
     func_ov001_02188e24(a, a->mPrm->mUnk_054, &func_ov001_0218b7fc);
 }
 
 void func_ov001_0218b7a4(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, a->mPrm->mUnk_040, a->mPrm->mUnk_044);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_040, a->mPrm->mUnk_044);
 }
 
 void func_ov001_0218b770(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
     func_ov001_02188e24(a, a->mPrm->mUnk_03c, &func_ov001_0218b7a4);
 }
 
@@ -144,7 +144,7 @@ void func_ov001_0218b72c(Unk02188950 *a) {
 }
 
 void func_ov001_0218b6f8(Unk02188950 *a, void *b) {
-    func_ov001_02188200(a, func_ov001_0218b6f8);
+    SetKartCollisionCallback(a, func_ov001_0218b6f8);
     if (a->mTimer == 0) {
         func_020d26ec(b, 0x224);
     }
@@ -156,7 +156,7 @@ void func_ov001_0218b640(Unk02188950 *a, void *b) {
     a->mUnk_000.mUnk_10.z = (s64) a->mPrm->mUnk_130 * gPairsByAngle[((u16) a->mMoveAngle >> 4) * 2 + 1] >> 12;
     a->mUnk_2d8 = 0xd;
     StartCameraWobbleAtDistance(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
-    func_ov001_02188200(a, func_ov001_0218b6f8);
+    SetKartCollisionCallback(a, func_ov001_0218b6f8);
     if (a->mTimer == 0) {
         func_020d26ec(b, 0x224);
     }
@@ -191,22 +191,22 @@ void UpdateKuriking(u32 a, Unk02188950 *b) {
             }
         }
     } else {
-        if (func_ov001_021881a8(b, &func_ov001_02187fc0(b)->mPos, b->mPrm->mUnk_0b4, 0)) {
+        if (IsPointInRange(b, &GetCurrentGroupEntry(b)->mPos, b->mPrm->mUnk_0b4, 0)) {
             var = func_ov001_02187f7c(b);
             if (var >= 200) {
                 if (func_ov001_021871f8(b, 8)) {
                     func_ov001_0218ba34(b);
-                    func_ov001_02188200(b, func_ov001_0218b6f8);
+                    SetKartCollisionCallback(b, func_ov001_0218b6f8);
                 }
             } else if (var >= 100) {
                 if (func_ov001_021871f8(b, 7)) {
                     func_ov001_0218bbac(b);
-                    func_ov001_02188200(b, func_ov001_0218b6f8);
+                    SetKartCollisionCallback(b, func_ov001_0218b6f8);
                 }
             } else if (var >= 1) {
                 if (func_ov001_021871f8(b, 1)) {
                     func_ov001_0218bde8(b);
-                    func_ov001_02188200(b, func_ov001_0218b6f8);
+                    SetKartCollisionCallback(b, func_ov001_0218b6f8);
                 }
             }
             IncrementEntryIndex(b);
@@ -215,14 +215,14 @@ void UpdateKuriking(u32 a, Unk02188950 *b) {
             }
         }
         if (func_ov001_021871f8(b, 2)) {
-            if (func_ov001_02188104(b, b->mPrm->mUnk_124, b->mPrm->mUnk_128)) {
+            if (GetEntryKartInRange(b, b->mPrm->mUnk_124, b->mPrm->mUnk_128)) {
                 func_ov001_0218c490(b);
-                func_ov001_02188200(b, func_ov001_0218b640);
+                SetKartCollisionCallback(b, func_ov001_0218b640);
             }
         }
         if (func_ov001_021871f8(b, 1)) {
             func_ov001_0218c354(b);
-            func_ov001_02188200(b, func_ov001_0218b640);
+            SetKartCollisionCallback(b, func_ov001_0218b640);
         }
         b->mUnk_2b8 = 1;
     }
@@ -256,7 +256,7 @@ void InitKuriking(Unk0218d87c *a) {
             LoadMapObjectModelNsbtpAnimation(obj->mNsbmd, "kuriking.nsbtp");
             LoadMapObjectModelNsbmaAnimation(obj->mNsbmd, "kuriking.nsbma");
             func_ov001_0218c728(obj);
-            func_ov001_02188200(obj, func_ov001_0218b6f8);
+            SetKartCollisionCallback(obj, func_ov001_0218b6f8);
         }
     }
 }

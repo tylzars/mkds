@@ -26,14 +26,14 @@ void func_ov001_021882b8(void) {
             func_ov001_02188e88(obj);
             obj->mGravityEnabled = FALSE;
             obj->mUnk_2b8 = 3;
-            obj->mSpeed = obj->mUnk_178 = obj->mUnk_17c = 0;
+            obj->mSpeed = obj->mSpeedTarget = obj->mSpeedPerCall = 0;
             obj->mAngleState = 0;
-            obj->mUnk_194 = obj->mUnk_198 = obj->mUnk_19c = 0;
+            obj->mAnglePerCall = obj->mAnglePerCallTarget = obj->mAnglePerCallIncrement = 0;
             obj->mMoveAngleMode = 0;
-            obj->mUnk_1b8 = obj->mUnk_1bc = obj->mUnk_1c0 = 0;
+            obj->mMoveAnglePerCall = obj->mMoveAnglePerCallTarget = obj->mMoveAnglePerCallIncrement = 0;
             obj->mVelocity.x = obj->mVelocity.y = obj->mVelocity.z = 0;
-            obj->mAlphaLimit = obj->mUnk_16c = 0x1f000;
-            obj->mUnk_170 = 0;
+            obj->mAlphaLimit = obj->mAlphaLimitTarget = 0x1f000;
+            obj->mAlphaLimitPerCall = 0;
             if (i - (gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181b54() : 0) < table->mUnk_04) {
                 obj->mUnk_000.mPos =
                     table->mUnk_00[i - (gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181b54() : 0)]

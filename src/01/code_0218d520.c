@@ -69,7 +69,7 @@ void func_ov001_0218dba8(Unk02188950 *a) {
         if (diff > 0x8000) {
             diff -= 0x10000;
         }
-        limit = a->mUnk_194;
+        limit = a->mAnglePerCall;
         step = diff < -limit ? -limit : (diff > limit ? limit : diff);
         a->mAngle = (u16) (cur + step);
         a->mMoveAngle = a->mAngle;
@@ -141,7 +141,7 @@ void func_ov001_0218d950(Unk02188950 *a) {
     ModelAnimationView *s;
 
     func_ov001_02187218(a, 1, NULL);
-    func_ov001_02188d64(a, a->mPrm->mUnk_088, a->mPrm->mUnk_08c);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_088, a->mPrm->mUnk_08c);
     prod = a->mPrm->mUnk_0d0 * a->mUnk_0a8;
     if (prod > 0) {
         f = 0.5f + (prod << 12);
@@ -160,7 +160,7 @@ void func_ov001_0218d8f4(Unk02188950 *a, int b) {
     list = func_02100138(0x1fe);
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && list->mUnk_00[i] != NULL; i++) {
-            func_ov001_02188d64(a, a->mPrm->mUnk_088, (a->mPrm->mUnk_08c * b / 100));
+            StartAnimationNoEndCallback(a, a->mPrm->mUnk_088, (a->mPrm->mUnk_08c * b / 100));
         }
     }
 }
@@ -174,7 +174,7 @@ void func_ov001_0218d87c(Unk02188950 *a, int b) {
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && (q = list->mUnk_00[i]) != NULL; i++) {
             q->mUnk_13c = q->mPrm->mUnk_0d8 * q->mUnk_0a8 * 100 / b;
-            q->mUnk_194 = a->mPrm->mUnk_0d4 * b / 100;
+            q->mAnglePerCall = a->mPrm->mUnk_0d4 * b / 100;
         }
     }
 }
@@ -183,15 +183,15 @@ void func_ov001_0218d824(Unk02188950 *b, int c) {
     MissionRunPrm *a;
 
     a = b->mPrm;
-    func_ov001_02188cd8(b, (a->mUnk_090 * c / 100), a->mUnk_094);
+    SetSpeedTargetAndPerCall(b, (a->mUnk_090 * c / 100), a->mUnk_094);
     a = b->mPrm;
     func_ov001_02188c48(b, a->mUnk_098 * c / 100, a->mUnk_09c);
-    SetAnglePointAndMoveAnglePoint(b, &func_ov001_02187ee8(b)->mPos);
+    SetAnglePointAndMoveAnglePoint(b, &GetNextGroupEntry(b)->mPos);
 }
 
 void func_ov001_0218d800(Unk02188950 *a) {
     a->mUnk_150 = 1;
-    func_ov001_02188d64(a, a->mPrm->mUnk_088, a->mPrm->mUnk_08c);
+    StartAnimationNoEndCallback(a, a->mPrm->mUnk_088, a->mPrm->mUnk_08c);
 }
 
 int func_ov001_0218d520(Unk02188950 *a) {
@@ -199,7 +199,7 @@ int func_ov001_0218d520(Unk02188950 *a) {
     s32 t;
     s32 *v;
 
-    if (func_ov001_021881a8(a, &func_ov001_02187fc0(a)->mPos, a->mPrm->mUnk_0a0, 0)) {
+    if (IsPointInRange(a, &GetCurrentGroupEntry(a)->mPos, a->mPrm->mUnk_0a0, 0)) {
         if (GetBalloonOrShineCount(gRaceSetup->mEntryIndex) <= 1) {
             r4 = 0x1000 - a->mPrm->mUnk_0ac;
             t = func_ov001_02187f38(a);
@@ -216,16 +216,16 @@ int func_ov001_0218d520(Unk02188950 *a) {
         }
         if ((gRaceSetup->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) == FALSE && a->mUnk_0a8 == 0 &&
             func_ov001_021871f8(a, 3) != 0) {
-            if (func_ov001_02188084(a, a->mPrm->mUnk_120, a->mPrm->mUnk_124, a->mPrm->mUnk_128)) {
+            if (GetEntryKartInAngleRange(a, a->mPrm->mUnk_120, a->mPrm->mUnk_124, a->mPrm->mUnk_128)) {
                 a->mUnk_0a8 = a->mPrm->mUnk_12c;
                 a->mUnk_150 = 3;
-                func_ov001_02188d30(a, a->mPrm->mUnk_118, a->mPrm->mUnk_11c, (UnkFunc *) func_ov001_0218d800);
+                StartAnimationWithEndCallback(a, a->mPrm->mUnk_118, a->mPrm->mUnk_11c, (UnkFunc *) func_ov001_0218d800);
                 r4 -= a->mPrm->mUnk_130;
                 StartMapObjectSound(&a->mUnk_000, 0x24b);
-            } else if (func_ov001_02188084(a, a->mPrm->mUnk_10c, a->mPrm->mUnk_110, a->mPrm->mUnk_114)) {
+            } else if (GetEntryKartInAngleRange(a, a->mPrm->mUnk_10c, a->mPrm->mUnk_110, a->mPrm->mUnk_114)) {
                 a->mUnk_0a8 = a->mPrm->mUnk_12c;
                 a->mUnk_150 = 3;
-                func_ov001_02188d30(a, a->mPrm->mUnk_104, a->mPrm->mUnk_108, (UnkFunc *) func_ov001_0218d800);
+                StartAnimationWithEndCallback(a, a->mPrm->mUnk_104, a->mPrm->mUnk_108, (UnkFunc *) func_ov001_0218d800);
                 r4 -= a->mPrm->mUnk_130;
                 StartMapObjectSound(&a->mUnk_000, 0x24b);
             }

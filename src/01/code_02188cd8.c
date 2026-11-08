@@ -4,42 +4,43 @@
 #include "01/unk_021a9000.h"
 #include "Main/Unknown/code_020a3000.h"
 
-void func_ov001_02188d8c(Unk02188950 *a, Vec3 *b) {
-    if (b != NULL) {
-        a->mUnk_200 = *b;
+void func_ov001_02188d8c(Unk02188950 *mapObject, Vec3 *point) {
+    if (point != NULL) {
+        mapObject->mUnk_200 = *point;
     }
 }
 
-void func_ov001_02188d64(Unk02188950 *a, s32 b, s32 c) {
-    func_ov001_0219b208(a->mNsbmd, (u16) b, c, 0);
-    a->mUnk_1d4 = NULL;
+void StartAnimationNoEndCallback(Unk02188950 *mapObject, s32 animationEntry, s32 c) {
+    func_ov001_0219b208(mapObject->mNsbmd, (u16) animationEntry, c, 0);
+    mapObject->mAnimationEndCallback = NULL;
 }
 
-void func_ov001_02188d30(Unk02188950 *a, s32 b, s32 c, void (*d)(Unk02188950 *)) {
-    func_ov001_0219b208(a->mNsbmd, (u16) b, c, 1);
-    if (d == NULL) {
-        d = func_ov001_02188e88;
+void StartAnimationWithEndCallback(Unk02188950 *mapObject, s32 animationEntry, s32 c,
+                                   void (*endCallback)(Unk02188950 *)) {
+    func_ov001_0219b208(mapObject->mNsbmd, (u16) animationEntry, c, 1);
+    if (endCallback == NULL) {
+        endCallback = func_ov001_02188e88;
     }
-    a->mUnk_1d4 = d;
+    mapObject->mAnimationEndCallback = endCallback;
 }
 
-void func_ov001_02188d1c(Unk02188950 *a, s32 b, s32 c) {
-    a->mUnk_16c = b;
-    a->mUnk_170 = c;
+void SetAlphaLimitTargetAndPerCall(Unk02188950 *mapObject, s32 alphaLimitTarget, s32 alphaLimitPerCall) {
+    mapObject->mAlphaLimitTarget = alphaLimitTarget;
+    mapObject->mAlphaLimitPerCall = alphaLimitPerCall;
 }
 
-void func_ov001_02188d08(Unk02188950 *a, s32 b, s32 c) {
-    a->mUnk_160 = b;
-    a->mUnk_164 = c;
+void SetScaleTargetAndPerCall(Unk02188950 *mapObject, s32 scaleTarget, s32 scalePerCall) {
+    mapObject->mScaleTarget = scaleTarget;
+    mapObject->mScalePerCall = scalePerCall;
 }
 
-void func_ov001_02188cec(Unk02188950 *a, s32 b) {
-    a->mSpeed = b;
-    a->mUnk_178 = 0;
-    a->mUnk_17c = 0;
+void SetSpeedAndClearTarget(Unk02188950 *mapObject, s32 speed) {
+    mapObject->mSpeed = speed;
+    mapObject->mSpeedTarget = 0;
+    mapObject->mSpeedPerCall = 0;
 }
 
-void func_ov001_02188cd8(Unk02188950 *a, s32 b, s32 c) {
-    a->mUnk_178 = b;
-    a->mUnk_17c = c;
+void SetSpeedTargetAndPerCall(Unk02188950 *mapObject, s32 speedTarget, s32 speedPerCall) {
+    mapObject->mSpeedTarget = speedTarget;
+    mapObject->mSpeedPerCall = speedPerCall;
 }

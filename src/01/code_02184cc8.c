@@ -16,7 +16,7 @@ void func_ov001_02184d9c(Unk02188950 *mapObject) {
 
         velocity.y = mapObject->mPrm->mUnk_1f4;
         func_ov001_02187218(mapObject, 5, NULL);
-        func_ov001_02188d64(mapObject, mapObject->mPrm->mUnk_1ec, mapObject->mPrm->mUnk_1f0);
+        StartAnimationNoEndCallback(mapObject, mapObject->mPrm->mUnk_1ec, mapObject->mPrm->mUnk_1f0);
         SetVelocity(mapObject, &velocity);
         func_ov001_02188db8(mapObject, func_ov001_02184d9c);
     } else {
@@ -36,7 +36,7 @@ void func_ov001_02184cf4(Unk02188950 *mapObject) {
 
         velocity.y = mapObject->mPrm->mUnk_124;
         func_ov001_02187218(mapObject, 5, NULL);
-        func_ov001_02188d64(mapObject, mapObject->mPrm->mUnk_11c, mapObject->mPrm->mUnk_120);
+        StartAnimationNoEndCallback(mapObject, mapObject->mPrm->mUnk_11c, mapObject->mPrm->mUnk_120);
         SetVelocity(mapObject, &velocity);
         func_ov001_02188db8(mapObject, func_ov001_02184cf4);
     } else {

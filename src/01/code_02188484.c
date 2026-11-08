@@ -1,166 +1,172 @@
 #include "01/code_02188484.h"
 #include "01/code_02188950.h"
 
-void func_ov001_021888a4(Unk02188950 *a, s32 b, s32 c) {
-    if (b == 0) {
-        a->mUnk_27c = 1;
+void SetShadowOffsetYAndScale(Unk02188950 *mapObject, s32 offsetY, s32 scaleXZ) {
+    if (offsetY == 0) {
+        mapObject->mUnk_27c = 1;
     } else {
-        a->mUnk_27c = 2;
+        mapObject->mUnk_27c = 2;
     }
-    a->mUnk_280 = a->mUnk_28c = 0;
-    a->mUnk_284 = a->mUnk_290 = b;
-    a->mUnk_288 = a->mUnk_294 = 0;
-    a->mUnk_2b0 = 0;
-    a->mUnk_298 = a->mUnk_2a4 = c;
-    a->mUnk_29c = a->mUnk_2a8 = 0xa000;
-    a->mUnk_2a0 = a->mUnk_2ac = c;
-    a->mUnk_2b4 = 0;
+    mapObject->mShadowOffsetX = mapObject->mShadowOffsetTargetX = 0;
+    mapObject->mShadowOffsetY = mapObject->mShadowOffsetTargetY = offsetY;
+    mapObject->mShadowOffsetZ = mapObject->mShadowOffsetTargetZ = 0;
+    mapObject->mShadowOffsetPerCall = 0;
+    mapObject->mShadowScaleX = mapObject->mShadowScaleTargetX = scaleXZ;
+    mapObject->mShadowScaleY = mapObject->mShadowScaleTargetY = 0xa000;
+    mapObject->mShadowScaleZ = mapObject->mShadowScaleTargetZ = scaleXZ;
+    mapObject->mShadowScalePerCall = 0;
 }
 
-void func_ov001_0218883c(Unk02188950 *a, int b, u32 c, u32 d, u32 e) {
-    if (b == 0) {
-        a->mUnk_27c = 1;
+void SetShadowOffsetYAndScaleTarget(Unk02188950 *mapObject, int offsetY, u32 offsetPerCall, u32 scaleXZ,
+                                    u32 scalePerCall) {
+    if (offsetY == 0) {
+        mapObject->mUnk_27c = 1;
     } else {
-        a->mUnk_27c = 2;
+        mapObject->mUnk_27c = 2;
     }
-    a->mUnk_28c = 0;
-    a->mUnk_290 = b;
-    a->mUnk_294 = 0;
-    a->mUnk_2b0 = c;
-    a->mUnk_2a4 = d;
-    a->mUnk_2a8 = (0x0000a000u);
-    a->mUnk_2ac = d;
-    a->mUnk_2b4 = e;
+    mapObject->mShadowOffsetTargetX = 0;
+    mapObject->mShadowOffsetTargetY = offsetY;
+    mapObject->mShadowOffsetTargetZ = 0;
+    mapObject->mShadowOffsetPerCall = offsetPerCall;
+    mapObject->mShadowScaleTargetX = scaleXZ;
+    mapObject->mShadowScaleTargetY = (0x0000a000u);
+    mapObject->mShadowScaleTargetZ = scaleXZ;
+    mapObject->mShadowScalePerCall = scalePerCall;
 }
 
-void func_ov001_0218875c(Unk02188950 *a, s32 b, s32 c, s32 d) {
-    if (d == 0) {
-        a->mCollisionShape = 0;
+void SetCollisionOffsetAndExtent(Unk02188950 *mapObject, s32 offsetY, s32 extentXZ, s32 extentY) {
+    if (extentY == 0) {
+        mapObject->mCollisionShape = 0;
     } else {
-        a->mCollisionShape = 2;
+        mapObject->mCollisionShape = 2;
     }
-    a->mOffset.x = a->mUnk_250 = 0;
-    a->mOffset.y = a->mUnk_254 = b;
-    a->mOffset.z = a->mUnk_258 = 0;
-    a->mUnk_274 = 0;
-    a->mCollisionExtent.x = a->mUnk_268 = c;
-    a->mCollisionExtent.y = a->mUnk_26c = d;
-    a->mCollisionExtent.z = a->mUnk_270 = c;
-    a->mUnk_278 = 0;
-    a->mPosWithOffset.x = a->mUnk_000.mPos.x + a->mOffset.x;
-    a->mPosWithOffset.y = a->mUnk_000.mPos.y + a->mOffset.y;
-    a->mPosWithOffset.z = a->mUnk_000.mPos.z + a->mOffset.z;
+    mapObject->mOffset.x = mapObject->mOffsetTargetX = 0;
+    mapObject->mOffset.y = mapObject->mOffsetTargetY = offsetY;
+    mapObject->mOffset.z = mapObject->mOffsetTargetZ = 0;
+    mapObject->mOffsetPerCall = 0;
+    mapObject->mCollisionExtent.x = mapObject->mCollisionExtentTargetX = extentXZ;
+    mapObject->mCollisionExtent.y = mapObject->mCollisionExtentTargetY = extentY;
+    mapObject->mCollisionExtent.z = mapObject->mCollisionExtentTargetZ = extentXZ;
+    mapObject->mCollisionExtentPerCall = 0;
+    mapObject->mPosWithOffset.x = mapObject->mUnk_000.mPos.x + mapObject->mOffset.x;
+    mapObject->mPosWithOffset.y = mapObject->mUnk_000.mPos.y + mapObject->mOffset.y;
+    mapObject->mPosWithOffset.z = mapObject->mUnk_000.mPos.z + mapObject->mOffset.z;
 }
 
-void func_ov001_021886f8(Unk02188950 *a, u32 b, u32 c, u32 d, int e, u32 f) {
-    if (e == 0) {
-        a->mCollisionShape = 0;
+void SetCollisionOffsetAndExtentTarget(Unk02188950 *mapObject, u32 offsetY, u32 offsetPerCall, u32 extentXZ,
+                                       int extentY, u32 extentPerCall) {
+    if (extentY == 0) {
+        mapObject->mCollisionShape = 0;
     } else {
-        a->mCollisionShape = 2;
+        mapObject->mCollisionShape = 2;
     }
-    a->mUnk_250 = 0;
-    a->mUnk_254 = b;
-    a->mUnk_258 = 0;
-    a->mUnk_274 = c;
-    a->mUnk_268 = d;
-    a->mUnk_26c = e;
-    a->mUnk_270 = d;
-    a->mUnk_278 = f;
+    mapObject->mOffsetTargetX = 0;
+    mapObject->mOffsetTargetY = offsetY;
+    mapObject->mOffsetTargetZ = 0;
+    mapObject->mOffsetPerCall = offsetPerCall;
+    mapObject->mCollisionExtentTargetX = extentXZ;
+    mapObject->mCollisionExtentTargetY = extentY;
+    mapObject->mCollisionExtentTargetZ = extentXZ;
+    mapObject->mCollisionExtentPerCall = extentPerCall;
 }
 
-void func_ov001_02188644(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 g) {
+void SetShadowOffsetAndScale(Unk02188950 *mapObject, int offsetX, u32 offsetY, u32 offsetZ, u32 scaleX, u32 f,
+                             u32 scaleZ) {
     int *v1;
     int *v2;
-    a->mUnk_27c = 0;
-    if ((a->mUnk_000.mFlags & (0x00000400u)) != 0) {
-        b = -b;
+    mapObject->mUnk_27c = 0;
+    if ((mapObject->mUnk_000.mFlags & (0x00000400u)) != 0) {
+        offsetX = -offsetX;
     }
-    v2 = &a->mUnk_28c;
-    *v2 = b;
-    a->mUnk_280 = *v2;
-    v1 = &a->mUnk_290;
-    *v1 = c;
-    a->mUnk_284 = *v1;
-    v1 = &a->mUnk_294;
-    *v1 = d;
-    a->mUnk_288 = *v1;
-    a->mUnk_2b0 = 0;
-    v1 = &a->mUnk_2a4;
-    *v1 = e;
-    a->mUnk_298 = *v1;
-    v1 = &a->mUnk_2a8;
+    v2 = &mapObject->mShadowOffsetTargetX;
+    *v2 = offsetX;
+    mapObject->mShadowOffsetX = *v2;
+    v1 = &mapObject->mShadowOffsetTargetY;
+    *v1 = offsetY;
+    mapObject->mShadowOffsetY = *v1;
+    v1 = &mapObject->mShadowOffsetTargetZ;
+    *v1 = offsetZ;
+    mapObject->mShadowOffsetZ = *v1;
+    mapObject->mShadowOffsetPerCall = 0;
+    v1 = &mapObject->mShadowScaleTargetX;
+    *v1 = scaleX;
+    mapObject->mShadowScaleX = *v1;
+    v1 = &mapObject->mShadowScaleTargetY;
     *v1 = (0x0000a000u);
-    a->mUnk_29c = *v1;
-    v1 = &a->mUnk_2ac;
-    *v1 = g;
-    a->mUnk_2a0 = *v1;
-    a->mUnk_2b4 = 0;
+    mapObject->mShadowScaleY = *v1;
+    v1 = &mapObject->mShadowScaleTargetZ;
+    *v1 = scaleZ;
+    mapObject->mShadowScaleZ = *v1;
+    mapObject->mShadowScalePerCall = 0;
 }
 
-void func_ov001_021885d4(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, u32 l) {
-    a->mUnk_27c = 0;
-    if ((a->mUnk_000.mFlags & (0x00000400u)) != 0) {
-        b = -b;
+void SetShadowOffsetAndScaleTarget(Unk02188950 *mapObject, int offsetX, u32 offsetY, u32 offsetZ, u32 offsetPerCall,
+                                   u32 scaleX, u32 g, u32 scaleZ, u32 scalePerCall) {
+    mapObject->mUnk_27c = 0;
+    if ((mapObject->mUnk_000.mFlags & (0x00000400u)) != 0) {
+        offsetX = -offsetX;
     }
-    a->mUnk_28c = b;
-    a->mUnk_290 = c;
-    a->mUnk_294 = d;
-    a->mUnk_2b0 = e;
-    a->mUnk_2a4 = f;
-    a->mUnk_2a8 = (0x0000a000u);
-    a->mUnk_2ac = h;
-    a->mUnk_2b4 = l;
+    mapObject->mShadowOffsetTargetX = offsetX;
+    mapObject->mShadowOffsetTargetY = offsetY;
+    mapObject->mShadowOffsetTargetZ = offsetZ;
+    mapObject->mShadowOffsetPerCall = offsetPerCall;
+    mapObject->mShadowScaleTargetX = scaleX;
+    mapObject->mShadowScaleTargetY = (0x0000a000u);
+    mapObject->mShadowScaleTargetZ = scaleZ;
+    mapObject->mShadowScalePerCall = scalePerCall;
 }
 
-void func_ov001_021884f0(Unk02188950 *a, int b, int c, int d, u32 e, u32 f, u32 g) {
+void SetCollisionBoxOffsetAndExtent(Unk02188950 *mapObject, int offsetX, int offsetY, int offsetZ, u32 extentX,
+                                    u32 extentY, u32 extentZ) {
     int *v1;
     int *v2;
     int *v3;
     int *v4;
     int *v5;
-    a->mCollisionShape = 1;
-    if ((a->mUnk_000.mFlags & (0x00000400u)) != 0) {
-        b = -b;
+    mapObject->mCollisionShape = 1;
+    if ((mapObject->mUnk_000.mFlags & (0x00000400u)) != 0) {
+        offsetX = -offsetX;
     }
-    v2 = &a->mUnk_250;
-    *v2 = b;
-    v1 = &a->mOffset.x;
+    v2 = &mapObject->mOffsetTargetX;
+    *v2 = offsetX;
+    v1 = &mapObject->mOffset.x;
     *v1 = *v2;
-    v3 = &a->mUnk_254;
-    *v3 = c;
-    v2 = &a->mOffset.y;
+    v3 = &mapObject->mOffsetTargetY;
+    *v3 = offsetY;
+    v2 = &mapObject->mOffset.y;
     *v2 = *v3;
-    v4 = &a->mUnk_258;
-    *v4 = d;
-    v3 = &a->mOffset.z;
+    v4 = &mapObject->mOffsetTargetZ;
+    *v4 = offsetZ;
+    v3 = &mapObject->mOffset.z;
     *v3 = *v4;
-    a->mUnk_274 = 0;
-    v5 = &a->mUnk_268;
-    *v5 = e;
-    a->mCollisionExtent.x = *v5;
-    v5 = &a->mUnk_26c;
-    *v5 = f;
-    a->mCollisionExtent.y = *v5;
-    v5 = &a->mUnk_270;
-    *v5 = g;
-    a->mCollisionExtent.z = *v5;
-    a->mUnk_278 = 0;
-    a->mPosWithOffset.x = a->mUnk_000.mPos.x + *v1;
-    a->mPosWithOffset.y = a->mUnk_000.mPos.y + *v2;
-    a->mPosWithOffset.z = a->mUnk_000.mPos.z + *v3;
+    mapObject->mOffsetPerCall = 0;
+    v5 = &mapObject->mCollisionExtentTargetX;
+    *v5 = extentX;
+    mapObject->mCollisionExtent.x = *v5;
+    v5 = &mapObject->mCollisionExtentTargetY;
+    *v5 = extentY;
+    mapObject->mCollisionExtent.y = *v5;
+    v5 = &mapObject->mCollisionExtentTargetZ;
+    *v5 = extentZ;
+    mapObject->mCollisionExtent.z = *v5;
+    mapObject->mCollisionExtentPerCall = 0;
+    mapObject->mPosWithOffset.x = mapObject->mUnk_000.mPos.x + *v1;
+    mapObject->mPosWithOffset.y = mapObject->mUnk_000.mPos.y + *v2;
+    mapObject->mPosWithOffset.z = mapObject->mUnk_000.mPos.z + *v3;
 }
 
-void func_ov001_02188484(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, u32 l) {
-    a->mCollisionShape = 1;
-    if ((a->mUnk_000.mFlags & (0x00000400u)) != 0) {
-        b = -b;
+void SetCollisionBoxOffsetAndExtentTarget(Unk02188950 *mapObject, int offsetX, u32 offsetY, u32 offsetZ,
+                                          u32 offsetPerCall, u32 extentX, u32 extentY, u32 extentZ, u32 extentPerCall) {
+    mapObject->mCollisionShape = 1;
+    if ((mapObject->mUnk_000.mFlags & (0x00000400u)) != 0) {
+        offsetX = -offsetX;
     }
-    a->mUnk_250 = b;
-    a->mUnk_254 = c;
-    a->mUnk_258 = d;
-    a->mUnk_274 = e;
-    a->mUnk_268 = f;
-    a->mUnk_26c = g;
-    a->mUnk_270 = h;
-    a->mUnk_278 = l;
+    mapObject->mOffsetTargetX = offsetX;
+    mapObject->mOffsetTargetY = offsetY;
+    mapObject->mOffsetTargetZ = offsetZ;
+    mapObject->mOffsetPerCall = offsetPerCall;
+    mapObject->mCollisionExtentTargetX = extentX;
+    mapObject->mCollisionExtentTargetY = extentY;
+    mapObject->mCollisionExtentTargetZ = extentZ;
+    mapObject->mCollisionExtentPerCall = extentPerCall;
 }
