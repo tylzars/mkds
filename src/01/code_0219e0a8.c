@@ -48,9 +48,9 @@ void CreateEndingScene(void *heap) {
                 result = GetBmgEntry(gEndingScene->mCommonMessages, 0x78);
                 break;
         }
-        func_021243ac(gEndingScene->mHeap, 0, gEndingScene->mEndingThanksBnll, table[gEndingScene->mKind][0],
-                      table[gEndingScene->mKind][1], 0, gEndingScene->mThanksYouMNcer, gEndingScene->mEndingThanksBncl,
-                      gEndingScene->mEndingThanksTable, 0x8000);
+        InitLabelCanvas(gEndingScene->mHeap, 0, gEndingScene->mEndingThanksBnll, table[gEndingScene->mKind][0],
+                        table[gEndingScene->mKind][1], 0, gEndingScene->mThanksYouMNcer,
+                        gEndingScene->mEndingThanksBncl, gEndingScene->mEndingThanksTable, 0x8000);
         func_0212426c(0, 0, gEndingScene->mEndingThanksBnll, result, gEndingScene->mEndingThanksBncl,
                       gEndingScene->mEndingThanksTable);
     }

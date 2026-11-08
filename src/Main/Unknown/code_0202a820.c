@@ -82,7 +82,7 @@ void RefreshCourseListRows(s32 action, s32 slot, s32 row, s32 selectedSlot) {
             } else {
                 k = 0xf;
             }
-            func_02124100(i, k, fileSet->mLabelLayout, fileSet->mCellTable, fileSet->mCellLayout);
+            SetLabelPaletteIndex(i, k, fileSet->mLabelLayout, fileSet->mCellTable, fileSet->mCellLayout);
         }
     }
 }
@@ -224,12 +224,12 @@ void AdvanceWiFiVSCourseSelectTimer(void) {
             }
             cellLayout = fileSet->mCellLayout;
             cells = fileSet->mCells;
-            func_02124748(gCourseTimerDigitCellIndices[seconds / 10 % 10], cells, fileSet->mChars, cellLayout, 0, 0xf,
-                          cells, cellLayout);
+            QueueCellChars(gCourseTimerDigitCellIndices[seconds / 10 % 10], cells, fileSet->mChars, cellLayout, 0, 0xf,
+                           cells, cellLayout);
             cellLayout = fileSet->mCellLayout;
             cells = fileSet->mCells;
-            func_02124748(gCourseTimerDigitCellIndices[seconds % 10], cells, fileSet->mChars, cellLayout, 0, 0x10,
-                          cells, cellLayout);
+            QueueCellChars(gCourseTimerDigitCellIndices[seconds % 10], cells, fileSet->mChars, cellLayout, 0, 0x10,
+                           cells, cellLayout);
             break;
     }
 }

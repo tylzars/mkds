@@ -47,10 +47,10 @@ void func_ov000_021856a8(void) {
         }
     }
     for (i = 0; i < 12; i++) {
-        n -=
-            func_021243ac(gWiFiAikotobaCheck->mHeap, data_ov000_021b06dc[i], gWiFiAikotobaCheck->mWiFiAikotobaCheckBnll,
-                          8, 0x10, a[i], gWiFiAikotobaCheck->mWiFiAikotobaCheckMNcer,
-                          gWiFiAikotobaCheck->mWiFiAikotobaCheckBncl, gWiFiAikotobaCheck->mWiFiAikotobaCheckTable, n);
+        n -= InitLabelCanvas(gWiFiAikotobaCheck->mHeap, data_ov000_021b06dc[i],
+                             gWiFiAikotobaCheck->mWiFiAikotobaCheckBnll, 8, 0x10, a[i],
+                             gWiFiAikotobaCheck->mWiFiAikotobaCheckMNcer, gWiFiAikotobaCheck->mWiFiAikotobaCheckBncl,
+                             gWiFiAikotobaCheck->mWiFiAikotobaCheckTable, n);
         z[0] = 0;
         z[1] = 0;
         z[0] = gWiFiAikotobaCheck->mDigits[i];

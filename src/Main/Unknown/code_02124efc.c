@@ -12,14 +12,14 @@ void InitLayoutTableEntries(LayoutTableEntry *entry, s32 count) {
         entry->mOffsetX = 0;
         entry->mOffsetY = 0;
         entry->mUnk_08 = FALSE;
-        entry->mUnk_0c = 0;
+        entry->mPositionX = 0;
         entry->mPositionY = 0;
-        entry->mUnk_10 = 0;
+        entry->mUseMatrix = 0;
         MTX_Identity22_(entry->mUnk_14);
-        MTX_Identity22_(entry->mUnk_24);
+        MTX_Identity22_(entry->mMatrix);
         entry->mUnk_34 = 1;
-        entry->mUnk_38 = -1;
-        entry->mUnk_3c = NULL;
+        entry->mLabelIndex = -1;
+        entry->mLabelCanvas = NULL;
         entry++;
     }
 }

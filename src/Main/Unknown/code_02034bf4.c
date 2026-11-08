@@ -145,8 +145,10 @@ void func_02034ef0(void) {
         } else {
             v = 15;
         }
-        func_02124100(w, v, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable, subCellFileSet->mCellLayout);
-        func_02124100(i, v, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable, subCellFileSet->mCellLayout);
+        SetLabelPaletteIndex(w, v, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable,
+                             subCellFileSet->mCellLayout);
+        SetLabelPaletteIndex(i, v, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable,
+                             subCellFileSet->mCellLayout);
     }
     if (data_02174e64->mSelectedIndex >= 0) {
         func_02025c6c(4, data_02164254[data_02174e64->mSelectedIndex][3], subCellFileSet->mCellLayout);

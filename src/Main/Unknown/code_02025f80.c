@@ -128,7 +128,7 @@ void func_02027084(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         elementCount = sParts->mCellLayout->mUnk_06;
         for (i = 0; i < elementCount; i++) {
-            func_02124b1c(&sParts->mCellTable[i], gSelectCharacter->mUnk_074, gSelectCharacter->mUnk_070);
+            SetLayoutEntryAngleAndScale(&sParts->mCellTable[i], gSelectCharacter->mUnk_074, gSelectCharacter->mUnk_070);
         }
     }
 }
@@ -222,8 +222,8 @@ void InitSelectCharacter(void *parentHeap, s32 mode, void *mainOam, void *subOam
         func_02025a50(0, gSelectCharacter->mHeap, &selectCharacter->mUnk_000);
         LocateCellFileSet(&titleParts, gSelectCharacterGpTitleMNcgrName, gSelectCharacterGpTitleMNcerName, NULL,
                           gSelectCharacterGpTitleMBnclName, NULL, NULL, FindFileInLoadedArchives);
-        func_02124748(0, titleParts.mCells, titleParts.mChars, titleParts.mCellLayout, 0, 0,
-                      selectCharacter->mUnk_000.mCells, selectCharacter->mUnk_000.mCellLayout);
+        QueueCellChars(0, titleParts.mCells, titleParts.mChars, titleParts.mCellLayout, 0, 0,
+                       selectCharacter->mUnk_000.mCells, selectCharacter->mUnk_000.mCellLayout);
         LocateCellFileSet(&gSelectCharacter->mUnk_038, gSelectCharacterGpNameMNcgrName, gSelectCharacterGpNameMNcerName,
                           NULL, gSelectCharacterGpNameMBnclName, NULL, NULL, FindFileInLoadedArchives);
         selectCharacter->mUnk_000.mCellTable[9].mVisible = 0;
@@ -240,19 +240,19 @@ void InitSelectCharacter(void *parentHeap, s32 mode, void *mainOam, void *subOam
         func_02025a50(1, gSelectCharacter->mHeap, sParts);
         sParts->mCellTable[24].mVisible = 0;
         for (i = 0; i < 12; i++) {
-            sParts->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_10 = 1;
-            sParts->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_10 =
-                sParts->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_10;
-            sParts->mCellTable[data_usa_02153554[i].mUnk_00].mUnk_10 =
-                sParts->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_10;
+            sParts->mCellTable[data_usa_02153554[i].mUnk_04].mUseMatrix = 1;
+            sParts->mCellTable[data_usa_02153554[i].mUnk_02].mUseMatrix =
+                sParts->mCellTable[data_usa_02153554[i].mUnk_04].mUseMatrix;
+            sParts->mCellTable[data_usa_02153554[i].mUnk_00].mUseMatrix =
+                sParts->mCellTable[data_usa_02153554[i].mUnk_02].mUseMatrix;
             sParts->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_34 = 0;
             sParts->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_34 =
                 sParts->mCellTable[data_usa_02153554[i].mUnk_04].mUnk_34;
             sParts->mCellTable[data_usa_02153554[i].mUnk_00].mUnk_34 =
                 sParts->mCellTable[data_usa_02153554[i].mUnk_02].mUnk_34;
         }
-        sParts->mCellTable[25].mUnk_10 = 1;
-        sParts->mCellTable[24].mUnk_10 = sParts->mCellTable[25].mUnk_10;
+        sParts->mCellTable[25].mUseMatrix = 1;
+        sParts->mCellTable[24].mUseMatrix = sParts->mCellTable[25].mUseMatrix;
         sParts->mCellTable[25].mUnk_34 = 0;
         sParts->mCellTable[24].mUnk_34 = sParts->mCellTable[25].mUnk_34;
     } else if (GetRaceSetupCopy()->mMode == 2) {

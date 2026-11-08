@@ -312,12 +312,12 @@ void func_ov000_02184c74(void) {
     for (i = 0; i < 2; i++) {
         if (i == gWiFiAikotoba->mUnk_08 && gWiFiAikotoba->mUnk_14 != FALSE) {
             gWiFiAikotoba->mWiFiAikotobaTable[data_ov000_021b06c4[i]].mVisible = 1;
-            func_02124a20(data_ov000_021b06bc[i], 0xe, gWiFiAikotoba->mWiFiAikotobaSNcer,
-                          gWiFiAikotoba->mWiFiAikotobaBncl);
+            SetCellPaletteIndex(data_ov000_021b06bc[i], 0xe, gWiFiAikotoba->mWiFiAikotobaSNcer,
+                                gWiFiAikotoba->mWiFiAikotobaBncl);
         } else {
             gWiFiAikotoba->mWiFiAikotobaTable[data_ov000_021b06c4[i]].mVisible = 0;
-            func_02124a20(data_ov000_021b06bc[i], 0xf, gWiFiAikotoba->mWiFiAikotobaSNcer,
-                          gWiFiAikotoba->mWiFiAikotobaBncl);
+            SetCellPaletteIndex(data_ov000_021b06bc[i], 0xf, gWiFiAikotoba->mWiFiAikotobaSNcer,
+                                gWiFiAikotoba->mWiFiAikotobaBncl);
         }
     }
 }

@@ -23,17 +23,17 @@ void func_02122728(void) {
 // old and new number.
 void PackWiFiSessionIndices(void) {
     u8 i;
-    s8 a = 0;
-    u8 t;
+    s8 nextNumber = 0;
+    u8 oldNumber;
     for (i = 0; i < 4; i++) {
         if (i < gWiFiSession->mStartKartCount) {
             if ((gWiFiSession->mKartMask & (1 << i)) == 0) {
                 gWiFiSession->mPackedIndices[i] = -1;
             } else {
-                t = gWiFiSession->mPackedIndices[i];
-                gWiFiSession->mPackedIndices[i] = a;
-                a++;
-                CopyKartCupRecords(t, gWiFiSession->mPackedIndices[i]);
+                oldNumber = gWiFiSession->mPackedIndices[i];
+                gWiFiSession->mPackedIndices[i] = nextNumber;
+                nextNumber++;
+                CopyKartCupRecords(oldNumber, gWiFiSession->mPackedIndices[i]);
             }
         } else {
             gWiFiSession->mPackedIndices[i] = -1;
@@ -41,21 +41,21 @@ void PackWiFiSessionIndices(void) {
     }
 }
 
-BOOL UpdateWiFiSessionStepTimeout(u32 a) {
-    s32 n;
-    s32 s;
-    n = gWiFiSession->mStepFrames;
-    gWiFiSession->mStepFrames = n + 1;
-    if (n > a) {
+BOOL UpdateWiFiSessionStepTimeout(u32 limit) {
+    s32 frames;
+    s32 step;
+    frames = gWiFiSession->mStepFrames;
+    gWiFiSession->mStepFrames = frames + 1;
+    if (frames > limit) {
         gWiFiSession->mStepFrames = 0;
-        s = gWiFiSession->mStep;
-        if (s == 0 || s == 1 || s == 2) {
+        step = gWiFiSession->mStep;
+        if (step == 0 || step == 1 || step == 2) {
             gWiFiSession->mUnk_194e = 1;
             func_ov000_021a2ccc();
             func_ov000_0219bbfc();
             gWiFiSession->mStep = 11;
         } else {
-            if (s == 9 || s == 10) {
+            if (step == 9 || step == 10) {
                 return TRUE;
             }
             gWiFiSession->mUnk_19ad = 1;
@@ -68,11 +68,11 @@ BOOL UpdateWiFiSessionStepTimeout(u32 a) {
     return FALSE;
 }
 
-static inline BOOL func_02121f4c_inline(const Unk0217d384_1d00 *p, u32 a, u32 c, u8 n) {
-    if (p->mKind < 10) {
-        if (p->mSize == c) {
-            if (p->mFromIndex == a) {
-                if (p->mToIndex == n) {
+static inline BOOL func_02121f4c_inline(const Unk0217d384_1d00 *message, u32 fromIndex, u32 size, u8 toIndex) {
+    if (message->mKind < 10) {
+        if (message->mSize == size) {
+            if (message->mFromIndex == fromIndex) {
+                if (message->mToIndex == toIndex) {
                     return TRUE;
                 }
             }
@@ -83,126 +83,126 @@ static inline BOOL func_02121f4c_inline(const Unk0217d384_1d00 *p, u32 a, u32 c,
 
 // Receive callback of the net layer: validates the header, checks the kind against the step, copies the message into
 // the own array and sets mReceivedMask.
-void ReceiveWiFiSessionMessage(u32 a, void *b, u32 c) {
-    Unk0217d384_1d00 *p;
-    u8 n;
-    p = b;
-    if (gWiFiSession->mStep >= 5 && (gWiFiSession->mKartMask & (1 << a)) == 0) {
+void ReceiveWiFiSessionMessage(u32 fromIndex, void *buffer, u32 size) {
+    Unk0217d384_1d00 *message;
+    u8 ownIndex;
+    message = buffer;
+    if (gWiFiSession->mStep >= 5 && (gWiFiSession->mKartMask & (1 << fromIndex)) == 0) {
         return;
     }
-    gWiFiSession->mSinceCallbackFrames[a] = 0;
-    n = func_ov000_0219bb50();
-    if (func_02121f4c_inline(p, a, c, n) == FALSE) {
+    gWiFiSession->mSinceCallbackFrames[fromIndex] = 0;
+    ownIndex = func_ov000_0219bb50();
+    if (func_02121f4c_inline(message, fromIndex, size, ownIndex) == FALSE) {
         return;
     }
-    if (IsWiFiSessionMessageKindAllowed(p->mKind) == FALSE) {
+    if (IsWiFiSessionMessageKindAllowed(message->mKind) == FALSE) {
         return;
     }
-    switch (p->mKind) {
+    switch (message->mKind) {
         case 0:
-            gWiFiSession->mSendRecordMask |= 1 << a;
+            gWiFiSession->mSendRecordMask |= 1 << fromIndex;
             break;
         case 1:
-            gWiFiSession->mReceivedMask |= 1 << a;
-            SetPeerReceiveBuffer(a, &gWiFiSession->mReceiveBuffers[a], 0x44);
+            gWiFiSession->mReceivedMask |= 1 << fromIndex;
+            SetPeerReceiveBuffer(fromIndex, &gWiFiSession->mReceiveBuffers[fromIndex], 0x44);
             break;
         case 2:
             if (gWiFiSession->mStep == 1) {
-                gWiFiSession->mReceivedMask |= 1 << a;
+                gWiFiSession->mReceivedMask |= 1 << fromIndex;
             }
             break;
         case 8:
             if (gWiFiSession->mStep != 3) {
                 return;
             }
-            if (p->mUnk_40 == 0) {
+            if (message->mUnk_40 == 0) {
                 return;
             }
-            MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
-            gWiFiSession->mReceivedMask |= 1 << a;
+            MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[fromIndex], &gWiFiSession->mIndexMessages[fromIndex], 0x44);
+            gWiFiSession->mReceivedMask |= 1 << fromIndex;
             break;
         case 9:
             if (gWiFiSession->mStep == 3) {
-                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
-                gWiFiSession->mReceivedMask |= 1 << a;
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[fromIndex], &gWiFiSession->mIndexMessages[fromIndex], 0x44);
+                gWiFiSession->mReceivedMask |= 1 << fromIndex;
             } else if (gWiFiSession->mStep == 4) {
-                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
-                gWiFiSession->mReceivedMask |= 1 << a;
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[fromIndex], &gWiFiSession->mIndexMessages[fromIndex], 0x44);
+                gWiFiSession->mReceivedMask |= 1 << fromIndex;
             }
             break;
         case 3:
             if (gWiFiSession->mStep == 1) {
-                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[fromIndex], &gWiFiSession->mIndexMessages[fromIndex], 0x44);
                 gWiFiSession->mReceivedMask = 0xff;
             } else if (gWiFiSession->mStep == 5) {
-                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
-                if (p->mCharacterIndex == -1) {
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[fromIndex], &gWiFiSession->mIndexMessages[fromIndex], 0x44);
+                if (message->mCharacterIndex == -1) {
                     return;
                 }
-                if (p->mKartIndex == -1) {
+                if (message->mKartIndex == -1) {
                     return;
                 }
-                gWiFiSession->mReceivedMask |= 1 << a;
+                gWiFiSession->mReceivedMask |= 1 << fromIndex;
             } else if (gWiFiSession->mStep == 4) {
-                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[fromIndex], &gWiFiSession->mIndexMessages[fromIndex], 0x44);
                 gWiFiSession->mReceivedMask = 0xff;
             }
             break;
         case 4:
             if (gWiFiSession->mStep == 5) {
-                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
-                gWiFiSession->mReceivedMask |= 1 << a;
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[fromIndex], &gWiFiSession->mIndexMessages[fromIndex], 0x44);
+                gWiFiSession->mReceivedMask |= 1 << fromIndex;
             } else if (gWiFiSession->mStep == 6) {
-                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
-                gWiFiSession->mReceivedMask |= 1 << a;
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[fromIndex], &gWiFiSession->mIndexMessages[fromIndex], 0x44);
+                gWiFiSession->mReceivedMask |= 1 << fromIndex;
             }
             break;
         case 5:
             if (gWiFiSession->mStep == 6) {
-                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[fromIndex], &gWiFiSession->mIndexMessages[fromIndex], 0x44);
                 gWiFiSession->mReceivedMask = 0xff;
             } else if (gWiFiSession->mStep == 7) {
-                if (p->mPickedCourseId == 0) {
+                if (message->mPickedCourseId == 0) {
                     return;
                 }
-                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
-                gWiFiSession->mReceivedMask |= 1 << a;
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[fromIndex], &gWiFiSession->mIndexMessages[fromIndex], 0x44);
+                gWiFiSession->mReceivedMask |= 1 << fromIndex;
             }
             break;
         case 6:
             if (gWiFiSession->mStep == 7) {
-                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
-                gWiFiSession->mReceivedMask |= 1 << a;
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[fromIndex], &gWiFiSession->mIndexMessages[fromIndex], 0x44);
+                gWiFiSession->mReceivedMask |= 1 << fromIndex;
             } else if (gWiFiSession->mStep == 8) {
-                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
-                gWiFiSession->mReceivedMask |= 1 << a;
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[fromIndex], &gWiFiSession->mIndexMessages[fromIndex], 0x44);
+                gWiFiSession->mReceivedMask |= 1 << fromIndex;
             }
             break;
         case 7:
             if (gWiFiSession->mStep == 8) {
-                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
-                gWiFiSession->mReceivedMask |= 1 << a;
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[fromIndex], &gWiFiSession->mIndexMessages[fromIndex], 0x44);
+                gWiFiSession->mReceivedMask |= 1 << fromIndex;
             } else if (gWiFiSession->mStep == 9) {
-                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
-                func_0212145c(a);
-                gWiFiSession->mReceivedMask |= 1 << a;
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[fromIndex], &gWiFiSession->mIndexMessages[fromIndex], 0x44);
+                EndWiFiSessionOnPicksMismatch(fromIndex);
+                gWiFiSession->mReceivedMask |= 1 << fromIndex;
             }
             break;
     }
 }
 
-void SetWiFiSessionOwnCharacterIndex(s32 a) {
-    gWiFiSession->mUnk_1e10[func_ov000_0219bb50()].mCharacterIndex = a;
+void SetWiFiSessionOwnCharacterIndex(s32 characterIndex) {
+    gWiFiSession->mIndexMessages[func_ov000_0219bb50()].mCharacterIndex = characterIndex;
 }
 
 void SetWiFiSessionOwnCharacterIndexNone(void) {
-    gWiFiSession->mUnk_1e10[func_ov000_0219bb50()].mCharacterIndex = -1;
+    gWiFiSession->mIndexMessages[func_ov000_0219bb50()].mCharacterIndex = -1;
 }
 
-void SetWiFiSessionOwnKartIndex(s32 a) {
-    gWiFiSession->mUnk_1e10[func_ov000_0219bb50()].mKartIndex = a;
+void SetWiFiSessionOwnKartIndex(s32 kartIndex) {
+    gWiFiSession->mIndexMessages[func_ov000_0219bb50()].mKartIndex = kartIndex;
 }
 
-void SetWiFiSessionOwnPickedCourseId(s32 a) {
-    gWiFiSession->mUnk_1e10[func_ov000_0219bb50()].mPickedCourseId = a;
+void SetWiFiSessionOwnPickedCourseId(s32 pickedCourseId) {
+    gWiFiSession->mIndexMessages[func_ov000_0219bb50()].mPickedCourseId = pickedCourseId;
 }

@@ -233,13 +233,14 @@ void RefreshSelectGhostForIndex(void) {
     x = gSelectGhostSBnllIndices[2];
     gSelectGhost->mSelectGhostSTable[n + x].mVisible = 1;
     r = data_ov001_021a6b88[GetGhostRecordSetCharacterIndex(data_ov001_021a6b78[gSelectGhost->mIndex])];
-    func_02124748(r, gSelectGhost->mPlayerCharacterMNcer, gSelectGhost->mPlayerCharacterMNcgr,
-                  gSelectGhost->mPlayerCharacterMBncl, 1, a, gSelectGhost->mSelectGhostSONcer,
-                  gSelectGhost->mSelectGhostSBncl);
+    QueueCellChars(r, gSelectGhost->mPlayerCharacterMNcer, gSelectGhost->mPlayerCharacterMNcgr,
+                   gSelectGhost->mPlayerCharacterMBncl, 1, a, gSelectGhost->mSelectGhostSONcer,
+                   gSelectGhost->mSelectGhostSBncl);
     blk = gSelectGhost->mPlayerCharacterMONclr->mUnk_0c;
     CallQueueAppend(
         0x1e, 0x100,
-        blk + (func_02124a68(r, gSelectGhost->mPlayerCharacterMNcer, gSelectGhost->mPlayerCharacterMBncl) << 5), 0x20);
+        blk + (GetCellPaletteIndex(r, gSelectGhost->mPlayerCharacterMNcer, gSelectGhost->mPlayerCharacterMBncl) << 5),
+        0x20);
     k = GetGhostRecordSetKartIndex(data_ov001_021a6b78[gSelectGhost->mIndex]);
     QueueKartIcon(k, gSelectGhost->mSelectGhostSONcer, gSelectGhost->mSelectGhostSBncl, b, 9, 1);
     GetGhostRecordSetTime(data_ov001_021a6b78[gSelectGhost->mIndex], buf14);
@@ -309,7 +310,7 @@ void func_ov001_0219be5c(void) {
                         gSelectGhost->mSelectCupCourseTaMBncl, 0, 0);
     QueueCupMark(data_ov001_021a6ba4[GetCupIndex()], gSelectGhost->mSelectCupCourseMNcer,
                  gSelectGhost->mSelectCupCourseTaMBncl, 5,
-                 func_02124a68(5, gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl), 0);
+                 GetCellPaletteIndex(5, gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl), 0);
     func_0212426c(0, 2, gSelectGhost->mSelectCupCourseTaMBnll, GetBmgEntry(gSelectGhost->mCommonMessages, 0x73),
                   gSelectGhost->mSelectCupCourseTaMBncl, gSelectGhost->mSelectCupCourseTaMTable);
     func_0212426c(0, 4, gSelectGhost->mSelectCupCourseTaMBnll, GetBmgEntry(gSelectGhost->mCommonMessages, 0x74),
@@ -349,33 +350,33 @@ void InitSelectGhost(void *a, u32 b, u32 c) {
     gSelectGhost->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     gSelectGhost->mMenuMessages = FindSceneFile("menu.bmg");
     rem = 0x8000;
-    rem -= func_021243ac(gSelectGhost->mHeap, 0, gSelectGhost->mSelectCupCourseTaMBnll, 0xb4, 0xd, 0,
-                         gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
-                         gSelectGhost->mSelectCupCourseTaMTable, rem);
-    rem -= func_021243ac(gSelectGhost->mHeap, 1, gSelectGhost->mSelectCupCourseTaMBnll, 0xb4, 0xd, 1,
-                         gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
-                         gSelectGhost->mSelectCupCourseTaMTable, rem);
-    rem -= func_021243ac(gSelectGhost->mHeap, 2, gSelectGhost->mSelectCupCourseTaMBnll, 0x96, 0xd, 2,
-                         gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
-                         gSelectGhost->mSelectCupCourseTaMTable, rem);
-    rem -= func_021243ac(gSelectGhost->mHeap, 3, gSelectGhost->mSelectCupCourseTaMBnll, 0x50, 0xd, 3,
-                         gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
-                         gSelectGhost->mSelectCupCourseTaMTable, rem);
-    rem -= func_021243ac(gSelectGhost->mHeap, 4, gSelectGhost->mSelectCupCourseTaMBnll, 0x96, 0xd, 4,
-                         gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
-                         gSelectGhost->mSelectCupCourseTaMTable, rem);
-    func_021243ac(gSelectGhost->mHeap, 5, gSelectGhost->mSelectCupCourseTaMBnll, 0x50, 0xd, 5,
-                  gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
-                  gSelectGhost->mSelectCupCourseTaMTable, rem);
+    rem -= InitLabelCanvas(gSelectGhost->mHeap, 0, gSelectGhost->mSelectCupCourseTaMBnll, 0xb4, 0xd, 0,
+                           gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
+                           gSelectGhost->mSelectCupCourseTaMTable, rem);
+    rem -= InitLabelCanvas(gSelectGhost->mHeap, 1, gSelectGhost->mSelectCupCourseTaMBnll, 0xb4, 0xd, 1,
+                           gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
+                           gSelectGhost->mSelectCupCourseTaMTable, rem);
+    rem -= InitLabelCanvas(gSelectGhost->mHeap, 2, gSelectGhost->mSelectCupCourseTaMBnll, 0x96, 0xd, 2,
+                           gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
+                           gSelectGhost->mSelectCupCourseTaMTable, rem);
+    rem -= InitLabelCanvas(gSelectGhost->mHeap, 3, gSelectGhost->mSelectCupCourseTaMBnll, 0x50, 0xd, 3,
+                           gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
+                           gSelectGhost->mSelectCupCourseTaMTable, rem);
+    rem -= InitLabelCanvas(gSelectGhost->mHeap, 4, gSelectGhost->mSelectCupCourseTaMBnll, 0x96, 0xd, 4,
+                           gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
+                           gSelectGhost->mSelectCupCourseTaMTable, rem);
+    InitLabelCanvas(gSelectGhost->mHeap, 5, gSelectGhost->mSelectCupCourseTaMBnll, 0x50, 0xd, 5,
+                    gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
+                    gSelectGhost->mSelectCupCourseTaMTable, rem);
     rem = GX_GetSizeOfSubOBJ();
     for (i = 0; i < 5; i++) {
-        rem -= func_021243ac(gSelectGhost->mHeap, gSelectGhostSBnllIndices[i], gSelectGhost->mSelectGhostSBnll,
-                             data_ov001_021a6b48[i], data_ov001_021a6b60[i], i, gSelectGhost->mSelectGhostSONcer,
-                             gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSTable, rem);
+        rem -= InitLabelCanvas(gSelectGhost->mHeap, gSelectGhostSBnllIndices[i], gSelectGhost->mSelectGhostSBnll,
+                               data_ov001_021a6b48[i], data_ov001_021a6b60[i], i, gSelectGhost->mSelectGhostSONcer,
+                               gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSTable, rem);
     }
-    func_021243ac(gSelectGhost->mHeap, 5, gSelectGhost->mSelectGhostSBnll, 0x32, 0xd, 0xb,
-                  gSelectGhost->mSelectGhostSONcer, gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSTable,
-                  rem);
+    InitLabelCanvas(gSelectGhost->mHeap, 5, gSelectGhost->mSelectGhostSBnll, 0x32, 0xd, 0xb,
+                    gSelectGhost->mSelectGhostSONcer, gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSTable,
+                    rem);
     func_0212426c(1, gSelectGhostSBnllIndices[0], gSelectGhost->mSelectGhostSBnll,
                   GetBmgEntry(gSelectGhost->mMenuMessages, 8), gSelectGhost->mSelectGhostSBncl,
                   gSelectGhost->mSelectGhostSTable);

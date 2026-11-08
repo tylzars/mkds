@@ -204,7 +204,7 @@ next:
         gWiFiTopMenu->mNextState = 4;
         switch (gWiFiTopMenu->mIndex) {
             case 0:
-                if (func_0211fd68() == 1) {
+                if (GetWiFiSessionLoginResult() == 1) {
                     gWiFiTopMenu->mPendingWiFiState = 2;
                 } else {
                     gWiFiTopMenu->mPendingWiFiState = 0;
@@ -260,7 +260,7 @@ void AdvanceWiFiTopMenuState5(void) {
     s32 j;
     s32 v;
     if (GetWiFiNextScene() == -1) {
-        if (gWiFiTopMenu->mPendingWiFiState == 10 && func_0211fd68() != 1) {
+        if (gWiFiTopMenu->mPendingWiFiState == 10 && GetWiFiSessionLoginResult() != 1) {
             SetWiFiNextScene(0);
         } else if (gWiFiTopMenu->mPendingWiFiState == 13) {
             data_021759d0->mUnk_20 = 4;
@@ -323,7 +323,7 @@ void AdvanceWiFiTopMenuState7(void) {
     if ((v1 == -1) && (gWiFiTopMenu->mPendingWiFiState == 10)) {
         SetWiFiNextScene(0);
     }
-    v1 = func_0211fd68();
+    v1 = GetWiFiSessionLoginResult();
     if (v1 != 1) {
         gWiFiTopMenu->mPendingWiFiState = 10;
     }
@@ -366,10 +366,10 @@ void func_ov000_021817e8(void) {
     for (; i < 3; i++) {
         if (i == gWiFiTopMenu->mIndex && gWiFiTopMenu->mUnk_18 != FALSE) {
             gWiFiTopMenu->mWiFiTopMenuTable[*p].mVisible = 1;
-            func_02124a20(*q, 0xe, gWiFiTopMenu->mWiFiTopMenuSNcer, gWiFiTopMenu->mWiFiTopMenuBncl);
+            SetCellPaletteIndex(*q, 0xe, gWiFiTopMenu->mWiFiTopMenuSNcer, gWiFiTopMenu->mWiFiTopMenuBncl);
         } else {
             gWiFiTopMenu->mWiFiTopMenuTable[*p].mVisible = v1;
-            func_02124a20(*q, 0xf, gWiFiTopMenu->mWiFiTopMenuSNcer, gWiFiTopMenu->mWiFiTopMenuBncl);
+            SetCellPaletteIndex(*q, 0xf, gWiFiTopMenu->mWiFiTopMenuSNcer, gWiFiTopMenu->mWiFiTopMenuBncl);
         }
         p++;
         q++;

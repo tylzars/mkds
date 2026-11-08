@@ -296,7 +296,7 @@ void func_0212aaa4(void) {
     void *a;
     Unk0201ea30 *cellLayout;
     Unk0217b4b0 *loadedFiles;
-    Unk0201ea30_08 *cellEntry;
+    CellLayoutEntry *cellEntry;
     s32 j;
     loadedFiles = func_020d1630();
     a = loadedFiles->mUnk_00;
@@ -307,7 +307,7 @@ void func_0212aaa4(void) {
     for (i = 0; i < 5; i++) {
         for (j = 0; j < data_0215d168[i]; j++) {
             data_0217d404->mUnk_0bc[i][j] =
-                (Unk0217d404_bc *) chars->mData + func_0212497c(data_0215d170[i][j], cells, a);
+                (Unk0217d404_bc *) chars->mData + GetCellCharIndex(data_0215d170[i][j], cells, a);
         }
     }
     for (i = 0; i < 2; i++) {

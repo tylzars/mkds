@@ -113,14 +113,14 @@ void RequestTimeAttackTopMenuState5(void) {
 
 void func_ov001_0219829c(s32 a) {
     gTimeAttackTopMenu->mTimeAttackTopMenuSTable[data_ov001_021a6a00[a]].mVisible = 1;
-    func_02124a20(data_ov001_021a6a18[a], 0xe, gTimeAttackTopMenu->mTimeAttackTopMenuSNcer,
-                  gTimeAttackTopMenu->mTimeAttackTopMenuSBncl);
+    SetCellPaletteIndex(data_ov001_021a6a18[a], 0xe, gTimeAttackTopMenu->mTimeAttackTopMenuSNcer,
+                        gTimeAttackTopMenu->mTimeAttackTopMenuSBncl);
 }
 
 void func_ov001_02198264(s32 a) {
     gTimeAttackTopMenu->mTimeAttackTopMenuSTable[data_ov001_021a6a00[a]].mVisible = 0;
-    func_02124a20(data_ov001_021a6a18[a], 0xf, gTimeAttackTopMenu->mTimeAttackTopMenuSNcer,
-                  gTimeAttackTopMenu->mTimeAttackTopMenuSBncl);
+    SetCellPaletteIndex(data_ov001_021a6a18[a], 0xf, gTimeAttackTopMenu->mTimeAttackTopMenuSNcer,
+                        gTimeAttackTopMenu->mTimeAttackTopMenuSBncl);
 }
 
 void InitTimeAttackTopMenu(void *a, void *b, s32 c) {

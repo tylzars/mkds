@@ -123,8 +123,8 @@ void QueueKartIcon(s32 iconIndex, Unk02021dc8 *destinationNcer, Unk0201ea30 *des
             queueKind = 0x1e;
             break;
     }
-    func_02124748(gKartIconRows[iconIndex].mBnclIndex, gKartIcon->mNcer, gKartIcon->mNcgr, gKartIcon->mBncl, f,
-                  destinationBnclIndex, destinationNcer, destinationBncl);
+    QueueCellChars(gKartIconRows[iconIndex].mBnclIndex, gKartIcon->mNcer, gKartIcon->mNcgr, gKartIcon->mBncl, f,
+                   destinationBnclIndex, destinationNcer, destinationBncl);
     CallQueueAppend(
         queueKind, paletteIndex * 32,
         gKartIcon->mNclrs[gKartIconRows[iconIndex].mNclrIndex]->mData + gKartIconRows[iconIndex].mNclrStart * 16, 0x20);

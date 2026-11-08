@@ -43,10 +43,10 @@ void InitOptionSelectMenuTexts(void) {
         s32 c[2] = {0xb, 0xc};
 
         for (i = 0; i < 2; i++) {
-            v0 -= func_021243ac(gOptionSelectMenu->mHeap, data_ov001_021a6a24[i],
-                                gOptionSelectMenu->mOptionSelectMenuMBnll, a[i][0], a[i][1], i,
-                                gOptionSelectMenu->mOptionSelectMenuMNcer, gOptionSelectMenu->mOptionSelectMenuMBncl,
-                                gOptionSelectMenu->mOptionSelectMenuMTable, v0);
+            v0 -= InitLabelCanvas(gOptionSelectMenu->mHeap, data_ov001_021a6a24[i],
+                                  gOptionSelectMenu->mOptionSelectMenuMBnll, a[i][0], a[i][1], i,
+                                  gOptionSelectMenu->mOptionSelectMenuMNcer, gOptionSelectMenu->mOptionSelectMenuMBncl,
+                                  gOptionSelectMenu->mOptionSelectMenuMTable, v0);
             func_0212426c(0, data_ov001_021a6a24[i], gOptionSelectMenu->mOptionSelectMenuMBnll,
                           GetBmgEntry(gOptionSelectMenu->mOptionMessages, c[i]),
                           gOptionSelectMenu->mOptionSelectMenuMBncl, gOptionSelectMenu->mOptionSelectMenuMTable);
@@ -63,10 +63,10 @@ void InitOptionSelectMenuTexts(void) {
             if (i == 2) {
                 v1 = gOptionSelectMenu->mCommonMessages;
             }
-            v2 -= func_021243ac(gOptionSelectMenu->mHeap, data_ov001_021a6a34[i],
-                                gOptionSelectMenu->mOptionSelectMenuSBnll, b[i][0], b[i][1], data_ov001_021a6a30[i],
-                                gOptionSelectMenu->mOptionSelectMenuSNcer, gOptionSelectMenu->mOptionSelectMenuSBncl,
-                                gOptionSelectMenu->mOptionSelectMenuSTable, v2);
+            v2 -= InitLabelCanvas(gOptionSelectMenu->mHeap, data_ov001_021a6a34[i],
+                                  gOptionSelectMenu->mOptionSelectMenuSBnll, b[i][0], b[i][1], data_ov001_021a6a30[i],
+                                  gOptionSelectMenu->mOptionSelectMenuSNcer, gOptionSelectMenu->mOptionSelectMenuSBncl,
+                                  gOptionSelectMenu->mOptionSelectMenuSTable, v2);
             func_0212426c(1, data_ov001_021a6a34[i], gOptionSelectMenu->mOptionSelectMenuSBnll, GetBmgEntry(v1, d[i]),
                           gOptionSelectMenu->mOptionSelectMenuSBncl, gOptionSelectMenu->mOptionSelectMenuSTable);
         }
@@ -524,19 +524,21 @@ void SetOptionSelectMenuRowsOnOff(void) {
     for (i = 0; i < 3; i++) {
         if (i == gOptionSelectMenu->mIndex && gOptionSelectMenu->mUnk_38 != FALSE) {
             gOptionSelectMenu->mOptionSelectMenuSTable[data_ov001_021a6a30[i]].mVisible = 1;
-            func_02124100(data_ov001_021a6a34[i], 14, gOptionSelectMenu->mOptionSelectMenuSBnll,
-                          gOptionSelectMenu->mOptionSelectMenuSTable, gOptionSelectMenu->mOptionSelectMenuSBncl);
+            SetLabelPaletteIndex(data_ov001_021a6a34[i], 14, gOptionSelectMenu->mOptionSelectMenuSBnll,
+                                 gOptionSelectMenu->mOptionSelectMenuSTable, gOptionSelectMenu->mOptionSelectMenuSBncl);
             for (k = 0; k < gOptionSelectMenuValueCounts[i]; k++) {
-                func_02124a20(gOptionSelectMenuValueSTableIndices[i][k], 14, gOptionSelectMenu->mOptionSelectMenuSNcer,
-                              gOptionSelectMenu->mOptionSelectMenuSBncl);
+                SetCellPaletteIndex(gOptionSelectMenuValueSTableIndices[i][k], 14,
+                                    gOptionSelectMenu->mOptionSelectMenuSNcer,
+                                    gOptionSelectMenu->mOptionSelectMenuSBncl);
             }
         } else {
             gOptionSelectMenu->mOptionSelectMenuSTable[data_ov001_021a6a30[i]].mVisible = 0;
-            func_02124100(data_ov001_021a6a34[i], 15, gOptionSelectMenu->mOptionSelectMenuSBnll,
-                          gOptionSelectMenu->mOptionSelectMenuSTable, gOptionSelectMenu->mOptionSelectMenuSBncl);
+            SetLabelPaletteIndex(data_ov001_021a6a34[i], 15, gOptionSelectMenu->mOptionSelectMenuSBnll,
+                                 gOptionSelectMenu->mOptionSelectMenuSTable, gOptionSelectMenu->mOptionSelectMenuSBncl);
             for (k = 0; k < gOptionSelectMenuValueCounts[i]; k++) {
-                func_02124a20(gOptionSelectMenuValueSTableIndices[i][k], 15, gOptionSelectMenu->mOptionSelectMenuSNcer,
-                              gOptionSelectMenu->mOptionSelectMenuSBncl);
+                SetCellPaletteIndex(gOptionSelectMenuValueSTableIndices[i][k], 15,
+                                    gOptionSelectMenu->mOptionSelectMenuSNcer,
+                                    gOptionSelectMenu->mOptionSelectMenuSBncl);
             }
         }
     }

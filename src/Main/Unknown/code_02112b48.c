@@ -362,12 +362,12 @@ void AdvanceRecordVSRowObjects(void) {
         if (IsRecordVSRowFilled((s16) i)) {
             if (gRecordVS->mIndex == i) {
                 gRecordVS->mRecordVSSTable[gRecordVSHighlightObjectIndices[i]].mVisible = 1;
-                func_02124100(gRecordVSRowLabelIndices[i], 0xe, gRecordVS->mRecordVSSBnll, gRecordVS->mRecordVSSTable,
-                              gRecordVS->mRecordVSSBncl);
+                SetLabelPaletteIndex(gRecordVSRowLabelIndices[i], 0xe, gRecordVS->mRecordVSSBnll,
+                                     gRecordVS->mRecordVSSTable, gRecordVS->mRecordVSSBncl);
             } else {
                 gRecordVS->mRecordVSSTable[gRecordVSUnhighlightedObjectIndices[i]].mVisible = 1;
-                func_02124100(gRecordVSRowLabelIndices[i], 0xf, gRecordVS->mRecordVSSBnll, gRecordVS->mRecordVSSTable,
-                              gRecordVS->mRecordVSSBncl);
+                SetLabelPaletteIndex(gRecordVSRowLabelIndices[i], 0xf, gRecordVS->mRecordVSSBnll,
+                                     gRecordVS->mRecordVSSTable, gRecordVS->mRecordVSSBncl);
             }
             gRecordVS->mRecordVSSTable[gRecordVSUnflaggedObjectIndices[i]].mVisible = !IsRecordFlagged(firstIndex + i);
             gRecordVS->mRecordVSSTable[gRecordVSFlaggedObjectIndices[i]].mVisible = IsRecordFlagged(firstIndex + i);
@@ -435,7 +435,7 @@ void PrintRecordVSShownRecord(void) {
                           6);
             ReadRecordEmblem(firstIndex + gRecordVS->mShownIndex, gRecordVS->mEmblem, gRecordVS->mEmblemConverted);
             recordVS = gRecordVS;
-            CallQueueAppend(0x13, func_0212497c(3, recordVS->mRecordVSMNcer, recordVS->mRecordVSMBncl) << 5,
+            CallQueueAppend(0x13, GetCellCharIndex(3, recordVS->mRecordVSMNcer, recordVS->mRecordVSMBncl) << 5,
                             recordVS->mEmblemConverted, 0x200);
             break;
         case 1:
@@ -449,7 +449,7 @@ void PrintRecordVSShownRecord(void) {
             }
             ReadRecordEmblem(firstIndex + gRecordVS->mShownIndex, gRecordVS->mEmblem, gRecordVS->mEmblemConverted);
             recordVS = gRecordVS;
-            CallQueueAppend(0x13, func_0212497c(1, recordVS->mRecordVSMNcer, recordVS->mRecordVSMTransientBncl) << 5,
+            CallQueueAppend(0x13, GetCellCharIndex(1, recordVS->mRecordVSMNcer, recordVS->mRecordVSMTransientBncl) << 5,
                             recordVS->mEmblemConverted, 0x200);
             break;
     }
@@ -839,25 +839,26 @@ void InitRecordVS(void *heap) {
     InitLayoutTable(heap, gRecordVS->mRecordVSSBncl, gRecordVS->mRecordVSSBnll, &gRecordVS->mRecordVSSTable);
     gRecordVS->mRecordMessages = FindSceneFile("record.bmg");
     remaining = 0x8000;
-    remaining -= func_021243ac(heap, 0, gRecordVS->mRecordVSMBnll, 0x8c, 0x10, 0, gRecordVS->mRecordVSMNcer,
-                               gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMTable, remaining);
-    remaining -= func_021243ac(heap, 1, gRecordVS->mRecordVSMBnll, 0xaa, 0xe, 1, gRecordVS->mRecordVSMNcer,
-                               gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMTable, remaining);
+    remaining -= InitLabelCanvas(heap, 0, gRecordVS->mRecordVSMBnll, 0x8c, 0x10, 0, gRecordVS->mRecordVSMNcer,
+                                 gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMTable, remaining);
+    remaining -= InitLabelCanvas(heap, 1, gRecordVS->mRecordVSMBnll, 0xaa, 0xe, 1, gRecordVS->mRecordVSMNcer,
+                                 gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMTable, remaining);
     func_0212426c(0, 1, gRecordVS->mRecordVSMBnll, GetBmgEntry(gRecordVS->mRecordMessages, 0),
                   gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMTable);
-    remaining -= func_021243ac(heap, 0xb, gRecordVS->mRecordVSMBnll, 0x96, 0xe, 2, gRecordVS->mRecordVSMNcer,
-                               gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMTable, remaining);
+    remaining -= InitLabelCanvas(heap, 0xb, gRecordVS->mRecordVSMBnll, 0x96, 0xe, 2, gRecordVS->mRecordVSMNcer,
+                                 gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMTable, remaining);
     func_0212426c(0, 0xb, gRecordVS->mRecordVSMBnll, GetBmgEntry(gRecordVS->mRecordMessages, 1),
                   gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMTable);
-    remaining -= func_021243ac(heap, 0xc, gRecordVS->mRecordVSMBnll, 0x46, 0x10, 3, gRecordVS->mRecordVSMNcer,
-                               gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMTable, remaining);
+    remaining -= InitLabelCanvas(heap, 0xc, gRecordVS->mRecordVSMBnll, 0x46, 0x10, 3, gRecordVS->mRecordVSMNcer,
+                                 gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMTable, remaining);
     objectIndex = 4;
     mainBase = gRecordVS->mRecordVSMBncl->mUnk_06;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            remaining -= func_021243ac(heap, gRecordVSGridLabelIndices[i][j], gRecordVS->mRecordVSMBnll,
-                                       data_0215c424[i][j], data_0215c438[i][j], objectIndex, gRecordVS->mRecordVSMNcer,
-                                       gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMTable, remaining);
+            remaining -=
+                InitLabelCanvas(heap, gRecordVSGridLabelIndices[i][j], gRecordVS->mRecordVSMBnll, data_0215c424[i][j],
+                                data_0215c438[i][j], objectIndex, gRecordVS->mRecordVSMNcer, gRecordVS->mRecordVSMBncl,
+                                gRecordVS->mRecordVSMTable, remaining);
             objectIndex = mainBase + gRecordVSGridLabelIndices[i][j];
         }
     }
@@ -866,29 +867,31 @@ void InitRecordVS(void *heap) {
                       GetBmgEntry(gRecordVS->mRecordMessages, gRecordVSGridRow0MessageIndices[i]),
                       gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMTable);
     }
-    remaining -= func_021243ac(heap, 0, gRecordVS->mRecordVSMTransientBnll, 0x8c, 0x10, 0, gRecordVS->mRecordVSMNcer,
-                               gRecordVS->mRecordVSMTransientBncl, gRecordVS->mRecordVSMTransientTable, remaining);
-    remaining -= func_021243ac(heap, 1, gRecordVS->mRecordVSMTransientBnll, 0x70, 0x10, 1, gRecordVS->mRecordVSMNcer,
-                               gRecordVS->mRecordVSMTransientBncl, gRecordVS->mRecordVSMTransientTable, remaining);
+    remaining -= InitLabelCanvas(heap, 0, gRecordVS->mRecordVSMTransientBnll, 0x8c, 0x10, 0, gRecordVS->mRecordVSMNcer,
+                                 gRecordVS->mRecordVSMTransientBncl, gRecordVS->mRecordVSMTransientTable, remaining);
+    remaining -= InitLabelCanvas(heap, 1, gRecordVS->mRecordVSMTransientBnll, 0x70, 0x10, 1, gRecordVS->mRecordVSMNcer,
+                                 gRecordVS->mRecordVSMTransientBncl, gRecordVS->mRecordVSMTransientTable, remaining);
     func_0212426c(0, 1, gRecordVS->mRecordVSMTransientBnll, GetBmgEntry(gRecordVS->mRecordMessages, 0xb),
                   gRecordVS->mRecordVSMTransientBncl, gRecordVS->mRecordVSMTransientTable);
-    remaining -= func_021243ac(heap, 0xe, gRecordVS->mRecordVSMTransientBnll, 0xe0, 0x38, 2, gRecordVS->mRecordVSMNcer,
-                               gRecordVS->mRecordVSMTransientBncl, gRecordVS->mRecordVSMTransientTable, remaining);
+    remaining -=
+        InitLabelCanvas(heap, 0xe, gRecordVS->mRecordVSMTransientBnll, 0xe0, 0x38, 2, gRecordVS->mRecordVSMNcer,
+                        gRecordVS->mRecordVSMTransientBncl, gRecordVS->mRecordVSMTransientTable, remaining);
     func_0212426c(0, 0xe, gRecordVS->mRecordVSMTransientBnll, GetBmgEntry(gRecordVS->mRecordMessages, 0xc),
                   gRecordVS->mRecordVSMTransientBncl, gRecordVS->mRecordVSMTransientTable);
     for (i = 0; i < 12; i++) {
-        remaining -= func_021243ac(heap, gRecordVSFriendKeyLabelIndices[i], gRecordVS->mRecordVSMTransientBnll,
-                                   data_0215c490[i], data_0215c460[i], i + 3, gRecordVS->mRecordVSMNcer,
-                                   gRecordVS->mRecordVSMTransientBncl, gRecordVS->mRecordVSMTransientTable, remaining);
+        remaining -=
+            InitLabelCanvas(heap, gRecordVSFriendKeyLabelIndices[i], gRecordVS->mRecordVSMTransientBnll,
+                            data_0215c490[i], data_0215c460[i], i + 3, gRecordVS->mRecordVSMNcer,
+                            gRecordVS->mRecordVSMTransientBncl, gRecordVS->mRecordVSMTransientTable, remaining);
     }
     remaining = GX_GetSizeOfSubOBJ();
     for (i = 0; i < 5; i++) {
-        remaining -= func_021243ac(heap, gRecordVSRowLabelIndices[i], gRecordVS->mRecordVSSBnll, data_0215c3c8[i],
-                                   data_0215c3d4[i], gRecordVSHighlightObjectIndices[i], gRecordVS->mRecordVSSNcer,
-                                   gRecordVS->mRecordVSSBncl, gRecordVS->mRecordVSSTable, remaining);
+        remaining -= InitLabelCanvas(heap, gRecordVSRowLabelIndices[i], gRecordVS->mRecordVSSBnll, data_0215c3c8[i],
+                                     data_0215c3d4[i], gRecordVSHighlightObjectIndices[i], gRecordVS->mRecordVSSNcer,
+                                     gRecordVS->mRecordVSSBncl, gRecordVS->mRecordVSSTable, remaining);
     }
-    func_021243ac(heap, 5, gRecordVS->mRecordVSSBnll, 0x98, 0x10, 0x19, gRecordVS->mRecordVSSNcer,
-                  gRecordVS->mRecordVSSBncl, gRecordVS->mRecordVSSTable, remaining);
+    InitLabelCanvas(heap, 5, gRecordVS->mRecordVSSBnll, 0x98, 0x10, 0x19, gRecordVS->mRecordVSSNcer,
+                    gRecordVS->mRecordVSSBncl, gRecordVS->mRecordVSSTable, remaining);
     func_0212426c(1, 5, gRecordVS->mRecordVSSBnll, GetBmgEntry(gRecordVS->mRecordMessages, 3),
                   gRecordVS->mRecordVSSBncl, gRecordVS->mRecordVSSTable);
     for (i = 0; i < 5; i++) {

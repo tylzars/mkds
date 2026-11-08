@@ -132,11 +132,11 @@ void func_0211a964(s32 labelIndex) {
     s32 tableIndex;
     tableIndex = gSelectRaceRule->mBncl->mUnk_06 + labelIndex;
     gSelectRaceRule->mTable[tableIndex].mOffsetY++;
-    func_02124100(labelIndex, 1, gSelectRaceRule->mBnll, gSelectRaceRule->mTable, gSelectRaceRule->mBncl);
+    SetLabelPaletteIndex(labelIndex, 1, gSelectRaceRule->mBnll, gSelectRaceRule->mTable, gSelectRaceRule->mBncl);
     DrawLayoutTableEntry(tableIndex, gSelectRaceRule->mBncl, gSelectRaceRule->mNcer, gSelectRaceRule->mBnll,
                          gSelectRaceRule->mOamList, gSelectRaceRule->mTable);
     gSelectRaceRule->mTable[tableIndex].mOffsetY--;
-    func_02124100(labelIndex, 0, gSelectRaceRule->mBnll, gSelectRaceRule->mTable, gSelectRaceRule->mBncl);
+    SetLabelPaletteIndex(labelIndex, 0, gSelectRaceRule->mBnll, gSelectRaceRule->mTable, gSelectRaceRule->mBncl);
 }
 
 void func_0211a908(s32 row) {
@@ -354,9 +354,11 @@ void SetupSelectCupCourseObjects(void) {
                             selectCupCourse->mSelectCupMBncl, 0x13, 1);
         selectCupCourse = gSelectCupCourse;
         i = GetCupIndex();
-        QueueCupMark(
-            data_0215cadc[i], selectCupCourse->mSelectCupCourseMNcer, selectCupCourse->mSelectCupCourseTaOrVsMBncl, 5,
-            func_02124a68(5, selectCupCourse->mSelectCupCourseMNcer, selectCupCourse->mSelectCupCourseTaOrVsMBncl), 0);
+        QueueCupMark(data_0215cadc[i], selectCupCourse->mSelectCupCourseMNcer,
+                     selectCupCourse->mSelectCupCourseTaOrVsMBncl, 5,
+                     GetCellPaletteIndex(5, selectCupCourse->mSelectCupCourseMNcer,
+                                         selectCupCourse->mSelectCupCourseTaOrVsMBncl),
+                     0);
         for (i = 0; i < 4; i++) {
             selectCupCourse = gSelectCupCourse;
             func_0212426c(
@@ -400,12 +402,12 @@ void AdvanceSelectCupCourseHighlight(void) {
         for (i = 0; i < 4; i++) {
             if (gSelectCupCourse->mIndex == i && gSelectCupCourse->mUnk_54 != FALSE) {
                 gSelectCupCourse->mSelectCupMTable[data_0215caa4[i]].mVisible = 1;
-                func_02124100(data_0215cab4[i], 0xe, gSelectCupCourse->mSelectCupMBnll,
-                              gSelectCupCourse->mSelectCupMTable, gSelectCupCourse->mSelectCupMBncl);
+                SetLabelPaletteIndex(data_0215cab4[i], 0xe, gSelectCupCourse->mSelectCupMBnll,
+                                     gSelectCupCourse->mSelectCupMTable, gSelectCupCourse->mSelectCupMBncl);
             } else {
                 gSelectCupCourse->mSelectCupMTable[data_0215caa4[i]].mVisible = 0;
-                func_02124100(data_0215cab4[i], 0xf, gSelectCupCourse->mSelectCupMBnll,
-                              gSelectCupCourse->mSelectCupMTable, gSelectCupCourse->mSelectCupMBncl);
+                SetLabelPaletteIndex(data_0215cab4[i], 0xf, gSelectCupCourse->mSelectCupMBnll,
+                                     gSelectCupCourse->mSelectCupMTable, gSelectCupCourse->mSelectCupMBncl);
             }
         }
     }

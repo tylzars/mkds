@@ -178,20 +178,20 @@ void func_ov001_021a0b3c(void) {
         }
         func_021057f0(0, GetMissionTableRow());
         if (i == 8) {
-            func_02124a20(data_ov001_021a6e7c[i][2], 2, gMissionRunMSsel->mMissionRunMSselSNcer,
-                          gMissionRunMSsel->mMissionRunMSselSBncl);
-            func_02124a20(data_ov001_021a6e7c[i][1], 5, gMissionRunMSsel->mMissionRunMSselSNcer,
-                          gMissionRunMSsel->mMissionRunMSselSBncl);
+            SetCellPaletteIndex(data_ov001_021a6e7c[i][2], 2, gMissionRunMSsel->mMissionRunMSselSNcer,
+                                gMissionRunMSsel->mMissionRunMSselSBncl);
+            SetCellPaletteIndex(data_ov001_021a6e7c[i][1], 5, gMissionRunMSsel->mMissionRunMSselSNcer,
+                                gMissionRunMSsel->mMissionRunMSselSBncl);
             if (gMissionRunMSsel->mUnk_a0 != 0) {
                 if (GetPreviousMenuScreenNumber() == SCREEN_MISSION_RUN_LVSEL) {
                     gMissionRunMSsel->mIndex = 8;
                 }
                 if (gMissionRunMSsel->mUnk_a4 == FALSE) {
                     gMissionRunMSsel->mIndex = 8;
-                    func_02124a20(data_ov001_021a6e7c[i][2], 0xb, gMissionRunMSsel->mMissionRunMSselSNcer,
-                                  gMissionRunMSsel->mMissionRunMSselSBncl);
-                    func_02124a20(data_ov001_021a6e7c[i][1], 0xe, gMissionRunMSsel->mMissionRunMSselSNcer,
-                                  gMissionRunMSsel->mMissionRunMSselSBncl);
+                    SetCellPaletteIndex(data_ov001_021a6e7c[i][2], 0xb, gMissionRunMSsel->mMissionRunMSselSNcer,
+                                        gMissionRunMSsel->mMissionRunMSselSBncl);
+                    SetCellPaletteIndex(data_ov001_021a6e7c[i][1], 0xe, gMissionRunMSsel->mMissionRunMSselSNcer,
+                                        gMissionRunMSsel->mMissionRunMSselSBncl);
                     func_021057f0(3, GetMissionTableRow());
                 }
             }
@@ -535,22 +535,22 @@ void InitMissionRunMSsel(void *a, void *b, void *c) {
     gMissionRunMSsel->mMissionMessages = FindSceneFile(data_ov001_021a94b0);
     gMissionRunMSsel->mMissionTableMtbl = FindFileInLoadedArchives(data_ov001_021a94bc);
     gMissionRunMSsel->mUnk_50 = (Unk021ca414_50 *) ((u8 *) FindSceneFile(data_ov001_021a94d0) + 8);
-    func_021243ac(gMissionRunMSsel->mHeap, 0, gMissionRunMSsel->mMissionRunMSselMBnll, 0xd2, 0x46, 0,
-                  gMissionRunMSsel->mMissionRunMSselMNcer, gMissionRunMSsel->mMissionRunMSselMBncl,
-                  gMissionRunMSsel->mMissionRunMSselMTable, 0x8000);
+    InitLabelCanvas(gMissionRunMSsel->mHeap, 0, gMissionRunMSsel->mMissionRunMSselMBnll, 0xd2, 0x46, 0,
+                    gMissionRunMSsel->mMissionRunMSselMNcer, gMissionRunMSsel->mMissionRunMSselMBncl,
+                    gMissionRunMSsel->mMissionRunMSselMTable, 0x8000);
     rem = GX_GetSizeOfSubOBJ();
     for (i = 0; i < 9; i++) {
         rem -=
-            func_021243ac(gMissionRunMSsel->mHeap, data_ov001_021a6e10[i][0], gMissionRunMSsel->mMissionRunMSselSBnll,
-                          data_ov001_021a6e34[i][0], data_ov001_021a6e58[i][0], data_ov001_021a6e7c[i][5],
-                          gMissionRunMSsel->mMissionRunMSselSNcer, gMissionRunMSsel->mMissionRunMSselSBncl,
-                          gMissionRunMSsel->mMissionRunMSselSTable, rem);
+            InitLabelCanvas(gMissionRunMSsel->mHeap, data_ov001_021a6e10[i][0], gMissionRunMSsel->mMissionRunMSselSBnll,
+                            data_ov001_021a6e34[i][0], data_ov001_021a6e58[i][0], data_ov001_021a6e7c[i][5],
+                            gMissionRunMSsel->mMissionRunMSselSNcer, gMissionRunMSsel->mMissionRunMSselSBncl,
+                            gMissionRunMSsel->mMissionRunMSselSTable, rem);
         base = data_ov001_021a6e10[i][0];
-        rem -= func_021243ac(gMissionRunMSsel->mHeap, data_ov001_021a6e10[i][1],
-                             gMissionRunMSsel->mMissionRunMSselSBnll, data_ov001_021a6e34[i][1],
-                             data_ov001_021a6e58[i][1], base + gMissionRunMSsel->mMissionRunMSselSBncl->mUnk_06,
-                             gMissionRunMSsel->mMissionRunMSselSNcer, gMissionRunMSsel->mMissionRunMSselSBncl,
-                             gMissionRunMSsel->mMissionRunMSselSTable, rem);
+        rem -= InitLabelCanvas(gMissionRunMSsel->mHeap, data_ov001_021a6e10[i][1],
+                               gMissionRunMSsel->mMissionRunMSselSBnll, data_ov001_021a6e34[i][1],
+                               data_ov001_021a6e58[i][1], base + gMissionRunMSsel->mMissionRunMSselSBncl->mUnk_06,
+                               gMissionRunMSsel->mMissionRunMSselSNcer, gMissionRunMSsel->mMissionRunMSselSBncl,
+                               gMissionRunMSsel->mMissionRunMSselSTable, rem);
     }
     CreateMissionRunBossIcon(gMissionRunMSsel->mHeap);
     func_ov001_021a0b3c();

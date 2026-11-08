@@ -70,8 +70,8 @@ void RefreshMultiSelectNS(s32 showSelected) {
             rowNotSelected = z2;
         }
         multiSelectNS->mCellTable[rowCellIndices[1]].mVisible = rowNotSelected;
-        func_02124100(rowCellIndices[2], valueTable[rowSelected], multiSelectNS->mBnll, multiSelectNS->mCellTable,
-                      multiSelectNS->mBncl);
+        SetLabelPaletteIndex(rowCellIndices[2], valueTable[rowSelected], multiSelectNS->mBnll,
+                             multiSelectNS->mCellTable, multiSelectNS->mBncl);
     }
 }
 
@@ -117,9 +117,9 @@ void InitMultiSelectNS(void *parentHeap, void *scene, void *oamList) {
         labelMessageRow = &gMultiSelectNSLabelMessageRows[i];
         labelIndex = labelMessageRow->mUnk_00;
         subObjSizeLeft -=
-            func_021243ac(gMultiSelectNS->mHeap, labelIndex, multiSelectNS->mBnll, labelMessageRow->mUnk_02,
-                          labelMessageRow->mUnk_04, labelMessageRow->mUnk_06, multiSelectNS->mNcer,
-                          multiSelectNS->mBncl, multiSelectNS->mCellTable, subObjSizeLeft);
+            InitLabelCanvas(gMultiSelectNS->mHeap, labelIndex, multiSelectNS->mBnll, labelMessageRow->mUnk_02,
+                            labelMessageRow->mUnk_04, labelMessageRow->mUnk_06, multiSelectNS->mNcer,
+                            multiSelectNS->mBncl, multiSelectNS->mCellTable, subObjSizeLeft);
         func_0212426c(1, labelIndex, multiSelectNS->mBnll,
                       GetBmgEntry(gMultiSelectNS->mBannerMessages, labelMessageRow->mUnk_08), multiSelectNS->mBncl,
                       multiSelectNS->mCellTable);

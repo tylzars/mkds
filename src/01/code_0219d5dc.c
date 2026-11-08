@@ -36,9 +36,9 @@ void InitOptionEmbremSelect(void *a) {
                     &gOptionEmbremSelect->mOptionEmbremSelectSTable);
     gOptionEmbremSelect->mOptionMessages = FindSceneFile("option.bmg");
     gOptionEmbremSelect->mCommonMessages = FindFileInLoadedArchives("common.bmg");
-    func_021243ac(a, 0, gOptionEmbremSelect->mOptionEmbremSelectSBnll, 0xa0, 0xe, 9,
-                  gOptionEmbremSelect->mOptionEmbremSelectSNcer, gOptionEmbremSelect->mOptionEmbremSelectSBncl,
-                  gOptionEmbremSelect->mOptionEmbremSelectSTable, 0x4000);
+    InitLabelCanvas(a, 0, gOptionEmbremSelect->mOptionEmbremSelectSBnll, 0xa0, 0xe, 9,
+                    gOptionEmbremSelect->mOptionEmbremSelectSNcer, gOptionEmbremSelect->mOptionEmbremSelectSBncl,
+                    gOptionEmbremSelect->mOptionEmbremSelectSTable, 0x4000);
     p = gOptionEmbremSelect;
     ptr = GetBmgEntry(p->mOptionMessages, 8);
     func_0212426c(1, 0, gOptionEmbremSelect->mOptionEmbremSelectSBnll, ptr, p->mOptionEmbremSelectSBncl,
@@ -360,24 +360,24 @@ void func_ov001_0219d730(void) {
         if (i == gOptionEmbremSelect->mUnk_08 && gOptionEmbremSelect->mUnk_24 != FALSE) {
             gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c38[i][1]].mVisible = 1;
             if (i == 1) {
-                func_02124100(0, 14, gOptionEmbremSelect->mOptionEmbremSelectSBnll,
-                              gOptionEmbremSelect->mOptionEmbremSelectSTable,
-                              gOptionEmbremSelect->mOptionEmbremSelectSBncl);
+                SetLabelPaletteIndex(0, 14, gOptionEmbremSelect->mOptionEmbremSelectSBnll,
+                                     gOptionEmbremSelect->mOptionEmbremSelectSTable,
+                                     gOptionEmbremSelect->mOptionEmbremSelectSBncl);
             }
             for (j = 0; j < data_ov001_021a6c30[i]; j++) {
-                func_02124a20(data_ov001_021a6c1c[i][j], 14, gOptionEmbremSelect->mOptionEmbremSelectSNcer,
-                              gOptionEmbremSelect->mOptionEmbremSelectSBncl);
+                SetCellPaletteIndex(data_ov001_021a6c1c[i][j], 14, gOptionEmbremSelect->mOptionEmbremSelectSNcer,
+                                    gOptionEmbremSelect->mOptionEmbremSelectSBncl);
             }
         } else {
             gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c38[i][1]].mVisible = 0;
             if (i == 1) {
-                func_02124100(0, 15, gOptionEmbremSelect->mOptionEmbremSelectSBnll,
-                              gOptionEmbremSelect->mOptionEmbremSelectSTable,
-                              gOptionEmbremSelect->mOptionEmbremSelectSBncl);
+                SetLabelPaletteIndex(0, 15, gOptionEmbremSelect->mOptionEmbremSelectSBnll,
+                                     gOptionEmbremSelect->mOptionEmbremSelectSTable,
+                                     gOptionEmbremSelect->mOptionEmbremSelectSBncl);
             }
             for (j = 0; j < data_ov001_021a6c30[i]; j++) {
-                func_02124a20(data_ov001_021a6c1c[i][j], 15, gOptionEmbremSelect->mOptionEmbremSelectSNcer,
-                              gOptionEmbremSelect->mOptionEmbremSelectSBncl);
+                SetCellPaletteIndex(data_ov001_021a6c1c[i][j], 15, gOptionEmbremSelect->mOptionEmbremSelectSNcer,
+                                    gOptionEmbremSelect->mOptionEmbremSelectSBncl);
             }
         }
     }

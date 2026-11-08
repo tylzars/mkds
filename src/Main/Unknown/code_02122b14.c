@@ -28,7 +28,7 @@ void SetupWiFiSession(u32 mode) {
     switch (mode) {
         case 0:
             MI_CpuFill8(&gWiFiSession->mStep, 0, 0x60);
-            MI_CpuFill8(gWiFiSession->mUnk_1e10, 0, 0x110);
+            MI_CpuFill8(gWiFiSession->mIndexMessages, 0, 0x110);
             MI_CpuFill8(gWiFiSession->mReceiveBuffers, 0, 0x110);
             for (i = 0; i < gWiFiSession->mStartKartCount; i++) {
                 if (i != func_ov000_0219bb50()) {
@@ -42,9 +42,9 @@ void SetupWiFiSession(u32 mode) {
                 GetRaceSetupCopy()->mEntries[i].mCharacterIndex = -1;
                 GetRaceSetupCopy()->mEntries[i].mKartIndex = -1;
                 GetRaceSetupCopy()->mCourseId = 0;
-                gWiFiSession->mUnk_1e10[i].mCharacterIndex = -1;
-                gWiFiSession->mUnk_1e10[i].mKartIndex = -1;
-                gWiFiSession->mUnk_1e10[i].mPickedCourseId = 0;
+                gWiFiSession->mIndexMessages[i].mCharacterIndex = -1;
+                gWiFiSession->mIndexMessages[i].mKartIndex = -1;
+                gWiFiSession->mIndexMessages[i].mPickedCourseId = 0;
                 gWiFiSession->mReceiveBuffers[i].mCharacterIndex = -1;
                 gWiFiSession->mReceiveBuffers[i].mKartIndex = -1;
                 gWiFiSession->mReceiveBuffers[i].mPickedCourseId = 0;
@@ -77,7 +77,7 @@ void SetupWiFiSession(u32 mode) {
                     SetPeerReceiveBuffer(i, &gWiFiSession->mReceiveBuffers[i], 0x44);
                 }
                 GetRaceSetupCopy()->mCourseId = 0;
-                gWiFiSession->mUnk_1e10[i].mPickedCourseId = 0;
+                gWiFiSession->mIndexMessages[i].mPickedCourseId = 0;
                 gWiFiSession->mReceiveBuffers[i].mPickedCourseId = 0;
             }
             func_ov000_021a323c(ReceiveWiFiSessionMessage);
@@ -106,10 +106,10 @@ void SetupWiFiSession(u32 mode) {
                 GetRaceSetupCopy()->mEntries[i].mCharacterIndex = -1;
                 GetRaceSetupCopy()->mEntries[i].mKartIndex = -1;
                 GetRaceSetupCopy()->mCourseId = 0;
-                gWiFiSession->mUnk_1e10[i].mCharacterIndex = -1;
-                gWiFiSession->mUnk_1e10[i].mKartIndex = -1;
-                gWiFiSession->mUnk_1e10[i].mPickedCourseId = 0;
-                gWiFiSession->mUnk_1e10[i].mUnk_40 = 0;
+                gWiFiSession->mIndexMessages[i].mCharacterIndex = -1;
+                gWiFiSession->mIndexMessages[i].mKartIndex = -1;
+                gWiFiSession->mIndexMessages[i].mPickedCourseId = 0;
+                gWiFiSession->mIndexMessages[i].mUnk_40 = 0;
                 gWiFiSession->mReceiveBuffers[i].mCharacterIndex = -1;
                 gWiFiSession->mReceiveBuffers[i].mKartIndex = -1;
                 gWiFiSession->mReceiveBuffers[i].mPickedCourseId = 0;
@@ -171,13 +171,13 @@ s32 UpdateWiFiSessionStep(void) {
             if (toIndex < gWiFiSession->mStartKartCount) {
                 fromIndex = func_ov000_0219bb50();
                 ownIndex = func_ov000_0219bb50();
-                ownRecord = &gWiFiSession->mUnk_1e10[ownIndex];
+                ownRecord = &gWiFiSession->mIndexMessages[ownIndex];
                 ownRecord->mKind = 4;
                 ownRecord->mSize = 0x44;
                 ownRecord->mFromIndex = fromIndex;
                 ownRecord->mToIndex = toIndex;
                 ownRecord->mKartMask = gWiFiSession->mKartMask;
-                func_ov000_021a32a0(toIndex, &gWiFiSession->mUnk_1e10[func_ov000_0219bb50()], 0x44);
+                func_ov000_021a32a0(toIndex, &gWiFiSession->mIndexMessages[func_ov000_0219bb50()], 0x44);
             }
             if (func_02121580() != FALSE) {
                 gWiFiSession->mSendRecordMask = 0;
@@ -193,17 +193,17 @@ s32 UpdateWiFiSessionStep(void) {
             if (toIndex < gWiFiSession->mStartKartCount) {
                 fromIndex = func_ov000_0219bb50();
                 ownIndex = func_ov000_0219bb50();
-                ownRecord = &gWiFiSession->mUnk_1e10[ownIndex];
+                ownRecord = &gWiFiSession->mIndexMessages[ownIndex];
                 ownRecord->mKind = 5;
                 ownRecord->mSize = 0x44;
                 ownRecord->mFromIndex = fromIndex;
                 ownRecord->mToIndex = toIndex;
                 ownRecord->mKartMask = gWiFiSession->mKartMask;
-                func_ov000_021a32a0(toIndex, &gWiFiSession->mUnk_1e10[func_ov000_0219bb50()], 0x44);
+                func_ov000_021a32a0(toIndex, &gWiFiSession->mIndexMessages[func_ov000_0219bb50()], 0x44);
             }
             if (func_02121580() != FALSE) {
                 ownIndex = func_ov000_0219bb50();
-                if (gWiFiSession->mUnk_1e10[ownIndex].mPickedCourseId != 0) {
+                if (gWiFiSession->mIndexMessages[ownIndex].mPickedCourseId != 0) {
                     gWiFiSession->mSendRecordMask = 0;
                     gWiFiSession->mReceivedMask = 0;
                     gWiFiSession->mStep = 8;
@@ -315,7 +315,7 @@ void AdvanceWiFiSessionStep1(void) {
     for (i = 0; i < session->mStartKartCount; i++) {
         seedSum += session->mPlayerRecords[i].mSeed;
     }
-    generator = &session->mUnk_1954;
+    generator = &session->mRandom;
     generator->mValue = seedSum;
     generator->mMultiplier = 0x5d588b656c078965;
     generator->mIncrement = 0x269ec3;
@@ -333,7 +333,7 @@ void AdvanceWiFiSessionStep3(void) {
     Unk0217d384_1d00 *ownRecord;
     UpdateWiFiSessionStepTimeout(0x1c20);
     ownIndex = func_ov000_0219bb50();
-    if (gWiFiSession->mUnk_1e10[ownIndex].mUnk_40 == 2) {
+    if (gWiFiSession->mIndexMessages[ownIndex].mUnk_40 == 2) {
         func_ov000_021a2ccc();
         func_ov000_0219bbfc();
         gWiFiSession->mStep = 11;
@@ -343,19 +343,19 @@ void AdvanceWiFiSessionStep3(void) {
     if (toIndex < gWiFiSession->mStartKartCount) {
         fromIndex = func_ov000_0219bb50();
         ownIndex = func_ov000_0219bb50();
-        ownRecord = &gWiFiSession->mUnk_1e10[ownIndex];
+        ownRecord = &gWiFiSession->mIndexMessages[ownIndex];
         ownRecord->mKind = 8;
         ownRecord->mSize = 0x44;
         ownRecord->mFromIndex = fromIndex;
         ownRecord->mToIndex = toIndex;
         ownRecord->mKartMask = gWiFiSession->mKartMask;
-        func_ov000_021a32a0(toIndex, &gWiFiSession->mUnk_1e10[func_ov000_0219bb50()], 0x44);
+        func_ov000_021a32a0(toIndex, &gWiFiSession->mIndexMessages[func_ov000_0219bb50()], 0x44);
     }
     if (func_02121580() == FALSE) {
         return;
     }
     ownIndex = func_ov000_0219bb50();
-    if (gWiFiSession->mUnk_1e10[ownIndex].mUnk_40 == 0) {
+    if (gWiFiSession->mIndexMessages[ownIndex].mUnk_40 == 0) {
         return;
     }
     gWiFiSession->mSendRecordMask = 0;
@@ -375,13 +375,13 @@ void AdvanceWiFiSessionStep4(void) {
     if (toIndex < gWiFiSession->mStartKartCount) {
         fromIndex = func_ov000_0219bb50();
         ownIndex = func_ov000_0219bb50();
-        ownRecord = &gWiFiSession->mUnk_1e10[ownIndex];
+        ownRecord = &gWiFiSession->mIndexMessages[ownIndex];
         ownRecord->mKind = 9;
         ownRecord->mSize = 0x44;
         ownRecord->mFromIndex = fromIndex;
         ownRecord->mToIndex = toIndex;
         ownRecord->mKartMask = gWiFiSession->mKartMask;
-        func_ov000_021a32a0(toIndex, &gWiFiSession->mUnk_1e10[func_ov000_0219bb50()], 0x44);
+        func_ov000_021a32a0(toIndex, &gWiFiSession->mIndexMessages[func_ov000_0219bb50()], 0x44);
     }
     if (func_02121580() == FALSE) {
         return;
@@ -413,23 +413,23 @@ void AdvanceWiFiSessionStep5(void) {
     if (toIndex < gWiFiSession->mStartKartCount) {
         fromIndex = func_ov000_0219bb50();
         ownIndex = func_ov000_0219bb50();
-        ownRecord = &gWiFiSession->mUnk_1e10[ownIndex];
+        ownRecord = &gWiFiSession->mIndexMessages[ownIndex];
         ownRecord->mKind = 3;
         ownRecord->mSize = 0x44;
         ownRecord->mFromIndex = fromIndex;
         ownRecord->mToIndex = toIndex;
         ownRecord->mKartMask = gWiFiSession->mKartMask;
-        func_ov000_021a32a0(toIndex, &gWiFiSession->mUnk_1e10[func_ov000_0219bb50()], 0x44);
+        func_ov000_021a32a0(toIndex, &gWiFiSession->mIndexMessages[func_ov000_0219bb50()], 0x44);
     }
     if (func_02121580() == FALSE) {
         return;
     }
     ownIndex = func_ov000_0219bb50();
-    if (gWiFiSession->mUnk_1e10[ownIndex].mCharacterIndex == -1) {
+    if (gWiFiSession->mIndexMessages[ownIndex].mCharacterIndex == -1) {
         return;
     }
     ownIndex = func_ov000_0219bb50();
-    if (gWiFiSession->mUnk_1e10[ownIndex].mKartIndex == -1) {
+    if (gWiFiSession->mIndexMessages[ownIndex].mKartIndex == -1) {
         return;
     }
     gWiFiSession->mSendRecordMask = 0;
@@ -449,13 +449,13 @@ void AdvanceWiFiSessionStep8(void) {
     if (toIndex < gWiFiSession->mStartKartCount) {
         fromIndex = func_ov000_0219bb50();
         ownIndex = func_ov000_0219bb50();
-        ownRecord = &gWiFiSession->mUnk_1e10[ownIndex];
+        ownRecord = &gWiFiSession->mIndexMessages[ownIndex];
         ownRecord->mKind = 6;
         ownRecord->mSize = 0x44;
         ownRecord->mFromIndex = fromIndex;
         ownRecord->mToIndex = toIndex;
         ownRecord->mKartMask = gWiFiSession->mKartMask;
-        func_ov000_021a32a0(toIndex, &gWiFiSession->mUnk_1e10[func_ov000_0219bb50()], 0x44);
+        func_ov000_021a32a0(toIndex, &gWiFiSession->mIndexMessages[func_ov000_0219bb50()], 0x44);
     }
     if (func_02121580() == FALSE) {
         return;
@@ -466,12 +466,12 @@ void AdvanceWiFiSessionStep8(void) {
     TallyPickedCourse();
     for (i = 0; i < gWiFiSession->mStartKartCount; i++) {
         ownIndex = func_ov000_0219bb50();
-        gWiFiSession->mUnk_1e10[ownIndex].mKartIndices[i] = gWiFiSession->mUnk_1e10[i].mKartIndex;
+        gWiFiSession->mIndexMessages[ownIndex].mKartIndices[i] = gWiFiSession->mIndexMessages[i].mKartIndex;
         ownIndex = func_ov000_0219bb50();
-        gWiFiSession->mUnk_1e10[ownIndex].mCharacterIndices[i] = gWiFiSession->mUnk_1e10[i].mCharacterIndex;
+        gWiFiSession->mIndexMessages[ownIndex].mCharacterIndices[i] = gWiFiSession->mIndexMessages[i].mCharacterIndex;
     }
     ownIndex = func_ov000_0219bb50();
-    gWiFiSession->mUnk_1e10[ownIndex].mTalliedCourseId = GetRaceSetupCopy()->mCourseId;
+    gWiFiSession->mIndexMessages[ownIndex].mTalliedCourseId = GetRaceSetupCopy()->mCourseId;
     gWiFiSession->mStep = 9;
     gWiFiSession->mStepFrames = 0;
 }
@@ -486,13 +486,13 @@ void AdvanceWiFiSessionStep9(void) {
     if (toIndex < gWiFiSession->mStartKartCount) {
         fromIndex = func_ov000_0219bb50();
         ownIndex = func_ov000_0219bb50();
-        ownRecord = &gWiFiSession->mUnk_1e10[ownIndex];
+        ownRecord = &gWiFiSession->mIndexMessages[ownIndex];
         ownRecord->mKind = 7;
         ownRecord->mSize = 0x44;
         ownRecord->mFromIndex = fromIndex;
         ownRecord->mToIndex = toIndex;
         ownRecord->mKartMask = gWiFiSession->mKartMask;
-        func_ov000_021a32a0(toIndex, &gWiFiSession->mUnk_1e10[func_ov000_0219bb50()], 0x44);
+        func_ov000_021a32a0(toIndex, &gWiFiSession->mIndexMessages[func_ov000_0219bb50()], 0x44);
     }
     if (UpdateWiFiSessionStepTimeout(0x78) == FALSE) {
         return;
@@ -523,7 +523,7 @@ void CombineKartRemoveMask(void) {
     }
     for (i = 0; i < gWiFiSession->mStartKartCount; i++) {
         if ((gWiFiSession->mKartMask & (1 << i)) != 0) {
-            commonMask &= gWiFiSession->mUnk_1e10[i].mKartMask;
+            commonMask &= gWiFiSession->mIndexMessages[i].mKartMask;
         }
     }
     for (i = 0; i < gWiFiSession->mStartKartCount; i++) {

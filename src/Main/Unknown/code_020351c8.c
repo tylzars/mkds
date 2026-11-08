@@ -92,8 +92,10 @@ void func_02035c50(s32 a, s32 b, s32 listIndex, s32 d) {
             } else {
                 v = 15;
             }
-            func_02124100(i, v, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable, subCellFileSet->mCellLayout);
-            func_02124100(e, v, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable, subCellFileSet->mCellLayout);
+            SetLabelPaletteIndex(i, v, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable,
+                                 subCellFileSet->mCellLayout);
+            SetLabelPaletteIndex(e, v, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable,
+                                 subCellFileSet->mCellLayout);
         }
     }
 }
@@ -540,9 +542,9 @@ void func_02035228(s32 a) {
         v = 0xf;
     }
     subCellFileSet->mCellTable[4].mVisible = a;
-    func_02124100(w, v, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable, subCellFileSet->mCellLayout);
-    func_02124100(selectedIndex, v, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable,
-                  subCellFileSet->mCellLayout);
+    SetLabelPaletteIndex(w, v, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable, subCellFileSet->mCellLayout);
+    SetLabelPaletteIndex(selectedIndex, v, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable,
+                         subCellFileSet->mCellLayout);
 }
 
 #pragma thumb off

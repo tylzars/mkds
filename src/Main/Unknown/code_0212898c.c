@@ -108,7 +108,7 @@ void InitKeyboardCursorCorners(void) {
             for (k = 0; k < 4; k++) {
                 LayoutTableEntry *p = &gKeyboard->mTables[i][j][data_0215d0f8[i][k]];
                 p->mUnk_08 = TRUE;
-                p->mUnk_0c = 0;
+                p->mPositionX = 0;
                 p->mPositionY = 0;
             }
         }
@@ -313,13 +313,13 @@ void WriteKeyboardObjectOffsets(void) {
             }
             w = gKeyboard->mOffsetY;
             GetKeyboardCursorBoundsRelative(&a, &b, &c, &d);
-            gKeyboard->mTables[i][j][data_0215d0f8[i][0]].mUnk_0c = a;
+            gKeyboard->mTables[i][j][data_0215d0f8[i][0]].mPositionX = a;
             gKeyboard->mTables[i][j][data_0215d0f8[i][0]].mPositionY = w + b + 0x28;
-            gKeyboard->mTables[i][j][data_0215d0f8[i][1]].mUnk_0c = a;
+            gKeyboard->mTables[i][j][data_0215d0f8[i][1]].mPositionX = a;
             gKeyboard->mTables[i][j][data_0215d0f8[i][1]].mPositionY = w + d + 0x28;
-            gKeyboard->mTables[i][j][data_0215d0f8[i][2]].mUnk_0c = c;
+            gKeyboard->mTables[i][j][data_0215d0f8[i][2]].mPositionX = c;
             gKeyboard->mTables[i][j][data_0215d0f8[i][2]].mPositionY = w + b + 0x28;
-            gKeyboard->mTables[i][j][data_0215d0f8[i][3]].mUnk_0c = c;
+            gKeyboard->mTables[i][j][data_0215d0f8[i][3]].mPositionX = c;
             gKeyboard->mTables[i][j][data_0215d0f8[i][3]].mPositionY = w + d + 0x28;
         }
     }

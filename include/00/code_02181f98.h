@@ -154,10 +154,10 @@ typedef struct Unk0217d384_19f0 {
 } Unk0217d384_19f0;
 
 // 0x10-byte object at member 0x1f20 of WiFiSession.
-typedef struct Unk0217d384_1f20 {
+typedef struct WiFiSessionLogin {
     /* 00 */ u8 mUnk_00[0xc];
     /* 0c */ s32 mStep;
-} Unk0217d384_1f20;
+} WiFiSessionLogin;
 
 // 0x44-byte elements of the tables at members 0x1d00 and 0x1e10 of WiFiSession.
 typedef struct Unk0217d384_1d00 {
@@ -186,8 +186,8 @@ typedef struct Unk0217d384_021c {
     // The sender's mKartMask; written, not read through this struct.
     /* 00a */ u8 mKartMask;
     /* 00b */ u8 mUnk_00b;
-    /* 00c */ u8 mUnk_00c[0x14];
-    /* 020 */ u8 mUnk_020[0x200];
+    /* 00c */ u8 mName[0x14];
+    /* 020 */ u8 mEmblem[0x200];
     /* 220 */ u8 mUnk_220;
     /* 221 */ u8 mUnk_221[0x1];
     /* 222 */ s16 mElo;
@@ -230,16 +230,16 @@ typedef struct WiFiSession {
     // One 0x244-byte record per index: a 12-byte message header, then the player's name (0x14 bytes) and emblem
     // (0x200), elo, region and seed. The own element is sent (kind 1), the others are received into.
     /* 021c */ Unk0217d384_021c mPlayerRecords[4];
-    /* 0b2c */ u8 mUnk_0b2c[0xdb4];
+    /* 0b2c */ u8 mConnection[0xdb4];
     /* 18e0 */ Unk0217d384_18e0 mUnk_18e0;
     /* 18e8 */ s32 mStartStatus;
     /* 18ec */ KartKey mKeys[4];
     /* 194c */ u8 mUnk_194c;
-    /* 194d */ u8 mUnk_194d;
+    /* 194d */ u8 mStatus4BuddyCount;
     /* 194e */ u8 mUnk_194e;
     /* 194f */ u8 mUnk_194f;
     /* 1950 */ s32 mStep;
-    /* 1954 */ RandomState64 mUnk_1954;
+    /* 1954 */ RandomState64 mRandom;
     /* 196c */ u8 mUnk_196c[0x14];
     // Calls of the step function in the current step; zeroed by every normal step change and by the timeout
     // (changes to step 11 that are not timeouts leave it as is).
@@ -258,7 +258,7 @@ typedef struct WiFiSession {
     /* 19ac */ u8 mUnk_19ac;
     /* 19ad */ u8 mUnk_19ad;
     /* 19ae */ u8 mUnk_19ae[2];
-    /* 19b0 */ u8 mUnk_19b0[0x20];
+    /* 19b0 */ u8 mUserData[0x20];
     /* 19d0 */ s32 mUnk_19d0;
     /* 19d4 */ s32 mUnk_19d4;
     /* 19d8 */ u8 mUnk_19d8[0x14];
@@ -268,13 +268,13 @@ typedef struct WiFiSession {
     /* 19f0 */ Unk0217d384_19f0 mBuddies[0x3c];
     // One status byte per mBuddies entry (poll or the buddy status callback). Meaning of the values not decoded.
     /* 1cc0 */ u8 mBuddyStatuses[0x3c];
-    /* 1cfc */ BOOL mUnk_1cfc;
+    /* 1cfc */ BOOL mBuddiesChanged;
     // 0x44-byte buffers the net layer receives the kind 0..9 messages into (posted at code_02122b14.c:75, :99 and re-
     // posted by the receive callback). The 0x244 profile records (mPlayerRecords) and mUnk_001c (0x80 bytes,
     // code_02122b14.c:498) are also posted as receive buffers.
     /* 1d00 */ Unk0217d384_1d00 mReceiveBuffers[4];
-    /* 1e10 */ Unk0217d384_1d00 mUnk_1e10[4];
-    /* 1f20 */ Unk0217d384_1f20 mUnk_1f20;
+    /* 1e10 */ Unk0217d384_1d00 mIndexMessages[4];
+    /* 1f20 */ WiFiSessionLogin mLogin;
     /* 1f30 */ BOOL mHeapCreated;
     /* 1f34 */ BOOL mUnk_1f34;
     /* 1f38 */ BOOL mUnk_1f38;

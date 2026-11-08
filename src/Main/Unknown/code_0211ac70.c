@@ -84,22 +84,22 @@ void AdvanceSelectRaceRuleHighlight(void) {
 
     for (i = 0; i < 5; i++) {
         if (gSelectRaceRule->mOnButton == 0 && gSelectRaceRule->mRow == i) {
-            func_02124100(gSelectRaceRuleRowEntries[i].mEntryIndices[0], 1, gSelectRaceRule->mBnll,
-                          gSelectRaceRule->mTable, gSelectRaceRule->mBncl);
+            SetLabelPaletteIndex(gSelectRaceRuleRowEntries[i].mEntryIndices[0], 1, gSelectRaceRule->mBnll,
+                                 gSelectRaceRule->mTable, gSelectRaceRule->mBncl);
         } else {
-            func_02124100(gSelectRaceRuleRowEntries[i].mEntryIndices[0], 0, gSelectRaceRule->mBnll,
-                          gSelectRaceRule->mTable, gSelectRaceRule->mBncl);
+            SetLabelPaletteIndex(gSelectRaceRuleRowEntries[i].mEntryIndices[0], 0, gSelectRaceRule->mBnll,
+                                 gSelectRaceRule->mTable, gSelectRaceRule->mBncl);
         }
     }
     if (data_021759d0->mUnk_20 != 2) {
         if (gSelectRaceRule->mOnButton != 0 && gSelectRaceRule->mUnk_84 != 0) {
             gSelectRaceRule->mTable[0x28].mVisible = 0;
             gSelectRaceRule->mTable[0x29].mVisible = 1;
-            func_02124100(0xd, 1, gSelectRaceRule->mBnll, gSelectRaceRule->mTable, gSelectRaceRule->mBncl);
+            SetLabelPaletteIndex(0xd, 1, gSelectRaceRule->mBnll, gSelectRaceRule->mTable, gSelectRaceRule->mBncl);
         } else {
             gSelectRaceRule->mTable[0x28].mVisible = 1;
             gSelectRaceRule->mTable[0x29].mVisible = 0;
-            func_02124100(0xd, 0, gSelectRaceRule->mBnll, gSelectRaceRule->mTable, gSelectRaceRule->mBncl);
+            SetLabelPaletteIndex(0xd, 0, gSelectRaceRule->mBnll, gSelectRaceRule->mTable, gSelectRaceRule->mBncl);
         }
     }
     if (gSelectRaceRule->mPrevOnButton == gSelectRaceRule->mOnButton &&
@@ -1412,7 +1412,7 @@ void InitSelectRaceRule(void *parentHeap, s32 b, void *oamList, s32 mode) {
     for (i = 0; i < 5; i++) {
         for (j = 0; j < 2; j++) {
             if (!(i == 3 && j == 1)) {
-                remainingSubObjSize -= func_021243ac(
+                remainingSubObjSize -= InitLabelCanvas(
                     gSelectRaceRule->mHeap, gSelectRaceRuleRowEntries[i].mEntryIndices[j], gSelectRaceRule->mBnll,
                     data_0215cd60[i][j], data_0215cd74[i].h[j], i * 2 + j, gSelectRaceRule->mNcer,
                     gSelectRaceRule->mBncl, gSelectRaceRule->mTable, remainingSubObjSize);
@@ -1432,12 +1432,12 @@ void InitSelectRaceRule(void *parentHeap, s32 b, void *oamList, s32 mode) {
     if (data_021759d0->mUnk_20 != 2) {
         selectRaceRule = gSelectRaceRule;
         remainingSubObjSize -=
-            func_021243ac(selectRaceRule->mHeap, 9, selectRaceRule->mBnll, 0x96, 0xf, cellEntryCount + 3,
-                          selectRaceRule->mNcer, selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
+            InitLabelCanvas(selectRaceRule->mHeap, 9, selectRaceRule->mBnll, 0x96, 0xf, cellEntryCount + 3,
+                            selectRaceRule->mNcer, selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
         selectRaceRule = gSelectRaceRule;
         remainingSubObjSize -=
-            func_021243ac(selectRaceRule->mHeap, 0xa, selectRaceRule->mBnll, 0xc8, 0xf, cellEntryCount + 9,
-                          selectRaceRule->mNcer, selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
+            InitLabelCanvas(selectRaceRule->mHeap, 0xa, selectRaceRule->mBnll, 0xc8, 0xf, cellEntryCount + 9,
+                            selectRaceRule->mNcer, selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
         selectRaceRule = gSelectRaceRule;
         func_0212426c(1, 0xa, gSelectRaceRule->mBnll,
                       GetBmgEntry(selectRaceRule->mRuleMessages, data_0216dc0c[3][SELECT_RACE_RULE_FREE]),
@@ -1445,8 +1445,8 @@ void InitSelectRaceRule(void *parentHeap, s32 b, void *oamList, s32 mode) {
     } else {
         selectRaceRule = gSelectRaceRule;
         remainingSubObjSize -=
-            func_021243ac(selectRaceRule->mHeap, 0xa, selectRaceRule->mBnll, 0xc8, 0xf, cellEntryCount + 3,
-                          selectRaceRule->mNcer, selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
+            InitLabelCanvas(selectRaceRule->mHeap, 0xa, selectRaceRule->mBnll, 0xc8, 0xf, cellEntryCount + 3,
+                            selectRaceRule->mNcer, selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
         selectRaceRule = gSelectRaceRule;
         func_0212426c(1, 0xa, gSelectRaceRule->mBnll,
                       GetBmgEntry(selectRaceRule->mRuleMessages, data_0216dc0c[3][SELECT_RACE_RULE_FREE]),
@@ -1454,26 +1454,26 @@ void InitSelectRaceRule(void *parentHeap, s32 b, void *oamList, s32 mode) {
     }
     selectRaceRule = gSelectRaceRule;
     remainingSubObjSize -=
-        func_021243ac(selectRaceRule->mHeap, 0xc, selectRaceRule->mBnll, 0x37, 0xf, cellEntryCount + 0xb,
-                      selectRaceRule->mNcer, selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
+        InitLabelCanvas(selectRaceRule->mHeap, 0xc, selectRaceRule->mBnll, 0x37, 0xf, cellEntryCount + 0xb,
+                        selectRaceRule->mNcer, selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
     selectRaceRule = gSelectRaceRule;
     func_0212426c(1, 0xc, gSelectRaceRule->mBnll, GetBmgEntry(selectRaceRule->mRuleMessages, data_0216dc0c[4][2]),
                   selectRaceRule->mBncl, selectRaceRule->mTable);
     if (data_021759d0->mUnk_20 != 2) {
         selectRaceRule = gSelectRaceRule;
         remainingSubObjSize -=
-            func_021243ac(selectRaceRule->mHeap, 0xd, selectRaceRule->mBnll, 0x32, 0xd, 0x29, selectRaceRule->mNcer,
-                          selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
+            InitLabelCanvas(selectRaceRule->mHeap, 0xd, selectRaceRule->mBnll, 0x32, 0xd, 0x29, selectRaceRule->mNcer,
+                            selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
         selectRaceRule = gSelectRaceRule;
         func_0212426c(1, 0xd, gSelectRaceRule->mBnll, GetBmgEntry(selectRaceRule->mCommonMessages, 4),
                       selectRaceRule->mBncl, selectRaceRule->mTable);
         selectRaceRule = gSelectRaceRule;
-        func_021243ac(selectRaceRule->mHeap, 8, selectRaceRule->mBnll, 0x15, 0xf, 0x1f, selectRaceRule->mNcer,
-                      selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
+        InitLabelCanvas(selectRaceRule->mHeap, 8, selectRaceRule->mBnll, 0x15, 0xf, 0x1f, selectRaceRule->mNcer,
+                        selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
     } else {
         selectRaceRule = gSelectRaceRule;
-        func_021243ac(selectRaceRule->mHeap, 0xe, selectRaceRule->mBnll, 0xc8, 0xd, 0x2a, selectRaceRule->mNcer,
-                      selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
+        InitLabelCanvas(selectRaceRule->mHeap, 0xe, selectRaceRule->mBnll, 0xc8, 0xd, 0x2a, selectRaceRule->mNcer,
+                        selectRaceRule->mBncl, selectRaceRule->mTable, remainingSubObjSize);
     }
     SetAndPrintSelectRaceRuleWinCount(0);
     SetAndPrintSelectRaceRuleRaceCount(0);

@@ -48,20 +48,20 @@ u32 func_021205e8(void) {
 }
 
 #pragma thumb on
-void InitWiFiSession(void *a) {
-    Unk0217d384_08 *p;
+void InitWiFiSession(void *heap) {
+    Unk0217d384_08 *stateMachine;
 
-    gWiFiSession = HeapAllocAligned(a, 0x1f58, 0x20);
+    gWiFiSession = HeapAllocAligned(heap, 0x1f58, 0x20);
     func_02046be8(&gWiFiSession->mUnk_0008, data_0216e21c, 8, NULL);
-    p = &gWiFiSession->mUnk_0008;
-    p->mNextState = 0;
-    p->mNextStateRequested = 1;
+    stateMachine = &gWiFiSession->mUnk_0008;
+    stateMachine->mNextState = 0;
+    stateMachine->mNextStateRequested = 1;
 }
 
 // Creates the 0x3e800-byte exp heap and registers WiFiSessionHeapAlloc / Free with the net layer (the heap is used only
 // through them).
-void CreateWiFiSessionHeap(void *a) {
-    gWiFiSession->mHeapBuffer = HeapAllocAligned(a, 0x3e800, 0x20);
+void CreateWiFiSessionHeap(void *heap) {
+    gWiFiSession->mHeapBuffer = HeapAllocAligned(heap, 0x3e800, 0x20);
     gWiFiSession->mHeap = NNS_FndCreateExpHeapEx(gWiFiSession->mHeapBuffer, 0x3e800, 1);
     gWiFiSession->mHeapCreated = TRUE;
     func_ov000_021a3744(WiFiSessionHeapAlloc, WiFiSessionHeapFree);
@@ -69,55 +69,56 @@ void CreateWiFiSessionHeap(void *a) {
 
 // Destroys the heap and frees its buffer (mHeap is left set), clears mHeapCreated and requests state 0.
 void DeleteWiFiSessionHeap(void) {
-    Unk0217d384_08 *p;
+    Unk0217d384_08 *stateMachine;
 
     if (gWiFiSession->mHeap != NULL) {
         NNS_FndDestroyExpHeap(gWiFiSession->mHeap);
         HeapFree(GetHeap(GetCurrentHeapCall()), gWiFiSession->mHeapBuffer);
     }
     gWiFiSession->mHeapCreated = FALSE;
-    p = &gWiFiSession->mUnk_0008;
-    p->mNextState = 0;
-    p->mNextStateRequested = 1;
+    stateMachine = &gWiFiSession->mUnk_0008;
+    stateMachine->mNextState = 0;
+    stateMachine->mNextStateRequested = 1;
 }
 #pragma thumb off
 
 void func_021204d0(void) {
-    Unk0217d384_08 *p;
+    Unk0217d384_08 *stateMachine;
 
     ResetWiFiSession();
     gWiFiSession->mUnk_1f34 = TRUE;
-    p = &gWiFiSession->mUnk_0008;
-    p->mNextState = 0;
-    p->mNextStateRequested = 1;
+    stateMachine = &gWiFiSession->mUnk_0008;
+    stateMachine->mNextState = 0;
+    stateMachine->mNextStateRequested = 1;
 }
 
-// Polls one buddy entry's status per call and counts the entries with status 4 into mUnk_194d.
+// Polls one buddy entry's status per call and counts the entries with status 4 into mStatus4BuddyCount.
 void UpdateBuddyStatuses(void) {
-    u8 n = 0;
-    WiFiSession *d;
-    WiFiSession *p;
+    u8 status4Count = 0;
+    WiFiSession *session;
+    WiFiSession *countSession;
     u8 i;
 
     if (gWiFiSession->mBuddyPollIndex >= 0x3c) {
         gWiFiSession->mBuddyPollIndex = 0;
     }
-    d = gWiFiSession;
-    d->mBuddyStatuses[d->mBuddyPollIndex] = func_ov000_0219daa8(&d->mBuddies[d->mBuddyPollIndex], NULL);
+    session = gWiFiSession;
+    session->mBuddyStatuses[session->mBuddyPollIndex] =
+        func_ov000_0219daa8(&session->mBuddies[session->mBuddyPollIndex], NULL);
     gWiFiSession->mBuddyPollIndex++;
-    p = gWiFiSession;
+    countSession = gWiFiSession;
     i = 0;
     do {
-        switch (p->mBuddyStatuses[i]) {
+        switch (countSession->mBuddyStatuses[i]) {
             case 2:
                 break;
             case 4:
-                n++;
+                status4Count++;
                 break;
         }
         i++;
     } while (i < 0x3c);
-    p->mUnk_194d = n;
+    countSession->mStatus4BuddyCount = status4Count;
 }
 
 void UpdateWiFiSession(void) {
@@ -143,11 +144,11 @@ s32 func_02120340(u32 a, void *b, s32 c, u32 (*d)(void)) {
 }
 
 // Returns the name+emblem part of the index's record, or NULL if the index is not in mKartMask.
-void *GetWiFiSessionPlayerRecordData(u32 a) {
-    WiFiSession *d = gWiFiSession;
+void *GetWiFiSessionPlayerRecordData(u32 index) {
+    WiFiSession *session = gWiFiSession;
 
-    if (d->mKartMask & (1 << a)) {
-        return &d->mPlayerRecords[a].mUnk_00c;
+    if (session->mKartMask & (1 << index)) {
+        return &session->mPlayerRecords[index].mName;
     }
     return NULL;
 }

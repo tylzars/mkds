@@ -23,8 +23,8 @@ void SetupTitleTable(void) {
     for (i = 0; i <= 1; i++) {
         p[w + i].mVisible = 1;
     }
-    func_02124100(0, 15, gTitleScene->mTitleSBnll, p, gTitleScene->mTitleSBncl);
-    func_02124100(1, 15, gTitleScene->mTitleSBnll, p, gTitleScene->mTitleSBncl);
+    SetLabelPaletteIndex(0, 15, gTitleScene->mTitleSBnll, p, gTitleScene->mTitleSBncl);
+    SetLabelPaletteIndex(1, 15, gTitleScene->mTitleSBnll, p, gTitleScene->mTitleSBncl);
     switch (gTitleScene->mSelectedIndex) {
         case 0:
             if (gTitleScene->mState == 4) {
@@ -63,14 +63,14 @@ void SetupTitleTable(void) {
             if (gTitleScene->mState != 4 || gTitleScene->mSelectedPressed == FALSE || GetTitleStateFrames() >= 5) {
                 p[8].mVisible = 0;
                 p[13].mVisible = 1;
-                func_02124100(0, 14, gTitleScene->mTitleSBnll, p, gTitleScene->mTitleSBncl);
+                SetLabelPaletteIndex(0, 14, gTitleScene->mTitleSBnll, p, gTitleScene->mTitleSBncl);
             }
             break;
         case 4:
             if (gTitleScene->mState != 4 || gTitleScene->mSelectedPressed == FALSE || GetTitleStateFrames() >= 5) {
                 p[9].mVisible = 0;
                 p[14].mVisible = 1;
-                func_02124100(1, 14, gTitleScene->mTitleSBnll, p, gTitleScene->mTitleSBncl);
+                SetLabelPaletteIndex(1, 14, gTitleScene->mTitleSBnll, p, gTitleScene->mTitleSBncl);
             }
             break;
     }

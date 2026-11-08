@@ -29,21 +29,21 @@
 #include "code_0214d018.h"
 #include "code_021522a0.h"
 
-void func_0211fef4(u32 a, void *b, u32 c) {
+void func_0211fef4(u32 fromIndex, void *message, u32 size) {
     if (gWiFiSession->mUnk_0008.mState != 5) {
         return;
     }
     if (gWiFiSession->mUnk_1f38 == FALSE) {
         return;
     }
-    if (DoesMessageHeaderMatch(b, c, a, func_ov000_0219bb50()) != FALSE) {
+    if (DoesMessageHeaderMatch(message, size, fromIndex, func_ov000_0219bb50()) != FALSE) {
         return;
     }
-    func_0205b504(a, b, c, 0);
+    func_0205b504(fromIndex, message, size, 0);
 }
 
 void func_0211fe44(void) {
-    if (gWiFiSession->mUnk_1cfc == FALSE) {
+    if (gWiFiSession->mBuddiesChanged == FALSE) {
         return;
     }
     CopyWiFiBuddiesToRecordBlock(&gWiFiSession->mBuddies[0]);
@@ -52,15 +52,15 @@ void func_0211fe44(void) {
     while (data_0217aa08->mUnk_28 == 0 ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mCommandRunning : 0)
                                        : 1) {
     }
-    gWiFiSession->mUnk_1cfc = FALSE;
+    gWiFiSession->mBuddiesChanged = FALSE;
 }
 
-void func_0211fe24(void) {
-    Unk0217d384_08 *q;
+void RequestWiFiSessionLogin(void) {
+    Unk0217d384_08 *stateMachine;
 
-    q = &gWiFiSession->mUnk_0008;
-    q->mNextState = 1;
-    q->mNextStateRequested = 1;
+    stateMachine = &gWiFiSession->mUnk_0008;
+    stateMachine->mNextState = 1;
+    stateMachine->mNextStateRequested = 1;
 }
 
 void func_0211fe18(void) {
@@ -68,7 +68,7 @@ void func_0211fe18(void) {
 }
 
 u32 func_0211fda8(void) {
-    Unk0217d384_08 *q;
+    Unk0217d384_08 *stateMachine;
 
     if (gWiFiSession->mUnk_0008.mState == 0) {
         return 1;
@@ -77,14 +77,14 @@ u32 func_0211fda8(void) {
         return 0;
     }
     ResetWiFiSession();
-    q = &gWiFiSession->mUnk_0008;
-    q->mNextState = 0;
-    q->mNextStateRequested = 1;
+    stateMachine = &gWiFiSession->mUnk_0008;
+    stateMachine->mNextState = 0;
+    stateMachine->mNextStateRequested = 1;
     return 1;
 }
 
-s32 func_0211fd68(void) {
-    switch (gWiFiSession->mUnk_1f20.mStep) {
+s32 GetWiFiSessionLoginResult(void) {
+    switch (gWiFiSession->mLogin.mStep) {
         case 5:
             return 1;
         case 7:
@@ -95,30 +95,30 @@ s32 func_0211fd68(void) {
 }
 
 void func_0211fd28(void) {
-    Unk0217d384_08 *q;
+    Unk0217d384_08 *stateMachine;
 
     ReleaseWiFiConnection();
     func_ov000_021a37dc();
     ResetWiFiSession();
-    q = &gWiFiSession->mUnk_0008;
-    q->mNextState = 0;
-    q->mNextStateRequested = 1;
+    stateMachine = &gWiFiSession->mUnk_0008;
+    stateMachine->mNextState = 0;
+    stateMachine->mNextStateRequested = 1;
 }
 
-void func_0211fb44(void) {
+void SetupWiFiSessionLogin(void) {
     u8 i;
-    WiFiSession *p;
+    WiFiSession *session;
 
-    MI_CpuFill8(&gWiFiSession->mUnk_1f20, 0, 0x10);
-    MI_CpuFill8(&gWiFiSession->mUnk_19b0, 0, 0x350);
-    MI_CpuFill8(&gWiFiSession->mUnk_0b2c, 0, 0xe24);
+    MI_CpuFill8(&gWiFiSession->mLogin, 0, 0x10);
+    MI_CpuFill8(&gWiFiSession->mUserData, 0, 0x350);
+    MI_CpuFill8(&gWiFiSession->mConnection, 0, 0xe24);
     if (func_02061290() != 0) {
-        MI_CpuCopy8(&data_0217aa08->mUnk_00->mUnk_4c, &gWiFiSession->mUnk_19b0, 0x40);
+        MI_CpuCopy8(&data_0217aa08->mUnk_00->mUnk_4c, &gWiFiSession->mUserData, 0x40);
     } else {
-        DWC_CreateUserData((DWCAccUserData *) &gWiFiSession->mUnk_19b0, 0x414d434a);
+        DWC_CreateUserData((DWCAccUserData *) &gWiFiSession->mUserData, 0x414d434a);
     }
     func_02060c38(&gWiFiSession->mBuddies[0]);
-    func_ov000_021a39c4(&gWiFiSession->mUnk_1f20);
+    func_ov000_021a39c4(&gWiFiSession->mLogin);
     func_ov000_021a397c(2);
     func_ov000_021a3910();
     i = 0;
@@ -127,11 +127,12 @@ void func_0211fb44(void) {
             i++;
         } while (i < func_ov000_0219d9b0(&gWiFiSession->mBuddies[0], 0x3c));
     }
-    p = gWiFiSession;
-    InitWiFiConnection(&p->mUnk_0b2c, &p->mUnk_19b0, 0x4d6, "mariokartds", "yeJ3x8", 0, 0, &p->mBuddies[0], 0x3c);
+    session = gWiFiSession;
+    InitWiFiConnection(&session->mConnection, &session->mUserData, 0x4d6, "mariokartds", "yeJ3x8", 0, 0,
+                       &session->mBuddies[0], 0x3c);
     gWiFiSession->mUnk_1f44 = 0;
     gWiFiSession->mUnk_1f48 = 0;
-    gWiFiSession->mUnk_1f20.mStep = 1;
+    gWiFiSession->mLogin.mStep = 1;
 }
 
 void func_0211fa70(void) {
@@ -141,22 +142,22 @@ void func_0211fa70(void) {
     }
     switch (func_ov000_021a3810()) {
         case 4:
-            StartWiFiLogin(0, 0, func_0211f864, 0);
-            gWiFiSession->mUnk_1f20.mStep = 2;
+            StartWiFiLogin(0, 0, WiFiSessionLoginCallback, 0);
+            gWiFiSession->mLogin.mStep = 2;
             break;
         case 7:
             gWiFiSession->mUnk_1f44 = func_ov000_0219c3cc(&gWiFiSession->mUnk_1f48);
             ReleaseWiFiConnection();
             func_ov000_021a37dc();
-            gWiFiSession->mUnk_1f20.mStep = 7;
+            gWiFiSession->mLogin.mStep = 7;
             break;
         case 8:
             break;
     }
 }
 
-u32 func_0211f91c(void) {
-    switch (gWiFiSession->mUnk_1f20.mStep) {
+u32 UpdateWiFiSessionLogin(void) {
+    switch (gWiFiSession->mLogin.mStep) {
         case 1:
             func_0211fa70();
             break;
@@ -165,17 +166,18 @@ u32 func_0211f91c(void) {
                                             : 1) {
                 break;
             }
-            DWC_ReportUserData((DWCAccUserData *) &gWiFiSession->mUnk_19b0);
-            if (StartWiFiBuddySync(NULL, func_0211f77c, NULL, SetBuddyStatus, NULL, func_0211f6e8, NULL) == 0) {
-                gWiFiSession->mUnk_1f20.mStep = 7;
+            DWC_ReportUserData((DWCAccUserData *) &gWiFiSession->mUserData);
+            if (StartWiFiBuddySync(NULL, WiFiSessionBuddySyncCallback, NULL, SetBuddyStatus, NULL, func_0211f6e8,
+                                   NULL) == 0) {
+                gWiFiSession->mLogin.mStep = 7;
             }
             SetBuddyChangedCallback((void *) BuddyChangedCallback, NULL);
-            gWiFiSession->mUnk_1f20.mStep = 4;
+            gWiFiSession->mLogin.mStep = 4;
             break;
         case 6:
             ReleaseWiFiConnection();
             func_ov000_021a37dc();
-            gWiFiSession->mUnk_1f20.mStep = 7;
+            gWiFiSession->mLogin.mStep = 7;
             break;
         case 5:
             return 1;
@@ -185,39 +187,39 @@ u32 func_0211f91c(void) {
     return 0;
 }
 
-void func_0211f864(s32 a) {
-    if (a == 0) {
-        if (DWCi_Acc_IsDirty((DWCAccUserData *) &gWiFiSession->mUnk_19b0) != 0) {
-            DWCi_Acc_ClearDirty((DWCAccUserData *) &gWiFiSession->mUnk_19b0);
-            MI_CpuCopy8(&gWiFiSession->mUnk_19b0, &data_0217aa08->mUnk_00->mUnk_4c, 0x40);
+void WiFiSessionLoginCallback(s32 result) {
+    if (result == 0) {
+        if (DWCi_Acc_IsDirty((DWCAccUserData *) &gWiFiSession->mUserData) != 0) {
+            DWCi_Acc_ClearDirty((DWCAccUserData *) &gWiFiSession->mUserData);
+            MI_CpuCopy8(&gWiFiSession->mUserData, &data_0217aa08->mUnk_00->mUnk_4c, 0x40);
             func_02056d40();
         }
-        gWiFiSession->mUnk_1f20.mStep = 3;
+        gWiFiSession->mLogin.mStep = 3;
     } else {
-        gWiFiSession->mUnk_1f20.mStep = 6;
+        gWiFiSession->mLogin.mStep = 6;
     }
 }
 
-void func_0211f77c(s32 a, s32 b) {
+void WiFiSessionBuddySyncCallback(s32 result, s32 changed) {
     u8 i;
 
-    if (a == 0) {
-        if (b != 0) {
-            gWiFiSession->mUnk_1cfc = TRUE;
+    if (result == 0) {
+        if (changed != 0) {
+            gWiFiSession->mBuddiesChanged = TRUE;
         }
         i = 0;
         if (func_ov000_0219d9b0(&gWiFiSession->mBuddies[0], 0x3c) > 0) {
             do {
-                DWC_ReportFriendData((DWCAccUserData *) &gWiFiSession->mUnk_19b0,
+                DWC_ReportFriendData((DWCAccUserData *) &gWiFiSession->mUserData,
                                      (DWCAccFriendData *) &gWiFiSession->mBuddies[i]);
                 i++;
             } while (i < func_ov000_0219d9b0(&gWiFiSession->mBuddies[0], 0x3c));
         }
-        gWiFiSession->mUnk_1f20.mStep = 5;
+        gWiFiSession->mLogin.mStep = 5;
     } else {
         ReleaseWiFiConnection();
         func_ov000_021a37dc();
-        gWiFiSession->mUnk_1f20.mStep = 7;
+        gWiFiSession->mLogin.mStep = 7;
     }
 }
 
@@ -231,6 +233,6 @@ void func_0211f6e8(u32 a, u32 b) {
     }
 }
 
-void SetBuddyStatus(u32 a, u8 b) {
-    gWiFiSession->mBuddyStatuses[a] = b;
+void SetBuddyStatus(u32 index, u8 status) {
+    gWiFiSession->mBuddyStatuses[index] = status;
 }

@@ -21,8 +21,8 @@ void AdvanceWait(void) {
             gWait->mFrameIndex = 0;
         }
         gWait->mFrameIndexFrames = 0;
-        func_02124748(gWaitBnclIndices[gWait->mFrameIndex], gWait->mNcer, gWait->mNcgr, gWait->mBncl, gWait->mUnk_20,
-                      gWait->mDestinationBnclIndex, gWait->mDestinationNcer, gWait->mDestinationBncl);
+        QueueCellChars(gWaitBnclIndices[gWait->mFrameIndex], gWait->mNcer, gWait->mNcgr, gWait->mBncl, gWait->mUnk_20,
+                       gWait->mDestinationBnclIndex, gWait->mDestinationNcer, gWait->mDestinationBncl);
         p = gWait;
         q = p->mNclr->mUnk_0c;
         switch (p->mUnk_20) {

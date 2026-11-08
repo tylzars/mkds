@@ -72,8 +72,8 @@ s32 func_02025a00(u32 a, void *heap, void *fileSetPointer, void *entryPointer, s
     Unk02153918 *entry = entryPointer;
     CellFileSet *fileSet = fileSetPointer;
     s32 result;
-    result = func_021243ac(heap, entry->mUnk_00, fileSet->mLabelLayout, entry->mUnk_02, entry->mUnk_04, entry->mUnk_06,
-                           fileSet->mCells, fileSet->mCellLayout, fileSet->mCellTable, e);
+    result = InitLabelCanvas(heap, entry->mUnk_00, fileSet->mLabelLayout, entry->mUnk_02, entry->mUnk_04,
+                             entry->mUnk_06, fileSet->mCells, fileSet->mCellLayout, fileSet->mCellTable, e);
     ClearAndQueueLabelLayoutText(a, entry->mUnk_00, fileSet->mLabelLayout, fileSet->mCellLayout, fileSet->mCellTable);
     return result;
 }

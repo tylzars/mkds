@@ -313,11 +313,11 @@ void InitMissionRunLVsel(void *a, void *b, void *c) {
                     gMissionRunLVsel->mMissionRunLVselS7Or6Bnll, &gMissionRunLVsel->mMissionRunLVselS7Or6Table);
     remaining = GX_GetSizeOfSubOBJ();
     for (i = 0; i < 7; i++) {
-        remaining -=
-            func_021243ac(gMissionRunLVsel->mHeap, data_ov001_021a6c60[i], gMissionRunLVsel->mMissionRunLVselS7Or6Bnll,
-                          data_ov001_021a6c70[i], data_ov001_021a6c80[i], data_ov001_021a6ce0[i][7],
-                          gMissionRunLVsel->mMissionRunLVselSNcer, gMissionRunLVsel->mMissionRunLVselS7Or6Bncl,
-                          gMissionRunLVsel->mMissionRunLVselS7Or6Table, remaining);
+        remaining -= InitLabelCanvas(
+            gMissionRunLVsel->mHeap, data_ov001_021a6c60[i], gMissionRunLVsel->mMissionRunLVselS7Or6Bnll,
+            data_ov001_021a6c70[i], data_ov001_021a6c80[i], data_ov001_021a6ce0[i][7],
+            gMissionRunLVsel->mMissionRunLVselSNcer, gMissionRunLVsel->mMissionRunLVselS7Or6Bncl,
+            gMissionRunLVsel->mMissionRunLVselS7Or6Table, remaining);
     }
     func_ov001_0219f4f8();
     func_ov001_0219f2a4();

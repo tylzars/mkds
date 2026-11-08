@@ -109,7 +109,8 @@ void func_021188dc(void) {
             grid = gSelectCupGrid;
             QueueCupMark(
                 i, grid->mSelectCupSNcer, grid->mSelectCupSBncl, gSelectCupGridCupCellIndices[i][4],
-                func_02124a68(gSelectCupGridCupCellIndices[i][4], grid->mSelectCupSNcer, grid->mSelectCupSBncl), 1);
+                GetCellPaletteIndex(gSelectCupGridCupCellIndices[i][4], grid->mSelectCupSNcer, grid->mSelectCupSBncl),
+                1);
         }
     }
 }
@@ -279,12 +280,12 @@ void UpdateSelectCupGridCourseCells(void) {
         for (i = 0; i < 4; i++) {
             if (gSelectCupGrid->mShownCourseIndex == i) {
                 gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mVisible = 1;
-                func_02124100(data_0215c7d8[i], 0xe, gSelectCupGrid->mSelectCupMBnll, gSelectCupGrid->mSelectCupMTable,
-                              gSelectCupGrid->mSelectCupMBncl);
+                SetLabelPaletteIndex(data_0215c7d8[i], 0xe, gSelectCupGrid->mSelectCupMBnll,
+                                     gSelectCupGrid->mSelectCupMTable, gSelectCupGrid->mSelectCupMBncl);
             } else {
                 gSelectCupGrid->mSelectCupMTable[data_0215c7d0[i]].mVisible = 0;
-                func_02124100(data_0215c7d8[i], 0xf, gSelectCupGrid->mSelectCupMBnll, gSelectCupGrid->mSelectCupMTable,
-                              gSelectCupGrid->mSelectCupMBncl);
+                SetLabelPaletteIndex(data_0215c7d8[i], 0xf, gSelectCupGrid->mSelectCupMBnll,
+                                     gSelectCupGrid->mSelectCupMTable, gSelectCupGrid->mSelectCupMBncl);
             }
         }
     }
@@ -509,9 +510,9 @@ void InitSelectCupGrid(void *heap, void *mainOam, void *subOam, s32 mode) {
         remainingSize = 0x8000;
         for (i = 0; i < 4; i++) {
             remainingSize -=
-                func_021243ac(gSelectCupGrid->mHeap, data_0215c7d8[i], gSelectCupGrid->mSelectCupMBnll,
-                              data_0215c7e0[i], data_0215c7e8[i], data_0215c7d0[i], gSelectCupGrid->mSelectCupMNcer,
-                              gSelectCupGrid->mSelectCupMBncl, gSelectCupGrid->mSelectCupMTable, remainingSize);
+                InitLabelCanvas(gSelectCupGrid->mHeap, data_0215c7d8[i], gSelectCupGrid->mSelectCupMBnll,
+                                data_0215c7e0[i], data_0215c7e8[i], data_0215c7d0[i], gSelectCupGrid->mSelectCupMNcer,
+                                gSelectCupGrid->mSelectCupMBncl, gSelectCupGrid->mSelectCupMTable, remainingSize);
         }
         CreateSelectCupNameM(gSelectCupGrid->mHeap);
         CreateCommonCupMark(gSelectCupGrid->mHeap);

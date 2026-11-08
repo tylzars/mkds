@@ -109,11 +109,11 @@ void func_ov001_021975f4(u16 a) {
         index = data_ov001_021a6850[0][0];
         gRecordTAtt->mRecordTAttMTable[index].mVisible = 1;
         tile = data_ov001_021a6864[result];
-        func_02124748(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 0, index,
-                      gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl);
+        QueueCellChars(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 0, index,
+                       gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl);
         palette = (u8 *) ((Nclr *) gRecordTAtt->mUnk_30)->mData;
         CallQueueAppend(0xe, data_ov001_021a683c[0] << 5,
-                        palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5), 0x20);
+                        palette + (GetCellPaletteIndex(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5), 0x20);
         result = GetTimeRecordKartIndex(data_ov001_021a6900[gRecordTAtt->mIndex], value);
         slot = data_ov001_021a6850[0][1];
         gRecordTAtt->mRecordTAttMTable[slot].mVisible = 1;
@@ -141,11 +141,11 @@ void func_ov001_021975f4(u16 a) {
         index = data_ov001_021a6850[a][0];
         gRecordTAtt->mRecordTAttSTable[index].mVisible = 1;
         tile = data_ov001_021a6864[result];
-        func_02124748(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 1, index,
-                      gRecordTAtt->mRecordTAttSNcer, gRecordTAtt->mRecordTAttSBncl);
+        QueueCellChars(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 1, index,
+                       gRecordTAtt->mRecordTAttSNcer, gRecordTAtt->mRecordTAttSBncl);
         palette = (u8 *) ((Nclr *) gRecordTAtt->mUnk_30)->mData;
         CallQueueAppend(0x1e, data_ov001_021a683c[a] << 5,
-                        palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5), 0x20);
+                        palette + (GetCellPaletteIndex(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5), 0x20);
         result = GetTimeRecordKartIndex(data_ov001_021a6900[gRecordTAtt->mIndex], value);
         slot = data_ov001_021a6852[a][0];
         gRecordTAtt->mRecordTAttSTable[slot].mVisible = 1;
@@ -216,11 +216,11 @@ void func_ov001_021972f4(void) {
         result = GetTimeRecordCharacterIndex(data_ov001_021a6900[gRecordTAtt->mIndex], 5);
         gRecordTAtt->mRecordTAttMTable[5].mVisible = 1;
         tile = data_ov001_021a6864[result];
-        func_02124748(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 0, 5,
-                      gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl);
+        QueueCellChars(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 0, 5,
+                       gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl);
         palette = (u8 *) ((Nclr *) gRecordTAtt->mUnk_30)->mData;
-        CallQueueAppend(0xe, 0x80, palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5),
-                        0x20);
+        CallQueueAppend(0xe, 0x80,
+                        palette + (GetCellPaletteIndex(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5), 0x20);
         result = GetTimeRecordKartIndex(data_ov001_021a6900[gRecordTAtt->mIndex], 5);
         gRecordTAtt->mRecordTAttMTable[6].mVisible = 1;
         QueueKartIcon(result, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl, 6, 6, 0);
@@ -549,27 +549,27 @@ void InitRecordTAtt(void *heap) {
     gRecordTAtt->mGhostMessages = FindSceneFile("ghost.bmg");
     gRecordTAtt->mRecordMessages = FindSceneFile("record.bmg");
     rem = 0x8000;
-    rem -= func_021243ac(heap, 0, gRecordTAtt->mRecordTAttMBnll, 0xc8, 0x10, 0, gRecordTAtt->mRecordTAttMNcer,
-                         gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMTable, rem);
-    rem -= func_021243ac(heap, 1, gRecordTAtt->mRecordTAttMBnll, 0x46, 0x10, 1, gRecordTAtt->mRecordTAttMNcer,
-                         gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMTable, rem);
-    rem -= func_021243ac(heap, 2, gRecordTAtt->mRecordTAttMBnll, 0x46, 0x10, 2, gRecordTAtt->mRecordTAttMNcer,
-                         gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMTable, rem);
-    rem -= func_021243ac(heap, 3, gRecordTAtt->mRecordTAttMBnll, 0x7c, 0x10, 3, gRecordTAtt->mRecordTAttMNcer,
-                         gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMTable, rem);
-    rem -= func_021243ac(heap, 4, gRecordTAtt->mRecordTAttMBnll, 0x64, 0x10, 4, gRecordTAtt->mRecordTAttMNcer,
-                         gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMTable, rem);
+    rem -= InitLabelCanvas(heap, 0, gRecordTAtt->mRecordTAttMBnll, 0xc8, 0x10, 0, gRecordTAtt->mRecordTAttMNcer,
+                           gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMTable, rem);
+    rem -= InitLabelCanvas(heap, 1, gRecordTAtt->mRecordTAttMBnll, 0x46, 0x10, 1, gRecordTAtt->mRecordTAttMNcer,
+                           gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMTable, rem);
+    rem -= InitLabelCanvas(heap, 2, gRecordTAtt->mRecordTAttMBnll, 0x46, 0x10, 2, gRecordTAtt->mRecordTAttMNcer,
+                           gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMTable, rem);
+    rem -= InitLabelCanvas(heap, 3, gRecordTAtt->mRecordTAttMBnll, 0x7c, 0x10, 3, gRecordTAtt->mRecordTAttMNcer,
+                           gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMTable, rem);
+    rem -= InitLabelCanvas(heap, 4, gRecordTAtt->mRecordTAttMBnll, 0x64, 0x10, 4, gRecordTAtt->mRecordTAttMNcer,
+                           gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMTable, rem);
     rem = GX_GetSizeOfSubOBJ();
     for (k = 1; k < 5; k++) {
-        rem -= func_021243ac(heap, data_ov001_021a67d4[k], gRecordTAtt->mRecordTAttSBnll, data_ov001_021a67c8[k],
-                             data_ov001_021a67e0[k], k, gRecordTAtt->mRecordTAttSNcer, gRecordTAtt->mRecordTAttSBncl,
-                             gRecordTAtt->mRecordTAttSTable, rem);
-        rem -= func_021243ac(heap, data_ov001_021a6810[k], gRecordTAtt->mRecordTAttSBnll, data_ov001_021a6804[k],
-                             data_ov001_021a67ec[k], k + 5, gRecordTAtt->mRecordTAttSNcer,
-                             gRecordTAtt->mRecordTAttSBncl, gRecordTAtt->mRecordTAttSTable, rem);
+        rem -= InitLabelCanvas(heap, data_ov001_021a67d4[k], gRecordTAtt->mRecordTAttSBnll, data_ov001_021a67c8[k],
+                               data_ov001_021a67e0[k], k, gRecordTAtt->mRecordTAttSNcer, gRecordTAtt->mRecordTAttSBncl,
+                               gRecordTAtt->mRecordTAttSTable, rem);
+        rem -= InitLabelCanvas(heap, data_ov001_021a6810[k], gRecordTAtt->mRecordTAttSBnll, data_ov001_021a6804[k],
+                               data_ov001_021a67ec[k], k + 5, gRecordTAtt->mRecordTAttSNcer,
+                               gRecordTAtt->mRecordTAttSBncl, gRecordTAtt->mRecordTAttSTable, rem);
     }
-    func_021243ac(heap, 8, gRecordTAtt->mRecordTAttSBnll, 0x98, 0x10, 0xd, gRecordTAtt->mRecordTAttSNcer,
-                  gRecordTAtt->mRecordTAttSBncl, gRecordTAtt->mRecordTAttSTable, rem);
+    InitLabelCanvas(heap, 8, gRecordTAtt->mRecordTAttSBnll, 0x98, 0x10, 0xd, gRecordTAtt->mRecordTAttSNcer,
+                    gRecordTAtt->mRecordTAttSBncl, gRecordTAtt->mRecordTAttSTable, rem);
     p = gRecordTAtt;
     func_0212426c(1, 8, gRecordTAtt->mRecordTAttSBnll, GetBmgEntry(p->mRecordMessages, 3), p->mRecordTAttSBncl,
                   p->mRecordTAttSTable);

@@ -318,7 +318,7 @@ void SetupPlayerEntryList(s32 mode, s32 screenKind) {
                     secondClearValue = 0;
                     MIi_CpuClear16(secondClearValue, gPlayerEntryList->mEntries[i].mName, 0x16);
                     if (GetIndexOfPackedIndex(i) >= 0) {
-                        func_0202c0d4_inline(func_021202b0((u8) GetIndexOfPackedIndex(i)),
+                        func_0202c0d4_inline(GetPlayerRecordName((u8) GetIndexOfPackedIndex(i)),
                                              gPlayerEntryList->mEntries[i].mName, 0x14);
                     }
                 }
@@ -375,8 +375,8 @@ void SetupPlayerEntryList(s32 mode, s32 screenKind) {
     CallQueueAppend(0xe, 0, ((Unk0212463c_d *) fileSet->mPalette)->mUnk_0c, 0x1a0);
     CallQueueAppend(0xe, 0x1c0, ((Unk0212463c_d *) fileSet->mPalette)->mUnk_0c + 0x1c0, 0x40);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_02124748(gTitleCellIndices[gPlayerEntryList->mScreenKind], titleFileSet->mCells, titleFileSet->mChars,
-                      titleFileSet->mCellLayout, 0, 0x19, fileSet->mCells, fileSet->mCellLayout);
+        QueueCellChars(gTitleCellIndices[gPlayerEntryList->mScreenKind], titleFileSet->mCells, titleFileSet->mChars,
+                       titleFileSet->mCellLayout, 0, 0x19, fileSet->mCells, fileSet->mCellLayout);
         func_02025f14(&gPlayerEntryList->mInterpolations[0], 0);
     }
     func_02025c6c(func_0202cca0(), gEntryCellIndices[gPlayerEntryList->mEntryIndex].mUnk_00, fileSet->mCellLayout);

@@ -213,8 +213,8 @@ void SetCurrentEntryPlayer(s32 a) {
                 return;
             }
             v = x;
-            *b0 = func_021202b0(v);
-            *b1 = func_02120294(v);
+            *b0 = GetPlayerRecordName(v);
+            *b1 = GetPlayerRecordEmblem(v);
             *b2 = func_02120278(v);
             *b3 = GetPlayerRecordRegion(v);
             *b5 = func_021202f0(v);

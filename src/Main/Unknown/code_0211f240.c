@@ -63,8 +63,8 @@ void QueueTrophyIcon(int iconIndex, int paletteIndex, void *cells, void *cellLay
         v1 = 0x1e;
     }
     trophyIcon = gTrophyIcon;
-    func_02124748(gTrophyIconBnclIndices[iconIndex], trophyIcon->mNcer, trophyIcon->mNcgr, trophyIcon->mBncl, g, e,
-                  cells, cellLayout);
+    QueueCellChars(gTrophyIconBnclIndices[iconIndex], trophyIcon->mNcer, trophyIcon->mNcgr, trophyIcon->mBncl, g, e,
+                   cells, cellLayout);
     CallQueueAppend(v1, paletteSlot << 5, (u8 *) gTrophyIcon->mNclr->mData + gTrophyIconNclrStarts[paletteIndex] * 0x20,
                     0x20);
 }

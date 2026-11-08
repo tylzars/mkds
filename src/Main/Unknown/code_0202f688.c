@@ -162,8 +162,8 @@ void RefreshMultiSelectMemberGroup(s32 showSelected) {
             cellFileSet->mUnk_18[(rowCellIndices->mCellIndices + 4)[j]].mVisible &= z;
             cellFileSet->mUnk_18[(rowCellIndices->mCellIndices + 16)[j]].mVisible &= z;
         }
-        func_02124100(rowCellIndices->mLabelIndex, valueTable.mUnk_00[rowSelected], cellFileSet->mUnk_14,
-                      cellFileSet->mUnk_18, cellFileSet->mUnk_0c);
+        SetLabelPaletteIndex(rowCellIndices->mLabelIndex, valueTable.mUnk_00[rowSelected], cellFileSet->mUnk_14,
+                             cellFileSet->mUnk_18, cellFileSet->mUnk_0c);
         entryOffset += 0xc;
         rowCellIndices = OFFSET_PTR(MemberRowCellIndices, rowCellIndices, 0x32);
         i++;
@@ -180,7 +180,8 @@ void RefreshMultiSelectMemberGroup(s32 showSelected) {
         rowNotSelected = 0;
     }
     cellFileSet->mUnk_18[88].mVisible = rowNotSelected;
-    func_02124100(4, valueTable.mUnk_00[rowSelected], cellFileSet->mUnk_14, cellFileSet->mUnk_18, cellFileSet->mUnk_0c);
+    SetLabelPaletteIndex(4, valueTable.mUnk_00[rowSelected], cellFileSet->mUnk_14, cellFileSet->mUnk_18,
+                         cellFileSet->mUnk_0c);
 }
 
 #pragma thumb off

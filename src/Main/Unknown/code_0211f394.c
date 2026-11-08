@@ -82,8 +82,8 @@ void InitSelectRaceRuleWait(void *heap, void *oamList) {
     InitLayoutTable(heap, gSelectRaceRuleWait->mBncl, gSelectRaceRuleWait->mBnll, &gSelectRaceRuleWait->mTable);
     gSelectRaceRuleWait->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     subObjSize = GX_GetSizeOfSubOBJ();
-    func_021243ac(heap, 0xe, gSelectRaceRuleWait->mBnll, 0xc8, 0xd, 0, gSelectRaceRuleWait->mNcer,
-                  gSelectRaceRuleWait->mBncl, gSelectRaceRuleWait->mTable, subObjSize);
+    InitLabelCanvas(heap, 0xe, gSelectRaceRuleWait->mBnll, 0xc8, 0xd, 0, gSelectRaceRuleWait->mNcer,
+                    gSelectRaceRuleWait->mBncl, gSelectRaceRuleWait->mTable, subObjSize);
     selectRaceRuleWait = gSelectRaceRuleWait;
     func_0212426c(1, 0xe, gSelectRaceRuleWait->mBnll, GetBmgEntry(selectRaceRuleWait->mCommonMessages, 0x79),
                   selectRaceRuleWait->mBncl, selectRaceRuleWait->mTable);

@@ -175,11 +175,11 @@ void PrintGhostRecordInfo(Unk02174e14 *fileSets, s16 (*labelRows)[4], void *name
     terminatedName[10] = 0;
     func_0212426c(0, labelRows[2][0], fileSets->mUnk_000.mLabelLayout, terminatedName, fileSets->mUnk_000.mCellLayout,
                   fileSets->mUnk_000.mCellTable);
-    func_0212463c(characterIndex, cellFileSet->mCells, fileSets->mUnk_038.mChars, cellFileSet->mPalette,
-                  cellFileSet->mCellLayout, 0, labelRows[0][3], fileSets->mUnk_000.mCells,
-                  fileSets->mUnk_000.mCellLayout);
+    QueueCellCharsAndFirstPalette(characterIndex, cellFileSet->mCells, fileSets->mUnk_038.mChars, cellFileSet->mPalette,
+                                  cellFileSet->mCellLayout, 0, labelRows[0][3], fileSets->mUnk_000.mCells,
+                                  fileSets->mUnk_000.mCellLayout);
     QueueKartIcon(kartIndex, fileSets->mUnk_000.mCells, fileSets->mUnk_000.mCellLayout, labelRows[1][3],
-                  func_02124a68(labelRows[1][3], fileSets->mUnk_000.mCells, fileSets->mUnk_000.mCellLayout), 0);
+                  GetCellPaletteIndex(labelRows[1][3], fileSets->mUnk_000.mCells, fileSets->mUnk_000.mCellLayout), 0);
 }
 
 #pragma thumb off

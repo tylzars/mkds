@@ -352,12 +352,12 @@ void func_ov001_021933dc(void) {
     for (i = 0; i < 3; i++) {
         if (i == gOptionTopMenu->mIndex && gOptionTopMenu->mUnk_14 != FALSE) {
             gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65e0[i]].mVisible = 1;
-            func_02124a20(data_ov001_021a65d8[i], 14, gOptionTopMenu->mOptionTopMenuSNcer,
-                          gOptionTopMenu->mOptionTopMenuSBncl);
+            SetCellPaletteIndex(data_ov001_021a65d8[i], 14, gOptionTopMenu->mOptionTopMenuSNcer,
+                                gOptionTopMenu->mOptionTopMenuSBncl);
         } else {
             gOptionTopMenu->mOptionTopMenuSTable[data_ov001_021a65e0[i]].mVisible = zero;
-            func_02124a20(data_ov001_021a65d8[i], 15, gOptionTopMenu->mOptionTopMenuSNcer,
-                          gOptionTopMenu->mOptionTopMenuSBncl);
+            SetCellPaletteIndex(data_ov001_021a65d8[i], 15, gOptionTopMenu->mOptionTopMenuSNcer,
+                                gOptionTopMenu->mOptionTopMenuSBncl);
         }
     }
 }

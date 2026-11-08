@@ -99,20 +99,20 @@ void SetupRecordGpxValues(s32 a) {
 
     k = GetGrandPrixRecordCupRank(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
     gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[a]].mVisible = 1;
-    func_02124748(data_ov001_021a66a4[gRecordGpx->mIndex], (gRecordGpx->mRecordTrophyONcer),
-                  (gRecordGpx->mRecordTrophyONcgr), (gRecordGpx->mRecordTrophySOBncl), 1, data_ov001_021a666c[a],
-                  (gRecordGpx->mRecordGpxSNcer), (gRecordGpx->mRecordGpxSBncl));
-    func_02124a20(data_ov001_021a666c[a], (u8) data_ov001_021a6604[k], gRecordGpx->mRecordGpxSNcer,
-                  gRecordGpx->mRecordGpxSBncl);
+    QueueCellChars(data_ov001_021a66a4[gRecordGpx->mIndex], (gRecordGpx->mRecordTrophyONcer),
+                   (gRecordGpx->mRecordTrophyONcgr), (gRecordGpx->mRecordTrophySOBncl), 1, data_ov001_021a666c[a],
+                   (gRecordGpx->mRecordGpxSNcer), (gRecordGpx->mRecordGpxSBncl));
+    SetCellPaletteIndex(data_ov001_021a666c[a], (u8) data_ov001_021a6604[k], gRecordGpx->mRecordGpxSNcer,
+                        gRecordGpx->mRecordGpxSBncl);
     k = GetGrandPrixRecordCharacterIndex(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
     gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[a][0]].mVisible = 1;
-    func_02124748(data_ov001_021a66e4[k], (gRecordGpx->mPlayerCharacterMNcer), (gRecordGpx->mPlayerCharacterMNcgr),
-                  (gRecordGpx->mPlayerCharacterMBncl), 1, data_ov001_021a6674[a][0], (gRecordGpx->mRecordGpxSNcer),
-                  (gRecordGpx->mRecordGpxSBncl));
+    QueueCellChars(data_ov001_021a66e4[k], (gRecordGpx->mPlayerCharacterMNcer), (gRecordGpx->mPlayerCharacterMNcgr),
+                   (gRecordGpx->mPlayerCharacterMBncl), 1, data_ov001_021a6674[a][0], (gRecordGpx->mRecordGpxSNcer),
+                   (gRecordGpx->mRecordGpxSBncl));
     p = gRecordGpx->mPlayerCharacterMONclr->mUnk_0c;
     CallQueueAppend(0x1e, data_ov001_021a6684[a] << 5,
-                    p + (func_02124a68(data_ov001_021a66e4[k], (gRecordGpx->mPlayerCharacterMNcer),
-                                       (gRecordGpx->mPlayerCharacterMBncl))
+                    p + (GetCellPaletteIndex(data_ov001_021a66e4[k], (gRecordGpx->mPlayerCharacterMNcer),
+                                             (gRecordGpx->mPlayerCharacterMBncl))
                          << 5),
                     0x20);
     k = GetGrandPrixRecordKartIndex(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
@@ -230,7 +230,7 @@ void SetupRecordGpx(void) {
         gRecordGpx->mRecordGpxSTable[n + data_ov001_021a663c[3]].mVisible = 0;
     }
     d = gRecordGpx;
-    v = func_02124a68(1, (d->mRecordGpxMNcer), (d->mRecordGpxMBncl));
+    v = GetCellPaletteIndex(1, (d->mRecordGpxMNcer), (d->mRecordGpxMBncl));
     QueueCupMark(d->mIndex, d->mRecordGpxMNcer, d->mRecordGpxMBncl, 1, v, 0);
     d = gRecordGpx;
     p = GetBmgEntry(d->mCommonMessages, data_ov001_021a6720[d->mIndex]);
@@ -426,19 +426,19 @@ void InitRecordGpx(void *heap) {
     InitLayoutTable(heap, gRecordGpx->mRecordGpxMBncl, gRecordGpx->mRecordGpxMBnll, &gRecordGpx->mRecordGpxMTable);
     InitLayoutTable(heap, gRecordGpx->mRecordGpxSBncl, gRecordGpx->mRecordGpxSBnll, &gRecordGpx->mRecordGpxSTable);
     gRecordGpx->mCommonMessages = FindFileInLoadedArchives("common.bmg");
-    func_021243ac(heap, 0, gRecordGpx->mRecordGpxMBnll, 200, 16, 0, gRecordGpx->mRecordGpxMNcer,
-                  gRecordGpx->mRecordGpxMBncl, gRecordGpx->mRecordGpxMTable, 0x8000);
+    InitLabelCanvas(heap, 0, gRecordGpx->mRecordGpxMBnll, 200, 16, 0, gRecordGpx->mRecordGpxMNcer,
+                    gRecordGpx->mRecordGpxMBncl, gRecordGpx->mRecordGpxMTable, 0x8000);
     rem = GX_GetSizeOfSubOBJ();
     for (i = 0; i < 4; i++) {
-        rem -= func_021243ac(heap, data_ov001_021a6614[i], gRecordGpx->mRecordGpxSBnll, data_ov001_021a661c[i],
-                             data_ov001_021a6624[i], i, gRecordGpx->mRecordGpxSNcer, gRecordGpx->mRecordGpxSBncl,
-                             gRecordGpx->mRecordGpxSTable, rem);
-        rem -= func_021243ac(heap, data_ov001_021a662c[i], gRecordGpx->mRecordGpxSBnll, data_ov001_021a6664[i],
-                             data_ov001_021a6634[i], i + 4, gRecordGpx->mRecordGpxSNcer, gRecordGpx->mRecordGpxSBncl,
-                             gRecordGpx->mRecordGpxSTable, rem);
-        rem -= func_021243ac(heap, data_ov001_021a663c[i], gRecordGpx->mRecordGpxSBnll, data_ov001_021a6644[i],
-                             data_ov001_021a664c[i], i + 12, gRecordGpx->mRecordGpxSNcer, gRecordGpx->mRecordGpxSBncl,
-                             gRecordGpx->mRecordGpxSTable, rem);
+        rem -= InitLabelCanvas(heap, data_ov001_021a6614[i], gRecordGpx->mRecordGpxSBnll, data_ov001_021a661c[i],
+                               data_ov001_021a6624[i], i, gRecordGpx->mRecordGpxSNcer, gRecordGpx->mRecordGpxSBncl,
+                               gRecordGpx->mRecordGpxSTable, rem);
+        rem -= InitLabelCanvas(heap, data_ov001_021a662c[i], gRecordGpx->mRecordGpxSBnll, data_ov001_021a6664[i],
+                               data_ov001_021a6634[i], i + 4, gRecordGpx->mRecordGpxSNcer, gRecordGpx->mRecordGpxSBncl,
+                               gRecordGpx->mRecordGpxSTable, rem);
+        rem -= InitLabelCanvas(heap, data_ov001_021a663c[i], gRecordGpx->mRecordGpxSBnll, data_ov001_021a6644[i],
+                               data_ov001_021a664c[i], i + 12, gRecordGpx->mRecordGpxSNcer, gRecordGpx->mRecordGpxSBncl,
+                               gRecordGpx->mRecordGpxSTable, rem);
     }
     gRecordGpx->mBg3OffsetY = 0;
     for (i = 0; i < 8; i++) {

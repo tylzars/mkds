@@ -162,10 +162,10 @@ void CreateTitleScene(void) {
     func_02124a98(3, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
     func_02124a98(4, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
     d = GX_GetSizeOfSubOBJ();
-    d -= func_021243ac(func_020ada10(), 0, gTitleScene->mTitleSBnll, 0x55, 0xd, 0xd, gTitleScene->mTitleSNceNcer,
-                       gTitleScene->mTitleSBncl, gTitleScene->mTitleTable, d);
-    func_021243ac(func_020ada10(), 1, gTitleScene->mTitleSBnll, 0x55, 0xd, 0xe, gTitleScene->mTitleSNceNcer,
-                  gTitleScene->mTitleSBncl, gTitleScene->mTitleTable, d);
+    d -= InitLabelCanvas(func_020ada10(), 0, gTitleScene->mTitleSBnll, 0x55, 0xd, 0xd, gTitleScene->mTitleSNceNcer,
+                         gTitleScene->mTitleSBncl, gTitleScene->mTitleTable, d);
+    InitLabelCanvas(func_020ada10(), 1, gTitleScene->mTitleSBnll, 0x55, 0xd, 0xe, gTitleScene->mTitleSNceNcer,
+                    gTitleScene->mTitleSBncl, gTitleScene->mTitleTable, d);
     func_0212426c(1, 0, gTitleScene->mTitleSBnll, GetBmgEntry(FindSceneFileWrapper(gTitleBmgName), 1),
                   gTitleScene->mTitleSBncl, gTitleScene->mTitleTable);
     func_0212426c(1, 1, gTitleScene->mTitleSBnll, GetBmgEntry(FindSceneFileWrapper(gTitleBmgName2), 0),

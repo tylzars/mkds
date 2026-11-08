@@ -334,12 +334,12 @@ void AdvanceResultsBattle(Unk02032ac4 *sceneNumbers) {
         }
         tensCellLayout = mainCellFileSet->mCellLayout;
         tensCells = mainCellFileSet->mCells;
-        func_02124748(gResultsBattle->mTimerDigitCellBase + (shownTimer / 10) % 10, tensCells, mainCellFileSet->mChars,
-                      tensCellLayout, 0, gResultsBattle->mTimerTensCell, tensCells, tensCellLayout);
+        QueueCellChars(gResultsBattle->mTimerDigitCellBase + (shownTimer / 10) % 10, tensCells, mainCellFileSet->mChars,
+                       tensCellLayout, 0, gResultsBattle->mTimerTensCell, tensCells, tensCellLayout);
         unitsCellLayout = mainCellFileSet->mCellLayout;
         unitsCells = mainCellFileSet->mCells;
-        func_02124748(gResultsBattle->mTimerDigitCellBase + shownTimer % 10, unitsCells, mainCellFileSet->mChars,
-                      unitsCellLayout, 0, gResultsBattle->mTimerTensCell + 1, unitsCells, unitsCellLayout);
+        QueueCellChars(gResultsBattle->mTimerDigitCellBase + shownTimer % 10, unitsCells, mainCellFileSet->mChars,
+                       unitsCellLayout, 0, gResultsBattle->mTimerTensCell + 1, unitsCells, unitsCellLayout);
     } else {
         mainCellFileSet->mCellTable[gResultsBattle->mTimerTensCell + 1].mVisible = 0;
         mainCellFileSet->mCellTable[gResultsBattle->mTimerTensCell].mVisible =
@@ -490,11 +490,13 @@ void AdvanceResultsBattle(Unk02032ac4 *sceneNumbers) {
     cellCount = subCellFileSet->mCellLayout->mUnk_06;
     for (i = 0; i < 8; i++) {
         subCellFileSet->mCellTable[i + cellCount].mOffsetY = subCellFileSet->mCellTable[i + cellCount].mOffsetY + 1;
-        func_02124100(i, 0xe, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable, subCellFileSet->mCellLayout);
+        SetLabelPaletteIndex(i, 0xe, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable,
+                             subCellFileSet->mCellLayout);
         DrawLayoutTableEntry(i + cellCount, subCellFileSet->mCellLayout, subCellFileSet->mCells,
                              subCellFileSet->mLabelLayout, (void *) gResultsBattle->mUnk_0b8[1],
                              subCellFileSet->mCellTable);
-        func_02124100(i, 0xf, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable, subCellFileSet->mCellLayout);
+        SetLabelPaletteIndex(i, 0xf, subCellFileSet->mLabelLayout, subCellFileSet->mCellTable,
+                             subCellFileSet->mCellLayout);
         subCellFileSet->mCellTable[i + cellCount].mOffsetY = subCellFileSet->mCellTable[i + cellCount].mOffsetY - 1;
     }
     func_02125928();

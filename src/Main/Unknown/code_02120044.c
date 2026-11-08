@@ -21,8 +21,8 @@
 #include "00/unk_021b5000.h"
 #include "00/code_021a2ccc.h"
 
-u32 func_021202f0(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_021202f0(u32 index) {
+    u32 value0 = index;
     u32 value1;
     u32 value2;
     value2 = (u32) &gWiFiSession;
@@ -33,20 +33,20 @@ u32 func_021202f0(u32 arg0) {
     return value0;
 }
 
-u32 GetPlayerRecordRegion(u32 a) {
-    return gWiFiSession->mPlayerRecords[a].mRegion;
+u32 GetPlayerRecordRegion(u32 index) {
+    return gWiFiSession->mPlayerRecords[index].mRegion;
 }
 
-void *func_021202b0(u32 a) {
-    return &gWiFiSession->mPlayerRecords[a].mUnk_00c;
+void *GetPlayerRecordName(u32 index) {
+    return &gWiFiSession->mPlayerRecords[index].mName;
 }
 
-void *func_02120294(u32 a) {
-    return &gWiFiSession->mPlayerRecords[a].mUnk_020;
+void *GetPlayerRecordEmblem(u32 index) {
+    return &gWiFiSession->mPlayerRecords[index].mEmblem;
 }
 
-u8 func_02120278(u32 arg0) {
-    u32 value0 = arg0;
+u8 func_02120278(u32 index) {
+    u32 value0 = index;
     u32 value1;
     u32 value2;
     value2 = (u32) &gWiFiSession;
@@ -57,8 +57,8 @@ u8 func_02120278(u32 arg0) {
     return value0;
 }
 
-u32 func_0212025c(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_0212025c(u32 index) {
+    u32 value0 = index;
     u32 value1;
     u32 value2;
     value2 = (u32) &gWiFiSession;
@@ -69,8 +69,8 @@ u32 func_0212025c(u32 arg0) {
     return value0;
 }
 
-u32 func_02120240(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_02120240(u32 index) {
+    u32 value0 = index;
     u32 value1;
     u32 value2;
     value2 = (u32) &gWiFiSession;
@@ -81,8 +81,8 @@ u32 func_02120240(u32 arg0) {
     return value0;
 }
 
-int GetPlayerRecordElo(int arg0) {
-    u32 value0 = arg0;
+int GetPlayerRecordElo(int index) {
+    u32 value0 = index;
     u32 value1;
     u32 value2;
     value2 = (u32) &gWiFiSession;
@@ -94,9 +94,9 @@ int GetPlayerRecordElo(int arg0) {
     return value0;
 }
 
-void SetPlayerRecordElo(int arg0, s16 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
+void SetPlayerRecordElo(int index, s16 elo) {
+    u32 value0 = index;
+    u32 value1 = elo;
     u32 value2;
     u32 value3;
     value3 = (u32) &gWiFiSession;
@@ -107,8 +107,8 @@ void SetPlayerRecordElo(int arg0, s16 arg1) {
     *(u16 *) ((value0) + (62)) = value1;
 }
 
-u8 func_021201e4(int arg0) {
-    u32 value0 = arg0;
+u8 func_021201e4(int index) {
+    u32 value0 = index;
     u32 value1;
     u32 value2;
     value2 = (u32) &gWiFiSession;
@@ -120,19 +120,19 @@ u8 func_021201e4(int arg0) {
 }
 
 void func_02120150(void) {
-    WiFiSession *d;
-    BOOL a = FALSE;
+    WiFiSession *session;
+    BOOL hasHeap = FALSE;
 
-    d = gWiFiSession;
-    if (d != NULL) {
-        if (d->mHeapCreated != FALSE) {
-            a = TRUE;
+    session = gWiFiSession;
+    if (session != NULL) {
+        if (session->mHeapCreated != FALSE) {
+            hasHeap = TRUE;
         }
     }
-    if (a == FALSE) {
+    if (hasHeap == FALSE) {
         return;
     }
-    d->mUnk_1f3c++;
+    session->mUnk_1f3c++;
     if (gWiFiSession->mUnk_0008.mState != 5) {
         return;
     }
@@ -143,18 +143,18 @@ void func_02120150(void) {
 }
 
 void EnterWiFiSessionState1(void) {
-    func_0211fb44();
+    SetupWiFiSessionLogin();
 }
 
 void UpdateWiFiSessionState1(void) {
-    Unk0217d384_08 *p;
+    Unk0217d384_08 *stateMachine;
 
-    if (func_0211f91c() == 0) {
+    if (UpdateWiFiSessionLogin() == 0) {
         return;
     }
-    p = &gWiFiSession->mUnk_0008;
-    p->mNextState = 2;
-    p->mNextStateRequested = 1;
+    stateMachine = &gWiFiSession->mUnk_0008;
+    stateMachine->mNextState = 2;
+    stateMachine->mNextStateRequested = 1;
 }
 
 void EnterWiFiSessionState3(void) {
@@ -162,14 +162,14 @@ void EnterWiFiSessionState3(void) {
 }
 
 void UpdateWiFiSessionState3(void) {
-    Unk0217d384_08 *p;
+    Unk0217d384_08 *stateMachine;
 
     if (IsKartKeysStartStatus3() == FALSE) {
         return;
     }
-    p = &gWiFiSession->mUnk_0008;
-    p->mNextState = 4;
-    p->mNextStateRequested = 1;
+    stateMachine = &gWiFiSession->mUnk_0008;
+    stateMachine->mNextState = 4;
+    stateMachine->mNextStateRequested = 1;
 }
 
 void func_021200a4(void) {}

@@ -270,12 +270,12 @@ void func_ov001_02199a20(void) {
     for (i = 0; i < 2; i++) {
         if (i == gOptionHensyuMenu->mIndex && gOptionHensyuMenu->mUnk_14 != FALSE) {
             gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a88[i]].mVisible = 1;
-            func_02124a20(data_ov001_021a6a80[i], 0xe, gOptionHensyuMenu->mOptionHensyuMenuSNcer,
-                          gOptionHensyuMenu->mOptionHensyuMenuSBncl);
+            SetCellPaletteIndex(data_ov001_021a6a80[i], 0xe, gOptionHensyuMenu->mOptionHensyuMenuSNcer,
+                                gOptionHensyuMenu->mOptionHensyuMenuSBncl);
         } else {
             gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a88[i]].mVisible = 0;
-            func_02124a20(data_ov001_021a6a80[i], 0xf, gOptionHensyuMenu->mOptionHensyuMenuSNcer,
-                          gOptionHensyuMenu->mOptionHensyuMenuSBncl);
+            SetCellPaletteIndex(data_ov001_021a6a80[i], 0xf, gOptionHensyuMenu->mOptionHensyuMenuSNcer,
+                                gOptionHensyuMenu->mOptionHensyuMenuSBncl);
         }
     }
 }

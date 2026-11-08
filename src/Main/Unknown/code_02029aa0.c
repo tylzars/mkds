@@ -114,8 +114,8 @@ void InitResultsGp(void *heap, void *firstOamList, void *secondOamList) {
     func_02025a50(0, heap, mainFileSet);
     MIi_CpuCopy16(&data_0217aa08->mUnk_00->mUnk_0c, playerName, 0x14);
     playerName[10] = 0;
-    func_021243ac(heap, 0, mainFileSet->mLabelLayout, 0x82, 0xd, 0x14, mainFileSet->mCells, mainFileSet->mCellLayout,
-                  mainFileSet->mCellTable, mainObjSize);
+    InitLabelCanvas(heap, 0, mainFileSet->mLabelLayout, 0x82, 0xd, 0x14, mainFileSet->mCells, mainFileSet->mCellLayout,
+                    mainFileSet->mCellTable, mainObjSize);
     func_0212426c(0, 0, mainFileSet->mLabelLayout, playerName, mainFileSet->mCellLayout, mainFileSet->mCellTable);
     func_02124094(0, 1, mainFileSet->mLabelLayout, mainFileSet->mCellTable, mainFileSet->mCellLayout);
     for (i = 0; i < 8; i++) {
@@ -146,8 +146,8 @@ void InitResultsGp(void *heap, void *firstOamList, void *secondOamList) {
     characterIndex = data_0217b488->mCharacterIndex;
     mainFileSet = &gResultsGp->mCellFileSets[0];
     func_02025b84(1, &cellFileSet);
-    func_0212463c(characterIndex, cellFileSet.mCells, cellFileSet.mChars, cellFileSet.mPalette, cellFileSet.mCellLayout,
-                  0, 0x14, mainFileSet->mCells, mainFileSet->mCellLayout);
+    QueueCellCharsAndFirstPalette(characterIndex, cellFileSet.mCells, cellFileSet.mChars, cellFileSet.mPalette,
+                                  cellFileSet.mCellLayout, 0, 0x14, mainFileSet->mCells, mainFileSet->mCellLayout);
     func_02025854(1, &subScreenMapFileSet, gResultsGpSBNcgrName, gResultsGpSBNclrName, gResultsGpSNscrName, 3,
                   FindSceneFile);
     subObjSizeLeft = GX_GetSizeOfSubOBJ();
@@ -195,8 +195,8 @@ void InitResultsGp(void *heap, void *firstOamList, void *secondOamList) {
     subFileSet = &gResultsGp->mCellFileSets[1];
     LoadCellFileSet(&cupNameFileSet, gCupNameLeftNcgrName, gCupNameLeftNcerName, NULL, gCupNameLeftBnclName, NULL, NULL,
                     FindSceneFile);
-    func_02124748(data_usa_02153868[gResultsGp->mCupIndex], cupNameFileSet.mCells, cupNameFileSet.mChars,
-                  cupNameFileSet.mCellLayout, 1, 0, subFileSet->mCells, subFileSet->mCellLayout);
+    QueueCellChars(data_usa_02153868[gResultsGp->mCupIndex], cupNameFileSet.mCells, cupNameFileSet.mChars,
+                   cupNameFileSet.mCellLayout, 1, 0, subFileSet->mCells, subFileSet->mCellLayout);
     func_020629a4();
     func_020a269c(gResultsGp->mCupIndex, (u16) gResultsGp->mCupRankIndex);
     i = -1;

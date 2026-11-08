@@ -51,7 +51,7 @@ void UpdateWiFiSessionKartTimeouts(void) {
     if (gWiFiSession->mStep > 2 && gWiFiSession->mStep < 9) {
         if (gWiFiSession->mStep == 3) {
             ownIndex = func_ov000_0219bb50();
-            if (gWiFiSession->mUnk_1e10[ownIndex].mUnk_40 != 1) {
+            if (gWiFiSession->mIndexMessages[ownIndex].mUnk_40 != 1) {
                 return;
             }
         }

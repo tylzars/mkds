@@ -489,12 +489,12 @@ void func_0202721c(void) {
     selectCharacter = gSelectCharacter;
     if (selectCharacter->mUnk_128 == FALSE) {
         nameParts = &selectCharacter->mUnk_038;
-        func_02124748(*(s16 *) &selectCharacter->mUnk_090[selectCharacter->mUnk_060].mUnk_04, nameParts->mCells,
-                      selectCharacter->mUnk_038.mChars, nameParts->mCellLayout, 0, 2, selectCharacter->mUnk_000.mCells,
-                      selectCharacter->mUnk_000.mCellLayout);
-        func_02124748(*(s16 *) &gSelectCharacter->mUnk_090[gSelectCharacter->mUnk_060].mUnk_04, nameParts->mCells,
-                      selectCharacter->mUnk_038.mChars, nameParts->mCellLayout, 0, 1, selectCharacter->mUnk_000.mCells,
-                      selectCharacter->mUnk_000.mCellLayout);
+        QueueCellChars(*(s16 *) &selectCharacter->mUnk_090[selectCharacter->mUnk_060].mUnk_04, nameParts->mCells,
+                       selectCharacter->mUnk_038.mChars, nameParts->mCellLayout, 0, 2, selectCharacter->mUnk_000.mCells,
+                       selectCharacter->mUnk_000.mCellLayout);
+        QueueCellChars(*(s16 *) &gSelectCharacter->mUnk_090[gSelectCharacter->mUnk_060].mUnk_04, nameParts->mCells,
+                       selectCharacter->mUnk_038.mChars, nameParts->mCellLayout, 0, 1, selectCharacter->mUnk_000.mCells,
+                       selectCharacter->mUnk_000.mCellLayout);
     }
 }
 

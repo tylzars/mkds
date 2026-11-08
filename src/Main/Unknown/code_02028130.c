@@ -116,7 +116,7 @@ int AdvanceSelectKart(void) {
                 gSelectKart->mResult = 1;
                 gSelectKart->mState = 4;
                 p->mUnk_18[18].mVisible = 0;
-                func_02124100(data_usa_02153834[4], 0, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
+                SetLabelPaletteIndex(data_usa_02153834[4], 0, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
                 func_021106a8(func_02025eb0(gSelectKart->mCharacterIndex), 1);
                 func_02077f48(1);
                 StopPaletteBlend();
@@ -195,7 +195,7 @@ int AdvanceSelectKart(void) {
                 }
                 gSelectKart->mStateFrames = 0;
                 p->mUnk_18[18].mVisible = 1;
-                func_02124100(data_usa_02153834[4], 1, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
+                SetLabelPaletteIndex(data_usa_02153834[4], 1, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
             }
             break;
         case 5:

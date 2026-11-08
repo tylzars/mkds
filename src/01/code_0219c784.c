@@ -84,10 +84,10 @@ void InitSelectBattleStage(void *c, s32 d, void *e, void *f) {
             p = GetBmgEntry(gSelectBattleStage->mMenuMessages, 7);
         }
         for (i = 0; i < 2; i++) {
-            rem -= func_021243ac(gSelectBattleStage->mHeap, a[i], gSelectBattleStage->mSelectBattleStageBnlls[0], 0xa8,
-                                 13, b[i], gSelectBattleStage->mSelectBattleStageMNcer,
-                                 gSelectBattleStage->mSelectBattleStageBncls[0],
-                                 gSelectBattleStage->mSelectBattleStageTables[0], rem);
+            rem -= InitLabelCanvas(gSelectBattleStage->mHeap, a[i], gSelectBattleStage->mSelectBattleStageBnlls[0],
+                                   0xa8, 13, b[i], gSelectBattleStage->mSelectBattleStageMNcer,
+                                   gSelectBattleStage->mSelectBattleStageBncls[0],
+                                   gSelectBattleStage->mSelectBattleStageTables[0], rem);
             func_0212426c(0, a[i], gSelectBattleStage->mSelectBattleStageBnlls[0], p,
                           gSelectBattleStage->mSelectBattleStageBncls[0],
                           gSelectBattleStage->mSelectBattleStageTables[0]);

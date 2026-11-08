@@ -295,7 +295,7 @@ void func_02031b30(s32 visible) {
         labelValue = 0;
     }
     subFileSet->mUnk_18[0x11].mVisible = visible;
-    func_02124100(8, labelValue, subFileSet->mUnk_14, subFileSet->mUnk_18, subFileSet->mUnk_0c);
+    SetLabelPaletteIndex(8, labelValue, subFileSet->mUnk_14, subFileSet->mUnk_18, subFileSet->mUnk_0c);
 }
 
 void func_02031960(void) {

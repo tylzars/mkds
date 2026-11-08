@@ -130,13 +130,13 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
             func_02025a50(0, gSelectKart->mHeap, p);
             LocateCellFileSet(&e, gSelectCharacterGpTitleMNcgrName2, gSelectCharacterGpTitleMNcerName2, NULL,
                               gSelectCharacterGpTitleMBnclName2, NULL, NULL, FindFileInLoadedArchives);
-            func_02124748(1, e.mUnk_08, e.mUnk_00, e.mUnk_0c, 0, 0, p->mUnk_08, p->mUnk_0c);
+            QueueCellChars(1, e.mUnk_08, e.mUnk_00, e.mUnk_0c, 0, 0, p->mUnk_08, p->mUnk_0c);
             LocateCellFileSet(&f, gSelectCharacterGpNameMNcgrName2, gSelectCharacterGpNameMNcerName2, NULL,
                               gSelectCharacterGpNameMBnclName2, NULL, NULL, FindFileInLoadedArchives);
-            func_02124748(data_usa_021537dc[gSelectKart->mCharacterIndex], f.mUnk_08, f.mUnk_00, f.mUnk_0c, 0, 2,
-                          p->mUnk_08, p->mUnk_0c);
-            func_02124748(data_usa_021537dc[gSelectKart->mCharacterIndex], f.mUnk_08, f.mUnk_00, f.mUnk_0c, 0, 1,
-                          p->mUnk_08, p->mUnk_0c);
+            QueueCellChars(data_usa_021537dc[gSelectKart->mCharacterIndex], f.mUnk_08, f.mUnk_00, f.mUnk_0c, 0, 2,
+                           p->mUnk_08, p->mUnk_0c);
+            QueueCellChars(data_usa_021537dc[gSelectKart->mCharacterIndex], f.mUnk_08, f.mUnk_00, f.mUnk_0c, 0, 1,
+                           p->mUnk_08, p->mUnk_0c);
         }
     }
     if (func_020280dc() == 0) {
@@ -161,7 +161,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
         w = GetBmgEntry(FindFileInLoadedArchives(gCommonBmgName2), data_usa_021537f4[6].mUnk_08);
         i = data_usa_02153834[4];
         func_0212426c(1, i, p->mUnk_14, w, p->mUnk_0c, p->mUnk_18);
-        func_02124100(i, 1, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
+        SetLabelPaletteIndex(i, 1, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
         InitPaletteBlend(gSelectKart->mHeap, (Nclr *) p->mUnk_04, 1);
         p->mUnk_18[2].mVisible = 0;
         p->mUnk_18[3].mVisible = p->mUnk_18[2].mVisible;

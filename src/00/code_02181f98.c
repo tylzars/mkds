@@ -73,9 +73,9 @@ void InitWiFiVSSetting(void *heap) {
         u32 c[1] = {1};
 
         for (i = 0; i < 1; i++) {
-            v -= func_021243ac(heap, a[i], gWiFiVSSetting->mWiFiVSSettingBnll, b[i][0], b[i][1],
-                               data_ov000_021b060c[i][11], gWiFiVSSetting->mWiFiVSSettingSNcer,
-                               gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mWiFiVSSettingTable, v);
+            v -= InitLabelCanvas(heap, a[i], gWiFiVSSetting->mWiFiVSSettingBnll, b[i][0], b[i][1],
+                                 data_ov000_021b060c[i][11], gWiFiVSSetting->mWiFiVSSettingSNcer,
+                                 gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mWiFiVSSettingTable, v);
             func_0212426c(1, a[i], gWiFiVSSetting->mWiFiVSSettingBnll, GetBmgEntry(gWiFiVSSetting->mWiFiMessages, c[i]),
                           gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mWiFiVSSettingTable);
         }
@@ -93,9 +93,9 @@ void InitWiFiVSSetting(void *heap) {
                     }
                     k = gWiFiVSSetting->mSettingIndex;
                 }
-                v -= func_021243ac(heap, data_ov000_021b05e8[i], gWiFiVSSetting->mWiFiVSSettingBnll, d[i][0], d[i][1],
-                                   data_ov000_021b060c[i][1], gWiFiVSSetting->mWiFiVSSettingSNcer,
-                                   gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mWiFiVSSettingTable, v);
+                v -= InitLabelCanvas(heap, data_ov000_021b05e8[i], gWiFiVSSetting->mWiFiVSSettingBnll, d[i][0], d[i][1],
+                                     data_ov000_021b060c[i][1], gWiFiVSSetting->mWiFiVSSettingSNcer,
+                                     gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mWiFiVSSettingTable, v);
                 if (i == 2) {
                     t = GetBmgEntry(gWiFiVSSetting->mCommonMessages, data_ov000_021b0628[i][k]);
                 } else if (i == 1) {
@@ -614,12 +614,12 @@ void func_ov000_021821e0(void) {
     for (i = 0; i < 3; i++) {
         if (i == gWiFiVSSetting->mRow && gWiFiVSSetting->mUnk_24 != FALSE) {
             gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][1]].mVisible = 1;
-            func_02124100(data_ov000_021b05e8[i], 14, gWiFiVSSetting->mWiFiVSSettingBnll,
-                          gWiFiVSSetting->mWiFiVSSettingTable, gWiFiVSSetting->mWiFiVSSettingBncl);
+            SetLabelPaletteIndex(data_ov000_021b05e8[i], 14, gWiFiVSSetting->mWiFiVSSettingBnll,
+                                 gWiFiVSSetting->mWiFiVSSettingTable, gWiFiVSSetting->mWiFiVSSettingBncl);
         } else {
             gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][1]].mVisible = z;
-            func_02124100(data_ov000_021b05e8[i], 15, gWiFiVSSetting->mWiFiVSSettingBnll,
-                          gWiFiVSSetting->mWiFiVSSettingTable, gWiFiVSSetting->mWiFiVSSettingBncl);
+            SetLabelPaletteIndex(data_ov000_021b05e8[i], 15, gWiFiVSSetting->mWiFiVSSettingBnll,
+                                 gWiFiVSSetting->mWiFiVSSettingTable, gWiFiVSSetting->mWiFiVSSettingBncl);
         }
     }
 }

@@ -29,49 +29,49 @@ u32 DrawLayoutEntry(s32 index, Unk02021dc8 *cells, Unk0201ea30 *cellLayout, Unk0
     s32 width;
     s32 height;
     s32 *matrix;
-    Unk0201ea84 l20[3];
+    Unk0201ea84 axisRecords[3];
     s32 position[2];
     Unk020224e0_c *cellData;
-    Unk0201ea30_08 *cellEntry;
+    CellLayoutEntry *cellEntry;
     u16 groupIndex;
     u32 oamCount;
     Unk02124c70_00 *group;
 
-    if (entry->mUnk_38 != -1) {
-        DrawLayoutEntry(entry->mUnk_38 + cellLayout->mUnk_06, cells, cellLayout, labelLayout, oamList,
-                        entry - index + cellLayout->mUnk_06 + entry->mUnk_38, incrementFlag);
+    if (entry->mLabelIndex != -1) {
+        DrawLayoutEntry(entry->mLabelIndex + cellLayout->mUnk_06, cells, cellLayout, labelLayout, oamList,
+                        entry - index + cellLayout->mUnk_06 + entry->mLabelIndex, incrementFlag);
     }
     matrix = NULL;
     if (entry->mVisible == 0) {
         return (u32) matrix;
     }
     if (index >= cellLayout->mUnk_06) {
-        Unk0212428c *labelEntry = func_0201ea58(labelLayout, index - cellLayout->mUnk_06);
-        cellData = entry->mUnk_3c->mUnk_44;
-        l20[0] = labelEntry->mUnk_00;
-        l20[1] = labelEntry->mUnk_02;
+        LabelLayoutEntry *labelEntry = func_0201ea58(labelLayout, index - cellLayout->mUnk_06);
+        cellData = entry->mLabelCanvas->mUnk_44;
+        axisRecords[0] = labelEntry->mUnk_00;
+        axisRecords[1] = labelEntry->mUnk_02;
         width = cellData->mUnk_08 - cellData->mUnk_0c;
         height = cellData->mUnk_0a - cellData->mUnk_0e;
-        position[0] = l20[0].mUnk_00_0 << 12;
-        position[1] = l20[1].mUnk_00_0 << 12;
+        position[0] = axisRecords[0].mUnk_00_0 << 12;
+        position[1] = axisRecords[1].mUnk_00_0 << 12;
     } else {
         cellEntry = func_0201ea30(cellLayout, index);
-        cellData = NNS_G2dGetCellDataByIdx(cells, (u16) cellEntry->mUnk_04);
-        l20[2] = cellEntry->mUnk_00_0;
-        l20[0] = l20[2];
-        l20[1] = cellEntry->mUnk_00_2;
+        cellData = NNS_G2dGetCellDataByIdx(cells, (u16) cellEntry->mCellIndex);
+        axisRecords[2] = cellEntry->mUnk_00_0;
+        axisRecords[0] = axisRecords[2];
+        axisRecords[1] = cellEntry->mUnk_00_2;
         width = cellData->mUnk_08 - cellData->mUnk_0c;
         height = cellData->mUnk_0a - cellData->mUnk_0e;
-        position[0] = ((width >> 1) + func_0201ebe8(l20[2], width)) << 12;
+        position[0] = ((width >> 1) + func_0201ebe8(axisRecords[2], width)) << 12;
         position[1] = ((height >> 1) + func_0201eba0(cellEntry->mUnk_00_2, height)) << 12;
     }
     if (entry->mUnk_08 != FALSE) {
         if (index >= cellLayout->mUnk_06) {
-            position[0] = entry->mUnk_0c << 12;
+            position[0] = entry->mPositionX << 12;
             position[1] = entry->mPositionY << 12;
         } else {
-            position[0] = (entry->mUnk_0c + (width >> 1) * (1 - l20[0].mUnk_00_12)) << 12;
-            position[1] = (entry->mPositionY + (height >> 1) * (1 - l20[1].mUnk_00_12)) << 12;
+            position[0] = (entry->mPositionX + (width >> 1) * (1 - axisRecords[0].mUnk_00_12)) << 12;
+            position[1] = (entry->mPositionY + (height >> 1) * (1 - axisRecords[1].mUnk_00_12)) << 12;
         }
     }
     position[0] += entry->mOffsetX << 12;
@@ -81,8 +81,8 @@ u32 DrawLayoutEntry(s32 index, Unk02021dc8 *cells, Unk0201ea30 *cellLayout, Unk0
         return 0;
     }
     groupIndex = func_020ae5e4(oamList);
-    if (entry->mUnk_10 != 0) {
-        matrix = entry->mUnk_24;
+    if (entry->mUseMatrix != 0) {
+        matrix = entry->mMatrix;
         group = &oamList->mUnk_000[groupIndex];
         group->mUnk_00[0].mUnk_00[3] = entry->mUnk_14[0] >> 4;
         group->mUnk_00[1].mUnk_00[3] = entry->mUnk_14[1] >> 4;

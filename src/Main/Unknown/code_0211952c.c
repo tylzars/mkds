@@ -257,34 +257,34 @@ void InitSelectCupCourse(void *parentHeap, void *mainOam, void *subOam, s32 mode
                         &gSelectCupCourse->mSelectCupMTable);
         remainingSize = 0x8000;
         remainingSize -=
-            func_021243ac(gSelectCupCourse->mHeap, 0, gSelectCupCourse->mSelectCupCourseTaOrVsMBnll, 0xb4, 0xd, 0,
-                          gSelectCupCourse->mSelectCupCourseMNcer, gSelectCupCourse->mSelectCupCourseTaOrVsMBncl,
-                          gSelectCupCourse->mSelectCupCourseTaOrVsMTable, remainingSize);
+            InitLabelCanvas(gSelectCupCourse->mHeap, 0, gSelectCupCourse->mSelectCupCourseTaOrVsMBnll, 0xb4, 0xd, 0,
+                            gSelectCupCourse->mSelectCupCourseMNcer, gSelectCupCourse->mSelectCupCourseTaOrVsMBncl,
+                            gSelectCupCourse->mSelectCupCourseTaOrVsMTable, remainingSize);
         remainingSize -=
-            func_021243ac(gSelectCupCourse->mHeap, 1, gSelectCupCourse->mSelectCupCourseTaOrVsMBnll, 0xb4, 0xd, 1,
-                          gSelectCupCourse->mSelectCupCourseMNcer, gSelectCupCourse->mSelectCupCourseTaOrVsMBncl,
-                          gSelectCupCourse->mSelectCupCourseTaOrVsMTable, remainingSize);
+            InitLabelCanvas(gSelectCupCourse->mHeap, 1, gSelectCupCourse->mSelectCupCourseTaOrVsMBnll, 0xb4, 0xd, 1,
+                            gSelectCupCourse->mSelectCupCourseMNcer, gSelectCupCourse->mSelectCupCourseTaOrVsMBncl,
+                            gSelectCupCourse->mSelectCupCourseTaOrVsMTable, remainingSize);
         remainingSize -=
-            func_021243ac(gSelectCupCourse->mHeap, 2, gSelectCupCourse->mSelectCupCourseTaOrVsMBnll, 0x96, 0xd, 2,
-                          gSelectCupCourse->mSelectCupCourseMNcer, gSelectCupCourse->mSelectCupCourseTaOrVsMBncl,
-                          gSelectCupCourse->mSelectCupCourseTaOrVsMTable, remainingSize);
+            InitLabelCanvas(gSelectCupCourse->mHeap, 2, gSelectCupCourse->mSelectCupCourseTaOrVsMBnll, 0x96, 0xd, 2,
+                            gSelectCupCourse->mSelectCupCourseMNcer, gSelectCupCourse->mSelectCupCourseTaOrVsMBncl,
+                            gSelectCupCourse->mSelectCupCourseTaOrVsMTable, remainingSize);
         remainingSize -=
-            func_021243ac(gSelectCupCourse->mHeap, 3, gSelectCupCourse->mSelectCupCourseTaOrVsMBnll, 0x50, 0xd, 3,
-                          gSelectCupCourse->mSelectCupCourseMNcer, gSelectCupCourse->mSelectCupCourseTaOrVsMBncl,
-                          gSelectCupCourse->mSelectCupCourseTaOrVsMTable, remainingSize);
+            InitLabelCanvas(gSelectCupCourse->mHeap, 3, gSelectCupCourse->mSelectCupCourseTaOrVsMBnll, 0x50, 0xd, 3,
+                            gSelectCupCourse->mSelectCupCourseMNcer, gSelectCupCourse->mSelectCupCourseTaOrVsMBncl,
+                            gSelectCupCourse->mSelectCupCourseTaOrVsMTable, remainingSize);
         remainingSize -=
-            func_021243ac(gSelectCupCourse->mHeap, 4, gSelectCupCourse->mSelectCupCourseTaOrVsMBnll, 0x96, 0xd, 4,
-                          gSelectCupCourse->mSelectCupCourseMNcer, gSelectCupCourse->mSelectCupCourseTaOrVsMBncl,
-                          gSelectCupCourse->mSelectCupCourseTaOrVsMTable, remainingSize);
-        func_021243ac(gSelectCupCourse->mHeap, 5, gSelectCupCourse->mSelectCupCourseTaOrVsMBnll, 0x50, 0xd, 5,
-                      gSelectCupCourse->mSelectCupCourseMNcer, gSelectCupCourse->mSelectCupCourseTaOrVsMBncl,
-                      gSelectCupCourse->mSelectCupCourseTaOrVsMTable, remainingSize);
+            InitLabelCanvas(gSelectCupCourse->mHeap, 4, gSelectCupCourse->mSelectCupCourseTaOrVsMBnll, 0x96, 0xd, 4,
+                            gSelectCupCourse->mSelectCupCourseMNcer, gSelectCupCourse->mSelectCupCourseTaOrVsMBncl,
+                            gSelectCupCourse->mSelectCupCourseTaOrVsMTable, remainingSize);
+        InitLabelCanvas(gSelectCupCourse->mHeap, 5, gSelectCupCourse->mSelectCupCourseTaOrVsMBnll, 0x50, 0xd, 5,
+                        gSelectCupCourse->mSelectCupCourseMNcer, gSelectCupCourse->mSelectCupCourseTaOrVsMBncl,
+                        gSelectCupCourse->mSelectCupCourseTaOrVsMTable, remainingSize);
         remainingSubSize = GX_GetSizeOfSubOBJ();
         for (i = 0; i < 4; i++) {
-            remainingSubSize -=
-                func_021243ac(gSelectCupCourse->mHeap, data_0215cab4[i], gSelectCupCourse->mSelectCupMBnll,
-                              data_0215cabc[i], data_0215cac4[i], data_0215caa4[i], gSelectCupCourse->mSelectCupMNcer,
-                              gSelectCupCourse->mSelectCupMBncl, gSelectCupCourse->mSelectCupMTable, remainingSubSize);
+            remainingSubSize -= InitLabelCanvas(
+                gSelectCupCourse->mHeap, data_0215cab4[i], gSelectCupCourse->mSelectCupMBnll, data_0215cabc[i],
+                data_0215cac4[i], data_0215caa4[i], gSelectCupCourse->mSelectCupMNcer,
+                gSelectCupCourse->mSelectCupMBncl, gSelectCupCourse->mSelectCupMTable, remainingSubSize);
         }
         CreateSelectCupNameM(gSelectCupCourse->mHeap);
         CreateCommonCupMark(gSelectCupCourse->mHeap);

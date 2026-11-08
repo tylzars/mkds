@@ -145,14 +145,16 @@ void InitSelectCupMCellsAndRequestCupPicture(void) {
     a = data_0215cf04[0];
     gSelectCupM->mMainTable[a].mVisible = 1;
     j = data_0215cf0c[0];
-    func_02124100(j, 0xe, gSelectCupM->mMainBnll, gSelectCupM->mMainTable, gSelectCupM->mMainBncl);
+    SetLabelPaletteIndex(j, 0xe, gSelectCupM->mMainBnll, gSelectCupM->mMainTable, gSelectCupM->mMainBncl);
     gSelectCupM->mSubTable[a].mVisible = 1;
-    func_02124100(j, 0xe, gSelectCupM->mSubBnll, gSelectCupM->mSubTable, gSelectCupM->mSubBncl);
+    SetLabelPaletteIndex(j, 0xe, gSelectCupM->mSubBnll, gSelectCupM->mSubTable, gSelectCupM->mSubBncl);
     for (m = 1; m < 4; m++) {
         gSelectCupM->mMainTable[data_0215cf04[m]].mVisible = 0;
-        func_02124100(data_0215cf0c[m], 0xf, gSelectCupM->mMainBnll, gSelectCupM->mMainTable, gSelectCupM->mMainBncl);
+        SetLabelPaletteIndex(data_0215cf0c[m], 0xf, gSelectCupM->mMainBnll, gSelectCupM->mMainTable,
+                             gSelectCupM->mMainBncl);
         gSelectCupM->mSubTable[data_0215cf04[m]].mVisible = 0;
-        func_02124100(data_0215cf0c[m], 0xf, gSelectCupM->mSubBnll, gSelectCupM->mSubTable, gSelectCupM->mSubBncl);
+        SetLabelPaletteIndex(data_0215cf0c[m], 0xf, gSelectCupM->mSubBnll, gSelectCupM->mSubTable,
+                             gSelectCupM->mSubBncl);
     }
     TrySetCupPictureIndexAndQueueLoads(data_0215cf8c[data_0215cf2c[GetCupIndex()]][0]);
     gSelectCupM->mCupPicturePending = TRUE;
@@ -266,15 +268,15 @@ void InitSelectCupM(void *a, void *b, void *c) {
         InitLayoutTable(gSelectCupM->mHeap, gSelectCupM->mSubBncl, gSelectCupM->mSubBnll, &gSelectCupM->mSubTable);
         m = 0x8000;
         for (i = 0; i < 4; i++) {
-            m -= func_021243ac(gSelectCupM->mHeap, data_0215cf0c[i], gSelectCupM->mMainBnll, data_0215cef4[i],
-                               data_0215cf14[i], data_0215cf04[i], gSelectCupM->mMainNcer, gSelectCupM->mMainBncl,
-                               gSelectCupM->mMainTable, m);
+            m -= InitLabelCanvas(gSelectCupM->mHeap, data_0215cf0c[i], gSelectCupM->mMainBnll, data_0215cef4[i],
+                                 data_0215cf14[i], data_0215cf04[i], gSelectCupM->mMainNcer, gSelectCupM->mMainBncl,
+                                 gSelectCupM->mMainTable, m);
         }
         i = GX_GetSizeOfSubOBJ();
         for (m = 0; m < 4; m++) {
-            i -= func_021243ac(gSelectCupM->mHeap, data_0215cf0c[m], gSelectCupM->mSubBnll, data_0215cef4[m],
-                               data_0215cf14[m], data_0215cf04[m], gSelectCupM->mSubNcer, gSelectCupM->mSubBncl,
-                               gSelectCupM->mSubTable, i);
+            i -= InitLabelCanvas(gSelectCupM->mHeap, data_0215cf0c[m], gSelectCupM->mSubBnll, data_0215cef4[m],
+                                 data_0215cf14[m], data_0215cf04[m], gSelectCupM->mSubNcer, gSelectCupM->mSubBncl,
+                                 gSelectCupM->mSubTable, i);
         }
         CreateSelectCupNameM(gSelectCupM->mHeap);
     } else {

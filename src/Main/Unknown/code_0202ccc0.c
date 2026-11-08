@@ -93,8 +93,8 @@ void RefreshGhostListRows(s32 action, s32 slot, s32 row, s32 selectedSlot) {
             } else {
                 k = 0xf;
             }
-            func_02124100(i, k, fileSet->mLabelLayout, fileSet->mCellTable, fileSet->mCellLayout);
-            func_02124100(j, k, fileSet->mLabelLayout, fileSet->mCellTable, fileSet->mCellLayout);
+            SetLabelPaletteIndex(i, k, fileSet->mLabelLayout, fileSet->mCellTable, fileSet->mCellLayout);
+            SetLabelPaletteIndex(j, k, fileSet->mLabelLayout, fileSet->mCellTable, fileSet->mCellLayout);
         }
     } else if (action == 2) {
         if (row >= 0 && row < (s32) GetGhostCount()) {

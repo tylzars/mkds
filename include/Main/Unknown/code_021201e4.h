@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-u8 func_021201e4(int arg0);
-void SetPlayerRecordElo(int arg0, s16 arg1);
-int GetPlayerRecordElo(int arg0);
+u8 func_021201e4(int index);
+void SetPlayerRecordElo(int index, s16 elo);
+int GetPlayerRecordElo(int index);

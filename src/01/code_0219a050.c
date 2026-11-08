@@ -82,12 +82,14 @@ void LocateAndQueueRecordTopMenu(void) {
 
 void SetRecordTopMenuRowOn(s32 a) {
     gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[a]].mVisible = 1;
-    func_02124a20(data_ov001_021a6aa4[a], 14, gRecordTopMenu->mRecordTopMenuSNcer, gRecordTopMenu->mRecordTopMenuSBncl);
+    SetCellPaletteIndex(data_ov001_021a6aa4[a], 14, gRecordTopMenu->mRecordTopMenuSNcer,
+                        gRecordTopMenu->mRecordTopMenuSBncl);
 }
 
 void SetRecordTopMenuRowOff(s32 a) {
     gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[a]].mVisible = 0;
-    func_02124a20(data_ov001_021a6aa4[a], 15, gRecordTopMenu->mRecordTopMenuSNcer, gRecordTopMenu->mRecordTopMenuSBncl);
+    SetCellPaletteIndex(data_ov001_021a6aa4[a], 15, gRecordTopMenu->mRecordTopMenuSNcer,
+                        gRecordTopMenu->mRecordTopMenuSBncl);
 }
 
 void ResetRecordTopMenu(void) {
@@ -273,18 +275,18 @@ void InitRecordTopMenu(void *heap) {
     gRecordTopMenu->mRecordMessages = FindSceneFile("record.bmg");
     rem = 0x8000;
     rem -=
-        func_021243ac(heap, 0, gRecordTopMenu->mRecordTopMenuMBnll, 0xaa, 0xe, 0, gRecordTopMenu->mRecordTopMenuMNcer,
-                      gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMTable, rem);
+        InitLabelCanvas(heap, 0, gRecordTopMenu->mRecordTopMenuMBnll, 0xaa, 0xe, 0, gRecordTopMenu->mRecordTopMenuMNcer,
+                        gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMTable, rem);
     func_0212426c(0, 0, gRecordTopMenu->mRecordTopMenuMBnll, GetBmgEntry(gRecordTopMenu->mRecordMessages, 9),
                   gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMTable);
     x = 1;
     base = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            rem -= func_021243ac(heap, data_ov001_021a6ae4[i][j], gRecordTopMenu->mRecordTopMenuMBnll,
-                                 data_ov001_021a6af8[i][j], data_ov001_021a6b0c[i][j], x,
-                                 gRecordTopMenu->mRecordTopMenuMNcer, gRecordTopMenu->mRecordTopMenuMBncl,
-                                 gRecordTopMenu->mRecordTopMenuMTable, rem);
+            rem -= InitLabelCanvas(heap, data_ov001_021a6ae4[i][j], gRecordTopMenu->mRecordTopMenuMBnll,
+                                   data_ov001_021a6af8[i][j], data_ov001_021a6b0c[i][j], x,
+                                   gRecordTopMenu->mRecordTopMenuMNcer, gRecordTopMenu->mRecordTopMenuMBncl,
+                                   gRecordTopMenu->mRecordTopMenuMTable, rem);
             x = base + data_ov001_021a6ae4[i][j];
         }
     }

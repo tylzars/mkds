@@ -103,10 +103,10 @@ void QueueCupMark(u32 cupMarkIndex, Unk02021dc8 *cells, Unk0201ea30 *cellLayout,
     }
     id = ((u16 *) gCupMarkBnclIndices)[cupMarkIndex];
     cupMark = gCupMark;
-    func_02124748(id, cupMark->mNcer, cupMark->mNcgr, cupMark->mBncl, f, d, cells, cellLayout);
+    QueueCellChars(id, cupMark->mNcer, cupMark->mNcgr, cupMark->mBncl, f, d, cells, cellLayout);
     cupMark = gCupMark;
     dst = (u8 *) cupMark->mNclr->mData;
-    paletteIndex = func_02124a68(id, cupMark->mNcer, cupMark->mBncl);
+    paletteIndex = GetCellPaletteIndex(id, cupMark->mNcer, cupMark->mBncl);
     CallQueueAppend(v0, paletteSlot << 5, dst + (paletteIndex << 5), 32);
 }
 
@@ -150,8 +150,8 @@ void ClearSelectCupNameMPointer(void) {
 #pragma thumb on
 
 void QueueSelectCupNameM(u32 nameIndex, Unk02021dc8 *cells, Unk0201ea30 *cellLayout, u32 d, u32 e) {
-    func_02124748(gSelectCupNameMBnclIndices[nameIndex], gSelectCupNameM->mNcer, gSelectCupNameM->mNcgr,
-                  gSelectCupNameM->mBncl, e, d, cells, cellLayout);
+    QueueCellChars(gSelectCupNameMBnclIndices[nameIndex], gSelectCupNameM->mNcer, gSelectCupNameM->mNcgr,
+                   gSelectCupNameM->mBncl, e, d, cells, cellLayout);
 }
 
 #pragma thumb off

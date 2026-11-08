@@ -135,16 +135,16 @@ void func_02033ab8(s32 cellFileSetIndex, s32 entryIndex, s32 cellIndex, s32 d) {
         iconCellFileSet = &gResultsBattle->mCellFileSets[3];
     }
     characterIndex = gRaceSetup->mCurrentEntries[(u16) entryIndex].mCharacterIndex;
-    func_0212463c(characterIndex, iconCellFileSet->mCells, iconCellFileSet->mChars, iconCellFileSet->mPalette,
-                  iconCellFileSet->mCellLayout, cellFileSetIndex, cellIndex, cellFileSet->mCells,
-                  cellFileSet->mCellLayout);
+    QueueCellCharsAndFirstPalette(characterIndex, iconCellFileSet->mCells, iconCellFileSet->mChars,
+                                  iconCellFileSet->mPalette, iconCellFileSet->mCellLayout, cellFileSetIndex, cellIndex,
+                                  cellFileSet->mCells, cellFileSet->mCellLayout);
     if (characterIndex == 0xc) {
         if (d == 1) {
             palette = gResultsBattle->mUnk_0c0;
         } else {
             palette = gResultsBattle->mUnk_0c4;
         }
-        v = func_02124a68(cellIndex, cellFileSet->mCells, cellFileSet->mCellLayout);
+        v = GetCellPaletteIndex(cellIndex, cellFileSet->mCells, cellFileSet->mCellLayout);
         shuffledIndex = data_0217b488->mShuffledIndices[entryIndex];
         paletteBlock = shuffledIndex * 0x20 + (u8 *) palette->mData;
         if (cellFileSetIndex == 0) {
