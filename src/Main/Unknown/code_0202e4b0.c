@@ -39,15 +39,15 @@ void InitScrollList(void *heap, s32 b, const void *groupFirstEntries, u16 cursor
     gScrollList->mEnabled = 1;
     gScrollList->mTouchRectIndex = -1;
     gScrollList->mPressedRectIndex = gScrollList->mTouchRectIndex;
-    func_0202edd0();
-    func_0202f120(0, -1, -1, GetScrollListSelectedSlot());
+    PlaceScrollListCursor();
+    CallScrollListCallback(0, -1, -1, GetScrollListSelectedSlot());
     for (row = 0; row < 6 && row < gScrollList->mRowCount; row++) {
-        func_0202f120(1, row + 1, row, -1);
+        CallScrollListCallback(1, row + 1, row, -1);
     }
-    func_0202ee3c(0, 0);
-    func_0202ee3c(6, 0);
+    SetScrollListSlotVisible(0, 0);
+    SetScrollListSlotVisible(6, 0);
     for (row = gScrollList->mRowCount; row < 5; row++) {
-        func_0202ee3c(row + 1, 0);
+        SetScrollListSlotVisible(row + 1, 0);
     }
     gScrollList->mEntries[gScrollList->mUnk_02e].mUnk_00 = gScrollList->mRowCount > 5;
     if (gScrollList->mRowCount == 0) {
@@ -59,8 +59,8 @@ void InitScrollList(void *heap, s32 b, const void *groupFirstEntries, u16 cursor
 void AdvanceScrollList(void) {
     gScrollList->mPickStarted = 0;
     gScrollList->mPickFinished = gScrollList->mPickStarted;
-    func_0202eec0();
-    func_0202ed04();
+    AdvanceScrollListInput();
+    AdvanceScrollListRightColumnTimer();
     switch (gScrollList->mState) {
         case 0:
             AdvanceScrollListState0();

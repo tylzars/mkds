@@ -4,10 +4,10 @@
 
 #pragma optimize_for_size on
 
-u32 func_0202f028(InputSlotPair *a) {
-    u32 r = 0;
-    if (func_0202f020(a) == 0 && a->mNoPairCount < 5) {
-        r = 1;
+u32 func_0202f028(InputSlotPair *pair) {
+    u32 result = 0;
+    if (func_0202f020(pair) == 0 && pair->mNoPairCount < 5) {
+        result = 1;
     }
-    return r;
+    return result;
 }

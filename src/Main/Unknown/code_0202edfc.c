@@ -3,8 +3,8 @@
 
 #pragma thumb on
 
-u32 func_0202ee20(u32 first, u32 second) {
-    return (((gScrollList->mEntries[second].mUnk_0e)) - ((gScrollList->mEntries[first].mUnk_0e)));
+u32 GetScrollListPositionYDifference(u32 first, u32 second) {
+    return (((gScrollList->mEntries[second].mPositionY)) - ((gScrollList->mEntries[first].mPositionY)));
 }
 
 u32 GetScrollListSelectedSlot(void) {

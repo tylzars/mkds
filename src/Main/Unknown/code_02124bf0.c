@@ -68,10 +68,10 @@ u32 DrawLayoutEntry(s32 index, Unk02021dc8 *cells, Unk0201ea30 *cellLayout, Unk0
     if (entry->mUnk_08 != FALSE) {
         if (index >= cellLayout->mUnk_06) {
             position[0] = entry->mUnk_0c << 12;
-            position[1] = entry->mUnk_0e << 12;
+            position[1] = entry->mPositionY << 12;
         } else {
             position[0] = (entry->mUnk_0c + (width >> 1) * (1 - l20[0].mUnk_00_12)) << 12;
-            position[1] = (entry->mUnk_0e + (height >> 1) * (1 - l20[1].mUnk_00_12)) << 12;
+            position[1] = (entry->mPositionY + (height >> 1) * (1 - l20[1].mUnk_00_12)) << 12;
         }
     }
     position[0] += entry->mUnk_04 << 12;

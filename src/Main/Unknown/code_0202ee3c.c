@@ -5,11 +5,11 @@
 
 #pragma thumb on
 
-void func_0202ee3c(s32 a, s32 b) {
-    s32 i;
-    for (i = 0; i < gScrollList->mGroupCount; i++) {
-        ScrollList *p = gScrollList;
-        p->mEntries[a + p->mGroupFirstEntries[i]].mUnk_00 = b;
+void SetScrollListSlotVisible(s32 slot, s32 visible) {
+    s32 group;
+    for (group = 0; group < gScrollList->mGroupCount; group++) {
+        ScrollList *scrollList = gScrollList;
+        scrollList->mEntries[slot + scrollList->mGroupFirstEntries[group]].mUnk_00 = visible;
     }
 }
 

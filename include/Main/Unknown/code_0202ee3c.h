@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_0202ee3c(s32 a, s32 b);
+void SetScrollListSlotVisible(s32 slot, s32 visible);

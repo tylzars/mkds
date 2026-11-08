@@ -30,26 +30,26 @@
 #include "Main/Unknown/unk_02163000.h"
 #include "registers.h"
 
-void func_0202f478(u32 v) {
-    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | v;
+void func_0202f478(u32 bits) {
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | bits;
 }
 
-void func_0202f454(u32 v) {
-    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | v;
+void func_0202f454(u32 bits) {
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | bits;
 }
 
 #pragma thumb on
 
-void func_0202f2b4(void *a) {
-    Unk02180774 *b;
+void InitWLMenuScene(void *heap) {
+    Unk02180774 *displaySettings;
     Unk02125de0Arg v1;
 
-    data_02174e4c = HeapAllocAligned(a, 0x874, 0x20);
-    func_0202f51c(data_02174e4c, 0x874);
-    b = CreateDisplaySettings(a, data_02154818);
-    func_0202f4e0(b, 0, 0, 0, 0, 0xc, 0, 0);
-    func_0202f4ac(b, 2, 0, 0, 0, 0xf, 6);
-    InitDisplayFromSettings(b);
+    gWLMenuScene = HeapAllocAligned(heap, 0x874, 0x20);
+    func_0202f51c(gWLMenuScene, 0x874);
+    displaySettings = CreateDisplaySettings(heap, data_02154818);
+    func_0202f4e0(displaySettings, 0, 0, 0, 0, 0xc, 0, 0);
+    func_0202f4ac(displaySettings, 2, 0, 0, 0, 0xf, 6);
+    InitDisplayFromSettings(displaySettings);
     if (func_0202f19c() == 0) {
         v1.mUnk_00 = 1;
         v1.mUnk_04 = func_020b403c(1);
@@ -62,58 +62,58 @@ void func_0202f2b4(void *a) {
         v1.mUnk_20 = func_0202f498() == 0;
         v1.mUnk_24 = 0;
         LoadTxtSystemAndSelectChoisesAndSelectReturnData();
-        func_02125de0(a, &v1);
+        func_02125de0(heap, &v1);
     }
-    func_0212abdc(a, data_02174e4c);
+    func_0212abdc(heap, gWLMenuScene);
     switch (func_0202f498()) {
         case 0:
-            data_02174e4c->mUnk_810 = func_0202f19c() != 0 ? 4 : 0;
-            func_0203b0f8(a);
+            gWLMenuScene->mRequestedCallbacksIndex = func_0202f19c() != 0 ? 4 : 0;
+            func_0203b0f8(heap);
             func_02053d00();
             break;
         case 1:
-            data_02174e4c->mUnk_810 = 5;
-            func_0203b1fc(a);
+            gWLMenuScene->mRequestedCallbacksIndex = 5;
+            func_0203b1fc(heap);
             break;
         case 2:
-            data_02174e4c->mUnk_810 = 6;
-            func_0203b1c8(a);
+            gWLMenuScene->mRequestedCallbacksIndex = 6;
+            func_0203b1c8(heap);
             break;
         case 3:
-            data_02174e4c->mUnk_810 = 7;
-            func_0203b194(a);
+            gWLMenuScene->mRequestedCallbacksIndex = 7;
+            func_0203b194(heap);
             break;
     }
-    data_02174e4c->mUnk_814 = data_02174e4c->mUnk_810;
-    data_02174e4c->mUnk_80c = data_02163260[data_02174e4c->mUnk_810];
-    data_02174e4c->mUnk_808 = CreateExpHeapFromMaxFree(a);
+    gWLMenuScene->mCurrentCallbacksIndex = gWLMenuScene->mRequestedCallbacksIndex;
+    gWLMenuScene->mCurrentCallbacks = gWLMenuCallbacks[gWLMenuScene->mRequestedCallbacksIndex];
+    gWLMenuScene->mHeap = CreateExpHeapFromMaxFree(heap);
     if (func_0202f19c() == 0) {
         LoadMultiSelectFiles();
     }
-    func_020ae6d4(data_02174e4c, data_02174e4c->mUnk_404);
+    func_020ae6d4(gWLMenuScene, gWLMenuScene->mSubOam);
     func_0202f478(0x10);
     func_0202f454(0x10);
-    data_02174e4c->mUnk_80c->mUnk_00(data_02174e4c->mUnk_808, data_02174e4c, data_02174e4c->mUnk_404);
+    gWLMenuScene->mCurrentCallbacks->mUnk_00(gWLMenuScene->mHeap, gWLMenuScene, gWLMenuScene->mSubOam);
 }
 
-void func_0202f20c(void *a) {
-    s32 v1 = data_02174e4c->mUnk_810;
-    Unk02174e4c_80c *v2;
+void AdvanceWLMenuScene(void *a) {
+    s32 callbacksIndex = gWLMenuScene->mRequestedCallbacksIndex;
+    Unk02174e4c_80c *previousCallbacks;
 
-    if (data_02174e4c->mUnk_814 != v1) {
-        v2 = data_02174e4c->mUnk_80c;
-        data_02174e4c->mUnk_80c = data_02163260[v1];
-        data_02174e4c->mUnk_814 = data_02174e4c->mUnk_810;
-        v2->mUnk_08();
-        data_02174e4c->mUnk_80c->mUnk_00(data_02174e4c->mUnk_808, data_02174e4c, data_02174e4c->mUnk_404);
+    if (gWLMenuScene->mCurrentCallbacksIndex != callbacksIndex) {
+        previousCallbacks = gWLMenuScene->mCurrentCallbacks;
+        gWLMenuScene->mCurrentCallbacks = gWLMenuCallbacks[callbacksIndex];
+        gWLMenuScene->mCurrentCallbacksIndex = gWLMenuScene->mRequestedCallbacksIndex;
+        previousCallbacks->mUnk_08();
+        gWLMenuScene->mCurrentCallbacks->mUnk_00(gWLMenuScene->mHeap, gWLMenuScene, gWLMenuScene->mSubOam);
     } else {
-        func_020ae6ac(data_02174e4c, data_02174e4c->mUnk_404);
-        v1 = data_02174e4c->mUnk_80c->mUnk_04(a);
-        if (v1 != -1) {
-            data_02174e4c->mUnk_810 = v1;
+        func_020ae6ac(gWLMenuScene, gWLMenuScene->mSubOam);
+        callbacksIndex = gWLMenuScene->mCurrentCallbacks->mUnk_04(a);
+        if (callbacksIndex != -1) {
+            gWLMenuScene->mRequestedCallbacksIndex = callbacksIndex;
         }
         func_0212a920();
-        func_020ae630(data_02174e4c, data_02174e4c->mUnk_404);
+        func_020ae630(gWLMenuScene, gWLMenuScene->mSubOam);
     }
     if (func_0202f19c() == 0) {
         func_02125928();
@@ -124,9 +124,9 @@ void func_0202f20c(void *a) {
 
 #pragma thumb on
 
-void func_0202f1dc(void) {
+void ReleaseWLMenuScene(void) {
     int v1;
-    data_02174e4c->mUnk_80c->mUnk_08();
+    gWLMenuScene->mCurrentCallbacks->mUnk_08();
     v1 = func_0202f19c();
     if (v1 == 0) {
         func_02125da0();
@@ -156,12 +156,12 @@ void func_0202f160(void) {
     if (v1 == 0) {
         func_021258f0();
     }
-    data_02174e4c->mUnk_80c->mUnk_0c();
-    func_020ae5f0(data_02174e4c, data_02174e4c->mUnk_404);
+    gWLMenuScene->mCurrentCallbacks->mUnk_0c();
+    func_020ae5f0(gWLMenuScene, gWLMenuScene->mSubOam);
 }
 
 Unk02174e4c_818 *func_0202f14c(void) {
-    return &data_02174e4c->mUnk_818;
+    return &gWLMenuScene->mUnk_818;
 }
 
 #pragma thumb off

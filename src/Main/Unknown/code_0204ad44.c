@@ -18,7 +18,7 @@
 
 void func_0204b030(void) {
     u32 value12;
-    func_0202f1dc();
+    ReleaseWLMenuScene();
 }
 
 void func_0204b024(void) {
@@ -27,7 +27,7 @@ void func_0204b024(void) {
 }
 
 void func_0204b018(void *a) {
-    func_0202f20c(a);
+    AdvanceWLMenuScene(a);
 }
 
 s32 RunWLMenuScene(SceneNumbers *a) {

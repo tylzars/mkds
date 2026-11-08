@@ -21,56 +21,56 @@
 
 #pragma optimize_for_size on
 
-u32 func_0202efe8(InputSlotPair *a) {
-    u32 r;
-    if (func_0202f028(a) != 0 || func_0202f020(a) != 0) {
-        r = 1;
+u32 func_0202efe8(InputSlotPair *pair) {
+    u32 result;
+    if (func_0202f028(pair) != 0 || func_0202f020(pair) != 0) {
+        result = 1;
     } else {
-        r = 0;
+        result = 0;
     }
-    return r;
+    return result;
 }
 
-u32 func_0202efc8(u32 a) {
-    return func_0202efe8((InputSlotPair *) &data_02175628[a].mPairX);
+u32 func_0202efc8(u32 slotIndex) {
+    return func_0202efe8((InputSlotPair *) &data_02175628[slotIndex].mPairX);
 }
 
 #pragma thumb on
 
-void func_0202eec0(void) {
-    u32 a = func_020435bc();
-    u32 b;
-    u32 c;
-    s32 d;
-    if (func_0202f0a8(a) != 0) {
-        b = func_0202f080(a);
-        c = func_0202f058(a);
-        gScrollList->mTouchRectIndex = FindRectContainingPoint(b, c, gScrollList->mRects);
+void AdvanceScrollListInput(void) {
+    u32 slotIndex = func_020435bc();
+    u32 pairX;
+    u32 pairY;
+    s32 rectIndex;
+    if (func_0202f0a8(slotIndex) != 0) {
+        pairX = func_0202f080(slotIndex);
+        pairY = func_0202f058(slotIndex);
+        gScrollList->mTouchRectIndex = FindRectContainingPoint(pairX, pairY, gScrollList->mRects);
         gScrollList->mPressedRectIndex = gScrollList->mTouchRectIndex;
-        gScrollList->mUnk_66c = TRUE;
+        gScrollList->mTouchHeld = TRUE;
     } else {
         gScrollList->mPressedRectIndex = -1;
     }
-    if (gScrollList->mUnk_66c != FALSE) {
-        if (func_0202efc8(a) != 0) {
-            b = func_0202f080(a);
-            c = func_0202f058(a);
-            d = FindRectContainingPoint(b, c, gScrollList->mRects);
-            if (d != gScrollList->mTouchRectIndex) {
+    if (gScrollList->mTouchHeld != FALSE) {
+        if (func_0202efc8(slotIndex) != 0) {
+            pairX = func_0202f080(slotIndex);
+            pairY = func_0202f058(slotIndex);
+            rectIndex = FindRectContainingPoint(pairX, pairY, gScrollList->mRects);
+            if (rectIndex != gScrollList->mTouchRectIndex) {
                 gScrollList->mTouchRectIndex = -1;
-                gScrollList->mUnk_66c = FALSE;
+                gScrollList->mTouchHeld = FALSE;
             }
         } else {
             gScrollList->mTouchRectIndex = -1;
-            gScrollList->mUnk_66c = FALSE;
+            gScrollList->mTouchHeld = FALSE;
         }
     }
-    if (func_0202ec7c(a, PAD_KEY_UP) != 0 || gScrollList->mTouchRectIndex == gScrollList->mUpRectIndex) {
+    if (func_0202ec7c(slotIndex, PAD_KEY_UP) != 0 || gScrollList->mTouchRectIndex == gScrollList->mUpRectIndex) {
         gScrollList->mUpHeldFrames = gScrollList->mUpHeldFrames + 1;
     } else {
         gScrollList->mUpHeldFrames = 0;
     }
-    if (func_0202ec7c(a, PAD_KEY_DOWN) != 0 || gScrollList->mTouchRectIndex == gScrollList->mDownRectIndex) {
+    if (func_0202ec7c(slotIndex, PAD_KEY_DOWN) != 0 || gScrollList->mTouchRectIndex == gScrollList->mDownRectIndex) {
         gScrollList->mDownHeldFrames = gScrollList->mDownHeldFrames + 1;
     } else {
         gScrollList->mDownHeldFrames = 0;

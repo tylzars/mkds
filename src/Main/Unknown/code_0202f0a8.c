@@ -6,35 +6,35 @@
 
 #pragma thumb on
 
-void func_0202f120(s32 a, s32 b, s32 c, s32 d) {
-    void (*f)(int, int, int, int) = gScrollList->mCallback;
-    if (f != NULL) {
-        if (a == 1) {
-            if (c < 0 || c >= gScrollList->mRowCount) {
+void CallScrollListCallback(s32 action, s32 slot, s32 row, s32 selectedSlot) {
+    void (*callback)(int, int, int, int) = gScrollList->mCallback;
+    if (callback != NULL) {
+        if (action == 1) {
+            if (row < 0 || row >= gScrollList->mRowCount) {
                 return;
             }
         }
-        f(a, b, c, d);
+        callback(action, slot, row, selectedSlot);
     }
 }
 
 #pragma thumb off
 
-u32 func_0202f0fc(InputSlotPair *a) {
-    if (a->mPrevHasPair == 0 && a->mHasPair != 0) {
+u32 func_0202f0fc(InputSlotPair *pair) {
+    if (pair->mPrevHasPair == 0 && pair->mHasPair != 0) {
         return 1;
     }
     return 0;
 }
 
-u32 func_0202f0c8(InputSlotPair *a) {
-    u32 r = 0;
-    if (func_0202f028(a) == 0 && func_0202f0fc(a) != 0) {
-        r = 1;
+u32 func_0202f0c8(InputSlotPair *pair) {
+    u32 result = 0;
+    if (func_0202f028(pair) == 0 && func_0202f0fc(pair) != 0) {
+        result = 1;
     }
-    return r;
+    return result;
 }
 
-u32 func_0202f0a8(u32 a) {
-    return func_0202f0c8((InputSlotPair *) &data_02175628[a].mPairX);
+u32 func_0202f0a8(u32 slotIndex) {
+    return func_0202f0c8((InputSlotPair *) &data_02175628[slotIndex].mPairX);
 }

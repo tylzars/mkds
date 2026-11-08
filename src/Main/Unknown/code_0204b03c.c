@@ -219,5 +219,5 @@ void func_0204b03c(void) {
         StartLoadOverlay(0);
         FinishOverlayLoad();
     }
-    func_0202f2b4(GetHeap(GetCurrentHeapCall()));
+    InitWLMenuScene(GetHeap(GetCurrentHeapCall()));
 }

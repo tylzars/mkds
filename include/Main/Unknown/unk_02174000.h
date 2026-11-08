@@ -352,17 +352,17 @@ typedef struct ScrollList {
     /* 050 */ s32 mUpHeldFrames;
     /* 054 */ s32 mDownHeldFrames;
     /* 058 */ u16 mScreenMap[0x300];
-    /* 658 */ s32 mUnk_658;
-    /* 65c */ s32 mUnk_65c;
+    /* 658 */ s32 mRightColumnHighBits;
+    /* 65c */ s32 mRightColumnHighBitsTimer;
     /* 660 */ s32 mEnabled;
     /* 664 */ s32 mPickFinished;
     /* 668 */ s32 mPickStarted;
-    /* 66c */ BOOL mUnk_66c;
+    /* 66c */ BOOL mTouchHeld;
     /* 670 */ s32 mState;
 } ScrollList;
 
 extern ScrollList *gScrollList;
-extern struct Unk02174e4c *data_02174e4c;
+extern struct WLMenuScene *gWLMenuScene;
 extern struct MultiSelectMemberGroup *gMultiSelectMemberGroup;
 extern struct MultiSelectNS *gMultiSelectNS;
 struct MultiSelectMember;

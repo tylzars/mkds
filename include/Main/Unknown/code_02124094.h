@@ -48,7 +48,7 @@ typedef struct Unk02124b1c {
     /* 06 */ s16 mUnk_06;
     /* 08 */ BOOL mUnk_08;
     /* 0c */ s16 mUnk_0c;
-    /* 0e */ s16 mUnk_0e;
+    /* 0e */ s16 mPositionY;
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14[4];
     /* 24 */ s32 mUnk_24[4];

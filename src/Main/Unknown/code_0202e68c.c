@@ -48,8 +48,8 @@ void AdvanceScrollListState0(void) {
         gScrollList->mDownHeldFrames = 0;
         gScrollList->mUpHeldFrames = gScrollList->mDownHeldFrames;
         gScrollList->mHeldMoveCount = 0;
-        func_0202edd0();
-        func_0202f120(0, -1, -1, -1);
+        PlaceScrollListCursor();
+        CallScrollListCallback(0, -1, -1, -1);
         return;
     }
     if (gScrollList->mFirstRowRectIndex <= gScrollList->mPressedRectIndex &&
@@ -66,8 +66,8 @@ void AdvanceScrollListState0(void) {
         gScrollList->mSelectedRow =
             gScrollList->mSelectedRow + (gScrollList->mPickedVisibleRow - gScrollList->mSelectedVisibleRow);
         gScrollList->mSelectedVisibleRow = gScrollList->mPickedVisibleRow;
-        func_0202edd0();
-        func_0202f120(0, -1, -1, rowChanged != FALSE ? GetScrollListSelectedSlot() : -1);
+        PlaceScrollListCursor();
+        CallScrollListCallback(0, -1, -1, rowChanged != FALSE ? GetScrollListSelectedSlot() : -1);
         return;
     }
     if ((func_0202ecd4(slotIndex, PAD_KEY_UP) != 0 || gScrollList->mPressedRectIndex == gScrollList->mUpRectIndex ||
@@ -77,17 +77,17 @@ void AdvanceScrollListState0(void) {
             gScrollList->mTimer = gScrollList->mScrollFrameCount;
             gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 0;
             gScrollList->mState = 3;
-            func_0202ee3c(gScrollList->mHiddenTopSlot, 1);
-            func_0202f120(0, -1, -1, -1);
-            func_0202f120(2, gScrollList->mHiddenTopSlot,
-                          gScrollList->mSelectedRow - gScrollList->mSelectedVisibleRow - 1, -1);
+            SetScrollListSlotVisible(gScrollList->mHiddenTopSlot, 1);
+            CallScrollListCallback(0, -1, -1, -1);
+            CallScrollListCallback(2, gScrollList->mHiddenTopSlot,
+                                   gScrollList->mSelectedRow - gScrollList->mSelectedVisibleRow - 1, -1);
         } else {
             gScrollList->mState = 1;
         }
         gScrollList->mUpHeldFrames = 0;
         gScrollList->mHeldMoveCount = gScrollList->mHeldMoveCount + 1;
         if (gScrollList->mTouchRectIndex == gScrollList->mUpRectIndex) {
-            func_0202ed50(1);
+            SetScrollListRightColumnHighBits(1);
         }
         func_0202ecac(3);
         return;
@@ -99,12 +99,12 @@ void AdvanceScrollListState0(void) {
             gScrollList->mTimer = gScrollList->mScrollFrameCount;
             gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 0;
             gScrollList->mState = 4;
-            func_0202ee3c(GetScrollListHiddenBottomSlot(), 1);
-            func_0202f120(0, -1, -1, -1);
+            SetScrollListSlotVisible(GetScrollListHiddenBottomSlot(), 1);
+            CallScrollListCallback(0, -1, -1, -1);
             {
                 ScrollList *list = gScrollList;
-                func_0202f120(2, GetScrollListHiddenBottomSlot(), list->mSelectedRow - list->mSelectedVisibleRow + 5,
-                              -1);
+                CallScrollListCallback(2, GetScrollListHiddenBottomSlot(),
+                                       list->mSelectedRow - list->mSelectedVisibleRow + 5, -1);
             }
         } else {
             gScrollList->mState = 2;
@@ -112,7 +112,7 @@ void AdvanceScrollListState0(void) {
         gScrollList->mDownHeldFrames = 0;
         gScrollList->mHeldMoveCount = gScrollList->mHeldMoveCount + 1;
         if (gScrollList->mTouchRectIndex == gScrollList->mDownRectIndex) {
-            func_0202ed50(2);
+            SetScrollListRightColumnHighBits(2);
         }
         func_0202ecac(3);
         return;
@@ -127,16 +127,16 @@ void AdvanceScrollListState0(void) {
 void AdvanceScrollListSelectUp(void) {
     gScrollList->mSelectedVisibleRow = gScrollList->mSelectedVisibleRow - 1;
     gScrollList->mSelectedRow = gScrollList->mSelectedRow - 1;
-    func_0202edd0();
-    func_0202f120(0, -1, -1, GetScrollListSelectedSlot());
+    PlaceScrollListCursor();
+    CallScrollListCallback(0, -1, -1, GetScrollListSelectedSlot());
     gScrollList->mState = 0;
 }
 
 void AdvanceScrollListSelectDown(void) {
     gScrollList->mSelectedVisibleRow = gScrollList->mSelectedVisibleRow + 1;
     gScrollList->mSelectedRow = gScrollList->mSelectedRow + 1;
-    func_0202edd0();
-    func_0202f120(0, -1, -1, GetScrollListSelectedSlot());
+    PlaceScrollListCursor();
+    CallScrollListCallback(0, -1, -1, GetScrollListSelectedSlot());
     gScrollList->mState = 0;
 }
 
@@ -152,7 +152,7 @@ void AdvanceScrollListScrollUp(void) {
     for (groupIndex = 0; groupIndex < gScrollList->mGroupCount; groupIndex++) {
         for (slotIndex = zero; slotIndex < 7; slotIndex++) {
             firstEntry = gScrollList->mGroupFirstEntries[groupIndex];
-            distance = func_0202ee20(slotIndex + firstEntry, (slotIndex + 1) % 7 + firstEntry);
+            distance = GetScrollListPositionYDifference(slotIndex + firstEntry, (slotIndex + 1) % 7 + firstEntry);
             entry = &gScrollList->mEntries[slotIndex + firstEntry];
             if (slotIndex == hiddenBottomSlot) {
                 entry->mUnk_06 = distance;
@@ -165,20 +165,20 @@ void AdvanceScrollListScrollUp(void) {
         for (groupIndex = 0; groupIndex < gScrollList->mGroupCount; groupIndex++) {
             for (slotIndex = zero; slotIndex < 7; slotIndex++) {
                 entry = &gScrollList->mEntries[slotIndex + gScrollList->mGroupFirstEntries[groupIndex]];
-                entry->mUnk_0e = entry->mUnk_0e + entry->mUnk_06;
+                entry->mPositionY = entry->mPositionY + entry->mUnk_06;
                 entry->mUnk_06 = 0;
             }
         }
         gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 1;
         gScrollList->mSelectedRow = gScrollList->mSelectedRow - 1;
         gScrollList->mHiddenTopSlot = hiddenBottomSlot;
-        func_0202f120(1, gScrollList->mHiddenTopSlot, gScrollList->mSelectedRow - 1, -1);
+        CallScrollListCallback(1, gScrollList->mHiddenTopSlot, gScrollList->mSelectedRow - 1, -1);
         {
             ScrollList *list = gScrollList;
-            func_0202f120(0, list->mHiddenTopSlot, list->mSelectedRow - 1, GetScrollListSelectedSlot());
+            CallScrollListCallback(0, list->mHiddenTopSlot, list->mSelectedRow - 1, GetScrollListSelectedSlot());
         }
         gScrollList->mState = 0;
-        func_0202ee3c(gScrollList->mHiddenTopSlot, 0);
+        SetScrollListSlotVisible(gScrollList->mHiddenTopSlot, 0);
     }
 }
 
@@ -193,7 +193,7 @@ void AdvanceScrollListScrollDown(void) {
     for (groupIndex = 0; groupIndex < gScrollList->mGroupCount; groupIndex++) {
         for (slotIndex = zero; slotIndex < 7; slotIndex++) {
             firstEntry = gScrollList->mGroupFirstEntries[groupIndex];
-            distance = func_0202ee20(slotIndex + firstEntry, (slotIndex + 6) % 7 + firstEntry);
+            distance = GetScrollListPositionYDifference(slotIndex + firstEntry, (slotIndex + 6) % 7 + firstEntry);
             entry = &gScrollList->mEntries[slotIndex + firstEntry];
             if (slotIndex == gScrollList->mHiddenTopSlot) {
                 entry->mUnk_06 = distance;
@@ -206,23 +206,23 @@ void AdvanceScrollListScrollDown(void) {
         for (groupIndex = 0; groupIndex < gScrollList->mGroupCount; groupIndex++) {
             for (slotIndex = zero; slotIndex < 7; slotIndex++) {
                 entry = &gScrollList->mEntries[slotIndex + gScrollList->mGroupFirstEntries[groupIndex]];
-                entry->mUnk_0e = entry->mUnk_0e + entry->mUnk_06;
+                entry->mPositionY = entry->mPositionY + entry->mUnk_06;
                 entry->mUnk_06 = 0;
             }
         }
         gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 1;
         gScrollList->mSelectedRow = gScrollList->mSelectedRow + 1;
-        func_0202f120(1, gScrollList->mHiddenTopSlot, gScrollList->mSelectedRow + 1, -1);
+        CallScrollListCallback(1, gScrollList->mHiddenTopSlot, gScrollList->mSelectedRow + 1, -1);
         {
             ScrollList *list = gScrollList;
             list->mHiddenTopSlot = (list->mHiddenTopSlot + 1) % 7;
         }
         {
             ScrollList *list = gScrollList;
-            func_0202f120(0, list->mHiddenTopSlot, list->mSelectedRow - 1, GetScrollListSelectedSlot());
+            CallScrollListCallback(0, list->mHiddenTopSlot, list->mSelectedRow - 1, GetScrollListSelectedSlot());
         }
         gScrollList->mState = 0;
-        func_0202ee3c(GetScrollListHiddenBottomSlot(), 0);
+        SetScrollListSlotVisible(GetScrollListHiddenBottomSlot(), 0);
     }
 }
 
@@ -232,7 +232,7 @@ void AdvanceScrollListPick(void) {
     }
     gScrollList->mTimer = gScrollList->mTimer - 1;
     if (gScrollList->mTimer == 0) {
-        func_0202f120(0, -1, -1, GetScrollListSelectedSlot());
+        CallScrollListCallback(0, -1, -1, GetScrollListSelectedSlot());
         gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 1;
         gScrollList->mState = 0;
         gScrollList->mPickFinished = 1;

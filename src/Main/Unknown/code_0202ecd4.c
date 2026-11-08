@@ -7,52 +7,52 @@
 
 #pragma thumb on
 
-void func_0202edd0(void) {
-    ScrollList *p = gScrollList;
-    s32 k;
-    s16 v;
-    k = p->mGroupFirstEntries[0] + GetScrollListSelectedSlot();
-    v = p->mEntries[k].mUnk_0e;
-    p->mEntries[p->mCursorEntry].mUnk_0e = v;
+void PlaceScrollListCursor(void) {
+    ScrollList *scrollList = gScrollList;
+    s32 entryIndex;
+    s16 positionY;
+    entryIndex = scrollList->mGroupFirstEntries[0] + GetScrollListSelectedSlot();
+    positionY = scrollList->mEntries[entryIndex].mPositionY;
+    scrollList->mEntries[scrollList->mCursorEntry].mPositionY = positionY;
 }
 
-void func_0202ed50(s32 a) {
-    s32 j;
-    s32 i;
-    for (i = 1; i < 0x13; i++) {
-        for (j = 0x1c; j < 0x20; j++) {
-            u8 *q = (u8 *) gScrollList + (j + i * 0x20) * 2;
-            q += 0x58;
-            *(u16 *) q = *(u16 *) q & 0xfff;
-            q = (u8 *) gScrollList + (j + i * 0x20) * 2;
-            q += 0x58;
-            *(u16 *) q = *(u16 *) q | (a << 12);
+void SetScrollListRightColumnHighBits(s32 highBits) {
+    s32 column;
+    s32 row;
+    for (row = 1; row < 0x13; row++) {
+        for (column = 0x1c; column < 0x20; column++) {
+            u8 *halfwordPointer = (u8 *) gScrollList + (column + row * 0x20) * 2;
+            halfwordPointer += 0x58;
+            *(u16 *) halfwordPointer = *(u16 *) halfwordPointer & 0xfff;
+            halfwordPointer = (u8 *) gScrollList + (column + row * 0x20) * 2;
+            halfwordPointer += 0x58;
+            *(u16 *) halfwordPointer = *(u16 *) halfwordPointer | (highBits << 12);
         }
     }
-    gScrollList->mUnk_65c = 5;
-    gScrollList->mUnk_658 = a;
+    gScrollList->mRightColumnHighBitsTimer = 5;
+    gScrollList->mRightColumnHighBits = highBits;
     CallQueueAppend(0x1b, 0, gScrollList->mScreenMap, 0x600);
 }
 
-void func_0202ed04(void) {
-    if (gScrollList->mUnk_658 != 0) {
-        if (gScrollList->mUnk_65c == 0) {
-            func_0202ed50(0);
-            gScrollList->mUnk_658 = 0;
+void AdvanceScrollListRightColumnTimer(void) {
+    if (gScrollList->mRightColumnHighBits != 0) {
+        if (gScrollList->mRightColumnHighBitsTimer == 0) {
+            SetScrollListRightColumnHighBits(0);
+            gScrollList->mRightColumnHighBits = 0;
         } else {
-            gScrollList->mUnk_65c = gScrollList->mUnk_65c - 1;
+            gScrollList->mRightColumnHighBitsTimer = gScrollList->mRightColumnHighBitsTimer - 1;
         }
     } else {
-        gScrollList->mUnk_65c = 0;
+        gScrollList->mRightColumnHighBitsTimer = 0;
     }
 }
 
 #pragma thumb off
 
-u16 func_0202ecf0(InputSlot *a, u32 b) {
-    return a->mUnk_00 & b;
+u16 func_0202ecf0(InputSlot *slot, u32 mask) {
+    return slot->mUnk_00 & mask;
 }
 
-u16 func_0202ecd4(u32 a, u32 b) {
-    return func_0202ecf0(&data_02175628[a], b);
+u16 func_0202ecd4(u32 slotIndex, u32 mask) {
+    return func_0202ecf0(&data_02175628[slotIndex], mask);
 }

@@ -13,7 +13,7 @@ void InitLayoutTableEntries(Unk02124b1c *entry, s32 count) {
         entry->mUnk_06 = 0;
         entry->mUnk_08 = FALSE;
         entry->mUnk_0c = 0;
-        entry->mUnk_0e = 0;
+        entry->mPositionY = 0;
         entry->mUnk_10 = 0;
         MTX_Identity22_(entry->mUnk_14);
         MTX_Identity22_(entry->mUnk_24);
