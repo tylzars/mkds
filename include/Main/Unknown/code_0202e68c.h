@@ -4,13 +4,13 @@
 
 typedef struct InputSlot InputSlot;
 
-void func_0202e68c(void *a, u32 b);
-void func_0202e6a0(void *a, u32 b, u32 c);
-void func_0202e6c4(void);
-void func_0202e72c(void);
-void func_0202e84c(void);
-void func_0202e968(void);
-void func_0202e9ac(void);
-void func_0202e9f0(void);
-u16 func_0202ec7c(u32 a, u32 b);
-u16 func_0202ec98(InputSlot *a, u32 b);
+void func_0202e68c(void *dest, u32 size);
+void func_0202e6a0(void *dest, u32 value, u32 size);
+void AdvanceScrollListPick(void);
+void AdvanceScrollListScrollDown(void);
+void AdvanceScrollListScrollUp(void);
+void AdvanceScrollListSelectDown(void);
+void AdvanceScrollListSelectUp(void);
+void AdvanceScrollListState0(void);
+u16 func_0202ec7c(u32 slotIndex, u32 mask);
+u16 func_0202ec98(InputSlot *slot, u32 mask);

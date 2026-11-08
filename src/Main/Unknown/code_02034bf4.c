@@ -124,8 +124,8 @@ void func_02034f60(void) {
         s->mCellTable[i].mUnk_00 = v;
     }
     if (data_02174e64->mUnk_080 >= 0) {
-        func_0202de00((Unk02174e14 *) &data_02174e64->mUnk_02c[0], data_02154034, e, e->mUnk_00.mUnk_18[0],
-                      e->mUnk_00.mUnk_18[1], e->mUnk_00.mUnk_18[2], (Unk0202de00_g *) &e->mUnk_00.mUnk_24);
+        PrintGhostRecordInfo((Unk02174e14 *) &data_02174e64->mUnk_02c[0], data_02154034, e, e->mUnk_00.mUnk_18[0],
+                             e->mUnk_00.mUnk_18[1], e->mUnk_00.mUnk_18[2], (Unk0202de00_g *) &e->mUnk_00.mUnk_24);
     }
 }
 

@@ -76,11 +76,11 @@ void func_02035c50(s32 a, s32 b, s32 c, s32 d) {
 
     s = &data_02174e68->mUnk_2c[1];
     if (a == 1) {
-        c += func_0202ddb0();
+        c += GetCourseGhostCount();
         func_0212426c(1, b, s->mLabelLayout,
-                      GetBmgEntry(data_02174e68->mGhostMessages, func_02025d74(func_0202db04(c))), s->mCellLayout,
-                      s->mCellTable);
-        func_0202dcf4(c, x);
+                      GetBmgEntry(data_02174e68->mGhostMessages, func_02025d74(GetListedGhostCourseId(c))),
+                      s->mCellLayout, s->mCellTable);
+        GetListedGhostTime(c, x);
         WriteMinuteSecondMillisecondText(w, x[2], x[3], *(u16 *) x);
         func_02124224(1, b + 7, s->mLabelLayout, w, s->mCellLayout, s->mCellTable, 7);
     } else if (a == 0) {
@@ -138,7 +138,7 @@ void SetupGhostNameSubTextTwoButtons(void) {
     e = GetBmgEntry(data_02174e68->mGhostMessages, 0x12);
     f = GetBmgEntry(data_02174e68->mCommonMessages, 0);
     g = GetBmgEntry(data_02174e68->mCommonMessages, 1);
-    func_0202dc68(data_02174e68->mSelectedIndex + func_0202ddb0(), y);
+    GetListedGhostName(data_02174e68->mSelectedIndex + GetCourseGhostCount(), y);
     MIi_CpuCopy16(y, w, 0x14);
     w[10] = 0;
     func_0212513c(w, e, h, 0x100);
@@ -176,15 +176,15 @@ void PrintSelectedGhostRecord(void) {
     u8 y[0x14];
     u16 w[11];
 
-    n = func_0202ddb0() + data_02174e68->mSelectedIndex;
-    func_0202dcf4(n, &x);
-    func_0202dc68(n, y);
+    n = GetCourseGhostCount() + data_02174e68->mSelectedIndex;
+    GetListedGhostTime(n, &x);
+    GetListedGhostName(n, y);
     MIi_CpuCopy16(y, w, 0x14);
     w[10] = 0;
-    d = func_0202dbe8(n);
-    e = func_0202db68(n);
-    f = func_0202db04(n);
-    func_0202de00((Unk02174e14 *) &data_02174e68->mUnk_2c[0], data_0215404c, w, d, e, f, (Unk0202de00_g *) &x);
+    d = GetListedGhostCharacterIndex(n);
+    e = GetListedGhostKartIndex(n);
+    f = GetListedGhostCourseId(n);
+    PrintGhostRecordInfo((Unk02174e14 *) &data_02174e68->mUnk_2c[0], data_0215404c, w, d, e, f, (Unk0202de00_g *) &x);
 }
 
 void func_020357dc(void *a, void *b, void *c) {
@@ -255,8 +255,8 @@ void func_020357dc(void *a, void *b, void *c) {
     w[0] = 0;
     w[1] = m;
     w[2] = m + 7;
-    func_0202e530(data_02174e68->mHeap, 3, w, 7, 8, 0x7c, s->mCellTable, s->mRects, data_02174e68->mUnk_20 + 0xc, 0, 1,
-                  2, 10, func_02035c50);
+    InitScrollList(data_02174e68->mHeap, 3, w, 7, 8, 0x7c, s->mCellTable, s->mRects, data_02174e68->mUnk_20 + 0xc, 0, 1,
+                   2, 10, func_02035c50);
     func_02025b84(0, &data_02174e68->mUnk_64);
     PrintSelectedGhostRecord();
     SetupInterpolation(&data_02174e68->mUnk_90, 0, 10, -0xc0, 0);
@@ -308,7 +308,7 @@ s32 func_0203551c(u16 *a) {
             if (IsTxtSystemState0NoOpenRequest() != 0) {
                 func_02035c14();
             }
-            func_0202e4b0();
+            AdvanceScrollList();
             i = GetScrollListSelectedRow();
             if (data_02174e68->mSelectedIndex != i) {
                 data_02174e68->mSelectedIndex = i;
@@ -339,8 +339,8 @@ s32 func_0203551c(u16 *a) {
             }
             if (GetTxtSystemDone() != 0) {
                 if (GetTxtSystemSelectedIndex() == 0) {
-                    ((Unk0202ddd8 *) func_0202ddd8())->mUnk_08_0 = 1;
-                    func_020566a8((u8) data_02174e68->mSelectedIndex, func_0202ddd8());
+                    ((Unk0202ddd8 *) GetSlotGhostBuffer())->mUnk_08_0 = 1;
+                    func_020566a8((u8) data_02174e68->mSelectedIndex, GetSlotGhostBuffer());
                     data_02174e68->mState = 3;
                 } else {
                     RequestSelectReturnState1();

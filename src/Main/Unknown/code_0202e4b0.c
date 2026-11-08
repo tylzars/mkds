@@ -14,69 +14,71 @@
 
 #pragma thumb on
 
-void func_0202e530(void *a, s32 b, const void *c, u16 d, u16 e, s32 f, Unk02124b1c *g, void *h, const void *i, s32 j,
-                   s32 k, s32 l, s32 m, void (*n)(int a, int b, int c, int d)) {
-    s32 i0;
-    gScrollList = HeapAlloc(a, 0x674);
+void InitScrollList(void *heap, s32 b, const void *groupFirstEntries, u16 cursorEntry, u16 e, s32 f,
+                    Unk02124b1c *entries, void *rects, const void *screenMap, s32 upRectIndex, s32 downRectIndex,
+                    s32 firstRowRectIndex, s32 rowCount,
+                    void (*callback)(int heap, int b, int groupFirstEntries, int cursorEntry)) {
+    s32 row;
+    gScrollList = HeapAlloc(heap, 0x674);
     func_0202e68c(gScrollList, 0x674);
-    gScrollList->mUnk_000 = b;
+    gScrollList->mGroupCount = b;
     b = b * 2;
-    gScrollList->mUnk_004 = HeapAllocAligned(a, b, 0x20);
-    func_0202e680(c, gScrollList->mUnk_004, b);
-    func_0202e680(i, gScrollList->mUnk_058, 0x600);
-    gScrollList->mUnk_02c = d;
+    gScrollList->mGroupFirstEntries = HeapAllocAligned(heap, b, 0x20);
+    func_0202e680(groupFirstEntries, gScrollList->mGroupFirstEntries, b);
+    func_0202e680(screenMap, gScrollList->mScreenMap, 0x600);
+    gScrollList->mCursorEntry = cursorEntry;
     gScrollList->mUnk_02e = e;
     gScrollList->mUnk_030 = f;
-    gScrollList->mUnk_008 = g;
-    gScrollList->mRowCount = m;
-    gScrollList->mUnk_028 = n;
-    gScrollList->mUnk_00c = h;
-    gScrollList->mUnk_010 = j;
-    gScrollList->mUnk_014 = k;
-    gScrollList->mUnk_018 = l;
+    gScrollList->mEntries = entries;
+    gScrollList->mRowCount = rowCount;
+    gScrollList->mCallback = callback;
+    gScrollList->mRects = rects;
+    gScrollList->mUpRectIndex = upRectIndex;
+    gScrollList->mDownRectIndex = downRectIndex;
+    gScrollList->mFirstRowRectIndex = firstRowRectIndex;
     gScrollList->mEnabled = 1;
-    gScrollList->mUnk_01c = -1;
-    gScrollList->mUnk_020 = gScrollList->mUnk_01c;
+    gScrollList->mTouchRectIndex = -1;
+    gScrollList->mPressedRectIndex = gScrollList->mTouchRectIndex;
     func_0202edd0();
     func_0202f120(0, -1, -1, GetScrollListSelectedSlot());
-    for (i0 = 0; i0 < 6 && i0 < gScrollList->mRowCount; i0++) {
-        func_0202f120(1, i0 + 1, i0, -1);
+    for (row = 0; row < 6 && row < gScrollList->mRowCount; row++) {
+        func_0202f120(1, row + 1, row, -1);
     }
     func_0202ee3c(0, 0);
     func_0202ee3c(6, 0);
-    for (i0 = gScrollList->mRowCount; i0 < 5; i0++) {
-        func_0202ee3c(i0 + 1, 0);
+    for (row = gScrollList->mRowCount; row < 5; row++) {
+        func_0202ee3c(row + 1, 0);
     }
-    gScrollList->mUnk_008[gScrollList->mUnk_02e].mUnk_00 = gScrollList->mRowCount > 5;
+    gScrollList->mEntries[gScrollList->mUnk_02e].mUnk_00 = gScrollList->mRowCount > 5;
     if (gScrollList->mRowCount == 0) {
-        gScrollList->mUnk_008[gScrollList->mUnk_02c].mUnk_00 = 0;
+        gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 0;
     }
-    gScrollList->mUnk_048 = 0xf;
+    gScrollList->mScrollFrameCount = 0xf;
 }
 
-void func_0202e4b0(void) {
+void AdvanceScrollList(void) {
     gScrollList->mPickStarted = 0;
     gScrollList->mPickFinished = gScrollList->mPickStarted;
     func_0202eec0();
     func_0202ed04();
     switch (gScrollList->mState) {
         case 0:
-            func_0202e9f0();
+            AdvanceScrollListState0();
             break;
         case 1:
-            func_0202e9ac();
+            AdvanceScrollListSelectUp();
             break;
         case 2:
-            func_0202e968();
+            AdvanceScrollListSelectDown();
             break;
         case 3:
-            func_0202e84c();
+            AdvanceScrollListScrollUp();
             break;
         case 4:
-            func_0202e72c();
+            AdvanceScrollListScrollDown();
             break;
         case 5:
-            func_0202e6c4();
+            AdvanceScrollListPick();
             break;
     }
     func_0202ee88();

@@ -253,7 +253,7 @@ s32 func_02034370(Unk02034370 *a) {
             switch (AdvanceBlockCountRequest()) {
                 case 1:
                     ResetPendingFiles();
-                    func_0204ee4c(0, func_0202ddd8());
+                    func_0204ee4c(0, GetSlotGhostBuffer());
                     data_02174e64->mState = 6;
                     break;
                 case 2:
@@ -288,7 +288,7 @@ s32 func_02034370(Unk02034370 *a) {
             }
             break;
         case 8:
-            if (func_0202da44(data_02174e64->mUnk_09c[data_02174e64->mUnk_080].mUnk_00.mUnk_18[2]) != 0) {
+            if (DoesAnySlotGhostMatchCourse(data_02174e64->mUnk_09c[data_02174e64->mUnk_080].mUnk_00.mUnk_18[2]) != 0) {
                 v = func_02025d74(data_02174e64->mUnk_09c[data_02174e64->mUnk_080].mUnk_00.mUnk_18[2]);
                 e = GetBmgEntry(data_02174e64->mGhostMessages, 0x55);
                 f = GetBmgEntry(data_02174e64->mCommonMessages, 0);
@@ -297,15 +297,15 @@ s32 func_02034370(Unk02034370 *a) {
                 SetTxtSystemSoundId(0, -1);
                 SetupTxtSystemSubTextTwoButtonsEx(h, f, g, 1, 0, 1, 1, 0);
                 data_02174e64->mState = 9;
-            } else if (func_0202dd9c() == 10) {
+            } else if (GetSlotGhostCount() == 10) {
                 RequestTxtSystemClose();
                 data_02174e64->mUnk_098 = 2;
                 data_02174e64->mState = 13;
                 func_02025f14(&data_02174e64->mUnk_194, 2);
             } else {
-                data_02174e64->mUnk_08c = func_0202d9fc();
-                ((Unk0202ddd8 *) func_0202ddd8())->mUnk_08_0 = 1;
-                func_020566a8((u8) data_02174e64->mUnk_08c, func_0202ddd8());
+                data_02174e64->mUnk_08c = FindUnfilledGhostSlot();
+                ((Unk0202ddd8 *) GetSlotGhostBuffer())->mUnk_08_0 = 1;
+                func_020566a8((u8) data_02174e64->mUnk_08c, GetSlotGhostBuffer());
                 NNS_SndArcSetCurrent(&data_0217c868);
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 10);
                 NNS_SndArcSetCurrent(&data_0217d0a0);
@@ -322,9 +322,9 @@ s32 func_02034370(Unk02034370 *a) {
                 RequestTxtSystemClose();
                 if (GetTxtSystemSelectedIndex() == 0) {
                     data_02174e64->mUnk_08c =
-                        func_0202d990(data_02174e64->mUnk_09c[data_02174e64->mUnk_080].mUnk_00.mUnk_18[2]);
-                    ((Unk0202ddd8 *) func_0202ddd8())->mUnk_08_0 = 1;
-                    func_020566a8((u8) data_02174e64->mUnk_08c, func_0202ddd8());
+                        FindSlotGhostForCourse(data_02174e64->mUnk_09c[data_02174e64->mUnk_080].mUnk_00.mUnk_18[2]);
+                    ((Unk0202ddd8 *) GetSlotGhostBuffer())->mUnk_08_0 = 1;
+                    func_020566a8((u8) data_02174e64->mUnk_08c, GetSlotGhostBuffer());
                     data_02174e64->mState = 11;
                 } else {
                     data_02174e64->mState = 10;

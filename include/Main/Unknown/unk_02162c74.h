@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk02162f4c Unk02162f4c;
+typedef struct GhostSceneCallbacks GhostSceneCallbacks;
 
 extern s16 data_usa_02162c74[][4];
 extern char data_usa_02162d04[];
@@ -24,4 +24,4 @@ extern char gTimeAttackGhostSendSONclrName[];
 extern char gTimeAttackGhostSendSBnclName[];
 extern char gTimeAttackGhostSendSBnllName[];
 extern char gTimeAttackGhostSendSBnblName[];
-extern Unk02162f4c *data_usa_02162f4c[];
+extern GhostSceneCallbacks *gGhostSceneCallbacks[];

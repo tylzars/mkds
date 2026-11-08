@@ -38,109 +38,109 @@
 
 #pragma thumb on
 
-void func_0202dfd4(void *a) {
-    Unk02125de0Arg v;
-    u8 *q;
+void InitGhostScene(void *heap) {
+    Unk02125de0Arg arg;
+    u8 *displaySettings;
     s32 i;
-    u32 e;
-    u8 *p;
-    s32 n;
-    data_02174e44 = HeapAlloc(a, 0x8dc);
-    MemFillWordsByBlock_inline(data_02174e44, 0x8dc);
-    data_02174e44->mUnk_8d0 = HeapAllocAligned(a, 0xe00, 0x20);
-    data_02174e44->mUnk_8d4 = HeapAllocAligned(a, 0x1000, 0x20);
-    q = CreateDisplaySettings(a, data_usa_02154840);
-    SetBg0Record(q + 0x28, 1, 0, 0, 0, 0, 1, 0);
-    SetBg3RecordParams(q + 0x70, 2, 0, 0, 0, 0xf, 0);
-    InitDisplayFromSettings(q);
-    func_0202e274();
-    v.mUnk_00 = 1;
-    v.mUnk_04 = func_020b403c(1);
-    v.mUnk_08 = 1;
-    v.mUnk_0c = 1;
-    v.mUnk_10 = 0;
-    v.mUnk_14 = 0;
-    v.mUnk_18 = NULL;
-    v.mUnk_1c = 1;
-    v.mUnk_20 = 1;
-    v.mUnk_24 = 0;
+    u32 courseId;
+    u8 *courseRecords;
+    s32 cupCourseIndex;
+    gGhostScene = HeapAlloc(heap, 0x8dc);
+    MemFillWordsByBlock_inline(gGhostScene, 0x8dc);
+    gGhostScene->mCourseGhostBuffer = HeapAllocAligned(heap, 0xe00, 0x20);
+    gGhostScene->mSlotGhostBuffer = HeapAllocAligned(heap, 0x1000, 0x20);
+    displaySettings = CreateDisplaySettings(heap, gGhostSceneDisplaySettingsDesc);
+    SetBg0Record(displaySettings + 0x28, 1, 0, 0, 0, 0, 1, 0);
+    SetBg3RecordParams(displaySettings + 0x70, 2, 0, 0, 0, 0xf, 0);
+    InitDisplayFromSettings(displaySettings);
+    LoadGhostSceneFiles();
+    arg.mUnk_00 = 1;
+    arg.mUnk_04 = func_020b403c(1);
+    arg.mUnk_08 = 1;
+    arg.mUnk_0c = 1;
+    arg.mUnk_10 = 0;
+    arg.mUnk_14 = 0;
+    arg.mUnk_18 = NULL;
+    arg.mUnk_1c = 1;
+    arg.mUnk_20 = 1;
+    arg.mUnk_24 = 0;
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
-    func_02125de0(a, &v);
+    func_02125de0(heap, &arg);
     SetTxtSystemMode(1);
-    func_0212abdc(a, data_02174e44);
-    CreateKartIcon(a);
+    func_0212abdc(heap, gGhostScene);
+    CreateKartIcon(heap);
     for (i = 0; i < 0x20; i++) {
-        data_02174e44->mUnk_814[i] = -1;
+        gGhostScene->mCupCourseIndices[i] = -1;
     }
     for (i = 0; i < 10; i++) {
-        data_02174e44->mUnk_894[i] = -1;
+        gGhostScene->mSlotIndices[i] = -1;
     }
-    data_02174e44->mUnk_8bc = (u8 *) CreateCourseGhostRecords((u32) a);
-    func_02061540(data_02174e44->mUnk_8bc);
+    gGhostScene->mCourseGhostRecords = (u8 *) CreateCourseGhostRecords((u32) heap);
+    func_02061540(gGhostScene->mCourseGhostRecords);
     func_02057d9c();
     for (i = 0; i < 0x20; i++) {
-        e = func_0202e43c(i);
-        p = data_02174e44->mUnk_8bc;
-        n = FindCupCourseIndex(e);
-        if (IsGhostRecordFilled(p + n * 0x30) != FALSE) {
-            data_02174e44->mUnk_814[data_02174e44->mUnk_80c] = i;
-            data_02174e44->mUnk_808++;
-            data_02174e44->mUnk_80c++;
+        courseId = func_0202e43c(i);
+        courseRecords = gGhostScene->mCourseGhostRecords;
+        cupCourseIndex = FindCupCourseIndex(courseId);
+        if (IsGhostRecordFilled(courseRecords + cupCourseIndex * 0x30) != FALSE) {
+            gGhostScene->mCupCourseIndices[gGhostScene->mCourseGhostCount] = i;
+            gGhostScene->mGhostCount++;
+            gGhostScene->mCourseGhostCount++;
         }
     }
-    data_02174e44->mUnk_8c0 = (u8 *) func_0206152c((u32) a);
-    func_02061428(data_02174e44->mUnk_8c0);
+    gGhostScene->mSlotGhostRecords = (u8 *) func_0206152c((u32) heap);
+    func_02061428(gGhostScene->mSlotGhostRecords);
     func_02057d9c();
     for (i = 0; i < 10; i++) {
-        if (IsGhostRecordFilled(data_02174e44->mUnk_8c0 + (u8) i * 0x230) != FALSE) {
-            data_02174e44->mUnk_894[data_02174e44->mUnk_810] = i;
-            data_02174e44->mUnk_808++;
-            data_02174e44->mUnk_810++;
+        if (IsGhostRecordFilled(gGhostScene->mSlotGhostRecords + (u8) i * 0x230) != FALSE) {
+            gGhostScene->mSlotIndices[gGhostScene->mSlotGhostCount] = i;
+            gGhostScene->mGhostCount++;
+            gGhostScene->mSlotGhostCount++;
         }
     }
-    func_020ae6d4(data_02174e44, data_02174e44->mUnk_404);
+    func_020ae6d4(gGhostScene, gGhostScene->mSubOam);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;
     switch (data_0217b488->mUnk_0c) {
         case 0:
-            data_02174e44->mUnk_8c8 = 0;
+            gGhostScene->mRequestedCallbacksIndex = 0;
             break;
         case 1:
-            data_02174e44->mUnk_8c8 = 1;
+            gGhostScene->mRequestedCallbacksIndex = 1;
             break;
     }
-    data_02174e44->mUnk_8cc = data_02174e44->mUnk_8c8;
-    data_02174e44->mUnk_8c4 = data_usa_02162f4c[data_02174e44->mUnk_8c8];
-    data_02174e44->mUnk_8d8 = CreateExpHeapFromMaxFree(a);
-    data_02174e44->mUnk_8c4->mUnk_00(data_02174e44->mUnk_8d8, data_02174e44, data_02174e44->mUnk_404);
+    gGhostScene->mCurrentCallbacksIndex = gGhostScene->mRequestedCallbacksIndex;
+    gGhostScene->mCurrentCallbacks = gGhostSceneCallbacks[gGhostScene->mRequestedCallbacksIndex];
+    gGhostScene->mHeap = CreateExpHeapFromMaxFree(heap);
+    gGhostScene->mCurrentCallbacks->mInit(gGhostScene->mHeap, gGhostScene, gGhostScene->mSubOam);
 }
 
-void func_0202df34(s32 a) {
-    s32 b;
-    s32 c;
-    s32 r;
-    Unk02162f4c *p;
-    b = data_02174e44->mUnk_8c8;
-    c = data_02174e44->mUnk_8cc;
-    if (c != b) {
-        p = data_02174e44->mUnk_8c4;
-        data_02174e44->mUnk_8c4 = data_usa_02162f4c[b];
-        data_02174e44->mUnk_8cc = data_02174e44->mUnk_8c8;
-        p->mUnk_08();
-        data_02174e44->mUnk_8c4->mUnk_00(data_02174e44->mUnk_8d8, data_02174e44, data_02174e44->mUnk_404);
+void AdvanceGhostScene(s32 sceneNumbers) {
+    s32 requestedIndex;
+    s32 currentIndex;
+    s32 nextIndex;
+    GhostSceneCallbacks *oldCallbacks;
+    requestedIndex = gGhostScene->mRequestedCallbacksIndex;
+    currentIndex = gGhostScene->mCurrentCallbacksIndex;
+    if (currentIndex != requestedIndex) {
+        oldCallbacks = gGhostScene->mCurrentCallbacks;
+        gGhostScene->mCurrentCallbacks = gGhostSceneCallbacks[requestedIndex];
+        gGhostScene->mCurrentCallbacksIndex = gGhostScene->mRequestedCallbacksIndex;
+        oldCallbacks->mRelease();
+        gGhostScene->mCurrentCallbacks->mInit(gGhostScene->mHeap, gGhostScene, gGhostScene->mSubOam);
     } else {
-        func_020ae6ac(data_02174e44, data_02174e44->mUnk_404);
-        r = data_02174e44->mUnk_8c4->mUnk_04(a);
-        if (r != -1) {
-            data_02174e44->mUnk_8c8 = r;
+        func_020ae6ac(gGhostScene, gGhostScene->mSubOam);
+        nextIndex = gGhostScene->mCurrentCallbacks->mAdvance(sceneNumbers);
+        if (nextIndex != -1) {
+            gGhostScene->mRequestedCallbacksIndex = nextIndex;
         }
-        func_020ae630(data_02174e44, data_02174e44->mUnk_404);
+        func_020ae630(gGhostScene, gGhostScene->mSubOam);
     }
     func_02125928();
     func_0212a920();
 }
 
-void func_0202defc(void) {
+void ReleaseGhostScene(void) {
     reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
     reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffff1fff;
     func_02125da0();
@@ -151,54 +151,59 @@ void func_0202defc(void) {
 
 void func_0202dec8(void) {
     func_021258f0();
-    data_02174e44->mUnk_8c4->mUnk_0c();
-    func_020ae5f0(data_02174e44, data_02174e44->mUnk_404);
+    gGhostScene->mCurrentCallbacks->mUnk_0c();
+    func_020ae5f0(gGhostScene, gGhostScene->mSubOam);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_0202de00(Unk02174e14 *a, s16 (*b)[4], void *c, s32 d, s32 e, s32 f, Unk0202de00_g *g) {
-    u16 s[10];
-    u16 t[11];
-    CellFileSet *h;
-    h = &a->mUnk_038;
-    func_0212426c(0, b[0][0], a->mUnk_000.mLabelLayout, GetBmgEntry(a->mUnk_058, GetCourseMessageIndex(f)),
-                  a->mUnk_000.mCellLayout, a->mUnk_000.mCellTable);
-    WriteMinuteSecondMillisecondText((s16 *) s, g->mUnk_02, g->mUnk_03, g->mUnk_00);
-    func_02124224(0, b[1][0], a->mUnk_000.mLabelLayout, s, a->mUnk_000.mCellLayout, a->mUnk_000.mCellTable, 7);
-    MIi_CpuCopy16(c, t, 0x14);
-    t[10] = 0;
-    func_0212426c(0, b[2][0], a->mUnk_000.mLabelLayout, t, a->mUnk_000.mCellLayout, a->mUnk_000.mCellTable);
-    func_0212463c(d, h->mCells, a->mUnk_038.mChars, h->mPalette, h->mCellLayout, 0, b[0][3], a->mUnk_000.mCells,
-                  a->mUnk_000.mCellLayout);
-    QueueKartIcon(e, a->mUnk_000.mCells, a->mUnk_000.mCellLayout, b[1][3],
-                  func_02124a68(b[1][3], a->mUnk_000.mCells, a->mUnk_000.mCellLayout), 0);
+void PrintGhostRecordInfo(Unk02174e14 *fileSets, s16 (*labelRows)[4], void *name, s32 characterIndex, s32 kartIndex,
+                          s32 courseId, Unk0202de00_g *time) {
+    u16 timeText[10];
+    u16 terminatedName[11];
+    CellFileSet *cellFileSet;
+    cellFileSet = &fileSets->mUnk_038;
+    func_0212426c(0, labelRows[0][0], fileSets->mUnk_000.mLabelLayout,
+                  GetBmgEntry(fileSets->mUnk_058, GetCourseMessageIndex(courseId)), fileSets->mUnk_000.mCellLayout,
+                  fileSets->mUnk_000.mCellTable);
+    WriteMinuteSecondMillisecondText((s16 *) timeText, time->mUnk_02, time->mUnk_03, time->mUnk_00);
+    func_02124224(0, labelRows[1][0], fileSets->mUnk_000.mLabelLayout, timeText, fileSets->mUnk_000.mCellLayout,
+                  fileSets->mUnk_000.mCellTable, 7);
+    MIi_CpuCopy16(name, terminatedName, 0x14);
+    terminatedName[10] = 0;
+    func_0212426c(0, labelRows[2][0], fileSets->mUnk_000.mLabelLayout, terminatedName, fileSets->mUnk_000.mCellLayout,
+                  fileSets->mUnk_000.mCellTable);
+    func_0212463c(characterIndex, cellFileSet->mCells, fileSets->mUnk_038.mChars, cellFileSet->mPalette,
+                  cellFileSet->mCellLayout, 0, labelRows[0][3], fileSets->mUnk_000.mCells,
+                  fileSets->mUnk_000.mCellLayout);
+    QueueKartIcon(kartIndex, fileSets->mUnk_000.mCells, fileSets->mUnk_000.mCellLayout, labelRows[1][3],
+                  func_02124a68(labelRows[1][3], fileSets->mUnk_000.mCells, fileSets->mUnk_000.mCellLayout), 0);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void *func_0202ddec(void) {
-    return data_02174e44->mUnk_8d0;
+void *GetCourseGhostBuffer(void) {
+    return gGhostScene->mCourseGhostBuffer;
 }
 
-u32 func_0202ddd8(void) {
-    return ((u32) data_02174e44->mUnk_8d4);
+u32 GetSlotGhostBuffer(void) {
+    return ((u32) gGhostScene->mSlotGhostBuffer);
 }
 
-u32 func_0202ddc4(void) {
-    return (data_02174e44->mUnk_808);
+u32 GetGhostCount(void) {
+    return (gGhostScene->mGhostCount);
 }
 
-u32 func_0202ddb0(void) {
-    return (data_02174e44->mUnk_80c);
+u32 GetCourseGhostCount(void) {
+    return (gGhostScene->mCourseGhostCount);
 }
 
-u32 func_0202dd9c(void) {
-    return (data_02174e44->mUnk_810);
+u32 GetSlotGhostCount(void) {
+    return (gGhostScene->mSlotGhostCount);
 }
 
 #pragma thumb off

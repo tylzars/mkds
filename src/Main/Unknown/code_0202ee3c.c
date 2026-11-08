@@ -7,9 +7,9 @@
 
 void func_0202ee3c(s32 a, s32 b) {
     s32 i;
-    for (i = 0; i < gScrollList->mUnk_000; i++) {
+    for (i = 0; i < gScrollList->mGroupCount; i++) {
         ScrollList *p = gScrollList;
-        p->mUnk_008[a + p->mUnk_004[i]].mUnk_00 = b;
+        p->mEntries[a + p->mGroupFirstEntries[i]].mUnk_00 = b;
     }
 }
 

@@ -285,61 +285,73 @@ typedef struct TimeAttackGhostSend {
 
 extern TimeAttackGhostSend *gTimeAttackGhostSend;
 
-struct Unk02174e44;
+struct GhostScene;
 
-// Entry of the table at data_usa_02162f4c: four function pointers.
-typedef struct Unk02162f4c {
-    /* 00 */ void (*mUnk_00)(void *a, struct Unk02174e44 *b, void *c);
-    /* 04 */ s32 (*mUnk_04)(u32 a);
-    /* 08 */ void (*mUnk_08)(void);
+// Init, advance and release of one part of the ghost scene, and a fourth function the scene's second per-frame slot
+// calls.
+typedef struct GhostSceneCallbacks {
+    /* 00 */ void (*mInit)(void *a, struct GhostScene *b, void *c);
+    /* 04 */ s32 (*mAdvance)(u32 a);
+    /* 08 */ void (*mRelease)(void);
     /* 0c */ void (*mUnk_0c)(void);
-} Unk02162f4c;
+} GhostSceneCallbacks;
 
-// Object behind data_02174e44, 0x8dc bytes.
-typedef struct Unk02174e44 {
-    /* 000 */ u8 mUnk_000[0x404];
-    /* 404 */ u8 mUnk_404[0x404];
-    /* 808 */ s32 mUnk_808;
-    /* 80c */ s32 mUnk_80c;
-    /* 810 */ s32 mUnk_810;
-    /* 814 */ s32 mUnk_814[0x20];
-    /* 894 */ s32 mUnk_894[10];
-    /* 8bc */ u8 *mUnk_8bc;
-    /* 8c0 */ u8 *mUnk_8c0;
-    /* 8c4 */ Unk02162f4c *mUnk_8c4;
-    /* 8c8 */ s32 mUnk_8c8;
-    /* 8cc */ s32 mUnk_8cc;
-    /* 8d0 */ void *mUnk_8d0;
-    /* 8d4 */ void *mUnk_8d4;
-    /* 8d8 */ void *mUnk_8d8;
-} Unk02174e44;
+// Object behind gGhostScene, 0x8dc bytes.
+typedef struct GhostScene {
+    /* 000 */ u8 mMainOam[0x404];
+    /* 404 */ u8 mSubOam[0x404];
+    /* 808 */ s32 mGhostCount;
+    // Counts of the filled course ghosts and filled slot ghosts; a ghost's list position counts the course ghosts
+    // first.
+    /* 80c */ s32 mCourseGhostCount;
+    /* 810 */ s32 mSlotGhostCount;
+    // Cup positions (0..0x1f) of the filled course ghosts, in list order.
+    /* 814 */ s32 mCupCourseIndices[0x20];
+    // Slot numbers (0..9) of the filled slot ghosts, in list order.
+    /* 894 */ s32 mSlotIndices[10];
+    // 0x30 bytes per cup position.
+    /* 8bc */ u8 *mCourseGhostRecords;
+    // 0x230 bytes per slot.
+    /* 8c0 */ u8 *mSlotGhostRecords;
+    /* 8c4 */ GhostSceneCallbacks *mCurrentCallbacks;
+    /* 8c8 */ s32 mRequestedCallbacksIndex;
+    /* 8cc */ s32 mCurrentCallbacksIndex;
+    /* 8d0 */ void *mCourseGhostBuffer;
+    /* 8d4 */ void *mSlotGhostBuffer;
+    /* 8d8 */ void *mHeap;
+} GhostScene;
 
-extern Unk02174e44 *data_02174e44;
+extern GhostScene *gGhostScene;
 typedef struct ScrollList {
-    /* 000 */ s32 mUnk_000;
-    /* 004 */ u16 *mUnk_004;
-    /* 008 */ Unk02124b1c *mUnk_008;
-    /* 00c */ struct Unk0201ea30 *mUnk_00c;
-    /* 010 */ s32 mUnk_010;
-    /* 014 */ s32 mUnk_014;
-    /* 018 */ s32 mUnk_018;
-    /* 01c */ s32 mUnk_01c;
-    /* 020 */ s32 mUnk_020;
-    /* 024 */ s32 mUnk_024;
-    /* 028 */ void (*mUnk_028)(int a, int b, int c, int d);
-    /* 02c */ u16 mUnk_02c;
+    /* 000 */ s32 mGroupCount;
+    /* 004 */ u16 *mGroupFirstEntries;
+    /* 008 */ Unk02124b1c *mEntries;
+    /* 00c */ struct Unk0201ea30 *mRects;
+    /* 010 */ s32 mUpRectIndex;
+    /* 014 */ s32 mDownRectIndex;
+    /* 018 */ s32 mFirstRowRectIndex;
+    /* 01c */ s32 mTouchRectIndex;
+    /* 020 */ s32 mPressedRectIndex;
+    /* 024 */ s32 mPickedVisibleRow;
+    /* 028 */ void (*mCallback)(int a, int b, int c, int d);
+    /* 02c */ u16 mCursorEntry;
     /* 02e */ u16 mUnk_02e;
     /* 030 */ s32 mUnk_030;
     /* 034 */ s32 mRowCount;
-    /* 038 */ s32 mUnk_038;
+    // Counts down: 10 calls for a pick, mScrollFrameCount calls for a scroll.
+    /* 038 */ s32 mTimer;
     /* 03c */ s32 mHiddenTopSlot;
     /* 040 */ s32 mSelectedRow;
     /* 044 */ s32 mSelectedVisibleRow;
-    /* 048 */ s32 mUnk_048;
-    /* 04c */ s32 mUnk_04c;
-    /* 050 */ s32 mUnk_050;
-    /* 054 */ s32 mUnk_054;
-    /* 058 */ u16 mUnk_058[0x300];
+    // Frames one scroll step lasts (5 after more than 2 moves in one hold, else 15); also how many held frames start
+    // the next move.
+    /* 048 */ s32 mScrollFrameCount;
+    /* 04c */ s32 mHeldMoveCount;
+    // Calls of the step function with the up key or the up rect touched, back to 0 at each move; mDownHeldFrames is the
+    // same for the down key and rect.
+    /* 050 */ s32 mUpHeldFrames;
+    /* 054 */ s32 mDownHeldFrames;
+    /* 058 */ u16 mScreenMap[0x300];
     /* 658 */ s32 mUnk_658;
     /* 65c */ s32 mUnk_65c;
     /* 660 */ s32 mEnabled;

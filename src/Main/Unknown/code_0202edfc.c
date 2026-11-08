@@ -4,7 +4,7 @@
 #pragma thumb on
 
 u32 func_0202ee20(u32 first, u32 second) {
-    return (((gScrollList->mUnk_008[second].mUnk_0e)) - ((gScrollList->mUnk_008[first].mUnk_0e)));
+    return (((gScrollList->mEntries[second].mUnk_0e)) - ((gScrollList->mEntries[first].mUnk_0e)));
 }
 
 u32 GetScrollListSelectedSlot(void) {

@@ -22,58 +22,60 @@
 
 #pragma optimize_for_size on
 
-u16 func_0202ec98(InputSlot *a, u32 b) {
-    return a->mBits & b;
+u16 func_0202ec98(InputSlot *slot, u32 mask) {
+    return slot->mBits & mask;
 }
 
-u16 func_0202ec7c(u32 a, u32 b) {
-    return func_0202ec98(&data_02175628[a], b);
+u16 func_0202ec7c(u32 slotIndex, u32 mask) {
+    return func_0202ec98(&data_02175628[slotIndex], mask);
 }
 
 #pragma thumb on
 
-void func_0202e9f0(void) {
-    u32 a = func_020435bc();
-    BOOL f;
+// State 0: starts a pick, a selection move or a scroll from the keys and the touch.
+void AdvanceScrollListState0(void) {
+    u32 slotIndex = func_020435bc();
+    BOOL rowChanged;
     if (gScrollList->mEnabled == 0) {
         return;
     }
-    gScrollList->mUnk_048 = gScrollList->mUnk_04c > 2 ? 5 : 0xf;
-    if (func_0202ecd4(a, PAD_KEY_A) != 0) {
+    gScrollList->mScrollFrameCount = gScrollList->mHeldMoveCount > 2 ? 5 : 0xf;
+    if (func_0202ecd4(slotIndex, PAD_KEY_A) != 0) {
         gScrollList->mState = 5;
-        gScrollList->mUnk_024 = gScrollList->mSelectedVisibleRow;
-        gScrollList->mUnk_008[gScrollList->mUnk_02c].mUnk_00 = 0;
-        gScrollList->mUnk_038 = 10;
-        gScrollList->mUnk_054 = 0;
-        gScrollList->mUnk_050 = gScrollList->mUnk_054;
-        gScrollList->mUnk_04c = 0;
+        gScrollList->mPickedVisibleRow = gScrollList->mSelectedVisibleRow;
+        gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 0;
+        gScrollList->mTimer = 10;
+        gScrollList->mDownHeldFrames = 0;
+        gScrollList->mUpHeldFrames = gScrollList->mDownHeldFrames;
+        gScrollList->mHeldMoveCount = 0;
         func_0202edd0();
         func_0202f120(0, -1, -1, -1);
         return;
     }
-    if (gScrollList->mUnk_018 <= gScrollList->mUnk_020 && gScrollList->mUnk_020 < gScrollList->mUnk_018 + 5 &&
-        gScrollList->mUnk_020 - gScrollList->mUnk_018 < gScrollList->mRowCount) {
+    if (gScrollList->mFirstRowRectIndex <= gScrollList->mPressedRectIndex &&
+        gScrollList->mPressedRectIndex < gScrollList->mFirstRowRectIndex + 5 &&
+        gScrollList->mPressedRectIndex - gScrollList->mFirstRowRectIndex < gScrollList->mRowCount) {
         gScrollList->mState = 5;
-        gScrollList->mUnk_024 = gScrollList->mUnk_020 - gScrollList->mUnk_018;
-        f = gScrollList->mUnk_024 != gScrollList->mSelectedVisibleRow;
-        gScrollList->mUnk_008[gScrollList->mUnk_02c].mUnk_00 = f;
-        gScrollList->mUnk_038 = 10;
-        gScrollList->mUnk_054 = 0;
-        gScrollList->mUnk_050 = gScrollList->mUnk_054;
-        gScrollList->mUnk_04c = 0;
+        gScrollList->mPickedVisibleRow = gScrollList->mPressedRectIndex - gScrollList->mFirstRowRectIndex;
+        rowChanged = gScrollList->mPickedVisibleRow != gScrollList->mSelectedVisibleRow;
+        gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = rowChanged;
+        gScrollList->mTimer = 10;
+        gScrollList->mDownHeldFrames = 0;
+        gScrollList->mUpHeldFrames = gScrollList->mDownHeldFrames;
+        gScrollList->mHeldMoveCount = 0;
         gScrollList->mSelectedRow =
-            gScrollList->mSelectedRow + (gScrollList->mUnk_024 - gScrollList->mSelectedVisibleRow);
-        gScrollList->mSelectedVisibleRow = gScrollList->mUnk_024;
+            gScrollList->mSelectedRow + (gScrollList->mPickedVisibleRow - gScrollList->mSelectedVisibleRow);
+        gScrollList->mSelectedVisibleRow = gScrollList->mPickedVisibleRow;
         func_0202edd0();
-        func_0202f120(0, -1, -1, f != FALSE ? GetScrollListSelectedSlot() : -1);
+        func_0202f120(0, -1, -1, rowChanged != FALSE ? GetScrollListSelectedSlot() : -1);
         return;
     }
-    if ((func_0202ecd4(a, PAD_KEY_UP) != 0 || gScrollList->mUnk_020 == gScrollList->mUnk_010 ||
-         gScrollList->mUnk_050 > gScrollList->mUnk_048) &&
+    if ((func_0202ecd4(slotIndex, PAD_KEY_UP) != 0 || gScrollList->mPressedRectIndex == gScrollList->mUpRectIndex ||
+         gScrollList->mUpHeldFrames > gScrollList->mScrollFrameCount) &&
         gScrollList->mSelectedRow > 0) {
         if (gScrollList->mSelectedVisibleRow == 0) {
-            gScrollList->mUnk_038 = gScrollList->mUnk_048;
-            gScrollList->mUnk_008[gScrollList->mUnk_02c].mUnk_00 = 0;
+            gScrollList->mTimer = gScrollList->mScrollFrameCount;
+            gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 0;
             gScrollList->mState = 3;
             func_0202ee3c(gScrollList->mHiddenTopSlot, 1);
             func_0202f120(0, -1, -1, -1);
@@ -82,45 +84,47 @@ void func_0202e9f0(void) {
         } else {
             gScrollList->mState = 1;
         }
-        gScrollList->mUnk_050 = 0;
-        gScrollList->mUnk_04c = gScrollList->mUnk_04c + 1;
-        if (gScrollList->mUnk_01c == gScrollList->mUnk_010) {
+        gScrollList->mUpHeldFrames = 0;
+        gScrollList->mHeldMoveCount = gScrollList->mHeldMoveCount + 1;
+        if (gScrollList->mTouchRectIndex == gScrollList->mUpRectIndex) {
             func_0202ed50(1);
         }
         func_0202ecac(3);
         return;
     }
-    if ((func_0202ecd4(a, PAD_KEY_DOWN) != 0 || gScrollList->mUnk_020 == gScrollList->mUnk_014 ||
-         gScrollList->mUnk_054 > gScrollList->mUnk_048) &&
+    if ((func_0202ecd4(slotIndex, PAD_KEY_DOWN) != 0 || gScrollList->mPressedRectIndex == gScrollList->mDownRectIndex ||
+         gScrollList->mDownHeldFrames > gScrollList->mScrollFrameCount) &&
         gScrollList->mSelectedRow < gScrollList->mRowCount - 1) {
         if (gScrollList->mSelectedVisibleRow == 4) {
-            gScrollList->mUnk_038 = gScrollList->mUnk_048;
-            gScrollList->mUnk_008[gScrollList->mUnk_02c].mUnk_00 = 0;
+            gScrollList->mTimer = gScrollList->mScrollFrameCount;
+            gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 0;
             gScrollList->mState = 4;
             func_0202ee3c(GetScrollListHiddenBottomSlot(), 1);
             func_0202f120(0, -1, -1, -1);
             {
-                ScrollList *q = gScrollList;
-                func_0202f120(2, GetScrollListHiddenBottomSlot(), q->mSelectedRow - q->mSelectedVisibleRow + 5, -1);
+                ScrollList *list = gScrollList;
+                func_0202f120(2, GetScrollListHiddenBottomSlot(), list->mSelectedRow - list->mSelectedVisibleRow + 5,
+                              -1);
             }
         } else {
             gScrollList->mState = 2;
         }
-        gScrollList->mUnk_054 = 0;
-        gScrollList->mUnk_04c = gScrollList->mUnk_04c + 1;
-        if (gScrollList->mUnk_01c == gScrollList->mUnk_014) {
+        gScrollList->mDownHeldFrames = 0;
+        gScrollList->mHeldMoveCount = gScrollList->mHeldMoveCount + 1;
+        if (gScrollList->mTouchRectIndex == gScrollList->mDownRectIndex) {
             func_0202ed50(2);
         }
         func_0202ecac(3);
         return;
     }
-    if (func_0202ec7c(a, PAD_KEY_UP | PAD_KEY_DOWN) == 0 && gScrollList->mUnk_01c != gScrollList->mUnk_010 &&
-        gScrollList->mUnk_01c != gScrollList->mUnk_014) {
-        gScrollList->mUnk_04c = 0;
+    if (func_0202ec7c(slotIndex, PAD_KEY_UP | PAD_KEY_DOWN) == 0 &&
+        gScrollList->mTouchRectIndex != gScrollList->mUpRectIndex &&
+        gScrollList->mTouchRectIndex != gScrollList->mDownRectIndex) {
+        gScrollList->mHeldMoveCount = 0;
     }
 }
 
-void func_0202e9ac(void) {
+void AdvanceScrollListSelectUp(void) {
     gScrollList->mSelectedVisibleRow = gScrollList->mSelectedVisibleRow - 1;
     gScrollList->mSelectedRow = gScrollList->mSelectedRow - 1;
     func_0202edd0();
@@ -128,7 +132,7 @@ void func_0202e9ac(void) {
     gScrollList->mState = 0;
 }
 
-void func_0202e968(void) {
+void AdvanceScrollListSelectDown(void) {
     gScrollList->mSelectedVisibleRow = gScrollList->mSelectedVisibleRow + 1;
     gScrollList->mSelectedRow = gScrollList->mSelectedRow + 1;
     func_0202edd0();
@@ -136,100 +140,100 @@ void func_0202e968(void) {
     gScrollList->mState = 0;
 }
 
-void func_0202e84c(void) {
-    s32 i;
-    s32 j;
-    s32 k;
-    s32 a;
-    Unk02124b1c *p;
-    BOOL z = FALSE;
-    s32 t = GetScrollListHiddenBottomSlot();
-    gScrollList->mUnk_038 = gScrollList->mUnk_038 - 1;
-    for (i = 0; i < gScrollList->mUnk_000; i++) {
-        for (j = z; j < 7; j++) {
-            k = gScrollList->mUnk_004[i];
-            a = func_0202ee20(j + k, (j + 1) % 7 + k);
-            p = &gScrollList->mUnk_008[j + k];
-            if (j == t) {
-                p->mUnk_06 = a;
+void AdvanceScrollListScrollUp(void) {
+    s32 groupIndex;
+    s32 slotIndex;
+    s32 firstEntry;
+    s32 distance;
+    Unk02124b1c *entry;
+    BOOL zero = FALSE;
+    s32 hiddenBottomSlot = GetScrollListHiddenBottomSlot();
+    gScrollList->mTimer = gScrollList->mTimer - 1;
+    for (groupIndex = 0; groupIndex < gScrollList->mGroupCount; groupIndex++) {
+        for (slotIndex = zero; slotIndex < 7; slotIndex++) {
+            firstEntry = gScrollList->mGroupFirstEntries[groupIndex];
+            distance = func_0202ee20(slotIndex + firstEntry, (slotIndex + 1) % 7 + firstEntry);
+            entry = &gScrollList->mEntries[slotIndex + firstEntry];
+            if (slotIndex == hiddenBottomSlot) {
+                entry->mUnk_06 = distance;
             } else {
-                p->mUnk_06 = InterpolateS16(1, a, z, gScrollList->mUnk_038, gScrollList->mUnk_048);
+                entry->mUnk_06 = InterpolateS16(1, distance, zero, gScrollList->mTimer, gScrollList->mScrollFrameCount);
             }
         }
     }
-    if (gScrollList->mUnk_038 == 0) {
-        for (i = 0; i < gScrollList->mUnk_000; i++) {
-            for (j = z; j < 7; j++) {
-                p = &gScrollList->mUnk_008[j + gScrollList->mUnk_004[i]];
-                p->mUnk_0e = p->mUnk_0e + p->mUnk_06;
-                p->mUnk_06 = 0;
+    if (gScrollList->mTimer == 0) {
+        for (groupIndex = 0; groupIndex < gScrollList->mGroupCount; groupIndex++) {
+            for (slotIndex = zero; slotIndex < 7; slotIndex++) {
+                entry = &gScrollList->mEntries[slotIndex + gScrollList->mGroupFirstEntries[groupIndex]];
+                entry->mUnk_0e = entry->mUnk_0e + entry->mUnk_06;
+                entry->mUnk_06 = 0;
             }
         }
-        gScrollList->mUnk_008[gScrollList->mUnk_02c].mUnk_00 = 1;
+        gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 1;
         gScrollList->mSelectedRow = gScrollList->mSelectedRow - 1;
-        gScrollList->mHiddenTopSlot = t;
+        gScrollList->mHiddenTopSlot = hiddenBottomSlot;
         func_0202f120(1, gScrollList->mHiddenTopSlot, gScrollList->mSelectedRow - 1, -1);
         {
-            ScrollList *q = gScrollList;
-            func_0202f120(0, q->mHiddenTopSlot, q->mSelectedRow - 1, GetScrollListSelectedSlot());
+            ScrollList *list = gScrollList;
+            func_0202f120(0, list->mHiddenTopSlot, list->mSelectedRow - 1, GetScrollListSelectedSlot());
         }
         gScrollList->mState = 0;
         func_0202ee3c(gScrollList->mHiddenTopSlot, 0);
     }
 }
 
-void func_0202e72c(void) {
-    s32 i;
-    s32 j;
-    s32 k;
-    s32 a;
-    Unk02124b1c *p;
-    BOOL z = FALSE;
-    gScrollList->mUnk_038 = gScrollList->mUnk_038 - 1;
-    for (i = 0; i < gScrollList->mUnk_000; i++) {
-        for (j = z; j < 7; j++) {
-            k = gScrollList->mUnk_004[i];
-            a = func_0202ee20(j + k, (j + 6) % 7 + k);
-            p = &gScrollList->mUnk_008[j + k];
-            if (j == gScrollList->mHiddenTopSlot) {
-                p->mUnk_06 = a;
+void AdvanceScrollListScrollDown(void) {
+    s32 groupIndex;
+    s32 slotIndex;
+    s32 firstEntry;
+    s32 distance;
+    Unk02124b1c *entry;
+    BOOL zero = FALSE;
+    gScrollList->mTimer = gScrollList->mTimer - 1;
+    for (groupIndex = 0; groupIndex < gScrollList->mGroupCount; groupIndex++) {
+        for (slotIndex = zero; slotIndex < 7; slotIndex++) {
+            firstEntry = gScrollList->mGroupFirstEntries[groupIndex];
+            distance = func_0202ee20(slotIndex + firstEntry, (slotIndex + 6) % 7 + firstEntry);
+            entry = &gScrollList->mEntries[slotIndex + firstEntry];
+            if (slotIndex == gScrollList->mHiddenTopSlot) {
+                entry->mUnk_06 = distance;
             } else {
-                p->mUnk_06 = InterpolateS16(1, a, z, gScrollList->mUnk_038, gScrollList->mUnk_048);
+                entry->mUnk_06 = InterpolateS16(1, distance, zero, gScrollList->mTimer, gScrollList->mScrollFrameCount);
             }
         }
     }
-    if (gScrollList->mUnk_038 == 0) {
-        for (i = 0; i < gScrollList->mUnk_000; i++) {
-            for (j = z; j < 7; j++) {
-                p = &gScrollList->mUnk_008[j + gScrollList->mUnk_004[i]];
-                p->mUnk_0e = p->mUnk_0e + p->mUnk_06;
-                p->mUnk_06 = 0;
+    if (gScrollList->mTimer == 0) {
+        for (groupIndex = 0; groupIndex < gScrollList->mGroupCount; groupIndex++) {
+            for (slotIndex = zero; slotIndex < 7; slotIndex++) {
+                entry = &gScrollList->mEntries[slotIndex + gScrollList->mGroupFirstEntries[groupIndex]];
+                entry->mUnk_0e = entry->mUnk_0e + entry->mUnk_06;
+                entry->mUnk_06 = 0;
             }
         }
-        gScrollList->mUnk_008[gScrollList->mUnk_02c].mUnk_00 = 1;
+        gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 1;
         gScrollList->mSelectedRow = gScrollList->mSelectedRow + 1;
         func_0202f120(1, gScrollList->mHiddenTopSlot, gScrollList->mSelectedRow + 1, -1);
         {
-            ScrollList *q = gScrollList;
-            q->mHiddenTopSlot = (q->mHiddenTopSlot + 1) % 7;
+            ScrollList *list = gScrollList;
+            list->mHiddenTopSlot = (list->mHiddenTopSlot + 1) % 7;
         }
         {
-            ScrollList *q = gScrollList;
-            func_0202f120(0, q->mHiddenTopSlot, q->mSelectedRow - 1, GetScrollListSelectedSlot());
+            ScrollList *list = gScrollList;
+            func_0202f120(0, list->mHiddenTopSlot, list->mSelectedRow - 1, GetScrollListSelectedSlot());
         }
         gScrollList->mState = 0;
         func_0202ee3c(GetScrollListHiddenBottomSlot(), 0);
     }
 }
 
-void func_0202e6c4(void) {
-    if (gScrollList->mUnk_038 == 10) {
+void AdvanceScrollListPick(void) {
+    if (gScrollList->mTimer == 10) {
         gScrollList->mPickStarted = 1;
     }
-    gScrollList->mUnk_038 = gScrollList->mUnk_038 - 1;
-    if (gScrollList->mUnk_038 == 0) {
+    gScrollList->mTimer = gScrollList->mTimer - 1;
+    if (gScrollList->mTimer == 0) {
         func_0202f120(0, -1, -1, GetScrollListSelectedSlot());
-        gScrollList->mUnk_008[gScrollList->mUnk_02c].mUnk_00 = 1;
+        gScrollList->mEntries[gScrollList->mCursorEntry].mUnk_00 = 1;
         gScrollList->mState = 0;
         gScrollList->mPickFinished = 1;
     }
@@ -237,11 +241,11 @@ void func_0202e6c4(void) {
 
 #pragma thumb off
 
-void func_0202e6a0(void *a, u32 b, u32 c) {
-    volatile u32 v = b;
-    MIi_CpuClearFast(v, a, c);
+void func_0202e6a0(void *dest, u32 value, u32 size) {
+    volatile u32 valueCopy = value;
+    MIi_CpuClearFast(valueCopy, dest, size);
 }
 
-void func_0202e68c(void *a, u32 b) {
-    func_0202e6a0(a, 0, b);
+void func_0202e68c(void *dest, u32 size) {
+    func_0202e6a0(dest, 0, size);
 }

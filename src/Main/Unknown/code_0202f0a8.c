@@ -7,7 +7,7 @@
 #pragma thumb on
 
 void func_0202f120(s32 a, s32 b, s32 c, s32 d) {
-    void (*f)(int, int, int, int) = gScrollList->mUnk_028;
+    void (*f)(int, int, int, int) = gScrollList->mCallback;
     if (f != NULL) {
         if (a == 1) {
             if (c < 0 || c >= gScrollList->mRowCount) {

@@ -343,9 +343,9 @@ void InitWiFiVSCourseSelect(void *param_1, void *param_2, void *param_3) {
     func_02025c1c(7, t->mCellTable + 7, t->mCellLayout);
     w[0] = 0;
     w[1] = m;
-    func_0202e530(gWiFiVSCourseSelect->mHeap, 2, w, 7, 8, 0x7c, t->mCellTable, t->mRects,
-                  (u8 *) gWiFiVSCourseSelect->mWiFiVSCourseSelectMBAndSBParts[1].mScreenMaps[3] + 0xc, 5, 6, 0, 0x15,
-                  func_0202b4bc);
+    InitScrollList(gWiFiVSCourseSelect->mHeap, 2, w, 7, 8, 0x7c, t->mCellTable, t->mRects,
+                   (u8 *) gWiFiVSCourseSelect->mWiFiVSCourseSelectMBAndSBParts[1].mScreenMaps[3] + 0xc, 5, 6, 0, 0x15,
+                   func_0202b4bc);
     FrmHeapShrinkInParent(gWiFiVSCourseSelect->mHeap);
 }
 
@@ -356,7 +356,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
     s32 i;
     s32 v;
 
-    func_0202e4b0();
+    AdvanceScrollList();
     func_0202b100();
     switch (gWiFiVSCourseSelect->mState) {
         case 0:

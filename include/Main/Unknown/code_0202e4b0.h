@@ -3,6 +3,8 @@
 #include "types.h"
 #include "Main/Unknown/unk_02174000.h"
 
-void func_0202e4b0(void);
-void func_0202e530(void *a, s32 b, const void *c, u16 d, u16 e, s32 f, Unk02124b1c *g, void *h, const void *i, s32 j,
-                   s32 k, s32 l, s32 m, void (*n)(int a, int b, int c, int d));
+void AdvanceScrollList(void);
+void InitScrollList(void *heap, s32 b, const void *groupFirstEntries, u16 cursorEntry, u16 e, s32 f,
+                    Unk02124b1c *entries, void *rects, const void *screenMap, s32 upRectIndex, s32 downRectIndex,
+                    s32 firstRowRectIndex, s32 rowCount,
+                    void (*callback)(int heap, int b, int groupFirstEntries, int cursorEntry));

@@ -45,41 +45,41 @@ void func_0202eec0(void) {
     if (func_0202f0a8(a) != 0) {
         b = func_0202f080(a);
         c = func_0202f058(a);
-        gScrollList->mUnk_01c = FindRectContainingPoint(b, c, gScrollList->mUnk_00c);
-        gScrollList->mUnk_020 = gScrollList->mUnk_01c;
+        gScrollList->mTouchRectIndex = FindRectContainingPoint(b, c, gScrollList->mRects);
+        gScrollList->mPressedRectIndex = gScrollList->mTouchRectIndex;
         gScrollList->mUnk_66c = TRUE;
     } else {
-        gScrollList->mUnk_020 = -1;
+        gScrollList->mPressedRectIndex = -1;
     }
     if (gScrollList->mUnk_66c != FALSE) {
         if (func_0202efc8(a) != 0) {
             b = func_0202f080(a);
             c = func_0202f058(a);
-            d = FindRectContainingPoint(b, c, gScrollList->mUnk_00c);
-            if (d != gScrollList->mUnk_01c) {
-                gScrollList->mUnk_01c = -1;
+            d = FindRectContainingPoint(b, c, gScrollList->mRects);
+            if (d != gScrollList->mTouchRectIndex) {
+                gScrollList->mTouchRectIndex = -1;
                 gScrollList->mUnk_66c = FALSE;
             }
         } else {
-            gScrollList->mUnk_01c = -1;
+            gScrollList->mTouchRectIndex = -1;
             gScrollList->mUnk_66c = FALSE;
         }
     }
-    if (func_0202ec7c(a, PAD_KEY_UP) != 0 || gScrollList->mUnk_01c == gScrollList->mUnk_010) {
-        gScrollList->mUnk_050 = gScrollList->mUnk_050 + 1;
+    if (func_0202ec7c(a, PAD_KEY_UP) != 0 || gScrollList->mTouchRectIndex == gScrollList->mUpRectIndex) {
+        gScrollList->mUpHeldFrames = gScrollList->mUpHeldFrames + 1;
     } else {
-        gScrollList->mUnk_050 = 0;
+        gScrollList->mUpHeldFrames = 0;
     }
-    if (func_0202ec7c(a, PAD_KEY_DOWN) != 0 || gScrollList->mUnk_01c == gScrollList->mUnk_014) {
-        gScrollList->mUnk_054 = gScrollList->mUnk_054 + 1;
+    if (func_0202ec7c(a, PAD_KEY_DOWN) != 0 || gScrollList->mTouchRectIndex == gScrollList->mDownRectIndex) {
+        gScrollList->mDownHeldFrames = gScrollList->mDownHeldFrames + 1;
     } else {
-        gScrollList->mUnk_054 = 0;
+        gScrollList->mDownHeldFrames = 0;
     }
 }
 
 void func_0202ee88(void) {
-    if (gScrollList->mUnk_008[gScrollList->mUnk_02e].mUnk_00 != 0) {
-        gScrollList->mUnk_008[gScrollList->mUnk_02e].mUnk_06 =
+    if (gScrollList->mEntries[gScrollList->mUnk_02e].mUnk_00 != 0) {
+        gScrollList->mEntries[gScrollList->mUnk_02e].mUnk_06 =
             gScrollList->mUnk_030 * (gScrollList->mSelectedRow - gScrollList->mSelectedVisibleRow) /
             (gScrollList->mRowCount - 5);
     }

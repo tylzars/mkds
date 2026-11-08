@@ -11,9 +11,9 @@ void func_0202edd0(void) {
     ScrollList *p = gScrollList;
     s32 k;
     s16 v;
-    k = p->mUnk_004[0] + GetScrollListSelectedSlot();
-    v = p->mUnk_008[k].mUnk_0e;
-    p->mUnk_008[p->mUnk_02c].mUnk_0e = v;
+    k = p->mGroupFirstEntries[0] + GetScrollListSelectedSlot();
+    v = p->mEntries[k].mUnk_0e;
+    p->mEntries[p->mCursorEntry].mUnk_0e = v;
 }
 
 void func_0202ed50(s32 a) {
@@ -31,7 +31,7 @@ void func_0202ed50(s32 a) {
     }
     gScrollList->mUnk_65c = 5;
     gScrollList->mUnk_658 = a;
-    CallQueueAppend(0x1b, 0, gScrollList->mUnk_058, 0x600);
+    CallQueueAppend(0x1b, 0, gScrollList->mScreenMap, 0x600);
 }
 
 void func_0202ed04(void) {

@@ -76,12 +76,12 @@ void func_0202d868(s32 a, s32 b, s32 c, s32 d) {
     p = &gTimeAttackGhostSend->mUnk_050[1];
     if (a == 1) {
         func_0212426c(1, b, p->mLabelLayout,
-                      GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, func_02025d74(func_0202db04(c))),
+                      GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, func_02025d74(GetListedGhostCourseId(c))),
                       p->mCellLayout, p->mCellTable);
-        func_0202dcf4(c, &t);
+        GetListedGhostTime(c, &t);
         WriteMinuteSecondMillisecondText(s, t.mUnk_02, t.mUnk_03, t.mUnk_00);
         func_02124224(1, b + 7, p->mLabelLayout, s, p->mCellLayout, p->mCellTable, 7);
-        j = func_0202dd80(c) == 0;
+        j = IsSlotGhostIndex(c) == 0;
         p->mCellTable[b].mUnk_00 = j;
         k = j == 0;
         p->mCellTable[b + 7].mUnk_00 = k;
@@ -97,8 +97,8 @@ void func_0202d868(s32 a, s32 b, s32 c, s32 d) {
             func_02124100(j, k, p->mLabelLayout, p->mCellTable, p->mCellLayout);
         }
     } else if (a == 2) {
-        if (c >= 0 && c < (s32) func_0202ddc4()) {
-            j = func_0202dd80(c) == 0;
+        if (c >= 0 && c < (s32) GetGhostCount()) {
+            j = IsSlotGhostIndex(c) == 0;
             p->mCellTable[b].mUnk_00 = j;
             k = j == 0;
             p->mCellTable[b + 7].mUnk_00 = k;
@@ -132,7 +132,7 @@ void func_0202d720(void) {
                   p->mCellTable);
     func_0212426c(1, 0xf, p->mLabelLayout, GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, 0x57), p->mCellLayout,
                   p->mCellTable);
-    n = func_0202ddb0();
+    n = GetCourseGhostCount();
     if (n < 10) {
         s[0] = ' ';
     } else {
@@ -144,7 +144,7 @@ void func_0202d720(void) {
     s[4] = '2';
     s[5] = 0;
     func_02124224(1, 0x10, p->mLabelLayout, s, p->mCellLayout, p->mCellTable, 6);
-    n = func_0202dd9c();
+    n = GetSlotGhostCount();
     if (n < 10) {
         s[0] = ' ';
     } else {
@@ -164,14 +164,14 @@ void func_0202d6a0(void) {
     u16 m[11];
     s32 a;
     s32 b;
-    func_0202dcf4(gTimeAttackGhostSend->mUnk_0a4, &t);
-    func_0202dc68(gTimeAttackGhostSend->mUnk_0a4, n);
+    GetListedGhostTime(gTimeAttackGhostSend->mUnk_0a4, &t);
+    GetListedGhostName(gTimeAttackGhostSend->mUnk_0a4, n);
     MIi_CpuCopy16(n, m, 0x14);
     m[10] = 0;
-    a = func_0202dbe8(gTimeAttackGhostSend->mUnk_0a4);
-    b = func_0202db68(gTimeAttackGhostSend->mUnk_0a4);
-    func_0202de00((Unk02174e14 *) gTimeAttackGhostSend->mUnk_050, data_usa_02153bec, m, a, b,
-                  func_0202db04(gTimeAttackGhostSend->mUnk_0a4), &t);
+    a = GetListedGhostCharacterIndex(gTimeAttackGhostSend->mUnk_0a4);
+    b = GetListedGhostKartIndex(gTimeAttackGhostSend->mUnk_0a4);
+    PrintGhostRecordInfo((Unk02174e14 *) gTimeAttackGhostSend->mUnk_050, data_usa_02153bec, m, a, b,
+                         GetListedGhostCourseId(gTimeAttackGhostSend->mUnk_0a4), &t);
 }
 
 #pragma thumb off
@@ -204,7 +204,7 @@ void func_0202d5f8(s32 a, s32 b) {
 }
 
 void func_0202d5c0(void) {
-    func_0202daa4(gTimeAttackGhostSend->mUnk_0a4);
+    StartReadListedGhost(gTimeAttackGhostSend->mUnk_0a4);
     SetupTxtSystemSubText(GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, 9));
     SetSelectReturnSoundId(0xe);
     RequestSelectReturnState4();
@@ -292,14 +292,14 @@ void InitTimeAttackGhostSend(void *a, void *b, void *c) {
         func_02025bf0(k, u + w + k, q->mLabelLayout);
     }
     func_02025c1c(0xe, (u8 *) q->mCellTable + 0x380, q->mCellLayout);
-    if (func_0202ddc4() != 0) {
+    if (GetGhostCount() != 0) {
         Unk02174e40_24 *s = &gTimeAttackGhostSend->mUnk_024;
         r[0] = 0;
         r[1] = 7;
         r[2] = w;
         r[3] = w + 7;
-        func_0202e530(gTimeAttackGhostSend->mHeap, 4, r, 0xe, 0xf, 0x7c, q->mCellTable, q->mRects, s->mUnk_20 + 0xc, 0,
-                      1, 2, func_0202ddc4(), func_0202d868);
+        InitScrollList(gTimeAttackGhostSend->mHeap, 4, r, 0xe, 0xf, 0x7c, q->mCellTable, q->mRects, s->mUnk_20 + 0xc, 0,
+                       1, 2, GetGhostCount(), func_0202d868);
     } else {
         for (i = 0; i < w; i++) {
             q->mCellTable[i].mUnk_00 = 0;
@@ -353,7 +353,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
             break;
         case 1:
             if (AreBrightnessFadesClear() == 0) {
-                if (func_0202ddc4() == 0) {
+                if (GetGhostCount() == 0) {
                     SetupTxtSystemSubTextButton(GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, 0x53),
                                                 GetBmgEntry(gTimeAttackGhostSend->mCommonMessages, 4));
                     gTimeAttackGhostSend->mState = 0;
@@ -376,7 +376,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
             break;
         case 3:
             if (IsTxtSystemState2NoCloseRequest() != 0) {
-                func_0202e4b0();
+                AdvanceScrollList();
                 i = GetScrollListSelectedRow();
                 if (gTimeAttackGhostSend->mUnk_0a4 != i) {
                     gTimeAttackGhostSend->mUnk_0a4 = i;
@@ -412,18 +412,18 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
                 i = 0;
             }
             if (i == 0 && d->mUnk_04 == NULL) {
-                if (func_0202dd80(gTimeAttackGhostSend->mUnk_0a4) == 0) {
-                    func_0203bf04(func_0202ddec(), (void *) func_0202ddd8());
+                if (IsSlotGhostIndex(gTimeAttackGhostSend->mUnk_0a4) == 0) {
+                    func_0203bf04(GetCourseGhostBuffer(), (void *) GetSlotGhostBuffer());
                 }
                 gTimeAttackGhostSend->mState = 5;
             }
             break;
         case 5:
-            i = AdvanceConnectionSetup(1, (void *) func_0202ddd8());
+            i = AdvanceConnectionSetup(1, (void *) GetSlotGhostBuffer());
             switch (i) {
                 case 1:
                     ResetPendingFiles();
-                    func_0204eeac((void *) func_0202ddd8(), 0x1000);
+                    func_0204eeac((void *) GetSlotGhostBuffer(), 0x1000);
                     RequestSelectReturnState1();
                     gTimeAttackGhostSend->mState = 6;
                     break;

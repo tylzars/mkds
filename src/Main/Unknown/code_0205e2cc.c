@@ -279,11 +279,11 @@ u8 CountEmblemEntries(void) {
 #pragma thumb on
 
 void func_0205e530(void) {
-    func_0202dfd4(GetHeap(GetCurrentHeapCall()));
+    InitGhostScene(GetHeap(GetCurrentHeapCall()));
 }
 
 void func_0205e528(void) {
-    func_0202defc();
+    ReleaseGhostScene();
 }
 
 void func_0205e520(void) {
@@ -291,7 +291,7 @@ void func_0205e520(void) {
 }
 
 void func_0205e518(u32 a) {
-    func_0202df34(a);
+    AdvanceGhostScene(a);
 }
 
 s32 RunGhostScene(SceneNumbers *a) {
