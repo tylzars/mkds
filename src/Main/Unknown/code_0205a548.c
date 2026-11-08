@@ -8,107 +8,108 @@
 #include "00/code_0219b580.h"
 #include "code_0214d018.h"
 
-void func_0205a858(u32 a, u32 b, void *c, u8 d) {
-    Unk0217aa14_324 *e;
-    u16 i;
+void AddItemData(u32 itemKind, u32 messageKind, void *data, u8 size) {
+    ItemDataSlot *slot;
+    u16 slotIndex;
 
-    for (i = 0; i < 16; i++) {
-        e = &data_0217aa14->mUnk_324[i];
-        if (e->mUnk_08 == 0) {
+    for (slotIndex = 0; slotIndex < 16; slotIndex++) {
+        slot = &data_0217aa14->mUnk_324[slotIndex];
+        if (slot->mUnk_08 == 0) {
             goto found;
         }
     }
-    e = NULL;
+    slot = NULL;
 found:
-    e->mUnk_09 = a;
-    e->mUnk_0a = b;
-    e->mUnk_08 = 1;
-    e->mUnk_00 = data_0217aa14->mUnk_728 + 0x28;
-    MI_CpuFill8(e->mUnk_04, 0, 20);
-    if (d == 0) {
-        e->mUnk_0b = 0;
+    slot->mItemKind = itemKind;
+    slot->mMessageKind = messageKind;
+    slot->mUnk_08 = 1;
+    slot->mUnk_00 = data_0217aa14->mUnk_728 + 0x28;
+    MI_CpuFill8(slot->mData, 0, 20);
+    if (size == 0) {
+        slot->mDataSize = 0;
         return;
     }
-    MI_CpuCopy8(c, e->mUnk_04, d);
-    e->mUnk_0b = d;
+    MI_CpuCopy8(data, slot->mData, size);
+    slot->mDataSize = size;
 }
 
-void func_0205a7dc(s32 a, u16 b, s32 c, s32 d) {
-    Unk0217aa14_754_04_20 *e;
+void func_0205a7dc(s32 participantIndex, u16 remaining, s32 itemIndex, s32 state) {
+    Unk0217aa14_754_04_20 *entry;
 
-    e = &((Unk0217aa14_754_04 *) (void *) &data_0217aa14->mUnk_754->mUnk_04)->mUnk_20[a];
-    e->mUnk_00_0 = b;
-    e->mUnk_00_7 = c;
-    e->mUnk_00_12 = d;
+    entry = &((Unk0217aa14_754_04 *) (void *) &data_0217aa14->mUnk_754->mUnk_04)->mUnk_20[participantIndex];
+    entry->mUnk_00_0 = remaining;
+    entry->mUnk_00_7 = itemIndex;
+    entry->mUnk_00_12 = state;
 }
 
-void func_0205a7ac(s32 a) {
+void func_0205a7ac(s32 participantIndex) {
     Unk0217aa14_754_04 *p = (void *) &data_0217aa14->mUnk_754->mUnk_04;
-    MI_CpuFill8(&p->mUnk_20[a], 0, 2);
+    MI_CpuFill8(&p->mUnk_20[participantIndex], 0, 2);
 }
 
-void func_0205a750(s32 a) {
-    Unk0217aa14_104_68 *e;
+void func_0205a750(s32 itemIndex) {
+    Unk0217aa14_104_68 *view;
     s32 t;
 
-    e = &data_0217aa14->mUnk_104[func_ov000_0219bb50()].mUnk_68_view;
-    e->mUnk_0e = 0;
+    view = &data_0217aa14->mUnk_104[func_ov000_0219bb50()].mUnk_68_view;
+    view->mUnk_0e = 0;
     t = data_0217aa14->mUnk_728;
-    e->mUnk_0c = 2;
-    e->mUnk_00 = a;
-    e->mUnk_08 = t + 0x78;
-    e->mUnk_04 = 0x13;
+    view->mUnk_0c = 2;
+    view->mUnk_00 = itemIndex;
+    view->mUnk_08 = t + 0x78;
+    view->mUnk_04 = 0x13;
 }
 
-void func_0205a71c(s32 a) {
-    func_020f86c4(&gKartItems[(u8) data_0217aa18->mUnk_06[a]]);
+void func_0205a71c(s32 participantIndex) {
+    func_020f86c4(&gKartItems[(u8) data_0217aa18->mKartOfParticipant[participantIndex]]);
 }
 
 void func_0205a6b4(void) {
-    u16 i;
-    Unk0217aa14_104_68 *e;
+    u16 participantIndex;
+    Unk0217aa14_104_68 *view;
 
-    for (i = 0; i < 4;) {
-        e = &data_0217aa14->mUnk_104[i].mUnk_68_view;
-        i++;
-        e->mUnk_00 = 0x13;
-        e->mUnk_04 = 0x13;
-        e->mUnk_08 = 0;
-        e->mUnk_0c = 0;
-        e->mUnk_10 = 0x13;
-        e->mUnk_14 = 0;
+    for (participantIndex = 0; participantIndex < 4;) {
+        view = &data_0217aa14->mUnk_104[participantIndex].mUnk_68_view;
+        participantIndex++;
+        view->mUnk_00 = 0x13;
+        view->mUnk_04 = 0x13;
+        view->mUnk_08 = 0;
+        view->mUnk_0c = 0;
+        view->mUnk_10 = 0x13;
+        view->mUnk_14 = 0;
     }
 }
 
-s32 func_0205a630(s32 a) {
-    BOOL r;
-    s32 t;
+s32 func_0205a630(s32 participantIndex) {
+    BOOL result;
+    s32 itemInfoIndex;
 
-    t = data_0217aa14->mUnk_104[a].mUnk_6c;
-    r = FALSE;
-    if (func_020efd84(&gKartItems[(u8) data_0217aa18->mUnk_06[a]], t) != FALSE) {
-        data_0217aa14->mUnk_104[a].mUnk_6c = 0x13;
-        r = TRUE;
+    itemInfoIndex = data_0217aa14->mUnk_104[participantIndex].mUnk_6c;
+    result = FALSE;
+    if (func_020efd84(&gKartItems[(u8) data_0217aa18->mKartOfParticipant[participantIndex]], itemInfoIndex) != FALSE) {
+        data_0217aa14->mUnk_104[participantIndex].mUnk_6c = 0x13;
+        result = TRUE;
     }
-    return r;
+    return result;
 }
 
-void func_0205a5b0(u32 a) {
-    Unk0217aa14_104_68 *e;
+void func_0205a5b0(u32 participantIndex) {
+    Unk0217aa14_104_68 *view;
 
-    e = &data_0217aa14->mUnk_104[a].mUnk_68_view;
-    if (e->mUnk_0c != 0) {
+    view = &data_0217aa14->mUnk_104[participantIndex].mUnk_68_view;
+    if (view->mUnk_0c != 0) {
         return;
     }
-    e->mUnk_04 = 0x13;
-    ResetHeldItem(&gKartItems[(u16) data_0217aa18->mUnk_06[a]].mHeldItem);
+    view->mUnk_04 = 0x13;
+    ResetHeldItem(&gKartItems[(u16) data_0217aa18->mKartOfParticipant[participantIndex]].mHeldItem);
 }
 
-void func_0205a548(s32 a, s32 b, s32 c) {
-    Unk0217aa14_104_68 *e;
+void func_0205a548(s32 participantIndex, s32 itemInfoIndex, s32 count) {
+    Unk0217aa14_104_68 *view;
 
-    e = &data_0217aa14->mUnk_104[a].mUnk_68_view;
-    e->mUnk_00 = b;
-    e->mUnk_04 = b;
-    SetHeldItemWithCount(&gKartItems[(u16) data_0217aa18->mUnk_06[a]].mHeldItem, b, c);
+    view = &data_0217aa14->mUnk_104[participantIndex].mUnk_68_view;
+    view->mUnk_00 = itemInfoIndex;
+    view->mUnk_04 = itemInfoIndex;
+    SetHeldItemWithCount(&gKartItems[(u16) data_0217aa18->mKartOfParticipant[participantIndex]].mHeldItem,
+                         itemInfoIndex, count);
 }

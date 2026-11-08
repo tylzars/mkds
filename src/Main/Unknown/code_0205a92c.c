@@ -9,74 +9,75 @@
 #include "00/code_0219b580.h"
 #include "code_0214d018.h"
 
-void func_0205ae8c(u32 a) {
-    u8 j;
-    u8 n;
+void func_0205ae8c(u32 kartIndex) {
+    u8 otherKartIndex;
+    u8 rank;
     u8 f;
-    u8 m;
-    s32 s;
-    s32 t;
-    Unk0217aa18 *g;
+    u8 otherRank;
+    s32 participantIndex;
+    s32 otherParticipantIndex;
+    ParticipantKartMap *g;
     Unk0217aa14 *p;
 
     g = data_0217aa18;
     p = data_0217aa14;
-    s = g->mUnk_00[(u8) a];
-    n = p->mUnk_104[s].mUnk_86_1;
-    if (s < 0) {
+    participantIndex = g->mParticipantOfKart[(u8) kartIndex];
+    rank = p->mUnk_104[participantIndex].mRank;
+    if (participantIndex < 0) {
         return;
     }
-    j = 0;
-    for (j = 0; j < (s32) gRaceSetup->mKartCount; j++) {
-        if (j != a) {
-            t = g->mUnk_00[j];
-            m = p->mUnk_104[t].mUnk_86_1;
-            if (t >= 0 && m < n) {
+    otherKartIndex = 0;
+    for (otherKartIndex = 0; otherKartIndex < (s32) gRaceSetup->mKartCount; otherKartIndex++) {
+        if (otherKartIndex != kartIndex) {
+            otherParticipantIndex = g->mParticipantOfKart[otherKartIndex];
+            otherRank = p->mUnk_104[otherParticipantIndex].mRank;
+            if (otherParticipantIndex >= 0 && otherRank < rank) {
                 f = 0;
-                if ((p->mUnk_0fc & (1 << (u8) t)) != 0 && (p->mUnk_749 & (1 << (u8) t)) == 0) {
+                if ((p->mUnk_0fc & (1 << (u8) otherParticipantIndex)) != 0 &&
+                    (p->mUnk_749 & (1 << (u8) otherParticipantIndex)) == 0) {
                     f = 1;
                 }
                 if (f != 0) {
-                    n = n - 1;
+                    rank = rank - 1;
                 }
             }
         }
     }
-    p->mUnk_104[s].mUnk_86_1 = n;
+    p->mUnk_104[participantIndex].mRank = rank;
 }
 
-void func_0205ad88(void) {
-    s32 i;
-    s32 j;
-    Unk0217aa14_324 *e;
+void ResetItemDataSlots(void) {
+    s32 slotIndex;
+    s32 participantIndex;
+    ItemDataSlot *slot;
 
-    for (i = 0; i < 16; i++) {
-        for (j = 0; j < 4; j++) {
-            e = &data_0217aa14->mUnk_3e4[i][j];
-            e->mUnk_08 = 0;
-            e->mUnk_00 = 0;
-            e->mUnk_09 = 15;
-            e->mUnk_0a = 0;
-            e->mUnk_0b = 0;
-            MI_CpuFill8(e->mUnk_04, 0, 20);
-            data_0217aa14->mUnk_6e4[i][j] = 0;
+    for (slotIndex = 0; slotIndex < 16; slotIndex++) {
+        for (participantIndex = 0; participantIndex < 4; participantIndex++) {
+            slot = &data_0217aa14->mUnk_3e4[slotIndex][participantIndex];
+            slot->mUnk_08 = 0;
+            slot->mUnk_00 = 0;
+            slot->mItemKind = 15;
+            slot->mMessageKind = 0;
+            slot->mDataSize = 0;
+            MI_CpuFill8(slot->mData, 0, 20);
+            data_0217aa14->mUnk_6e4[slotIndex][participantIndex] = 0;
         }
-        e = &data_0217aa14->mUnk_324[i];
-        e->mUnk_08 = 0;
-        e->mUnk_00 = 0;
-        e->mUnk_09 = 15;
-        e->mUnk_0a = 0;
-        e->mUnk_0b = 0;
-        MI_CpuFill8(e->mUnk_04, 0, 20);
+        slot = &data_0217aa14->mUnk_324[slotIndex];
+        slot->mUnk_08 = 0;
+        slot->mUnk_00 = 0;
+        slot->mItemKind = 15;
+        slot->mMessageKind = 0;
+        slot->mDataSize = 0;
+        MI_CpuFill8(slot->mData, 0, 20);
     }
     data_0217aa14->mUnk_724 = 0x30;
 }
 
-BOOL func_0205ad44(void) {
-    u16 i;
+BOOL IsAnyItemDataSlotFree(void) {
+    u16 slotIndex;
 
-    for (i = 0; i < 16; i++) {
-        if (data_0217aa14->mUnk_324[i].mUnk_08 == 0) {
+    for (slotIndex = 0; slotIndex < 16; slotIndex++) {
+        if (data_0217aa14->mUnk_324[slotIndex].mUnk_08 == 0) {
             return TRUE;
         }
     }
@@ -84,68 +85,68 @@ BOOL func_0205ad44(void) {
 }
 
 void func_0205ac38(void) {
-    u16 i;
-    u8 *a;
-    u8 *b;
-    u16 v;
-    Unk0217aa14_324 *e;
+    u16 slotIndex;
+    u8 *headerCursor;
+    u8 *dataCursor;
+    u16 usedSize;
+    ItemDataSlot *slot;
     Unk0217aa14_754_04 *q;
-    u8 c;
+    u8 headerByte;
 
-    v = 0;
+    usedSize = 0;
     q = (void *) &data_0217aa14->mUnk_754->mUnk_04;
-    a = q->mUnk_28;
-    b = a + 16;
-    for (i = 0; i < 16; i++) {
-        e = &data_0217aa14->mUnk_324[i];
-        if (e->mUnk_08 == 0 || e->mUnk_08 == 2 || e->mUnk_09 == 15) {
-            c = 15;
+    headerCursor = q->mUnk_28;
+    dataCursor = headerCursor + 16;
+    for (slotIndex = 0; slotIndex < 16; slotIndex++) {
+        slot = &data_0217aa14->mUnk_324[slotIndex];
+        if (slot->mUnk_08 == 0 || slot->mUnk_08 == 2 || slot->mItemKind == 15) {
+            headerByte = 15;
         } else {
-            c = (e->mUnk_09 & 0x1f) | ((e->mUnk_0a << 5) & 0xe0);
+            headerByte = (slot->mItemKind & 0x1f) | ((slot->mMessageKind << 5) & 0xe0);
         }
-        *a++ = c;
-        switch (e->mUnk_08) {
+        *headerCursor++ = headerByte;
+        switch (slot->mUnk_08) {
             case 0:
                 break;
             case 1:
-                if (e->mUnk_0b != 0 && 0x30 - (v + e->mUnk_0b) >= 0) {
-                    MI_CpuCopy8(e->mUnk_04, b, e->mUnk_0b);
-                    v = v + e->mUnk_0b;
-                    b += e->mUnk_0b;
+                if (slot->mDataSize != 0 && 0x30 - (usedSize + slot->mDataSize) >= 0) {
+                    MI_CpuCopy8(slot->mData, dataCursor, slot->mDataSize);
+                    usedSize = usedSize + slot->mDataSize;
+                    dataCursor += slot->mDataSize;
                 }
                 break;
             case 2:
                 break;
         }
     }
-    data_0217aa14->mUnk_724 = 0x30 - v;
+    data_0217aa14->mUnk_724 = 0x30 - usedSize;
 }
 
-void func_0205ab78(void) {
-    u16 i;
-    Unk0217aa14_324 *e;
+void ExpireItemDataSlots(void) {
+    u16 slotIndex;
+    ItemDataSlot *slot;
 
-    for (i = 0; i < 16; i++) {
-        e = &data_0217aa14->mUnk_324[i];
-        if (e->mUnk_09 == 15) {
+    for (slotIndex = 0; slotIndex < 16; slotIndex++) {
+        slot = &data_0217aa14->mUnk_324[slotIndex];
+        if (slot->mItemKind == 15) {
             continue;
         }
-        switch (e->mUnk_08) {
+        switch (slot->mUnk_08) {
             case 0:
                 break;
             case 2:
-                if (e->mUnk_00 + 30 < (u32) data_0217aa14->mUnk_728) {
-                    e->mUnk_08 = 0;
-                    e->mUnk_00 = 0;
-                    e->mUnk_09 = 15;
-                    e->mUnk_0a = 0;
-                    e->mUnk_0b = 0;
-                    MI_CpuFill8(e->mUnk_04, 0, 20);
+                if (slot->mUnk_00 + 30 < (u32) data_0217aa14->mUnk_728) {
+                    slot->mUnk_08 = 0;
+                    slot->mUnk_00 = 0;
+                    slot->mItemKind = 15;
+                    slot->mMessageKind = 0;
+                    slot->mDataSize = 0;
+                    MI_CpuFill8(slot->mData, 0, 20);
                 }
                 break;
             case 1:
-                if (e->mUnk_00 < (u32) data_0217aa14->mUnk_728) {
-                    e->mUnk_08 = 2;
+                if (slot->mUnk_00 < (u32) data_0217aa14->mUnk_728) {
+                    slot->mUnk_08 = 2;
                 }
                 break;
         }
@@ -153,65 +154,66 @@ void func_0205ab78(void) {
 }
 
 void func_0205aa60(void) {
-    u8 i;
-    u16 j;
-    u8 *s;
-    u8 *d;
-    Unk0217aa14_324 *e;
-    u8 c;
+    u8 participantIndex;
+    u16 slotIndex;
+    u8 *headerCursor;
+    u8 *dataCursor;
+    ItemDataSlot *slot;
+    u8 headerByte;
 
-    for (i = 0; i < 4; i++) {
-        if (i != func_ov000_0219bb50() && (data_0217aa14->mUnk_749 & (1 << i)) != 0 &&
-            data_0217aa14->mUnk_104[i].mUnk_86_0 != 0) {
-            s = (u8 *) &data_0217aa14->mUnk_104[i] + 0x28;
-            d = s + 16;
-            for (j = 0; j < 16; j++) {
-                c = *s++;
-                e = &data_0217aa14->mUnk_3e4[j][i];
-                e->mUnk_09 = c & 0x1f;
-                e->mUnk_0a = (c & 0xe0) >> 5;
-                if (e->mUnk_09 == 15) {
-                    e->mUnk_0b = 0;
+    for (participantIndex = 0; participantIndex < 4; participantIndex++) {
+        if (participantIndex != func_ov000_0219bb50() && (data_0217aa14->mUnk_749 & (1 << participantIndex)) != 0 &&
+            data_0217aa14->mUnk_104[participantIndex].mUnk_86_0 != 0) {
+            headerCursor = (u8 *) &data_0217aa14->mUnk_104[participantIndex] + 0x28;
+            dataCursor = headerCursor + 16;
+            for (slotIndex = 0; slotIndex < 16; slotIndex++) {
+                headerByte = *headerCursor++;
+                slot = &data_0217aa14->mUnk_3e4[slotIndex][participantIndex];
+                slot->mItemKind = headerByte & 0x1f;
+                slot->mMessageKind = (headerByte & 0xe0) >> 5;
+                if (slot->mItemKind == 15) {
+                    slot->mDataSize = 0;
                 } else {
-                    e->mUnk_0b = func_020fa0e8(e->mUnk_09, e->mUnk_0a);
+                    slot->mDataSize = func_020fa0e8(slot->mItemKind, slot->mMessageKind);
                 }
-                if (e->mUnk_0b != 0) {
-                    MI_CpuCopy8(d, e->mUnk_04, e->mUnk_0b);
-                    d += e->mUnk_0b;
+                if (slot->mDataSize != 0) {
+                    MI_CpuCopy8(dataCursor, slot->mData, slot->mDataSize);
+                    dataCursor += slot->mDataSize;
                 }
             }
         }
     }
 }
 
-void func_0205a92c(void) {
-    u8 i;
-    u16 j;
+void ProcessOtherParticipantItemData(void) {
+    u8 participantIndex;
+    u16 slotIndex;
     Unk0217aa14 *p;
-    Unk0217aa14_324 *e;
-    u8 *f;
-    u8 *v;
+    ItemDataSlot *slot;
+    u8 *handledFlag;
+    u8 *data;
 
-    for (i = 0; i < 4; i++) {
-        if (i != func_ov000_0219bb50() && (data_0217aa14->mUnk_749 & (1 << i)) != 0 &&
-            data_0217aa14->mUnk_104[i].mUnk_86_0 != 0) {
-            for (j = 0; j < 16; j++) {
+    for (participantIndex = 0; participantIndex < 4; participantIndex++) {
+        if (participantIndex != func_ov000_0219bb50() && (data_0217aa14->mUnk_749 & (1 << participantIndex)) != 0 &&
+            data_0217aa14->mUnk_104[participantIndex].mUnk_86_0 != 0) {
+            for (slotIndex = 0; slotIndex < 16; slotIndex++) {
                 p = data_0217aa14;
-                e = &p->mUnk_3e4[j][i];
-                f = &p->mUnk_6e4[j][i];
-                if (e->mUnk_09 == 15) {
-                    *f = 0;
-                } else if (*f == 0) {
-                    v = NULL;
-                    func_0205b954(i);
-                    if (e->mUnk_0b != 0) {
-                        v = e->mUnk_04;
+                slot = &p->mUnk_3e4[slotIndex][participantIndex];
+                handledFlag = &p->mUnk_6e4[slotIndex][participantIndex];
+                if (slot->mItemKind == 15) {
+                    *handledFlag = 0;
+                } else if (*handledFlag == 0) {
+                    data = NULL;
+                    func_0205b954(participantIndex);
+                    if (slot->mDataSize != 0) {
+                        data = slot->mData;
                     }
-                    if (e->mUnk_0a <= 1) {
-                        func_0205a630(i);
+                    if (slot->mMessageKind <= 1) {
+                        func_0205a630(participantIndex);
                     }
-                    func_020fe5b8(e->mUnk_09, e->mUnk_0a, v, data_0217aa18->mUnk_06[i]);
-                    *f = 1;
+                    func_020fe5b8(slot->mItemKind, slot->mMessageKind, data,
+                                  data_0217aa18->mKartOfParticipant[participantIndex]);
+                    *handledFlag = 1;
                 }
             }
         }

@@ -48,7 +48,7 @@ void FinishRaceProgress(void) {
                 u8 rank;
                 u32 rankPoints = 0;
                 if (raceSetup->mMode == 5) {
-                    t = data_0217aa14->mUnk_104[data_0217aa18->mUnk_00[kartIndex & 0xff]].mUnk_86_1;
+                    t = data_0217aa14->mUnk_104[data_0217aa18->mParticipantOfKart[kartIndex & 0xff]].mRank;
                 } else {
                     t = gRaceProgress->mKarts[kartIndex].mRank;
                 }

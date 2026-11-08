@@ -57,8 +57,8 @@ void func_0205d07c(void) {
     s32 i;
 
     for (i = 0; i < 4; i++) {
-        data_0217aa18->mUnk_00[i] = -1;
-        data_0217aa18->mUnk_06[i] = -1;
+        data_0217aa18->mParticipantOfKart[i] = -1;
+        data_0217aa18->mKartOfParticipant[i] = -1;
     }
     data_0217aa18->mUnk_05 = 0;
 }
@@ -68,16 +68,16 @@ void func_0205cfd4(u32 a) {
     u8 n;
 
     for (i = 0, n = 0; i < 4; i++) {
-        data_0217aa18->mUnk_06[i] = -1;
+        data_0217aa18->mKartOfParticipant[i] = -1;
         if ((a & (1 << i)) != 0) {
-            data_0217aa18->mUnk_00[n] = i;
-            data_0217aa18->mUnk_06[i] = n;
+            data_0217aa18->mParticipantOfKart[n] = i;
+            data_0217aa18->mKartOfParticipant[i] = n;
             n++;
         }
     }
     data_0217aa18->mUnk_04 = a;
     while (n < 4) {
-        data_0217aa18->mUnk_00[n] = -1;
+        data_0217aa18->mParticipantOfKart[n] = -1;
         n++;
     }
 }
@@ -118,9 +118,9 @@ void func_0205cd24(void *a) {
     data_0217aa14 = HeapAlloc(a, 0x760);
     data_0217aa14->mUnk_754 = HeapAllocAligned(a, 0x6c, 0x20);
     for (i = 0; i < 16; i++) {
-        data_0217aa14->mUnk_324[i].mUnk_04 = HeapAllocAligned(a, 20, 32);
+        data_0217aa14->mUnk_324[i].mData = HeapAllocAligned(a, 20, 32);
         for (j = 0; j < 4; j++) {
-            data_0217aa14->mUnk_3e4[i][j].mUnk_04 = HeapAllocAligned(a, 20, 32);
+            data_0217aa14->mUnk_3e4[i][j].mData = HeapAllocAligned(a, 20, 32);
         }
     }
     data_0217aa14->mUnk_0fc = data_0217aa18->mUnk_04;
@@ -136,7 +136,7 @@ void func_0205cd24(void *a) {
         data_0217aa14->mUnk_74a[k] = 0;
         data_0217aa14->mUnk_740[k] = 0;
     }
-    func_0205ad88();
+    ResetItemDataSlots();
     func_0205a6b4();
     data_0217aa14->mUnk_75c |= 1;
     data_0217aa14->mUnk_75c |= 0x40;
@@ -145,12 +145,12 @@ void func_0205cd24(void *a) {
     p->mUnk_012 = 1;
     data_0217aa14->mUnk_758 = 0;
     for (m = 0; m < 4; m++) {
-        j = data_0217aa18->mUnk_06[m];
+        j = data_0217aa18->mKartOfParticipant[m];
         data_0217aa14->mUnk_104[m].mUnk_80 = 0;
         if (j >= 0) {
-            data_0217aa14->mUnk_104[m].mUnk_86_1 = GetKartStartRank((u8) j);
+            data_0217aa14->mUnk_104[m].mRank = GetKartStartRank((u8) j);
         } else {
-            data_0217aa14->mUnk_104[m].mUnk_86_1 = 0;
+            data_0217aa14->mUnk_104[m].mRank = 0;
         }
     }
     InitStateMachine(data_0217aa14, data_02165388, 6, NULL);
@@ -397,8 +397,9 @@ void func_0205c470(void) {
     MI_CpuFill8(data_0217aa14->mUnk_754, 0, 0x6c);
     for (i = 0; i < 4; i++) {
         if ((data_0217aa14->mUnk_0fc & (1 << i)) != 0 && (data_0217aa14->mUnk_749 & (1 << i)) == 0) {
-            if (data_0217aa18->mUnk_06[i] >= 0) {
-                data_0217aa14->mUnk_104[i].mUnk_80 = (GetKartStartRank((u8) data_0217aa18->mUnk_06[i]) - 1) | 0x700000;
+            if (data_0217aa18->mKartOfParticipant[i] >= 0) {
+                data_0217aa14->mUnk_104[i].mUnk_80 =
+                    (GetKartStartRank((u8) data_0217aa18->mKartOfParticipant[i]) - 1) | 0x700000;
             }
         }
     }
@@ -519,8 +520,8 @@ void func_0205be0c(void) {
                 }
                 x = x & g;
                 if (f == 0 && IsRaceStarted() == 0) {
-                    if (data_0217aa18->mUnk_06[i] != -1) {
-                        f = (GetKartStartRank((u16) data_0217aa18->mUnk_06[i]) - 1) | 0x700000;
+                    if (data_0217aa18->mKartOfParticipant[i] != -1) {
+                        f = (GetKartStartRank((u16) data_0217aa18->mKartOfParticipant[i]) - 1) | 0x700000;
                     }
                 }
                 if (f != 0) {
@@ -536,7 +537,7 @@ void func_0205be0c(void) {
     for (i = 0; i < 4; i++) {
         d = data_0217aa14;
         s = 1 << i;
-        h = *(u8 *) &data_0217aa18->mUnk_06[i];
+        h = *(u8 *) &data_0217aa18->mKartOfParticipant[i];
         u = d->mUnk_104[i].mUnk_80;
         t = d->mUnk_749 & s;
         if (t != 0) {
@@ -577,7 +578,7 @@ void func_0205be0c(void) {
             } else {
                 u16 w;
 
-                w = data_0217aa18->mUnk_06[i];
+                w = data_0217aa18->mKartOfParticipant[i];
                 c = gRaceProgress->mUnk_000[w].mUnk_50_0;
                 z = c;
                 for (p = 0; p < 4; p++) {
@@ -592,7 +593,7 @@ void func_0205be0c(void) {
                         u16 o;
                         u32 v;
 
-                        o = data_0217aa18->mUnk_06[p];
+                        o = data_0217aa18->mKartOfParticipant[p];
                         o = (u16) o;
                         v = gRaceProgress->mUnk_000[o].mUnk_50_0;
                         if (gRaceProgress->mUnk_000[o].mStatus != 4 && e != 0 && v > c) {
@@ -602,7 +603,7 @@ void func_0205be0c(void) {
                 }
             }
         }
-        d->mUnk_104[i].mUnk_86_1 = z;
+        d->mUnk_104[i].mRank = z;
     }
 }
 
@@ -621,7 +622,7 @@ void func_0205bc08(void) {
     v = 0x68 - p->mUnk_724;
     q->mUnk_04.mUnk_00_0 = p->mUnk_728;
     r->mUnk_00_b[3] = v;
-    if (data_0217aa18->mUnk_06[func_ov000_0219bb50()] < 0) {
+    if (data_0217aa18->mKartOfParticipant[func_ov000_0219bb50()] < 0) {
         r->mUnk_04 = 0;
     } else {
         w = func_0205afa8();
@@ -629,7 +630,7 @@ void func_0205bc08(void) {
     }
     func_0205c234(v);
     func_0205be0c();
-    if (IsKartEnded(*(u8 *) &data_0217aa18->mUnk_06[func_ov000_0219bb50()]) == 0 &&
+    if (IsKartEnded(*(u8 *) &data_0217aa18->mKartOfParticipant[func_ov000_0219bb50()]) == 0 &&
         (data_0217aa14->mUnk_75c & 0x200) == 0) {
         if (data_0217562a[func_020435bc()].mBits == 0) {
             data_0217aa14->mUnk_738 = data_0217aa14->mUnk_738 + 1;
@@ -750,7 +751,7 @@ void func_0205b9a8(void) {
     v = 0x68 - p->mUnk_724;
     q->mUnk_04.mUnk_00_0 = p->mUnk_728;
     r->mUnk_00_b[3] = v;
-    if (data_0217aa18->mUnk_06[func_ov000_0219bb50()] < 0) {
+    if (data_0217aa18->mKartOfParticipant[func_ov000_0219bb50()] < 0) {
         r->mUnk_04 = 0;
     } else {
         t = func_0205afa8();
@@ -937,21 +938,21 @@ void func_0205b32c(void) {
     s16 d;
 
     for (i = 0; i < 4; i++) {
-        if (data_0217aa18->mUnk_06[i] == -1) {
+        if (data_0217aa18->mKartOfParticipant[i] == -1) {
             a[i] = 5000;
         } else {
             a[i] = GetPlayerRecordElo(i);
         }
     }
     for (i = 0; i < 4; i++) {
-        s = data_0217aa18->mUnk_06[i];
+        s = data_0217aa18->mKartOfParticipant[i];
         if (s == -1) {
             continue;
         }
         v1[i] = a[i];
         for (j = 0; j < 4; j++) {
             k = 1;
-            m = data_0217aa18->mUnk_06[j];
+            m = data_0217aa18->mKartOfParticipant[j];
             if (m == -1 || s == m) {
                 continue;
             }
@@ -1023,8 +1024,8 @@ void func_0205b0f4(void) {
     }
     for (i = 0; i < 4; i++) {
         v1 = 1 << i;
-        if ((a & v1) != 0 && (data_0217aa14->mUnk_749 & v1) != 0 && data_0217aa18->mUnk_06[i] != -1) {
-            RemoveRaceProgressKart(data_0217aa18->mUnk_06[i]);
+        if ((a & v1) != 0 && (data_0217aa14->mUnk_749 & v1) != 0 && data_0217aa18->mKartOfParticipant[i] != -1) {
+            RemoveRaceProgressKart(data_0217aa18->mKartOfParticipant[i]);
             data_0217aa14->mUnk_749 = data_0217aa14->mUnk_749 & ~v1;
         }
     }

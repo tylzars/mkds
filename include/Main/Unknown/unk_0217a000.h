@@ -876,7 +876,7 @@ typedef struct Unk0217aa14_104 {
                 u8 mUnk_86;
                 struct {
                     u8 mUnk_86_0 : 1;
-                    u8 mUnk_86_1 : 7;
+                    u8 mRank : 7;
                 };
             };
             /* 87 */ u8 mUnk_87;
@@ -886,14 +886,14 @@ typedef struct Unk0217aa14_104 {
 } Unk0217aa14_104;
 
 // 0xc-byte entries from 0x324 of Unk0217aa14.
-typedef struct Unk0217aa14_324 {
+typedef struct ItemDataSlot {
     /* 00 */ s32 mUnk_00;
-    /* 04 */ void *mUnk_04;
+    /* 04 */ void *mData;
     /* 08 */ u8 mUnk_08;
-    /* 09 */ u8 mUnk_09;
-    /* 0a */ u8 mUnk_0a;
-    /* 0b */ u8 mUnk_0b;
-} Unk0217aa14_324;
+    /* 09 */ u8 mItemKind;
+    /* 0a */ u8 mMessageKind;
+    /* 0b */ u8 mDataSize;
+} ItemDataSlot;
 
 // Halfword of the table at 0x20 of Unk0217aa14_754_04: bits 0 to 6, 7 to 11 and 12 to 13.
 typedef struct Unk0217aa14_754_04_20 {
@@ -952,8 +952,8 @@ typedef struct Unk0217aa14 {
     /* 0fd */ u8 mUnk_0fd;
     /* 0fe */ u8 mUnk_0fe[6];
     /* 104 */ Unk0217aa14_104 mUnk_104[4];
-    /* 324 */ Unk0217aa14_324 mUnk_324[16];
-    /* 3e4 */ Unk0217aa14_324 mUnk_3e4[16][4];
+    /* 324 */ ItemDataSlot mUnk_324[16];
+    /* 3e4 */ ItemDataSlot mUnk_3e4[16][4];
     /* 6e4 */ u8 mUnk_6e4[16][4];
     /* 724 */ u16 mUnk_724;
     /* 726 */ u8 mUnk_726[0x2];
@@ -1606,14 +1606,14 @@ extern u16 gFadeFogHoldFrames;
 extern s32 gEntryCameraUpdateRan;
 
 // Ten bytes: bytes 6 to 9 are signed values read in rows of four.
-typedef struct Unk0217aa18 {
-    /* 00 */ s8 mUnk_00[4];
+typedef struct ParticipantKartMap {
+    /* 00 */ s8 mParticipantOfKart[4];
     /* 04 */ u8 mUnk_04;
     /* 05 */ u8 mUnk_05;
-    /* 06 */ s8 mUnk_06[4];
-} Unk0217aa18;
+    /* 06 */ s8 mKartOfParticipant[4];
+} ParticipantKartMap;
 
-extern Unk0217aa18 *data_0217aa18;
+extern ParticipantKartMap *data_0217aa18;
 // 0xa-byte elements of the rows (eight each) of the table at member 0 of CupRecords.
 typedef struct KartCourseResult {
     /* 00 */ u16 mTotalPoints;

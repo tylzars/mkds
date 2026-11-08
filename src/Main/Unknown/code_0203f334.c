@@ -41,7 +41,7 @@ void UpdateRaceClock(void) {
             f = TRUE;
         }
         if (gRaceSetup->mMode == 5 && e > 0x4650) {
-            k = data_0217aa18->mUnk_06[func_ov000_0219bb50()];
+            k = data_0217aa18->mKartOfParticipant[func_ov000_0219bb50()];
             if (k >= 0) {
                 g = FALSE;
                 switch (gRaceProgress->mUnk_000[(u8) k].mStatus) {

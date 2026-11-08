@@ -210,7 +210,7 @@ void SetCurrentEntryPlayer(s32 entryIndex) {
             }
             break;
         case PLAYER_KIND_PEER:
-            x = data_0217aa18->mUnk_00[(u8) entryIndex];
+            x = data_0217aa18->mParticipantOfKart[(u8) entryIndex];
             if (x < 0) {
                 return;
             }

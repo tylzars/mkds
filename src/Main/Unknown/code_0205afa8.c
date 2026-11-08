@@ -11,30 +11,31 @@
 
 s32 func_0205afa8(void) {
     u32 c;
-    s32 b;
-    u16 a;
+    s32 kartStartRank;
+    u16 kartIndex;
     s32 d;
-    s32 e;
+    s32 lapBits;
 
-    a = data_0217aa18->mUnk_06[func_ov000_0219bb50()];
-    b = GetKartStartRank(a);
-    c = GetKartFinishTimeMs(a) & 0x7ffff;
-    if (IsKartEnded(a) != 0 && gRaceProgress->mUnk_000[a].mStatus != 1 && data_0217aa14->mUnk_72c == FALSE) {
+    kartIndex = data_0217aa18->mKartOfParticipant[func_ov000_0219bb50()];
+    kartStartRank = GetKartStartRank(kartIndex);
+    c = GetKartFinishTimeMs(kartIndex) & 0x7ffff;
+    if (IsKartEnded(kartIndex) != 0 && gRaceProgress->mUnk_000[kartIndex].mStatus != 1 &&
+        data_0217aa14->mUnk_72c == FALSE) {
         c = 0x7ffff;
     }
     if (c == 0) {
-        c = b - 1;
+        c = kartStartRank - 1;
     }
-    if (gRaceProgress->mUnk_000[a].mStatus == 1) {
+    if (gRaceProgress->mUnk_000[kartIndex].mStatus == 1) {
         d = 0;
     } else {
-        d = 6 - GetKartHighestLap(a);
+        d = 6 - GetKartHighestLap(kartIndex);
     }
-    e = (d << 19) & 0x380000;
-    if (IsKartEnded(a) == 0 && data_0217aa14->mUnk_72c == FALSE) {
+    lapBits = (d << 19) & 0x380000;
+    if (IsKartEnded(kartIndex) == 0 && data_0217aa14->mUnk_72c == FALSE) {
         d = 1;
     } else {
         d = 0;
     }
-    return c | (((d << 22) & 0x400000) | e);
+    return c | (((d << 22) & 0x400000) | lapBits);
 }
