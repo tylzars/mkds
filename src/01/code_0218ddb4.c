@@ -268,18 +268,18 @@ s32 func_ov001_0218efc4(Unk02188950 *a) {
         a->mUnk_1c4 = 0;
     }
     a->mUnk_170 = a->mPrm->mUnk_09c;
-    if (a->mPrm->mUnk_1cc - (gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) > 0) {
-        f = 0.5f + ((a->mPrm->mUnk_1cc - (gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0)) << 12);
+    if (a->mPrm->mUnk_1cc - (gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunTimer() : 0) > 0) {
+        f = 0.5f + ((a->mPrm->mUnk_1cc - (gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunTimer() : 0)) << 12);
     } else {
-        f = ((a->mPrm->mUnk_1cc - (gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0)) << 12) - 0.5f;
+        f = ((a->mPrm->mUnk_1cc - (gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunTimer() : 0)) << 12) - 0.5f;
     }
     a->mUnk_16c = (s32) f / a->mPrm->mUnk_1d4;
-    if ((gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) <= a->mPrm->mUnk_1d0 &&
+    if ((gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunTimer() : 0) <= a->mPrm->mUnk_1d0 &&
         func_ov001_02188000(a, 0, a->mPrm->mUnk_0bc) != NULL) {
         func_ov001_02188200(a, func_ov001_0218f9a8);
         a->mUnk_000.mFlags |= data_ov001_021a65b0;
         func_ov001_0218f16c(a);
-    } else if ((gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) > a->mPrm->mUnk_1cc) {
+    } else if ((gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunTimer() : 0) > a->mPrm->mUnk_1cc) {
         func_ov001_02188e88(a);
     }
     return 0;
@@ -688,11 +688,11 @@ void UpdateKingTeresa(u32 a, Unk02188950 *b) {
             if (p->mUnk_48 & 0x200) {
                 if (gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunCount() : 0) {
                     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-                        func_ov001_0218182c((u16) b->mPrm->mUnk_1bc);
+                        SetMissionRunTimer((u16) b->mPrm->mUnk_1bc);
                     }
                 } else {
                     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-                        func_ov001_0218182c(0);
+                        SetMissionRunTimer(0);
                     }
                 }
                 if ((b->mUnk_000.mFlags & 1) == 0) {
@@ -701,9 +701,9 @@ void UpdateKingTeresa(u32 a, Unk02188950 *b) {
                     func_ov001_0218e7d0(b);
                 }
             }
-            if (gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunTimer() : 0) {
                 if (func_ov001_021871f8(b, 3) != 0) {
-                    if ((gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) < b->mPrm->mUnk_1c8) {
+                    if ((gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunTimer() : 0) < b->mPrm->mUnk_1c8) {
                         if (b->mUnk_000.mFlags & 1) {
                             func_ov001_02188200(b, func_ov001_0218f9a8);
                             b->mUnk_000.mFlags |= data_ov001_021a65b0;

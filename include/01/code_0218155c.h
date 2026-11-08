@@ -4,10 +4,10 @@
 #include "Main/Unknown/code_020a2e4c.h" // Balloon
 
 // List of entries: an array of pointers and its length.
-typedef struct Unk021816b4 {
-    /* 00 */ Balloon **mUnk_00;
-    /* 04 */ u16 mUnk_04;
-} Unk021816b4;
+typedef struct BalloonList {
+    /* 00 */ Balloon **mObjects;
+    /* 04 */ u16 mObjectCount;
+} BalloonList;
 
 #include "01/code_02181000.h"
 #include "01/unk_021a9000.h"
@@ -22,14 +22,14 @@ typedef struct Unk021816b4 {
 #include "01/code_02188950.h"
 #include "Main/Unknown/code_020a1728.h"
 
-void func_ov001_0218155c(s32 p0);
-void func_ov001_021815d0(s32 p0);
+void func_ov001_0218155c(s32 stepCount);
+void func_ov001_021815d0(s32 stepCount);
 void func_ov001_02181630(short param_1);
-void func_ov001_02181660(u16 a);
-void func_ov001_02181678(u32 a);
-void func_ov001_02181690(UnkFunc *p0);
-void func_ov001_0218169c(UnkFunc *p0);
-void func_ov001_021816a8(UnkFunc *p0);
+void func_ov001_02181660(u16 amount);
+void func_ov001_02181678(u32 amount);
+void func_ov001_02181690(UnkFunc *callback);
+void func_ov001_0218169c(UnkFunc *callback);
+void func_ov001_021816a8(UnkFunc *callback);
 BOOL func_ov001_021816b4(void);
 void func_ov001_021816fc(void);
 void func_ov001_0218171c(void);
@@ -37,10 +37,10 @@ void func_ov001_0218173c(void);
 void func_ov001_0218175c(s32 b);
 void func_ov001_021817e0(void);
 s32 func_ov001_02181800(void);
-u32 func_ov001_0218180c(void);
+u32 GetMissionRunCountLimit(void);
 unsigned int GetMissionRunCount(void);
-void func_ov001_0218182c(unsigned int p0);
-s32 func_ov001_02181838(void);
+void SetMissionRunTimer(unsigned int timer);
+s32 GetMissionRunTimer(void);
 void func_ov001_02181844(u16 a, u16 b, u16 c, u16 d);
 void UpdateMissionRunData(void);
 void CreateMissionRunData(void);
@@ -51,5 +51,5 @@ Vec3 *GetMissionRunKartPos(void);
 void func_ov001_02181aa0(void);
 u16 GetMissionRunMapObjectLastIndex(void);
 u8 func_ov001_02181b54(void);
-Unk02188950 *GetMissionRunMapObject(int a);
-void AddMissionRunMapObject(Unk02188950 *a);
+Unk02188950 *GetMissionRunMapObject(int entryIndex);
+void AddMissionRunMapObject(Unk02188950 *mapObject);

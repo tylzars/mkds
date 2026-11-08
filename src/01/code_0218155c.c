@@ -48,19 +48,19 @@
 
 MissionRunData *gMissionRunData;
 
-void AddMissionRunMapObject(Unk02188950 *a) {
-    u8 n;
-    u16 k;
+void AddMissionRunMapObject(Unk02188950 *mapObject) {
+    u8 kartCount;
+    u16 entryIndex;
 
-    n = gRaceSetup->mKartCount;
-    k = gMissionRunData->mMapObjectCount + n;
-    gMissionRunData->mMapObjects[k - n] = a;
-    ClearStandingEliminationStatus(k);
+    kartCount = gRaceSetup->mKartCount;
+    entryIndex = gMissionRunData->mMapObjectCount + kartCount;
+    gMissionRunData->mMapObjects[entryIndex - kartCount] = mapObject;
+    ClearStandingEliminationStatus(entryIndex);
     gMissionRunData->mMapObjectCount++;
 }
 
-Unk02188950 *GetMissionRunMapObject(int a) {
-    return gMissionRunData->mMapObjects[a - gRaceSetup->mKartCount];
+Unk02188950 *GetMissionRunMapObject(int entryIndex) {
+    return gMissionRunData->mMapObjects[entryIndex - gRaceSetup->mKartCount];
 }
 
 u8 func_ov001_02181b54(void) {
@@ -72,27 +72,27 @@ u16 GetMissionRunMapObjectLastIndex(void) {
 }
 
 void func_ov001_02181aa0(void) {
-    MissionRunData *p;
-    u32 n;
+    MissionRunData *missionRunData;
+    u32 countLimit;
 
     if ((gRaceSetup->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) != FALSE) {
         return;
     }
-    p = gMissionRunData;
-    n = func_ov001_0218180c();
-    if (p->mCount >= n) {
+    missionRunData = gMissionRunData;
+    countLimit = GetMissionRunCountLimit();
+    if (missionRunData->mCount >= countLimit) {
         return;
     }
-    p->mCount = p->mCount + 1;
-    func_02108edc(gMissionRunData->mCount, func_ov001_0218180c());
+    missionRunData->mCount = missionRunData->mCount + 1;
+    func_02108edc(gMissionRunData->mCount, GetMissionRunCountLimit());
     switch (gRaceSetup->mMissionKind) {
         case 0:
         case 1:
         case 3:
         case 5:
         case 7:
-            n = func_ov001_0218180c();
-            if (gMissionRunData->mCount >= n) {
+            countLimit = GetMissionRunCountLimit();
+            if (gMissionRunData->mCount >= countLimit) {
                 FinishMissionRunKartWithEndKind0(gRaceSetup->mEntryIndex);
             }
             break;
@@ -116,38 +116,38 @@ u16 GetMissionRunPrevKartHeadingAngle(void) {
 }
 
 void CreateMissionRunData(void) {
-    Kart *c;
-    MissionRunData *o;
+    Kart *kart;
+    MissionRunData *missionRunData;
 
     gMissionRunData = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x68);
-    c = GetKart((u16) gRaceSetup->mEntryIndex);
-    o = gMissionRunData;
-    o->mPrevKartPos = c->mPos;
-    o->mKartPos = o->mPrevKartPos;
-    o->mPrevKartHeadingAngle = c->mHeadingAngle;
-    o = gMissionRunData;
-    o->mKartHeadingAngle = o->mPrevKartHeadingAngle;
+    kart = GetKart((u16) gRaceSetup->mEntryIndex);
+    missionRunData = gMissionRunData;
+    missionRunData->mPrevKartPos = kart->mPos;
+    missionRunData->mKartPos = missionRunData->mPrevKartPos;
+    missionRunData->mPrevKartHeadingAngle = kart->mHeadingAngle;
+    missionRunData = gMissionRunData;
+    missionRunData->mKartHeadingAngle = missionRunData->mPrevKartHeadingAngle;
 }
 
 void UpdateMissionRunData(void) {
-    Kart *c;
-    MissionRunData *o;
+    Kart *kart;
+    MissionRunData *missionRunData;
 
-    c = GetKart((u16) gRaceSetup->mEntryIndex);
-    if ((c->mUnk_48 & 0x200) == 0) {
-        o = gMissionRunData;
-        o->mPrevKartPos = o->mKartPos;
-        o->mPrevKartHeadingAngle = o->mKartHeadingAngle;
-        o = gMissionRunData;
-        o->mKartPos = c->mPos;
-        o->mKartHeadingAngle = c->mHeadingAngle;
+    kart = GetKart((u16) gRaceSetup->mEntryIndex);
+    if ((kart->mUnk_48 & 0x200) == 0) {
+        missionRunData = gMissionRunData;
+        missionRunData->mPrevKartPos = missionRunData->mKartPos;
+        missionRunData->mPrevKartHeadingAngle = missionRunData->mKartHeadingAngle;
+        missionRunData = gMissionRunData;
+        missionRunData->mKartPos = kart->mPos;
+        missionRunData->mKartHeadingAngle = kart->mHeadingAngle;
     }
     if (gRaceSetup->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) {
         if (gRaceSetup->mMode == MODE_MISSION_RUN ? IsKartEliminated((u16) gRaceSetup->mEntryIndex) : 0) {
             if (GetBalloonOrShineCount(gRaceSetup->mEntryIndex)) {
-                gMissionRunData->mUnk_00 += 1;
-                if (gMissionRunData->mUnk_00 > 0xf) {
-                    gMissionRunData->mUnk_00 = 0;
+                gMissionRunData->mSinceHitCallbackFrames += 1;
+                if (gMissionRunData->mSinceHitCallbackFrames > 0xf) {
+                    gMissionRunData->mSinceHitCallbackFrames = 0;
                     CallKartHitCallbackForSelf(gRaceSetup->mEntryIndex);
                     return;
                 }
@@ -156,46 +156,46 @@ void UpdateMissionRunData(void) {
         return;
     }
     {
-        u32 m = gRaceSetup->mMissionKind;
-        if (m == 1 || m == 5) {
+        u32 missionKind = gRaceSetup->mMissionKind;
+        if (missionKind == 1 || missionKind == 5) {
             if (GetRaceUpdateFramesMod8() == 0) {
-                o = gMissionRunData;
-                if (o->mUnk_0c != 0) {
-                    o->mUnk_0c -= 1;
-                    o = gMissionRunData;
-                    if (o->mCount != 0) {
-                        o->mCount -= 1;
+                missionRunData = gMissionRunData;
+                if (missionRunData->mUnk_0c != 0) {
+                    missionRunData->mUnk_0c -= 1;
+                    missionRunData = gMissionRunData;
+                    if (missionRunData->mCount != 0) {
+                        missionRunData->mCount -= 1;
                         gMissionRunData->mUnk_06 += 1;
                     }
                     if (gMissionRunData->mUnk_20 != NULL) {
                         gMissionRunData->mUnk_20();
                     }
-                    gMissionRunData->mUnk_0e = 0;
-                } else if (o->mUnk_0a != 0) {
-                    o->mUnk_0a -= 1;
-                    o = gMissionRunData;
-                    if (o->mCount != 0) {
-                        o->mCount -= 1;
+                    gMissionRunData->mTimer = 0;
+                } else if (missionRunData->mUnk_0a != 0) {
+                    missionRunData->mUnk_0a -= 1;
+                    missionRunData = gMissionRunData;
+                    if (missionRunData->mCount != 0) {
+                        missionRunData->mCount -= 1;
                     }
                     if (gMissionRunData->mUnk_1c != NULL) {
                         gMissionRunData->mUnk_1c();
                     }
-                    gMissionRunData->mUnk_0e = 0;
-                } else if (o->mPendingCountUp != 0) {
-                    o->mPendingCountUp -= 1;
+                    gMissionRunData->mTimer = 0;
+                } else if (missionRunData->mPendingCountUp != 0) {
+                    missionRunData->mPendingCountUp -= 1;
                     func_ov001_02181aa0();
-                    if (gMissionRunData->mUnk_18 != NULL) {
-                        gMissionRunData->mUnk_18();
+                    if (gMissionRunData->mCountUpCallback != NULL) {
+                        gMissionRunData->mCountUpCallback();
                     }
                 }
             }
-            o = gMissionRunData;
-            if (o->mUnk_0e != 0) {
-                o->mUnk_0e -= 1;
-                o = gMissionRunData;
-                if (o->mUnk_0e == 0) {
-                    if (o->mUnk_24 != NULL) {
-                        o->mUnk_24();
+            missionRunData = gMissionRunData;
+            if (missionRunData->mTimer != 0) {
+                missionRunData->mTimer -= 1;
+                missionRunData = gMissionRunData;
+                if (missionRunData->mTimer == 0) {
+                    if (missionRunData->mTimerEndCallback != NULL) {
+                        missionRunData->mTimerEndCallback();
                     }
                 }
             }
@@ -210,24 +210,24 @@ void func_ov001_02181844(u16 a, u16 b, u16 c, u16 d) {
     gMissionRunData->mUnk_16 = d;
 }
 
-s32 func_ov001_02181838(void) {
-    return (gMissionRunData->mUnk_0e);
+s32 GetMissionRunTimer(void) {
+    return (gMissionRunData->mTimer);
 }
 
-void func_ov001_0218182c(u32 p0) {
-    gMissionRunData->mUnk_0e = p0;
+void SetMissionRunTimer(u32 timer) {
+    gMissionRunData->mTimer = timer;
 }
 
 u32 GetMissionRunCount(void) {
     return (gMissionRunData->mCount);
 }
 
-u32 func_ov001_0218180c(void) {
-    u32 v = gRaceSetup->mUnk_37;
-    if (v == 0) {
-        v = 1;
+u32 GetMissionRunCountLimit(void) {
+    u32 countLimit = gRaceSetup->mUnk_37;
+    if (countLimit == 0) {
+        countLimit = 1;
     }
-    return v;
+    return countLimit;
 }
 
 s32 func_ov001_02181800(void) {
@@ -241,15 +241,16 @@ void func_ov001_021817e0(void) {
 }
 
 void func_ov001_0218175c(s32 b) {
-    RaceSetup *p = gRaceSetup;
-    u32 m = p->mMissionKind;
-    if (m == 3 || m == 7 || m == 0) {
-        u32 a = p->mUnk_3c;
-        if (a == 0 && p->mUnk_3e == 0 && p->mUnk_40 == 0 && p->mUnk_42 == 0 && b > 400 && b < 500) {
+    RaceSetup *raceSetup = gRaceSetup;
+    u32 missionKind = raceSetup->mMissionKind;
+    if (missionKind == 3 || missionKind == 7 || missionKind == 0) {
+        u32 a = raceSetup->mUnk_3c;
+        if (a == 0 && raceSetup->mUnk_3e == 0 && raceSetup->mUnk_40 == 0 && raceSetup->mUnk_42 == 0 && b > 400 &&
+            b < 500) {
             func_ov001_02181aa0();
             return;
         }
-        if (b == a || b == p->mUnk_3e || b == p->mUnk_40 || b == p->mUnk_42) {
+        if (b == a || b == raceSetup->mUnk_3e || b == raceSetup->mUnk_40 || b == raceSetup->mUnk_42) {
             func_ov001_02181aa0();
         }
     }
@@ -274,14 +275,14 @@ void func_ov001_021816fc(void) {
 }
 
 BOOL func_ov001_021816b4(void) {
-    Unk021816b4 *list;
-    Balloon *e;
+    BalloonList *list;
+    Balloon *balloon;
     s32 i;
 
     list = func_02100138(MAP_OBJECT_KIND_BALLOON);
     if (list != NULL) {
-        for (i = 0; i < list->mUnk_04 && (e = list->mUnk_00[i]) != NULL; i++) {
-            if ((e->mUnk_00.mFlags & 0x100) == 0) {
+        for (i = 0; i < list->mObjectCount && (balloon = list->mObjects[i]) != NULL; i++) {
+            if ((balloon->mUnk_00.mFlags & 0x100) == 0) {
                 return TRUE;
             }
         }
@@ -289,80 +290,80 @@ BOOL func_ov001_021816b4(void) {
     return FALSE;
 }
 
-void func_ov001_021816a8(UnkFunc *p0) {
-    gMissionRunData->mUnk_18 = p0;
+void func_ov001_021816a8(UnkFunc *callback) {
+    gMissionRunData->mCountUpCallback = callback;
 }
 
-void func_ov001_0218169c(UnkFunc *p0) {
-    gMissionRunData->mUnk_1c = p0;
+void func_ov001_0218169c(UnkFunc *callback) {
+    gMissionRunData->mUnk_1c = callback;
 }
 
-void func_ov001_02181690(UnkFunc *p0) {
-    gMissionRunData->mUnk_20 = p0;
+void func_ov001_02181690(UnkFunc *callback) {
+    gMissionRunData->mUnk_20 = callback;
 }
 
-void func_ov001_02181678(u32 a) {
-    MissionRunData *p = gMissionRunData;
-    u16 lim = p->mCount;
-    if (a >= lim) {
-        a = lim;
+void func_ov001_02181678(u32 amount) {
+    MissionRunData *missionRunData = gMissionRunData;
+    u16 count = missionRunData->mCount;
+    if (amount >= count) {
+        amount = count;
     }
-    p->mUnk_0a += a;
+    missionRunData->mUnk_0a += amount;
 }
 
-void func_ov001_02181660(u16 a) {
-    MissionRunData *p = gMissionRunData;
-    u16 lim = p->mCount;
-    if (a >= lim) {
-        a = lim;
+void func_ov001_02181660(u16 amount) {
+    MissionRunData *missionRunData = gMissionRunData;
+    u16 count = missionRunData->mCount;
+    if (amount >= count) {
+        amount = count;
     }
-    p->mUnk_0c += a;
+    missionRunData->mUnk_0c += amount;
 }
 
-void func_ov001_02181630(short a) {
-    gMissionRunData->mUnk_06 += a;
-    if (gMissionRunData->mUnk_06 > func_ov001_0218180c()) {
-        gMissionRunData->mUnk_06 = func_ov001_0218180c();
+void func_ov001_02181630(short amount) {
+    gMissionRunData->mUnk_06 += amount;
+    if (gMissionRunData->mUnk_06 > GetMissionRunCountLimit()) {
+        gMissionRunData->mUnk_06 = GetMissionRunCountLimit();
     }
 }
 
-void func_ov001_021815d0(s32 p0) {
+void func_ov001_021815d0(s32 stepCount) {
     s32 i;
 
-    for (i = 0; i < p0; i++) {
-        if (++gMissionRunData->mPendingCountUp > func_ov001_0218180c()) {
-            gMissionRunData->mPendingCountUp = func_ov001_0218180c();
+    for (i = 0; i < stepCount; i++) {
+        if (++gMissionRunData->mPendingCountUp > GetMissionRunCountLimit()) {
+            gMissionRunData->mPendingCountUp = GetMissionRunCountLimit();
             return;
         }
-        if (gMissionRunData->mUnk_0e == 0) {
-            gMissionRunData->mUnk_0e = gMissionRunData->mUnk_10;
+        if (gMissionRunData->mTimer == 0) {
+            gMissionRunData->mTimer = gMissionRunData->mUnk_10;
         } else {
-            gMissionRunData->mUnk_0e += gMissionRunData->mUnk_14;
-            if (gMissionRunData->mUnk_0e > gMissionRunData->mUnk_12) {
-                gMissionRunData->mUnk_0e = gMissionRunData->mUnk_12;
+            gMissionRunData->mTimer += gMissionRunData->mUnk_14;
+            if (gMissionRunData->mTimer > gMissionRunData->mUnk_12) {
+                gMissionRunData->mTimer = gMissionRunData->mUnk_12;
             }
         }
     }
 }
 
-void func_ov001_0218155c(s32 p0) {
+void func_ov001_0218155c(s32 stepCount) {
     s32 i;
 
-    if ((u32) p0 >= gMissionRunData->mUnk_06) {
-        p0 = gMissionRunData->mUnk_06;
+    if ((u32) stepCount >= gMissionRunData->mUnk_06) {
+        stepCount = gMissionRunData->mUnk_06;
     }
-    for (i = 0; i < p0; i++) {
+    for (i = 0; i < stepCount; i++) {
         gMissionRunData->mUnk_06--;
-        if (++gMissionRunData->mPendingCountUp > func_ov001_0218180c()) {
-            gMissionRunData->mPendingCountUp = func_ov001_0218180c();
+        if (++gMissionRunData->mPendingCountUp > GetMissionRunCountLimit()) {
+            gMissionRunData->mPendingCountUp = GetMissionRunCountLimit();
             return;
         }
-        if (gMissionRunData->mUnk_0e == 0) {
-            gMissionRunData->mUnk_0e = gMissionRunData->mUnk_10;
+        if (gMissionRunData->mTimer == 0) {
+            gMissionRunData->mTimer = gMissionRunData->mUnk_10;
         } else {
-            gMissionRunData->mUnk_0e += gMissionRunData->mUnk_16;
-            if (gMissionRunData->mUnk_0e > gMissionRunData->mUnk_12) {
-                gMissionRunData->mUnk_0e = gMissionRunData->mUnk_12;
+            gMissionRunData->mTimer += gMissionRunData->mUnk_16;
+            if (gMissionRunData->mTimer > gMissionRunData->mUnk_12) {
+                gMissionRunData->mTimer = gMissionRunData->mUnk_12;
             }
         }
     }
