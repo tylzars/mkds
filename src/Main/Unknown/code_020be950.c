@@ -923,7 +923,7 @@ void UpdateRaceHudSubScreenCellGroups(void) {
             UpdateRaceHudSubScreenProjectionAndBgAffine(GetRaceHudSubScreenBgAffine(),
                                                         gRaceHudSubScreenCellGroups->mUnk_004);
             func_0207a91c(&v, GetFollowedKartOrEntryIndex());
-            gRaceHudSubScreenCellGroups->mUnk_000 = func_020b4e70(&v) != 0 ? 0 : 3;
+            gRaceHudSubScreenCellGroups->mUnk_000 = IsPositionOutsideBox(&v) != 0 ? 0 : 3;
             for (i = 0; i < gRaceHudSubScreenCellGroups->mGroupCount; i++) {
                 gRaceHudSubScreenCellGroups->mUpdateFunctions[i]();
             }

@@ -455,7 +455,7 @@ static inline u16 func_0205ef70_inline(u16 entryIndex) {
     lowByte = GetLowByte(entryIndex);
     courseIndexInCup = GetCourseIndexInCup();
     lowByteAgain = GetLowByte(lowByte);
-    courseResult = &gCupRecords->mUnk_000[courseIndexInCup][0];
+    courseResult = &gCupRecords->mKartResults[courseIndexInCup][0];
     courseResult += lowByteAgain;
     return courseResult->mTotalPoints;
 }

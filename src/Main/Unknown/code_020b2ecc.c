@@ -28,7 +28,7 @@ void *GetChoisesSValueMessage(s32 listIndex, s32 value) {
     if (listIndex != 0) {
         entryNumbers[2] = 0x60;
     }
-    return GetBmgEntry(func_020b47cc("common.bmg"), entryNumbers[value]);
+    return GetBmgEntry(FindFileInLoadedArchivesWrapper("common.bmg"), entryNumbers[value]);
 }
 
 void ClearChoisesSListValueCounts(void) {
@@ -120,7 +120,7 @@ u32 func_020b302c(void) {
             if (gChoisesS->mSelectedValue == 0) {
                 func_02105c4c();
             } else {
-                func_020b3278();
+                StartChoisesSSelectedValueSeq();
             }
         }
     }

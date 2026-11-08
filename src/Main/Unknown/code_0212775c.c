@@ -408,7 +408,7 @@ s32 InitSelectChoises(void *heap, void *font, s32 subCharOffset) {
         NNS_G2dCharCanvasInitForBG(&gSelectChoises->mCharCanvases[i], gSelectChoises->mCharBuffers[i], 0x20, 2, 4);
         charCanvas = &gSelectChoises->mCharCanvases[i];
         charCanvas->mUnk_18(charCanvas, 0);
-        charSpacing = func_020b4acc();
+        charSpacing = IsLanguageJa();
         textCanvas = &gSelectChoises->mUnk_874[i];
         textCanvas->mUnk_00 = &gSelectChoises->mCharCanvases[i];
         textCanvas->mUnk_04 = (u32) font;

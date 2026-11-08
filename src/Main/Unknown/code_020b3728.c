@@ -38,72 +38,72 @@
 #include "Main/Unknown/code_0203c8dc.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-u32 func_020b3f64(void) {
+u32 RequestRaceEndStemSet(void) {
     u32 value0;
-    u32 value1;
-    value0 = (u32) &data_0217b35c;
-    value1 = 1u;
+    u32 trueValue;
+    value0 = (u32) &gRaceEnd;
+    trueValue = 1u;
     value0 = *(const u32 *) ((value0) + (0));
-    *(u32 *) ((value0) + (4)) = value1;
+    *(u32 *) ((value0) + (4)) = trueValue;
     return value0;
 }
 
-void func_020b3cd8(void) {
-    RaceSetup *d = gRaceSetup;
-    s32 a[8];
-    s32 b[8];
+void SetKartCupRanks(void) {
+    RaceSetup *raceSetup = gRaceSetup;
+    s32 sortKeys[8];
+    s32 sortedIndices[8];
     u16 i;
     u16 j;
-    s32 n = -1;
-    s32 g;
-    s32 k;
-    s32 m;
-    s32 v;
-    BOOL f;
-    KartCourseResult *q;
+    s32 keySign = -1;
+    s32 humanGhostOrPeerBit;
+    s32 lowByte;
+    s32 courseIndexInCup;
+    s32 cupScore;
+    BOOL isHumanGhostOrPeer;
+    KartCourseResult *courseResult;
 
-    if (d->mMode == MODE_TIME_ATTACK) {
+    if (raceSetup->mMode == MODE_TIME_ATTACK) {
         return;
     }
-    if (d->mMode == MODE_MISSION_RUN) {
+    if (raceSetup->mMode == MODE_MISSION_RUN) {
         return;
     }
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         if (gRaceSetup->mRuleKind == 1 || gRaceSetup->mMode == MODE_BATTLE) {
-            f = FALSE;
+            isHumanGhostOrPeer = FALSE;
             if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind <= 3) {
                 if ((1 << gRaceSetup->mCurrentEntries[i].mPlayer.mKind) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) {
-                    f = TRUE;
+                    isHumanGhostOrPeer = TRUE;
                 }
             }
-            g = f != FALSE ? 1 : 0;
-            k = GetLowByte(i);
-            m = GetCourseIndexInCup();
-            v = gCupRecords->mUnk_000[m][GetLowByte(k)].mWinCount;
-            a[i] = (v << 4) + (g << 3) + 8 - GetKartRank(i);
+            humanGhostOrPeerBit = isHumanGhostOrPeer != FALSE ? 1 : 0;
+            lowByte = GetLowByte(i);
+            courseIndexInCup = GetCourseIndexInCup();
+            cupScore = gCupRecords->mKartResults[courseIndexInCup][GetLowByte(lowByte)].mWinCount;
+            sortKeys[i] = (cupScore << 4) + (humanGhostOrPeerBit << 3) + 8 - GetKartRank(i);
         } else {
-            f = FALSE;
+            isHumanGhostOrPeer = FALSE;
             if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind <= 3) {
                 if ((1 << gRaceSetup->mCurrentEntries[i].mPlayer.mKind) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) {
-                    f = TRUE;
+                    isHumanGhostOrPeer = TRUE;
                 }
             }
-            g = f != FALSE ? 1 : 0;
-            k = GetLowByte(i);
-            m = GetCourseIndexInCup();
-            q = &gCupRecords->mUnk_000[m][GetLowByte(k)];
-            v = q->mTotalPoints;
-            a[i] = (v << 4) + (g << 3) + 8 - GetKartRank(i);
+            humanGhostOrPeerBit = isHumanGhostOrPeer != FALSE ? 1 : 0;
+            lowByte = GetLowByte(i);
+            courseIndexInCup = GetCourseIndexInCup();
+            courseResult = &gCupRecords->mKartResults[courseIndexInCup][GetLowByte(lowByte)];
+            cupScore = courseResult->mTotalPoints;
+            sortKeys[i] = (cupScore << 4) + (humanGhostOrPeerBit << 3) + 8 - GetKartRank(i);
         }
     }
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-        b[i] = i;
-        a[i] = a[i] * n;
+        sortedIndices[i] = i;
+        sortKeys[i] = sortKeys[i] * keySign;
     }
-    SortIndicesByKey(b, a, gRaceSetup->mKartCount);
+    SortIndicesByKey(sortedIndices, sortKeys, gRaceSetup->mKartCount);
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         for (j = 0; j < (u32) gRaceSetup->mKartCount; j++) {
-            if (i == b[j]) {
+            if (i == sortedIndices[j]) {
                 SetKartCupRank(i, j + 1);
                 break;
             }
@@ -111,46 +111,46 @@ void func_020b3cd8(void) {
     }
 }
 
-static inline Unk0217aa1c_144_00 *func_020b3b58_inline(s32 j) {
-    return &gCupRecords->mUnk_144[GetCourseIndexInCup()].mUnk_00[j];
+static inline Unk0217aa1c_144_00 *func_020b3b58_inline(s32 teamIndex) {
+    return &gCupRecords->mTeamResults[GetCourseIndexInCup()].mTeams[teamIndex];
 }
 
-static inline Unk0217aa1c_144 *func_020b3b58_inline2(void) {
-    return &gCupRecords->mUnk_144[GetCourseIndexInCup()];
+static inline CourseTeamResults *func_020b3b58_inline2(void) {
+    return &gCupRecords->mTeamResults[GetCourseIndexInCup()];
 }
 
-void func_020b3b58(void) {
-    RaceSetup *d = gRaceSetup;
-    s32 a;
-    s32 b;
-    BOOL c;
+void SetCupWinningTeamFromRecords(void) {
+    RaceSetup *raceSetup = gRaceSetup;
+    s32 firstTeamScore;
+    s32 secondTeamScore;
+    BOOL isRuleKind1OrBattle;
     u16 i;
-    Unk0217aa1c_144_00 *q;
+    Unk0217aa1c_144_00 *firstTeamRecord;
 
-    if (d->mUseTeams == 0) {
+    if (raceSetup->mUseTeams == 0) {
         return;
     }
-    if (d->mRuleKind == 1 || d->mMode == MODE_BATTLE) {
-        a = func_020b3b58_inline(0)->mUnk_02;
+    if (raceSetup->mRuleKind == 1 || raceSetup->mMode == MODE_BATTLE) {
+        firstTeamScore = func_020b3b58_inline(0)->mUnk_02;
     } else {
-        q = &gCupRecords->mUnk_144[GetCourseIndexInCup()].mUnk_00[0];
-        a = q->mUnk_00;
+        firstTeamRecord = &gCupRecords->mTeamResults[GetCourseIndexInCup()].mTeams[0];
+        firstTeamScore = firstTeamRecord->mUnk_00;
     }
-    d = gRaceSetup;
-    c = TRUE;
-    if (d->mRuleKind != 1 && d->mMode != MODE_BATTLE) {
-        c = FALSE;
+    raceSetup = gRaceSetup;
+    isRuleKind1OrBattle = TRUE;
+    if (raceSetup->mRuleKind != 1 && raceSetup->mMode != MODE_BATTLE) {
+        isRuleKind1OrBattle = FALSE;
     }
-    if (c) {
-        b = func_020b3b58_inline(1)->mUnk_02;
+    if (isRuleKind1OrBattle) {
+        secondTeamScore = func_020b3b58_inline(1)->mUnk_02;
     } else {
-        b = func_020b3b58_inline2()->mUnk_00[1].mUnk_00;
+        secondTeamScore = func_020b3b58_inline2()->mTeams[1].mUnk_00;
     }
-    if (a > b) {
+    if (firstTeamScore > secondTeamScore) {
         SetCupWinningTeam(0);
         return;
     }
-    if (b > a) {
+    if (secondTeamScore > firstTeamScore) {
         SetCupWinningTeam(1);
         return;
     }
@@ -162,63 +162,63 @@ void func_020b3b58(void) {
     SetCupWinningTeam(gRaceSetup->mCurrentEntries[i].mPlayer.mTeamIndex);
 }
 
-void func_020b3b08(void) {
-    data_0217b35c = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x10);
-    data_0217b35c->mUnk_00 = 0;
-    data_0217b35c->mUnk_04 = FALSE;
-    data_0217b35c->mUnk_08 = 0;
-    data_0217b35c->mUnk_0c = FALSE;
+void InitRaceEnd(void) {
+    gRaceEnd = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x10);
+    gRaceEnd->mEndFrames = 0;
+    gRaceEnd->mStemSetRequested = FALSE;
+    gRaceEnd->mStemSetRequestFrames = 0;
+    gRaceEnd->mResultsSet = FALSE;
 }
 
-u32 func_020b3af4(void) {
-    u32 value0;
-    u32 value1;
-    value0 = (u32) &data_0217b35c;
-    value1 = 0u;
-    *(u32 *) ((value0) + (0)) = value1;
-    return value0;
+u32 ClearRaceEndPointer(void) {
+    u32 pointerAddress;
+    u32 nullValue;
+    pointerAddress = (u32) &gRaceEnd;
+    nullValue = 0u;
+    *(u32 *) ((pointerAddress) + (0)) = nullValue;
+    return pointerAddress;
 }
 
-u32 func_020b3adc(void) {
+u32 ResetRaceEndFrames(void) {
     u32 value0;
-    u32 value1;
-    value0 = (u32) &data_0217b35c;
-    value1 = 0u;
+    u32 zeroValue;
+    value0 = (u32) &gRaceEnd;
+    zeroValue = 0u;
     value0 = *(const u32 *) ((value0) + (0));
-    *(u32 *) ((value0) + (0)) = value1;
+    *(u32 *) ((value0) + (0)) = zeroValue;
     return value0;
 }
 
-void func_020b3728(void) {
-    RaceSetup *d;
+void UpdateRaceEnd(void) {
+    RaceSetup *raceSetup;
     s32 a;
-    s32 b;
-    BOOL f;
-    u16 i;
+    s32 followedKartStatus;
+    BOOL playsRaceEndSound;
+    u16 followedKartIndex;
 
-    if (gRaceProgress->mRaceDone != 0 && data_0217b35c->mUnk_0c == FALSE) {
-        func_020b3cd8();
-        func_020b3b58();
+    if (gRaceProgress->mRaceDone != 0 && gRaceEnd->mResultsSet == FALSE) {
+        SetKartCupRanks();
+        SetCupWinningTeamFromRecords();
         SetRaceResultRecords();
-        data_0217b35c->mUnk_0c = TRUE;
+        gRaceEnd->mResultsSet = TRUE;
     }
-    i = GetFollowedKartOrEntryIndex();
-    if (gRaceProgress->mUnk_000[i].mStatus != 1 && gRaceProgress->mRaceDone == 0) {
+    followedKartIndex = GetFollowedKartOrEntryIndex();
+    if (gRaceProgress->mUnk_000[followedKartIndex].mStatus != 1 && gRaceProgress->mRaceDone == 0) {
         return;
     }
-    a = data_0217b35c->mUnk_00;
+    a = gRaceEnd->mEndFrames;
     if (a < 11) {
-        data_0217b35c->mUnk_00 = a + 1;
+        gRaceEnd->mEndFrames = a + 1;
         if (a == 0) {
-            d = gRaceSetup;
-            switch (d->mMode) {
+            raceSetup = gRaceSetup;
+            switch (raceSetup->mMode) {
                 case MODE_GRAND_PRIX:
                 case MODE_TIME_ATTACK:
                     SetStemSet(3);
                     break;
                 case MODE_VS:
                 case 5:
-                    if (d->mRuleKind != 1) {
+                    if (raceSetup->mRuleKind != 1) {
                         if (gRaceProgress->mUnk_000[GetFollowedKartOrEntryIndex()].mStatus == 1) {
                             SetStemSet(3);
                         }
@@ -226,31 +226,31 @@ void func_020b3728(void) {
                     break;
             }
             if ((data_0217d084.mMode - 2) <= 1 && gRaceSetup->mMode != MODE_BATTLE) {
-                d = gRaceSetup;
-                f = TRUE;
-                if (d->mRaceKind == RACE_KIND_DEMO) {
-                    f = FALSE;
-                } else if (d->mMode == MODE_MISSION_RUN) {
-                    switch (d->mMissionKind) {
+                raceSetup = gRaceSetup;
+                playsRaceEndSound = TRUE;
+                if (raceSetup->mRaceKind == RACE_KIND_DEMO) {
+                    playsRaceEndSound = FALSE;
+                } else if (raceSetup->mMode == MODE_MISSION_RUN) {
+                    switch (raceSetup->mMissionKind) {
                         case 2:
                         case 4:
                         case 6:
                         case 10:
-                            if ((IsKartEnded((u16) d->mEntryIndex) ? gRaceProgress->mEntryEndKind : 6) != 0) {
-                                f = FALSE;
+                            if ((IsKartEnded((u16) raceSetup->mEntryIndex) ? gRaceProgress->mEntryEndKind : 6) != 0) {
+                                playsRaceEndSound = FALSE;
                             }
                             break;
                         default:
-                            f = FALSE;
+                            playsRaceEndSound = FALSE;
                             break;
                     }
                 }
-                if (f != FALSE) {
+                if (playsRaceEndSound != FALSE) {
                     if (IsRaceNewRecordTaFinishRecord() != 0 || IsRaceNewRecordTaBestLapRecord() != 0) {
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x44);
                     } else {
-                        b = gRaceProgress->mUnk_000[GetFollowedKartOrEntryIndex()].mStatus;
-                        if (b == 3) {
+                        followedKartStatus = gRaceProgress->mUnk_000[GetFollowedKartOrEntryIndex()].mStatus;
+                        if (followedKartStatus == 3) {
                             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x43);
                         } else {
                             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x42);
@@ -259,18 +259,18 @@ void func_020b3728(void) {
                 }
             }
         } else if (a == 10) {
-            d = gRaceSetup;
-            switch (d->mMode) {
+            raceSetup = gRaceSetup;
+            switch (raceSetup->mMode) {
                 case MODE_VS:
-                    if (d->mRuleKind == 1) {
-                        SetStemSet((GetKart(d->mEntryIndex)->mUnk_7c & 0x2000000) ? 4 : 5);
+                    if (raceSetup->mRuleKind == 1) {
+                        SetStemSet((GetKart(raceSetup->mEntryIndex)->mUnk_7c & 0x2000000) ? 4 : 5);
                     }
                     break;
                 case MODE_BATTLE:
-                    SetStemSet((GetKart(d->mEntryIndex)->mUnk_7c & 0x2000000) ? 4 : 5);
+                    SetStemSet((GetKart(raceSetup->mEntryIndex)->mUnk_7c & 0x2000000) ? 4 : 5);
                     break;
                 case MODE_MISSION_RUN:
-                    if ((IsKartEnded((u16) d->mEntryIndex) ? gRaceProgress->mEntryEndKind : 6) != 0) {
+                    if ((IsKartEnded((u16) raceSetup->mEntryIndex) ? gRaceProgress->mEntryEndKind : 6) != 0) {
                         SetStemSet(7);
                     }
                     break;
@@ -281,18 +281,18 @@ void func_020b3728(void) {
             }
         }
     }
-    if (data_0217b35c->mUnk_04 == FALSE) {
+    if (gRaceEnd->mStemSetRequested == FALSE) {
         return;
     }
-    a = data_0217b35c->mUnk_08;
-    data_0217b35c->mUnk_08 = a + 1;
+    a = gRaceEnd->mStemSetRequestFrames;
+    gRaceEnd->mStemSetRequestFrames = a + 1;
     if (a != 10) {
         return;
     }
-    d = gRaceSetup;
-    switch (d->mMode) {
+    raceSetup = gRaceSetup;
+    switch (raceSetup->mMode) {
         case MODE_MISSION_RUN:
-            if ((IsKartEnded((u16) d->mEntryIndex) ? gRaceProgress->mEntryEndKind : 6) == 0) {
+            if ((IsKartEnded((u16) raceSetup->mEntryIndex) ? gRaceProgress->mEntryEndKind : 6) == 0) {
                 SetStemSet(6);
             }
             break;
@@ -303,5 +303,5 @@ void func_020b3728(void) {
         case 5:
             break;
     }
-    data_0217b35c->mUnk_04 = FALSE;
+    gRaceEnd->mStemSetRequested = FALSE;
 }

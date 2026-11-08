@@ -95,7 +95,7 @@ void InitWiFiStates(void *heap, s32 b) {
     gWiFiStates->mUnk_2c = func_02125028(heap);
     InitLinkLevelIcons(heap, func_ov000_021804f4());
     c.mUnk_00 = TRUE;
-    c.mUnk_04 = func_020b403c(1);
+    c.mUnk_04 = GetFontByIndex(1);
     c.mUnk_08 = 0;
     c.mUnk_0c = 0;
     c.mUnk_10 = 0;

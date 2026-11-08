@@ -33,7 +33,7 @@ void func_ov001_021987d4(void *heap, s16 a) {
     data_ov001_021a9be4->mUnk_08 = heap;
     data_ov001_021a9be4->mUnk_10 = func_021250b0(heap);
     arg.mUnk_00 = TRUE;
-    arg.mUnk_04 = func_020b403c(1);
+    arg.mUnk_04 = GetFontByIndex(1);
     arg.mUnk_08 = 0;
     arg.mUnk_0c = 1;
     arg.mUnk_10 = 0;

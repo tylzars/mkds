@@ -39,14 +39,15 @@ typedef union LoadedPartPointer {
 } LoadedPartPointer;
 
 // Declared here until the code that defines them is decompiled.
-void *func_020b4000(int param_1);
-void *func_020b400c(int param_1);
-void *func_020b4018(int param_1);
-void *func_020b4030(int param_1);
+void *GetPlayerCharacterBncl(int param_1);
+Unk02021dc8 *GetPlayerCharacterNcer(int param_1);
+Ncgr *GetPlayerCharacterNcgr(int param_1);
+void *GetPlayerCharacterNclr(int param_1);
 #include "Main/Unknown/code_020b41e8.h"
 #include "Main/Unknown/code_020b47d8.h"
 #include "Main/Unknown/code_020b4e70.h"
-void *func_020b403c(s32 index);
-void *func_020b4024(u32 arg0);
+Unk02022aa8 *GetFontByIndex(s32 index);
+Nclr *GetPlayerCharacterShyguyNclr(u32 index);
 #include "Main/Unknown/code_020b4048.h"
 #include "Main/Unknown/code_020b4e0c.h"
+#include "code_02022aa8.h" // Unk02022aa8

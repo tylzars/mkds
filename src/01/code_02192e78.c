@@ -80,7 +80,7 @@ void InitOptionStates(void *heap, s16 a) {
     func_ov001_021930ac();
     InitLinkLevelIcons(heap, GetOptionFirstBuffer());
     arg.mUnk_00 = TRUE;
-    arg.mUnk_04 = func_020b403c(1);
+    arg.mUnk_04 = GetFontByIndex(1);
     arg.mUnk_08 = 0;
     arg.mUnk_0c = 1;
     arg.mUnk_10 = 0;

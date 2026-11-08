@@ -75,7 +75,7 @@ void func_020aeb7c(void) {
                     c = TRUE;
                 }
                 if (c != FALSE) {
-                    if (func_020b32ec() == 0) {
+                    if (IsChoisesSPickLocked() == 0) {
                         b = TRUE;
                     }
                 }
@@ -130,7 +130,7 @@ void func_020aeb7c(void) {
                     c = TRUE;
                 }
                 if (c != FALSE) {
-                    if (func_020b32ec() == 0) {
+                    if (IsChoisesSPickLocked() == 0) {
                         b = TRUE;
                     }
                 }
@@ -206,7 +206,7 @@ void func_020aeb7c(void) {
                     c = TRUE;
                 }
                 if (c != FALSE) {
-                    if (func_020b32ec() == 0) {
+                    if (IsChoisesSPickLocked() == 0) {
                         b = TRUE;
                     }
                 }
@@ -276,7 +276,7 @@ void func_020aeb7c(void) {
                         c = TRUE;
                     }
                     if (c != FALSE) {
-                        if (func_020b32ec() == 0) {
+                        if (IsChoisesSPickLocked() == 0) {
                             b = TRUE;
                         }
                     }
@@ -323,7 +323,7 @@ void func_020aeb7c(void) {
                     c = TRUE;
                 }
                 if (c != FALSE) {
-                    if (func_020b32ec() == 0) {
+                    if (IsChoisesSPickLocked() == 0) {
                         b = TRUE;
                     }
                 }

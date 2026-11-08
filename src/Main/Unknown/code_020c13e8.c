@@ -123,11 +123,11 @@ void func_020c1bc0(void) {
             if (gRaceSetup->mRuleKind == 1 || gRaceSetup->mMode == MODE_BATTLE) {
                 kartIndex = GetLowByte(i);
                 courseIndex = GetCourseIndexInCup();
-                target = gCupRecords->mUnk_000[courseIndex][GetLowByte(kartIndex)].mWinCount;
+                target = gCupRecords->mKartResults[courseIndex][GetLowByte(kartIndex)].mWinCount;
             } else {
                 kartIndex = GetLowByte(i);
                 courseIndex = GetCourseIndexInCup();
-                record = &gCupRecords->mUnk_000[courseIndex][GetLowByte(kartIndex)];
+                record = &gCupRecords->mKartResults[courseIndex][GetLowByte(kartIndex)];
                 target = record->mTotalPoints;
             }
             if (gRaceGoalS->mShownNumbers[i] < target) {
@@ -171,11 +171,11 @@ void func_020c195c(void) {
             if (gRaceSetup->mRuleKind == 1 || gRaceSetup->mMode == MODE_BATTLE) {
                 kartIndex = GetLowByte(i);
                 courseIndex = GetCourseIndexInCup();
-                gRaceGoalS->mShownNumbers[i] = gCupRecords->mUnk_000[courseIndex][GetLowByte(kartIndex)].mWinCount;
+                gRaceGoalS->mShownNumbers[i] = gCupRecords->mKartResults[courseIndex][GetLowByte(kartIndex)].mWinCount;
             } else {
                 kartIndex = GetLowByte(i);
                 courseIndex = GetCourseIndexInCup();
-                record = &gCupRecords->mUnk_000[courseIndex][GetLowByte(kartIndex)];
+                record = &gCupRecords->mKartResults[courseIndex][GetLowByte(kartIndex)];
                 gRaceGoalS->mShownNumbers[i] = record->mTotalPoints;
             }
         }
@@ -318,7 +318,7 @@ void func_020c155c(void) {
 }
 
 static inline Unk0217aa1c_144_00 *func_020c13e8_inline(s32 teamIndex) {
-    return &gCupRecords->mUnk_144[GetCourseIndexInCup()].mUnk_00[teamIndex];
+    return &gCupRecords->mTeamResults[GetCourseIndexInCup()].mTeams[teamIndex];
 }
 
 void func_020c13e8(void) {

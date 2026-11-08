@@ -77,11 +77,11 @@ static inline void func_02032f94_inline(void *buffer, s32 byteCount) {
 }
 
 static inline Unk0217aa1c_144_00 *func_02032f94_inline_2(s32 index) {
-    return &gCupRecords->mUnk_144[GetCourseIndexInCup()].mUnk_00[index];
+    return &gCupRecords->mTeamResults[GetCourseIndexInCup()].mTeams[index];
 }
 
-static inline Unk0217aa1c_144 *func_02032f94_inline_3(void) {
-    return &gCupRecords->mUnk_144[GetCourseIndexInCup()];
+static inline CourseTeamResults *func_02032f94_inline_3(void) {
+    return &gCupRecords->mTeamResults[GetCourseIndexInCup()];
 }
 
 void InitResultsBattle(void *heap, s32 b, s32 c) {
@@ -123,7 +123,7 @@ void InitResultsBattle(void *heap, s32 b, s32 c) {
     v.mUnk_0c = 0;
     v.mUnk_10 = 0;
     v.mUnk_14 = 1;
-    v.mUnk_18 = func_020b403c(2);
+    v.mUnk_18 = GetFontByIndex(2);
     v.mUnk_1c = 0;
     v.mUnk_20 = 0;
     v.mUnk_24 = 0;
@@ -164,8 +164,8 @@ void InitResultsBattle(void *heap, s32 b, s32 c) {
                 k = func_02032f94_inline_2(1)->mUnk_02;
                 break;
             case 2:
-                j = func_02032f94_inline_3()->mUnk_00[0].mUnk_00;
-                k = func_02032f94_inline_3()->mUnk_00[1].mUnk_00;
+                j = func_02032f94_inline_3()->mTeams[0].mUnk_00;
+                k = func_02032f94_inline_3()->mTeams[1].mUnk_00;
                 break;
         }
         if (j == k) {
@@ -188,8 +188,8 @@ void InitResultsBattle(void *heap, s32 b, s32 c) {
     }
     func_02025b84(1, &gResultsBattle->mCellFileSets[2]);
     func_02025b84(0, &gResultsBattle->mCellFileSets[3]);
-    gResultsBattle->mUnk_0c0 = func_020b4024(1);
-    gResultsBattle->mUnk_0c4 = func_020b4024(0);
+    gResultsBattle->mUnk_0c0 = GetPlayerCharacterShyguyNclr(1);
+    gResultsBattle->mUnk_0c4 = GetPlayerCharacterShyguyNclr(0);
     screenMapFileSet = &gResultsBattle->mScreenMapFileSets[0];
     LoadScreenMapFileSet(screenMapFileSet, data_02153f80[gResultsBattle->mFileSetKind][0],
                          data_02153f84[gResultsBattle->mFileSetKind][0], data_02153f8c[gResultsBattle->mFileSetKind][0],

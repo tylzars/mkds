@@ -50,7 +50,7 @@ void func_020c1060(void) {
                 c = v != 0 ? 1 : x1;
                 p = GetLowByte(i);
                 r = GetCourseIndexInCup();
-                w = gCupRecords->mUnk_000[r][GetLowByte(p)].mWinCount;
+                w = gCupRecords->mKartResults[r][GetLowByte(p)].mWinCount;
                 a[i] = w * 16 + c * 8 + 8 - GetKartRank(i);
             } else {
                 v = x2;
@@ -61,12 +61,12 @@ void func_020c1060(void) {
                 c = v != 0 ? 1 : x3;
                 p = GetLowByte(i);
                 r = GetCourseIndexInCup();
-                s = &gCupRecords->mUnk_000[r][GetLowByte(p)];
+                s = &gCupRecords->mKartResults[r][GetLowByte(p)];
                 w = s->mTotalPoints;
                 a[i] = w * 16 + c * 8 + 8 - GetKartRank(i);
                 p = GetLowByte(i);
                 r = GetCourseIndexInCup();
-                s = &gCupRecords->mUnk_000[r][GetLowByte(p)];
+                s = &gCupRecords->mKartResults[r][GetLowByte(p)];
                 gRaceGoalS->mShownNumbers[i] = s->mTotalPoints;
             }
         }
@@ -142,7 +142,7 @@ void func_020c0ee4(void) {
 }
 
 static inline Unk0217aa1c_144_00 *func_020c0dd8_inline(s32 j) {
-    return &gCupRecords->mUnk_144[GetCourseIndexInCup()].mUnk_00[j];
+    return &gCupRecords->mTeamResults[GetCourseIndexInCup()].mTeams[j];
 }
 
 void func_020c0dd8(void) {

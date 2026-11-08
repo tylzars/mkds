@@ -41,12 +41,12 @@ u32 ClearRaceStartSequencePointer(void) {
     return pointerAddress;
 }
 
-void func_020b36a4(void) {
+void ResetRaceStartSequenceFrames(void) {
     gRaceStartSequence->mCounting = FALSE;
     gRaceStartSequence->mSequenceFrames = -0x78;
 }
 
-// Per-frame step from func_020af66c: no sounds (they are in the draw, func_020b3410).
+// Per-frame step from func_020af66c: no sounds (they are in the draw, UpdateRaceStartSequenceSounds).
 void UpdateRaceStartSequence(void) {
     RaceStartSequence *sequence = gRaceStartSequence;
     s32 frames;
@@ -88,7 +88,7 @@ void UpdateRaceStartSequence(void) {
     }
 }
 
-void func_020b3410(void) {
+void UpdateRaceStartSequenceSounds(void) {
     NNSSndSeqPlayer **seqPlayer;
     s32 frames = gRaceStartSequence->mSequenceFrames;
 

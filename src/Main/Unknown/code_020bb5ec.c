@@ -53,7 +53,7 @@ void func_020bbbb4(void) {
     }
     if (func_020b1a20() != 0) {
         x = GetFollowedKartOrEntryIndex();
-        GetKartLapTime(x, func_020b4d2c(), &a, &b, &c);
+        GetKartLapTime(x, GetFollowedKartLastEndedLap(), &a, &b, &c);
     } else {
         if (gRaceSetup->mMode != MODE_BATTLE && IsKartEnded(GetFollowedKartOrEntryIndex()) != 0) {
             GetKartFinishTime(GetFollowedKartOrEntryIndex(), &a, &b, &c);

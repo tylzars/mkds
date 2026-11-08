@@ -40,10 +40,10 @@ void InitEmblemChoises(void) {
     LoadNclrData(&gEmblemChoises->mChoisesSBNclr, FindSceneFileWrapper("choises_s_b.NCLR"));
     LoadNcgrData(&gEmblemChoises->mChoisesSBNcgr, FindSceneFileWrapper("choises_s_b.NCGR"));
     LoadNscrData(&gEmblemChoises->mChoisesS3Nscr, FindSceneFileWrapper("choises_s_3.NSCR"));
-    gEmblemChoises->mUnk_2c = func_020b403c(2);
+    gEmblemChoises->mUnk_2c = GetFontByIndex(2);
     NNS_G2dCharCanvasInitForBG(&gEmblemChoises->mUnk_30, gEmblemChoises->mChoisesSBNcgr->mData, 0x20, 0xc, 4);
     emblemChoises = gEmblemChoises;
-    func_020ca808(&emblemChoises->mUnk_50, &emblemChoises->mUnk_30, emblemChoises->mUnk_2c, func_020b4acc(), 0);
+    func_020ca808(&emblemChoises->mUnk_50, &emblemChoises->mUnk_30, emblemChoises->mUnk_2c, IsLanguageJa(), 0);
     {
         s32 bmgIndices[3] = {2, 0, 1};
         s32 i;

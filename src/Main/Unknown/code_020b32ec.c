@@ -8,44 +8,44 @@ Nclr *GetChoisesSBNclr(void) {
     return (gChoisesS->mChoisesSBNclr);
 }
 
-Ncgr *func_020b3374(void) {
-    int v1;
-    v1 = GetChoisesSListIndex();
-    if (v1 == 1) {
+Ncgr *GetChoisesSBNcgrWithListChars(void) {
+    int choisesSListIndex;
+    choisesSListIndex = GetChoisesSListIndex();
+    if (choisesSListIndex == 1) {
         gChoisesS->mChoisesSBNcgr->mData = gChoisesS->mList1Chars;
     } else {
-        v1 = GetChoisesSListIndex();
-        if (v1 == 2) {
+        choisesSListIndex = GetChoisesSListIndex();
+        if (choisesSListIndex == 2) {
             gChoisesS->mChoisesSBNcgr->mData = gChoisesS->mList2Chars;
         }
     }
     return gChoisesS->mChoisesSBNcgr;
 }
 
-void *func_020b32f8(void) {
-    int v1;
-    u16 *v2;
-    v2 = 0;
-    v1 = GetChoisesSListIndex();
-    if (v1 == 0) {
+void *GetChoisesSListScreenMapData(void) {
+    int choisesSListIndex;
+    u16 *screenMapData;
+    screenMapData = 0;
+    choisesSListIndex = GetChoisesSListIndex();
+    if (choisesSListIndex == 0) {
         if (gChoisesS->mList0Nscr != NULL) {
-            v2 = gChoisesS->mList0Nscr->mData;
+            screenMapData = gChoisesS->mList0Nscr->mData;
         }
-    } else if (v1 == 1) {
+    } else if (choisesSListIndex == 1) {
         if (gChoisesS->mList1Nscr != NULL) {
-            v2 = gChoisesS->mList1Nscr->mData;
+            screenMapData = gChoisesS->mList1Nscr->mData;
         }
-    } else if (v1 == 2) {
+    } else if (choisesSListIndex == 2) {
         if (gChoisesS->mList2Nscr != NULL) {
-            v2 = gChoisesS->mList2Nscr->mData;
+            screenMapData = gChoisesS->mList2Nscr->mData;
         }
-    } else if ((v1 == 3) && (gChoisesS->mList3Nscr != NULL)) {
-        v2 = gChoisesS->mList3Nscr->mData;
+    } else if ((choisesSListIndex == 3) && (gChoisesS->mList3Nscr != NULL)) {
+        screenMapData = gChoisesS->mList3Nscr->mData;
     }
-    return v2;
+    return screenMapData;
 }
 
-u32 func_020b32ec(void) {
+u32 IsChoisesSPickLocked(void) {
     return (gChoisesS->mPickLocked);
 }
 

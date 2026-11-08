@@ -783,7 +783,7 @@ void InitRecordSceneObject(void *heap, s16 previousScene) {
     func_021250b0(heap);
     InitLinkLevelIcons(heap, GetRecordMainOam());
     v.mUnk_00 = TRUE;
-    v.mUnk_04 = func_020b403c(1);
+    v.mUnk_04 = GetFontByIndex(1);
     v.mUnk_08 = 0;
     v.mUnk_0c = 1;
     v.mUnk_10 = 0;

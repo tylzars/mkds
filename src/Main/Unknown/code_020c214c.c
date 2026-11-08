@@ -56,25 +56,27 @@ void func_020c3b6c(s32 row, s32 style) {
             spanLength = spans[row].mUnk_04 - spanStart + 1;
             fullStart = fullSpan.mUnk_00;
             fullLength = fullSpan.mUnk_04 - fullStart + 1;
-            func_020b4520(gRaceGoalS->mRaceGoalSSpaceNscrCopies[copyIndex], fullStart, spanStart, fullLength,
-                          spanLength, gRaceGoalS->mRaceGoalSNscrs[m]->mData, fullStart, spanStart);
-            func_020b44a4(gRaceGoalS->mRaceGoalSNscrs[m]->mData, fullStart, spanStart, fullLength, spanLength, 9);
+            CopyScreenMapBlock(gRaceGoalS->mRaceGoalSSpaceNscrCopies[copyIndex], fullStart, spanStart, fullLength,
+                               spanLength, gRaceGoalS->mRaceGoalSNscrs[m]->mData, fullStart, spanStart);
+            SetScreenMapBlockTopBits(gRaceGoalS->mRaceGoalSNscrs[m]->mData, fullStart, spanStart, fullLength,
+                                     spanLength, 9);
             break;
         case 1:
             spanStart = spans[row].mUnk_00;
             spanLength = spans[row].mUnk_04 - spanStart + 1;
             fullStart = fullSpan.mUnk_00;
             fullLength = fullSpan.mUnk_04 - fullStart + 1;
-            func_020b4520(gRaceGoalS->mRaceGoalSSpaceNscrCopies[copyIndex], fullStart, spanStart, fullLength,
-                          spanLength, gRaceGoalS->mRaceGoalSNscrs[m]->mData, fullStart, spanStart);
-            func_020b44a4(gRaceGoalS->mRaceGoalSNscrs[m]->mData, fullStart, spanStart, fullLength, spanLength, 8);
+            CopyScreenMapBlock(gRaceGoalS->mRaceGoalSSpaceNscrCopies[copyIndex], fullStart, spanStart, fullLength,
+                               spanLength, gRaceGoalS->mRaceGoalSNscrs[m]->mData, fullStart, spanStart);
+            SetScreenMapBlockTopBits(gRaceGoalS->mRaceGoalSNscrs[m]->mData, fullStart, spanStart, fullLength,
+                                     spanLength, 8);
             break;
         case 2:
             spanStart = spans[row].mUnk_00;
             spanLength = spans[row].mUnk_04 - spanStart + 1;
             fullLength = fullSpan.mUnk_04 - fullSpan.mUnk_00 + 1;
-            func_020b4428(gRaceGoalS->mRaceGoalSNscrs[m]->mData, fullSpan.mUnk_00, spanStart, fullLength, spanLength,
-                          0);
+            SetScreenMapBlockLowBits(gRaceGoalS->mRaceGoalSNscrs[m]->mData, fullSpan.mUnk_00, spanStart, fullLength,
+                                     spanLength, 0);
             break;
     }
 }
@@ -106,7 +108,7 @@ void UpdateRaceGoalSOffset(void) {
             break;
         case 2:
             gRaceGoalS->mOffset = 0;
-            if (gRaceSetup->mMode == 5 && func_020b32ec() != 0) {
+            if (gRaceSetup->mMode == 5 && IsChoisesSPickLocked() != 0) {
                 gRaceGoalS->mOffsetState = 3;
                 gRaceGoalS->mOffsetStateFrames = 0;
                 return;
@@ -124,7 +126,7 @@ void UpdateRaceGoalSOffset(void) {
                 gRaceGoalS->mOffset = InterpolateS16(1, 0, -0x20, frame, 0x14);
             } else {
                 gRaceGoalS->mOffset = -0x20;
-                if (gRaceSetup->mMode == 5 && func_020b32ec() != 0) {
+                if (gRaceSetup->mMode == 5 && IsChoisesSPickLocked() != 0) {
                     gRaceGoalS->mOffsetState = 7;
                     gRaceGoalS->mOffsetStateFrames = 0;
                 } else {
@@ -147,7 +149,7 @@ void UpdateRaceGoalSOffset(void) {
             if (gRaceSetup->mMode != 5) {
                 return;
             }
-            if (func_020b32ec() == 0) {
+            if (IsChoisesSPickLocked() == 0) {
                 return;
             }
             gRaceGoalS->mOffsetState = 6;
@@ -563,7 +565,7 @@ void DrawRaceGoalSTeams(Unk020c06c4 *oamBuffer) {
     u16 i;
     BOOL f;
     s32 number;
-    Unk0217aa1c_144 *courseRecords;
+    CourseTeamResults *courseRecords;
 
     offsetX = gRaceGoalS->mOffsetX;
     for (i = 0; i < 2; i++) {
@@ -581,11 +583,11 @@ void DrawRaceGoalSTeams(Unk020c06c4 *oamBuffer) {
             f = FALSE;
         }
         if (f != FALSE) {
-            courseRecords = &gCupRecords->mUnk_144[GetCourseIndexInCup()];
-            number = courseRecords->mUnk_00[i].mUnk_02;
+            courseRecords = &gCupRecords->mTeamResults[GetCourseIndexInCup()];
+            number = courseRecords->mTeams[i].mUnk_02;
         } else {
-            courseRecords = &gCupRecords->mUnk_144[GetCourseIndexInCup()];
-            number = courseRecords->mUnk_00[i].mUnk_00;
+            courseRecords = &gCupRecords->mTeamResults[GetCourseIndexInCup()];
+            number = courseRecords->mTeams[i].mUnk_00;
         }
         DrawRaceGoalSTeamNumber(oamBuffer, number, numberX[i] + (i == 0 ? -offsetX : offsetX), 0xb6);
     }

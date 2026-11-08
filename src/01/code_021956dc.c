@@ -63,10 +63,10 @@ void LocateAndQueueRecordTAtt(void) {
     gRecordTAtt->mRecordTAttSBncl = FindSceneFile(gRecordTAttSBnclName);
     gRecordTAtt->mRecordTAttSBnbl = FindSceneFile(gRecordTAttSBnblName);
     gRecordTAtt->mRecordTAttSBnll = FindSceneFile(gRecordTAttSBnllName);
-    gRecordTAtt->mUnk_28 = func_020b4018(0);
-    gRecordTAtt->mUnk_2c = func_020b400c(0);
-    gRecordTAtt->mUnk_30 = func_020b4030(0);
-    gRecordTAtt->mUnk_34 = func_020b4000(0);
+    gRecordTAtt->mUnk_28 = GetPlayerCharacterNcgr(0);
+    gRecordTAtt->mUnk_2c = GetPlayerCharacterNcer(0);
+    gRecordTAtt->mUnk_30 = GetPlayerCharacterNclr(0);
+    gRecordTAtt->mUnk_34 = GetPlayerCharacterBncl(0);
     LocateNcgr(&l4, FindSceneFile(gRecordTAttMBNcgrName));
     LocateNscr(&lc, FindSceneFile(gRecordTAttMNscrName));
     LocateNscr(&l10, FindSceneFile(gRecordTAttMScoreNscrName));

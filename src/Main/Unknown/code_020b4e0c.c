@@ -13,14 +13,14 @@
 #include "Main/Unknown/code_020b4e70.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-s32 func_020b4e0c(void) {
-    s32 r = 1;
+BOOL IsFollowedKartOutsideBox(void) {
+    s32 isOutside = 1;
     Vec3 position;
-    s32 courseId = func_020b4e5c();
+    s32 courseId = RaceHudSubScreenGetCurrentCourseId();
 
-    if (courseId == 0x11 || courseId == 0x13) {
+    if (courseId == COURSE_ID_CLOCK || courseId == COURSE_ID_AIRSHIP) {
         func_0207a91c(&position, GetFollowedKartOrEntryIndex());
-        r = func_020b4e70(&position);
+        isOutside = IsPositionOutsideBox(&position);
     }
-    return r;
+    return isOutside;
 }

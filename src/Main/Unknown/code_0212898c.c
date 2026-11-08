@@ -184,7 +184,7 @@ void InitKeyboard(void *heap, s32 mode) {
     gKeyboard->mDisplaySettings = func_021250b0(heap);
     InitLinkLevelIcons(heap, GetKeyboardFirstBuffer());
     config.mUnk_00 = 1;
-    config.mUnk_04 = func_020b403c(1);
+    config.mUnk_04 = GetFontByIndex(1);
     config.mUnk_08 = 0;
     config.mUnk_0c = 1;
     config.mUnk_10 = 0;

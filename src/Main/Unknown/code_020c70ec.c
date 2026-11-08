@@ -38,7 +38,7 @@ void UpdateRaceHudSubScreenItemBoxCells(void) {
                 if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenItemBoxCells->mCells[k].mDrawPos, c, 0, 0) !=
                     FALSE) {
                     gRaceHudSubScreenItemBoxCells->mCells[k].mCell = GetRaceSNcerEntry(0x4e);
-                    gRaceHudSubScreenItemBoxCells->mCells[k].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
+                    gRaceHudSubScreenItemBoxCells->mCells[k].mUnk_0c = IsPositionOutsideBox(v) != 0 ? 2 : 3;
                     gRaceHudSubScreenItemBoxCells->mCells[k].mUnk_0e = p->mFlags & 0x20;
                     n++;
                     k++;

@@ -33,7 +33,7 @@ void SetupWLMenuCommonMessage(void *heap) {
     InitWLMenuMessage(heap);
     gWLMenuMessage->mState = 9;
     gWLMenuMessage->mCommonMessages = FindFileInLoadedArchives(data_021646e0);
-    gWLMenuMessage->mFont = func_020b403c(0);
+    gWLMenuMessage->mFont = GetFontByIndex(0);
     charBase = G2S_GetBG1CharPtr();
     text = GetBmgEntry(gWLMenuMessage->mCommonMessages, 0x79);
     NNS_G2dCharCanvasInitForBG(gWLMenuMessage->mCharCanvas, (u8 *) charBase + 0x400, 0x20, 4, 4);

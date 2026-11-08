@@ -1,67 +1,67 @@
 #include "Main/Unknown/code_020b4000.h"
 
 #pragma thumb on
-void *func_020b403c(s32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    value1 = (value0 << 2);
+Unk02022aa8 *GetFontByIndex(s32 index) {
+    u32 value0 = index;
+    u32 byteOffset;
+    byteOffset = (value0 << 2);
     value0 = (u32) &gFontTable;
-    value0 = *(const u32 *) ((value0) + (value1));
+    value0 = *(const u32 *) ((value0) + (byteOffset));
     return (void *) value0;
 }
 #pragma thumb off
 
 #pragma thumb on
-void *func_020b4030(int arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    value1 = (value0 << 2);
+void *GetPlayerCharacterNclr(int index) {
+    u32 value0 = index;
+    u32 byteOffset;
+    byteOffset = (value0 << 2);
     value0 = (u32) &gPlayerCharacterNclr;
-    value0 = *(const u32 *) ((value0) + (value1));
+    value0 = *(const u32 *) ((value0) + (byteOffset));
     return (void *) value0;
 }
 #pragma thumb off
 
 #pragma thumb on
-void *func_020b4024(u32 arg0) {
-    u32 value0 = (u32) arg0;
-    u32 value1;
-    value1 = (value0 << 2);
+Nclr *GetPlayerCharacterShyguyNclr(u32 index) {
+    u32 value0 = (u32) index;
+    u32 byteOffset;
+    byteOffset = (value0 << 2);
     value0 = (u32) &gPlayerCharacterShyguyNclr;
-    value0 = *(const u32 *) ((value0) + (value1));
+    value0 = *(const u32 *) ((value0) + (byteOffset));
     return (void *) value0;
 }
 #pragma thumb off
 
 #pragma thumb on
-void *func_020b4018(int arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    value1 = (value0 << 2);
+Ncgr *GetPlayerCharacterNcgr(int index) {
+    u32 value0 = index;
+    u32 byteOffset;
+    byteOffset = (value0 << 2);
     value0 = (u32) &gPlayerCharacterNcgr;
-    value0 = *(const u32 *) ((value0) + (value1));
+    value0 = *(const u32 *) ((value0) + (byteOffset));
     return (void *) value0;
 }
 #pragma thumb off
 
 #pragma thumb on
-void *func_020b400c(int arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    value1 = (value0 << 2);
+Unk02021dc8 *GetPlayerCharacterNcer(int index) {
+    u32 value0 = index;
+    u32 byteOffset;
+    byteOffset = (value0 << 2);
     value0 = (u32) &gPlayerCharacterNcer;
-    value0 = *(const u32 *) ((value0) + (value1));
+    value0 = *(const u32 *) ((value0) + (byteOffset));
     return (void *) value0;
 }
 #pragma thumb off
 
 #pragma thumb on
-void *func_020b4000(int arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    value1 = (value0 << 2);
+void *GetPlayerCharacterBncl(int index) {
+    u32 value0 = index;
+    u32 byteOffset;
+    byteOffset = (value0 << 2);
     value0 = (u32) &gPlayerCharacterBncl;
-    value0 = *(const u32 *) ((value0) + (value1));
+    value0 = *(const u32 *) ((value0) + (byteOffset));
     return (void *) value0;
 }
 #pragma thumb off

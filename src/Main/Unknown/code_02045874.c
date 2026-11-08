@@ -315,7 +315,7 @@ BOOL func_02045bd4(void) {
     data_0217b488->mMirrorMode = gRaceSetup->mMirrorMode;
     lowByte = GetLowByte((u8) entryIndex);
     courseIndexInCup = GetCourseIndexInCup();
-    courseResult = &gCupRecords->mUnk_000[courseIndexInCup][GetLowByte(lowByte)];
+    courseResult = &gCupRecords->mKartResults[courseIndexInCup][GetLowByte(lowByte)];
     data_0217b488->mTotalPoints = courseResult->mTotalPoints;
     data_0217b488->mKartIndex = gRaceSetup->mCurrentEntries[(u8) entryIndex].mKartIndex;
     for (i = 0; i < 4; i++) {

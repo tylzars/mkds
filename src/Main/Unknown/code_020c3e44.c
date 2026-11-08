@@ -137,7 +137,7 @@ void UpdateRaceGoalM(void) {
             gRaceGoalM->mRankIndex = GetKartRank(GetFollowedKartOrEntryIndex()) - 1;
             kartIndex = GetLowByte(GetFollowedKartOrEntryIndex());
             a = GetCourseIndexInCup();
-            record = &gCupRecords->mUnk_000[a][GetLowByte(kartIndex)];
+            record = &gCupRecords->mKartResults[a][GetLowByte(kartIndex)];
             a = record->mTotalPoints;
             gRaceGoalM->mPointsGained = a - GetKartPreviousTotalPoints(GetFollowedKartOrEntryIndex());
             if (frame > 0x14) {
@@ -498,7 +498,7 @@ void InitRaceStartGp(void) {
     for (i = 0; i < 3; i++) {
         gRaceStartGp->mRaceStartGpMNcerEntries[i] = NNS_G2dGetCellDataByIdx(ncer, (u16) i);
     }
-    r = func_020b403c(2);
+    r = GetFontByIndex(2);
     messageIndex = -1;
     NNS_G2dCharCanvasInitForBG(charCanvas, gRaceStartGp->mRaceStartGpMONcgr->mData, 0x20, 4, 4);
     textCanvas.mCharCanvas = charCanvas;
@@ -507,13 +507,15 @@ void InitRaceStartGp(void) {
     textCanvas.mLineSpacing = 0;
     if (gRaceSetup->mMode == MODE_GRAND_PRIX) {
         messageIndex = GetCourseMessageIndex(gRaceSetup->mCourseId);
-        textCanvas.mCharSpacing = func_020b4b10();
+        textCanvas.mCharSpacing = GetLanguageCharSpacing();
     } else if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         messageIndex = (gRaceSetup->mMode == MODE_MISSION_RUN ? gRaceSetup->mMissionTableRow : messageIndex) + 0x55;
-        textCanvas.mCharSpacing = func_020b4b54();
+        textCanvas.mCharSpacing = RaceStartIsLanguageJa();
     }
-    NNSi_G2dTextCanvasDrawText(&textCanvas, 0, 9, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), messageIndex));
-    NNSi_G2dTextCanvasDrawText(&textCanvas, 0, 8, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), messageIndex));
+    NNSi_G2dTextCanvasDrawText(&textCanvas, 0, 9, 0xe, 0x40a,
+                               GetBmgEntry(FindFileInLoadedArchivesWrapper("common.bmg"), messageIndex));
+    NNSi_G2dTextCanvasDrawText(&textCanvas, 0, 8, 0xe, 0x40a,
+                               GetBmgEntry(FindFileInLoadedArchivesWrapper("common.bmg"), messageIndex));
     DC_FlushRange(gRaceStartGp->mRaceStartGpMONcgr->mData, gRaceStartGp->mRaceStartGpMONcgr->mDataSize);
     GX_LoadOBJPltt(gRaceStartGp->mRaceStartGpMONclr->mData, 0, gRaceStartGp->mRaceStartGpMONclr->mDataSize);
     GX_LoadOBJ(gRaceStartGp->mRaceStartGpMONcgr->mData, 0, gRaceStartGp->mRaceStartGpMONcgr->mDataSize);
@@ -656,7 +658,7 @@ void UpdateRaceTaPositions(void) {
             gRaceTaPositions->mUnk_790[i].mUnk_00 = count + 1;
             ((void (*)(Vec3 *, s32)) func_0207a91c)(&gRaceTaPositions->mUnk_790[i].mUnk_04[count], i);
             gRaceTaPositions->mUnk_790[i].mUnk_28[count] =
-                func_020b4e70(&gRaceTaPositions->mUnk_790[i].mUnk_04[count]) != 0 ? 2 : 3;
+                IsPositionOutsideBox(&gRaceTaPositions->mUnk_790[i].mUnk_04[count]) != 0 ? 2 : 3;
         }
     }
     gRaceTaPositions->mSampleFrames++;
@@ -679,7 +681,7 @@ void UpdateRaceTaPositions(void) {
             }
             func_0207a91c(&gRaceTaPositions->mSamples[i][0].mPos, i);
             gRaceTaPositions->mSamples[i][0].mUnk_14 =
-                func_020b4e70(&gRaceTaPositions->mSamples[i][0].mPos) != 0 ? 2 : 3;
+                IsPositionOutsideBox(&gRaceTaPositions->mSamples[i][0].mPos) != 0 ? 2 : 3;
             gRaceTaPositions->mSamples[i][0].mAngle = func_020b6338(i);
             if ((kart->mUnk_44 & 0xa) != 0) {
                 gRaceTaPositions->mSamples[i][0].mKind = 2;

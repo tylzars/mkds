@@ -48,8 +48,8 @@ void func_020ae824(void) {
     if (gRaceHud->mEnabled == FALSE) {
         return;
     }
-    func_020b3410();
-    func_020b3724();
+    UpdateRaceStartSequenceSounds();
+    RaceHudDrawNop();
     gRaceHud->mMainOamCount = 0;
     gRaceHud->mMainMatrixCount = 0;
     if (gRaceSetup->mRaceKind == 4) {

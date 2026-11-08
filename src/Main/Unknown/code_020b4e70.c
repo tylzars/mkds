@@ -12,7 +12,7 @@
 #include "Main/Unknown/code_020b502c.h"
 #include "Main/Unknown/code_020c0d9c.h"
 
-void func_020b4f64(Vec3 *result, const Vec3 *startPoint, const Vec3 *endPoint) {
+void ComputePointAlongLine(Vec3 *result, const Vec3 *startPoint, const Vec3 *endPoint) {
     Vec3 point;
     s32 factor;
 
@@ -27,26 +27,27 @@ void func_020b4f64(Vec3 *result, const Vec3 *startPoint, const Vec3 *endPoint) {
     *result = point;
 }
 
-s32 func_020b4e70(const Vec3 *position) {
-    BOOL r = TRUE;
+// FALSE inside a fixed box on the clock and airship courses; TRUE outside it and on every other course.
+BOOL IsPositionOutsideBox(const Vec3 *position) {
+    BOOL isOutside = TRUE;
 
-    switch (func_020b4e5c()) {
+    switch (RaceHudSubScreenGetCurrentCourseId()) {
         case COURSE_ID_CLOCK:
             if (position->x >= -0x377000 && position->x <= 0x377000 && position->z >= -0x377000 &&
                 position->z <= 0x377000 && position->y < 0x2be800) {
-                r = FALSE;
+                isOutside = FALSE;
             } else {
-                r = TRUE;
+                isOutside = TRUE;
             }
             break;
         case COURSE_ID_AIRSHIP:
             if (position->x >= -0x640000 && position->x <= 0x992000 && position->z >= -0x1ce8000 &&
                 position->z <= -0x17a2000 && position->y < 0x2e2000) {
-                r = FALSE;
+                isOutside = FALSE;
             } else {
-                r = TRUE;
+                isOutside = TRUE;
             }
             break;
     }
-    return r;
+    return isOutside;
 }

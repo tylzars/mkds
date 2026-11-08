@@ -71,7 +71,7 @@ void InitLogoScene(void *heap) {
     gLogoScene->mState0Frames = 0;
     gLogoScene->mCommonMessages = FindFileInLoadedArchives(data_usa_ov001_021a7720);
     arg.mUnk_00 = TRUE;
-    arg.mUnk_04 = func_020b403c(1);
+    arg.mUnk_04 = GetFontByIndex(1);
     arg.mUnk_08 = 0;
     arg.mUnk_10 = 0;
     arg.mUnk_14 = FALSE;

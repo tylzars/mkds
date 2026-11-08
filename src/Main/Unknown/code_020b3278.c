@@ -5,7 +5,8 @@
 
 #pragma thumb on
 #pragma optimize_for_size on
-void func_020b3278(void) {
+// In mode 5 the sequence index is always 4, whatever the selected value.
+void StartChoisesSSelectedValueSeq(void) {
     if (func_020b252c() == 5) {
         func_02105b64(4);
     } else {

@@ -83,8 +83,8 @@ void ResetEmblemChoisesState(void) {
 }
 
 void func_020cac68(u16 *mapData, s32 column, s32 row) {
-    func_020b4428(mapData, column, row, 1, 1, 4);
-    func_020b4428(mapData, column, row + 1, 1, 1, 0x24);
+    SetScreenMapBlockLowBits(mapData, column, row, 1, 1, 4);
+    SetScreenMapBlockLowBits(mapData, column, row + 1, 1, 1, 0x24);
 }
 
 void func_020cac18(void) {
@@ -98,7 +98,7 @@ void func_020cac18(void) {
         for (i = 0; i < choisesCount; i++) {
             func_020cac68(mapData, 2, 13 - choisesCount * 2 + i * 4);
         }
-        func_020b44a4(mapData, 0, 0, 0x20, 0x18, 0xf);
+        SetScreenMapBlockTopBits(mapData, 0, 0, 0x20, 0x18, 0xf);
     }
 }
 
@@ -115,10 +115,10 @@ void func_020caba4(s32 choiceIndex) {
         if (emblemChoises->mUnk_10 == FALSE || emblemChoises->mUnk_14 >= 5) {
             firstRow = 13 - choisesCount * 2 + choiceIndex * 4;
             if (emblemChoises->mUnk_24 < 0x1e) {
-                func_020b4428(mapData, 2, firstRow, 1, 1, 0x21);
-                func_020b4428(mapData, 2, firstRow + 1, 1, 1, 0x41);
+                SetScreenMapBlockLowBits(mapData, 2, firstRow, 1, 1, 0x21);
+                SetScreenMapBlockLowBits(mapData, 2, firstRow + 1, 1, 1, 0x41);
             }
-            func_020b44a4(mapData, 0, firstRow - 1, 0x20, 4, 0xe);
+            SetScreenMapBlockTopBits(mapData, 0, firstRow - 1, 0x20, 4, 0xe);
         }
     }
 }

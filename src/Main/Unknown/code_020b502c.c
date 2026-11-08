@@ -76,7 +76,7 @@ u32 ClearRaceHudSubScreenProjection(void) {
 s32 func_020b64e8(void) {
     BOOL r = FALSE;
 
-    switch (func_020b4e5c()) {
+    switch (RaceHudSubScreenGetCurrentCourseId()) {
         case COURSE_ID_OLD_YOSHI_GC:
         case COURSE_ID_OLD_MOMO_64:
         case COURSE_ID_OLD_LUIGI_GC:
@@ -107,7 +107,7 @@ s32 func_020b64e8(void) {
 s32 func_020b6430(void) {
     BOOL r = FALSE;
 
-    switch (func_020b4e5c()) {
+    switch (RaceHudSubScreenGetCurrentCourseId()) {
         case COURSE_ID_OLD_YOSHI_GC:
         case COURSE_ID_OLD_MOMO_64:
         case COURSE_ID_OLD_FRAPPE_64:
@@ -133,7 +133,7 @@ u16 func_020b6368(void) {
 
     switch (GetRaceHudSubScreenState()) {
         case 1:
-            if (func_020b4df8() == MODE_BATTLE) {
+            if (RaceHudSubScreenGetCurrentMode() == MODE_BATTLE) {
                 p = GetCurrentCamera();
             } else {
                 p = GetChaseCamera();
@@ -164,7 +164,7 @@ void func_020b6078(s32 idx, UnkPair020b502c *out) {
     Vec3 v;
 
     GetKartPos(&v, (u8) idx);
-    switch (func_020b4e5c()) {
+    switch (RaceHudSubScreenGetCurrentCourseId()) {
         case COURSE_ID_OLD_MOMO_64:
         case COURSE_ID_CROSS:
         case COURSE_ID_OLD_KINOKO_GC:
@@ -564,7 +564,7 @@ void UpdateRaceHudSubScreenProjectionAndBgAffine(RaceHudSubScreenBgAffine *p, s3
     p[0].mMatrix1 = p[1].mMatrix1 = b;
     p[0].mMatrix3 = p[1].mMatrix3 = a;
     UpdateRaceHudSubScreenCenter(p);
-    switch (func_020b4e5c()) {
+    switch (RaceHudSubScreenGetCurrentCourseId()) {
         default:
             p[1] = p[0];
             break;

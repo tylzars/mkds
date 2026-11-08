@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-u32 func_020b3adc(void);
-u32 func_020b3af4(void);
+u32 ResetRaceEndFrames(void);
+u32 ClearRaceEndPointer(void);

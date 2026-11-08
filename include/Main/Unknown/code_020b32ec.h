@@ -5,7 +5,7 @@
 typedef struct Ncgr Ncgr;
 typedef struct Nclr Nclr;
 
-unsigned int func_020b32ec(void);
-void *func_020b32f8(void);
-Ncgr *func_020b3374(void);
+unsigned int IsChoisesSPickLocked(void);
+void *GetChoisesSListScreenMapData(void);
+Ncgr *GetChoisesSBNcgrWithListChars(void);
 Nclr *GetChoisesSBNclr(void);

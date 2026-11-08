@@ -22,19 +22,19 @@ void CreateSearchIconMBChildAndMultiDownload(void *heap) {
     LoadNclrData(&data_0217b4b0->mUnk_10, FindFileInLoadedArchives("search_icon_00_o.nclr"));
     switch (data_021759d0->mLanguageIndex) {
         default:
-            func_020b478c(&data_0217b4b0->mUnk_14, FindFileInLoadedArchives("MBChild_us.NFTR"));
+            InitFontIfLoaded(&data_0217b4b0->mUnk_14, FindFileInLoadedArchives("MBChild_us.NFTR"));
             break;
         case 2:
-            func_020b478c(&data_0217b4b0->mUnk_14, FindFileInLoadedArchives("MBChild_fr.NFTR"));
+            InitFontIfLoaded(&data_0217b4b0->mUnk_14, FindFileInLoadedArchives("MBChild_fr.NFTR"));
             break;
         case 3:
-            func_020b478c(&data_0217b4b0->mUnk_14, FindFileInLoadedArchives("MBChild_ge.NFTR"));
+            InitFontIfLoaded(&data_0217b4b0->mUnk_14, FindFileInLoadedArchives("MBChild_ge.NFTR"));
             break;
         case 4:
-            func_020b478c(&data_0217b4b0->mUnk_14, FindFileInLoadedArchives("MBChild_it.NFTR"));
+            InitFontIfLoaded(&data_0217b4b0->mUnk_14, FindFileInLoadedArchives("MBChild_it.NFTR"));
             break;
         case 5:
-            func_020b478c(&data_0217b4b0->mUnk_14, FindFileInLoadedArchives("MBChild_es.NFTR"));
+            InitFontIfLoaded(&data_0217b4b0->mUnk_14, FindFileInLoadedArchives("MBChild_es.NFTR"));
             break;
     }
     switch (data_021759d0->mLanguageIndex) {

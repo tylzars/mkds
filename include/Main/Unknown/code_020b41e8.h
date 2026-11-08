@@ -2,10 +2,14 @@
 
 #include "types.h"
 
-void func_020b478c(void *a, void *b);
-void func_020b46d0(void *a, s32 b, s32 c, s32 d, s32 e, void *f, s32 g, s32 h);
-void func_020b45b0(u16 *a, s32 b, s32 c, s32 d, s32 e, u16 *f, s32 g, s32 h);
-void func_020b4520(u16 *a, s32 b, s32 c, s32 d, s32 e, u16 *f, s32 g, s32 h);
-void func_020b44a4(u16 *a, s32 b, s32 c, s32 d, s32 e, u16 f);
-void func_020b4428(u16 *a, s32 b, s32 c, s32 d, s32 e, s32 f);
-void func_020b41e8(u16 *a, s32 b, u16 *c, s32 d, s32 e);
+void InitFontIfLoaded(void *font, void *fontData);
+void CopyCharsBlock(void *source, s32 sourceTileX, s32 sourceTileY, s32 tileWidth, s32 tileHeight, void *destination,
+                    s32 destinationTileX, s32 destinationTileY);
+void CopyCharsBlockFlippedVertically(u16 *source, s32 sourceTileX, s32 sourceTileY, s32 tileWidth, s32 tileHeight,
+                                     u16 *destination, s32 destinationTileX, s32 destinationTileY);
+void CopyScreenMapBlock(u16 *source, s32 sourceColumn, s32 sourceRow, s32 columnCount, s32 rowCount, u16 *destination,
+                        s32 destinationColumn, s32 destinationRow);
+void SetScreenMapBlockTopBits(u16 *screenMap, s32 column, s32 row, s32 columnCount, s32 rowCount, u16 topBits);
+void SetScreenMapBlockLowBits(u16 *screenMap, s32 column, s32 row, s32 columnCount, s32 rowCount, s32 lowBits);
+void CopyPlayerCharacterPaletteAndChars(u16 *paletteDestination, s32 paletteRow, u16 *charsDestination, s32 column,
+                                        s32 row);

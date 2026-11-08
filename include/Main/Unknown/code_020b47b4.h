@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-void *FindCourseFileWrapper(const char *arg0);
-void *FindSceneFileWrapper(const char *arg0);
-void *func_020b47cc(const char *arg0);
+void *FindCourseFileWrapper(const char *path);
+void *FindSceneFileWrapper(const char *name);
+void *FindFileInLoadedArchivesWrapper(const char *name);

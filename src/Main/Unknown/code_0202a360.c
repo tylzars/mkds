@@ -9,7 +9,7 @@
 #pragma thumb on
 
 static inline Unk0217aa1c_144_00 *func_0202a360_inline(s32 teamIndex) {
-    return &gCupRecords->mUnk_144[GetCourseIndexInCup()].mUnk_00[teamIndex];
+    return &gCupRecords->mTeamResults[GetCourseIndexInCup()].mTeams[teamIndex];
 }
 
 u32 func_0202a360(void) {
@@ -87,12 +87,12 @@ u32 func_0202a360(void) {
         if (data_021759d0->mUnk_20 == 3 || gRaceSetup->mRuleKind == 2) {
             kartIndex = GetLowByte((u16) i);
             courseIndex = GetCourseIndexInCup();
-            record = &gCupRecords->mUnk_000[courseIndex][GetLowByte(kartIndex)];
+            record = &gCupRecords->mKartResults[courseIndex][GetLowByte(kartIndex)];
             scores[i] = record->mTotalPoints;
         } else {
             kartIndex = GetLowByte((u16) i);
             courseIndex = GetCourseIndexInCup();
-            record = &gCupRecords->mUnk_000[courseIndex][GetLowByte(kartIndex)];
+            record = &gCupRecords->mKartResults[courseIndex][GetLowByte(kartIndex)];
             scores[i] = record->mWinCount;
         }
         if (maxScore < scores[i]) {

@@ -192,9 +192,9 @@ void func_ov001_02180610(void) {
     func_ov001_02180774(displaySettings, 2, 0, 0, 0, 0xe, 1);
     func_ov001_02180740(displaySettings, 2, 0, 0, 0, 4, 4);
     InitDisplayFromSettings(displaySettings);
-    gTestScene->mFonts[0] = func_020b403c(0);
-    gTestScene->mFonts[1] = func_020b403c(1);
-    gTestScene->mFonts[2] = func_020b403c(2);
+    gTestScene->mFonts[0] = GetFontByIndex(0);
+    gTestScene->mFonts[1] = GetFontByIndex(1);
+    gTestScene->mFonts[2] = GetFontByIndex(2);
     for (i = 0; i < 3; i++) {
         NNS_G2dCharCanvasInitForBG(gTestScene->mCharCanvases[i], gTestScene->mChars, 0x20, 0x18, 4);
         func_ov001_02180728(&gTestScene->mTextCanvases[i], gTestScene->mCharCanvases[i], gTestScene->mFonts[i], 0, 0);

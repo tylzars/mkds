@@ -25,7 +25,7 @@ s32 CopyTextWithinWidth(const u16 *source, u16 *destination) {
     void *font;
 
     widthSum = 0;
-    font = func_020b403c(0);
+    font = GetFontByIndex(0);
     FillHalfwords(destination, 0, 0x14);
     for (i = 0; i < 10; i++) {
         if (source[i] == 0) {

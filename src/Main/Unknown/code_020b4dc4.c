@@ -2,17 +2,17 @@
 #include "Main/Unknown/code_0207a68c.h"
 #include "Main/Unknown/unk_021759c0.h"
 
-u32 func_020b4df8(void) {
+u32 RaceHudSubScreenGetCurrentMode(void) {
     return (gRaceSetup->mMode);
 }
 
-u32 func_020b4dc4(int a) {
-    int v1;
+u32 func_020b4dc4(int kartIndex) {
+    int currentMode;
     u32 v2;
-    v1 = func_020b4df8();
-    if ((v1 == MODE_TIME_ATTACK) && (a != 0)) {
+    currentMode = RaceHudSubScreenGetCurrentMode();
+    if ((currentMode == MODE_TIME_ATTACK) && (kartIndex != 0)) {
         return 1;
     }
-    v2 = func_0207a68c(a);
+    v2 = func_0207a68c(kartIndex);
     return v2;
 }

@@ -142,7 +142,7 @@ void InitStaffRollText(void *heap) {
     CallQueueAppend(0x1f, 0x1e0, nclr->mData + 0xf0, 0x20);
     NNS_G2dCharCanvasInitForBG(gStaffRollText->mCharCanvas, gStaffRollText->mCharBuffer, 0x20, 2, 4);
     charSpacing = gStaffRollText->mCharSpacing;
-    font = func_020b403c(2);
+    font = GetFontByIndex(2);
     staffRollText = gStaffRollText;
     textCanvas = &staffRollText->mTextCanvas;
     staffRollText->mTextCanvas.mCharCanvas = staffRollText->mCharCanvas;

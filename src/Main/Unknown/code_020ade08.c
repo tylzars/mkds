@@ -312,7 +312,7 @@ void *GetCharacterBmgEntry(u32 characterIndex, u32 b) {
     } else {
         messageIndex = messageIndexes[characterIndex];
     }
-    return GetBmgEntry(func_020b47cc("common.bmg"), messageIndex);
+    return GetBmgEntry(FindFileInLoadedArchivesWrapper("common.bmg"), messageIndex);
 }
 
 #pragma thumb off
@@ -404,7 +404,7 @@ void CopyKartEntryName(u32 entryIndex, u16 *nameOut, u32 c) {
             source = GetCharacterBmgEntry(func_020ae0c8(entryIndex), c);
             charCount = 20;
         } else {
-            wcsncpy(numberedName, GetBmgEntry(func_020b47cc("common.bmg"), 0x72), 9);
+            wcsncpy(numberedName, GetBmgEntry(FindFileInLoadedArchivesWrapper("common.bmg"), 0x72), 9);
             swprintf(numberText, 2, L"%d", GetKartEntryNumber(entryIndex));
             wcsncat(numberedName, numberText, 1);
             source = numberedName;
@@ -441,7 +441,7 @@ void RenderKartEntryName(u32 entryIndex) {
     s32 i;
     s32 j;
 
-    font = func_020b403c(0);
+    font = GetFontByIndex(0);
     messageScreenCharBuffer = GetMessageScreenCharBuffer();
     ClearMessageScreenChars();
     for (i = 0; i < 0x100; i++) {

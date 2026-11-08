@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-void func_020b3cd8(void);
-void func_020b3b58(void);
-void func_020b3b08(void);
+void SetKartCupRanks(void);
+void SetCupWinningTeamFromRecords(void);
+void InitRaceEnd(void);

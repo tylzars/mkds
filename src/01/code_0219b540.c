@@ -86,10 +86,10 @@ void LocateAndQueueSelectGhost(void) {
     LocateNcgr2(&a, FindSceneFile(gSelectGhostSONcgrName));
     LocateNcer(&gSelectGhost->mSelectGhostSONcer, FindSceneFile(gSelectGhostSONcerName));
     LocateNclr(&gSelectGhost->mSelectGhostSONclr, FindSceneFile(gSelectGhostSONclrName));
-    gSelectGhost->mPlayerCharacterMNcgr = func_020b4018(0);
-    gSelectGhost->mPlayerCharacterMNcer = func_020b400c(0);
-    gSelectGhost->mPlayerCharacterMONclr = func_020b4030(0);
-    gSelectGhost->mPlayerCharacterMBncl = func_020b4000(0);
+    gSelectGhost->mPlayerCharacterMNcgr = GetPlayerCharacterNcgr(0);
+    gSelectGhost->mPlayerCharacterMNcer = GetPlayerCharacterNcer(0);
+    gSelectGhost->mPlayerCharacterMONclr = GetPlayerCharacterNclr(0);
+    gSelectGhost->mPlayerCharacterMBncl = GetPlayerCharacterBncl(0);
     CallQueueAppend(0x17, 0, b->mData, b->mDataSize);
     CallQueueAppend(0x1f, 0, c->mData, 0x20);
     CallQueueAppend(0x1b, 0, d->mData, d->mDataSize);

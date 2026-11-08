@@ -8,9 +8,9 @@
 #pragma optimize_for_size on
 void LoadFontAndPlayerCharacterData(void) {
     if (IsArchiveSlotLoaded(1) != 0) {
-        func_020b478c(&gLCFontS, FindFileInLoadedArchives("LC_Font_s.NFTR"));
-        func_020b478c(&gLCFontM, FindFileInLoadedArchives("LC_Font_m.NFTR"));
-        func_020b478c(&gMarioFont, FindFileInLoadedArchives("marioFont.NFTR"));
+        InitFontIfLoaded(&gLCFontS, FindFileInLoadedArchives("LC_Font_s.NFTR"));
+        InitFontIfLoaded(&gLCFontM, FindFileInLoadedArchives("LC_Font_m.NFTR"));
+        InitFontIfLoaded(&gMarioFont, FindFileInLoadedArchives("marioFont.NFTR"));
         gFontTable[0] = &gLCFontS;
         gFontTable[1] = &gLCFontM;
         gFontTable[2] = &gMarioFont;

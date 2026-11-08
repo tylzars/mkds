@@ -67,7 +67,7 @@ void UpdateRaceHudSubScreenCoinCells(void) {
             if (ComputeRaceHudSubScreenPosition(position, &gRaceHudSubScreenCoinCells->mCells[cellCount].mDrawPos, v, 1,
                                                 1)) {
                 gRaceHudSubScreenCoinCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0x58);
-                gRaceHudSubScreenCoinCells->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+                gRaceHudSubScreenCoinCells->mCells[cellCount].mUnk_0c = IsPositionOutsideBox(position) != 0 ? 2 : 3;
                 cellCount++;
             }
         }

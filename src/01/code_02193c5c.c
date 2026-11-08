@@ -59,10 +59,10 @@ void LocateAndQueueRecordGpx(void) {
     LocateNcer(&gRecordGpx->mRecordTrophyONcer, FindSceneFile(gRecordTrophyONcerName));
     LocateNclr(&gRecordGpx->mRecordTrophySONclr, FindSceneFile(gRecordTrophySONclrName));
     gRecordGpx->mRecordTrophySOBncl = FindSceneFile(gRecordTrophySOBnclName);
-    gRecordGpx->mPlayerCharacterMNcgr = func_020b4018(0);
-    gRecordGpx->mPlayerCharacterMNcer = func_020b400c(0);
-    gRecordGpx->mPlayerCharacterMONclr = func_020b4030(0);
-    gRecordGpx->mPlayerCharacterMBncl = func_020b4000(0);
+    gRecordGpx->mPlayerCharacterMNcgr = GetPlayerCharacterNcgr(0);
+    gRecordGpx->mPlayerCharacterMNcer = GetPlayerCharacterNcer(0);
+    gRecordGpx->mPlayerCharacterMONclr = GetPlayerCharacterNclr(0);
+    gRecordGpx->mPlayerCharacterMBncl = GetPlayerCharacterBncl(0);
     LocateNcgr(&l4, FindSceneFile(gRecordGpxMBNcgrName));
     LocateNclr(&l8, FindSceneFile(gRecordGpxMBNclrName));
     LocateNscr(&lc, FindSceneFile(gRecordGpxMNscrName));

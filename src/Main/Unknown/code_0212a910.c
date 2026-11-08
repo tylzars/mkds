@@ -158,7 +158,7 @@ void PrintMessageScreenText(void) {
     if (*(vu16 *) 0x27ffc40 == 2) {
         gMessageScreen->mTextCanvas.mFont = &func_020d1630()->mUnk_14;
     } else {
-        gMessageScreen->mTextCanvas.mFont = func_020b403c(0);
+        gMessageScreen->mTextCanvas.mFont = GetFontByIndex(0);
     }
     NNSi_G2dTextCanvasDrawText(&gMessageScreen->mTextCanvas, 0x80, 0x14, 0xe, 0x412, gMessageScreen->mText);
     ClearMessageScreenMap();

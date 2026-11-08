@@ -52,7 +52,7 @@ void InitWLMenuScene(void *heap) {
     InitDisplayFromSettings(displaySettings);
     if (func_0202f19c() == 0) {
         v1.mUnk_00 = 1;
-        v1.mUnk_04 = func_020b403c(1);
+        v1.mUnk_04 = GetFontByIndex(1);
         v1.mUnk_08 = 0;
         v1.mUnk_0c = 1;
         v1.mUnk_10 = 0;

@@ -73,7 +73,7 @@ void func_020b1a34(void) {
         totals[totalsIndex].mSeconds = 0;
         totals[totalsIndex].mMilliseconds = 0;
     }
-    for (lap = 1; lap <= func_020b4d2c(); lap++) {
+    for (lap = 1; lap <= GetFollowedKartLastEndedLap(); lap++) {
         if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
             MI_CpuCopy8(&gRaceSetup->mGhostLapTimes[lap - 1], &referenceLap, 4);
         }

@@ -125,7 +125,7 @@ void func_020b6b54(UnkPair020b502c *outFirst, UnkPair020b502c *outSecond) {
         {0, 0, 0, 0},
         {0, 0, 0, 0},
     };
-    s32 courseId = func_020b4e5c();
+    s32 courseId = RaceHudSubScreenGetCurrentCourseId();
 
     func_020b6bd4(outFirst, outSecond, rows[courseId][0], rows[courseId][1], rows[courseId][2], rows[courseId][3]);
 }
@@ -196,7 +196,7 @@ void GetRaceHudSubScreenCourseMinMax(UnkPair020b502c *outFirst, UnkPair020b502c 
         {0, 0, 0, 0},
         {0, 0, 0, 0},
     };
-    s32 courseId = func_020b4e5c();
+    s32 courseId = RaceHudSubScreenGetCurrentCourseId();
 
     func_020b6b18(outFirst, outSecond, rows[courseId][0], rows[courseId][1], rows[courseId][2], rows[courseId][3]);
 }
@@ -259,7 +259,7 @@ void GetRaceHudSubScreenScrollLimits(UnkPair020b502c *outFirst, UnkPair020b502c 
         {0, 0, 0, 0},
         {0, 0, 0, 0},
     };
-    s32 courseId = func_020b4e5c();
+    s32 courseId = RaceHudSubScreenGetCurrentCourseId();
 
     func_020b6b18(outFirst, outSecond, rows[courseId][0], rows[courseId][1], rows[courseId][2], rows[courseId][3]);
 }

@@ -3,7 +3,7 @@
 
 void func_020b681c(UnkPair020b502c *a, UnkPair020b502c *b) {
     int v1;
-    v1 = func_020b4e5c();
+    v1 = RaceHudSubScreenGetCurrentCourseId();
     if (v1 == COURSE_ID_OLD_LUIGI_GC) {
         func_020b6b18(a, b, 0xfffff434u, 0xfffffff6, 0x00000ba4u, 0x00001766u);
         return;

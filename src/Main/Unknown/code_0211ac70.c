@@ -108,13 +108,13 @@ void AdvanceSelectRaceRuleHighlight(void) {
     }
     for (i = 0; i < 5; i++) {
         LookupSelectRaceRuleNscrRect(&nscrRect, i);
-        func_020b44a4(gSelectRaceRule->mNscr->mData, nscrRect.mFirstColumn, nscrRect.mFirstRow, nscrRect.mColumnCount,
-                      nscrRect.mRowCount, nscrRect.mTopBits);
+        SetScreenMapBlockTopBits(gSelectRaceRule->mNscr->mData, nscrRect.mFirstColumn, nscrRect.mFirstRow,
+                                 nscrRect.mColumnCount, nscrRect.mRowCount, nscrRect.mTopBits);
     }
     if (gSelectRaceRule->mOnButton == 0) {
         LookupSelectRaceRuleNscrRect(&nscrRect, gSelectRaceRule->mRow);
-        func_020b44a4(gSelectRaceRule->mNscr->mData, nscrRect.mFirstColumn, nscrRect.mFirstRow, nscrRect.mColumnCount,
-                      nscrRect.mRowCount, nscrRect.mHighlightedTopBits);
+        SetScreenMapBlockTopBits(gSelectRaceRule->mNscr->mData, nscrRect.mFirstColumn, nscrRect.mFirstRow,
+                                 nscrRect.mColumnCount, nscrRect.mRowCount, nscrRect.mHighlightedTopBits);
     }
     CallQueueAppend(0x1b, 0, gSelectRaceRule->mNscr->mData, 0x600);
 }

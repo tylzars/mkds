@@ -92,7 +92,7 @@ void InitResultsGp(void *heap, void *firstOamList, void *secondOamList) {
     SetBg3RecordParams(&displaySettings->mSubBgRecords, 3, 0, 0, 0, 1, 6);
     InitDisplayFromSettings(displaySettings);
     config.mUnk_00 = 1;
-    config.mUnk_04 = func_020b403c(1);
+    config.mUnk_04 = GetFontByIndex(1);
     config.mUnk_08 = 0;
     config.mUnk_0c = 1;
     config.mUnk_10 = 0;

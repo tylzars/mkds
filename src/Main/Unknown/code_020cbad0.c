@@ -161,12 +161,12 @@ void InitMenu(void) {
     LoadSelectGameData();
     LoadSelectRaceRuleAndWaitData();
     config.mUnk_00 = func_020cbad0();
-    config.mUnk_04 = func_020b403c(1);
+    config.mUnk_04 = GetFontByIndex(1);
     config.mUnk_08 = 0;
     config.mUnk_0c = 1;
     config.mUnk_10 = 0;
     config.mUnk_14 = 1;
-    config.mUnk_18 = func_020b403c(2);
+    config.mUnk_18 = GetFontByIndex(2);
     config.mUnk_1c = 1;
     config.mUnk_20 = 1;
     config.mUnk_24 = 0;

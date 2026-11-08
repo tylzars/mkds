@@ -199,7 +199,7 @@ void CreateTitleScene(void) {
     config.mUnk_0c = 0;
     config.mUnk_10 = 0;
     config.mUnk_14 = 0;
-    config.mUnk_18 = func_020b403c(0);
+    config.mUnk_18 = GetFontByIndex(0);
     config.mUnk_1c = 0;
     config.mUnk_20 = 0;
     config.mUnk_24 = 0;

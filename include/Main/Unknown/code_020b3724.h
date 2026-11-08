@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020b3724(void);
+void RaceHudDrawNop(void);

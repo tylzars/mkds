@@ -2,12 +2,13 @@
 
 #include "types.h"
 
-// Object behind data_0217b35c, 0x10 bytes, allocated by func_020b3b08.
-typedef struct Unk0217b35c {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ BOOL mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ BOOL mUnk_0c;
-} Unk0217b35c;
+// Object behind gRaceEnd, 0x10 bytes, allocated by InitRaceEnd.
+typedef struct RaceEnd {
+    /* 00 */ s32 mEndFrames;
+    /* 04 */ BOOL mStemSetRequested;
+    // Calls counted while the request flag is set; never zeroed after allocation, so only the first request is served.
+    /* 08 */ s32 mStemSetRequestFrames;
+    /* 0c */ BOOL mResultsSet;
+} RaceEnd;
 
-extern Unk0217b35c *data_0217b35c;
+extern RaceEnd *gRaceEnd;

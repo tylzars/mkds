@@ -232,7 +232,7 @@ void AdvanceMissionRunEnd(void) {
             }
             func_020688a0(GetKart((u16) entryIndex));
             func_0207a828(func_0203cd14_inline(entryIndex));
-            func_020b3f64();
+            RequestRaceEndStemSet();
             func_02110cc8(0);
             if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 FinishStandings();

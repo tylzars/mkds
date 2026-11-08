@@ -199,7 +199,7 @@ void InitKeyboardTextEntry(s32 a, s32 b, s32 textCapacity) {
     gKeyboardTextEntry->mBg2Char =
         HeapAllocAligned(GetHeap(GetCurrentHeapCall()), gKeyboardTextEntry->mBg2CharSize, 0x20);
     keyboardTextEntry = gKeyboardTextEntry;
-    InitKeyboardKeysAndCanvas(func_020b403c(0), keyboardTextEntry->mBg2Char, keyboardTextEntry->mBg2Scr, a, b, 0);
+    InitKeyboardKeysAndCanvas(GetFontByIndex(0), keyboardTextEntry->mBg2Char, keyboardTextEntry->mBg2Scr, a, b, 0);
     SetKeyboardCursorCallback(KeyboardCursorCallback);
     SetKeyboardKeyCallback(KeyboardKeyCallback);
     func_020ab07c(0);

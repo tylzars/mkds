@@ -136,7 +136,7 @@ void UpdateRaceHudSubScreenItemCells(void) {
                             if (gRaceHudSubScreenItemCells->mCells[cellCount].mDrawPos.mUnk_04 > 0) {
                                 gRaceHudSubScreenItemCells->mCells[cellCount].mCell = cell;
                                 gRaceHudSubScreenItemCells->mCells[cellCount].mUnk_0c =
-                                    func_020b4e70(position) != 0 ? 2 : 3;
+                                    IsPositionOutsideBox(position) != 0 ? 2 : 3;
                                 gRaceHudSubScreenItemCells->mCells[cellCount].mUnk_0e = 0;
                                 cellCount++;
                             }
@@ -150,7 +150,7 @@ void UpdateRaceHudSubScreenItemCells(void) {
                         if (func_020d3d10(position->y) == 0) {
                             gRaceHudSubScreenItemCells->mCells[cellCount].mCell = cell;
                             gRaceHudSubScreenItemCells->mCells[cellCount].mUnk_0c =
-                                func_020b4e70(position) != 0 ? 2 : 3;
+                                IsPositionOutsideBox(position) != 0 ? 2 : 3;
                             gRaceHudSubScreenItemCells->mCells[cellCount].mUnk_0e =
                                 (object->mFlags & 0x40000) != 0 ? 1 : 0;
                             cellCount++;
@@ -164,7 +164,7 @@ void UpdateRaceHudSubScreenItemCells(void) {
                         if (func_020d3d10(position->y) == 0) {
                             gRaceHudSubScreenItemCells->mCells[cellCount].mCell = cell;
                             gRaceHudSubScreenItemCells->mCells[cellCount].mUnk_0c =
-                                func_020b4e70(position) != 0 ? 2 : 3;
+                                IsPositionOutsideBox(position) != 0 ? 2 : 3;
                             gRaceHudSubScreenItemCells->mCells[cellCount].mUnk_0e =
                                 (object->mFlags & 0x40000) != 0 ? 1 : 0;
                             cellCount++;
@@ -272,7 +272,7 @@ void UpdateRaceHudSubScreenKarts(void) {
                         gRaceHudSubScreenKarts->mUnk_100[i] = 0;
                         gRaceHudSubScreenKarts->mUnk_110[i] = 0;
                     }
-                    gRaceHudSubScreenKarts->mUnk_150[i] = func_020b4e70(&kartPosition) != 0 ? 2 : 3;
+                    gRaceHudSubScreenKarts->mUnk_150[i] = IsPositionOutsideBox(&kartPosition) != 0 ? 2 : 3;
                     itemInUse = &gKartItems[i].mItemInUse;
                     objects = itemInUse->mObjects;
                     objectCount = itemInUse->mObjectCount;
@@ -287,7 +287,7 @@ void UpdateRaceHudSubScreenKarts(void) {
                         }
                         f = func_020f91e0(object);
                         if (position != NULL && f != 0) {
-                            func_020b4f64(&t, &kartPosition, position);
+                            ComputePointAlongLine(&t, &kartPosition, position);
                             w = t;
                             if (ComputeRaceHudSubScreenPosition(
                                     &w, &gRaceHudSubScreenKarts->mUnk_190->mCells[cellCount].mDrawPos, b, 0, 1) !=
@@ -327,7 +327,7 @@ void UpdateRaceHudSubScreenKarts(void) {
                                         break;
                                 }
                                 gRaceHudSubScreenKarts->mUnk_190->mCells[cellCount].mUnk_0c =
-                                    func_020b4e70(&w) != 0 ? 2 : 3;
+                                    IsPositionOutsideBox(&w) != 0 ? 2 : 3;
                                 gRaceHudSubScreenKarts->mUnk_190->mCells[cellCount].mUnk_0e =
                                     (object->mFlags & 0x40000) != 0 ? 1 : 0;
                                 cellCount++;
@@ -825,7 +825,7 @@ void func_020c80cc(void) {
                     data_0217b420->mCells[cellCount].mCell = GetRaceSNcerEntry(0x94);
                     break;
             }
-            data_0217b420->mCells[cellCount].mUnk_0c = func_020b4e70((Vec3 *) &position) != 0 ? 2 : 3;
+            data_0217b420->mCells[cellCount].mUnk_0c = IsPositionOutsideBox((Vec3 *) &position) != 0 ? 2 : 3;
             data_0217b420->mCells[cellCount].mUnk_10 = angle;
             cellCount++;
         }
@@ -1128,7 +1128,8 @@ void UpdateRaceHudSubScreenEarthenPipeCells(void) {
                 if (ComputeRaceHudSubScreenPosition(
                         position, &gRaceHudSubScreenEarthenPipeCells->mCells[cellCount].mDrawPos, a, 0, 0) != FALSE) {
                     gRaceHudSubScreenEarthenPipeCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0x8c);
-                    gRaceHudSubScreenEarthenPipeCells->mCells[cellCount].mUnk_0c = func_020b4e70(position) != 0 ? 2 : 3;
+                    gRaceHudSubScreenEarthenPipeCells->mCells[cellCount].mUnk_0c =
+                        IsPositionOutsideBox(position) != 0 ? 2 : 3;
                     cellCount++;
                 }
             }

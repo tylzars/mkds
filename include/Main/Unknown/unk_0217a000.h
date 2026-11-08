@@ -1627,15 +1627,15 @@ typedef struct Unk0217aa1c_144_00 {
 } Unk0217aa1c_144_00;
 
 // 8-byte elements of the table at member 0x144 of CupRecords.
-typedef struct Unk0217aa1c_144 {
-    /* 00 */ Unk0217aa1c_144_00 mUnk_00[2];
-} Unk0217aa1c_144;
+typedef struct CourseTeamResults {
+    /* 00 */ Unk0217aa1c_144_00 mTeams[2];
+} CourseTeamResults;
 
 // The kart results for each course of a cup, and the team results.
 typedef struct CupRecords {
-    /* 000 */ KartCourseResult mUnk_000[4][8];
+    /* 000 */ KartCourseResult mKartResults[4][8];
     /* 140 */ s32 mUnk_140;
-    /* 144 */ Unk0217aa1c_144 mUnk_144[4];
+    /* 144 */ CourseTeamResults mTeamResults[4];
     /* 164 */ union {
         u32 mUnk_164;
         struct {

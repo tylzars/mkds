@@ -7,8 +7,8 @@
 #pragma thumb on
 #pragma optimize_for_size on
 void func_020b2e00(u16 *screenMap, s32 column, s32 row) {
-    func_020b4428(screenMap, column, row, 1, 1, 4);
-    func_020b4428(screenMap, column, row + 1, 1, 1, 0x24);
+    SetScreenMapBlockLowBits(screenMap, column, row, 1, 1, 4);
+    SetScreenMapBlockLowBits(screenMap, column, row + 1, 1, 1, 0x24);
 }
 
 void func_020b2da4(void) {
@@ -18,12 +18,12 @@ void func_020b2da4(void) {
     u16 *screenMap;
 
     valueCount = gChoisesS->mLists[GetChoisesSListIndex()].mValueCount;
-    screenMap = func_020b32f8();
+    screenMap = GetChoisesSListScreenMapData();
     if (screenMap != NULL) {
         for (valueIndex = 0, firstRow = 0xd - valueCount * 2; valueIndex < valueCount; valueIndex++) {
             func_020b2e00(screenMap, 2, firstRow + valueIndex * 4);
         }
-        func_020b44a4(screenMap, 0, 0, 0x20, 0x18, 0xf);
+        SetScreenMapBlockTopBits(screenMap, 0, 0, 0x20, 0x18, 0xf);
     }
 }
 #pragma thumb off

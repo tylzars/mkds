@@ -154,7 +154,7 @@ void func_020b0b8c(void) {
         return;
     }
     if (gRaceHud->mUnk_840 != FALSE) {
-        GXS_LoadBG0Char(func_020b3374()->mData, 0, 0x3000);
+        GXS_LoadBG0Char(GetChoisesSBNcgrWithListChars()->mData, 0, 0x3000);
         gRaceHud->mUnk_840 = FALSE;
         GX_LoadOBJPltt(GetRaceNclrNcgr(1)->mNclr->mData, 0, GetRaceNclrNcgr(1)->mNclr->mDataSize);
         GX_LoadOBJ(GetRaceNclrNcgr(1)->mNcgr->mData, 0, 0x4000);
@@ -184,8 +184,8 @@ void func_020b0b8c(void) {
     if (v == MODE_GRAND_PRIX && gRaceHud->mUnk_84c != 0) {
         reg_G2_BG3OFS = 0x01ff0000 & (InterpolateS16(1, -64, 0, GetRaceGoalMUpdateFrames(), 20) << 16);
     } else if (v == MODE_MISSION_RUN && gRaceHud->mUnk_84c != 0) {
-        GXS_LoadBG0Char(func_020b3374()->mData, 0, 0x3000);
-        GXS_LoadBG0Scr(func_020b32f8(), 0, 0x600);
+        GXS_LoadBG0Char(GetChoisesSBNcgrWithListChars()->mData, 0, 0x3000);
+        GXS_LoadBG0Scr(GetChoisesSListScreenMapData(), 0, 0x600);
     }
     DC_FlushRange(gRaceHud->mMainOam, 0x400);
     GX_LoadOAM(gRaceHud->mMainOam, 0, 0x400);
@@ -224,8 +224,8 @@ void func_020b0b8c(void) {
                                 GetRaceGoalSBPaletteAndChars(0)->mUnk_04->mDataSize);
                 GXS_LoadOBJPltt(GetRaceNclrNcgr(7)->mNclr->mData, 0, 0x80);
                 GXS_LoadOBJ(GetRaceNclrNcgr(7)->mNcgr->mData, 0, 0x4000);
-                GXS_LoadBG0Char(func_020b3374()->mData, 0, 0x3000);
-                GXS_LoadBG0Scr(func_020b32f8(), 0, 0x600);
+                GXS_LoadBG0Char(GetChoisesSBNcgrWithListChars()->mData, 0, 0x3000);
+                GXS_LoadBG0Scr(GetChoisesSListScreenMapData(), 0, 0x600);
                 break;
             case 6:
                 break;
@@ -253,7 +253,7 @@ void func_020b0b8c(void) {
             }
             UpdateRaceHudSubScreenBgPalette((RaceHudSubScreenBgPalette *) &data_0217b34c[0x100]);
             if (func_020b64e8() != 0) {
-                if (func_020b4e0c() != 0) {
+                if (IsFollowedKartOutsideBox() != 0) {
                     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1c00;
                 } else {
                     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1800;
@@ -267,7 +267,7 @@ void func_020b0b8c(void) {
             switch (gRaceSetup->mMode) {
                 case MODE_BATTLE:
                 case MODE_VS:
-                    GXS_LoadBG0Char(func_020b3374()->mData, 0, 0x800);
+                    GXS_LoadBG0Char(GetChoisesSBNcgrWithListChars()->mData, 0, 0x800);
                     break;
             }
             w = GetRaceGoalSOffsetX();
@@ -284,7 +284,7 @@ void func_020b0b8c(void) {
             switch (gRaceSetup->mMode) {
                 case MODE_BATTLE:
                 case MODE_VS:
-                    GXS_LoadBG0Char(func_020b3374()->mData, 0, 0x800);
+                    GXS_LoadBG0Char(GetChoisesSBNcgrWithListChars()->mData, 0, 0x800);
                     break;
             }
             w = GetRaceGoalSOffsetX();
@@ -326,7 +326,7 @@ void func_020b0b8c(void) {
             reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | ((w | 4) << 8);
             GX_LoadBG2Scr(gRaceHud->mNscrs[0]->mData, 0, 0x600);
         }
-        GXS_LoadBG0Scr(func_020b32f8(), 0, 0x600);
+        GXS_LoadBG0Scr(GetChoisesSListScreenMapData(), 0, 0x600);
         w = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | ((w | 1) << 8);
         G2x_SetBlendBrightnessExt_(&reg_G2S_DB_BLDCNT, 0x3e, 0x3f, 8, 8, -7);
@@ -367,7 +367,7 @@ void func_020b03bc(void) {
     }
     gRaceHud = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x914);
     InitRaceStartSequence();
-    func_020b3b08();
+    InitRaceEnd();
     InitRaceHudSubScreenProjection();
     func_020b8624();
     func_020cffa0();
@@ -473,16 +473,16 @@ void func_020b03bc(void) {
     func_020b6d98(GetRaceNclrNcgr(6)->mNclr->mData, GetRaceNclrNcgr(6)->mNcgr->mData);
     DC_FlushRange(GetRaceNclrNcgr(6)->mNclr->mData, GetRaceNclrNcgr(6)->mNclr->mDataSize);
     DC_FlushRange(GetRaceNclrNcgr(6)->mNcgr->mData, GetRaceNclrNcgr(6)->mNcgr->mDataSize);
-    func_020b46d0(GetRaceNclrNcgr(6)->mNcgr->mData, 0x10, 0, 0x10, 2, GetRaceNclrNcgr(7)->mNcgr->mData, 0x10, 0);
+    CopyCharsBlock(GetRaceNclrNcgr(6)->mNcgr->mData, 0x10, 0, 0x10, 2, GetRaceNclrNcgr(7)->mNcgr->mData, 0x10, 0);
     DC_FlushRange(GetRaceNclrNcgr(7)->mNcgr->mData, GetRaceNclrNcgr(7)->mNcgr->mDataSize);
-    func_020b46d0(GetRaceNclrNcgr(6)->mNcgr->mData, 0x10, 0, 0x10, 2, GetRaceNclrNcgr(8)->mNcgr->mData, 0x10, 0);
+    CopyCharsBlock(GetRaceNclrNcgr(6)->mNcgr->mData, 0x10, 0, 0x10, 2, GetRaceNclrNcgr(8)->mNcgr->mData, 0x10, 0);
     DC_FlushRange(GetRaceNclrNcgr(8)->mNcgr->mData, GetRaceNclrNcgr(8)->mNcgr->mDataSize);
     if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
-        func_020b46d0(GetRaceNclrNcgr(6)->mNcgr->mData, 0x10, 0, 0x10, 2, GetRaceNclrNcgr(9)->mNcgr->mData, 0x10, 0);
+        CopyCharsBlock(GetRaceNclrNcgr(6)->mNcgr->mData, 0x10, 0, 0x10, 2, GetRaceNclrNcgr(9)->mNcgr->mData, 0x10, 0);
         DC_FlushRange(GetRaceNclrNcgr(9)->mNcgr->mData, GetRaceNclrNcgr(9)->mNcgr->mDataSize);
     }
-    func_020b36a4();
-    func_020b3adc();
+    ResetRaceStartSequenceFrames();
+    ResetRaceEndFrames();
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         data_0217b488->mUnk_10 = 0;
     }
@@ -688,8 +688,8 @@ void func_020af99c(void) {
     reg_G2S_DB_BG0CNT = reg_G2S_DB_BG0CNT & ~3;
     reg_G2S_DB_BG0CNT &= ~0x40;
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & 0x43) | 0x10c;
-    GXS_LoadBG0Char(func_020b3374()->mData, 0, func_020b3374()->mDataSize);
-    GXS_LoadBG0Scr(func_020b32f8(), 0, 0x600);
+    GXS_LoadBG0Char(GetChoisesSBNcgrWithListChars()->mData, 0, GetChoisesSBNcgrWithListChars()->mDataSize);
+    GXS_LoadBG0Scr(GetChoisesSListScreenMapData(), 0, 0x600);
     InitSubScreenGraphicsMode5();
     gRaceHud->mEnabled = TRUE;
 }
@@ -714,7 +714,7 @@ void func_020af86c(void) {
     G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 0, 0x10, 0x10);
     gRaceHud = NULL;
     ClearRaceStartSequencePointer();
-    func_020b3af4();
+    ClearRaceEndPointer();
     ClearRaceHudSubScreenProjection();
     func_020b8610();
     if (gRaceSetup->mRaceKind == 4) {
@@ -767,7 +767,7 @@ void func_020af66c(void) {
         }
     }
     UpdateRaceStartSequence();
-    func_020b3728();
+    UpdateRaceEnd();
     if (gRaceSetup->mRaceKind == 4) {
         func_020d1298();
     }

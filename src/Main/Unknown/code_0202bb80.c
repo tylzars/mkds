@@ -174,7 +174,7 @@ static inline void func_0202c0d4_inline(const void *source, void *destination, s
 }
 
 void func_0202c8dc(void) {
-    void *text = GetBmgEntry(func_020b47cc(data_usa_02162c58), 0x72);
+    void *text = GetBmgEntry(FindFileInLoadedArchivesWrapper(data_usa_02162c58), 0x72);
     u16 u[3];
     u16 *w = &u[1];
     s32 i;

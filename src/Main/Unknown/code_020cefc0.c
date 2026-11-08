@@ -60,7 +60,8 @@ void UpdateRaceHudSubScreenBombKouraWCells(void) {
             if (ComputeRaceHudSubScreenPosition(
                     bombPosition, &gRaceHudSubScreenBombKouraWCells->mCells[cellCount].mDrawPos, v, 1, 1) != FALSE) {
                 gRaceHudSubScreenBombKouraWCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0x63);
-                gRaceHudSubScreenBombKouraWCells->mCells[cellCount].mUnk_0c = func_020b4e70(bombPosition) != 0 ? 2 : 3;
+                gRaceHudSubScreenBombKouraWCells->mCells[cellCount].mUnk_0c =
+                    IsPositionOutsideBox(bombPosition) != 0 ? 2 : 3;
                 gRaceHudSubScreenBombKouraWCells->mCells[cellCount].mUnk_10 = bombStateFrames;
                 gRaceHudSubScreenBombKouraWCells->mCells[cellCount].mUnk_0e = bombStateFrames >= 0x16 ? 1 : 0;
                 if (bombStateFrames >= 0x16) {
@@ -81,7 +82,8 @@ void UpdateRaceHudSubScreenBombKouraWCells(void) {
             if (ComputeRaceHudSubScreenPosition(
                     kouraPosition, &gRaceHudSubScreenBombKouraWCells->mCells[cellCount].mDrawPos, v, 1, 1) != FALSE) {
                 gRaceHudSubScreenBombKouraWCells->mCells[cellCount].mCell = GetRaceSNcerEntry(0x64);
-                gRaceHudSubScreenBombKouraWCells->mCells[cellCount].mUnk_0c = func_020b4e70(kouraPosition) != 0 ? 2 : 3;
+                gRaceHudSubScreenBombKouraWCells->mCells[cellCount].mUnk_0c =
+                    IsPositionOutsideBox(kouraPosition) != 0 ? 2 : 3;
                 gRaceHudSubScreenBombKouraWCells->mCells[cellCount].mUnk_10 = kouraStateFrames;
                 gRaceHudSubScreenBombKouraWCells->mCells[cellCount].mUnk_0e = kouraStateFrames >= 0x16 ? 1 : 0;
                 if (kouraStateFrames >= 0x16) {

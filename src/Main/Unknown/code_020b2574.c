@@ -37,7 +37,7 @@ void UpdateChoisesS(void) {
         func_0203c0bc() != 0) {
         return;
     }
-    if (gChoisesS->mPickFrames == 0 && gChoisesS->mCloseFrames == 0 && func_020b32ec() == 0) {
+    if (gChoisesS->mPickFrames == 0 && gChoisesS->mCloseFrames == 0 && IsChoisesSPickLocked() == 0) {
         if (func_020b2bc8() != 0) {
             if (func_020b2b70() != 0) {
                 if (func_020b252c() == MODE_MISSION_RUN && func_020b2b5c() != 0 && func_020b2f58() != 0) {
@@ -45,14 +45,14 @@ void UpdateChoisesS(void) {
                         gChoisesS->mPickedValue = 10;
                         gChoisesS->mSelectedValue = gChoisesS->mPickedValue;
                         gChoisesS->mPickLocked = 1;
-                        func_020b3278();
+                        StartChoisesSSelectedValueSeq();
                     }
                 } else if (func_020b252c() == MODE_MISSION_RUN && func_020b2ecc() != 0) {
                     if (func_020b2b24(func_020b2b54(), PAD_KEY_A) != 0 || func_020b2a74(func_020b2b54()) != 0) {
                         gChoisesS->mPickedValue = 6;
                         gChoisesS->mSelectedValue = gChoisesS->mPickedValue;
                         gChoisesS->mPickLocked = 1;
-                        func_020b3278();
+                        StartChoisesSSelectedValueSeq();
                         func_020b2a60(1);
                     }
                 } else if (func_020b252c() == MODE_MISSION_RUN && func_020b2b5c() != 0) {
@@ -60,7 +60,7 @@ void UpdateChoisesS(void) {
                         gChoisesS->mPickedValue = 6;
                         gChoisesS->mSelectedValue = gChoisesS->mPickedValue;
                         gChoisesS->mPickLocked = 1;
-                        func_020b3278();
+                        StartChoisesSSelectedValueSeq();
                     }
                 } else if (func_020b2b24(func_020b2b54(), 8) != 0) {
                     if (func_020b2e98() != 0) {
@@ -77,7 +77,7 @@ void UpdateChoisesS(void) {
                         if (gChoisesS->mSelectedValue == 0) {
                             func_02105c4c();
                         } else {
-                            func_020b3278();
+                            StartChoisesSSelectedValueSeq();
                         }
                         gChoisesS->mPickFrames = 1;
                         gChoisesS->mUnk_010 = TRUE;
@@ -112,7 +112,7 @@ void UpdateChoisesS(void) {
                     if (gChoisesS->mSelectedValue == 0) {
                         func_02105c4c();
                     } else {
-                        func_020b3278();
+                        StartChoisesSSelectedValueSeq();
                     }
                     gChoisesS->mPickFrames = 1;
                     gChoisesS->mUnk_010 = TRUE;

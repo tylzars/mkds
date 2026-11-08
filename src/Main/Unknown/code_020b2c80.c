@@ -46,15 +46,15 @@ void func_020b2c80(s32 selectedIndex) {
     u16 *screenMap;
 
     valueCount = gChoisesS->mLists[GetChoisesSListIndex()].mValueCount;
-    screenMap = func_020b32f8();
+    screenMap = GetChoisesSListScreenMapData();
     if (screenMap != NULL) {
         if (gChoisesS->mUnk_010 == FALSE || gChoisesS->mPickFrames >= 5) {
             row = 0xd - valueCount * 2 + selectedIndex * 4;
             if (gChoisesS->mCycleFrames < 0x1e) {
-                func_020b4428(screenMap, 2, row, 1, 1, 0x21);
-                func_020b4428(screenMap, 2, row + 1, 1, 1, 0x41);
+                SetScreenMapBlockLowBits(screenMap, 2, row, 1, 1, 0x21);
+                SetScreenMapBlockLowBits(screenMap, 2, row + 1, 1, 1, 0x41);
             }
-            func_020b44a4(screenMap, 0, row - 1, 0x20, 4, 0xe);
+            SetScreenMapBlockTopBits(screenMap, 0, row - 1, 0x20, 4, 0xe);
         }
     }
 }
