@@ -1,20 +1,15 @@
 #pragma once
 
 #include "types.h"
+#include "Main/Unknown/unk_021759c0.h" // MinuteSecondMillisecondTime
 
-// Three words: the code multiplies the first by 60, adds the second, multiplies by 1000 and adds the third.
-typedef struct Unk020b1bf8 {
+// Minutes, seconds and milliseconds summed part by part (seconds and milliseconds can pass 59 and 999).
+typedef struct MinuteSecondMillisecondTotal {
     /* 00 */ s32 mMinutes;
     /* 04 */ s32 mSeconds;
     /* 08 */ s32 mMilliseconds;
-} Unk020b1bf8;
+} MinuteSecondMillisecondTotal;
 
-// Four bytes: a halfword and two bytes.
-typedef struct Unk020b1a34_0c {
-    /* 00 */ u16 mMilliseconds;
-    /* 02 */ u8 mMinutes;
-    /* 03 */ u8 mSeconds;
-} Unk020b1a34_0c;
-
-s32 ComputeTimeDifference(Unk020b1bf8 *first, Unk020b1bf8 *second, Unk020b1a34_0c *difference);
+s32 ComputeTimeDifference(MinuteSecondMillisecondTotal *first, MinuteSecondMillisecondTotal *second,
+                          MinuteSecondMillisecondTime *difference);
 void func_020b1a34(void);

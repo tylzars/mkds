@@ -25,7 +25,7 @@ void func_02056670(u32 a) {
     }
 }
 
-s32 func_0205660c(GhostRecord *a, s32 b, Unk020565e4 *c) {
+s32 func_0205660c(GhostRecord *a, s32 b, MinuteSecondMillisecondTime *c) {
     u8 i;
     u32 v;
 
@@ -37,23 +37,23 @@ s32 func_0205660c(GhostRecord *a, s32 b, Unk020565e4 *c) {
     v |= a->mLapTimes[i] << 16;
     v |= a->mLapTimes[i + 1] << 8;
     v |= a->mLapTimes[i + 2];
-    c->mUnk_02 = (v >> 17) & 0x7f;
-    c->mUnk_03 = (v >> 10) & 0x7f;
-    c->mUnk_00 = v & 0x3ff;
+    c->mMinute = (v >> 17) & 0x7f;
+    c->mSecond = (v >> 10) & 0x7f;
+    c->mMillisecond = v & 0x3ff;
     return 1;
 }
 
-BOOL func_020565e4(GhostRecord *a, Unk020565e4 *b) {
+BOOL func_020565e4(GhostRecord *a, MinuteSecondMillisecondTime *b) {
     if (a->mFilled == 0) {
         return FALSE;
     }
-    b->mUnk_02 = a->mMinute;
-    b->mUnk_03 = a->mSecond;
-    b->mUnk_00 = a->mMillisecond;
+    b->mMinute = a->mMinute;
+    b->mSecond = a->mSecond;
+    b->mMillisecond = a->mMillisecond;
     return TRUE;
 }
 
-s32 func_020565ac(s32 a, s32 b, Unk020565e4 *c) {
+s32 func_020565ac(s32 a, s32 b, MinuteSecondMillisecondTime *c) {
     s32 r;
 
     r = 0;
@@ -70,7 +70,7 @@ s32 func_020565ac(s32 a, s32 b, Unk020565e4 *c) {
     return r;
 }
 
-s32 func_02056574(s32 a, Unk020565e4 *b) {
+s32 func_02056574(s32 a, MinuteSecondMillisecondTime *b) {
     s32 r;
 
     r = 0;

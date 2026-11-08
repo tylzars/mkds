@@ -627,8 +627,8 @@ typedef struct RaceHud {
     // the draw of the time difference.
     /* 8e4 */ s32 mUseTimeDifference;
     // ComputeTimeDifference's return: non-zero when the entry's summed lap times (GetKartLapTime) are >= the summed
-    // reference times (gRaceSetup->mUnk_3ec); the draw picks one of two sprites by it. Which sprite is plus or minus
-    // is not named.
+    // reference times (gRaceSetup->mGhostLapTimes); the draw picks one of two sprites by it. Which sprite is plus or
+    // minus is not named.
     /* 8e8 */ s32 mTimeDifferenceSign;
     // The difference as seven digits (SplitTimeDigits), written by func_020b1a34, read through GetRaceHudTimeDifference
     // by the draw.

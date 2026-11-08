@@ -6,12 +6,12 @@
 
 typedef struct MicBuffer MicBuffer;
 
-// Three values that func_020565e4 and func_0205660c fill: a halfword and two bytes.
-typedef struct Unk020565e4 {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u8 mUnk_02;
-    /* 03 */ u8 mUnk_03;
-} Unk020565e4;
+// A time as three parts, minute, second and millisecond; IsTimeLessThanStaffGhostTime sums them in milliseconds.
+typedef struct MinuteSecondMillisecondTime {
+    /* 00 */ u16 mMillisecond;
+    /* 02 */ u8 mMinute;
+    /* 03 */ u8 mSecond;
+} MinuteSecondMillisecondTime;
 
 // What drives an entry's kart: the player, the game's CPU, a recorded ghost, a player on another console, or nothing.
 typedef enum { PLAYER_KIND_HUMAN, PLAYER_KIND_CPU, PLAYER_KIND_GHOST, PLAYER_KIND_PEER, PLAYER_KIND_NONE } PlayerKind;
@@ -240,8 +240,8 @@ typedef struct RaceSetup {
     /* 3e5 */ u8 mUnk_3e5;
     /* 3e6 */ s8 mUnk_3e6;
     /* 3e7 */ u8 mUnk_3e7[0x1];
-    /* 3e8 */ Unk020565e4 mUnk_3e8;
-    /* 3ec */ Unk020565e4 mUnk_3ec[5];
+    /* 3e8 */ MinuteSecondMillisecondTime mGhostTime;
+    /* 3ec */ MinuteSecondMillisecondTime mGhostLapTimes[5];
 } RaceSetup;
 
 extern RaceSetup *gRaceSetup;

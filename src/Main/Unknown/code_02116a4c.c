@@ -50,7 +50,7 @@ void func_02116cb0(u16 *text, s32 variant) {
 }
 
 // Writes the time as minute, second and millisecond text; c picks which digit and separator characters.
-void FormatMinuteSecondMillisecondTime(Unk02116b98 *time, u16 *text, s32 variant) {
+void FormatMinuteSecondMillisecondTime(MinuteSecondMillisecondTime *time, u16 *text, s32 variant) {
     u16 i;
     u16 buf[0x12];
 

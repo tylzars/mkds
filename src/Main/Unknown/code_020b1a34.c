@@ -20,7 +20,8 @@
 
 // Absolute difference of two times (minutes, seconds, milliseconds) written to the out record (minutes capped to
 // 99:59.999 from 100 minutes); returns non-zero when first >= second.
-s32 ComputeTimeDifference(Unk020b1bf8 *first, Unk020b1bf8 *second, Unk020b1a34_0c *difference) {
+s32 ComputeTimeDifference(MinuteSecondMillisecondTotal *first, MinuteSecondMillisecondTotal *second,
+                          MinuteSecondMillisecondTime *difference) {
     s32 firstMs;
     s32 secondMs;
     s32 differenceMs;
@@ -41,22 +42,22 @@ s32 ComputeTimeDifference(Unk020b1bf8 *first, Unk020b1bf8 *second, Unk020b1a34_0
     seconds = (differenceMs - minutes * 60000) / 1000;
     milliseconds = differenceMs % 1000;
     if (minutes < 100) {
-        difference->mMinutes = minutes;
-        difference->mSeconds = seconds;
-        difference->mMilliseconds = milliseconds;
+        difference->mMinute = minutes;
+        difference->mSecond = seconds;
+        difference->mMillisecond = milliseconds;
     } else {
-        difference->mMinutes = 99;
-        difference->mSeconds = 59;
-        difference->mMilliseconds = 999;
+        difference->mMinute = 99;
+        difference->mSecond = 59;
+        difference->mMillisecond = 999;
     }
     return firstNotLess;
 }
 
 void func_020b1a34(void) {
-    Unk020b1a34_0c referenceLap;
-    Unk020b1a34_0c kartLap;
-    Unk020b1a34_0c difference;
-    Unk020b1bf8 totals[2];
+    MinuteSecondMillisecondTime referenceLap;
+    MinuteSecondMillisecondTime kartLap;
+    MinuteSecondMillisecondTime difference;
+    MinuteSecondMillisecondTotal totals[2];
     TimeDigits digits;
     u8 totalsIndex;
     u8 lap;
@@ -74,18 +75,17 @@ void func_020b1a34(void) {
     }
     for (lap = 1; lap <= func_020b4d2c(); lap++) {
         if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
-            MI_CpuCopy8(&gRaceSetup->mUnk_3ec[lap - 1], &referenceLap, 4);
+            MI_CpuCopy8(&gRaceSetup->mGhostLapTimes[lap - 1], &referenceLap, 4);
         }
-        totals[0].mMinutes += referenceLap.mMinutes;
-        totals[0].mSeconds += referenceLap.mSeconds;
-        totals[0].mMilliseconds += referenceLap.mMilliseconds;
-        GetKartLapTime(GetFollowedKartOrEntryIndex(), lap, &kartLap.mMinutes, &kartLap.mSeconds,
-                       &kartLap.mMilliseconds);
-        totals[1].mMinutes += kartLap.mMinutes;
-        totals[1].mSeconds += kartLap.mSeconds;
-        totals[1].mMilliseconds += kartLap.mMilliseconds;
+        totals[0].mMinutes += referenceLap.mMinute;
+        totals[0].mSeconds += referenceLap.mSecond;
+        totals[0].mMilliseconds += referenceLap.mMillisecond;
+        GetKartLapTime(GetFollowedKartOrEntryIndex(), lap, &kartLap.mMinute, &kartLap.mSecond, &kartLap.mMillisecond);
+        totals[1].mMinutes += kartLap.mMinute;
+        totals[1].mSeconds += kartLap.mSecond;
+        totals[1].mMilliseconds += kartLap.mMillisecond;
     }
     gRaceHud->mTimeDifferenceSign = ComputeTimeDifference(&totals[1], &totals[0], &difference);
-    SplitTimeDigits(difference.mMinutes, difference.mSeconds, difference.mMilliseconds, &digits);
+    SplitTimeDigits(difference.mMinute, difference.mSecond, difference.mMillisecond, &digits);
     gRaceHud->mTimeDifferenceDigits = digits;
 }

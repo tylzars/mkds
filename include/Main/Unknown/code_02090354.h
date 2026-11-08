@@ -1,16 +1,10 @@
 #pragma once
 
 #include "types.h"
+#include "Main/Unknown/unk_021759c0.h" // MinuteSecondMillisecondTime
 #include "Main/Unknown/code_02080b1c.h"
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
-
-// A time as three parts, minute, second and millisecond; IsTimeLessThanStaffGhostTime sums them in milliseconds.
-typedef struct MinuteSecondMillisecondTime {
-    /* 00 */ u16 mMillisecond;
-    /* 02 */ u8 mMinute;
-    /* 03 */ u8 mSecond;
-} MinuteSecondMillisecondTime;
 
 // Sman: a map object of kind 0x19d in two parts (top and bottom models); state 1 sends the top up and down while the
 // bottom part's scale drops to 0, and later both parts come back.
