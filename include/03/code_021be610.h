@@ -2,17 +2,12 @@
 
 #include "types.h"
 
-// Object at the start of the Unk021da104 allocation: the word at 0x00 and the halfword at 0x04 are written bit by
-// bit.
-typedef struct Unk021da104_04 {
-    /* 00 */ u32 mUnk_00;
-    /* 04 */ u16 mUnk_04;
-} Unk021da104_04;
+typedef struct OamEntry OamEntry;
 
 // 0xc bytes allocated by func_ov003_021beef8.
 typedef struct Unk021da104 {
     /* 00 */ u32 mUnk_00;
-    /* 04 */ Unk021da104_04 *mUnk_04;
+    /* 04 */ OamEntry *mUnk_04;
     /* 08 */ u8 mUnk_08;
     /* 09 */ u8 mUnk_09;
 } Unk021da104;

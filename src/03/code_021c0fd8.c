@@ -102,7 +102,7 @@ BOOL HasEditAddrKeyboard(void) {
     return 0;
 }
 
-static inline void func_ov003_021c1b8c_inline(Unk021bf920 *object, u32 *x, u32 *y) {
+static inline void func_ov003_021c1b8c_inline(OamEntry *object, u32 *x, u32 *y) {
     *x = (object->mUnk_00 & 0x1ff0000) >> 16;
     *y = object->mUnk_00 & 0xff;
 }
@@ -345,7 +345,7 @@ void ChangeEditAddrKeyboardHighlight(int keyIndex) {
     }
 }
 
-static inline void func_ov003_021c105c_inline(Unk021bf920 *object, u32 *x, u32 *y) {
+static inline void func_ov003_021c105c_inline(OamEntry *object, u32 *x, u32 *y) {
     *x = (object->mUnk_00 & 0x1ff0000) >> 16;
     *y = object->mUnk_00 & 0xff;
 }
@@ -406,7 +406,7 @@ void SetEditAddrKeyboardRowY(int row, u32 yPos) {
     BOOL b;
     int i;
     int keyIndex;
-    Unk021bf920 *key;
+    OamEntry *key;
     *(Unk021c1364_05 *) digitKeyCounts = *(Unk021c1364_05 *) gEditAddrKeyboardDigitKeyCounts;
     *(Unk021c1364_05 *) extraKeyCounts = *(Unk021c1364_05 *) gEditAddrKeyboardExtraKeyCounts;
     *(Unk021c1364_05 *) row4KeyCounts = *(Unk021c1364_05 *) gEditAddrKeyboardRow4KeyCounts;
@@ -437,7 +437,7 @@ void SetEditAddrKeyboardRowY(int row, u32 yPos) {
 }
 
 void SetEditAddrKeyboardKeyHighlight(int keyIndex, int highlight) {
-    Unk021bf920 *key;
+    OamEntry *key;
     int extraKeyIndex;
     if (keyIndex < 0) {
         return;

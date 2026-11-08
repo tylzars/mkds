@@ -3,7 +3,7 @@
 #include "types.h"
 #include "03/types_021d299c.h"
 
-typedef struct Unk021da104_04 Unk021da104_04;
+typedef struct OamEntry OamEntry;
 typedef struct BgTextCanvas BgTextCanvas;
 typedef struct Rect Rect;
 
@@ -13,8 +13,8 @@ typedef struct ApList {
     /* 04 */ void *mXb4ApListBackNsc;
     /* 08 */ void *mYbBgStep31Ncl;
     /* 0c */ BgTextCanvas *mUnk_0c;
-    /* 10 */ Unk021da104_04 *mUnk_10[5];
-    /* 24 */ Unk021da104_04 *mUnk_24[5];
+    /* 10 */ OamEntry *mUnk_10[5];
+    /* 24 */ OamEntry *mUnk_24[5];
     /* 38 */ u32 mScrollTask;
     /* 3c */ u32 mBgOffsetTask;
     /* 40 */ u16 mScrollYMax;

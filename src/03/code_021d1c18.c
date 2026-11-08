@@ -19,7 +19,7 @@ void FreeNceFile(u32 slot) {
     gNceFiles[slot] = NULL;
 }
 
-void CopyNceImageToOamEntries(u32 slot, u32 imageIndex, u8 *destination) {
+void CopyNceImageToOamEntries(u32 slot, u32 imageIndex, OamEntry *destination) {
     NceImage *file = gNceFiles[slot];
     u8 *source = (u8 *) file + file[imageIndex].mEntriesOffset;
     u16 entryCount = file[imageIndex].mEntryCount;
@@ -29,14 +29,14 @@ void CopyNceImageToOamEntries(u32 slot, u32 imageIndex, u8 *destination) {
     volatile u32 d = 0;
 
     MIi_CpuClear32(d, buffer, 8);
-    for (i = 0; i < entryCount; i++, source += 6, destination += 8) {
+    for (i = 0; i < entryCount; i++, source += 6, destination++) {
         MIi_CpuCopy16(source, buffer, 6);
         MIi_CpuCopy32(buffer, destination, 8);
     }
 }
 
 void *CreateOamEntryFromNceImage(u32 screen, u32 imageIndex) {
-    u8 *entry;
+    OamEntry *entry;
     u8 v2[8];
     entry = func_ov003_021d2f44(screen, v2);
     CopyNceImageToOamEntries(screen, imageIndex, entry);

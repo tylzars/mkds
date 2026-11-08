@@ -421,7 +421,7 @@ void func_ov003_021c8e48(void) {
     }
 }
 
-static inline void func_ov003_021c85a0_inline(Unk021da104_04 *p, u32 *x, u32 *y) {
+static inline void func_ov003_021c85a0_inline(OamEntry *p, u32 *x, u32 *y) {
     *x = (p->mUnk_00 & 0x1ff0000) >> 16;
     *y = p->mUnk_00 & 0xff;
 }
@@ -712,7 +712,7 @@ void SetupJb3ListCell(int d, int e, int f) {
     u16 a[5];
     u16 b;
     u32 c;
-    Unk021da104_04 **p;
+    OamEntry **p;
     a[0] = gJb3ListCellRect.mUnk_00;
     b = data_ov003_021d644c.mUnk_00;
     a[1] = b;
@@ -729,7 +729,7 @@ void SetupJb3ListCell(int d, int e, int f) {
         }
     }
     if (data_ov003_021d6478[d][e] != 0) {
-        CopyNceImageToOamEntries(0, data_ov003_021d6478[d][e], (u8 *) *p);
+        CopyNceImageToOamEntries(0, data_ov003_021d6478[d][e], *p);
         c = (a[d] & 0x1ff) << 16;
         (*p)->mUnk_00 = c | ((*p)->mUnk_00 & 0xfe00ff00);
         (*p)->mUnk_04 = ((*p)->mUnk_04 & ~0xc00) | 0xc00;
@@ -790,7 +790,7 @@ void PrintJb3ListEntryBytes(const u8 *b, int c) {
 void RefreshJb3ListRowPositions(void) {
     int a;
     int b;
-    Unk021da104_04 *p;
+    OamEntry *p;
     int c;
     int i;
     u32 x;

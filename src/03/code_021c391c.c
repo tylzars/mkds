@@ -40,7 +40,7 @@
 #include "registers.h"
 
 void SetupOptMenu(void) {
-    Unk021da104_04 *a;
+    OamEntry *a;
     data_ov003_021da1b0[0] = 0;
     LoadOptMenuFilesAndSetBgCnt();
     LoadHlScr(0x10);

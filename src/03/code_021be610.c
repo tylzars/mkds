@@ -68,7 +68,7 @@ void AdvanceButtonReset(u32 task) {
 
 void func_ov003_021beef8(int index) {
     Unk021da104 *object;
-    Unk021da104_04 *innerObject;
+    OamEntry *innerObject;
     u32 c;
 
     object = AllocZeroedExpHeapBlock(0xc, 4);
@@ -94,12 +94,12 @@ void func_ov003_021beecc(void) {
 
 void func_ov003_021bee24(void) {
     Unk021da104 *object;
-    Unk021da104_04 *innerObject;
+    OamEntry *innerObject;
     u32 c;
 
     data_ov003_021da104->mUnk_09 = FX_ModS32(data_ov003_021da104->mUnk_09 + 1, 0x28);
     c = FX_DivS32(data_ov003_021da104->mUnk_09, 5) + 0x47;
-    CopyNceImageToOamEntries(0, c, (u8 *) data_ov003_021da104->mUnk_04);
+    CopyNceImageToOamEntries(0, c, data_ov003_021da104->mUnk_04);
     innerObject = data_ov003_021da104->mUnk_04;
     innerObject->mUnk_04 = (innerObject->mUnk_04 & 0xfffff3ff) | 0x400;
     object = data_ov003_021da104;

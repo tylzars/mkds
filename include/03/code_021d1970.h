@@ -4,4 +4,4 @@
 #include "03/code_021d1770.h"
 
 u8 GetOamRangeEntryCount(OamRange *range);
-void *GetOamRangeEntry(OamRange *range, int index);
+OamEntry *GetOamRangeEntry(OamRange *range, int index);

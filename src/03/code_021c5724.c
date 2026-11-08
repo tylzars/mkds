@@ -124,15 +124,15 @@ void func_ov003_021c6400(void) {
         gApList->mUnk_24[i] = CreateOamEntryFromNceImage(0, data_ov003_021d638c[0]);
     }
     for (j = 0; j < 3; j++) {
-        CopyNceImageToOamEntries(0, data_ov003_021d6388[j], (u8 *) gApList->mUnk_10[0]);
+        CopyNceImageToOamEntries(0, data_ov003_021d6388[j], gApList->mUnk_10[0]);
         gApList->mUnk_42[j] = gApList->mUnk_10[0]->mUnk_04 & 0x3ff;
     }
     for (j = 0; j < 4; j++) {
-        CopyNceImageToOamEntries(0, data_ov003_021d638c[j], (u8 *) gApList->mUnk_24[0]);
+        CopyNceImageToOamEntries(0, data_ov003_021d638c[j], gApList->mUnk_24[0]);
         gApList->mUnk_48[j] = gApList->mUnk_24[0]->mUnk_04 & 0x3ff;
     }
     for (i = 0; i < n; i++) {
-        Unk021da104_04 *q;
+        OamEntry *q;
         q = gApList->mUnk_10[i];
         q->mUnk_04 = (q->mUnk_04 & 0xfffff3ff) | 0xc00;
         q = gApList->mUnk_24[i];
@@ -508,7 +508,7 @@ void PrintApListEntryText(int param_0, int param_1) {
 }
 
 void func_ov003_021c5b34(int param_0, int param_1) {
-    Unk021da104_04 *p;
+    OamEntry *p;
     int m;
     if (param_0 < gApList->mEntryCount) {
         p = gApList->mUnk_10[param_1];
@@ -529,7 +529,7 @@ void RefreshApListRowPositions(void) {
         b = 5;
     }
     for (i = 0; i < b; i++, a += 0x1c) {
-        Unk021da104_04 *p;
+        OamEntry *p;
         p = gApList->mUnk_10[i];
         p->mUnk_00 = (p->mUnk_00 & 0xfe00ff00) | ((a - 2) & 0xff) | 0xb30000;
         p = gApList->mUnk_24[i];

@@ -2,13 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk021d1ffc {
-    /* 00 */ u8 mUnk_00[0x34];
-    /* 34 */ u16 mUnk_34;
-    /* 36 */ u8 mUnk_36;
-    /* 37 */ u8 mUnk_37;
-} Unk021d1ffc;
-
 void DrawCanvasText(unsigned int canvas, unsigned int xPos, unsigned int yPos, unsigned int color, unsigned int flags,
                     unsigned int text);
 
@@ -60,7 +53,7 @@ typedef struct TextCanvases {
 #include "code_02022aa8.h"
 
 void RequestBgTextCanvasUpload(void *canvas);
-void ArrangeObjTextCanvasRange(Unk021d1ffc *canvas, s32 xPos, s32 yPos, OamRange *range, s32 f);
+void ArrangeObjTextCanvasRange(ObjTextCanvas *canvas, s32 xPos, s32 yPos, OamRange *range, s32 f);
 void ClearBgTextCanvas(BgTextCanvas *canvas, u32 color);
 void DrawCharsCentered(void *canvas, s32 xPos, u32 yPos, u32 color, s32 cellWidth, u16 *text, s32 fontIndex);
 void DrawCanvasChar(void *canvas, u32 xPos, u32 yPos, u32 color, u16 charCode, int fontIndex);

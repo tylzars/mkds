@@ -14,8 +14,8 @@ void func_ov003_021d2f78(void) {
     FreeExpHeapBlockAndClearPointer(&data_ov003_021da2f0);
 }
 
-u8 *func_ov003_021d2f44(int a, u8 *b) {
-    u8 *v1;
+OamEntry *func_ov003_021d2f44(int a, u8 *b) {
+    OamEntry *v1;
     v1 = PopPointerStack(data_ov003_021da2f0->mUnk_800[a]);
     MIi_CpuCopy32(b, v1, 8);
     return v1;

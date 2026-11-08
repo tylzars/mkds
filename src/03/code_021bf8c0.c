@@ -28,7 +28,7 @@
 #include "03/unk_021d67d8.h"
 #include "registers.h"
 
-static inline void func_ov003_021bfbd0_inline(Unk021bf920 *object, u32 *x, u32 *y) {
+static inline void func_ov003_021bfbd0_inline(OamEntry *object, u32 *x, u32 *y) {
     *x = (object->mUnk_00 & 0x1ff0000) >> 16;
     *y = object->mUnk_00 & 0xff;
 }
@@ -117,7 +117,7 @@ void SetEditKeyboardRowY(u32 page, s32 row, u32 yPos) {
     s32 i;
     s32 keyIndex;
     s32 extraKeyIndex;
-    Unk021bf920 *key;
+    OamEntry *key;
     *(Unk021c1364_05 *) keyCounts = *(Unk021c1364_05 *) data_ov003_021d6bcc;
     *(Unk021c1364_05 *) extraKeyCounts = *(Unk021c1364_05 *) data_ov003_021d6bd4;
     *(Unk021c1364_05 *) row4KeyCounts = *(Unk021c1364_05 *) data_ov003_021d6bc4;
@@ -174,7 +174,7 @@ void ChangeEditKeyboardPage(int page) {
 }
 
 void SetEditKeyboardKeyHighlight(int keyIndex, int highlight) {
-    Unk021bf920 *key;
+    OamEntry *key;
     s32 extraKeyIndex;
     if (keyIndex < 0) {
         return;
@@ -467,7 +467,7 @@ void UpdateLinkLevel(void) {
     }
     reg_OS_IME;
     reg_OS_IME = savedIme;
-    CopyNceImageToOamEntries(0, data_ov003_021d5f58[gLinkLevel->mUnk_08][linkLevel], (u8 *) gLinkLevel->mUnk_00);
+    CopyNceImageToOamEntries(0, data_ov003_021d5f58[gLinkLevel->mUnk_08][linkLevel], gLinkLevel->mUnk_00);
     gLinkLevel->mUnk_00->mUnk_00 = ((data_ov003_021d5f54[0] & 0x1ff) << 16) |
                                    ((gLinkLevel->mUnk_00->mUnk_00 & 0xfe00ff00) | (data_ov003_021d5f54[1] & 0xff));
     gLinkLevel->mUnk_00->mUnk_04 = (gLinkLevel->mUnk_00->mUnk_04 & 0xfffff3ff) | 0x800;

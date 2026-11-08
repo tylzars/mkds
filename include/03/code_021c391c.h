@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk021da104_04 Unk021da104_04;
+typedef struct OamEntry OamEntry;
 typedef struct Rect Rect;
 
 typedef struct Unk021d70f8 {
@@ -26,7 +26,7 @@ extern u8 gJbBgOptionNcgName[];
 extern u8 gJb5OptMenuNscName[];
 extern u8 gOptMenuSelectedIndex;
 extern void *gYbBgOption1Ncl;
-extern Unk021da104_04 *data_ov003_021da1b8;
+extern OamEntry *data_ov003_021da1b8;
 
 void func_ov003_021c391c(void);
 void MoveOptMenuSelection(s32 direction);

@@ -100,7 +100,7 @@ BOOL HasEditKeyboard(void) {
     return 0;
 }
 
-static inline void func_ov003_021c0ab0_inline(Unk021bf920 *object, u32 *x, u32 *y) {
+static inline void func_ov003_021c0ab0_inline(OamEntry *object, u32 *x, u32 *y) {
     *x = (object->mUnk_00 & 0x1ff0000) >> 16;
     *y = object->mUnk_00 & 0xff;
 }

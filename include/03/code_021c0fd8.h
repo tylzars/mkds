@@ -2,15 +2,15 @@
 
 #include "types.h"
 
-typedef struct Unk021bf920 Unk021bf920;
+typedef struct OamEntry OamEntry;
 typedef struct OamRange OamRange;
 typedef struct TaskEntry TaskEntry;
 
 // Object behind gEditAddrKeyboard.
 typedef struct EditAddrKeyboard {
     /* 00 */ void *mRowTexts[4];
-    /* 10 */ Unk021bf920 *mDigitKeys[10];
-    /* 38 */ Unk021bf920 *mExtraKeys[2];
+    /* 10 */ OamEntry *mDigitKeys[10];
+    /* 38 */ OamEntry *mExtraKeys[2];
     /* 40 */ OamRange *mRow4Keys[2];
     /* 48 */ OamRange *mUnk_48[4];
     /* 58 */ struct OamRange *mCursor;

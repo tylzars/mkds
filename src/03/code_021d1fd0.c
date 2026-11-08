@@ -205,13 +205,13 @@ void ClearBgTextCanvas(BgTextCanvas *canvas, u32 color) {
     canvas->mUnk_00.mUnk_18(&canvas->mUnk_00, color);
 }
 
-void ArrangeObjTextCanvasRange(Unk021d1ffc *canvas, s32 xPos, s32 yPos, OamRange *range, s32 f) {
-    void *entries = GetOamRangeEntry(range, 0);
+void ArrangeObjTextCanvasRange(ObjTextCanvas *canvas, s32 xPos, s32 yPos, OamRange *range, s32 f) {
+    OamEntry *entries = GetOamRangeEntry(range, 0);
 
     SetOamRangeEffect(range, -1, 0, 0);
     func_ov003_021d1890(range, -1, 0, 0xf);
     func_ov003_021d1790(range, -1, f);
-    NNS_G2dArrangeOBJ1D(entries, canvas->mUnk_36, canvas->mUnk_37, xPos, yPos, 0, canvas->mUnk_34, 2);
+    NNS_G2dArrangeOBJ1D(entries, canvas->mAreaWidth, canvas->mAreaHeight, xPos, yPos, 0, canvas->mCharName, 2);
 }
 
 void RequestBgTextCanvasUpload(void *canvas) {

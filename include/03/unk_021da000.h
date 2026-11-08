@@ -23,8 +23,8 @@ typedef struct Jb3List {
     /* 08 */ u16 *mJb3ListBackNsc;
     /* 0c */ void *mYbBgStep2NclFiles[2];
     /* 14 */ BgTextCanvas *mUnk_14;
-    /* 18 */ Unk021da104_04 *mUnk_18[7];
-    /* 34 */ Unk021da104_04 *mUnk_34;
+    /* 18 */ OamEntry *mUnk_18[7];
+    /* 34 */ OamEntry *mUnk_34;
     /* 38 */ u32 mScrollTask;
     /* 3c */ u32 mBgOffsetTask;
     /* 40 */ u8 mUnk_40;
@@ -43,16 +43,9 @@ typedef struct Unk021cf260 Unk021cf260;
 extern SlideButtons *data_ov003_021da108;
 extern u8 data_ov003_021da10c;
 extern OamRange **gSelectionObjects;
-// 8-byte object returned by CreateOamEntryFromNceImage: bits 0-7 and bits 16-24 of the word at 0x00 are two
-// coordinates.
-typedef struct Unk021bf920 {
-    /* 00 */ u32 mUnk_00;
-    /* 04 */ u16 mUnk_04;
-} Unk021bf920;
-
 // Object behind gLinkLevel.
 typedef struct LinkLevel {
-    /* 00 */ Unk021bf920 *mUnk_00;
+    /* 00 */ OamEntry *mUnk_00;
     /* 04 */ u32 mTask;
     /* 08 */ s8 mUnk_08;
 } LinkLevel;
@@ -62,8 +55,8 @@ extern LinkLevel *gLinkLevel;
 // The on-screen keys of the Edit screen.
 typedef struct EditKeyboard {
     /* 000 */ void *mRowTexts[3][4];
-    /* 030 */ Unk021bf920 *mKeys[0x2f];
-    /* 0ec */ Unk021bf920 *mExtraKeys[4];
+    /* 030 */ OamEntry *mKeys[0x2f];
+    /* 0ec */ OamEntry *mExtraKeys[4];
     /* 0fc */ OamRange *mRow4Keys[2];
     /* 104 */ void *mUnk_104[4];
     /* 114 */ OamRange *mCursor;

@@ -1,6 +1,6 @@
 #include "03/code_021d1970.h"
 
-void *GetOamRangeEntry(OamRange *range, int index) {
+OamEntry *GetOamRangeEntry(OamRange *range, int index) {
     return &range->mEntries[index];
 }
 
