@@ -131,13 +131,7 @@ typedef struct RaceMNumberPair {
     /* 24 */ s32 mOffsetX;
 } RaceMNumberPair;
 
-// Same bytes as WaterEfct (gViewFrustum is declared with this type).
-typedef struct Unk0217b4d8 {
-    /* 00 */ s32 mHeight;
-    /* 04 */ void *mNsbmdFile;
-    /* 08 */ void *mNsbcaFile;
-    /* 0c */ void *mNsbmaFile;
-} Unk0217b4d8;
+typedef struct WaterEfct WaterEfct;
 
 // Object at gViewFrustum: six vectors between words at 0x00/0x04 and 0x50/0x54.
 typedef struct ViewFrustum {
@@ -722,7 +716,7 @@ extern struct Unk020f41c4_B *gRaceRandom;
 extern struct Unk020f41c4_B *gMapObjectRandom;
 // The same pointer as gWaterEfct, stored by SetCourseWaterEfct (the last call of CreateWaterEfct) and set to NULL in
 // InitMapObjects; the water_efct getters and the level getter read this one.
-extern Unk0217b4d8 *gCourseWaterEfct;
+extern WaterEfct *gCourseWaterEfct;
 extern Vec3 *gFoundMapObjectVectors;
 extern s32 data_0217b4e0;
 // The same pointer as gWater, stored by SetCourseWater (the last call of each Create...Water) and set to NULL in

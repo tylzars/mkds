@@ -123,11 +123,11 @@ u32 func_0210ed20(u32 a, u32 b) {
 
 // Releases the loaded set and loads v unless it is empty or already loaded; d adds extra wave archives for some sets.
 u32 LoadSoundSetIfChanged(SoundSet v, u32 d) {
-    Unk0217d134 *p;
+    SndFileIdList *p;
     u32 ok;
     u32 n;
     s32 i;
-    Unk0217d134 *t;
+    SndFileIdList *t;
 
     if (v.mSeqId == 0xff && v.mUnk_04 == 0xff && v.mUnk_08 == 0xff) {
         return 1;

@@ -32,10 +32,8 @@ typedef struct SndFileIdList {
     /* 40 */ s32 mCount;
 } SndFileIdList;
 
-// data_0217d134 has the same layout and goes through the same functions.
-typedef SndFileIdList Unk0217d134;
-
-extern Unk0217d134 data_0217d134;
+// Same layout as the list above and goes through the same functions.
+extern SndFileIdList data_0217d134;
 extern SndFileIdList data_0217d178;
 
 extern const SoundSet data_0215c380;

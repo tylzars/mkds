@@ -4,4 +4,4 @@
 #include "Main/Unknown/code_0210e33c.h"
 
 SndFileIdList *func_0210ef50(void);
-Unk0217d134 *func_0210ef5c(void);
+SndFileIdList *func_0210ef5c(void);

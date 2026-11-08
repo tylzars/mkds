@@ -24,8 +24,7 @@ struct MtxFx43;
 #include "Main/Unknown/code_020e6b58.h"
 
 // The flat water level of a course (the map object's y) and the three water_efct effect files; 0x10 bytes, built by
-// CreateWaterEfct (kinds 5, 0xe, 0xf) into gWaterEfct and published as gCourseWaterEfct; Unk0217b4d8 is the same four
-// words.
+// CreateWaterEfct (kinds 5, 0xe, 0xf) into gWaterEfct and published as gCourseWaterEfct.
 typedef struct WaterEfct {
     // y of the flat water level (the map object's y); GetHeightAboveWaterOrEfct subtracts it from a y.
     /* 00 */ s32 mHeight;

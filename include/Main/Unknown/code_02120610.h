@@ -2,13 +2,7 @@
 
 #include "types.h"
 
-// Compared with three values by DoesMessageHeaderMatch.
-typedef struct Unk02121990 {
-    /* 0 */ s32 mKind;
-    /* 4 */ s32 mSize;
-    /* 8 */ u8 mFromIndex;
-    /* 9 */ u8 mToIndex;
-} Unk02121990;
+typedef struct WiFiSessionMessageHeader WiFiSessionMessageHeader;
 
 void func_02121dec(u32 a);
 s32 GetWiFiSessionCourseId(void);
@@ -18,7 +12,7 @@ s32 func_02121cd0(void);
 s32 func_02121c78(void);
 void TallyPickedCourse(void);
 void func_021219cc(void);
-BOOL DoesMessageHeaderMatch(Unk02121990 *a, u32 b, u32 c, u32 d);
+BOOL DoesMessageHeaderMatch(WiFiSessionMessageHeader *a, u32 b, u32 c, u32 d);
 BOOL IsWiFiSessionMessageKindAllowed(u32 a);
 u8 func_021216a8(void);
 BOOL func_02121580(void);
