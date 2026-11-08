@@ -242,7 +242,7 @@ typedef struct TimeAttackTopMenu {
     /* 34 */ s32 mResult;
 } TimeAttackTopMenu;
 
-extern RaceHudSubScreenCells *data_ov001_021a9bc0;
+extern RaceHudSubScreenCells *gRaceHudSubScreenKurikingCells;
 extern u16 data_ov001_021a9b94;
 extern const char *data_ov001_021a90e8[5];
 extern const char *data_ov001_021a92c8[5];

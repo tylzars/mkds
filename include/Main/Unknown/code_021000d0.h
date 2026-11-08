@@ -67,6 +67,10 @@ extern MapObjectKindRow data_0216b288[];
 #define MAP_OBJECT_KIND_BOSS_DONKETU 0x1f5
 // Mission Run boss kind: King Ice Donketu.
 #define MAP_OBJECT_KIND_KING_ICE_DONKETU 0x1f6
+#define MAP_OBJECT_KIND_BOMB_KING 0x1f8
+#define MAP_OBJECT_KIND_HANACHAN 0x1fc
+#define MAP_OBJECT_KIND_IWANTE 0x1fb
+#define MAP_OBJECT_KIND_KURIKING 0x1f7
 #define MAP_OBJECT_KIND_BERRY 0x1b5
 
 // Object behind MapObjectKindRow.mUnk_04.
