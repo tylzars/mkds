@@ -8,11 +8,11 @@
 #include "01/unk_021a7000.h"
 #include "Main/Unknown/code_020fd000.h"
 
-void func_ov001_0218a41c(Unk02188950 *a) {
-    if (func_ov001_02188220(a) >= 2) {
-        func_ov001_0218a444(a);
+void func_ov001_0218a41c(Unk02188950 *mapObject) {
+    if (func_ov001_02188220(mapObject) >= 2) {
+        func_ov001_0218a444(mapObject);
     } else {
-        func_ov001_0218a4d0(a);
+        func_ov001_0218a4d0(mapObject);
     }
-    func_ov001_02188260(a);
+    func_ov001_02188260(mapObject);
 }

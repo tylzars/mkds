@@ -10,18 +10,19 @@
 #include "Main/Unknown/code_020d275c.h"
 #include "Main/Unknown/code_020fd264.h"
 
-void func_ov001_0218b1d8(Unk02188950 *a) {
-    Vec3 vec;
+void ThrowStoredItemBomb(Unk02188950 *mapObject) {
+    Vec3 velocity;
 
-    if (IsItemBombStored(a)) {
-        vec.x = (((s64) a->mPrm->mUnk_134 * gPairsByAngle[((u16) a->mMoveAngle >> 4) * 2]) >> 12);
-        vec.y = a->mPrm->mUnk_138;
-        vec.z = (((s64) a->mPrm->mUnk_134 * gPairsByAngle[((u16) a->mMoveAngle >> 4) * 2 + 1]) >> 12);
-        func_ov001_02187bfc(a, &vec, a->mPrm->mUnk_13c);
+    if (IsItemBombStored(mapObject)) {
+        velocity.x = (((s64) mapObject->mPrm->mUnk_134 * gPairsByAngle[((u16) mapObject->mMoveAngle >> 4) * 2]) >> 12);
+        velocity.y = mapObject->mPrm->mUnk_138;
+        velocity.z =
+            (((s64) mapObject->mPrm->mUnk_134 * gPairsByAngle[((u16) mapObject->mMoveAngle >> 4) * 2 + 1]) >> 12);
+        func_ov001_02187bfc(mapObject, &velocity, mapObject->mPrm->mUnk_13c);
     }
 }
 
-void func_ov001_0218b034(Unk02188950 *a) {
+void func_ov001_0218b034(Unk02188950 *mapObject) {
     RandomState64 *rng;
     s32 angle;
     s32 i;
@@ -34,23 +35,25 @@ void func_ov001_0218b034(Unk02188950 *a) {
     for (i = 0; i < 3; i++) {
         Vec3 vel = {0, 0, 0};
         angle += 0x5555;
-        if (func_ov001_02188220(a) == 0) {
+        if (func_ov001_02188220(mapObject) == 0) {
             idx = ((u16) angle >> 4) * 2;
-            pos.x = a->mUnk_000.mPos.x + (s32) (((s64) a->mPrm->mUnk_14c * gPairsByAngle[idx]) >> 12);
-            pos.y = a->mUnk_000.mPos.y + a->mPrm->mUnk_150;
-            pos.z = a->mUnk_000.mPos.z + (s32) (((s64) a->mPrm->mUnk_14c * gPairsByAngle[idx + 1]) >> 12);
+            pos.x = mapObject->mUnk_000.mPos.x + (s32) (((s64) mapObject->mPrm->mUnk_14c * gPairsByAngle[idx]) >> 12);
+            pos.y = mapObject->mUnk_000.mPos.y + mapObject->mPrm->mUnk_150;
+            pos.z =
+                mapObject->mUnk_000.mPos.z + (s32) (((s64) mapObject->mPrm->mUnk_14c * gPairsByAngle[idx + 1]) >> 12);
         } else {
             idx = ((u16) angle >> 4) * 2;
-            pos.x = a->mUnk_000.mPos.x + (s32) (((s64) a->mPrm->mUnk_154 * gPairsByAngle[idx]) >> 12);
-            pos.y = a->mUnk_000.mPos.y + a->mPrm->mUnk_158;
-            pos.z = a->mUnk_000.mPos.z + (s32) (((s64) a->mPrm->mUnk_154 * gPairsByAngle[idx + 1]) >> 12);
+            pos.x = mapObject->mUnk_000.mPos.x + (s32) (((s64) mapObject->mPrm->mUnk_154 * gPairsByAngle[idx]) >> 12);
+            pos.y = mapObject->mUnk_000.mPos.y + mapObject->mPrm->mUnk_158;
+            pos.z =
+                mapObject->mUnk_000.mPos.z + (s32) (((s64) mapObject->mPrm->mUnk_154 * gPairsByAngle[idx + 1]) >> 12);
         }
         if (i == 0) {
-            ThrowItemBombFromPosition(StartItemBomb(), &pos, &vel, a->mPrm->mUnk_15c);
+            ThrowItemBombFromPosition(StartItemBomb(), &pos, &vel, mapObject->mPrm->mUnk_15c);
         } else {
-            ThrowItemBombFromPosition(StartItemBombWithParkedItemBox(9), &pos, &vel, a->mPrm->mUnk_160);
+            ThrowItemBombFromPosition(StartItemBombWithParkedItemBox(9), &pos, &vel, mapObject->mPrm->mUnk_160);
         }
     }
-    StartEffectAtRowHeight(a, 0x2000, 0, 0x3ae, 0x410, 0);
-    StartMapObjectSound(&a->mUnk_000, 0x236);
+    StartEffectAtRowHeight(mapObject, 0x2000, 0, 0x3ae, 0x410, 0);
+    StartMapObjectSound(&mapObject->mUnk_000, 0x236);
 }

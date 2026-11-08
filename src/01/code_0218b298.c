@@ -7,19 +7,19 @@
 #include "Main/Unknown/code_0209bef0.h"
 #include "Main/Unknown/code_020d275c.h"
 
-u16 func_ov001_0218b2d4(Unk02188950 *a) {
-    return func_ov001_02188220(a);
+u16 func_ov001_0218b2d4(Unk02188950 *mapObject) {
+    return func_ov001_02188220(mapObject);
 }
 
-void func_ov001_0218b2b8(Unk02188950 *a) {
-    a->mUnk_2d8 = 0xb;
-    a->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a6598;
+void func_ov001_0218b2b8(Unk02188950 *mapObject) {
+    mapObject->mUnk_2d8 = 0xb;
+    mapObject->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a6598;
 }
 
-void func_ov001_0218b2a8(Unk02188950 *a) {
-    StartMapObjectSound(&a->mUnk_000, 0x237);
+void func_ov001_0218b2a8(Unk02188950 *mapObject) {
+    StartMapObjectSound(&mapObject->mUnk_000, 0x237);
 }
 
-void func_ov001_0218b298(Unk02188950 *a) {
-    StartMapObjectSound(&a->mUnk_000, 0x237);
+void func_ov001_0218b298(Unk02188950 *mapObject) {
+    StartMapObjectSound(&mapObject->mUnk_000, 0x237);
 }

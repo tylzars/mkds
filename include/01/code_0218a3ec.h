@@ -5,4 +5,4 @@
 #include "01/code_02188000.h"
 #include "01/code_02188950.h"
 
-void func_ov001_0218a3ec(Unk02188950 *a);
+void func_ov001_0218a3ec(Unk02188950 *mapObject);
