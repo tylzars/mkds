@@ -767,7 +767,7 @@ void AdvanceKeyboardState8(void) {
                 SetupTxtSystemSubTextTwoButtonsEx(message, buttonText, secondButtonText, 0, 0, 1, 1, 0);
             } else {
                 message = GetBmgEntry(keyboard->mCommonMessages, 0xe);
-                charCount = func_020adc7c(gKeyboard->mUnk_2c[1].mChars, nameChars);
+                charCount = CopyTextWithinWidth(gKeyboard->mUnk_2c[1].mChars, nameChars);
                 nameChars[charCount] = 0;
                 FormatMessageWithText(nameChars, message, &formattedText[1], 0x1f4);
                 buttonText = GetBmgEntry(gKeyboard->mCommonMessages, 0);
@@ -992,7 +992,7 @@ void func_02128b54(void) {
     s32 j;
     u8 *entryIndexPointer;
     if (gKeyboard->mKind == 1) {
-        charCount = func_020adc7c(gKeyboard->mUnk_2c[1].mChars, nameChars);
+        charCount = CopyTextWithinWidth(gKeyboard->mUnk_2c[1].mChars, nameChars);
         k = 6;
         if (charCount > 4) {
             k = 10 - charCount;

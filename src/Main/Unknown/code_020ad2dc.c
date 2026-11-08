@@ -48,72 +48,76 @@ void *func_020ada10(void) {
 }
 
 u32 GetTitleBlendDone(void) {
-    return (data_0217b488->mUnk_00);
+    return (data_0217b488->mTitleBlendDone);
 }
 
-void func_020ad9c0(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
-    SetBg1Record(a->mMainBgRecords, b, c, d, e, f, g, h);
+void func_020ad9c0(Unk02180774 *displaySettings, u32 cntLow2, u32 cntBit6, u32 cntVal14, u32 cntVal7, u32 cntVal8,
+                   u32 cntVal2, u32 cntVal13) {
+    SetBg1Record(displaySettings->mMainBgRecords, cntLow2, cntBit6, cntVal14, cntVal7, cntVal8, cntVal2, cntVal13);
 }
 
-void func_020ad98c(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    SetBg2RecordParams(a->mMainBgRecords, b, c, d, e, f, g);
+void func_020ad98c(Unk02180774 *displaySettings, u32 cntLow2, u32 cntBit6, u32 cntVal14, u32 e, u32 cntVal8,
+                   u32 cntVal2) {
+    SetBg2RecordParams(displaySettings->mMainBgRecords, cntLow2, cntBit6, cntVal14, e, cntVal8, cntVal2);
 }
 
-void func_020ad958(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    SetBg3RecordParams(a->mMainBgRecords, b, c, d, e, f, g);
+void func_020ad958(Unk02180774 *displaySettings, u32 cntLow2, u32 cntBit6, u32 cntVal14, u32 e, u32 cntVal8,
+                   u32 cntVal2) {
+    SetBg3RecordParams(displaySettings->mMainBgRecords, cntLow2, cntBit6, cntVal14, e, cntVal8, cntVal2);
 }
 
-void func_020ad924(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    SetBg3RecordParams(a->mSubBgRecords, b, c, d, e, f, g);
+void func_020ad924(Unk02180774 *displaySettings, u32 cntLow2, u32 cntBit6, u32 cntVal14, u32 e, u32 cntVal8,
+                   u32 cntVal2) {
+    SetBg3RecordParams(displaySettings->mSubBgRecords, cntLow2, cntBit6, cntVal14, e, cntVal8, cntVal2);
 }
 
-void func_020ad904(u32 a) {
-    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | a;
+void func_020ad904(u32 bits) {
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | bits;
 }
 
-void func_020ad8e0(u32 a) {
-    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | a;
+void func_020ad8e0(u32 bits) {
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | bits;
 }
 
-void func_020ad8a4(u32 a, u32 b, u32 c, u32 d) {
-    G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, a, b, c, d);
+void func_020ad8a4(u32 plane1, u32 plane2, u32 ev1, u32 ev2) {
+    G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, plane1, plane2, ev1, ev2);
 }
 
-u32 func_020ad88c(u32 a) {
-    u32 v = (reg_GX_DISPCNT & ~0xe000u) | (a << 13);
-    reg_GX_DISPCNT = v;
-    return v;
+u32 func_020ad88c(u32 bits) {
+    u32 dispcntValue = (reg_GX_DISPCNT & ~0xe000u) | (bits << 13);
+    reg_GX_DISPCNT = dispcntValue;
+    return dispcntValue;
 }
 
-u32 func_020ad870(u32 a) {
-    u32 v = (reg_GXS_DB_DISPCNT & ~0xe000u) | (a << 13);
-    reg_GXS_DB_DISPCNT = v;
-    return v;
+u32 func_020ad870(u32 bits) {
+    u32 dispcntValue = (reg_GXS_DB_DISPCNT & ~0xe000u) | (bits << 13);
+    reg_GXS_DB_DISPCNT = dispcntValue;
+    return dispcntValue;
 }
 
-void func_020ad85c(u32 p0) {
-    data_0217b488->mUnk_04 = p0;
+void func_020ad85c(u32 value) {
+    data_0217b488->mUnk_04 = value;
 }
 
-void func_020ad848(u32 p0) {
-    data_0217b488->mUnk_08 = p0;
+void func_020ad848(u32 value) {
+    data_0217b488->mUnk_08 = value;
 }
 
-void func_020ad834(u32 p0) {
-    data_0217b488->mUnk_10 = p0;
+void func_020ad834(u32 value) {
+    data_0217b488->mUnk_10 = value;
 }
 
-void func_020ad820(u32 p0) {
-    data_0217b488->mUnk_14 = p0;
+void func_020ad820(u32 value) {
+    data_0217b488->mUnk_14 = value;
 }
 
 #pragma thumb on
 
 void CreateTitleScene(void) {
     s32 useTrueFiles;
-    s32 d;
+    s32 objSizeLeft;
     void *displaySettings;
-    Unk02125de0Arg s;
+    Unk02125de0Arg config;
 
     useTrueFiles = IsAllGrandPrixRecordsTopRank();
     gTitleScene = HeapAlloc(func_020ada10(), 0x8bc);
@@ -161,11 +165,12 @@ void CreateTitleScene(void) {
     func_02124a98(2, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
     func_02124a98(3, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
     func_02124a98(4, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
-    d = GX_GetSizeOfSubOBJ();
-    d -= InitLabelCanvas(func_020ada10(), 0, gTitleScene->mTitleSBnll, 0x55, 0xd, 0xd, gTitleScene->mTitleSNceNcer,
-                         gTitleScene->mTitleSBncl, gTitleScene->mTitleTable, d);
+    objSizeLeft = GX_GetSizeOfSubOBJ();
+    objSizeLeft -=
+        InitLabelCanvas(func_020ada10(), 0, gTitleScene->mTitleSBnll, 0x55, 0xd, 0xd, gTitleScene->mTitleSNceNcer,
+                        gTitleScene->mTitleSBncl, gTitleScene->mTitleTable, objSizeLeft);
     InitLabelCanvas(func_020ada10(), 1, gTitleScene->mTitleSBnll, 0x55, 0xd, 0xe, gTitleScene->mTitleSNceNcer,
-                    gTitleScene->mTitleSBncl, gTitleScene->mTitleTable, d);
+                    gTitleScene->mTitleSBncl, gTitleScene->mTitleTable, objSizeLeft);
     func_0212426c(1, 0, gTitleScene->mTitleSBnll, GetBmgEntry(FindSceneFileWrapper(gTitleBmgName), 1),
                   gTitleScene->mTitleSBncl, gTitleScene->mTitleTable);
     func_0212426c(1, 1, gTitleScene->mTitleSBnll, GetBmgEntry(FindSceneFileWrapper(gTitleBmgName2), 0),
@@ -188,19 +193,19 @@ void CreateTitleScene(void) {
     func_020ad8a4(0, 0x3f, 6, 10);
     func_020ad88c(0);
     func_020ad870(0);
-    s.mUnk_00 = 0;
-    s.mUnk_04 = NULL;
-    s.mUnk_08 = 0;
-    s.mUnk_0c = 0;
-    s.mUnk_10 = 0;
-    s.mUnk_14 = 0;
-    s.mUnk_18 = func_020b403c(0);
-    s.mUnk_1c = 0;
-    s.mUnk_20 = 0;
-    s.mUnk_24 = 0;
+    config.mUnk_00 = 0;
+    config.mUnk_04 = NULL;
+    config.mUnk_08 = 0;
+    config.mUnk_0c = 0;
+    config.mUnk_10 = 0;
+    config.mUnk_14 = 0;
+    config.mUnk_18 = func_020b403c(0);
+    config.mUnk_1c = 0;
+    config.mUnk_20 = 0;
+    config.mUnk_24 = 0;
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
-    func_02125de0(func_020ada10(), &s);
-    gTitleScene->mUnk_8b8 = func_0203bedc(func_020ada10());
+    func_02125de0(func_020ada10(), &config);
+    gTitleScene->mCharacterKartPicks = func_0203bedc(func_020ada10());
     func_020acab8(0);
     func_0204aa28(0);
     ClearShuffledIndices();
@@ -222,11 +227,11 @@ void func_020ad32c(void) {
 
 #pragma thumb off
 
-void func_020ad2f0(u32 a, u32 b, u32 c, u32 d) {
-    G2x_SetBlendAlpha_(&reg_G2_BLDCNT, a, b, c, d);
+void func_020ad2f0(u32 plane1, u32 plane2, u32 ev1, u32 ev2) {
+    G2x_SetBlendAlpha_(&reg_G2_BLDCNT, plane1, plane2, ev1, ev2);
 }
 
 // Set when the title blend has run to its end; CreateTitleScene then starts its blend already finished.
-void SetTitleBlendDone(u32 p0) {
-    data_0217b488->mUnk_00 = p0;
+void SetTitleBlendDone(u32 blendDone) {
+    data_0217b488->mTitleBlendDone = blendDone;
 }

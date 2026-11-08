@@ -396,7 +396,7 @@ void CopyKartEntryName(u32 a, u16 *b, u32 c) {
         if (c != 0) {
             n = 10;
         } else {
-            n = func_020adc7c(p, &x[1]);
+            n = CopyTextWithinWidth(p, &x[1]);
         }
     } else {
         if (func_020ae0e4() == MODE_GRAND_PRIX || func_020ae0e4() == MODE_MISSION_RUN) {

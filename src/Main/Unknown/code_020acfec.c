@@ -9,19 +9,20 @@
 #pragma thumb on
 
 void SetupAndDrawTitleTable(void) {
-    TitleScene *v1;
+    TitleScene *titleScene;
     SetupTitleTable();
-    v1 = gTitleScene;
-    DrawLayoutTable(v1->mTitleSBncl, v1->mTitleSNceNcer, v1->mTitleSBnll, &v1->mSubOam, v1->mTitleTable);
+    titleScene = gTitleScene;
+    DrawLayoutTable(titleScene->mTitleSBncl, titleScene->mTitleSNceNcer, titleScene->mTitleSBnll, &titleScene->mSubOam,
+                    titleScene->mTitleTable);
 }
 
 #pragma thumb off
 
 #pragma thumb on
-u32 func_020acfec(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value3;
-    value3 = (u32) &func_020ad230;
+u32 func_020acfec(u32 value) {
+    u32 value0 = value;
+    u32 functionAddress;
+    functionAddress = (u32) &func_020ad230;
     value0 = func_020ad230(value0);
     return value0;
 }

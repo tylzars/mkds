@@ -40,7 +40,7 @@ void func_020b6c74(u32 rowIndex, u16 *nameOut, u32 copyFullLength) {
             if (copyFullLength != 0) {
                 length = 10;
             } else {
-                length = func_020adc7c(name, v1);
+                length = CopyTextWithinWidth(name, v1);
             }
         }
     } else {
@@ -49,7 +49,7 @@ void func_020b6c74(u32 rowIndex, u16 *nameOut, u32 copyFullLength) {
             if (copyFullLength != 0) {
                 length = 10;
             } else {
-                length = func_020adc7c(name, v1);
+                length = CopyTextWithinWidth(name, v1);
             }
         }
     }

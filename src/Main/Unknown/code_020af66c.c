@@ -440,7 +440,7 @@ void func_020b03bc(void) {
     }
     gRaceHud->mStepHasRun = 0;
     gRaceHud->mUnk_90c = FALSE;
-    gRaceHud->mUnk_910 = gRaceSetup->mMode == MODE_MISSION_RUN ? func_020adc04() : 0;
+    gRaceHud->mUnk_910 = gRaceSetup->mMode == MODE_MISSION_RUN ? IsMissionRunRecordFilled() : 0;
     MI_DmaFill32(3, gRaceHud->mUnk_004, 0xc0, 0x400);
     MI_DmaFill32(3, gRaceHud->mUnk_408, 0xc0, 0x400);
     LoadNclrData(&gRaceHud->mNclrs[0], FindSceneFileWrapper("race_m_b.NCLR"));

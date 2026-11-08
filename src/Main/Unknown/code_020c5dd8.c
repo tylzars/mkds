@@ -388,7 +388,7 @@ void func_020c610c(void) {
                 if (hasSetupTime != FALSE) {
                     GetKartFinishTime((u16) gRaceSetup->mEntryIndex, &finishTime.mMinute, &finishTime.mSecond,
                                       &finishTime.mMillisecond);
-                    if (func_020adc24(&finishTime, &setupTime) != FALSE) {
+                    if (IsTimeLessThan(&finishTime, &setupTime) != FALSE) {
                         r = TRUE;
                     }
                 } else {
@@ -462,7 +462,7 @@ void func_020c5f7c(void) {
         if (hasSetupTime != FALSE) {
             GetKartFinishTime((u16) gRaceSetup->mEntryIndex, &finishTime.mMinute, &finishTime.mSecond,
                               &finishTime.mMillisecond);
-            if (func_020adc24(&finishTime, &setupTime) != FALSE) {
+            if (IsTimeLessThan(&finishTime, &setupTime) != FALSE) {
                 r = TRUE;
             }
         } else {

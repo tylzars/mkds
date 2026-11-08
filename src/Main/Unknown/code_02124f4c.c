@@ -114,7 +114,7 @@ void func_021253f8(LabelTextCanvas *textCanvas, s32 *maxWidth, s32 *lineWidths, 
                                 }
                                 break;
                             case 1:
-                                n1 = func_020adc7c((u16 *) data_0217aa08->mFirstBlock->mPlayerName, buf1);
+                                n1 = CopyTextWithinWidth((u16 *) data_0217aa08->mFirstBlock->mPlayerName, buf1);
                                 for (i1 = 0; i1 < n1; i1++) {
                                     *writePointer++ = buf1[i1];
                                     if (fixedAdvance == -1 ||
@@ -150,7 +150,7 @@ void func_021253f8(LabelTextCanvas *textCanvas, s32 *maxWidth, s32 *lineWidths, 
                                 }
                                 break;
                             case 11:
-                                n2 = func_020adc7c((u16 *) data_021759d0->mOwnerText, buf2);
+                                n2 = CopyTextWithinWidth((u16 *) data_021759d0->mOwnerText, buf2);
                                 for (i2 = 0; i2 < n2; i2++) {
                                     *writePointer++ = buf2[i2];
                                     if (fixedAdvance == -1 ||

@@ -195,7 +195,7 @@ void PrintEntryName(s32 entryIndex, u16 *name) {
     text[0] = 0;
     MIi_CpuClear16(text[0], &text[1], 0x16);
     name[10] = 0;
-    func_020adc7c(name, &text[1]);
+    CopyTextWithinWidth(name, &text[1]);
     func_0212426c(0, gEntryLabelTextRows[entryIndex].mUnk_00, entryList->mParts.mLabelLayout, &text[1],
                   entryList->mParts.mCellLayout, entryList->mParts.mCellTable);
 }

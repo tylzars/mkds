@@ -70,7 +70,7 @@ void UpdateTitleState2(Unk020aca24 *a) {
         slotIndex = func_020acef4();
         if (func_020acec4(slotIndex, PAD_KEY_A) != 0) {
             SetTitleState(4, 8);
-            func_020acf04();
+            StartTitleSelectedSound();
             gTitleScene->mSelectedPressed = TRUE;
         } else if (GetNewOrRepeatBits(slotIndex, (PAD_KEY_LEFT | PAD_KEY_RIGHT)) != 0) {
             switch (gTitleScene->mSelectedIndex) {
@@ -141,7 +141,7 @@ void UpdateTitleState2(Unk020aca24 *a) {
                 }
                 gTitleScene->mSelectedIndex = rectIndex;
                 SetTitleState(4, 8);
-                func_020acf04();
+                StartTitleSelectedSound();
             }
         } else {
             s32 noInputFrameLimit = GetTitleNoInputFrameLimit();
@@ -149,7 +149,7 @@ void UpdateTitleState2(Unk020aca24 *a) {
             if (gTitleScene->mNoInputFrames > noInputFrameLimit) {
                 if (IsSeqVariableChanged(0) != 0) {
                     a->mNextScene = 2;
-                    SetNextDemoRace(gTitleScene->mUnk_8b8);
+                    SetNextDemoRace(gTitleScene->mCharacterKartPicks);
                 }
             }
         }

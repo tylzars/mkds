@@ -11,67 +11,67 @@
 
 #pragma optimize_for_size on
 
-void func_020adce0(u32 *a, Unk02022aa8 *b, u32 c) {
-    GetFontGlyph(a, b, func_020add90(b, c));
+void GetFontGlyphOfChar(u32 *glyph, Unk02022aa8 *font, u32 code) {
+    GetFontGlyph(glyph, font, GetFontGlyphIndex(font, code));
 }
 
 #pragma thumb on
 
-s32 func_020adc7c(const u16 *a, u16 *b) {
+s32 CopyTextWithinWidth(const u16 *source, u16 *destination) {
     s32 i;
-    s32 v1;
-    s32 t;
-    u32 v[2];
-    void *p;
+    s32 widthSum;
+    s32 charWidth;
+    u32 glyph[2];
+    void *font;
 
-    v1 = 0;
-    p = func_020b403c(0);
-    func_020addb8(b, 0, 0x14);
+    widthSum = 0;
+    font = func_020b403c(0);
+    FillHalfwords(destination, 0, 0x14);
     for (i = 0; i < 10; i++) {
-        if (a[i] == 0) {
+        if (source[i] == 0) {
             return i;
         }
-        func_020adce0(v, p, a[i]);
-        t = ((NNSG2dCharWidths *) v[0])->mCharWidth;
-        if (v1 + t > 0x30) {
+        GetFontGlyphOfChar(glyph, font, source[i]);
+        charWidth = ((NNSG2dCharWidths *) glyph[0])->mCharWidth;
+        if (widthSum + charWidth > 0x30) {
             return i;
         }
-        v1 += t + 1;
-        b[i] = a[i];
+        widthSum += charWidth + 1;
+        destination[i] = source[i];
     }
     return 10;
 }
 
-s16 func_020adc64(s32 a) {
-    if (a < 0) {
-        a = 0;
+s16 func_020adc64(s32 index) {
+    if (index < 0) {
+        index = 0;
     }
-    if (a >= 6) {
-        a = 5;
+    if (index >= 6) {
+        index = 5;
     }
-    return data_02156868[a];
+    return data_02156868[index];
 }
 
-BOOL func_020adc24(MinuteSecondMillisecondTime *a, MinuteSecondMillisecondTime *b) {
-    s32 x;
-    s32 y;
+BOOL IsTimeLessThan(MinuteSecondMillisecondTime *firstTime, MinuteSecondMillisecondTime *secondTime) {
+    s32 firstMilliseconds;
+    s32 secondMilliseconds;
 
-    x = a->mMillisecond + (a->mSecond * 1000 + a->mMinute * 60000);
-    y = b->mMillisecond + (b->mSecond * 1000 + b->mMinute * 60000);
-    if (x < y) {
+    firstMilliseconds = firstTime->mMillisecond + (firstTime->mSecond * 1000 + firstTime->mMinute * 60000);
+    secondMilliseconds = secondTime->mMillisecond + (secondTime->mSecond * 1000 + secondTime->mMinute * 60000);
+    if (firstMilliseconds < secondMilliseconds) {
         return TRUE;
     }
     return FALSE;
 }
 
-s32 func_020adc04(void) {
-    s32 v;
-    s32 a;
-    s32 b;
+BOOL IsMissionRunRecordFilled(void) {
+    s32 value;
+    s32 row;
+    s32 column;
 
-    a = func_020adbe4();
-    b = func_020adbc4();
-    return GetMissionRecordValue(a, b, &v);
+    row = func_020adbe4();
+    column = func_020adbc4();
+    return GetMissionRecordValue(row, column, &value);
 }
 
 #pragma thumb off
@@ -93,24 +93,24 @@ s32 func_020adbc4(void) {
 #pragma thumb on
 
 BOOL func_020adb34(void) {
-    s32 i;
-    s32 j;
-    s32 r;
-    s32 v;
+    s32 row;
+    s32 column;
+    s32 isFilled;
+    s32 value;
 
     if (func_020adbe4() < 1 || func_020adbe4() > 6 || func_020adbc4() < 1 || func_020adbc4() > 9) {
         return FALSE;
     }
-    for (i = 1; i <= 6; i++) {
-        for (j = 1; j <= 9; j++) {
-            r = GetMissionRecordValue(i, j, &v);
-            if (i == func_020adbe4() && j == func_020adbc4()) {
-                if (r != 0 && (u32) (v - 5) <= 2) {
+    for (row = 1; row <= 6; row++) {
+        for (column = 1; column <= 9; column++) {
+            isFilled = GetMissionRecordValue(row, column, &value);
+            if (row == func_020adbe4() && column == func_020adbc4()) {
+                if (isFilled != 0 && (u32) (value - 5) <= 2) {
                     return FALSE;
                 }
             } else {
-                if (r != 0) {
-                    switch (v) {
+                if (isFilled != 0) {
+                    switch (value) {
                         case 5:
                         case 6:
                         case 7:

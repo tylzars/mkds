@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void SetTitleBlendDone(unsigned int p0);
-void func_020ad2f0(u32 a, u32 b, u32 c, u32 d);
+void SetTitleBlendDone(unsigned int blendDone);
+void func_020ad2f0(u32 plane1, u32 plane2, u32 ev1, u32 ev2);

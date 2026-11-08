@@ -103,7 +103,7 @@ typedef struct Unk0217b488_20 {
 
 // Object behind data_0217b488, 0x130 bytes (func_020cefa0 allocates it).
 typedef struct Unk0217b488 {
-    /* 000 */ s32 mUnk_00;
+    /* 000 */ s32 mTitleBlendDone;
     /* 004 */ s32 mUnk_04;
     /* 008 */ s32 mUnk_08;
     /* 00c */ s32 mGhostSceneInitialCallbacksIndex;

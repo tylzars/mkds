@@ -13,25 +13,25 @@
 #pragma thumb on
 
 void UpdateTitleState1(void) {
-    u32 w;
+    u32 subBase;
     s32 i;
-    LayoutTableEntry *p;
+    LayoutTableEntry *titleTable;
 
-    p = gTitleScene->mTitleTable;
-    w = func_020acbe8(gTitleScene->mTitleSBncl);
+    titleTable = gTitleScene->mTitleTable;
+    subBase = func_020acbe8(gTitleScene->mTitleSBncl);
     if (GetTitleStateFrames() < 10) {
         for (i = 0; i <= 14; i++) {
-            p[i].mOffsetX = InterpolateS16(1, 0xf8, 0, GetTitleStateFrames(), 10);
+            titleTable[i].mOffsetX = InterpolateS16(1, 0xf8, 0, GetTitleStateFrames(), 10);
         }
         for (i = 0; i <= 1; i++) {
-            p[i + w].mOffsetX = InterpolateS16(1, 0xe4, 0, GetTitleStateFrames(), 10);
+            titleTable[i + subBase].mOffsetX = InterpolateS16(1, 0xe4, 0, GetTitleStateFrames(), 10);
         }
     } else {
         for (i = 0; i <= 14; i++) {
-            p[i].mOffsetX = 0;
+            titleTable[i].mOffsetX = 0;
         }
         for (i = 0; i <= 1; i++) {
-            p[i + w].mOffsetX = 0;
+            titleTable[i + subBase].mOffsetX = 0;
         }
         SetTitleState(2, 8);
         gTitleScene->mSelectedPressed = FALSE;
@@ -39,7 +39,7 @@ void UpdateTitleState1(void) {
     SetupAndDrawTitleTable();
 }
 
-void func_020acf04(void) {
+void StartTitleSelectedSound(void) {
     switch (gTitleScene->mSelectedIndex) {
         case 0:
         case 1:

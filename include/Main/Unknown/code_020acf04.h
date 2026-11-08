@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void func_020acf04(void);
+void StartTitleSelectedSound(void);
 void UpdateTitleState1(void);

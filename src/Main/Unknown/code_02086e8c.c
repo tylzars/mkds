@@ -323,7 +323,7 @@ void SetupKartEntryNameTexture(TexPlttEntry *texPlttEntry, u32 kartIndex) {
     plttBuffer[3] = 0x1f;
     DC_FlushRange(plttBuffer, 8);
     MI_CpuFill8(texBuffer, 0, texPlttEntry->mTexByteCount);
-    func_020adddc(kartIndex, texBuffer, 1, 2);
+    RenderKartEntryNameToTexture(kartIndex, texBuffer, 1, 2);
     DC_FlushRange(texBuffer, 0x100);
     texPlttEntry->mTexData = texBuffer;
     texPlttEntry->mPlttData = plttBuffer;

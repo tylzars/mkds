@@ -6,7 +6,7 @@
 
 void func_020cef1c(void) {
     func_020cef68(data_0217b488, 0x130);
-    data_0217b488->mUnk_00 = 0;
+    data_0217b488->mTitleBlendDone = 0;
     data_0217b488->mUnk_04 = 0;
     data_0217b488->mUnk_08 = 0;
     data_0217b488->mGhostSceneInitialCallbacksIndex = 0;

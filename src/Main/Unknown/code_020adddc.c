@@ -4,11 +4,11 @@
 
 #pragma thumb on
 
-void func_020adddc(u32 a, void *b, u32 c, u32 d) {
-    u16 *v1;
-    RenderKartEntryName(a);
-    v1 = GetMessageScreenCharBuffer();
-    PlotNibblePixels(v1, b, c, d, SetPixel2Bit);
+void RenderKartEntryNameToTexture(u32 kartIndex, void *texBuffer, u32 textValue, u32 outlineValue) {
+    u16 *messageScreenCharBuffer;
+    RenderKartEntryName(kartIndex);
+    messageScreenCharBuffer = GetMessageScreenCharBuffer();
+    PlotNibblePixels(messageScreenCharBuffer, texBuffer, textValue, outlineValue, SetPixel2Bit);
 }
 
 #pragma thumb off

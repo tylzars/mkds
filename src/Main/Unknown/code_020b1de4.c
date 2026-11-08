@@ -114,7 +114,7 @@ void InitChoisesS(void) {
             AppendChoisesSListValue(0, 6);
             AppendChoisesSListValue(0, 9);
             if (func_020b2f58() != 0) {
-                if (func_020adc04() != 0) {
+                if (IsMissionRunRecordFilled() != 0) {
                     AppendChoisesSListValue(1, 1);
                     AppendChoisesSListValue(1, 6);
                     AppendChoisesSListValue(1, 9);
