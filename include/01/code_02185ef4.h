@@ -5,6 +5,8 @@
 #include "Main/Unknown/code_020e6fd4.h"
 
 typedef struct Unk0201ca6c Unk0201ca6c;
+typedef struct Kart Kart;
+typedef struct ItemObject ItemObject;
 typedef struct Vec3s16 Vec3s16;
 
 // Object passed to the per-frame functions UpdateMissionGate and DrawMissionGate.
@@ -40,20 +42,6 @@ typedef struct MissionGateList {
 #include "Main/Unknown/code_020d2450.h"
 #include "Main/Unknown/code_0209b000.h"
 
-typedef struct Unk02185f04_1 {
-    /* 00 */ u8 mUnk_00[0x50];
-    /* 50 */ s32 mUnk_50;
-    /* 54 */ u8 mUnk_54[0x4];
-    /* 58 */ s32 mUnk_58;
-} Unk02185f04_1;
-
-typedef struct Unk02185fb0_1 {
-    /* 00 */ u8 mUnk_00[0x80];
-    /* 80 */ s32 mUnk_80;
-    /* 84 */ u8 mUnk_84[0x4];
-    /* 88 */ s32 mUnk_88;
-} Unk02185fb0_1;
-
 void InitMissionRunMapObject(void *mapObjectList, Unk02188950 *mapObject, const char *nsbmdName, const char *nsbcaName,
                              const char *prmName);
 void func_ov001_021872e0(Unk02188950 *mapObject, int offsetX, int offsetY, int offsetZ, int emitterParamX,
@@ -67,8 +55,8 @@ void StartEffectInSlot(Unk02188950 *mapObject, s32 effectIndex, s32 offsetX, s32
 #include "01/code_02187000.h"
 
 void *CreateEmptyMapObjectUpdateList(void);
-s32 CollideItemWithMissionRunMapObject(Unk02188950 *mapObject, Unk02185f04_1 *itemObject, u8 *c, u8 *d);
-s32 CollideKartWithMissionRunMapObject(Unk02188950 *mapObject, Unk02185fb0_1 *kart, u8 *c, u8 *d);
+s32 CollideItemWithMissionRunMapObject(Unk02188950 *mapObject, ItemObject *itemObject, u8 *c, u8 *d);
+s32 CollideKartWithMissionRunMapObject(Unk02188950 *mapObject, Kart *kart, u8 *c, u8 *d);
 s32 ComputeSphereHitOnMissionRunMapObject(Unk02188950 *mapObject, Vec3 *sphereCenter, s32 sphereRadius,
                                           Vec3 *overlapOffset);
 void DrawMissionRunMapObjectShadow(void *mapObjectList, Unk02188950 *mapObject, s32 invertDepth);

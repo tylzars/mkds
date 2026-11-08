@@ -191,12 +191,6 @@ typedef struct MissionRunMapObjectEffect {
     /* 14 */ void *mEffect;
 } MissionRunMapObjectEffect;
 
-// Object behind Unk02188950.mUnk_300.
-typedef struct Unk02188950_300 {
-    /* 00 */ u8 mUnk_00[0x54];
-    /* 54 */ s32 mUnk_54;
-} Unk02188950_300;
-
 // Layout provisional: functions on objects that share this prefix use different types at 0xa0 and 0xa8.
 typedef struct Unk02188950 {
     /* 000 */ MapObject mUnk_000;

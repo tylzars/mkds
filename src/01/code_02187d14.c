@@ -57,15 +57,15 @@ void *StartItemBombWithParkedKuribo(void) {
     return NULL;
 }
 
-void func_ov001_02187d14(Unk02187d14 *renderState) {
+void func_ov001_02187d14(NNSG3dRS *renderState) {
     MtxFx43 currentMatrix;
     MtxFx43 inverseViewMatrix;
     Vec3 bombPosition;
     Unk02188950 *mapObject;
     Camera *currentCamera;
 
-    mapObject = renderState->mUnk_04->mUnk_2c;
-    if (renderState->mUnk_00->mUnk_01 == mapObject->mUnk_2e4) {
+    mapObject = renderState->mRenderObj->mPtrUser;
+    if (renderState->mC[1] == mapObject->mUnk_2e4) {
         currentCamera = GetCurrentCamera();
         NNS_G3dGetCurrentMtx(&currentMatrix, NULL);
         MTX_Inverse43(&currentCamera->mViewMatrix, &inverseViewMatrix);

@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "code_02012b30.h" // MtxFx43
+#include "code_02010c84.h" // NNSG3dRS
 #include "01/code_02188950.h"
 #include "01/code_0218d520.h"
 
@@ -13,19 +14,7 @@ extern MtxFx43 gJgInverseMatrix;
 
 extern MtxFx43 gJgMatrix;
 
-// Element at Unk02187d14.mUnk_00.
-typedef struct Unk02187d14_00 {
-    /* 00 */ u8 mUnk_00;
-    /* 01 */ u8 mUnk_01;
-} Unk02187d14_00;
-
-// Argument of func_ov001_02187d14.
-typedef struct Unk02187d14 {
-    /* 00 */ Unk02187d14_00 *mUnk_00;
-    /* 04 */ Unk0219b250_10 *mUnk_04;
-} Unk02187d14;
-
-void func_ov001_02187d14(Unk02187d14 *renderState);
+void func_ov001_02187d14(NNSG3dRS *renderState);
 void *StartItemBombWithParkedKuribo(void);
 void *StartItemBombWithParkedItemBox(u16 a);
 void IncrementEntryGroupIndex(Unk02188950 *mapObject, s32 groupSpan);

@@ -989,7 +989,7 @@ s32 ComputeSphereHitOnMissionRunMapObject(Unk02188950 *mapObject, Vec3 *sphereCe
     }
 }
 
-s32 CollideKartWithMissionRunMapObject(Unk02188950 *mapObject, Unk02185fb0_1 *kart, u8 *c, u8 *d) {
+s32 CollideKartWithMissionRunMapObject(Unk02188950 *mapObject, Kart *kart, u8 *c, u8 *d) {
     Vec3 awayDirection;
     s64 pushStrength;
     u32 mode;
@@ -1001,9 +1001,9 @@ s32 CollideKartWithMissionRunMapObject(Unk02188950 *mapObject, Unk02185fb0_1 *ka
     mapObject->mUnk_000.mUnk_10.y = 0;
     mapObject->mUnk_000.mUnk_10.z = 0;
     if (mode == 1) {
-        awayDirection.x = mapObject->mUnk_000.mPos.x - kart->mUnk_80;
+        awayDirection.x = mapObject->mUnk_000.mPos.x - kart->mPos.x;
         awayDirection.y = 0;
-        awayDirection.z = mapObject->mUnk_000.mPos.z - kart->mUnk_88;
+        awayDirection.z = mapObject->mUnk_000.mPos.z - kart->mPos.z;
         if ((s64) awayDirection.z * awayDirection.z +
                 ((s64) awayDirection.x * awayDirection.x + (s64) awayDirection.y * awayDirection.y) >=
             16) {
@@ -1026,14 +1026,14 @@ s32 CollideKartWithMissionRunMapObject(Unk02188950 *mapObject, Unk02185fb0_1 *ka
     return mapObject->mUnk_2d8;
 }
 
-s32 CollideItemWithMissionRunMapObject(Unk02188950 *mapObject, Unk02185f04_1 *itemObject, u8 *c, u8 *d) {
+s32 CollideItemWithMissionRunMapObject(Unk02188950 *mapObject, ItemObject *itemObject, u8 *c, u8 *d) {
     Vec3 awayDirection;
     UnkFunc *collisionCallback;
 
     mapObject->mUnk_2e0 = *d;
-    awayDirection.x = mapObject->mUnk_000.mPos.x - itemObject->mUnk_50;
+    awayDirection.x = mapObject->mUnk_000.mPos.x - itemObject->mPos.x;
     awayDirection.y = 0;
-    awayDirection.z = mapObject->mUnk_000.mPos.z - itemObject->mUnk_58;
+    awayDirection.z = mapObject->mUnk_000.mPos.z - itemObject->mPos.z;
     if ((s64) awayDirection.z * awayDirection.z +
             ((s64) awayDirection.x * awayDirection.x + (s64) awayDirection.y * awayDirection.y) >=
         16) {
