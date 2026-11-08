@@ -56,7 +56,7 @@ void func_02039cbc(void) {
         RTC_Init();
     }
     func_02043d10(backHeap);
-    func_0204ba2c(backHeap);
+    CreateBackupAccess(backHeap);
     func_02057ed8(backHeap);
     InitOverlayTable(backHeap);
     func_020cefa0(backHeap);
@@ -67,7 +67,7 @@ void func_02039cbc(void) {
         InitArchiveBuffers(firstFrontHeap, secondFrontHeap, thirdFrontHeap);
     }
     ResetRaceSetup();
-    func_0204b9ac();
+    InitBackupAccess();
     ResetCurrentOverlay();
     func_020cef1c();
 }

@@ -49,7 +49,7 @@ static inline void func_0205dee0_inline(void *c, void *e) {
         GX_VBlankIntr(0);
         func_ov000_021a397c(2);
         f = 1;
-        d = data_021759d0->mUnk_04;
+        d = data_021759d0->mLanguageIndex;
         if (d < 6) {
             f = data_02154904[d];
         }
@@ -65,7 +65,7 @@ void func_0205dee0(void) {
     void *a;
     a = GetHeap(GetCurrentHeapCall());
     func_02057d9c();
-    if (data_021759d4->mBackupEnabled != 0) {
+    if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2 && data_0217aa20->mUnk_0c != NULL) {

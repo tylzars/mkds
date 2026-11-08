@@ -21,7 +21,7 @@ extern u8 data_usa_0216574c[];
 extern u8 data_usa_02165760[];
 extern u8 data_usa_0216577c[];
 extern const char gArchiveColonSlashFormat[];
-extern const u8 data_usa_021651d0[];
+extern const u8 gRomArchiveName[];
 
 // Objects whose layout isn't known yet.
 typedef struct QueueMPDataToPortParams {
@@ -50,7 +50,7 @@ extern UnkFunc *const data_02165388[];
 struct Kart;
 extern void (*const gKartStateFunctions[])(struct Kart *);
 extern const SceneCallbacks gResultSceneCallbacks;
-extern const SceneCallbacks data_usa_021651b0;
+extern const SceneCallbacks gWLMenuSceneCallbacks;
 extern const char gLanguageArchivePathFormat[];
 extern const char gSceneModeLanguageArchivePathFormat[];
 extern const char data_02165098[];

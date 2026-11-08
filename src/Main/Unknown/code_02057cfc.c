@@ -9,7 +9,7 @@ void CopyBackupReadToBlock(u32 buffer, u32 length) {
     u32 size;
     u32 value3;
     size = (value1) + (0u);
-    value1 = (u32) &data_021759d4;
+    value1 = (u32) &gBackupAccess;
     value1 = *(const u32 *) ((value1) + 0u);
     value1 = *(const u32 *) ((value1) + 104u);
     MI_CpuCopy8((const void *) source, (void *) value1, size);

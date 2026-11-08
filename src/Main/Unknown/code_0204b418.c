@@ -4,13 +4,14 @@
 
 #pragma thumb on
 
-void func_0204b430(u32 a, u32 b, u32 *c, u32 d, void (*e)(u32, u32), s32 f) {
-    data_021759d4->mUnk_18 = b;
-    func_0204b458(a, c, d, (void (*)(u32 *, u32)) e, 1, f);
+void StartBackupWriteTwoCopies(u32 firstAddress, u32 secondAddress, u32 *source, u32 byteCount,
+                               void (*callback)(u32, u32), s32 hasPrefix) {
+    gBackupAccess->mSecondPassAddress = secondAddress;
+    StartBackupWrite(firstAddress, source, byteCount, (void (*)(u32 *, u32)) callback, 1, hasPrefix);
 }
 
-void func_0204b418(u32 p0, void *p1, u32 p2, u32 p3) {
-    u32 v5 = func_0204b458(p0, p1, p2, (void (*)(u32 *, u32))(p3), 0x0u, 0x0u);
+void StartBackupWriteOneCopy(u32 address, void *source, u32 byteCount, u32 callback) {
+    u32 started = StartBackupWrite(address, source, byteCount, (void (*)(u32 *, u32))(callback), 0x0u, 0x0u);
 }
 
 #pragma thumb off

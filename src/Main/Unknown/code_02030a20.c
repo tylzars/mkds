@@ -360,8 +360,8 @@ void func_02031960(void) {
             break;
         case 6:
             if (data_0217aa08->mUnk_28 == 0) {
-                if (data_021759d4->mBackupEnabled != 0) {
-                    v = data_021759d4->mCommandRunning;
+                if (gBackupAccess->mBackupEnabled != 0) {
+                    v = gBackupAccess->mCommandRunning;
                 } else {
                     v = 0;
                 }
@@ -436,8 +436,8 @@ void func_020317a0(void) {
             break;
         case 6:
             if (data_0217aa08->mUnk_28 == 0) {
-                if (data_021759d4->mBackupEnabled != 0) {
-                    v = data_021759d4->mCommandRunning;
+                if (gBackupAccess->mBackupEnabled != 0) {
+                    v = gBackupAccess->mCommandRunning;
                 } else {
                     v = 0;
                 }

@@ -2,5 +2,6 @@
 
 #include "types.h"
 
-void func_0204b418(u32 p0, void *p1, u32 p2, u32 p3);
-void func_0204b430(u32 a, u32 b, u32 *c, u32 d, void (*e)(u32, u32), s32 f);
+void StartBackupWriteOneCopy(u32 address, void *source, u32 byteCount, u32 callback);
+void StartBackupWriteTwoCopies(u32 firstAddress, u32 secondAddress, u32 *source, u32 byteCount,
+                               void (*callback)(u32, u32), s32 hasPrefix);

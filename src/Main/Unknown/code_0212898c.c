@@ -872,7 +872,7 @@ void AdvanceKeyboardState11(void) {
         keyboard = gKeyboard;
         if (keyboard->mStateFrames > 0x5a) {
             w = (data_0217aa08->mUnk_28 == 0)
-                    ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mCommandRunning : 0)
+                    ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0)
                     : 1;
             if (w == 0) {
                 keyboard->mNextState = 0xc;
@@ -896,7 +896,7 @@ void AdvanceKeyboardState12(void) {
         RequestTxtSystemClose();
     }
     if (IsTxtSystemState0NoOpenRequest() != 0) {
-        w = (data_0217aa08->mUnk_28 == 0) ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mCommandRunning : 0)
+        w = (data_0217aa08->mUnk_28 == 0) ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0)
                                           : 1;
         if (w == 0) {
             SetTxtSystemOpenSoundId(0x23);

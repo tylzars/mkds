@@ -224,7 +224,7 @@ void ReadRecordEmblem(u16 listIndex, EmblemData *emblem, void *tiles) {
     SetupEmblemBlock(gRecordList->mEmblemBlock, gRecordList->mUnk_04[listIndex].mUnk_00);
     d = data_0217aa08->mUnk_28;
     do {
-    } while (d == 0 ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mCommandRunning : 0) : 1);
+    } while (d == 0 ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0) : 1);
     if (!CopyEmblemFromBlock(gRecordList->mEmblemBlock, gRecordList->mUnk_04[listIndex].mUnk_00, emblem) ||
         emblem->mUnk_200 == 0) {
         emblem->mUnk_200 = 1;
@@ -240,7 +240,7 @@ void EraseRecord(u16 listIndex) {
     RemoveBuddyRecord(gRecordList->mUnk_04[listIndex].mUnk_00);
     d = data_0217aa08->mUnk_28;
     do {
-    } while (d == 0 ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mCommandRunning : 0) : 1);
+    } while (d == 0 ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0) : 1);
     BuildRecordList();
 }
 

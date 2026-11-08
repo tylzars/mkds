@@ -82,7 +82,7 @@ void Matrix2x2RotationReciprocalScale(s32 *a, s32 b, s32 c) {
 }
 
 BOOL func_020b4b98(s32 a) {
-    switch (data_021759d0->mUnk_04) {
+    switch (data_021759d0->mLanguageIndex) {
         case 0:
         case 1:
         case 3:
@@ -102,7 +102,7 @@ BOOL func_020b4b98(s32 a) {
 }
 
 BOOL func_020b4b54(void) {
-    switch (data_021759d0->mUnk_04) {
+    switch (data_021759d0->mLanguageIndex) {
         case 0:
             return TRUE;
         case 1:
@@ -115,7 +115,7 @@ BOOL func_020b4b54(void) {
 }
 
 s32 func_020b4b10(void) {
-    switch (data_021759d0->mUnk_04) {
+    switch (data_021759d0->mLanguageIndex) {
         case 0:
             return 1;
         case 1:
@@ -128,7 +128,7 @@ s32 func_020b4b10(void) {
 }
 
 BOOL func_020b4acc(void) {
-    switch (data_021759d0->mUnk_04) {
+    switch (data_021759d0->mLanguageIndex) {
         case 0:
             return TRUE;
         case 1:

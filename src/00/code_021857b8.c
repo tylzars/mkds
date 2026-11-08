@@ -55,7 +55,7 @@ void func_ov000_0218583c(void) {
             p->mUnk_34[5] = a;
             func_02056d40();
             func_02057d9c();
-            if (data_021759d4->mBackupEnabled != 0) {
+            if (gBackupAccess->mBackupEnabled != 0) {
                 CARD_WaitBackupAsync();
             }
         }

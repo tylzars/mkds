@@ -11,38 +11,38 @@
 
 #pragma thumb on
 
-void func_0204b3dc(void) {
-    s32 r;
-    r = data_021759d4->mUnk_08;
-    if (r != -3) {
-        CARD_UnlockBackup(r);
-        OS_ReleaseLockID(data_021759d4->mUnk_08);
-        data_021759d4->mUnk_08 = -3;
+void UnlockBackup(void) {
+    s32 lockId;
+    lockId = gBackupAccess->mLockId;
+    if (lockId != -3) {
+        CARD_UnlockBackup(lockId);
+        OS_ReleaseLockID(gBackupAccess->mLockId);
+        gBackupAccess->mLockId = -3;
     }
 }
 
-u32 func_0204b3a4(void) {
-    s32 r;
-    data_021759d4->mUnk_08 = OS_GetLockID();
-    r = data_021759d4->mUnk_08;
-    if (r == -3) {
+BOOL TryLockBackup(void) {
+    s32 lockId;
+    gBackupAccess->mLockId = OS_GetLockID();
+    lockId = gBackupAccess->mLockId;
+    if (lockId == -3) {
         return 0;
     }
-    CARD_LockBackup(r);
+    CARD_LockBackup(lockId);
     return 1;
 }
 
-void func_0204b344(s32 a) {
+void func_0204b344(s32 errorCode) {
     BOOL f;
     f = TRUE;
-    switch (data_021759d4->mUnk_00) {
+    switch (gBackupAccess->mUnk_00) {
         case 1:
         case 2:
             f = FALSE;
     }
-    data_021759d4->mUnk_00 = 4;
-    data_021759d4->mUnk_04 = (void *) a;
-    switch ((s32) data_021759d4->mUnk_04) {
+    gBackupAccess->mUnk_00 = 4;
+    gBackupAccess->mErrorCode = (void *) errorCode;
+    switch ((s32) gBackupAccess->mErrorCode) {
         case 0:
             break;
         case 1:
@@ -59,100 +59,100 @@ void func_0204b344(s32 a) {
     }
 }
 
-u16 func_0204b2cc(u8 *p, u32 n) {
-    u16 v1;
-    u16 i;
-    u16 v2;
-    u8 b;
-    s32 k;
-    i = 0;
-    v1 = 0;
-    if (i < n) {
+u16 ComputeBytesCrc(u8 *cursor, u32 byteCount) {
+    u16 crc;
+    u16 byteIndex;
+    u16 unused;
+    u8 byte;
+    s32 bitIndex;
+    byteIndex = 0;
+    crc = 0;
+    if (byteIndex < byteCount) {
         do {
-            b = *p;
-            for (k = 0; k < 8; k++) {
-                if (v1 & 0x8000) {
-                    v1 <<= 1;
-                    v1 ^= data_usa_02154708;
+            byte = *cursor;
+            for (bitIndex = 0; bitIndex < 8; bitIndex++) {
+                if (crc & 0x8000) {
+                    crc <<= 1;
+                    crc ^= gCrcXorValue;
                 } else {
-                    v1 <<= 1;
+                    crc <<= 1;
                 }
-                if (b & 0x80) {
-                    v1 ^= 1;
+                if (byte & 0x80) {
+                    crc ^= 1;
                 }
-                b = b << 1;
+                byte = byte << 1;
             }
-            p++;
-            i++;
-        } while (i < n);
+            cursor++;
+            byteIndex++;
+        } while (byteIndex < byteCount);
     }
-    return v1;
+    return crc;
 }
 
-void func_0204b284(u8 *p, u32 n, u32 a) {
-    u8 *e;
-    u16 c;
-    e = p + n - 4;
-    if (a == 0) {
-        e[0] = 0;
-        e[1] = 0;
+void WriteBlockTail(u8 *bytes, u32 byteCount, u32 skipTickBytes) {
+    u8 *tail;
+    u16 crc;
+    tail = bytes + byteCount - 4;
+    if (skipTickBytes == 0) {
+        tail[0] = 0;
+        tail[1] = 0;
     }
-    e[2] = 0;
-    e[3] = 0;
-    c = func_0204b2cc(p, n);
-    if (a == 0) {
-        e[0] = (OS_GetTick() >> 16) & 0xff;
-        e[1] = (OS_GetTick() >> 32) & 0xff;
+    tail[2] = 0;
+    tail[3] = 0;
+    crc = ComputeBytesCrc(bytes, byteCount);
+    if (skipTickBytes == 0) {
+        tail[0] = (OS_GetTick() >> 16) & 0xff;
+        tail[1] = (OS_GetTick() >> 32) & 0xff;
     }
-    e[2] = c >> 8;
-    e[3] = c;
+    tail[2] = crc >> 8;
+    tail[3] = crc;
 }
 
-u32 func_0204b258(u8 *p, u32 n, u32 a) {
-    u8 *e;
-    e = p + n - 4;
-    if (a == 0) {
-        e[0] = 0;
-        e[1] = 0;
+BOOL ClearTickBytesAndCheckBlockCrc(u8 *bytes, u32 byteCount, u32 skipTickBytes) {
+    u8 *tail;
+    tail = bytes + byteCount - 4;
+    if (skipTickBytes == 0) {
+        tail[0] = 0;
+        tail[1] = 0;
     }
-    if (func_0204b2cc(p, n) == 0) {
+    if (ComputeBytesCrc(bytes, byteCount) == 0) {
         return 1;
     }
     return 0;
 }
 
-s32 func_0204b20c(u32 a, u32 b) {
-    u16 i;
-    s32 r;
-    i = 0;
-    r = -1;
-    for (; i < 0x1d; i++) {
-        if (b ==
-            (a ^ (data_usa_02154694[i] + (data_usa_02154648[0] + (data_usa_021545d8[0] + data_usa_02154604[0]))))) {
-            r = i;
+s32 FindBackupXorIndex(u32 value, u32 expected) {
+    u16 index;
+    s32 foundIndex;
+    index = 0;
+    foundIndex = -1;
+    for (; index < 0x1d; index++) {
+        if (expected == (value ^ (data_usa_02154694[index] +
+                                  (data_usa_02154648[0] + (data_usa_021545d8[0] + data_usa_02154604[0]))))) {
+            foundIndex = index;
             break;
         }
     }
-    return r;
+    return foundIndex;
 }
 
-void func_0204b138(u32 *p, u32 n) {
+void XorBackupWordsAtTickIndex(u32 *cursor, u32 byteCount) {
     u16 i;
     u16 j;
     u16 k;
     u16 l;
-    u32 *e;
-    u32 m;
+    u32 *end;
+    u32 tableSum;
     j = 0;
     l = 0;
     k = 0;
     i = (OS_GetTick() >> 16) % 0x1d;
-    m = data_usa_02154694[i] + (data_usa_02154648[0] + (data_usa_021545d8[0] + data_usa_02154604[0]));
-    i = func_0204b20c(m ^ *p, *p);
-    e = OFFSET_PTR(u32, p, n);
+    tableSum = data_usa_02154694[i] + (data_usa_02154648[0] + (data_usa_021545d8[0] + data_usa_02154604[0]));
+    i = FindBackupXorIndex(tableSum ^ *cursor, *cursor);
+    end = OFFSET_PTR(u32, cursor, byteCount);
     do {
-        *p ^= data_usa_02154694[i] + (data_usa_02154648[j] + (data_usa_021545d8[k] + data_usa_02154604[l]));
-        p++;
+        *cursor ^= data_usa_02154694[i] + (data_usa_02154648[j] + (data_usa_021545d8[k] + data_usa_02154604[l]));
+        cursor++;
         k++;
         if (k >= 0xb) {
             k = 0;
@@ -169,28 +169,28 @@ void func_0204b138(u32 *p, u32 n) {
                 }
             }
         }
-    } while (p < e);
+    } while (cursor < end);
 }
 
-u32 func_0204b084(u32 *p, u32 n, u32 a) {
+BOOL TryXorBackupWordsAtFoundIndex(u32 *cursor, u32 byteCount, u32 expectedFirstWord) {
     u16 i;
     u16 j;
     u16 k;
     u16 l;
-    s32 s;
-    u32 *e;
+    s32 foundIndex;
+    u32 *end;
     j = 0;
     l = 0;
     k = 0;
-    s = func_0204b20c(*p, a);
-    if (s == -1) {
+    foundIndex = FindBackupXorIndex(*cursor, expectedFirstWord);
+    if (foundIndex == -1) {
         return 0;
     }
-    i = s;
-    e = OFFSET_PTR(u32, p, n);
+    i = foundIndex;
+    end = OFFSET_PTR(u32, cursor, byteCount);
     do {
-        *p ^= data_usa_02154694[i] + (data_usa_02154648[j] + (data_usa_021545d8[k] + data_usa_02154604[l]));
-        p++;
+        *cursor ^= data_usa_02154694[i] + (data_usa_02154648[j] + (data_usa_021545d8[k] + data_usa_02154604[l]));
+        cursor++;
         k++;
         if (k >= 0xb) {
             k = 0;
@@ -207,13 +207,13 @@ u32 func_0204b084(u32 *p, u32 n, u32 a) {
                 }
             }
         }
-    } while (p < e);
+    } while (cursor < end);
     return 1;
 }
 
 #pragma thumb off
 
-void func_0204b03c(void) {
+void InitWLMenuSceneCallback(void) {
     if (data_021759d0->mUnk_20 == 3) {
         ReleaseCurrentOverlay();
         StartLoadOverlay(0);

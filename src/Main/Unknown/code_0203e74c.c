@@ -308,7 +308,7 @@ void FinishRaceProgressKart(RaceProgressKart *raceProgressKart, s32 finished) {
             FinishKeyRecording(&data_02175628[inputSlotIndex].mUnk_28);
             break;
         case 1:
-            func_0204a904((KeyRecording *) &data_02175628[inputSlotIndex].mUnk_28);
+            FinishReadingKeyRecording((KeyRecording *) &data_02175628[inputSlotIndex].mUnk_28);
             break;
     }
     raceProgressKart->mFlags |= 8;

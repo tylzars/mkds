@@ -18,7 +18,7 @@
 #pragma optimize_for_size on
 s32 func_020b2c24(void) {
     if (func_020b2c54() != 0) {
-        return data_021759d4->mCommandRunning;
+        return gBackupAccess->mCommandRunning;
     }
     return 0;
 }

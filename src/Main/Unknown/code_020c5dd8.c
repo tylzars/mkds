@@ -444,7 +444,7 @@ void func_020c5f7c(void) {
     s32 waiting;
 
     if (data_0217aa08->mUnk_28 == 0) {
-        waiting = data_021759d4->mBackupEnabled != 0 ? data_021759d4->mCommandRunning : 0;
+        waiting = gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0;
     } else {
         waiting = 1;
     }
@@ -485,7 +485,7 @@ void func_020c5f08(void) {
     s32 waiting;
 
     if (data_0217aa08->mUnk_28 == 0) {
-        waiting = data_021759d4->mBackupEnabled != 0 ? data_021759d4->mCommandRunning : 0;
+        waiting = gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0;
     } else {
         waiting = 1;
     }

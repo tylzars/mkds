@@ -49,7 +49,7 @@ void func_0211fe44(void) {
     CopyWiFiBuddiesToRecordBlock(&gWiFiSession->mBuddies[0]);
     RefreshNotYetBuddyFlags();
     func_0205edf8();
-    while (data_0217aa08->mUnk_28 == 0 ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mCommandRunning : 0)
+    while (data_0217aa08->mUnk_28 == 0 ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0)
                                        : 1) {
     }
     gWiFiSession->mBuddiesChanged = FALSE;
@@ -162,7 +162,7 @@ u32 UpdateWiFiSessionLogin(void) {
             func_0211fa70();
             break;
         case 3:
-            if (data_0217aa08->mUnk_28 == 0 ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mCommandRunning : 0)
+            if (data_0217aa08->mUnk_28 == 0 ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0)
                                             : 1) {
                 break;
             }
@@ -228,7 +228,7 @@ void func_0211f6e8(u32 a, u32 b) {
     CopyWiFiBuddiesToRecordBlock(&gWiFiSession->mBuddies[0]);
     RefreshNotYetBuddyFlags();
     func_0205edf8();
-    while (data_0217aa08->mUnk_28 == 0 ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mCommandRunning : 0)
+    while (data_0217aa08->mUnk_28 == 0 ? (gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0)
                                        : 1) {
     }
 }

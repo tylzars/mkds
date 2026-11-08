@@ -6,14 +6,14 @@
 #pragma thumb on
 
 void func_0205786c(u32 a, u32 b, GhostRecord *c) {
-    Unk021759d4 *d;
+    BackupAccess *d;
     u32 t;
     u32 n;
     u32 v1;
     u32 v2;
     void *v3;
 
-    d = data_021759d4;
+    d = gBackupAccess;
     if (d->mBackupEnabled != 0) {
         if (a != 0) {
             t = 0;
@@ -29,20 +29,20 @@ void func_0205786c(u32 a, u32 b, GhostRecord *c) {
             v2 = 0x47444b4e;
         }
         d->mReadTarget = c;
-        func_0204b6f8(n + (t + 0xaf00), v3, v1, func_020578e8, v2);
+        StartBackupReadOneCopy(n + (t + 0xaf00), v3, v1, func_020578e8, v2);
     }
 }
 
 void func_02057800(u32 a, u32 b, GhostRecord *c) {
     void (*f)(u32, u32);
-    Unk021759d4 *d;
+    BackupAccess *d;
     u32 t;
     u32 n;
     u32 v1;
     u32 v2;
     void *v3;
 
-    d = data_021759d4;
+    d = gBackupAccess;
     if (d->mBackupEnabled != 0) {
         if (a != 0) {
             t = 0;
@@ -60,7 +60,7 @@ void func_02057800(u32 a, u32 b, GhostRecord *c) {
             f = func_020578d0;
         }
         d->mReadTarget = c;
-        func_0204b6f8(n + (t + 0xaf00), v3, v1, f, v2);
+        StartBackupReadOneCopy(n + (t + 0xaf00), v3, v1, f, v2);
     }
 }
 

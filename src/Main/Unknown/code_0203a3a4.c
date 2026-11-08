@@ -225,7 +225,7 @@ void func_0203aacc(void) {
             func_02056e24(flagIndex);
             func_02056d40();
             func_02057d9c();
-            if (data_021759d4->mBackupEnabled != 0) {
+            if (gBackupAccess->mBackupEnabled != 0) {
                 CARD_WaitBackupAsync();
             }
         }

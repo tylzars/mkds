@@ -98,7 +98,7 @@ void func_02056464(Unk0217aa00_45c *a) {
     }
     MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_20, a->mBits, 4);
     a->mUnk_228_0 = data_021759d0->mUnk_00;
-    a->mUnk_228_4 = data_021759d0->mUnk_04;
+    a->mUnk_228_4 = data_021759d0->mLanguageIndex;
     a->mUnk_216 = data_0217aa08->mUnk_00->mUnk_24;
     a->mUnk_229 = func_02056208();
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {

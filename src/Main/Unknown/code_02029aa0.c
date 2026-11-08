@@ -216,7 +216,7 @@ void InitResultsGp(void *heap, void *firstOamList, void *secondOamList) {
     }
     if (TrySetGrandPrixRecord()) {
         func_02057d9c();
-        if (data_021759d4->mBackupEnabled != 0) {
+        if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
         gResultsGp->mSecretMessageMask = func_020911a8();

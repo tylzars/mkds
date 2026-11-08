@@ -429,7 +429,7 @@ void EnterMPState10(void) {
     WM_SetPortCallback(14, NULL, NULL);
     data_0217aa00->mUnk_043c = data_0217aa00->mUnk_045c[0].mUnk_228_4;
     if (*(u16 *) 0x027ffc40 == 2) {
-        data_021759d0->mUnk_04 = data_0217aa00->mUnk_043c;
+        data_021759d0->mLanguageIndex = data_0217aa00->mUnk_043c;
     }
     for (i = 1; i < 8; i++) {
         if ((data_0217aa00->mUnk_162a & (1 << i)) == 0) {

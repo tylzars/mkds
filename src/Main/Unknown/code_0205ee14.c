@@ -68,7 +68,7 @@ u32 func_0205fe1c(u8 *a, TimeRecord *b, s32 c) {
     *(u32 *) &d[0] = e | (g & 0x1ff);
     MI_CpuCopy8(&b->mName, &d[4], 4);
     *(u16 *) &d[8] = 0;
-    func_0204b284(d, 10, 1);
+    WriteBlockTail(d, 10, 1);
     x = 0xc3;
     for (h = 9; h >= 0; h--) {
         d[h] ^= x;

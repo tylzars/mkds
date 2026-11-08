@@ -20,7 +20,7 @@ void CreateSearchIconMBChildAndMultiDownload(void *heap) {
     LoadNcgrData2(&data_0217b4b0->mUnk_08, FindFileInLoadedArchives("search_icon_00.nce.ncgr"));
     LoadNcerData(&data_0217b4b0->mUnk_0c, FindFileInLoadedArchives("search_icon_00.nce.ncer"));
     LoadNclrData(&data_0217b4b0->mUnk_10, FindFileInLoadedArchives("search_icon_00_o.nclr"));
-    switch (data_021759d0->mUnk_04) {
+    switch (data_021759d0->mLanguageIndex) {
         default:
             func_020b478c(&data_0217b4b0->mUnk_14, FindFileInLoadedArchives("MBChild_us.NFTR"));
             break;
@@ -37,7 +37,7 @@ void CreateSearchIconMBChildAndMultiDownload(void *heap) {
             func_020b478c(&data_0217b4b0->mUnk_14, FindFileInLoadedArchives("MBChild_es.NFTR"));
             break;
     }
-    switch (data_021759d0->mUnk_04) {
+    switch (data_021759d0->mLanguageIndex) {
         default:
             data_0217b4b0->mUnk_20 = FindFileInLoadedArchives("MBChild_us.bmg");
             break;

@@ -14,10 +14,10 @@ void func_02061588(void) {
         b = (GhostRecord *) (a + i * 0x30);
         if (func_020573f8(i) != 0) {
             func_0205786c(1, i, b);
-            if (data_021759d4->mBackupEnabled != 0) {
+            if (gBackupAccess->mBackupEnabled != 0) {
                 CARD_WaitBackupAsync();
             }
-            if (data_021759d4->mUnk_04 != NULL) {
+            if (gBackupAccess->mErrorCode != NULL) {
                 b->mFilled = 0;
             }
         } else {

@@ -127,7 +127,7 @@ void FormatDate(DateBytes *date, u16 *text) {
             text[10] = 0;
             break;
         case 2:
-            if (data_021759d0->mUnk_04 == 3) {
+            if (data_021759d0->mLanguageIndex == 3) {
                 FormatTwoDigitNumber(date->mDay, text);
                 text[2] = 0x2e;
                 FormatTwoDigitNumber(date->mMonth, text + 3);

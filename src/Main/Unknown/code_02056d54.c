@@ -27,11 +27,11 @@ void func_02056fdc(void) {
     a = 0;
     data_0217aa08->mUnk_2c = 0;
     func_02057c60(data_0217aa08->mUnk_00);
-    if (data_021759d4->mBackupEnabled != 0) {
+    if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (data_021759d4->mUnk_04 != NULL) {
-        if ((s32) data_021759d4->mUnk_04 == 4) {
+    if (gBackupAccess->mErrorCode != NULL) {
+        if ((s32) gBackupAccess->mErrorCode == 4) {
             data_0217aa08->mUnk_2a = 0xffff;
             data_0217aa08->mUnk_2c = 4;
             func_02057504();
@@ -40,38 +40,38 @@ void func_02056fdc(void) {
         a |= 1;
     }
     ReadBackupEmblemRecord(data_0217aa08->mEmblemRecord);
-    if (data_021759d4->mBackupEnabled != 0) {
+    if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (data_021759d4->mUnk_04 != NULL) {
+    if (gBackupAccess->mErrorCode != NULL) {
         a |= 2;
     }
     ReadBackupGrandPrixRecordBlock(data_0217aa08->mGrandPrixRecordBlock);
-    if (data_021759d4->mBackupEnabled != 0) {
+    if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (data_021759d4->mUnk_04 != NULL) {
+    if (gBackupAccess->mErrorCode != NULL) {
         a |= 4;
     }
     ReadBackupCourseTimeRecordBlock(data_0217aa08->mCourseTimeRecordBlock);
-    if (data_021759d4->mBackupEnabled != 0) {
+    if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (data_021759d4->mUnk_04 != NULL) {
+    if (gBackupAccess->mErrorCode != NULL) {
         a |= 8;
     }
     ReadBackupMissionRecordBlock(data_0217aa08->mMissionRecordBlock);
-    if (data_021759d4->mBackupEnabled != 0) {
+    if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (data_021759d4->mUnk_04 != NULL) {
+    if (gBackupAccess->mErrorCode != NULL) {
         a |= 0x10;
     }
     ReadBackupBuddyRecordBlock(data_0217aa08->mBuddyRecordBlock);
-    if (data_021759d4->mBackupEnabled != 0) {
+    if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (data_021759d4->mUnk_04 != NULL) {
+    if (gBackupAccess->mErrorCode != NULL) {
         a |= 0x20;
     }
     if (data_0217aa08->mUnk_2c == 0) {
@@ -98,42 +98,42 @@ void func_02056e70(void) {
     if (data_0217aa08->mUnk_2a & 2) {
         ClearEmblemRecord();
         WriteBackupEmblemRecord(data_0217aa08->mEmblemRecord);
-        if (data_021759d4->mBackupEnabled != 0) {
+        if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }
     if (data_0217aa08->mUnk_2a & 4) {
         ClearGrandPrixRecordBlock();
         WriteBackupGrandPrixRecordBlock(data_0217aa08->mGrandPrixRecordBlock);
-        if (data_021759d4->mBackupEnabled != 0) {
+        if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }
     if (data_0217aa08->mUnk_2a & 8) {
         ClearCourseTimeRecordBlock();
         WriteBackupCourseTimeRecordBlock(data_0217aa08->mCourseTimeRecordBlock);
-        if (data_021759d4->mBackupEnabled != 0) {
+        if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }
     if (data_0217aa08->mUnk_2a & 0x10) {
         ClearMissionRecordBlock();
         WriteBackupMissionRecordBlock(data_0217aa08->mMissionRecordBlock);
-        if (data_021759d4->mBackupEnabled != 0) {
+        if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }
     if (data_0217aa08->mUnk_2a & 0x20) {
         ClearBuddyRecordBlock();
         WriteBackupBuddyRecordBlock(data_0217aa08->mBuddyRecordBlock);
-        if (data_021759d4->mBackupEnabled != 0) {
+        if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }
     if (data_0217aa08->mUnk_2a & 1) {
         func_02057304(((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2);
         func_02057ca4(data_0217aa08->mUnk_00);
-        if (data_021759d4->mBackupEnabled != 0) {
+        if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }

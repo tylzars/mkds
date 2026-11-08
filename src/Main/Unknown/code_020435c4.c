@@ -134,10 +134,10 @@ void func_020442d0(u32 courseId) {
     data_0217aa08->mUnk_14[0]->mFilled = 0;
     func_02056700(courseId);
     func_02057d9c();
-    if (data_021759d4->mBackupEnabled != 0) {
+    if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (data_021759d4->mUnk_04 != NULL) {
+    if (gBackupAccess->mErrorCode != NULL) {
         data_0217aa08->mUnk_14[0]->mFilled = 0;
     }
 }
@@ -151,18 +151,18 @@ void func_0204419c(u32 courseId, u32 b) {
     data_0217aa08->mUnk_14[0]->mFilled = 0;
     func_02056700(courseId);
     func_02057d9c();
-    if (data_021759d4->mBackupEnabled != 0) {
+    if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (data_021759d4->mUnk_04 != NULL) {
+    if (gBackupAccess->mErrorCode != NULL) {
         data_0217aa08->mUnk_14[0]->mFilled = 0;
     }
     func_02056670(b);
     func_02057d9c();
-    if (data_021759d4->mBackupEnabled != 0) {
+    if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (data_021759d4->mUnk_04 != NULL) {
+    if (gBackupAccess->mErrorCode != NULL) {
         data_0217aa08->mUnk_14[1]->mFilled = 0;
     }
 }
@@ -180,10 +180,10 @@ void func_02044060(u32 courseId) {
     data_0217aa08->mUnk_14[0]->mFilled = 0;
     func_02056700(courseId);
     func_02057d9c();
-    if (data_021759d4->mBackupEnabled != 0) {
+    if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (data_021759d4->mUnk_04 != NULL) {
+    if (gBackupAccess->mErrorCode != NULL) {
         data_0217aa08->mUnk_14[0]->mFilled = 0;
     }
     if (TryFormatGhostPath(courseId, path, 0x80) != FALSE) {
@@ -202,10 +202,10 @@ void func_02043fb0(u32 courseId) {
     data_0217aa08->mUnk_14[0]->mFilled = 0;
     func_02056700(courseId);
     func_02057d9c();
-    if (data_021759d4->mBackupEnabled != 0) {
+    if (gBackupAccess->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    if (data_021759d4->mUnk_04 != NULL) {
+    if (gBackupAccess->mErrorCode != NULL) {
         data_0217aa08->mUnk_14[0]->mFilled = 0;
     }
 }

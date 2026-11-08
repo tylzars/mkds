@@ -477,7 +477,7 @@ void ResetConnectionData(void) {
     data_0217aa00->mUnk_008b = 0;
     data_0217aa00->mUnk_0044.mUnk_3e = 0;
     MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, data_0217aa00->mUnk_0044.mUnk_38, 0x14);
-    data_0217aa00->mUnk_0044.mUnk_38->mUnk_0e.mUnk_06_4 = data_021759d0->mUnk_04;
+    data_0217aa00->mUnk_0044.mUnk_38->mUnk_0e.mUnk_06_4 = data_021759d0->mLanguageIndex;
     data_0217aa00->mUnk_0044.mUnk_38->mUnk_0e.mUnk_06_0 = 0;
     for (j = 0; j < 4; j++) {
         data_0217aa00->mUnk_00ac[j].mUnk_dc_0 = 0;

@@ -7,7 +7,7 @@
 
 u32 IsBackupCommandRunning(void) {
     if (IsBackupEnabled() != 0) {
-        return data_021759d4->mCommandRunning;
+        return gBackupAccess->mCommandRunning;
     }
     return 0;
 }

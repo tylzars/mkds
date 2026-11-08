@@ -149,8 +149,8 @@ static inline void func_020487fc_inline9(const SceneCallbacks *b) {
 }
 
 static inline s32 func_020487fc_inline10(void) {
-    if (data_021759d4->mBackupEnabled) {
-        return data_021759d4->mCommandRunning;
+    if (gBackupAccess->mBackupEnabled) {
+        return gBackupAccess->mCommandRunning;
     }
     return 0;
 }
@@ -210,7 +210,7 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
     GetHeap(GetCurrentHeapCall());
     CallQueueInit(HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x800), 0x80);
     if (func_0204a428(a->mScene, &n)) {
-        func_0204acd0(n);
+        InitSceneSoundSetPlayer(n);
     }
     InitSceneSounds(0);
     func_02043410();
@@ -226,7 +226,7 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
     }
     func_02047274();
     gDisplaySettings->mIrqCallback = func_0204a4d8;
-    func_0204ac60();
+    StartSceneSoundSetSeq();
     StartSceneSounds();
     WaitIrqAndTurnOnDisplays();
     gSceneRunState->mUnk_10c = 1;
@@ -276,9 +276,9 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
     } while (a->mNextScene == -1 && v == 0);
     gSceneRunState->mUnk_10c = 3;
     StopSceneSounds();
-    if (data_021759d0->mUnk_1c_0) {
+    if (data_021759d0->mSoundSetSeqPlaying) {
         if (a == NULL || func_0204a340(a->mScene, a->mNextScene)) {
-            func_0204ac10();
+            StopSceneSoundSetSeq();
         }
     }
     if ((v != 0 || GetNextSceneNumber() == 0) && ((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
@@ -351,8 +351,8 @@ end:
     ClearFontAndPlayerCharacterTables();
     ClearLcdcBankAndStartWvrAndWait();
     StopSceneSoundsAtOnce();
-    if (data_021759d0->mUnk_1c_1 && func_0204a340(a->mScene, a->mNextScene)) {
-        func_0204aba8();
+    if (data_021759d0->mSoundSetPlayerInitialized && func_0204a340(a->mScene, a->mNextScene)) {
+        ReleaseSceneSoundSetPlayer();
     }
     ReleaseArchiveSlots();
     if (v != 0) {

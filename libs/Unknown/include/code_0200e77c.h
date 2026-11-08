@@ -55,7 +55,7 @@ u32 ReadCartridgeMarkerBits(void);
 // else 0x80000000, ors in the halfword at 0x027ffffa and stores it in gConsoleType. Returns the stored value.
 u32 OS_GetConsoleType(void);
 // Returns 0. OS_GetConsoleType tests it first (nonzero adds 0x10000000); IsCommandAvailable reads the register at
-// 0x04fff200 only when it is nonzero; func_02039cbc and func_0204b9ac skip work when it is nonzero.
+// 0x04fff200 only when it is nonzero; func_02039cbc and InitBackupAccess skip work when it is nonzero.
 u32 OS_IsRunOnEmulator(void);
 BOOL OS_ReadMessage(OSMessageQueue *queue, OSMessage *message, s32 flags);
 BOOL OS_JamMessage(OSMessageQueue *queue, OSMessage message, s32 flags);

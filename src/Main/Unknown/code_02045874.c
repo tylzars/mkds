@@ -201,7 +201,7 @@ void BuildCourseList(s32 isVersus) {
                 u8 y;
                 s32 h;
                 s32 z;
-                g = func_0204aa60();
+                g = GetRandomState();
                 m = f != 0 ? 2 : 8;
                 t = f != 0 ? data_usa_021540c0 : data_usa_02154108;
                 n = m * 4;
@@ -228,7 +228,7 @@ void BuildCourseList(s32 isVersus) {
             } else {
                 s32 k;
                 RandomState64 *g;
-                g = func_0204aa60();
+                g = GetRandomState();
                 n = f != 0 ? 3 : 6;
                 t = f != 0 ? data_usa_021540c8 : data_usa_021540d4;
                 for (k = 0; k < n; k++) {

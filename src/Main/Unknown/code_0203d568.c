@@ -59,7 +59,7 @@ static inline void func_0203d568_b_inline(void) {
 static inline s32 func_0203d568_c_inline(void) {
     s32 r;
     if (data_0217aa08->mUnk_28 == 0) {
-        r = data_021759d4->mBackupEnabled != 0 ? data_021759d4->mCommandRunning : 0;
+        r = gBackupAccess->mBackupEnabled != 0 ? gBackupAccess->mCommandRunning : 0;
     } else {
         r = 1;
     }
@@ -495,7 +495,7 @@ void func_0203d568(void) {
     func_02043544(0);
     if (func_0203d568_c_inline() != 0) {
         func_02057d9c();
-        if (data_021759d4->mBackupEnabled != 0) {
+        if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }

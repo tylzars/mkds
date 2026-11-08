@@ -15,8 +15,8 @@ void UpdateLogoState1(void) {
     s32 v3;
     LogoScene *scene;
     if (data_0217aa08->mUnk_28 == 0) {
-        if (data_021759d4->mBackupEnabled != 0) {
-            v1 = data_021759d4->mCommandRunning;
+        if (gBackupAccess->mBackupEnabled != 0) {
+            v1 = gBackupAccess->mCommandRunning;
         } else {
             v1 = 0;
         }
@@ -33,7 +33,7 @@ void UpdateLogoState1(void) {
             stateMachine = &gLogoScene->mStateMachine;
             stateMachine->mNextState = 2;
             stateMachine->mNextStateRequested = 1;
-        } else if ((u32) data_021759d4->mUnk_04 == 4) {
+        } else if ((u32) gBackupAccess->mErrorCode == 4) {
             gLogoScene->mUnk_2c_1 = 0;
             stateMachine = &gLogoScene->mStateMachine;
             stateMachine->mNextState = 6;
@@ -93,8 +93,8 @@ void UpdateLogoState3(void) {
         StartSoundOncePerFrame(34);
     }
     if (data_0217aa08->mUnk_28 == 0) {
-        if (data_021759d4->mBackupEnabled != 0) {
-            v1 = data_021759d4->mCommandRunning;
+        if (gBackupAccess->mBackupEnabled != 0) {
+            v1 = gBackupAccess->mCommandRunning;
         } else {
             v1 = 0;
         }
@@ -190,8 +190,8 @@ void UpdateLogoState6(void) {
             StartSoundOncePerFrame(34);
         }
         if (data_0217aa08->mUnk_28 == 0) {
-            if (data_021759d4->mBackupEnabled != 0) {
-                v2 = data_021759d4->mCommandRunning;
+            if (gBackupAccess->mBackupEnabled != 0) {
+                v2 = gBackupAccess->mCommandRunning;
             } else {
                 v2 = 0;
             }
@@ -211,8 +211,8 @@ void UpdateLogoState6(void) {
         }
     } else {
         if (data_0217aa08->mUnk_28 == 0) {
-            if (data_021759d4->mBackupEnabled != 0) {
-                v2 = data_021759d4->mCommandRunning;
+            if (gBackupAccess->mBackupEnabled != 0) {
+                v2 = gBackupAccess->mCommandRunning;
             } else {
                 v2 = 0;
             }

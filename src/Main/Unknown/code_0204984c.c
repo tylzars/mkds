@@ -83,8 +83,8 @@ static inline s32 func_0204984c_inline6(void) {
 }
 
 static inline s32 func_0204984c_inline7(void) {
-    if (data_021759d4->mBackupEnabled) {
-        return data_021759d4->mCommandRunning;
+    if (gBackupAccess->mBackupEnabled) {
+        return gBackupAccess->mCommandRunning;
     }
     return 0;
 }
@@ -115,7 +115,7 @@ static inline void func_02049c3c_inline2(PMSleepCallbackInfo *callbackInfo, void
 
 static inline void func_02049e38_inline(SceneNumbers *sceneNumbers) {
     if (sceneNumbers == 0 || func_0204a340(sceneNumbers->mScene, sceneNumbers->mNextScene)) {
-        func_0204ac10();
+        StopSceneSoundSetSeq();
     }
 }
 
@@ -202,7 +202,7 @@ s32 func_0204a340(s32 scene, s32 nextScene) {
             if (nextScene != 0) {
                 if (nextScene == 15) {
                     if (func_ov001_0219e0b8()) {
-                        func_0204ab64(0x78);
+                        StopSceneSoundSetSeqWithSteps(0x78);
                     }
                     result = FALSE;
                 }
@@ -395,7 +395,7 @@ void func_02049e38(s32 kind) {
     gSceneRunState->mUnk_11c = c;
     func_02049f60();
     StopSceneSounds();
-    if (data_021759d0->mUnk_1c_0) {
+    if (data_021759d0->mSoundSetSeqPlaying) {
         func_02049e38_inline(0);
     }
     if (hasDisplaySettings != FALSE) {

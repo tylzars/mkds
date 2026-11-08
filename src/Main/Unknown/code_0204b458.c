@@ -7,135 +7,137 @@
 
 #pragma thumb on
 
-void func_0204b5dc(void (*a)(u32 *, u32)) {
-    u32 *p;
-    u32 n;
-    s32 e;
-    BOOL f;
-    u32 s;
-    f = TRUE;
-    s = CARD_GetResultCode();
-    func_0204b3dc();
-    e = 0;
-    data_021759d4->mCommandRunning = 0;
-    switch (s) {
+void func_0204b5dc(void (*callback)(u32 *, u32)) {
+    u32 *buffer;
+    u32 byteCount;
+    s32 result;
+    BOOL finished;
+    u32 resultCode;
+    finished = TRUE;
+    resultCode = CARD_GetResultCode();
+    UnlockBackup();
+    result = 0;
+    gBackupAccess->mCommandRunning = 0;
+    switch (resultCode) {
         case 0:
-            e = 0;
+            result = 0;
             break;
         case 1:
         case 4:
         case 6:
-            e = 2;
+            result = 2;
             break;
         case 2:
         case 3:
         case 5:
         case 7:
         default:
-            e = 1;
+            result = 1;
             break;
     }
-    p = data_021759d4->mUnk_40;
-    n = data_021759d4->mUnk_48;
-    switch (data_021759d4->mUnk_14) {
+    buffer = gBackupAccess->mWriteSource;
+    byteCount = gBackupAccess->mWriteSize;
+    switch (gBackupAccess->mCopyPass) {
         case 0:
-            f = TRUE;
+            finished = TRUE;
             break;
         case 1:
-            data_021759d4->mUnk_1c = e;
-            data_021759d4->mUnk_20 = data_021759d4->mUnk_40;
-            data_021759d4->mUnk_24 = 0;
-            func_0204b458(data_021759d4->mUnk_18, data_021759d4->mUnk_40, data_021759d4->mUnk_48, a, 2,
-                          data_021759d4->mUnk_50);
-            f = FALSE;
+            gBackupAccess->mFirstPassResult = result;
+            gBackupAccess->mFirstPassBuffer = gBackupAccess->mWriteSource;
+            gBackupAccess->mFirstPassTailHalfword = 0;
+            StartBackupWrite(gBackupAccess->mSecondPassAddress, gBackupAccess->mWriteSource, gBackupAccess->mWriteSize,
+                             callback, 2, gBackupAccess->mWriteHasPrefix);
+            finished = FALSE;
             break;
         case 2:
-            if (e != 0) {
-                if (data_021759d4->mUnk_1c == 0) {
-                    p = data_021759d4->mUnk_20;
-                    e = 0;
-                } else if (e == 2 || data_021759d4->mUnk_1c == 2) {
-                    e = 2;
-                } else if (e != 1 && data_021759d4->mUnk_1c != 1) {
-                    e = 3;
+            if (result != 0) {
+                if (gBackupAccess->mFirstPassResult == 0) {
+                    buffer = gBackupAccess->mFirstPassBuffer;
+                    result = 0;
+                } else if (result == 2 || gBackupAccess->mFirstPassResult == 2) {
+                    result = 2;
+                } else if (result != 1 && gBackupAccess->mFirstPassResult != 1) {
+                    result = 3;
                 } else {
-                    e = 1;
+                    result = 1;
                 }
             }
             break;
     }
-    if (f != FALSE) {
-        if (e == 0) {
-            if (a != NULL) {
-                a(p, n);
+    if (finished != FALSE) {
+        if (result == 0) {
+            if (callback != NULL) {
+                callback(buffer, byteCount);
             }
             func_0204ba7c();
             return;
         }
-        if (e == 2) {
-            data_021759d4->mBackupEnabled = 0;
+        if (result == 2) {
+            gBackupAccess->mBackupEnabled = 0;
         }
-        func_0204b344(e);
+        func_0204b344(result);
     }
 }
 
 void func_0204b574(void) {
-    BOOL r;
-    r = FALSE;
+    BOOL failed;
+    failed = FALSE;
     if (CARD_GetResultCode() != 0) {
-        r = TRUE;
+        failed = TRUE;
     }
-    if (r == FALSE) {
+    if (failed == FALSE) {
         func_0204ba7c();
-        CARDi_RequestStreamCommand((u32) data_021759d4->mUnk_40, data_021759d4->mUnk_44, data_021759d4->mUnk_48,
-                                   (UnkFunc *) func_0204b5dc, data_021759d4->mUnk_54, 1, 7, 10, 2);
+        CARDi_RequestStreamCommand((u32) gBackupAccess->mWriteSource, gBackupAccess->mWriteAddress,
+                                   gBackupAccess->mWriteSize, (UnkFunc *) func_0204b5dc, gBackupAccess->mWriteCallback,
+                                   1, 7, 10, 2);
     } else {
-        func_0204b3dc();
-        data_021759d4->mCommandRunning = 0;
-        func_0204b344(r);
+        UnlockBackup();
+        gBackupAccess->mCommandRunning = 0;
+        func_0204b344(failed);
     }
 }
 
 u32 func_0204b518(void) {
-    if (data_021759d4->mBackupEnabled == 0 || CARD_TryWaitBackupAsync() == 0) {
+    if (gBackupAccess->mBackupEnabled == 0 || CARD_TryWaitBackupAsync() == 0) {
         return 0;
     }
-    if (func_0204b3a4() == 0) {
+    if (TryLockBackup() == 0) {
         return 0;
     }
-    CARDi_RequestStreamCommand(0, (u32) data_021759d4->mUnk_64, 1, (UnkFunc *) func_0204b574, NULL, 1, 6, 1, 0);
+    CARDi_RequestStreamCommand(0, (u32) gBackupAccess->mUnk_64, 1, (UnkFunc *) func_0204b574, NULL, 1, 6, 1, 0);
     return 1;
 }
 
-u32 func_0204b458(u32 a, u32 *b, u32 n, void (*c)(u32 *, u32), s32 d, s32 e) {
-    u32 *p;
-    u32 m;
-    if (data_021759d4->mBackupEnabled == 0 || CARD_TryWaitBackupAsync() == 0) {
+u32 StartBackupWrite(u32 address, u32 *source, u32 byteCount, void (*callback)(u32 *, u32), s32 copyPass,
+                     s32 hasPrefix) {
+    u32 *xorStart;
+    u32 xorByteCount;
+    if (gBackupAccess->mBackupEnabled == 0 || CARD_TryWaitBackupAsync() == 0) {
         return 0;
     }
-    data_021759d4->mUnk_04 = NULL;
-    data_021759d4->mCommandRunning = 1;
-    data_021759d4->mUnk_00 = 1;
-    data_021759d4->mUnk_44 = a;
-    data_021759d4->mUnk_40 = b;
-    data_021759d4->mUnk_48 = n;
-    data_021759d4->mUnk_50 = e;
-    data_021759d4->mUnk_54 = c;
-    data_021759d4->mUnk_14 = d;
-    if (d != 2) {
-        if (e != 0) {
-            p = b + 2;
-            m = n - 8;
+    gBackupAccess->mErrorCode = NULL;
+    gBackupAccess->mCommandRunning = 1;
+    gBackupAccess->mUnk_00 = 1;
+    gBackupAccess->mWriteAddress = address;
+    gBackupAccess->mWriteSource = source;
+    gBackupAccess->mWriteSize = byteCount;
+    gBackupAccess->mWriteHasPrefix = hasPrefix;
+    gBackupAccess->mWriteCallback = callback;
+    gBackupAccess->mCopyPass = copyPass;
+    if (copyPass != 2) {
+        if (hasPrefix != 0) {
+            xorStart = source + 2;
+            xorByteCount = byteCount - 8;
         } else {
-            p = b;
-            m = n;
+            xorStart = source;
+            xorByteCount = byteCount;
         }
-        func_0204b284((u8 *) b, n, 0);
-        func_0204b138(p, m);
-        DC_StoreRange(b, n);
+        WriteBlockTail((u8 *) source, byteCount, 0);
+        XorBackupWordsAtTickIndex(xorStart, xorByteCount);
+        DC_StoreRange(source, byteCount);
         return func_0204b518();
     }
-    CARDi_RequestStreamCommand((u32) b, a, n, (UnkFunc *) func_0204b5dc, c, 1, 7, 10, 2);
+    CARDi_RequestStreamCommand((u32) source, address, byteCount, (UnkFunc *) func_0204b5dc, callback, 1, 7, 10, 2);
     return 1;
 }
 

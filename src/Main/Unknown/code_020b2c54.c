@@ -17,5 +17,5 @@ void func_020b2c68(void) {
 #pragma thumb off
 
 u32 func_020b2c54(void) {
-    return (data_021759d4->mBackupEnabled);
+    return (gBackupAccess->mBackupEnabled);
 }

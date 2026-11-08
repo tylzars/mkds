@@ -937,7 +937,7 @@ void StartRomArchiveParent(u32 port, void (*stateCallback)(s32 port),
     AddBlock(&archiveNode->mBlockNode, 0x20000, data_usa_0215470c, transfer->mArchiveBlock,
              gRomArchiveTransfer.mArchiveBlockSize, 0);
     transfer->mState = 1;
-    func_0204bad8();
+    StartFileReadThread();
 }
 
 void StartRomArchiveChild(u32 port, void (*stateCallback)(s32 port),
@@ -1056,7 +1056,7 @@ void StopRomArchive(void) {
             }
             func_0204bcec_inline(&gRomArchiveTransfer, view->mUnk_0afc);
         } else {
-            func_0204ba8c();
+            StopFileReadThread();
         }
         StopBlockTransfer();
         WM_SetPortCallback(gRomArchiveTransfer.mPort, NULL, NULL);

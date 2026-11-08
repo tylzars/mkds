@@ -131,7 +131,7 @@ void func_021253f8(LabelTextCanvas *textCanvas, s32 *maxWidth, s32 *lineWidths, 
                                 }
                             case 10:
                                 for (r7 = 0; r7 < 10; r7++) {
-                                    ch = ((u16 *) data_021759d0->mUnk_2a)[r7];
+                                    ch = ((u16 *) data_021759d0->mOwnerText)[r7];
                                     if (ch == 0) {
                                         r7 = 10;
                                     } else {
@@ -150,7 +150,7 @@ void func_021253f8(LabelTextCanvas *textCanvas, s32 *maxWidth, s32 *lineWidths, 
                                 }
                                 break;
                             case 11:
-                                n2 = func_020adc7c((u16 *) data_021759d0->mUnk_2a, buf2);
+                                n2 = func_020adc7c((u16 *) data_021759d0->mOwnerText, buf2);
                                 for (i2 = 0; i2 < n2; i2++) {
                                     *writePointer++ = buf2[i2];
                                     if (fixedAdvance == -1 ||

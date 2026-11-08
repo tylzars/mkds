@@ -116,7 +116,7 @@ void func_02035c14(void) {
 #pragma thumb on
 
 static inline s32 func_0203551c_inline(void) {
-    Unk021759d4 *p = data_021759d4;
+    BackupAccess *p = gBackupAccess;
     if (p->mBackupEnabled != 0) {
         return p->mCommandRunning;
     }

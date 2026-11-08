@@ -62,38 +62,38 @@ typedef struct RecordTAtt {
     /* 90 */ s32 mUnk_90;
 } RecordTAtt;
 
-// Object behind data_021759d4.
-typedef struct Unk021759d4 {
+// Object behind gBackupAccess.
+typedef struct BackupAccess {
     /* 00 */ s32 mUnk_00;
-    /* 04 */ void *mUnk_04;
-    /* 08 */ s32 mUnk_08;
+    /* 04 */ void *mErrorCode;
+    /* 08 */ s32 mLockId;
     /* 0c */ s32 mBackupEnabled;
     /* 10 */ s32 mCommandRunning;
-    /* 14 */ s32 mUnk_14;
-    /* 18 */ u32 mUnk_18;
-    /* 1c */ s32 mUnk_1c;
-    /* 20 */ u32 *mUnk_20;
-    /* 24 */ u16 mUnk_24;
+    /* 14 */ s32 mCopyPass;
+    /* 18 */ u32 mSecondPassAddress;
+    /* 1c */ s32 mFirstPassResult;
+    /* 20 */ u32 *mFirstPassBuffer;
+    /* 24 */ u16 mFirstPassTailHalfword;
     /* 26 */ u8 mUnk_26[0x2];
-    /* 28 */ u32 *mUnk_28;
-    /* 2c */ u32 mUnk_2c;
-    /* 30 */ u32 mUnk_30;
-    /* 34 */ u32 mUnk_34;
-    /* 38 */ s32 mUnk_38;
+    /* 28 */ u32 *mReadDestination;
+    /* 2c */ u32 mReadAddress;
+    /* 30 */ u32 mReadSize;
+    /* 34 */ u32 mExpectedFirstWord;
+    /* 38 */ s32 mReadHasPrefix;
     /* 3c */ u8 mUnk_3c[0x4];
-    /* 40 */ u32 *mUnk_40;
-    /* 44 */ u32 mUnk_44;
-    /* 48 */ u32 mUnk_48;
+    /* 40 */ u32 *mWriteSource;
+    /* 44 */ u32 mWriteAddress;
+    /* 48 */ u32 mWriteSize;
     /* 4c */ u8 mUnk_4c[0x4];
-    /* 50 */ s32 mUnk_50;
-    /* 54 */ void (*mUnk_54)(u32 *, u32);
+    /* 50 */ s32 mWriteHasPrefix;
+    /* 54 */ void (*mWriteCallback)(u32 *, u32);
     /* 58 */ s32 mUnk_58;
     /* 5c */ s32 mUnk_5c;
     /* 60 */ void *mBuffer;
     /* 64 */ void *mUnk_64;
     /* 68 */ void *mReadTarget;
     /* 6c */ u8 mUnk_6c;
-} Unk021759d4;
+} BackupAccess;
 
 extern u16 data_ov001_021a6850[][2];
 
@@ -102,7 +102,7 @@ extern u16 data_ov001_021a6850[][2];
 
 #include "code_021458c4.h"
 
-extern Unk021759d4 *data_021759d4;
+extern BackupAccess *gBackupAccess;
 extern u16 data_ov001_021a67c0[];
 extern u16 data_ov001_021a67c4[];
 extern u16 data_ov001_021a67c8[];

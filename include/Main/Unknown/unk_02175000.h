@@ -14,13 +14,13 @@
 // data_0217aa08.
 typedef struct Unk021759d0 {
     /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ SoundSetPlayer mUnk_08;
+    /* 04 */ s32 mLanguageIndex;
+    /* 08 */ SoundSetPlayer mSoundSetPlayer;
     /* 1c */ union {
         s32 mUnk_1c;
         struct {
-            s32 mUnk_1c_0 : 1;
-            s32 mUnk_1c_1 : 1;
+            s32 mSoundSetSeqPlaying : 1;
+            s32 mSoundSetPlayerInitialized : 1;
             s32 mUnk_1c_2 : 1;
             s32 mUnk_1c_3 : 1;
         };
@@ -28,19 +28,19 @@ typedef struct Unk021759d0 {
     /* 20 */ s32 mUnk_20;
     /* 24 */ NNSiFndHeapHead *mHeap;
     /* 28 */ s16 mUnk_28;
-    /* 2a */ u8 mUnk_2a[0x14];
-    /* 3e */ u16 mUnk_3e;
+    /* 2a */ u8 mOwnerText[0x14];
+    /* 3e */ u16 mOwnerCharCount;
     /* 40 */ u8 mUnk_40;
     /* 41 */ u8 mUnk_41[0x3];
     /* 44 */ s32 mUnk_44;
-    /* 48 */ u32 mUnk_48;
-    /* 4c */ u32 mUnk_4c;
+    /* 48 */ u32 mFirstBackLightOn;
+    /* 4c */ u32 mSecondBackLightOn;
     /* 50 */ u16 mUnk_50;
     /* 52 */ u8 mUnk_52[0x2];
     /* 54 */ BOOL mUnk_54;
     /* 58 */ s32 mUnk_58;
     /* 5c */ s32 mUnk_5c;
-    /* 60 */ RandomState64 mUnk_60;
+    /* 60 */ RandomState64 mRandom;
     /* 78 */ s32 mUnk_78;
 } Unk021759d0;
 
@@ -267,16 +267,16 @@ extern Unk021759c8 *data_021759c8;
 extern SceneRunState *gSceneRunState;
 extern Unk021759d0 *data_021759d0;
 
-// Object at data_usa_021759b8: 0x400 bytes (the end of them is the top of the stack of the OSThread) and two words.
-typedef struct Unk021759b8 {
-    /* 000 */ u8 mUnk_000[0x400];
-    /* 400 */ OSThread mUnk_400;
+// Object at gFileReadThread: 0x400 bytes (the end of them is the top of the stack of the OSThread) and two words.
+typedef struct FileReadThread {
+    /* 000 */ u8 mStack[0x400];
+    /* 400 */ OSThread mThread;
     /* 4b8 */ u8 mUnk_4b8[8];
     /* 4c0 */ s32 mUnk_4c0;
     /* 4c4 */ s32 mUnk_4c4;
-} Unk021759b8;
+} FileReadThread;
 
-extern Unk021759b8 data_usa_021759b8;
+extern FileReadThread gFileReadThread;
 extern vu16 data_021758e8[];
 extern vu16 data_02175928[];
 extern u8 data_02175dd8[];
@@ -302,8 +302,8 @@ typedef struct Unk021755e4 {
 
 extern Unk021755e4 data_usa_021755e4;
 
-// Object func_0204a620 to func_0204a978 take: a buffer, two halfword counters and two words. The buffer holds a word
-// at 0x00 and byte pairs from 0x04; its size is 0xdcc bytes.
+// Object func_0204a620 to StartKeyRecording take: a buffer, two halfword counters and two words. The buffer holds a
+// word at 0x00 and byte pairs from 0x04; its size is 0xdcc bytes.
 extern KeyRecording data_02175650[];
 
 // Entry of the table at 0x440 of gRomArchiveTransfer: a four-bit part in the low bits of the first word, then two

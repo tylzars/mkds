@@ -2,5 +2,7 @@
 
 #include "types.h"
 
-void func_0204b6cc(u32 a, u32 b, u32 *c, u32 d, void (*e)(u32, u32), u32 f, s32 g);
-void func_0204b6f8(u32 p0, void *p1, u32 p2, void (*p3)(u32, u32), u32 p4);
+void StartBackupReadTwoCopies(u32 firstAddress, u32 secondAddress, u32 *destination, u32 byteCount,
+                              void (*callback)(u32, u32), u32 expectedFirstWord, s32 hasPrefix);
+void StartBackupReadOneCopy(u32 address, void *destination, u32 byteCount, void (*callback)(u32, u32),
+                            u32 expectedFirstWord);

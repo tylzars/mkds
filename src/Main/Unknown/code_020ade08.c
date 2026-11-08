@@ -174,7 +174,7 @@ u32 func_020ae3b4(u32 a) {
     u32 v2;
     v1 = func_020ae3f4();
     if (v1 == 0) {
-        v2 = (u32) func_0204aa60();
+        v2 = (u32) GetRandomState();
     } else {
         v2 = func_020ae3d8();
     }

@@ -10,20 +10,21 @@
 void func_02057710(Unk0217aa08_24 *a, s32 b) {
     s32 c = b * 0xb00;
     u32 *v;
-    v = data_021759d4->mBuffer;
-    if (data_021759d4->mBackupEnabled != 0) {
+    v = gBackupAccess->mBuffer;
+    if (gBackupAccess->mBackupEnabled != 0) {
         MI_CpuCopy8(a, v, 0xb00);
         v[0] = 0x45464b4e;
-        func_0204b430(c + 0x2b00, c + 0x33a00, v, 0xb00, NULL, 0);
+        StartBackupWriteTwoCopies(c + 0x2b00, c + 0x33a00, v, 0xb00, NULL, 0);
     }
 }
 
 void func_020576b8(Unk0217aa08_24 *a, s32 b) {
     s32 c = b * 0xb00;
-    if (data_021759d4->mBackupEnabled != 0) {
-        data_021759d4->mReadTarget = a;
-        data_021759d4->mUnk_5c = -1;
-        func_0204b6cc(c + 0x2b00, c + 0x33a00, data_021759d4->mBuffer, 0xb00, CopyBackupReadToBlock, 0x45464b4e, 0);
+    if (gBackupAccess->mBackupEnabled != 0) {
+        gBackupAccess->mReadTarget = a;
+        gBackupAccess->mUnk_5c = -1;
+        StartBackupReadTwoCopies(c + 0x2b00, c + 0x33a00, gBackupAccess->mBuffer, 0xb00, CopyBackupReadToBlock,
+                                 0x45464b4e, 0);
     }
 }
 

@@ -296,8 +296,8 @@ void AdvanceOptionEmbremSelectState6(void) {
 
     if (GetTxtSystemDone() != 0) {
         if (data_0217aa08->mUnk_28 == 0) {
-            if (data_021759d4->mBackupEnabled != 0) {
-                value = data_021759d4->mCommandRunning;
+            if (gBackupAccess->mBackupEnabled != 0) {
+                value = gBackupAccess->mCommandRunning;
             } else {
                 value = 0;
             }

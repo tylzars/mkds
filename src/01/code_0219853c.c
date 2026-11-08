@@ -101,7 +101,7 @@ void func_ov001_02198624(void) {
     }
     if (IsTxtSystemState0NoOpenRequest() != 0) {
         if (GetTxtSystemSelectedIndex() == 0) {
-            d = data_021759d0->mUnk_2a;
+            d = data_021759d0->mOwnerText;
             data_0217aa08->mUnk_00->mUnk_31_0 = 1;
             MI_CpuFill8(data_0217aa08->mUnk_00->mUnk_0c, 0, 0x14);
             MI_CpuCopy8(d, data_0217aa08->mUnk_00->mUnk_0c, 0x14);
@@ -125,8 +125,8 @@ void func_ov001_021985b0(void) {
     }
     if (IsTxtSystemState0NoOpenRequest() != 0) {
         if (data_0217aa08->mUnk_28 == 0) {
-            if (data_021759d4->mBackupEnabled != 0) {
-                v = data_021759d4->mCommandRunning;
+            if (gBackupAccess->mBackupEnabled != 0) {
+                v = gBackupAccess->mCommandRunning;
             } else {
                 v = 0;
             }

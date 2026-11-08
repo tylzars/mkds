@@ -44,7 +44,7 @@ extern u32 data_usa_021545d8[];
 extern u32 data_usa_02154604[];
 extern u32 data_usa_02154648[];
 extern u32 data_usa_02154694[];
-extern u16 data_usa_02154708;
+extern u16 gCrcXorValue;
 extern const s32 gKartScaleFactorXTable[25];
 extern const s32 gKartScaleFactorYTable[25];
 extern const s32 gKartScaleFactorZTable[25];

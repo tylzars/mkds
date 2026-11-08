@@ -254,7 +254,7 @@ u32 func_020911a8(void) {
         r = func_02090ff4();
         func_02056d40();
         func_02057d9c();
-        if (data_021759d4->mBackupEnabled != 0) {
+        if (gBackupAccess->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }

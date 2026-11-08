@@ -3,4 +3,4 @@
 #include "types.h"
 #include "Main/Unknown/unk_02175000.h"
 
-void func_0204a978(KeyRecording *a);
+void StartKeyRecording(KeyRecording *record);

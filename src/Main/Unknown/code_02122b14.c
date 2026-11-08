@@ -129,7 +129,7 @@ s32 UpdateWiFiSessionStep(void) {
     u8 ownIndex;
     s32 waitFlag;
     Unk0217d384_1d00 *ownRecord;
-    Unk021759d4 *backup;
+    BackupAccess *backup;
     UpdateWiFiSessionKartTimeouts();
     RemoveWiFiSessionKarts();
     switch (gWiFiSession->mStep) {
@@ -142,7 +142,7 @@ s32 UpdateWiFiSessionStep(void) {
         case 2:
             UpdateWiFiSessionStepTimeout(0x1c20);
             if (data_0217aa08->mUnk_28 == 0) {
-                backup = data_021759d4;
+                backup = gBackupAccess;
                 if (backup->mBackupEnabled != 0) {
                     waitFlag = backup->mCommandRunning;
                 } else {

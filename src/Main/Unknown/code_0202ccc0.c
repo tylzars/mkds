@@ -327,7 +327,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *advanceArg) {
     s32 returnTouched;
     s32 hasPair;
     u16 keyB;
-    Unk021759d4 *d;
+    BackupAccess *d;
     CellFileSet *fileSets;
     s32 i;
     slotIndex = func_020435bc();
@@ -410,13 +410,13 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *advanceArg) {
             }
             break;
         case 4:
-            d = data_021759d4;
+            d = gBackupAccess;
             if (d->mBackupEnabled != 0) {
                 i = d->mCommandRunning;
             } else {
                 i = 0;
             }
-            if (i == 0 && d->mUnk_04 == NULL) {
+            if (i == 0 && d->mErrorCode == NULL) {
                 if (IsSlotGhostIndex(gTimeAttackGhostSend->mSelectedIndex) == 0) {
                     func_0203bf04(GetCourseGhostBuffer(), (void *) GetSlotGhostBuffer());
                 }

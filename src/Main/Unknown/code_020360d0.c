@@ -3,6 +3,6 @@
 
 u32 IsBackupEnabled(void) {
     u32 backupEnabled;
-    backupEnabled = data_021759d4->mBackupEnabled;
+    backupEnabled = gBackupAccess->mBackupEnabled;
     return backupEnabled;
 }

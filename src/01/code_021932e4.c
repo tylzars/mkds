@@ -315,8 +315,8 @@ void AdvanceOptionTopMenuState8(void) {
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x22);
     }
     if (data_0217aa08->mUnk_28 == 0) {
-        if (data_021759d4->mBackupEnabled != 0) {
-            flag = data_021759d4->mCommandRunning;
+        if (gBackupAccess->mBackupEnabled != 0) {
+            flag = gBackupAccess->mCommandRunning;
         } else {
             flag = 0;
         }

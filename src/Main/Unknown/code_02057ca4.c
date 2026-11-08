@@ -6,8 +6,8 @@
 #pragma thumb on
 
 void func_02057ca4(void *a) {
-    u32 *v = data_021759d4->mBuffer;
-    if (data_021759d4->mBackupEnabled != 0) {
+    u32 *v = gBackupAccess->mBuffer;
+    if (gBackupAccess->mBackupEnabled != 0) {
         enum { K0 = 0x53444b4d } b;
         enum { K1 = 0x30315653 } c;
         MI_CpuCopy8(a, v, 0x100);
@@ -16,7 +16,7 @@ void func_02057ca4(void *a) {
         v[0] = b;
         v[1] = c;
         v[2] = 0x59534b4e;
-        func_0204b430(0, 0x30f00, v, 0x100, NULL, 1);
+        StartBackupWriteTwoCopies(0, 0x30f00, v, 0x100, NULL, 1);
     }
 }
 
