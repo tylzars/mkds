@@ -356,7 +356,7 @@ s32 func_02055808(s32 a) {
             Initialize();
             break;
         case 1:
-            func_02052ecc();
+            StartRomArchiveTransfer();
             break;
         case 2:
         case 36:

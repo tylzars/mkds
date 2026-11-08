@@ -314,7 +314,7 @@ u32 GetPadKeys(void) {
     return (data_02175624->mPadKeys);
 }
 
-static inline s32 func_02043648_inline(Unk0217aa00 *p) {
+static inline s32 func_02043648_inline(ConnectionWork *p) {
     BOOL r = FALSE;
     if ((p == NULL ? 0 : p->mUnk_0000) != 0 && p->mUnk_0004 != 13) {
         r = TRUE;

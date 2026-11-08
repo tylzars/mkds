@@ -20,7 +20,7 @@
 
 #pragma opt_rebuildconditionals off
 
-static inline s32 func_020431e4_inline(Unk0217aa00 *p) {
+static inline s32 func_020431e4_inline(ConnectionWork *p) {
     BOOL r = FALSE;
     if ((p == NULL ? 0 : p->mUnk_0000) != 0 && p->mUnk_0004 != 13) {
         r = TRUE;
@@ -47,7 +47,7 @@ void func_02043544(u32 a) {
 void func_02043410(void) {
     u16 i;
     u16 j;
-    Unk0217aa00 *z;
+    ConnectionWork *z;
     InputSlot *inputSlot;
 
     for (i = 0; i < 8; i++) {
@@ -81,7 +81,7 @@ void func_020431e4(void) {
     BOOL t;
     InputSlot *inputSlot;
     RaceSetup *raceSetup;
-    Unk0217aa00 *z;
+    ConnectionWork *z;
     s32 playerKind;
 
     for (i = 0; i < 10; i++) {

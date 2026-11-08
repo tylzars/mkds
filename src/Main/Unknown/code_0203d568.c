@@ -34,7 +34,7 @@
 
 #pragma opt_rebuildconditionals off
 
-static inline s32 func_0203d568_inline(Unk0217aa00 *p) {
+static inline s32 func_0203d568_inline(ConnectionWork *p) {
     BOOL r = FALSE;
     if ((p == NULL ? 0 : p->mUnk_0000) != 0 && p->mUnk_0004 != 13) {
         r = TRUE;

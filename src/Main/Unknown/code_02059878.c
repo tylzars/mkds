@@ -139,7 +139,7 @@ void func_02059920(Unk02059920 *a) {
 }
 
 void func_02059878(void) {
-    Unk0217aa00 *p;
+    ConnectionWork *p;
     u32 v;
 
     InitStateMachine(&data_0217aa00->mUnk_1608, gMPStateTable, 0x17, NULL);

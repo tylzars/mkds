@@ -20,8 +20,8 @@ static inline u32 func_02050080_inline(void) {
 
 u32 func_020501b0(u32 entryIndex) {
     u32 result = 0;
-    Unk0217aa00_0ac *entry;
-    Unk0217aa00 *q;
+    ScanSlot *entry;
+    ConnectionWork *q;
     u32 entryValid;
 
     if (entryIndex >= 4) {

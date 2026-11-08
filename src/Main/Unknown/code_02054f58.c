@@ -44,9 +44,9 @@ static inline s32 func_02055030_inline4(void) {
 }
 
 s32 func_02055564(s32 a) {
-    s32 r;
+    s32 status;
 
-    r = 0;
+    status = 0;
     if (data_0217aa00->mRequestPending != 0) {
         if (data_0217aa00->mUnk_000c == 7 && data_0217aa00->mUnk_043b == 1) {
             if (func_020501b0(a) == 0) {
@@ -72,7 +72,7 @@ s32 func_02055564(s32 a) {
                     func_02050e60(5);
                     return 3;
                 }
-                r = 2;
+                status = 2;
             } else {
                 StartMP();
             }
@@ -80,10 +80,10 @@ s32 func_02055564(s32 a) {
         case 11:
             data_0217aa00->mUnk_0004 = 6;
             func_02059878();
-            r = 1;
+            status = 1;
             break;
     }
-    return r;
+    return status;
 }
 
 s32 func_020554e4(void) {
@@ -105,9 +105,9 @@ s32 func_020554e4(void) {
 }
 
 void func_02055340(void) {
-    u8 v1;
-    u8 b;
-    u8 i;
+    u8 participantMask;
+    u8 childMask;
+    u8 participantIndex;
 
     if (!func_02055030_inline2()) {
         return;
@@ -116,7 +116,7 @@ void func_02055340(void) {
         case 7:
         case 8:
         case 9:
-            if (func_0205373c() == FALSE) {
+            if (UpdateDataSharing() == FALSE) {
                 data_0217aa00->mUnk_0454 |= 0x10;
             }
             if (data_0217aa00->mUnk_0004 != 9) {
@@ -128,8 +128,8 @@ void func_02055340(void) {
             func_02001000();
             break;
         case 2:
-            b = data_0217aa00->mUnk_0044.mChildMask;
-            v1 = b | 1;
+            childMask = data_0217aa00->mUnk_0044.mChildMask;
+            participantMask = childMask | 1;
             if (data_0217aa00->mUnk_0044.mUnk_3e >= 8) {
                 data_0217aa00->mUnk_0044.mUnk_3e++;
                 if ((s32) data_0217aa00->mUnk_0044.mUnk_3e > 0x2c) {
@@ -137,9 +137,9 @@ void func_02055340(void) {
                 }
                 return;
             }
-            i = data_0217aa00->mUnk_0044.mUnk_3e % 8;
-            if (v1 & (1 << i)) {
-                if (func_020504a4(i, b) == FALSE) {
+            participantIndex = data_0217aa00->mUnk_0044.mUnk_3e % 8;
+            if (participantMask & (1 << participantIndex)) {
+                if (func_020504a4(participantIndex, childMask) == FALSE) {
                     return;
                 }
                 data_0217aa00->mUnk_0044.mUnk_3e++;
@@ -150,10 +150,10 @@ void func_02055340(void) {
     }
 }
 
-s32 func_02055030(void) {
-    BOOL r;
+s32 AdvanceConnectionEnd(void) {
+    BOOL finished;
 
-    r = FALSE;
+    finished = FALSE;
     if (data_0217aa00->mUnk_0004 == 0) {
         data_0217aa00->mUnk_0454 &= ~0x80;
         return 1;
@@ -199,7 +199,7 @@ s32 func_02055030(void) {
         case 0:
             ClearParticipantBits();
             data_0217aa00->mUnk_0004 = 0;
-            r = TRUE;
+            finished = TRUE;
             data_0217aa00->mUnk_0454 &= ~0x80;
             break;
         case 1:
@@ -214,7 +214,7 @@ s32 func_02055030(void) {
         case 31:
         case 32:
         case 36:
-            func_02052cf4();
+            StopRomArchiveTransfer();
             break;
         case 7:
         case 8:
@@ -274,16 +274,16 @@ s32 func_02055030(void) {
             func_020533a0();
             break;
     }
-    return r;
+    return finished;
 }
 
 s32 func_02054f58(void) {
-    s32 r;
-    s32 v;
+    s32 status;
+    s32 result;
 
-    r = 0;
-    v = func_02055030();
-    if (v == 3) {
+    status = 0;
+    result = AdvanceConnectionEnd();
+    if (result == 3) {
         switch (data_0217aa00->mUnk_000c) {
             case 0x16:
             case 0x17:
@@ -314,7 +314,7 @@ s32 func_02054f58(void) {
         }
         data_0217aa00->mUnk_0008 = 9;
     } else {
-        r = v;
+        status = result;
     }
-    return r;
+    return status;
 }

@@ -121,7 +121,7 @@ void UpdateMPState1(void) {
     BOOL a;
     BOOL b;
     s32 v;
-    Unk0217aa00 *p;
+    ConnectionWork *p;
 
     r = TRUE;
     b = FALSE;
@@ -331,7 +331,7 @@ BOOL GetEntryChunk(u8 *entry, s32 chunkIndex, s32 chunkSize, u8 **outChunk, u16 
 
 // Child: queues its own entry chunk by chunk, again and again. Parent: waits for the children's entries.
 void UpdateMPState8(void) {
-    Unk0217aa00 *p;
+    ConnectionWork *p;
     u32 a;
     u8 b;
     u8 c;

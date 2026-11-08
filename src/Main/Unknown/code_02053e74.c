@@ -69,7 +69,7 @@ static inline s32 func_02054754_inline(Unk0217aa00_15c8 *e) {
     return r;
 }
 
-static inline s32 func_02054754_inline2(DataSharing *q, Unk0217aa00_15c8 *e) {
+static inline s32 func_02054754_inline2(DataSharing *dataSharing, Unk0217aa00_15c8 *e) {
     u8 mask = data_0217aa00->mUnk_0044.mChildMask;
     u8 i;
     BOOL ok = FALSE;
@@ -77,7 +77,7 @@ static inline s32 func_02054754_inline2(DataSharing *q, Unk0217aa00_15c8 *e) {
 
     for (i = 1; i < 8; i++) {
         if (mask & (1 << i)) {
-            if (q->mSharedDataCopied[i] == 0) {
+            if (dataSharing->mSharedDataCopied[i] == 0) {
                 ok = FALSE;
                 i = 8;
             } else {
@@ -94,7 +94,7 @@ static inline s32 func_02054754_inline2(DataSharing *q, Unk0217aa00_15c8 *e) {
     return ok;
 }
 
-static inline u32 func_0205465c_inline(Unk0217aa00 *p) {
+static inline u32 func_0205465c_inline(ConnectionWork *p) {
     if (p == NULL) {
         return 0;
     }
@@ -102,15 +102,15 @@ static inline u32 func_0205465c_inline(Unk0217aa00 *p) {
 }
 
 // Returns 1 once the last step is issued, 2 on failure, 3 when an error has been recorded, 0 otherwise.
-s32 AdvanceConnectionSetup(s32 a, void *b) {
-    BOOL r;
+s32 AdvanceConnectionSetup(s32 isParent, void *b) {
+    BOOL finished;
 
-    r = FALSE;
+    finished = FALSE;
     if (data_0217aa00->mUnk_1e3c != 0) {
-        u16 v;
+        u16 ownIndex;
 
-        v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
-        if (v == 0xffff) {
+        ownIndex = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
+        if (ownIndex == 0xffff) {
             return 2;
         }
     }
@@ -129,14 +129,14 @@ s32 AdvanceConnectionSetup(s32 a, void *b) {
             break;
         case 1:
             data_0217aa00->mUnk_0004 = 11;
-            if (a != 0) {
+            if (isParent != 0) {
                 SetLifeTime(0x28);
             } else {
                 StartScan(0, NULL, NULL);
             }
             break;
         case 2:
-            if (a != 0) {
+            if (isParent != 0) {
                 SetLifeTime(0x28);
             } else {
                 StartScan(0, NULL, NULL);
@@ -171,35 +171,35 @@ s32 AdvanceConnectionSetup(s32 a, void *b) {
             func_0204ef1c();
             break;
         case 11:
-            if (a != 0) {
+            if (isParent != 0) {
                 StartParentSideBlockTransfer();
             } else {
                 StartChildSideBlockTransfer();
                 SetOwnIndexFromConnection();
             }
-            r = TRUE;
+            finished = TRUE;
             break;
         default:
             func_020533a0();
             break;
     }
-    return r;
+    return finished;
 }
 
 // Child side; returns 1 when done, 2 on failure, 3 when an error has been recorded, 0 otherwise (the parent returns 1
 // at once).
 s32 AdvanceBlockCountRequest(void) {
-    BOOL r;
+    BOOL finished;
 
-    r = FALSE;
+    finished = FALSE;
     if (func_02053e74_inline4()) {
         return 3;
     }
     if (data_0217aa00->mUnk_1e3c != 0) {
-        u16 v;
+        u16 ownIndex;
 
-        v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
-        if (v == 0xffff) {
+        ownIndex = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
+        if (ownIndex == 0xffff) {
             return 2;
         }
     }
@@ -223,10 +223,10 @@ s32 AdvanceBlockCountRequest(void) {
                     data_0217aa00->mUnk_000c = 0x29;
                     break;
             }
-            r = TRUE;
+            finished = TRUE;
             break;
     }
-    return r;
+    return finished;
 }
 
 void func_02054aa0(void) {
@@ -252,17 +252,17 @@ void func_02054aa0(void) {
 // Child side; returns 1 when done, 2 on failure, 3 when an error has been recorded, 0 otherwise (the parent returns 1
 // at once).
 s32 AdvanceBlockReceive(void) {
-    BOOL r;
+    BOOL finished;
 
-    r = FALSE;
+    finished = FALSE;
     if (func_02053e74_inline4()) {
         return 3;
     }
     if (data_0217aa00->mUnk_1e3c != 0) {
-        u16 v;
+        u16 ownIndex;
 
-        v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
-        if (v == 0xffff) {
+        ownIndex = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mOwnIndex : 0;
+        if (ownIndex == 0xffff) {
             return 2;
         }
     }
@@ -287,19 +287,19 @@ s32 AdvanceBlockReceive(void) {
             break;
         case 0x2e:
             data_0217aa00->mUnk_1e3c = 0;
-            r = TRUE;
+            finished = TRUE;
             break;
     }
-    return r;
+    return finished;
 }
 
 // Polled until it returns TRUE.
 BOOL FinishDataSharingSync(void) {
-    BOOL r;
-    DataSharing *q;
+    BOOL finished;
+    DataSharing *dataSharing;
 
-    r = FALSE;
-    q = &data_0217aa00->mUnk_15bc_view;
+    finished = FALSE;
+    dataSharing = &data_0217aa00->mUnk_15bc_view;
     if (!func_02053e74_inline2()) {
         return TRUE;
     }
@@ -309,25 +309,25 @@ BOOL FinishDataSharingSync(void) {
     if (func_0204ffbc() != 0) {
         return TRUE;
     }
-    if (q->mSharedDataCopied[0] != 0) {
-        Unk0217aa00 *p;
+    if (dataSharing->mSharedDataCopied[0] != 0) {
+        ConnectionWork *connection;
 
-        p = data_0217aa00;
-        if (func_02054754_inline(q->mUnk_0c) != 0) {
-            if ((p->mUnk_0454 & 8) != 0) {
-                p->mUnk_0004 = 9;
+        connection = data_0217aa00;
+        if (func_02054754_inline(dataSharing->mUnk_0c) != 0) {
+            if ((connection->mUnk_0454 & 8) != 0) {
+                connection->mUnk_0004 = 9;
             } else {
-                p->mUnk_0004 = 8;
+                connection->mUnk_0004 = 8;
             }
-            r = TRUE;
+            finished = TRUE;
             data_0217aa00->mUnk_15f4 = 0;
         } else if (func_02053e74_inline() == 1) {
-            if (func_02054754_inline2(q, q->mUnk_0c) != 0) {
-                p->mUnk_008b |= 1;
+            if (func_02054754_inline2(dataSharing, dataSharing->mUnk_0c) != 0) {
+                connection->mUnk_008b |= 1;
             }
         }
     }
-    return r;
+    return finished;
 }
 
 // Starts the wait that FinishDataSharingSync completes; always returns 1.
@@ -345,26 +345,26 @@ s32 StartDataSharingSync(void) {
 }
 
 s32 func_0205465c(void) {
-    Unk0217aa00 *p;
+    ConnectionWork *connection;
     s32 r;
-    s32 x;
+    s32 count;
 
     r = 0;
-    p = data_0217aa00;
-    if (func_0205465c_inline(p) != 1) {
+    connection = data_0217aa00;
+    if (func_0205465c_inline(connection) != 1) {
         r = 2;
     } else {
-        if (func_0205465c_inline(p) == 1) {
-            if ((p->mUnk_0454 & 0x40) != 0) {
-                x = p->mUnk_1699;
+        if (func_0205465c_inline(connection) == 1) {
+            if ((connection->mUnk_0454 & 0x40) != 0) {
+                count = connection->mUnk_1699;
             } else {
-                x = p->mUnk_0044.mChildCount;
+                count = connection->mUnk_0044.mChildCount;
             }
         } else {
-            x = 0;
+            count = 0;
         }
-        if (x == 0) {
-            if (p->mUnk_1e38 != 0) {
+        if (count == 0) {
+            if (connection->mUnk_1e38 != 0) {
                 r = 1;
             } else {
                 r = 2;
@@ -374,8 +374,8 @@ s32 func_0205465c(void) {
     return r;
 }
 
-void InitConnection(void *a) {
-    data_0217aa00 = HeapAllocAligned(a, 0x1f00, 0x20);
+void InitConnection(void *heap) {
+    data_0217aa00 = HeapAllocAligned(heap, 0x1f00, 0x20);
     data_0217aa00->mUnk_0000 = 0;
     data_0217aa00->mUnk_0004 = 0;
     data_0217aa00->mUnk_0008 = 9;
@@ -385,28 +385,28 @@ void InitConnection(void *a) {
     data_0217aa00->mUnk_0456_0 = 0;
 }
 
-void InitConnectionBuffers(void *a) {
-    data_0217aa00->mUnk_0014 = HeapAllocAligned(a, 0xf00, 0x20);
-    data_0217aa00->mParentParameter = HeapAllocAligned(a, 0x40, 0x20);
-    data_0217aa00->mUnk_001c = HeapAllocAligned(a, 0x20, 0x20);
-    data_0217aa00->mUnk_0024 = HeapAllocAligned(a, 0xc0, 0x20);
-    data_0217aa00->mUnk_0028 = HeapAllocAligned(a, 0xc0, 0x20);
-    data_0217aa00->mUnk_0020 = HeapAllocAligned(a, 0x44, 0x20);
-    data_0217aa00->mUnk_002c = HeapAllocAligned(a, 0x400, 0x20);
+void InitConnectionBuffers(void *heap) {
+    data_0217aa00->mUnk_0014 = HeapAllocAligned(heap, 0xf00, 0x20);
+    data_0217aa00->mParentParameter = HeapAllocAligned(heap, 0x40, 0x20);
+    data_0217aa00->mUnk_001c = HeapAllocAligned(heap, 0x20, 0x20);
+    data_0217aa00->mUnk_0024 = HeapAllocAligned(heap, 0xc0, 0x20);
+    data_0217aa00->mUnk_0028 = HeapAllocAligned(heap, 0xc0, 0x20);
+    data_0217aa00->mUnk_0020 = HeapAllocAligned(heap, 0x44, 0x20);
+    data_0217aa00->mUnk_002c = HeapAllocAligned(heap, 0x400, 0x20);
     data_0217aa00->mUnk_0030 = 0x1c0;
-    data_0217aa00->mUnk_0034 = HeapAllocAligned(a, data_0217aa00->mUnk_0030, 0x20);
+    data_0217aa00->mUnk_0034 = HeapAllocAligned(heap, data_0217aa00->mUnk_0030, 0x20);
     data_0217aa00->mUnk_0038 = 0x400;
-    data_0217aa00->mUnk_003c = HeapAllocAligned(a, data_0217aa00->mUnk_0038, 0x20);
-    data_0217aa00->mUnk_15bc = HeapAllocAligned(a, 0x820, 0x20);
-    data_0217aa00->mUnk_15c0 = HeapAllocAligned(a, 0x200, 0x20);
-    data_0217aa00->mUnk_15c4 = HeapAllocAligned(a, 8, 0x20);
-    data_0217aa00->mUnk_15c8 = HeapAllocAligned(a, 0x40, 0x20);
-    data_0217aa00->mUnk_0040 = HeapAllocAligned(a, 0x18, 0x20);
+    data_0217aa00->mUnk_003c = HeapAllocAligned(heap, data_0217aa00->mUnk_0038, 0x20);
+    data_0217aa00->mUnk_15bc = HeapAllocAligned(heap, 0x820, 0x20);
+    data_0217aa00->mUnk_15c0 = HeapAllocAligned(heap, 0x200, 0x20);
+    data_0217aa00->mUnk_15c4 = HeapAllocAligned(heap, 8, 0x20);
+    data_0217aa00->mUnk_15c8 = HeapAllocAligned(heap, 0x40, 0x20);
+    data_0217aa00->mUnk_0040 = HeapAllocAligned(heap, 0x18, 0x20);
     data_0217aa00->mUnk_1664 = 0;
     data_0217aa00->mUnk_165c = 0;
     data_0217aa00->mUnk_1658 = 0;
-    data_0217aa00->mUnk_0044.mUnk_38 = HeapAllocAligned(a, 0x1c, 0x20);
-    data_0217aa00->mHeap = NNS_FndCreateExpHeapEx(HeapAlloc(a, 0x7800), 0x7800, 1);
+    data_0217aa00->mUnk_0044.mUnk_38 = HeapAllocAligned(heap, 0x1c, 0x20);
+    data_0217aa00->mHeap = NNS_FndCreateExpHeapEx(HeapAlloc(heap, 0x7800), 0x7800, 1);
     data_0217aa00->mMPReceiveBuffer = 0;
     data_0217aa00->mMPReceiveBufferSize = 0;
     data_0217aa00->mMPSendBuffer = 0;
@@ -421,25 +421,25 @@ void func_02054330(void) {
     data_0217aa00->mUnk_0456_0 = 0;
 }
 
-void ResetDataSharing(DataSharing *a) {
+void ResetDataSharing(DataSharing *dataSharing) {
     Unk0217aa00_1e4c *q;
     s32 i;
     s32 j;
 
-    a->mParticipantMask = 0;
+    dataSharing->mParticipantMask = 0;
     MI_CpuFill8(data_0217aa00->mUnk_15c4, 0, 8);
     for (i = 0; i < 8; i++) {
-        a->mSharedDataCopied[i] = 0;
-        MI_CpuFill8(&a->mUnk_0c[i], 0, 8);
+        dataSharing->mSharedDataCopied[i] = 0;
+        MI_CpuFill8(&dataSharing->mUnk_0c[i], 0, 8);
     }
-    a->mUnk_3c[0] = 0;
+    dataSharing->mUnk_3c[0] = 0;
     for (i = 0; i < 7; i++) {
-        a->mUnk_3c[i] = 0;
+        dataSharing->mUnk_3c[i] = 0;
     }
-    a->mUnk_4a = 0;
-    a->mUnk_34 = 5;
-    a->mUnk_38 = 0;
-    a->mUnk_30 = 0;
+    dataSharing->mUnk_4a = 0;
+    dataSharing->mUnk_34 = 5;
+    dataSharing->mUnk_38 = 0;
+    dataSharing->mUnk_30 = 0;
     data_0217aa00->mUnk_0454 &= ~0x10;
     data_0217aa00->mUnk_008b &= ~1;
     q = &data_0217aa00->mUnk_1e4c_view;
@@ -461,8 +461,8 @@ void ResetConnectionData(void) {
     s32 l;
 
     for (i = 0; i < 7; i++) {
-        data_0217aa00->mUnk_0044.mUnk_00[i].mUnk_06 = 0xffff;
-        q = data_0217aa00->mUnk_0044.mUnk_00[i].mUnk_00;
+        data_0217aa00->mUnk_0044.mEntries[i].mAid = 0xffff;
+        q = data_0217aa00->mUnk_0044.mEntries[i].mUnk_00;
         for (j = 0; j < 6; j++) {
             q[j] = 0;
         }
@@ -471,7 +471,7 @@ void ResetConnectionData(void) {
     data_0217aa00->mUnk_0044.mChildMask = 0;
     data_0217aa00->mUnk_0044.mChildCount = 0;
     data_0217aa00->mUnk_0044.mUnk_3c = 0;
-    data_0217aa00->mUnk_0044.mUnk_41 = -1;
+    data_0217aa00->mUnk_0044.mDisconnectingIndex = -1;
     data_0217aa00->mUnk_0088 = -1;
     data_0217aa00->mUnk_008a = 0;
     data_0217aa00->mUnk_008b = 0;
@@ -510,8 +510,8 @@ void ResetConnectionData(void) {
 
 void func_02053e74(void) {
     Unk0217aa00_1e4c *q;
-    Unk0217aa00 *p;
-    RandomState *t;
+    ConnectionWork *connection;
+    RandomState *random;
     s32 i;
     s32 j;
     s32 a;
@@ -527,30 +527,30 @@ void func_02053e74(void) {
     }
     data_0217aa00->mUnk_0454 &= ~0x10;
     data_0217aa00->mUnk_0454 |= 8;
-    p = data_0217aa00;
+    connection = data_0217aa00;
     a = 0;
     switch (func_02053e74_inline()) {
         case 1:
-            a = p->mParentParameter->mUnk_0c;
+            a = connection->mParentParameter->mUnk_0c;
             break;
         case 2:
-            a = p->mUnk_0024->mUnk_48;
+            a = connection->mUnk_0024->mUnk_48;
             break;
     }
     b = 0;
     switch (func_02053e74_inline()) {
         case 1:
-            b = p->mParentParameter->mUnk_0c;
+            b = connection->mParentParameter->mUnk_0c;
             break;
         case 2:
-            b = p->mUnk_0024->mUnk_48;
+            b = connection->mUnk_0024->mUnk_48;
             break;
     }
-    p->mRandom.mStateLow = b + (a << 10);
-    t = &p->mRandom;
-    t->mStateHigh = 0;
-    t->mMultiplierLow = 0x6c078965;
-    t->mMultiplierHigh = 0x5d588b65;
-    t->mIncrementLow = 0x269ec3;
-    t->mIncrementHigh = 0;
+    connection->mRandom.mStateLow = b + (a << 10);
+    random = &connection->mRandom;
+    random->mStateHigh = 0;
+    random->mMultiplierLow = 0x6c078965;
+    random->mMultiplierHigh = 0x5d588b65;
+    random->mIncrementLow = 0x269ec3;
+    random->mIncrementHigh = 0;
 }

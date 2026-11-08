@@ -307,7 +307,7 @@ void SetNextSceneFromPickedValue(Unk0203a0dc *sceneNumbers, u32 pickedValue) {
             if (gRaceSetup->mMode != 5) {
                 u32 t;
                 u32 f;
-                Unk0217aa00 *q;
+                ConnectionWork *q;
                 f = 0;
                 q = data_0217aa00;
                 if (q == NULL) {

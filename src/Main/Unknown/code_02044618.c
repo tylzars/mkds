@@ -31,7 +31,7 @@ static inline void func_020446e0_inline(s32 f, u32 teamIndex, s32 playerKind, u3
     SetNextRaceEntry(entryIndex, characterIndex, kartIndex, playerKind, teamIndex, f);
 }
 
-static inline Unk0217aa00_45c *func_02045084_inline(Unk0217aa00 *q, s32 entryIndex) {
+static inline Unk0217aa00_45c *func_02045084_inline(ConnectionWork *q, s32 entryIndex) {
     u16 participantIndex;
 
     participantIndex = q->mUnk_1e8c[entryIndex];
@@ -118,7 +118,7 @@ void ResetRaceSetup(void) {
 
 void SetCurrentEntryPlayer(s32 entryIndex) {
     Unk0217aa08 *p;
-    Unk0217aa00 *q;
+    ConnectionWork *q;
     void **nameSlot;
     void **emblemDataSlot;
     u8 *b2;
@@ -314,7 +314,7 @@ BOOL func_02044bf8(s32 courseId, s32 entryIndex) {
 void SetCurrentRaceFromNext(void) {
     s16 entryIndex;
     GhostRecord *ghostRecord;
-    Unk0217aa00 *q;
+    ConnectionWork *q;
     u16 n;
     u16 entryCount;
     u8 i;

@@ -19,7 +19,7 @@ static inline u32 func_0204f814_inline(void) {
     return data_0217aa00->mUnk_0000;
 }
 
-static inline u32 func_0204ff14_inline(Unk0217aa00 *p) {
+static inline u32 func_0204ff14_inline(ConnectionWork *p) {
     if (p == NULL) {
         return 0;
     }
@@ -59,7 +59,7 @@ BOOL func_0204ffbc(void) {
 }
 
 BOOL func_0204ff14(u16 entryIndex, void *destination) {
-    Unk0217aa00 *t;
+    ConnectionWork *t;
     BOOL result;
 
     t = data_0217aa00;

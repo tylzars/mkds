@@ -210,7 +210,7 @@ void InitRaceProgressKart(RaceProgressKart *raceProgressKart, s32 kartIndex) {
     raceProgressKart->mUnk_3c = (raceProgressKart->mUnk_3c & ~0xf) | ((u16) (kartIndex + 1) & 0xf);
 }
 
-static inline u32 func_020401ac_inline(Unk0217aa00 *p) {
+static inline u32 func_020401ac_inline(ConnectionWork *p) {
     return p == NULL ? 0 : p->mUnk_0000;
 }
 
@@ -250,7 +250,7 @@ void InitRaceProgress(void) {
     u16 entryInRoute;
     u16 checkpointIndex;
     s32 v;
-    Unk0217aa00 *p;
+    ConnectionWork *p;
     CourseMapRoute *route;
     CourseMapCheckpoint *checkpoint;
 

@@ -32,7 +32,7 @@
 #pragma opt_rebuildconditionals off
 
 static inline BOOL func_0205f218_inline(void) {
-    Unk0217aa00 *p;
+    ConnectionWork *p;
 
     p = data_0217aa00;
     return (p == NULL ? 0 : p->mUnk_0000) != 0 && p->mUnk_0004 != 13;

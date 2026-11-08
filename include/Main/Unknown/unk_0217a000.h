@@ -272,7 +272,7 @@ typedef struct Unk0217aa00_24_50_0e {
     /* 36 */ Unk0217aa00_24_50_0e_36 mUnk_36;
 } Unk0217aa00_24_50_0e;
 
-// 0x70 bytes at 0x50 of ScanBlockView; the word at 0x38 of Unk0217aa00_44 points to one.
+// 0x70 bytes at 0x50 of ScanBlockView; the word at 0x38 of ChildList points to one.
 typedef struct Unk0217aa00_24_50 {
     union {
         struct {
@@ -300,7 +300,7 @@ typedef struct Unk0217aa00_24_50 {
     };
 } Unk0217aa00_24_50;
 
-// 0xc0 bytes behind member 0x24 of Unk0217aa00; the first 0xc0 bytes of each Unk0217aa00_0ac have the same layout.
+// 0xc0 bytes behind member 0x24 of ConnectionWork; the first 0xc0 bytes of each ScanSlot have the same layout.
 typedef struct ScanBlockView {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u8 mUnk_02[0x3a];
@@ -314,7 +314,7 @@ typedef struct ScanBlockView {
     /* 50 */ Unk0217aa00_24_50 mUnk_50;
 } ScanBlockView;
 
-// Object behind member 0x15c4 of Unk0217aa00.
+// Object behind member 0x15c4 of ConnectionWork.
 typedef struct Unk0217aa00_15c4 {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u16 mUnk_02;
@@ -330,23 +330,23 @@ typedef struct Unk0217aa00_15c4 {
     /* 07 */ u8 mUnk_07;
 } Unk0217aa00_15c4;
 
-// 8-byte entries from 0x44 of Unk0217aa00.
-typedef struct Unk0217aa00_44_00 {
+// 8-byte entries from 0x44 of ConnectionWork.
+typedef struct ChildEntry {
     /* 00 */ u8 mUnk_00[6];
-    /* 06 */ u16 mUnk_06;
-} Unk0217aa00_44_00;
+    /* 06 */ u16 mAid;
+} ChildEntry;
 
-// 0x44 bytes from 0x44 of Unk0217aa00.
-typedef struct Unk0217aa00_44 {
-    /* 00 */ Unk0217aa00_44_00 mUnk_00[7];
+// 0x44 bytes from 0x44 of ConnectionWork.
+typedef struct ChildList {
+    /* 00 */ ChildEntry mEntries[7];
     /* 38 */ Unk0217aa00_24_50 *mUnk_38;
     /* 3c */ u16 mUnk_3c;
     /* 3e */ u16 mUnk_3e;
     /* 40 */ u8 mChildCount;
-    /* 41 */ s8 mUnk_41;
+    /* 41 */ s8 mDisconnectingIndex;
     /* 42 */ u8 mUnk_42;
     /* 43 */ u8 mChildMask;
-} Unk0217aa00_44;
+} ChildList;
 
 // 8-byte entries behind member 0x1e48 of data_0217aa00.
 typedef struct ScanGhostInfo {
@@ -365,7 +365,7 @@ typedef struct Unk0217aa00_1e52 {
     /* 02 */ u8 mUnk_02[6];
 } Unk0217aa00_1e52;
 
-// Part of Unk0217aa00 from 0x1608.
+// Part of ConnectionWork from 0x1608.
 typedef struct MPStateMachine {
     /* 00 */ void *mUnk_00;
     /* 04 */ s32 mStateFrames;
@@ -404,7 +404,7 @@ typedef struct BlockEntry {
     };
 } BlockEntry;
 
-// Members from 0x16a0 of Unk0217aa00 as one object.
+// Members from 0x16a0 of ConnectionWork as one object.
 typedef struct Unk0217aa00_16a0_view {
     /* 000 */ BlockEntry mBlockEntries[12];
     /* 660 */ s32 mUnk_660;
@@ -426,7 +426,7 @@ typedef struct Unk0217aa00_16a0_view {
     /* 7a7 */ u8 mUnk_7a7[1];
 } Unk0217aa00_16a0_view;
 
-// 0x22c-byte entries from 0x45c of Unk0217aa00.
+// 0x22c-byte entries from 0x45c of ConnectionWork.
 typedef struct Unk0217aa00_45c {
     /* 000 */ u8 mUnk_000[0x14];
     /* 014 */ u8 mUnk_014;
@@ -454,8 +454,8 @@ typedef struct Unk0217aa00_42c {
     /* 00 */ u8 mUnk_00[6];
 } Unk0217aa00_42c;
 
-// 0xe0-byte entries from 0xac of Unk0217aa00.
-typedef struct Unk0217aa00_0ac {
+// 0xe0-byte entries from 0xac of ConnectionWork.
+typedef struct ScanSlot {
     /* 00 */ u8 mUnk_00[0xc0];
     /* c0 */ union {
         u8 mUnk_c0[6];
@@ -474,11 +474,11 @@ typedef struct Unk0217aa00_0ac {
         };
     };
     /* dd */ u8 mUnk_dd[3];
-} Unk0217aa00_0ac;
+} ScanSlot;
 
-// The 0x3b0 bytes from 0xac of Unk0217aa00 as one object: the four entries, then the members up to 0x45c.
+// The 0x3b0 bytes from 0xac of ConnectionWork as one object: the four entries, then the members up to 0x45c.
 typedef struct Unk0217aa00_ac {
-    /* 000 */ Unk0217aa00_0ac mUnk_000[4];
+    /* 000 */ ScanSlot mUnk_000[4];
     /* 380 */ u8 mUnk_380[6];
     /* 386 */ u8 mUnk_386[2];
     /* 388 */ u16 mUnk_388;
@@ -506,7 +506,7 @@ typedef struct Unk0217aa00_15c8 {
     /* 07 */ u8 mUnk_07;
 } Unk0217aa00_15c8;
 
-// Members 0x15bc to 0x1607 of Unk0217aa00 as one object.
+// Members 0x15bc to 0x1607 of ConnectionWork as one object.
 typedef struct DataSharing {
     /* 00 */ WMDataSharingInfo *mUnk_00;
     /* 04 */ WMDataSet *mUnk_04;
@@ -524,13 +524,13 @@ typedef struct DataSharing {
     /* 4b */ u8 mUnk_4b[1];
 } DataSharing;
 
-// 8-byte entries from 0x1e4c of Unk0217aa00.
+// 8-byte entries from 0x1e4c of ConnectionWork.
 typedef struct Unk0217aa00_1e4c_00 {
     /* 00 */ u16 mUnk_00[3];
     /* 06 */ u16 mUnk_06;
 } Unk0217aa00_1e4c_00;
 
-// Members 0x1e4c to 0x1ecf of Unk0217aa00 as one object.
+// Members 0x1e4c to 0x1ecf of ConnectionWork as one object.
 typedef struct Unk0217aa00_1e4c {
     /* 00 */ Unk0217aa00_1e4c_00 mUnk_00[8];
     /* 40 */ u8 mUnk_40[0x20];
@@ -550,13 +550,13 @@ typedef struct RandomState {
     /* 14 */ s32 mIncrementHigh;
 } RandomState;
 
-// What member 0x1da0 of Unk0217aa00 points to.
+// What member 0x1da0 of ConnectionWork points to.
 typedef struct BlockInfo {
     /* 00 */ s32 mBlockId;
     /* 04 */ s32 mSize;
 } BlockInfo;
 
-// Members 0x1658 to 0x169f of Unk0217aa00 as one object.
+// Members 0x1658 to 0x169f of ConnectionWork as one object.
 typedef struct Unk0217aa00_1658 {
     /* 00 */ void *mUnk_00;
     /* 04 */ void *mUnk_04;
@@ -578,7 +578,7 @@ typedef struct Unk0217aa00_1658 {
     /* 44 */ s32 mUnk_44;
 } Unk0217aa00_1658;
 
-typedef struct Unk0217aa00 {
+typedef struct ConnectionWork {
     /* 0000 */ u32 mUnk_0000;
     /* 0004 */ s32 mUnk_0004;
     /* 0008 */ s32 mUnk_0008;
@@ -596,7 +596,7 @@ typedef struct Unk0217aa00 {
     /* 0038 */ s32 mUnk_0038;
     /* 003c */ void *mUnk_003c;
     /* 0040 */ void *mUnk_0040;
-    /* 0044 */ Unk0217aa00_44 mUnk_0044;
+    /* 0044 */ ChildList mUnk_0044;
     /* 0088 */ s8 mUnk_0088;
     /* 0089 */ union {
         u8 mUnk_0089;
@@ -611,7 +611,7 @@ typedef struct Unk0217aa00 {
     /* 00a8 */ u8 mUnk_00a8[4];
     /* 00ac */ union {
         struct {
-            /* 00ac */ Unk0217aa00_0ac mUnk_00ac[4];
+            /* 00ac */ ScanSlot mUnk_00ac[4];
             /* 042c */ u8 mUnk_042c;
             /* 042d */ u8 mUnk_042d;
             /* 042e */ u8 mUnk_042e;
@@ -763,9 +763,9 @@ typedef struct Unk0217aa00 {
         Unk0217aa00_16a0_view mUnk_16a0_view;
     };
     /* 1ee8 */ RandomState64 mUnk_1ee8;
-} Unk0217aa00;
+} ConnectionWork;
 
-extern Unk0217aa00 *data_0217aa00;
+extern ConnectionWork *data_0217aa00;
 extern Unk0217aa08 *data_0217aa08;
 // Object behind data_0217aa0c; the OSThread at 0x2c is passed to OS_CreateThread and OS_WakeupThreadDirect.
 typedef struct Unk0217aa0c {

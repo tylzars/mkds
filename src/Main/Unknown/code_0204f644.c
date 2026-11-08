@@ -51,7 +51,7 @@ BOOL LoadPendingFiles(void) {
     if (FS_OpenFile(file, q) != 0) {
         q = data_0217aa00;
         size = file->mProp.p.mUnk_08 - file->mProp.p.mUnk_04;
-        buffer = ((Unk0217aa00 *) q)->mBlockEntries[nextIndex].mBuffer;
+        buffer = ((ConnectionWork *) q)->mBlockEntries[nextIndex].mBuffer;
         if (buffer == NULL) {
             buffer = HeapAllocAligned(data_0217aa00->mBlockEntries[nextIndex].mHeap, size, 0x20);
             *data_0217aa00->mBlockEntries[nextIndex].mDataOutput = buffer;

@@ -16,7 +16,7 @@
 
 s32 func_0204dd24(u16 a) {
     s32 result = 0;
-    Unk0217aa00 *g = data_0217aa00;
+    ConnectionWork *g = data_0217aa00;
 
     switch (g->mUnk_000c) {
         case 29:
@@ -112,7 +112,7 @@ s32 func_0204dd24(u16 a) {
             break;
         case 26:
         case 32:
-            func_02052ecc();
+            StartRomArchiveTransfer();
             break;
         case 36:
             StartConnect(NULL, NULL, NULL, (s32(*)()) func_0204df5c, NULL);
@@ -145,7 +145,7 @@ u8 CompactMaskBits(u8 mask) {
 
 s32 func_0204dc8c(void) {
     BOOL result = FALSE;
-    Unk0217aa00 *g = data_0217aa00;
+    ConnectionWork *g = data_0217aa00;
     u32 a = g->mUnk_1695;
     u8 childMask = g->mUnk_0044.mChildMask;
 
@@ -191,7 +191,7 @@ s32 func_0204db6c(void) {
             func_0204e090();
             break;
         case 27:
-            func_02052ecc();
+            StartRomArchiveTransfer();
             break;
         case 36:
             SetLifeTime(0x14);

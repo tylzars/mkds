@@ -3,8 +3,8 @@
 #include "types.h"
 
 // 0x18-byte object whose first halfword selects what ProcessMPData does with the rest.
-typedef struct Unk0205081c {
-    /* 00 */ u16 mUnk_00;
+typedef struct MPMessage {
+    /* 00 */ u16 mKind;
     /* 02 */ u8 mUnk_02[2];
     /* 04 */ s32 mUnk_04;
     /* 08 */ u8 mUnk_08[2];
@@ -12,7 +12,7 @@ typedef struct Unk0205081c {
     /* 0b */ u8 mUnk_0b[0xb];
     /* 16 */ u8 mUnk_16;
     /* 17 */ u8 mUnk_17;
-} Unk0205081c;
+} MPMessage;
 
 typedef struct Unk02050320 {
     /* 00 */ u16 mUnk_00;
@@ -40,29 +40,29 @@ typedef struct Unk020504a4 {
 
 typedef struct Unk0217aa00_45c Unk0217aa00_45c;
 
-u32 func_02050300(void);
-BOOL QueueMPDataHalfwordAndWord(s32 a, u16 b, s32 c);
-BOOL func_020503cc(s32 a, u16 b);
-BOOL func_020504a4(s32 a, u16 b);
-BOOL QueueMPDataHalfword(s32 a, u16 b);
-BOOL QueueMPDataToPort(void *a, s32 b, u16 c, void *d, QueueMPDataToPortParams *e);
-void MPDataPortCallback(Unk021425e8 *a);
-void ProcessMPData(u32 a, Unk0205081c *b);
-void RemoveChild(u32 a);
-void AddChild(u32 a, u8 *b, Unk0217aa00_45c *c);
+u32 QueueMPDataToPortCallback(void);
+BOOL QueueMPDataHalfwordAndWord(s32 kind, u16 destBitmap, s32 word);
+BOOL func_020503cc(s32 playerIndex, u16 destBitmap);
+BOOL func_020504a4(s32 playerIndex, u16 destBitmap);
+BOOL QueueMPDataHalfword(s32 kind, u16 destBitmap);
+BOOL QueueMPDataToPort(void *data, s32 dataSize, u16 destBitmap, void *sendBuffer, QueueMPDataToPortParams *params);
+void MPDataPortCallback(Unk021425e8 *event);
+void ProcessMPData(u32 aid, MPMessage *message);
+void RemoveChild(u32 aid);
+void AddChild(u32 aid, u8 *b, Unk0217aa00_45c *playerEntry);
 void func_02050e60(s32 a);
-void EndCallback(Unk021425e8 *a);
+void EndCallback(Unk021425e8 *event);
 void End(void);
-void func_0205108c(s32 a);
+void SetStepAndRequestPending(s32 a);
 BOOL func_020510ac(void);
 s32 func_020510c8(void);
 BOOL func_020510e4(void);
-void DisconnectCallback(Unk021425e8 *a);
+void DisconnectCallback(Unk021425e8 *event);
 void Disconnect(void);
-void EndParentCallback(Unk021425e8 *a);
+void EndParentCallback(Unk021425e8 *event);
 void EndParent(void);
-void EndMPCallback(Unk021425e8 *a);
+void EndMPCallback(Unk021425e8 *event);
 void EndMP(void);
 void EndDataSharing(void);
-void DisconnectChildrenCallback(Unk021425e8 *a);
-void DisconnectChildren(u32 a);
+void DisconnectChildrenCallback(Unk021425e8 *event);
+void DisconnectChildren(u32 aidBitmap);
