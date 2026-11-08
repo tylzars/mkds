@@ -7,14 +7,14 @@ typedef struct Ncgr Ncgr;
 typedef struct Nclr Nclr;
 typedef struct Unk02021dc8 Unk02021dc8;
 
-// Elements of the table at member 0x14 of Unk0217b43c.
+// Elements of the table at member 0x14 of MenuScene.
 typedef struct ScreenCallbacks {
     /* 0 */ void (*mUnk_00)(void);
     /* 4 */ void (*mUpdate)(u32 a);
 } ScreenCallbacks;
 
 // Object behind data_0217b43c.
-typedef struct Unk0217b43c {
+typedef struct MenuScene {
     /* 000 */ s32 mFramesSinceScreenSwitch;
     /* 004 */ s32 mUnk_004;
     /* 008 */ s32 mPreviousScreenNumber;
@@ -45,6 +45,6 @@ typedef struct Unk0217b43c {
     /* 954 */ u8 *mUnk_954;
     /* 958 */ BOOL mUnk_958;
     /* 95c */ BOOL mUnk_95c;
-} Unk0217b43c;
+} MenuScene;
 
 void func_020cae8c(void);

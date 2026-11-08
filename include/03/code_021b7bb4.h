@@ -15,7 +15,7 @@ typedef struct Unk021d6810 {
 
 #include "03/code_021b94b8.h"
 
-typedef struct Unk021b916c Unk021b916c;
+typedef struct PacketTag PacketTag;
 typedef struct Unk021b86e4 Unk021b86e4;
 
 typedef struct KeyStreamState {
@@ -100,10 +100,10 @@ typedef struct ParsedItems {
     /* 348 */ u8 pad_348[8];
 } ParsedItems;
 
-typedef struct Unk021ba734 Unk021ba734;
-typedef struct Unk021ba1b0 Unk021ba1b0;
-typedef struct Unk021b916c Unk021b916c;
-typedef struct Unk021d7c54 Unk021d7c54;
+typedef struct EssidEntryList EssidEntryList;
+typedef struct EssidMelcoRequest EssidMelcoRequest;
+typedef struct PacketTag PacketTag;
+typedef struct PacketBuffer PacketBuffer;
 
 typedef struct Packet {
     /* 00 */ u8 pad_00[6];
@@ -113,7 +113,7 @@ typedef struct Packet {
     /* 0c */ u16 mFlags;
     /* 0e */ u8 mPayloadCrc;
     /* 0f */ u8 mUnk_0f;
-    /* 10 */ Unk021b916c mTag;
+    /* 10 */ PacketTag mTag;
     /* 18 */ u8 mPayload[1];
 } Packet;
 
@@ -181,10 +181,10 @@ s32 SendPacket(void *a, s32 b, u32 c, s32 d);
 void FillPacketHeader(void *p, s32 b, s32 c, s32 d, s8 e, s8 f, const u8 *g);
 void FillPayloadRecord(s32 a, void *b, const void *c, s16 *d, s16 *e, s8 *f);
 s16 BuildTwoItemChain(void *a);
-s32 SendPacketKind3000(Unk021b86e4 *a, Unk021b916c *b, s32 c);
-s32 SendPacketKind2000(Unk021b86e4 *a, Unk021b916c *b, s32 c);
-s32 SendPacketKind1000(Unk021b86e4 *a, Unk021b916c *b, s32 c);
-s32 ReportStateAndSendPacketForMode(s32 mode, Unk021b86e4 *buf, Unk021b916c *list, s32 id);
+s32 SendPacketKind3000(Unk021b86e4 *a, PacketTag *b, s32 c);
+s32 SendPacketKind2000(Unk021b86e4 *a, PacketTag *b, s32 c);
+s32 SendPacketKind1000(Unk021b86e4 *a, PacketTag *b, s32 c);
+s32 ReportStateAndSendPacketForMode(s32 mode, Unk021b86e4 *buf, PacketTag *list, s32 id);
 s32 IsBit4Set(u32 value);
 s32 FindItemAndParseSubItems(s32 a, PacketItem *b, s32 c, ParsedItems *d, u8 *e);
 s32 CopyFirstItemValueIfType0x70(PacketItem *a, u8 *b);
@@ -192,17 +192,17 @@ s32 ParseSingleValueItems(PacketItem *a, SingleValueRecord *b);
 s32 ParseFourValueItems(PacketItem *a, FourValueRecord *b);
 u32 ReadLittleEndianValue(const u8 *bytes, s32 count);
 s32 ParseItemChain(PacketItem *a, u8 *b);
-s32 XorSwapAndCheckTag(Unk021b916c *a, Unk021b916c *b);
+s32 XorSwapAndCheckTag(PacketTag *a, PacketTag *b);
 s32 CheckTagAgainstSavedBytesOrKind1000(s32 a, const u8 *b);
 s32 CheckPacketAndXorPayload(Packet *a);
-s32 AdvanceStepForKind3010(s32 mode, Unk021d7c54 *buffer, s32 *attempts, Unk021b916c *list);
-s32 AdvanceStepForKind2010(s32 mode, Unk021d7c54 *buffer, s32 *attempts, Unk021b916c *list);
-s32 AdvanceStepForKind1010(s32 mode, Unk021d7c54 *buffer, s32 *attempts, Unk021b916c *list);
-s32 AdvanceStepByKind(s32 a, Unk021d7c54 *b, s32 *c, Unk021b916c *d, s32 e);
+s32 AdvanceStepForKind3010(s32 mode, PacketBuffer *buffer, s32 *attempts, PacketTag *list);
+s32 AdvanceStepForKind2010(s32 mode, PacketBuffer *buffer, s32 *attempts, PacketTag *list);
+s32 AdvanceStepForKind1010(s32 mode, PacketBuffer *buffer, s32 *attempts, PacketTag *list);
+s32 AdvanceStepByKind(s32 a, PacketBuffer *b, s32 *c, PacketTag *d, s32 e);
 s32 ReportStateChange(s32 a);
-void FillPacketTags(s32 a, Unk021b916c *b, const u8 *c);
-s32 FillEssidAossAndMelcoRequest(Unk021ba1b0 *a);
-s32 CheckSingleEssidAossEntry(Unk021ba734 *a);
+void FillPacketTags(s32 a, PacketTag *b, const u8 *c);
+s32 FillEssidAossAndMelcoRequest(EssidMelcoRequest *a);
+s32 CheckSingleEssidAossEntry(EssidEntryList *a);
 s32 CheckBytesInRange0x20To0x7f(const u8 *bytes, s32 count);
 s32 CheckAndCopyValueRecordsToRequest(Unk021b94c4 *a);
 s32 func_ov003_021b94ac(void);

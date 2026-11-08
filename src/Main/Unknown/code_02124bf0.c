@@ -24,8 +24,8 @@ void InitLayoutTable(void *heap, Unk0201ea30 *cellLayout, Unk0201ea30 *labelLayo
 
 // Draws entry a: first the entry it is chained to, then itself; appends the cell OAMs to the list, and returns without
 // drawing when the entry is disabled or lies off the 256 x 192 screen.
-u32 DrawLayoutEntry(s32 index, Unk02021dc8 *cells, Unk0201ea30 *cellLayout, Unk0201ea30 *labelLayout,
-                    Unk02124c70 *oamList, LayoutTableEntry *entry, s32 incrementFlag) {
+u32 DrawLayoutEntry(s32 index, Unk02021dc8 *cells, Unk0201ea30 *cellLayout, Unk0201ea30 *labelLayout, OamList *oamList,
+                    LayoutTableEntry *entry, s32 incrementFlag) {
     s32 width;
     s32 height;
     s32 *matrix;

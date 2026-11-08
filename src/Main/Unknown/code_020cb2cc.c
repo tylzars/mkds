@@ -10,7 +10,7 @@
 #pragma thumb on
 
 void DrawSinglePlaySelectCells(void) {
-    Unk0217b43c *menu;
+    MenuScene *menu;
     func_020cb340();
     menu = data_0217b43c;
     DrawLayoutTable(menu->mSinglePlaySelectModeMBncl, menu->mSinglePlaySelectModeMNcer, NULL, menu->mMainOam,

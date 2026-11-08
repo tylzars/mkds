@@ -33,7 +33,7 @@
 #pragma thumb on
 #pragma optimize_for_size on
 void InitCurrentMenuScreen(void) {
-    Unk0217b43c *menu;
+    MenuScene *menu;
     s32 variant;
 
     menu = data_0217b43c;

@@ -62,13 +62,13 @@ typedef struct RockObject {
 } RockObject;
 
 // Twelve bytes func_020d634c fills: a word and three halfwords.
-typedef struct Unk020d634c {
+typedef struct EmitterParams {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s16 mUnk_04;
     /* 06 */ s16 mUnk_06;
     /* 08 */ s16 mUnk_08;
     /* 0a */ u8 mUnk_0a[2];
-} Unk020d634c;
+} EmitterParams;
 
 void UpdateRock(void *a, RockObject *rock);
 void func_020d634c(RockObject *rock, s32 b);

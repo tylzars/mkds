@@ -6,12 +6,12 @@ typedef struct MapObjectKindData MapObjectKindData;
 typedef struct MapObject MapObject;
 typedef struct MapObjectList MapObjectList;
 
-struct Unk021000d0;
+struct MapObjectKindDescriptor;
 
 // Row of the table searched by func_021000d0 and func_02100138.
 typedef struct MapObjectKindRow {
     /* 00 */ u32 mKind;
-    /* 04 */ struct Unk021000d0 *mUnk_04;
+    /* 04 */ struct MapObjectKindDescriptor *mUnk_04;
     /* 08 */ void *mUnk_08;
 } MapObjectKindRow;
 
@@ -66,7 +66,7 @@ extern MapObjectKindRow data_0216b288[];
 #define MAP_OBJECT_KIND_BERRY 0x1b5
 
 // Object behind MapObjectKindRow.mUnk_04.
-typedef struct Unk021000d0 {
+typedef struct MapObjectKindDescriptor {
     /* 00 */ u16 mObjectCount;
     /* 02 */ u8 mUnk_02[2];
     /* 04 */ s32 mObjectSize;
@@ -78,7 +78,7 @@ typedef struct Unk021000d0 {
     /* 1c */ MapObjectList *(*mCreateUpdateList)(void);
     /* 20 */ MapObjectKindData *mKindData;
     /* 24 */ MapObjectList *mLists[4];
-} Unk021000d0;
+} MapObjectKindDescriptor;
 
 void *func_02100138(u32 a);
 void *func_021000d0(u32 a);

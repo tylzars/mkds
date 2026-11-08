@@ -213,7 +213,7 @@ u32 func_0205955c(void) {
 
 // Asks for state 16 with the next race's course and mode.
 void RequestMPState16(void *a, void *b) {
-    Unk0217aa00_1608 *part;
+    MPStateMachine *part;
     data_0217aa00->mUnk_1e34 = 0;
     data_0217aa00->mUnk_1e44 &= ~2;
     part = &data_0217aa00->mUnk_1608;
@@ -259,7 +259,7 @@ static inline s32 func_020593dc_inline4(void) {
 }
 
 void RequestMPState18(void) {
-    Unk0217aa00_1608 *p;
+    MPStateMachine *p;
 
     data_0217aa00->mUnk_1e34 = 0;
     data_0217aa00->mUnk_1e44 &= ~2;
@@ -269,7 +269,7 @@ void RequestMPState18(void) {
 }
 
 void RequestMPState21(void) {
-    Unk0217aa00_1608 *p;
+    MPStateMachine *p;
 
     data_0217aa00->mUnk_1e34 = 0;
     data_0217aa00->mUnk_1e44 &= ~2;
@@ -313,7 +313,7 @@ void EnterMPState16(void) {
 
 void UpdateMPState16(void) {
     int v1;
-    Unk0217aa00_1608 *v2;
+    MPStateMachine *v2;
     v1 = func_020593dc();
     if (v1 == 1) {
         v2 = &data_0217aa00->mUnk_1608;
@@ -350,7 +350,7 @@ void func_02059304(void) {
 
 void UpdateMPState17(void) {
     int v1;
-    Unk0217aa00_1608 *v2;
+    MPStateMachine *v2;
     v1 = func_02058dc0(func_0205933c);
     if (v1 == 1) {
         v2 = &data_0217aa00->mUnk_1608;
@@ -372,7 +372,7 @@ void EnterMPState20(void) {
 }
 
 void UpdateMPState20(void) {
-    Unk0217aa00_1608 *v1;
+    MPStateMachine *v1;
     if (data_0217aa00->mRequestPending == 0) {
         v1 = &data_0217aa00->mUnk_1608;
         v1->mNextState = 0xf;

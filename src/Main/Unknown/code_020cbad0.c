@@ -63,7 +63,7 @@
 #pragma thumb on
 #pragma optimize_for_size on
 void InitMenu(void) {
-    Unk0217b43c *menu;
+    MenuScene *menu;
     Unk02125de0Arg config;
     Unk02180774 *displaySettings;
 

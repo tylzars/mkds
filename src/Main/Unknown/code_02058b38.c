@@ -21,7 +21,7 @@ static inline u32 func_02058b38_inline(void) {
 }
 
 static inline void func_02058b74_inline(u16 v) {
-    Unk0217aa00_1608 *p = &data_0217aa00->mUnk_1608;
+    MPStateMachine *p = &data_0217aa00->mUnk_1608;
     p->mNextState = v;
     p->mNextStateRequested = 1;
 }

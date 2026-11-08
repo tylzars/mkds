@@ -67,19 +67,19 @@ typedef struct Unk021ba778Dst {
     /* 50 */ u32 mUnk_50;
 } Unk021ba778Dst;
 
-typedef struct Unk021ba734 {
+typedef struct EssidEntryList {
     /* 00 */ s32 mUnk_00;
     /* 04 */ Unk021ba778Dst mUnk_04[1];
-} Unk021ba734;
+} EssidEntryList;
 
 /* Search request handed to func_ov003_021ba1b0. */
-typedef struct Unk021ba1b0 {
+typedef struct EssidMelcoRequest {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u8 mUnk_04[0x20];
     /* 24 */ BOOL mUnk_24;
     /* 28 */ s32 mUnk_28;
     /* 2c */ u8 mUnk_2c[0x10];
-} Unk021ba1b0;
+} EssidMelcoRequest;
 
 typedef struct Unk021d687c {
     u16 mUnk_00;
@@ -110,10 +110,10 @@ typedef struct Unk021b7cec {
     /* 4 */ u32 mUnk_04;
 } Unk021b7cec;
 
-typedef struct Unk021b916c {
+typedef struct PacketTag {
     /* 0 */ u8 mUnk_00[6];
     /* 6 */ u16 mUnk_06;
-} Unk021b916c;
+} PacketTag;
 
 typedef struct Unk021b86e4 {
     /* 00 */ u32 mUnk_00;
@@ -121,19 +121,19 @@ typedef struct Unk021b86e4 {
     /* 10 */ u32 mUnk_10;
 } Unk021b86e4;
 
-typedef struct Unk021d7c54 {
+typedef struct PacketBuffer {
     /* 00 */ s32 mUnk_00;
     /* 04 */ u32 mUnk_04;
     /* 08 */ u8 pad_08[4];
     /* 0c */ u8 mUnk_0c[0x5ec];
-} Unk021d7c54;
+} PacketBuffer;
 
 extern s32 data_ov003_021d6804;
 extern Unk021d6808 data_ov003_021d6808;
-extern Unk021ba734 *data_ov003_021d7c44;
-extern Unk021ba734 *data_ov003_021d7c4c;
+extern EssidEntryList *data_ov003_021d7c44;
+extern EssidEntryList *data_ov003_021d7c4c;
 extern s32 data_ov003_021d7c50;
-extern Unk021d7c54 *data_ov003_021d7c54;
+extern PacketBuffer *data_ov003_021d7c54;
 extern u8 data_ov003_021d7c58[8];
 extern Unk021d7c6c data_ov003_021d7c6c;
 extern void *(*data_ov003_021d8a0c)(u32);
@@ -155,15 +155,15 @@ void func_ov003_021ba164(void *ptr);
 void *func_ov003_021ba178(u32 size);
 s32 func_ov003_021ba18c(s32 state);
 void func_ov003_021ba1a8(u32 ms);
-s32 func_ov003_021ba1b0(Unk021ba1b0 *request, Unk021ba734 *out);
-s32 func_ov003_021ba394(Unk021ba734 **out);
+s32 func_ov003_021ba1b0(EssidMelcoRequest *request, EssidEntryList *out);
+s32 func_ov003_021ba394(EssidEntryList **out);
 s32 func_ov003_021ba524(void);
 s32 func_ov003_021ba560(void);
 s32 func_ov003_021ba61c(void *(*alloc)(u32), void (*release)(void *));
 s32 func_ov003_021ba70c(void *msg);
 s32 func_ov003_021ba720(void *msg);
-void func_ov003_021ba734(Unk021ba734 *list, Unk021ba778Src *src, s32 count);
-void func_ov003_021ba744(Unk021ba1b0 *request, Unk021ba778Src *rec);
+void func_ov003_021ba734(EssidEntryList *list, Unk021ba778Src *src, s32 count);
+void func_ov003_021ba744(EssidMelcoRequest *request, Unk021ba778Src *rec);
 void func_ov003_021ba778(Unk021ba778Src *src, Unk021ba778Dst *dst);
 
 #include "03/code_021b7000.h"

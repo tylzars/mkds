@@ -17,7 +17,7 @@
 #pragma thumb on
 #pragma optimize_for_size on
 void UpdateMenuScreen(u32 a) {
-    Unk0217b43c *menu;
+    MenuScene *menu;
     enum { K0 } screenNumber;
 
     if (func_02049b6c() == 0) {

@@ -24,7 +24,7 @@
 struct RandomState64;
 struct MapObjects;
 struct Water;
-struct Unk0217b43c;
+struct MenuScene;
 struct Nscr;
 struct Ncgr;
 struct Nclr;
@@ -709,7 +709,7 @@ extern struct RaceGoalM *gRaceGoalM;
 extern struct RaceNewRecordTa *gRaceNewRecordTa;
 extern s32 data_0217b3f8;
 extern EmblemChoises *gEmblemChoises;
-extern struct Unk0217b43c *data_0217b43c;
+extern struct MenuScene *data_0217b43c;
 extern struct CupPicture *gCupPicture;
 extern struct Unk0217b4b0 *data_0217b4b0;
 extern struct RandomState64 *gRaceRandom;

@@ -98,7 +98,7 @@ typedef struct PacketHeaderPrefix {
 } PacketHeaderPrefix;
 
 // Returns 0 when exactly one entry with bit 0 of mUnk_50 holds the gEssidAossString bytes, 4 for several, 5 for none.
-s32 CheckSingleEssidAossEntry(Unk021ba734 *a) {
+s32 CheckSingleEssidAossEntry(EssidEntryList *a) {
     s32 m;
     s32 r;
     s32 i;
@@ -130,7 +130,7 @@ s32 CheckSingleEssidAossEntry(Unk021ba734 *a) {
     return r;
 }
 
-s32 FillEssidAossAndMelcoRequest(Unk021ba1b0 *a) {
+s32 FillEssidAossAndMelcoRequest(EssidMelcoRequest *a) {
     a->mUnk_00 = GetStringLength(gEssidAossString);
     CopyBytes(a->mUnk_04, gEssidAossString, a->mUnk_00);
     a->mUnk_24 = TRUE;
@@ -142,7 +142,7 @@ s32 FillEssidAossAndMelcoRequest(Unk021ba1b0 *a) {
     return 0;
 }
 
-void FillPacketTags(s32 a, Unk021b916c *b, const u8 *c) {
+void FillPacketTags(s32 a, PacketTag *b, const u8 *c) {
     s32 i;
     for (i = 0; i < a; i++) {
         CopyBytes(b, c, 6);
@@ -165,7 +165,7 @@ s32 ReportStateChange(s32 a) {
     return r;
 }
 
-s32 AdvanceStepByKind(s32 a, Unk021d7c54 *b, s32 *c, Unk021b916c *d, s32 e) {
+s32 AdvanceStepByKind(s32 a, PacketBuffer *b, s32 *c, PacketTag *d, s32 e) {
     PacketHeaderPrefix *p = (PacketHeaderPrefix *) b->mUnk_0c;
     u32 v;
     if (SwapBytes16(p->mUnk_00) < 1) {
@@ -195,7 +195,7 @@ s32 AdvanceStepByKind(s32 a, Unk021d7c54 *b, s32 *c, Unk021b916c *d, s32 e) {
     return a;
 }
 
-s32 AdvanceStepForKind1010(s32 v1, Unk021d7c54 *v2, s32 *v3, Unk021b916c *v4) {
+s32 AdvanceStepForKind1010(s32 v1, PacketBuffer *v2, s32 *v3, PacketTag *v4) {
     Packet *a;
     Unk021b7cec *b;
     u32 *p;
@@ -244,7 +244,7 @@ s32 AdvanceStepForKind1010(s32 v1, Unk021d7c54 *v2, s32 *v3, Unk021b916c *v4) {
     return 1;
 }
 
-s32 AdvanceStepForKind2010(s32 v1, Unk021d7c54 *v2, s32 *v3, Unk021b916c *v4) {
+s32 AdvanceStepForKind2010(s32 v1, PacketBuffer *v2, s32 *v3, PacketTag *v4) {
     Packet *a;
     Unk021b7cec *b;
     s32 c;
@@ -286,7 +286,7 @@ s32 AdvanceStepForKind2010(s32 v1, Unk021d7c54 *v2, s32 *v3, Unk021b916c *v4) {
     return 2;
 }
 
-s32 AdvanceStepForKind3010(s32 v1, Unk021d7c54 *v2, s32 *v3, Unk021b916c *v4) {
+s32 AdvanceStepForKind3010(s32 v1, PacketBuffer *v2, s32 *v3, PacketTag *v4) {
     Packet *a;
     Unk021b7cec *b;
     s32 c;
@@ -395,7 +395,7 @@ s32 CheckTagAgainstSavedBytesOrKind1000(s32 a, const u8 *b) {
     return c;
 }
 
-s32 XorSwapAndCheckTag(Unk021b916c *a, Unk021b916c *b) {
+s32 XorSwapAndCheckTag(PacketTag *a, PacketTag *b) {
     s32 c;
     c = 0;
     XorAndSwapBytesWithKey(b->mUnk_00, 8, gMelcoString, GetStringLength(gMelcoString));
@@ -664,7 +664,7 @@ s32 IsBit4Set(u32 value) {
 }
 
 // Reports state 2, 3 or 5 and sends the packet of kind 0x1000, 0x2000 or 0x3000 for mode 0, 1 or 2.
-s32 ReportStateAndSendPacketForMode(s32 v1, Unk021b86e4 *v2, Unk021b916c *v3, s32 v4) {
+s32 ReportStateAndSendPacketForMode(s32 v1, Unk021b86e4 *v2, PacketTag *v3, s32 v4) {
     switch (v1) {
         case 0:
             ReportStateChange(2);
@@ -679,9 +679,9 @@ s32 ReportStateAndSendPacketForMode(s32 v1, Unk021b86e4 *v2, Unk021b916c *v3, s3
     return -1;
 }
 
-s32 SendPacketKind1000(Unk021b86e4 *a, Unk021b916c *b, s32 c) {
+s32 SendPacketKind1000(Unk021b86e4 *a, PacketTag *b, s32 c) {
     PacketFieldValues d;
-    Unk021d7c54 *e;
+    PacketBuffer *e;
     ItemContainer *f;
     u8 *g;
     d.mPayloadCrc = 0;
@@ -727,13 +727,13 @@ s32 SendPacketKind1000(Unk021b86e4 *a, Unk021b916c *b, s32 c) {
     return 0;
 }
 
-s32 SendPacketKind2000(Unk021b86e4 *a, Unk021b916c *b, s32 c) {
+s32 SendPacketKind2000(Unk021b86e4 *a, PacketTag *b, s32 c) {
     s8 d;
     s16 g;
     s16 h;
     u8 k[8];
     Unk021b7cec e;
-    Unk021d7c54 *f;
+    PacketBuffer *f;
     d = 0;
     g = 0;
     h = 0;
@@ -758,8 +758,8 @@ s32 SendPacketKind2000(Unk021b86e4 *a, Unk021b916c *b, s32 c) {
     return 0;
 }
 
-s32 SendPacketKind3000(Unk021b86e4 *a, Unk021b916c *b, s32 c) {
-    Unk021d7c54 *d;
+s32 SendPacketKind3000(Unk021b86e4 *a, PacketTag *b, s32 c) {
+    PacketBuffer *d;
     u8 e[8];
     d = data_ov003_021d7c54;
     FillBytes(d, 0, 0x5dc);

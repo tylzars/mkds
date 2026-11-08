@@ -57,8 +57,8 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
     s32 i;
     s32 j;
     MapObjectKindRow *row;
-    Unk021000d0 *descriptor;
-    Unk021000d0 *otherDescriptor;
+    MapObjectKindDescriptor *descriptor;
+    MapObjectKindDescriptor *otherDescriptor;
     MapObjectKindData *kindData;
     GrpconfTblRow *grpconfRow;
     MapObject *object;
@@ -316,7 +316,7 @@ void InitMapObjects(void) {
     s32 isNewList;
     u32 v;
     MapObjectKindRow *row;
-    Unk021000d0 *descriptor;
+    MapObjectKindDescriptor *descriptor;
     CourseMapRow *courseRow;
     MapObject *mapObject;
     MapObjectList *kindLists[3];

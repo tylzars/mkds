@@ -35,7 +35,7 @@
 #pragma thumb on
 
 void func_02058b10(void) {
-    Unk0217aa00_1608 *v1;
+    MPStateMachine *v1;
     CombineParticipantBits();
     v1 = &data_0217aa00->mUnk_1608;
     v1->mNextState = 0xf;
@@ -75,7 +75,7 @@ void UpdateMPState5(void) {
 }
 
 void UpdateMPState6(void) {
-    Unk0217aa00_1608 *p;
+    MPStateMachine *p;
 
     if (func_02058a40_inline() == 1 && (data_0217aa00->mUnk_0454 & 1)) {
         if (QueueMPDataHalfwordAndWord(2, data_0217aa00->mUnk_0044.mChildMask, data_0217aa00->mUnk_0457) != FALSE) {
@@ -97,7 +97,7 @@ void EnterMPState3(void) {
 
 void UpdateMPState3(void) {
     int v1;
-    Unk0217aa00_1608 *v2;
+    MPStateMachine *v2;
     v1 = func_0205955c();
     if (v1 == 1) {
         v2 = &data_0217aa00->mUnk_1608;
@@ -111,7 +111,7 @@ void UpdateMPState3(void) {
 #pragma thumb on
 
 static inline void func_02058910_inline(u16 v) {
-    Unk0217aa00_1608 *p = &data_0217aa00->mUnk_1608;
+    MPStateMachine *p = &data_0217aa00->mUnk_1608;
     p->mNextState = v;
     p->mNextStateRequested = 1;
 }
@@ -180,7 +180,7 @@ void EnterMPState4(void) {
 
 void UpdateMPState4(void) {
     int v1;
-    Unk0217aa00_1608 *p;
+    MPStateMachine *p;
     v1 = func_02058dc0(func_02058efc);
     if (v1 == 1) {
         p = &data_0217aa00->mUnk_1608;
@@ -201,7 +201,7 @@ static inline u32 func_02058820_inline(void) {
 }
 
 static inline void func_020587d8_inline(u16 v) {
-    Unk0217aa00_1608 *p = &data_0217aa00->mUnk_1608;
+    MPStateMachine *p = &data_0217aa00->mUnk_1608;
     p->mNextState = v;
     p->mNextStateRequested = 1;
 }
@@ -284,7 +284,7 @@ static inline u32 func_0205821c_inline(void) {
 }
 
 static inline void func_0205821c_inline2(u16 v) {
-    Unk0217aa00_1608 *p = &data_0217aa00->mUnk_1608;
+    MPStateMachine *p = &data_0217aa00->mUnk_1608;
     p->mNextState = v;
     p->mNextStateRequested = 1;
 }
@@ -515,7 +515,7 @@ static inline u32 func_020580a4_inline(void) {
 }
 
 static inline void func_020580a4_inline2(u16 v) {
-    Unk0217aa00_1608 *p = &data_0217aa00->mUnk_1608;
+    MPStateMachine *p = &data_0217aa00->mUnk_1608;
     p->mNextState = v;
     p->mNextStateRequested = 1;
 }
@@ -593,7 +593,7 @@ static inline u32 func_02057fe8_inline(void) {
 }
 
 static inline void func_02057fe8_inline2(u16 v) {
-    Unk0217aa00_1608 *p = &data_0217aa00->mUnk_1608;
+    MPStateMachine *p = &data_0217aa00->mUnk_1608;
     p->mNextState = v;
     p->mNextStateRequested = 1;
 }

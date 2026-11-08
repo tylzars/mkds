@@ -22,7 +22,7 @@ void func_ov003_021d2d14(void) {
 }
 
 void func_ov003_021d2c78(void) {
-    Unk021da2d4Input *a = data_ov003_021da2d4;
+    KeyTouchInput *a = data_ov003_021da2d4;
     u16 b = ((*(u16 *) 0x4000130 | *(u16 *) 0x27fffa8) ^ 0x2fff) & 0x2fff;
     s32 i;
     u16 c;
@@ -53,7 +53,7 @@ void func_ov003_021d2b3c(void) {
     u32 c;
     s32 i;
     TPData d;
-    Unk021da2d4Input *g;
+    KeyTouchInput *g;
 
     if (data_ov003_021da2d4->mBits.mBit_0 != 0) {
         a = 1;
@@ -125,7 +125,7 @@ u32 func_ov003_021d2acc(u32 a) {
 }
 
 u32 func_ov003_021d2a80(const Unk021d299c *v1) {
-    Unk021da2d4Input *v2 = data_ov003_021da2d4;
+    KeyTouchInput *v2 = data_ov003_021da2d4;
     if (v2->mBits.mBit_0 == 0) {
         return 0;
     }
@@ -145,7 +145,7 @@ u32 func_ov003_021d2a80(const Unk021d299c *v1) {
 }
 
 u32 func_ov003_021d2a34(const Unk021d299c *rect) {
-    Unk021da2d4Input *input = data_ov003_021da2d4;
+    KeyTouchInput *input = data_ov003_021da2d4;
     if ((((u32) input->mUnk_38 << 30) >> 31) == 0) {
         return 0;
     }
@@ -165,7 +165,7 @@ u32 func_ov003_021d2a34(const Unk021d299c *rect) {
 }
 
 u32 func_ov003_021d29e8(const Unk021d299c *rect) {
-    Unk021da2d4Input *input = data_ov003_021da2d4;
+    KeyTouchInput *input = data_ov003_021da2d4;
     if ((((u32) input->mUnk_38 << 29) >> 31) == 0) {
         return 0;
     }
@@ -185,7 +185,7 @@ u32 func_ov003_021d29e8(const Unk021d299c *rect) {
 }
 
 u32 func_ov003_021d299c(const Unk021d299c *rect) {
-    Unk021da2d4Input *input = data_ov003_021da2d4;
+    KeyTouchInput *input = data_ov003_021da2d4;
     if ((((u32) input->mUnk_38 << 28) >> 31) == 0) {
         return 0;
     }
@@ -214,7 +214,7 @@ u32 func_ov003_021d2970(const Unk021d299c *input) {
 }
 
 BOOL func_ov003_021d2940(u16 *output) {
-    Unk021da2d4Input *state = data_ov003_021da2d4;
+    KeyTouchInput *state = data_ov003_021da2d4;
     if (state->mBits.mBit_0 == 0) {
         output[0] = state->mUnk_2c;
         output[1] = state->mUnk_2e;

@@ -37,9 +37,9 @@ typedef struct RockUpdateList {
     /* 24 */ struct RockUpdateList **mUnk_24;
 } RockUpdateList;
 
-#include "Main/Unknown/code_020d50ec.h" // Unk020d634c, RockObject
+#include "Main/Unknown/code_020d50ec.h" // EmitterParams, RockObject
 
-void func_020d6538(Unk020d6538_a *emitter, Unk020d634c *params);
+void func_020d6538(Unk020d6538_a *emitter, EmitterParams *params);
 void func_020d655c(void *a, RockObject *rock, void *c, s32 alpha);
 void SetupDrawRock(void);
 RockUpdateList *CreateRockUpdateList(void);

@@ -23,7 +23,7 @@ void UpdateSinglePlaySelectInput(s32 a) {
     u32 pairX;
     s32 touchedIndex;
     s32 previousSelected;
-    Unk0217b43c *menu;
+    MenuScene *menu;
 
     if (a != 0) {
         v = func_020cb224();

@@ -4,13 +4,13 @@
 
 typedef struct Unk0217aa14_104_68 Unk0217aa14_104_68;
 
-struct Unk021000d0;
+struct MapObjectKindDescriptor;
 
 void UpdateResultScene(u32 arg0);
 void func_02059bcc(void);
 void ReleaseResultScene(void);
 void InitResultScene(void);
-u32 IsInOverlayRange(struct Unk021000d0 *address);
+u32 IsInOverlayRange(struct MapObjectKindDescriptor *address);
 void ReleaseCurrentOverlay(void);
 s32 TryFinishOverlayLoad(void);
 void FreeOverlayExpHeap(void);

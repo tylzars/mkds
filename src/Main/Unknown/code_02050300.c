@@ -310,7 +310,7 @@ void AddChild(u32 a, u8 *b, Unk0217aa00_45c *c) {
 }
 
 static inline void func_0205081c_inline2(u16 v) {
-    Unk0217aa00_1608 *p = &data_0217aa00->mUnk_1608;
+    MPStateMachine *p = &data_0217aa00->mUnk_1608;
     p->mNextState = v;
     p->mNextStateRequested = 1;
 }

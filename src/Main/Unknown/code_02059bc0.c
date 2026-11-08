@@ -287,7 +287,7 @@ void ReleaseCurrentOverlay(void) {
 }
 
 // 1 when the address lies between the lowest start and the highest end of the three overlays.
-u32 IsInOverlayRange(struct Unk021000d0 *address) {
+u32 IsInOverlayRange(struct MapObjectKindDescriptor *address) {
     u32 r;
 
     r = 0;

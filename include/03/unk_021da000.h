@@ -244,7 +244,7 @@ extern Unk021d1da8 *data_ov003_021da2c0;
 extern Unk021d1fd0 *data_ov003_021da2c4;
 extern u8 data_ov003_021da2cc;
 extern u8 data_ov003_021da2d0;
-extern Unk021da2d4Input *data_ov003_021da2d4;
+extern KeyTouchInput *data_ov003_021da2d4;
 extern u8 data_ov003_021da2d8[];
 extern UnkFunc *data_ov003_021da2e8;
 extern u32 data_ov003_021da2ec;

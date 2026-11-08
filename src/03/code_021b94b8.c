@@ -42,14 +42,14 @@ void func_ov003_021ba778(Unk021ba778Src *src, Unk021ba778Dst *dst) {
     }
 }
 
-void func_ov003_021ba744(Unk021ba1b0 *request, Unk021ba778Src *rec) {
+void func_ov003_021ba744(EssidMelcoRequest *request, Unk021ba778Src *rec) {
     vu16 zero = 0;
     MIi_CpuClear16(zero, rec->mUnk_0c, 0x20);
     rec->mUnk_0a = request->mUnk_00;
     MI_CpuCopy8(request->mUnk_04, rec->mUnk_0c, rec->mUnk_0a);
 }
 
-void func_ov003_021ba734(Unk021ba734 *list, Unk021ba778Src *src, s32 count) {
+void func_ov003_021ba734(EssidEntryList *list, Unk021ba778Src *src, s32 count) {
     list->mUnk_00 = count;
     func_ov003_021ba778(src, list->mUnk_04);
 }
@@ -169,7 +169,7 @@ s32 func_ov003_021ba524(void) {
     return result;
 }
 
-s32 func_ov003_021ba394(Unk021ba734 **out) {
+s32 func_ov003_021ba394(EssidEntryList **out) {
     BOOL found = FALSE;
     s32 result = -1;
     BOOL running = TRUE;
@@ -177,7 +177,7 @@ s32 func_ov003_021ba394(Unk021ba734 **out) {
     s32 waits = 0;
     Unk021ba778Src *scan;
     Unk021ba778Src *buffer;
-    Unk021ba734 *list;
+    EssidEntryList *list;
     void *msg;
     OSAlarm timer;
     s32 i;
@@ -260,7 +260,7 @@ s32 func_ov003_021ba394(Unk021ba734 **out) {
     return result;
 }
 
-s32 func_ov003_021ba1b0(Unk021ba1b0 *request, Unk021ba734 *out) {
+s32 func_ov003_021ba1b0(EssidMelcoRequest *request, EssidEntryList *out) {
     BOOL running = TRUE;
     s32 result;
     s32 retries;
@@ -411,7 +411,7 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
     s32 mode;
     s32 state;
     s32 addr;
-    Unk021d7c54 *buffer;
+    PacketBuffer *buffer;
     s32 scanResult;
     s32 result;
     Unk021d6808 scan = data_ov003_021d6808;
@@ -428,8 +428,8 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
     Unk021b7ba0 set;
     Unk021b7d1c wait;
     Unk021b7cec info;
-    Unk021b916c list[3];
-    Unk021ba1b0 request;
+    PacketTag list[3];
+    EssidMelcoRequest request;
     Unk021b86e4 buf;
 
     mode = 0;

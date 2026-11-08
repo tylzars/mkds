@@ -29,8 +29,8 @@
 // Calls func_0208b748 twice at the rock; skipped when bit 0 of mDistanceSquaredAndFlags is set, or when b is 0 and bit
 // 1 is set. Then resets the rock.
 void func_020d634c(RockObject *rock, s32 b) {
-    Unk020d634c firstEmitterParams;
-    Unk020d634c secondEmitterParams;
+    EmitterParams firstEmitterParams;
+    EmitterParams secondEmitterParams;
     s32 scaleY;
     u32 distanceAndFlags;
     s32 k;

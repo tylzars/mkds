@@ -472,7 +472,7 @@ s32 LoadSelectChoises(s32 d) {
     s32 j;
     s32 x;
     s32 y;
-    Unk0215d064 *e;
+    ByteRect *e;
 
     LocateNcgr(&a, FindFileInLoadedArchives(gSelectChoisesSBNcgrName));
     LocateNscr(&b, FindFileInLoadedArchives(gSelectChoisesSBgNscrName));
@@ -504,7 +504,7 @@ void RefreshSelectChoisesNscrCopy(void) {
     s32 i;
     s32 r;
     BOOL f;
-    Unk0215d064 *e;
+    ByteRect *e;
     s32 w;
     s32 v;
     u8(*p)[2];

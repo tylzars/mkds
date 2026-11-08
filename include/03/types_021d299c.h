@@ -10,7 +10,7 @@ typedef struct Unk021d299c {
     /* 06 */ u16 mUnk_06;
 } Unk021d299c;
 
-typedef struct Unk021da2d4Input {
+typedef struct KeyTouchInput {
     /* 00 */ TPData mUnk_00[5];
     /* 28 */ u16 mUnk_28;
     /* 2a */ u16 mUnk_2a;
@@ -30,4 +30,4 @@ typedef struct Unk021da2d4Input {
             u8 mOther : 4;
         } mBits;
     };
-} Unk021da2d4Input;
+} KeyTouchInput;

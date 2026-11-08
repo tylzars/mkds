@@ -26,7 +26,7 @@ void func_02059034(void) {
 
 void UpdateMPState21(void) {
     int result;
-    Unk0217aa00_1608 *stateMachine;
+    MPStateMachine *stateMachine;
     result = func_0205910c();
     if (result == 1) {
         stateMachine = &data_0217aa00->mUnk_1608;
@@ -49,7 +49,7 @@ void func_02058fe0(void) {
 
 void UpdateMPState18(void) {
     int result;
-    Unk0217aa00_1608 *stateMachine;
+    MPStateMachine *stateMachine;
     result = func_0205905c();
     if (result == 1) {
         stateMachine = &data_0217aa00->mUnk_1608;
@@ -80,7 +80,7 @@ void func_02058f58(void) {
 
 void UpdateMPState19(void) {
     int result;
-    Unk0217aa00_1608 *stateMachine;
+    MPStateMachine *stateMachine;
     result = func_02058dc0(func_02058f58);
     if (result == 1) {
         stateMachine = &data_0217aa00->mUnk_1608;

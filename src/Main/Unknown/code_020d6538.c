@@ -603,7 +603,7 @@ void func_020d655c(void *a, RockObject *rock, void *c, s32 alpha) {
     DrawShadowWithMaxAlpha(gRockShadow, &data_0217b650->mUnk_2c, &rock->mMapObject.mScale, alpha);
 }
 
-void func_020d6538(Unk020d6538_a *emitter, Unk020d634c *params) {
+void func_020d6538(Unk020d6538_a *emitter, EmitterParams *params) {
     emitter->mUnk_5c = params->mUnk_00;
     emitter->mUnk_64 = params->mUnk_04;
     emitter->mUnk_68 = params->mUnk_06;

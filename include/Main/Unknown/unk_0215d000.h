@@ -3,22 +3,22 @@
 #include "types.h"
 
 // Four bytes: two column bounds, then two row bounds (inclusive).
-typedef struct Unk0215d064 {
+typedef struct ByteRect {
     /* 00 */ u8 mUnk_00;
     /* 01 */ u8 mUnk_01;
     /* 02 */ u8 mUnk_02;
     /* 03 */ u8 mUnk_03;
-} Unk0215d064;
+} ByteRect;
 
 extern s16 gTxtSystemBgOffsets[];
 extern u8 gTxtSystemCanvasSizes[][2];
 extern u16 gTxtSystemCanvasCharOffsets[];
-extern Unk0215d064 gTxtSystemHitRects[];
-extern Unk0215d064 gTxtSystemNscrRects[];
+extern ByteRect gTxtSystemHitRects[];
+extern ByteRect gTxtSystemNscrRects[];
 extern u8 gSelectChoisesNscrOrigins[][2];
-extern Unk0215d064 gSelectChoisesTileRect;
-extern Unk0215d064 gSelectChoisesHitRects[];
-extern Unk0215d064 gSelectChoisesPaletteRects[];
+extern ByteRect gSelectChoisesTileRect;
+extern ByteRect gSelectChoisesHitRects[];
+extern ByteRect gSelectChoisesPaletteRects[];
 
 // Objects whose layout isn't known yet.
 extern const s16 gPairsByAngle[];

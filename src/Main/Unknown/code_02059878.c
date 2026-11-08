@@ -30,7 +30,7 @@ static inline u32 func_02059878_inline(void) {
 }
 
 static inline void func_02059878_inline2(u16 v) {
-    Unk0217aa00_1608 *p = &data_0217aa00->mUnk_1608;
+    MPStateMachine *p = &data_0217aa00->mUnk_1608;
     p->mNextState = v;
     p->mNextStateRequested = 1;
 }

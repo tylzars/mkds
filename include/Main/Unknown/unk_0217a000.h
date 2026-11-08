@@ -366,7 +366,7 @@ typedef struct Unk0217aa00_1e52 {
 } Unk0217aa00_1e52;
 
 // Part of Unk0217aa00 from 0x1608.
-typedef struct Unk0217aa00_1608 {
+typedef struct MPStateMachine {
     /* 00 */ void *mUnk_00;
     /* 04 */ s32 mStateFrames;
     /* 08 */ void *mUnk_08;
@@ -379,7 +379,7 @@ typedef struct Unk0217aa00_1608 {
     /* 18 */ s16 mUnk_18;
     /* 1a */ u8 mUnk_1a;
     /* 1b */ u8 mUnk_1b[0x1];
-} Unk0217aa00_1608;
+} MPStateMachine;
 
 // Object behind data_0217aa00.
 // One of the 12 entries at 0x16a0: a block to offer to the other consoles, or a file path to read in.
@@ -667,7 +667,7 @@ typedef struct Unk0217aa00 {
         };
         DataSharing mUnk_15bc_view;
     };
-    /* 1608 */ Unk0217aa00_1608 mUnk_1608;
+    /* 1608 */ MPStateMachine mUnk_1608;
     /* 1624 */ void *mChunkBuffer;
     /* 1628 */ u8 mEntryChunkIndex;
     /* 1629 */ u8 mEntryChunkSlot;
