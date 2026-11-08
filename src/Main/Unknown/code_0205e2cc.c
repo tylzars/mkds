@@ -340,15 +340,15 @@ void func_0205e2cc(void *a) {
             u = 0;
             switch (p->mShapeKind) {
                 case 0:
-                    u = func_0205e2cc_inline(func_020431cc(), p->mUnk_0c.x);
-                    v = func_0205e2cc_inline(func_020431d4(), p->mUnk_0c.y) >> 1;
-                    y = func_0205e2cc_inline(func_020431cc(), p->mUnk_0c.z);
+                    u = func_0205e2cc_inline(func_020431cc(), p->mScale.x);
+                    v = func_0205e2cc_inline(func_020431d4(), p->mScale.y) >> 1;
+                    y = func_0205e2cc_inline(func_020431cc(), p->mScale.z);
                     w = func_0205e2cc_inline(u, u) + func_0205e2cc_inline(v, v);
                     y = func_0205e2cc_inline(y, y);
                     u = FX_Sqrt(y + w);
                     break;
                 case 1:
-                    u = func_0205e2cc_inline(func_020431dc(), p->mUnk_0c.x);
+                    u = func_0205e2cc_inline(func_020431dc(), p->mScale.x);
                     break;
             }
             e->mUnk_04 = u;

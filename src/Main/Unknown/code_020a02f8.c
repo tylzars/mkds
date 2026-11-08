@@ -439,7 +439,7 @@ found:
     } else if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         v1 = gRaceSetup->mEntryIndex;
         if (gStandings->mWinnerTeamId == v1) {
-            func_0203e74c(v1);
+            FinishMissionRunKartWithEndKind0(v1);
         } else {
             FinishRaceProgressKartWithEndKind4(v1);
         }

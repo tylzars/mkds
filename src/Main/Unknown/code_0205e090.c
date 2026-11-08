@@ -36,7 +36,7 @@ s32 func_0205e1c4(void) {
     for (i = 0; i < data_0217aa24->mUnk_04; i++) {
         e = &data_0217aa24->mUnk_00[i];
         p = GetCourseMapShape(e->mUnk_00);
-        n = FindMapObjectsOfKindInRadius(&p->mUnk_00, e->mUnk_04, p->mUnk_3c);
+        n = FindMapObjectsOfKindInRadius(&p->mPos, e->mUnk_04, p->mUnk_3c);
         c = 0;
         for (j = 0; j < n; j++) {
             if (IsPosInCourseMapShape(&GetFoundMapObject(j)->mPos, p) != 0) {

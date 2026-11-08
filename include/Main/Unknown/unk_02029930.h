@@ -3,7 +3,7 @@
 #include "types.h"
 
 // 0x2c-byte rows of the table at member 0xf8 of RaceSetupCopy.
-typedef struct Unk02029930_f8 {
+typedef struct MissionFileRow {
     /* 00 */ u8 mUnk_00[6];
     /* 06 */ u8 mMissionTableValue;
     /* 07 */ u8 mMissionKind[0x1];
@@ -16,4 +16,4 @@ typedef struct Unk02029930_f8 {
     /* 1e */ u8 mCharacterIndex1;
     /* 1f */ u8 mKartIndex1;
     /* 20 */ u8 mMissionRunStem[0xc];
-} Unk02029930_f8;
+} MissionFileRow;

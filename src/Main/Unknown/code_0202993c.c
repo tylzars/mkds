@@ -41,7 +41,7 @@ void ResetRaceSetupCopy(void) {
             gRaceSetupCopy->mMissionFile = NULL;
         }
         if (gRaceSetupCopy->mMissionFile != NULL) {
-            gRaceSetupCopy->mMissionFileRows = (Unk02029930_f8 *) (gRaceSetupCopy->mMissionFile + 8);
+            gRaceSetupCopy->mMissionFileRows = (MissionFileRow *) (gRaceSetupCopy->mMissionFile + 8);
         } else {
             gRaceSetupCopy->mMissionFileRows = NULL;
         }

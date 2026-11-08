@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_02029930.h" // Unk02029930_f8
+#include "Main/Unknown/unk_02029930.h" // MissionFileRow
 #include "tp.h"
 
 typedef struct MicBuffer MicBuffer;
@@ -140,7 +140,7 @@ typedef struct RaceSetupHeader {
     /* 1c */ s32 mRuleKind;
     /* 20 */ s32 mCourseListMode;
     /* 24 */ s32 mGhostRecordIndex;
-    /* 28 */ Unk02029930_f8 mMissionFileRow;
+    /* 28 */ MissionFileRow mMissionFileRow;
     /* 54 */ s8 mMissionTableRow;
     /* 55 */ s8 mMissionTableColumn;
     /* 56 */ u8 mUnk_56[0x1];

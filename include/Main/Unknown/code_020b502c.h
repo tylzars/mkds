@@ -56,11 +56,11 @@ typedef struct CourseMapSettings {
 
 // 0x48-byte entries of the table at CourseMap.mShapes (GetCourseMapShape returns one).
 typedef struct CourseMapShape {
-    /* 00 */ Vec3 mUnk_00;
-    /* 0c */ Vec3 mUnk_0c;
-    /* 18 */ Vec3 mUnk_18;
-    /* 24 */ Vec3 mUnk_24;
-    /* 30 */ Vec3 mUnk_30;
+    /* 00 */ Vec3 mPos;
+    /* 0c */ Vec3 mScale;
+    /* 18 */ Vec3 mAxisX;
+    /* 24 */ Vec3 mAxisY;
+    /* 30 */ Vec3 mAxisZ;
     /* 3c */ u16 mUnk_3c;
     /* 3e */ s16 mUnk_3e;
     // For a shape of mKind 4: index of the point link that belongs to it, in CourseMap.mRacePointLinks (races) or
@@ -212,18 +212,18 @@ typedef struct {
 typedef struct {
     /* 00 */ CourseMapEntryGroup *mGroup;
     /* 04 */ CourseMapGroupEntry *mEntries;
-} Unk02175620_94;
+} CourseMapEntryGroupTableRow;
 
 // 0x28-byte nodes of the table at CourseMap.mRacePointLinks: two lists of node pointers.
-typedef struct Unk02175620_a0 {
-    /* 00 */ struct Unk02175620_a0 *mUnk_00[3];
-    /* 0c */ struct Unk02175620_a0 *mUnk_0c[3];
+typedef struct RacePointLink {
+    /* 00 */ struct RacePointLink *mUnk_00[3];
+    /* 0c */ struct RacePointLink *mUnk_0c[3];
     /* 18 */ Unk02175620_84 *mUnk_18;
     /* 1c */ s32 mUnk_1c;
     /* 20 */ s16 *mUnk_20;
     /* 24 */ u16 mUnk_24;
     /* 26 */ u16 mUnk_26;
-} Unk02175620_a0;
+} RacePointLink;
 
 // Node of the lists at CourseMap.mKind3ShapeLists: an entry of the table at mShapes and the next node.
 typedef struct Unk02175620_d8 {
@@ -320,7 +320,7 @@ typedef struct CourseMap {
     // One 8-byte record per element of mEntryGroups: the group record and the address of its first 0x14-byte entry in
     // mGroupEntries; built by BuildCourseMapEntryGroupTable, read through
     // GetCourseMapEntryGroupTableRow.
-    /* 94 */ Unk02175620_94 *mEntryGroupTable;
+    /* 94 */ CourseMapEntryGroupTableRow *mEntryGroupTable;
     /* 98 */ u16 mNumberedCheckpointCount;
     // Last entry of the run that comes just before entry 0: first entry + count - 1 of the run named by the first back
     // link of the run that starts at entry 0 (0 when there are no runs). Karts start on it; going back over the line
@@ -333,7 +333,7 @@ typedef struct CourseMap {
     // One 0x28-byte link per race point (up to three next and three previous links, a pointer to the point, two
     // values), built from mRacePoints and mRaceRoutes; read by FindCourseMapKind4ShapeRacePointLink,
     // GetCourseMapRespawnRacePointLink and the kart follower set-up (InitRacePointLinkCursor).
-    /* a0 */ Unk02175620_a0 *mRacePointLinks;
+    /* a0 */ RacePointLink *mRacePointLinks;
     // Link of the first point of mRaceRoutes[0].
     /* a4 */ PointLink *mRaceRoute0FirstLink;
     // Link of the last point of the route before mRaceRoutes[0].

@@ -12,194 +12,202 @@
 #include "code_0200f5ac.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-PointLink *GetKeyedPlacementBattlePointLink(u32 a) {
+PointLink *GetKeyedPlacementBattlePointLink(u32 key) {
     return &gCourseMap
-                ->mBattlePointLinks[gCourseMap->mKeyedPlacements[gCourseMap->mKeyedPlacementIndexByKey[a]].mUnk_18];
+                ->mBattlePointLinks[gCourseMap->mKeyedPlacements[gCourseMap->mKeyedPlacementIndexByKey[key]].mUnk_18];
 }
 
-s32 ComputeDotOfPairsRounded(const UnkPair020b502c *a, const UnkPair020b502c *b) {
-    return ((s64) a->mUnk_00 * b->mUnk_00 + (s64) a->mUnk_04 * b->mUnk_04 + 0x800) >> 12;
+s32 ComputeDotOfPairsRounded(const UnkPair020b502c *first, const UnkPair020b502c *second) {
+    return ((s64) first->mUnk_00 * second->mUnk_00 + (s64) first->mUnk_04 * second->mUnk_04 + 0x800) >> 12;
 }
 
-s64 ComputeDotOfPairsRoundedS64(const UnkPair020b502c *a, const UnkPair020b502c *b) {
-    return ((s64) a->mUnk_00 * b->mUnk_00 + (s64) a->mUnk_04 * b->mUnk_04 + 0x800) >> 12;
+s64 ComputeDotOfPairsRoundedS64(const UnkPair020b502c *first, const UnkPair020b502c *second) {
+    return ((s64) first->mUnk_00 * second->mUnk_00 + (s64) first->mUnk_04 * second->mUnk_04 + 0x800) >> 12;
 }
 
-static inline s32 func_02040bc0_inline(s8 i) {
+static inline s32 func_02040bc0_inline(s8 entryIndex) {
     BOOL f = FALSE;
-    if (gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mKind <= 3 &&
-        ((1 << gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mKind) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) != 0) {
+    if (gRaceSetup->mCurrentEntries[(u16) entryIndex].mPlayer.mKind <= 3 &&
+        ((1 << gRaceSetup->mCurrentEntries[(u16) entryIndex].mPlayer.mKind) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) != 0) {
         f = TRUE;
     }
     return f;
 }
 
 BOOL func_02040bc0(void) {
-    BOOL r = FALSE;
-    BOOL g;
-    s8 i = gRaceSetup->mEntryIndex;
+    BOOL result = FALSE;
+    BOOL ended;
+    s8 entryIndex = gRaceSetup->mEntryIndex;
 
-    if (i == -1 || func_02040bc0_inline(i) == 0) {
-        r = TRUE;
+    if (entryIndex == -1 || func_02040bc0_inline(entryIndex) == 0) {
+        result = TRUE;
     }
-    if (r != FALSE) {
-        return r;
+    if (result != FALSE) {
+        return result;
     }
     switch (gRaceSetup->mMode) {
         case MODE_MISSION_RUN:
-            g = FALSE;
-            switch (gRaceProgress->mUnk_000[(u16) i].mStatus) {
+            ended = FALSE;
+            switch (gRaceProgress->mUnk_000[(u16) entryIndex].mStatus) {
                 case 1:
                 case 2:
                 case 3:
-                    g = TRUE;
+                    ended = TRUE;
                     break;
             }
-            if (g == FALSE) {
+            if (ended == FALSE) {
                 if (gRaceProgress->mEntryEndKind != 0) {
-                    return r;
+                    return result;
                 }
             }
             return TRUE;
         case MODE_BATTLE:
             if (gRaceProgress->mRaceDone != 0) {
-                r = TRUE;
+                result = TRUE;
             }
-            return r;
+            return result;
         default:
-            g = FALSE;
-            switch (gRaceProgress->mUnk_000[(u16) i].mStatus) {
+            ended = FALSE;
+            switch (gRaceProgress->mUnk_000[(u16) entryIndex].mStatus) {
                 case 1:
                 case 2:
                 case 3:
-                    g = TRUE;
+                    ended = TRUE;
                     break;
             }
-            if (g != FALSE) {
-                r = TRUE;
+            if (ended != FALSE) {
+                result = TRUE;
             }
-            return r;
+            return result;
     }
 }
 
-void ComputeGrandPrixScoreTerms(RaceProgressScoreTerms *a, s32 b) {
-    EntryKartCounters *t = GetEntryKartCounters();
-    RaceProgress *d = gRaceProgress;
-    RaceProgressKart *e = &d->mKarts[b];
-    RankTimeGp *r = d->mRankTimeGpFile;
+void ComputeGrandPrixScoreTerms(RaceProgressScoreTerms *scoreTerms, s32 kartIndex) {
+    EntryKartCounters *entryKartCounters = GetEntryKartCounters();
+    RaceProgress *raceProgress = gRaceProgress;
+    RaceProgressKart *raceProgressKart = &raceProgress->mKarts[kartIndex];
+    RankTimeGp *rankTimeGpFile = raceProgress->mRankTimeGpFile;
 
-    if (d->mUnk_000[0].mRankTime == 0) {
-        a->mUnk_00 = 0;
+    if (raceProgress->mUnk_000[0].mRankTime == 0) {
+        scoreTerms->mUnk_00 = 0;
     } else {
-        a->mUnk_00 =
-            (FX_Div(r->mUnk_0a * (d->mUnk_000[0].mRankTime - d->mUnk_000[0].mElapsedFrames), d->mUnk_000[0].mRankTime) +
-             0x800) >>
-            12;
+        scoreTerms->mUnk_00 = (FX_Div(rankTimeGpFile->mUnk_0a * (raceProgress->mUnk_000[0].mRankTime -
+                                                                 raceProgress->mUnk_000[0].mElapsedFrames),
+                                      raceProgress->mUnk_000[0].mRankTime) +
+                               0x800) >>
+                              12;
     }
-    a->mUnk_04 = (r->mUnk_0c * FX_Div(e->mFirstPlaceFrames << 12, gRaceProgress->mUnk_000[0].mRankTime << 12)) >> 12;
-    if (t->mUnk_00 != 0) {
-        a->mUnk_08 = r->mUnk_0e;
+    scoreTerms->mUnk_04 = (rankTimeGpFile->mUnk_0c * FX_Div(raceProgressKart->mFirstPlaceFrames << 12,
+                                                            gRaceProgress->mUnk_000[0].mRankTime << 12)) >>
+                          12;
+    if (entryKartCounters->mUnk_00 != 0) {
+        scoreTerms->mUnk_08 = rankTimeGpFile->mUnk_0e;
     } else {
-        a->mUnk_08 = 0;
+        scoreTerms->mUnk_08 = 0;
     }
-    a->mUnk_0c = r->mUnk_10 * t->mUnk_04;
-    a->mUnk_10 = r->mUnk_12 * t->mUnk_08;
-    a->mUnk_14 = -((u32) (t->mUnk_0c * FX_Inv(r->mUnk_14 << 12)) >> 12);
-    a->mUnk_18 = t->mUnk_10 * -r->mUnk_16;
-    a->mUnk_1c = t->mUnk_14 * -r->mUnk_18;
-    a->mUnk_20 = t->mUnk_18 * -r->mUnk_1a;
+    scoreTerms->mUnk_0c = rankTimeGpFile->mUnk_10 * entryKartCounters->mUnk_04;
+    scoreTerms->mUnk_10 = rankTimeGpFile->mUnk_12 * entryKartCounters->mUnk_08;
+    scoreTerms->mUnk_14 = -((u32) (entryKartCounters->mUnk_0c * FX_Inv(rankTimeGpFile->mUnk_14 << 12)) >> 12);
+    scoreTerms->mUnk_18 = entryKartCounters->mUnk_10 * -rankTimeGpFile->mUnk_16;
+    scoreTerms->mUnk_1c = entryKartCounters->mUnk_14 * -rankTimeGpFile->mUnk_18;
+    scoreTerms->mUnk_20 = entryKartCounters->mUnk_18 * -rankTimeGpFile->mUnk_1a;
 }
 
 // Sum of the nine score terms (also saved in gRaceProgress->mUnk_500), clamped to -9999..9999; 0 unless kart a is the
 // local entry in Grand Prix or Mission Run.
-s16 ComputeRaceProgressKartScore(s32 a) {
-    RaceProgressScoreTerms b;
-    EntryKartCounters *t;
-    RaceSetup *g;
-    RaceProgress *d = gRaceProgress;
-    RaceProgressScoreTerms *o = &d->mScoreTerms;
-    s32 s;
-    u8 *h;
+s16 ComputeRaceProgressKartScore(s32 kartIndex) {
+    RaceProgressScoreTerms scoreTerms;
+    EntryKartCounters *entryKartCounters;
+    RaceSetup *raceSetup;
+    RaceProgress *raceProgress = gRaceProgress;
+    RaceProgressScoreTerms *savedScoreTerms = &raceProgress->mScoreTerms;
+    s32 score;
+    u8 *missionSettings;
 
-    if ((d->mUnk_000[a].mFlags & 1) == 0) {
+    if ((raceProgress->mUnk_000[kartIndex].mFlags & 1) == 0) {
         return 0;
     }
-    g = gRaceSetup;
-    switch (g->mMode) {
+    raceSetup = gRaceSetup;
+    switch (raceSetup->mMode) {
         case MODE_GRAND_PRIX:
-            ComputeGrandPrixScoreTerms(&b, a);
+            ComputeGrandPrixScoreTerms(&scoreTerms, kartIndex);
             break;
         case MODE_MISSION_RUN:
-            h = (u8 *) g + 0x28;
-            t = GetEntryKartCounters();
-            b.mUnk_00 =
-                FX_Div(*(s16 *) (h + 4) * (*(u16 *) (h + 2) - d->mUnk_000[0].mElapsedFrames) << 12, 0x3e8000) >> 12;
-            b.mUnk_04 = 0;
-            b.mUnk_08 = 0;
-            b.mUnk_0c = 0;
-            b.mUnk_10 = t->mUnk_08 * -5;
-            b.mUnk_14 = 0;
-            b.mUnk_18 = t->mUnk_10 * -5;
-            b.mUnk_1c = t->mUnk_14 * -10;
-            b.mUnk_20 = t->mUnk_18 * -20;
+            missionSettings = (u8 *) raceSetup + 0x28;
+            entryKartCounters = GetEntryKartCounters();
+            scoreTerms.mUnk_00 = FX_Div(*(s16 *) (missionSettings + 4) * (*(u16 *) (missionSettings + 2) -
+                                                                          raceProgress->mUnk_000[0].mElapsedFrames)
+                                            << 12,
+                                        0x3e8000) >>
+                                 12;
+            scoreTerms.mUnk_04 = 0;
+            scoreTerms.mUnk_08 = 0;
+            scoreTerms.mUnk_0c = 0;
+            scoreTerms.mUnk_10 = entryKartCounters->mUnk_08 * -5;
+            scoreTerms.mUnk_14 = 0;
+            scoreTerms.mUnk_18 = entryKartCounters->mUnk_10 * -5;
+            scoreTerms.mUnk_1c = entryKartCounters->mUnk_14 * -10;
+            scoreTerms.mUnk_20 = entryKartCounters->mUnk_18 * -20;
             break;
         default:
             return 0;
     }
-    *o = b;
-    s = o->mUnk_00 + o->mUnk_04 + o->mUnk_08 + o->mUnk_0c + o->mUnk_10 + o->mUnk_14 + o->mUnk_18 + o->mUnk_1c +
-        o->mUnk_20;
-    if (s < -9999) {
-        s = -9999;
+    *savedScoreTerms = scoreTerms;
+    score = savedScoreTerms->mUnk_00 + savedScoreTerms->mUnk_04 + savedScoreTerms->mUnk_08 + savedScoreTerms->mUnk_0c +
+            savedScoreTerms->mUnk_10 + savedScoreTerms->mUnk_14 + savedScoreTerms->mUnk_18 + savedScoreTerms->mUnk_1c +
+            savedScoreTerms->mUnk_20;
+    if (score < -9999) {
+        score = -9999;
     }
-    if (s > 9999) {
-        s = 9999;
+    if (score > 9999) {
+        score = 9999;
     }
-    return s;
+    return score;
 }
 
-void InitRaceProgressKart(RaceProgressKart *a, s32 b) {
+void InitRaceProgressKart(RaceProgressKart *raceProgressKart, s32 kartIndex) {
     s32 i;
-    Unk0217aa1c_144_00 *p;
-    CourseMapRoute *e;
-    s32 m;
+    Unk0217aa1c_144_00 *lapTime;
+    CourseMapRoute *route;
+    s32 firstEntry;
 
     if (gCourseMap->mCheckpoints == NULL) {
-        a->mRoute = 0;
-        a->mCheckpoint = 0;
+        raceProgressKart->mRoute = 0;
+        raceProgressKart->mCheckpoint = 0;
     } else {
-        a->mRoute = gCourseMap->mCheckpointRoutes->mPreviousRoutes[0];
-        e = &gCourseMap->mCheckpointRoutes[a->mRoute];
-        m = gCourseMap->mCheckpointRoutes[a->mRoute].mFirstEntry;
-        a->mCheckpoint = m + e->mEntryCount - 1;
+        raceProgressKart->mRoute = gCourseMap->mCheckpointRoutes->mPreviousRoutes[0];
+        route = &gCourseMap->mCheckpointRoutes[raceProgressKart->mRoute];
+        firstEntry = gCourseMap->mCheckpointRoutes[raceProgressKart->mRoute].mFirstEntry;
+        raceProgressKart->mCheckpoint = firstEntry + route->mEntryCount - 1;
     }
-    a->mLapFrames = 0;
-    a->mUnk_08 = 0;
-    a->mFinishTimeMs = 0;
-    a->mHighestLap = 1;
-    a->mLap = 0;
-    a->mStatus = 0;
-    a->mFlags = 0;
-    a->mInOrderCheckpointNumber = gCourseMap->mNumberedCheckpointCount - 1;
-    a->mCheckpointNumber = gCourseMap->mNumberedCheckpointCount - 1;
-    a->mUnk_3c = (a->mUnk_3c & ~0xf0) | (((u16) b & 0xf) << 4);
-    a->mRaceProgress = 0;
-    a->mLapProgress = 0;
-    a->mScore = 0;
-    a->mFirstPlaceFrames = 0;
-    a->mCheckpointProgress = 0;
-    a->mUnk_3c = a->mUnk_3c & ~0x300;
-    p = a->mLapTimes;
+    raceProgressKart->mLapFrames = 0;
+    raceProgressKart->mUnk_08 = 0;
+    raceProgressKart->mFinishTimeMs = 0;
+    raceProgressKart->mHighestLap = 1;
+    raceProgressKart->mLap = 0;
+    raceProgressKart->mStatus = 0;
+    raceProgressKart->mFlags = 0;
+    raceProgressKart->mInOrderCheckpointNumber = gCourseMap->mNumberedCheckpointCount - 1;
+    raceProgressKart->mCheckpointNumber = gCourseMap->mNumberedCheckpointCount - 1;
+    raceProgressKart->mUnk_3c = (raceProgressKart->mUnk_3c & ~0xf0) | (((u16) kartIndex & 0xf) << 4);
+    raceProgressKart->mRaceProgress = 0;
+    raceProgressKart->mLapProgress = 0;
+    raceProgressKart->mScore = 0;
+    raceProgressKart->mFirstPlaceFrames = 0;
+    raceProgressKart->mCheckpointProgress = 0;
+    raceProgressKart->mUnk_3c = raceProgressKart->mUnk_3c & ~0x300;
+    lapTime = raceProgressKart->mLapTimes;
     for (i = 0; i < 5; i++) {
-        ComputeRaceTime(&p->mUnk_02, &p->mUnk_03, &p->mUnk_00, 0, gRaceProgress->mUnk_000[0].mElapsedFrames);
-        p++;
+        ComputeRaceTime(&lapTime->mUnk_02, &lapTime->mUnk_03, &lapTime->mUnk_00, 0,
+                        gRaceProgress->mUnk_000[0].mElapsedFrames);
+        lapTime++;
     }
-    ComputeRaceTime(&a->mLapTimes[5].mUnk_02, &a->mLapTimes[5].mUnk_03, &a->mLapTimes[5].mUnk_00, 0,
-                    gRaceProgress->mUnk_000[0].mElapsedFrames);
-    if (b == gRaceSetup->mEntryIndex) {
-        a->mFlags = a->mFlags | 1;
+    ComputeRaceTime(&raceProgressKart->mLapTimes[5].mUnk_02, &raceProgressKart->mLapTimes[5].mUnk_03,
+                    &raceProgressKart->mLapTimes[5].mUnk_00, 0, gRaceProgress->mUnk_000[0].mElapsedFrames);
+    if (kartIndex == gRaceSetup->mEntryIndex) {
+        raceProgressKart->mFlags = raceProgressKart->mFlags | 1;
     }
-    a->mUnk_3c = (a->mUnk_3c & ~0xf) | ((u16) (b + 1) & 0xf);
+    raceProgressKart->mUnk_3c = (raceProgressKart->mUnk_3c & ~0xf) | ((u16) (kartIndex + 1) & 0xf);
 }
 
 static inline u32 func_020401ac_inline(Unk0217aa00 *p) {
@@ -211,40 +219,40 @@ static inline void func_020401ac_inline2(Unk0217561c_000 *q) {
     q->mClockEnabled = 0;
 }
 
-static inline void func_020401ac_inline3(Unk0217aa1c_144_00 *p, u32 e) {
-    ComputeRaceTime(&p->mUnk_02, &p->mUnk_03, &p->mUnk_00, 0, e);
+static inline void func_020401ac_inline3(Unk0217aa1c_144_00 *time, u32 frames) {
+    ComputeRaceTime(&time->mUnk_02, &time->mUnk_03, &time->mUnk_00, 0, frames);
 }
 
-static inline void func_020401ac_inline4(RandomState64 *x, u32 s) {
-    x->mValue = s;
-    x->mMultiplier = 0x5d588b656c078965;
-    x->mIncrement = 0x269ec3;
+static inline void func_020401ac_inline4(RandomState64 *randomState64, u32 seed) {
+    randomState64->mValue = seed;
+    randomState64->mMultiplier = 0x5d588b656c078965;
+    randomState64->mIncrement = 0x269ec3;
 }
 
 static inline s32 func_020401ac_inline5(s32 a, s32 b) {
     return b == 0 ? 0 : FX_Div(a + 0x1000, b << 12);
 }
 
-static inline u32 func_020401ac_inline6(RandomState64 *x, u32 n) {
-    x->mValue = (s64) x->mMultiplier * (s64) x->mValue + x->mIncrement;
-    return ((s64) (x->mValue >> 32) * n) >> 32;
+static inline u32 func_020401ac_inline6(RandomState64 *randomState64, u32 limit) {
+    randomState64->mValue = (s64) randomState64->mMultiplier * (s64) randomState64->mValue + randomState64->mIncrement;
+    return ((s64) (randomState64->mValue >> 32) * limit) >> 32;
 }
 
 void InitRaceProgress(void) {
     BOOL f;
     s32 i;
-    u32 s;
-    s32 v1;
+    u32 seed;
+    s32 checkpointNumber;
     u64 a;
     u64 c;
     u64 d;
-    u16 j;
-    u16 k;
-    u16 v2;
+    u16 routeIndex;
+    u16 entryInRoute;
+    u16 checkpointIndex;
     s32 v;
     Unk0217aa00 *p;
-    CourseMapRoute *e;
-    CourseMapCheckpoint *q;
+    CourseMapRoute *route;
+    CourseMapCheckpoint *checkpoint;
 
     func_020401ac_inline2(&gRaceProgress->mUnk_000[0]);
     func_020401ac_inline3(&gRaceProgress->mUnk_000[0].mUnk_08_view, gRaceProgress->mUnk_000[0].mElapsedFrames);
@@ -290,24 +298,24 @@ void InitRaceProgress(void) {
     }
     switch (gRaceSetup->mRaceKind) {
         case 2:
-            s = gRaceSetup->mUnk_05c;
+            seed = gRaceSetup->mUnk_05c;
             break;
         case RACE_KIND_AWARD:
-            s = 0xc240793;
+            seed = 0xc240793;
             break;
         case RACE_KIND_STAFF_ROLL:
-            s = 0x71abc95;
+            seed = 0x71abc95;
             break;
         default:
             switch (gRaceSetup->mMode) {
                 case MODE_TIME_ATTACK:
-                    s = 0x34a8f71;
+                    seed = 0x34a8f71;
                     break;
                 case MODE_MISSION_RUN:
-                    s = 0x158b76f;
+                    seed = 0x158b76f;
                     break;
                 case 5:
-                    s = 0x5b12f73;
+                    seed = 0x5b12f73;
                     break;
                 default:
                     p = data_0217aa00;
@@ -318,18 +326,18 @@ void InitRaceProgress(void) {
                         }
                     }
                     if (v != 0) {
-                        s = p->mUnk_1eb0;
+                        seed = p->mUnk_1eb0;
                     } else {
                         a = OS_GetTick();
-                        s = (a << 16) + OS_GetTick();
+                        seed = (a << 16) + OS_GetTick();
                     }
                     break;
             }
             break;
     }
-    func_020401ac_inline4(&gRaceProgress->mRandom, s);
-    gRaceProgress->mSeed = s;
-    gRaceSetup->mNextHeader.mUnk_5c = s;
+    func_020401ac_inline4(&gRaceProgress->mRandom, seed);
+    gRaceProgress->mSeed = seed;
+    gRaceSetup->mNextHeader.mUnk_5c = seed;
     a = OS_GetTick();
     c = OS_GetTick();
     d = OS_GetTick();
@@ -342,18 +350,18 @@ void InitRaceProgress(void) {
     gRaceProgress->mLapProgressScale = FX_Inv((gCourseMap->mLapProgressBaseMax + 1) << 12);
     gRaceProgress->mRaceProgressScale = FX_Inv(GetLapCount() << 12);
     for (i = 0; i < gCourseMap->mNumberedCheckpointCount + 1; i++) {
-        v1 = i % (gCourseMap->mNumberedCheckpointCount + 1);
-        if (v1 == gCourseMap->mNumberedCheckpointCount) {
+        checkpointNumber = i % (gCourseMap->mNumberedCheckpointCount + 1);
+        if (checkpointNumber == gCourseMap->mNumberedCheckpointCount) {
             gRaceProgress->mCheckpointLapProgress[i] = 0x1000;
         } else {
-            for (j = 0; j < gCourseMap->mCheckpointRouteCount; j++) {
-                e = &gCourseMap->mCheckpointRoutes[j];
-                for (k = 0; k < e->mEntryCount; k++) {
-                    v2 = k + e->mFirstEntry;
-                    q = &gCourseMap->mCheckpoints[v2];
-                    if (q->mNumber == v1) {
-                        v = func_020401ac_inline5((v2 - e->mFirstEntry) << 12, e->mEntryCount);
-                        v += e->mLapProgressBase << 12;
+            for (routeIndex = 0; routeIndex < gCourseMap->mCheckpointRouteCount; routeIndex++) {
+                route = &gCourseMap->mCheckpointRoutes[routeIndex];
+                for (entryInRoute = 0; entryInRoute < route->mEntryCount; entryInRoute++) {
+                    checkpointIndex = entryInRoute + route->mFirstEntry;
+                    checkpoint = &gCourseMap->mCheckpoints[checkpointIndex];
+                    if (checkpoint->mNumber == checkpointNumber) {
+                        v = func_020401ac_inline5((checkpointIndex - route->mFirstEntry) << 12, route->mEntryCount);
+                        v += route->mLapProgressBase << 12;
                         gRaceProgress->mCheckpointLapProgress[i] =
                             ((s64) v * gRaceProgress->mLapProgressScale + 0x800) >> 12;
                     }

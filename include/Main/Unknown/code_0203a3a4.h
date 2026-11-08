@@ -25,7 +25,7 @@ void func_0203aacc(void);
 // before it). Calls in order: CreateOverlayExpHeap (creates the heap that FreeOverlayExpHeap destroys),
 // StopWvrAndWait (kinds 3 and 5) or ClearLcdcBankAndStartWvrAndWait + func_02053e74, Init3dEngine, InitDispCap,
 // SetupRaceDisplay (screen layout), func_020431e4, InitRace, InitChoisesS, func_020b03bc,
-// func_020af99c (not kind 3), func_02043a9c, and the mode 5 net state / mode 2 StartMicInput
+// func_020af99c (not kind 3), SetLeftRightKeysSwapped, and the mode 5 net state / mode 2 StartMicInput
 // extras. Does not allocate gRace: InitRace does.
 void InitRaceScene(void);
 void SetupRaceDisplay(void *heap);

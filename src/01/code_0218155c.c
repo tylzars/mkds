@@ -93,7 +93,7 @@ void func_ov001_02181aa0(void) {
         case 7:
             n = func_ov001_0218180c();
             if (gMissionRunData->mCount >= n) {
-                func_0203e74c(gRaceSetup->mEntryIndex);
+                FinishMissionRunKartWithEndKind0(gRaceSetup->mEntryIndex);
             }
             break;
     }

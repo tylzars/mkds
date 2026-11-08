@@ -1,6 +1,6 @@
 #include "Main/Unknown/code_02042044.h"
 #include "Main/Unknown/code_02042064.h"
 
-CourseMapGroupEntry *GetCourseMapGroupEntry(u16 arg0, u16 arg1) {
-    return GetCourseMapEntryGroupTableRow(arg0)->mEntries + arg1;
+CourseMapGroupEntry *GetCourseMapGroupEntry(u16 groupIndex, u16 entryIndex) {
+    return GetCourseMapEntryGroupTableRow(groupIndex)->mEntries + entryIndex;
 }

@@ -4,14 +4,14 @@
 
 typedef struct RaceProgressKart RaceProgressKart;
 
-void func_0203e74c(u16 param_1);
+void FinishMissionRunKartWithEndKind0(u16 kartIndex);
 // Ends kart a with end kind b (0 goal reached, other values the other ends) unless it has already ended or its end wait
 // runs: stops the race clock, stores the time in the kart's lap time slot 5, for the entry flagged local records the
 // kind and starts its end wait (flag 0x10 for kind 0, 0x20 otherwise), calls FinishRaceProgressKart(kart, b == 0) and
 // runs the end handler of the mode when IsRaceEndConditionMet holds.
-void FinishRaceProgressKartWithEndKind(s32 a, s32 b);
+void FinishRaceProgressKartWithEndKind(s32 kartIndex, s32 endKind);
 // b is goal reached; b == 0 ends the entry without the goal (status 3). Also tells the input source and the HUD.
-void FinishRaceProgressKart(RaceProgressKart *a, s32 b);
+void FinishRaceProgressKart(RaceProgressKart *raceProgressKart, s32 finished);
 void FinishRemainingMissionRunKarts(void);
 void func_0203ecf0(void);
 // Finishes every kart that has neither ended nor been removed, without the goal, with its time from the race clock

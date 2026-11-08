@@ -162,7 +162,7 @@ void InitRaceScene(void) {
             mirrorMode = 1;
         }
     }
-    func_02043a9c(mirrorMode);
+    SetLeftRightKeysSwapped(mirrorMode);
     SetHeapGroupId(9);
     if (gRaceSetup->mMode != MODE_BATTLE) {
         if (gRaceSetup->mMode == 5) {

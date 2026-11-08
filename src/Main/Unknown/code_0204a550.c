@@ -109,7 +109,7 @@ BOOL func_0204a620(KeyRecording *a) {
 void InitEmblemScene(void) {
     GetHeap(GetCurrentHeapCall());
     StopWvrAndWait();
-    func_02043c14();
+    ResetInputSlots();
     func_ov001_021a23f4();
 }
 

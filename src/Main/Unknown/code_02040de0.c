@@ -14,65 +14,69 @@
 
 // Position of the start placement with key c (the only one when there are not several) moved by d along the negated
 // first and e along the negated third axis of its rotation, and the rotation angles in b.
-void GetCourseMapStartPlacementWithOffsets(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e) {
-    CourseMapPlacement *q = NULL;
-    CourseMapPlacement *p;
+void GetCourseMapStartPlacementWithOffsets(Vec3 *outPos, Vec3 *outRotation, s32 key, s32 firstAxisOffset,
+                                           s32 thirdAxisOffset) {
+    CourseMapPlacement *placement = NULL;
+    CourseMapPlacement *candidate;
     s32 i;
-    u16 x;
-    u16 y;
-    u16 z;
-    MtxFx43 r;
-    MtxFx43 m1;
-    MtxFx43 m2;
-    MtxFx43 m3;
-    s32 x0;
-    s32 y0;
-    s32 z0;
-    s32 x2;
-    s32 y2;
-    s32 z2;
+    u16 angleX;
+    u16 angleY;
+    u16 angleZ;
+    MtxFx43 rotationMatrix;
+    MtxFx43 rotationMatrixX;
+    MtxFx43 rotationMatrixY;
+    MtxFx43 rotationMatrixZ;
+    s32 negatedFirstAxisX;
+    s32 negatedFirstAxisY;
+    s32 negatedFirstAxisZ;
+    s32 negatedThirdAxisX;
+    s32 negatedThirdAxisY;
+    s32 negatedThirdAxisZ;
 
     if (gCourseMap->mSettings->mUnk_04 != 0) {
-        d = 0x1000 - d;
+        firstAxisOffset = 0x1000 - firstAxisOffset;
     }
     if (gCourseMap->mStartPlacementCount > 1) {
         for (i = 0; i < gCourseMap->mStartPlacementCount; i++) {
-            p = &(gCourseMap->mStartPlacements)[i];
-            if (c == (s16) p->mKey) {
-                q = p;
+            candidate = &(gCourseMap->mStartPlacements)[i];
+            if (key == (s16) candidate->mKey) {
+                placement = candidate;
                 break;
             }
         }
     } else {
-        q = gCourseMap->mStartPlacements;
+        placement = gCourseMap->mStartPlacements;
     }
-    x = (q->mUnk_0c.x >> 12) * 0xb6;
-    y = (q->mUnk_0c.y >> 12) * 0xb6;
-    z = (q->mUnk_0c.z >> 12) * 0xb6;
-    MTX_RotX43_((s32 *) &m1, gPairsByAngle[(x >> 4) * 2], gPairsByAngle[(x >> 4) * 2 + 1]);
-    MTX_RotY43_(&m2, gPairsByAngle[(y >> 4) * 2], gPairsByAngle[(y >> 4) * 2 + 1]);
-    MTX_RotZ43_((s32 *) &m3, gPairsByAngle[(z >> 4) * 2], gPairsByAngle[(z >> 4) * 2 + 1]);
-    MTX_Concat43(&m1, &m3, &r);
-    MTX_Concat43(&m2, &r, &r);
-    x0 = -r.mUnk_00[0].x;
-    y0 = -r.mUnk_00[0].y;
-    z0 = -r.mUnk_00[0].z;
-    x2 = -r.mUnk_00[2].x;
-    y2 = -r.mUnk_00[2].y;
-    z2 = -r.mUnk_00[2].z;
-    a->x = q->mPos.x + (s32) (((s64) x0 * d + 0x800) >> 12) + (s32) (((s64) x2 * e + 0x800) >> 12);
-    a->y = q->mPos.y + (s32) (((s64) y0 * d + 0x800) >> 12) + (s32) (((s64) y2 * e + 0x800) >> 12);
-    a->z = q->mPos.z + (s32) (((s64) z0 * d + 0x800) >> 12) + (s32) (((s64) z2 * e + 0x800) >> 12);
-    b->x = q->mUnk_0c.x;
-    b->y = q->mUnk_0c.y;
-    b->z = q->mUnk_0c.z;
+    angleX = (placement->mUnk_0c.x >> 12) * 0xb6;
+    angleY = (placement->mUnk_0c.y >> 12) * 0xb6;
+    angleZ = (placement->mUnk_0c.z >> 12) * 0xb6;
+    MTX_RotX43_((s32 *) &rotationMatrixX, gPairsByAngle[(angleX >> 4) * 2], gPairsByAngle[(angleX >> 4) * 2 + 1]);
+    MTX_RotY43_(&rotationMatrixY, gPairsByAngle[(angleY >> 4) * 2], gPairsByAngle[(angleY >> 4) * 2 + 1]);
+    MTX_RotZ43_((s32 *) &rotationMatrixZ, gPairsByAngle[(angleZ >> 4) * 2], gPairsByAngle[(angleZ >> 4) * 2 + 1]);
+    MTX_Concat43(&rotationMatrixX, &rotationMatrixZ, &rotationMatrix);
+    MTX_Concat43(&rotationMatrixY, &rotationMatrix, &rotationMatrix);
+    negatedFirstAxisX = -rotationMatrix.mUnk_00[0].x;
+    negatedFirstAxisY = -rotationMatrix.mUnk_00[0].y;
+    negatedFirstAxisZ = -rotationMatrix.mUnk_00[0].z;
+    negatedThirdAxisX = -rotationMatrix.mUnk_00[2].x;
+    negatedThirdAxisY = -rotationMatrix.mUnk_00[2].y;
+    negatedThirdAxisZ = -rotationMatrix.mUnk_00[2].z;
+    outPos->x = placement->mPos.x + (s32) (((s64) negatedFirstAxisX * firstAxisOffset + 0x800) >> 12) +
+                (s32) (((s64) negatedThirdAxisX * thirdAxisOffset + 0x800) >> 12);
+    outPos->y = placement->mPos.y + (s32) (((s64) negatedFirstAxisY * firstAxisOffset + 0x800) >> 12) +
+                (s32) (((s64) negatedThirdAxisY * thirdAxisOffset + 0x800) >> 12);
+    outPos->z = placement->mPos.z + (s32) (((s64) negatedFirstAxisZ * firstAxisOffset + 0x800) >> 12) +
+                (s32) (((s64) negatedThirdAxisZ * thirdAxisOffset + 0x800) >> 12);
+    outRotation->x = placement->mUnk_0c.x;
+    outRotation->y = placement->mUnk_0c.y;
+    outRotation->z = placement->mUnk_0c.z;
 }
 
 // Position and rotation of the start spot of kart c by mode: a staggered grid by rank in a race, by key
 // (kart + mStartPlacementOffset) % 8 in battle.
-void GetCourseMapKartStartPlacement(Vec3 *a, Vec3 *b, s32 c) {
-    u16 i = gRaceSetup->mKartCount - 1;
-    s32 j = (u16) (GetKartStartRank(c) - 1);
+void GetCourseMapKartStartPlacement(Vec3 *outPos, Vec3 *outRotation, s32 kartIndex) {
+    u16 lastKartIndex = gRaceSetup->mKartCount - 1;
+    s32 rankIndex = (u16) (GetKartStartRank(kartIndex) - 1);
     s32 k;
     s32 l;
     s32 n;
@@ -80,406 +84,413 @@ void GetCourseMapKartStartPlacement(Vec3 *a, Vec3 *b, s32 c) {
     s32 d;
 
     if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
-        GetCourseMapStartPlacementWithOffsets(a, b, 0, 0, 0);
+        GetCourseMapStartPlacementWithOffsets(outPos, outRotation, 0, 0, 0);
         return;
     }
     switch (gRaceSetup->mMode) {
         case MODE_BATTLE:
-            GetCourseMapStartPlacementWithOffsets(a, b, (u16) ((j + gRaceProgress->mStartPlacementOffset) % 8), 0, 0);
+            GetCourseMapStartPlacementWithOffsets(outPos, outRotation,
+                                                  (u16) ((rankIndex + gRaceProgress->mStartPlacementOffset) % 8), 0, 0);
             break;
         case MODE_TIME_ATTACK:
-            GetCourseMapStartPlacementWithOffsets(a, b, 0, 0x800, 0);
+            GetCourseMapStartPlacementWithOffsets(outPos, outRotation, 0, 0x800, 0);
             break;
         case MODE_MISSION_RUN:
             if (gRaceSetup->mKartCount <= 1) {
-                GetCourseMapStartPlacementWithOffsets(a, b, 0, 0x800, 0);
+                GetCourseMapStartPlacementWithOffsets(outPos, outRotation, 0, 0x800, 0);
             } else {
-                GetCourseMapStartPlacementWithOffsets(a, b, c, (1 - c * 2) * 0x14000 + 0x800, 0);
+                GetCourseMapStartPlacementWithOffsets(outPos, outRotation, kartIndex,
+                                                      (1 - kartIndex * 2) * 0x14000 + 0x800, 0);
             }
             break;
         default:
-            k = data_0215406c[i * 2];
+            k = data_0215406c[lastKartIndex * 2];
             l = k;
-            n = j;
-            if (j >= k) {
-                l = data_0215406d[i * 2];
-                n = j - k;
+            n = rankIndex;
+            if (rankIndex >= k) {
+                l = data_0215406d[lastKartIndex * 2];
+                n = rankIndex - k;
             }
             if ((l & 1) == 1) {
                 n = (n - l / 2) * 2;
             } else {
                 n = n * 2 + 1 - l;
             }
-            if (j >= k) {
-                if (k == data_0215406d[(u32) i * 2]) {
+            if (rankIndex >= k) {
+                if (k == data_0215406d[(u32) lastKartIndex * 2]) {
                     n = n + 1;
                 }
             }
             d = n * 0x11000;
             t = 0;
-            if (j >= k) {
+            if (rankIndex >= k) {
                 t = 1;
             }
-            GetCourseMapStartPlacementWithOffsets(a, b, 0, d, j * 0x19000 + t * 0x14000);
+            GetCourseMapStartPlacementWithOffsets(outPos, outRotation, 0, d, rankIndex * 0x19000 + t * 0x14000);
             break;
     }
 }
 
-BOOL IsPosInCourseMapShapeBox(Vec3 *a, CourseMapShape *b) {
-    Vec3 v;
-    s32 d;
-    s32 t;
+BOOL IsPosInCourseMapShapeBox(Vec3 *pos, CourseMapShape *shape) {
+    Vec3 offset;
+    s32 distance;
+    s32 extent;
 
-    VEC_Subtract(a, &b->mUnk_00, &v);
-    d = VEC_DotProduct(&v, &b->mUnk_24);
-    if (d > (s32) (((s64) b->mUnk_0c.y * 0x64000 + 0x800) >> 12) || d < 0) {
+    VEC_Subtract(pos, &shape->mPos, &offset);
+    distance = VEC_DotProduct(&offset, &shape->mAxisY);
+    if (distance > (s32) (((s64) shape->mScale.y * 0x64000 + 0x800) >> 12) || distance < 0) {
         return FALSE;
     }
-    d = VEC_DotProduct(&v, &b->mUnk_18);
-    t = ((s64) b->mUnk_0c.x * 0x32000 + 0x800) >> 12;
-    if (d < -t || d > t) {
+    distance = VEC_DotProduct(&offset, &shape->mAxisX);
+    extent = ((s64) shape->mScale.x * 0x32000 + 0x800) >> 12;
+    if (distance < -extent || distance > extent) {
         return FALSE;
     }
-    d = VEC_DotProduct(&v, &b->mUnk_30);
-    t = ((s64) b->mUnk_0c.z * 0x32000 + 0x800) >> 12;
-    if (d < -t || d > t) {
+    distance = VEC_DotProduct(&offset, &shape->mAxisZ);
+    extent = ((s64) shape->mScale.z * 0x32000 + 0x800) >> 12;
+    if (distance < -extent || distance > extent) {
         return FALSE;
     }
     return TRUE;
 }
 
-s32 IsPosInCourseMapShape(Vec3 *a, CourseMapShape *b) {
-    Vec3 v;
-    s32 r = 0;
+s32 IsPosInCourseMapShape(Vec3 *pos, CourseMapShape *shape) {
+    Vec3 offset;
+    s32 inside = 0;
     s32 x;
     s32 y;
-    s32 z;
+    s32 radius;
 
-    switch (b->mShapeKind) {
+    switch (shape->mShapeKind) {
         case 0:
-            r = IsPosInCourseMapShapeBox(a, b);
+            inside = IsPosInCourseMapShapeBox(pos, shape);
             break;
         case 1:
-            VEC_Subtract(a, &b->mUnk_00, &v);
-            if (VEC_DotProduct(&v, &b->mUnk_24) > (s32) (((s64) b->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
-                r = 0;
+            VEC_Subtract(pos, &shape->mPos, &offset);
+            if (VEC_DotProduct(&offset, &shape->mAxisY) > (s32) (((s64) shape->mScale.y * 0x32000 + 0x800) >> 12)) {
+                inside = 0;
             } else {
-                x = VEC_DotProduct(&v, &b->mUnk_18) >> 4;
-                y = VEC_DotProduct(&v, &b->mUnk_30) >> 4;
-                z = (s32) (((s64) b->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
-                r = (s32) (((s64) z * z + 0x800) >> 12) >=
-                    (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12);
+                x = VEC_DotProduct(&offset, &shape->mAxisX) >> 4;
+                y = VEC_DotProduct(&offset, &shape->mAxisZ) >> 4;
+                radius = (s32) (((s64) shape->mScale.x * 0x32000 + 0x800) >> 12) >> 4;
+                inside = (s32) (((s64) radius * radius + 0x800) >> 12) >=
+                         (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12);
             }
             break;
     }
-    return r;
+    return inside;
 }
 
-s32 func_0204176c(Vec3 *a, s32 *b) {
-    u16 i;
-    CourseMapShape *p;
-    Vec3 v;
-    BOOL r = FALSE;
+s32 func_0204176c(Vec3 *pos, s32 *outFlag) {
+    u16 shapeIndex;
+    CourseMapShape *shape;
+    Vec3 offset;
+    BOOL found = FALSE;
     s32 x;
     s32 y;
-    s32 z;
-    s32 t;
+    s32 radius;
+    s32 inside;
 
-    for (i = 0; i < gCourseMap->mShapeCount; i++) {
-        p = GetCourseMapShape(i);
-        if (p->mKind == 2) {
-            t = 0;
-            switch (p->mShapeKind) {
+    for (shapeIndex = 0; shapeIndex < gCourseMap->mShapeCount; shapeIndex++) {
+        shape = GetCourseMapShape(shapeIndex);
+        if (shape->mKind == 2) {
+            inside = 0;
+            switch (shape->mShapeKind) {
                 case 0:
-                    t = IsPosInCourseMapShapeBox(a, p);
+                    inside = IsPosInCourseMapShapeBox(pos, shape);
                     break;
                 case 1:
-                    VEC_Subtract(a, &p->mUnk_00, &v);
-                    if (VEC_DotProduct(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
-                        x = VEC_DotProduct(&v, &p->mUnk_18) >> 4;
-                        y = VEC_DotProduct(&v, &p->mUnk_30) >> 4;
-                        z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
-                        if ((s32) (((s64) z * z + 0x800) >> 12) >=
+                    VEC_Subtract(pos, &shape->mPos, &offset);
+                    if (VEC_DotProduct(&offset, &shape->mAxisY) <=
+                        (s32) (((s64) shape->mScale.y * 0x32000 + 0x800) >> 12)) {
+                        x = VEC_DotProduct(&offset, &shape->mAxisX) >> 4;
+                        y = VEC_DotProduct(&offset, &shape->mAxisZ) >> 4;
+                        radius = (s32) (((s64) shape->mScale.x * 0x32000 + 0x800) >> 12) >> 4;
+                        if ((s32) (((s64) radius * radius + 0x800) >> 12) >=
                             (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
-                            t = 1;
+                            inside = 1;
                         }
                     }
                     break;
             }
-            if (t != 0) {
-                if ((s16) p->mUnk_3c == 0) {
-                    *b = 1;
+            if (inside != 0) {
+                if ((s16) shape->mUnk_3c == 0) {
+                    *outFlag = 1;
                 } else {
-                    *b = 0;
+                    *outFlag = 0;
                 }
-                r = TRUE;
+                found = TRUE;
                 break;
             }
         }
     }
-    return r;
+    return found;
 }
 
-void *FindCourseMapKind4ShapeRacePointLink(Vec3 *a) {
-    u16 i;
-    CourseMapShape *p;
-    Vec3 v;
+void *FindCourseMapKind4ShapeRacePointLink(Vec3 *pos) {
+    u16 shapeIndex;
+    CourseMapShape *shape;
+    Vec3 offset;
     s32 x;
     s32 y;
-    s32 z;
-    void *r = NULL;
-    s32 t;
+    s32 radius;
+    void *link = NULL;
+    s32 inside;
 
     if (gCourseMap->mKind4ShapeCount == 0) {
-        return r;
+        return link;
     }
-    for (i = 0; i < gCourseMap->mShapeCount; i++) {
-        p = GetCourseMapShape(i);
-        if (p->mKind == 4) {
-            t = 0;
-            switch (p->mShapeKind) {
+    for (shapeIndex = 0; shapeIndex < gCourseMap->mShapeCount; shapeIndex++) {
+        shape = GetCourseMapShape(shapeIndex);
+        if (shape->mKind == 4) {
+            inside = 0;
+            switch (shape->mShapeKind) {
                 case 0:
-                    t = IsPosInCourseMapShapeBox(a, p);
+                    inside = IsPosInCourseMapShapeBox(pos, shape);
                     break;
                 case 1:
-                    VEC_Subtract(a, &p->mUnk_00, &v);
-                    if (VEC_DotProduct(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
-                        x = VEC_DotProduct(&v, &p->mUnk_18) >> 4;
-                        y = VEC_DotProduct(&v, &p->mUnk_30) >> 4;
-                        z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
-                        if ((s32) (((s64) z * z + 0x800) >> 12) >=
+                    VEC_Subtract(pos, &shape->mPos, &offset);
+                    if (VEC_DotProduct(&offset, &shape->mAxisY) <=
+                        (s32) (((s64) shape->mScale.y * 0x32000 + 0x800) >> 12)) {
+                        x = VEC_DotProduct(&offset, &shape->mAxisX) >> 4;
+                        y = VEC_DotProduct(&offset, &shape->mAxisZ) >> 4;
+                        radius = (s32) (((s64) shape->mScale.x * 0x32000 + 0x800) >> 12) >> 4;
+                        if ((s32) (((s64) radius * radius + 0x800) >> 12) >=
                             (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
-                            t = 1;
+                            inside = 1;
                         }
                     }
                     break;
             }
-            if (t != 0) {
-                r = (u8 *) gCourseMap->mRacePointLinks + p->mPointIndex * 0x28;
+            if (inside != 0) {
+                link = (u8 *) gCourseMap->mRacePointLinks + shape->mPointIndex * 0x28;
                 break;
             }
         }
     }
-    return r;
+    return link;
 }
 
-PointLink *FindCourseMapKind4ShapeBattlePointLink(Vec3 *a) {
-    u16 i;
-    CourseMapShape *p;
-    Vec3 v;
+PointLink *FindCourseMapKind4ShapeBattlePointLink(Vec3 *pos) {
+    u16 shapeIndex;
+    CourseMapShape *shape;
+    Vec3 offset;
     s32 x;
     s32 y;
-    s32 z;
-    PointLink *r = NULL;
-    s32 t;
+    s32 radius;
+    PointLink *link = NULL;
+    s32 inside;
 
     if (gCourseMap->mKind4ShapeCount == 0) {
-        return r;
+        return link;
     }
-    for (i = 0; i < gCourseMap->mShapeCount; i++) {
-        p = GetCourseMapShape(i);
-        if (p->mKind == 4) {
-            t = 0;
-            switch (p->mShapeKind) {
+    for (shapeIndex = 0; shapeIndex < gCourseMap->mShapeCount; shapeIndex++) {
+        shape = GetCourseMapShape(shapeIndex);
+        if (shape->mKind == 4) {
+            inside = 0;
+            switch (shape->mShapeKind) {
                 case 0:
-                    t = IsPosInCourseMapShapeBox(a, p);
+                    inside = IsPosInCourseMapShapeBox(pos, shape);
                     break;
                 case 1:
-                    VEC_Subtract(a, &p->mUnk_00, &v);
-                    if (VEC_DotProduct(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
-                        x = VEC_DotProduct(&v, &p->mUnk_18) >> 4;
-                        y = VEC_DotProduct(&v, &p->mUnk_30) >> 4;
-                        z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
-                        if ((s32) (((s64) z * z + 0x800) >> 12) >=
+                    VEC_Subtract(pos, &shape->mPos, &offset);
+                    if (VEC_DotProduct(&offset, &shape->mAxisY) <=
+                        (s32) (((s64) shape->mScale.y * 0x32000 + 0x800) >> 12)) {
+                        x = VEC_DotProduct(&offset, &shape->mAxisX) >> 4;
+                        y = VEC_DotProduct(&offset, &shape->mAxisZ) >> 4;
+                        radius = (s32) (((s64) shape->mScale.x * 0x32000 + 0x800) >> 12) >> 4;
+                        if ((s32) (((s64) radius * radius + 0x800) >> 12) >=
                             (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
-                            t = 1;
+                            inside = 1;
                         }
                     }
                     break;
             }
-            if (t != 0) {
-                r = &gCourseMap->mBattlePointLinks[p->mPointIndex];
+            if (inside != 0) {
+                link = &gCourseMap->mBattlePointLinks[shape->mPointIndex];
                 break;
             }
         }
     }
-    return r;
+    return link;
 }
 
-s32 GetCourseMapCameraIndexAtPos(Vec3 *a) {
-    u16 i;
-    CourseMapShape *p;
-    Vec3 v;
+s32 GetCourseMapCameraIndexAtPos(Vec3 *pos) {
+    u16 shapeIndex;
+    CourseMapShape *shape;
+    Vec3 offset;
     s32 x;
     s32 y;
-    s32 z;
-    s32 r = -1;
-    s32 t;
+    s32 radius;
+    s32 cameraIndex = -1;
+    s32 inside;
 
-    for (i = 0; i < gCourseMap->mShapeCount; i++) {
-        p = GetCourseMapShape(i);
-        if (p->mKind == 1) {
-            t = 0;
-            switch (p->mShapeKind) {
+    for (shapeIndex = 0; shapeIndex < gCourseMap->mShapeCount; shapeIndex++) {
+        shape = GetCourseMapShape(shapeIndex);
+        if (shape->mKind == 1) {
+            inside = 0;
+            switch (shape->mShapeKind) {
                 case 0:
-                    t = IsPosInCourseMapShapeBox(a, p);
+                    inside = IsPosInCourseMapShapeBox(pos, shape);
                     break;
                 case 1:
-                    VEC_Subtract(a, &p->mUnk_00, &v);
-                    if (VEC_DotProduct(&v, &p->mUnk_24) > (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
-                        t = 0;
+                    VEC_Subtract(pos, &shape->mPos, &offset);
+                    if (VEC_DotProduct(&offset, &shape->mAxisY) >
+                        (s32) (((s64) shape->mScale.y * 0x32000 + 0x800) >> 12)) {
+                        inside = 0;
                     } else {
-                        x = VEC_DotProduct(&v, &p->mUnk_18) >> 4;
-                        y = VEC_DotProduct(&v, &p->mUnk_30) >> 4;
-                        z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
-                        if ((s32) (((s64) z * z + 0x800) >> 12) <
+                        x = VEC_DotProduct(&offset, &shape->mAxisX) >> 4;
+                        y = VEC_DotProduct(&offset, &shape->mAxisZ) >> 4;
+                        radius = (s32) (((s64) shape->mScale.x * 0x32000 + 0x800) >> 12) >> 4;
+                        if ((s32) (((s64) radius * radius + 0x800) >> 12) <
                             (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
-                            t = 0;
+                            inside = 0;
                         } else {
-                            t = 1;
+                            inside = 1;
                         }
                     }
                     break;
             }
-            if (t != 0) {
-                r = p->mCameraIndex;
+            if (inside != 0) {
+                cameraIndex = shape->mCameraIndex;
                 break;
             }
         }
     }
-    return r;
+    return cameraIndex;
 }
 
 // Mode 2: returns mNextRespawnSlot and advances it modulo mRespawnCount (the argument is ignored); otherwise returns
 // mCheckpoints[a].mRespawnSlot, a = the kart's current entry.
-u16 GetCourseMapRespawnSlot(u32 a) {
-    u16 r;
-    CourseMap *p;
+u16 GetCourseMapRespawnSlot(u32 checkpointIndex) {
+    u16 respawnSlot;
+    CourseMap *courseMap;
 
     if (gRaceSetup->mMode == MODE_BATTLE) {
-        p = gCourseMap;
-        r = p->mNextRespawnSlot;
-        p->mNextRespawnSlot = (r + 1) % p->mRespawnCount;
+        courseMap = gCourseMap;
+        respawnSlot = courseMap->mNextRespawnSlot;
+        courseMap->mNextRespawnSlot = (respawnSlot + 1) % courseMap->mRespawnCount;
     } else {
-        r = gCourseMap->mCheckpoints[a].mRespawnSlot;
+        respawnSlot = gCourseMap->mCheckpoints[checkpointIndex].mRespawnSlot;
     }
-    return r;
+    return respawnSlot;
 }
 
-void *GetCourseMapRespawnRacePointLink(u32 a, Vec3 *b, Vec3 *c) {
-    CourseMapRespawn *e;
-    s32 i;
+void *GetCourseMapRespawnRacePointLink(u32 slot, Vec3 *outPos, Vec3 *outRotation) {
+    CourseMapRespawn *respawn;
+    s32 pointIndex;
 
     if (gCourseMap->mCheckpoints == NULL && gCourseMap->mRespawns == NULL) {
-        e = NULL;
+        respawn = NULL;
     } else {
-        e = &gCourseMap->mRespawns[gCourseMap->mRespawnIndexBySlot[a]];
+        respawn = &gCourseMap->mRespawns[gCourseMap->mRespawnIndexBySlot[slot]];
     }
-    if (e == NULL) {
-        b->x = 0;
-        b->y = 0;
-        b->z = 0;
-        c->x = 0x1000;
-        c->y = 0;
-        c->z = 0;
-        i = -1;
+    if (respawn == NULL) {
+        outPos->x = 0;
+        outPos->y = 0;
+        outPos->z = 0;
+        outRotation->x = 0x1000;
+        outRotation->y = 0;
+        outRotation->z = 0;
+        pointIndex = -1;
     } else {
-        b->x = e->mPos.x;
-        b->y = e->mPos.y;
-        b->z = e->mPos.z;
-        c->x = e->mUnk_0c.x;
-        c->y = e->mUnk_0c.y;
-        c->z = e->mUnk_0c.z;
-        i = e->mPointIndex;
+        outPos->x = respawn->mPos.x;
+        outPos->y = respawn->mPos.y;
+        outPos->z = respawn->mPos.z;
+        outRotation->x = respawn->mUnk_0c.x;
+        outRotation->y = respawn->mUnk_0c.y;
+        outRotation->z = respawn->mUnk_0c.z;
+        pointIndex = respawn->mPointIndex;
     }
-    if (i == -1) {
+    if (pointIndex == -1) {
         return NULL;
     }
-    return (u8 *) gCourseMap->mRacePointLinks + i * 0x28;
+    return (u8 *) gCourseMap->mRacePointLinks + pointIndex * 0x28;
 }
 
-PointLink *GetCourseMapRespawnBattlePointLink(u32 a, Vec3 *b, Vec3 *c) {
-    CourseMapRespawn *e;
-    s32 i;
+PointLink *GetCourseMapRespawnBattlePointLink(u32 slot, Vec3 *outPos, Vec3 *outRotation) {
+    CourseMapRespawn *respawn;
+    s32 pointIndex;
 
     if (gCourseMap->mCheckpoints == NULL && gCourseMap->mRespawns == NULL) {
-        e = NULL;
+        respawn = NULL;
     } else {
-        e = &gCourseMap->mRespawns[gCourseMap->mRespawnIndexBySlot[a]];
+        respawn = &gCourseMap->mRespawns[gCourseMap->mRespawnIndexBySlot[slot]];
     }
-    if (e == NULL) {
-        b->x = 0;
-        b->y = 0;
-        b->z = 0;
-        c->x = 0x1000;
-        c->y = 0;
-        c->z = 0;
-        i = -1;
+    if (respawn == NULL) {
+        outPos->x = 0;
+        outPos->y = 0;
+        outPos->z = 0;
+        outRotation->x = 0x1000;
+        outRotation->y = 0;
+        outRotation->z = 0;
+        pointIndex = -1;
     } else {
-        b->x = e->mPos.x;
-        b->y = e->mPos.y;
-        b->z = e->mPos.z;
-        c->x = e->mUnk_0c.x;
-        c->y = e->mUnk_0c.y;
-        c->z = e->mUnk_0c.z;
-        i = e->mPointIndex;
+        outPos->x = respawn->mPos.x;
+        outPos->y = respawn->mPos.y;
+        outPos->z = respawn->mPos.z;
+        outRotation->x = respawn->mUnk_0c.x;
+        outRotation->y = respawn->mUnk_0c.y;
+        outRotation->z = respawn->mUnk_0c.z;
+        pointIndex = respawn->mPointIndex;
     }
-    if (i == -1) {
+    if (pointIndex == -1) {
         return NULL;
     }
-    return &gCourseMap->mBattlePointLinks[i];
+    return &gCourseMap->mBattlePointLinks[pointIndex];
 }
 
-struct ItemPointLink *GetCourseMapRespawnItemPointLink(u32 a) {
-    CourseMapRespawn *e;
+struct ItemPointLink *GetCourseMapRespawnItemPointLink(u32 slot) {
+    CourseMapRespawn *respawn;
 
     if (gCourseMap->mCheckpoints == NULL && gCourseMap->mRespawns == NULL) {
-        e = NULL;
+        respawn = NULL;
     } else {
-        e = &gCourseMap->mRespawns[gCourseMap->mRespawnIndexBySlot[a]];
+        respawn = &gCourseMap->mRespawns[gCourseMap->mRespawnIndexBySlot[slot]];
     }
-    if (e == NULL) {
+    if (respawn == NULL) {
         return NULL;
     }
-    return &gCourseMap->mItemPointLinks[e->mItemPointIndex];
+    return &gCourseMap->mItemPointLinks[respawn->mItemPointIndex];
 }
 
-s32 IsKartInCourseMapKind3ShapeList(s32 a, u32 b) {
-    Unk02175620_d8 *n;
-    s32 t;
-    CourseMapShape *p;
-    Vec3 v;
-    Vec3 w;
+s32 IsKartInCourseMapKind3ShapeList(s32 kartIndex, u32 listIndex) {
+    Unk02175620_d8 *node;
+    s32 inside;
+    CourseMapShape *shape;
+    Vec3 kartPos;
+    Vec3 offset;
     s32 x;
     s32 y;
-    s32 z;
-    BOOL f = FALSE;
+    s32 radius;
+    BOOL found = FALSE;
 
-    n = gCourseMap->mKind3ShapeLists[b];
-    GetKartPos(&v, a);
-    for (; f == FALSE && n != NULL; n = n->mUnk_04) {
-        p = n->mUnk_00;
-        t = 0;
-        switch (p->mShapeKind) {
+    node = gCourseMap->mKind3ShapeLists[listIndex];
+    GetKartPos(&kartPos, kartIndex);
+    for (; found == FALSE && node != NULL; node = node->mUnk_04) {
+        shape = node->mUnk_00;
+        inside = 0;
+        switch (shape->mShapeKind) {
             case 0:
-                t = IsPosInCourseMapShapeBox(&v, p);
+                inside = IsPosInCourseMapShapeBox(&kartPos, shape);
                 break;
             case 1:
-                VEC_Subtract(&v, &p->mUnk_00, &w);
-                if (VEC_DotProduct(&w, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
-                    x = VEC_DotProduct(&w, &p->mUnk_18) >> 4;
-                    y = VEC_DotProduct(&w, &p->mUnk_30) >> 4;
-                    z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
-                    if ((s32) (((s64) z * z + 0x800) >> 12) >=
+                VEC_Subtract(&kartPos, &shape->mPos, &offset);
+                if (VEC_DotProduct(&offset, &shape->mAxisY) <=
+                    (s32) (((s64) shape->mScale.y * 0x32000 + 0x800) >> 12)) {
+                    x = VEC_DotProduct(&offset, &shape->mAxisX) >> 4;
+                    y = VEC_DotProduct(&offset, &shape->mAxisZ) >> 4;
+                    radius = (s32) (((s64) shape->mScale.x * 0x32000 + 0x800) >> 12) >> 4;
+                    if ((s32) (((s64) radius * radius + 0x800) >> 12) >=
                         (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
-                        t = 1;
+                        inside = 1;
                     }
                 }
                 break;
         }
-        if (t != 0) {
-            f = TRUE;
+        if (inside != 0) {
+            found = TRUE;
         }
     }
-    return f;
+    return found;
 }

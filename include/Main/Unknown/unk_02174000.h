@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_02029930.h" // Unk02029930_f8
+#include "Main/Unknown/unk_02029930.h" // MissionFileRow
 #include "Main/Unknown/code_02025ebc.h" // Interpolation
 #include "Main/Unknown/code_02036588.h" // HeapCall
 #include "Main/Unknown/unk_02153000.h" // Unk021535b4
@@ -51,7 +51,7 @@ typedef struct RaceSetupCopy {
     /* ec */ s32 mRuleKind;
     /* f0 */ s32 mCourseListMode;
     /* f4 */ u8 *mMissionFile;
-    /* f8 */ Unk02029930_f8 *mMissionFileRows;
+    /* f8 */ MissionFileRow *mMissionFileRows;
     /* fc */ s8 mMissionTableRow;
     /* fd */ s8 mMissionTableColumn;
     /* fe */ u8 mUnk_fe[6];

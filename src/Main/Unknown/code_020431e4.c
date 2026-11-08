@@ -33,14 +33,14 @@ u16 func_020435bc(void) {
 }
 
 u32 func_0204359c(void) {
-    return (data_02175624->mUnk_04 & 1) != 0;
+    return (data_02175624->mFlags & 1) != 0;
 }
 
 void func_02043544(u32 a) {
     if (GetCurrentSceneNumber() == 2 && a != 0) {
-        data_02175624->mUnk_04 |= 2;
+        data_02175624->mFlags |= 2;
     } else {
-        data_02175624->mUnk_04 &= ~2;
+        data_02175624->mFlags &= ~2;
     }
 }
 
@@ -48,18 +48,18 @@ void func_02043410(void) {
     u16 i;
     u16 j;
     Unk0217aa00 *z;
-    InputSlot *p;
+    InputSlot *inputSlot;
 
     for (i = 0; i < 8; i++) {
-        p = &data_02175628[i];
-        ResetInputSlot(p);
-        SetInputSlotRepeat(p, 0xff3, 0x1e, 0xa);
-        p->mSourceKind = 0;
-        p->mRequestedBits = 0;
-        p->mUnk_44 = 0;
-        p->mBitMask = 0x2fff;
-        ResetKeyRecording((KeyRecording *) &p->mUnk_28);
-        ResetInputSlotPair((InputSlotPair *) &p->mPairX);
+        inputSlot = &data_02175628[i];
+        ResetInputSlot(inputSlot);
+        SetInputSlotRepeat(inputSlot, 0xff3, 0x1e, 0xa);
+        inputSlot->mSourceKind = 0;
+        inputSlot->mRequestedBits = 0;
+        inputSlot->mUnk_44 = 0;
+        inputSlot->mBitMask = 0x2fff;
+        ResetKeyRecording((KeyRecording *) &inputSlot->mUnk_28);
+        ResetInputSlotPair((InputSlotPair *) &inputSlot->mPairX);
     }
     z = data_0217aa00;
     if (func_020431e4_inline(z) != 0) {
@@ -76,63 +76,63 @@ void func_02043410(void) {
 void func_020431e4(void) {
     s32 i;
     s32 k;
-    u16 j;
-    s32 w;
+    u16 entryIndex;
+    s32 inputSlotIndex;
     BOOL t;
-    InputSlot *p;
-    RaceSetup *q;
+    InputSlot *inputSlot;
+    RaceSetup *raceSetup;
     Unk0217aa00 *z;
-    s32 s;
+    s32 playerKind;
 
     for (i = 0; i < 10; i++) {
-        p = &data_02175628[(u32) i];
-        ResetInputSlot(p);
-        SetInputSlotRepeat(p, 0xff3, 0x1e, 0xa);
-        p->mSourceKind = 0;
-        p->mRequestedBits = 0;
-        p->mUnk_44 = 0;
-        p->mBitMask = 0x2fff;
-        ResetKeyRecording((KeyRecording *) &p->mUnk_28);
-        ResetInputSlotPair((InputSlotPair *) &p->mPairX);
+        inputSlot = &data_02175628[(u32) i];
+        ResetInputSlot(inputSlot);
+        SetInputSlotRepeat(inputSlot, 0xff3, 0x1e, 0xa);
+        inputSlot->mSourceKind = 0;
+        inputSlot->mRequestedBits = 0;
+        inputSlot->mUnk_44 = 0;
+        inputSlot->mBitMask = 0x2fff;
+        ResetKeyRecording((KeyRecording *) &inputSlot->mUnk_28);
+        ResetInputSlotPair((InputSlotPair *) &inputSlot->mPairX);
     }
     data_02175628[8].mSourceKind = 5;
     data_02175628[9].mSourceKind = 6;
     data_02175624->mUnk_08 = 0;
     data_02175624->mUnk_0c = FALSE;
-    p = data_02175628;
+    inputSlot = data_02175628;
     for (k = 0; k < 10; k++) {
-        ResetInputSlot(p);
-        p->mRequestedBits = 0;
-        SetInputSlotRepeat(p, 0xff3, 0x1e, 0xa);
-        p++;
+        ResetInputSlot(inputSlot);
+        inputSlot->mRequestedBits = 0;
+        SetInputSlotRepeat(inputSlot, 0xff3, 0x1e, 0xa);
+        inputSlot++;
     }
-    q = gRaceSetup;
+    raceSetup = gRaceSetup;
     z = data_0217aa00;
-    for (j = 0; j < 8; j++) {
-        s = q->mCurrentEntries[j].mPlayer.mKind;
+    for (entryIndex = 0; entryIndex < 8; entryIndex++) {
+        playerKind = raceSetup->mCurrentEntries[entryIndex].mPlayer.mKind;
         t = FALSE;
-        w = q->mCurrentEntries[j].mPlayer.mIndex;
-        if ((u32) s <= 3 && ((1 << s) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER)) {
+        inputSlotIndex = raceSetup->mCurrentEntries[entryIndex].mPlayer.mIndex;
+        if ((u32) playerKind <= 3 && ((1 << playerKind) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER)) {
             t = TRUE;
         }
         if (t != FALSE) {
-            if (j == q->mEntryIndex) {
+            if (entryIndex == raceSetup->mEntryIndex) {
                 if (func_020431e4_inline(z) != 0) {
-                    data_02175628[w].mSourceKind = 4;
-                } else if (q->mRaceKind == 2) {
-                    data_02175628[w].mSourceKind = 1;
+                    data_02175628[inputSlotIndex].mSourceKind = 4;
+                } else if (raceSetup->mRaceKind == 2) {
+                    data_02175628[inputSlotIndex].mSourceKind = 1;
                 } else {
-                    data_02175628[w].mSourceKind = 2;
+                    data_02175628[inputSlotIndex].mSourceKind = 2;
                 }
-            } else if (s == 2) {
-                data_02175628[w].mSourceKind = 1;
-            } else if (q->mMode == 5) {
-                data_02175628[w].mSourceKind = 7;
+            } else if (playerKind == 2) {
+                data_02175628[inputSlotIndex].mSourceKind = 1;
+            } else if (raceSetup->mMode == 5) {
+                data_02175628[inputSlotIndex].mSourceKind = 7;
             } else {
-                data_02175628[w].mSourceKind = 4;
+                data_02175628[inputSlotIndex].mSourceKind = 4;
             }
-        } else if (s == 1) {
-            data_02175628[w].mSourceKind = 3;
+        } else if (playerKind == 1) {
+            data_02175628[inputSlotIndex].mSourceKind = 3;
         }
     }
 }

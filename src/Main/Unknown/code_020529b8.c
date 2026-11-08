@@ -98,7 +98,7 @@ void StepDataSharing(void) {
         p->mUnk_05 = 0;
     }
     p->mUnk_04 = (data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000) == 1 ? data_0217aa00->mUnk_1eac[0] : 0;
-    p->mUnk_00 = func_02043a20();
+    p->mUnk_00 = GetPadKeys();
     p->mUnk_06_0 = 0;
     p->mUnk_07 = 0;
     v1 = 0;

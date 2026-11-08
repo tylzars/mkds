@@ -12,4 +12,4 @@ typedef struct CourseMapGroupEntry {
     /* 12 */ s16 mUnk_12;
 } CourseMapGroupEntry;
 
-CourseMapGroupEntry *GetCourseMapGroupEntry(u16 arg0, u16 arg1);
+CourseMapGroupEntry *GetCourseMapGroupEntry(u16 groupIndex, u16 entryIndex);

@@ -16,10 +16,10 @@
 
 // Writes mNextHeader.mUnk_5c; shuffles the respawn slots in mode 2.
 void InitRaceProgress(void);
-void InitRaceProgressKart(RaceProgressKart *a, s32 b);
-s16 ComputeRaceProgressKartScore(s32 a);
-void ComputeGrandPrixScoreTerms(RaceProgressScoreTerms *a, s32 b);
+void InitRaceProgressKart(RaceProgressKart *raceProgressKart, s32 kartIndex);
+s16 ComputeRaceProgressKartScore(s32 kartIndex);
+void ComputeGrandPrixScoreTerms(RaceProgressScoreTerms *scoreTerms, s32 kartIndex);
 BOOL func_02040bc0(void);
-s64 ComputeDotOfPairsRoundedS64(const UnkPair020b502c *a, const UnkPair020b502c *b);
-s32 ComputeDotOfPairsRounded(const UnkPair020b502c *a, const UnkPair020b502c *b);
-PointLink *GetKeyedPlacementBattlePointLink(u32 a);
+s64 ComputeDotOfPairsRoundedS64(const UnkPair020b502c *first, const UnkPair020b502c *second);
+s32 ComputeDotOfPairsRounded(const UnkPair020b502c *first, const UnkPair020b502c *second);
+PointLink *GetKeyedPlacementBattlePointLink(u32 key);

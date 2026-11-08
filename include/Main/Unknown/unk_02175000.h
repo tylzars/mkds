@@ -164,16 +164,16 @@ typedef struct DisplaySettings {
 // Objects whose layout isn't known yet.
 extern DisplaySettings *gDisplaySettings;
 extern InputSlot data_021755dc;
-typedef struct Unk02175624 {
+typedef struct InputState {
     /* 00 */ u8 mUnk_00[2];
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ u16 mUnk_04;
+    /* 02 */ u16 mPadKeys;
+    /* 04 */ u16 mFlags;
     /* 06 */ u8 mUnk_06[2];
     /* 08 */ s32 mUnk_08;
     /* 0c */ BOOL mUnk_0c;
-} Unk02175624;
+} InputState;
 
-extern Unk02175624 *data_02175624;
+extern InputState *data_02175624;
 // 0x5c-byte entries; AdvanceKartToKeyedPlacement writes the halfword at 0x00 of entry Kart.mEntryIndex.
 typedef struct Unk0217566a {
     /* 00 */ u16 mBitMask;

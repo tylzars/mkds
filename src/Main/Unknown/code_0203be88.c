@@ -80,7 +80,7 @@ void InitTitleScene(void) {
     GetHeap(GetCurrentHeapCall());
     ClearLcdcBankAndStartWvrAndWait();
     CreateTitleScene();
-    func_02043c14();
+    ResetInputSlots();
 }
 
 void ReleaseTitleScene(void) {
