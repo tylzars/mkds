@@ -978,51 +978,51 @@ void InitKartBalloons(Unk020a3fa8 *a) {
 // inflates, holds and deflates its balloons), updates the kart's count and hands each balloon its kart index, target
 // position and velocity.
 void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
-    Balloon *o;
+    Balloon *balloon;
     s32 i;
     s32 j;
-    s32 n;
-    s32 m;
+    s32 kartCount;
+    s32 balloonCount;
     s32 a;
     s32 s;
     s32 d;
-    Vec3 v;
+    Vec3 balloonPos;
     Vec3 t;
     Vec3 t2;
     Vec3 *q;
 
-    n = gRaceSetup->mKartCount;
+    kartCount = gRaceSetup->mKartCount;
     if (c->mStartTimer > 0) {
         c->mStartTimer--;
         if (c->mStartTimer > 0) {
             return;
         }
-        for (i = 0; i < n; i++) {
-            KartBalloons *e = &c->mKartBalloons[i];
+        for (i = 0; i < kartCount; i++) {
+            KartBalloons *kartBalloons = &c->mKartBalloons[i];
             GetKart((u16) i);
-            e->mState = 1;
+            kartBalloons->mState = 1;
             if (c->mUnk_000.mCourseMapRow->mUnk_28 != 0 || c->mUnk_000.mCourseMapRow->mUnk_2a != 0) {
-                e->mRemainingSpawnCount = c->mUnk_000.mCourseMapRow->mUnk_28;
+                kartBalloons->mRemainingSpawnCount = c->mUnk_000.mCourseMapRow->mUnk_28;
                 AddBalloonsLeftToMake(i, c->mUnk_000.mCourseMapRow->mUnk_28 + c->mUnk_000.mCourseMapRow->mUnk_2a);
             } else {
-                e->mRemainingSpawnCount = 1;
+                kartBalloons->mRemainingSpawnCount = 1;
                 AddBalloonsLeftToMake(i, 5);
             }
         }
         return;
     }
-    for (i = 0; i < n; i++) {
-        Kart *p;
-        KartBalloons *e = &c->mKartBalloons[i];
+    for (i = 0; i < kartCount; i++) {
+        Kart *kart;
+        KartBalloons *kartBalloons = &c->mKartBalloons[i];
         GetChaseCamera();
-        p = GetKart((u16) i);
-        v.x = p->mPos.x;
-        v.y = p->mPos.y + func_020a23a0(p) - 0xf666;
-        v.z = p->mPos.z;
-        switch (e->mState) {
+        kart = GetKart((u16) i);
+        balloonPos.x = kart->mPos.x;
+        balloonPos.y = kart->mPos.y + func_020a23a0(kart) - 0xf666;
+        balloonPos.z = kart->mPos.z;
+        switch (kartBalloons->mState) {
             case 0:
-                if (e->mSpawnTimer > 0) {
-                    e->mSpawnTimer--;
+                if (kartBalloons->mSpawnTimer > 0) {
+                    kartBalloons->mSpawnTimer--;
                     break;
                 }
                 if (GetBalloonsLeftToMake(i) == 0) {
@@ -1034,157 +1034,157 @@ void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
                 if (func_020a2264(i) <= 0 && func_020a223c(i) <= 0) {
                     break;
                 }
-                o = StartBalloon(e->mBalloonNsbtpFrameIndex, &v);
-                if (o == NULL) {
+                balloon = StartBalloon(kartBalloons->mBalloonNsbtpFrameIndex, &balloonPos);
+                if (balloon == NULL) {
                     break;
                 }
-                e->mBalloons[GetBalloonOrShineCount(i)] = o;
-                func_020a2f9c(o, i, 0xcd);
-                e->mState = 2;
+                kartBalloons->mBalloons[GetBalloonOrShineCount(i)] = balloon;
+                func_020a2f9c(balloon, i, 0xcd);
+                kartBalloons->mState = 2;
                 SetKartInflatingBalloon(i, 1);
                 AddBalloonsLeftToMake(i, -1);
                 break;
             case 1:
                 if (IsKartInflatingBalloon(i) != 0) {
-                    func_020a2f9c(e->mBalloons[GetBalloonOrShineCount(i)], i, 0x266);
+                    func_020a2f9c(kartBalloons->mBalloons[GetBalloonOrShineCount(i)], i, 0x266);
                     break;
                 }
                 if (GetBalloonsLeftToMake(i) != 0 && GetBalloonOrShineCount(i) < 3) {
-                    if (e->mRemainingSpawnCount > 0) {
-                        o = StartBalloon(e->mBalloonNsbtpFrameIndex, &v);
-                        if (o != NULL) {
-                            e->mBalloons[GetBalloonOrShineCount(i)] = o;
-                            func_020a2f9c(o, i, 0x266);
+                    if (kartBalloons->mRemainingSpawnCount > 0) {
+                        balloon = StartBalloon(kartBalloons->mBalloonNsbtpFrameIndex, &balloonPos);
+                        if (balloon != NULL) {
+                            kartBalloons->mBalloons[GetBalloonOrShineCount(i)] = balloon;
+                            func_020a2f9c(balloon, i, 0x266);
                             SetKartInflatingBalloon(i, 1);
                             AddBalloonsLeftToMake(i, -1);
-                            e->mRemainingSpawnCount--;
+                            kartBalloons->mRemainingSpawnCount--;
                         }
                     }
                 } else {
-                    e->mState = 0;
+                    kartBalloons->mState = 0;
                 }
                 break;
             case 2:
                 if (func_020a2264(i) < 0) {
-                    e->mState = 4;
+                    kartBalloons->mState = 4;
                     break;
                 }
-                o = e->mBalloons[GetBalloonOrShineCount(i)];
-                func_020a2f9c(o, i, 0xcd);
-                if (GetBalloonScaleFactor(o) >= 0x800) {
-                    e->mState = 3;
+                balloon = kartBalloons->mBalloons[GetBalloonOrShineCount(i)];
+                func_020a2f9c(balloon, i, 0xcd);
+                if (GetBalloonScaleFactor(balloon) >= 0x800) {
+                    kartBalloons->mState = 3;
                 }
                 break;
             case 3:
                 if (func_020a2264(i) < 0) {
-                    e->mState = 4;
+                    kartBalloons->mState = 4;
                     break;
                 }
                 if (func_020a223c(i) > 0) {
-                    func_020a2f9c(e->mBalloons[GetBalloonOrShineCount(i)], i, 0x10);
+                    func_020a2f9c(kartBalloons->mBalloons[GetBalloonOrShineCount(i)], i, 0x10);
                 } else if (func_020a2264(i) > 0) {
-                    func_020a2f9c(e->mBalloons[GetBalloonOrShineCount(i)], i, 0x29);
+                    func_020a2f9c(kartBalloons->mBalloons[GetBalloonOrShineCount(i)], i, 0x29);
                 } else {
-                    o = e->mBalloons[GetBalloonOrShineCount(i)];
-                    func_020a2f30(o, i, 0xe);
-                    if (GetBalloonScaleFactor(o) <= 0x400) {
-                        e->mState = 4;
+                    balloon = kartBalloons->mBalloons[GetBalloonOrShineCount(i)];
+                    func_020a2f30(balloon, i, 0xe);
+                    if (GetBalloonScaleFactor(balloon) <= 0x400) {
+                        kartBalloons->mState = 4;
                     }
                 }
                 break;
             case 4:
-                func_020a2f30(e->mBalloons[GetBalloonOrShineCount(i)], i, 0x19a);
+                func_020a2f30(kartBalloons->mBalloons[GetBalloonOrShineCount(i)], i, 0x19a);
                 break;
         }
         if (IsKartInflatingBalloon(i) != 0) {
-            o = e->mBalloons[GetBalloonOrShineCount(i)];
-            if (GetBalloonScaleFactor(o) <= 0) {
-                e->mBalloons[GetBalloonOrShineCount(i)] = NULL;
+            balloon = kartBalloons->mBalloons[GetBalloonOrShineCount(i)];
+            if (GetBalloonScaleFactor(balloon) <= 0) {
+                kartBalloons->mBalloons[GetBalloonOrShineCount(i)] = NULL;
                 SetKartInflatingBalloon(i, 0);
                 AddBalloonsLeftToMake(i, 1);
-                e->mSpawnTimer = 0;
-                e->mState = 0;
-            } else if (GetBalloonScaleFactor(o) >= 0x1000) {
+                kartBalloons->mSpawnTimer = 0;
+                kartBalloons->mState = 0;
+            } else if (GetBalloonScaleFactor(balloon) >= 0x1000) {
                 SetKartInflatingBalloon(i, 0);
                 AddBalloonOrShineCountAndMoveRank(i, 1);
-                if (e->mRemainingSpawnCount <= 0) {
-                    e->mSpawnTimer = 30;
-                    e->mState = 0;
+                if (kartBalloons->mRemainingSpawnCount <= 0) {
+                    kartBalloons->mSpawnTimer = 30;
+                    kartBalloons->mState = 0;
                 }
                 func_020d26ec(GetKart((u16) i), 0x152);
             }
-        } else if (e->mRemainingSpawnCount <= 0) {
-            e->mState = 0;
+        } else if (kartBalloons->mRemainingSpawnCount <= 0) {
+            kartBalloons->mState = 0;
         }
         if (i == gRaceSetup->mEntryIndex) {
             if (func_020a2264(i) > 0 || func_020a223c(i) > 0) {
                 s = GetBalloonOrShineCount(i) >= 3 ? 600 : 300;
                 d = GetBalloonOrShineCount(i) >= 3 ? 200 : 100;
-                e->mUnk_08 += e->mUnk_0c;
-                if (e->mUnk_08 >= 0) {
-                    if (e->mUnk_0c < 0) {
-                        e->mUnk_0c = -s;
+                kartBalloons->mUnk_08 += kartBalloons->mUnk_0c;
+                if (kartBalloons->mUnk_08 >= 0) {
+                    if (kartBalloons->mUnk_0c < 0) {
+                        kartBalloons->mUnk_0c = -s;
                     } else {
-                        e->mUnk_0c -= d;
+                        kartBalloons->mUnk_0c -= d;
                     }
                 } else {
-                    if (e->mUnk_0c >= 0) {
-                        e->mUnk_0c = s;
+                    if (kartBalloons->mUnk_0c >= 0) {
+                        kartBalloons->mUnk_0c = s;
                     } else {
-                        e->mUnk_0c += d;
+                        kartBalloons->mUnk_0c += d;
                     }
                 }
             } else {
                 s = GetBalloonOrShineCount(i) >= 3 ? 600 : 300;
-                if (e->mUnk_08 >= 0) {
-                    e->mUnk_08 = e->mUnk_08 < s ? 0 : e->mUnk_08 - s;
+                if (kartBalloons->mUnk_08 >= 0) {
+                    kartBalloons->mUnk_08 = kartBalloons->mUnk_08 < s ? 0 : kartBalloons->mUnk_08 - s;
                 } else {
-                    e->mUnk_08 = e->mUnk_08 > -s ? 0 : e->mUnk_08 + s;
+                    kartBalloons->mUnk_08 = kartBalloons->mUnk_08 > -s ? 0 : kartBalloons->mUnk_08 + s;
                 }
             }
-            m = GetBalloonOrShineCount(i) + (IsKartInflatingBalloon(i) != 0 ? 1 : 0);
-            for (j = 0; j < m; j++) {
-                Balloon *o = e->mBalloons[j];
-                a = e->mUnk_08 + c->mBalloonOffsets[m - 1][j];
+            balloonCount = GetBalloonOrShineCount(i) + (IsKartInflatingBalloon(i) != 0 ? 1 : 0);
+            for (j = 0; j < balloonCount; j++) {
+                Balloon *balloon = kartBalloons->mBalloons[j];
+                a = kartBalloons->mUnk_08 + c->mBalloonOffsets[balloonCount - 1][j];
                 if (a != 0) {
-                    q = &p->mUnk_150;
+                    q = &kart->mUnk_150;
                     t.x = ((s64) q->x * a) >> 12;
                     t.y = ((s64) q->y * a) >> 12;
                     t.z = ((s64) q->z * a) >> 12;
-                    func_020a2e74(o, &t);
+                    func_020a2e74(balloon, &t);
                 }
                 if ((j & 1) == 1) {
-                    q = &p->mUnk_168;
+                    q = &kart->mUnk_168;
                     t2.x = ((s64) q->x * -0xcd) >> 12;
                     t2.y = ((s64) q->y * -0xcd) >> 12;
                     t2.z = ((s64) q->z * -0xcd) >> 12;
-                    func_020a2e74(o, &t2);
+                    func_020a2e74(balloon, &t2);
                 }
-                SetBalloonTargetPosAndVelocity(o, &v, &p->mVelocity);
-                SetBalloonKartIndex(o, i);
-                SetBalloonDrawCountAndList(o, 1, NULL);
-                o->mUnk_00.mFlags &= ~4;
-                o->mUnk_00.mFlags &= ~2;
-                o->mUnk_00.mFlags &= ~8;
-                o->mUnk_00.mAlpha = 0x1f;
+                SetBalloonTargetPosAndVelocity(balloon, &balloonPos, &kart->mVelocity);
+                SetBalloonKartIndex(balloon, i);
+                SetBalloonDrawCountAndList(balloon, 1, NULL);
+                balloon->mUnk_00.mFlags &= ~4;
+                balloon->mUnk_00.mFlags &= ~2;
+                balloon->mUnk_00.mFlags &= ~8;
+                balloon->mUnk_00.mAlpha = 0x1f;
             }
         } else {
-            m = GetBalloonOrShineCount(i) + (IsKartInflatingBalloon(i) != 0 ? 1 : 0);
-            for (j = 0; j < m; j++) {
-                o = e->mBalloons[j];
-                SetBalloonTargetPosAndVelocity(o, &v, &p->mVelocity);
-                SetBalloonKartIndex(o, i);
+            balloonCount = GetBalloonOrShineCount(i) + (IsKartInflatingBalloon(i) != 0 ? 1 : 0);
+            for (j = 0; j < balloonCount; j++) {
+                balloon = kartBalloons->mBalloons[j];
+                SetBalloonTargetPosAndVelocity(balloon, &balloonPos, &kart->mVelocity);
+                SetBalloonKartIndex(balloon, i);
                 if (j == 0) {
-                    SetBalloonDrawCountAndList(o, m, e->mBalloons);
-                    o->mUnk_00.mFlags &= ~4;
-                    o->mUnk_00.mFlags &= ~2;
-                    o->mUnk_00.mFlags &= ~8;
-                    o->mUnk_00.mAlpha = 0x1f;
+                    SetBalloonDrawCountAndList(balloon, balloonCount, kartBalloons->mBalloons);
+                    balloon->mUnk_00.mFlags &= ~4;
+                    balloon->mUnk_00.mFlags &= ~2;
+                    balloon->mUnk_00.mFlags &= ~8;
+                    balloon->mUnk_00.mAlpha = 0x1f;
                 } else {
-                    SetBalloonDrawCountAndList(o, 0, NULL);
-                    o->mUnk_00.mFlags |= data_02156794;
-                    o->mUnk_00.mFlags |= data_02156798;
-                    o->mUnk_00.mFlags |= data_0215679c;
+                    SetBalloonDrawCountAndList(balloon, 0, NULL);
+                    balloon->mUnk_00.mFlags |= data_02156794;
+                    balloon->mUnk_00.mFlags |= data_02156798;
+                    balloon->mUnk_00.mFlags |= data_0215679c;
                 }
             }
         }

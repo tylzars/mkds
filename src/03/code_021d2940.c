@@ -55,7 +55,7 @@ void UpdateTouchInput(void) {
     TPData point;
     KeyTouchInput *input;
 
-    if (gKeyTouchInput->mBits.mBit_0 != 0) {
+    if (gKeyTouchInput->mBits.mDown != 0) {
         wasDown = 1;
     } else {
         wasDown = 0;
@@ -79,19 +79,19 @@ void UpdateTouchInput(void) {
         c = FX_ModS32(c + 4, 5);
     } while (i < 4);
     c = found ^ wasDown;
-    gKeyTouchInput->mBits.mBit_1 = found & c;
-    gKeyTouchInput->mBits.mBit_3 = wasDown & c;
-    gKeyTouchInput->mBits.mBit_0 = found;
-    gKeyTouchInput->mBits.mBit_2 = gKeyTouchInput->mBits.mBit_1;
+    gKeyTouchInput->mBits.mPressed = found & c;
+    gKeyTouchInput->mBits.mReleased = wasDown & c;
+    gKeyTouchInput->mBits.mDown = found;
+    gKeyTouchInput->mBits.mPressedOrRepeated = gKeyTouchInput->mBits.mPressed;
     if (found == 0) {
         gTouchRepeatFrames = 0;
         return;
     }
     gTouchRepeatFrames++;
     if (gTouchRepeatFrames == 0x28) {
-        gKeyTouchInput->mBits.mBit_2 = 1;
+        gKeyTouchInput->mBits.mPressedOrRepeated = 1;
     } else if (gTouchRepeatFrames == 0x2f) {
-        gKeyTouchInput->mBits.mBit_2 = 1;
+        gKeyTouchInput->mBits.mPressedOrRepeated = 1;
         gTouchRepeatFrames = 0x28;
     }
 }
@@ -126,7 +126,7 @@ BOOL AreKeysReleased(u32 keys) {
 
 BOOL IsTouchDownInRect(const Rect *rect) {
     KeyTouchInput *input = gKeyTouchInput;
-    if (input->mBits.mBit_0 == 0) {
+    if (input->mBits.mDown == 0) {
         return 0;
     }
     if (rect->mUnk_00 > input->mTouchX) {
@@ -215,7 +215,7 @@ BOOL IsTouchPressedInOriginSizeRect(const Rect *input) {
 
 BOOL GetTouchPoint(u16 *output) {
     KeyTouchInput *state = gKeyTouchInput;
-    if (state->mBits.mBit_0 == 0) {
+    if (state->mBits.mDown == 0) {
         output[0] = state->mPrevTouchX;
         output[1] = state->mPrevTouchY;
         return FALSE;

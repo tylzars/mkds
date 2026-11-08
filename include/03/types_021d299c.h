@@ -23,10 +23,10 @@ typedef struct KeyTouchInput {
     /* 38 */ union {
         u8 mTouchFlags;
         struct {
-            u8 mBit_0 : 1;
-            u8 mBit_1 : 1;
-            u8 mBit_2 : 1;
-            u8 mBit_3 : 1;
+            u8 mDown : 1;
+            u8 mPressed : 1;
+            u8 mPressedOrRepeated : 1;
+            u8 mReleased : 1;
             u8 mOther : 4;
         } mBits;
     };
